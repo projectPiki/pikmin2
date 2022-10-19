@@ -205,7 +205,7 @@ bool Obj::hipdropCallBack(Creature* creature, f32 damage, CollPart* collpart)
 {
 	if (collpart) {
 		if (m_treasure) {
-			damageTreasure(static_cast<Parms*>(m_parms)->m_properParms.m_fp01.m_value);
+			damageTreasure(C_PARMS->m_properParms.m_fp01.m_value);
 		} else {
 			damageTreasure(damage);
 		}
@@ -222,7 +222,7 @@ bool Obj::hipdropCallBack(Creature* creature, f32 damage, CollPart* collpart)
 bool Obj::earthquakeCallBack(Creature* creature, f32 damage)
 {
 	if (m_treasure) {
-		damageTreasure(static_cast<Parms*>(m_parms)->m_properParms.m_fp01.m_value);
+		damageTreasure(C_PARMS->m_properParms.m_fp01.m_value);
 	}
 	return EnemyBase::earthquakeCallBack(creature, damage);
 }
@@ -367,7 +367,7 @@ void Obj::doEndMovie() { effectDrawOn(); }
 bool OtakaraBase::Obj::isMovePositionSet(bool ignoringTreasures)
 {
 	Creature* target = nullptr;
-	if (!ignoringTreasures && (_2E8 > static_cast<Parms*>(m_parms)->m_properParms.m_fp21.m_value)) {
+	if (!ignoringTreasures && (_2E8 > C_PARMS->m_properParms.m_fp21.m_value)) {
 		target = getNearestTreasure();
 	} else {
 		_2E8 += sys->m_secondsPerFrame;
@@ -378,7 +378,7 @@ bool OtakaraBase::Obj::isMovePositionSet(bool ignoringTreasures)
 		m_targetCreature = target;
 	} else {
 		ConditionNotStickClientAndItem condition(this, m_treasure);
-		Parms* parms = static_cast<Parms*>(m_parms);
+		Parms* parms = C_PARMS;
 		target = EnemyFunc::getNearestPikminOrNavi(this, parms->m_general.m_fov.m_value, parms->m_general.m_sightRadius.m_value, nullptr,
 		                                           nullptr, &condition);
 		if (target) {
@@ -402,7 +402,7 @@ bool OtakaraBase::Obj::isMovePositionSet(bool ignoringTreasures)
 Pellet* OtakaraBase::Obj::getNearestTreasure()
 {
 	Pellet* treasure = nullptr;
-	f32 sightRadius  = static_cast<Parms*>(m_parms)->m_general.m_sightRadius.m_value;
+	f32 sightRadius  = C_PARMS->m_general.m_sightRadius.m_value;
 	f32 minDist      = sightRadius * sightRadius;
 	PelletIterator iterator;
 	iterator.first();
@@ -412,7 +412,7 @@ Pellet* OtakaraBase::Obj::getNearestTreasure()
 		if (pellet->isAlive() && (pellet->m_captureMatrix == nullptr && pellet->isPickable())) {
 			Vector3f position = pellet->getPosition();
 			Vector3f sep      = position - m_homePosition;
-			f32 territory     = static_cast<Parms*>(m_parms)->m_general.m_territoryRadius.m_value;
+			f32 territory     = C_PARMS->m_general.m_territoryRadius.m_value;
 			if ((SQUARE(sep.x) + SQUARE(sep.z)) < SQUARE(territory)) {
 				Vector3f sep2 = m_position;
 				sep2 -= position;
@@ -530,7 +530,7 @@ Vector3f Obj::getTargetPosition(Creature* target)
 	Vector3f sep             = otakaraPosition - targetPosition;
 
 	_normalise(sep);
-	Parms* parms = static_cast<Parms*>(m_parms);
+	Parms* parms = C_PARMS;
 	sep *= parms->m_general.m_moveSpeed.m_value;
 
 	sep += otakaraPosition;
@@ -684,7 +684,7 @@ void Obj::resetTreasure()
 	m_treasure       = nullptr;
 	m_treasureHealth = 0.0f;
 	_2EC             = 0.0f;
-	m_cellRadius     = static_cast<Parms*>(m_parms)->m_general.m_cellRadius.m_value;
+	m_cellRadius     = C_PARMS->m_general.m_cellRadius.m_value;
 
 	CollPart* collpart   = m_collTree->getCollPart(0x626F6479);
 	collpart->m_radius   = 10.0f;
@@ -1288,7 +1288,7 @@ bool Obj::isTransitChaseState()
 		return true;
 	}
 
-	Parms* parms = static_cast<Parms*>(m_parms);
+	Parms* parms = C_PARMS;
 	Navi* navi = EnemyFunc::getNearestNavi(this, parms->m_general.m_fov.m_value, parms->m_general.m_sightRadius.m_value, nullptr, nullptr);
 	return (navi != nullptr);
 }
@@ -1316,7 +1316,7 @@ bool Obj::stimulateBomb()
  */
 Creature* Obj::getChaseTargetCreature()
 {
-	Parms* parms = static_cast<Parms*>(m_parms);
+	Parms* parms = C_PARMS;
 	return EnemyFunc::getNearestPikminOrNavi(this, parms->m_general.m_fov.m_value, parms->m_general.m_sightRadius.m_value, nullptr, nullptr,
 	                                         nullptr);
 }

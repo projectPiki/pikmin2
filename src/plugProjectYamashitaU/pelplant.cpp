@@ -427,7 +427,7 @@ void Obj::changePelletColor()
 {
 	if ((m_pellet != nullptr) && (_2D4 == 3)) {
 
-		if (_2D0 > static_cast<Parms*>(m_parms)->m_pelplantParms.m_fp03.m_value) {
+		if (_2D0 > C_PARMS->m_pelplantParms.m_fp03.m_value) {
 			u16 initialColor;
 			if (m_pellet) {
 				initialColor = m_pellet->m_pelletColor;

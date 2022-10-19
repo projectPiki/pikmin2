@@ -125,7 +125,7 @@ struct Obj : public EnemyBase {
 };
 
 struct Mgr : public EnemyMgrBase {
-	Mgr(int, u8);
+	Mgr(int objLimit, u8 modelType);
 
 	virtual ~Mgr();                                     // _58 (weak)
 	virtual EnemyTypeID::EEnemyTypeID getEnemyTypeID(); // _AC (weak)

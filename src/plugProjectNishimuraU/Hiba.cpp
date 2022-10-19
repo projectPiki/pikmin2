@@ -150,7 +150,7 @@ bool Obj::bombCallBack(Creature* creature, Vector3f& vec, f32 damage)
  */
 void Obj::interactFireAttack()
 {
-	Parms* parms = static_cast<Parms*>(m_parms);
+	Parms* parms = C_PARMS;
 	f32 max      = m_position.y + parms->m_general.m_fp20.m_value;
 	f32 min      = m_position.y - parms->m_general.m_fp21.m_value;
 	f32 radSqr   = SQUARE(parms->m_general.m_fp22.m_value);
@@ -172,7 +172,7 @@ void Obj::interactFireAttack()
 				Vector2f delta;
 				getDistance2D(position, delta);
 				if (SQUARE(delta.x) + SQUARE(delta.y) < radSqr) {
-					InteractFire fire(this, static_cast<Parms*>(m_parms)->m_general.m_attackDamage.m_value);
+					InteractFire fire(this, C_PARMS->m_general.m_attackDamage.m_value);
 					creature->stimulate(fire);
 				}
 			}
@@ -187,8 +187,8 @@ void Obj::interactFireAttack()
  */
 void Obj::setupLodParms()
 {
-	m_lodParm.m_far        = static_cast<Parms*>(m_parms)->m_properParms.m_lodNear.m_value;
-	m_lodParm.m_close      = static_cast<Parms*>(m_parms)->m_properParms.m_lodMiddle.m_value;
+	m_lodParm.m_far        = C_PARMS->m_properParms.m_lodNear.m_value;
+	m_lodParm.m_close      = C_PARMS->m_properParms.m_lodMiddle.m_value;
 	m_lodParm.m_isCylinder = false;
 }
 
