@@ -93,7 +93,7 @@ namespace Game {
 
 namespace YellowKochappy {
 struct Mgr : public KochappyBase::Mgr {
-	Mgr(int, u8);
+	Mgr(int objLimit, u8 modelType);
 	virtual ~Mgr();
 
 	virtual void createObj(int);                        // _60

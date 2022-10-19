@@ -27,6 +27,7 @@ include/*.s
 build/
 tools/mwcc_compiler/*    
 !tools/mwcc_compiler/.gitkeep
+!aoi.exe
 decomp/
 errors.txt
 output.asm

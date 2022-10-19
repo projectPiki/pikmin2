@@ -34,8 +34,12 @@ endif
 # Overkill epilogue fixup strategy. Set to 1 if necessary.
 EPILOGUE_PROCESS := 1
 
-# Update the README after build
-UPDATE_README ?= 1
+# Use the all-in-one updater after successful build? (Fails on non-windows platforms)
+ifeq ($(WINDOWS),1)
+USE_AOI ?= 1
+else
+USE_AOI ?= 0
+endif
 
 BUILD_DIR := build/$(NAME).$(VERSION)
 ifeq ($(EPILOGUE_PROCESS),1)
@@ -221,8 +225,8 @@ $(DOL): $(ELF) | tools
 ifneq ($(findstring -map,$(LDFLAGS)),)
 	$(QUIET) $(PYTHON) tools/calcprogress.py $(DOL) $(MAP)
 endif
-ifeq ($(UPDATE_README),1)
-	$(WINE) $(AOI)
+ifeq ($(USE_AOI),1)
+	$(WINE) ./aoi.exe
 endif
 
 clean:

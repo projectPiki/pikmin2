@@ -51,7 +51,7 @@ struct Obj : public EnemyBase {
 };
 
 struct Mgr : public EnemyMgrBase {
-	Mgr(int, u8);
+	Mgr(int objLimit, u8 modelType);
 
 	//////////////// VTABLE
 	virtual void doSimpleDraw(Viewport*);               // _20

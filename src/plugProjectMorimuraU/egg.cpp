@@ -250,23 +250,23 @@ void Obj::genItem()
 	position.y += 2.0f;
 
 	f32 randVal = randFloat();
-	f32 test    = static_cast<Parms*>(m_parms)->m_properParms.m_fp01.m_value;
+	f32 test    = C_PARMS->m_properParms.m_fp01.m_value;
 	if (randVal < test) {
 		dropType = 2;
 	} else {
-		test += static_cast<Parms*>(m_parms)->m_properParms.m_fp02.m_value;
+		test += C_PARMS->m_properParms.m_fp02.m_value;
 		if (randVal < test) {
 			dropType = 3;
 		} else {
-			test += static_cast<Parms*>(m_parms)->m_properParms.m_mititesChance.m_value;
+			test += C_PARMS->m_properParms.m_mititesChance.m_value;
 			if (randVal < test) {
 				dropType = 4;
 			} else {
-				test += static_cast<Parms*>(m_parms)->m_properParms.m_fp04.m_value;
+				test += C_PARMS->m_properParms.m_fp04.m_value;
 				if (randVal < test) {
 					dropType = 5;
 				} else {
-					test += static_cast<Parms*>(m_parms)->m_properParms.m_fp05.m_value;
+					test += C_PARMS->m_properParms.m_fp05.m_value;
 					if (randVal < test) {
 						dropType = 6;
 					}
@@ -275,11 +275,11 @@ void Obj::genItem()
 		}
 	}
 
-	if (static_cast<Parms*>(m_parms)->_8D0 != 0) {
-		dropType = static_cast<Parms*>(m_parms)->_8D0 - 1;
+	if (C_PARMS->_8D0 != 0) {
+		dropType = C_PARMS->_8D0 - 1;
 	}
 
-	if (static_cast<Parms*>(m_parms)->_8D1 != 0) {
+	if (C_PARMS->_8D1 != 0) {
 		if (dropType == 5) {
 			if (!playData->isDemoFlag(DEMO_First_Spicy_Spray_Made)) {
 				dropType = 2;
