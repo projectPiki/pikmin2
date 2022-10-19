@@ -36,7 +36,7 @@ struct Obj : public OtakaraBase::Obj {
 };
 
 struct Mgr : public OtakaraBase::Mgr {
-	Mgr(int, u8);
+	Mgr(int objLimit, u8 modelType);
 
 	virtual ~Mgr();                                     // _58 (weak)
 	virtual void createObj(int);                        // _A0

@@ -108,7 +108,7 @@ struct Obj : public EnemyBase {
  * @size{0x48}
  */
 struct Mgr : public EnemyMgrBase {
-	Mgr(int, u8);
+	Mgr(int objLimit, u8 modelType);
 
 	/////////////// VTABLE
 	// vtable 1 (GenericObjectMgr, _00, _08-_38)

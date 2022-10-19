@@ -48,7 +48,7 @@ struct Obj : public ChappyBase::Obj {
 };
 
 struct Mgr : public ChappyBase::Mgr {
-	Mgr(int, u8);
+	Mgr(int objLimit, u8 modelType);
 
 	//////////////// VTABLE
 	virtual ~Mgr() { }                                  // _58 (weak)
