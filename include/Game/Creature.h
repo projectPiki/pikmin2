@@ -278,6 +278,24 @@ struct Creature : public CellObject {
 	virtual char* getCreatureName();                  // _1A8 (weak)
 	virtual s32 getCreatureID() { return -1; }        // _1AC (weak)
 
+	inline void getDistanceTo(Creature* creature, Vector2f& distanceResult)
+	{
+		distanceResult.x = getPosition().x - creature->getPosition().x;
+		distanceResult.y = getPosition().z - creature->getPosition().z;
+	}
+
+	inline bool isCreatureWithinRange(Creature* c, f32 range)
+	{
+		Vector2f delta;
+		getDistanceTo(c, delta);
+
+		if (IS_WITHIN_CIRCLE(delta.x, delta.y, range)) {
+			return true;
+		}
+
+		return false;
+	}
+
 	void applyAirDrag(float, float, float);
 	float calcSphereDistance(Creature*);
 	int checkHell(Creature::CheckHellArg&);

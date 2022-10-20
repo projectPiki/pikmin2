@@ -168,7 +168,7 @@ struct Piki : public FakePiki {
 	int getStateID();
 	f32 getThrowHeight();
 	void getVsBattlePiki();
-	void graspSituation_Fast(Creature**);
+	int graspSituation_Fast(Creature**);
 	void graspSituation(Creature**);
 	void initColor();
 	bool invokeAI();
