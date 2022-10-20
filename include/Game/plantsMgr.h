@@ -37,24 +37,12 @@ struct Obj : public EnemyBase {
 	Obj();
 
 	//////////////// VTABLE
-	virtual void onInit(CreatureInitArg*);         // _30
-	virtual void doAnimation();                    // _3C
-	virtual void doSimulation(f32) { }             // _4C (weak)
-	virtual bool isLivingThing() { return false; } // _D4 (weak)
-	virtual void collisionCallback(CollEvent&);    // _EC
-	virtual bool ignoreAtari(Creature* creature)   // _190 (weak)
-	{
-		if ((creature != nullptr) && (creature->isTeki())) {
-			return true;
-		}
-		return false;
-	}
-	virtual ~Obj() { }                                         // _1BC (weak)
+	virtual void onInit(CreatureInitArg*);      // _30
+	virtual void doAnimation();                 // _3C
+	virtual void collisionCallback(CollEvent&); // _EC
+
 	virtual void birth(Vector3f&, f32);                        // _1C0
-	virtual void setInitialSetting(EnemyInitialParamBase*) { } // _1C4 (weak)
 	virtual void update();                                     // _1C8
-	virtual void doUpdate() { }                                // _1CC (weak)
-	virtual void doUpdateCommon() { }                          // _1D0 (weak)
 	virtual void doAnimationCullingOff();                      // _1DC
 	virtual void doDebugDraw(Graphics&);                       // _1EC
 	virtual void setParameters();                              // _228
@@ -62,6 +50,19 @@ struct Obj : public EnemyBase {
 	virtual bool earthquakeCallBack(Creature*, f32);           // _28C
 	virtual void touched();                                    // _2F8
 	virtual void touchedSE(Navi*);                             // _2FC
+	virtual ~Obj() { }                                         // _1BC (weak)
+	virtual void setInitialSetting(EnemyInitialParamBase*) { } // _1C4 (weak)
+	virtual void doUpdate() { }                                // _1CC (weak)
+	virtual void doSimulation(f32) { }                         // _4C (weak)
+	virtual void doUpdateCommon() { }                          // _1D0 (weak)
+	virtual bool isLivingThing() { return false; }             // _D4 (weak)
+	virtual bool ignoreAtari(Creature* creature)               // _190 (weak)
+	{
+		if ((creature != nullptr) && (creature->isTeki())) {
+			return true;
+		}
+		return false;
+	}
 	//////////////// VTABLE END
 
 	// _00 		= VTBL
@@ -91,6 +92,12 @@ namespace Chiyogami {
 struct Obj : public Plants::Obj {
 	Obj() { }
 
+	virtual ~Obj() { }           // _1BC (weak)
+	virtual void setParameters() // _228 (weak)
+	{
+		Plants::Obj::setParameters();
+		m_lodParm.m_isCylinder = true;
+	}
 	virtual void getLODCylinder(Sys::Cylinder& cylinder) // _144 (weak)
 	{
 		Vector3f vec1;
@@ -99,12 +106,6 @@ struct Obj : public Plants::Obj {
 		EnemyParmsBase* parms = static_cast<EnemyParmsBase*>(m_parms);
 		vec1.y += parms->m_general.m_privateRadius.m_value;
 		cylinder.set(vec1, vec2, parms->m_general.m_homeRadius.m_value);
-	}
-	virtual ~Obj() { }           // _1BC (weak)
-	virtual void setParameters() // _228 (weak)
-	{
-		Plants::Obj::setParameters();
-		m_lodParm.m_isCylinder = true;
 	}
 	virtual EnemyTypeID::EEnemyTypeID getEnemyTypeID() // _258 (weak)
 	{
@@ -118,16 +119,8 @@ struct Obj : public Plants::Obj {
 struct Mgr : public EnemyMgrBaseAlwaysMovieActor {
 	Mgr(int objLimit, u8 modelType);
 
-	virtual ~Mgr() { }                        // _58 (weak)
-	virtual EnemyBase* birth(EnemyBirthArg&); // _70
-	virtual void createObj(int count)         // _A0 (weak)
-	{
-		m_obj = new Obj[count];
-	}
-	virtual EnemyBase* getEnemy(int idx) // _A4 (weak)
-	{
-		return &m_obj[idx];
-	}
+	// virtual ~Mgr() { }                        // _58 (weak)
+	virtual EnemyBase* birth(EnemyBirthArg&);          // _70
 	virtual void doAlloc();                            // _A8
 	virtual EnemyTypeID::EEnemyTypeID getEnemyTypeID() // _AC (weak)
 	{
@@ -136,6 +129,14 @@ struct Mgr : public EnemyMgrBaseAlwaysMovieActor {
 	virtual J3DModelData* doLoadBmd(void* file) // _D4 (weak)
 	{
 		return J3DModelLoaderDataBase::load(file, 0x20240010); // flags
+	}
+	virtual void createObj(int count) // _A0 (weak)
+	{
+		m_obj = new Obj[count];
+	}
+	virtual EnemyBase* getEnemy(int idx) // _A4 (weak)
+	{
+		return &m_obj[idx];
 	}
 
 	// _00 		= VTBL
@@ -164,16 +165,8 @@ struct Obj : public Plants::Obj {
 struct Mgr : public EnemyMgrBaseAlwaysMovieActor {
 	Mgr(int objLimit, u8 modelType);
 
-	virtual ~Mgr() { }                        // _58 (weak)
-	virtual EnemyBase* birth(EnemyBirthArg&); // _70
-	virtual void createObj(int count)         // _A0 (weak)
-	{
-		m_obj = new Obj[count];
-	}
-	virtual EnemyBase* getEnemy(int idx) // _A4 (weak)
-	{
-		return &m_obj[idx];
-	}
+	// virtual ~Mgr() { }                        // _58 (weak)
+	virtual EnemyBase* birth(EnemyBirthArg&);          // _70
 	virtual void doAlloc();                            // _A8
 	virtual EnemyTypeID::EEnemyTypeID getEnemyTypeID() // _AC (weak)
 	{
@@ -182,6 +175,14 @@ struct Mgr : public EnemyMgrBaseAlwaysMovieActor {
 	virtual J3DModelData* doLoadBmd(void* file) // _D4 (weak)
 	{
 		return J3DModelLoaderDataBase::load(file, 0x20240010); // flags
+	}
+	virtual void createObj(int count) // _A0 (weak)
+	{
+		m_obj = new Obj[count];
+	}
+	virtual EnemyBase* getEnemy(int idx) // _A4 (weak)
+	{
+		return &m_obj[idx];
 	}
 
 	// _00 		= VTBL
@@ -214,16 +215,8 @@ struct Obj : public Plants::Obj {
 struct Mgr : public EnemyMgrBaseAlwaysMovieActor {
 	Mgr(int objLimit, u8 modelType);
 
-	virtual ~Mgr() { }                        // _58 (weak)
-	virtual EnemyBase* birth(EnemyBirthArg&); // _70
-	virtual void createObj(int count)         // _A0 (weak)
-	{
-		m_obj = new Obj[count];
-	}
-	virtual EnemyBase* getEnemy(int idx) // _A4 (weak)
-	{
-		return &m_obj[idx];
-	}
+	// virtual ~Mgr() { }                        // _58 (weak)
+	virtual EnemyBase* birth(EnemyBirthArg&);          // _70
 	virtual void doAlloc();                            // _A8
 	virtual EnemyTypeID::EEnemyTypeID getEnemyTypeID() // _AC (weak)
 	{
@@ -243,6 +236,14 @@ struct Mgr : public EnemyMgrBaseAlwaysMovieActor {
 	virtual J3DModelData* doLoadBmd(void* file) // _D4 (weak)
 	{
 		return J3DModelLoaderDataBase::load(file, 0x20240030); // flags
+	}
+	virtual void createObj(int count) // _A0 (weak)
+	{
+		m_obj = new Obj[count];
+	}
+	virtual EnemyBase* getEnemy(int idx) // _A4 (weak)
+	{
+		return &m_obj[idx];
 	}
 
 	// _00 		= VTBL
@@ -275,16 +276,8 @@ struct Obj : public Plants::Obj {
 struct Mgr : public EnemyMgrBaseAlwaysMovieActor {
 	Mgr(int objLimit, u8 modelType);
 
-	virtual ~Mgr() { }                        // _58 (weak)
-	virtual EnemyBase* birth(EnemyBirthArg&); // _70
-	virtual void createObj(int count)         // _A0 (weak)
-	{
-		m_obj = new Obj[count];
-	}
-	virtual EnemyBase* getEnemy(int idx) // _A4 (weak)
-	{
-		return &m_obj[idx];
-	}
+	// virtual ~Mgr() { }                        // _58 (weak)
+	virtual EnemyBase* birth(EnemyBirthArg&);          // _70
 	virtual void doAlloc();                            // _A8
 	virtual EnemyTypeID::EEnemyTypeID getEnemyTypeID() // _AC (weak)
 	{
@@ -304,6 +297,14 @@ struct Mgr : public EnemyMgrBaseAlwaysMovieActor {
 	virtual J3DModelData* doLoadBmd(void* file) // _D4 (weak)
 	{
 		return J3DModelLoaderDataBase::load(file, 0x20240030); // flags
+	}
+	virtual void createObj(int count) // _A0 (weak)
+	{
+		m_obj = new Obj[count];
+	}
+	virtual EnemyBase* getEnemy(int idx) // _A4 (weak)
+	{
+		return &m_obj[idx];
 	}
 
 	// _00 		= VTBL
@@ -335,16 +336,8 @@ struct Obj : public Plants::Obj {
 struct Mgr : public EnemyMgrBaseAlwaysMovieActor {
 	Mgr(int objLimit, u8 modelType);
 
-	virtual ~Mgr() { }                        // _58 (weak)
-	virtual EnemyBase* birth(EnemyBirthArg&); // _70
-	virtual void createObj(int count)         // _A0 (weak)
-	{
-		m_obj = new Obj[count];
-	}
-	virtual EnemyBase* getEnemy(int idx) // _A4 (weak)
-	{
-		return &m_obj[idx];
-	}
+	// virtual ~Mgr() { }                        // _58 (weak)
+	virtual EnemyBase* birth(EnemyBirthArg&);          // _70
 	virtual void doAlloc();                            // _A8
 	virtual EnemyTypeID::EEnemyTypeID getEnemyTypeID() // _AC (weak)
 	{
@@ -353,6 +346,14 @@ struct Mgr : public EnemyMgrBaseAlwaysMovieActor {
 	virtual J3DModelData* doLoadBmd(void* file) // _D4 (weak)
 	{
 		return J3DModelLoaderDataBase::load(file, 0x20240010); // flags
+	}
+	virtual void createObj(int count) // _A0 (weak)
+	{
+		m_obj = new Obj[count];
+	}
+	virtual EnemyBase* getEnemy(int idx) // _A4 (weak)
+	{
+		return &m_obj[idx];
 	}
 
 	// _00 		= VTBL
@@ -384,16 +385,8 @@ struct Obj : public Plants::Obj {
 struct Mgr : public EnemyMgrBaseAlwaysMovieActor {
 	Mgr(int objLimit, u8 modelType);
 
-	virtual ~Mgr() { }                        // _58 (weak)
-	virtual EnemyBase* birth(EnemyBirthArg&); // _70
-	virtual void createObj(int count)         // _A0 (weak)
-	{
-		m_obj = new Obj[count];
-	}
-	virtual EnemyBase* getEnemy(int idx) // _A4 (weak)
-	{
-		return &m_obj[idx];
-	}
+	// virtual ~Mgr() { }                        // _58 (weak)
+	virtual EnemyBase* birth(EnemyBirthArg&);          // _70
 	virtual void doAlloc();                            // _A8
 	virtual EnemyTypeID::EEnemyTypeID getEnemyTypeID() // _AC (weak)
 	{
@@ -402,6 +395,14 @@ struct Mgr : public EnemyMgrBaseAlwaysMovieActor {
 	virtual J3DModelData* doLoadBmd(void* file) // _D4 (weak)
 	{
 		return J3DModelLoaderDataBase::load(file, 0x20240010); // flags
+	}
+	virtual void createObj(int count) // _A0 (weak)
+	{
+		m_obj = new Obj[count];
+	}
+	virtual EnemyBase* getEnemy(int idx) // _A4 (weak)
+	{
+		return &m_obj[idx];
 	}
 
 	// _00 		= VTBL
@@ -428,16 +429,8 @@ struct Obj : public Plants::Obj {
 struct Mgr : public EnemyMgrBaseAlwaysMovieActor {
 	Mgr(int objLimit, u8 modelType);
 
-	virtual ~Mgr() { }                        // _58 (weak)
-	virtual EnemyBase* birth(EnemyBirthArg&); // _70
-	virtual void createObj(int count)         // _A0 (weak)
-	{
-		m_obj = new Obj[count];
-	}
-	virtual EnemyBase* getEnemy(int idx) // _A4 (weak)
-	{
-		return &m_obj[idx];
-	}
+	// virtual ~Mgr() { }                        // _58 (weak)
+	virtual EnemyBase* birth(EnemyBirthArg&);          // _70
 	virtual void doAlloc();                            // _A8
 	virtual EnemyTypeID::EEnemyTypeID getEnemyTypeID() // _AC (weak)
 	{
@@ -446,6 +439,14 @@ struct Mgr : public EnemyMgrBaseAlwaysMovieActor {
 	virtual J3DModelData* doLoadBmd(void* file) // _D4 (weak)
 	{
 		return J3DModelLoaderDataBase::load(file, 0x20240010); // flags
+	}
+	virtual void createObj(int count) // _A0 (weak)
+	{
+		m_obj = new Obj[count];
+	}
+	virtual EnemyBase* getEnemy(int idx) // _A4 (weak)
+	{
+		return &m_obj[idx];
 	}
 
 	// _00 		= VTBL
@@ -474,16 +475,8 @@ struct Obj : public Plants::Obj {
 struct Mgr : public EnemyMgrBaseAlwaysMovieActor {
 	Mgr(int objLimit, u8 modelType);
 
-	virtual ~Mgr() { }                        // _58 (weak)
-	virtual EnemyBase* birth(EnemyBirthArg&); // _70
-	virtual void createObj(int count)         // _A0 (weak)
-	{
-		m_obj = new Obj[count];
-	}
-	virtual EnemyBase* getEnemy(int idx) // _A4 (weak)
-	{
-		return &m_obj[idx];
-	}
+	// virtual ~Mgr() { }                        // _58 (weak)
+	virtual EnemyBase* birth(EnemyBirthArg&);          // _70
 	virtual void doAlloc();                            // _A8
 	virtual EnemyTypeID::EEnemyTypeID getEnemyTypeID() // _AC (weak)
 	{
@@ -492,6 +485,14 @@ struct Mgr : public EnemyMgrBaseAlwaysMovieActor {
 	virtual J3DModelData* doLoadBmd(void* file) // _D4 (weak)
 	{
 		return J3DModelLoaderDataBase::load(file, 0x20240010); // flags
+	}
+	virtual void createObj(int count) // _A0 (weak)
+	{
+		m_obj = new Obj[count];
+	}
+	virtual EnemyBase* getEnemy(int idx) // _A4 (weak)
+	{
+		return &m_obj[idx];
 	}
 
 	// _00 		= VTBL
@@ -523,16 +524,8 @@ struct Obj : public Plants::Obj {
 struct Mgr : public EnemyMgrBaseAlwaysMovieActor {
 	Mgr(int objLimit, u8 modelType);
 
-	virtual ~Mgr() { }                        // _58 (weak)
-	virtual EnemyBase* birth(EnemyBirthArg&); // _70
-	virtual void createObj(int count)         // _A0 (weak)
-	{
-		m_obj = new Obj[count];
-	}
-	virtual EnemyBase* getEnemy(int idx) // _A4 (weak)
-	{
-		return &m_obj[idx];
-	}
+	// virtual ~Mgr() { }                        // _58 (weak)
+	virtual EnemyBase* birth(EnemyBirthArg&);          // _70
 	virtual void doAlloc();                            // _A8
 	virtual EnemyTypeID::EEnemyTypeID getEnemyTypeID() // _AC (weak)
 	{
@@ -541,6 +534,14 @@ struct Mgr : public EnemyMgrBaseAlwaysMovieActor {
 	virtual J3DModelData* doLoadBmd(void* file) // _D4 (weak)
 	{
 		return J3DModelLoaderDataBase::load(file, 0x20240010); // flags
+	}
+	virtual void createObj(int count) // _A0 (weak)
+	{
+		m_obj = new Obj[count];
+	}
+	virtual EnemyBase* getEnemy(int idx) // _A4 (weak)
+	{
+		return &m_obj[idx];
 	}
 
 	// _00 		= VTBL
@@ -572,16 +573,8 @@ struct Obj : public Plants::Obj {
 struct Mgr : public EnemyMgrBaseAlwaysMovieActor {
 	Mgr(int objLimit, u8 modelType);
 
-	virtual ~Mgr() { }                        // _58 (weak)
-	virtual EnemyBase* birth(EnemyBirthArg&); // _70
-	virtual void createObj(int count)         // _A0 (weak)
-	{
-		m_obj = new Obj[count];
-	}
-	virtual EnemyBase* getEnemy(int idx) // _A4 (weak)
-	{
-		return &m_obj[idx];
-	}
+	// virtual ~Mgr() { }                        // _58 (weak)
+	virtual EnemyBase* birth(EnemyBirthArg&);          // _70
 	virtual void doAlloc();                            // _A8
 	virtual EnemyTypeID::EEnemyTypeID getEnemyTypeID() // _AC (weak)
 	{
@@ -590,6 +583,14 @@ struct Mgr : public EnemyMgrBaseAlwaysMovieActor {
 	virtual J3DModelData* doLoadBmd(void* file) // _D4 (weak)
 	{
 		return J3DModelLoaderDataBase::load(file, 0x20240010); // flags
+	}
+	virtual void createObj(int count) // _A0 (weak)
+	{
+		m_obj = new Obj[count];
+	}
+	virtual EnemyBase* getEnemy(int idx) // _A4 (weak)
+	{
+		return &m_obj[idx];
 	}
 
 	// _00 		= VTBL
@@ -616,16 +617,8 @@ struct Obj : public Plants::Obj {
 struct Mgr : public EnemyMgrBaseAlwaysMovieActor {
 	Mgr(int objLimit, u8 modelType);
 
-	virtual ~Mgr() { }                        // _58 (weak)
-	virtual EnemyBase* birth(EnemyBirthArg&); // _70
-	virtual void createObj(int count)         // _A0 (weak)
-	{
-		m_obj = new Obj[count];
-	}
-	virtual EnemyBase* getEnemy(int idx) // _A4 (weak)
-	{
-		return &m_obj[idx];
-	}
+	// virtual ~Mgr() { }                        // _58 (weak)
+	virtual EnemyBase* birth(EnemyBirthArg&);          // _70
 	virtual void doAlloc();                            // _A8
 	virtual EnemyTypeID::EEnemyTypeID getEnemyTypeID() // _AC (weak)
 	{
@@ -634,6 +627,14 @@ struct Mgr : public EnemyMgrBaseAlwaysMovieActor {
 	virtual J3DModelData* doLoadBmd(void* file) // _D4 (weak)
 	{
 		return J3DModelLoaderDataBase::load(file, 0x20240010); // flags
+	}
+	virtual void createObj(int count) // _A0 (weak)
+	{
+		m_obj = new Obj[count];
+	}
+	virtual EnemyBase* getEnemy(int idx) // _A4 (weak)
+	{
+		return &m_obj[idx];
 	}
 
 	// _00 		= VTBL
@@ -662,16 +663,8 @@ struct Obj : public Plants::Obj {
 struct Mgr : public EnemyMgrBaseAlwaysMovieActor {
 	Mgr(int objLimit, u8 modelType);
 
-	virtual ~Mgr() { }                        // _58 (weak)
-	virtual EnemyBase* birth(EnemyBirthArg&); // _70
-	virtual void createObj(int count)         // _A0 (weak)
-	{
-		m_obj = new Obj[count];
-	}
-	virtual EnemyBase* getEnemy(int idx) // _A4 (weak)
-	{
-		return &m_obj[idx];
-	}
+	// virtual ~Mgr() { }                        // _58 (weak)
+	virtual EnemyBase* birth(EnemyBirthArg&);          // _70
 	virtual void doAlloc();                            // _A8
 	virtual EnemyTypeID::EEnemyTypeID getEnemyTypeID() // _AC (weak)
 	{
@@ -680,6 +673,14 @@ struct Mgr : public EnemyMgrBaseAlwaysMovieActor {
 	virtual J3DModelData* doLoadBmd(void* file) // _D4 (weak)
 	{
 		return J3DModelLoaderDataBase::load(file, 0x20240010); // flags
+	}
+	virtual void createObj(int count) // _A0 (weak)
+	{
+		m_obj = new Obj[count];
+	}
+	virtual EnemyBase* getEnemy(int idx) // _A4 (weak)
+	{
+		return &m_obj[idx];
 	}
 
 	// _00 		= VTBL
@@ -695,6 +696,12 @@ namespace Tukushi {
 struct Obj : public Plants::Obj {
 	Obj() { }
 
+	virtual ~Obj() { }           // _1BC (weak)
+	virtual void setParameters() // _228 (weak)
+	{
+		Plants::Obj::setParameters();
+		m_lodParm.m_isCylinder = true;
+	}
 	virtual void getLODCylinder(Sys::Cylinder& cylinder) // _144 (weak)
 	{
 		Vector3f vec1;
@@ -703,12 +710,6 @@ struct Obj : public Plants::Obj {
 		EnemyParmsBase* parms = static_cast<EnemyParmsBase*>(m_parms);
 		vec1.y += parms->m_general.m_privateRadius.m_value;
 		cylinder.set(vec1, vec2, parms->m_general.m_homeRadius.m_value);
-	}
-	virtual ~Obj() { }           // _1BC (weak)
-	virtual void setParameters() // _228 (weak)
-	{
-		Plants::Obj::setParameters();
-		m_lodParm.m_isCylinder = true;
 	}
 	virtual EnemyTypeID::EEnemyTypeID getEnemyTypeID() // _258 (weak)
 	{
@@ -722,16 +723,8 @@ struct Obj : public Plants::Obj {
 struct Mgr : public EnemyMgrBaseAlwaysMovieActor {
 	Mgr(int objLimit, u8 modelType);
 
-	virtual ~Mgr() { }                        // _58 (weak)
-	virtual EnemyBase* birth(EnemyBirthArg&); // _70
-	virtual void createObj(int count)         // _A0 (weak)
-	{
-		m_obj = new Obj[count];
-	}
-	virtual EnemyBase* getEnemy(int idx) // _A4 (weak)
-	{
-		return &m_obj[idx];
-	}
+	// virtual ~Mgr() { }                        // _58 (weak)
+	virtual EnemyBase* birth(EnemyBirthArg&);          // _70
 	virtual void doAlloc();                            // _A8
 	virtual EnemyTypeID::EEnemyTypeID getEnemyTypeID() // _AC (weak)
 	{
@@ -740,6 +733,14 @@ struct Mgr : public EnemyMgrBaseAlwaysMovieActor {
 	virtual J3DModelData* doLoadBmd(void* file) // _D4 (weak)
 	{
 		return J3DModelLoaderDataBase::load(file, 0x20240010); // flags
+	}
+	virtual void createObj(int count) // _A0 (weak)
+	{
+		m_obj = new Obj[count];
+	}
+	virtual EnemyBase* getEnemy(int idx) // _A4 (weak)
+	{
+		return &m_obj[idx];
 	}
 
 	// _00 		= VTBL
@@ -758,6 +759,12 @@ namespace Wakame_l {
 struct Obj : public Plants::Obj {
 	Obj() { }
 
+	virtual ~Obj() { }           // _1BC (weak)
+	virtual void setParameters() // _228 (weak)
+	{
+		Plants::Obj::setParameters();
+		m_lodParm.m_isCylinder = true;
+	}
 	virtual void getLODCylinder(Sys::Cylinder& cylinder) // _144 (weak)
 	{
 		Vector3f vec1;
@@ -766,12 +773,6 @@ struct Obj : public Plants::Obj {
 		EnemyParmsBase* parms = static_cast<EnemyParmsBase*>(m_parms);
 		vec1.y += parms->m_general.m_privateRadius.m_value;
 		cylinder.set(vec1, vec2, parms->m_general.m_homeRadius.m_value);
-	}
-	virtual ~Obj() { }           // _1BC (weak)
-	virtual void setParameters() // _228 (weak)
-	{
-		Plants::Obj::setParameters();
-		m_lodParm.m_isCylinder = true;
 	}
 	virtual EnemyTypeID::EEnemyTypeID getEnemyTypeID() // _258 (weak)
 	{
@@ -785,16 +786,8 @@ struct Obj : public Plants::Obj {
 struct Mgr : public EnemyMgrBaseAlwaysMovieActor {
 	Mgr(int objLimit, u8 modelType);
 
-	virtual ~Mgr() { }                        // _58 (weak)
-	virtual EnemyBase* birth(EnemyBirthArg&); // _70
-	virtual void createObj(int count)         // _A0 (weak)
-	{
-		m_obj = new Obj[count];
-	}
-	virtual EnemyBase* getEnemy(int idx) // _A4 (weak)
-	{
-		return &m_obj[idx];
-	}
+	// virtual ~Mgr() { }                        // _58 (weak)
+	virtual EnemyBase* birth(EnemyBirthArg&);          // _70
 	virtual void doAlloc();                            // _A8
 	virtual EnemyTypeID::EEnemyTypeID getEnemyTypeID() // _AC (weak)
 	{
@@ -803,6 +796,14 @@ struct Mgr : public EnemyMgrBaseAlwaysMovieActor {
 	virtual J3DModelData* doLoadBmd(void* file) // _D4 (weak)
 	{
 		return J3DModelLoaderDataBase::load(file, 0x20240010); // flags
+	}
+	virtual void createObj(int count) // _A0 (weak)
+	{
+		m_obj = new Obj[count];
+	}
+	virtual EnemyBase* getEnemy(int idx) // _A4 (weak)
+	{
+		return &m_obj[idx];
 	}
 
 	// _00 		= VTBL
@@ -816,6 +817,12 @@ namespace Wakame_s {
 struct Obj : public Plants::Obj {
 	Obj() { }
 
+	virtual ~Obj() { }           // _1BC (weak)
+	virtual void setParameters() // _228 (weak)
+	{
+		Plants::Obj::setParameters();
+		m_lodParm.m_isCylinder = true;
+	}
 	virtual void getLODCylinder(Sys::Cylinder& cylinder) // _144 (weak)
 	{
 		Vector3f vec1;
@@ -824,12 +831,6 @@ struct Obj : public Plants::Obj {
 		EnemyParmsBase* parms = static_cast<EnemyParmsBase*>(m_parms);
 		vec1.y += parms->m_general.m_privateRadius.m_value;
 		cylinder.set(vec1, vec2, parms->m_general.m_homeRadius.m_value);
-	}
-	virtual ~Obj() { }           // _1BC (weak)
-	virtual void setParameters() // _228 (weak)
-	{
-		Plants::Obj::setParameters();
-		m_lodParm.m_isCylinder = true;
 	}
 	virtual EnemyTypeID::EEnemyTypeID getEnemyTypeID() // _258 (weak)
 	{
@@ -843,16 +844,8 @@ struct Obj : public Plants::Obj {
 struct Mgr : public EnemyMgrBaseAlwaysMovieActor {
 	Mgr(int objLimit, u8 modelType);
 
-	virtual ~Mgr() { }                        // _58 (weak)
-	virtual EnemyBase* birth(EnemyBirthArg&); // _70
-	virtual void createObj(int count)         // _A0 (weak)
-	{
-		m_obj = new Obj[count];
-	}
-	virtual EnemyBase* getEnemy(int idx) // _A4 (weak)
-	{
-		return &m_obj[idx];
-	}
+	// virtual ~Mgr() { }                        // _58 (weak)
+	virtual EnemyBase* birth(EnemyBirthArg&);          // _70
 	virtual void doAlloc();                            // _A8
 	virtual EnemyTypeID::EEnemyTypeID getEnemyTypeID() // _AC (weak)
 	{
@@ -861,6 +854,14 @@ struct Mgr : public EnemyMgrBaseAlwaysMovieActor {
 	virtual J3DModelData* doLoadBmd(void* file) // _D4 (weak)
 	{
 		return J3DModelLoaderDataBase::load(file, 0x20240010); // flags
+	}
+	virtual void createObj(int count) // _A0 (weak)
+	{
+		m_obj = new Obj[count];
+	}
+	virtual EnemyBase* getEnemy(int idx) // _A4 (weak)
+	{
+		return &m_obj[idx];
 	}
 
 	// _00 		= VTBL
@@ -891,16 +892,8 @@ struct Obj : public Plants::Obj {
 struct Mgr : public EnemyMgrBaseAlwaysMovieActor {
 	Mgr(int objLimit, u8 modelType);
 
-	virtual ~Mgr() { }                        // _58 (weak)
-	virtual EnemyBase* birth(EnemyBirthArg&); // _70
-	virtual void createObj(int count)         // _A0 (weak)
-	{
-		m_obj = new Obj[count];
-	}
-	virtual EnemyBase* getEnemy(int idx) // _A4 (weak)
-	{
-		return &m_obj[idx];
-	}
+	// virtual ~Mgr() { }                        // _58 (weak)
+	virtual EnemyBase* birth(EnemyBirthArg&);          // _70
 	virtual void doAlloc();                            // _A8
 	virtual EnemyTypeID::EEnemyTypeID getEnemyTypeID() // _AC (weak)
 	{
@@ -909,6 +902,14 @@ struct Mgr : public EnemyMgrBaseAlwaysMovieActor {
 	virtual J3DModelData* doLoadBmd(void* file) // _D4 (weak)
 	{
 		return J3DModelLoaderDataBase::load(file, 0x20240010); // flags
+	}
+	virtual void createObj(int count) // _A0 (weak)
+	{
+		m_obj = new Obj[count];
+	}
+	virtual EnemyBase* getEnemy(int idx) // _A4 (weak)
+	{
+		return &m_obj[idx];
 	}
 
 	// _00 		= VTBL
@@ -924,6 +925,12 @@ namespace Zenmai {
 struct Obj : public Plants::Obj {
 	Obj() { }
 
+	virtual ~Obj() { }           // _1BC (weak)
+	virtual void setParameters() // _228 (weak)
+	{
+		Plants::Obj::setParameters();
+		m_lodParm.m_isCylinder = true;
+	}
 	virtual void getLODCylinder(Sys::Cylinder& cylinder) // _144 (weak)
 	{
 		Vector3f vec1;
@@ -932,12 +939,6 @@ struct Obj : public Plants::Obj {
 		EnemyParmsBase* parms = static_cast<EnemyParmsBase*>(m_parms);
 		vec1.y += parms->m_general.m_privateRadius.m_value;
 		cylinder.set(vec1, vec2, parms->m_general.m_homeRadius.m_value);
-	}
-	virtual ~Obj() { }           // _1BC (weak)
-	virtual void setParameters() // _228 (weak)
-	{
-		Plants::Obj::setParameters();
-		m_lodParm.m_isCylinder = true;
 	}
 	virtual EnemyTypeID::EEnemyTypeID getEnemyTypeID() // _258 (weak)
 	{
@@ -951,16 +952,8 @@ struct Obj : public Plants::Obj {
 struct Mgr : public EnemyMgrBaseAlwaysMovieActor {
 	Mgr(int objLimit, u8 modelType);
 
-	virtual ~Mgr() { }                        // _58 (weak)
-	virtual EnemyBase* birth(EnemyBirthArg&); // _70
-	virtual void createObj(int count)         // _A0 (weak)
-	{
-		m_obj = new Obj[count];
-	}
-	virtual EnemyBase* getEnemy(int idx) // _A4 (weak)
-	{
-		return &m_obj[idx];
-	}
+	// virtual ~Mgr() { }                        // _58 (weak)
+	virtual EnemyBase* birth(EnemyBirthArg&);          // _70
 	virtual void doAlloc();                            // _A8
 	virtual EnemyTypeID::EEnemyTypeID getEnemyTypeID() // _AC (weak)
 	{
@@ -969,6 +962,14 @@ struct Mgr : public EnemyMgrBaseAlwaysMovieActor {
 	virtual J3DModelData* doLoadBmd(void* file) // _D4 (weak)
 	{
 		return J3DModelLoaderDataBase::load(file, 0x20240010); // flags
+	}
+	virtual void createObj(int count) // _A0 (weak)
+	{
+		m_obj = new Obj[count];
+	}
+	virtual EnemyBase* getEnemy(int idx) // _A4 (weak)
+	{
+		return &m_obj[idx];
 	}
 
 	// _00 		= VTBL

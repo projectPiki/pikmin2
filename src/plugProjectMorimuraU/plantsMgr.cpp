@@ -6,8 +6,8 @@ namespace Game {
  * Address:	80353D4C
  * Size:	000064
  */
-Tanpopo::Mgr::Mgr(int p1, u8 p2)
-    : EnemyMgrBaseAlwaysMovieActor(p1, p2)
+Tanpopo::Mgr::Mgr(int objLimit, u8 modelType)
+    : EnemyMgrBaseAlwaysMovieActor(objLimit, modelType)
 {
 	m_name = "タンポポマネージャ"; // dandelion manager
 }
@@ -31,8 +31,8 @@ EnemyBase* Tanpopo::Mgr::birth(EnemyBirthArg& birthArg) { return EnemyMgrBase::b
  * Address:	80353E18
  * Size:	000064
  */
-Clover::Mgr::Mgr(int p1, u8 p2)
-    : EnemyMgrBaseAlwaysMovieActor(p1, p2)
+Clover::Mgr::Mgr(int objLimit, u8 modelType)
+    : EnemyMgrBaseAlwaysMovieActor(objLimit, modelType)
 {
 	m_name = "クローバーマネージャ"; // clover manager
 }
@@ -56,8 +56,8 @@ EnemyBase* Clover::Mgr::birth(EnemyBirthArg& birthArg) { return EnemyMgrBase::bi
  * Address:	80353EE4
  * Size:	000064
  */
-HikariKinoko::Mgr::Mgr(int p1, u8 p2)
-    : EnemyMgrBaseAlwaysMovieActor(p1, p2)
+HikariKinoko::Mgr::Mgr(int objLimit, u8 modelType)
+    : EnemyMgrBaseAlwaysMovieActor(objLimit, modelType)
 {
 	m_name = "ヒカリキノコマネージャ"; // hikari mushroom manager
 }
@@ -81,8 +81,8 @@ EnemyBase* HikariKinoko::Mgr::birth(EnemyBirthArg& birthArg) { return EnemyMgrBa
  * Address:	80353FB0
  * Size:	000064
  */
-Ooinu_s::Mgr::Mgr(int p1, u8 p2)
-    : EnemyMgrBaseAlwaysMovieActor(p1, p2)
+Ooinu_s::Mgr::Mgr(int objLimit, u8 modelType)
+    : EnemyMgrBaseAlwaysMovieActor(objLimit, modelType)
 {
 	m_name = "おおいぬふぐり（小）マネージャ"; // oinu fuguri (small) manager
 }
@@ -106,8 +106,8 @@ EnemyBase* Ooinu_s::Mgr::birth(EnemyBirthArg& birthArg) { return EnemyMgrBase::b
  * Address:	8035407C
  * Size:	000064
  */
-KareOoinu_s::Mgr::Mgr(int p1, u8 p2)
-    : EnemyMgrBaseAlwaysMovieActor(p1, p2)
+KareOoinu_s::Mgr::Mgr(int objLimit, u8 modelType)
+    : EnemyMgrBaseAlwaysMovieActor(objLimit, modelType)
 {
 	m_name = "枯れおおいぬふぐり（小）マネージャ"; // withered dog fuguri (small) manager
 }
@@ -131,8 +131,8 @@ EnemyBase* KareOoinu_s::Mgr::birth(EnemyBirthArg& birthArg) { return EnemyMgrBas
  * Address:	80354148
  * Size:	000064
  */
-Ooinu_l::Mgr::Mgr(int p1, u8 p2)
-    : EnemyMgrBaseAlwaysMovieActor(p1, p2)
+Ooinu_l::Mgr::Mgr(int objLimit, u8 modelType)
+    : EnemyMgrBaseAlwaysMovieActor(objLimit, modelType)
 {
 	m_name = "おおいぬふぐり（大）マネージャ"; // big dog fuguri (large) manager
 }
@@ -156,8 +156,8 @@ EnemyBase* Ooinu_l::Mgr::birth(EnemyBirthArg& birthArg) { return EnemyMgrBase::b
  * Address:	80354214
  * Size:	000064
  */
-KareOoinu_l::Mgr::Mgr(int p1, u8 p2)
-    : EnemyMgrBaseAlwaysMovieActor(p1, p2)
+KareOoinu_l::Mgr::Mgr(int objLimit, u8 modelType)
+    : EnemyMgrBaseAlwaysMovieActor(objLimit, modelType)
 {
 	m_name = "枯れおおいぬふぐり（大）マネージャ"; // withered dog fuguri (large) manager
 }
@@ -181,8 +181,8 @@ EnemyBase* KareOoinu_l::Mgr::birth(EnemyBirthArg& birthArg) { return EnemyMgrBas
  * Address:	803542E0
  * Size:	000064
  */
-Wakame_s::Mgr::Mgr(int p1, u8 p2)
-    : EnemyMgrBaseAlwaysMovieActor(p1, p2)
+Wakame_s::Mgr::Mgr(int objLimit, u8 modelType)
+    : EnemyMgrBaseAlwaysMovieActor(objLimit, modelType)
 {
 	m_name = "若芽（小）マネージャ"; // sprout (small) manager
 }
@@ -206,8 +206,8 @@ EnemyBase* Wakame_s::Mgr::birth(EnemyBirthArg& birthArg) { return EnemyMgrBase::
  * Address:	803543AC
  * Size:	000064
  */
-Wakame_l::Mgr::Mgr(int p1, u8 p2)
-    : EnemyMgrBaseAlwaysMovieActor(p1, p2)
+Wakame_l::Mgr::Mgr(int objLimit, u8 modelType)
+    : EnemyMgrBaseAlwaysMovieActor(objLimit, modelType)
 {
 	m_name = "若芽（大）マネージャ"; // sprout (large) manager
 }
@@ -231,8 +231,8 @@ EnemyBase* Wakame_l::Mgr::birth(EnemyBirthArg& birthArg) { return EnemyMgrBase::
  * Address:	80354478
  * Size:	000064
  */
-Tukushi::Mgr::Mgr(int p1, u8 p2)
-    : EnemyMgrBaseAlwaysMovieActor(p1, p2)
+Tukushi::Mgr::Mgr(int objLimit, u8 modelType)
+    : EnemyMgrBaseAlwaysMovieActor(objLimit, modelType)
 {
 	m_name = "つくしマネージャ"; // tsukushi manager
 }
@@ -256,8 +256,8 @@ EnemyBase* Tukushi::Mgr::birth(EnemyBirthArg& birthArg) { return EnemyMgrBase::b
  * Address:	80354544
  * Size:	000064
  */
-Watage::Mgr::Mgr(int p1, u8 p2)
-    : EnemyMgrBaseAlwaysMovieActor(p1, p2)
+Watage::Mgr::Mgr(int objLimit, u8 modelType)
+    : EnemyMgrBaseAlwaysMovieActor(objLimit, modelType)
 {
 	m_name = "綿毛マネージャ"; // fluff manager
 }
@@ -281,8 +281,8 @@ EnemyBase* Watage::Mgr::birth(EnemyBirthArg& birthArg) { return EnemyMgrBase::bi
  * Address:	80354610
  * Size:	000064
  */
-DiodeRed::Mgr::Mgr(int p1, u8 p2)
-    : EnemyMgrBaseAlwaysMovieActor(p1, p2)
+DiodeRed::Mgr::Mgr(int objLimit, u8 modelType)
+    : EnemyMgrBaseAlwaysMovieActor(objLimit, modelType)
 {
 	m_name = "赤ダイオードマネージャ"; // red diode manager
 }
@@ -306,8 +306,8 @@ EnemyBase* DiodeRed::Mgr::birth(EnemyBirthArg& birthArg) { return EnemyMgrBase::
  * Address:	803546DC
  * Size:	000064
  */
-DiodeGreen::Mgr::Mgr(int p1, u8 p2)
-    : EnemyMgrBaseAlwaysMovieActor(p1, p2)
+DiodeGreen::Mgr::Mgr(int objLimit, u8 modelType)
+    : EnemyMgrBaseAlwaysMovieActor(objLimit, modelType)
 {
 	m_name = "青ダイオードマネージャ"; // blue diode manager
 }
@@ -331,8 +331,8 @@ EnemyBase* DiodeGreen::Mgr::birth(EnemyBirthArg& birthArg) { return EnemyMgrBase
  * Address:	803547A8
  * Size:	000064
  */
-Margaret::Mgr::Mgr(int p1, u8 p2)
-    : EnemyMgrBaseAlwaysMovieActor(p1, p2)
+Margaret::Mgr::Mgr(int objLimit, u8 modelType)
+    : EnemyMgrBaseAlwaysMovieActor(objLimit, modelType)
 {
 	m_name = "マーガレットマネージャ"; // margaret manager
 }
@@ -356,8 +356,8 @@ EnemyBase* Margaret::Mgr::birth(EnemyBirthArg& birthArg) { return EnemyMgrBase::
  * Address:	80354874
  * Size:	000064
  */
-Nekojarashi::Mgr::Mgr(int p1, u8 p2)
-    : EnemyMgrBaseAlwaysMovieActor(p1, p2)
+Nekojarashi::Mgr::Mgr(int objLimit, u8 modelType)
+    : EnemyMgrBaseAlwaysMovieActor(objLimit, modelType)
 {
 	m_name = "ねこじゃらしマネージャ"; // nekojyarashi manager
 }
@@ -381,8 +381,8 @@ EnemyBase* Nekojarashi::Mgr::birth(EnemyBirthArg& birthArg) { return EnemyMgrBas
  * Address:	80354940
  * Size:	000064
  */
-Chiyogami::Mgr::Mgr(int p1, u8 p2)
-    : EnemyMgrBaseAlwaysMovieActor(p1, p2)
+Chiyogami::Mgr::Mgr(int objLimit, u8 modelType)
+    : EnemyMgrBaseAlwaysMovieActor(objLimit, modelType)
 {
 	m_name = "千代紙マネージャ"; // chiyogami manager
 }
@@ -406,8 +406,8 @@ EnemyBase* Chiyogami::Mgr::birth(EnemyBirthArg& birthArg) { return EnemyMgrBase:
  * Address:	80354A0C
  * Size:	000064
  */
-Zenmai::Mgr::Mgr(int p1, u8 p2)
-    : EnemyMgrBaseAlwaysMovieActor(p1, p2)
+Zenmai::Mgr::Mgr(int objLimit, u8 modelType)
+    : EnemyMgrBaseAlwaysMovieActor(objLimit, modelType)
 {
 	m_name = "ぜんまいマネージャ"; // mainspring manager
 }
