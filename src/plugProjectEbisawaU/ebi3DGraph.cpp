@@ -1,9 +1,6 @@
 #include "types.h"
 #include "ebi/E3DGraph.h"
 
-extern J3DMtxCalcAnmBase* J3DNewMtxCalcAnm(u32, J3DAnmTransform*);
-// put this somewhere relevant in a header, perhaps? -Epoch
-
 namespace ebi {
 
 /*

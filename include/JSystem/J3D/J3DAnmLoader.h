@@ -10,13 +10,14 @@
 #include "JSystem/J3D/J3DAnmTransform.h"
 #include "JSystem/J3D/J3DAnmVisibilityFull.h"
 #include "JSystem/J3D/J3DAnmVtxColor.h"
+#include "JSystem/J3D/J3DMtxCalc.h"
 #include "types.h"
 
 namespace J3DAnmLoaderDataBase {
 J3DAnmBase* load(const void*);
 }
 
-J3DMtxCalc* J3DNewMtxCalcAnm(unsigned long, J3DAnmTransform*);
+J3DMtxCalcAnmBase* J3DNewMtxCalcAnm(unsigned long, J3DAnmTransform*);
 
 struct J3DAnmLoader {
 	virtual J3DAnmBase* load(const void*)              = 0; // _08
