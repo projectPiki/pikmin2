@@ -14,7 +14,7 @@ struct AnimMgr;
 struct KeyEvent;
 
 struct BaseAnimator {
-	BaseAnimator() { }
+	// BaseAnimator() { }
 
 	virtual J3DMtxCalc* getCalc() = 0; // _08
 };

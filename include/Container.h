@@ -9,7 +9,7 @@ struct GenericContainer : public CNode {
 	 * @reifiedAddress{8010A900}
 	 * @reifiedFile{plugProjectYamashitaU/pelplant.cpp}
 	 */
-	virtual ~GenericContainer() { }     // _08 (weak)
+	// virtual ~GenericContainer() { }     // _08 (weak)
 	virtual void* getObject(void*) = 0; // _10
 	virtual void* getNext(void*)   = 0; // _14
 	virtual void* getStart()       = 0; // _18
@@ -20,7 +20,7 @@ template <typename T> struct Container : public GenericContainer {
 	inline Container() { _18 = 0; }
 
 	/////////////////// VTABLE
-	virtual ~Container() { } // _08 (weak)
+	// virtual ~Container() { } // _08 (weak)
 
 	// Wrapper for ::get().
 	virtual void* getObject(void* index) // _10 (weak)

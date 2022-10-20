@@ -48,10 +48,6 @@ struct EnemyBirthArg {
 struct IEnemyMgrBase : public GenericObjectMgr, public GenericContainer {
 	// vtable 1 (GenericObjectMgr, _00, _08-_38)
 	// vtable 2 (GenericContainer + self, _00, _40-_5C)
-	/**
-	 * @reifiedAddress{8010A960}
-	 * @reifiedFile{plugProjectYamashitaU/pelplant.cpp}
-	 */
 	virtual ~IEnemyMgrBase() { }                          // _58 (weak)
 	virtual void* getObject(void*)                   = 0; // _5C
 	virtual void* getNext(void*)                     = 0; // _60
@@ -89,36 +85,20 @@ struct EnemyMgrBase : public IEnemyMgrBase {
 	// vtable 2 (GenericContainer + IEnemyMgrBase + self, _00, _40-_E0)
 	// GenericContainer thunks _40-_58
 	// virtual ~EnemyMgrBase() { } // _58 (weak)
-	/**
-	 * @reifiedAddress{8010A820}
-	 * @reifiedFile{plugProjectYamashitaU/pelplant.cpp}
-	 */
 	virtual void* getObject(void* index) { return get(index); }; // _5C (weak)
 	virtual void* getNext(void* index);                          // _60
-	/**
-	 * @reifiedAddress{8010A7F0}
-	 * @reifiedFile{plugProjectYamashitaU/pelplant.cpp}
-	 */
-	virtual void* getStart() { return getNext((void*)-1); } // _64 (weak)
-	/**
-	 * @reifiedAddress{8010A7E8}
-	 * @reifiedFile{plugProjectYamashitaU/pelplant.cpp}
-	 */
-	virtual void* getEnd() { return (void*)m_objLimit; } // _68 (weak)
-	virtual void alloc();                                // _6C
-	virtual EnemyBase* birth(EnemyBirthArg&);            // _70
-	/**
-	 * @reifiedAddress{8010A7AC}
-	 * @reifiedFile{plugProjectYamashitaU/pelplant.cpp}
-	 */
+	virtual void* getStart() { return getNext((void*)-1); }      // _64 (weak)
+	virtual void* getEnd() { return (void*)m_objLimit; }         // _68 (weak)
+	virtual EnemyBase* get(void* index)                          // _98 (weak)
+	{
+		return getEnemy((int)index);
+	}
+	virtual void alloc();                         // _6C
+	virtual EnemyBase* birth(EnemyBirthArg&);     // _70
 	virtual J3DModelData* getJ3DModelData() const // _74 (weak)
 	{
 		return m_modelData;
 	}
-	/**
-	 * @reifiedAddress{8010A7B4}
-	 * @reifiedFile{plugProjectYamashitaU/pelplant.cpp}
-	 */
 	virtual EnemyGeneratorBase* getGenerator() const // _78 (weak)
 	{
 		return m_generator;
@@ -127,28 +107,13 @@ struct EnemyMgrBase : public IEnemyMgrBase {
 	virtual void setupSoundViewerAndBas();  // _80
 	virtual void setDebugParm(u32);         // _84
 	virtual void resetDebugParm(u32);       // _88
-	/**
-	 * @reifiedAddress{8010A7BC}
-	 * @reifiedFile{plugProjectYamashitaU/pelplant.cpp}
-	 */
-	virtual int getMaxObjects() const // _8C
+	virtual int getMaxObjects() const       // _8C
 	{
 		return m_objLimit;
 	}
 	virtual void startMovie(); // _90
 	virtual void endMovie();   // _94
-	/**
-	 * @reifiedAddress{8010A780}
-	 * @reifiedFile{plugProjectYamashitaU/pelplant.cpp}
-	 */
-	virtual EnemyBase* get(void* index) // _98 (weak)
-	{
-		return getEnemy((int)index);
-	}
-	/**
-	 * @reifiedAddress{801074BC}
-	 * @reifiedFile{plugProjectYamashitaU/enemyBase.cpp}
-	 */
+
 	virtual bool isAlwaysMovieActor() // _9C (weak)
 	{
 		return false;

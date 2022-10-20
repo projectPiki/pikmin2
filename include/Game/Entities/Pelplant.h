@@ -44,28 +44,29 @@ struct Obj : public EnemyBase {
 
 	/////////////// VTABLE
 	// vtable 1 (Creature, _00, _08-_1AC)
-	virtual void onInit(CreatureInitArg*); // _030
-	virtual void doAnimation();            // _03C
-	virtual void doSimulation(f32);        // _04C
-	virtual void doDirectDraw(Graphics&);  // _050
-	virtual bool isLivingThing()           // _0D4 (weak)
+	virtual void setInitialSetting(EnemyInitialParamBase*); // _1C4
+	virtual void doAnimation();                             // _03C
+	virtual void doSimulation(f32);                         // _04C
+	virtual void doDirectDraw(Graphics&);                   // _050
+	virtual bool isLivingThing()                            // _0D4 (weak)
 	{
 		return (_2C8 >> 1 & 1);
 	}
 	virtual void getShadowParam(ShadowParam&); // _134
 	virtual void onStickStart(Creature*);      // _158
 	// vtable 2 (MotionListener+EnemyBase+self, _00, _1BC-1D0)
-	virtual ~Obj() { }                                      // _1BC (weak)
-	virtual void birth(Vector3f&, f32);                     // _1C0
-	virtual void setInitialSetting(EnemyInitialParamBase*); // _1C4
-	virtual void doUpdate();                                // _1CC
-	virtual void doAnimationUpdateAnimator();               // _1D8
-	virtual void doDebugDraw(Graphics&);                    // _1EC
-	virtual EnemyTypeID::EEnemyTypeID getEnemyTypeID()      // _258 (weak)
+	virtual ~Obj() { }                  // _1BC (weak)
+	virtual void birth(Vector3f&, f32); // _1C0
+
+	virtual void doUpdate();                           // _1CC
+	virtual void doAnimationUpdateAnimator();          // _1D8
+	virtual void doDebugDraw(Graphics&);               // _1EC
+	virtual EnemyTypeID::EEnemyTypeID getEnemyTypeID() // _258 (weak)
 	{
 		return EnemyTypeID::EnemyID_Pelplant;
 	}
 	virtual void doGetLifeGaugeParam(LifeGaugeParam&);      // _260
+	virtual void onInit(CreatureInitArg*);                  // _030
 	virtual bool damageCallBack(Creature*, f32, CollPart*); // _278
 	virtual bool farmCallBack(Creature*, f32);              // _290
 	virtual void setFSM(FSM* fsm)                           // _2F8 (weak)
@@ -114,20 +115,20 @@ struct Mgr : public EnemyMgrBase {
 	// vtable 1 (GenericObjectMgr, _00, _08-_38)
 	// vtable 2 (GenericContainer + IEnemyMgrBase + self, _00, _40-_E0)
 	// GenericContainer thunks _40-_58
-	virtual ~Mgr() { }                        // _58 (weak)
-	virtual EnemyBase* birth(EnemyBirthArg&); // _70
-	virtual void createObj(int count)         // _A0 (weak)
+	// virtual ~Mgr() { }                        // _58 (weak)
+	virtual EnemyBase* birth(EnemyBirthArg&);          // _70
+	virtual void doAlloc();                            // _A8
+	virtual EnemyTypeID::EEnemyTypeID getEnemyTypeID() // _AC (weak)
+	{
+		return EnemyTypeID::EnemyID_Pelplant;
+	}
+	virtual void createObj(int count) // _A0 (weak)
 	{
 		m_objects = new Obj[count];
 	}
 	virtual EnemyBase* getEnemy(int index) // _A4 (weak)
 	{
 		return &m_objects[index];
-	}
-	virtual void doAlloc();                            // _A8
-	virtual EnemyTypeID::EEnemyTypeID getEnemyTypeID() // _AC (weak)
-	{
-		return EnemyTypeID::EnemyID_Pelplant;
 	}
 	virtual void initStoneSetting() { } // _C0 (weak)
 	/////////////// VTABLE END
@@ -208,7 +209,7 @@ struct ProperAnimator : public EnemyBlendAnimatorBase {
 	}
 
 	// vtable (EnemyBlendAnimatorBase, _00, _08-_28)
-	virtual ~ProperAnimator() { } // _08 (weak)
+	// virtual ~ProperAnimator() { } // _08 (weak)
 
 	// _00		= VTABLE
 	// _00-_60	= EnemyBlendAnimatorBase
