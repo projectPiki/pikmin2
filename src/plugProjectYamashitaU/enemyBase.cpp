@@ -129,7 +129,7 @@ bool BirthTypeDropState::isFinishableWaitingBirthTypeDrop(EnemyBase* enemy)
 			if (cell->isNavi() || (cell->isPiki() && static_cast<Piki*>(cell)->isPikmin())) {
 				f32 privateRadius = static_cast<EnemyParmsBase*>(enemy->m_parms)->m_general.m_privateRadius.m_value;
 				Vector2f delta;
-				enemy->getSeparation(cell, delta);
+				enemy->getDistanceTo(cell, delta);
 
 				if ((SQUARE(delta.x) + SQUARE(delta.y)) < SQUARE(privateRadius)) {
 					result = true;
@@ -201,7 +201,7 @@ bool BirthTypeDropPikminState::isFinishableWaitingBirthTypeDrop(EnemyBase* enemy
 		if (cell->isAlive() && cell->isPiki() && static_cast<Piki*>(cell)->isPikmin()) {
 			f32 privateRadius = static_cast<EnemyParmsBase*>(enemy->m_parms)->m_general.m_privateRadius.m_value;
 			Vector2f delta;
-			enemy->getSeparation(cell, delta);
+			enemy->getDistanceTo(cell, delta);
 
 			if ((SQUARE(delta.x) + SQUARE(delta.y)) < SQUARE(privateRadius)) {
 				result = true;
@@ -231,7 +231,7 @@ bool BirthTypeDropOlimarState::isFinishableWaitingBirthTypeDrop(EnemyBase* enemy
 		if (cell->isAlive() && cell->isNavi()) {
 			f32 privateRadius = static_cast<EnemyParmsBase*>(enemy->m_parms)->m_general.m_privateRadius.m_value;
 			Vector2f delta;
-			enemy->getSeparation(cell, delta);
+			enemy->getDistanceTo(cell, delta);
 
 			if ((SQUARE(delta.x) + SQUARE(delta.y)) < SQUARE(privateRadius)) {
 				result = true;
@@ -260,7 +260,7 @@ bool BirthTypeDropTreasureState::isFinishableWaitingBirthTypeDrop(Game::EnemyBas
 			f32 privateRadius = static_cast<EnemyParmsBase*>(enemy->m_parms)->m_general.m_privateRadius.m_value;
 			Vector2f delta;
 
-			enemy->getSeparation(cell, delta);
+			enemy->getDistanceTo(cell, delta);
 
 			if ((SQUARE(delta.x) + SQUARE(delta.y)) < SQUARE(privateRadius)) {
 				result = true;
@@ -2137,7 +2137,7 @@ bool EnemyBase::isFinishableWaitingBirthTypeDrop()
 				f32 privateRadius = static_cast<EnemyParmsBase*>(m_parms)->m_general.m_privateRadius.m_value;
 
 				Vector2f delta;
-				getSeparation(cell, delta);
+				getDistanceTo(cell, delta);
 
 				if ((SQUARE(delta.x) + SQUARE(delta.y)) < SQUARE(privateRadius)) {
 					result = true;

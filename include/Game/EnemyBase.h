@@ -327,9 +327,10 @@ struct EnemyBase : public Creature, public SysShape::MotionListener, virtual pub
 		setEvent(0, EB_PS1);
 
 		if (isEvent(0, EB_PS1)) {
-			int idx                      = getCurrAnimIndex();
-			SysShape::Animator anim      = m_animator->getAnimator(0);
-			SysShape::AnimInfo* info     = static_cast<SysShape::AnimInfo*>(anim.m_animMgr->m_animInfo.m_child)->getInfoByID(idx);
+			int idx = getCurrAnimIndex();
+			// SysShape::Animator anim      = m_animator->getAnimator(0);
+			SysShape::AnimInfo* info
+			    = static_cast<SysShape::AnimInfo*>(m_animator->getAnimator(0).m_animMgr->m_animInfo.m_child)->getInfoByID(idx);
 			JAIAnimeFrameSoundData* file = info->m_basFile;
 
 			if (file) {
