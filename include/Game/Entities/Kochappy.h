@@ -28,20 +28,28 @@ struct Obj : public KochappyBase::Obj {
 struct Mgr : public KochappyBase::Mgr {
 	Mgr(int objLimit, u8 modelType);
 
-	//////////////// VTABLE
-	virtual ~Mgr() { }                                 // _58 (weak)
-	virtual void createObj(int);                       // _A0 (weak)
-	virtual EnemyBase* getEnemy(int);                  // _A4 (weak)
+	//////////////// VTABLE - Note: order required for correct weak function ordering
+	// virtual ~Mgr() { }                              // _58 (weak)
+	virtual void loadTexData();                        // _D0
 	virtual void doAlloc();                            // _A8
 	virtual EnemyTypeID::EEnemyTypeID getEnemyTypeID() // _AC (weak)
 	{
 		return EnemyTypeID::EnemyID_Kochappy;
 	}
-	virtual void loadTexData();         // _D0
+	virtual void createObj(int count) // _A0 (weak)
+	{
+		m_obj = new Obj[count];
+	}
+	virtual EnemyBase* getEnemy(int index) // _A4 (weak)
+	{
+		return &m_obj[index];
+	}
+
 	virtual ResTIMG* getChangeTexture() // _E0 (weak)
 	{
 		return m_changeTexture;
 	}
+
 	//////////////// VTABLE END
 
 	// _00 		= VTBL

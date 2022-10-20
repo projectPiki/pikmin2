@@ -434,12 +434,12 @@ YAMASHITA:=\
 	$(BUILD_DIR)/src/plugProjectYamashitaU/kochappyAnimator.o\
 	$(BUILD_DIR)/src/plugProjectYamashitaU/kochappy.o\
 	$(BUILD_DIR)/asm/plugProjectYamashitaU/kochappyState.o\
-	$(BUILD_DIR)/asm/plugProjectYamashitaU/kochappyMgr.o\
+	$(BUILD_DIR)/src/plugProjectYamashitaU/kochappyMgr.o\
 	$(BUILD_DIR)/asm/plugProjectYamashitaU/enemyAction.o\
 	$(BUILD_DIR)/src/plugProjectYamashitaU/chappy.o\
 	$(BUILD_DIR)/asm/plugProjectYamashitaU/chappyState.o\
 	$(BUILD_DIR)/src/plugProjectYamashitaU/chappyAnimator.o\
-	$(BUILD_DIR)/asm/plugProjectYamashitaU/chappyMgr.o\
+	$(BUILD_DIR)/src/plugProjectYamashitaU/chappyMgr.o\
 	$(BUILD_DIR)/asm/plugProjectYamashitaU/lifeGaugeMgr.o\
 	$(BUILD_DIR)/src/plugProjectYamashitaU/carryInfoMgr.o\
 	$(BUILD_DIR)/asm/plugProjectYamashitaU/carryInfoMgr.o\

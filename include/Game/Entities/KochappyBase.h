@@ -87,7 +87,7 @@ struct Obj : public EnemyBase {
 struct Mgr : public EnemyMgrBase {
 	Mgr(int objLimit, u8 modelType);
 
-	virtual ~Mgr() { }                                                                           // _58 (weak)
+	// virtual ~Mgr() { }                                                                        // _58 (weak)
 	virtual EnemyTypeID::EEnemyTypeID getEnemyTypeID() { return EnemyTypeID::EnemyID_Kochappy; } // _AC (weak)
 	virtual SysShape::Model* createModel();                                                      // _B0
 	virtual void loadModelData();                                                                // _C8
@@ -100,16 +100,27 @@ struct Mgr : public EnemyMgrBase {
 
 struct Parms : public EnemyParmsBase {
 	struct ProperParms : public Parameters {
-		inline ProperParms(); // likely
+		inline ProperParms()
+		    : Parameters(nullptr, "EnemyParmsBase")
+		    , m_fp01(this, 'fp01', "ぼんやり時間", 2.0f, 0.0f, 100.0f)            // 'absentminded time'
+		    , m_poisonDamage(this, 'fp02', "白ピクミン毒", 300.0f, 0.0f, 1000.0f) // 'white pikmin poison'
+		    , m_fp03(this, 'fp03', "回転終了角度", 90.0f, 0.0f, 180.0f)           // 'rotation end angle'
+		{
+		}
 
-		Parm<f32> _808; // _804, type unsure
-		Parm<f32> _830; // _82C, type unsure
-		Parm<f32> _854; // _854
+		Parm<f32> m_fp01;         // _804
+		Parm<f32> m_poisonDamage; // _82C
+		Parm<f32> m_fp03;         // _854
 	};
 
-	Parms();
+	virtual void read(Stream& stream) // _08 (weak)
+	{
+		CreatureParms::read(stream);
+		m_general.read(stream);
+		m_properParms.read(stream);
+	}
 
-	virtual void read(Stream& stream); // _08 (weak)
+	Parms() { }
 
 	// _00-_7F8	= EnemyParmsBase
 	ProperParms m_properParms; // _7F8

@@ -60,12 +60,5 @@ void Mgr::loadTexData()
 	P2ASSERTLINE(82, m_changeTexture != nullptr);
 }
 
-void fakeFunc(Mgr* mgr)
-{
-	mgr->getChangeTexture();
-	mgr->getEnemyTypeID();
-	mgr->~Mgr();
-}
-
 } // namespace FixKabuto
 } // namespace Game

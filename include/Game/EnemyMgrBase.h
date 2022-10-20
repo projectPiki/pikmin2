@@ -88,7 +88,7 @@ struct EnemyMgrBase : public IEnemyMgrBase {
 	virtual void doDirectDraw(Graphics&); // _1C
 	// vtable 2 (GenericContainer + IEnemyMgrBase + self, _00, _40-_E0)
 	// GenericContainer thunks _40-_58
-	virtual ~EnemyMgrBase() { } // _58 (weak)
+	// virtual ~EnemyMgrBase() { } // _58 (weak)
 	/**
 	 * @reifiedAddress{8010A820}
 	 * @reifiedFile{plugProjectYamashitaU/pelplant.cpp}

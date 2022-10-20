@@ -83,7 +83,7 @@ struct Obj : public EnemyBase {
 struct Mgr : public EnemyMgrBase {
 	Mgr(int objLimit, u8 modelType);
 
-	virtual ~Mgr() { }                                 // _58 (weak)
+	// virtual ~Mgr() { }                                 // _58 (weak)
 	virtual EnemyTypeID::EEnemyTypeID getEnemyTypeID() // _AC (weak)
 	{
 		return EnemyTypeID::EnemyID_Kabuto;
@@ -274,7 +274,7 @@ struct Obj : public Kabuto::Obj {
 struct Mgr : public Kabuto::Mgr {
 	Mgr(int objLimit, u8 modelType);
 
-	virtual ~Mgr() { }                                 // _58 (weak)
+	// virtual ~Mgr() { }                                 // _58 (weak)
 	virtual void createObj(int);                       // _A0
 	virtual EnemyBase* getEnemy(int);                  // _A4
 	virtual void doAlloc();                            // _A8
@@ -314,7 +314,7 @@ struct Obj : public Kabuto::Obj {
 struct Mgr : public Kabuto::Mgr {
 	Mgr(int objLimit, u8 modelType);
 
-	virtual ~Mgr() { }                                 // _58 (weak)
+	// virtual ~Mgr() { }                                 // _58 (weak)
 	virtual void createObj(int);                       // _A0
 	virtual EnemyBase* getEnemy(int);                  // _A4
 	virtual void doAlloc();                            // _A8
@@ -365,7 +365,7 @@ struct Obj : public Kabuto::Obj {
 struct Mgr : public Kabuto::Mgr {
 	Mgr(int objLimit, u8 modelType);
 
-	virtual ~Mgr() { }                                 // _58 (weak)
+	// virtual ~Mgr() { }                                 // _58 (weak)
 	virtual void createObj(int);                       // _A0
 	virtual EnemyBase* getEnemy(int);                  // _A4
 	virtual void doAlloc();                            // _A8

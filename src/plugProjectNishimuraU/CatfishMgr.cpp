@@ -36,11 +36,5 @@ void Mgr::createObj(int count) { m_obj = new Obj[count]; }
  */
 EnemyBase* Mgr::getEnemy(int idx) { return &m_obj[idx]; }
 
-void fakeFunct(Mgr* mgr)
-{
-	mgr->getEnemyTypeID();
-	mgr->~Mgr();
-}
-
 } // namespace Catfish
 } // namespace Game
