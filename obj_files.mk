@@ -616,7 +616,7 @@ KANDO:=\
 	$(BUILD_DIR)/src/plugProjectKandoU/sweepPrune.o\
 	$(BUILD_DIR)/asm/plugProjectKandoU/texCaster.o\
 	$(BUILD_DIR)/src/plugProjectKandoU/vsCoinOtakaraName.o\
-	$(BUILD_DIR)/asm/plugProjectKandoU/pelletBirthBuffer.o\
+	$(BUILD_DIR)/src/plugProjectKandoU/pelletBirthBuffer.o\
 	$(BUILD_DIR)/src/plugProjectKandoU/vsFifo.o\
 
 NISHIMURA:=\
