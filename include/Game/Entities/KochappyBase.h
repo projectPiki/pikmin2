@@ -98,12 +98,20 @@ struct Mgr : public EnemyMgrBase {
 };
 
 struct Parms : public EnemyParmsBase {
+	struct ProperParms : public Parameters {
+		inline ProperParms(); // likely
+
+		Parm<f32> _808; // _804, type unsure
+		Parm<f32> _830; // _82C, type unsure
+		Parm<f32> _854; // _854
+	};
+
 	Parms();
 
 	virtual void read(Stream& stream); // _08 (weak)
 
 	// _00-_7F8	= EnemyParmsBase
-	u8 _7F8[0x88]; // _7F8
+	ProperParms m_properParms; // _7F8
 };
 
 struct ProperAnimator : public EnemyAnimatorBase {

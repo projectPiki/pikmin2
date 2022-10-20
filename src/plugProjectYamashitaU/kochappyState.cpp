@@ -1,5 +1,6 @@
 #include "Game/Entities/KochappyBase.h"
 #include "Game/EnemyAnimKeyEvent.h"
+#include "Game/EnemyFunc.h"
 #include "Game/gamePlayData.h"
 #include "nans.h"
 
@@ -80,60 +81,14 @@ StateWait::StateWait(int stateID)
  */
 void StateWait::init(EnemyBase* enemy, StateArg* stateArg)
 {
-	/*
-	stwu     r1, -0x30(r1)
-	mflr     r0
-	stw      r0, 0x34(r1)
-	stfd     f31, 0x20(r1)
-	psq_st   f31, 40(r1), 0, qr0
-	stw      r31, 0x1c(r1)
-	stw      r30, 0x18(r1)
-	mr       r30, r4
-	mr       r31, r5
-	mr       r3, r30
-	li       r4, 6
-	li       r5, 0
-	bl       startMotion__Q24Game9EnemyBaseFiPQ28SysShape14MotionListener
-	addis    r0, r31, 0x8d9f
-	li       r3, 0
-	cmplwi   r0, 0x6e64
-	stw      r3, 0x230(r30)
-	bne      lbl_8010FBAC
-	bl       rand
-	xoris    r3, r3, 0x8000
-	lis      r0, 0x4330
-	stw      r3, 0xc(r1)
-	mr       r3, r30
-	lfd      f2, lbl_805179F8@sda21(r2)
-	stw      r0, 8(r1)
-	lfs      f0, lbl_805179EC@sda21(r2)
-	lfd      f1, 8(r1)
-	fsubs    f1, f1, f2
-	fdivs    f31, f1, f0
-	bl       getFirstKeyFrame__Q24Game9EnemyBaseFv
-	fmuls    f1, f31, f1
-	mr       r3, r30
-	bl       setMotionFrame__Q24Game9EnemyBaseFf
+	enemy->startMotion(6, nullptr);
+	enemy->m_targetCreature = nullptr;
+	if (static_cast<WaitArg*>(stateArg) == (WaitArg*)('rand')) {
+		enemy->setMotionFrame(randFloat() * enemy->getFirstKeyFrame());
+	}
 
-lbl_8010FBAC:
-	mr       r3, r30
-	lfs      f1, lbl_805179F0@sda21(r2)
-	lwz      r12, 0(r30)
-	lwz      r12, 0x2fc(r12)
-	mtctr    r12
-	bctrl
-	lwz      r0, 0x1e0(r30)
-	ori      r0, r0, 0x400
-	stw      r0, 0x1e0(r30)
-	psq_l    f31, 40(r1), 0, qr0
-	lwz      r0, 0x34(r1)
-	lfd      f31, 0x20(r1)
-	lwz      r31, 0x1c(r1)
-	lwz      r30, 0x18(r1)
-	mtlr     r0
-	addi     r1, r1, 0x30
-	blr
-	*/
+	static_cast<Obj*>(enemy)->setAnimationSpeed(30.0f);
+	enemy->setEvent(0, EB_Constraint);
 }
 
 /*
@@ -143,6 +98,41 @@ lbl_8010FBAC:
  */
 void StateWait::exec(EnemyBase* enemy)
 {
+	if (EnemyFunc::isStartFlick(enemy, true)) {
+		FlickArg flickArg;
+		flickArg._00 = 2;
+		transit(enemy, KOCHAPPY_Flick, &flickArg);
+	} else if (!enemy->m_targetCreature) {
+		Parms* parms = CG_PARMS(enemy);
+		Creature* target
+		    = EnemyFunc::getNearestPikminOrNavi(enemy, 180.0f, parms->m_general.m_sightRadius.m_value, nullptr, nullptr, nullptr);
+		if (target) {
+			enemy->m_targetCreature = target;
+			enemy->finishMotion();
+		}
+
+		if (enemy->m_animKeyEvent->m_running) {
+			switch (enemy->m_animKeyEvent->m_type) {
+			case KEYEVENT_2:
+				enemy->getJAIObject()->startSound(PSSE_EN_KOCHAPPY_NOTICE, 0);
+				break;
+			case KEYEVENT_END:
+				Parms* parms = static_cast<Parms*>(enemy->m_parms);
+				f32 angLimit = parms->m_properParms._854.m_value;
+				f32 angDist  = enemy->changeFaceDir(enemy->m_targetCreature); // this is wrong?
+				if (FABS(angDist) <= PI * (DEG2RAD * angLimit)) {
+					transit(enemy, KOCHAPPY_Walk, nullptr);
+				} else {
+					transit(enemy, KOCHAPPY_Turn, nullptr);
+				}
+				break;
+			}
+		}
+	}
+
+	if (enemy->m_health <= 0.0f) {
+		transit(enemy, KOCHAPPY_Dead, nullptr);
+	}
 	/*
 	stwu     r1, -0x90(r1)
 	mflr     r0
