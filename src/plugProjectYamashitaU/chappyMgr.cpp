@@ -27,7 +27,7 @@ Mgr::Mgr(int objLimit, u8 modelType)
  * Address:	80119884
  * Size:	00006C
  */
-void Chappy::Mgr::loadTexData()
+void Mgr::loadTexData()
 {
 	LoadResource::ArgAramOnly loadArg(cChappyChangeTexName0);
 

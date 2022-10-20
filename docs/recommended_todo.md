@@ -233,11 +233,10 @@
 ### <section id="plugProjectYamashitaU">plugProjectYamashitaU</section>
 | File | Size (bytes) | File | Size (bytes) |
 | ---- | ---- | ---- | ---- |
-| <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectYamashitaU/YellowKochappyMgr.cpp">YellowKochappyMgr.cpp</a> | 9283 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectYamashitaU/enemyStoneMgr.cpp">enemyStoneMgr.cpp</a> | 10296 |
-| <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectYamashitaU/BlueKochappyMgr.cpp">BlueKochappyMgr.cpp</a> | 10337 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectYamashitaU/BlueChappyMgr.cpp">BlueChappyMgr.cpp</a> | 11168 |
-| <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectYamashitaU/YellowChappyMgr.cpp">YellowChappyMgr.cpp</a> | 11770 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectYamashitaU/enemyStoneObj.cpp">enemyStoneObj.cpp</a> | 11997 |
+| <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectYamashitaU/enemyStoneMgr.cpp">enemyStoneMgr.cpp</a> | 10296 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectYamashitaU/enemyStoneObj.cpp">enemyStoneObj.cpp</a> | 11997 |
 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectYamashitaU/farmMgr.cpp">farmMgr.cpp</a> | 12714 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectYamashitaU/pelplant.cpp">pelplant.cpp</a> | 14266 |
 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectYamashitaU/farm.cpp">farm.cpp</a> | 15608 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectYamashitaU/vtxAnm.cpp">vtxAnm.cpp</a> | 26584 |
+| <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectYamashitaU/effectAnimator.cpp">effectAnimator.cpp</a> | 27586 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectYamashitaU/lifeGaugeMgr.cpp">lifeGaugeMgr.cpp</a> | 35508 |
 
 ### <section id="sysBootupU">sysBootupU</section>
 | File | Size (bytes) | File | Size (bytes) |

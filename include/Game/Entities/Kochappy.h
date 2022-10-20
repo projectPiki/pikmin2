@@ -44,12 +44,10 @@ struct Mgr : public KochappyBase::Mgr {
 	{
 		return &m_obj[index];
 	}
-
 	virtual ResTIMG* getChangeTexture() // _E0 (weak)
 	{
 		return m_changeTexture;
 	}
-
 	//////////////// VTABLE END
 
 	// _00 		= VTBL
