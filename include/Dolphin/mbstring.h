@@ -2,7 +2,7 @@
 #define _DOLPHIN_MBSTRING_H
 
 #include "types.h"
-#include "Dolphin/wchar_io.h"
+#include "Dolphin/ansi_files.h"
 
 size_t wcstombs(char* s, const wchar_t* pwcs, size_t n);
 int mbstowcs(wchar_t* pwc, const char* s, size_t n);

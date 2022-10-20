@@ -99,7 +99,7 @@ int _fseek(FILE* file, u32 offset, int whence)
 	}
 
 	if (file->m_state.io_state == 0) {
-		if (file->positionFunc != nullptr && (int)file->positionFunc(file->m_handle, &offset, whence, file->_48)) {
+		if (file->positionFunc != nullptr && (int)file->positionFunc(file->m_handle, &offset, whence, file->ref_con)) {
 			file->m_state.error  = 1;
 			file->m_bufferLength = 0;
 			errno                = 0x28;

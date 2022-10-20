@@ -12,13 +12,13 @@ int __flush_buffer(FILE* file, size_t* length)
 	int writeCode;
 
 	bufferLen = file->m_bufferPtr - file->m_buffer;
-	if (bufferLen != 0) {
+	if (bufferLen) {
 		file->m_bufferLength = bufferLen;
-		writeCode            = file->writeFunc(file->m_handle, file->m_buffer, &file->m_bufferLength, file->_48);
+		writeCode            = file->writeFunc(file->m_handle, file->m_buffer, &file->m_bufferLength, file->ref_con);
 		if (length) {
 			*length = file->m_bufferLength;
 		}
-		if (writeCode != 0) {
+		if (writeCode) {
 			return writeCode;
 		}
 		file->m_position += file->m_bufferLength;

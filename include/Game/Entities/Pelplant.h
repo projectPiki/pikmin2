@@ -4,7 +4,6 @@
 #include "Game/EnemyAnimatorBase.h"
 #include "Game/EnemyParmsBase.h"
 #include "Game/EnemyStateMachine.h"
-#include "SysShape/Animator.h"
 #include "Game/gameGenerator.h"
 #include "Game/EnemyBase.h"
 #include "Game/EnemyMgrBase.h"

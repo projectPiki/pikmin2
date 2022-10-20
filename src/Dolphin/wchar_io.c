@@ -1,5 +1,10 @@
 #include "types.h"
-#include "Dolphin/wchar_io.h"
+
+#ifndef _MSL_WIDE_CHAR
+#define _MSL_WIDE_CHAR
+#endif
+
+#include "Dolphin/ansi_files.h"
 
 /*
  * --INFO--
@@ -10,16 +15,16 @@ int fwide(FILE* stream, int mode)
 {
 	int orientation;
 
-	if (stream == nullptr || stream->mode.file_kind == __closed_file)
+	if (stream == nullptr || stream->m_mode.file_kind == __closed_file)
 		return 0;
 
-	orientation = stream->mode.file_orientation;
+	orientation = stream->m_mode.file_orientation;
 	switch (orientation) {
 	case __unoriented:
 		if (mode > 0)
-			stream->mode.file_orientation = __wide_oriented;
+			stream->m_mode.file_orientation = __wide_oriented;
 		else if (mode < 0)
-			stream->mode.file_orientation = __char_oriented;
+			stream->m_mode.file_orientation = __char_oriented;
 
 		return mode;
 
