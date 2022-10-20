@@ -156,7 +156,7 @@
 ### <section id="plugProjectMorimuraU">plugProjectMorimuraU</section>
 | File | Size (bytes) | File | Size (bytes) |
 | ---- | ---- | ---- | ---- |
-| <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectMorimuraU/tyreMgr.cpp">tyreMgr.cpp</a> | 13421 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectMorimuraU/mrWindow.cpp">mrWindow.cpp</a> | 14726 |
+| <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectMorimuraU/tyreMgr.cpp">tyreMgr.cpp</a> | 7513 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectMorimuraU/mrWindow.cpp">mrWindow.cpp</a> | 14726 |
 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectMorimuraU/bombMgr.cpp">bombMgr.cpp</a> | 17334 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectMorimuraU/eggMgr.cpp">eggMgr.cpp</a> | 17807 |
 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectMorimuraU/egg.cpp">egg.cpp</a> | 18340 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectMorimuraU/miulinMgr.cpp">miulinMgr.cpp</a> | 19740 |
 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectMorimuraU/jigumoMgr.cpp">jigumoMgr.cpp</a> | 21621 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectMorimuraU/enemyNestMgr.cpp">enemyNestMgr.cpp</a> | 30001 |
@@ -234,7 +234,7 @@
 | File | Size (bytes) | File | Size (bytes) |
 | ---- | ---- | ---- | ---- |
 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectYamashitaU/enemyStoneMgr.cpp">enemyStoneMgr.cpp</a> | 10296 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectYamashitaU/enemyStoneObj.cpp">enemyStoneObj.cpp</a> | 11997 |
-| <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectYamashitaU/farmMgr.cpp">farmMgr.cpp</a> | 12714 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectYamashitaU/pelplant.cpp">pelplant.cpp</a> | 14266 |
+| <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectYamashitaU/farmMgr.cpp">farmMgr.cpp</a> | 12714 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectYamashitaU/pelplant.cpp">pelplant.cpp</a> | 14200 |
 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectYamashitaU/farm.cpp">farm.cpp</a> | 15608 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectYamashitaU/vtxAnm.cpp">vtxAnm.cpp</a> | 26584 |
 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectYamashitaU/effectAnimator.cpp">effectAnimator.cpp</a> | 27586 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectYamashitaU/lifeGaugeMgr.cpp">lifeGaugeMgr.cpp</a> | 35508 |
 

@@ -1,136 +1,14 @@
-#include "types.h"
-
-/*
-    Generated from dpostproc
-
-    .section .rodata  # 0x804732E0 - 0x8049E220
-    .global lbl_804957D0
-    lbl_804957D0:
-        .4byte 0x835E8343
-        .4byte 0x8384837D
-        .4byte 0x836C815B
-        .4byte 0x83578383
-        .4byte 0x00000000
-    .global lbl_804957E4
-    lbl_804957E4:
-        .4byte 0x456E656D
-        .4byte 0x79506172
-        .4byte 0x6D734261
-        .4byte 0x73650000
-    .global lbl_804957F4
-    lbl_804957F4:
-        .4byte 0x89F1935D
-        .4byte 0x83588373
-        .4byte 0x815B8368
-        .4byte 0x00000000
-    .global lbl_80495804
-    lbl_80495804:
-        .4byte 0x74797265
-        .4byte 0x4D67722E
-        .4byte 0x63707000
-    .global lbl_80495810
-    lbl_80495810:
-        .asciz "P2Assert"
-        .skip 3
-
-    .section .data, "wa"  # 0x8049E220 - 0x804EFC20
-    .global __vt__Q34Game4Tyre3Mgr
-    __vt__Q34Game4Tyre3Mgr:
-        .4byte 0
-        .4byte 0
-        .4byte doAnimation__Q24Game12EnemyMgrBaseFv
-        .4byte doEntry__Q24Game12EnemyMgrBaseFv
-        .4byte doSetView__Q24Game12EnemyMgrBaseFi
-        .4byte doViewCalc__Q24Game12EnemyMgrBaseFv
-        .4byte doSimulation__Q24Game12EnemyMgrBaseFf
-        .4byte doDirectDraw__Q24Game12EnemyMgrBaseFR8Graphics
-        .4byte doSimpleDraw__16GenericObjectMgrFP8Viewport
-        .4byte loadResources__16GenericObjectMgrFv
-        .4byte resetMgr__16GenericObjectMgrFv
-        .4byte pausable__16GenericObjectMgrFv
-        .4byte frozenable__16GenericObjectMgrFv
-        .4byte getMatrixLoadType__16GenericObjectMgrFv
-        .4byte 0
-        .4byte 0
-        .4byte "@4@__dt__Q34Game4Tyre3MgrFv"
-        .4byte getChildCount__5CNodeFv
-        .4byte "@4@getObject__Q24Game12EnemyMgrBaseFPv"
-        .4byte "@4@getNext__Q24Game12EnemyMgrBaseFPv"
-        .4byte "@4@getStart__Q24Game12EnemyMgrBaseFv"
-        .4byte "@4@getEnd__Q24Game12EnemyMgrBaseFv"
-        .4byte __dt__Q34Game4Tyre3MgrFv
-        .4byte getObject__Q24Game12EnemyMgrBaseFPv
-        .4byte getNext__Q24Game12EnemyMgrBaseFPv
-        .4byte getStart__Q24Game12EnemyMgrBaseFv
-        .4byte getEnd__Q24Game12EnemyMgrBaseFv
-        .4byte alloc__Q24Game12EnemyMgrBaseFv
-        .4byte birth__Q34Game4Tyre3MgrFRQ24Game13EnemyBirthArg
-        .4byte getJ3DModelData__Q24Game12EnemyMgrBaseCFv
-        .4byte getGenerator__Q24Game12EnemyMgrBaseCFv
-        .4byte killAll__Q24Game12EnemyMgrBaseFPQ24Game15CreatureKillArg
-        .4byte setupSoundViewerAndBas__Q24Game12EnemyMgrBaseFv
-        .4byte setDebugParm__Q24Game12EnemyMgrBaseFUl
-        .4byte resetDebugParm__Q24Game12EnemyMgrBaseFUl
-        .4byte getMaxObjects__Q24Game12EnemyMgrBaseCFv
-        .4byte startMovie__Q24Game12EnemyMgrBaseFv
-        .4byte endMovie__Q24Game12EnemyMgrBaseFv
-        .4byte get__Q24Game12EnemyMgrBaseFPv
-        .4byte isAlwaysMovieActor__Q24Game12EnemyMgrBaseFv
-        .4byte createObj__Q34Game4Tyre3MgrFi
-        .4byte getEnemy__Q34Game4Tyre3MgrFi
-        .4byte doAlloc__Q34Game4Tyre3MgrFv
-        .4byte getEnemyTypeID__Q34Game4Tyre3MgrFv
-        .4byte createModel__Q24Game12EnemyMgrBaseFv
-        .4byte initParms__Q24Game12EnemyMgrBaseFv
-        .4byte loadResource__Q24Game12EnemyMgrBaseFv
-        .4byte initObjects__Q24Game12EnemyMgrBaseFv
-        .4byte initStoneSetting__Q24Game12EnemyMgrBaseFv
-        .4byte loadModelData__Q24Game12EnemyMgrBaseFP10JKRArchive
-        .4byte loadModelData__Q34Game4Tyre3MgrFv
-        .4byte loadAnimData__Q24Game12EnemyMgrBaseFv
-        .4byte loadTexData__Q24Game12EnemyMgrBaseFv
-        .4byte doLoadBmd__Q34Game4Tyre3MgrFPv
-        .4byte doLoadBdl__Q24Game12EnemyMgrBaseFPv
-        .4byte initGenerator__Q24Game12EnemyMgrBaseFv
-    .global __vt__Q34Game4Tyre5Parms
-    __vt__Q34Game4Tyre5Parms:
-        .4byte 0
-        .4byte 0
-        .4byte read__Q34Game4Tyre5ParmsFR6Stream
-        .4byte 0
-
-    .section .sdata2, "a"     # 0x80516360 - 0x80520E40
-    .global lbl_8051F598
-    lbl_8051F598:
-        .float 0.5
-    .global lbl_8051F59C
-    lbl_8051F59C:
-        .4byte 0x00000000
-    .global lbl_8051F5A0
-    lbl_8051F5A0:
-        .4byte 0x42C80000
-    .global lbl_8051F5A4
-    lbl_8051F5A4:
-        .4byte 0x3F400000
-    .global lbl_8051F5A8
-    lbl_8051F5A8:
-        .float 0.05
-    .global lbl_8051F5AC
-    lbl_8051F5AC:
-        .4byte 0x3CCCCCCD
-    .global lbl_8051F5B0
-    lbl_8051F5B0:
-        .4byte 0x3F99999A
-*/
+#include "Game/Entities/Tyre.h"
 
 namespace Game {
+namespace Tyre {
 
 /*
  * --INFO--
  * Address:	803ABE60
  * Size:	000050
  */
-Tyre::Mgr::Mgr(int, unsigned char)
+Mgr::Mgr(int, unsigned char)
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -161,7 +39,7 @@ Tyre::Mgr::Mgr(int, unsigned char)
  * Address:	803ABEB0
  * Size:	000048
  */
-void Tyre::Mgr::doAlloc(void)
+void Mgr::doAlloc(void)
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -192,7 +70,7 @@ lbl_803ABEDC:
  * Address:	803ABEF8
  * Size:	0000DC
  */
-Tyre::Parms::Parms(void)
+Parms::Parms(void)
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -258,7 +136,7 @@ Tyre::Parms::Parms(void)
  * Address:	803ABFD4
  * Size:	000020
  */
-void Tyre::Mgr::birth(Game::EnemyBirthArg&)
+void Mgr::birth(Game::EnemyBirthArg&)
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -277,7 +155,7 @@ void Tyre::Mgr::birth(Game::EnemyBirthArg&)
  * Address:	803ABFF4
  * Size:	000094
  */
-void Tyre::Mgr::loadModelData(void)
+void Mgr::loadModelData(void)
 {
 	/*
 	stwu     r1, -0x20(r1)
@@ -331,7 +209,7 @@ lbl_803AC060:
  * Address:	803AC088
  * Size:	00002C
  */
-void Tyre::Mgr::doLoadBmd(void*)
+void Mgr::doLoadBmd(void*)
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -353,7 +231,7 @@ void Tyre::Mgr::doLoadBmd(void*)
  * Address:	803AC0B4
  * Size:	0000B0
  */
-Tyre::Mgr::~Mgr(void)
+Mgr::~Mgr(void)
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -412,14 +290,14 @@ lbl_803AC148:
  * Address:	803AC164
  * Size:	000008
  */
-u32 Tyre::Mgr::getEnemyTypeID(void) { return 0x62; }
+u32 Mgr::getEnemyTypeID(void) { return EnemyID_Tyre; }
 
 /*
  * --INFO--
  * Address:	803AC16C
  * Size:	000060
  */
-void Tyre::Mgr::createObj(int)
+void Mgr::createObj(int)
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -451,72 +329,10 @@ void Tyre::Mgr::createObj(int)
 
 /*
  * --INFO--
- * Address:	803AC1CC
- * Size:	0000BC
- */
-Tyre::Obj::~Obj(void)
-{
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	or.      r31, r3, r3
-	stw      r30, 8(r1)
-	mr       r30, r4
-	beq      lbl_803AC26C
-	lis      r3, __vt__Q34Game4Tyre3Obj@ha
-	addi     r0, r31, 0x344
-	addi     r4, r3, __vt__Q34Game4Tyre3Obj@l
-	stw      r4, 0(r31)
-	addi     r3, r4, 0x1b0
-	addi     r4, r4, 0x2fc
-	stw      r3, 0x178(r31)
-	lwz      r3, 0x17c(r31)
-	stw      r4, 0(r3)
-	lwz      r3, 0x17c(r31)
-	subf     r0, r3, r0
-	stw      r0, 0xc(r3)
-	beq      lbl_803AC25C
-	lis      r3, __vt__Q24Game9EnemyBase@ha
-	addi     r0, r31, 0x2bc
-	addi     r4, r3, __vt__Q24Game9EnemyBase@l
-	addi     r3, r31, 0x290
-	stw      r4, 0(r31)
-	addi     r5, r4, 0x1b0
-	addi     r6, r4, 0x2f8
-	li       r4, -1
-	stw      r5, 0x178(r31)
-	lwz      r5, 0x17c(r31)
-	stw      r6, 0(r5)
-	lwz      r5, 0x17c(r31)
-	subf     r0, r5, r0
-	stw      r0, 0xc(r5)
-	bl       __dt__5CNodeFv
-
-lbl_803AC25C:
-	extsh.   r0, r30
-	ble      lbl_803AC26C
-	mr       r3, r31
-	bl       __dl__FPv
-
-lbl_803AC26C:
-	lwz      r0, 0x14(r1)
-	mr       r3, r31
-	lwz      r31, 0xc(r1)
-	lwz      r30, 8(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
-}
-
-/*
- * --INFO--
  * Address:	803AC288
  * Size:	000010
  */
-void Tyre::Mgr::getEnemy(int)
+void Mgr::getEnemy(int)
 {
 	/*
 	mulli    r0, r4, 0x354
@@ -531,7 +347,7 @@ void Tyre::Mgr::getEnemy(int)
  * Address:	803AC298
  * Size:	000050
  */
-void Tyre::Parms::read(Stream&)
+void Parms::read(Stream&)
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -557,16 +373,5 @@ void Tyre::Parms::read(Stream&)
 	*/
 }
 
-/*
- * --INFO--
- * Address:	803AC2E8
- * Size:	000008
- */
-@4 @Game::Tyre::Mgr::~Mgr(void)
-{
-	/*
-	addi     r3, r3, -4
-	b        __dt__Q34Game4Tyre3MgrFv
-	*/
-}
+} // namespace Tyre
 } // namespace Game

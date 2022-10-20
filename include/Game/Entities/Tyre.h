@@ -38,31 +38,31 @@ struct Obj : public EnemyBase {
 	Obj();
 
 	//////////////// VTABLE
-	virtual void onInit(CreatureInitArg*);                   // _30
-	virtual void doSimulation(f32);                          // _4C
-	virtual void doDirectDraw(Graphics&);                    // _50
-	virtual void inWaterCallback(WaterBox*);                 // _84
-	virtual void outWaterCallback();                         // _88
-	virtual bool isUnderground();                            // _D0 (weak)
-	virtual void collisionCallback(CollEvent&);              // _EC
-	virtual void getShadowParam(ShadowParam&);               // _134
-	virtual bool needShadow();                               // _138
-	virtual ~Obj();                                          // _1BC (weak)
-	virtual void birth(Vector3f&, f32);                      // _1C0
-	virtual void setInitialSetting(EnemyInitialParamBase*);  // _1C4 (weak)
-	virtual void doUpdate();                                 // _1CC
-	virtual void doAnimationCullingOff();                    // _1DC
-	virtual void doDebugDraw(Graphics&);                     // _1EC
-	virtual void setParameters();                            // _228
-	virtual EnemyTypeID::EEnemyTypeID getEnemyTypeID();      // _258 (weak)
-	virtual void doGetLifeGaugeParam(LifeGaugeParam&);       // _260
-	virtual bool damageCallBack(Creature*, f32, CollPart*);  // _278
-	virtual bool hipdropCallBack(Creature*, f32, CollPart*); // _284
-	virtual bool earthquakeCallBack(Creature*, f32);         // _28C
-	virtual bool bombCallBack(Creature*, Vector3f&, f32);    // _294 (weak)
-	virtual void doStartStoneState();                        // _2A4
-	virtual void doFinishStoneState();                       // _2A8
-	virtual void setFSM(FSM*);                               // _2F8 (weak)
+	virtual void onInit(CreatureInitArg*);                                      // _30
+	virtual void doSimulation(f32);                                             // _4C
+	virtual void doDirectDraw(Graphics&);                                       // _50
+	virtual void inWaterCallback(WaterBox*);                                    // _84
+	virtual void outWaterCallback();                                            // _88
+	virtual bool isUnderground();                                               // _D0 (weak)
+	virtual void collisionCallback(CollEvent&);                                 // _EC
+	virtual void getShadowParam(ShadowParam&);                                  // _134
+	virtual bool needShadow();                                                  // _138
+	virtual ~Obj();                                                             // _1BC (weak)
+	virtual void birth(Vector3f&, f32);                                         // _1C0
+	virtual void setInitialSetting(EnemyInitialParamBase*);                     // _1C4 (weak)
+	virtual void doUpdate();                                                    // _1CC
+	virtual void doAnimationCullingOff();                                       // _1DC
+	virtual void doDebugDraw(Graphics&);                                        // _1EC
+	virtual void setParameters();                                               // _228
+	virtual EnemyTypeID::EEnemyTypeID getEnemyTypeID() { return EnemyID_Tyre; } // _258 (weak)
+	virtual void doGetLifeGaugeParam(LifeGaugeParam&);                          // _260
+	virtual bool damageCallBack(Creature*, f32, CollPart*);                     // _278
+	virtual bool hipdropCallBack(Creature*, f32, CollPart*);                    // _284
+	virtual bool earthquakeCallBack(Creature*, f32);                            // _28C
+	virtual bool bombCallBack(Creature*, Vector3f&, f32);                       // _294 (weak)
+	virtual void doStartStoneState();                                           // _2A4
+	virtual void doFinishStoneState();                                          // _2A8
+	virtual void setFSM(FSM*);                                                  // _2F8 (weak)
 	//////////////// VTABLE END
 
 	void isFreeze();
@@ -111,7 +111,7 @@ struct Mgr : public EnemyMgrBase {
 	Mgr(int objLimit, u8 modelType);
 
 	//////////////// VTABLE
-	virtual ~Mgr();                                     // _58 (weak)
+	// virtual ~Mgr();                                  // _58 (weak)
 	virtual EnemyBase* birth(EnemyBirthArg&);           // _70
 	virtual void createObj(int);                        // _A0 (weak)
 	virtual EnemyBase* getEnemy(int);                   // _A4 (weak)

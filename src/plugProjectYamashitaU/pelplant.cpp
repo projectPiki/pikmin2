@@ -14,7 +14,6 @@
 #include "Game/pelletMgr.h"
 #include "CollInfo.h"
 #include "SysShape/Joint.h"
-#include "SysShape/Model.h"
 #include "System.h"
 #include "SysTimers.h"
 #include "JSystem/JUT/JUTException.h"
@@ -22,7 +21,6 @@
 #include "JSystem/J3D/J3DMtxBuffer.h"
 #include "JSystem/J3D/J3DMtxCalc.h"
 #include "sqrt.h"
-#include "Game/EnemyAnimatorBase.h"
 
 namespace Game {
 namespace Farm {
