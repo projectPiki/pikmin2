@@ -230,14 +230,14 @@ namespace Game {
  * Address:	801AA6E4
  * Size:	000050
  */
-GenBase::GenBase(u32 p1, char* p2, char* p3)
+GenBase::GenBase(u32 typeID, char* labelData, char* objTypeName)
     : Parameters(nullptr, "gen base")
 {
-	m_typeID = p1;
-	_18      = p2;
-	_1C      = p3;
-	m_rawID  = '____';
-	_20      = 0;
+	m_typeID      = typeID;
+	m_labelData   = labelData;
+	m_objTypeName = objTypeName;
+	m_rawID       = '____';
+	_20           = 0;
 }
 
 /*
@@ -406,25 +406,25 @@ Generator::Generator()
     , m_version()
     , m_position(0.0f, 0.0f, 0.0f)
 {
-	_18 = nullptr;
-	_1C = '____';
-	_5C = 0;
+	_18           = nullptr;
+	_1C           = '____';
+	m_reservedNum = 0;
 	_40.setID('    ');
 	m_version.setID(GeneratorCurrentVersion);
-	strcpy(_20, "unset");
-	_64             = 0;
-	_60             = 0;
-	m_creature      = nullptr;
-	_7C             = 0;
-	m_child         = nullptr;
-	m_parent        = nullptr;
-	m_prev          = nullptr;
-	m_next          = nullptr;
-	_AC             = 1;
-	m_dayLimitMaybe = -1;
-	_74             = 0;
-	_78             = 0;
-	_70             = 0;
+	strcpy(m_genObjName, "unset");
+	_64                    = 0;
+	_60                    = 0;
+	m_creature             = nullptr;
+	_7C                    = 0;
+	m_child                = nullptr;
+	m_parent               = nullptr;
+	m_prev                 = nullptr;
+	m_next                 = nullptr;
+	_AC                    = 1;
+	m_dayLimitMaybe        = -1;
+	_74                    = 0;
+	_78                    = 0;
+	m_daysTillRessurection = 0;
 }
 
 /*
@@ -525,7 +525,7 @@ bool Generator::loadCreature(Stream& input)
 	}
 	if (m_creature) {
 		m_creature->m_generator = this;
-		m_creature->load(input, (_5C & 8U) != 0);
+		m_creature->load(input, (m_reservedNum & 8U) != 0);
 	}
 	return (m_creature != nullptr);
 	/*
@@ -625,7 +625,7 @@ bool Generator::need_saveCreature(void)
 void Generator::saveCreature(Stream& output)
 {
 	if (m_creature) {
-		u16 flags = _5C;
+		u16 flags = m_reservedNum;
 		// u8 saveFlag = (flags & 8);
 		bool conversion = false;
 		if (flags & 8) {
@@ -720,13 +720,13 @@ void Generator::generate(void)
 			_7C = 0;
 			_74 = 0;
 			_78 = gameSystem->m_timeMgr->m_dayCount;
-		} else if ((_5C & 4) == 0) {
+		} else if ((m_reservedNum & 4) == 0) {
 			_7C = 0;
 			return;
 		}
 		m_creature = nullptr;
 		if (_18) {
-			if (ramMode != 0 && (_5C & 4) != 0 && gameSystem->m_timeMgr->m_dayCount >= _78 + _70) {
+			if (ramMode != 0 && (m_reservedNum & 4) != 0 && gameSystem->m_timeMgr->m_dayCount >= _78 + m_daysTillRessurection) {
 				_78 = gameSystem->m_timeMgr->m_dayCount;
 				_74 = 0;
 			}
@@ -878,36 +878,36 @@ void Generator::read(Stream& input)
 {
 	m_version.read(input);
 	if (m_version.getID() >= 'v0.0') {
-		_5C = input.readShort();
+		m_reservedNum = input.readShort();
 	} else {
-		_5C = input.readInt();
+		m_reservedNum = input.readInt();
 	}
 	if (m_version.getID() >= 'v0.3') {
-		_70 = input.readShort();
+		m_daysTillRessurection = input.readShort();
 	} else {
 		if (m_version.getID() >= 'v0.1') {
-			_70 = input.readInt();
+			m_daysTillRessurection = input.readInt();
 		} else {
-			_70 = 0;
+			m_daysTillRessurection = 0;
 		}
 	}
 	if (ramMode == 0) {
 		int i = 0;
 		do {
-			_20[i] = input.readByte();
+			m_genObjName[i] = input.readByte();
 		} while (++i < 0x20);
 	} else {
 		if (m_version.getID() >= 'v0.2') {
 			if (input.readByte() != '\0') {
 				int i = 0;
 				do {
-					_20[i] = input.readByte();
+					m_genObjName[i] = input.readByte();
 				} while (++i < 0x20);
 			} else {
-				_20[0] = '\0';
+				m_genObjName[0] = '\0';
 			}
 		} else {
-			_20[0] = '\0';
+			m_genObjName[0] = '\0';
 		}
 		_74             = input.readShort();
 		_78             = input.readShort();
@@ -1279,21 +1279,21 @@ void Generator::write(Stream& output)
 	output.textWriteText("\t# version\r\n");
 
 	output.textWriteTab(output.m_tabCount);
-	output.writeShort(_5C);
+	output.writeShort(m_reservedNum);
 	output.textWriteText("\t# reserved\r\n");
 
 	output.textWriteTab(output.m_tabCount);
-	output.writeShort(_70);
-	output.textWriteText("\t# å¾©æ´»æ—¥æ•°\r\n");
+	output.writeShort(m_daysTillRessurection);
+	output.textWriteText("\t# •œŠˆ“ú”°\r\n");
 
 	if (ramMode == 0) {
 		// generator files as stored on disc
 		output.textWriteTab(output.m_tabCount);
 		int i = 0;
 		do {
-			output.writeByte(_20[i]);
-		} while (++i < sizeof(_20));
-		output.textWriteText("\t# <%s>\r\n", _20);
+			output.writeByte(m_genObjName[i]);
+		} while (++i < sizeof(m_genObjName));
+		output.textWriteText("\t# <%s>\r\n", m_genObjName);
 	} else {
 		// gencache?
 		output.writeByte('\0');
@@ -1588,21 +1588,21 @@ lbl_801AB438:
 GeneratorMgr::GeneratorMgr()
     : CNode("genMgr")
     , _34()
-    , _40()
+    , m_versionID()
     , _50()
 {
-	_20         = nullptr;
-	m_childMgr  = nullptr;
-	m_nextMgr   = nullptr;
-	_6D         = 0;
-	_5C         = 0.0f;
-	_60         = 0.0f;
-	_64         = 0.0f;
-	_68         = 0.0f;
-	_4C         = 0;
-	m_generator = nullptr;
+	m_parentMgr      = nullptr;
+	m_childMgr       = nullptr;
+	m_nextMgr        = nullptr;
+	_6D              = 0;
+	m_startPos       = 0.0f;
+	_60              = 0.0f;
+	_64              = 0.0f;
+	m_startDir       = 0.0f;
+	m_generatorCount = 0;
+	m_generator      = nullptr;
 	_34.setID('v0.1');
-	_40.setID('v0.0');
+	m_versionID.setID('v0.0');
 	GenObjectFactoryFactory* factory = GenObjectFactory::factory;
 	if (factory == nullptr) {
 		factory = new GenObjectFactoryFactory();
@@ -1699,8 +1699,8 @@ lbl_801AB548:
 void GeneratorMgr::addMgr(Game::GeneratorMgr* newMgr)
 {
 	if (m_childMgr == nullptr) {
-		m_childMgr  = newMgr;
-		newMgr->_20 = this;
+		m_childMgr          = newMgr;
+		newMgr->m_parentMgr = this;
 		return;
 	}
 	GeneratorMgr* speculativeChild = m_childMgr;
@@ -1714,7 +1714,7 @@ void GeneratorMgr::addMgr(Game::GeneratorMgr* newMgr)
 		speculativeChild = speculativeChild->m_nextMgr;
 	}
 	speculativeChild->m_nextMgr = newMgr;
-	newMgr->_20                 = this;
+	newMgr->m_parentMgr         = this;
 }
 
 /*
@@ -1999,20 +1999,17 @@ void GeneratorMgr::read(Stream& input, bool)
 {
 	if (m_generator) {
 		delete m_generator;
-		_4C = 0;
+		m_generatorCount = 0;
 	}
-	_40.read(input);
-	_40 == 'v0.0';
-	// TODO: Replace with Vector3.read()?
-	_5C = input.readFloat();
-	_60 = input.readFloat();
-	_64 = input.readFloat();
-	if (_40 == 'v0.1') {
-		_68 = input.readFloat();
+
+	m_versionID.read(input);
+	m_startPos.read(input);
+	if (m_versionID == 'v0.1') {
+		m_startDir = input.readFloat();
 	}
-	_4C         = input.readInt();
-	m_generator = nullptr;
-	for (int i = 0; i < _4C; i++) {
+	m_generatorCount = input.readInt();
+	m_generator      = nullptr;
+	for (int i = 0; i < m_generatorCount; i++) {
 		if (m_generator == nullptr) {
 			m_generator = new Generator();
 			m_generator->read(input);

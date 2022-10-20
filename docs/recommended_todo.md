@@ -258,9 +258,9 @@
 ### <section id="sysGCU">sysGCU</section>
 | File | Size (bytes) | File | Size (bytes) |
 | ---- | ---- | ---- | ---- |
-| <a href="https://github.com/projectPiki/pikmin2/tree/main/src/sysGCU/moviePlayerAudio.cpp">moviePlayerAudio.cpp</a> | 5656 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/sysGCU/aramMgr.cpp">aramMgr.cpp</a> | 6226 |
-| <a href="https://github.com/projectPiki/pikmin2/tree/main/src/sysGCU/THPRead.c">THPRead.c</a> | 7147 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/sysGCU/THPAudioDecode.c">THPAudioDecode.c</a> | 7342 |
-| <a href="https://github.com/projectPiki/pikmin2/tree/main/src/sysGCU/sysTimers.cpp">sysTimers.cpp</a> | 7526 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/sysGCU/moviePlayerPauseAndDraw.cpp">moviePlayerPauseAndDraw.cpp</a> | 8595 |
+| <a href="https://github.com/projectPiki/pikmin2/tree/main/src/sysGCU/sysTimers.cpp">sysTimers.cpp</a> | 3078 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/sysGCU/moviePlayerAudio.cpp">moviePlayerAudio.cpp</a> | 5656 |
+| <a href="https://github.com/projectPiki/pikmin2/tree/main/src/sysGCU/aramMgr.cpp">aramMgr.cpp</a> | 6226 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/sysGCU/THPRead.c">THPRead.c</a> | 7147 |
+| <a href="https://github.com/projectPiki/pikmin2/tree/main/src/sysGCU/THPAudioDecode.c">THPAudioDecode.c</a> | 7342 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/sysGCU/moviePlayerPauseAndDraw.cpp">moviePlayerPauseAndDraw.cpp</a> | 8595 |
 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/sysGCU/JSTFindCreature.cpp">JSTFindCreature.cpp</a> | 9820 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/sysGCU/THPVideoDecode.c">THPVideoDecode.c</a> | 10029 |
 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/sysGCU/reset.cpp">reset.cpp</a> | 11681 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/sysGCU/loadResource.cpp">loadResource.cpp</a> | 11775 |
 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/sysGCU/heapStatus.cpp">heapStatus.cpp</a> | 12405 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/sysGCU/dvdThread.cpp">dvdThread.cpp</a> | 12535 |

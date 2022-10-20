@@ -2,7 +2,7 @@
 #define _GAME_ITEMMGR_H
 
 #include "Container.h"
-#include "Game/genItem.h"
+#include "Game/gameGenerator.h"
 #include "GenericObjectMgr.h"
 #include "JSystem/J3D/J3DModel.h"
 #include "JSystem/JKR/JKRArchive.h"

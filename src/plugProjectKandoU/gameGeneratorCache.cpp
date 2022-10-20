@@ -1055,7 +1055,7 @@ lbl_801F220C:
 void GeneratorCache::createNumberGenerators(void)
 {
 	for (Generator* gen = getFirstGenerator(); gen != nullptr; gen = (Generator*)gen->m_next) {
-		if (gen->_AC == 0 && (gen->_5C & 4U) != 0) {
+		if (gen->_AC == 0 && (gen->m_reservedNum & 4U) != 0) {
 			Generator::ramMode = 1;
 			gen->generate();
 			Generator::ramMode = 0;

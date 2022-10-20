@@ -47,28 +47,28 @@ struct Generator : public CNode {
 
 	void informDeath(Creature*);
 
-	GenObject* _18;            // _18
-	u32 _1C;                   // _1C /* Initialized to '____' */
-	char _20[32];              // _20 /* shift-jis name given in generator files */
-	ID32 _40;                  // _40
-	ID32 m_version;            // _4C
-	u8 _58[4];                 // _58
-	u16 _5C;                   // _5C
-	Generator* _60;            // _60 /* m_prev */
-	Generator* _64;            // _64 /* m_next */
-	GeneratorMgr* m_mgr;       // _68
-	Creature* m_creature;      // _6C
-	int _70;                   // _70
-	u32 _74;                   // _74
-	u32 _78;                   // _78
-	u32 _7C;                   // _7C
-	u8 _80[4];                 // _80
-	int m_dayLimitMaybe;       // _84
-	u8 _88[12];                // _88
-	Vector3f m_position;       // _94
-	Vector3f m_offset;         // _A0
-	u8 _AC;                    // _AC
-	int m_generatorIndexMaybe; // _B0
+	GenObject* _18;             // _18
+	u32 _1C;                    // _1C /* Initialized to '____' */
+	char m_genObjName[32];      // _20 /* shift-jis name given in generator files */
+	ID32 _40;                   // _40
+	ID32 m_version;             // _4C
+	u8 _58[4];                  // _58
+	u16 m_reservedNum;          // _5C
+	Generator* _60;             // _60 /* m_prev */
+	Generator* _64;             // _64 /* m_next */
+	GeneratorMgr* m_mgr;        // _68
+	Creature* m_creature;       // _6C
+	int m_daysTillRessurection; // _70
+	u32 _74;                    // _74
+	u32 _78;                    // _78
+	u32 _7C;                    // _7C
+	u8 _80[4];                  // _80
+	int m_dayLimitMaybe;        // _84
+	u8 _88[12];                 // _88
+	Vector3f m_position;        // _94
+	Vector3f m_offset;          // _A0
+	u8 _AC;                     // _AC
+	int m_generatorIndexMaybe;  // _B0
 
 	//  0: format of the generator files on disc
 	// !0: format of the gencache?
@@ -100,17 +100,15 @@ struct GeneratorMgr : public CNode {
 
 	GeneratorMgr* m_nextMgr;   // _18
 	GeneratorMgr* m_childMgr;  // _1C
-	GeneratorMgr* _20;         // _20 /* root(/parent?) manager */
+	GeneratorMgr* m_parentMgr; // _20
 	Vector3f m_cursorPosition; // _24
 	Generator* m_generator;    // _28
 	ID32 _34;                  // _34
-	ID32 _40;                  // _40
-	int _4C;                   // _4C /* generator count */
+	ID32 m_versionID;          // _40
+	int m_generatorCount;      // _4C
 	ID32 _50;                  // _50
-	float _5C;                 // _5C
-	float _60;                 // _60
-	float _64;                 // _64
-	float _68;                 // _68
+	Vector3f m_startPos;       // _5C
+	f32 m_startDir;            // _68, v0.1 adds the start direction
 	u8 _6C;                    // _6C
 	u8 _6D;                    // _6D
 
@@ -144,11 +142,11 @@ struct GenBase : public Parameters {
 
 	// _00 - _0C: Parameters
 	// _0C: vtable
-	u32 m_typeID; // _10
-	u32 m_rawID;  // _14
-	char* _18;    // _18
-	char* _1C;    // _1C
-	u32 _20;      // _20
+	u32 m_typeID;        // _10
+	u32 m_rawID;         // _14
+	char* m_labelData;   // _18
+	char* m_objTypeName; // _1C
+	u32 _20;             // _20
 };
 
 struct EnemyGeneratorBase : public CNode {
@@ -186,6 +184,61 @@ struct GenObject : public GenBase {
 	virtual void getDebugInfo(char*);                      // _3C (weak)
 };
 
+struct BaseItemMgr;
+struct GenItemParm {
+	virtual int getShapeID(); // _00
+
+	// _00 VTBL
+};
+
+/**
+ * @size{0x40}
+ */
+struct GenItem : public GenObject {
+	virtual void doWrite(Stream&);                         // _08
+	virtual void ramSaveParameters(Stream&);               // _0C
+	virtual void ramLoadParameters(Stream&);               // _10
+	virtual void doEvent(u32);                             // _14
+	virtual void doRead(Stream&);                          // _18
+	virtual J3DModelData* getShape();                      // _28
+	virtual void updateUseList(Generator*, int);           // _2C
+	virtual Creature* generate(Generator*);                // _30
+	virtual Creature* birth(GenArg*);                      // _34
+	virtual void generatorMakeMatrix(Matrixf&, Vector3f&); // _38
+
+	static void initialise();
+
+	int m_mgrIndex;         // _24
+	Vector3f m_rotation;    // _28
+	BaseItemMgr* m_itemMgr; // _34
+	GenItemParm* m_parm;    // _38
+};
+
+struct GenPellet : public GenObject {
+	virtual void doWrite(Stream&);                         // _08
+	virtual void ramSaveParameters(Stream&);               // _0C
+	virtual void ramLoadParameters(Stream&);               // _10
+	virtual void doEvent(unsigned long);                   // _14
+	virtual void doRead(Stream&);                          // _18
+	virtual J3DModelData* getShape();                      // _28
+	virtual void updateUseList(Generator*, int);           // _2C
+	virtual Creature* generate(Generator*);                // _30 (weak)
+	virtual Creature* birth(GenArg*) = 0;                  // _34
+	virtual void generatorMakeMatrix(Matrixf&, Vector3f&); // _38
+	virtual void getDebugInfo(char*);                      // _3C
+
+	static void initialise();
+};
+
+struct GenObjectPiki : public GenObject {
+	virtual void ramSaveParameters(Stream&); // _0C
+	virtual void ramLoadParameters(Stream&); // _10
+	virtual Creature* generate(Generator*);  // _30
+	virtual Creature* birth(GenArg*);        // _34
+
+	static void initialise();
+};
+
 struct GenObjectEnemy : public GenObject {
 	GenObjectEnemy();
 
@@ -199,7 +252,7 @@ struct GenObjectEnemy : public GenObject {
 	virtual Creature* generate(Generator*);      // _30
 	virtual Creature* birth(GenArg*);            // _34
 
-	void initialise();
+	static void initialise();
 	void createEnemyGenerator();
 	void doReadOldVersion(Stream&);
 
@@ -213,7 +266,7 @@ struct GenObjectEnemy : public GenObject {
 	PelletMgr::OtakaraItemCode m_otakaraItemCode; // _38
 	EnemyPelletInfo m_pelletInfo;                 // _3C
 	EnemyGeneratorBase* m_enemyGenerator;         // _48
-	u8 m_byte_4C;                                 // _4C
+	u8 _4C;                                       // _4C
 };
 
 GenObject* makeObjectEnemy(void);

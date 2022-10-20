@@ -33,10 +33,10 @@ GenObjectEnemy::GenObjectEnemy()
     , m_enemySize(0)
     , m_otakaraItemCode(0)
     , m_enemyGenerator(nullptr)
-    , m_byte_4C(false)
+    , _4C(false)
 {
 	createEnemyGenerator();
-	m_byte_4C |= true;
+	_4C |= true;
 }
 
 /*
