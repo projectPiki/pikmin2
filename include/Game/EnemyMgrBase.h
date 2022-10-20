@@ -48,6 +48,7 @@ struct EnemyBirthArg {
 struct IEnemyMgrBase : public GenericObjectMgr, public GenericContainer {
 	// vtable 1 (GenericObjectMgr, _00, _08-_38)
 	// vtable 2 (GenericContainer + self, _00, _40-_5C)
+	virtual void doEntry() = 0;                           // _0C
 	virtual ~IEnemyMgrBase() { }                          // _58 (weak)
 	virtual void* getObject(void*)                   = 0; // _5C
 	virtual void* getNext(void*)                     = 0; // _60

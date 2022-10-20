@@ -427,7 +427,7 @@ DOLPHIN:=\
 
 YAMASHITA:=\
 	$(BUILD_DIR)/asm/plugProjectYamashitaU/enemyBase.o\
-	$(BUILD_DIR)/asm/plugProjectYamashitaU/pelplant.o\
+	$(BUILD_DIR)/src/plugProjectYamashitaU/pelplant.o\
 	$(BUILD_DIR)/src/plugProjectYamashitaU/pelplantState.o\
 	$(BUILD_DIR)/src/plugProjectYamashitaU/enemyInteractBattle.o\
 	$(BUILD_DIR)/asm/plugProjectYamashitaU/generalEnemyMgr.o\
