@@ -16,6 +16,8 @@ namespace J3DAnmLoaderDataBase {
 J3DAnmBase* load(const void*);
 }
 
+J3DMtxCalc* J3DNewMtxCalcAnm(unsigned long, J3DAnmTransform*);
+
 struct J3DAnmLoader {
 	virtual J3DAnmBase* load(const void*)              = 0; // _08
 	virtual void setResource(J3DAnmBase*, const void*) = 0; // _0C

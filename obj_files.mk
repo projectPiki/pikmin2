@@ -1147,7 +1147,7 @@ GC:=\
 	$(BUILD_DIR)/asm/sysGCU/modelEffect.o\
 	$(BUILD_DIR)/src/sysGCU/messageReference.o\
 	$(BUILD_DIR)/src/sysGCU/simpleMessage.o\
-	$(BUILD_DIR)/asm/sysGCU/sysShapeAnimation.o\
+	$(BUILD_DIR)/src/sysGCU/sysShapeAnimation.o\
 	$(BUILD_DIR)/asm/sysGCU/sysShapeModel.o\
 	$(BUILD_DIR)/asm/sysGCU/windowMessage.o\
 	$(BUILD_DIR)/asm/sysGCU/memoryCard.o\

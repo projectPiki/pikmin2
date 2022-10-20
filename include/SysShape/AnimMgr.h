@@ -20,6 +20,12 @@ struct Model;
  * @size{0x74}
  */
 struct AnimMgr : public CNode {
+	AnimMgr()
+	{
+		m_count = 0;
+		m_model = nullptr;
+		m_animInfo.clearRelations();
+	}
 	virtual ~AnimMgr(); // _08 (weak)
 
 	static AnimMgr* load(char*, J3DModelData*, JKRFileLoader*);
