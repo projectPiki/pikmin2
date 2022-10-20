@@ -306,7 +306,7 @@ struct LoadState : public State {
 		u8 _00;  // _00
 		u8 _01;  // _01
 		u8 _02;  // _02
-		s16 _04; // _04
+		u16 _04; // _04
 	};
 
 	inline LoadState()
@@ -327,7 +327,7 @@ struct LoadState : public State {
 	u8 _15;      // _15
 	u32 : 0;
 	u8 _18[0xC]; // _18
-	s16 _24;     // _24
+	u16 _24;     // _24
 	u8 _26;      // _26
 	u8 _27;      // _27
 	u8 _28;      // _28

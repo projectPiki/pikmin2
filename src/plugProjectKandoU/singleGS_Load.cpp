@@ -1,7 +1,3 @@
-#include "types.h"
-#include "nans.h"
-#include "Game/SingleGame.h"
-
 /*
     Generated from dpostproc
 
@@ -75,6 +71,13 @@
         .skip 0x4
 */
 
+#include "types.h"
+#include "nans.h"
+#include "Game/SingleGame.h"
+#include "Game/MoviePlayer.h"
+#include "Screen/Game2DMgr.h"
+#include "Radar.h"
+
 namespace Game {
 
 /*
@@ -82,69 +85,35 @@ namespace Game {
  * Address:	........
  * Size:	0000E4
  */
-void SingleGame::_Print(char*, ...)
-{
-	// UNUSED FUNCTION
-}
+// void SingleGame::_Print(char*, ...)
+//{
+// UNUSED FUNCTION
+//}
 
 /*
  * --INFO--
  * Address:	80239E84
  * Size:	0000B4
  */
-void SingleGame::LoadState::init(Game::SingleGameSection*, Game::StateArg*)
+void SingleGame::LoadState::init(Game::SingleGameSection* gs, Game::StateArg* arg)
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	mr       r31, r5
-	stw      r30, 8(r1)
-	mr       r30, r3
-	lwz      r3, moviePlayer__4Game@sda21(r13)
-	bl       reset__Q24Game11MoviePlayerFv
-	lwz      r3, gGame2DMgr__6Screen@sda21(r13)
-	lwz      r3, 0x18(r3)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x18(r12)
-	mtctr    r12
-	bctrl
-	lwz      r3, mgr__5Radar@sda21(r13)
-	cmplwi   r3, 0
-	beq      lbl_80239ED0
-	bl       clear__Q25Radar3MgrFv
+	moviePlayer->reset();
+	Screen::gGame2DMgr->m_screenMgr->reset();
 
-lbl_80239ED0:
-	cmplwi   r31, 0
-	bne      lbl_80239EF4
-	lis      r3, lbl_80483D50@ha
-	lis      r5, lbl_80483D64@ha
-	addi     r3, r3, lbl_80483D50@l
-	li       r4, 0x21
-	addi     r5, r5, lbl_80483D64@l
-	crclr    6
-	bl       panic_f__12JUTExceptionFPCciPCce
+	if (Radar::mgr) {
+		Radar::mgr->clear();
+	}
 
-lbl_80239EF4:
-	lhz      r3, 4(r31)
-	li       r0, 0
-	sth      r3, 0x24(r30)
-	lbz      r3, 1(r31)
-	stb      r3, 0x29(r30)
-	lbz      r3, 0(r31)
-	stb      r3, 0x27(r30)
-	lbz      r3, 2(r31)
-	stb      r3, 0x28(r30)
-	stb      r0, 0x26(r30)
-	stb      r0, 0x14(r30)
-	lwz      r31, 0xc(r1)
-	lwz      r30, 8(r1)
-	lwz      r0, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	P2ASSERTLINE(33, arg != nullptr);
+
+	Arg* a = static_cast<Arg*>(arg);
+	_24    = a->_04;
+	_29    = a->_01;
+	_27    = a->_00;
+	_28    = a->_02;
+
+	_26 = 0;
+	_14 = 0;
 }
 
 /*
@@ -399,36 +368,36 @@ namespace Screen {
  * Address:	8023A204
  * Size:	000008
  */
-u32 DispMemberCourseName::getSize(void) { return 0x10; }
+// u32 DispMemberCourseName::getSize(void) { return 0x10; }
 
 /*
  * --INFO--
  * Address:	8023A20C
  * Size:	00000C
  */
-void DispMemberCourseName::getOwnerID(void)
-{
-	/*
+// void DispMemberCourseName::getOwnerID(void)
+//{
+/*
 lis      r3, 0x004F4741@ha
 addi     r3, r3, 0x004F4741@l
 blr
-	*/
-}
+*/
+//}
 
 /*
  * --INFO--
  * Address:	8023A218
  * Size:	000010
  */
-void DispMemberCourseName::getMemberID(void)
-{
-	/*
+// void DispMemberCourseName::getMemberID(void)
+//{
+/*
 lis      r4, 0x55525345@ha
 li       r3, 0x434f
 addi     r4, r4, 0x55525345@l
 blr
-	*/
-}
+*/
+//}
 
 } // namespace Screen
 

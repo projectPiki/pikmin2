@@ -54,6 +54,8 @@ struct Radar {
 		void ogDummpyInit();
 	};
 
+	static Mgr* mgr;
+
 	struct Point {
 		Point();
 		~Point();
