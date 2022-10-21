@@ -19,7 +19,7 @@ struct Obj : public ChappyBase::Obj {
 	virtual void doDirectDraw(Graphics&);                  // _50
 	virtual bool isUnderground();                          // _D0 (weak)
 	virtual void getShadowParam(ShadowParam&);             // _134
-	virtual ~Obj();                                        // _1BC (weak)
+	virtual ~Obj() { }                                     // _1BC (weak)
 	virtual void changeMaterial();                         // _200 (weak)
 	virtual void initMouthSlots();                         // _22C
 	virtual void initWalkSmokeEffect();                    // _230 (weak)
@@ -47,17 +47,23 @@ struct Obj : public ChappyBase::Obj {
 	         // _2E8 = PelletView
 };
 
-struct Mgr : public ChappyBase::Mgr {
+struct Mgr : public EnemyMgrBase {
 	Mgr(int objLimit, u8 modelType);
 
 	//////////////// VTABLE
-	virtual ~Mgr() { }                                  // _58 (weak)
-	virtual void createObj(int);                        // _A0
-	virtual EnemyBase* getEnemy(int);                   // _A4
-	virtual void doAlloc();                             // _A8
-	virtual EnemyTypeID::EEnemyTypeID getEnemyTypeID(); // _AC (weak)
-	virtual void loadModelData();                       // _C8
-	virtual J3DModelData* doLoadBmd(void*);             // _D4 (weak)
+	// virtual ~Mgr() { }                                  // _58 (weak)
+	virtual void createObj(int);                       // _A0
+	virtual EnemyBase* getEnemy(int);                  // _A4
+	virtual void doAlloc();                            // _A8
+	virtual void loadModelData();                      // _C8
+	virtual EnemyTypeID::EEnemyTypeID getEnemyTypeID() // _AC (weak)
+	{
+		return EnemyTypeID::EnemyID_Hana;
+	}
+	virtual J3DModelData* doLoadBmd(void* filename) // _D4 (weak)
+	{
+		return J3DModelLoaderDataBase::load(filename, 0x21240030);
+	}
 	//////////////// VTABLE END
 
 	// _00 		= VTBL

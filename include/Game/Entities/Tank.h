@@ -33,7 +33,7 @@ struct Obj : public EnemyBase {
 	virtual void onKill(CreatureKillArg*);                  // _34
 	virtual void doDirectDraw(Graphics&);                   // _50
 	virtual void getShadowParam(ShadowParam&);              // _134
-	virtual ~Obj();                                         // _1BC (weak)
+	virtual ~Obj() { }                                      // _1BC (weak)
 	virtual void setInitialSetting(EnemyInitialParamBase*); // _1C4
 	virtual void doUpdate();                                // _1CC
 	virtual void doDebugDraw(Graphics&);                    // _1EC
@@ -93,30 +93,38 @@ struct Obj : public EnemyBase {
 struct Mgr : public EnemyMgrBase {
 	Mgr(int objLimit, u8 modelType);
 
-	virtual ~Mgr();                                     // _58 (weak)
-	virtual EnemyTypeID::EEnemyTypeID getEnemyTypeID(); // _AC (weak)
-	virtual SysShape::Model* createModel();             // _B0
-	virtual void loadModelData();                       // _C8
-	virtual void loadAnimData();                        // _CC
-	virtual void getChangeTexture() = 0;                // _E0
+	// virtual ~Mgr();                                     // _58 (weak)
+
+	virtual SysShape::Model* createModel();            // _B0
+	virtual void loadModelData();                      // _C8
+	virtual void loadAnimData();                       // _CC
+	virtual EnemyTypeID::EEnemyTypeID getEnemyTypeID() // _AC (weak)
+	{
+		return EnemyTypeID::EnemyID_Tank;
+	}
+	virtual ResTIMG* getChangeTexture() = 0; // _E0
 
 	// _00 		= VTBL
 	// _00-_44	= EnemyMgrBase
 };
 
 struct Parms : public EnemyParmsBase {
-	struct ProperParms : public Parameters {
-		inline ProperParms(); // likely
-		                      // unknown if there are any actually in here
-		                      // if not, this may just be a Parameters m_parameters instead
-	};
+	Parms()
+	    : m_parameters(nullptr, "TankParms")
+	{
+	}
 
-	Parms();
-
-	virtual void read(Stream&); // _08 (weak)
+	virtual void read(Stream& stream) // _08 (weak)
+	{
+		CreatureParms::read(stream);
+		m_general.read(stream);
+		m_parameters.read(stream);
+	}
 
 	// _00-_7F8	= EnemyParmsBase
-	ProperParms m_properParms; // _7F8
+	// this might be a sub-struct like other enemies
+	// but doesn't have any Parms in it, so...
+	Parameters m_parameters; // _7F8
 };
 
 struct ProperAnimator : public EnemyAnimatorBase {
@@ -215,7 +223,7 @@ struct Obj : public Tank::Obj {
 	Obj();
 
 	//////////////// VTABLE
-	virtual ~Obj();                                     // _1BC (weak)
+	virtual ~Obj() { }                                  // _1BC (weak)
 	virtual void changeMaterial();                      // _200
 	virtual EnemyTypeID::EEnemyTypeID getEnemyTypeID(); // _258 (weak)
 	virtual void createEffect();                        // _2FC
@@ -240,13 +248,19 @@ struct Obj : public Tank::Obj {
 struct Mgr : public Tank::Mgr {
 	Mgr(int objLimit, u8 modelType);
 
-	virtual ~Mgr();                                     // _58 (weak)
-	virtual void createObj(int);                        // _A0
-	virtual EnemyBase* getEnemy(int);                   // _A4
-	virtual void doAlloc();                             // _A8
-	virtual EnemyTypeID::EEnemyTypeID getEnemyTypeID(); // _AC (weak)
-	virtual void loadTexData();                         // _D0
-	virtual void getChangeTexture();                    // _E0 (weak)
+	// virtual ~Mgr();                                     // _58 (weak)
+	virtual void createObj(int);                       // _A0
+	virtual EnemyBase* getEnemy(int);                  // _A4
+	virtual void doAlloc();                            // _A8
+	virtual void loadTexData();                        // _D0
+	virtual EnemyTypeID::EEnemyTypeID getEnemyTypeID() // _AC (weak)
+	{
+		return EnemyTypeID::EnemyID_Tank;
+	}
+	virtual ResTIMG* getChangeTexture() // _E0 (weak)
+	{
+		return m_changeTexture;
+	}
 
 	// _00 		= VTBL
 	// _00-_44	= EnemyMgrBase
@@ -261,7 +275,7 @@ struct Obj : public Tank::Obj {
 	Obj();
 
 	//////////////// VTABLE
-	virtual ~Obj();                                     // _1BC (weak)
+	virtual ~Obj() { }                                  // _1BC (weak)
 	virtual void changeMaterial();                      // _200
 	virtual EnemyTypeID::EEnemyTypeID getEnemyTypeID(); // _258 (weak)
 	virtual void createEffect();                        // _2FC
@@ -286,13 +300,19 @@ struct Obj : public Tank::Obj {
 struct Mgr : public Tank::Mgr {
 	Mgr(int objLimit, u8 modelType);
 
-	virtual ~Mgr();                                     // _58 (weak)
-	virtual void createObj(int);                        // _A0
-	virtual EnemyBase* getEnemy(int);                   // _A4
-	virtual void doAlloc();                             // _A8
-	virtual EnemyTypeID::EEnemyTypeID getEnemyTypeID(); // _AC (weak)
-	virtual void loadTexData();                         // _D0
-	virtual void getChangeTexture();                    // _E0 (weak)
+	// virtual ~Mgr();                                     // _58 (weak)
+	virtual void createObj(int);                       // _A0
+	virtual EnemyBase* getEnemy(int);                  // _A4
+	virtual void doAlloc();                            // _A8
+	virtual void loadTexData();                        // _D0
+	virtual EnemyTypeID::EEnemyTypeID getEnemyTypeID() // _AC (weak)
+	{
+		return EnemyTypeID::EnemyID_Wtank;
+	}
+	virtual ResTIMG* getChangeTexture() // _E0 (weak)
+	{
+		return m_changeTexture;
+	}
 
 	// _00 		= VTBL
 	// _00-_44	= EnemyMgrBase

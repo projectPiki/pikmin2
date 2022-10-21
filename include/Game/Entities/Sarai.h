@@ -27,7 +27,7 @@ struct Obj : public EnemyBase {
 	virtual void inWaterCallback(WaterBox*);                // _84 (weak)
 	virtual void outWaterCallback();                        // _88 (weak)
 	virtual void getShadowParam(ShadowParam&);              // _134
-	virtual ~Obj();                                         // _1BC (weak)
+	virtual ~Obj() { }                                      // _1BC (weak)
 	virtual void setInitialSetting(EnemyInitialParamBase*); // _1C4
 	virtual void doUpdate();                                // _1CC
 	virtual void doDebugDraw(Graphics&);                    // _1EC
@@ -67,11 +67,14 @@ struct Obj : public EnemyBase {
 struct Mgr : public EnemyMgrBase {
 	Mgr(int objLimit, u8 modelType);
 
-	virtual ~Mgr();                                     // _58 (weak)
-	virtual void createObj(int);                        // _A0
-	virtual EnemyBase* getEnemy(int);                   // _A4
-	virtual void doAlloc();                             // _A8
-	virtual EnemyTypeID::EEnemyTypeID getEnemyTypeID(); // _AC (weak)
+	// virtual ~Mgr();                                     // _58 (weak)
+	virtual void doAlloc();                            // _A8
+	virtual void createObj(int);                       // _A0
+	virtual EnemyBase* getEnemy(int);                  // _A4
+	virtual EnemyTypeID::EEnemyTypeID getEnemyTypeID() // _AC (weak)
+	{
+		return EnemyTypeID::EnemyID_Sarai;
+	}
 
 	// _00 		= VTBL
 	// _00-_44	= EnemyMgrBase
@@ -80,7 +83,24 @@ struct Mgr : public EnemyMgrBase {
 
 struct Parms : public EnemyParmsBase {
 	struct ProperParms : public Parameters {
-		ProperParms(); // (weak)
+		ProperParms()
+		    : Parameters(nullptr, "EnemyParmsBase")
+		    , m_fp01(this, 'fp01', "通常飛行高さ", 100.0f, 0.0f, 300.0f)    // 'normal flight height'
+		    , m_fp02(this, 'fp02', "掴み飛行高さ", 80.0f, 0.0f, 300.0f)     // 'grab flight height'
+		    , m_fp03(this, 'fp03', "状態遷移高さ", 50.0f, 0.0f, 300.0f)     // 'state transition height'
+		    , m_fp04(this, 'fp04', "通常移動速度", 100.0f, 0.0f, 300.0f)    // 'normal movement speed'
+		    , m_fp05(this, 'fp05', "掴み移動速度", 75.0f, 0.0f, 300.0f)     // 'grab movement speed'
+		    , m_fp06(this, 'fp06', "ウェイト時間", 3.0f, 0.0f, 10.0f)       // 'wait time'
+		    , m_fp11(this, 'fp11', "上昇係数(0)", 1.5f, 0.0f, 5.0f)         // 'climbing factor (0)'
+		    , m_fp12(this, 'fp12', "上昇係数(5)", 1.0f, 0.0f, 5.0f)         // 'climbing factor (5)'
+		    , m_fp21(this, 'fp21', "振払確率(1)", 0.1f, 0.0f, 1.0f)         // 'payoff probability (1)'
+		    , m_fp22(this, 'fp22', "振払確率(5)", 0.7f, 0.0f, 1.0f)         // 'payoff probability (5)'
+		    , m_fp23(this, 'fp23', "もがき時間", 3.0f, 0.0f, 10.0f)         // 'struggling time'
+		    , m_fp31(this, 'fp31', "ハント下降係数", 0.3f, 0.0f, 1.0f)      // 'hunt descent factor'
+		    , m_fp32(this, 'fp32', "ハント後減衰率", 0.95f, 0.0f, 1.0f)     // 'post-hunt decay rate'
+		    , m_fp41(this, 'fp41', "Fall Meck 速度", 200.0f, 0.0f, 1000.0f) // 'Fall Meck speed'
+		{
+		}
 
 		Parm<f32> m_fp01; // _804
 		Parm<f32> m_fp02; // _82C
@@ -98,9 +118,14 @@ struct Parms : public EnemyParmsBase {
 		Parm<f32> m_fp41; // _A0C
 	};
 
-	Parms();
+	Parms() { }
 
-	virtual void read(Stream&); // _08 (weak)
+	virtual void read(Stream& stream) // _08 (weak)
+	{
+		CreatureParms::read(stream);
+		m_general.read(stream);
+		m_properParms.read(stream);
+	}
 
 	// _00-_7F8	= EnemyParmsBase
 	ProperParms m_properParms; // _7F8

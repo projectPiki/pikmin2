@@ -6,15 +6,12 @@
 #include "Game/EnemyParmsBase.h"
 #include "Game/EnemyMgrBase.h"
 #include "Game/EnemyBase.h"
+#include "efx/TBsarai.h"
 #include "Collinfo.h"
 
 /**
  * --Header for Careening Dirigibug (BombSarai)--
  */
-
-namespace efx {
-struct TBsaraiSupli;
-} // namespace efx
 
 namespace Game {
 namespace Bomb {
@@ -34,7 +31,7 @@ struct Obj : public EnemyBase {
 	virtual void inWaterCallback(WaterBox*);                      // _84 (weak)
 	virtual void outWaterCallback();                              // _88 (weak)
 	virtual void getShadowParam(ShadowParam&);                    // _134
-	virtual ~Obj();                                               // _1BC (weak)
+	virtual ~Obj() { }                                            // _1BC (weak)
 	virtual void setInitialSetting(EnemyInitialParamBase*);       // _1C4
 	virtual void doUpdate();                                      // _1CC
 	virtual void doDebugDraw(Graphics&);                          // _1EC
@@ -81,13 +78,19 @@ struct Obj : public EnemyBase {
 struct Mgr : public EnemyMgrBase {
 	Mgr(int objLimit, u8 modelType);
 
-	virtual ~Mgr();                                     // _58 (weak)
-	virtual void createObj(int);                        // _A0
-	virtual EnemyBase* getEnemy(int);                   // _A4
-	virtual void doAlloc();                             // _A8
-	virtual EnemyTypeID::EEnemyTypeID getEnemyTypeID(); // _AC (weak)
-	virtual void loadModelData();                       // _C8
-	virtual J3DModelData* doLoadBmd(void*);             // _D4 (weak)
+	// virtual ~Mgr();                                     // _58 (weak)
+	virtual void createObj(int);                       // _A0
+	virtual void doAlloc();                            // _A8
+	virtual EnemyBase* getEnemy(int);                  // _A4
+	virtual void loadModelData();                      // _C8
+	virtual EnemyTypeID::EEnemyTypeID getEnemyTypeID() // _AC (weak)
+	{
+		return EnemyTypeID::EnemyID_BombSarai;
+	}
+	virtual J3DModelData* doLoadBmd(void* filename) // _D4 (weak)
+	{
+		return J3DModelLoaderDataBase::load(filename, 0x20240030);
+	}
 
 	// _00 		= VTBL
 	// _00-_44	= EnemyMgrBase
@@ -96,22 +99,39 @@ struct Mgr : public EnemyMgrBase {
 
 struct Parms : public EnemyParmsBase {
 	struct ProperParms : public Parameters {
-		ProperParms(); // (weak)
+		ProperParms()
+		    : Parameters(nullptr, "EnemyParmsBase")
+		    , m_fp01(this, 'fp01', "îÚçsçÇÇ≥", 90.0f, 0.0f, 150.0f)     // 'flight height'
+		    , m_fp03(this, 'fp03', "èÛë‘ëJà⁄çÇÇ≥", 50.0f, 0.0f, 300.0f) // 'state transition height'
+		    , m_fp10(this, 'fp10', "è„â∫ÇÃóhÇÍë¨ìx", 2.5f, 0.0f, 10.0f) // 'vertical swing speed'
+		    , m_fp11(this, 'fp11', "è„â∫ÇÃóhÇÍïù", 20.0f, 0.0f, 50.0f)  // 'width of vertical swing'
+		    , m_fp21(this, 'fp21', "è„è∏åWêî(0)", 1.5f, 0.0f, 5.0f)     // 'climbing factor (0)'
+		    , m_fp22(this, 'fp22', "è„è∏åWêî(5)", 1.0f, 0.0f, 5.0f)     // 'climbing factor (5)'
+		    , m_fp31(this, 'fp31', "êUï•ämó¶(1)", 0.1f, 0.0f, 1.0f)     // 'payoff probability (1)'
+		    , m_fp32(this, 'fp32', "êUï•ämó¶(5)", 0.7f, 0.0f, 1.0f)     // 'payoff probability (5)'
+		    , m_fp40(this, 'fp40', "Ç‡Ç™Ç´éûä‘", 3.0f, 0.0f, 10.0f)     // 'struggling time'
+		{
+		}
 
-		Parm<f32> _804; // _804
-		Parm<f32> _82C; // _82C
-		Parm<f32> _854; // _854
-		Parm<f32> _87C; // _87C
-		Parm<f32> _8A4; // _8A4
-		Parm<f32> _8CC; // _8CC
-		Parm<f32> _8F4; // _8F4
-		Parm<f32> _91C; // _91C
-		Parm<f32> _944; // _944
+		Parm<f32> m_fp01; // _804
+		Parm<f32> m_fp03; // _82C
+		Parm<f32> m_fp10; // _854
+		Parm<f32> m_fp11; // _87C
+		Parm<f32> m_fp21; // _8A4
+		Parm<f32> m_fp22; // _8CC
+		Parm<f32> m_fp31; // _8F4
+		Parm<f32> m_fp32; // _91C
+		Parm<f32> m_fp40; // _944
 	};
 
-	Parms();
+	Parms() { }
 
-	virtual void read(Stream&); // _08 (weak)
+	virtual void read(Stream& stream) // _08 (weak)
+	{
+		CreatureParms::read(stream);
+		m_general.read(stream);
+		m_properParms.read(stream);
+	}
 
 	// _00-_7F8	= EnemyParmsBase
 	ProperParms m_properParms; // _7F8

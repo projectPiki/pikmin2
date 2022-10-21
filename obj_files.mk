@@ -693,11 +693,11 @@ NISHIMURA:=\
 	$(BUILD_DIR)/asm/plugProjectNishimuraU/ElecHiba.o\
 	$(BUILD_DIR)/asm/plugProjectNishimuraU/SaraiState.o\
 	$(BUILD_DIR)/src/plugProjectNishimuraU/SaraiAnimator.o\
-	$(BUILD_DIR)/asm/plugProjectNishimuraU/SaraiMgr.o\
+	$(BUILD_DIR)/src/plugProjectNishimuraU/SaraiMgr.o\
 	$(BUILD_DIR)/asm/plugProjectNishimuraU/Sarai.o\
 	$(BUILD_DIR)/asm/plugProjectNishimuraU/TankState.o\
 	$(BUILD_DIR)/src/plugProjectNishimuraU/TankAnimator.o\
-	$(BUILD_DIR)/asm/plugProjectNishimuraU/TankMgr.o\
+	$(BUILD_DIR)/src/plugProjectNishimuraU/TankMgr.o\
 	$(BUILD_DIR)/asm/plugProjectNishimuraU/Tank.o\
 	$(BUILD_DIR)/src/plugProjectNishimuraU/CatfishMgr.o\
 	$(BUILD_DIR)/src/plugProjectNishimuraU/Catfish.o\
@@ -709,7 +709,7 @@ NISHIMURA:=\
 	$(BUILD_DIR)/src/plugProjectNishimuraU/ElecBugAnimator.o\
 	$(BUILD_DIR)/asm/plugProjectNishimuraU/ElecBugMgr.o\
 	$(BUILD_DIR)/asm/plugProjectNishimuraU/ElecBug.o\
-	$(BUILD_DIR)/asm/plugProjectNishimuraU/WtankMgr.o\
+	$(BUILD_DIR)/src/plugProjectNishimuraU/WtankMgr.o\
 	$(BUILD_DIR)/asm/plugProjectNishimuraU/Wtank.o\
 	$(BUILD_DIR)/asm/plugProjectNishimuraU/ArmorMgr.o\
 	$(BUILD_DIR)/asm/plugProjectNishimuraU/Armor.o\
@@ -731,7 +731,7 @@ NISHIMURA:=\
 	$(BUILD_DIR)/src/plugProjectNishimuraU/BabyAnimator.o\
 	$(BUILD_DIR)/asm/plugProjectNishimuraU/BabyMgr.o\
 	$(BUILD_DIR)/asm/plugProjectNishimuraU/Baby.o\
-	$(BUILD_DIR)/asm/plugProjectNishimuraU/DemonMgr.o\
+	$(BUILD_DIR)/src/plugProjectNishimuraU/DemonMgr.o\
 	$(BUILD_DIR)/asm/plugProjectNishimuraU/Demon.o\
 	$(BUILD_DIR)/asm/plugProjectNishimuraU/QueenShadow.o\
 	$(BUILD_DIR)/asm/plugProjectNishimuraU/FireChappyMgr.o\
@@ -742,7 +742,7 @@ NISHIMURA:=\
 	$(BUILD_DIR)/asm/plugProjectNishimuraU/SnakeCrow.o\
 	$(BUILD_DIR)/asm/plugProjectNishimuraU/KumaChappyState.o\
 	$(BUILD_DIR)/src/plugProjectNishimuraU/KumaChappyAnimator.o\
-	$(BUILD_DIR)/asm/plugProjectNishimuraU/KumaChappyMgr.o\
+	$(BUILD_DIR)/src/plugProjectNishimuraU/KumaChappyMgr.o\
 	$(BUILD_DIR)/asm/plugProjectNishimuraU/KumaChappy.o\
 	$(BUILD_DIR)/asm/plugProjectNishimuraU/FuefukiState.o\
 	$(BUILD_DIR)/src/plugProjectNishimuraU/FuefukiAnimator.o\
@@ -750,7 +750,7 @@ NISHIMURA:=\
 	$(BUILD_DIR)/asm/plugProjectNishimuraU/Fuefuki.o\
 	$(BUILD_DIR)/src/plugProjectNishimuraU/KoganemushiMgr.o\
 	$(BUILD_DIR)/src/plugProjectNishimuraU/Koganemushi.o\
-	$(BUILD_DIR)/asm/plugProjectNishimuraU/FtankMgr.o\
+	$(BUILD_DIR)/src/plugProjectNishimuraU/FtankMgr.o\
 	$(BUILD_DIR)/asm/plugProjectNishimuraU/Ftank.o\
 	$(BUILD_DIR)/src/plugProjectNishimuraU/RandPlantUnit.o\
 	$(BUILD_DIR)/asm/plugProjectNishimuraU/HanachirashiState.o\
@@ -770,7 +770,7 @@ NISHIMURA:=\
 	$(BUILD_DIR)/asm/plugProjectNishimuraU/Kurage.o\
 	$(BUILD_DIR)/asm/plugProjectNishimuraU/BombSaraiState.o\
 	$(BUILD_DIR)/src/plugProjectNishimuraU/BombSaraiAnimator.o\
-	$(BUILD_DIR)/asm/plugProjectNishimuraU/BombSaraiMgr.o\
+	$(BUILD_DIR)/src/plugProjectNishimuraU/BombSaraiMgr.o\
 	$(BUILD_DIR)/asm/plugProjectNishimuraU/BombSarai.o\
 	$(BUILD_DIR)/src/plugProjectNishimuraU/OtakaraBaseState.o\
 	$(BUILD_DIR)/src/plugProjectNishimuraU/OtakaraBaseAnimator.o\
@@ -794,7 +794,7 @@ NISHIMURA:=\
 	$(BUILD_DIR)/asm/plugProjectNishimuraU/HoudaiShadow.o\
 	$(BUILD_DIR)/asm/plugProjectNishimuraU/Houdai.o\
 	$(BUILD_DIR)/asm/plugProjectNishimuraU/HoudaiShotGun.o\
-	$(BUILD_DIR)/asm/plugProjectNishimuraU/LeafChappyMgr.o\
+	$(BUILD_DIR)/src/plugProjectNishimuraU/LeafChappyMgr.o\
 	$(BUILD_DIR)/asm/plugProjectNishimuraU/LeafChappy.o\
 	$(BUILD_DIR)/src/plugProjectNishimuraU/BigFootState.o\
 	$(BUILD_DIR)/src/plugProjectNishimuraU/BigFootAnimator.o\
@@ -820,7 +820,7 @@ NISHIMURA:=\
 	$(BUILD_DIR)/asm/plugProjectNishimuraU/Kabuto.o\
 	$(BUILD_DIR)/asm/plugProjectNishimuraU/KumaKochappyState.o\
 	$(BUILD_DIR)/src/plugProjectNishimuraU/KumaKochappyAnimator.o\
-	$(BUILD_DIR)/asm/plugProjectNishimuraU/KumaKochappyMgr.o\
+	$(BUILD_DIR)/src/plugProjectNishimuraU/KumaKochappyMgr.o\
 	$(BUILD_DIR)/asm/plugProjectNishimuraU/KumaKochappy.o\
 	$(BUILD_DIR)/asm/plugProjectNishimuraU/MiniHoudaiState.o\
 	$(BUILD_DIR)/src/plugProjectNishimuraU/MiniHoudaiAnimator.o\
@@ -833,7 +833,7 @@ NISHIMURA:=\
 	$(BUILD_DIR)/asm/plugProjectNishimuraU/Sokkuri.o\
 	$(BUILD_DIR)/asm/plugProjectNishimuraU/JointShadowBase.o\
 	$(BUILD_DIR)/asm/plugProjectNishimuraU/UmimushiShadow.o\
-	$(BUILD_DIR)/asm/plugProjectNishimuraU/HanaMgr.o\
+	$(BUILD_DIR)/src/plugProjectNishimuraU/HanaMgr.o\
 	$(BUILD_DIR)/asm/plugProjectNishimuraU/Hana.o\
 	$(BUILD_DIR)/asm/plugProjectNishimuraU/BigTreasureAttack.o\
 	$(BUILD_DIR)/asm/plugProjectNishimuraU/SnakeCrowShadow.o\

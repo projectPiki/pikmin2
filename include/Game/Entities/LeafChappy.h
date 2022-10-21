@@ -16,7 +16,7 @@ struct Obj : public KumaChappy::Obj {
 	virtual void doDirectDraw(Graphics&);               // _50
 	virtual void getShadowParam(ShadowParam&);          // _134
 	virtual Footmarks* getFootmarks();                  // _154 (weak)
-	virtual ~Obj();                                     // _1BC (weak)
+	virtual ~Obj() { }                                  // _1BC (weak)
 	virtual void doUpdate();                            // _1CC
 	virtual void doUpdateCarcass();                     // _1D4
 	virtual void initMouthSlots();                      // _22C
@@ -44,12 +44,15 @@ struct Mgr : public EnemyMgrBase {
 	Mgr(int objLimit, u8 modelType);
 
 	//////////////// VTABLE
-	virtual ~Mgr() { }                                  // _58 (weak)
-	virtual EnemyBase* birth(EnemyBirthArg&);           // _70
-	virtual void createObj(int);                        // _A0
-	virtual EnemyBase* getEnemy(int);                   // _A4
-	virtual void doAlloc();                             // _A8
-	virtual EnemyTypeID::EEnemyTypeID getEnemyTypeID(); // _AC (weak)
+	// virtual ~Mgr() { }                                  // _58 (weak)
+	virtual EnemyBase* birth(EnemyBirthArg&);          // _70
+	virtual void createObj(int);                       // _A0
+	virtual EnemyBase* getEnemy(int);                  // _A4
+	virtual void doAlloc();                            // _A8
+	virtual EnemyTypeID::EEnemyTypeID getEnemyTypeID() // _AC (weak)
+	{
+		return EnemyTypeID::EnemyID_LeafChappy;
+	}
 	//////////////// VTABLE END
 
 	// _00 		= VTBL

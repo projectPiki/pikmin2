@@ -12,7 +12,7 @@ namespace Demon {
 struct Obj : public Sarai::Obj {
 	Obj();
 
-	virtual ~Obj();                                     // _1BC (weak)
+	virtual ~Obj() { }                                  // _1BC (weak)
 	virtual EnemyTypeID::EEnemyTypeID getEnemyTypeID(); // _258 (weak)
 	virtual void getStickPikminNum();                   // _2FC (weak)
 	virtual void getAttackableTarget();                 // _300
@@ -28,13 +28,19 @@ struct Obj : public Sarai::Obj {
 struct Mgr : public EnemyMgrBase {
 	Mgr(int objLimit, u8 modelType);
 
-	virtual ~Mgr();                                     // _58 (weak)
-	virtual void createObj(int);                        // _A0
-	virtual EnemyBase* getEnemy(int);                   // _A4
-	virtual void doAlloc();                             // _A8
-	virtual EnemyTypeID::EEnemyTypeID getEnemyTypeID(); // _AC (weak)
-	virtual void loadModelData();                       // _C8
-	virtual J3DModelData* doLoadBmd(void*);             // _D4 (weak)
+	// virtual ~Mgr();                                     // _58 (weak)
+	virtual void doAlloc();                            // _A8
+	virtual void createObj(int);                       // _A0
+	virtual EnemyBase* getEnemy(int);                  // _A4
+	virtual void loadModelData();                      // _C8
+	virtual EnemyTypeID::EEnemyTypeID getEnemyTypeID() // _AC (weak)
+	{
+		return EnemyTypeID::EnemyID_Demon;
+	}
+	virtual J3DModelData* doLoadBmd(void* filename) // _D4 (weak)
+	{
+		return J3DModelLoaderDataBase::load(filename, 0x00240030);
+	}
 
 	// _00 		= VTBL
 	// _00-_44	= EnemyMgrBase
