@@ -1014,7 +1014,7 @@ MORIMURA:=\
 	$(BUILD_DIR)/asm/plugProjectMorimuraU/blackMan.o\
 	$(BUILD_DIR)/src/plugProjectMorimuraU/tyreState.o\
 	$(BUILD_DIR)/src/plugProjectMorimuraU/tyreAnimator.o\
-	$(BUILD_DIR)/asm/plugProjectMorimuraU/tyreMgr.o\
+	$(BUILD_DIR)/src/plugProjectMorimuraU/tyreMgr.o\
 	$(BUILD_DIR)/asm/plugProjectMorimuraU/tyre.o\
 
 EBISAWA:=\

@@ -52,7 +52,7 @@ void Tyre::StateMove::exec(EnemyBase* enemy)
 	Obj* tyre    = static_cast<Obj*>(enemy);
 	f32 p1       = tyre->_30C;
 	Parms* parms = static_cast<Parms*>(tyre->m_parms);
-	p1 *= parms->m_properParms.m_fp01.m_value;
+	p1 *= parms->m_properParms.m_tyreRotationSpeed.m_value;
 
 	if (parms->_832 != 0) {
 		f32 p2     = 0.2f * FABS(p1 - tyre->_2C4);

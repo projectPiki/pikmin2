@@ -47,7 +47,7 @@ struct Obj : public EnemyBase {
 	virtual void collisionCallback(CollEvent&);                                              // _EC
 	virtual void getShadowParam(ShadowParam&);                                               // _134
 	virtual bool needShadow();                                                               // _138
-	virtual ~Obj();                                                                          // _1BC (weak)
+	virtual ~Obj() { }                                                                       // _1BC (weak)
 	virtual void birth(Vector3f&, f32);                                                      // _1C0
 	virtual void setInitialSetting(EnemyInitialParamBase*);                                  // _1C4 (weak)
 	virtual void doUpdate();                                                                 // _1CC
@@ -112,19 +112,22 @@ struct Mgr : public EnemyMgrBase {
 
 	//////////////// VTABLE
 	// virtual ~Mgr();                                  // _58 (weak)
-	virtual EnemyBase* birth(EnemyBirthArg&); // _70
-	virtual void createObj(int count)         // _A0 (weak)
-	{
-		m_obj = new Obj[count];
-	}
-	virtual EnemyBase* getEnemy(int index) { return &m_obj[index]; } // _A4 (weak)
-	virtual void doAlloc();                                          // _A8
-	virtual EnemyTypeID::EEnemyTypeID getEnemyTypeID()               // _AC (weak)
+	virtual EnemyBase* birth(EnemyBirthArg&);          // _70
+	virtual void doAlloc();                            // _A8
+	virtual void loadModelData();                      // _C8
+	virtual J3DModelData* doLoadBmd(void*);            // _D4
+	virtual EnemyTypeID::EEnemyTypeID getEnemyTypeID() // _AC (weak)
 	{
 		return EnemyTypeID::EnemyID_Tyre;
 	}
-	virtual J3DModelData* loadModelData();  // _C8
-	virtual J3DModelData* doLoadBmd(void*); // _D4
+	virtual void createObj(int count) // _A0 (weak)
+	{
+		m_obj = new Obj[count];
+	}
+	virtual EnemyBase* getEnemy(int index) // _A4 (weak)
+	{
+		return &m_obj[index];
+	}
 	//////////////// VTABLE END
 
 	// _00 		= VTBL
@@ -134,12 +137,28 @@ struct Mgr : public EnemyMgrBase {
 
 struct Parms : public EnemyParmsBase {
 	struct ProperParms : public Parameters {
-		inline ProperParms(); // likely
+		inline ProperParms()
+		    : Parameters(nullptr, "EnemyParmsBase")
+		    , m_tyreRotationSpeed(this, 'fp01', "回転スピード", 0.5f, 0.0f, 100.0f) // rotation speed
+		{
+		}
 
-		Parm<f32> m_fp01; // _804
+		Parm<f32> m_tyreRotationSpeed; // _804
 	};
 
-	Parms();
+	Parms()
+	{
+		_830 = 0;
+		_831 = 0;
+		_832 = 1;
+		_833 = 10;
+		_834 = 0.0f;
+		_838 = 0.75f;
+		_83C = 0.05f;
+		_840 = 0.025f;
+		_844 = 0.5f;
+		_848 = 1.2f;
+	}
 
 	virtual void read(Stream& stream) // _08 (weak)
 	{
