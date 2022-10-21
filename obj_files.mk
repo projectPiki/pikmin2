@@ -774,15 +774,15 @@ NISHIMURA:=\
 	$(BUILD_DIR)/asm/plugProjectNishimuraU/BombSarai.o\
 	$(BUILD_DIR)/src/plugProjectNishimuraU/OtakaraBaseState.o\
 	$(BUILD_DIR)/src/plugProjectNishimuraU/OtakaraBaseAnimator.o\
-	$(BUILD_DIR)/asm/plugProjectNishimuraU/OtakaraBaseMgr.o\
+	$(BUILD_DIR)/src/plugProjectNishimuraU/OtakaraBaseMgr.o\
 	$(BUILD_DIR)/asm/plugProjectNishimuraU/OtakaraBase.o\
-	$(BUILD_DIR)/asm/plugProjectNishimuraU/FireOtakaraMgr.o\
+	$(BUILD_DIR)/src/plugProjectNishimuraU/FireOtakaraMgr.o\
 	$(BUILD_DIR)/src/plugProjectNishimuraU/FireOtakara.o\
-	$(BUILD_DIR)/asm/plugProjectNishimuraU/WaterOtakaraMgr.o\
+	$(BUILD_DIR)/src/plugProjectNishimuraU/WaterOtakaraMgr.o\
 	$(BUILD_DIR)/src/plugProjectNishimuraU/WaterOtakara.o\
-	$(BUILD_DIR)/asm/plugProjectNishimuraU/GasOtakaraMgr.o\
+	$(BUILD_DIR)/src/plugProjectNishimuraU/GasOtakaraMgr.o\
 	$(BUILD_DIR)/src/plugProjectNishimuraU/GasOtakara.o\
-	$(BUILD_DIR)/asm/plugProjectNishimuraU/ElecOtakaraMgr.o\
+	$(BUILD_DIR)/src/plugProjectNishimuraU/ElecOtakaraMgr.o\
 	$(BUILD_DIR)/src/plugProjectNishimuraU/ElecOtakara.o\
 	$(BUILD_DIR)/asm/plugProjectNishimuraU/ImomushiState.o\
 	$(BUILD_DIR)/src/plugProjectNishimuraU/ImomushiAnimator.o\
@@ -838,7 +838,7 @@ NISHIMURA:=\
 	$(BUILD_DIR)/asm/plugProjectNishimuraU/BigTreasureAttack.o\
 	$(BUILD_DIR)/asm/plugProjectNishimuraU/SnakeCrowShadow.o\
 	$(BUILD_DIR)/asm/plugProjectNishimuraU/SnakeWholeShadow.o\
-	$(BUILD_DIR)/asm/plugProjectNishimuraU/BombOtakaraMgr.o\
+	$(BUILD_DIR)/src/plugProjectNishimuraU/BombOtakaraMgr.o\
 	$(BUILD_DIR)/src/plugProjectNishimuraU/BombOtakara.o\
 	$(BUILD_DIR)/asm/plugProjectNishimuraU/DangoMushiState.o\
 	$(BUILD_DIR)/asm/plugProjectNishimuraU/DangoMushiMgr.o\

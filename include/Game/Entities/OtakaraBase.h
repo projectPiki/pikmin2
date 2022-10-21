@@ -127,21 +127,32 @@ struct Obj : public EnemyBase {
 struct Mgr : public EnemyMgrBase {
 	Mgr(int objLimit, u8 modelType);
 
-	virtual ~Mgr();                                     // _58 (weak)
-	virtual EnemyTypeID::EEnemyTypeID getEnemyTypeID(); // _AC (weak)
-	virtual SysShape::Model* createModel();             // _B0
-	virtual void loadModelData();                       // _C8
-	virtual void loadAnimData();                        // _CC
-	virtual ResTIMG* getChangeTexture() = 0;            // _E0
+	// virtual ~Mgr();                                     // _58 (weak)
+
+	virtual SysShape::Model* createModel();            // _B0
+	virtual void loadModelData();                      // _C8
+	virtual void loadAnimData();                       // _CC
+	virtual EnemyTypeID::EEnemyTypeID getEnemyTypeID() // _AC (weak)
+	{
+		return EnemyTypeID::EnemyID_FireOtakara;
+	}
+	virtual ResTIMG* getChangeTexture() = 0; // _E0
 
 	// _00 		= VTBL
 	// _00-_44	= EnemyMgrBase
-	u8 _44[0x4]; // _44, unknown
+	ResTIMG* m_changeTexture; // _44
 };
 
 struct Parms : public EnemyParmsBase {
 	struct ProperParms : Parameters {
-		// inline ProperParms; // probably
+		inline ProperParms()
+		    : Parameters(nullptr, "OtakaraBaseParms")
+		    , m_fp01(this, 'fp01', "オタカラライフ", 100.0f, 0.0f, 10000.0f) // 'otakara life'
+		    , m_fp10(this, 'fp10', "ノーマルアタック", 1.0f, 0.0f, 10.0f)    // 'normal attack'
+		    , m_fp11(this, 'fp11', "オタカラアタック", 1.25f, 0.0f, 10.0f)   // 'otakara attack'
+		    , m_fp21(this, 'fp21', "オタカラキャッチ", 2.5f, 0.0f, 10.0f)    // 'treasure catch'
+		{
+		}
 
 		Parm<f32> m_fp01; // _804
 		Parm<f32> m_fp10; // _82C
@@ -149,9 +160,14 @@ struct Parms : public EnemyParmsBase {
 		Parm<f32> m_fp21; // _87C
 	};
 
-	Parms();
+	Parms() { }
 
-	virtual void read(Stream&); // _08 (weak)
+	virtual void read(Stream& stream) // _08 (weak)
+	{
+		CreatureParms::read(stream);
+		m_general.read(stream);
+		m_properParms.read(stream);
+	}
 
 	// _00-_7F8	= EnemyParmsBase
 	ProperParms m_properParms; // _7F8

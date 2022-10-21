@@ -22,7 +22,7 @@ Mgr::Mgr(int objLimit, u8 modelType)
  * Address:	8012A6C0
  * Size:	0000C0
  */
-void ChappyBase::Mgr::loadModelData()
+void Mgr::loadModelData()
 {
 	int ids[3] = { EnemyTypeID::EnemyID_Chappy, EnemyTypeID::EnemyID_BlueChappy, EnemyTypeID::EnemyID_YellowChappy };
 
@@ -49,7 +49,7 @@ void ChappyBase::Mgr::loadModelData()
  * Address:	8012A780
  * Size:	0000A0
  */
-void ChappyBase::Mgr::loadAnimData()
+void Mgr::loadAnimData()
 {
 	int ids[3] = { EnemyTypeID::EnemyID_Chappy, EnemyTypeID::EnemyID_BlueChappy, EnemyTypeID::EnemyID_YellowChappy };
 

@@ -41,13 +41,19 @@ struct Obj : public OtakaraBase::Obj {
 struct Mgr : public OtakaraBase::Mgr {
 	Mgr(int objLimit, u8 modelType);
 
-	virtual ~Mgr();                                     // _58 (weak)
-	virtual void createObj(int);                        // _A0
-	virtual EnemyBase* getEnemy(int);                   // _A4
-	virtual void doAlloc();                             // _A8
-	virtual EnemyTypeID::EEnemyTypeID getEnemyTypeID(); // _AC (weak)
-	virtual void loadTexData();                         // _D0
-	virtual ResTIMG* getChangeTexture();                // _E0 (weak)
+	// virtual ~Mgr();                                     // _58 (weak)
+	virtual void createObj(int);                       // _A0
+	virtual EnemyBase* getEnemy(int);                  // _A4
+	virtual void doAlloc();                            // _A8
+	virtual void loadTexData();                        // _D0
+	virtual EnemyTypeID::EEnemyTypeID getEnemyTypeID() // _AC (weak)
+	{
+		return EnemyTypeID::EnemyID_WaterOtakara;
+	}
+	virtual ResTIMG* getChangeTexture() // _E0 (weak)
+	{
+		return m_changeTexture;
+	}
 
 	// _00 		= VTBL
 	// _00-_48	= OtakaraBase::Mgr
