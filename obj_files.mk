@@ -850,7 +850,7 @@ NISHIMURA:=\
 	$(BUILD_DIR)/src/plugProjectNishimuraU/FixKabutoMgr.o\
 	$(BUILD_DIR)/src/plugProjectNishimuraU/FixKabuto.o\
 	$(BUILD_DIR)/src/plugProjectNishimuraU/RandCapEnemyUnit.o\
-	$(BUILD_DIR)/asm/plugProjectNishimuraU/NormMiniHoudaiMgr.o\
+	$(BUILD_DIR)/src/plugProjectNishimuraU/NormMiniHoudaiMgr.o\
 	$(BUILD_DIR)/src/plugProjectNishimuraU/NormMiniHoudai.o\
 	$(BUILD_DIR)/src/plugProjectNishimuraU/FixMiniHoudaiMgr.o\
 	$(BUILD_DIR)/src/plugProjectNishimuraU/FixMiniHoudai.o\

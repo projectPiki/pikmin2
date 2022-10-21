@@ -149,8 +149,8 @@ struct Parms : public EnemyParmsBase {
 	struct ProperParms : public Parameters {
 		inline ProperParms()
 		    : Parameters(nullptr, "EnemyParmsBase")
-		    , m_fp11(this, 'fp11', "€–S ? ƒQ[ƒWoŒ»", 30.0f, 1.0f, 500.0f) // 'death ~ appearance of gauge'
-		    , m_fp12(this, 'fp12', "ƒQ[ƒWoŒ» ? •œŠˆ", 10.0f, 1.0f, 500.0f) // 'appearance of gauge ~ resurrection'
+		    , m_fp11(this, 'fp11', "€–S ` ƒQ[ƒWoŒ»", 30.0f, 1.0f, 500.0f) // 'death ~ appearance of gauge'
+		    , m_fp12(this, 'fp12', "ƒQ[ƒWoŒ» ` •œŠˆ", 10.0f, 1.0f, 500.0f) // 'appearance of gauge ~ resurrection'
 		{
 		}
 
