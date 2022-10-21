@@ -8,30 +8,10 @@ namespace Tyre {
  * Address:	803ABE60
  * Size:	000050
  */
-Mgr::Mgr(int, unsigned char)
+Mgr::Mgr(int objLimit, u8 modelType)
+    : EnemyMgrBase(objLimit, modelType)
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	mr       r31, r3
-	bl       __ct__Q24Game12EnemyMgrBaseFiUc
-	lis      r3, __vt__Q34Game4Tyre3Mgr@ha
-	lis      r4, lbl_804957D0@ha
-	addi     r5, r3, __vt__Q34Game4Tyre3Mgr@l
-	mr       r3, r31
-	stw      r5, 0(r31)
-	addi     r5, r5, 0x38
-	addi     r0, r4, lbl_804957D0@l
-	stw      r5, 4(r31)
-	stw      r0, 0x18(r31)
-	lwz      r31, 0xc(r1)
-	lwz      r0, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	m_name = "タイヤマネージャ"; // tire manager
 }
 
 /*
@@ -39,31 +19,7 @@ Mgr::Mgr(int, unsigned char)
  * Address:	803ABEB0
  * Size:	000048
  */
-void Mgr::doAlloc(void)
-{
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	mr       r31, r3
-	li       r3, 0x84c
-	bl       __nw__FUl
-	or.      r4, r3, r3
-	beq      lbl_803ABEDC
-	bl       __ct__Q34Game4Tyre5ParmsFv
-	mr       r4, r3
-
-lbl_803ABEDC:
-	mr       r3, r31
-	bl       init__Q24Game12EnemyMgrBaseFPQ24Game14EnemyParmsBase
-	lwz      r0, 0x14(r1)
-	lwz      r31, 0xc(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
-}
+void Mgr::doAlloc(void) { init(new Parms); }
 
 /*
  * --INFO--
@@ -136,27 +92,16 @@ Parms::Parms(void)
  * Address:	803ABFD4
  * Size:	000020
  */
-void Mgr::birth(Game::EnemyBirthArg&)
-{
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	bl       birth__Q24Game12EnemyMgrBaseFRQ24Game13EnemyBirthArg
-	lwz      r0, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
-}
+EnemyBase* Mgr::birth(Game::EnemyBirthArg& arg) { return birth(arg); }
 
 /*
  * --INFO--
  * Address:	803ABFF4
  * Size:	000094
  */
-void Mgr::loadModelData(void)
+J3DModelData* Mgr::loadModelData(void)
 {
+	return nullptr;
 	/*
 	stwu     r1, -0x20(r1)
 	mflr     r0
@@ -209,168 +154,9 @@ lbl_803AC060:
  * Address:	803AC088
  * Size:	00002C
  */
-void Mgr::doLoadBmd(void*)
+J3DModelData* Mgr::doLoadBmd(void* file)
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	lis      r5, 0x21240030@ha
-	mr       r3, r4
-	stw      r0, 0x14(r1)
-	addi     r4, r5, 0x21240030@l
-	bl       load__22J3DModelLoaderDataBaseFPCvUl
-	lwz      r0, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
-}
-
-/*
- * --INFO--
- * Address:	803AC0B4
- * Size:	0000B0
- */
-Mgr::~Mgr(void)
-{
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	mr       r31, r4
-	stw      r30, 8(r1)
-	or.      r30, r3, r3
-	beq      lbl_803AC148
-	lis      r3, __vt__Q34Game4Tyre3Mgr@ha
-	addi     r3, r3, __vt__Q34Game4Tyre3Mgr@l
-	stw      r3, 0(r30)
-	addi     r0, r3, 0x38
-	stw      r0, 4(r30)
-	beq      lbl_803AC138
-	lis      r3, __vt__Q24Game12EnemyMgrBase@ha
-	addi     r3, r3, __vt__Q24Game12EnemyMgrBase@l
-	stw      r3, 0(r30)
-	addi     r0, r3, 0x38
-	stw      r0, 4(r30)
-	beq      lbl_803AC138
-	lis      r3, __vt__Q24Game13IEnemyMgrBase@ha
-	addic.   r0, r30, 4
-	addi     r3, r3, __vt__Q24Game13IEnemyMgrBase@l
-	stw      r3, 0(r30)
-	addi     r0, r3, 0x38
-	stw      r0, 4(r30)
-	beq      lbl_803AC138
-	lis      r4, __vt__16GenericContainer@ha
-	addi     r3, r30, 4
-	addi     r0, r4, __vt__16GenericContainer@l
-	li       r4, 0
-	stw      r0, 4(r30)
-	bl       __dt__5CNodeFv
-
-lbl_803AC138:
-	extsh.   r0, r31
-	ble      lbl_803AC148
-	mr       r3, r30
-	bl       __dl__FPv
-
-lbl_803AC148:
-	lwz      r0, 0x14(r1)
-	mr       r3, r30
-	lwz      r31, 0xc(r1)
-	lwz      r30, 8(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
-}
-
-/*
- * --INFO--
- * Address:	803AC164
- * Size:	000008
- */
-u32 Mgr::getEnemyTypeID(void) { return EnemyID_Tyre; }
-
-/*
- * --INFO--
- * Address:	803AC16C
- * Size:	000060
- */
-void Mgr::createObj(int)
-{
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	mr       r31, r4
-	stw      r30, 8(r1)
-	mr       r30, r3
-	mulli    r3, r31, 0x354
-	addi     r3, r3, 0x10
-	bl       __nwa__FUl
-	lis      r4, __ct__Q34Game4Tyre3ObjFv@ha
-	lis      r5, __dt__Q34Game4Tyre3ObjFv@ha
-	addi     r4, r4, __ct__Q34Game4Tyre3ObjFv@l
-	mr       r7, r31
-	addi     r5, r5, __dt__Q34Game4Tyre3ObjFv@l
-	li       r6, 0x354
-	bl       __construct_new_array
-	stw      r3, 0x44(r30)
-	lwz      r0, 0x14(r1)
-	lwz      r31, 0xc(r1)
-	lwz      r30, 8(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
-}
-
-/*
- * --INFO--
- * Address:	803AC288
- * Size:	000010
- */
-void Mgr::getEnemy(int)
-{
-	/*
-	mulli    r0, r4, 0x354
-	lwz      r3, 0x44(r3)
-	add      r3, r3, r0
-	blr
-	*/
-}
-
-/*
- * --INFO--
- * Address:	803AC298
- * Size:	000050
- */
-void Parms::read(Stream&)
-{
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	mr       r31, r4
-	stw      r30, 8(r1)
-	mr       r30, r3
-	bl       read__10ParametersFR6Stream
-	mr       r4, r31
-	addi     r3, r30, 0xe0
-	bl       read__10ParametersFR6Stream
-	mr       r4, r31
-	addi     r3, r30, 0x7f8
-	bl       read__10ParametersFR6Stream
-	lwz      r0, 0x14(r1)
-	lwz      r31, 0xc(r1)
-	lwz      r30, 8(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	return J3DModelLoaderDataBase::load(file, 0x21240030); // flags should really be OR'd together
 }
 
 } // namespace Tyre

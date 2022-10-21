@@ -112,13 +112,19 @@ struct Mgr : public EnemyMgrBase {
 
 	//////////////// VTABLE
 	// virtual ~Mgr();                                  // _58 (weak)
-	virtual EnemyBase* birth(EnemyBirthArg&);           // _70
-	virtual void createObj(int);                        // _A0 (weak)
-	virtual EnemyBase* getEnemy(int);                   // _A4 (weak)
-	virtual void doAlloc();                             // _A8
-	virtual EnemyTypeID::EEnemyTypeID getEnemyTypeID(); // _AC (weak)
-	virtual void loadModelData();                       // _C8
-	virtual J3DModelData* doLoadBmd(void*);             // _D4
+	virtual EnemyBase* birth(EnemyBirthArg&); // _70
+	virtual void createObj(int count)         // _A0 (weak)
+	{
+		m_obj = new Obj[count];
+	}
+	virtual EnemyBase* getEnemy(int index) { return &m_obj[index]; } // _A4 (weak)
+	virtual void doAlloc();                                          // _A8
+	virtual EnemyTypeID::EEnemyTypeID getEnemyTypeID()               // _AC (weak)
+	{
+		return EnemyTypeID::EnemyID_Tyre;
+	}
+	virtual J3DModelData* loadModelData();  // _C8
+	virtual J3DModelData* doLoadBmd(void*); // _D4
 	//////////////// VTABLE END
 
 	// _00 		= VTBL
@@ -135,7 +141,12 @@ struct Parms : public EnemyParmsBase {
 
 	Parms();
 
-	virtual void read(Stream&); // _08 (weak)
+	virtual void read(Stream& stream) // _08 (weak)
+	{
+		CreatureParms::read(stream);
+		m_general.read(stream);
+		m_properParms.read(stream);
+	}
 
 	// _00-_7F8	= EnemyParmsBase
 	ProperParms m_properParms; // _7F8
