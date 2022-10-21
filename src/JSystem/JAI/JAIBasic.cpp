@@ -2,6 +2,7 @@
 #include "JSystem/JAI/JAInter.h"
 #include "JSystem/JAI/JAInter/BankWave.h"
 #include "JSystem/JAI/JAInter/Fx.h"
+#include "JSystem/JAS/JASHeap.h"
 #include "types.h"
 
 /*
@@ -82,6 +83,20 @@
  */
 JAIBasic::JAIBasic()
 {
+	msBasic = this;
+	_0E &= 0x7F;
+	_0E &= 0xBF;
+	_0E &= 0xDF;
+	_0E &= 0xEF;
+	_0E &= 0xF7;
+	_14           = 0;
+	m_cameras     = nullptr;
+	_10           = 0;
+	_0C           = 2;
+	_1C           = 0;
+	m_heap        = nullptr;
+	_18           = 0;
+	msCurrentHeap = JASDram;
 	/*
 	lis      r4, __vt__8JAIBasic@ha
 	li       r5, 0
@@ -1216,7 +1231,7 @@ void JAIBasic::getMapInfoGround(unsigned long)
  * Address:	800ACAB4
  * Size:	000018
  */
-void JAIBasic::getMapInfoFxParameter(unsigned long)
+float JAIBasic::getMapInfoFxParameter(unsigned long)
 {
 	/*
 	cmplwi   r4, 0

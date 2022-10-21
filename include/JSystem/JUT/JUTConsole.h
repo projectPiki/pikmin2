@@ -139,6 +139,10 @@ private:
 };                                               // Size: 0x14
 
 extern "C" {
+JUTConsole* JUTGetReportConsole();
+void JUTSetReportConsole(JUTConsole*);
+JUTConsole* JUTGetWarningConsole();
+void JUTSetWarningConsole(JUTConsole*);
 void JUTReportConsole(char const*);
 void JUTReportConsole_f(char const*, ...);
 }

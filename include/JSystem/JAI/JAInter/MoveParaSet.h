@@ -9,6 +9,16 @@ namespace JAInter {
  * @size = 0x10
  */
 struct MoveParaSet {
+	MoveParaSet(float v1 = 1.0f)
+	{
+		_04 = v1;
+		_00 = v1;
+		_0C = 0;
+	}
+
+	int set(float, unsigned long);
+	void move();
+
 	float _00; // _00
 	float _04; // _04
 	u32 _08;   // _08 - unknown
@@ -18,25 +28,21 @@ struct MoveParaSet {
 /**
  * @size = 0x10
  */
-struct MoveParaSetInitHalf {
-	MoveParaSetInitHalf();
-
-	float _00;   // _00
-	float _04;   // _04
-	u8 _08[0x4]; // _08 - unknown, could be u32 like above
-	u32 _0C;     // _0C - unknown
+struct MoveParaSetInitHalf : public MoveParaSet {
+	MoveParaSetInitHalf()
+	    : MoveParaSet(0.5f)
+	{
+	}
 };
 
 /**
  * @size = 0x10
  */
-struct MoveParaSetInitZero {
-	MoveParaSetInitZero();
-
-	float _00;   // _00
-	float _04;   // _04
-	u8 _08[0x4]; // _08 - unknown, could be u32 like above
-	u32 _0C;     // _0C - unknown
+struct MoveParaSetInitZero : public MoveParaSet {
+	MoveParaSetInitZero()
+	    : MoveParaSet(0.0f)
+	{
+	}
 };
 
 } // namespace JAInter

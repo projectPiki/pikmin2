@@ -13,9 +13,15 @@ struct JUTGraphFifo {
 	void setBreakPt();
 
 	static JUTGraphFifo* sCurrentFifo;
-	static u8 mGpStatus[5];
+	static GXBool mGpStatus[5];
 
-	GXFifoObj* m_fifo;
+	// VTBL _00
+	GXFifoObj* m_fifo; // _04
+	unkptr _08;        // _08
+	u32 _0C;           // _0C
+	u8 _10[0xC];       // _10
+
+	static bool sInitiated;
 };
 
 #endif

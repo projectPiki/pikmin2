@@ -1,4 +1,11 @@
+#include "Dolphin/string.h"
+#include "Dolphin/vi.h"
+#include "JSystem/JUT/JUTDbPrint.h"
+#include "JSystem/JUT/JUTDirectPrint.h"
+#include "JSystem/JUT/JUTFont.h"
+#include "JSystem/JUT/TColor.h"
 #include "types.h"
+#include "JSystem/JUT/JUTAssertion.h"
 
 /*
     Generated from dpostproc
@@ -31,6 +38,13 @@
         .4byte 0x80000000
 */
 
+namespace {
+static char sMessageFileLine[64];
+static char sMessageString[256];
+static u32 sMessageLife;
+static bool sVisible = true;
+} // namespace
+
 /*
  * --INFO--
  * Address:	80027DC0
@@ -43,9 +57,19 @@ void JUTAssertion::create() { }
  * Address:	........
  * Size:	00003C
  */
-void JUTAssertion::flush_subroutine()
+u32 JUTAssertion::flush_subroutine()
 {
 	// UNUSED FUNCTION
+	if (sMessageLife == 0) {
+		return 0;
+	}
+	if (sMessageLife != -1) {
+		sMessageLife--;
+	}
+	if (sMessageLife < 5) {
+		return 0;
+	}
+	return sMessageLife;
 }
 
 /*
@@ -55,6 +79,14 @@ void JUTAssertion::flush_subroutine()
  */
 void JUTAssertion::flushMessage()
 {
+	if (flush_subroutine() != 0 && sVisible) {
+		JUtility::TColor existingColor = JUTDirectPrint::sDirectPrint->_18;
+		JUtility::TColor newColor      = 0xFFC8C8FF;
+		JUTDirectPrint::sDirectPrint->setCharColor(newColor);
+		JUTDirectPrint::sDirectPrint->drawString(0x10, 0x10, sMessageFileLine);
+		JUTDirectPrint::sDirectPrint->drawString(0x10, 0x18, sMessageString);
+		JUTDirectPrint::sDirectPrint->setCharColor(existingColor);
+	}
 	/*
 	stwu     r1, -0x20(r1)
 	mflr     r0
@@ -129,6 +161,17 @@ lbl_80027E9C:
  */
 void JUTAssertion::flushMessage_dbPrint()
 {
+	JUTFont* font;
+	if (flush_subroutine() != 0 && sVisible == true && JUTDbPrint::sDebugPrint != nullptr && JUTDbPrint::sDebugPrint->m_font != nullptr) {
+		font = JUTDbPrint::sDebugPrint->m_font;
+
+		u32 retraceCount = VIGetRetraceCount();
+		font->setGX();
+		JUtility::TColor charColor(0xFF, retraceCount & 0xF0 | 0xF, retraceCount & 0xF0 | 0xF, 0xFF);
+		font->setCharColor(charColor);
+		font->drawString_size_scale(30.0f, 36.0f, font->getWidth(), font->getHeight(), sMessageFileLine, strlen(sMessageFileLine), true);
+		font->drawString_size_scale(30.0f, 54.0f, font->getWidth(), font->getHeight(), sMessageString, strlen(sMessageString), true);
+	}
 	/*
 	stwu     r1, -0x50(r1)
 	mflr     r0
@@ -399,8 +442,10 @@ void JUTAssertion::getVisible()
  * Address:	800280C4
  * Size:	000018
  */
-void JUTAssertion::setMessageCount(int)
+void JUTAssertion::setMessageCount(int p1)
 {
+	sMessageLife = p1 & (bool)p1; // ???
+
 	/*
 	neg      r0, r3
 	orc      r0, r3, r0

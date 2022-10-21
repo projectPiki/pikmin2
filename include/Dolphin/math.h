@@ -110,4 +110,6 @@ inline f32 dolsqrtf(f32 x)
 	}
 }
 
+#define ispositive(x) ((((u8*)&x)[0] & 0x80) != 0)
+
 #endif

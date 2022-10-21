@@ -1,4 +1,9 @@
 #include "JSystem/J3D/J3DJoint.h"
+#include "Dolphin/mtx.h"
+#include "JSystem/J3D/J3DAnmTransform.h"
+#include "JSystem/J3D/J3DMtxBuffer.h"
+#include "JSystem/J3D/J3DMtxCalc.h"
+#include "JSystem/J3D/J3DSys.h"
 #include "types.h"
 
 /*
@@ -120,8 +125,15 @@
  * Address:	8006B200
  * Size:	000098
  */
-void J3DMtxCalcJ3DSysInitBasic::init(const Vec&, const float (&)[3][4])
+void J3DMtxCalcJ3DSysInitBasic::init(const Vec& p1, const float (&p2)[3][4])
 {
+	J3DSys::mCurrentS.x = p1.x;
+	J3DSys::mCurrentS.y = p1.y;
+	J3DSys::mCurrentS.z = p1.z;
+	J3DSys::mParentS.x = 1.0f;
+	J3DSys::mParentS.y = 1.0f;
+	J3DSys::mParentS.z = 1.0f;
+	JMAMTXApplyScale(p2, &J3DSys::mCurrentMtx, p1.x, p1.y, p1.z);
 	/*
 	stwu     r1, -0x20(r1)
 	mflr     r0
@@ -169,8 +181,16 @@ void J3DMtxCalcJ3DSysInitBasic::init(const Vec&, const float (&)[3][4])
  * Address:	8006B298
  * Size:	000098
  */
-void J3DMtxCalcJ3DSysInitMaya::init(const Vec&, const float (&)[3][4])
+void J3DMtxCalcJ3DSysInitMaya::init(const Vec& p1, const float (&p2)[3][4])
 {
+	J3DSys::mCurrentS.x = p1.x;
+	J3DSys::mCurrentS.y = p1.y;
+	J3DSys::mCurrentS.z = p1.z;
+	J3DSys::mParentS.x = 1.0f;
+	J3DSys::mParentS.y = 1.0f;
+	J3DSys::mParentS.z = 1.0f;
+	JMAMTXApplyScale(p2, &J3DSys::mCurrentMtx, p1.x, p1.y, p1.z);
+
 	/*
 	stwu     r1, -0x20(r1)
 	mflr     r0
@@ -218,8 +238,28 @@ void J3DMtxCalcJ3DSysInitMaya::init(const Vec&, const float (&)[3][4])
  * Address:	8006B330
  * Size:	000118
  */
-void J3DMtxCalcCalcTransformBasic::calcTransform(const J3DTransformInfo&)
+void J3DMtxCalcCalcTransformBasic::calcTransform(const J3DTransformInfo& info)
 {
+	u16 jntNo = J3DMtxCalc::mJoint->getJntNo();
+	J3DSys::mCurrentS.x *= info.m_scale.x;
+	J3DSys::mCurrentS.y *= info.m_scale.y;
+	J3DSys::mCurrentS.z *= info.m_scale.z;
+	Mtx* mtx = &J3DMtxCalc::mMtxBuffer->m_worldMatrices[jntNo];
+	J3DGetTranslateRotateMtx(info, mtx);
+	bool isIdentity;
+	if (J3DSys::mCurrentS.x == 1.0f && J3DSys::mCurrentS.y == 1.0f && J3DSys::mCurrentS.z == 1.0f) {
+		isIdentity = true;
+	} else {
+		isIdentity = false;
+	}
+	if (isIdentity) {
+		J3DMtxCalc::mMtxBuffer->_04[jntNo] = 1;
+	} else {
+		J3DMtxCalc::mMtxBuffer->_04[jntNo] = 0;
+		JMAMTXApplyScale(mtx, mtx, info.m_scale.x, info.m_scale.y, info.m_scale.z);
+	}
+	PSMTXConcat(J3DSys::mCurrentMtx, *mtx, J3DSys::mCurrentMtx);
+	PSMTXCopy(J3DSys::mCurrentMtx, *mtx);
 	/*
 	stwu     r1, -0x20(r1)
 	mflr     r0
@@ -307,8 +347,40 @@ lbl_8006B410:
  * Address:	8006B448
  * Size:	000168
  */
-void J3DMtxCalcCalcTransformSoftimage::calcTransform(const J3DTransformInfo&)
+void J3DMtxCalcCalcTransformSoftimage::calcTransform(const J3DTransformInfo& info)
 {
+	u16 jntNo = J3DMtxCalc::mJoint->getJntNo();
+	Mtx* mtx = &J3DMtxCalc::mMtxBuffer->m_worldMatrices[jntNo];
+	J3DGetTranslateRotateMtx(
+		info.m_eulerRot.x,
+		info.m_eulerRot.y,
+		info.m_eulerRot.z,
+		info.m_zRotation.x * J3DSys::mCurrentS.x,
+		info.m_zRotation.y * J3DSys::mCurrentS.y,
+		info.m_zRotation.z * J3DSys::mCurrentS.z,
+		mtx
+	);
+	PSMTXConcat(J3DSys::mCurrentMtx, mtx, J3DSys::mCurrentMtx);
+	J3DSys::mCurrentS.x *= info.m_scale.x;
+	J3DSys::mCurrentS.y *= info.m_scale.y;
+	J3DSys::mCurrentS.z *= info.m_scale.z;
+	bool isIdentity;
+	if (J3DSys::mCurrentS.x == 1.0f && J3DSys::mCurrentS.y == 1.0f && J3DSys::mCurrentS.z == 1.0f) {
+		isIdentity = true;
+	} else {
+		isIdentity = false;
+	}
+	if (isIdentity) {
+		J3DMtxCalc::mMtxBuffer->_04[jntNo] = 1;
+		PSMTXCopy(J3DSys::mCurrentMtx, *mtx);
+	} else {
+		J3DMtxCalc::mMtxBuffer->_04[jntNo] = 0;
+		JMAMTXApplyScale(J3DSys::mCurrentMtx, mtx, J3DSys::mCurrentS.x, J3DSys::mCurrentS.y, J3DSys::mCurrentS.z);
+		(*mtx)[0][3] = J3DSys::mCurrentMtx[0][3];
+		(*mtx)[1][3] = J3DSys::mCurrentMtx[1][3];
+		(*mtx)[2][3] = J3DSys::mCurrentMtx[2][3];
+	}
+
 	/*
 	stwu     r1, -0x20(r1)
 	mflr     r0
@@ -416,8 +488,19 @@ lbl_8006B59C:
  * Address:	8006B5B0
  * Size:	000178
  */
-void J3DMtxCalcCalcTransformMaya::calcTransform(const J3DTransformInfo&)
+void J3DMtxCalcCalcTransformMaya::calcTransform(const J3DTransformInfo& info)
 {
+	u16 jntNo = J3DMtxCalc::mJoint->getJntNo();
+	Mtx* mtx = &J3DMtxCalc::mMtxBuffer->m_worldMatrices[jntNo];
+	J3DGetTranslateRotateMtx(info, mtx);
+	PSMTXConcat(J3DSys::mCurrentMtx, mtx, J3DSys::mCurrentMtx);
+	if ((info.m_scale.x == 1.0f && info.m_scale.y == 1.0f && info.m_scale.z == 1.0f)) {
+		J3DMtxCalc::mMtxBuffer->_04[jntNo] = 1;
+	} else {
+		J3DMtxCalc::mMtxBuffer->_04[jntNo] = 0;
+		JMAMTXApplyScale(mtx, mtx, info.m_scale.x, info.m_scale.y, info.m_scale.z);
+	}
+	// TODO
 	/*
 	stwu     r1, -0x20(r1)
 	mflr     r0
@@ -527,8 +610,20 @@ lbl_8006B6D4:
  * Address:	8006B728
  * Size:	000104
  */
-void J3DNewMtxCalcAnm(unsigned long, J3DAnmTransform*)
+J3DMtxCalcAnmBase* J3DNewMtxCalcAnm(u32 type, J3DAnmTransform* p2)
 {
+	switch (type) {
+		case 0:
+			return new J3DMtxCalcAnimation<J3DMtxCalcAnimationAdaptorDefault<J3DMtxCalcCalcTransformBasic>, J3DMtxCalcJ3DSysInitBasic>();
+			break;
+		case 1:
+			return new J3DMtxCalcAnimation<J3DMtxCalcAnimationAdaptorDefault<J3DMtxCalcCalcTransformSoftimage>, J3DMtxCalcJ3DSysInitSoftimage>();
+			break;
+		case 2:
+			return new J3DMtxCalcAnimation<J3DMtxCalcAnimationAdaptorDefault<J3DMtxCalcCalcTransformMaya>, J3DMtxCalcJ3DSysInitMaya>();
+			break;
+	}
+	return nullptr;
 	/*
 	stwu     r1, -0x10(r1)
 	mflr     r0
@@ -1032,8 +1127,9 @@ lbl_8006BCB8:
  * Address:	8006BCFC
  * Size:	000008
  */
-void J3DMtxCalcAnmBase::getAnmTransform()
+J3DAnmTransform* J3DMtxCalcAnmBase::getAnmTransform()
 {
+	return _04;
 	/*
 	lwz      r3, 4(r3)
 	blr
@@ -1056,7 +1152,7 @@ void J3DMtxCalcAnmBase::setAnmTransform(J3DAnmTransform* a1)
  * Address:	8006BD0C
  * Size:	00006C
  */
-void J3DMtxCalcAnimation<J3DMtxCalcAnimationAdaptorDefault<J3DMtxCalcCalcTransformMaya>, J3DMtxCalcJ3DSysInitMaya>::~J3DMtxCalcAnimation()
+template<> J3DMtxCalcAnimation<J3DMtxCalcAnimationAdaptorDefault<J3DMtxCalcCalcTransformMaya>, J3DMtxCalcJ3DSysInitMaya>::~J3DMtxCalcAnimation()
 {
 	/*
 	.loc_0x0:
@@ -1099,7 +1195,7 @@ void J3DMtxCalcAnimation<J3DMtxCalcAnimationAdaptorDefault<J3DMtxCalcCalcTransfo
  * Address:	8006BD78
  * Size:	000094
  */
-void J3DMtxCalcAnimation<J3DMtxCalcAnimationAdaptorDefault<J3DMtxCalcCalcTransformMaya>, J3DMtxCalcJ3DSysInitMaya>::init(
+template<> void J3DMtxCalcAnimation<J3DMtxCalcAnimationAdaptorDefault<J3DMtxCalcCalcTransformMaya>, J3DMtxCalcJ3DSysInitMaya>::init(
     const Vec&, const float (&)[3][4])
 {
 	/*
@@ -1149,7 +1245,7 @@ void J3DMtxCalcAnimation<J3DMtxCalcAnimationAdaptorDefault<J3DMtxCalcCalcTransfo
  * Address:	8006BE0C
  * Size:	000008
  */
-void J3DMtxCalcAnimation<J3DMtxCalcAnimationAdaptorDefault<J3DMtxCalcCalcTransformMaya>, J3DMtxCalcJ3DSysInitMaya>::setAnmTransform(
+template<> void J3DMtxCalcAnimation<J3DMtxCalcAnimationAdaptorDefault<J3DMtxCalcCalcTransformMaya>, J3DMtxCalcJ3DSysInitMaya>::setAnmTransform(
     J3DAnmTransform*)
 {
 	/*
@@ -1164,7 +1260,7 @@ void J3DMtxCalcAnimation<J3DMtxCalcAnimationAdaptorDefault<J3DMtxCalcCalcTransfo
  * Address:	8006BE14
  * Size:	00006C
  */
-void J3DMtxCalcAnimation<J3DMtxCalcAnimationAdaptorDefault<J3DMtxCalcCalcTransformSoftimage>,
+template<> J3DMtxCalcAnimation<J3DMtxCalcAnimationAdaptorDefault<J3DMtxCalcCalcTransformSoftimage>,
                          J3DMtxCalcJ3DSysInitSoftimage>::~J3DMtxCalcAnimation()
 {
 	/*
@@ -1208,7 +1304,7 @@ void J3DMtxCalcAnimation<J3DMtxCalcAnimationAdaptorDefault<J3DMtxCalcCalcTransfo
  * Address:	8006BE80
  * Size:	00004C
  */
-void J3DMtxCalcAnimation<J3DMtxCalcAnimationAdaptorDefault<J3DMtxCalcCalcTransformSoftimage>, J3DMtxCalcJ3DSysInitSoftimage>::init(
+template<> void J3DMtxCalcAnimation<J3DMtxCalcAnimationAdaptorDefault<J3DMtxCalcCalcTransformSoftimage>, J3DMtxCalcJ3DSysInitSoftimage>::init(
     const Vec&, const float (&)[3][4])
 {
 	/*
@@ -1240,7 +1336,7 @@ void J3DMtxCalcAnimation<J3DMtxCalcAnimationAdaptorDefault<J3DMtxCalcCalcTransfo
  * Address:	8006BECC
  * Size:	000008
  */
-void J3DMtxCalcAnimation<J3DMtxCalcAnimationAdaptorDefault<J3DMtxCalcCalcTransformSoftimage>,
+template<> void J3DMtxCalcAnimation<J3DMtxCalcAnimationAdaptorDefault<J3DMtxCalcCalcTransformSoftimage>,
                          J3DMtxCalcJ3DSysInitSoftimage>::setAnmTransform(J3DAnmTransform*)
 {
 	/*
@@ -1255,7 +1351,7 @@ void J3DMtxCalcAnimation<J3DMtxCalcAnimationAdaptorDefault<J3DMtxCalcCalcTransfo
  * Address:	8006BED4
  * Size:	00006C
  */
-void J3DMtxCalcAnimation<J3DMtxCalcAnimationAdaptorDefault<J3DMtxCalcCalcTransformBasic>, J3DMtxCalcJ3DSysInitBasic>::~J3DMtxCalcAnimation()
+template<> J3DMtxCalcAnimation<J3DMtxCalcAnimationAdaptorDefault<J3DMtxCalcCalcTransformBasic>, J3DMtxCalcJ3DSysInitBasic>::~J3DMtxCalcAnimation()
 {
 	/*
 	.loc_0x0:
@@ -1298,7 +1394,7 @@ void J3DMtxCalcAnimation<J3DMtxCalcAnimationAdaptorDefault<J3DMtxCalcCalcTransfo
  * Address:	8006BF40
  * Size:	000098
  */
-void J3DMtxCalcAnimation<J3DMtxCalcAnimationAdaptorDefault<J3DMtxCalcCalcTransformBasic>, J3DMtxCalcJ3DSysInitBasic>::init(
+template<> void J3DMtxCalcAnimation<J3DMtxCalcAnimationAdaptorDefault<J3DMtxCalcCalcTransformBasic>, J3DMtxCalcJ3DSysInitBasic>::init(
     const Vec&, const float (&)[3][4])
 {
 	/*
@@ -1349,7 +1445,7 @@ void J3DMtxCalcAnimation<J3DMtxCalcAnimationAdaptorDefault<J3DMtxCalcCalcTransfo
  * Address:	8006BFD8
  * Size:	000008
  */
-void J3DMtxCalcAnimation<J3DMtxCalcAnimationAdaptorDefault<J3DMtxCalcCalcTransformBasic>, J3DMtxCalcJ3DSysInitBasic>::setAnmTransform(
+template<> void J3DMtxCalcAnimation<J3DMtxCalcAnimationAdaptorDefault<J3DMtxCalcCalcTransformBasic>, J3DMtxCalcJ3DSysInitBasic>::setAnmTransform(
     J3DAnmTransform*)
 {
 	/*
@@ -1364,7 +1460,7 @@ void J3DMtxCalcAnimation<J3DMtxCalcAnimationAdaptorDefault<J3DMtxCalcCalcTransfo
  * Address:	8006BFE0
  * Size:	000178
  */
-void J3DMtxCalcAnimation<J3DMtxCalcAnimationAdaptorDefault<J3DMtxCalcCalcTransformBasic>, J3DMtxCalcJ3DSysInitBasic>::calc()
+template<> void J3DMtxCalcAnimation<J3DMtxCalcAnimationAdaptorDefault<J3DMtxCalcCalcTransformBasic>, J3DMtxCalcJ3DSysInitBasic>::calc()
 {
 	/*
 	.loc_0x0:
@@ -1482,7 +1578,7 @@ void J3DMtxCalcAnimation<J3DMtxCalcAnimationAdaptorDefault<J3DMtxCalcCalcTransfo
  * Address:	8006C158
  * Size:	0001C4
  */
-void J3DMtxCalcAnimation<J3DMtxCalcAnimationAdaptorDefault<J3DMtxCalcCalcTransformSoftimage>, J3DMtxCalcJ3DSysInitSoftimage>::calc()
+template<> void J3DMtxCalcAnimation<J3DMtxCalcAnimationAdaptorDefault<J3DMtxCalcCalcTransformSoftimage>, J3DMtxCalcJ3DSysInitSoftimage>::calc()
 {
 	/*
 	.loc_0x0:
@@ -1619,7 +1715,7 @@ void J3DMtxCalcAnimation<J3DMtxCalcAnimationAdaptorDefault<J3DMtxCalcCalcTransfo
  * Address:	8006C31C
  * Size:	000088
  */
-void J3DMtxCalcAnimation<J3DMtxCalcAnimationAdaptorDefault<J3DMtxCalcCalcTransformMaya>, J3DMtxCalcJ3DSysInitMaya>::calc()
+template<> void J3DMtxCalcAnimation<J3DMtxCalcAnimationAdaptorDefault<J3DMtxCalcCalcTransformMaya>, J3DMtxCalcJ3DSysInitMaya>::calc()
 {
 	/*
 	.loc_0x0:

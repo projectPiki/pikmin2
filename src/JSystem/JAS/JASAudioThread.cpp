@@ -1,3 +1,8 @@
+#include "JSystem/JAS/JASAudioThread.h"
+#include "Dolphin/os.h"
+#include "JSystem/JAS/JASHeap.h"
+#include "JSystem/JAS/JASKernel.h"
+#include "JSystem/JKR/JKRThread.h"
 #include "types.h"
 
 /*
@@ -48,7 +53,8 @@
  * Address:	........
  * Size:	000050
  */
-JASAudioThread::JASAudioThread(int, int, unsigned long)
+JASAudioThread::JASAudioThread(int stackSize, int msgCount, unsigned long threadPriority)
+    : JKRThread(JASDram, stackSize, msgCount, threadPriority)
 {
 	// UNUSED FUNCTION
 }
@@ -58,8 +64,10 @@ JASAudioThread::JASAudioThread(int, int, unsigned long)
  * Address:	800A5B88
  * Size:	000074
  */
-void JASAudioThread::create(long)
+void JASAudioThread::create(long threadPriority)
 {
+	sAudioThread = new (JASDram, 0) JASAudioThread(0x1000, 0x10, threadPriority);
+	OSResumeThread(sAudioThread->m_thread);
 	/*
 	stwu     r1, -0x10(r1)
 	mflr     r0
@@ -102,24 +110,9 @@ lbl_800A5BD8:
  */
 void JASAudioThread::stop()
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	lwz      r3, sAudioThread__14JASAudioThread@sda21(r13)
-	cmplwi   r3, 0
-	beq      lbl_800A5C24
-	addi     r3, r3, 0x30
-	li       r4, 2
-	li       r5, 1
-	bl       OSJamMessage
-
-lbl_800A5C24:
-	lwz      r0, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	if (sAudioThread != nullptr) {
+		OSJamMessage(&sAudioThread->m_msgQueue, (void*)2, OS_MESSAGE_BLOCKING);
+	}
 }
 
 /*
@@ -137,7 +130,7 @@ void JASAudioThread::pause(bool)
  * Address:	800A5C34
  * Size:	00017C
  */
-void JASAudioThread::run()
+void* JASAudioThread::run()
 {
 	/*
 	stwu     r1, -0x20(r1)
@@ -269,26 +262,9 @@ lbl_800A5DA4:
  */
 void JASAudioThread::DMACallback()
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	li       r3, 4
-	stw      r0, 0x14(r1)
-	bl       probeFinish__9JASKernelFl
-	lis      r4, lbl_804795D8@ha
-	li       r3, 4
-	addi     r4, r4, lbl_804795D8@l
-	bl       probeStart__9JASKernelFlPc
-	lwz      r3, sAudioThread__14JASAudioThread@sda21(r13)
-	li       r4, 0
-	li       r5, 0
-	addi     r3, r3, 0x30
-	bl       OSSendMessage
-	lwz      r0, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	JASKernel::probeFinish(4);
+	JASKernel::probeStart(4, "UPDATE-DAC");
+	OSSendMessage(&sAudioThread->m_msgQueue, nullptr, OS_MESSAGE_NON_BLOCKING);
 }
 
 /*

@@ -579,21 +579,57 @@ typedef enum _SDK_GXPixelFmt {
 } GXPixelFmt;
 
 typedef struct _GXRenderModeObj {
-	VITVMode viTVmode;
-	u16 fbWidth;
-	u16 efbHeight;
-	u16 xfbHeight;
-	u16 viXOrigin;
-	u16 viYOrigin;
-	u16 viWidth;
-	u16 viHeight;
-	VIXFBMode xFBmode;
+	VITVMode viTVmode; // _00
+	u16 fbWidth;       // _04
+	u16 efbHeight;     // _06
+	u16 xfbHeight;     // _08
+	u16 viXOrigin;     // _0A
+	u16 viYOrigin;     // _0C
+	u16 viWidth;       // _0E
+	u16 viHeight;      // _10
+	VIXFBMode xFBmode; // _14
 
-	u8 field_rendering;
-	u8 aa;
-	u8 sample_pattern[12][2];
-	u8 vfilter[7];
+	u8 field_rendering;       // _18
+	u8 aa;                    // _19
+	u8 sample_pattern[12][2]; // _1C
+	u8 vfilter[7];            // _34
 } GXRenderModeObj;
+
+extern GXRenderModeObj GXNtsc240Ds;
+extern GXRenderModeObj GXNtsc240DsAa;
+extern GXRenderModeObj GXNtsc240Int;
+extern GXRenderModeObj GXNtsc240IntAa;
+extern GXRenderModeObj GXNtsc480IntDf;
+extern GXRenderModeObj GXNtsc480Int;
+extern GXRenderModeObj GXNtsc480IntAa;
+extern GXRenderModeObj GXNtsc480Prog;
+extern GXRenderModeObj GXNtsc480ProgSoft;
+extern GXRenderModeObj GXNtsc480ProgAa;
+
+extern GXRenderModeObj GXMpal240Ds;
+extern GXRenderModeObj GXMpal240DsAa;
+extern GXRenderModeObj GXMpal240Int;
+extern GXRenderModeObj GXMpal240IntAa;
+extern GXRenderModeObj GXMpal480IntDf;
+extern GXRenderModeObj GXMpal480Int;
+extern GXRenderModeObj GXMpal480IntAa;
+
+extern GXRenderModeObj GXPal264Ds;
+extern GXRenderModeObj GXPal264DsAa;
+extern GXRenderModeObj GXPal264Int;
+extern GXRenderModeObj GXPal264IntAa;
+extern GXRenderModeObj GXPal528IntDf;
+extern GXRenderModeObj GXPal528Int;
+extern GXRenderModeObj GXPal524IntAa;
+
+extern GXRenderModeObj GXEurgb60Hz240Ds;
+extern GXRenderModeObj GXEurgb60Hz240DsAa;
+extern GXRenderModeObj GXEurgb60Hz240Int;
+extern GXRenderModeObj GXEurgb60Hz240IntAa;
+extern GXRenderModeObj GXEurgb60Hz480IntDf;
+extern GXRenderModeObj GXEurgb60Hz480Int;
+extern GXRenderModeObj GXEurgb60Hz480IntAa;
+extern GXRenderModeObj GXRmHW;
 
 typedef struct GXTexObj {
 	u32 _00;
@@ -608,7 +644,7 @@ typedef struct GXTexObj {
 	u32 tlut_name_18;
 	u16 _1c;
 	s8 _1e;
-	s8 _1f;
+	s8 mipmap_1f;
 } GXTexObj;
 
 typedef struct _GXVtxDescList {
@@ -959,6 +995,13 @@ typedef void GXBreakpointCallback(void);
 
 GXBreakpointCallback* GXSetBreakPtCallback(GXBreakpointCallback*);
 
+typedef void GXDrawDoneCallback(void);
+
+GXDrawDoneCallback* GXSetDrawDoneCallback(GXDrawDoneCallback*);
+void GXSetDrawDone();
+
+void GXCopyDisp(void*, GXBool); // TODO: Confirm types
+
 typedef u8 _GXTlut;
 typedef u8 _GXTlutFmt;
 
@@ -1031,6 +1074,8 @@ void GXLoadTexMtxImm(Mtx, u32, GXTexMtxType);
 
 void GXSetTexCoordGen2(GXTexCoordID, GXTexGenType, GXTexGenSrc, u32, GXBool, u32);
 void GXSetLineWidth(u8, GXTexOffset);
+// TODO: Types
+void GXSetPointSize(u8, s32);
 
 u16 GXGetNumXfbLines(float, u16);
 float GXGetYScaleFactor(u16, u16);

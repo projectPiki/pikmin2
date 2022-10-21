@@ -1,3 +1,4 @@
+#include "JSystem/JUT/JUTDirectPrint.h"
 #include "types.h"
 
 /*
@@ -629,20 +630,20 @@ void JUTDirectPrint::changeFrameBuffer(void*, unsigned short, unsigned short)
  * Address:	........
  * Size:	000228
  */
-void JUTDirectPrint::printSub(unsigned short, unsigned short, const char*, __va_list_struct*, bool)
-{
-	// UNUSED FUNCTION
-}
+// void JUTDirectPrint::printSub(unsigned short, unsigned short, const char*, __va_list_struct*, bool)
+// {
+// 	// UNUSED FUNCTION
+// }
 
 /*
  * --INFO--
  * Address:	........
  * Size:	000280
  */
-void JUTDirectPrint::print(unsigned short, unsigned short, const char*, ...)
-{
-	// UNUSED FUNCTION
-}
+// void JUTDirectPrint::print(unsigned short, unsigned short, const char*, ...)
+// {
+// 	// UNUSED FUNCTION
+// }
 
 /*
  * --INFO--

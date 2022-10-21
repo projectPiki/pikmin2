@@ -25,6 +25,7 @@
 #include "Matrixf.h"
 #include "types.h"
 #include "JSystem/JUT/JUTException.h"
+#include "JSystem/J3D/J3DMtxCalc.h"
 #include "System.h"
 #include "Iterator.h"
 
@@ -82,7 +83,7 @@ struct PelletMgr : public NodeObjectMgr<GenericObjectMgr> {
 	virtual void doDirectDraw(Graphics&); // _78 (weak)
 	virtual char* getMgrName()            // _80 (weak)
 	{
-		return "ï¿½yï¿½ï¿½ï¿½bï¿½gï¿½}ï¿½lï¿½[ï¿½Wï¿½ï¿½"; // pellet manager
+		return "ƒyƒŒƒbƒgƒ}ƒl[ƒWƒƒ"; // pellet manager
 	}
 	virtual char* getCaveName(int);       // _84
 	virtual u8 getCaveID(char*);          // _88

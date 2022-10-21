@@ -34,13 +34,13 @@ struct JAISound : public JSULink<JAISound> {
 	virtual void setTempoProportion(float, u32);     // _44 (weak)
 	virtual float getTempoProportion();              // _48 (weak)
 	virtual void setVolumeU7(u8, u32, u8) = 0;       // _4C
-	virtual void getVolumeU7(u8)          = 0;       // _50
+	virtual u8 getVolumeU7(u8)            = 0;       // _50
 	virtual void setPanU7(u8, u32, u8)    = 0;       // _54
-	virtual void getPanU7(u8)             = 0;       // _58
+	virtual u8 getPanU7(u8)               = 0;       // _58
 	virtual void setFxmixU7(u8, u32, u8)  = 0;       // _5C
-	virtual void getFxmixU7(u8)           = 0;       // _60
+	virtual u8 getFxmixU7(u8)             = 0;       // _60
 	virtual void setDolbyU7(u8, u32, u8)  = 0;       // _64
-	virtual void getDolbyU7(u8)           = 0;       // _68
+	virtual u8 getDolbyU7(u8)             = 0;       // _68
 	virtual void setDirectVolume(float, u32);        // _6C (weak)
 	virtual void setDirectPan(float, u32);           // _70 (weak)
 	virtual void setDirectPitch(float, u32);         // _74 (weak)
@@ -71,15 +71,17 @@ struct JAISound : public JSULink<JAISound> {
 
 	~JAISound();
 	void initMultiMoveParameter(JAInter::MoveParaSet*, u8, u32, float, float, u32);
-	void getSwBit();
+	u32 getSwBit();
 	void checkSwBit(u32);
-	void getInfoPriority();
+	u32 getInfoPriority();
 	void clearMainSoundPPointer();
 	void setPauseMode(u8, u8);
-	void getPointer(u8, char);
-	void getActorGroundNumber();
 	void getTrackPortRoute(u8, u8);
 	void checkSoundHandle(u32, void*);
+
+	// unused/inlined:
+	void getPointer(u8, char);
+	void getActorGroundNumber();
 
 	// _00 - _10: JSULink
 	// VTBL _10
@@ -97,7 +99,7 @@ struct JAISound : public JSULink<JAISound> {
 	u32 _28;                         // _28
 	u32 _2C;                         // _2C
 	u32 _30;                         // _30
-	JGeometry::TVec3f _34;           // _34
+	JGeometry::TVec3f* _34;          // _34
 	void* _38;                       // _38
 	u32 _3C;                         // _3C
 	void* _40;                       // _40

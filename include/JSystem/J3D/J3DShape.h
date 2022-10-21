@@ -3,6 +3,7 @@
 
 #include "Dolphin/gx.h"
 #include "Dolphin/mtx.h"
+#include "JSystem/JGeometry.h"
 #include "types.h"
 
 struct J3DDrawMtxData;
@@ -26,8 +27,8 @@ struct J3DShapeInitData {
 	u16 m_shapeMtxInitDataIndex;  // _06
 	u16 m_shapeDrawInitDataIndex; // _08
 	float _0C;                    // _0C
-	Vec _10;                      // _10
-	Vec _1C;                      // _1C
+	JGeometry::TVec3f _10;        // _10
+	JGeometry::TVec3f _1C;        // _1C
 };
 
 struct J3DShape {
@@ -51,8 +52,8 @@ struct J3DShape {
 	u16 _0A;                       // _0A
 	u32 m_flags;                   // _0C
 	f32 _10;                       // _10
-	Vec _14;                       // _14
-	Vec _20;                       // _20
+	JGeometry::TVec3f _14;         // _14
+	JGeometry::TVec3f _20;         // _20
 	u8* _2C;                       // _2C
 	_GXVtxDescList* _30;           // _30
 	u8 m_mode;                     // _34
@@ -136,9 +137,9 @@ struct J3DShapeTable {
 
 struct J3DShapeMtxMulti : public J3DShapeMtx {
 	virtual ~J3DShapeMtxMulti();                                             // _08 (weak)
-	virtual int getType() const;                                            // _0C (weak)
-	virtual int getUseMtxNum() const;                                       // _10 (weak)
-	virtual u16 getUseMtxIndex(unsigned short) const;                       // _14 (weak)
+	virtual int getType() const;                                             // _0C (weak)
+	virtual int getUseMtxNum() const;                                        // _10 (weak)
+	virtual u16 getUseMtxIndex(unsigned short) const;                        // _14 (weak)
 	virtual void load() const;                                               // _18
 	virtual void calcNBTScale(const Vec&, float (*)[3][3], float (*)[3][3]); // _1C
 };
@@ -159,9 +160,9 @@ struct J3DShapeMtxConcatView : public J3DShapeMtx {
 
 struct J3DShapeMtxMultiConcatView : public J3DShapeMtxConcatView {
 	virtual ~J3DShapeMtxMultiConcatView();                            // _08 (weak)
-	virtual int getType() const;                                     // _0C (weak)
-	virtual int getUseMtxNum() const;                                // _10 (weak)
-	virtual u16 getUseMtxIndex(unsigned short) const;                // _14 (weak)
+	virtual int getType() const;                                      // _0C (weak)
+	virtual int getUseMtxNum() const;                                 // _10 (weak)
+	virtual u16 getUseMtxIndex(unsigned short) const;                 // _14 (weak)
 	virtual void load() const;                                        // _18
 	virtual void loadNrmMtx(int, unsigned short) const;               // _20 (weak)
 	virtual void loadNrmMtx(int, unsigned short, float (*)[4]) const; // _24
@@ -169,15 +170,14 @@ struct J3DShapeMtxMultiConcatView : public J3DShapeMtxConcatView {
 
 struct J3DShapeMtxBBoardConcatView : public J3DShapeMtxConcatView {
 	virtual ~J3DShapeMtxBBoardConcatView(); // _08 (weak)
-	virtual int getType() const;           // _0C (weak)
+	virtual int getType() const;            // _0C (weak)
 	virtual void load() const;              // _18
 };
 
 struct J3DShapeMtxYBBoardConcatView : public J3DShapeMtxConcatView {
 	virtual ~J3DShapeMtxYBBoardConcatView(); // _08 (weak)
-	virtual int getType() const;            // _0C (weak)
+	virtual int getType() const;             // _0C (weak)
 	virtual void load() const;               // _18
 };
-
 
 #endif

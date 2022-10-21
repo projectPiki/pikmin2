@@ -73,6 +73,9 @@
         .skip 0x8
 */
 
+const u32 sDifferedRegister[7] = { 1, 2, 0x1000000, 0x10000000, 0x20000000, 0x2000000, 0x8000000 };
+const u32 sSizeOfDiffered[7]   = { 0xD, 0x15, 0x78, 0x37, 0xF, 0x13, 0x2D };
+
 /*
  * --INFO--
  * Address:	8005F82C
@@ -294,9 +297,7 @@ J3DMatPacket::J3DMatPacket()
  * Size:	00006C
  * __dt__12J3DMatPacketFv
  */
-J3DMatPacket::~J3DMatPacket()
-{
-}
+J3DMatPacket::~J3DMatPacket() { }
 
 /*
  * --INFO--
@@ -309,7 +310,7 @@ void J3DMatPacket::addShapePacket(J3DShapePacket* shapePacket)
 		_2C = shapePacket;
 	} else {
 		shapePacket->_04 = _2C;
-		_2C        = shapePacket;
+		_2C              = shapePacket;
 	}
 }
 
@@ -318,20 +319,14 @@ void J3DMatPacket::addShapePacket(J3DShapePacket* shapePacket)
  * Address:	8005FE14
  * Size:	000064
  */
-void J3DMatPacket::beginDiff()
-{
-	_28->m_displayList->beginDL();
-}
+void J3DMatPacket::beginDiff() { _28->m_displayList->beginDL(); }
 
 /*
  * --INFO--
  * Address:	8005FE78
  * Size:	000060
  */
-u32 J3DMatPacket::endDiff()
-{
-	return _28->m_displayList->endDL();
-}
+u32 J3DMatPacket::endDiff() { return _28->m_displayList->endDL(); }
 
 /*
  * --INFO--
@@ -339,10 +334,7 @@ u32 J3DMatPacket::endDiff()
  * Size:	000024
  * isSame__12J3DMatPacketCFP12J3DMatPacket
  */
-bool J3DMatPacket::isSame(J3DMatPacket* other) const
-{
-	return !(_34 != other->_34 || _34 >> 31);
-}
+bool J3DMatPacket::isSame(J3DMatPacket* other) const { return !(_34 != other->_34 || _34 >> 31); }
 
 /*
  * --INFO--
@@ -355,7 +347,7 @@ void J3DMatPacket::draw()
 	_30->load();
 	m_displayList->callDL();
 	J3DShapePacket* packet = _2C;
-	J3DShape* shape = packet->_28;
+	J3DShape* shape        = packet->_28;
 	shape->loadPreDrawSetting();
 	for (; packet != nullptr; packet = static_cast<J3DShapePacket*>(packet->_04)) {
 		J3DDisplayListObj* dl = packet->m_displayList;
@@ -422,12 +414,12 @@ lbl_8005FF6C:
  * __ct__14J3DShapePacketFv
  */
 J3DShapePacket::J3DShapePacket()
-	: J3DDrawPacket()
-	, _28(nullptr)
-	, _2C(nullptr)
-	, _30(nullptr)
-	, _34(0)
-	, _38(nullptr)
+    : J3DDrawPacket()
+    , _28(nullptr)
+    , _2C(nullptr)
+    , _30(nullptr)
+    , _34(0)
+    , _38(nullptr)
 {
 }
 
@@ -437,9 +429,7 @@ J3DShapePacket::J3DShapePacket()
  * Size:	00006C
  * __dt__14J3DShapePacketFv
  */
-J3DShapePacket::~J3DShapePacket()
-{
-}
+J3DShapePacket::~J3DShapePacket() { }
 
 /*
  * --INFO--
@@ -668,7 +658,7 @@ lbl_800602A0:
  */
 J3DErrType J3DShapePacket::newDifferedDisplayList(u32 p1)
 {
-	_34 = p1;
+	_34               = p1;
 	J3DErrType result = newDisplayList(calcDifferedBufferSize(p1));
 	if (result != JET_Success) {
 		return result;
@@ -738,93 +728,27 @@ lbl_8006037C:
  * Address:	80060394
  * Size:	000114
  */
-int J3DShapePacket::newDifferedTexMtx(J3DTexDiffFlag)
+J3DErrType J3DShapePacket::newDifferedTexMtx(J3DTexDiffFlag flag)
 {
-	/*
-	stwu     r1, -0x20(r1)
-	mflr     r0
-	cmpwi    r4, 1
-	stw      r0, 0x24(r1)
-	stw      r31, 0x1c(r1)
-	stw      r30, 0x18(r1)
-	stw      r29, 0x14(r1)
-	stw      r28, 0x10(r1)
-	mr       r28, r3
-	beq      lbl_80060434
-	bge      lbl_8006047C
-	cmpwi    r4, 0
-	bge      lbl_800603CC
-	b        lbl_8006047C
-
-lbl_800603CC:
-	lwz      r3, 0x28(r28)
-	lwz      r3, 4(r3)
-	lwz      r3, 0x28(r3)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x40(r12)
-	mtctr    r12
-	bctrl
-	mr       r29, r3
-	li       r3, 0xc
-	bl       __nw__FUl
-	or.      r30, r3, r3
-	beq      lbl_8006041C
-	clrlwi   r31, r29, 0x10
-	mulli    r3, r31, 0x30
-	bl       __nwa__FUl
-	stw      r3, 0(r30)
-	slwi     r3, r31, 6
-	bl       __nwa__FUl
-	stw      r3, 4(r30)
-	sth      r29, 8(r30)
-
-lbl_8006041C:
-	stw      r30, 0x24(r28)
-	lwz      r0, 0x24(r28)
-	cmplwi   r0, 0
-	bne      lbl_80060484
-	li       r3, 4
-	b        lbl_80060488
-
-lbl_80060434:
-	li       r3, 0xc
-	bl       __nw__FUl
-	or.      r31, r3, r3
-	beq      lbl_80060464
-	li       r3, 0x180
-	bl       __nwa__FUl
-	stw      r3, 0(r31)
-	li       r3, 0x200
-	bl       __nwa__FUl
-	stw      r3, 4(r31)
-	li       r0, 8
-	sth      r0, 8(r31)
-
-lbl_80060464:
-	stw      r31, 0x24(r28)
-	lwz      r0, 0x24(r28)
-	cmplwi   r0, 0
-	bne      lbl_80060484
-	li       r3, 4
-	b        lbl_80060488
-
-lbl_8006047C:
-	li       r3, 5
-	b        lbl_80060488
-
-lbl_80060484:
-	li       r3, 0
-
-lbl_80060488:
-	lwz      r0, 0x24(r1)
-	lwz      r31, 0x1c(r1)
-	lwz      r30, 0x18(r1)
-	lwz      r29, 0x14(r1)
-	lwz      r28, 0x10(r1)
-	mtlr     r0
-	addi     r1, r1, 0x20
-	blr
-	*/
+	switch (flag) {
+	case TexDiff_0: {
+		u32 texGenNum = _28->_04->m_texGenBlock->getTexGenNum();
+		_24           = new J3DShapePacket_0x24(texGenNum);
+		if (_24 == nullptr) {
+			return JET_OutOfMemory;
+		}
+		break;
+	}
+	case TexDiff_1:
+		_24 = new J3DShapePacket_0x24(8);
+		if (_24 == nullptr) {
+			return JET_OutOfMemory;
+		}
+		break;
+	default:
+		return JET_InvalidArg;
+	}
+	return JET_Success;
 }
 
 /*

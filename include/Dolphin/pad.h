@@ -80,11 +80,13 @@ BOOL PADReset(u32 mask);
 u32 PADRead(PADStatus* status);
 void PADSetSamplingRate(u32 msec);
 void PADClamp(PADStatus* status);
+void PADClampCircle(PADStatus* status);
 void PADControlAllMotors(u32* command);
 void PADControlMotor(int chan, u32 command);
 BOOL PADRecalibrate(u32 mask);
 BOOL PADSync(void);
 void PADSetAnalogMode(u32 mode);
+void PADSetSpec(u32 spec);
 
 typedef void (*PADSamplingCallback)(void);
 

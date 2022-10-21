@@ -94,6 +94,12 @@ struct J3DMaterial {
  * @size{0x4C}
  */
 struct J3DLockedMaterial : public J3DMaterial {
+	inline J3DLockedMaterial()
+	    : J3DMaterial()
+	{
+		initialize();
+	}
+
 	virtual void calc(const float (*)[4]); // _00
 	virtual void makeDisplayList();        // _08
 	virtual void makeSharedDisplayList();  // _0C

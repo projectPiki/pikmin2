@@ -1,3 +1,10 @@
+#include "JSystem/JAI/JAIGlobalParameter.h"
+#include "JSystem/JAI/JAInter.h"
+#include "JSystem/JAI/JAInter/MoveParaSet.h"
+#include "JSystem/JAI/JAInter/SeMgr.h"
+#include "JSystem/JAI/JAISe.h"
+#include "JSystem/JAI/JAISequence.h"
+#include "JSystem/JSupport/JSUList.h"
 #include "types.h"
 
 /*
@@ -375,123 +382,48 @@ lbl_800AE40C:
  * --INFO--
  * Address:	800AE444
  * Size:	0000F0
+ * __ct__Q27JAInter11SeParameterFv
  */
 JAInter::SeParameter::SeParameter(void)
+    : _24()
+    , _124()
+    , _1A4()
+    , _224()
+    , _2A4()
+    , _324()
+    , _3A4()
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	lis      r4, __defctor__Q27JAInter11MoveParaSetFv@ha
-	li       r5, 0
-	stw      r0, 0x14(r1)
-	addi     r4, r4, __defctor__Q27JAInter11MoveParaSetFv@l
-	li       r6, 0x10
-	li       r7, 0x10
-	stw      r31, 0xc(r1)
-	mr       r31, r3
-	addi     r3, r31, 0x24
-	bl       __construct_array
-	lis      r4, __defctor__Q27JAInter11MoveParaSetFv@ha
-	addi     r3, r31, 0x124
-	addi     r4, r4, __defctor__Q27JAInter11MoveParaSetFv@l
-	li       r5, 0
-	li       r6, 0x10
-	li       r7, 8
-	bl       __construct_array
-	lis      r4, __ct__Q27JAInter19MoveParaSetInitHalfFv@ha
-	addi     r3, r31, 0x1a4
-	addi     r4, r4, __ct__Q27JAInter19MoveParaSetInitHalfFv@l
-	li       r5, 0
-	li       r6, 0x10
-	li       r7, 8
-	bl       __construct_array
-	lis      r4, __defctor__Q27JAInter11MoveParaSetFv@ha
-	addi     r3, r31, 0x224
-	addi     r4, r4, __defctor__Q27JAInter11MoveParaSetFv@l
-	li       r5, 0
-	li       r6, 0x10
-	li       r7, 8
-	bl       __construct_array
-	lis      r4, __ct__Q27JAInter19MoveParaSetInitZeroFv@ha
-	addi     r3, r31, 0x2a4
-	addi     r4, r4, __ct__Q27JAInter19MoveParaSetInitZeroFv@l
-	li       r5, 0
-	li       r6, 0x10
-	li       r7, 8
-	bl       __construct_array
-	lis      r4, __ct__Q27JAInter19MoveParaSetInitZeroFv@ha
-	addi     r3, r31, 0x324
-	addi     r4, r4, __ct__Q27JAInter19MoveParaSetInitZeroFv@l
-	li       r5, 0
-	li       r6, 0x10
-	li       r7, 8
-	bl       __construct_array
-	lis      r4, __defctor__Q27JAInter11MoveParaSetFv@ha
-	addi     r3, r31, 0x3a4
-	addi     r4, r4, __defctor__Q27JAInter11MoveParaSetFv@l
-	li       r5, 0
-	li       r6, 0x10
-	li       r7, 8
-	bl       __construct_array
-	lwz      r0, 0x14(r1)
-	mr       r3, r31
-	lwz      r31, 0xc(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
 }
 
 /*
  * --INFO--
  * Address:	800AE534
  * Size:	000018
+ * __ct__Q27JAInter19MoveParaSetInitZeroFv
  */
-JAInter::MoveParaSetInitZero::MoveParaSetInitZero(void)
-{
-	/*
-	lfs      f0, lbl_80516F4C@sda21(r2)
-	li       r0, 0
-	stfs     f0, 4(r3)
-	stfs     f0, 0(r3)
-	stw      r0, 0xc(r3)
-	blr
-	*/
-}
+// JAInter::MoveParaSetInitZero::MoveParaSetInitZero()
+// {
+// }
 
 /*
  * --INFO--
  * Address:	800AE54C
  * Size:	000018
+ * __ct__Q27JAInter19MoveParaSetInitHalfFv
  */
-JAInter::MoveParaSetInitHalf::MoveParaSetInitHalf(void)
-{
-	/*
-	lfs      f0, lbl_80516F50@sda21(r2)
-	li       r0, 0
-	stfs     f0, 4(r3)
-	stfs     f0, 0(r3)
-	stw      r0, 0xc(r3)
-	blr
-	*/
-}
+// JAInter::MoveParaSetInitHalf::MoveParaSetInitHalf(void)
+// {
+// }
 
 /*
  * --INFO--
  * Address:	800AE564
  * Size:	000018
+ * __defctor__Q27JAInter11MoveParaSetFv
  */
-void JAInter::MoveParaSet::__defctor(void)
-{
-	/*
-	lfs      f0, lbl_80516F48@sda21(r2)
-	li       r0, 0
-	stfs     f0, 4(r3)
-	stfs     f0, 0(r3)
-	stw      r0, 0xc(r3)
-	blr
-	*/
-}
+// void JAInter::MoveParaSet::__defctor(void)
+// {
+// }
 
 /*
  * --INFO--
@@ -532,23 +464,12 @@ void JAInter::SeMgr::startSeSequence(void)
  */
 void JAInter::SeMgr::processGFrameSe(void)
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	lwz      r0, seHandle__Q27JAInter5SeMgr@sda21(r13)
-	cmplwi   r0, 0
-	beq      lbl_800AE5F0
-	bl       checkNextFrameSe__Q27JAInter5SeMgrFv
-	bl       checkSeMovePara__Q27JAInter5SeMgrFv
-	bl       checkPlayingSe__Q27JAInter5SeMgrFv
-
-lbl_800AE5F0:
-	lwz      r0, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	if (seHandle == nullptr) {
+		return;
+	}
+	checkNextFrameSe();
+	checkSeMovePara();
+	checkPlayingSe();
 }
 
 /*
@@ -1554,24 +1475,9 @@ lbl_800AF248:
  * --INFO--
  * Address:	800AF26C
  * Size:	000030
+ * setVolume__5JAISeFfUlUc
  */
-void JAISe::setVolume(float, unsigned long, unsigned char)
-{
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	li       r6, 0
-	stw      r0, 0x14(r1)
-	mr       r0, r4
-	mr       r4, r5
-	mr       r5, r0
-	bl       setSeInterVolume__5JAISeFUcfUlUc
-	lwz      r0, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
-}
+void JAISe::setVolume(float p1, unsigned long p2, unsigned char p3) { setSeInterVolume(p3, p1, p2, 0); }
 
 /*
  * --INFO--
@@ -1654,23 +1560,9 @@ lbl_800AF360:
  * --INFO--
  * Address:	800AF38C
  * Size:	00002C
+ * setVolume__11JAISequenceFfUlUc
  */
-void JAISequence::setVolume(float, unsigned long, unsigned char)
-{
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	mr       r0, r4
-	mr       r4, r5
-	mr       r5, r0
-	bl       setSeqInterVolume__11JAISequenceFUcfUl
-	lwz      r0, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
-}
+void JAISequence::setVolume(float p1, unsigned long p2, unsigned char p3) { setSeqInterVolume(p3, p1, p2); }
 
 /*
  * --INFO--
@@ -1689,6 +1581,18 @@ void JAInter::SeMgr::clearSeqMuteFromSeStop(JAISound*)
  */
 void JAInter::SeMgr::checkSeMovePara(void)
 {
+	// if (seHandle == nullptr || seHandle->m_seqParameter._279 == 2) {
+	// 	return;
+	// }
+	// for (u8 i = 0; i < JAIGlobalParameter::getParamSeCategoryMax(); i++) {
+	// 	for (JSULink<JAISound>* link = seRegist[i]._04->getFirst(); link != nullptr; link = link->getNext()) {
+	// 		JAISound* sound = link->getObject();
+	// 		for (int j = 0; j < 8; j++) {
+	// 			JAISe* se = (JAISe*)sound->getObject()[j];
+
+	// 		}
+	// 	}
+	// }
 	/*
 	stwu     r1, -0x20(r1)
 	mflr     r0
@@ -1875,9 +1779,10 @@ lbl_800AF5D4:
  * --INFO--
  * Address:	800AF5F4
  * Size:	00010C
+ * checkPlayingSeUpdateMultiplication__Q27JAInter5SeMgrFP5JAISePQ27JAInter13SeqUpdateDataPfPQ27JAInter11MoveParaSetfUcPf
  */
-void JAInter::SeMgr::checkPlayingSeUpdateMultiplication((JAISe*, JAInter::SeqUpdateData*, float*, JAInter::MoveParaSet*, float,
-                                                         unsigned char, float*))
+void JAInter::SeMgr::checkPlayingSeUpdateMultiplication(JAISe*, JAInter::SeqUpdateData*, float*, JAInter::MoveParaSet*, float,
+                                                        unsigned char, float*)
 {
 	/*
 	.loc_0x0:
@@ -1963,9 +1868,10 @@ void JAInter::SeMgr::checkPlayingSeUpdateMultiplication((JAISe*, JAInter::SeqUpd
  * --INFO--
  * Address:	800AF700
  * Size:	00014C
+ * checkPlayingSeUpdateAddition__Q27JAInter5SeMgrFP5JAISePQ27JAInter13SeqUpdateDataPfPQ27JAInter11MoveParaSetUcPff
  */
-void JAInter::SeMgr::checkPlayingSeUpdateAddition((JAISe*, JAInter::SeqUpdateData*, float*, JAInter::MoveParaSet*, unsigned char, float*,
-                                                   float))
+void JAInter::SeMgr::checkPlayingSeUpdateAddition(JAISe*, JAInter::SeqUpdateData*, float*, JAInter::MoveParaSet*, unsigned char, float*,
+                                                  float)
 {
 	/*
 	.loc_0x0:
@@ -2754,20 +2660,9 @@ void JAInter::SeMgr::storeSeBuffer(JAISe**, JAInter::Actor*, unsigned long, unsi
  * --INFO--
  * Address:	800B0110
  * Size:	000020
+ * stop__5JAISeFUl
  */
-void JAISe::stop(unsigned long)
-{
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	bl       releaseSeBuffer__Q27JAInter5SeMgrFP5JAISeUl
-	lwz      r0, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
-}
+void JAISe::stop(unsigned long p1) { JAInter::SeMgr::releaseSeBuffer(this, p1); }
 
 /*
  * --INFO--
@@ -2937,8 +2832,9 @@ lbl_800B031C:
  * Address:	800B0338
  * Size:	000008
  */
-void JAInter::SeMgr::setSeSequenceStartCallback( (void (*)
+void JAInter::SeMgr::setSeSequenceStartCallback(JAInter::SeMgr::StartCallback callback)
 {
+	seStartCallback = callback;
 	/*
 	stw      r3, seStartCallback__Q27JAInter5SeMgr@sda21(r13)
 	blr

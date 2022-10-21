@@ -41,7 +41,7 @@ struct J3DAnmBase {
 	{
 	}
 
-	virtual ~J3DAnmBase();                  // _08 (weak)
+	virtual ~J3DAnmBase() { }               // _08 (weak)
 	virtual J3DAnmKind getKind() const = 0; // _0C
 
 	// _00 VTBL
@@ -66,5 +66,7 @@ struct J3DAnmKeyTableBase {
 	u16 _02; // _02
 	s16 _04; // _04
 };
+
+template <typename T> float J3DGetKeyFrameInterpolation(float, J3DAnmKeyTableBase*, T*);
 
 #endif

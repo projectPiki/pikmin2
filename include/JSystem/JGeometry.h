@@ -79,6 +79,20 @@ template <typename T> struct TVec3 {
 		return *this;
 	}
 
+	void set(T x, T y, T z)
+	{
+		this->x = x;
+		this->y = y;
+		this->z = z;
+	}
+
+	void set(const TVec3& other)
+	{
+		x = other.x;
+		y = other.y;
+		z = other.z;
+	}
+
 	T x;
 	T y;
 	T z;

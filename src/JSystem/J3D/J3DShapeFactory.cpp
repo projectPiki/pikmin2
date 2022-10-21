@@ -14,14 +14,14 @@
  * Size:	0000B0
  */
 J3DShapeFactory::J3DShapeFactory(const J3DShapeBlock& block)
-	: m_initData(JSUConvertOffsetToPtr<J3DShapeInitData>(&block, block._0C))
-	, m_initDataIndices(JSUConvertOffsetToPtr<u16>(&block, block._10))
-	, m_vtxDescLists(JSUConvertOffsetToPtr<_GXVtxDescList>(&block, block._18))
-	, _0C(JSUConvertOffsetToPtr<u16>(&block, block._1C))
-	, _10(JSUConvertOffsetToPtr<u8>(&block, block._20))
-	, m_mtxInitData(JSUConvertOffsetToPtr<J3DShapeMtxInitData>(&block, block._24))
-	, m_drawInitData(JSUConvertOffsetToPtr<J3DShapeDrawInitData>(&block, block._28))
-	, _1C(nullptr)
+    : m_initData(JSUConvertOffsetToPtr<J3DShapeInitData>(&block, block._0C))
+    , m_initDataIndices(JSUConvertOffsetToPtr<u16>(&block, block._10))
+    , m_vtxDescLists(JSUConvertOffsetToPtr<_GXVtxDescList>(&block, block._18))
+    , _0C(JSUConvertOffsetToPtr<u16>(&block, block._1C))
+    , _10(JSUConvertOffsetToPtr<u8>(&block, block._20))
+    , m_mtxInitData(JSUConvertOffsetToPtr<J3DShapeMtxInitData>(&block, block._24))
+    , m_drawInitData(JSUConvertOffsetToPtr<J3DShapeDrawInitData>(&block, block._28))
+    , _1C(nullptr)
 {
 }
 
@@ -33,14 +33,14 @@ J3DShapeFactory::J3DShapeFactory(const J3DShapeBlock& block)
 J3DShape* J3DShapeFactory::create(int id, unsigned long flags, _GXVtxDescList* vtxDescList)
 {
 	J3DShape* shape = new J3DShape();
-	shape->_0A = m_initData[m_initDataIndices[id]]._02;
-	shape->_10 = m_initData[m_initDataIndices[id]]._0C;
-	shape->_30 = m_vtxDescLists + m_initData[m_initDataIndices[id]].m_vtxDescListIndex;
-	shape->_38 = new J3DShapeMtx*[shape->_0A];
-	shape->_3C = new J3DShapeDraw*[shape->_0A];
-	shape->_14 = m_initData[m_initDataIndices[id]]._10;
-	shape->_20 = m_initData[m_initDataIndices[id]]._1C;
-	shape->_2C = _1C + id;
+	shape->_0A      = m_initData[m_initDataIndices[id]]._02;
+	shape->_10      = m_initData[m_initDataIndices[id]]._0C;
+	shape->_30      = m_vtxDescLists + m_initData[m_initDataIndices[id]].m_vtxDescListIndex;
+	shape->_38      = new J3DShapeMtx*[shape->_0A];
+	shape->_3C      = new J3DShapeDraw*[shape->_0A];
+	shape->_14      = m_initData[m_initDataIndices[id]]._10;
+	shape->_20      = m_initData[m_initDataIndices[id]]._1C;
+	shape->_2C      = _1C + id;
 	for (int i = 0; i < shape->_0A; i++) {
 		shape->_38[i] = newShapeMtx(flags, id, i);
 		shape->_3C[i] = newShapeDraw(id, i);
@@ -421,7 +421,7 @@ lbl_8007224C:
 J3DShapeDraw* J3DShapeFactory::newShapeDraw(int shapeID, int drawIndex) const
 {
 	J3DShapeDrawInitData* drawInitData = m_drawInitData;
-	u16 drawInitDataIndex = m_initData[m_initDataIndices[shapeID]].m_shapeDrawInitDataIndex;
+	u16 drawInitDataIndex              = m_initData[m_initDataIndices[shapeID]].m_shapeDrawInitDataIndex;
 	return new J3DShapeDraw(_10 + drawInitData[drawIndex + drawInitDataIndex]._04, drawInitData[drawIndex + drawInitDataIndex]._00);
 	/*
 	stwu     r1, -0x10(r1)

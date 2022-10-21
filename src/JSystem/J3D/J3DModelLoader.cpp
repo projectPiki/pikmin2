@@ -1456,7 +1456,7 @@ void J3DModelLoader::readEnvelop(const J3DEnvelopeBlock* block)
 {
 	m_modelData->m_jointTree.m_envelopeCnt     = block->m_count;
 	m_modelData->m_jointTree._20               = JSUConvertOffsetToPtr<u8>(block, block->_0C);
-	m_modelData->m_jointTree.m_maxBillBoardCnt = *JSUConvertOffsetToPtr<u16>(block, block->_10);
+	m_modelData->m_jointTree.m_maxBillBoardCnt = JSUConvertOffsetToPtr<u16>(block, block->_10);
 	m_modelData->m_jointTree._28               = JSUConvertOffsetToPtr<float>(block, block->_14);
 	m_modelData->m_jointTree._2C               = JSUConvertOffsetToPtr<Mtx>(block, block->_18);
 

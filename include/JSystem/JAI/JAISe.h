@@ -22,13 +22,13 @@ struct JAISe : public JAISound {
 	virtual void setDolby(float, u32, u8);  // _3C (weak)
 	virtual float getDolby(u8);             // _40 (weak)
 	virtual void setVolumeU7(u8, u32, u8);  // _4C (weak)
-	virtual void getVolumeU7(u8);           // _50 (weak)
+	virtual u8 getVolumeU7(u8);             // _50 (weak)
 	virtual void setPanU7(u8, u32, u8);     // _54 (weak)
-	virtual void getPanU7(u8);              // _58 (weak)
+	virtual u8 getPanU7(u8);                // _58 (weak)
 	virtual void setFxmixU7(u8, u32, u8);   // _5C (weak)
-	virtual void getFxmixU7(u8);            // _60 (weak)
+	virtual u8 getFxmixU7(u8);              // _60 (weak)
 	virtual void setDolbyU7(u8, u32, u8);   // _64 (weak)
-	virtual void getDolbyU7(u8);            // _68 (weak)
+	virtual u8 getDolbyU7(u8);              // _68 (weak)
 	virtual void getFadeCounter();          // _A4
 	virtual void setSeDistanceParameters(); // _D4
 	virtual void setSeDistanceVolume(u8);   // _D8
@@ -43,6 +43,16 @@ struct JAISe : public JAISound {
 	void setSeInterVolume(u8, float, u32, u8);
 	void setSeInterPan(u8, float, u32, u8);
 	void setSeInterDolby(u8, float, u32, u8);
+
+	// unused/inlined:
+	void setSeInterRandomPara(float*, unsigned long, float, float);
+	void setSeInterPitch(unsigned char, float, unsigned long, float);
+	void setSeInterFxmix(unsigned char, float, unsigned long, unsigned char);
+	void setSeInterFir(unsigned char, unsigned char, unsigned long, unsigned char);
+	void setSePortData(unsigned char, unsigned short);
+	void getSePortData(unsigned char);
+	void getSeParametermeterF32(unsigned char, unsigned char);
+	void getSeInfoPointer();
 
 	// _00      = VTABLE
 	// _04-_48  = JAISound

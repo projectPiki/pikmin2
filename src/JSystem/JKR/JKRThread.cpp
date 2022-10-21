@@ -118,73 +118,20 @@ JKRThread::JKRThread(OSThread* thread, int msgCount)
  * --INFO--
  * Address:	80025838
  * Size:	0000D8
+ * __dt__9JKRThreadFv
  */
 JKRThread::~JKRThread()
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	mr       r31, r4
-	stw      r30, 8(r1)
-	or.      r30, r3, r3
-	beq      lbl_800258F4
-	lis      r4, __vt__9JKRThread@ha
-	lis      r3, sThreadList__9JKRThread@ha
-	addi     r0, r4, __vt__9JKRThread@l
-	stw      r0, 0(r30)
-	addi     r4, r30, 0x18
-	addi     r3, r3, sThreadList__9JKRThread@l
-	bl       remove__10JSUPtrListFP10JSUPtrLink
-	lwz      r0, 0x28(r30)
-	cmplwi   r0, 0
-	beq      lbl_800258B8
-	lwz      r3, 0x2c(r30)
-	bl       OSIsThreadTerminated
-	cmpwi    r3, 0
-	bne      lbl_800258A0
-	lwz      r3, 0x2c(r30)
-	bl       OSDetachThread
-	lwz      r3, 0x2c(r30)
-	bl       OSCancelThread
-
-lbl_800258A0:
-	lwz      r3, 0x58(r30)
-	lwz      r4, 0x28(r30)
-	bl       free__7JKRHeapFPvP7JKRHeap
-	lwz      r3, 0x2c(r30)
-	lwz      r4, 0x28(r30)
-	bl       free__7JKRHeapFPvP7JKRHeap
-
-lbl_800258B8:
-	lwz      r3, 0x50(r30)
-	li       r4, 0
-	bl       free__7JKRHeapFPvP7JKRHeap
-	addic.   r0, r30, 0x18
-	beq      lbl_800258D8
-	addi     r3, r30, 0x18
-	li       r4, 0
-	bl       __dt__10JSUPtrLinkFv
-
-lbl_800258D8:
-	mr       r3, r30
-	li       r4, 0
-	bl       __dt__11JKRDisposerFv
-	extsh.   r0, r31
-	ble      lbl_800258F4
-	mr       r3, r30
-	bl       __dl__FPv
-
-lbl_800258F4:
-	lwz      r0, 0x14(r1)
-	mr       r3, r30
-	lwz      r31, 0xc(r1)
-	lwz      r30, 8(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	sThreadList.remove(&m_link);
+	if (m_heap != nullptr) {
+		if (!OSIsThreadTerminated(m_thread)) {
+			OSDetachThread(m_thread);
+			OSCancelThread(m_thread);
+		}
+		JKRHeap::free(m_stack, m_heap);
+		JKRHeap::free(m_thread, m_heap);
+	}
+	JKRHeap::free(m_msgBuffer, nullptr);
 }
 
 /*
@@ -364,92 +311,9 @@ lbl_80025BA8:
  * --INFO--
  * Address:	80025BC8
  * Size:	000110
+ * __dt__7JKRTaskFv
  */
-JKRTask::~JKRTask()
-{
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	mr       r31, r4
-	stw      r30, 8(r1)
-	or.      r30, r3, r3
-	beq      lbl_80025CBC
-	lis      r4, __vt__7JKRTask@ha
-	lis      r3, sTaskList__7JKRTask@ha
-	addi     r0, r4, __vt__7JKRTask@l
-	stw      r0, 0(r30)
-	addi     r4, r30, 0x7c
-	addi     r3, r3, sTaskList__7JKRTask@l
-	bl       remove__10JSUPtrListFP10JSUPtrLink
-	addic.   r0, r30, 0x7c
-	beq      lbl_80025C18
-	addi     r3, r30, 0x7c
-	li       r4, 0
-	bl       __dt__10JSUPtrLinkFv
-
-lbl_80025C18:
-	cmplwi   r30, 0
-	beq      lbl_80025CAC
-	lis      r4, __vt__9JKRThread@ha
-	lis      r3, sThreadList__9JKRThread@ha
-	addi     r0, r4, __vt__9JKRThread@l
-	stw      r0, 0(r30)
-	addi     r4, r30, 0x18
-	addi     r3, r3, sThreadList__9JKRThread@l
-	bl       remove__10JSUPtrListFP10JSUPtrLink
-	lwz      r0, 0x28(r30)
-	cmplwi   r0, 0
-	beq      lbl_80025C80
-	lwz      r3, 0x2c(r30)
-	bl       OSIsThreadTerminated
-	cmpwi    r3, 0
-	bne      lbl_80025C68
-	lwz      r3, 0x2c(r30)
-	bl       OSDetachThread
-	lwz      r3, 0x2c(r30)
-	bl       OSCancelThread
-
-lbl_80025C68:
-	lwz      r3, 0x58(r30)
-	lwz      r4, 0x28(r30)
-	bl       free__7JKRHeapFPvP7JKRHeap
-	lwz      r3, 0x2c(r30)
-	lwz      r4, 0x28(r30)
-	bl       free__7JKRHeapFPvP7JKRHeap
-
-lbl_80025C80:
-	lwz      r3, 0x50(r30)
-	li       r4, 0
-	bl       free__7JKRHeapFPvP7JKRHeap
-	addic.   r0, r30, 0x18
-	beq      lbl_80025CA0
-	addi     r3, r30, 0x18
-	li       r4, 0
-	bl       __dt__10JSUPtrLinkFv
-
-lbl_80025CA0:
-	mr       r3, r30
-	li       r4, 0
-	bl       __dt__11JKRDisposerFv
-
-lbl_80025CAC:
-	extsh.   r0, r31
-	ble      lbl_80025CBC
-	mr       r3, r30
-	bl       __dl__FPv
-
-lbl_80025CBC:
-	lwz      r0, 0x14(r1)
-	mr       r3, r30
-	lwz      r31, 0xc(r1)
-	lwz      r30, 8(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
-}
+JKRTask::~JKRTask() { sTaskList.remove(&_7C); }
 
 /*
  * --INFO--
@@ -660,6 +524,17 @@ lbl_80025F68:
  */
 void* JKRTask::run()
 {
+	// void* msg[3];
+	// while (true) {
+	// 	OSReceiveMessage(&m_msgQueue, msg, OS_MESSAGE_BLOCKING);
+	// 	if (msg[0] != nullptr) {
+	// 		msg[0](msg[1]);
+	// 		if (_94 != nullptr) {
+	// 			OSSendMessage(_94, msg[2], OS_MESSAGE_NON_BLOCKING);
+	// 		}
+	// 	}
+	// 	msg[0] = nullptr;
+	// }
 	/*
 	stwu     r1, -0x20(r1)
 	mflr     r0

@@ -68,9 +68,10 @@ void VIInit(void);
 void VIFlush(void);
 void VIWaitForRetrace(void);
 
-void VIConfigure(struct _GXRenderModeObj* rm);
+void VIConfigure(const struct _GXRenderModeObj* rm);
 void VIConfigurePan(u16 PanPosX, u16 PanPosY, u16 PanSizeX, u16 PanSizeY);
 void VISetNextFrameBuffer(void* fb);
+void* VIGetCurrentFrameBuffer();
 
 VIRetraceCallback VISetPreRetraceCallback(VIRetraceCallback callback);
 VIRetraceCallback VISetPostRetraceCallback(VIRetraceCallback callback);

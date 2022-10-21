@@ -42,7 +42,7 @@ struct JPAResource {
 	struct JPADynamicsBlock* _2C; // _2C
 	unkptr _30;                   // _30
 	struct JPAKeyBlock** _34;     // _34
-	u8 _38[4];                    // _38
+	u16* _38;                     // _38
 	u16 _3C;                      // _3C
 	u8 _3E;                       // _3E
 	u8 _3F;                       // _3F

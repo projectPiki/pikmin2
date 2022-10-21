@@ -1,4 +1,5 @@
 #include "types.h"
+#include "JSystem/JUT/JUTFont.h"
 #include "JSystem/JMessage/TResource.h"
 #include "JSystem/JMessage/TParse.h"
 
@@ -56,7 +57,7 @@
  * Address:	800063C4
  * Size:	0001E4
  */
-void JMessage::TResource::toMessageIndex_messageID(unsigned long, unsigned long, bool*) const
+s16 JMessage::TResource::toMessageIndex_messageID(unsigned long, unsigned long, bool*) const
 {
 	/*
 	.loc_0x0:
@@ -336,7 +337,7 @@ lbl_80006698:
  * Address:	800066A0
  * Size:	00004C
  */
-void JMessage::TResourceContainer::TCResource::Do_create()
+JMessage::TResource* JMessage::TResourceContainer::TCResource::Do_create()
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -416,21 +417,21 @@ JMessage::TResourceContainer::TResourceContainer()
  * Address:	80006758
  * Size:	000008
  */
-u32 JUTFont::isLeadByte_1Byte(int) { return 0x0; }
+bool JUTFont::isLeadByte_1Byte(int) { return 0x0; }
 
 /*
  * --INFO--
  * Address:	80006760
  * Size:	000008
  */
-u32 JUTFont::isLeadByte_2Byte(int) { return 0x1; }
+bool JUTFont::isLeadByte_2Byte(int) { return 0x1; }
 
 /*
  * --INFO--
  * Address:	80006768
  * Size:	000030
  */
-void JUTFont::isLeadByte_ShiftJIS(int)
+bool JUTFont::isLeadByte_ShiftJIS(int)
 {
 	/*
 	cmpwi    r3, 0x81
@@ -517,7 +518,7 @@ lbl_80006804:
  * Address:	80006820
  * Size:	00018C
  */
-void JMessage::TParse::parseHeader_next(const void**, unsigned long*, unsigned long)
+bool JMessage::TParse::parseHeader_next(const void**, unsigned long*, unsigned long)
 {
 	/*
 	.loc_0x0:
@@ -650,7 +651,7 @@ void JMessage::TParse::parseHeader_next(const void**, unsigned long*, unsigned l
  * Address:	800069AC
  * Size:	00017C
  */
-void JMessage::TParse::parseBlock_next(const void**, unsigned long*, unsigned long)
+bool JMessage::TParse::parseBlock_next(const void**, unsigned long*, unsigned long)
 {
 	/*
 	.loc_0x0:
@@ -835,7 +836,7 @@ lbl_80006B8C:
  * Address:	80006BA8
  * Size:	0000BC
  */
-void JMessage::TParse_color::parseHeader_next(const void**, unsigned long*, unsigned long)
+bool JMessage::TParse_color::parseHeader_next(const void**, unsigned long*, unsigned long)
 {
 	/*
 	.loc_0x0:
@@ -902,7 +903,7 @@ void JMessage::TParse_color::parseHeader_next(const void**, unsigned long*, unsi
  * Address:	80006C64
  * Size:	000054
  */
-void JMessage::TParse_color::parseBlock_next(const void**, unsigned long*, unsigned long)
+bool JMessage::TParse_color::parseBlock_next(const void**, unsigned long*, unsigned long)
 {
 	/*
 	.loc_0x0:

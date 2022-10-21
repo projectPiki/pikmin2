@@ -1,7 +1,12 @@
 #include "Dolphin/gx.h"
+#include "Dolphin/mtx.h"
+#include "Dolphin/os.h"
 #include "JSystem/JPA/JPAEmitter.h"
 #include "JSystem/JPA/JPAShape.h"
+#include "JSystem/JUT/TColor.h"
 #include "types.h"
+
+typedef u32 JPAClrAnmKeyData; /** TODO: Remove and replace this. */
 
 /*
     Generated from dpostproc
@@ -222,7 +227,7 @@ void JPASetPointSize(JPAEmitterWorkData* workData)
  */
 void JPASetLineWidth(JPAEmitterWorkData* workData)
 {
-	GXSetLineWidth(workData->_144 * 25.0f, 5);
+	GXSetLineWidth(workData->_144 * 25.0f, GX_TO_ONE);
 	/*
 	stwu     r1, -0x10(r1)
 	mflr     r0
@@ -275,9 +280,16 @@ void JPASetPointSize(JPAEmitterWorkData* workData, JPABaseParticle* particle)
  * --INFO--
  * Address:	8008B1D0
  * Size:	000044
+ * JPASetLineWidth__FP18JPAEmitterWorkDataP15JPABaseParticle
  */
-void JPASetLineWidth(JPAEmitterWorkData*, JPABaseParticle*)
+void JPASetLineWidth(JPAEmitterWorkData* workData, JPABaseParticle* particle)
 {
+	// GXSetLineWidth(workData->_144 * 25.0f * particle->_60, GX_TO_ONE);
+	// GXSetLineWidth(particle->_60 * 25.0f * workData->_144, GX_TO_ONE);
+	// GXSetLineWidth(25.0f * particle->_60 * workData->_144, GX_TO_ONE);
+	// GXSetLineWidth(25.0f * workData->_144 * particle->_60, GX_TO_ONE);
+	// GXSetLineWidth(workData->_144 * particle->_60 * 25.0f, GX_TO_ONE);
+	GXSetLineWidth(particle->_60 * workData->_144 * 25.0f, GX_TO_ONE);
 	/*
 	stwu     r1, -0x10(r1)
 	mflr     r0
@@ -304,7 +316,7 @@ void JPASetLineWidth(JPAEmitterWorkData*, JPABaseParticle*)
  * Address:	8008B214
  * Size:	00009C
  */
-void JPARegistPrm(JPAEmitterWorkData*)
+void JPARegistPrm(JPAEmitterWorkData* workData)
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -354,8 +366,25 @@ void JPARegistPrm(JPAEmitterWorkData*)
  * Address:	8008B2B0
  * Size:	000084
  */
-void JPARegistEnv(JPAEmitterWorkData*)
+void JPARegistEnv(JPAEmitterWorkData* workData)
 {
+	JPABaseEmitter* emitter = workData->m_emitter;
+	// JUtility::TColor color  = emitter->_10C;
+	// GXColor gxColor         = { static_cast<u8>(color.r * emitter->m_color.r + 1), static_cast<u8>(color.g * emitter->m_color.g + 1),
+	// 	                        static_cast<u8>(color.b * emitter->m_color.b + 1), color.a };
+	// GXColor gxColor = { static_cast<u8>(emitter->_10C.r * ((emitter->m_color.r + 1) / 0x100)),
+	// 	                static_cast<u8>(emitter->_10C.g * ((emitter->m_color.g + 1) / 0x100)),
+	// 	                static_cast<u8>(emitter->_10C.b * ((emitter->m_color.b + 1) / 0x100)), emitter->_10C.a };
+	// GXColor gxColor
+	//     = { static_cast<u8>(emitter->_10C.r * ((emitter->m_color.r + 1))), static_cast<u8>(emitter->_10C.g * ((emitter->m_color.g + 1))),
+	// 	    static_cast<u8>(emitter->_10C.b * ((emitter->m_color.b + 1))), emitter->_10C.a };
+	// GXColor gxColor = { static_cast<u8>(emitter->_10C.r * (static_cast<u16>(emitter->m_color.r + 1) / 0x100)),
+	// 	                static_cast<u8>(emitter->_10C.g * (static_cast<u16>(emitter->m_color.g + 1) / 0x100)),
+	// 	                static_cast<u8>(emitter->_10C.b * (static_cast<u16>(emitter->m_color.b + 1) / 0x100)), emitter->_10C.a };
+	GXColor gxColor = { static_cast<u8>(emitter->_10C.r * (static_cast<u16>(emitter->m_color.r + 1) >> 8)),
+		                static_cast<u8>(emitter->_10C.g * (static_cast<u16>(emitter->m_color.g + 1) >> 8)),
+		                static_cast<u8>(emitter->_10C.b * (static_cast<u16>(emitter->m_color.b + 1) >> 8)), emitter->_10C.a };
+	GXSetTevColor(GX_TEVREG1, gxColor);
 	/*
 	stwu     r1, -0x10(r1)
 	mflr     r0
@@ -479,7 +508,7 @@ void JPARegistPrmEnv(JPAEmitterWorkData*)
  * Address:	8008B44C
  * Size:	0000B0
  */
-void JPARegistAlpha(JPAEmitterWorkData*, JPABaseParticle*)
+void JPARegistAlpha(JPAEmitterWorkData* workData, JPABaseParticle* particle)
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -534,7 +563,7 @@ void JPARegistAlpha(JPAEmitterWorkData*, JPABaseParticle*)
  * Address:	8008B4FC
  * Size:	0000B0
  */
-void JPARegistPrmAlpha(JPAEmitterWorkData*, JPABaseParticle*)
+void JPARegistPrmAlpha(JPAEmitterWorkData* workData, JPABaseParticle* particle)
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -589,7 +618,7 @@ void JPARegistPrmAlpha(JPAEmitterWorkData*, JPABaseParticle*)
  * Address:	8008B5AC
  * Size:	000134
  */
-void JPARegistPrmAlphaEnv(JPAEmitterWorkData*, JPABaseParticle*)
+void JPARegistPrmAlphaEnv(JPAEmitterWorkData* workData, JPABaseParticle* particle)
 {
 	/*
 	stwu     r1, -0x30(r1)
@@ -677,7 +706,7 @@ void JPARegistPrmAlphaEnv(JPAEmitterWorkData*, JPABaseParticle*)
  * Address:	8008B6E0
  * Size:	000124
  */
-void JPARegistAlphaEnv(JPAEmitterWorkData*, JPABaseParticle*)
+void JPARegistAlphaEnv(JPAEmitterWorkData* workData, JPABaseParticle* particle)
 {
 	/*
 	stwu     r1, -0x20(r1)
@@ -761,7 +790,7 @@ void JPARegistAlphaEnv(JPAEmitterWorkData*, JPABaseParticle*)
  * Address:	8008B804
  * Size:	000084
  */
-void JPARegistEnv(JPAEmitterWorkData*, JPABaseParticle*)
+void JPARegistEnv(JPAEmitterWorkData* workData, JPABaseParticle* particle)
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -829,7 +858,7 @@ lbl_8008B8AC:
  * Address:	8008B8B4
  * Size:	000028
  */
-void JPACalcClrIdxNormal(JPAEmitterWorkData*, JPABaseParticle*)
+void JPACalcClrIdxNormal(JPAEmitterWorkData* workData, JPABaseParticle* particle)
 {
 	/*
 	lwz      r5, 4(r3)
@@ -875,7 +904,7 @@ void JPACalcClrIdxRepeat(JPAEmitterWorkData*)
  * Address:	8008B90C
  * Size:	00003C
  */
-void JPACalcClrIdxRepeat(JPAEmitterWorkData*, JPABaseParticle*)
+void JPACalcClrIdxRepeat(JPAEmitterWorkData* workData, JPABaseParticle* particle)
 {
 	/*
 	lwz      r5, 4(r3)
@@ -928,7 +957,7 @@ void JPACalcClrIdxReverse(JPAEmitterWorkData*)
  * Address:	8008B988
  * Size:	00004C
  */
-void JPACalcClrIdxReverse(JPAEmitterWorkData*, JPABaseParticle*)
+void JPACalcClrIdxReverse(JPAEmitterWorkData* workData, JPABaseParticle* particle)
 {
 	/*
 	lwz      r5, 4(r3)
@@ -970,7 +999,7 @@ void JPACalcClrIdxMerge(JPAEmitterWorkData* workData)
  * Address:	8008B9E0
  * Size:	000070
  */
-void JPACalcClrIdxMerge(JPAEmitterWorkData*, JPABaseParticle*)
+void JPACalcClrIdxMerge(JPAEmitterWorkData* workData, JPABaseParticle* particle)
 {
 	/*
 	stwu     r1, -0x20(r1)
@@ -1021,7 +1050,7 @@ void JPACalcClrIdxRandom(JPAEmitterWorkData* workData)
  * Address:	8008BA5C
  * Size:	000034
  */
-void JPACalcClrIdxRandom(JPAEmitterWorkData*, JPABaseParticle*)
+void JPACalcClrIdxRandom(JPAEmitterWorkData* workData, JPABaseParticle* particle)
 {
 	/*
 	lwz      r5, 4(r3)
@@ -1072,7 +1101,7 @@ void JPACalcPrm(JPAEmitterWorkData*)
  * Address:	8008BAD0
  * Size:	00003C
  */
-void JPACalcPrm(JPAEmitterWorkData*, JPABaseParticle*)
+void JPACalcPrm(JPAEmitterWorkData* workData, JPABaseParticle* particle)
 {
 	/*
 	lwz      r5, 4(r3)
@@ -1125,7 +1154,7 @@ void JPACalcEnv(JPAEmitterWorkData*)
  * Address:	8008BB4C
  * Size:	00003C
  */
-void JPACalcEnv(JPAEmitterWorkData*, JPABaseParticle*)
+void JPACalcEnv(JPAEmitterWorkData* workData, JPABaseParticle* particle)
 {
 	/*
 	lwz      r5, 4(r3)
@@ -1151,7 +1180,7 @@ void JPACalcEnv(JPAEmitterWorkData*, JPABaseParticle*)
  * Address:	8008BB88
  * Size:	000048
  */
-void JPACalcColorCopy(JPAEmitterWorkData*, JPABaseParticle*)
+void JPACalcColorCopy(JPAEmitterWorkData* workData, JPABaseParticle* particle)
 {
 	/*
 	lwz      r3, 0(r3)
@@ -1368,7 +1397,7 @@ void JPAGenCalcTexCrdMtxAnm(JPAEmitterWorkData*)
  * Address:	8008BE10
  * Size:	000170
  */
-void JPALoadCalcTexCrdMtxAnm(JPAEmitterWorkData*, JPABaseParticle*)
+void JPALoadCalcTexCrdMtxAnm(JPAEmitterWorkData* workData, JPABaseParticle* particle)
 {
 	/*
 	stwu     r1, -0x60(r1)
@@ -1503,60 +1532,20 @@ void JPALoadTex(JPAEmitterWorkData*)
  * Address:	8008BFD4
  * Size:	000050
  */
-void JPALoadTexAnm(JPAEmitterWorkData*)
+void JPALoadTexAnm(JPAEmitterWorkData* workData)
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	li       r4, 0
-	stw      r0, 0x14(r1)
-	lwz      r5, 0(r3)
-	lwz      r6, 4(r3)
-	lbz      r0, 0x111(r5)
-	lwz      r5, 0x38(r6)
-	slwi     r0, r0, 1
-	lwz      r3, 8(r3)
-	lhzx     r0, r5, r0
-	lwz      r3, 8(r3)
-	slwi     r0, r0, 2
-	lwzx     r3, r3, r0
-	addi     r3, r3, 4
-	bl       load__10JUTTextureF11_GXTexMapID
-	lwz      r0, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	workData->m_resourceMgr->m_textures[workData->m_resource->_38[workData->m_emitter->_111]]->m_texture.load(GX_TEXMAP0);
 }
 
 /*
  * --INFO--
  * Address:	8008C024
  * Size:	00004C
+ * JPALoadTexAnm__FP18JPAEmitterWorkDataP15JPABaseParticle
  */
-void JPALoadTexAnm(JPAEmitterWorkData*, JPABaseParticle*)
+void JPALoadTexAnm(JPAEmitterWorkData* workData, JPABaseParticle* particle)
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	lwz      r5, 4(r3)
-	lbz      r0, 0x94(r4)
-	li       r4, 0
-	lwz      r5, 0x38(r5)
-	slwi     r0, r0, 1
-	lwz      r3, 8(r3)
-	lhzx     r0, r5, r0
-	lwz      r3, 8(r3)
-	slwi     r0, r0, 2
-	lwzx     r3, r3, r0
-	addi     r3, r3, 4
-	bl       load__10JUTTextureF11_GXTexMapID
-	lwz      r0, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	workData->m_resourceMgr->m_textures[workData->m_resource->_38[particle->_94]]->m_texture.load(GX_TEXMAP0);
 }
 
 /*
@@ -1564,8 +1553,14 @@ void JPALoadTexAnm(JPAEmitterWorkData*, JPABaseParticle*)
  * Address:	8008C070
  * Size:	00003C
  */
-void JPACalcTexIdxNormal(JPAEmitterWorkData*)
+void JPACalcTexIdxNormal(JPAEmitterWorkData* workData)
 {
+	u32 v2 = workData->m_emitter->_100;
+	u32 v1 = workData->m_resource->_1C->m_data->_1F - 1;
+	if (v1 < v2) {
+		v2 = v1;
+	}
+	workData->m_emitter->_111 = workData->m_resource->_1C->_08[v2];
 	/*
 	lwz      r4, 4(r3)
 	lwz      r5, 0(r3)
@@ -1592,7 +1587,7 @@ lbl_8008C098:
  * Address:	8008C0AC
  * Size:	000038
  */
-void JPACalcTexIdxNormal(JPAEmitterWorkData*, JPABaseParticle*)
+void JPACalcTexIdxNormal(JPAEmitterWorkData* workData, JPABaseParticle* particle)
 {
 	/*
 	lwz      r3, 4(r3)
@@ -1644,7 +1639,7 @@ void JPACalcTexIdxRepeat(JPAEmitterWorkData*)
  * Address:	8008C11C
  * Size:	000044
  */
-void JPACalcTexIdxRepeat(JPAEmitterWorkData*, JPABaseParticle*)
+void JPACalcTexIdxRepeat(JPAEmitterWorkData* workData, JPABaseParticle* particle)
 {
 	/*
 	lwz      r3, 4(r3)
@@ -1703,7 +1698,7 @@ void JPACalcTexIdxReverse(JPAEmitterWorkData*)
  * Address:	8008C1B0
  * Size:	00005C
  */
-void JPACalcTexIdxReverse(JPAEmitterWorkData*, JPABaseParticle*)
+void JPACalcTexIdxReverse(JPAEmitterWorkData* workData, JPABaseParticle* particle)
 {
 	/*
 	lwz      r3, 4(r3)
@@ -1737,25 +1732,14 @@ void JPACalcTexIdxReverse(JPAEmitterWorkData*, JPABaseParticle*)
  * Address:	8008C20C
  * Size:	00001C
  */
-void JPACalcTexIdxMerge(JPAEmitterWorkData*)
-{
-	/*
-	lwz      r4, 4(r3)
-	lwz      r3, 0(r3)
-	lwz      r4, 0x1c(r4)
-	lwz      r4, 0(r4)
-	lbz      r0, 0x20(r4)
-	stb      r0, 0x111(r3)
-	blr
-	*/
-}
+void JPACalcTexIdxMerge(JPAEmitterWorkData* workData) { workData->m_emitter->_111 = workData->m_resource->_1C->m_data->_20; }
 
 /*
  * --INFO--
  * Address:	8008C228
  * Size:	000078
  */
-void JPACalcTexIdxMerge(JPAEmitterWorkData*, JPABaseParticle*)
+void JPACalcTexIdxMerge(JPAEmitterWorkData* workData, JPABaseParticle* particle)
 {
 	/*
 	stwu     r1, -0x20(r1)
@@ -1814,7 +1798,7 @@ void JPACalcTexIdxRandom(JPAEmitterWorkData*)
  * Address:	8008C2BC
  * Size:	00003C
  */
-void JPACalcTexIdxRandom(JPAEmitterWorkData*, JPABaseParticle*)
+void JPACalcTexIdxRandom(JPAEmitterWorkData* workData, JPABaseParticle* particle)
 {
 	/*
 	lwz      r3, 4(r3)
@@ -1840,52 +1824,26 @@ void JPACalcTexIdxRandom(JPAEmitterWorkData*, JPABaseParticle*)
  * Address:	8008C2F8
  * Size:	000028
  */
-void JPALoadPosMtxCam(JPAEmitterWorkData*)
-{
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	li       r4, 0
-	addi     r3, r3, 0x184
-	stw      r0, 0x14(r1)
-	bl       GXLoadPosMtxImm
-	lwz      r0, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
-}
+void JPALoadPosMtxCam(JPAEmitterWorkData* workData) { GXLoadPosMtxImm(workData->_184, 0); }
 
 /*
  * --INFO--
  * Address:	8008C320
  * Size:	000004
  */
-void noLoadPrj(const JPAEmitterWorkData*, const float (*)[4]) { }
+void noLoadPrj(const JPAEmitterWorkData* workData, const float (*mtx)[4]) { }
 
 /*
  * --INFO--
  * Address:	8008C324
  * Size:	000038
+ * loadPrj__FPC18JPAEmitterWorkDataPA4_Cf
  */
-void loadPrj(const JPAEmitterWorkData*, const float (*)[4])
+void loadPrj(const JPAEmitterWorkData* workData, const float (*p2)[4])
 {
-	/*
-	stwu     r1, -0x40(r1)
-	mflr     r0
-	addi     r3, r3, 0x1b4
-	stw      r0, 0x44(r1)
-	addi     r5, r1, 8
-	bl       PSMTXConcat
-	addi     r3, r1, 8
-	li       r4, 0x1e
-	li       r5, 0
-	bl       GXLoadTexMtxImm
-	lwz      r0, 0x44(r1)
-	mtlr     r0
-	addi     r1, r1, 0x40
-	blr
-	*/
+	Mtx v1;
+	PSMTXConcat(workData->_1B4, p2, v1);
+	GXLoadTexMtxImm(v1, 0x1E, GX_MTX3x4);
 }
 
 /*
@@ -1893,7 +1851,7 @@ void loadPrj(const JPAEmitterWorkData*, const float (*)[4])
  * Address:	8008C35C
  * Size:	0001AC
  */
-void loadPrjAnm(const JPAEmitterWorkData*, const float (*)[4])
+void loadPrjAnm(const JPAEmitterWorkData* workData, const float (*p2)[4])
 {
 	/*
 	stwu     r1, -0x70(r1)
@@ -2006,13 +1964,34 @@ void loadPrjAnm(const JPAEmitterWorkData*, const float (*)[4])
 	*/
 }
 
-/*
+/**
  * --INFO--
  * Address:	8008C508
  * Size:	0000E8
+ * TODO: Needs p_prj and jpa_dl, probably float stuff
  */
-void JPADrawBillboard(JPAEmitterWorkData*, JPABaseParticle*)
+void JPADrawBillboard(JPAEmitterWorkData* workData, JPABaseParticle* particle)
 {
+	Vec v1;
+	Mtx v2;
+	if ((particle->_7C & 8) == 0) {
+		PSMTXMultVec(workData->_184, reinterpret_cast<Vec*>(&particle->_00), &v1);
+		v2[0][0] = workData->_144 * particle->_60;
+		v2[0][3] = v1.x;
+		v2[1][1] = workData->_148 * particle->_64;
+		v2[1][3] = v1.y;
+		v2[2][2] = 1.0f;
+		v2[2][3] = v1.z;
+		v2[2][1] = 0.0f;
+		v2[2][0] = 0.0f;
+		v2[1][2] = 0.0f;
+		v2[1][0] = 0.0f;
+		v2[0][2] = 0.0f;
+		v2[0][1] = 0.0f;
+		GXLoadPosMtxImm(v2, 0);
+		// p_prj[workData->_210](workData, v2);
+		// GXCallDisplayList(jpa_dl, sizeof(jpa_dl));
+	}
 	/*
 	stwu     r1, -0x50(r1)
 	mflr     r0
@@ -2082,7 +2061,7 @@ lbl_8008C5D8:
  * Address:	8008C5F0
  * Size:	000118
  */
-void JPADrawRotBillboard(JPAEmitterWorkData*, JPABaseParticle*)
+void JPADrawRotBillboard(JPAEmitterWorkData* workData, JPABaseParticle* particle)
 {
 	/*
 	stwu     r1, -0x50(r1)
@@ -2165,7 +2144,7 @@ lbl_8008C6F0:
  * Address:	8008C708
  * Size:	0000FC
  */
-void JPADrawYBillboard(JPAEmitterWorkData*, JPABaseParticle*)
+void JPADrawYBillboard(JPAEmitterWorkData* workData, JPABaseParticle* particle)
 {
 	/*
 	stwu     r1, -0x50(r1)
@@ -2241,7 +2220,7 @@ lbl_8008C7EC:
  * Address:	8008C804
  * Size:	000130
  */
-void JPADrawRotYBillboard(JPAEmitterWorkData*, JPABaseParticle*)
+void JPADrawRotYBillboard(JPAEmitterWorkData* workData, JPABaseParticle* particle)
 {
 	/*
 	stwu     r1, -0x50(r1)
@@ -2330,18 +2309,9 @@ lbl_8008C91C:
  * Address:	8008C934
  * Size:	00001C
  */
-void dirTypeVel(const JPAEmitterWorkData*, const JPABaseParticle*, JGeometry::TVec3<float>*)
+void dirTypeVel(const JPAEmitterWorkData* workData, const JPABaseParticle* particle, JGeometry::TVec3<float>* direction)
 {
-	/*
-	.loc_0x0:
-	  lfs       f0, 0x24(r4)
-	  lfs       f1, 0x28(r4)
-	  stfs      f0, 0x0(r5)
-	  lfs       f0, 0x2C(r4)
-	  stfs      f1, 0x4(r5)
-	  stfs      f0, 0x8(r5)
-	  blr
-	*/
+	*direction = particle->_24;
 }
 
 /*
@@ -2349,18 +2319,9 @@ void dirTypeVel(const JPAEmitterWorkData*, const JPABaseParticle*, JGeometry::TV
  * Address:	8008C950
  * Size:	00001C
  */
-void dirTypePos(const JPAEmitterWorkData*, const JPABaseParticle*, JGeometry::TVec3<float>*)
+void dirTypePos(const JPAEmitterWorkData* workData, const JPABaseParticle* particle, JGeometry::TVec3<float>* direction)
 {
-	/*
-	.loc_0x0:
-	  lfs       f0, 0xC(r4)
-	  lfs       f1, 0x10(r4)
-	  stfs      f0, 0x0(r5)
-	  lfs       f0, 0x14(r4)
-	  stfs      f1, 0x4(r5)
-	  stfs      f0, 0x8(r5)
-	  blr
-	*/
+	*direction = particle->m_position;
 }
 
 /*
@@ -2368,27 +2329,12 @@ void dirTypePos(const JPAEmitterWorkData*, const JPABaseParticle*, JGeometry::TV
  * Address:	8008C96C
  * Size:	000040
  */
-void dirTypePosInv(const JPAEmitterWorkData*, const JPABaseParticle*, JGeometry::TVec3<float>*)
+void dirTypePosInv(const JPAEmitterWorkData* workData, const JPABaseParticle* particle, JGeometry::TVec3<float>* direction)
 {
-	/*
-	.loc_0x0:
-	  lfs       f0, 0xC(r4)
-	  lfs       f1, 0x10(r4)
-	  stfs      f0, 0x0(r5)
-	  lfs       f0, 0x14(r4)
-	  stfs      f1, 0x4(r5)
-	  stfs      f0, 0x8(r5)
-	  lfs       f0, 0x0(r5)
-	  fneg      f0, f0
-	  stfs      f0, 0x0(r5)
-	  lfs       f0, 0x4(r5)
-	  fneg      f0, f0
-	  stfs      f0, 0x4(r5)
-	  lfs       f0, 0x8(r5)
-	  fneg      f0, f0
-	  stfs      f0, 0x8(r5)
-	  blr
-	*/
+	dirTypePos(workData, particle, direction);
+	direction->x = -direction->x;
+	direction->y = -direction->y;
+	direction->z = -direction->z;
 }
 
 /*
@@ -2396,18 +2342,9 @@ void dirTypePosInv(const JPAEmitterWorkData*, const JPABaseParticle*, JGeometry:
  * Address:	8008C9AC
  * Size:	00001C
  */
-void dirTypeEmtrDir(const JPAEmitterWorkData*, const JPABaseParticle*, JGeometry::TVec3<float>*)
+void dirTypeEmtrDir(const JPAEmitterWorkData* workData, const JPABaseParticle* particle, JGeometry::TVec3<float>* direction)
 {
-	/*
-	.loc_0x0:
-	  lfs       f0, 0x120(r3)
-	  lfs       f1, 0x124(r3)
-	  stfs      f0, 0x0(r5)
-	  lfs       f0, 0x128(r3)
-	  stfs      f1, 0x4(r5)
-	  stfs      f0, 0x8(r5)
-	  blr
-	*/
+	*direction = workData->_120;
 }
 
 /*
@@ -2415,8 +2352,16 @@ void dirTypeEmtrDir(const JPAEmitterWorkData*, const JPABaseParticle*, JGeometry
  * Address:	8008C9C8
  * Size:	0000C0
  */
-void dirTypePrevPtcl(const JPAEmitterWorkData*, const JPABaseParticle*, JGeometry::TVec3<float>*)
+void dirTypePrevPtcl(const JPAEmitterWorkData* workData, const JPABaseParticle* particle, JGeometry::TVec3<float>* direction)
 {
+	if (workData->_1E8->m_prev != nullptr) {
+		*direction = workData->_1E8->m_prev->contents._00;
+	} else {
+		workData->m_emitter->calcEmitterGlobalPosition(direction);
+	}
+	direction->x = direction->x - particle->_00.x;
+	direction->y = direction->y - particle->_00.y;
+	direction->z = direction->z - particle->_00.z;
 	/*
 	.loc_0x0:
 	  stwu      r1, -0x40(r1)
@@ -2693,7 +2638,7 @@ void basePlaneTypeX(float (*)[4], float, float)
  * Address:	8008CCAC
  * Size:	000350
  */
-void JPADrawDirection(JPAEmitterWorkData*, JPABaseParticle*)
+void JPADrawDirection(JPAEmitterWorkData* workData, JPABaseParticle* particle)
 {
 	/*
 	stwu     r1, -0x60(r1)
@@ -2936,7 +2881,7 @@ lbl_8008CFE0:
  * Address:	8008CFFC
  * Size:	0003FC
  */
-void JPADrawRotDirection(JPAEmitterWorkData*, JPABaseParticle*)
+void JPADrawRotDirection(JPAEmitterWorkData* workData, JPABaseParticle* particle)
 {
 	/*
 	stwu     r1, -0xe0(r1)
@@ -3222,7 +3167,7 @@ lbl_8008D3B4:
  * Address:	8008D3F8
  * Size:	000208
  */
-void JPADrawDBillboard(JPAEmitterWorkData*, JPABaseParticle*)
+void JPADrawDBillboard(JPAEmitterWorkData* workData, JPABaseParticle* particle)
 {
 	/*
 	stwu     r1, -0x60(r1)
@@ -3371,7 +3316,7 @@ lbl_8008D5E4:
  * Address:	8008D600
  * Size:	000150
  */
-void JPADrawRotation(JPAEmitterWorkData*, JPABaseParticle*)
+void JPADrawRotation(JPAEmitterWorkData* workData, JPABaseParticle* particle)
 {
 	/*
 	stwu     r1, -0x70(r1)
@@ -3468,51 +3413,20 @@ lbl_8008D724:
  * Address:	8008D750
  * Size:	00009C
  */
-void JPADrawPoint(JPAEmitterWorkData*, JPABaseParticle*)
+void JPADrawPoint(JPAEmitterWorkData* workData, JPABaseParticle* particle)
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	mr       r31, r4
-	lwz      r0, 0x7c(r4)
-	rlwinm.  r0, r0, 0, 0x1c, 0x1c
-	bne      lbl_8008D7D8
-	li       r3, 9
-	li       r4, 1
-	bl       GXSetVtxDesc
-	li       r3, 0xd
-	li       r4, 1
-	bl       GXSetVtxDesc
-	li       r3, 0xb8
-	li       r4, 1
-	li       r5, 1
-	bl       GXBegin
-	lfs      f3, 8(r31)
-	lis      r5, 0xCC008000@ha
-	lfs      f2, 4(r31)
-	li       r3, 9
-	lfs      f1, 0(r31)
-	li       r4, 2
-	lfs      f0, lbl_80516B50@sda21(r2)
-	stfs     f1, 0xCC008000@l(r5)
-	stfs     f2, -0x8000(r5)
-	stfs     f3, -0x8000(r5)
-	stfs     f0, -0x8000(r5)
-	stfs     f0, -0x8000(r5)
-	bl       GXSetVtxDesc
-	li       r3, 0xd
-	li       r4, 2
-	bl       GXSetVtxDesc
-
-lbl_8008D7D8:
-	lwz      r0, 0x14(r1)
-	lwz      r31, 0xc(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	if ((particle->_7C & 8) != 0) {
+		return;
+	}
+	GXSetVtxDesc(GX_VA_POS, GX_DIRECT);
+	GXSetVtxDesc(GX_VA_TEX0, GX_DIRECT);
+	GXBegin(GX_POINTS, GX_VTXFMT1, 1);
+	f32 v1 = 0.0f;
+	GXPosition3f32(particle->_00.x, particle->_00.y, particle->_00.z);
+	GXWGFifo.f32 = v1;
+	GXWGFifo.f32 = v1;
+	GXSetVtxDesc(GX_VA_POS, GX_INDEX8);
+	GXSetVtxDesc(GX_VA_TEX0, GX_INDEX8);
 }
 
 /*
@@ -3520,7 +3434,7 @@ lbl_8008D7D8:
  * Address:	8008D7EC
  * Size:	0001B8
  */
-void JPADrawLine(JPAEmitterWorkData*, JPABaseParticle*)
+void JPADrawLine(JPAEmitterWorkData* workData, JPABaseParticle* particle)
 {
 	/*
 	stwu     r1, -0x70(r1)
@@ -4760,27 +4674,11 @@ lbl_8008E86C:
  * Address:	8008E8E8
  * Size:	00003C
  */
-void JPADrawEmitterCallBackB(JPAEmitterWorkData*)
+void JPADrawEmitterCallBackB(JPAEmitterWorkData* workData)
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	lwz      r4, 0(r3)
-	lwz      r3, 0xec(r4)
-	cmplwi   r3, 0
-	beq      lbl_8008E914
-	lwz      r12, 0(r3)
-	lwz      r12, 0x14(r12)
-	mtctr    r12
-	bctrl
-
-lbl_8008E914:
-	lwz      r0, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	if (workData->m_emitter->m_emitterCallback != nullptr) {
+		workData->m_emitter->m_emitterCallback->draw(workData->m_emitter);
+	}
 }
 
 /*
@@ -4788,29 +4686,11 @@ lbl_8008E914:
  * Address:	8008E924
  * Size:	000044
  */
-void JPADrawParticleCallBack(JPAEmitterWorkData*, JPABaseParticle*)
+void JPADrawParticleCallBack(JPAEmitterWorkData* workData, JPABaseParticle* particle)
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	mr       r5, r4
-	stw      r0, 0x14(r1)
-	lwz      r6, 0(r3)
-	lwz      r3, 0xf0(r6)
-	cmplwi   r3, 0
-	beq      lbl_8008E958
-	lwz      r12, 0(r3)
-	mr       r4, r6
-	lwz      r12, 0x10(r12)
-	mtctr    r12
-	bctrl
-
-lbl_8008E958:
-	lwz      r0, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	if (workData->m_emitter->m_particleCallback != nullptr) {
+		workData->m_emitter->m_particleCallback->draw(workData->m_emitter, particle);
+	}
 }
 
 /*
@@ -4818,7 +4698,7 @@ lbl_8008E958:
  * Address:	8008E968
  * Size:	000004
  */
-void JPAParticleCallBack::draw(JPABaseEmitter*, JPABaseParticle*) { }
+void JPAParticleCallBack::draw(JPABaseEmitter*, JPABaseParticle* particle) { }
 
 /*
  * --INFO--

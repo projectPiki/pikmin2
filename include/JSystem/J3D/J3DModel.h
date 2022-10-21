@@ -103,7 +103,7 @@ struct J3DModel {
 	u32 m_displayListFlag;           // _0C
 	void* _10;                       // _10
 	u32 _14;                         // _14
-	JGeometry::TVec3f m_modelScale;  // _18
+	Vec m_modelScale;                // _18
 	Mtx _24;                         // _24
 	Mtx _54;                         // _54
 	J3DMtxBuffer* m_mtxBuffer;       // _84

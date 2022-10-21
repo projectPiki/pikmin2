@@ -29,54 +29,13 @@ void JUTPalette::storeTLUT(_GXTlut tlutID, ResTLUT* resource)
 	}
 	// storeTLUT(tlutID, resource->m_format, resource->m_transparency,
 	// resource->_02, resource->_20);
+	u8* v1 = reinterpret_cast<u8*>(&resource->_20);
 	m_tlutID       = tlutID;
 	m_tlutFormat   = resource->m_format;
 	m_transparency = resource->m_transparency;
 	_14            = resource->_02;
-	_10            = resource->_20;
+	_10            = v1;
 	GXInitTlutObj(&m_tlutObj, _10, m_tlutFormat, _14);
-	/*
-	stwu     r1, -0x20(r1)
-	mflr     r0
-	stw      r0, 0x24(r1)
-	stw      r31, 0x1c(r1)
-	or.      r31, r5, r5
-	stw      r30, 0x18(r1)
-	mr       r30, r4
-	stw      r29, 0x14(r1)
-	mr       r29, r3
-	bne      lbl_8002EF08
-	lis      r3, lbl_80474150@ha
-	lis      r5, lbl_80474160@ha
-	addi     r3, r3, lbl_80474150@l
-	li       r4, 0x23
-	addi     r5, r5, lbl_80474160@l
-	crclr    6
-	bl       OSPanic
-
-lbl_8002EF08:
-	stb      r30, 0xc(r29)
-	addi     r0, r31, 0x20
-	mr       r3, r29
-	lbz      r4, 0(r31)
-	stb      r4, 0xd(r29)
-	lbz      r4, 1(r31)
-	stb      r4, 0x16(r29)
-	lhz      r4, 2(r31)
-	sth      r4, 0x14(r29)
-	stw      r0, 0x10(r29)
-	lwz      r4, 0x10(r29)
-	lbz      r5, 0xd(r29)
-	lhz      r6, 0x14(r29)
-	bl       GXInitTlutObj
-	lwz      r0, 0x24(r1)
-	lwz      r31, 0x1c(r1)
-	lwz      r30, 0x18(r1)
-	lwz      r29, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x20
-	blr
-	*/
 }
 
 /*

@@ -2,10 +2,11 @@
 #define _JSYSTEM_J3D_J3DTYPES_H
 
 #include "Dolphin/gx.h"
+#include "Dolphin/vec.h"
+#include "JSystem/J3D/J3DGXColor.h"
 #include "JSystem/JGeometry.h"
 #include "JSystem/JMath.h"
 #include "types.h"
-
 
 // TODO: Make a bitmask enum
 /**
@@ -71,15 +72,7 @@ enum JBlockType {
 	JBT_TevPatched     = 'TVPT'
 };
 
-enum J3DErrType {
-	JET_Success = 0,
-	JET_NoMatAnm,
-	JET_LockedModelData,
-	JET_NullBinRes,
-	JET_OutOfMemory,
-	JET_InvalidArg,
-	JET_InvalidData
-};
+enum J3DErrType { JET_Success = 0, JET_NoMatAnm, JET_LockedModelData, JET_NullBinRes, JET_OutOfMemory, JET_InvalidArg, JET_InvalidData };
 
 struct J3DAlphaComp {
 	u16 _00; // _00
@@ -129,6 +122,7 @@ struct J3DTevOrder {
 	u8 m_texCoordID; // _00
 	u8 m_texMapID;   // _01
 	u8 m_channelID;  // _02
+	u8 _03;
 };
 
 // TODO: Determine if this needs packing pragmas to make it exactly 1 bytes
@@ -157,12 +151,33 @@ struct J3DTevStage {
 	u8 _07; // _07
 };
 
+struct J3DTexCoordInfo {
+	u8 _00; // _00
+	u8 _01; // _01
+	u8 _02; // _02
+};
+extern const J3DTexCoordInfo j3dDefaultTexCoordInfo[8];
+
 // TODO: Determine if this needs packing pragmas to make it exactly 6 bytes
 /**
  * @size{0x6}
  */
 struct J3DTexCoord {
-	J3DTexCoord();
+	inline J3DTexCoord()
+	    : _00(j3dDefaultTexCoordInfo[0]._00)
+	    , _01(j3dDefaultTexCoordInfo[0]._01)
+	    , _02(j3dDefaultTexCoordInfo[0]._02)
+	    , _04(_02)
+	{
+	}
+
+	inline J3DTexCoord(const J3DTexCoordInfo& info)
+	    : _00(info._00)
+	    , _01(info._01)
+	    , _02(info._02)
+	    , _04(info._02)
+	{
+	}
 
 	u8 _00;  // _00
 	u8 _01;  // _01
@@ -194,34 +209,38 @@ struct J3DNBTScaleInfo {
 struct J3DNBTScale {
 	inline J3DNBTScale()
 	    : _00(0)
-	    , _04(1.0f)
-	    , _08(1.0f)
-	    , _0C(1.0f)
 	{
+		_04.x = 1.0f;
+		_04.y = 1.0f;
+		_04.z = 1.0f;
 	}
 
 	/** @fabricated */
 	inline J3DNBTScale(const J3DNBTScaleInfo& info)
 	    : _00(info._00)
-	    , _04(info._04)
-	    , _08(info._08)
-	    , _0C(info._0C)
 	{
+		_04.x = info._04;
+		_04.y = info._08;
+		_04.z = info._0C;
 	}
 
-	u8 _00;    // _00
-	float _04; // _04
-	float _08; // _08
-	float _0C; // _0C
+	u8 _00; // _00
+	Vec _04;
 };
 void loadNBTScale(J3DNBTScale&);
 
 void loadTexCoordGens(u32, J3DTexCoord*);
 
-enum J3DTexDiffFlag {};
+enum J3DTexDiffFlag { TexDiff_0 = 0, TexDiff_1 };
 
 enum J3DDeformAttachFlag { DeformAttach_0 = 0, DeformAttach_1 = 1 };
 
 extern const J3DNBTScaleInfo j3dDefaultNBTScaleInfo;
+
+extern const u32 j3dDefaultColInfo;
+// extern const J3DGXColor j3dDefaultTevColor;
+// extern const J3DGXColorS10 j3dDefaultTevKColor;
+extern const u64 j3dDefaultTevKColor;
+extern const u32 j3dDefaultTevColor;
 
 #endif

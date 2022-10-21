@@ -64,17 +64,19 @@
  * --INFO--
  * Address:	8001E57C
  * Size:	0000B0
+ * __ct__13JKRDvdArchiveFlQ210JKRArchive15EMountDirection
  */
 JKRDvdArchive::JKRDvdArchive(long entryNum, JKRArchive::EMountDirection mountDirection)
     : JKRArchive(entryNum, EMM_Dvd)
     , _60(mountDirection)
 {
-	if (open(entryNum) != false) {
-		m_magicWord = 'RARC';
-		_28         = _48->_04 + _54;
-		sVolumeList.prepend(&_18);
-		_30 = 1;
+	if (open(entryNum) == false) {
+		return;
 	}
+	m_magicWord = 'RARC';
+	_28         = _48->_04 + _54;
+	sVolumeList.prepend(&_18);
+	_30 = 1;
 
 	/*
 	stwu     r1, -0x20(r1)
@@ -132,6 +134,7 @@ lbl_8001E610:
  * --INFO--
  * Address:	8001E62C
  * Size:	00012C
+ * __dt__13JKRDvdArchiveFv
  */
 JKRDvdArchive::~JKRDvdArchive()
 {
@@ -966,6 +969,26 @@ u32 JKRDvdArchive::fetchResource_subroutine(long p1, unsigned long p2, unsigned 
  */
 u32 JKRDvdArchive::getExpandedResSize(const void* resource) const
 {
+	if (_50 == nullptr) {
+		return getResSize(resource);
+	}
+	SDIFileEntry* entry = findPtrResource(resource);
+	if (entry == nullptr) {
+		return -1;
+	}
+	if ((entry->_04 >> 0x18 & 4) == 0) {
+		return getResSize(resource);
+	}
+	u32 size = getExpandSize(entry);
+	if (size == 0) {
+		u8 v1[8];
+		/** TODO: use sizeof for next two lines */
+		JKRDvdRipper::loadToMainRAM(_40, v1, Switch_2, 0x20, nullptr, JKRDvdRipper::ALLOC_DIR_TOP, _64 + entry->_08, nullptr, nullptr);
+		DCInvalidateRange(v1, 0x20);
+		size = ((u32*)v1)[1];
+		((JKRArchive*)this)->setExpandSize(entry, size);
+	}
+	return size;
 	/*
 	stwu     r1, -0x60(r1)
 	mflr     r0

@@ -9,6 +9,20 @@ struct JPAEmitterWorkData;
 struct JPABaseParticle;
 
 /**
+ * @fabricated
+ */
+struct JPABaseShapeData {
+	u8 _00[8];    // _00
+	u32 _08;      // _08
+	u8 _0C[0x10]; // _0C
+	u8 _1C;       // _1C
+	u8 _1D;       // _1D
+	u8 _1E;       // _1E
+	u8 _1F;       // _1F
+	u8 _20;       // _20
+};
+
+/**
  * @size{0x14}
  */
 struct JPABaseShape {
@@ -19,10 +33,11 @@ struct JPABaseShape {
 	// Unused/inlined:
 	void init_jpa(const u8*, JKRHeap*);
 
-	const u8* m_data; // _00
-	u8 _04[8];        // _04
-	GXColor _0C;      // _0C
-	GXColor _10;      // _10
+	const JPABaseShapeData* m_data; // _00
+	u8 _04[4];                      // _04
+	u8* _08;                        // _08
+	GXColor _0C;                    // _0C
+	GXColor _10;                    // _10
 };
 
 /**
@@ -178,6 +193,6 @@ void JPACalcAlphaAnm(JPAEmitterWorkData*, JPABaseParticle*);
 void JPACalcAlphaFlickAnm(JPAEmitterWorkData*, JPABaseParticle*);
 
 // In JPAExTexShape.cpp:
-u32 JPALoadExTex(JPAEmitterWorkData*);
+void JPALoadExTex(JPAEmitterWorkData*);
 
 #endif

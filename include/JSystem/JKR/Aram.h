@@ -1,6 +1,7 @@
 #ifndef _JSYSTEM_JKR_ARAM_H
 #define _JSYSTEM_JKR_ARAM_H
 
+#include "Dolphin/ar.h"
 #include "Dolphin/os.h"
 #include "JSystem/JKR/JKRArchive.h"
 #include "JSystem/JKR/JKRThread.h"
@@ -21,12 +22,12 @@ struct JKRAramBlock {
 	JKRAramBlock* allocHead(u32, u8, JKRAramHeap*);
 	JKRAramBlock* allocTail(u32, u8, JKRAramHeap*);
 
-	JSUPtrLink m_link; // _04
-	u32 _14;           // _14
-	u32 _18;           // _18
-	u32 _1C;           // _1C
-	u8 _20;            // _20
-	bool _21;          // _21
+	JSULink<JKRAramBlock> m_link; // _04
+	u32 _14;                      // _14
+	u32 _18;                      // _18
+	u32 _1C;                      // _1C
+	u8 _20;                       // _20
+	bool _21;                     // _21
 };
 
 struct JKRAramHeap : public JKRDisposer {
@@ -48,6 +49,8 @@ struct JKRAramHeap : public JKRDisposer {
 	u32 _38;               // _38
 	u32 _3C;               // _3C
 	u8 _40;                // _40
+
+	static JSUList<JKRAramBlock> sAramList;
 };
 
 // Size: 0xA4
@@ -62,7 +65,7 @@ struct JKRAram : public JKRThread {
 	static u8* aramToMainRam(u32, u8*, u32, JKRExpandSwitch, u32, JKRHeap*, s32, u32*);
 	static u8* aramToMainRam(JKRAramBlock*, u8*, u32, u32, JKRExpandSwitch, u32, JKRHeap*, s32, u32*);
 
-	u8 _78[8];               // _78
+	u8 _7C[4];               // _7C
 	u32 _80;                 // _80
 	u32 _84;                 // _84
 	u32 _88;                 // _88
@@ -73,6 +76,7 @@ struct JKRAram : public JKRThread {
 	u8 _9C[4];               // _9C
 
 	static JKRAram* sAramObject;
+	static const OSMessageQueue sMessageQueue;
 };
 
 struct JKRAramArchive : public JKRArchive {
@@ -94,28 +98,29 @@ struct JKRAramArchive : public JKRArchive {
 };
 
 // Size: 0x98
-struct JKRAMCommand {
+struct JKRAMCommand : ARQRequest {
+	typedef void (*Callback)(JKRAMCommand*);
 	JKRAMCommand();
 	~JKRAMCommand();
 
-	u8 _00[0x20];          // _00
-	JSUPtrLink _20;        // _20
-	JSUPtrLink _30;        // _30
-	s32 m_direction;       // _40
-	u32 m_length;          // _44
-	u32 m_source;          // _48
-	u32 m_destination;     // _4C
-	JKRAramBlock* _50;     // _50
-	u8 _54[4];             // _54
-	void* _58;             // _58
-	OSMessageQueue* _5C;   // _5C
-	s32 _60;               // _60
-	JKRDecompCommand* _64; // _64
-	OSMessageQueue _68;    // _68
-	u8 _88[4];             // _88
-	void* _8C;             // _8C
-	void* _90;             // _90
-	void* _94;             // _94
+	// ARQRequest _00;            // _00
+	JSULink<JKRAMCommand> _20; // _20
+	JSULink<JKRAMCommand> _30; // _30
+	s32 m_direction;           // _40
+	u32 m_length;              // _44
+	u32 m_source;              // _48
+	u32 m_destination;         // _4C
+	JKRAramBlock* _50;         // _50
+	u8 _54[4];                 // _54
+	Callback _58;              // _58
+	OSMessageQueue* _5C;       // _5C
+	s32 _60;                   // _60
+	JKRDecompCommand* _64;     // _64
+	OSMessageQueue _68;        // _68
+	void* _88;                 // _88
+	void* _8C;                 // _8C
+	void* _90;                 // _90
+	void* _94;                 // _94
 };
 
 enum ECommandType {
@@ -168,12 +173,17 @@ struct JKRAramStream : public JKRThread {
 	static JKRHeap* transHeap;
 	static u32 transSize;
 };
-namespace JKRAramPiece {
-void doneDMA(u32);
-void orderSync(int, u32, u32, u32, JKRAramBlock*);
-void sendCommand(JKRAMCommand*);
-void startDMA(JKRAMCommand*);
-} // namespace JKRAramPiece
+struct JKRAramPiece {
+	JKRAramPiece();  // unused/inlined
+	~JKRAramPiece(); // unused/inlined
+
+	static void doneDMA(u32);
+	static bool orderSync(int, u32, u32, u32, JKRAramBlock*);
+	static void sendCommand(JKRAMCommand*);
+	static void startDMA(JKRAMCommand*);
+	static OSMutexObject mMutex;
+	static JSUList<JKRAMCommand> sAramPieceCommandList;
+};
 
 extern OSMutexObject decompMutex;
 

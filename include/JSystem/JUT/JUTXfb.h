@@ -1,6 +1,7 @@
 #ifndef _JSYSTEM_JUT_JUTXFB_H
 #define _JSYSTEM_JUT_JUTXFB_H
 
+#include "Dolphin/gx.h"
 #include "types.h"
 
 struct _GXRenderModeObj;
@@ -16,7 +17,7 @@ struct JUTXfb {
 	static JUTXfb* createManager(JKRHeap*, EXfbNumber);
 	static void destroyManager();
 	void initiate(u16, u16, JKRHeap*, EXfbNumber);
-	static int accumeXfbSize();
+	static u32 accumeXfbSize();
 
 	// Unused/inlined:
 	JUTXfb(const _GXRenderModeObj*, JKRHeap*, EXfbNumber);
@@ -36,6 +37,14 @@ struct JUTXfb {
 	static JUTXfb* createManager(void*, void*, void*);
 	void initiate(void*, void*, void*, EXfbNumber);
 	void switchXfb();
+
+	/**
+	 * @fabricated
+	 */
+	inline static u16 getLineCount(const _GXRenderModeObj* gxObj)
+	{
+		return GXGetNumXfbLines(GXGetYScaleFactor(gxObj->efbHeight, gxObj->xfbHeight), gxObj->efbHeight);
+	}
 
 	u8* m_buffers[3];  // _00
 	bool m_enabled[3]; // _0C

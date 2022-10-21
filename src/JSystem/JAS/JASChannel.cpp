@@ -1,4 +1,5 @@
 #include "JSystem/JAS/JASChannel.h"
+#include "JSystem/JAS/JASDsp.h"
 #include "JSystem/JAS/JASOscillator.h"
 #include "JSystem/JSupport/JSUList.h"
 #include "types.h"
@@ -482,49 +483,17 @@ void JASChannel::setPanPower(float p1, float p2, float p3)
  * Address:	800A36C0
  * Size:	000084
  */
-void JASChannel::play()
+bool JASChannel::play()
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	mr       r31, r3
-	lis      r3, dspUpdateCallback__10JASChannelFUlPQ26JASDsp8TChannelPv@ha
-	lhz      r0, 0xbc(r31)
-	addi     r4, r3, dspUpdateCallback__10JASChannelFUlPQ26JASDsp8TChannelPv@l
-	mr       r5, r31
-	clrlwi   r3, r0, 0x18
-	bl       alloc__13JASDSPChannelFUcPFUlPQ26JASDsp8TChannelPv_lPv
-	cmplwi   r3, 0
-	bne      lbl_800A371C
-	cmplwi   r31, 0
-	beq      lbl_800A3714
-	mr       r3, r31
-	li       r4, 1
-	lwz      r12, 0x14(r31)
-	lwz      r12, 0x14(r12)
-	mtctr    r12
-	bctrl
-
-lbl_800A3714:
-	li       r3, 0
-	b        lbl_800A3730
-
-lbl_800A371C:
-	stw      r3, 0x20(r31)
-	bl       start__13JASDSPChannelFv
-	li       r0, 1
-	li       r3, 1
-	stw      r0, 0x18(r31)
-
-lbl_800A3730:
-	lwz      r0, 0x14(r1)
-	lwz      r31, 0xc(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	JASDSPChannel* dspChannel = JASDSPChannel::alloc(_BC, dspUpdateCallback, this);
+	if (dspChannel == nullptr) {
+		delete this;
+		return false;
+	}
+	_20 = dspChannel;
+	dspChannel->start();
+	_18 = 1;
+	return true;
 }
 
 /*
@@ -532,49 +501,17 @@ lbl_800A3730:
  * Address:	800A3744
  * Size:	000084
  */
-void JASChannel::playForce()
+bool JASChannel::playForce()
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	mr       r31, r3
-	lis      r3, dspUpdateCallback__10JASChannelFUlPQ26JASDsp8TChannelPv@ha
-	lhz      r0, 0xbc(r31)
-	addi     r4, r3, dspUpdateCallback__10JASChannelFUlPQ26JASDsp8TChannelPv@l
-	mr       r5, r31
-	clrlwi   r3, r0, 0x18
-	bl       allocForce__13JASDSPChannelFUcPFUlPQ26JASDsp8TChannelPv_lPv
-	cmplwi   r3, 0
-	bne      lbl_800A37A0
-	cmplwi   r31, 0
-	beq      lbl_800A3798
-	mr       r3, r31
-	li       r4, 1
-	lwz      r12, 0x14(r31)
-	lwz      r12, 0x14(r12)
-	mtctr    r12
-	bctrl
-
-lbl_800A3798:
-	li       r3, 0
-	b        lbl_800A37B4
-
-lbl_800A37A0:
-	stw      r3, 0x20(r31)
-	bl       start__13JASDSPChannelFv
-	li       r0, 1
-	li       r3, 1
-	stw      r0, 0x18(r31)
-
-lbl_800A37B4:
-	lwz      r0, 0x14(r1)
-	lwz      r31, 0xc(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	JASDSPChannel* dspChannel = JASDSPChannel::allocForce(_BC, dspUpdateCallback, this);
+	if (dspChannel == nullptr) {
+		delete this;
+		return false;
+	}
+	_20 = dspChannel;
+	dspChannel->start();
+	_18 = 1;
+	return true;
 }
 
 /*
@@ -582,56 +519,21 @@ lbl_800A37B4:
  * Address:	800A37C8
  * Size:	000098
  */
-void JASChannel::release(unsigned short)
+void JASChannel::release(unsigned short p1)
 {
-	/*
-	stwu     r1, -0x20(r1)
-	mflr     r0
-	stw      r0, 0x24(r1)
-	stw      r31, 0x1c(r1)
-	stw      r30, 0x18(r1)
-	stw      r29, 0x14(r1)
-	mr       r29, r3
-	lwz      r0, 0x18(r3)
-	cmpwi    r0, 1
-	bne      lbl_800A3844
-	clrlwi.  r0, r4, 0x10
-	beq      lbl_800A37FC
-	sth      r4, 0x4a(r29)
-
-lbl_800A37FC:
-	li       r30, 0
-	mr       r31, r29
-
-lbl_800A3804:
-	lwz      r0, 0x30(r31)
-	cmplwi   r0, 0
-	beq      lbl_800A3818
-	addi     r3, r31, 0x30
-	bl       release__13JASOscillatorFv
-
-lbl_800A3818:
-	addi     r30, r30, 1
-	addi     r31, r31, 0x20
-	cmplwi   r30, 4
-	blt      lbl_800A3804
-	lhz      r0, 0xbc(r29)
-	lwz      r3, 0x20(r29)
-	srawi    r0, r0, 8
-	clrlwi   r4, r0, 0x18
-	bl       setPriority__13JASDSPChannelFUc
-	li       r0, 2
-	stw      r0, 0x18(r29)
-
-lbl_800A3844:
-	lwz      r0, 0x24(r1)
-	lwz      r31, 0x1c(r1)
-	lwz      r30, 0x18(r1)
-	lwz      r29, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x20
-	blr
-	*/
+	if (_18 != 1) {
+		return;
+	}
+	if (p1 != 0) {
+		_30[0]._1A = p1;
+	}
+	for (u32 i = 0; i < 4; i++) {
+		if (_30[i].m_data != nullptr) {
+			_30[i].release();
+		}
+	}
+	_20->setPriority(_BC >> 8);
+	_18 = 2;
 }
 
 /*
@@ -842,64 +744,23 @@ void JASChannel::updateEffectorParam(JASDsp::TChannel*, unsigned short*, const J
  * Address:	800A3ABC
  * Size:	0000A0
  */
-void JASChannel::dspUpdateCallback(unsigned long, JASDsp::TChannel*, void*)
+long JASChannel::dspUpdateCallback(unsigned long p1, JASDsp::TChannel* p2, void* p3)
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	cmpwi    r3, 1
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	mr       r31, r5
-	beq      lbl_800A3B00
-	bge      lbl_800A3AE8
-	cmpwi    r3, 0
-	bge      lbl_800A3AF4
-	b        lbl_800A3B44
-
-lbl_800A3AE8:
-	cmpwi    r3, 4
-	bge      lbl_800A3B44
-	b        lbl_800A3B0C
-
-lbl_800A3AF4:
-	mr       r3, r31
-	bl       updateDSPChannel__10JASChannelFPQ26JASDsp8TChannel
-	b        lbl_800A3B48
-
-lbl_800A3B00:
-	mr       r3, r31
-	bl       initialUpdateDSPChannel__10JASChannelFPQ26JASDsp8TChannel
-	b        lbl_800A3B44
-
-lbl_800A3B0C:
-	lwz      r3, 0x20(r31)
-	bl       free__13JASDSPChannelFv
-	li       r0, 0
-	cmplwi   r31, 0
-	stw      r0, 0x20(r31)
-	beq      lbl_800A3B3C
-	mr       r3, r31
-	li       r4, 1
-	lwz      r12, 0x14(r31)
-	lwz      r12, 0x14(r12)
-	mtctr    r12
-	bctrl
-
-lbl_800A3B3C:
-	li       r3, -1
-	b        lbl_800A3B48
-
-lbl_800A3B44:
-	li       r3, 0
-
-lbl_800A3B48:
-	lwz      r0, 0x14(r1)
-	lwz      r31, 0xc(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	JASChannel* channel = static_cast<JASChannel*>(p3);
+	switch (p1) {
+	case 0:
+		return channel->updateDSPChannel(p2);
+	case 1:
+		channel->initialUpdateDSPChannel(p2);
+		break;
+	case 2:
+	case 3:
+		channel->_20->free();
+		channel->_20 = nullptr;
+		delete channel;
+		return -1;
+	}
+	return 0;
 }
 
 /*
@@ -1130,7 +991,7 @@ lbl_800A3D98:
  * Address:	800A3E00
  * Size:	0002BC
  */
-void JASChannel::updateDSPChannel(JASDsp::TChannel*)
+long JASChannel::updateDSPChannel(JASDsp::TChannel*)
 {
 	/*
 	stwu     r1, -0x40(r1)
@@ -1532,6 +1393,7 @@ void JASChannel::calcPan(const JASChannel::PanVector*, const JASChannel::PanVect
  */
 void JASChannel::updateAutoMixer(JASDsp::TChannel*, float, float, float, float)
 {
+
 	/*
 	stwu     r1, -0x80(r1)
 	mflr     r0
@@ -1959,6 +1821,11 @@ lbl_800A46F4:
  */
 void JASChannel::sweepProc()
 {
+	if (_C4 == 0) {
+		return;
+	}
+	_F8 = _F8 + (_C0 - _F8) / _C4;
+	_C4--;
 	/*
 	stwu     r1, -0x10(r1)
 	lwz      r4, 0xc4(r3)
@@ -1995,12 +1862,6 @@ void JASChannel::free()
 {
 	_24 = nullptr;
 	_28 = nullptr;
-	/*
-	li       r0, 0
-	stw      r0, 0x24(r3)
-	stw      r0, 0x28(r3)
-	blr
-	*/
 }
 
 /*

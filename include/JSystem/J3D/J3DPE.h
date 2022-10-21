@@ -5,6 +5,26 @@
 #include "types.h"
 
 struct J3DFog {
+	/** @fabricated */
+	inline J3DFog& operator=(const J3DFog& other)
+	{
+		_00 = other._00;
+		_01 = other._01;
+		_02 = other._02;
+		_04 = other._04;
+		_08 = other._08;
+		_0C = other._0C;
+		_10 = other._10;
+		_14 = other._14;
+		_15 = other._15;
+		_16 = other._16;
+		_17 = other._17;
+		for (int i = 0; i < 10; i++) {
+			_18[i] = other._18[i];
+		}
+		return *this;
+	}
+
 	u8 _00;       // _00
 	u8 _01;       // _01
 	u16 _02;      // _02
@@ -158,7 +178,11 @@ struct J3DPEBlockFull : public J3DPEBlock {
 	{
 		m_fogOffset = fogOffset;
 	}
-	virtual ~J3DPEBlockFull(); // _78 (weak)
+	/**
+	 * @reifiedAddress{80081934}
+	 * @reifiedFile{JSystem/J3D/J3DMatBlock.cpp}
+	 */
+	virtual ~J3DPEBlockFull() {}; // _78 (weak)
 
 	void initialize();
 
@@ -175,9 +199,16 @@ struct J3DPEBlockFull : public J3DPEBlock {
  * @size{0x4}
  */
 struct J3DPEBlockNull : public J3DPEBlock {
-	virtual void load();          // _0C (weak)
-	virtual JBlockType getType(); // _24 (weak)
-	virtual ~J3DPEBlockNull();    // _78 (weak)
+	virtual void load(); // _0C (weak)
+	/**
+	 * @reifiedAddress{8006F448}
+	 * @reifiedFile{JSystem/J3D/J3DMaterialFactory.cpp}
+	 */
+	virtual JBlockType getType() // _24 (weak)
+	{
+		return JBT_PENull;
+	}
+	virtual ~J3DPEBlockNull(); // _78 (weak)
 };
 
 /**

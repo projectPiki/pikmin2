@@ -222,10 +222,7 @@ void JPAResourceManager::registTexDupCheck(const unsigned char*, JKRHeap*)
 void* JPAResourceManager::getResUserWork(unsigned short p1) const
 {
 	JPAResource* resource = getResource(p1);
-	if (resource == nullptr) {
-		return nullptr;
-	}
-	return (resource->_2C->m_data + 0xC);
+	return (resource != nullptr) ? (void*)(resource->_2C->castData()->_0C) : nullptr;
 	/*
 	lhz      r7, 0xe(r3)
 	clrlwi   r4, r4, 0x10

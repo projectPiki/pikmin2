@@ -32,9 +32,17 @@ JKRAramBlock::JKRAramBlock(u32 p1, u32 p2, u32 p3, u8 p4, bool p5)
  * --INFO--
  * Address:	800194B0
  * Size:	0000BC
+ * __dt__12JKRAramBlockFv
  */
 JKRAramBlock::~JKRAramBlock()
 {
+	if (m_link.getPrev() != nullptr) {
+		m_link.getObject()->_1C += _18 + _1C; // + m_link.getObject()->_1C
+		m_link.getList()->remove(&m_link);
+	} else {
+		_1C += _18;
+		_18 = 0;
+	}
 	/*
 	stwu     r1, -0x10(r1)
 	mflr     r0

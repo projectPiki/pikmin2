@@ -42,6 +42,8 @@ typedef BOOL DVDDoneReadCallback(long, DVDFileInfo*);
 typedef void DVDState(OSDummyCommandBlock*);
 typedef void DVDLowCallback(u32);
 
+void DVDInit();
+
 // TODO: Incomplete set of functions.
 BOOL DVDOpen(const char*, struct DVDPlayer*);
 BOOL DVDFastOpen(long, struct DVDPlayer*);

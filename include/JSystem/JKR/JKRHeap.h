@@ -84,7 +84,7 @@ struct JKRHeap : public JKRDisposer {
 	JKRHeap* becomeSystemHeap();
 	JKRHeap* becomeCurrentHeap();
 	void destroy();
-	void* alloc(u32, int);
+	void* alloc(u32 byteCount, int padding);
 	void free(void*);
 	void freeAll();
 	void freeTail();
@@ -157,7 +157,7 @@ struct JKRExpHeap : public JKRHeap {
 		u8 m_groupID; // _03
 
 		/// Called "size" by JKRExpHeap::dump
-		u32 m_allocatedSpace; // _04
+		int m_allocatedSpace; // _04
 
 		/*
 		 * Called "prev_ptr" by JKRExpHeap::dump.
@@ -171,33 +171,35 @@ struct JKRExpHeap : public JKRHeap {
 		 */
 		CMemBlock* m_nextPtr; // _0C
 
-		u32 allocBack(u32, u8, u8, u8, u8);
-		u32 allocFore(u32, u8, u8, u8, u8);
-		void free(JKRExpHeap*);
-		static u32 getHeapBlock(void*);
+		CMemBlock* allocBack(u32, u8, u8, u8, u8);
+		CMemBlock* allocFore(u32, u8, u8, u8, u8);
+		unkptr free(JKRExpHeap*);
+		static CMemBlock* getHeapBlock(void*);
 		void initiate(CMemBlock*, CMemBlock*, u32, u8, u8);
 	};
 
 	JKRExpHeap(void*, u32, JKRHeap*, bool);
 
-	virtual ~JKRExpHeap();              // _00
-	virtual u32 getHeapType();          // _08
-	virtual bool check();               // _0C
-	virtual bool dump_sort();           // _10
-	virtual bool dump();                // _14
-	virtual void do_destroy();          // _18
-	virtual void* do_alloc(u32, int);   // _1C
-	virtual void do_free(void*);        // _20
-	virtual void do_freeAll();          // _24
-	virtual void do_freeTail();         // _28
-	virtual void do_fillFreeArea();     // _2C
-	virtual int do_resize(void*, u32);  // _30
-	virtual int do_getSize(void*);      // _34
-	virtual u32 do_getFreeSize();       // _38
-	virtual void* do_getMaxFreeBlock(); // _3C
-	virtual u32 do_getTotalFreeSize();  // _40
-	virtual u8 do_changeGroupID(u8);    // _44
-	virtual u8 do_getCurrentGroupId();  // _48
+	virtual ~JKRExpHeap();                                          // _08
+	virtual u32 getHeapType();                                      // _10 (weak)
+	virtual bool check();                                           // _14
+	virtual bool dump_sort();                                       // _18
+	virtual bool dump();                                            // _1C
+	virtual void do_destroy();                                      // _20
+	virtual void* do_alloc(u32, int);                               // _24
+	virtual void do_free(void*);                                    // _28
+	virtual void do_freeAll();                                      // _2C
+	virtual void do_freeTail();                                     // _30
+	virtual void do_fillFreeArea();                                 // _34
+	virtual int do_resize(void*, u32);                              // _38
+	virtual int do_getSize(void*);                                  // _3C
+	virtual u32 do_getFreeSize();                                   // _40
+	virtual void* do_getMaxFreeBlock();                             // _44
+	virtual u32 do_getTotalFreeSize();                              // _48
+	virtual u8 do_changeGroupID(u8);                                // _4C
+	virtual u8 do_getCurrentGroupId();                              // _50 (weak)
+	virtual void state_register(TState*, unsigned long) const;      // _54
+	virtual bool state_compare(const TState&, const TState&) const; // _58
 
 	u32 allocFromHead(u32, int);
 	u32 allocFromHead(u32);
@@ -212,6 +214,9 @@ struct JKRExpHeap : public JKRHeap {
 	void removeFreeBlock(CMemBlock*);
 	void setFreeBlock(CMemBlock*, CMemBlock*, CMemBlock*);
 
+	// unused/inlined:
+	void removeUsedBlock(CMemBlock*);
+
 	u8 _6C;                    // _6C
 	u8 m_currentGroupID;       // _6D
 	u8 _6E;                    // _6E
@@ -225,27 +230,27 @@ struct JKRExpHeap : public JKRHeap {
 struct JKRSolidHeap : public JKRHeap {
 	JKRSolidHeap(void*, u32, JKRHeap*, bool);
 
-	virtual ~JKRSolidHeap();                                        // _00
-	virtual u32 getHeapType();                                      // _08
-	virtual bool check();                                           // _0C
-	virtual bool dump();                                            // _14
-	virtual void do_destroy();                                      // _18
-	virtual void* do_alloc(unsigned long, int);                     // _1C
-	virtual void do_free(void*);                                    // _20
-	virtual void do_freeAll();                                      // _24
-	virtual void do_freeTail();                                     // _28
-	virtual void do_fillFreeArea();                                 // _2C
-	virtual int do_resize(void*, unsigned long);                    // _30
-	virtual int do_getSize(void*);                                  // _34
-	virtual u32 do_getFreeSize();                                   // _38
-	virtual void* do_getMaxFreeBlock();                             // _3C
-	virtual u32 do_getTotalFreeSize();                              // _40
-	virtual void state_register(TState*, unsigned long) const;      // _4C
-	virtual bool state_compare(const TState&, const TState&) const; // _50
+	virtual ~JKRSolidHeap();                                        // _08
+	virtual u32 getHeapType();                                      // _10 (weak)
+	virtual bool check();                                           // _14
+	virtual bool dump();                                            // _1C
+	virtual void do_destroy();                                      // _20
+	virtual void* do_alloc(u32, int);                               // _24
+	virtual void do_free(void*);                                    // _28
+	virtual void do_freeAll();                                      // _2C
+	virtual void do_freeTail();                                     // _30
+	virtual void do_fillFreeArea();                                 // _34
+	virtual int do_resize(void*, u32);                              // _38
+	virtual int do_getSize(void*);                                  // _3C
+	virtual u32 do_getFreeSize();                                   // _40 (weak)
+	virtual void* do_getMaxFreeBlock();                             // _44 (weak)
+	virtual u32 do_getTotalFreeSize();                              // _48 (weak)
+	virtual void state_register(TState*, u32) const;                // _54
+	virtual bool state_compare(const TState&, const TState&) const; // _58
 
 	void adjustSize();
-	void allocFromHead(unsigned long, int);
-	void allocFromTail(unsigned long, int);
+	void* allocFromHead(unsigned long, int);
+	void* allocFromTail(unsigned long, int);
 
 	static JKRSolidHeap* create(unsigned long, JKRHeap*, bool);
 

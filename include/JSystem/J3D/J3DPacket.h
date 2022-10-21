@@ -28,6 +28,13 @@ struct J3DPacket {
 
 	void addChildPacket(J3DPacket*);
 
+	/** @fabricated */
+	void clearListPointers()
+	{
+		_04 = nullptr;
+		_08 = nullptr;
+	}
+
 	// VTBL _00
 	J3DPacket* _04; // _04
 	J3DPacket* _08; // _08
@@ -79,6 +86,12 @@ struct J3DMatPacket : public J3DDrawPacket {
 };
 
 struct J3DShapePacket_0x24 {
+	inline J3DShapePacket_0x24(u16 num)
+	    : _00(new Mtx[num])
+	    , _04(new float[num][16])
+	    , _08(num)
+	{
+	}
 	Mtx* _00;   // _00
 	unkptr _04; // _04
 	s16 _08;    // _08
@@ -94,11 +107,11 @@ struct J3DShapePacket : public J3DDrawPacket {
 	virtual ~J3DShapePacket(); // _10
 
 	J3DErrType newDifferedDisplayList(u32 displayListFlag);
-	int newDifferedTexMtx(J3DTexDiffFlag);
+	J3DErrType newDifferedTexMtx(J3DTexDiffFlag);
 	int calcDifferedBufferSize(u32);
 	void drawFast();
 
-	J3DShape* _28;     // _28
+	J3DShape* _28;            // _28
 	struct J3DMtxBuffer* _2C; // _2C
 	Mtx* _30;                 // _30
 	u32 _34;                  // _34

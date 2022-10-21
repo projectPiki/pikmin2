@@ -356,11 +356,37 @@ struct J3DTevBlock16 : public J3DTevBlock {
  * @size{0x8}
  */
 struct J3DTevBlockNull : public J3DTevBlock {
-	virtual void reset(J3DTevBlock*); // _08 (weak)
-	virtual void ptrToIndex();        // _38 (weak)
-	virtual void indexToPtr();        // _3C (weak)
-	virtual JBlockType getType();     // _40 (weak)
-	virtual ~J3DTevBlockNull();       // _D8 (weak)
+	inline J3DTevBlockNull()
+	    : J3DTevBlock()
+	{
+		initialize();
+	}
+
+	/**
+	 * @reifiedAddress{8006F4B0}
+	 * @reifiedFile{JSystem/J3D/J3DMaterialFactory.cpp}
+	 */
+	virtual void reset(J3DTevBlock*) {}; // _08 (weak)
+	/**
+	 * @reifiedAddress{8006F4B4}
+	 * @reifiedFile{JSystem/J3D/J3DMaterialFactory.cpp}
+	 */
+	virtual void ptrToIndex() {}; // _38 (weak)
+	/**
+	 * @reifiedAddress{8006F4B8}
+	 * @reifiedFile{JSystem/J3D/J3DMaterialFactory.cpp}
+	 */
+	virtual void indexToPtr() { indexToPtr_private(m_texNoOffset); }; // _3C (weak)
+	/**
+	 * @reifiedAddress{8006F4DC}
+	 * @reifiedFile{JSystem/J3D/J3DMaterialFactory.cpp}
+	 */
+	virtual JBlockType getType() { return JBT_TevNull; } // _40 (weak)
+	/**
+	 * @reifiedAddress{8006F4E8}
+	 * @reifiedFile{JSystem/J3D/J3DMaterialFactory.cpp}
+	 */
+	virtual ~J3DTevBlockNull() {}; // _D8 (weak)
 
 	void initialize();
 };
@@ -423,8 +449,7 @@ struct J3DTevBlockPatched : public J3DTevBlock {
 	J3DGXColor _B8[4];             // _B8
 	u8 _C8[0x8];                   // _C8
 	u8 m_stageNum;                 // _D0
-	u32 : 0;
-	u32 m_regOffset; // _D4
+	u32 m_regOffset;               // _D4
 };
 
 #endif

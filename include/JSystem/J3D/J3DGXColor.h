@@ -23,6 +23,26 @@ struct J3DGXColor : public GXColor {
 		b = other.b;
 		a = other.a;
 	}
+
+	J3DGXColor(const GXColor& other)
+	{
+		r = other.r;
+		g = other.g;
+		b = other.b;
+		a = other.a;
+	}
+
+	J3DGXColor(const u32& other)
+	{
+		GXColor* otherBytes = (GXColor*)&other;
+		r                   = otherBytes->r;
+		g                   = otherBytes->g;
+		b                   = otherBytes->b;
+		a                   = otherBytes->a;
+	}
+
+	/** @fabricated */
+	const u8* asBytes() const { return (u8*)this; }
 };
 
 struct J3DGXColorS10 : public GXColorS10 {
@@ -42,6 +62,23 @@ struct J3DGXColorS10 : public GXColorS10 {
 		g = other.g;
 		b = other.b;
 		a = other.a;
+	}
+
+	// J3DGXColorS10(const J3DGXColor& other)
+	// {
+	// 	r = other.r;
+	// 	g = other.g;
+	// 	b = other.b;
+	// 	a = other.a;
+	// }
+
+	J3DGXColorS10(const u64& other)
+	{
+		GXColorS10* otherBytes = (GXColorS10*)&other;
+		r                      = otherBytes->r;
+		g                      = otherBytes->g;
+		b                      = otherBytes->b;
+		a                      = otherBytes->a;
 	}
 };
 

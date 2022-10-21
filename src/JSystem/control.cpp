@@ -1,3 +1,4 @@
+#include "JSystem/JMessage.h"
 #include "types.h"
 #include "JSystem/JMessage/TProcessor.h"
 #include "JSystem/JMessage/TResource.h"
@@ -231,9 +232,35 @@ bool TControl::setMessageCode(u16 idx1, u16 idx2)
  * --INFO--
  * Address:	80008758
  * Size:	0000FC
+ * setMessageID__Q28JMessage8TControlFUlUlPb
  */
-bool TControl::setMessageID(u32, u32, bool*)
+bool TControl::setMessageID(u32 p1, u32 p2, bool* p3)
 {
+	TProcessor* proc1;
+	void* voidPtr;
+
+	TProcessor* processor = (_04 != nullptr) ? _04 : _08;
+
+	u32 msgCode = processor->toMessageCode_messageID(p1, p2, p3);
+	if (msgCode == 0xFFFFFFFF) {
+		return false;
+	}
+	if (!setMessageCode_inSequence_(processor, msgCode >> 0x10, (u16)msgCode)) {
+		return false;
+	}
+
+	char* ptr      = _18;
+	bool checkVars = (ptr && _04);
+
+	if (checkVars) {
+		proc1      = _04;
+		voidPtr    = _14;
+		proc1->_08 = _10;
+		proc1->reset_(ptr);
+		proc1->do_begin_(voidPtr, ptr);
+	}
+
+	return true;
 	/*
 	stwu     r1, -0x20(r1)
 	mflr     r0
@@ -320,9 +347,33 @@ lbl_80008834:
  * --INFO--
  * Address:	80008854
  * Size:	0000E8
+ * setMessageCode_inSequence___Q28JMessage8TControlFPCQ28JMessage10TProcessorUsUs
  */
-bool TControl::setMessageCode_inSequence_(TProcessor const*, unsigned short, unsigned short)
+bool TControl::setMessageCode_inSequence_(TProcessor const* processor, unsigned short resID, unsigned short msgID)
 {
+	char* v1;
+	TResource* resource = processor->getResource_groupID(resID);
+	if (resource == nullptr) {
+		v1 = nullptr;
+	} else {
+		INF1Block* inf1 = resource->m_INF1;
+		if (msgID < inf1->_08) {
+			v1 = inf1->_10[msgID * inf1->_0A];
+		} else {
+			v1 = nullptr;
+		}
+	}
+	_14 = v1;
+	if (_14 == nullptr) {
+		return false;
+	}
+	_0C = resID;
+	_0E = msgID;
+	_10 = processor->_08;
+	_18 = (char*)_10->m_DAT1 + *_14;
+	_20 = _18;
+	_24 = 0;
+	return true;
 	/*
 	.loc_0x0:
 	  stwu      r1, -0x20(r1)

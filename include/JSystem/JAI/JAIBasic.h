@@ -20,7 +20,7 @@ struct JAIBasic {
 	virtual void makeStream();                 // _10
 	virtual void getMapInfoFxline(u32);        // _14
 	virtual void getMapInfoGround(u32);        // _18
-	virtual void getMapInfoFxParameter(u32);   // _1C
+	virtual float getMapInfoFxParameter(u32);  // _1C
 	virtual void setSeExtParameter(JAISound*); // _20
 	virtual void setRegisterTrackCallback();   // _24
 

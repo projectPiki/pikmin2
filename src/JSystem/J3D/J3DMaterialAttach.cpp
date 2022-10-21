@@ -27,14 +27,14 @@
  */
 void J3DMaterialTable::clear()
 {
-	m_count1 = 0;
-	m_count2 = 0;
+	m_count1     = 0;
+	m_count2     = 0;
 	m_materials1 = nullptr;
-	_0C = nullptr;
+	_0C          = nullptr;
 	m_materials2 = nullptr;
-	m_texture = nullptr;
-	_18 = nullptr;
-	_1C = 0;
+	m_texture    = nullptr;
+	_18          = nullptr;
+	_1C          = 0;
 }
 
 /*
@@ -43,10 +43,7 @@ void J3DMaterialTable::clear()
  * Size:	000034
  * __ct
  */
-J3DMaterialTable::J3DMaterialTable()
-{
-	clear();
-}
+J3DMaterialTable::J3DMaterialTable() { clear(); }
 
 /*
  * --INFO--
@@ -54,9 +51,7 @@ J3DMaterialTable::J3DMaterialTable()
  * Size:	000048
  * __dt
  */
-J3DMaterialTable::~J3DMaterialTable()
-{
-}
+J3DMaterialTable::~J3DMaterialTable() { }
 
 /*
  * --INFO--
@@ -64,9 +59,9 @@ J3DMaterialTable::~J3DMaterialTable()
  * Size:	000018
  */
 J3DMatColorAnm::J3DMatColorAnm()
-	: _00(0)
-	, _02(1)
-	, m_anm(nullptr)
+    : _00(0)
+    , _02(1)
+    , m_anm(nullptr)
 {
 }
 
@@ -76,9 +71,9 @@ J3DMatColorAnm::J3DMatColorAnm()
  * Size:	000024
  */
 J3DTexNoAnm::J3DTexNoAnm()
-	: _04(0)
-	, _06(1)
-	, m_anm(nullptr)
+    : _04(0)
+    , _06(1)
+    , m_anm(nullptr)
 {
 }
 
@@ -86,12 +81,11 @@ J3DTexNoAnm::J3DTexNoAnm()
  * --INFO--
  * Address:	80083D2C
  * Size:	0001C4
- * TODO: Make enum for result codes?
  */
 J3DErrType J3DMaterialTable::allocTexMtxAnimator(J3DAnmTextureSRTKey* p1, J3DTexMtxAnm** p2)
 {
 	u16 elementCount = p1->_14 / 3;
-	*p2 = new J3DTexMtxAnm[elementCount];
+	*p2              = new J3DTexMtxAnm[elementCount];
 	// J3DTexMtxAnm* v1 = new J3DTexMtxAnm[elementCount];
 	// *p2 = v1;
 	if (*p2 == nullptr) {
@@ -99,7 +93,7 @@ J3DErrType J3DMaterialTable::allocTexMtxAnimator(J3DAnmTextureSRTKey* p1, J3DTex
 	}
 	for (u16 i = 0; i < elementCount; i++) {
 		(*p2)[i].m_index = i;
-		(*p2)[i].m_anm = p1;
+		(*p2)[i].m_anm   = p1;
 		// v1[i].m_index = i;
 		// v1[i].m_anm = p1;
 	}
@@ -254,9 +248,9 @@ lbl_80083EDC:
  * Size:	000018
  */
 J3DTexMtxAnm::J3DTexMtxAnm()
-	: m_index(0)
-	, _02(1)
-	, m_anm(nullptr)
+    : m_index(0)
+    , _02(1)
+    , m_anm(nullptr)
 {
 	/*
 	li       r4, 0
@@ -317,9 +311,9 @@ J3DTexMtxAnm::J3DTexMtxAnm()
  */
 J3DErrType J3DMaterialTable::allocTevRegAnimator(J3DAnmTevRegKey* tevRegKey, J3DTevColorAnm** tevColorAnms, J3DTevKColorAnm** tevKColorAnms)
 {
-	u16 tevColorAnmCount = tevRegKey->m_countTevColorAnm;
+	u16 tevColorAnmCount  = tevRegKey->m_countTevColorAnm;
 	u16 tevKColorAnmCount = tevRegKey->m_countTevKColorAnm;
-	*tevColorAnms = new J3DTevColorAnm[tevColorAnmCount];
+	*tevColorAnms         = new J3DTevColorAnm[tevColorAnmCount];
 
 	// s32 result = initTevColorAnms(tevRegKey, *tevColorAnms, tevColorAnmCount);
 
@@ -331,7 +325,7 @@ J3DErrType J3DMaterialTable::allocTevRegAnimator(J3DAnmTevRegKey* tevRegKey, J3D
 	}
 	for (u16 i = 0; i < tevColorAnmCount; i++) {
 		(*tevColorAnms)[i].m_index = i;
-		(*tevColorAnms)[i].m_key = tevRegKey;
+		(*tevColorAnms)[i].m_key   = tevRegKey;
 	}
 
 	*tevKColorAnms = new J3DTevKColorAnm[tevKColorAnmCount];
@@ -345,7 +339,7 @@ J3DErrType J3DMaterialTable::allocTevRegAnimator(J3DAnmTevRegKey* tevRegKey, J3D
 	}
 	for (u16 i = 0; i < tevKColorAnmCount; i++) {
 		(*tevKColorAnms)[i].m_index = i;
-		(*tevKColorAnms)[i].m_key = tevRegKey;
+		(*tevKColorAnms)[i].m_key   = tevRegKey;
 	}
 
 	return JET_Success;
@@ -589,9 +583,9 @@ J3DErrType J3DMaterialTable::allocTevRegAnimator(J3DAnmTevRegKey* tevRegKey, J3D
  * Size:	000018
  */
 J3DTevKColorAnm::J3DTevKColorAnm()
-	: m_index(0)
-	, _02(1)
-	, m_key(nullptr)
+    : m_index(0)
+    , _02(1)
+    , m_key(nullptr)
 {
 	/*
 	li       r4, 0
@@ -609,9 +603,9 @@ J3DTevKColorAnm::J3DTevKColorAnm()
  * Size:	000018
  */
 J3DTevColorAnm::J3DTevColorAnm()
-	: m_index(0)
-	, _02(1)
-	, m_key(nullptr)
+    : m_index(0)
+    , _02(1)
+    , m_key(nullptr)
 {
 	/*
 	li       r4, 0
