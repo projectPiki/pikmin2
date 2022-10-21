@@ -208,7 +208,7 @@ inline void weightVecXZ(Vector3f& vec, f32 weight)
 	vec = temp;
 }
 
-inline f32 Vector3f::length() const
+template <> inline f32 Vector3f::length() const
 {
 	f32 thing = x;
 	Vector2f thing2(x * x, y * y);
@@ -312,7 +312,7 @@ inline void sumZ(Vector3f vec, float* sum)
 	*sum  = z + *sum;
 }
 
-inline f32 Vector3f::distance(Vector3f& them)
+template <> inline f32 Vector3f::distance(Vector3f& them)
 {
 	Vector3f diff = *this - them;
 

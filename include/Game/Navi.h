@@ -10,6 +10,7 @@
 #include "Dolphin/mtx.h"
 #include "JSystem/J2D/J2DGrafContext.h"
 #include "JSystem/J3D/J3DModel.h"
+#include "JSystem/J3D/J3DMtxCalc.h"
 #include "JSystem/JSupport/JSUList.h"
 #include "JSystem/JAI/JAInter/Object.h"
 #include "Sys/MatBaseAnimation.h"
