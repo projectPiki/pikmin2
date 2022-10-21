@@ -32,7 +32,7 @@ struct Obj : public EnemyBase {
 	virtual void outWaterCallback();                        // _88 (weak)
 	virtual void collisionCallback(CollEvent&);             // _EC
 	virtual void getShadowParam(ShadowParam&);              // _134
-	virtual ~Obj();                                         // _1BC (weak)
+	virtual ~Obj() { }                                      // _1BC (weak)
 	virtual void setInitialSetting(EnemyInitialParamBase*); // _1C4
 	virtual void doUpdate();                                // _1CC
 	virtual void doDebugDraw(Graphics&);                    // _1EC
@@ -51,7 +51,7 @@ struct Obj : public EnemyBase {
 	virtual void doStartMovie();                            // _2F0
 	virtual void doEndMovie();                              // _2F4
 	virtual void setFSM(FSM*);                              // _2F8
-	virtual void viewGetCollTreeOffset();                   // _2FC (weak)
+	virtual Vector3f viewGetCollTreeOffset();               // _2FC (weak)
 	virtual void attackNaviPosition();                      // _300 (weak)
 	//////////////// VTABLE END
 
@@ -84,11 +84,14 @@ struct Obj : public EnemyBase {
 struct Mgr : public EnemyMgrBase {
 	Mgr(int objLimit, u8 modelType);
 
-	virtual ~Mgr();                                     // _58 (weak)
-	virtual void createObj(int);                        // _A0
-	virtual EnemyBase* getEnemy(int);                   // _A4
-	virtual void doAlloc();                             // _A8
-	virtual EnemyTypeID::EEnemyTypeID getEnemyTypeID(); // _AC (weak)
+	// virtual ~Mgr();                                     // _58 (weak)
+	virtual void doAlloc();                            // _A8
+	virtual void createObj(int);                       // _A0
+	virtual EnemyBase* getEnemy(int);                  // _A4
+	virtual EnemyTypeID::EEnemyTypeID getEnemyTypeID() // _AC (weak)
+	{
+		return EnemyTypeID::EnemyID_Frog;
+	}
 
 	// _00 		= VTBL
 	// _00-_44	= EnemyMgrBase
@@ -97,7 +100,14 @@ struct Mgr : public EnemyMgrBase {
 
 struct Parms : public EnemyParmsBase {
 	struct ProperParms : public Parameters {
-		inline ProperParms(); // likely
+		inline ProperParms()
+		    : Parameters(nullptr, "FrogParms")
+		    , m_fp01(this, 'fp01', "空中時間", 1.5f, 0.0f, 5.0f)          // 'air time'
+		    , m_fp02(this, 'fp02', "ジャンプ速度", 400.0f, 0.0f, 1000.0f) // 'jump speed'
+		    , m_fp03(this, 'fp03', "失敗確率", 0.2f, 0.0f, 1.0f)          // 'probability of failure'
+		    , m_fp04(this, 'fp04', "落下初速度", 300.0f, 0.0f, 500.0f)    // 'initial fall velocity'
+		{
+		}
 
 		Parm<f32> m_fp01; // _804
 		Parm<f32> m_fp02; // _82C
@@ -105,9 +115,14 @@ struct Parms : public EnemyParmsBase {
 		Parm<f32> m_fp04; // _87C
 	};
 
-	Parms();
+	Parms() { }
 
-	virtual void read(Stream&); // _08 (weak)
+	virtual void read(Stream& stream) // _08 (weak)
+	{
+		CreatureParms::read(stream);
+		m_general.read(stream);
+		m_properParms.read(stream);
+	}
 
 	// _00-_7F8	= EnemyParmsBase
 	ProperParms m_properParms; // _7F8

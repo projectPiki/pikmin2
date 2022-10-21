@@ -5,6 +5,7 @@
 #include "Game/EnemyParmsBase.h"
 #include "Game/EnemyBase.h"
 #include "Game/EnemyMgrBase.h"
+#include "JSystem/JUT/JUTNameTab.h"
 
 /**
  * --Header for Beetle Base Class (Kogane)--
@@ -28,7 +29,7 @@ struct Obj : public EnemyBase {
 	virtual void inWaterCallback(WaterBox*);                 // _84 (weak)
 	virtual void outWaterCallback();                         // _88 (weak)
 	virtual void getShadowParam(ShadowParam&);               // _134
-	virtual ~Obj();                                          // _1BC (weak)
+	virtual ~Obj() { }                                       // _1BC (weak)
 	virtual void setInitialSetting(EnemyInitialParamBase*);  // _1C4
 	virtual void doUpdate();                                 // _1CC
 	virtual void doUpdateCommon();                           // _1D0
@@ -82,20 +83,39 @@ struct Obj : public EnemyBase {
 struct Mgr : public EnemyMgrBase {
 	Mgr(int objLimit, u8 modelType);
 
-	virtual ~Mgr();                                     // _58 (weak)
-	virtual EnemyTypeID::EEnemyTypeID getEnemyTypeID(); // _AC (weak)
-	virtual SysShape::Model* createModel();             // _B0
-	virtual void loadModelData();                       // _C8
-	virtual void loadAnimData();                        // _CC
-	virtual J3DModelData* doLoadBmd(void*);             // _D4 (weak)
+	// virtual ~Mgr();                                     // _58 (weak)
+	virtual SysShape::Model* createModel();            // _B0
+	virtual void loadModelData();                      // _C8
+	virtual void loadAnimData();                       // _CC
+	virtual EnemyTypeID::EEnemyTypeID getEnemyTypeID() // _AC (weak)
+	{
+		return EnemyTypeID::EnemyID_Kogane;
+	}
+	virtual J3DModelData* doLoadBmd(void* filename) // _D4 (weak)
+	{
+		return J3DModelLoaderDataBase::load(filename, 0x00240030);
+	}
+	virtual ResTIMG* getChangeTexture() = 0; // _E0
 
 	// _00 		= VTBL
 	// _00-_44	= EnemyMgrBase
+	ResTIMG* m_changeTexture; // _44
 };
 
 struct Parms : public EnemyParmsBase {
 	struct ProperParms : Parameters {
-		inline ProperParms(); // probably
+		ProperParms()
+		    : Parameters(nullptr, "EnemyParmsBase")
+		    , m_fp01(this, 'fp01', "出現時間(Min)", 15.0f, 0.0f, 100.0f)
+		    , m_fp02(this, 'fp02', "出現時間(Max)", 30.0f, 0.0f, 100.0f)
+		    , m_fp10(this, 'fp10', "移動時間(Min)", 0.5f, 0.0f, 10.0f)
+		    , m_fp11(this, 'fp11', "移動時間(Max)", 2.0f, 0.0f, 10.0f)
+		    , m_fp20(this, 'fp20', "停止時間(Min)", 0.5f, 0.0f, 10.0f)
+		    , m_fp21(this, 'fp21', "停止時間(Max)", 2.0f, 0.0f, 10.0f)
+		    , m_fp30(this, 'fp30', "向き変え角度", 45.0f, 0.0f, 90.0f)
+		    , m_fp40(this, 'fp40', "スケール", 0.8f, 0.0f, 5.0f)
+		{
+		}
 
 		Parm<f32> m_fp01; // _804
 		Parm<f32> m_fp02; // _82C
@@ -107,9 +127,14 @@ struct Parms : public EnemyParmsBase {
 		Parm<f32> m_fp40; // _91C
 	};
 
-	Parms();
+	Parms() { }
 
-	virtual void read(Stream&); // _08 (weak)
+	virtual void read(Stream& stream) // _08 (weak)
+	{
+		CreatureParms::read(stream);
+		m_general.read(stream);
+		m_properParms.read(stream);
+	}
 
 	// _00-_7F8	= EnemyParmsBase
 	ProperParms m_properParms; // _7F8

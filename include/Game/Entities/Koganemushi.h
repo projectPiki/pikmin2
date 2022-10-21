@@ -25,18 +25,23 @@ struct Obj : public Kogane::Obj {
 struct Mgr : public Kogane::Mgr {
 	Mgr(int objLimit, u8 modelType);
 
-	virtual ~Mgr();                                     // _58 (weak)
-	virtual void createObj(int);                        // _A0
-	virtual EnemyBase* getEnemy(int);                   // _A4
-	virtual void doAlloc();                             // _A8
-	virtual EnemyTypeID::EEnemyTypeID getEnemyTypeID(); // _AC (weak)
-	virtual void loadTexData();                         // _D0
-	virtual ResTIMG* getChangeTexture();                // _E0 (weak)
+	// virtual ~Mgr();                                     // _58 (weak)
+	virtual void createObj(int);                       // _A0
+	virtual EnemyBase* getEnemy(int);                  // _A4
+	virtual void doAlloc();                            // _A8
+	virtual void loadTexData();                        // _D0
+	virtual EnemyTypeID::EEnemyTypeID getEnemyTypeID() // _AC (weak)
+	{
+		return EnemyTypeID::EnemyID_Kogane;
+	}
+	virtual ResTIMG* getChangeTexture() // _E0 (weak)
+	{
+		return m_changeTexture;
+	}
 
 	// _00 		= VTBL
-	// _00-_44	= EnemyMgrBase
-	u8 _44[0x4]; // _44, unknown
-	Obj* m_obj;  // _48, array of Objs
+	// _00-_48	= Kogane::Mgr
+	Obj* m_obj; // _48, array of Objs
 };
 } // namespace Koganemushi
 } // namespace Game

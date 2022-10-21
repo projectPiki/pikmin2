@@ -13,7 +13,7 @@ struct Obj : public Kogane::Obj {
 	Obj();
 
 	//////////////// VTABLE
-	virtual ~Obj();                                     // _1BC (weak)
+	virtual ~Obj() { }                                  // _1BC (weak)
 	virtual void changeMaterial();                      // _200
 	virtual EnemyTypeID::EEnemyTypeID getEnemyTypeID(); // _258 (weak)
 	virtual void createItem();                          // _2FC
@@ -28,23 +28,30 @@ struct Obj : public Kogane::Obj {
 
 	// _00 		= VTBL
 	// _00-_2DC	= Kogane::Obj
+	u8 _2DC[0x4]; // _2DC, unknown
+	              // _2E0 = PelletView
 };
 
 struct Mgr : public Kogane::Mgr {
 	Mgr(int objLimit, u8 modelType);
 
-	virtual ~Mgr();                                     // _58 (weak)
-	virtual void createObj(int);                        // _A0
-	virtual EnemyBase* getEnemy(int);                   // _A4
-	virtual void doAlloc();                             // _A8
-	virtual EnemyTypeID::EEnemyTypeID getEnemyTypeID(); // _AC (weak)
-	virtual void loadTexData();                         // _D0
-	virtual void getChangeTexture();                    // _E0 (weak)
+	// virtual ~Mgr();                                     // _58 (weak)
+	virtual void doAlloc();                            // _A8
+	virtual void createObj(int);                       // _A0
+	virtual EnemyBase* getEnemy(int);                  // _A4
+	virtual void loadTexData();                        // _D0
+	virtual EnemyTypeID::EEnemyTypeID getEnemyTypeID() // _AC (weak)
+	{
+		return EnemyTypeID::EnemyID_Wealthy;
+	}
+	virtual ResTIMG* getChangeTexture() // _E0 (weak)
+	{
+		return m_changeTexture;
+	}
 
 	// _00 		= VTBL
-	// _00-_44	= EnemyMgrBase
-	u8 _44[0x4]; // _44, unknown
-	Obj* m_obj;  // _48, array of Objs
+	// _00-_48	= Kogane::Mgr
+	Obj* m_obj; // _48, array of Objs
 };
 } // namespace Wealthy
 } // namespace Game

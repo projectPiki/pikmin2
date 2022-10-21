@@ -7,6 +7,7 @@
 #include "Game/EnemyMgrBase.h"
 #include "Game/EnemyBase.h"
 #include "Game/WalkSmokeEffect.h"
+#include "efx/TChibi.h"
 
 /**
  * --Header for Gatling Groinks (MiniHoudai)--
@@ -16,12 +17,6 @@
  */
 
 struct J3DJoint;
-
-namespace efx {
-struct TChibiCharge;
-struct TChibiDeadLight;
-struct TChibiShell;
-} // namespace efx
 
 namespace Game {
 struct WayPoint;
@@ -52,7 +47,7 @@ struct Obj : public EnemyBase {
 	virtual void onKill(CreatureKillArg*);                  // _34
 	virtual void doDirectDraw(Graphics&);                   // _50
 	virtual void getShadowParam(ShadowParam&);              // _134
-	virtual ~Obj();                                         // _1BC (weak)
+	virtual ~Obj() { }                                      // _1BC (weak)
 	virtual void setInitialSetting(EnemyInitialParamBase*); // _1C4
 	virtual void doUpdate();                                // _1CC
 	virtual void doUpdateCommon();                          // _1D0
@@ -134,11 +129,17 @@ struct Obj : public EnemyBase {
 struct Mgr : public EnemyMgrBase {
 	Mgr(int objLimit, u8 modelType);
 
-	virtual ~Mgr();                                     // _58 (weak)
-	virtual EnemyTypeID::EEnemyTypeID getEnemyTypeID(); // _AC (weak)
-	virtual void loadModelData();                       // _C8
-	virtual void loadAnimData();                        // _CC
-	virtual J3DModelData* doLoadBmd(void*);             // _D4 (weak)
+	// virtual ~Mgr();                                     // _58 (weak)
+	virtual void loadModelData();                      // _C8
+	virtual void loadAnimData();                       // _CC
+	virtual EnemyTypeID::EEnemyTypeID getEnemyTypeID() // _AC (weak)
+	{
+		return EnemyTypeID::EnemyID_MiniHoudai;
+	}
+	virtual J3DModelData* doLoadBmd(void* filename) // _D4 (weak)
+	{
+		return J3DModelLoaderDataBase::load(filename, 0x01240030);
+	}
 
 	// _00 		= VTBL
 	// _00-_44	= EnemyMgrBase
@@ -146,15 +147,25 @@ struct Mgr : public EnemyMgrBase {
 
 struct Parms : public EnemyParmsBase {
 	struct ProperParms : public Parameters {
-		inline ProperParms(); // likely
+		inline ProperParms()
+		    : Parameters(nullptr, "EnemyParmsBase")
+		    , m_fp11(this, 'fp11', "éÄñS ? ÉQÅ[ÉWèoåª", 30.0f, 1.0f, 500.0f) // 'death ~ appearance of gauge'
+		    , m_fp12(this, 'fp12', "ÉQÅ[ÉWèoåª ? ïúäà", 10.0f, 1.0f, 500.0f) // 'appearance of gauge ~ resurrection'
+		{
+		}
 
-		Parm<f32> _804; // _804, type unsure
-		Parm<f32> _82C; // _82C, type unsure
+		Parm<f32> m_fp11; // _804
+		Parm<f32> m_fp12; // _82C
 	};
 
-	Parms();
+	Parms() { }
 
-	virtual void read(Stream&); // _08 (weak)
+	virtual void read(Stream& stream) // _08 (weak)
+	{
+		CreatureParms::read(stream);
+		m_general.read(stream);
+		m_properParms.read(stream);
+	}
 
 	// _00-_7F8	= EnemyParmsBase
 	ProperParms m_properParms; // _7F8
@@ -337,8 +348,11 @@ namespace FixMiniHoudai {
 struct Obj : public MiniHoudai::Obj {
 	Obj();
 
-	virtual ~Obj();                                     // _1BC (weak)
-	virtual EnemyTypeID::EEnemyTypeID getEnemyTypeID(); // _258 (weak)
+	virtual ~Obj() { }                                 // _1BC (weak)
+	virtual EnemyTypeID::EEnemyTypeID getEnemyTypeID() // _258 (weak)
+	{
+		return EnemyTypeID::EnemyID_FminiHoudai;
+	}
 
 	// _00		= VTBL
 	// _00-_308	= MiniHoudai::Obj
@@ -347,11 +361,14 @@ struct Obj : public MiniHoudai::Obj {
 struct Mgr : public MiniHoudai::Mgr {
 	Mgr(int objLimit, u8 modelType);
 
-	virtual ~Mgr();                                     // _58 (weak)
-	virtual void createObj(int);                        // _A0
-	virtual EnemyBase* getEnemy(int);                   // _A4
-	virtual void doAlloc();                             // _A8
-	virtual EnemyTypeID::EEnemyTypeID getEnemyTypeID(); // _AC (weak)
+	// virtual ~Mgr();                                     // _58 (weak)
+	virtual void createObj(int);                       // _A0
+	virtual EnemyBase* getEnemy(int);                  // _A4
+	virtual void doAlloc();                            // _A8
+	virtual EnemyTypeID::EEnemyTypeID getEnemyTypeID() // _AC (weak)
+	{
+		return EnemyTypeID::EnemyID_FminiHoudai;
+	}
 
 	// _00 		= VTBL
 	// _00-_44	= MiniHoudai::Mgr
@@ -364,8 +381,11 @@ namespace NormMiniHoudai {
 struct Obj : public MiniHoudai::Obj {
 	Obj();
 
-	virtual ~Obj();                                     // _1BC (weak)
-	virtual EnemyTypeID::EEnemyTypeID getEnemyTypeID(); // _258 (weak)
+	virtual ~Obj() { }                                 // _1BC (weak)
+	virtual EnemyTypeID::EEnemyTypeID getEnemyTypeID() // _258 (weak)
+	{
+		return EnemyTypeID::EnemyID_MiniHoudai;
+	}
 
 	// _00		= VTBL
 	// _00-_308	= MiniHoudai::Obj
@@ -374,11 +394,15 @@ struct Obj : public MiniHoudai::Obj {
 struct Mgr : public MiniHoudai::Mgr {
 	Mgr(int objLimit, u8 modelType);
 
-	virtual ~Mgr();                                     // _58 (weak)
-	virtual void createObj(int);                        // _A0
-	virtual EnemyBase* getEnemy(int);                   // _A4
-	virtual void doAlloc();                             // _A8
-	virtual EnemyTypeID::EEnemyTypeID getEnemyTypeID(); // _AC (weak)
+	// virtual ~Mgr();                                     // _58 (weak)
+	virtual void doAlloc();           // _A8
+	virtual void createObj(int);      // _A0
+	virtual EnemyBase* getEnemy(int); // _A4
+
+	virtual EnemyTypeID::EEnemyTypeID getEnemyTypeID() // _AC (weak)
+	{
+		return EnemyTypeID::EnemyID_MiniHoudai;
+	}
 
 	// _00 		= VTBL
 	// _00-_44	= MiniHoudai::Mgr

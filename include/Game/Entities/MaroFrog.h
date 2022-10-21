@@ -12,7 +12,7 @@ namespace MaroFrog {
 struct Obj : public Frog::Obj {
 	Obj();
 
-	virtual ~Obj();                                     // _1BC (weak)
+	virtual ~Obj() { }                                  // _1BC (weak)
 	virtual EnemyTypeID::EEnemyTypeID getEnemyTypeID(); // _258 (weak)
 	virtual void attackNaviPosition();                  // _300
 
@@ -23,21 +23,16 @@ struct Obj : public Frog::Obj {
 };
 
 struct Mgr : public EnemyMgrBase {
-	/*
-	 * technically unknown if it inherits from Frog::Mgr or EnemyMgrBase
-	 * since it has the same defined methods.
-	 * Guessing base because both likely have defined obj arrays that
-	 * shouldn't be shared, but who knows with this game.
-	 *  - HP
-	 */
-
 	Mgr(int objLimit, u8 modelType);
 
-	virtual ~Mgr();                                     // _58 (weak)
-	virtual void createObj(int);                        // _A0
-	virtual EnemyBase* getEnemy(int);                   // _A4
-	virtual void doAlloc();                             // _A8
-	virtual EnemyTypeID::EEnemyTypeID getEnemyTypeID(); // _AC (weak)
+	// virtual ~Mgr();                                     // _58 (weak)
+	virtual void createObj(int);                       // _A0
+	virtual EnemyBase* getEnemy(int);                  // _A4
+	virtual void doAlloc();                            // _A8
+	virtual EnemyTypeID::EEnemyTypeID getEnemyTypeID() // _AC (weak)
+	{
+		return EnemyTypeID::EnemyID_MaroFrog;
+	}
 
 	// _00 		= VTBL
 	// _00-_44	= EnemyMgrBase
