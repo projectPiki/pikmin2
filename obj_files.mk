@@ -652,7 +652,7 @@ NISHIMURA:=\
 	$(BUILD_DIR)/src/plugProjectNishimuraU/FrogAnimator.o\
 	$(BUILD_DIR)/src/plugProjectNishimuraU/FrogMgr.o\
 	$(BUILD_DIR)/asm/plugProjectNishimuraU/Frog.o\
-	$(BUILD_DIR)/asm/plugProjectNishimuraU/UjibMgr.o\
+	$(BUILD_DIR)/src/plugProjectNishimuraU/UjibMgr.o\
 	$(BUILD_DIR)/asm/plugProjectNishimuraU/Ujib.o\
 	$(BUILD_DIR)/asm/plugProjectNishimuraU/UjibState.o\
 	$(BUILD_DIR)/src/plugProjectNishimuraU/UjibAnimator.o\
@@ -673,11 +673,11 @@ NISHIMURA:=\
 	$(BUILD_DIR)/asm/plugProjectNishimuraU/Rock.o\
 	$(BUILD_DIR)/asm/plugProjectNishimuraU/UjiaState.o\
 	$(BUILD_DIR)/src/plugProjectNishimuraU/UjiaAnimator.o\
-	$(BUILD_DIR)/asm/plugProjectNishimuraU/UjiaMgr.o\
+	$(BUILD_DIR)/src/plugProjectNishimuraU/UjiaMgr.o\
 	$(BUILD_DIR)/asm/plugProjectNishimuraU/Ujia.o\
 	$(BUILD_DIR)/asm/plugProjectNishimuraU/TobiState.o\
 	$(BUILD_DIR)/src/plugProjectNishimuraU/TobiAnimator.o\
-	$(BUILD_DIR)/asm/plugProjectNishimuraU/TobiMgr.o\
+	$(BUILD_DIR)/src/plugProjectNishimuraU/TobiMgr.o\
 	$(BUILD_DIR)/asm/plugProjectNishimuraU/Tobi.o\
 	$(BUILD_DIR)/src/plugProjectNishimuraU/HibaState.o\
 	$(BUILD_DIR)/src/plugProjectNishimuraU/HibaAnimator.o\
@@ -703,7 +703,7 @@ NISHIMURA:=\
 	$(BUILD_DIR)/src/plugProjectNishimuraU/Catfish.o\
 	$(BUILD_DIR)/asm/plugProjectNishimuraU/TadpoleState.o\
 	$(BUILD_DIR)/src/plugProjectNishimuraU/TadpoleAnimator.o\
-	$(BUILD_DIR)/asm/plugProjectNishimuraU/TadpoleMgr.o\
+	$(BUILD_DIR)/src/plugProjectNishimuraU/TadpoleMgr.o\
 	$(BUILD_DIR)/asm/plugProjectNishimuraU/Tadpole.o\
 	$(BUILD_DIR)/asm/plugProjectNishimuraU/ElecBugState.o\
 	$(BUILD_DIR)/src/plugProjectNishimuraU/ElecBugAnimator.o\
@@ -734,7 +734,7 @@ NISHIMURA:=\
 	$(BUILD_DIR)/src/plugProjectNishimuraU/DemonMgr.o\
 	$(BUILD_DIR)/asm/plugProjectNishimuraU/Demon.o\
 	$(BUILD_DIR)/asm/plugProjectNishimuraU/QueenShadow.o\
-	$(BUILD_DIR)/asm/plugProjectNishimuraU/FireChappyMgr.o\
+	$(BUILD_DIR)/src/plugProjectNishimuraU/FireChappyMgr.o\
 	$(BUILD_DIR)/asm/plugProjectNishimuraU/FireChappy.o\
 	$(BUILD_DIR)/asm/plugProjectNishimuraU/SnakeCrowState.o\
 	$(BUILD_DIR)/src/plugProjectNishimuraU/SnakeCrowAnimator.o\

@@ -4,17 +4,12 @@
 #include "Game/EnemyMgrBase.h"
 #include "Game/EnemyBase.h"
 #include "Game/Entities/ChappyBase.h"
+#include "efx/TYaki.h"
+#include "Sys/MatBaseAnimation.h"
 
 /**
  * --Header for Fiery Bulblax (FireChappy)--
  */
-
-namespace efx {
-struct TYakiBody;
-struct TYakiFlick;
-struct TYakiDeadsmoke;
-struct TYakiSteam;
-} // namespace efx
 
 namespace Game {
 namespace FireChappy {
@@ -27,7 +22,7 @@ struct Obj : public ChappyBase::Obj {
 	virtual void doDirectDraw(Graphics&);               // _50
 	virtual void collisionCallback(CollEvent&);         // _EC
 	virtual void getShadowParam(ShadowParam&);          // _134
-	virtual ~Obj();                                     // _1BC (weak)
+	virtual ~Obj() { }                                  // _1BC (weak)
 	virtual void doUpdateCommon();                      // _1D0
 	virtual void doDebugDraw(Graphics&);                // _1EC
 	virtual void changeMaterial();                      // _200
@@ -68,26 +63,32 @@ struct Obj : public ChappyBase::Obj {
 	                                     // _300 = PelletView
 };
 
-struct Mgr : public ChappyBase::Mgr {
+struct Mgr : public EnemyMgrBase {
 	Mgr(int objLimit, u8 modelType);
 
 	//////////////// VTABLE
-	virtual ~Mgr() { }                                  // _58 (weak)
-	virtual void createObj(int);                        // _A0
-	virtual EnemyBase* getEnemy(int);                   // _A4
-	virtual void doAlloc();                             // _A8
-	virtual EnemyTypeID::EEnemyTypeID getEnemyTypeID(); // _AC (weak)
-	virtual SysShape::Model* createModel();             // _B0
-	virtual void loadModelData();                       // _C8
-	virtual void loadTexData();                         // _D0
-	virtual J3DModelData* doLoadBmd(void*);             // _D4 (weak)
+	// virtual ~Mgr() { }                                  // _58 (weak)
+	virtual void createObj(int);                       // _A0
+	virtual EnemyBase* getEnemy(int);                  // _A4
+	virtual void doAlloc();                            // _A8
+	virtual SysShape::Model* createModel();            // _B0
+	virtual void loadModelData();                      // _C8
+	virtual void loadTexData();                        // _D0
+	virtual EnemyTypeID::EEnemyTypeID getEnemyTypeID() // _AC (weak)
+	{
+		return EnemyTypeID::EnemyID_FireChappy;
+	}
+	virtual J3DModelData* doLoadBmd(void* filename) // _D4 (weak)
+	{
+		return J3DModelLoaderDataBase::load(filename, 0x01240030);
+	}
 	//////////////// VTABLE END
 
 	// _00 		= VTBL
 	// _00-_44	= EnemyMgrBase
-	Obj* m_obj; // _44, an array of Objs
-	u32 _48;    // _48, unknown
-	u32 _4C;    // _4C, unknown
+	Obj* m_obj;                                 // _44, an array of Objs
+	Sys::MatTexAnimation* m_texAnimation;       // _48, unknown
+	Sys::MatTevRegAnimation* m_tevRegAnimation; // _4C, unknown
 };
 
 } // namespace FireChappy
