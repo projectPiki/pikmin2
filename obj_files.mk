@@ -77,7 +77,7 @@ JSYSTEM:=\
 	$(BUILD_DIR)/asm/JSystem/JUT/JUTDirectFile.o\
 	$(BUILD_DIR)/asm/JSystem/JUT/JUTDirectPrint.o\
 	$(BUILD_DIR)/asm/JSystem/JUT/JUTException.o\
-	$(BUILD_DIR)/asm/JSystem/JUT/JUTFader.o\
+	$(BUILD_DIR)/src/JSystem/JUT/JUTFader.o\
 	$(BUILD_DIR)/src/JSystem/JUT/JUTFont.o\
 	$(BUILD_DIR)/asm/JSystem/JUT/JUTGamePad.o\
 	$(BUILD_DIR)/asm/JSystem/JUT/JUTGraphFifo.o\
