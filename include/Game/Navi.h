@@ -152,7 +152,7 @@ struct Navi : public FakePiki, virtual public PelletView {
 	void fountainonAllPikis(Vector3f&);
 	int getDopeCount(int);
 	void getLifeRatio();
-	void getOlimarData();
+	OlimarData* getOlimarData();
 	int getStateID();
 	bool hasDope(int);
 	void holeinAllPikis(Vector3f&);

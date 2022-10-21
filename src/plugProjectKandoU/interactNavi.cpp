@@ -58,6 +58,11 @@
         .4byte 0x80000000
 */
 
+#include "Game/Navi.h"
+#include "Game/NaviState.h"
+#include "Game/Interaction.h"
+#include "Game/Entities/Sarai.h"
+
 namespace Game {
 
 /*
@@ -65,43 +70,13 @@ namespace Game {
  * Address:	801D7E64
  * Size:	000074
  */
-void Navi::stimulate(Game::Interaction&)
+bool Navi::stimulate(Game::Interaction& interaction)
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	mr       r31, r4
-	stw      r30, 8(r1)
-	mr       r30, r3
-	mr       r3, r31
-	lwz      r12, 0(r31)
-	mr       r4, r30
-	lwz      r12, 8(r12)
-	mtctr    r12
-	bctrl
-	clrlwi.  r0, r3, 0x18
-	beq      lbl_801D7EBC
-	mr       r3, r31
-	mr       r4, r30
-	lwz      r12, 0(r31)
-	lwz      r12, 0x10(r12)
-	mtctr    r12
-	bctrl
-	b        lbl_801D7EC0
+	if (interaction.actCommon(this)) {
+		return interaction.actNavi(this);
+	}
 
-lbl_801D7EBC:
-	li       r3, 0
-
-lbl_801D7EC0:
-	lwz      r0, 0x14(r1)
-	lwz      r31, 0xc(r1)
-	lwz      r30, 8(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	return false;
 }
 
 /*
@@ -109,51 +84,16 @@ lbl_801D7EC0:
  * Address:	801D7ED8
  * Size:	00008C
  */
-void InteractSarai::actNavi(Game::Navi*)
+bool InteractSarai::actNavi(Game::Navi* navi)
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	mr       r31, r4
-	stw      r30, 8(r1)
-	mr       r30, r3
-	lwz      r5, gameSystem__4Game@sda21(r13)
-	cmplwi   r5, 0
-	beq      lbl_801D7F0C
-	lbz      r0, 0x3c(r5)
-	rlwinm.  r0, r0, 0, 0x1a, 0x1a
-	beq      lbl_801D7F4C
+	if (!gameSystem || gameSystem->_3C & 0x20) {
+		if (!navi->isStickTo()) {
+			navi->startStick(m_creature, m_collPart);
+			navi->transit(NSID_Sarai, nullptr);
+		}
 
-lbl_801D7F0C:
-	mr       r3, r31
-	bl       isStickTo__Q24Game8CreatureFv
-	clrlwi.  r0, r3, 0x18
-	bne      lbl_801D7F48
-	lwz      r4, 4(r30)
-	mr       r3, r31
-	lwz      r5, 0xc(r30)
-	bl       startStick__Q24Game8CreatureFPQ24Game8CreatureP8CollPart
-	mr       r3, r31
-	li       r4, 0x11
-	lwz      r12, 0(r31)
-	li       r5, 0
-	lwz      r12, 0x22c(r12)
-	mtctr    r12
-	bctrl
-
-lbl_801D7F48:
-	li       r3, 1
-
-lbl_801D7F4C:
-	lwz      r0, 0x14(r1)
-	lwz      r31, 0xc(r1)
-	lwz      r30, 8(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+		return true;
+	}
 }
 
 /*
@@ -161,46 +101,15 @@ lbl_801D7F4C:
  * Address:	801D7F64
  * Size:	000080
  */
-void InteractBomb::actNavi(Game::Navi*)
+bool InteractBomb::actNavi(Game::Navi* navi)
 {
-	/*
-	stwu     r1, -0x20(r1)
-	mflr     r0
-	mr       r6, r4
-	stw      r0, 0x24(r1)
-	lwz      r5, gameSystem__4Game@sda21(r13)
-	lbz      r0, 0x3c(r5)
-	rlwinm.  r0, r0, 0, 0x1a, 0x1a
-	bne      lbl_801D7F8C
-	li       r3, 0
-	b        lbl_801D7FD4
+	if ((gameSystem->_3C & 0x20) == 0) {
+		return false;
+	}
 
-lbl_801D7F8C:
-	lfs      f1, 8(r3)
-	addi     r5, r1, 8
-	lwz      r0, 4(r3)
-	li       r4, 0xc
-	stw      r0, 8(r1)
-	lfs      f0, 0xc(r3)
-	stfs     f0, 0xc(r1)
-	lfs      f0, 0x10(r3)
-	stfs     f0, 0x10(r1)
-	lfs      f0, 0x14(r3)
-	mr       r3, r6
-	stfs     f0, 0x14(r1)
-	stfs     f1, 0x18(r1)
-	lwz      r12, 0(r6)
-	lwz      r12, 0x22c(r12)
-	mtctr    r12
-	bctrl
-	li       r3, 1
-
-lbl_801D7FD4:
-	lwz      r0, 0x24(r1)
-	mtlr     r0
-	addi     r1, r1, 0x20
-	blr
-	*/
+	NaviFlickArg flickArg(m_creature, m_direction, m_damage);
+	navi->transit(NSID_Flick, &flickArg);
+	return true;
 }
 
 /*
@@ -208,74 +117,25 @@ lbl_801D7FD4:
  * Address:	801D7FE4
  * Size:	0000E0
  */
-void InteractWind::actNavi(Game::Navi*)
+bool InteractWind::actNavi(Game::Navi* navi)
 {
-	/*
-	stwu     r1, -0x30(r1)
-	mflr     r0
-	stw      r0, 0x34(r1)
-	stw      r31, 0x2c(r1)
-	mr       r31, r4
-	stw      r30, 0x28(r1)
-	mr       r30, r3
-	mr       r3, r31
-	bl       getOlimarData__Q24Game4NaviFv
-	li       r4, 7
-	bl       hasItem__Q24Game10OlimarDataFi
-	clrlwi.  r0, r3, 0x18
-	beq      lbl_801D8020
-	li       r3, 0
-	b        lbl_801D80AC
+	OlimarData* oData = navi->getOlimarData();
+	if (oData->hasItem(OlimarData::ODII_RepugnantAppendage)) {
+		return false;
+	}
 
-lbl_801D8020:
-	lfs      f1, 8(r30)
-	lwz      r3, 4(r30)
-	stw      r3, 8(r1)
-	lfs      f0, 0xc(r30)
-	stfs     f0, 0xc(r1)
-	lfs      f0, 0x10(r30)
-	stfs     f0, 0x10(r1)
-	lfs      f0, 0x14(r30)
-	stfs     f0, 0x14(r1)
-	stfs     f1, 0x18(r1)
-	lwz      r4, 0x274(r31)
-	lwz      r5, 4(r4)
-	cmpwi    r5, 0xc
-	bne      lbl_801D806C
-	lwz      r0, 0x14(r4)
-	cmplw    r0, r3
-	bne      lbl_801D806C
-	li       r3, 0
-	b        lbl_801D80AC
+	NaviFlickArg flickArg(m_creature, m_direction, m_damage);
 
-lbl_801D806C:
-	cmpwi    r5, 0x10
-	bne      lbl_801D808C
-	lwz      r3, 0x1c(r4)
-	lwz      r0, 4(r30)
-	cmplw    r3, r0
-	bne      lbl_801D808C
-	li       r3, 0
-	b        lbl_801D80AC
+	if (navi->m_currentState->m_id == NSID_Flick && ((NaviFlickState*)navi->m_currentState)->m_flicker == m_creature) {
+		return false;
+	}
 
-lbl_801D808C:
-	mr       r3, r31
-	addi     r5, r1, 8
-	lwz      r12, 0(r31)
-	li       r4, 0xc
-	lwz      r12, 0x22c(r12)
-	mtctr    r12
-	bctrl
-	li       r3, 1
+	if (navi->m_currentState->m_id == NSID_KokeDamage && ((NaviKokeDamageState*)navi->m_currentState)->m_creature == m_creature) {
+		return false;
+	}
 
-lbl_801D80AC:
-	lwz      r0, 0x34(r1)
-	lwz      r31, 0x2c(r1)
-	lwz      r30, 0x28(r1)
-	mtlr     r0
-	addi     r1, r1, 0x30
-	blr
-	*/
+	navi->transit(NSID_Flick, &flickArg);
+	return true;
 }
 
 /*
@@ -283,61 +143,17 @@ lbl_801D80AC:
  * Address:	801D80C4
  * Size:	0000B4
  */
-void InteractDenki::actNavi(Game::Navi*)
+bool InteractDenki::actNavi(Game::Navi* navi)
 {
-	/*
-	stwu     r1, -0x30(r1)
-	mflr     r0
-	stw      r0, 0x34(r1)
-	stw      r31, 0x2c(r1)
-	mr       r31, r4
-	stw      r30, 0x28(r1)
-	mr       r30, r3
-	lwz      r5, gameSystem__4Game@sda21(r13)
-	cmplwi   r5, 0
-	beq      lbl_801D80F8
-	lbz      r0, 0x3c(r5)
-	rlwinm.  r0, r0, 0, 0x1a, 0x1a
-	beq      lbl_801D8160
+	if (!gameSystem || gameSystem->_3C & 0x20) {
+		if (!playData->m_olimarData->hasItem(OlimarData::ODII_DreamMaterial)) {
+			NaviFlickArg flickArg(m_creature, m_direction, m_damage);
+			navi->transit(NSID_Flick, &flickArg);
+			return true;
+		}
 
-lbl_801D80F8:
-	lwz      r3, playData__4Game@sda21(r13)
-	li       r4, 1
-	addi     r3, r3, 0x48
-	bl       hasItem__Q24Game10OlimarDataFi
-	clrlwi.  r0, r3, 0x18
-	bne      lbl_801D815C
-	lfs      f1, 8(r30)
-	mr       r3, r31
-	lwz      r0, 4(r30)
-	addi     r5, r1, 8
-	li       r4, 0xc
-	stw      r0, 8(r1)
-	lfs      f0, 0xc(r30)
-	stfs     f0, 0xc(r1)
-	lfs      f0, 0x10(r30)
-	stfs     f0, 0x10(r1)
-	lfs      f0, 0x14(r30)
-	stfs     f0, 0x14(r1)
-	stfs     f1, 0x18(r1)
-	lwz      r12, 0(r31)
-	lwz      r12, 0x22c(r12)
-	mtctr    r12
-	bctrl
-	li       r3, 1
-	b        lbl_801D8160
-
-lbl_801D815C:
-	li       r3, 0
-
-lbl_801D8160:
-	lwz      r0, 0x34(r1)
-	lwz      r31, 0x2c(r1)
-	lwz      r30, 0x28(r1)
-	mtlr     r0
-	addi     r1, r1, 0x30
-	blr
-	*/
+		return false;
+	}
 }
 
 /*
@@ -345,36 +161,38 @@ lbl_801D8160:
  * Address:	801D8178
  * Size:	000044
  */
-void InteractFallMeck::actNavi(Game::Navi*)
+bool InteractFallMeck::actNavi(Game::Navi* navi)
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	addi     r5, r1, 8
-	lfs      f0, 8(r3)
-	mr       r3, r4
-	li       r4, 0xf
-	stfs     f0, 8(r1)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x22c(r12)
-	mtctr    r12
-	bctrl
-	lwz      r0, 0x14(r1)
-	li       r3, 1
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	NaviFallMeckArg fmArg(_08);
+	navi->transit(NSID_FallMeck, &fmArg);
+	return true;
 }
 
 /*
  * --INFO--
  * Address:	801D81BC
  * Size:	0001F8
+ * 77% complete
  */
-void InteractFlick::actNavi(Game::Navi*)
+bool InteractFlick::actNavi(Game::Navi* navi)
 {
+	if (!gameSystem || gameSystem->_3C & 0x20) {
+		if (!playData->isDemoFlag(DEMO_Reunite_Captains)) {
+			return false;
+		}
+
+		f32 dir = _10 < -10.0f ? navi->getFaceDir() : -10;
+
+		f32 zRot = -pikmin2_cosf(dir);
+		f32 xRot = -pikmin2_sinf(dir);
+
+		f32 knockBack = m_knockback * randWeightFloat(0.1f) + m_knockback;
+
+		Vector3f direction(xRot * knockBack, randWeightFloat(50.0f) + 100.0f, zRot * knockBack);
+		NaviFlickArg flickArg(m_creature, direction, knockBack);
+		navi->transit(NSID_Flick, &flickArg);
+		return true;
+	}
 	/*
 	stwu     r1, -0x80(r1)
 	mflr     r0
@@ -519,613 +337,613 @@ lbl_801D8384:
 	*/
 }
 
-/*
- * --INFO--
- * Address:	801D83B4
- * Size:	0000F4
- */
-void InteractPress::actNavi(Game::Navi*)
-{
-	/*
-	stwu     r1, -0x20(r1)
-	mflr     r0
-	stw      r0, 0x24(r1)
-	stw      r31, 0x1c(r1)
-	stw      r30, 0x18(r1)
-	mr       r30, r4
-	stw      r29, 0x14(r1)
-	mr       r29, r3
-	lwz      r5, gameSystem__4Game@sda21(r13)
-	cmplwi   r5, 0
-	beq      lbl_801D83EC
-	lbz      r0, 0x3c(r5)
-	rlwinm.  r0, r0, 0, 0x1a, 0x1a
-	beq      lbl_801D848C
+// /*
+//  * --INFO--
+//  * Address:	801D83B4
+//  * Size:	0000F4
+//  */
+// void InteractPress::actNavi(Game::Navi*)
+// {
+// 	/*
+// 	stwu     r1, -0x20(r1)
+// 	mflr     r0
+// 	stw      r0, 0x24(r1)
+// 	stw      r31, 0x1c(r1)
+// 	stw      r30, 0x18(r1)
+// 	mr       r30, r4
+// 	stw      r29, 0x14(r1)
+// 	mr       r29, r3
+// 	lwz      r5, gameSystem__4Game@sda21(r13)
+// 	cmplwi   r5, 0
+// 	beq      lbl_801D83EC
+// 	lbz      r0, 0x3c(r5)
+// 	rlwinm.  r0, r0, 0, 0x1a, 0x1a
+// 	beq      lbl_801D848C
 
-lbl_801D83EC:
-	mr       r3, r30
-	lwz      r12, 0(r30)
-	lwz      r12, 0xa8(r12)
-	mtctr    r12
-	bctrl
-	clrlwi.  r0, r3, 0x18
-	bne      lbl_801D8410
-	li       r3, 0
-	b        lbl_801D848C
+// lbl_801D83EC:
+// 	mr       r3, r30
+// 	lwz      r12, 0(r30)
+// 	lwz      r12, 0xa8(r12)
+// 	mtctr    r12
+// 	bctrl
+// 	clrlwi.  r0, r3, 0x18
+// 	bne      lbl_801D8410
+// 	li       r3, 0
+// 	b        lbl_801D848C
 
-lbl_801D8410:
-	lwz      r31, 0x274(r30)
-	mr       r3, r31
-	lwz      r12, 0(r31)
-	lwz      r12, 0x20(r12)
-	mtctr    r12
-	bctrl
-	clrlwi.  r0, r3, 0x18
-	bne      lbl_801D8480
-	mr       r3, r31
-	lwz      r12, 0(r31)
-	lwz      r12, 0x34(r12)
-	mtctr    r12
-	bctrl
-	clrlwi.  r0, r3, 0x18
-	beq      lbl_801D8480
-	lfs      f1, 8(r29)
-	mr       r3, r30
-	li       r4, 1
-	bl       addDamage__Q24Game4NaviFfb
-	lwz      r3, 0x270(r30)
-	mr       r4, r30
-	li       r5, 0xe
-	li       r6, 0
-	lwz      r12, 0(r3)
-	lwz      r12, 0x14(r12)
-	mtctr    r12
-	bctrl
-	b        lbl_801D8488
+// lbl_801D8410:
+// 	lwz      r31, 0x274(r30)
+// 	mr       r3, r31
+// 	lwz      r12, 0(r31)
+// 	lwz      r12, 0x20(r12)
+// 	mtctr    r12
+// 	bctrl
+// 	clrlwi.  r0, r3, 0x18
+// 	bne      lbl_801D8480
+// 	mr       r3, r31
+// 	lwz      r12, 0(r31)
+// 	lwz      r12, 0x34(r12)
+// 	mtctr    r12
+// 	bctrl
+// 	clrlwi.  r0, r3, 0x18
+// 	beq      lbl_801D8480
+// 	lfs      f1, 8(r29)
+// 	mr       r3, r30
+// 	li       r4, 1
+// 	bl       addDamage__Q24Game4NaviFfb
+// 	lwz      r3, 0x270(r30)
+// 	mr       r4, r30
+// 	li       r5, 0xe
+// 	li       r6, 0
+// 	lwz      r12, 0(r3)
+// 	lwz      r12, 0x14(r12)
+// 	mtctr    r12
+// 	bctrl
+// 	b        lbl_801D8488
 
-lbl_801D8480:
-	li       r3, 0
-	b        lbl_801D848C
+// lbl_801D8480:
+// 	li       r3, 0
+// 	b        lbl_801D848C
 
-lbl_801D8488:
-	li       r3, 1
+// lbl_801D8488:
+// 	li       r3, 1
 
-lbl_801D848C:
-	lwz      r0, 0x24(r1)
-	lwz      r31, 0x1c(r1)
-	lwz      r30, 0x18(r1)
-	lwz      r29, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x20
-	blr
-	*/
-}
+// lbl_801D848C:
+// 	lwz      r0, 0x24(r1)
+// 	lwz      r31, 0x1c(r1)
+// 	lwz      r30, 0x18(r1)
+// 	lwz      r29, 0x14(r1)
+// 	mtlr     r0
+// 	addi     r1, r1, 0x20
+// 	blr
+// 	*/
+// }
 
-/*
- * --INFO--
- * Address:	801D84A8
- * Size:	0000B8
- */
-void InteractFire::actNavi(Game::Navi*)
-{
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	mr       r31, r4
-	li       r4, 6
-	stw      r30, 8(r1)
-	mr       r30, r3
-	lwz      r5, playData__4Game@sda21(r13)
-	addi     r3, r5, 0x48
-	bl       hasItem__Q24Game10OlimarDataFi
-	clrlwi.  r0, r3, 0x18
-	beq      lbl_801D84E4
-	li       r3, 0
-	b        lbl_801D8548
+// /*
+//  * --INFO--
+//  * Address:	801D84A8
+//  * Size:	0000B8
+//  */
+// void InteractFire::actNavi(Game::Navi*)
+// {
+// 	/*
+// 	stwu     r1, -0x10(r1)
+// 	mflr     r0
+// 	stw      r0, 0x14(r1)
+// 	stw      r31, 0xc(r1)
+// 	mr       r31, r4
+// 	li       r4, 6
+// 	stw      r30, 8(r1)
+// 	mr       r30, r3
+// 	lwz      r5, playData__4Game@sda21(r13)
+// 	addi     r3, r5, 0x48
+// 	bl       hasItem__Q24Game10OlimarDataFi
+// 	clrlwi.  r0, r3, 0x18
+// 	beq      lbl_801D84E4
+// 	li       r3, 0
+// 	b        lbl_801D8548
 
-lbl_801D84E4:
-	lwz      r3, gameSystem__4Game@sda21(r13)
-	cmplwi   r3, 0
-	beq      lbl_801D8504
-	lwz      r0, 0x44(r3)
-	cmpwi    r0, 1
-	bne      lbl_801D8504
-	li       r3, 0
-	b        lbl_801D8548
+// lbl_801D84E4:
+// 	lwz      r3, gameSystem__4Game@sda21(r13)
+// 	cmplwi   r3, 0
+// 	beq      lbl_801D8504
+// 	lwz      r0, 0x44(r3)
+// 	cmpwi    r0, 1
+// 	bne      lbl_801D8504
+// 	li       r3, 0
+// 	b        lbl_801D8548
 
-lbl_801D8504:
-	mr       r3, r31
-	bl       invincible__Q24Game4NaviFv
-	clrlwi.  r0, r3, 0x18
-	beq      lbl_801D851C
-	li       r3, 0
-	b        lbl_801D8548
+// lbl_801D8504:
+// 	mr       r3, r31
+// 	bl       invincible__Q24Game4NaviFv
+// 	clrlwi.  r0, r3, 0x18
+// 	beq      lbl_801D851C
+// 	li       r3, 0
+// 	b        lbl_801D8548
 
-lbl_801D851C:
-	lwz      r3, 0x26c(r31)
-	li       r4, 0x810
-	li       r5, 0
-	lwz      r12, 0x28(r3)
-	lwz      r12, 0x7c(r12)
-	mtctr    r12
-	bctrl
-	lfs      f1, 8(r30)
-	mr       r3, r31
-	bl       startDamage__Q24Game4NaviFf
-	li       r3, 1
+// lbl_801D851C:
+// 	lwz      r3, 0x26c(r31)
+// 	li       r4, 0x810
+// 	li       r5, 0
+// 	lwz      r12, 0x28(r3)
+// 	lwz      r12, 0x7c(r12)
+// 	mtctr    r12
+// 	bctrl
+// 	lfs      f1, 8(r30)
+// 	mr       r3, r31
+// 	bl       startDamage__Q24Game4NaviFf
+// 	li       r3, 1
 
-lbl_801D8548:
-	lwz      r0, 0x14(r1)
-	lwz      r31, 0xc(r1)
-	lwz      r30, 8(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
-}
+// lbl_801D8548:
+// 	lwz      r0, 0x14(r1)
+// 	lwz      r31, 0xc(r1)
+// 	lwz      r30, 8(r1)
+// 	mtlr     r0
+// 	addi     r1, r1, 0x10
+// 	blr
+// 	*/
+// }
 
-/*
- * --INFO--
- * Address:	801D8560
- * Size:	000090
- */
-void InteractBubble::actNavi(Game::Navi*)
-{
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	mr       r31, r4
-	stw      r30, 8(r1)
-	mr       r30, r3
-	lwz      r5, gameSystem__4Game@sda21(r13)
-	cmplwi   r5, 0
-	beq      lbl_801D8594
-	lbz      r0, 0x3c(r5)
-	rlwinm.  r0, r0, 0, 0x1a, 0x1a
-	beq      lbl_801D85D8
+// /*
+//  * --INFO--
+//  * Address:	801D8560
+//  * Size:	000090
+//  */
+// void InteractBubble::actNavi(Game::Navi*)
+// {
+// 	/*
+// 	stwu     r1, -0x10(r1)
+// 	mflr     r0
+// 	stw      r0, 0x14(r1)
+// 	stw      r31, 0xc(r1)
+// 	mr       r31, r4
+// 	stw      r30, 8(r1)
+// 	mr       r30, r3
+// 	lwz      r5, gameSystem__4Game@sda21(r13)
+// 	cmplwi   r5, 0
+// 	beq      lbl_801D8594
+// 	lbz      r0, 0x3c(r5)
+// 	rlwinm.  r0, r0, 0, 0x1a, 0x1a
+// 	beq      lbl_801D85D8
 
-lbl_801D8594:
-	cmplwi   r5, 0
-	beq      lbl_801D85B0
-	lwz      r0, 0x44(r5)
-	cmpwi    r0, 1
-	bne      lbl_801D85B0
-	li       r3, 0
-	b        lbl_801D85D8
+// lbl_801D8594:
+// 	cmplwi   r5, 0
+// 	beq      lbl_801D85B0
+// 	lwz      r0, 0x44(r5)
+// 	cmpwi    r0, 1
+// 	bne      lbl_801D85B0
+// 	li       r3, 0
+// 	b        lbl_801D85D8
 
-lbl_801D85B0:
-	mr       r3, r31
-	bl       invincible__Q24Game4NaviFv
-	clrlwi.  r0, r3, 0x18
-	beq      lbl_801D85C8
-	li       r3, 0
-	b        lbl_801D85D8
+// lbl_801D85B0:
+// 	mr       r3, r31
+// 	bl       invincible__Q24Game4NaviFv
+// 	clrlwi.  r0, r3, 0x18
+// 	beq      lbl_801D85C8
+// 	li       r3, 0
+// 	b        lbl_801D85D8
 
-lbl_801D85C8:
-	lfs      f1, 8(r30)
-	mr       r3, r31
-	bl       startDamage__Q24Game4NaviFf
-	li       r3, 1
+// lbl_801D85C8:
+// 	lfs      f1, 8(r30)
+// 	mr       r3, r31
+// 	bl       startDamage__Q24Game4NaviFf
+// 	li       r3, 1
 
-lbl_801D85D8:
-	lwz      r0, 0x14(r1)
-	lwz      r31, 0xc(r1)
-	lwz      r30, 8(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
-}
+// lbl_801D85D8:
+// 	lwz      r0, 0x14(r1)
+// 	lwz      r31, 0xc(r1)
+// 	lwz      r30, 8(r1)
+// 	mtlr     r0
+// 	addi     r1, r1, 0x10
+// 	blr
+// 	*/
+// }
 
-/*
- * --INFO--
- * Address:	801D85F0
- * Size:	000008
- */
-u32 InteractGas::actNavi(Game::Navi*) { return 0x0; }
+// /*
+//  * --INFO--
+//  * Address:	801D85F0
+//  * Size:	000008
+//  */
+// u32 InteractGas::actNavi(Game::Navi*) { return 0x0; }
 
-/*
- * --INFO--
- * Address:	801D85F8
- * Size:	00005C
- */
-void InteractBury::actNavi(Game::Navi*)
-{
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	mr       r31, r4
-	stw      r30, 8(r1)
-	mr       r30, r3
-	mr       r3, r31
-	bl       invincible__Q24Game4NaviFv
-	clrlwi.  r0, r3, 0x18
-	beq      lbl_801D862C
-	li       r3, 0
-	b        lbl_801D863C
+// /*
+//  * --INFO--
+//  * Address:	801D85F8
+//  * Size:	00005C
+//  */
+// void InteractBury::actNavi(Game::Navi*)
+// {
+// 	/*
+// 	stwu     r1, -0x10(r1)
+// 	mflr     r0
+// 	stw      r0, 0x14(r1)
+// 	stw      r31, 0xc(r1)
+// 	mr       r31, r4
+// 	stw      r30, 8(r1)
+// 	mr       r30, r3
+// 	mr       r3, r31
+// 	bl       invincible__Q24Game4NaviFv
+// 	clrlwi.  r0, r3, 0x18
+// 	beq      lbl_801D862C
+// 	li       r3, 0
+// 	b        lbl_801D863C
 
-lbl_801D862C:
-	lfs      f1, 8(r30)
-	mr       r3, r31
-	bl       startDamage__Q24Game4NaviFf
-	li       r3, 1
+// lbl_801D862C:
+// 	lfs      f1, 8(r30)
+// 	mr       r3, r31
+// 	bl       startDamage__Q24Game4NaviFf
+// 	li       r3, 1
 
-lbl_801D863C:
-	lwz      r0, 0x14(r1)
-	lwz      r31, 0xc(r1)
-	lwz      r30, 8(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
-}
+// lbl_801D863C:
+// 	lwz      r0, 0x14(r1)
+// 	lwz      r31, 0xc(r1)
+// 	lwz      r30, 8(r1)
+// 	mtlr     r0
+// 	addi     r1, r1, 0x10
+// 	blr
+// 	*/
+// }
 
-/*
- * --INFO--
- * Address:	801D8654
- * Size:	000358
- */
-void InteractFue::actNavi(Game::Navi*)
-{
-	/*
-	stwu     r1, -0x1f0(r1)
-	mflr     r0
-	stw      r0, 0x1f4(r1)
-	stw      r31, 0x1ec(r1)
-	mr       r31, r4
-	stw      r30, 0x1e8(r1)
-	stw      r29, 0x1e4(r1)
-	mr       r29, r3
-	mr       r3, r31
-	lwz      r12, 0(r31)
-	lwz      r30, 0x274(r4)
-	lwz      r12, 0xa8(r12)
-	mtctr    r12
-	bctrl
-	clrlwi.  r0, r3, 0x18
-	bne      lbl_801D869C
-	li       r3, 0
-	b        lbl_801D8990
+// /*
+//  * --INFO--
+//  * Address:	801D8654
+//  * Size:	000358
+//  */
+// void InteractFue::actNavi(Game::Navi*)
+// {
+// 	/*
+// 	stwu     r1, -0x1f0(r1)
+// 	mflr     r0
+// 	stw      r0, 0x1f4(r1)
+// 	stw      r31, 0x1ec(r1)
+// 	mr       r31, r4
+// 	stw      r30, 0x1e8(r1)
+// 	stw      r29, 0x1e4(r1)
+// 	mr       r29, r3
+// 	mr       r3, r31
+// 	lwz      r12, 0(r31)
+// 	lwz      r30, 0x274(r4)
+// 	lwz      r12, 0xa8(r12)
+// 	mtctr    r12
+// 	bctrl
+// 	clrlwi.  r0, r3, 0x18
+// 	bne      lbl_801D869C
+// 	li       r3, 0
+// 	b        lbl_801D8990
 
-lbl_801D869C:
-	lwz      r0, 0x278(r31)
-	cmplwi   r0, 0
-	beq      lbl_801D86B0
-	li       r3, 0
-	b        lbl_801D8990
+// lbl_801D869C:
+// 	lwz      r0, 0x278(r31)
+// 	cmplwi   r0, 0
+// 	beq      lbl_801D86B0
+// 	li       r3, 0
+// 	b        lbl_801D8990
 
-lbl_801D86B0:
-	mr       r3, r30
-	lwz      r12, 0(r30)
-	lwz      r12, 0x38(r12)
-	mtctr    r12
-	bctrl
-	clrlwi.  r0, r3, 0x18
-	bne      lbl_801D86D4
-	li       r3, 0
-	b        lbl_801D8990
+// lbl_801D86B0:
+// 	mr       r3, r30
+// 	lwz      r12, 0(r30)
+// 	lwz      r12, 0x38(r12)
+// 	mtctr    r12
+// 	bctrl
+// 	clrlwi.  r0, r3, 0x18
+// 	bne      lbl_801D86D4
+// 	li       r3, 0
+// 	b        lbl_801D8990
 
-lbl_801D86D4:
-	lwz      r3, gameSystem__4Game@sda21(r13)
-	lwz      r0, 0x44(r3)
-	cmpwi    r0, 0
-	bne      lbl_801D8710
-	lwz      r3, 0x40(r3)
-	lwz      r0, 0x218(r3)
-	cmplwi   r0, 0
-	bne      lbl_801D8710
-	lwz      r3, playData__4Game@sda21(r13)
-	li       r4, 0x27
-	bl       isDemoFlag__Q24Game8PlayDataFi
-	clrlwi.  r0, r3, 0x18
-	bne      lbl_801D8710
-	li       r3, 0
-	b        lbl_801D8990
+// lbl_801D86D4:
+// 	lwz      r3, gameSystem__4Game@sda21(r13)
+// 	lwz      r0, 0x44(r3)
+// 	cmpwi    r0, 0
+// 	bne      lbl_801D8710
+// 	lwz      r3, 0x40(r3)
+// 	lwz      r0, 0x218(r3)
+// 	cmplwi   r0, 0
+// 	bne      lbl_801D8710
+// 	lwz      r3, playData__4Game@sda21(r13)
+// 	li       r4, 0x27
+// 	bl       isDemoFlag__Q24Game8PlayDataFi
+// 	clrlwi.  r0, r3, 0x18
+// 	bne      lbl_801D8710
+// 	li       r3, 0
+// 	b        lbl_801D8990
 
-lbl_801D8710:
-	mr       r3, r31
-	bl       getStateID__Q24Game4NaviFv
-	cmpwi    r3, 1
-	beq      lbl_801D898C
-	lbz      r0, 9(r29)
-	mr       r3, r31
-	addi     r5, r1, 8
-	li       r4, 1
-	stb      r0, 8(r1)
-	lwz      r12, 0(r31)
-	lwz      r12, 0x22c(r12)
-	mtctr    r12
-	bctrl
-	lwz      r3, naviMgr__4Game@sda21(r13)
-	lhz      r0, 0x2dc(r31)
-	lwz      r12, 0(r3)
-	subfic   r4, r0, 1
-	lwz      r12, 0x24(r12)
-	mtctr    r12
-	bctrl
-	lis      r4, __vt__Q24Game11Interaction@ha
-	li       r5, 1
-	addi     r0, r4, __vt__Q24Game11Interaction@l
-	li       r30, 0
-	lis      r4, __vt__Q24Game11InteractFue@ha
-	stw      r0, 0x1c(r1)
-	addi     r6, r4, __vt__Q24Game11InteractFue@l
-	cmplwi   r30, 0
-	stw      r3, 0x20(r1)
-	lis      r4, "__vt__26Iterator<Q24Game8Creature>"@ha
-	addi     r0, r4, "__vt__26Iterator<Q24Game8Creature>"@l
-	li       r29, 0
-	stw      r6, 0x1c(r1)
-	stb      r5, 0x24(r1)
-	stb      r5, 0x25(r1)
-	lwz      r3, 0x254(r31)
-	stw      r0, 0xc(r1)
-	stw      r30, 0x18(r1)
-	stw      r30, 0x10(r1)
-	stw      r3, 0x14(r1)
-	bne      lbl_801D87CC
-	lwz      r12, 0(r3)
-	lwz      r12, 0x18(r12)
-	mtctr    r12
-	bctrl
-	stw      r3, 0x10(r1)
-	b        lbl_801D8854
+// lbl_801D8710:
+// 	mr       r3, r31
+// 	bl       getStateID__Q24Game4NaviFv
+// 	cmpwi    r3, 1
+// 	beq      lbl_801D898C
+// 	lbz      r0, 9(r29)
+// 	mr       r3, r31
+// 	addi     r5, r1, 8
+// 	li       r4, 1
+// 	stb      r0, 8(r1)
+// 	lwz      r12, 0(r31)
+// 	lwz      r12, 0x22c(r12)
+// 	mtctr    r12
+// 	bctrl
+// 	lwz      r3, naviMgr__4Game@sda21(r13)
+// 	lhz      r0, 0x2dc(r31)
+// 	lwz      r12, 0(r3)
+// 	subfic   r4, r0, 1
+// 	lwz      r12, 0x24(r12)
+// 	mtctr    r12
+// 	bctrl
+// 	lis      r4, __vt__Q24Game11Interaction@ha
+// 	li       r5, 1
+// 	addi     r0, r4, __vt__Q24Game11Interaction@l
+// 	li       r30, 0
+// 	lis      r4, __vt__Q24Game11InteractFue@ha
+// 	stw      r0, 0x1c(r1)
+// 	addi     r6, r4, __vt__Q24Game11InteractFue@l
+// 	cmplwi   r30, 0
+// 	stw      r3, 0x20(r1)
+// 	lis      r4, "__vt__26Iterator<Q24Game8Creature>"@ha
+// 	addi     r0, r4, "__vt__26Iterator<Q24Game8Creature>"@l
+// 	li       r29, 0
+// 	stw      r6, 0x1c(r1)
+// 	stb      r5, 0x24(r1)
+// 	stb      r5, 0x25(r1)
+// 	lwz      r3, 0x254(r31)
+// 	stw      r0, 0xc(r1)
+// 	stw      r30, 0x18(r1)
+// 	stw      r30, 0x10(r1)
+// 	stw      r3, 0x14(r1)
+// 	bne      lbl_801D87CC
+// 	lwz      r12, 0(r3)
+// 	lwz      r12, 0x18(r12)
+// 	mtctr    r12
+// 	bctrl
+// 	stw      r3, 0x10(r1)
+// 	b        lbl_801D8854
 
-lbl_801D87CC:
-	lwz      r12, 0(r3)
-	lwz      r12, 0x18(r12)
-	mtctr    r12
-	bctrl
-	stw      r3, 0x10(r1)
-	b        lbl_801D8838
+// lbl_801D87CC:
+// 	lwz      r12, 0(r3)
+// 	lwz      r12, 0x18(r12)
+// 	mtctr    r12
+// 	bctrl
+// 	stw      r3, 0x10(r1)
+// 	b        lbl_801D8838
 
-lbl_801D87E4:
-	lwz      r3, 0x14(r1)
-	lwz      r4, 0x10(r1)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x20(r12)
-	mtctr    r12
-	bctrl
-	mr       r4, r3
-	lwz      r3, 0x18(r1)
-	lwz      r12, 0(r3)
-	lwz      r12, 8(r12)
-	mtctr    r12
-	bctrl
-	clrlwi.  r0, r3, 0x18
-	bne      lbl_801D8854
-	lwz      r3, 0x14(r1)
-	lwz      r4, 0x10(r1)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x14(r12)
-	mtctr    r12
-	bctrl
-	stw      r3, 0x10(r1)
+// lbl_801D87E4:
+// 	lwz      r3, 0x14(r1)
+// 	lwz      r4, 0x10(r1)
+// 	lwz      r12, 0(r3)
+// 	lwz      r12, 0x20(r12)
+// 	mtctr    r12
+// 	bctrl
+// 	mr       r4, r3
+// 	lwz      r3, 0x18(r1)
+// 	lwz      r12, 0(r3)
+// 	lwz      r12, 8(r12)
+// 	mtctr    r12
+// 	bctrl
+// 	clrlwi.  r0, r3, 0x18
+// 	bne      lbl_801D8854
+// 	lwz      r3, 0x14(r1)
+// 	lwz      r4, 0x10(r1)
+// 	lwz      r12, 0(r3)
+// 	lwz      r12, 0x14(r12)
+// 	mtctr    r12
+// 	bctrl
+// 	stw      r3, 0x10(r1)
 
-lbl_801D8838:
-	lwz      r12, 0xc(r1)
-	addi     r3, r1, 0xc
-	lwz      r12, 0x10(r12)
-	mtctr    r12
-	bctrl
-	clrlwi.  r0, r3, 0x18
-	beq      lbl_801D87E4
+// lbl_801D8838:
+// 	lwz      r12, 0xc(r1)
+// 	addi     r3, r1, 0xc
+// 	lwz      r12, 0x10(r12)
+// 	mtctr    r12
+// 	bctrl
+// 	clrlwi.  r0, r3, 0x18
+// 	beq      lbl_801D87E4
 
-lbl_801D8854:
-	addi     r31, r1, 0x28
-	b        lbl_801D8938
+// lbl_801D8854:
+// 	addi     r31, r1, 0x28
+// 	b        lbl_801D8938
 
-lbl_801D885C:
-	lwz      r3, 0x14(r1)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x20(r12)
-	mtctr    r12
-	bctrl
-	lwz      r0, 0x18(r1)
-	addi     r29, r29, 1
-	stwx     r3, r31, r30
-	addi     r30, r30, 4
-	cmplwi   r0, 0
-	bne      lbl_801D88A8
-	lwz      r3, 0x14(r1)
-	lwz      r4, 0x10(r1)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x14(r12)
-	mtctr    r12
-	bctrl
-	stw      r3, 0x10(r1)
-	b        lbl_801D8938
+// lbl_801D885C:
+// 	lwz      r3, 0x14(r1)
+// 	lwz      r12, 0(r3)
+// 	lwz      r12, 0x20(r12)
+// 	mtctr    r12
+// 	bctrl
+// 	lwz      r0, 0x18(r1)
+// 	addi     r29, r29, 1
+// 	stwx     r3, r31, r30
+// 	addi     r30, r30, 4
+// 	cmplwi   r0, 0
+// 	bne      lbl_801D88A8
+// 	lwz      r3, 0x14(r1)
+// 	lwz      r4, 0x10(r1)
+// 	lwz      r12, 0(r3)
+// 	lwz      r12, 0x14(r12)
+// 	mtctr    r12
+// 	bctrl
+// 	stw      r3, 0x10(r1)
+// 	b        lbl_801D8938
 
-lbl_801D88A8:
-	lwz      r3, 0x14(r1)
-	lwz      r4, 0x10(r1)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x14(r12)
-	mtctr    r12
-	bctrl
-	stw      r3, 0x10(r1)
-	b        lbl_801D891C
+// lbl_801D88A8:
+// 	lwz      r3, 0x14(r1)
+// 	lwz      r4, 0x10(r1)
+// 	lwz      r12, 0(r3)
+// 	lwz      r12, 0x14(r12)
+// 	mtctr    r12
+// 	bctrl
+// 	stw      r3, 0x10(r1)
+// 	b        lbl_801D891C
 
-lbl_801D88C8:
-	lwz      r3, 0x14(r1)
-	lwz      r4, 0x10(r1)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x20(r12)
-	mtctr    r12
-	bctrl
-	mr       r4, r3
-	lwz      r3, 0x18(r1)
-	lwz      r12, 0(r3)
-	lwz      r12, 8(r12)
-	mtctr    r12
-	bctrl
-	clrlwi.  r0, r3, 0x18
-	bne      lbl_801D8938
-	lwz      r3, 0x14(r1)
-	lwz      r4, 0x10(r1)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x14(r12)
-	mtctr    r12
-	bctrl
-	stw      r3, 0x10(r1)
+// lbl_801D88C8:
+// 	lwz      r3, 0x14(r1)
+// 	lwz      r4, 0x10(r1)
+// 	lwz      r12, 0(r3)
+// 	lwz      r12, 0x20(r12)
+// 	mtctr    r12
+// 	bctrl
+// 	mr       r4, r3
+// 	lwz      r3, 0x18(r1)
+// 	lwz      r12, 0(r3)
+// 	lwz      r12, 8(r12)
+// 	mtctr    r12
+// 	bctrl
+// 	clrlwi.  r0, r3, 0x18
+// 	bne      lbl_801D8938
+// 	lwz      r3, 0x14(r1)
+// 	lwz      r4, 0x10(r1)
+// 	lwz      r12, 0(r3)
+// 	lwz      r12, 0x14(r12)
+// 	mtctr    r12
+// 	bctrl
+// 	stw      r3, 0x10(r1)
 
-lbl_801D891C:
-	lwz      r12, 0xc(r1)
-	addi     r3, r1, 0xc
-	lwz      r12, 0x10(r12)
-	mtctr    r12
-	bctrl
-	clrlwi.  r0, r3, 0x18
-	beq      lbl_801D88C8
+// lbl_801D891C:
+// 	lwz      r12, 0xc(r1)
+// 	addi     r3, r1, 0xc
+// 	lwz      r12, 0x10(r12)
+// 	mtctr    r12
+// 	bctrl
+// 	clrlwi.  r0, r3, 0x18
+// 	beq      lbl_801D88C8
 
-lbl_801D8938:
-	lwz      r3, 0x14(r1)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x1c(r12)
-	mtctr    r12
-	bctrl
-	lwz      r4, 0x10(r1)
-	cmplw    r4, r3
-	bne      lbl_801D885C
-	addi     r30, r1, 0x28
-	li       r31, 0
-	b        lbl_801D8984
+// lbl_801D8938:
+// 	lwz      r3, 0x14(r1)
+// 	lwz      r12, 0(r3)
+// 	lwz      r12, 0x1c(r12)
+// 	mtctr    r12
+// 	bctrl
+// 	lwz      r4, 0x10(r1)
+// 	cmplw    r4, r3
+// 	bne      lbl_801D885C
+// 	addi     r30, r1, 0x28
+// 	li       r31, 0
+// 	b        lbl_801D8984
 
-lbl_801D8964:
-	lwz      r3, 0(r30)
-	addi     r4, r1, 0x1c
-	lwz      r12, 0(r3)
-	lwz      r12, 0x1a4(r12)
-	mtctr    r12
-	bctrl
-	addi     r30, r30, 4
-	addi     r31, r31, 1
+// lbl_801D8964:
+// 	lwz      r3, 0(r30)
+// 	addi     r4, r1, 0x1c
+// 	lwz      r12, 0(r3)
+// 	lwz      r12, 0x1a4(r12)
+// 	mtctr    r12
+// 	bctrl
+// 	addi     r30, r30, 4
+// 	addi     r31, r31, 1
 
-lbl_801D8984:
-	cmpw     r31, r29
-	blt      lbl_801D8964
+// lbl_801D8984:
+// 	cmpw     r31, r29
+// 	blt      lbl_801D8964
 
-lbl_801D898C:
-	li       r3, 1
+// lbl_801D898C:
+// 	li       r3, 1
 
-lbl_801D8990:
-	lwz      r0, 0x1f4(r1)
-	lwz      r31, 0x1ec(r1)
-	lwz      r30, 0x1e8(r1)
-	lwz      r29, 0x1e4(r1)
-	mtlr     r0
-	addi     r1, r1, 0x1f0
-	blr
-	*/
-}
+// lbl_801D8990:
+// 	lwz      r0, 0x1f4(r1)
+// 	lwz      r31, 0x1ec(r1)
+// 	lwz      r30, 0x1e8(r1)
+// 	lwz      r29, 0x1e4(r1)
+// 	mtlr     r0
+// 	addi     r1, r1, 0x1f0
+// 	blr
+// 	*/
+// }
 
-/*
- * --INFO--
- * Address:	801D89AC
- * Size:	000074
- */
-void InteractKaisan::actNavi(Game::Navi*)
-{
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	mr       r31, r4
-	lwz      r0, 0x278(r4)
-	cmplwi   r0, 0
-	beq      lbl_801D89D4
-	li       r3, 0
-	b        lbl_801D8A0C
+// /*
+//  * --INFO--
+//  * Address:	801D89AC
+//  * Size:	000074
+//  */
+// void InteractKaisan::actNavi(Game::Navi*)
+// {
+// 	/*
+// 	stwu     r1, -0x10(r1)
+// 	mflr     r0
+// 	stw      r0, 0x14(r1)
+// 	stw      r31, 0xc(r1)
+// 	mr       r31, r4
+// 	lwz      r0, 0x278(r4)
+// 	cmplwi   r0, 0
+// 	beq      lbl_801D89D4
+// 	li       r3, 0
+// 	b        lbl_801D8A0C
 
-lbl_801D89D4:
-	mr       r3, r31
-	bl       getStateID__Q24Game4NaviFv
-	cmpwi    r3, 1
-	bne      lbl_801D8A08
-	mr       r3, r31
-	li       r4, 0
-	lwz      r12, 0(r31)
-	li       r5, 0
-	lwz      r12, 0x22c(r12)
-	mtctr    r12
-	bctrl
-	li       r3, 1
-	b        lbl_801D8A0C
+// lbl_801D89D4:
+// 	mr       r3, r31
+// 	bl       getStateID__Q24Game4NaviFv
+// 	cmpwi    r3, 1
+// 	bne      lbl_801D8A08
+// 	mr       r3, r31
+// 	li       r4, 0
+// 	lwz      r12, 0(r31)
+// 	li       r5, 0
+// 	lwz      r12, 0x22c(r12)
+// 	mtctr    r12
+// 	bctrl
+// 	li       r3, 1
+// 	b        lbl_801D8A0C
 
-lbl_801D8A08:
-	li       r3, 0
+// lbl_801D8A08:
+// 	li       r3, 0
 
-lbl_801D8A0C:
-	lwz      r0, 0x14(r1)
-	lwz      r31, 0xc(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
-}
+// lbl_801D8A0C:
+// 	lwz      r0, 0x14(r1)
+// 	lwz      r31, 0xc(r1)
+// 	mtlr     r0
+// 	addi     r1, r1, 0x10
+// 	blr
+// 	*/
+// }
 
-/*
- * --INFO--
- * Address:	801D8A20
- * Size:	00009C
- */
-void InteractAttack::actNavi(Game::Navi*)
-{
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	mr       r31, r4
-	li       r4, 0x27
-	stw      r30, 8(r1)
-	mr       r30, r3
-	lwz      r3, playData__4Game@sda21(r13)
-	bl       isDemoFlag__Q24Game8PlayDataFi
-	clrlwi.  r0, r3, 0x18
-	bne      lbl_801D8A58
-	li       r3, 0
-	b        lbl_801D8AA4
+// /*
+//  * --INFO--
+//  * Address:	801D8A20
+//  * Size:	00009C
+//  */
+// void InteractAttack::actNavi(Game::Navi*)
+// {
+// 	/*
+// 	stwu     r1, -0x10(r1)
+// 	mflr     r0
+// 	stw      r0, 0x14(r1)
+// 	stw      r31, 0xc(r1)
+// 	mr       r31, r4
+// 	li       r4, 0x27
+// 	stw      r30, 8(r1)
+// 	mr       r30, r3
+// 	lwz      r3, playData__4Game@sda21(r13)
+// 	bl       isDemoFlag__Q24Game8PlayDataFi
+// 	clrlwi.  r0, r3, 0x18
+// 	bne      lbl_801D8A58
+// 	li       r3, 0
+// 	b        lbl_801D8AA4
 
-lbl_801D8A58:
-	mr       r3, r31
-	bl       invincible__Q24Game4NaviFv
-	clrlwi.  r0, r3, 0x18
-	beq      lbl_801D8A70
-	li       r3, 0
-	b        lbl_801D8AA4
+// lbl_801D8A58:
+// 	mr       r3, r31
+// 	bl       invincible__Q24Game4NaviFv
+// 	clrlwi.  r0, r3, 0x18
+// 	beq      lbl_801D8A70
+// 	li       r3, 0
+// 	b        lbl_801D8AA4
 
-lbl_801D8A70:
-	lwz      r3, 4(r30)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x18(r12)
-	mtctr    r12
-	bctrl
-	clrlwi.  r0, r3, 0x18
-	beq      lbl_801D8A94
-	lfs      f0, lbl_8051978C@sda21(r2)
-	stfs     f0, 8(r30)
+// lbl_801D8A70:
+// 	lwz      r3, 4(r30)
+// 	lwz      r12, 0(r3)
+// 	lwz      r12, 0x18(r12)
+// 	mtctr    r12
+// 	bctrl
+// 	clrlwi.  r0, r3, 0x18
+// 	beq      lbl_801D8A94
+// 	lfs      f0, lbl_8051978C@sda21(r2)
+// 	stfs     f0, 8(r30)
 
-lbl_801D8A94:
-	lfs      f1, 8(r30)
-	mr       r3, r31
-	bl       startDamage__Q24Game4NaviFf
-	li       r3, 1
+// lbl_801D8A94:
+// 	lfs      f1, 8(r30)
+// 	mr       r3, r31
+// 	bl       startDamage__Q24Game4NaviFf
+// 	li       r3, 1
 
-lbl_801D8AA4:
-	lwz      r0, 0x14(r1)
-	lwz      r31, 0xc(r1)
-	lwz      r30, 8(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
-}
+// lbl_801D8AA4:
+// 	lwz      r0, 0x14(r1)
+// 	lwz      r31, 0xc(r1)
+// 	lwz      r30, 8(r1)
+// 	mtlr     r0
+// 	addi     r1, r1, 0x10
+// 	blr
+// 	*/
+// }
 } // namespace Game

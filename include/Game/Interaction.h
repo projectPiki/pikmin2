@@ -317,6 +317,23 @@ struct InteractDenki : public InteractWind {
 	// _00		= VTBL
 	// _00-_18	= InteractWind
 };
+
+struct InteractSarai : public InteractSwallow {
+	virtual bool actNavi(Navi*); // _10
+
+	// _00		= VTBL
+	// _00-_10	= InteractSwallow
+};
+
+struct InteractFallMeck : public Interaction {
+	virtual bool actPiki(Piki*); // _0C
+	virtual bool actNavi(Navi*); // _10
+
+	// _00		  = VTBL
+	// _00-_08  = Interaction
+
+	f32 _08; // _08
+};
 } // namespace Game
 
 #endif

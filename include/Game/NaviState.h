@@ -7,9 +7,59 @@
 
 namespace Game {
 
+enum ENaviStateID {
+	NSID_Walk        = 0,
+	NSID_Follow      = 1,
+	NSID_Punch       = 2,
+	NSID_Change      = 3,
+	NSID_Gather      = 4,
+	NSID_Throw       = 5,
+	NSID_ThrowWait   = 6,
+	NSID_Dope        = 7,
+	NSID_Nuku        = 8,
+	NSID_NukuAdjust  = 9,
+	NSID_Container   = 10,
+	NSID_Absorb      = 11,
+	NSID_Flick       = 12,
+	NSID_Damaged     = 13,
+	NSID_Pressed     = 14,
+	NSID_FallMeck    = 15,
+	NSID_KokeDamage  = 16,
+	NSID_Sarai       = 17,
+	NSID_SaraiExit   = 18,
+	NSID_Dead        = 19,
+	NSID_Stuck       = 20,
+	NSID_Demo_Ufo    = 21,
+	NSID_Demo_HoleIn = 22,
+	NSID_Pellet      = 23,
+	NSID_CarryBomb   = 24,
+	NSID_Climb       = 25,
+	NSID_PathMove    = 26,
+};
+
 struct FollowStateArg : public StateArg {
 	bool _00; // _00
 	bool _01; // _01
+};
+
+// The following Navi...Arg structs are made up! TODO: see if this is just a Navi thing
+struct NaviFlickArg : public StateArg {
+	NaviFlickArg(Creature* c, Vector3f& d, f32 i)
+	{
+		m_creature  = c;
+		m_direction = d;
+		m_intensity = i;
+	}
+
+	Creature* m_creature; // _0C
+	Vector3f m_direction; // _10
+	f32 m_intensity;      // _1C
+};
+
+struct NaviFallMeckArg : public StateArg {
+	NaviFallMeckArg(f32 a1) { _04 = a1; }
+
+	f32 _04; // _04
 };
 
 struct NaviState : public FSMState<Navi> {
@@ -204,6 +254,10 @@ struct NaviFlickState : public NaviState {
 
 	// _00     = VTBL
 	// _00-_0C = NaviState
+	u32 _10;             // _10
+	u32 _14;             // _14
+	Creature* m_flicker; // _18
+	Vector3f _18;        // _1C
 };
 
 struct NaviFollowState : public NaviState {
@@ -237,6 +291,7 @@ struct NaviGatherState : public NaviState {
 	// _00-_0C = NaviState
 };
 
+// WTF is Koke Damage? Heart Attack?
 struct NaviKokeDamageState : public NaviState {
 	inline NaviKokeDamageState(); // likely
 
@@ -249,6 +304,12 @@ struct NaviKokeDamageState : public NaviState {
 
 	// _00     = VTBL
 	// _00-_0C = NaviState
+	u32 _0C;              // _0C
+	u32 _10;              // _10
+	f32 _14;              // _14
+	u32 _18;              // _18
+	Creature* m_creature; // _1C
+	u8 _20;               // _20
 };
 
 struct NaviNukuAdjustState : public NaviState {
