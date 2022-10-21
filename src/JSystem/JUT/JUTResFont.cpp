@@ -145,7 +145,7 @@ void JUTResFont::countBlock()
 	m_widthBlockCount = 0;
 	m_glyphBlockCount = 0;
 	m_mapBlockCount   = 0;
-	u8* pData         = (u8*)&m_resource + sizeof(ResFONT);
+	u8* pData         = (u8*)&m_resource->m_data;
 	for (u32 i = 0; i < m_resource->m_chunkNum; i++, pData += ((BlockHeader*)pData)->m_size) {
 		int magic = ((BlockHeader*)pData)->m_magic;
 		switch (magic) {
@@ -177,7 +177,7 @@ void JUTResFont::setBlock()
 	int widthNum, glyphNum, mapNum;
 	widthNum = glyphNum = mapNum = 0;
 	m_maxCode                    = -1;
-	u8* pData                    = (u8*)&m_resource + sizeof(ResFONT);
+	u8* pData                    = (u8*)&m_resource->m_data;
 
 	for (u32 i = 0; i < m_resource->m_chunkNum; i++, pData += ((BlockHeader*)pData)->m_size) {
 		int magic = ((BlockHeader*)pData)->m_magic;

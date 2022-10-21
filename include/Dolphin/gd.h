@@ -24,7 +24,7 @@ void GDOverflowed(void);
 static inline void __GDWrite(u8 data) { *__GDCurrentDL->pDisplayListData++ = data; }
 
 typedef void (*GDOverflowCallback)(void);
-static GDOverflowCallback overflowcb = (GDOverflowCallback)NULL;
+extern GDOverflowCallback overflowcb;
 
 #ifdef __cplusplus
 };

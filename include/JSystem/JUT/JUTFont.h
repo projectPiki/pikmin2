@@ -21,7 +21,8 @@ struct ResFONT {
 	u16 _18;           // _18
 	u16 _1A;           // _1A
 	u16 _1C;           // _1C
-	u8 m_data[];       // _20
+	u32 : 0;
+	u8 m_data[]; // _20
 };
 struct BlockHeader {
 	u32 m_magic; // _00
@@ -43,7 +44,8 @@ struct WidthBlock {
 	u16 _18;          // _18
 	u16 _1A;          // _1A
 	u16 _1C;          // _1C
-	u16 m_data[];     // _20
+	u32 : 0;
+	u16 m_data[]; // _20
 };
 struct GlyphBlock {
 	BlockHeader m_header;
