@@ -725,7 +725,7 @@ NISHIMURA:=\
 	$(BUILD_DIR)/src/plugProjectNishimuraU/ArmorAnimator.o\
 	$(BUILD_DIR)/asm/plugProjectNishimuraU/QueenState.o\
 	$(BUILD_DIR)/src/plugProjectNishimuraU/QueenAnimator.o\
-	$(BUILD_DIR)/asm/plugProjectNishimuraU/QueenMgr.o\
+	$(BUILD_DIR)/src/plugProjectNishimuraU/QueenMgr.o\
 	$(BUILD_DIR)/asm/plugProjectNishimuraU/Queen.o\
 	$(BUILD_DIR)/asm/plugProjectNishimuraU/BabyState.o\
 	$(BUILD_DIR)/src/plugProjectNishimuraU/BabyAnimator.o\
@@ -738,7 +738,7 @@ NISHIMURA:=\
 	$(BUILD_DIR)/asm/plugProjectNishimuraU/FireChappy.o\
 	$(BUILD_DIR)/asm/plugProjectNishimuraU/SnakeCrowState.o\
 	$(BUILD_DIR)/src/plugProjectNishimuraU/SnakeCrowAnimator.o\
-	$(BUILD_DIR)/asm/plugProjectNishimuraU/SnakeCrowMgr.o\
+	$(BUILD_DIR)/src/plugProjectNishimuraU/SnakeCrowMgr.o\
 	$(BUILD_DIR)/asm/plugProjectNishimuraU/SnakeCrow.o\
 	$(BUILD_DIR)/asm/plugProjectNishimuraU/KumaChappyState.o\
 	$(BUILD_DIR)/src/plugProjectNishimuraU/KumaChappyAnimator.o\
@@ -803,7 +803,7 @@ NISHIMURA:=\
 	$(BUILD_DIR)/asm/plugProjectNishimuraU/BigFoot.o\
 	$(BUILD_DIR)/asm/plugProjectNishimuraU/SnakeWholeState.o\
 	$(BUILD_DIR)/src/plugProjectNishimuraU/SnakeWholeAnimator.o\
-	$(BUILD_DIR)/asm/plugProjectNishimuraU/SnakeWholeMgr.o\
+	$(BUILD_DIR)/src/plugProjectNishimuraU/SnakeWholeMgr.o\
 	$(BUILD_DIR)/asm/plugProjectNishimuraU/SnakeWhole.o\
 	$(BUILD_DIR)/asm/plugProjectNishimuraU/SnakeJointMgr.o\
 	$(BUILD_DIR)/src/plugProjectNishimuraU/OniKurageState.o\
@@ -841,7 +841,7 @@ NISHIMURA:=\
 	$(BUILD_DIR)/src/plugProjectNishimuraU/BombOtakaraMgr.o\
 	$(BUILD_DIR)/src/plugProjectNishimuraU/BombOtakara.o\
 	$(BUILD_DIR)/asm/plugProjectNishimuraU/DangoMushiState.o\
-	$(BUILD_DIR)/asm/plugProjectNishimuraU/DangoMushiMgr.o\
+	$(BUILD_DIR)/src/plugProjectNishimuraU/DangoMushiMgr.o\
 	$(BUILD_DIR)/asm/plugProjectNishimuraU/DangoMushi.o\
 	$(BUILD_DIR)/src/plugProjectNishimuraU/GreenKabutoMgr.o\
 	$(BUILD_DIR)/src/plugProjectNishimuraU/GreenKabuto.o\

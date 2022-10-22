@@ -7,21 +7,13 @@
 #include "Game/EnemyMgrBase.h"
 #include "Game/EnemyBase.h"
 #include "Game/JointFuncs.h"
+#include "efx/TDango.h"
+#include "Sys/MatBaseAnimation.h"
+#include "Sys/MatBaseAnimator.h"
 
 /**
  * --Header for Segmented Crawbster (DangoMushi)--
  */
-
-namespace efx {
-// TODO: make headers for these
-struct TDangoWallBreak;
-struct TDangoAttack2;
-struct TChasePos2;
-} // namespace efx
-
-namespace Sys {
-struct MatLoopAnimator;
-} // namespace Sys
 
 namespace Game {
 namespace DangoMushi {
@@ -37,7 +29,7 @@ struct Obj : public EnemyBase {
 	virtual void collisionCallback(CollEvent&);             // _EC
 	virtual void getShadowParam(ShadowParam&);              // _134
 	virtual bool needShadow();                              // _138
-	virtual ~Obj();                                         // _1BC (weak)
+	virtual ~Obj() { }                                      // _1BC (weak)
 	virtual void setInitialSetting(EnemyInitialParamBase*); // _1C4
 	virtual void doUpdate();                                // _1CC
 	virtual void doUpdateCommon();                          // _1D0
@@ -117,32 +109,44 @@ struct Obj : public EnemyBase {
 	efx::TDangoWallBreak* m_efxWallBreak;    // _2F4
 	efx::TDangoAttack2* m_efxAttack2;        // _2F8
 	efx::TChasePos2* m_efxRun;               // _2FC, TDangoRun?
-	u8 _300[0x8];                            // _300, unknown
 	                                         // _308 = PelletView
 };
 
 struct Mgr : public EnemyMgrBase {
 	Mgr(int objLimit, u8 modelType);
 
-	virtual ~Mgr();                                     // _58 (weak)
-	virtual void createObj(int);                        // _A0
-	virtual EnemyBase* getEnemy(int);                   // _A4
-	virtual void doAlloc();                             // _A8
-	virtual EnemyTypeID::EEnemyTypeID getEnemyTypeID(); // _AC (weak)
-	virtual SysShape::Model* createModel();             // _B0
-	virtual void loadModelData();                       // _C8
-	virtual void loadTexData();                         // _D0
-	virtual J3DModelData* doLoadBmd(void*);             // _D4 (weak)
+	// virtual ~Mgr();                                     // _58 (weak)
+	virtual void createObj(int);                       // _A0
+	virtual EnemyBase* getEnemy(int);                  // _A4
+	virtual void doAlloc();                            // _A8
+	virtual SysShape::Model* createModel();            // _B0
+	virtual void loadModelData();                      // _C8
+	virtual void loadTexData();                        // _D0
+	virtual EnemyTypeID::EEnemyTypeID getEnemyTypeID() // _AC (weak)
+	{
+		return EnemyTypeID::EnemyID_DangoMushi;
+	}
+	virtual J3DModelData* doLoadBmd(void* filename) // _D4 (weak)
+	{
+		return J3DModelLoaderDataBase::load(filename, 0x01240030);
+	}
 
 	// _00 		= VTBL
 	// _00-_44	= EnemyMgrBase
-	u32 _44;    // _44, unknown
-	Obj* m_obj; // _48, array of Objs
+	Sys::MatTevRegAnimation* m_tevRegAnimation; // _44
+	Obj* m_obj;                                 // _48, array of Objs
 };
 
 struct Parms : public EnemyParmsBase {
 	struct ProperParms : public Parameters {
-		inline ProperParms(); // likely
+		inline ProperParms()
+		    : Parameters(nullptr, "EnemyParmsBase")
+		    , m_fp01(this, 'fp01', "ローリング移動速度", 200.0f, 0.0f, 500.0f)    // 'rolling movement speed'
+		    , m_fp02(this, 'fp02', "ローリング回転速度率", 0.1f, 0.0f, 1.0f)      // 'rolling rotation speed rate'
+		    , m_fp03(this, 'fp03', "ローリング回転最大速度", 10.0f, 0.0f, 360.0f) // 'rolling rotation maximum speed'
+		    , m_fp10(this, 'fp10', "ひっくり返り時間", 7.5f, 0.0f, 30.0f)         // 'flip time'
+		{
+		}
 
 		Parm<f32> m_fp01; // _804
 		Parm<f32> m_fp02; // _82C
@@ -150,9 +154,14 @@ struct Parms : public EnemyParmsBase {
 		Parm<f32> m_fp10; // _87C
 	};
 
-	Parms();
+	Parms() { }
 
-	virtual void read(Stream&); // _08 (weak)
+	virtual void read(Stream& stream) // _08 (weak)
+	{
+		CreatureParms::read(stream);
+		m_general.read(stream);
+		m_properParms.read(stream);
+	}
 
 	// _00-_7F8	= EnemyParmsBase
 	ProperParms m_properParms; // _7F8

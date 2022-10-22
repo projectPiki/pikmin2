@@ -8,32 +8,15 @@
 #include "Game/JointFuncs.h"
 #include "Game/EnemyBase.h"
 #include "Game/WalkSmokeEffect.h"
+#include "efx/TQueen.h"
 #include "SysShape/Joint.h"
+#include "Sys/MatBaseAnimation.h"
+#include "Sys/MatBaseAnimator.h"
 #include "Collinfo.h"
 
 /**
  * --Header for Empress Bulblax (Queen)--
  */
-
-namespace efx {
-// TODO: make header(s) for these
-struct TQueenLay;
-struct TQueenRollCR;
-struct TQueenRollCL;
-struct TQueenRoll;
-struct TQueenCrashR;
-struct TQueenCrashL;
-struct TQueenCrashRock;
-struct TQueenDamage;
-struct TQueenFlick;
-struct TQueenDead;
-struct TQueenWakeup;
-struct TQueenHanacho;
-} // namespace efx
-
-namespace Sys {
-struct MatLoopAnimator;
-} // namespace Sys
 
 namespace Game {
 namespace Queen {
@@ -62,7 +45,7 @@ struct Obj : public EnemyBase {
 	virtual void outWaterCallback();                        // _88 (weak)
 	virtual void getShadowParam(ShadowParam&);              // _134
 	virtual bool ignoreAtari(Creature*);                    // _190
-	virtual ~Obj();                                         // _1BC (weak)
+	virtual ~Obj() { }                                      // _1BC (weak)
 	virtual void setInitialSetting(EnemyInitialParamBase*); // _1C4
 	virtual void doUpdate();                                // _1CC
 	virtual void doUpdateCommon();                          // _1D0
@@ -149,26 +132,40 @@ struct Mgr : public EnemyMgrBase {
 	Mgr(int objLimit, u8 modelType);
 
 	//////////////// VTABLE
-	virtual ~Mgr();                                     // _58 (weak)
-	virtual void createObj(int);                        // _A0
-	virtual EnemyBase* getEnemy(int);                   // _A4
-	virtual void doAlloc();                             // _A8
-	virtual EnemyTypeID::EEnemyTypeID getEnemyTypeID(); // _AC (weak)
-	virtual SysShape::Model* createModel();             // _B0
-	virtual void loadModelData();                       // _C8
-	virtual void loadTexData();                         // _D0
-	virtual J3DModelData* doLoadBmd(void*);             // _D4 (weak)
+	// virtual ~Mgr();                                     // _58 (weak)
+	virtual void createObj(int);                       // _A0
+	virtual EnemyBase* getEnemy(int);                  // _A4
+	virtual void doAlloc();                            // _A8
+	virtual SysShape::Model* createModel();            // _B0
+	virtual void loadModelData();                      // _C8
+	virtual void loadTexData();                        // _D0
+	virtual EnemyTypeID::EEnemyTypeID getEnemyTypeID() // _AC (weak)
+	{
+		return EnemyTypeID::EnemyID_Queen;
+	}
+	virtual J3DModelData* doLoadBmd(void* filename) // _D4 (weak)
+	{
+		return J3DModelLoaderDataBase::load(filename, 0x01240030);
+	}
 	//////////////// VTABLE END
 
 	// _00 		= VTBL
 	// _00-_44	= EnemyMgrBase
-	u8 _44[0x4]; // _44, unknown
-	Obj* m_obj;  // _48, array of Objs
+	Sys::MatTexAnimation* m_texAnimation; // _44
+	Obj* m_obj;                           // _48, array of Objs
 };
 
 struct Parms : public EnemyParmsBase {
 	struct ProperParms : public Parameters {
-		inline ProperParms(); // likely
+		inline ProperParms()
+		    : Parameters(nullptr, "QueenParms")
+		    , m_fp01(this, 'fp01', "ÉçÅ[ÉäÉìÉOéûä‘", 10.0f, 0.0f, 100.0f)    // 'rolling time'
+		    , m_fp02(this, 'fp02', "èoéYä‘äu ( sec )", 0.0f, 0.0f, 10.0f)    // 'birth interval ( sec )'
+		    , m_fp11(this, 'fp11', "Forest 1 Life", 2500.0f, 0.0f, 10000.0f) // (Hole of Beasts Life)
+		    , m_ip01(this, 'ip01', "èoéYêî ( Max )", 50, 0, 50)              // 'number of births ( Max )'
+		    , m_ip02(this, 'ip02', "èoéYêî ( Min )", 25, 0, 50)              // 'number of births ( Min )'
+		{
+		}
 
 		Parm<f32> m_fp01; // _804
 		Parm<f32> m_fp02; // _82C
@@ -177,9 +174,14 @@ struct Parms : public EnemyParmsBase {
 		Parm<int> m_ip02; // _8A4
 	};
 
-	Parms();
+	Parms() { }
 
-	virtual void read(Stream&); // _08 (weak)
+	virtual void read(Stream& stream) // _08 (weak)
+	{
+		CreatureParms::read(stream);
+		m_general.read(stream);
+		m_properParms.read(stream);
+	}
 
 	// _00-_7F8	= EnemyParmsBase
 	ProperParms m_properParms; // _7F8
