@@ -681,11 +681,11 @@ NISHIMURA:=\
 	$(BUILD_DIR)/asm/plugProjectNishimuraU/Tobi.o\
 	$(BUILD_DIR)/src/plugProjectNishimuraU/HibaState.o\
 	$(BUILD_DIR)/src/plugProjectNishimuraU/HibaAnimator.o\
-	$(BUILD_DIR)/asm/plugProjectNishimuraU/HibaMgr.o\
+	$(BUILD_DIR)/src/plugProjectNishimuraU/HibaMgr.o\
 	$(BUILD_DIR)/src/plugProjectNishimuraU/Hiba.o\
 	$(BUILD_DIR)/src/plugProjectNishimuraU/GasHibaState.o\
 	$(BUILD_DIR)/src/plugProjectNishimuraU/GasHibaAnimator.o\
-	$(BUILD_DIR)/asm/plugProjectNishimuraU/GasHibaMgr.o\
+	$(BUILD_DIR)/src/plugProjectNishimuraU/GasHibaMgr.o\
 	$(BUILD_DIR)/asm/plugProjectNishimuraU/GasHiba.o\
 	$(BUILD_DIR)/src/plugProjectNishimuraU/ElecHibaState.o\
 	$(BUILD_DIR)/src/plugProjectNishimuraU/ElecHibaAnimator.o\
@@ -707,11 +707,11 @@ NISHIMURA:=\
 	$(BUILD_DIR)/asm/plugProjectNishimuraU/Tadpole.o\
 	$(BUILD_DIR)/asm/plugProjectNishimuraU/ElecBugState.o\
 	$(BUILD_DIR)/src/plugProjectNishimuraU/ElecBugAnimator.o\
-	$(BUILD_DIR)/asm/plugProjectNishimuraU/ElecBugMgr.o\
+	$(BUILD_DIR)/src/plugProjectNishimuraU/ElecBugMgr.o\
 	$(BUILD_DIR)/asm/plugProjectNishimuraU/ElecBug.o\
 	$(BUILD_DIR)/src/plugProjectNishimuraU/WtankMgr.o\
 	$(BUILD_DIR)/asm/plugProjectNishimuraU/Wtank.o\
-	$(BUILD_DIR)/asm/plugProjectNishimuraU/ArmorMgr.o\
+	$(BUILD_DIR)/src/plugProjectNishimuraU/ArmorMgr.o\
 	$(BUILD_DIR)/asm/plugProjectNishimuraU/Armor.o\
 	$(BUILD_DIR)/asm/plugProjectNishimuraU/Mar.o\
 	$(BUILD_DIR)/src/plugProjectNishimuraU/MarAnimator.o\
@@ -729,7 +729,7 @@ NISHIMURA:=\
 	$(BUILD_DIR)/asm/plugProjectNishimuraU/Queen.o\
 	$(BUILD_DIR)/asm/plugProjectNishimuraU/BabyState.o\
 	$(BUILD_DIR)/src/plugProjectNishimuraU/BabyAnimator.o\
-	$(BUILD_DIR)/asm/plugProjectNishimuraU/BabyMgr.o\
+	$(BUILD_DIR)/src/plugProjectNishimuraU/BabyMgr.o\
 	$(BUILD_DIR)/asm/plugProjectNishimuraU/Baby.o\
 	$(BUILD_DIR)/src/plugProjectNishimuraU/DemonMgr.o\
 	$(BUILD_DIR)/asm/plugProjectNishimuraU/Demon.o\
@@ -786,7 +786,7 @@ NISHIMURA:=\
 	$(BUILD_DIR)/src/plugProjectNishimuraU/ElecOtakara.o\
 	$(BUILD_DIR)/asm/plugProjectNishimuraU/ImomushiState.o\
 	$(BUILD_DIR)/src/plugProjectNishimuraU/ImomushiAnimator.o\
-	$(BUILD_DIR)/asm/plugProjectNishimuraU/ImomushiMgr.o\
+	$(BUILD_DIR)/src/plugProjectNishimuraU/ImomushiMgr.o\
 	$(BUILD_DIR)/asm/plugProjectNishimuraU/Imomushi.o\
 	$(BUILD_DIR)/src/plugProjectNishimuraU/HoudaiState.o\
 	$(BUILD_DIR)/src/plugProjectNishimuraU/HoudaiAnimator.o\

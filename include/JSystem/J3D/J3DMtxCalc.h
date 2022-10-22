@@ -14,7 +14,7 @@ struct J3DMtxBuffer;
 struct J3DMtxCalc {
 	virtual ~J3DMtxCalc() {};                                      // _08
 	virtual void setAnmTransform(J3DAnmTransform*);                // _0C
-	virtual J3DAnmTransform* getAnmTransform();                                // _10
+	virtual J3DAnmTransform* getAnmTransform();                    // _10
 	virtual void setAnmTransform(unsigned char, J3DAnmTransform*); // _14
 	virtual void getAnmTransform(unsigned char);                   // _18
 	virtual void setWeight(unsigned char, float);                  // _1C
@@ -45,16 +45,16 @@ struct J3DMtxCalcNoAnmBase : public J3DMtxCalc {
 struct J3DMtxCalcAnmBase : public J3DMtxCalc {
 	virtual ~J3DMtxCalcAnmBase();                   // _08
 	virtual void setAnmTransform(J3DAnmTransform*); // _0C
-	virtual J3DAnmTransform* getAnmTransform();                 // _10
+	virtual J3DAnmTransform* getAnmTransform();     // _10
 
 	J3DAnmTransform* _04; // _04
 };
 
 template <typename Adaptor, typename Init> struct J3DMtxCalcAnimation : public J3DMtxCalcAnmBase {
-	virtual ~J3DMtxCalcAnimation() {}; // _08
-	virtual void setAnmTransform(J3DAnmTransform* p1) { _04 = p1; } // _0C
+	virtual ~J3DMtxCalcAnimation() {};                                                // _08
+	virtual void setAnmTransform(J3DAnmTransform* p1) { _04 = p1; }                   // _0C
 	virtual void init(const Vec& p1, const float (&p2)[3][4]) { Init::init(p1, p2); } // _24
-	virtual void calc() // _28
+	virtual void calc()                                                               // _28
 	{
 		Adaptor::calc(this);
 		// J3DTransformInfo* pInfo;
@@ -72,7 +72,7 @@ template <typename Adaptor, typename Init> struct J3DMtxCalcAnimation : public J
 struct J3DMtxCalcBlendAnmBase : public J3DMtxCalcAnmBase {
 	virtual ~J3DMtxCalcBlendAnmBase();                             // _08
 	virtual void setAnmTransform(J3DAnmTransform*);                // _0C
-	virtual J3DAnmTransform* getAnmTransform();                                // _10
+	virtual J3DAnmTransform* getAnmTransform();                    // _10
 	virtual void setAnmTransform(unsigned char, J3DAnmTransform*); // _14
 	virtual void getAnmTransform(unsigned char);                   // _18
 	virtual void setWeight(unsigned char, float);                  // _1C
@@ -87,10 +87,10 @@ struct J3DMtxCalcBlendAnmBase : public J3DMtxCalcAnmBase {
 	float _20;            // _20
 };
 
-
 template <typename Calc> struct J3DMtxCalcAnimationAdaptorDefault {
 	/** @fabricated */
-	static void calc(J3DMtxCalcAnmBase* p1) {
+	static void calc(J3DMtxCalcAnmBase* p1)
+	{
 		J3DTransformInfo* pInfo;
 		if (p1->getAnmTransform() == nullptr) {
 			pInfo = &J3DMtxCalc::mJoint->m_transformInfo;
@@ -116,7 +116,8 @@ struct J3DMtxCalcJ3DSysInitBasic {
 	static void init(const Vec& p1, const float (&p2)[3][4]);
 };
 struct J3DMtxCalcJ3DSysInitSoftimage {
-	static void init(const Vec& p1, const float (&p2)[3][4]) {
+	static void init(const Vec& p1, const float (&p2)[3][4])
+	{
 		J3DSys::mCurrentS.x = p1.x;
 		J3DSys::mCurrentS.y = p1.y;
 		J3DSys::mCurrentS.z = p1.z;

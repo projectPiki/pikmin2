@@ -60,6 +60,7 @@ struct CNode {
 };
 
 #define FOREACH_NODE(type, first, varname) for (type* varname = (type*)(first); varname != nullptr; varname = (type*)(varname->m_next))
-#define FOREACH_NODE_EX(type, first, varname, excond) for (type* varname = (type*)(first); varname != nullptr && (excond); varname = (type*)(varname->m_next))
+#define FOREACH_NODE_EX(type, first, varname, excond) \
+	for (type* varname = (type*)(first); varname != nullptr && (excond); varname = (type*)(varname->m_next))
 
 #endif

@@ -3,7 +3,7 @@
 namespace Game {
 namespace Sarai {
 
-static const char bombSaraiMgrName[] = "246-SaraiMgr";
+static const char saraiMgrName[] = "246-SaraiMgr";
 
 /*
  * --INFO--

@@ -28,7 +28,7 @@ struct Obj : public EnemyBase {
 	virtual void doDirectDraw(Graphics&);                    // _50
 	virtual void collisionCallback(CollEvent&);              // _EC
 	virtual void getShadowParam(ShadowParam&);               // _134
-	virtual ~Obj();                                          // _1BC (weak)
+	virtual ~Obj() { }                                       // _1BC (weak)
 	virtual void setInitialSetting(EnemyInitialParamBase*);  // _1C4
 	virtual void doUpdate();                                 // _1CC
 	virtual void doDebugDraw(Graphics&);                     // _1EC
@@ -76,11 +76,14 @@ struct Obj : public EnemyBase {
 struct Mgr : public EnemyMgrBase {
 	Mgr(int objLimit, u8 modelType);
 
-	virtual ~Mgr();                                     // _58 (weak)
-	virtual void createObj(int);                        // _A0
-	virtual EnemyBase* getEnemy(int);                   // _A4
-	virtual void doAlloc();                             // _A8
-	virtual EnemyTypeID::EEnemyTypeID getEnemyTypeID(); // _AC (weak)
+	// virtual ~Mgr();                                     // _58 (weak)
+	virtual void doAlloc();                            // _A8
+	virtual void createObj(int);                       // _A0
+	virtual EnemyBase* getEnemy(int);                  // _A4
+	virtual EnemyTypeID::EEnemyTypeID getEnemyTypeID() // _AC (weak)
+	{
+		return EnemyTypeID::EnemyID_ElecBug;
+	}
 
 	// _00 		= VTBL
 	// _00-_44	= EnemyMgrBase
@@ -89,16 +92,27 @@ struct Mgr : public EnemyMgrBase {
 
 struct Parms : public EnemyParmsBase {
 	struct ProperParms : public Parameters {
-		inline ProperParms(); // likely
+		inline ProperParms()
+		    : Parameters(nullptr, "EnemyParmsBase")
+		    , m_flipTime(this, 'fp01', "ひっくり返り時間", 5.0f, 0.0f, 10.0f) // 'flip time'
+		    , m_waitTime(this, 'fp02', "ウェイト時間", 1.5f, 0.0f, 10.0f)     // 'wait time'
+		    , m_dischargeTime(this, 'fp11', "放電時間", 3.0f, 0.0f, 10.0f)    // 'discharge time'
+		{
+		}
 
-		Parm<f32> m_fp01; // _804
-		Parm<f32> m_fp02; // _82C
-		Parm<f32> m_fp11; // _854
+		Parm<f32> m_flipTime;      // _804, fp01
+		Parm<f32> m_waitTime;      // _82C, fp02
+		Parm<f32> m_dischargeTime; // _854, fp11
 	};
 
-	Parms();
+	Parms() { }
 
-	virtual void read(Stream&); // _08 (weak)
+	virtual void read(Stream& stream) // _08 (weak)
+	{
+		CreatureParms::read(stream);
+		m_general.read(stream);
+		m_properParms.read(stream);
+	}
 
 	// _00-_7F8	= EnemyParmsBase
 	ProperParms m_properParms; // _7F8

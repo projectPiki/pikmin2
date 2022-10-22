@@ -11,8 +11,8 @@ struct J3DTexNoAnm {
 
 	~J3DTexNoAnm();
 
-	u16 _04; // _04
-	u16 _06; // _06
+	u16 _04;                 // _04
+	u16 _06;                 // _06
 	J3DAnmTexPattern* m_anm; // _08
 };
 

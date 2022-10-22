@@ -90,6 +90,7 @@ struct J3DAnmVtxColorKey : public J3DAnmVtxColor {
 	s16* _2C;                 // _2C
 };
 
-struct J3DAnmVtxColorKeyData { };
+struct J3DAnmVtxColorKeyData {
+};
 
 #endif

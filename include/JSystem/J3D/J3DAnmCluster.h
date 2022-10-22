@@ -41,7 +41,8 @@ struct J3DAnmClusterFullData : J3DAnmFullData {
 	void* _10; // _10
 	void* _14; // _14
 };
-struct J3DAnmClusterFullTable { };
+struct J3DAnmClusterFullTable {
+};
 
 /**
  * @size{0x14}
@@ -59,7 +60,9 @@ struct J3DAnmClusterKey : public J3DAnmCluster {
 	J3DAnmClusterKeyTable* _10; // _10
 };
 
-struct J3DAnmClusterKeyData { };
-struct J3DAnmClusterKeyTable : J3DAnmKeyTableBase { };
+struct J3DAnmClusterKeyData {
+};
+struct J3DAnmClusterKeyTable : J3DAnmKeyTableBase {
+};
 
 #endif

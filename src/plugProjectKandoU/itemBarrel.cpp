@@ -1641,7 +1641,8 @@ bool ItemBarrel::Item::interactAttack(Game::InteractAttack& interaction)
 			P2ASSERTLINE(361, m_soundObj->getCastType() == PSM::CCT_WorkItem);
 			static_cast<PSM::WorkItem*>(m_soundObj)->eventStart();
 			break;
-		case 2: break;
+		case 2:
+			break;
 		case 3:
 			P2ASSERTLINE(368, m_soundObj->getCastType() == PSM::CCT_WorkItem);
 			static_cast<PSM::WorkItem*>(m_soundObj)->eventRestart();

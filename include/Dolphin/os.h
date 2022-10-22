@@ -501,7 +501,7 @@ typedef enum {
 enum OS_THREAD_STATE { OS_THREAD_STATE_READY = 1, OS_THREAD_STATE_RUNNING = 2, OS_THREAD_STATE_WAITING = 4, OS_THREAD_STATE_MORIBUND = 8 };
 
 // Thread priorities
-#define OS_PRIORITY_MIN  0  // highest
+#define OS_PRIORITY_MIN  0 // highest
 #define OS_PRIORITY_MAX  31 // lowest
 #define OS_PRIORITY_IDLE OS_PRIORITY_MAX
 
@@ -582,7 +582,7 @@ void* OSGetStackPointer();
 extern u32 __OSFpscrEnableBits; /** TODO: find a wrapper for this. Symbol is defined in OSError.c. */
 
 #define HW_REG(reg, type)     *(volatile type*)(uintptr_t)(reg) // manually added
-#define OSGetTicksPerSecond() (*(u32*)0x800000F8 / 4)           // manually added
+#define OSGetTicksPerSecond() (*(u32*)0x800000F8 / 4) // manually added
 
 // u32 GameCode : 0x80000000;
 // u32 FSTLocationInRam : 0x80000038;

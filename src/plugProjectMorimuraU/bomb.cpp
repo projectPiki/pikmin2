@@ -428,7 +428,6 @@ Creature* Obj::birth(Vector3f&, float) const
 	*/
 }
 
-
 /*
  * --INFO--
  * Address:	8034A390

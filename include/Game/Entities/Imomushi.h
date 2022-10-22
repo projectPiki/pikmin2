@@ -44,7 +44,7 @@ struct Obj : public EnemyBase {
 	virtual void doDirectDraw(Graphics&);                   // _50
 	virtual bool isUnderground();                           // _D0 (weak)
 	virtual void getShadowParam(ShadowParam&);              // _134
-	virtual ~Obj();                                         // _1BC (weak)
+	virtual ~Obj() { }                                      // _1BC (weak)
 	virtual void setInitialSetting(EnemyInitialParamBase*); // _1C4
 	virtual void doUpdate();                                // _1CC
 	virtual void doAnimationStick();                        // _1E4
@@ -105,11 +105,14 @@ struct Obj : public EnemyBase {
 struct Mgr : public EnemyMgrBase {
 	Mgr(int objLimit, u8 modelType);
 
-	virtual ~Mgr();                                     // _58 (weak)
-	virtual void createObj(int);                        // _A0
-	virtual EnemyBase* getEnemy(int);                   // _A4
-	virtual void doAlloc();                             // _A8
-	virtual EnemyTypeID::EEnemyTypeID getEnemyTypeID(); // _AC (weak)
+	// virtual ~Mgr();                                     // _58 (weak)
+	virtual void doAlloc();                            // _A8
+	virtual void createObj(int);                       // _A0
+	virtual EnemyBase* getEnemy(int);                  // _A4
+	virtual EnemyTypeID::EEnemyTypeID getEnemyTypeID() // _AC (weak)
+	{
+		return EnemyTypeID::EnemyID_Imomushi;
+	}
 
 	// _00 		= VTBL
 	// _00-_44	= EnemyMgrBase
@@ -118,18 +121,31 @@ struct Mgr : public EnemyMgrBase {
 
 struct Parms : public EnemyParmsBase {
 	struct ProperParms : public Parameters {
-		inline ProperParms(); // likely
+		inline ProperParms()
+		    : Parameters(nullptr, "EnemyParmsBase")
+		    , m_fp01(this, 'fp01', "ëêìoÇËë¨ìx", 2.0f, 0.0f, 10.0f)     // 'plant climbing speed'
+		    , m_fp02(this, 'fp02', "éÌé¸âÒë¨ìx", 0.3f, 0.0f, 10.0f)     // 'seed circulation speed'
+		    , m_fp11(this, 'fp11', "é¿êHÇ¢éûä‘", 10.0f, 0.0f, 100.0f)   // 'eating time'
+		    , m_fp90(this, 'fp90', "Translateï‚ê≥", 0.75f, 0.0f, 10.0f) // 'translation correction'
+		    , m_fp91(this, 'fp91', "Rotateï‚ê≥", 0.05f, 0.0f, 1.0f)     // 'rotation correction'
+		{
+		}
 
-		Parm<f32> _804; // _804
-		Parm<f32> _82C; // _82C
-		Parm<f32> _854; // _854
-		Parm<f32> _87C; // _87C
-		Parm<f32> _8A4; // _8A4
+		Parm<f32> m_fp01; // _804
+		Parm<f32> m_fp02; // _82C
+		Parm<f32> m_fp11; // _854
+		Parm<f32> m_fp90; // _87C
+		Parm<f32> m_fp91; // _8A4
 	};
 
-	Parms();
+	Parms() { }
 
-	virtual void read(Stream&); // _08 (weak)
+	virtual void read(Stream& stream) // _08 (weak)
+	{
+		CreatureParms::read(stream);
+		m_general.read(stream);
+		m_properParms.read(stream);
+	}
 
 	// _00-_7F8	= EnemyParmsBase
 	ProperParms m_properParms; // _7F8

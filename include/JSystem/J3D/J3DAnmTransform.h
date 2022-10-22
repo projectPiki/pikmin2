@@ -102,7 +102,9 @@ struct J3DAnmTransformKey : public J3DAnmTransform {
 	J3DAnmTransformKeyTable* _24; // _24
 };
 
-struct J3DAnmTransformKeyData : public J3DAnmKeyTableBase { };
-struct J3DAnmTransformKeyTable : public J3DAnmKeyTableBase { };
+struct J3DAnmTransformKeyData : public J3DAnmKeyTableBase {
+};
+struct J3DAnmTransformKeyTable : public J3DAnmKeyTableBase {
+};
 
 #endif

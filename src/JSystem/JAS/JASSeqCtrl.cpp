@@ -55,7 +55,7 @@ bool JASSeqCtrl::loopEnd()
 		return true;
 	}
 	_30[v1 - 1] = v2;
-	_04  = _10[_0C - 1];
+	_04         = _10[_0C - 1];
 	return true;
 }
 

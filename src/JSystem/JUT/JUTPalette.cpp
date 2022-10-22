@@ -29,7 +29,7 @@ void JUTPalette::storeTLUT(_GXTlut tlutID, ResTLUT* resource)
 	}
 	// storeTLUT(tlutID, resource->m_format, resource->m_transparency,
 	// resource->_02, resource->_20);
-	u8* v1 = reinterpret_cast<u8*>(&resource->_20);
+	u8* v1         = reinterpret_cast<u8*>(&resource->_20);
 	m_tlutID       = tlutID;
 	m_tlutFormat   = resource->m_format;
 	m_transparency = resource->m_transparency;

@@ -71,7 +71,8 @@ struct J3DAnmColorFullData : J3DAnmFullData {
 	void* _30; // _30
 };
 
-struct J3DAnmColorFullTable { };
+struct J3DAnmColorFullTable {
+};
 
 /**
  * @size{0x40}
@@ -97,7 +98,8 @@ struct J3DAnmColorKey : public J3DAnmColor {
 	J3DAnmColorKeyTable* m_table; // _3C
 };
 
-struct J3DAnmColorKeyData { };
+struct J3DAnmColorKeyData {
+};
 
 /**
  * @size{0x18}

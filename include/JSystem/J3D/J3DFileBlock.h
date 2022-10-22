@@ -121,13 +121,13 @@ struct J3DMaterialBlock_v21 : J3DFileBlockBase {
 };
 
 struct J3DMaterialDLBlock : J3DFileBlockBase {
-	u16 _08; // _08
-	void* _0C;   // _0C
-	void* _10;   // _10
-	void* _14;   // _14
-	void* _18;   // _18
-	void* _1C;   // _1C
-	u32 _20;      // _20
+	u16 _08;   // _08
+	void* _0C; // _0C
+	void* _10; // _10
+	void* _14; // _14
+	void* _18; // _18
+	void* _1C; // _1C
+	u32 _20;   // _20
 };
 
 struct J3DModelInfoBlock : J3DFileBlockBase {

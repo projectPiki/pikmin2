@@ -15,7 +15,8 @@ namespace JAInter {
 struct DummyVec;
 
 namespace SequenceMgr {
-struct CustomHeapInfo { };
+struct CustomHeapInfo {
+};
 void init();
 void getArchiveName(char*);
 void setArchivePointer(JKRArchive*);
@@ -87,9 +88,11 @@ struct DummyObjectMgr {
 	static DummyObject* deadObjectUsedPointer;
 };
 
-struct DummyVec { };
+struct DummyVec {
+};
 
-struct HeapBlock { };
+struct HeapBlock {
+};
 
 struct LinkSound {
 	void init();

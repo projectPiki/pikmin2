@@ -255,7 +255,8 @@ struct JUTCacheFont : public JUTResFont {
 		GXTexObj m_gxTexObj;     // _20
 	};
 
-	struct TCachePage { };
+	struct TCachePage {
+	};
 
 	JUTCacheFont();
 	JUTCacheFont(const ResFONT*, void*, u32, JKRHeap*);

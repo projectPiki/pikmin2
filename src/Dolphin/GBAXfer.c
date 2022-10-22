@@ -29,7 +29,7 @@ void __GBAHandler(int portIndex, u32 p2, OSContext* context)
 		if (gba->m_syncCallback != nullptr) {
 			OSClearContext(&syncContext);
 			OSSetCurrentContext(&syncContext);
-			syncCallback = gba->m_syncCallback;
+			syncCallback        = gba->m_syncCallback;
 			gba->m_syncCallback = nullptr;
 			syncCallback(portIndex, gba->_20);
 			OSClearContext(&syncContext);
@@ -109,10 +109,7 @@ void __GBAHandler(int portIndex, u32 p2, OSContext* context)
  * Address:	800FF034
  * Size:	000034
  */
-void __GBASyncCallback(int portIndex, int p2)
-{
-	OSWakeupThread(&__GBA[portIndex]._24);
-}
+void __GBASyncCallback(int portIndex, int p2) { OSWakeupThread(&__GBA[portIndex]._24); }
 
 /*
  * --INFO--
@@ -122,7 +119,7 @@ void __GBASyncCallback(int portIndex, int p2)
 int __GBASync(int portIndex)
 {
 	int result;
-	GBA* gba = &__GBA[portIndex];
+	GBA* gba       = &__GBA[portIndex];
 	int interrupts = OSDisableInterrupts();
 	while (gba->m_syncCallback != nullptr) {
 		OSSleepThread(&gba->_24);

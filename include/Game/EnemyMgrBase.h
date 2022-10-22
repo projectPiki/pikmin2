@@ -181,12 +181,24 @@ struct EnemyMgrBaseAlwaysMovieActor : public EnemyMgrBase {
 	{
 	}
 
-	virtual void doAnimation();                 // _08 (weak)
-	virtual void doEntry();                     // _0C (weak)
-	virtual void doSimulation(f32);             // _18 (weak)
-	virtual void doDirectDraw(Graphics&);       // _1C (weak)
+	virtual bool isAlwaysMovieActor() { return true; } // _9C (weak)
+	virtual void doAnimation()                         // _08 (weak)
+	{
+		EnemyMgrBase::doAnimationAlwaysMovieActor();
+	}
+	virtual void doEntry() // _0C (weak)
+	{
+		EnemyMgrBase::doEntryAlwaysMovieActor();
+	}
+	virtual void doSimulation(f32 constraint) // _18 (weak)
+	{
+		EnemyMgrBase::doSimulationAlwaysMovieActor(constraint);
+	}
+	virtual void doDirectDraw(Graphics& gfx) // _1C (weak)
+	{
+		EnemyMgrBase::doDirectDrawAlwaysMovieActor(gfx);
+	}
 	virtual ~EnemyMgrBaseAlwaysMovieActor() { } // _58 (weak)
-	virtual bool isAlwaysMovieActor();          // _9C (weak)
 
 	// _00		= VTABLE
 	// _00-_44	= EnemyMgrBase

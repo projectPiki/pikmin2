@@ -22,7 +22,7 @@ struct JASSeqCtrl {
 	// unused/inlined
 	u32 read32();
 
-	u8* _00;  // _00
+	u8* _00;    // _00
 	u8* _04;    // _04
 	int _08;    // _08
 	u32 _0C;    // _0C - unknown

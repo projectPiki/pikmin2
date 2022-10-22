@@ -6,11 +6,16 @@
 namespace std {
 typedef long ptrdiff_t;
 
-struct input_iterator_tag { };
-struct output_iterator_tag { };
-struct forward_iterator_tag : public input_iterator_tag { };
-struct bidirectional_iterator_tag : public forward_iterator_tag { };
-struct random_access_iterator_tag : public bidirectional_iterator_tag { };
+struct input_iterator_tag {
+};
+struct output_iterator_tag {
+};
+struct forward_iterator_tag : public input_iterator_tag {
+};
+struct bidirectional_iterator_tag : public forward_iterator_tag {
+};
+struct random_access_iterator_tag : public bidirectional_iterator_tag {
+};
 
 template <typename Iterator> struct iterator_traits {
 	typedef typename Iterator::difference_type difference_type;

@@ -94,15 +94,15 @@ void JAIAnimeSound::handleStop(u8 handleNo, u32 p2)
  * Size:	000188
  */
 JAIAnimeSound::JAIAnimeSound(Vec* p1, JKRHeap* heap, u8 p3)
-	: Object(p1, heap, p3)
-	, _48(0)
-	, _4C(0)
-	, _50(0)
-	, _54(0)
-	, _58(_4C ? 1 : 0)
-	, _68(0)
-	, _6C(0)
-	, m_soundData(nullptr)
+    : Object(p1, heap, p3)
+    , _48(0)
+    , _4C(0)
+    , _50(0)
+    , _54(0)
+    , _58(_4C ? 1 : 0)
+    , _68(0)
+    , _6C(0)
+    , m_soundData(nullptr)
 {
 	// if (_4C) {
 	// 	_58 = 1;

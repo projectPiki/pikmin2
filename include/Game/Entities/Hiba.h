@@ -7,15 +7,12 @@
 #include "Game/EnemyMgrBase.h"
 #include "Game/EnemyBase.h"
 #include "efx/TEnemyBomb.h"
+#include "efx/THibaFire.h"
 #include "PS.h"
 
 /**
  * --Header for Fire Geyser (Hiba)--
  */
-
-namespace efx {
-struct THibaFire;
-} // namespace efx
 
 namespace Game {
 namespace Hiba {
@@ -71,11 +68,14 @@ struct Obj : public EnemyBase {
 struct Mgr : public EnemyMgrBaseAlwaysMovieActor {
 	Mgr(int objLimit, u8 modelType);
 
-	virtual ~Mgr();                                     // _58 (weak)
-	virtual void createObj(int);                        // _A0
-	virtual EnemyBase* getEnemy(int);                   // _A4
-	virtual void doAlloc();                             // _A8
-	virtual EnemyTypeID::EEnemyTypeID getEnemyTypeID(); // _AC (weak)
+	// virtual ~Mgr();                                     // _58 (weak)
+	virtual void doAlloc();                            // _A8
+	virtual void createObj(int);                       // _A0
+	virtual EnemyBase* getEnemy(int);                  // _A4
+	virtual EnemyTypeID::EEnemyTypeID getEnemyTypeID() // _AC (weak)
+	{
+		return EnemyTypeID::EnemyID_Hiba;
+	}
 
 	// _00 		= VTBL
 	// _00-_44	= EnemyMgrBase
@@ -84,7 +84,15 @@ struct Mgr : public EnemyMgrBaseAlwaysMovieActor {
 
 struct Parms : public EnemyParmsBase {
 	struct ProperParms : public Parameters {
-		inline ProperParms(); // likely
+		inline ProperParms()
+		    : Parameters(nullptr, "EnemyParmsBase")
+		    , m_waitTime(this, 'fp02', "ƒEƒFƒCƒgŽžŠÔ", 2.5f, 0.0f, 100.0f) // 'wait time'
+		    , m_activeTime(this, 'fp01', "‰Î“f‚«ŽžŠÔ", 2.5f, 0.0f, 100.0f) // 'fire spitting time'
+		    , m_stopTime(this, 'fp03', "’âŽ~ŽžŠÔ", 10.0f, 0.0f, 100.0f)    // 'stop time'
+		    , m_lodNear(this, 'fp90', "LOD NEAR", 0.085f, 0.0f, 1.0f)
+		    , m_lodMiddle(this, 'fp91', "LOD MIDDLE", 0.05f, 0.0f, 1.0f)
+		{
+		}
 
 		Parm<f32> m_waitTime;   // _804, fp02
 		Parm<f32> m_activeTime; // _82C, fp01
@@ -93,9 +101,14 @@ struct Parms : public EnemyParmsBase {
 		Parm<f32> m_lodMiddle;  // _8A4, fp91
 	};
 
-	Parms();
+	Parms() { }
 
-	virtual void read(Stream&); // _08 (weak)
+	virtual void read(Stream& stream) // _08 (weak)
+	{
+		CreatureParms::read(stream);
+		m_general.read(stream);
+		m_properParms.read(stream);
+	}
 
 	// _00-_7F8	= EnemyParmsBase
 	ProperParms m_properParms; // _7F8

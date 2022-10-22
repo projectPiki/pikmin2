@@ -29,7 +29,7 @@ struct Obj : public EnemyBase {
 	virtual void inWaterCallback(WaterBox*);                 // _84 (weak)
 	virtual void outWaterCallback();                         // _88 (weak)
 	virtual void getShadowParam(ShadowParam&);               // _134
-	virtual ~Obj();                                          // _1BC (weak)
+	virtual ~Obj() { }                                       // _1BC (weak)
 	virtual void setInitialSetting(EnemyInitialParamBase*);  // _1C4
 	virtual void doUpdate();                                 // _1CC
 	virtual void doDebugDraw(Graphics&);                     // _1EC
@@ -70,11 +70,14 @@ struct Obj : public EnemyBase {
 struct Mgr : public EnemyMgrBase {
 	Mgr(int objLimit, u8 modelType);
 
-	virtual ~Mgr();                                     // _58 (weak)
-	virtual void createObj(int);                        // _A0
-	virtual EnemyBase* getEnemy(int);                   // _A4
-	virtual void doAlloc();                             // _A8
-	virtual EnemyTypeID::EEnemyTypeID getEnemyTypeID(); // _AC (weak)
+	// virtual ~Mgr();                                     // _58 (weak)
+	virtual void doAlloc();                            // _A8
+	virtual void createObj(int);                       // _A0
+	virtual EnemyBase* getEnemy(int);                  // _A4
+	virtual EnemyTypeID::EEnemyTypeID getEnemyTypeID() // _AC (weak)
+	{
+		return EnemyTypeID::EnemyID_Baby;
+	}
 
 	// _00 		= VTBL
 	// _00-_44	= EnemyMgrBase
@@ -83,15 +86,25 @@ struct Mgr : public EnemyMgrBase {
 
 struct Parms : public EnemyParmsBase {
 	struct ProperParms : public Parameters {
-		inline ProperParms(); // likely
+		inline ProperParms()
+		    : Parameters(nullptr, "EnemyParmsBase")
+		    , m_poisonDamage(this, 'fp01', "白ピクミン", 300.0f, 0.0f, 10000.0f) // 'white pikmin'
+		    , m_nectarChance(this, 'fp11', "蜜出し確率", 0.2f, 0.0f, 1.0f)       // 'probability of getting out honey'
+		{
+		}
 
-		Parm<f32> m_fp01; // _804
-		Parm<f32> m_fp11; // _82C
+		Parm<f32> m_poisonDamage; // _804, fp01
+		Parm<f32> m_nectarChance; // _82C, fp11
 	};
 
-	Parms();
+	Parms() { }
 
-	virtual void read(Stream&); // _08 (weak)
+	virtual void read(Stream& stream) // _08 (weak)
+	{
+		CreatureParms::read(stream);
+		m_general.read(stream);
+		m_properParms.read(stream);
+	}
 
 	// _00-_7F8	= EnemyParmsBase
 	ProperParms m_properParms; // _7F8

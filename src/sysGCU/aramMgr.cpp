@@ -223,65 +223,66 @@ void ARAM::Mgr::dump()
 	JKRAram::sAramObject->m_aramHeap->getFreeSize();
 	JKRAram::sAramObject->m_aramHeap->getFreeSize();
 	u32 max = 0xFFFFFFFF;
-	FOREACH_NODE(Node, m_node.m_child, node) {
+	FOREACH_NODE(Node, m_node.m_child, node)
+	{
 		u32 v1 = (node->m_status) ? node->m_status->_18 : 0;
-		max = MIN(max, v1);
-		min = MAX(min, v1);
+		max    = MIN(max, v1);
+		min    = MAX(min, v1);
 	}
-/*
-stwu     r1, -0x20(r1)
-mflr     r0
-stw      r0, 0x24(r1)
-stw      r31, 0x1c(r1)
-li       r31, -1
-stw      r30, 0x18(r1)
-li       r30, 0
-stw      r29, 0x14(r1)
-mr       r29, r3
-lwz      r4, sAramObject__7JKRAram@sda21(r13)
-lwz      r3, 0x94(r4)
-bl       getFreeSize__11JKRAramHeapFv
-lwz      r3, sAramObject__7JKRAram@sda21(r13)
-lwz      r3, 0x94(r3)
-bl       getFreeSize__11JKRAramHeapFv
-lwz      r4, 0x10(r29)
-b        lbl_80433044
+	/*
+	stwu     r1, -0x20(r1)
+	mflr     r0
+	stw      r0, 0x24(r1)
+	stw      r31, 0x1c(r1)
+	li       r31, -1
+	stw      r30, 0x18(r1)
+	li       r30, 0
+	stw      r29, 0x14(r1)
+	mr       r29, r3
+	lwz      r4, sAramObject__7JKRAram@sda21(r13)
+	lwz      r3, 0x94(r4)
+	bl       getFreeSize__11JKRAramHeapFv
+	lwz      r3, sAramObject__7JKRAram@sda21(r13)
+	lwz      r3, 0x94(r3)
+	bl       getFreeSize__11JKRAramHeapFv
+	lwz      r4, 0x10(r29)
+	b        lbl_80433044
 
-lbl_8043300C:
-lwz      r3, 0x18(r4)
-cmplwi   r3, 0
-beq      lbl_80433020
-lwz      r0, 0x18(r3)
-b        lbl_80433024
+	lbl_8043300C:
+	lwz      r3, 0x18(r4)
+	cmplwi   r3, 0
+	beq      lbl_80433020
+	lwz      r0, 0x18(r3)
+	b        lbl_80433024
 
-lbl_80433020:
-li       r0, 0
+	lbl_80433020:
+	li       r0, 0
 
-lbl_80433024:
-cmplw    r31, r0
-ble      lbl_80433034
-mr       r31, r0
-b        lbl_80433040
+	lbl_80433024:
+	cmplw    r31, r0
+	ble      lbl_80433034
+	mr       r31, r0
+	b        lbl_80433040
 
-lbl_80433034:
-cmplw    r30, r0
-bge      lbl_80433040
-mr       r30, r0
+	lbl_80433034:
+	cmplw    r30, r0
+	bge      lbl_80433040
+	mr       r30, r0
 
-lbl_80433040:
-lwz      r4, 4(r4)
+	lbl_80433040:
+	lwz      r4, 4(r4)
 
-lbl_80433044:
-cmplwi   r4, 0
-bne      lbl_8043300C
-lwz      r0, 0x24(r1)
-lwz      r31, 0x1c(r1)
-lwz      r30, 0x18(r1)
-lwz      r29, 0x14(r1)
-mtlr     r0
-addi     r1, r1, 0x20
-blr
-*/
+	lbl_80433044:
+	cmplwi   r4, 0
+	bne      lbl_8043300C
+	lwz      r0, 0x24(r1)
+	lwz      r31, 0x1c(r1)
+	lwz      r30, 0x18(r1)
+	lwz      r29, 0x14(r1)
+	mtlr     r0
+	addi     r1, r1, 0x20
+	blr
+	*/
 }
 
 /*
@@ -291,43 +292,43 @@ blr
  */
 Node* ARAM::Mgr::search(char const*)
 {
-/*
-stwu     r1, -0x20(r1)
-mflr     r0
-stw      r0, 0x24(r1)
-stw      r31, 0x1c(r1)
-li       r31, 0
-stw      r30, 0x18(r1)
-stw      r29, 0x14(r1)
-mr       r29, r4
-lwz      r30, 0x10(r3)
-b        lbl_804330B0
+	/*
+	stwu     r1, -0x20(r1)
+	mflr     r0
+	stw      r0, 0x24(r1)
+	stw      r31, 0x1c(r1)
+	li       r31, 0
+	stw      r30, 0x18(r1)
+	stw      r29, 0x14(r1)
+	mr       r29, r4
+	lwz      r30, 0x10(r3)
+	b        lbl_804330B0
 
-lbl_80433090:
-lwz      r4, 0x14(r30)
-mr       r3, r29
-bl       strcmp
-cmpwi    r3, 0
-bne      lbl_804330AC
-mr       r31, r30
-b        lbl_804330B8
+	lbl_80433090:
+	lwz      r4, 0x14(r30)
+	mr       r3, r29
+	bl       strcmp
+	cmpwi    r3, 0
+	bne      lbl_804330AC
+	mr       r31, r30
+	b        lbl_804330B8
 
-lbl_804330AC:
-lwz      r30, 4(r30)
+	lbl_804330AC:
+	lwz      r30, 4(r30)
 
-lbl_804330B0:
-cmplwi   r30, 0
-bne      lbl_80433090
+	lbl_804330B0:
+	cmplwi   r30, 0
+	bne      lbl_80433090
 
-lbl_804330B8:
-lwz      r0, 0x24(r1)
-mr       r3, r31
-lwz      r31, 0x1c(r1)
-lwz      r30, 0x18(r1)
-lwz      r29, 0x14(r1)
-mtlr     r0
-addi     r1, r1, 0x20
-blr
-*/
+	lbl_804330B8:
+	lwz      r0, 0x24(r1)
+	mr       r3, r31
+	lwz      r31, 0x1c(r1)
+	lwz      r30, 0x18(r1)
+	lwz      r29, 0x14(r1)
+	mtlr     r0
+	addi     r1, r1, 0x20
+	blr
+	*/
 }
 } // namespace ARAM
