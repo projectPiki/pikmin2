@@ -94,7 +94,7 @@ TParse_header_block::~TParse_header_block() { }
  * Address:	800271D8
  * Size:	00010C
  */
-void TParse_header_block::parse_next(void const**, u32)
+bool TParse_header_block::parse_next(void const**, u32)
 {
 	/*
 	.loc_0x0:

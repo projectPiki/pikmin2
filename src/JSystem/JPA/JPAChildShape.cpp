@@ -1,3 +1,6 @@
+#include "Dolphin/gx.h"
+#include "JSystem/JPA/JPAEmitter.h"
+#include "JSystem/JPA/JPAShape.h"
 #include "types.h"
 
 /*
@@ -102,8 +105,10 @@ void JPARegistChildPrmEnv(JPAEmitterWorkData*)
  * Address:	8008EF6C
  * Size:	00002C
  */
-void JPACalcChildAlphaOut(JPAEmitterWorkData*, JPABaseParticle*)
+void JPACalcChildAlphaOut(JPAEmitterWorkData* workData, JPABaseParticle* particle)
 {
+	double a      = (1.0f - particle->_84) * 255.0f;
+	particle->_96 = ((u8*)&a)[0];
 	/*
 	stwu     r1, -0x10(r1)
 	lfs      f1, lbl_80516B74@sda21(r2)
@@ -124,22 +129,10 @@ void JPACalcChildAlphaOut(JPAEmitterWorkData*, JPABaseParticle*)
  * Address:	8008EF98
  * Size:	000030
  */
-void JPACalcChildScaleOut(JPAEmitterWorkData*, JPABaseParticle*)
+void JPACalcChildScaleOut(JPAEmitterWorkData* workData, JPABaseParticle* particle)
 {
-	/*
-	lfs      f2, lbl_80516B74@sda21(r2)
-	lfs      f0, 0x84(r4)
-	lfs      f1, 0x68(r4)
-	fsubs    f0, f2, f0
-	fmuls    f0, f1, f0
-	stfs     f0, 0x60(r4)
-	lfs      f0, 0x84(r4)
-	lfs      f1, 0x6c(r4)
-	fsubs    f0, f2, f0
-	fmuls    f0, f1, f0
-	stfs     f0, 0x64(r4)
-	blr
-	*/
+	particle->_60 = particle->_68 * (1.0f - particle->_84);
+	particle->_64 = particle->_6C * (1.0f - particle->_84);
 }
 
 /*
@@ -147,10 +140,10 @@ void JPACalcChildScaleOut(JPAEmitterWorkData*, JPABaseParticle*)
  * Address:	8008EFC8
  * Size:	000008
  */
-JPAChildShape::JPAChildShape(const unsigned char* a1)
+JPAChildShape::JPAChildShape(const unsigned char* data)
 {
 	// Generated from stw r4, 0x0(r3)
-	_00 = a1;
+	m_data = data;
 }
 
 /*

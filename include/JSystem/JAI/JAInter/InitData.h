@@ -1,6 +1,7 @@
 #ifndef _JSYSTEM_JAI_JAINTER_INITDATA_H
 #define _JSYSTEM_JAI_JAINTER_INITDATA_H
 
+#include "types.h"
 namespace JAInter {
 namespace InitData {
 bool checkInitDataFile();

@@ -1,4 +1,5 @@
 #include "Dolphin/gx.h"
+#include "Dolphin/vi.h"
 #include "JSystem/JKR/JKRHeap.h"
 #include "JSystem/JUT/JUTVideo.h"
 #include "JSystem/JUT/JUTXfb.h"
@@ -12,6 +13,8 @@
     sManager__6JUTXfb:
         .skip 0x8
 */
+
+JUTXfb* JUTXfb::sManager;
 
 /*
  * --INFO--
@@ -42,18 +45,22 @@ void JUTXfb::common_init(int)
  * Size:	0000B0
  */
 JUTXfb::JUTXfb(const _GXRenderModeObj* gxObj, JKRHeap* heap, JUTXfb::EXfbNumber number)
+// : _10(number)
+// , _14(-1)
+// , _16(-1)
+// , _18(-1)
+// , _1C(99)
 {
-	// Used by createManager__6JUTXfbFP7JKRHeapQ26JUTXfb10EXfbNumber
-	// UNUSED FUNCTION
-	u16 xfbLines;
 	_10 = number;
 	clearIndex();
 	_1C = 99;
-	// float yScaleFactor = GXGetYScaleFactor(gxObj->xfbHeight,
-	// gxObj->viXOrigin); u16 xfbLines = GXGetNumXfbLines(yScaleFactor,
-	// gxObj->xfbHeight); initiate(gxObj->efbHeight, xfbLines, heap, number);
-	xfbLines = GXGetNumXfbLines(GXGetYScaleFactor(gxObj->xfbHeight, gxObj->viXOrigin), gxObj->xfbHeight);
-	initiate(gxObj->efbHeight, xfbLines, heap, number);
+	// Used by createManager__6JUTXfbFP7JKRHeapQ26JUTXfb10EXfbNumber
+	// UNUSED FUNCTION
+	// float yScaleFactor = GXGetYScaleFactor(gxObj->xfbHeight, gxObj->viXOrigin);
+	u16 width = gxObj->fbWidth;
+	// u16 xfbLines = GXGetNumXfbLines(yScaleFactor, gxObj->xfbHeight);
+	// initiate(gxObj->efbHeight, xfbLines, heap, number);
+	initiate(width, getLineCount(gxObj), heap, number);
 }
 
 /*
@@ -161,6 +168,7 @@ JUTXfb* JUTXfb::createManager(const _GXRenderModeObj*, void*, void*, void*)
  * --INFO--
  * Address:	80033D10
  * Size:	0000A8
+ * TODO: Fix the inlined ctor. This function itself is probably correct; see JUTVideo::createManager.
  */
 JUTXfb* JUTXfb::createManager(JKRHeap* heap, JUTXfb::EXfbNumber number)
 {
@@ -256,7 +264,7 @@ JUTXfb* JUTXfb::createManager(void*, void*, void*)
 void JUTXfb::destroyManager()
 {
 	JUTXfb* mgr = sManager;
-	if (mgr == nullptr) {
+	if (mgr != nullptr) {
 		for (int i = 0; i < 3; i++) {
 			if (mgr->m_enabled[i] && mgr->m_buffers[i]) {
 				delete mgr->m_buffers[i];
@@ -360,8 +368,37 @@ void JUTXfb::initiate(void*, void*, void*, JUTXfb::EXfbNumber)
  * Address:	80033F30
  * Size:	000064
  */
-int JUTXfb::accumeXfbSize()
+u32 JUTXfb::accumeXfbSize()
 {
+	// u16 efbHeight = JUTVideo::sManager->m_renderModeObj->efbHeight;
+	// u16 fbWidth   = JUTVideo::sManager->m_renderModeObj->fbWidth;
+	// // return (GXGetNumXfbLines(GXGetYScaleFactor(efbHeight, obj->xfbHeight), efbHeight) * ALIGN_NEXT(fbWidth, 0x10));
+	// return (ALIGN_NEXT(fbWidth, 0x10)
+	//         * GXGetNumXfbLines(GXGetYScaleFactor(efbHeight, JUTVideo::sManager->m_renderModeObj->xfbHeight), efbHeight))
+	//        * 2;
+	// return (GXGetNumXfbLines(GXGetYScaleFactor(obj->efbHeight, obj->xfbHeight), obj->efbHeight) * ALIGN_NEXT(obj->fbWidth, 0x10));
+
+	// const _GXRenderModeObj* obj = JUTVideo::sManager->m_renderModeObj;
+	// // u16 efbHeight               = obj->efbHeight;
+	// const u16 height = JUTVideo::sManager->getEfbHeight();
+	// const u16 width  = JUTVideo::sManager->getFbWidth();
+	// const u16 lines  = GXGetNumXfbLines(GXGetYScaleFactor(height, obj->xfbHeight), height);
+	// return sizeof(u16) * (lines * ALIGN_NEXT(width, 0x10));
+
+	JUTVideo* video  = JUTVideo::sManager;
+	const u16 height = video->getEfbHeight();
+	const u16 width  = video->getFbWidth();
+	const u16 lines  = GXGetNumXfbLines(GXGetYScaleFactor(height, video->m_renderModeObj->xfbHeight), height);
+	// return (lines * ALIGN_NEXT(width, 0x10)) * 2;
+	return lines * (((u16)(width + (u16)0xF) & 0xFFF0)) * 2;
+	// JUTVideo* video = JUTVideo::sManager;
+	// const u16 lines = GXGetNumXfbLines(GXGetYScaleFactor(video->getEfbHeight(), video->m_renderModeObj->xfbHeight),
+	// video->getEfbHeight()); return sizeof(u16) * (lines * ALIGN_NEXT(video->getFbWidth(), 0x10));
+
+	// // return (GXGetNumXfbLines(GXGetYScaleFactor(efbHeight, obj->xfbHeight), efbHeight) * ALIGN_NEXT(fbWidth, 0x10));
+	// return (ALIGN_NEXT(fbWidth, 0x10) * GXGetNumXfbLines(GXGetYScaleFactor(efbHeight, obj->xfbHeight), efbHeight));
+	// return 2 * ALIGN_NEXT(width, 0x10) * (GXGetNumXfbLines(GXGetYScaleFactor(obj->efbHeight, obj->xfbHeight), obj->efbHeight));
+
 	/*
 	stwu     r1, -0x10(r1)
 	mflr     r0

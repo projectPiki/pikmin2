@@ -87,6 +87,14 @@ J3DModelData::J3DModelData()
  */
 void J3DModelData::newSharedDisplayList(u32 flags)
 {
+	// u16 count = m_materialTable.m_count1;
+	// for (u16 i = 0; i < count; i++) {
+	// 	if (flags & J3DMLF_19) {
+	// 		m_materialTable.m_materials1[i]->newSingleSharedDisplayList(m_materialTable.m_materials1[i]->countDLSize());
+	// 	} else {
+	// 		m_materialTable.m_materials1[i]->newSharedDisplayList(m_materialTable.m_materials1[i]->countDLSize());
+	// 	}
+	// }
 	u16 count = m_materialTable.m_count1;
 	for (u16 i = 0; i < count; i++) {
 		if (flags & J3DMLF_19) {

@@ -47,17 +47,13 @@
  */
 void J3DShape::initialize()
 {
-	_04           = nullptr;
-	m_id          = 0xFFFF;
-	_0A           = 0;
-	m_flags       = 0;
-	_10           = 0.0f;
-	_14           = 0.0f;
-	_18           = 0.0f;
-	_1C           = 0.0f;
-	_20           = 0.0f;
-	_24           = 0.0f;
-	_28           = 0.0f;
+	_04     = nullptr;
+	m_id    = 0xFFFF;
+	_0A     = 0;
+	m_flags = 0;
+	_10     = 0.0f;
+	_14.set(0.0f, 0.0f, 0.0f);
+	_20.set(0.0f, 0.0f, 0.0f);
 	_30           = nullptr;
 	_38           = nullptr;
 	_3C           = nullptr;

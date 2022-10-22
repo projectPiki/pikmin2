@@ -19,6 +19,8 @@ extern void __OSPSInit();
 extern void __OSFPRInit();
 extern void __OSCacheInit();
 
+void OSInit();
+
 // OS logging
 void OSReport(const char*, ...);
 void OSPanic(const char* file, int line, const char* message, ...);
@@ -299,6 +301,7 @@ struct OSDummyCommandBlock {
 	stw r0, OS_CONTEXT_GQR7(context);
 
 void OSClearContext(OSContext*);
+OSContext* OSGetCurrentContext();
 void OSSetCurrentContext(OSContext*);
 
 // OSAlarm
@@ -403,6 +406,7 @@ void LCFlushQueue(void);
 #define LCGetBase() ((void*)LC_BASE)
 
 u64 OSGetTime();
+u32 OSGetTick();
 
 #define OS_SYS_CALL_HANDLER  ((void*)0x80000C00)
 #define OS_HANDLER_SLOT_SIZE (0x100)
@@ -470,6 +474,9 @@ struct OSThread {
 
 	u8* stackBase; // the thread's designated stack (high address)
 	u32* stackEnd; // last word of stack (low address)
+	unknown _30C;
+	unknown _310;
+	unknown _314;
 };
 
 struct OSMessage {
@@ -494,7 +501,7 @@ typedef enum {
 enum OS_THREAD_STATE { OS_THREAD_STATE_READY = 1, OS_THREAD_STATE_RUNNING = 2, OS_THREAD_STATE_WAITING = 4, OS_THREAD_STATE_MORIBUND = 8 };
 
 // Thread priorities
-#define OS_PRIORITY_MIN  0 // highest
+#define OS_PRIORITY_MIN  0  // highest
 #define OS_PRIORITY_MAX  31 // lowest
 #define OS_PRIORITY_IDLE OS_PRIORITY_MAX
 
@@ -564,8 +571,18 @@ typedef struct OSFunctionInfo {
 } OSFunctionInfo;
 
 void OSRegisterResetFunction(OSFunctionInfo*);
+BOOL OSGetResetSwitchState();
 
-#define HW_REG(reg, type) *(volatile type*)(uintptr_t)(reg) // manually added
+typedef void (*OSErrorHandler)(unsigned short, OSContext*, unsigned long, unsigned long);
+OSErrorHandler OSSetErrorHandler(OSError, OSErrorHandler);
+
+void OSFillFPUContext(OSContext*);
+void OSProtectRange(u32, u32, u32, u32); /** TODO: Are these params correct? */
+void* OSGetStackPointer();
+extern u32 __OSFpscrEnableBits; /** TODO: find a wrapper for this. Symbol is defined in OSError.c. */
+
+#define HW_REG(reg, type)     *(volatile type*)(uintptr_t)(reg) // manually added
+#define OSGetTicksPerSecond() (*(u32*)0x800000F8 / 4)           // manually added
 
 // u32 GameCode : 0x80000000;
 // u32 FSTLocationInRam : 0x80000038;

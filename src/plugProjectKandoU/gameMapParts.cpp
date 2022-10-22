@@ -11604,14 +11604,14 @@ void ItemBigFountain::InitArg::getName(void)
  * Address:	801BEAA8
  * Size:	00000C
  */
-void ItemHole::InitArg::getName(void)
-{
-	/*
-	lis      r3, lbl_8047FF64@ha
-	addi     r3, r3, lbl_8047FF64@l
-	blr
-	*/
-}
+// void ItemHole::InitArg::getName(void)
+// {
+// 	/*
+// 	lis      r3, lbl_8047FF64@ha
+// 	addi     r3, r3, lbl_8047FF64@l
+// 	blr
+// 	*/
+// }
 
 } // namespace Game
 

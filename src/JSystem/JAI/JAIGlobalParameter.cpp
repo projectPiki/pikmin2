@@ -1,3 +1,4 @@
+#include "JSystem/JAI/JAIGlobalParameter.h"
 #include "types.h"
 
 /*

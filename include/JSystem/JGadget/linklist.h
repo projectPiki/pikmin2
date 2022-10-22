@@ -2,6 +2,8 @@
 #define LINKLIST_H
 
 #include "types.h"
+#include "std/algorithm.h"
+#include "std/iterator.h"
 
 namespace JGadget {
 struct TLinkListNode {
@@ -16,7 +18,7 @@ struct TLinkListNode {
 };
 
 struct TNodeLinkList {
-	struct iterator {
+	struct iterator : public std::iterator<std::input_iterator_tag, TLinkListNode> {
 		iterator(TLinkListNode* pNode) { m_node = pNode; }
 		iterator(const iterator& iter) { *this = iter; }
 
@@ -24,6 +26,9 @@ struct TNodeLinkList {
 	};
 
 	struct TPRIsEqual_pointer_ {
+		/** @fabricated */
+		bool operator()(TLinkListNode* other) { return other == m_node; }
+
 		TLinkListNode* m_node;
 	};
 
@@ -39,9 +44,12 @@ struct TNodeLinkList {
 		m_linkListNode.m_prev = &m_linkListNode;
 	}
 
+	/** @fabricated */
+	iterator start() { return iterator(&m_linkListNode); }
+
 	iterator end()
 	{
-		iterator iter(&m_linkListNode);
+		iterator iter(m_linkListNode.m_next);
 		return iter;
 	}
 
@@ -50,6 +58,17 @@ struct TNodeLinkList {
 	void Erase(TLinkListNode*);
 	void Remove(TLinkListNode*);
 	void remove_if(TPRIsEqual_pointer_);
+
+	// unused/inlined:
+	void erase(iterator);
+	void erase(iterator, iterator);
+	void clear();
+	void splice(iterator, TNodeLinkList&);
+	void splice(iterator, TNodeLinkList&, iterator);
+	void splice(iterator, TNodeLinkList&, iterator, iterator);
+	void swap(TNodeLinkList&);
+	void reverse();
+	TLinkListNode* Find(const TLinkListNode*);
 
 	int m_count;                  // _00
 	TLinkListNode m_linkListNode; // _04
@@ -62,10 +81,24 @@ template <typename T, int I> struct TLinkList : public TNodeLinkList {
 	}
 
 	struct iterator : TNodeLinkList::iterator {
+		typedef const T& reference;
 		iterator(TNodeLinkList::iterator iter)
 		    : TNodeLinkList::iterator(iter)
 		{
 		}
+
+		/** @fabricated */
+		bool operator==(const iterator& other) const { return (&other == this); }
+		/** @fabricated */
+		bool operator!=(const iterator& other) const { return (&other != this); }
+		/** @fabricated */
+		iterator& operator++()
+		{
+			++m_node;
+			return *this;
+		}
+		/** @fabricated */
+		reference operator*() const { return *(const T*)(((u8*)&m_node) + I); }
 	};
 
 	TLinkListNode* Element_toNode(T* element) const { return &element->m_linkListNode; }
@@ -80,6 +113,14 @@ template <typename T, int I> struct TLinkList : public TNodeLinkList {
 	{
 		TLinkListNode* node = Element_toNode(element);
 		return ((TNodeLinkList*)this)->Erase(node);
+	}
+
+	/** @fabricated */
+	TLinkList::iterator start()
+	{
+		TNodeLinkList::iterator node_iter = TNodeLinkList::start();
+		TLinkList::iterator iter(node_iter);
+		return iter;
 	}
 
 	TLinkList::iterator end()
@@ -98,7 +139,7 @@ template <typename T, int I> struct TLinkList : public TNodeLinkList {
 	// _00-_08	= TNodeLinkList
 };
 
-template <typename T, int I> struct TLinkList_factory : public TLinkList<T, I> {
+template <typename T, int Offset> struct TLinkList_factory : public TLinkList<T, Offset> {
 	virtual ~TLinkList_factory() = 0; // _08
 	virtual T* Do_create()       = 0; // _0C
 	virtual void Do_destroy(T*)  = 0; // _10
@@ -106,7 +147,6 @@ template <typename T, int I> struct TLinkList_factory : public TLinkList<T, I> {
 	// _00-_08	= TNodeLinkList
 	// _0C		= VTABLE
 };
-
 }; // namespace JGadget
 
 #endif

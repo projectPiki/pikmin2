@@ -1,4 +1,8 @@
 #include "JSystem/JUT/JUTDbPrint.h"
+#include "JSystem/J2D/J2DGrafContext.h"
+#include "JSystem/JKR/JKRHeap.h"
+#include "JSystem/JUT/JUTFont.h"
+#include "JSystem/JUT/JUTVideo.h"
 #include "types.h"
 
 /*
@@ -27,9 +31,15 @@
  * Address:	........
  * Size:	000048
  */
-JUTDbPrint::JUTDbPrint(JUTFont*, JKRHeap*)
+JUTDbPrint::JUTDbPrint(JUTFont* font, JKRHeap* heap)
+    : m_color()
 {
 	// UNUSED FUNCTION
+	m_font = font;
+	_00    = nullptr;
+	m_heap = (heap != nullptr) ? heap : JKRHeap::sCurrentHeap;
+	m_color.set(0xFF, 0xFF, 0xFF, 0xFF);
+	_0C = 1;
 }
 
 /*
@@ -47,63 +57,15 @@ JUTDbPrint::~JUTDbPrint()
  * Address:	800294D4
  * Size:	0000AC
  */
-JUTDbPrint* JUTDbPrint::start(JUTFont*, JKRHeap*)
+JUTDbPrint* JUTDbPrint::start(JUTFont* font, JKRHeap* heap)
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	mr       r31, r4
-	stw      r30, 8(r1)
-	mr       r30, r3
-	lwz      r0, sDebugPrint__10JUTDbPrint@sda21(r13)
-	cmplwi   r0, 0
-	bne      lbl_80029564
-	cmplwi   r31, 0
-	bne      lbl_80029508
-	lwz      r31, sCurrentHeap__7JKRHeap@sda21(r13)
-
-lbl_80029508:
-	li       r3, 0x14
-	bl       __nw__FUl
-	cmplwi   r3, 0
-	beq      lbl_80029560
-	li       r0, -1
-	cmplwi   r31, 0
-	stw      r0, 8(r3)
-	li       r0, 0
-	stw      r30, 4(r3)
-	stw      r0, 0(r3)
-	beq      lbl_8002953C
-	mr       r0, r31
-	b        lbl_80029540
-
-lbl_8002953C:
-	lwz      r0, sCurrentHeap__7JKRHeap@sda21(r13)
-
-lbl_80029540:
-	stw      r0, 0x10(r3)
-	li       r4, 0xff
-	li       r0, 1
-	stb      r4, 8(r3)
-	stb      r4, 9(r3)
-	stb      r4, 0xa(r3)
-	stb      r4, 0xb(r3)
-	stb      r0, 0xc(r3)
-
-lbl_80029560:
-	stw      r3, sDebugPrint__10JUTDbPrint@sda21(r13)
-
-lbl_80029564:
-	lwz      r0, 0x14(r1)
-	lwz      r31, 0xc(r1)
-	lwz      r3, sDebugPrint__10JUTDbPrint@sda21(r13)
-	lwz      r30, 8(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	if (sDebugPrint == nullptr) {
+		if (heap == nullptr) {
+			heap = JKRHeap::sCurrentHeap;
+		}
+		sDebugPrint = new JUTDbPrint(font, heap);
+	}
+	return sDebugPrint;
 }
 
 /*
@@ -111,18 +73,13 @@ lbl_80029564:
  * Address:	80029580
  * Size:	000018
  */
-JUTFont* JUTDbPrint::changeFont(JUTFont*)
+JUTFont* JUTDbPrint::changeFont(JUTFont* newFont)
 {
-	/*
-	cmplwi   r4, 0
-	lwz      r0, 4(r3)
-	beq      lbl_80029590
-	stw      r4, 4(r3)
-
-lbl_80029590:
-	mr       r3, r0
-	blr
-	*/
+	JUTFont* oldFont = m_font;
+	if (newFont != nullptr) {
+		m_font = newFont;
+	}
+	return oldFont;
 }
 
 /*
@@ -169,34 +126,38 @@ void JUTDbPrint::reset()
  * --INFO--
  * Address:	80029598
  * Size:	000038
+ * flush__10JUTDbPrintFv
  */
-void JUTDbPrint::flush()
-{
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	li       r4, 0
-	li       r5, 0
-	stw      r0, 0x14(r1)
-	lwz      r6, sManager__8JUTVideo@sda21(r13)
-	lwz      r6, 4(r6)
-	lhz      r7, 6(r6)
-	lhz      r6, 4(r6)
-	bl       flush__10JUTDbPrintFiiii
-	lwz      r0, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
-}
+void JUTDbPrint::flush() { flush(0, 0, JUTVideo::sManager->getFbWidth(), JUTVideo::sManager->getEfbHeight()); }
 
 /*
  * --INFO--
  * Address:	800295D0
  * Size:	000174
+ * flush__10JUTDbPrintFiiii
  */
-void JUTDbPrint::flush(int, int, int, int)
+void JUTDbPrint::flush(int p1, int p2, int p3, int p4)
 {
+	if (m_font != nullptr && _00 != nullptr) {
+		J2DOrthoGraph orthograph(p1, p2, p3, p4, -1.0f, 1.0f);
+		orthograph.setPort();
+		m_font->setGX();
+		m_font->setCharColor(m_color);
+		JUTDbPrint_0x0** prevLinkToCurrent = &_00;
+		JUTDbPrint_0x0* current;
+		while ((current = *prevLinkToCurrent) != nullptr) {
+			if (_0C != 0) {
+				drawString(current->_04, current->_06, current->_0A, &current->_0C);
+			}
+			if (0 >= --current->_08) {
+				JUTDbPrint_0x0* next = current->m_next;
+				JKRHeap::free(current, m_heap);
+				*prevLinkToCurrent = next;
+			} else {
+				prevLinkToCurrent = &current->m_next;
+			}
+		}
+	}
 	/*
 	stwu     r1, -0x110(r1)
 	mflr     r0
@@ -309,8 +270,11 @@ lbl_80029724:
  * Address:	80029744
  * Size:	0000E8
  */
-void JUTDbPrint::drawString(int, int, int, const unsigned char*)
+void JUTDbPrint::drawString(int p1, int p2, int p3, const unsigned char* p4)
 {
+	const float height = m_font->getHeight();
+	const float width  = m_font->getWidth();
+	m_font->drawString_size_scale(p1, p2, width, height, reinterpret_cast<const char*>(p4), p3, true);
 	/*
 	stwu     r1, -0x50(r1)
 	mflr     r0

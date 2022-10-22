@@ -1,4 +1,17 @@
+#include "Dolphin/PPCArch.h"
+#include "Dolphin/math.h"
+#include "Dolphin/os.h"
+#include "Dolphin/stl.h"
+#include "Dolphin/string.h"
+#include "Dolphin/vi.h"
+#include "JSystem/JKR/JKRHeap.h"
+#include "JSystem/JKR/JKRThread.h"
+#include "JSystem/JSupport/JSUList.h"
+#include "JSystem/JUT/JUTConsole.h"
+#include "JSystem/JUT/JUTDirectPrint.h"
 #include "JSystem/JUT/JUTException.h"
+#include "JSystem/JUT/JUTExternalFB.h"
+#include "JSystem/JUT/JUTGamePad.h"
 #include "types.h"
 
 /*
@@ -264,14 +277,47 @@
         .float 6.0
 */
 
+OSErrorHandler JUTException::sPreUserCallback;
+OSErrorHandler JUTException::sPostUserCallback;
+JUTException* JUTException::sErrorManager;
+u32 JUTException::msr;
+u32 JUTException::fpscr;
+OSMessageQueue JUTException::sMessageQueue;
+void* JUTException::sMessageBuffer[1];
+JSUList<JUTException::JUTExMapFile> JUTException::sMapFileList(false);
+
+static JUTException::ExCallbackObject exCallbackObject;
+
+const char* const JUTException::sCpuExpName[OS_ERROR_MAX + 1]
+    = { "SYSTEM RESET",      "MACHINE CHECK", "DSI",           "ISI",   "EXTERNAL INTERRUPT",  "ALIGNMENT",   "PROGRAM",
+	    "FLOATING POINT",    "DECREMENTER",   "SYSTEM CALL",   "TRACE", "PERFORMANCE MONITOR", "BREAK POINT", "SYSTEM INTERRUPT",
+	    "THERMAL INTERRUPT", "PROTECTION",    "FLOATING POINT" };
+
 /*
  * --INFO--
  * Address:	........
  * Size:	0000E4
  */
-JUTException::JUTException(JUTDirectPrint*)
+JUTException::JUTException(JUTDirectPrint* directPrint)
+    : JKRThread(0x4000, 0x10, 0)
+    , m_directPrint(directPrint)
 {
 	// UNUSED FUNCTION
+	OSSetErrorHandler(OS_ERROR_DSI, errorHandler);
+	OSSetErrorHandler(OS_ERROR_ISI, errorHandler);
+	OSSetErrorHandler(OS_ERROR_PROGRAM, errorHandler);
+	OSSetErrorHandler(OS_ERROR_ALIGNMENT, errorHandler);
+	OSSetErrorHandler(OS_ERROR_PROTECTION, errorHandler);
+	setFPException(0);
+	sPreUserCallback  = nullptr;
+	sPostUserCallback = nullptr;
+	_84               = 0;
+	m_padPort         = JUTGamePad::PORT_INVALID;
+	_8C               = 10;
+	_90               = 10;
+	_94               = -1;
+	_98               = 0;
+	_9C               = 31;
 }
 
 /*
@@ -279,82 +325,13 @@ JUTException::JUTException(JUTDirectPrint*)
  * Address:	8002A30C
  * Size:	000110
  */
-void JUTException::create(JUTDirectPrint*)
+JUTException* JUTException::create(JUTDirectPrint* directPrint)
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	stw      r30, 8(r1)
-	mr       r30, r3
-	lwz      r0, sErrorManager__12JUTException@sda21(r13)
-	cmplwi   r0, 0
-	bne      lbl_8002A400
-	lwz      r4, sSystemHeap__7JKRHeap@sda21(r13)
-	li       r3, 0xa4
-	li       r5, 0
-	bl       __nw__FUlP7JKRHeapi
-	or.      r31, r3, r3
-	beq      lbl_8002A3F4
-	li       r4, 0x4000
-	li       r5, 0x10
-	li       r6, 0
-	bl       __ct__9JKRThreadFUlii
-	lis      r3, __vt__12JUTException@ha
-	lis      r4, errorHandler__12JUTExceptionFUsP9OSContextUlUl@ha
-	addi     r0, r3, __vt__12JUTException@l
-	stw      r0, 0(r31)
-	li       r3, 2
-	addi     r4, r4, errorHandler__12JUTExceptionFUsP9OSContextUlUl@l
-	stw      r30, 0x80(r31)
-	bl       OSSetErrorHandler
-	lis      r4, errorHandler__12JUTExceptionFUsP9OSContextUlUl@ha
-	li       r3, 3
-	addi     r4, r4, errorHandler__12JUTExceptionFUsP9OSContextUlUl@l
-	bl       OSSetErrorHandler
-	lis      r4, errorHandler__12JUTExceptionFUsP9OSContextUlUl@ha
-	li       r3, 6
-	addi     r4, r4, errorHandler__12JUTExceptionFUsP9OSContextUlUl@l
-	bl       OSSetErrorHandler
-	lis      r4, errorHandler__12JUTExceptionFUsP9OSContextUlUl@ha
-	li       r3, 5
-	addi     r4, r4, errorHandler__12JUTExceptionFUsP9OSContextUlUl@l
-	bl       OSSetErrorHandler
-	lis      r4, errorHandler__12JUTExceptionFUsP9OSContextUlUl@ha
-	li       r3, 0xf
-	addi     r4, r4, errorHandler__12JUTExceptionFUsP9OSContextUlUl@l
-	bl       OSSetErrorHandler
-	li       r3, 0
-	bl       setFPException__12JUTExceptionFUl
-	li       r5, 0
-	li       r4, -1
-	stw      r5, sPreUserCallback__12JUTException@sda21(r13)
-	li       r3, 0xa
-	li       r0, 0x1f
-	stw      r5, sPostUserCallback__12JUTException@sda21(r13)
-	stw      r5, 0x84(r31)
-	stw      r4, 0x88(r31)
-	stw      r3, 0x8c(r31)
-	stw      r3, 0x90(r31)
-	stw      r4, 0x94(r31)
-	stw      r5, 0x98(r31)
-	stw      r0, 0x9c(r31)
-
-lbl_8002A3F4:
-	stw      r31, sErrorManager__12JUTException@sda21(r13)
-	lwz      r3, 0x2c(r31)
-	bl       OSResumeThread
-
-lbl_8002A400:
-	lwz      r0, 0x14(r1)
-	lwz      r31, 0xc(r1)
-	lwz      r3, sErrorManager__12JUTException@sda21(r13)
-	lwz      r30, 8(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	if (sErrorManager == nullptr) {
+		sErrorManager = new (JKRHeap::sSystemHeap, 0) JUTException(directPrint);
+		OSResumeThread(sErrorManager->m_thread);
+	}
+	return sErrorManager;
 }
 
 /*
@@ -362,8 +339,38 @@ lbl_8002A400:
  * Address:	8002A41C
  * Size:	000120
  */
-void JUTException::run()
+void* JUTException::run()
 {
+	PPCMtmsr(PPCMfmsr() & 0xFFFFF6FF);
+	OSInitMessageQueue(&sMessageQueue, sMessageBuffer, 1);
+	while (true) {
+		ExCallbackObject* msg;
+		OSReceiveMessage(&sMessageQueue, &msg, OS_MESSAGE_BLOCKING);
+		VISetPreRetraceCallback(nullptr);
+		VISetPostRetraceCallback(nullptr);
+		OSError error          = msg->m_error;
+		OSErrorHandler handler = msg->m_errorHandler;
+		OSContext* context     = msg->m_context;
+		u32 v1                 = msg->_0C;
+		u32 v2                 = msg->_10;
+		if (error < OS_ERROR_MAX + 1) {
+			m_stackPointer = (void*)context->gpr[1];
+		}
+		m_frameBuffer = VIGetCurrentFrameBuffer();
+		if (m_frameBuffer == nullptr) {
+			sErrorManager->createFB();
+		}
+		sErrorManager->m_directPrint->changeFrameBuffer(m_frameBuffer, sErrorManager->m_directPrint->_04,
+		                                                sErrorManager->m_directPrint->_06);
+		if (handler != nullptr) {
+			handler(error, context, v1, v2);
+		}
+		OSDisableInterrupts();
+		m_frameBuffer = VIGetCurrentFrameBuffer();
+		sErrorManager->m_directPrint->changeFrameBuffer(m_frameBuffer, sErrorManager->m_directPrint->_04,
+		                                                sErrorManager->m_directPrint->_06);
+		sErrorManager->printContext(error, context, v1, v2);
+	}
 	/*
 	stwu     r1, -0x30(r1)
 	mflr     r0
@@ -453,78 +460,31 @@ lbl_8002A4FC:
  * Address:	8002A53C
  * Size:	000104
  */
-void JUTException::errorHandler(unsigned short, OSContext*, unsigned long, unsigned long)
+void JUTException::errorHandler(unsigned short error, OSContext* context, unsigned long p3, unsigned long p4)
 {
-	/*
-	.loc_0x0:
-	  stwu      r1, -0x20(r1)
-	  mflr      r0
-	  stw       r0, 0x24(r1)
-	  stw       r31, 0x1C(r1)
-	  mr        r31, r6
-	  stw       r30, 0x18(r1)
-	  mr        r30, r5
-	  stw       r29, 0x14(r1)
-	  mr        r29, r4
-	  stw       r28, 0x10(r1)
-	  mr        r28, r3
-	  bl        0xA9FF0
-	  stw       r3, -0x7758(r13)
-	  mr        r3, r29
-	  lwz       r0, 0x194(r29)
-	  stw       r0, -0x7754(r13)
-	  bl        0xC3044
-	  mr        r3, r28
-	  li        r4, 0
-	  bl        0xC3310
-	  rlwinm    r0,r28,0,16,31
-	  cmplwi    r0, 0xF
-	  bne-      .loc_0xAC
-	  li        r3, 0
-	  li        r4, 0
-	  li        r5, 0
-	  li        r6, 0x3
-	  bl        0xC5294
-	  li        r3, 0x1
-	  li        r4, 0
-	  li        r5, 0
-	  li        r6, 0x3
-	  bl        0xC5280
-	  li        r3, 0x2
-	  li        r4, 0
-	  li        r5, 0
-	  li        r6, 0x3
-	  bl        0xC526C
-	  li        r3, 0x3
-	  li        r4, 0
-	  li        r5, 0
-	  li        r6, 0x3
-	  bl        0xC5258
-
-	.loc_0xAC:
-	  lis       r3, 0x804F
-	  lwz       r0, -0x776C(r13)
-	  addi      r4, r3, 0x108
-	  li        r5, 0x1
-	  lis       r3, 0x804A
-	  stw       r0, 0x0(r4)
-	  addi      r3, r3, 0x3A8
-	  sth       r28, 0x4(r4)
-	  stw       r29, 0x8(r4)
-	  stw       r30, 0xC(r4)
-	  stw       r31, 0x10(r4)
-	  bl        0xC4F08
-	  bl        0xC742C
-	  bl        0xC7974
-	  lwz       r0, 0x24(r1)
-	  lwz       r31, 0x1C(r1)
-	  lwz       r30, 0x18(r1)
-	  lwz       r29, 0x14(r1)
-	  lwz       r28, 0x10(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x20
-	  blr
-	*/
+	msr   = PPCMfmsr();
+	fpscr = context->fpscr;
+	OSFillFPUContext(context);
+	OSSetErrorHandler(error, nullptr);
+	if (error == OS_ERROR_PROTECTION) {
+		OSProtectRange(0, 0, 0, 3);
+		OSProtectRange(1, 0, 0, 3);
+		OSProtectRange(2, 0, 0, 3);
+		OSProtectRange(3, 0, 0, 3);
+	}
+	exCallbackObject.m_errorHandler = sPreUserCallback;
+	exCallbackObject.m_error        = error;
+	exCallbackObject.m_context      = context;
+	exCallbackObject._0C            = p3;
+	exCallbackObject._10            = p4;
+	// exCallbackObject[0] = (void*)sPreUserCallback;
+	// exCallbackObject[1] = (void*)error;
+	// exCallbackObject[2] = (void*)context;
+	// exCallbackObject[3] = (void*)p3;
+	// exCallbackObject[4] = (void*)p4;
+	OSSendMessage(&sMessageQueue, &exCallbackObject, OS_MESSAGE_BLOCKING);
+	OSEnableScheduler();
+	OSYieldThread();
 }
 
 /*
@@ -532,18 +492,44 @@ void JUTException::errorHandler(unsigned short, OSContext*, unsigned long, unsig
  * Address:	........
  * Size:	000134
  */
-void JUTException::panic_f_va(const char*, int, const char*, __va_list_struct*)
+// void JUTException::panic_f_va(const char*, int, const char*, __va_list_struct*)
+void JUTException::panic_f_va(const char* fileName, int lineNumber, const char* format, va_list* args)
 {
 	// UNUSED FUNCTION
+	char buffer[255];
+	vsnprintf(buffer, sizeof(buffer), format, *args);
+	if (sErrorManager == nullptr) {
+		OSPanic(fileName, lineNumber, buffer);
+	}
+	static OSContext context;
+	memcpy(&context, OSGetCurrentContext(), sizeof(OSContext));
+	sErrorManager->m_stackPointer   = OSGetStackPointer();
+	exCallbackObject.m_error        = 0xFF; // TODO: Make define for invalid error?
+	exCallbackObject.m_errorHandler = sPreUserCallback;
+	exCallbackObject.m_context      = &context;
+	exCallbackObject._0C            = 0;
+	exCallbackObject._10            = 0;
+	if (sConsole == nullptr || (sConsole != nullptr && (sConsole->getOutput() & JUTConsole::OUTPUT_CONSOLE) == 0)) {
+		OSReport("%s in \"%s\" on line %d\n", buffer, fileName, lineNumber);
+	}
+	if (sConsole != nullptr) {
+		sConsole->print_f("%s in \"%s\" on line %d\n", buffer, fileName, lineNumber);
+	}
+	OSSendMessage(&sMessageQueue, &exCallbackObject, OS_MESSAGE_BLOCKING);
+	OSSuspendThread(OSGetCurrentThread());
 }
 
 /*
  * --INFO--
  * Address:	8002A640
  * Size:	0001A0
+ * panic_f__12JUTExceptionFPCciPCce
  */
-void JUTException::panic_f(const char*, int, const char*, ...)
+void JUTException::panic_f(const char* fileName, int lineNumber, const char* format, ...)
 {
+	va_list args;
+	va_start(args, format);
+	panic_f_va(fileName, lineNumber, format, &args);
 	/*
 	stwu     r1, -0x190(r1)
 	mflr     r0
@@ -662,37 +648,19 @@ lbl_8002A7A4:
 	*/
 }
 
-/*
+/**
  * --INFO--
  * Address:	8002A7E0
  * Size:	000048
  */
-void JUTException::setFPException(unsigned long)
+void JUTException::setFPException(unsigned long enableBits)
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	cmplwi   r3, 0
-	stw      r0, 0x14(r1)
-	stw      r3, __OSFpscrEnableBits@sda21(r13)
-	beq      lbl_8002A80C
-	lis      r4, errorHandler__12JUTExceptionFUsP9OSContextUlUl@ha
-	li       r3, 0x10
-	addi     r4, r4, errorHandler__12JUTExceptionFUsP9OSContextUlUl@l
-	bl       OSSetErrorHandler
-	b        lbl_8002A818
-
-lbl_8002A80C:
-	li       r3, 0x10
-	li       r4, 0
-	bl       OSSetErrorHandler
-
-lbl_8002A818:
-	lwz      r0, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	__OSFpscrEnableBits = enableBits;
+	if (enableBits != 0) {
+		OSSetErrorHandler(OS_ERROR_MAX, errorHandler);
+	} else {
+		OSSetErrorHandler(OS_ERROR_MAX, nullptr);
+	}
 }
 
 /*
@@ -700,670 +668,48 @@ lbl_8002A818:
  * Address:	........
  * Size:	000184
  */
-void JUTException::showFloatSub(int, float)
+void JUTException::showFloatSub(int reg, float flt)
 {
 	// UNUSED FUNCTION
+	if (fpclassify(flt) == 1) {
+		sConsole->print_f("F%02d: Nan      ", reg);
+	} else if (fpclassify(flt) == 2) {
+		if (ispositive(flt)) {
+			sConsole->print_f("F%02d:+Inf     ", reg);
+		} else {
+			sConsole->print_f("F%02d:-Inf     ", reg);
+		}
+	} else if (flt == 0.0f) {
+		sConsole->print_f("F%02d: 0.0      ", reg);
+	} else {
+		sConsole->print_f("F%02d:%+.3E", reg, flt);
+	}
 }
 
 /*
  * --INFO--
  * Address:	8002A828
  * Size:	000770
+ * showFloat__12JUTExceptionFP9OSContext
  */
-void JUTException::showFloat(OSContext*)
+void JUTException::showFloat(OSContext* context)
 {
-	/*
-	stwu     r1, -0x60(r1)
-	mflr     r0
-	lis      r5, lbl_80473C18@ha
-	stw      r0, 0x64(r1)
-	stmw     r27, 0x4c(r1)
-	mr       r27, r4
-	addi     r30, r5, lbl_80473C18@l
-	lwz      r3, sConsole__12JUTException@sda21(r13)
-	cmplwi   r3, 0
-	beq      lbl_8002AF84
-	addi     r4, r30, 0x128
-	bl       print__10JUTConsoleFPCc
-	mr       r29, r27
-	li       r28, 0
-	lis      r31, 0x7f80
-
-lbl_8002A864:
-	lfd      f0, 0x90(r29)
-	frsp     f1, f0
-	stfs     f1, 0x2c(r1)
-	lwz      r3, 0x2c(r1)
-	stfs     f1, 0x40(r1)
-	rlwinm   r0, r3, 0, 1, 8
-	cmpw     r0, r31
-	beq      lbl_8002A894
-	bge      lbl_8002A8C4
-	cmpwi    r0, 0
-	beq      lbl_8002A8AC
-	b        lbl_8002A8C4
-
-lbl_8002A894:
-	clrlwi.  r0, r3, 9
-	beq      lbl_8002A8A4
-	li       r0, 1
-	b        lbl_8002A8C8
-
-lbl_8002A8A4:
-	li       r0, 2
-	b        lbl_8002A8C8
-
-lbl_8002A8AC:
-	clrlwi.  r0, r3, 9
-	beq      lbl_8002A8BC
-	li       r0, 5
-	b        lbl_8002A8C8
-
-lbl_8002A8BC:
-	li       r0, 3
-	b        lbl_8002A8C8
-
-lbl_8002A8C4:
-	li       r0, 4
-
-lbl_8002A8C8:
-	cmpwi    r0, 1
-	bne      lbl_8002A8E8
-	lwz      r3, sConsole__12JUTException@sda21(r13)
-	mr       r5, r28
-	addi     r4, r30, 0xd4
-	crclr    6
-	bl       print_f__10JUTConsoleFPCce
-	b        lbl_8002A9C0
-
-lbl_8002A8E8:
-	stfs     f1, 0x28(r1)
-	lis      r0, 0x7f80
-	lwz      r4, 0x28(r1)
-	rlwinm   r3, r4, 0, 1, 8
-	cmpw     r3, r0
-	beq      lbl_8002A910
-	bge      lbl_8002A940
-	cmpwi    r3, 0
-	beq      lbl_8002A928
-	b        lbl_8002A940
-
-lbl_8002A910:
-	clrlwi.  r0, r4, 9
-	beq      lbl_8002A920
-	li       r0, 1
-	b        lbl_8002A944
-
-lbl_8002A920:
-	li       r0, 2
-	b        lbl_8002A944
-
-lbl_8002A928:
-	clrlwi.  r0, r4, 9
-	beq      lbl_8002A938
-	li       r0, 5
-	b        lbl_8002A944
-
-lbl_8002A938:
-	li       r0, 3
-	b        lbl_8002A944
-
-lbl_8002A940:
-	li       r0, 4
-
-lbl_8002A944:
-	cmpwi    r0, 2
-	bne      lbl_8002A988
-	lbz      r0, 0x40(r1)
-	rlwinm.  r0, r0, 0, 0x18, 0x18
-	beq      lbl_8002A970
-	lwz      r3, sConsole__12JUTException@sda21(r13)
-	mr       r5, r28
-	addi     r4, r30, 0xe8
-	crclr    6
-	bl       print_f__10JUTConsoleFPCce
-	b        lbl_8002A9C0
-
-lbl_8002A970:
-	lwz      r3, sConsole__12JUTException@sda21(r13)
-	mr       r5, r28
-	addi     r4, r30, 0xf8
-	crclr    6
-	bl       print_f__10JUTConsoleFPCce
-	b        lbl_8002A9C0
-
-lbl_8002A988:
-	lfs      f0, lbl_80516628@sda21(r2)
-	fcmpu    cr0, f0, f1
-	bne      lbl_8002A9AC
-	lwz      r3, sConsole__12JUTException@sda21(r13)
-	mr       r5, r28
-	addi     r4, r30, 0x108
-	crclr    6
-	bl       print_f__10JUTConsoleFPCce
-	b        lbl_8002A9C0
-
-lbl_8002A9AC:
-	lwz      r3, sConsole__12JUTException@sda21(r13)
-	mr       r5, r28
-	addi     r4, r30, 0x11c
-	crset    6
-	bl       print_f__10JUTConsoleFPCce
-
-lbl_8002A9C0:
-	lwz      r3, sConsole__12JUTException@sda21(r13)
-	addi     r4, r2, lbl_8051662C@sda21
-	bl       print__10JUTConsoleFPCc
-	lfd      f0, 0xe8(r29)
-	frsp     f1, f0
-	stfs     f1, 0x24(r1)
-	lwz      r3, 0x24(r1)
-	stfs     f1, 0x3c(r1)
-	rlwinm   r0, r3, 0, 1, 8
-	cmpw     r0, r31
-	beq      lbl_8002A9FC
-	bge      lbl_8002AA2C
-	cmpwi    r0, 0
-	beq      lbl_8002AA14
-	b        lbl_8002AA2C
-
-lbl_8002A9FC:
-	clrlwi.  r0, r3, 9
-	beq      lbl_8002AA0C
-	li       r0, 1
-	b        lbl_8002AA30
-
-lbl_8002AA0C:
-	li       r0, 2
-	b        lbl_8002AA30
-
-lbl_8002AA14:
-	clrlwi.  r0, r3, 9
-	beq      lbl_8002AA24
-	li       r0, 5
-	b        lbl_8002AA30
-
-lbl_8002AA24:
-	li       r0, 3
-	b        lbl_8002AA30
-
-lbl_8002AA2C:
-	li       r0, 4
-
-lbl_8002AA30:
-	cmpwi    r0, 1
-	bne      lbl_8002AA50
-	lwz      r3, sConsole__12JUTException@sda21(r13)
-	addi     r4, r30, 0xd4
-	addi     r5, r28, 0xb
-	crclr    6
-	bl       print_f__10JUTConsoleFPCce
-	b        lbl_8002AB28
-
-lbl_8002AA50:
-	stfs     f1, 0x20(r1)
-	lis      r0, 0x7f80
-	lwz      r4, 0x20(r1)
-	rlwinm   r3, r4, 0, 1, 8
-	cmpw     r3, r0
-	beq      lbl_8002AA78
-	bge      lbl_8002AAA8
-	cmpwi    r3, 0
-	beq      lbl_8002AA90
-	b        lbl_8002AAA8
-
-lbl_8002AA78:
-	clrlwi.  r0, r4, 9
-	beq      lbl_8002AA88
-	li       r0, 1
-	b        lbl_8002AAAC
-
-lbl_8002AA88:
-	li       r0, 2
-	b        lbl_8002AAAC
-
-lbl_8002AA90:
-	clrlwi.  r0, r4, 9
-	beq      lbl_8002AAA0
-	li       r0, 5
-	b        lbl_8002AAAC
-
-lbl_8002AAA0:
-	li       r0, 3
-	b        lbl_8002AAAC
-
-lbl_8002AAA8:
-	li       r0, 4
-
-lbl_8002AAAC:
-	cmpwi    r0, 2
-	bne      lbl_8002AAF0
-	lbz      r0, 0x3c(r1)
-	rlwinm.  r0, r0, 0, 0x18, 0x18
-	beq      lbl_8002AAD8
-	lwz      r3, sConsole__12JUTException@sda21(r13)
-	addi     r4, r30, 0xe8
-	addi     r5, r28, 0xb
-	crclr    6
-	bl       print_f__10JUTConsoleFPCce
-	b        lbl_8002AB28
-
-lbl_8002AAD8:
-	lwz      r3, sConsole__12JUTException@sda21(r13)
-	addi     r4, r30, 0xf8
-	addi     r5, r28, 0xb
-	crclr    6
-	bl       print_f__10JUTConsoleFPCce
-	b        lbl_8002AB28
-
-lbl_8002AAF0:
-	lfs      f0, lbl_80516628@sda21(r2)
-	fcmpu    cr0, f0, f1
-	bne      lbl_8002AB14
-	lwz      r3, sConsole__12JUTException@sda21(r13)
-	addi     r4, r30, 0x108
-	addi     r5, r28, 0xb
-	crclr    6
-	bl       print_f__10JUTConsoleFPCce
-	b        lbl_8002AB28
-
-lbl_8002AB14:
-	lwz      r3, sConsole__12JUTException@sda21(r13)
-	addi     r4, r30, 0x11c
-	addi     r5, r28, 0xb
-	crset    6
-	bl       print_f__10JUTConsoleFPCce
-
-lbl_8002AB28:
-	lwz      r3, sConsole__12JUTException@sda21(r13)
-	addi     r4, r2, lbl_8051662C@sda21
-	bl       print__10JUTConsoleFPCc
-	lfd      f0, 0x140(r29)
-	frsp     f1, f0
-	stfs     f1, 0x1c(r1)
-	lwz      r3, 0x1c(r1)
-	stfs     f1, 0x38(r1)
-	rlwinm   r0, r3, 0, 1, 8
-	cmpw     r0, r31
-	beq      lbl_8002AB64
-	bge      lbl_8002AB94
-	cmpwi    r0, 0
-	beq      lbl_8002AB7C
-	b        lbl_8002AB94
-
-lbl_8002AB64:
-	clrlwi.  r0, r3, 9
-	beq      lbl_8002AB74
-	li       r0, 1
-	b        lbl_8002AB98
-
-lbl_8002AB74:
-	li       r0, 2
-	b        lbl_8002AB98
-
-lbl_8002AB7C:
-	clrlwi.  r0, r3, 9
-	beq      lbl_8002AB8C
-	li       r0, 5
-	b        lbl_8002AB98
-
-lbl_8002AB8C:
-	li       r0, 3
-	b        lbl_8002AB98
-
-lbl_8002AB94:
-	li       r0, 4
-
-lbl_8002AB98:
-	cmpwi    r0, 1
-	bne      lbl_8002ABB8
-	lwz      r3, sConsole__12JUTException@sda21(r13)
-	addi     r4, r30, 0xd4
-	addi     r5, r28, 0x16
-	crclr    6
-	bl       print_f__10JUTConsoleFPCce
-	b        lbl_8002AC90
-
-lbl_8002ABB8:
-	stfs     f1, 0x18(r1)
-	lis      r0, 0x7f80
-	lwz      r4, 0x18(r1)
-	rlwinm   r3, r4, 0, 1, 8
-	cmpw     r3, r0
-	beq      lbl_8002ABE0
-	bge      lbl_8002AC10
-	cmpwi    r3, 0
-	beq      lbl_8002ABF8
-	b        lbl_8002AC10
-
-lbl_8002ABE0:
-	clrlwi.  r0, r4, 9
-	beq      lbl_8002ABF0
-	li       r0, 1
-	b        lbl_8002AC14
-
-lbl_8002ABF0:
-	li       r0, 2
-	b        lbl_8002AC14
-
-lbl_8002ABF8:
-	clrlwi.  r0, r4, 9
-	beq      lbl_8002AC08
-	li       r0, 5
-	b        lbl_8002AC14
-
-lbl_8002AC08:
-	li       r0, 3
-	b        lbl_8002AC14
-
-lbl_8002AC10:
-	li       r0, 4
-
-lbl_8002AC14:
-	cmpwi    r0, 2
-	bne      lbl_8002AC58
-	lbz      r0, 0x38(r1)
-	rlwinm.  r0, r0, 0, 0x18, 0x18
-	beq      lbl_8002AC40
-	lwz      r3, sConsole__12JUTException@sda21(r13)
-	addi     r4, r30, 0xe8
-	addi     r5, r28, 0x16
-	crclr    6
-	bl       print_f__10JUTConsoleFPCce
-	b        lbl_8002AC90
-
-lbl_8002AC40:
-	lwz      r3, sConsole__12JUTException@sda21(r13)
-	addi     r4, r30, 0xf8
-	addi     r5, r28, 0x16
-	crclr    6
-	bl       print_f__10JUTConsoleFPCce
-	b        lbl_8002AC90
-
-lbl_8002AC58:
-	lfs      f0, lbl_80516628@sda21(r2)
-	fcmpu    cr0, f0, f1
-	bne      lbl_8002AC7C
-	lwz      r3, sConsole__12JUTException@sda21(r13)
-	addi     r4, r30, 0x108
-	addi     r5, r28, 0x16
-	crclr    6
-	bl       print_f__10JUTConsoleFPCce
-	b        lbl_8002AC90
-
-lbl_8002AC7C:
-	lwz      r3, sConsole__12JUTException@sda21(r13)
-	addi     r4, r30, 0x11c
-	addi     r5, r28, 0x16
-	crset    6
-	bl       print_f__10JUTConsoleFPCce
-
-lbl_8002AC90:
-	lwz      r3, sConsole__12JUTException@sda21(r13)
-	addi     r4, r2, lbl_80516630@sda21
-	bl       print__10JUTConsoleFPCc
-	addi     r28, r28, 1
-	addi     r29, r29, 8
-	cmpwi    r28, 0xa
-	blt      lbl_8002A864
-	lfd      f0, 0xe0(r27)
-	lis      r0, 0x7f80
-	frsp     f1, f0
-	stfs     f1, 0x14(r1)
-	lwz      r4, 0x14(r1)
-	stfs     f1, 0x34(r1)
-	rlwinm   r3, r4, 0, 1, 8
-	cmpw     r3, r0
-	beq      lbl_8002ACE0
-	bge      lbl_8002AD10
-	cmpwi    r3, 0
-	beq      lbl_8002ACF8
-	b        lbl_8002AD10
-
-lbl_8002ACE0:
-	clrlwi.  r0, r4, 9
-	beq      lbl_8002ACF0
-	li       r0, 1
-	b        lbl_8002AD14
-
-lbl_8002ACF0:
-	li       r0, 2
-	b        lbl_8002AD14
-
-lbl_8002ACF8:
-	clrlwi.  r0, r4, 9
-	beq      lbl_8002AD08
-	li       r0, 5
-	b        lbl_8002AD14
-
-lbl_8002AD08:
-	li       r0, 3
-	b        lbl_8002AD14
-
-lbl_8002AD10:
-	li       r0, 4
-
-lbl_8002AD14:
-	cmpwi    r0, 1
-	bne      lbl_8002AD34
-	lwz      r3, sConsole__12JUTException@sda21(r13)
-	addi     r4, r30, 0xd4
-	li       r5, 0xa
-	crclr    6
-	bl       print_f__10JUTConsoleFPCce
-	b        lbl_8002AE0C
-
-lbl_8002AD34:
-	stfs     f1, 0x10(r1)
-	lis      r0, 0x7f80
-	lwz      r4, 0x10(r1)
-	rlwinm   r3, r4, 0, 1, 8
-	cmpw     r3, r0
-	beq      lbl_8002AD5C
-	bge      lbl_8002AD8C
-	cmpwi    r3, 0
-	beq      lbl_8002AD74
-	b        lbl_8002AD8C
-
-lbl_8002AD5C:
-	clrlwi.  r0, r4, 9
-	beq      lbl_8002AD6C
-	li       r0, 1
-	b        lbl_8002AD90
-
-lbl_8002AD6C:
-	li       r0, 2
-	b        lbl_8002AD90
-
-lbl_8002AD74:
-	clrlwi.  r0, r4, 9
-	beq      lbl_8002AD84
-	li       r0, 5
-	b        lbl_8002AD90
-
-lbl_8002AD84:
-	li       r0, 3
-	b        lbl_8002AD90
-
-lbl_8002AD8C:
-	li       r0, 4
-
-lbl_8002AD90:
-	cmpwi    r0, 2
-	bne      lbl_8002ADD4
-	lbz      r0, 0x34(r1)
-	rlwinm.  r0, r0, 0, 0x18, 0x18
-	beq      lbl_8002ADBC
-	lwz      r3, sConsole__12JUTException@sda21(r13)
-	addi     r4, r30, 0xe8
-	li       r5, 0xa
-	crclr    6
-	bl       print_f__10JUTConsoleFPCce
-	b        lbl_8002AE0C
-
-lbl_8002ADBC:
-	lwz      r3, sConsole__12JUTException@sda21(r13)
-	addi     r4, r30, 0xf8
-	li       r5, 0xa
-	crclr    6
-	bl       print_f__10JUTConsoleFPCce
-	b        lbl_8002AE0C
-
-lbl_8002ADD4:
-	lfs      f0, lbl_80516628@sda21(r2)
-	fcmpu    cr0, f0, f1
-	bne      lbl_8002ADF8
-	lwz      r3, sConsole__12JUTException@sda21(r13)
-	addi     r4, r30, 0x108
-	li       r5, 0xa
-	crclr    6
-	bl       print_f__10JUTConsoleFPCce
-	b        lbl_8002AE0C
-
-lbl_8002ADF8:
-	lwz      r3, sConsole__12JUTException@sda21(r13)
-	addi     r4, r30, 0x11c
-	li       r5, 0xa
-	crset    6
-	bl       print_f__10JUTConsoleFPCce
-
-lbl_8002AE0C:
-	lwz      r3, sConsole__12JUTException@sda21(r13)
-	addi     r4, r2, lbl_8051662C@sda21
-	bl       print__10JUTConsoleFPCc
-	lfd      f0, 0x138(r27)
-	lis      r0, 0x7f80
-	frsp     f1, f0
-	stfs     f1, 0xc(r1)
-	lwz      r4, 0xc(r1)
-	stfs     f1, 0x30(r1)
-	rlwinm   r3, r4, 0, 1, 8
-	cmpw     r3, r0
-	beq      lbl_8002AE4C
-	bge      lbl_8002AE7C
-	cmpwi    r3, 0
-	beq      lbl_8002AE64
-	b        lbl_8002AE7C
-
-lbl_8002AE4C:
-	clrlwi.  r0, r4, 9
-	beq      lbl_8002AE5C
-	li       r0, 1
-	b        lbl_8002AE80
-
-lbl_8002AE5C:
-	li       r0, 2
-	b        lbl_8002AE80
-
-lbl_8002AE64:
-	clrlwi.  r0, r4, 9
-	beq      lbl_8002AE74
-	li       r0, 5
-	b        lbl_8002AE80
-
-lbl_8002AE74:
-	li       r0, 3
-	b        lbl_8002AE80
-
-lbl_8002AE7C:
-	li       r0, 4
-
-lbl_8002AE80:
-	cmpwi    r0, 1
-	bne      lbl_8002AEA0
-	lwz      r3, sConsole__12JUTException@sda21(r13)
-	addi     r4, r30, 0xd4
-	li       r5, 0x15
-	crclr    6
-	bl       print_f__10JUTConsoleFPCce
-	b        lbl_8002AF78
-
-lbl_8002AEA0:
-	stfs     f1, 8(r1)
-	lis      r0, 0x7f80
-	lwz      r4, 8(r1)
-	rlwinm   r3, r4, 0, 1, 8
-	cmpw     r3, r0
-	beq      lbl_8002AEC8
-	bge      lbl_8002AEF8
-	cmpwi    r3, 0
-	beq      lbl_8002AEE0
-	b        lbl_8002AEF8
-
-lbl_8002AEC8:
-	clrlwi.  r0, r4, 9
-	beq      lbl_8002AED8
-	li       r0, 1
-	b        lbl_8002AEFC
-
-lbl_8002AED8:
-	li       r0, 2
-	b        lbl_8002AEFC
-
-lbl_8002AEE0:
-	clrlwi.  r0, r4, 9
-	beq      lbl_8002AEF0
-	li       r0, 5
-	b        lbl_8002AEFC
-
-lbl_8002AEF0:
-	li       r0, 3
-	b        lbl_8002AEFC
-
-lbl_8002AEF8:
-	li       r0, 4
-
-lbl_8002AEFC:
-	cmpwi    r0, 2
-	bne      lbl_8002AF40
-	lbz      r0, 0x30(r1)
-	rlwinm.  r0, r0, 0, 0x18, 0x18
-	beq      lbl_8002AF28
-	lwz      r3, sConsole__12JUTException@sda21(r13)
-	addi     r4, r30, 0xe8
-	li       r5, 0x15
-	crclr    6
-	bl       print_f__10JUTConsoleFPCce
-	b        lbl_8002AF78
-
-lbl_8002AF28:
-	lwz      r3, sConsole__12JUTException@sda21(r13)
-	addi     r4, r30, 0xf8
-	li       r5, 0x15
-	crclr    6
-	bl       print_f__10JUTConsoleFPCce
-	b        lbl_8002AF78
-
-lbl_8002AF40:
-	lfs      f0, lbl_80516628@sda21(r2)
-	fcmpu    cr0, f0, f1
-	bne      lbl_8002AF64
-	lwz      r3, sConsole__12JUTException@sda21(r13)
-	addi     r4, r30, 0x108
-	li       r5, 0x15
-	crclr    6
-	bl       print_f__10JUTConsoleFPCce
-	b        lbl_8002AF78
-
-lbl_8002AF64:
-	lwz      r3, sConsole__12JUTException@sda21(r13)
-	addi     r4, r30, 0x11c
-	li       r5, 0x15
-	crset    6
-	bl       print_f__10JUTConsoleFPCce
-
-lbl_8002AF78:
-	lwz      r3, sConsole__12JUTException@sda21(r13)
-	addi     r4, r2, lbl_80516630@sda21
-	bl       print__10JUTConsoleFPCc
-
-lbl_8002AF84:
-	lmw      r27, 0x4c(r1)
-	lwz      r0, 0x64(r1)
-	mtlr     r0
-	addi     r1, r1, 0x60
-	blr
-	*/
+	if (sConsole == nullptr) {
+		return;
+	}
+	sConsole->print("-------------------------------- FPR\n");
+	for (int i = 0; i < 10; i++) {
+		showFloatSub(i, context->fpr[i]);
+		sConsole->print(" ");
+		showFloatSub(i + 11, context->fpr[i + 11]);
+		sConsole->print(" ");
+		showFloatSub(i + 22, context->fpr[i + 22]);
+		sConsole->print("\n");
+	}
+	showFloatSub(10, context->fpr[10]);
+	sConsole->print(" ");
+	showFloatSub(21, context->fpr[21]);
+	sConsole->print("\n");
 }
 
 /*
@@ -1391,8 +737,35 @@ void search_name_part(unsigned char*, unsigned char*, int)
  * Address:	8002AF98
  * Size:	0000FC
  */
-void JUTException::showStack(OSContext*)
+void JUTException::showStack(OSContext* context)
 {
+	if (sConsole == nullptr) {
+		return;
+	}
+	sConsole->print("-------------------------------- TRACE\n");
+	u32* stack = (u32*)m_stackPointer;
+	sConsole->print_f("Address:   BackChain   LR save\n");
+	u32 frames = 0;
+	while (stack != nullptr && stack != (u32*)-1 && 0x10 > frames++) {
+		// if (stack == nullptr) {
+		// 	return;
+		// }
+		// if (stack == (u32*)-1) {
+		// 	return;
+		// }
+		// if (0xF < frames++) {
+		// 	return;
+		// }
+		if (frames > _94) {
+			sConsole->print("Suppress trace.\n");
+			return;
+		}
+		sConsole->print_f("%08X:  %08X    %08X\n", stack, stack[0], stack[1]);
+		showMapInfo_subroutine(stack[1], false);
+		JUTConsoleManager::sManager->drawDirect(true);
+		waitTime(_90);
+		stack = (u32*)*stack;
+	}
 	/*
 	stwu     r1, -0x20(r1)
 	mflr     r0
@@ -1473,8 +846,63 @@ lbl_8002B074:
  * Address:	8002B094
  * Size:	000244
  */
-void JUTException::showMainInfo(unsigned short, OSContext*, unsigned long, unsigned long)
+void JUTException::showMainInfo(unsigned short error, OSContext* context, unsigned long dsisr, unsigned long dar)
 {
+	if (sConsole == nullptr) {
+		return;
+	}
+	if (error < OS_ERROR_MAX + 1) {
+		sConsole->print_f("CONTEXT:%08XH  (%s EXCEPTION)\n", context, sCpuExpName[error]);
+	} else {
+		sConsole->print_f("CONTEXT:%08XH\n", context);
+	}
+	if (error == OS_ERROR_MAX) {
+		u32 fpe = fpscr & ((fpscr & 0xF8) << 0x16);
+		if ((fpe & 0x20000000) != 0) {
+			sConsole->print_f(" FPE: Invalid operation\n");
+			if ((fpscr & 0x1000000) != 0) {
+				sConsole->print_f(" SNaN\n");
+			}
+			if ((fpscr & 0x800000) != 0) {
+				sConsole->print_f(" Infinity - Infinity\n");
+			}
+			if ((fpscr & 0x400000) != 0) {
+				sConsole->print_f(" Infinity / Infinity\n");
+			}
+			if ((fpscr & 0x200000) != 0) {
+				sConsole->print_f(" 0 / 0\n");
+			}
+			if ((fpscr & 0x100000) != 0) {
+				sConsole->print_f(" Infinity * 0\n");
+			}
+			if ((fpscr & 0x80000) != 0) {
+				sConsole->print_f(" Invalid compare\n");
+			}
+			if ((fpscr & 0x400) != 0) {
+				sConsole->print_f(" Software request\n");
+			}
+			if ((fpscr & 0x200) != 0) {
+				sConsole->print_f(" Invalid square root\n");
+			}
+			if ((fpscr & 0x100) != 0) {
+				sConsole->print_f(" Invalid integer convert\n");
+			}
+		}
+		if ((fpe & 0x10000000) != 0) {
+			sConsole->print_f(" FPE: Overflow\n");
+		}
+		if ((fpe & 0x8000000) != 0) {
+			sConsole->print_f(" FPE: Underflow\n");
+		}
+		if ((fpe & 0x4000000) != 0) {
+			sConsole->print_f(" FPE: Zero division\n");
+		}
+		if ((fpe & 0x2000000) != 0) {
+			sConsole->print_f(" FPE: Inexact result\n");
+		}
+	}
+	sConsole->print_f("SRR0:   %08XH   SRR1:%08XH\n", context->srr0, context->srr1);
+	sConsole->print_f("DSISR:  %08XH   DAR: %08XH\n", dsisr, dar);
 	/*
 	.loc_0x0:
 	  stwu      r1, -0x20(r1)
@@ -2468,7 +1896,7 @@ void JUTException::printDebugInfo(JUTException::EInfoPage, unsigned short, OSCon
  * Address:	........
  * Size:	00003C
  */
-void JUTException::isEnablePad() const
+bool JUTException::isEnablePad() const
 {
 	// UNUSED FUNCTION
 }
@@ -3439,7 +2867,7 @@ lbl_8002C764:
  * Address:	........
  * Size:	000028
  */
-void JUTException::getFpscr()
+u32 JUTException::getFpscr()
 {
 	// UNUSED FUNCTION
 }
@@ -3459,15 +2887,11 @@ void JUTException::setFpscr(unsigned long)
  * Address:	8002C7A0
  * Size:	000010
  */
-void JUTException::setPreUserCallback(void (*)(unsigned short, OSContext*, unsigned long, unsigned long))
+OSErrorHandler JUTException::setPreUserCallback(void (*callback)(unsigned short, OSContext*, unsigned long, unsigned long))
 {
-	/*
-	.loc_0x0:
-	  lwz       r0, -0x776C(r13)
-	  stw       r3, -0x776C(r13)
-	  mr        r3, r0
-	  blr
-	*/
+	OSErrorHandler oldCallback = sPreUserCallback;
+	sPreUserCallback           = callback;
+	return oldCallback;
 }
 
 /*
@@ -3475,9 +2899,12 @@ void JUTException::setPreUserCallback(void (*)(unsigned short, OSContext*, unsig
  * Address:	........
  * Size:	000010
  */
-void JUTException::setPostUserCallback(void (*)(unsigned short, OSContext*, unsigned long, unsigned long))
+OSErrorHandler JUTException::setPostUserCallback(void (*callback)(unsigned short, OSContext*, unsigned long, unsigned long))
 {
 	// UNUSED FUNCTION
+	OSErrorHandler oldCallback = sPostUserCallback;
+	sPostUserCallback          = callback;
+	return oldCallback;
 }
 
 /*
@@ -3485,55 +2912,19 @@ void JUTException::setPostUserCallback(void (*)(unsigned short, OSContext*, unsi
  * Address:	8002C7B0
  * Size:	000094
  */
-void JUTException::appendMapFile(const char*)
+void JUTException::appendMapFile(const char* fileName)
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	stw      r30, 8(r1)
-	or.      r30, r3, r3
-	beq      lbl_8002C82C
-	lis      r3, sMapFileList__12JUTException@ha
-	lwz      r31, sMapFileList__12JUTException@l(r3)
-	b        lbl_8002C7F4
-
-lbl_8002C7D8:
-	lwz      r4, 0(r31)
-	mr       r3, r30
-	lwz      r4, 0(r4)
-	bl       strcmp
-	cmpwi    r3, 0
-	beq      lbl_8002C82C
-	lwz      r31, 0xc(r31)
-
-lbl_8002C7F4:
-	cmplwi   r31, 0
-	bne      lbl_8002C7D8
-	li       r3, 0x14
-	bl       __nw__FUl
-	or.      r31, r3, r3
-	beq      lbl_8002C81C
-	mr       r4, r31
-	addi     r3, r31, 4
-	bl       __ct__10JSUPtrLinkFPv
-	stw      r30, 0(r31)
-
-lbl_8002C81C:
-	lis      r3, sMapFileList__12JUTException@ha
-	addi     r4, r31, 4
-	addi     r3, r3, sMapFileList__12JUTException@l
-	bl       append__10JSUPtrListFP10JSUPtrLink
-
-lbl_8002C82C:
-	lwz      r0, 0x14(r1)
-	lwz      r31, 0xc(r1)
-	lwz      r30, 8(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	if (fileName == nullptr) {
+		return;
+	}
+	// Ensure we don't already know about the given map file
+	for (JSULink<JUTExMapFile>* link = sMapFileList.getFirst(); link != nullptr; link = link->getNext()) {
+		if (strcmp(fileName, link->getObject()->m_fileName) == 0) {
+			return;
+		}
+	}
+	JUTExMapFile* mapFile = new JUTExMapFile(fileName);
+	sMapFileList.append(&mapFile->m_link);
 }
 
 /*
@@ -3541,85 +2932,34 @@ lbl_8002C82C:
  * Address:	........
  * Size:	000054
  */
-void JSULink<JUTException::JUTExMapFile>::~JSULink()
-{
-	// UNUSED FUNCTION
-}
+// void JSULink<JUTException::JUTExMapFile>::~JSULink()
+// {
+// 	// UNUSED FUNCTION
+// }
 
 /*
  * --INFO--
  * Address:	8002C844
  * Size:	0000E0
  */
-void JUTException::queryMapAddress(char*, unsigned long, long, unsigned long*, unsigned long*, char*, unsigned long, bool, bool)
+bool JUTException::queryMapAddress(char* p1, unsigned long p2, long p3, unsigned long* p4, unsigned long* p5, char* p6, unsigned long p7,
+                                   bool p8, bool p9)
 {
-	/*
-	.loc_0x0:
-	  stwu      r1, -0x80(r1)
-	  mflr      r0
-	  cmplwi    r3, 0
-	  stw       r0, 0x84(r1)
-	  stmw      r24, 0x60(r1)
-	  mr        r24, r4
-	  lbz       r31, 0x8B(r1)
-	  mr        r25, r5
-	  mr        r26, r6
-	  mr        r27, r7
-	  mr        r28, r8
-	  mr        r29, r9
-	  mr        r30, r10
-	  beq-      .loc_0x8C
-	  mr        r4, r3
-	  addi      r3, r1, 0x10
-	  bl        0x9DFD4
-	  addi      r3, r1, 0x10
-	  subi      r4, r2, 0x7D18
-	  bl        0x9DF58
-	  stw       r31, 0x8(r1)
-	  mr        r4, r24
-	  mr        r5, r25
-	  mr        r6, r26
-	  mr        r7, r27
-	  mr        r8, r28
-	  mr        r9, r29
-	  mr        r10, r30
-	  addi      r3, r1, 0x10
-	  bl        .loc_0xE0
-	  rlwinm    r0,r3,0,24,31
-	  cmplwi    r0, 0x1
-	  bne-      .loc_0xC8
-	  li        r3, 0x1
-	  b         .loc_0xCC
-
-	.loc_0x8C:
-	  lis       r3, 0x8050
-	  addi      r3, r3, 0x6E74
-	  lwz       r3, 0x0(r3)
-	  cmplwi    r3, 0
-	  beq-      .loc_0xC8
-	  stw       r31, 0x8(r1)
-	  li        r5, -0x1
-	  lwz       r3, 0x0(r3)
-	  lwz       r3, 0x0(r3)
-	  bl        .loc_0xE0
-	  rlwinm    r0,r3,0,24,31
-	  cmplwi    r0, 0x1
-	  bne-      .loc_0xC8
-	  li        r3, 0x1
-	  b         .loc_0xCC
-
-	.loc_0xC8:
-	  li        r3, 0
-
-	.loc_0xCC:
-	  lmw       r24, 0x60(r1)
-	  lwz       r0, 0x84(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x80
-	  blr
-
-	.loc_0xE0:
-	*/
+	if (p1 != nullptr) {
+		char buffer[80];
+		strcpy(buffer, p1);
+		strcat(buffer, ".map");
+		if (queryMapAddress_single(buffer, p2, p3, p4, p5, p6, p7, p8, p9) == true) {
+			return true;
+		}
+	} else {
+		if (sMapFileList.getFirst() != nullptr
+		    && queryMapAddress_single(const_cast<char*>(sMapFileList.getFirst()->getObject()->m_fileName), p2, -1, p4, p5, p6, p7, p8, p9)
+		           == true) {
+			return true;
+		}
+	}
+	return false;
 }
 
 /*
@@ -3627,7 +2967,7 @@ void JUTException::queryMapAddress(char*, unsigned long, long, unsigned long*, u
  * Address:	8002C924
  * Size:	00033C
  */
-void JUTException::queryMapAddress_single(char*, unsigned long, long, unsigned long*, unsigned long*, char*, unsigned long, bool, bool)
+bool JUTException::queryMapAddress_single(char*, unsigned long, long, unsigned long*, unsigned long*, char*, unsigned long, bool, bool)
 {
 	/*
 	.loc_0x0:
@@ -3894,72 +3234,24 @@ void JUTException::queryMapAddress_single(char*, unsigned long, long, unsigned l
  * Address:	8002CC60
  * Size:	0000E0
  */
-void JUTException::createConsole(void*, unsigned long)
+void JUTException::createConsole(void* buffer, unsigned long bufferSize)
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	mr       r31, r4
-	stw      r30, 8(r1)
-	or.      r30, r3, r3
-	beq      lbl_8002CD28
-	cmplwi   r31, 0
-	bne      lbl_8002CC8C
-	b        lbl_8002CD28
-
-lbl_8002CC8C:
-	mr       r3, r31
-	li       r4, 0x32
-	bl       getLineFromObjectSize__10JUTConsoleFUlUi
-	cmplwi   r3, 0
-	beq      lbl_8002CD28
-	stw      r30, sConsoleBuffer__12JUTException@sda21(r13)
-	mr       r4, r30
-	mr       r5, r31
-	li       r3, 0x32
-	stw      r31, sConsoleBufferSize__12JUTException@sda21(r13)
-	bl       create__10JUTConsoleFUiPvUl
-	mr       r4, r3
-	lwz      r3, sManager__17JUTConsoleManager@sda21(r13)
-	stw      r4, sConsole__12JUTException@sda21(r13)
-	bl       setDirectConsole__17JUTConsoleManagerFP10JUTConsole
-	lwz      r5, sConsole__12JUTException@sda21(r13)
-	li       r4, 0xf
-	lfs      f1, lbl_80516650@sda21(r2)
-	li       r3, 0x1a
-	lfs      f0, lbl_80516654@sda21(r2)
-	li       r0, 0x17
-	stfs     f1, 0x50(r5)
-	stfs     f0, 0x54(r5)
-	lwz      r5, sConsole__12JUTException@sda21(r13)
-	stw      r4, 0x40(r5)
-	stw      r3, 0x44(r5)
-	lwz      r3, sConsole__12JUTException@sda21(r13)
-	stw      r0, 0x48(r3)
-	lwz      r0, 0x48(r3)
-	lwz      r4, 0x24(r3)
-	cmplw    r0, r4
-	ble      lbl_8002CD10
-	stw      r4, 0x48(r3)
-
-lbl_8002CD10:
-	lwz      r3, sConsole__12JUTException@sda21(r13)
-	li       r4, 1
-	li       r0, 3
-	stb      r4, 0x68(r3)
-	lwz      r3, sConsole__12JUTException@sda21(r13)
-	stw      r0, 0x58(r3)
-
-lbl_8002CD28:
-	lwz      r0, 0x14(r1)
-	lwz      r31, 0xc(r1)
-	lwz      r30, 8(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	if (buffer == nullptr || bufferSize == 0) {
+		return;
+	}
+	size_t lineCount = JUTConsole::getLineFromObjectSize(bufferSize, 0x32);
+	if (lineCount == 0) {
+		return;
+	}
+	sConsoleBuffer     = buffer;
+	sConsoleBufferSize = bufferSize;
+	sConsole           = JUTConsole::create(0x32, buffer, bufferSize);
+	JUTConsoleManager::getManager()->setDirectConsole(sConsole);
+	sConsole->setFontSize(10.0f, 6.0f);
+	sConsole->setPosition(15, 26);
+	sConsole->setHeight(23);
+	sConsole->setVisible(true);
+	sConsole->setOutput(JUTConsole::OUTPUT_OSREPORT | JUTConsole::OUTPUT_CONSOLE);
 }
 
 /*
@@ -3967,18 +3259,13 @@ lbl_8002CD28:
  * Address:	8002CD40
  * Size:	000020
  */
-JUTExternalFB::JUTExternalFB(_GXRenderModeObj*, _GXGamma, void*, unsigned long)
+JUTExternalFB::JUTExternalFB(_GXRenderModeObj* renderModeObj, _GXGamma gamma, void* p3, unsigned long p4)
+    : m_renderModeObj(renderModeObj)
+    , _04(p4)
+    , _0C(1)
+    , m_gamma(gamma)
+    , _10(0)
 {
-	/*
-	stw      r4, 0(r3)
-	li       r4, 1
-	li       r0, 0
-	stw      r7, 4(r3)
-	sth      r4, 0xc(r3)
-	sth      r5, 0xe(r3)
-	stb      r0, 0x10(r3)
-	blr
-	*/
 }
 
 /*
@@ -4005,98 +3292,48 @@ void JUTException::disableFpuException()
  * --INFO--
  * Address:	8002CD60
  * Size:	000060
+ * __dt__12JUTExceptionFv
  */
-JUTException::~JUTException()
-{
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	mr       r31, r4
-	stw      r30, 8(r1)
-	or.      r30, r3, r3
-	beq      lbl_8002CDA4
-	lis      r5, __vt__12JUTException@ha
-	li       r4, 0
-	addi     r0, r5, __vt__12JUTException@l
-	stw      r0, 0(r30)
-	bl       __dt__9JKRThreadFv
-	extsh.   r0, r31
-	ble      lbl_8002CDA4
-	mr       r3, r30
-	bl       __dl__FPv
-
-lbl_8002CDA4:
-	lwz      r0, 0x14(r1)
-	mr       r3, r30
-	lwz      r31, 0xc(r1)
-	lwz      r30, 8(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
-}
+JUTException::~JUTException() { }
 
 /*
  * --INFO--
  * Address:	8002CDC0
  * Size:	000048
  */
-void __sinit_JUTException_cpp(void)
-{
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	lis      r3, sMapFileList__12JUTException@ha
-	li       r4, 0
-	stw      r0, 0x14(r1)
-	addi     r3, r3, sMapFileList__12JUTException@l
-	bl       __ct__10JSUPtrListFb
-	lis      r3, sMapFileList__12JUTException@ha
-	lis      r4, "__dt__39JSUList<Q212JUTException12JUTExMapFile>Fv"@ha
-	lis      r5, lbl_804F011C@ha
-	addi     r3, r3, sMapFileList__12JUTException@l
-	addi     r4, r4, "__dt__39JSUList<Q212JUTException12JUTExMapFile>Fv"@l
-	addi     r5, r5, lbl_804F011C@l
-	bl       __register_global_object
-	lwz      r0, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
-}
+// void __sinit_JUTException_cpp(void) { }
 
 /*
  * --INFO--
  * Address:	8002CE08
  * Size:	000054
+ * __dt__39JSUList<Q212JUTException12JUTExMapFile>Fv
  */
-void JSUList<JUTException::JUTExMapFile>::~JSUList()
-{
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	mr       r31, r4
-	stw      r30, 8(r1)
-	or.      r30, r3, r3
-	beq      lbl_8002CE40
-	li       r4, 0
-	bl       __dt__10JSUPtrListFv
-	extsh.   r0, r31
-	ble      lbl_8002CE40
-	mr       r3, r30
-	bl       __dl__FPv
+// void JSUList<JUTException::JUTExMapFile>::~JSUList()
+// {
+// 	/*
+// 	stwu     r1, -0x10(r1)
+// 	mflr     r0
+// 	stw      r0, 0x14(r1)
+// 	stw      r31, 0xc(r1)
+// 	mr       r31, r4
+// 	stw      r30, 8(r1)
+// 	or.      r30, r3, r3
+// 	beq      lbl_8002CE40
+// 	li       r4, 0
+// 	bl       __dt__10JSUPtrListFv
+// 	extsh.   r0, r31
+// 	ble      lbl_8002CE40
+// 	mr       r3, r30
+// 	bl       __dl__FPv
 
-lbl_8002CE40:
-	lwz      r0, 0x14(r1)
-	mr       r3, r30
-	lwz      r31, 0xc(r1)
-	lwz      r30, 8(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
-}
+// lbl_8002CE40:
+// 	lwz      r0, 0x14(r1)
+// 	mr       r3, r30
+// 	lwz      r31, 0xc(r1)
+// 	lwz      r30, 8(r1)
+// 	mtlr     r0
+// 	addi     r1, r1, 0x10
+// 	blr
+// 	*/
+// }

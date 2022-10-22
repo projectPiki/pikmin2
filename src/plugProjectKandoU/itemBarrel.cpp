@@ -8,6 +8,8 @@
 #include "JSystem/JKR/JKRArchive.h"
 #include "JSystem/JKR/JKRDvdRipper.h"
 #include "JSystem/JUT/JUTException.h"
+#include "PSM/ObjBase.h"
+#include "PSM/WorkItem.h"
 #include "Sys/Sphere.h"
 #include "SysShape/Model.h"
 #include "nans.h"
@@ -1262,7 +1264,7 @@ void ItemBarrel::Item::doLoad(Stream& input)
  */
 void ItemBarrel::Item::constructor(void)
 {
-	// m_soundObj = new WorkItem(this);
+	// m_soundObj = new PSM::WorkItem(this);
 
 	/*
 	stwu     r1, -0x10(r1)
@@ -1366,14 +1368,14 @@ void ItemBarrel::Item::updateBoundSphere(void)
  */
 void ItemBarrel::Item::doAI(void)
 {
-	// m_stateMachine->exec(this);
-	// updateCollTree();
-	// m_collTree->m_part->_1C = getWorkRadius();
-	// switch (m_soundEvent.update()) {
-	// 	case 2:
-	// 		P2ASSERTLINE(298, m_soundObj->getCastType() == CCT_WorkItem);
-	// 		static_cast<PSM::WorkItem*>(m_soundObj)->eventStop();
-	// }
+	m_stateMachine->exec(this);
+	updateCollTree();
+	m_collTree->m_part->_1C = getWorkRadius();
+	switch (m_soundEvent.update()) {
+	case 2:
+		P2ASSERTLINE(298, m_soundObj->getCastType() == PSM::CCT_WorkItem);
+		static_cast<PSM::WorkItem*>(m_soundObj)->eventStop();
+	}
 
 	/*
 	stwu     r1, -0x10(r1)
@@ -1629,7 +1631,6 @@ void ItemBarrel::Item::createBarrel(void)
  */
 bool ItemBarrel::Item::interactAttack(Game::InteractAttack& interaction)
 {
-	// TODO: Uncomment the lines once PSM::WorkItem exists.
 	if (interaction.m_creature->isNavi()) {
 		return false;
 	}
@@ -1637,15 +1638,13 @@ bool ItemBarrel::Item::interactAttack(Game::InteractAttack& interaction)
 		m_currentState->onDamage(this, interaction._08);
 		switch (m_soundEvent.event()) {
 		case 1:
-			// P2ASSERTLINE(361, m_soundObj->getCastType() == CCT_WorkItem);
-			// static_cast<PSM::WorkItem*>(m_soundObj)->eventStart();
+			P2ASSERTLINE(361, m_soundObj->getCastType() == PSM::CCT_WorkItem);
+			static_cast<PSM::WorkItem*>(m_soundObj)->eventStart();
 			break;
+		case 2: break;
 		case 3:
-			// P2ASSERTLINE(368, m_soundObj->getCastType() == CCT_WorkItem);
-			// static_cast<PSM::WorkItem*>(m_soundObj)->eventRestart();
-			break;
-		case 0:
-		case 2:
+			P2ASSERTLINE(368, m_soundObj->getCastType() == PSM::CCT_WorkItem);
+			static_cast<PSM::WorkItem*>(m_soundObj)->eventRestart();
 			break;
 		}
 		return true;

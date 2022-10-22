@@ -1,3 +1,5 @@
+#include "Game/Navi.h"
+#include "JSystem/JMath.h"
 #include "types.h"
 
 /*
@@ -45,36 +47,36 @@
 namespace Game {
 
 /*
+ * __ct
  * --INFO--
  * Address:	80165088
  * Size:	000034
  */
-NaviWhistle::NaviWhistle(Game::Navi*)
+NaviWhistle::NaviWhistle(Game::Navi* navi)
+    : m_navi(navi)
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	mr       r31, r3
-	stw      r4, 0x34(r3)
-	bl       init__Q24Game11NaviWhistleFv
-	lwz      r0, 0x14(r1)
-	mr       r3, r31
-	lwz      r31, 0xc(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	init();
 }
 
 /*
  * --INFO--
  * Address:	801650BC
  * Size:	000128
+ * TODO: Needs NaviParms
  */
-void NaviWhistle::init(void)
+void NaviWhistle::init()
 {
+	_28                                           = 0;
+	_24                                           = 10.0f;
+	_2C                                           = 0.0f;
+	_38                                           = Color4(0xFF, 0x96, 0x00, 0x78);
+	float faceDir                                 = m_navi->getFaceDir();
+	float v1                                      = 0.5f /* * static_cast<NaviParms*>(m_navi->m_parms)->m_p046() */;
+	const JMath::TSinCosTable<2048, float>* table = JMath::getSinCosTable();
+	float cos                                     = table->cos(faceDir);
+	float sin                                     = table->sin(faceDir);
+	_00                                           = Vector3f(v1 * sin, 0.0f, v1 * cos);
+	updatePosition();
 	/*
 	stwu     r1, -0x30(r1)
 	mflr     r0
@@ -596,14 +598,12 @@ lbl_80165704:
 	*/
 }
 
-} // namespace Game
-
 /*
  * --INFO--
  * Address:	80165718
  * Size:	0001D4
  */
-void update__Q24Game11NaviWhistleFR10Vector3f b(void)
+void NaviWhistle::update(Vector3f&, bool)
 {
 	/*
 	stwu     r1, -0x20(r1)
@@ -745,3 +745,4 @@ lbl_801658B4:
 	blr
 	*/
 }
+} // namespace Game

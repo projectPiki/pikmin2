@@ -1,3 +1,6 @@
+#include "JSystem/JGeometry.h"
+#include "JSystem/JPA/JPABlock.h"
+#include "JSystem/JPA/JPAEmitter.h"
 #include "types.h"
 
 /*
@@ -45,8 +48,12 @@
  * Address:	8008EFD0
  * Size:	0000DC
  */
-void JPAVolumePoint(JPAEmitterWorkData*)
+void JPAVolumePoint(JPAEmitterWorkData* workData)
 {
+	workData->_10 = JGeometry::TVec3f(0.0f, 0.0f, 0.0f);
+	workData->_1C = JGeometry::TVec3f(workData->m_emitter->m_rng.nextFloat_0_1() - 0.5f, workData->m_emitter->m_rng.nextFloat_0_1() - 0.5f,
+	                                  workData->m_emitter->m_rng.nextFloat_0_1() - 0.5f);
+	workData->_28 = JGeometry::TVec3f(workData->_1C.x, 0.0f, workData->_1C.z);
 	/*
 	stwu     r1, -0x20(r1)
 	lis      r4, 0x0019660D@ha
@@ -111,8 +118,17 @@ void JPAVolumePoint(JPAEmitterWorkData*)
  * Address:	8008F0AC
  * Size:	00011C
  */
-void JPAVolumeLine(JPAEmitterWorkData*)
+void JPAVolumeLine(JPAEmitterWorkData* workData)
 {
+	if (workData->m_emitter->m_resource->_2C->castData()->_08 & 2) {
+		workData->_10
+		    = JGeometry::TVec3f(0.0f, 0.0f, workData->_34 * ((float)workData->_44 / ((float)workData->m_createNumber - 1.0f) - 0.5f));
+		workData->_44++;
+	} else {
+		workData->_10 = JGeometry::TVec3f(0.0f, 0.0f, workData->_34 * (workData->m_emitter->m_rng.nextFloat_0_1() - 0.5f));
+	}
+	workData->_1C = JGeometry::TVec3f(0.0f, 0.0f, workData->_10.z * workData->_11C);
+	workData->_28 = JGeometry::TVec3f(0.0f, 0.0f, workData->_10.z);
 	/*
 	stwu     r1, -0x20(r1)
 	lwz      r6, 0(r3)

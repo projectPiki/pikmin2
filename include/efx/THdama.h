@@ -7,6 +7,7 @@
 #include "efx/TChaseMtx.h"
 #include "efx/TForever.h"
 
+// TODO:
 namespace efx {
 struct THdamaDeadbomb : public TChaseMtx4 {
 	// _00		= VTBL

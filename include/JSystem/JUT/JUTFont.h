@@ -21,11 +21,18 @@ struct ResFONT {
 	u16 _18;           // _18
 	u16 _1A;           // _1A
 	u16 _1C;           // _1C
-	void* m_data;      // _20
+	u32 : 0;
+	u8 m_data[]; // _20
 };
 struct BlockHeader {
 	u32 m_magic; // _00
 	u32 m_size;  // _04
+
+	const BlockHeader* getNext() const { return reinterpret_cast<const BlockHeader*>(reinterpret_cast<const u8*>(this) + this->m_size); }
+	inline static void advance(const BlockHeader** iterator)
+	{
+		*iterator = reinterpret_cast<const BlockHeader*>(reinterpret_cast<const u8*>(*iterator) + (*iterator)->m_size);
+	}
 };
 struct WidthBlock {
 	BlockHeader m_header;
@@ -37,7 +44,8 @@ struct WidthBlock {
 	u16 _18;          // _18
 	u16 _1A;          // _1A
 	u16 _1C;          // _1C
-	u16 m_data[];     // _20
+	u32 : 0;
+	u16 m_data[]; // _20
 };
 struct GlyphBlock {
 	BlockHeader m_header;
@@ -87,9 +95,9 @@ struct JUTFont {
 	virtual void getWidthEntry(int, JUTFont::TWidth*) const             = 0; // _2C
 	virtual int getCellWidth() const { return getWidth(); };                 // _30
 	virtual int getCellHeight() const { return getHeight(); };               // _34
-	virtual int getFontType() const     = 0;                                 // _38
-	virtual ResFONT* getResFont() const = 0;                                 // _3C
-	virtual bool isLeadByte(int) const  = 0;                                 // _40
+	virtual int getFontType() const           = 0;                           // _38
+	virtual const ResFONT* getResFont() const = 0;                           // _3C
+	virtual bool isLeadByte(int) const        = 0;                           // _40
 	// virtual void loadImage(int, _GXTexMapID) = 0;                // _44
 
 	void initialize_state();
@@ -189,7 +197,7 @@ struct JUTResFont : public JUTFont {
 	virtual int getCellWidth() const;                                     // _30
 	virtual int getCellHeight() const;                                    // _34
 	virtual int getFontType() const { return m_infoBlock->m_encoding; };  // _38
-	virtual ResFONT* getResFont() const { return m_resource; };           // _3C
+	virtual const ResFONT* getResFont() const { return m_resource; };     // _3C
 	virtual u16 getLeading() const { return m_infoBlock->m_leading; };    // _18
 	virtual bool isLeadByte(int) const;                                   // _40
 	virtual void loadImage(int, _GXTexMapID);                             // _44
@@ -205,12 +213,15 @@ struct JUTResFont : public JUTFont {
 	void loadFont(int, _GXTexMapID, TWidth*);
 	bool protected_initiate(const ResFONT*, JKRHeap*);
 
-	int m_width;         // _1C
-	int m_height;        // _20
-	GXTexObj _24;        // _24
-	int _44;             // _44
-	ResFONT* m_resource; // _48
-	// INF1
+	int m_width;               // _1C
+	int m_height;              // _20
+	GXTexObj _24;              // _24
+	int _44;                   // _44
+	const ResFONT* m_resource; // _48
+	/*
+	 * INF1
+	 * TODO: Is m_infoBlock really a FontHeader, or is it a ResFONT? It should be 0x20 bytes long in JUTCacheFont::allocArea.
+	 */
 	FontHeader* m_infoBlock; // _4C
 	void** m_memBlocks;      // _50
 	// WID1
@@ -232,12 +243,19 @@ struct JUTResFont : public JUTFont {
 struct JUTCacheFont : public JUTResFont {
 	struct TGlyphCacheInfo {
 		// TODO: the rest of the data members
-		TGlyphCacheInfo* m_prev;
-		TGlyphCacheInfo* m_next;
+		TGlyphCacheInfo* m_prev; // _00
+		TGlyphCacheInfo* m_next; // _04
+		u8 _08[4];               // _08
+		u16 _0C;                 // _0C
+		u16 _0E;                 // _0E
+		u8 _10[4];               // _10
+		u16 _14;                 // _14
+		u16 _16;                 // _16
+		u8 _18[8];               // _18
+		GXTexObj m_gxTexObj;     // _20
 	};
 
-	struct TCachePage {
-	};
+	struct TCachePage { };
 
 	JUTCacheFont();
 	JUTCacheFont(const ResFONT*, void*, u32, JKRHeap*);
@@ -255,21 +273,21 @@ struct JUTCacheFont : public JUTResFont {
 	virtual int getCellWidth() const;                                    // _30
 	virtual int getCellHeight() const;                                   // _34
 	virtual int getFontType() const;                                     // _38
-	virtual ResFONT* getResFont() const;                                 // _3C
+	virtual const ResFONT* getResFont() const;                           // _3C
 	virtual bool isLeadByte(int) const;                                  // _40
 	virtual void loadImage(int, _GXTexMapID);                            // _44
 	virtual void setBlock();                                             // _48
 	// virtual void _4C(); // _4C
 
-	void allocArea(void*, u32, JKRHeap*);
-	void allocArray(JKRHeap*);
+	bool allocArea(void*, u32, JKRHeap*);
+	bool allocArray(JKRHeap*);
 	void deleteMemBlocks_CacheFont();
-	void getMemorySize(const ResFONT*, u16*, u32*, u16*, u32*, u16*, u32*, u32*);
+	bool getMemorySize(const ResFONT*, u16*, u32*, u16*, u32*, u16*, u32*, u32*);
 	void initialize_state();
-	void initiate(const ResFONT*, void*, u32, JKRHeap*);
-	void internal_initiate(const ResFONT*, void*, u32, JKRHeap*);
+	bool initiate(const ResFONT*, void*, u32, JKRHeap*);
+	bool internal_initiate(const ResFONT*, void*, u32, JKRHeap*);
 	void invalidiateAllCache();
-	void loadCache_char_subroutine(int*, bool);
+	TGlyphCacheInfo* loadCache_char_subroutine(int*, bool);
 	void loadCache_string(const char*, bool);
 	void prepend(TGlyphCacheInfo*);
 	void unlink(TGlyphCacheInfo*);
@@ -284,17 +302,17 @@ struct JUTCacheFont : public JUTResFont {
 	void unlockCache_string(const char*);
 	void unlockCache_string_size(const char*, u32);
 
-	u32 _70;                   // _70
-	u32 _74;                   // _74
-	u32 _78;                   // _78
+	u32 m_widthBlocksSize;     // _70
+	u32 m_glyphBlocksSize;     // _74
+	u32 m_mapBlocksSize;       // _78
 	void* _7C;                 // _7C
 	void* _80;                 // _80
 	void* _84;                 // _84
-	u32 _88;                   // _88
+	u32 m_maxPageByteSize;     // _88
 	int _8C;                   // _8C
 	void* _90;                 // _90
 	u32 _94;                   // _94
-	u8 _98[4];                 // _98
+	u32 _98;                   // _98
 	TGlyphCacheInfo* _9C;      // _9C
 	TGlyphCacheInfo* _A0;      // _A0
 	u8 _A4[8];                 // _A4

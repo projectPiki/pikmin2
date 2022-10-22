@@ -1,3 +1,4 @@
+#include "JSystem/JPA/JPAResource.h"
 #include "types.h"
 
 /*

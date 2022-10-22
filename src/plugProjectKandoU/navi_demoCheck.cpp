@@ -1845,12 +1845,19 @@ lbl_80220B34:
 } // namespace Game
 
 /*
+ * distance__10Vector3<f>FR10Vector3<f>
  * --INFO--
  * Address:	80220B60
  * Size:	000058
  */
-template <> float Vector3f::distance(Vector3f&)
+template <> float Vector3f::distance(Vector3f& other)
 {
+	// float magnitude = ((*this) - (other)).magnitude();
+	// if (magnitude <= 0.0f) {
+	// 	return 0.0f;
+	// }
+	// return pikmin2_sqrtf(magnitude);
+	return ((*this) - other).length();
 	/*
 	lfs      f1, 4(r3)
 	lfs      f0, 4(r4)
@@ -1884,208 +1891,208 @@ lbl_80220BB0:
  * Address:	80220BB8
  * Size:	0000E4
  */
-void next__Q24Game30EnemyIterator<Game::Pom::Obj> Fv(void)
-{
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	mr       r31, r3
-	lwz      r0, 0xc(r3)
-	cmplwi   r0, 0
-	bne      lbl_80220BF8
-	lwz      r3, 8(r31)
-	lwz      r4, 4(r31)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x14(r12)
-	mtctr    r12
-	bctrl
-	stw      r3, 4(r31)
-	b        lbl_80220C88
+// void Game::EnemyIterator<Game::Pom::Obj>::next()
+// {
+// 	/*
+// 	stwu     r1, -0x10(r1)
+// 	mflr     r0
+// 	stw      r0, 0x14(r1)
+// 	stw      r31, 0xc(r1)
+// 	mr       r31, r3
+// 	lwz      r0, 0xc(r3)
+// 	cmplwi   r0, 0
+// 	bne      lbl_80220BF8
+// 	lwz      r3, 8(r31)
+// 	lwz      r4, 4(r31)
+// 	lwz      r12, 0(r3)
+// 	lwz      r12, 0x14(r12)
+// 	mtctr    r12
+// 	bctrl
+// 	stw      r3, 4(r31)
+// 	b        lbl_80220C88
 
-lbl_80220BF8:
-	lwz      r3, 8(r31)
-	lwz      r4, 4(r31)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x14(r12)
-	mtctr    r12
-	bctrl
-	stw      r3, 4(r31)
-	b        lbl_80220C6C
+// lbl_80220BF8:
+// 	lwz      r3, 8(r31)
+// 	lwz      r4, 4(r31)
+// 	lwz      r12, 0(r3)
+// 	lwz      r12, 0x14(r12)
+// 	mtctr    r12
+// 	bctrl
+// 	stw      r3, 4(r31)
+// 	b        lbl_80220C6C
 
-lbl_80220C18:
-	lwz      r3, 8(r31)
-	lwz      r4, 4(r31)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x10(r12)
-	mtctr    r12
-	bctrl
-	mr       r4, r3
-	lwz      r3, 0xc(r31)
-	lwz      r12, 0(r3)
-	lwz      r12, 8(r12)
-	mtctr    r12
-	bctrl
-	clrlwi.  r0, r3, 0x18
-	bne      lbl_80220C88
-	lwz      r3, 8(r31)
-	lwz      r4, 4(r31)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x14(r12)
-	mtctr    r12
-	bctrl
-	stw      r3, 4(r31)
+// lbl_80220C18:
+// 	lwz      r3, 8(r31)
+// 	lwz      r4, 4(r31)
+// 	lwz      r12, 0(r3)
+// 	lwz      r12, 0x10(r12)
+// 	mtctr    r12
+// 	bctrl
+// 	mr       r4, r3
+// 	lwz      r3, 0xc(r31)
+// 	lwz      r12, 0(r3)
+// 	lwz      r12, 8(r12)
+// 	mtctr    r12
+// 	bctrl
+// 	clrlwi.  r0, r3, 0x18
+// 	bne      lbl_80220C88
+// 	lwz      r3, 8(r31)
+// 	lwz      r4, 4(r31)
+// 	lwz      r12, 0(r3)
+// 	lwz      r12, 0x14(r12)
+// 	mtctr    r12
+// 	bctrl
+// 	stw      r3, 4(r31)
 
-lbl_80220C6C:
-	mr       r3, r31
-	lwz      r12, 0(r31)
-	lwz      r12, 0x10(r12)
-	mtctr    r12
-	bctrl
-	clrlwi.  r0, r3, 0x18
-	beq      lbl_80220C18
+// lbl_80220C6C:
+// 	mr       r3, r31
+// 	lwz      r12, 0(r31)
+// 	lwz      r12, 0x10(r12)
+// 	mtctr    r12
+// 	bctrl
+// 	clrlwi.  r0, r3, 0x18
+// 	beq      lbl_80220C18
 
-lbl_80220C88:
-	lwz      r0, 0x14(r1)
-	lwz      r31, 0xc(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
-}
+// lbl_80220C88:
+// 	lwz      r0, 0x14(r1)
+// 	lwz      r31, 0xc(r1)
+// 	mtlr     r0
+// 	addi     r1, r1, 0x10
+// 	blr
+// 	*/
+// }
 
 /*
  * --INFO--
  * Address:	80220C9C
  * Size:	00004C
  */
-void isDone__Q24Game30EnemyIterator<Game::Pom::Obj> Fv(void)
-{
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	mr       r31, r3
-	lwz      r3, 8(r3)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x1c(r12)
-	mtctr    r12
-	bctrl
-	lwz      r0, 4(r31)
-	subf     r0, r0, r3
-	cntlzw   r0, r0
-	srwi     r3, r0, 5
-	lwz      r31, 0xc(r1)
-	lwz      r0, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
-}
+// void Game::EnemyIterator<Game::Pom::Obj>::isDone()
+// {
+// 	/*
+// 	stwu     r1, -0x10(r1)
+// 	mflr     r0
+// 	stw      r0, 0x14(r1)
+// 	stw      r31, 0xc(r1)
+// 	mr       r31, r3
+// 	lwz      r3, 8(r3)
+// 	lwz      r12, 0(r3)
+// 	lwz      r12, 0x1c(r12)
+// 	mtctr    r12
+// 	bctrl
+// 	lwz      r0, 4(r31)
+// 	subf     r0, r0, r3
+// 	cntlzw   r0, r0
+// 	srwi     r3, r0, 5
+// 	lwz      r31, 0xc(r1)
+// 	lwz      r0, 0x14(r1)
+// 	mtlr     r0
+// 	addi     r1, r1, 0x10
+// 	blr
+// 	*/
+// }
 
 /*
  * --INFO--
  * Address:	80220CE8
  * Size:	000040
  */
-void __ct__Q24Game12MoviePlayArgFPcPcP39IDelegate3<Game::MovieConfig*, unsigned long, unsigned long> Ul(void)
-{
-	/*
-	.loc_0x0:
-	  stw       r4, 0x0(r3)
-	  li        r0, 0
-	  lfs       f0, -0x4268(r2)
-	  stw       r5, 0x4(r3)
-	  stw       r6, 0xC(r3)
-	  stfs      f0, 0x18(r3)
-	  stfs      f0, 0x1C(r3)
-	  stfs      f0, 0x20(r3)
-	  stfs      f0, 0x24(r3)
-	  stw       r7, 0x28(r3)
-	  stw       r0, 0x10(r3)
-	  stw       r0, 0x8(r3)
-	  stw       r0, 0x2C(r3)
-	  stw       r0, 0x14(r3)
-	  stw       r0, 0x30(r3)
-	  blr
-	*/
-}
+// void Game::MoviePlayArg(char*, char*, IDelegate3<Game::MovieConfig*, unsigned long, unsigned long>*, unsigned long)
+// {
+// 	/*
+// 	.loc_0x0:
+// 	  stw       r4, 0x0(r3)
+// 	  li        r0, 0
+// 	  lfs       f0, -0x4268(r2)
+// 	  stw       r5, 0x4(r3)
+// 	  stw       r6, 0xC(r3)
+// 	  stfs      f0, 0x18(r3)
+// 	  stfs      f0, 0x1C(r3)
+// 	  stfs      f0, 0x20(r3)
+// 	  stfs      f0, 0x24(r3)
+// 	  stw       r7, 0x28(r3)
+// 	  stw       r0, 0x10(r3)
+// 	  stw       r0, 0x8(r3)
+// 	  stw       r0, 0x2C(r3)
+// 	  stw       r0, 0x14(r3)
+// 	  stw       r0, 0x30(r3)
+// 	  blr
+// 	*/
+// }
 
 /*
  * --INFO--
  * Address:	80220D28
  * Size:	0000DC
  */
-void first__Q24Game30EnemyIterator<Game::Pom::Obj> Fv(void)
-{
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	mr       r31, r3
-	lwz      r0, 0xc(r3)
-	cmplwi   r0, 0
-	bne      lbl_80220D64
-	lwz      r3, 8(r31)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x18(r12)
-	mtctr    r12
-	bctrl
-	stw      r3, 4(r31)
-	b        lbl_80220DF0
+// void Game::EnemyIterator<Game::Pom::Obj>::first()
+// {
+// 	/*
+// 	stwu     r1, -0x10(r1)
+// 	mflr     r0
+// 	stw      r0, 0x14(r1)
+// 	stw      r31, 0xc(r1)
+// 	mr       r31, r3
+// 	lwz      r0, 0xc(r3)
+// 	cmplwi   r0, 0
+// 	bne      lbl_80220D64
+// 	lwz      r3, 8(r31)
+// 	lwz      r12, 0(r3)
+// 	lwz      r12, 0x18(r12)
+// 	mtctr    r12
+// 	bctrl
+// 	stw      r3, 4(r31)
+// 	b        lbl_80220DF0
 
-lbl_80220D64:
-	lwz      r3, 8(r31)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x18(r12)
-	mtctr    r12
-	bctrl
-	stw      r3, 4(r31)
-	b        lbl_80220DD4
+// lbl_80220D64:
+// 	lwz      r3, 8(r31)
+// 	lwz      r12, 0(r3)
+// 	lwz      r12, 0x18(r12)
+// 	mtctr    r12
+// 	bctrl
+// 	stw      r3, 4(r31)
+// 	b        lbl_80220DD4
 
-lbl_80220D80:
-	lwz      r3, 8(r31)
-	lwz      r4, 4(r31)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x10(r12)
-	mtctr    r12
-	bctrl
-	mr       r4, r3
-	lwz      r3, 0xc(r31)
-	lwz      r12, 0(r3)
-	lwz      r12, 8(r12)
-	mtctr    r12
-	bctrl
-	clrlwi.  r0, r3, 0x18
-	bne      lbl_80220DF0
-	lwz      r3, 8(r31)
-	lwz      r4, 4(r31)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x14(r12)
-	mtctr    r12
-	bctrl
-	stw      r3, 4(r31)
+// lbl_80220D80:
+// 	lwz      r3, 8(r31)
+// 	lwz      r4, 4(r31)
+// 	lwz      r12, 0(r3)
+// 	lwz      r12, 0x10(r12)
+// 	mtctr    r12
+// 	bctrl
+// 	mr       r4, r3
+// 	lwz      r3, 0xc(r31)
+// 	lwz      r12, 0(r3)
+// 	lwz      r12, 8(r12)
+// 	mtctr    r12
+// 	bctrl
+// 	clrlwi.  r0, r3, 0x18
+// 	bne      lbl_80220DF0
+// 	lwz      r3, 8(r31)
+// 	lwz      r4, 4(r31)
+// 	lwz      r12, 0(r3)
+// 	lwz      r12, 0x14(r12)
+// 	mtctr    r12
+// 	bctrl
+// 	stw      r3, 4(r31)
 
-lbl_80220DD4:
-	mr       r3, r31
-	lwz      r12, 0(r31)
-	lwz      r12, 0x10(r12)
-	mtctr    r12
-	bctrl
-	clrlwi.  r0, r3, 0x18
-	beq      lbl_80220D80
+// lbl_80220DD4:
+// 	mr       r3, r31
+// 	lwz      r12, 0(r31)
+// 	lwz      r12, 0x10(r12)
+// 	mtctr    r12
+// 	bctrl
+// 	clrlwi.  r0, r3, 0x18
+// 	beq      lbl_80220D80
 
-lbl_80220DF0:
-	lwz      r0, 0x14(r1)
-	lwz      r31, 0xc(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
-}
+// lbl_80220DF0:
+// 	lwz      r0, 0x14(r1)
+// 	lwz      r31, 0xc(r1)
+// 	mtlr     r0
+// 	addi     r1, r1, 0x10
+// 	blr
+// 	*/
+// }
 
 namespace Game {
 
@@ -2238,25 +2245,25 @@ lbl_80220FB0:
  * Address:	80220FC8
  * Size:	000038
  */
-void __ml__Q24Game30EnemyIterator<Game::Pom::Obj> Fv(void)
-{
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	mr       r4, r3
-	stw      r0, 0x14(r1)
-	lwz      r3, 8(r3)
-	lwz      r4, 4(r4)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x10(r12)
-	mtctr    r12
-	bctrl
-	lwz      r0, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
-}
+// void Game::EnemyIterator<Game::Pom::Obj>::operator*(void)
+// {
+// 	/*
+// 	stwu     r1, -0x10(r1)
+// 	mflr     r0
+// 	mr       r4, r3
+// 	stw      r0, 0x14(r1)
+// 	lwz      r3, 8(r3)
+// 	lwz      r4, 4(r4)
+// 	lwz      r12, 0(r3)
+// 	lwz      r12, 0x10(r12)
+// 	mtctr    r12
+// 	bctrl
+// 	lwz      r0, 0x14(r1)
+// 	mtlr     r0
+// 	addi     r1, r1, 0x10
+// 	blr
+// 	*/
+// }
 
 /*
  * --INFO--

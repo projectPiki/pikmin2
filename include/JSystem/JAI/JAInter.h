@@ -3,16 +3,23 @@
 
 #include "JSystem/JAI/JAInter/MoveParaSet.h"
 #include "JSystem/JAS/JASTrack.h"
+#include "JSystem/JGeometry.h"
+#include "JSystem/JKR/JKRArchive.h"
 #include "types.h"
 #include "Dolphin/mtx.h"
 
 struct JAISequence;
+struct JAISound;
 
 namespace JAInter {
+struct DummyVec;
 
 namespace SequenceMgr {
-struct CustomHeapInfo {
-};
+struct CustomHeapInfo { };
+void init();
+void getArchiveName(char*);
+void setArchivePointer(JKRArchive*);
+void getArchivePointer();
 } // namespace SequenceMgr
 
 struct Actor {
@@ -54,16 +61,56 @@ struct Camera {
 	Mtx* m_mtx;  // _08
 };
 
-struct HeapBlock {
+struct DummyObjectMgr {
+	/**
+	 * @fabricated
+	 * @size{0x1C}
+	 */
+	struct DummyObject {
+		inline DummyObject() {};
+		DummyObject* _00;      // _00
+		DummyObject* _04;      // _04
+		JAISound* m_sound;     // _08
+		JGeometry::TVec3f _0C; // _0C
+		u32 _18;               // _18
+	};
+
+	static void init();
+	static DummyObject* getPointer(u32);
+	static void check();
+
+	// Unused/inlined:
+	void releasePointer(DummyVec*);
+
+	static DummyObject* deadObjectObject;
+	static DummyObject* deadObjectFreePointer;
+	static DummyObject* deadObjectUsedPointer;
 };
 
+struct DummyVec { };
+
+struct HeapBlock { };
+
 struct LinkSound {
+	void init();
+	JAISound* getSound();
+	void releaseSound(JAISound*);
+
+	// unused/inlined:
+	void getFreeStartFirstObject();
+	void getUsedEndFirstObject();
+
+	JSUList<JAISound>* _00; // _00
+	JSUList<JAISound>* _04; // _04
 };
 
 struct MuteBit {
+	MuteBit();
 };
 
 struct PlayerParameter {
+	PlayerParameter();
+	~PlayerParameter();
 };
 
 struct SeParameter {
@@ -88,6 +135,8 @@ struct SeParameter {
 };
 
 struct SeqUpdateData {
+	SeqUpdateData();
+
 	u8 _00;                  // _00 - unknown
 	u8 _01;                  // _01 - unknown
 	u8 _02;                  // _02
@@ -131,9 +180,13 @@ struct SeqParameter {
 	u8 _279;                    // _279
 	short _27A;                 // _27A
 	int _27C;                   // _27C
-	u8 _280[0x34];              // _280
+	u8 _280[0x4];               // _280
+	u32 _284;                   // _284
+	u32 _288;                   // _288
+	u32 _28C;                   // _28C
+	u8 _290[0x24];              // _290
 	void* _2B4;                 // _2B4 - unknown pointer
-	void* _2B8;                 // _2B8 - unknown pointer
+	u8* _2B8;                   // _2B8 - unknown pointer
 	MuteBit* _2BC;              // _2BC
 	SeqUpdateData* _2C0;        // _2C0
 	JASTrack m_track;           // _2C4

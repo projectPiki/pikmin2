@@ -41,8 +41,9 @@ void JAInter::SoundTable::init(u8* data, u32 dataSize)
 	mSoundMax        = new (JAIBasic::msCurrentHeap, 4) u16[0x12];
 	mPointerCategory = new (JAIBasic::msCurrentHeap, 4) SoundInfo*[0x12];
 	for (u8 i = 0; i < 0x12; i++) {
-		mSoundMax[i]        = *(u16*)(mAddress + (i * 4) + 6);
-		mPointerCategory[i] = *(SoundInfo**)(mAddress + *(u16*)(mAddress + (i * 4) + 8) * 0x10 + 0x50);
+		mSoundMax[i]        = *reinterpret_cast<u16**>(&mAddress[6])[i];
+		mPointerCategory[i] = reinterpret_cast<SoundInfo**>(&mAddress[0x50])[reinterpret_cast<u16*>(&mAddress[8])[i]];
+		// mPointerCategory[i] = *(SoundInfo**)(mAddress + *(u16*)(mAddress + (i * 4) + 8) * 0x10 + 0x50);
 		if (i < 0x10 && mSoundMax[i] != 0) {
 			mCategotyMax = i + 1;
 		}
@@ -115,27 +116,27 @@ lbl_800B74FC:
  */
 JAInter::SoundInfo* JAInter::SoundTable::getInfoPointer(u32 soundID)
 {
-	u32 maskedID    = soundID & 0xC0000000;
-	SoundInfo* info = nullptr;
-	u32 category    = 0;
-	if (maskedID == 0xC0000000) {
-		category = 0x11;
-	} else {
-		if (maskedID < 0xC0000000) {
-			if (maskedID < 0x80000001) {
-				category = 0x10;
-			}
-		} else {
-			if (maskedID == 0) {
-				category = (soundID >> 0xC) & 0xFF;
-				JAIGlobalParameter::getParamSeCategoryMax();
-			}
-		}
-	}
-	if (mAddress != nullptr && (soundID & 0x3FF) < (uint)mSoundMax[category]) {
-		info = mPointerCategory[category] + (soundID & 0x3FF);
-	}
-	return info;
+	// u32 maskedID    = soundID & 0xC0000000;
+	// SoundInfo* info = nullptr;
+	// u32 category    = 0;
+	// if (maskedID == 0xC0000000) {
+	// 	category = 0x11;
+	// } else {
+	// 	if (maskedID < 0xC0000000) {
+	// 		if (maskedID < 0x80000001) {
+	// 			category = 0x10;
+	// 		}
+	// 	} else {
+	// 		if (maskedID == 0) {
+	// 			category = (soundID >> 0xC) & 0xFF;
+	// 			JAIGlobalParameter::getParamSeCategoryMax();
+	// 		}
+	// 	}
+	// }
+	// if (mAddress != nullptr && (soundID & 0x3FF) < (uint)mSoundMax[category]) {
+	// 	info = mPointerCategory[category] + (soundID & 0x3FF);
+	// }
+	// return info;
 	/*
 	stwu     r1, -0x20(r1)
 	mflr     r0

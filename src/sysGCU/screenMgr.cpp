@@ -1,4 +1,5 @@
 #include "Screen/Game2DMgr.h"
+#include "Screen/SceneInfoList.h"
 #include "types.h"
 #include "nans.h"
 
@@ -642,7 +643,7 @@ void Mgr::create(void)
  * Address:	804526EC
  * Size:	0001E8
  */
-void Mgr::startScene(Screen::StartSceneArg*)
+bool Mgr::startScene(Screen::StartSceneArg*)
 {
 	/*
 	stwu     r1, -0x40(r1)
@@ -1590,7 +1591,7 @@ lbl_804531B0:
  * Address:	804531C4
  * Size:	000598
  */
-void Mgr::setScene(Screen::SetSceneArg&)
+bool Mgr::setScene(Screen::SetSceneArg&)
 {
 	/*
 	stwu     r1, -0x40(r1)
@@ -2227,7 +2228,7 @@ lbl_80453960:
  * Address:	80453970
  * Size:	000028
  */
-void Mgr::isSceneFinish(void)
+bool Mgr::isSceneFinish(void)
 {
 	/*
 	lwz      r3, 0x1c(r3)
@@ -2323,7 +2324,7 @@ lbl_80453A10:
  * Address:	80453A20
  * Size:	000038
  */
-void Mgr::isAnyReservation() const
+bool Mgr::isAnyReservation() const
 {
 	/*
 	lwz      r3, 0x3c(r3)

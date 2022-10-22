@@ -2,6 +2,9 @@
 #include "Dolphin/os.h"
 #include "Dolphin/gd.h"
 
+GDCurrentDL* __GDCurrentDL    = (GDCurrentDL*)NULL;
+GDOverflowCallback overflowcb = (GDOverflowCallback)NULL;
+
 /*
  * --INFO--
  * Address:	800E1B04

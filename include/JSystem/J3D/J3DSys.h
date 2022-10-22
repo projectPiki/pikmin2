@@ -53,7 +53,7 @@ struct J3DSys {
 	u32 _110; // _110
 	u32 _114; // _114 /* bitfield */
 
-	static Mtx44 mCurrentMtx;
+	static Mtx mCurrentMtx;
 	static JGeometry::TVec3f mCurrentS;
 	static JGeometry::TVec3f mParentS;
 	static u16 sTexCoordScaleTable[32];

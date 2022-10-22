@@ -1,4 +1,6 @@
+#include "Vector3.h"
 #include "types.h"
+#include "Game/Entities/Jigumo.h"
 
 /*
     Generated from dpostproc
@@ -481,14 +483,13 @@ lbl_80368FE8:
 	*/
 }
 
-} // namespace Game
-
 /*
  * --INFO--
  * Address:	80369044
  * Size:	00017C
  */
-void birth__Q34Game6Jigumo3ObjFR10Vector3f f(void)
+// void birth__Q34Game6Jigumo3ObjFR10Vector3f f(void)
+Creature* Jigumo::Obj::birth(Vector3f&, float) const
 {
 	/*
 	stwu     r1, -0x70(r1)
@@ -599,14 +600,12 @@ lbl_8036918C:
 	*/
 }
 
-namespace Game {
-
 /*
  * --INFO--
  * Address:	803691C0
  * Size:	000008
  */
-u32 Jigumo::Obj::getEnemyTypeID(void) { return 0x3F; }
+u32 Jigumo::Obj::getEnemyTypeID(void) { return EnemyID_Jigumo; }
 
 /*
  * --INFO--

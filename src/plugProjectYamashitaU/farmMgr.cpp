@@ -324,13 +324,13 @@ Farm* FarmMgr::createNewFarm(void* bmd)
  * Size:	000098
  * @todo needs Vector3f::distance.
  */
-inline Farm* FarmMgr::getNearestFarm(Vector3f& position)
+Farm* FarmMgr::getNearestFarm(Vector3f& position)
 {
 	Farm* nearestFarm = nullptr;
 	if (m_farmsRootNode.m_child) {
 		float nearestDistance = *__float_max;
 		for (Farm* farm = (Farm*)m_farmsRootNode.m_child; farm != nullptr; farm = (Farm*)farm->m_next) {
-			float distance = farm->m_position.distance(position);
+			float distance = position.distance(farm->m_position);
 			if (distance < nearestDistance) {
 				nearestFarm     = farm;
 				nearestDistance = distance;

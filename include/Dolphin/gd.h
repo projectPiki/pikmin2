@@ -7,16 +7,14 @@
 extern "C" {
 #endif // ifdef __cplusplus
 
-typedef struct GDCurrentDL;
-
-struct GDCurrentDL {
+typedef struct GDCurrentDL {
 	u8* begin;
 	s32 length;
 	u8* pDisplayListData;
 	u8* end;
-};
+} GDCurrentDL;
 
-struct GDCurrentDL* __GDCurrentDL = NULL;
+extern GDCurrentDL* __GDCurrentDL;
 
 void GDInitGDLObj(struct GDCurrentDL* GDL_Obj, u8* param_2, s32 param_3);
 void GDFlushCurrToMem(void);
@@ -26,7 +24,7 @@ void GDOverflowed(void);
 static inline void __GDWrite(u8 data) { *__GDCurrentDL->pDisplayListData++ = data; }
 
 typedef void (*GDOverflowCallback)(void);
-static GDOverflowCallback overflowcb = NULL;
+extern GDOverflowCallback overflowcb;
 
 #ifdef __cplusplus
 };

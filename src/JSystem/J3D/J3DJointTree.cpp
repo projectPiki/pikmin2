@@ -246,7 +246,20 @@ void J3DJointTree::makeHierarchy(J3DJoint* joint, const J3DModelHierarchy** hier
  */
 void J3DJointTree::findImportantMtxIndex()
 {
-
+	for (int i = 0; i < m_mtxData._02; i++) {
+		_30[i] = m_mtxData._08[i];
+	}
+	for (int i = 0; i < m_envelopeCnt; i++) {
+		u16 v1    = 0;
+		float max = -0.1f;
+		for (u8 j = _20[i]; j != 0; j--) {
+			if (max < _28[j]) {
+				max = _28[j];
+				v1  = m_maxBillBoardCnt[j];
+			}
+		}
+		_30[i + m_mtxData._02] = v1;
+	}
 	/*
 	stwu     r1, -0x30(r1)
 	li       r9, 0
@@ -373,7 +386,7 @@ void J3DJointTree::calc(J3DMtxBuffer* buffer, const Vec& vec, const float (&mtx)
 {
 	m_transformCalc->init(vec, mtx);
 	J3DMtxCalc::setMtxBuffer(buffer);
-	if (_10) {
+	if (_10 != nullptr) {
 		J3DJoint::sCurrentMtxCalc = m_transformCalc;
 		_10->recursiveCalc();
 	}

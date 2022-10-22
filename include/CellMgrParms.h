@@ -11,9 +11,9 @@
 // 	inline _CellMgrParms(void* end)
 // 		: Parameters(&end, nullptr, "CellMgr")
 //     	, JKRDisposer()
-//         , m_p000(this, 0x70303030, "ï¿½ï½¿ï½½oï¿½ï½¿ï½½bï¿½ï½¿ï½½tï¿½ï½¿ï½½@ï¿½ï½¿ï½½ï¿½ï½¿ï½½ï¿½ï½¿ï½½gï¿½ï½¿ï½½ï¿½ï½¿ï½½", false,
+//         , m_p000(this, 0x70303030, "?¿½?½¿?½½o?¿½?½¿?½½b?¿½?½¿?½½t?¿½?½¿?½½@?¿½?½¿?½½?¿½?½¿?½½?¿½?½¿?½½g?¿½?½¿?½½?¿½?½¿?½½", false,
 //         false, true) , m_p001(this, 0x70303031,
-//         "ï¿½ï½¿ï½½}ï¿½ï½¿ï½½Wï¿½ï½¿ï½½bï¿½ï½¿ï½½Nï¿½ï½¿ï½½iï¿½ï½¿ï½½ï¿½ï½¿ï½½ï¿½ï½¿ï½½oï¿½ï½¿ï½½[", true, false, true) ,
+//         "?¿½?½¿?½½}?¿½?½¿?½½W?¿½?½¿?½½b?¿½?½¿?½½N?¿½?½¿?½½i?¿½?½¿?½½?¿½?½¿?½½?¿½?½¿?½½o?¿½?½¿?½½[", true, false, true) ,
 //         m_p002(this, 0x70303032, "G-Half", false, false, true) , m_p003(this,
 //         0x70303033, "UpdateMgr", false, false, true)
 // 	{}
@@ -45,9 +45,9 @@
 struct _CellParms {
 	// inline _CellParms();
 	inline _CellParms(Parameters* parameters);
-	// 	: m_p000(parameters, 0x70303030, "ï¿½ï½¿ï½½oï¿½ï½¿ï½½bï¿½ï½¿ï½½tï¿½ï½¿ï½½@ï¿½ï½¿ï½½ï¿½ï½¿ï½½ï¿½ï½¿ï½½gï¿½ï½¿ï½½ï¿½ï½¿ï½½",
+	// 	: m_p000(parameters, 0x70303030, "?¿½?½¿?½½o?¿½?½¿?½½b?¿½?½¿?½½t?¿½?½¿?½½@?¿½?½¿?½½?¿½?½¿?½½?¿½?½¿?½½g?¿½?½¿?½½?¿½?½¿?½½",
 	// false, false, true) 	, m_p001(parameters, 0x70303031,
-	// "ï¿½ï½¿ï½½}ï¿½ï½¿ï½½Wï¿½ï½¿ï½½bï¿½ï½¿ï½½Nï¿½ï½¿ï½½iï¿½ï½¿ï½½ï¿½ï½¿ï½½ï¿½ï½¿ï½½oï¿½ï½¿ï½½[", true, false, true) 	,
+	// "?¿½?½¿?½½}?¿½?½¿?½½W?¿½?½¿?½½b?¿½?½¿?½½N?¿½?½¿?½½i?¿½?½¿?½½?¿½?½¿?½½?¿½?½¿?½½o?¿½?½¿?½½[", true, false, true) 	,
 	// m_p002(parameters, 0x70303032, "G-Half", false, false, true) 	,
 	// m_p003(parameters, 0x70303033, "UpdateMgr", false, false, true)
 	// {}
@@ -77,9 +77,9 @@ public:
 	// JKRDisposer m_disposer;
 	// struct Parms {
 	// 	inline Parms(Parameters* parameters)
-	// 		: m_p000(parameters, 0x70303030, "ï¿½ï½¿ï½½oï¿½ï½¿ï½½bï¿½ï½¿ï½½tï¿½ï½¿ï½½@ï¿½ï½¿ï½½ï¿½ï½¿ï½½ï¿½ï½¿ï½½gï¿½ï½¿ï½½ï¿½ï½¿ï½½",
+	// 		: m_p000(parameters, 0x70303030, "?¿½?½¿?½½o?¿½?½¿?½½b?¿½?½¿?½½t?¿½?½¿?½½@?¿½?½¿?½½?¿½?½¿?½½?¿½?½¿?½½g?¿½?½¿?½½?¿½?½¿?½½",
 	// false, false, true) 		, m_p001(parameters, 0x70303031,
-	// "ï¿½ï½¿ï½½}ï¿½ï½¿ï½½Wï¿½ï½¿ï½½bï¿½ï½¿ï½½Nï¿½ï½¿ï½½iï¿½ï½¿ï½½ï¿½ï½¿ï½½ï¿½ï½¿ï½½oï¿½ï½¿ï½½[", true, false, true) 		,
+	// "?¿½?½¿?½½}?¿½?½¿?½½W?¿½?½¿?½½b?¿½?½¿?½½N?¿½?½¿?½½i?¿½?½¿?½½?¿½?½¿?½½?¿½?½¿?½½o?¿½?½¿?½½[", true, false, true) 		,
 	// m_p002(parameters, 0x70303032, "G-Half", false, false, true) 		,
 	// m_p003(parameters, 0x70303033, "UpdateMgr", false, false, true)
 	// 	{}

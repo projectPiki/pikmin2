@@ -1,3 +1,5 @@
+#include "JSystem/JPA/JPABlock.h"
+#include "JSystem/JPA/JPAEmitter.h"
 #include "types.h"
 
 /*

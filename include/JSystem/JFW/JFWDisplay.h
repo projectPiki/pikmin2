@@ -10,18 +10,46 @@ struct JKRHeap;
 struct JFWDisplay {
 	// all ctors are unused/inlined
 	JFWDisplay(JKRHeap*, JUTXfb::EXfbNumber, bool);
+	JFWDisplay(void*, bool);
+	JFWDisplay(void*, void*, bool);
+	JFWDisplay(void*, void*, void*, bool);
 
-	virtual void beginRender(); // _00
-	virtual void endRender();   // _04
-	virtual void endFrame();    // _08
-	virtual ~JFWDisplay();      // _0C
-	// virtual void _10() = 0;     // _10
-	// virtual void _14() = 0;     // _14
+	virtual void beginRender(); // _08
+	virtual void endRender();   // _0C
+	virtual void endFrame();    // _10
+	virtual ~JFWDisplay();      // _14
 
-	static JFWDisplay* createManager(_GXRenderModeObj* const, JKRHeap*, JUTXfb::EXfbNumber, bool);
+	static JFWDisplay* createManager(const _GXRenderModeObj*, JKRHeap*, JUTXfb::EXfbNumber, bool);
+	void destroyManager();
+	void waitBlanking(int);
+	void threadSleep(long long);
+	void clearEfb_init();
+	void clearEfb(_GXColor);
+	void clearEfb(int, int, int, int, _GXColor);
+	void calcCombinationRatio();
+	void setForOSResetSystem();
 
 	// Unused/inlined:
 	void ctor_subroutine(bool);
+	static JFWDisplay* createManager(const _GXRenderModeObj*, void*, bool);
+	static JFWDisplay* createManager(const _GXRenderModeObj*, void*, void*, bool);
+	static JFWDisplay* createManager(const _GXRenderModeObj*, void*, void*, void*, bool);
+	void prepareCopyDisp();
+	void drawendXfb_single();
+	void exchangeXfb_double();
+	void exchangeXfb_triple();
+	void copyXfb_triple();
+	void preGX();
+	void endGX();
+	void changeToSingleXfb(int);
+	void changeToDoubleXfb();
+	void deleteToSingleXfb(int);
+	void deleteToSingleXfb(void*);
+	void addToDoubleXfb(void*, bool);
+	void addToDoubleXfb(JKRHeap*);
+	void clearEfb();
+	void clearAllXfb();
+	void frameToTick(float);
 
 	// _00 VTBL
 	JUTFader* m_fader;    // _04

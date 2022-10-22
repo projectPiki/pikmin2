@@ -1,3 +1,5 @@
+#include "JSystem/JAI/JAIAnimeSound.h"
+#include "JSystem/JAI/JAIBasic.h"
 #include "types.h"
 
 /*
@@ -62,8 +64,11 @@
  * Address:	800AB0EC
  * Size:	00003C
  */
-void JAIAnimeSound::handleStop(unsigned char, unsigned long)
+void JAIAnimeSound::handleStop(u8 handleNo, u32 p2)
 {
+	// _40[handleNo] = 0;
+	// _44[handleNo]._00 = 0;
+	ObjectBase::handleStop(handleNo, p2);
 	/*
 	stwu     r1, -0x10(r1)
 	mflr     r0
@@ -88,8 +93,25 @@ void JAIAnimeSound::handleStop(unsigned char, unsigned long)
  * Address:	800AB128
  * Size:	000188
  */
-JAIAnimeSound::JAIAnimeSound(Vec*, JKRHeap*, unsigned char)
+JAIAnimeSound::JAIAnimeSound(Vec* p1, JKRHeap* heap, u8 p3)
+	: Object(p1, heap, p3)
+	, _48(0)
+	, _4C(0)
+	, _50(0)
+	, _54(0)
+	, _58(_4C ? 1 : 0)
+	, _68(0)
+	, _6C(0)
+	, m_soundData(nullptr)
 {
+	// if (_4C) {
+	// 	_58 = 1;
+	// } else {
+	// 	_58 = 0;
+	// }
+	// _68 = 0;
+	// _6C = 0;
+
 	/*
 	stwu     r1, -0x20(r1)
 	mflr     r0
@@ -1220,37 +1242,37 @@ void JAIAnimeSound::setSpeedModifySound(JAISound*, JAIAnimeFrameSoundData*, floa
  * Address:	800ABDD8
  * Size:	000060
  */
-JAIAnimeSound::~JAIAnimeSound()
-{
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	mr       r31, r4
-	stw      r30, 8(r1)
-	or.      r30, r3, r3
-	beq      lbl_800ABE1C
-	lis      r5, __vt__13JAIAnimeSound@ha
-	li       r4, 0
-	addi     r0, r5, __vt__13JAIAnimeSound@l
-	stw      r0, 0(r30)
-	bl       __dt__Q27JAInter6ObjectFv
-	extsh.   r0, r31
-	ble      lbl_800ABE1C
-	mr       r3, r30
-	bl       __dl__FPv
+// JAIAnimeSound::~JAIAnimeSound()
+// {
+// 	/*
+// 	stwu     r1, -0x10(r1)
+// 	mflr     r0
+// 	stw      r0, 0x14(r1)
+// 	stw      r31, 0xc(r1)
+// 	mr       r31, r4
+// 	stw      r30, 8(r1)
+// 	or.      r30, r3, r3
+// 	beq      lbl_800ABE1C
+// 	lis      r5, __vt__13JAIAnimeSound@ha
+// 	li       r4, 0
+// 	addi     r0, r5, __vt__13JAIAnimeSound@l
+// 	stw      r0, 0(r30)
+// 	bl       __dt__Q27JAInter6ObjectFv
+// 	extsh.   r0, r31
+// 	ble      lbl_800ABE1C
+// 	mr       r3, r30
+// 	bl       __dl__FPv
 
-lbl_800ABE1C:
-	lwz      r0, 0x14(r1)
-	mr       r3, r30
-	lwz      r31, 0xc(r1)
-	lwz      r30, 8(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
-}
+// lbl_800ABE1C:
+// 	lwz      r0, 0x14(r1)
+// 	mr       r3, r30
+// 	lwz      r31, 0xc(r1)
+// 	lwz      r30, 8(r1)
+// 	mtlr     r0
+// 	addi     r1, r1, 0x10
+// 	blr
+// 	*/
+// }
 
 /*
  * --INFO--

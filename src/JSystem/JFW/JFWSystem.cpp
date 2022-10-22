@@ -1,4 +1,19 @@
 #include "JSystem/JFW/JFWSystem.h"
+#include "Dolphin/dvd.h"
+#include "Dolphin/gx.h"
+#include "Dolphin/os.h"
+#include "JSystem/JKR/Aram.h"
+#include "JSystem/JKR/JKRHeap.h"
+#include "JSystem/JKR/JKRThread.h"
+#include "JSystem/JUT/JUTAssertion.h"
+#include "JSystem/JUT/JUTConsole.h"
+#include "JSystem/JUT/JUTDbPrint.h"
+#include "JSystem/JUT/JUTDirectPrint.h"
+#include "JSystem/JUT/JUTException.h"
+#include "JSystem/JUT/JUTFont.h"
+#include "JSystem/JUT/JUTGamePad.h"
+#include "JSystem/JUT/JUTGraphFifo.h"
+#include "JSystem/JUT/JUTVideo.h"
 
 /*
     Generated from dpostproc
@@ -77,6 +92,20 @@
         .4byte 0x80000000
 */
 
+extern ResFONT JUTResFONT_Ascfont_fix12;
+
+const int JFWSystem::CSetUpParam::maxStdHeaps             = 2;
+const u32 JFWSystem::CSetUpParam::sysHeapSize             = 0x400000;
+const u32 JFWSystem::CSetUpParam::fifoBufSize             = 0x40000;
+const u32 JFWSystem::CSetUpParam::aramAudioBufSize        = 0x800000;
+const u32 JFWSystem::CSetUpParam::aramGraphBufSize        = 0x600000;
+const long JFWSystem::CSetUpParam::streamPriority         = 8;
+const long JFWSystem::CSetUpParam::decompPriority         = 7;
+const long JFWSystem::CSetUpParam::aPiecePriority         = 6;
+const ResFONT* JFWSystem::CSetUpParam::systemFontRes      = &JUTResFONT_Ascfont_fix12;
+const GXRenderModeObj* JFWSystem::CSetUpParam::renderMode = &GXNtsc480IntDf;
+const u32 JFWSystem::CSetUpParam::exConsoleBufferSize     = 0x24FC;
+
 /*
  * --INFO--
  * Address:	........
@@ -85,15 +114,67 @@
 void JFWSystem::firstInit()
 {
 	// UNUSED FUNCTION
+	OSInit();
+	DVDInit();
+	rootHeap   = JKRExpHeap::createRoot(CSetUpParam::maxStdHeaps, false);
+	systemHeap = JKRExpHeap::create(CSetUpParam::sysHeapSize, rootHeap, false);
 }
 
-/*
+/**
  * --INFO--
  * Address:	8008975C
  * Size:	000350
+ * init__9JFWSystemFv
+ * TODO: consts aren't cooperating?
  */
 void JFWSystem::init()
 {
+	if (rootHeap == nullptr) {
+		firstInit();
+	}
+	sInitCalled = 1;
+	JKRAram::create(CSetUpParam::aramAudioBufSize, CSetUpParam::aramGraphBufSize, CSetUpParam::streamPriority, CSetUpParam::decompPriority,
+	                CSetUpParam::aPiecePriority);
+	mainThread = new JKRThread(OSGetCurrentThread(), 4);
+	JUTVideo::createManager(CSetUpParam::renderMode);
+	JUTGraphFifo* graphFifo = new JUTGraphFifo(CSetUpParam::fifoBufSize);
+	JUTGamePad::init();
+	JUTDirectPrint* directPrint = JUTDirectPrint::start();
+	JUTAssertion::create();
+	JUTException::create(directPrint);
+	systemFont = new JUTResFont(CSetUpParam::systemFontRes, nullptr);
+	debugPrint = JUTDbPrint::start(nullptr, nullptr);
+	debugPrint->changeFont(systemFont);
+	systemConsoleManager = JUTConsoleManager::createManager(nullptr);
+	systemConsole        = JUTConsole::create(0x3C, 200, nullptr);
+	systemConsole->setFont(systemFont);
+	// systemConsole->m_font = systemFont;
+	// systemConsole->setFontSize(systemFont->getWidth(), systemFont->getHeight());
+	// systemConsole->m_fontSize.set(systemFont->getWidth(), systemFont->getHeight());
+	if (CSetUpParam::renderMode->efbHeight < 300) {
+		systemConsole->setFontSize(systemFont->getWidth() * 0.85f, systemFont->getHeight() * 0.5f);
+		// systemConsole->m_fontSize.set(systemFont->getWidth() * 0.85f, systemFont->getHeight() * 0.5f);
+		systemConsole->setPosition(20, 25);
+		// systemConsole->m_position.set(20, 25);
+	} else {
+		systemConsole->setFontSize(systemFont->getWidth(), systemFont->getHeight());
+		// systemConsole->m_fontSize.set(systemFont->getWidth(), systemFont->getHeight());
+		systemConsole->setPosition(20, 50);
+		// systemConsole->m_position.set(20, 50);
+	}
+	systemConsole->setHeight(25);
+	// systemConsole->m_height = 25;
+	// if (systemConsole->_24 < systemConsole->m_height) {
+	// 	systemConsole->m_height = systemConsole->_24;
+	// }
+	systemConsole->setVisible(false);
+	// systemConsole->m_visible = false;
+	systemConsole->setOutput(JUTConsole::OUTPUT_OSREPORT | JUTConsole::OUTPUT_CONSOLE);
+	// systemConsole->m_output = 3;
+	JUTSetReportConsole(systemConsole);
+	JUTSetWarningConsole(systemConsole);
+	void* mem = systemHeap->alloc(CSetUpParam::exConsoleBufferSize, 4);
+	JUTException::createConsole(mem, CSetUpParam::exConsoleBufferSize);
 	/*
 	stwu     r1, -0x30(r1)
 	mflr     r0

@@ -1,3 +1,4 @@
+#include "Dolphin/os.h"
 #include "types.h"
 #include "JSystem/JKR/JKRHeap.h"
 
@@ -208,74 +209,24 @@ lbl_80024E6C:
  * --INFO--
  * Address:	80024E84
  * Size:	00005C
+ * __ct__12JKRSolidHeapFPvUlP7JKRHeapb
  */
-JKRSolidHeap::JKRSolidHeap(void*, unsigned long, JKRHeap*, bool)
+JKRSolidHeap::JKRSolidHeap(void* p1, unsigned long p2, JKRHeap* heap, bool p4)
+    : JKRHeap(p1, p2, heap, p4)
+    , m_freeSize(m_heapSize)
+    , _70(m_startAddress)
+    , _74(m_endAddress)
+    , _78(0)
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	mr       r31, r3
-	bl       __ct__7JKRHeapFPvUlP7JKRHeapb
-	lis      r3, __vt__12JKRSolidHeap@ha
-	li       r0, 0
-	addi     r4, r3, __vt__12JKRSolidHeap@l
-	mr       r3, r31
-	stw      r4, 0(r31)
-	lwz      r4, 0x38(r31)
-	stw      r4, 0x6c(r31)
-	lwz      r4, 0x30(r31)
-	stw      r4, 0x70(r31)
-	lwz      r4, 0x34(r31)
-	stw      r4, 0x74(r31)
-	stw      r0, 0x78(r31)
-	lwz      r31, 0xc(r1)
-	lwz      r0, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
 }
 
 /*
  * --INFO--
  * Address:	80024EE0
  * Size:	000068
+ * __dt__12JKRSolidHeapFv
  */
-JKRSolidHeap::~JKRSolidHeap()
-{
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	mr       r31, r4
-	stw      r30, 8(r1)
-	or.      r30, r3, r3
-	beq      lbl_80024F2C
-	lis      r4, __vt__12JKRSolidHeap@ha
-	addi     r0, r4, __vt__12JKRSolidHeap@l
-	stw      r0, 0(r30)
-	bl       dispose__7JKRHeapFv
-	mr       r3, r30
-	li       r4, 0
-	bl       __dt__7JKRHeapFv
-	extsh.   r0, r31
-	ble      lbl_80024F2C
-	mr       r3, r30
-	bl       __dl__FPv
-
-lbl_80024F2C:
-	lwz      r0, 0x14(r1)
-	mr       r3, r30
-	lwz      r31, 0xc(r1)
-	lwz      r30, 8(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
-}
+JKRSolidHeap::~JKRSolidHeap() { dispose(); }
 
 /*
  * --INFO--
@@ -348,64 +299,20 @@ lbl_80024FF0:
  * Address:	8002500C
  * Size:	0000B0
  */
-void* JKRSolidHeap::do_alloc(unsigned long, int)
+void* JKRSolidHeap::do_alloc(unsigned long p1, int p2)
 {
-	/*
-	stwu     r1, -0x20(r1)
-	mflr     r0
-	stw      r0, 0x24(r1)
-	stw      r31, 0x1c(r1)
-	mr       r31, r5
-	stw      r30, 0x18(r1)
-	mr       r30, r4
-	stw      r29, 0x14(r1)
-	mr       r29, r3
-	addi     r3, r29, 0x18
-	bl       OSLockMutex
-	cmplwi   r30, 4
-	bge      lbl_80025044
-	li       r30, 4
-
-lbl_80025044:
-	cmpwi    r31, 0
-	blt      lbl_80025070
-	cmpwi    r31, 4
-	mr       r3, r29
-	mr       r4, r30
-	li       r5, 4
-	blt      lbl_80025064
-	mr       r5, r31
-
-lbl_80025064:
-	bl       allocFromHead__12JKRSolidHeapFUli
-	mr       r31, r3
-	b        lbl_80025094
-
-lbl_80025070:
-	neg      r0, r31
-	li       r5, 4
-	cmpwi    r0, 4
-	blt      lbl_80025084
-	mr       r5, r0
-
-lbl_80025084:
-	mr       r3, r29
-	mr       r4, r30
-	bl       allocFromTail__12JKRSolidHeapFUli
-	mr       r31, r3
-
-lbl_80025094:
-	addi     r3, r29, 0x18
-	bl       OSUnlockMutex
-	lwz      r0, 0x24(r1)
-	mr       r3, r31
-	lwz      r31, 0x1c(r1)
-	lwz      r30, 0x18(r1)
-	lwz      r29, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x20
-	blr
-	*/
+	void* mem;
+	OSLockMutex(&m_mutex);
+	if (p1 < 4) {
+		p1 = 4;
+	}
+	if (p2 >= 0) {
+		mem = allocFromHead(p1, MAX(4, p2));
+	} else {
+		mem = allocFromTail(p1, MAX(4, -p2));
+	}
+	OSUnlockMutex(&m_mutex);
+	return mem;
 }
 
 /*
@@ -413,7 +320,7 @@ lbl_80025094:
  * Address:	800250BC
  * Size:	0000D8
  */
-void JKRSolidHeap::allocFromHead(unsigned long, int)
+void* JKRSolidHeap::allocFromHead(unsigned long, int)
 {
 	/*
 	stwu     r1, -0x20(r1)
@@ -482,7 +389,7 @@ lbl_80025170:
  * Address:	80025194
  * Size:	0000D0
  */
-void JKRSolidHeap::allocFromTail(unsigned long, int)
+void* JKRSolidHeap::allocFromTail(unsigned long, int)
 {
 	/*
 	stwu     r1, -0x20(r1)
@@ -551,6 +458,7 @@ lbl_80025240:
  */
 void JKRSolidHeap::do_free(void*)
 {
+	// JUTWarningConsole_f("free: cannot free memory block (%08x)\n");
 	/*
 	stwu     r1, -0x10(r1)
 	mflr     r0
@@ -573,32 +481,13 @@ void JKRSolidHeap::do_free(void*)
  */
 void JKRSolidHeap::do_freeAll()
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	mr       r31, r3
-	addi     r3, r31, 0x18
-	bl       OSLockMutex
-	mr       r3, r31
-	bl       callAllDisposer__7JKRHeapFv
-	lwz      r4, 0x38(r31)
-	li       r0, 0
-	addi     r3, r31, 0x18
-	stw      r4, 0x6c(r31)
-	lwz      r4, 0x30(r31)
-	stw      r4, 0x70(r31)
-	lwz      r4, 0x34(r31)
-	stw      r4, 0x74(r31)
-	stw      r0, 0x78(r31)
-	bl       OSUnlockMutex
-	lwz      r0, 0x14(r1)
-	lwz      r31, 0xc(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	OSLockMutex(&m_mutex);
+	JKRHeap::callAllDisposer();
+	m_freeSize = m_heapSize;
+	_70        = m_startAddress;
+	_74        = m_endAddress;
+	_78        = 0;
+	OSUnlockMutex(&m_mutex);
 }
 
 /*
@@ -835,7 +724,7 @@ bool JKRSolidHeap::dump()
  * Address:	80025570
  * Size:	00005C
  */
-void JKRSolidHeap::state_register(JKRHeap::TState*, unsigned long) const
+void JKRSolidHeap::state_register(JKRHeap::TState* state, unsigned long id) const
 {
 	/*
 	stwu     r1, -0x10(r1)

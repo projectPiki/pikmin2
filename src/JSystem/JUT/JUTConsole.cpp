@@ -1,3 +1,4 @@
+#include "JSystem/JKR/JKRHeap.h"
 #include "types.h"
 #include "JSystem/JUT/JUTConsole.h"
 #include "JSystem/JUT/JUTVideo.h"

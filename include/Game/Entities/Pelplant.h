@@ -146,7 +146,7 @@ struct Parms : EnemyParmsBase {
 		    : Parameters(nullptr, "EnemyParmsBase")
 		    , m_fp01(this, 'fp01', "成長(小→中）", 120.0f, 0.0f, 300.0f) // growth (small to medium)
 		    , m_fp02(this, 'fp02', "成長(中→大）", 120.0f, 0.0f, 300.0f) // growth (medium to large)
-		    , m_fp03(this, 'fp03', "カラー変更時間", 1.5f, 0.0f, 5.0f)    // color change time
+		    , m_fp03(this, 'fp03', "カラー変更時間", 1.5f, 0.0f, 5.0f)   // color change time
 		{
 		}
 		Parm<float> m_fp01;

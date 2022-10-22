@@ -20,6 +20,10 @@ struct BirthCounter {
 	int m_total;
 };
 
+struct BirthTodayCounter : public BirthCounter {
+	int _1C[0x29];
+};
+
 struct BirthMgr {
 	BirthMgr();
 
@@ -44,10 +48,7 @@ struct BirthMgr {
 	// static u32 mToday[PikiColorCount];
 	// static u32 mCave[PikiColorCount];
 	// static u32 mTotal[PikiColorCount];
-	static union bleh {
-		BirthCounter counter;
-		u32 buffer[48];
-	} mToday;
+	static BirthTodayCounter mToday;
 	// static BirthCounter mToday;
 	static BirthCounter mCave;
 	static BirthCounter mTotal;

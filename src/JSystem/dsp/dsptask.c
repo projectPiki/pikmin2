@@ -1,4 +1,8 @@
+#include "Dolphin/dsp.h"
+#include "types.h"
+#include "JSystem/DSP.h"
 
+static STRUCT_DSP_TASK audio_task;
 
 /*
  * --INFO--
@@ -38,8 +42,24 @@ void DspHandShake(void* a1)
  * Address:	800AA940
  * Size:	0000AC
  */
-void DspBoot(void (*)(void*))
+void DspBoot(void (*p1)(void*))
 {
+	DspInitWork();
+	audio_task._04 = 0xF0;
+	audio_task._0C = 0x4A44E0;
+	audio_task._10 = 0x1D20;
+	audio_task._14 = 0;
+	audio_task._18 = 0x4F07E0;
+	audio_task._1C = 0x2000;
+	audio_task._20 = 0;
+	audio_task._24 = 0;
+	audio_task._26 = 0x10;
+	audio_task._28 = DspHandShake;
+	audio_task._2C = 0;
+	audio_task._30 = nullptr;
+	audio_task._34 = p1;
+	DSPInit();
+	DSPAddPriorTask(&audio_task);
 	/*
 	.loc_0x0:
 	  stwu      r1, -0x10(r1)
@@ -93,7 +113,7 @@ void DspBoot(void (*)(void*))
  * Address:	800AAA00
  * Size:	0000E8
  */
-void DSPSendCommands2(unsigned long*, unsigned long, void (*)(unsigned short))
+void DSPSendCommands2(unsigned long* p1, unsigned long p2, void (*p3)(unsigned short))
 {
 	/*
 	.loc_0x0:
@@ -206,7 +226,7 @@ void DspInitWork()
  * Address:	800AAB40
  * Size:	000048
  */
-void DspStartWork(unsigned long, void (*)(unsigned short))
+void DspStartWork(unsigned long p1, void (*p2)(unsigned short))
 {
 	/*
 	.loc_0x0:
@@ -238,7 +258,7 @@ void DspStartWork(unsigned long, void (*)(unsigned short))
  * Address:	800AABA0
  * Size:	000068
  */
-void DspFinishWork(unsigned short)
+void DspFinishWork(unsigned short p1)
 {
 	/*
 	.loc_0x0:

@@ -1,4 +1,8 @@
 #include "types.h"
+#include "PSGame/EnvSe.h"
+#include "PSGame/PikSceneMgr.h"
+#include "PSGame/SceneInfo.h"
+#include "PSGame/SoundCreatureMgr.h"
 
 /*
     Generated from dpostproc
@@ -560,7 +564,7 @@ namespace PSGame {
  * Address:	80334268
  * Size:	000028
  */
-void CaveFloorInfo::getCaveNoFromID(void)
+u32 CaveFloorInfo::getCaveNoFromID()
 {
 	/*
 	lwz      r4, 0x44(r3)
@@ -5959,7 +5963,7 @@ namespace PSGame {
  * Address:	803381EC
  * Size:	000008
  */
-u32 SceneInfo::isCaveFloor(void) { return 0x0; }
+bool SceneInfo::isCaveFloor(void) { return false; }
 
 /*
  * --INFO--

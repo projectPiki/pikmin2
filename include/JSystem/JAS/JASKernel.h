@@ -12,6 +12,9 @@ JASHeap* getCommandHeap();
 JASHeap* getAramHeap();
 void setupAramHeap(unsigned long, unsigned long);
 
+void probeFinish(long);
+void probeStart(long, char*);
+
 // unused/inlined:
 void getRootHeap();
 int getAramFreeSize();

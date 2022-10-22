@@ -1,3 +1,4 @@
+#include "Game/itemMgr.h"
 #include "types.h"
 
 /*

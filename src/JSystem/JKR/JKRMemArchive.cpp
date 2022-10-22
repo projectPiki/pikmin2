@@ -56,12 +56,13 @@ JKRMemArchive::JKRMemArchive(long p1, JKRArchive::EMountDirection mountDirection
 {
 	_30              = 0;
 	m_mountDirection = mountDirection;
-	if (open(p1, m_mountDirection)) {
-		m_magicWord = 'RARC';
-		_28         = _54 + _48->_04;
-		sVolumeList.prepend(&_18);
-		_30 = 1;
+	if (!open(p1, m_mountDirection)) {
+		return;
 	}
+	m_magicWord = 'RARC';
+	_28         = _54 + _48->_04;
+	sVolumeList.prepend(&_18);
+	_30 = 1;
 	/*
 	stwu     r1, -0x20(r1)
 	mflr     r0

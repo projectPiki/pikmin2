@@ -26,13 +26,13 @@ struct JAISequence : public JAISound {
 	virtual void setTempoProportion(float, u32); // _44 (weak)
 	virtual float getTempoProportion();          // _48 (weak)
 	virtual void setVolumeU7(u8, u32, u8);       // _4C (weak)
-	virtual void getVolumeU7(u8);                // _50 (weak)
+	virtual u8 getVolumeU7(u8);                  // _50 (weak)
 	virtual void setPanU7(u8, u32, u8);          // _54 (weak)
-	virtual void getPanU7(u8);                   // _58 (weak)
+	virtual u8 getPanU7(u8);                     // _58 (weak)
 	virtual void setFxmixU7(u8, u32, u8);        // _5C (weak)
-	virtual void getFxmixU7(u8);                 // _60 (weak)
+	virtual u8 getFxmixU7(u8);                   // _60 (weak)
 	virtual void setDolbyU7(u8, u32, u8);        // _64 (weak)
-	virtual void getDolbyU7(u8);                 // _68 (weak)
+	virtual u8 getDolbyU7(u8);                   // _68 (weak)
 	virtual void getFadeCounter();               // _A4
 	virtual void setPrepareFlag(u8);             // _A8 (weak)
 	virtual void checkReady();                   // _AC (weak)
@@ -46,6 +46,33 @@ struct JAISequence : public JAISound {
 	void setSeqPrepareFlag(u8);
 	void checkSeqReady();
 	void getSeqInterVolume(u8);
+
+	// unused/inlined:
+	void setSeqInterFxmix(unsigned char, float, unsigned long);
+	void setSeqInterDolby(unsigned char, float, unsigned long);
+	void setSeqTempoProportion(float, unsigned long);
+	void setSeqPortData(unsigned char, unsigned short, unsigned long);
+	void setWaveReadMode(long, long);
+	void setTrackVolume(unsigned char, float, unsigned long);
+	void setTrackVolumeMulti(unsigned char, unsigned long, float, unsigned long);
+	void setTrackMuteSwitch(unsigned char, unsigned char);
+	void setTrackMuteSwitchMulti(unsigned long, unsigned char);
+	void setTrackPan(unsigned char, float, unsigned long);
+	void setTrackPanMulti(unsigned char, unsigned long, float, unsigned long);
+	void setTrackPitch(unsigned char, float, unsigned long);
+	void setTrackPitchMulti(unsigned char, unsigned long, float, unsigned long);
+	void setTrackFxmixMulti(unsigned char, unsigned long, float, unsigned long);
+	void setTrackDolby(unsigned char, float, unsigned long);
+	void setTrackDolbyMulti(unsigned char, unsigned long, float, unsigned long);
+	void getSeqInterPan(unsigned char);
+	void getSeqInterPitch(unsigned char);
+	void getSeqInterFxmix(unsigned char);
+	void getSeqInterDolby(unsigned char);
+	void getSeqTempoProportion();
+	void getSeqPortData(unsigned char);
+	void getTrackParameterU7(unsigned char, char);
+	void getTrackParameterF32(unsigned char, char);
+	void getTrackPortData(unsigned char, unsigned char);
 
 	JAInter::SeqParameter m_seqParameter; // _48
 };

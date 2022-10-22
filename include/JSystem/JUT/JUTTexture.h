@@ -9,7 +9,7 @@ struct JUTPalette;
 struct ResTIMG;
 
 // Size: 0x40
-struct JUTTexture {
+struct JUTTexture : public GXTexObj {
 	JUTTexture()
 	{
 		m_flags &= 2;
@@ -31,15 +31,8 @@ struct JUTTexture {
 	void storeTIMG(const ResTIMG*, JUTPalette*);
 	void storeTIMG(const ResTIMG*, JUTPalette*, _GXTlut);
 
-	u8 _00[20];      // _00
-	u32 _14;         // _14
-	u8 _18[4];       // _18
-	u8 _1C;          // _1C
-	u8 _1D;          // _1D
-	u8 _1E;          // _1E
-	u8 m_mipmap;     // _1F
 	ResTIMG* _20;    // _20
-	u32 _24;         // _24 /* DCrange */
+	void* _24;       // _24 /* DCrange */
 	JUTPalette* _28; // _28
 	JUTPalette* _2C; // _2C
 	u8 _30;          // _30 /* texWrapMode */

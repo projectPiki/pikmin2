@@ -1,3 +1,7 @@
+#include "JSystem/JPA/JPAResource.h"
+#include "Dolphin/mtx.h"
+#include "JSystem/JPA/JPAEmitter.h"
+#include "JSystem/JPA/JPAMath.h"
 #include "types.h"
 
 /*
@@ -3230,45 +3234,14 @@ lbl_80097B90:
  * Address:	80097BE8
  * Size:	000074
  */
-void JPAResource::calc_p(JPAEmitterWorkData*, JPABaseParticle*)
+void JPAResource::calc_p(JPAEmitterWorkData* workData, JPABaseParticle* particle)
 {
-	/*
-	stwu     r1, -0x20(r1)
-	mflr     r0
-	stw      r0, 0x24(r1)
-	stmw     r27, 0xc(r1)
-	mr       r27, r3
-	mr       r28, r4
-	mr       r29, r5
-	lwz      r0, 0xc(r3)
-	cmplwi   r0, 0
-	beq      lbl_80097C48
-	lbz      r3, 0x44(r27)
-	addi     r30, r3, -1
-	slwi     r31, r30, 2
-	b        lbl_80097C40
-
-lbl_80097C20:
-	lwz      r5, 0xc(r27)
-	mr       r3, r28
-	mr       r4, r29
-	lwzx     r12, r5, r31
-	mtctr    r12
-	bctrl
-	addi     r31, r31, -4
-	addi     r30, r30, -1
-
-lbl_80097C40:
-	cmpwi    r30, 0
-	bge      lbl_80097C20
-
-lbl_80097C48:
-	lmw      r27, 0xc(r1)
-	lwz      r0, 0x24(r1)
-	mtlr     r0
-	addi     r1, r1, 0x20
-	blr
-	*/
+	if (_0C == nullptr) {
+		return;
+	}
+	for (int i = _44 - 1; 0 <= i; i--) {
+		_0C[i](workData, particle);
+	}
 }
 
 /*
@@ -3276,45 +3249,14 @@ lbl_80097C48:
  * Address:	80097C5C
  * Size:	000074
  */
-void JPAResource::calc_c(JPAEmitterWorkData*, JPABaseParticle*)
+void JPAResource::calc_c(JPAEmitterWorkData* workData, JPABaseParticle* particle)
 {
-	/*
-	stwu     r1, -0x20(r1)
-	mflr     r0
-	stw      r0, 0x24(r1)
-	stmw     r27, 0xc(r1)
-	mr       r27, r3
-	mr       r28, r4
-	mr       r29, r5
-	lwz      r0, 0x14(r3)
-	cmplwi   r0, 0
-	beq      lbl_80097CBC
-	lbz      r3, 0x46(r27)
-	addi     r30, r3, -1
-	slwi     r31, r30, 2
-	b        lbl_80097CB4
-
-lbl_80097C94:
-	lwz      r5, 0x14(r27)
-	mr       r3, r28
-	mr       r4, r29
-	lwzx     r12, r5, r31
-	mtctr    r12
-	bctrl
-	addi     r31, r31, -4
-	addi     r30, r30, -1
-
-lbl_80097CB4:
-	cmpwi    r30, 0
-	bge      lbl_80097C94
-
-lbl_80097CBC:
-	lmw      r27, 0xc(r1)
-	lwz      r0, 0x24(r1)
-	mtlr     r0
-	addi     r1, r1, 0x20
-	blr
-	*/
+	if (_14 == nullptr) {
+		return;
+	}
+	for (int i = _46 - 1; 0 <= i; i--) {
+		_14[i](workData, particle);
+	}
 }
 
 /*
@@ -3619,40 +3561,10 @@ void JPAResource::calcWorkData_c(JPAEmitterWorkData*)
  * Address:	80098058
  * Size:	000080
  */
-void JPAResource::calcWorkData_d(JPAEmitterWorkData*)
+void JPAResource::calcWorkData_d(JPAEmitterWorkData* workData)
 {
-	/*
-	stwu     r1, -0x40(r1)
-	mflr     r0
-	stw      r0, 0x44(r1)
-	addi     r6, r1, 8
-	stw      r31, 0x3c(r1)
-	mr       r31, r4
-	lwz      r5, 0(r4)
-	lha      r0, 0x50(r5)
-	lha      r4, 0x4c(r5)
-	lha      r3, 0x4e(r5)
-	mulli    r0, r0, 0xb6
-	mulli    r5, r4, 0xb6
-	mulli    r4, r3, 0xb6
-	extsh    r3, r5
-	extsh    r5, r0
-	extsh    r4, r4
-	bl       JPAGetXYZRotateMtx__FsssPA4_f
-	lwz      r3, 0(r31)
-	addi     r4, r1, 8
-	addi     r5, r31, 0xa8
-	addi     r3, r3, 0x68
-	bl       PSMTXConcat
-	lwz      r4, 0(r31)
-	addi     r3, r31, 0xa8
-	addi     r5, r31, 0x120
-	addi     r4, r4, 0x18
-	bl       PSMTXMultVecSR
-	lwz      r0, 0x44(r1)
-	lwz      r31, 0x3c(r1)
-	mtlr     r0
-	addi     r1, r1, 0x40
-	blr
-	*/
+	Mtx v1;
+	JPAGetXYZRotateMtx(workData->m_emitter->_4C * 182, workData->m_emitter->_4E * 182, workData->m_emitter->_50 * 182, v1);
+	PSMTXConcat(workData->m_emitter->_68, v1, workData->_A8);
+	PSMTXMultVecSR(workData->_A8, reinterpret_cast<Vec*>(&workData->m_emitter->_18), reinterpret_cast<Vec*>(&workData->_120));
 }

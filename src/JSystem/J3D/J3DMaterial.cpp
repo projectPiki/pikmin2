@@ -439,7 +439,7 @@ J3DColorChan::J3DColorChan()
  * Address:	800617F0
  * Size:	000004
  */
-J3DGXColor::J3DGXColor() { }
+// J3DGXColor::J3DGXColor() { }
 
 /*
  * --INFO--
@@ -881,7 +881,7 @@ J3DTevSwapModeTable::J3DTevSwapModeTable()
  * Address:	80061DEC
  * Size:	000004
  */
-J3DGXColorS10::J3DGXColorS10() { }
+// J3DGXColorS10::J3DGXColorS10() { }
 
 /*
  * --INFO--
@@ -2350,12 +2350,12 @@ void J3DMaterial::loadSharedDL()
 void J3DMaterial::patch()
 {
 
-	j3dSys.m_matPacket->_34 = (J3DDisplayListObj*)_20;
-	j3dSys.m_matPacket->_20->beginPatch();
+	j3dSys.m_matPacket->_34 = _20;
+	j3dSys.m_matPacket->m_displayList->beginPatch();
 	m_tevBlock->patch();
 	m_colorBlock->patch();
 	m_texGenBlock->patch();
-	j3dSys.m_matPacket->_20->endPatch();
+	j3dSys.m_matPacket->m_displayList->endPatch();
 }
 
 /*

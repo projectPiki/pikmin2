@@ -1,4 +1,6 @@
 #include "Dolphin/mtx.h"
+#include "Dolphin/os.h"
+#include "JSystem/J3D/J3DDisplayListObj.h"
 #include "JSystem/J3D/J3DModel.h"
 #include "JSystem/J3D/J3DMtxBuffer.h"
 #include "JSystem/J3D/J3DPacket.h"
@@ -111,8 +113,58 @@ int J3DModel::createShapePacket(J3DModelData* data)
  * Address:	80066500
  * Size:	0001D8
  */
-int J3DModel::createMatPacket(J3DModelData*, u32)
+int J3DModel::createMatPacket(J3DModelData* data, u32 p2)
 {
+	if (data->m_materialTable.m_count1 != 0) {
+		m_matPackets = new J3DMatPacket[data->m_materialTable.m_count1];
+	}
+	u16 count = data->m_materialTable.m_count1;
+	for (u16 i = 0; i < count; i++) {
+		J3DMaterial* material       = data->m_materialTable.m_materials1[i];
+		J3DMatPacket* matPacket     = &m_matPackets[i];
+		J3DShapePacket* shapePacket = &m_shapePackets[material->m_shape->m_id];
+		matPacket->_30              = material;
+		matPacket->_28              = shapePacket;
+		matPacket->addShapePacket(shapePacket);
+		matPacket->_38 = (u32)data->m_materialTable.m_texture;
+		matPacket->_34 = material->_20;
+		if (data->m_jointTree.m_flags == 1) {
+			matPacket->_10 = matPacket->_10 | 1;
+		}
+		if ((p2 & 0x80000) != 0) {
+			matPacket->m_displayList = material->_48;
+		} else {
+			if (data->m_jointTree.m_flags == 1) {
+				if ((p2 & 0x40000) != 0) {
+					matPacket->m_displayList = material->_48;
+				} else {
+					J3DDisplayListObj* dl = material->_48;
+					J3DErrType result     = dl->single_To_Double();
+					if (result != JET_Success) {
+						return result;
+					}
+					matPacket->m_displayList = dl;
+				}
+			} else if ((p2 & 0x20000) != 0) {
+				if ((p2 & 0x40000) != 0) {
+					material->newSingleSharedDisplayList(material->countDLSize());
+					matPacket->m_displayList = material->_48;
+				} else {
+					material->newSharedDisplayList(material->countDLSize());
+					J3DDisplayListObj* dl = material->_48;
+					dl->single_To_Double();
+					matPacket->m_displayList = dl;
+				}
+			} else {
+				if ((p2 & 0x40000) != 0) {
+					matPacket->newSingleDisplayList(material->countDLSize());
+				} else {
+					matPacket->newDisplayList(material->countDLSize());
+				}
+			}
+		}
+	}
+	return JET_Success;
 	/*
 	stwu     r1, -0x30(r1)
 	mflr     r0
@@ -489,7 +541,7 @@ void J3DModel::calcDiffTexMtx()
 		J3DTexGenBlock* block  = m_modelData->m_shapeTable.getItem(i)->_04->m_texGenBlock;
 		for (u16 j = 0; j < 8; j++) {
 			J3DTexMtx* texMtx1      = block->getTexMtx(j);
-			J3DShapePacket_0x24* v1 = packet->_24;
+			J3DShapePacket_0x24* v1 = static_cast<J3DShapePacket_0x24*>(packet->_24);
 			if (texMtx1 && v1) {
 				PSMTXCopy(texMtx1->_64, v1->_00[j]);
 			}
@@ -652,6 +704,52 @@ void J3DModel::update()
  */
 void J3DModel::calc()
 {
+	if ((_08 & 4) != 0) {
+		j3dSys._34 |= 4;
+
+	} else {
+		j3dSys._34 &= ~4;
+	}
+	if ((_08 & 8) != 0) {
+		j3dSys._34 |= 8;
+	} else {
+		j3dSys._34 &= ~8;
+	}
+	j3dSys._38 = this;
+	m_modelData->syncJ3DSysFlags();
+	m_vertexBuffer._2C = m_vertexBuffer._04;
+	m_vertexBuffer._30 = m_vertexBuffer._0C;
+	m_vertexBuffer._34 = m_vertexBuffer._14;
+	if (_D8 != nullptr) {
+		// _D8->something(m_modelData);
+	}
+	if (m_deformData != nullptr) {
+		// m_deformData->deform(this);
+	}
+	if (m_vtxColorCalc != nullptr) {
+		// m_vtxColorCalc->calc(this);
+	}
+	if (_D4 != nullptr) {
+		// _D4->something(this);
+	}
+	if ((_08 & 2) != 0) {
+		J3DJointTree* jointTree = &m_modelData->m_jointTree;
+		j3dSys._38              = this;
+		// jointTree->calc(m_mtxBuffer, j3dDefaultScale, j3dDefaultMtx);
+	} else {
+		J3DJointTree* jointTree = &m_modelData->m_jointTree;
+		j3dSys._38              = this;
+		jointTree->calc(m_mtxBuffer, m_modelScale, _24);
+	}
+	if (m_modelData->m_jointTree.m_envelopeCnt != 0 && (_08 & 0x10) == 0 && (m_modelData->m_modelLoaderFlags & J3DMLF_09) == 0) {
+		m_mtxBuffer->calcWeightEnvelopeMtx();
+	}
+	if (m_skinDeform != nullptr) {
+		// m_skinDeform->deform(this);
+	}
+	if (_10 != nullptr) {
+		// _10(this, 0);
+	}
 	/*
 	stwu     r1, -0x10(r1)
 	mflr     r0
@@ -810,6 +908,7 @@ lbl_80066F9C:
  */
 void J3DModel::entry()
 {
+	j3dSys._38 = this;
 	if (_08 & 4) {
 		j3dSys._34 |= 0x4;
 	} else {
@@ -820,7 +919,6 @@ void J3DModel::entry()
 	} else {
 		j3dSys._34 &= ~0x8;
 	}
-	// j3dSys._38 = this;
 	m_modelData->syncJ3DSysFlags();
 	j3dSys._58 = m_modelData->m_materialTable.m_texture;
 	for (u16 i = 0; i < m_modelData->m_jointTree.m_jointCnt; i++) {
@@ -829,7 +927,6 @@ void J3DModel::entry()
 			joint->entryIn();
 		}
 	}
-
 	/*
 	stwu     r1, -0x10(r1)
 	mflr     r0
@@ -1164,6 +1261,20 @@ void J3DModel::calcNrmMtx() { m_mtxBuffer->calcNrmMtx(); }
  */
 void J3DModel::calcBumpMtx()
 {
+	if (m_modelData->_0C != 1) {
+		return;
+	}
+	u16 count = m_modelData->m_materialTable.m_count1;
+	for (u16 i = 0; i < count; i++) {
+		J3DMaterial* material = m_modelData->m_materialTable.m_materials1[i];
+		if (material->m_texGenBlock->getNBTScale()->_00 == 1) {
+			material->m_shape->calcNBTScale(material->m_texGenBlock->getNBTScale()->_04,
+			                                m_mtxBuffer->_1C[1][m_mtxBuffer->m_currentViewNumber],
+			                                m_mtxBuffer->_24[1][i][m_mtxBuffer->m_currentViewNumber]);
+			DCStoreRange(m_mtxBuffer->_24[1][i][m_mtxBuffer->m_currentViewNumber],
+			             m_modelData->m_jointTree.m_mtxData.m_count * sizeof(Mtx33));
+		}
+	}
 	/*
 	stwu     r1, -0x30(r1)
 	mflr     r0

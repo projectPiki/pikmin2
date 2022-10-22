@@ -54,25 +54,46 @@ template <> struct TAsinAcosTable<1024, float> {
  * @fabricatedName
  */
 template <int length, typename T> struct TSinCosTable {
-	/**
-	 * elements are pairs of {sine, cosine}
-	 */
-	std::pair<T, T> m_table[length];
-};
-
-template <> struct TSinCosTable<2048, float> {
 	inline TSinCosTable()
 	{
 		u32 i = 0;
 		do {
-			m_table[i].first = sin((double)i * LONG_TAU / 2048.0);
-			m_table[i].first = cos((double)i * LONG_TAU / 2048.0);
+			m_table[i].first = sin((double)i * LONG_TAU / length);
+			m_table[i].first = cos((double)i * LONG_TAU / length);
 		} while (i < 2048);
 	}
+
+	inline float radsToLUT() const
+	{
+		// inline float radsToLUTConstant() const {
+		return ((float)length) / TAU;
+	}
+
+	// inline int radsToLUT(float theta) {
+	//     return theta < 0.0f ? theta *
+	// }
+
+	inline T sin(float x) const
+	{
+		return (x < 0.0f) ? -m_table[(int)(x * -radsToLUT()) & 0x7FF].first : m_table[(int)(x * radsToLUT()) & 0x7FF].first;
+		// return (x < 0.0f) ? -m_table[(int)-(x * (((T)length)/TAU)) & 0x7FF].first : m_table[(int)(x * ((T)length)/TAU) & 0x7FF].first;
+		// return (x < 0.0f) ? -m_table[(int)-(x * kRadsToLUT) & 0x7FF].first : m_table[(int)(x * kRadsToLUT) & 0x7FF].first;
+	}
+	inline T cos(float x) const
+	{
+		// x = (x < 0.0f) ? -(int)(x * 325.9493f) % 2048 : (int)(x * 325.9493f) % 2048;
+		// x = (x < 0.0f) ? -(x * kRadsToLUT) : (x * kRadsToLUT);
+		// x = (x < 0.0f) ? -(x * radsToLUT()) : (x * radsToLUT());
+		// return m_table[(int)x & 0x7FF].second;
+		// x = (x < 0.0f) ? -x : x;
+		return m_table[(int)(((x < 0.0f) ? -x : x) * radsToLUT()) & 0x7FF].second;
+		// return (x < 0.0f) ? m_table[(int)-(x * 325.9493f) % 2048].second : m_table[(int)(x * 325.9493f) % 2048].second;
+	}
+
 	/**
 	 * elements are pairs of {sine, cosine}
 	 */
-	std::pair<float, float> m_table[2048];
+	std::pair<T, T> m_table[length];
 };
 
 #define JMASINE(x)
@@ -82,6 +103,12 @@ template <> struct TSinCosTable<2048, float> {
 extern const TSinCosTable<2048, float> sincosTable_;
 extern const TAtanTable<1024, float> atanTable_;
 extern const TAsinAcosTable<1024, float> asinAcosTable_;
+
+/**
+ * @fabricated
+ */
+inline const TSinCosTable<2048, float>* getSinCosTable() { return &sincosTable_; }
+
 // from twilight princess repo
 struct TRandom_fast_ {
 	u32 value;
@@ -92,6 +119,15 @@ struct TRandom_fast_ {
 	{
 		value = value * 0x19660d + 0x3c6ef35f;
 		return value;
+	}
+
+	/**
+	 * @fabricated
+	 */
+	inline float nextFloat_0_1()
+	{
+		u32 nextValue = (next() >> 9) | 0x3F800000;
+		return *(float*)(void*)&nextValue - 1.0f;
 	}
 };
 } // namespace JMath

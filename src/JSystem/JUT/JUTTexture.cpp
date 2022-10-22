@@ -1,4 +1,8 @@
 #include "JSystem/JUT/JUTTexture.h"
+#include "Dolphin/gx.h"
+#include "Dolphin/os.h"
+#include "JSystem/JUT/JUTPalette.h"
+#include "JSystem/ResTIMG.h"
 #include "types.h"
 
 /*
@@ -26,8 +30,35 @@
  * Address:	80032F1C
  * Size:	0000F4
  */
-JUTTexture::JUTTexture(int, int, _GXTexFmt)
+JUTTexture::JUTTexture(int sizeX, int sizeY, _GXTexFmt textureFormat)
 {
+	m_flags                  = (m_flags & 2) | 1;
+	u32 texBufferSize        = GXGetTexBufferSize(sizeX, sizeY, textureFormat, 0, 1);
+	_3C                      = reinterpret_cast<ResTIMG*>(new u8[texBufferSize]);
+	_3C->m_textureFormat     = textureFormat;
+	_3C->m_transparency      = 0;
+	_3C->m_sizeX             = sizeX;
+	_3C->m_sizeY             = sizeY;
+	_3C->m_wrapS             = 0;
+	_3C->m_wrapT             = 0;
+	_3C->m_paletteFormat     = 0;
+	_3C->m_lutFormat         = 0;
+	_3C->m_paletteEntryCount = 0;
+	_3C->m_paletteOffset     = 0;
+	_3C->_10                 = GX_FALSE;
+	_3C->_11                 = GX_FALSE;
+	_3C->_12                 = GX_FALSE;
+	_3C->_13                 = GX_FALSE;
+	_3C->m_magFilterType     = 1;
+	_3C->m_minFilterType     = 1;
+	_3C->_16                 = 0;
+	_3C->_17                 = 0;
+	_3C->m_totalImageCount   = 1;
+	_3C->_1A                 = 0;
+	_3C->m_imageDataOffset   = 0x20;
+	_28                      = nullptr;
+	storeTIMG(_3C, '\0');
+	DCFlushRange(_24, texBufferSize);
 	/*
 	stwu     r1, -0x20(r1)
 	mflr     r0
@@ -100,6 +131,12 @@ JUTTexture::JUTTexture(int, int, _GXTexFmt)
  */
 JUTTexture::~JUTTexture()
 {
+	if (m_flags & 1) {
+		delete[] _3C;
+	}
+	if (m_flags & 2) {
+		delete _28;
+	}
 	/*
 	stwu     r1, -0x10(r1)
 	mflr     r0
@@ -280,8 +317,9 @@ lbl_80033214:
  * Address:	80033230
  * Size:	000034
  */
-void JUTTexture::storeTIMG(const ResTIMG*, JUTPalette*)
+void JUTTexture::storeTIMG(const ResTIMG* img, JUTPalette* palette)
 {
+	storeTIMG(img, palette, palette == nullptr ? GX_TLUT0 : palette->m_tlutID);
 	/*
 	stwu     r1, -0x10(r1)
 	mflr     r0
@@ -405,8 +443,17 @@ lbl_80033380:
  * Address:	8003339C
  * Size:	000058
  */
-void JUTTexture::attachPalette(JUTPalette*)
+void JUTTexture::attachPalette(JUTPalette* palette)
 {
+	if (_20->m_paletteFormat == 0) {
+		return;
+	}
+	if (palette == nullptr && _28 != nullptr) {
+		_2C = _28;
+	} else {
+		_2C = palette;
+	}
+	initTexObj(_2C->m_tlutID);
 	/*
 	stwu     r1, -0x10(r1)
 	mflr     r0
@@ -446,6 +493,12 @@ lbl_800333E4:
  */
 void JUTTexture::init()
 {
+	if (_20->m_paletteEntryCount == 0) {
+		initTexObj();
+	} else if (_28 != nullptr) {
+		_2C = _28;
+		initTexObj(_2C->m_tlutID);
+	}
 	/*
 	stwu     r1, -0x10(r1)
 	mflr     r0
@@ -628,8 +681,12 @@ lbl_80033578:
  * Address:	80033630
  * Size:	000050
  */
-void JUTTexture::load(_GXTexMapID)
+void JUTTexture::load(_GXTexMapID id)
 {
+	if (_2C != nullptr) {
+		_2C->load();
+	}
+	GXLoadTexObj(this, id);
 	/*
 	stwu     r1, -0x10(r1)
 	mflr     r0
@@ -661,8 +718,19 @@ lbl_8003365C:
  * Address:	80033680
  * Size:	0000C4
  */
-void JUTTexture::capture(int, int, _GXTexFmt, bool, unsigned char)
+void JUTTexture::capture(int p1, int p2, _GXTexFmt textureFormat, bool p4, unsigned char p5)
 {
+	if ((m_flags & 1) == 0) {
+		return;
+	}
+	if (p4) {
+		GXSetTexCopySrc(p1, p2, _20->m_sizeX << 1, _20->m_sizeY << 1, p4, p5);
+	} else {
+		GXSetTexCopySrc(p1, p2, _20->m_sizeX, _20->m_sizeY, GX_FALSE, p5);
+	}
+	GXSetTexCopyDst(_20->m_sizeX, _20->m_sizeY, textureFormat, p4);
+	GXCopyTex(_24, p5);
+	GXPixModeSync();
 	/*
 	stwu     r1, -0x20(r1)
 	mflr     r0

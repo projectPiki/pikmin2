@@ -54,9 +54,11 @@ struct JKRTask : public JKRThread {
 	void request(RequestCallback*, void*, void*);
 
 	// u32 _78;			 // _78
-	JSUPtrLink _7C;      // _7C
-	u8 _8C[8];           // _8C
-	OSMessageQueue* _94; // _94
+	JSULink<JKRTask> _7C; // _7C
+	u8 _8C[8];            // _8C
+	OSMessageQueue* _94;  // _94
+
+	static JSUList<JKRTask> sTaskList;
 };
 
 #endif

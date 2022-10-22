@@ -1,3 +1,4 @@
+#include "JSystem/JGeometry.h"
 #include "types.h"
 
 /*
@@ -37,7 +38,7 @@ void JPAConvertFixToFloat(short)
  * Address:	80093AE4
  * Size:	000100
  */
-void JPAGetDirMtx(const JGeometry::TVec3<float>&, float (*)[4])
+void JPAGetDirMtx(const JGeometry::TVec3f&, float (*)[4])
 {
 	/*
 	lfs      f0, 0(r3)

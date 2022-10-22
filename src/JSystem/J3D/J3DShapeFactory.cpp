@@ -1,3 +1,7 @@
+#include "JSystem/J3D/J3DShapeFactory.h"
+#include "Dolphin/gx.h"
+#include "JSystem/J3D/J3DShape.h"
+#include "JSystem/JSupport/JSU.h"
 #include "types.h"
 
 /*
@@ -9,54 +13,16 @@
  * Address:	80071D10
  * Size:	0000B0
  */
-J3DShapeFactory::J3DShapeFactory(const J3DShapeBlock&)
+J3DShapeFactory::J3DShapeFactory(const J3DShapeBlock& block)
+    : m_initData(JSUConvertOffsetToPtr<J3DShapeInitData>(&block, block._0C))
+    , m_initDataIndices(JSUConvertOffsetToPtr<u16>(&block, block._10))
+    , m_vtxDescLists(JSUConvertOffsetToPtr<_GXVtxDescList>(&block, block._18))
+    , _0C(JSUConvertOffsetToPtr<u16>(&block, block._1C))
+    , _10(JSUConvertOffsetToPtr<u8>(&block, block._20))
+    , m_mtxInitData(JSUConvertOffsetToPtr<J3DShapeMtxInitData>(&block, block._24))
+    , m_drawInitData(JSUConvertOffsetToPtr<J3DShapeDrawInitData>(&block, block._28))
+    , _1C(nullptr)
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	mr       r31, r4
-	lwz      r4, 0xc(r4)
-	stw      r30, 8(r1)
-	mr       r30, r3
-	mr       r3, r31
-	bl       "JSUConvertOffsetToPtr<16J3DShapeInitData>__FPCvUl"
-	stw      r3, 0(r30)
-	mr       r3, r31
-	lwz      r4, 0x10(r31)
-	bl       "JSUConvertOffsetToPtr<Us>__FPCvUl"
-	stw      r3, 4(r30)
-	mr       r3, r31
-	lwz      r4, 0x18(r31)
-	bl       "JSUConvertOffsetToPtr<14_GXVtxDescList>__FPCvUl"
-	stw      r3, 8(r30)
-	mr       r3, r31
-	lwz      r4, 0x1c(r31)
-	bl       "JSUConvertOffsetToPtr<Us>__FPCvUl"
-	stw      r3, 0xc(r30)
-	mr       r3, r31
-	lwz      r4, 0x20(r31)
-	bl       "JSUConvertOffsetToPtr<Uc>__FPCvUl"
-	stw      r3, 0x10(r30)
-	mr       r3, r31
-	lwz      r4, 0x24(r31)
-	bl       "JSUConvertOffsetToPtr<19J3DShapeMtxInitData>__FPCvUl"
-	stw      r3, 0x14(r30)
-	mr       r3, r31
-	lwz      r4, 0x28(r31)
-	bl       "JSUConvertOffsetToPtr<20J3DShapeDrawInitData>__FPCvUl"
-	stw      r3, 0x18(r30)
-	li       r0, 0
-	mr       r3, r30
-	stw      r0, 0x1c(r30)
-	lwz      r31, 0xc(r1)
-	lwz      r30, 8(r1)
-	lwz      r0, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
 }
 
 /*
@@ -64,8 +30,23 @@ J3DShapeFactory::J3DShapeFactory(const J3DShapeBlock&)
  * Address:	80071DC0
  * Size:	0001B4
  */
-void J3DShapeFactory::create(int, unsigned long, _GXVtxDescList*)
+J3DShape* J3DShapeFactory::create(int id, unsigned long flags, _GXVtxDescList* vtxDescList)
 {
+	J3DShape* shape = new J3DShape();
+	shape->_0A      = m_initData[m_initDataIndices[id]]._02;
+	shape->_10      = m_initData[m_initDataIndices[id]]._0C;
+	shape->_30      = m_vtxDescLists + m_initData[m_initDataIndices[id]].m_vtxDescListIndex;
+	shape->_38      = new J3DShapeMtx*[shape->_0A];
+	shape->_3C      = new J3DShapeDraw*[shape->_0A];
+	shape->_14      = m_initData[m_initDataIndices[id]]._10;
+	shape->_20      = m_initData[m_initDataIndices[id]]._1C;
+	shape->_2C      = _1C + id;
+	for (int i = 0; i < shape->_0A; i++) {
+		shape->_38[i] = newShapeMtx(flags, id, i);
+		shape->_3C[i] = newShapeDraw(id, i);
+	}
+	shape->m_id = id;
+	return shape;
 	/*
 	stwu     r1, -0x30(r1)
 	mflr     r0
@@ -190,7 +171,7 @@ lbl_80071F4C:
  * Address:	80071F74
  * Size:	00024C
  */
-void J3DShapeFactory::newShapeMtx(unsigned long, int, int) const
+J3DShapeMtx* J3DShapeFactory::newShapeMtx(unsigned long flags, int shapeID, int mtxIndex) const
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -437,8 +418,11 @@ lbl_8007224C:
  * Address:	80072264
  * Size:	00008C
  */
-void J3DShapeFactory::newShapeDraw(int, int) const
+J3DShapeDraw* J3DShapeFactory::newShapeDraw(int shapeID, int drawIndex) const
 {
+	J3DShapeDrawInitData* drawInitData = m_drawInitData;
+	u16 drawInitDataIndex              = m_initData[m_initDataIndices[shapeID]].m_shapeDrawInitDataIndex;
+	return new J3DShapeDraw(_10 + drawInitData[drawIndex + drawInitDataIndex]._04, drawInitData[drawIndex + drawInitDataIndex]._00);
 	/*
 	stwu     r1, -0x10(r1)
 	mflr     r0
@@ -571,7 +555,7 @@ lbl_800723E4:
  * Address:	800723FC
  * Size:	00008C
  */
-void J3DShapeFactory::calcSize(int, unsigned long)
+int J3DShapeFactory::calcSize(int, unsigned long)
 {
 	/*
 	stwu     r1, -0x20(r1)
@@ -621,7 +605,7 @@ lbl_80072468:
  * Address:	80072488
  * Size:	000010
  */
-void J3DShapeFactory::calcSizeVcdVatCmdBuffer(unsigned long)
+int J3DShapeFactory::calcSizeVcdVatCmdBuffer(unsigned long)
 {
 	/*
 	mulli    r3, r4, 0xc0
@@ -636,7 +620,7 @@ void J3DShapeFactory::calcSizeVcdVatCmdBuffer(unsigned long)
  * Address:	80072498
  * Size:	0000A8
  */
-void J3DShapeFactory::calcSizeShapeMtx(unsigned long, int, int) const
+int J3DShapeFactory::calcSizeShapeMtx(unsigned long, int, int) const
 {
 	/*
 	lwz      r6, 4(r3)
@@ -705,73 +689,73 @@ lbl_80072538:
  * Address:	80072540
  * Size:	000018
  */
-void JSUConvertOffsetToPtr<J3DShapeDrawInitData>(const void*, unsigned long)
-{
-	/*
-	cmplwi   r4, 0
-	bne      lbl_80072550
-	li       r3, 0
-	blr
+// void JSUConvertOffsetToPtr<J3DShapeDrawInitData>(const void*, unsigned long)
+// {
+// 	/*
+// 	cmplwi   r4, 0
+// 	bne      lbl_80072550
+// 	li       r3, 0
+// 	blr
 
-lbl_80072550:
-	add      r3, r3, r4
-	blr
-	*/
-}
+// lbl_80072550:
+// 	add      r3, r3, r4
+// 	blr
+// 	*/
+// }
 
 /*
  * --INFO--
  * Address:	80072558
  * Size:	000018
  */
-void JSUConvertOffsetToPtr<J3DShapeMtxInitData>(const void*, unsigned long)
-{
-	/*
-	cmplwi   r4, 0
-	bne      lbl_80072568
-	li       r3, 0
-	blr
+// void JSUConvertOffsetToPtr<J3DShapeMtxInitData>(const void*, unsigned long)
+// {
+// 	/*
+// 	cmplwi   r4, 0
+// 	bne      lbl_80072568
+// 	li       r3, 0
+// 	blr
 
-lbl_80072568:
-	add      r3, r3, r4
-	blr
-	*/
-}
+// lbl_80072568:
+// 	add      r3, r3, r4
+// 	blr
+// 	*/
+// }
 
 /*
  * --INFO--
  * Address:	80072570
  * Size:	000018
  */
-void JSUConvertOffsetToPtr<unsigned char>(const void*, unsigned long)
-{
-	/*
-	cmplwi   r4, 0
-	bne      lbl_80072580
-	li       r3, 0
-	blr
+// void JSUConvertOffsetToPtr<unsigned char>(const void*, unsigned long)
+// {
+// 	/*
+// 	cmplwi   r4, 0
+// 	bne      lbl_80072580
+// 	li       r3, 0
+// 	blr
 
-lbl_80072580:
-	add      r3, r3, r4
-	blr
-	*/
-}
+// lbl_80072580:
+// 	add      r3, r3, r4
+// 	blr
+// 	*/
+// }
 
 /*
  * --INFO--
  * Address:	80072588
  * Size:	000018
  */
-void JSUConvertOffsetToPtr<_GXVtxDescList>(const void*, unsigned long)
-{
-	/*
-	cmplwi   r4, 0
-	bne      lbl_80072598
-	li       r3, 0
-	blr
+// void JSUConvertOffsetToPtr<_GXVtxDescList>(const void*, unsigned long)
+// {
+// 	/*
+// 	cmplwi   r4, 0
+// 	bne      lbl_80072598
+// 	li       r3, 0
+// 	blr
 
-lbl_80072598:
-	add      r3, r3, r4
-	blr
-	*/
-}
+// lbl_80072598:
+// 	add      r3, r3, r4
+// 	blr
+// 	*/
+// }

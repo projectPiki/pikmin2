@@ -1,3 +1,7 @@
+#include "JSystem/JFW/JFWDisplay.h"
+#include "Dolphin/os.h"
+#include "JSystem/JFW/JFWAlarm.h"
+#include "JSystem/JSupport/JSUList.h"
 #include "types.h"
 
 /*
@@ -269,7 +273,7 @@ lbl_80089B0C:
  * Address:	80089B28
  * Size:	00011C
  */
-void JFWDisplay::createManager(const _GXRenderModeObj*, JKRHeap*, JUTXfb::EXfbNumber, bool)
+JFWDisplay* JFWDisplay::createManager(const _GXRenderModeObj*, JKRHeap*, JUTXfb::EXfbNumber, bool)
 {
 	/*
 	.loc_0x0:
@@ -358,7 +362,7 @@ void JFWDisplay::createManager(const _GXRenderModeObj*, JKRHeap*, JUTXfb::EXfbNu
  * Address:	........
  * Size:	00010C
  */
-void JFWDisplay::createManager(const _GXRenderModeObj*, void*, bool)
+JFWDisplay* JFWDisplay::createManager(const _GXRenderModeObj*, void*, bool)
 {
 	// UNUSED FUNCTION
 }
@@ -368,7 +372,7 @@ void JFWDisplay::createManager(const _GXRenderModeObj*, void*, bool)
  * Address:	........
  * Size:	00011C
  */
-void JFWDisplay::createManager(const _GXRenderModeObj*, void*, void*, bool)
+JFWDisplay* JFWDisplay::createManager(const _GXRenderModeObj*, void*, void*, bool)
 {
 	// UNUSED FUNCTION
 }
@@ -378,7 +382,7 @@ void JFWDisplay::createManager(const _GXRenderModeObj*, void*, void*, bool)
  * Address:	........
  * Size:	00010C
  */
-void JFWDisplay::createManager(const _GXRenderModeObj*, void*, void*, void*, bool)
+JFWDisplay* JFWDisplay::createManager(const _GXRenderModeObj*, void*, void*, void*, bool)
 {
 	// UNUSED FUNCTION
 }
@@ -1454,10 +1458,10 @@ JFWAlarm::~JFWAlarm()
  * Address:	........
  * Size:	000054
  */
-void JSULink<JFWAlarm>::~JSULink()
-{
-	// UNUSED FUNCTION
-}
+// void JSULink<JFWAlarm>::~JSULink()
+// {
+// 	// UNUSED FUNCTION
+// }
 
 /*
  * --INFO--
@@ -2228,31 +2232,31 @@ void __sinit_JFWDisplay_cpp(void)
  * Address:	8008B0C0
  * Size:	000054
  */
-void JSUList<JFWAlarm>::~JSUList()
-{
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	mr       r31, r4
-	stw      r30, 8(r1)
-	or.      r30, r3, r3
-	beq      lbl_8008B0F8
-	li       r4, 0
-	bl       __dt__10JSUPtrListFv
-	extsh.   r0, r31
-	ble      lbl_8008B0F8
-	mr       r3, r30
-	bl       __dl__FPv
+// void JSUList<JFWAlarm>::~JSUList()
+// {
+// 	/*
+// 	stwu     r1, -0x10(r1)
+// 	mflr     r0
+// 	stw      r0, 0x14(r1)
+// 	stw      r31, 0xc(r1)
+// 	mr       r31, r4
+// 	stw      r30, 8(r1)
+// 	or.      r30, r3, r3
+// 	beq      lbl_8008B0F8
+// 	li       r4, 0
+// 	bl       __dt__10JSUPtrListFv
+// 	extsh.   r0, r31
+// 	ble      lbl_8008B0F8
+// 	mr       r3, r30
+// 	bl       __dl__FPv
 
-lbl_8008B0F8:
-	lwz      r0, 0x14(r1)
-	mr       r3, r30
-	lwz      r31, 0xc(r1)
-	lwz      r30, 8(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
-}
+// lbl_8008B0F8:
+// 	lwz      r0, 0x14(r1)
+// 	mr       r3, r30
+// 	lwz      r31, 0xc(r1)
+// 	lwz      r30, 8(r1)
+// 	mtlr     r0
+// 	addi     r1, r1, 0x10
+// 	blr
+// 	*/
+// }

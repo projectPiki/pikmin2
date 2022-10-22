@@ -1,4 +1,6 @@
 #include "JSystem/JUT/JUTGraphFifo.h"
+#include "Dolphin/gx.h"
+#include "JSystem/JKR/JKRHeap.h"
 #include "types.h"
 
 /*
@@ -24,13 +26,31 @@
         .skip 0x8
 */
 
-/*
+JUTGraphFifo* JUTGraphFifo::sCurrentFifo;
+GXBool JUTGraphFifo::mGpStatus[5];
+
+/**
  * --INFO--
  * Address:	8002EB34
  * Size:	0000DC
+ * TODO: Needs GXInit, sizeof for 0xA0.
  */
-JUTGraphFifo::JUTGraphFifo(u32)
+JUTGraphFifo::JUTGraphFifo(u32 p1)
 {
+	_0C = ALIGN_NEXT(p1, 0x20);
+	if (sInitiated) {
+		m_fifo = (GXFifoObj*)JKRHeap::sSystemHeap->alloc(_0C + sizeof(GXFifoObj), 0x20);
+		_08    = m_fifo + 1;
+		GXInitFifoBase(m_fifo, _08, _0C);
+		GXInitFifoPtrs(m_fifo, _08, _08);
+	} else {
+		/** TODO: Figure out what has sizeof 0xA0. */
+		_08 = JKRHeap::sSystemHeap->alloc(_0C + 0xA0, 0x20);
+		_08 = (void*)ALIGN_NEXT((u32)_08, 0x20);
+		// m_fifo = GXInit(_08, _0C);
+		sInitiated   = true;
+		sCurrentFifo = this;
+	}
 	/*
 	stwu     r1, -0x10(r1)
 	mflr     r0
@@ -101,6 +121,14 @@ lbl_8002EBF8:
  */
 JUTGraphFifo::~JUTGraphFifo()
 {
+	GXSaveCPUFifo(sCurrentFifo->m_fifo);
+	do {
+		GXGetGPStatus(mGpStatus, mGpStatus + 1, mGpStatus + 2, mGpStatus + 3, mGpStatus + 4);
+	} while (mGpStatus[2] == GX_FALSE);
+	if (sCurrentFifo == this) {
+		sCurrentFifo = nullptr;
+	}
+	JKRHeap::sSystemHeap->free(_08);
 	/*
 	stwu     r1, -0x20(r1)
 	mflr     r0

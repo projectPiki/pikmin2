@@ -9,6 +9,20 @@ struct JPAEmitterWorkData;
 struct JPABaseParticle;
 
 /**
+ * @fabricated
+ */
+struct JPABaseShapeData {
+	u8 _00[8];    // _00
+	u32 _08;      // _08
+	u8 _0C[0x10]; // _0C
+	u8 _1C;       // _1C
+	u8 _1D;       // _1D
+	u8 _1E;       // _1E
+	u8 _1F;       // _1F
+	u8 _20;       // _20
+};
+
+/**
  * @size{0x14}
  */
 struct JPABaseShape {
@@ -19,10 +33,11 @@ struct JPABaseShape {
 	// Unused/inlined:
 	void init_jpa(const u8*, JKRHeap*);
 
-	const u8* m_data; // _00
-	u8 _04[8];        // _04
-	GXColor _0C;      // _0C
-	GXColor _10;      // _10
+	const JPABaseShapeData* m_data; // _00
+	u8 _04[4];                      // _04
+	u8* _08;                        // _08
+	GXColor _0C;                    // _0C
+	GXColor _10;                    // _10
 };
 
 /**
@@ -53,12 +68,41 @@ struct JPAExTexShape {
  * @size{0x1C}
  */
 struct JPAExtraShape {
+	// /**
+	//  * @fabricated
+	//  */
+	struct Data {
+		u8 _00[0xC];
+		float _0C;
+		float _10;
+		float _14;
+		float _18;
+		float _1C;
+		float _20;
+		u8 _24[4];
+		s16 _28;
+		s16 _2A;
+		float _2C;
+		float _30;
+		float _34;
+		float _38;
+		float _3C;
+		float _40;
+		u8 _44[4];
+		float _48;
+	};
+
 	JPAExtraShape(const u8*);
 
 	void init();
 
 	// Unused/inlined:
 	void init_jpa(const u8*, JKRHeap*);
+
+	/**
+	 * @fabricated
+	 */
+	inline const Data* castData() const { return reinterpret_cast<const Data*>(m_data); }
 
 	const u8* m_data; // _00
 	float _04;        // _04

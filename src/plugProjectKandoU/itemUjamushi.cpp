@@ -1,3 +1,4 @@
+#include "Dolphin/math.h"
 #include "types.h"
 #include "Vector3.h"
 
@@ -1218,6 +1219,7 @@
         .skip 0x8
 */
 
+#if NOPE
 namespace Game {
 
 /*
@@ -12339,3 +12341,5 @@ void @48 @get__Q24Game39NodeItemMgr<Game::ItemUjamushi::Item> FPv(void)
 	b        __dt__Q34Game12ItemUjamushi3MgrFv
 	*/
 }
+
+#endif

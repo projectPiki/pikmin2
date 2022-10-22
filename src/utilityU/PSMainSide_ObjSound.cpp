@@ -10093,107 +10093,109 @@ u32 Otakara::getCastType() { return 0xB; }
  * --INFO--
  * Address:	804637A0
  * Size:	000148
+ * __dt__Q23PSM8WorkItemFv
  */
-WorkItem::~WorkItem()
-{
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	mr       r31, r4
-	stw      r30, 8(r1)
-	or.      r30, r3, r3
-	beq      lbl_804638CC
-	lis      r3, __vt__Q23PSM8WorkItem@ha
-	addic.   r0, r30, 0x70
-	addi     r4, r3, __vt__Q23PSM8WorkItem@l
-	stw      r4, 0x28(r30)
-	addi     r3, r4, 8
-	addi     r0, r4, 0x40
-	stw      r3, 0x10(r30)
-	stw      r0, 0x30(r30)
-	beq      lbl_80463818
-	lis      r3, __vt__Q23PSM9EventLink@ha
-	addic.   r0, r30, 0x70
-	addi     r0, r3, __vt__Q23PSM9EventLink@l
-	stw      r0, 0x80(r30)
-	beq      lbl_80463818
-	lis      r3, __vt__Q23PSM12DirectorLink@ha
-	addic.   r0, r30, 0x70
-	addi     r0, r3, __vt__Q23PSM12DirectorLink@l
-	stw      r0, 0x80(r30)
-	beq      lbl_80463818
-	addi     r3, r30, 0x70
-	li       r4, 0
-	bl       __dt__10JSUPtrLinkFv
+// WorkItem::~WorkItem()
+// {
+// 	/*
+// 	stwu     r1, -0x10(r1)
+// 	mflr     r0
+// 	stw      r0, 0x14(r1)
+// 	stw      r31, 0xc(r1)
+// 	mr       r31, r4
+// 	stw      r30, 8(r1)
+// 	or.      r30, r3, r3
+// 	beq      lbl_804638CC
+// 	lis      r3, __vt__Q23PSM8WorkItem@ha
+// 	addic.   r0, r30, 0x70
+// 	addi     r4, r3, __vt__Q23PSM8WorkItem@l
+// 	stw      r4, 0x28(r30)
+// 	addi     r3, r4, 8
+// 	addi     r0, r4, 0x40
+// 	stw      r3, 0x10(r30)
+// 	stw      r0, 0x30(r30)
+// 	beq      lbl_80463818
+// 	lis      r3, __vt__Q23PSM9EventLink@ha
+// 	addic.   r0, r30, 0x70
+// 	addi     r0, r3, __vt__Q23PSM9EventLink@l
+// 	stw      r0, 0x80(r30)
+// 	beq      lbl_80463818
+// 	lis      r3, __vt__Q23PSM12DirectorLink@ha
+// 	addic.   r0, r30, 0x70
+// 	addi     r0, r3, __vt__Q23PSM12DirectorLink@l
+// 	stw      r0, 0x80(r30)
+// 	beq      lbl_80463818
+// 	addi     r3, r30, 0x70
+// 	li       r4, 0
+// 	bl       __dt__10JSUPtrLinkFv
 
-lbl_80463818:
-	cmplwi   r30, 0
-	beq      lbl_804638BC
-	lis      r3, __vt__Q23PSM9EventBase@ha
-	addi     r4, r3, __vt__Q23PSM9EventBase@l
-	stw      r4, 0x28(r30)
-	addi     r3, r4, 8
-	addi     r0, r4, 0x40
-	stw      r3, 0x10(r30)
-	stw      r0, 0x30(r30)
-	beq      lbl_804638BC
-	lis      r4, __vt__Q23PSM11CreatureObj@ha
-	addi     r3, r30, 0x30
-	addi     r6, r4, __vt__Q23PSM11CreatureObj@l
-	li       r4, 0
-	stw      r6, 0x28(r30)
-	addi     r5, r6, 8
-	addi     r0, r6, 0x40
-	stw      r5, 0x10(r30)
-	stw      r0, 0x30(r30)
-	bl       __dt__Q27JAInter6ObjectFv
-	cmplwi   r30, 0
-	beq      lbl_804638BC
-	lis      r3, __vt__Q23PSM8Creature@ha
-	addi     r3, r3, __vt__Q23PSM8Creature@l
-	stw      r3, 0x28(r30)
-	addi     r0, r3, 8
-	stw      r0, 0x10(r30)
-	beq      lbl_804638BC
-	lis      r4, __vt__Q23PSM7ObjBase@ha
-	addi     r3, r30, 0x10
-	addi     r5, r4, __vt__Q23PSM7ObjBase@l
-	li       r4, 0
-	stw      r5, 0x28(r30)
-	addi     r0, r5, 8
-	stw      r0, 0x10(r30)
-	bl       __dt__11JKRDisposerFv
-	cmplwi   r30, 0
-	beq      lbl_804638BC
-	mr       r3, r30
-	li       r4, 0
-	bl       __dt__10JSUPtrLinkFv
+// lbl_80463818:
+// 	cmplwi   r30, 0
+// 	beq      lbl_804638BC
+// 	lis      r3, __vt__Q23PSM9EventBase@ha
+// 	addi     r4, r3, __vt__Q23PSM9EventBase@l
+// 	stw      r4, 0x28(r30)
+// 	addi     r3, r4, 8
+// 	addi     r0, r4, 0x40
+// 	stw      r3, 0x10(r30)
+// 	stw      r0, 0x30(r30)
+// 	beq      lbl_804638BC
+// 	lis      r4, __vt__Q23PSM11CreatureObj@ha
+// 	addi     r3, r30, 0x30
+// 	addi     r6, r4, __vt__Q23PSM11CreatureObj@l
+// 	li       r4, 0
+// 	stw      r6, 0x28(r30)
+// 	addi     r5, r6, 8
+// 	addi     r0, r6, 0x40
+// 	stw      r5, 0x10(r30)
+// 	stw      r0, 0x30(r30)
+// 	bl       __dt__Q27JAInter6ObjectFv
+// 	cmplwi   r30, 0
+// 	beq      lbl_804638BC
+// 	lis      r3, __vt__Q23PSM8Creature@ha
+// 	addi     r3, r3, __vt__Q23PSM8Creature@l
+// 	stw      r3, 0x28(r30)
+// 	addi     r0, r3, 8
+// 	stw      r0, 0x10(r30)
+// 	beq      lbl_804638BC
+// 	lis      r4, __vt__Q23PSM7ObjBase@ha
+// 	addi     r3, r30, 0x10
+// 	addi     r5, r4, __vt__Q23PSM7ObjBase@l
+// 	li       r4, 0
+// 	stw      r5, 0x28(r30)
+// 	addi     r0, r5, 8
+// 	stw      r0, 0x10(r30)
+// 	bl       __dt__11JKRDisposerFv
+// 	cmplwi   r30, 0
+// 	beq      lbl_804638BC
+// 	mr       r3, r30
+// 	li       r4, 0
+// 	bl       __dt__10JSUPtrLinkFv
 
-lbl_804638BC:
-	extsh.   r0, r31
-	ble      lbl_804638CC
-	mr       r3, r30
-	bl       __dl__FPv
+// lbl_804638BC:
+// 	extsh.   r0, r31
+// 	ble      lbl_804638CC
+// 	mr       r3, r30
+// 	bl       __dl__FPv
 
-lbl_804638CC:
-	lwz      r0, 0x14(r1)
-	mr       r3, r30
-	lwz      r31, 0xc(r1)
-	lwz      r30, 8(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
-}
+// lbl_804638CC:
+// 	lwz      r0, 0x14(r1)
+// 	mr       r3, r30
+// 	lwz      r31, 0xc(r1)
+// 	lwz      r30, 8(r1)
+// 	mtlr     r0
+// 	addi     r1, r1, 0x10
+// 	blr
+// 	*/
+// }
 
 /*
  * --INFO--
  * Address:	804638E8
  * Size:	000008
+ * getCastType__Q23PSM8WorkItemFv
  */
-u32 WorkItem::getCastType() { return 0xA; }
+// u32 WorkItem::getCastType() { return 0xA; }
 
 /*
  * --INFO--

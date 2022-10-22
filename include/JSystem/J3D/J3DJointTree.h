@@ -42,7 +42,7 @@ struct J3DJointTree {
 	u16 m_jointCnt;           // _1C
 	u16 m_envelopeCnt;        // _1E
 	u8* _20;                  // _20
-	u32 m_maxBillBoardCnt;    // _24
+	u16* m_maxBillBoardCnt;   // _24
 	float* _28;               // _28
 	Mtx* _2C;                 // _2C
 	u16* _30;                 // _30

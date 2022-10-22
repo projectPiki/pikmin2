@@ -21,9 +21,9 @@ struct J3DAnmColor : public J3DAnmBase {
 	{
 	}
 
-	virtual ~J3DAnmColor();                                // _08 (weak)
-	virtual J3DAnmKind getKind() const;                    // _0C (weak)
-	virtual void getColor(unsigned short, GXColor*) const; // _10 (weak)
+	virtual ~J3DAnmColor() { }                                      // _08 (weak)
+	virtual J3DAnmKind getKind() const { return J3DAnmKind_Color; } // _0C (weak)
+	virtual void getColor(unsigned short, GXColor*) const { }       // _10 (weak)
 
 	void searchUpdateMaterialID(struct J3DModelData*);
 
@@ -49,9 +49,9 @@ struct J3DAnmColorFull : public J3DAnmColor {
 	{
 	}
 
-	virtual ~J3DAnmColorFull();                            // _08 (weak)
-	virtual J3DAnmKind getKind() const;                    // _0C (weak)
-	virtual void getColor(unsigned short, GXColor*) const; // _10
+	virtual ~J3DAnmColorFull() { }                                      // _08 (weak)
+	virtual J3DAnmKind getKind() const { return J3DAnmKind_ColorFull; } // _0C (weak)
+	virtual void getColor(unsigned short, GXColor*) const;              // _10
 
 	u8* _2C;                   // _2C
 	u8* _30;                   // _30
@@ -71,8 +71,7 @@ struct J3DAnmColorFullData : J3DAnmFullData {
 	void* _30; // _30
 };
 
-struct J3DAnmColorFullTable {
-};
+struct J3DAnmColorFullTable { };
 
 /**
  * @size{0x40}
@@ -87,9 +86,9 @@ struct J3DAnmColorKey : public J3DAnmColor {
 	{
 	}
 
-	virtual ~J3DAnmColorKey();                             // _08 (weak)
-	virtual J3DAnmKind getKind() const;                    // _0C (weak)
-	virtual void getColor(unsigned short, GXColor*) const; // _10
+	virtual ~J3DAnmColorKey() { }                                      // _08 (weak)
+	virtual J3DAnmKind getKind() const { return J3DAnmKind_ColorKey; } // _0C (weak)
+	virtual void getColor(unsigned short, GXColor*) const;             // _10
 
 	s16* _2C;                     // _2C
 	s16* _30;                     // _30
@@ -98,8 +97,7 @@ struct J3DAnmColorKey : public J3DAnmColor {
 	J3DAnmColorKeyTable* m_table; // _3C
 };
 
-struct J3DAnmColorKeyData {
-};
+struct J3DAnmColorKeyData { };
 
 /**
  * @size{0x18}

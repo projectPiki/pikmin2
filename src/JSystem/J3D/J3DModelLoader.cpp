@@ -723,7 +723,7 @@ J3DModelData* J3DModelLoader::loadBinaryDisplayList(const void* stream, u32 flag
 			readMaterialDL((const J3DMaterialDLBlock*)nextBlock, flags);
 			modifyMaterial(flags);
 			break;
-		case J3DFBT_Material:
+		case J3DFBT_Material: {
 			m_materialBlock = (const J3DMaterialBlock*)nextBlock;
 			u32 matFlags    = flags & 0x3000000 | 0x50100000;
 			if ((flags & 0x3000) == 0) {
@@ -732,6 +732,7 @@ J3DModelData* J3DModelLoader::loadBinaryDisplayList(const void* stream, u32 flag
 				readPatchedMaterial((const J3DMaterialBlock*)nextBlock, matFlags);
 			}
 			break;
+		}
 		default:
 			break;
 		}
@@ -1455,7 +1456,7 @@ void J3DModelLoader::readEnvelop(const J3DEnvelopeBlock* block)
 {
 	m_modelData->m_jointTree.m_envelopeCnt     = block->m_count;
 	m_modelData->m_jointTree._20               = JSUConvertOffsetToPtr<u8>(block, block->_0C);
-	m_modelData->m_jointTree.m_maxBillBoardCnt = *JSUConvertOffsetToPtr<u16>(block, block->_10);
+	m_modelData->m_jointTree.m_maxBillBoardCnt = JSUConvertOffsetToPtr<u16>(block, block->_10);
 	m_modelData->m_jointTree._28               = JSUConvertOffsetToPtr<float>(block, block->_14);
 	m_modelData->m_jointTree._2C               = JSUConvertOffsetToPtr<Mtx>(block, block->_18);
 

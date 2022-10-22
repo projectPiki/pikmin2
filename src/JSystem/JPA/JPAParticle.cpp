@@ -1,3 +1,10 @@
+#include "Dolphin/float.h"
+#include "Dolphin/mtx.h"
+#include "Dolphin/vec.h"
+#include "JSystem/JPA/JPABlock.h"
+#include "JSystem/JPA/JPAEmitter.h"
+#include "JSystem/JPA/JPAResource.h"
+#include "JSystem/JPA/JPAShape.h"
 #include "types.h"
 
 /*
@@ -82,8 +89,43 @@ lbl_80094058:
  * Address:	80094070
  * Size:	0008C4
  */
-void JPABaseParticle::init_p(JPAEmitterWorkData*)
+void JPABaseParticle::init_p(JPAEmitterWorkData* workData)
 {
+	JPAResource* resource           = workData->m_resource;
+	JPABaseEmitter* emitter         = workData->m_emitter;
+	JPAExtraShape* extraShape       = resource->_20;
+	JPABaseShape* baseShape         = resource->_1C;
+	JPADynamicsBlock* dynamicsBlock = resource->_2C;
+
+	_80        = 0xFFFF;
+	u32 random = emitter->m_rng.next();
+	_82        = (float)emitter->_52 * -(dynamicsBlock->castData()->_54 * emitter->m_rng.nextFloat_0_1() - 1.0f);
+	_84        = 0.0f;
+	_7C        = 0;
+	PSMTXMultVecSR(workData->_D8, (Vec*)&workData->_10, (Vec*)&m_position);
+	if ((emitter->m_resource->_2C->castData()->_08 & 8) != 0) {
+		_7C |= 0x20;
+	}
+	_18   = workData->_138;
+	_00.x = m_position.x * workData->_12C.x + _18.x;
+	_00.y = m_position.y * workData->_12C.y + _18.y;
+	_00.z = m_position.z * workData->_12C.z + _18.z;
+	if (emitter->_34 != 0.0f) {
+		// float mag = SQUARE(workData->_24) + SQUARE(workData->_1C) + SQUARE(workData->_20);
+		// if (__float_epsilon * 32.0f < mag) {
+		// 	if (mag < 0.0f) {
+		// 		float v1;
+		// 		FRSQRTE(&v1);
+		// 		mag = v1 * 0.5f * -(mag * v1 * v1 - 3.0f);
+		// 	}
+		// 	mag *= emitter->_34;
+
+		// }
+		// float mag = PSVECSquareMag((Vec*)&workData->_1C);
+		// if (__float_epsilon * 32.0f < mag) {
+
+		// }
+	}
 	/*
 	stwu     r1, -0x100(r1)
 	mflr     r0
@@ -1566,7 +1608,7 @@ lbl_800954E8:
  * Address:	80095500
  * Size:	000080
  */
-void JPABaseParticle::canCreateChild(JPAEmitterWorkData*)
+bool JPABaseParticle::canCreateChild(JPAEmitterWorkData*)
 {
 	/*
 	stwu     r1, -0x20(r1)
@@ -1611,7 +1653,7 @@ lbl_80095574:
  * Address:	80095580
  * Size:	000024
  */
-void JPABaseParticle::getCalcCurrentPositionX(const JPABaseEmitter*) const
+float JPABaseParticle::getCalcCurrentPositionX(const JPABaseEmitter*) const
 {
 	/*
 	lwz      r4, 0xe4(r4)
@@ -1631,7 +1673,7 @@ void JPABaseParticle::getCalcCurrentPositionX(const JPABaseEmitter*) const
  * Address:	800955A4
  * Size:	000024
  */
-void JPABaseParticle::getCalcCurrentPositionY(const JPABaseEmitter*) const
+float JPABaseParticle::getCalcCurrentPositionY(const JPABaseEmitter*) const
 {
 	/*
 	lwz      r4, 0xe4(r4)
@@ -1651,7 +1693,7 @@ void JPABaseParticle::getCalcCurrentPositionY(const JPABaseEmitter*) const
  * Address:	800955C8
  * Size:	000024
  */
-void JPABaseParticle::getCalcCurrentPositionZ(const JPABaseEmitter*) const
+float JPABaseParticle::getCalcCurrentPositionZ(const JPABaseEmitter*) const
 {
 	/*
 	lwz      r4, 0xe4(r4)
@@ -1671,7 +1713,7 @@ void JPABaseParticle::getCalcCurrentPositionZ(const JPABaseEmitter*) const
  * Address:	........
  * Size:	000020
  */
-void JPABaseParticle::getWidth(const JPABaseEmitter*) const
+float JPABaseParticle::getWidth(const JPABaseEmitter*) const
 {
 	// UNUSED FUNCTION
 }
@@ -1681,7 +1723,7 @@ void JPABaseParticle::getWidth(const JPABaseEmitter*) const
  * Address:	........
  * Size:	000020
  */
-void JPABaseParticle::getHeight(const JPABaseEmitter*) const
+float JPABaseParticle::getHeight(const JPABaseEmitter*) const
 {
 	// UNUSED FUNCTION
 }

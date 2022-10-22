@@ -18,7 +18,7 @@ struct MID1Block;
 
 struct TResource : public JGadget::TLinkListNode {
 
-	s16 toMessageIndex_messageID(u32, u32, bool*);
+	s16 toMessageIndex_messageID(u32, u32, bool*) const;
 
 	JMessageHeader* m_header; // _08 - generic file type header info
 	INF1Block* m_INF1;        // _0C - info block
@@ -42,6 +42,8 @@ struct TResourceContainer {
 		//			_08 	= m_tail
 		// _0C 		= VTABLE
 	};
+
+	TResourceContainer();
 
 	u32 _00;                 // _00 - encoding?
 	bool (*isLeadByte)(int); // _04 - function pointer for isLeadByte(int)

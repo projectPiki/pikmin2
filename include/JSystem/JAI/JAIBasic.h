@@ -20,7 +20,7 @@ struct JAIBasic {
 	virtual void makeStream();                 // _10
 	virtual void getMapInfoFxline(u32);        // _14
 	virtual void getMapInfoGround(u32);        // _18
-	virtual void getMapInfoFxParameter(u32);   // _1C
+	virtual float getMapInfoFxParameter(u32);  // _1C
 	virtual void setSeExtParameter(JAISound*); // _20
 	virtual void setRegisterTrackCallback();   // _24
 
@@ -37,7 +37,7 @@ struct JAIBasic {
 	void initAudioThread(JKRSolidHeap*, u32, u8);
 	void initCamera();
 	void setInitFileLoadSwitch(u8);
-	void initReadFile();
+	bool initReadFile();
 	void processFrameWork();
 	void startSoundBasic(u32, JAISound**, JAInter::Actor*, u32, u8, JAInter::SoundInfo*);
 	void startSoundBasic(u32, JAISequence**, JAInter::Actor*, u32, u8, JAInter::SoundInfo*);
@@ -53,6 +53,32 @@ struct JAIBasic {
 	// void startSoundActorReturnHandleT<JAISe>(JAISe**, u32, JAInter::Actor*, u32, u8);
 	// void startSoundActorT<JAISe>(u32, JAISe**, JAInter::Actor*, u32, u8);
 	// void startSoundVecReturnHandleT<JAISound>(JAISound**, u32, Vec*, u32, u32, u8);
+
+	// unused/inlined:
+	void bootDSP();
+	void getPlayingSoundHandle(JAISound**, unsigned long);
+	void stopPlayingObjectSe(void*);
+	void stopPlayingIDObjectSe(unsigned long, void*);
+	void stopPlayingCategorySe(unsigned char);
+	void stopPlayingCategoryObjectSe(unsigned char, void*);
+	void stopAllSe(void*);
+	void stopAllSe(unsigned char, void*);
+	void stopAllSeq(void*);
+	void stopActorSoundOneBuffer(void*, JSULink<JAISound>*);
+	void stopIDSoundOneBuffer(unsigned long, JSULink<JAISound>*);
+	void stopIDActorSoundOneBuffer(unsigned long, void*, JSULink<JAISound>*);
+	void stopAllSound(void*);
+	void getPlayingSoundLinkHeadPointer(unsigned long);
+	void stopAllSound(unsigned long);
+	void stopAllSound(unsigned long, void*);
+	void deleteObject(void*);
+	void setPauseFlagAll(unsigned char);
+	void changeSoundScene(unsigned long);
+	void setSeCancelSwitch(unsigned char, unsigned char);
+	void setSeCategoryVolume(unsigned char, unsigned char);
+	void allocStreamBuffer(void*, long);
+	void deallocStreamBuffer();
+	void resumeAudio();
 
 	// VT _00
 	JAInter::Camera* m_cameras; // _04

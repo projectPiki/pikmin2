@@ -5,7 +5,6 @@
 #include "JSystem/JGeometry.h"
 #include "JSystem/JMath.h"
 #include "types.h"
-#include "JSystem/J3D/J3DMtxCalc.h"
 
 struct J3DMaterial;
 struct J3DMtxCalc;

@@ -2,16 +2,14 @@
 #define _JUTVIDEO_H
 
 #include "Dolphin/os.h"
+#include "Dolphin/gx.h"
+#include "Dolphin/vi.h"
 #include "types.h"
-
-struct _GXRenderModeObj;
 
 /**
  * @size{0x58}
  */
 struct JUTVideo {
-	typedef void RetraceCallback(u32);
-
 	JUTVideo(const _GXRenderModeObj*);
 
 	virtual ~JUTVideo(); // _00
@@ -20,41 +18,43 @@ struct JUTVideo {
 	static JUTVideo* createManager(const _GXRenderModeObj*);
 	static void destroyManager();
 	static JUTVideo* getManager() { return sManager; }
+	static void preRetraceProc(unsigned long);
+	static void postRetraceProc(unsigned long);
+	static void drawDoneCallback();
 
 	u16 getEfbHeight() const { return m_renderModeObj->efbHeight; }
 	u16 getFbWidth() const { return m_renderModeObj->fbWidth; }
-	void preRetraceProc(unsigned long);
 	void drawDoneStart();
 	void dummyNoDrawWait();
-	void drawDoneCallback();
-	void postRetraceProc(unsigned long);
 	void setRenderMode(const _GXRenderModeObj*);
 	void waitRetraceIfNeed() {};
-	void setPostRetraceCallback(RetraceCallback*);
+	VIRetraceCallback setPostRetraceCallback(VIRetraceCallback);
 
 	// Unused/inlined:
 	void getDrawWait();
-	void setPreRetraceCallback(RetraceCallback*);
+	VIRetraceCallback setPreRetraceCallback(VIRetraceCallback);
 	void getPixelAspect(const _GXRenderModeObj*);
 	void getPixelAspect() const;
 
 	// _00 VTBL
-	const _GXRenderModeObj* m_renderModeObj;        // _04
-	u32 _08;                                        // _08
-	u32 m_retraceCount;                             // _0C
-	int _10;                                        // _10
-	u8 _14[4];                                      // _14
-	u32 _18;                                        // _18
-	RetraceCallback* m_previousPreRetraceCallback;  // _1C
-	RetraceCallback* m_previousPostRetraceCallback; // _20
-	void* _24;                                      // _24
-	void* _28;                                      // _28
-	u8 _2C;                                         // _2C
-	int _30;                                        // _30
-	void* m_messageSlots;                           // _34
-	OSMessageQueue m_messageQueue;                  // _38
+	const _GXRenderModeObj* m_renderModeObj;         // _04
+	u32 _08;                                         // _08
+	u32 m_retraceCount;                              // _0C
+	int _10;                                         // _10
+	u8 _14[4];                                       // _14
+	u32 _18;                                         // _18
+	VIRetraceCallback m_previousPreRetraceCallback;  // _1C
+	VIRetraceCallback m_previousPostRetraceCallback; // _20
+	VIRetraceCallback m_preRetraceCallback;          // _24
+	VIRetraceCallback m_postRetraceCallback;         // _28
+	bool _2C;                                        // _2C
+	s32 _30;                                         // _30
+	void* m_messageSlots;                            // _34
+	OSMessageQueue m_messageQueue;                   // _38
 
 	static JUTVideo* sManager;
+	static s32 sVideoLastTick;
+	static u32 sVideoInterval;
 };
 
 #endif

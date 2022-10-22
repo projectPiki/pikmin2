@@ -1,6 +1,7 @@
 #include "types.h"
 #include "JSystem/JPA/JPAShape.h"
 #include "JSystem/JPA/JPAEmitter.h"
+#include "Dolphin/gx.h"
 
 // TODO: replace GX functions with proper enumerated values
 // also, actually work out the types of JPAEmitterWorkData
@@ -10,24 +11,20 @@
  * Address:	80090F2C
  * Size:	0000FC
  */
-u32 JPALoadExTex(JPAEmitterWorkData* data)
+void JPALoadExTex(JPAEmitterWorkData* data)
 {
-	u32 result = 1;
+	GXTexCoordID result = GX_TEXCOORD1;
 
-	u32 flags = data->_04->_28;
-	if (flags & 1) {
-		GXSetTexCoordGen2(1, 1, 4, 60, 0, 125);
-		data->_08->_08->_04[???]->load(2);
-		result = 2;
+	if (data->m_resource->_28->m_data[8] & 1) {
+		GXSetTexCoordGen2(GX_TEXCOORD1, GX_TG_MTX3X4, GX_TG_TEX0, 60, GX_FALSE, 125);
+		data->m_resourceMgr->m_textures[data->m_resource->_38[data->m_resource->_28->m_data[0x25]]]->m_texture.load(GX_TEXMAP2);
+		result = GX_TEXCOORD2;
 	}
 
-	if (flags & 0x100) {
-		GXSetTexCoordGen2(result, 1, 4, 60, 0, 125);
-		// same shit as above, what is this?
-		data->_08->_08->_04[???]->load(3);
+	if (data->m_resource->_28->m_data[8] & 0x100) {
+		GXSetTexCoordGen2(result, GX_TG_MTX3X4, GX_TG_TEX0, 60, GX_FALSE, 125);
+		data->m_resourceMgr->m_textures[data->m_resource->_38[data->m_resource->_28->m_data[0x26]]]->m_texture.load(GX_TEXMAP3);
 	}
-
-	return result;
 	/*
 	stwu     r1, -0x10(r1)
 	mflr     r0

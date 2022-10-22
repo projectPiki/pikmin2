@@ -20,9 +20,9 @@ struct J3DAnmVtxColor : public J3DAnmBase {
 	{
 	}
 
-	virtual ~J3DAnmVtxColor();                                            // _08 (weak)
-	virtual J3DAnmKind getKind() const;                                   // _0C (weak)
-	virtual void getColor(unsigned char, unsigned short, GXColor*) const; // _10 (weak)
+	virtual ~J3DAnmVtxColor() { }                                            // _08 (weak)
+	virtual J3DAnmKind getKind() const { return J3DAnmKind_VtxColor; }       // _0C (weak)
+	virtual void getColor(unsigned char, unsigned short, GXColor*) const { } // _10 (weak)
 
 	u16 _0C;                      // _0C
 	u16 _0E;                      // _0E
@@ -41,9 +41,9 @@ struct J3DAnmVtxColorFull : public J3DAnmVtxColor {
 	{
 	}
 
-	virtual ~J3DAnmVtxColorFull();                                        // _08 (weak)
-	virtual J3DAnmKind getKind() const;                                   // _0C (weak)
-	virtual void getColor(unsigned char, unsigned short, GXColor*) const; // _10
+	virtual ~J3DAnmVtxColorFull() { }                                      // _08 (weak)
+	virtual J3DAnmKind getKind() const { return J3DAnmKind_VtxColorFull; } // _0C (weak)
+	virtual void getColor(unsigned char, unsigned short, GXColor*) const;  // _10
 
 	J3DAnmColorFullTable* _18; // _18
 	J3DAnmColorFullTable* _1C; // _1C
@@ -78,8 +78,8 @@ struct J3DAnmVtxColorKey : public J3DAnmVtxColor {
 	{
 	}
 
-	virtual ~J3DAnmVtxColorKey();                                         // _08 (weak)
-	virtual J3DAnmKind getKind() const;                                   // _0C (weak)
+	virtual ~J3DAnmVtxColorKey() { }                                      // _08 (weak)
+	virtual J3DAnmKind getKind() const { return J3DAnmKind_VtxColorKey; } // _0C (weak)
 	virtual void getColor(unsigned char, unsigned short, GXColor*) const; // _10
 
 	J3DAnmColorKeyTable* _18; // _18
@@ -90,7 +90,6 @@ struct J3DAnmVtxColorKey : public J3DAnmVtxColor {
 	s16* _2C;                 // _2C
 };
 
-struct J3DAnmVtxColorKeyData {
-};
+struct J3DAnmVtxColorKeyData { };
 
 #endif

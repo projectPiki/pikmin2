@@ -1,4 +1,7 @@
+#include "Dolphin/os.h"
 #include "JSystem/JKR/Aram.h"
+#include "JSystem/JKR/JKRDisposer.h"
+#include "JSystem/JSupport/JSUList.h"
 #include "types.h"
 
 /*
@@ -25,76 +28,32 @@
  * --INFO--
  * Address:	800196C8
  * Size:	0000D8
+ * __ct__11JKRAramHeapFUlUl
  */
-JKRAramHeap::JKRAramHeap(unsigned long, unsigned long)
+JKRAramHeap::JKRAramHeap(unsigned long p1, unsigned long p2)
+    : JKRDisposer()
 {
-	/*
-	stwu     r1, -0x20(r1)
-	mflr     r0
-	stw      r0, 0x24(r1)
-	stw      r31, 0x1c(r1)
-	mr       r31, r5
-	stw      r30, 0x18(r1)
-	mr       r30, r4
-	stw      r29, 0x14(r1)
-	mr       r29, r3
-	bl       __ct__11JKRDisposerFv
-	lis      r4, __vt__11JKRAramHeap@ha
-	addi     r3, r29, 0x18
-	addi     r0, r4, __vt__11JKRAramHeap@l
-	stw      r0, 0(r29)
-	bl       OSInitMutex
-	mr       r3, r29
-	bl       findFromRoot__7JKRHeapFPv
-	stw      r3, 0x30(r29)
-	rlwinm   r4, r31, 0, 0, 0x1a
-	addi     r3, r30, 0x1f
-	li       r0, 0xff
-	stw      r4, 0x3c(r29)
-	rlwinm   r4, r3, 0, 0, 0x1a
-	li       r3, 0x24
-	li       r5, 0
-	stw      r4, 0x34(r29)
-	lwz      r6, 0x34(r29)
-	lwz      r4, 0x3c(r29)
-	add      r4, r6, r4
-	stw      r4, 0x38(r29)
-	stb      r0, 0x40(r29)
-	lwz      r4, 0x30(r29)
-	bl       __nw__FUlP7JKRHeapi
-	or.      r4, r3, r3
-	beq      lbl_80019770
-	lwz      r4, 0x34(r29)
-	li       r5, 0
-	lwz      r6, 0x3c(r29)
-	li       r7, 0xff
-	li       r8, 0
-	bl       __ct__12JKRAramBlockFUlUlUlUcb
-	mr       r4, r3
-
-lbl_80019770:
-	lis      r3, sAramList__11JKRAramHeap@ha
-	addi     r4, r4, 4
-	addi     r3, r3, sAramList__11JKRAramHeap@l
-	bl       append__10JSUPtrListFP10JSUPtrLink
-	lwz      r0, 0x24(r1)
-	mr       r3, r29
-	lwz      r31, 0x1c(r1)
-	lwz      r30, 0x18(r1)
-	lwz      r29, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x20
-	blr
-	*/
+	OSInitMutex(&m_mutex);
+	_30                 = JKRHeap::findFromRoot(this);
+	_3C                 = ALIGN_PREV(p2, 0x20);
+	_34                 = ALIGN_NEXT(p1, 0x20);
+	_38                 = _34 + _3C;
+	_40                 = 0xFF;
+	JKRAramBlock* block = new (_30, 0) JKRAramBlock(_34, 0, _3C, 0xFF, false);
+	sAramList.append(&block->m_link);
 }
 
 /*
  * --INFO--
  * Address:	800197A0
  * Size:	0000A8
+ * __dt__11JKRAramHeapFv
  */
 JKRAramHeap::~JKRAramHeap()
 {
+	for (JSULink<JKRAramBlock>* link = sAramList.getFirst(); link != nullptr; link = link->getNext()) {
+		delete link->getObject();
+	}
 	/*
 	stwu     r1, -0x20(r1)
 	mflr     r0
@@ -151,47 +110,19 @@ lbl_80019828:
  * --INFO--
  * Address:	80019848
  * Size:	000080
+ * alloc__11JKRAramHeapFUlQ211JKRAramHeap10EAllocMode
  */
-JKRAramBlock* JKRAramHeap::alloc(u32, JKRAramHeap::EAllocMode)
+JKRAramBlock* JKRAramHeap::alloc(u32 size, JKRAramHeap::EAllocMode mode)
 {
-	/*
-	stwu     r1, -0x20(r1)
-	mflr     r0
-	stw      r0, 0x24(r1)
-	stw      r31, 0x1c(r1)
-	mr       r31, r5
-	stw      r30, 0x18(r1)
-	mr       r30, r4
-	stw      r29, 0x14(r1)
-	mr       r29, r3
-	addi     r3, r29, 0x18
-	bl       OSLockMutex
-	cmpwi    r31, 0
-	bne      lbl_80019890
-	mr       r3, r29
-	mr       r4, r30
-	bl       allocFromHead__11JKRAramHeapFUl
-	mr       r31, r3
-	b        lbl_800198A0
-
-lbl_80019890:
-	mr       r3, r29
-	mr       r4, r30
-	bl       allocFromTail__11JKRAramHeapFUl
-	mr       r31, r3
-
-lbl_800198A0:
-	addi     r3, r29, 0x18
-	bl       OSUnlockMutex
-	lwz      r0, 0x24(r1)
-	mr       r3, r31
-	lwz      r31, 0x1c(r1)
-	lwz      r30, 0x18(r1)
-	lwz      r29, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x20
-	blr
-	*/
+	JKRAramBlock* mem;
+	OSLockMutex(&m_mutex);
+	if (mode == AM_Head) {
+		mem = allocFromHead(size);
+	} else {
+		mem = allocFromTail(size);
+	}
+	OSUnlockMutex(&m_mutex);
+	return mem;
 }
 
 /*
@@ -199,8 +130,14 @@ lbl_800198A0:
  * Address:	800198C8
  * Size:	000088
  */
-JKRAramBlock* JKRAramHeap::allocFromHead(u32)
+JKRAramBlock* JKRAramHeap::allocFromHead(u32 size)
 {
+	// size = ALIGN_NEXT(size, 0x20);
+	// JKRAramBlock* block;
+	// for (JSULink<JKRAramBlock>* link = sAramList.getFirst(); link != nullptr; link = link->getNext()) {
+	// 	block = link->getObject();
+	// 	if (size <)
+	// }
 	/*
 	stwu     r1, -0x10(r1)
 	mflr     r0

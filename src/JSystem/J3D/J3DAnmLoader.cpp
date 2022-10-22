@@ -597,10 +597,10 @@ void J3DAnmFullLoader_v15::readAnmTransform(const J3DAnmTransformFullData* data)
  */
 void J3DAnmFullLoader_v15::setAnmTransform(J3DAnmTransformFull* animation, const J3DAnmTransformFullData* data)
 {
-	animation->_1E = data->_0C;
-	animation->_06 = data->_0A;
-	animation->_04 = data->_08;
-	animation->_08 = 0.0f;
+	animation->_1E     = data->_0C;
+	animation->m_time  = data->_0A;
+	animation->_04     = data->_08;
+	animation->m_fTime = 0.0f;
 
 	animation->_20 = JSUConvertOffsetToPtr<J3DAnmTransformFullTable>(data, data->_14);
 	animation->_0C = JSUConvertOffsetToPtr<float>(data, data->_18);
@@ -622,10 +622,10 @@ void J3DAnmFullLoader_v15::readAnmColor(const J3DAnmColorFullData* data) { setAn
  */
 void J3DAnmFullLoader_v15::setAnmColor(J3DAnmColorFull* animation, const J3DAnmColorFullData* data)
 {
-	animation->_06 = data->_0C;
-	animation->_04 = data->_08;
-	animation->_08 = 0.0f;
-	animation->_14 = data->_0E;
+	animation->m_time  = data->_0C;
+	animation->_04     = data->_08;
+	animation->m_fTime = 0.0f;
+	animation->_14     = data->_0E;
 
 	animation->_3C = JSUConvertOffsetToPtr<J3DAnmColorFullTable>(data, data->_18);
 	animation->_2C = JSUConvertOffsetToPtr<u8>(data, data->_24);
@@ -653,11 +653,11 @@ void J3DAnmFullLoader_v15::readAnmTexPattern(const J3DAnmTexPatternFullData* dat
  */
 void J3DAnmFullLoader_v15::setAnmTexPattern(J3DAnmTexPattern* animation, const J3DAnmTexPatternFullData* data)
 {
-	animation->_06 = data->_0A;
-	animation->_04 = data->_08;
-	animation->_08 = 0.0f;
-	animation->_16 = data->_0C;
-	animation->_14 = data->_0E;
+	animation->m_time  = data->_0A;
+	animation->_04     = data->_08;
+	animation->m_fTime = 0.0f;
+	animation->_16     = data->_0C;
+	animation->_14     = data->_0E;
 
 	animation->_10 = JSUConvertOffsetToPtr<J3DAnmTexPatternFullTable>(data, data->_10);
 	animation->_0C = JSUConvertOffsetToPtr<u16>(data, data->_14);
@@ -682,11 +682,11 @@ void J3DAnmFullLoader_v15::readAnmVisibility(const J3DAnmVisibilityFullData* dat
  */
 void J3DAnmFullLoader_v15::setAnmVisibility(J3DAnmVisibilityFull* animation, const J3DAnmVisibilityFullData* data)
 {
-	animation->_06 = data->_0A;
-	animation->_04 = data->_08;
-	animation->_08 = 0.0f;
-	animation->_0C = data->_0C;
-	animation->_0E = data->_0E;
+	animation->m_time  = data->_0A;
+	animation->_04     = data->_08;
+	animation->m_fTime = 0.0f;
+	animation->_0C     = data->_0C;
+	animation->_0E     = data->_0E;
 
 	animation->_10 = JSUConvertOffsetToPtr<J3DAnmVisibilityFullTable>(data, data->_10);
 	animation->_14 = JSUConvertOffsetToPtr<u8>(data, data->_14);
@@ -706,9 +706,9 @@ void J3DAnmFullLoader_v15::readAnmCluster(const J3DAnmClusterFullData* data) { s
  */
 void J3DAnmFullLoader_v15::setAnmCluster(J3DAnmClusterFull* animation, const J3DAnmClusterFullData* data)
 {
-	animation->_06 = data->_0A;
-	animation->_04 = data->_08;
-	animation->_08 = 0.0f;
+	animation->m_time  = data->_0A;
+	animation->_04     = data->_08;
+	animation->m_fTime = 0.0f;
 
 	animation->_10 = JSUConvertOffsetToPtr<J3DAnmClusterFullTable>(data, data->_10);
 	animation->_0C = JSUConvertOffsetToPtr<f32>(data, data->_14);
@@ -729,11 +729,11 @@ void J3DAnmFullLoader_v15::readAnmVtxColor(const J3DAnmVtxColorFullData* data) {
  */
 void J3DAnmFullLoader_v15::setAnmVtxColor(J3DAnmVtxColorFull* animation, const J3DAnmVtxColorFullData* data)
 {
-	animation->_06 = data->_0A;
-	animation->_04 = data->_08;
-	animation->_08 = 0.0f;
-	animation->_0C = data->_0C;
-	animation->_0E = data->_0E;
+	animation->m_time  = data->_0A;
+	animation->_04     = data->_08;
+	animation->m_fTime = 0.0f;
+	animation->_0C     = data->_0C;
+	animation->_0E     = data->_0E;
 
 	animation->_18 = JSUConvertOffsetToPtr<J3DAnmColorFullTable>(data, data->_18);
 	animation->_1C = JSUConvertOffsetToPtr<J3DAnmColorFullTable>(data, data->_1C);
