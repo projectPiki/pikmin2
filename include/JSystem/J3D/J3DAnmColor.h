@@ -60,7 +60,12 @@ struct J3DAnmColorFull : public J3DAnmColor {
 	J3DAnmColorFullTable* _3C; // _3C
 };
 
-struct J3DAnmColorFullData : J3DAnmFullData {
+struct J3DAnmColorFullData : J3DFileBlockBase {
+	u8 _08;  // _08
+	s16 _0A; // _0A
+	s16 _0C; // _0C
+	u16 _0E; // _0E
+
 	u8 _10[8]; // _10
 	void* _18; // _18
 	void* _1C; // _1C
@@ -71,8 +76,7 @@ struct J3DAnmColorFullData : J3DAnmFullData {
 	void* _30; // _30
 };
 
-struct J3DAnmColorFullTable {
-};
+struct J3DAnmColorFullTable { };
 
 /**
  * @size{0x40}
@@ -98,7 +102,22 @@ struct J3DAnmColorKey : public J3DAnmColor {
 	J3DAnmColorKeyTable* m_table; // _3C
 };
 
-struct J3DAnmColorKeyData {
+struct J3DAnmColorKeyData : J3DFileBlockBase {
+	u8 _08; // _08
+	u32 : 0;
+	s16 _0C;   // _0C
+	u16 _0E;   // _0E
+	u16 _10;   // _10
+	u16 _12;   // _12
+	u16 _14;   // _14
+	u16 _16;   // _16
+	void* _18; // _18
+	void* _1C; // _1C
+	void* _20; // _20
+	void* _24; // _24
+	void* _28; // _28
+	void* _2C; // _28
+	void* _30; // _30
 };
 
 /**

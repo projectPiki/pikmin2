@@ -3,6 +3,7 @@
 
 #include "Dolphin/gx.h"
 #include "JSystem/J3D/J3DAnmBase.h"
+#include "JSystem/J3D/J3DFileBlock.h"
 #include "JSystem/JUT/JUTNameTab.h"
 #include "types.h"
 
@@ -39,7 +40,7 @@ struct J3DAnmTevRegKey : public J3DAnmBase {
 		_60                 = nullptr;
 	}
 
-	virtual ~J3DAnmTevRegKey(); // _08 (weak)
+	virtual ~J3DAnmTevRegKey() { } // _08 (weak)
 	/**
 	 * @reifiedAddress{800742D8}
 	 * @reifiedFile{JSystem/J3D/J3DAnmLoader.cpp}
@@ -79,7 +80,33 @@ struct J3DAnmTevRegKey : public J3DAnmBase {
 	s16* _6C;                // _6C
 };
 
-struct J3DAnmTevRegKeyData {
+struct J3DAnmTevRegKeyData : J3DFileBlockBase {
+	u8 _08;    // _08
+	s16 _0A;   // _0A
+	u16 _0C;   // _0C
+	u16 _0E;   // _0E
+	u16 _10;   // _10
+	u16 _12;   // _12
+	u16 _14;   // _14
+	u16 _16;   // _16
+	u16 _18;   // _18
+	u16 _1A;   // _1A
+	u16 _1C;   // _1C
+	u16 _1E;   // _1E
+	void* _20; // _20
+	void* _24; // _24
+	void* _28; // _28
+	void* _2C; // _2C
+	void* _30; // _30
+	void* _34; // _34
+	void* _38; // _38
+	void* _3C; // _3C
+	void* _40; // _40
+	void* _44; // _44
+	void* _48; // _48
+	void* _4C; // _4C
+	void* _50; // _50
+	void* _54; // _54
 };
 
 /**

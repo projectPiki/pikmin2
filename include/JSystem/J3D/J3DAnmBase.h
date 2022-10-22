@@ -56,6 +56,7 @@ struct J3DAnmBase {
  */
 struct J3DAnmFullData : J3DFileBlockBase {
 	u8 _08;  // _08
+	u8 _09;  // _09
 	s16 _0A; // _0A
 	u16 _0C; // _0C
 	u16 _0E; // _0E

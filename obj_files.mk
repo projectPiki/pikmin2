@@ -133,7 +133,7 @@ JSYSTEM:=\
 	$(BUILD_DIR)/asm/JSystem/J3D/J3DModelLoader.o\
 	$(BUILD_DIR)/src/JSystem/J3D/J3DJointFactory.o\
 	$(BUILD_DIR)/asm/JSystem/J3D/J3DShapeFactory.o\
-	$(BUILD_DIR)/asm/JSystem/J3D/J3DAnmLoader.o\
+	$(BUILD_DIR)/src/JSystem/J3D/J3DAnmLoader.o\
 	$(BUILD_DIR)/src/JSystem/J3D/J3DModelSaver.o\
 	$(BUILD_DIR)/asm/JSystem/J3D/J3DGD.o\
 	$(BUILD_DIR)/asm/JSystem/J3D/J3DMatBlock.o\
