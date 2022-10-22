@@ -109,6 +109,7 @@ struct J3DAnmTransformKeyData : public J3DAnmFullData {
 	void* _1C;   // _1C
 	void* _20;   // _20
 };
-struct J3DAnmTransformKeyTable : public J3DAnmKeyTableBase { };
+struct J3DAnmTransformKeyTable : public J3DAnmKeyTableBase {
+};
 
 #endif

@@ -45,6 +45,7 @@ struct J3DAnmTexPatternFullData : J3DAnmFullData {
 	void* _18; // _18
 	void* _1C; // _1C
 };
-struct J3DAnmTexPatternFullTable { };
+struct J3DAnmTexPatternFullTable {
+};
 
 #endif

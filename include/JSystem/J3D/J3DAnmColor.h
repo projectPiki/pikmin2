@@ -76,7 +76,8 @@ struct J3DAnmColorFullData : J3DFileBlockBase {
 	void* _30; // _30
 };
 
-struct J3DAnmColorFullTable { };
+struct J3DAnmColorFullTable {
+};
 
 /**
  * @size{0x40}
