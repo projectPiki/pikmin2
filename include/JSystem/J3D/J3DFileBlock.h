@@ -51,10 +51,16 @@ enum J3DFileBlockType {
 	//  Anm Block Types:
 	J3DFBT_AnmTexPattern     = 'TPT1',
 	J3DFBT_AnmClusterFull    = 'CLF1',
+	J3DFBT_AnmClusterKey     = 'CLK1',
 	J3DFBT_AnmTransformFull  = 'ANF1',
+	J3DFBT_AnmTransformKey   = 'ANK1',
 	J3DFBT_AnmColorFull      = 'PAF1',
+	J3DFBT_AnmColorKey       = 'PAK1',
 	J3DFBT_AnmVtxColorFull   = 'VCF1',
+	J3DFBT_AnmVtxColorKey    = 'VCK1',
 	J3DFBT_AnmVisibilityFull = 'VAF1',
+	J3DFBT_AnmTextureSRTKey  = 'TTK1',
+	J3DFBT_AnmTevRegKey      = 'TRK1',
 };
 
 struct J3DDrawBlock : J3DFileBlockBase {

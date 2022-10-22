@@ -35,7 +35,7 @@ struct J3DAnmTextureSRTKey : public J3DAnmBase {
 		_78 = 0;
 	}
 
-	virtual ~J3DAnmTextureSRTKey(); // _08 (weak)
+	virtual ~J3DAnmTextureSRTKey() { } // _08 (weak)
 	/**
 	 * @reifiedAddress{80074368}
 	 * @reifiedFile{JSystem/J3D/J3DAnmLoader.cpp}
@@ -60,7 +60,7 @@ struct J3DAnmTextureSRTKey : public J3DAnmBase {
 	u8* _28;                      // _28
 	u16* _2C;                     // _2C
 	JUTNameTab _30;               // _30
-	JGeometry::TVec3f* _40;       // _40
+	Vec* _40;                     // _40
 	u16 _44;                      // _44
 	u16 _46;                      // _46
 	u16 _48;                      // _48
@@ -72,11 +72,34 @@ struct J3DAnmTextureSRTKey : public J3DAnmBase {
 	u8* _5C;                      // _5C
 	u16* _60;                     // _60
 	JUTNameTab _64;               // _64
-	JGeometry::TVec3f* _74;       // _74
+	Vec* _74;                     // _74
 	u32 _78;                      // _78
 };
 
-struct J3DAnmTextureSRTKeyData {
+struct J3DAnmTextureSRTKeyData : J3DAnmFullData {
+	u16 _10;   // _10
+	u16 _12;   // _12
+	void* _14; // _14
+	void* _18; // _18
+	void* _1C; // _1C
+	void* _20; // _20
+	void* _24; // _24
+	void* _28; // _28
+	void* _2C; // _2C
+	void* _30; // _30
+	u16 _34;   // _34
+	u16 _36;   // _36
+	u16 _38;   // _38
+	u16 _3A;   // _3A
+	void* _3C; // _3C
+	void* _40; // _40
+	void* _44; // _44
+	void* _48; // _48
+	void* _4C; // _4C
+	void* _50; // _50
+	void* _54; // _54
+	void* _58; // _58
+	int _5C;   // _5C
 };
 
 #endif

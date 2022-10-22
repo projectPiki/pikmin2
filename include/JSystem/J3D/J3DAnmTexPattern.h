@@ -19,7 +19,7 @@ struct J3DAnmTexPattern : public J3DAnmBase {
 	{
 	}
 
-	virtual ~J3DAnmTexPattern(); // _08 (weak)
+	virtual ~J3DAnmTexPattern() { } // _08 (weak)
 	/**
 	 * @reifiedAddress{80074248}
 	 * @reifiedFile{JSystem/J3D/J3DAnmLoader.cpp}

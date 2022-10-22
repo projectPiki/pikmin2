@@ -20,7 +20,7 @@ struct J3DAnmVisibilityFull : public J3DAnmBase {
 	{
 	}
 
-	virtual ~J3DAnmVisibilityFull(); // _08 (weak)
+	virtual ~J3DAnmVisibilityFull() { } // _08 (weak)
 	/**
 	 * @reifiedAddress{800741CC}
 	 * @reifiedFile{JSystem/J3D/J3DAnmLoader.cpp}

@@ -90,7 +90,22 @@ struct J3DAnmVtxColorKey : public J3DAnmVtxColor {
 	s16* _2C;                 // _2C
 };
 
-struct J3DAnmVtxColorKeyData {
+struct J3DAnmVtxColorKeyData : J3DFileBlockBase {
+	u8 _08;    // _08
+	s16 _0A;   // _0A
+	u16 _0C;   // _0C
+	u16 _0E;   // _0E
+	u8 _10[8]; // _10 - unknown/filler
+	void* _18; // _18
+	void* _1C; // _1C
+	void* _20; // _20
+	void* _24; // _24
+	void* _28; // _28
+	void* _2C; // _2C
+	void* _30; // _30
+	void* _34; // _34
+	void* _38; // _38
+	void* _3C; // _3C
 };
 
 #endif
