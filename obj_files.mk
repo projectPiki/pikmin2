@@ -689,7 +689,7 @@ NISHIMURA:=\
 	$(BUILD_DIR)/asm/plugProjectNishimuraU/GasHiba.o\
 	$(BUILD_DIR)/src/plugProjectNishimuraU/ElecHibaState.o\
 	$(BUILD_DIR)/src/plugProjectNishimuraU/ElecHibaAnimator.o\
-	$(BUILD_DIR)/asm/plugProjectNishimuraU/ElecHibaMgr.o\
+	$(BUILD_DIR)/src/plugProjectNishimuraU/ElecHibaMgr.o\
 	$(BUILD_DIR)/asm/plugProjectNishimuraU/ElecHiba.o\
 	$(BUILD_DIR)/asm/plugProjectNishimuraU/SaraiState.o\
 	$(BUILD_DIR)/src/plugProjectNishimuraU/SaraiAnimator.o\

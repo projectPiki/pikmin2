@@ -117,7 +117,7 @@ struct Parms : public EnemyParmsBase {
 		inline ProperParms()
 		    : Parameters(nullptr, "EnemyParmsBase")
 		    , m_waitTime(this, 'fp02', "ウェイト時間", 2.5f, 0.0f, 100.0f) // 'wait time'
-		    , m_warningTime(this, 'fp03', "予兆時間", 2.5f, 0.0f, 100.0f)  // 'warning time'
+		    , m_warningTime(this, 'fp03', "予\兆時間", 2.5f, 0.0f, 100.0f) // 'warning time'
 		    , m_activeTime(this, 'fp01', "放電時間", 2.5f, 0.0f, 100.0f)   // 'discharge time'
 		    , m_stopTime(this, 'fp04', "停止時間", 10.0f, 0.0f, 100.0f)    // 'stop time'
 		    , m_lodNear(this, 'fp90', "LOD NEAR", 0.085f, 0.0f, 1.0f)

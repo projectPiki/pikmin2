@@ -107,16 +107,15 @@ EnemyBase* Mgr::birth(EnemyBirthArg& birthArg)
 	InitialParam param;
 	param._00     = 100.0f;
 	Obj* elecHiba = static_cast<Obj*>(EnemyMgrBase::birth(birthArg));
-	Obj* elecHibaPartner;
-	Obj* potentialPartner;
 	if (elecHiba) {
 		elecHiba->_2E4 = birthArg.m_position;
 		elecHiba->setElecHibaPosition(&param, 1.0f);
 		teamList = &elecHiba->m_teamList;
 		elecHiba->createEffect(true);
 
-		elecHibaPartner = static_cast<Obj*>(EnemyMgrBase::birth(birthArg));
-		if (elecHibaPartner) {
+		EnemyBase* potentialPartner = EnemyMgrBase::birth(birthArg);
+		if (potentialPartner) {
+			Obj* elecHibaPartner  = static_cast<Obj*>(potentialPartner);
 			elecHibaPartner->_2E4 = birthArg.m_position;
 			elecHibaPartner->setElecHibaPosition(&param, -1.0f);
 			elecHibaPartner->createEffect(false);
@@ -125,68 +124,6 @@ EnemyBase* Mgr::birth(EnemyBirthArg& birthArg)
 	}
 
 	return elecHiba;
-	/*
-	stwu     r1, -0x20(r1)
-	mflr     r0
-	lfs      f0, lbl_8051B0C0@sda21(r2)
-	stw      r0, 0x24(r1)
-	stw      r31, 0x1c(r1)
-	stw      r30, 0x18(r1)
-	stw      r29, 0x14(r1)
-	mr       r29, r3
-	stw      r28, 0x10(r1)
-	mr       r28, r4
-	stfs     f0, 8(r1)
-	bl       birth__Q24Game12EnemyMgrBaseFRQ24Game13EnemyBirthArg
-	or.      r30, r3, r3
-	beq      lbl_8026F034
-	lfs      f0, 0(r28)
-	addi     r4, r1, 8
-	lfs      f1, lbl_8051B0D4@sda21(r2)
-	stfs     f0, 0x2e4(r30)
-	lfs      f0, 4(r28)
-	stfs     f0, 0x2e8(r30)
-	lfs      f0, 8(r28)
-	stfs     f0, 0x2ec(r30)
-	bl       setElecHibaPosition__Q34Game8ElecHiba3ObjFPQ34Game8ElecHiba12InitialParamf
-	mr       r3, r30
-	addi     r31, r30, 0x2c8
-	li       r4, 1
-	bl       createEffect__Q34Game8ElecHiba3ObjFb
-	mr       r3, r29
-	mr       r4, r28
-	bl       birth__Q24Game12EnemyMgrBaseFRQ24Game13EnemyBirthArg
-	or.      r0, r3, r3
-	beq
-lbl_8026F034
-  lfs      f0, 0(r28)
-  mr       r29, r0
-  lfs      f1,
-	lbl_8051B0DC@sda21(r2)
-	addi     r4, r1, 8
-	stfs     f0, 0x2e4(r29)
-	lfs      f0, 4(r28)
-	stfs     f0, 0x2e8(r29)
-	lfs      f0, 8(r28)
-	stfs     f0, 0x2ec(r29)
-	bl       setElecHibaPosition__Q34Game8ElecHiba3ObjFPQ34Game8ElecHiba12InitialParamf
-	mr       r3, r29
-	li       r4, 0
-	bl       createEffect__Q34Game8ElecHiba3ObjFb mr r3, r31
-	addi     r4, r29, 0x2c8
-	bl       add__5CNodeFP5CNode
-
-lbl_8026F034:
-	lwz      r0, 0x24(r1)
-	mr       r3, r30
-	lwz      r31, 0x1c(r1)
-	lwz      r30, 0x18(r1)
-	lwz      r29, 0x14(r1)
-	lwz      r28, 0x10(r1)
-	mtlr     r0
-	addi     r1, r1, 0x20
-	blr
-	*/
 }
 
 } // namespace ElecHiba
