@@ -7,16 +7,11 @@
 #include "Game/EnemyMgrBase.h"
 #include "Game/EnemyBase.h"
 #include "Game/gameGenerator.h"
+#include "efx/TQuri.h"
 
 /**
  * --Header for Honey Wisp (Qurione)--
  */
-
-namespace efx {
-struct TQuriGlow;
-struct TQuriApp;
-struct TQuriDisap;
-} // namespace efx
 
 namespace Game {
 namespace Egg {
@@ -36,7 +31,7 @@ struct Obj : public EnemyBase {
 	virtual void inWaterCallback(WaterBox*);                      // _84 (weak)
 	virtual void outWaterCallback();                              // _88 (weak)
 	virtual void getShadowParam(ShadowParam&);                    // _134
-	virtual ~Obj();                                               // _1BC (weak)
+	virtual ~Obj() { }                                            // _1BC (weak)
 	virtual void birth(Vector3f&, f32);                           // _1C0
 	virtual void setInitialSetting(EnemyInitialParamBase*);       // _1C4
 	virtual void doUpdate();                                      // _1CC
@@ -92,12 +87,18 @@ struct Obj : public EnemyBase {
 struct Mgr : public EnemyMgrBase {
 	Mgr(int objLimit, u8 modelType);
 
-	virtual ~Mgr();                                     // _58 (weak)
-	virtual void createObj(int);                        // _A0
-	virtual EnemyBase* getEnemy(int);                   // _A4
-	virtual void doAlloc();                             // _A8
-	virtual EnemyTypeID::EEnemyTypeID getEnemyTypeID(); // _AC (weak)
-	virtual J3DModelData* doLoadBmd(void*);             // _D4 (weak)
+	// virtual ~Mgr();                                     // _58 (weak)
+	virtual void doAlloc();                            // _A8
+	virtual EnemyBase* getEnemy(int);                  // _A4
+	virtual void createObj(int);                       // _A0
+	virtual EnemyTypeID::EEnemyTypeID getEnemyTypeID() // _AC (weak)
+	{
+		return EnemyTypeID::EnemyID_Qurione;
+	}
+	virtual J3DModelData* doLoadBmd(void* filename) // _D4 (weak)
+	{
+		return J3DModelLoaderDataBase::load(filename, 0x20240010);
+	}
 
 	// _00 		= VTBL
 	// _00-_44	= EnemyMgrBase
@@ -106,7 +107,15 @@ struct Mgr : public EnemyMgrBase {
 
 struct Parms : public EnemyParmsBase {
 	struct ProperParms : public Parameters {
-		inline ProperParms(); // likely
+		inline ProperParms()
+		    : Parameters(nullptr, "EnemyParmsBase")
+		    , m_fp01(this, 'fp01', "îÚçsçÇÇ≥", 60.0f, 0.0f, 150.0f)
+		    , m_fp02(this, 'fp02', "è„â∫ÇÃóhÇÍë¨ìx", 2.5f, 0.0f, 10.0f)
+		    , m_fp03(this, 'fp03', "è„â∫ÇÃóhÇÍïù", 20.0f, 0.0f, 50.0f)
+		    , m_fp04(this, 'fp04', "éÄñSë¨ìx", 100.0f, 0.0f, 1000.0f)
+		    , m_fp05(this, 'fp05', "éÄñSéûä‘", 1.0f, 0.0f, 10.0f)
+		{
+		}
 
 		Parm<f32> m_fp01; // _804
 		Parm<f32> m_fp02; // _82C
@@ -115,9 +124,14 @@ struct Parms : public EnemyParmsBase {
 		Parm<f32> m_fp05; // _8A4
 	};
 
-	Parms();
+	Parms() { }
 
-	virtual void read(Stream&); // _08 (weak)
+	virtual void read(Stream& stream) // _08 (weak)
+	{
+		CreatureParms::read(stream);
+		m_general.read(stream);
+		m_properParms.read(stream);
+	}
 
 	// _00-_7F8	= EnemyParmsBase
 	ProperParms m_properParms; // _7F8
@@ -126,19 +140,22 @@ struct Parms : public EnemyParmsBase {
 struct Generator : public EnemyGeneratorBase {
 	Generator();
 
-	virtual ~Generator();            // _08 (weak)
-	virtual void doWrite(Stream&);   // _10
-	virtual void doRead(Stream&);    // _14
-	virtual u32 getLatestVersion();  // _18
-	virtual void* getInitialParam(); // _20 (weak)
+	virtual ~Generator() { }        // _08 (weak)
+	virtual void doWrite(Stream&);  // _10
+	virtual void doRead(Stream&);   // _14
+	virtual u32 getLatestVersion(); // _18
+	virtual void* getInitialParam() // _20 (weak)
+	{
+		return &m_fly;
+	}
 
 	void doReadLatestVersion(Stream&);
 	void doReadOldVersion(Stream&);
 
 	// _00 		= VTBL
-	// _00-_1C  = EnemyGeneratorBase
-	f32 m_fly;   // _20
-	f32 m_slide; // _24
+	// _00-_24  = EnemyGeneratorBase
+	f32 m_fly;   // _24
+	f32 m_slide; // _28
 };
 
 struct ProperAnimator : public EnemyAnimatorBase {

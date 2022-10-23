@@ -7,17 +7,12 @@
 #include "Game/EnemyMgrBase.h"
 #include "Game/EnemyBase.h"
 #include "Game/gameGenerator.h"
+#include "efx/TRock.h"
 
 /**
  * --Header for Boulders (Rock)--
  * For both falling and rolling boulders.
  */
-
-namespace efx {
-struct TRockRun;
-struct TRockGrRun;
-struct TRockWRun;
-} // namespace efx
 
 namespace Game {
 namespace Rock {
@@ -37,7 +32,7 @@ struct Obj : public EnemyBase {
 	virtual void getShadowParam(ShadowParam&);               // _134
 	virtual bool needShadow();                               // _138
 	virtual bool ignoreAtari(Creature*);                     // _190
-	virtual ~Obj();                                          // _1BC (weak)
+	virtual ~Obj() { }                                       // _1BC (weak)
 	virtual void birth(Vector3f&, f32);                      // _1C0
 	virtual void setInitialSetting(EnemyInitialParamBase*);  // _1C4
 	virtual void doUpdate();                                 // _1CC
@@ -79,18 +74,21 @@ struct Obj : public EnemyBase {
 	efx::TRockRun* m_efxRun;         // _2D8
 	efx::TRockGrRun* m_efxGroundRun; // _2DC
 	efx::TRockWRun* m_efxWaterRun;   // _2E0
-	u8 _2E4[0x4];                    // _2E4, unknown
+	int m_rockType;                  // _2E4, 19/EnemyID_Rock or 74/EnemyID_Stone
 	                                 // _2E8 = PelletView
 };
 
 struct Mgr : public EnemyMgrBase {
 	Mgr(int objLimit, u8 modelType);
 
-	virtual ~Mgr();                                     // _58 (weak)
-	virtual void createObj(int);                        // _A0
-	virtual EnemyBase* getEnemy(int);                   // _A4
-	virtual void doAlloc();                             // _A8
-	virtual EnemyTypeID::EEnemyTypeID getEnemyTypeID(); // _AC (weak)
+	// virtual ~Mgr();                                     // _58 (weak)
+	virtual void createObj(int);                       // _A0
+	virtual EnemyBase* getEnemy(int);                  // _A4
+	virtual void doAlloc();                            // _A8
+	virtual EnemyTypeID::EEnemyTypeID getEnemyTypeID() // _AC (weak)
+	{
+		return EnemyTypeID::EnemyID_Rock;
+	}
 
 	// _00 		= VTBL
 	// _00-_44	= EnemyMgrBase
@@ -99,14 +97,23 @@ struct Mgr : public EnemyMgrBase {
 
 struct Parms : public EnemyParmsBase {
 	struct ProperParms : public Parameters {
-		inline ProperParms(); // likely
+		inline ProperParms()
+		    : Parameters(nullptr, "EnemyParmsBase")
+		    , m_fp01(this, 'fp01', "ÉTÅ[É`ÉSÉçÉSÉçë¨ìx", 150.0f, 0.0f, 1000.0f) // 'search rumble speed'
+		{
+		}
 
 		Parm<f32> m_fp01; // _804
 	};
 
-	Parms();
+	Parms() { }
 
-	virtual void read(Stream&); // _08 (weak)
+	virtual void read(Stream& stream) // _08 (weak)
+	{
+		CreatureParms::read(stream);
+		m_general.read(stream);
+		m_properParms.read(stream);
+	}
 
 	// _00-_7F8	= EnemyParmsBase
 	ProperParms m_properParms; // _7F8
@@ -115,18 +122,20 @@ struct Parms : public EnemyParmsBase {
 struct Generator : public EnemyGeneratorBase {
 	Generator();
 
-	virtual ~Generator();            // _08 (weak)
-	virtual void doWrite(Stream&);   // _10
-	virtual void doRead(Stream&);    // _14
-	virtual u32 getLatestVersion();  // _18
-	virtual void* getInitialParam(); // _20 (weak)
+	virtual ~Generator() { }        // _08 (weak)
+	virtual void doWrite(Stream&);  // _10
+	virtual void doRead(Stream&);   // _14
+	virtual u32 getLatestVersion(); // _18
+	virtual void* getInitialParam() // _20 (weak)
+	{
+		return &m_speed;
+	}
 
 	void doReadLatestVersion(Stream&);
 	void doReadOldVersion(Stream&);
 
 	// _00 		= VTBL
-	// _00-_1C  = EnemyGeneratorBase
-	u8 _20[0x4];  // _20, unknown
+	// _00-_24  = EnemyGeneratorBase
 	f32 m_speed;  // _24
 	f32 m_offset; // _28
 	f32 m_scale;  // _2C
