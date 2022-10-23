@@ -6,6 +6,9 @@
 #include "Game/EnemyParmsBase.h"
 #include "Game/EnemyMgrBase.h"
 #include "Game/EnemyBase.h"
+#include "efx/TFusen.h"
+#include "Sys/MatBaseAnimation.h"
+#include "Sys/MatBaseAnimator.h"
 
 /**
  * --Header for Withering Blowhog (Hanachirashi)--
@@ -31,7 +34,7 @@ struct Obj : public EnemyBase {
 	virtual void inWaterCallback(WaterBox*);                // _84 (weak)
 	virtual void outWaterCallback();                        // _88 (weak)
 	virtual void getShadowParam(ShadowParam&);              // _134
-	virtual ~Obj();                                         // _1BC (weak)
+	virtual ~Obj() { }                                      // _1BC (weak)
 	virtual void setInitialSetting(EnemyInitialParamBase*); // _1C4
 	virtual void doUpdate();                                // _1CC
 	virtual void doDebugDraw(Graphics&);                    // _1EC
@@ -98,38 +101,57 @@ struct Obj : public EnemyBase {
 struct Mgr : public EnemyMgrBase {
 	Mgr(int objLimit, u8 modelType);
 
-	virtual ~Mgr();                                     // _58 (weak)
-	virtual void createObj(int);                        // _A0
-	virtual EnemyBase* getEnemy(int);                   // _A4
-	virtual void doAlloc();                             // _A8
-	virtual EnemyTypeID::EEnemyTypeID getEnemyTypeID(); // _AC (weak)
-	virtual SysShape::Model* createModel();             // _B0
-	virtual void loadTexData();                         // _D0
+	// virtual ~Mgr();                                     // _58 (weak)
+	virtual void createObj(int);                       // _A0
+	virtual EnemyBase* getEnemy(int);                  // _A4
+	virtual void doAlloc();                            // _A8
+	virtual SysShape::Model* createModel();            // _B0
+	virtual void loadTexData();                        // _D0
+	virtual EnemyTypeID::EEnemyTypeID getEnemyTypeID() // _AC (weak)
+	{
+		return EnemyTypeID::EnemyID_Hanachirashi;
+	}
 
 	// _00 		= VTBL
 	// _00-_44	= EnemyMgrBase
-	Sys::MatTexAnimation* _44;    // _44
-	Sys::MatTevRegAnimation* _48; // _48
-	Obj* m_obj;                   // _4C, array of Objs, probably
+	Sys::MatTexAnimation* m_texAnimation;       // _44
+	Sys::MatTevRegAnimation* m_tevRegAnimation; // _48
+	Obj* m_obj;                                 // _4C, array of Objs
 };
 
 struct Parms : public EnemyParmsBase {
 	struct ProperParms : public Parameters {
-		ProperParms(); // (weak)
+		ProperParms()
+		    : Parameters(nullptr, "EnemyParmsBase")
+		    , m_fp01(this, 'fp01', "基準飛行高さ", 90.0f, 0.0f, 150.0f)   // 'standard flight height'
+		    , m_fp02(this, 'fp02', "上昇係数", 1.0f, 0.0f, 10.0f)         // 'rise factor'
+		    , m_fp03(this, 'fp03', "空中ウェイト時間", 3.0f, 0.0f, 10.0f) // 'air wait time'
+		    , m_fp10(this, 'fp10', "地上ウェイト時間", 3.0f, 0.0f, 10.0f) // 'ground wait time'
+		    , m_fp04(this, 'fp04', "振払落下時間", 3.0f, 0.0f, 10.0f)     // 'shake off time'
+		    , m_ip01(this, 'ip01', "落下最低ピキ数", 10, 1, 50)           // 'falling minimum number piki'
+		    , m_fp05(this, 'fp05', "上下の揺れ速度", 2.5f, 0.0f, 10.0f)   // 'vertical swing speed'
+		    , m_fp06(this, 'fp06', "上下の揺れ幅", 5.0f, 0.0f, 10.0f)     // 'vertical swing width'
+		{
+		}
 
-		Parm<f32> _804; // _804, type/code unsure
-		Parm<f32> _82C; // _82C, type/code unsure
-		Parm<f32> _854; // _854, type/code unsure
-		Parm<f32> _87C; // _87C, type/code unsure
-		Parm<f32> _8A4; // _8A4, type/code unsure
-		Parm<int> _8CC; // _8CC, type/code unsure
-		Parm<f32> _8F4; // _8F4, type/code unsure
-		Parm<f32> _91C; // _91C, type/code unsure
+		Parm<f32> m_fp01; // _804
+		Parm<f32> m_fp02; // _82C
+		Parm<f32> m_fp03; // _854
+		Parm<f32> m_fp10; // _87C
+		Parm<f32> m_fp04; // _8A4
+		Parm<int> m_ip01; // _8CC
+		Parm<f32> m_fp05; // _8F4
+		Parm<f32> m_fp06; // _91C
 	};
 
-	Parms();
+	Parms() { }
 
-	virtual void read(Stream&); // _08 (weak)
+	virtual void read(Stream& stream) // _08 (weak)
+	{
+		CreatureParms::read(stream);
+		m_general.read(stream);
+		m_properParms.read(stream);
+	}
 
 	// _00-_7F8	= EnemyParmsBase
 	ProperParms m_properParms; // _7F8

@@ -6,15 +6,12 @@
 #include "Game/EnemyParmsBase.h"
 #include "Game/EnemyMgrBase.h"
 #include "Game/EnemyBase.h"
+#include "efx/TFuebugOnpa.h"
+#include "efx/TCursor.h"
 
 /**
  * --Header for Antenna Beetle (Fuefuki)--
  */
-
-namespace efx {
-struct TCursor;
-struct TFuebugOnpa;
-} // namespace efx
 
 namespace Game {
 namespace Fuefuki {
@@ -31,7 +28,7 @@ struct Obj : public EnemyBase {
 	virtual void outWaterCallback();                         // _88 (weak)
 	virtual void getShadowParam(ShadowParam&);               // _134
 	virtual Footmarks* getFootmarks();                       // _154 (weak)
-	virtual ~Obj();                                          // _1BC (weak)
+	virtual ~Obj() { }                                       // _1BC (weak)
 	virtual void birth(Vector3f&, f32);                      // _1C0
 	virtual void setInitialSetting(EnemyInitialParamBase*);  // _1C4
 	virtual void doUpdate();                                 // _1CC
@@ -92,11 +89,14 @@ struct Obj : public EnemyBase {
 struct Mgr : public EnemyMgrBase {
 	Mgr(int objLimit, u8 modelType);
 
-	virtual ~Mgr();                                     // _58 (weak)
-	virtual void createObj(int);                        // _A0
-	virtual EnemyBase* getEnemy(int);                   // _A4
-	virtual void doAlloc();                             // _A8
-	virtual EnemyTypeID::EEnemyTypeID getEnemyTypeID(); // _AC (weak)
+	// virtual ~Mgr();                                     // _58 (weak)
+	virtual void doAlloc();                            // _A8
+	virtual void createObj(int);                       // _A0
+	virtual EnemyBase* getEnemy(int);                  // _A4
+	virtual EnemyTypeID::EEnemyTypeID getEnemyTypeID() // _AC (weak)
+	{
+		return EnemyTypeID::EnemyID_Fuefuki;
+	}
 
 	// _00 		= VTBL
 	// _00-_44	= EnemyMgrBase
@@ -105,7 +105,19 @@ struct Mgr : public EnemyMgrBase {
 
 struct Parms : public EnemyParmsBase {
 	struct ProperParms : public Parameters {
-		ProperParms(); // (weak)
+		ProperParms()
+		    : Parameters(nullptr, "EnemyParmsBase")
+		    , m_maxGroundTime(this, 'fp01', "出現時間(Max)", 30.0f, 0.0f, 100.0f) // 'appearance time (max)'
+		    , m_minGroundTime(this, 'fp02', "出現時間(Min)", 20.0f, 0.0f, 100.0f) // 'appearance time (min)'
+		    , m_airborneTime(this, 'fp03', "出現間隔", 3.0f, 0.0f, 100.0f)        // 'appearance interval'
+		    , m_fp11(this, 'fp11', "フエ間隔(1)", 0.0f, 0.0f, 5.0f)               // 'hue interval (1)
+		    , m_fp12(this, 'fp12', "フエ間隔(2～:隊列ナシ)", 5.0f, 0.0f, 10.0f)   // 'hue interval (2 ~: no formation)'
+		    , m_fp13(this, 'fp13', "フエ間隔(2～:隊列アリ)", 10.0f, 0.0f, 20.0f)  // 'hue interval (2 ~: platoon ants)'
+		    , m_struggleTime(this, 'fp21', "もがき時間", 3.0f, 0.0f, 10.0f)       // 'struggling time'
+		    , m_fp22(this, 'fp22', "逃げジャンプ時間", 0.0f, 0.0f, 5.0f)          // 'escape jump time'
+		    , m_fp31(this, 'fp31', "通常出現率", 0.5f, 0.0f, 1.0f)                // 'normal appearance rate'
+		{
+		}
 
 		Parm<f32> m_maxGroundTime; // _804, fp01
 		Parm<f32> m_minGroundTime; // _82C, fp02
@@ -118,9 +130,14 @@ struct Parms : public EnemyParmsBase {
 		Parm<f32> m_fp31;          // _944
 	};
 
-	Parms();
+	Parms() { }
 
-	virtual void read(Stream&); // _08 (weak)
+	virtual void read(Stream& stream) // _08 (weak)
+	{
+		CreatureParms::read(stream);
+		m_general.read(stream);
+		m_properParms.read(stream);
+	}
 
 	// _00-_7F8	= EnemyParmsBase
 	ProperParms m_properParms; // _7F8

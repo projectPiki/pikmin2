@@ -7,14 +7,11 @@
 #include "Game/EnemyMgrBase.h"
 #include "Game/EnemyBase.h"
 #include "Game/gameGenerator.h"
+#include "efx/TDenki.h"
 
 /**
  * --Header for Electric Wire (ElecHiba)--
  */
-
-namespace efx {
-struct TDenkiHibaMgr;
-} // namespace efx
 
 namespace Game {
 struct Piki;
@@ -22,11 +19,12 @@ struct Piki;
 namespace ElecHiba {
 struct FSM;
 
-// TODO: work out what goes in this
-struct InitialParam;
+struct InitialParam {
+	f32 _00; // _00
+};
 
 struct TeamList : public CNode {
-	virtual ~TeamList(); // _08 (weak)
+	virtual ~TeamList() { } // _08 (weak)
 
 	// _00		= VTBL
 	// _00-_18  = CNode
@@ -43,7 +41,7 @@ struct Obj : public EnemyBase {
 	virtual void outWaterCallback();                        // _88 (weak)
 	virtual bool isLivingThing();                           // _D4 (weak)
 	virtual void getShadowParam(ShadowParam&);              // _134
-	virtual ~Obj();                                         // _1BC (weak)
+	virtual ~Obj() { }                                      // _1BC (weak)
 	virtual void birth(Vector3f&, f32);                     // _1C0
 	virtual void setInitialSetting(EnemyInitialParamBase*); // _1C4
 	virtual void doUpdate();                                // _1CC
@@ -88,22 +86,26 @@ struct Obj : public EnemyBase {
 	u8 _2C0;                               // _2C0
 	f32 m_waitTimer;                       // _2C4
 	TeamList m_teamList;                   // _2C8
-	u8 _2E0[0x10];                         // _2E0, unknown
+	u8 _2E0[0x4];                          // _2E0, unknown
+	Vector3f _2E4;                         // _2E4
 	efx::TDenkiHibaMgr* m_efxDenkiHibaMgr; // _2F0
 	u8 _2F4;                               // _2F4, might be a bool?
-	u8 _2F5[0x9];                          // _2F5, unknown
+	u8 _2F5[0xF];                          // _2F5, unknown
 	                                       // _304 = PelletView
 };
 
 struct Mgr : public EnemyMgrBaseAlwaysMovieActor {
 	Mgr(int objLimit, u8 modelType);
 
-	virtual ~Mgr();                                     // _58 (weak)
-	virtual EnemyBase* birth(EnemyBirthArg&);           // _70
-	virtual void createObj(int);                        // _A0
-	virtual EnemyBase* getEnemy(int);                   // _A4
-	virtual void doAlloc();                             // _A8
-	virtual EnemyTypeID::EEnemyTypeID getEnemyTypeID(); // _AC (weak)
+	// virtual ~Mgr();                                     // _58 (weak)
+	virtual EnemyBase* birth(EnemyBirthArg&);          // _70
+	virtual void createObj(int);                       // _A0
+	virtual EnemyBase* getEnemy(int);                  // _A4
+	virtual void doAlloc();                            // _A8
+	virtual EnemyTypeID::EEnemyTypeID getEnemyTypeID() // _AC (weak)
+	{
+		return EnemyTypeID::EnemyID_ElecHiba;
+	}
 
 	// _00 		= VTBL
 	// _00-_44	= EnemyMgrBase
@@ -112,19 +114,33 @@ struct Mgr : public EnemyMgrBaseAlwaysMovieActor {
 
 struct Parms : public EnemyParmsBase {
 	struct ProperParms : public Parameters {
-		inline ProperParms(); // likely
+		inline ProperParms()
+		    : Parameters(nullptr, "EnemyParmsBase")
+		    , m_waitTime(this, 'fp02', "ウェイト時間", 2.5f, 0.0f, 100.0f) // 'wait time'
+		    , m_warningTime(this, 'fp03', "予兆時間", 2.5f, 0.0f, 100.0f)  // 'warning time'
+		    , m_activeTime(this, 'fp01', "放電時間", 2.5f, 0.0f, 100.0f)   // 'discharge time'
+		    , m_stopTime(this, 'fp04', "停止時間", 10.0f, 0.0f, 100.0f)    // 'stop time'
+		    , m_lodNear(this, 'fp90', "LOD NEAR", 0.085f, 0.0f, 1.0f)
+		    , m_lodMiddle(this, 'fp91', "LOD MIDDLE", 0.05f, 0.0f, 1.0f)
+		{
+		}
 
-		Parm<f32> _804; // _804, type unknown
-		Parm<f32> _82C; // _82C, type unknown
-		Parm<f32> _854; // _854, type unknown
-		Parm<f32> _87C; // _87C, type unknown
-		Parm<f32> _8A4; // _8A4, type unknown
-		Parm<f32> _8CC; // _8CC, type unknown
+		Parm<f32> m_waitTime;    // _804, fp02
+		Parm<f32> m_warningTime; // _82C, fp03
+		Parm<f32> m_activeTime;  // _854, fp01
+		Parm<f32> m_stopTime;    // _87C, fp04
+		Parm<f32> m_lodNear;     // _8A4, fp90
+		Parm<f32> m_lodMiddle;   // _8CC, fp91
 	};
 
-	Parms();
+	Parms() { }
 
-	virtual void read(Stream&); // _08 (weak)
+	virtual void read(Stream& stream) // _08 (weak)
+	{
+		CreatureParms::read(stream);
+		m_general.read(stream);
+		m_properParms.read(stream);
+	}
 
 	// _00-_7F8	= EnemyParmsBase
 	ProperParms m_properParms; // _7F8
@@ -133,18 +149,21 @@ struct Parms : public EnemyParmsBase {
 struct Generator : public EnemyGeneratorBase {
 	Generator();
 
-	virtual ~Generator();            // _08 (weak)
-	virtual void doWrite(Stream&);   // _10
-	virtual void doRead(Stream&);    // _14
-	virtual u32 getLatestVersion();  // _18
-	virtual void* getInitialParam(); // _20 (weak)
+	virtual ~Generator() { }        // _08 (weak)
+	virtual void doWrite(Stream&);  // _10
+	virtual void doRead(Stream&);   // _14
+	virtual u32 getLatestVersion(); // _18
+	virtual void* getInitialParam() // _20 (weak)
+	{
+		return &m_distance;
+	}
 
 	void doReadLatestVersion(Stream&);
 	void doReadOldVersion(Stream&);
 
 	// _00 		= VTBL
-	// _00-_1C  = EnemyGeneratorBase
-	f32 m_distance; // _20
+	// _00-_24  = EnemyGeneratorBase
+	f32 m_distance; // _24
 };
 
 struct ProperAnimator : public EnemyAnimatorBase {
