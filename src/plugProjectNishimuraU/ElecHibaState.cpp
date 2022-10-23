@@ -128,7 +128,7 @@ void StateWait::exec(EnemyBase* enemy)
 		}
 	} else if (elecHiba->m_health <= 0.0f) {
 		transit(elecHiba, ELECHIBA_Dead, nullptr);
-	} else if (elecHiba->m_waitTimer > static_cast<Parms*>(elecHiba->m_parms)->m_properParms._804.m_value) {
+	} else if (elecHiba->m_waitTimer > static_cast<Parms*>(elecHiba->m_parms)->m_properParms.m_waitTime.m_value) {
 		transit(elecHiba, ELECHIBA_Sign, nullptr);
 	}
 }
@@ -179,7 +179,7 @@ void StateSign::exec(EnemyBase* enemy)
 		}
 
 		transit(elecHiba, ELECHIBA_Dead, nullptr);
-	} else if (elecHiba->m_waitTimer > static_cast<Parms*>(elecHiba->m_parms)->m_properParms._82C.m_value) {
+	} else if (elecHiba->m_waitTimer > static_cast<Parms*>(elecHiba->m_parms)->m_properParms.m_warningTime.m_value) {
 		transit(elecHiba, ELECHIBA_Attack, nullptr);
 	}
 }
@@ -239,7 +239,7 @@ void StateAttack::exec(EnemyBase* enemy)
 		}
 	} else if (elecHiba->m_health <= 0.0f) {
 		transit(elecHiba, ELECHIBA_Dead, nullptr);
-	} else if (elecHiba->m_waitTimer > static_cast<Parms*>(elecHiba->m_parms)->m_properParms._854.m_value) {
+	} else if (elecHiba->m_waitTimer > static_cast<Parms*>(elecHiba->m_parms)->m_properParms.m_activeTime.m_value) {
 		transit(elecHiba, ELECHIBA_Wait, nullptr);
 	}
 
