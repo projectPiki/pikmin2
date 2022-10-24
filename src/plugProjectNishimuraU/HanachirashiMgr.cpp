@@ -83,7 +83,7 @@ void Mgr::loadTexData()
 SysShape::Model* Mgr::createModel()
 {
 	SysShape::Model* model = new SysShape::Model(m_modelData, 0x80000, m_modelType);
-	P2ASSERTLINE(121, model != nullptr);
+	P2ASSERTLINE(121, model);
 
 	for (u16 i = 0; i < m_modelData->getMaterialCount1(); i++) {
 		const char* name = m_modelData->m_materialTable._0C->getName(i);

@@ -759,7 +759,7 @@ NISHIMURA:=\
 	$(BUILD_DIR)/asm/plugProjectNishimuraU/Hanachirashi.o\
 	$(BUILD_DIR)/src/plugProjectNishimuraU/DamagumoState.o\
 	$(BUILD_DIR)/src/plugProjectNishimuraU/DamagumoAnimator.o\
-	$(BUILD_DIR)/asm/plugProjectNishimuraU/DamagumoMgr.o\
+	$(BUILD_DIR)/src/plugProjectNishimuraU/DamagumoMgr.o\
 	$(BUILD_DIR)/asm/plugProjectNishimuraU/Damagumo.o\
 	$(BUILD_DIR)/asm/plugProjectNishimuraU/IKSystemMgr.o\
 	$(BUILD_DIR)/asm/plugProjectNishimuraU/IKSystemBase.o\
