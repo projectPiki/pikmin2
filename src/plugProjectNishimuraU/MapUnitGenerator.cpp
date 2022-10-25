@@ -279,9 +279,13 @@ void MapUnitGenerator::createCapEnemyList()
 bool MapUnitGenerator::isPomGroup(TekiInfo* tekiInfo)
 {
 	EnemyTypeID::EEnemyTypeID id = tekiInfo->m_enemyID;
-	if ((id == EnemyTypeID::EnemyID_Pom) ||   // candypop base type
-	    ((id - 3) <= 4U) ||                   // 3,4,5,6,7 = colors
-	    (id == EnemyTypeID::EnemyID_RandPom)) // queen candypop
+	if ((id == EnemyTypeID::EnemyID_Pom) ||       // candypop base type
+	    (id == EnemyTypeID::EnemyID_BluePom) ||   // blue candypop
+	    (id == EnemyTypeID::EnemyID_RedPom) ||    // red candypop
+	    (id == EnemyTypeID::EnemyID_YellowPom) || // yellow candypop
+	    (id == EnemyTypeID::EnemyID_BlackPom) ||  // black candypop
+	    (id == EnemyTypeID::EnemyID_WhitePom) ||  // white candypop
+	    (id == EnemyTypeID::EnemyID_RandPom))     // queen candypop
 	{
 		return true;
 	}
