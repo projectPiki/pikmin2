@@ -1879,7 +1879,7 @@ void JMessage::TSequenceProcessor::process_onJump_limited_(const JMessage::TSequ
  * Size:	000064
  * process_onJump___Q28JMessage18TSequenceProcessorFPCQ28JMessage18TSequenceProcessor
  */
-unkptr JMessage::TSequenceProcessor::process_onJump_(const JMessage::TSequenceProcessor* processor)
+void* JMessage::TSequenceProcessor::process_onJump_(const JMessage::TSequenceProcessor* processor)
 {
 	u16 v1 = processor->_44 & 0xFFFF;
 	if (v1 >= 0xFF00) {

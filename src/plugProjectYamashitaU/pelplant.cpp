@@ -1,26 +1,8 @@
-#include "Dolphin/math.h"
-#include "Dolphin/os.h"
-#include "Game/EnemyBase.h"
-#include "Graphics.h"
-#include "Game/Piki.h"
-#include "Game/enemyInfo.h"
-#include "Vector3.h"
-#include "types.h"
 #include "Game/Entities/Pelplant.h"
 #include "Game/Farm.h"
-#include "Game/GameSystem.h"
-#include "Game/Entities/PelletNumber.h"
 #include "Game/gamePlayData.h"
-#include "Game/pelletMgr.h"
-#include "CollInfo.h"
-#include "SysShape/Joint.h"
-#include "System.h"
-#include "SysTimers.h"
-#include "JSystem/JUT/JUTException.h"
-#include "JSystem/J3D/J3DJoint.h"
+
 #include "JSystem/J3D/J3DMtxBuffer.h"
-#include "JSystem/J3D/J3DMtxCalc.h"
-#include "sqrt.h"
 
 namespace Game {
 namespace Farm {
@@ -100,36 +82,38 @@ void Obj::birth(Vector3f& position, float faceDir)
  * Address:	80108464
  * Size:	000280
  */
-void Obj::setInitialSetting(EnemyInitialParamBase* initVars)
+void Obj::setInitialSetting(EnemyInitialParamBase* initParms)
 {
+	PelplantInitialParam* plParms = static_cast<PelplantInitialParam*>(initParms);
+
 	if (m_farmPow == 0) {
-		SET_FLAG(m_isGrow, 1);
+		SET_FLAG(m_flags, PELPLANT_FLAGS_GROW);
 	} else {
-		RESET_FLAG(m_isGrow, 1);
+		RESET_FLAG(m_flags, PELPLANT_FLAGS_GROW);
 	}
 
 	if (m_farmPow < 0) {
-		initVars->m_initialPelState = PELSIZE_Small;
+		plParms->m_initialState = PELPLANT_SIZE_SMALL;
 	}
 
-	m_pelColor = initVars->m_pelletColour;
-	setPelletColor(m_pelColor, false);
+	m_color = plParms->m_color;
+	setPelletColor(m_color, false);
 
-	m_pelSize = initVars->m_pelAmount;
-	switch (initVars->m_initialPelState) {
-	case PELSIZE_Small:
+	m_size = plParms->m_amount;
+	switch (plParms->m_initialState) {
+	case PELPLANT_SIZE_SMALL:
 		m_fsm->start(this, PELPLANT_WaitSmall, nullptr);
 		break;
-	case PELSIZE_Middle:
+	case PELPLANT_SIZE_MIDDLE:
 		m_fsm->start(this, PELPLANT_WaitMiddle, nullptr);
 		break;
-	case PELSIZE_Big:
+	case PELPLANT_SIZE_BIG:
 		m_fsm->start(this, PELPLANT_WaitBig, nullptr);
 		attachPellet();
 		break;
 	}
 
-	if (initVars->m_pelAmount == PELAMT_Five) {
+	if (plParms->m_amount == PELPLANT_AMOUNT_FIVE) {
 		sCurrentObj = this;
 
 		SysShape::Joint* joint = m_model->getJoint("headjnt");
@@ -139,7 +123,7 @@ void Obj::setInitialSetting(EnemyInitialParamBase* initVars)
 		sCurrentObj = nullptr;
 	}
 
-	if (initVars->m_pelAmount == PELAMT_Ten || initVars->m_pelAmount == PELAMT_Twenty) {
+	if (plParms->m_amount == PELPLANT_AMOUNT_TEN || plParms->m_amount == PELPLANT_AMOUNT_TWENTY) {
 		sCurrentObj = this;
 
 		SysShape::Joint* joint = m_model->getJoint("headjnt");
@@ -171,16 +155,16 @@ Obj::Obj()
     : EnemyBase()
     , m_fsm(nullptr)
     , m_rootJointMtx(nullptr)
-    , m_isGrow(0)
+    , m_flags(PELPLANT_FLAGS_NONE)
     , m_pellet(nullptr)
-    , _2D0(0.0f)
-    , m_pelColor(3)
-    , m_pelSize(1)
+    , m_colorChangeTimer(0.0f)
+    , m_color(PELCOLOR_RANDOM)
+    , m_size(PELPLANT_SIZE_MIDDLE)
     , m_farmPow(0)
 {
 	m_animator = new ProperAnimator();
 	setFSM(new FSM());
-	m_isGrow = 0;
+	m_flags = PELPLANT_FLAGS_NONE;
 }
 
 /*
@@ -197,18 +181,18 @@ void Pelplant::Obj::doUpdate() { m_fsm->exec(this); }
  */
 void Pelplant::Obj::updateLODSphereRadius(int size)
 {
-	if (size == PELSIZE_Big) {
-		switch (m_pelSize) {
-		case PELAMT_One:
+	if (size == PELPLANT_SIZE_BIG) {
+		switch (m_size) {
+		case PELPLANT_AMOUNT_ONE:
 			m_lodRange.m_radius = sLODRadius[0];
 			return;
-		case PELAMT_Five:
+		case PELPLANT_AMOUNT_FIVE:
 			m_lodRange.m_radius = sLODRadius[1];
 			return;
-		case PELAMT_Ten:
+		case PELPLANT_AMOUNT_TEN:
 			m_lodRange.m_radius = sLODRadius[2];
 			return;
-		case PELAMT_Twenty:
+		case PELPLANT_AMOUNT_TWENTY:
 			m_lodRange.m_radius = sLODRadius[3];
 			return;
 		}
@@ -240,7 +224,7 @@ void Obj::doDebugDraw(Graphics& gfx)
 
 		info._14 = Color4(0xC8, 0xC8, 0xFF, 0xC8);
 		info._18 = Color4(0x64, 0x64, 0xFF, 0xC8);
-		gfx.perspPrintf(info, pos, "FARM_POW(%d) Grow%s", m_farmPow, (m_isGrow & 1) ? "on" : "off");
+		gfx.perspPrintf(info, pos, "FARM_POW(%d) Grow%s", m_farmPow, (m_flags & PELPLANT_FLAGS_GROW) ? "on" : "off");
 
 		pos.y += 16.0f;
 		info._14 = Color4(0xFF, 0xC8, 0xFF, 0xC8);
@@ -304,21 +288,21 @@ void Obj::doAnimationUpdateAnimator()
  * Address:	80108C60
  * Size:	000058
  */
-float Obj::getHeadScale()
+f32 Obj::getHeadScale()
 {
-	float headScale;
+	f32 headScale;
 	if (m_pellet) {
-		switch (m_pelSize) {
-		case 1:
+		switch (m_size) {
+		case PELPLANT_AMOUNT_ONE:
 			headScale = 1.0f;
 			break;
-		case 5:
+		case PELPLANT_AMOUNT_FIVE:
 			headScale = 2.0f;
 			break;
-		case 10:
+		case PELPLANT_AMOUNT_TEN:
 			headScale = 3.5f;
 			break;
-		case 20:
+		case PELPLANT_AMOUNT_TWENTY:
 			headScale = 4.8f;
 			break;
 		}
@@ -333,13 +317,7 @@ float Obj::getHeadScale()
  * Address:	........
  * Size:	00009C
  */
-void Obj::getNeckScale(Vector3f* scale)
-{
-	f32 x  = 1.5;
-	f32 y  = 0.85;
-	f32 z  = 0.75;
-	*scale = Vector3f(x, y, z);
-}
+void Obj::getNeckScale(Vector3f* scale) { *scale = Vector3f(1.5f, 0.85f, 0.75f); }
 
 /*
  * doAnimation__Q34Game8Pelplant3ObjFv
@@ -351,37 +329,34 @@ void Obj::doAnimation()
 {
 	sys->m_timers->_start("zama", true);
 
-	float headScale = getHeadScale();
+	f32 headScale = getHeadScale();
 
 	Obj::sCurrentObj = this;
 	EnemyBase::doAnimation();
 	Obj::sCurrentObj = nullptr;
 
 	if (m_pellet) {
-		Vector3f translation;
 		float neckScale;
-		switch (m_pelSize) {
-		case 1:
+		switch (m_size) {
+		case PELPLANT_AMOUNT_ONE:
 			neckScale = 12.0f;
 			break;
-		case 5:
+		case PELPLANT_AMOUNT_FIVE:
 			neckScale = 12.0f;
 			break;
-		case 10:
+		case PELPLANT_AMOUNT_TEN:
 			neckScale = 12.0f;
 			break;
-		case 20:
+		case PELPLANT_AMOUNT_TWENTY:
 			neckScale = 12.0f;
 			break;
 		default:
-			JUT_PANICLINE(663, "Unknown Pellet size. %d \n", m_pelSize);
+			JUT_PANICLINE(663, "Unknown Pellet size. %d \n", m_size);
 			break;
 		}
 
-		translation = Vector3f(neckScale, 0.0f, 0.0f);
-
+		Vector3f translation = Vector3f(neckScale, 0.0f, 0.0f);
 		Vector3f rotation(0.0f, HALF_PI, -HALF_PI);
-
 		Vector3f scale(1.0f / headScale);
 
 		Matrixf mat;
@@ -416,9 +391,11 @@ void Obj::setPelletColor(u16 color, bool check)
 					m_pellet->setValidColor(color);
 					return;
 				}
+
 				m_pellet->m_pelletColor = PELCOLOR_RED;
 				return;
 			}
+
 			m_pellet->setValidColor(color);
 			break;
 		default:
@@ -435,44 +412,45 @@ void Obj::setPelletColor(u16 color, bool check)
  */
 void Obj::changePelletColor()
 {
-	if ((m_pellet != nullptr) && (m_pelColor == 3)) {
-
-		if (_2D0 > C_PARMS->m_pelplantParms.m_fp03.m_value) {
+	if (m_pellet && m_color == PELCOLOR_RANDOM) {
+		if (m_colorChangeTimer > C_PARMS->m_pelplantParms.m_colorChangeTime.m_value) {
 			u16 initialColor;
 			if (m_pellet) {
 				initialColor = m_pellet->m_pelletColor;
 			} else {
 				initialColor = PELCOLOR_BLUE;
 			}
+
 			u16 nextColor = initialColor + 1;
 			u16 colorCap  = nextColor;
-
 			while (!playData->hasMetPikmin(nextColor)) {
-				nextColor += 1;
-				if (nextColor > 2) {
+				if (++nextColor > PELCOLOR_YELLOW) {
 					nextColor = PELCOLOR_BLUE;
 				}
+
 				if (nextColor == colorCap) {
 					nextColor = PELCOLOR_RED;
 				}
 			}
 
-			if (nextColor > 2) {
+			if (nextColor > PELCOLOR_YELLOW) {
 				nextColor = PELCOLOR_BLUE;
 			}
+
 			setPelletColor(nextColor, true);
 
-			if (m_isGrow & 1) {
-				_2D0 = 0.0f;
+			if (m_flags & PELPLANT_FLAGS_GROW) {
+				m_colorChangeTimer = 0.0f;
 				return;
 			}
-			_2D0 = 0.0f;
+
+			m_colorChangeTimer = 0.0f;
 			return;
 		}
 
-		const float advanceFrame = sys->m_secondsPerFrame;
-		if (m_isGrow & 1) {
-			_2D0 += advanceFrame;
+		const float dt = sys->m_secondsPerFrame;
+		if (m_flags & PELPLANT_FLAGS_GROW) {
+			m_colorChangeTimer += dt;
 		}
 	}
 }
@@ -486,16 +464,17 @@ void Obj::attachPellet()
 {
 	if (m_pellet == nullptr) {
 		Obj::sCurrentObj = this;
-		PelletNumberInitArg numberArg(m_pelSize, 0);
-		Pellet* newPellet = pelletMgr->birth(&numberArg);
 
+		PelletNumberInitArg numberArg(m_size, 0);
+		Pellet* newPellet = pelletMgr->birth(&numberArg);
 		if (newPellet) {
 			Matrixf* mat = m_model->getJoint("headjnt")->getWorldMatrix();
 			P2ASSERTLINE(777, mat != nullptr);
 			newPellet->startCapture(mat);
+
 			m_pellet = (PelletNumber::Object*)newPellet;
 
-			setPelletColor(m_pelColor, false);
+			setPelletColor(m_color, false);
 		}
 
 		Obj::sCurrentObj = nullptr;
@@ -515,6 +494,7 @@ bool Obj::damageCallBack(Creature* source, float damage, CollPart* part)
 			addDamage(m_maxHealth, 1.0f);
 		}
 	}
+
 	return true;
 }
 
@@ -523,14 +503,17 @@ bool Obj::damageCallBack(Creature* source, float damage, CollPart* part)
  * Address:	80109288
  * Size:	000078
  */
-bool Obj::farmCallBack(Creature* p1, float p2)
+bool Obj::farmCallBack(Creature* c, float progress)
 {
-	m_farmPow = (char)((p2 >= 0.0f) ? p2 + 0.5f : p2 - 0.5f);
+	// If progress > 0, round up + 1; else we round down -1
+	m_farmPow = (s8)(progress >= 0.0f ? progress + 0.5f : progress - 0.5f);
+
 	if (m_farmPow < 0) {
-		m_isGrow &= ~1;
+		RESET_FLAG(m_flags, PELPLANT_FLAGS_GROW);
 	} else {
-		m_isGrow |= 1;
+		SET_FLAG(m_flags, PELPLANT_FLAGS_GROW);
 	}
+
 	resetEvent(0, EB_Cullable);
 	return true;
 }
@@ -556,14 +539,15 @@ void Obj::onStickStart(Creature* other)
 unknown Obj::headJointCallBack(J3DJoint* joint, int p2)
 {
 	if (sCurrentObj != nullptr && p2 == 1) {
-		Mtx& mtx    = J3DMtxCalc::mMtxBuffer->m_worldMatrices[joint->getJntNo()];
-		float scale = sCurrentObj->getHeadScale();
+		Mtx& mtx  = J3DMtxCalc::mMtxBuffer->m_worldMatrices[joint->getJntNo()];
+		f32 scale = sCurrentObj->getHeadScale();
 		for (int i = 0; i < 3; i++) {
 			for (int j = 0; j < 3; j++) {
 				mtx[i][j] *= scale;
 			}
 		}
 	}
+
 	return 0;
 }
 
@@ -577,34 +561,34 @@ unknown Obj::neckJointCallBack(J3DJoint* joint, int p2)
 	if (sCurrentObj != nullptr && p2 == 1) {
 		Mtx& mtx = J3DMtxCalc::mMtxBuffer->m_worldMatrices[joint->getJntNo()];
 
-		float neckScale1;
-		float neckScale2;
+		f32 neckLength;
+		f32 neckThickness;
 		if (sCurrentObj->m_pellet) {
-			switch (sCurrentObj->m_pelSize) {
-			case 1:
-				neckScale2 = 1.0f;
-				neckScale1 = neckScale2;
+			switch (sCurrentObj->m_size) {
+			case PELPLANT_AMOUNT_ONE:
+				neckThickness = 1.0f;
+				neckLength    = neckThickness;
 				break;
-			case 5: /* switch 2 */
-				neckScale2 = 1.0f;
-				neckScale1 = neckScale2;
+			case PELPLANT_AMOUNT_FIVE:
+				neckThickness = 1.0f;
+				neckLength    = neckThickness;
 				break;
-			case 10: /* switch 2 */
-				neckScale2 = 1.5;
-				neckScale1 = 0.85;
+			case PELPLANT_AMOUNT_TEN:
+				neckThickness = 1.5;
+				neckLength    = 0.85;
 				break;
-			case 20: /* switch 2 */
-				neckScale2 = 2.0;
-				neckScale1 = 0.75;
+			case PELPLANT_AMOUNT_TWENTY:
+				neckThickness = 2.0;
+				neckLength    = 0.75;
 				break;
 			}
 
 		} else {
-			neckScale2 = 1.0f;
-			neckScale1 = neckScale2;
+			neckThickness = 1.0f;
+			neckLength    = neckThickness;
 		}
 
-		Vector3f scale(neckScale2, neckScale1, neckScale2);
+		Vector3f scale(neckThickness, neckLength, neckThickness);
 		mtx[0][0] *= scale.x;
 		mtx[0][1] *= scale.x;
 		mtx[0][2] *= scale.x;
@@ -659,14 +643,14 @@ void Obj::onInit(CreatureInitArg* arg)
 	setEmotionNone();
 
 	if (m_farmPow == 0) {
-		m_isGrow |= 1;
+		SET_FLAG(m_flags, PELPLANT_FLAGS_GROW);
 	} else {
-		m_isGrow &= ~1;
+		RESET_FLAG(m_flags, PELPLANT_FLAGS_GROW);
 	}
 
-	int stateID = getStateID();
-	if (stateID == -1) {
-		stateID = 0;
+	s32 stateID = getStateID();
+	if (stateID == PELPLANT_Invalid) {
+		stateID = PELPLANT_WaitSmall;
 	}
 
 	m_fsm->start(this, stateID, nullptr);

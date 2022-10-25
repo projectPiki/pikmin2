@@ -130,16 +130,16 @@ struct JPABaseEmitter {
 	s32 : 0;                    // reset alignment to _C0
 	u8 _C0[4];                  // _C0
 	JMath::TRandom_fast_ m_rng; // _C4
-	unkptr _C8;                 // _C8
-	unkptr _CC;                 // _CC
+	void* _C8;                  // _C8
+	void* _CC;                  // _CC
 	// JPANode<JPABaseParticle>* _C8; // _C8
 	// JPANode<JPABaseParticle>* _CC; // _CC
-	s32 _D0;    // _D0
-	unkptr _D4; // _D4
+	s32 _D0;   // _D0
+	void* _D4; // _D4
 	// JPANode<JPABaseParticle>* _D4; // _D4
 	u8 _D8[4];                               // _D8
 	s32 _DC;                                 // _DC
-	unkptr _E0;                              // _E0
+	void* _E0;                               // _E0
 	JPAEmitterManager* m_manager;            // _E4
 	JPAResource* m_resource;                 // _E8
 	JPAEmitterCallBack* m_emitterCallback;   // _EC
@@ -241,8 +241,8 @@ struct JPAEmitterManager {
 
 	JSUList<JPABaseEmitter>* _00; // _00
 	JSUPtrList _04;               // _04
-	unkptr _10;
-	unkptr _14;
+	void* _10;
+	void* _14;
 	// JPANode<JPABaseParticle>* _10; // _10
 	// JPANode<JPABaseParticle>* _14; // _14
 	int _18;                         // _18

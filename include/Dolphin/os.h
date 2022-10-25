@@ -581,8 +581,8 @@ void OSProtectRange(u32, u32, u32, u32); /** TODO: Are these params correct? */
 void* OSGetStackPointer();
 extern u32 __OSFpscrEnableBits; /** TODO: find a wrapper for this. Symbol is defined in OSError.c. */
 
-#define HW_REG(reg, type)     *(volatile type*)(uintptr_t)(reg) // manually added
-#define OSGetTicksPerSecond() (*(u32*)0x800000F8 / 4) // manually added
+#define HW_REG(reg, type)     *(volatile type*)(u32)(reg)
+#define OSGetTicksPerSecond() (*(u32*)0x800000F8 / 4)
 
 // u32 GameCode : 0x80000000;
 // u32 FSTLocationInRam : 0x80000038;

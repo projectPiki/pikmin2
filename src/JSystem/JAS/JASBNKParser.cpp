@@ -663,7 +663,7 @@ JASOscillator::Data* JASBNKParser::findOscPtr(JASBasicBank*, JASBNKParser::THead
  * Address:	8009AFCC
  * Size:	000014
  */
-unkptr JASBNKParser::getOscTableEndPtr(short*)
+void* JASBNKParser::getOscTableEndPtr(short*)
 {
 	/*
 	lha      r0, 0(r3)

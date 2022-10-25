@@ -74,7 +74,7 @@ struct TVmap {
 
 JASBasicBank* createBasicBank(void* stream);
 JASOscillator::Data* findOscPtr(JASBasicBank*, THeader*, TOsc*);
-unkptr getOscTableEndPtr(short*);
+void* getOscTableEndPtr(short*);
 
 // unused/inlined:
 u32 getUsedHeapSize();

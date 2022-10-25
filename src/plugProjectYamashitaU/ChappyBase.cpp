@@ -135,7 +135,7 @@ void Obj::collisionCallback(CollEvent& collEvent)
 	if (creature) {
 		if (creature->isTeki()) {
 			EnemyTypeID::EEnemyTypeID enemyID = static_cast<EnemyBase*>(creature)->getEnemyTypeID();
-			if ((static_cast<EnemyBase*>(creature)->m_emotion == EMOTE_Excitement) || (enemyID == EnemyTypeID::EnemyID_PanModoki)
+			if ((static_cast<EnemyBase*>(creature)->m_sfxEmotion == EMOTE_Excitement) || (enemyID == EnemyTypeID::EnemyID_PanModoki)
 			    || (enemyID == EnemyTypeID::EnemyID_OoPanModoki)
 			    || (creature->isLivingThing() && (enemyID != EnemyTypeID::EnemyID_Kochappy) && (enemyID != EnemyTypeID::EnemyID_Chappy)
 			        && (enemyID != EnemyTypeID::EnemyID_YellowKochappy) && (enemyID != EnemyTypeID::EnemyID_YellowChappy)

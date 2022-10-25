@@ -17,7 +17,7 @@ struct JUTGraphFifo {
 
 	// VTBL _00
 	GXFifoObj* m_fifo; // _04
-	unkptr _08;        // _08
+	void* _08;         // _08
 	u32 _0C;           // _0C
 	u8 _10[0xC];       // _10
 

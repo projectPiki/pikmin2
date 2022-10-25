@@ -82,17 +82,17 @@ struct MoviePlayArg {
 		m_soundPosition = nullptr;
 	}
 
-	char* m_movieName;                          // _00
-	char* m_courseName;                         // _04
-	char* _08;                                  // _08
-	IDelegate3<MovieConfig*, u32, u32>* _0C;    // _0C
-	IDelegate3<MovieConfig*, unkptr, u32>* _10; // _10 /* Second type is unknown. */
-	u32 _14;                                    // _14
-	Vector3f m_origin;                          // _18 /* previously called m_itemPosition */
-	float m_angle;                              // _24 /* previously called m_itemFaceDirection */
-	u32 m_naviID;                               // _28
-	u32 m_streamID;                             // _2C
-	Vector3f* m_soundPosition;                  // _30
+	char* m_movieName;                         // _00
+	char* m_courseName;                        // _04
+	char* _08;                                 // _08
+	IDelegate3<MovieConfig*, u32, u32>* _0C;   // _0C
+	IDelegate3<MovieConfig*, void*, u32>* _10; // _10 /* Second type is unknown. */
+	u32 _14;                                   // _14
+	Vector3f m_origin;                         // _18 /* previously called m_itemPosition */
+	float m_angle;                             // _24 /* previously called m_itemFaceDirection */
+	u32 m_naviID;                              // _28
+	u32 m_streamID;                            // _2C
+	Vector3f* m_soundPosition;                 // _30
 };
 
 // Size: 0x5C

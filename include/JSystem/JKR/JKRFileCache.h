@@ -30,8 +30,8 @@ struct JKRFileCache : public JKRFileLoader {
 	virtual long getResSize(const void*) const;                                      // _28
 	virtual u16 countFile(const char*) const;                                        // _2C
 	virtual JKRFileFinder* getFirstFile(const char*) const;                          // _30
-	virtual unkptr getFsResource(const char*);                                       // _34
-	virtual unkptr getNameResource(unsigned long, const char*);                      // _38
+	virtual void* getFsResource(const char*);                                        // _34
+	virtual void* getNameResource(unsigned long, const char*);                       // _38
 	virtual long readFsResource(void*, unsigned long, const char*);                  // _3C
 	virtual long readNameResource(void*, unsigned long, unsigned long, const char*); // _40
 

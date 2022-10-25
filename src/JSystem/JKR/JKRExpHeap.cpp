@@ -2381,7 +2381,7 @@ JKRExpHeap::CMemBlock* JKRExpHeap::CMemBlock::allocBack(unsigned long size, unsi
  * Size:	000060
  * free__Q210JKRExpHeap9CMemBlockFP10JKRExpHeap
  */
-unkptr JKRExpHeap::CMemBlock::free(JKRExpHeap* heap)
+void* JKRExpHeap::CMemBlock::free(JKRExpHeap* heap)
 {
 	heap->removeUsedBlock(this);
 	heap->recycleFreeBlock(this);

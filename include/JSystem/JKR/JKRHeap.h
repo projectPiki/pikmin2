@@ -173,7 +173,7 @@ struct JKRExpHeap : public JKRHeap {
 
 		CMemBlock* allocBack(u32, u8, u8, u8, u8);
 		CMemBlock* allocFore(u32, u8, u8, u8, u8);
-		unkptr free(JKRExpHeap*);
+		void* free(JKRExpHeap*);
 		static CMemBlock* getHeapBlock(void*);
 		void initiate(CMemBlock*, CMemBlock*, u32, u8, u8);
 	};

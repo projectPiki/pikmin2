@@ -19,10 +19,10 @@ typedef struct DSPTask {
 	u32 _20;             // _20
 	u16 _24;             // _24
 	u16 _26;             // _26
-	unkptr _28;          // _28
+	void* _28;           // _28
 	unknown _2C;         // _2C
-	unkptr _30;          // _30
-	unkptr _34;          // _34
+	void* _30;           // _30
+	void* _34;           // _34
 	struct DSPTask* _38; // _38
 	struct DSPTask* _3C; // _3C
 } DSPTask;

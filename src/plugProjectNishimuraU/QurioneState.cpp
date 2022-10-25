@@ -97,7 +97,7 @@ void StateAppear::exec(EnemyBase* enemy)
 	Obj* wisp = static_cast<Obj*>(enemy);
 	wisp->addQurioneScale();
 	wisp->setGlowEffectScale();
-	if (wisp->m_animKeyEvent->m_running && (u32)wisp->m_animKeyEvent->m_type == KEYEVENT_END) {
+	if (wisp->m_curAnim->m_isRunning && (u32)wisp->m_curAnim->m_type == KEYEVENT_END) {
 		transit(wisp, QURIONE_Move, nullptr);
 	}
 }
@@ -139,7 +139,7 @@ void StateDisappear::exec(EnemyBase* enemy)
 	Obj* wisp = static_cast<Obj*>(enemy);
 	wisp->subQurioneScale();
 	wisp->setGlowEffectScale();
-	if (wisp->m_animKeyEvent->m_running && (u32)wisp->m_animKeyEvent->m_type == KEYEVENT_END) {
+	if (wisp->m_curAnim->m_isRunning && (u32)wisp->m_curAnim->m_type == KEYEVENT_END) {
 		transit(wisp, QURIONE_Stay, nullptr);
 	}
 }
@@ -227,10 +227,10 @@ void StateDrop::init(EnemyBase* enemy, StateArg* stateArg)
 void StateDrop::exec(EnemyBase* enemy)
 {
 	Obj* wisp = static_cast<Obj*>(enemy);
-	if (wisp->m_animKeyEvent->m_running) {
-		if ((u32)wisp->m_animKeyEvent->m_type == KEYEVENT_2) {
+	if (wisp->m_curAnim->m_isRunning) {
+		if ((u32)wisp->m_curAnim->m_type == KEYEVENT_2) {
 			wisp->dropItem();
-		} else if ((u32)wisp->m_animKeyEvent->m_type == KEYEVENT_END) {
+		} else if ((u32)wisp->m_curAnim->m_type == KEYEVENT_END) {
 			transit(wisp, QURIONE_Dead, nullptr);
 		}
 	}

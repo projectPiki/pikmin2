@@ -336,7 +336,7 @@ int VerifyID(CARDBlock* block)
  * Address:	800D7800
  * Size:	000240
  */
-int VerifyDir(CARDBlock* block, unkptr p2)
+int VerifyDir(CARDBlock* block, void* p2)
 {
 	/*
 	.loc_0x0:
@@ -524,7 +524,7 @@ int VerifyDir(CARDBlock* block, unkptr p2)
  * Address:	800D7A40
  * Size:	000284
  */
-int VerifyFAT(CARDBlock* block, unkptr p2)
+int VerifyFAT(CARDBlock* block, void* p2)
 {
 	/*
 	.loc_0x0:

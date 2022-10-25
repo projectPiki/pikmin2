@@ -200,7 +200,7 @@ struct JKRCompArchive : public JKRArchive {
 	int _5C;              // _5C
 	int m_mountDirection; // _60
 	u8 _64[4];            // _64
-	unkptr _68;           // _68
+	void* _68;            // _68
 	unknown _6C;          // _6C
 	JKRDvdFile* _70;      // _70
 	unknown _74;          // _74

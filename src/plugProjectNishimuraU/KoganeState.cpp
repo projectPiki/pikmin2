@@ -165,7 +165,7 @@ void StateMove::exec(EnemyBase* enemy)
 	kogane->m_appearTimer += sys->m_secondsPerFrame;
 	kogane->m_moveTimer += sys->m_secondsPerFrame;
 
-	if (kogane->m_animKeyEvent->m_running && (u32)kogane->m_animKeyEvent->m_type == KEYEVENT_END) {
+	if (kogane->m_curAnim->m_isRunning && (u32)kogane->m_curAnim->m_type == KEYEVENT_END) {
 		if (kogane->m_appearTimer > static_cast<Parms*>(kogane->m_parms)->m_properParms.m_fp02.m_value) {
 			transit(kogane, KOGANE_Disappear, nullptr);
 		} else {
@@ -214,7 +214,7 @@ void StateWait::exec(EnemyBase* enemy)
 	kogane->m_appearTimer += sys->m_secondsPerFrame;
 	kogane->m_moveTimer += sys->m_secondsPerFrame;
 
-	if (kogane->m_animKeyEvent->m_running && (u32)kogane->m_animKeyEvent->m_type == KEYEVENT_END) {
+	if (kogane->m_curAnim->m_isRunning && (u32)kogane->m_curAnim->m_type == KEYEVENT_END) {
 		transit(kogane, KOGANE_Move, nullptr);
 	}
 }
@@ -257,16 +257,16 @@ void StatePress::exec(EnemyBase* enemy)
 	kogane->koganeScaleUp();
 	kogane->m_appearTimer += sys->m_secondsPerFrame;
 
-	if (kogane->m_animKeyEvent->m_running) {
-		if ((u32)kogane->m_animKeyEvent->m_type == KEYEVENT_2) {
+	if (kogane->m_curAnim->m_isRunning) {
+		if ((u32)kogane->m_curAnim->m_type == KEYEVENT_2) {
 			kogane->setEvent(0, EB_22);
 			kogane->createPressSESpecial();
-		} else if ((u32)kogane->m_animKeyEvent->m_type == KEYEVENT_3) {
+		} else if ((u32)kogane->m_curAnim->m_type == KEYEVENT_3) {
 			kogane->createItem();
 			kogane->setZukanVisible(false);
-		} else if ((u32)kogane->m_animKeyEvent->m_type == KEYEVENT_4) {
+		} else if ((u32)kogane->m_curAnim->m_type == KEYEVENT_4) {
 			kogane->resetEvent(0, EB_22);
-		} else if ((u32)kogane->m_animKeyEvent->m_type == KEYEVENT_END) {
+		} else if ((u32)kogane->m_curAnim->m_type == KEYEVENT_END) {
 			if (kogane->m_appearTimer > 12800.0f) {
 				transit(kogane, KOGANE_Disappear, nullptr);
 			} else {

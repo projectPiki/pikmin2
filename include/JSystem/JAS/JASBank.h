@@ -49,7 +49,7 @@ struct JASWaveBank {
 	void* getCurrentHeap();
 
 	// Unsure of type
-	static unkptr sCurrentHeap;
+	static void* sCurrentHeap;
 };
 
 #endif

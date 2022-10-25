@@ -95,8 +95,8 @@ void StateWalk::exec(EnemyBase* enemy)
 		return;
 	}
 
-	if (wraith->m_animKeyEvent->m_running) {
-		switch (wraith->m_animKeyEvent->m_type) {
+	if (wraith->m_curAnim->m_isRunning) {
+		switch (wraith->m_curAnim->m_type) {
 		case KEYEVENT_2:
 		case KEYEVENT_3:
 			Vector3f position = wraith->getPosition();
@@ -160,9 +160,9 @@ void StateDead::init(EnemyBase* enemy, StateArg* stateArg)
 void StateDead::exec(EnemyBase* enemy)
 {
 	Obj* wraith = static_cast<Obj*>(enemy);
-	if (wraith->m_animKeyEvent->m_running) {
+	if (wraith->m_curAnim->m_isRunning) {
 		Vector3f position = wraith->getPosition();
-		switch (wraith->m_animKeyEvent->m_type) {
+		switch (wraith->m_curAnim->m_type) {
 		case KEYEVENT_2:
 		case KEYEVENT_3:
 		case KEYEVENT_4:
@@ -235,8 +235,8 @@ void StateFreeze::exec(EnemyBase* enemy)
 		return;
 	}
 
-	if (wraith->m_animKeyEvent->m_running) {
-		if ((u32)wraith->m_animKeyEvent->m_type == KEYEVENT_2) {
+	if (wraith->m_curAnim->m_isRunning) {
+		if ((u32)wraith->m_curAnim->m_type == KEYEVENT_2) {
 			Vector3f position = wraith->getPosition();
 			cameraMgr->startVibration(12, position, 2);
 			rumbleMgr->startRumble(14, position, 2);
@@ -246,7 +246,7 @@ void StateFreeze::exec(EnemyBase* enemy)
 			position.z += 32.0f * pikmin2_cosf(faceDir) - 4.0f * pikmin2_sinf(faceDir);
 			wraith->createBounceEffect(position, 0.42f);
 
-		} else if ((u32)wraith->m_animKeyEvent->m_type == KEYEVENT_END) {
+		} else if ((u32)wraith->m_curAnim->m_type == KEYEVENT_END) {
 			transit(wraith, WRAITH_Walk, nullptr);
 			wraith->collisionStOff();
 		}
@@ -323,14 +323,14 @@ void StateBend::exec(EnemyBase* enemy)
 		return;
 	}
 
-	if (wraith->m_animKeyEvent->m_running) {
-		if ((u32)wraith->m_animKeyEvent->m_type == KEYEVENT_2) {
+	if (wraith->m_curAnim->m_isRunning) {
+		if ((u32)wraith->m_curAnim->m_type == KEYEVENT_2) {
 			wraith->bendEffect();
 			Vector3f position = wraith->getPosition();
 			cameraMgr->startVibration(12, position, 2);
 			rumbleMgr->startRumble(14, position, 2);
 
-		} else if ((u32)wraith->m_animKeyEvent->m_type == KEYEVENT_END) {
+		} else if ((u32)wraith->m_curAnim->m_type == KEYEVENT_END) {
 			wraith->collisionStOff();
 			if (wraith->isTyreDead()) {
 				transit(wraith, WRAITH_Escape, nullptr);
@@ -398,8 +398,8 @@ void StateEscape::exec(EnemyBase* enemy)
 {
 	Obj* wraith = static_cast<Obj*>(enemy);
 	Vector3f position;
-	if (wraith->m_animKeyEvent->m_running) {
-		switch (wraith->m_animKeyEvent->m_type) {
+	if (wraith->m_curAnim->m_isRunning) {
+		switch (wraith->m_curAnim->m_type) {
 		case KEYEVENT_2:
 			wraith->flick();
 			break;
@@ -459,14 +459,14 @@ void StateFall::init(EnemyBase* enemy, StateArg* stateArg)
  */
 void StateFall::exec(EnemyBase* enemy)
 {
-	if (enemy->m_animKeyEvent->m_running) {
-		if ((u32)enemy->m_animKeyEvent->m_type == KEYEVENT_2) {
+	if (enemy->m_curAnim->m_isRunning) {
+		if ((u32)enemy->m_curAnim->m_type == KEYEVENT_2) {
 			static_cast<Obj*>(enemy)->appearFanfare();
 			Vector3f position = enemy->getPosition();
 			cameraMgr->startVibration(17, position, 2);
 			rumbleMgr->startRumble(14, position, 2);
 
-		} else if ((u32)enemy->m_animKeyEvent->m_type == KEYEVENT_END) {
+		} else if ((u32)enemy->m_curAnim->m_type == KEYEVENT_END) {
 			if (static_cast<Obj*>(enemy)->isFallEnd()) {
 				enemy->resetEvent(0, EB_22);
 				transit(enemy, WRAITH_Recover, nullptr);
@@ -534,8 +534,8 @@ void StateRecover::exec(EnemyBase* enemy)
 		return;
 	}
 
-	if (wraith->m_animKeyEvent->m_running) {
-		switch (wraith->m_animKeyEvent->m_type) {
+	if (wraith->m_curAnim->m_isRunning) {
+		switch (wraith->m_curAnim->m_type) {
 		case KEYEVENT_2:
 			wraith->flick();
 			break;
@@ -622,11 +622,11 @@ void StateFlick::exec(EnemyBase* enemy)
 		return;
 	}
 
-	if (enemy->m_animKeyEvent->m_running) {
-		if ((u32)enemy->m_animKeyEvent->m_type == KEYEVENT_2) {
+	if (enemy->m_curAnim->m_isRunning) {
+		if ((u32)enemy->m_curAnim->m_type == KEYEVENT_2) {
 			static_cast<Obj*>(enemy)->flick();
 
-		} else if ((u32)enemy->m_animKeyEvent->m_type == KEYEVENT_END) {
+		} else if ((u32)enemy->m_curAnim->m_type == KEYEVENT_END) {
 			transit(enemy, static_cast<Obj*>(enemy)->_2DC, nullptr);
 		}
 	}
@@ -676,8 +676,8 @@ void StateTired::exec(EnemyBase* enemy)
 	enemy->m_simVelocity = Vector3f(0.0f);
 	enemy->m_impVelocity = Vector3f(0.0f);
 
-	if (enemy->m_animKeyEvent->m_running) {
-		if ((u32)enemy->m_animKeyEvent->m_type == KEYEVENT_END) {
+	if (enemy->m_curAnim->m_isRunning) {
+		if ((u32)enemy->m_curAnim->m_type == KEYEVENT_END) {
 			static_cast<Obj*>(enemy)->flick();
 			transit(enemy, WRAITH_Walk, nullptr);
 		}

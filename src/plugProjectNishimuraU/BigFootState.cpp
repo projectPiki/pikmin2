@@ -56,13 +56,13 @@ void StateDead::exec(EnemyBase* enemy)
 	Obj* bigfoot = static_cast<Obj*>(enemy);
 	bigfoot->updateDeadFurEffect();
 
-	if (bigfoot->m_animKeyEvent->m_running) {
-		if ((u32)bigfoot->m_animKeyEvent->m_type == KEYEVENT_2) {
+	if (bigfoot->m_curAnim->m_isRunning) {
+		if ((u32)bigfoot->m_curAnim->m_type == KEYEVENT_2) {
 			bigfoot->throwupItem();
 			bigfoot->createItemAndEnemy();
-		} else if ((u32)bigfoot->m_animKeyEvent->m_type == KEYEVENT_3) {
+		} else if ((u32)bigfoot->m_curAnim->m_type == KEYEVENT_3) {
 			bigfoot->_2DC = 1;
-		} else if ((u32)bigfoot->m_animKeyEvent->m_type == KEYEVENT_END) {
+		} else if ((u32)bigfoot->m_curAnim->m_type == KEYEVENT_END) {
 			bigfoot->kill(nullptr);
 		}
 	}
@@ -160,8 +160,8 @@ void StateLand::exec(EnemyBase* enemy)
 	Obj* bigfoot = static_cast<Obj*>(enemy);
 	bigfoot->addShadowScale();
 
-	if (bigfoot->m_animKeyEvent->m_running) {
-		if ((u32)bigfoot->m_animKeyEvent->m_type == KEYEVENT_2) {
+	if (bigfoot->m_curAnim->m_isRunning) {
+		if ((u32)bigfoot->m_curAnim->m_type == KEYEVENT_2) {
 			bigfoot->resetEvent(0, EB_BitterImmune);
 
 			for (int i = 0; i < 4; i++) {
@@ -172,7 +172,7 @@ void StateLand::exec(EnemyBase* enemy)
 			cameraMgr->startVibration(15, position, 2);
 			rumbleMgr->startRumble(15, position, 2);
 
-		} else if ((u32)bigfoot->m_animKeyEvent->m_type == KEYEVENT_END) {
+		} else if ((u32)bigfoot->m_curAnim->m_type == KEYEVENT_END) {
 			if (bigfoot->m_health <= 0.0f) {
 				transit(bigfoot, BIGFOOT_Dead, nullptr);
 			} else if (EnemyFunc::isStartFlick(bigfoot, false)) {
@@ -237,7 +237,7 @@ void StateWait::exec(EnemyBase* enemy)
 		bigfoot->finishMotion();
 	}
 
-	if (bigfoot->m_animKeyEvent->m_running && (u32)bigfoot->m_animKeyEvent->m_type == KEYEVENT_END) {
+	if (bigfoot->m_curAnim->m_isRunning && (u32)bigfoot->m_curAnim->m_type == KEYEVENT_END) {
 		transit(bigfoot, bigfoot->m_nextState, nullptr);
 	}
 }
@@ -275,13 +275,13 @@ void StateFlick::init(EnemyBase* enemy, StateArg* stateArg)
 void StateFlick::exec(EnemyBase* enemy)
 {
 	Obj* bigfoot = static_cast<Obj*>(enemy);
-	if (bigfoot->m_animKeyEvent->m_running) {
-		if ((u32)bigfoot->m_animKeyEvent->m_type == KEYEVENT_2) {
+	if (bigfoot->m_curAnim->m_isRunning) {
+		if ((u32)bigfoot->m_curAnim->m_type == KEYEVENT_2) {
 			Parms* parms = static_cast<Parms*>(bigfoot->m_parms);
 			EnemyFunc::flickStickPikmin(bigfoot, parms->m_general.m_shakeRateMaybe.m_value, parms->m_general.m_shakeKnockback.m_value,
 			                            parms->m_general.m_shakeDamage.m_value, -1000.0, nullptr);
 			bigfoot->m_toFlick = 0.0f;
-		} else if ((u32)bigfoot->m_animKeyEvent->m_type == KEYEVENT_END) {
+		} else if ((u32)bigfoot->m_curAnim->m_type == KEYEVENT_END) {
 			if (bigfoot->m_health <= 0.0f) {
 				transit(bigfoot, BIGFOOT_Dead, nullptr);
 			} else {

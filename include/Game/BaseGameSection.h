@@ -200,7 +200,7 @@ struct BaseGameSection : public BaseHIOSection {
 	bool m_blendCameraActive;                             // _58
 	DvdThreadCommand m_dvdThreadCommand;                  // _5C
 	IDelegate3<MovieConfig*, u32, u32>* _C8;              // _C8
-	IDelegate3<MovieConfig*, unkptr, u32>* _CC;           // _CC
+	IDelegate3<MovieConfig*, void*, u32>* _CC;            // _CC
 	BlackFader* m_blackFader;                             // _D0
 	WipeInFader* m_wipeInFader;                           // _D4
 	WipeOutFader* m_wipeOutFader;                         // _D8

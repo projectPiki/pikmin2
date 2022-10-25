@@ -92,13 +92,8 @@ enum EnemyEvent {
 
 enum EnemyEvent2 { EB2_1 = 0x1, EB2_2 = 0x2, EB2_3 = 0x4, EB2_4 = 0x8, EB2_5 = 0x10, EB2_DroppingMassZero = 0x20 };
 
-/**
- * @todo Split this into a separate type PelplantInitialParam?
- */
+// Interface for specific overrides (e.g. PelplantInitialParams)
 struct EnemyInitialParamBase {
-	u8 m_pelletColour;
-	u8 m_pelAmount;
-	u8 m_initialPelState;
 };
 
 struct EnemyKillArg : public CreatureKillArg {
@@ -226,7 +221,7 @@ struct EnemyBase : public Creature, public SysShape::MotionListener, virtual pub
 	}
 	virtual s32 getCreatureID() // _1AC (weak)
 	{
-		return m_enemyIndexForType;
+		return m_creatureID;
 	}
 	// vtable 2 (MotionListener+self)
 	// virtual void onKeyEvent(const SysShape::KeyEvent&); - thunk _1B8
@@ -381,7 +376,7 @@ struct EnemyBase : public Creature, public SysShape::MotionListener, virtual pub
 	virtual void doEndMovie() { }                    // _2F4 (weak)
 	// vtable 3 (PelletView)
 
-	void addDamage(f32, f32);
+	void addDamage(f32 damageAmt, f32 flickSpeed);
 
 	void bounceProcedure(Sys::Triangle*);
 
@@ -410,7 +405,7 @@ struct EnemyBase : public Creature, public SysShape::MotionListener, virtual pub
 	bool isCullingOff();
 
 	void startMotion();
-	void startMotion(int, SysShape::MotionListener*);
+	void startMotion(int animIdx, SysShape::MotionListener* mListener);
 	void finishMotion();
 	void stopMotion();
 	bool isFinishMotion();
@@ -462,7 +457,7 @@ struct EnemyBase : public Creature, public SysShape::MotionListener, virtual pub
 
 	void becomeCarcass(bool);
 
-	inline void setEnemyIndexForType(u8 idx) { m_enemyIndexForType = idx; }
+	inline void setCreatureID(u8 idx) { m_creatureID = idx; }
 
 	inline void setEvent(int i, u32 flag) { m_events.m_flags[i].typeView |= flag; }
 
@@ -554,7 +549,7 @@ struct EnemyBase : public Creature, public SysShape::MotionListener, virtual pub
 	// ptr to PelletView: _17C
 	EnemyMgrBase* m_mgr;                         // _180
 	EnemyAnimatorBase* m_animator;               // _184
-	EnemyAnimKeyEvent* m_animKeyEvent;           // _188
+	EnemyAnimKeyEvent* m_curAnim;                // _188
 	Vector3f m_position;                         // _18C, aka translation
 	Vector3f m_homePosition;                     // _198
 	Vector3f m_rotation;                         // _1A4, mainly used for face dir on Y axis
@@ -564,11 +559,11 @@ struct EnemyBase : public Creature, public SysShape::MotionListener, virtual pub
 	Vector3f m_simVelocity;                      // _1D4, simulation velocity (only used on simulation)
 	BitFlagArray<u32, 2> m_events;               // _1E0
 	BitFlagArray<u32, 2> m_eventBuffer;          // _1E8
-	u8 m_emotion;                                // _1F0
-	u8 m_enemyIndexForType;                      // _1F1
+	u8 m_sfxEmotion;                             // _1F0, the 'emotion' used for bg music
+	u8 m_creatureID;                             // _1F1
 	u8 _1F2;                                     // _1F2
 	bool m_inPiklopedia;                         // _1F3
-	int m_stickPikminCount;                      // _1F4
+	int m_stuckPikminCount;                      // _1F4
 	f32 m_scaleModifier;                         // _1F8
 	f32 m_faceDir;                               // _1FC
 	f32 m_health;                                // _200
@@ -578,7 +573,7 @@ struct EnemyBase : public Creature, public SysShape::MotionListener, virtual pub
 	f32 m_damageAnimTimer;                       // _210
 	f32 m_stunAnimTimer;                         // _214
 	f32 m_friction;                              // _218
-	f32 m_stoneTimer;                            // _21C
+	f32 m_stoneTimer;                            // _21C, timer of the bitter spray stone state
 	Sys::Sphere m_boundingSphere;                // _220
 	Creature* m_targetCreature;                  // _230
 	CollEvent m_collEvent;                       // _234

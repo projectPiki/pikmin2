@@ -49,11 +49,11 @@ void StateDead::init(EnemyBase* enemy, StateArg* stateArg)
 void StateDead::exec(EnemyBase* enemy)
 {
 	Obj* sokkuri = static_cast<Obj*>(enemy);
-	if (sokkuri->m_animKeyEvent->m_running) {
-		if ((u32)sokkuri->m_animKeyEvent->m_type == KEYEVENT_2) {
+	if (sokkuri->m_curAnim->m_isRunning) {
+		if ((u32)sokkuri->m_curAnim->m_type == KEYEVENT_2) {
 			sokkuri->createDownEffect(0.5f, 0.55f);
 
-		} else if ((u32)sokkuri->m_animKeyEvent->m_type == KEYEVENT_END) {
+		} else if ((u32)sokkuri->m_curAnim->m_type == KEYEVENT_END) {
 			sokkuri->kill(nullptr);
 		}
 	}
@@ -90,11 +90,11 @@ void StatePress::init(EnemyBase* enemy, StateArg* stateArg)
 void StatePress::exec(EnemyBase* enemy)
 {
 	Obj* sokkuri = static_cast<Obj*>(enemy);
-	if (sokkuri->m_animKeyEvent->m_running) {
-		if ((u32)sokkuri->m_animKeyEvent->m_type == KEYEVENT_2) {
+	if (sokkuri->m_curAnim->m_isRunning) {
+		if ((u32)sokkuri->m_curAnim->m_type == KEYEVENT_2) {
 			sokkuri->createDownEffect(0.0f, 0.55f);
 
-		} else if ((u32)sokkuri->m_animKeyEvent->m_type == KEYEVENT_END) {
+		} else if ((u32)sokkuri->m_curAnim->m_type == KEYEVENT_END) {
 			sokkuri->kill(nullptr);
 		}
 	}
@@ -199,7 +199,7 @@ void StateAppear::exec(EnemyBase* enemy)
 	} else if (EnemyFunc::isStartFlick(sokkuri, false)) {
 		transit(sokkuri, SOKKURI_Flick, nullptr);
 
-	} else if (sokkuri->m_animKeyEvent->m_running && (u32)sokkuri->m_animKeyEvent->m_type == KEYEVENT_END) {
+	} else if (sokkuri->m_curAnim->m_isRunning && (u32)sokkuri->m_curAnim->m_type == KEYEVENT_END) {
 		transit(sokkuri, SOKKURI_MoveGround, nullptr);
 	}
 }
@@ -239,11 +239,11 @@ void StateDisappear::exec(EnemyBase* enemy)
 	if (sokkuri->m_health <= 0.0f) {
 		transit(sokkuri, SOKKURI_Dead, nullptr);
 
-	} else if (sokkuri->m_animKeyEvent->m_running) {
-		if ((u32)sokkuri->m_animKeyEvent->m_type == KEYEVENT_2) {
+	} else if (sokkuri->m_curAnim->m_isRunning) {
+		if ((u32)sokkuri->m_curAnim->m_type == KEYEVENT_2) {
 			sokkuri->createDownEffect(0.35f, 0.0f);
 
-		} else if ((u32)sokkuri->m_animKeyEvent->m_type == KEYEVENT_END) {
+		} else if ((u32)sokkuri->m_curAnim->m_type == KEYEVENT_END) {
 			transit(sokkuri, SOKKURI_Stay, nullptr);
 		}
 	}
@@ -304,7 +304,7 @@ void StateWait::exec(EnemyBase* enemy)
 
 		sokkuri->m_timer += sys->m_secondsPerFrame;
 
-		if (sokkuri->m_animKeyEvent->m_running && (u32)sokkuri->m_animKeyEvent->m_type == KEYEVENT_END) {
+		if (sokkuri->m_curAnim->m_isRunning && (u32)sokkuri->m_curAnim->m_type == KEYEVENT_END) {
 			transit(sokkuri, sokkuri->m_nextState, nullptr);
 		}
 	}
@@ -387,7 +387,7 @@ void StateMoveGround::exec(EnemyBase* enemy)
 
 	sokkuri->m_timer += sys->m_secondsPerFrame;
 
-	if (sokkuri->m_animKeyEvent->m_running && (u32)sokkuri->m_animKeyEvent->m_type == KEYEVENT_END) {
+	if (sokkuri->m_curAnim->m_isRunning && (u32)sokkuri->m_curAnim->m_type == KEYEVENT_END) {
 		transit(enemy, sokkuri->m_nextState, nullptr); // no idea why this is enemy rather than sokkuri but it makes it match
 	}
 }
@@ -463,7 +463,7 @@ void StateMoveWater::exec(EnemyBase* enemy)
 
 	sokkuri->m_timer += sys->m_secondsPerFrame;
 
-	if (sokkuri->m_animKeyEvent->m_running && (u32)sokkuri->m_animKeyEvent->m_type == KEYEVENT_END) {
+	if (sokkuri->m_curAnim->m_isRunning && (u32)sokkuri->m_curAnim->m_type == KEYEVENT_END) {
 		transit(enemy, sokkuri->m_nextState, nullptr); // no idea why this is enemy rather than sokkuri but it makes it match
 	}
 }
@@ -516,12 +516,12 @@ void StateFlick::exec(EnemyBase* enemy)
 
 	sokkuri->m_timer += sys->m_secondsPerFrame;
 
-	if (sokkuri->m_animKeyEvent->m_running) {
-		if ((u32)sokkuri->m_animKeyEvent->m_type == KEYEVENT_2) {
+	if (sokkuri->m_curAnim->m_isRunning) {
+		if ((u32)sokkuri->m_curAnim->m_type == KEYEVENT_2) {
 			sokkuri->setEvent(0, EB_22);
 			sokkuri->createDownEffect(0.6f, 0.55f);
 
-		} else if ((u32)sokkuri->m_animKeyEvent->m_type == KEYEVENT_3) {
+		} else if ((u32)sokkuri->m_curAnim->m_type == KEYEVENT_3) {
 			Parms* parms1 = static_cast<Parms*>(sokkuri->m_parms);
 			EnemyFunc::flickNearbyNavi(sokkuri, parms1->m_general.m_shakeRange.m_value, parms1->m_general.m_shakeKnockback.m_value,
 			                           parms1->m_general.m_shakeDamage.m_value, -1000.0f, nullptr);
@@ -533,10 +533,10 @@ void StateFlick::exec(EnemyBase* enemy)
 			EnemyFunc::flickStickPikmin(sokkuri, parms3->m_general.m_shakeRateMaybe.m_value, parms3->m_general.m_shakeKnockback.m_value,
 			                            parms3->m_general.m_shakeDamage.m_value, -1000.0f, nullptr);
 			sokkuri->m_toFlick = 0.0f;
-		} else if ((u32)sokkuri->m_animKeyEvent->m_type == KEYEVENT_4) {
+		} else if ((u32)sokkuri->m_curAnim->m_type == KEYEVENT_4) {
 			sokkuri->resetEvent(0, EB_22);
 
-		} else if ((u32)sokkuri->m_animKeyEvent->m_type == KEYEVENT_END) {
+		} else if ((u32)sokkuri->m_curAnim->m_type == KEYEVENT_END) {
 			transit(sokkuri, sokkuri->m_nextState, nullptr);
 		}
 	}

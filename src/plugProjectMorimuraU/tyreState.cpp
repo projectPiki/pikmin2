@@ -201,7 +201,7 @@ void Tyre::StateDead::init(EnemyBase* enemy, StateArg* stateArg)
  */
 void Tyre::StateDead::exec(EnemyBase* enemy)
 {
-	if ((enemy->m_animKeyEvent->m_running != 0) && ((u32)enemy->m_animKeyEvent->m_type == KEYEVENT_END)) {
+	if ((enemy->m_curAnim->m_isRunning != 0) && ((u32)enemy->m_curAnim->m_type == KEYEVENT_END)) {
 		enemy->kill(nullptr);
 	}
 }

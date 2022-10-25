@@ -94,7 +94,7 @@ struct TSequenceProcessor : public TProcessor {
 	void on_branch_queryResult();
 	void on_branch(const void*, const char*);
 	void process_onJump_limited_(const TSequenceProcessor*);
-	static unkptr process_onJump_(const TSequenceProcessor*);
+	static void* process_onJump_(const TSequenceProcessor*);
 	void process_onBranch_limited_(const TSequenceProcessor*, unsigned long);
 	void process_onBranch_(const TSequenceProcessor*, unsigned long);
 

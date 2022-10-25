@@ -47,7 +47,7 @@ void Obj::onInit(CreatureInitArg* initArg)
 			m_position.y = mapMgr->getMinY(position);
 		}
 
-		m_animKeyEvent->m_running = 0;
+		m_curAnim->m_isRunning = 0;
 		doAnimationUpdateAnimator();
 
 		m_mainMatrix.makeSRT(m_scale, m_rotation, m_position);
@@ -121,7 +121,7 @@ void Obj::doSimulation(f32 constraint)
  */
 void Obj::doAnimationCullingOff()
 {
-	m_animKeyEvent->m_running = 0;
+	m_curAnim->m_isRunning = 0;
 	doAnimationUpdateAnimator();
 	bool check;
 	Vector3f vec = m_mainMatrix.getBasis(3);

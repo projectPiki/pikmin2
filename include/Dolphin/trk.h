@@ -207,10 +207,10 @@ typedef enum {
 } UARTBaudRate;
 
 UARTError InitializeUART(UARTBaudRate baudRate);
-TRKResult TRKInitializeIntDrivenUART(unknown, unknown, unknown, unkptr);
+TRKResult TRKInitializeIntDrivenUART(unknown, unknown, unknown, void*);
 void usr_put_initialize();
-void TRKTargetSetInputPendingPtr(unkptr);
-extern unkptr gTRKInputPendingPtr;
+void TRKTargetSetInputPendingPtr(void*);
+extern void* gTRKInputPendingPtr;
 
 #ifdef __cplusplus
 };

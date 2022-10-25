@@ -158,7 +158,7 @@ typedef struct {
 	CARDSyncCallback* _0D0;                        // _0D0
 	CARDBlockD4Callback* _0D4;                     // _0D4
 	CARDBlockD8Callback* _0D8;                     // _0D8
-	unkptr _0DC;                                   // _0DC
+	void* _0DC;                                    // _0DC
 	OSAlarm _0E0;                                  // _0E0
 	u16 _108;                                      // _108
 	u8 _10A[2];                                    // _10A

@@ -33,7 +33,7 @@ struct JASHeap {
 	JSUTree<JASHeap> m_tree;     // _00
 	OSMutexObject m_mutexObject; // _1C
 	JASDisposer* m_disposer;     // _34
-	unkptr _38;                  // _38
+	void* _38;                   // _38
 	u32 _3C;                     // _3C
 	u32 _40;                     // _40
 };

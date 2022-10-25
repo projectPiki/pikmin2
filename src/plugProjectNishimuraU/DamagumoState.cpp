@@ -54,13 +54,13 @@ void StateDead::init(EnemyBase* enemy, StateArg* stateArg)
 void StateDead::exec(EnemyBase* enemy)
 {
 	Obj* damagumo = static_cast<Obj*>(enemy);
-	if (damagumo->m_animKeyEvent->m_running) {
-		if ((u32)damagumo->m_animKeyEvent->m_type == KEYEVENT_2) {
+	if (damagumo->m_curAnim->m_isRunning) {
+		if ((u32)damagumo->m_curAnim->m_type == KEYEVENT_2) {
 			damagumo->throwupItem();
 			damagumo->createItemAndEnemy();
-		} else if ((u32)damagumo->m_animKeyEvent->m_type == KEYEVENT_3) {
+		} else if ((u32)damagumo->m_curAnim->m_type == KEYEVENT_3) {
 			damagumo->_2DC = 1;
-		} else if ((u32)damagumo->m_animKeyEvent->m_type == KEYEVENT_END) {
+		} else if ((u32)damagumo->m_curAnim->m_type == KEYEVENT_END) {
 			damagumo->kill(nullptr);
 		}
 	}
@@ -158,8 +158,8 @@ void StateLand::exec(EnemyBase* enemy)
 	Obj* damagumo = static_cast<Obj*>(enemy);
 	damagumo->addShadowScale();
 
-	if (damagumo->m_animKeyEvent->m_running) {
-		if ((u32)damagumo->m_animKeyEvent->m_type == KEYEVENT_2) {
+	if (damagumo->m_curAnim->m_isRunning) {
+		if ((u32)damagumo->m_curAnim->m_type == KEYEVENT_2) {
 			damagumo->resetEvent(0, EB_BitterImmune);
 
 			for (int i = 0; i < 4; i++) {
@@ -170,19 +170,19 @@ void StateLand::exec(EnemyBase* enemy)
 			cameraMgr->startVibration(15, position, 2);
 			rumbleMgr->startRumble(15, position, 2);
 
-		} else if ((u32)damagumo->m_animKeyEvent->m_type == KEYEVENT_3) {
+		} else if ((u32)damagumo->m_curAnim->m_type == KEYEVENT_3) {
 			damagumo->createOnGroundEffect(3, damagumo->m_waterBox);
 
-		} else if ((u32)damagumo->m_animKeyEvent->m_type == KEYEVENT_4) {
+		} else if ((u32)damagumo->m_curAnim->m_type == KEYEVENT_4) {
 			damagumo->createOnGroundEffect(0, damagumo->m_waterBox);
 
-		} else if ((u32)damagumo->m_animKeyEvent->m_type == KEYEVENT_5) {
+		} else if ((u32)damagumo->m_curAnim->m_type == KEYEVENT_5) {
 			damagumo->createOnGroundEffect(1, damagumo->m_waterBox);
 
-		} else if ((u32)damagumo->m_animKeyEvent->m_type == KEYEVENT_6) {
+		} else if ((u32)damagumo->m_curAnim->m_type == KEYEVENT_6) {
 			damagumo->createOnGroundEffect(2, damagumo->m_waterBox);
 
-		} else if ((u32)damagumo->m_animKeyEvent->m_type == KEYEVENT_END) {
+		} else if ((u32)damagumo->m_curAnim->m_type == KEYEVENT_END) {
 			if (damagumo->m_health <= 0.0f) {
 				transit(damagumo, DAMAGUMO_Dead, nullptr);
 			} else if (EnemyFunc::isStartFlick(damagumo, false)) {
@@ -246,7 +246,7 @@ void StateWait::exec(EnemyBase* enemy)
 		damagumo->finishMotion();
 	}
 
-	if (damagumo->m_animKeyEvent->m_running && (u32)damagumo->m_animKeyEvent->m_type == KEYEVENT_END) {
+	if (damagumo->m_curAnim->m_isRunning && (u32)damagumo->m_curAnim->m_type == KEYEVENT_END) {
 		transit(damagumo, damagumo->m_nextState, nullptr);
 	}
 }
@@ -283,14 +283,14 @@ void StateFlick::init(EnemyBase* enemy, StateArg* stateArg)
 void StateFlick::exec(EnemyBase* enemy)
 {
 	Obj* damagumo = static_cast<Obj*>(enemy);
-	if (damagumo->m_animKeyEvent->m_running) {
-		if ((u32)damagumo->m_animKeyEvent->m_type == KEYEVENT_2) {
+	if (damagumo->m_curAnim->m_isRunning) {
+		if ((u32)damagumo->m_curAnim->m_type == KEYEVENT_2) {
 			Parms* parms = static_cast<Parms*>(damagumo->m_parms);
 			EnemyFunc::flickStickPikmin(damagumo, parms->m_general.m_shakeRateMaybe.m_value, parms->m_general.m_shakeKnockback.m_value,
 			                            parms->m_general.m_shakeDamage.m_value, -1000.0, nullptr);
 			damagumo->m_toFlick = 0.0f;
 			damagumo->startBossFlickBGM();
-		} else if ((u32)damagumo->m_animKeyEvent->m_type == KEYEVENT_END) {
+		} else if ((u32)damagumo->m_curAnim->m_type == KEYEVENT_END) {
 			if (damagumo->m_health <= 0.0f) {
 				transit(damagumo, DAMAGUMO_Dead, nullptr);
 			} else {

@@ -97,7 +97,7 @@ void CreateCallbackFat(int slotIndex, int p2)
  * Address:	800D9BE0
  * Size:	000220
  */
-int CARDCreateAsync(int slotIndex, char* fileName, unknown p3, CARDFileInfo* fileInfo, unkptr callback)
+int CARDCreateAsync(int slotIndex, char* fileName, unknown p3, CARDFileInfo* fileInfo, void* callback)
 {
 	/*
 	.loc_0x0:

@@ -10,7 +10,7 @@ void __DVDInitWA();
 BOOL DVDLowAudioBufferConfig(unknown, unknown, DVDLowCallback*);
 BOOL DVDLowAudioStream(unknown, unknown, unknown, DVDLowCallback*);
 BOOL DVDLowInquiry(DVDDiskID*, DVDLowCallback*);
-BOOL DVDLowRead(unkptr, unknown, unknown, DVDLowCallback*);
+BOOL DVDLowRead(void*, unknown, unknown, DVDLowCallback*);
 BOOL DVDLowReadDiskID(DVDDiskID*, DVDLowCallback*);
 BOOL DVDLowRequestAudioStatus(unknown, DVDLowCallback*);
 BOOL DVDLowRequestError(DVDLowCallback*);
@@ -3609,7 +3609,7 @@ void cbForChangeDiskSync(void)
  * Address:	800DEC50
  * Size:	0000D0
  */
-BOOL DVDInquiryAsync(struct DVDPlayer* player, unkptr readBuffer, DVDDoneReadCallback* doneReadCallback)
+BOOL DVDInquiryAsync(struct DVDPlayer* player, void* readBuffer, DVDDoneReadCallback* doneReadCallback)
 {
 	int interrupts;
 	BOOL result;

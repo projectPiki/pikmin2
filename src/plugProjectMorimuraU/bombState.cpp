@@ -71,8 +71,8 @@ void Bomb::StateWait::exec(EnemyBase* enemy)
 		bomb->setEmotionExcitement();
 	}
 
-	if (bomb->m_animKeyEvent->m_running != 0) {
-		switch (bomb->m_animKeyEvent->m_type) {
+	if (bomb->m_curAnim->m_isRunning != 0) {
+		switch (bomb->m_curAnim->m_type) {
 		case 2:
 			bomb->resetEvent(0, EB_22);
 			break;

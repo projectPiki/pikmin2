@@ -178,7 +178,7 @@ struct PelletIndexInitArg : public PelletInitArg {
 };
 
 struct PelletNumberInitArg : public PelletInitArg {
-	PelletNumberInitArg(int, int);
+	PelletNumberInitArg(int size, int);
 };
 
 struct PelletKillArg : public CreatureKillArg {

@@ -40,7 +40,7 @@ struct JPAResource {
 	struct JPAChildShape* _24;    // _24
 	struct JPAExTexShape* _28;    // _28
 	struct JPADynamicsBlock* _2C; // _2C
-	unkptr _30;                   // _30
+	void* _30;                    // _30
 	struct JPAKeyBlock** _34;     // _34
 	u16* _38;                     // _38
 	u16 _3C;                      // _3C

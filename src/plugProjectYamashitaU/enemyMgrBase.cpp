@@ -466,7 +466,7 @@ void EnemyMgrBase::initObjects()
 			SysShape::Model* model = createModel();
 			m_animMgr->m_model     = model;
 
-			getEnemy(i)->setEnemyIndexForType(i);
+			getEnemy(i)->setCreatureID(i);
 			getEnemy(i)->m_mgr   = this;
 			getEnemy(i)->m_model = model;
 			getEnemy(i)->setAnimMgr(m_animMgr);
@@ -495,7 +495,7 @@ void EnemyMgrBase::initStoneSetting()
 	if (isValidEnemyTypeID()) {
 		EnemyInfo* info = EnemyInfoFunc::getEnemyInfo(getEnemyTypeID(), 0xFFFF);
 		char* stoneName = info->m_stoneName;
-		if (*stoneName == 0) {
+		if (*stoneName == '\0') {
 			stoneName = EnemyInfoFunc::getEnemyName(getEnemyTypeID(), 0xFFFF);
 		}
 

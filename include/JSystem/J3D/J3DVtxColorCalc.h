@@ -10,8 +10,8 @@ struct J3DVtxColorCalc {
 	void valc(struct J3DModel*);
 
 	// _00 VTBL
-	u32 _04;    // _04
-	unkptr _08; // _08
+	u32 _04;   // _04
+	void* _08; // _08
 };
 
 #endif

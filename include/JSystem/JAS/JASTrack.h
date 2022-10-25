@@ -34,7 +34,7 @@ struct JASIntrMgr {
 	void request(u32);
 	void setIntr(u32, void*);
 	void resetInter(u32);
-	unkptr checkIntr();
+	void* checkIntr();
 	void timerProcess();
 
 	u8 _00;       // _00

@@ -359,7 +359,7 @@ int DummyLen(void)
  * Address:	800D5C94
  * Size:	000B58
  */
-int __CARDUnlock(int slotIndex, unkptr p2)
+int __CARDUnlock(int slotIndex, void* p2)
 {
 	/*
 	.loc_0x0:

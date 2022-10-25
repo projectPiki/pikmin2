@@ -75,8 +75,8 @@ void StateWait::exec(Game::EnemyBase* base)
 		eggObj->m_toFlick = 0.0f;
 	}
 
-	EnemyAnimKeyEvent* ekEvent = eggObj->m_animKeyEvent;
-	if (ekEvent->m_running && (u32)ekEvent->m_type == 1000) {
+	EnemyAnimKeyEvent* ekEvent = eggObj->m_curAnim;
+	if (ekEvent->m_isRunning && (u32)ekEvent->m_type == 1000) {
 		eggObj->startMotion(0, nullptr);
 		eggObj->stopMotion();
 	}

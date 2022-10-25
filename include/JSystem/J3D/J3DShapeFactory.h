@@ -24,7 +24,7 @@ struct J3DShapeFactory {
 	u8* _10;                                     // _10
 	struct J3DShapeMtxInitData* m_mtxInitData;   // _14
 	struct J3DShapeDrawInitData* m_drawInitData; // _18
-	unkptr _1C;                                  // _1C
+	void* _1C;                                   // _1C
 };
 
 #endif

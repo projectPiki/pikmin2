@@ -48,7 +48,7 @@ void StatePress::init(EnemyBase* enemy, StateArg* stateArg)
 	enemy->m_health = 0.0f;
 	enemy->startMotion(4, nullptr);
 	enemy->deathProcedure();
-	enemy->m_animKeyEvent->m_running = 0;
+	enemy->m_curAnim->m_isRunning = 0;
 }
 
 /*
@@ -58,7 +58,7 @@ void StatePress::init(EnemyBase* enemy, StateArg* stateArg)
  */
 void StatePress::exec(EnemyBase* enemy)
 {
-	if (enemy->m_animKeyEvent->m_running && (u32)enemy->m_animKeyEvent->m_type == KEYEVENT_END) {
+	if (enemy->m_curAnim->m_isRunning && (u32)enemy->m_curAnim->m_type == KEYEVENT_END) {
 		transit(enemy, KOCHAPPY_Demo, nullptr);
 	}
 }
@@ -111,8 +111,8 @@ void StateWait::exec(EnemyBase* enemy)
 			enemy->finishMotion();
 		}
 
-		if (enemy->m_animKeyEvent->m_running) {
-			switch (enemy->m_animKeyEvent->m_type) {
+		if (enemy->m_curAnim->m_isRunning) {
+			switch (enemy->m_curAnim->m_type) {
 			case KEYEVENT_2:
 				enemy->getJAIObject()->startSound(PSSE_EN_KOCHAPPY_NOTICE, 0);
 				break;
@@ -386,7 +386,7 @@ void StateDead::init(EnemyBase* enemy, StateArg* stateArg)
  */
 void StateDead::exec(EnemyBase* enemy)
 {
-	if (enemy->m_animKeyEvent->m_running && (u32)enemy->m_animKeyEvent->m_type == KEYEVENT_END) {
+	if (enemy->m_curAnim->m_isRunning && (u32)enemy->m_curAnim->m_type == KEYEVENT_END) {
 		transit(enemy, KOCHAPPY_Demo, nullptr);
 	}
 }

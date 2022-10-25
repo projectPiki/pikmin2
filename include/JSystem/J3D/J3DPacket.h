@@ -58,7 +58,7 @@ struct J3DDrawPacket : public J3DPacket {
 	u32 _10;                          // _10
 	u8 _14[0xC];                      // _14
 	J3DDisplayListObj* m_displayList; // _20
-	unkptr _24;                       // _24
+	void* _24;                        // _24
 };
 
 // TODO: Data members
@@ -92,9 +92,9 @@ struct J3DShapePacket_0x24 {
 	    , _08(num)
 	{
 	}
-	Mtx* _00;   // _00
-	unkptr _04; // _04
-	s16 _08;    // _08
+	Mtx* _00;  // _00
+	void* _04; // _04
+	s16 _08;   // _08
 };
 
 /**

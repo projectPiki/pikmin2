@@ -620,7 +620,7 @@ void StoneState::init(Game::EnemyBase* enemy, Game::StateArg* arg)
 		enemy->setEvent(0, EB_Constraint);
 	}
 
-	if (enemy->m_emotion == EMOTE_Excitement && PSGetDirectedMainBgm()) {
+	if (enemy->m_sfxEmotion == EMOTE_Excitement && PSGetDirectedMainBgm()) {
 		enemy->m_soundObj->battleOff();
 	}
 
@@ -645,7 +645,7 @@ void StoneState::cleanup(Game::EnemyBase* enemy)
 	enemy->startMotion();
 	enemy->doFinishStoneState();
 
-	if ((enemy->m_emotion == EMOTE_Excitement) && PSGetDirectedMainBgm()) {
+	if ((enemy->m_sfxEmotion == EMOTE_Excitement) && PSGetDirectedMainBgm()) {
 		enemy->m_soundObj->battleOn();
 	}
 }
@@ -750,10 +750,10 @@ EnemyBase::EnemyBase()
     , m_stunAnimRotation(Vector3f(0.0f))
     , m_events()
     , m_eventBuffer()
-    , m_emotion(EMOTE_Caution)
-    , m_enemyIndexForType(0xFF)
+    , m_sfxEmotion(EMOTE_Caution)
+    , m_creatureID(0xFF)
     , _1F2(0xFF)
-    , m_stickPikminCount(0)
+    , m_stuckPikminCount(0)
     , m_stunAnimTimer(0.0f)
     , m_friction(0.0f)
     , m_stoneTimer(0.0f)
@@ -782,15 +782,15 @@ EnemyBase::EnemyBase()
 	m_scaleModifier = 1.0f;
 	m_collisionBuffer.alloc(this, 8);
 	m_animator        = nullptr;
-	m_animKeyEvent    = new EnemyAnimKeyEvent;
+	m_curAnim         = new EnemyAnimKeyEvent;
 	m_damageAnimTimer = 0.0f;
 	m_targetCreature  = nullptr;
 	m_curTriangle     = nullptr;
 	m_lifecycleFSM    = new EnemyBaseFSM::StateMachine();
 	m_lifecycleFSM->init(this);
 	clearStick();
-	m_animKeyEvent->m_running = 0;
-	m_instantDamage           = 0.0f;
+	m_curAnim->m_isRunning = 0;
+	m_instantDamage        = 0.0f;
 	resetEvent(0, EB_Damage);
 	m_toFlick    = 0.0f;
 	m_stoneTimer = 0.0f;
@@ -917,7 +917,7 @@ void EnemyBase::fadeEfxHamon()
  */
 void EnemyBase::setEmotionCaution()
 {
-	m_emotion = EMOTE_Caution;
+	m_sfxEmotion = EMOTE_Caution;
 	if (PSGetDirectedMainBgm()) {
 		m_soundObj->battleOff();
 	}
@@ -930,7 +930,7 @@ void EnemyBase::setEmotionCaution()
  */
 void EnemyBase::setEmotionExcitement()
 {
-	m_emotion = EMOTE_Excitement;
+	m_sfxEmotion = EMOTE_Excitement;
 	m_soundObj->battleOn();
 }
 
@@ -941,7 +941,7 @@ void EnemyBase::setEmotionExcitement()
  */
 void EnemyBase::setEmotionNone()
 {
-	m_emotion = EMOTE_None;
+	m_sfxEmotion = EMOTE_None;
 	if (PSGetDirectedMainBgm()) {
 		m_soundObj->battleOff();
 	}
@@ -955,8 +955,8 @@ void EnemyBase::setEmotionNone()
 void EnemyBase::onInit(Game::CreatureInitArg* arg)
 {
 	clearStick();
-	m_animKeyEvent->m_running = false;
-	m_instantDamage           = 0.0f;
+	m_curAnim->m_isRunning = false;
+	m_instantDamage        = 0.0f;
 	resetEvent(0, EB_Damage);
 	m_toFlick    = 0.0f;
 	m_stoneTimer = 0.0f;
@@ -1100,7 +1100,7 @@ void EnemyBase::becomeCarcass(bool check)
 
 		fadeEffects();
 
-		m_emotion = 0;
+		m_sfxEmotion = 0;
 
 		if (PSGetDirectedMainBgm()) {
 			m_soundObj->battleOff();
@@ -1246,7 +1246,7 @@ void EnemyBase::onKill(CreatureKillArg* inputArg)
 
 				} else {
 					lifeGaugeMgr->inactiveLifeGauge(this);
-					m_emotion = 0;
+					m_sfxEmotion = 0;
 					if (PSGetDirectedMainBgm()) {
 						m_soundObj->battleOff();
 					}
@@ -2063,7 +2063,7 @@ void EnemyBase::birth(Vector3f& pos, f32 faceDir)
 	m_faceDir          = faceDir;
 	m_rotation.y       = m_faceDir;
 	m_curTriangle      = nullptr;
-	m_stickPikminCount = 0;
+	m_stuckPikminCount = 0;
 	m_heldPellet       = nullptr;
 	m_model->m_j3dModel->calc();
 	m_collTree->update();
@@ -2076,7 +2076,7 @@ void EnemyBase::birth(Vector3f& pos, f32 faceDir)
 		lifeGaugeMgr->activeLifeGauge(this, 1.0f);
 	}
 	m_model->hide();
-	m_emotion       = EMOTE_Caution;
+	m_sfxEmotion    = EMOTE_Caution;
 	_2AC            = 0.0f;
 	_2A8            = 0.0f;
 	m_stunAnimTimer = 0.0f;
@@ -2236,7 +2236,7 @@ void EnemyBase::doAnimationUpdateAnimator()
  */
 void EnemyBase::doAnimationCullingOff()
 {
-	m_animKeyEvent->m_running = false;
+	m_curAnim->m_isRunning = false;
 	doAnimationUpdateAnimator();
 
 	if (m_pellet) {
@@ -3445,10 +3445,10 @@ void EnemyBase::finishMotion() { m_animator->getAnimator(0).m_flags |= 2; }
  */
 void EnemyBase::onKeyEvent(const SysShape::KeyEvent& event)
 {
-	EnemyAnimKeyEvent* animKeyEvent = m_animKeyEvent;
+	EnemyAnimKeyEvent* animKeyEvent = m_curAnim;
 	animKeyEvent->m_frame           = event.m_frame;
 	animKeyEvent->m_type            = event.m_type;
-	animKeyEvent->m_running         = true;
+	animKeyEvent->m_isRunning       = true;
 }
 
 /*
@@ -4035,7 +4035,7 @@ void EnemyBase::doGetLifeGaugeParam(Game::LifeGaugeParam& param)
 void EnemyBase::onStickStart(Game::Creature* other)
 {
 	if (other->isPiki()) {
-		m_stickPikminCount++;
+		m_stuckPikminCount++;
 	}
 }
 
@@ -4047,7 +4047,7 @@ void EnemyBase::onStickStart(Game::Creature* other)
 void EnemyBase::onStickEnd(Game::Creature* other)
 {
 	if (other->isPiki()) {
-		m_stickPikminCount--;
+		m_stuckPikminCount--;
 	}
 }
 
@@ -4329,7 +4329,7 @@ void EnemyBase::viewOnPelletKilled()
 	}
 
 	fadeEffects();
-	m_emotion = EMOTE_None;
+	m_sfxEmotion = EMOTE_None;
 
 	if (PSGetDirectedMainBgm()) {
 		m_soundObj->battleOff();
@@ -4465,7 +4465,7 @@ PSM::EnemyBase* EnemyBase::createPSEnemyBase()
 void EnemyBase::startMotion()
 {
 	EnemyAnimatorBase* animator = m_animator;
-	animator->m_flags.typeView &= ~0x3;
+	RESET_FLAG(animator->m_flags.typeView, EANIM_FLAG_STOPPED | EANIM_FLAG_REWIND);
 	animator->m_progress = 1.0f;
 }
 

@@ -1284,7 +1284,7 @@ void Obj::initBombOtakara()
  */
 bool Obj::isTransitChaseState()
 {
-	if (isEvent(0, EB_Collision) || isEvent(0, EB_Damage) || (m_stickPikminCount != 0)) {
+	if (isEvent(0, EB_Collision) || isEvent(0, EB_Damage) || (m_stuckPikminCount != 0)) {
 		return true;
 	}
 

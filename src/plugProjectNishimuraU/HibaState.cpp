@@ -141,8 +141,8 @@ void StateAttack::exec(EnemyBase* enemy)
 	hiba->updateEfxLod();
 	hiba->interactFireAttack();
 
-	if (hiba->m_animKeyEvent->m_running
-	    && ((u32)hiba->m_animKeyEvent->m_type == 0x3E8) /* Epoch: wtf is this, needs cleanup. Surely an enum (+1 from INTNS)? */) {
+	if (hiba->m_curAnim->m_isRunning
+	    && ((u32)hiba->m_curAnim->m_type == 0x3E8) /* Epoch: wtf is this, needs cleanup. Surely an enum (+1 from INTNS)? */) {
 		if (hiba->m_health <= 0.0f) {
 			transit(hiba, HIBA_Dead, nullptr);
 			return;
