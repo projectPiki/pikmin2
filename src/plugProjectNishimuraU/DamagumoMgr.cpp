@@ -68,6 +68,7 @@ void Mgr::loadModelData()
 void Mgr::loadTexData()
 {
 	SysShape::Model::enableMaterialAnim(m_modelData, 0);
+
 	void* btkFile = nullptr;
 	LoadResource::Arg loadArgBtk(cMatAnimBtkTexName);
 	LoadResource::Node* resourceBtk = gLoadResourceMgr->load(loadArgBtk);

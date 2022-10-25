@@ -798,7 +798,7 @@ NISHIMURA:=\
 	$(BUILD_DIR)/asm/plugProjectNishimuraU/LeafChappy.o\
 	$(BUILD_DIR)/src/plugProjectNishimuraU/BigFootState.o\
 	$(BUILD_DIR)/src/plugProjectNishimuraU/BigFootAnimator.o\
-	$(BUILD_DIR)/asm/plugProjectNishimuraU/BigFootMgr.o\
+	$(BUILD_DIR)/src/plugProjectNishimuraU/BigFootMgr.o\
 	$(BUILD_DIR)/asm/plugProjectNishimuraU/BigFootShadow.o\
 	$(BUILD_DIR)/asm/plugProjectNishimuraU/BigFoot.o\
 	$(BUILD_DIR)/asm/plugProjectNishimuraU/SnakeWholeState.o\
