@@ -1174,7 +1174,7 @@ lbl_80218380:
  */
 void SingleGame::CaveState::onFountainReturn(Game::SingleGameSection* section, Game::ItemBigFountain::Item* fountain)
 {
-	gameSystem->_3C &= 0xDF;
+	gameSystem->m_flags &= 0xDF;
 	section->loadMainMapSituation();
 	MoviePlayArg arg;
 	arg._0C                     = section->_C8;
@@ -1279,7 +1279,7 @@ void SingleGame::CaveState::onNextFloor(Game::SingleGameSection* section, Game::
 			playData->m_caveSaveData.m_isWaterwraithAlive = false;
 		}
 	}
-	gameSystem->_3C &= 0xDF;
+	gameSystem->m_flags &= 0xDF;
 	section->loadMainMapSituation();
 	MoviePlayArg arg;
 	arg._0C                     = section->_C8;

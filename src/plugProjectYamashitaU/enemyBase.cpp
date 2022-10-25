@@ -2028,7 +2028,7 @@ void EnemyBase::onKill(CreatureKillArg* inputArg)
 void EnemyBase::setZukanVisible(bool arg)
 {
 	if (m_inPiklopedia) {
-		if (!(gameSystem->_3C & 0x10)) {
+		if (!(gameSystem->m_flags & 0x10)) {
 			EnemyInfo* enemyInfo = EnemyInfoFunc::getEnemyInfo(getEnemyTypeID(), 0xFFFF);
 			if (!(enemyInfo->m_flags & 0x200)) {
 				TekiStat::Info* tekiInfo = playData->m_tekiStatMgr.getTekiInfo(getEnemyTypeID());
@@ -2107,7 +2107,7 @@ void EnemyBase::setParameters()
 	Sys::Sphere sphere;
 	m_collTree->m_part->getSphere(sphere);
 	m_boundingSphere.m_radius = sphere.m_radius;
-	m_lodRange.m_radius       = static_cast<EnemyParmsBase*>(m_parms)->m_general.m_offCameraRadius.m_value;
+	m_curLodSphere.m_radius   = static_cast<EnemyParmsBase*>(m_parms)->m_general.m_offCameraRadius.m_value;
 }
 
 /*
@@ -2463,8 +2463,8 @@ inline void EnemyBase::updateSpheres()
 	Sys::Sphere sphere;
 	m_collTree->m_part->getSphere(sphere);
 
-	m_boundingSphere      = sphere;
-	m_lodRange.m_position = m_boundingSphere.m_position;
+	m_boundingSphere          = sphere;
+	m_curLodSphere.m_position = m_boundingSphere.m_position;
 }
 
 /*
@@ -4197,9 +4197,9 @@ bool EnemyBase::earthquakeCallBack(Game::Creature* creature, f32 bounceFactor)
  * Address:	801064B0
  * Size:	000108
  */
-bool EnemyBase::dopeCallBack(Game::Creature* creature, int p1)
+bool EnemyBase::dopeCallBack(Game::Creature* creature, int sprayType)
 {
-	if (isAlive() && !(m_health <= 0.0f) && doDopeCallBack(creature, p1)) {
+	if (isAlive() && !(m_health <= 0.0f) && doDopeCallBack(creature, sprayType)) {
 		switch (p1) {
 		case 1:
 			if (!(m_events.m_flags[0].typeView & 0x400000) && !(m_events.m_flags[0].typeView & 0x200)) {
@@ -4221,7 +4221,7 @@ bool EnemyBase::dopeCallBack(Game::Creature* creature, int p1)
  * Address:	801065C0
  * Size:	000008
  */
-bool EnemyBase::farmCallBack(Game::Creature*, f32) { return false; }
+bool EnemyBase::farmCallBack(Game::Creature*, f32 power) { return false; }
 
 /*
  * --INFO--
@@ -4876,7 +4876,7 @@ void EnemyBase::endMovie()
  * Address:	801078CC
  * Size:	000094
  */
-void EnemyBase::doStartEarthquakeState(f32 param_1)
+void EnemyBase::doStartEarthquakeState(f32 yVelocityScale)
 {
 	m_simVelocity.x = 0.0f;
 	m_simVelocity.y = 0.0f;
@@ -4886,7 +4886,7 @@ void EnemyBase::doStartEarthquakeState(f32 param_1)
 	m_impVelocity.y = 0.0f;
 	m_impVelocity.z = 0.0f;
 
-	m_impVelocity.y = (param_1 * 200.0f + randFloat() * 100.0f);
+	m_impVelocity.y = (yVelocityScale * 200.0f + randFloat() * 100.0f);
 };
 
 /*

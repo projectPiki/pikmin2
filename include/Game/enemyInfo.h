@@ -152,11 +152,11 @@ extern EnemyInfo gEnemyInfo[];
 extern int gEnemyInfoNum;
 
 namespace EnemyInfoFunc {
-EnemyInfo* getEnemyInfo(int, int);
-char* getEnemyName(int, int);
-char* getEnemyResName(int, int);
-char getEnemyMember(int, int);
-int getEnemyID(char*, int);
+EnemyInfo* getEnemyInfo(int id, int flags);
+char* getEnemyName(int id, int flags);
+char* getEnemyResName(int id, int flags);
+char getEnemyMember(int id, int flags);
+int getEnemyID(char* name, int flags);
 } // namespace EnemyInfoFunc
 
 inline int getEnemyMgrID(int enemyID)

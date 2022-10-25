@@ -87,7 +87,7 @@ bool Navi::stimulate(Game::Interaction& interaction)
  */
 bool InteractSarai::actNavi(Game::Navi* navi)
 {
-	if (!gameSystem || gameSystem->_3C & 0x20) {
+	if (!gameSystem || gameSystem->m_flags & 0x20) {
 		if (!navi->isStickTo()) {
 			navi->startStick(m_creature, m_collPart);
 			navi->transit(NSID_Sarai, nullptr);
@@ -104,7 +104,7 @@ bool InteractSarai::actNavi(Game::Navi* navi)
  */
 bool InteractBomb::actNavi(Game::Navi* navi)
 {
-	if ((gameSystem->_3C & 0x20) == 0) {
+	if ((gameSystem->m_flags & 0x20) == 0) {
 		return false;
 	}
 
@@ -146,7 +146,7 @@ bool InteractWind::actNavi(Game::Navi* navi)
  */
 bool InteractDenki::actNavi(Game::Navi* navi)
 {
-	if (!gameSystem || gameSystem->_3C & 0x20) {
+	if (!gameSystem || gameSystem->m_flags & 0x20) {
 		if (!playData->m_olimarData->hasItem(OlimarData::ODII_DreamMaterial)) {
 			NaviFlickArg flickArg(m_creature, m_direction, m_damage);
 			navi->transit(NSID_Flick, &flickArg);
@@ -177,7 +177,7 @@ bool InteractFallMeck::actNavi(Game::Navi* navi)
  */
 bool InteractFlick::actNavi(Game::Navi* navi)
 {
-	if (!gameSystem || gameSystem->_3C & 0x20) {
+	if (!gameSystem || gameSystem->m_flags & 0x20) {
 		if (!playData->isDemoFlag(DEMO_Reunite_Captains)) {
 			return false;
 		}

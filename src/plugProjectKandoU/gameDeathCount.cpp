@@ -478,7 +478,7 @@ void DeathMgr::clear(void)
  */
 void DeathMgr::inc(int cod)
 {
-	if (gameSystem == nullptr || (gameSystem->_3C & 0x10) == 0 || cod == DeathCounter::COD_Unknown2 || cod == DeathCounter::COD_All) {
+	if (gameSystem == nullptr || (gameSystem->m_flags & 0x10) == 0 || cod == DeathCounter::COD_Unknown2 || cod == DeathCounter::COD_All) {
 		if (gameSystem->m_inCave) {
 			inc_cave(cod);
 		} else {

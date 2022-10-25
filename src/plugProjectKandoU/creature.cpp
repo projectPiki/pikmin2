@@ -1028,7 +1028,7 @@ int Creature::checkHell(Creature::CheckHellArg& hellArg)
  */
 void Game::Creature::updateCell()
 {
-	if (!gameSystem || !(gameSystem->_3C & 4)) {
+	if (!gameSystem || !(gameSystem->m_flags & 4)) {
 		m_passID = -1;
 
 		Sys::Sphere ball;

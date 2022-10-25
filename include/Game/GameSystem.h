@@ -64,7 +64,7 @@ struct GameSystem : public NodeObjectMgr<GenericObjectMgr> {
 	inline bool isMultiplayerMode() { return (m_mode == GSM_VERSUS_MODE || m_mode == GSM_TWO_PLAYER_CHALLENGE); }
 	inline bool isChallengeMode() { return (m_mode == GSM_ONE_PLAYER_CHALLENGE || m_mode == GSM_TWO_PLAYER_CHALLENGE); }
 
-	u8 _3C;                     // _3C /* bitfield */
+	u8 m_flags;                 // _3C /* bitfield */
 	TimeMgr* m_timeMgr;         // _40
 	GameSystemMode m_mode;      // _44
 	u8 m_inCave;                // _48

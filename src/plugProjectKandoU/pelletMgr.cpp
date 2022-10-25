@@ -3955,7 +3955,7 @@ void Pellet::updateTrMatrix()
 void Pellet::doAnimation()
 {
 	if (!pelletMgr->m_movieDrawDisabled || isMovieActor()) {
-		if (gameSystem != nullptr && gameSystem->_3C & 0x20) {
+		if (gameSystem != nullptr && gameSystem->m_flags & 0x20) {
 			update();
 		} else {
 			if (m_collTree) {
@@ -5969,7 +5969,7 @@ void PelletIterator::setFirst()
  */
 PelletMgr::PelletMgr()
 {
-	m_name              = "ï¿½yï¿½ï¿½ï¿½bï¿½gï¿½}ï¿½lï¿½[ï¿½Wï¿½ï¿½"; // pellet manager
+	m_name              = "?¿½y?¿½?¿½?¿½b?¿½g?¿½}?¿½l?¿½[?¿½W?¿½?¿½"; // pellet manager
 	m_movieDrawDisabled = false;
 }
 
@@ -6435,7 +6435,7 @@ void PelletMgr::OtakaraItemCode::write(Stream& stream)
 {
 	stream.textWriteTab(stream.m_tabCount);
 	stream.writeShort(m_value);
-	stream.textWriteText("# ï¿½ï¿½ï¿½ï¿½Aï¿½Cï¿½eï¿½ï¿½ï¿½Rï¿½[ï¿½h\r\n");
+	stream.textWriteText("# ?¿½?¿½?¿½?¿½A?¿½C?¿½e?¿½?¿½?¿½R?¿½[?¿½h\r\n");
 }
 
 /*

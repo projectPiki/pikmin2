@@ -33,7 +33,7 @@ struct Mgr {
 
 	void allocate(int);
 	void clear();
-	Info* getTekiInfo(int);
+	Info* getTekiInfo(int tekiID);
 	void setOutOfDateAll();
 	bool whatsNew();
 

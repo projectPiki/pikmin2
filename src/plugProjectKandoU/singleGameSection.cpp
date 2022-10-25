@@ -2514,7 +2514,7 @@ void SingleGame::State::onMovieStart(Game::SingleGameSection*, Game::MovieConfig
  */
 void SingleGameSection::onMovieDone(Game::MovieConfig* config, unsigned long p2, unsigned long p3)
 {
-	gameSystem->_3C &= 0xF7;
+	gameSystem->m_flags &= 0xF7;
 	if (m_currentState) {
 		m_currentState->onMovieDone(this, config, p2, p3);
 	}

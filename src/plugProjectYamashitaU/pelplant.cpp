@@ -184,20 +184,20 @@ void Pelplant::Obj::updateLODSphereRadius(int size)
 	if (size == PELPLANT_SIZE_BIG) {
 		switch (m_size) {
 		case PELPLANT_AMOUNT_ONE:
-			m_lodRange.m_radius = sLODRadius[0];
+			m_curLodSphere.m_radius = sLODRadius[0];
 			return;
 		case PELPLANT_AMOUNT_FIVE:
-			m_lodRange.m_radius = sLODRadius[1];
+			m_curLodSphere.m_radius = sLODRadius[1];
 			return;
 		case PELPLANT_AMOUNT_TEN:
-			m_lodRange.m_radius = sLODRadius[2];
+			m_curLodSphere.m_radius = sLODRadius[2];
 			return;
 		case PELPLANT_AMOUNT_TWENTY:
-			m_lodRange.m_radius = sLODRadius[3];
+			m_curLodSphere.m_radius = sLODRadius[3];
 			return;
 		}
 	} else {
-		m_lodRange.m_radius = sLODRadius[0];
+		m_curLodSphere.m_radius = sLODRadius[0];
 	}
 }
 
@@ -503,10 +503,10 @@ bool Obj::damageCallBack(Creature* source, float damage, CollPart* part)
  * Address:	80109288
  * Size:	000078
  */
-bool Obj::farmCallBack(Creature* c, float progress)
+bool Obj::farmCallBack(Creature* c, float power)
 {
-	// If progress > 0, round up + 1; else we round down -1
-	m_farmPow = (s8)(progress >= 0.0f ? progress + 0.5f : progress - 0.5f);
+	// If power > 0, round up + 1; else we round down -1
+	m_farmPow = (s8)(power >= 0.0f ? power + 0.5f : power - 0.5f);
 
 	if (m_farmPow < 0) {
 		RESET_FLAG(m_flags, PELPLANT_FLAGS_GROW);

@@ -1298,7 +1298,7 @@ void PikiNukareState::init(Piki* piki, StateArg* stateArg)
 	piki->startMotion(m_animIdx, m_animIdx, piki, nullptr);
 	_14 = false;
 	if (!playData->hasMetPikmin(piki->m_pikminType)) {
-		gameSystem->_3C |= 0x8;
+		gameSystem->m_flags |= 0x8;
 	}
 }
 
@@ -1599,7 +1599,7 @@ inline void PikiPanicState::checkDemo(Piki* piki)
 		flag = DEMO_Pikmin_In_Danger_Poison;
 	}
 
-	if (flag != 0 && !playData->isDemoFlag(flag) && gameSystem->m_mode == GSM_STORY_MODE && gameSystem->_3C & 0x20) {
+	if (flag != 0 && !playData->isDemoFlag(flag) && gameSystem->m_mode == GSM_STORY_MODE && gameSystem->m_flags & 0x20) {
 		_28 -= sys->m_secondsPerFrame;
 		if (_28 <= 0.0f) {
 			playData->setDemoFlag(flag);

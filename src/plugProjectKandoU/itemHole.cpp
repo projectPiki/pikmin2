@@ -943,7 +943,7 @@ lbl_801D1CDC:
  */
 bool ItemHole::Item::interactGotKey(Game::InteractGotKey& interaction)
 {
-	if (getStateID() == Hole_Close && gameSystem->_3C & 0x20) {
+	if (getStateID() == Hole_Close && gameSystem->m_flags & 0x20) {
 		MoviePlayArg arg;
 		arg.m_courseName            = nullptr;
 		arg.m_movieName             = "g2F_appear_hole";

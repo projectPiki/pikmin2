@@ -1070,7 +1070,7 @@ void ItemBarrel::DeadState::onDamage(Game::ItemBarrel::Item*, float) { }
 void ItemBarrel::DeadState::onKeyEvent(Game::ItemBarrel::Item* item, SysShape::KeyEvent const& event)
 {
 	WaterBox* waterbox = mapMgr->findWater(item->m_boundingSphere);
-	if (waterbox && gameSystem->_3C & 0x20) {
+	if (waterbox && gameSystem->m_flags & 0x20) {
 		// TODO: Use a suitable ctor? Or inline the default as {}
 		MoviePlayArg movieArg;
 		movieArg.m_courseName    = nullptr;
