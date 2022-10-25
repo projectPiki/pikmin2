@@ -175,10 +175,12 @@ bool Cave::MapUnitGenerator::isCreateList(Game::MapUnitInterface* interface)
  */
 void MapUnitGenerator::memMapListSorting()
 {
-	MapNode* childMap = m_mapNode->getChild();
-	while (childMap != nullptr) {
-		MapNode* nextNode = childMap->getNext();
-		MapNode* thisNode = childMap; // ??
+	MapNode* childMap;
+	MapNode* nextNode;
+	CNode* childMap_CNode;
+	for (childMap = m_mapNode->getChild(); childMap != nullptr; childMap = nextNode) {
+		nextNode       = childMap->getNext();
+		childMap_CNode = (CNode*)childMap;
 
 		int childArea  = childMap->m_unitInfo->getUnitSizeX() * childMap->m_unitInfo->getUnitSizeY();
 		int childDoors = childMap->getNumDoors();
@@ -190,81 +192,12 @@ void MapUnitGenerator::memMapListSorting()
 			int nextDoors = currNode->getNumDoors();
 
 			if ((childArea > nextArea) || (childArea == nextArea) && (childDoors > nextDoors)) {
-				thisNode->del();
-				m_mapNode->add(thisNode);
+				childMap_CNode->del();
+				m_mapNode->add(childMap_CNode);
 				break;
 			}
 		}
-
-		childMap = nextNode;
 	}
-	/*
-	stwu     r1, -0x30(r1)
-	mflr     r0
-	stw      r0, 0x34(r1)
-	stmw     r25, 0x14(r1)
-	mr       r25, r3
-	lwz      r3, 0xc(r3)
-	lwz      r31, 0x10(r3)
-	b        lbl_8024C0F0
-
-lbl_8024C060:
-	lwz      r29, 4(r31)
-	mr       r28, r31
-	lwz      r3, 0x18(r31)
-	bl       getUnitSizeY__Q34Game4Cave8UnitInfoFv
-	mr       r30, r3
-	lwz      r3, 0x18(r31)
-	bl       getUnitSizeX__Q34Game4Cave8UnitInfoFv
-	mullw    r27, r3, r30
-	mr       r3, r31
-	bl       getNumDoors__Q34Game4Cave7MapNodeFv
-	mr       r30, r3
-	mr       r26, r29
-	b        lbl_8024C0E4
-
-lbl_8024C094:
-	lwz      r3, 0x18(r26)
-	bl       getUnitSizeY__Q34Game4Cave8UnitInfoFv
-	mr       r31, r3
-	lwz      r3, 0x18(r26)
-	bl       getUnitSizeX__Q34Game4Cave8UnitInfoFv
-	mullw    r31, r3, r31
-	mr       r3, r26
-	bl       getNumDoors__Q34Game4Cave7MapNodeFv
-	cmpw     r27, r31
-	bgt      lbl_8024C0C8
-	bne      lbl_8024C0E0
-	cmpw     r30, r3
-	ble      lbl_8024C0E0
-
-lbl_8024C0C8:
-	mr       r3, r28
-	bl       del__5CNodeFv
-	lwz      r3, 0xc(r25)
-	mr       r4, r28
-	bl       add__5CNodeFP5CNode
-	b        lbl_8024C0EC
-
-lbl_8024C0E0:
-	lwz      r26, 4(r26)
-
-lbl_8024C0E4:
-	cmplwi   r26, 0
-	bne      lbl_8024C094
-
-lbl_8024C0EC:
-	mr       r31, r29
-
-lbl_8024C0F0:
-	cmplwi   r31, 0
-	bne      lbl_8024C060
-	lmw      r25, 0x14(r1)
-	lwz      r0, 0x34(r1)
-	mtlr     r0
-	addi     r1, r1, 0x30
-	blr
-	*/
 }
 
 /*
@@ -275,127 +208,26 @@ lbl_8024C0F0:
 void MapUnitGenerator::createMapPartsList()
 {
 	for (int i = 0; i < 3; i++) {
-		MapNode* childNode   = getStartNode();
-		MapNode* currMapNode = getMapNodeItem(i);
+		CNode* childNode = getStartNode();
+		CNode* currNode  = getMapNodeItem(i);
 
-		for (childNode; childNode != nullptr; childNode = childNode->getNext()) {
-			if (i == currMapNode->m_unitInfo->getUnitKind()) {
-				currMapNode->add(new MapNode(currMapNode->m_unitInfo));
+		MapNode* currMapNode = static_cast<MapNode*>(currNode);
+		for (childNode; childNode; childNode = childNode->m_next) {
+			MapNode* mapNode = static_cast<MapNode*>(childNode);
+			if (i == mapNode->m_unitInfo->getUnitKind()) {
+				currMapNode->add(new MapNode(mapNode->m_unitInfo));
 			}
 		}
 
-		int childCount = currMapNode->getChildCount();
+		for (int childCount = currMapNode->getChildCount(), j = 0; j < childCount; j++) {
+			int randIdx = (childCount * randFloat());
 
-		for (int j = 0; j < childCount; j++) {
-			MapNode* randNode = static_cast<MapNode*>(currMapNode->getChildAt((int)(childCount * randFloat())));
-
-			if (randNode != nullptr) {
+			if (CNode* randNode = static_cast<MapNode*>(currMapNode->getChildAt(randIdx))) {
 				randNode->del();
-				currMapNode->add(randNode);
+				currNode->add(randNode);
 			}
 		}
 	}
-	/*
-	stwu     r1, -0x70(r1)
-	mflr     r0
-	stw      r0, 0x74(r1)
-	stfd     f31, 0x60(r1)
-	psq_st   f31, 104(r1), 0, qr0
-	stfd     f30, 0x50(r1)
-	psq_st   f30, 88(r1), 0, qr0
-	stmw     r23, 0x2c(r1)
-	lfd      f30, lbl_8051A7E0@sda21(r2)
-	mr       r31, r3
-	lfs      f31, lbl_8051A7DC@sda21(r2)
-	li       r26, 0
-	li       r27, 0
-	lis      r29, 0x4330
-
-lbl_8024C144:
-	lwz      r3, 0xc(r31)
-	lwz      r0, 0x10(r31)
-	lwz      r28, 0x10(r3)
-	add      r25, r0, r27
-	b        lbl_8024C190
-
-lbl_8024C158:
-	lwz      r3, 0x18(r28)
-	bl       getUnitKind__Q34Game4Cave8UnitInfoFv
-	cmpw     r26, r3
-	bne      lbl_8024C18C
-	li       r3, 0x40
-	bl       __nw__FUl
-	or.      r4, r3, r3
-	beq      lbl_8024C184
-	lwz      r4, 0x18(r28)
-	bl       __ct__Q34Game4Cave7MapNodeFPQ34Game4Cave8UnitInfo
-	mr       r4, r3
-
-lbl_8024C184:
-	mr       r3, r25
-	bl       add__5CNodeFP5CNode
-
-lbl_8024C18C:
-	lwz      r28, 4(r28)
-
-lbl_8024C190:
-	cmplwi   r28, 0
-	bne      lbl_8024C158
-	mr       r3, r25
-	lwz      r12, 0(r25)
-	lwz      r12, 0xc(r12)
-	mtctr    r12
-	bctrl
-	mr       r28, r3
-	li       r24, 0
-	xoris    r30, r28, 0x8000
-	b        lbl_8024C21C
-
-lbl_8024C1BC:
-	bl       rand
-	xoris    r0, r3, 0x8000
-	stw      r29, 8(r1)
-	mr       r3, r25
-	stw      r0, 0xc(r1)
-	lfd      f0, 8(r1)
-	stw      r30, 0x14(r1)
-	fsubs    f0, f0, f30
-	stw      r29, 0x10(r1)
-	fdivs    f1, f0, f31
-	lfd      f0, 0x10(r1)
-	fsubs    f0, f0, f30
-	fmuls    f0, f0, f1
-	fctiwz   f0, f0
-	stfd     f0, 0x18(r1)
-	lwz      r4, 0x1c(r1)
-	bl       getChildAt__5CNodeFi
-	or.      r23, r3, r3
-	beq      lbl_8024C218
-	bl       del__5CNodeFv
-	mr       r3, r25
-	mr       r4, r23
-	bl       add__5CNodeFP5CNode
-
-lbl_8024C218:
-	addi     r24, r24, 1
-
-lbl_8024C21C:
-	cmpw     r24, r28
-	blt      lbl_8024C1BC
-	addi     r26, r26, 1
-	addi     r27, r27, 0x40
-	cmpwi    r26, 3
-	blt      lbl_8024C144
-	psq_l    f31, 104(r1), 0, qr0
-	lfd      f31, 0x60(r1)
-	psq_l    f30, 88(r1), 0, qr0
-	lfd      f30, 0x50(r1)
-	lmw      r23, 0x2c(r1)
-	lwz      r0, 0x74(r1)
-	mtlr     r0
-	addi     r1, r1, 0x70
-	blr
-	*/
 }
 
 /*
