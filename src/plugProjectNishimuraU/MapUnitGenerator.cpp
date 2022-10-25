@@ -178,7 +178,7 @@ void MapUnitGenerator::memMapListSorting()
 	MapNode* childMap;
 	MapNode* nextNode;
 	CNode* childMap_CNode;
-	for (childMap = m_mapNode->getChild(); childMap != nullptr; childMap = nextNode) {
+	for (childMap = m_mapNode->getChild(); childMap; childMap = nextNode) {
 		nextNode       = childMap->getNext();
 		childMap_CNode = (CNode*)childMap;
 
@@ -186,7 +186,7 @@ void MapUnitGenerator::memMapListSorting()
 		int childDoors = childMap->getNumDoors();
 
 		MapNode* currNode = nextNode;
-		for (currNode; currNode != nullptr; currNode = currNode->getNext()) {
+		for (currNode; currNode; currNode = currNode->getNext()) {
 
 			int nextArea  = currNode->m_unitInfo->getUnitSizeX() * currNode->m_unitInfo->getUnitSizeY();
 			int nextDoors = currNode->getNumDoors();
@@ -257,7 +257,7 @@ void MapUnitGenerator::createCapEnemyList()
 	for (int i = 0; i < m_floorInfo->getCapInfoNum(); i++) {
 		CapInfo* capInfo = m_floorInfo->getCapInfo(i);
 		TekiInfo* tekiInfo;
-		if ((capInfo != nullptr) && (!capInfo->m_tekiEmpty) && (tekiInfo = capInfo->getTekiInfo())) {
+		if (capInfo && (!capInfo->m_tekiEmpty) && (tekiInfo = capInfo->getTekiInfo())) {
 			EnemyUnit* enemyUnit = new EnemyUnit;
 
 			EnemyNode* enemyNode  = new EnemyNode(enemyUnit, 0, i);
@@ -326,7 +326,7 @@ void MapUnitGenerator::createItemList()
 void MapUnitGenerator::createCaveLevel()
 {
 	_04 = 0;
-	if (gameSystem != nullptr && gameSystem->m_mode == GSM_STORY_MODE) {
+	if (gameSystem && gameSystem->m_mode == GSM_STORY_MODE) {
 		_04 = 4;
 	}
 }
