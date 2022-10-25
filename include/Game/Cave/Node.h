@@ -3,7 +3,6 @@
 
 #include "Game/Cave/ObjectLayout.h"
 #include "Game/Cave/Info.h"
-#include "Game/Cave/RandMapMgr.h"
 
 namespace Game {
 namespace Cave {
@@ -91,6 +90,8 @@ struct FixObjNode : public ObjectLayoutNode {
  * @size{0x4}
  */
 struct GateUnit {
+	inline GateUnit() { m_info = nullptr; }
+
 	GateInfo* m_info; // _00
 };
 
@@ -117,6 +118,8 @@ struct GateNode : public ObjectLayoutNode {
  * @size{0x4}
  */
 struct ItemUnit {
+	inline ItemUnit() { m_info = nullptr; }
+
 	ItemInfo* m_info; // _00
 };
 
@@ -241,14 +244,9 @@ struct MapNode : public CNode {
  * @size{0x30}
  */
 struct EnemyUnit {
-	TekiInfo* m_tekiInfo;     // _00
-	RandMapScore* m_mapScore; // _04
-	int _08;                  // _08
-	int m_tekiMax;            // _0C
+	inline EnemyUnit() { m_tekiInfo = nullptr; }
 
-	// counts and max amounts for enemy types (A = easy, B = hard, C = seam hazards, F = special)
-	int m_typeCount[4]; // _10 (_10 A, _14 B, _18 C, _1C F)
-	int m_typeMax[4];   // _20 (_20 A, _24 B, _28 C, _2C F)
+	TekiInfo* m_tekiInfo; // _00
 };
 
 /**
