@@ -19,6 +19,8 @@ struct Object;
 } // namespace PelletNumber
 
 namespace Pelplant {
+enum EPelplantSize { PELSIZE_Small = 0, PELSIZE_Middle = 1, PELSIZE_Big = 2 };
+enum EPelplantAmount { PELAMT_One = 1, PELAMT_Five = 5, PELAMT_Ten = 10, PELAMT_Twenty = 20 };
 
 /**
  * @size{0x1C}
@@ -49,7 +51,7 @@ struct Obj : public EnemyBase {
 	virtual void doDirectDraw(Graphics&);                   // _050
 	virtual bool isLivingThing()                            // _0D4 (weak)
 	{
-		return (_2C8 >> 1 & 1);
+		return (m_isGrow >> 1 & 1);
 	}
 	virtual void getShadowParam(ShadowParam&); // _134
 	virtual void onStickStart(Creature*);      // _158
@@ -94,13 +96,13 @@ struct Obj : public EnemyBase {
 	// EnemyBase: 		_180 - _2B8
 	FSM* m_fsm;                           // _2BC
 	float _2C0;                           // _2C0
-	Matrixf* _2C4;                        // _2C4
-	u8 _2C8;                              // _2C8
+	Matrixf* m_rootJointMtx;              // _2C4
+	u8 m_isGrow;                          // _2C8
 	Game::PelletNumber::Object* m_pellet; // _2CC
 	float _2D0;                           // _2D0
-	u8 _2D4;                              // _2D4
-	u8 m_pelletSize;                      // _2D5
-	s8 m_farmPow;                         // _2D6
+	u8 m_pelColor;                        // _2D4
+	u8 m_pelSize;                         // _2D5
+	s8 m_farmPow;                         // _2D6, farm power
 	                                      // PelletView: _2D8
 };
 
@@ -193,7 +195,7 @@ struct Generator : public EnemyGeneratorBase {
  * @size{0x4}
  */
 struct BlendAccelerationFunc : public SysShape::BlendFunction {
-	virtual float getValue(float); // _08
+	virtual f32 getValue(f32); // _08
 
 	// _00		= VTABLE
 };

@@ -1,5 +1,5 @@
 #include "KandoLib/Choice.h"
-#include "Dolphin/stl.h"
+#include "Dolphin/rand.h"
 
 /*
  * --INFO--
@@ -10,7 +10,7 @@
  */
 u32 KandoLib::getRandomChoice(KandoLib::Choice* choices, int choiceAmt)
 {
-	float rngChance             = rand() / 32768.0f;
+	float rngChance             = rand() / RAND_MAX;
 	KandoLib::Choice* curChoice = choices;
 	float curChance             = 0.0f;
 

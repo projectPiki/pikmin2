@@ -96,9 +96,9 @@ enum EnemyEvent2 { EB2_1 = 0x1, EB2_2 = 0x2, EB2_3 = 0x4, EB2_4 = 0x8, EB2_5 = 0
  * @todo Split this into a separate type PelplantInitialParam?
  */
 struct EnemyInitialParamBase {
-	u8 _00;
-	u8 _01;
-	u8 _02;
+	u8 m_pelletColour;
+	u8 m_pelAmount;
+	u8 m_initialPelState;
 };
 
 struct EnemyKillArg : public CreatureKillArg {

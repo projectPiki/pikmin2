@@ -87,7 +87,7 @@ struct CreatureKillArg {
 	int _04; // _04
 };
 
-// Shorthand parms casting
+// Shorthand (cast and get) parms
 #define CG_PARMS(x) (static_cast<Parms*>(x->m_parms))
 #define C_PARMS     (CG_PARMS(this))
 

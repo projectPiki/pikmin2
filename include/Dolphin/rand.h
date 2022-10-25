@@ -7,13 +7,13 @@
 extern "C" {
 #endif // ifdef __cplusplus
 
+#define RAND_MAX (32768.0f)
+
 void srand(u32);
 int rand();
 
-inline f32 randFloat() { return (float)rand() / 32768.0f; }
-
-inline f32 randWeightFloat(f32 range) { return (range * (f32)rand()) / 32768.0f; }
-inline f32 randWeightFloatOffset(f32 range, f32 offset) { return ((range * (f32)rand()) / 32768.0f) + offset; }
+inline f32 randFloat() { return (float)rand() / RAND_MAX; }
+inline f32 randWeightFloat(f32 range) { return (range * (f32)rand()) / RAND_MAX; }
 
 #ifdef __cplusplus
 };

@@ -57,6 +57,11 @@ typedef u32 unknown;
 #define nullptr 0
 #endif // ifndef nullptr
 
+#ifndef FLAG_MANIP
+#define SET_FLAG(x, val)   (x |= val) // Sets specific flag to 1
+#define RESET_FLAG(x, val) (x &= ~val) // Resets specific flag from (val) back to 0
+#endif
+
 // Array size define
 #define ARRAY_SIZE(o) (sizeof((o)) / sizeof(*(o)))
 

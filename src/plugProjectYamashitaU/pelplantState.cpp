@@ -161,7 +161,7 @@ StateWait::StateWait(int stateID, int p1)
 void StateWait::init(EnemyBase* enemy, StateArg* stateArg)
 {
 	enemy->resetEvent(0, EB_Cullable);
-	static_cast<Obj*>(enemy)->_2C8 &= ~0x2;
+	static_cast<Obj*>(enemy)->m_isGrow &= ~0x2;
 	enemy->setEvent(0, EB_Vulnerable);
 
 	switch (_10) {
@@ -172,7 +172,7 @@ void StateWait::init(EnemyBase* enemy, StateArg* stateArg)
 		enemy->startMotion(5, nullptr);
 		break;
 	case 2:
-		static_cast<Obj*>(enemy)->_2C8 |= 2;
+		static_cast<Obj*>(enemy)->m_isGrow |= 2;
 		enemy->resetEvent(0, EB_Vulnerable);
 		enemy->startMotion(6, nullptr);
 		static_cast<Obj*>(enemy)->updateLODSphereRadius(2);
@@ -197,7 +197,7 @@ void StateWait::init(EnemyBase* enemy, StateArg* stateArg)
 void StateWait::exec(EnemyBase* enemy)
 {
 	float frameTime = sys->m_secondsPerFrame;
-	if (static_cast<Obj*>(enemy)->_2C8 & 1) {
+	if (static_cast<Obj*>(enemy)->m_isGrow & 1) {
 		static_cast<Obj*>(enemy)->_2C0 += frameTime;
 	}
 
@@ -303,7 +303,7 @@ void StateGrow::init(EnemyBase* enemy, StateArg* stateArg)
 		enemy->startMotion(_10, nullptr);
 		return;
 	case 2:
-		switch (static_cast<Obj*>(enemy)->m_pelletSize) {
+		switch (static_cast<Obj*>(enemy)->m_pelSize) {
 		case 1:
 			efx::TPplGrow2 grow2;
 			grow2.create(&effectArg);
@@ -323,7 +323,7 @@ void StateGrow::init(EnemyBase* enemy, StateArg* stateArg)
 		}
 
 		static_cast<Obj*>(enemy)->updateLODSphereRadius(2);
-		if ((static_cast<Obj*>(enemy)->m_pelletSize == 10) || (static_cast<Obj*>(enemy)->m_pelletSize == 20)) {
+		if ((static_cast<Obj*>(enemy)->m_pelSize == 10) || (static_cast<Obj*>(enemy)->m_pelSize == 20)) {
 			enemy->startMotion(7, nullptr);
 			return;
 		}
@@ -376,7 +376,7 @@ void StateDamage::init(EnemyBase* enemy, StateArg* stateArg)
 {
 	if (_10 != 5) {
 		enemy->startMotion(_10, nullptr);
-	} else if ((static_cast<Obj*>(enemy)->m_pelletSize == 10) || (static_cast<Obj*>(enemy)->m_pelletSize == 20)) {
+	} else if ((static_cast<Obj*>(enemy)->m_pelSize == 10) || (static_cast<Obj*>(enemy)->m_pelSize == 20)) {
 		enemy->startMotion(8, nullptr);
 	} else {
 		enemy->startMotion(_10, nullptr);
@@ -426,7 +426,7 @@ void StateDead::init(EnemyBase* enemy, StateArg* stateArg)
 {
 	if (_10 != 1) {
 		enemy->startMotion(_10, nullptr);
-	} else if ((static_cast<Obj*>(enemy)->m_pelletSize == 10) || (static_cast<Obj*>(enemy)->m_pelletSize == 20)) {
+	} else if ((static_cast<Obj*>(enemy)->m_pelSize == 10) || (static_cast<Obj*>(enemy)->m_pelSize == 20)) {
 		enemy->startMotion(9, nullptr);
 	} else {
 		enemy->startMotion(_10, nullptr);
