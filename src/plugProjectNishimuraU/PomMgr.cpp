@@ -3,6 +3,7 @@
 #include "Game/GameSystem.h"
 #include "Game/gamePlayData.h"
 #include "Game/GameStats.h"
+#include "Game/Piki.h"
 #include "JSystem/JUT/JUTNameTab.h"
 #include "nans.h"
 
@@ -36,9 +37,9 @@ EnemyBase* Mgr::birth(EnemyBirthArg& birthArg)
 		if (birthArg.m_typeID == EnemyTypeID::EnemyID_BlackPom) { // PURPLE CANDYPOP
 			BaseGameSection* section = gs->m_section;
 			if (section && (section->getCurrFloor() < 2 || section->getCaveID() == 't_01')) { // emergence cave
-				int colorSum   = playData->m_caveSaveData._14.getColorSum(EPikiColor::Purple);
-				int allPikmins = GameStat::getAllPikmins(EPikiColor::Purple);
-				if (!(allPikmins + colorSum < 20)) {
+				int colorSum      = playData->m_caveSaveData._14.getColorSum(Purple);
+				int purplePikmins = GameStat::getAllPikmins(Purple);
+				if (!(purplePikmins + colorSum < 20)) {
 					return nullptr;
 				}
 			}
@@ -48,9 +49,9 @@ EnemyBase* Mgr::birth(EnemyBirthArg& birthArg)
 			if (section) {
 				if (playData->hasMetPikmin(4)) {
 					if (section->getCurrFloor() < 2 || section->getCaveID() == 'f_02') { // white flower garden
-						int colorSum   = playData->m_caveSaveData._14.getColorSum(EPikiColor::White);
-						int allPikmins = GameStat::getAllPikmins(EPikiColor::White);
-						if (!(allPikmins + colorSum < 20)) {
+						int colorSum     = playData->m_caveSaveData._14.getColorSum(White);
+						int whitePikmins = GameStat::getAllPikmins(White);
+						if (!(whitePikmins + colorSum < 20)) {
 							return nullptr;
 						}
 					}
@@ -60,12 +61,12 @@ EnemyBase* Mgr::birth(EnemyBirthArg& birthArg)
 			}
 
 		} else if (birthArg.m_typeID == EnemyTypeID::EnemyID_BluePom) { // BLUE CANDYPOP
-			if (!playData->hasMetPikmin(EPikiColor::Blue)) {
+			if (!playData->hasMetPikmin(Blue)) {
 				return nullptr;
 			}
 
 		} else if (birthArg.m_typeID == EnemyTypeID::EnemyID_YellowPom) { // YELLOW CANDYPOP
-			if (!playData->hasMetPikmin(EPikiColor::Yellow)) {
+			if (!playData->hasMetPikmin(Yellow)) {
 				return nullptr;
 			}
 		}
@@ -92,9 +93,9 @@ void Mgr::createObj(int count)
 
 	EnemyTypeID::EEnemyTypeID ids[] = { EnemyTypeID::EnemyID_BluePom,  EnemyTypeID::EnemyID_RedPom,   EnemyTypeID::EnemyID_YellowPom,
 		                                EnemyTypeID::EnemyID_BlackPom, EnemyTypeID::EnemyID_WhitePom, EnemyTypeID::EnemyID_RandPom };
-
-	int counter = 0;
-	for (int i = 0; i < 6; i++) {
+	int id_count                    = sizeof(ids) / sizeof(EnemyTypeID::EEnemyTypeID);
+	for (int i = 0; i < id_count; i++) {
+		int counter  = 0;
 		int enemyNum = generalEnemyMgr->getEnemyNum(ids[i], false);
 		for (int j = counter; j < enemyNum; j++, counter++) {
 			m_obj[j].m_pomID = ids[i];

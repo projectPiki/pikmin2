@@ -104,16 +104,13 @@ void Mgr::createObj(int count)
 {
 	m_obj = new Obj[count];
 
-	int ids[2] = { EnemyTypeID::EnemyID_Rock, EnemyTypeID::EnemyID_Stone };
-
-	int counter = 0;
-	for (int i = 0; i < 2; i++) {
+	EnemyTypeID::EEnemyTypeID ids[] = { EnemyTypeID::EnemyID_Rock, EnemyTypeID::EnemyID_Stone };
+	int id_count                    = sizeof(ids) / sizeof(EnemyTypeID::EEnemyTypeID);
+	for (int i = 0; i < id_count; i++) {
+		int counter  = 0;
 		int enemyNum = generalEnemyMgr->getEnemyNum(ids[i], false);
-		int bound    = counter;
-		if (enemyNum > 0) {
-			for (int j = bound; j < bound + enemyNum; j++, counter++) {
-				m_obj[j].m_rockType = ids[i];
-			}
+		for (int j = counter; j < enemyNum; j++, counter++) {
+			m_obj[j].m_rockType = ids[i];
 		}
 	}
 }
