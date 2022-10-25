@@ -47,7 +47,7 @@ EnemyBase* Mgr::birth(EnemyBirthArg& birthArg)
 		} else if (birthArg.m_typeID == EnemyTypeID::EnemyID_WhitePom) { // WHITE CANDYPOP
 			BaseGameSection* section = gs->m_section;
 			if (section) {
-				if (playData->hasMetPikmin(4)) {
+				if (playData->hasMetPikmin(White)) {
 					if (section->getCurrFloor() < 2 || section->getCaveID() == 'f_02') { // white flower garden
 						int colorSum     = playData->m_caveSaveData._14.getColorSum(White);
 						int whitePikmins = GameStat::getAllPikmins(White);
