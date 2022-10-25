@@ -147,7 +147,7 @@ u8 m_count;    // _04
 };
 // clang-format on
 
-extern EnemyInfo gEnemyInfo[100];
+extern EnemyInfo gEnemyInfo[];
 
 extern int gEnemyInfoNum;
 
