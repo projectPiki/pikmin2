@@ -4,7 +4,7 @@
 
 namespace Game {
 // clang-format off
-EnemyInfo gEnemyInfo[100] = {
+EnemyInfo gEnemyInfo[] = {
 // name                   ID                                   pID                                members flags      model           anim            animgr          texture     param       collision       stone           childID                           chNum droptype
    {"Pelplant",           EnemyTypeID::EnemyID_Pelplant,       -1,                                1,      0x0007,    "Pelplant",     "Pelplant",     "Pelplant",     "Pelplant", "Pelplant", "Pelplant",     "Pelplant",     -1,                               0,    BDT_Empty},
    {"Kochappy",           EnemyTypeID::EnemyID_Kochappy,       -1,                                1,      0x0117,    "",             "",             "",             "",         "",         "",             "",             -1,                               0,    BDT_Normal},
