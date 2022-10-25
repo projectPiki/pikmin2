@@ -12,6 +12,7 @@ struct PikiNaviCounter {
 };
 
 int getMapPikmins(int);
+int getAllPikmins(int);
 
 extern PikiNaviCounter* workPikis;
 

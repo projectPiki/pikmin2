@@ -27,7 +27,7 @@ struct Obj : public EnemyBase {
 	virtual bool isLivingThing();                            // _D4 (weak)
 	virtual void collisionCallback(CollEvent&);              // _EC
 	virtual void getShadowParam(ShadowParam&);               // _134
-	virtual ~Obj();                                          // _1BC (weak)
+	virtual ~Obj() { }                                       // _1BC (weak)
 	virtual void setInitialSetting(EnemyInitialParamBase*);  // _1C4
 	virtual void doUpdate();                                 // _1CC
 	virtual void doDebugDraw(Graphics&);                     // _1EC
@@ -50,30 +50,33 @@ struct Obj : public EnemyBase {
 
 	// _00 		= VTBL
 	// _00-_2BC	= EnemyBase
-	FSM* m_FSM;              // _2BC
-	bool _2C0;               // _2C0
-	u8 _2C1;                 // _2C1, possibly bool?
-	int _2C4;                // _2C4, eaten count?
-	int _2C8;                // _2C8, remaining count?
-	u32 _2CC;                // _2CC, unknown
-	MouthSlots m_mouthSlots; // _2D0
-	u8 _2D8[0xC];            // _2D8
-	f32 _2E4;                // _2E4, timer?
-	u8 _2E8[0x4];            // _2E8, unknown
-	EnemyTypeID m_pomID;     // _2EC, B=3, R=4, Y=5, P=6, W=7, Q=8, base = 82
-	                         // _2F0 = PelletView
+	FSM* m_FSM;                        // _2BC
+	bool _2C0;                         // _2C0
+	u8 _2C1;                           // _2C1, possibly bool?
+	int _2C4;                          // _2C4, eaten count?
+	int _2C8;                          // _2C8, remaining count?
+	u32 _2CC;                          // _2CC, unknown
+	MouthSlots m_mouthSlots;           // _2D0
+	u8 _2D8[0xC];                      // _2D8
+	f32 _2E4;                          // _2E4, timer?
+	u8 _2E8[0x4];                      // _2E8, unknown
+	EnemyTypeID::EEnemyTypeID m_pomID; // _2EC, B=3, R=4, Y=5, P=6, W=7, Q=8, base = 82
+	                                   // _2F0 = PelletView
 };
 
 struct Mgr : public EnemyMgrBase {
 	Mgr(int objLimit, u8 modelType);
 
-	virtual ~Mgr();                                     // _58 (weak)
-	virtual EnemyBase* birth(EnemyBirthArg&);           // _70
-	virtual void createObj(int);                        // _A0
-	virtual EnemyBase* getEnemy(int);                   // _A4
-	virtual void doAlloc();                             // _A8
-	virtual EnemyTypeID::EEnemyTypeID getEnemyTypeID(); // _AC (weak)
-	virtual SysShape::Model* createModel();             // _B0
+	// virtual ~Mgr();                                     // _58 (weak)
+	virtual EnemyBase* birth(EnemyBirthArg&);          // _70
+	virtual void createObj(int);                       // _A0
+	virtual EnemyBase* getEnemy(int);                  // _A4
+	virtual void doAlloc();                            // _A8
+	virtual SysShape::Model* createModel();            // _B0
+	virtual EnemyTypeID::EEnemyTypeID getEnemyTypeID() // _AC (weak)
+	{
+		return EnemyTypeID::EnemyID_Pom;
+	}
 
 	// _00 		= VTBL
 	// _00-_44	= EnemyMgrBase
@@ -82,7 +85,16 @@ struct Mgr : public EnemyMgrBase {
 
 struct Parms : public EnemyParmsBase {
 	struct ProperParms : public Parameters {
-		inline ProperParms(); // likely
+		inline ProperParms()
+		    : Parameters(nullptr, "EnemyParmsBase")
+		    , m_ip01(this, 'ip01', "吸い込みピキ数(pom)", 5, 1, 50)  // 'sucking piki number (pom)'
+		    , m_ip11(this, 'ip11', "吸い込みピキ数(pop)", 1, 1, 50)  // 'sucking piki number (pop)'
+		    , m_ip13(this, 'ip13', "吐き出し倍数(pop)", 5, 1, 50)    // 'spitting multiple (pop)'
+		    , m_fp01(this, 'fp01', "開花時間", 30.0f, 0.0f, 60.0f)   // 'flowering time'
+		    , m_fp02(this, 'fp02', "色換え時間", 1.25f, 0.0f, 60.0f) // 'color change time'
+		    , m_fp03(this, 'fp03', "白黒出現率", 0.15f, 0.0f, 1.0f)  // 'black and white appearance rate'
+		{
+		}
 
 		Parm<int> m_ip01; // _804
 		Parm<int> m_ip11; // _82C
@@ -92,9 +104,14 @@ struct Parms : public EnemyParmsBase {
 		Parm<f32> m_fp03; // _8CC
 	};
 
-	Parms();
+	Parms() { }
 
-	virtual void read(Stream&); // _08 (weak)
+	virtual void read(Stream& stream) // _08 (weak)
+	{
+		CreatureParms::read(stream);
+		m_general.read(stream);
+		m_properParms.read(stream);
+	}
 
 	// _00-_7F8	= EnemyParmsBase
 	ProperParms m_properParms; // _7F8
