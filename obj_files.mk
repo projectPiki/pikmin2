@@ -790,7 +790,7 @@ NISHIMURA:=\
 	$(BUILD_DIR)/asm/plugProjectNishimuraU/Imomushi.o\
 	$(BUILD_DIR)/src/plugProjectNishimuraU/HoudaiState.o\
 	$(BUILD_DIR)/src/plugProjectNishimuraU/HoudaiAnimator.o\
-	$(BUILD_DIR)/asm/plugProjectNishimuraU/HoudaiMgr.o\
+	$(BUILD_DIR)/src/plugProjectNishimuraU/HoudaiMgr.o\
 	$(BUILD_DIR)/asm/plugProjectNishimuraU/HoudaiShadow.o\
 	$(BUILD_DIR)/asm/plugProjectNishimuraU/Houdai.o\
 	$(BUILD_DIR)/asm/plugProjectNishimuraU/HoudaiShotGun.o\

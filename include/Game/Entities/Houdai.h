@@ -8,6 +8,8 @@
 #include "Game/JointFuncs.h"
 #include "Game/EnemyBase.h"
 #include "Collinfo.h"
+#include "Sys/MatBaseAnimation.h"
+#include "Sys/MatBaseAnimator.h"
 
 /**
  * --Header for Man-at-Legs (Houdai)--
@@ -61,7 +63,7 @@ struct Obj : public EnemyBase {
 	virtual void inWaterCallback(WaterBox*);                // _84 (weak)
 	virtual void outWaterCallback();                        // _88 (weak)
 	virtual void getShadowParam(ShadowParam&);              // _134
-	virtual ~Obj();                                         // _1BC (weak)
+	virtual ~Obj() {};                                      // _1BC (weak)
 	virtual void setInitialSetting(EnemyInitialParamBase*); // _1C4
 	virtual void doUpdate();                                // _1CC
 	virtual void doUpdateCommon();                          // _1D0
@@ -188,13 +190,19 @@ struct Mgr : public EnemyMgrBase {
 	Mgr(int objLimit, u8 modelType);
 
 	//////////////// VTABLE
-	virtual ~Mgr();                                     // _58 (weak)
-	virtual void createObj(int);                        // _A0
-	virtual EnemyBase* getEnemy(int);                   // _A4
-	virtual void doAlloc();                             // _A8
-	virtual EnemyTypeID::EEnemyTypeID getEnemyTypeID(); // _AC (weak)
-	virtual void loadModelData();                       // _C8
-	virtual J3DModelData* doLoadBmd(void*);             // _D4 (weak)
+	// virtual ~Mgr();                                  // _58 (weak)
+	virtual void createObj(int);                       // _A0
+	virtual EnemyBase* getEnemy(int);                  // _A4
+	virtual void doAlloc();                            // _A8
+	virtual EnemyTypeID::EEnemyTypeID getEnemyTypeID() // _AC (weak)
+	{
+		return EnemyTypeID::EnemyID_Houdai;
+	}
+	virtual void loadModelData();                   // _C8
+	virtual J3DModelData* doLoadBmd(void* filename) // _D4 (weak)
+	{
+		return J3DModelLoaderDataBase::load(filename, 0x21240030);
+	}
 	//////////////// VTABLE END
 
 	// _00 		= VTBL
@@ -204,7 +212,21 @@ struct Mgr : public EnemyMgrBase {
 
 struct Parms : public EnemyParmsBase {
 	struct ProperParms : public Parameters {
-		ProperParms(); // (weak)
+		inline ProperParms()
+		    : Parameters(nullptr, "EnemyParmsBase")
+		    , m_fp01(this, 'fp01', "ÉxÅ[ÉXåWêî", 5.0f, 0.0f, 10.0f)          // 'base factor'
+		    , m_fp02(this, 'fp02', "è„Ç∞å∏ë¨åWêî", -0.4f, -5.0f, 5.0f)       // 'raising deceleration factor'
+		    , m_fp03(this, 'fp03', "â∫Ç∞â¡ë¨åWêî", 0.5f, -5.0f, 5.0f)        // 'downward acceleration factor'
+		    , m_fp04(this, 'fp04', "ç≈í·å∏â¡ë¨åWêî", -3.0f, -10.0f, 10.0f)   // 'minimum deceleration acceleration factor'
+		    , m_fp05(this, 'fp05', "ç≈çÇå∏â¡ë¨åWêî", 10.0f, -10.0f, 10.0f)   // 'maximum deceleration acceleration factor'
+		    , m_fp06(this, 'fp06', "ë´ÇÃêUÇËè„Ç∞", 90.0f, 0.0f, 200.0f)      // 'leg swing'
+		    , m_fp10(this, 'fp10', "éÀåÇOn:Max", 2.0f, 0.0f, 10.0f)          // 'shooting on:max'
+		    , m_fp11(this, 'fp11', "éÀåÇOn:Min", 1.0f, 0.0f, 10.0f)          // 'shooting on:min'
+		    , m_fp12(this, 'fp12', "éÀåÇOff:Max", 1.0f, 0.0f, 10.0f)         // 'shooting off:max'
+		    , m_fp13(this, 'fp13', "éÀåÇOff:Min", 0.5f, 0.0f, 10.0f)         // 'shooting off:min'
+		    , m_fp20(this, 'fp20', "Last 2 Territory", 380.0f, 0.0f, 500.0f) // 'Last 2 Territory'
+		{
+		}
 
 		Parm<f32> m_fp01; // _804
 		Parm<f32> m_fp02; // _82C
@@ -219,9 +241,14 @@ struct Parms : public EnemyParmsBase {
 		Parm<f32> m_fp20; // _994
 	};
 
-	Parms();
+	Parms() {};
 
-	virtual void read(Stream&); // _08 (weak)
+	virtual void read(Stream& stream) // _08 (weak)
+	{
+		CreatureParms::read(stream);
+		m_general.read(stream);
+		m_properParms.read(stream);
+	}
 
 	// _00-_7F8	= EnemyParmsBase
 	ProperParms m_properParms; // _7F8
