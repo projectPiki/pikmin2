@@ -1,7 +1,6 @@
 #include "og/newScreen/Vs.h"
 
 namespace og {
-
 namespace newScreen {
 
 /*

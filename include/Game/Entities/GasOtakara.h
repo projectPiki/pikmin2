@@ -40,7 +40,7 @@ struct Mgr : public OtakaraBase::Mgr {
 
 	// virtual ~Mgr();                                     // _58 (weak)
 	virtual void createObj(int);                       // _A0
-	virtual EnemyBase* getEnemy(int);                  // _A4
+	virtual EnemyBase* getEnemy(int idx);              // _A4
 	virtual void doAlloc();                            // _A8
 	virtual void loadTexData();                        // _D0
 	virtual EnemyTypeID::EEnemyTypeID getEnemyTypeID() // _AC (weak)

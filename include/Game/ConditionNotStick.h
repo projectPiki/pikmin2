@@ -10,7 +10,7 @@ struct Pellet;
 struct ConditionNotStickClient : public Condition<Piki> {
 	virtual bool satisfy(Piki*); // _08 (weak)
 
-	// _00 = VTBL
+	// _00 VTBL
 };
 
 struct ConditionNotStickClientAndItem : public Condition<Piki> {
@@ -28,7 +28,7 @@ struct ConditionNotStickClientAndItem : public Condition<Piki> {
 		return false;
 	}
 
-	// _00 = VTBL
+	// _00 VTBL
 	Creature* m_client; // _04, otakara
 	Creature* m_item;   // _08, treasure
 };
@@ -36,7 +36,7 @@ struct ConditionNotStickClientAndItem : public Condition<Piki> {
 struct ConditionNotStickSlot : public Condition<Piki> {
 	virtual bool satisfy(Piki*); // _08 (weak)
 
-	// _00 = VTBL
+	// _00 VTBL
 };
 } // namespace Game
 

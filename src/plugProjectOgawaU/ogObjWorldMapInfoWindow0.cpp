@@ -104,7 +104,6 @@
 
 static const char[] fakeMatchFileName = __FILE__;
 namespace og {
-
 namespace newScreen {
 
 /*

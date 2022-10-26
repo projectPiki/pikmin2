@@ -15,7 +15,7 @@ struct JSUIosBase {
 
 	virtual ~JSUIosBase() { } //_08 (weak)
 
-	// _00 = VTBL
+	// _00 VTBL
 	u8 m_isEOFMaybe; // _04
 };
 

@@ -1,35 +1,21 @@
 #ifndef _GAME_ENEMYBASE_H
 #define _GAME_ENEMYBASE_H
 
-#include "BitFlag.h"
-#include "Game/AILODParm.h"
-#include "Game/CollEvent.h"
 #include "Game/Creature.h"
-#include "Game/CurrTriInfo.h"
-#include "Game/EnemyPelletInfo.h"
+#include "Game/CollEvent.h"
 #include "Game/EnemyStateMachine.h"
-#include "Game/EnemyAnimatorBase.h"
-#include "Game/EnemyParmsBase.h"
-#include "Game/PelletView.h"
-#include "Game/pelletMgr.h"
-#include "Game/WalkSmokeEffect.h"
-#include "Dolphin/rand.h"
-#include "Game/enemyInfo.h"
-#include "JSystem/JAI/JAInter/Object.h"
-#include "Matrix3f.h"
-#include "Sys/Sphere.h"
-#include "SysShape/MotionListener.h"
-#include "SysShape/AnimMgr.h"
-#include "Vector3.h"
-#include "efx/TEnemyPiyo.h"
-#include "efx/TEnemyWalkSmoke.h"
-#include "types.h"
 #include "Game/MoveInfo.h"
-#include "Game/EnemyStone.h"
-#include "Game/EnemyEffectNode.h"
-#include "trig.h"
-#include "Vector2.h"
+
+#include "Game/PelletView.h"
+#include "Game/EnemyPelletInfo.h"
+#include "Game/pelletMgr.h"
+
+#include "SysShape/MotionListener.h"
+
 #include "PSM/EnemyBase.h"
+#include "efx/TEnemyPiyo.h"
+
+#include "trig.h"
 
 #define EMOTE_None       (0)
 #define EMOTE_Caution    (1)
@@ -48,12 +34,21 @@ namespace EnemyBaseFSM {
 struct StateMachine;
 } // namespace EnemyBaseFSM
 
+namespace EnemyStone {
+struct Obj;
+} // namespace EnemyStone
+
+namespace WalkSmokeEffect {
+struct Mgr;
+} // namespace WalkSmokeEffect
+
 struct EnemyAnimatorBase;
 struct EnemyAnimKeyEvent;
 struct EnemyMgrBase;
 struct WaterBox;
 struct LifeGaugeParam;
 struct Interaction;
+struct EnemyEffectNodeHamon;
 
 enum EnemyEvent {
 	EB_Vulnerable       = 0x1, // can take damage or not
@@ -130,7 +125,7 @@ struct EnemyBase : public Creature, public SysShape::MotionListener, virtual pub
 	virtual void onInitPost(CreatureInitArg* settings); // _38
 	virtual void doAnimation();                         // _3C
 	virtual void doEntry();                             // _40
-	virtual void doSetView(int);                        // _44
+	virtual void doSetView(int viewportNumber);         // _44
 	virtual void doViewCalc();                          // _48
 	virtual void doSimulation(f32 simSpeed);            // _4C
 	virtual f32 getBodyRadius()                         // _54 (weak)
@@ -187,7 +182,7 @@ struct EnemyBase : public Creature, public SysShape::MotionListener, virtual pub
 	{
 		bool culling = false;
 		if (m_events.m_flags[0].typeView & 0x2000) {
-			if (!(m_lod.m_flags & AILOD::FLAG_NEED_SHADOW) && !(m_lod.m_flags & AILOD::FLAG_UNKNOWN4)) {
+			if (!(m_lod.m_flags & AILOD_FLAG_NEED_SHADOW) && !(m_lod.m_flags & AILOD_FLAG_UNKNOWN4)) {
 				culling = true;
 			}
 		}

@@ -7,21 +7,21 @@ struct Graphics;
 struct Viewport;
 
 struct GenericObject {
-	virtual void doAnimation()           = 0; // _08
-	virtual void doEntry()               = 0; // _0C
-	virtual void doSetView(int)          = 0; // _10
-	virtual void doViewCalc()            = 0; // _14
-	virtual void doSimulation(float)     = 0; // _18
-	virtual void doDirectDraw(Graphics&) = 0; // _1C
+	virtual void doAnimation()               = 0; // _08
+	virtual void doEntry()                   = 0; // _0C
+	virtual void doSetView(int)              = 0; // _10
+	virtual void doViewCalc()                = 0; // _14
+	virtual void doSimulation(float)         = 0; // _18
+	virtual void doDirectDraw(Graphics& gfx) = 0; // _1C
 };
 
 struct GenericObjectMgr {
-	virtual void doAnimation() = 0;           // _08
-	virtual void doEntry() { }                // _0C (weak)
-	virtual void doSetView(int)          = 0; // _10
-	virtual void doViewCalc()            = 0; // _14
-	virtual void doSimulation(float)     = 0; // _18
-	virtual void doDirectDraw(Graphics&) = 0; // _1C
+	virtual void doAnimation() = 0;               // _08
+	virtual void doEntry() { }                    // _0C (weak)
+	virtual void doSetView(int)              = 0; // _10
+	virtual void doViewCalc()                = 0; // _14
+	virtual void doSimulation(float)         = 0; // _18
+	virtual void doDirectDraw(Graphics& gfx) = 0; // _1C
 	/**
 	 * @reifiedAddress{8010A7C4}
 	 * @reifiedFile{plugProjectYamashitaU/pelplant.cpp}

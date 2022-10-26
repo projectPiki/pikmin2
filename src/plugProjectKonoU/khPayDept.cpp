@@ -206,7 +206,6 @@
 */
 
 namespace kh {
-
 namespace Screen {
 
 /*
@@ -1191,7 +1190,6 @@ blr
 }
 
 } // namespace Screen
-
 } // namespace kh
 
 /*
@@ -1209,7 +1207,6 @@ void __sinit_khPayDept_cpp(void)
 }
 
 namespace kh {
-
 namespace Screen {
 
 /*

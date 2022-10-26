@@ -15,10 +15,10 @@ struct Mgr : public BaseItemMgr, public Container<Onyon> {
 
 	virtual void doAnimation();                                           // _08 (weak)
 	virtual void doEntry();                                               // _0C (weak)
-	virtual void doSetView(int);                                          // _10 (weak)
+	virtual void doSetView(int viewportNumber);                           // _10 (weak)
 	virtual void doViewCalc();                                            // _14 (weak)
 	virtual void doSimulation(float);                                     // _18 (weak)
-	virtual void doDirectDraw(Graphics&);                                 // _1C (weak)
+	virtual void doDirectDraw(Graphics& gfx);                             // _1C (weak)
 	virtual void initDependency();                                        // _38
 	virtual void setupSoundViewerAndBas();                                // _44
 	virtual u32 generatorGetID();                                         // _58 (weak)

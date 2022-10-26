@@ -228,11 +228,11 @@ EnemyBase* EnemyMgrBase::birth(Game::EnemyBirthArg& arg)
 		enemy->_2AC = arg._2C;
 		enemy->setOtakaraCode(arg.m_otakaraItemCode);
 
-		enemy->m_pelletInfo.m_color          = arg.m_pelletInfo.m_color;
-		enemy->m_pelletInfo.m_size           = arg.m_pelletInfo.m_size;
-		enemy->m_pelletInfo.m_minPellets     = arg.m_pelletInfo.m_minPellets;
-		enemy->m_pelletInfo.m_maxPellets     = arg.m_pelletInfo.m_maxPellets;
-		enemy->m_pelletInfo.m_spawnThreshold = arg.m_pelletInfo.m_spawnThreshold;
+		enemy->m_pelletInfo.m_color       = arg.m_pelletInfo.m_color;
+		enemy->m_pelletInfo.m_size        = arg.m_pelletInfo.m_size;
+		enemy->m_pelletInfo.m_minPellets  = arg.m_pelletInfo.m_minPellets;
+		enemy->m_pelletInfo.m_maxPellets  = arg.m_pelletInfo.m_maxPellets;
+		enemy->m_pelletInfo.m_spawnChance = arg.m_pelletInfo.m_spawnChance;
 
 		if (arg._30) {
 			enemy->m_inPiklopedia = true;

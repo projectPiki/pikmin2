@@ -6,7 +6,8 @@
 #include "std/iterator.h"
 
 namespace JGadget {
-template <typename Element, typename Allocator> struct TList {
+template <typename Element, typename Allocator>
+struct TList {
 	struct iterator : std::iterator<std::input_iterator_tag, Element> {
 		Element* m_element;
 	};

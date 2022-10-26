@@ -2534,7 +2534,6 @@ lbl_802152DC:
 }
 
 namespace og {
-
 namespace Screen {
 
 /*
@@ -2668,7 +2667,6 @@ blr
 }
 
 } // namespace Screen
-
 } // namespace og
 
 /*
@@ -5127,7 +5125,6 @@ lbl_80217578:
 } // namespace Game
 
 namespace og {
-
 namespace Screen {
 
 /*
@@ -5462,7 +5459,6 @@ blr
 }
 
 } // namespace Screen
-
 } // namespace og
 
 /*

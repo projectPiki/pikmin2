@@ -1,11 +1,14 @@
-#include "types.h"
-#include "efx/TPplGrow.h"
 #include "Game/Entities/Pelplant.h"
 #include "Game/EnemyAnimatorBase.h"
 #include "Game/EnemyAnimKeyEvent.h"
 #include "Game/EnemyFunc.h"
 #include "Game/GameSystem.h"
 #include "Game/MapMgr.h"
+
+#include "Dolphin/rand.h"
+
+#include "efx/TPplGrow.h"
+
 #include "System.h"
 
 namespace Game {

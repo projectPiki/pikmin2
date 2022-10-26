@@ -10,14 +10,15 @@ struct Controller;
 namespace ebi {
 namespace Omake {
 struct TMgr;
-} // namespace Omake
+}
 } // namespace ebi
 
 /*
  * FSM template specializations
  */
 namespace Game {
-template <> struct FSMState<ebi::Omake::TMgr> {
+template <>
+struct FSMState<ebi::Omake::TMgr> {
 	virtual void init(ebi::Omake::TMgr*, StateArg*);    // _00
 	virtual void exec(ebi::Omake::TMgr*);               // _04
 	virtual void cleanup(ebi::Omake::TMgr*);            // _08
@@ -26,7 +27,8 @@ template <> struct FSMState<ebi::Omake::TMgr> {
 	virtual void transit(ebi::Omake::TMgr*, StateArg*); // _14
 };
 
-template <> struct StateMachine<ebi::Omake::TMgr> {
+template <>
+struct StateMachine<ebi::Omake::TMgr> {
 	virtual void init(ebi::Omake::TMgr*);                    // _00
 	virtual u32 start(ebi::Omake::TMgr*, int, StateArg*);    // _04
 	virtual void exec(ebi::Omake::TMgr*);                    // _08

@@ -42,7 +42,6 @@
 */
 
 namespace ebi {
-
 namespace title {
 
 /*
@@ -287,7 +286,6 @@ blr
 }
 
 } // namespace title
-
 } // namespace ebi
 
 /*

@@ -44,7 +44,7 @@ struct TRockWRun : public TBase {
 	virtual void forceKill();  // _0C (weak)
 	virtual void fade();       // _10 (weak)
 
-	// _00 = VTBL
+	// _00 VTBL
 };
 
 struct TRockWRunChasePos : public TChasePos3 {

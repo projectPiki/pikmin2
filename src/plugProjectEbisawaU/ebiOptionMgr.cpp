@@ -1434,7 +1434,8 @@ Option::TMgr::TMgr(void)
  */
 // void start__Q24Game32StateMachine<ebi::Option::TMgr>
 // FPQ33ebi6Option4TMgriPQ24Game8StateArg(void)
-template <> void Game::StateMachine<ebi::Option::TMgr>::start(ebi::Option::TMgr* obj, int id, StateArg* arg)
+template <>
+void Game::StateMachine<ebi::Option::TMgr>::start(ebi::Option::TMgr* obj, int id, StateArg* arg)
 {
 	obj->_F28 = 0;
 	transit(obj, id, arg);
@@ -2881,7 +2882,10 @@ void E2DCallBack_Base::do_draw(Graphics&, J2DGrafContext&) { }
  */
 // void init__Q24Game28FSMState<ebi::Option::TMgr>
 // FPQ33ebi6Option4TMgrPQ24Game8StateArg(void)
-template <> void Game::FSMState<ebi::Option::TMgr>::init(ebi::Option::TMgr*, StateArg* arg) { }
+template <>
+void Game::FSMState<ebi::Option::TMgr>::init(ebi::Option::TMgr*, StateArg* arg)
+{
+}
 
 /*
  * --INFO--
@@ -2890,7 +2894,10 @@ template <> void Game::FSMState<ebi::Option::TMgr>::init(ebi::Option::TMgr*, Sta
  */
 // void exec__Q24Game28FSMState<ebi::Option::TMgr> FPQ33ebi6Option4TMgr(void) {
 // }
-template <> void Game::FSMState<ebi::Option::TMgr>::exec(ebi::Option::TMgr*) { }
+template <>
+void Game::FSMState<ebi::Option::TMgr>::exec(ebi::Option::TMgr*)
+{
+}
 
 /*
  * --INFO--
@@ -2899,7 +2906,10 @@ template <> void Game::FSMState<ebi::Option::TMgr>::exec(ebi::Option::TMgr*) { }
  */
 // void cleanup__Q24Game28FSMState<ebi::Option::TMgr> FPQ33ebi6Option4TMgr(void)
 // {}
-template <> void Game::FSMState<ebi::Option::TMgr>::cleanup(ebi::Option::TMgr*) { }
+template <>
+void Game::FSMState<ebi::Option::TMgr>::cleanup(ebi::Option::TMgr*)
+{
+}
 
 /*
  * --INFO--
@@ -2908,7 +2918,10 @@ template <> void Game::FSMState<ebi::Option::TMgr>::cleanup(ebi::Option::TMgr*) 
  */
 // void resume__Q24Game28FSMState<ebi::Option::TMgr> FPQ33ebi6Option4TMgr(void)
 // { }
-template <> void Game::FSMState<ebi::Option::TMgr>::resume(ebi::Option::TMgr*) { }
+template <>
+void Game::FSMState<ebi::Option::TMgr>::resume(ebi::Option::TMgr*)
+{
+}
 
 /*
  * --INFO--
@@ -2917,7 +2930,10 @@ template <> void Game::FSMState<ebi::Option::TMgr>::resume(ebi::Option::TMgr*) {
  */
 // void restart__Q24Game28FSMState<ebi::Option::TMgr> FPQ33ebi6Option4TMgr(void)
 // {}
-template <> void Game::FSMState<ebi::Option::TMgr>::restart(ebi::Option::TMgr*) { }
+template <>
+void Game::FSMState<ebi::Option::TMgr>::restart(ebi::Option::TMgr*)
+{
+}
 
 /*
  * --INFO--
@@ -2926,7 +2942,10 @@ template <> void Game::FSMState<ebi::Option::TMgr>::restart(ebi::Option::TMgr*) 
  */
 // void init__Q24Game32StateMachine<ebi::Option::TMgr>
 // FPQ33ebi6Option4TMgr(void)
-template <> void Game::StateMachine<ebi::Option::TMgr>::init(ebi::Option::TMgr*) { }
+template <>
+void Game::StateMachine<ebi::Option::TMgr>::init(ebi::Option::TMgr*)
+{
+}
 
 /*
  * --INFO--
@@ -2935,7 +2954,8 @@ template <> void Game::StateMachine<ebi::Option::TMgr>::init(ebi::Option::TMgr*)
  */
 // void exec__Q24Game32StateMachine<ebi::Option::TMgr>
 // FPQ33ebi6Option4TMgr(void)
-template <> void Game::StateMachine<ebi::Option::TMgr>::exec(ebi::Option::TMgr* obj)
+template <>
+void Game::StateMachine<ebi::Option::TMgr>::exec(ebi::Option::TMgr* obj)
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -3003,7 +3023,8 @@ blr
  */
 // void transit__Q24Game32StateMachine<ebi::Option::TMgr>
 // FPQ33ebi6Option4TMgriPQ24Game8StateArg(void)
-template <> void Game::StateMachine<ebi::Option::TMgr>::transit(ebi::Option::TMgr*, int, Game::StateArg* arg)
+template <>
+void Game::StateMachine<ebi::Option::TMgr>::transit(ebi::Option::TMgr*, int, Game::StateArg* arg)
 {
 	/*
 	.loc_0x0:

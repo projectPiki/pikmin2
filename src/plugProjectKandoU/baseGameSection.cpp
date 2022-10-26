@@ -877,7 +877,6 @@
 static Delegate1<Game::BaseGameSection, Game::CameraArg*>* cameraMgrCallback;
 
 namespace og {
-
 namespace Screen {
 
 /*

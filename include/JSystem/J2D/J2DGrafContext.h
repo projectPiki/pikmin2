@@ -61,7 +61,7 @@ struct J2DGrafContext {
 	// inlined
 	void line(JGeometry::TVec2f, JGeometry::TVec2f);
 
-	// _00 = VTBL
+	// _00 VTBL
 	JGeometry::TBox2f m_bounds;        // _04
 	JGeometry::TBox2f m_scissorBounds; // _14
 	JUtility::TColor m_colorTL;        // _24, top left

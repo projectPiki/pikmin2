@@ -102,7 +102,6 @@ inline static void _Print(char* format, ...)
 const char fakeMatchFileName[] = __FILE__;
 
 namespace og {
-
 namespace newScreen {
 
 /*

@@ -48,8 +48,8 @@ struct Item : public CFSMItem {
 	}
 
 	// vtable 1
-	virtual void onInit(CreatureInitArg*);            // _28
-	virtual void doDirectDraw(Graphics&);             // _48
+	virtual void onInit(CreatureInitArg* settings);   // _28
+	virtual void doDirectDraw(Graphics& gfx);         // _48
 	virtual float getFaceDir();                       // _5C
 	virtual bool sound_culling();                     // _FC
 	virtual void movieUserCommand(u32, MoviePlayer*); // _128

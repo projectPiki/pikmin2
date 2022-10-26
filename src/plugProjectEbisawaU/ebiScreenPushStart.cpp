@@ -191,7 +191,6 @@
 */
 
 namespace ebi {
-
 namespace Screen {
 
 /*

@@ -41,7 +41,7 @@ struct ItemPikihead {
 struct NaviDamageArg {
 	virtual const char* getName(); // _08 (weak)
 
-	// _00 = VTBL
+	// _00 VTBL
 };
 
 struct NaviFSM : public StateMachine<Navi> {
@@ -81,14 +81,14 @@ struct Navi : public FakePiki, virtual public PelletView {
 
 	// vtable 1 (Creature)
 	virtual Vector3f getPosition();                            // _08
-	virtual void onInit(CreatureInitArg*);                     // _30
-	virtual void onKill(CreatureKillArg*);                     // _34
+	virtual void onInit(CreatureInitArg* settings);            // _30
+	virtual void onKill(CreatureKillArg* settings);            // _34
 	virtual void doAnimation();                                // _3C
 	virtual void doEntry();                                    // _40
-	virtual void doSetView(int);                               // _44
+	virtual void doSetView(int viewportNumber);                // _44
 	virtual void doViewCalc();                                 // _48
 	virtual void doSimulation(f32);                            // _4C
-	virtual void doDirectDraw(Graphics&);                      // _50
+	virtual void doDirectDraw(Graphics& gfx);                  // _50
 	virtual void setVelocity(Vector3f&);                       // _68 (weak)
 	virtual void onSetPosition(Vector3f&);                     // _70
 	virtual void inWaterCallback(WaterBox*);                   // _84

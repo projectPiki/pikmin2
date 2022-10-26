@@ -6,7 +6,6 @@
 #include "nans.h"
 
 namespace og {
-
 namespace newScreen {
 
 /*
@@ -134,5 +133,4 @@ ScreenMemberID SMenuPauseVS::getMemberID() { return MEMBER_START_MENU_PAUSE_VS; 
 bool SMenuPauseVS::isUseBackupSceneInfo(void) { return true; }
 
 } // namespace newScreen
-
 } // namespace og

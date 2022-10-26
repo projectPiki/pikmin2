@@ -4,7 +4,8 @@
 #include "types.h"
 
 namespace JGadget {
-template <typename Object> struct TAllocator {
+template <typename Object>
+struct TAllocator {
 };
 }; // namespace JGadget
 

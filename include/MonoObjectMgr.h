@@ -5,7 +5,8 @@
 #include "ObjectMgr.h"
 
 // TODO: this needs fixing, sigh
-template <typename T> struct MonoObjectMgr : public ObjectMgr<T> {
+template <typename T>
+struct MonoObjectMgr : public ObjectMgr<T> {
 
 	////////////////// VTABLE
 	virtual ~MonoObjectMgr();     // _08 (weak)

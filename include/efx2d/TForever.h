@@ -39,7 +39,7 @@ struct TForeverN : public TBaseIF {
 
 	void setGlobalAlpha(u8);
 
-	// _00 = VTBL
+	// _00 VTBL
 	u8 m_length;          // _04
 	u8 _05;               // _05
 	u8 _06;               // _06

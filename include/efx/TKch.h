@@ -12,7 +12,7 @@ struct TParticleCallBack_KchYodare : public JPAParticleCallBack {
 	virtual void execute(JPABaseEmitter*, JPABaseParticle*); // _0C
 	virtual void init(JPABaseEmitter*, JPABaseParticle*);    // _14
 
-	// _00 = VTBL
+	// _00 VTBL
 };
 
 struct TKchApSand : public TSimple3 {

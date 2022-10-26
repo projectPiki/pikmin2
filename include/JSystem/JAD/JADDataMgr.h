@@ -87,7 +87,8 @@ struct DataMgrNode : public DataLoadMgrNode {
 	DataMgrBase _250; // _250
 };
 
-template <typename A, typename B> struct PrmDataMgrNode : public DataMgrNode {
+template <typename A, typename B>
+struct PrmDataMgrNode : public DataMgrNode {
 	virtual ~PrmDataMgrNode<A, B>();        // _08 (weak)
 	virtual void isTempBuffaMode() = 0;     // _0C
 	virtual void init()            = 0;     // _10

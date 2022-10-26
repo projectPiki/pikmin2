@@ -1,6 +1,6 @@
-#include "types.h"
 #include "Game/Entities/Hiba.h"
 #include "efx/THibaFire.h"
+#include "Dolphin/rand.h"
 
 namespace Game {
 namespace Hiba {
@@ -197,7 +197,7 @@ void Obj::setupLodParms()
  * Address:	8026C4A0
  * Size:	00002C
  */
-void Obj::updateEfxLod() { m_efxFire->setRateLOD(m_lod.m_flags & (AILOD::IsMid | AILOD::IsFar)); }
+void Obj::updateEfxLod() { m_efxFire->setRateLOD(m_lod.m_flags & (AILOD_FLAG_IS_MID | AILOD_FLAG_IS_FAR)); }
 
 /*
  * --INFO--

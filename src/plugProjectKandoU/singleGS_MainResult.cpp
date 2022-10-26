@@ -1098,7 +1098,6 @@ lbl_8021AAFC:
 } // namespace Game
 
 namespace kh {
-
 namespace Screen {
 
 /*
@@ -1194,7 +1193,6 @@ blr
 }
 
 } // namespace Screen
-
 } // namespace kh
 
 /*

@@ -125,7 +125,6 @@ void E3DModel_set2DCoordToBaseTRMatrix__Q23ebi5titleFP8J3DModelR10Vector2<float>
 }
 
 namespace ebi {
-
 namespace title {
 
 /*
@@ -235,7 +234,6 @@ blr
 }
 
 } // namespace title
-
 } // namespace ebi
 
 /*
@@ -249,7 +247,6 @@ void pushOut___Q33ebi5title8TObjBaseFP10Vector2<float> f(void)
 }
 
 namespace ebi {
-
 namespace title {
 
 /*
@@ -1336,7 +1333,6 @@ blr
 }
 
 } // namespace title
-
 } // namespace ebi
 
 /*

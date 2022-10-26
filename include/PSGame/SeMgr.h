@@ -34,7 +34,7 @@ struct SeMgr {
 	void playMessageVoice(u32, bool);
 	void stopMessageVoice();
 
-	// _00 = VTBL
+	// _00 VTBL
 	SetSe* _04[8];     // _04
 	Randid m_randid;   // _24
 	u8 _28[0x4];       // _28, unknown

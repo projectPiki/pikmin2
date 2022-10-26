@@ -2,7 +2,6 @@
 #include "og/newScreen/TitleMsg.h"
 
 namespace og {
-
 namespace newScreen {
 // should be static once the file is finished!
 // clang-format off
@@ -56,7 +55,6 @@ CaveTitleMsg CaveTitleMsg [45] = {
 };
 // clang-format on
 } // namespace newScreen
-
 } // namespace og
 
 #if 0

@@ -371,7 +371,6 @@
 */
 
 namespace ebi {
-
 namespace title {
 
 /*
@@ -1102,7 +1101,6 @@ blr
 }
 
 } // namespace title
-
 } // namespace ebi
 
 /*
@@ -1318,7 +1316,6 @@ lbl_803E491C:
 }
 
 namespace ebi {
-
 namespace title {
 
 /*
@@ -3725,7 +3722,6 @@ blr
 }
 
 } // namespace title
-
 } // namespace ebi
 
 /*
@@ -3900,7 +3896,6 @@ lbl_803E685C:
 }
 
 namespace ebi {
-
 namespace title {
 
 /*
@@ -4674,7 +4669,6 @@ blr
 u32 Pikmin::TUnit::getCreatureType(void) { return 0x0; }
 
 } // namespace title
-
 } // namespace ebi
 
 /*

@@ -5,7 +5,6 @@
 #include "nans.h"
 
 namespace og {
-
 namespace newScreen {
 
 /*
@@ -94,5 +93,4 @@ ScreenMemberID WorldMapInfoWindow0::getMemberID(void) { return MEMBER_WORLD_MAP_
 bool WorldMapInfoWindow0::isUseBackupSceneInfo(void) { return false; }
 
 } // namespace newScreen
-
 } // namespace og

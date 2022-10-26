@@ -3938,7 +3938,8 @@ lbl_80207DCC:
  * Address:	80207DE0
  * Size:	000090
  */
-template <> inline void Vector3f::normalise()
+template <>
+inline void Vector3f::normalise()
 {
 	/*
 	lfs      f3, 0(r3)

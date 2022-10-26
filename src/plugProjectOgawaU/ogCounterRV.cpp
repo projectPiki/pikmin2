@@ -70,7 +70,6 @@
 */
 
 namespace og {
-
 namespace Screen {
 
 /*
@@ -1638,7 +1637,6 @@ blr
 }
 
 } // namespace Screen
-
 } // namespace og
 
 /*

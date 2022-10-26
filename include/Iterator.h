@@ -5,7 +5,8 @@
 #include "Condition.h"
 
 // TODO: Verify virtual functions
-template <typename T> struct Iterator {
+template <typename T>
+struct Iterator {
 	inline Iterator<T>(Container<T>* container, void* startIndex = 0, Condition<T>* condition = nullptr)
 	    : m_condition(condition)
 	{

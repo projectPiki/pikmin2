@@ -9,7 +9,8 @@
 #include "ebi/Omake.h"
 #include "ebi/TMainTitleMgr.h"
 
-template <typename T> struct IDelegate1;
+template <typename T>
+struct IDelegate1;
 struct JUTTexture;
 struct Menu;
 

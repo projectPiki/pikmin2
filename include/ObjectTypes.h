@@ -49,7 +49,7 @@ extern ObjTypeInfo infos[];
 namespace Game {
 namespace ObjType {
 char* getName(u16 type);
-} // namespace ObjType
+}
 } // namespace Game
 
 #endif

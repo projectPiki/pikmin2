@@ -1190,7 +1190,6 @@ lbl_803F1F20:
 } // namespace kh
 
 namespace kh {
-
 namespace Screen {
 
 /*
@@ -8235,7 +8234,6 @@ blr
 }
 
 } // namespace Screen
-
 } // namespace kh
 
 /*
@@ -8478,7 +8476,6 @@ void WorldMap::Base::draw(Graphics&) { }
 } // namespace kh
 
 namespace kh {
-
 namespace Screen {
 
 /*
@@ -8631,7 +8628,6 @@ blr
 }
 
 } // namespace Screen
-
 } // namespace kh
 
 /*

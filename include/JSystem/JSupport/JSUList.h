@@ -4,7 +4,8 @@
 #include "types.h"
 
 struct JSUPtrList;
-template <typename T> struct JSULink;
+template <typename T>
+struct JSULink;
 
 /**
  * @size{0x10}
@@ -52,7 +53,8 @@ struct JSUPtrList {
 /**
  * @size{0xC}
  */
-template <typename T> struct JSUList : public JSUPtrList {
+template <typename T>
+struct JSUList : public JSUPtrList {
 	inline JSUList<T>()
 	    : JSUPtrList()
 	{
@@ -79,7 +81,8 @@ template <typename T> struct JSUList : public JSUPtrList {
 /**
  * @size{0x10}
  */
-template <typename T> struct JSULink : public JSUPtrLink {
+template <typename T>
+struct JSULink : public JSUPtrLink {
 	inline JSULink<T>(T* value)
 	    : JSUPtrLink((void*)value)
 	{
@@ -94,7 +97,8 @@ template <typename T> struct JSULink : public JSUPtrLink {
 /**
  * @size{0x1C}
  */
-template <typename T> struct JSUTree : public JSUList<T>, public JSULink<T> {
+template <typename T>
+struct JSUTree : public JSUList<T>, public JSULink<T> {
 	inline JSUTree(T* owner)
 	    : JSUList<T>()
 	    , JSULink<T>(owner) {};
@@ -120,7 +124,8 @@ template <typename T> struct JSUTree : public JSUList<T>, public JSULink<T> {
 /**
  * @size{0x4}
  */
-template <typename T> struct JSUTreeIterator {
+template <typename T>
+struct JSUTreeIterator {
 	JSUTreeIterator()
 	    : m_tree(nullptr)
 	{

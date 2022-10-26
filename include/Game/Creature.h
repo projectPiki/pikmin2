@@ -1,14 +1,19 @@
 #ifndef _GAME_CREATURE_H
 #define _GAME_CREATURE_H
 
-#include "types.h"
 #include "Game/AILOD.h"
 #include "Game/cellPyramid.h"
+#include "Game/EnemyAnimatorBase.h"
 #include "Game/updateMgr.h"
-#include "Rect.h"
-#include "SysShape/Animator.h"
-#include "Vector3.h"
 #include "BitFlag.h"
+
+// Shorthand cast to obj-specific 'parms'
+#define CG_PARMS(x) (static_cast<Parms*>(x->m_parms))
+#define C_PARMS     (CG_PARMS(this))
+
+// Shorthand cast to obj-specific 'parms->properParms'
+#define CG_PROPERPARMS(x) (CG_PARMS(x)->m_properParms)
+#define C_PROPERPARMS     (CG_PROPERPARMS(this))
 
 struct Graphics;
 struct Matrixf;
@@ -69,7 +74,7 @@ enum CreatureFlags {
 struct CreatureInitArg {
 	virtual const char* getName() = 0; // _08
 
-	// _00 = VTBL
+	// _00 VTBL
 };
 
 struct CreatureKillArg {
@@ -83,17 +88,9 @@ struct CreatureKillArg {
 		return "CreatureKillArg";
 	}
 
-	// _00 = VTBL
+	// _00 VTBL
 	int _04; // _04
 };
-
-// Shorthand (cast and get) parms
-#define CG_PARMS(x) (static_cast<Parms*>(x->m_parms))
-#define C_PARMS     (CG_PARMS(this))
-
-// Shorthand parms casting + proper parms
-#define CG_PROPERPARMS(x) (CG_PARMS(x)->m_properParms)
-#define C_PROPERPARMS     (CG_PROPERPARMS(this))
 
 struct Creature : public CellObject {
 	struct CheckHellArg {
@@ -107,10 +104,10 @@ struct Creature : public CellObject {
 
 	Creature();
 
-	virtual Vector3f getPosition() = 0;               // _08
-	virtual void checkCollision(CellObject*);         // _0C
-	virtual void getBoundingSphere(Sys::Sphere&) = 0; // _10
-	virtual bool collisionUpdatable()                 // _14 (weak)
+	virtual Vector3f getPosition() = 0;                           // _08
+	virtual void checkCollision(CellObject* other);               // _0C
+	virtual void getBoundingSphere(Sys::Sphere& boundSphere) = 0; // _10
+	virtual bool collisionUpdatable()                             // _14 (weak)
 	{
 		return m_updateContext.updatable();
 	}
@@ -119,15 +116,15 @@ struct Creature : public CellObject {
 	virtual char* getTypeName();                                      // _24
 	virtual u16 getObjType() { return m_objectTypeID; }               // _28 (weak)
 	virtual void constructor() { }                                    // _2C (weak)
-	virtual void onInit(CreatureInitArg* arg) { }                     // _30 (weak)
-	virtual void onKill(CreatureKillArg* arg) { }                     // _34 (weak)
-	virtual void onInitPost(CreatureInitArg* arg) { }                 // _38 (weak)
+	virtual void onInit(CreatureInitArg* settings) { }                // _30 (weak)
+	virtual void onKill(CreatureKillArg* settings) { }                // _34 (weak)
+	virtual void onInitPost(CreatureInitArg* settings) { }            // _38 (weak)
 	virtual void doAnimation();                                       // _3C
 	virtual void doEntry();                                           // _40
-	virtual void doSetView(int);                                      // _44
+	virtual void doSetView(int viewportNumber);                       // _44
 	virtual void doViewCalc();                                        // _48
 	virtual void doSimulation(float) { }                              // _4C (weak)
-	virtual void doDirectDraw(Graphics&) { }                          // _50 (weak)
+	virtual void doDirectDraw(Graphics& gfx) { }                      // _50 (weak)
 	virtual float getBodyRadius();                                    // _54
 	virtual float getCellRadius();                                    // _58
 	virtual void initPosition(Vector3f&);                             // _5C

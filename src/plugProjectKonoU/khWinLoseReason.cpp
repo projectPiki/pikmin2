@@ -112,7 +112,6 @@
 */
 
 namespace kh {
-
 namespace Screen {
 
 /*
@@ -872,7 +871,6 @@ blr
 }
 
 } // namespace Screen
-
 } // namespace kh
 
 /*
@@ -903,7 +901,6 @@ void __sinit_khWinLoseReason_cpp(void)
 }
 
 namespace kh {
-
 namespace Screen {
 
 /*

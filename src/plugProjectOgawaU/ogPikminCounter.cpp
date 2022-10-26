@@ -163,7 +163,6 @@
 */
 
 namespace og {
-
 namespace Screen {
 
 /*

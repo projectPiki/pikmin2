@@ -22,7 +22,7 @@ struct GameFlow : public ISectionMgr {
 
 	static u32 mActiveSectionFlag;
 
-	// _00 = VTBL
+	// _00 VTBL
 	Section* m_section; // _04
 };
 

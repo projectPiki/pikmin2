@@ -2,7 +2,6 @@
 #include "og/newScreen/AnaDemo.h"
 
 namespace og {
-
 namespace newScreen {
 
 /*

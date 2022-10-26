@@ -63,7 +63,7 @@ typedef enum EPikiHappa {
 struct PikiInitArg : public CreatureInitArg {
 	virtual const char* getName(); // _08 (weak)
 
-	// _00 = VTBL
+	// _00 VTBL
 	int _04; // _04
 	u32 _08; // _08, unknown
 };
@@ -107,10 +107,10 @@ struct Piki : public FakePiki {
 
 	// vtable 1 (Creature)
 	virtual bool deferPikiCollision();                          // _20 (weak)
-	virtual void onInit(CreatureInitArg*);                      // _30
-	virtual void onKill(CreatureKillArg*);                      // _34
+	virtual void onInit(CreatureInitArg* settings);             // _30
+	virtual void onKill(CreatureKillArg* settings);             // _34
 	virtual void doAnimation();                                 // _3C
-	virtual void doDirectDraw(Graphics&);                       // _50
+	virtual void doDirectDraw(Graphics& gfx);                   // _50
 	virtual void inWaterCallback(WaterBox*);                    // _84
 	virtual void outWaterCallback();                            // _88
 	virtual bool isAlive();                                     // _A8

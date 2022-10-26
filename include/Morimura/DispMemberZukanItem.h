@@ -18,7 +18,7 @@ struct EnemyTexMgr;
 namespace og {
 namespace Screen {
 struct DispMemberWorldMapInfoWin0;
-} // namespace Screen
+}
 } // namespace og
 
 namespace Morimura {

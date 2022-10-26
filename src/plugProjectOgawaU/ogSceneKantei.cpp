@@ -1,7 +1,6 @@
 #include "og/newScreen/KanteiDemo.h"
 
 namespace og {
-
 namespace newScreen {
 
 /*

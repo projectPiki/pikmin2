@@ -152,7 +152,6 @@
 */
 
 namespace og {
-
 namespace newScreen {
 
 /*
@@ -783,7 +782,6 @@ void ObjSMenuCont::doUpdateFadeout(void)
 void ObjSMenuCont::doUpdateCancelAction(void) { }
 
 } // namespace newScreen
-
 } // namespace og
 
 /*

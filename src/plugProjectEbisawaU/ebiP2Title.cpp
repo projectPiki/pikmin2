@@ -3390,7 +3390,6 @@ void inField__Q33ebi5title9TTitleMgrFP10Vector2<float>(void)
 }
 
 namespace ebi {
-
 namespace title {
 
 /*
@@ -3442,7 +3441,6 @@ blr
 u32 TObjBase::isCalc(void) { return 0x1; }
 
 } // namespace title
-
 } // namespace ebi
 
 /*
@@ -3456,7 +3454,6 @@ void inViewField__Q33ebi5title9TTitleMgrFP10Vector2<float> f(void)
 }
 
 namespace ebi {
-
 namespace title {
 
 /*
@@ -3505,7 +3502,6 @@ blr
 }
 
 } // namespace title
-
 } // namespace ebi
 
 /*
@@ -3519,7 +3515,6 @@ void isInViewField__Q33ebi5title9TTitleMgrFR10Vector2<float> f(void)
 }
 
 namespace ebi {
-
 namespace title {
 
 /*
@@ -3572,7 +3567,6 @@ blr
 }
 
 } // namespace title
-
 } // namespace ebi
 
 /*
@@ -3604,7 +3598,6 @@ void isOutViewField__Q33ebi5title9TTitleMgrFR10Vector2<float> f(void)
 }
 
 namespace ebi {
-
 namespace title {
 
 /*
@@ -5799,7 +5792,6 @@ blr
 }
 
 } // namespace title
-
 } // namespace ebi
 
 /*
@@ -5810,7 +5802,6 @@ blr
 void Camera::doUpdate() { }
 
 namespace ebi {
-
 namespace title {
 
 /*
@@ -5821,7 +5812,6 @@ namespace title {
 s32 TObjBase::getCreatureType(void) { return -0x1; }
 
 } // namespace title
-
 } // namespace ebi
 
 /*

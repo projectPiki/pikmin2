@@ -3,13 +3,14 @@
 
 #include "Game/EnemyStateMachine.h"
 #include "Game/EnemyAnimatorBase.h"
+#include "Game/WalkSmokeEffect.h"
 #include "Game/EnemyParmsBase.h"
 #include "Game/EnemyMgrBase.h"
-#include "Game/EnemyBase.h"
 #include "Game/JointFuncs.h"
-#include "efx/TDango.h"
+#include "Game/EnemyBase.h"
 #include "Sys/MatBaseAnimation.h"
 #include "Sys/MatBaseAnimator.h"
+#include "efx/TDango.h"
 
 /**
  * --Header for Segmented Crawbster (DangoMushi)--
@@ -23,9 +24,9 @@ struct Obj : public EnemyBase {
 	Obj();
 
 	//////////////// VTABLE
-	virtual void onInit(CreatureInitArg*);                  // _30
-	virtual void onKill(CreatureKillArg*);                  // _34
-	virtual void doDirectDraw(Graphics&);                   // _50
+	virtual void onInit(CreatureInitArg* settings);         // _30
+	virtual void onKill(CreatureKillArg* settings);         // _34
+	virtual void doDirectDraw(Graphics& gfx);               // _50
 	virtual void collisionCallback(CollEvent&);             // _EC
 	virtual void getShadowParam(ShadowParam&);              // _134
 	virtual bool needShadow();                              // _138
@@ -117,7 +118,7 @@ struct Mgr : public EnemyMgrBase {
 
 	// virtual ~Mgr();                                     // _58 (weak)
 	virtual void createObj(int);                       // _A0
-	virtual EnemyBase* getEnemy(int);                  // _A4
+	virtual EnemyBase* getEnemy(int idx);              // _A4
 	virtual void doAlloc();                            // _A8
 	virtual SysShape::Model* createModel();            // _B0
 	virtual void loadModelData();                      // _C8

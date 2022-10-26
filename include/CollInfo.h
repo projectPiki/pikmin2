@@ -33,14 +33,14 @@ struct CollPart : public CNode {
 	{
 		return false;
 	}
-	virtual void draw(Graphics&);            // _14
-	virtual void constructor() { }           // _18 (weak)
-	virtual void doAnimation() { }           // _1C (weak)
-	virtual void doEntry() { }               // _20 (weak)
-	virtual void doSetView(u32) { }          // _24 (weak)
-	virtual void doViewCalc() { }            // _28 (weak)
-	virtual void doSimulation(float) { }     // _2C (weak)
-	virtual void doDirectDraw(Graphics&) { } // _30 (weak)
+	virtual void draw(Graphics&);                // _14
+	virtual void constructor() { }               // _18 (weak)
+	virtual void doAnimation() { }               // _1C (weak)
+	virtual void doEntry() { }                   // _20 (weak)
+	virtual void doSetView(u32) { }              // _24 (weak)
+	virtual void doViewCalc() { }                // _28 (weak)
+	virtual void doSimulation(float) { }         // _2C (weak)
+	virtual void doDirectDraw(Graphics& gfx) { } // _30 (weak)
 	////////////// END VTABLE
 
 	void init(SysShape::MtxObject*);

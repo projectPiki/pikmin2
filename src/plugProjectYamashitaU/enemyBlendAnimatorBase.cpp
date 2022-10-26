@@ -37,11 +37,12 @@ SysShape::Animator& EnemyBlendAnimatorBase::getAnimator(int index) { return m_an
  * Address:	8012E16C
  * Size:	00009C
  */
-void EnemyBlendAnimatorBase::startBlend(int p1, int p2, SysShape::BlendFunction* function, f32 p4, SysShape::MotionListener* listener)
+void EnemyBlendAnimatorBase::startBlend(int startAnim, int endAnim, SysShape::BlendFunction* function, f32 framerate,
+                                        SysShape::MotionListener* listener)
 {
-	getAnimator(0).startAnim(p1, nullptr);
-	getAnimator(1).startAnim(p2, nullptr);
-	m_animator.startBlend(function, p4, listener);
+	getAnimator(0).startAnim(startAnim, nullptr);
+	getAnimator(1).startAnim(endAnim, nullptr);
+	m_animator.startBlend(function, framerate, listener);
 }
 
 /*

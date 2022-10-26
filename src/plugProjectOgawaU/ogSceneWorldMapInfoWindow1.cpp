@@ -85,7 +85,6 @@
 */
 
 namespace og {
-
 namespace newScreen {
 
 /*
@@ -270,7 +269,6 @@ void WorldMapInfoWindow1::getMemberID(void)
 u32 WorldMapInfoWindow1::isUseBackupSceneInfo(void) { return 0x0; }
 
 } // namespace newScreen
-
 } // namespace og
 
 /*

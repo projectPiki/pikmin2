@@ -7,7 +7,6 @@
 #include "System.h"
 
 namespace ebi {
-
 namespace Screen {
 
 /*

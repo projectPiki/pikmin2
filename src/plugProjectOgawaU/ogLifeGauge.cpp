@@ -1529,7 +1529,6 @@ blr
 }
 
 } // namespace Screen
-
 } // namespace og
 
 /*

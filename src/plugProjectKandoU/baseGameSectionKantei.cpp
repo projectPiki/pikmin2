@@ -1421,7 +1421,6 @@ lbl_8023C51C:
 void LookAtCamera::startVibration(int) { }
 
 namespace og {
-
 namespace Screen {
 
 /*
@@ -1498,7 +1497,6 @@ blr
 }
 
 } // namespace Screen
-
 } // namespace og
 
 /*

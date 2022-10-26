@@ -1,6 +1,7 @@
 #include "Game/Entities/Sokkuri.h"
 #include "Game/EnemyAnimKeyEvent.h"
 #include "Game/EnemyFunc.h"
+#include "Dolphin/rand.h"
 
 namespace Game {
 namespace Sokkuri {

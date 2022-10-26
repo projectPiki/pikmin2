@@ -140,7 +140,6 @@
 */
 
 namespace og {
-
 namespace newScreen {
 
 /*
@@ -981,7 +980,6 @@ lbl_8030E89C:
 void ObjGround::doUpdateFadeoutFinish(void) { }
 
 } // namespace newScreen
-
 } // namespace og
 
 /*

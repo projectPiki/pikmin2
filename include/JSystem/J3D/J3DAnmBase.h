@@ -68,6 +68,7 @@ struct J3DAnmKeyTableBase {
 	s16 _04; // _04
 };
 
-template <typename T> float J3DGetKeyFrameInterpolation(float, J3DAnmKeyTableBase*, T*);
+template <typename T>
+float J3DGetKeyFrameInterpolation(float, J3DAnmKeyTableBase*, T*);
 
 #endif

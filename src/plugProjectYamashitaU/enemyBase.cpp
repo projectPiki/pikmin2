@@ -513,7 +513,7 @@ void FitState::updateAlways(Game::EnemyBase* enemy)
 	} else {
 		f32 sinStun
 		    = 4.0f
-		      * pikmin2_sinf((PI * enemy->m_stunAnimTimer) / ((EnemyParmsBase*)enemy->m_parms)->m_general.m_purplePikminStunTime.m_value);
+		    * pikmin2_sinf((PI * enemy->m_stunAnimTimer) / ((EnemyParmsBase*)enemy->m_parms)->m_general.m_purplePikminStunTime.m_value);
 		if (sinStun > 1.0f) {
 			sinStun = 1.0f;
 		}
@@ -3296,14 +3296,14 @@ void EnemyBase::setPSEnemyBaseAnime()
  * Address:	80104DB8
  * Size:	0001F0
  */
-void EnemyBase::startBlend(int p1, int p2, SysShape::BlendFunction* blendFunc, f32 p3, SysShape::MotionListener* inputListener)
+void EnemyBase::startBlend(int start, int end, SysShape::BlendFunction* blendFunc, f32 framerate, SysShape::MotionListener* inputListener)
 {
 	SysShape::MotionListener* listener = inputListener;
 	if (listener == nullptr) {
 		listener = static_cast<SysShape::MotionListener*>(this);
 	}
 
-	static_cast<EnemyBlendAnimatorBase*>(m_animator)->startBlend(p1, p2, blendFunc, p3, listener);
+	static_cast<EnemyBlendAnimatorBase*>(m_animator)->startBlend(start, end, blendFunc, framerate, listener);
 
 	resetEvent(0, EB_PS1 + EB_PS2 + EB_PS3 + EB_PS4);
 	setEvent(0, EB_PS3);
@@ -3942,7 +3942,7 @@ void EnemyBase::throwupItem()
 		}
 	}
 
-	if (randFloat() < m_pelletInfo.m_spawnThreshold) {
+	if (randFloat() < m_pelletInfo.m_spawnChance) {
 		f32 range = (m_pelletInfo.m_maxPellets - m_pelletInfo.m_minPellets) * randFloat();
 		f32 roundRange;
 		if (range >= 0.0f) {

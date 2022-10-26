@@ -22,7 +22,7 @@ struct TypedProc {
 	void endUpdate();
 	void getBossFadeVolume();
 
-	// _00 = VTBL
+	// _00 VTBL
 	float _04;                               // _04
 	float _08;                               // _08
 	float _0C;                               // _0C
@@ -64,7 +64,7 @@ struct Mgr {
 	void appendTarget(JSULink<PSM::EnemyBoss>*);
 	void exec();
 
-	// _00 = VTBL
+	// _00 VTBL
 	JSUList<PSM::EnemyBoss> m_enemyBossList; // _04
 	TypedProc_MidBoss m_typedProc;           // _10
 };

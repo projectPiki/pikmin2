@@ -28,10 +28,12 @@ enum JASThreadingModel {
 	MultiThreaded
 };
 
-template <typename T, JASThreadingModel ThreadingModel> struct JASMemPool : public JASGenericMemPool {
+template <typename T, JASThreadingModel ThreadingModel>
+struct JASMemPool : public JASGenericMemPool {
 };
 
-template <typename T, JASCreationPolicy CreationPolicy> struct JASSingletonHolder {
+template <typename T, JASCreationPolicy CreationPolicy>
+struct JASSingletonHolder {
 	/**
 	 * @fabricated
 	 */
@@ -50,7 +52,8 @@ template <typename T, JASCreationPolicy CreationPolicy> struct JASSingletonHolde
 	static T* sInstance;
 };
 
-template <typename T, JASCreationPolicy CreationPolicy, JASThreadingModel ThreadingModel> struct JASPoolAllocObject {
+template <typename T, JASCreationPolicy CreationPolicy, JASThreadingModel ThreadingModel>
+struct JASPoolAllocObject {
 	typedef JASMemPool<T, ThreadingModel> Pool;
 	typedef JASSingletonHolder<Pool, CreationPolicy> SingletonHolder;
 

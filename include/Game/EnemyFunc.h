@@ -11,7 +11,8 @@ struct Piki;
 struct Navi;
 } // namespace Game
 
-template <typename T> struct Condition;
+template <typename T>
+struct Condition;
 
 namespace Game {
 namespace EnemyFunc {

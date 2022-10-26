@@ -33,10 +33,10 @@ struct BaseItemMgr : public GenericObjectMgr, virtual public _BaseItemMgrParent2
 
 	virtual void doAnimation();                                               // _08 (weak)
 	virtual void doEntry();                                                   // _0C (weak)
-	virtual void doSetView(int);                                              // _10 (weak)
+	virtual void doSetView(int viewportNumber);                               // _10 (weak)
 	virtual void doViewCalc();                                                // _14 (weak)
 	virtual void doSimulation(float);                                         // _18 (weak)
-	virtual void doDirectDraw(Graphics&);                                     // _1C (weak)
+	virtual void doDirectDraw(Graphics& gfx);                                 // _1C (weak)
 	virtual void loadResources();                                             // _24
 	virtual void initDependency() = 0;                                        // _38
 	virtual void killAll();                                                   // _3C (weak)
@@ -84,14 +84,14 @@ struct TNodeItemMgr : public BaseItemMgr, public Container<BaseItem> {
 	TNodeItemMgr();
 
 	// vtable 1
-	virtual void doAnimation();           // _00
-	virtual void doEntry();               // _04
-	virtual void doSetView(int);          // _08
-	virtual void doViewCalc();            // _0C
-	virtual void doSimulation(float);     // _10
-	virtual void doDirectDraw(Graphics&); // _14
-	virtual void initDependency();        // _30
-	virtual void killAll();               // _34
+	virtual void doAnimation();                 // _00
+	virtual void doEntry();                     // _04
+	virtual void doSetView(int viewportNumber); // _08
+	virtual void doViewCalc();                  // _0C
+	virtual void doSimulation(float);           // _10
+	virtual void doDirectDraw(Graphics& gfx);   // _14
+	virtual void initDependency();              // _30
+	virtual void killAll();                     // _34
 
 	// vtable 2
 	virtual BaseItem* doNew() = 0; // _24
@@ -114,14 +114,14 @@ struct ItemMgr : public NodeObjectMgr<GenericObjectMgr> {
 	// vtable 1
 	~ItemMgr(); // _08
 	// vtable 2
-	virtual void doAnimation();           // _00, _30
-	virtual void doEntry();               // _04, _34
-	virtual void doSetView(int);          // _08, _38
-	virtual void doViewCalc();            // _0C, _3C
-	virtual void doSimulation(float);     // _10, _40
-	virtual void doDirectDraw(Graphics&); // _14, _44
-	virtual void loadResources();         // _1C, _4C
-	virtual void doSimpleDraw(Viewport*); // _18, _50
+	virtual void doAnimation();                 // _00, _30
+	virtual void doEntry();                     // _04, _34
+	virtual void doSetView(int viewportNumber); // _08, _38
+	virtual void doViewCalc();                  // _0C, _3C
+	virtual void doSimulation(float);           // _10, _40
+	virtual void doDirectDraw(Graphics& gfx);   // _14, _44
+	virtual void loadResources();               // _1C, _4C
+	virtual void doSimpleDraw(Viewport*);       // _18, _50
 
 	void addMgr(BaseItemMgr*);
 	void initDependency();
@@ -133,13 +133,14 @@ struct ItemMgr : public NodeObjectMgr<GenericObjectMgr> {
 	BaseItemMgr* getMgrByID(ID32&);
 };
 
-template <typename T> struct FixedSizeItemMgr : public BaseItemMgr, public Container<T> {
+template <typename T>
+struct FixedSizeItemMgr : public BaseItemMgr, public Container<T> {
 	virtual void doAnimation();                                               // _08 (weak)
 	virtual void doEntry();                                                   // _0C (weak)
-	virtual void doSetView(int);                                              // _10 (weak)
+	virtual void doSetView(int viewportNumber);                               // _10 (weak)
 	virtual void doViewCalc();                                                // _14 (weak)
 	virtual void doSimulation(float);                                         // _18 (weak)
-	virtual void doDirectDraw(Graphics&);                                     // _1C (weak)
+	virtual void doDirectDraw(Graphics& gfx);                                 // _1C (weak)
 	virtual void initDependency();                                            // _38 (weak)
 	virtual void killAll();                                                   // _3C (weak)
 	virtual u32 generatorGetID()                                         = 0; // _58

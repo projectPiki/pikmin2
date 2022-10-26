@@ -21,13 +21,13 @@ struct GameLightMgr;
 struct ParticleMgr : public CNode {
 	ParticleMgr();
 
-	virtual ~ParticleMgr();           // _08
-	virtual void update();            // _10
-	virtual void doAnimation();       // _14
-	virtual void doEntry();           // _18
-	virtual void doSetView(int);      // _1C
-	virtual void doViewCalc();        // _20
-	virtual void draw(Viewport*, u8); // _24
+	virtual ~ParticleMgr();                     // _08
+	virtual void update();                      // _10
+	virtual void doAnimation();                 // _14
+	virtual void doEntry();                     // _18
+	virtual void doSetView(int viewportNumber); // _1C
+	virtual void doViewCalc();                  // _20
+	virtual void draw(Viewport*, u8);           // _24
 
 	static void globalInstance();
 	static void deleteInstance();

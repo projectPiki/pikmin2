@@ -17,8 +17,8 @@ struct Obj : public ChappyBase::Obj {
 	Obj();
 
 	//////////////// VTABLE
-	virtual void onInit(CreatureInitArg*);             // _30
-	virtual void onKill(CreatureKillArg*);             // _34
+	virtual void onInit(CreatureInitArg* settings);    // _30
+	virtual void onKill(CreatureKillArg* settings);    // _34
 	virtual ~Obj() { }                                 // _1BC (weak)
 	virtual void doUpdateCommon();                     // _1D0
 	virtual void changeMaterial();                     // _200

@@ -99,12 +99,12 @@ struct FarmMgr : public GenericObjectMgr, public CNode {
 	FarmMgr(unsigned long);
 
 	// vtable 1 (GenericObjectMgr)
-	virtual void doAnimation();           // _00
-	virtual void doEntry();               // _04
-	virtual void doSetView(int);          // _08
-	virtual void doViewCalc();            // _0C
-	virtual void doSimulation(float);     // _10
-	virtual void doDirectDraw(Graphics&); // _14
+	virtual void doAnimation();                 // _00
+	virtual void doEntry();                     // _04
+	virtual void doSetView(int viewportNumber); // _08
+	virtual void doViewCalc();                  // _0C
+	virtual void doSimulation(float);           // _10
+	virtual void doDirectDraw(Graphics& gfx);   // _14
 
 	// vtable 2 (CNode+self)
 	virtual void doDebugDraw(Graphics&); // _08

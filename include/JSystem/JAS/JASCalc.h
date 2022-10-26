@@ -7,7 +7,8 @@ namespace JASCalc {
 void imixcopy(const short*, const short*, short*, unsigned long);
 void bcopy(const void*, void*, unsigned long);
 void bzero(void*, unsigned long);
-template <typename A, typename B> A clamp(B p1);
+template <typename A, typename B>
+A clamp(B p1);
 
 // unused/inlined:
 void mixcopy(const short*, const short*, short*, unsigned long);

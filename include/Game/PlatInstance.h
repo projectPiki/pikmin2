@@ -48,19 +48,19 @@ struct PlatInstance : public CellObject {
 		_108 = 1;
 	}
 
-	virtual Vector3f getPosition();               // _08
-	virtual void checkCollision(CellObject*);     // _0C (weak)
-	virtual void getBoundingSphere(Sys::Sphere&); // _10
-	virtual bool collisionUpdatable();            // _14 (weak)
-	virtual char* getTypeName();                  // _24 (weak)
-	virtual u16 getObjType();                     // _28 (weak)
-	virtual void constructor();                   // _2C (weak)
-	virtual void doAnimation();                   // _30 (weak)
-	virtual void doEntry();                       // _34 (weak)
-	virtual void doSetView(int);                  // _38 (weak)
-	virtual void doViewCalc();                    // _3C (weak)
-	virtual void doSimulation(f32);               // _40 (weak)
-	virtual void doDirectDraw(Graphics&);         // _44 (weak)
+	virtual Vector3f getPosition();                           // _08
+	virtual void checkCollision(CellObject* other);           // _0C (weak)
+	virtual void getBoundingSphere(Sys::Sphere& boundSphere); // _10
+	virtual bool collisionUpdatable();                        // _14 (weak)
+	virtual char* getTypeName();                              // _24 (weak)
+	virtual u16 getObjType();                                 // _28 (weak)
+	virtual void constructor();                               // _2C (weak)
+	virtual void doAnimation();                               // _30 (weak)
+	virtual void doEntry();                                   // _34 (weak)
+	virtual void doSetView(int viewportNumber);               // _38 (weak)
+	virtual void doViewCalc();                                // _3C (weak)
+	virtual void doSimulation(f32);                           // _40 (weak)
+	virtual void doDirectDraw(Graphics& gfx);                 // _44 (weak)
 
 	void setCollision(bool);
 	void getCurrTri(CurrTriInfo&);
@@ -101,7 +101,7 @@ struct PlatMgr : public NodeObjectMgr<PlatInstance> {
 	PlatMgr();
 
 	virtual ~PlatMgr();                                       // _08 (weak)
-	virtual void doDirectDraw(Graphics&);                     // _78 (weak)
+	virtual void doDirectDraw(Graphics& gfx);                 // _78 (weak)
 	virtual void findRayIntersection(Sys::RayIntersectInfo&); // _80
 
 	PlatInstance* addInstance(PlatAddInstanceArg&);

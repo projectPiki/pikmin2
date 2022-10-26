@@ -1,4 +1,5 @@
 #include "Game/Cave/RandMapMgr.h"
+#include "Dolphin/rand.h"
 #include "nans.h"
 
 namespace Game {

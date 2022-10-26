@@ -10,7 +10,6 @@
 #include "Parameters.h"
 
 namespace Game {
-
 namespace ItemBarrel {
 struct Item;
 
@@ -137,10 +136,10 @@ struct Item : public WorkItem<Item, FSM, State> {
 	}
 
 	// vtable 1
-	virtual void constructor();            // _24
-	virtual void onInit(CreatureInitArg*); // _28
-	virtual void doSave(Stream&);          // _D8
-	virtual void doLoad(Stream&);          // _DC
+	virtual void constructor();                     // _24
+	virtual void onInit(CreatureInitArg* settings); // _28
+	virtual void doSave(Stream&);                   // _D8
+	virtual void doLoad(Stream&);                   // _DC
 	/**
 	 * @reifiedAddress{801F8D68}
 	 * @reifiedFile{plugProjectKandoU/itemBarrel.cpp}

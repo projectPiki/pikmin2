@@ -4,7 +4,8 @@
 #include "types.h"
 
 namespace JGeometry {
-template <typename T> struct TVec2 {
+template <typename T>
+struct TVec2 {
 	TVec2() { }
 	TVec2(T x, T y) { set(x, y); }
 
@@ -48,7 +49,8 @@ template <typename T> struct TVec2 {
 	T y;
 };
 
-template <typename T> struct TVec3 {
+template <typename T>
+struct TVec3 {
 	inline TVec3() { }
 	inline TVec3(T value)
 	    : x(value)
@@ -99,7 +101,8 @@ template <typename T> struct TVec3 {
 };
 
 // Size: 0x10
-template <class T> struct TBox {
+template <class T>
+struct TBox {
 	TBox()
 	    : i()
 	    , f()
@@ -162,7 +165,8 @@ struct TBox2 : TBox<TVec2<T> > {
 
 // clang-format on
 
-template <typename T> struct TBox3 {
+template <typename T>
+struct TBox3 {
 	T minX;
 	T minY;
 	T minZ;

@@ -135,7 +135,6 @@
 */
 
 namespace og {
-
 namespace newScreen {
 
 /*
@@ -1368,7 +1367,6 @@ lbl_8031FC0C:
 }
 
 } // namespace newScreen
-
 } // namespace og
 
 /*

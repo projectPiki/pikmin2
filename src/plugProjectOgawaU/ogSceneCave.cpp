@@ -1,7 +1,6 @@
 #include "og/newScreen/Cave.h"
 
 namespace og {
-
 namespace newScreen {
 
 /*

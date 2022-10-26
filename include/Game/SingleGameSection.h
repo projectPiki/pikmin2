@@ -10,7 +10,7 @@
 namespace og {
 namespace Screen {
 struct DispMemberSMenuAll;
-} // namespace Screen
+}
 } // namespace og
 
 namespace Game {

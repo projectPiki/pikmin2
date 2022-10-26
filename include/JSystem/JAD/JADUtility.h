@@ -12,7 +12,8 @@ struct PrmSetBase;
 /**
  * @size = 0x1C
  */
-template <typename T> struct NodeTree {
+template <typename T>
+struct NodeTree {
 	virtual void beforeRemovingChild(T*);      // _08 (weak)
 	virtual void beforeRemovingThis(T*);       // _0C (weak)
 	virtual void afterRemovingChildButton(T*); // _10 (weak)
@@ -80,7 +81,8 @@ struct PrmBase : public JKRDisposer {
 /**
  * @size = 0x30
  */
-template <typename T> struct Prm : public PrmBase {
+template <typename T>
+struct Prm : public PrmBase {
 	// _00      = VTABLE
 	// _04-_2C  = PrmBase
 	T* m_value; // _2C
@@ -89,7 +91,8 @@ template <typename T> struct Prm : public PrmBase {
 /**
  * @size = 0x98
  */
-template <typename T> struct PrmSetRc : public PrmSetBase {
+template <typename T>
+struct PrmSetRc : public PrmSetBase {
 	// _00      = VTABLE
 	// _04-_64  = PrmBase
 	u8 _64[0x4]; // _64 - unknown
@@ -99,7 +102,8 @@ template <typename T> struct PrmSetRc : public PrmSetBase {
 /**
  * @size = 0x30
  */
-template <typename T> struct PrmHio : public Prm<T> {
+template <typename T>
+struct PrmHio : public Prm<T> {
 	// _00      = VTABLE
 	// _04-_30  = Prm
 	// idk why this seems to just be a copy of Prm but w/e
@@ -108,7 +112,8 @@ template <typename T> struct PrmHio : public Prm<T> {
 /**
  * @size = 0x30
  */
-template <typename T> struct PrmRadioButton : public PrmHio<T> {
+template <typename T>
+struct PrmRadioButton : public PrmHio<T> {
 	// _00      = VTABLE
 	// _04-_30  = Prm
 	// idk why this seems to just be a copy of Prm but w/e
@@ -117,7 +122,8 @@ template <typename T> struct PrmRadioButton : public PrmHio<T> {
 /**
  * @size = 0x30
  */
-template <typename T> struct PrmSlider : public PrmHio<T> {
+template <typename T>
+struct PrmSlider : public PrmHio<T> {
 	// _00      = VTABLE
 	// _04-_30  = Prm
 	// idk why this seems to just be a copy of Prm but w/e

@@ -24,7 +24,7 @@ struct WorldMapRocket : public JADHioNode {
 	void startRocketSE(float, float);
 	void stateChange(rocketState);
 
-	// _00 = VTBL
+	// _00 VTBL
 	rocketState m_state; // _04
 	float _08;           // _08
 	float _0C;           // _0C

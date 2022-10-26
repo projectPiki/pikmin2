@@ -4,7 +4,8 @@
 #include "types.h"
 #include "stream.h"
 
-template <typename T> struct BitFlag {
+template <typename T>
+struct BitFlag {
 	BitFlag()
 	{
 		for (int i = 0; i < sizeof(T); i++) {
@@ -32,7 +33,8 @@ template <typename T> struct BitFlag {
 	};
 };
 
-template <typename T, int I> struct BitFlagArray {
+template <typename T, int I>
+struct BitFlagArray {
 	inline BitFlagArray()
 	{
 		for (int i = 0; i < I; i++) {

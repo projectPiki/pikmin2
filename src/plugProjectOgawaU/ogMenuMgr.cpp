@@ -25,7 +25,6 @@
 */
 
 namespace og {
-
 namespace Screen {
 
 /*

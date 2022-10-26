@@ -5,7 +5,6 @@
 #include "nans.h"
 
 namespace ebi {
-
 namespace title {
 
 /*
@@ -56,5 +55,4 @@ void TTitleFogMgr::loadSettingFile(JKRArchive* archive, char* file)
 }
 
 } // namespace title
-
 } // namespace ebi

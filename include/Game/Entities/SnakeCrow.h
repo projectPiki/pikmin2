@@ -46,9 +46,9 @@ struct Obj : public EnemyBase {
 
 	//////////////// VTABLE
 	virtual void constructor();                             // _2C
-	virtual void onInit(CreatureInitArg*);                  // _30
-	virtual void onKill(CreatureKillArg*);                  // _34
-	virtual void doDirectDraw(Graphics&);                   // _50
+	virtual void onInit(CreatureInitArg* settings);         // _30
+	virtual void onKill(CreatureKillArg* settings);         // _34
+	virtual void doDirectDraw(Graphics& gfx);               // _50
 	virtual void inWaterCallback(WaterBox*);                // _84 (weak)
 	virtual void outWaterCallback();                        // _88 (weak)
 	virtual bool isUnderground();                           // _D0 (weak)
@@ -144,7 +144,7 @@ struct Mgr : public EnemyMgrBase {
 	//////////////// VTABLE
 	// virtual ~Mgr();                                     // _58 (weak)
 	virtual void createObj(int);                       // _A0
-	virtual EnemyBase* getEnemy(int);                  // _A4
+	virtual EnemyBase* getEnemy(int idx);              // _A4
 	virtual void doAlloc();                            // _A8
 	virtual void loadModelData();                      // _C8
 	virtual EnemyTypeID::EEnemyTypeID getEnemyTypeID() // _AC (weak)
@@ -196,9 +196,9 @@ struct Parms : public EnemyParmsBase {
 
 struct ProperAnimator : public EnemyAnimatorBase {
 	virtual ~ProperAnimator() { }                                     // _08 (weak)
-	virtual void setAnimMgr(SysShape::AnimMgr*);                      // _0C
+	virtual void setAnimMgr(SysShape::AnimMgr* mgr);                  // _0C
 	virtual SysShape::Animator& getAnimator() { return m_animator; }; // _10 (weak)
-	virtual SysShape::Animator& getAnimator(int);                     // _14
+	virtual SysShape::Animator& getAnimator(int idx);                 // _14
 
 	// _00 		= VTBL
 	// _00-_10	= EnemyAnimatorBase

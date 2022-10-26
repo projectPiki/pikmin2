@@ -101,13 +101,13 @@ struct GeneralEnemyMgr : public GenericObjectMgr, public CNode {
 	GeneralEnemyMgr();
 
 	// vtable 1 (GenericObjectMgr, _00, _08-_38)
-	virtual void doAnimation();           // _08
-	virtual void doEntry();               // _0C
-	virtual void doSetView(int);          // _10
-	virtual void doViewCalc();            // _14
-	virtual void doSimulation(float);     // _18
-	virtual void doDirectDraw(Graphics&); // _1C
-	virtual void doSimpleDraw(Viewport*); // _20
+	virtual void doAnimation();                 // _08
+	virtual void doEntry();                     // _0C
+	virtual void doSetView(int viewportNumber); // _10
+	virtual void doViewCalc();                  // _14
+	virtual void doSimulation(float);           // _18
+	virtual void doDirectDraw(Graphics& gfx);   // _1C
+	virtual void doSimpleDraw(Viewport*);       // _20
 	// vtable 2 (CNode, _04, _40-_4C)
 	// _40 = dtor thunk, _44 = getChildCount
 	virtual ~GeneralEnemyMgr() { } // _48 (weak)
@@ -190,7 +190,8 @@ extern GeneralEnemyMgr* generalEnemyMgr;
 
 }; // namespace Game
 
-template <typename T> struct GeneralMgrIterator {
+template <typename T>
+struct GeneralMgrIterator {
 	GeneralMgrIterator(CNode* node)
 	{
 		m_node      = node;

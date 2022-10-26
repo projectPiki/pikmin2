@@ -13,7 +13,7 @@ struct ResetManager {
 	bool isWritingMemoryCard();
 	bool isSoundSystemStopped();
 
-	// _00 = VTBL
+	// _00 VTBL
 	u32 _04; // _04, unknown
 	f32 _08; // _08
 	u32 _0C; // _0C - bitfield?

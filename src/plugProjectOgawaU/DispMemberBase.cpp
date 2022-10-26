@@ -3,7 +3,6 @@
 #include "og/Screen/ogScreen.h"
 
 namespace og {
-
 namespace Screen {
 
 /*

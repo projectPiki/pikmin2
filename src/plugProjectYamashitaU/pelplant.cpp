@@ -32,7 +32,6 @@ inline f32 pikmin2_sinf_(f32 x)
 }
 
 namespace Game {
-
 namespace Pelplant {
 /*
  * --INFO--

@@ -4,7 +4,8 @@
 #include "types.h"
 
 namespace PSSystem {
-template <typename T> struct SingletonBase {
+template <typename T>
+struct SingletonBase {
 	virtual ~SingletonBase(); // _00
 
 	// VTBL _00

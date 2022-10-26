@@ -106,7 +106,6 @@
 */
 
 namespace og {
-
 namespace Screen {
 
 /*

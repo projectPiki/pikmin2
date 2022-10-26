@@ -76,7 +76,8 @@ struct StringTagParm : public TagParm {
 	char* m_data; // _0C
 };
 
-template <typename T> struct PrimTagParm : public TagParm {
+template <typename T>
+struct PrimTagParm : public TagParm {
 	PrimTagParm(TagParameters* a, char* name)
 	    : TagParm(a, name)
 	{

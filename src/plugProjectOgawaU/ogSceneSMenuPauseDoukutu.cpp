@@ -99,7 +99,6 @@
 */
 
 namespace og {
-
 namespace newScreen {
 
 /*
@@ -345,7 +344,6 @@ void SMenuPauseDoukutu::getMemberID(void)
 u32 SMenuPauseDoukutu::isUseBackupSceneInfo(void) { return 0x1; }
 
 } // namespace newScreen
-
 } // namespace og
 
 /*

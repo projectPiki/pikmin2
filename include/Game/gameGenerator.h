@@ -24,11 +24,11 @@ struct Generator : public CNode {
 	Generator();
 	Generator(int);
 
-	virtual ~Generator();        // _08
-	virtual void doAnimation();  // _10
-	virtual void doEntry();      // _14
-	virtual void doSetView(int); // _18
-	virtual void doViewCalc();   // _1C
+	virtual ~Generator();                       // _08
+	virtual void doAnimation();                 // _10
+	virtual void doEntry();                     // _14
+	virtual void doSetView(int viewportNumber); // _18
+	virtual void doViewCalc();                  // _1C
 
 	void initialiseSystem();
 	void generate();
@@ -78,11 +78,11 @@ struct Generator : public CNode {
 struct GeneratorMgr : public CNode {
 	GeneratorMgr();
 
-	virtual ~GeneratorMgr();     // _08
-	virtual void doAnimation();  // _10
-	virtual void doEntry();      // _14
-	virtual void doSetView(int); // _18
-	virtual void doViewCalc();   // _1C
+	virtual ~GeneratorMgr();                    // _08
+	virtual void doAnimation();                 // _10
+	virtual void doEntry();                     // _14
+	virtual void doSetView(int viewportNumber); // _18
+	virtual void doViewCalc();                  // _1C
 
 	void addMgr(GeneratorMgr*);
 	void generate();

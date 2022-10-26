@@ -26,7 +26,7 @@ struct Item : public WorkItem<Item, FSM, State> {
 	struct DummyShape : public SysShape::MtxObject {
 		virtual Matrixf* getMatrix(int); // _08 (weak)
 
-		// _00 = VTBL
+		// _00 VTBL
 		Matrixf* m_matrix; // _04
 	};
 
@@ -37,8 +37,8 @@ struct Item : public WorkItem<Item, FSM, State> {
 	// }
 
 	virtual void constructor();                           // _2C
-	virtual void onInit(CreatureInitArg*);                // _30
-	virtual void doDirectDraw(Graphics&);                 // _50
+	virtual void onInit(CreatureInitArg* settings);       // _30
+	virtual void doDirectDraw(Graphics& gfx);             // _50
 	virtual void ignoreAtari(Creature*);                  // _190
 	virtual void getCreatureName();                       // _1A8 (weak)
 	virtual void doAI();                                  // _1C8

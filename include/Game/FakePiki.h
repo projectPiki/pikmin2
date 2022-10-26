@@ -89,22 +89,22 @@ struct FakePiki : public Creature, public SysShape::MotionListener {
 	FakePiki();
 
 	// vtable 1 (Creature)
-	virtual Vector3f getPosition();                   // _08
-	virtual void getBoundingSphere(Sys::Sphere&);     // _10 (weak)
-	virtual void doAnimation();                       // _3C
-	virtual void doEntry();                           // _40
-	virtual void doSimulation(f32);                   // _4C
-	virtual f32 getFaceDir();                         // _64 (weak)
-	virtual void setVelocity(Vector3f&);              // _68 (weak)
-	virtual Vector3f getVelocity();                   // _6C (weak)
-	virtual void onSetPosition(Vector3f&);            // _70 (weak)
-	virtual void updateTrMatrix();                    // _78
-	virtual void inWaterCallback(WaterBox*);          // _84 (weak)
-	virtual void outWaterCallback();                  // _88 (weak)
-	virtual bool inWater();                           // _8C (weak)
-	virtual Vector3f* getSound_PosPtr();              // _100 (weak)
-	virtual void movieSetFaceDir(f32);                // _128
-	virtual void getVelocityAt(Vector3f&, Vector3f&); // _184 (weak)
+	virtual Vector3f getPosition();                           // _08
+	virtual void getBoundingSphere(Sys::Sphere& boundSphere); // _10 (weak)
+	virtual void doAnimation();                               // _3C
+	virtual void doEntry();                                   // _40
+	virtual void doSimulation(f32);                           // _4C
+	virtual f32 getFaceDir();                                 // _64 (weak)
+	virtual void setVelocity(Vector3f&);                      // _68 (weak)
+	virtual Vector3f getVelocity();                           // _6C (weak)
+	virtual void onSetPosition(Vector3f&);                    // _70 (weak)
+	virtual void updateTrMatrix();                            // _78
+	virtual void inWaterCallback(WaterBox*);                  // _84 (weak)
+	virtual void outWaterCallback();                          // _88 (weak)
+	virtual bool inWater();                                   // _8C (weak)
+	virtual Vector3f* getSound_PosPtr();                      // _100 (weak)
+	virtual void movieSetFaceDir(f32);                        // _128
+	virtual void getVelocityAt(Vector3f&, Vector3f&);         // _184 (weak)
 	// vtable 2 (MotionListener + self)
 	// virtual void onKeyEvent(const SysShape::KeyEvent&); thunk // 1B8
 	virtual int getDownfloorMass();           // _1BC (weak)

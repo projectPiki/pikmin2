@@ -57,7 +57,7 @@ struct MapMgr : virtual public GenericObjectMgr {
 	virtual void do_update();                                 // _40 (weak)
 	virtual void drawCollision(Graphics&, Sys::Sphere&) = 0;  // _44
 	virtual void doSimulation(float);                         // _48 (weak)
-	virtual void doDirectDraw(Graphics&);                     // _4C (weak)
+	virtual void doDirectDraw(Graphics& gfx);                 // _4C (weak)
 
 	WaterBox* findWater(Sys::Sphere&);
 	void getMapRotation();
@@ -107,7 +107,7 @@ struct ShapeMapMgr : public MapMgr {
 	~ShapeMapMgr();
 	virtual void doAnimation();
 	virtual void doEntry();
-	virtual void doSetView(int);
+	virtual void doSetView(int viewportNumber);
 	virtual void doViewCalc();
 	virtual void getBoundBox2d(BoundBox2d&);
 	virtual void getBoundBox(BoundBox&);

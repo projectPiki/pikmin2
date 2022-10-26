@@ -36,10 +36,10 @@ struct Obj : public EnemyBase {
 	Obj();
 
 	//////////////// VTABLE
-	virtual void onInit(CreatureInitArg*);                  // _30
-	virtual void onKill(CreatureKillArg*);                  // _34
+	virtual void onInit(CreatureInitArg* settings);         // _30
+	virtual void onKill(CreatureKillArg* settings);         // _34
 	virtual void doSimulation(f32);                         // _4C
-	virtual void doDirectDraw(Graphics&);                   // _50
+	virtual void doDirectDraw(Graphics& gfx);               // _50
 	virtual f32 getBodyRadius();                            // _54 (weak)
 	virtual f32 getCellRadius();                            // _58 (weak)
 	virtual void inWaterCallback(WaterBox*);                // _84
@@ -153,7 +153,7 @@ struct Mgr : public EnemyMgrBase {
 	virtual ~Mgr();                                     // _58 (weak)
 	virtual EnemyBase* birth(EnemyBirthArg&);           // _70
 	virtual void createObj(int);                        // _A0 (weak)
-	virtual EnemyBase* getEnemy(int);                   // _A4 (weak)
+	virtual EnemyBase* getEnemy(int idx);               // _A4 (weak)
 	virtual void doAlloc();                             // _A8
 	virtual EnemyTypeID::EEnemyTypeID getEnemyTypeID(); // _AC (weak)
 	virtual SysShape::Model* createModel();             // _B0

@@ -9,11 +9,14 @@
 #include "JSystem/JFW/JFWSystem.h"
 
 struct Color4;
-template <typename T> struct IDelegate1;
-template <typename A, typename B> struct IDelegate2;
+template <typename T>
+struct IDelegate1;
+template <typename A, typename B>
+struct IDelegate2;
 struct JUTTexture;
 struct Plane;
-template <typename T> struct Rect;
+template <typename T>
+struct Rect;
 typedef Rect<float> Rectf;
 struct Viewport;
 

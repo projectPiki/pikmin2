@@ -28,7 +28,7 @@ struct BasePelletMgr : public GenericObjectMgr, virtual public _BasePelletMgrPar
 	virtual void doSetView(int) { }                                      // _10 (weak)
 	virtual void doViewCalc() { }                                        // _14 (weak)
 	virtual void doSimulation(float) { }                                 // _18 (weak)
-	virtual void doDirectDraw(Graphics&) { }                             // _1C (weak)
+	virtual void doDirectDraw(Graphics& gfx) { }                         // _1C (weak)
 	virtual void resetMgrAndResources()          = 0;                    // _38
 	virtual Pellet* birth()                      = 0;                    // _3C
 	virtual void kill(Pellet*)                   = 0;                    // _40
@@ -68,7 +68,7 @@ struct BasePelletMgr : public GenericObjectMgr, virtual public _BasePelletMgrPar
 	void createModelCallback(SysShape::Model* model) { onCreateModel(model); }
 	void setCollTree(Pellet*, int);
 
-	// _00 = VTBL
+	// _00 VTBL
 	// _04 = ptr to NotSure/vtable for NotSure?
 	PelletConfigList* m_configList; // _08
 	J3DModelData** m_modelData;     // _0C
@@ -81,16 +81,17 @@ struct BasePelletMgr : public GenericObjectMgr, virtual public _BasePelletMgrPar
 	                                // _54 - virtual NotSure
 };
 
-template <typename T> struct FixedSizePelletMgr : public BasePelletMgr, public Container<T> {
+template <typename T>
+struct FixedSizePelletMgr : public BasePelletMgr, public Container<T> {
 
 	////////// VTABLE
-	virtual void doAnimation();           // _08
-	virtual void doEntry();               // _0C
-	virtual void doSetView(int);          // _10
-	virtual void doViewCalc();            // _14
-	virtual void doSimulation(float);     // _18
-	virtual void doDirectDraw(Graphics&); // _1C
-	virtual void resetMgr()               // _28 (weak)
+	virtual void doAnimation();                 // _08
+	virtual void doEntry();                     // _0C
+	virtual void doSetView(int viewportNumber); // _10
+	virtual void doViewCalc();                  // _14
+	virtual void doSimulation(float);           // _18
+	virtual void doDirectDraw(Graphics& gfx);   // _1C
+	virtual void resetMgr()                     // _28 (weak)
 	{
 		m_monoObjectMgr.resetMgr();
 		m_collPartMgr.resetMgr();

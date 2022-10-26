@@ -3,32 +3,28 @@
 
 #include "types.h"
 
+#define AILOD_FLAG_NONE        (0x0)
+#define AILOD_FLAG_IS_MID      (0x01)
+#define AILOD_FLAG_IS_FAR      (0x02)
+#define AILOD_FLAG_NEED_SHADOW (0x04)
+#define AILOD_FLAG_UNKNOWN4    (0x08)
+#define AILOD_FLAG_VISIBLE_VP0 (0x10) // Is it visible on viewport 0? etc.
+#define AILOD_FLAG_VISIBLE_VP1 (0x20)
+#define AILOD_FLAG_VISIBLE_VP2 (0x40)
+#define AILOD_FLAG_VISIBLE_VP3 (0x80)
+
 namespace Game {
+struct AILODParm {
+	AILODParm();
+
+	f32 m_far;         // _00
+	f32 m_close;       // _04
+	bool m_isCylinder; // _08
+};
+
 struct AILOD {
-	enum Flags {
-		FLAG_NONE          = 0x0,
-		IsMid              = 0x01,
-		IsFar              = 0x02,
-		FLAG_NEED_SHADOW   = 0x04,
-		FLAG_UNKNOWN4      = 0x08,
-		VisibleOnViewport0 = 0x10,
-		VisibleOnViewport1 = 0x20,
-		VisibleOnViewport2 = 0x40,
-		VisibleOnViewport3 = 0x80,
-	};
 	AILOD();
 
-	// union {
-	// 	// Use with Flags.
-	// 	Flags byteView;
-	// 	// For hacks only.
-	// 	// Vanilla didn't use a bitfield.
-	// 	u8 padding : 4,
-	// 	   m_unknown4 : 1,
-	// 	   m_needShadow : 1,
-	// 	   m_unknown2 : 1,
-	// 	   m_unknown1 : 1;
-	// } m_flags;    // _00
 	u8 m_flags;   // _00
 	s8 m_sndVpId; // _01, sound viewport ID
 

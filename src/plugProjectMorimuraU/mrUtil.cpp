@@ -609,7 +609,6 @@ lbl_803A14A0:
 }
 
 namespace og {
-
 namespace Screen {
 
 /*
@@ -623,7 +622,6 @@ AnimScreen::~AnimScreen(void)
 }
 
 } // namespace Screen
-
 } // namespace og
 
 /*

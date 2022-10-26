@@ -2,12 +2,14 @@
 #define _STD_PAIR_H
 
 namespace std {
-template <typename T1, typename T2> struct pair {
+template <typename T1, typename T2>
+struct pair {
 	T1 first;
 	T2 second;
 };
 
-template <> struct pair<float, float> {
+template <>
+struct pair<float, float> {
 	/*
 	 * --INFO--
 	 * Address:	80035520

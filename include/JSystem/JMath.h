@@ -12,13 +12,15 @@ struct Quaternion {
 };
 
 namespace JMath {
-template <int length, typename T> struct TAtanTable {
+template <int length, typename T>
+struct TAtanTable {
 	T atan2_(T, T) const;
 	T atan_(T) const;
 	T m_table[length];
 };
 
-template <> struct TAtanTable<1024, float> {
+template <>
+struct TAtanTable<1024, float> {
 	TAtanTable()
 	{
 		u32 i = 0;
@@ -31,13 +33,15 @@ template <> struct TAtanTable<1024, float> {
 	float m_table[1024];
 };
 
-template <int length, typename T> struct TAsinAcosTable {
+template <int length, typename T>
+struct TAsinAcosTable {
 	T acos2_(T, T) const;
 	T acos_(T) const;
 	T m_table[length];
 };
 
-template <> struct TAsinAcosTable<1024, float> {
+template <>
+struct TAsinAcosTable<1024, float> {
 	TAsinAcosTable()
 	{
 		u32 i = 0;
@@ -53,7 +57,8 @@ template <> struct TAsinAcosTable<1024, float> {
 /**
  * @fabricatedName
  */
-template <int length, typename T> struct TSinCosTable {
+template <int length, typename T>
+struct TSinCosTable {
 	inline TSinCosTable()
 	{
 		u32 i = 0;

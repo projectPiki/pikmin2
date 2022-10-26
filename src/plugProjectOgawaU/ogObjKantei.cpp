@@ -209,7 +209,6 @@
 */
 
 namespace og {
-
 namespace newScreen {
 
 /*
@@ -2118,7 +2117,6 @@ lbl_80319AE8:
 }
 
 } // namespace newScreen
-
 } // namespace og
 
 /*

@@ -101,7 +101,6 @@
 */
 
 namespace og {
-
 namespace newScreen {
 
 /*

@@ -20,26 +20,26 @@ struct GameSystem : public NodeObjectMgr<GenericObjectMgr> {
 	// vtable 1
 	virtual ~GameSystem(); // _00
 	// vtable 2
-	virtual void doAnimation();           // _00
-	virtual void doEntry();               // _04
-	virtual void doSetView(int);          // _08
-	virtual void doViewCalc();            // _0C
-	virtual void doSimulation(float);     // _10
-	virtual void doDirectDraw(Graphics&); // _14
-	virtual void doSimpleDraw(Viewport*); // _18
-	virtual void loadResources();         // _1C
-	virtual void resetMgr();              // _20
-	virtual bool pausable();              // _24
-	virtual bool frozenable();            // _28
-	virtual u32 getMatrixLoadType();      // _2C
-	virtual void startFrame();            // _78
-	virtual void endFrame();              // _7C
-	virtual void directDraw(Graphics&);   // _84
-	virtual void startFadeout(float);     // _88
-	virtual void startFadein(float);      // _8C
-	virtual void startFadeoutin(float);   // _90
-	virtual void startFadeblack();        // _94
-	virtual void startFadewhite();        // _98
+	virtual void doAnimation();                 // _00
+	virtual void doEntry();                     // _04
+	virtual void doSetView(int viewportNumber); // _08
+	virtual void doViewCalc();                  // _0C
+	virtual void doSimulation(float);           // _10
+	virtual void doDirectDraw(Graphics& gfx);   // _14
+	virtual void doSimpleDraw(Viewport*);       // _18
+	virtual void loadResources();               // _1C
+	virtual void resetMgr();                    // _20
+	virtual bool pausable();                    // _24
+	virtual bool frozenable();                  // _28
+	virtual u32 getMatrixLoadType();            // _2C
+	virtual void startFrame();                  // _78
+	virtual void endFrame();                    // _7C
+	virtual void directDraw(Graphics&);         // _84
+	virtual void startFadeout(float);           // _88
+	virtual void startFadein(float);            // _8C
+	virtual void startFadeoutin(float);         // _90
+	virtual void startFadeblack();              // _94
+	virtual void startFadewhite();              // _98
 
 	void addObjectMgr_reuse(TObjectNode<GenericObjectMgr>*);
 	void addObjectMgr(GenericObjectMgr*);

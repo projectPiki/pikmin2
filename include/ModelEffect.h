@@ -39,14 +39,14 @@ struct ModelEffect {
 	virtual void constructor();                  // _08 (weak)
 	virtual void doAnimation();                  // _0C
 	virtual void doEntry();                      // _10
-	virtual void doSetView(int);                 // _14
+	virtual void doSetView(int viewportNumber);  // _14
 	virtual void doViewCalc();                   // _18
 	virtual void changeMaterial();               // _1C (weak)
 	virtual void getLODSphere(Sys::Sphere&) = 0; // _20
 	virtual void useCylinderLOD();               // _24 (weak)
 	virtual void getLODCylinder(Sys::Cylinder&); // _28 (weak)
 	virtual void doSimulation(f32);              // _2C (weak)
-	virtual void doDirectDraw(Graphics&);        // _30 (weak)
+	virtual void doDirectDraw(Graphics& gfx);    // _30 (weak)
 
 	// _00 VTBL
 	SysShape::Model* m_model; // _04

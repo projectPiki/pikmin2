@@ -3,7 +3,8 @@
 
 #include "types.h"
 
-template <typename T> struct JPANode {
+template <typename T>
+struct JPANode {
 	JPANode();
 	~JPANode();
 

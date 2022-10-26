@@ -7,7 +7,6 @@
 #include "System.h"
 
 namespace og {
-
 namespace Screen {
 
 /*

@@ -229,7 +229,6 @@
 */
 
 namespace ebi {
-
 namespace title {
 
 /*
@@ -1752,7 +1751,6 @@ blr
 E3DAnimRes::E3DAnimRes(void) { }
 
 } // namespace title
-
 } // namespace ebi
 
 /*

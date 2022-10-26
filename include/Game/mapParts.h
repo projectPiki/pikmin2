@@ -90,13 +90,13 @@ struct RoomDoorInfo {
 struct MapUnit {
 	MapUnit();
 
-	virtual void constructor();           // _00
-	virtual void doAnimation();           // _04
-	virtual void doEntry();               // _08
-	virtual void doSetView(int);          // _0C
-	virtual void doViewCalc();            // _10
-	virtual void doSimulation(float);     // _14
-	virtual void doDirectDraw(Graphics&); // _18
+	virtual void constructor();                 // _00
+	virtual void doAnimation();                 // _04
+	virtual void doEntry();                     // _08
+	virtual void doSetView(int viewportNumber); // _0C
+	virtual void doViewCalc();                  // _10
+	virtual void doSimulation(float);           // _14
+	virtual void doDirectDraw(Graphics& gfx);   // _18
 
 	void load(Stream&);
 	void save(Stream&);
@@ -122,14 +122,14 @@ struct PartsView : public CNode {
 	PartsView();
 	PartsView(MapUnit*, u8*);
 
-	virtual ~PartsView() { }              // _08 (weak)
-	virtual void constructor() { }        // _10 (weak)
-	virtual void doAnimation();           // _14
-	virtual void doEntry();               // _18
-	virtual void doSetView(int);          // _1C
-	virtual void doViewCalc();            // _20
-	virtual void doSimulation(float) { }  // _24 (weak)
-	virtual void doDirectDraw(Graphics&); // _28
+	virtual ~PartsView() { }                    // _08 (weak)
+	virtual void constructor() { }              // _10 (weak)
+	virtual void doAnimation();                 // _14
+	virtual void doEntry();                     // _18
+	virtual void doSetView(int viewportNumber); // _1C
+	virtual void doViewCalc();                  // _20
+	virtual void doSimulation(float) { }        // _24 (weak)
+	virtual void doDirectDraw(Graphics& gfx);   // _28
 
 	void getHalfX();
 	void getOffset();
@@ -179,13 +179,13 @@ struct MapUnitMgr : public NodeObjectMgr<MapUnit> {
 struct MapRoom : public CellObject {
 	MapRoom();
 
-	virtual void constructor();           // _24
-	virtual void doAnimation();           // _28
-	virtual void doEntry();               // _2C
-	virtual void doSetView(int);          // _30
-	virtual void doViewCalc();            // _34
-	virtual void doSimulation(float);     // _38
-	virtual void doDirectDraw(Graphics&); // _3C
+	virtual void constructor();                 // _24
+	virtual void doAnimation();                 // _28
+	virtual void doEntry();                     // _2C
+	virtual void doSetView(int viewportNumber); // _30
+	virtual void doViewCalc();                  // _34
+	virtual void doSimulation(float);           // _38
+	virtual void doDirectDraw(Graphics& gfx);   // _3C
 
 	void countEnemys();
 	void countItems();

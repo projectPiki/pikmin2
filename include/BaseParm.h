@@ -17,7 +17,8 @@ struct BaseParm {
 	char* m_name;     // _14
 };
 
-template <typename T> struct Parm : public BaseParm {
+template <typename T>
+struct Parm : public BaseParm {
 	inline Parm(Parameters* parameters, u32 id, char* comment, T value, T min, T max)
 	    : BaseParm(parameters, id, comment)
 	    , m_value(value)

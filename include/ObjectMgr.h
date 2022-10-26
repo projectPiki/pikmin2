@@ -4,7 +4,8 @@
 #include "Container.h"
 #include "GenericObjectMgr.h"
 
-template <typename T> struct ObjectMgr : public Container<T>, GenericObjectMgr {
+template <typename T>
+struct ObjectMgr : public Container<T>, GenericObjectMgr {
 	inline ObjectMgr()
 	    : Container<T>()
 	{
@@ -72,7 +73,8 @@ template <typename T> struct ObjectMgr : public Container<T>, GenericObjectMgr {
 	// _00-_18	= Container
 };
 
-template <typename T> struct TObjectNode : public CNode {
+template <typename T>
+struct TObjectNode : public CNode {
 	virtual ~TObjectNode() { } // _08 (weak)
 
 	TObjectNode<T>* getNext() { return static_cast<TObjectNode<T>*>(m_next); }
@@ -80,7 +82,8 @@ template <typename T> struct TObjectNode : public CNode {
 	T* m_contents; // _18
 };
 
-template <typename T> struct NodeObjectMgr : public ObjectMgr<T> {
+template <typename T>
+struct NodeObjectMgr : public ObjectMgr<T> {
 	inline NodeObjectMgr()
 	    : ObjectMgr<T>()
 	    , m_node()

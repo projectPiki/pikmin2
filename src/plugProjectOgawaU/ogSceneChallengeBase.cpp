@@ -2,7 +2,6 @@
 #include "og/newScreen/ChallengeBase.h"
 
 namespace og {
-
 namespace newScreen {
 
 /*

@@ -7,7 +7,8 @@
 // #define TSYNCGROUP_DECL(count)
 
 namespace efx {
-template <typename T> struct TSyncGroup2 : public TBase {
+template <typename T>
+struct TSyncGroup2 : public TBase {
 	//////////////// VTABLE
 	virtual bool create(Arg* arg) // _08 (weak)
 	{
@@ -48,7 +49,8 @@ template <typename T> struct TSyncGroup2 : public TBase {
 	T m_items[2]; // _04
 };
 
-template <typename T> struct TSyncGroup3 : public TBase {
+template <typename T>
+struct TSyncGroup3 : public TBase {
 	//////////////// VTABLE
 	virtual bool create(Arg* arg) // _08 (weak)
 	{
@@ -85,11 +87,12 @@ template <typename T> struct TSyncGroup3 : public TBase {
 	}
 	//////////////// VTABLE END
 
-	// _00 = VTBL
+	// _00 VTBL
 	T m_items[3]; // _04
 };
 
-template <typename T> struct TSyncGroup4 : public TBase {
+template <typename T>
+struct TSyncGroup4 : public TBase {
 	//////////////// VTABLE
 	virtual bool create(Arg* arg) // _08 (weak)
 	{
@@ -126,11 +129,12 @@ template <typename T> struct TSyncGroup4 : public TBase {
 	}
 	//////////////// VTABLE END
 
-	// _00 = VTBL
+	// _00 VTBL
 	T m_items[4]; // _04
 };
 
-template <typename T> struct TSyncGroup5 : public TBase {
+template <typename T>
+struct TSyncGroup5 : public TBase {
 	//////////////// VTABLE
 	virtual bool create(Arg* arg) // _08 (weak)
 	{
@@ -167,11 +171,12 @@ template <typename T> struct TSyncGroup5 : public TBase {
 	}
 	//////////////// VTABLE END
 
-	// _00 = VTBL
+	// _00 VTBL
 	T m_items[5]; // _04
 };
 
-template <typename T> struct TSyncGroup6 : public TBase {
+template <typename T>
+struct TSyncGroup6 : public TBase {
 	//////////////// VTABLE
 	virtual bool create(Arg* arg) // _00
 	{
@@ -208,7 +213,7 @@ template <typename T> struct TSyncGroup6 : public TBase {
 	}
 	//////////////// VTABLE END
 
-	// _00 = VTBL
+	// _00 VTBL
 	T m_items[6]; // _04
 };
 } // namespace efx

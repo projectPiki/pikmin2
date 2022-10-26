@@ -951,7 +951,8 @@ JKRHeap* JKRHeap::find(void* memory) const
  * Address:	80023BB4
  * Size:	000018
  */
-template <> bool JSUTreeIterator<JKRHeap>::operator!=(const JSUTree<JKRHeap>*) const
+template <>
+bool JSUTreeIterator<JKRHeap>::operator!=(const JSUTree<JKRHeap>*) const
 {
 	/*
 	.loc_0x0:
@@ -969,14 +970,19 @@ template <> bool JSUTreeIterator<JKRHeap>::operator!=(const JSUTree<JKRHeap>*) c
  * Address:	80023BCC
  * Size:	000008
  */
-template <> JSUTree<JKRHeap>* JSUTree<JKRHeap>::getEndChild() const { return nullptr; }
+template <>
+JSUTree<JKRHeap>* JSUTree<JKRHeap>::getEndChild() const
+{
+	return nullptr;
+}
 
 /*
  * --INFO--
  * Address:	80023BD4
  * Size:	00001C
  */
-template <> JSUTreeIterator<JKRHeap>& JSUTreeIterator<JKRHeap>::operator++()
+template <>
+JSUTreeIterator<JKRHeap>& JSUTreeIterator<JKRHeap>::operator++()
 {
 	/*
 	lwz      r4, 0(r3)
@@ -996,7 +1002,11 @@ lbl_80023BE8:
  * Address:	80023BF0
  * Size:	00000C
  */
-template <> JKRHeap* JSUTreeIterator<JKRHeap>::operator->() const { return getObject(); }
+template <>
+JKRHeap* JSUTreeIterator<JKRHeap>::operator->() const
+{
+	return getObject();
+}
 
 /*
  * --INFO--
@@ -1014,14 +1024,19 @@ JSUTreeIterator<JKRHeap>::JSUTreeIterator(JSUTree<JKRHeap>* tree)
  * Address:	80023C04
  * Size:	000008
  */
-template <> int JSUTree<JKRHeap>::getNumChildren() const { return getNumLinks(); }
+template <>
+int JSUTree<JKRHeap>::getNumChildren() const
+{
+	return getNumLinks();
+}
 
 /*
  * --INFO--
  * Address:	80023C0C
  * Size:	000014
  */
-template <> JSUTree<JKRHeap>* JSUTree<JKRHeap>::getFirstChild() const
+template <>
+JSUTree<JKRHeap>* JSUTree<JKRHeap>::getFirstChild() const
 {
 	/*
 	lwz      r3, 0(r3)

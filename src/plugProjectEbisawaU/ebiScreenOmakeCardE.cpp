@@ -67,7 +67,6 @@
 */
 
 namespace ebi {
-
 namespace Screen {
 
 /*

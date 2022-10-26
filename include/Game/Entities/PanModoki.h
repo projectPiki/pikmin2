@@ -27,7 +27,7 @@ struct Mgr : public EnemyMgrBase {
 	virtual ~Mgr();                                     // _58 (weak)
 	virtual EnemyBase* birth(EnemyBirthArg&);           // _70
 	virtual void createObj(int);                        // _A0 (weak)
-	virtual EnemyBase* getEnemy(int);                   // _A4 (weak)
+	virtual EnemyBase* getEnemy(int idx);               // _A4 (weak)
 	virtual void doAlloc();                             // _A8
 	virtual EnemyTypeID::EEnemyTypeID getEnemyTypeID(); // _AC (weak)
 

@@ -83,7 +83,6 @@
 */
 
 namespace og {
-
 namespace Screen {
 
 /*

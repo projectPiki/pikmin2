@@ -38,9 +38,9 @@ struct Obj : public EnemyBase {
 	Obj();
 
 	//////////////// VTABLE
-	virtual void onInit(CreatureInitArg*);                                                   // _30
+	virtual void onInit(CreatureInitArg* settings);                                          // _30
 	virtual void doSimulation(f32);                                                          // _4C
-	virtual void doDirectDraw(Graphics&);                                                    // _50
+	virtual void doDirectDraw(Graphics& gfx);                                                // _50
 	virtual void inWaterCallback(WaterBox*);                                                 // _84
 	virtual void outWaterCallback();                                                         // _88
 	virtual bool isUnderground();                                                            // _D0 (weak)
@@ -183,9 +183,9 @@ struct Parms : public EnemyParmsBase {
 
 struct ProperAnimator : public EnemyAnimatorBase {
 	virtual ~ProperAnimator() { }                                     // _08 (weak)
-	virtual void setAnimMgr(SysShape::AnimMgr*);                      // _0C
+	virtual void setAnimMgr(SysShape::AnimMgr* mgr);                  // _0C
 	virtual SysShape::Animator& getAnimator() { return m_animator; }; // _10 (weak)
-	virtual SysShape::Animator& getAnimator(int);                     // _14
+	virtual SysShape::Animator& getAnimator(int idx);                 // _14
 
 	// _00 		= VTBL
 	// _00-_10	= EnemyAnimatorBase

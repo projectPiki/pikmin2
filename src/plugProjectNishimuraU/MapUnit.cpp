@@ -3,7 +3,6 @@
 #include "Dolphin/gx.h"
 
 namespace Game {
-
 namespace Cave {
 
 /*

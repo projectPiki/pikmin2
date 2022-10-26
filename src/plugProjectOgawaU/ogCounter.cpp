@@ -139,7 +139,6 @@ const char* og::Screen::SujiTexMap[11] = {
 };
 
 namespace og {
-
 namespace Screen {
 
 /*

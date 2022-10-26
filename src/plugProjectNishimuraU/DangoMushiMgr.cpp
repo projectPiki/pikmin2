@@ -1,7 +1,8 @@
 #include "Game/Entities/DangoMushi.h"
-#include "LoadResource.h"
 #include "JSystem/JUT/JUTNameTab.h"
 #include "Sys/MatBaseAnimation.h"
+#include "Dolphin/rand.h"
+#include "LoadResource.h"
 
 namespace Game {
 namespace DangoMushi {

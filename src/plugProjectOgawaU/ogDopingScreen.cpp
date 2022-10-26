@@ -91,7 +91,6 @@
 */
 
 namespace og {
-
 namespace Screen {
 
 /*
@@ -1046,7 +1045,6 @@ blr
 }
 
 } // namespace Screen
-
 } // namespace og
 
 /*
@@ -1078,7 +1076,6 @@ void efx2d::TSimple1::kill(void) { }
 void efx2d::TSimple1::fade(void) { }
 
 namespace og {
-
 namespace Screen {
 
 /*

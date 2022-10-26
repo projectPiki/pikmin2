@@ -13,7 +13,7 @@ struct Challenge2D_TitleInfo;
 namespace og {
 namespace Screen {
 struct DispMemberWorldMapInfoWin0;
-} // namespace Screen
+}
 } // namespace og
 
 namespace Morimura {

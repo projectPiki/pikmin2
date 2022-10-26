@@ -12,7 +12,8 @@ struct JUTTexture;
 struct Vec;
 
 namespace JGeometry {
-template <typename T> struct TPartition3;
+template <typename T>
+struct TPartition3;
 }
 
 struct J3DUShadowInfo {

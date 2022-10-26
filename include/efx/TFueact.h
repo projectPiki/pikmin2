@@ -37,7 +37,7 @@ struct TFueactCircle : public TBase, public JPAEmitterCallBack, public JPAPartic
 	virtual void executeAfter(JPABaseEmitter*);              // _4C (weak)
 	virtual ~TFueactCircle();                                // _50 (weak)
 
-	// _00 = VTBL
+	// _00 VTBL
 	// _04 = JPAEmitterCallBack
 	// _08 = JPAParticleCallBack
 	u8 _0C[0x8];         // _0C, unknown

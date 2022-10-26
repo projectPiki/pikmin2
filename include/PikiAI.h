@@ -61,7 +61,7 @@ struct ActWeed;
 struct ActionArg {
 	virtual char* getName(); // _08 (weak)
 
-	// _00 = VTBL
+	// _00 VTBL
 };
 
 struct Action {
@@ -77,7 +77,7 @@ struct Action {
 	virtual void bounceCallback(Game::Piki*, Sys::Triangle*);      // _24
 	virtual void collisionCallback(Game::Piki*, Game::CollEvent&); // _28
 	virtual void platCallback(Game::Piki*, Game::PlatEvent&);      // _2C
-	virtual void doDirectDraw(Graphics&);                          // _30
+	virtual void doDirectDraw(Graphics& gfx);                      // _30
 	virtual void wallCallback(Vector3f&);                          // _34
 	virtual void getInfo(char*);                                   // _38
 
@@ -556,7 +556,7 @@ struct ActRescue : public Action, virtual SysShape::MotionListener {
 	virtual void emotion_success();                                // _14
 	virtual u32 getNextAIType();                                   // _20 (weak)
 	virtual void collisionCallback(Game::Piki*, Game::CollEvent&); // _28
-	virtual void doDirectDraw(Graphics&);                          // _30
+	virtual void doDirectDraw(Graphics& gfx);                      // _30
 	virtual void onKeyEvent(const SysShape::KeyEvent&);            // _3C (weak)
 
 	ActRescue(Game::Piki*);
@@ -613,7 +613,7 @@ struct ActTeki : public Action, virtual SysShape::MotionListener {
 	virtual void emotion_success();                                // _14
 	virtual u32 getNextAIType();                                   // _20 (weak)
 	virtual void collisionCallback(Game::Piki*, Game::CollEvent&); // _28
-	virtual void doDirectDraw(Graphics&);                          // _30
+	virtual void doDirectDraw(Graphics& gfx);                      // _30
 	virtual void onKeyEvent(const SysShape::KeyEvent&);            // _3C (weak)
 
 	ActTeki(Game::Piki*);
@@ -675,7 +675,7 @@ struct CreatureActionArg : public ActionArg {
 
 	virtual char* getName(); // _08 (weak)
 
-	// _00 = VTBL
+	// _00 VTBL
 	Game::Creature* m_creature; // _04
 };
 

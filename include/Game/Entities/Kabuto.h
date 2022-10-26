@@ -29,8 +29,8 @@ struct Obj : public EnemyBase {
 	Obj();
 
 	//////////////// VTABLE
-	virtual void onInit(CreatureInitArg*);                  // _30
-	virtual void doDirectDraw(Graphics&);                   // _50
+	virtual void onInit(CreatureInitArg* settings);         // _30
+	virtual void doDirectDraw(Graphics& gfx);               // _50
 	virtual bool isUnderground();                           // _D0 (weak)
 	virtual void getShadowParam(ShadowParam&);              // _134
 	virtual ~Obj() { }                                      // _1BC (weak)
@@ -124,9 +124,9 @@ struct Parms : public EnemyParmsBase {
 
 struct ProperAnimator : public EnemyAnimatorBase {
 	virtual ~ProperAnimator() { }                                    // _08 (weak)
-	virtual void setAnimMgr(SysShape::AnimMgr*);                     // _0C
+	virtual void setAnimMgr(SysShape::AnimMgr* mgr);                 // _0C
 	virtual SysShape::Animator& getAnimator() { return m_animator; } // _10 (weak)
-	virtual SysShape::Animator& getAnimator(int);                    // _14
+	virtual SysShape::Animator& getAnimator(int idx);                // _14
 
 	SysShape::Animator m_animator; // _10
 };
@@ -276,7 +276,7 @@ struct Mgr : public Kabuto::Mgr {
 
 	// virtual ~Mgr() { }                                 // _58 (weak)
 	virtual void createObj(int);                       // _A0
-	virtual EnemyBase* getEnemy(int);                  // _A4
+	virtual EnemyBase* getEnemy(int idx);              // _A4
 	virtual void doAlloc();                            // _A8
 	virtual EnemyTypeID::EEnemyTypeID getEnemyTypeID() // _AC (weak)
 	{
@@ -316,7 +316,7 @@ struct Mgr : public Kabuto::Mgr {
 
 	// virtual ~Mgr() { }                                 // _58 (weak)
 	virtual void createObj(int);                       // _A0
-	virtual EnemyBase* getEnemy(int);                  // _A4
+	virtual EnemyBase* getEnemy(int idx);              // _A4
 	virtual void doAlloc();                            // _A8
 	virtual EnemyTypeID::EEnemyTypeID getEnemyTypeID() // _AC (weak)
 	{
@@ -340,7 +340,7 @@ namespace FixKabuto {
 struct Obj : public Kabuto::Obj {
 	Obj();
 
-	virtual void onKill(CreatureKillArg*);             // _34
+	virtual void onKill(CreatureKillArg* settings);    // _34
 	virtual ~Obj() { }                                 // _1BC (weak)
 	virtual void changeMaterial();                     // _200
 	virtual EnemyTypeID::EEnemyTypeID getEnemyTypeID() // _258 (weak)
@@ -367,7 +367,7 @@ struct Mgr : public Kabuto::Mgr {
 
 	// virtual ~Mgr() { }                                 // _58 (weak)
 	virtual void createObj(int);                       // _A0
-	virtual EnemyBase* getEnemy(int);                  // _A4
+	virtual EnemyBase* getEnemy(int idx);              // _A4
 	virtual void doAlloc();                            // _A8
 	virtual EnemyTypeID::EEnemyTypeID getEnemyTypeID() // _AC (weak)
 	{

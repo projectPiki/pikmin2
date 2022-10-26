@@ -13,7 +13,7 @@ struct Obj : public KumaChappy::Obj {
 	Obj();
 
 	//////////////// VTABLE
-	virtual void doDirectDraw(Graphics&);               // _50
+	virtual void doDirectDraw(Graphics& gfx);           // _50
 	virtual void getShadowParam(ShadowParam&);          // _134
 	virtual Footmarks* getFootmarks();                  // _154 (weak)
 	virtual ~Obj() { }                                  // _1BC (weak)
@@ -47,7 +47,7 @@ struct Mgr : public EnemyMgrBase {
 	// virtual ~Mgr() { }                                  // _58 (weak)
 	virtual EnemyBase* birth(EnemyBirthArg&);          // _70
 	virtual void createObj(int);                       // _A0
-	virtual EnemyBase* getEnemy(int);                  // _A4
+	virtual EnemyBase* getEnemy(int idx);              // _A4
 	virtual void doAlloc();                            // _A8
 	virtual EnemyTypeID::EEnemyTypeID getEnemyTypeID() // _AC (weak)
 	{

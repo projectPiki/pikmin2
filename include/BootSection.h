@@ -5,7 +5,8 @@
 #include "Game/BaseHIOSection.h"
 
 struct Graphics;
-template <typename T> struct IDelegate1;
+template <typename T>
+struct IDelegate1;
 struct JKRHeap;
 struct JUTTexture;
 struct TinyPikmin;

@@ -15,8 +15,8 @@ struct Obj : public ChappyBase::Obj {
 	Obj();
 
 	//////////////// VTABLE
-	virtual void onInit(CreatureInitArg*);                 // _30
-	virtual void doDirectDraw(Graphics&);                  // _50
+	virtual void onInit(CreatureInitArg* settings);        // _30
+	virtual void doDirectDraw(Graphics& gfx);              // _50
 	virtual bool isUnderground();                          // _D0 (weak)
 	virtual void getShadowParam(ShadowParam&);             // _134
 	virtual ~Obj() { }                                     // _1BC (weak)
@@ -53,7 +53,7 @@ struct Mgr : public EnemyMgrBase {
 	//////////////// VTABLE
 	// virtual ~Mgr() { }                                  // _58 (weak)
 	virtual void createObj(int);                       // _A0
-	virtual EnemyBase* getEnemy(int);                  // _A4
+	virtual EnemyBase* getEnemy(int idx);              // _A4
 	virtual void doAlloc();                            // _A8
 	virtual void loadModelData();                      // _C8
 	virtual EnemyTypeID::EEnemyTypeID getEnemyTypeID() // _AC (weak)

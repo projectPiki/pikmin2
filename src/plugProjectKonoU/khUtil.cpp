@@ -64,7 +64,6 @@
 */
 
 namespace kh {
-
 namespace Screen {
 
 /*
@@ -507,7 +506,7 @@ float getPaneCenterX(J2DPane* pane)
 {
 	return (pane->getGlbVtx(POS_BOTTOM_RIGHT).x + pane->getGlbVtx(POS_BOTTOM_LEFT).x + pane->getGlbVtx(POS_TOP_LEFT).x
 	        + pane->getGlbVtx(POS_TOP_RIGHT).x)
-	       * 0.25f;
+	     * 0.25f;
 	/*
 stwu     r1, -0x70(r1)
 mflr     r0

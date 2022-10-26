@@ -82,7 +82,6 @@
 */
 
 namespace og {
-
 namespace newScreen {
 
 /*

@@ -7,19 +7,23 @@ struct IDelegate {
 	virtual void invoke() = 0; // _08
 };
 
-template <typename A> struct IDelegate1 {
+template <typename A>
+struct IDelegate1 {
 	virtual void invoke(A) = 0; // _08
 };
 
-template <typename A, typename B> struct IDelegate2 {
+template <typename A, typename B>
+struct IDelegate2 {
 	virtual void invoke(A, B) = 0; // _08
 };
 
-template <typename A, typename B, typename C> struct IDelegate3 {
+template <typename A, typename B, typename C>
+struct IDelegate3 {
 	virtual void invoke(A, B, C) = 0; // _08
 };
 
-template <typename T> struct Delegate : public IDelegate {
+template <typename T>
+struct Delegate : public IDelegate {
 	inline Delegate(T* obj, void (T::*func)())
 	{
 		m_object   = obj;
@@ -33,7 +37,8 @@ template <typename T> struct Delegate : public IDelegate {
 	void (T::*m_function)(); // _08
 };
 
-template <typename T, typename A> struct Delegate1 : public IDelegate1<A> {
+template <typename T, typename A>
+struct Delegate1 : public IDelegate1<A> {
 	inline Delegate1(T* obj, void (T::*func)(A))
 	{
 		m_object   = obj;
@@ -47,7 +52,8 @@ template <typename T, typename A> struct Delegate1 : public IDelegate1<A> {
 	void (T::*m_function)(A); // _08
 };
 
-template <typename T, typename A, typename B> struct Delegate2 : public IDelegate2<A, B> {
+template <typename T, typename A, typename B>
+struct Delegate2 : public IDelegate2<A, B> {
 	inline Delegate2(T* obj, void (T::*func)(A, B))
 	{
 		m_object   = obj;
@@ -61,7 +67,8 @@ template <typename T, typename A, typename B> struct Delegate2 : public IDelegat
 	void (T::*m_function)(A, B); // _08
 };
 
-template <typename T, typename A, typename B, typename C> struct Delegate3 : public IDelegate3<A, B, C> {
+template <typename T, typename A, typename B, typename C>
+struct Delegate3 : public IDelegate3<A, B, C> {
 	inline Delegate3(T* obj, void (T::*func)(A, B, C))
 	{
 		m_object   = obj;

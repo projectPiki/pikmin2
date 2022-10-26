@@ -4,13 +4,15 @@
 #include "types.h"
 
 namespace Game {
-template <typename T> struct StateMachine;
+template <typename T>
+struct StateMachine;
 
 // if it gets used, it's a derived struct.
 struct StateArg {
 };
 
-template <typename T> struct FSMState {
+template <typename T>
+struct FSMState {
 	inline FSMState(int id)
 	    : m_id(id)
 	    , m_stateMachine(nullptr)
@@ -27,12 +29,13 @@ template <typename T> struct FSMState {
 		m_stateMachine->transit(obj, stateID, stateArg);
 	}
 
-	// _00 = VTBL
+	// _00 VTBL
 	int m_id;                        // _04
 	StateMachine<T>* m_stateMachine; // _08
 };
 
-template <typename T> struct StateMachine {
+template <typename T>
+struct StateMachine {
 	inline StateMachine()
 	    : m_currentID(-1)
 	{

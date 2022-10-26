@@ -44,9 +44,9 @@ struct Onyon : public BaseItem {
 	struct cSpotState; // struct? enum?
 
 	/////////////// VTABLE
-	virtual void onInit(CreatureInitArg*);                    // _30
-	virtual void onKill(CreatureKillArg*);                    // _34
-	virtual void doDirectDraw(Graphics&);                     // _50
+	virtual void onInit(CreatureInitArg* settings);           // _30
+	virtual void onKill(CreatureKillArg* settings);           // _34
+	virtual void doDirectDraw(Graphics& gfx);                 // _50
 	virtual float getFaceDir();                               // _64 (weak)
 	virtual bool sound_culling();                             // _104
 	virtual void on_movie_end(bool);                          // _114

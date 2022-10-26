@@ -50,7 +50,8 @@ struct J3DMtxCalcAnmBase : public J3DMtxCalc {
 	J3DAnmTransform* _04; // _04
 };
 
-template <typename Adaptor, typename Init> struct J3DMtxCalcAnimation : public J3DMtxCalcAnmBase {
+template <typename Adaptor, typename Init>
+struct J3DMtxCalcAnimation : public J3DMtxCalcAnmBase {
 	virtual ~J3DMtxCalcAnimation() {};                                                // _08
 	virtual void setAnmTransform(J3DAnmTransform* p1) { _04 = p1; }                   // _0C
 	virtual void init(const Vec& p1, const float (&p2)[3][4]) { Init::init(p1, p2); } // _24
@@ -87,7 +88,8 @@ struct J3DMtxCalcBlendAnmBase : public J3DMtxCalcAnmBase {
 	float _20;            // _20
 };
 
-template <typename Calc> struct J3DMtxCalcAnimationAdaptorDefault {
+template <typename Calc>
+struct J3DMtxCalcAnimationAdaptorDefault {
 	/** @fabricated */
 	static void calc(J3DMtxCalcAnmBase* p1)
 	{

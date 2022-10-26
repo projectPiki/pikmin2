@@ -1,4 +1,4 @@
-#include "types.h"
+#include "Dolphin/rand.h"
 #include "Game/Cave/RandMapMgr.h"
 
 namespace Game {

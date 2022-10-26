@@ -1270,7 +1270,8 @@ lbl_80148084:
  */
 // void start__Q24Game26StateMachine<Game::Piki>
 // FPQ24Game4PikiiPQ24Game8StateArg(void)
-template <> void StateMachine<Piki>::start(Piki*, int, StateArg*)
+template <>
+void StateMachine<Piki>::start(Piki*, int, StateArg*)
 {
 	/*
 	.loc_0x0:

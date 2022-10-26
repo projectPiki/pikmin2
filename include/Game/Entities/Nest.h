@@ -19,7 +19,7 @@ struct Obj : public EnemyBase {
 	Obj();
 
 	//////////////// VTABLE
-	virtual void onInit(CreatureInitArg*);                                                       // _30
+	virtual void onInit(CreatureInitArg* settings);                                              // _30
 	virtual void setInitialSetting(EnemyInitialParamBase*) { }                                   // _1C4 (weak)
 	virtual void update() { }                                                                    // _1C8 (weak)
 	virtual void doUpdate() { }                                                                  // _1CC (weak)
@@ -58,7 +58,7 @@ struct Mgr : public EnemyMgrBase {
 	virtual ~Mgr();                                     // _58 (weak)
 	virtual EnemyBase* birth(EnemyBirthArg&);           // _70
 	virtual void createObj(int);                        // _A0 (weak)
-	virtual EnemyBase* getEnemy(int);                   // _A4 (weak)
+	virtual EnemyBase* getEnemy(int idx);               // _A4 (weak)
 	virtual void doAlloc();                             // _A8
 	virtual EnemyTypeID::EEnemyTypeID getEnemyTypeID(); // _AC (weak)
 	virtual void initObjects();                         // _BC

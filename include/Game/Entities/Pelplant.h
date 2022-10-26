@@ -182,7 +182,7 @@ struct Obj : public EnemyBase {
 	virtual void setInitialSetting(EnemyInitialParamBase*); // _1C4
 	virtual void doAnimation();                             // _03C
 	virtual void doSimulation(f32);                         // _04C
-	virtual void doDirectDraw(Graphics&);                   // _050
+	virtual void doDirectDraw(Graphics& gfx);               // _050
 	virtual bool isLivingThing()                            // _0D4 (weak)
 	{
 		return (m_flags >> 1 & 1);
@@ -201,7 +201,7 @@ struct Obj : public EnemyBase {
 		return EnemyTypeID::EnemyID_Pelplant;
 	}
 	virtual void doGetLifeGaugeParam(LifeGaugeParam&);      // _260
-	virtual void onInit(CreatureInitArg*);                  // _030
+	virtual void onInit(CreatureInitArg* settings);         // _030
 	virtual bool damageCallBack(Creature*, f32, CollPart*); // _278
 	virtual bool farmCallBack(Creature*, f32);              // _290
 	virtual void setFSM(FSM* fsm)                           // _2F8 (weak)

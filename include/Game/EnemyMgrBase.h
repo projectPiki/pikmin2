@@ -77,12 +77,12 @@ struct EnemyMgrBase : public IEnemyMgrBase {
 	EnemyMgrBase(int objLimit, u8 modelType);
 
 	// vtable 1 (GenericObjectMgr, _00, _08-_38)
-	virtual void doAnimation();           // _08
-	virtual void doEntry();               // _0C
-	virtual void doSetView(int);          // _10
-	virtual void doViewCalc();            // _14
-	virtual void doSimulation(float);     // _18
-	virtual void doDirectDraw(Graphics&); // _1C
+	virtual void doAnimation();                 // _08
+	virtual void doEntry();                     // _0C
+	virtual void doSetView(int viewportNumber); // _10
+	virtual void doViewCalc();                  // _14
+	virtual void doSimulation(float);           // _18
+	virtual void doDirectDraw(Graphics& gfx);   // _1C
 	// vtable 2 (GenericContainer + IEnemyMgrBase + self, _00, _40-_E0)
 	// GenericContainer thunks _40-_58
 	// virtual ~EnemyMgrBase() { } // _58 (weak)

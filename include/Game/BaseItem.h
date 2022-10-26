@@ -30,14 +30,14 @@ struct BaseItem : public Creature, public SysShape::MotionListener {
 	BaseItem(int);
 
 	// vtable 1 (Creature)
-	virtual Vector3f getPosition();               // _08 (weak)
-	virtual void getBoundingSphere(Sys::Sphere&); // _10 (weak)
-	virtual void constructor();                   // _2C
-	virtual void doAnimation();                   // _3C (weak)
-	virtual void doEntry();                       // _40
-	virtual void doSimulation(float);             // _4C
-	virtual float getFaceDir();                   // _64 (weak)
-	virtual void setVelocity(Vector3f& velocity)  // _60 (weak)
+	virtual Vector3f getPosition();                           // _08 (weak)
+	virtual void getBoundingSphere(Sys::Sphere& boundSphere); // _10 (weak)
+	virtual void constructor();                               // _2C
+	virtual void doAnimation();                               // _3C (weak)
+	virtual void doEntry();                                   // _40
+	virtual void doSimulation(float);                         // _4C
+	virtual float getFaceDir();                               // _64 (weak)
+	virtual void setVelocity(Vector3f& velocity)              // _60 (weak)
 	{
 		m_velocity = velocity;
 	}
@@ -134,7 +134,8 @@ struct CFSMItem : public BaseItem {
 struct CItemFSM : public StateMachine<CFSMItem> {
 };
 
-template <typename T> struct ItemFSM : public StateMachine<T> {
+template <typename T>
+struct ItemFSM : public StateMachine<T> {
 };
 
 struct CItemState : public FSMState<CFSMItem> {
@@ -169,7 +170,8 @@ struct CItemState : public FSMState<CFSMItem> {
 	virtual void onCollision(CFSMItem*, CollEvent&) {}; // _28
 };
 
-template <typename T> struct ItemState : public FSMState<T> {
+template <typename T>
+struct ItemState : public FSMState<T> {
 	inline ItemState(int id)
 	    : FSMState<T>(id)
 	{
@@ -182,7 +184,8 @@ template <typename T> struct ItemState : public FSMState<T> {
 	virtual void onCollision(T*, CollEvent&) {};               // _28
 };
 
-template <typename ItemClass, typename FSMClass, typename StateClass> struct FSMItem : public BaseItem {
+template <typename ItemClass, typename FSMClass, typename StateClass>
+struct FSMItem : public BaseItem {
 	inline FSMItem(int objTypeID)
 	    : BaseItem(objTypeID)
 	    , m_stateMachine(nullptr)
@@ -235,7 +238,8 @@ template <typename ItemClass, typename FSMClass, typename StateClass> struct FSM
 	StateClass* m_currentState; // _1DC
 };
 
-template <typename ItemClass, typename FSMClass, typename StateClass> struct WorkItem : public FSMItem<ItemClass, FSMClass, StateClass> {
+template <typename ItemClass, typename FSMClass, typename StateClass>
+struct WorkItem : public FSMItem<ItemClass, FSMClass, StateClass> {
 	inline WorkItem(int objTypeID)
 	    : FSMItem<ItemClass, FSMClass, StateClass>(objTypeID)
 	    , m_soundEvent()

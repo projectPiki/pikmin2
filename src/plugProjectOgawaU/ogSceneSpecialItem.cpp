@@ -1,7 +1,6 @@
 #include "og/newScreen/SpecialItem.h"
 
 namespace og {
-
 namespace newScreen {
 
 /*

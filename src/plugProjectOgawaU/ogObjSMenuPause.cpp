@@ -139,7 +139,6 @@
 */
 
 namespace og {
-
 namespace newScreen {
 
 /*
@@ -2592,7 +2591,6 @@ void ObjSMenuPause::out_R(void)
 }
 
 } // namespace newScreen
-
 } // namespace og
 
 /*
@@ -2617,7 +2615,6 @@ void __sinit_ogObjSMenuPause_cpp(void)
 }
 
 namespace og {
-
 namespace newScreen {
 
 /*

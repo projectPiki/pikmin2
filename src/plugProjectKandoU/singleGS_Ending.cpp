@@ -1150,7 +1150,6 @@ lbl_802333CC:
 } // namespace Game
 
 namespace og {
-
 namespace Screen {
 
 /*
@@ -1191,7 +1190,6 @@ blr
 }
 
 } // namespace Screen
-
 } // namespace og
 
 /*

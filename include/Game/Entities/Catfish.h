@@ -17,7 +17,7 @@ struct Obj : public KochappyBase::Obj {
 	//////////////// VTABLE
 	// weak function generation in Catfish.cpp requires this ordering
 	virtual void changeMaterial() { }                  // _200 (weak)
-	virtual void onInit(CreatureInitArg*);             // _30
+	virtual void onInit(CreatureInitArg* settings);    // _30
 	virtual void inWaterCallback(WaterBox*) { }        // _84 (weak)
 	virtual void outWaterCallback() { }                // _88 (weak)
 	virtual void getShadowParam(ShadowParam&);         // _134
@@ -45,7 +45,7 @@ struct Mgr : public EnemyMgrBase {
 	//////////////// VTABLE
 	// virtual ~Mgr() { }                                 // _58 (weak)
 	virtual void createObj(int);                       // _A0
-	virtual EnemyBase* getEnemy(int);                  // _A4
+	virtual EnemyBase* getEnemy(int idx);              // _A4
 	virtual void doAlloc();                            // _A8
 	virtual EnemyTypeID::EEnemyTypeID getEnemyTypeID() // _AC (weak)
 	{

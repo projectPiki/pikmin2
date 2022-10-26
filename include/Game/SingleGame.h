@@ -16,7 +16,7 @@
 namespace ebi {
 namespace FileSelect {
 struct TMgr;
-} // namespace FileSelect
+}
 } // namespace ebi
 
 namespace kh {

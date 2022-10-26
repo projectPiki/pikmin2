@@ -1850,7 +1850,8 @@ lbl_80220B34:
  * Address:	80220B60
  * Size:	000058
  */
-template <> float Vector3f::distance(Vector3f& other)
+template <>
+float Vector3f::distance(Vector3f& other)
 {
 	// float magnitude = ((*this) - (other)).magnitude();
 	// if (magnitude <= 0.0f) {

@@ -74,7 +74,8 @@ struct TNodeLinkList {
 	TLinkListNode m_linkListNode; // _04
 };
 
-template <typename T, int I> struct TLinkList : public TNodeLinkList {
+template <typename T, int I>
+struct TLinkList : public TNodeLinkList {
 	TLinkList()
 	    : TNodeLinkList()
 	{
@@ -139,7 +140,8 @@ template <typename T, int I> struct TLinkList : public TNodeLinkList {
 	// _00-_08	= TNodeLinkList
 };
 
-template <typename T, int Offset> struct TLinkList_factory : public TLinkList<T, Offset> {
+template <typename T, int Offset>
+struct TLinkList_factory : public TLinkList<T, Offset> {
 	virtual ~TLinkList_factory() = 0; // _08
 	virtual T* Do_create()       = 0; // _0C
 	virtual void Do_destroy(T*)  = 0; // _10

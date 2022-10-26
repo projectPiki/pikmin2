@@ -368,7 +368,6 @@
 */
 
 namespace kh {
-
 namespace Screen {
 
 /*
@@ -3810,7 +3809,6 @@ blr
 }
 
 } // namespace Screen
-
 } // namespace kh
 
 /*
@@ -3886,7 +3884,6 @@ void __sinit_khFinalResult_cpp(void)
 }
 
 namespace kh {
-
 namespace Screen {
 
 /*

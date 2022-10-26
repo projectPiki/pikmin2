@@ -16,7 +16,8 @@ struct GenericContainer : public CNode {
 	virtual void* getEnd()         = 0; // _1C
 };
 
-template <typename T> struct Container : public GenericContainer {
+template <typename T>
+struct Container : public GenericContainer {
 	inline Container() { _18 = 0; }
 
 	/////////////////// VTABLE
@@ -49,7 +50,8 @@ template <typename T> struct Container : public GenericContainer {
 	u8 _18; // _18
 };
 
-template <typename T> struct ArrayContainer : public Container<T> {
+template <typename T>
+struct ArrayContainer : public Container<T> {
 	inline ArrayContainer()
 	{
 		_18       = 1;

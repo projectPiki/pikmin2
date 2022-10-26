@@ -36,19 +36,19 @@ struct WaterBox {
 	{
 		return false;
 	}
-	virtual bool inWater2d(Sys::Sphere&); // _0C (weak)
-	virtual f32 getSeaLevel()      = 0;   // _10
-	virtual f32* getSeaHeightPtr() = 0;   // _14
-	virtual bool update()          = 0;   // _18
-	virtual void startDown(f32);          // _1C (weak)
-	virtual void startUp(f32);            // _20 (weak)
-	virtual void directDraw(Graphics&);   // _24 (weak)
-	virtual void doAnimation();           // _28 (weak)
-	virtual void doEntry();               // _2C (weak)
-	virtual void doSetView(int);          // _30 (weak)
-	virtual void doViewCalc();            // _34 (weak)
-	virtual void doSimulation(f32);       // _38 (weak)
-	virtual void doDirectDraw(Graphics&); // _3C (weak)
+	virtual bool inWater2d(Sys::Sphere&);       // _0C (weak)
+	virtual f32 getSeaLevel()      = 0;         // _10
+	virtual f32* getSeaHeightPtr() = 0;         // _14
+	virtual bool update()          = 0;         // _18
+	virtual void startDown(f32);                // _1C (weak)
+	virtual void startUp(f32);                  // _20 (weak)
+	virtual void directDraw(Graphics&);         // _24 (weak)
+	virtual void doAnimation();                 // _28 (weak)
+	virtual void doEntry();                     // _2C (weak)
+	virtual void doSetView(int viewportNumber); // _30 (weak)
+	virtual void doViewCalc();                  // _34 (weak)
+	virtual void doSimulation(f32);             // _38 (weak)
+	virtual void doDirectDraw(Graphics& gfx);   // _3C (weak)
 	virtual void attachModel(J3DModelData*, Sys::MatTexAnimation*,
 	                         f32); // _40 (weak)
 	virtual void calcMatrix();     // _44 (weak)
@@ -69,7 +69,7 @@ struct AABBWaterBox : public WaterBox {
 	virtual void directDraw(Graphics&);                                  // _24
 	virtual void doAnimation();                                          // _28
 	virtual void doEntry();                                              // _2C
-	virtual void doSetView(int);                                         // _30
+	virtual void doSetView(int viewportNumber);                          // _30
 	virtual void doViewCalc();                                           // _34
 	virtual void attachModel(J3DModelData*, Sys::MatTexAnimation*, f32); // _40
 	virtual void calcMatrix();                                           // _44

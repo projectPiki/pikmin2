@@ -360,7 +360,6 @@ void SingleGame::LoadState::cleanup(Game::SingleGameSection*) { }
 } // namespace Game
 
 namespace og {
-
 namespace Screen {
 
 /*
@@ -400,7 +399,6 @@ blr
 //}
 
 } // namespace Screen
-
 } // namespace og
 
 /*

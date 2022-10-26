@@ -10,11 +10,11 @@ namespace Game {
  */
 EnemyPelletInfo::EnemyPelletInfo()
 {
-	m_color          = 3;
-	m_size           = 1;
-	m_minPellets     = 1;
-	m_maxPellets     = 8;
-	m_spawnThreshold = 0.0f;
+	m_color       = 3;
+	m_size        = 1;
+	m_minPellets  = 1;
+	m_maxPellets  = 8;
+	m_spawnChance = 0.0f;
 }
 
 /*
@@ -37,7 +37,7 @@ void EnemyPelletInfo::write(Stream& stream)
 	stream.writeByte(m_maxPellets);
 	stream.textWriteText("\t\t# %s \r\n", "Pellet Max");
 	stream.writePadding(STREAM_MODE_TEXT);
-	stream.writeFloat(m_spawnThreshold);
+	stream.writeFloat(m_spawnChance);
 	stream.textWriteText("\t\t# %s \r\n", "Pellet Min");
 }
 
@@ -48,10 +48,10 @@ void EnemyPelletInfo::write(Stream& stream)
  */
 void EnemyPelletInfo::read(Stream& stream)
 {
-	m_color          = stream.readByte();
-	m_size           = stream.readByte();
-	m_minPellets     = stream.readByte();
-	m_maxPellets     = stream.readByte();
-	m_spawnThreshold = stream.readFloat();
+	m_color       = stream.readByte();
+	m_size        = stream.readByte();
+	m_minPellets  = stream.readByte();
+	m_maxPellets  = stream.readByte();
+	m_spawnChance = stream.readFloat();
 }
 } // namespace Game

@@ -163,7 +163,6 @@
 */
 
 namespace og {
-
 namespace newScreen {
 
 /*
@@ -1119,7 +1118,6 @@ lbl_8031CB84:
 void ObjCave::doUpdateFadeoutFinish(void) { }
 
 } // namespace newScreen
-
 } // namespace og
 
 /*

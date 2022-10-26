@@ -533,7 +533,6 @@ void setAlphaScreen(J2DPane* pane)
 }
 
 } // namespace Screen
-
 } // namespace og
 
 /**

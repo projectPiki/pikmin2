@@ -14,7 +14,6 @@
 */
 
 namespace og {
-
 namespace Screen {
 
 /*
@@ -455,7 +454,6 @@ void CopyTreeToPaneSub(J2DPane*, J2DPane*, bool, unsigned long long*, unsigned s
 }
 
 } // namespace Screen
-
 } // namespace og
 
 /*
@@ -469,7 +467,6 @@ void J2DMaterial::operator=(const J2DMaterial&)
 }
 
 namespace og {
-
 namespace Screen {
 
 /*

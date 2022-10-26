@@ -178,7 +178,6 @@
 void _Print(char* name, ...) { OSReport("ebiScreenOption"); }
 
 namespace ebi {
-
 namespace Screen {
 
 /*

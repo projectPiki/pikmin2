@@ -4,10 +4,12 @@
 // this needs cleanup; it's a ghidra export
 #include "types.h"
 
-template <typename T> struct Parm {
+template <typename T>
+struct Parm {
 };
 
-template <> struct Parm<float> {
+template <>
+struct Parm<float> {
 	// TODO: Fill
 };
 

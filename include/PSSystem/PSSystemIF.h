@@ -40,7 +40,8 @@ struct SysIF : public JAIBasic {
 	u32 _48;               // _48
 };
 
-template <typename T> struct ArcMgr : public JKRDisposer {
+template <typename T>
+struct ArcMgr : public JKRDisposer {
 	virtual ~ArcMgr(); // _08
 
 	static T* sInstance;

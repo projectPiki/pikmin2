@@ -15,7 +15,8 @@ struct InfoMgrBase {
 	// VTBL _00
 };
 
-template <typename Owner, typename List> struct InfoListBase : public JKRDisposer {
+template <typename Owner, typename List>
+struct InfoListBase : public JKRDisposer {
 	virtual ~InfoListBase() // _08
 	{
 		if (_18) {
@@ -38,7 +39,8 @@ template <typename Owner, typename List> struct InfoListBase : public JKRDispose
 	Owner* m_owner;                 // _20
 };
 
-template <typename Owner, typename List> struct InfoMgr : public InfoMgrBase {
+template <typename Owner, typename List>
+struct InfoMgr : public InfoMgrBase {
 	// TODO: ctor
 	InfoMgr();
 

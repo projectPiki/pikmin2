@@ -9,7 +9,7 @@ namespace JStudio {
 namespace stb {
 namespace data {
 struct TParse_TBlock_object;
-} // namespace data
+}
 } // namespace stb
 
 struct TObject {

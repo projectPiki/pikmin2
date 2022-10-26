@@ -5,7 +5,8 @@
 #include "JSystem/JSupport/JSUList.h"
 
 namespace PSSystem {
-template <typename T> struct MutexList : JSUList<T> {
+template <typename T>
+struct MutexList : JSUList<T> {
 	inline MutexList<T>()
 	    : JSUList<T>()
 	{

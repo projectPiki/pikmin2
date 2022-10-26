@@ -44,7 +44,6 @@
 */
 
 namespace og {
-
 namespace newScreen {
 
 /*

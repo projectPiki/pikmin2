@@ -63,7 +63,6 @@
 */
 
 namespace og {
-
 namespace newScreen {
 
 /*

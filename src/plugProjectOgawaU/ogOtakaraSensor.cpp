@@ -196,7 +196,6 @@
 */
 
 namespace og {
-
 namespace Screen {
 
 /*
@@ -1615,7 +1614,6 @@ blr
 void OtakaraSensor::draw(J2DGrafContext&) { }
 
 } // namespace Screen
-
 } // namespace og
 
 /*

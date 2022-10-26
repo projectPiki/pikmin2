@@ -74,14 +74,14 @@ struct PelletMgr : public NodeObjectMgr<GenericObjectMgr> {
 	PelletMgr();
 
 	// vtable 1
-	virtual ~PelletMgr() { }              // _08 (weak)
-	virtual void doAnimation();           // _64 (weak)
-	virtual void doEntry();               // _68 (weak)
-	virtual void doSetView(int);          // _6C (weak)
-	virtual void doViewCalc();            // _70 (weak)
-	virtual void doSimulation(float);     // _74 (weak)
-	virtual void doDirectDraw(Graphics&); // _78 (weak)
-	virtual char* getMgrName()            // _80 (weak)
+	virtual ~PelletMgr() { }                    // _08 (weak)
+	virtual void doAnimation();                 // _64 (weak)
+	virtual void doEntry();                     // _68 (weak)
+	virtual void doSetView(int viewportNumber); // _6C (weak)
+	virtual void doViewCalc();                  // _70 (weak)
+	virtual void doSimulation(float);           // _74 (weak)
+	virtual void doDirectDraw(Graphics& gfx);   // _78 (weak)
+	virtual char* getMgrName()                  // _80 (weak)
 	{
 		return "ペレットマネージャ"; // pellet manager
 	}
@@ -196,17 +196,17 @@ struct Pellet : public DynCreature, public SysShape::MotionListener, public Carr
 	{
 		return m_pelletPosition;
 	}
-	virtual void getBoundingSphere(Sys::Sphere&);                     // _10
+	virtual void getBoundingSphere(Sys::Sphere& boundSphere);         // _10
 	virtual bool deferPikiCollision() { return true; }                // _20 (weak)
 	virtual void constructor();                                       // _2C
-	virtual void onInit(CreatureInitArg*);                            // _30 (weak)
-	virtual void onKill(CreatureKillArg*);                            // _34
+	virtual void onInit(CreatureInitArg* settings);                   // _30 (weak)
+	virtual void onKill(CreatureKillArg* settings);                   // _34
 	virtual void doAnimation();                                       // _3C
 	virtual void doEntry();                                           // _40
-	virtual void doSetView(int);                                      // _44
+	virtual void doSetView(int viewportNumber);                       // _44
 	virtual void doViewCalc();                                        // _48
 	virtual void doSimulation(float);                                 // _4C
-	virtual void doDirectDraw(Graphics&);                             // _50
+	virtual void doDirectDraw(Graphics& gfx);                         // _50
 	virtual float getFaceDir() { return m_faceDir; }                  // _64 (weak)
 	virtual void setVelocity(Vector3f&);                              // _68
 	virtual Vector3f getVelocity();                                   // _6C

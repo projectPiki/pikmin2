@@ -103,56 +103,88 @@ BaseParm* Parameters::findParm(u32 rawID)
  * Address:	80413924
  * Size:	000034
  */
-template <> void Parm<int>::read(Stream& stream) { m_value = stream.readInt(); }
+template <>
+void Parm<int>::read(Stream& stream)
+{
+	m_value = stream.readInt();
+}
 
 /*
  * --INFO--
  * Address:	80413958
  * Size:	00002C
  */
-template <> void Parm<int>::write(Stream& stream) { stream.writeInt(m_value); }
+template <>
+void Parm<int>::write(Stream& stream)
+{
+	stream.writeInt(m_value);
+}
 
 /*
  * --INFO--
  * Address:	80413984
  * Size:	000034
  */
-template <> void Parm<unsigned char>::read(Stream& stream) { m_value = stream.readByte(); }
+template <>
+void Parm<unsigned char>::read(Stream& stream)
+{
+	m_value = stream.readByte();
+}
 
 /*
  * --INFO--
  * Address:	804139B8
  * Size:	00002C
  */
-template <> void Parm<unsigned char>::write(Stream& stream) { stream.writeByte((u8)m_value); }
+template <>
+void Parm<unsigned char>::write(Stream& stream)
+{
+	stream.writeByte((u8)m_value);
+}
 
 /*
  * --INFO--
  * Address:	804139E4
  * Size:	000044
  */
-template <> void Parm<bool>::read(Stream& stream) { m_value = (bool)stream.readByte(); }
+template <>
+void Parm<bool>::read(Stream& stream)
+{
+	m_value = (bool)stream.readByte();
+}
 
 /*
  * --INFO--
  * Address:	80413A28
  * Size:	000034
  */
-template <> void Parm<bool>::write(Stream& stream) { stream.writeByte(m_value ? 1 : 0); }
+template <>
+void Parm<bool>::write(Stream& stream)
+{
+	stream.writeByte(m_value ? 1 : 0);
+}
 
 /*
  * --INFO--
  * Address:	80413A5C
  * Size:	000034
  */
-template <> void Parm<float>::read(Stream& stream) { m_value = stream.readFloat(); }
+template <>
+void Parm<float>::read(Stream& stream)
+{
+	m_value = stream.readFloat();
+}
 
 /*
  * --INFO--
  * Address:	80413A90
  * Size:	000028
  */
-template <> void Parm<float>::write(Stream& stream) { stream.writeFloat(m_value); }
+template <>
+void Parm<float>::write(Stream& stream)
+{
+	stream.writeFloat(m_value);
+}
 
 /*
  * --INFO--
