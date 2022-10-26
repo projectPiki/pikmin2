@@ -186,7 +186,7 @@ struct GenObject : public GenBase {
 
 struct BaseItemMgr;
 struct GenItemParm {
-	virtual int getShapeID(); // _00
+	virtual int getShapeID(); // _08
 
 	// _00 VTBL
 };
