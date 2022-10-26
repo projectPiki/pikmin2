@@ -154,8 +154,8 @@
 ### <section id="plugProjectMorimuraU">plugProjectMorimuraU</section>
 | File | Size (bytes) | File | Size (bytes) |
 | ---- | ---- | ---- | ---- |
-| <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectMorimuraU/mrWindow.cpp">mrWindow.cpp</a> | 14726 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectMorimuraU/egg.cpp">egg.cpp</a> | 18404 |
-| <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectMorimuraU/enemyNestMgr.cpp">enemyNestMgr.cpp</a> | 30001 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectMorimuraU/umiMushiMgr.cpp">umiMushiMgr.cpp</a> | 30677 |
+| <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectMorimuraU/enemyNestMgr.cpp">enemyNestMgr.cpp</a> | 9813 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectMorimuraU/mrWindow.cpp">mrWindow.cpp</a> | 14726 |
+| <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectMorimuraU/egg.cpp">egg.cpp</a> | 18404 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectMorimuraU/umiMushiMgr.cpp">umiMushiMgr.cpp</a> | 30677 |
 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectMorimuraU/blackManMgr.cpp">blackManMgr.cpp</a> | 30901 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectMorimuraU/shijimiChouState.cpp">shijimiChouState.cpp</a> | 31896 |
 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectMorimuraU/kingChappyMgr.cpp">kingChappyMgr.cpp</a> | 33504 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectMorimuraU/mrUtil.cpp">mrUtil.cpp</a> | 38082 |
 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectMorimuraU/scrollList.cpp">scrollList.cpp</a> | 41235 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectMorimuraU/shijimiChouMgr.cpp">shijimiChouMgr.cpp</a> | 43556 |

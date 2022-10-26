@@ -13,24 +13,24 @@ struct Quat;
  * Explicit constructors show up in recursion. Implicit does not.
  */
 struct Matrixf {
-	// inline Matrixf() {};
+	inline Matrixf() { }
 	// // TODO: Determine if this could've actually existed, or if I'm just making
 	// // it up.
-	// inline Matrixf(const Mtx mtx)
-	// {
-	// 	m_matrix.mtxView[0][0] = mtx[0][0];
-	// 	m_matrix.mtxView[0][1] = mtx[0][1];
-	// 	m_matrix.mtxView[0][2] = mtx[0][2];
-	// 	m_matrix.mtxView[0][3] = mtx[0][3];
-	// 	m_matrix.mtxView[1][0] = mtx[1][0];
-	// 	m_matrix.mtxView[1][1] = mtx[1][1];
-	// 	m_matrix.mtxView[1][2] = mtx[1][2];
-	// 	m_matrix.mtxView[1][3] = mtx[1][3];
-	// 	m_matrix.mtxView[2][0] = mtx[2][0];
-	// 	m_matrix.mtxView[2][1] = mtx[2][1];
-	// 	m_matrix.mtxView[2][2] = mtx[2][2];
-	// 	m_matrix.mtxView[2][3] = mtx[2][3];
-	// }
+	inline Matrixf(const Mtx mtx)
+	{
+		m_matrix.mtxView[0][0] = mtx[0][0];
+		m_matrix.mtxView[0][1] = mtx[0][1];
+		m_matrix.mtxView[0][2] = mtx[0][2];
+		m_matrix.mtxView[0][3] = mtx[0][3];
+		m_matrix.mtxView[1][0] = mtx[1][0];
+		m_matrix.mtxView[1][1] = mtx[1][1];
+		m_matrix.mtxView[1][2] = mtx[1][2];
+		m_matrix.mtxView[1][3] = mtx[1][3];
+		m_matrix.mtxView[2][0] = mtx[2][0];
+		m_matrix.mtxView[2][1] = mtx[2][1];
+		m_matrix.mtxView[2][2] = mtx[2][2];
+		m_matrix.mtxView[2][3] = mtx[2][3];
+	}
 	/**
 	 * @reifiedAddress{80137300}
 	 * @reifiedFile{plugProjectKandoU/collinfo.cpp}

@@ -498,7 +498,7 @@ typedef struct _SDK_GXColor {
 typedef GXColor _GXColor; // this might be a wrapper in Pikmin 2? IDK.
 
 typedef struct _SDK_GXColorS10 {
-	u16 r, g, b, a;
+	s16 r, g, b, a;
 } GXColorS10;
 typedef GXColorS10 _GXColorS10; // this might be a wrapper in Pikmin 2? IDK.
 
@@ -915,6 +915,7 @@ void GXSetTevDirect(GXTevStageID);
 void GXSetTevOrder(GXTevStageID, GXTexCoordID, GXTexMapID, GXChannelID);
 void GXSetTevOp(GXTevStageID, GXTevMode);
 void GXSetTevColor(GXTevRegID, GXColor);
+void GXSetTevColorS10(GXTevRegID, GXColorS10);
 void GXSetTevSwapMode(GXTevStageID, u32, u32);
 void GXSetTevSwapModeTable(GXTevSwapSel, u32, u32, u32, u32);
 void GXSetTevColorIn(GXTevStageID, GXTevColorArg, GXTevColorArg, GXTevColorArg, GXTevColorArg);
