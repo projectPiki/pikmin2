@@ -103,7 +103,7 @@ void Obj::getShadowParam(ShadowParam& shadowParam)
  */
 bool Obj::damageCallBack(Creature* creature, f32 damage, CollPart* collpart)
 {
-	if ((creature != nullptr) && !creature->isNavi()) {
+	if ((creature) && !creature->isNavi()) {
 		addDamage(damage, 1.0f);
 		return true;
 	}

@@ -140,6 +140,7 @@ struct ArgGasuHiba : public Arg {
 	{
 		return "ArgGasuHiba";
 	}
+	bool m_isUnderground; // _10
 };
 
 struct ArgImoEat : public Arg {

@@ -5,6 +5,10 @@
 
 namespace efx {
 struct TGasuHiba : public TForever2 {
+	inline TGasuHiba()
+	    : TForever2(PID_GasuHiba_1, PID_GasuHiba_2)
+	{
+	}
 	virtual bool create(Arg*); // _08
 
 	void setRateLOD(int);
