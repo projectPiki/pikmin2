@@ -5,6 +5,7 @@
 #include "Game/ItemHoney.h"
 #include "Game/Entities/TamagoMushi.h"
 #include "Game/generalEnemyMgr.h"
+#include "Dolphin/rand.h"
 
 namespace Game {
 namespace Egg {
@@ -250,11 +251,11 @@ void Obj::genItem()
 	position.y += 2.0f;
 
 	f32 randVal = randFloat();
-	f32 test    = C_PARMS->m_properParms.m_fp01.m_value;
+	f32 test    = C_PARMS->m_properParms.m_singleNectarChance.m_value;
 	if (randVal < test) {
 		dropType = 2;
 	} else {
-		test += C_PARMS->m_properParms.m_fp02.m_value;
+		test += C_PARMS->m_properParms.m_doubleNectarChance.m_value;
 		if (randVal < test) {
 			dropType = 3;
 		} else {
@@ -262,11 +263,11 @@ void Obj::genItem()
 			if (randVal < test) {
 				dropType = 4;
 			} else {
-				test += C_PARMS->m_properParms.m_fp04.m_value;
+				test += C_PARMS->m_properParms.m_spicyChance.m_value;
 				if (randVal < test) {
 					dropType = 5;
 				} else {
-					test += C_PARMS->m_properParms.m_fp05.m_value;
+					test += C_PARMS->m_properParms.m_bitterChance.m_value;
 					if (randVal < test) {
 						dropType = 6;
 					}

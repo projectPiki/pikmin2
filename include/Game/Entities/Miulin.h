@@ -27,7 +27,7 @@ struct Obj : public EnemyBase {
 	virtual void getShadowParam(ShadowParam&);              // _134
 	virtual void applyImpulse(Vector3f&, Vector3f&);        // _18C (weak)
 	virtual Vector3f getGoalPos();                          // _198 (weak)
-	virtual ~Obj();                                         // _1BC (weak)
+	virtual ~Obj() { }                                      // _1BC (weak)
 	virtual void birth(Vector3f&, f32);                     // _1C0
 	virtual void setInitialSetting(EnemyInitialParamBase*); // _1C4 (weak)
 	virtual void doUpdate();                                // _1CC
@@ -38,7 +38,7 @@ struct Obj : public EnemyBase {
 	virtual EnemyTypeID::EEnemyTypeID getEnemyTypeID();     // _258 (weak)
 	virtual void startCarcassMotion();                      // _2C4
 	virtual void wallCallback(const MoveInfo&);             // _2E8
-	virtual void getDownSmokeScale();                       // _2EC (weak)
+	virtual f32 getDownSmokeScale();                        // _2EC (weak)
 	virtual void setFSM(FSM*);                              // _2F8 (weak)
 	//////////////// VTABLE END
 
@@ -75,12 +75,21 @@ struct Obj : public EnemyBase {
 struct Mgr : public EnemyMgrBase {
 	Mgr(int objLimit, u8 modelType);
 
-	virtual ~Mgr();                                     // _58 (weak)
-	virtual EnemyBase* birth(EnemyBirthArg&);           // _70
-	virtual void createObj(int);                        // _A0 (weak)
-	virtual EnemyBase* getEnemy(int idx);               // _A4 (weak)
-	virtual void doAlloc();                             // _A8
-	virtual EnemyTypeID::EEnemyTypeID getEnemyTypeID(); // _AC (weak)
+	// virtual ~Mgr();                                     // _58 (weak)
+	virtual EnemyBase* birth(EnemyBirthArg&);          // _70
+	virtual void doAlloc();                            // _A8
+	virtual EnemyTypeID::EEnemyTypeID getEnemyTypeID() // _AC (weak)
+	{
+		return EnemyTypeID::EnemyID_Miulin;
+	}
+	virtual void createObj(int count) // _A0 (weak)
+	{
+		m_obj = new Obj[count];
+	}
+	virtual EnemyBase* getEnemy(int index) // _A4 (weak)
+	{
+		return &m_obj[index];
+	}
 
 	// _00 		= VTBL
 	// _00-_44	= EnemyMgrBase
@@ -89,7 +98,17 @@ struct Mgr : public EnemyMgrBase {
 
 struct Parms : public EnemyParmsBase {
 	struct ProperParms : public Parameters {
-		inline ProperParms(); // likely
+		inline ProperParms()
+		    : Parameters(nullptr, "EnemyParmsBase")
+		    , m_ip01(this, 'ip01', "リターンカウンタ", 100, 0, 1000)         // 'return counter'
+		    , m_fp03(this, 'fp03', "連続プレス角度", 20.0f, 0.0f, 180.0f)    // 'continuous press angle'
+		    , m_fp04(this, 'fp04', "ダッシュ速度倍率", 2.0f, 0.0f, 10.0f)    // 'dash speed multiplier'
+		    , m_fp05(this, 'fp05', "ダッシュアニメ倍率", 2.0f, 0.0f, 10.0f)  // 'dash animation scale'
+		    , m_fp06(this, 'fp06', "旋回終了角度", 10.0f, 0.0f, 180.0f)      // 'turning end angle'
+		    , m_fp07(this, 'fp07', "ダッシュ可能\角度", 30.0f, 0.0f, 180.0f) // 'possible dash angle'
+		    , m_fp08(this, 'fp08', "攻撃範囲最小", 25.0f, 0.0f, 100.0f)      // 'minimum attack range'
+		{
+		}
 
 		Parm<int> m_ip01; // _804
 		Parm<f32> m_fp03; // _82C
@@ -100,9 +119,14 @@ struct Parms : public EnemyParmsBase {
 		Parm<f32> m_fp08; // _8F4
 	};
 
-	Parms();
+	Parms() { }
 
-	virtual void read(Stream&); // _08 (weak)
+	virtual void read(Stream& stream) // _08 (weak)
+	{
+		CreatureParms::read(stream);
+		m_general.read(stream);
+		m_properParms.read(stream);
+	}
 
 	// _00-_7F8	= EnemyParmsBase
 	ProperParms m_properParms; // _7F8

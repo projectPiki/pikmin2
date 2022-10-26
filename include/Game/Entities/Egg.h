@@ -26,17 +26,16 @@ struct Obj : public EnemyBase {
 	Obj();
 
 	//////////////// VTABLE - Note: order necessary for weak function ordering
-	virtual void onInit(CreatureInitArg* settings); // _30
-	virtual void doSimulation(f32);                 // _4C
-	virtual void doDirectDraw(Graphics& gfx);       // _50
-	virtual void onStartCapture();                  // _94
-	virtual void onEndCapture();                    // _9C
-
+	virtual void onInit(CreatureInitArg* settings);                       // _30
+	virtual void doSimulation(f32);                                       // _4C
+	virtual void doDirectDraw(Graphics& gfx);                             // _50
+	virtual void onStartCapture();                                        // _94
+	virtual void onEndCapture();                                          // _9C
 	virtual void bounceCallback(Sys::Triangle*);                          // _E8
 	virtual void collisionCallback(CollEvent&);                           // _EC
 	virtual void getShadowParam(ShadowParam&);                            // _134
 	virtual bool needShadow();                                            // _138
-	virtual ~Obj();                                                       // _1BC (weak)
+	virtual ~Obj() { }                                                    // _1BC (weak)
 	virtual void birth(Vector3f&, f32);                                   // _1C0
 	virtual void setInitialSetting(EnemyInitialParamBase*) { }            // _1C4 (weak)
 	virtual void doUpdate();                                              // _1CC
@@ -70,12 +69,21 @@ struct Obj : public EnemyBase {
 struct Mgr : public EnemyMgrBase {
 	Mgr(int objLimit, u8 modelType);
 
-	virtual ~Mgr();                                     // _58 (weak)
-	virtual EnemyBase* birth(EnemyBirthArg&);           // _70
-	virtual void createObj(int);                        // _A0 (weak)
-	virtual EnemyBase* getEnemy(int idx);               // _A4 (weak)
-	virtual void doAlloc();                             // _A8
-	virtual EnemyTypeID::EEnemyTypeID getEnemyTypeID(); // _AC (weak)
+	// virtual ~Mgr();                                     // _58 (weak)
+	virtual EnemyBase* birth(EnemyBirthArg&);          // _70
+	virtual void doAlloc();                            // _A8
+	virtual EnemyTypeID::EEnemyTypeID getEnemyTypeID() // _AC (weak)
+	{
+		return EnemyTypeID::EnemyID_Egg;
+	}
+	virtual void createObj(int count) // _A0 (weak)
+	{
+		m_obj = new Obj[count];
+	}
+	virtual EnemyBase* getEnemy(int index) // _A4 (weak)
+	{
+		return &m_obj[index];
+	}
 
 	// _00 		= VTBL
 	// _00-_44	= EnemyMgrBase
@@ -84,18 +92,35 @@ struct Mgr : public EnemyMgrBase {
 
 struct Parms : public EnemyParmsBase {
 	struct ProperParms : public Parameters {
-		inline ProperParms(); // probably
+		inline ProperParms()
+		    : Parameters(nullptr, "EnemyParmsBase")
+		    , m_singleNectarChance(this, 'fp01', "蜜レート", 1.0f, 0.0f, 1.0f)       // 'nectar rate'
+		    , m_doubleNectarChance(this, 'fp02', "蜜x2レート", 1.0f, 0.0f, 1.0f)     // 'nectar x2 rate'
+		    , m_mititesChance(this, 'fp03', "タマゴムシx10レート", 1.0f, 0.0f, 1.0f) // 'mitite x10 rate'
+		    , m_spicyChance(this, 'fp04', "赤ドーピングレート", 1.0f, 0.0f, 1.0f)    // 'red doping rate'
+		    , m_bitterChance(this, 'fp05', "黒ドーピングレート", 1.0f, 0.0f, 1.0f)   // 'black doping rate'
+		{
+		}
 
-		Parm<f32> m_fp01;          // _804
-		Parm<f32> m_fp02;          // _82C
-		Parm<f32> m_mititesChance; // _854, fp03
-		Parm<f32> m_fp04;          // _87C
-		Parm<f32> m_fp05;          // _8A4
+		Parm<f32> m_singleNectarChance; // _804, fp01
+		Parm<f32> m_doubleNectarChance; // _82C, fp02
+		Parm<f32> m_mititesChance;      // _854, fp03
+		Parm<f32> m_spicyChance;        // _87C, fp04
+		Parm<f32> m_bitterChance;       // _8A4, fp05
 	};
 
-	Parms();
+	Parms()
+	{
+		_8D0 = 0;
+		_8D1 = 1;
+	}
 
-	virtual void read(Stream&); // _08 (weak)
+	virtual void read(Stream& stream) // _08 (weak)
+	{
+		CreatureParms::read(stream);
+		m_general.read(stream);
+		m_properParms.read(stream);
+	}
 
 	// _00-_7F8	= EnemyParmsBase
 	ProperParms m_properParms; // _7F8

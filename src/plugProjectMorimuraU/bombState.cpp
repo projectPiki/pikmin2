@@ -145,7 +145,7 @@ void StateBomb::exec(EnemyBase* enemy)
 
 			Vector3f position = enemy->getPosition();
 			Parms* parms      = static_cast<Parms*>(enemy->m_parms);
-			f32 offset        = parms->m_properParms._82C.m_value;
+			f32 offset        = parms->m_properParms.m_fp02.m_value;
 			f32 max           = position.y + offset;
 			f32 min           = position.y - offset;
 
@@ -165,7 +165,7 @@ void StateBomb::exec(EnemyBase* enemy)
 						if (creature->isTeki()) {
 
 							f32 weight = 1.0f;
-							f32 force  = weight * static_cast<Parms*>(enemy->m_parms)->m_properParms._804.m_value;
+							f32 force  = weight * static_cast<Parms*>(enemy->m_parms)->m_properParms.m_fp01.m_value;
 							InteractBomb interBomb(enemy, force, &Vector3f::zero);
 
 							creature->stimulate(interBomb);

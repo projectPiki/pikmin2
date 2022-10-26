@@ -962,11 +962,11 @@ MORIMURA:=\
 	$(BUILD_DIR)/src/plugProjectMorimuraU/testBase.o\
 	$(BUILD_DIR)/src/plugProjectMorimuraU/bombState.o\
 	$(BUILD_DIR)/src/plugProjectMorimuraU/bombAnimator.o\
-	$(BUILD_DIR)/asm/plugProjectMorimuraU/bombMgr.o\
+	$(BUILD_DIR)/src/plugProjectMorimuraU/bombMgr.o\
 	$(BUILD_DIR)/asm/plugProjectMorimuraU/bomb.o\
 	$(BUILD_DIR)/src/plugProjectMorimuraU/eggState.o\
 	$(BUILD_DIR)/src/plugProjectMorimuraU/eggAnimator.o\
-	$(BUILD_DIR)/asm/plugProjectMorimuraU/eggMgr.o\
+	$(BUILD_DIR)/src/plugProjectMorimuraU/eggMgr.o\
 	$(BUILD_DIR)/asm/plugProjectMorimuraU/egg.o\
 	$(BUILD_DIR)/asm/plugProjectMorimuraU/panModokiState.o\
 	$(BUILD_DIR)/src/plugProjectMorimuraU/panModokiAnimator.o\
@@ -980,11 +980,11 @@ MORIMURA:=\
 	$(BUILD_DIR)/asm/plugProjectMorimuraU/kingChappy.o\
 	$(BUILD_DIR)/asm/plugProjectMorimuraU/miulinState.o\
 	$(BUILD_DIR)/src/plugProjectMorimuraU/miulinAnimator.o\
-	$(BUILD_DIR)/asm/plugProjectMorimuraU/miulinMgr.o\
+	$(BUILD_DIR)/src/plugProjectMorimuraU/miulinMgr.o\
 	$(BUILD_DIR)/asm/plugProjectMorimuraU/miulin.o\
 	$(BUILD_DIR)/asm/plugProjectMorimuraU/jigumoState.o\
 	$(BUILD_DIR)/src/plugProjectMorimuraU/jigumoAnimator.o\
-	$(BUILD_DIR)/asm/plugProjectMorimuraU/jigumoMgr.o\
+	$(BUILD_DIR)/src/plugProjectMorimuraU/jigumoMgr.o\
 	$(BUILD_DIR)/asm/plugProjectMorimuraU/jigumo.o\
 	$(BUILD_DIR)/asm/plugProjectMorimuraU/enemyNestMgr.o\
 	$(BUILD_DIR)/src/plugProjectMorimuraU/enemyNest.o\

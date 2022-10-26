@@ -7,6 +7,8 @@
 #include "Game/EnemyMgrBase.h"
 #include "Game/EnemyBase.h"
 #include "Game/Piki.h"
+#include "efx/TJgm.h"
+#include "efx/TImo.h"
 #include "Condition.h"
 #include "Collinfo.h"
 #include "Quat.h"
@@ -14,14 +16,6 @@
 /**
  * --Header for Hermit Crawmad (Jigumo)--
  */
-
-namespace efx {
-struct TJgmAttack;
-struct TJgmAttackW;
-struct TJgmBack;
-struct TJgmBackW;
-struct TImoSmoke;
-} // namespace efx
 
 namespace Game {
 namespace Jigumo {
@@ -49,7 +43,7 @@ struct Obj : public EnemyBase {
 	virtual void getShadowParam(ShadowParam&);              // _134
 	virtual bool needShadow();                              // _138
 	virtual Vector3f getGoalPos();                          // _198 (weak)
-	virtual ~Obj();                                         // _1BC (weak)
+	virtual ~Obj() { }                                      // _1BC (weak)
 	virtual void birth(Vector3f&, f32);                     // _1C0
 	virtual void setInitialSetting(EnemyInitialParamBase*); // _1C4 (weak)
 	virtual void doUpdate();                                // _1CC
@@ -120,14 +114,26 @@ struct Obj : public EnemyBase {
 struct Mgr : public EnemyMgrBase {
 	Mgr(int objLimit, u8 modelType);
 
-	virtual ~Mgr();                                     // _58 (weak)
-	virtual EnemyBase* birth(EnemyBirthArg&);           // _70
-	virtual void createObj(int);                        // _A0 (weak)
-	virtual EnemyBase* getEnemy(int idx);               // _A4 (weak)
-	virtual void doAlloc();                             // _A8
-	virtual EnemyTypeID::EEnemyTypeID getEnemyTypeID(); // _AC (weak)
-	virtual void loadModelData();                       // _C8
-	virtual J3DModelData* doLoadBmd(void*);             // _D4 (weak)
+	// virtual ~Mgr();                                     // _58 (weak)
+	virtual EnemyBase* birth(EnemyBirthArg&);       // _70
+	virtual void doAlloc();                         // _A8
+	virtual void loadModelData();                   // _C8
+	virtual J3DModelData* doLoadBmd(void* filename) // _D4 (weak)
+	{
+		return J3DModelLoaderDataBase::load(filename, 0x00240030);
+	}
+	virtual EnemyTypeID::EEnemyTypeID getEnemyTypeID() // _AC (weak)
+	{
+		return EnemyTypeID::EnemyID_Jigumo;
+	}
+	virtual void createObj(int count) // _A0 (weak)
+	{
+		m_obj = new Obj[count];
+	}
+	virtual EnemyBase* getEnemy(int index) // _A4 (weak)
+	{
+		return &m_obj[index];
+	}
 
 	// _00 		= VTBL
 	// _00-_44	= EnemyMgrBase
@@ -136,7 +142,16 @@ struct Mgr : public EnemyMgrBase {
 
 struct Parms : public EnemyParmsBase {
 	struct ProperParms : public Parameters {
-		inline ProperParms(); // likely
+		inline ProperParms()
+		    : Parameters(nullptr, "EnemyParmsBase")
+		    , m_fp01(this, 'fp01', "運搬速度", 100.0f, 0.0f, 300.0f)    // 'transport speed'
+		    , m_fp02(this, 'fp02', "戻り速度", 100.0f, 0.0f, 300.0f)    // 'return speed'
+		    , m_fp03(this, 'fp03', "スケール最小", 1.0f, 0.0f, 3.0f)    // 'scale minimum'
+		    , m_fp04(this, 'fp04', "スケール最大", 1.2f, 0.0f, 3.0f)    // 'scale maximum'
+		    , m_fp05(this, 'fp05', "白ピクミン", 300.0f, 0.0f, 1000.0f) // 'white pikmin'
+		    , m_ip01(this, 'ip01', "隠れている時間", 30, 0, 120)        // 'hiding time'
+		{
+		}
 
 		Parm<f32> m_fp01; // _804
 		Parm<f32> m_fp02; // _82C
@@ -146,9 +161,36 @@ struct Parms : public EnemyParmsBase {
 		Parm<int> m_ip01; // _8CC
 	};
 
-	Parms();
+	Parms()
+	{
+		_8F8 = 1;
+		_8F9 = 1;
+		_8FA = 1;
+		_8FB = 1;
+		_8FC = 0;
+		_8FD = 1;
+		_8FE = 0;
+		_900 = 0.75f;
+		_904 = 20.0f;
+		_908 = 0.05f;
+		_90C = 30.0f;
+		_910 = 8;
+		_914 = 35.0f;
+		_918 = 0.15f;
+		_91C = 1.0f;
+		_920 = 0.15f;
+		_924 = 13.0f;
+		_928 = 18.0f;
+		_92C = 1.4f;
+		_930 = 20.0f;
+	}
 
-	virtual void read(Stream&); // _08 (weak)
+	virtual void read(Stream& stream) // _08 (weak)
+	{
+		CreatureParms::read(stream);
+		m_general.read(stream);
+		m_properParms.read(stream);
+	}
 
 	// _00-_7F8	= EnemyParmsBase
 	ProperParms m_properParms; // _7F8

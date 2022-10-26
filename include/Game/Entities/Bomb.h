@@ -6,15 +6,12 @@
 #include "Game/EnemyParmsBase.h"
 #include "Game/EnemyMgrBase.h"
 #include "Game/EnemyBase.h"
+#include "efx/TBombrock.h"
 #include "Collinfo.h"
 
 /**
  * --Header for Bomb-Rock (Bomb)--
  */
-
-namespace efx {
-struct TBombrockLight;
-} // namespace efx
 
 namespace Game {
 namespace OtakaraBase {
@@ -41,7 +38,7 @@ struct Obj : public EnemyBase {
 	virtual void collisionCallback(CollEvent&);             // _EC
 	virtual void getShadowParam(ShadowParam&);              // _134
 	virtual bool needShadow();                              // _138
-	virtual ~Obj();                                         // _1BC (weak)
+	virtual ~Obj() { }                                      // _1BC (weak)
 	virtual void birth(Vector3f&, f32);                     // _1C0
 	virtual void setInitialSetting(EnemyInitialParamBase*); // _1C4 (weak)
 	virtual void doUpdate();                                // _1CC
@@ -79,13 +76,22 @@ struct Mgr : public EnemyMgrBase {
 	Mgr(int objLimit, u8 modelType);
 
 	//////////////// VTABLE
-	virtual ~Mgr();                                     // _58 (weak)
-	virtual EnemyBase* birth(EnemyBirthArg&);           // _70
-	virtual void createObj(int);                        // _A0 (weak)
-	virtual EnemyBase* getEnemy(int idx);               // _A4 (weak)
-	virtual void doAlloc();                             // _A8
-	virtual EnemyTypeID::EEnemyTypeID getEnemyTypeID(); // _AC (weak)
-	                                                    //////////////// VTABLE END
+	// virtual ~Mgr();                                     // _58 (weak)
+	virtual EnemyBase* birth(EnemyBirthArg&);          // _70
+	virtual void doAlloc();                            // _A8
+	virtual EnemyTypeID::EEnemyTypeID getEnemyTypeID() // _AC (weak)
+	{
+		return EnemyTypeID::EnemyID_Bomb;
+	}
+	virtual void createObj(int count) // _A0 (weak)
+	{
+		m_obj = new Obj[count];
+	}
+	virtual EnemyBase* getEnemy(int index) // _A4 (weak)
+	{
+		return &m_obj[index];
+	}
+	//////////////// VTABLE END
 
 	// _00 		= VTBL
 	// _00-_44	= EnemyMgrBase
@@ -94,16 +100,28 @@ struct Mgr : public EnemyMgrBase {
 
 struct Parms : public EnemyParmsBase {
 	struct ProperParms : public Parameters {
-		inline ProperParms(); // probably
+		inline ProperParms()
+		    : Parameters(nullptr, "EnemyParmsBase")
+		    , m_fp01(this, 'fp01', "敵へのダメージ", 250.0f, 0.0f, 2000.0f) // 'damage to enemies'
+		    , m_fp02(this, 'fp02', "爆風範囲高さ+-", 50.0f, 0.0f, 50.0f)    // 'blast range height +-'
+		    , m_ip01(this, 'ip01', "ダメージリミット", 2, 1, 10)            // 'damage limit'
+		    , m_ip02(this, 'ip02', "誘爆リミット", 50, 0, 100)              // 'induction limit'
+		{
+		}
 
-		Parm<f32> _804; // _804, type unsure
-		Parm<f32> _82C; // _82C, type unsure
-		Parm<f32> _854; // _854, type unsure
-		Parm<f32> _87C; // _87C, type unsure
+		Parm<f32> m_fp01; // _804
+		Parm<f32> m_fp02; // _82C
+		Parm<int> m_ip01; // _854
+		Parm<int> m_ip02; // _87C
 	};
-	Parms();
+	Parms() { }
 
-	virtual void read(Stream&); // _08 (weak)
+	virtual void read(Stream& stream) // _08 (weak)
+	{
+		CreatureParms::read(stream);
+		m_general.read(stream);
+		m_properParms.read(stream);
+	}
 
 	// _00-_7F8	= EnemyParmsBase
 	ProperParms m_properParms;
