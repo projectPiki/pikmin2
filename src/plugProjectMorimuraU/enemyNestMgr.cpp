@@ -118,7 +118,7 @@ void Mgr::doSimpleDraw(Viewport* viewport)
 			P2ASSERTLINE(137, material);
 
 			j3dSys._10C             = (u32)modelData->m_vertexData._18;
-			j3dSys._10C             = (u32)modelData->m_vertexData._1C;
+			j3dSys._110             = (u32)modelData->m_vertexData._1C;
 			j3dSys._114             = (u32)modelData->m_vertexData._24;
 			J3DShape::sOldVcdVatCmd = nullptr;
 			material->loadSharedDL();

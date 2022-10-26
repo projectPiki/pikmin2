@@ -996,7 +996,7 @@ MORIMURA:=\
 	$(BUILD_DIR)/asm/plugProjectMorimuraU/hiScore2D.o\
 	$(BUILD_DIR)/asm/plugProjectMorimuraU/umiMushiState.o\
 	$(BUILD_DIR)/src/plugProjectMorimuraU/umiMushiAnimator.o\
-	$(BUILD_DIR)/asm/plugProjectMorimuraU/umiMushiMgr.o\
+	$(BUILD_DIR)/src/plugProjectMorimuraU/umiMushiMgr.o\
 	$(BUILD_DIR)/asm/plugProjectMorimuraU/umiMushi.o\
 	$(BUILD_DIR)/asm/plugProjectMorimuraU/shijimiChouState.o\
 	$(BUILD_DIR)/src/plugProjectMorimuraU/shijimiChouAnimator.o\
