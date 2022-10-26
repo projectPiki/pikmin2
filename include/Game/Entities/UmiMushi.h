@@ -161,11 +161,9 @@ struct Mgr : public EnemyMgrBase {
 
 	//////////////// VTABLE
 	// virtual ~Mgr();                                     // _58 (weak)
-	virtual EnemyBase* birth(EnemyBirthArg&); // _70
-	virtual void createObj(int);              // _A0
-
-	virtual void doAlloc(); // _A8
-
+	virtual EnemyBase* birth(EnemyBirthArg&);       // _70
+	virtual void createObj(int);                    // _A0
+	virtual void doAlloc();                         // _A8
 	virtual SysShape::Model* createModel();         // _B0
 	virtual void loadModelData();                   // _C8
 	virtual void loadTexData();                     // _D0

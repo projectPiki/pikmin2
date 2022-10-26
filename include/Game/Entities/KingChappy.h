@@ -8,25 +8,14 @@
 #include "Game/JointFuncs.h"
 #include "Game/EnemyBase.h"
 #include "Game/WalkSmokeEffect.h"
+#include "efx/TKch.h"
+#include "efx/TEnemyHamon.h"
 #include "SysShape/Joint.h"
 #include "Collinfo.h"
 
 /**
  * --Header for Emperor Bulblax (KingChappy)--
  */
-
-namespace efx {
-struct TKchYodare;
-struct TKchDiveSand;
-struct TKchDiveWat;
-struct TKchCryAB;
-struct TKchCryInd;
-struct TKchSmokeHana;
-struct TKchAttackYodare;
-struct TKchDeadYodare;
-struct TKchDeadHana;
-struct TEnemyHamonChasePos;
-} // namespace efx
 
 namespace Game {
 namespace KingChappy {
@@ -47,7 +36,7 @@ struct Obj : public EnemyBase {
 	virtual void collisionCallback(CollEvent&);             // _EC
 	virtual void getShadowParam(ShadowParam&);              // _134
 	virtual void applyImpulse(Vector3f&, Vector3f&);        // _18C (weak)
-	virtual ~Obj();                                         // _1BC (weak)
+	virtual ~Obj() { }                                      // _1BC (weak)
 	virtual void birth(Vector3f&, f32);                     // _1C0
 	virtual void setInitialSetting(EnemyInitialParamBase*); // _1C4 (weak)
 	virtual void doUpdate();                                // _1CC
@@ -82,7 +71,7 @@ struct Obj : public EnemyBase {
 	void setNextGoal();
 	void searchTarget();
 	void isOutOfTerritory(f32);
-	void forceTransit(int);
+	bool forceTransit(int);
 	void requestTransit(int);
 	void walkFunc();
 	void turnFunc(f32);
@@ -150,14 +139,25 @@ struct Mgr : public EnemyMgrBase {
 	Mgr(int objLimit, u8 modelType);
 
 	//////////////// VTABLE
-	virtual ~Mgr();                                     // _58 (weak)
-	virtual EnemyBase* birth(EnemyBirthArg&);           // _70
-	virtual void createObj(int);                        // _A0 (weak)
-	virtual EnemyBase* getEnemy(int idx);               // _A4 (weak)
-	virtual void doAlloc();                             // _A8
-	virtual EnemyTypeID::EEnemyTypeID getEnemyTypeID(); // _AC (weak)
-	virtual SysShape::Model* createModel();             // _B0
+	// virtual ~Mgr();                                     // _58 (weak)
+	virtual EnemyBase* birth(EnemyBirthArg&); // _70
+	virtual void doAlloc();                   // _A8
+	virtual SysShape::Model* createModel();   // _B0
+	virtual EnemyBase* getEnemy(int index)    // _A4 (weak)
+	{
+		return &m_obj[index];
+	}
+	virtual EnemyTypeID::EEnemyTypeID getEnemyTypeID() // _AC (weak)
+	{
+		return EnemyTypeID::EnemyID_KingChappy;
+	}
+	virtual void createObj(int count) // _A0 (weak)
+	{
+		m_obj = new Obj[count];
+	}
 	//////////////// VTABLE END
+
+	void requestState(Obj*, int);
 
 	// _00 		= VTBL
 	// _00-_44	= EnemyMgrBase
@@ -166,7 +166,34 @@ struct Mgr : public EnemyMgrBase {
 
 struct Parms : public EnemyParmsBase {
 	struct ProperParms : public Parameters {
-		ProperParms(); // (weak)
+		ProperParms()
+		    : Parameters(nullptr, "EnemyParmsBase")
+		    , m_fp01(this, 'fp01', "要旋回角度(deg)", 20.0f, 0.0f, 180.0f)       // 'required turning angle (deg)'
+		    , m_fp02(this, 'fp02', "出現までの距離", 150.0f, 0.0f, 300.0f)       // 'distance to spawn'
+		    , m_fp03(this, 'fp03', "雄たけび有効角度(deg)", 45.0f, 0.0f, 180.0f) // 'roar effective angle (deg)'
+		    , m_fp04(this, 'fp04', "雄たけび有効範囲", 100.0f, 0.0f, 300.0f)     // 'roar effective range'
+		    , m_fp05(this, 'fp05', "爆弾ダメージ", 200.0f, 0.0f, 600.0f)         // 'bomb damage'
+		    , m_fp06(this, 'fp06', "見えない範囲", 70.0f, 0.0f, 200.0f)          // 'invisible range'
+		    , m_fp07(this, 'fp07', "旋回終了角度", 10.0f, 0.0f, 180.0f)          // 'turning end angle'
+		    , m_fp08(this, 'fp08', "踏み潰し範囲", 45.0f, 0.0f, 200.0f)          // 'trampling range'
+		    , m_fp09(this, 'fp09', "出現振り払い範囲", 100.0f, 0.0f, 200.0f)     // 'appearance shake-off range'
+		    , m_fp10(this, 'fp10', "出現振り払い力", 200.0f, 0.0f, 400.0f)       // 'appearance shake-off power'
+		    , m_fp11(this, 'fp11', "歩きアニメスピード", 1.0f, 0.0f, 3.0f)       // 'walking anime speed'
+		    , m_fp12(this, 'fp12', "死雄たけび率", 0.0f, 0.0f, 1.0f)             // 'death rate'
+		    , m_fp13(this, 'fp13', "フリック雄たけび率", 0.5f, 0.0f, 1.0f)       // 'flick shout rate'
+		    , m_fp14(this, 'fp14', "白ピクミン", 300.0f, 0.0f, 1000.0f)          // 'white pikmin'
+		    , m_fp15(this, 'fp15', "bigスケール", 1.0f, 1.0f, 2.0f)              // 'big scale'
+		    , m_fp16(this, 'fp16', "bigライフ", 100.0f, 0.0f, 9999.0f)           // 'big life'
+		    , m_fp17(this, 'fp17', "big速度", 80.0f, 0.0f, 1000.0f)              // 'big speed'
+		    , m_fp18(this, 'fp18', "big回転速度率", 0.1f, 0.0f, 1.0f)            // 'big rotation speed rate'
+		    , m_fp19(this, 'fp19', "big回転最大速度", 10.0f, 0.0f, 360.0f)       // 'big rotation maximum speed'
+		    , m_fp20(this, 'fp20', "big攻撃可能\角度", 15.0f, 0.0f, 180.0f)      // 'big attack angle'
+		    , m_fp21(this, 'fp21', "big攻撃ヒット範囲", 70.0f, 0.0f, 1000.0f)    // 'big attack hit range'
+		    , m_ip01(this, 'ip01', "潜伏までの期間", 500, 0, 2000)               // 'period of incubation'
+		    , m_ip02(this, 'ip02', "出現までの期間", 200, 0, 1000)               // 'time to appearance'
+		    , m_ip03(this, 'ip03', "爆弾ダメージ時間", 10, 0, 200)               // 'bomb damage time'
+		{
+		}
 
 		Parm<f32> m_fp01; // _804
 		Parm<f32> m_fp02; // _82C
@@ -194,9 +221,22 @@ struct Parms : public EnemyParmsBase {
 		Parm<int> m_ip03; // _B9C
 	};
 
-	Parms();
+	Parms()
+	{
+		_BC8 = 0;
+		_BC9 = 0;
+		_BCA = 1;
+		_BCB = 1;
+		_BCC = 0;
+		_BD0 = 3.0f;
+	}
 
-	virtual void read(Stream&); // _08 (weak)
+	virtual void read(Stream& stream) // _08 (weak)
+	{
+		CreatureParms::read(stream);
+		m_general.read(stream);
+		m_properParms.read(stream);
+	}
 
 	// _00-_7F8	= EnemyParmsBase
 	ProperParms m_properParms; // _7F8
@@ -218,6 +258,23 @@ struct ProperAnimator : public EnemyBlendAnimatorBase {
 
 /////////////////////////////////////////////////////////////////
 // STATE MACHINE DEFINITIONS
+enum StateID {
+	KINGCHAPPY_Walk     = 0,
+	KINGCHAPPY_Attack   = 1,
+	KINGCHAPPY_Dead     = 2,
+	KINGCHAPPY_Flick    = 3,
+	KINGCHAPPY_WarCry   = 4,
+	KINGCHAPPY_Damage   = 5,
+	KINGCHAPPY_Turn     = 6,
+	KINGCHAPPY_Eat      = 7,
+	KINGCHAPPY_Hide     = 8,
+	KINGCHAPPY_HideWait = 9,
+	KINGCHAPPY_Appear   = 10,
+	KINGCHAPPY_Caution  = 11,
+	KINGCHAPPY_Swallow  = 12,
+	KINGCHAPPY_Count,
+};
+
 struct FSM : public EnemyStateMachine {
 	virtual void init(EnemyBase*); // _08
 

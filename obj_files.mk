@@ -976,7 +976,7 @@ MORIMURA:=\
 	$(BUILD_DIR)/src/plugProjectMorimuraU/plantsAnimator.o\
 	$(BUILD_DIR)/asm/plugProjectMorimuraU/plants.o\
 	$(BUILD_DIR)/asm/plugProjectMorimuraU/kingChappyState.o\
-	$(BUILD_DIR)/asm/plugProjectMorimuraU/kingChappyMgr.o\
+	$(BUILD_DIR)/src/plugProjectMorimuraU/kingChappyMgr.o\
 	$(BUILD_DIR)/asm/plugProjectMorimuraU/kingChappy.o\
 	$(BUILD_DIR)/asm/plugProjectMorimuraU/miulinState.o\
 	$(BUILD_DIR)/src/plugProjectMorimuraU/miulinAnimator.o\
@@ -1010,7 +1010,7 @@ MORIMURA:=\
 	$(BUILD_DIR)/asm/plugProjectMorimuraU/mrWindow.o\
 	$(BUILD_DIR)/src/plugProjectMorimuraU/blackManState.o\
 	$(BUILD_DIR)/src/plugProjectMorimuraU/blackManAnimator.o\
-	$(BUILD_DIR)/asm/plugProjectMorimuraU/blackManMgr.o\
+	$(BUILD_DIR)/src/plugProjectMorimuraU/blackManMgr.o\
 	$(BUILD_DIR)/asm/plugProjectMorimuraU/blackMan.o\
 	$(BUILD_DIR)/src/plugProjectMorimuraU/tyreState.o\
 	$(BUILD_DIR)/src/plugProjectMorimuraU/tyreAnimator.o\

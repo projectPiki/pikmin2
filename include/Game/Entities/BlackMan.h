@@ -9,17 +9,14 @@
 #include "Game/EnemyBase.h"
 #include "Game/WalkSmokeEffect.h"
 #include "SysShape/Animator.h"
+#include "Sys/MatBaseAnimation.h"
+#include "Sys/MatBaseAnimator.h"
 #include "efx/TKage.h"
 
 /**
  * --Header for Waterwraith (BlackMan)--
  * Note: Rollers are a separate enemy/struct (Tyre).
  */
-
-namespace Sys {
-struct MatLoopAnimator;
-struct MatTevRegAnimation;
-} // namespace Sys
 
 namespace Game {
 struct PathNode;
@@ -44,7 +41,7 @@ struct Obj : public EnemyBase {
 	virtual bool isUnderground();                            // _D0
 	virtual void collisionCallback(CollEvent&);              // _EC
 	virtual void getShadowParam(ShadowParam&);               // _134
-	virtual ~Obj();                                          // _1BC (weak)
+	virtual ~Obj() { }                                       // _1BC (weak)
 	virtual void birth(Vector3f&, f32);                      // _1C0
 	virtual void setInitialSetting(EnemyInitialParamBase*);  // _1C4 (weak)
 	virtual void doUpdate();                                 // _1CC
@@ -159,64 +156,132 @@ struct Mgr : public EnemyMgrBase {
 	Mgr(int objLimit, u8 modelType);
 
 	//////////////// VTABLE
-	virtual ~Mgr();                                     // _58 (weak)
-	virtual EnemyBase* birth(EnemyBirthArg&);           // _70
-	virtual void createObj(int);                        // _A0 (weak)
-	virtual EnemyBase* getEnemy(int idx);               // _A4 (weak)
-	virtual void doAlloc();                             // _A8
-	virtual EnemyTypeID::EEnemyTypeID getEnemyTypeID(); // _AC (weak)
-	virtual SysShape::Model* createModel();             // _B0
-	virtual void loadModelData();                       // _C8
-	virtual void loadTexData();                         // _D0
-	virtual J3DModelData* doLoadBmd(void*);             // _D4
+	// virtual ~Mgr();                                     // _58 (weak)
+	virtual EnemyBase* birth(EnemyBirthArg&);          // _70
+	virtual void doAlloc();                            // _A8
+	virtual SysShape::Model* createModel();            // _B0
+	virtual void loadModelData();                      // _C8
+	virtual void loadTexData();                        // _D0
+	virtual J3DModelData* doLoadBmd(void*);            // _D4
+	virtual EnemyTypeID::EEnemyTypeID getEnemyTypeID() // _AC (weak)
+	{
+		return EnemyTypeID::EnemyID_BlackMan;
+	}
+	virtual void createObj(int count) // _A0 (weak)
+	{
+		m_obj = new Obj[count];
+	}
+	virtual EnemyBase* getEnemy(int index) // _A4 (weak)
+	{
+		return &m_obj[index];
+	}
 	//////////////// VTABLE END
 
 	// _00 		= VTBL
 	// _00-_44	= EnemyMgrBase
-	Sys::MatTevRegAnimation* _44; // _44
-	Obj* m_obj;                   // _48
+	Sys::MatTexAnimation* m_texAnimation; // _44
+	Obj* m_obj;                           // _48
 };
 
 struct Parms : public EnemyParmsBase {
 	struct ProperParms : public Parameters {
-		ProperParms(); // (weak)
+		ProperParms()
+		    : Parameters(nullptr, "EnemyParmsBase")
+		    , m_fp01(this, 'fp01', "ポッド移動速度", 10.0f, 0.0f, 100.0f)
+		    , m_fp02(this, 'fp02', "逃げ速度", 10.0f, 0.0f, 1000.0f)
+		    , m_fp03(this, 'fp03', "逃げ回転速度率", 0.1f, 0.0f, 1.0f)
+		    , m_fp04(this, 'fp04', "逃げ回転最大速度", 10.0f, 0.0f, 360.0f)
+		    , m_fp05(this, 'fp05', "2段階速度", 200.0f, 10.0f, 500.0f)
+		    , m_fp06(this, 'fp06', "2段階回転速度率", 0.1f, 0.0f, 1.0f)
+		    , m_fp07(this, 'fp07', "2段階回転最大速度", 10.0f, 0.0f, 360.0f)
+		    , m_fp11(this, 'fp11', "歩き速度", 10.0f, 0.0f, 100.0f)
+		    , m_ip01(this, 'ip01', "2段階へのタイマー", 300, 0, 3000)
+		    , m_ip03(this, 'ip03', "ドシン停止タイマー", 200, 0, 600)
+		    , m_ip04(this, 'ip04', "逃げ停止タイマー", 200, 0, 600)
+		    , m_ip05(this, 'ip05', "連続逃げタイマー", 200, 0, 600)
+		    , m_ip06(this, 'ip06', "つかれ停止タイマー", 200, 0, 600)
+		{
+		}
 
-		// feels like it should be this/with different types, but these don't line up:
-		// Parm<f32> _804; // _804
-		// Parm<f32> _82C; // _82C
-		// Parm<f32> _854; // _854
-		// Parm<f32> _87C; // _87C
-		// Parm<f32> _8A4; // _8A4
-		// Parm<f32> _8CC; // _8CC
-		// Parm<f32> _8F4; // _8F4
-		// Parm<f32> _91C; // _91C
-		// Parm<f32> _944; // _944
-		// Parm<f32> _96C; // _96C
-		// Parm<f32> _994; // _994
-		// Parm<f32> _9BC; // _9BC
-		// Parm<f32> _9E4; // _9E4
-		// Parm<f32> _A0C; // _A0C
-		// Parm<f32> _A34; // _A34
-
-		u8 _804[0x180]; // _804, unknown
-		int _984;       // _984
-		u8 _988[0x24];  // _988, unknown
-		int _9AC;       // _9AC
-		u8 _9B0[0x4C];  // _9B0, unknown
-		int _9FC;       // _9FC
-		u8 _A00[0x1C];  // _A00, unknown
-		f32 _A1C;       // _A1C
-		u8 _A20[0x28];  // _A20, unknown
-		f32 _A48;       // _A48
-		u8 _A4C[0x10];  // _A4C, unknown
+		Parm<f32> m_fp01; // _804
+		Parm<f32> m_fp02; // _82C
+		Parm<f32> m_fp03; // _854
+		Parm<f32> m_fp04; // _87C
+		Parm<f32> m_fp05; // _8A4
+		Parm<f32> m_fp06; // _8CC
+		Parm<f32> m_fp07; // _8F4
+		Parm<f32> m_fp11; // _91C
+		Parm<int> m_ip01; // _944
+		Parm<int> m_ip03; // _96C
+		Parm<int> m_ip04; // _994
+		Parm<int> m_ip05; // _9BC
+		Parm<int> m_ip06; // _9E4
 	};
 
-	Parms();
+	Parms()
+	{
+		_A10 = 1;
+		_A11 = 0;
+		_A12 = 1;
+		_A14 = 1;
+		_A15 = 0;
+		_A16 = 1;
+		_A17 = 1;
+		_A18 = 1;
+		_A1A = -1;
+		_A1C = 50.0f;
+		_A20 = 20.0f;
+		_A24 = 1.0f;
+		_A28 = 5.0f;
+		_A2C = 1.0f;
+		_A30 = 0.9f;
+		_A34 = 0.6f;
+		_A38 = 0.2f;
+		_A3C = 0.08f;
+		_A40 = 20.0f;
+		_A44 = -10.0f;
+		_A48 = 10.0f;
+		_A4C = 1.25f;
+		_A50 = 1100.0f;
+		_A54 = 300.0f;
+		_A58 = 1.0f;
+	}
 
-	virtual void read(Stream&); // _08 (weak)
+	virtual void read(Stream& stream) // _08 (weak)
+	{
+		CreatureParms::read(stream);
+		m_general.read(stream);
+		m_properParms.read(stream);
+	}
 
 	// _00-_7F8	= EnemyParmsBase
 	ProperParms m_properParms; // _7F8
+	u8 _A10;                   // _A10, unknown
+	u8 _A11;                   // _A11, unknown
+	u8 _A12;                   // _A12, unknown
+	u8 _A13;                   // _A13, unknown
+	u8 _A14;                   // _A14, unknown
+	u8 _A15;                   // _A15, unknown
+	u8 _A16;                   // _A16, unknown
+	u8 _A17;                   // _A17, unknown
+	u8 _A18;                   // _A18, unknown
+	s16 _A1A;                  // _A1A, unknown
+	f32 _A1C;                  // _A1C
+	f32 _A20;                  // _A20
+	f32 _A24;                  // _A24
+	f32 _A28;                  // _A28
+	f32 _A2C;                  // _A2C
+	f32 _A30;                  // _A30
+	f32 _A34;                  // _A34
+	f32 _A38;                  // _A38
+	f32 _A3C;                  // _A3C
+	f32 _A40;                  // _A40
+	f32 _A44;                  // _A44
+	f32 _A48;                  // _A48
+	f32 _A4C;                  // _A4C
+	f32 _A50;                  // _A50
+	f32 _A54;                  // _A54
+	f32 _A58;                  // _A58
 };
 
 struct ProperAnimator : public EnemyAnimatorBase {

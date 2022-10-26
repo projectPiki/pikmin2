@@ -155,15 +155,13 @@
 | File | Size (bytes) | File | Size (bytes) |
 | ---- | ---- | ---- | ---- |
 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectMorimuraU/enemyNestMgr.cpp">enemyNestMgr.cpp</a> | 9813 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectMorimuraU/mrWindow.cpp">mrWindow.cpp</a> | 14726 |
-| <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectMorimuraU/egg.cpp">egg.cpp</a> | 18404 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectMorimuraU/blackManMgr.cpp">blackManMgr.cpp</a> | 30901 |
-| <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectMorimuraU/shijimiChouState.cpp">shijimiChouState.cpp</a> | 31896 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectMorimuraU/kingChappyMgr.cpp">kingChappyMgr.cpp</a> | 33504 |
+| <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectMorimuraU/egg.cpp">egg.cpp</a> | 18404 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectMorimuraU/shijimiChouState.cpp">shijimiChouState.cpp</a> | 31896 |
 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectMorimuraU/mrUtil.cpp">mrUtil.cpp</a> | 38082 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectMorimuraU/scrollList.cpp">scrollList.cpp</a> | 41235 |
 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectMorimuraU/shijimiChouMgr.cpp">shijimiChouMgr.cpp</a> | 43556 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectMorimuraU/tamagoMushiMgr.cpp">tamagoMushiMgr.cpp</a> | 45207 |
 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectMorimuraU/bomb.cpp">bomb.cpp</a> | 46434 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectMorimuraU/panModokiMgr.cpp">panModokiMgr.cpp</a> | 51576 |
 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectMorimuraU/miulinState.cpp">miulinState.cpp</a> | 53516 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectMorimuraU/gameOver2D.cpp">gameOver2D.cpp</a> | 54258 |
 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectMorimuraU/hurryUp2D.cpp">hurryUp2D.cpp</a> | 60256 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectMorimuraU/umiMushiState.cpp">umiMushiState.cpp</a> | 61233 |
 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectMorimuraU/miulin.cpp">miulin.cpp</a> | 61809 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectMorimuraU/panModokiState.cpp">panModokiState.cpp</a> | 68226 |
-| <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectMorimuraU/tamagoMushi.cpp">tamagoMushi.cpp</a> | 72762 |
 
 ### <section id="plugProjectNishimuraU">plugProjectNishimuraU</section>
 | File | Size (bytes) | File | Size (bytes) |

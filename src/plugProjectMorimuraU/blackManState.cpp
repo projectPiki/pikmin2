@@ -90,7 +90,7 @@ void StateWalk::exec(EnemyBase* enemy)
 		return;
 	}
 
-	if (wraith->isReachToGoal(wraith->getParms()->m_properParms._A1C)) {
+	if (wraith->isReachToGoal(wraith->getParms()->_A1C)) {
 		wraith->findNextRoutePoint();
 		return;
 	}
@@ -250,7 +250,7 @@ void StateFreeze::exec(EnemyBase* enemy)
 			transit(wraith, WRAITH_Walk, nullptr);
 			wraith->collisionStOff();
 		}
-	} else if (wraith->_2CC > wraith->getParms()->m_properParms._9AC) {
+	} else if (wraith->_2CC > wraith->getParms()->m_properParms.m_ip04.m_value) {
 		wraith->finishMotion();
 	}
 }
@@ -341,7 +341,7 @@ void StateBend::exec(EnemyBase* enemy)
 		}
 	} else {
 		wraith->_2CC++;
-		if (wraith->_2CC > wraith->getParms()->m_properParms._984) {
+		if (wraith->_2CC > wraith->getParms()->m_properParms.m_ip03.m_value) {
 			wraith->finishMotion();
 		}
 	}
@@ -479,7 +479,7 @@ void StateFall::exec(EnemyBase* enemy)
 	position.y += 20.0f;
 
 	f32 minY     = mapMgr->getMinY(position);
-	f32 someParm = static_cast<Obj*>(enemy)->getParms()->m_properParms._A48;
+	f32 someParm = static_cast<Obj*>(enemy)->getParms()->_A48;
 	someParm += minY;
 
 	if (initY < someParm) {
@@ -686,7 +686,7 @@ void StateTired::exec(EnemyBase* enemy)
 
 	_10++;
 	Obj* wraith = static_cast<Obj*>(enemy);
-	if (_10 > wraith->getParms()->m_properParms._9FC) {
+	if (_10 > wraith->getParms()->m_properParms.m_ip06.m_value) {
 		enemy->finishMotion();
 	}
 }
