@@ -811,7 +811,7 @@ NISHIMURA:=\
 	$(BUILD_DIR)/src/plugProjectNishimuraU/OniKurageMgr.o\
 	$(BUILD_DIR)/asm/plugProjectNishimuraU/OniKurage.o\
 	$(BUILD_DIR)/src/plugProjectNishimuraU/BigTreasureState.o\
-	$(BUILD_DIR)/asm/plugProjectNishimuraU/BigTreasureMgr.o\
+	$(BUILD_DIR)/src/plugProjectNishimuraU/BigTreasureMgr.o\
 	$(BUILD_DIR)/asm/plugProjectNishimuraU/BigTreasureShadow.o\
 	$(BUILD_DIR)/asm/plugProjectNishimuraU/BigTreasure.o\
 	$(BUILD_DIR)/asm/plugProjectNishimuraU/KabutoState.o\

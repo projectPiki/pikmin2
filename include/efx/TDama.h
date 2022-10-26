@@ -12,42 +12,42 @@ struct TDamaDeadBomb : public TSimple1 {
 };
 
 struct TDamaDeadElecA : public TChasePosPos {
-	virtual void ~TDamaDeadElecA(); // _48 (weak)
+	virtual ~TDamaDeadElecA(); // _48 (weak)
 
 	// _00      = VTBL
 	// _00-_18  = TChasePosPos
 };
 
 struct TDamaDeadElecB : public TChasePos {
-	virtual void ~TDamaDeadElecB(); // _48 (weak)
+	virtual ~TDamaDeadElecB(); // _48 (weak)
 
 	// _00      = VTBL
 	// _00-_14  = TChasePos
 };
 
 struct TDamaDeadHahenA : public TChasePosPos {
-	virtual void ~TDamaDeadHahenA(); // _48 (weak)
+	virtual ~TDamaDeadHahenA(); // _48 (weak)
 
 	// _00      = VTBL
 	// _00-_18  = TChasePosPos
 };
 
 struct TDamaDeadHahenB : public TChasePosPos {
-	virtual void ~TDamaDeadHahenB(); // _48 (weak)
+	virtual ~TDamaDeadHahenB(); // _48 (weak)
 
 	// _00      = VTBL
 	// _00-_18  = TChasePosPos
 };
 
 struct TDamaDeadHahenC1 : public TChaseMtx {
-	virtual void ~TDamaDeadHahenC1(); // _48 (weak)
+	virtual ~TDamaDeadHahenC1(); // _48 (weak)
 
 	// _00      = VTBL
 	// _00-_14  = TChaseMtx
 };
 
 struct TDamaDeadHahenC2 : public TChaseMtx {
-	virtual void ~TDamaDeadHahenC2(); // _48 (weak)
+	virtual ~TDamaDeadHahenC2(); // _48 (weak)
 
 	// _00      = VTBL
 	// _00-_14  = TChaseMtx
@@ -59,21 +59,21 @@ struct TDamaFoot : public TChasePos2 {
 };
 
 struct TDamaFootw : public TChasePos {
-	virtual void ~TDamaFootw(); // _48 (weak)
+	virtual ~TDamaFootw(); // _48 (weak)
 
 	// _00      = VTBL
 	// _00-_14  = TChasePos
 };
 
 struct TDamaHahen : public TChasePosPos {
-	virtual void ~TDamaHahen(); // _48 (weak)
+	virtual ~TDamaHahen(); // _48 (weak)
 
 	// _00      = VTBL
 	// _00-_18  = TChasePosPos
 };
 
 struct TDamaSmoke : public TChasePos {
-	virtual void ~TDamaSmoke(); // _48 (weak)
+	virtual ~TDamaSmoke(); // _48 (weak)
 
 	// _00      = VTBL
 	// _00-_14  = TChasePos
