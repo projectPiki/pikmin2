@@ -82,9 +82,9 @@ struct Mgr : public EnemyMgrBase {
 	Mgr(int objLimit, u8 modelType);
 
 	// virtual ~Mgr();                                     // _58 (weak)
+	virtual void doAlloc();                            // _A8
 	virtual void createObj(int);                       // _A0
 	virtual EnemyBase* getEnemy(int idx);              // _A4
-	virtual void doAlloc();                            // _A8
 	virtual EnemyTypeID::EEnemyTypeID getEnemyTypeID() // _AC (weak)
 	{
 		return EnemyTypeID::EnemyID_Rock;

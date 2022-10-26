@@ -669,7 +669,7 @@ NISHIMURA:=\
 	$(BUILD_DIR)/asm/plugProjectNishimuraU/MaroFrog.o\
 	$(BUILD_DIR)/src/plugProjectNishimuraU/RockState.o\
 	$(BUILD_DIR)/src/plugProjectNishimuraU/RockAnimator.o\
-	$(BUILD_DIR)/asm/plugProjectNishimuraU/RockMgr.o\
+	$(BUILD_DIR)/src/plugProjectNishimuraU/RockMgr.o\
 	$(BUILD_DIR)/asm/plugProjectNishimuraU/Rock.o\
 	$(BUILD_DIR)/asm/plugProjectNishimuraU/UjiaState.o\
 	$(BUILD_DIR)/src/plugProjectNishimuraU/UjiaAnimator.o\

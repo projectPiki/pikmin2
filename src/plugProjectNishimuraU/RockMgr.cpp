@@ -99,7 +99,6 @@ void Mgr::doAlloc() { init(new Parms); }
  * Address:	80262C3C
  * Size:	000160
  */
-// non-matching
 void Mgr::createObj(int count)
 {
 	m_obj = new Obj[count];
