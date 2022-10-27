@@ -1,5 +1,5 @@
 #include "types.h"
-#include "Game/ItemHoney.h"
+#include "Game/Entities/ItemHoney.h"
 
 /*
     Generated from dpostproc

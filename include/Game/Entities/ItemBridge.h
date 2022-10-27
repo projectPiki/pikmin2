@@ -9,7 +9,6 @@
 namespace Game {
 namespace ItemBridge {
 struct Item;
-struct BridgeParms;
 
 struct BridgeInitArg : public CreatureInitArg {
 	virtual const char* getName(); // _08 (weak)
@@ -33,11 +32,11 @@ struct BridgeInfo {
 	u32 _0C; // _0C, unknown
 };
 
-struct FSM : public StateMachine<Item> {
+struct FSM : public ItemFSM<Item> {
 	virtual void init(Item*); // _08
 
 	// _00     = VTBL
-	// _00-_1C = StateMachine
+	// _00-_1C = ItemFSM
 };
 
 struct State : public ItemState<Item> {
@@ -61,9 +60,25 @@ struct NormalState : public State {
 	// _00-_0C = State
 };
 
-struct Item : public FSMItem<Item, FSM, State> {
+struct BridgeParms : public CreatureParms {
+	struct Parms : public Parameters {
+		inline Parms(); // probably
+
+		Parm<f32> m_p000; // _E8
+	};
+
+	BridgeParms();
+
+	virtual void read(Stream&); // _08 (weak)
+
+	// _00-_D8 = CreatureParms
+	// _D8		 = VTBL
+	Parms m_bridgeParms;
+};
+
+struct Item : public WorkItem<Item, FSM, State> {
 	inline Item(int objType)
-	    : FSMItem(objType)
+	    : WorkItem(objType)
 	{ // probably needs things in here, just an initial guess
 	}
 
@@ -99,8 +114,7 @@ struct Item : public FSMItem<Item, FSM, State> {
 	void workable(Vector3f&);
 
 	// _00      = VTBL
-	// _00-_1E0 = FSMItem
-	TSoundEvent m_soundEvent;                    // _1E0
+	// _00-_1EC = WorkItem
 	u32 _1EC;                                    // _1EC, mabiki? might be size 0x8?
 	u32 _1F0;                                    // _1F0, unknown
 	f32 _1F4;                                    // _1F4
@@ -126,7 +140,7 @@ struct Mgr : public TNodeItemMgr {
 	virtual GenItemParm* generatorNewItemParm();                          // _70
 	virtual BaseItem* doNew();                                            // _A0 (weak)
 	virtual ~Mgr();                                                       // _B8 (weak)
-	virtual void birth();                                                 // _BC
+	virtual Item* birth();                                                // _BC
 
 	void getBridgeInfo(int);
 	void createBridgeInfo(int);
@@ -136,23 +150,7 @@ struct Mgr : public TNodeItemMgr {
 	// _00-_88 = TNodeItemMgr
 	PlatAttacher* m_platAttachers; // _88, array of 3? might be array of pointers?
 	BridgeInfo* m_bridgeInfos;     // _8C, array of 3? might be array of pointers?
-	BridgeParms* m_bridgeParms;    // _90
-};
-
-struct BridgeParms : public CreatureParms {
-	struct Parms : public Parameters {
-		inline Parms(); // probably
-
-		Parm<f32> m_p000; // _E8
-	};
-
-	BridgeParms();
-
-	virtual void read(Stream&); // _08 (weak)
-
-	// _00-_D8 = CreatureParms
-	// _D8		 = VTBL
-	Parms m_bridgeParms;
+	BridgeParms* m_parms;          // _90
 };
 
 } // namespace ItemBridge

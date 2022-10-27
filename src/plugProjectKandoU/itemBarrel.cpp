@@ -1,6 +1,6 @@
 #include "CollInfo.h"
 #include "Game/GameSystem.h"
-#include "Game/ItemBarrel.h"
+#include "Game/Entities/ItemBarrel.h"
 #include "Game/Interaction.h"
 #include "Game/MapMgr.h"
 #include "Game/MoviePlayer.h"
@@ -1370,7 +1370,7 @@ void ItemBarrel::Item::doAI(void)
 {
 	m_stateMachine->exec(this);
 	updateCollTree();
-	m_collTree->m_part->_1C = getWorkRadius();
+	m_collTree->m_part->m_radius = getWorkRadius();
 	switch (m_soundEvent.update()) {
 	case 2:
 		P2ASSERTLINE(298, m_soundObj->getCastType() == PSM::CCT_WorkItem);

@@ -80,27 +80,55 @@ struct BaseItemMgr : public GenericObjectMgr, virtual public _BaseItemMgrParent2
 	JKRMemArchive* m_archive;           // _2C
 };
 
+// surprisingly this is not related to TNodeItemMgr, for whatever reason.
+template <typename T>
+struct NodeItemMgr : public BaseItemMgr, public Container<T> {
+	NodeItemMgr(); // weak
+
+	// vtable 1
+	virtual void doAnimation();                 // _08 (weak)
+	virtual void doEntry();                     // _0C (weak)
+	virtual void doSetView(int viewportNumber); // _10 (weak)
+	virtual void doViewCalc();                  // _14 (weak)
+	virtual void doSimulation(f32);             // _18 (weak)
+	virtual void doDirectDraw(Graphics& gfx);   // _1C (weak)
+	virtual void initDependency();              // _38
+	virtual void killAll();                     // _3C
+
+	// vtable 2
+	virtual void kill(T*);        // _A0 (weak)
+	virtual T* get(void*);        // _A4 (weak)
+	virtual void* getNext(void*); // _A8 (weak)
+	virtual void* getStart();     // _AC (weak)
+	virtual void* getEnd();       // _B0 (weak)
+	virtual ~NodeItemMgr();       // _B4 (weak)
+
+	T* birth(); // weak
+
+	NodeObjectMgr<T> m_nodeObjectMgr; // _4C
+};
+
 struct TNodeItemMgr : public BaseItemMgr, public Container<BaseItem> {
 	TNodeItemMgr();
 
 	// vtable 1
-	virtual void doAnimation();                 // _00
-	virtual void doEntry();                     // _04
-	virtual void doSetView(int viewportNumber); // _08
-	virtual void doViewCalc();                  // _0C
-	virtual void doSimulation(float);           // _10
-	virtual void doDirectDraw(Graphics& gfx);   // _14
-	virtual void initDependency();              // _30
-	virtual void killAll();                     // _34
+	virtual void doAnimation();                 // _08 (weak)
+	virtual void doEntry();                     // _0C (weak)
+	virtual void doSetView(int viewportNumber); // _10 (weak)
+	virtual void doViewCalc();                  // _14 (weak)
+	virtual void doSimulation(float);           // _18 (weak)
+	virtual void doDirectDraw(Graphics& gfx);   // _1C (weak)
+	virtual void initDependency();              // _38
+	virtual void killAll();                     // _3C
 
 	// vtable 2
-	virtual BaseItem* doNew() = 0; // _24
-	virtual void kill(BaseItem*);  // _28
-	virtual BaseItem* get(void*);  // _2C
-	virtual void* getNext(void*);  // _30
-	virtual void* getStart();      // _34
-	virtual void* getEnd();        // _38
-	virtual ~TNodeItemMgr();       // _3C
+	virtual BaseItem* doNew() = 0; // _A0
+	virtual void kill(BaseItem*);  // _A4 (weak)
+	virtual BaseItem* get(void*);  // _A8 (weak)
+	virtual void* getNext(void*);  // _BC (weak)
+	virtual void* getStart();      // _B0 (weak)
+	virtual void* getEnd();        // _B4 (weak)
+	virtual ~TNodeItemMgr();       // _B8 (weak)
 
 	BaseItem* birth();
 	void entry(BaseItem*);
@@ -112,16 +140,16 @@ struct ItemMgr : public NodeObjectMgr<GenericObjectMgr> {
 	ItemMgr();
 
 	// vtable 1
-	~ItemMgr(); // _08
+	virtual ~ItemMgr(); // _08
 	// vtable 2
-	virtual void doAnimation();                 // _00, _30
-	virtual void doEntry();                     // _04, _34
-	virtual void doSetView(int viewportNumber); // _08, _38
-	virtual void doViewCalc();                  // _0C, _3C
-	virtual void doSimulation(float);           // _10, _40
-	virtual void doDirectDraw(Graphics& gfx);   // _14, _44
-	virtual void loadResources();               // _1C, _4C
-	virtual void doSimpleDraw(Viewport*);       // _18, _50
+	virtual void doAnimation();           // _64 (weak)
+	virtual void doEntry();               // _68 (weak)
+	virtual void doSetView(int);          // _6C (weak)
+	virtual void doViewCalc();            // _70 (weak)
+	virtual void doSimulation(float);     // _74 (weak)
+	virtual void doDirectDraw(Graphics&); // _78 (weak)
+	virtual void loadResources();         // _80 (weak)
+	virtual void doSimpleDraw(Viewport*); // _84 (weak)
 
 	void addMgr(BaseItemMgr*);
 	void initDependency();
@@ -131,6 +159,14 @@ struct ItemMgr : public NodeObjectMgr<GenericObjectMgr> {
 	int getIndexByMgr(BaseItemMgr*);
 	BaseItemMgr* getMgrByIndex(int);
 	BaseItemMgr* getMgrByID(ID32&);
+
+	void createManagers(u32);
+	void killAllExceptOnyonMgr();
+
+	// _00     = VTBL 1
+	// _00-_1C = Container
+	// _1C     = VTBL 2
+	// _1C-3C  = NodeObjectMgr
 };
 
 template <typename T>

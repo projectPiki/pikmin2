@@ -7,7 +7,7 @@
 #include "Game/EnemyMgrBase.h"
 #include "Game/EnemyBase.h"
 #include "efx/TSimple.h"
-#include "Game/ItemHoney.h"
+#include "Game/Entities/ItemHoney.h"
 
 /**
  * --Header for Egg (Egg)--

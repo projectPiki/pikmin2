@@ -26,7 +26,7 @@
 #include "Game/gamePlayData.h"
 #include "Game/GameSystem.h"
 #include "Game/Interaction.h"
-#include "Game/ItemHoney.h"
+#include "Game/Entities/ItemHoney.h"
 #include "Game/MapMgr.h"
 #include "Game/MoviePlayer.h"
 #include "Game/pelletMgr.h"

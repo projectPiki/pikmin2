@@ -1,7 +1,7 @@
-#include "Game/AILODParm.h"
+#include "Game/AILOD.h"
 #include "Game/BaseItem.h"
 #include "Game/GameSystem.h"
-#include "Game/ItemBarrel.h"
+#include "Game/Entities/ItemBarrel.h"
 #include "Game/MapMgr.h"
 #include "Game/MoviePlayer.h"
 #include "Game/pelletMgr.h"
@@ -21,7 +21,7 @@
 #include "sysMath.h"
 #include "types.h"
 #include "nans.h"
-#include "Game/ItemHole.h"
+#include "Game/Entities/ItemHole.h"
 #include "SoundID.h"
 #include "PSSystem/PSSystemIF.h"
 

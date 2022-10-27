@@ -2,7 +2,6 @@
 #include "Game/MapMgr.h"
 #include "Game/EnemyAnimKeyEvent.h"
 #include "Game/gamePlayData.h"
-#include "Game/ItemHoney.h"
 #include "Game/Entities/TamagoMushi.h"
 #include "Game/generalEnemyMgr.h"
 #include "Dolphin/rand.h"
