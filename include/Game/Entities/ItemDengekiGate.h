@@ -23,7 +23,7 @@ struct Mgr : public NodeItemMgr<ItemGate> {
 	void setupPlatform(ItemGate*);
 
 	// _00     = VTBL
-	// _00-_88 = TNodeItemMgr
+	// _00-_88 = NodeItemMgr
 	Platform* m_centrePlatform;          // _88
 	Platform* m_sidePlatform;            // _8C
 	Sys::MatTexAnimation m_matAnimation; // _90
