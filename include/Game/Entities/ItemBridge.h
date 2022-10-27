@@ -153,6 +153,8 @@ struct Mgr : public TNodeItemMgr {
 	BridgeParms* m_parms;          // _90
 };
 
+extern Mgr* mgr;
+
 } // namespace ItemBridge
 } // namespace Game
 

@@ -208,448 +208,73 @@ void Obj::resetBridgeGateCheck()
  */
 void Obj::setInitLivingThing()
 {
-	/*
-	stwu     r1, -0x70(r1)
-	mflr     r0
-	stw      r0, 0x74(r1)
-	stfd     f31, 0x60(r1)
-	psq_st   f31, 104(r1), 0, qr0
-	stfd     f30, 0x50(r1)
-	psq_st   f30, 88(r1), 0, qr0
-	stw      r31, 0x4c(r1)
-	stw      r30, 0x48(r1)
-	mr       r31, r3
-	lbz      r0, 0x2c0(r3)
-	cmplwi   r0, 0
-	beq      lbl_8026DD30
-	li       r0, 0
-	stb      r0, 0x2c0(r31)
-	stw      r0, 0x2c8(r31)
-	stw      r0, 0x2cc(r31)
-	lwz      r3, gameSystem__4Game@sda21(r13)
-	cmplwi   r3, 0
-	beq      lbl_8026DD04
-	lbz      r0, 0x48(r3)
-	cmplwi   r0, 0
-	bne      lbl_8026DD04
-	lwz      r0, 0x44(r3)
-	cmpwi    r0, 0
-	bne      lbl_8026DD04
-	lwz      r3, mgr__Q24Game10ItemBridge@sda21(r13)
-	cmplwi   r3, 0
-	beq      lbl_8026DA88
-	beq      lbl_8026D824
-	addi     r3, r3, 0x30
+	if (m_isBridgeGate) {
+		m_isBridgeGate = false;
+		m_bridge       = nullptr;
+		m_gate         = nullptr;
 
-lbl_8026D824:
-	li       r0, 0
-	lis      r4, "__vt__26Iterator<Q24Game8BaseItem>"@ha
-	addi     r4, r4, "__vt__26Iterator<Q24Game8BaseItem>"@l
-	stw      r0, 0x3c(r1)
-	cmplwi   r0, 0
-	stw      r4, 0x30(r1)
-	stw      r0, 0x34(r1)
-	stw      r3, 0x38(r1)
-	bne      lbl_8026D860
-	lwz      r12, 0(r3)
-	lwz      r12, 0x18(r12)
-	mtctr    r12
-	bctrl
-	stw      r3, 0x34(r1)
-	b        lbl_8026D8E8
+		if (gameSystem != nullptr && !gameSystem->m_inCave && gameSystem->m_mode == GSM_STORY_MODE) {
+			if (ItemBridge::mgr != nullptr) {
+				Iterator<BaseItem> bridgeIter(ItemBridge::mgr);
 
-lbl_8026D860:
-	lwz      r12, 0(r3)
-	lwz      r12, 0x18(r12)
-	mtctr    r12
-	bctrl
-	stw      r3, 0x34(r1)
-	b        lbl_8026D8CC
+				CI_LOOP(bridgeIter)
+				{
+					ItemBridge::Item* bridge = static_cast<ItemBridge::Item*>(*bridgeIter);
+					Vector3f bridgePos       = bridge->getPosition();
+					f32 yDist                = bridgePos.y - m_position.y;
+					yDist                    = (yDist > 0.0f) ? yDist : -yDist;
 
-lbl_8026D878:
-	lwz      r3, 0x38(r1)
-	lwz      r4, 0x34(r1)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x20(r12)
-	mtctr    r12
-	bctrl
-	mr       r4, r3
-	lwz      r3, 0x3c(r1)
-	lwz      r12, 0(r3)
-	lwz      r12, 8(r12)
-	mtctr    r12
-	bctrl
-	clrlwi.  r0, r3, 0x18
-	bne      lbl_8026D8E8
-	lwz      r3, 0x38(r1)
-	lwz      r4, 0x34(r1)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x14(r12)
-	mtctr    r12
-	bctrl
-	stw      r3, 0x34(r1)
+					if (yDist < 25.0f) {
+						f32 xDist = bridgePos.x - m_position.x;
+						xDist     = (xDist > 0.0f) ? xDist : -xDist;
 
-lbl_8026D8CC:
-	lwz      r12, 0x30(r1)
-	addi     r3, r1, 0x30
-	lwz      r12, 0x10(r12)
-	mtctr    r12
-	bctrl
-	clrlwi.  r0, r3, 0x18
-	beq      lbl_8026D878
+						if (xDist < 75.0f) {
+							f32 zDist = bridgePos.z - m_position.z;
+							zDist     = (zDist > 0.0f) ? zDist : -zDist;
 
-lbl_8026D8E8:
-	lfs      f31, lbl_8051B078@sda21(r2)
-	lfs      f30, lbl_8051B08C@sda21(r2)
-	b        lbl_8026DA68
+							if (zDist < 75.0f) {
+								m_bridge = bridge;
+								break;
+							}
+						}
+					}
+				}
+			}
 
-lbl_8026D8F4:
-	lwz      r3, 0x38(r1)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x20(r12)
-	mtctr    r12
-	bctrl
-	mr       r0, r3
-	addi     r3, r1, 0x14
-	mr       r30, r0
-	lwz      r12, 0(r30)
-	mr       r4, r30
-	lwz      r12, 8(r12)
-	mtctr    r12
-	bctrl
-	lfs      f1, 0x18(r1)
-	lfs      f0, 0x190(r31)
-	lfs      f2, 0x14(r1)
-	fsubs    f0, f1, f0
-	lfs      f3, 0x1c(r1)
-	fcmpo    cr0, f0, f31
-	ble      lbl_8026D948
-	b        lbl_8026D94C
+			if (itemGateMgr != nullptr && m_bridge == nullptr) {
+				Iterator<ItemGate> gateIter(&itemGateMgr->m_nodeObjectMgr);
 
-lbl_8026D948:
-	fneg     f0, f0
+				CI_LOOP(gateIter)
+				{
+					ItemGate* gate   = *gateIter;
+					Vector3f gatePos = gate->getPosition();
+					f32 yDist        = gatePos.y - m_position.y;
+					yDist            = (yDist > 0.0f) ? yDist : -yDist;
 
-lbl_8026D94C:
-	fcmpo    cr0, f0, f30
-	bge      lbl_8026D9AC
-	lfs      f1, 0x18c(r31)
-	lfs      f0, lbl_8051B078@sda21(r2)
-	fsubs    f1, f2, f1
-	fcmpo    cr0, f1, f0
-	ble      lbl_8026D96C
-	b        lbl_8026D970
+					if (yDist < 25.0f) {
+						f32 xDist = gatePos.x - m_position.x;
+						xDist     = (xDist > 0.0f) ? xDist : -xDist;
 
-lbl_8026D96C:
-	fneg     f1, f1
+						if (xDist < 75.0f) {
+							f32 zDist = gatePos.z - m_position.z;
+							zDist     = (zDist > 0.0f) ? zDist : -zDist;
 
-lbl_8026D970:
-	lfs      f0, lbl_8051B090@sda21(r2)
-	fcmpo    cr0, f1, f0
-	bge      lbl_8026D9AC
-	lfs      f1, 0x194(r31)
-	lfs      f0, lbl_8051B078@sda21(r2)
-	fsubs    f1, f3, f1
-	fcmpo    cr0, f1, f0
-	ble      lbl_8026D994
-	b        lbl_8026D998
+							if (zDist < 75.0f) {
+								m_gate = gate;
+								break;
+							}
+						}
+					}
+				}
+			}
+		}
 
-lbl_8026D994:
-	fneg     f1, f1
-
-lbl_8026D998:
-	lfs      f0, lbl_8051B090@sda21(r2)
-	fcmpo    cr0, f1, f0
-	bge      lbl_8026D9AC
-	stw      r30, 0x2c8(r31)
-	b        lbl_8026DA88
-
-lbl_8026D9AC:
-	lwz      r0, 0x3c(r1)
-	cmplwi   r0, 0
-	bne      lbl_8026D9D8
-	lwz      r3, 0x38(r1)
-	lwz      r4, 0x34(r1)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x14(r12)
-	mtctr    r12
-	bctrl
-	stw      r3, 0x34(r1)
-	b        lbl_8026DA68
-
-lbl_8026D9D8:
-	lwz      r3, 0x38(r1)
-	lwz      r4, 0x34(r1)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x14(r12)
-	mtctr    r12
-	bctrl
-	stw      r3, 0x34(r1)
-	b        lbl_8026DA4C
-
-lbl_8026D9F8:
-	lwz      r3, 0x38(r1)
-	lwz      r4, 0x34(r1)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x20(r12)
-	mtctr    r12
-	bctrl
-	mr       r4, r3
-	lwz      r3, 0x3c(r1)
-	lwz      r12, 0(r3)
-	lwz      r12, 8(r12)
-	mtctr    r12
-	bctrl
-	clrlwi.  r0, r3, 0x18
-	bne      lbl_8026DA68
-	lwz      r3, 0x38(r1)
-	lwz      r4, 0x34(r1)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x14(r12)
-	mtctr    r12
-	bctrl
-	stw      r3, 0x34(r1)
-
-lbl_8026DA4C:
-	lwz      r12, 0x30(r1)
-	addi     r3, r1, 0x30
-	lwz      r12, 0x10(r12)
-	mtctr    r12
-	bctrl
-	clrlwi.  r0, r3, 0x18
-	beq      lbl_8026D9F8
-
-lbl_8026DA68:
-	lwz      r3, 0x38(r1)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x1c(r12)
-	mtctr    r12
-	bctrl
-	lwz      r4, 0x34(r1)
-	cmplw    r4, r3
-	bne      lbl_8026D8F4
-
-lbl_8026DA88:
-	lwz      r5, itemGateMgr__4Game@sda21(r13)
-	cmplwi   r5, 0
-	beq      lbl_8026DD04
-	lwz      r0, 0x2c8(r31)
-	cmplwi   r0, 0
-	bne      lbl_8026DD04
-	li       r0, 0
-	lis      r3, "__vt__26Iterator<Q24Game8ItemGate>"@ha
-	addi     r4, r3, "__vt__26Iterator<Q24Game8ItemGate>"@l
-	addi     r3, r5, 0x30
-	cmplwi   r0, 0
-	stw      r4, 0x20(r1)
-	stw      r0, 0x2c(r1)
-	stw      r0, 0x24(r1)
-	stw      r3, 0x28(r1)
-	bne      lbl_8026DAE0
-	lwz      r12, 0(r3)
-	lwz      r12, 0x18(r12)
-	mtctr    r12
-	bctrl
-	stw      r3, 0x24(r1)
-	b        lbl_8026DB68
-
-lbl_8026DAE0:
-	lwz      r12, 0(r3)
-	lwz      r12, 0x18(r12)
-	mtctr    r12
-	bctrl
-	stw      r3, 0x24(r1)
-	b        lbl_8026DB4C
-
-lbl_8026DAF8:
-	lwz      r3, 0x28(r1)
-	lwz      r4, 0x24(r1)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x20(r12)
-	mtctr    r12
-	bctrl
-	mr       r4, r3
-	lwz      r3, 0x2c(r1)
-	lwz      r12, 0(r3)
-	lwz      r12, 8(r12)
-	mtctr    r12
-	bctrl
-	clrlwi.  r0, r3, 0x18
-	bne      lbl_8026DB68
-	lwz      r3, 0x28(r1)
-	lwz      r4, 0x24(r1)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x14(r12)
-	mtctr    r12
-	bctrl
-	stw      r3, 0x24(r1)
-
-lbl_8026DB4C:
-	lwz      r12, 0x20(r1)
-	addi     r3, r1, 0x20
-	lwz      r12, 0x10(r12)
-	mtctr    r12
-	bctrl
-	clrlwi.  r0, r3, 0x18
-	beq      lbl_8026DAF8
-
-lbl_8026DB68:
-	lfs      f30, lbl_8051B078@sda21(r2)
-	lfs      f31, lbl_8051B08C@sda21(r2)
-	b        lbl_8026DCE4
-
-lbl_8026DB74:
-	lwz      r3, 0x28(r1)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x20(r12)
-	mtctr    r12
-	bctrl
-	mr       r30, r3
-	addi     r3, r1, 8
-	lwz      r12, 0(r30)
-	mr       r4, r30
-	lwz      r12, 8(r12)
-	mtctr    r12
-	bctrl
-	lfs      f1, 0xc(r1)
-	lfs      f0, 0x190(r31)
-	lfs      f2, 8(r1)
-	fsubs    f0, f1, f0
-	lfs      f3, 0x10(r1)
-	fcmpo    cr0, f0, f30
-	ble      lbl_8026DBC4
-	b        lbl_8026DBC8
-
-lbl_8026DBC4:
-	fneg     f0, f0
-
-lbl_8026DBC8:
-	fcmpo    cr0, f0, f31
-	bge      lbl_8026DC28
-	lfs      f1, 0x18c(r31)
-	lfs      f0, lbl_8051B078@sda21(r2)
-	fsubs    f1, f2, f1
-	fcmpo    cr0, f1, f0
-	ble      lbl_8026DBE8
-	b        lbl_8026DBEC
-
-lbl_8026DBE8:
-	fneg     f1, f1
-
-lbl_8026DBEC:
-	lfs      f0, lbl_8051B090@sda21(r2)
-	fcmpo    cr0, f1, f0
-	bge      lbl_8026DC28
-	lfs      f1, 0x194(r31)
-	lfs      f0, lbl_8051B078@sda21(r2)
-	fsubs    f1, f3, f1
-	fcmpo    cr0, f1, f0
-	ble      lbl_8026DC10
-	b        lbl_8026DC14
-
-lbl_8026DC10:
-	fneg     f1, f1
-
-lbl_8026DC14:
-	lfs      f0, lbl_8051B090@sda21(r2)
-	fcmpo    cr0, f1, f0
-	bge      lbl_8026DC28
-	stw      r30, 0x2cc(r31)
-	b        lbl_8026DD04
-
-lbl_8026DC28:
-	lwz      r0, 0x2c(r1)
-	cmplwi   r0, 0
-	bne      lbl_8026DC54
-	lwz      r3, 0x28(r1)
-	lwz      r4, 0x24(r1)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x14(r12)
-	mtctr    r12
-	bctrl
-	stw      r3, 0x24(r1)
-	b        lbl_8026DCE4
-
-lbl_8026DC54:
-	lwz      r3, 0x28(r1)
-	lwz      r4, 0x24(r1)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x14(r12)
-	mtctr    r12
-	bctrl
-	stw      r3, 0x24(r1)
-	b        lbl_8026DCC8
-
-lbl_8026DC74:
-	lwz      r3, 0x28(r1)
-	lwz      r4, 0x24(r1)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x20(r12)
-	mtctr    r12
-	bctrl
-	mr       r4, r3
-	lwz      r3, 0x2c(r1)
-	lwz      r12, 0(r3)
-	lwz      r12, 8(r12)
-	mtctr    r12
-	bctrl
-	clrlwi.  r0, r3, 0x18
-	bne      lbl_8026DCE4
-	lwz      r3, 0x28(r1)
-	lwz      r4, 0x24(r1)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x14(r12)
-	mtctr    r12
-	bctrl
-	stw      r3, 0x24(r1)
-
-lbl_8026DCC8:
-	lwz      r12, 0x20(r1)
-	addi     r3, r1, 0x20
-	lwz      r12, 0x10(r12)
-	mtctr    r12
-	bctrl
-	clrlwi.  r0, r3, 0x18
-	beq      lbl_8026DC74
-
-lbl_8026DCE4:
-	lwz      r3, 0x28(r1)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x1c(r12)
-	mtctr    r12
-	bctrl
-	lwz      r4, 0x24(r1)
-	cmplw    r4, r3
-	bne      lbl_8026DB74
-
-lbl_8026DD04:
-	lwz      r0, 0x2c8(r31)
-	cmplwi   r0, 0
-	bne      lbl_8026DD1C
-	lwz      r0, 0x2cc(r31)
-	cmplwi   r0, 0
-	beq      lbl_8026DD28
-
-lbl_8026DD1C:
-	li       r0, 0
-	stb      r0, 0x2c1(r31)
-	b        lbl_8026DD30
-
-lbl_8026DD28:
-	li       r0, 1
-	stb      r0, 0x2c1(r31)
-
-lbl_8026DD30:
-	psq_l    f31, 104(r1), 0, qr0
-	lfd      f31, 0x60(r1)
-	psq_l    f30, 88(r1), 0, qr0
-	lfd      f30, 0x50(r1)
-	lwz      r31, 0x4c(r1)
-	lwz      r0, 0x74(r1)
-	lwz      r30, 0x48(r1)
-	mtlr     r0
-	addi     r1, r1, 0x70
-	blr
-	*/
+		if (m_bridge != nullptr || m_gate != nullptr) {
+			m_isAlive = false;
+		} else {
+			m_isAlive = true;
+		}
+	}
 }
 
 /*
