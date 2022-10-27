@@ -166,4 +166,13 @@ struct Mgr : public TNodeItemMgr {
 } // namespace ItemCave
 } // namespace Game
 
+struct GenDownFloorParm : public Game::GenItemParm {
+
+	// _00     = VTBL
+	s16 _04;             // _04
+	s16 m_downFloorType; // _06
+	u16 _08;             // _08
+	ID32 m_id;           // _0C
+};
+
 #endif

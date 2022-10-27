@@ -17,12 +17,6 @@ struct BridgeInitArg : public CreatureInitArg {
 	u16 m_bridgeType; // _04, possibly define list?
 };
 
-struct GenBridgeParm : public GenItemParm {
-
-	// _00     = VTBL
-	s16 _04; // _04
-};
-
 struct BridgeInfo {
 	BridgeInfo();
 
@@ -157,5 +151,11 @@ extern Mgr* mgr;
 
 } // namespace ItemBridge
 } // namespace Game
+
+struct GenBridgeParm : public Game::GenItemParm {
+
+	// _00     = VTBL
+	s16 _04; // _04
+};
 
 #endif

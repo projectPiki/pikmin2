@@ -1,5 +1,5 @@
-#ifndef _GAME_ITEMONYON_H
-#define _GAME_ITEMONYON_H
+#ifndef _GAME_ENTITIES_ITEMONYON_H
+#define _GAME_ENTITIES_ITEMONYON_H
 
 #include "Game/BaseItem.h"
 #include "Game/itemMgr.h"
@@ -17,7 +17,7 @@ struct Mgr : public BaseItemMgr, public Container<Onyon> {
 	virtual void doEntry();                                               // _0C (weak)
 	virtual void doSetView(int viewportNumber);                           // _10 (weak)
 	virtual void doViewCalc();                                            // _14 (weak)
-	virtual void doSimulation(float);                                     // _18 (weak)
+	virtual void doSimulation(f32);                                       // _18 (weak)
 	virtual void doDirectDraw(Graphics& gfx);                             // _1C (weak)
 	virtual void initDependency();                                        // _38
 	virtual void setupSoundViewerAndBas();                                // _44
@@ -62,5 +62,12 @@ struct Mgr : public BaseItemMgr, public Container<Onyon> {
 extern Mgr* mgr;
 } // namespace ItemOnyon
 } // namespace Game
+
+struct GenOnyonParm : public Game::GenItemParm {
+
+	// _00     = VTBL
+	int m_onyonIndex;   // _04
+	bool m_isAfterBoot; // _08
+};
 
 #endif

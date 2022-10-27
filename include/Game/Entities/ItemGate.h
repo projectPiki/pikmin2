@@ -163,4 +163,11 @@ struct ItemGateMgr : public BaseItemMgr {
 extern ItemGateMgr* itemGateMgr;
 } // namespace Game
 
+struct GenGateParm : public Game::GenItemParm {
+
+	// _00     = VTBL
+	f32 _04;     // _04
+	u16 m_color; // _08
+};
+
 #endif

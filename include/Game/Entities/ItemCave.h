@@ -130,4 +130,14 @@ struct Mgr : public TNodeItemMgr {
 } // namespace ItemCave
 } // namespace Game
 
+struct GenCaveParm : public Game::GenItemParm {
+	GenCaveParm();
+
+	// _00     = VTBL
+	char m_caveFilename[0x20];         // _04
+	char _24[0x20];                    // _24
+	ID32 m_id;                         // _44
+	Game::ItemCave::FogParm m_fogParm; // _50
+};
+
 #endif
