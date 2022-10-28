@@ -718,7 +718,7 @@ NISHIMURA:=\
 	$(BUILD_DIR)/src/plugProjectNishimuraU/MarMgr.o\
 	$(BUILD_DIR)/asm/plugProjectNishimuraU/MarState.o\
 	$(BUILD_DIR)/src/plugProjectNishimuraU/WealthyMgr.o\
-	$(BUILD_DIR)/asm/plugProjectNishimuraU/Wealthy.o\
+	$(BUILD_DIR)/src/plugProjectNishimuraU/Wealthy.o\
 	$(BUILD_DIR)/src/plugProjectNishimuraU/FartMgr.o\
 	$(BUILD_DIR)/asm/plugProjectNishimuraU/Fart.o\
 	$(BUILD_DIR)/asm/plugProjectNishimuraU/ArmorState.o\

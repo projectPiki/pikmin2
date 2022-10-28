@@ -1,4 +1,5 @@
-#include "types.h"
+#include "Game/Entities/Wealthy.h"
+#include "Game/gamePlayData.h"
 
 /*
     Generated from dpostproc
@@ -256,195 +257,52 @@
 */
 
 namespace Game {
+namespace Wealthy {
 
 /*
  * --INFO--
  * Address:	80284A9C
  * Size:	000098
  */
-Wealthy::Obj::Obj()
-{
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	extsh.   r0, r4
-	stw      r31, 0xc(r1)
-	mr       r31, r3
-	beq      lbl_80284AD8
-	addi     r0, r31, 0x2e0
-	lis      r3, __vt__Q24Game10PelletView@ha
-	stw      r0, 0x17c(r31)
-	addi     r3, r3, __vt__Q24Game10PelletView@l
-	li       r0, 0
-	stw      r3, 0x2e0(r31)
-	stw      r0, 0x2e4(r31)
-	stw      r0, 0x2e8(r31)
-
-lbl_80284AD8:
-	mr       r3, r31
-	li       r4, 0
-	bl       __ct__Q34Game6Kogane3ObjFv
-	lis      r3, __vt__Q34Game7Wealthy3Obj@ha
-	addi     r0, r31, 0x2e0
-	addi     r5, r3, __vt__Q34Game7Wealthy3Obj@l
-	mr       r3, r31
-	stw      r5, 0(r31)
-	addi     r4, r5, 0x1b0
-	addi     r5, r5, 0x320
-	stw      r4, 0x178(r31)
-	lwz      r4, 0x17c(r31)
-	stw      r5, 0(r4)
-	lwz      r4, 0x17c(r31)
-	subf     r0, r4, r0
-	stw      r0, 0xc(r4)
-	bl       createEffect__Q34Game7Wealthy3ObjFv
-	lwz      r0, 0x14(r1)
-	mr       r3, r31
-	lwz      r31, 0xc(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
-}
+Obj::Obj() { createEffect(); }
 
 /*
  * --INFO--
  * Address:	80284B34
  * Size:	0001F0
  */
-void Wealthy::Obj::changeMaterial()
+void Obj::changeMaterial()
 {
-	/*
-	stwu     r1, -0x30(r1)
-	mflr     r0
-	stw      r0, 0x34(r1)
-	stmw     r27, 0x1c(r1)
-	mr       r27, r3
-	lwz      r3, 0x180(r3)
-	lwz      r4, 0x174(r27)
-	lwz      r12, 0(r3)
-	lwz      r29, 8(r4)
-	lwz      r12, 0xe0(r12)
-	lwz      r30, 4(r29)
-	mtctr    r12
-	bctrl
-	mr       r31, r3
-	lwz      r3, 0x64(r30)
-	addi     r4, r2, lbl_8051B6F0@sda21
-	bl       getIndex__10JUTNameTabCFPCc
-	lwz      r5, 0x60(r30)
-	rlwinm   r4, r3, 2, 0xe, 0x1d
-	li       r3, 0x64
-	li       r0, 0xff
-	lwzx     r6, r5, r4
-	addi     r5, r1, 8
-	li       r4, 0
-	stb      r3, 8(r1)
-	stb      r3, 9(r1)
-	stb      r3, 0xa(r1)
-	stb      r0, 0xb(r1)
-	lwz      r3, 0x2c(r6)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x70(r12)
-	mtctr    r12
-	bctrl
-	mr       r3, r29
-	lwz      r12, 0(r29)
-	lwz      r12, 0x14(r12)
-	mtctr    r12
-	bctrl
-	lwz      r4, 0x174(r27)
-	lis      r3, j3dSys@ha
-	lbz      r0, 0(r31)
-	addi     r27, r3, j3dSys@l
-	lwz      r3, 8(r4)
-	li       r28, 0
-	lwz      r3, 4(r3)
-	lwz      r4, 0x6c(r3)
-	lwz      r3, 4(r4)
-	stb      r0, 0(r3)
-	lbz      r0, 1(r31)
-	stb      r0, 1(r3)
-	lhz      r0, 2(r31)
-	sth      r0, 2(r3)
-	lhz      r0, 4(r31)
-	sth      r0, 4(r3)
-	lbz      r0, 6(r31)
-	stb      r0, 6(r3)
-	lbz      r0, 7(r31)
-	stb      r0, 7(r3)
-	lbz      r0, 8(r31)
-	stb      r0, 8(r3)
-	lbz      r0, 9(r31)
-	stb      r0, 9(r3)
-	lhz      r0, 0xa(r31)
-	sth      r0, 0xa(r3)
-	lwz      r0, 0xc(r31)
-	stw      r0, 0xc(r3)
-	lbz      r0, 0x10(r31)
-	stb      r0, 0x10(r3)
-	lbz      r0, 0x11(r31)
-	stb      r0, 0x11(r3)
-	lbz      r0, 0x12(r31)
-	stb      r0, 0x12(r3)
-	lbz      r0, 0x13(r31)
-	stb      r0, 0x13(r3)
-	lbz      r0, 0x14(r31)
-	stb      r0, 0x14(r3)
-	lbz      r0, 0x15(r31)
-	stb      r0, 0x15(r3)
-	lbz      r0, 0x16(r31)
-	stb      r0, 0x16(r3)
-	lbz      r0, 0x17(r31)
-	stb      r0, 0x17(r3)
-	lbz      r0, 0x18(r31)
-	stb      r0, 0x18(r3)
-	lbz      r0, 0x19(r31)
-	stb      r0, 0x19(r3)
-	lha      r0, 0x1a(r31)
-	sth      r0, 0x1a(r3)
-	lwz      r0, 0x1c(r31)
-	stw      r0, 0x1c(r3)
-	lwz      r3, 4(r4)
-	lwz      r0, 0x1c(r3)
-	add      r0, r31, r0
-	subf     r0, r3, r0
-	stw      r0, 0x1c(r3)
-	lwz      r3, 4(r4)
-	lwz      r0, 0xc(r3)
-	add      r0, r31, r0
-	subf     r0, r3, r0
-	stw      r0, 0xc(r3)
-	b        lbl_80284D00
+	J3DModelData* modelData;
+	J3DModel* j3dModel;
+	ResTIMG* changeTexture;
+	ResTIMG* newTexture;
+	J3DTexture* j3dTexture;
 
-lbl_80284CC8:
-	lwz      r4, 0xc0(r29)
-	rlwinm   r3, r28, 6, 0xa, 0x19
-	rlwinm   r0, r28, 2, 0xe, 0x1d
-	add      r4, r4, r3
-	stw      r4, 0x3c(r27)
-	lwz      r3, 0x60(r30)
-	lwz      r4, 0x2c(r4)
-	lwzx     r3, r3, r0
-	lwz      r4, 0x34(r4)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x24(r12)
-	mtctr    r12
-	bctrl
-	addi     r28, r28, 1
+	j3dModel      = m_model->m_j3dModel;
+	modelData     = j3dModel->m_modelData;
+	changeTexture = static_cast<Mgr*>(m_mgr)->getChangeTexture();
 
-lbl_80284D00:
-	lhz      r0, 0x5c(r30)
-	clrlwi   r3, r28, 0x10
-	cmplw    r3, r0
-	blt      lbl_80284CC8
-	lmw      r27, 0x1c(r1)
-	lwz      r0, 0x34(r1)
-	mtlr     r0
-	addi     r1, r1, 0x30
-	blr
-	*/
+	u16 idx                = modelData->m_materialTable._0C->getIndex("karada");
+	J3DMaterial* karadaMat = modelData->m_materialTable.m_materials1[idx];
+	karadaMat->m_tevBlock->setTevKColor(0, J3DGXColor(0x64, 0x64, 0x64, 0xFF));
+
+	j3dModel->calcMaterial();
+
+	j3dTexture = m_model->m_j3dModel->m_modelData->m_materialTable.m_texture;
+	newTexture = &j3dTexture->_04->_00;
+
+	changeTexture->copyTo(newTexture);
+
+	j3dTexture->setImageOffset((u32)changeTexture);
+	j3dTexture->setPaletteOffset((u32)changeTexture);
+
+	for (u16 i = 0; i < modelData->m_materialTable.m_count1; i++) {
+		J3DMatPacket* packet  = &j3dModel->m_matPackets[i];
+		j3dSys.m_matPacket    = packet;
+		J3DMaterial* material = modelData->m_materialTable.m_materials1[i];
+		material->diff(packet->_2C->_34);
+	}
 }
 
 /*
@@ -452,115 +310,63 @@ lbl_80284D00:
  * Address:	80284D24
  * Size:	000144
  */
-void Wealthy::Obj::createItem()
+void Obj::createItem()
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	stw      r30, 8(r1)
-	mr       r30, r3
-	bl       createTreasureItem__Q34Game6Kogane3ObjFv
-	clrlwi.  r0, r3, 0x18
-	bne      lbl_80284E50
-	lwz      r0, 0x2c0(r30)
-	li       r31, 1
-	li       r4, 0
-	li       r5, 0
-	cmpwi    r0, 1
-	beq      lbl_80284DB0
-	bge      lbl_80284D70
-	cmpwi    r0, 0
-	bge      lbl_80284D7C
-	b        lbl_80284E24
+	if (createTreasureItem()) {
+		return;
+	}
 
-lbl_80284D70:
-	cmpwi    r0, 3
-	bge      lbl_80284E24
-	b        lbl_80284DE8
+	bool createPelletItem = true;
+	u32 initArg           = 0;
+	u32 amount            = 0;
 
-lbl_80284D7C:
-	lwz      r3, gameSystem__4Game@sda21(r13)
-	cmplwi   r3, 0
-	beq      lbl_80284DA4
-	lbz      r0, 0x48(r3)
-	cmplwi   r0, 0
-	beq      lbl_80284DA4
-	li       r31, 0
-	li       r4, 0
-	li       r5, 3
-	b        lbl_80284E24
+	switch (_2C0) {
+	case 0:
+		if (gameSystem && gameSystem->m_inCave) {
+			createPelletItem = false;
+			initArg          = 0;
+			amount           = 3;
+		} else {
+			initArg = 5; // pellet size: 5
+			amount  = 3;
+		}
 
-lbl_80284DA4:
-	li       r4, 5
-	li       r5, 3
-	b        lbl_80284E24
+		break;
+	case 1: // second flip
+		createPelletItem = false;
 
-lbl_80284DB0:
-	lwz      r3, playData__4Game@sda21(r13)
-	li       r31, 0
-	cmplwi   r3, 0
-	beq      lbl_80284DDC
-	li       r4, 0x1d
-	bl       isDemoFlag__Q24Game8PlayDataFi
-	clrlwi.  r0, r3, 0x18
-	beq      lbl_80284DDC
-	li       r4, 1
-	li       r5, 1
-	b        lbl_80284E24
+		if (playData && playData->isDemoFlag(DEMO_First_Spicy_Spray_Made)) {
+			initArg = 1;
+			amount  = 1;
+		} else {
+			initArg = 0;
+			amount  = 3;
+		}
+		break;
+	case 2: // third flip
+		createPelletItem = false;
 
-lbl_80284DDC:
-	li       r4, 0
-	li       r5, 3
-	b        lbl_80284E24
+		if (playData && playData->isDemoFlag(DEMO_First_Spicy_Spray_Made)) {
+			initArg = 1;
+			amount  = 1;
+		} else {
+			initArg = 0;
+			amount  = 3;
+		}
 
-lbl_80284DE8:
-	lwz      r3, playData__4Game@sda21(r13)
-	li       r31, 0
-	cmplwi   r3, 0
-	beq      lbl_80284E14
-	li       r4, 0x1d
-	bl       isDemoFlag__Q24Game8PlayDataFi
-	clrlwi.  r0, r3, 0x18
-	beq      lbl_80284E14
-	li       r4, 1
-	li       r5, 1
-	b        lbl_80284E1C
+		m_appearTimer = 12800.0f;
+		break;
+	default:
+		break;
+	}
 
-lbl_80284E14:
-	li       r4, 0
-	li       r5, 3
+	if (createPelletItem) {
+		createPellet(initArg, amount);
+	} else {
+		createDoping(initArg, amount);
+	}
 
-lbl_80284E1C:
-	lfs      f0, lbl_8051B6F8@sda21(r2)
-	stfs     f0, 0x2c4(r30)
-
-lbl_80284E24:
-	clrlwi.  r0, r31, 0x18
-	beq      lbl_80284E38
-	mr       r3, r30
-	bl       createPellet__Q34Game6Kogane3ObjFii
-	b        lbl_80284E44
-
-lbl_80284E38:
-	mr       r3, r30
-	clrlwi   r4, r4, 0x18
-	bl       createDoping__Q34Game6Kogane3ObjFUci
-
-lbl_80284E44:
-	lwz      r3, 0x2c0(r30)
-	addi     r0, r3, 1
-	stw      r0, 0x2c0(r30)
-
-lbl_80284E50:
-	lwz      r0, 0x14(r1)
-	lwz      r31, 0xc(r1)
-	lwz      r30, 8(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	_2C0++;
 }
 
 /*
@@ -568,89 +374,18 @@ lbl_80284E50:
  * Address:	80284E68
  * Size:	0000B0
  */
-void Wealthy::Obj::createEffect()
-{
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	mr       r31, r3
-	li       r3, 0x14
-	bl       __nw__FUl
-	cmplwi   r3, 0
-	beq      lbl_80284F00
-	lis      r4, __vt__Q23efx5TBase@ha
-	lis      r5, __vt__18JPAEmitterCallBack@ha
-	addi     r0, r4, __vt__Q23efx5TBase@l
-	lis      r4, __vt__Q23efx5TSync@ha
-	stw      r0, 0(r3)
-	addi     r0, r5, __vt__18JPAEmitterCallBack@l
-	addi     r5, r4, __vt__Q23efx5TSync@l
-	lis      r4, __vt__Q23efx9TChaseMtx@ha
-	stw      r0, 4(r3)
-	addi     r7, r4, __vt__Q23efx9TChaseMtx@l
-	lis      r4, __vt__Q23efx11TOoganeKira@ha
-	addi     r0, r5, 0x14
-	stw      r5, 0(r3)
-	addi     r4, r4, __vt__Q23efx11TOoganeKira@l
-	li       r9, 0
-	li       r8, 0x2b2
-	stw      r0, 4(r3)
-	addi     r6, r7, 0x14
-	li       r5, 0x25a
-	addi     r0, r4, 0x14
-	stw      r9, 8(r3)
-	sth      r8, 0xc(r3)
-	stb      r9, 0xe(r3)
-	stw      r7, 0(r3)
-	stw      r6, 4(r3)
-	stw      r9, 0x10(r3)
-	sth      r5, 0xc(r3)
-	stw      r4, 0(r3)
-	stw      r0, 4(r3)
-
-lbl_80284F00:
-	stw      r3, 0x2dc(r31)
-	lwz      r0, 0x14(r1)
-	lwz      r31, 0xc(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
-}
+void Obj::createEffect() { m_bodyEffect = new efx::TOoganeKira; }
 
 /*
  * --INFO--
  * Address:	80284F18
  * Size:	000058
  */
-void Wealthy::Obj::startBodyEffect()
+void Obj::startBodyEffect()
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	addi     r4, r2, lbl_8051B6FC@sda21
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	mr       r31, r3
-	lwz      r3, 0x174(r3)
-	bl       getJoint__Q28SysShape5ModelFPc
-	bl       getWorldMatrix__Q28SysShape5JointFv
-	lwz      r5, 0x2dc(r31)
-	li       r4, 0
-	stw      r3, 0x10(r5)
-	lwz      r3, 0x2dc(r31)
-	lwz      r12, 0(r3)
-	lwz      r12, 8(r12)
-	mtctr    r12
-	bctrl
-	lwz      r0, 0x14(r1)
-	lwz      r31, 0xc(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	SysShape::Joint* bodyJoint = m_model->getJoint("body");
+	m_bodyEffect->m_mtx        = bodyJoint->getWorldMatrix();
+	m_bodyEffect->create(nullptr);
 }
 
 /*
@@ -658,181 +393,32 @@ void Wealthy::Obj::startBodyEffect()
  * Address:	80284F70
  * Size:	000030
  */
-void Wealthy::Obj::finishBodyEffect()
-{
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	lwz      r3, 0x2dc(r3)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x10(r12)
-	mtctr    r12
-	bctrl
-	lwz      r0, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
-}
+void Obj::finishBodyEffect() { m_bodyEffect->fade(); }
 
 /*
  * --INFO--
  * Address:	80284FA0
  * Size:	000030
  */
-void Wealthy::Obj::effectDrawOn()
-{
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	lwz      r3, 0x2dc(r3)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x44(r12)
-	mtctr    r12
-	bctrl
-	lwz      r0, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
-}
+void Obj::effectDrawOn() { m_bodyEffect->endDemoDrawOn(); }
 
 /*
  * --INFO--
  * Address:	80284FD0
  * Size:	000030
  */
-void Wealthy::Obj::effectDrawOff()
-{
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	lwz      r3, 0x2dc(r3)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x40(r12)
-	mtctr    r12
-	bctrl
-	lwz      r0, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
-}
+void Obj::effectDrawOff() { m_bodyEffect->startDemoDrawOff(); }
 
 /*
  * --INFO--
  * Address:	80285000
  * Size:	000044
  */
-void Wealthy::Obj::createPressSENormal()
+void Obj::createPressSENormal()
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	lwz      r12, 0(r3)
-	lwz      r12, 0xf4(r12)
-	mtctr    r12
-	bctrl
-	lwz      r12, 0(r3)
-	li       r4, 0x5880
-	li       r5, 0
-	lwz      r12, 0xc(r12)
-	mtctr    r12
-	bctrl
-	lwz      r0, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	JAInter::Object* jai_obj = getJAIObject();
+	jai_obj->startSound(PSSE_EN_OOGANE_HIT, 0);
 }
 
+} // namespace Wealthy
 } // namespace Game
-
-namespace efx {
-
-/*
- * --INFO--
- * Address:	80285044
- * Size:	00009C
- */
-TOoganeKira::~TOoganeKira()
-{
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	mr       r31, r4
-	stw      r30, 8(r1)
-	or.      r30, r3, r3
-	beq      lbl_802850C4
-	lis      r3, __vt__Q23efx11TOoganeKira@ha
-	addi     r3, r3, __vt__Q23efx11TOoganeKira@l
-	stw      r3, 0(r30)
-	addi     r0, r3, 0x14
-	stw      r0, 4(r30)
-	beq      lbl_802850B4
-	lis      r3, __vt__Q23efx9TChaseMtx@ha
-	addi     r3, r3, __vt__Q23efx9TChaseMtx@l
-	stw      r3, 0(r30)
-	addi     r0, r3, 0x14
-	stw      r0, 4(r30)
-	beq      lbl_802850B4
-	lis      r4, __vt__Q23efx5TSync@ha
-	addi     r3, r30, 4
-	addi     r5, r4, __vt__Q23efx5TSync@l
-	li       r4, 0
-	stw      r5, 0(r30)
-	addi     r0, r5, 0x14
-	stw      r0, 4(r30)
-	bl       __dt__18JPAEmitterCallBackFv
-
-lbl_802850B4:
-	extsh.   r0, r31
-	ble      lbl_802850C4
-	mr       r3, r30
-	bl       __dl__FPv
-
-lbl_802850C4:
-	lwz      r0, 0x14(r1)
-	mr       r3, r30
-	lwz      r31, 0xc(r1)
-	lwz      r30, 8(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
-}
-
-namespace Game {
-
-} // namespace Game
-
-/*
- * --INFO--
- * Address:	802850E0
- * Size:	000008
- */
-u32 Wealthy::Obj::getEnemyTypeID() { return 0xA; }
-
-namespace efx {
-
-/*
- * --INFO--
- * Address:	802850E8
- * Size:	000008
- */
-TOoganeKira::@4 @~TOoganeKira()
-{
-	/*
-addi     r3, r3, -4
-b        __dt__Q23efx11TOoganeKiraFv
-	*/
-}
-} // namespace efx
-
-} // namespace efx

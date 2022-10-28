@@ -77,7 +77,7 @@ struct Obj : public EnemyBase {
 	f32 m_moveTimer;           // _2C8
 	f32 m_scaleTimer;          // _2CC
 	Vector3f m_targetPosition; // _2D0
-	                           // _2DC = PelletView
+	                           // _2DC = body effect
 };
 
 struct Mgr : public EnemyMgrBase {

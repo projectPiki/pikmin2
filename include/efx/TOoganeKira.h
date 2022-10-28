@@ -10,7 +10,7 @@ struct TOoganeKira : public TChaseMtx {
 	{
 	}
 
-	virtual ~TOoganeKira(); // _48 (weak)
+	virtual ~TOoganeKira() {}; // _48 (weak)
 
 	// _00     = VTBL
 	// _00-_14 = TChaseMtx

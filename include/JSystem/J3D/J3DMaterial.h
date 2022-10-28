@@ -1,6 +1,7 @@
 #ifndef _JSYSTEM_J3D_J3DMATERIAL_H
 #define _JSYSTEM_J3D_J3DMATERIAL_H
 
+#include "JSystem/J3D/J3DTevBlock.h"
 #include "JSystem/J3D/J3DTevColorAnm.h"
 #include "JSystem/J3D/J3DTypes.h"
 #include "JSystem/J3D/J3DTexture.h"
@@ -16,7 +17,6 @@ struct J3DJoint;
 struct J3DMaterialAnm;
 struct J3DPEBlock;
 struct J3DShape;
-struct J3DTevBlock;
 struct J3DTexGenBlock;
 struct J3DTexMtxAnm;
 struct J3DTexture;

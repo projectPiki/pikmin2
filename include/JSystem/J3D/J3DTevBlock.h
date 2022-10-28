@@ -3,9 +3,13 @@
 
 #include "Dolphin/gx.h"
 #include "JSystem/J3D/J3DGXColor.h"
-#include "JSystem/J3D/J3DMaterialFactory.h"
 #include "JSystem/J3D/J3DTypes.h"
 #include "types.h"
+
+struct J3DTevSwapModeInfo {
+	u8 _00;
+	u8 _01;
+};
 
 struct J3DTevBlock {
 	virtual void reset(J3DTevBlock*);          // _08 (weak)

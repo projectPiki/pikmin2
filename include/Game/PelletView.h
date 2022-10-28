@@ -5,8 +5,6 @@
 #include "Matrixf.h"
 #include "types.h"
 
-const float PELLETVIEW_BASE_SCALE = 1.0f;
-
 namespace SysShape {
 struct Model;
 }
@@ -36,7 +34,7 @@ struct PelletView {
 
 	virtual float viewGetBaseScale() // _08 (weak)
 	{
-		return PELLETVIEW_BASE_SCALE;
+		return 1.0f;
 	}
 	virtual SysShape::Model* viewGetShape() = 0; // _0C
 	virtual int viewGetCollTreeJointIndex()      // _10 (weak)

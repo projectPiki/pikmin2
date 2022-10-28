@@ -8,6 +8,7 @@
 #include "JSystem/J3D/J3DMaterial.h"
 #include "JSystem/J3D/J3DPE.h"
 #include "JSystem/J3D/J3DTexMtx.h"
+#include "JSystem/J3D/J3DTevBlock.h"
 #include "JSystem/J3D/J3DTypes.h"
 #include "types.h"
 
@@ -75,11 +76,6 @@ struct J3DTevOrderInfo {
 
 struct J3DTevStageInfo {
 	u8 _00[0x14]; // _00
-};
-
-struct J3DTevSwapModeInfo {
-	u8 _00;
-	u8 _01;
 };
 
 // extern const J3DTevSwapModeInfo j3dDefaultTevSwapMode;
