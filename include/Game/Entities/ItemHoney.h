@@ -12,7 +12,16 @@
 #include "Game/itemMgr.h"
 
 namespace Game {
+
+enum HoneyKind {
+	// type of the honey
+	HONEY_Y, // yellow nectar
+	HONEY_R, // red nectar
+	HONEY_B  // blue nectar
+};
+
 namespace ItemHoney {
+
 struct InitArg : public CreatureInitArg {
 	inline InitArg(u8 a, u8 b)
 	{

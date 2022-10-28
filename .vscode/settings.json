@@ -8,7 +8,7 @@
     "editor.defaultFormatter": "xaver.clang-format"
   },
 
-  "editor.tabSize": 2,
+  "editor.tabSize": 4,
   "files.associations": {
     "source_location": "cpp",
     "types.h": "c"

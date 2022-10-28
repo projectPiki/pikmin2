@@ -112,7 +112,7 @@ void Obj::setInitialSetting(EnemyInitialParamBase* initParms)
 		break;
 	}
 
-	if (plParms->m_amount == PELPLANT_AMOUNT_FIVE) {
+	if (plParms->m_amount == PELLET_NUMBER_FIVE) {
 		sCurrentObj = this;
 
 		SysShape::Joint* joint = m_model->getJoint("headjnt");
@@ -122,7 +122,7 @@ void Obj::setInitialSetting(EnemyInitialParamBase* initParms)
 		sCurrentObj = nullptr;
 	}
 
-	if (plParms->m_amount == PELPLANT_AMOUNT_TEN || plParms->m_amount == PELPLANT_AMOUNT_TWENTY) {
+	if (plParms->m_amount == PELLET_NUMBER_TEN || plParms->m_amount == PELLET_NUMBER_TWENTY) {
 		sCurrentObj = this;
 
 		SysShape::Joint* joint = m_model->getJoint("headjnt");
@@ -182,16 +182,16 @@ void Pelplant::Obj::updateLODSphereRadius(int size)
 {
 	if (size == PELPLANT_SIZE_BIG) {
 		switch (m_size) {
-		case PELPLANT_AMOUNT_ONE:
+		case PELLET_NUMBER_ONE:
 			m_curLodSphere.m_radius = sLODRadius[0];
 			return;
-		case PELPLANT_AMOUNT_FIVE:
+		case PELLET_NUMBER_FIVE:
 			m_curLodSphere.m_radius = sLODRadius[1];
 			return;
-		case PELPLANT_AMOUNT_TEN:
+		case PELLET_NUMBER_TEN:
 			m_curLodSphere.m_radius = sLODRadius[2];
 			return;
-		case PELPLANT_AMOUNT_TWENTY:
+		case PELLET_NUMBER_TWENTY:
 			m_curLodSphere.m_radius = sLODRadius[3];
 			return;
 		}
@@ -292,16 +292,16 @@ f32 Obj::getHeadScale()
 	f32 headScale;
 	if (m_pellet) {
 		switch (m_size) {
-		case PELPLANT_AMOUNT_ONE:
+		case PELLET_NUMBER_ONE:
 			headScale = 1.0f;
 			break;
-		case PELPLANT_AMOUNT_FIVE:
+		case PELLET_NUMBER_FIVE:
 			headScale = 2.0f;
 			break;
-		case PELPLANT_AMOUNT_TEN:
+		case PELLET_NUMBER_TEN:
 			headScale = 3.5f;
 			break;
-		case PELPLANT_AMOUNT_TWENTY:
+		case PELLET_NUMBER_TWENTY:
 			headScale = 4.8f;
 			break;
 		}
@@ -337,16 +337,16 @@ void Obj::doAnimation()
 	if (m_pellet) {
 		float neckScale;
 		switch (m_size) {
-		case PELPLANT_AMOUNT_ONE:
+		case PELLET_NUMBER_ONE:
 			neckScale = 12.0f;
 			break;
-		case PELPLANT_AMOUNT_FIVE:
+		case PELLET_NUMBER_FIVE:
 			neckScale = 12.0f;
 			break;
-		case PELPLANT_AMOUNT_TEN:
+		case PELLET_NUMBER_TEN:
 			neckScale = 12.0f;
 			break;
-		case PELPLANT_AMOUNT_TWENTY:
+		case PELLET_NUMBER_TWENTY:
 			neckScale = 12.0f;
 			break;
 		default:
@@ -564,19 +564,19 @@ unknown Obj::neckJointCallBack(J3DJoint* joint, int p2)
 		f32 neckThickness;
 		if (sCurrentObj->m_pellet) {
 			switch (sCurrentObj->m_size) {
-			case PELPLANT_AMOUNT_ONE:
+			case PELLET_NUMBER_ONE:
 				neckThickness = 1.0f;
 				neckLength    = neckThickness;
 				break;
-			case PELPLANT_AMOUNT_FIVE:
+			case PELLET_NUMBER_FIVE:
 				neckThickness = 1.0f;
 				neckLength    = neckThickness;
 				break;
-			case PELPLANT_AMOUNT_TEN:
+			case PELLET_NUMBER_TEN:
 				neckThickness = 1.5;
 				neckLength    = 0.85;
 				break;
-			case PELPLANT_AMOUNT_TWENTY:
+			case PELLET_NUMBER_TWENTY:
 				neckThickness = 2.0;
 				neckLength    = 0.75;
 				break;

@@ -1,4 +1,6 @@
 #include "Game/Entities/Koganemushi.h"
+#include "Game/Entities/PelletNumber.h"
+#include "Game/Entities/ItemHoney.h"
 #include "Game/gamePlayData.h"
 
 #include "JSystem/J3D/J3DMaterial.h"
@@ -67,31 +69,31 @@ void Koganemushi::Obj::createItem()
 	u32 initArg           = 0;
 	u32 amount            = 0;
 
-	switch (_2C0) {
-	case 0:
+	switch (m_flipTally) {
+	case 0: // initial flip
 		if (gameSystem && gameSystem->m_inCave) {
 			createPelletItem = false;
-			initArg          = 0;
+			initArg          = HONEY_Y;
 			amount           = 1;
 		} else {
-			initArg = 1;
+			initArg = PELLET_NUMBER_ONE;
 			amount  = 1;
 		}
 
 		break;
-	case 1:
+	case 1: // second flip
 		createPelletItem = false;
-		initArg          = 0;
+		initArg          = HONEY_Y;
 		amount           = 2;
 		break;
-	case 2:
+	case 2: // third flip
 		createPelletItem = false;
 
 		if (playData && playData->isDemoFlag(DEMO_First_Spicy_Spray_Made)) {
-			initArg = 1;
+			initArg = HONEY_R;
 			amount  = 1;
 		} else {
-			initArg = 0;
+			initArg = HONEY_Y;
 			amount  = 3;
 		}
 
@@ -107,7 +109,7 @@ void Koganemushi::Obj::createItem()
 		createDoping(initArg, amount);
 	}
 
-	_2C0++;
+	m_flipTally++;
 }
 
 /*

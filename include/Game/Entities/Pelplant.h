@@ -24,12 +24,6 @@ namespace Pelplant {
 #define PELPLANT_SIZE_MIDDLE (1)
 #define PELPLANT_SIZE_BIG    (2)
 
-// Sizes of the pellet posy
-#define PELPLANT_AMOUNT_ONE    (1)
-#define PELPLANT_AMOUNT_FIVE   (5)
-#define PELPLANT_AMOUNT_TEN    (10)
-#define PELPLANT_AMOUNT_TWENTY (20)
-
 // Flags of the pellet posy
 #define PELPLANT_FLAGS_NONE (0)
 #define PELPLANT_FLAGS_GROW (1)

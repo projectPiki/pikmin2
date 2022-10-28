@@ -8,6 +8,13 @@
 
 namespace Game {
 namespace PelletNumber {
+
+// Sizes of the pellet
+#define PELLET_NUMBER_ONE    (1)
+#define PELLET_NUMBER_FIVE   (5)
+#define PELLET_NUMBER_TEN    (10)
+#define PELLET_NUMBER_TWENTY (20)
+
 struct Object : public Pellet {
 	Object();
 
