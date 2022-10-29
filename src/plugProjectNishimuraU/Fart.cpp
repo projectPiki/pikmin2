@@ -84,8 +84,8 @@ void Obj::interactFartGasAttack()
 	if (m_fartTimer < 2.5f) {
 		m_fartTimer += sys->m_secondsPerFrame;
 		Kogane::Parms* parms = static_cast<Kogane::Parms*>(m_parms);
-		f32 max              = m_fartPosition.y + parms->m_general.m_fp20.m_value;
-		f32 min              = m_fartPosition.y - parms->m_general.m_fp21.m_value;
+		f32 max              = m_fartPosition.y + parms->m_general.m_fp22.m_value;
+		f32 min              = m_fartPosition.y - parms->m_general.m_fp22.m_value;
 		f32 radSqr           = SQUARE(parms->m_general.m_fp22.m_value);
 
 		Sys::Sphere sphere(m_fartPosition);
@@ -101,7 +101,7 @@ void Obj::interactFartGasAttack()
 
 			if (creature->isAlive() && (creature->isNavi() || creature->isPiki())) {
 				Vector3f position = creature->getPosition();
-				if ((max > position.y) && (min < position.y)) {
+				if ((position.y < max) && (position.y > min)) {
 					Vector2f delta;
 					getDistance2D(position, delta);
 					if (SQUARE(delta.x) + SQUARE(delta.y) < radSqr) {
