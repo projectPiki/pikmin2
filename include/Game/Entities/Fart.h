@@ -2,14 +2,11 @@
 #define _GAME_ENTITIES_FART_H
 
 #include "Game/Entities/Kogane.h"
+#include "efx/TBaba.h"
 
 /**
  * --Header for Doodlebug (Fart)--
  */
-
-namespace efx {
-struct TBabaFly_ver01;
-} // namespace efx
 
 namespace Game {
 namespace Fart {
@@ -17,19 +14,22 @@ struct Obj : public Kogane::Obj {
 	Obj();
 
 	//////////////// VTABLE
-	virtual ~Obj() { }                                  // _1BC (weak)
-	virtual void doUpdateCommon();                      // _1D0
-	virtual void doDebugDraw(Graphics&);                // _1EC
-	virtual void changeMaterial();                      // _200
-	virtual EnemyTypeID::EEnemyTypeID getEnemyTypeID(); // _258 (weak)
-	virtual void createItem();                          // _2FC
-	virtual void resetFartTimer();                      // _300
-	virtual void startBodyEffect();                     // _304
-	virtual void finishBodyEffect();                    // _308
-	virtual void createFartEffect();                    // _30C
-	virtual void effectDrawOn();                        // _310
-	virtual void effectDrawOff();                       // _314
-	virtual void createPressSESpecial();                // _31C
+	virtual ~Obj() { }                                 // _1BC (weak)
+	virtual void doUpdateCommon();                     // _1D0
+	virtual void doDebugDraw(Graphics&);               // _1EC
+	virtual void changeMaterial();                     // _200
+	virtual EnemyTypeID::EEnemyTypeID getEnemyTypeID() // _258 (weak)
+	{
+		return EnemyTypeID::EnemyID_Fart;
+	}
+	virtual void createItem();           // _2FC
+	virtual void resetFartTimer();       // _300
+	virtual void startBodyEffect();      // _304
+	virtual void finishBodyEffect();     // _308
+	virtual void createFartEffect();     // _30C
+	virtual void effectDrawOn();         // _310
+	virtual void effectDrawOff();        // _314
+	virtual void createPressSESpecial(); // _31C
 	//////////////// VTABLE END
 
 	void interactFartGasAttack();
@@ -37,9 +37,9 @@ struct Obj : public Kogane::Obj {
 
 	// _00 		= VTBL
 	// _00-_2DC	= Kogane::Obj
-	f32 _2DC;                          // _2DC
+	f32 m_fartTimer;                   // _2DC
 	Vector3f _2E0;                     // _2E0
-	efx::TBabaFly_ver01* m_efxBabaFly; // _2EC
+	efx::TBabaFly_ver01* m_bodyEffect; // _2EC
 	                                   // _2F0 = PelletView
 };
 

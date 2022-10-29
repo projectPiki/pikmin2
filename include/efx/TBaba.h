@@ -6,6 +6,11 @@
 
 namespace efx {
 struct TBabaFly_ver01 : public TChasePos {
+	TBabaFly_ver01(Vector3f* position)
+	    : TChasePos(PID_BabaFly, position)
+	{
+	}
+
 	virtual bool create(Arg*); // _08
 	virtual ~TBabaFly_ver01(); // _48 (weak)
 
