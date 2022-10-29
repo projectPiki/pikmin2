@@ -18,8 +18,9 @@ struct Piki;
 
 namespace ElecHiba {
 struct FSM;
+struct Obj;
 
-struct InitialParam {
+struct InitialParam : public EnemyInitialParamBase {
 	f32 _00; // _00
 };
 
@@ -28,6 +29,7 @@ struct TeamList : public CNode {
 
 	// _00		= VTBL
 	// _00-_18  = CNode
+	Obj* m_childObjPtr; // _18, child object pointer
 };
 
 struct Obj : public EnemyBase {
@@ -35,11 +37,11 @@ struct Obj : public EnemyBase {
 
 	//////////////// VTABLE
 	virtual void onInit(CreatureInitArg* settings);         // _30
-	virtual void doSimulation(f32);                         // _4C (weak)
+	virtual void doSimulation(f32) { }                      // _4C (weak)
 	virtual void doDirectDraw(Graphics& gfx);               // _50
-	virtual void inWaterCallback(WaterBox*);                // _84 (weak)
-	virtual void outWaterCallback();                        // _88 (weak)
-	virtual bool isLivingThing();                           // _D4 (weak)
+	virtual void inWaterCallback(WaterBox*) { }             // _84 (weak)
+	virtual void outWaterCallback() { }                     // _88 (weak)
+	virtual bool isLivingThing() { return _2C0; }           // _D4 (weak)
 	virtual void getShadowParam(ShadowParam&);              // _134
 	virtual ~Obj() { }                                      // _1BC (weak)
 	virtual void birth(Vector3f&, f32);                     // _1C0
@@ -56,7 +58,7 @@ struct Obj : public EnemyBase {
 	virtual bool pressCallBack(Creature*, f32, CollPart*);   // _27C
 	virtual bool hipdropCallBack(Creature*, f32, CollPart*); // _284
 	virtual bool bombCallBack(Creature*, Vector3f&, f32);    // _294
-	virtual void lifeRecover();                              // _2C0 (weak)
+	virtual void lifeRecover() { }                           // _2C0 (weak)
 	virtual void setFSM(FSM*);                               // _2F8
 	//////////////// VTABLE END
 
@@ -83,14 +85,15 @@ struct Obj : public EnemyBase {
 	// _00 		= VTBL
 	// _00-_2BC	= EnemyBase
 	FSM* m_FSM;                            // _2BC
-	u8 _2C0;                               // _2C0
+	bool _2C0;                             // _2C0
 	f32 m_waitTimer;                       // _2C4
 	TeamList m_teamList;                   // _2C8
-	u8 _2E0[0x4];                          // _2E0, unknown
 	Vector3f _2E4;                         // _2E4
 	efx::TDenkiHibaMgr* m_efxDenkiHibaMgr; // _2F0
-	u8 _2F4;                               // _2F4, might be a bool?
-	u8 _2F5[0xF];                          // _2F5, unknown
+	bool _2F4;                             // _2F4, might be a bool?
+	u32 _2F8;                              // _2F8, unknown
+	int _2FC;                              // _2FC, unknown
+	int _300;                              // _300, unknown
 	                                       // _304 = PelletView
 };
 
