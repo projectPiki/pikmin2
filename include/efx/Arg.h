@@ -216,8 +216,9 @@ struct ArgPrmColor : public Arg {
 };
 
 struct ArgRotY : public Arg {
-	ArgRotY(Vector3f position)
+	ArgRotY(Vector3f position, f32 facedir)
 	    : Arg(position)
+	    , m_faceDir(facedir)
 	{
 	}
 
@@ -225,6 +226,7 @@ struct ArgRotY : public Arg {
 	{
 		return "ArgRotY";
 	}
+	f32 m_faceDir; // _10
 };
 
 struct ArgRotYScale : public Arg {

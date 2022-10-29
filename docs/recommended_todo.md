@@ -166,7 +166,7 @@
 ### <section id="plugProjectNishimuraU">plugProjectNishimuraU</section>
 | File | Size (bytes) | File | Size (bytes) |
 | ---- | ---- | ---- | ---- |
-| <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectNishimuraU/nslibmath.cpp">nslibmath.cpp</a> | 4592 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectNishimuraU/Fart.cpp">Fart.cpp</a> | 8737 |
+| <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectNishimuraU/nslibmath.cpp">nslibmath.cpp</a> | 4592 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectNishimuraU/Fart.cpp">Fart.cpp</a> | 5904 |
 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectNishimuraU/TyreShadow.cpp">TyreShadow.cpp</a> | 9782 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectNishimuraU/SnakeJointMgr.cpp">SnakeJointMgr.cpp</a> | 10097 |
 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectNishimuraU/ContRumble.cpp">ContRumble.cpp</a> | 12392 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectNishimuraU/QueenShadow.cpp">QueenShadow.cpp</a> | 12549 |
 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectNishimuraU/UmimushiShadow.cpp">UmimushiShadow.cpp</a> | 12906 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectNishimuraU/BabyState.cpp">BabyState.cpp</a> | 13368 |

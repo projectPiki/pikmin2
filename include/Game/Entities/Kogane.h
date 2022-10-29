@@ -58,7 +58,7 @@ struct Obj : public EnemyBase {
 
 	void transitDamageState(f32);
 	bool transitDisappear();
-	void getBodyJointPos();
+	Vector3f getBodyJointPos();
 	void koganeScaleUp();
 	bool koganeScaleDown();
 	void setTargetPosition(Vector3f*);

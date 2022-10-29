@@ -18,7 +18,12 @@ struct TBabaFly_ver01 : public TChasePos {
 	// _00-_14  = TChasePos
 };
 
-struct TBabaHe : public TSimple1 {
+struct TBabaHe : public TSimple2 {
+	TBabaHe()
+	    : TSimple2(PID_BabaHe_1, PID_BabaHe_2)
+	{
+	}
+
 	virtual bool create(Arg*); // _08
 
 	// _00      = VTBL

@@ -32,6 +32,15 @@ struct Obj : public Kogane::Obj {
 	virtual void createPressSESpecial(); // _31C
 	//////////////// VTABLE END
 
+	/**
+	 * @fabricated
+	 */
+	inline void getFartDistance2D(Vector3f& point, Vector2f& sep)
+	{
+		sep.x = m_fartPosition.x - point.x;
+		sep.y = m_fartPosition.z - point.z;
+	}
+
 	void interactFartGasAttack();
 	void createEffect();
 
