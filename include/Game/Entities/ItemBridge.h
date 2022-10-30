@@ -8,22 +8,26 @@
 
 namespace Game {
 namespace ItemBridge {
+
+#define ITEM_BRIDGE_STATE_NORMAL (0)
+#define ITEM_BRIDGE_STATE_COUNT  (1)
+
 struct Item;
 
 struct BridgeInitArg : public CreatureInitArg {
 	virtual const char* getName(); // _08 (weak)
 
 	// _00     = VTBL
-	u16 m_bridgeType; // _04, possibly define list?
+	u16 m_bridgeType; // _04
 };
 
 struct BridgeInfo {
 	BridgeInfo();
 
-	u32 _00; // _00, unknown
-	u32 _04; // _04, unknown
-	u32 _08; // _08, unknown
-	u32 _0C; // _0C, unknown
+	u32 m_stageCount; // _00, unknown
+	u32 _04;          // _04, unknown
+	u32 _08;          // _08, unknown
+	u32 _0C;          // _0C, unknown
 };
 
 struct FSM : public ItemFSM<Item> {
@@ -44,7 +48,10 @@ struct State : public ItemState<Item> {
 };
 
 struct NormalState : public State {
-	// needs an inline ctor probably
+	inline NormalState(int stateID)
+	    : State(stateID)
+	{
+	}
 
 	virtual void init(Item*, StateArg*); // _08
 	virtual void exec(Item*);            // _0C
@@ -52,6 +59,7 @@ struct NormalState : public State {
 
 	// _00     = VTBL
 	// _00-_0C = State
+	u32 _10; // _10
 };
 
 struct BridgeParms : public CreatureParms {
@@ -109,8 +117,8 @@ struct Item : public WorkItem<Item, FSM, State> {
 
 	// _00      = VTBL
 	// _00-_1EC = WorkItem
-	u32 _1EC;                                    // _1EC, mabiki? might be size 0x8?
-	u32 _1F0;                                    // _1F0, unknown
+	s32 _1EC;                                    // _1EC, mabiki? might be size 0x8?
+	s32 _1F0;                                    // _1F0, unknown
 	f32 _1F4;                                    // _1F4
 	u8 _1F8;                                     // _1F8
 	WayPoint* _1FC;                              // _1FC
@@ -136,7 +144,7 @@ struct Mgr : public TNodeItemMgr {
 	virtual ~Mgr();                                                       // _B8 (weak)
 	virtual Item* birth();                                                // _BC
 
-	void getBridgeInfo(int);
+	BridgeInfo* getBridgeInfo(int);
 	void createBridgeInfo(int);
 	void setupPlatInstanceAttacher(Item*, PlatInstanceAttacher&);
 

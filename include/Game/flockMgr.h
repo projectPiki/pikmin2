@@ -42,10 +42,10 @@ struct BaseFlockMgr {
 	void resolveCollision(f32);
 
 	// _00 VTBL
-	int _04;         // _04
-	u32 _08;         // _08
-	Sys::Sphere _0C; // _0C
-	bool* _1C;       // _1C
+	int _04;                // _04
+	u32 _08;                // _08
+	Sys::Sphere _0C;        // _0C
+	bool* m_isAgentVisible; // _1C
 };
 
 template <typename T>

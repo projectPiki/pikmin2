@@ -106,7 +106,7 @@ struct FakePiki : public Creature, public SysShape::MotionListener {
 	virtual void movieSetFaceDir(f32);                        // _128
 	virtual void getVelocityAt(Vector3f&, Vector3f&);         // _184 (weak)
 	// vtable 2 (MotionListener + self)
-	// virtual void onKeyEvent(const SysShape::KeyEvent&); thunk // 1B8
+	// virtual void onKeyEvent(const SysShape::KeyEvent&); // _1B8 thunk
 	virtual int getDownfloorMass();           // _1BC (weak)
 	virtual bool isPikmin();                  // _1C0 (weak)
 	virtual void doColorChange();             // _1C4 (weak)

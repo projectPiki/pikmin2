@@ -83,14 +83,14 @@ void BaseFlockMgr::update()
 		Viewport* vp = gfx->getViewport(i);
 
 		if (!vp->viewable()) {
-			_1C[i] = false;
+			m_isAgentVisible[i] = false;
 			continue;
 		}
 
 		if (vp->m_camera->isVisible(_0C)) {
-			_1C[i] = true;
+			m_isAgentVisible[i] = true;
 		} else {
-			_1C[i] = false;
+			m_isAgentVisible[i] = false;
 		}
 	}
 

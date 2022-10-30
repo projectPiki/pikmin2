@@ -25,11 +25,11 @@ Challenge2D_TitleInfo::Info::Info(void)
 	m_floorCount     = 0;
 	m_sprayCounts[1] = 0;
 	m_sprayCounts[0] = 0;
-	m_0C             = 0;
-	m_pPikiContainer = nullptr;
-	m_pHighscore2    = nullptr;
-	m_pHighscore1    = nullptr;
-	m_1C             = 0;
+	_0C              = 0;
+	m_pikiContainer  = nullptr;
+	m_highscore2     = nullptr;
+	m_highscore1     = nullptr;
+	_1C              = 0;
 	m_bool           = false;
 }
 
@@ -84,11 +84,11 @@ Challenge2D_ResultInfo::Challenge2D_ResultInfo(void)
 {
 	m_bool = false;
 	m_bool = false;
-	m_08   = 0;
-	m_0C   = 0;
-	m_10   = 0;
-	m_14   = 0;
-	m_1C   = 0;
-	m_18   = 0;
+	_08    = 0;
+	_0C    = 0;
+	_10    = 0;
+	_14    = 0;
+	_1C    = 0;
+	_18    = 0;
 }
 } // namespace Game

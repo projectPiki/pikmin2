@@ -46,12 +46,11 @@ struct EnemyAnimatorBase {
 struct EnemyBlendAnimatorBase : public EnemyAnimatorBase {
 	EnemyBlendAnimatorBase();
 
-	virtual ~EnemyBlendAnimatorBase() { }            // _08 (weak)
-	virtual void setAnimMgr(SysShape::AnimMgr* mgr); // _0C
-	virtual SysShape::Animator& getAnimator();       // _10
-	virtual SysShape::Animator& getAnimator(int idx);
-	;                          // _14
-	virtual void animate(f32); // _18
+	virtual ~EnemyBlendAnimatorBase() { }             // _08 (weak)
+	virtual void setAnimMgr(SysShape::AnimMgr* mgr);  // _0C
+	virtual SysShape::Animator& getAnimator();        // _10
+	virtual SysShape::Animator& getAnimator(int idx); // _14
+	virtual void animate(f32);                        // _18
 	/**
 	 * @reifiedAddress{8010AA4C}
 	 * @reifiedFile{plugProjectYamashitaU/pelplant.cpp}
@@ -60,7 +59,6 @@ struct EnemyBlendAnimatorBase : public EnemyAnimatorBase {
 	{
 		EnemyAnimatorBase::animate(animatorIndex, speed);
 	}
-	// virtual void resetAnimSpeed(); // _20
 	/**
 	 * @reifiedAddress{8010AA6C}
 	 * @reifiedFile{plugProjectYamashitaU/pelplant.cpp}
