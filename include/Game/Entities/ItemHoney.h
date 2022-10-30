@@ -17,7 +17,7 @@ enum HoneyKind {
 	// type of the honey
 	HONEY_Y, // yellow nectar
 	HONEY_R, // red nectar
-	HONEY_B  // blue nectar
+	HONEY_B  // black nectar
 };
 
 namespace ItemHoney {
