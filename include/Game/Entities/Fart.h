@@ -47,7 +47,7 @@ struct Obj : public Kogane::Obj {
 	// _00 		= VTBL
 	// _00-_2DC	= Kogane::Obj
 	f32 m_fartTimer;                   // _2DC
-	Vector3f m_fartPosition;           // _2E0, should likely be Vector3f
+	Vector3f m_fartPosition;           // _2E0
 	efx::TBabaFly_ver01* m_bodyEffect; // _2EC
 	                                   // _2F0 = PelletView
 };

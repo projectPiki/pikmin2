@@ -220,12 +220,13 @@ void Obj::finishBodyEffect() { m_bodyEffect->fade(); }
  * Address:	80285C28
  * Size:	000204
  */
-// struggling to match this one - epoch
 void Obj::createFartEffect()
 {
 	efx::TBabaHe fartEffectFX;
-	efx::ArgRotY arg(m_position, getFaceDir());
+	Vector3f position = m_position;
+	efx::ArgRotY arg(position.x, position.y, position.z, getFaceDir());
 	fartEffectFX.create(&arg);
+	m_fartTimer = 0.0f;
 
 	Kogane::Parms* parms = static_cast<Kogane::Parms*>(m_parms);
 	f32 scale            = (parms->m_properParms.m_fp40.m_value * parms->m_general.m_fp20.m_value);

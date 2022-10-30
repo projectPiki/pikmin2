@@ -17,6 +17,11 @@ struct Arg {
 	{
 	}
 
+	inline Arg(f32 x, f32 y, f32 z)
+	    : m_position(x, y, z)
+	{
+	}
+
 	/**
 	 * @reifiedAddress{80108200}
 	 * @reifiedFile{plugProjectYamashitaU/enemyBase.cpp}
@@ -216,10 +221,10 @@ struct ArgPrmColor : public Arg {
 };
 
 struct ArgRotY : public Arg {
-	ArgRotY(Vector3f position, f32 facedir)
-	    : Arg(position)
-	    , m_faceDir(facedir)
+	ArgRotY(f32 x, f32 y, f32 z, f32 faceDir)
+	    : Arg(x, y, z)
 	{
+		m_faceDir = faceDir;
 	}
 
 	virtual const char* getName() // _08 (weak)

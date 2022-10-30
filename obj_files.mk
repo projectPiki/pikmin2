@@ -720,7 +720,7 @@ NISHIMURA:=\
 	$(BUILD_DIR)/src/plugProjectNishimuraU/WealthyMgr.o\
 	$(BUILD_DIR)/src/plugProjectNishimuraU/Wealthy.o\
 	$(BUILD_DIR)/src/plugProjectNishimuraU/FartMgr.o\
-	$(BUILD_DIR)/asm/plugProjectNishimuraU/Fart.o\
+	$(BUILD_DIR)/src/plugProjectNishimuraU/Fart.o\
 	$(BUILD_DIR)/asm/plugProjectNishimuraU/ArmorState.o\
 	$(BUILD_DIR)/src/plugProjectNishimuraU/ArmorAnimator.o\
 	$(BUILD_DIR)/asm/plugProjectNishimuraU/QueenState.o\
