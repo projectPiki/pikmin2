@@ -25,6 +25,11 @@ struct InitialParam : public EnemyInitialParamBase {
 };
 
 struct TeamList : public CNode {
+	inline TeamList()
+	    : m_childObjPtr(nullptr)
+	{
+	}
+
 	virtual ~TeamList() { } // _08 (weak)
 
 	// _00		= VTBL

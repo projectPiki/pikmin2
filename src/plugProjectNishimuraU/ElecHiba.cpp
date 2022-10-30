@@ -146,14 +146,16 @@ bool Obj::damageCallBack(Creature* creature, f32 damage, CollPart* collpart)
 	if ((creature) && !creature->isNavi()) {
 		if (_2F4) {
 			if (creature->isPiki()) {
-				Piki* piki = static_cast<Piki*>(creature);
-				if (m_teamList.m_parent) {
-					m_teamList.m_childObjPtr->addAttrAttackCount(piki);
+				Piki* piki         = static_cast<Piki*>(creature);
+				TeamList* listHead = static_cast<TeamList*>(m_teamList.m_parent);
+				if (listHead) {
+					listHead->m_childObjPtr->addAttrAttackCount(piki);
 				} else {
 					addAttrAttackCount(piki);
 				}
-			} else
-				addDamageMyself(damage);
+			}
+		} else {
+			addDamageMyself(damage);
 		}
 		return true;
 	}
@@ -847,8 +849,9 @@ void Obj::addDamageMyself(float damage)
 {
 	if (!(isEvent(0, EB_Vulnerable))) {
 		setEvent(0, EB_Damage);
-		if (m_teamList.m_parent) {
-			m_teamList.m_childObjPtr->damageIncrement(damage);
+		TeamList* listHead = static_cast<TeamList*>(m_teamList.m_parent);
+		if (listHead) {
+			listHead->m_childObjPtr->damageIncrement(damage);
 		} else {
 			damageIncrement(damage);
 		}
@@ -886,7 +889,12 @@ void Obj::setupLodParms()
  * Address:	80270128
  * Size:	000038
  */
-void Obj::updateEfxLod() { m_efxDenkiHibaMgr->setRateLOD(m_lod.m_flags & (AILOD_FLAG_IS_MID | AILOD_FLAG_IS_FAR)); }
+void Obj::updateEfxLod()
+{
+	if (m_efxDenkiHibaMgr) {
+		m_efxDenkiHibaMgr->setRateLOD(m_lod.m_flags & (AILOD_FLAG_IS_MID | AILOD_FLAG_IS_FAR));
+	}
+}
 
 /*
  * --INFO--
