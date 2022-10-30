@@ -525,7 +525,7 @@ bool Obj::farmCallBack(Creature* c, float power)
 void Obj::onStickStart(Creature* other)
 {
 	EnemyBase::onStickStart(other);
-	if (other->_0F8 && other->_0F8->m_specialID.getStrID()[3] == '0') {
+	if (other->m_stuckCollPart && other->m_stuckCollPart->m_specialID.getStrID()[3] == '0') {
 		addDamage(m_maxHealth, 1.0f);
 	}
 }

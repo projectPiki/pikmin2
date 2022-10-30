@@ -4,7 +4,7 @@
 #include "Dolphin/stl.h"
 #include "DvdThreadCommand.h"
 #include "Game/BaseGameSection.h"
-#include "Game/BaseHIOSection.h"
+#include "Game/BaseHIO.h"
 #include "Game/CameraMgr.h"
 #include "Game/TimeMgr.h"
 #include "Game/gameGenerator.h"
@@ -902,7 +902,7 @@ BaseGameSection::BaseGameSection(JKRHeap* heap)
     : BaseHIOSection(heap)
     , m_dvdThreadCommand()
 {
-	_164 = 0;
+	m_xfbFlags = 0;
 	setDisplay(JFWDisplay::createManager(nullptr, _1C, JUTXfb::DoubleBuffer, true), 1);
 	m_playerMode         = 2;
 	m_draw2DCreature     = nullptr;

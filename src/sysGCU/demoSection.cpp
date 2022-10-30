@@ -1,5 +1,5 @@
 #include "Demo.h"
-#include "Game/BaseHIOSection.h"
+#include "Game/BaseHIO.h"
 #include "Game/THPPlayer.h"
 #include "System.h"
 #include "types.h"
@@ -15,7 +15,7 @@
         .skip 1
         .asciz "JMANewSinTable"
         .skip 1
-        .4byte 0x54485083 # "THPï¿½Zï¿½Nï¿½Vï¿½ï¿½ï¿½ï¿½"
+        .4byte 0x54485083 # "THP?¿½Z?¿½N?¿½V?¿½?¿½?¿½?¿½"
         .4byte 0x5A834E83
         .4byte 0x56838783
         .4byte 0x93000000

@@ -32,7 +32,7 @@ struct CameraData {
 struct CameraParms : public Parameters {
 	CameraParms();
 
-	Parm<f32> m_cnld;
+	Parm<f32> m_cnld; // TODO: offsets?
 	Parm<f32> m_cnla;
 	Parm<f32> m_cnlf;
 	Parm<f32> m_cnlo;

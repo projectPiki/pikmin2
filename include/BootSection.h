@@ -2,7 +2,7 @@
 #define _BOOTSECTION_H
 
 #include "DvdThreadCommand.h"
-#include "Game/BaseHIOSection.h"
+#include "Game/BaseHIO.h"
 
 struct Graphics;
 template <typename T>

@@ -431,7 +431,7 @@ void Creature::init(Game::CreatureInitArg* arg)
 	m_flags.typeView |= 7;
 	clearStick();
 	m_updateContext.init(Game::collisionUpdateMgr);
-	_11C = Vector3f(0.0f);
+	m_triangleNormal = Vector3f(0.0f);
 	clearCapture();
 	m_curTriangle       = nullptr;
 	m_collisionPosition = Vector3f(0.0f, 1.0f, 0.0f);

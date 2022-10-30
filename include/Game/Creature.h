@@ -92,6 +92,7 @@ struct CreatureKillArg {
 	int _04; // _04
 };
 
+/// @brief Basic Creature structure
 struct Creature : public CellObject {
 	struct CheckHellArg {
 		inline CheckHellArg()
@@ -327,11 +328,6 @@ struct Creature : public CellObject {
 	static bool usePacketCulling;
 
 	Matrixf* m_captureMatrix;      // _0B8
-	                               // The following bitfield is here for mod usage.
-	                               // Vanilla seems to just use the previous 2 representations.
-	                               // u32 m_isDebugCollision : 1, : 24, m_isMovieExtra : 1,
-	                               //     m_isMovieMotion : 1, m_isMovieActor : 1, padding2 : 1,
-	                               //     m_isCollisionFlick : 1, m_isAlive : 1, m_isAtari : 1;
 	BitFlag<u32> m_flags;          // _0BC
 	void* m_parms;                 // _0C0
 	Generator* m_generator;        // _0C4
@@ -342,14 +338,14 @@ struct Creature : public CellObject {
 	Recti m_cellRect;              // _0E0
 	Creature* m_sticked;           // _0F0
 	Creature* m_sticker;           // _0F4
-	CollPart* _0F8;                // _0F8
+	CollPart* m_stuckCollPart;     // _0F8
 	Creature* m_captured;          // _0FC
 	Creature* m_capture;           // _100
 	Vector3f _104;                 // _104
 	short m_hasStick;              // _110
 	CollTree* m_collTree;          // _114
 	float m_mass;                  // _118
-	Vector3f _11C;                 // _11C
+	Vector3f m_triangleNormal;     // _11C
 	u16 m_objectTypeID;            // _128
 	UpdateContext m_updateContext; // _12C
 	Matrixf m_mainMatrix;          // _138

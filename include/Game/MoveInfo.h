@@ -18,32 +18,32 @@ struct TDispTriangleArray;
 struct MoveInfo {
 	inline MoveInfo(Sys::Sphere* sphere, Vector3f* vec, float a)
 	    : _00(sphere)
-	    , _04(vec)
+	    , m_velocity(vec)
 	    , _08(a)
 	{
-		_0C = 0.0f;
-		_10 = nullptr;
-		_44 = nullptr;
-		_74 = 0;
-		_19 = 0;
-		_18 = 0;
-		_48 = nullptr;
-		_14 = nullptr;
-		_90 = 0;
-		_94 = nullptr;
-		_2C = JMath::sincosTable_.m_table[256].first; // pi/2
-		_30 = 0.6f;
-		_98 = -1;
-		_4C = nullptr;
-		_1A = 0;
+		_0C           = 0.0f;
+		_10           = nullptr;
+		m_curTriangle = nullptr;
+		_74           = 0;
+		_19           = 0;
+		_18           = 0;
+		m_curWallTri  = nullptr;
+		m_infoOrigin  = nullptr;
+		_90           = 0;
+		_94           = nullptr;
+		_2C           = JMath::sincosTable_.m_table[256].first; // pi/2
+		_30           = 0.6f;
+		_98           = -1;
+		_4C           = nullptr;
+		_1A           = 0;
 	}
 
 	Sys::Sphere* _00;                                  // _00
-	Vector3f* _04;                                     // _04
+	Vector3f* m_velocity;                              // _04
 	float _08;                                         // _08
 	float _0C;                                         // _0C
 	Delegate2<DynCreature, Vector3f&, Vector3f&>* _10; // _10
-	BaseItem* _14;                                     // _14
+	BaseItem* m_infoOrigin;                            // _14
 	u8 _18;                                            // _18
 	u8 _19;                                            // _19
 	u8 _1A;                                            // _1A
@@ -52,10 +52,10 @@ struct MoveInfo {
 	float _2C;                                         // _2C
 	float _30;                                         // _30
 	u8 _34[16];                                        // _34
-	Sys::Triangle* _44;                                // _44
-	Sys::Triangle* _48;                                // _48
+	Sys::Triangle* m_curTriangle;                      // _44
+	Sys::Triangle* m_curWallTri;                       // _48
 	Sys::Triangle* _4C;                                // _4C
-	Vector3f _50;                                      // _50
+	Vector3f m_position;                               // _50
 	Vector3f _5C;                                      // _5C
 	float _68;                                         // _60
 	float _6C;                                         // _64

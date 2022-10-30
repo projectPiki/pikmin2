@@ -1,7 +1,7 @@
 #ifndef _GAME_BASEGAMESECTION_H
 #define _GAME_BASEGAMESECTION_H
 
-#include "Game/BaseHIOSection.h"
+#include "Game/BaseHIO.h"
 #include "Game/PikiContainer.h"
 #include "Camera.h"
 #include "DvdThreadCommand.h"
@@ -197,7 +197,7 @@ struct BaseGameSection : public BaseHIOSection {
 	// should there not be another 0x4 here in USA (not demo)? ...
 	BlendCamera* m_blendCamera;                           // _50
 	f32 m_blendFactor;                                    // _54
-	bool m_blendCameraActive;                             // _58
+	bool m_isBlendCameraActive;                           // _58
 	DvdThreadCommand m_dvdThreadCommand;                  // _5C
 	IDelegate3<MovieConfig*, u32, u32>* _C8;              // _C8
 	IDelegate3<MovieConfig*, void*, u32>* _CC;            // _CC
@@ -206,8 +206,8 @@ struct BaseGameSection : public BaseHIOSection {
 	WipeOutFader* m_wipeOutFader;                         // _D8
 	WipeOutInFader* m_wipeOutInFader;                     // _DC
 	u32 _E0;                                              // _E0
-	int m_lastActiveNaviIndex;                            // _E4
-	f32 m_vp2YScale;                                      // _E8
+	int m_prevNaviIdx;                                    // _E4
+	f32 m_secondViewportHeight;                           // _E8
 	f32 m_split;                                          // _EC
 	u8 m_setSplit;                                        // _F0
 	JUTTexture* m_mizuTexture;                            // _F4
@@ -235,12 +235,12 @@ struct BaseGameSection : public BaseHIOSection {
 	f32 _144;                                             // _144
 	Delegate1<BaseGameSection, Rectf&>* m_kanteiDelegate; // _148
 	ZoomCamera* m_treasureZoomCamera;                     // _14C
-	u8 _150[4];                                           // _150
+	u32 _150;                                             // _150
 	JUTTexture* m_xfbImage;                               // _154
 	JUTTexture* m_fbTexture;                              // _158
 	int m_xfbTexture1;                                    // _15C
 	int m_xfbTexture2;                                    // _160
-	u8 _164;                                              // _164
+	u8 m_xfbFlags;                                        // _164
 	JUTTexture* _168;                                     // _168
 	int m_texData1;                                       // _16C
 	int _170;                                             // _170

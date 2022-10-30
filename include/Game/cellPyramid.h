@@ -42,8 +42,8 @@ struct CollisionBuffer {
 	void insertSort(CellObject*, float);
 	int findIndex(CellObject*);
 
-	int m_nodeCount;          // _00 /* total node count? */
-	int m_usedNodeCount;      // _04 /* used node count? */
+	int m_nodeCount;          // _00/
+	int m_usedNodeCount;      // _04
 	CollNode* m_collNodes;    // _08
 	CellObject* m_cellObject; // _0C
 };

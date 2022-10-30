@@ -581,7 +581,7 @@ struct EnemyBase : public Creature, public SysShape::MotionListener, virtual pub
 	Sys::Sphere m_curLodSphere;                  // _270
 	WaterBox* m_waterBox;                        // _280
 	EnemyEffectNodeHamon* m_effectNodeHamon;     // _284
-	Sys::Triangle* _288;                         // _288
+	Sys::Triangle* m_curWallTri;                 // _288
 	PSM::EnemyBase* m_soundObj;                  // _28C
 	CNode m_effectNodeHamonRoot;                 // _290 - treat as EnemyEffectNodeBase with EnemyEffectNodeHamon nodes
 	f32 _2A8;                                    // _2A8

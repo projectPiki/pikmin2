@@ -13,7 +13,7 @@
 #include "Game/WaterBox.h"
 #include "Game/AIConstants.h"
 #include "Game/BaseItem.h"
-#include "Game/BaseHIOParms.h"
+#include "Game/BaseHIO.h"
 #include "Game/Cave/RandMapMgr.h"
 #include "Game/cellPyramid.h"
 #include "Game/EnemyAnimatorBase.h"
@@ -765,7 +765,7 @@ EnemyBase::EnemyBase()
     , m_pelletInfo()
     , m_lodParm()
     , m_waterBox(nullptr)
-    , _288(0)
+    , m_curWallTri(0)
     , m_soundObj(nullptr)
     , m_effectNodeHamonRoot()
     , _2A8(0.0f)
@@ -2593,26 +2593,26 @@ void EnemyBase::bounceProcedure(Sys::Triangle* triangle)
  */
 // WIP: https://decomp.me/scratch/YsXWy
 // LITERALLY MATCHES IF VECTOR3F::LENGTH AND NORMALISE MATCH SMH
-void EnemyBase::collisionMapAndPlat(f32 constraint)
+void EnemyBase::collisionMapAndPlat(f32 accelRate)
 {
 	if (!isStickTo()) {
 		if (!(isEvent(0, EB_3))) {
-			doSimulationGround(constraint);
+			doSimulationGround(accelRate);
 		} else {
-			doSimulationFlying(constraint);
+			doSimulationFlying(accelRate);
 			resetEvent(0, EB_30);
 		}
 
-		f32 radius = static_cast<EnemyParmsBase*>(m_parms)->m_general.m_fp01.m_value;
+		f32 yOffsetFromMap = static_cast<EnemyParmsBase*>(m_parms)->m_general.m_fp01.m_value;
 
 		Vector3f pos         = getPosition();
 		m_commonEffectOffset = getOffsetForMapCollision();
 
 		Sys::Sphere sphere;
 		pos += m_commonEffectOffset;
-		pos.y += radius;
+		pos.y += yOffsetFromMap;
 		sphere.m_position = pos;
-		sphere.m_radius   = radius;
+		sphere.m_radius   = yOffsetFromMap;
 
 		f32 z;
 		if (checkSecondary()) {
@@ -2621,57 +2621,57 @@ void EnemyBase::collisionMapAndPlat(f32 constraint)
 			z = static_cast<CreatureProperty*>(m_parms)->m_props.m_wallReflection.m_value;
 		}
 
-		_11C.y = 0.0f;
+		m_triangleNormal.y = 0.0f;
 
-		Vector3f vec = m_impVelocity + _11C;
-		MoveInfo moveInfo(&sphere, &vec, z);
-		moveInfo._14 = (BaseItem*)this;
+		Vector3f velocityDest = m_impVelocity + m_triangleNormal;
+		MoveInfo moveInfo(&sphere, &velocityDest, z);
+		moveInfo.m_infoOrigin = (BaseItem*)this;
 
-		mapMgr->traceMove(moveInfo, constraint);
+		mapMgr->traceMove(moveInfo, accelRate);
 
-		m_impVelocity = vec;
+		m_impVelocity = velocityDest;
 
-		f32 velocityNorm = m_impVelocity.normalise();
-		f32 _11CNorm     = _11C.length();
+		f32 velocityNorm  = m_impVelocity.normalise();
+		f32 collTriNormal = m_triangleNormal.length();
 
-		if ((velocityNorm > _11CNorm)) {
-			velocityNorm -= _11CNorm;
+		if ((velocityNorm > collTriNormal)) {
+			velocityNorm -= collTriNormal;
 			m_impVelocity *= velocityNorm;
-			_11C = 0.0f;
+			m_triangleNormal = 0.0f;
 		} else {
 			m_impVelocity *= velocityNorm;
-			_11C = 0.0f;
+			m_triangleNormal = 0.0f;
 		}
 
-		if (m_curTriangle == nullptr && moveInfo._44) {
-			bounceProcedure(moveInfo._44);
+		if (m_curTriangle == nullptr && moveInfo.m_curTriangle) {
+			bounceProcedure(moveInfo.m_curTriangle);
 		}
-		m_curTriangle = moveInfo._44;
+		m_curTriangle = moveInfo.m_curTriangle;
 
-		m_collisionPosition = moveInfo._50;
+		m_collisionPosition = moveInfo.m_position;
 
-		if (_288 == nullptr && moveInfo._48) {
+		if (m_curWallTri == nullptr && moveInfo.m_curWallTri) {
 			wallCallback(moveInfo);
 		}
-		_288 = moveInfo._48;
+		m_curWallTri = moveInfo.m_curWallTri;
 
 		if (platMgr != nullptr && isEvent(0, EB_13)) {
-			moveInfo._04 = &m_impVelocity;
+			moveInfo.m_velocity = &m_impVelocity;
 			platMgr->traceMove(moveInfo, constraint);
 
 			if (m_curTriangle == nullptr) {
-				if (moveInfo._44) {
-					bounceProcedure(moveInfo._44);
+				if (moveInfo.m_curTriangle) {
+					bounceProcedure(moveInfo.m_curTriangle);
 				}
-				m_curTriangle = moveInfo._44;
+				m_curTriangle = moveInfo.m_curTriangle;
 
-				m_collisionPosition = moveInfo._50;
+				m_collisionPosition = moveInfo.m_position;
 			}
 
-			if (_288 == nullptr && moveInfo._48) {
+			if (m_curWallTri == nullptr && moveInfo.m_curWallTri) {
 				wallCallback(moveInfo);
 			}
-			_288 = moveInfo._48;
+			m_curWallTri = moveInfo.m_curWallTri;
 		}
 
 		if (mapMgr->hasHiddenCollision()) {
@@ -2679,12 +2679,12 @@ void EnemyBase::collisionMapAndPlat(f32 constraint)
 		}
 
 		m_position.x = sphere.m_position.x - m_commonEffectOffset.x;
-		m_position.y = sphere.m_position.y - m_commonEffectOffset.y - radius;
+		m_position.y = sphere.m_position.y - m_commonEffectOffset.y - yOffsetFromMap;
 		m_position.z = sphere.m_position.z - m_commonEffectOffset.z;
 
 		updateSpheres();
 	} else {
-		_11C = 0.0f;
+		m_triangleNormal = 0.0f;
 
 		doSimulationStick(constraint);
 
@@ -3211,7 +3211,7 @@ void EnemyBase::doSimulation(f32 arg) { static_cast<EnemyBaseFSM::StateMachine*>
 void EnemyBase::doSimulationConstraint(f32 arg)
 {
 	if (!(isEvent(0, EB_HardConstraint))) {
-		if (_11C.x != 0.0f || _11C.z != 0.0f) {
+		if (m_triangleNormal.x != 0.0f || m_triangleNormal.z != 0.0f) {
 			setEvent(0, EB_30);
 		} else if (m_curTriangle) {
 			resetEvent(0, EB_30);
@@ -4831,10 +4831,10 @@ void EnemyBase::hardConstraintOn()
 void EnemyBase::hardConstraintOff()
 {
 	resetEvent(0, EB_HardConstraint);
-	m_mass = m_friction;
-	_11C.x = 0.0f;
-	_11C.y = 0.0f;
-	_11C.z = 0.0f;
+	m_mass             = m_friction;
+	m_triangleNormal.x = 0.0f;
+	m_triangleNormal.y = 0.0f;
+	m_triangleNormal.z = 0.0f;
 }
 
 /*

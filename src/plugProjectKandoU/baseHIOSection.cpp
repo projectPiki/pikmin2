@@ -1,4 +1,4 @@
-#include "Game/BaseHIOSection.h"
+#include "Game/BaseHIO.h"
 #include "CNode.h"
 #include "Controller.h"
 #include "Dolphin/os.h"

@@ -591,7 +591,7 @@ void StateClimb::exec(EnemyBase* enemy)
 		f32 val  = imomushi->_2FC;
 		f32 yval = imomushi->_104.y;
 		if (yval > 1.0f - val) {
-			CollPart* childPart = static_cast<CollPart*>(imomushi->_0F8->m_child);
+			CollPart* childPart = static_cast<CollPart*>(imomushi->m_stuckCollPart->m_child);
 			if (childPart != nullptr && childPart->m_hasCollPart == 2) {
 				imomushi->startClimbPlant(childPart);
 			} else {
@@ -599,7 +599,7 @@ void StateClimb::exec(EnemyBase* enemy)
 				imomushi->finishMotion();
 			}
 		} else if (yval < -val) {
-			CollPart* parentPart = static_cast<CollPart*>(imomushi->_0F8->m_parent);
+			CollPart* parentPart = static_cast<CollPart*>(imomushi->m_stuckCollPart->m_parent);
 			if (parentPart != nullptr && parentPart->m_hasCollPart == 2) {
 				imomushi->startClimbPlant(parentPart);
 			}

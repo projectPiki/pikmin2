@@ -4,7 +4,7 @@
 // Header for entire Demo namespace.
 
 #include "DvdThreadCommand.h"
-#include "Game/BaseHIOSection.h"
+#include "Game/BaseHIO.h"
 #include "Section.h"
 #include "ebi/Omake.h"
 #include "ebi/TMainTitleMgr.h"

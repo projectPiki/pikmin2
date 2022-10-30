@@ -519,7 +519,7 @@ void PikiSwallowedState::init(Piki* piki, StateArg* stateArg)
 	piki->startMotion(animIdx, animIdx, nullptr, nullptr);
 
 	Creature* creature = piki->m_sticker;
-	CollPart* collpart = piki->_0F8;
+	CollPart* collpart = piki->m_stuckCollPart;
 
 	if (piki->getCurrAction()) {
 		piki->getCurrAction()->cleanup();

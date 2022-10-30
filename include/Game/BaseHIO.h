@@ -12,6 +12,15 @@ namespace Game {
 struct GameMessage;
 struct HIORootNode;
 
+namespace BaseHIOParms {
+extern bool sEntryOpt;
+extern bool sEntryOptMapRoom;
+extern bool sDrawParticle;
+extern bool sMabikiEfx;
+extern bool sMapRoomFinal;
+extern bool sTekiChappyFlag;
+} // namespace BaseHIOParms
+
 struct BaseHIOSection : public Section {
 	BaseHIOSection(JKRHeap*);
 

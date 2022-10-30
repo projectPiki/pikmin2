@@ -38,7 +38,3 @@ Which, for enemies, you may want to look at the ```isCreatureWithinRange``` func
 - ```C_PARMS``` is shorthand for ```static_cast<Parms*>(this->m_parms)```.
 - ```CG_PROPERPARMS(x)``` is shorthand for ```static_cast<Parms*>(x->m_parms)->m_properParms```.
 - ```C_PROPERPARMS(x)``` is shorthand for ```static_cast<Parms*>(this->m_parms)->m_properParms```.
-
-## Project Organisation
-- Generally speaking, if a search of the include folder does not yield results, you may add a new file for a new structure / class. If it makes more sense for the structure definition to be within another file, prefer that option over a new file completely.
-- The project is actively formatted using .clang-format, for a consistent code style.

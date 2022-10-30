@@ -113,7 +113,7 @@ void BaseGameSection::newdraw_drawAll(Viewport* vp)
 	_12C->get(7)->draw();
 	_130->get(7)->draw();
 
-	if (!_168 && (_164 & 3) == 0) {
+	if (!_168 && (m_xfbFlags & 3) == 0) {
 		m_xfbImage->capture(m_xfbTexture1, m_xfbTexture2, GX_TF_RGB565, true, 0);
 	}
 	m_lightMgr->set(gfx);
