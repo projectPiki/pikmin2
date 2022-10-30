@@ -921,7 +921,7 @@ lbl_80244EA8:
  * Address:	80244EB0
  * Size:	000008
  */
-void Cave::RandMapMgr::isVersusHiba(void)
+bool Cave::RandMapMgr::isVersusHiba(void)
 {
 	/*
 	lbz      r3, 0x44(r3)

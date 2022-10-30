@@ -96,7 +96,7 @@ struct Obj : public EnemyBase {
 	Vector3f _2E4;                         // _2E4
 	efx::TDenkiHibaMgr* m_efxDenkiHibaMgr; // _2F0
 	bool _2F4;                             // _2F4, might be a bool?
-	u32 _2F8;                              // _2F8, unknown
+	int _2F8;                              // _2F8, unknown
 	int _2FC;                              // _2FC, unknown
 	int _300;                              // _300, unknown
 	                                       // _304 = PelletView

@@ -1,4 +1,6 @@
 #include "Game/Entities/ElecHiba.h"
+#include "Game/GameSystem.h"
+#include "Game/Cave/RandMapMgr.h"
 #include "Dolphin/rand.h"
 
 namespace Game {
@@ -8,7 +10,6 @@ namespace ElecHiba {
  * --INFO--
  * Address:	8026F258
  * Size:	000150
- * Does not match. Perhaps an issue with m_teamList?
  */
 Obj::Obj()
 {
@@ -139,7 +140,6 @@ void Obj::getShadowParam(ShadowParam& shadowParam)
  * --INFO--
  * Address:	8026F68C
  * Size:	0000CC
- * Does not match.
  */
 bool Obj::damageCallBack(Creature* creature, f32 damage, CollPart* collpart)
 {
@@ -843,7 +843,6 @@ lbl_8026FFD4:
  * --INFO--
  * Address:	8027008C
  * Size:	00004C
- * Does not match.
  */
 void Obj::addDamageMyself(float damage)
 {
@@ -1140,27 +1139,10 @@ void Obj::finishDisChargeEffect()
  */
 void Obj::generatorKill()
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	mr       r31, r3
-	lwz      r3, 0xc4(r3)
-	cmplwi   r3, 0
-	beq      lbl_80270638
-	mr       r4, r31
-	bl       informDeath__Q24Game9GeneratorFPQ24Game8Creature
-	li       r0, 0
-	stw      r0, 0xc4(r31)
-
-lbl_80270638:
-	lwz      r0, 0x14(r1)
-	lwz      r31, 0xc(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	if (m_generator) {
+		m_generator->informDeath(this);
+		m_generator = nullptr;
+	}
 }
 
 /*
@@ -1170,39 +1152,11 @@ lbl_80270638:
  */
 void Obj::setVersusHibaOnOff()
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	mr       r31, r3
-	lwz      r4, gameSystem__4Game@sda21(r13)
-	cmplwi   r4, 0
-	beq      lbl_8027069C
-	lwz      r0, 0x44(r4)
-	cmpwi    r0, 1
-	bne      lbl_8027069C
-	lwz      r3, randMapMgr__Q24Game4Cave@sda21(r13)
-	cmplwi   r3, 0
-	beq      lbl_8027069C
-	bl       isVersusHiba__Q34Game4Cave10RandMapMgrFv
-	clrlwi.  r0, r3, 0x18
-	beq      lbl_8027069C
-	li       r0, 1
-	stb      r0, 0x2f4(r31)
-	b        lbl_802706A4
-
-lbl_8027069C:
-	li       r0, 0
-	stb      r0, 0x2f4(r31)
-
-lbl_802706A4:
-	lwz      r0, 0x14(r1)
-	lwz      r31, 0xc(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	if ((gameSystem && gameSystem->m_mode == GSM_VERSUS_MODE) && (Cave::randMapMgr && Cave::randMapMgr->isVersusHiba())) {
+		_2F4 = true;
+		return;
+	}
+	_2F4 = false;
 }
 
 /*
@@ -1212,21 +1166,13 @@ lbl_802706A4:
  */
 void Obj::setVersusHibaType()
 {
-	/*
-	lwz      r4, 0x2fc(r3)
-	lwz      r0, 0x300(r3)
-	cmpw     r4, r0
-	beqlr
-	ble      lbl_802706D8
-	li       r0, 1
-	stw      r0, 0x2f8(r3)
-	blr
-
-lbl_802706D8:
-	li       r0, 2
-	stw      r0, 0x2f8(r3)
-	blr
-	*/
+	if (_2FC != _300) {
+		if (_2FC > _300) {
+			_2F8 = 1;
+			return;
+		}
+		_2F8 = 2;
+	}
 }
 
 /*
@@ -1292,28 +1238,10 @@ lbl_80270750:
  */
 bool Obj::isWaitFinish()
 {
-	/*
-	lwz      r4, 0xc0(r3)
-	lfs      f1, 0x2c4(r3)
-	lfs      f0, 0x86c(r4)
-	fcmpo    cr0, f1, f0
-	ble      lbl_8027079C
-	lwz      r0, 0x2f8(r3)
-	cmpwi    r0, 0
-	bne      lbl_80270794
-	lwz      r4, 0x2fc(r3)
-	lwz      r0, 0x300(r3)
-	cmpw     r4, r0
-	beq      lbl_8027079C
-
-lbl_80270794:
-	li       r3, 1
-	blr
-
-lbl_8027079C:
-	li       r3, 0
-	blr
-	*/
+	if ((m_waitTimer > C_PROPERPARMS.m_activeTime.m_value) && (_2F8 || (_2FC != _300))) {
+		return true;
+	}
+	return false;
 }
 
 /*
