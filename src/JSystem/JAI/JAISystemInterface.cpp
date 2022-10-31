@@ -677,7 +677,7 @@ void JAInter::SystemInterface::setAudioFrameParameter(JASPortArgs*)
  * Address:	........
  * Size:	000008
  */
-unkptr JAInterface::getAudioThreadPointer()
+void* JAInterface::getAudioThreadPointer()
 {
 	// UNUSED FUNCTION
 }
@@ -687,7 +687,7 @@ unkptr JAInterface::getAudioThreadPointer()
  * Address:	........
  * Size:	000020
  */
-unkptr JAInterface::getDvdThreadPointer()
+void* JAInterface::getDvdThreadPointer()
 {
 	// UNUSED FUNCTION
 }

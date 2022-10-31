@@ -313,8 +313,8 @@ u32 routeToTrack(u32);
 } // namespace JAInter
 
 namespace JAInterface {
-unkptr getAudioThreadPointer();
-unkptr getDvdThreadPointer();
+void* getAudioThreadPointer();
+void* getDvdThreadPointer();
 void setAudioThreadPauseFlag(bool);
 }; // namespace JAInterface
 

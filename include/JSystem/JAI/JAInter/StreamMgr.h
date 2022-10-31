@@ -57,22 +57,22 @@ extern u8 prepareSw;
 extern u8 prepareFlag;
 extern u8 externalAram;
 extern u8 finishFlag;
-extern unkptr streamUpdate;
-extern unkptr streamList;
+extern void* streamUpdate;
+extern void* streamList;
 extern JAIStream* streamSound;
-extern unkptr initOnCodeStrm;
+extern void* initOnCodeStrm;
 extern JASAramStream* streamSystem;
 extern u32 systemStatus;
 extern int controlStatus;
 extern JASHeap* aramBufferHeap;
-extern unkptr aramParentHeap;
+extern void* aramParentHeap;
 extern AllocCallback allocCallback;
 extern DeallocCallback deallocCallback;
 /*
  * This isn't the same type as the param to setExternalAramBuffer.
  * It must return typeof(aramParentHeap).
  */
-extern unkptr externalAramCallback;
+extern void* externalAramCallback;
 extern u32 dataFileNumber;
 extern MgrCallback mgrCallback;
 
