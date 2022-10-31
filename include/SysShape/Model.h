@@ -17,35 +17,35 @@ struct Joint;
 /**
  * @size{0x14}
  */
-struct Model : MtxObject {
+struct Model : public MtxObject {
 	Model(J3DModelData*, u32, u32);
 
-	virtual Matrixf* getMatrix(int);                   // _08
-	virtual bool isModel();                            // _0C (weak)
-	virtual bool isVisible(Sys::Sphere&);              // _10
-	virtual bool isVisible();                          // _14 (weak)
-	virtual void hide();                               // _18
-	virtual void show();                               // _1C
-	virtual void hidePackets();                        // _20
-	virtual void showPackets();                        // _24
-	virtual void jointVisible(bool, int);              // _28
-	virtual void jointVisible(bool, SysShape::Joint*); // _2C (weak)
-	// virtual void _30() = 0;							// _30 - need to work this out
+	virtual Matrixf* getMatrix(int);         // _08
+	virtual bool isModel();                  // _0C (weak)
+	virtual bool isVisible(Sys::Sphere&);    // _10
+	virtual bool isVisible();                // _14 (weak)
+	virtual void hide();                     // _18
+	virtual void show();                     // _1C
+	virtual void hidePackets();              // _20
+	virtual void showPackets();              // _24
+	virtual void jointVisible(bool, int);    // _28
+	virtual void jointVisible(bool, Joint*); // _2C (weak)
 
 	void clearAnimatorAll();
-	static void enableMaterialAnim(J3DModelData*, int);
 	void enableMaterialAnim(int);
-	float getRoughBoundingRadius();
+	f32 getRoughBoundingRadius();
 	void getRoughCenter();
 	void initJoints();
-	void initJointsRec(int, SysShape::Joint*);
+	void initJointsRec(int, Joint*);
 	void getJointIndex(char*);
-	SysShape::Joint* getJoint(char*);
+	Joint* getJoint(char*);
 	void setViewCalcModeImm();
 	void setViewCalcModeInd();
 	void viewCalc();
 	void setCurrentViewNo(u32);
 	void isMtxImmediate();
+
+	static void enableMaterialAnim(J3DModelData*, int);
 
 	// Unused/inlined:
 	void entry(Sys::Sphere&);

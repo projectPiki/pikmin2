@@ -17,19 +17,18 @@ struct MatBaseAnimation {
 	virtual J3DAnmBase* getAnmBase()     = 0; // _0C
 	virtual void set()                   = 0; // _10
 	virtual bool remove()                = 0; // _14
-	// virtual void _10() 				 = 0; // _18 - need to work out what this is
 
 	void attachResource(void*, J3DModelData*);
 	void getFrameMax();
 
-	// VTBL _00
+	// _00 = VTBL
 	J3DModelData* m_modelData; // _04
 };
 
 /**
  * @size{0x18}
  */
-struct MatTevRegAnimation : MatBaseAnimation {
+struct MatTevRegAnimation : public MatBaseAnimation {
 	MatTevRegAnimation();
 
 	virtual void onAttachResource(void*); // _08
@@ -45,7 +44,7 @@ struct MatTevRegAnimation : MatBaseAnimation {
 /**
  * @size{0x10}
  */
-struct MatTexAnimation : MatBaseAnimation {
+struct MatTexAnimation : public MatBaseAnimation {
 	MatTexAnimation();
 
 	virtual void onAttachResource(void*); // _08

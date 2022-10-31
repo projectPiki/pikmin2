@@ -34,23 +34,23 @@ struct GridDivider : public TriDivider {
 		m_maxX          = 0;
 	}
 
-	virtual ~GridDivider()
+	virtual ~GridDivider() // _08 (weak)
 	{
 		if (&m_maxX)
 			delete[] m_triIndexLists;
-	}                                                                               // _08 (weak)
-	virtual float getMinY(Vector3f&);                                               // _10
-	virtual TriIndexList* findTriLists(Sys::Sphere&);                               // _14
-	virtual void read(Stream&);                                                     // _18
-	virtual void getCurrTri(Game::CurrTriInfo&);                                    // _1C
-	virtual void createTriangles(Sys::CreateTriangleArg&);                          // _20
-	virtual void getBoundBox(BoundBox&);                                            // _24 (weak)
-	virtual TriDivider* do_clone(Matrixf&, Sys::VertexTable*, Sys::TriangleTable*); // _2C
+	}
+	virtual f32 getMinY(Vector3f&);                                       // _10
+	virtual TriIndexList* findTriLists(Sphere&);                          // _14
+	virtual void read(Stream&);                                           // _18
+	virtual void getCurrTri(Game::CurrTriInfo&);                          // _1C
+	virtual void createTriangles(CreateTriangleArg&);                     // _20
+	virtual void getBoundBox(BoundBox&);                                  // _24 (weak)
+	virtual TriDivider* do_clone(Matrixf&, VertexTable*, TriangleTable*); // _2C
 
-	void create(BoundBox&, int, int, Sys::VertexTable*, Sys::TriangleTable*);
+	void create(BoundBox&, int, int, VertexTable*, TriangleTable*);
 
 	// Unused/inlined:
-	void write(Stream&); // TODO: I wonder if this was declared virtual and then removed when unused somehow...
+	void write(Stream&);
 
 	inline void readIndexList(Stream& stream)
 	{
@@ -63,8 +63,8 @@ struct GridDivider : public TriDivider {
 	int m_maxZ;                    // _24
 	TriIndexList* m_triIndexLists; // _28
 	BoundBox m_boundingBox;        // _2C
-	float m_scaleX;                // _44
-	float m_scaleZ;                // _48
+	f32 m_scaleX;                  // _44
+	f32 m_scaleZ;                  // _48
 };
 } // namespace Sys
 

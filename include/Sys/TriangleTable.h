@@ -12,7 +12,7 @@ struct VertexTable;
 /**
  * @size{0x28}
  */
-struct TriangleTable : public ArrayContainer<Sys::Triangle> {
+struct TriangleTable : public ArrayContainer<Triangle> {
 	TriangleTable();
 
 	virtual ~TriangleTable();                     // _08 (weak)

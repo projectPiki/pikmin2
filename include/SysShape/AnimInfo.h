@@ -1,7 +1,6 @@
 #ifndef _SYSSHAPE_ANIMINFO_H
 #define _SYSSHAPE_ANIMINFO_H
 
-#include "CNode.h"
 #include "SysShape/KeyEvent.h"
 
 struct J3DAnmBase;
@@ -36,17 +35,17 @@ struct AnimInfo : public CNode {
 
 	virtual ~AnimInfo(); // _08 (weak)
 
-	void getLowestAnimKey(float);
+	void getLowestAnimKey(f32);
 	void getLastLoopStart(KeyEvent*);
-	SysShape::KeyEvent* getAnimKeyByType(u32);
+	KeyEvent* getAnimKeyByType(u32);
 	void read(Stream&);
 	void readEditor(Stream&);
 	void attach(J3DModelData*, void*);
 
 	inline AnimInfo* getInfoByID(int idx)
 	{
-		AnimInfo* info = this;
-		for (info; info; info = (AnimInfo*)info->m_next) {
+		FOREACH_NODE(AnimInfo, this, info)
+		{
 			if (idx != info->m_id) {
 				continue;
 			} else {

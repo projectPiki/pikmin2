@@ -26,17 +26,17 @@ struct AnimMgr : public CNode {
 		m_model = nullptr;
 		m_animInfo.clearRelations();
 	}
+
 	virtual ~AnimMgr(); // _08 (weak)
 
-	static AnimMgr* load(char*, J3DModelData*, JKRFileLoader*);
 	void dump();
-
 	void load(Stream&, J3DModelData*, JKRFileLoader*, char*);
-	static AnimMgr* load(JKRFileLoader*, char*, J3DModelData*, JKRFileLoader*, char*);
-
 	void read(Stream&);
 	void connectBasArc(char*, char*, JKRFileLoader*);
 	void registerSoundViewer(PSGame::SoundCreatureMgr*);
+
+	static AnimMgr* load(char*, J3DModelData*, JKRFileLoader*);
+	static AnimMgr* load(JKRFileLoader*, char*, J3DModelData*, JKRFileLoader*, char*);
 
 	Model* m_model;      // _18
 	AnimInfo m_animInfo; // _1C

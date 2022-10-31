@@ -15,14 +15,10 @@ struct VertexTable;
 struct TriIndexList : public IndexList {
 	TriIndexList();
 
-	/**
-	 * @reifiedAddress{80133E64}
-	 * @reifiedFile{plugProjectKandoU/collinfo.cpp}
-	 */
 	virtual ~TriIndexList() { } // _08 (weak)
 
 	void constructClone(TriangleTable&);
-	void getMinMax(VertexTable&, TriangleTable&, Vector3f&, Vector3f&, float&, float&);
+	void getMinMax(VertexTable&, TriangleTable&, Vector3f&, Vector3f&, f32&, f32&);
 	void makeCovarianceMatrix(VertexTable&, TriangleTable&, Matrix3f&, Vector3f&);
 	void draw(Graphics&, VertexTable&, TriangleTable&, bool);
 };

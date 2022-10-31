@@ -35,7 +35,7 @@ struct KeyEvent : public CNode {
 
 	int m_frame; // _18
 	int m_type;  // _1C
-	short _20;   // _20
+	s16 _20;     // _20
 };
 
 } // namespace SysShape

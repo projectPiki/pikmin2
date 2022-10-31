@@ -1,21 +1,15 @@
 #ifndef _SYSSHAPE_ANIMATOR_H
 #define _SYSSHAPE_ANIMATOR_H
 
-#include "types.h"
 #include "SysShape/AnimInfo.h"
 
 struct J3DMtxCalc;
 
 namespace SysShape {
 struct Model;
-struct AnimInfo;
 struct MotionListener;
-struct AnimMgr;
-struct KeyEvent;
 
 struct BaseAnimator {
-	// BaseAnimator() { }
-
 	virtual J3DMtxCalc* getCalc() = 0; // _08
 };
 
@@ -24,7 +18,6 @@ struct BaseAnimator {
  */
 struct Animator : public BaseAnimator {
 	Animator()
-	    : BaseAnimator()
 	{
 		m_flags    = 0;
 		m_animInfo = nullptr;
@@ -33,7 +26,7 @@ struct Animator : public BaseAnimator {
 		m_animMgr  = nullptr;
 	}
 
-	virtual J3DMtxCalc* getCalc() // _08
+	virtual J3DMtxCalc* getCalc() // _08 (weak)
 	{
 		return (m_animInfo != nullptr) ? m_animInfo->m_calc : nullptr;
 	}
@@ -43,7 +36,7 @@ struct Animator : public BaseAnimator {
 	void startExAnim(AnimInfo*);
 	bool assertValid(Model*);
 	void setCurrFrame(f32);
-	void setFrameByKeyType(unsigned long);
+	void setFrameByKeyType(u32);
 	void setLastFrame();
 
 	MotionListener* m_listener; // _04
@@ -55,14 +48,10 @@ struct Animator : public BaseAnimator {
 };
 
 struct BlendFunction {
-	virtual float getValue(f32) = 0; // _08
+	virtual f32 getValue(f32) = 0; // _08
 };
 
 struct BlendLinearFun : public BlendFunction {
-	/**
-	 * @reifiedAddress{8012E324}
-	 * @reifiedFile{plugProjectYamashitaU/enemyBlendAnimatorBase.cpp}
-	 */
 	virtual f32 getValue(f32 value) // _08 (weak)
 	{
 		return value;
@@ -70,10 +59,6 @@ struct BlendLinearFun : public BlendFunction {
 };
 
 struct BlendQuadraticFunc : public BlendFunction {
-	/**
-	 * @reifiedAddress{8012E344}
-	 * @reifiedFile{plugProjectYamashitaU/enemyBlendAnimatorBase.cpp}
-	 */
 	virtual f32 getValue(f32 value) // _08 (weak)
 	{
 		return value * value;
