@@ -1,3 +1,4 @@
+#include "JSystem/JAI/JAInter/StreamMgr.h"
 #include "types.h"
 
 /*
@@ -2106,7 +2107,7 @@ lbl_800B8E90:
  * Address:	800B8EAC
  * Size:	000008
  */
-void JAInter::StreamMgr::getStreamObjectPointer(void)
+JASAramStream* JAInter::StreamMgr::getStreamObjectPointer(void)
 {
 	/*
 	lwz      r3, streamSystem__Q27JAInter9StreamMgr@sda21(r13)
@@ -2119,7 +2120,7 @@ void JAInter::StreamMgr::getStreamObjectPointer(void)
  * Address:	800B8EB4
  * Size:	000008
  */
-void JAInter::StreamMgr::getSystemStatus(void)
+u32 JAInter::StreamMgr::getSystemStatus(void)
 {
 	/*
 	lwz      r3, systemStatus__Q27JAInter9StreamMgr@sda21(r13)
@@ -2142,7 +2143,7 @@ void JAInter::StreamMgr::setParentHeap(JASHeap*)
  * Address:	........
  * Size:	000010
  */
-void JAInter::StreamMgr::setAllockCallback( (JAInter::StreamMgr::BufferInfo (*)
+void JAInter::StreamMgr::setAllockCallback(JAInter::StreamMgr::AllocCallback)
 {
 	// UNUSED FUNCTION
 }
@@ -2152,7 +2153,7 @@ void JAInter::StreamMgr::setAllockCallback( (JAInter::StreamMgr::BufferInfo (*)
  * Address:	........
  * Size:	000008
  */
-void JAInter::StreamMgr::setDeallockCallback( (void (*)
+void JAInter::StreamMgr::setDeallockCallback(JAInter::StreamMgr::DeallocCallback)
 {
 	// UNUSED FUNCTION
 }
@@ -2162,7 +2163,7 @@ void JAInter::StreamMgr::setDeallockCallback( (void (*)
  * Address:	800B8EBC
  * Size:	000008
  */
-void JAInter::StreamMgr::getDecodedBufferBlocks(void)
+u32 JAInter::StreamMgr::getDecodedBufferBlocks(void)
 {
 	/*
 	lwz      r3, decodedBufferBlocks__Q27JAInter9StreamMgr@sda21(r13)
@@ -2175,7 +2176,7 @@ void JAInter::StreamMgr::getDecodedBufferBlocks(void)
  * Address:	........
  * Size:	000008
  */
-void JAInter::StreamMgr::setDecodedBufferBlocks( (unsigned long))
+void JAInter::StreamMgr::setDecodedBufferBlocks(unsigned long)
 {
 	// UNUSED FUNCTION
 }
@@ -2185,7 +2186,7 @@ void JAInter::StreamMgr::setDecodedBufferBlocks( (unsigned long))
  * Address:	800B8EC4
  * Size:	000018
  */
-void JAInter::StreamMgr::getDecodedBufferSize( (unsigned long))
+void JAInter::StreamMgr::getDecodedBufferSize(unsigned long)
 {
 	/*
 	lwz      r0, decodedBufferBlocks__Q27JAInter9StreamMgr@sda21(r13)
@@ -2212,7 +2213,7 @@ void JAInter::StreamMgr::getStreamSound(void)
  * Address:	........
  * Size:	000008
  */
-void JAInter::StreamMgr::setChannelMax( (unsigned long))
+void JAInter::StreamMgr::setChannelMax(unsigned long)
 {
 	// UNUSED FUNCTION
 }
@@ -2222,7 +2223,7 @@ void JAInter::StreamMgr::setChannelMax( (unsigned long))
  * Address:	800B8EDC
  * Size:	000008
  */
-void JAInter::StreamMgr::getChannelMax(void)
+u32 JAInter::StreamMgr::getChannelMax(void)
 {
 	/*
 	lwz      r3, sChannelMax__Q27JAInter9StreamMgr@sda21(r13)
@@ -2235,7 +2236,7 @@ void JAInter::StreamMgr::getChannelMax(void)
  * Address:	........
  * Size:	000010
  */
-void JAInter::StreamMgr::setExternalAramBuffer( (JASHeap *(*)
+void JAInter::StreamMgr::setExternalAramBuffer(void (*)(JASHeap*))
 {
 	// UNUSED FUNCTION
 }

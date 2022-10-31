@@ -43,6 +43,13 @@ struct J3DModelData {
 
 	inline u16 getMaterialCount1() { return m_materialTable.m_count1; }
 
+	/** @fabricated */
+	inline void init(const J3DModelHierarchy* hierarchy)
+	{
+		m_jointTree.makeHierarchy(nullptr, &hierarchy, &m_materialTable, &m_shapeTable);
+		m_shapeTable.initShapeNodes(&m_jointTree.m_mtxData, &m_vertexData);
+	}
+
 	// VTBL _00
 	const void* m_bmd;                // _04
 	u32 m_modelLoaderFlags;           // _08

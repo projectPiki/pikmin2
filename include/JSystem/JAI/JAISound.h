@@ -1,6 +1,8 @@
 #ifndef _JSYSTEM_JAI_JAISOUND_H
 #define _JSYSTEM_JAI_JAISOUND_H
 
+#include "JSystem/JAI/JAIBasic.h"
+#include "JSystem/JAI/JAIGlobalParameter.h"
 #include "JSystem/JAI/JAInter.h"
 #include "JSystem/JGeometry.h"
 #include "JSystem/JSupport/JSUList.h"
@@ -13,8 +15,23 @@ struct MoveParaSet;
 struct SoundInfo;
 } // namespace JAInter
 
+/**
+ * @size{0x1C}
+ * @fabricated
+ */
+struct JAISound_0x34 {
+	u8 _00[0x1C];
+};
+
 struct JAISound : public JSULink<JAISound> {
-	JAISound();
+	JAISound()
+	    : JSULink<JAISound>(this)
+	    , _15(0)
+	    , _16(10)
+	    , _38(nullptr)
+	{
+		_34 = new (JAIBasic::msCurrentHeap, 0x20) JAISound_0x34[JAIGlobalParameter::getParamAudioCameraMax()];
+	}
 
 	virtual void setPortData(u8, u16) = 0;           // _08
 	virtual short getPortData(u8)     = 0;           // _0C
@@ -72,7 +89,7 @@ struct JAISound : public JSULink<JAISound> {
 	~JAISound();
 	void initMultiMoveParameter(JAInter::MoveParaSet*, u8, u32, float, float, u32);
 	u32 getSwBit();
-	void checkSwBit(u32);
+	u32 checkSwBit(u32);
 	u32 getInfoPriority();
 	void clearMainSoundPPointer();
 	void setPauseMode(u8, u8);
@@ -99,7 +116,7 @@ struct JAISound : public JSULink<JAISound> {
 	u32 _28;                         // _28
 	u32 _2C;                         // _2C
 	u32 _30;                         // _30
-	JGeometry::TVec3f* _34;          // _34
+	JAISound_0x34* _34;              // _34
 	void* _38;                       // _38
 	u32 _3C;                         // _3C
 	void* _40;                       // _40

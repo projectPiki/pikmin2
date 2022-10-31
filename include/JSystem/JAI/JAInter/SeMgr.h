@@ -25,7 +25,7 @@ void checkSeMovePara();
 void sendSeAllParameter(JAISe*);
 void checkPlayingSeUpdateMultiplication(JAISe*, SeqUpdateData*, f32*, MoveParaSet*, f32, u8, f32*);
 void checkPlayingSeUpdateAddition(JAISe*, SeqUpdateData*, f32*, MoveParaSet*, u8, f32*, f32);
-void changeIDToCategory(u32);
+u32 changeIDToCategory(u32);
 void releaseSeRegist(JAISe*);
 void storeSeBuffer(JAISe**, Actor*, u32, u32, u8, SoundInfo*);
 void releaseSeBuffer(JAISe*, u32);
@@ -35,8 +35,13 @@ void setSeSequenceStartCallback(StartCallback);
 void clearSeqMuteFromSeStop(JAISound*);
 
 static StartCallback seStartCallback;
-static JAISequence* seHandle;
+
 static LinkSound* seRegist;
+static JAISequence* seHandle;
+static u8 seScene;
+static u32 seqMuteFlagFromSe;
+static float* seCategoryVolume;
+static u8* seEntryCancel;
 } // namespace SeMgr
 } // namespace JAInter
 

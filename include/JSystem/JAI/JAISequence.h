@@ -45,7 +45,7 @@ struct JAISequence : public JAISound {
 	void setTrackPortData(u8, u8, u16);
 	void setSeqPrepareFlag(u8);
 	void checkSeqReady();
-	void getSeqInterVolume(u8);
+	float getSeqInterVolume(u8);
 
 	// unused/inlined:
 	void setSeqInterFxmix(unsigned char, float, unsigned long);

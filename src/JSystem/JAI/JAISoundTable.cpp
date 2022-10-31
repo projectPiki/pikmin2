@@ -1,5 +1,6 @@
 #include "JSystem/JKR/JKRHeap.h"
 #include "JSystem/JAI/JAIBasic.h"
+#include "JSystem/JAI/JAIGlobalParameter.h"
 #include "JSystem/JAI/JAInter.h"
 #include "types.h"
 
@@ -116,90 +117,25 @@ lbl_800B74FC:
  */
 JAInter::SoundInfo* JAInter::SoundTable::getInfoPointer(u32 soundID)
 {
-	// u32 maskedID    = soundID & 0xC0000000;
-	// SoundInfo* info = nullptr;
-	// u32 category    = 0;
-	// if (maskedID == 0xC0000000) {
-	// 	category = 0x11;
-	// } else {
-	// 	if (maskedID < 0xC0000000) {
-	// 		if (maskedID < 0x80000001) {
-	// 			category = 0x10;
-	// 		}
-	// 	} else {
-	// 		if (maskedID == 0) {
-	// 			category = (soundID >> 0xC) & 0xFF;
-	// 			JAIGlobalParameter::getParamSeCategoryMax();
-	// 		}
-	// 	}
-	// }
-	// if (mAddress != nullptr && (soundID & 0x3FF) < (uint)mSoundMax[category]) {
-	// 	info = mPointerCategory[category] + (soundID & 0x3FF);
-	// }
-	// return info;
-	/*
-	stwu     r1, -0x20(r1)
-	mflr     r0
-	rlwinm   r4, r3, 0, 0, 1
-	stw      r0, 0x24(r1)
-	lis      r0, 0xc000
-	cmpw     r4, r0
-	stw      r31, 0x1c(r1)
-	li       r31, 0
-	stw      r30, 0x18(r1)
-	stw      r29, 0x14(r1)
-	mr       r29, r3
-	beq      lbl_800B7580
-	bge      lbl_800B7560
-	lis      r3, 0x80000001@ha
-	addi     r0, r3, 0x80000001@l
-	cmpw     r4, r0
-	bge      lbl_800B7584
-	b        lbl_800B7578
-
-lbl_800B7560:
-	cmpwi    r4, 0
-	beq      lbl_800B756C
-	b        lbl_800B7584
-
-lbl_800B756C:
-	rlwinm   r30, r29, 0x14, 0x18, 0x1f
-	bl       getParamSeCategoryMax__18JAIGlobalParameterFv
-	b        lbl_800B7584
-
-lbl_800B7578:
-	li       r30, 0x10
-	b        lbl_800B7584
-
-lbl_800B7580:
-	li       r30, 0x11
-
-lbl_800B7584:
-	lwz      r0, mAddress__Q27JAInter10SoundTable@sda21(r13)
-	clrlwi   r5, r29, 0x16
-	cmplwi   r0, 0
-	beq      lbl_800B75BC
-	lwz      r3, mSoundMax__Q27JAInter10SoundTable@sda21(r13)
-	slwi     r0, r30, 1
-	lhzx     r0, r3, r0
-	cmplw    r5, r0
-	bge      lbl_800B75BC
-	lwz      r4, mPointerCategory__Q27JAInter10SoundTable@sda21(r13)
-	slwi     r3, r30, 2
-	slwi     r0, r5, 4
-	lwzx     r3, r4, r3
-	add      r31, r3, r0
-
-lbl_800B75BC:
-	lwz      r0, 0x24(r1)
-	mr       r3, r31
-	lwz      r31, 0x1c(r1)
-	lwz      r30, 0x18(r1)
-	lwz      r29, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x20
-	blr
-	*/
+	SoundInfo* info = nullptr;
+	u32 category;
+	switch (soundID & 0xC0000000) {
+	case 0x00000000:
+		category = soundID >> 0xC & 0xFF;
+		JAIGlobalParameter::getParamSeCategoryMax();
+		break;
+	case 0x80000000:
+		category = 0x10;
+		break;
+	case 0xC0000000:
+		category = 0x11;
+		break;
+	}
+	u32 maskedID = soundID & 0x3FF;
+	if (mAddress != nullptr && maskedID < mSoundMax[category]) {
+		info = mPointerCategory[category] + maskedID;
+	}
+	return info;
 }
 
 /*
@@ -207,8 +143,17 @@ lbl_800B75BC:
  * Address:	800B75DC
  * Size:	000058
  */
-void JAInter::SoundTable::getInfoFormat(unsigned long)
+u32 JAInter::SoundTable::getInfoFormat(unsigned long p1)
 {
+	switch (p1 & 0xC0000000) {
+	case 0x00000000:
+		return mAddress[0];
+	case 0x80000000:
+		return mAddress[1];
+	case 0xC0000000:
+		return mAddress[2];
+	}
+	return 0;
 	/*
 	rlwinm   r5, r3, 0, 0, 1
 	lis      r0, 0xc000
@@ -256,28 +201,14 @@ void JAInter::SoundTable::setInfoTrack(unsigned long, unsigned char)
  * Address:	800B7634
  * Size:	000008
  */
-u8 JAInter::SoundTable::getCategotyMax(void)
-{
-	/*
-	lbz      r3, mCategotyMax__Q27JAInter10SoundTable@sda21(r13)
-	blr
-	*/
-}
+u8 JAInter::SoundTable::getCategotyMax(void) { return mCategotyMax; }
 
 /*
  * --INFO--
  * Address:	800B763C
  * Size:	000010
  */
-void JAInter::SoundTable::getSoundMax(unsigned char)
-{
-	/*
-	lwz      r4, mSoundMax__Q27JAInter10SoundTable@sda21(r13)
-	rlwinm   r0, r3, 1, 0x17, 0x1e
-	lhzx     r3, r4, r0
-	blr
-	*/
-}
+u16 JAInter::SoundTable::getSoundMax(unsigned char p1) { return mSoundMax[p1]; }
 
 /*
  * --INFO--

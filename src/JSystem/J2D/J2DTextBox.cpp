@@ -1,4 +1,7 @@
+#include "JSystem/J2D/J2DMaterial.h"
 #include "JSystem/J2D/J2DPane.h"
+#include "JSystem/J2D/J2DTevBlock.h"
+#include "JSystem/JUT/TColor.h"
 #include "types.h"
 
 /*
@@ -486,7 +489,7 @@ void J2DTevBlock::setFontUndeleteFlag() { }
  * Address:	800414E4
  * Size:	000008
  */
-u32 J2DTevBlock::getFont() { return 0x0; }
+JUTFont* J2DTevBlock::getFont() { return nullptr; }
 
 /*
  * --INFO--
@@ -1407,7 +1410,7 @@ lbl_80042048:
  * Address:	80042068
  * Size:	000078
  */
-void J2DTextBox::setConnectParent(bool)
+bool J2DTextBox::setConnectParent(bool)
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -1701,7 +1704,7 @@ lbl_800423CC:
  * Address:	800423F4
  * Size:	00006C
  */
-void J2DTextBox::isUsed(const ResFONT*)
+bool J2DTextBox::isUsed(const ResFONT*)
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -1821,7 +1824,7 @@ void J2DTextBox::setBlackWhite(JUtility::TColor, JUtility::TColor)
  * Address:	80042500
  * Size:	00000C
  */
-void J2DTextBox::getBlack() const
+JUtility::TColor J2DTextBox::getBlack() const
 {
 	/*
 	lwz      r0, 0x12c(r4)
@@ -1835,7 +1838,7 @@ void J2DTextBox::getBlack() const
  * Address:	8004250C
  * Size:	00000C
  */
-void J2DTextBox::getWhite() const
+JUtility::TColor J2DTextBox::getWhite() const
 {
 	/*
 	lwz      r0, 0x128(r4)
@@ -1849,14 +1852,14 @@ void J2DTextBox::getWhite() const
  * Address:	80042518
  * Size:	000008
  */
-u32 J2DTextBox::getMaterial() const { return 0x0; }
+J2DMaterial* J2DTextBox::getMaterial() const { return nullptr; }
 
 /*
  * --INFO--
  * Address:	80042520
  * Size:	000020
  */
-void J2DTextBox::isUsed(const ResTIMG*)
+bool J2DTextBox::isUsed(const ResTIMG*)
 {
 	/*
 	stwu     r1, -0x10(r1)

@@ -39,7 +39,7 @@ void Koganemushi::Obj::changeMaterial()
 	j3dModel->calcMaterial();
 
 	j3dTexture = m_model->m_j3dModel->m_modelData->m_materialTable.m_texture;
-	newTexture = &j3dTexture->_04->_00;
+	newTexture = j3dTexture->_04;
 
 	changeTexture->copyTo(newTexture);
 

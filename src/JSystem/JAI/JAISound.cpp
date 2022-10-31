@@ -3,6 +3,7 @@
 #include "JSystem/JAI/JAISequence.h"
 #include "JSystem/JAI/JAISound.h"
 #include "JSystem/JAI/JAIStream.h"
+#include "JSystem/JAI/JAInter/SeMgr.h"
 #include "JSystem/JSupport/JSUList.h"
 #include "types.h"
 
@@ -527,6 +528,8 @@ JAISe::JAISe()
  * Size:	0000AC
  */
 JAIStream::JAIStream()
+    : JAISound()
+    , _64()
 {
 	/*
 	stwu     r1, -0x20(r1)
@@ -590,65 +593,28 @@ void JAISound::initMultiMoveParameter(JAInter::MoveParaSet*, unsigned char, unsi
  * Address:	800B3B24
  * Size:	000024
  */
-void JAISe::getSeCategoryNumber()
-{
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	lwz      r3, 0x20(r3)
-	bl       changeIDToCategory__Q27JAInter5SeMgrFUl
-	lwz      r0, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
-}
+u32 JAISe::getSeCategoryNumber() { return JAInter::SeMgr::changeIDToCategory(m_soundID); }
 
 /*
  * --INFO--
  * Address:	800B3B48
  * Size:	00000C
  */
-u32 JAISound::getSwBit()
-{
-	return m_soundInfo->unk1;
-	/*
-	lwz      r3, 0x44(r3)
-	lwz      r3, 0(r3)
-	blr
-	*/
-}
+u32 JAISound::getSwBit() { return m_soundInfo->unk1; }
 
 /*
  * --INFO--
  * Address:	800B3B54
  * Size:	000010
  */
-void JAISound::checkSwBit(unsigned long)
-{
-	/*
-	lwz      r3, 0x44(r3)
-	lwz      r0, 0(r3)
-	and      r3, r4, r0
-	blr
-	*/
-}
+u32 JAISound::checkSwBit(unsigned long p1) { return p1 & getSwBit(); }
 
 /*
  * --INFO--
  * Address:	800B3B64
  * Size:	00000C
  */
-u32 JAISound::getInfoPriority()
-{
-	return m_soundInfo->count;
-	/*
-	lwz      r3, 0x44(r3)
-	lbz      r3, 4(r3)
-	blr
-	*/
-}
+u32 JAISound::getInfoPriority() { return m_soundInfo->count.v2[0]; }
 
 /*
  * --INFO--
@@ -706,8 +672,18 @@ void JAISound::stop(unsigned long p1) { JAIBasic::msBasic->stopSoundHandle(this,
  * Address:	800B3C18
  * Size:	000078
  */
-void JAISound::setPrepareFlag(unsigned char)
+void JAISound::setPrepareFlag(unsigned char prepareFlag)
 {
+	switch (m_soundID & 0xC0000000) {
+	case 0x80000000:
+		setPrepareFlag(prepareFlag);
+		break;
+	case 0x40000000:
+		break;
+	case 0xC0000000:
+		setPrepareFlag(prepareFlag);
+		break;
+	}
 	/*
 	stwu     r1, -0x10(r1)
 	mflr     r0
@@ -3206,7 +3182,7 @@ lbl_800B54A0:
  * Address:	800B54A8
  * Size:	00002C
  */
-void JAISequence::getSeqInterVolume(unsigned char)
+float JAISequence::getSeqInterVolume(unsigned char)
 {
 	/*
 	lbz      r0, 0x15(r3)

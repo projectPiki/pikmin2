@@ -14,6 +14,14 @@ struct J3DJoint;
 typedef unknown J3DJointCallBack(J3DJoint*, int);
 
 struct J3DJoint {
+	enum J3DJoint_0x16 {
+		J3DJ16_Unknown_01 = 1 << 0,
+		J3DJ16_Unknown_02 = 1 << 1,
+		J3DJ16_Unknown_04 = 1 << 2,
+		J3DJ16_Unknown_08 = 1 << 3,
+		J3DJ16_Unknown_10 = 1 << 4,
+		J3DJ16_Unknown_20 = 1 << 5,
+	};
 	J3DJoint();
 
 	void appendChild(J3DJoint*);
@@ -53,7 +61,7 @@ struct J3DJoint {
 	J3DMtxCalcAnmBase* m_mtxCalc;     // _54
 	J3DMaterial* m_material;          // _58
 
-	static J3DMtxCalc* sCurrentMtxCalc;
+	static J3DMtxCalc* mCurrentMtxCalc;
 };
 
 #endif

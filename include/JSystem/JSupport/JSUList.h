@@ -89,7 +89,7 @@ struct JSULink : public JSUPtrLink {
 	}
 
 	inline T* getObject() const { return (T*)getObjectPtr(); }
-	inline JSUList<T>* getList() { return (JSUList<T>*)JSUPtrLink::getList(); } // fabricated
+	inline JSUList<T>* getList() const { return (JSUList<T>*)JSUPtrLink::getList(); } // fabricated
 	inline JSULink<T>* getNext() const { return (JSULink<T>*)JSUPtrLink::getNext(); }
 	inline JSULink<T>* getPrev() const { return (JSULink<T>*)JSUPtrLink::getPrev(); }
 };
@@ -152,7 +152,7 @@ struct JSUTreeIterator {
 	}
 
 	T& operator*() { return *(getObject()); }
-	T* operator->() const { return getObject(); }
+	T* operator->() const { return m_tree->getObject(); }
 
 	T* getObject() const { return m_tree->getObject(); }
 

@@ -7,7 +7,11 @@ typedef long JASCallback(void*);
 
 struct JASCallbackMgr {
 	struct TCallback {
-		TCallback();
+		TCallback()
+		    : m_function(nullptr)
+		    , m_argument(nullptr)
+		{
+		}
 
 		/** @fabricated */
 		inline bool isMatch(JASCallback* function, void* argument) { return (m_function == function && m_argument == argument); }

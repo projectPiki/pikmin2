@@ -199,6 +199,8 @@ struct J3DTransformInfo {
 	JGeometry::TVec3f m_zRotation;    // _14
 };
 
+extern const J3DTransformInfo j3dDefaultTransformInfo;
+
 struct J3DNBTScaleInfo {
 	u8 _00;    // _00
 	float _04; // _04

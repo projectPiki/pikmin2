@@ -42,7 +42,20 @@ struct J3DMtxCalcNoAnmBase : public J3DMtxCalc {
 	virtual ~J3DMtxCalcNoAnmBase() {}; // _08
 };
 
+template <typename Calc, typename Init>
+struct J3DMtxCalcNoAnm : public J3DMtxCalcNoAnmBase {
+	virtual ~J3DMtxCalcNoAnm() { }                                                    // _08
+	virtual void init(const Vec& p1, const float (&p2)[3][4]) { Init::init(p1, p2); } // _24
+	virtual void calc() { Calc::calcTransform(mJoint->m_transformInfo); }             // _28
+};
+
 struct J3DMtxCalcAnmBase : public J3DMtxCalc {
+	/** @fabricated */
+	inline J3DMtxCalcAnmBase(J3DAnmTransform* animation)
+	    : _04(animation)
+	{
+	}
+
 	virtual ~J3DMtxCalcAnmBase();                   // _08
 	virtual void setAnmTransform(J3DAnmTransform*); // _0C
 	virtual J3DAnmTransform* getAnmTransform();     // _10
@@ -52,6 +65,12 @@ struct J3DMtxCalcAnmBase : public J3DMtxCalc {
 
 template <typename Adaptor, typename Init>
 struct J3DMtxCalcAnimation : public J3DMtxCalcAnmBase {
+	/** @fabricated */
+	inline J3DMtxCalcAnimation(J3DAnmTransform* animation)
+	    : J3DMtxCalcAnmBase(animation)
+	{
+	}
+
 	virtual ~J3DMtxCalcAnimation() {};                                                // _08
 	virtual void setAnmTransform(J3DAnmTransform* p1) { _04 = p1; }                   // _0C
 	virtual void init(const Vec& p1, const float (&p2)[3][4]) { Init::init(p1, p2); } // _24
@@ -68,6 +87,8 @@ struct J3DMtxCalcAnimation : public J3DMtxCalcAnmBase {
 		// }
 		// Calc::calcTransform(pInfo);
 	}
+
+	u8 _08[4]; // _08
 };
 
 struct J3DMtxCalcBlendAnmBase : public J3DMtxCalcAnmBase {
@@ -94,14 +115,14 @@ struct J3DMtxCalcAnimationAdaptorDefault {
 	static void calc(J3DMtxCalcAnmBase* p1)
 	{
 		J3DTransformInfo* pInfo;
-		if (p1->getAnmTransform() == nullptr) {
-			pInfo = &J3DMtxCalc::mJoint->m_transformInfo;
-		} else {
+		if (p1->getAnmTransform() != nullptr) {
 			J3DTransformInfo v1;
 			p1->getAnmTransform()->getTransform(J3DMtxCalc::mJoint->getJntNo(), &v1);
 			pInfo = &v1;
+		} else {
+			pInfo = &J3DMtxCalc::mJoint->m_transformInfo;
 		}
-		Calc::calcTransform(pInfo);
+		Calc::calcTransform(*pInfo);
 	}
 };
 

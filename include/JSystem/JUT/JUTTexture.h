@@ -31,6 +31,11 @@ struct JUTTexture : public GXTexObj {
 	void storeTIMG(const ResTIMG*, JUTPalette*);
 	void storeTIMG(const ResTIMG*, JUTPalette*, _GXTlut);
 
+	/** @fabricated */
+	inline int getSizeX() const { return _20->m_sizeX; }
+	/** @fabricated */
+	inline int getSizeY() const { return _20->m_sizeY; }
+
 	ResTIMG* _20;    // _20
 	void* _24;       // _24 /* DCrange */
 	JUTPalette* _28; // _28

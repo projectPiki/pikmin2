@@ -1,4 +1,5 @@
 #include "JSystem/JAI/JAInter.h"
+#include "JSystem/JAI/JAInter/Object.h"
 #include "types.h"
 
 /*

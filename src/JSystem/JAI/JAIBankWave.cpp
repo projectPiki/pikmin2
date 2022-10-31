@@ -1,4 +1,5 @@
 #include "types.h"
+#include "JSystem/JAI/JAInter/BankWave.h"
 
 /*
     Generated from dpostproc
@@ -63,7 +64,7 @@ void JAInter::BankWave::setWsLoadStatus(long, long)
  * Address:	........
  * Size:	000010
  */
-void JAInter::BankWave::getWsGroupNumber(long)
+long JAInter::BankWave::getWsGroupNumber(long)
 {
 	// UNUSED FUNCTION
 }
@@ -73,7 +74,7 @@ void JAInter::BankWave::getWsGroupNumber(long)
  * Address:	........
  * Size:	000010
  */
-void JAInter::BankWave::getWsLoadStatus(long)
+long JAInter::BankWave::getWsLoadStatus(long)
 {
 	// UNUSED FUNCTION
 }
@@ -83,7 +84,7 @@ void JAInter::BankWave::getWsLoadStatus(long)
  * Address:	800ABE44
  * Size:	000008
  */
-void JAInter::BankWave::setInitCallback( (void (*)
+void JAInter::BankWave::setInitCallback(JAInter::BankWave::InitCallback)
 {
 	/*
 	stw      r3, initCallback__Q27JAInter8BankWave@sda21(r13)
@@ -96,7 +97,7 @@ void JAInter::BankWave::setInitCallback( (void (*)
  * Address:	800ABE4C
  * Size:	000008
  */
-void JAInter::BankWave::setFirstLoadCallback( (void (*)
+void JAInter::BankWave::setFirstLoadCallback(JAInter::BankWave::LoadCallback)
 {
 	/*
 	stw      r3, firstLoadCallback__Q27JAInter8BankWave@sda21(r13)
@@ -109,7 +110,7 @@ void JAInter::BankWave::setFirstLoadCallback( (void (*)
  * Address:	800ABE54
  * Size:	000008
  */
-void JAInter::BankWave::setSecondLoadCallback( (void (*)
+void JAInter::BankWave::setSecondLoadCallback(JAInter::BankWave::LoadCallback)
 {
 	/*
 	stw      r3, secondLoadCallback__Q27JAInter8BankWave@sda21(r13)
@@ -357,7 +358,7 @@ lbl_800AC0B4:
  * Address:	........
  * Size:	00004C
  */
-void JAInter::BankWave::setSceneSetFinishCallback( (long, long))
+void JAInter::BankWave::setSceneSetFinishCallback(JAInter::BankWave::SceneSetFinishCallback)
 {
 	// UNUSED FUNCTION
 }
@@ -367,7 +368,7 @@ void JAInter::BankWave::setSceneSetFinishCallback( (long, long))
  * Address:	800AC0CC
  * Size:	000018
  */
-void JAInter::BankWave::finishSceneSet( (unsigned long))
+void JAInter::BankWave::finishSceneSet(unsigned long)
 {
 	/*
 	stw      r3, SceneSetFlag__Q27JAInter8BankWave@sda21(r13)
@@ -384,7 +385,7 @@ void JAInter::BankWave::finishSceneSet( (unsigned long))
  * Address:	........
  * Size:	000080
  */
-void JAInter::BankWave::loadSceneWave( (long, long))
+void JAInter::BankWave::loadSceneWave(long, long)
 {
 	// UNUSED FUNCTION
 }
@@ -394,7 +395,7 @@ void JAInter::BankWave::loadSceneWave( (long, long))
  * Address:	........
  * Size:	000034
  */
-void JAInter::BankWave::checkSceneWaveOnMemory( (long, long))
+void JAInter::BankWave::checkSceneWaveOnMemory(long, long)
 {
 	// UNUSED FUNCTION
 }
@@ -404,7 +405,7 @@ void JAInter::BankWave::checkSceneWaveOnMemory( (long, long))
  * Address:	800AC0E4
  * Size:	000074
  */
-void JAInter::BankWave::loadGroupWave( (long, long))
+void JAInter::BankWave::loadGroupWave(long, long)
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -444,7 +445,7 @@ void JAInter::BankWave::loadGroupWave( (long, long))
  * Address:	........
  * Size:	000010
  */
-void JAInter::BankWave::getWaveGroupNumber( (long))
+long JAInter::BankWave::getWaveGroupNumber(long)
 {
 	// UNUSED FUNCTION
 }
@@ -454,7 +455,7 @@ void JAInter::BankWave::getWaveGroupNumber( (long))
  * Address:	........
  * Size:	000010
  */
-void JAInter::BankWave::getWaveLoadStatus( (long))
+long JAInter::BankWave::getWaveLoadStatus(long)
 {
 	// UNUSED FUNCTION
 }

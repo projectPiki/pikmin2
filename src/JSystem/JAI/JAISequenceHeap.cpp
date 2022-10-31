@@ -1,3 +1,4 @@
+#include "JSystem/JAI/JAInter/HeapMgr.h"
 #include "types.h"
 
 /*

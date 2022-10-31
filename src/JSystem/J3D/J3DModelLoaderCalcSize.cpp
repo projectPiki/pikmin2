@@ -38,9 +38,9 @@ u16 J3DModelLoader::countMaterialNum(const void* stream)
  */
 int J3DModelLoader::calcLoadSize(const void* stream, u32 flags)
 {
-	u32 blockCount = reinterpret_cast<const J3DFileHeader*>(stream)->m_blockCount;
-	// const J3DFileBlockBase* nextBlock = reinterpret_cast<const J3DFileBlockBase*>(reinterpret_cast<const J3DFileHeader*>(stream) + 1);
-	const J3DFileBlockBase* nextBlock = reinterpret_cast<const J3DFileHeader*>(stream)->getFirstBlock();
+	const J3DFileHeader* header       = reinterpret_cast<const J3DFileHeader*>(stream);
+	u32 blockCount                    = header->m_blockCount;
+	const J3DFileBlockBase* nextBlock = header->getFirstBlock();
 	// TODO: What sizeof will get us a size of 0xE4?
 	int size = 0xE4;
 	for (u32 i = 0; i < blockCount; i++) {
@@ -73,7 +73,6 @@ int J3DModelLoader::calcLoadSize(const void* stream, u32 flags)
 		default:
 			break;
 		}
-		// nextBlock = reinterpret_cast<const J3DFileBlockBase*>(reinterpret_cast<const u8*>(nextBlock) + nextBlock->m_size);
 		nextBlock = nextBlock->getNext();
 	}
 	return size;
@@ -222,22 +221,25 @@ lbl_80087AD0:
  */
 int J3DModelLoader::calcLoadMaterialTableSize(const void* stream)
 {
-	u32 blockCount = reinterpret_cast<const J3DFileHeader*>(stream)->m_blockCount;
+	const J3DFileHeader* header = reinterpret_cast<const J3DFileHeader*>(stream);
+	// u32 blockCount              = header->m_blockCount;
 	// const J3DFileBlockBase* nextBlock = reinterpret_cast<const J3DFileBlockBase*>(reinterpret_cast<const J3DFileHeader*>(stream) + 1);
-	const J3DFileBlockBase* nextBlock = reinterpret_cast<const J3DFileHeader*>(stream)->getFirstBlock();
+	// const u32 blockCount              = ;
 	bool hasTextureTable              = false;
+	u32 i                             = 0;
+	const J3DFileBlockBase* nextBlock = header->getFirstBlock();
 	// TODO: What sizeof will get us a size of 0x20? Is this just the file header???
-	int size = 0x20;
-	for (u32 i = 0; i < blockCount; i++) {
+	size_t size = 0x20;
+	for (; i < header->m_blockCount; i++) {
 		switch (nextBlock->m_blockType) {
+		case J3DFBT_MaterialV21:
+			break;
 		case J3DFBT_Material:
 			size += calcSizeMaterialTable((const J3DMaterialBlock*)nextBlock, J3DMLF_21 | J3DMLF_25 | J3DMLF_29 | J3DMLF_31);
 			break;
 		case J3DFBT_Texture:
 			size += calcSizeTextureTable((const J3DTextureBlock*)nextBlock);
 			hasTextureTable = true;
-			break;
-		default:
 			break;
 		}
 		// nextBlock = reinterpret_cast<const J3DFileBlockBase*>(reinterpret_cast<const u8*>(nextBlock) + nextBlock->m_size);
@@ -323,9 +325,8 @@ lbl_80087BA4:
  */
 int J3DModelLoader::calcLoadBinaryDisplayListSize(const void* stream, u32 flags)
 {
-	const J3DFileHeader* header = (const J3DFileHeader*)stream;
-	u32 blockCount              = header->m_blockCount;
-	// const J3DFileBlockBase* nextBlock = reinterpret_cast<const J3DFileBlockBase*>(reinterpret_cast<const J3DFileHeader*>(stream) + 1);
+	const J3DFileHeader* header       = (const J3DFileHeader*)stream;
+	u32 blockCount                    = header->m_blockCount;
 	const J3DFileBlockBase* nextBlock = header->getFirstBlock();
 	u32 matFlags                      = flags & (J3DMLF_25 | J3DMLF_26);
 	int size                          = sizeof(J3DModelData);
@@ -370,7 +371,6 @@ int J3DModelLoader::calcLoadBinaryDisplayListSize(const void* stream, u32 flags)
 		default:
 			break;
 		}
-		// nextBlock = reinterpret_cast<const J3DFileBlockBase*>(reinterpret_cast<const u8*>(nextBlock) + nextBlock->m_size);
 		nextBlock = nextBlock->getNext();
 	}
 	return size;

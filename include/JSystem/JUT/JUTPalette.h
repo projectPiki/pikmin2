@@ -5,7 +5,8 @@
 #include "types.h"
 
 struct ResTLUT;
-typedef u8 JUTTransparency;
+typedef u8 _JUTTransparency;
+enum JUTTransparency { Transparency_0 = 0, Transparency_1, Transparency_2 };
 
 // Size: 0x18
 struct JUTPalette {
@@ -19,11 +20,11 @@ struct JUTPalette {
 	// }
 
 	GXTlutObj m_tlutObj;
-	_GXTlut m_tlutID;               // _0C
-	_GXTlutFmt m_tlutFormat;        // _0D
-	u8* _10;                        // _10
-	u16 _14;                        // _14
-	JUTTransparency m_transparency; // _16
+	_GXTlut m_tlutID;                // _0C
+	_GXTlutFmt m_tlutFormat;         // _0D
+	u8* _10;                         // _10
+	u16 _14;                         // _14
+	_JUTTransparency m_transparency; // _16
 };
 
 #endif

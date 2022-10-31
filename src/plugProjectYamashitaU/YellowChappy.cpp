@@ -148,7 +148,7 @@ void Obj::changeMaterial()
 
 	ResTIMG* newTexture0;
 	J3DTexture* j3dTexture0 = m_model->m_j3dModel->m_modelData->m_materialTable.m_texture;
-	newTexture0             = &j3dTexture0->_04->_00;
+	newTexture0             = &j3dTexture0->_04[0];
 
 	texture0->copyTo(newTexture0);
 
@@ -157,7 +157,7 @@ void Obj::changeMaterial()
 
 	ResTIMG* newTexture1;
 	J3DTexture* j3dTexture1 = m_model->m_j3dModel->m_modelData->m_materialTable.m_texture;
-	newTexture1             = &j3dTexture1->_04->_20;
+	newTexture1             = &j3dTexture1->_04[1];
 
 	texture1->copyTo(newTexture1);
 

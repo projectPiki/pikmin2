@@ -2,9 +2,12 @@
 #define _JSYSTEM_JAI_JAINTER_H
 
 #include "JSystem/JAI/JAInter/MoveParaSet.h"
+#include "JSystem/JAS/JASPortArgs.h"
+#include "JSystem/JAS/JASPortCmd.h"
 #include "JSystem/JAS/JASTrack.h"
 #include "JSystem/JGeometry.h"
 #include "JSystem/JKR/JKRArchive.h"
+#include "JSystem/JSupport/JSUList.h"
 #include "types.h"
 #include "Dolphin/mtx.h"
 
@@ -12,15 +15,48 @@ struct JAISequence;
 struct JAISound;
 
 namespace JAInter {
+struct Actor;
 struct DummyVec;
+struct SeqUpdateData;
+struct SoundInfo;
 
 namespace SequenceMgr {
-struct CustomHeapInfo {
-};
+struct CustomHeapInfo { };
 void init();
 void getArchiveName(char*);
 void setArchivePointer(JKRArchive*);
-void getArchivePointer();
+JKRArchive* getArchivePointer();
+void setCustomHeapCallback(JAInter::SequenceMgr::CustomHeapInfo (*)(unsigned long, unsigned short, JAISequence*));
+void processGFrameSequence();
+void checkEntriedSeq();
+void checkFadeoutSeq();
+void checkStoppedSeq();
+void checkPlayingSeq();
+void checkStartedSeq();
+void checkReadSeq();
+void checkSeqWave();
+void checkPlayingSeqTrack(unsigned long);
+void stopSeq(JAISequence*);
+void checkDvdLoadArc(unsigned long, unsigned long);
+void checkCustomDvdLoadArc(unsigned long, unsigned long);
+void storeSeqBuffer(JAISequence**, JAInter::Actor*, unsigned long, unsigned long, unsigned char, JAInter::SoundInfo*);
+void releaseSeqBuffer(JAISequence*, unsigned long);
+SeqUpdateData* getPlayTrackInfo(unsigned long);
+
+// unused/inlined:
+void checkPlayingSeqUpdateMultiplication(unsigned long, unsigned char, unsigned long, JAInter::MoveParaSet*, unsigned long*, unsigned char,
+                                         float*);
+void checkPlayingSeqUpdateAddition(unsigned long, unsigned char, unsigned long, JAInter::MoveParaSet*, unsigned long*, unsigned char,
+                                   float*, float);
+void checkPlayingSeqUpdateTrack(unsigned long, unsigned long, JAInter::MoveParaSet*, unsigned long*, unsigned char, float*);
+void checkCustomDvdPreloadArc(unsigned long, unsigned long);
+void stopPlayingSeq(unsigned long);
+void checkPlayingSoundTrack(unsigned long);
+void loadArcSeqData(unsigned long, bool);
+void loadCustomArcSeqData(unsigned short, bool);
+
+extern JAISequence** FixSeqBufPointer;
+extern SeqUpdateData* seqTrackInfo;
 } // namespace SequenceMgr
 
 struct Actor {
@@ -88,10 +124,10 @@ struct DummyObjectMgr {
 	static DummyObject* deadObjectUsedPointer;
 };
 
-struct DummyVec {
-};
+struct DummyVec { };
 
 struct HeapBlock {
+	HeapBlock();
 };
 
 struct LinkSound {
@@ -109,11 +145,27 @@ struct LinkSound {
 
 struct MuteBit {
 	MuteBit();
+
+	u8 value : 1;
 };
 
 struct PlayerParameter {
+	/**  @fabricated */
+	union PortArg {
+		f32 f32;
+		u32 u32;
+		s16* ps16;
+	};
+
 	PlayerParameter();
 	~PlayerParameter();
+
+	JASTrack* _00; // _00
+	union {
+		PortArg asArray[11];
+		JASPortArgs asStruct;
+	} m_portArgs;   // _04
+	JASPortCmd _30; // _30
 };
 
 struct SeParameter {
@@ -146,7 +198,12 @@ struct SeqUpdateData {
 	u8 _03;                  // _03 - could be padding
 	uint _04;                // _04
 	int _08;                 // _08
-	u8 _0C[0x18];            // _0C - unknown
+	f32 _0C;                 // _0C
+	f32 _10;                 // _10
+	f32 _14;                 // _14
+	f32 _18;                 // _18
+	f32 _1C;                 // _1C
+	f32 _20;                 // _20
 	void* _24;               // _24 - unknown pointer
 	void* _28;               // _28 - unknown pointer
 	void* _2C;               // _2C - unknown pointer
@@ -197,22 +254,26 @@ struct SeqParameter {
 };
 
 struct SoundInfo {
-	int unk1;
-	unsigned long count;
-	unsigned long pitch;
+	int unk1; // _00
+	union count_t {
+		unsigned long v1;
+		unsigned char v2[4];
+		unsigned short v3[2];
+	} count;             // _04
+	unsigned long pitch; // _08
 	union volume_t {
 		unsigned long v1;
 		unsigned char v2;
-	} volume;
+	} volume; // _0C
 };
 
 namespace SoundTable {
 void init(u8*, u32);
 SoundInfo* getInfoPointer(u32);
-void getInfoFormat(u32);
+u32 getInfoFormat(u32);
 void setInfoTrack(u32, u8);
 u8 getCategotyMax(void);
-void getSoundMax(u8);
+u16 getSoundMax(u8);
 void getSoundTablePointer(void);
 
 extern u8 mVersion;
@@ -223,10 +284,38 @@ extern SoundInfo** mPointerCategory;
 extern u8* mAddress;
 }; // namespace SoundTable
 
+namespace SystemInterface {
+BOOL checkFileExsistence(char*);
+u8 checkSeqActiveFlag(JASTrack*);
+JASTrack* trackToSeqp(JAISequence*, u8);
+void setSeqPortargsF32(SeqUpdateData*, u32, u8, f32);
+void setSeqPortargsU32(SeqUpdateData*, u32, u8, u32);
+void rootInit(SeqUpdateData*);
+void trackInit(SeqUpdateData*);
+void outerInit(SeqUpdateData*, JASTrack*, u32, u16, u8);
+void setSePortParameter(JASPortArgs*);
+
+// unused/inlined:
+void setSeqPortargsPS16(JAInter::SeqUpdateData*, unsigned long, unsigned char, short*);
+JASTrack* trackToSeqp(JASTrack*, unsigned char, unsigned long);
+void setPortParameter(JASPortArgs*, JASTrack*, unsigned long, unsigned long);
+void JAIouterP(void*);
+void JAIouterSW(void*);
+void setAudioFrameParameter(JASPortArgs*);
+
+extern JASPortCmd systemPortCmd;
+}; // namespace SystemInterface
+
 void deleteTmpDVDFile(u8**);
 void loadTmpDVDFile(char*, u8**);
 u8* transInitDataFile(u8*, u32);
 u32 routeToTrack(u32);
 } // namespace JAInter
+
+namespace JAInterface {
+unkptr getAudioThreadPointer();
+unkptr getDvdThreadPointer();
+void setAudioThreadPauseFlag(bool);
+}; // namespace JAInterface
 
 #endif

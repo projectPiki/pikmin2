@@ -1,3 +1,6 @@
+#include "JSystem/JAS/JASCallbackMgr.h"
+#include "JSystem/JAS/JASDriver.h"
+#include "JSystem/JAS/JASDsp.h"
 #include "types.h"
 
 /*
@@ -164,31 +167,23 @@
         .4byte 0x00000000
 */
 
+JASCallbackMgr JASDriver::sDspSyncCallback;
+JASCallbackMgr JASDriver::sSubFrameCallback;
+JASCallbackMgr JASDriver::sUpdateDacCallback;
+
 /*
  * --INFO--
  * Address:	800A47D8
  * Size:	000030
  */
-void JASDriver::key2pitch_c5(int)
+float JASDriver::key2pitch_c5(int key)
 {
-	/*
-	cmpwi    r3, 0
-	bge      lbl_800A47E8
-	li       r3, 0
-	b        lbl_800A47F4
-
-lbl_800A47E8:
-	cmpwi    r3, 0x7f
-	ble      lbl_800A47F4
-	li       r3, 0x7f
-
-lbl_800A47F4:
-	lis      r4, C5BASE_PITCHTABLE__9JASDriver@ha
-	slwi     r0, r3, 2
-	addi     r3, r4, C5BASE_PITCHTABLE__9JASDriver@l
-	lfsx     f1, r3, r0
-	blr
-	*/
+	if (key < 0) {
+		key = 0;
+	} else if (0x7F < key) {
+		key = 0x7F;
+	}
+	return C5BASE_PITCHTABLE[key];
 }
 
 /*
@@ -196,30 +191,11 @@ lbl_800A47F4:
  * Address:	800A4808
  * Size:	000050
  */
-void JASDriver::setLevel(float, float, float)
+void JASDriver::setLevel(float channelLevel, float autoMixerLevel, float dspMixerLevel)
 {
-	/*
-	stwu     r1, -0x20(r1)
-	mflr     r0
-	lfs      f0, lbl_80516E50@sda21(r2)
-	stw      r0, 0x24(r1)
-	fmuls    f4, f0, f1
-	fmuls    f0, f0, f2
-	fmr      f1, f3
-	fctiwz   f2, f4
-	fctiwz   f0, f0
-	stfd     f2, 8(r1)
-	stfd     f0, 0x10(r1)
-	lwz      r3, 0xc(r1)
-	lwz      r0, 0x14(r1)
-	sth      r3, MAX_MIXERLEVEL__9JASDriver@sda21(r13)
-	sth      r0, MAX_AUTOMIXERLEVEL__9JASDriver@sda21(r13)
-	bl       setDSPMixerLevel__6JASDspFf
-	lwz      r0, 0x24(r1)
-	mtlr     r0
-	addi     r1, r1, 0x20
-	blr
-	*/
+	MAX_MIXERLEVEL     = channelLevel * 16383.5f;
+	MAX_AUTOMIXERLEVEL = autoMixerLevel * 16383.5f;
+	JASDsp::setDSPMixerLevel(dspMixerLevel);
 }
 
 /*
@@ -227,25 +203,10 @@ void JASDriver::setLevel(float, float, float)
  * Address:	800A4858
  * Size:	00003C
  */
-void JASDriver::setMixerLevel(float, float)
+void JASDriver::setMixerLevel(float channelLevel, float dspMixerLevel)
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	lfs      f0, lbl_80516E50@sda21(r2)
-	stw      r0, 0x14(r1)
-	fmuls    f0, f0, f1
-	fmr      f1, f2
-	fctiwz   f0, f0
-	stfd     f0, 8(r1)
-	lwz      r0, 0xc(r1)
-	sth      r0, MAX_MIXERLEVEL__9JASDriver@sda21(r13)
-	bl       setDSPMixerLevel__6JASDspFf
-	lwz      r0, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	MAX_MIXERLEVEL = channelLevel * 16383.5f;
+	JASDsp::setDSPMixerLevel(dspMixerLevel);
 }
 
 /*
@@ -253,9 +214,10 @@ void JASDriver::setMixerLevel(float, float)
  * Address:	........
  * Size:	000024
  */
-void JASDriver::setChannelLevel(float)
+void JASDriver::setChannelLevel(float channelLevel)
 {
 	// UNUSED FUNCTION
+	MAX_MIXERLEVEL = channelLevel * 16383.5f;
 }
 
 /*
@@ -263,47 +225,23 @@ void JASDriver::setChannelLevel(float)
  * Address:	800A4894
  * Size:	000024
  */
-void JASDriver::setAutoLevel(float)
-{
-	/*
-	lfs      f0, lbl_80516E50@sda21(r2)
-	stwu     r1, -0x10(r1)
-	fmuls    f0, f0, f1
-	fctiwz   f0, f0
-	stfd     f0, 8(r1)
-	lwz      r0, 0xc(r1)
-	sth      r0, MAX_AUTOMIXERLEVEL__9JASDriver@sda21(r13)
-	addi     r1, r1, 0x10
-	blr
-	*/
-}
+void JASDriver::setAutoLevel(float autoMixerLevel) { MAX_AUTOMIXERLEVEL = autoMixerLevel * 16383.5f; }
 
 /*
  * --INFO--
  * Address:	800A48B8
  * Size:	000020
  */
-void JASDriver::setDSPLevel(float)
-{
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	bl       setDSPMixerLevel__6JASDspFf
-	lwz      r0, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
-}
+void JASDriver::setDSPLevel(float dspMixerLevel) { JASDsp::setDSPMixerLevel(dspMixerLevel); }
 
 /*
  * --INFO--
  * Address:	800A48D8
  * Size:	000008
  */
-void JASDriver::getChannelLevel()
+s16 JASDriver::getChannelLevel()
 {
+	return MAX_MIXERLEVEL;
 	/*
 	lhz      r3, MAX_MIXERLEVEL__9JASDriver@sda21(r13)
 	blr
@@ -315,8 +253,9 @@ void JASDriver::getChannelLevel()
  * Address:	800A48E0
  * Size:	000008
  */
-void JASDriver::getAutoLevel()
+s16 JASDriver::getAutoLevel()
 {
+	return MAX_AUTOMIXERLEVEL;
 	/*
 	lhz      r3, MAX_AUTOMIXERLEVEL__9JASDriver@sda21(r13)
 	blr
@@ -328,7 +267,7 @@ void JASDriver::getAutoLevel()
  * Address:	........
  * Size:	000034
  */
-void JASDriver::getDSPLevel()
+s16 JASDriver::getDSPLevel()
 {
 	// UNUSED FUNCTION
 }
@@ -338,9 +277,10 @@ void JASDriver::getDSPLevel()
  * Address:	........
  * Size:	000030
  */
-void JASDriver::getChannelLevel_f32()
+float JASDriver::getChannelLevel_f32()
 {
 	// UNUSED FUNCTION
+	return MAX_MIXERLEVEL / 16383.5f;
 }
 
 /*
@@ -348,76 +288,41 @@ void JASDriver::getChannelLevel_f32()
  * Address:	800A48E8
  * Size:	000030
  */
-void JASDriver::getAutoLevel_f32()
-{
-	/*
-	stwu     r1, -0x10(r1)
-	lis      r0, 0x4330
-	lfd      f2, lbl_80516E58@sda21(r2)
-	lhz      r3, MAX_AUTOMIXERLEVEL__9JASDriver@sda21(r13)
-	stw      r0, 8(r1)
-	lfs      f0, lbl_80516E50@sda21(r2)
-	stw      r3, 0xc(r1)
-	lfd      f1, 8(r1)
-	fsubs    f1, f1, f2
-	fdivs    f1, f1, f0
-	addi     r1, r1, 0x10
-	blr
-	*/
-}
+float JASDriver::getAutoLevel_f32() { return MAX_AUTOMIXERLEVEL / 16383.5f; }
 
 /*
  * --INFO--
  * Address:	800A4918
  * Size:	000020
  */
-void JASDriver::getDSPLevel_f32()
-{
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	bl       getDSPMixerLevel__6JASDspFv
-	lwz      r0, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
-}
+float JASDriver::getDSPLevel_f32() { return JASDsp::getDSPMixerLevel(); }
 
 /*
  * --INFO--
  * Address:	800A4938
  * Size:	000008
  */
-void JASDriver::setOutputMode(unsigned long)
-{
-	/*
-	stw      r3, JAS_SYSTEM_OUTPUT_MODE__9JASDriver@sda21(r13)
-	blr
-	*/
-}
+void JASDriver::setOutputMode(unsigned long outputMode) { JAS_SYSTEM_OUTPUT_MODE = outputMode; }
 
 /*
  * --INFO--
  * Address:	800A4940
  * Size:	000008
  */
-void JASDriver::getOutputMode()
-{
-	/*
-	lwz      r3, JAS_SYSTEM_OUTPUT_MODE__9JASDriver@sda21(r13)
-	blr
-	*/
-}
+u32 JASDriver::getOutputMode() { return JAS_SYSTEM_OUTPUT_MODE; }
 
 /*
  * --INFO--
  * Address:	800A4948
  * Size:	000090
  */
-void JASDriver::rejectCallback(long (*)(void*), void*)
+bool JASDriver::rejectCallback(long (*callback)(void*), void* p2)
 {
+	bool v1 = false;
+	v1 |= sDspSyncCallback.reject(callback, p2);
+	v1 |= sSubFrameCallback.reject(callback, p2);
+	v1 |= sUpdateDacCallback.reject(callback, p2);
+	return v1;
 	/*
 	stwu     r1, -0x20(r1)
 	mflr     r0
@@ -463,57 +368,24 @@ void JASDriver::rejectCallback(long (*)(void*), void*)
  * Address:	800A49D8
  * Size:	000034
  */
-void JASDriver::registerDspSyncCallback(long (*)(void*), void*)
-{
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	lis      r5, sDspSyncCallback__9JASDriver@ha
-	stw      r0, 0x14(r1)
-	mr       r0, r3
-	addi     r3, r5, sDspSyncCallback__9JASDriver@l
-	mr       r5, r4
-	mr       r4, r0
-	bl       regist__14JASCallbackMgrFPFPv_lPv
-	lwz      r0, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
-}
+bool JASDriver::registerDspSyncCallback(long (*callback)(void*), void* p2) { return sDspSyncCallback.regist(callback, p2); }
 
 /*
  * --INFO--
  * Address:	800A4A0C
  * Size:	000034
  */
-void JASDriver::registerSubFrameCallback(long (*)(void*), void*)
-{
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	lis      r5, sSubFrameCallback__9JASDriver@ha
-	stw      r0, 0x14(r1)
-	mr       r0, r3
-	addi     r3, r5, sSubFrameCallback__9JASDriver@l
-	mr       r5, r4
-	mr       r4, r0
-	bl       regist__14JASCallbackMgrFPFPv_lPv
-	lwz      r0, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
-}
+bool JASDriver::registerSubFrameCallback(long (*callback)(void*), void* p2) { return sSubFrameCallback.regist(callback, p2); }
 
 /*
  * --INFO--
  * Address:	........
  * Size:	000034
  */
-void JASDriver::registerUpdateDacCallback(long (*)(void*), void*)
+bool JASDriver::registerUpdateDacCallback(long (*callback)(void*), void* p2)
 {
 	// UNUSED FUNCTION
+	return sUpdateDacCallback.regist(callback, p2);
 }
 
 /*
@@ -521,118 +393,32 @@ void JASDriver::registerUpdateDacCallback(long (*)(void*), void*)
  * Address:	800A4A40
  * Size:	000028
  */
-void JASDriver::subframeCallback()
-{
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	lis      r3, sSubFrameCallback__9JASDriver@ha
-	stw      r0, 0x14(r1)
-	addi     r3, r3, sSubFrameCallback__9JASDriver@l
-	bl       callback__14JASCallbackMgrFv
-	lwz      r0, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
-}
+void JASDriver::subframeCallback() { sSubFrameCallback.callback(); }
 
 /*
  * --INFO--
  * Address:	800A4A68
  * Size:	000028
  */
-void JASDriver::DSPSyncCallback()
-{
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	lis      r3, sDspSyncCallback__9JASDriver@ha
-	stw      r0, 0x14(r1)
-	addi     r3, r3, sDspSyncCallback__9JASDriver@l
-	bl       callback__14JASCallbackMgrFv
-	lwz      r0, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
-}
+void JASDriver::DSPSyncCallback() { sDspSyncCallback.callback(); }
 
 /*
  * --INFO--
  * Address:	800A4A90
  * Size:	000028
  */
-void JASDriver::updateDacCallback()
-{
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	lis      r3, sUpdateDacCallback__9JASDriver@ha
-	stw      r0, 0x14(r1)
-	addi     r3, r3, sUpdateDacCallback__9JASDriver@l
-	bl       callback__14JASCallbackMgrFv
-	lwz      r0, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
-}
+void JASDriver::updateDacCallback() { sUpdateDacCallback.callback(); }
 
 /*
  * --INFO--
  * Address:	800A4AB8
  * Size:	000080
  */
-void __sinit_JASDriverIF_cpp(void)
-{
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	lis      r4, sDspSyncCallback__9JASDriver@ha
-	lis      r3, __ct__Q214JASCallbackMgr9TCallbackFv@ha
-	stw      r0, 0x14(r1)
-	li       r5, 0
-	li       r6, 8
-	li       r7, 0x10
-	stw      r31, 0xc(r1)
-	addi     r31, r4, sDspSyncCallback__9JASDriver@l
-	addi     r4, r3, __ct__Q214JASCallbackMgr9TCallbackFv@l
-	addi     r3, r31, 0
-	bl       __construct_array
-	lis      r4, __ct__Q214JASCallbackMgr9TCallbackFv@ha
-	addi     r3, r31, 0x80
-	addi     r4, r4, __ct__Q214JASCallbackMgr9TCallbackFv@l
-	li       r5, 0
-	li       r6, 8
-	li       r7, 0x10
-	bl       __construct_array
-	lis      r4, __ct__Q214JASCallbackMgr9TCallbackFv@ha
-	addi     r3, r31, 0x100
-	addi     r4, r4, __ct__Q214JASCallbackMgr9TCallbackFv@l
-	li       r5, 0
-	li       r6, 8
-	li       r7, 0x10
-	bl       __construct_array
-	lwz      r0, 0x14(r1)
-	lwz      r31, 0xc(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
-}
+// void __sinit_JASDriverIF_cpp(void) { }
 
 /*
  * --INFO--
  * Address:	800A4B38
  * Size:	000010
  */
-JASCallbackMgr::TCallback::TCallback(void)
-{
-	/*
-	li       r0, 0
-	stw      r0, 0(r3)
-	stw      r0, 4(r3)
-	blr
-	*/
-}
+// JASCallbackMgr::TCallback::TCallback(void) { }

@@ -66,26 +66,9 @@
  */
 void JAIAnimeSound::handleStop(u8 handleNo, u32 p2)
 {
-	// _40[handleNo] = 0;
-	// _44[handleNo]._00 = 0;
+	_40[handleNo] = 0;
+	_44[handleNo] = nullptr;
 	ObjectBase::handleStop(handleNo, p2);
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	clrlwi   r8, r4, 0x18
-	li       r7, 0
-	stw      r0, 0x14(r1)
-	rlwinm   r0, r4, 2, 0x16, 0x1d
-	lwz      r6, 0x40(r3)
-	stbx     r7, r6, r8
-	lwz      r6, 0x44(r3)
-	stwx     r7, r6, r0
-	bl       handleStop__Q27JAInter10ObjectBaseFUcUl
-	lwz      r0, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
 }
 
 /*

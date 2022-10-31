@@ -43,6 +43,9 @@ struct TVec2 {
 		y += other.y;
 	}
 
+	/** @fabricated */
+	// TVec2<T> adding(const TVec2<T>& other) { return TVec2<T>(x + other.x, y + other.y); }
+
 	bool isAbove(const TVec2<T>& other) const { return (x >= other.x) && (y >= other.y) ? true : false; }
 
 	T x;
@@ -157,6 +160,11 @@ struct TBox2 : TBox<TVec2<T> > {
             this->f.setMax(box.f);
         }
     }
+
+	// /** @fabricated */
+	// TBox2<T>& addingPos(TBox2<T>& result, const TVec2<T>& pos) {
+	// 	return TBox2<T>(i.adding(pos), f.adding(pos));
+	// }
 
     void set(const TBox2& other) { set(other.i, other.f); }
     void set(const TVec2<f32>& i, const TVec2<f32>& f) { this->i.set(i), this->f.set(f); }

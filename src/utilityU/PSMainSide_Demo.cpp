@@ -5429,6 +5429,7 @@ namespace PSM {
  */
 void Scene_Cave::isPollutUp()
 {
+	return (_64 != -1);
 	/*
 	lwz      r4, 0x64(r3)
 	subfic   r3, r4, -1

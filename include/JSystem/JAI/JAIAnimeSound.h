@@ -40,7 +40,7 @@ struct JAIAnimeSound : public JAInter::Object {
 
 	// _00 VTBL
 	u8* _40;                        // _40
-	void* _44;                      // _44
+	void** _44;                     // _44
 	u32 _48;                        // _48
 	u32 _4C;                        // _4C
 	u32 _50;                        // _50

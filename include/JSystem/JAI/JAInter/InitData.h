@@ -4,12 +4,18 @@
 #include "types.h"
 namespace JAInter {
 namespace InitData {
-bool checkInitDataFile();
+typedef void (*InitCallback)(u32*);
+
+BOOL checkInitDataFile();
 void checkInitDataOnMemory();
-void initBnkList(u32);
-void initWsList(u32);
+void initBnkList(u32*);
+void initWsList(u32*);
 void setBnkInitCallback(void (*)(u32*));
 void setWsInitCallback(void (*)(u32*));
+
+extern InitCallback wsInitCallback;
+extern InitCallback bnkInitCallback;
+extern u8* aafPointer;
 } // namespace InitData
 } // namespace JAInter
 

@@ -7,8 +7,8 @@
 #include "types.h"
 
 struct J3DAnmVtxColorIndexData {
-	u8 _00[4]; // _00
-	s32 _04;   // _04
+	u16 _00; // _00
+	s32 _04; // _04
 };
 
 struct J3DAnmVtxColor : public J3DAnmBase {
