@@ -1,4 +1,8 @@
+#include "JSystem/JAI/JAIGlobalParameter.h"
+#include "JSystem/JAI/JAISequence.h"
 #include "JSystem/JAI/JAInter.h"
+#include "JSystem/JAS/JASPortCmd.h"
+#include "JSystem/JKR/JKRArchive.h"
 #include "types.h"
 
 /*
@@ -600,10 +604,10 @@ lbl_800B100C:
  * Address:	........
  * Size:	000054
  */
-void JSULink<JASPortCmd>::~JSULink()
-{
-	// UNUSED FUNCTION
-}
+// void JSULink<JASPortCmd>::~JSULink()
+// {
+// 	// UNUSED FUNCTION
+// }
 
 /*
  * --INFO--
@@ -663,7 +667,7 @@ void JAInter::SequenceMgr::setArchivePointer(JKRArchive*)
  * Address:	800B109C
  * Size:	000008
  */
-void JAInter::SequenceMgr::getArchivePointer(void)
+JKRArchive* JAInter::SequenceMgr::getArchivePointer(void)
 {
 	/*
 	lwz      r3, arcPointer__Q27JAInter11SequenceMgr@sda21(r13)
@@ -676,7 +680,7 @@ void JAInter::SequenceMgr::getArchivePointer(void)
  * Address:	800B10A4
  * Size:	000008
  */
-void JAInter::SequenceMgr::setCustomHeapCallback((JAInter::SequenceMgr::CustomHeapInfo(*)(unsigned long, unsigned short, JAISequence*)))
+void JAInter::SequenceMgr::setCustomHeapCallback(JAInter::SequenceMgr::CustomHeapInfo (*)(unsigned long, unsigned short, JAISequence*))
 {
 	/*
 	.loc_0x0:
@@ -692,22 +696,13 @@ void JAInter::SequenceMgr::setCustomHeapCallback((JAInter::SequenceMgr::CustomHe
  */
 void JAInter::SequenceMgr::processGFrameSequence(void)
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	bl       checkEntriedSeq__Q27JAInter11SequenceMgrFv
-	bl       checkStoppedSeq__Q27JAInter11SequenceMgrFv
-	bl       checkPlayingSeq__Q27JAInter11SequenceMgrFv
-	bl       checkFadeoutSeq__Q27JAInter11SequenceMgrFv
-	bl       checkStartedSeq__Q27JAInter11SequenceMgrFv
-	bl       checkReadSeq__Q27JAInter11SequenceMgrFv
-	bl       checkSeqWave__Q27JAInter11SequenceMgrFv
-	lwz      r0, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	checkEntriedSeq();
+	checkStoppedSeq();
+	checkPlayingSeq();
+	checkFadeoutSeq();
+	checkStartedSeq();
+	checkReadSeq();
+	checkSeqWave();
 }
 
 /*
@@ -1046,60 +1041,15 @@ lbl_800B14F4:
  */
 void JAInter::SequenceMgr::checkFadeoutSeq(void)
 {
-	/*
-	stwu     r1, -0x20(r1)
-	mflr     r0
-	stw      r0, 0x24(r1)
-	stw      r31, 0x1c(r1)
-	li       r31, 0
-	stw      r30, 0x18(r1)
-	li       r30, 0
-	stw      r29, 0x14(r1)
-	b        lbl_800B15A4
-
-lbl_800B1538:
-	lwz      r0, seqTrackInfo__Q27JAInter11SequenceMgr@sda21(r13)
-	add      r29, r0, r31
-	lwz      r3, 0x48(r29)
-	cmplwi   r3, 0
-	beq      lbl_800B159C
-	lbz      r0, 0x15(r3)
-	cmplwi   r0, 5
-	bne      lbl_800B159C
-	lwz      r12, 0x10(r3)
-	li       r4, 7
-	lwz      r12, 0x20(r12)
-	mtctr    r12
-	bctrl
-	lfs      f0, lbl_80516FA8@sda21(r2)
-	fcmpu    cr0, f0, f1
-	bne      lbl_800B159C
-	lwz      r3, 0x48(r29)
-	addi     r3, r3, 0x30c
-	bl       stopSeq__8JASTrackFv
-	lwz      r3, 0x48(r29)
-	bl       clearMainSoundPPointer__8JAISoundFv
-	lwz      r3, 0x48(r29)
-	bl       stopSeq__Q27JAInter11SequenceMgrFP11JAISequence
-	li       r0, 0
-	stw      r0, 8(r29)
-
-lbl_800B159C:
-	addi     r31, r31, 0x50
-	addi     r30, r30, 1
-
-lbl_800B15A4:
-	bl       getParamSeqPlayTrackMax__18JAIGlobalParameterFv
-	cmplw    r30, r3
-	blt      lbl_800B1538
-	lwz      r0, 0x24(r1)
-	lwz      r31, 0x1c(r1)
-	lwz      r30, 0x18(r1)
-	lwz      r29, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x20
-	blr
-	*/
+	for (u32 i = 0; i < JAIGlobalParameter::getParamSeqPlayTrackMax(); i++) {
+		SeqUpdateData* info = &seqTrackInfo[i];
+		if (info->m_sequence != nullptr && info->m_sequence->_15 == 5 && info->m_sequence->getVolume(7) == 0.0f) {
+			info->m_sequence->m_seqParameter.m_track.stopSeq();
+			info->m_sequence->clearMainSoundPPointer();
+			stopSeq(info->m_sequence);
+			info->_08 = 0;
+		}
+	}
 }
 
 /*
@@ -1107,19 +1057,7 @@ lbl_800B15A4:
  * Address:	800B15CC
  * Size:	000020
  */
-void JAISequence::getVolume(unsigned char)
-{
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	bl       getSeqInterVolume__11JAISequenceFUc
-	lwz      r0, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
-}
+float JAISequence::getVolume(unsigned char p1) { return getSeqInterVolume(p1); }
 
 /*
  * --INFO--
@@ -1128,57 +1066,15 @@ void JAISequence::getVolume(unsigned char)
  */
 void JAInter::SequenceMgr::checkStoppedSeq(void)
 {
-	/*
-	stwu     r1, -0x20(r1)
-	mflr     r0
-	stw      r0, 0x24(r1)
-	stw      r31, 0x1c(r1)
-	stw      r30, 0x18(r1)
-	li       r30, 0
-	mr       r31, r30
-	stw      r29, 0x14(r1)
-	li       r29, 0
-	stw      r28, 0x10(r1)
-	b        lbl_800B1664
-
-lbl_800B1618:
-	lwz      r0, seqTrackInfo__Q27JAInter11SequenceMgr@sda21(r13)
-	add      r28, r0, r30
-	lwz      r3, 0x48(r28)
-	cmplwi   r3, 0
-	beq      lbl_800B165C
-	lbz      r0, 0x15(r3)
-	cmplwi   r0, 4
-	beq      lbl_800B1640
-	cmplwi   r0, 5
-	bne      lbl_800B165C
-
-lbl_800B1640:
-	lbz      r0, 0x667(r3)
-	cmplwi   r0, 0
-	bne      lbl_800B165C
-	bl       clearMainSoundPPointer__8JAISoundFv
-	lwz      r3, 0x48(r28)
-	bl       stopSeq__Q27JAInter11SequenceMgrFP11JAISequence
-	stw      r31, 8(r28)
-
-lbl_800B165C:
-	addi     r30, r30, 0x50
-	addi     r29, r29, 1
-
-lbl_800B1664:
-	bl       getParamSeqPlayTrackMax__18JAIGlobalParameterFv
-	cmplw    r29, r3
-	blt      lbl_800B1618
-	lwz      r0, 0x24(r1)
-	lwz      r31, 0x1c(r1)
-	lwz      r30, 0x18(r1)
-	lwz      r29, 0x14(r1)
-	lwz      r28, 0x10(r1)
-	mtlr     r0
-	addi     r1, r1, 0x20
-	blr
-	*/
+	for (u32 i = 0; i < JAIGlobalParameter::getParamSeqPlayTrackMax(); i++) {
+		SeqUpdateData* info = &seqTrackInfo[i];
+		if (info->m_sequence != nullptr && (info->m_sequence->_15 == 4 || info->m_sequence->_15 == 5)
+		    && info->m_sequence->m_seqParameter.m_track._35B == 0) {
+			info->m_sequence->clearMainSoundPPointer();
+			stopSeq(info->m_sequence);
+			info->_08 = 0;
+		}
+	}
 }
 
 /*
@@ -1273,54 +1169,14 @@ lbl_800B175C:
  */
 void JAInter::SequenceMgr::checkStartedSeq(void)
 {
-	/*
-	stwu     r1, -0x20(r1)
-	mflr     r0
-	stw      r0, 0x24(r1)
-	stw      r31, 0x1c(r1)
-	li       r31, 4
-	stw      r30, 0x18(r1)
-	li       r30, 0
-	stw      r29, 0x14(r1)
-	li       r29, 0
-	stw      r28, 0x10(r1)
-	b        lbl_800B17F0
-
-lbl_800B17A8:
-	lwz      r0, seqTrackInfo__Q27JAInter11SequenceMgr@sda21(r13)
-	add      r28, r0, r30
-	lwz      r3, 0x48(r28)
-	cmplwi   r3, 0
-	beq      lbl_800B17E8
-	lbz      r0, 0x15(r3)
-	cmplwi   r0, 3
-	bne      lbl_800B17E8
-	addi     r3, r3, 0x30c
-	bl       checkSeqActiveFlag__Q27JAInter15SystemInterfaceFP8JASTrack
-	clrlwi.  r0, r3, 0x18
-	beq      lbl_800B17E8
-	lwz      r4, 0x48(r28)
-	mr       r3, r28
-	stb      r31, 0x15(r4)
-	bl       trackInit__Q27JAInter15SystemInterfaceFPQ27JAInter13SeqUpdateData
-
-lbl_800B17E8:
-	addi     r30, r30, 0x50
-	addi     r29, r29, 1
-
-lbl_800B17F0:
-	bl       getParamSeqPlayTrackMax__18JAIGlobalParameterFv
-	cmplw    r29, r3
-	blt      lbl_800B17A8
-	lwz      r0, 0x24(r1)
-	lwz      r31, 0x1c(r1)
-	lwz      r30, 0x18(r1)
-	lwz      r29, 0x14(r1)
-	lwz      r28, 0x10(r1)
-	mtlr     r0
-	addi     r1, r1, 0x20
-	blr
-	*/
+	for (u32 i = 0; i < JAIGlobalParameter::getParamSeqPlayTrackMax(); i++) {
+		SeqUpdateData* info = &seqTrackInfo[i];
+		if (info->m_sequence != nullptr && info->m_sequence->_15 == 3
+		    && SystemInterface::checkSeqActiveFlag(&info->m_sequence->m_seqParameter.m_track) != 0) {
+			info->m_sequence->_15 = 4;
+			SystemInterface::trackInit(info);
+		}
+	}
 }
 
 /*
@@ -1565,8 +1421,8 @@ lbl_800B1AF4:
  * Address:	........
  * Size:	000138
  */
-void JAInter::SequenceMgr::checkPlayingSeqUpdateMultiplication((unsigned long, unsigned char, unsigned long, JAInter::MoveParaSet*,
-                                                                unsigned long*, unsigned char, float*))
+void JAInter::SequenceMgr::checkPlayingSeqUpdateMultiplication(unsigned long, unsigned char, unsigned long, JAInter::MoveParaSet*,
+                                                               unsigned long*, unsigned char, float*)
 {
 	// UNUSED FUNCTION
 }
@@ -1576,8 +1432,8 @@ void JAInter::SequenceMgr::checkPlayingSeqUpdateMultiplication((unsigned long, u
  * Address:	........
  * Size:	000178
  */
-void JAInter::SequenceMgr::checkPlayingSeqUpdateAddition((unsigned long, unsigned char, unsigned long, JAInter::MoveParaSet*,
-                                                          unsigned long*, unsigned char, float*, float))
+void JAInter::SequenceMgr::checkPlayingSeqUpdateAddition(unsigned long, unsigned char, unsigned long, JAInter::MoveParaSet*, unsigned long*,
+                                                         unsigned char, float*, float)
 {
 	// UNUSED FUNCTION
 }
@@ -1587,8 +1443,8 @@ void JAInter::SequenceMgr::checkPlayingSeqUpdateAddition((unsigned long, unsigne
  * Address:	........
  * Size:	000118
  */
-void JAInter::SequenceMgr::checkPlayingSeqUpdateTrack((unsigned long, unsigned long, JAInter::MoveParaSet*, unsigned long*, unsigned char,
-                                                       float*))
+void JAInter::SequenceMgr::checkPlayingSeqUpdateTrack(unsigned long, unsigned long, JAInter::MoveParaSet*, unsigned long*, unsigned char,
+                                                      float*)
 {
 	// UNUSED FUNCTION
 }
@@ -2875,44 +2731,14 @@ lbl_800B2B5C:
  * Address:	800B2B90
  * Size:	00002C
  */
-void JAISequence::setPitch(float, unsigned long, unsigned char)
-{
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	mr       r0, r4
-	mr       r4, r5
-	mr       r5, r0
-	bl       setSeqInterPitch__11JAISequenceFUcfUl
-	lwz      r0, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
-}
+void JAISequence::setPitch(float p1, unsigned long p2, unsigned char p3) { setSeqInterPitch(p3, p1, p2); }
 
 /*
  * --INFO--
  * Address:	800B2BBC
  * Size:	00002C
  */
-void JAISequence::setPan(float, unsigned long, unsigned char)
-{
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	mr       r0, r4
-	mr       r4, r5
-	mr       r5, r0
-	bl       setSeqInterPan__11JAISequenceFUcfUl
-	lwz      r0, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
-}
+void JAISequence::setPan(float p1, unsigned long p2, unsigned char p3) { setSeqInterPan(p3, p1, p2); }
 
 /*
  * --INFO--
@@ -3916,15 +3742,7 @@ void JAInter::SequenceMgr::checkPlayingSoundTrack(unsigned long)
  * Address:	800B3828
  * Size:	000010
  */
-void JAInter::SequenceMgr::getPlayTrackInfo(unsigned long)
-{
-	/*
-	mulli    r0, r3, 0x50
-	lwz      r3, seqTrackInfo__Q27JAInter11SequenceMgr@sda21(r13)
-	add      r3, r3, r0
-	blr
-	*/
-}
+JAInter::SeqUpdateData* JAInter::SequenceMgr::getPlayTrackInfo(unsigned long index) { return &seqTrackInfo[index]; }
 
 /*
  * --INFO--

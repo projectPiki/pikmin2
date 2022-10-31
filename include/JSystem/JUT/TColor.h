@@ -22,6 +22,16 @@ struct TColor : public GXColor {
 		return *this;
 	}
 
+	/** @fabricated */
+	TColor& operator=(const GXColorS10& other)
+	{
+		r = other.r;
+		g = other.g;
+		b = other.b;
+		a = other.a;
+		return *this;
+	}
+
 	operator u32() const { return toUInt32(); }
 	u32 toUInt32() const { return *(u32*)&r; }
 

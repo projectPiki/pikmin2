@@ -439,11 +439,11 @@ void JASTrack::init()
 	_2D0 = 1.0f;
 	_2D4 = 0.0f;
 
-	_2F8 = nullptr;
-	_2FC = nullptr;
+	_2F8    = nullptr;
+	_2FC[0] = nullptr;
 
-	for (int i = 0; i < 16; i++) {
-		_300[i] = 0;
+	for (int i = 1; i < 16; i++) {
+		_2FC[i] = 0;
 	}
 	if (m_extBuffer) {
 		m_extBuffer->initExtBuffer();

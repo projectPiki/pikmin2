@@ -4,8 +4,10 @@
 #include "JSystem/J3D/J3DMaterialFactory.h"
 #include "JSystem/J3D/J3DModel.h"
 #include "JSystem/J3D/J3DModelLoader.h"
+#include "JSystem/J3D/J3DMtxCalc.h"
 #include "JSystem/J3D/J3DShape.h"
 #include "JSystem/J3D/J3DTexture.h"
+#include "JSystem/J3D/J3DTypes.h"
 #include "JSystem/JKR/JKRHeap.h"
 #include "JSystem/JSupport/JSU.h"
 #include "JSystem/JUT/JUTNameTab.h"
@@ -248,12 +250,12 @@ J3DModelData* J3DModelLoader::load(const void* stream, u32 flags)
 	JKRHeap::sCurrentHeap->getTotalFreeSize();
 	m_modelData = new J3DModelData();
 	m_modelData->clear();
-	u32 blockCount                    = reinterpret_cast<const J3DFileHeader*>(stream)->m_blockCount;
+	const J3DFileHeader* header       = reinterpret_cast<const J3DFileHeader*>(stream);
 	m_modelData->m_bmd                = (u8*)stream;
-	const J3DFileBlockBase* nextBlock = reinterpret_cast<const J3DFileBlockBase*>(reinterpret_cast<const J3DFileHeader*>(stream) + 1);
+	const J3DFileBlockBase* nextBlock = header->getFirstBlock();
 	m_modelData->m_jointTree.m_flags  = 0;
 	m_materialTable                   = &m_modelData->m_materialTable;
-	for (u32 i = 0; i < blockCount; i++) {
+	for (u32 i = 0; i < header->m_blockCount; i++) {
 		switch (nextBlock->m_blockType) {
 		case J3DFBT_Info:
 			readInformation((const J3DModelInfoBlock*)nextBlock, flags);
@@ -283,11 +285,9 @@ J3DModelData* J3DModelLoader::load(const void* stream, u32 flags)
 			readTexture((const J3DTextureBlock*)nextBlock);
 			break;
 		}
-		nextBlock = reinterpret_cast<const J3DFileBlockBase*>(reinterpret_cast<const u8*>(nextBlock) + nextBlock->m_size);
+		nextBlock = nextBlock->getNext();
 	}
-	const J3DModelHierarchy* hierarchy = m_modelData->m_jointTree.m_hierarchy;
-	m_modelData->m_jointTree.makeHierarchy(nullptr, &hierarchy, &m_modelData->m_materialTable, &m_modelData->m_shapeTable);
-	m_modelData->m_shapeTable.initShapeNodes(&m_modelData->m_jointTree.m_mtxData, &m_modelData->m_vertexData);
+	m_modelData->init(m_modelData->m_jointTree.m_hierarchy);
 	m_modelData->m_shapeTable.sortVcdVatCmd();
 	m_modelData->m_jointTree.findImportantMtxIndex();
 	setupBBoardInfo();
@@ -533,14 +533,15 @@ void J3DModelLoader::readMaterial(const J3DMaterialBlock*, unsigned long) { }
  * --INFO--
  * Address:	8006FE68
  * Size:	000148
+ * loadMaterialTable__14J3DModelLoaderFPCv
  */
 J3DMaterialTable* J3DModelLoader::loadMaterialTable(const void* stream)
 {
 	m_materialTable = new J3DMaterialTable();
 	m_materialTable->clear();
-	u32 blockCount                    = reinterpret_cast<const J3DFileHeader*>(stream)->m_blockCount;
-	const J3DFileBlockBase* nextBlock = reinterpret_cast<const J3DFileBlockBase*>(reinterpret_cast<const J3DFileHeader*>(stream) + 1);
-	for (u32 i = 0; i < blockCount; i++) {
+	const J3DFileHeader* header       = reinterpret_cast<const J3DFileHeader*>(stream);
+	const J3DFileBlockBase* nextBlock = header->getFirstBlock();
+	for (u32 i = 0; i < header->m_blockCount; i++) {
 		switch (nextBlock->m_blockType) {
 		case J3DFBT_Material:
 			readMaterialTable((const J3DMaterialBlock*)nextBlock, 0x51100000);
@@ -554,116 +555,12 @@ J3DMaterialTable* J3DModelLoader::loadMaterialTable(const void* stream)
 		default:
 			break;
 		}
-		nextBlock = reinterpret_cast<const J3DFileBlockBase*>(reinterpret_cast<const u8*>(nextBlock) + nextBlock->m_size);
+		nextBlock = nextBlock->getNext();
 	}
 	if (m_materialTable->m_texture == nullptr) {
 		m_materialTable->m_texture = new J3DTexture(0, nullptr);
 	}
 	return m_materialTable;
-	/*
-	stwu     r1, -0x20(r1)
-	mflr     r0
-	stw      r0, 0x24(r1)
-	stmw     r27, 0xc(r1)
-	mr       r31, r3
-	mr       r27, r4
-	li       r3, 0x20
-	bl       __nw__FUl
-	or.      r0, r3, r3
-	beq      lbl_8006FE98
-	bl       __ct__16J3DMaterialTableFv
-	mr       r0, r3
-
-lbl_8006FE98:
-	stw      r0, 8(r31)
-	lwz      r3, 8(r31)
-	bl       clear__16J3DMaterialTableFv
-	lis      r3, 0x4D415433@ha
-	lwz      r30, 0xc(r27)
-	addi     r28, r27, 0x20
-	li       r27, 0
-	addi     r29, r3, 0x4D415433@l
-	b        lbl_8006FF4C
-
-lbl_8006FEBC:
-	lwz      r4, 0(r28)
-	cmpw     r4, r29
-	beq      lbl_8006FEF4
-	bge      lbl_8006FEE0
-	lis      r3, 0x4D415432@ha
-	addi     r0, r3, 0x4D415432@l
-	cmpw     r4, r0
-	bge      lbl_8006FF14
-	b        lbl_8006FF40
-
-lbl_8006FEE0:
-	lis      r3, 0x54455831@ha
-	addi     r0, r3, 0x54455831@l
-	cmpw     r4, r0
-	beq      lbl_8006FF34
-	b        lbl_8006FF40
-
-lbl_8006FEF4:
-	mr       r3, r31
-	mr       r4, r28
-	lwz      r12, 0(r31)
-	lis      r5, 0x5110
-	lwz      r12, 0x34(r12)
-	mtctr    r12
-	bctrl
-	b        lbl_8006FF40
-
-lbl_8006FF14:
-	mr       r3, r31
-	mr       r4, r28
-	lwz      r12, 0(r31)
-	lis      r5, 0x5110
-	lwz      r12, 0x38(r12)
-	mtctr    r12
-	bctrl
-	b        lbl_8006FF40
-
-lbl_8006FF34:
-	mr       r3, r31
-	mr       r4, r28
-	bl       readTextureTable__14J3DModelLoaderFPC15J3DTextureBlock
-
-lbl_8006FF40:
-	lwz      r0, 4(r28)
-	addi     r27, r27, 1
-	add      r28, r28, r0
-
-lbl_8006FF4C:
-	cmplw    r27, r30
-	blt      lbl_8006FEBC
-	lwz      r3, 8(r31)
-	lwz      r0, 0x14(r3)
-	cmplwi   r0, 0
-	bne      lbl_8006FF98
-	li       r3, 0xc
-	bl       __nw__FUl
-	cmplwi   r3, 0
-	beq      lbl_8006FF90
-	lis      r4, __vt__10J3DTexture@ha
-	li       r0, 0
-	addi     r4, r4, __vt__10J3DTexture@l
-	stw      r4, 8(r3)
-	sth      r0, 0(r3)
-	sth      r0, 2(r3)
-	stw      r0, 4(r3)
-
-lbl_8006FF90:
-	lwz      r4, 8(r31)
-	stw      r3, 0x14(r4)
-
-lbl_8006FF98:
-	lwz      r3, 8(r31)
-	lmw      r27, 0xc(r1)
-	lwz      r0, 0x24(r1)
-	mtlr     r0
-	addi     r1, r1, 0x20
-	blr
-	*/
 }
 
 /*
@@ -690,13 +587,12 @@ J3DModelData* J3DModelLoader::loadBinaryDisplayList(const void* stream, u32 flag
 {
 	m_modelData = new J3DModelData();
 	m_modelData->clear();
-	u32 blockCount     = reinterpret_cast<const J3DFileHeader*>(stream)->m_blockCount;
-	m_modelData->m_bmd = stream;
-	// const J3DFileBlockBase* nextBlock = reinterpret_cast<const J3DFileBlockBase*>(reinterpret_cast<const J3DFileHeader*>(stream) + 1);
-	const J3DFileBlockBase* nextBlock = reinterpret_cast<const J3DFileHeader*>(stream)->getFirstBlock();
+	const J3DFileHeader* header       = reinterpret_cast<const J3DFileHeader*>(stream);
+	m_modelData->m_bmd                = stream;
+	const J3DFileBlockBase* nextBlock = header->getFirstBlock();
 	m_modelData->m_jointTree.m_flags  = 0x1;
 	m_materialTable                   = &m_modelData->m_materialTable;
-	for (u32 i = 0; i < blockCount; i++) {
+	for (u32 i = 0; i < header->m_blockCount; i++) {
 		switch (nextBlock->m_blockType) {
 		case J3DFBT_Info:
 			readInformation((const J3DModelInfoBlock*)nextBlock, flags);
@@ -724,24 +620,23 @@ J3DModelData* J3DModelLoader::loadBinaryDisplayList(const void* stream, u32 flag
 			modifyMaterial(flags);
 			break;
 		case J3DFBT_Material: {
-			m_materialBlock = (const J3DMaterialBlock*)nextBlock;
-			u32 matFlags    = flags & 0x3000000 | 0x50100000;
+			u32 matFlags                     = flags & 0x3000000;
+			matFlags                         = matFlags | 0x50100000;
+			const J3DMaterialBlock* matBlock = (const J3DMaterialBlock*)nextBlock;
+			m_materialBlock                  = matBlock;
 			if ((flags & 0x3000) == 0) {
-				readMaterial((const J3DMaterialBlock*)nextBlock, matFlags);
+				readMaterial(matBlock, matFlags);
 			} else if ((flags & 0x3000) == 0x2000) {
-				readPatchedMaterial((const J3DMaterialBlock*)nextBlock, matFlags);
+				readPatchedMaterial(matBlock, matFlags);
 			}
 			break;
 		}
 		default:
 			break;
 		}
-		// nextBlock = reinterpret_cast<const J3DFileBlockBase*>(reinterpret_cast<const u8*>(nextBlock) + nextBlock->m_size);
 		nextBlock = nextBlock->getNext();
 	}
-	const J3DModelHierarchy* hierarchy = m_modelData->m_jointTree.m_hierarchy;
-	m_modelData->m_jointTree.makeHierarchy(nullptr, &hierarchy, &m_modelData->m_materialTable, &m_modelData->m_shapeTable);
-	m_modelData->m_shapeTable.initShapeNodes(&m_modelData->m_jointTree.m_mtxData, &m_modelData->m_vertexData);
+	m_modelData->init(m_modelData->m_jointTree.m_hierarchy);
 	m_modelData->m_shapeTable.sortVcdVatCmd();
 	m_modelData->m_jointTree.findImportantMtxIndex();
 	setupBBoardInfo();
@@ -973,6 +868,10 @@ void J3DModelLoader::setupBBoardInfo()
 				m_modelData->m_jointTree.m_joints[i]->_16 &= 0x0F;
 				break;
 			case J3DShapeMtx_BBoard:
+				// m_modelData->m_jointTree.m_joints[i]->_16 = (m_modelData->m_jointTree.m_joints[i]->_16
+				//                                              & (J3DJoint::J3DJ16_Unknown_01 | J3DJoint::J3DJ16_Unknown_02
+				//                                                 | J3DJoint::J3DJ16_Unknown_04 | J3DJoint::J3DJ16_Unknown_08))
+				//                                             | J3DJoint::J3DJ16_Unknown_10;
 				m_modelData->m_jointTree.m_joints[i]->_16 = m_modelData->m_jointTree.m_joints[i]->_16 & 0x0F | 0x10;
 				m_modelData->m_jointSet                   = 1;
 				break;
@@ -1096,122 +995,26 @@ lbl_80070380:
  * Address:	800703A8
  * Size:	000168
  */
-void J3DModelLoader::readInformation(const J3DModelInfoBlock*, unsigned long)
+void J3DModelLoader::readInformation(const J3DModelInfoBlock* block, unsigned long flags)
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	li       r7, 0
-	stw      r0, 0x14(r1)
-	lhz      r0, 8(r4)
-	stw      r31, 0xc(r1)
-	mr       r31, r4
-	or       r0, r5, r0
-	stw      r30, 8(r1)
-	mr       r30, r3
-	lwz      r3, 4(r3)
-	stw      r0, 8(r3)
-	lwz      r3, 4(r30)
-	lwz      r0, 8(r3)
-	stw      r0, 0x18(r3)
-	lwz      r3, 4(r30)
-	lwz      r0, 8(r3)
-	clrlwi   r0, r0, 0x1c
-	cmpwi    r0, 1
-	beq      lbl_80070450
-	bge      lbl_80070408
-	cmpwi    r0, 0
-	bge      lbl_80070414
-	b        lbl_800704C4
-
-lbl_80070408:
-	cmpwi    r0, 3
-	bge      lbl_800704C4
-	b        lbl_8007048C
-
-lbl_80070414:
-	li       r3, 4
-	bl       __nw__FUl
-	cmplwi   r3, 0
-	beq      lbl_80070448
-	lis      r4, __vt__10J3DMtxCalc@ha
-	lis      r5, __vt__19J3DMtxCalcNoAnmBase@ha
-	addi     r0, r4, __vt__10J3DMtxCalc@l
-	lis      r4,
-"__vt__75J3DMtxCalcNoAnm<28J3DMtxCalcCalcTransformBasic,25J3DMtxCalcJ3DSysInitBasic>"@ha
-	stw      r0, 0(r3)
-	addi     r5, r5, __vt__19J3DMtxCalcNoAnmBase@l
-	addi     r0, r4,
-"__vt__75J3DMtxCalcNoAnm<28J3DMtxCalcCalcTransformBasic,25J3DMtxCalcJ3DSysInitBasic>"@l
-	stw      r5, 0(r3)
-	stw      r0, 0(r3)
-
-lbl_80070448:
-	mr       r7, r3
-	b        lbl_800704C4
-
-lbl_80070450:
-	li       r3, 4
-	bl       __nw__FUl
-	cmplwi   r3, 0
-	beq      lbl_80070484
-	lis      r4, __vt__10J3DMtxCalc@ha
-	lis      r5, __vt__19J3DMtxCalcNoAnmBase@ha
-	addi     r0, r4, __vt__10J3DMtxCalc@l
-	lis      r4,
-"__vt__83J3DMtxCalcNoAnm<32J3DMtxCalcCalcTransformSoftimage,29J3DMtxCalcJ3DSysInitSoftimage>"@ha
-	stw      r0, 0(r3)
-	addi     r5, r5, __vt__19J3DMtxCalcNoAnmBase@l
-	addi     r0, r4,
-"__vt__83J3DMtxCalcNoAnm<32J3DMtxCalcCalcTransformSoftimage,29J3DMtxCalcJ3DSysInitSoftimage>"@l
-	stw      r5, 0(r3)
-	stw      r0, 0(r3)
-
-lbl_80070484:
-	mr       r7, r3
-	b        lbl_800704C4
-
-lbl_8007048C:
-	li       r3, 4
-	bl       __nw__FUl
-	cmplwi   r3, 0
-	beq      lbl_800704C0
-	lis      r4, __vt__10J3DMtxCalc@ha
-	lis      r5, __vt__19J3DMtxCalcNoAnmBase@ha
-	addi     r0, r4, __vt__10J3DMtxCalc@l
-	lis      r4,
-"__vt__73J3DMtxCalcNoAnm<27J3DMtxCalcCalcTransformMaya,24J3DMtxCalcJ3DSysInitMaya>"@ha
-	stw      r0, 0(r3)
-	addi     r5, r5, __vt__19J3DMtxCalcNoAnmBase@l
-	addi     r0, r4,
-"__vt__73J3DMtxCalcNoAnm<27J3DMtxCalcCalcTransformMaya,24J3DMtxCalcJ3DSysInitMaya>"@l
-	stw      r5, 0(r3)
-	stw      r0, 0(r3)
-
-lbl_800704C0:
-	mr       r7, r3
-
-lbl_800704C4:
-	lwz      r4, 4(r30)
-	mr       r3, r31
-	lwz      r6, 0xc(r31)
-	stw      r7, 0x24(r4)
-	lwz      r0, 0x10(r31)
-	lwz      r5, 4(r30)
-	lwz      r4, 0x14(r31)
-	stw      r6, 0x98(r5)
-	lwz      r5, 4(r30)
-	stw      r0, 0x88(r5)
-	bl       "JSUConvertOffsetToPtr<17J3DModelHierarchy>__FPCvPCv"
-	lwz      r4, 4(r30)
-	stw      r3, 0x14(r4)
-	lwz      r0, 0x14(r1)
-	lwz      r31, 0xc(r1)
-	lwz      r30, 8(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	J3DMtxCalc* calc                = nullptr;
+	m_modelData->m_modelLoaderFlags = flags | block->_08;
+	m_modelData->m_jointTree.m_08   = m_modelData->m_modelLoaderFlags;
+	switch (m_modelData->m_modelLoaderFlags & (J3DMLF_MtxCalc_SoftImage | J3DMLF_MtxCalc_Maya | J3DMLF_03 | J3DMLF_04)) {
+	case 0:
+		calc = new J3DMtxCalcNoAnm<J3DMtxCalcCalcTransformBasic, J3DMtxCalcJ3DSysInitBasic>();
+		break;
+	case J3DMLF_MtxCalc_SoftImage:
+		calc = new J3DMtxCalcNoAnm<J3DMtxCalcCalcTransformSoftimage, J3DMtxCalcJ3DSysInitSoftimage>();
+		break;
+	case J3DMLF_MtxCalc_Maya:
+		calc = new J3DMtxCalcNoAnm<J3DMtxCalcCalcTransformMaya, J3DMtxCalcJ3DSysInitMaya>();
+		break;
+	}
+	m_modelData->m_jointTree.m_transformCalc = calc;
+	m_modelData->m_vertexData._10            = block->_0C;
+	m_modelData->m_vertexData._00            = block->_10;
+	m_modelData->m_jointTree.m_hierarchy     = JSUConvertOffsetToPtr<J3DModelHierarchy>(block, block->_14);
 }
 
 /*
@@ -1220,38 +1023,7 @@ lbl_800704C4:
  * Size:	00005C
  * __dt__19J3DMtxCalcNoAnmBaseFv
  */
-// J3DMtxCalcNoAnmBase::~J3DMtxCalcNoAnmBase()
-// {
-// 	/*
-// 	stwu     r1, -0x10(r1)
-// 	mflr     r0
-// 	stw      r0, 0x14(r1)
-// 	stw      r31, 0xc(r1)
-// 	or.      r31, r3, r3
-// 	beq      lbl_80070554
-// 	lis      r3, __vt__19J3DMtxCalcNoAnmBase@ha
-// 	addi     r0, r3, __vt__19J3DMtxCalcNoAnmBase@l
-// 	stw      r0, 0(r31)
-// 	beq      lbl_80070544
-// 	lis      r3, __vt__10J3DMtxCalc@ha
-// 	addi     r0, r3, __vt__10J3DMtxCalc@l
-// 	stw      r0, 0(r31)
-
-// lbl_80070544:
-// 	extsh.   r0, r4
-// 	ble      lbl_80070554
-// 	mr       r3, r31
-// 	bl       __dl__FPv
-
-// lbl_80070554:
-// 	lwz      r0, 0x14(r1)
-// 	mr       r3, r31
-// 	lwz      r31, 0xc(r1)
-// 	mtlr     r0
-// 	addi     r1, r1, 0x10
-// 	blr
-// 	*/
-// }
+// J3DMtxCalcNoAnmBase::~J3DMtxCalcNoAnmBase() { }
 
 /*
  * --INFO--

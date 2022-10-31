@@ -1,3 +1,8 @@
+#include "Dolphin/gx.h"
+#include "Dolphin/math.h"
+#include "JSystem/J2D/J2DIndBlock.h"
+#include "JSystem/J2D/J2DTexMtx.h"
+#include "fdlibm.h"
 #include "types.h"
 
 /*
@@ -110,23 +115,7 @@
  * Address:	8005921C
  * Size:	000030
  */
-void J2DTexMtx::load(unsigned long)
-{
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	mulli    r4, r4, 3
-	stw      r0, 0x14(r1)
-	lbz      r5, 0(r3)
-	addi     r3, r3, 0x24
-	addi     r4, r4, 0x1e
-	bl       GXLoadTexMtxImm
-	lwz      r0, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
-}
+void J2DTexMtx::load(unsigned long p1) { GXLoadTexMtxImm(m_mtx, p1 * 3 + 0x1E, (_GXTexMtxType)m_info._00); }
 
 /*
  * --INFO--
@@ -135,38 +124,11 @@ void J2DTexMtx::load(unsigned long)
  */
 void J2DTexMtx::calc()
 {
-	/*
-	stwu     r1, -0x20(r1)
-	mflr     r0
-	stw      r0, 0x24(r1)
-	lbz      r0, 1(r3)
-	cmplwi   r0, 0
-	bne      lbl_80059290
-	lwz      r7, 4(r3)
-	addi     r4, r3, 0x10
-	lwz      r0, 8(r3)
-	addi     r5, r1, 8
-	addi     r6, r3, 0x24
-	stw      r7, 8(r1)
-	stw      r0, 0xc(r1)
-	lwz      r0, 0xc(r3)
-	stw      r0, 0x10(r1)
-	bl       getTextureMtx__9J2DTexMtxFRC17J2DTextureSRTInfo3VecPA4_f
-	b        lbl_800592A4
-
-lbl_80059290:
-	cmplwi   r0, 1
-	bne      lbl_800592A4
-	addi     r4, r3, 0x10
-	addi     r5, r3, 0x24
-	bl       getTextureMtxMaya__9J2DTexMtxFRC17J2DTextureSRTInfoPA4_f
-
-lbl_800592A4:
-	lwz      r0, 0x24(r1)
-	mtlr     r0
-	addi     r1, r1, 0x20
-	blr
-	*/
+	if (m_info._01 == 0) {
+		getTextureMtx(m_info.m_textureSRTInfo, Vec(m_info._04), m_mtx);
+	} else if (m_info._01 == 1) {
+		getTextureMtxMaya(m_info.m_textureSRTInfo, m_mtx);
+	}
 }
 
 /*
@@ -174,8 +136,22 @@ lbl_800592A4:
  * Address:	800592B4
  * Size:	000190
  */
-void J2DTexMtx::getTextureMtx(const J2DTextureSRTInfo&, Vec, float (*)[4])
+void J2DTexMtx::getTextureMtx(const J2DTextureSRTInfo& info, Vec p2, float (*mtx)[4])
 {
+	float theta = (info._08 * PI) / 180.0f;
+	mtx[0][0]   = info._00 * cosf_kludge(theta);
+	mtx[0][1]   = -info._00 * sinf_kludge(theta);
+	mtx[0][2]   = 0.0f;
+	mtx[0][3]   = info._0C + p2.x + p2.x * (-info._00 * cosf_kludge(theta)) + p2.y * (info._00 * sinf_kludge(theta));
+	mtx[1][0]   = info._04 * sinf_kludge(theta);
+	mtx[1][1]   = info._04 * cosf_kludge(theta);
+	mtx[1][2]   = 0.0f;
+	mtx[1][3]   = info._10 + p2.y + p2.x * (-info._04 * sinf_kludge(theta)) - p2.y * (info._04 * cosf_kludge(theta));
+	mtx[2][0]   = 0.0f;
+	mtx[2][1]   = 0.0f;
+	mtx[2][2]   = 1.0f;
+	mtx[2][3]   = 0.0f;
+
 	/*
 	stwu     r1, -0x40(r1)
 	mflr     r0
@@ -424,8 +400,9 @@ void J2DIndTevStage::load(unsigned char)
  * Address:	80059618
  * Size:	000030
  */
-void J2DIndTexMtx::load(unsigned char)
+void J2DIndTexMtx::load(unsigned char p1)
 {
+	// GXSetIndTexMtx(p1 + 1, this, _18);
 	/*
 	stwu     r1, -0x10(r1)
 	mflr     r0

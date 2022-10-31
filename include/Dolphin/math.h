@@ -36,10 +36,20 @@ extern "C" {
 double cos(double);
 float cosf(float);
 double sin(double);
+float sinf(float);
 double tan(double);
 float tanf(float);
 double atan(double);
 double atan2(double, double);
+
+/**
+ * kludges for emulating inlined f versions of funcs.
+ * Replace these with tanf/sinf/cosf once we have library support in the build chain.
+ * If my theory is correct, those functions will become inlined by code using libDolphin as a library.
+ */
+inline float tanf_kludge(float __x) { return tan((double)__x); }
+inline float sinf_kludge(float __x) { return sin((double)__x); }
+inline float cosf_kludge(float __x) { return cos((double)__x); }
 
 double ceil(double);
 

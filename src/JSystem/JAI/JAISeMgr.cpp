@@ -1484,8 +1484,17 @@ void JAISe::setVolume(float p1, unsigned long p2, unsigned char p3) { setSeInter
  * Address:	800AF29C
  * Size:	0000F0
  */
-void JAInter::SeMgr::setSeqMuteFromSeStart(JAISound*)
+void JAInter::SeMgr::setSeqMuteFromSeStart(JAISound* p1)
 {
+	for (u32 i = 0; i < JAIGlobalParameter::getParamSeqPlayTrackMax(); i++) {
+		SeqUpdateData* info = SequenceMgr::getPlayTrackInfo(i);
+		if (i != seHandle->_14 && info->m_sequence != nullptr && (info->m_sequence->getSwBit() & 8) == 0) {
+			// TODO: are these args in the right order?
+			info->m_sequence->setVolume(JAIGlobalParameter::getParamSeqMuteMoveSpeedSePlay(),
+			                            JAIGlobalParameter::getParamSeqMuteVolumeSePlay(), 9);
+			seqMuteFlagFromSe |= 1 << p1->_14;
+		}
+	}
 	/*
 	stwu     r1, -0x20(r1)
 	mflr     r0
@@ -1976,7 +1985,7 @@ void JAInter::SeMgr::checkPlayingSeUpdateAddition(JAISe*, JAInter::SeqUpdateData
  * Address:	800AF84C
  * Size:	000008
  */
-void JAInter::SeMgr::changeIDToCategory(unsigned long)
+u32 JAInter::SeMgr::changeIDToCategory(unsigned long)
 {
 	/*
 	rlwinm   r3, r3, 0x14, 0x18, 0x1f

@@ -200,7 +200,7 @@ JSYSTEM:=\
 	$(BUILD_DIR)/asm/JSystem/JAS/JASCalc.o\
 	$(BUILD_DIR)/asm/JSystem/JAS/JASCallback.o\
 	$(BUILD_DIR)/asm/JSystem/JAS/JASCmdStack.o\
-	$(BUILD_DIR)/asm/JSystem/JAS/JASDvdThread.o\
+	$(BUILD_DIR)/src/JSystem/JAS/JASDvdThread.o\
 	$(BUILD_DIR)/asm/JSystem/JAS/JASHeapCtrl.o\
 	$(BUILD_DIR)/asm/JSystem/JAS/JASProbe.o\
 	$(BUILD_DIR)/asm/JSystem/JAS/JASResArcLoader.o\

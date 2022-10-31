@@ -1,4 +1,5 @@
 #include "JSystem/J2D/J2DAnm.h"
+#include "JSystem/J2D/J2DAnmLoader.h"
 #include "types.h"
 
 /*

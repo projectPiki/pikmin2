@@ -149,8 +149,28 @@ void JASDSPChannel::setPriority(u8 priority) { _04 = priority; }
  * Address:	800A4E6C
  * Size:	0000DC
  */
-JASDSPChannel* JASDSPChannel::getLowestChannel(int)
+JASDSPChannel* JASDSPChannel::getLowestChannel(int threshold)
 {
+	// JASDSPChannel* channel = sDspChannels;
+	short lowestPriority = 0xFF;
+	int lowestIndex      = -1;
+	u32 v1               = 0;
+	for (int i = 0; i < 0x40; i++) {
+		if (sDspChannels[i]._04 < 0) {
+			return &sDspChannels[i];
+		}
+		if (sDspChannels[i]._04 <= threshold && sDspChannels[i]._04 <= lowestPriority
+		    && (sDspChannels[i]._04 != lowestPriority || sDspChannels[i]._0C > v1)) {
+			// && !(sDspChannels[i]._04 == lowestPriority && sDspChannels[i]._0C <= v1)) {
+			// if (lowestPriority == sDspChannels[i]._04 && sDspChannels[i]._0C <= v1) {
+			// 	continue;
+			// }
+			v1             = sDspChannels[i]._0C;
+			lowestPriority = sDspChannels[i]._04;
+			lowestIndex    = i;
+		}
+	}
+	return (lowestIndex < 0) ? nullptr : &sDspChannels[lowestIndex];
 	/*
 	lwz      r5, sDspChannels__13JASDSPChannel@sda21(r13)
 	li       r0, 0x20
@@ -231,7 +251,7 @@ lbl_800A4F3C:
  * Address:	........
  * Size:	0000CC
  */
-void JASDSPChannel::getLowestActiveChannel()
+JASDSPChannel* JASDSPChannel::getLowestActiveChannel()
 {
 	// UNUSED FUNCTION
 }
@@ -405,7 +425,7 @@ void JASDSPChannel::updateAll()
 {
 	for (int i = 0; i < 0x40; i++) {
 		if ((i & 0xF) == 0 && i != 0) {
-			JASDsp::releaseHalt(i - 1 >> 4);
+			JASDsp::releaseHalt((i - 1) >> 4);
 		}
 		sDspChannels[i].updateProc();
 	}
@@ -452,8 +472,24 @@ lbl_800A5164:
  * Address:	800A51A0
  * Size:	000160
  */
-void JASDSPChannel::killActiveChannel()
+bool JASDSPChannel::killActiveChannel()
 {
+	JASDSPChannel* channel = getLowestChannel(0x7F);
+	if (channel == nullptr) {
+		return false;
+	}
+	if (channel->_10 != nullptr) {
+		channel->_10(3, nullptr, channel->_14);
+	}
+	channel->_10 = nullptr;
+	channel->_14 = nullptr;
+	channel->_04 = -1;
+	channel->_08 &= ~1;
+	if (channel->_00 == 0) {
+		channel->_08 |= 2;
+		channel->_00 = 2;
+	}
+	return true;
 	/*
 	stwu     r1, -0x10(r1)
 	mflr     r0

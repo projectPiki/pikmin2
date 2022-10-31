@@ -94,8 +94,7 @@ struct TChannel {
 	short m_distFilter;       // _150
 };
 
-struct FxlineConfig_ {
-};
+struct FxlineConfig_ { };
 
 void boot(void (*)(void*));
 void releaseHalt(u32);
@@ -137,11 +136,11 @@ struct JASDSPChannel {
 	static JASDSPChannel* getLowestChannel(int);
 	void updateProc();
 	static void updateAll();
-	static void killActiveChannel();
+	static bool killActiveChannel();
 	static JASDSPChannel* getHandle(u32 index);
 
 	// unused/inlined:
-	void getLowestActiveChannel();
+	static JASDSPChannel* getLowestActiveChannel();
 	void getNumUse();
 	void getNumFree();
 	void getNumBreak();

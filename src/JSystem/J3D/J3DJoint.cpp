@@ -4,6 +4,9 @@
 #include "JSystem/J3D/J3DMtxBuffer.h"
 #include "JSystem/J3D/J3DMtxCalc.h"
 #include "JSystem/J3D/J3DSys.h"
+#include "JSystem/J3D/J3DTransform.h"
+#include "JSystem/JGeometry.h"
+#include "JSystem/JMath.h"
 #include "types.h"
 
 /*
@@ -124,6 +127,7 @@
  * --INFO--
  * Address:	8006B200
  * Size:	000098
+ * init__25J3DMtxCalcJ3DSysInitBasicFRC3VecRA3_A4_Cf
  */
 void J3DMtxCalcJ3DSysInitBasic::init(const Vec& p1, const float (&p2)[3][4])
 {
@@ -133,7 +137,7 @@ void J3DMtxCalcJ3DSysInitBasic::init(const Vec& p1, const float (&p2)[3][4])
 	J3DSys::mParentS.x  = 1.0f;
 	J3DSys::mParentS.y  = 1.0f;
 	J3DSys::mParentS.z  = 1.0f;
-	JMAMTXApplyScale(p2, &J3DSys::mCurrentMtx, p1.x, p1.y, p1.z);
+	JMAMTXApplyScale(p2, J3DSys::mCurrentMtx, p1.x, p1.y, p1.z);
 	/*
 	stwu     r1, -0x20(r1)
 	mflr     r0
@@ -180,6 +184,7 @@ void J3DMtxCalcJ3DSysInitBasic::init(const Vec& p1, const float (&p2)[3][4])
  * --INFO--
  * Address:	8006B298
  * Size:	000098
+ * init__24J3DMtxCalcJ3DSysInitMayaFRC3VecRA3_A4_Cf
  */
 void J3DMtxCalcJ3DSysInitMaya::init(const Vec& p1, const float (&p2)[3][4])
 {
@@ -189,7 +194,7 @@ void J3DMtxCalcJ3DSysInitMaya::init(const Vec& p1, const float (&p2)[3][4])
 	J3DSys::mParentS.x  = 1.0f;
 	J3DSys::mParentS.y  = 1.0f;
 	J3DSys::mParentS.z  = 1.0f;
-	JMAMTXApplyScale(p2, &J3DSys::mCurrentMtx, p1.x, p1.y, p1.z);
+	JMAMTXApplyScale(p2, J3DSys::mCurrentMtx, p1.x, p1.y, p1.z);
 
 	/*
 	stwu     r1, -0x20(r1)
@@ -237,6 +242,7 @@ void J3DMtxCalcJ3DSysInitMaya::init(const Vec& p1, const float (&p2)[3][4])
  * --INFO--
  * Address:	8006B330
  * Size:	000118
+ * calcTransform__28J3DMtxCalcCalcTransformBasicFRC16J3DTransformInfo
  */
 void J3DMtxCalcCalcTransformBasic::calcTransform(const J3DTransformInfo& info)
 {
@@ -245,18 +251,18 @@ void J3DMtxCalcCalcTransformBasic::calcTransform(const J3DTransformInfo& info)
 	J3DSys::mCurrentS.y *= info.m_scale.y;
 	J3DSys::mCurrentS.z *= info.m_scale.z;
 	Mtx* mtx = &J3DMtxCalc::mMtxBuffer->m_worldMatrices[jntNo];
-	J3DGetTranslateRotateMtx(info, mtx);
+	J3DGetTranslateRotateMtx(info, *mtx);
 	bool isIdentity;
 	if (J3DSys::mCurrentS.x == 1.0f && J3DSys::mCurrentS.y == 1.0f && J3DSys::mCurrentS.z == 1.0f) {
 		isIdentity = true;
 	} else {
 		isIdentity = false;
 	}
-	if (isIdentity) {
-		J3DMtxCalc::mMtxBuffer->_04[jntNo] = 1;
-	} else {
+	if (!isIdentity) {
 		J3DMtxCalc::mMtxBuffer->_04[jntNo] = 0;
-		JMAMTXApplyScale(mtx, mtx, info.m_scale.x, info.m_scale.y, info.m_scale.z);
+		JMAMTXApplyScale(*mtx, *mtx, info.m_scale.x, info.m_scale.y, info.m_scale.z);
+	} else {
+		J3DMtxCalc::mMtxBuffer->_04[jntNo] = 1;
 	}
 	PSMTXConcat(J3DSys::mCurrentMtx, *mtx, J3DSys::mCurrentMtx);
 	PSMTXCopy(J3DSys::mCurrentMtx, *mtx);
@@ -346,14 +352,15 @@ lbl_8006B410:
  * --INFO--
  * Address:	8006B448
  * Size:	000168
+ * calcTransform__32J3DMtxCalcCalcTransformSoftimageFRC16J3DTransformInfo
  */
 void J3DMtxCalcCalcTransformSoftimage::calcTransform(const J3DTransformInfo& info)
 {
 	u16 jntNo = J3DMtxCalc::mJoint->getJntNo();
 	Mtx* mtx  = &J3DMtxCalc::mMtxBuffer->m_worldMatrices[jntNo];
 	J3DGetTranslateRotateMtx(info.m_eulerRot.x, info.m_eulerRot.y, info.m_eulerRot.z, info.m_zRotation.x * J3DSys::mCurrentS.x,
-	                         info.m_zRotation.y * J3DSys::mCurrentS.y, info.m_zRotation.z * J3DSys::mCurrentS.z, mtx);
-	PSMTXConcat(J3DSys::mCurrentMtx, mtx, J3DSys::mCurrentMtx);
+	                         info.m_zRotation.y * J3DSys::mCurrentS.y, info.m_zRotation.z * J3DSys::mCurrentS.z, *mtx);
+	PSMTXConcat(J3DSys::mCurrentMtx, *mtx, J3DSys::mCurrentMtx);
 	J3DSys::mCurrentS.x *= info.m_scale.x;
 	J3DSys::mCurrentS.y *= info.m_scale.y;
 	J3DSys::mCurrentS.z *= info.m_scale.z;
@@ -363,15 +370,15 @@ void J3DMtxCalcCalcTransformSoftimage::calcTransform(const J3DTransformInfo& inf
 	} else {
 		isIdentity = false;
 	}
-	if (isIdentity) {
-		J3DMtxCalc::mMtxBuffer->_04[jntNo] = 1;
-		PSMTXCopy(J3DSys::mCurrentMtx, *mtx);
-	} else {
+	if (!isIdentity) {
 		J3DMtxCalc::mMtxBuffer->_04[jntNo] = 0;
-		JMAMTXApplyScale(J3DSys::mCurrentMtx, mtx, J3DSys::mCurrentS.x, J3DSys::mCurrentS.y, J3DSys::mCurrentS.z);
+		JMAMTXApplyScale(J3DSys::mCurrentMtx, *mtx, J3DSys::mCurrentS.x, J3DSys::mCurrentS.y, J3DSys::mCurrentS.z);
 		(*mtx)[0][3] = J3DSys::mCurrentMtx[0][3];
 		(*mtx)[1][3] = J3DSys::mCurrentMtx[1][3];
 		(*mtx)[2][3] = J3DSys::mCurrentMtx[2][3];
+	} else {
+		J3DMtxCalc::mMtxBuffer->_04[jntNo] = 1;
+		PSMTXCopy(J3DSys::mCurrentMtx, *mtx);
 	}
 
 	/*
@@ -480,18 +487,19 @@ lbl_8006B59C:
  * --INFO--
  * Address:	8006B5B0
  * Size:	000178
+ * calcTransform__27J3DMtxCalcCalcTransformMayaFRC16J3DTransformInfo
  */
 void J3DMtxCalcCalcTransformMaya::calcTransform(const J3DTransformInfo& info)
 {
 	u16 jntNo = J3DMtxCalc::mJoint->getJntNo();
 	Mtx* mtx  = &J3DMtxCalc::mMtxBuffer->m_worldMatrices[jntNo];
-	J3DGetTranslateRotateMtx(info, mtx);
-	PSMTXConcat(J3DSys::mCurrentMtx, mtx, J3DSys::mCurrentMtx);
+	J3DGetTranslateRotateMtx(info, *mtx);
+	PSMTXConcat(J3DSys::mCurrentMtx, *mtx, J3DSys::mCurrentMtx);
 	if ((info.m_scale.x == 1.0f && info.m_scale.y == 1.0f && info.m_scale.z == 1.0f)) {
 		J3DMtxCalc::mMtxBuffer->_04[jntNo] = 1;
 	} else {
 		J3DMtxCalc::mMtxBuffer->_04[jntNo] = 0;
-		JMAMTXApplyScale(mtx, mtx, info.m_scale.x, info.m_scale.y, info.m_scale.z);
+		JMAMTXApplyScale(*mtx, *mtx, info.m_scale.x, info.m_scale.y, info.m_scale.z);
 	}
 	// TODO
 	/*
@@ -602,107 +610,23 @@ lbl_8006B6D4:
  * --INFO--
  * Address:	8006B728
  * Size:	000104
+ * J3DNewMtxCalcAnm__FUlP15J3DAnmTransform
  */
 J3DMtxCalcAnmBase* J3DNewMtxCalcAnm(u32 type, J3DAnmTransform* p2)
 {
 	switch (type) {
 	case 0:
-		return new J3DMtxCalcAnimation<J3DMtxCalcAnimationAdaptorDefault<J3DMtxCalcCalcTransformBasic>, J3DMtxCalcJ3DSysInitBasic>();
+		return new J3DMtxCalcAnimation<J3DMtxCalcAnimationAdaptorDefault<J3DMtxCalcCalcTransformBasic>, J3DMtxCalcJ3DSysInitBasic>(p2);
 		break;
 	case 1:
-		return new J3DMtxCalcAnimation<J3DMtxCalcAnimationAdaptorDefault<J3DMtxCalcCalcTransformSoftimage>,
-		                               J3DMtxCalcJ3DSysInitSoftimage>();
+		return new J3DMtxCalcAnimation<J3DMtxCalcAnimationAdaptorDefault<J3DMtxCalcCalcTransformSoftimage>, J3DMtxCalcJ3DSysInitSoftimage>(
+		    p2);
 		break;
 	case 2:
-		return new J3DMtxCalcAnimation<J3DMtxCalcAnimationAdaptorDefault<J3DMtxCalcCalcTransformMaya>, J3DMtxCalcJ3DSysInitMaya>();
+		return new J3DMtxCalcAnimation<J3DMtxCalcAnimationAdaptorDefault<J3DMtxCalcCalcTransformMaya>, J3DMtxCalcJ3DSysInitMaya>(p2);
 		break;
 	}
 	return nullptr;
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	cmpwi    r3, 1
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	mr       r31, r4
-	beq      lbl_8006B79C
-	bge      lbl_8006B754
-	cmpwi    r3, 0
-	bge      lbl_8006B760
-	b        lbl_8006B814
-
-lbl_8006B754:
-	cmpwi    r3, 3
-	bge      lbl_8006B814
-	b        lbl_8006B7D8
-
-lbl_8006B760:
-	li       r3, 0xc
-	bl       __nw__FUl
-	cmplwi   r3, 0
-	beq      lbl_8006B818
-	lis      r4, __vt__10J3DMtxCalc@ha
-	lis      r5, __vt__17J3DMtxCalcAnmBase@ha
-	addi     r0, r4, __vt__10J3DMtxCalc@l
-	lis      r4,
-"__vt__116J3DMtxCalcAnimation<65J3DMtxCalcAnimationAdaptorDefault<28J3DMtxCalcCalcTransformBasic>,25J3DMtxCalcJ3DSysInitBasic>"@ha
-	stw      r0, 0(r3)
-	addi     r5, r5, __vt__17J3DMtxCalcAnmBase@l
-	addi     r0, r4,
-"__vt__116J3DMtxCalcAnimation<65J3DMtxCalcAnimationAdaptorDefault<28J3DMtxCalcCalcTransformBasic>,25J3DMtxCalcJ3DSysInitBasic>"@l
-	stw      r5, 0(r3)
-	stw      r31, 4(r3)
-	stw      r0, 0(r3)
-	b        lbl_8006B818
-
-lbl_8006B79C:
-	li       r3, 0xc
-	bl       __nw__FUl
-	cmplwi   r3, 0
-	beq      lbl_8006B818
-	lis      r4, __vt__10J3DMtxCalc@ha
-	lis      r5, __vt__17J3DMtxCalcAnmBase@ha
-	addi     r0, r4, __vt__10J3DMtxCalc@l
-	lis      r4,
-"__vt__124J3DMtxCalcAnimation<69J3DMtxCalcAnimationAdaptorDefault<32J3DMtxCalcCalcTransformSoftimage>,29J3DMtxCalcJ3DSysInitSoftimage>"@ha
-	stw      r0, 0(r3)
-	addi     r5, r5, __vt__17J3DMtxCalcAnmBase@l
-	addi     r0, r4,
-"__vt__124J3DMtxCalcAnimation<69J3DMtxCalcAnimationAdaptorDefault<32J3DMtxCalcCalcTransformSoftimage>,29J3DMtxCalcJ3DSysInitSoftimage>"@l
-	stw      r5, 0(r3)
-	stw      r31, 4(r3)
-	stw      r0, 0(r3)
-	b        lbl_8006B818
-
-lbl_8006B7D8:
-	li       r3, 0xc
-	bl       __nw__FUl
-	cmplwi   r3, 0
-	beq      lbl_8006B818
-	lis      r4, __vt__10J3DMtxCalc@ha
-	lis      r5, __vt__17J3DMtxCalcAnmBase@ha
-	addi     r0, r4, __vt__10J3DMtxCalc@l
-	lis      r4,
-"__vt__114J3DMtxCalcAnimation<64J3DMtxCalcAnimationAdaptorDefault<27J3DMtxCalcCalcTransformMaya>,24J3DMtxCalcJ3DSysInitMaya>"@ha
-	stw      r0, 0(r3)
-	addi     r5, r5, __vt__17J3DMtxCalcAnmBase@l
-	addi     r0, r4,
-"__vt__114J3DMtxCalcAnimation<64J3DMtxCalcAnimationAdaptorDefault<27J3DMtxCalcCalcTransformMaya>,24J3DMtxCalcJ3DSysInitMaya>"@l
-	stw      r5, 0(r3)
-	stw      r31, 4(r3)
-	stw      r0, 0(r3)
-	b        lbl_8006B818
-
-lbl_8006B814:
-	li       r3, 0
-
-lbl_8006B818:
-	lwz      r0, 0x14(r1)
-	lwz      r31, 0xc(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
 }
 
 /*
@@ -748,38 +672,39 @@ lbl_8006B870:
  * Address:	8006B888
  * Size:	000034
  */
-void J3DJoint::appendChild(J3DJoint*)
+void J3DJoint::appendChild(J3DJoint* newChild)
 {
-	/*
-	lwz      r0, 0xc(r3)
-	cmplwi   r0, 0
-	bne      lbl_8006B89C
-	stw      r4, 0xc(r3)
-	blr
-
-lbl_8006B89C:
-	mr       r3, r0
-	b        lbl_8006B8A8
-
-lbl_8006B8A4:
-	mr       r3, r0
-
-lbl_8006B8A8:
-	lwz      r0, 0x10(r3)
-	cmplwi   r0, 0
-	bne      lbl_8006B8A4
-	stw      r4, 0x10(r3)
-	blr
-	*/
+	if (m_child == nullptr) {
+		m_child = newChild;
+		return;
+	}
+	J3DJoint* joint;
+	for (joint = m_child; joint->m_parent != nullptr; joint = joint->m_parent) { }
+	joint->m_parent = newChild;
 }
 
 /*
  * --INFO--
  * Address:	8006B8BC
  * Size:	0000FC
+ * __ct__8J3DJointFv
  */
 J3DJoint::J3DJoint()
+    : _00(0)
+    , m_function(nullptr)
+    , _08(0)
+    , m_child(nullptr)
+    , m_parent(nullptr)
+    , m_jointIdx(0)
+    , _16(1)
+    , m_ignoreParentScaling(0)
+    , m_transformInfo(j3dDefaultTransformInfo)
+    , _38(0.0f)
+    , m_mtxCalc(nullptr)
+    , m_material(nullptr)
 {
+	m_yRotation = JGeometry::TVec3f(0.0f, 0.0f, 0.0f);
+	_48         = JGeometry::TVec3f(0.0f, 0.0f, 0.0f);
 	/*
 	stwu     r1, -0x20(r1)
 	li       r8, 0
@@ -992,6 +917,42 @@ lbl_8006BB38:
  */
 void J3DJoint::recursiveCalc()
 {
+	Mtx v1;
+	J3DMtxCalc* v2 = nullptr;
+	PSMTXCopy(J3DSys::mCurrentMtx, v1);
+	J3DMtxCalc* v3                 = mCurrentMtxCalc;
+	JGeometry::TVec3f tempCurrentS = J3DSys::mCurrentS;
+	JGeometry::TVec3f tempParentS  = J3DSys::mParentS;
+	if (m_mtxCalc != nullptr) {
+		J3DMtxCalc::mJoint = this;
+		mCurrentMtxCalc    = m_mtxCalc;
+		m_mtxCalc->calc();
+		v2 = v3;
+	} else {
+		if (mCurrentMtxCalc != nullptr) {
+			J3DMtxCalc::mJoint = this;
+			mCurrentMtxCalc->calc();
+		}
+	}
+	if (m_function != nullptr) {
+		m_function(this, 0);
+	}
+	if (m_child != nullptr) {
+		m_child->recursiveCalc();
+	}
+	PSMTXCopy(v1, J3DSys::mCurrentMtx);
+	J3DSys::mCurrentS = tempCurrentS;
+	J3DSys::mParentS  = tempParentS;
+	if (v2 != nullptr) {
+		mCurrentMtxCalc = v2;
+	}
+	if (m_function != nullptr) {
+		m_function(this, 1);
+	}
+	if (m_parent != nullptr) {
+		m_parent->recursiveCalc();
+	}
+
 	/*
 	stwu     r1, -0xb0(r1)
 	mflr     r0
@@ -1189,52 +1150,53 @@ J3DMtxCalcAnimation<J3DMtxCalcAnimationAdaptorDefault<J3DMtxCalcCalcTransformMay
  * --INFO--
  * Address:	8006BD78
  * Size:	000094
+ * init__114J3DMtxCalcAnimation<64J3DMtxCalcAnimationAdaptorDefault<27J3DMtxCalcCalcTransformMaya>,24J3DMtxCalcJ3DSysInitMaya>FRC3VecRA3_A4_Cf
  */
-template <>
-void J3DMtxCalcAnimation<J3DMtxCalcAnimationAdaptorDefault<J3DMtxCalcCalcTransformMaya>, J3DMtxCalcJ3DSysInitMaya>::init(
-    const Vec&, const float (&)[3][4])
-{
-	/*
-	.loc_0x0:
-	  stwu      r1, -0x20(r1)
-	  mflr      r0
-	  mr        r10, r4
-	  lis       r3, 0x8048
-	  stw       r0, 0x24(r1)
-	  subi      r9, r3, 0x7644
-	  lfs       f5, 0x0(r10)
-	  lis       r6, 0x8051
-	  lwz       r4, 0x0(r9)
-	  lis       r7, 0x8051
-	  lwz       r8, 0x4(r9)
-	  lis       r3, 0x8051
-	  stw       r4, 0x8(r1)
-	  subi      r4, r3, 0xC2C
-	  lwz       r0, 0x8(r9)
-	  mr        r3, r5
-	  stw       r8, 0xC(r1)
-	  lfs       f1, 0x8(r1)
-	  stw       r0, 0x10(r1)
-	  lfs       f2, 0xC(r1)
-	  stfsu     f1, -0xBF0(r7)
-	  lfs       f3, 0x10(r1)
-	  stfs      f2, 0x4(r7)
-	  lfs       f4, 0x4(r10)
-	  stfsu     f5, -0xBFC(r6)
-	  lfs       f0, 0x8(r10)
-	  stfs      f3, 0x8(r7)
-	  lfs       f1, 0x0(r10)
-	  lfs       f2, 0x4(r10)
-	  lfs       f3, 0x8(r10)
-	  stfs      f4, 0x4(r6)
-	  stfs      f0, 0x8(r6)
-	  bl        -0x36D5C
-	  lwz       r0, 0x24(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x20
-	  blr
-	*/
-}
+// template <>
+// void J3DMtxCalcAnimation<J3DMtxCalcAnimationAdaptorDefault<J3DMtxCalcCalcTransformMaya>, J3DMtxCalcJ3DSysInitMaya>::init(
+//     const Vec&, const float (&)[3][4])
+// {
+// 	/*
+// 	.loc_0x0:
+// 	  stwu      r1, -0x20(r1)
+// 	  mflr      r0
+// 	  mr        r10, r4
+// 	  lis       r3, 0x8048
+// 	  stw       r0, 0x24(r1)
+// 	  subi      r9, r3, 0x7644
+// 	  lfs       f5, 0x0(r10)
+// 	  lis       r6, 0x8051
+// 	  lwz       r4, 0x0(r9)
+// 	  lis       r7, 0x8051
+// 	  lwz       r8, 0x4(r9)
+// 	  lis       r3, 0x8051
+// 	  stw       r4, 0x8(r1)
+// 	  subi      r4, r3, 0xC2C
+// 	  lwz       r0, 0x8(r9)
+// 	  mr        r3, r5
+// 	  stw       r8, 0xC(r1)
+// 	  lfs       f1, 0x8(r1)
+// 	  stw       r0, 0x10(r1)
+// 	  lfs       f2, 0xC(r1)
+// 	  stfsu     f1, -0xBF0(r7)
+// 	  lfs       f3, 0x10(r1)
+// 	  stfs      f2, 0x4(r7)
+// 	  lfs       f4, 0x4(r10)
+// 	  stfsu     f5, -0xBFC(r6)
+// 	  lfs       f0, 0x8(r10)
+// 	  stfs      f3, 0x8(r7)
+// 	  lfs       f1, 0x0(r10)
+// 	  lfs       f2, 0x4(r10)
+// 	  lfs       f3, 0x8(r10)
+// 	  stfs      f4, 0x4(r6)
+// 	  stfs      f0, 0x8(r6)
+// 	  bl        -0x36D5C
+// 	  lwz       r0, 0x24(r1)
+// 	  mtlr      r0
+// 	  addi      r1, r1, 0x20
+// 	  blr
+// 	*/
+// }
 
 /*
  * --INFO--
@@ -1301,34 +1263,35 @@ J3DMtxCalcAnimation<J3DMtxCalcAnimationAdaptorDefault<J3DMtxCalcCalcTransformSof
  * --INFO--
  * Address:	8006BE80
  * Size:	00004C
+ * init__124J3DMtxCalcAnimation<69J3DMtxCalcAnimationAdaptorDefault<32J3DMtxCalcCalcTransformSoftimage>,29J3DMtxCalcJ3DSysInitSoftimage>FRC3VecRA3_A4_Cf
  */
-template <>
-void J3DMtxCalcAnimation<J3DMtxCalcAnimationAdaptorDefault<J3DMtxCalcCalcTransformSoftimage>, J3DMtxCalcJ3DSysInitSoftimage>::init(
-    const Vec&, const float (&)[3][4])
-{
-	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  lis       r3, 0x8051
-	  lfs       f2, 0x0(r4)
-	  stw       r0, 0x14(r1)
-	  subi      r6, r3, 0xBFC
-	  lfs       f1, 0x4(r4)
-	  lis       r3, 0x8051
-	  lfs       f0, 0x8(r4)
-	  subi      r4, r3, 0xC2C
-	  stfs      f2, 0x0(r6)
-	  mr        r3, r5
-	  stfs      f1, 0x4(r6)
-	  stfs      f0, 0x8(r6)
-	  bl        0x7E414
-	  lwz       r0, 0x14(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
-	*/
-}
+// template <>
+// void J3DMtxCalcAnimation<J3DMtxCalcAnimationAdaptorDefault<J3DMtxCalcCalcTransformSoftimage>, J3DMtxCalcJ3DSysInitSoftimage>::init(
+//     const Vec&, const float (&)[3][4])
+// {
+// 	/*
+// 	.loc_0x0:
+// 	  stwu      r1, -0x10(r1)
+// 	  mflr      r0
+// 	  lis       r3, 0x8051
+// 	  lfs       f2, 0x0(r4)
+// 	  stw       r0, 0x14(r1)
+// 	  subi      r6, r3, 0xBFC
+// 	  lfs       f1, 0x4(r4)
+// 	  lis       r3, 0x8051
+// 	  lfs       f0, 0x8(r4)
+// 	  subi      r4, r3, 0xC2C
+// 	  stfs      f2, 0x0(r6)
+// 	  mr        r3, r5
+// 	  stfs      f1, 0x4(r6)
+// 	  stfs      f0, 0x8(r6)
+// 	  bl        0x7E414
+// 	  lwz       r0, 0x14(r1)
+// 	  mtlr      r0
+// 	  addi      r1, r1, 0x10
+// 	  blr
+// 	*/
+// }
 
 /*
  * --INFO--
@@ -1394,53 +1357,54 @@ J3DMtxCalcAnimation<J3DMtxCalcAnimationAdaptorDefault<J3DMtxCalcCalcTransformBas
  * --INFO--
  * Address:	8006BF40
  * Size:	000098
+ * init__116J3DMtxCalcAnimation<65J3DMtxCalcAnimationAdaptorDefault<28J3DMtxCalcCalcTransformBasic>,25J3DMtxCalcJ3DSysInitBasic>FRC3VecRA3_A4_Cf
  */
-template <>
-void J3DMtxCalcAnimation<J3DMtxCalcAnimationAdaptorDefault<J3DMtxCalcCalcTransformBasic>, J3DMtxCalcJ3DSysInitBasic>::init(
-    const Vec&, const float (&)[3][4])
-{
-	/*
-	.loc_0x0:
-	  stwu      r1, -0x20(r1)
-	  mflr      r0
-	  mr        r10, r4
-	  lis       r3, 0x8048
-	  stw       r0, 0x24(r1)
-	  subi      r8, r3, 0x7650
-	  lis       r9, 0x8051
-	  lis       r6, 0x8051
-	  lwz       r4, 0x0(r8)
-	  lis       r3, 0x8051
-	  lwz       r7, 0x4(r8)
-	  lwz       r0, 0x8(r8)
-	  subi      r8, r9, 0xBFC
-	  stw       r4, 0x8(r1)
-	  subi      r4, r3, 0xC2C
-	  lfs       f1, 0x0(r10)
-	  mr        r3, r5
-	  stw       r7, 0xC(r1)
-	  lfs       f5, 0x8(r1)
-	  stw       r0, 0x10(r1)
-	  lfs       f2, 0x4(r10)
-	  lfs       f3, 0x8(r10)
-	  stfs      f1, 0x0(r8)
-	  lfs       f4, 0xC(r1)
-	  stfsu     f5, -0xBF0(r6)
-	  lfs       f0, 0x10(r1)
-	  stfs      f2, 0x4(r8)
-	  lfs       f1, 0x0(r10)
-	  stfs      f3, 0x8(r8)
-	  lfs       f2, 0x4(r10)
-	  lfs       f3, 0x8(r10)
-	  stfs      f4, 0x4(r6)
-	  stfs      f0, 0x8(r6)
-	  bl        -0x36F28
-	  lwz       r0, 0x24(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x20
-	  blr
-	*/
-}
+// template <>
+// void J3DMtxCalcAnimation<J3DMtxCalcAnimationAdaptorDefault<J3DMtxCalcCalcTransformBasic>, J3DMtxCalcJ3DSysInitBasic>::init(
+//     const Vec&, const float (&)[3][4])
+// {
+// 	/*
+// 	.loc_0x0:
+// 	  stwu      r1, -0x20(r1)
+// 	  mflr      r0
+// 	  mr        r10, r4
+// 	  lis       r3, 0x8048
+// 	  stw       r0, 0x24(r1)
+// 	  subi      r8, r3, 0x7650
+// 	  lis       r9, 0x8051
+// 	  lis       r6, 0x8051
+// 	  lwz       r4, 0x0(r8)
+// 	  lis       r3, 0x8051
+// 	  lwz       r7, 0x4(r8)
+// 	  lwz       r0, 0x8(r8)
+// 	  subi      r8, r9, 0xBFC
+// 	  stw       r4, 0x8(r1)
+// 	  subi      r4, r3, 0xC2C
+// 	  lfs       f1, 0x0(r10)
+// 	  mr        r3, r5
+// 	  stw       r7, 0xC(r1)
+// 	  lfs       f5, 0x8(r1)
+// 	  stw       r0, 0x10(r1)
+// 	  lfs       f2, 0x4(r10)
+// 	  lfs       f3, 0x8(r10)
+// 	  stfs      f1, 0x0(r8)
+// 	  lfs       f4, 0xC(r1)
+// 	  stfsu     f5, -0xBF0(r6)
+// 	  lfs       f0, 0x10(r1)
+// 	  stfs      f2, 0x4(r8)
+// 	  lfs       f1, 0x0(r10)
+// 	  stfs      f3, 0x8(r8)
+// 	  lfs       f2, 0x4(r10)
+// 	  lfs       f3, 0x8(r10)
+// 	  stfs      f4, 0x4(r6)
+// 	  stfs      f0, 0x8(r6)
+// 	  bl        -0x36F28
+// 	  lwz       r0, 0x24(r1)
+// 	  mtlr      r0
+// 	  addi      r1, r1, 0x20
+// 	  blr
+// 	*/
+// }
 
 /*
  * --INFO--
@@ -1462,306 +1426,307 @@ void J3DMtxCalcAnimation<J3DMtxCalcAnimationAdaptorDefault<J3DMtxCalcCalcTransfo
  * --INFO--
  * Address:	8006BFE0
  * Size:	000178
+ * calc__116J3DMtxCalcAnimation<65J3DMtxCalcAnimationAdaptorDefault<28J3DMtxCalcCalcTransformBasic>,25J3DMtxCalcJ3DSysInitBasic>Fv
  */
-template <>
-void J3DMtxCalcAnimation<J3DMtxCalcAnimationAdaptorDefault<J3DMtxCalcCalcTransformBasic>, J3DMtxCalcJ3DSysInitBasic>::calc()
-{
-	/*
-	.loc_0x0:
-	  stwu      r1, -0x40(r1)
-	  mflr      r0
-	  stw       r0, 0x44(r1)
-	  stmw      r27, 0x2C(r1)
-	  mr        r27, r3
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0x10(r12)
-	  mtctr     r12
-	  bctrl
-	  cmplwi    r3, 0
-	  beq-      .loc_0x68
-	  mr        r3, r27
-	  lwz       r4, -0x7674(r13)
-	  lwz       r12, 0x0(r27)
-	  lhz       r30, 0x14(r4)
-	  lwz       r12, 0x10(r12)
-	  mtctr     r12
-	  bctrl
-	  lwz       r12, 0x0(r3)
-	  mr        r4, r30
-	  addi      r5, r1, 0x8
-	  lwz       r12, 0x10(r12)
-	  mtctr     r12
-	  bctrl
-	  addi      r30, r1, 0x8
-	  b         .loc_0x70
+// template <> void J3DMtxCalcAnimation<J3DMtxCalcAnimationAdaptorDefault<J3DMtxCalcCalcTransformBasic>, J3DMtxCalcJ3DSysInitBasic>::calc()
+// {
+// 	/*
+// 	.loc_0x0:
+// 	  stwu      r1, -0x40(r1)
+// 	  mflr      r0
+// 	  stw       r0, 0x44(r1)
+// 	  stmw      r27, 0x2C(r1)
+// 	  mr        r27, r3
+// 	  lwz       r12, 0x0(r3)
+// 	  lwz       r12, 0x10(r12)
+// 	  mtctr     r12
+// 	  bctrl
+// 	  cmplwi    r3, 0
+// 	  beq-      .loc_0x68
+// 	  mr        r3, r27
+// 	  lwz       r4, -0x7674(r13)
+// 	  lwz       r12, 0x0(r27)
+// 	  lhz       r30, 0x14(r4)
+// 	  lwz       r12, 0x10(r12)
+// 	  mtctr     r12
+// 	  bctrl
+// 	  lwz       r12, 0x0(r3)
+// 	  mr        r4, r30
+// 	  addi      r5, r1, 0x8
+// 	  lwz       r12, 0x10(r12)
+// 	  mtctr     r12
+// 	  bctrl
+// 	  addi      r30, r1, 0x8
+// 	  b         .loc_0x70
 
-	.loc_0x68:
-	  lwz       r3, -0x7674(r13)
-	  addi      r30, r3, 0x18
+// 	.loc_0x68:
+// 	  lwz       r3, -0x7674(r13)
+// 	  addi      r30, r3, 0x18
 
-	.loc_0x70:
-	  lis       r3, 0x8051
-	  lwz       r27, -0x7678(r13)
-	  subi      r31, r3, 0xBFC
-	  lwz       r4, -0x7674(r13)
-	  lfs       f1, 0x0(r31)
-	  mr        r3, r30
-	  lfs       f0, 0x0(r30)
-	  lhz       r28, 0x14(r4)
-	  fmuls     f0, f1, f0
-	  lwz       r4, 0xC(r27)
-	  mulli     r0, r28, 0x30
-	  lfs       f2, 0x4(r31)
-	  lfs       f1, 0x8(r31)
-	  stfs      f0, 0x0(r31)
-	  add       r29, r4, r0
-	  lfs       f0, 0x4(r30)
-	  mr        r4, r29
-	  fmuls     f0, f2, f0
-	  stfs      f0, 0x4(r31)
-	  lfs       f0, 0x8(r30)
-	  fmuls     f0, f1, f0
-	  stfs      f0, 0x8(r31)
-	  bl        -0xCF3C
-	  lis       r3, 0x8051
-	  lfs       f1, -0x78E8(r2)
-	  lfs       f0, -0xBFC(r3)
-	  fcmpu     cr0, f1, f0
-	  bne-      .loc_0x100
-	  lfs       f0, 0x4(r31)
-	  fcmpu     cr0, f1, f0
-	  bne-      .loc_0x100
-	  lfs       f0, 0x8(r31)
-	  fcmpu     cr0, f1, f0
-	  bne-      .loc_0x100
-	  li        r0, 0x1
-	  b         .loc_0x104
+// 	.loc_0x70:
+// 	  lis       r3, 0x8051
+// 	  lwz       r27, -0x7678(r13)
+// 	  subi      r31, r3, 0xBFC
+// 	  lwz       r4, -0x7674(r13)
+// 	  lfs       f1, 0x0(r31)
+// 	  mr        r3, r30
+// 	  lfs       f0, 0x0(r30)
+// 	  lhz       r28, 0x14(r4)
+// 	  fmuls     f0, f1, f0
+// 	  lwz       r4, 0xC(r27)
+// 	  mulli     r0, r28, 0x30
+// 	  lfs       f2, 0x4(r31)
+// 	  lfs       f1, 0x8(r31)
+// 	  stfs      f0, 0x0(r31)
+// 	  add       r29, r4, r0
+// 	  lfs       f0, 0x4(r30)
+// 	  mr        r4, r29
+// 	  fmuls     f0, f2, f0
+// 	  stfs      f0, 0x4(r31)
+// 	  lfs       f0, 0x8(r30)
+// 	  fmuls     f0, f1, f0
+// 	  stfs      f0, 0x8(r31)
+// 	  bl        -0xCF3C
+// 	  lis       r3, 0x8051
+// 	  lfs       f1, -0x78E8(r2)
+// 	  lfs       f0, -0xBFC(r3)
+// 	  fcmpu     cr0, f1, f0
+// 	  bne-      .loc_0x100
+// 	  lfs       f0, 0x4(r31)
+// 	  fcmpu     cr0, f1, f0
+// 	  bne-      .loc_0x100
+// 	  lfs       f0, 0x8(r31)
+// 	  fcmpu     cr0, f1, f0
+// 	  bne-      .loc_0x100
+// 	  li        r0, 0x1
+// 	  b         .loc_0x104
 
-	.loc_0x100:
-	  li        r0, 0
+// 	.loc_0x100:
+// 	  li        r0, 0
 
-	.loc_0x104:
-	  cmpwi     r0, 0
-	  bne-      .loc_0x134
-	  lwz       r5, 0x4(r27)
-	  li        r0, 0
-	  mr        r3, r29
-	  mr        r4, r29
-	  stbx      r0, r5, r28
-	  lfs       f1, 0x0(r30)
-	  lfs       f2, 0x4(r30)
-	  lfs       f3, 0x8(r30)
-	  bl        -0x37070
-	  b         .loc_0x140
+// 	.loc_0x104:
+// 	  cmpwi     r0, 0
+// 	  bne-      .loc_0x134
+// 	  lwz       r5, 0x4(r27)
+// 	  li        r0, 0
+// 	  mr        r3, r29
+// 	  mr        r4, r29
+// 	  stbx      r0, r5, r28
+// 	  lfs       f1, 0x0(r30)
+// 	  lfs       f2, 0x4(r30)
+// 	  lfs       f3, 0x8(r30)
+// 	  bl        -0x37070
+// 	  b         .loc_0x140
 
-	.loc_0x134:
-	  lwz       r3, 0x4(r27)
-	  li        r0, 0x1
-	  stbx      r0, r3, r28
+// 	.loc_0x134:
+// 	  lwz       r3, 0x4(r27)
+// 	  li        r0, 0x1
+// 	  stbx      r0, r3, r28
 
-	.loc_0x140:
-	  lis       r3, 0x8051
-	  mr        r4, r29
-	  subi      r3, r3, 0xC2C
-	  mr        r5, r3
-	  bl        0x7E1D0
-	  lis       r3, 0x8051
-	  mr        r4, r29
-	  subi      r3, r3, 0xC2C
-	  bl        0x7E18C
-	  lmw       r27, 0x2C(r1)
-	  lwz       r0, 0x44(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x40
-	  blr
-	*/
-}
+// 	.loc_0x140:
+// 	  lis       r3, 0x8051
+// 	  mr        r4, r29
+// 	  subi      r3, r3, 0xC2C
+// 	  mr        r5, r3
+// 	  bl        0x7E1D0
+// 	  lis       r3, 0x8051
+// 	  mr        r4, r29
+// 	  subi      r3, r3, 0xC2C
+// 	  bl        0x7E18C
+// 	  lmw       r27, 0x2C(r1)
+// 	  lwz       r0, 0x44(r1)
+// 	  mtlr      r0
+// 	  addi      r1, r1, 0x40
+// 	  blr
+// 	*/
+// }
 
 /*
  * --INFO--
  * Address:	8006C158
  * Size:	0001C4
+ * calc__124J3DMtxCalcAnimation<69J3DMtxCalcAnimationAdaptorDefault<32J3DMtxCalcCalcTransformSoftimage>,29J3DMtxCalcJ3DSysInitSoftimage>Fv
  */
-template <>
-void J3DMtxCalcAnimation<J3DMtxCalcAnimationAdaptorDefault<J3DMtxCalcCalcTransformSoftimage>, J3DMtxCalcJ3DSysInitSoftimage>::calc()
-{
-	/*
-	.loc_0x0:
-	  stwu      r1, -0x40(r1)
-	  mflr      r0
-	  stw       r0, 0x44(r1)
-	  stmw      r27, 0x2C(r1)
-	  mr        r27, r3
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0x10(r12)
-	  mtctr     r12
-	  bctrl
-	  cmplwi    r3, 0
-	  beq-      .loc_0x68
-	  mr        r3, r27
-	  lwz       r4, -0x7674(r13)
-	  lwz       r12, 0x0(r27)
-	  lhz       r28, 0x14(r4)
-	  lwz       r12, 0x10(r12)
-	  mtctr     r12
-	  bctrl
-	  lwz       r12, 0x0(r3)
-	  mr        r4, r28
-	  addi      r5, r1, 0x8
-	  lwz       r12, 0x10(r12)
-	  mtctr     r12
-	  bctrl
-	  addi      r28, r1, 0x8
-	  b         .loc_0x70
+// template <>
+// void J3DMtxCalcAnimation<J3DMtxCalcAnimationAdaptorDefault<J3DMtxCalcCalcTransformSoftimage>, J3DMtxCalcJ3DSysInitSoftimage>::calc()
+// {
+// 	/*
+// 	.loc_0x0:
+// 	  stwu      r1, -0x40(r1)
+// 	  mflr      r0
+// 	  stw       r0, 0x44(r1)
+// 	  stmw      r27, 0x2C(r1)
+// 	  mr        r27, r3
+// 	  lwz       r12, 0x0(r3)
+// 	  lwz       r12, 0x10(r12)
+// 	  mtctr     r12
+// 	  bctrl
+// 	  cmplwi    r3, 0
+// 	  beq-      .loc_0x68
+// 	  mr        r3, r27
+// 	  lwz       r4, -0x7674(r13)
+// 	  lwz       r12, 0x0(r27)
+// 	  lhz       r28, 0x14(r4)
+// 	  lwz       r12, 0x10(r12)
+// 	  mtctr     r12
+// 	  bctrl
+// 	  lwz       r12, 0x0(r3)
+// 	  mr        r4, r28
+// 	  addi      r5, r1, 0x8
+// 	  lwz       r12, 0x10(r12)
+// 	  mtctr     r12
+// 	  bctrl
+// 	  addi      r28, r1, 0x8
+// 	  b         .loc_0x70
 
-	.loc_0x68:
-	  lwz       r3, -0x7674(r13)
-	  addi      r28, r3, 0x18
+// 	.loc_0x68:
+// 	  lwz       r3, -0x7674(r13)
+// 	  addi      r28, r3, 0x18
 
-	.loc_0x70:
-	  lwz       r4, -0x7674(r13)
-	  lis       r3, 0x8051
-	  subi      r29, r3, 0xBFC
-	  lwz       r27, -0x7678(r13)
-	  lhz       r30, 0x14(r4)
-	  lfs       f1, 0x14(r28)
-	  lfs       f0, 0x0(r29)
-	  mulli     r0, r30, 0x30
-	  lwz       r3, 0xC(r27)
-	  lfs       f4, 0x18(r28)
-	  fmuls     f1, f1, f0
-	  lfs       f2, 0x4(r29)
-	  add       r31, r3, r0
-	  lfs       f3, 0x1C(r28)
-	  mr        r6, r31
-	  lfs       f0, 0x8(r29)
-	  fmuls     f2, f4, f2
-	  lha       r3, 0xC(r28)
-	  fmuls     f3, f3, f0
-	  lha       r4, 0xE(r28)
-	  lha       r5, 0x10(r28)
-	  bl        -0xD000
-	  lis       r3, 0x8051
-	  mr        r4, r31
-	  subi      r3, r3, 0xC2C
-	  mr        r5, r3
-	  bl        0x7E0D0
-	  lis       r3, 0x8051
-	  lfs       f0, 0x0(r28)
-	  lfsu      f1, -0xBFC(r3)
-	  lfs       f3, 0x4(r29)
-	  fmuls     f1, f1, f0
-	  lfs       f0, -0x78E8(r2)
-	  lfs       f2, 0x8(r29)
-	  stfs      f1, 0x0(r3)
-	  fcmpu     cr0, f0, f1
-	  lfs       f1, 0x4(r28)
-	  fmuls     f3, f3, f1
-	  stfs      f3, 0x4(r29)
-	  lfs       f1, 0x8(r28)
-	  fmuls     f1, f2, f1
-	  stfs      f1, 0x8(r29)
-	  bne-      .loc_0x134
-	  fcmpu     cr0, f0, f3
-	  bne-      .loc_0x134
-	  fcmpu     cr0, f0, f1
-	  bne-      .loc_0x134
-	  li        r0, 0x1
-	  b         .loc_0x138
+// 	.loc_0x70:
+// 	  lwz       r4, -0x7674(r13)
+// 	  lis       r3, 0x8051
+// 	  subi      r29, r3, 0xBFC
+// 	  lwz       r27, -0x7678(r13)
+// 	  lhz       r30, 0x14(r4)
+// 	  lfs       f1, 0x14(r28)
+// 	  lfs       f0, 0x0(r29)
+// 	  mulli     r0, r30, 0x30
+// 	  lwz       r3, 0xC(r27)
+// 	  lfs       f4, 0x18(r28)
+// 	  fmuls     f1, f1, f0
+// 	  lfs       f2, 0x4(r29)
+// 	  add       r31, r3, r0
+// 	  lfs       f3, 0x1C(r28)
+// 	  mr        r6, r31
+// 	  lfs       f0, 0x8(r29)
+// 	  fmuls     f2, f4, f2
+// 	  lha       r3, 0xC(r28)
+// 	  fmuls     f3, f3, f0
+// 	  lha       r4, 0xE(r28)
+// 	  lha       r5, 0x10(r28)
+// 	  bl        -0xD000
+// 	  lis       r3, 0x8051
+// 	  mr        r4, r31
+// 	  subi      r3, r3, 0xC2C
+// 	  mr        r5, r3
+// 	  bl        0x7E0D0
+// 	  lis       r3, 0x8051
+// 	  lfs       f0, 0x0(r28)
+// 	  lfsu      f1, -0xBFC(r3)
+// 	  lfs       f3, 0x4(r29)
+// 	  fmuls     f1, f1, f0
+// 	  lfs       f0, -0x78E8(r2)
+// 	  lfs       f2, 0x8(r29)
+// 	  stfs      f1, 0x0(r3)
+// 	  fcmpu     cr0, f0, f1
+// 	  lfs       f1, 0x4(r28)
+// 	  fmuls     f3, f3, f1
+// 	  stfs      f3, 0x4(r29)
+// 	  lfs       f1, 0x8(r28)
+// 	  fmuls     f1, f2, f1
+// 	  stfs      f1, 0x8(r29)
+// 	  bne-      .loc_0x134
+// 	  fcmpu     cr0, f0, f3
+// 	  bne-      .loc_0x134
+// 	  fcmpu     cr0, f0, f1
+// 	  bne-      .loc_0x134
+// 	  li        r0, 0x1
+// 	  b         .loc_0x138
 
-	.loc_0x134:
-	  li        r0, 0
+// 	.loc_0x134:
+// 	  li        r0, 0
 
-	.loc_0x138:
-	  cmpwi     r0, 0
-	  bne-      .loc_0x194
-	  lwz       r5, 0x4(r27)
-	  li        r0, 0
-	  lis       r3, 0x8051
-	  lis       r4, 0x8051
-	  stbx      r0, r5, r30
-	  subi      r5, r3, 0xBFC
-	  subi      r3, r4, 0xC2C
-	  mr        r4, r31
-	  lfs       f1, 0x0(r5)
-	  lfs       f2, 0x4(r29)
-	  lfs       f3, 0x8(r29)
-	  bl        -0x37228
-	  lis       r3, 0x8051
-	  subi      r3, r3, 0xC2C
-	  lfs       f0, 0xC(r3)
-	  stfs      f0, 0xC(r31)
-	  lfs       f0, 0x1C(r3)
-	  stfs      f0, 0x1C(r31)
-	  lfs       f0, 0x2C(r3)
-	  stfs      f0, 0x2C(r31)
-	  b         .loc_0x1B0
+// 	.loc_0x138:
+// 	  cmpwi     r0, 0
+// 	  bne-      .loc_0x194
+// 	  lwz       r5, 0x4(r27)
+// 	  li        r0, 0
+// 	  lis       r3, 0x8051
+// 	  lis       r4, 0x8051
+// 	  stbx      r0, r5, r30
+// 	  subi      r5, r3, 0xBFC
+// 	  subi      r3, r4, 0xC2C
+// 	  mr        r4, r31
+// 	  lfs       f1, 0x0(r5)
+// 	  lfs       f2, 0x4(r29)
+// 	  lfs       f3, 0x8(r29)
+// 	  bl        -0x37228
+// 	  lis       r3, 0x8051
+// 	  subi      r3, r3, 0xC2C
+// 	  lfs       f0, 0xC(r3)
+// 	  stfs      f0, 0xC(r31)
+// 	  lfs       f0, 0x1C(r3)
+// 	  stfs      f0, 0x1C(r31)
+// 	  lfs       f0, 0x2C(r3)
+// 	  stfs      f0, 0x2C(r31)
+// 	  b         .loc_0x1B0
 
-	.loc_0x194:
-	  lwz       r5, 0x4(r27)
-	  li        r0, 0x1
-	  lis       r3, 0x8051
-	  mr        r4, r31
-	  stbx      r0, r5, r30
-	  subi      r3, r3, 0xC2C
-	  bl        0x7DFC8
+// 	.loc_0x194:
+// 	  lwz       r5, 0x4(r27)
+// 	  li        r0, 0x1
+// 	  lis       r3, 0x8051
+// 	  mr        r4, r31
+// 	  stbx      r0, r5, r30
+// 	  subi      r3, r3, 0xC2C
+// 	  bl        0x7DFC8
 
-	.loc_0x1B0:
-	  lmw       r27, 0x2C(r1)
-	  lwz       r0, 0x44(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x40
-	  blr
-	*/
-}
+// 	.loc_0x1B0:
+// 	  lmw       r27, 0x2C(r1)
+// 	  lwz       r0, 0x44(r1)
+// 	  mtlr      r0
+// 	  addi      r1, r1, 0x40
+// 	  blr
+// 	*/
+// }
 
 /*
  * --INFO--
  * Address:	8006C31C
  * Size:	000088
+ * calc__114J3DMtxCalcAnimation<64J3DMtxCalcAnimationAdaptorDefault<27J3DMtxCalcCalcTransformMaya>,24J3DMtxCalcJ3DSysInitMaya>Fv
  */
-template <>
-void J3DMtxCalcAnimation<J3DMtxCalcAnimationAdaptorDefault<J3DMtxCalcCalcTransformMaya>, J3DMtxCalcJ3DSysInitMaya>::calc()
-{
-	/*
-	.loc_0x0:
-	  stwu      r1, -0x30(r1)
-	  mflr      r0
-	  stw       r0, 0x34(r1)
-	  stw       r31, 0x2C(r1)
-	  mr        r31, r3
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0x10(r12)
-	  mtctr     r12
-	  bctrl
-	  cmplwi    r3, 0
-	  beq-      .loc_0x68
-	  mr        r3, r31
-	  lwz       r4, -0x7674(r13)
-	  lwz       r12, 0x0(r31)
-	  lhz       r31, 0x14(r4)
-	  lwz       r12, 0x10(r12)
-	  mtctr     r12
-	  bctrl
-	  lwz       r12, 0x0(r3)
-	  mr        r4, r31
-	  addi      r5, r1, 0x8
-	  lwz       r12, 0x10(r12)
-	  mtctr     r12
-	  bctrl
-	  addi      r3, r1, 0x8
-	  b         .loc_0x70
+// template <> void J3DMtxCalcAnimation<J3DMtxCalcAnimationAdaptorDefault<J3DMtxCalcCalcTransformMaya>, J3DMtxCalcJ3DSysInitMaya>::calc()
+// {
+// 	/*
+// 	.loc_0x0:
+// 	  stwu      r1, -0x30(r1)
+// 	  mflr      r0
+// 	  stw       r0, 0x34(r1)
+// 	  stw       r31, 0x2C(r1)
+// 	  mr        r31, r3
+// 	  lwz       r12, 0x0(r3)
+// 	  lwz       r12, 0x10(r12)
+// 	  mtctr     r12
+// 	  bctrl
+// 	  cmplwi    r3, 0
+// 	  beq-      .loc_0x68
+// 	  mr        r3, r31
+// 	  lwz       r4, -0x7674(r13)
+// 	  lwz       r12, 0x0(r31)
+// 	  lhz       r31, 0x14(r4)
+// 	  lwz       r12, 0x10(r12)
+// 	  mtctr     r12
+// 	  bctrl
+// 	  lwz       r12, 0x0(r3)
+// 	  mr        r4, r31
+// 	  addi      r5, r1, 0x8
+// 	  lwz       r12, 0x10(r12)
+// 	  mtctr     r12
+// 	  bctrl
+// 	  addi      r3, r1, 0x8
+// 	  b         .loc_0x70
 
-	.loc_0x68:
-	  lwz       r3, -0x7674(r13)
-	  addi      r3, r3, 0x18
+// 	.loc_0x68:
+// 	  lwz       r3, -0x7674(r13)
+// 	  addi      r3, r3, 0x18
 
-	.loc_0x70:
-	  bl        -0xDDC
-	  lwz       r0, 0x34(r1)
-	  lwz       r31, 0x2C(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x30
-	  blr
-	*/
-}
+// 	.loc_0x70:
+// 	  bl        -0xDDC
+// 	  lwz       r0, 0x34(r1)
+// 	  lwz       r31, 0x2C(r1)
+// 	  mtlr      r0
+// 	  addi      r1, r1, 0x30
+// 	  blr
+// 	*/
+// }

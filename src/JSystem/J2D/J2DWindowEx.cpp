@@ -1,4 +1,10 @@
+#include "Dolphin/gx.h"
+#include "Dolphin/mtx.h"
+#include "JSystem/J2D/J2DAnm.h"
 #include "JSystem/J2D/J2DPane.h"
+#include "JSystem/J2D/J2DTevBlock.h"
+#include "JSystem/J2D/J2DTypes.h"
+#include "JSystem/JGeometry.h"
 #include "types.h"
 
 /*
@@ -356,7 +362,7 @@ J2DWindowEx::J2DWindowEx(J2DPane*, JSURandomInputStream*, unsigned long, J2DMate
  * Address:	8004511C
  * Size:	000008
  */
-u32 J2DTevBlock::getTevStage(unsigned long) { return 0x0; }
+J2DTevStage* J2DTevBlock::getTevStage(unsigned long) { return nullptr; }
 
 /*
  * --INFO--
@@ -370,7 +376,7 @@ void J2DTevBlock::setTevOrder(unsigned long, J2DTevOrder) { }
  * Address:	80045128
  * Size:	000008
  */
-u32 J2DTevBlock::insertTexture(unsigned long, const ResTIMG*) { return 0x0; }
+bool J2DTevBlock::insertTexture(unsigned long, const ResTIMG*) { return false; }
 
 /*
  * --INFO--
@@ -607,51 +613,15 @@ lbl_800453D4:
  * Address:	800453F8
  * Size:	0000A0
  */
-void J2DWindowEx::drawSelf(float, float, float (*)[3][4])
+void J2DWindowEx::drawSelf(float p1, float p2, float (*p3)[3][4])
 {
-	/*
-	stwu     r1, -0x50(r1)
-	mflr     r0
-	stw      r0, 0x54(r1)
-	addi     r5, r1, 0x18
-	stw      r31, 0x4c(r1)
-	mr       r31, r3
-	lfs      f0, 0x20(r3)
-	mr       r3, r4
-	addi     r4, r31, 0x80
-	stfs     f0, 8(r1)
-	fadds    f4, f0, f1
-	lfs      f0, 0x24(r31)
-	stfs     f0, 0xc(r1)
-	fadds    f3, f0, f2
-	lfs      f0, 0x28(r31)
-	stfs     f0, 0x10(r1)
-	fadds    f1, f0, f1
-	lfs      f5, 0x2c(r31)
-	fadds    f0, f5, f2
-	stfs     f5, 0x14(r1)
-	stfs     f4, 8(r1)
-	stfs     f3, 0xc(r1)
-	stfs     f1, 0x10(r1)
-	stfs     f0, 0x14(r1)
-	bl       PSMTXConcat
-	addi     r3, r1, 0x18
-	li       r4, 0
-	bl       GXLoadPosMtxImm
-	mr       r3, r31
-	addi     r4, r1, 8
-	addi     r5, r31, 0x114
-	bl
-	"draw_private__11J2DWindowExFRCQ29JGeometry8TBox2<f>RCQ29JGeometry8TBox2<f>"
-	mr       r3, r31
-	addi     r4, r31, 0x114
-	bl       "clip__7J2DPaneFRCQ29JGeometry8TBox2<f>"
-	lwz      r0, 0x54(r1)
-	lwz      r31, 0x4c(r1)
-	mtlr     r0
-	addi     r1, r1, 0x50
-	blr
-	*/
+	JGeometry::TBox2f box = _020;
+	box.addPos(p1, p2);
+	Mtx v1;
+	PSMTXConcat(*p3, _080, v1);
+	GXLoadPosMtxImm(v1, 0);
+	draw_private(box, _114);
+	clip(_114);
 }
 
 /*
@@ -1720,9 +1690,26 @@ lbl_80046398:
  * --INFO--
  * Address:	800463AC
  * Size:	000128
+ * draw__11J2DWindowExFRCQ29JGeometry8TBox2<f>RCQ29JGeometry8TBox2<f>
  */
-void J2DWindowEx::draw(const JGeometry::TBox2<float>&, const JGeometry::TBox2<float>&)
+void J2DWindowEx::draw(const JGeometry::TBox2<float>& p1, const JGeometry::TBox2<float>& p2)
 {
+	rewriteAlpha();
+	_0B3 = m_alpha;
+	makeMatrix(p2.i.x, p2.i.y, 0.0f, 0.0f);
+	GXLoadPosMtxImm(_050, 0);
+	GXSetCurrentMtx(0);
+	draw_private(JGeometry::TBox2f(0.0f, 0.0f, p1.f.x - p1.i.x, p1.f.y - p1.i.y), p2);
+	for (int i = 0; i < 4; i++) {
+		GXSetTevSwapModeTable((GXTevSwapSel)i, 0, 1, 2, 3);
+	}
+	GXSetNumIndStages(0);
+	for (int i = 0; i < 0x10; i++) {
+		GXSetTevDirect((GXTevStageID)i);
+	}
+	Mtx v1;
+	PSMTXIdentity(v1);
+	GXLoadPosMtxImm(v1, 0);
 	/*
 	.loc_0x0:
 	  stwu      r1, -0x60(r1)
@@ -2938,7 +2925,7 @@ void J2DWindowEx::getContentsMaterial() const
  * Address:	800471B0
  * Size:	000118
  */
-void J2DWindowEx::isUsed(const ResTIMG*)
+bool J2DWindowEx::isUsed(const ResTIMG*)
 {
 	/*
 	stwu     r1, -0x20(r1)
@@ -3300,7 +3287,7 @@ lbl_80047540:
 void J2DWindowEx::setAnimation(J2DAnmVisibilityFull* a1)
 {
 	// Generated from stw r4, 0x174(r3)
-	_174 = a1;
+	m_anmVisibility = a1;
 }
 
 /*
@@ -3393,7 +3380,7 @@ lbl_80047634:
  * Address:	8004764C
  * Size:	0001AC
  */
-void J2DWindowEx::animationPane(const J2DAnmTransform*)
+const J2DAnmTransform* J2DWindowEx::animationPane(const J2DAnmTransform*)
 {
 	/*
 	stwu     r1, -0x30(r1)
@@ -3540,30 +3527,25 @@ void J2DAnmVtxColor::getColor(unsigned char, unsigned short, _GXColor*) const { 
  * Address:	800477FC
  * Size:	00002C
  */
-void J2DWindowEx::getMaterial(J2DWindow::TMaterial&) const
+void J2DWindowEx::getMaterial(J2DWindow::TMaterial& material) const
 {
-	/*
-	lwz      r0, 0x148(r3)
-	lwz      r5, 0x14c(r3)
-	stw      r0, 0(r4)
-	lwz      r0, 0x150(r3)
-	stw      r5, 4(r4)
-	lwz      r5, 0x154(r3)
-	stw      r0, 8(r4)
-	lwz      r0, 0x160(r3)
-	stw      r5, 0xc(r4)
-	stw      r0, 0x10(r4)
-	blr
-	*/
+	material._00 = _148[0];
+	material._04 = _148[1];
+	material._08 = _150;
+	material._0C = _154;
+	material._10 = m_contentsMaterial;
 }
 
 /*
  * --INFO--
  * Address:	80047828
  * Size:	000058
+ * draw__11J2DWindowExFffff
  */
-void J2DWindowEx::draw(float, float, float, float)
+void J2DWindowEx::draw(float p1, float p2, float p3, float p4)
 {
+	JGeometry::TBox2f box(p1, p2, p1 + p3, p2 + p4);
+	draw(box);
 	/*
 	stwu     r1, -0x20(r1)
 	mflr     r0
@@ -3623,7 +3605,7 @@ lbl_8004789C:
  * Address:	800478BC
  * Size:	000020
  */
-void J2DWindowEx::isUsed(const ResFONT*)
+bool J2DWindowEx::isUsed(const ResFONT*)
 {
 	/*
 	stwu     r1, -0x10(r1)

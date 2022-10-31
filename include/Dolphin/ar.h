@@ -22,6 +22,8 @@ typedef struct _ARQRequest {
 
 void ARQPostRequest(ARQRequest*, u32, u32, int, u32, u32, u32, ARQCallback);
 
+u32 ARGetBaseAddress();
+
 #ifdef __cplusplus
 };
 #endif // ifdef __cplusplus

@@ -1,3 +1,15 @@
+#include "Dolphin/gx.h"
+#include "JSystem/J2D/J2DColorBlock.h"
+#include "JSystem/J2D/J2DGXColorS10.h"
+#include "JSystem/J2D/J2DIndBlock.h"
+#include "JSystem/J2D/J2DPEBlock.h"
+#include "JSystem/J2D/J2DTevBlock.h"
+#include "JSystem/J2D/J2DTexGenBlock.h"
+#include "JSystem/J2D/J2DTypes.h"
+#include "JSystem/JUT/JUTFont.h"
+#include "JSystem/JUT/JUTPalette.h"
+#include "JSystem/JUT/JUTTexture.h"
+#include "JSystem/JUT/TColor.h"
 #include "types.h"
 
 /*
@@ -353,6 +365,15 @@
  */
 void J2DColorBlock::initialize()
 {
+	JUtility::TColor colInfo  = j2dDefaultColInfo;
+	J2DColorChanInfo chanInfo = j2dDefaultColorChanInfo;
+	m_colors[0]               = colInfo;
+	m_colors[1]               = colInfo;
+	m_channelCount            = 2;
+	for (int i = 0; i < 4; i++) {
+		m_channels[i].m_data = chanInfo._01;
+	}
+	m_cullMode = GX_CULL_NONE;
 	/*
 	stwu     r1, -0x10(r1)
 	li       r4, 2
@@ -837,91 +858,33 @@ lbl_8004A0FC:
  * Address:	8004A104
  * Size:	000008
  */
-u32 J2DTevBlock::getTexture(unsigned long) { return 0x0; }
+JUTTexture* J2DTevBlock::getTexture(unsigned long) { return 0x0; }
 
 /*
  * --INFO--
  * Address:	8004A10C
  * Size:	000008
  */
-u32 J2DTevBlock::getPalette(unsigned long) { return 0x0; }
+JUTPalette* J2DTevBlock::getPalette(unsigned long) { return 0x0; }
 
 /*
  * --INFO--
  * Address:	8004A114
  * Size:	00010C
+ * __ct__12J2DTevBlock1Fv
  */
 J2DTevBlock1::J2DTevBlock1()
+    : J2DTevBlock()
+    , m_orders()
+    , m_colors()
+    , m_stages()
+    , m_kColors()
+    , m_swapModeTables()
+    , m_indStages()
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	lis      r4, __vt__11J2DTevBlock@ha
-	li       r5, 0
-	stw      r0, 0x14(r1)
-	addi     r0, r4, __vt__11J2DTevBlock@l
-	lis      r4, __ct__11J2DTevOrderFv@ha
-	li       r6, 4
-	stw      r31, 0xc(r1)
-	mr       r31, r3
-	lis      r3, __vt__12J2DTevBlock1@ha
-	addi     r4, r4, __ct__11J2DTevOrderFv@l
-	stw      r0, 0(r31)
-	addi     r0, r3, __vt__12J2DTevBlock1@l
-	addi     r3, r31, 8
-	li       r7, 1
-	stw      r0, 0(r31)
-	bl       __construct_array
-	lis      r4, __ct__13J2DGXColorS10Fv@ha
-	addi     r3, r31, 0xc
-	addi     r4, r4, __ct__13J2DGXColorS10Fv@l
-	li       r5, 0
-	li       r6, 8
-	li       r7, 4
-	bl       __construct_array
-	lis      r4, __ct__11J2DTevStageFv@ha
-	addi     r3, r31, 0x2c
-	addi     r4, r4, __ct__11J2DTevStageFv@l
-	li       r5, 0
-	li       r6, 8
-	li       r7, 1
-	bl       __construct_array
-	lis      r4, __ct__Q28JUtility6TColorFv@ha
-	addi     r3, r31, 0x34
-	addi     r4, r4, __ct__Q28JUtility6TColorFv@l
-	li       r5, 0
-	li       r6, 4
-	li       r7, 4
-	bl       __construct_array
-	lis      r4, __ct__19J2DTevSwapModeTableFv@ha
-	addi     r3, r31, 0x46
-	addi     r4, r4, __ct__19J2DTevSwapModeTableFv@l
-	li       r5, 0
-	li       r6, 1
-	li       r7, 4
-	bl       __construct_array
-	lis      r4, __ct__14J2DIndTevStageFv@ha
-	addi     r3, r31, 0x4c
-	addi     r4, r4, __ct__14J2DIndTevStageFv@l
-	li       r5, 0
-	li       r6, 4
-	li       r7, 1
-	bl       __construct_array
-	li       r0, 0
-	mr       r3, r31
-	stw      r0, 0x50(r31)
-	stb      r0, 0x5c(r31)
-	lwz      r12, 0(r31)
-	lwz      r12, 8(r12)
-	mtctr    r12
-	bctrl
-	lwz      r0, 0x14(r1)
-	mr       r3, r31
-	lwz      r31, 0xc(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	m_textures[0] = nullptr;
+	_5C           = 0;
+	initialize();
 }
 
 /*
@@ -991,7 +954,7 @@ J2DTevSwapModeTable::J2DTevSwapModeTable()
  * Address:	8004A2C0
  * Size:	000004
  */
-J2DGXColorS10::J2DGXColorS10() { }
+// J2DGXColorS10::J2DGXColorS10() { }
 
 /*
  * --INFO--
@@ -1284,7 +1247,7 @@ lbl_8004A48C:
  * Address:	8004A65C
  * Size:	0000BC
  */
-void J2DTevBlock1::prepareTexture(unsigned char)
+bool J2DTevBlock1::prepareTexture(unsigned char)
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -1352,7 +1315,7 @@ lbl_8004A700:
  * Address:	8004A718
  * Size:	000134
  */
-void J2DTevBlock1::insertTexture(unsigned long, const ResTIMG*, JUTPalette*)
+bool J2DTevBlock1::insertTexture(unsigned long, const ResTIMG*, JUTPalette*)
 {
 	/*
 	stwu     r1, -0x20(r1)
@@ -1458,7 +1421,7 @@ lbl_8004A82C:
  * Address:	8004A84C
  * Size:	0000A8
  */
-void J2DTevBlock1::insertTexture(unsigned long, JUTTexture*)
+bool J2DTevBlock1::insertTexture(unsigned long, JUTTexture*)
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -1521,7 +1484,7 @@ lbl_8004A8DC:
  * Address:	8004A8F4
  * Size:	000198
  */
-void J2DTevBlock1::setTexture(unsigned long, const ResTIMG*)
+bool J2DTevBlock1::setTexture(unsigned long, const ResTIMG*)
 {
 	/*
 	stwu     r1, -0x20(r1)
@@ -1656,7 +1619,7 @@ lbl_8004AA70:
  * Address:	8004AA8C
  * Size:	00008C
  */
-void J2DTevBlock1::setTexture(unsigned long, JUTTexture*)
+bool J2DTevBlock1::setTexture(unsigned long, JUTTexture*)
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -1708,7 +1671,7 @@ lbl_8004AB00:
  * Address:	8004AB18
  * Size:	00007C
  */
-void J2DTevBlock1::removeTexture(unsigned long)
+bool J2DTevBlock1::removeTexture(unsigned long)
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -1756,7 +1719,7 @@ lbl_8004AB80:
  * Address:	8004AB94
  * Size:	0000BC
  */
-void J2DTevBlock1::setFont(ResFONT*)
+bool J2DTevBlock1::setFont(ResFONT*)
 {
 	/*
 	stwu     r1, -0x20(r1)
@@ -1824,7 +1787,7 @@ lbl_8004AC34:
  * Address:	8004AC50
  * Size:	000080
  */
-void J2DTevBlock1::setFont(JUTFont*)
+bool J2DTevBlock1::setFont(JUTFont*)
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -1873,7 +1836,7 @@ lbl_8004ACB8:
  * Address:	8004ACD0
  * Size:	0000C8
  */
-void J2DTevBlock1::setPalette(unsigned long, const ResTLUT*)
+bool J2DTevBlock1::setPalette(unsigned long, const ResTLUT*)
 {
 	/*
 	stwu     r1, -0x20(r1)
@@ -2547,7 +2510,7 @@ lbl_8004B30C:
  * Address:	8004B574
  * Size:	0000E0
  */
-void J2DTevBlock2::prepareTexture(unsigned char)
+bool J2DTevBlock2::prepareTexture(unsigned char)
 {
 	/*
 	stwu     r1, -0x20(r1)
@@ -2628,7 +2591,7 @@ lbl_8004B634:
  * Address:	8004B654
  * Size:	0002CC
  */
-void J2DTevBlock2::insertTexture(unsigned long, const ResTIMG*, JUTPalette*)
+bool J2DTevBlock2::insertTexture(unsigned long, const ResTIMG*, JUTPalette*)
 {
 	/*
 	stwu     r1, -0x30(r1)
@@ -2862,7 +2825,7 @@ lbl_8004B90C:
  * Address:	8004B920
  * Size:	000168
  */
-void J2DTevBlock2::insertTexture(unsigned long, JUTTexture*)
+bool J2DTevBlock2::insertTexture(unsigned long, JUTTexture*)
 {
 	/*
 	stwu     r1, -0x20(r1)
@@ -2985,7 +2948,7 @@ lbl_8004BA6C:
  * Address:	8004BA88
  * Size:	00021C
  */
-void J2DTevBlock2::setTexture(unsigned long, const ResTIMG*)
+bool J2DTevBlock2::setTexture(unsigned long, const ResTIMG*)
 {
 	/*
 	stwu     r1, -0x30(r1)
@@ -3157,7 +3120,7 @@ lbl_8004BC90:
  * Address:	8004BCA4
  * Size:	0000A8
  */
-void J2DTevBlock2::setTexture(unsigned long, JUTTexture*)
+bool J2DTevBlock2::setTexture(unsigned long, JUTTexture*)
 {
 	/*
 	stwu     r1, -0x20(r1)
@@ -3216,7 +3179,7 @@ lbl_8004BD38:
  * Address:	8004BD4C
  * Size:	0000D4
  */
-void J2DTevBlock2::removeTexture(unsigned long)
+bool J2DTevBlock2::removeTexture(unsigned long)
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -3288,7 +3251,7 @@ lbl_8004BE08:
  * Address:	8004BE20
  * Size:	0000BC
  */
-void J2DTevBlock2::setFont(ResFONT*)
+bool J2DTevBlock2::setFont(ResFONT*)
 {
 	/*
 	stwu     r1, -0x20(r1)
@@ -3356,7 +3319,7 @@ lbl_8004BEC0:
  * Address:	8004BEDC
  * Size:	000080
  */
-void J2DTevBlock2::setFont(JUTFont*)
+bool J2DTevBlock2::setFont(JUTFont*)
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -3405,7 +3368,7 @@ lbl_8004BF44:
  * Address:	8004BF5C
  * Size:	0000D0
  */
-void J2DTevBlock2::setPalette(unsigned long, const ResTLUT*)
+bool J2DTevBlock2::setPalette(unsigned long, const ResTLUT*)
 {
 	/*
 	stwu     r1, -0x20(r1)
@@ -4201,7 +4164,7 @@ lbl_8004C85C:
  * Address:	8004C988
  * Size:	0000E0
  */
-void J2DTevBlock4::prepareTexture(unsigned char)
+bool J2DTevBlock4::prepareTexture(unsigned char)
 {
 	/*
 	stwu     r1, -0x20(r1)
@@ -4282,7 +4245,7 @@ lbl_8004CA48:
  * Address:	8004CA68
  * Size:	0003AC
  */
-void J2DTevBlock4::insertTexture(unsigned long, const ResTIMG*, JUTPalette*)
+bool J2DTevBlock4::insertTexture(unsigned long, const ResTIMG*, JUTPalette*)
 {
 	/*
 	stwu     r1, -0x30(r1)
@@ -4586,7 +4549,7 @@ lbl_8004CE00:
  * Address:	8004CE14
  * Size:	000198
  */
-void J2DTevBlock4::insertTexture(unsigned long, JUTTexture*)
+bool J2DTevBlock4::insertTexture(unsigned long, JUTTexture*)
 {
 	/*
 	stwu     r1, -0x20(r1)
@@ -4723,7 +4686,7 @@ lbl_8004CF90:
  * Address:	8004CFAC
  * Size:	0002E4
  */
-void J2DTevBlock4::setTexture(unsigned long, const ResTIMG*)
+bool J2DTevBlock4::setTexture(unsigned long, const ResTIMG*)
 {
 	/*
 	stwu     r1, -0x30(r1)
@@ -4959,7 +4922,7 @@ lbl_8004D27C:
  * Address:	8004D290
  * Size:	0000A8
  */
-void J2DTevBlock4::setTexture(unsigned long, JUTTexture*)
+bool J2DTevBlock4::setTexture(unsigned long, JUTTexture*)
 {
 	/*
 	stwu     r1, -0x20(r1)
@@ -5018,7 +4981,7 @@ lbl_8004D324:
  * Address:	8004D338
  * Size:	000210
  */
-void J2DTevBlock4::removeTexture(unsigned long)
+bool J2DTevBlock4::removeTexture(unsigned long)
 {
 	/*
 	stwu     r1, -0x20(r1)
@@ -5175,7 +5138,7 @@ lbl_8004D52C:
  * Address:	8004D548
  * Size:	0000BC
  */
-void J2DTevBlock4::setFont(ResFONT*)
+bool J2DTevBlock4::setFont(ResFONT*)
 {
 	/*
 	stwu     r1, -0x20(r1)
@@ -5243,7 +5206,7 @@ lbl_8004D5E8:
  * Address:	8004D604
  * Size:	000080
  */
-void J2DTevBlock4::setFont(JUTFont*)
+bool J2DTevBlock4::setFont(JUTFont*)
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -5292,7 +5255,7 @@ lbl_8004D66C:
  * Address:	8004D684
  * Size:	0000D0
  */
-void J2DTevBlock4::setPalette(unsigned long, const ResTLUT*)
+bool J2DTevBlock4::setPalette(unsigned long, const ResTLUT*)
 {
 	/*
 	stwu     r1, -0x20(r1)
@@ -6149,7 +6112,7 @@ lbl_8004E064:
  * Address:	8004E1A4
  * Size:	0000E0
  */
-void J2DTevBlock8::prepareTexture(unsigned char)
+bool J2DTevBlock8::prepareTexture(unsigned char)
 {
 	/*
 	stwu     r1, -0x20(r1)
@@ -6230,7 +6193,7 @@ lbl_8004E264:
  * Address:	8004E284
  * Size:	0003C8
  */
-void J2DTevBlock8::insertTexture(unsigned long, const ResTIMG*, JUTPalette*)
+bool J2DTevBlock8::insertTexture(unsigned long, const ResTIMG*, JUTPalette*)
 {
 	/*
 	stwu     r1, -0x30(r1)
@@ -6541,7 +6504,7 @@ lbl_8004E638:
  * Address:	8004E64C
  * Size:	000198
  */
-void J2DTevBlock8::insertTexture(unsigned long, JUTTexture*)
+bool J2DTevBlock8::insertTexture(unsigned long, JUTTexture*)
 {
 	/*
 	stwu     r1, -0x20(r1)
@@ -6678,7 +6641,7 @@ lbl_8004E7C8:
  * Address:	8004E7E4
  * Size:	0002E4
  */
-void J2DTevBlock8::setTexture(unsigned long, const ResTIMG*)
+bool J2DTevBlock8::setTexture(unsigned long, const ResTIMG*)
 {
 	/*
 	stwu     r1, -0x30(r1)
@@ -6914,7 +6877,7 @@ lbl_8004EAB4:
  * Address:	8004EAC8
  * Size:	0000A8
  */
-void J2DTevBlock8::setTexture(unsigned long, JUTTexture*)
+bool J2DTevBlock8::setTexture(unsigned long, JUTTexture*)
 {
 	/*
 	stwu     r1, -0x20(r1)
@@ -6973,7 +6936,7 @@ lbl_8004EB5C:
  * Address:	8004EB70
  * Size:	000210
  */
-void J2DTevBlock8::removeTexture(unsigned long)
+bool J2DTevBlock8::removeTexture(unsigned long)
 {
 	/*
 	stwu     r1, -0x20(r1)
@@ -7130,7 +7093,7 @@ lbl_8004ED64:
  * Address:	8004ED80
  * Size:	0000B4
  */
-void J2DTevBlock8::setFont(ResFONT*)
+bool J2DTevBlock8::setFont(ResFONT*)
 {
 	/*
 	stwu     r1, -0x20(r1)
@@ -7196,7 +7159,7 @@ lbl_8004EE18:
  * Address:	8004EE34
  * Size:	00007C
  */
-void J2DTevBlock8::setFont(JUTFont*)
+bool J2DTevBlock8::setFont(JUTFont*)
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -7244,7 +7207,7 @@ lbl_8004EE98:
  * Address:	8004EEB0
  * Size:	0000D0
  */
-void J2DTevBlock8::setPalette(unsigned long, const ResTLUT*)
+bool J2DTevBlock8::setPalette(unsigned long, const ResTLUT*)
 {
 	/*
 	stwu     r1, -0x20(r1)
@@ -8140,7 +8103,7 @@ lbl_8004F924:
  * Address:	8004FA64
  * Size:	0000E0
  */
-void J2DTevBlock16::prepareTexture(unsigned char)
+bool J2DTevBlock16::prepareTexture(unsigned char)
 {
 	/*
 	stwu     r1, -0x20(r1)
@@ -8221,7 +8184,7 @@ lbl_8004FB24:
  * Address:	8004FB44
  * Size:	0003C8
  */
-void J2DTevBlock16::insertTexture(unsigned long, const ResTIMG*, JUTPalette*)
+bool J2DTevBlock16::insertTexture(unsigned long, const ResTIMG*, JUTPalette*)
 {
 	/*
 	stwu     r1, -0x30(r1)
@@ -8532,7 +8495,7 @@ lbl_8004FEF8:
  * Address:	8004FF0C
  * Size:	000198
  */
-void J2DTevBlock16::insertTexture(unsigned long, JUTTexture*)
+bool J2DTevBlock16::insertTexture(unsigned long, JUTTexture*)
 {
 	/*
 	stwu     r1, -0x20(r1)
@@ -8669,7 +8632,7 @@ lbl_80050088:
  * Address:	800500A4
  * Size:	0002E4
  */
-void J2DTevBlock16::setTexture(unsigned long, const ResTIMG*)
+bool J2DTevBlock16::setTexture(unsigned long, const ResTIMG*)
 {
 	/*
 	stwu     r1, -0x30(r1)
@@ -8905,7 +8868,7 @@ lbl_80050374:
  * Address:	80050388
  * Size:	0000A8
  */
-void J2DTevBlock16::setTexture(unsigned long, JUTTexture*)
+bool J2DTevBlock16::setTexture(unsigned long, JUTTexture*)
 {
 	/*
 	stwu     r1, -0x20(r1)
@@ -8964,7 +8927,7 @@ lbl_8005041C:
  * Address:	80050430
  * Size:	000210
  */
-void J2DTevBlock16::removeTexture(unsigned long)
+bool J2DTevBlock16::removeTexture(unsigned long)
 {
 	/*
 	stwu     r1, -0x20(r1)
@@ -9121,7 +9084,7 @@ lbl_80050624:
  * Address:	80050640
  * Size:	0000B4
  */
-void J2DTevBlock16::setFont(ResFONT*)
+bool J2DTevBlock16::setFont(ResFONT*)
 {
 	/*
 	stwu     r1, -0x20(r1)
@@ -9187,7 +9150,7 @@ lbl_800506D8:
  * Address:	800506F4
  * Size:	00007C
  */
-void J2DTevBlock16::setFont(JUTFont*)
+bool J2DTevBlock16::setFont(JUTFont*)
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -9235,7 +9198,7 @@ lbl_80050758:
  * Address:	80050770
  * Size:	0000D0
  */
-void J2DTevBlock16::setPalette(unsigned long, const ResTLUT*)
+bool J2DTevBlock16::setPalette(unsigned long, const ResTLUT*)
 {
 	/*
 	stwu     r1, -0x20(r1)
@@ -9844,7 +9807,7 @@ void J2DPEBlock::setGX()
  * Address:	80050E94
  * Size:	00000C
  */
-void J2DIndBlockFull::getType()
+u32 J2DIndBlockFull::getType()
 {
 	/*
 	lis      r3, 0x49424C46@ha
@@ -9861,7 +9824,7 @@ void J2DIndBlockFull::getType()
 void J2DIndBlockFull::setIndTexStageNum(unsigned char a1)
 {
 	// Generated from stb r4, 0x4(r3)
-	_04 = a1;
+	m_texStageNum = a1;
 }
 
 /*
@@ -9869,8 +9832,9 @@ void J2DIndBlockFull::setIndTexStageNum(unsigned char a1)
  * Address:	80050EA8
  * Size:	000008
  */
-void J2DIndBlockFull::getIndTexStageNum() const
+u8 J2DIndBlockFull::getIndTexStageNum() const
 {
+	return m_texStageNum;
 	/*
 	lbz      r3, 4(r3)
 	blr
@@ -9900,7 +9864,7 @@ void J2DIndBlockFull::setIndTexOrder(unsigned long, J2DIndTexOrder)
  * Address:	80050ECC
  * Size:	000014
  */
-void J2DIndBlockFull::getIndTexOrder(unsigned long)
+J2DIndTexOrder* J2DIndBlockFull::getIndTexOrder(unsigned long)
 {
 	/*
 	slwi     r4, r4, 1
@@ -9944,7 +9908,7 @@ void J2DIndBlockFull::setIndTexMtx(unsigned long, J2DIndTexMtx)
  * Address:	80050F24
  * Size:	000014
  */
-void J2DIndBlockFull::getIndTexMtx(unsigned long)
+J2DIndTexMtx* J2DIndBlockFull::getIndTexMtx(unsigned long)
 {
 	/*
 	mulli    r4, r4, 0x1c
@@ -9978,7 +9942,7 @@ void J2DIndBlockFull::setIndTexCoordScale(unsigned long, J2DIndTexCoordScale)
  * Address:	80050F54
  * Size:	000014
  */
-void J2DIndBlockFull::getIndTexCoordScale(unsigned long)
+J2DIndTexCoordScale* J2DIndBlockFull::getIndTexCoordScale(unsigned long)
 {
 	/*
 	slwi     r4, r4, 1
@@ -10132,7 +10096,7 @@ void J2DIndBlock::setIndTexOrder(unsigned long, J2DIndTexOrder) { }
  * Address:	8005108C
  * Size:	000008
  */
-u32 J2DIndBlock::getIndTexOrder(unsigned long) { return 0x0; }
+J2DIndTexOrder* J2DIndBlock::getIndTexOrder(unsigned long) { return 0x0; }
 
 /*
  * --INFO--
@@ -10146,7 +10110,7 @@ void J2DIndBlock::setIndTexMtx(unsigned long, J2DIndTexMtx) { }
  * Address:	80051098
  * Size:	000008
  */
-u32 J2DIndBlock::getIndTexMtx(unsigned long) { return 0x0; }
+J2DIndTexMtx* J2DIndBlock::getIndTexMtx(unsigned long) { return 0x0; }
 
 /*
  * --INFO--
@@ -10160,7 +10124,7 @@ void J2DIndBlock::setIndTexCoordScale(unsigned long, J2DIndTexCoordScale) { }
  * Address:	800510A4
  * Size:	000008
  */
-u32 J2DIndBlock::getIndTexCoordScale(unsigned long) { return 0x0; }
+J2DIndTexCoordScale* J2DIndBlock::getIndTexCoordScale(unsigned long) { return 0x0; }
 
 /*
  * --INFO--
@@ -10198,7 +10162,7 @@ lbl_800510DC:
  * Address:	800510F4
  * Size:	00000C
  */
-void J2DTevBlock16::getType()
+u32 J2DTevBlock16::getType()
 {
 	/*
 	lis      r3, 0x54563136@ha
@@ -10234,7 +10198,7 @@ void J2DTevBlock16::setTexNo(unsigned long, unsigned short)
  * Address:	80051118
  * Size:	000010
  */
-void J2DTevBlock16::getTexNo(unsigned long) const
+u16 J2DTevBlock16::getTexNo(unsigned long) const
 {
 	/*
 	slwi     r0, r4, 1
@@ -10252,7 +10216,7 @@ void J2DTevBlock16::getTexNo(unsigned long) const
 void J2DTevBlock16::setFontNo(unsigned short a1)
 {
 	// Generated from sth r4, 0x14(r3)
-	_14 = a1;
+	m_fontNo = a1;
 }
 
 /*
@@ -10260,8 +10224,9 @@ void J2DTevBlock16::setFontNo(unsigned short a1)
  * Address:	80051130
  * Size:	000008
  */
-void J2DTevBlock16::getFontNo() const
+u16 J2DTevBlock16::getFontNo() const
 {
+	return m_fontNo;
 	/*
 	lhz      r3, 0x14(r3)
 	blr
@@ -10293,7 +10258,7 @@ void J2DTevBlock16::setTevOrder(unsigned long, J2DTevOrder)
  * Address:	8005115C
  * Size:	000014
  */
-void J2DTevBlock16::getTevOrder(unsigned long)
+J2DTevOrder* J2DTevBlock16::getTevOrder(unsigned long)
 {
 	/*
 	slwi     r4, r4, 2
@@ -10331,7 +10296,7 @@ void J2DTevBlock16::setTevColor(unsigned long, J2DGXColorS10)
  * Address:	8005119C
  * Size:	000014
  */
-void J2DTevBlock16::getTevColor(unsigned long)
+J2DGXColorS10* J2DTevBlock16::getTevColor(unsigned long)
 {
 	/*
 	slwi     r4, r4, 3
@@ -10369,7 +10334,7 @@ void J2DTevBlock16::setTevKColor(unsigned long, JUtility::TColor)
  * Address:	800511DC
  * Size:	000014
  */
-void J2DTevBlock16::getTevKColor(unsigned long)
+JUtility::TColor* J2DTevBlock16::getTevKColor(unsigned long)
 {
 	/*
 	slwi     r4, r4, 2
@@ -10399,7 +10364,7 @@ void J2DTevBlock16::setTevKColorSel(unsigned long, unsigned char)
  * Address:	800511FC
  * Size:	00000C
  */
-void J2DTevBlock16::getTevKColorSel(unsigned long)
+u8 J2DTevBlock16::getTevKColorSel(unsigned long)
 {
 	/*
 	add      r3, r3, r4
@@ -10427,7 +10392,7 @@ void J2DTevBlock16::setTevKAlphaSel(unsigned long, unsigned char)
  * Address:	80051214
  * Size:	00000C
  */
-void J2DTevBlock16::getTevKAlphaSel(unsigned long)
+u8 J2DTevBlock16::getTevKAlphaSel(unsigned long)
 {
 	/*
 	add      r3, r3, r4
@@ -10444,7 +10409,7 @@ void J2DTevBlock16::getTevKAlphaSel(unsigned long)
 void J2DTevBlock16::setTevStageNum(unsigned char a1)
 {
 	// Generated from stb r4, 0x76(r3)
-	_76 = a1;
+	m_stageNum = a1;
 }
 
 /*
@@ -10452,8 +10417,9 @@ void J2DTevBlock16::setTevStageNum(unsigned char a1)
  * Address:	80051228
  * Size:	000008
  */
-void J2DTevBlock16::getTevStageNum() const
+u8 J2DTevBlock16::getTevStageNum() const
 {
+	return m_stageNum;
 	/*
 	lbz      r3, 0x76(r3)
 	blr
@@ -10491,7 +10457,7 @@ void J2DTevBlock16::setTevStage(unsigned long, J2DTevStage)
  * Address:	8005126C
  * Size:	000014
  */
-void J2DTevBlock16::getTevStage(unsigned long)
+J2DTevStage* J2DTevBlock16::getTevStage(unsigned long)
 {
 	/*
 	slwi     r4, r4, 3
@@ -10547,7 +10513,7 @@ void J2DTevBlock16::setTevSwapModeTable(unsigned long, J2DTevSwapModeTable)
  * Address:	800512C8
  * Size:	000010
  */
-void J2DTevBlock16::getTevSwapModeTable(unsigned long)
+J2DTevSwapModeTable* J2DTevBlock16::getTevSwapModeTable(unsigned long)
 {
 	/*
 	mr       r0, r3
@@ -10578,7 +10544,7 @@ void J2DTevBlock16::setIndTevStage(unsigned long, J2DIndTevStage)
  * Address:	800512EC
  * Size:	000014
  */
-void J2DTevBlock16::getIndTevStage(unsigned long)
+J2DIndTevStage* J2DTevBlock16::getIndTevStage(unsigned long)
 {
 	/*
 	slwi     r4, r4, 2
@@ -10594,7 +10560,7 @@ void J2DTevBlock16::getIndTevStage(unsigned long)
  * Address:	80051300
  * Size:	000030
  */
-void J2DTevBlock16::insertTexture(unsigned long, const ResTIMG*)
+bool J2DTevBlock16::insertTexture(unsigned long, const ResTIMG*)
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -10617,7 +10583,7 @@ void J2DTevBlock16::insertTexture(unsigned long, const ResTIMG*)
  * Address:	80051330
  * Size:	000020
  */
-void J2DTevBlock16::getTexture(unsigned long)
+JUTTexture* J2DTevBlock16::getTexture(unsigned long)
 {
 	/*
 	cmplwi   r4, 8
@@ -10638,7 +10604,7 @@ lbl_80051340:
  * Address:	80051350
  * Size:	000020
  */
-void J2DTevBlock16::getPalette(unsigned long)
+JUTPalette* J2DTevBlock16::getPalette(unsigned long)
 {
 	/*
 	cmplwi   r4, 8
@@ -10659,7 +10625,7 @@ lbl_80051360:
  * Address:	80051370
  * Size:	000008
  */
-void J2DTevBlock16::getFont()
+JUTFont* J2DTevBlock16::getFont()
 {
 	/*
 	lwz      r3, 0x1ac(r3)
@@ -10698,7 +10664,7 @@ void J2DTevBlock16::setFontUndeleteFlag()
  * Address:	80051394
  * Size:	00000C
  */
-void J2DTevBlock8::getType()
+u32 J2DTevBlock8::getType()
 {
 	/*
 	lis      r3, 0x54564238@ha
@@ -10734,7 +10700,7 @@ void J2DTevBlock8::setTexNo(unsigned long, unsigned short)
  * Address:	800513B8
  * Size:	000010
  */
-void J2DTevBlock8::getTexNo(unsigned long) const
+u16 J2DTevBlock8::getTexNo(unsigned long) const
 {
 	/*
 	slwi     r0, r4, 1
@@ -10752,7 +10718,7 @@ void J2DTevBlock8::getTexNo(unsigned long) const
 void J2DTevBlock8::setFontNo(unsigned short a1)
 {
 	// Generated from sth r4, 0x14(r3)
-	_14 = a1;
+	m_fontNo = a1;
 }
 
 /*
@@ -10760,8 +10726,9 @@ void J2DTevBlock8::setFontNo(unsigned short a1)
  * Address:	800513D0
  * Size:	000008
  */
-void J2DTevBlock8::getFontNo() const
+u16 J2DTevBlock8::getFontNo() const
 {
+	return m_fontNo;
 	/*
 	lhz      r3, 0x14(r3)
 	blr
@@ -10793,7 +10760,7 @@ void J2DTevBlock8::setTevOrder(unsigned long, J2DTevOrder)
  * Address:	800513FC
  * Size:	000014
  */
-void J2DTevBlock8::getTevOrder(unsigned long)
+J2DTevOrder* J2DTevBlock8::getTevOrder(unsigned long)
 {
 	/*
 	slwi     r4, r4, 2
@@ -10831,7 +10798,7 @@ void J2DTevBlock8::setTevColor(unsigned long, J2DGXColorS10)
  * Address:	8005143C
  * Size:	000014
  */
-void J2DTevBlock8::getTevColor(unsigned long)
+J2DGXColorS10* J2DTevBlock8::getTevColor(unsigned long)
 {
 	/*
 	slwi     r4, r4, 3
@@ -10869,7 +10836,7 @@ void J2DTevBlock8::setTevKColor(unsigned long, JUtility::TColor)
  * Address:	8005147C
  * Size:	000014
  */
-void J2DTevBlock8::getTevKColor(unsigned long)
+JUtility::TColor* J2DTevBlock8::getTevKColor(unsigned long)
 {
 	/*
 	slwi     r4, r4, 2
@@ -10899,7 +10866,7 @@ void J2DTevBlock8::setTevKColorSel(unsigned long, unsigned char)
  * Address:	8005149C
  * Size:	00000C
  */
-void J2DTevBlock8::getTevKColorSel(unsigned long)
+u8 J2DTevBlock8::getTevKColorSel(unsigned long)
 {
 	/*
 	add      r3, r3, r4
@@ -10927,7 +10894,7 @@ void J2DTevBlock8::setTevKAlphaSel(unsigned long, unsigned char)
  * Address:	800514B4
  * Size:	00000C
  */
-void J2DTevBlock8::getTevKAlphaSel(unsigned long)
+u8 J2DTevBlock8::getTevKAlphaSel(unsigned long)
 {
 	/*
 	add      r3, r3, r4
@@ -10944,7 +10911,7 @@ void J2DTevBlock8::getTevKAlphaSel(unsigned long)
 void J2DTevBlock8::setTevStageNum(unsigned char a1)
 {
 	// Generated from stb r4, 0x56(r3)
-	_56 = a1;
+	m_stageNum = a1;
 }
 
 /*
@@ -10952,8 +10919,9 @@ void J2DTevBlock8::setTevStageNum(unsigned char a1)
  * Address:	800514C8
  * Size:	000008
  */
-void J2DTevBlock8::getTevStageNum() const
+u8 J2DTevBlock8::getTevStageNum() const
 {
+	return m_stageNum;
 	/*
 	lbz      r3, 0x56(r3)
 	blr
@@ -10991,7 +10959,7 @@ void J2DTevBlock8::setTevStage(unsigned long, J2DTevStage)
  * Address:	8005150C
  * Size:	000014
  */
-void J2DTevBlock8::getTevStage(unsigned long)
+J2DTevStage* J2DTevBlock8::getTevStage(unsigned long)
 {
 	/*
 	slwi     r4, r4, 3
@@ -11047,7 +11015,7 @@ void J2DTevBlock8::setTevSwapModeTable(unsigned long, J2DTevSwapModeTable)
  * Address:	80051568
  * Size:	000010
  */
-void J2DTevBlock8::getTevSwapModeTable(unsigned long)
+J2DTevSwapModeTable* J2DTevBlock8::getTevSwapModeTable(unsigned long)
 {
 	/*
 	mr       r0, r3
@@ -11078,7 +11046,7 @@ void J2DTevBlock8::setIndTevStage(unsigned long, J2DIndTevStage)
  * Address:	8005158C
  * Size:	000014
  */
-void J2DTevBlock8::getIndTevStage(unsigned long)
+J2DIndTevStage* J2DTevBlock8::getIndTevStage(unsigned long)
 {
 	/*
 	slwi     r4, r4, 2
@@ -11094,7 +11062,7 @@ void J2DTevBlock8::getIndTevStage(unsigned long)
  * Address:	800515A0
  * Size:	000030
  */
-void J2DTevBlock8::insertTexture(unsigned long, const ResTIMG*)
+bool J2DTevBlock8::insertTexture(unsigned long, const ResTIMG*)
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -11117,7 +11085,7 @@ void J2DTevBlock8::insertTexture(unsigned long, const ResTIMG*)
  * Address:	800515D0
  * Size:	000020
  */
-void J2DTevBlock8::getTexture(unsigned long)
+JUTTexture* J2DTevBlock8::getTexture(unsigned long)
 {
 	/*
 	cmplwi   r4, 8
@@ -11138,7 +11106,7 @@ lbl_800515E0:
  * Address:	800515F0
  * Size:	000020
  */
-void J2DTevBlock8::getPalette(unsigned long)
+JUTPalette* J2DTevBlock8::getPalette(unsigned long)
 {
 	/*
 	cmplwi   r4, 8
@@ -11159,7 +11127,7 @@ lbl_80051600:
  * Address:	80051610
  * Size:	000008
  */
-void J2DTevBlock8::getFont()
+JUTFont* J2DTevBlock8::getFont()
 {
 	/*
 	lwz      r3, 0x11c(r3)
@@ -11198,7 +11166,7 @@ void J2DTevBlock8::setFontUndeleteFlag()
  * Address:	80051634
  * Size:	00000C
  */
-void J2DTevBlock4::getType()
+u32 J2DTevBlock4::getType()
 {
 	/*
 	lis      r3, 0x54564234@ha
@@ -11234,7 +11202,7 @@ void J2DTevBlock4::setTexNo(unsigned long, unsigned short)
  * Address:	80051658
  * Size:	000010
  */
-void J2DTevBlock4::getTexNo(unsigned long) const
+u16 J2DTevBlock4::getTexNo(unsigned long) const
 {
 	/*
 	slwi     r0, r4, 1
@@ -11252,7 +11220,7 @@ void J2DTevBlock4::getTexNo(unsigned long) const
 void J2DTevBlock4::setFontNo(unsigned short a1)
 {
 	// Generated from sth r4, 0xC(r3)
-	_0C = a1;
+	m_fontNo = a1;
 }
 
 /*
@@ -11260,8 +11228,9 @@ void J2DTevBlock4::setFontNo(unsigned short a1)
  * Address:	80051670
  * Size:	000008
  */
-void J2DTevBlock4::getFontNo() const
+u16 J2DTevBlock4::getFontNo() const
 {
+	return m_fontNo;
 	/*
 	lhz      r3, 0xc(r3)
 	blr
@@ -11293,7 +11262,7 @@ void J2DTevBlock4::setTevOrder(unsigned long, J2DTevOrder)
  * Address:	8005169C
  * Size:	000014
  */
-void J2DTevBlock4::getTevOrder(unsigned long)
+J2DTevOrder* J2DTevBlock4::getTevOrder(unsigned long)
 {
 	/*
 	slwi     r4, r4, 2
@@ -11331,7 +11300,7 @@ void J2DTevBlock4::setTevColor(unsigned long, J2DGXColorS10)
  * Address:	800516DC
  * Size:	000014
  */
-void J2DTevBlock4::getTevColor(unsigned long)
+J2DGXColorS10* J2DTevBlock4::getTevColor(unsigned long)
 {
 	/*
 	slwi     r4, r4, 3
@@ -11369,7 +11338,7 @@ void J2DTevBlock4::setTevKColor(unsigned long, JUtility::TColor)
  * Address:	8005171C
  * Size:	000014
  */
-void J2DTevBlock4::getTevKColor(unsigned long)
+JUtility::TColor* J2DTevBlock4::getTevKColor(unsigned long)
 {
 	/*
 	slwi     r4, r4, 2
@@ -11399,7 +11368,7 @@ void J2DTevBlock4::setTevKColorSel(unsigned long, unsigned char)
  * Address:	8005173C
  * Size:	00000C
  */
-void J2DTevBlock4::getTevKColorSel(unsigned long)
+u8 J2DTevBlock4::getTevKColorSel(unsigned long)
 {
 	/*
 	add      r3, r3, r4
@@ -11427,7 +11396,7 @@ void J2DTevBlock4::setTevKAlphaSel(unsigned long, unsigned char)
  * Address:	80051754
  * Size:	00000C
  */
-void J2DTevBlock4::getTevKAlphaSel(unsigned long)
+u8 J2DTevBlock4::getTevKAlphaSel(unsigned long)
 {
 	/*
 	add      r3, r3, r4
@@ -11444,7 +11413,7 @@ void J2DTevBlock4::getTevKAlphaSel(unsigned long)
 void J2DTevBlock4::setTevStageNum(unsigned char a1)
 {
 	// Generated from stb r4, 0x3E(r3)
-	_3E = a1;
+	m_stageNum = a1;
 }
 
 /*
@@ -11452,8 +11421,9 @@ void J2DTevBlock4::setTevStageNum(unsigned char a1)
  * Address:	80051768
  * Size:	000008
  */
-void J2DTevBlock4::getTevStageNum() const
+u8 J2DTevBlock4::getTevStageNum() const
 {
+	return m_stageNum;
 	/*
 	lbz      r3, 0x3e(r3)
 	blr
@@ -11491,7 +11461,7 @@ void J2DTevBlock4::setTevStage(unsigned long, J2DTevStage)
  * Address:	800517AC
  * Size:	000014
  */
-void J2DTevBlock4::getTevStage(unsigned long)
+J2DTevStage* J2DTevBlock4::getTevStage(unsigned long)
 {
 	/*
 	slwi     r4, r4, 3
@@ -11547,7 +11517,7 @@ void J2DTevBlock4::setTevSwapModeTable(unsigned long, J2DTevSwapModeTable)
  * Address:	80051808
  * Size:	000010
  */
-void J2DTevBlock4::getTevSwapModeTable(unsigned long)
+J2DTevSwapModeTable* J2DTevBlock4::getTevSwapModeTable(unsigned long)
 {
 	/*
 	mr       r0, r3
@@ -11578,7 +11548,7 @@ void J2DTevBlock4::setIndTevStage(unsigned long, J2DIndTevStage)
  * Address:	8005182C
  * Size:	000014
  */
-void J2DTevBlock4::getIndTevStage(unsigned long)
+J2DIndTevStage* J2DTevBlock4::getIndTevStage(unsigned long)
 {
 	/*
 	slwi     r4, r4, 2
@@ -11594,7 +11564,7 @@ void J2DTevBlock4::getIndTevStage(unsigned long)
  * Address:	80051840
  * Size:	000030
  */
-void J2DTevBlock4::insertTexture(unsigned long, const ResTIMG*)
+bool J2DTevBlock4::insertTexture(unsigned long, const ResTIMG*)
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -11617,7 +11587,7 @@ void J2DTevBlock4::insertTexture(unsigned long, const ResTIMG*)
  * Address:	80051870
  * Size:	000020
  */
-void J2DTevBlock4::getTexture(unsigned long)
+JUTTexture* J2DTevBlock4::getTexture(unsigned long)
 {
 	/*
 	cmplwi   r4, 4
@@ -11638,7 +11608,7 @@ lbl_80051880:
  * Address:	80051890
  * Size:	000020
  */
-void J2DTevBlock4::getPalette(unsigned long)
+JUTPalette* J2DTevBlock4::getPalette(unsigned long)
 {
 	/*
 	cmplwi   r4, 4
@@ -11659,7 +11629,7 @@ lbl_800518A0:
  * Address:	800518B0
  * Size:	000008
  */
-void J2DTevBlock4::getFont()
+JUTFont* J2DTevBlock4::getFont()
 {
 	/*
 	lwz      r3, 0xac(r3)
@@ -11702,7 +11672,7 @@ void J2DTevBlock4::setFontUndeleteFlag()
  * Address:	800518D8
  * Size:	00000C
  */
-void J2DTevBlock2::getType()
+u32 J2DTevBlock2::getType()
 {
 	/*
 	lis      r3, 0x54564232@ha
@@ -11738,7 +11708,7 @@ void J2DTevBlock2::setTexNo(unsigned long, unsigned short)
  * Address:	800518FC
  * Size:	000010
  */
-void J2DTevBlock2::getTexNo(unsigned long) const
+u16 J2DTevBlock2::getTexNo(unsigned long) const
 {
 	/*
 	slwi     r0, r4, 1
@@ -11756,7 +11726,7 @@ void J2DTevBlock2::getTexNo(unsigned long) const
 void J2DTevBlock2::setFontNo(unsigned short a1)
 {
 	// Generated from sth r4, 0x8(r3)
-	_08 = a1;
+	m_fontNo = a1;
 }
 
 /*
@@ -11764,8 +11734,9 @@ void J2DTevBlock2::setFontNo(unsigned short a1)
  * Address:	80051914
  * Size:	000008
  */
-void J2DTevBlock2::getFontNo() const
+u16 J2DTevBlock2::getFontNo() const
 {
+	return m_fontNo;
 	/*
 	lhz      r3, 8(r3)
 	blr
@@ -11797,7 +11768,7 @@ void J2DTevBlock2::setTevOrder(unsigned long, J2DTevOrder)
  * Address:	80051940
  * Size:	000014
  */
-void J2DTevBlock2::getTevOrder(unsigned long)
+J2DTevOrder* J2DTevBlock2::getTevOrder(unsigned long)
 {
 	/*
 	slwi     r4, r4, 2
@@ -11835,7 +11806,7 @@ void J2DTevBlock2::setTevColor(unsigned long, J2DGXColorS10)
  * Address:	80051980
  * Size:	000014
  */
-void J2DTevBlock2::getTevColor(unsigned long)
+J2DGXColorS10* J2DTevBlock2::getTevColor(unsigned long)
 {
 	/*
 	slwi     r4, r4, 3
@@ -11873,7 +11844,7 @@ void J2DTevBlock2::setTevKColor(unsigned long, JUtility::TColor)
  * Address:	800519C0
  * Size:	000014
  */
-void J2DTevBlock2::getTevKColor(unsigned long)
+JUtility::TColor* J2DTevBlock2::getTevKColor(unsigned long)
 {
 	/*
 	slwi     r4, r4, 2
@@ -11903,7 +11874,7 @@ void J2DTevBlock2::setTevKColorSel(unsigned long, unsigned char)
  * Address:	800519E0
  * Size:	00000C
  */
-void J2DTevBlock2::getTevKColorSel(unsigned long)
+u8 J2DTevBlock2::getTevKColorSel(unsigned long)
 {
 	/*
 	add      r3, r3, r4
@@ -11931,7 +11902,7 @@ void J2DTevBlock2::setTevKAlphaSel(unsigned long, unsigned char)
  * Address:	800519F8
  * Size:	00000C
  */
-void J2DTevBlock2::getTevKAlphaSel(unsigned long)
+u8 J2DTevBlock2::getTevKAlphaSel(unsigned long)
 {
 	/*
 	add      r3, r3, r4
@@ -11948,7 +11919,7 @@ void J2DTevBlock2::getTevKAlphaSel(unsigned long)
 void J2DTevBlock2::setTevStageNum(unsigned char a1)
 {
 	// Generated from stb r4, 0x32(r3)
-	_32 = a1;
+	m_stageNum = a1;
 }
 
 /*
@@ -11956,8 +11927,9 @@ void J2DTevBlock2::setTevStageNum(unsigned char a1)
  * Address:	80051A0C
  * Size:	000008
  */
-void J2DTevBlock2::getTevStageNum() const
+u8 J2DTevBlock2::getTevStageNum() const
 {
+	return m_stageNum;
 	/*
 	lbz      r3, 0x32(r3)
 	blr
@@ -11995,7 +11967,7 @@ void J2DTevBlock2::setTevStage(unsigned long, J2DTevStage)
  * Address:	80051A50
  * Size:	000014
  */
-void J2DTevBlock2::getTevStage(unsigned long)
+J2DTevStage* J2DTevBlock2::getTevStage(unsigned long)
 {
 	/*
 	slwi     r4, r4, 3
@@ -12051,7 +12023,7 @@ void J2DTevBlock2::setTevSwapModeTable(unsigned long, J2DTevSwapModeTable)
  * Address:	80051AAC
  * Size:	000010
  */
-void J2DTevBlock2::getTevSwapModeTable(unsigned long)
+J2DTevSwapModeTable* J2DTevBlock2::getTevSwapModeTable(unsigned long)
 {
 	/*
 	mr       r0, r3
@@ -12082,7 +12054,7 @@ void J2DTevBlock2::setIndTevStage(unsigned long, J2DIndTevStage)
  * Address:	80051AD0
  * Size:	000014
  */
-void J2DTevBlock2::getIndTevStage(unsigned long)
+J2DIndTevStage* J2DTevBlock2::getIndTevStage(unsigned long)
 {
 	/*
 	slwi     r4, r4, 2
@@ -12098,7 +12070,7 @@ void J2DTevBlock2::getIndTevStage(unsigned long)
  * Address:	80051AE4
  * Size:	000030
  */
-void J2DTevBlock2::insertTexture(unsigned long, const ResTIMG*)
+bool J2DTevBlock2::insertTexture(unsigned long, const ResTIMG*)
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -12121,7 +12093,7 @@ void J2DTevBlock2::insertTexture(unsigned long, const ResTIMG*)
  * Address:	80051B14
  * Size:	000020
  */
-void J2DTevBlock2::getTexture(unsigned long)
+JUTTexture* J2DTevBlock2::getTexture(unsigned long)
 {
 	/*
 	cmplwi   r4, 2
@@ -12142,7 +12114,7 @@ lbl_80051B24:
  * Address:	80051B34
  * Size:	000020
  */
-void J2DTevBlock2::getPalette(unsigned long)
+JUTPalette* J2DTevBlock2::getPalette(unsigned long)
 {
 	/*
 	cmplwi   r4, 2
@@ -12163,8 +12135,9 @@ lbl_80051B44:
  * Address:	80051B54
  * Size:	000008
  */
-void J2DTevBlock2::getFont()
+JUTFont* J2DTevBlock2::getFont()
 {
+	return m_font;
 	/*
 	lwz      r3, 0x74(r3)
 	blr
@@ -12206,7 +12179,7 @@ void J2DTevBlock2::setFontUndeleteFlag()
  * Address:	80051B7C
  * Size:	00000C
  */
-void J2DTevBlock1::getType()
+u32 J2DTevBlock1::getType()
 {
 	/*
 	lis      r3, 0x54564231@ha
@@ -12242,7 +12215,7 @@ void J2DTevBlock1::setTexNo(unsigned long, unsigned short)
  * Address:	80051BA0
  * Size:	000010
  */
-void J2DTevBlock1::getTexNo(unsigned long) const
+u16 J2DTevBlock1::getTexNo(unsigned long) const
 {
 	/*
 	slwi     r0, r4, 1
@@ -12260,7 +12233,7 @@ void J2DTevBlock1::getTexNo(unsigned long) const
 void J2DTevBlock1::setFontNo(unsigned short a1)
 {
 	// Generated from sth r4, 0x6(r3)
-	_06 = a1;
+	m_fontNo = a1;
 }
 
 /*
@@ -12268,7 +12241,7 @@ void J2DTevBlock1::setFontNo(unsigned short a1)
  * Address:	80051BB8
  * Size:	000008
  */
-void J2DTevBlock1::getFontNo() const
+u16 J2DTevBlock1::getFontNo() const
 {
 	/*
 	lhz      r3, 6(r3)
@@ -12301,7 +12274,7 @@ void J2DTevBlock1::setTevOrder(unsigned long, J2DTevOrder)
  * Address:	80051BE4
  * Size:	000014
  */
-void J2DTevBlock1::getTevOrder(unsigned long)
+J2DTevOrder* J2DTevBlock1::getTevOrder(unsigned long)
 {
 	/*
 	slwi     r4, r4, 2
@@ -12339,7 +12312,7 @@ void J2DTevBlock1::setTevColor(unsigned long, J2DGXColorS10)
  * Address:	80051C24
  * Size:	000014
  */
-void J2DTevBlock1::getTevColor(unsigned long)
+J2DGXColorS10* J2DTevBlock1::getTevColor(unsigned long)
 {
 	/*
 	slwi     r4, r4, 3
@@ -12377,7 +12350,7 @@ void J2DTevBlock1::setTevKColor(unsigned long, JUtility::TColor)
  * Address:	80051C64
  * Size:	000014
  */
-void J2DTevBlock1::getTevKColor(unsigned long)
+JUtility::TColor* J2DTevBlock1::getTevKColor(unsigned long)
 {
 	/*
 	slwi     r4, r4, 2
@@ -12407,7 +12380,7 @@ void J2DTevBlock1::setTevKColorSel(unsigned long, unsigned char)
  * Address:	80051C84
  * Size:	00000C
  */
-void J2DTevBlock1::getTevKColorSel(unsigned long)
+u8 J2DTevBlock1::getTevKColorSel(unsigned long)
 {
 	/*
 	add      r3, r3, r4
@@ -12435,7 +12408,7 @@ void J2DTevBlock1::setTevKAlphaSel(unsigned long, unsigned char)
  * Address:	80051C9C
  * Size:	00000C
  */
-void J2DTevBlock1::getTevKAlphaSel(unsigned long)
+u8 J2DTevBlock1::getTevKAlphaSel(unsigned long)
 {
 	/*
 	add      r3, r3, r4
@@ -12456,7 +12429,7 @@ void J2DTevBlock1::setTevStageNum(unsigned char) { }
  * Address:	80051CAC
  * Size:	000008
  */
-u32 J2DTevBlock1::getTevStageNum() const { return 0x1; }
+u8 J2DTevBlock1::getTevStageNum() const { return 0x1; }
 
 /*
  * --INFO--
@@ -12489,7 +12462,7 @@ void J2DTevBlock1::setTevStage(unsigned long, J2DTevStage)
  * Address:	80051CF0
  * Size:	000014
  */
-void J2DTevBlock1::getTevStage(unsigned long)
+J2DTevStage* J2DTevBlock1::getTevStage(unsigned long)
 {
 	/*
 	slwi     r4, r4, 3
@@ -12545,7 +12518,7 @@ void J2DTevBlock1::setTevSwapModeTable(unsigned long, J2DTevSwapModeTable)
  * Address:	80051D4C
  * Size:	000010
  */
-void J2DTevBlock1::getTevSwapModeTable(unsigned long)
+J2DTevSwapModeTable* J2DTevBlock1::getTevSwapModeTable(unsigned long)
 {
 	/*
 	mr       r0, r3
@@ -12576,7 +12549,7 @@ void J2DTevBlock1::setIndTevStage(unsigned long, J2DIndTevStage)
  * Address:	80051D70
  * Size:	000014
  */
-void J2DTevBlock1::getIndTevStage(unsigned long)
+J2DIndTevStage* J2DTevBlock1::getIndTevStage(unsigned long)
 {
 	/*
 	slwi     r4, r4, 2
@@ -12592,7 +12565,7 @@ void J2DTevBlock1::getIndTevStage(unsigned long)
  * Address:	80051D84
  * Size:	000030
  */
-void J2DTevBlock1::insertTexture(unsigned long, const ResTIMG*)
+bool J2DTevBlock1::insertTexture(unsigned long, const ResTIMG*)
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -12615,7 +12588,7 @@ void J2DTevBlock1::insertTexture(unsigned long, const ResTIMG*)
  * Address:	80051DB4
  * Size:	000020
  */
-void J2DTevBlock1::getTexture(unsigned long)
+JUTTexture* J2DTevBlock1::getTexture(unsigned long)
 {
 	/*
 	cmplwi   r4, 1
@@ -12636,7 +12609,7 @@ lbl_80051DC4:
  * Address:	80051DD4
  * Size:	000020
  */
-void J2DTevBlock1::getPalette(unsigned long)
+JUTPalette* J2DTevBlock1::getPalette(unsigned long)
 {
 	/*
 	cmplwi   r4, 1
@@ -12657,7 +12630,7 @@ lbl_80051DE4:
  * Address:	80051DF4
  * Size:	000008
  */
-void J2DTevBlock1::getFont()
+JUTFont* J2DTevBlock1::getFont()
 {
 	/*
 	lwz      r3, 0x58(r3)
@@ -12735,14 +12708,14 @@ void J2DTevBlock::setTevKColor(unsigned long, JUtility::TColor) { }
  * Address:	80051E30
  * Size:	000008
  */
-u32 J2DTevBlock::getTevKColorSel(unsigned long) { return 0x0; }
+u8 J2DTevBlock::getTevKColorSel(unsigned long) { return 0x0; }
 
 /*
  * --INFO--
  * Address:	80051E38
  * Size:	000008
  */
-u32 J2DTevBlock::getTevKAlphaSel(unsigned long) { return 0x0; }
+u8 J2DTevBlock::getTevKAlphaSel(unsigned long) { return 0x0; }
 
 /*
  * --INFO--
@@ -12777,70 +12750,70 @@ void J2DTevBlock::setIndTevStage(unsigned long, J2DIndTevStage) { }
  * Address:	80051E50
  * Size:	000008
  */
-u32 J2DTevBlock::getIndTevStage(unsigned long) { return 0x0; }
+J2DIndTevStage* J2DTevBlock::getIndTevStage(unsigned long) { return nullptr; }
 
 /*
  * --INFO--
  * Address:	80051E58
  * Size:	000008
  */
-u32 J2DTevBlock::insertTexture(unsigned long, JUTTexture*) { return 0x0; }
+bool J2DTevBlock::insertTexture(unsigned long, JUTTexture*) { return false; }
 
 /*
  * --INFO--
  * Address:	80051E60
  * Size:	000008
  */
-u32 J2DTevBlock::insertTexture(unsigned long, const ResTIMG*, JUTPalette*) { return 0x0; }
+bool J2DTevBlock::insertTexture(unsigned long, const ResTIMG*, JUTPalette*) { return false; }
 
 /*
  * --INFO--
  * Address:	80051E68
  * Size:	000008
  */
-u32 J2DTevBlock::setTexture(unsigned long, JUTTexture*) { return 0x0; }
+bool J2DTevBlock::setTexture(unsigned long, JUTTexture*) { return false; }
 
 /*
  * --INFO--
  * Address:	80051E70
  * Size:	000008
  */
-u32 J2DTevBlock::setTexture(unsigned long, const ResTIMG*) { return 0x0; }
+bool J2DTevBlock::setTexture(unsigned long, const ResTIMG*) { return false; }
 
 /*
  * --INFO--
  * Address:	80051E78
  * Size:	000008
  */
-u32 J2DTevBlock::removeTexture(unsigned long) { return 0x0; }
+bool J2DTevBlock::removeTexture(unsigned long) { return false; }
 
 /*
  * --INFO--
  * Address:	80051E80
  * Size:	000008
  */
-u32 J2DTevBlock::setFont(JUTFont*) { return 0x0; }
+bool J2DTevBlock::setFont(JUTFont*) { return false; }
 
 /*
  * --INFO--
  * Address:	80051E88
  * Size:	000008
  */
-u32 J2DTevBlock::setFont(ResFONT*) { return 0x0; }
+bool J2DTevBlock::setFont(ResFONT*) { return false; }
 
 /*
  * --INFO--
  * Address:	80051E90
  * Size:	000008
  */
-u32 J2DTevBlock::setPalette(unsigned long, const ResTLUT*) { return 0x0; }
+bool J2DTevBlock::setPalette(unsigned long, const ResTLUT*) { return false; }
 
 /*
  * --INFO--
  * Address:	80051E98
  * Size:	000008
  */
-u32 J2DTevBlock::prepareTexture(unsigned char) { return 0x0; }
+bool J2DTevBlock::prepareTexture(unsigned char) { return false; }
 
 /*
  * --INFO--

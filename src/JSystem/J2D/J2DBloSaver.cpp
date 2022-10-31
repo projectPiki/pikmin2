@@ -1,3 +1,6 @@
+#include "JSystem/J2D/J2DIndBlock.h"
+#include "JSystem/J2D/J2DTevBlock.h"
+#include "JSystem/J2D/J2DTypes.h"
 #include "types.h"
 
 /*
@@ -31,14 +34,14 @@ void J2DTevBlock::setTexNo(unsigned long, unsigned short) { }
  * Address:	800494F4
  * Size:	000008
  */
-u32 J2DTevBlock::getTevSwapModeTable(unsigned long) { return 0x0; }
+J2DTevSwapModeTable* J2DTevBlock::getTevSwapModeTable(unsigned long) { return 0x0; }
 
 /*
  * --INFO--
  * Address:	800494FC
  * Size:	000008
  */
-u32 J2DTevBlock::getTevOrder(unsigned long) { return 0x0; }
+J2DTevOrder* J2DTevBlock::getTevOrder(unsigned long) { return 0x0; }
 
 /*
  * --INFO--
@@ -52,7 +55,7 @@ u16 J2DTevBlock::getFontNo() const { return 0xFFFF; }
  * Address:	80049510
  * Size:	000008
  */
-u32 J2DIndBlock::getIndTexStageNum() const { return 0x0; }
+u8 J2DIndBlock::getIndTexStageNum() const { return 0x0; }
 
 /*
  * --INFO--

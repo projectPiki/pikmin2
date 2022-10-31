@@ -1,6 +1,8 @@
 #ifndef _JSYSTEM_JMATH_H
 #define _JSYSTEM_JMATH_H
 
+#include "Dolphin/mtx.h"
+#include "Dolphin/vec.h"
 #include "types.h"
 #include "Dolphin/math.h"
 #include "std/pair.h"
@@ -136,5 +138,15 @@ struct TRandom_fast_ {
 	}
 };
 } // namespace JMath
+
+void JMAEulerToQuat(short, short, short, Quaternion*);
+void JMAQuatLerp(const Quaternion*, const Quaternion*, float, Quaternion*);
+void JMALagrangeInterpolation(int, float*, float*, float);
+void JMAFastVECMag(const Vec*);
+void JMAFastVECNormalize(const Vec*, Vec*);
+void JMAVECScaleAdd(const Vec*, const Vec*, Vec*, float);
+void JMAVECLerp(const Vec*, const Vec*, Vec*, float);
+void JMAMTXApplyScale(const Mtx, Mtx, float, float, float);
+void JMAMTXScaleApply(const Mtx, Mtx, float, float, float);
 
 #endif

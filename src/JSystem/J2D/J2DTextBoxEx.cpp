@@ -1005,7 +1005,7 @@ lbl_8005A260:
  * Address:	8005A278
  * Size:	00004C
  */
-void J2DTextBoxEx::getFont() const
+JUTResFont* J2DTextBoxEx::getFont() const
 {
 	/*
 	stwu     r1, -0x10(r1)

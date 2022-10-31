@@ -1,4 +1,9 @@
+#include "Dolphin/stl.h"
+#include "Dolphin/string.h"
 #include "JSystem/JAI/JAInter.h"
+#include "JSystem/JAI/JAInter/InitData.h"
+#include "JSystem/JAI/JAIGlobalParameter.h"
+#include "JSystem/JAS/JASHeap.h"
 #include "types.h"
 
 /*
@@ -43,34 +48,38 @@
  * Address:	800ADBA4
  * Size:	000008
  */
-void JAInter::InitData::setWsInitCallback(void (*)(unsigned long*))
-{
-	/*
-	stw      r3, wsInitCallback__Q27JAInter8InitData@sda21(r13)
-	blr
-	*/
-}
+void JAInter::InitData::setWsInitCallback(void (*callback)(unsigned long*)) { wsInitCallback = callback; }
 
 /*
  * --INFO--
  * Address:	800ADBAC
  * Size:	000008
  */
-void JAInter::InitData::setBnkInitCallback(void (*)(unsigned long*))
-{
-	/*
-	stw      r3, bnkInitCallback__Q27JAInter8InitData@sda21(r13)
-	blr
-	*/
-}
+void JAInter::InitData::setBnkInitCallback(void (*callback)(unsigned long*)) { bnkInitCallback = callback; }
 
 /*
  * --INFO--
  * Address:	800ADBB4
  * Size:	0000E4
  */
-void JAInter::InitData::checkInitDataFile(void)
+BOOL JAInter::InitData::checkInitDataFile(void)
 {
+	if (SystemInterface::checkFileExsistence(JAIGlobalParameter::getParamInitDataFileName()) == FALSE) {
+		char* buffer = (char*)JASDram->alloc(
+		    strlen(JAIGlobalParameter::getParamAudioResPath()) + strlen(JAIGlobalParameter::getParamInitDataFileName()) + 1, 0);
+		sprintf(buffer, "%s%s%c", JAIGlobalParameter::getParamAudioResPath(), JAIGlobalParameter::getParamInitDataFileName(), 0);
+		JAIGlobalParameter::setParamInitDataFileName(buffer);
+		if (SystemInterface::checkFileExsistence(JAIGlobalParameter::getParamInitDataFileName()) == 0) {
+			return FALSE;
+		}
+	}
+	loadTmpDVDFile(JAIGlobalParameter::getParamInitDataFileName(), &aafPointer);
+	if (aafPointer != nullptr) {
+		checkInitDataOnMemory();
+		deleteTmpDVDFile(&aafPointer);
+		return TRUE;
+	}
+	return FALSE;
 	/*
 	stwu     r1, -0x10(r1)
 	mflr     r0

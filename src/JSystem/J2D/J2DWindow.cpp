@@ -2932,7 +2932,7 @@ lbl_80044C0C:
  * Address:	80044C14
  * Size:	0000B8
  */
-void J2DWindow::isUsed(const ResTIMG*)
+bool J2DWindow::isUsed(const ResTIMG*)
 {
 	/*
 	stwu     r1, -0x20(r1)

@@ -263,7 +263,7 @@ JUTDirectPrint::JUTDirectPrint()
  * Address:	80029BCC
  * Size:	000074
  */
-void JUTDirectPrint::start()
+JUTDirectPrint* JUTDirectPrint::start()
 {
 	/*
 	stwu     r1, -0x10(r1)

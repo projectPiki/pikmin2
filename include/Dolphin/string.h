@@ -7,7 +7,7 @@
 extern "C" {
 #endif // ifdef __cplusplus
 
-size_t strlen(char*);
+size_t strlen(const char*);
 char* strrchr(const char* str, int chr);
 char* strchr(const char* str, int chr);
 int strncmp(const char* str1, const char* str2, size_t n);

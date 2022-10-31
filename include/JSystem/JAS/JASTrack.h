@@ -164,11 +164,12 @@ struct JASTrack : JSUList<JASChannel> {
 	void setTimebase(u16);
 	float panCalc(float, float, float, u8);
 	void rootCallback(void*);
-	void registerSeqCallback(SeqCallback*);
-	void newMemPool(int);
 	void channelUpdateCallback(unsigned long, JASChannel*, JASDsp::TChannel*, void*);
 	void setNoteMask(u8);
 	void muteTrack(bool);
+
+	static void newMemPool(int);
+	static void registerSeqCallback(SeqCallback*);
 
 	// unused/inlined:
 	~JASTrack();
@@ -227,8 +228,7 @@ struct JASTrack : JSUList<JASChannel> {
 	u32 _2DC;                           // _2DC
 	short _2E0[12];                     // _2E0
 	JASTrack* _2F8;                     // _2F8
-	JASTrack* _2FC;                     // _2FC
-	u32 _300[15];                       // _300 - unknown
+	JASTrack* _2FC[16];                 // _2FC
 	JASOuterParam* m_extBuffer;         // _33C
 	float _340;                         // _340
 	float _344;                         // _344

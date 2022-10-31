@@ -387,7 +387,7 @@ void J3DJointTree::calc(J3DMtxBuffer* buffer, const Vec& vec, const float (&mtx)
 	m_transformCalc->init(vec, mtx);
 	J3DMtxCalc::setMtxBuffer(buffer);
 	if (_10 != nullptr) {
-		J3DJoint::sCurrentMtxCalc = m_transformCalc;
+		J3DJoint::mCurrentMtxCalc = m_transformCalc;
 		_10->recursiveCalc();
 	}
 	/*

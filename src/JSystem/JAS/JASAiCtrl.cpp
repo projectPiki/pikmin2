@@ -1,4 +1,6 @@
-#include "types.h"
+#include "JSystem/JAS/JASCalc.h"
+#include "JSystem/JAS/JASDriver.h"
+#include "JSystem/JAS/JASKernel.h"
 
 /*
     Generated from dpostproc
@@ -866,8 +868,9 @@ void JASDriver::registDSPBufCallback(void (*)(short*, unsigned long))
  * Address:	800A81F0
  * Size:	000008
  */
-void JASDriver::getDacRate()
+float JASDriver::getDacRate()
 {
+	return sDacRate;
 	/*
 	lfs      f1, sDacRate__9JASDriver@sda21(r13)
 	blr
@@ -879,7 +882,7 @@ void JASDriver::getDacRate()
  * Address:	800A81F8
  * Size:	000008
  */
-void JASDriver::getSubFrames()
+int JASDriver::getSubFrames()
 {
 	/*
 	lwz      r3, sSubFrames__9JASDriver@sda21(r13)
@@ -892,7 +895,7 @@ void JASDriver::getSubFrames()
  * Address:	800A8200
  * Size:	00000C
  */
-void JASDriver::getDacSize()
+int JASDriver::getDacSize()
 {
 	/*
 	lwz      r0, sSubFrames__9JASDriver@sda21(r13)
@@ -906,7 +909,7 @@ void JASDriver::getDacSize()
  * Address:	800A820C
  * Size:	00000C
  */
-void JASDriver::getFrameSamples()
+int JASDriver::getFrameSamples()
 {
 	/*
 	lwz      r0, sSubFrames__9JASDriver@sda21(r13)
@@ -920,8 +923,19 @@ void JASDriver::getFrameSamples()
  * Address:	800A8218
  * Size:	0000C0
  */
-void JASDriver::mixMonoTrack(short*, unsigned long, short* (*)(long))
+void JASDriver::mixMonoTrack(short* p1, unsigned long p2, short* (*callback)(long))
 {
+	JASKernel::probeStart(5, "MONO-MIX");
+	s16* cbResult = callback(p2);
+	if (cbResult != nullptr) {
+		JASKernel::probeFinish(5);
+		for (; p2 != 0; p2--) {
+			p1[0] = JASCalc::clamp<short, long>(p1[0] + *cbResult);
+			p1[1] = JASCalc::clamp<short, long>(p1[1] + *cbResult);
+			p1 += 2;
+			cbResult++;
+		}
+	}
 	/*
 	stwu     r1, -0x20(r1)
 	mflr     r0

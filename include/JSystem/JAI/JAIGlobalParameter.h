@@ -28,7 +28,7 @@ u8 getParamSeCategoryMax(void);
 u32 getParamSoundSceneMax(void);
 int getParamSeRegistMax(void);
 uint getParamSeTrackMax(void);
-int getParamSeqTrackMax(void);
+u32 getParamSeqTrackMax(void);
 int getParamSeqControlBufferMax(void);
 int getParamAutoHeapMax(void);
 int getParamStayHeapMax(void);
@@ -56,6 +56,25 @@ uint getParamAudioCameraMax(void);
 u8 getParamSeqParameterLines(void);
 u8 getParamStreamParameterLines(void);
 short getParamSeDistanceWaitMax(void);
+
+extern const u8 distanceParameterMoveTime;
+extern const u8 audioSystemThreadPriority;
+extern const u8 audioDvdThreadPriority;
+extern const u32 autoHeapMax;
+extern const u32 stayHeapMax;
+extern const u32 autoHeapRoomSize;
+extern const u32 stayHeapSize;
+extern const char* initDataFileName;
+extern const char* wavePath;
+extern const char* sequenceArchivesPath;
+extern const char* streamPath;
+extern const char* audioResPath;
+extern const char* sequenceArchivesFileName;
+extern const float inputGainDown;
+extern const float outputGainUp;
+extern const u32 audioCameraMax;
+extern const s32 systemTrackMax;
+extern u32 interfaceHeapSize;
 } // namespace JAIGlobalParameter
 
 #endif
