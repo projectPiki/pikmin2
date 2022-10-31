@@ -6,6 +6,8 @@
 #include "Game/EnemyStateMachine.h"
 #include "Game/MoveInfo.h"
 
+#include "Game/EnemyEffectNode.h"
+
 #include "Game/PelletView.h"
 #include "Game/EnemyPelletInfo.h"
 #include "Game/pelletMgr.h"
@@ -48,7 +50,6 @@ struct EnemyMgrBase;
 struct WaterBox;
 struct LifeGaugeParam;
 struct Interaction;
-struct EnemyEffectNodeHamon;
 
 enum EnemyEvent {
 	EB_Vulnerable       = 0x1, // can take damage or not

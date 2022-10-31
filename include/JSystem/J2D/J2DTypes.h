@@ -98,7 +98,8 @@ struct J2DTevStage {
 	u8 _07; // _07
 };
 
-struct J2DTevSwapModeInfo { };
+struct J2DTevSwapModeInfo {
+};
 
 struct J2DTevSwapModeTable {
 	J2DTevSwapModeTable();

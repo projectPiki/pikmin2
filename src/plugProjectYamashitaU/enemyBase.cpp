@@ -78,7 +78,7 @@ namespace EnemyBaseFSM {
  * Address:	800FF26C
  * Size:	0000F8
  */
-void State::animation(Game::EnemyBase* enemy)
+void State::animation(EnemyBase* enemy)
 {
 	if (enemy->isEvent(0, EB_Alive)) {
 		GeneralEnemyMgr::mTotalCount++;
@@ -146,9 +146,9 @@ bool BirthTypeDropState::isFinishableWaitingBirthTypeDrop(EnemyBase* enemy)
  * Address:	800FF550
  * Size:	0001A8
  */
-void BirthTypeDropState::init(Game::EnemyBase* enemy, Game::StateArg* arg)
+void BirthTypeDropState::init(EnemyBase* enemy, StateArg* arg)
 {
-	if (Game::mapMgr) {
+	if (mapMgr) {
 		enemy->m_position.y              = mapMgr->getMinY(enemy->m_position) + 300.0f;
 		EnemyTypeID::EEnemyTypeID typeID = enemy->getEnemyTypeID();
 		if (typeID != EnemyTypeID::EnemyID_BluePom && typeID != EnemyTypeID::EnemyID_RedPom && typeID != EnemyTypeID::EnemyID_YellowPom
@@ -169,7 +169,7 @@ void BirthTypeDropState::init(Game::EnemyBase* enemy, Game::StateArg* arg)
  * Address:	800FF6F8
  * Size:	00006C
  */
-void BirthTypeDropState::update(Game::EnemyBase* enemy)
+void BirthTypeDropState::update(EnemyBase* enemy)
 {
 	if (isFinishableWaitingBirthTypeDrop(enemy)) {
 		transit(enemy, EBS_Appear, nullptr);
@@ -181,7 +181,7 @@ void BirthTypeDropState::update(Game::EnemyBase* enemy)
  * Address:	800FF764
  * Size:	000030
  */
-void BirthTypeDropState::cleanup(Game::EnemyBase* enemy) { enemy->finishWaitingBirthTypeDrop(); }
+void BirthTypeDropState::cleanup(EnemyBase* enemy) { enemy->finishWaitingBirthTypeDrop(); }
 
 /*
  * --INFO--
@@ -247,7 +247,7 @@ bool BirthTypeDropOlimarState::isFinishableWaitingBirthTypeDrop(EnemyBase* enemy
  * Address:	800FFB00
  * Size:	00018C
  */
-bool BirthTypeDropTreasureState::isFinishableWaitingBirthTypeDrop(Game::EnemyBase* enemy)
+bool BirthTypeDropTreasureState::isFinishableWaitingBirthTypeDrop(EnemyBase* enemy)
 {
 	bool result = false;
 	PelletIterator pelletIterator;
@@ -276,21 +276,21 @@ bool BirthTypeDropTreasureState::isFinishableWaitingBirthTypeDrop(Game::EnemyBas
  * Address:	800FFCA8
  * Size:	000008
  */
-bool BirthTypeDropEarthquakeState::isFinishableWaitingBirthTypeDrop(Game::EnemyBase*) { return false; }
+bool BirthTypeDropEarthquakeState::isFinishableWaitingBirthTypeDrop(EnemyBase*) { return false; }
 
 /*
  * --INFO--
  * Address:	800FFCB0
  * Size:	000024
  */
-void AppearState::entry(Game::EnemyBase* enemy) { enemy->doEntryLiving(); }
+void AppearState::entry(EnemyBase* enemy) { enemy->doEntryLiving(); }
 
 /*
  * --INFO--
  * Address:	800FFCD4
  * Size:	0000FC
  */
-void AppearState::init(Game::EnemyBase* enemy, Game::StateArg* arg)
+void AppearState::init(EnemyBase* enemy, StateArg* arg)
 {
 	efx::TEnemyApsmoke effect; // this is "Appear Smoke"
 	// for context, the term "effects" refer to particle effects
@@ -309,7 +309,7 @@ void AppearState::init(Game::EnemyBase* enemy, Game::StateArg* arg)
  * Address:	800FFDEC
  * Size:	000130
  */
-void AppearState::update(Game::EnemyBase* enemy)
+void AppearState::update(EnemyBase* enemy)
 {
 	enemy->m_stunAnimTimer += 2.0f * sys->m_secondsPerFrame;
 	if (enemy->m_stunAnimTimer > 1.0f) {
@@ -336,7 +336,7 @@ void AppearState::update(Game::EnemyBase* enemy)
  * Address:	800FFF1C
  * Size:	00001C
  */
-void AppearState::cleanup(Game::EnemyBase* enemy)
+void AppearState::cleanup(EnemyBase* enemy)
 {
 	enemy->m_scale         = 1.0f;
 	enemy->m_stunAnimTimer = 0.0f;
@@ -347,7 +347,7 @@ void AppearState::cleanup(Game::EnemyBase* enemy)
  * Address:	800FFF38
  * Size:	00010C
  */
-void EnemyBaseFSM::LivingState::simulation(Game::EnemyBase* enemy, f32 constraint)
+void EnemyBaseFSM::LivingState::simulation(EnemyBase* enemy, f32 constraint)
 {
 	if ((enemy->isEvent(0, EB_HardConstraint)) || isLiving(enemy) && !(enemy->isEvent(1, EB2_1)) && !(enemy->isEvent(1, EB2_5))) {
 
@@ -374,7 +374,7 @@ void EnemyBaseFSM::LivingState::simulation(Game::EnemyBase* enemy, f32 constrain
  * Address:	80100084
  * Size:	000040
  */
-void LivingState::entry(Game::EnemyBase* enemy)
+void LivingState::entry(EnemyBase* enemy)
 {
 	if (enemy->m_pellet) {
 		enemy->doEntryCarcass();
@@ -388,14 +388,14 @@ void LivingState::entry(Game::EnemyBase* enemy)
  * Address:	801000C4
  * Size:	000030
  */
-void LivingState::updateCullingOff(Game::EnemyBase* enemy) { enemy->doUpdate(); }
+void LivingState::updateCullingOff(EnemyBase* enemy) { enemy->doUpdate(); }
 
 /*
  * --INFO--
  * Address:	801000F4
  * Size:	000030
  */
-void LivingState::updateAlways(Game::EnemyBase* enemy)
+void LivingState::updateAlways(EnemyBase* enemy)
 {
 	if (enemy->isEvent(0, EB_21)) {
 		enemy->startStoneState();
@@ -407,7 +407,7 @@ void LivingState::updateAlways(Game::EnemyBase* enemy)
  * Address:	80100124
  * Size:	0001BC
  */
-void LivingState::update(Game::EnemyBase* enemy)
+void LivingState::update(EnemyBase* enemy)
 {
 	sys->m_timers->_start("e-upd-do", 1);
 
@@ -450,7 +450,7 @@ void LivingState::update(Game::EnemyBase* enemy)
  * Address:	801002E0
  * Size:	000048
  */
-void EnemyBaseFSM::FitState::updateCullingOff(Game::EnemyBase* enemy)
+void EnemyBaseFSM::FitState::updateCullingOff(EnemyBase* enemy)
 {
 	if (enemy->m_health <= 0.0f) {
 		transit(enemy, EBS_Living, 0);
@@ -462,7 +462,7 @@ void EnemyBaseFSM::FitState::updateCullingOff(Game::EnemyBase* enemy)
  * Address:	80100328
  * Size:	000150
  */
-void EnemyBaseFSM::FitState::init(Game::EnemyBase* enemy, Game::StateArg* arg)
+void EnemyBaseFSM::FitState::init(EnemyBase* enemy, StateArg* arg)
 {
 	enemy->doUpdate();
 	enemy->m_eventBuffer.m_flags[0].typeView = enemy->m_events.m_flags[0].typeView;
@@ -488,7 +488,7 @@ void EnemyBaseFSM::FitState::init(Game::EnemyBase* enemy, Game::StateArg* arg)
  * Address:	80100478
  * Size:	000080
  */
-void FitState::cleanup(Game::EnemyBase* enemy)
+void FitState::cleanup(EnemyBase* enemy)
 {
 	enemy->m_events.m_flags[0] = enemy->m_eventBuffer.m_flags[0];
 	enemy->m_events.m_flags[1] = enemy->m_eventBuffer.m_flags[1];
@@ -503,7 +503,7 @@ void FitState::cleanup(Game::EnemyBase* enemy)
  * Address:	801004F8
  * Size:	000204
  */
-void FitState::updateAlways(Game::EnemyBase* enemy)
+void FitState::updateAlways(EnemyBase* enemy)
 {
 	enemy->m_stunAnimTimer += sys->m_secondsPerFrame;
 	if ((enemy->m_stunAnimTimer > ((EnemyParmsBase*)enemy->m_parms)->m_general.m_purplePikminStunTime.m_value) || (enemy->isEvent(0, EB_21))
@@ -531,7 +531,7 @@ void FitState::updateAlways(Game::EnemyBase* enemy)
  * Address:	801006FC
  * Size:	000088
  */
-void EarthquakeState::init(Game::EnemyBase* enemy, Game::StateArg* arg)
+void EarthquakeState::init(EnemyBase* enemy, StateArg* arg)
 {
 	enemy->doUpdate();
 	enemy->setEvent(1, EB2_1);
@@ -546,7 +546,7 @@ void EarthquakeState::init(Game::EnemyBase* enemy, Game::StateArg* arg)
  * Address:	80100784
  * Size:	000050
  */
-void EarthquakeState::cleanup(Game::EnemyBase* enemy)
+void EarthquakeState::cleanup(EnemyBase* enemy)
 {
 	enemy->resetEvent(1, EB2_1);
 	enemy->startMotion();
@@ -558,7 +558,7 @@ void EarthquakeState::cleanup(Game::EnemyBase* enemy)
  * Address:	801007D4
  * Size:	000158
  */
-void EarthquakeState::updateCullingOff(Game::EnemyBase* enemy)
+void EarthquakeState::updateCullingOff(EnemyBase* enemy)
 {
 	if ((enemy->m_health <= 0.0f) && (enemy->m_curTriangle)) {
 		transit(enemy, EBS_Living, 0);
@@ -586,7 +586,7 @@ void EarthquakeState::updateCullingOff(Game::EnemyBase* enemy)
  * Address:	80100938
  * Size:	000064
  */
-void StoneState::bounceProcedure(Game::EnemyBase* enemy, Sys::Triangle* triangle)
+void StoneState::bounceProcedure(EnemyBase* enemy, Sys::Triangle* triangle)
 {
 	enemy->setEvent(0, EB_Constraint);
 	enemy->createBounceEffect(enemy->m_position, enemy->getDownSmokeScale());
@@ -598,7 +598,7 @@ void StoneState::bounceProcedure(Game::EnemyBase* enemy, Sys::Triangle* triangle
  * Address:	8010099C
  * Size:	000100
  */
-void StoneState::init(Game::EnemyBase* enemy, Game::StateArg* arg)
+void StoneState::init(EnemyBase* enemy, StateArg* arg)
 {
 	if (enemy->isEvent(0, EB_21)) {
 		enemy->resetEvent(0, EB_21);
@@ -632,7 +632,7 @@ void StoneState::init(Game::EnemyBase* enemy, Game::StateArg* arg)
  * Address:	80100A9C
  * Size:	0000CC
  */
-void StoneState::cleanup(Game::EnemyBase* enemy)
+void StoneState::cleanup(EnemyBase* enemy)
 {
 	P2ASSERTLINE(1024, enemy->isEvent(0, EB_Bittered));
 
@@ -655,7 +655,7 @@ void StoneState::cleanup(Game::EnemyBase* enemy)
  * Address:	80100B68
  * Size:	000118
  */
-void StoneState::updateAlways(Game::EnemyBase* enemy)
+void StoneState::updateAlways(EnemyBase* enemy)
 {
 	enemy->m_enemyStoneObj->update();
 	enemy->m_stoneTimer += sys->m_secondsPerFrame;
@@ -684,10 +684,10 @@ void StoneState::updateAlways(Game::EnemyBase* enemy)
  * Address:	80100C80
  * Size:	000074
  */
-void StoneState::updateCullingOff(Game::EnemyBase* enemy)
+void StoneState::updateCullingOff(EnemyBase* enemy)
 {
 	if (enemy->isAlive() && enemy->isStopMotion() && (enemy->m_health <= 0.0f)) {
-		enemy->kill((Game::CreatureKillArg*)nullptr);
+		enemy->kill((CreatureKillArg*)nullptr);
 	}
 }
 
@@ -696,7 +696,7 @@ void StoneState::updateCullingOff(Game::EnemyBase* enemy)
  * Address:	80100CF4
  * Size:	000484
  */
-void StateMachine::init(Game::EnemyBase* enemy)
+void StateMachine::init(EnemyBase* enemy)
 {
 	create(10);
 
@@ -806,8 +806,8 @@ EnemyBase::EnemyBase()
 		}
 	}
 
-	if (Game::shadowMgr) {
-		Game::shadowMgr->createShadow(this);
+	if (shadowMgr) {
+		shadowMgr->createShadow(this);
 	}
 
 	if (lifeGaugeMgr) {
@@ -952,7 +952,7 @@ void EnemyBase::setEmotionNone()
  * Address:	80101A58
  * Size:	000104
  */
-void EnemyBase::onInit(Game::CreatureInitArg* arg)
+void EnemyBase::onInit(CreatureInitArg* arg)
 {
 	clearStick();
 	m_curAnim->m_isRunning = false;
@@ -983,7 +983,7 @@ void EnemyBase::onInit(Game::CreatureInitArg* arg)
  * Address:	80101B5C
  * Size:	000218
  */
-void EnemyBase::onInitPost(Game::CreatureInitArg* arg)
+void EnemyBase::onInitPost(CreatureInitArg* arg)
 {
 	switch (m_dropGroup) {
 	case 0:
@@ -1047,7 +1047,7 @@ void EnemyBase::onInitPost(Game::CreatureInitArg* arg)
  * Address:	80101D74
  * Size:	0000A0
  */
-void EnemyBase::setOtakaraCode(Game::PelletMgr::OtakaraItemCode& itemCode)
+void EnemyBase::setOtakaraCode(PelletMgr::OtakaraItemCode& itemCode)
 {
 	m_pelletDropCode.m_value = itemCode.m_value;
 	if (!m_pelletDropCode.isNull()) {
@@ -2198,7 +2198,7 @@ void EnemyBase::doUpdateCommon()
 	scaleDamageAnim();
 	resetCollEvent();
 
-	if ((m_lod.m_flags & AILOD::FLAG_NEED_SHADOW) && isAlive()) {
+	if ((m_lod.m_flags & AILOD_FLAG_NEED_SHADOW) && isAlive()) {
 		WalkSmokeEffect::Mgr* smokeMgr = getWalkSmokeEffectMgr();
 		if (smokeMgr) {
 			smokeMgr->update(this);
@@ -2328,7 +2328,7 @@ void EnemyBase::hide()
  */
 void EnemyBase::doEntryCarcass()
 {
-	if (m_lod.m_flags & AILOD::FLAG_NEED_SHADOW) {
+	if (m_lod.m_flags & AILOD_FLAG_NEED_SHADOW) {
 		show();
 		changeMaterial();
 	} else {
@@ -2347,7 +2347,7 @@ void EnemyBase::doEntryCarcass()
  */
 void EnemyBase::doEntryLiving()
 {
-	if (m_lod.m_flags & AILOD::FLAG_NEED_SHADOW) {
+	if (m_lod.m_flags & AILOD_FLAG_NEED_SHADOW) {
 		show();
 		changeMaterial();
 	} else {
@@ -2388,7 +2388,7 @@ bool EnemyBase::isCullingOff()
 	if (m_pellet) {
 		return true;
 	}
-	return ((!(isEvent(0, EB_Cullable))) || (m_lod.m_flags & AILOD::FLAG_NEED_SHADOW) || (m_lod.m_flags & AILOD::FLAG_UNKNOWN4)
+	return ((!(isEvent(0, EB_Cullable))) || (m_lod.m_flags & AILOD_FLAG_NEED_SHADOW) || (m_lod.m_flags & AILOD_FLAG_UNKNOWN4)
 	        || (isEvent(1, EB2_5)));
 }
 
@@ -2535,7 +2535,7 @@ void EnemyBase::outWaterCallback()
  * Address:	80103E94
  * Size:	000168
  */
-void EnemyBase::inWaterCallback(Game::WaterBox* water)
+void EnemyBase::inWaterCallback(WaterBox* water)
 {
 	f32 downSmokeScale = getDownSmokeScale();
 	if (downSmokeScale > 0.0f) {
@@ -2657,7 +2657,7 @@ void EnemyBase::collisionMapAndPlat(f32 accelRate)
 
 		if (platMgr != nullptr && isEvent(0, EB_13)) {
 			moveInfo.m_velocity = &m_impVelocity;
-			platMgr->traceMove(moveInfo, constraint);
+			platMgr->traceMove(moveInfo, accelRate);
 
 			if (m_curTriangle == nullptr) {
 				if (moveInfo.m_curTriangle) {
@@ -2686,7 +2686,7 @@ void EnemyBase::collisionMapAndPlat(f32 accelRate)
 	} else {
 		m_triangleNormal = 0.0f;
 
-		doSimulationStick(constraint);
+		doSimulationStick(accelRate);
 
 		m_position += m_impVelocity;
 
@@ -3456,7 +3456,7 @@ void EnemyBase::onKeyEvent(const SysShape::KeyEvent& event)
  * Address:	80105300
  * Size:	000080
  */
-bool EnemyBase::stimulate(Game::Interaction& interaction)
+bool EnemyBase::stimulate(Interaction& interaction)
 {
 	bool b = false;
 	if (interaction.actCommon(this)) {
@@ -3483,7 +3483,7 @@ void EnemyBase::lifeRecover()
  * Address:	801053C0
  * Size:	00033C
  */
-void Game::EnemyBase::scaleDamageAnim()
+void EnemyBase::scaleDamageAnim()
 {
 	if ((isEvent(0, EB_Flying)) || (0.0f != m_damageAnimTimer)) {
 		if (0.0f == m_damageAnimTimer) {
@@ -4000,12 +4000,12 @@ void EnemyBase::doDebugDraw(Graphics&) { }
  * Address:	80105E70
  * Size:	000080
  */
-void EnemyBase::getLifeGaugeParam(Game::LifeGaugeParam& param)
+void EnemyBase::getLifeGaugeParam(LifeGaugeParam& param)
 {
-	if ((Game::moviePlayer) && (moviePlayer->m_flags & MoviePlayer::IS_ACTIVE)) {
+	if ((moviePlayer) && (moviePlayer->m_flags & MoviePlayer::IS_ACTIVE)) {
 		param._14 = false;
 	} else {
-		param._14 = ((isEvent(0, EB_LifegaugeVisible)) && (m_lod.m_flags & AILOD::FLAG_NEED_SHADOW));
+		param._14 = ((isEvent(0, EB_LifegaugeVisible)) && (m_lod.m_flags & AILOD_FLAG_NEED_SHADOW));
 	}
 	if (param._14) {
 		doGetLifeGaugeParam(param);
@@ -4017,7 +4017,7 @@ void EnemyBase::getLifeGaugeParam(Game::LifeGaugeParam& param)
  * Address:	80105EF0
  * Size:	000040
  */
-void EnemyBase::doGetLifeGaugeParam(Game::LifeGaugeParam& param)
+void EnemyBase::doGetLifeGaugeParam(LifeGaugeParam& param)
 {
 	f32 y                    = m_position.y + static_cast<EnemyParmsBase*>(m_parms)->m_general.m_lifeMeterHeight.m_value;
 	f32 z                    = m_position.z;
@@ -4032,7 +4032,7 @@ void EnemyBase::doGetLifeGaugeParam(Game::LifeGaugeParam& param)
  * Address:	80105F30
  * Size:	000050
  */
-void EnemyBase::onStickStart(Game::Creature* other)
+void EnemyBase::onStickStart(Creature* other)
 {
 	if (other->isPiki()) {
 		m_stuckPikminCount++;
@@ -4044,7 +4044,7 @@ void EnemyBase::onStickStart(Game::Creature* other)
  * Address:	80105F80
  * Size:	000050
  */
-void EnemyBase::onStickEnd(Game::Creature* other)
+void EnemyBase::onStickEnd(Creature* other)
 {
 	if (other->isPiki()) {
 		m_stuckPikminCount--;
@@ -4094,7 +4094,7 @@ void EnemyBase::addDamage(f32 damageAmt, f32 flickSpeed)
  * Address:	8010606C
  * Size:	000048
  */
-bool EnemyBase::damageCallBack(Game::Creature* sourceCreature, f32 damage, CollPart* p3)
+bool EnemyBase::damageCallBack(Creature* sourceCreature, f32 damage, CollPart* p3)
 {
 	if (!(isEvent(0, EB_Vulnerable))) {
 		m_instantDamage += damage;
@@ -4111,21 +4111,21 @@ bool EnemyBase::damageCallBack(Game::Creature* sourceCreature, f32 damage, CollP
  * Address:	801060B4
  * Size:	000008
  */
-bool EnemyBase::pressCallBack(Game::Creature*, f32, CollPart*) { return false; }
+bool EnemyBase::pressCallBack(Creature*, f32, CollPart*) { return false; }
 
 /*
  * --INFO--
  * Address:	801060BC
  * Size:	000008
  */
-bool EnemyBase::flyCollisionCallBack(Game::Creature*, f32, CollPart*) { return false; }
+bool EnemyBase::flyCollisionCallBack(Creature*, f32, CollPart*) { return false; }
 
 /*
  * --INFO--
  * Address:	801060C4
  * Size:	000248
  */
-bool EnemyBase::hipdropCallBack(Game::Creature* sourceCreature, f32 damage, CollPart* p3)
+bool EnemyBase::hipdropCallBack(Creature* sourceCreature, f32 damage, CollPart* p3)
 {
 	f32 purpleDamage = static_cast<EnemyParmsBase*>(m_parms)->m_general.m_purplePikminHipDropDamage();
 
@@ -4149,7 +4149,7 @@ bool EnemyBase::hipdropCallBack(Game::Creature* sourceCreature, f32 damage, Coll
  * Address:	8010630C
  * Size:	000008
  */
-bool EnemyBase::dropCallBack(Game::Creature*) { return false; }
+bool EnemyBase::dropCallBack(Creature*) { return false; }
 
 /*
  * --INFO--
@@ -4178,7 +4178,7 @@ bool EnemyBase::checkBirthTypeDropEarthquake()
  * Address:	801063C4
  * Size:	0000EC
  */
-bool EnemyBase::earthquakeCallBack(Game::Creature* creature, f32 bounceFactor)
+bool EnemyBase::earthquakeCallBack(Creature* creature, f32 bounceFactor)
 {
 	if (m_curTriangle && !(m_health <= 0.0f) && !isFlying() && isAlive()) {
 		if (!(isEvent(0, EB_HardConstraint)) && !(isEvent(0, EB_Bittered))) {
@@ -4197,10 +4197,10 @@ bool EnemyBase::earthquakeCallBack(Game::Creature* creature, f32 bounceFactor)
  * Address:	801064B0
  * Size:	000108
  */
-bool EnemyBase::dopeCallBack(Game::Creature* creature, int sprayType)
+bool EnemyBase::dopeCallBack(Creature* creature, int sprayType)
 {
 	if (isAlive() && !(m_health <= 0.0f) && doDopeCallBack(creature, sprayType)) {
-		switch (p1) {
+		switch (sprayType) {
 		case 1:
 			if (!(m_events.m_flags[0].typeView & 0x400000) && !(m_events.m_flags[0].typeView & 0x200)) {
 				if (m_events.m_flags[0].typeView & 0x200000) {
@@ -4221,14 +4221,14 @@ bool EnemyBase::dopeCallBack(Game::Creature* creature, int sprayType)
  * Address:	801065C0
  * Size:	000008
  */
-bool EnemyBase::farmCallBack(Game::Creature*, f32 power) { return false; }
+bool EnemyBase::farmCallBack(Creature*, f32 power) { return false; }
 
 /*
  * --INFO--
  * Address:	801065C8
  * Size:	000048
  */
-bool EnemyBase::bombCallBack(Game::Creature* creature, Vector3f& vec, f32 damage)
+bool EnemyBase::bombCallBack(Creature* creature, Vector3f& vec, f32 damage)
 {
 	if (!(isEvent(0, EB_Vulnerable))) {
 		m_instantDamage += damage;
@@ -4248,7 +4248,7 @@ bool EnemyBase::bombCallBack(Game::Creature* creature, Vector3f& vec, f32 damage
  * Address:	80106610
  * Size:	000054
  */
-void EnemyBase::collisionCallback(Game::CollEvent& coll)
+void EnemyBase::collisionCallback(CollEvent& coll)
 {
 	finishDropping(false);
 	setCollEvent(coll);
@@ -4259,7 +4259,7 @@ void EnemyBase::collisionCallback(Game::CollEvent& coll)
  * Address:	80106664
  * Size:	000028
  */
-void EnemyBase::setCollEvent(Game::CollEvent& event)
+void EnemyBase::setCollEvent(CollEvent& event)
 {
 	m_collEvent.m_collidingCreature = event.m_collidingCreature;
 	m_collEvent._04                 = event._04;
@@ -4587,7 +4587,7 @@ bool EnemyBase::needShadow()
 		return needShadow;
 	} else {
 		bool needShadow = false;
-		if (m_lod.m_flags & AILOD::FLAG_NEED_SHADOW && !(isEvent(0, EB_31))) {
+		if (m_lod.m_flags & AILOD_FLAG_NEED_SHADOW && !(isEvent(0, EB_31))) {
 			needShadow = true;
 		}
 		return needShadow;

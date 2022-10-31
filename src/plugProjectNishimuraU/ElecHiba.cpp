@@ -102,7 +102,7 @@ void Obj::doUpdate()
  * Address:	8026F5E4
  * Size:	000004
  */
-void Obj::doDirectDraw(Graphics&) { }
+void Obj::doDirectDraw(Graphics& gfx) { }
 
 /*
  * --INFO--

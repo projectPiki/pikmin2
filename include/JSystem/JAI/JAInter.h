@@ -21,7 +21,8 @@ struct SeqUpdateData;
 struct SoundInfo;
 
 namespace SequenceMgr {
-struct CustomHeapInfo { };
+struct CustomHeapInfo {
+};
 void init();
 void getArchiveName(char*);
 void setArchivePointer(JKRArchive*);
@@ -124,7 +125,8 @@ struct DummyObjectMgr {
 	static DummyObject* deadObjectUsedPointer;
 };
 
-struct DummyVec { };
+struct DummyVec {
+};
 
 struct HeapBlock {
 	HeapBlock();

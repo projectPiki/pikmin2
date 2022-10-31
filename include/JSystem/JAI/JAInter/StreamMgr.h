@@ -8,7 +8,8 @@ struct JASAramStream;
 
 namespace JAInter {
 namespace StreamMgr {
-struct BufferInfo { };
+struct BufferInfo {
+};
 
 typedef void (*AllocCallback)(BufferInfo);
 typedef void (*DeallocCallback)();

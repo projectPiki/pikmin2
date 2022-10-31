@@ -17,25 +17,28 @@ struct Obj : public ChappyBase::Obj {
 	Obj();
 
 	//////////////// VTABLE
-	virtual void onInit(CreatureInitArg* settings);     // _30
-	virtual void onKill(CreatureKillArg* settings);     // _34
-	virtual void doDirectDraw(Graphics& gfx);           // _50
-	virtual void collisionCallback(CollEvent&);         // _EC
-	virtual void getShadowParam(ShadowParam&);          // _134
-	virtual ~Obj() { }                                  // _1BC (weak)
-	virtual void doUpdateCommon();                      // _1D0
-	virtual void doDebugDraw(Graphics&);                // _1EC
-	virtual void changeMaterial();                      // _200
-	virtual EnemyTypeID::EEnemyTypeID getEnemyTypeID(); // _258 (weak)
-	virtual void doStartWaitingBirthTypeDrop();         // _2E0
-	virtual void doFinishWaitingBirthTypeDrop();        // _2E4
-	virtual void doStartMovie();                        // _2F0
-	virtual void doEndMovie();                          // _2F4
-	virtual void createEffect();                        // _31C
-	virtual void setupEffect();                         // _320
-	virtual void startSleepEffect();                    // _324
-	virtual void finishSleepEffect();                   // _328
-	virtual void createFlickEffect();                   // _32C
+	virtual void onInit(CreatureInitArg* settings);    // _30
+	virtual void onKill(CreatureKillArg* settings);    // _34
+	virtual void doDirectDraw(Graphics& gfx);          // _50
+	virtual void collisionCallback(CollEvent&);        // _EC
+	virtual void getShadowParam(ShadowParam&);         // _134
+	virtual ~Obj() { }                                 // _1BC (weak)
+	virtual void doUpdateCommon();                     // _1D0
+	virtual void doDebugDraw(Graphics&);               // _1EC
+	virtual void changeMaterial();                     // _200
+	virtual EnemyTypeID::EEnemyTypeID getEnemyTypeID() // _258 (weak)
+	{
+		return EnemyTypeID::EnemyID_FireChappy;
+	}
+	virtual void doStartWaitingBirthTypeDrop();  // _2E0
+	virtual void doFinishWaitingBirthTypeDrop(); // _2E4
+	virtual void doStartMovie();                 // _2F0
+	virtual void doEndMovie();                   // _2F4
+	virtual void createEffect();                 // _31C
+	virtual void setupEffect();                  // _320
+	virtual void startSleepEffect();             // _324
+	virtual void finishSleepEffect();            // _328
+	virtual void createFlickEffect();            // _32C
 	//////////////// VTABLE END
 
 	void startFireState();
@@ -54,7 +57,7 @@ struct Obj : public ChappyBase::Obj {
 
 	// _00 		= VTBL
 	// _00-_2E4	= ChappyBase::Obj
-	u8 _2E4;                             // _2E4, unknown
+	bool _2E4;                           // _2E4, unknown
 	efx::TYakiBody* m_efxBody;           // _2E8
 	efx::TYakiFlick* m_efxFlick;         // _2EC
 	efx::TYakiDeadsmoke* m_efxDeadsmoke; // _2F0
