@@ -519,9 +519,9 @@ void FitState::updateAlways(EnemyBase* enemy)
 		}
 		f32 theta = (TAU * enemy->m_stunAnimTimer) / 0.25f;
 
-		enemy->m_stunAnimRotation.x = sinStun * (0.017453294f * pikmin2_sinf(theta));
+		enemy->m_stunAnimRotation.x = sinStun * ((PI / 180.0f) * pikmin2_sinf(theta));
 		enemy->m_stunAnimRotation.y = 0.0f;
-		enemy->m_stunAnimRotation.z = sinStun * (0.017453294f * pikmin2_cosf(theta));
+		enemy->m_stunAnimRotation.z = sinStun * ((PI / 180.0f) * pikmin2_cosf(theta));
 	}
 	m_enemyPiyo.m_position = enemy->getFitEffectPos();
 }
@@ -1131,6 +1131,7 @@ void EnemyBase::doUpdateCarcass() { }
  * Size:	0009EC
  */
 // WIP: https://decomp.me/scratch/vSUKZ
+// stack issues
 void EnemyBase::onKill(CreatureKillArg* inputArg)
 {
 	getCreatureName();
@@ -1172,25 +1173,25 @@ void EnemyBase::onKill(CreatureKillArg* inputArg)
 				int dropRolls;
 
 				switch (bitterDrop) {
-				case 0:
+				case BDT_Weak:
 					dropChance = 0.99f;
 					dropRolls  = 1;
 					break;
-				case 1:
-				case 2:
+				case BDT_Normal:
+				case BDT_Strong:
 					dropChance = 0.9f;
 					dropRolls  = 1;
 					break;
-				case 3:
+				case BDT_Triple:
 					dropChance = 0.9f;
 					dropRolls  = 3;
 					break;
-				case 6:
-				case 7:
+				case BDT_MiniBoss:
+				case BDT_Boss:
 					dropChance = 0.85f;
 					dropRolls  = 5;
 					break;
-				case 8:
+				case BDT_FinalBoss:
 					dropChance = 0.0f;
 					dropRolls  = 10;
 					break;
@@ -1204,18 +1205,18 @@ void EnemyBase::onKill(CreatureKillArg* inputArg)
 
 				for (int i = 0; i < dropRolls; i++) {
 					f32 randRoll = randFloat();
-					u8 honeyByte;
+					u8 honeyKind;
 					if (randRoll < dropChance) {
-						honeyByte = 0;
+						honeyKind = HONEY_Y;
 					} else if (randRoll < scaledChance) {
-						honeyByte = 1;
+						honeyKind = HONEY_R;
 					} else {
-						honeyByte = 2;
+						honeyKind = HONEY_B;
 					}
 					Sys::Sphere ball; // sp64
 					getBoundingSphere(ball);
 
-					ItemHoney::InitArg honeyArg(honeyByte, 0);
+					ItemHoney::InitArg honeyArg(honeyKind, 0);
 					ItemHoney::Item* drop = ItemHoney::mgr->birth();
 
 					if (drop) {
@@ -3515,18 +3516,37 @@ void EnemyBase::scaleDamageAnim()
 				} else {
 					horizontalModifier = 1.0f - getDamageAnimFrac(scaleDuration);
 				}
-
+				// possible the setting of m_damageAnimRotation is an inline? -Epoch
 				f32 sin1        = pikmin2_sinf(TAU * horizontalModifier);
-				f32 otherFactor = 0.03490659f * factor; // reordered?
+				f32 otherFactor = (TAU / 180.0f) * factor; // reordered?
 				sin1 *= otherFactor;
 				m_damageAnimRotation.x = horizontalModifier * sin1;
 
 				m_damageAnimRotation.y = 0.0f;
 
-				sin1        = pikmin2_sinf(TAU * (2.0f * horizontalModifier)); // regswap
-				otherFactor = 0.043633234f * factor;
-				otherFactor *= sin1;
-				m_damageAnimRotation.z = horizontalModifier * otherFactor;
+				f32 sin2          = pikmin2_sinf(TAU * (2.0f * horizontalModifier)); // regswap
+				f32 anotherFactor = (TAU / 144.0f) * factor;
+				anotherFactor *= sin2;
+				m_damageAnimRotation.z = horizontalModifier * anotherFactor;
+
+				// alternative possibility?
+				// m_damageAnimRotation = Vector3f(horizontalModifier * sin1, 0.0f, horizontalModifier * anotherFactor);
+				// end of possible inline
+
+				/*
+				inline Vector3f test(f32 horizontalModifier, f32 factor)
+				{
+				    f32 sin1        = pikmin2_sinf(TAU * horizontalModifier);
+				    f32 otherFactor = (TAU / 180.0f) * factor;
+				    sin1 *= otherFactor;
+
+				    f32 sin2         = pikmin2_sinf(TAU * (2.0f * horizontalModifier));
+				    f32 anotherFactor = (TAU / 144.0f) * factor;
+				    sin2 *= anotherFactor;
+
+				    return Vector3f(horizontalModifier * sin1, 0.0f, horizontalModifier * sin2);
+				}
+				*/
 
 				f32 scaleVal = m_scaleModifier;
 				m_scale.z    = scaleVal;
@@ -3538,7 +3558,8 @@ void EnemyBase::scaleDamageAnim()
 			if (m_damageAnimTimer > scaleDuration) {
 				finishScaleDamageAnim();
 			} else {
-				horizontalModifier = pikmin2_sinf(TAU * getDamageAnimFrac(scaleDuration)) * (1.0f - getDamageAnimFrac(scaleDuration));
+				horizontalModifier = pikmin2_sinf(TAU * getDamageAnimFrac(scaleDuration))
+				                   * (1.0f - getDamageAnimFrac(scaleDuration)); // swap of fmuls floats
 			}
 
 			if (isEvent(0, EB_15)) {
