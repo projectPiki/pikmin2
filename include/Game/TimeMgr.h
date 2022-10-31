@@ -46,6 +46,7 @@ struct TimeMgrParms {
 };
 
 #define TIMEMGR_FLAG_STOPPED 1
+#define TIMEMGR_DAY_HOURS    24.0f
 
 struct TimeMgr : public CNode {
 	TimeMgr();

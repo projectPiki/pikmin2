@@ -24,35 +24,19 @@ TimeMgr::TimeMgr()
 
 /*
  * --INFO--
- * Address:	80126C90
- * Size:	000034
- * WEAK
- */
-// TimeMgrParms::TimeMgrParms()
-
-/*
- * --INFO--
- * Address:	80126CC4
- * Size:	00032C
- * WEAK
- */
-// TimeMgrParms::Parms::Parms()
-
-/*
- * --INFO--
  * Address:	80126FF0
  * Size:	0000B0
  */
 void TimeMgr::init()
 {
-	_220                 = 24.0f - m_parms.parms.m_eveningEndTime.m_value + m_parms.parms.m_morningStartTime.m_value;
+	_220                 = TIMEMGR_DAY_HOURS - m_parms.parms.m_eveningEndTime.m_value + m_parms.parms.m_morningStartTime.m_value;
 	m_earlyMorningLength = m_parms.parms.m_midMorningTime.m_value - m_parms.parms.m_morningStartTime.m_value;
 	m_midMorningLength   = m_parms.parms.m_morningEndTime.m_value - m_parms.parms.m_midMorningTime.m_value;
 	m_middayLength       = m_parms.parms.m_eveningStartTime.m_value - m_parms.parms.m_morningEndTime.m_value;
 	m_earlyEveningLength = m_parms.parms.m_midEveningStartTime.m_value - m_parms.parms.m_eveningStartTime.m_value;
 	m_lateEveningLength  = m_parms.parms.m_eveningEndTime.m_value - m_parms.parms.m_midEveningEndTime.m_value;
 	m_dayLengthHours     = m_parms.parms.m_dayEndTime.m_value - m_parms.parms.m_dayStartTime.m_value;
-	m_sunRatio           = 24.0f - m_dayLengthHours;
+	m_sunRatio           = TIMEMGR_DAY_HOURS - m_dayLengthHours;
 	m_dayCount           = 0;
 
 	setTime(m_parms.parms.m_dayStartTime.m_value);
@@ -63,10 +47,10 @@ void TimeMgr::init()
  * Address:	801270A0
  * Size:	00003C
  */
-void TimeMgr::setTime(float time)
+void TimeMgr::setTime(f32 time)
 {
 	m_currentTimeOfDay = time;
-	m_currentHour      = (m_currentTimeOfDay / 24.0f) * m_parms.parms.m_dayLengthSeconds.m_value;
+	m_currentHour      = (m_currentTimeOfDay / TIMEMGR_DAY_HOURS) * m_parms.parms.m_dayLengthSeconds.m_value;
 
 	updateSlot();
 }
@@ -79,7 +63,7 @@ void TimeMgr::setTime(float time)
 void TimeMgr::setStartTime()
 {
 	m_currentTimeOfDay = m_parms.parms.m_dayStartTime.m_value;
-	m_currentHour      = (m_currentTimeOfDay / 24.0f) * m_parms.parms.m_dayLengthSeconds.m_value;
+	m_currentHour      = (m_currentTimeOfDay / TIMEMGR_DAY_HOURS) * m_parms.parms.m_dayLengthSeconds.m_value;
 
 	updateSlot();
 }
@@ -92,7 +76,7 @@ void TimeMgr::setStartTime()
 void TimeMgr::setEndTime()
 {
 	m_currentTimeOfDay = m_parms.parms.m_dayEndTime.m_value;
-	m_currentHour      = (m_currentTimeOfDay / 24.0f) * m_parms.parms.m_dayLengthSeconds.m_value;
+	m_currentHour      = (m_currentTimeOfDay / TIMEMGR_DAY_HOURS) * m_parms.parms.m_dayLengthSeconds.m_value;
 
 	updateSlot();
 }
@@ -110,7 +94,7 @@ void TimeMgr::updateSlot()
 
 		f32 time = m_currentTimeOfDay;
 		if (m_currentTimeOfDay < m_parms.parms.m_morningStartTime.m_value) {
-			time += 24.0f;
+			time += TIMEMGR_DAY_HOURS;
 		}
 
 		_214 = (time - m_parms.parms.m_eveningEndTime.m_value) / _220;
@@ -151,14 +135,14 @@ void TimeMgr::updateSlot()
 		_214 = 0.5f + ((0.5f * (m_currentTimeOfDay - m_parms.parms.m_midEveningEndTime.m_value)) / m_lateEveningLength);
 	}
 }
-#pragma dont_inline off
+#pragma dont_inline reset
 
 /*
  * --INFO--
  * Address:	801272C4
  * Size:	000060
  */
-float TimeMgr::getSunGaugeRatio()
+f32 TimeMgr::getSunGaugeRatio()
 {
 	if (m_currentTimeOfDay >= m_parms.parms.m_dayStartTime.m_value && m_currentTimeOfDay < m_parms.parms.m_dayEndTime.m_value) {
 		return (m_currentTimeOfDay - m_parms.parms.m_dayStartTime.m_value) / m_dayLengthHours;
@@ -166,7 +150,7 @@ float TimeMgr::getSunGaugeRatio()
 
 	f32 time = m_currentTimeOfDay;
 	if (m_currentTimeOfDay < m_parms.parms.m_dayStartTime.m_value) {
-		time += 24.0f;
+		time += TIMEMGR_DAY_HOURS;
 	}
 
 	return 1.0f - ((time - m_parms.parms.m_dayEndTime.m_value) / m_sunRatio);
@@ -186,7 +170,7 @@ void TimeMgr::update()
 			m_currentHour -= m_parms.parms.m_dayLengthSeconds.m_value;
 		}
 
-		m_currentTimeOfDay = 24.0f * (m_currentHour / m_parms.parms.m_dayLengthSeconds.m_value);
+		m_currentTimeOfDay = TIMEMGR_DAY_HOURS * (m_currentHour / m_parms.parms.m_dayLengthSeconds.m_value);
 
 		updateSlot();
 	}
@@ -214,9 +198,10 @@ bool TimeMgr::isDayTime()
  * Address:	801273E0
  * Size:	000020
  */
-float TimeMgr::getRealDayTime()
+f32 TimeMgr::getRealDayTime()
 {
-	return m_parms.parms.m_dayLengthSeconds.m_value * ((m_parms.parms.m_dayEndTime.m_value - m_parms.parms.m_dayStartTime.m_value) / 24.0f);
+	return m_parms.parms.m_dayLengthSeconds.m_value
+	     * ((m_parms.parms.m_dayEndTime.m_value - m_parms.parms.m_dayStartTime.m_value) / TIMEMGR_DAY_HOURS);
 }
 
 /*
@@ -228,26 +213,19 @@ void TimeMgr::loadSettingFile(char* filename)
 {
 	loadAndRead(&m_parms.parms, filename, JKRHeap::sSystemHeap);
 
-	_220                 = 24.0f - m_parms.parms.m_eveningEndTime.m_value + m_parms.parms.m_morningStartTime.m_value;
+	_220                 = TIMEMGR_DAY_HOURS - m_parms.parms.m_eveningEndTime.m_value + m_parms.parms.m_morningStartTime.m_value;
 	m_earlyMorningLength = m_parms.parms.m_midMorningTime.m_value - m_parms.parms.m_morningStartTime.m_value;
 	m_midMorningLength   = m_parms.parms.m_morningEndTime.m_value - m_parms.parms.m_midMorningTime.m_value;
 	m_middayLength       = m_parms.parms.m_eveningStartTime.m_value - m_parms.parms.m_morningEndTime.m_value;
 	m_earlyEveningLength = m_parms.parms.m_midEveningStartTime.m_value - m_parms.parms.m_eveningStartTime.m_value;
 	m_lateEveningLength  = m_parms.parms.m_eveningEndTime.m_value - m_parms.parms.m_midEveningEndTime.m_value;
 	m_dayLengthHours     = m_parms.parms.m_dayEndTime.m_value - m_parms.parms.m_dayStartTime.m_value;
-	m_sunRatio           = 24.0f - m_dayLengthHours;
+	m_sunRatio           = TIMEMGR_DAY_HOURS - m_dayLengthHours;
 	m_dayCount           = 0;
 	m_currentTimeOfDay   = m_parms.parms.m_dayStartTime.m_value;
-	m_currentHour        = m_currentTimeOfDay / 24.0f * m_parms.parms.m_dayLengthSeconds.m_value;
+	m_currentHour        = m_currentTimeOfDay / TIMEMGR_DAY_HOURS * m_parms.parms.m_dayLengthSeconds.m_value;
 
 	updateSlot();
 }
 
-/*
- * --INFO--
- * Address:	80127550
- * Size:	000060
- */
-// WEAK
-// TimeMgr::~TimeMgr() { }
 } // namespace Game
