@@ -23,18 +23,6 @@ struct TParticleCallBack_TankFire : public JPAParticleCallBack {
 	TTankFireHit* m_efxHit; // _08
 };
 
-struct TTankFire : public TBase {
-	virtual bool create(Arg*); // _08
-	virtual void forceKill();  // _0C (weak)
-	virtual void fade()        // _10 (weak)
-	{
-		fade();
-		forceKill();
-	}
-
-	// _00      = VTBL
-};
-
 struct TTankFireHit : public TOneEmitterSimple {
 	TTankFireHit()
 	    : TOneEmitterSimple(PID_TankFireHit)
@@ -56,11 +44,25 @@ struct TTankFireABC : public TChaseMtx3 {
 	{
 	}
 
-	virtual bool create(Arg*);          // _08
-	virtual void forceKill() { }        // _0C (weak)
-	virtual void fade() { }             // _10 (weak)
-	virtual void startDemoDrawOff() { } // _14 (weak)
-	virtual void endDemoDrawOn() { }    // _18 (weak)
+	virtual bool create(Arg*);   // _08
+	virtual void forceKill() { } // _0C (weak)
+	virtual void fade()          // _10 (weak)
+	{
+		TSyncGroup3<TChaseMtx>::fade();
+		if (m_particleCallBack.m_efxHit) {
+			m_particleCallBack.m_efxHit->fade();
+		}
+	}
+	virtual void startDemoDrawOff() // _14 (weak)
+	{
+		TSyncGroup3<TChaseMtx>::startDemoDrawOff();
+		m_efxFireHit.startDemoDrawOff();
+	}
+	virtual void endDemoDrawOn() // _18 (weak)
+	{
+		TSyncGroup3<TChaseMtx>::endDemoDrawOn();
+		m_efxFireHit.endDemoDrawOn();
+	}
 
 	// _00      = VTBL
 	// _00-_40  = TChaseMtx3
@@ -70,9 +72,8 @@ struct TTankFireABC : public TChaseMtx3 {
 
 struct TTankFireIND : public TChaseMtx {
 	TTankFireIND(Mtx mtx)
+	    : TChaseMtx(PID_TankFireIND, (Matrixf*)mtx)
 	{
-		m_effectID = PID_TankFireIND;
-		m_mtx      = (Matrixf*)mtx;
 	}
 
 	virtual bool create(Arg*);  // _08
@@ -83,11 +84,30 @@ struct TTankFireIND : public TChaseMtx {
 	TParticleCallBack_TankFire m_particleCallBack;
 };
 
+struct TTankFire : public TBase {
+	TTankFire(Mtx mtx)
+	    : m_efxABC()
+	    , m_efxIND(mtx)
+	{
+	}
+
+	virtual bool create(Arg*); // _08
+	virtual void forceKill();  // _0C (weak)
+	virtual void fade()        // _10 (weak)
+	{
+		m_efxABC.fade();
+		m_efxIND.fade();
+	}
+
+	// _00      = VTBL
+	TTankFireABC m_efxABC; // _04
+	TTankFireIND m_efxIND; // _6C
+};
+
 struct TTankFireYodare : public TChaseMtx {
 	TTankFireYodare(Mtx mtx)
+	    : TChaseMtx(PID_TankFireYodare, (Matrixf*)mtx)
 	{
-		m_effectID = PID_TankFireYodare;
-		m_mtx      = (Matrixf*)mtx;
 	}
 
 	virtual ~TTankFireYodare() { } // _48 (weak)
@@ -98,14 +118,12 @@ struct TTankFireYodare : public TChaseMtx {
 
 struct TTankEffect {
 	TTankEffect(Mtx mtx)
-	    : m_efxFireIND(mtx)
+	    : m_efxFire(mtx)
 	    , m_efxFireYodare(mtx)
 	{
 	}
 
 	TTankFire m_efxFire;             // _00
-	TTankFireABC m_efxFireABC;       // _04
-	TTankFireIND m_efxFireIND;       // _6C
 	TTankFireYodare m_efxFireYodare; // _8C
 };
 

@@ -70,7 +70,7 @@ struct TOneEmitterSimple : public TBase, public JPAEmitterCallBack {
 	virtual void executeAfter(JPABaseEmitter*); // _30 (weak)
 	virtual void startDemoDrawOff();            // _34 (weak)
 	virtual void endDemoDrawOn();               // _38 (weak)
-	virtual ~TOneEmitterSimple();               // _3C (weak)
+	virtual ~TOneEmitterSimple() { }            // _3C (weak)
 
 	// _00		= VTBL
 	// _04-_08	= JPAEmitterCallBack

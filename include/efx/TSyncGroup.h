@@ -67,24 +67,24 @@ struct TSyncGroup3 : public TBase {
 			((TSync*)&m_items[i])->forceKill();
 		}
 	}
-	virtual void fade() // _10 (weak)
-	{
-		for (u32 i = 0; i < 3; i++) {
-			((TSync*)&m_items[i])->fade();
-		}
-	}
-	virtual void startDemoDrawOff() // _14 (weak)
-	{
-		for (u32 i = 0; i < 3; i++) {
-			((TSync*)&m_items[i])->startDemoDrawOff();
-		}
-	}
-	virtual void endDemoDrawOn() // _18 (weak)
-	{
-		for (u32 i = 0; i < 3; i++) {
-			((TSync*)&m_items[i])->endDemoDrawOn();
-		}
-	}
+	virtual void fade(); // _10 (weak)
+	// {
+	// 	for (u32 i = 0; i < 3; i++) {
+	// 		((TSync*)&m_items[i])->fade();
+	// 	}
+	// }
+	virtual void startDemoDrawOff(); // _14 (weak)
+	// {
+	// 	for (u32 i = 0; i < 3; i++) {
+	// 		((TSync*)&m_items[i])->startDemoDrawOff();
+	// 	}
+	// }
+	virtual void endDemoDrawOn(); // _18 (weak)
+	// {
+	// 	for (u32 i = 0; i < 3; i++) {
+	// 		((TSync*)&m_items[i])->endDemoDrawOn();
+	// 	}
+	// }
 	//////////////// VTABLE END
 
 	// _00 VTBL
