@@ -1055,24 +1055,9 @@ lbl_80270514:
  */
 void Obj::finishChargeEffect()
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	lwz      r3, 0x2f0(r3)
-	cmplwi   r3, 0
-	beq      lbl_80270550
-	lwz      r12, 0(r3)
-	lwz      r12, 0x10(r12)
-	mtctr    r12
-	bctrl
-
-lbl_80270550:
-	lwz      r0, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	if (m_efxDenkiHibaMgr) {
+		m_efxDenkiHibaMgr->fade();
+	}
 }
 
 /*
@@ -1166,8 +1151,8 @@ void Obj::setVersusHibaOnOff()
  */
 void Obj::setVersusHibaType()
 {
-	if (_2FC != _300) {
-		if (_2FC > _300) {
+	if (m_redAttrAttackCount != m_blueAttrAttackCount) {
+		if (m_redAttrAttackCount > m_blueAttrAttackCount) {
 			_2F8 = 1;
 			return;
 		}
@@ -1182,8 +1167,8 @@ void Obj::setVersusHibaType()
  */
 void Obj::resetAttrHitCount()
 {
-	_2FC = 0;
-	_300 = 0;
+	m_redAttrAttackCount  = 0;
+	m_blueAttrAttackCount = 0;
 }
 
 /*
@@ -1191,44 +1176,17 @@ void Obj::resetAttrHitCount()
  * Address:	802706F4
  * Size:	000070
  */
-void Obj::addAttrAttackCount(Piki*)
+void Obj::addAttrAttackCount(Piki* piki)
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	mr       r31, r3
-	lbz      r0, 0x2b8(r4)
-	cmpwi    r0, 1
-	bne      lbl_80270724
-	lwz      r3, 0x2fc(r31)
-	addi     r0, r3, 1
-	stw      r0, 0x2fc(r31)
-	b        lbl_80270738
-
-lbl_80270724:
-	cmpwi    r0, 0
-	bne      lbl_80270738
-	lwz      r3, 0x300(r31)
-	addi     r0, r3, 1
-	stw      r0, 0x300(r31)
-
-lbl_80270738:
-	mr       r3, r31
-	bl       getStateID__Q24Game9EnemyBaseFv
-	cmpwi    r3, 3
-	bne      lbl_80270750
-	lfs      f0, lbl_8051B0E0@sda21(r2)
-	stfs     f0, 0x2c4(r31)
-
-lbl_80270750:
-	lwz      r0, 0x14(r1)
-	lwz      r31, 0xc(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	// has sign issues for the pikmin type comparisons
+	if (piki->m_pikminType == Red) {
+		m_redAttrAttackCount++;
+	} else if (piki->m_pikminType == Blue) {
+		m_blueAttrAttackCount++;
+	}
+	if (getStateID() == ELECHIBA_Attack) {
+		m_waitTimer = 0.0f;
+	}
 }
 
 /*
@@ -1238,7 +1196,7 @@ lbl_80270750:
  */
 bool Obj::isWaitFinish()
 {
-	if ((m_waitTimer > C_PROPERPARMS.m_activeTime.m_value) && (_2F8 || (_2FC != _300))) {
+	if ((m_waitTimer > C_PROPERPARMS.m_activeTime.m_value) && (_2F8 || (m_redAttrAttackCount != m_blueAttrAttackCount))) {
 		return true;
 	}
 	return false;

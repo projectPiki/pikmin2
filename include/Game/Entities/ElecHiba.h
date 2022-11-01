@@ -97,8 +97,8 @@ struct Obj : public EnemyBase {
 	efx::TDenkiHibaMgr* m_efxDenkiHibaMgr; // _2F0
 	bool _2F4;                             // _2F4, might be a bool?
 	int _2F8;                              // _2F8, unknown
-	int _2FC;                              // _2FC, unknown
-	int _300;                              // _300, unknown
+	int m_redAttrAttackCount;              // _2FC
+	int m_blueAttrAttackCount;             // _300
 	                                       // _304 = PelletView
 };
 
