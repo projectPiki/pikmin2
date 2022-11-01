@@ -200,78 +200,28 @@ bool Obj::bombCallBack(Creature* creature, Vector3f& vec, f32 damage)
  * Address:	8026F7EC
  * Size:	000100
  */
-void Obj::doGetLifeGaugeParam(LifeGaugeParam&)
+void Obj::doGetLifeGaugeParam(LifeGaugeParam& param)
 {
-	/*
-	stwu     r1, -0x20(r1)
-	mflr     r0
-	stw      r0, 0x24(r1)
-	stw      r31, 0x1c(r1)
-	mr       r31, r4
-	stw      r30, 0x18(r1)
-	mr       r30, r3
-	bl       getChildObjPtr__Q34Game8ElecHiba3ObjFv
-	cmplwi   r3, 0
-	beq      lbl_8026F8CC
-	mr       r4, r3
-	addi     r3, r1, 8
-	lwz      r12, 0(r4)
-	lwz      r12, 8(r12)
-	mtctr    r12
-	bctrl
-	lfs      f0, 8(r1)
-	lfs      f2, lbl_8051B0F8@sda21(r2)
-	stfs     f0, 0(r31)
-	lfs      f0, lbl_8051B0FC@sda21(r2)
-	lfs      f1, 0xc(r1)
-	stfs     f1, 4(r31)
-	lfs      f1, 0x10(r1)
-	stfs     f1, 8(r31)
-	lfs      f3, 0(r31)
-	lfs      f1, 0x18c(r30)
-	fadds    f1, f3, f1
-	stfs     f1, 0(r31)
-	lfs      f3, 4(r31)
-	lfs      f1, 0x190(r30)
-	fadds    f1, f3, f1
-	stfs     f1, 4(r31)
-	lfs      f3, 8(r31)
-	lfs      f1, 0x194(r30)
-	fadds    f1, f3, f1
-	stfs     f1, 8(r31)
-	lfs      f1, 0(r31)
-	fmuls    f1, f1, f2
-	stfs     f1, 0(r31)
-	lfs      f1, 4(r31)
-	fmuls    f1, f1, f2
-	stfs     f1, 4(r31)
-	lfs      f1, 8(r31)
-	fmuls    f1, f1, f2
-	stfs     f1, 8(r31)
-	lwz      r3, 0xc0(r30)
-	lfs      f2, 4(r31)
-	lfs      f1, 0x12c(r3)
-	fadds    f1, f2, f1
-	stfs     f1, 4(r31)
-	lfs      f2, 0x200(r30)
-	lfs      f1, 0x204(r30)
-	fdivs    f1, f2, f1
-	stfs     f1, 0xc(r31)
-	stfs     f0, 0x10(r31)
-	b        lbl_8026F8D4
+	Obj* childObj = getChildObjPtr();
+	if (childObj) {
+		param.m_position = childObj->getPosition();
 
-lbl_8026F8CC:
-	li       r0, 0
-	stb      r0, 0x14(r31)
+		param.m_position.x += m_position.x;
+		param.m_position.y += m_position.y;
+		param.m_position.z += m_position.z;
 
-lbl_8026F8D4:
-	lwz      r0, 0x24(r1)
-	lwz      r31, 0x1c(r1)
-	lwz      r30, 0x18(r1)
-	mtlr     r0
-	addi     r1, r1, 0x20
-	blr
-	*/
+		param.m_position.x *= 0.5f;
+		param.m_position.y *= 0.5f;
+		param.m_position.z *= 0.5f;
+
+		param.m_position.y += C_PARMS->m_general.m_lifeMeterHeight.m_value;
+
+		param.m_healthPercentage = m_health / m_maxHealth;
+
+		param._10 = 10.0f;
+	} else {
+		param._14 = false;
+	}
 }
 
 /*
