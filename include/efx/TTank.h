@@ -6,6 +6,8 @@
 
 namespace efx {
 struct TTankFireHit;
+struct TTankWatHit;
+struct TTankWat;
 
 struct TParticleCallBack_TankFire : public JPAParticleCallBack {
 	TParticleCallBack_TankFire()
@@ -129,11 +131,16 @@ struct TTankEffect {
 
 // fabricated - check if this can exist
 struct TParticleCallBack_TankWat : public JPAParticleCallBack {
+	TParticleCallBack_TankWat()
+	    : _04(1000.0f)
+	    , _0C(nullptr)
+	{
+	}
 
 	// _00      = VTBL (JPAParticleCallBack)
-	f32 _04;   // _04
-	void* _08; // _08, probably TTankWat*?
-	void* _0C; // _0C, possibly TTankWatHit* or something similar?
+	f32 _04;          // _04
+	TTankWat* _08;    // _08, probably TTankWat*?
+	TTankWatHit* _0C; // _0C, possibly TTankWatHit* or something similar?
 };
 
 struct TTankWat : public TChaseMtx4 {
@@ -158,29 +165,43 @@ struct TTankWat : public TChaseMtx4 {
 };
 
 struct TTankWatHit : public TOneEmitterSimple {
-	inline TTankWatHit()
+	TTankWatHit()
 	    : TOneEmitterSimple(PID_TankWatHit)
 	{
+		_18 = 10;
+		_10 = new Vector3f[_18];
 	}
 
-	virtual ~TTankWatHit(); // _3C (weak)
+	virtual ~TTankWatHit() { } // _3C (weak)
 
 	// _00      = VTBL
 	// _00-_18  = TOneEmitterSimple
+	int _18; // _18, vector count?
 };
 
 struct TTankWatYodare : public TChaseMtx {
 	TTankWatYodare(Mtx mtx)
+	    : TChaseMtx(PID_TankWatYodare, (Matrixf*)mtx)
 	{
-		m_effectID = PID_TankWatYodare;
-		m_mtx      = (Matrixf*)mtx;
 	}
 
-	virtual ~TTankWatYodare(); // _48 (weak)
+	virtual ~TTankWatYodare() { } // _48 (weak)
 
 	// _00      = VTBL
 	// _00-_14  = TChaseMtx
 };
+
+struct TWtankEffect {
+	TWtankEffect(Mtx mtx)
+	    : m_efxWat(mtx)
+	    , m_efxWatYodare(mtx)
+	{
+	}
+
+	TTankWat m_efxWat;             // _00
+	TTankWatYodare m_efxWatYodare; // _8C
+};
+
 } // namespace efx
 
 #endif

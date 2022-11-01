@@ -275,26 +275,29 @@ struct Obj : public Tank::Obj {
 	Obj();
 
 	//////////////// VTABLE
-	virtual ~Obj() { }                                  // _1BC (weak)
-	virtual void changeMaterial();                      // _200
-	virtual EnemyTypeID::EEnemyTypeID getEnemyTypeID(); // _258 (weak)
-	virtual void createEffect();                        // _2FC
-	virtual void setupEffect();                         // _300
-	virtual void startEffect();                         // _304
-	virtual void startYodare();                         // _308
-	virtual void finishEffect();                        // _30C
-	virtual void effectDrawOn();                        // _310
-	virtual void effectDrawOff();                       // _314
-	virtual void interactCreature(Creature*);           // _318
-	virtual void stopEffectRadius(f32);                 // _31C
-	virtual void createChargeSE();                      // _320
-	virtual void createDisChargeSE();                   // _324
+	virtual ~Obj() { }                                 // _1BC (weak)
+	virtual void changeMaterial();                     // _200
+	virtual EnemyTypeID::EEnemyTypeID getEnemyTypeID() // _258 (weak)
+	{
+		return EnemyTypeID::EnemyID_Wtank;
+	}
+	virtual void createEffect();              // _2FC
+	virtual void setupEffect();               // _300
+	virtual void startEffect();               // _304
+	virtual void startYodare();               // _308
+	virtual void finishEffect();              // _30C
+	virtual void effectDrawOn();              // _310
+	virtual void effectDrawOff();             // _314
+	virtual void interactCreature(Creature*); // _318
+	virtual void stopEffectRadius(f32);       // _31C
+	virtual void createChargeSE();            // _320
+	virtual void createDisChargeSE();         // _324
 	//////////////// VTABLE END
 
 	// _00 		= VTBL
 	// _00-_308	= Tank::Obj
-	efx::TTankEffect* m_tankEffect; // _308
-	                                // _30C = PelletView
+	efx::TWtankEffect* m_tankEffect; // _308
+	                                 // _30C = PelletView
 };
 
 struct Mgr : public Tank::Mgr {
