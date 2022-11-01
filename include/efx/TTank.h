@@ -14,7 +14,7 @@ struct TParticleCallBack_TankFire : public JPAParticleCallBack {
 	{
 	}
 
-	virtual ~TParticleCallBack_TankFire();                   // _08 (weak)
+	virtual ~TParticleCallBack_TankFire() { }                // _08 (weak)
 	virtual void execute(JPABaseEmitter*, JPABaseParticle*); // _0C
 	virtual void init(JPABaseEmitter*, JPABaseParticle*);    // _14
 
@@ -26,7 +26,11 @@ struct TParticleCallBack_TankFire : public JPAParticleCallBack {
 struct TTankFire : public TBase {
 	virtual bool create(Arg*); // _08
 	virtual void forceKill();  // _0C (weak)
-	virtual void fade();       // _10 (weak)
+	virtual void fade()        // _10 (weak)
+	{
+		fade();
+		forceKill();
+	}
 
 	// _00      = VTBL
 };
@@ -39,7 +43,7 @@ struct TTankFireHit : public TOneEmitterSimple {
 		_10 = new Vector3f[_18];
 	}
 
-	virtual ~TTankFireHit(); // _3C (weak)
+	virtual ~TTankFireHit() { } // _3C (weak)
 
 	// _00      = VTBL
 	// _00-_18  = TOneEmitterSimple
@@ -52,11 +56,11 @@ struct TTankFireABC : public TChaseMtx3 {
 	{
 	}
 
-	virtual bool create(Arg*);       // _08
-	virtual void forceKill();        // _0C (weak)
-	virtual void fade();             // _10 (weak)
-	virtual void startDemoDrawOff(); // _14 (weak)
-	virtual void endDemoDrawOn();    // _18 (weak)
+	virtual bool create(Arg*);          // _08
+	virtual void forceKill() { }        // _0C (weak)
+	virtual void fade() { }             // _10 (weak)
+	virtual void startDemoDrawOff() { } // _14 (weak)
+	virtual void endDemoDrawOn() { }    // _18 (weak)
 
 	// _00      = VTBL
 	// _00-_40  = TChaseMtx3
@@ -71,11 +75,12 @@ struct TTankFireIND : public TChaseMtx {
 		m_mtx      = (Matrixf*)mtx;
 	}
 
-	virtual bool create(Arg*); // _08
-	virtual ~TTankFireIND();   // _48 (weak)
+	virtual bool create(Arg*);  // _08
+	virtual ~TTankFireIND() { } // _48 (weak)
 
 	// _00      = VTBL
 	// _00-_14  = TChaseMtx
+	TParticleCallBack_TankFire m_particleCallBack;
 };
 
 struct TTankFireYodare : public TChaseMtx {
@@ -85,20 +90,23 @@ struct TTankFireYodare : public TChaseMtx {
 		m_mtx      = (Matrixf*)mtx;
 	}
 
-	virtual ~TTankFireYodare(); // _48 (weak)
+	virtual ~TTankFireYodare() { } // _48 (weak)
 
 	// _00      = VTBL
 	// _00-_14  = TChaseMtx
 };
 
 struct TTankEffect {
-	TTankEffect(Mtx);
+	TTankEffect(Mtx mtx)
+	    : m_efxFireIND(mtx)
+	    , m_efxFireYodare(mtx)
+	{
+	}
 
-	TTankFire m_efxFire;                           // _00
-	TTankFireABC m_efxFireABC;                     // _04
-	TTankFireIND m_efxFireIND;                     // _6C
-	TParticleCallBack_TankFire m_particleCallBack; // _80
-	TTankFireYodare m_efxFireYodare;               // _8C
+	TTankFire m_efxFire;             // _00
+	TTankFireABC m_efxFireABC;       // _04
+	TTankFireIND m_efxFireIND;       // _6C
+	TTankFireYodare m_efxFireYodare; // _8C
 };
 
 // fabricated - check if this can exist
@@ -116,9 +124,13 @@ struct TTankWat : public TChaseMtx4 {
 	{
 	}
 
-	virtual bool create(Arg*);       // _08
-	virtual void forceKill();        // _0C (weak)
-	virtual void fade();             // _10 (weak)
+	virtual bool create(Arg*); // _08
+	virtual void forceKill();  // _0C (weak)
+	virtual void fade()        // _10 (weak)
+	{
+		fade();
+		forceKill();
+	}
 	virtual void startDemoDrawOff(); // _14 (weak)
 	virtual void endDemoDrawOn();    // _18 (weak)
 

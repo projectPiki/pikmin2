@@ -7,6 +7,7 @@
 #include "Game/EnemyMgrBase.h"
 #include "Game/EnemyBase.h"
 #include "Game/WalkSmokeEffect.h"
+#include "efx/TTank.h"
 #include "SysShape/Joint.h"
 
 /**
@@ -15,10 +16,6 @@
  * Ftank	= Fiery Blowhog
  * Wtank	= Watery Blowhog
  */
-
-namespace efx {
-struct TTankEffect;
-} // namespace efx
 
 namespace Game {
 // Base Blowhog Structs
@@ -223,20 +220,23 @@ struct Obj : public Tank::Obj {
 	Obj();
 
 	//////////////// VTABLE
-	virtual ~Obj() { }                                  // _1BC (weak)
-	virtual void changeMaterial();                      // _200
-	virtual EnemyTypeID::EEnemyTypeID getEnemyTypeID(); // _258 (weak)
-	virtual void createEffect();                        // _2FC
-	virtual void setupEffect();                         // _300
-	virtual void startEffect();                         // _304
-	virtual void startYodare();                         // _308
-	virtual void finishEffect();                        // _30C
-	virtual void effectDrawOn();                        // _310
-	virtual void effectDrawOff();                       // _314
-	virtual void interactCreature(Creature*);           // _318
-	virtual void stopEffectRadius(f32);                 // _31C
-	virtual void createChargeSE();                      // _320
-	virtual void createDisChargeSE();                   // _324
+	virtual ~Obj() { }                                 // _1BC (weak)
+	virtual void changeMaterial();                     // _200
+	virtual EnemyTypeID::EEnemyTypeID getEnemyTypeID() // _258 (weak)
+	{
+		return EnemyTypeID::EnemyID_Tank;
+	}
+	virtual void createEffect();              // _2FC
+	virtual void setupEffect();               // _300
+	virtual void startEffect();               // _304
+	virtual void startYodare();               // _308
+	virtual void finishEffect();              // _30C
+	virtual void effectDrawOn();              // _310
+	virtual void effectDrawOff();             // _314
+	virtual void interactCreature(Creature*); // _318
+	virtual void stopEffectRadius(f32);       // _31C
+	virtual void createChargeSE();            // _320
+	virtual void createDisChargeSE();         // _324
 	//////////////// VTABLE END
 
 	// _00 		= VTBL
