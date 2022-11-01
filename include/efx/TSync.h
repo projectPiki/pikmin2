@@ -16,6 +16,14 @@ struct TSync : public TBase, public JPAEmitterCallBack {
 	{
 	}
 
+	inline TSync(u16 effectID)
+	    : TBase()
+	    , m_emitter(nullptr)
+	    , m_effectID(effectID)
+	    , m_flags(0)
+	{
+	}
+
 	// vtable 1 (TBase)
 	virtual bool create(Arg*); // _08
 	virtual void forceKill();  // _0C

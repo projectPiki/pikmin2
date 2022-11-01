@@ -900,71 +900,13 @@ void Obj::updateEfxLod()
  * Address:	80270160
  * Size:	0000DC
  */
-void Obj::createEffect(bool)
+void Obj::createEffect(bool check)
 {
-	/*
-	stwu     r1, -0x20(r1)
-	mflr     r0
-	stw      r0, 0x24(r1)
-	clrlwi.  r0, r4, 0x18
-	stw      r31, 0x1c(r1)
-	mr       r31, r3
-	stw      r30, 0x18(r1)
-	stw      r29, 0x14(r1)
-	beq      lbl_80270218
-	li       r3, 0xb8
-	bl       __nw__FUl
-	or.      r30, r3, r3
-	beq      lbl_80270210
-	lis      r4, __vt__Q23efx5TBase@ha
-	lis      r3, __vt__Q23efx13TDenkiHibaMgr@ha
-	addi     r0, r4, __vt__Q23efx5TBase@l
-	addi     r29, r30, 4
-	stw      r0, 0(r30)
-	addi     r0, r3, __vt__Q23efx13TDenkiHibaMgr@l
-	li       r4, 0x2d
-	mr       r3, r29
-	stw      r0, 0(r30)
-	li       r5, 0x2e
-	li       r6, 0x2f
-	bl       __ct__Q23efx9TForever3FUsUsUs
-	lis      r3, __vt__Q23efx10TDenkiHiba@ha
-	lis      r4, __ct__Q23efx10TDenkiPoleFv@ha
-	addi     r0, r3, __vt__Q23efx10TDenkiHiba@l
-	li       r6, 0x24
-	lis      r3, __dt__Q23efx10TDenkiPoleFv@ha
-	stw      r0, 0(r29)
-	addi     r5, r3, __dt__Q23efx10TDenkiPoleFv@l
-	addi     r4, r4, __ct__Q23efx10TDenkiPoleFv@l
-	addi     r3, r30, 0x38
-	li       r7, 2
-	bl       __construct_array
-	lis      r3, __ct__Q23efx14TDenkipoleSignFv@ha
-	lis      r5, __dt__Q23efx14TDenkipoleSignFv@ha
-	addi     r4, r3, __ct__Q23efx14TDenkipoleSignFv@l
-	li       r6, 0x10
-	addi     r3, r30, 0x80
-	addi     r5, r5, __dt__Q23efx14TDenkipoleSignFv@l
-	li       r7, 2
-	bl       __construct_array
-
-lbl_80270210:
-	stw      r30, 0x2f0(r31)
-	b        lbl_80270220
-
-lbl_80270218:
-	li       r0, 0
-	stw      r0, 0x2f0(r31)
-
-lbl_80270220:
-	lwz      r0, 0x24(r1)
-	lwz      r31, 0x1c(r1)
-	lwz      r30, 0x18(r1)
-	lwz      r29, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x20
-	blr
-	*/
+	if (check) {
+		m_efxDenkiHibaMgr = new efx::TDenkiHibaMgr;
+	} else {
+		m_efxDenkiHibaMgr = nullptr;
+	}
 }
 
 /*
@@ -972,80 +914,13 @@ lbl_80270220:
  * Address:	80270418
  * Size:	000110
  */
-void Obj::startChargeEffect(Creature*)
+void Obj::startChargeEffect(Creature* creature)
 {
-	/*
-	stwu     r1, -0x70(r1)
-	mflr     r0
-	stw      r0, 0x74(r1)
-	stw      r31, 0x6c(r1)
-	mr       r31, r3
-	lwz      r0, 0x2f0(r3)
-	cmplwi   r0, 0
-	beq      lbl_80270514
-	lwz      r12, 0(r4)
-	addi     r3, r1, 0x20
-	lwz      r12, 8(r12)
-	mtctr    r12
-	bctrl
-	lfs      f2, 0x20(r1)
-	lis      r4, __vt__Q23efx3Arg@ha
-	lfs      f1, 0x24(r1)
-	lis      r3, "zero__10Vector3<f>"@ha
-	lfs      f0, 0x28(r1)
-	addi     r5, r3, "zero__10Vector3<f>"@l
-	stfs     f2, 0x2c(r1)
-	lis      r3, __vt__Q23efx12ArgDenkiHiba@ha
-	lwz      r8, 0x18c(r31)
-	addi     r6, r4, __vt__Q23efx3Arg@l
-	stfs     f1, 0x30(r1)
-	addi     r0, r3, __vt__Q23efx12ArgDenkiHiba@l
-	lwz      r11, 0x2c(r1)
-	addi     r4, r1, 0x38
-	stfs     f0, 0x34(r1)
-	lwz      r10, 0x30(r1)
-	lwz      r9, 0x34(r1)
-	lwz      r7, 0x190(r31)
-	lwz      r3, 0x194(r31)
-	stw      r11, 8(r1)
-	lfs      f8, 0(r5)
-	stw      r10, 0xc(r1)
-	lfs      f7, 4(r5)
-	stw      r9, 0x10(r1)
-	lfs      f6, 8(r5)
-	stw      r8, 0x14(r1)
-	lfs      f2, 8(r1)
-	stw      r7, 0x18(r1)
-	lfs      f5, 0x14(r1)
-	stw      r3, 0x1c(r1)
-	lfs      f4, 0x18(r1)
-	stw      r6, 0x38(r1)
-	lfs      f3, 0x1c(r1)
-	lfs      f1, 0xc(r1)
-	lfs      f0, 0x10(r1)
-	stfs     f8, 0x3c(r1)
-	stfs     f7, 0x40(r1)
-	stfs     f6, 0x44(r1)
-	stw      r0, 0x38(r1)
-	stfs     f5, 0x48(r1)
-	stfs     f4, 0x4c(r1)
-	stfs     f3, 0x50(r1)
-	stfs     f2, 0x54(r1)
-	stfs     f1, 0x58(r1)
-	stfs     f0, 0x5c(r1)
-	lwz      r3, 0x2f0(r31)
-	lwz      r12, 0(r3)
-	lwz      r12, 8(r12)
-	mtctr    r12
-	bctrl
-
-lbl_80270514:
-	lwz      r0, 0x74(r1)
-	lwz      r31, 0x6c(r1)
-	mtlr     r0
-	addi     r1, r1, 0x70
-	blr
-	*/
+	if (m_efxDenkiHibaMgr) {
+		Vector3f creaturePos = creature->getPosition();
+		efx::ArgDenkiHiba denkiHibaArg(m_position, creaturePos);
+		m_efxDenkiHibaMgr->create(&denkiHibaArg);
+	}
 }
 
 /*
@@ -1067,42 +942,24 @@ void Obj::finishChargeEffect()
  */
 void Obj::startDisChargeEffect()
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	lwz      r0, 0x2f0(r3)
-	cmplwi   r0, 0
-	beq      lbl_802705C0
-	lwz      r3, 0x2f8(r3)
-	cmpwi    r3, 0
-	bne      lbl_80270594
-	mr       r3, r0
-	li       r4, 0
-	bl       createHiba__Q23efx13TDenkiHibaMgrFi
-	b        lbl_802705C0
+	efx::TDenkiHibaMgr* efxMgr = m_efxDenkiHibaMgr;
+	if (efxMgr) {
+		int type = m_versusHibaType;
+		if (type == VHT_Neutral) {
+			efxMgr->createHiba(VHT_Neutral);
+			return;
+		}
 
-lbl_80270594:
-	cmpwi    r3, 1
-	bne      lbl_802705AC
-	mr       r3, r0
-	li       r4, 1
-	bl       createHiba__Q23efx13TDenkiHibaMgrFi
-	b        lbl_802705C0
+		if (type == VHT_Red) {
+			efxMgr->createHiba(VHT_Red);
+			return;
+		}
 
-lbl_802705AC:
-	cmpwi    r3, 2
-	bne      lbl_802705C0
-	mr       r3, r0
-	li       r4, 2
-	bl       createHiba__Q23efx13TDenkiHibaMgrFi
-
-lbl_802705C0:
-	lwz      r0, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+		if (type == VHT_Blue) {
+			efxMgr->createHiba(VHT_Blue);
+			return;
+		}
+	}
 }
 
 /*
@@ -1178,10 +1035,10 @@ void Obj::resetAttrHitCount()
  */
 void Obj::addAttrAttackCount(Piki* piki)
 {
-	// has sign issues for the pikmin type comparisons
-	if (piki->m_pikminType == Red) {
+	int type = piki->m_pikminType;
+	if (type == Red) {
 		m_redAttrAttackCount++;
-	} else if (piki->m_pikminType == Blue) {
+	} else if (type == Blue) {
 		m_blueAttrAttackCount++;
 	}
 	if (getStateID() == ELECHIBA_Attack) {
@@ -1209,36 +1066,11 @@ bool Obj::isWaitFinish()
  */
 bool Obj::isAttackFinish()
 {
-	/*
-	lwz      r4, 0xc0(r3)
-	lfs      f1, 0x2c4(r3)
-	lfs      f0, 0x86c(r4)
-	fcmpo    cr0, f1, f0
-	bgt      lbl_802707EC
-	lwz      r5, 0x2f8(r3)
-	cmpwi    r5, 1
-	bne      lbl_802707D4
-	lwz      r4, 0x300(r3)
-	lwz      r0, 0x2fc(r3)
-	cmpw     r4, r0
-	bgt      lbl_802707EC
-
-lbl_802707D4:
-	cmpwi    r5, 2
-	bne      lbl_802707F4
-	lwz      r4, 0x2fc(r3)
-	lwz      r0, 0x300(r3)
-	cmpw     r4, r0
-	ble      lbl_802707F4
-
-lbl_802707EC:
-	li       r3, 1
-	blr
-
-lbl_802707F4:
-	li       r3, 0
-	blr
-	*/
+	if (m_waitTimer > C_PROPERPARMS.m_activeTime.m_value || (m_versusHibaType == VHT_Red && (m_blueAttrAttackCount > m_redAttrAttackCount))
+	    || (m_versusHibaType == VHT_Blue && (m_redAttrAttackCount > m_blueAttrAttackCount))) {
+		return true;
+	}
+	return false;
 }
 
 } // namespace ElecHiba

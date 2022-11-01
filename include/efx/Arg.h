@@ -105,10 +105,23 @@ struct ArgDenkiHiba : public Arg {
 	{
 	}
 
+	ArgDenkiHiba(Vector3f ownerPos, Vector3f targetPos)
+	    : Arg()
+	    , m_ownerPos(ownerPos)
+	    , m_targetPos(targetPos)
+	{
+	}
+
 	virtual const char* getName() // _08 (weak)
 	{
 		return "ArgDenkiHiba";
 	}
+
+	// _00     = VTBL
+	// _00-_10 = Arg
+	Vector3f m_ownerPos;  // _10
+	Vector3f m_targetPos; // _1C
+	int _28;              // _28
 };
 
 struct ArgDir : public Arg {

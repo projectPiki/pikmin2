@@ -9,13 +9,13 @@ struct TForever : public TSync {
 	TForever();
 
 	inline TForever(u16 effectID) // probably
-	    : TSync()
+	    : TSync(effectID)
 	{
-		m_effectID = effectID;
+		// m_effectID = effectID;
 	}
 
 	virtual void doExecuteEmitterOperation(JPABaseEmitter*); // _38 (weak)
-	virtual ~TForever();                                     // _48 (weak, thunk at _1C)
+	virtual ~TForever() { }                                  // _48 (weak, thunk at _1C)
 
 	// _00		= VTBL
 	// _00-_0E	= TSync

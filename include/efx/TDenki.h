@@ -5,6 +5,11 @@
 
 namespace efx {
 struct TDenkiHiba : public TForever3 {
+	inline TDenkiHiba()
+	    : TForever3(PID_DenkiHiba_1, PID_DenkiHiba_2, PID_DenkiHiba_3)
+	{
+	}
+
 	virtual bool create(Arg*); // _08
 
 	// _00      = VTBL
@@ -12,24 +17,32 @@ struct TDenkiHiba : public TForever3 {
 };
 
 struct TDenkiPole : public TForever2 {
-	TDenkiPole();
+	TDenkiPole()
+	    : TForever2(PID_DenkiPole_1, PID_DenkiPole_2)
+	{
+	}
 
-	~TDenkiPole();
+	~TDenkiPole() { }
 
 	// _00      = VTBL
 	// _00-_24  = TForever2
 };
 
 struct TDenkipoleSign : public TForever {
-	TDenkipoleSign();
+	TDenkipoleSign()
+	    : TForever(PID_DenkiPoleSign)
+	{
+	}
 
-	virtual ~TDenkipoleSign(); // _48 (weak)
+	virtual ~TDenkipoleSign() { } // _48 (weak)
 
 	// _00      = VTBL
 	// _00-_10  = TForever
 };
 
 struct TDenkiHibaMgr : public TBase {
+	inline TDenkiHibaMgr() { }
+
 	virtual bool create(Arg*); // _08
 	virtual void forceKill();  // _0C
 	virtual void fade();       // _10
