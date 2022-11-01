@@ -76,7 +76,7 @@ void Obj::onInit(CreatureInitArg* args)
 		}
 	}
 	setVersusHibaOnOff();
-	_2F8 = 0;
+	m_versusHibaType = VHT_Neutral;
 	resetAttrHitCount();
 
 	f32 r = randWeightFloat(C_PROPERPARMS.m_waitTime.m_value);
@@ -1153,10 +1153,10 @@ void Obj::setVersusHibaType()
 {
 	if (m_redAttrAttackCount != m_blueAttrAttackCount) {
 		if (m_redAttrAttackCount > m_blueAttrAttackCount) {
-			_2F8 = 1;
+			m_versusHibaType = VHT_Red;
 			return;
 		}
-		_2F8 = 2;
+		m_versusHibaType = VHT_Blue;
 	}
 }
 
@@ -1196,7 +1196,7 @@ void Obj::addAttrAttackCount(Piki* piki)
  */
 bool Obj::isWaitFinish()
 {
-	if ((m_waitTimer > C_PROPERPARMS.m_activeTime.m_value) && (_2F8 || (m_redAttrAttackCount != m_blueAttrAttackCount))) {
+	if ((m_waitTimer > C_PROPERPARMS.m_activeTime.m_value) && (m_versusHibaType || (m_redAttrAttackCount != m_blueAttrAttackCount))) {
 		return true;
 	}
 	return false;

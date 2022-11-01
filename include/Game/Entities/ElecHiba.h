@@ -20,6 +20,8 @@ namespace ElecHiba {
 struct FSM;
 struct Obj;
 
+typedef enum EVersusHibaType { VHT_Neutral = 0, VHT_Red = 1, VHT_Blue = 2 } EVersusHibaType;
+
 struct InitialParam : public EnemyInitialParamBase {
 	f32 _00; // _00
 };
@@ -96,7 +98,7 @@ struct Obj : public EnemyBase {
 	Vector3f _2E4;                         // _2E4
 	efx::TDenkiHibaMgr* m_efxDenkiHibaMgr; // _2F0
 	bool _2F4;                             // _2F4, might be a bool?
-	int _2F8;                              // _2F8, unknown
+	EVersusHibaType m_versusHibaType;      // _2F8
 	int m_redAttrAttackCount;              // _2FC
 	int m_blueAttrAttackCount;             // _300
 	                                       // _304 = PelletView
