@@ -109,24 +109,24 @@ struct TSyncGroup4 : public TBase {
 			((TSync*)&m_items[i])->forceKill();
 		}
 	}
-	virtual void fade() // _14 (weak)
-	{
-		for (u32 i = 0; i < 4; i++) {
-			((TSync*)&m_items[i])->fade();
-		}
-	}
-	virtual void startDemoDrawOff() // _18 (weak)
-	{
-		for (u32 i = 0; i < 4; i++) {
-			((TSync*)&m_items[i])->startDemoDrawOff();
-		}
-	}
-	virtual void endDemoDrawOn() // _1C (weak)
-	{
-		for (u32 i = 0; i < 4; i++) {
-			((TSync*)&m_items[i])->endDemoDrawOn();
-		}
-	}
+	virtual void fade(); // _14 (weak)
+	// {
+	// 	for (u32 i = 0; i < 4; i++) {
+	// 		((TSync*)&m_items[i])->fade();
+	// 	}
+	// }
+	virtual void startDemoDrawOff(); // _18 (weak)
+	// {
+	// 	for (u32 i = 0; i < 4; i++) {
+	// 		((TSync*)&m_items[i])->startDemoDrawOff();
+	// 	}
+	// }
+	virtual void endDemoDrawOn(); // _1C (weak)
+	// {
+	// 	for (u32 i = 0; i < 4; i++) {
+	// 		((TSync*)&m_items[i])->endDemoDrawOn();
+	// 	}
+	// }
 	//////////////// VTABLE END
 
 	// _00 VTBL

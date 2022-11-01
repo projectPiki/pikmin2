@@ -60,17 +60,41 @@ struct TOneEmitterSimple : public TBase, public JPAEmitterCallBack {
 	    , m_effectID(effectID)
 	    , _14(0)
 	{
+		_18 = 10;
+		_10 = new Vector3f[_18];
 	}
 
 	// vtable 1 (TBase)
 	virtual bool create(Arg*); // _08
-	virtual void forceKill();  // _0C (weak)
-	virtual void fade();       // _10 (weak)
+	virtual void forceKill()   // _0C (weak)
+	{
+		if (m_emitter) {
+			particleMgr->forceKill(m_emitter);
+			m_emitter = nullptr;
+		}
+	}
+	virtual void fade() // _10 (weak)
+	{
+		if (m_emitter) {
+			particleMgr->fade(m_emitter);
+			m_emitter = nullptr;
+		}
+	}
 	// vtable 2 (JPAEmitterCallBack + self)
 	virtual void executeAfter(JPABaseEmitter*); // _30 (weak)
-	virtual void startDemoDrawOff();            // _34 (weak)
-	virtual void endDemoDrawOn();               // _38 (weak)
-	virtual ~TOneEmitterSimple() { }            // _3C (weak)
+	virtual void startDemoDrawOff()             // _34 (weak)
+	{
+		if (m_emitter) {
+			m_emitter->_F4 |= 0x4;
+		}
+	}
+	virtual void endDemoDrawOn() // _38 (weak)
+	{
+		if (m_emitter) {
+			m_emitter->_F4 &= ~0x4;
+		}
+	}
+	virtual ~TOneEmitterSimple() { } // _3C (weak)
 
 	// _00		= VTBL
 	// _04-_08	= JPAEmitterCallBack
@@ -78,6 +102,7 @@ struct TOneEmitterSimple : public TBase, public JPAEmitterCallBack {
 	u16 m_effectID;            // _0C
 	Vector3f* _10;             // _10
 	int _14;                   // _14
+	int _18;                   // _18, vector count?
 };
 } // namespace efx
 

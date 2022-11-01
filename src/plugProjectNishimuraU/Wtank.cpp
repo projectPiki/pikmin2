@@ -104,7 +104,6 @@ void Obj::effectDrawOn()
 {
 	efx::TWtankEffect* effect = m_tankEffect;
 	effect->m_efxWat.endDemoDrawOn();
-	// effect->m_efxWat.m_efxIND.endDemoDrawOn();
 	effect->m_efxWatYodare.endDemoDrawOn();
 }
 
@@ -117,7 +116,6 @@ void Obj::effectDrawOff()
 {
 	efx::TWtankEffect* effect = m_tankEffect;
 	effect->m_efxWat.startDemoDrawOff();
-	// effect->m_efxWat.m_efxIND.startDemoDrawOff();
 	effect->m_efxWatYodare.startDemoDrawOff();
 }
 

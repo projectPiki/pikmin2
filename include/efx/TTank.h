@@ -29,20 +29,17 @@ struct TTankFireHit : public TOneEmitterSimple {
 	TTankFireHit()
 	    : TOneEmitterSimple(PID_TankFireHit)
 	{
-		_18 = 10;
-		_10 = new Vector3f[_18];
 	}
 
 	virtual ~TTankFireHit() { } // _3C (weak)
 
 	// _00      = VTBL
 	// _00-_18  = TOneEmitterSimple
-	int _18; // _18, vector count?
 };
 
 struct TTankFireABC : public TChaseMtx3 {
-	inline TTankFireABC()
-	    : TChaseMtx3(nullptr, PID_TankFireABC_1, PID_TankFireABC_2, PID_TankFireABC_3)
+	inline TTankFireABC(Mtx mtx)
+	    : TChaseMtx3(mtx, PID_TankFireABC_1, PID_TankFireABC_2, PID_TankFireABC_3)
 	{
 	}
 
@@ -88,7 +85,7 @@ struct TTankFireIND : public TChaseMtx {
 
 struct TTankFire : public TBase {
 	TTankFire(Mtx mtx)
-	    : m_efxABC()
+	    : m_efxABC(mtx)
 	    , m_efxIND(mtx)
 	{
 	}
@@ -129,54 +126,16 @@ struct TTankEffect {
 	TTankFireYodare m_efxFireYodare; // _8C
 };
 
-// fabricated - check if this can exist
-struct TParticleCallBack_TankWat : public JPAParticleCallBack {
-	TParticleCallBack_TankWat()
-	    : _04(1000.0f)
-	    , _0C(nullptr)
-	{
-	}
-
-	// _00      = VTBL (JPAParticleCallBack)
-	f32 _04;          // _04
-	TTankWat* _08;    // _08, probably TTankWat*?
-	TTankWatHit* _0C; // _0C, possibly TTankWatHit* or something similar?
-};
-
-struct TTankWat : public TChaseMtx4 {
-	inline TTankWat(Mtx mtx)
-	    : TChaseMtx4(mtx, PID_TankWat_1, PID_TankWat_2, PID_TankWat_3, PID_TankWat_4)
-	{
-	}
-
-	virtual bool create(Arg*); // _08
-	virtual void forceKill();  // _0C (weak)
-	virtual void fade()        // _10 (weak)
-	{
-		fade();
-		forceKill();
-	}
-	virtual void startDemoDrawOff(); // _14 (weak)
-	virtual void endDemoDrawOn();    // _18 (weak)
-
-	// _00      = VTBL
-	// _00-_54  = TChaseMtx4
-	TParticleCallBack_TankWat m_particleCallBack; // _54, probably?
-};
-
 struct TTankWatHit : public TOneEmitterSimple {
 	TTankWatHit()
 	    : TOneEmitterSimple(PID_TankWatHit)
 	{
-		_18 = 10;
-		_10 = new Vector3f[_18];
 	}
 
 	virtual ~TTankWatHit() { } // _3C (weak)
 
 	// _00      = VTBL
 	// _00-_18  = TOneEmitterSimple
-	int _18; // _18, vector count?
 };
 
 struct TTankWatYodare : public TChaseMtx {
@@ -191,8 +150,40 @@ struct TTankWatYodare : public TChaseMtx {
 	// _00-_14  = TChaseMtx
 };
 
+struct TTankWat : public TChaseMtx4 {
+	inline TTankWat(Mtx mtx)
+	    : TChaseMtx4(mtx, PID_TankWat_1, PID_TankWat_2, PID_TankWat_3, PID_TankWat_4)
+	{
+	}
+
+	virtual bool create(Arg*); // _08
+	virtual void forceKill();  // _0C (weak)
+	virtual void fade()        // _10 (weak)
+	{
+		TSyncGroup4<TChaseMtx>::fade();
+		if (m_particleCallBack.m_efxHit) {
+			m_particleCallBack.m_efxHit->fade();
+		}
+	}
+	virtual void startDemoDrawOff() // _14 (weak)
+	{
+		TSyncGroup4<TChaseMtx>::startDemoDrawOff();
+		m_efxHit.startDemoDrawOff();
+	}
+	virtual void endDemoDrawOn() // _18 (weak)
+	{
+		TSyncGroup4<TChaseMtx>::endDemoDrawOn();
+		m_efxHit.endDemoDrawOn();
+	}
+
+	// _00      = VTBL
+	// _00-_54  = TChaseMtx4
+	TParticleCallBack_TankFire m_particleCallBack; // _54
+	TTankWatHit m_efxHit;                          // _60
+};
+
 struct TWtankEffect {
-	TWtankEffect(Mtx mtx)
+	inline TWtankEffect(Mtx mtx)
 	    : m_efxWat(mtx)
 	    , m_efxWatYodare(mtx)
 	{
