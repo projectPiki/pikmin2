@@ -3,19 +3,13 @@
 
 #include "Container.h"
 #include "Game/Creature.h"
+#include "Game/SlotChangeListener.h"
 #include "SysShape/KeyEvent.h"
 #include "Parameters.h"
 #include "BaseParm.h"
 #include "types.h"
 
 namespace Game {
-struct SlotChangeListener {
-	virtual void onKeyEvent(const SysShape::KeyEvent&) = 0; // _08, probably?
-
-	// _00 = VTBL
-	u32 _04; // _04, unknown
-};
-
 // @size{0x114}
 struct CPlate : public Container<Creature> {
 	// @size{0x20}

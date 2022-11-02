@@ -20,8 +20,8 @@ namespace PikiAI {
  */
 ActFree::ActFree(Game::Piki* parent)
     : Action(parent)
-    , m_actGather(new ActGather(parent))
-    , m_actBore(new ActBore(parent))
+    , m_gather(new ActGather(parent))
+    , m_bore(new ActBore(parent))
 {
 	m_info = "Free";
 }
@@ -52,7 +52,7 @@ void ActFree::init(ActionArg* arg)
 	switch (m_state) {
 	case PIKIAI_FREE_GATHER:
 		GatherActionArg gatherArg(freeArg);
-		m_actGather->init(&gatherArg);
+		m_gather->init(&gatherArg);
 		break;
 	default:
 		m_parent->startMotion(31, 31, nullptr, nullptr);
@@ -77,7 +77,7 @@ s32 ActFree::exec()
 	switch (m_state) {
 	case PIKIAI_FREE_GATHER: {
 		// If we finished the gather state
-		if (m_actGather->exec() == 0) {
+		if (m_gather->exec() == 0) {
 			m_state = PIKIAI_FREE_DEFAULT;
 
 			// Wait for a bit of time to cool off
@@ -88,13 +88,13 @@ s32 ActFree::exec()
 	}
 
 	case PIKIAI_FREE_BORE: {
-		s32 status = m_actBore->exec();
+		s32 status = m_bore->exec();
 
 		// Let's try invoke the AI, and finish the boredom if we succeed
 		Game::Piki::InvokeAIFreeArg invokeArg(0, 0);
 		invokeArg._01 = 1;
 		if (m_parent->invokeAIFree(invokeArg)) {
-			m_actBore->finish();
+			m_bore->finish();
 		}
 
 		// Assuming we finished or failed being bored, we'll be free again
@@ -118,7 +118,7 @@ s32 ActFree::exec()
 		if (m_delayTimer) {
 			m_delayTimer--;
 		} else if (randFloat() > 0.5f) {
-			m_actBore->init(nullptr);
+			m_bore->init(nullptr);
 			m_state = PIKIAI_FREE_BORE;
 		}
 
