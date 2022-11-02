@@ -70,7 +70,7 @@ struct Obstacle : public CNode {
 	void doDebugDraw(Graphics&);
 
 	Farm* m_farm;                            // _18
-	Game::Creature* m_creature;              // _1C
+	Creature* m_creature;                    // _1C
 	FieldVtxColorControl* m_vtxColorControl; // _20
 };
 
@@ -91,8 +91,8 @@ struct Plant : public CNode {
 	void sendInteraction();
 	void doDebugDraw(Graphics&);
 
-	Game::Creature* m_creature; // _18
-	unknown _1C;                // _1C
+	Creature* m_creature; // _18
+	int _1C;              // _1C
 };
 
 struct FarmMgr : public GenericObjectMgr, public CNode {

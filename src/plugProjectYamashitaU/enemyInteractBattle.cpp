@@ -11,9 +11,9 @@ namespace Game {
  */
 bool InteractHipdrop::actEnemy(Game::EnemyBase* enemy)
 {
-	bool callback = enemy->pressCallBack(m_creature, _08, m_collPart);
+	bool callback = enemy->pressCallBack(m_creature, m_damage, m_collPart);
 	if (!callback) {
-		callback = enemy->hipdropCallBack(m_creature, _08, m_collPart);
+		callback = enemy->hipdropCallBack(m_creature, m_damage, m_collPart);
 	}
 	return callback;
 }
@@ -27,7 +27,7 @@ bool InteractEarthquake::actEnemy(Game::EnemyBase* enemy)
 {
 	bool callback = false;
 	if (!enemy->checkBirthTypeDropEarthquake()) {
-		callback = enemy->earthquakeCallBack(m_creature, _08);
+		callback = enemy->earthquakeCallBack(m_creature, m_bounceFactor);
 	}
 	return callback;
 }
@@ -37,7 +37,7 @@ bool InteractEarthquake::actEnemy(Game::EnemyBase* enemy)
  * Address:	8010BAF0
  * Size:	000040
  */
-bool InteractPress::actEnemy(Game::EnemyBase* enemy) { return enemy->pressCallBack(m_creature, _08, m_collPart); }
+bool InteractPress::actEnemy(Game::EnemyBase* enemy) { return enemy->pressCallBack(m_creature, m_damage, m_collPart); }
 
 /*
  * --INFO--
@@ -74,9 +74,9 @@ bool InteractAttack::actEnemy(Game::EnemyBase* enemy)
 
 		if (flag) {
 			if (enemy->isEvent(0, EB_Bittered)) {
-				_08 *= enemy->getDamageCoeStoneState();
+				m_damage *= enemy->getDamageCoeStoneState();
 			}
-			callback = enemy->damageCallBack(m_creature, _08, m_collPart);
+			callback = enemy->damageCallBack(m_creature, m_damage, m_collPart);
 		}
 	}
 	return callback;

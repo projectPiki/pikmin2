@@ -5,8 +5,6 @@
 #include "Game/Creature.h"
 #include "Game/genItem.h"
 #include "Game/Interaction.h"
-#include "Game/InteractFarmHaero.h"
-#include "Game/InteractFarmKarero.h"
 #include "Game/itemMgr.h"
 #include "Game/StateMachine.h"
 #include "Iterator.h"
