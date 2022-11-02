@@ -11,14 +11,6 @@
 #include "System.h"
 
 namespace ebi {
-
-/*
-    __vt__Q23ebi17E3DAnimFolderBase:
-    .4byte 0
-    .4byte 0
-    .4byte 0
-*/
-
 struct E3DAnimRes {
 	J3DAnmTransform* pAnmTransform_0x0;
 	J3DMtxCalcAnmBase* pMtxCalcAnm_0x4;
@@ -33,10 +25,7 @@ struct E3DAnimRes {
 };
 
 struct E3DAnimFolderBase {
-	// virtual void _00() = 0; // _00
 	virtual E3DAnimRes* getAnimRes(long) = 0; // _08
-
-	// _00 VTBL
 };
 
 struct E3DAnimCtrl {

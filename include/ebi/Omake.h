@@ -59,11 +59,11 @@ struct TOmake : public TScreenBase {
 	virtual void doDraw();                  // _3C
 	virtual char* getName();                // _40
 
-	void hidePanes_() const;
-	void openFromCardE_() const;
-	void openFromMovie_() const;
 	void setController(Controller*);
-	void showPanes_() const;
+	void showPanes_();
+	void hidePanes_();
+	void openFromMovie_();
+	void openFromCardE_();
 
 	// TODO: Data members.
 	u8 _0C[0x454];
@@ -100,7 +100,6 @@ struct TOmakeGame : public TScreenBase {
 	virtual bool doUpdateStateClose();      // _38
 	virtual void doDraw();                  // _3C
 	virtual char* getName();                // _40
-	// virtual void _44(); // _44
 
 	bool isDelegateControl();
 	bool openMsg(long);

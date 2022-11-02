@@ -3,20 +3,27 @@
 
 #include "ebi/Screen/TScreenBase.h"
 
+struct Controller;
+
 namespace ebi {
 namespace Screen {
 struct TTitleMenu : public TScreenBase {
-	virtual void doSetArchive(JKRArchive*); // _1C
-	virtual void doOpenScreen(ArgOpen*);    // _20
-	virtual void doCloseScreen(ArgClose*);  // _24
-	virtual void doInitWaitState();         // _2C
-	virtual bool doUpdateStateOpen();       // _30
-	virtual bool doUpdateStateWait();       // _34
-	virtual bool doUpdateStateClose();      // _38
-	virtual void doDraw();                  // _3C
-	virtual char* getName();                // _40
+	virtual void doSetArchive(JKRArchive*); // _24
+	virtual void doOpenScreen(ArgOpen*);    // _28
+	virtual void doCloseScreen(ArgClose*);  // _2C
+	virtual void doInitWaitState();         // _34
+	virtual bool doUpdateStateOpen();       // _38
+	virtual bool doUpdateStateWait();       // _3C
+	virtual bool doUpdateStateClose();      // _40
+	virtual void doDraw();                  // _44
+	virtual char* getName();                // _48 (weak)
 
-	// _00 VTBL
+	void setController(Controller*);
+	void openMenuSet(ebi::Screen::ArgOpen*);
+	void isDecide();
+	void isCancel();
+	void showPika_(long);
+	void hidePika_(long);
 };
 } // namespace Screen
 } // namespace ebi

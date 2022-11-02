@@ -6,7 +6,10 @@
 #include "Camera.h"
 #include "Parameters.h"
 #include "BaseParm.h"
+#include "ebi/title/TObjects.h"
 #include "JSystem/JKR/JKRArchive.h"
+
+struct Controller;
 
 namespace ebi {
 namespace title {
@@ -115,6 +118,40 @@ struct TTitleLightMgr : public LightMgr {
 	TTitleLightSetting m_setting; // _100
 };
 
+struct TTitleMgr : public CNode {
+	enum enumState { UNKNOWN };
+
+	virtual ~TTitleMgr(); // _08 (weak)
+
+	TTitleMgr();
+	void globalInstance();
+	void Instance();
+	void deleteInstance();
+	void init();
+	void setLogo();
+	void loadResource();
+	void initAfterLoadRes();
+	void setController(Controller*);
+	void inField(ebi::title::TObjBase*);
+	void inViewField(ebi::title::TObjBase*);
+	void isInViewField(ebi::title::TObjBase*);
+	void isOutViewField(Vector2f&, float);
+	void isOutViewField(ebi::title::TObjBase*);
+	void getPosOutOfViewField();
+	void start();
+	void breakup();
+	void startKogane();
+	void startChappy();
+	void boidToAssemble(long);
+	void isControllerOK();
+	void isPressStart();
+	void startState(ebi::title::TTitleMgr::enumState);
+	void update();
+	void updateState();
+	void checkEncounter_();
+	void draw();
+	void readTitleParam(JKRArchive*, char*);
+};
 } // namespace title
 } // namespace ebi
 

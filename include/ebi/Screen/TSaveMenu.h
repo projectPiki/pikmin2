@@ -6,15 +6,26 @@
 namespace ebi {
 namespace Screen {
 struct TSaveMenu : public TScreenBase {
-	virtual void doSetArchive(JKRArchive*); // _1C
-	virtual void doOpenScreen(ArgOpen*);    // _20
-	virtual void doCloseScreen(ArgClose*);  // _24
-	virtual void doKillScreen();            // _28
-	virtual bool doUpdateStateOpen();       // _30
-	virtual bool doUpdateStateWait();       // _34
-	virtual bool doUpdateStateClose();      // _38
-	virtual void doDraw();                  // _3C
-	virtual char* getName();                // _40
+	enum enumMsgState { UNKNOWN };
+
+	virtual void doSetArchive(JKRArchive*); // _24
+	virtual void doOpenScreen(ArgOpen*);    // _28
+	virtual void doCloseScreen(ArgClose*);  // _2C
+	virtual void doKillScreen();            // _30
+	virtual bool doUpdateStateOpen();       // _38
+	virtual bool doUpdateStateWait();       // _3C
+	virtual bool doUpdateStateClose();      // _40
+	virtual void doDraw();                  // _44
+	virtual char* getName();                // _48 (weak)
+
+	TSaveMenu();
+	void loadResource();
+	void openMsg(long);
+	void closeMsg();
+	void noMsg();
+	void isFinishMsg();
+	void startMsgState_(ebi::Screen::TSaveMenu::enumMsgState);
+	void updateMsg_();
 
 	// _00 VTBL
 };

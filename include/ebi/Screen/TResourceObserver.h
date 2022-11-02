@@ -4,10 +4,8 @@
 namespace ebi {
 namespace Screen {
 struct TResourceObserver {
-	virtual ~TResourceObserver(); // _00
-	virtual void _04() = 0;       // _04
-
-	// _00 VTBL
+	virtual ~TResourceObserver(); // _08
+	virtual void _0C() = 0;       // _0C
 };
 } // namespace Screen
 } // namespace ebi

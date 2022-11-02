@@ -6,13 +6,15 @@
 namespace ebi {
 namespace Screen {
 struct TPressStart : public TScreenBase {
-	virtual void doSetArchive(JKRArchive*); // _1C
-	virtual void doOpenScreen(ArgOpen*);    // _20
-	virtual void doCloseScreen(ArgClose*);  // _24
-	virtual bool doUpdateStateWait();       // _34
-	virtual bool doUpdateStateClose();      // _38
-	virtual void doDraw();                  // _3C
-	virtual char* getName();                // _40
+	virtual void doSetArchive(JKRArchive*); // _24
+	virtual void doOpenScreen(ArgOpen*);    // _28
+	virtual void doCloseScreen(ArgClose*);  // _2C
+	virtual void doUpdateStateWait();       // _3C
+	virtual void doUpdateStateClose();      // _40
+	virtual void doDraw();                  // _44
+	virtual void getName();                 // _48 (weak)
+
+	void startLoop_();
 
 	// _00 VTBL
 };

@@ -16,11 +16,11 @@ struct E2DCallBack_Base : public P2DScreen::CallBackNode {
 	    : _1C(1)
 	{
 	}
-	virtual ~E2DCallBack_Base();                      // _00
-	virtual void update();                            // _08
-	virtual void draw(Graphics&, J2DGrafContext&);    // _0C
-	virtual void do_update();                         // _14
-	virtual void do_draw(Graphics&, J2DGrafContext&); // _18
+	virtual ~E2DCallBack_Base();                      // _08 (weak)
+	virtual void update();                            // _10 (weak)
+	virtual void draw(Graphics&, J2DGrafContext&);    // _14 (weak)
+	virtual void do_update();                         // _1C (weak)
+	virtual void do_draw(Graphics&, J2DGrafContext&); // _20 (weak)
 
 	u8 _1C; // _1C
 };
@@ -29,19 +29,18 @@ struct E2DCallBack_Base : public P2DScreen::CallBackNode {
 struct E2DCallBack_AnmBase : public E2DCallBack_Base {
 	E2DCallBack_AnmBase();
 
-	virtual ~E2DCallBack_AnmBase(); // _00
-	virtual void do_update();       // _14
+	virtual ~E2DCallBack_AnmBase(); // _08 (weak)
+	virtual void do_update();       // _1C
 
-	void disconnect();
-	float getPlayFinRate();
-	bool isFinish();
 	void loadAnm(char*, JKRArchive*, long, long);
 	void play(float, J3DAnmAttr, bool);
 	void playBack(float, bool);
+	void stop();
+	void setStartFrame();
 	void setEndFrame();
 	void setRandFrame();
-	void setStartFrame();
-	void stop();
+	float getPlayFinRate();
+	bool isFinish();
 
 	J3DFrameCtrl m_frameCtrl; // _20
 	J2DAnmBase* m_anm;        // _34
@@ -49,8 +48,8 @@ struct E2DCallBack_AnmBase : public E2DCallBack_Base {
 };
 
 struct E2DCallBack_BlinkAlpha : public E2DCallBack_Base {
-	virtual ~E2DCallBack_BlinkAlpha(); // _00
-	virtual void do_update();          // _14
+	virtual ~E2DCallBack_BlinkAlpha(); // _08 (weak)
+	virtual void do_update();          // _1C
 
 	// TODO: _20 through _29 and BlinkFontColor's _40 through _49 are
 	// suspiciously similar in usage....
@@ -67,11 +66,11 @@ struct E2DCallBack_BlinkAlpha : public E2DCallBack_Base {
 struct E2DCallBack_BlinkFontColor : public E2DCallBack_Base {
 	E2DCallBack_BlinkFontColor();
 
-	virtual ~E2DCallBack_BlinkFontColor(); // _00
-	virtual void do_update();              // _14
+	virtual ~E2DCallBack_BlinkFontColor(); // _08 (weak)
+	virtual void do_update();              // _1C
 
 	void set(J2DTextBox*, J2DTextBox*);
-	void set(E2DFullFontColor&, E2DFullFontColor&);
+	void set(ebi::E2DFullFontColor&, ebi::E2DFullFontColor&);
 
 	E2DFullFontColor _20[2]; // _20
 	float _40;               // _40
@@ -83,16 +82,16 @@ struct E2DCallBack_BlinkFontColor : public E2DCallBack_Base {
 struct E2DCallBack_CalcAnimation : public E2DCallBack_Base {
 	E2DCallBack_CalcAnimation();
 
-	virtual ~E2DCallBack_CalcAnimation(); // _00
-	virtual void do_update();             // _14
+	virtual ~E2DCallBack_CalcAnimation(); // _08 (weak)
+	virtual void do_update();             // _1C (weak)
 };
 
 // Size: 0x40
 struct E2DCallBack_Purupuru : public E2DCallBack_Base {
 	E2DCallBack_Purupuru();
 
-	virtual ~E2DCallBack_Purupuru(); // _00
-	virtual void do_update();        // _14
+	virtual ~E2DCallBack_Purupuru(); // _08 (weak)
+	virtual void do_update();        // _1C
 
 	og::Screen::ScaleMgr m_scaleMgr; // _20
 	// TODO: Rename to `m_scale`
@@ -100,8 +99,8 @@ struct E2DCallBack_Purupuru : public E2DCallBack_Base {
 };
 
 struct E2DCallBack_WindowCursor : public E2DCallBack_Base {
-	virtual ~E2DCallBack_WindowCursor(); // _00
-	virtual void do_update();            // _14
+	virtual ~E2DCallBack_WindowCursor(); // _08 (weak)
+	virtual void do_update();            // _1C
 
 	JGeometry::TBox2f _20;    // _20
 	JGeometry::TBox2f _30;    // _30
