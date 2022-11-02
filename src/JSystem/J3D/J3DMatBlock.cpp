@@ -1652,7 +1652,7 @@ u32 J3DTevBlock4::countDLSize() { return 0x244; }
  * Address:	80077AA8
  * Size:	000008
  */
-u32 J3DTevBlock16::countDLSize() { return 0x3E8; }
+u32 J3DTevBlock16::countDLSize() { return 1000; }
 
 /*
  * --INFO--

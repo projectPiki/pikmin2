@@ -103,7 +103,7 @@ struct PelletMgr : public NodeObjectMgr<GenericObjectMgr> {
 	void addMgr(BasePelletMgr*);
 	void setupSoundViewerAndBas();
 	void decode(long, u8&, int&);
-	void encode(u8, int);
+	int encode(u8, int);
 	BasePelletMgr* getMgrByID(u8);
 
 	static bool mDebug;
@@ -257,7 +257,7 @@ struct Pellet : public DynCreature, public SysShape::MotionListener, public Carr
 	virtual void do_update() { }                                // _1EC (weak)
 	virtual void onKeyEvent(const SysShape::KeyEvent& keyEvent) // _1F0 (weak, thunk at _1BC)
 	{
-		if ((keyEvent.m_type == 0x3E8U) && (_41C.m_flags & 2)) {
+		if ((keyEvent.m_type == 1000U) && (_41C.m_flags & 2)) {
 			_41C.startAnim(0, this);
 			if (_3D0 & 1) {
 				_438 = 30.0f * sys->m_secondsPerFrame;
@@ -330,7 +330,7 @@ struct Pellet : public DynCreature, public SysShape::MotionListener, public Carr
 	void stop_carrymotion();
 	void finish_carrymotion();
 	int getSpeicalSlot();
-	void getPelletGoal();
+	Onyon* getPelletGoal();
 	int getTotalPikmins();
 	int getTotalCarryPikmins();
 	int getPikmins(int);

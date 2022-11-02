@@ -24,7 +24,7 @@
 #include "Game/PlatInstance.h"
 #include "Game/MoviePlayer.h"
 #include "Game/AIConstants.h"
-#include "Game/BaseHIOParms.h"
+#include "Game/BaseHIO.h"
 #include "efx/TFruitsDown.h"
 #include "efx/TOtakara.h"
 #include "PSM/Otakara.h"
@@ -115,7 +115,7 @@ void Pellet::getShadowParam(ShadowParam& shadow)
 bool Pellet::needShadow()
 {
 	return (!pelletMgr->m_movieDrawDisabled
-	        || (pelletMgr->m_movieDrawDisabled && isMovieActor() && (m_lod.m_flags & AILOD::FLAG_NEED_SHADOW)));
+	        || (pelletMgr->m_movieDrawDisabled && isMovieActor() && (m_lod.m_flags & AILOD_FLAG_NEED_SHADOW)));
 }
 
 /*
@@ -184,7 +184,7 @@ Pellet* PelletView::becomePellet(PelletViewArg* viewArg)
 		newPellet->_324 = 1;
 		newPellet->setOrientation(*viewArg->m_matrix);
 		newPellet->m_scale = viewArg->_18;
-		newPellet->m_lod.m_flags |= (AILOD::VisibleOnViewport0 + AILOD::VisibleOnViewport1 + AILOD::FLAG_NEED_SHADOW);
+		newPellet->m_lod.m_flags |= (AILOD_FLAG_VISIBLE_VP0 + AILOD_FLAG_VISIBLE_VP1 + AILOD_FLAG_NEED_SHADOW);
 
 		viewStartPreCarryMotion();
 
@@ -724,7 +724,7 @@ float Pellet::getBuryDepth() { return m_config->m_params.m_depth.m_data; }
  * Size:	000124
  */
 // WIP: https://decomp.me/scratch/HVCzF
-void Pellet::getBuryRadius(float)
+f32 Pellet::getBuryRadius(float)
 {
 	/*
 	stwu     r1, -0x50(r1)
@@ -897,22 +897,7 @@ void Pellet::doDirectDraw(Graphics&) { }
  */
 Pellet::Pellet()
     : _3D0(0)
-    , _3E4(0)
-    , _3E5(0)
-    , _3E6(0)
-    , _3E7(0)
-    , _3E8(0)
-    , _3E9(0)
-    , _3EA(0)
-    , _3EB(0)
-    , _3EC(0)
-    , _3ED(0)
-    , _3EE(0)
-    , _3EF(0)
-    , _3F0(0)
-    , _3F1(0)
-    , _3F2(0)
-    , _3F3(0)
+    , m_slots()
 {
 	m_caster       = nullptr;
 	m_model        = nullptr;
@@ -1050,19 +1035,19 @@ PelletIndexInitArg::PelletIndexInitArg(int idx)
 PelletNumberInitArg::PelletNumberInitArg(int p1, int p2)
 {
 	switch (p1) {
-	case 1:
+	case PELLET_NUMBER_ONE:
 		m_textIdentifier = "number1";
 		_10              = 0;
 		break;
-	case 5:
+	case PELLET_NUMBER_FIVE:
 		m_textIdentifier = "number5";
 		_10              = 1;
 		break;
-	case 10:
+	case PELLET_NUMBER_TEN:
 		m_textIdentifier = "number10";
 		_10              = 2;
 		break;
-	case 20:
+	case PELLET_NUMBER_TWENTY:
 		m_textIdentifier = "number20";
 		_10              = 3;
 		break;
@@ -1195,7 +1180,7 @@ void Pellet::onInit(Game::CreatureInitArg* initArg)
 
 	clearCapture();
 
-	_418 = 0.0f;
+	m_carryPower = 0.0f;
 
 	P2ASSERTLINE(1632, initArg != nullptr);
 
@@ -1213,15 +1198,15 @@ void Pellet::onInit(Game::CreatureInitArg* initArg)
 		m_scale = Vector3f(0.01f);
 	}
 
-	_3F8 = 0;
-	_3FC = 0;
-	_400 = 0;
-	_404 = 0;
-	_408 = 0;
-	_40C = 0;
-	_410 = 0;
-	_414 = 0;
-	_43C = (u16) static_cast<PelletInitArg*>(initArg)->_10;
+	m_pikminCount[0] = 0;
+	m_pikminCount[1] = 0;
+	m_pikminCount[2] = 0;
+	m_pikminCount[3] = 0;
+	m_pikminCount[4] = 0;
+	m_pikminCount[5] = 0;
+	m_pikminCount[6] = 0;
+	_414             = 0;
+	_43C             = (u16) static_cast<PelletInitArg*>(initArg)->_10;
 
 	m_config = m_mgr->m_configList->getPelletConfig(static_cast<PelletInitArg*>(initArg)->m_textIdentifier);
 
@@ -1304,28 +1289,28 @@ void Pellet::onInit(Game::CreatureInitArg* initArg)
 		_39C = 1;
 	}
 
-	_3E4 = 0;
-	_3E5 = 0;
-	_3E6 = 0;
-	_3E7 = 0;
-	_3E8 = 0;
-	_3E9 = 0;
-	_3EA = 0;
-	_3EB = 0;
-	_3EC = 0;
-	_3ED = 0;
-	_3EE = 0;
-	_3EF = 0;
-	_3F0 = 0;
-	_3F1 = 0;
-	_3F2 = 0;
-	_3F3 = 0;
-	_3F6 = 0;
+	m_slots[0]  = 0;
+	m_slots[1]  = 0;
+	m_slots[2]  = 0;
+	m_slots[3]  = 0;
+	m_slots[4]  = 0;
+	m_slots[5]  = 0;
+	m_slots[6]  = 0;
+	m_slots[7]  = 0;
+	m_slots[8]  = 0;
+	m_slots[9]  = 0;
+	m_slots[10] = 0;
+	m_slots[11] = 0;
+	m_slots[12] = 0;
+	m_slots[13] = 0;
+	m_slots[14] = 0;
+	m_slots[15] = 0;
+	_3F6        = 0;
 
-	_3F4 = getPelletConfigMax();
+	m_slotCount = getPelletConfigMax();
 
-	if (_3F4 > 128) {
-		_3F4 = 128;
+	if (m_slotCount > 128) {
+		m_slotCount = 128;
 	}
 
 	if (m_config->m_params.m_min.m_data == 128) {
@@ -4019,7 +4004,7 @@ void Pellet::doEntry()
 {
 	if (!pelletMgr->m_movieDrawDisabled || isMovieActor()) {
 		if (m_pelletView == nullptr) {
-			if (m_lod.m_flags & AILOD::FLAG_NEED_SHADOW) {
+			if (m_lod.m_flags & AILOD_FLAG_NEED_SHADOW) {
 				m_model->show();
 				changeMaterial();
 			} else if (BaseHIOParms::sEntryOpt && !gameSystem->isMultiplayerMode()) {
@@ -4063,7 +4048,7 @@ void Pellet::doViewCalc() { Creature::doViewCalc(); }
 void Pellet::theEntry()
 {
 	if (m_model) {
-		if (m_lod.m_flags & AILOD::FLAG_NEED_SHADOW) {
+		if (m_lod.m_flags & AILOD_FLAG_NEED_SHADOW) {
 			m_model->show();
 		} else if (BaseHIOParms::sEntryOpt && !gameSystem->isMultiplayerMode()) {
 			return;
@@ -4210,7 +4195,7 @@ void Pellet::finish_carrymotion()
 // WEAK - in header
 // void Pellet::onKeyEvent(SysShape::KeyEvent const&)
 // {
-//     if ((keyEvent.m_type == 0x3E8U) && (_41C.m_flags & 2)) {
+//     if ((keyEvent.m_type == 1000U) && (_41C.m_flags & 2)) {
 //         _41C.startAnim(0, this);
 //         if (_3D0 & 1) {
 //             _438 = 30.0f * sys->m_secondsPerFrame;
@@ -4258,7 +4243,7 @@ int Pellet::getSpeicalSlot()
  * Address:	8016A4C4
  * Size:	000054
  */
-void Pellet::getFreeStickSlot(void)
+s16 Pellet::getFreeStickSlot(void)
 {
 	/*
 	lha      r0, 0x3f4(r3)
@@ -4296,7 +4281,7 @@ lbl_8016A510:
  * Address:	8016A518
  * Size:	000128
  */
-void Pellet::getNearFreeStickSlot(Vector3f&)
+s16 Pellet::getNearFreeStickSlot(Vector3f&)
 {
 	/*
 	stwu     r1, -0x40(r1)
@@ -4391,7 +4376,7 @@ lbl_8016A604:
  * Address:	8016A640
  * Size:	0000E8
  */
-void Pellet::getRandomFreeStickSlot()
+s16 Pellet::getRandomFreeStickSlot()
 {
 	/*
 	stwu     r1, -0x30(r1)
@@ -5357,7 +5342,7 @@ void BasePelletMgr::load()
 		char* archiveName        = config->m_params.m_archive.m_data;
 		if (strcmp("null", archiveName)) {
 			sprintf(buffer2, "%s%s", file, config->m_params.m_archive.m_data);
-			archive = JKRArchive::mount(buffer2, JKRArchive::EMM_Unk1, nullptr, JKRArchive::EMD_Unk1);
+			archive = JKRArchive::mount(buffer2, JKRArchive::EMM_Mem, nullptr, JKRArchive::EMD_Unk1);
 		}
 
 		J3DModelData* data = nullptr;
@@ -5838,7 +5823,7 @@ void* BasePelletMgr::generatorNewPelletParm() { return ::operator new(4); }
  * Address:	8016C960
  * Size:	000008
  */
-u32 BasePelletMgr::generatorGetShape(Game::GenPelletParm*) { return 0x0; }
+J3DModelData* BasePelletMgr::generatorGetShape(Game::GenPelletParm*) { return nullptr; }
 
 /*
  * --INFO--
@@ -5969,7 +5954,7 @@ void PelletIterator::setFirst()
  */
 PelletMgr::PelletMgr()
 {
-	m_name              = "?ｿｽy?ｿｽ?ｿｽ?ｿｽb?ｿｽg?ｿｽ}?ｿｽl?ｿｽ[?ｿｽW?ｿｽ?ｿｽ"; // pellet manager
+	m_name              = "ペレットマネージャ"; // pellet manager
 	m_movieDrawDisabled = false;
 }
 
@@ -6259,7 +6244,7 @@ bool PelletMgr::setUse(PelletInitArg* arg)
  * Address:	8016D888
  * Size:	00015C
  */
-void PelletMgr::OtakaraItemCode::isNull()
+bool PelletMgr::OtakaraItemCode::isNull()
 {
 	BasePelletMgr* mgr;
 	PelletConfig* config;
@@ -6311,7 +6296,7 @@ void PelletMgr::OtakaraItemCode::isNull()
  * Address:	8016D9E4
  * Size:	0000C8
  */
-void PelletMgr::makePelletInitArg(PelletInitArg& arg, char* identifier)
+bool PelletMgr::makePelletInitArg(PelletInitArg& arg, char* identifier)
 {
 	BasePelletMgr* mgr          = PelletOtakara::mgr;
 	PelletConfig* otakaraConfig = mgr->m_configList->getPelletConfig(identifier);
@@ -6600,7 +6585,7 @@ char* PelletMgr::getCaveName(int caveID)
  * Address:	8016EE5C
  * Size:	000270
  */
-void PelletMgr::getCaveID(char*)
+u8 PelletMgr::getCaveID(char*)
 {
 	/*
 	stwu     r1, -0x30(r1)
@@ -6807,7 +6792,7 @@ lbl_8016F0B8:
  * Address:	8016F0CC
  * Size:	00021C
  */
-void PelletMgr::getMgrByID(unsigned char)
+Game::BasePelletMgr* PelletMgr::getMgrByID(unsigned char)
 {
 	/*
 	stwu     r1, -0x20(r1)
@@ -7633,7 +7618,7 @@ namespace Game {
  * Address:	8016FAE8
  * Size:	000084
  */
-void WPExcludeSpot::satisfy(Game::WayPoint*)
+bool WPExcludeSpot::satisfy(Game::WayPoint*)
 {
 	/*
 	stwu     r1, -0x10(r1)

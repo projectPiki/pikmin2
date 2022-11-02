@@ -27,6 +27,7 @@
 #include "Game/GameSystem.h"
 #include "Game/Interaction.h"
 #include "Game/Entities/ItemHoney.h"
+#include "Game/Entities/PelletNumber.h"
 #include "Game/MapMgr.h"
 #include "Game/MoviePlayer.h"
 #include "Game/pelletMgr.h"
@@ -1147,7 +1148,7 @@ void EnemyBase::onKill(CreatureKillArg* inputArg)
 
 	endStick();
 
-	if (((killArg == nullptr) || !(killArg->_04 & 0x10000000)) && (isEvent(0, EB_9))) {
+	if (((!killArg) || !(killArg->_04 & 0x10000000)) && (isEvent(0, EB_9))) {
 		Vector3f effectPos;
 		getCommonEffectPos(effectPos); // sp80, 4C
 		f32 scaleMod                      = m_scaleModifier;
@@ -1160,7 +1161,7 @@ void EnemyBase::onKill(CreatureKillArg* inputArg)
 		PSStartEnemyGhostSE(this, 0.0f);
 	}
 
-	if ((killArg == nullptr) || !(killArg->_04 & 0x40000000)) {
+	if ((!killArg) || !(killArg->_04 & 0x40000000)) {
 		if (isEvent(0, EB_Bittered)) {
 			m_enemyStoneObj->dead();
 			deathProcedure();
@@ -1238,8 +1239,8 @@ void EnemyBase::onKill(CreatureKillArg* inputArg)
 			}
 			becomeCarcass(true);
 
-		} else if ((0.0f == _2AC) && (isEvent(0, EB_LeaveCarcass)) && ((killArg == nullptr) || !(killArg->_04 & 0x20000000))) {
-			if (m_pellet == nullptr) {
+		} else if ((0.0f == _2AC) && (isEvent(0, EB_LeaveCarcass)) && ((!killArg) || !(killArg->_04 & 0x20000000))) {
+			if (!m_pellet) {
 				PelletViewArg pvArg;
 				setCarcassArg(pvArg);
 				if (becomePellet(&pvArg) == 0) {
@@ -2033,7 +2034,7 @@ void EnemyBase::setZukanVisible(bool arg)
 			EnemyInfo* enemyInfo = EnemyInfoFunc::getEnemyInfo(getEnemyTypeID(), 0xFFFF);
 			if (!(enemyInfo->m_flags & 0x200)) {
 				TekiStat::Info* tekiInfo = playData->m_tekiStatMgr.getTekiInfo(getEnemyTypeID());
-				P2ASSERTLINE(1859, tekiInfo != nullptr);
+				P2ASSERTLINE(1859, tekiInfo);
 				if (arg) {
 					tekiInfo->incKilled();
 				} else {
@@ -2644,23 +2645,23 @@ void EnemyBase::collisionMapAndPlat(f32 accelRate)
 			m_triangleNormal = 0.0f;
 		}
 
-		if (m_curTriangle == nullptr && moveInfo.m_curTriangle) {
+		if (!m_curTriangle && moveInfo.m_curTriangle) {
 			bounceProcedure(moveInfo.m_curTriangle);
 		}
 		m_curTriangle = moveInfo.m_curTriangle;
 
 		m_collisionPosition = moveInfo.m_position;
 
-		if (m_curWallTri == nullptr && moveInfo.m_curWallTri) {
+		if (!m_curWallTri && moveInfo.m_curWallTri) {
 			wallCallback(moveInfo);
 		}
 		m_curWallTri = moveInfo.m_curWallTri;
 
-		if (platMgr != nullptr && isEvent(0, EB_13)) {
+		if (platMgr && isEvent(0, EB_13)) {
 			moveInfo.m_velocity = &m_impVelocity;
 			platMgr->traceMove(moveInfo, accelRate);
 
-			if (m_curTriangle == nullptr) {
+			if (!m_curTriangle) {
 				if (moveInfo.m_curTriangle) {
 					bounceProcedure(moveInfo.m_curTriangle);
 				}
@@ -2669,7 +2670,7 @@ void EnemyBase::collisionMapAndPlat(f32 accelRate)
 				m_collisionPosition = moveInfo.m_position;
 			}
 
-			if (m_curWallTri == nullptr && moveInfo.m_curWallTri) {
+			if (!m_curWallTri && moveInfo.m_curWallTri) {
 				wallCallback(moveInfo);
 			}
 			m_curWallTri = moveInfo.m_curWallTri;
@@ -3264,7 +3265,7 @@ void EnemyBase::setPSEnemyBaseAnime()
 			SysShape::KeyEvent* event1 = info->getAnimKeyByType(0);
 			SysShape::KeyEvent* event2 = info->getAnimKeyByType(1);
 
-			if (event1 != nullptr && event2) {
+			if (event1 && event2) {
 				f32 val1 = (f32)event1->m_frame;
 				f32 val2 = (f32)event2->m_frame;
 				m_soundObj->setAnime((JAIAnimeSoundData*)file, 1, val1, val2);
@@ -3300,7 +3301,7 @@ void EnemyBase::setPSEnemyBaseAnime()
 void EnemyBase::startBlend(int start, int end, SysShape::BlendFunction* blendFunc, f32 framerate, SysShape::MotionListener* inputListener)
 {
 	SysShape::MotionListener* listener = inputListener;
-	if (listener == nullptr) {
+	if (!listener) {
 		listener = static_cast<SysShape::MotionListener*>(this);
 	}
 
@@ -3390,7 +3391,7 @@ void EnemyBase::startMotion(int p1, SysShape::MotionListener* inputListener)
 			SysShape::KeyEvent* event1 = info->getAnimKeyByType(0);
 			SysShape::KeyEvent* event2 = info->getAnimKeyByType(1);
 
-			if (event1 != nullptr && event2) {
+			if (event1 && event2) {
 				f32 val1 = (f32)event1->m_frame;
 				f32 val2 = (f32)event2->m_frame;
 				m_soundObj->setAnime((JAIAnimeSoundData*)file, 1, val1, val2);
@@ -3936,7 +3937,7 @@ void EnemyBase::throwupItem()
 		     || id == EnemyTypeID::EnemyID_UmiMushiBlind || id == EnemyTypeID::EnemyID_BlackMan || id == EnemyTypeID::EnemyID_DangoMushi
 		     || id == EnemyTypeID::EnemyID_BigFoot || id == EnemyTypeID::EnemyID_SnakeWhole || id == EnemyTypeID::EnemyID_UmiMushi
 		     || id == EnemyTypeID::EnemyID_BigTreasure)
-		    && gameSystem != nullptr && gameSystem->m_mode == GSM_STORY_MODE && gameSystem->m_inCave && Cave::randMapMgr != nullptr
+		    && gameSystem && gameSystem->m_mode == GSM_STORY_MODE && gameSystem->m_inCave && Cave::randMapMgr
 		    && Cave::randMapMgr->isLastFloor()) {
 			pelletInitArg._1D = true;
 		}
@@ -3975,16 +3976,16 @@ void EnemyBase::throwupItem()
 
 		f32 velocity = 0.0f;
 		switch (m_pelletInfo.m_size) {
-		case 1:
+		case PELLET_NUMBER_ONE:
 			velocity = 150.0f;
 			break;
-		case 5:
+		case PELLET_NUMBER_FIVE:
 			velocity = 200.0f;
 			break;
-		case 10:
+		case PELLET_NUMBER_TEN:
 			velocity = 250.0f;
 			break;
-		case 20:
+		case PELLET_NUMBER_TWENTY:
 			velocity = 250.0f;
 			break;
 		}
@@ -4416,7 +4417,7 @@ void EnemyBase::updateWaterBox()
 			if (mapMgr) {
 				m_waterBox = mapMgr->findWater(waterSphere);
 			}
-			if (m_waterBox == nullptr) {
+			if (!m_waterBox) {
 				m_waterBox = nullptr;
 				outWaterCallback();
 				fadeEfxHamon();
@@ -4600,7 +4601,7 @@ int EnemyBase::getStateID()
  */
 bool EnemyBase::needShadow()
 {
-	if (moviePlayer != nullptr && moviePlayer->m_flags & 1) {
+	if (moviePlayer && moviePlayer->m_flags & 1) {
 		bool needShadow = false;
 		if (isMovieActor() || m_mgr->isAlwaysMovieActor()) {
 			needShadow = true;
@@ -5007,25 +5008,3 @@ void EnemyBase::resetDroppingMassZero()
 	m_mass = m_friction;
 }
 } // namespace Game
-
-/*
- * --INFO--
- * Address:	80108218
- * Size:	000028
- */
-void __sinit_enemyBase_cpp(void)
-{
-	/*
-	.loc_0x0:
-	  lis       r4, 0x8051
-	  li        r0, -0x1
-	  lfs       f0, 0x48B0(r4)
-	  lis       r3, 0x804B
-	  stw       r0, -0x6E60(r13)
-	  stfsu     f0, -0x5EB0(r3)
-	  stfs      f0, -0x6E5C(r13)
-	  stfs      f0, 0x4(r3)
-	  stfs      f0, 0x8(r3)
-	  blr
-	*/
-}
