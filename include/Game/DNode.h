@@ -8,8 +8,8 @@ namespace Game {
 struct DNode : public JKRDisposer {
 	DNode();
 
-	virtual ~DNode();            // _00
-	virtual int getChildCount(); // _04
+	virtual ~DNode();            // _08 (weak)
+	virtual int getChildCount(); // _0C
 
 	void add(DNode*);
 	void del();
@@ -20,6 +20,8 @@ struct DNode : public JKRDisposer {
 	unknown concat(DNode*);
 	DNode* getChildAt(int);
 
+	// _00     = VTBL
+	// _00-_18 = JKRDisposer
 	DNode* m_next;      // _18
 	DNode* m_prev;      // _1C
 	DNode* m_parent;    // _20

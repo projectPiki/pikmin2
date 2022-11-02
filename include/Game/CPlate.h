@@ -3,12 +3,18 @@
 
 #include "Container.h"
 #include "Game/Creature.h"
+#include "SysShape/KeyEvent.h"
 #include "Parameters.h"
 #include "BaseParm.h"
 #include "types.h"
 
 namespace Game {
-struct SlotChangeListener;
+struct SlotChangeListener {
+	virtual void onKeyEvent(const SysShape::KeyEvent&) = 0; // _08, probably?
+
+	// _00 = VTBL
+	u32 _04; // _04, unknown
+};
 
 // @size{0x114}
 struct CPlate : public Container<Creature> {
@@ -26,8 +32,8 @@ struct CPlate : public Container<Creature> {
 	struct Parms : public Parameters {
 		inline Parms()
 		    : Parameters(nullptr, "Navi::Parms")
-		    , p000(this, 'p000', "先頭オフセット", 17.5f, 0.0f, 100.0f)
-		    , p001(this, 'p001', "長さリミット", 130.0f, 10.0f, 1000.0f)
+		    , p000(this, 'p000', "先�?�オフセ�?�?", 17.5f, 0.0f, 100.0f)
+		    , p001(this, 'p001', "長さリミッ�?", 130.0f, 10.0f, 1000.0f)
 		    , p002(this, 'p002', "ポジションの大きさ(最大)", 6.0f, 1.0f, 50.0f)
 		{
 		}
@@ -38,11 +44,11 @@ struct CPlate : public Container<Creature> {
 
 	CPlate(int);
 
-	virtual ~CPlate();            // _00
-	virtual void* getNext(void*); // _0C
-	virtual void* getStart();     // _10
-	virtual void* getEnd();       // _14
-	virtual Creature* get(void*); // _18
+	virtual ~CPlate();            // _08 (weak)
+	virtual void* getNext(void*); // _14
+	virtual void* getStart();     // _18
+	virtual void* getEnd();       // _1C
+	virtual Creature* get(void*); // _20
 
 	void changeFlower(Creature*);
 	void directDraw(Graphics&);

@@ -9,7 +9,7 @@ namespace Game {
 struct SeaMgr : public NodeObjectMgr<WaterBox> {
 	SeaMgr();
 
-	virtual ~SeaMgr(); // _00 of vtable 1
+	virtual ~SeaMgr(); // _08 (weak)
 
 	void addSeaMgr(SeaMgr*, Matrixf&);
 	void addWaterBox(WaterBox*);

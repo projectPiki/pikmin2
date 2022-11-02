@@ -14,8 +14,10 @@ namespace Game {
 struct CaveOtakara : public CNode {
 	CaveOtakara();
 
-	virtual ~CaveOtakara(); // _00
+	virtual ~CaveOtakara(); // _08 (weak)
 
+	// _00     = VTBL
+	// _00-_18 = CNode
 	ID32 m_id;         // _18
 	u8 m_otakaraCount; // _24
 	char* m_filename;  // _28
@@ -41,7 +43,8 @@ struct CaveOtakaraInfo {
  */
 struct LimitGen : public CNode {
 	LimitGen() { }
-	virtual ~LimitGen(); // _00
+
+	virtual ~LimitGen(); // _08 (weak)
 
 	u32 _18;        // _18
 	u32 _1C;        // _1C
@@ -64,7 +67,7 @@ struct LimitGenInfo {
 struct CourseInfo : public CNode {
 	CourseInfo();
 
-	virtual ~CourseInfo(); // _00
+	virtual ~CourseInfo(); // _08 (weak)
 
 	void dump();
 	void read(Stream&);

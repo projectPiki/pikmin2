@@ -59,14 +59,17 @@ struct RumbleNode : public CNode {
 	    , _2C(0)
 	{
 	}
-	virtual ~RumbleNode(); // _00
 
-	int _18;   // _18
-	float _1C; // _1C
-	float _20; // _20
-	float _24; // _24
-	float _28; // _28
-	u32 _2C;   // _2C
+	virtual ~RumbleNode(); // _08 (weak)
+
+	// _00     = VTBL
+	// _00-_18 = CNode
+	int _18; // _18
+	f32 _1C; // _1C
+	f32 _20; // _20
+	f32 _24; // _24
+	f32 _28; // _28
+	u32 _2C; // _2C
 };
 
 struct ContRumble {
@@ -75,10 +78,10 @@ struct ContRumble {
 	void init();
 	void update();
 	void setController(bool);
-	void startRumble(int, float);
+	void startRumble(int, f32);
 	void rumbleStop();
 	void rumbleStop(int);
-	void getRumbleParameter(int, float&, float&);
+	void getRumbleParameter(int, f32&, f32&);
 
 	bool _00;                 // _00
 	int _04;                  // _04
@@ -89,18 +92,14 @@ struct ContRumble {
 };
 
 struct RumbleMgr : public CNode {
-	/**
-	 * @fabricated
-	 * @size{0x38}
-	 */
 	struct Parms : public Parameters {
-		Parm<float> m_maxDistance; // _0C
-		u32 m_end;                 // _34
+		Parm<f32> m_maxDistance; // _0C
+		u32 m_end;               // _34
 	};
 
 	RumbleMgr();
 
-	virtual ~RumbleMgr(); // _00
+	virtual ~RumbleMgr(); // _08 (weak)
 
 	void loadResource();
 	void init();

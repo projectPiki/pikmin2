@@ -21,16 +21,16 @@ struct THPPlayerLoadResourceArg {
 
 struct THPPlayer : public JKRDisposer, public CNode {
 	enum EMovieIndex {};
+
 	THPPlayer();
 
 	// vtable 1 (JKRDisposer)
-	virtual ~THPPlayer(); // _00 (thunked at vtable 2 _00)
-
+	virtual ~THPPlayer(); // _08 (thunked at vtable 2 _14)
 	// vtable 2 (CNode + self)
-	void update();                                                          // _08
-	virtual void draw(Graphics&);                                           // _0C
-	virtual void draw(Graphics&, long, long, unsigned long, unsigned long); // _10
-	virtual void draw(Graphics&, long, long, float);                        // _14
+	void update();                                      // _1C
+	virtual void draw(Graphics&);                       // _20
+	virtual void draw(Graphics&, long, long, u32, u32); // _24
+	virtual void draw(Graphics&, long, long, f32);      // _28
 
 	void load(EMovieIndex);
 	void load();

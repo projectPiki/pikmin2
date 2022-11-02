@@ -18,28 +18,23 @@ enum GameSystemMode { GSM_STORY_MODE = 0, GSM_VERSUS_MODE, GSM_ONE_PLAYER_CHALLE
 struct GameSystem : public NodeObjectMgr<GenericObjectMgr> {
 	GameSystem(Game::BaseGameSection*);
 	// vtable 1
-	virtual ~GameSystem(); // _00
+	virtual ~GameSystem(); // _08
 	// vtable 2
-	virtual void doAnimation();                 // _00
-	virtual void doEntry();                     // _04
-	virtual void doSetView(int viewportNumber); // _08
-	virtual void doViewCalc();                  // _0C
-	virtual void doSimulation(float);           // _10
-	virtual void doDirectDraw(Graphics& gfx);   // _14
-	virtual void doSimpleDraw(Viewport*);       // _18
-	virtual void loadResources();               // _1C
-	virtual void resetMgr();                    // _20
-	virtual bool pausable();                    // _24
-	virtual bool frozenable();                  // _28
-	virtual u32 getMatrixLoadType();            // _2C
-	virtual void startFrame();                  // _78
-	virtual void endFrame();                    // _7C
-	virtual void directDraw(Graphics&);         // _84
-	virtual void startFadeout(float);           // _88
-	virtual void startFadein(float);            // _8C
-	virtual void startFadeoutin(float);         // _90
-	virtual void startFadeblack();              // _94
-	virtual void startFadewhite();              // _98
+	virtual void doAnimation();                 // _64 (weak)
+	virtual void doEntry();                     // _68 (weak)
+	virtual void doSetView(int viewportNumber); // _6C (weak)
+	virtual void doViewCalc();                  // _70 (weak)
+	virtual void doSimulation(float);           // _74 (weak)
+	virtual void doDirectDraw(Graphics& gfx);   // _78 (weak)
+	virtual void startFrame();                  // _80
+	virtual void endFrame();                    // _84
+	virtual void doSimpleDraw(Viewport*);       // _88 (weak)
+	virtual void directDraw(Graphics&);         // _8C
+	virtual void startFadeout(float);           // _90
+	virtual void startFadein(float);            // _94
+	virtual void startFadeoutin(float);         // _98
+	virtual void startFadeblack();              // _9C
+	virtual void startFadewhite();              // _A0
 
 	void addObjectMgr_reuse(TObjectNode<GenericObjectMgr>*);
 	void addObjectMgr(GenericObjectMgr*);
@@ -76,6 +71,15 @@ struct GameSystem : public NodeObjectMgr<GenericObjectMgr> {
 	u32 m_frameTimer;           // _50
 	JUTTexture* m_xfbTexture;   // _54
 	BaseGameSection* m_section; // _58
+};
+
+struct OptimiseController {
+	virtual ~OptimiseController(); // _08
+
+	void globalInstance();
+	void deleteInstance();
+
+	static OptimiseController* mInstance;
 };
 
 extern GameSystem* gameSystem;

@@ -1,6 +1,7 @@
 #ifndef _GAME_SHADOWMGR_H
 #define _GAME_SHADOWMGR_H
 
+#include "Game/JointFuncs.h"
 #include "BaseParm.h"
 #include "CNode.h"
 #include "Color4.h"
@@ -36,7 +37,7 @@ struct ShadowParms : public Parameters {
 
 // Size: 0x24
 struct ShadowNode : public CNode {
-	virtual ~ShadowNode(); // _00
+	virtual ~ShadowNode(); // _08 (weak)
 
 	Creature* m_creature; // _18
 	u32 _1C;              // _1C
@@ -46,12 +47,13 @@ struct ShadowNode : public CNode {
 struct CylinderBase {
 	CylinderBase();
 
-	virtual void setFilterTextureID(int);     // _00
-	virtual void drawInit();                  // _04
-	virtual void drawCylinder(Matrixf&, int); // _08
-	virtual void drawFinish();                // _0C
+	virtual void setFilterTextureID(int);     // _08
+	virtual void drawInit();                  // _0C
+	virtual void drawCylinder(Matrixf&, int); // _10
+	virtual void drawFinish();                // _14
 
 	void setColor(Color4*);
+	void setShadowRect(Rectf&);
 	void setCameraParms(Camera*, int);
 	void makeSRT(Matrixf&, ShadowParam&);
 	void getCylinderType(ShadowParam&, int);
@@ -76,10 +78,16 @@ struct CylinderBase {
 };
 
 struct ShadowCylinder2 : public CylinderBase {
-	virtual void setFilterTextureID(int);     // _00
-	virtual void drawInit();                  // _04
-	virtual void drawCylinder(Matrixf&, int); // _08
-	virtual void drawFinish();                // _0C
+	ShadowCylinder2(ShadowParms*, Color4*);
+
+	virtual void setFilterTextureID(int);     // _08
+	virtual void drawInit();                  // _0C
+	virtual void drawCylinder(Matrixf&, int); // _10
+	virtual void drawFinish();                // _14
+
+	void copyShadowTexture();
+	void setupTextureFilterGX();
+	void drawTextureFilter();
 
 	u8 _54[8]; // _54
 	void* _5C; // _5C
@@ -87,26 +95,67 @@ struct ShadowCylinder2 : public CylinderBase {
 };
 
 struct ShadowCylinder3 : public CylinderBase {
-	virtual void setFilterTextureID(int);     // _00
-	virtual void drawInit();                  // _04
-	virtual void drawCylinder(Matrixf&, int); // _08
-	virtual void drawFinish();                // _0C
+	ShadowCylinder3(ShadowParms*, Color4*);
+
+	virtual void setFilterTextureID(int);     // _08
+	virtual void drawInit();                  // _0C
+	virtual void drawCylinder(Matrixf&, int); // _10
+	virtual void drawFinish();                // _14
+
+	void drawScreenFilter();
 
 	u8 _54[4]; // _54
 };
 
+struct TubeShadowPosNode : public CNode {
+	virtual ~TubeShadowPosNode(); // _08 (weak)
+
+	void makeShadowSRT(JointShadowParm&, Vector3f&, Vector3f&);
+
+	// _00     = VTBL
+	// _00-_18 = CNode
+};
+
+struct TubeShadowSetNode : public CNode {
+	virtual ~TubeShadowSetNode(); // _08 (weak)
+
+	void makeShadowSRT(JointShadowParm&, Vector3f&, Vector3f&);
+
+	// _00     = VTBL
+	// _00-_18 = CNode
+};
+
+struct TubeShadowTransNode : public CNode {
+	virtual ~TubeShadowTransNode(); // _08 (weak)
+
+	void makeShadowSRT(JointShadowParm&, Vector3f&, Vector3f&);
+
+	// _00     = VTBL
+	// _00-_18 = CNode
+};
+
+struct SphereShadowNode : public CNode {
+	virtual ~SphereShadowNode(); // _08 (weak)
+
+	void makeShadowSRT(JointShadowParm&, Vector3f&);
+
+	// _00     = VTBL
+	// _00-_18 = CNode
+};
+
 // Size: 0x50
 struct ShadowMgr : public CNode {
-	virtual ~ShadowMgr();               // _00
-	virtual int getChildCount();        // _04
-	virtual int getSize();              // _08
-	virtual int getMax();               // _0C
-	virtual Creature* getCreature(int); // _10
-	virtual int getFirst();             // _14
-	virtual int getNext(int);           // _18
-	virtual bool isDone(int);           // _1C
-	virtual void write(Stream&);        // _20
-	virtual void read(Stream&);         // _24
+	ShadowMgr(int);
+
+	virtual ~ShadowMgr();               // _08 (weak)
+	virtual int getSize();              // _10
+	virtual int getMax();               // _14
+	virtual Creature* getCreature(int); // _18
+	virtual int getFirst();             // _1C
+	virtual int getNext(int);           // _20
+	virtual bool isDone(int);           // _24
+	virtual void write(Stream&);        // _28
+	virtual void read(Stream&);         // _2C
 
 	void init();
 	void update();

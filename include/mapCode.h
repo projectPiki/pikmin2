@@ -46,9 +46,9 @@ struct Code {
 };
 
 struct Mgr {
-	struct CodeArray : ArrayContainer<MapCode::Code> {
+	struct CodeArray : public ArrayContainer<Code> {
 		inline CodeArray()
-		    : ArrayContainer<MapCode::Code>()
+		    : ArrayContainer<Code>()
 		{
 		}
 

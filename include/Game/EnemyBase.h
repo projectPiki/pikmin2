@@ -102,7 +102,7 @@ struct EnemyKillArg : public CreatureKillArg {
 	 * @reifiedAddress{80107C38}
 	 * @reifiedFile{plugProjectYamashitaU/enemyBase.cpp}
 	 */
-	virtual const char* getName() // _00
+	virtual const char* getName() // _08 (weak)
 	{
 		return "EnemyKillArg";
 	}

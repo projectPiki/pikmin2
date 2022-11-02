@@ -25,18 +25,18 @@ struct Plant;
 struct Farm : public CNode {
 	Farm();
 
-	virtual ~Farm(); // _00
+	virtual ~Farm(); // _08 (weak)
 
-	void loadResource(unsigned long, void*);
+	void loadResource(u32, void*);
 	void update();
 	void doAnimation();
 	void doEntry();
-	void doSetView(unsigned long);
+	void doSetView(u32);
 	void doViewCalc();
-	Obstacle* addObstacle(Game::Creature*, float, float);
-	Obstacle* createNewObstacle(Game::Creature*, float, float);
-	Plant* addPlant(Game::Creature*);
-	Plant* createNewPlant(Game::Creature*);
+	Obstacle* addObstacle(Creature*, f32, f32);
+	Obstacle* createNewObstacle(Creature*, f32, f32);
+	Plant* addPlant(Creature*);
+	Plant* createNewPlant(Creature*);
 	void updateObjectRelation(bool);
 	void doDebugDraw(Graphics&);
 	void initAllObjectNodes();
@@ -53,7 +53,7 @@ struct Farm : public CNode {
  * @size{0x24}
  */
 struct Obstacle : public CNode {
-	Obstacle(Farm* farm, FieldVtxColorMgr* vtxColorMgr, Game::Creature* creature, float p2, float p3) // unused/inlined
+	Obstacle(Farm* farm, FieldVtxColorMgr* vtxColorMgr, Game::Creature* creature, f32 p2, f32 p3) // unused/inlined
 	    : CNode("")
 	    , m_farm(farm)
 	{
@@ -62,9 +62,9 @@ struct Obstacle : public CNode {
 		m_vtxColorControl = vtxColorMgr->createNewControl(position, p2, p3);
 	}
 
-	virtual ~Obstacle(); // _00
+	virtual ~Obstacle(); // _08 (weak)
 
-	void setPower(float);
+	void setPower(f32);
 
 	// Unused/inlined:
 	void doDebugDraw(Graphics&);
@@ -85,7 +85,7 @@ struct Plant : public CNode {
 	{
 	}
 
-	virtual ~Plant(); // _00
+	virtual ~Plant(); // _08 (weak)
 
 	// Unused/inlined:
 	void sendInteraction();
@@ -96,26 +96,24 @@ struct Plant : public CNode {
 };
 
 struct FarmMgr : public GenericObjectMgr, public CNode {
-	FarmMgr(unsigned long);
+	FarmMgr(u32);
 
 	// vtable 1 (GenericObjectMgr)
-	virtual void doAnimation();                 // _00
-	virtual void doEntry();                     // _04
-	virtual void doSetView(int viewportNumber); // _08
-	virtual void doViewCalc();                  // _0C
-	virtual void doSimulation(float);           // _10
-	virtual void doDirectDraw(Graphics& gfx);   // _14
-
+	virtual void doAnimation();                 // _08
+	virtual void doEntry();                     // _0C
+	virtual void doSetView(int viewportNumber); // _10
+	virtual void doViewCalc();                  // _14
+	virtual void doSimulation(f32);             // _18
+	virtual void doDirectDraw(Graphics& gfx);   // _1C
 	// vtable 2 (CNode+self)
-	virtual void doDebugDraw(Graphics&); // _08
-	virtual ~FarmMgr();                  // _0C (thunked at _00)
-	virtual void _48() = 0;              // _10
+	virtual void doDebugDraw(Graphics&); // _48
+	virtual ~FarmMgr();                  // _4C (thunked at _40)
 
 	void setupSound();
 	void addFarmBmd(void*);
 	Farm* createNewFarm(void*);
-	Obstacle* addObstacle(Game::Creature*, float, float);
-	Plant* addPlant(Game::Creature*);
+	Obstacle* addObstacle(Creature*, f32, f32);
+	Plant* addPlant(Creature*);
 	void initAllFarmObjectNodes();
 
 	// Unused/inlined:

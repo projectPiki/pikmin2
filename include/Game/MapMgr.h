@@ -81,7 +81,6 @@ struct MapMgr : virtual public GenericObjectMgr {
 };
 
 struct ShapeMapMgr : public MapMgr {
-
 	struct LoadArg {
 		LoadArg(char* modelPath, char* collisionPath, char* routePath)
 		{
@@ -104,17 +103,20 @@ struct ShapeMapMgr : public MapMgr {
 	};
 
 	ShapeMapMgr() { }
-	~ShapeMapMgr();
-	virtual void doAnimation();
-	virtual void doEntry();
-	virtual void doSetView(int viewportNumber);
-	virtual void doViewCalc();
-	virtual void getBoundBox2d(BoundBox2d&);
-	virtual void getBoundBox(BoundBox&);
-	virtual void traceMove(MoveInfo&, float);
-	virtual float getMinY(Vector3f&);
-	virtual void getCurrTri(CurrTriInfo&);
-	virtual void drawCollision(Graphics&, Sys::Sphere&);
+
+	virtual void getBoundBox2d(BoundBox2d&);                  // _18 (weak)
+	virtual void getBoundBox(BoundBox&);                      // _1C (weak)
+	virtual void findRayIntersection(Sys::RayIntersectInfo&); // _20
+	virtual void traceMove(MoveInfo&, f32);                   // _24
+	virtual f32 getMinY(Vector3f&);                           // _28
+	virtual void getCurrTri(CurrTriInfo&);                    // _2C
+	virtual void createTriangles(Sys::CreateTriangleArg&);    // _30
+	virtual void do_update();                                 // _40
+	virtual void drawCollision(Graphics&, Sys::Sphere&);      // _44
+	virtual void doAnimation();                               // _50 (weak)
+	virtual void doSetView(int);                              // _54 (weak)
+	virtual void doViewCalc();                                // _58 (weak)
+	virtual void doEntry();                                   // _5C (weak)
 
 	void load(LoadArg&);
 

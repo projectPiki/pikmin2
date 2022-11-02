@@ -9,7 +9,7 @@ namespace Game {
 struct CourseCache : public CNode {
 	CourseCache(int);
 
-	virtual ~CourseCache(); // _00
+	virtual ~CourseCache(); // _08 (weak)
 
 	void beginSave(int);
 	int getColorMePikmins(u8*, int);

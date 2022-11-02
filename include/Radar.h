@@ -56,9 +56,10 @@ struct Radar {
 
 	static Mgr* mgr;
 
-	struct Point {
+	struct Point : public CNode {
 		Point();
-		~Point();
+
+		virtual ~Point(); // _08 (weak)
 
 		void getPosition();
 	};

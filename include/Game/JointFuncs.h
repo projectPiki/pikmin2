@@ -8,9 +8,11 @@
 struct WaterBox;
 
 namespace Game {
+struct Creature;
+
 struct JointGroundCallBack {
-	virtual void invokeOnGround(int, WaterBox*);  // _08
-	virtual void invokeOffGround(int, WaterBox*); // _0C
+	virtual void invokeOnGround(int, WaterBox*)  = 0; // _08
+	virtual void invokeOffGround(int, WaterBox*) = 0; // _0C
 };
 
 struct JointShadowParm {
@@ -39,12 +41,12 @@ struct JointShadowNode : public CNode {
 };
 
 struct JointShadowRootNode : public CNode {
+	JointShadowRootNode(Creature*);
+
 	virtual ~JointShadowRootNode() { } // _08 (weak)
 
-	JointShadowRootNode();
-
-	struct Creature* m_creature; // _18
-	u8 _1C;                      // _1C
+	Creature* m_creature; // _18
+	u8 _1C;               // _1C
 };
 } // namespace Game
 

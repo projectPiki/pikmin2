@@ -24,9 +24,10 @@ struct FieldVtxColorControl {
 
 struct FieldVtxColorMgr : public J3DVtxColorCalc, public CNode {
 	FieldVtxColorMgr(J3DModelData*);
+
 	// vtable 1 (J3DVtxColorCalc)
-	virtual void calc(J3DVertexBuffer*); // _00
-	virtual ~FieldVtxColorMgr();         // _04
+	virtual void calc(J3DVertexBuffer*); // _08
+	virtual ~FieldVtxColorMgr();         // _0C (weak)
 
 	void createFieldVtxColorInfo();
 	void initVtxColor();

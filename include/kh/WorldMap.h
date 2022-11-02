@@ -71,15 +71,15 @@ struct UpdateArg {
 };
 
 struct Base : public JKRDisposer {
-	~Base();                         // _00
-	virtual void loadResource();     // _04
-	virtual void init(InitArg&);     // _08
-	virtual void update(UpdateArg&); // _0C
-	virtual void draw(Graphics&);    // _10
-	virtual void draw1st(Graphics&); // _14
-	virtual void draw2nd(Graphics&); // _18
-	virtual void draw3rd(Graphics&); // _1C
-	virtual void draw4th(Graphics&); // _20
+	virtual ~Base();                 // _08 (weak)
+	virtual void loadResource();     // _0C (weak)
+	virtual void init(InitArg&);     // _10 (weak)
+	virtual void update(UpdateArg&); // _14 (weak)
+	virtual void draw(Graphics&);    // _18 (weak)
+	virtual void draw1st(Graphics&); // _1C (weak)
+	virtual void draw2nd(Graphics&); // _20 (weak)
+	virtual void draw3rd(Graphics&); // _24 (weak)
+	virtual void draw4th(Graphics&); // _28 (weak)
 };
 } // namespace WorldMap
 } // namespace Game

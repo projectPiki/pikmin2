@@ -26,18 +26,18 @@ struct TimeMgrParms {
 		{
 		} // WEAK - from timeMgr.cpp
 
-		Parm<float> m_dayStartTime;        // _00C
-		Parm<float> m_dayEndTime;          // _034
-		Parm<float> m_dayLengthSeconds;    // _05C
-		Parm<float> m_morningStartTime;    // _084
-		Parm<float> m_midMorningTime;      // _0AC
-		Parm<float> m_morningEndTime;      // _0D4
-		Parm<float> m_eveningStartTime;    // _0FC
-		Parm<float> m_midEveningStartTime; // _124
-		Parm<float> m_midEveningEndTime;   // _14C
-		Parm<float> m_eveningEndTime;      // _174
-		Parm<float> m_sundownAlertTime;    // _19C
-		Parm<float> m_countdownTime;       // _1C4
+		Parm<f32> m_dayStartTime;        // _00C
+		Parm<f32> m_dayEndTime;          // _034
+		Parm<f32> m_dayLengthSeconds;    // _05C
+		Parm<f32> m_morningStartTime;    // _084
+		Parm<f32> m_midMorningTime;      // _0AC
+		Parm<f32> m_morningEndTime;      // _0D4
+		Parm<f32> m_eveningStartTime;    // _0FC
+		Parm<f32> m_midEveningStartTime; // _124
+		Parm<f32> m_midEveningEndTime;   // _14C
+		Parm<f32> m_eveningEndTime;      // _174
+		Parm<f32> m_sundownAlertTime;    // _19C
+		Parm<f32> m_countdownTime;       // _1C4
 	};
 
 	TimeMgrParms() { } // WEAK - from timeMgr.cpp
@@ -51,39 +51,38 @@ struct TimeMgrParms {
 struct TimeMgr : public CNode {
 	TimeMgr();
 
-	virtual ~TimeMgr() { } // _08 - WEAK - from timeMgr.cpp
+	virtual ~TimeMgr() { } // _08 (weak)
 
-	float getRealDayTime();
-	float getSunGaugeRatio();
+	f32 getRealDayTime();
+	f32 getSunGaugeRatio();
 	void init();
 	bool isDayOver();
 	bool isDayTime();
 	void loadSettingFile(char*);
 	void setEndTime();
 	void setStartTime();
-	void setTime(float);
+	void setTime(f32);
 	void updateSlot();
 	void update();
 
+	// _00     = VTBL
+	// _00-_18 = CNode
 	TimeMgrParms m_parms;     // _018
-	float m_currentHour;      // _208
-	float m_currentTimeOfDay; // _20C
+	f32 m_currentHour;        // _208
+	f32 m_currentTimeOfDay;   // _20C
 	u32 m_slotPosition;       // _210
-	float _214;               // _214
+	f32 _214;                 // _214
 	u32 m_dayCount;           // _218
-	float m_speedFactor;      // _21C
-
-	float _220;                 // _220
-	float m_earlyMorningLength; // _224
-	float m_midMorningLength;   // _228
-	float m_middayLength;       // _22C
-	float m_earlyEveningLength; // _230
-	float m_lateEveningLength;  // _234
-
-	float m_dayLengthHours; // _238
-	float m_sunRatio;       // _23C
-
-	u32 m_flags; // _240
+	f32 m_speedFactor;        // _21C
+	f32 _220;                 // _220
+	f32 m_earlyMorningLength; // _224
+	f32 m_midMorningLength;   // _228
+	f32 m_middayLength;       // _22C
+	f32 m_earlyEveningLength; // _230
+	f32 m_lateEveningLength;  // _234
+	f32 m_dayLengthHours;     // _238
+	f32 m_sunRatio;           // _23C
+	u32 m_flags;              // _240
 };
 } // namespace Game
 

@@ -10,18 +10,12 @@
 
 struct Camera;
 
-namespace JStage {
-struct TCamera;
-}
-
 namespace Game {
 struct MoviePlayer;
 
 namespace P2JST {
-struct ObjectBase;
-
 // Size: 0xC9
-struct ObjectCamera : public JStage::TCamera, ObjectBase {
+struct ObjectCamera : public JStage::TCamera, public ObjectBase {
 	ObjectCamera(const char*, Game::MoviePlayer*);
 
 	////////////////// VTABLE

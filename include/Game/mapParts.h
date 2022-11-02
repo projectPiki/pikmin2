@@ -24,15 +24,7 @@ struct Graphics;
 struct J3DModelData;
 struct JUTTexture;
 struct ResTIMG;
-namespace Game {
-struct RoomLink;
-namespace Cave {
-struct BaseGen;
-struct EditMapUnit;
-struct ObjectLayout;
-struct FloorInfo;
-} // namespace Cave
-} // namespace Game
+
 namespace Sys {
 struct MatLoopAnimator;
 struct MatTexAnimation;
@@ -43,6 +35,10 @@ struct Model;
 } // namespace SysShape
 
 namespace Game {
+namespace Cave {
+struct EditMapUnit;
+} // namespace Cave
+
 // Size: 0x24
 struct DoorLink : public CNode {
 	DoorLink()
@@ -50,10 +46,13 @@ struct DoorLink : public CNode {
 		m_dist     = 0.0f;
 		m_tekiFlag = 1;
 	}
+
+	virtual ~DoorLink(); // _08 (weak)
+
 	void read(Stream&);
 	void write(Stream&);
 
-	float m_dist;  // _18
+	f32 m_dist;    // _18
 	u32 m_doorID;  // _1C
 	u8 m_tekiFlag; // _20
 };
@@ -66,6 +65,8 @@ struct Door : public CNode {
 		m_dir       = 0;
 		m_offs      = 0;
 	}
+
+	virtual ~Door(); // _08 (weak)
 
 	DoorLink* getLink(int);
 	void read(Stream&);
@@ -86,17 +87,21 @@ struct RoomDoorInfo {
 	RoomDoorInfo();
 };
 
+struct RoomLink : public CNode {
+	virtual ~RoomLink(); // _08 (weak)
+};
+
 // Size: 0xF0
 struct MapUnit {
 	MapUnit();
 
-	virtual void constructor();                 // _00
-	virtual void doAnimation();                 // _04
-	virtual void doEntry();                     // _08
-	virtual void doSetView(int viewportNumber); // _0C
-	virtual void doViewCalc();                  // _10
-	virtual void doSimulation(float);           // _14
-	virtual void doDirectDraw(Graphics& gfx);   // _18
+	virtual void constructor();                 // _08 (weak)
+	virtual void doAnimation();                 // _0C (weak)
+	virtual void doEntry();                     // _10 (weak)
+	virtual void doSetView(int viewportNumber); // _14 (weak)
+	virtual void doViewCalc();                  // _18 (weak)
+	virtual void doSimulation(f32);             // _1C (weak)
+	virtual void doDirectDraw(Graphics& gfx);   // _20 (weak)
 
 	void load(Stream&);
 	void save(Stream&);
@@ -128,7 +133,7 @@ struct PartsView : public CNode {
 	virtual void doEntry();                     // _18
 	virtual void doSetView(int viewportNumber); // _1C
 	virtual void doViewCalc();                  // _20
-	virtual void doSimulation(float) { }        // _24 (weak)
+	virtual void doSimulation(f32) { }          // _24 (weak)
 	virtual void doDirectDraw(Graphics& gfx);   // _28
 
 	void getHalfX();
@@ -160,6 +165,8 @@ struct PartsView : public CNode {
 struct MapUnitInterface : public PartsView {
 	MapUnitInterface();
 
+	virtual ~MapUnitInterface(); // _08 (weak)
+
 	inline int getDoorCount() { return m_doorCount; }
 
 	Door* getDoor(int);
@@ -168,6 +175,10 @@ struct MapUnitInterface : public PartsView {
 
 struct MapUnitMgr : public NodeObjectMgr<MapUnit> {
 	MapUnitMgr();
+
+	virtual ~MapUnitMgr();       // _08 (weak)
+	virtual MapUnit* getAt(int); // _24
+
 	void findMapUnit(char*);
 	void load(char*);
 	void loadShape(char*);
@@ -179,24 +190,23 @@ struct MapUnitMgr : public NodeObjectMgr<MapUnit> {
 struct MapRoom : public CellObject {
 	MapRoom();
 
-	virtual void constructor();                 // _24
-	virtual void doAnimation();                 // _28
-	virtual void doEntry();                     // _2C
-	virtual void doSetView(int viewportNumber); // _30
-	virtual void doViewCalc();                  // _34
-	virtual void doSimulation(float);           // _38
-	virtual void doDirectDraw(Graphics& gfx);   // _3C
+	virtual Vector3f getPosition();               // _08 (weak)
+	virtual void getBoundingSphere(Sys::Sphere&); // _10 (weak)
+	virtual bool collisionUpdatable();            // _14 (weak)
+	virtual char* getTypeName();                  // _24 (weak)
+	virtual u16 getObjType();                     // _28 (weak)
+	virtual void constructor();                   // _2C (weak)
+	virtual void doAnimation();                   // _30
+	virtual void doEntry();                       // _34
+	virtual void doSetView(int);                  // _38
+	virtual void doViewCalc();                    // _3C
+	virtual void doSimulation(f32);               // _40
+	virtual void doDirectDraw(Graphics&);         // _44
 
-	void countEnemys();
-	void countItems();
-	void create(MapUnit*, Matrixf&);
-	void createDoorInfo(MapUnitInterface*);
-	void createGlobalCollision();
-	void getBoundingSphere(Sys::Sphere&);
-	// getCenterPosition__Q24Game7MapRoomFR10Vector3f
-	void getCenterPosition(Vector3f&);
 	void placeObjects(Cave::FloorInfo*, bool);
 
+	// _00     = VTBL
+	// _00-_B8 = CellObject
 	MapCollision* m_collision;              // _0B8
 	u8 _0BC;                                // _0BC
 	MapUnitInterface* m_interface;          // _0C0
@@ -213,7 +223,7 @@ struct MapRoom : public CellObject {
 	Sys::Sphere _150;                       // _150
 	Sys::Cylinder _160;                     // _160
 	RoomLink* m_link;                       // _180
-	short _184;                             // _184
+	s16 _184;                               // _184
 	u16 m_unitKind;                         // _186
 	u8 _188[2];                             // _188
 	int* m_wpIndices;                       // _18C
@@ -221,6 +231,51 @@ struct MapRoom : public CellObject {
 };
 
 struct RoomMapMgr : public MapMgr {
+	RoomMapMgr(Cave::CaveInfo*);
+
+	virtual bool hasHiddenCollision();                        // _08
+	virtual void constraintBoundBox(Sys::Sphere&);            // _0C
+	virtual void getStartPosition(Vector3f&, int);            // _10 (weak)
+	virtual void getDemoMatrix();                             // _14 (weak)
+	virtual void getBoundBox2d(BoundBox2d&);                  // _18
+	virtual void getBoundBox(BoundBox&);                      // _1C
+	virtual void findRayIntersection(Sys::RayIntersectInfo&); // _20
+	virtual void traceMove(MoveInfo&, f32);                   // _24
+	virtual f32 getMinY(Vector3f&);                           // _28
+	virtual void getCurrTri(CurrTriInfo&);                    // _2C
+	virtual void createTriangles(Sys::CreateTriangleArg&);    // _30
+	virtual void setupJUTTextures();                          // _34
+	virtual void drawCollision(Graphics&, Sys::Sphere&);      // _44
+	virtual void doSimulation(f32);                           // _48 (weak)
+	virtual void doDirectDraw(Graphics&);                     // _4C (weak)
+	virtual void doAnimation();                               // _50 (weak)
+	virtual void doEntry();                                   // _54 (weak)
+	virtual void doSetView(int);                              // _58 (weak)
+	virtual void doViewCalc();                                // _5C (weak)
+	virtual void traceMove_new(MoveInfo&, f32);               // _60
+	virtual void traceMove_original(MoveInfo&, f32);          // _64
+
+	void getMapRoom(s16);
+	void createRandomMap(int, Cave::EditMapUnit*);
+	void completeUnitData();
+	void useUnit(char*);
+	JUTTexture* getTexture(char*);
+	void allocRooms(int);
+	void makeRoom(char*, f32, f32, int, int, RoomLink*, ObjectLayoutInfo*);
+	void placeObjects();
+	void entryToMapRoomCellMgr();
+	void findRoomIndex(Sys::Sphere&);
+	void createGlobalCollision();
+	void makeOneRoom(f32, f32, f32, char*, s16, RoomLink*, ObjectLayoutInfo*);
+	void deleteTemp();
+	void getMUI(MapUnit*);
+	void nishimuraCreateRandomMap(MapUnitInterface*, int, Cave::FloorInfo*, bool, Cave::EditMapUnit*);
+	void nishimuraPlaceRooms();
+	void nishimuraSetTexture();
+
+	// _00     = GenericObjectMgr
+	// _04     = VTBL
+	// _00-_24 = MapMgr
 	SysShape::Model* _24;                 // _24, m_modelOrCaveVRBoxOrBothMaybe
 	Cave::CaveInfo* m_caveInfo;           // _28
 	Cave::FloorInfo* m_floorInfo;         // _2C
@@ -240,17 +295,6 @@ struct RoomMapMgr : public MapMgr {
 	Game::BlackMan::Obj* m_blackMan;      // _114
 	u32* m_118;                           // _118
 	u32 m_11C;                            // _11C
-
-	float getMinY(Vector3f&);
-	// void getStartPosition__Q24Game10RoomMapMgrFR10Vector3f i(void)
-	void getStartPosition(Vector3f&, int);
-	void nishimuraCreateRandomMap(MapUnitInterface*, int, Cave::FloorInfo*, bool, Cave::EditMapUnit*);
-	void nishimuraPlaceRooms();
-	void nishimuraSetTexture();
-	void useUnit(char*);
-	void allocRooms(int);
-	void makeRoom(char*, float, float, int, int, Game::RoomLink*, Game::ObjectLayoutInfo*);
-	JUTTexture* getTexture(char*);
 };
 
 struct CaveVRBox {

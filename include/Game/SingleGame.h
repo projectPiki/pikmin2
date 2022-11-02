@@ -2,6 +2,7 @@
 #define _GAME_SINGLEGAME_H
 
 #include "DvdThreadCommand.h"
+#include "Game/IllustratedBook.h"
 #include "Game/PelletList.h"
 #include "Game/PikiContainer.h"
 #include "Game/Result.h"
@@ -28,37 +29,38 @@ struct WorldMap;
 } // namespace kh
 
 namespace Game {
-namespace IllustratedBook {
-struct Camera;
-struct DebugParms;
-struct EnemyTexMgr;
-struct Parms;
-} // namespace IllustratedBook
+struct THPPlayer;
 
 namespace SingleGame {
+struct State;
+
 /**
  * @fabricated
  */
 enum StateID {
-	SGS_File = 0,
-	SGS_Select,
-	SGS_Load,
-	SGS_Game,
-	SGS_Cave,
-	SGS_DayEnd,
-	SGS_CaveDayEnd,
-	SGS_MainResult,
-	SGS_CaveResult,
-	SGS_Movie,
-	SGS_Zukan,
-	SGS_Ending
+	SGS_File       = 0,
+	SGS_Select     = 1,
+	SGS_Load       = 2,
+	SGS_Game       = 3,
+	SGS_Cave       = 4,
+	SGS_DayEnd     = 5,
+	SGS_CaveDayEnd = 6,
+	SGS_MainResult = 7,
+	SGS_CaveResult = 8,
+	SGS_Movie      = 9,
+	SGS_Zukan      = 10,
+	SGS_Ending     = 11,
+	SGS_StateCount,
 };
 
 struct FSM : public StateMachine<SingleGameSection> {
-	virtual void init(SingleGameSection*);                    // _00
-	virtual void transit(SingleGameSection*, int, StateArg*); // _0C
+	virtual void init(SingleGameSection*);                    // _08
+	virtual void transit(SingleGameSection*, int, StateArg*); // _14
 
-	struct State* getState(int);
+	State* getState(int);
+
+	// _00     = VTBL
+	// _00-_1C = StateMachine
 };
 
 struct State : public FSMState<SingleGameSection> {
@@ -66,16 +68,17 @@ struct State : public FSMState<SingleGameSection> {
 	    : FSMState(id)
 	{
 	}
-	virtual void draw(SingleGameSection*, Graphics&) {};                                          // _18
-	virtual void onOrimaDown(SingleGameSection*, int) {};                                         // _1C
-	virtual void onMovieStart(SingleGameSection*, MovieConfig*, unsigned long, unsigned long) {}; // _20
-	virtual void onMovieDone(SingleGameSection*, MovieConfig*, unsigned long, unsigned long) {};  // _24
-	virtual void onMovieCommand(SingleGameSection*, int) {};                                      // _28
-	virtual void onHoleIn(SingleGameSection*, ItemCave::Item*) {};                                // _2C
-	virtual void onNextFloor(SingleGameSection*, ItemHole::Item*) {};                             // _30
-	virtual void onFountainReturn(SingleGameSection*, ItemBigFountain::Item*) {};                 // _34
-	virtual void on_section_fadeout(SingleGameSection*) {};                                       // _38
-	virtual void on_demo_timer(SingleGameSection*, unsigned long) {};                             // _3C
+
+	virtual void draw(SingleGameSection*, Graphics&) { }                          // _20 (weak)
+	virtual void onOrimaDown(SingleGameSection*, int) { }                         // _24 (weak)
+	virtual void onMovieStart(SingleGameSection*, MovieConfig*, u32, u32) { }     // _28 (weak)
+	virtual void onMovieDone(SingleGameSection*, MovieConfig*, u32, u32) { }      // _2C (weak)
+	virtual void onMovieCommand(SingleGameSection*, int) { }                      // _30 (weak)
+	virtual void onHoleIn(SingleGameSection*, ItemCave::Item*) { }                // _34 (weak)
+	virtual void onNextFloor(SingleGameSection*, ItemHole::Item*) { }             // _38 (weak)
+	virtual void onFountainReturn(SingleGameSection*, ItemBigFountain::Item*) { } // _3C (weak)
+	virtual void on_section_fadeout(SingleGameSection*) { }                       // _40 (weak)
+	virtual void on_demo_timer(SingleGameSection*, u32) { }                       // _44 (weak)
 
 	State* accountEarnings(SingleGameSection*, PelletCropMemory*, bool);
 
@@ -91,12 +94,12 @@ struct CaveDayEndState : public State {
 	{
 	}
 
-	virtual void init(SingleGameSection*, StateArg*); // _00
-	virtual void exec(SingleGameSection*);            // _04
-	virtual void cleanup(SingleGameSection*);         // _08
-	virtual void draw(SingleGameSection*, Graphics&); // _18
+	virtual void init(SingleGameSection*, StateArg*); // _08
+	virtual void exec(SingleGameSection*);            // _0C
+	virtual void cleanup(SingleGameSection*);         // _10
+	virtual void draw(SingleGameSection*, Graphics&); // _20
 
-	float _10; // _10
+	f32 _10; // _10
 };
 
 /**
@@ -105,10 +108,10 @@ struct CaveDayEndState : public State {
 struct CaveResultState : public State {
 	CaveResultState();
 
-	virtual void init(SingleGameSection*, StateArg*); // _00
-	virtual void exec(SingleGameSection*);            // _04
-	virtual void cleanup(SingleGameSection*);         // _08
-	virtual void draw(SingleGameSection*, Graphics&); // _18
+	virtual void init(SingleGameSection*, StateArg*); // _08
+	virtual void exec(SingleGameSection*);            // _0C
+	virtual void cleanup(SingleGameSection*);         // _10
+	virtual void draw(SingleGameSection*, Graphics&); // _20
 
 	void createResultNodes();
 	void loadResource();
@@ -120,10 +123,10 @@ struct CaveResultState : public State {
 	s16 _10;                        //_10
 	u16 _12;                        //_12
 	unknown _14;                    //_14
-	float _18;                      //_18
+	f32 _18;                        //_18
 	Controller* _1C;                //_1C
-	Game::Result::TNode _20;        //_20
-	Game::ResultTexMgr::Mgr* _70;   //_70
+	Result::TNode _20;              //_20
+	ResultTexMgr::Mgr* _70;         //_70
 	JKRHeap* _74;                   //_74
 	u8 _78[4];                      // _78
 	Delegate<CaveResultState>* _7C; // _7C
@@ -145,17 +148,17 @@ struct CaveState : public State {
 	{
 	}
 
-	virtual void init(SingleGameSection*, StateArg*);                                          // _00
-	virtual void exec(SingleGameSection*);                                                     // _04
-	virtual void cleanup(SingleGameSection*);                                                  // _08
-	virtual void draw(SingleGameSection*, Graphics&);                                          // _18
-	virtual void onOrimaDown(SingleGameSection*, int);                                         // _1C
-	virtual void onMovieStart(SingleGameSection*, MovieConfig*, unsigned long, unsigned long); // _20
-	virtual void onMovieDone(SingleGameSection*, MovieConfig*, unsigned long, unsigned long);  // _24
-	virtual void onMovieCommand(SingleGameSection*, int);                                      // _28
-	virtual void onNextFloor(SingleGameSection*, ItemHole::Item*);                             // _30
-	virtual void onFountainReturn(SingleGameSection*, ItemBigFountain::Item*);                 // _34
-	virtual void on_section_fadeout(SingleGameSection*);                                       // _38
+	virtual void init(SingleGameSection*, StateArg*);                          // _08
+	virtual void exec(SingleGameSection*);                                     // _0C
+	virtual void cleanup(SingleGameSection*);                                  // _10
+	virtual void draw(SingleGameSection*, Graphics&);                          // _20
+	virtual void onOrimaDown(SingleGameSection*, int);                         // _24
+	virtual void onMovieStart(SingleGameSection*, MovieConfig*, u32, u32);     // _28
+	virtual void onMovieDone(SingleGameSection*, MovieConfig*, u32, u32);      // _2C
+	virtual void onMovieCommand(SingleGameSection*, int);                      // _30
+	virtual void onNextFloor(SingleGameSection*, ItemHole::Item*);             // _38
+	virtual void onFountainReturn(SingleGameSection*, ItemBigFountain::Item*); // _3C
+	virtual void on_section_fadeout(SingleGameSection*);                       // _40
 
 	void check_SMenu(SingleGameSection*);
 
@@ -175,21 +178,20 @@ struct CaveState : public State {
 struct DayEndState : public State {
 	inline DayEndState()
 	    : State(SGS_DayEnd)
-	    , _18()
 	{
 	}
 
-	virtual void init(SingleGameSection*, StateArg*);                                          // _00
-	virtual void exec(SingleGameSection*);                                                     // _04
-	virtual void cleanup(SingleGameSection*);                                                  // _08
-	virtual void draw(SingleGameSection*, Graphics&);                                          // _18
-	virtual void onMovieStart(SingleGameSection*, MovieConfig*, unsigned long, unsigned long); // _20
-	virtual void onMovieDone(SingleGameSection*, MovieConfig*, unsigned long, unsigned long);  // _24
-	virtual void onMovieCommand(SingleGameSection*, int);                                      // _28
+	virtual void init(SingleGameSection*, StateArg*);                      // _08
+	virtual void exec(SingleGameSection*);                                 // _0C
+	virtual void cleanup(SingleGameSection*);                              // _10
+	virtual void draw(SingleGameSection*, Graphics&);                      // _20
+	virtual void onMovieStart(SingleGameSection*, MovieConfig*, u32, u32); // _28
+	virtual void onMovieDone(SingleGameSection*, MovieConfig*, u32, u32);  // _2C
+	virtual void onMovieCommand(SingleGameSection*, int);                  // _30
 
 	u16 _10;           // _10
 	s16 _12;           // _12
-	float _14;         // _14
+	f32 _14;           // _14
 	PikiContainer _18; // _18
 };
 
@@ -199,26 +201,26 @@ struct DayEndState : public State {
 struct EndingState : public State {
 	EndingState();
 
-	virtual void init(SingleGameSection*, StateArg*); // _00
-	virtual void exec(SingleGameSection*);            // _04
-	virtual void cleanup(SingleGameSection*);         // _08
-	virtual void draw(SingleGameSection*, Graphics&); // _18
-	virtual void do_dvdload();                        // _40
+	virtual void init(SingleGameSection*, StateArg*); // _08
+	virtual void exec(SingleGameSection*);            // _0C
+	virtual void cleanup(SingleGameSection*);         // _10
+	virtual void draw(SingleGameSection*, Graphics&); // _20
+	virtual void do_dvdload();                        // _48 (weak)
 
 	void dvdload();
 
 	// Unused/inlined:
 	void initNext(SingleGameSection*);
 
-	u8 _10;
-	u8 _11;
-	JKRHeap* _14;
-	JKRHeap* _18;
-	struct THPPlayer* _1C;
-	u8 _20;
-	Delegate<EndingState>* _24;
-	Controller* _28;
-	kh::Screen::TotalResultData** _2C;
+	u8 _10;                            // _10
+	u8 _11;                            // _11
+	JKRHeap* _14;                      // _14
+	JKRHeap* _18;                      // _18
+	THPPlayer* _1C;                    // _1C
+	u8 _20;                            // _20
+	Delegate<EndingState>* _24;        // _24
+	Controller* _28;                   // _28
+	kh::Screen::TotalResultData** _2C; // _2C
 };
 
 /**
@@ -227,10 +229,10 @@ struct EndingState : public State {
 struct FileState : public State {
 	FileState();
 
-	virtual void init(SingleGameSection*, StateArg*); // _00
-	virtual void exec(SingleGameSection*);            // _04
-	virtual void cleanup(SingleGameSection*);         // _08
-	virtual void draw(SingleGameSection*, Graphics&); // _18
+	virtual void init(SingleGameSection*, StateArg*); // _08
+	virtual void exec(SingleGameSection*);            // _0C
+	virtual void cleanup(SingleGameSection*);         // _10
+	virtual void draw(SingleGameSection*, Graphics&); // _20
 
 	void dvdload();
 	void startGame(SingleGameSection*);
@@ -264,17 +266,17 @@ struct GameState : public State {
 	{
 	}
 
-	virtual void init(SingleGameSection*, StateArg*);                                          // _00
-	virtual void exec(SingleGameSection*);                                                     // _04
-	virtual void cleanup(SingleGameSection*);                                                  // _08
-	virtual void draw(SingleGameSection*, Graphics&);                                          // _18
-	virtual void onOrimaDown(SingleGameSection*, int);                                         // _1C
-	virtual void onMovieStart(SingleGameSection*, MovieConfig*, unsigned long, unsigned long); // _20
-	virtual void onMovieDone(SingleGameSection*, MovieConfig*, unsigned long, unsigned long);  // _24
-	virtual void onMovieCommand(SingleGameSection*, int);                                      // _28
-	virtual void onHoleIn(SingleGameSection*, ItemCave::Item*);                                // _2C
-	virtual void on_section_fadeout(SingleGameSection*);                                       // _38
-	virtual void on_demo_timer(SingleGameSection*, unsigned long);                             // _3C
+	virtual void init(SingleGameSection*, StateArg*);                      // _08
+	virtual void exec(SingleGameSection*);                                 // _0C
+	virtual void cleanup(SingleGameSection*);                              // _10
+	virtual void draw(SingleGameSection*, Graphics&);                      // _20
+	virtual void onOrimaDown(SingleGameSection*, int);                     // _24
+	virtual void onMovieStart(SingleGameSection*, MovieConfig*, u32, u32); // _28
+	virtual void onMovieDone(SingleGameSection*, MovieConfig*, u32, u32);  // _2C
+	virtual void onMovieCommand(SingleGameSection*, int);                  // _30
+	virtual void onHoleIn(SingleGameSection*, ItemCave::Item*);            // _34
+	virtual void on_section_fadeout(SingleGameSection*);                   // _40
+	virtual void on_demo_timer(SingleGameSection*, u32);                   // _44
 
 	bool check_DemoInout(SingleGameSection*);
 	bool needRepayDemo();
@@ -285,11 +287,11 @@ struct GameState : public State {
 	void drawRepayDemo(Graphics&);
 	unknown gameStart(SingleGameSection*);
 
-	u8 _10;    // _10
-	u8 _11;    // _11
-	float _14; // _14
-	u8 _18;    // _18
-	u8 _19;    // _19
+	u8 _10;  // _10
+	u8 _11;  // _11
+	f32 _14; // _14
+	u8 _18;  // _18
+	u8 _19;  // _19
 	u32 : 0;
 	u8 _1C[4]; // _1C
 	u8 _20;    // _20
@@ -314,10 +316,10 @@ struct LoadState : public State {
 	{
 	}
 
-	virtual void init(SingleGameSection*, StateArg*); // _00
-	virtual void exec(SingleGameSection*);            // _04
-	virtual void cleanup(SingleGameSection*);         // _08
-	virtual void draw(SingleGameSection*, Graphics&); // _18
+	virtual void init(SingleGameSection*, StateArg*); // _08
+	virtual void exec(SingleGameSection*);            // _0C
+	virtual void cleanup(SingleGameSection*);         // _10
+	virtual void draw(SingleGameSection*, Graphics&); // _20
 
 	// Unused/inlined:
 	void initNext(SingleGameSection*);
@@ -340,11 +342,11 @@ struct LoadState : public State {
 struct MainResultState : public State {
 	MainResultState();
 
-	virtual void init(SingleGameSection*, StateArg*);                                         // _00
-	virtual void exec(SingleGameSection*);                                                    // _04
-	virtual void cleanup(SingleGameSection*);                                                 // _08
-	virtual void draw(SingleGameSection*, Graphics&);                                         // _18
-	virtual void onMovieDone(SingleGameSection*, MovieConfig*, unsigned long, unsigned long); // _24
+	virtual void init(SingleGameSection*, StateArg*);                     // _08
+	virtual void exec(SingleGameSection*);                                // _0C
+	virtual void cleanup(SingleGameSection*);                             // _10
+	virtual void draw(SingleGameSection*, Graphics&);                     // _20
+	virtual void onMovieDone(SingleGameSection*, MovieConfig*, u32, u32); // _2C
 
 	void beforeSave();
 	void createResultNodes();
@@ -354,14 +356,14 @@ struct MainResultState : public State {
 	unknown open2D(SingleGameSection*);
 
 	s16 _10;         // _10
-	float _14;       // _14
+	f32 _14;         // _14
 	Controller* _18; // _18
 	u8 _1C;          // _1C
 	u32 : 0;
 	u8 _20[4];                          // _20
-	Game::ResultTexMgr::Mgr _24;        // _24
+	ResultTexMgr::Mgr _24;              // _24
 	u8 _64[4];                          // _64
-	Game::Result::TNode _68;            // _68
+	Result::TNode _68;                  // _68
 	kh::Screen::IncP* _B8;              // _B8
 	u8 _BC[4];                          // _BC
 	JKRHeap* _C0;                       // _C0
@@ -378,17 +380,17 @@ struct MainResultState : public State {
 struct MovieState : public State {
 	MovieState();
 
-	virtual void init(SingleGameSection*, StateArg*); // _00
-	virtual void exec(SingleGameSection*);            // _04
-	virtual void cleanup(SingleGameSection*);         // _08
-	virtual void draw(SingleGameSection*, Graphics&); // _18
+	virtual void init(SingleGameSection*, StateArg*); // _08
+	virtual void exec(SingleGameSection*);            // _0C
+	virtual void cleanup(SingleGameSection*);         // _10
+	virtual void draw(SingleGameSection*, Graphics&); // _20
 
-	unknown _10;           // _10
-	Controller* _14;       // _14
-	JKRHeap* _18;          // _18
-	JKRHeap* _1C;          // _1C
-	struct THPPlayer* _20; // _20
-	bool _24;              // _24
+	unknown _10;     // _10
+	Controller* _14; // _14
+	JKRHeap* _18;    // _18
+	JKRHeap* _1C;    // _1C
+	THPPlayer* _20;  // _20
+	bool _24;        // _24
 };
 
 /**
@@ -397,10 +399,10 @@ struct MovieState : public State {
 struct SelectState : public State {
 	SelectState();
 
-	virtual void init(SingleGameSection*, StateArg*); // _00
-	virtual void exec(SingleGameSection*);            // _04
-	virtual void cleanup(SingleGameSection*);         // _08
-	virtual void draw(SingleGameSection*, Graphics&); // _18
+	virtual void init(SingleGameSection*, StateArg*); // _08
+	virtual void exec(SingleGameSection*);            // _0C
+	virtual void cleanup(SingleGameSection*);         // _10
+	virtual void draw(SingleGameSection*, Graphics&); // _20
 
 	void dvdload();
 	void initNext(SingleGameSection*);
@@ -434,10 +436,10 @@ struct ZukanState : public State {
 
 	ZukanState();
 
-	virtual void init(SingleGameSection*, StateArg*); // _00
-	virtual void exec(SingleGameSection*);            // _04
-	virtual void cleanup(SingleGameSection*);         // _08
-	virtual void draw(SingleGameSection*, Graphics&); // _18
+	virtual void init(SingleGameSection*, StateArg*); // _08
+	virtual void exec(SingleGameSection*);            // _0C
+	virtual void cleanup(SingleGameSection*);         // _10
+	virtual void draw(SingleGameSection*, Graphics&); // _20
 
 	void clearHeapB_common();
 	void clearHeapB_pellet();
@@ -460,7 +462,7 @@ struct ZukanState : public State {
 	PelletConfig* getCurrentPelletConfig(int);
 	int getMaxPelletID();
 	void setMode(CMode);
-	void startWipe(float);
+	void startWipe(f32);
 
 	// Unused/inlined:
 	unknown startTekiMode(bool);
@@ -469,43 +471,43 @@ struct ZukanState : public State {
 	unknown debugDraw(Graphics&);
 	void dvdloadB_common();
 
-	IDelegate* _10;                          // _10
-	IDelegate* _14;                          // _14
-	IDelegate* _18;                          // _18
-	DvdThreadCommand _1C;                    // _1C
-	u8 _88;                                  // _88
-	Game::CourseInfo* _8C;                   // _8C
-	Controller* _90;                         // _90
-	BaseGameSection* _94;                    // _94
-	Game::IllustratedBook::Camera* _98;      // _98
-	CMode _9C;                               // _9C
-	int m_tekiInfoIndex;                     // _A0
-	Game::Creature* _A4;                     // _A4
-	int _A8;                                 // _A8
-	Game::Creature* _AC;                     // _AC
-	JUTTexture* _B0;                         // _B0
-	Rectf _B4;                               // _B4
-	u8 _C4[4];                               // _C4
-	float _C8;                               // _C8
-	JUTTexture* _CC;                         // _CC
-	u8 _D0[4];                               // _D0
-	JKRExpHeap* _D4;                         // _D4
-	JKRHeap* _D8;                            // _D8
-	JKRExpHeap* _DC;                         // _DC
-	JKRHeap* _E0;                            // _E0
-	u32 _E4;                                 // _E4
-	Game::ResultTexMgr::Mgr* _E8;            // _E8
-	Game::IllustratedBook::EnemyTexMgr* _EC; // _EC
-	JKRExpHeap* _F0;                         // _F0
-	float _F4;                               // _F4
-	float _F8;                               // _F8
-	unknown _FC;                             // _FC
-	Game::IllustratedBook::Parms* _100;      // _100
-	Game::IllustratedBook::DebugParms* _104; // _104
-	float _108;                              // _108
-	unknown _10C;                            // _10C
-	int _110;                                // _110
-	int _114;                                // _114
+	IDelegate* _10;                    // _10
+	IDelegate* _14;                    // _14
+	IDelegate* _18;                    // _18
+	DvdThreadCommand _1C;              // _1C
+	u8 _88;                            // _88
+	CourseInfo* _8C;                   // _8C
+	Controller* _90;                   // _90
+	BaseGameSection* _94;              // _94
+	IllustratedBook::Camera* _98;      // _98
+	CMode _9C;                         // _9C
+	int m_tekiInfoIndex;               // _A0
+	Creature* _A4;                     // _A4
+	int _A8;                           // _A8
+	Creature* _AC;                     // _AC
+	JUTTexture* _B0;                   // _B0
+	Rectf _B4;                         // _B4
+	u8 _C4[4];                         // _C4
+	f32 _C8;                           // _C8
+	JUTTexture* _CC;                   // _CC
+	u8 _D0[4];                         // _D0
+	JKRExpHeap* _D4;                   // _D4
+	JKRHeap* _D8;                      // _D8
+	JKRExpHeap* _DC;                   // _DC
+	JKRHeap* _E0;                      // _E0
+	u32 _E4;                           // _E4
+	ResultTexMgr::Mgr* _E8;            // _E8
+	IllustratedBook::EnemyTexMgr* _EC; // _EC
+	JKRExpHeap* _F0;                   // _F0
+	f32 _F4;                           // _F4
+	f32 _F8;                           // _F8
+	unknown _FC;                       // _FC
+	IllustratedBook::Parms* _100;      // _100
+	IllustratedBook::DebugParms* _104; // _104
+	f32 _108;                          // _108
+	unknown _10C;                      // _10C
+	int _110;                          // _110
+	int _114;                          // _114
 };
 } // namespace SingleGame
 } // namespace Game

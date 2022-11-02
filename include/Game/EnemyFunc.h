@@ -2,6 +2,7 @@
 #define _GAME_ENEMYFUNC_H
 
 #include "Game/Piki.h"
+#include "Condition.h"
 #include "types.h"
 
 namespace Game {
@@ -11,11 +12,19 @@ struct Piki;
 struct Navi;
 } // namespace Game
 
-template <typename T>
-struct Condition;
-
 namespace Game {
 namespace EnemyFunc {
+struct ConditionPikminNearby : public Condition<Creature> {
+	virtual bool satisfy(Creature*); // 08 (weak)
+
+	// _00 = VTBL
+};
+
+struct EatPikminDefaultCondition : public Condition<Piki> {
+	virtual bool satisfy(Piki*); // 08 (weak)
+
+	// _00 = VTBL
+};
 
 Navi* getNearestNavi(Creature*, f32, f32, f32*, Condition<Navi>*);
 Piki* getNearestPikmin(Creature*, f32, f32, f32*, Condition<Piki>*);

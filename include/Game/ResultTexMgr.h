@@ -26,7 +26,7 @@ struct Mgr : public JKRDisposer {
 
 	Mgr();
 
-	virtual ~Mgr(); // _00
+	virtual ~Mgr(); // _08
 
 	void create(Arg&);
 	JUTTexture* getCarcassTexture();

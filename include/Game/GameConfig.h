@@ -49,7 +49,7 @@ struct GameConfig {
 		{
 		}
 
-		virtual ~Parms() { } // _08
+		virtual ~Parms() { } // _08 (weak)
 
 		PrimTagParm<int> m_gamePrint;            // _01C
 		PrimTagParm<int> m_Print;                // _02C

@@ -11,7 +11,9 @@ struct ObjectBase {
 	virtual void update() = 0;                     // _0C
 	virtual void start()  = 0;                     // _10
 	virtual void stop()   = 0;                     // _14
-	virtual void parseUserData_(u32, const void*); // _18
+	virtual void parseUserData_(u32, const void*); // _18 (weak)
+
+	// _00 = VTBL
 };
 
 } // namespace P2JST

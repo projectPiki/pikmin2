@@ -26,6 +26,12 @@ struct InteractFlockAttack;
 struct InteractFue;
 struct InteractGotKey;
 
+struct ItemInitArg : public CreatureInitArg {
+	virtual const char* getName(); // _08 (weak)
+
+	// _00 = VTBL
+};
+
 struct BaseItem : public Creature, public SysShape::MotionListener {
 	BaseItem(int);
 
@@ -35,8 +41,8 @@ struct BaseItem : public Creature, public SysShape::MotionListener {
 	virtual void constructor();                               // _2C
 	virtual void doAnimation();                               // _3C (weak)
 	virtual void doEntry();                                   // _40
-	virtual void doSimulation(float);                         // _4C
-	virtual float getFaceDir();                               // _64 (weak)
+	virtual void doSimulation(f32);                           // _4C
+	virtual f32 getFaceDir();                                 // _64 (weak)
 	virtual void setVelocity(Vector3f& velocity)              // _60 (weak)
 	{
 		m_velocity = velocity;
@@ -53,7 +59,7 @@ struct BaseItem : public Creature, public SysShape::MotionListener {
 	virtual void movieStartAnimation(u32);                     // _118
 	virtual void movieStartDemoAnimation(SysShape::AnimInfo*); // _11C
 	virtual void movieSetAnimationLastFrame();                 // _120
-	virtual void movieSetTranslation(Vector3f&, float);        // _124
+	virtual void movieSetTranslation(Vector3f&, f32);          // _124
 	virtual void getVelocityAt(Vector3f&, Vector3f&);          // _184 (weak)
 	virtual bool stimulate(Interaction&);                      // _1A4
 	virtual char* getCreatureName();                           // _1A8 (weak)
@@ -65,11 +71,11 @@ struct BaseItem : public Creature, public SysShape::MotionListener {
 	virtual void startSound(u32);                           // _1C0
 	virtual void makeTrMatrix();                            // _1C4
 	virtual void doAI();                                    // _1C8 (weak)
-	virtual void move(float);                               // _1CC
+	virtual void move(f32);                                 // _1CC
 	virtual void changeMaterial();                          // _1D0 (weak)
 	virtual void do_updateLOD();                            // _1D4
 	virtual void do_setLODParm(AILODParm&);                 // _1D8 (weak)
-	virtual float getMapCollisionRadius();                  // _1DC (weak)
+	virtual f32 getMapCollisionRadius();                    // _1DC (weak)
 	virtual bool interactAttack(InteractAttack&);           // _1E0 (weak)
 	virtual bool interactBreakBridge(InteractBreakBridge&); // _1E4 (weak)
 	virtual bool interactEat(InteractEat&);                 // _1E8 (weak)
@@ -80,7 +86,7 @@ struct BaseItem : public Creature, public SysShape::MotionListener {
 	virtual bool interactFarmHaero(InteractFarmHaero&);     // _1FC (weak)
 	virtual bool interactGotKey(InteractGotKey&);           // _200 (weak)
 	virtual bool getVectorField(Sys::Sphere&, Vector3f&);   // _204 (weak)
-	virtual float getWorkDistance(Sys::Sphere&);            // _208 (weak)
+	virtual f32 getWorkDistance(Sys::Sphere&);              // _208 (weak)
 	virtual void do_doAnimation();                          // _20C (weak)
 	virtual void updateBoundSphere();                       // _210 (weak)
 	virtual void update();                                  // _214
@@ -100,7 +106,7 @@ struct BaseItem : public Creature, public SysShape::MotionListener {
 	Vector3f m_position;           // _19C
 	SysShape::Animator m_animator; // _1A8
 	Sys::Sphere m_boundingSphere;  // _1C4
-	float m_animSpeed;             // _1D4
+	f32 m_animSpeed;               // _1D4
 };
 
 struct CFSMItem : public BaseItem {
@@ -132,6 +138,8 @@ struct CFSMItem : public BaseItem {
 };
 
 struct CItemFSM : public StateMachine<CFSMItem> {
+	// _00     = VTBL
+	// _00-_1C = StateMachine
 };
 
 template <typename T>
@@ -143,31 +151,15 @@ struct CItemState : public FSMState<CFSMItem> {
 	    : FSMState(id)
 	{
 	}
-	/**
-	 * @reifiedAddress{801D2B8C}
-	 * @reifiedFile{plugProjectKandoU/itemHole.cpp}
-	 */
-	virtual void onDamage(CFSMItem*, float) {}; // _18
-	/**
-	 * @reifiedAddress{801CCB74}
-	 * @reifiedFile{plugProjectKandoU/itemMgr.cpp}
-	 */
-	virtual void onKeyEvent(CFSMItem*, const SysShape::KeyEvent&) {}; // _1C
-	/**
-	 * @reifiedAddress{801CCA9C}
-	 * @reifiedFile{plugProjectKandoU/itemMgr.cpp}
-	 */
-	virtual void onBounce(CFSMItem*, Sys::Triangle*) {}; // _20
-	/**
-	 * @reifiedAddress{801CCB2C}
-	 * @reifiedFile{plugProjectKandoU/itemMgr.cpp}
-	 */
-	virtual void onPlatCollision(CFSMItem*, PlatEvent&) {}; // _24
-	/**
-	 * @reifiedAddress{801CCAE4}
-	 * @reifiedFile{plugProjectKandoU/itemMgr.cpp}
-	 */
-	virtual void onCollision(CFSMItem*, CollEvent&) {}; // _28
+
+	virtual void onDamage(CFSMItem*, f32) { }                         // _20 (weak)
+	virtual void onKeyEvent(CFSMItem*, const SysShape::KeyEvent&) { } // _24 (weak)
+	virtual void onBounce(CFSMItem*, Sys::Triangle*) { }              // _28 (weak)
+	virtual void onPlatCollision(CFSMItem*, PlatEvent&) { }           // _2C (weak)
+	virtual void onCollision(CFSMItem*, CollEvent&) { }               // _30 (weak)
+
+	// _00     = VTBL
+	// _00-_0C = FSMState
 };
 
 template <typename T>
@@ -177,7 +169,7 @@ struct ItemState : public FSMState<T> {
 	{
 	}
 
-	virtual void onDamage(T*, float) {};                       // _18
+	virtual void onDamage(T*, f32) {};                         // _18
 	virtual void onKeyEvent(T*, const SysShape::KeyEvent&) {}; // _1C
 	virtual void onBounce(T*, Sys::Triangle*) {};              // _20
 	virtual void onPlatCollision(T*, PlatEvent&) {};           // _24

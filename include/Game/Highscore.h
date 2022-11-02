@@ -7,6 +7,9 @@ namespace Game {
 // Size: 0xC
 struct Highscore {
 	Highscore();
+
+	virtual bool do_higher(int, int); // _08 (weak)
+
 	void allocate(int);
 	int getScore(int);
 	void newRecord(int);
@@ -16,15 +19,13 @@ struct Highscore {
 	void write(Stream&);
 	void clear();
 
-	virtual bool do_higher(int, int);
-
 	// VTBL _00
 	int* m_scores;    // _04
 	int m_scoreCount; // _08
 };
 
 struct Lowscore : public Highscore {
-	virtual bool do_higher(int, int);
+	virtual bool do_higher(int, int); // _08 (weak)
 };
 } // namespace Game
 
