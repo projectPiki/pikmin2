@@ -1,5 +1,4 @@
-#include "types.h"
-#include "ebi/title/TTitleFogMgr.h"
+#include "ebi/title/TTitle.h"
 #include "Dolphin/gx.h"
 #include "System.h"
 #include "nans.h"
@@ -16,14 +15,14 @@ namespace title {
  */
 void TTitleFogMgr::setGX(Camera& camera)
 {
-	if (m_parms.fg10.m_value) {
-		Color4 color4_local(m_parms.fg02.m_value, m_parms.fg03.m_value, m_parms.fg04.m_value, m_parms.fg05.m_value);
+	if (m_parms.m_isFogActive.m_value) {
+		Color4 color4_local(m_parms.m_colR.m_value, m_parms.m_colG.m_value, m_parms.m_colB.m_value, m_parms.m_colA.m_value);
 		GXColor color_local = color4_local.toGXColor();
 
-		float f1 = m_parms.fg00.m_value;
-		float f2 = m_parms.fg01.m_value;
+		float startDist = m_parms.m_startDist.m_value;
+		float endDist   = m_parms.m_endDist.m_value;
 
-		GXSetFog(GX_FOG_LINEAR, f1, f2, camera.getNear(), camera.getFar(), color_local);
+		GXSetFog(GX_FOG_LINEAR, startDist, endDist, camera.getNear(), camera.getFar(), color_local);
 
 		u16 width = System::getRenderModeObj()->fbWidth;
 		GXFogAdjTable table;

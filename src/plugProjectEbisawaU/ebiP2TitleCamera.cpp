@@ -1,5 +1,4 @@
-#include "types.h"
-#include "ebi/title/TTitleCameraMgr.h"
+#include "ebi/title/TTitle.h"
 #include "nans.h"
 
 namespace ebi {

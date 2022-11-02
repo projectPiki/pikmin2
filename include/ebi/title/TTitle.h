@@ -1,13 +1,57 @@
-#ifndef _EBI_TITLE_TTITLELIGHTMGR_H
-#define _EBI_TITLE_TTITLELIGHTMGR_H
+#ifndef _EBI_TITLE_TTITLE_H
+#define _EBI_TITLE_TTITLE_H
 
-#include "types.h"
+#include "FogMgr.h"
+#include "Light.h"
+#include "Camera.h"
 #include "Parameters.h"
 #include "BaseParm.h"
-#include "Light.h"
+#include "JSystem/JKR/JKRArchive.h"
 
 namespace ebi {
 namespace title {
+struct TTitleCameraMgr : public LookAtCamera {
+	struct Parms : public Parameters {
+		inline Parms();
+
+		Parm<f32> m_cam1;
+		Parm<f32> m_cam2;
+	};
+
+	virtual ~TTitleCameraMgr(); // _08 (weak)
+	virtual void read(Stream&); // _38 (weak)
+
+	void update();
+
+	Parms m_parms;
+};
+
+/**
+ * @size{0x140}
+ */
+struct TTitleFogMgr : public FogMgr {
+	struct Parms : public Parameters {
+		// fabricated
+		// offsets relative to TTitleFogMgr
+		Parm<bool> m_isFogActive; // _34
+		Parm<float> m_startDist;  // _50
+		Parm<float> m_endDist;    // _78
+		Parm<int> m_colR;         // _A0
+		Parm<int> m_colG;         // _C8
+		Parm<int> m_colB;         // _F0
+		Parm<int> m_colA;         // _118
+	};
+
+	virtual ~TTitleFogMgr() { } // _08 (weak)
+
+	void setGX(Camera& camera);
+	void loadSettingFile(JKRArchive* archive, char* file);
+
+	// _00        = VTBL
+	// _00-_28    = FogMgr
+	Parms m_parms; // _28
+};
+
 struct TTitleLightSetting {
 	struct TAmbParms : public Parameters {
 		inline TAmbParms();
@@ -70,6 +114,7 @@ struct TTitleLightMgr : public LightMgr {
 	LightObj _A8;                 // _A8
 	TTitleLightSetting m_setting; // _100
 };
+
 } // namespace title
 } // namespace ebi
 
