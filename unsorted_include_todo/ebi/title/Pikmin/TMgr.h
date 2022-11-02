@@ -24,8 +24,8 @@ struct TMgr : public CNode {
 	void setArchive(JKRArchive*);
 	void initUnit();
 	void update();
-	void setStartPos(Vector2<float>*);
-	void setDestPos(Vector2<float>*);
+	void setStartPos(Vector2f*);
+	void setDestPos(Vector2f*);
 	void forceArriveDest();
 	void assemble();
 	void quickAssemble();

@@ -95,15 +95,15 @@ struct TRenderingProcessor {
 namespace P2JME {
 namespace Window {
 struct TRenderingProcessor : public TProcessor, public TRenderingProcessor {
-	virtual ~TRenderingProcessor();                                      // _08 (weak)
-	virtual void update();                                               // _68
-	virtual void reset();                                                // _6C
-	virtual void doDrawImage(JUTTexture*, float, float, float, float);   // _74
-	virtual void doDrawRuby(float, float, float, float, int, bool);      // _78
-	virtual void doDrawLetter(float, float, float, float, int, bool);    // _7C
-	virtual void doDrawCommon(float, float, Matrixf*, Matrixf*);         // _84
-	virtual void makeMatrix(Matrixf*, DrawInfo*, float, Vector3<float>); // _88
-	virtual void doGetDrawInfo(DrawInfo*);                               // _8C (weak)
+	virtual ~TRenderingProcessor();                                    // _08 (weak)
+	virtual void update();                                             // _68
+	virtual void reset();                                              // _6C
+	virtual void doDrawImage(JUTTexture*, float, float, float, float); // _74
+	virtual void doDrawRuby(float, float, float, float, int, bool);    // _78
+	virtual void doDrawLetter(float, float, float, float, int, bool);  // _7C
+	virtual void doDrawCommon(float, float, Matrixf*, Matrixf*);       // _84
+	virtual void makeMatrix(Matrixf*, DrawInfo*, float, Vector3f);     // _88
+	virtual void doGetDrawInfo(DrawInfo*);                             // _8C (weak)
 
 	TRenderingProcessor(JMessage::TReference*);
 };

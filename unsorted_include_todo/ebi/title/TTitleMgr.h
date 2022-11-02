@@ -36,7 +36,7 @@ struct TTitleMgr : public CNode {
 	void inField(ebi::title::TObjBase*);
 	void inViewField(ebi::title::TObjBase*);
 	void isInViewField(ebi::title::TObjBase*);
-	void isOutViewField(Vector2<float>&, float);
+	void isOutViewField(Vector2f&, float);
 	void isOutViewField(ebi::title::TObjBase*);
 	void getPosOutOfViewField();
 	void start();

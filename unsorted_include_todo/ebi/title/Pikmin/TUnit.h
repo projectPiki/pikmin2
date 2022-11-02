@@ -27,7 +27,7 @@ struct TUnit {
 	void isWalk();
 	void startState(ebi::title::Pikmin::TUnit::enumState);
 	void update();
-	void updateSmoothWalk_(Vector2<float>&);
+	void updateSmoothWalk_(Vector2f&);
 	void updateEnemyReaction_();
 	TUnit();
 };

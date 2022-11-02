@@ -90,7 +90,7 @@ struct TRenderingProcessor {
 	virtual void doDrawLetter(float, float, float, float, int, bool);           // _7C
 	virtual void doTagControlAbtnWait();                                        // _80 (weak)
 	virtual void doDrawCommon(float, float, Matrixf*, Matrixf*);                // _84
-	virtual void makeMatrix(Matrixf*, DrawInfo*, float, Vector3<float>);        // _88
+	virtual void makeMatrix(Matrixf*, DrawInfo*, float, Vector3f);              // _88
 };
 } // namespace P2JME
 

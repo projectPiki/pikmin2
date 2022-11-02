@@ -110,16 +110,16 @@ struct Item : public FSMItem<Item, FSM, State> {
 struct Mgr : public TNodeItemMgr {
 	Mgr();
 
-	virtual void setup(BaseItem*);                                                    // _40
-	virtual void onLoadResources();                                                   // _48
-	virtual u32 generatorGetID();                                                     // _58 (weak)
-	virtual BaseItem* generatorBirth(Vector3<float>&, Vector3<float>&, GenItemParm*); // _5C
-	virtual void generatorWrite(Stream&, GenItemParm*);                               // _60
-	virtual void generatorRead(Stream&, GenItemParm*, unsigned long);                 // _64
-	virtual u32 generatorLocalVersion();                                              // _68 (weak)
-	virtual GenItemParm* generatorNewItemParm();                                      // _70
-	virtual BaseItem* doNew();                                                        // _A0 (weak)
-	virtual ~Mgr();                                                                   // _B8 (weak)
+	virtual void setup(BaseItem*);                                        // _40
+	virtual void onLoadResources();                                       // _48
+	virtual u32 generatorGetID();                                         // _58 (weak)
+	virtual BaseItem* generatorBirth(Vector3f&, Vector3f&, GenItemParm*); // _5C
+	virtual void generatorWrite(Stream&, GenItemParm*);                   // _60
+	virtual void generatorRead(Stream&, GenItemParm*, unsigned long);     // _64
+	virtual u32 generatorLocalVersion();                                  // _68 (weak)
+	virtual GenItemParm* generatorNewItemParm();                          // _70
+	virtual BaseItem* doNew();                                            // _A0 (weak)
+	virtual ~Mgr();                                                       // _B8 (weak)
 
 	// _00     = VTBL
 	// _00-_88 = TNodeItemMgr
