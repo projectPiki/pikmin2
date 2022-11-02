@@ -6,19 +6,15 @@
 namespace PSM {
 struct EnemyHekoi : public EnemyBase {
 	// vtable 2 (Creature)
-	/**
-	 * @reifiedAddress{80107AA0}
-	 * @reifiedFile{plugProjectYamashitaU/enemyBase.cpp}
-	 */
-	virtual ~EnemyHekoi() { } // _04
-	/**
-	 * @reifiedAddress{80107C04}
-	 * @reifiedFile{plugProjectYamashitaU/enemyBase.cpp}
-	 */
+	virtual ~EnemyHekoi() { }              // _04
 	virtual CreatureCastType getCastType() // _0C
 	{
 		return CCT_EnemyHekoi;
 	}
+
+	// _10     = VTBL 1
+	// _28     = VTBL 2
+	// _00-_E0 = EnemyBase
 };
 } // namespace PSM
 

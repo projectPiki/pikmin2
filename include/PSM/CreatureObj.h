@@ -8,8 +8,8 @@ namespace PSM {
 struct CreatureObj : public Creature, public JAInter::Object {
 	CreatureObj(Game::Creature*, u8);
 
-	// vtable 1 (JSUPtrLink, _10)
-	// vtable 2 (JKRDisposer -> ObjBase -> Creature, _28)
+	// VTBL 1 (JKRDisposer, dtor-only, _10)
+	// VTBL 2 (ObjBase + self, _28)
 	virtual ~CreatureObj() { }                                         // _14 (thunks at _10 and _48)
 	virtual void frameEnd_onPlaySe();                                  // _18
 	virtual CreatureCastType getCastType() { return CCT_CreatureObj; } // _1C (weak)
@@ -22,7 +22,10 @@ struct CreatureObj : public Creature, public JAInter::Object {
 	virtual void startSound(u8, u32, u32);         // _80 (thunk at _50)
 	virtual void startSound(JAISound**, u32, u32); // _84 (thunk at _54)
 
-	// _28 		= VTBL
+	// _10     = VTBL 1
+	// _28     = VTBL 2
+	// _00-_30 = Creature
+	// _30-_70 = JAInter::Object
 };
 } // namespace PSM
 

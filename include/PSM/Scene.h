@@ -262,7 +262,7 @@ struct Scene_Demo : public SceneBase {
 
 	virtual ~Scene_Demo();                      // _0C (weak)
 	virtual void getCamDistVol(u8);             // _28
-	virtual void isDemoScene();                 // _34 (weak)
+	virtual bool isDemoScene();                 // _34 (weak)
 	virtual void getSeSceneGate(ObjBase*, u32); // _38
 
 	// _00      = VTBL

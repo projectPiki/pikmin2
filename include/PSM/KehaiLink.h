@@ -11,7 +11,8 @@ struct KehaiLink : public JSULink<KehaiLink> {
 	virtual void kehaiOn();  // _08
 	virtual void kehaiOff(); // _0C
 
-	// VTBL _10
+	// _10     = VTBL
+	// _00-_10 = JSULink
 };
 } // namespace PSM
 

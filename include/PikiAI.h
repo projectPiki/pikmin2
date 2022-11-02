@@ -29,6 +29,7 @@ struct ItemGate;
 struct BaseItem;
 struct Navi;
 struct CPlate;
+struct BaseFlockMgr;
 
 namespace ItemRock {
 struct Item;

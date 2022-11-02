@@ -1,32 +1,5 @@
-#include "types.h"
-#include "JSystem/JKR/JKRDisposer.h"
-// #include "PSGame/PSGame.h"
-// #include "PSSystem/PSScene.h"
+#include "PSM/Demo.h"
 #include "SoundID.h"
-
-struct DemoArg {
-	char* pelletname;
-	char* name;
-	u32 bgmID;
-};
-
-namespace PSM {
-class Demo : public JKRDisposer { /* #Extends(JKRDisposer) #Size(0x2c) (see
-	                                 Game::MoviePlayer::loadResource) */
-	s8 unknown1_0x18;
-	u8 doStartWithAudio; /* From PikDecomp. */
-	u8 field5_0x1a;
-	u8 field6_0x1b;
-	enum SoundID soundID;  /* From PikDecomp. */
-	enum SoundID systemSE; /* Name from PikDecomp. */
-	void* (*funcptr)(void);
-	char* currentDemoName; /* Name from PikDecomp. */
-
-	virtual ~Demo();
-	// virtual init(Vec *,Vec *,float *[][][][], PSM::DemoArg)
-	Demo();
-};
-} // namespace PSM
 
 /*
     Generated from dpostproc

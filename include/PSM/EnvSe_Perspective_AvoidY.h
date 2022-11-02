@@ -5,8 +5,8 @@
 
 namespace PSM {
 struct EnvSe_Perspective_AvoidY : public PSGame::EnvSe_Perspective {
-	virtual void play();       // _04
-	virtual u32 getCastType(); // _08
+	virtual void play();       // _0C
+	virtual u32 getCastType(); // _10 (weak)
 
 	float _48; // _48
 	float _4C; // _4C

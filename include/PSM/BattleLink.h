@@ -11,7 +11,8 @@ struct BattleLink : public JSULink<BattleLink> {
 	virtual void battleOn();  // _08
 	virtual void battleOff(); // _0C
 
-	// VTBL _10
+	// _10     = VTBL
+	// _00-_10 = JSULink
 };
 } // namespace PSM
 

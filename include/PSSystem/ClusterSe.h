@@ -38,8 +38,8 @@ struct Mgr {
 struct Factory {
 	Factory(u8);
 
-	virtual void constructPart(); // _08
-	// virtual void _0C() = 0;      // _0C - possibly?
+	virtual void constructPart();      // _08
+	virtual void identifyPart(u8) = 0; // _0C
 
 	u8 _04[0x4]; // _04 - unknown
 };
