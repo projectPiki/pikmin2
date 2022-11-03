@@ -99,3 +99,19 @@ Entry Point: 0x80005240
 # Small Data Area (read only) Base
 #.set _SDA2_BASE_, 0x8051E360
 .endif
+
+.macro fn visibility name
+.\visibility \name
+.type \name, @function
+\name:
+.endm
+
+.macro obj visibility name
+.\visibility \name
+.type \name, @object
+\name:
+.endm
+
+.macro end name
+.size \name, . - \name
+.endm
