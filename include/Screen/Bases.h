@@ -8,9 +8,8 @@
 #include "Resource.h"
 #include "Screen/Enums.h"
 #include "og/Screen/DispMemberDummy.h"
+#include "Screen/SceneInfoList.h"
 #include "Graphics.h"
-#include "types.h"
-#include "CNode.h"
 
 struct Controller;
 struct Graphics;
@@ -32,6 +31,10 @@ struct IObjBase;
 struct ObjBase;
 struct ObjMgrBase;
 struct Mgr;
+
+struct MgrCommand : public CNode {
+	virtual ~MgrCommand(); // _08 (weak)
+};
 
 struct SceneArgBase {
 	virtual SceneType getSceneType() const; // _08 (weak)
@@ -56,8 +59,8 @@ struct SetSceneArg : public SceneArgBase {
 		// _09 = p4;
 	}
 
-	virtual SceneType getSceneType() const; // _00
-	virtual int getClassSize();             // _04
+	virtual SceneType getSceneType() const; // _08
+	virtual int getClassSize();             // _0C
 
 	SceneType m_sceneType;                    // _04
 	u8 _08;                                   // _08
@@ -161,30 +164,30 @@ struct ObjBase : public IObjBase {
 	ObjBase();
 
 	// vtable 2
-	virtual ~ObjBase();                               // _00
-	virtual bool update();                            // _04
-	virtual void draw(Graphics&);                     // _08
-	virtual bool start(const StartSceneArg*);         // _0C
-	virtual bool end(const EndSceneArg*);             // _10
-	virtual void setOwner(SceneBase*);                // _14
-	virtual SceneBase* getOwner() const;              // _18
-	virtual void create(JKRArchive*);                 // _1C
-	virtual bool confirmSetScene(SetSceneArg&);       // _20
-	virtual bool confirmStartScene(StartSceneArg*);   // _24
-	virtual bool confirmEndScene(EndSceneArg*);       // _28
-	virtual bool doStart(const StartSceneArg*);       // _2C
-	virtual bool doEnd(const EndSceneArg*);           // _30
-	virtual void doCreate(JKRArchive*);               // _34
-	virtual bool doUpdateFadein();                    // _38
-	virtual void doUpdateFadeinFinish();              // _3C
-	virtual bool doUpdate();                          // _40
-	virtual void doUpdateFinish();                    // _44
-	virtual bool doUpdateFadeout();                   // _48
-	virtual void doUpdateFadeoutFinish();             // _4C
-	virtual void doDraw(Graphics&);                   // _50
-	virtual bool doConfirmSetScene(SetSceneArg&);     // _54
-	virtual bool doConfirmStartScene(StartSceneArg*); // _58
-	virtual bool doConfirmEndScene(EndSceneArg*&);    // _5C
+	virtual ~ObjBase();                               // _08 (weak)
+	virtual bool update();                            // _1C
+	virtual void draw(Graphics&);                     // _20
+	virtual bool start(const StartSceneArg*);         // _24
+	virtual bool end(const EndSceneArg*);             // _28
+	virtual void setOwner(SceneBase*);                // _2C (weak)
+	virtual SceneBase* getOwner() const;              // _30 (weak)
+	virtual void create(JKRArchive*);                 // _34
+	virtual bool confirmSetScene(SetSceneArg&);       // _38
+	virtual bool confirmStartScene(StartSceneArg*);   // _3C
+	virtual bool confirmEndScene(EndSceneArg*);       // _40
+	virtual bool doStart(const StartSceneArg*);       // _44 (weak)
+	virtual bool doEnd(const EndSceneArg*);           // _48 (weak)
+	virtual void doCreate(JKRArchive*);               // _4C (weak)
+	virtual bool doUpdateFadein();                    // _50 (weak)
+	virtual void doUpdateFadeinFinish();              // _54 (weak)
+	virtual bool doUpdate();                          // _58 (weak)
+	virtual void doUpdateFinish();                    // _5C (weak)
+	virtual bool doUpdateFadeout();                   // _60 (weak)
+	virtual void doUpdateFadeoutFinish();             // _64 (weak)
+	virtual void doDraw(Graphics&);                   // _68
+	virtual bool doConfirmSetScene(SetSceneArg&);     // _6C (weak)
+	virtual bool doConfirmStartScene(StartSceneArg*); // _70 (weak)
+	virtual bool doConfirmEndScene(EndSceneArg*&);    // _74 (weak)
 
 	og::Screen::DispMemberBase* getDispMember();
 	Controller* getGamePad() const;
@@ -201,39 +204,57 @@ struct MgrBase : public JKRDisposer {
 };
 
 struct Mgr : public MgrBase {
-	Mgr();
-
-	virtual ~Mgr() { }                          // _08 (weak)
-	virtual bool setScene(SetSceneArg&);        // _0C
-	virtual bool startScene(StartSceneArg*);    // _10
+	virtual ~Mgr();                             // _08 (weak)
+	virtual void setScene(SetSceneArg&);        // _0C
+	virtual void startScene(StartSceneArg*);    // _10
 	virtual void endScene(EndSceneArg*);        // _14
 	virtual void reset();                       // _18
 	virtual void setColorBG(JUtility::TColor&); // _1C (weak)
 	virtual void setBGMode(int);                // _20 (weak)
 	virtual void doGetSceneBase(long);          // _24
-	virtual void drawBG(Graphics&);             // _28
+	virtual void drawBG(Graphics&);             // _28 (weak)
 	virtual void drawWipe(Graphics&);           // _2C (weak)
 
-	u8 _18;                     // _18
-	u8 _19;                     // _19
-	u8 _1A;                     // _1A
-	u8 _1B;                     // _1B
-	SceneBase* m_backupScene;   // _1C
-	Controller* m_controller;   // _20
-	u8 _24[8];                  // _24
-	CNode _2C;                  // _2C
-	CNode _44;                  // _44
-	JKRSolidHeap* _5C;          // _5C
-	CNode _60;                  // _60
-	CNode m_sceneInfoListNode;  // _78
-	u8 _90;                     // _90
-	u8 _91;                     // _91
-	u8 _92;                     // _92
-	u32 _94;                    // _94
-	u32 _98;                    // _98
-	JUtility::TColor m_bgColor; // _9C
-	JUtility::TColor _A0;       // _A0
-	int m_bgMode;               // _A4
+	Mgr();
+	void init();
+	void getCurrentCommand();
+	void getNewCommand();
+	void releaseCommand(Screen::MgrCommand*);
+	void update();
+	void draw(Graphics&);
+	void clearBackupSceneInfo();
+	void changeScene(Screen::SetSceneArg&, unsigned char*);
+	void isCurrentSceneLoading();
+	void copyDispMember(unsigned char*, unsigned char*);
+	void setDispMember(og::Screen::DispMemberBase*);
+	void getDispMember();
+	void getSceneType();
+	void isSceneFinish();
+	void getSceneFinishState();
+	void setGamePad(Controller*);
+	void setBackupScene();
+	void isAnyReservation() const;
+
+	u8 _18;                        // _18
+	u8 _19;                        // _19
+	u8 _1A;                        // _1A
+	u8 _1B;                        // _1B
+	SceneBase* m_backupScene;      // _1C
+	Controller* m_controller;      // _20
+	u8 _24[8];                     // _24
+	CNode _2C;                     // _2C
+	CNode _44;                     // _44
+	JKRSolidHeap* _5C;             // _5C
+	CNode _60;                     // _60
+	SceneInfoList m_sceneInfoList; // _78
+	u8 _90;                        // _90
+	u8 _91;                        // _91
+	u8 _92;                        // _92
+	u32 _94;                       // _94
+	u32 _98;                       // _98
+	JUtility::TColor m_bgColor;    // _9C
+	JUtility::TColor _A0;          // _A0
+	int m_bgMode;                  // _A4
 };
 struct ObjMgrBase {
 	ObjMgrBase();

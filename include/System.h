@@ -6,6 +6,7 @@
 #include "Dolphin/gx.h"
 #include "SysTimers.h"
 #include "JSystem/JKR/JKRHeap.h"
+#include "node.h"
 
 struct Graphics;
 struct OSContext;
@@ -16,6 +17,12 @@ void kando_panic_f(bool, const char*, s32, const char*, ...);
 extern void preUserCallback(unsigned short, OSContext*, unsigned long, unsigned long);
 
 typedef s32 ERenderMode;
+
+struct HeapInfo : public Node {
+	virtual ~HeapInfo(); // _20 (weak)
+
+	void search(HeapInfo*);
+};
 
 namespace Game {
 namespace CommonSaveData {
