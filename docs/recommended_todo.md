@@ -143,7 +143,7 @@
 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectKandoU/baseGameSectionKantei.cpp">baseGameSectionKantei.cpp</a> | 35291 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectKandoU/vsGS_Title.cpp">vsGS_Title.cpp</a> | 37212 |
 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectKandoU/singleGS_DayEnd.cpp">singleGS_DayEnd.cpp</a> | 37384 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectKandoU/aiWeed.cpp">aiWeed.cpp</a> | 38092 |
 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectKandoU/aiAttack.cpp">aiAttack.cpp</a> | 38728 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectKandoU/collinfo.cpp">collinfo.cpp</a> | 42536 |
-| <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectKandoU/gameCPlate.cpp">gameCPlate.cpp</a> | 43839 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectKandoU/creature.cpp">creature.cpp</a> | 45794 |
+| <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectKandoU/aiFormation.cpp">aiFormation.cpp</a> | 43400 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectKandoU/gameCPlate.cpp">gameCPlate.cpp</a> | 43839 |
 
 ### <section id="plugProjectKonoU">plugProjectKonoU</section>
 | File | Size (bytes) | File | Size (bytes) |

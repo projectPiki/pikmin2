@@ -59,7 +59,7 @@ enum DemoTimers {
 	DEMOTIMER_Unk1                  = 1,
 	DEMOTIMER_Unk2                  = 2,
 	DEMOTIMER_Unk3                  = 3,
-	DEMOTIMER_Unk4                  = 4,
+	DEMOTIMER_Meet_Red_Pikmin       = 4,
 	DEMOTIMER_Reds_Purples_Tutorial = 5,
 };
 

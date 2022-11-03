@@ -1,11 +1,14 @@
 #include "PikiAI.h"
 #include "Game/Piki.h"
+#include "Game/PikiMgr.h"
 #include "Game/Navi.h"
 #include "Game/gameStat.h"
 #include "Game/CPlate.h"
 #include "Game/GameSystem.h"
 #include "Game/gamePlayData.h"
+#include "Game/MoviePlayer.h"
 #include "JSystem/JUT/JUTException.h"
+#include "Iterator.h"
 #include "nans.h"
 
 namespace PikiAI {
@@ -131,9 +134,31 @@ void ActFormation::wallCallback(Vector3f&)
  */
 void ActFormation::setFormed()
 {
-	m_nextAIType = 1;
+	_28 = 1;
+
+	// if Meet Red Pikmin cutscene hasn't played, play it.
 	if (!Game::playData->isDemoFlag(Game::DEMO_Meet_Red_Pikmin)) {
-		// TODO: code for playing Meet Red Pikmin cutscene
+
+		Iterator<Game::Piki> iterator(Game::pikiMgr);
+		CI_LOOP(iterator)
+		{
+			Game::Piki* piki = (*iterator);
+			piki->movie_begin(false);
+		}
+
+		Game::Navi* navi = Game::naviMgr->getActiveNavi();
+		P2ASSERTLINE(438, navi);
+
+		Game::playData->setDemoFlag(Game::DEMO_Meet_Red_Pikmin);
+
+		Game::MoviePlayArg playArg("x02_watch_red_pikmin", nullptr, nullptr, 0);
+		playArg.m_origin                  = navi->getPosition();
+		playArg.m_angle                   = navi->getFaceDir();
+		Game::moviePlayer->m_targetObject = navi;
+
+		Game::moviePlayer->play(playArg);
+
+		Game::gameSystem->m_section->disableTimer(Game::DEMOTIMER_Meet_Red_Pikmin);
 	}
 
 	Game::Navi* navi = m_parent->m_navi;
@@ -142,9 +167,13 @@ void ActFormation::setFormed()
 		index = navi->m_naviIndex.typeView;
 	}
 
-	// do more checks if: a) we're above ground, b) some flag is set, c) reds-purples cutscene hasn't played, and d) purples in ship
-	// cutscene HAS played
-	if (!Game::gameSystem->m_inCave && Game::gameSystem->m_flags & 0x4 && !Game::playData->isDemoFlag(Game::DEMO_Reds_Purples_Tutorial)
+	/* do more checks if:
+	    a) we're above ground,
+	    b) some flag is set,
+	    c) reds-purples cutscene hasn't played, and
+	    d) purples in ship cutscene HAS played
+	*/
+	if (!Game::gameSystem->m_inCave && Game::gameSystem->m_flags & 0x20 && !Game::playData->isDemoFlag(Game::DEMO_Reds_Purples_Tutorial)
 	    && Game::playData->isDemoFlag(Game::DEMO_Purples_In_Ship)) {
 		Game::GameStat::checkNaviIndex(index); // check navi index is between 0 and 6 otherwise panic (?)
 		Game::GameStat::PikiCounter* counter = &Game::GameStat::formationPikis.m_counter[index]; // get squad numbers
@@ -169,319 +198,6 @@ void ActFormation::setFormed()
 			}
 		}
 	}
-	/*
-	stwu     r1, -0x70(r1)
-	mflr     r0
-	li       r4, 0x23
-	stw      r0, 0x74(r1)
-	li       r0, 1
-	stw      r31, 0x6c(r1)
-	stw      r30, 0x68(r1)
-	mr       r30, r3
-	stw      r29, 0x64(r1)
-	sth      r0, 0x28(r3)
-	lis      r3, lbl_8047F168@ha
-	addi     r31, r3, lbl_8047F168@l
-	lwz      r3, playData__4Game@sda21(r13)
-	bl       isDemoFlag__Q24Game8PlayDataFi
-	clrlwi.  r0, r3, 0x18
-	bne      lbl_8019D374
-	li       r0, 0
-	lwz      r3, pikiMgr__4Game@sda21(r13)
-	lis      r4, "__vt__22Iterator<Q24Game4Piki>"@ha
-	stw      r0, 0x20(r1)
-	addi     r4, r4, "__vt__22Iterator<Q24Game4Piki>"@l
-	cmplwi   r0, 0
-	stw      r4, 0x14(r1)
-	stw      r0, 0x18(r1)
-	stw      r3, 0x1c(r1)
-	bne      lbl_8019D108
-	lwz      r12, 0(r3)
-	lwz      r12, 0x18(r12)
-	mtctr    r12
-	bctrl
-	stw      r3, 0x18(r1)
-	b        lbl_8019D26C
-
-lbl_8019D108:
-	lwz      r12, 0(r3)
-	lwz      r12, 0x18(r12)
-	mtctr    r12
-	bctrl
-	stw      r3, 0x18(r1)
-	b        lbl_8019D174
-
-lbl_8019D120:
-	lwz      r3, 0x1c(r1)
-	lwz      r4, 0x18(r1)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x20(r12)
-	mtctr    r12
-	bctrl
-	mr       r4, r3
-	lwz      r3, 0x20(r1)
-	lwz      r12, 0(r3)
-	lwz      r12, 8(r12)
-	mtctr    r12
-	bctrl
-	clrlwi.  r0, r3, 0x18
-	bne      lbl_8019D26C
-	lwz      r3, 0x1c(r1)
-	lwz      r4, 0x18(r1)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x14(r12)
-	mtctr    r12
-	bctrl
-	stw      r3, 0x18(r1)
-
-lbl_8019D174:
-	lwz      r12, 0x14(r1)
-	addi     r3, r1, 0x14
-	lwz      r12, 0x10(r12)
-	mtctr    r12
-	bctrl
-	clrlwi.  r0, r3, 0x18
-	beq      lbl_8019D120
-	b        lbl_8019D26C
-
-lbl_8019D194:
-	lwz      r3, 0x1c(r1)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x20(r12)
-	mtctr    r12
-	bctrl
-	li       r4, 0
-	bl       movie_begin__Q24Game8CreatureFb
-	lwz      r0, 0x20(r1)
-	cmplwi   r0, 0
-	bne      lbl_8019D1DC
-	lwz      r3, 0x1c(r1)
-	lwz      r4, 0x18(r1)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x14(r12)
-	mtctr    r12
-	bctrl
-	stw      r3, 0x18(r1)
-	b        lbl_8019D26C
-
-lbl_8019D1DC:
-	lwz      r3, 0x1c(r1)
-	lwz      r4, 0x18(r1)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x14(r12)
-	mtctr    r12
-	bctrl
-	stw      r3, 0x18(r1)
-	b        lbl_8019D250
-
-lbl_8019D1FC:
-	lwz      r3, 0x1c(r1)
-	lwz      r4, 0x18(r1)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x20(r12)
-	mtctr    r12
-	bctrl
-	mr       r4, r3
-	lwz      r3, 0x20(r1)
-	lwz      r12, 0(r3)
-	lwz      r12, 8(r12)
-	mtctr    r12
-	bctrl
-	clrlwi.  r0, r3, 0x18
-	bne      lbl_8019D26C
-	lwz      r3, 0x1c(r1)
-	lwz      r4, 0x18(r1)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x14(r12)
-	mtctr    r12
-	bctrl
-	stw      r3, 0x18(r1)
-
-lbl_8019D250:
-	lwz      r12, 0x14(r1)
-	addi     r3, r1, 0x14
-	lwz      r12, 0x10(r12)
-	mtctr    r12
-	bctrl
-	clrlwi.  r0, r3, 0x18
-	beq      lbl_8019D1FC
-
-lbl_8019D26C:
-	lwz      r3, 0x1c(r1)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x1c(r12)
-	mtctr    r12
-	bctrl
-	lwz      r4, 0x18(r1)
-	cmplw    r4, r3
-	bne      lbl_8019D194
-	lwz      r3, naviMgr__4Game@sda21(r13)
-	bl       getActiveNavi__Q24Game7NaviMgrFv
-	or.      r29, r3, r3
-	bne      lbl_8019D2B0
-	addi     r3, r31, 0x28
-	addi     r5, r31, 0x38
-	li       r4, 0x1b6
-	crclr    6
-	bl       panic_f__12JUTExceptionFPCciPCce
-
-lbl_8019D2B0:
-	lwz      r3, playData__4Game@sda21(r13)
-	li       r4, 0x23
-	bl       setDemoFlag__Q24Game8PlayDataFi
-	lfs      f0, lbl_80518FE8@sda21(r2)
-	li       r0, 0
-	addi     r5, r31, 0x54
-	stw      r0, 0x28(r1)
-	mr       r4, r29
-	addi     r3, r1, 8
-	stw      r5, 0x24(r1)
-	stw      r0, 0x30(r1)
-	stfs     f0, 0x3c(r1)
-	stfs     f0, 0x40(r1)
-	stfs     f0, 0x44(r1)
-	stfs     f0, 0x48(r1)
-	stw      r0, 0x4c(r1)
-	stw      r0, 0x34(r1)
-	stw      r0, 0x2c(r1)
-	stw      r0, 0x50(r1)
-	stw      r0, 0x38(r1)
-	stw      r0, 0x54(r1)
-	lwz      r12, 0(r29)
-	lwz      r12, 8(r12)
-	mtctr    r12
-	bctrl
-	lfs      f2, 8(r1)
-	mr       r3, r29
-	lfs      f1, 0xc(r1)
-	lfs      f0, 0x10(r1)
-	stfs     f2, 0x3c(r1)
-	stfs     f1, 0x40(r1)
-	stfs     f0, 0x44(r1)
-	lwz      r12, 0(r29)
-	lwz      r12, 0x64(r12)
-	mtctr    r12
-	bctrl
-	stfs     f1, 0x48(r1)
-	addi     r4, r1, 0x24
-	lwz      r3, moviePlayer__4Game@sda21(r13)
-	stw      r29, 0x194(r3)
-	lwz      r3, moviePlayer__4Game@sda21(r13)
-	bl       play__Q24Game11MoviePlayerFRQ24Game12MoviePlayArg
-	lwz      r3, gameSystem__4Game@sda21(r13)
-	li       r4, 4
-	lwz      r3, 0x58(r3)
-	lwz      r12, 0(r3)
-	lwz      r12, 0xa8(r12)
-	mtctr    r12
-	bctrl
-
-lbl_8019D374:
-	lwz      r3, 4(r30)
-	li       r29, 0
-	lwz      r3, 0x2c4(r3)
-	cmplwi   r3, 0
-	beq      lbl_8019D38C
-	lhz      r29, 0x2dc(r3)
-
-lbl_8019D38C:
-	lwz      r3, gameSystem__4Game@sda21(r13)
-	lbz      r0, 0x48(r3)
-	cmplwi   r0, 0
-	bne      lbl_8019D4C8
-	lbz      r0, 0x3c(r3)
-	rlwinm.  r0, r0, 0, 0x1a, 0x1a
-	beq      lbl_8019D4C8
-	lwz      r3, playData__4Game@sda21(r13)
-	li       r4, 0x2e
-	bl       isDemoFlag__Q24Game8PlayDataFi
-	clrlwi.  r0, r3, 0x18
-	bne      lbl_8019D4C8
-	lwz      r3, playData__4Game@sda21(r13)
-	li       r4, 0xd
-	bl       isDemoFlag__Q24Game8PlayDataFi
-	clrlwi.  r0, r3, 0x18
-	beq      lbl_8019D4C8
-	cmpwi    r29, 0
-	li       r0, 0
-	blt      lbl_8019D3E8
-	cmpwi    r29, 7
-	bge      lbl_8019D3E8
-	li       r0, 1
-
-lbl_8019D3E8:
-	clrlwi.  r0, r0, 0x18
-	bne      lbl_8019D404
-	addi     r3, r31, 0x6c
-	addi     r5, r31, 0x38
-	li       r4, 0x77
-	crclr    6
-	bl       panic_f__12JUTExceptionFPCciPCce
-
-lbl_8019D404:
-	lis      r3, formationPikis__Q24Game8GameStat@ha
-	slwi     r5, r29, 5
-	addi     r0, r3, formationPikis__Q24Game8GameStat@l
-	li       r4, 1
-	add      r30, r0, r5
-	mr       r3, r30
-	lwz      r12, 0(r30)
-	lwz      r12, 0xc(r12)
-	mtctr    r12
-	bctrl
-	cmpwi    r3, 0
-	ble      lbl_8019D4C8
-	cmpwi    r29, 0
-	li       r0, 0
-	blt      lbl_8019D44C
-	cmpwi    r29, 7
-	bge      lbl_8019D44C
-	li       r0, 1
-
-lbl_8019D44C:
-	clrlwi.  r0, r0, 0x18
-	bne      lbl_8019D468
-	addi     r3, r31, 0x6c
-	addi     r5, r31, 0x38
-	li       r4, 0x77
-	crclr    6
-	bl       panic_f__12JUTExceptionFPCciPCce
-
-lbl_8019D468:
-	mr       r3, r30
-	li       r4, 3
-	lwz      r12, 0(r30)
-	lwz      r12, 0xc(r12)
-	mtctr    r12
-	bctrl
-	cmpwi    r3, 0
-	ble      lbl_8019D4C8
-	lwz      r3, gameSystem__4Game@sda21(r13)
-	lwz      r3, 0x58(r3)
-	lwz      r12, 0(r3)
-	lwz      r12, 0xac(r12)
-	mtctr    r12
-	bctrl
-	cmplwi   r3, 5
-	beq      lbl_8019D4C8
-	lwz      r3, gameSystem__4Game@sda21(r13)
-	li       r4, 5
-	lfs      f1, lbl_80518FEC@sda21(r2)
-	lwz      r3, 0x58(r3)
-	lwz      r12, 0(r3)
-	lwz      r12, 0xa4(r12)
-	mtctr    r12
-	bctrl
-
-lbl_8019D4C8:
-	lwz      r0, 0x74(r1)
-	lwz      r31, 0x6c(r1)
-	lwz      r30, 0x68(r1)
-	lwz      r29, 0x64(r1)
-	mtlr     r0
-	addi     r1, r1, 0x70
-	blr
-	*/
 }
 
 /*
