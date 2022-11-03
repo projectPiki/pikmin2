@@ -47,19 +47,19 @@ struct TTankFireABC : public TChaseMtx3 {
 	virtual void forceKill() { } // _0C (weak)
 	virtual void fade()          // _10 (weak)
 	{
-		TSyncGroup3<TChaseMtx>::fade();
+		TChaseMtx3::fade();
 		if (m_particleCallBack.m_efxHit) {
 			m_particleCallBack.m_efxHit->fade();
 		}
 	}
 	virtual void startDemoDrawOff() // _14 (weak)
 	{
-		TSyncGroup3<TChaseMtx>::startDemoDrawOff();
+		TChaseMtx3::startDemoDrawOff();
 		m_efxFireHit.startDemoDrawOff();
 	}
 	virtual void endDemoDrawOn() // _18 (weak)
 	{
-		TSyncGroup3<TChaseMtx>::endDemoDrawOn();
+		TChaseMtx3::endDemoDrawOn();
 		m_efxFireHit.endDemoDrawOn();
 	}
 
@@ -160,19 +160,19 @@ struct TTankWat : public TChaseMtx4 {
 	virtual void forceKill();  // _0C (weak)
 	virtual void fade()        // _10 (weak)
 	{
-		TSyncGroup4<TChaseMtx>::fade();
+		TChaseMtx4::fade();
 		if (m_particleCallBack.m_efxHit) {
 			m_particleCallBack.m_efxHit->fade();
 		}
 	}
 	virtual void startDemoDrawOff() // _14 (weak)
 	{
-		TSyncGroup4<TChaseMtx>::startDemoDrawOff();
+		TChaseMtx4::startDemoDrawOff();
 		m_efxHit.startDemoDrawOff();
 	}
 	virtual void endDemoDrawOn() // _18 (weak)
 	{
-		TSyncGroup4<TChaseMtx>::endDemoDrawOn();
+		TChaseMtx4::endDemoDrawOn();
 		m_efxHit.endDemoDrawOn();
 	}
 

@@ -49,6 +49,12 @@ struct TSyncGroup2 : public TBase {
 	T m_items[2]; // _04
 };
 
+// map says these should be weak, but making them weak messes with Ftank and Wtank.
+// TODO: resolve once efxBase is decomp'd
+
+// it literally just runs the loop the number times in the struct name. can't they just use an inline func with the loop count as an arg
+// -EpochFlame
+
 template <typename T>
 struct TSyncGroup3 : public TBase {
 	//////////////// VTABLE

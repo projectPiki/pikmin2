@@ -710,7 +710,7 @@ NISHIMURA:=\
 	$(BUILD_DIR)/src/plugProjectNishimuraU/ElecBugMgr.o\
 	$(BUILD_DIR)/asm/plugProjectNishimuraU/ElecBug.o\
 	$(BUILD_DIR)/src/plugProjectNishimuraU/WtankMgr.o\
-	$(BUILD_DIR)/asm/plugProjectNishimuraU/Wtank.o\
+	$(BUILD_DIR)/src/plugProjectNishimuraU/Wtank.o\
 	$(BUILD_DIR)/src/plugProjectNishimuraU/ArmorMgr.o\
 	$(BUILD_DIR)/asm/plugProjectNishimuraU/Armor.o\
 	$(BUILD_DIR)/asm/plugProjectNishimuraU/Mar.o\
@@ -751,7 +751,7 @@ NISHIMURA:=\
 	$(BUILD_DIR)/src/plugProjectNishimuraU/KoganemushiMgr.o\
 	$(BUILD_DIR)/src/plugProjectNishimuraU/Koganemushi.o\
 	$(BUILD_DIR)/src/plugProjectNishimuraU/FtankMgr.o\
-	$(BUILD_DIR)/asm/plugProjectNishimuraU/Ftank.o\
+	$(BUILD_DIR)/src/plugProjectNishimuraU/Ftank.o\
 	$(BUILD_DIR)/src/plugProjectNishimuraU/RandPlantUnit.o\
 	$(BUILD_DIR)/asm/plugProjectNishimuraU/HanachirashiState.o\
 	$(BUILD_DIR)/src/plugProjectNishimuraU/HanachirashiAnimator.o\
