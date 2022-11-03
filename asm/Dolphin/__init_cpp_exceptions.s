@@ -37,9 +37,9 @@ __init_cpp_exceptions:
 /* 800C2310 000BF250  2C 00 FF FE */	cmpwi r0, -2
 /* 800C2314 000BF254  40 82 00 1C */	bne .L_800C2330
 /* 800C2318 000BF258  4B FF FF AD */	bl GetR2__Fv
-/* 800C231C 000BF25C  3C A0 80 00 */	lis r5, .L_8000569C@ha
+/* 800C231C 000BF25C  3C A0 80 00 */	lis r5, lbl_8000569C@ha
 /* 800C2320 000BF260  7C 64 1B 78 */	mr r4, r3
-/* 800C2324 000BF264  38 65 56 9C */	addi r3, r5, .L_8000569C@l
+/* 800C2324 000BF264  38 65 56 9C */	addi r3, r5, lbl_8000569C@l
 /* 800C2328 000BF268  48 00 00 4D */	bl __register_fragment
 /* 800C232C 000BF26C  90 6D 82 18 */	stw r3, fragmentID@sda21(r13)
 .L_800C2330:

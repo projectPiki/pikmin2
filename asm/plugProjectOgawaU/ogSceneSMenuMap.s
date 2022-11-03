@@ -369,10 +369,8 @@ doConfirmSetScene__Q32og9newScreen8SMenuMapFRQ26Screen11SetSceneArg:
 /* 80312E58 0030FD98  7C 03 00 2E */	lwzx r0, r3, r0
 /* 80312E5C 0030FD9C  7C 09 03 A6 */	mtctr r0
 /* 80312E60 0030FDA0  4E 80 04 20 */	bctr 
-.global .L_80312E64
 .L_80312E64:
 /* 80312E64 0030FDA4  3B E0 00 01 */	li r31, 1
-.global .L_80312E68
 .L_80312E68:
 /* 80312E68 0030FDA8  80 01 00 14 */	lwz r0, 0x14(r1)
 /* 80312E6C 0030FDAC  7F E3 FB 78 */	mr r3, r31

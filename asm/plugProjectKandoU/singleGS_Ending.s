@@ -377,7 +377,6 @@ exec__Q34Game10SingleGame11EndingStateFPQ24Game17SingleGameSection:
 /* 80232A90 0022F9D0  7C 03 00 2E */	lwzx r0, r3, r0
 /* 80232A94 0022F9D4  7C 09 03 A6 */	mtctr r0
 /* 80232A98 0022F9D8  4E 80 04 20 */	bctr 
-.global .L_80232A9C
 .L_80232A9C:
 /* 80232A9C 0022F9DC  88 1D 00 10 */	lbz r0, 0x10(r29)
 /* 80232AA0 0022F9E0  54 00 07 FF */	clrlwi. r0, r0, 0x1f
@@ -414,7 +413,6 @@ exec__Q34Game10SingleGame11EndingStateFPQ24Game17SingleGameSection:
 /* 80232B14 0022FA54  80 BD 00 24 */	lwz r5, 0x24(r29)
 /* 80232B18 0022FA58  48 1F 04 21 */	bl dvdLoadUseCallBack__6SystemFP16DvdThreadCommandP9IDelegate
 /* 80232B1C 0022FA5C  48 00 07 40 */	b .L_8023325C
-.global .L_80232B20
 .L_80232B20:
 /* 80232B20 0022FA60  80 1E 01 D0 */	lwz r0, 0x1f4(r30)
 /* 80232B24 0022FA64  2C 00 00 02 */	cmpwi r0, 2
@@ -466,7 +464,6 @@ exec__Q34Game10SingleGame11EndingStateFPQ24Game17SingleGameSection:
 /* 80232BD0 0022FB10  38 00 00 02 */	li r0, 2
 /* 80232BD4 0022FB14  98 1D 00 11 */	stb r0, 0x11(r29)
 /* 80232BD8 0022FB18  48 00 06 84 */	b .L_8023325C
-.global .L_80232BDC
 .L_80232BDC:
 /* 80232BDC 0022FB1C  88 1D 00 10 */	lbz r0, 0x10(r29)
 /* 80232BE0 0022FB20  54 00 07 BD */	rlwinm. r0, r0, 0, 0x1e, 0x1e
@@ -488,7 +485,6 @@ exec__Q34Game10SingleGame11EndingStateFPQ24Game17SingleGameSection:
 /* 80232C1C 0022FB5C  80 7D 00 1C */	lwz r3, 0x1c(r29)
 /* 80232C20 0022FB60  48 21 D3 81 */	bl load__Q24Game9THPPlayerFQ34Game9THPPlayer11EMovieIndex
 /* 80232C24 0022FB64  48 00 06 38 */	b .L_8023325C
-.global .L_80232C28
 .L_80232C28:
 /* 80232C28 0022FB68  80 7D 00 1C */	lwz r3, 0x1c(r29)
 /* 80232C2C 0022FB6C  81 83 00 00 */	lwz r12, 0(r3)
@@ -522,7 +518,6 @@ exec__Q34Game10SingleGame11EndingStateFPQ24Game17SingleGameSection:
 /* 80232C98 0022FBD8  80 7D 00 1C */	lwz r3, 0x1c(r29)
 /* 80232C9C 0022FBDC  48 21 D3 05 */	bl load__Q24Game9THPPlayerFQ34Game9THPPlayer11EMovieIndex
 /* 80232CA0 0022FBE0  48 00 05 BC */	b .L_8023325C
-.global .L_80232CA4
 .L_80232CA4:
 /* 80232CA4 0022FBE4  80 7D 00 1C */	lwz r3, 0x1c(r29)
 /* 80232CA8 0022FBE8  81 83 00 00 */	lwz r12, 0(r3)
@@ -616,7 +611,6 @@ exec__Q34Game10SingleGame11EndingStateFPQ24Game17SingleGameSection:
 /* 80232DF8 0022FD38  98 64 00 19 */	stb r3, 0x19(r4)
 /* 80232DFC 0022FD3C  90 04 00 1C */	stw r0, 0x1c(r4)
 /* 80232E00 0022FD40  48 00 04 5C */	b .L_8023325C
-.global .L_80232E04
 .L_80232E04:
 /* 80232E04 0022FD44  80 6D 9A 08 */	lwz r3, particle2dMgr@sda21(r13)
 /* 80232E08 0022FD48  48 18 67 A9 */	bl update__14TParticle2dMgrFv
@@ -639,7 +633,6 @@ exec__Q34Game10SingleGame11EndingStateFPQ24Game17SingleGameSection:
 /* 80232E4C 0022FD8C  90 A1 00 10 */	stw r5, 0x10(r1)
 /* 80232E50 0022FD90  48 1C B9 59 */	bl open_FinalMessage__Q26Screen9Game2DMgrFRQ32og6Screen22DispMemberFinalMessage
 /* 80232E54 0022FD94  48 00 04 08 */	b .L_8023325C
-.global .L_80232E58
 .L_80232E58:
 /* 80232E58 0022FD98  80 6D 9A 08 */	lwz r3, particle2dMgr@sda21(r13)
 /* 80232E5C 0022FD9C  48 18 67 55 */	bl update__14TParticle2dMgrFv
@@ -696,7 +689,6 @@ exec__Q34Game10SingleGame11EndingStateFPQ24Game17SingleGameSection:
 /* 80232F18 0022FE58  7F C3 F3 78 */	mr r3, r30
 /* 80232F1C 0022FE5C  4B F1 FC 39 */	bl flow_goto_title__Q24Game17SingleGameSectionFv
 /* 80232F20 0022FE60  48 00 03 3C */	b .L_8023325C
-.global .L_80232F24
 .L_80232F24:
 /* 80232F24 0022FE64  80 7D 00 1C */	lwz r3, 0x1c(r29)
 /* 80232F28 0022FE68  81 83 00 00 */	lwz r12, 0(r3)
@@ -731,7 +723,6 @@ exec__Q34Game10SingleGame11EndingStateFPQ24Game17SingleGameSection:
 /* 80232F98 0022FED8  7D 89 03 A6 */	mtctr r12
 /* 80232F9C 0022FEDC  4E 80 04 21 */	bctrl 
 /* 80232FA0 0022FEE0  48 00 02 BC */	b .L_8023325C
-.global .L_80232FA4
 .L_80232FA4:
 /* 80232FA4 0022FEE4  80 7D 00 1C */	lwz r3, 0x1c(r29)
 /* 80232FA8 0022FEE8  81 83 00 00 */	lwz r12, 0(r3)
@@ -816,7 +807,6 @@ exec__Q34Game10SingleGame11EndingStateFPQ24Game17SingleGameSection:
 /* 802330D8 00230018  98 83 00 19 */	stb r4, 0x19(r3)
 /* 802330DC 0023001C  90 03 00 1C */	stw r0, 0x1c(r3)
 /* 802330E0 00230020  48 00 01 7C */	b .L_8023325C
-.global .L_802330E4
 .L_802330E4:
 /* 802330E4 00230024  80 7D 00 1C */	lwz r3, 0x1c(r29)
 /* 802330E8 00230028  81 83 00 00 */	lwz r12, 0(r3)
@@ -901,7 +891,6 @@ exec__Q34Game10SingleGame11EndingStateFPQ24Game17SingleGameSection:
 /* 80233218 00230158  98 83 00 19 */	stb r4, 0x19(r3)
 /* 8023321C 0023015C  90 03 00 1C */	stw r0, 0x1c(r3)
 /* 80233220 00230160  48 00 00 3C */	b .L_8023325C
-.global .L_80233224
 .L_80233224:
 /* 80233224 00230164  80 6D 9A 08 */	lwz r3, particle2dMgr@sda21(r13)
 /* 80233228 00230168  48 18 63 89 */	bl update__14TParticle2dMgrFv
@@ -958,7 +947,6 @@ exec__Q34Game10SingleGame11EndingStateFPQ24Game17SingleGameSection:
 /* 80232A90 0022F9D0  7C 03 00 2E */	lwzx r0, r3, r0
 /* 80232A94 0022F9D4  7C 09 03 A6 */	mtctr r0
 /* 80232A98 0022F9D8  4E 80 04 20 */	bctr 
-.global .L_80232A9C
 .L_80232A9C:
 /* 80232A9C 0022F9DC  88 1D 00 10 */	lbz r0, 0x10(r29)
 /* 80232AA0 0022F9E0  54 00 07 FF */	clrlwi. r0, r0, 0x1f
@@ -995,7 +983,6 @@ exec__Q34Game10SingleGame11EndingStateFPQ24Game17SingleGameSection:
 /* 80232B14 0022FA54  80 BD 00 24 */	lwz r5, 0x24(r29)
 /* 80232B18 0022FA58  48 1F 04 21 */	bl dvdLoadUseCallBack__6SystemFP16DvdThreadCommandP9IDelegate
 /* 80232B1C 0022FA5C  48 00 07 40 */	b .L_8023325C
-.global .L_80232B20
 .L_80232B20:
 /* 80232B20 0022FA60  80 1E 01 D0 */	lwz r0, 0x1d0(r30)
 /* 80232B24 0022FA64  2C 00 00 02 */	cmpwi r0, 2
@@ -1047,7 +1034,6 @@ exec__Q34Game10SingleGame11EndingStateFPQ24Game17SingleGameSection:
 /* 80232BD0 0022FB10  38 00 00 02 */	li r0, 2
 /* 80232BD4 0022FB14  98 1D 00 11 */	stb r0, 0x11(r29)
 /* 80232BD8 0022FB18  48 00 06 84 */	b .L_8023325C
-.global .L_80232BDC
 .L_80232BDC:
 /* 80232BDC 0022FB1C  88 1D 00 10 */	lbz r0, 0x10(r29)
 /* 80232BE0 0022FB20  54 00 07 BD */	rlwinm. r0, r0, 0, 0x1e, 0x1e
@@ -1069,7 +1055,6 @@ exec__Q34Game10SingleGame11EndingStateFPQ24Game17SingleGameSection:
 /* 80232C1C 0022FB5C  80 7D 00 1C */	lwz r3, 0x1c(r29)
 /* 80232C20 0022FB60  48 21 D3 81 */	bl load__Q24Game9THPPlayerFQ34Game9THPPlayer11EMovieIndex
 /* 80232C24 0022FB64  48 00 06 38 */	b .L_8023325C
-.global .L_80232C28
 .L_80232C28:
 /* 80232C28 0022FB68  80 7D 00 1C */	lwz r3, 0x1c(r29)
 /* 80232C2C 0022FB6C  81 83 00 00 */	lwz r12, 0(r3)
@@ -1103,7 +1088,6 @@ exec__Q34Game10SingleGame11EndingStateFPQ24Game17SingleGameSection:
 /* 80232C98 0022FBD8  80 7D 00 1C */	lwz r3, 0x1c(r29)
 /* 80232C9C 0022FBDC  48 21 D3 05 */	bl load__Q24Game9THPPlayerFQ34Game9THPPlayer11EMovieIndex
 /* 80232CA0 0022FBE0  48 00 05 BC */	b .L_8023325C
-.global .L_80232CA4
 .L_80232CA4:
 /* 80232CA4 0022FBE4  80 7D 00 1C */	lwz r3, 0x1c(r29)
 /* 80232CA8 0022FBE8  81 83 00 00 */	lwz r12, 0(r3)
@@ -1197,7 +1181,6 @@ exec__Q34Game10SingleGame11EndingStateFPQ24Game17SingleGameSection:
 /* 80232DF8 0022FD38  98 64 00 19 */	stb r3, 0x19(r4)
 /* 80232DFC 0022FD3C  90 04 00 1C */	stw r0, 0x1c(r4)
 /* 80232E00 0022FD40  48 00 04 5C */	b .L_8023325C
-.global .L_80232E04
 .L_80232E04:
 /* 80232E04 0022FD44  80 6D 9A 08 */	lwz r3, particle2dMgr@sda21(r13)
 /* 80232E08 0022FD48  48 18 67 A9 */	bl update__14TParticle2dMgrFv
@@ -1220,7 +1203,6 @@ exec__Q34Game10SingleGame11EndingStateFPQ24Game17SingleGameSection:
 /* 80232E4C 0022FD8C  90 A1 00 10 */	stw r5, 0x10(r1)
 /* 80232E50 0022FD90  48 1C B9 59 */	bl open_FinalMessage__Q26Screen9Game2DMgrFRQ32og6Screen22DispMemberFinalMessage
 /* 80232E54 0022FD94  48 00 04 08 */	b .L_8023325C
-.global .L_80232E58
 .L_80232E58:
 /* 80232E58 0022FD98  80 6D 9A 08 */	lwz r3, particle2dMgr@sda21(r13)
 /* 80232E5C 0022FD9C  48 18 67 55 */	bl update__14TParticle2dMgrFv
@@ -1277,7 +1259,6 @@ exec__Q34Game10SingleGame11EndingStateFPQ24Game17SingleGameSection:
 /* 80232F18 0022FE58  7F C3 F3 78 */	mr r3, r30
 /* 80232F1C 0022FE5C  4B F1 FC 39 */	bl flow_goto_title__Q24Game17SingleGameSectionFv
 /* 80232F20 0022FE60  48 00 03 3C */	b .L_8023325C
-.global .L_80232F24
 .L_80232F24:
 /* 80232F24 0022FE64  80 7D 00 1C */	lwz r3, 0x1c(r29)
 /* 80232F28 0022FE68  81 83 00 00 */	lwz r12, 0(r3)
@@ -1312,7 +1293,6 @@ exec__Q34Game10SingleGame11EndingStateFPQ24Game17SingleGameSection:
 /* 80232F98 0022FED8  7D 89 03 A6 */	mtctr r12
 /* 80232F9C 0022FEDC  4E 80 04 21 */	bctrl 
 /* 80232FA0 0022FEE0  48 00 02 BC */	b .L_8023325C
-.global .L_80232FA4
 .L_80232FA4:
 /* 80232FA4 0022FEE4  80 7D 00 1C */	lwz r3, 0x1c(r29)
 /* 80232FA8 0022FEE8  81 83 00 00 */	lwz r12, 0(r3)
@@ -1397,7 +1377,6 @@ exec__Q34Game10SingleGame11EndingStateFPQ24Game17SingleGameSection:
 /* 802330D8 00230018  98 83 00 19 */	stb r4, 0x19(r3)
 /* 802330DC 0023001C  90 03 00 1C */	stw r0, 0x1c(r3)
 /* 802330E0 00230020  48 00 01 7C */	b .L_8023325C
-.global .L_802330E4
 .L_802330E4:
 /* 802330E4 00230024  80 7D 00 1C */	lwz r3, 0x1c(r29)
 /* 802330E8 00230028  81 83 00 00 */	lwz r12, 0(r3)
@@ -1482,7 +1461,6 @@ exec__Q34Game10SingleGame11EndingStateFPQ24Game17SingleGameSection:
 /* 80233218 00230158  98 83 00 19 */	stb r4, 0x19(r3)
 /* 8023321C 0023015C  90 03 00 1C */	stw r0, 0x1c(r3)
 /* 80233220 00230160  48 00 00 3C */	b .L_8023325C
-.global .L_80233224
 .L_80233224:
 /* 80233224 00230164  80 6D 9A 08 */	lwz r3, particle2dMgr@sda21(r13)
 /* 80233228 00230168  48 18 63 89 */	bl update__14TParticle2dMgrFv

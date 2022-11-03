@@ -1125,14 +1125,12 @@ doUpdate__Q32og9newScreen9ObjKanteiFv:
 /* 80318FBC 00315EFC  7C 03 00 2E */	lwzx r0, r3, r0
 /* 80318FC0 00315F00  7C 09 03 A6 */	mtctr r0
 /* 80318FC4 00315F04  4E 80 04 20 */	bctr 
-.global .L_80318FC8
 .L_80318FC8:
 /* 80318FC8 00315F08  38 00 00 02 */	li r0, 2
 /* 80318FCC 00315F0C  C0 02 F5 D8 */	lfs f0, lbl_8051D938@sda21(r2)
 /* 80318FD0 00315F10  90 1F 00 4C */	stw r0, 0x4c(r31)
 /* 80318FD4 00315F14  D0 1F 00 8C */	stfs f0, 0x8c(r31)
 /* 80318FD8 00315F18  48 00 02 74 */	b .L_8031924C
-.global .L_80318FDC
 .L_80318FDC:
 /* 80318FDC 00315F1C  80 AD 9A EC */	lwz r5, sys@sda21(r13)
 /* 80318FE0 00315F20  3C 60 80 51 */	lis r3, msVal__Q32og9newScreen9ObjKantei@ha
@@ -1172,7 +1170,6 @@ doUpdate__Q32og9newScreen9ObjKanteiFv:
 /* 80319064 00315FA4  7D 89 03 A6 */	mtctr r12
 /* 80319068 00315FA8  4E 80 04 21 */	bctrl 
 /* 8031906C 00315FAC  48 00 01 E0 */	b .L_8031924C
-.global .L_80319070
 .L_80319070:
 /* 80319070 00315FB0  38 00 00 04 */	li r0, 4
 /* 80319074 00315FB4  C0 02 F5 D8 */	lfs f0, lbl_8051D938@sda21(r2)
@@ -1182,7 +1179,6 @@ doUpdate__Q32og9newScreen9ObjKanteiFv:
 /* 80319084 00315FC4  80 7F 00 38 */	lwz r3, 0x38(r31)
 /* 80319088 00315FC8  90 03 00 08 */	stw r0, 8(r3)
 /* 8031908C 00315FCC  48 00 01 C0 */	b .L_8031924C
-.global .L_80319090
 .L_80319090:
 /* 80319090 00315FD0  80 8D 9A EC */	lwz r4, sys@sda21(r13)
 /* 80319094 00315FD4  3C 60 80 51 */	lis r3, msVal__Q32og9newScreen9ObjKantei@ha
@@ -1209,7 +1205,6 @@ doUpdate__Q32og9newScreen9ObjKanteiFv:
 /* 803190E8 00316028  80 7F 00 94 */	lwz r3, 0x94(r31)
 /* 803190EC 0031602C  4B FF 26 ED */	bl setPuyoAnim__Q32og6Screen18CallBack_CounterRVFb
 /* 803190F0 00316030  48 00 01 5C */	b .L_8031924C
-.global .L_803190F4
 .L_803190F4:
 /* 803190F4 00316034  38 00 00 07 */	li r0, 7
 /* 803190F8 00316038  90 1F 00 4C */	stw r0, 0x4c(r31)
@@ -1224,7 +1219,6 @@ doUpdate__Q32og9newScreen9ObjKanteiFv:
 /* 8031911C 0031605C  38 00 00 01 */	li r0, 1
 /* 80319120 00316060  98 1F 00 C8 */	stb r0, 0xc8(r31)
 /* 80319124 00316064  48 00 01 28 */	b .L_8031924C
-.global .L_80319128
 .L_80319128:
 /* 80319128 00316068  C0 3F 00 E0 */	lfs f1, 0xe0(r31)
 /* 8031912C 0031606C  C0 02 F5 D8 */	lfs f0, lbl_8051D938@sda21(r2)
@@ -1290,7 +1284,6 @@ doUpdate__Q32og9newScreen9ObjKanteiFv:
 /* 8031920C 0031614C  7F E3 FB 78 */	mr r3, r31
 /* 80319210 00316150  48 00 01 85 */	bl finishKantei__Q32og9newScreen9ObjKanteiFv
 /* 80319214 00316154  48 00 00 38 */	b .L_8031924C
-.global .L_80319218
 .L_80319218:
 /* 80319218 00316158  80 7F 00 50 */	lwz r3, 0x50(r31)
 /* 8031921C 0031615C  80 BF 00 38 */	lwz r5, 0x38(r31)
@@ -1305,7 +1298,6 @@ doUpdate__Q32og9newScreen9ObjKanteiFv:
 /* 80319240 00316180  40 82 00 0C */	bne .L_8031924C
 /* 80319244 00316184  7F E3 FB 78 */	mr r3, r31
 /* 80319248 00316188  48 00 01 4D */	bl finishKantei__Q32og9newScreen9ObjKanteiFv
-.global .L_8031924C
 .L_8031924C:
 /* 8031924C 0031618C  7F E3 FB 78 */	mr r3, r31
 /* 80319250 00316190  4B FF F9 8D */	bl scaleAnimItemName__Q32og9newScreen9ObjKanteiFv

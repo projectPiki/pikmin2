@@ -1469,7 +1469,6 @@ placeObjects__Q24Game7MapRoomFPQ34Game4Cave9FloorInfob:
 /* 801B6F98 001B3ED8  7C 03 B8 2E */	lwzx r0, r3, r23
 /* 801B6F9C 001B3EDC  7C 09 03 A6 */	mtctr r0
 /* 801B6FA0 001B3EE0  4E 80 04 20 */	bctr 
-.global .L_801B6FA4
 .L_801B6FA4:
 /* 801B6FA4 001B3EE4  80 6D 94 48 */	lwz r3, mgr__Q24Game8ItemHole@sda21(r13)
 /* 801B6FA8 001B3EE8  48 01 67 E5 */	bl birth__Q24Game12TNodeItemMgrFv
@@ -1571,7 +1570,6 @@ placeObjects__Q24Game7MapRoomFPQ34Game4Cave9FloorInfob:
 /* 801B7114 001B4054  38 A0 00 00 */	li r5, 0
 /* 801B7118 001B4058  4B F8 40 91 */	bl "setPosition__Q24Game8CreatureFR10Vector3<f>b"
 /* 801B711C 001B405C  48 00 05 44 */	b .L_801B7660
-.global .L_801B7120
 .L_801B7120:
 /* 801B7120 001B4060  80 6D 93 E8 */	lwz r3, gameSystem__4Game@sda21(r13)
 /* 801B7124 001B4064  80 03 00 44 */	lwz r0, 0x44(r3)
@@ -1606,7 +1604,6 @@ placeObjects__Q24Game7MapRoomFPQ34Game4Cave9FloorInfob:
 /* 801B7198 001B40D8  38 A0 00 00 */	li r5, 0
 /* 801B719C 001B40DC  4B F8 40 0D */	bl "setPosition__Q24Game8CreatureFR10Vector3<f>b"
 /* 801B71A0 001B40E0  48 00 04 C0 */	b .L_801B7660
-.global .L_801B71A4
 .L_801B71A4:
 /* 801B71A4 001B40E4  80 6D 93 30 */	lwz r3, mgr__Q24Game9ItemOnyon@sda21(r13)
 /* 801B71A8 001B40E8  38 80 00 00 */	li r4, 0
@@ -1637,7 +1634,6 @@ placeObjects__Q24Game7MapRoomFPQ34Game4Cave9FloorInfob:
 /* 801B720C 001B414C  38 A0 00 00 */	li r5, 0
 /* 801B7210 001B4150  4B F8 3F 99 */	bl "setPosition__Q24Game8CreatureFR10Vector3<f>b"
 /* 801B7214 001B4154  48 00 04 4C */	b .L_801B7660
-.global .L_801B7218
 .L_801B7218:
 /* 801B7218 001B4158  80 6D 93 30 */	lwz r3, mgr__Q24Game9ItemOnyon@sda21(r13)
 /* 801B721C 001B415C  38 80 00 00 */	li r4, 0
@@ -1668,7 +1664,6 @@ placeObjects__Q24Game7MapRoomFPQ34Game4Cave9FloorInfob:
 /* 801B7280 001B41C0  38 A0 00 00 */	li r5, 0
 /* 801B7284 001B41C4  4B F8 3F 25 */	bl "setPosition__Q24Game8CreatureFR10Vector3<f>b"
 /* 801B7288 001B41C8  48 00 03 D8 */	b .L_801B7660
-.global .L_801B728C
 .L_801B728C:
 /* 801B728C 001B41CC  80 6D 94 B0 */	lwz r3, mgr__Q24Game15ItemBigFountain@sda21(r13)
 /* 801B7290 001B41D0  48 03 66 A5 */	bl birth__Q34Game15ItemBigFountain3MgrFv
@@ -1723,7 +1718,6 @@ placeObjects__Q24Game7MapRoomFPQ34Game4Cave9FloorInfob:
 /* 801B7344 001B4284  38 A0 00 00 */	li r5, 0
 /* 801B7348 001B4288  4B F8 3E 61 */	bl "setPosition__Q24Game8CreatureFR10Vector3<f>b"
 /* 801B734C 001B428C  48 00 03 14 */	b .L_801B7660
-.global .L_801B7350
 .L_801B7350:
 /* 801B7350 001B4290  C0 02 B0 E0 */	lfs f0, lbl_80519440@sda21(r2)
 /* 801B7354 001B4294  7F E3 FB 78 */	mr r3, r31
@@ -1814,7 +1808,6 @@ placeObjects__Q24Game7MapRoomFPQ34Game4Cave9FloorInfob:
 /* 801B749C 001B43DC  80 6D 93 08 */	lwz r3, mapMgr__4Game@sda21(r13)
 /* 801B74A0 001B43E0  92 C3 01 14 */	stw r22, 0x114(r3)
 /* 801B74A4 001B43E4  48 00 01 BC */	b .L_801B7660
-.global .L_801B74A8
 .L_801B74A8:
 /* 801B74A8 001B43E8  7F E3 FB 78 */	mr r3, r31
 /* 801B74AC 001B43EC  81 9F 00 00 */	lwz r12, 0(r31)
@@ -1885,7 +1878,6 @@ placeObjects__Q24Game7MapRoomFPQ34Game4Cave9FloorInfob:
 /* 801B75A8 001B44E8  7F 03 C3 78 */	mr r3, r24
 /* 801B75AC 001B44EC  4B FB 09 CD */	bl allocateTexCaster__Q24Game6PelletFv
 /* 801B75B0 001B44F0  48 00 00 B0 */	b .L_801B7660
-.global .L_801B75B4
 .L_801B75B4:
 /* 801B75B4 001B44F4  7F E3 FB 78 */	mr r3, r31
 /* 801B75B8 001B44F8  81 9F 00 00 */	lwz r12, 0(r31)

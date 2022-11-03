@@ -11733,7 +11733,6 @@ calc__21J3DTexGenBlockPatchedFPA4_Cf:
 /* 800811E0 0007E120  7C 03 00 2E */	lwzx r0, r3, r0
 /* 800811E4 0007E124  7C 09 03 A6 */	mtctr r0
 /* 800811E8 0007E128  4E 80 04 20 */	bctr 
-.global .L_800811EC
 .L_800811EC:
 /* 800811EC 0007E12C  80 1F 00 34 */	lwz r0, 0x34(r31)
 /* 800811F0 0007E130  54 00 07 39 */	rlwinm. r0, r0, 0, 0x1c, 0x1c
@@ -11758,7 +11757,6 @@ calc__21J3DTexGenBlockPatchedFPA4_Cf:
 /* 80081234 0007E174  80 7E 00 38 */	lwz r3, 0x38(r30)
 /* 80081238 0007E178  4B FE 3A BD */	bl calc__9J3DTexMtxFPA4_Cf
 /* 8008123C 0007E17C  48 00 00 D4 */	b .L_80081310
-.global .L_80081240
 .L_80081240:
 /* 80081240 0007E180  80 1F 00 34 */	lwz r0, 0x34(r31)
 /* 80081244 0007E184  54 00 07 7B */	rlwinm. r0, r0, 0, 0x1d, 0x1d
@@ -11773,7 +11771,6 @@ calc__21J3DTexGenBlockPatchedFPA4_Cf:
 /* 80081264 0007E1A4  38 84 88 6C */	addi r4, r4, j3dDefaultMtx@l
 /* 80081268 0007E1A8  4B FE 3A 8D */	bl calc__9J3DTexMtxFPA4_Cf
 /* 8008126C 0007E1AC  48 00 00 A4 */	b .L_80081310
-.global .L_80081270
 .L_80081270:
 /* 80081270 0007E1B0  80 1F 00 34 */	lwz r0, 0x34(r31)
 /* 80081274 0007E1B4  54 00 07 7B */	rlwinm. r0, r0, 0, 0x1d, 0x1d
@@ -11793,7 +11790,6 @@ calc__21J3DTexGenBlockPatchedFPA4_Cf:
 /* 800812A8 0007E1E8  38 84 F2 30 */	addi r4, r4, j3dSys@l
 /* 800812AC 0007E1EC  4B FE 3A 49 */	bl calc__9J3DTexMtxFPA4_Cf
 /* 800812B0 0007E1F0  48 00 00 60 */	b .L_80081310
-.global .L_800812B4
 .L_800812B4:
 /* 800812B4 0007E1F4  80 1F 00 34 */	lwz r0, 0x34(r31)
 /* 800812B8 0007E1F8  54 00 07 39 */	rlwinm. r0, r0, 0, 0x1c, 0x1c
@@ -11815,7 +11811,6 @@ calc__21J3DTexGenBlockPatchedFPA4_Cf:
 /* 800812F4 0007E234  38 84 88 6C */	addi r4, r4, j3dDefaultMtx@l
 /* 800812F8 0007E238  4B FE 39 FD */	bl calc__9J3DTexMtxFPA4_Cf
 /* 800812FC 0007E23C  48 00 00 14 */	b .L_80081310
-.global .L_80081300
 .L_80081300:
 /* 80081300 0007E240  3C 80 80 48 */	lis r4, j3dDefaultMtx@ha
 /* 80081304 0007E244  80 7E 00 38 */	lwz r3, 0x38(r30)
@@ -11861,14 +11856,12 @@ calcWithoutViewMtx__21J3DTexGenBlockPatchedFPA4_Cf:
 /* 80081390 0007E2D0  7C 03 00 2E */	lwzx r0, r3, r0
 /* 80081394 0007E2D4  7C 09 03 A6 */	mtctr r0
 /* 80081398 0007E2D8  4E 80 04 20 */	bctr 
-.global .L_8008139C
 .L_8008139C:
 /* 8008139C 0007E2DC  3C 80 80 48 */	lis r4, j3dDefaultMtx@ha
 /* 800813A0 0007E2E0  80 7E 00 38 */	lwz r3, 0x38(r30)
 /* 800813A4 0007E2E4  38 84 88 6C */	addi r4, r4, j3dDefaultMtx@l
 /* 800813A8 0007E2E8  4B FE 39 4D */	bl calc__9J3DTexMtxFPA4_Cf
 /* 800813AC 0007E2EC  48 00 00 A4 */	b .L_80081450
-.global .L_800813B0
 .L_800813B0:
 /* 800813B0 0007E2F0  80 1F 00 34 */	lwz r0, 0x34(r31)
 /* 800813B4 0007E2F4  54 00 07 7B */	rlwinm. r0, r0, 0, 0x1d, 0x1d
@@ -11883,14 +11876,12 @@ calcWithoutViewMtx__21J3DTexGenBlockPatchedFPA4_Cf:
 /* 800813D4 0007E314  38 84 88 6C */	addi r4, r4, j3dDefaultMtx@l
 /* 800813D8 0007E318  4B FE 39 1D */	bl calc__9J3DTexMtxFPA4_Cf
 /* 800813DC 0007E31C  48 00 00 74 */	b .L_80081450
-.global .L_800813E0
 .L_800813E0:
 /* 800813E0 0007E320  3C 80 80 48 */	lis r4, j3dDefaultMtx@ha
 /* 800813E4 0007E324  80 7E 00 38 */	lwz r3, 0x38(r30)
 /* 800813E8 0007E328  38 84 88 6C */	addi r4, r4, j3dDefaultMtx@l
 /* 800813EC 0007E32C  4B FE 39 09 */	bl calc__9J3DTexMtxFPA4_Cf
 /* 800813F0 0007E330  48 00 00 60 */	b .L_80081450
-.global .L_800813F4
 .L_800813F4:
 /* 800813F4 0007E334  80 1F 00 34 */	lwz r0, 0x34(r31)
 /* 800813F8 0007E338  54 00 07 39 */	rlwinm. r0, r0, 0, 0x1c, 0x1c
@@ -11912,7 +11903,6 @@ calcWithoutViewMtx__21J3DTexGenBlockPatchedFPA4_Cf:
 /* 80081434 0007E374  38 84 88 6C */	addi r4, r4, j3dDefaultMtx@l
 /* 80081438 0007E378  4B FE 38 BD */	bl calc__9J3DTexMtxFPA4_Cf
 /* 8008143C 0007E37C  48 00 00 14 */	b .L_80081450
-.global .L_80081440
 .L_80081440:
 /* 80081440 0007E380  3C 80 80 48 */	lis r4, j3dDefaultMtx@ha
 /* 80081444 0007E384  80 7E 00 38 */	lwz r3, 0x38(r30)
@@ -11957,7 +11947,6 @@ calcPostTexMtx__21J3DTexGenBlockPatchedFPA4_Cf:
 /* 800814CC 0007E40C  7C 03 00 2E */	lwzx r0, r3, r0
 /* 800814D0 0007E410  7C 09 03 A6 */	mtctr r0
 /* 800814D4 0007E414  4E 80 04 20 */	bctr 
-.global .L_800814D8
 .L_800814D8:
 /* 800814D8 0007E418  38 00 00 1E */	li r0, 0x1e
 /* 800814DC 0007E41C  3C 60 80 48 */	lis r3, j3dDefaultMtx@ha
@@ -11966,7 +11955,6 @@ calcPostTexMtx__21J3DTexGenBlockPatchedFPA4_Cf:
 /* 800814E8 0007E428  80 7F 00 38 */	lwz r3, 0x38(r31)
 /* 800814EC 0007E42C  4B FE 3B 15 */	bl calcPostTexMtx__9J3DTexMtxFPA4_Cf
 /* 800814F0 0007E430  48 00 00 98 */	b .L_80081588
-.global .L_800814F4
 .L_800814F4:
 /* 800814F4 0007E434  3C 60 80 51 */	lis r3, j3dSys@ha
 /* 800814F8 0007E438  38 81 00 38 */	addi r4, r1, 0x38
@@ -11978,7 +11966,6 @@ calcPostTexMtx__21J3DTexGenBlockPatchedFPA4_Cf:
 /* 80081510 0007E450  80 7F 00 38 */	lwz r3, 0x38(r31)
 /* 80081514 0007E454  4B FE 3A ED */	bl calcPostTexMtx__9J3DTexMtxFPA4_Cf
 /* 80081518 0007E458  48 00 00 70 */	b .L_80081588
-.global .L_8008151C
 .L_8008151C:
 /* 8008151C 0007E45C  38 00 00 00 */	li r0, 0
 /* 80081520 0007E460  3C 60 80 48 */	lis r3, j3dDefaultMtx@ha
@@ -11987,7 +11974,6 @@ calcPostTexMtx__21J3DTexGenBlockPatchedFPA4_Cf:
 /* 8008152C 0007E46C  80 7F 00 38 */	lwz r3, 0x38(r31)
 /* 80081530 0007E470  4B FE 3A D1 */	bl calcPostTexMtx__9J3DTexMtxFPA4_Cf
 /* 80081534 0007E474  48 00 00 54 */	b .L_80081588
-.global .L_80081538
 .L_80081538:
 /* 80081538 0007E478  3C 60 80 51 */	lis r3, j3dSys@ha
 /* 8008153C 0007E47C  38 81 00 08 */	addi r4, r1, 8
@@ -12003,7 +11989,6 @@ calcPostTexMtx__21J3DTexGenBlockPatchedFPA4_Cf:
 /* 80081564 0007E4A4  80 7F 00 38 */	lwz r3, 0x38(r31)
 /* 80081568 0007E4A8  4B FE 3A 99 */	bl calcPostTexMtx__9J3DTexMtxFPA4_Cf
 /* 8008156C 0007E4AC  48 00 00 1C */	b .L_80081588
-.global .L_80081570
 .L_80081570:
 /* 80081570 0007E4B0  38 00 00 3C */	li r0, 0x3c
 /* 80081574 0007E4B4  3C 60 80 48 */	lis r3, j3dDefaultMtx@ha
@@ -12052,7 +12037,6 @@ calcPostTexMtxWithoutViewMtx__21J3DTexGenBlockPatchedFPA4_Cf:
 /* 8008160C 0007E54C  7C 03 00 2E */	lwzx r0, r3, r0
 /* 80081610 0007E550  7C 09 03 A6 */	mtctr r0
 /* 80081614 0007E554  4E 80 04 20 */	bctr 
-.global .L_80081618
 .L_80081618:
 /* 80081618 0007E558  38 00 00 1E */	li r0, 0x1e
 /* 8008161C 0007E55C  3C 60 80 48 */	lis r3, j3dDefaultMtx@ha
@@ -12061,7 +12045,6 @@ calcPostTexMtxWithoutViewMtx__21J3DTexGenBlockPatchedFPA4_Cf:
 /* 80081628 0007E568  80 7F 00 38 */	lwz r3, 0x38(r31)
 /* 8008162C 0007E56C  4B FE 39 D5 */	bl calcPostTexMtx__9J3DTexMtxFPA4_Cf
 /* 80081630 0007E570  48 00 00 70 */	b .L_800816A0
-.global .L_80081634
 .L_80081634:
 /* 80081634 0007E574  38 00 00 00 */	li r0, 0
 /* 80081638 0007E578  3C 60 80 48 */	lis r3, j3dDefaultMtx@ha
@@ -12070,7 +12053,6 @@ calcPostTexMtxWithoutViewMtx__21J3DTexGenBlockPatchedFPA4_Cf:
 /* 80081644 0007E584  80 7F 00 38 */	lwz r3, 0x38(r31)
 /* 80081648 0007E588  4B FE 39 B9 */	bl calcPostTexMtx__9J3DTexMtxFPA4_Cf
 /* 8008164C 0007E58C  48 00 00 54 */	b .L_800816A0
-.global .L_80081650
 .L_80081650:
 /* 80081650 0007E590  38 00 00 00 */	li r0, 0
 /* 80081654 0007E594  3C 60 80 48 */	lis r3, j3dDefaultMtx@ha
@@ -12079,7 +12061,6 @@ calcPostTexMtxWithoutViewMtx__21J3DTexGenBlockPatchedFPA4_Cf:
 /* 80081660 0007E5A0  80 7F 00 38 */	lwz r3, 0x38(r31)
 /* 80081664 0007E5A4  4B FE 39 9D */	bl calcPostTexMtx__9J3DTexMtxFPA4_Cf
 /* 80081668 0007E5A8  48 00 00 38 */	b .L_800816A0
-.global .L_8008166C
 .L_8008166C:
 /* 8008166C 0007E5AC  38 00 00 1E */	li r0, 0x1e
 /* 80081670 0007E5B0  3C 60 80 48 */	lis r3, j3dDefaultMtx@ha
@@ -12088,7 +12069,6 @@ calcPostTexMtxWithoutViewMtx__21J3DTexGenBlockPatchedFPA4_Cf:
 /* 8008167C 0007E5BC  80 7F 00 38 */	lwz r3, 0x38(r31)
 /* 80081680 0007E5C0  4B FE 39 81 */	bl calcPostTexMtx__9J3DTexMtxFPA4_Cf
 /* 80081684 0007E5C4  48 00 00 1C */	b .L_800816A0
-.global .L_80081688
 .L_80081688:
 /* 80081688 0007E5C8  38 00 00 3C */	li r0, 0x3c
 /* 8008168C 0007E5CC  3C 60 80 48 */	lis r3, j3dDefaultMtx@ha
