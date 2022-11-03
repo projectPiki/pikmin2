@@ -9,7 +9,7 @@
 #include "Game/EnemyBase.h"
 #include "Game/Stickers.h"
 #include "Game/GameMessage.h"
-#include "Game/GameStats.h"
+#include "Game/gameStat.h"
 #include "Game/DynParticle.h"
 #include "Game/Entities/ItemOnyon.h"
 #include "Game/Entities/ItemTreasure.h"

@@ -2,7 +2,7 @@
 #include "Game/generalEnemyMgr.h"
 #include "Game/GameSystem.h"
 #include "Game/gamePlayData.h"
-#include "Game/GameStats.h"
+#include "Game/gameStat.h"
 #include "Game/Piki.h"
 #include "JSystem/JUT/JUTNameTab.h"
 #include "nans.h"

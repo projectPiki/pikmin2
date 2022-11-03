@@ -54,6 +54,15 @@ struct GameLightMgr;
 struct Pellet;
 struct PlayCamera;
 
+enum DemoTimers {
+	DEMOTIMER_Unk0                  = 0,
+	DEMOTIMER_Unk1                  = 1,
+	DEMOTIMER_Unk2                  = 2,
+	DEMOTIMER_Unk3                  = 3,
+	DEMOTIMER_Unk4                  = 4,
+	DEMOTIMER_Reds_Purples_Tutorial = 5,
+};
+
 struct BaseGameSection : public BaseHIOSection {
 	struct ZoomCamera : public LookAtCamera {
 		virtual ~ZoomCamera() { } // _08 (weak)

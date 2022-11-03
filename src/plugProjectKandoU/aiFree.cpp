@@ -23,7 +23,7 @@ ActFree::ActFree(Game::Piki* parent)
     , m_gather(new ActGather(parent))
     , m_bore(new ActBore(parent))
 {
-	m_info = "Free";
+	m_name = "Free";
 }
 
 /*

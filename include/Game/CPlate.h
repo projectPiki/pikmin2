@@ -46,7 +46,7 @@ struct CPlate : public Container<Creature> {
 
 	void changeFlower(Creature*);
 	void directDraw(Graphics&);
-	void getSlot(Creature*, SlotChangeListener*, bool);
+	int getSlot(Creature*, SlotChangeListener*, bool);
 	void getSlotPosition(int, Vector3f&);
 	void rearrangeSlot(Vector3f&, float, Vector3f&);
 	void refresh(int, float);

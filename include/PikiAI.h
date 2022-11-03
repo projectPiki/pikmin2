@@ -114,7 +114,7 @@ struct Action {
 
 	// _00 = VTBL
 	Game::Piki* m_parent; // _04
-	char* m_info;         // _08
+	char* m_name;         // _08
 };
 
 struct ApproachPosActionArg : public ActionArg {
@@ -518,17 +518,16 @@ struct ActFollowVectorField : public Action {
 };
 
 struct ActFormationInitArg : public CreatureActionArg {
-	inline ActFormationInitArg(Game::Creature* creature, u8 b1)
-	    : CreatureActionArg(creature)
+	inline ActFormationInitArg(Game::Creature* navi, bool b1)
+	    : CreatureActionArg(navi)
 	    , _08(b1)
-	    , _09(0)
 	{
 	}
 
 	// _00     = VTBL
-	// _00-_08 = CreatureActionArg
-	u8 _08; // _08
-	u8 _09; // _09
+	// _00-_08 = CreatureActionArg, Creature* = Navi*
+	bool _08; // _08
+	u8 _09;   // _09
 };
 
 struct ActFormation : public Action, virtual Game::SlotChangeListener, virtual SysShape::MotionListener {
@@ -541,7 +540,7 @@ struct ActFormation : public Action, virtual Game::SlotChangeListener, virtual S
 	virtual void collisionCallback(Game::Piki*, Game::CollEvent&); // _28
 	virtual void platCallback(Game::Piki*, Game::PlatEvent&);      // _2C
 	virtual void wallCallback(Vector3f&);                          // _34
-	virtual void resumable();                                      // _3C (weak)
+	virtual bool resumable();                                      // _3C (weak)
 	virtual void inform(int);                                      // _40 (weak)
 	virtual void onKeyEvent(const SysShape::KeyEvent&);            // _44 (weak)
 
@@ -555,7 +554,7 @@ struct ActFormation : public Action, virtual Game::SlotChangeListener, virtual S
 	Game::Navi* m_navi;            // _14
 	ActFormationInitArg m_initArg; // _18
 	int m_nextAIType;              // _24
-	s16 _28;                       // _28
+	u16 _28;                       // _28
 	u16 _2A;                       // _2A
 	u16 _2C;                       // _2C
 	u16 _2E;                       // _2E
@@ -565,9 +564,9 @@ struct ActFormation : public Action, virtual Game::SlotChangeListener, virtual S
 	u8 _38;                        // _38
 	u32 _3C;                       // _3C, unknown
 	u8 _40;                        // _40
-	int _44;                       // _44
+	int m_frameTimer;              // _44
 	int _48;                       // _48
-	u32 _4C;                       // _4C, unknown
+	int _4C;                       // _4C
 	f32 _50;                       // _50
 	u8 _54;                        // _54
 	f32 _58;                       // _58, timer?

@@ -86,7 +86,7 @@
 #include "Game/rumble.h"
 #include "Game/CollEvent.h"
 #include "Game/Interaction.h"
-#include "Game/GameStats.h"
+#include "Game/gameStat.h"
 
 #include "PikiAI.h"
 

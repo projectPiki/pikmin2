@@ -142,7 +142,7 @@ struct Navi : public FakePiki, virtual public PelletView {
 	void checkOnyon();
 	void clearKaisanDisable();
 	void clearThrowDisable();
-	void commandOn();
+	bool commandOn();
 	void control();
 	void demoCheck();
 	void demowaitAllPikis();

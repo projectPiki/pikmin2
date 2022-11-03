@@ -8,7 +8,6 @@ struct SlotChangeListener {
 	virtual void inform(int) = 0; // _08, probably?
 
 	// _00 = VTBL
-	u32 _04; // _04, unknown
 };
 } // namespace Game
 
