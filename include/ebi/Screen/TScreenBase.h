@@ -5,6 +5,22 @@
 #include "JSystem/JKR/JKRArchive.h"
 
 namespace ebi {
+struct TScreenProgre {
+	enum enumState { UNKNOWN };
+
+	virtual void setArchive(JKRArchive*); // _08
+
+	void loadResource();
+	void startScreen(long, unsigned long);
+	void fadeout(unsigned long);
+	void isFinish();
+	void startState(ebi::TScreenProgre::enumState, unsigned long);
+	void update();
+	void draw();
+	void setDecide();
+	TScreenProgre();
+};
+
 namespace Screen {
 enum UpdateState { TSB_US_Finish = 0, TSB_US_Open = 1, TSB_US_Wait = 2, TSB_US_Close = 3 };
 
@@ -29,23 +45,6 @@ struct ArgClose {
 
 struct ArgCloseTMBack : public ArgClose {
 };
-
-struct TScreenProgre {
-	enum enumState { UNKNOWN };
-
-	virtual void setArchive(JKRArchive*); // _08
-
-	void loadResource();
-	void startScreen(long, unsigned long);
-	void fadeout(unsigned long);
-	void isFinish();
-	void startState(ebi::TScreenProgre::enumState, unsigned long);
-	void update();
-	void draw();
-	void setDecide();
-	TScreenProgre();
-};
-} // n
 
 struct TScreenBaseInterface {
 	virtual void setArchive(JKRArchive*) = 0; // _08

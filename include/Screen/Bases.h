@@ -34,8 +34,8 @@ struct ObjMgrBase;
 struct Mgr;
 
 struct SceneArgBase {
-	virtual SceneType getSceneType() const; // _00
-	virtual int getClassSize() = 0;         // _04
+	virtual SceneType getSceneType() const; // _08 (weak)
+	virtual int getClassSize() = 0;         // _0C
 };
 
 struct StartSceneArg : public SceneArgBase {
@@ -66,7 +66,7 @@ struct SetSceneArg : public SceneArgBase {
 };
 
 struct EndSceneArg : public SceneArgBase {
-	virtual int getClassSize(); // _04
+	virtual void getClassSize(); // _0C (weak)
 
 	u8 _04; // _04
 };
