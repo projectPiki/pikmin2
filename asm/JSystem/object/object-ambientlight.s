@@ -65,7 +65,7 @@ __dt__Q214JStudio_JStage21TAdaptor_ambientLightFv:
 /* 8001323C 0001017C  7C 9F 23 78 */	mr r31, r4
 /* 80013240 00010180  93 C1 00 08 */	stw r30, 8(r1)
 /* 80013244 00010184  7C 7E 1B 79 */	or. r30, r3, r3
-/* 80013248 00010188  41 82 00 40 */	beq lbl_80013288
+/* 80013248 00010188  41 82 00 40 */	beq .L_80013288
 /* 8001324C 0001018C  3C A0 80 4A */	lis r5, __vt__Q214JStudio_JStage21TAdaptor_ambientLight@ha
 /* 80013250 00010190  38 80 00 00 */	li r4, 0
 /* 80013254 00010194  38 05 F7 08 */	addi r0, r5, __vt__Q214JStudio_JStage21TAdaptor_ambientLight@l
@@ -78,10 +78,10 @@ __dt__Q214JStudio_JStage21TAdaptor_ambientLightFv:
 /* 80013270 000101B0  38 80 00 00 */	li r4, 0
 /* 80013274 000101B4  4B FF AB 61 */	bl __dt__Q27JStudio21TAdaptor_ambientLightFv
 /* 80013278 000101B8  7F E0 07 35 */	extsh. r0, r31
-/* 8001327C 000101BC  40 81 00 0C */	ble lbl_80013288
+/* 8001327C 000101BC  40 81 00 0C */	ble .L_80013288
 /* 80013280 000101C0  7F C3 F3 78 */	mr r3, r30
 /* 80013284 000101C4  48 01 0E 31 */	bl __dl__FPv
-lbl_80013288:
+.L_80013288:
 /* 80013288 000101C8  80 01 00 14 */	lwz r0, 0x14(r1)
 /* 8001328C 000101CC  7F C3 F3 78 */	mr r3, r30
 /* 80013290 000101D0  83 E1 00 0C */	lwz r31, 0xc(r1)

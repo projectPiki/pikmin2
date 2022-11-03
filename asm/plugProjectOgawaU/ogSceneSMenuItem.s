@@ -20,34 +20,34 @@ lbl_8048E564:
 .balign 8
 .global lbl_804D8778
 lbl_804D8778:
-	.4byte lbl_80313FE8
-	.4byte lbl_80313FE8
-	.4byte lbl_80313FE8
-	.4byte lbl_80313FEC
-	.4byte lbl_80313FEC
-	.4byte lbl_80313FEC
-	.4byte lbl_80313FEC
-	.4byte lbl_80313FEC
-	.4byte lbl_80313FEC
-	.4byte lbl_80313FEC
-	.4byte lbl_80313FE8
-	.4byte lbl_80313FE8
-	.4byte lbl_80313FEC
-	.4byte lbl_80313FE8
-	.4byte lbl_80313FEC
-	.4byte lbl_80313FEC
-	.4byte lbl_80313FEC
-	.4byte lbl_80313FEC
-	.4byte lbl_80313FEC
-	.4byte lbl_80313FEC
-	.4byte lbl_80313FE8
-	.4byte lbl_80313FEC
-	.4byte lbl_80313FEC
-	.4byte lbl_80313FE8
-	.4byte lbl_80313FEC
-	.4byte lbl_80313FEC
-	.4byte lbl_80313FEC
-	.4byte lbl_80313FE8
+	.4byte .L_80313FE8
+	.4byte .L_80313FE8
+	.4byte .L_80313FE8
+	.4byte .L_80313FEC
+	.4byte .L_80313FEC
+	.4byte .L_80313FEC
+	.4byte .L_80313FEC
+	.4byte .L_80313FEC
+	.4byte .L_80313FEC
+	.4byte .L_80313FEC
+	.4byte .L_80313FE8
+	.4byte .L_80313FE8
+	.4byte .L_80313FEC
+	.4byte .L_80313FE8
+	.4byte .L_80313FEC
+	.4byte .L_80313FEC
+	.4byte .L_80313FEC
+	.4byte .L_80313FEC
+	.4byte .L_80313FEC
+	.4byte .L_80313FEC
+	.4byte .L_80313FE8
+	.4byte .L_80313FEC
+	.4byte .L_80313FEC
+	.4byte .L_80313FE8
+	.4byte .L_80313FEC
+	.4byte .L_80313FEC
+	.4byte .L_80313FEC
+	.4byte .L_80313FE8
 .global __vt__Q32og9newScreen9SMenuItem
 __vt__Q32og9newScreen9SMenuItem:
 	.4byte 0
@@ -109,18 +109,18 @@ doConfirmSetScene__Q32og9newScreen9SMenuItemFRQ26Screen11SetSceneArg:
 /* 80313FC0 00310F00  4E 80 04 21 */	bctrl 
 /* 80313FC4 00310F04  38 03 D8 F0 */	addi r0, r3, -10000
 /* 80313FC8 00310F08  28 00 00 1B */	cmplwi r0, 0x1b
-/* 80313FCC 00310F0C  41 81 00 20 */	bgt lbl_80313FEC
+/* 80313FCC 00310F0C  41 81 00 20 */	bgt .L_80313FEC
 /* 80313FD0 00310F10  3C 60 80 4E */	lis r3, lbl_804D8778@ha
 /* 80313FD4 00310F14  54 00 10 3A */	slwi r0, r0, 2
 /* 80313FD8 00310F18  38 63 87 78 */	addi r3, r3, lbl_804D8778@l
 /* 80313FDC 00310F1C  7C 03 00 2E */	lwzx r0, r3, r0
 /* 80313FE0 00310F20  7C 09 03 A6 */	mtctr r0
 /* 80313FE4 00310F24  4E 80 04 20 */	bctr 
-.global lbl_80313FE8
-lbl_80313FE8:
+.global .L_80313FE8
+.L_80313FE8:
 /* 80313FE8 00310F28  3B E0 00 01 */	li r31, 1
-.global lbl_80313FEC
-lbl_80313FEC:
+.global .L_80313FEC
+.L_80313FEC:
 /* 80313FEC 00310F2C  80 01 00 14 */	lwz r0, 0x14(r1)
 /* 80313FF0 00310F30  7F E3 FB 78 */	mr r3, r31
 /* 80313FF4 00310F34  83 E1 00 0C */	lwz r31, 0xc(r1)
@@ -150,12 +150,12 @@ doCreateObj__Q32og9newScreen9SMenuItemFP10JKRArchive:
 /* 80314030 00310F70  38 60 00 D4 */	li r3, 0xd4
 /* 80314034 00310F74  4B D0 FE 71 */	bl __nw__FUl
 /* 80314038 00310F78  7C 64 1B 79 */	or. r4, r3, r3
-/* 8031403C 00310F7C  41 82 00 14 */	beq lbl_80314050
+/* 8031403C 00310F7C  41 82 00 14 */	beq .L_80314050
 /* 80314040 00310F80  3C 80 80 49 */	lis r4, lbl_8048E550@ha
 /* 80314044 00310F84  38 84 E5 50 */	addi r4, r4, lbl_8048E550@l
 /* 80314048 00310F88  4B FF EE B1 */	bl __ct__Q32og9newScreen12ObjSMenuItemFPCc
 /* 8031404C 00310F8C  7C 64 1B 78 */	mr r4, r3
-lbl_80314050:
+.L_80314050:
 /* 80314050 00310F90  7F C3 F3 78 */	mr r3, r30
 /* 80314054 00310F94  7F E5 FB 78 */	mr r5, r31
 /* 80314058 00310F98  48 13 DD 1D */	bl registObj__Q26Screen9SceneBaseFPQ26Screen7ObjBaseP10JKRArchive

@@ -69,7 +69,7 @@ PSMTXMultVecArraySR:
 /* 800EACBC 000E7BFC  11 23 01 B2 */	ps_mul f9, f3, f6
 /* 800EACC0 000E7C00  11 01 41 9E */	ps_madds1 f8, f1, f6, f8
 /* 800EACC4 000E7C04  11 44 49 FA */	ps_madd f10, f4, f7, f9
-lbl_800EACC8:
+.L_800EACC8:
 /* 800EACC8 000E7C08  E4 C4 00 04 */	psq_lu f6, 4(r4), 0, qr0
 /* 800EACCC 000E7C0C  11 82 41 DC */	ps_madds0 f12, f2, f7, f8
 /* 800EACD0 000E7C10  E4 E4 80 08 */	psq_lu f7, 8(r4), 1, qr0
@@ -80,7 +80,7 @@ lbl_800EACC8:
 /* 800EACE4 000E7C24  11 01 41 9E */	ps_madds1 f8, f1, f6, f8
 /* 800EACE8 000E7C28  F5 A5 80 08 */	psq_stu f13, 8(r5), 1, qr0
 /* 800EACEC 000E7C2C  11 44 49 FA */	ps_madd f10, f4, f7, f9
-/* 800EACF0 000E7C30  42 00 FF D8 */	bdnz lbl_800EACC8
+/* 800EACF0 000E7C30  42 00 FF D8 */	bdnz .L_800EACC8
 /* 800EACF4 000E7C34  11 82 41 DC */	ps_madds0 f12, f2, f7, f8
 /* 800EACF8 000E7C38  11 AA 4A 54 */	ps_sum0 f13, f10, f9, f9
 /* 800EACFC 000E7C3C  F5 85 00 04 */	psq_stu f12, 4(r5), 0, qr0

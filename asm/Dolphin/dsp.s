@@ -90,7 +90,7 @@ DSPInit:
 /* 800DAD64 000D7CA4  48 00 00 9D */	bl __DSP_debug_printf
 /* 800DAD68 000D7CA8  80 0D 8D B0 */	lwz r0, __DSP_init_flag@sda21(r13)
 /* 800DAD6C 000D7CAC  2C 00 00 01 */	cmpwi r0, 1
-/* 800DAD70 000D7CB0  41 82 00 7C */	beq lbl_800DADEC
+/* 800DAD70 000D7CB0  41 82 00 7C */	beq .L_800DADEC
 /* 800DAD74 000D7CB4  80 6D 82 A0 */	lwz r3, __DSPVersion@sda21(r13)
 /* 800DAD78 000D7CB8  48 01 0D 11 */	bl OSRegisterVersion
 /* 800DAD7C 000D7CBC  48 01 3E BD */	bl OSDisableInterrupts
@@ -121,7 +121,7 @@ DSPInit:
 /* 800DADE0 000D7D20  90 8D 8D C0 */	stw r4, __DSP_first_task@sda21(r13)
 /* 800DADE4 000D7D24  90 0D 8D B0 */	stw r0, __DSP_init_flag@sda21(r13)
 /* 800DADE8 000D7D28  48 01 3E 79 */	bl OSRestoreInterrupts
-lbl_800DADEC:
+.L_800DADEC:
 /* 800DADEC 000D7D2C  80 01 00 14 */	lwz r0, 0x14(r1)
 /* 800DADF0 000D7D30  83 E1 00 0C */	lwz r31, 0xc(r1)
 /* 800DADF4 000D7D34  38 21 00 10 */	addi r1, r1, 0x10

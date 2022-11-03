@@ -30,34 +30,34 @@ lbl_804D8838:
 	.4byte 0x00000000
 .global lbl_804D8844
 lbl_804D8844:
-	.4byte lbl_803141B8
-	.4byte lbl_803141B8
-	.4byte lbl_803141B8
-	.4byte lbl_803141BC
-	.4byte lbl_803141BC
-	.4byte lbl_803141BC
-	.4byte lbl_803141BC
-	.4byte lbl_803141BC
-	.4byte lbl_803141BC
-	.4byte lbl_803141BC
-	.4byte lbl_803141BC
-	.4byte lbl_803141BC
-	.4byte lbl_803141B8
-	.4byte lbl_803141B8
-	.4byte lbl_803141BC
-	.4byte lbl_803141BC
-	.4byte lbl_803141BC
-	.4byte lbl_803141BC
-	.4byte lbl_803141BC
-	.4byte lbl_803141BC
-	.4byte lbl_803141B8
-	.4byte lbl_803141BC
-	.4byte lbl_803141BC
-	.4byte lbl_803141B8
-	.4byte lbl_803141BC
-	.4byte lbl_803141BC
-	.4byte lbl_803141BC
-	.4byte lbl_803141B8
+	.4byte .L_803141B8
+	.4byte .L_803141B8
+	.4byte .L_803141B8
+	.4byte .L_803141BC
+	.4byte .L_803141BC
+	.4byte .L_803141BC
+	.4byte .L_803141BC
+	.4byte .L_803141BC
+	.4byte .L_803141BC
+	.4byte .L_803141BC
+	.4byte .L_803141BC
+	.4byte .L_803141BC
+	.4byte .L_803141B8
+	.4byte .L_803141B8
+	.4byte .L_803141BC
+	.4byte .L_803141BC
+	.4byte .L_803141BC
+	.4byte .L_803141BC
+	.4byte .L_803141BC
+	.4byte .L_803141BC
+	.4byte .L_803141B8
+	.4byte .L_803141BC
+	.4byte .L_803141BC
+	.4byte .L_803141B8
+	.4byte .L_803141BC
+	.4byte .L_803141BC
+	.4byte .L_803141BC
+	.4byte .L_803141B8
 .global __vt__Q32og9newScreen10SMenuPause
 __vt__Q32og9newScreen10SMenuPause:
 	.4byte 0
@@ -131,12 +131,12 @@ doCreateObj__Q32og9newScreen10SMenuPauseFP10JKRArchive:
 /* 80314124 00311064  38 60 01 18 */	li r3, 0x118
 /* 80314128 00311068  4B D0 FD 7D */	bl __nw__FUl
 /* 8031412C 0031106C  7C 64 1B 79 */	or. r4, r3, r3
-/* 80314130 00311070  41 82 00 14 */	beq lbl_80314144
+/* 80314130 00311070  41 82 00 14 */	beq .L_80314144
 /* 80314134 00311074  3C 80 80 49 */	lis r4, lbl_8048E578@ha
 /* 80314138 00311078  38 84 E5 78 */	addi r4, r4, lbl_8048E578@l
 /* 8031413C 0031107C  48 00 02 F1 */	bl __ct__Q32og9newScreen13ObjSMenuPauseFPCc
 /* 80314140 00311080  7C 64 1B 78 */	mr r4, r3
-lbl_80314144:
+.L_80314144:
 /* 80314144 00311084  7F C3 F3 78 */	mr r3, r30
 /* 80314148 00311088  7F E5 FB 78 */	mr r5, r31
 /* 8031414C 0031108C  48 13 DC 29 */	bl registObj__Q26Screen9SceneBaseFPQ26Screen7ObjBaseP10JKRArchive
@@ -165,18 +165,18 @@ doConfirmSetScene__Q32og9newScreen10SMenuPauseFRQ26Screen11SetSceneArg:
 /* 80314190 003110D0  4E 80 04 21 */	bctrl 
 /* 80314194 003110D4  38 03 D8 F0 */	addi r0, r3, -10000
 /* 80314198 003110D8  28 00 00 1B */	cmplwi r0, 0x1b
-/* 8031419C 003110DC  41 81 00 20 */	bgt lbl_803141BC
+/* 8031419C 003110DC  41 81 00 20 */	bgt .L_803141BC
 /* 803141A0 003110E0  3C 60 80 4E */	lis r3, lbl_804D8844@ha
 /* 803141A4 003110E4  54 00 10 3A */	slwi r0, r0, 2
 /* 803141A8 003110E8  38 63 88 44 */	addi r3, r3, lbl_804D8844@l
 /* 803141AC 003110EC  7C 03 00 2E */	lwzx r0, r3, r0
 /* 803141B0 003110F0  7C 09 03 A6 */	mtctr r0
 /* 803141B4 003110F4  4E 80 04 20 */	bctr 
-.global lbl_803141B8
-lbl_803141B8:
+.global .L_803141B8
+.L_803141B8:
 /* 803141B8 003110F8  3B E0 00 01 */	li r31, 1
-.global lbl_803141BC
-lbl_803141BC:
+.global .L_803141BC
+.L_803141BC:
 /* 803141BC 003110FC  80 01 00 14 */	lwz r0, 0x14(r1)
 /* 803141C0 00311100  7F E3 FB 78 */	mr r3, r31
 /* 803141C4 00311104  83 E1 00 0C */	lwz r31, 0xc(r1)

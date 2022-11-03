@@ -68,7 +68,7 @@ JMAQuatLerp__FPC10QuaternionPC10QuaternionfP10Quaternion:
 /* 80034FDC 00031F1C  10 82 20 FA */	ps_madd f4, f2, f3, f4
 /* 80034FE0 00031F20  10 84 21 14 */	ps_sum0 f4, f4, f4, f4
 /* 80034FE4 00031F24  FC 04 00 40 */	fcmpo cr0, f4, f0
-/* 80034FE8 00031F28  40 80 00 5C */	bge lbl_80035044
+/* 80034FE8 00031F28  40 80 00 5C */	bge .L_80035044
 /* 80034FEC 00031F2C  C0 63 00 00 */	lfs f3, 0(r3)
 /* 80034FF0 00031F30  FC 80 08 50 */	fneg f4, f1
 /* 80034FF4 00031F34  C0 04 00 00 */	lfs f0, 0(r4)
@@ -91,7 +91,7 @@ JMAQuatLerp__FPC10QuaternionPC10QuaternionfP10Quaternion:
 /* 80035038 00031F78  D0 25 00 08 */	stfs f1, 8(r5)
 /* 8003503C 00031F7C  D0 05 00 0C */	stfs f0, 0xc(r5)
 /* 80035040 00031F80  4E 80 00 20 */	blr 
-lbl_80035044:
+.L_80035044:
 /* 80035044 00031F84  C0 63 00 00 */	lfs f3, 0(r3)
 /* 80035048 00031F88  FC 80 08 50 */	fneg f4, f1
 /* 8003504C 00031F8C  C0 04 00 00 */	lfs f0, 0(r4)
