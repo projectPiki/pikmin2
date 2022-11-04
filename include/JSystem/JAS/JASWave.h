@@ -200,13 +200,20 @@ extern JASWaveBank** sWaveBank;
 } // namespace JASWaveBankMgr
 
 namespace JASWSParser {
-struct TCtrlWave { };
-struct TWave { };
-struct TWaveArchive { };
-struct TWaveArchiveBank { };
-struct TCtrl { };
-struct TCtrlScene { };
-struct TCtrlGroup { };
+struct TCtrlWave {
+};
+struct TWave {
+};
+struct TWaveArchive {
+};
+struct TWaveArchiveBank {
+};
+struct TCtrl {
+};
+struct TCtrlScene {
+};
+struct TCtrlGroup {
+};
 
 u32 getGroupCount(void*);
 JASBasicWaveBank* createBasicWaveBank(void*);
