@@ -2,6 +2,7 @@
 #define _JSYSTEM_JAS_JASKERNEL_H
 
 #include "JSystem/JAS/JASHeap.h"
+#include "JSystem/JAS/JASProbe.h"
 #include "JSystem/JKR/JKRHeap.h"
 #include "types.h"
 
@@ -19,6 +20,13 @@ void probeStart(long, char*);
 void getRootHeap();
 int getAramFreeSize();
 int getAramSize();
+void initProbe(long);
+void resetProbe();
+const char* getProbeName(long);
+void getProbeLast(long);
+void getProbeAvg(long);
+void getProbeTotalAvg(long);
+void getProbeMax(long);
 
 static JKRExpHeap* sSystemHeap;
 static JASHeap* sCommandHeap;

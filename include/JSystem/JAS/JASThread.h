@@ -13,8 +13,8 @@ struct JASTaskThread : public JKRThread {
 	virtual ~JASTaskThread(); // _08
 	virtual void* run();      // _0C
 
-	void sendCmdMsg(void (*)(void*), const void*, u32);
-	void sendCmdMsg(void (*)(void*), void*);
+	int sendCmdMsg(void (*)(void*), const void*, u32);
+	int sendCmdMsg(void (*)(void*), void*);
 
 	// unused/inlined:
 	void allocCallStack(void (*)(void*), const void*, unsigned long);

@@ -3,6 +3,7 @@
 
 #include "Dolphin/os.h"
 #include "JSystem/JAS/JASHeap.h"
+#include "JSystem/JAS/JASMutexLock.h"
 #include "types.h"
 
 struct JASGenericMemPool {
@@ -42,6 +43,7 @@ template <typename T, JASCreationPolicy CreationPolicy>
 struct JASSingletonHolder {
 	static T* createInstance()
 	{
+		JASCriticalSection a;
 		if (sInstance == nullptr) {
 			sInstance = new (JASDram, 0) T();
 		}
@@ -54,9 +56,9 @@ struct JASSingletonHolder {
 	{
 		T* instance = sInstance;
 		if (!instance) {
-			int interrupts = OSDisableInterrupts();
-			instance       = createInstance();
-			OSRestoreInterrupts(interrupts);
+			// int interrupts = OSDisableInterrupts();
+			instance = createInstance();
+			// OSRestoreInterrupts(interrupts);
 			instance = sInstance;
 		}
 		return instance;

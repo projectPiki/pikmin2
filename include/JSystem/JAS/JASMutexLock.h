@@ -10,8 +10,21 @@ struct JASMutexLock {
 	~JASMutexLock();
 };
 
+/**
+ * This might've been used for e.g. managing OSDisableInterrupts and OSRestoreInterrupts.
+ * Nearly the entirety of this class is conjecture, solely based on the existence of the dtor in the linker map.
+ */
 struct JASCriticalSection {
-	~JASCriticalSection();
+	/** @fabricated */
+	inline JASCriticalSection() { m_interrupts = OSDisableInterrupts(); }
+
+	~JASCriticalSection() // unused/inlined
+	{
+		OSRestoreInterrupts(m_interrupts);
+	}
+
+	// volatile int m_interrupts;
+	int m_interrupts;
 };
 
 #endif

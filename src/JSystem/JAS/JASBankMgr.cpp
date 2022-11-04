@@ -528,10 +528,10 @@ JASChannel* JASBankMgr::noteOn(int bankIndex, int instIndex, unsigned char p3, u
  * Address:	........
  * Size:	000054
  */
-JASCriticalSection::~JASCriticalSection()
-{
-	// UNUSED FUNCTION
-}
+// JASCriticalSection::~JASCriticalSection()
+// {
+// 	// UNUSED FUNCTION
+// }
 
 /*
  * --INFO--

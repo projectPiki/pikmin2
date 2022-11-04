@@ -156,7 +156,7 @@ void JASTaskThread::allocCallStack(void (*)(void*), void*)
  * Address:	800A89C8
  * Size:	000260
  */
-void JASTaskThread::sendCmdMsg(void (*)(void*), const void*, unsigned long)
+int JASTaskThread::sendCmdMsg(void (*)(void*), const void*, unsigned long)
 {
 	/*
 	stwu     r1, -0x30(r1)
@@ -357,7 +357,7 @@ lbl_800A8C14:
  * Address:	800A8C28
  * Size:	000234
  */
-void JASTaskThread::sendCmdMsg(void (*)(void*), void*)
+int JASTaskThread::sendCmdMsg(void (*)(void*), void*)
 {
 	/*
 	stwu     r1, -0x30(r1)
