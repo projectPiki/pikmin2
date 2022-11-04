@@ -23,6 +23,7 @@ struct SetSe {
 
 struct SeMgr {
 	enum SetSeId {
+		UNK_1 = 1, // unknown, used in ActBreakRock::exec
 		UNK_4 = 4, // unknown, used in PikiSuikomiState::onKeyEvent
 		UNK_7 = 7, // unknown, used in PikiPanicState::init
 	};

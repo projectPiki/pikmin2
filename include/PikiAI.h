@@ -301,9 +301,10 @@ struct ActBreakRock : public Action, public virtual SysShape::MotionListener {
 	virtual void bounceCallback(Game::Piki*, Sys::Triangle*);      // _24
 	virtual void collisionCallback(Game::Piki*, Game::CollEvent&); // _28
 	virtual void platCallback(Game::Piki*, Game::PlatEvent&);      // _2C
-	virtual void onKeyEvent(const SysShape::KeyEvent&);            // _3C (weak)
+	virtual void onKeyEvent(const SysShape::KeyEvent&) { }         // _3C
 
 	void initFollow();
+	inline void initStickAttack();
 
 	// _00     = VTBL
 	// _00-_0C = Action

@@ -6,6 +6,7 @@
 #include "Game/EnemyAnimatorBase.h"
 #include "Game/updateMgr.h"
 #include "BitFlag.h"
+#include "ObjectTypes.h"
 
 // Shorthand cast to obj-specific 'parms'
 #define CG_PARMS(x) (static_cast<Parms*>(x->m_parms))
