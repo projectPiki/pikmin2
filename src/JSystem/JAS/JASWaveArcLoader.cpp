@@ -1,4 +1,8 @@
+#include "Dolphin/string.h"
+#include "JSystem/JAS/JASDisposer.h"
 #include "JSystem/JAS/JASHeap.h"
+#include "JSystem/JAS/JASKernel.h"
+#include "JSystem/JAS/JASWave.h"
 #include "types.h"
 
 /*
@@ -42,28 +46,20 @@
         .skip 0x8
 */
 
+char JASWaveArcLoader::sCurrentDir[0x40];
+JASHeap* JASWaveArcLoader::sAramHeap;
+
 /*
  * --INFO--
  * Address:	8009BA08
  * Size:	00002C
  */
-void JASWaveArcLoader::init(JASHeap*)
+void JASWaveArcLoader::init(JASHeap* heap)
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	cmplwi   r3, 0
-	stw      r0, 0x14(r1)
-	bne      lbl_8009BA20
-	bl       getAramHeap__9JASKernelFv
-
-lbl_8009BA20:
-	stw      r3, sAramHeap__16JASWaveArcLoader@sda21(r13)
-	lwz      r0, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	if (heap == nullptr) {
+		heap = JASKernel::getAramHeap();
+	}
+	sAramHeap = heap;
 }
 
 /*
@@ -71,9 +67,10 @@ lbl_8009BA20:
  * Address:	........
  * Size:	000008
  */
-void JASWaveArcLoader::getRootHeap()
+JASHeap* JASWaveArcLoader::getRootHeap()
 {
 	// UNUSED FUNCTION
+	return sAramHeap;
 }
 
 /*
@@ -81,36 +78,14 @@ void JASWaveArcLoader::getRootHeap()
  * Address:	8009BA34
  * Size:	000060
  */
-void JASWaveArcLoader::setCurrentDir(const char*)
+void JASWaveArcLoader::setCurrentDir(const char* path)
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	lis      r5, sCurrentDir__16JASWaveArcLoader@ha
-	mr       r4, r3
-	stw      r0, 0x14(r1)
-	addi     r3, r5, sCurrentDir__16JASWaveArcLoader@l
-	bl       strcpy
-	lis      r3, sCurrentDir__16JASWaveArcLoader@ha
-	addi     r3, r3, sCurrentDir__16JASWaveArcLoader@l
-	bl       strlen
-	lis      r4, sCurrentDir__16JASWaveArcLoader@ha
-	addi     r6, r4, sCurrentDir__16JASWaveArcLoader@l
-	add      r5, r6, r3
-	lbz      r0, -1(r5)
-	cmpwi    r0, 0x2f
-	beq      lbl_8009BA84
-	li       r4, 0x2f
-	li       r0, 0
-	stbx     r4, r6, r3
-	stb      r0, 1(r5)
-
-lbl_8009BA84:
-	lwz      r0, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	strcpy(sCurrentDir, path);
+	size_t length = strlen(sCurrentDir);
+	if (sCurrentDir[length - 1] != '/') {
+		sCurrentDir[length]     = '/';
+		sCurrentDir[length + 1] = '\0';
+	}
 }
 
 /*
@@ -118,95 +93,36 @@ lbl_8009BA84:
  * Address:	........
  * Size:	00000C
  */
-void JASWaveArcLoader::getCurrentDir()
+const char* JASWaveArcLoader::getCurrentDir()
 {
 	// UNUSED FUNCTION
+	return sCurrentDir;
 }
 
 /*
  * --INFO--
  * Address:	8009BA94
  * Size:	00006C
+ * __ct__10JASWaveArcFv
  */
 JASWaveArc::JASWaveArc()
+    : JASDisposer()
+    , m_heap(this)
+    , _48(0)
+    , _4C(0)
+    , m_fileNumber(-1)
+    , m_fileSize(0)
+    , _58(0)
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	lis      r4, __vt__11JASDisposer@ha
-	stw      r0, 0x14(r1)
-	addi     r0, r4, __vt__11JASDisposer@l
-	stw      r31, 0xc(r1)
-	mr       r31, r3
-	lis      r3, __vt__10JASWaveArc@ha
-	stw      r0, 0(r31)
-	addi     r0, r3, __vt__10JASWaveArc@l
-	mr       r4, r31
-	addi     r3, r31, 4
-	stw      r0, 0(r31)
-	bl       __ct__7JASHeapFP11JASDisposer
-	li       r4, 0
-	li       r0, -1
-	stw      r4, 0x48(r31)
-	mr       r3, r31
-	stw      r4, 0x4c(r31)
-	stw      r0, 0x50(r31)
-	stw      r4, 0x54(r31)
-	stw      r4, 0x58(r31)
-	lwz      r31, 0xc(r1)
-	lwz      r0, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
 }
 
 /*
  * --INFO--
  * Address:	8009BB00
  * Size:	000078
+ * __dt__7JASHeapFv
  */
-JASHeap::~JASHeap()
-{
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	mr       r31, r4
-	stw      r30, 8(r1)
-	or.      r30, r3, r3
-	beq      lbl_8009BB5C
-	beq      lbl_8009BB4C
-	addic.   r0, r30, 0xc
-	beq      lbl_8009BB38
-	addi     r3, r30, 0xc
-	li       r4, 0
-	bl       __dt__10JSUPtrLinkFv
-
-lbl_8009BB38:
-	cmplwi   r30, 0
-	beq      lbl_8009BB4C
-	mr       r3, r30
-	li       r4, 0
-	bl       __dt__10JSUPtrListFv
-
-lbl_8009BB4C:
-	extsh.   r0, r31
-	ble      lbl_8009BB5C
-	mr       r3, r30
-	bl       __dl__FPv
-
-lbl_8009BB5C:
-	lwz      r0, 0x14(r1)
-	mr       r3, r30
-	lwz      r31, 0xc(r1)
-	lwz      r30, 8(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
-}
+// JASHeap::~JASHeap() { }
 
 /*
  * --INFO--
@@ -322,7 +238,7 @@ void JASWaveArc::execLoad()
  * Address:	8009BC40
  * Size:	000128
  */
-void JASWaveArc::load(JASHeap*)
+bool JASWaveArc::load(JASHeap*)
 {
 	/*
 	stwu     r1, -0x30(r1)
@@ -421,7 +337,7 @@ lbl_8009BD50:
  * Address:	8009BD68
  * Size:	000128
  */
-void JASWaveArc::loadTail(JASHeap*)
+bool JASWaveArc::loadTail(JASHeap*)
 {
 	/*
 	stwu     r1, -0x30(r1)
@@ -520,7 +436,7 @@ lbl_8009BE78:
  * Address:	........
  * Size:	00019C
  */
-void JASWaveArc::loadBlock(JASHeap*)
+bool JASWaveArc::loadBlock(JASHeap*)
 {
 	// UNUSED FUNCTION
 }
@@ -530,7 +446,7 @@ void JASWaveArc::loadBlock(JASHeap*)
  * Address:	........
  * Size:	00019C
  */
-void JASWaveArc::loadBlockTail(JASHeap*)
+bool JASWaveArc::loadBlockTail(JASHeap*)
 {
 	// UNUSED FUNCTION
 }
@@ -540,8 +456,9 @@ void JASWaveArc::loadBlockTail(JASHeap*)
  * Address:	8009BE90
  * Size:	000024
  */
-void JASWaveArc::erase()
+bool JASWaveArc::erase()
 {
+	return m_heap.free();
 	/*
 	stwu     r1, -0x10(r1)
 	mflr     r0

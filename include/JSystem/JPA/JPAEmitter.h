@@ -62,9 +62,9 @@ struct JPABaseParticle {
 };
 
 struct JPAParticleCallBack {
-	virtual ~JPAParticleCallBack() = 0;                      // _00
-	virtual void execute(JPABaseEmitter*, JPABaseParticle*); // _04
-	virtual void draw(JPABaseEmitter*, JPABaseParticle*);    // _08
+	virtual ~JPAParticleCallBack() = 0;                      // _08
+	virtual void execute(JPABaseEmitter*, JPABaseParticle*); // _0C (weak)
+	virtual void draw(JPABaseEmitter*, JPABaseParticle*);    // _10 (weak)
 };
 
 // TODO: Fill stuff in.
@@ -159,11 +159,14 @@ struct JPABaseEmitter {
 };
 
 struct JPAEmitterCallBack {
-	virtual ~JPAEmitterCallBack() = 0;          // _00
-	virtual void execute(JPABaseEmitter*);      // _04
-	virtual void executeAfter(JPABaseEmitter*); // _08
-	virtual void draw(JPABaseEmitter*);         // _0C
-	virtual void drawAfter(JPABaseEmitter*);    // _10
+	virtual ~JPAEmitterCallBack() = 0;          // _08
+	virtual void execute(JPABaseEmitter*);      // _0C (weak)
+	virtual void executeAfter(JPABaseEmitter*); // _10 (weak)
+	virtual void draw(JPABaseEmitter*);         // _14 (weak)
+	virtual void drawAfter(JPABaseEmitter*);    // _18 (weak)
+
+	// TODO: How is this not virtual???
+	// ~JPAEmitterCallBack();
 };
 
 /**

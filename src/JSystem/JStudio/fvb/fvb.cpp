@@ -1,4 +1,5 @@
 #include "JSystem/fvb/fvb.h"
+#include "JSystem/TFunctionValue.h"
 #include "JStudio/object.h"
 #include "types.h"
 

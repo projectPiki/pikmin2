@@ -1,5 +1,6 @@
 #include "JSystem/JPA/JPABlock.h"
 #include "JSystem/JPA/JPAEmitter.h"
+#include "JSystem/JPA/JPAField.h"
 #include "types.h"
 
 /*
@@ -137,6 +138,7 @@ void JPAFieldBase::calcAffect(JPAFieldBlock*, JPABaseParticle*)
 void JPAFieldBase::calcFadeAffect(JPAFieldBlock*, float) const
 {
 	// UNUSED FUNCTION
+	// TODO: I suspect this is the switch statement/vector addition at the end of most (all?) calc functions.
 }
 
 /*
@@ -144,7 +146,7 @@ void JPAFieldBase::calcFadeAffect(JPAFieldBlock*, float) const
  * Address:	800915A0
  * Size:	0000A8
  */
-void JPAFieldGravity::prepare(JPAEmitterWorkData*, JPAFieldBlock*)
+void JPAFieldGravity::prepare(JPAEmitterWorkData* workData, JPAFieldBlock* block)
 {
 	/*
 	stwu     r1, -0x10(r1)

@@ -4,10 +4,10 @@
 #include "types.h"
 
 struct J3DVtxColorCalc {
-	virtual void calc(struct J3DVertexBuffer*); // _00
-	virtual ~J3DVtxColorCalc();                 // _04
+	virtual void calc(struct J3DVertexBuffer*); // _08
+	virtual ~J3DVtxColorCalc();                 // _0C (weak)
 
-	void valc(struct J3DModel*);
+	void calc(struct J3DModel*);
 
 	// _00 VTBL
 	u32 _04;   // _04

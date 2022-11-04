@@ -116,7 +116,7 @@ struct J3DTexGenBlockPatched : public J3DTexGenBlock {
 struct J3DTexGenBlockBasic : public J3DTexGenBlockPatched {
 	inline J3DTexGenBlockBasic()
 	    : J3DTexGenBlockPatched()
-	    , m_nbtScale(j3dDefaultNBTScaleInfo)
+	    , m_nbtScale()
 	{
 		initialize();
 	}
@@ -139,7 +139,7 @@ struct J3DTexGenBlockBasic : public J3DTexGenBlockPatched {
 struct J3DTexGenBlock4 : public J3DTexGenBlockPatched {
 	inline J3DTexGenBlock4()
 	    : J3DTexGenBlockPatched()
-	    , m_nbtScale(j3dDefaultNBTScaleInfo)
+	    , m_nbtScale()
 	{
 		initialize();
 	}

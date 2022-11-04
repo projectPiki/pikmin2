@@ -1,4 +1,6 @@
+#include "Dolphin/gd.h"
 #include "Dolphin/gx.h"
+#include "JSystem/J3D/J3DGD.h"
 #include "types.h"
 
 /*
@@ -135,7 +137,7 @@
  * Address:	80074440
  * Size:	000170
  */
-void J3DGDSetGenMode(unsigned char, unsigned char, unsigned char, unsigned char, _GXCullMode)
+void J3DGDSetGenMode(unsigned char, unsigned char, unsigned char, unsigned char, GXCullMode)
 {
 	/*
 	.loc_0x0:
@@ -241,8 +243,22 @@ void J3DGDSetGenMode(unsigned char, unsigned char, unsigned char, unsigned char,
  * Address:	800745B0
  * Size:	00015C
  */
-void J3DGDSetGenMode_3Param(unsigned char, unsigned char, unsigned char)
+void J3DGDSetGenMode_3Param(unsigned char texGenNum, unsigned char tevStageNum, unsigned char indTexStageNum)
 {
+	if (__GDCurrentDL->pDisplayListData + 10 > __GDCurrentDL->end) {
+		GDOverflowed();
+	}
+	u32 v1 = (tevStageNum - 1) * 0x400;
+	__GDWrite(0x61);
+	__GDWrite(0xFE);
+	__GDWrite(0x07);
+	__GDWrite(0x3C);
+	__GDWrite(0x0F);
+	__GDWrite(0x61);
+	__GDWrite(((u8*)&v1)[0]);
+	__GDWrite(indTexStageNum | ((u8*)&v1)[1]);
+	__GDWrite(((u8*)&v1)[2]);
+	__GDWrite(texGenNum);
 	/*
 	stwu     r1, -0x20(r1)
 	mflr     r0
@@ -341,8 +357,22 @@ lbl_800745F0:
  * Address:	8007470C
  * Size:	000318
  */
-void J3DGDSetLightAttn(_GXLightID, float, float, float, float, float, float)
+void J3DGDSetLightAttn(_GXLightID id, float p2, float p3, float p4, float p5, float p6, float p7)
 {
+	if (GX_MAX_LIGHT < id) {
+		id = GX_LIGHT_NULL;
+	}
+	u16 v1 = (id & 0xFFF) * 0x10 + 0x604;
+	__GDWrite(0x10);
+	__GDWrite(0x00);
+	__GDWrite(0x05);
+	__GDWriteU16(v1);
+	__GDWriteF32(p2);
+	__GDWriteF32(p3);
+	__GDWriteF32(p4);
+	__GDWriteF32(p5);
+	__GDWriteF32(p6);
+	__GDWriteF32(p7);
 	/*
 	stwu     r1, -0x30(r1)
 	cntlzw   r0, r3

@@ -46,6 +46,27 @@ struct JPADynamicsBlock {
  * @size{0x2C}
  */
 struct JPAFieldBlock {
+	/** @fabricated */
+	struct Data {
+		u8 _00[4];    // _00
+		u32 _04;      // _04
+		u32 _08;      // _08
+		u8 _0C[0x1C]; // _0C
+		f32 _28;      // _28
+		f32 _2C;      // _2C
+		f32 _30;      // _30
+		f32 _34;      // _34
+		f32 _38;      // _38
+		f32 _3C;      // _3C
+	};
+
+	JPAFieldBlock(const unsigned char*, JKRHeap*);
+
+	void init(JKRHeap*);
+
+	// unused/inlined:
+	void init_jpa(const unsigned char*, JKRHeap*);
+
 	u8* m_data;            // _00
 	JPAFieldBase* m_field; // _04
 	float _08;             // _08

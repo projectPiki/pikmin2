@@ -2,6 +2,8 @@
 #define _JSYSTEM_J3D_J3DTEXMTX_H
 
 #include "Dolphin/mtx.h"
+#include "JSystem/J3D/J3DPacket.h"
+#include "JSystem/J3D/J3DTexGenBlock.h"
 #include "JSystem/J3D/J3DTypes.h"
 #include "types.h"
 
@@ -25,5 +27,11 @@ struct J3DTexMtx {
 	Mtx44 _24;                   // _24
 	Mtx _64;                     // _64
 };
+
+namespace J3DDifferedTexMtx {
+void loadExecute(const float (*)[4]);
+extern J3DTexGenBlock* sTexGenBlock;
+extern J3DShapePacket_0x24* sTexMtxObj;
+} // namespace J3DDifferedTexMtx
 
 #endif

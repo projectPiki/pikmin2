@@ -1,3 +1,4 @@
+#include "JSystem/JAS/JASWave.h"
 #include "types.h"
 
 /*
@@ -14,7 +15,7 @@
  * Address:	80098A68
  * Size:	000028
  */
-void JASWSParser::getGroupCount(void*)
+u32 JASWSParser::getGroupCount(void*)
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -35,7 +36,7 @@ void JASWSParser::getGroupCount(void*)
  * Address:	80098A90
  * Size:	000204
  */
-void JASWSParser::createBasicWaveBank(void*)
+JASBasicWaveBank* JASWSParser::createBasicWaveBank(void*)
 {
 	/*
 	stwu     r1, -0x70(r1)
@@ -191,7 +192,7 @@ lbl_80098C80:
  * Address:	80098C94
  * Size:	0001F8
  */
-void JASWSParser::createSimpleWaveBank(void*)
+JASSimpleWaveBank* JASWSParser::createSimpleWaveBank(void*)
 {
 	/*
 	stwu     r1, -0x60(r1)
@@ -346,7 +347,7 @@ lbl_80098E78:
  * Address:	........
  * Size:	000008
  */
-void JASWSParser::getUsedHeapSize()
+size_t JASWSParser::getUsedHeapSize()
 {
 	// UNUSED FUNCTION
 }
@@ -356,132 +357,132 @@ void JASWSParser::getUsedHeapSize()
  * Address:	80098E8C
  * Size:	000018
  */
-void JSUConvertOffsetToPtr<JASWSParser::TCtrlWave>(const void*, unsigned long)
-{
-	/*
-	cmplwi   r4, 0
-	bne      lbl_80098E9C
-	li       r3, 0
-	blr
+// void JSUConvertOffsetToPtr<JASWSParser::TCtrlWave>(const void*, unsigned long)
+// {
+// 	/*
+// 	cmplwi   r4, 0
+// 	bne      lbl_80098E9C
+// 	li       r3, 0
+// 	blr
 
-lbl_80098E9C:
-	add      r3, r3, r4
-	blr
-	*/
-}
+// lbl_80098E9C:
+// 	add      r3, r3, r4
+// 	blr
+// 	*/
+// }
 
 /*
  * --INFO--
  * Address:	80098EA4
  * Size:	000018
  */
-void JSUConvertOffsetToPtr<JASWSParser::TWave>(const void*, unsigned long)
-{
-	/*
-	cmplwi   r4, 0
-	bne      lbl_80098EB4
-	li       r3, 0
-	blr
+// void JSUConvertOffsetToPtr<JASWSParser::TWave>(const void*, unsigned long)
+// {
+// 	/*
+// 	cmplwi   r4, 0
+// 	bne      lbl_80098EB4
+// 	li       r3, 0
+// 	blr
 
-lbl_80098EB4:
-	add      r3, r3, r4
-	blr
-	*/
-}
+// lbl_80098EB4:
+// 	add      r3, r3, r4
+// 	blr
+// 	*/
+// }
 
 /*
  * --INFO--
  * Address:	80098EBC
  * Size:	000018
  */
-void JSUConvertOffsetToPtr<JASWSParser::TWaveArchive>(const void*, unsigned long)
-{
-	/*
-	.loc_0x0:
-	  cmplwi    r4, 0
-	  bne-      .loc_0x10
-	  li        r3, 0
-	  blr
+// void JSUConvertOffsetToPtr<JASWSParser::TWaveArchive>(const void*, unsigned long)
+// {
+// 	/*
+// 	.loc_0x0:
+// 	  cmplwi    r4, 0
+// 	  bne-      .loc_0x10
+// 	  li        r3, 0
+// 	  blr
 
-	.loc_0x10:
-	  add       r3, r3, r4
-	  blr
-	*/
-}
+// 	.loc_0x10:
+// 	  add       r3, r3, r4
+// 	  blr
+// 	*/
+// }
 
 /*
  * --INFO--
  * Address:	80098ED4
  * Size:	000018
  */
-void JSUConvertOffsetToPtr<JASWSParser::TWaveArchiveBank>(const void*, unsigned long)
-{
-	/*
-	.loc_0x0:
-	  cmplwi    r4, 0
-	  bne-      .loc_0x10
-	  li        r3, 0
-	  blr
+// void JSUConvertOffsetToPtr<JASWSParser::TWaveArchiveBank>(const void*, unsigned long)
+// {
+// 	/*
+// 	.loc_0x0:
+// 	  cmplwi    r4, 0
+// 	  bne-      .loc_0x10
+// 	  li        r3, 0
+// 	  blr
 
-	.loc_0x10:
-	  add       r3, r3, r4
-	  blr
-	*/
-}
+// 	.loc_0x10:
+// 	  add       r3, r3, r4
+// 	  blr
+// 	*/
+// }
 
 /*
  * --INFO--
  * Address:	80098EEC
  * Size:	000018
  */
-void JSUConvertOffsetToPtr<JASWSParser::TCtrl>(const void*, unsigned long)
-{
-	/*
-	cmplwi   r4, 0
-	bne      lbl_80098EFC
-	li       r3, 0
-	blr
+// void JSUConvertOffsetToPtr<JASWSParser::TCtrl>(const void*, unsigned long)
+// {
+// 	/*
+// 	cmplwi   r4, 0
+// 	bne      lbl_80098EFC
+// 	li       r3, 0
+// 	blr
 
-lbl_80098EFC:
-	add      r3, r3, r4
-	blr
-	*/
-}
+// lbl_80098EFC:
+// 	add      r3, r3, r4
+// 	blr
+// 	*/
+// }
 
 /*
  * --INFO--
  * Address:	80098F04
  * Size:	000018
  */
-void JSUConvertOffsetToPtr<JASWSParser::TCtrlScene>(const void*, unsigned long)
-{
-	/*
-	cmplwi   r4, 0
-	bne      lbl_80098F14
-	li       r3, 0
-	blr
+// void JSUConvertOffsetToPtr<JASWSParser::TCtrlScene>(const void*, unsigned long)
+// {
+// 	/*
+// 	cmplwi   r4, 0
+// 	bne      lbl_80098F14
+// 	li       r3, 0
+// 	blr
 
-lbl_80098F14:
-	add      r3, r3, r4
-	blr
-	*/
-}
+// lbl_80098F14:
+// 	add      r3, r3, r4
+// 	blr
+// 	*/
+// }
 
 /*
  * --INFO--
  * Address:	80098F1C
  * Size:	000018
  */
-void JSUConvertOffsetToPtr<JASWSParser::TCtrlGroup>(const void*, unsigned long)
-{
-	/*
-	cmplwi   r4, 0
-	bne      lbl_80098F2C
-	li       r3, 0
-	blr
+// void JSUConvertOffsetToPtr<JASWSParser::TCtrlGroup>(const void*, unsigned long)
+// {
+// 	/*
+// 	cmplwi   r4, 0
+// 	bne      lbl_80098F2C
+// 	li       r3, 0
+// 	blr
 
-lbl_80098F2C:
-	add      r3, r3, r4
-	blr
-	*/
-}
+// lbl_80098F2C:
+// 	add      r3, r3, r4
+// 	blr
+// 	*/
+// }

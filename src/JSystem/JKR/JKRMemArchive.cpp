@@ -1,6 +1,7 @@
 #include "Dolphin/os.h"
 #include "Dolphin/stl.h"
 #include "JSystem/JKR/JKRArchive.h"
+#include "JSystem/JKR/JKRDecomp.h"
 #include "JSystem/JKR/JKRDvdRipper.h"
 #include "JSystem/JKR/JKRHeap.h"
 #include "JSystem/JUT/JUTException.h"
@@ -617,11 +618,11 @@ u32 JKRMemArchive::fetchResource_subroutine(unsigned char* p1, unsigned long p2,
 	case 2: {
 		u8* p = (u8*)p1;
 		p2    = MIN(p2, p[4] << 0x18 | p[5] << 0x10 | p[6] << 8 | p[7]);
-		// JKRDecomp::orderSync(p1, p3, p2, 0);
+		JKRDecomp::orderSync(p1, p3, p2, 0);
 		break;
 	}
 	default:
-		JUT_PANICLINE(723, ":::??? bad sequence\n");
+		OSErrorLine(723, ":::??? bad sequence\n");
 		return 0;
 	}
 	return p2;

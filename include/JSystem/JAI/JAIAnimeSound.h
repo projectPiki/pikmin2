@@ -6,9 +6,22 @@
 
 struct JAIBasic;
 
+/**
+ * @fabricated
+ * @size{0x20}
+ */
+struct JAIAnimeSoundData_0xC {
+	f32 _00;      // _00
+	u8 _04[0x1C]; // _04 - unknown
+};
+
 struct JAIAnimeSoundData {
-	u8 _00[0x17]; // _00 - unknown
-	u8 _18;       // _18
+	u16 _00; // _00
+	u32 : 0;
+	u8 _04[8];                  // _04 - unknown
+	JAIAnimeSoundData_0xC* _0C; // _0C
+	u8 _10[8];                  // _10 - unknown
+	u8 _18;                     // _18
 };
 
 struct JAIAnimeFrameSoundData;
@@ -23,7 +36,7 @@ struct JAIAnimeSound : public JAInter::Object {
 	virtual void setSpeedModifySound(JAISound*, JAIAnimeFrameSoundData*, float); // _44
 
 	void initActorAnimSound(JAIAnimeSoundData*, unsigned long, float, float);
-	void checkLoopStartCount(float);
+	int checkLoopStartCount(float);
 	void checkLoopEndCount(float);
 	void setAnimSoundActor(JAInter::Actor*, float, float, unsigned char);
 

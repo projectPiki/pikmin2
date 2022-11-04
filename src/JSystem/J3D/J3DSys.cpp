@@ -1,5 +1,6 @@
 #include "JSystem/J3D/J3DSys.h"
 #include "Dolphin/gx.h"
+#include "Dolphin/mtx.h"
 #include "Dolphin/os.h"
 #include "types.h"
 
@@ -146,6 +147,32 @@ static u8 NullTexData[0x10] = { 0x0 };
  */
 J3DSys::J3DSys()
 {
+	// makeTexCoordTable();
+	// makeTevSwapTable();
+	// makeAlphaCmpTable();
+	// makeZModeTable();
+	// _34 = 0;
+	// PSMTXIdentity(_00);
+	// _50           = 1;
+	// _54           = 0;
+	// _38           = nullptr;
+	// _44           = 0;
+	// _48           = nullptr;
+	// _4C           = nullptr;
+	// _58           = nullptr;
+	// m_matPacket   = nullptr;
+	// m_shapePacket = nullptr;
+	// _104          = nullptr;
+	// _108          = nullptr;
+	// _10C          = 0;
+	// _110          = 0;
+	// _114          = 0;
+	// for (int i = 0; i < 8; i++) {
+	// 	sTexCoordScaleTable[i][0] = 1;
+	// 	sTexCoordScaleTable[i][1] = 1;
+	// 	sTexCoordScaleTable[i][2] = 0;
+	// 	sTexCoordScaleTable[i][3] = 0;
+	// }
 	/*
 	stwu     r1, -0x10(r1)
 	mflr     r0
@@ -226,9 +253,9 @@ J3DSys::J3DSys()
  */
 void J3DSys::loadPosMtxIndx(int p1, unsigned short p2) const
 {
-	HW_REG(0xCC008000, u8)  = 0x20;
-	HW_REG(0xCC008000, u16) = p2;
-	HW_REG(0xCC008000, u16) = (u16)(p1 * 0xC) | 0xB000;
+	GXWGFifo.u8  = 0x20;
+	GXWGFifo.u16 = p2;
+	GXWGFifo.u16 = (u16)(p1 * 0xC) | 0xB000;
 }
 
 /*
@@ -238,9 +265,9 @@ void J3DSys::loadPosMtxIndx(int p1, unsigned short p2) const
  */
 void J3DSys::loadNrmMtxIndx(int p1, unsigned short p2) const
 {
-	HW_REG(0xCC008000, u8)  = 0x28;
-	HW_REG(0xCC008000, u16) = p2;
-	HW_REG(0xCC008000, u16) = (u16)(p1 * 9 + 0x400) | 0x8000;
+	GXWGFifo.u8  = 0x28;
+	GXWGFifo.u16 = p2;
+	GXWGFifo.u16 = (u16)(p1 * 9 + 0x400) | 0x8000;
 }
 
 /*
@@ -822,11 +849,11 @@ void J3DSys::reinitGX()
  */
 void J3DSys::reinitGenMode()
 {
-	// GXSetNumChans(0);
-	// GXSetNumTexGens(1);
-	// GXSetNumTevStages(1);
-	// GXSetNumIndStages(0);
-	// GXSetCullMode(2);
+	GXSetNumChans(0);
+	GXSetNumTexGens(1);
+	GXSetNumTevStages(1);
+	GXSetNumIndStages(0);
+	GXSetCullMode(GX_CULL_BACK);
 	// GXSetCoPlanar(0);
 	/*
 	stwu     r1, -0x10(r1)
@@ -881,73 +908,15 @@ void J3DSys::reinitLighting()
  */
 void J3DSys::reinitTransform()
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	li       r3, 0
-	stw      r0, 0x14(r1)
-	bl       GXSetCurrentMtx
-	li       r3, 0
-	li       r4, 1
-	li       r5, 4
-	li       r6, 0x3c
-	li       r7, 0
-	li       r8, 0x7d
-	bl       GXSetTexCoordGen2
-	li       r3, 1
-	li       r4, 1
-	li       r5, 5
-	li       r6, 0x3c
-	li       r7, 0
-	li       r8, 0x7d
-	bl       GXSetTexCoordGen2
-	li       r3, 2
-	li       r4, 1
-	li       r5, 6
-	li       r6, 0x3c
-	li       r7, 0
-	li       r8, 0x7d
-	bl       GXSetTexCoordGen2
-	li       r3, 3
-	li       r4, 1
-	li       r5, 7
-	li       r6, 0x3c
-	li       r7, 0
-	li       r8, 0x7d
-	bl       GXSetTexCoordGen2
-	li       r3, 4
-	li       r4, 1
-	li       r5, 8
-	li       r6, 0x3c
-	li       r7, 0
-	li       r8, 0x7d
-	bl       GXSetTexCoordGen2
-	li       r3, 5
-	li       r4, 1
-	li       r5, 9
-	li       r6, 0x3c
-	li       r7, 0
-	li       r8, 0x7d
-	bl       GXSetTexCoordGen2
-	li       r3, 6
-	li       r4, 1
-	li       r5, 0xa
-	li       r6, 0x3c
-	li       r7, 0
-	li       r8, 0x7d
-	bl       GXSetTexCoordGen2
-	li       r3, 7
-	li       r4, 1
-	li       r5, 0xb
-	li       r6, 0x3c
-	li       r7, 0
-	li       r8, 0x7d
-	bl       GXSetTexCoordGen2
-	lwz      r0, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	GXSetCurrentMtx(0);
+	GXSetTexCoordGen2(GX_TEXCOORD0, GX_TG_MTX3X4, GX_TG_TEX0, 0x3C, GX_FALSE, 0x7D);
+	GXSetTexCoordGen2(GX_TEXCOORD1, GX_TG_MTX3X4, GX_TG_TEX1, 0x3C, GX_FALSE, 0x7D);
+	GXSetTexCoordGen2(GX_TEXCOORD2, GX_TG_MTX3X4, GX_TG_TEX2, 0x3C, GX_FALSE, 0x7D);
+	GXSetTexCoordGen2(GX_TEXCOORD3, GX_TG_MTX3X4, GX_TG_TEX3, 0x3C, GX_FALSE, 0x7D);
+	GXSetTexCoordGen2(GX_TEXCOORD4, GX_TG_MTX3X4, GX_TG_TEX4, 0x3C, GX_FALSE, 0x7D);
+	GXSetTexCoordGen2(GX_TEXCOORD5, GX_TG_MTX3X4, GX_TG_TEX5, 0x3C, GX_FALSE, 0x7D);
+	GXSetTexCoordGen2(GX_TEXCOORD6, GX_TG_MTX3X4, GX_TG_TEX6, 0x3C, GX_FALSE, 0x7D);
+	GXSetTexCoordGen2(GX_TEXCOORD7, GX_TG_MTX3X4, GX_TG_TEX7, 0x3C, GX_FALSE, 0x7D);
 }
 
 /*
@@ -1023,7 +992,7 @@ void J3DSys::reinitTevStages()
 void J3DSys::reinitIndStages()
 {
 	// for (u32 i = 0; i < 0x10; i++) {
-	// 	GXSetTevDirect(i);
+	// 	GXSetTevDirect((GXTevStageID)i);
 	// }
 	// GXSetIndTexOrder(0, 0, 0);
 	// GXSetIndTexOrder(1, 1, 1);

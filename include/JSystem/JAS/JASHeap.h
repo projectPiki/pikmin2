@@ -9,11 +9,11 @@
 
 struct JASHeap {
 	JASHeap(JASDisposer*);
-	~JASHeap();
+	~JASHeap() { }
 
 	void* alloc(JASHeap*, unsigned long);
 	void* allocTail(JASHeap*, unsigned long);
-	void free();
+	bool free();
 	void insertChild(JASHeap*, JASHeap*, void*, unsigned long, bool);
 	void getTailHeap();
 	int getTailOffset();
@@ -33,7 +33,7 @@ struct JASHeap {
 	JSUTree<JASHeap> m_tree;     // _00
 	OSMutexObject m_mutexObject; // _1C
 	JASDisposer* m_disposer;     // _34
-	void* _38;                   // _38
+	u8* _38;                     // _38
 	u32 _3C;                     // _3C
 	u32 _40;                     // _40
 };

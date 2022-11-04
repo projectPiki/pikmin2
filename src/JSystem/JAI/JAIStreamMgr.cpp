@@ -1,4 +1,11 @@
+#include "JSystem/JAI/JAIBasic.h"
+#include "JSystem/JAI/JAIGlobalParameter.h"
+#include "JSystem/JAI/JAIStream.h"
+#include "JSystem/JAI/JAInter/MoveParaSet.h"
 #include "JSystem/JAI/JAInter/StreamMgr.h"
+#include "JSystem/JAS/JASAramStream.h"
+#include "JSystem/JAS/JASHeap.h"
+#include "JSystem/JAS/JASKernel.h"
 #include "types.h"
 
 /*
@@ -113,6 +120,29 @@
  */
 void JAInter::StreamMgr::init(void)
 {
+	if (flags._2 == 0) {
+		flags._0 = 0;
+	}
+	streamSystem   = new (JAIBasic::msCurrentHeap, 0x20) JASAramStream();
+	aramBufferHeap = new (JAIBasic::msCurrentHeap, 0x20) JASHeap(nullptr);
+	JASAramStream::initSystem(JAIGlobalParameter::getParamStreamDecodedBufferBlocks(), sChannelMax);
+	streamSound       = JAIBasic::msBasic->makeStream();
+	streamSound->_1A8 = new (JAIBasic::msCurrentHeap, 0x20) MoveParaSet[JAIGlobalParameter::getParamStreamParameterLines()];
+	streamSound->_1A4 = new (JAIBasic::msCurrentHeap, 0x20) MoveParaSet[JAIGlobalParameter::getParamStreamParameterLines()];
+	streamSound->_1AC = new (JAIBasic::msCurrentHeap, 0x20) MoveParaSetInitZero[JAIGlobalParameter::getParamStreamParameterLines()];
+	streamSound->_1B0 = new (JAIBasic::msCurrentHeap, 0x20) MoveParaSetInitZero[JAIGlobalParameter::getParamStreamParameterLines()];
+	streamSound->_1C8 = new (JAIBasic::msCurrentHeap, 0x20) MoveParaSet[sChannelMax];
+	streamSound->_1CC = new (JAIBasic::msCurrentHeap, 0x20) MoveParaSet[sChannelMax];
+	streamSound->_1D0 = new (JAIBasic::msCurrentHeap, 0x20) MoveParaSet[sChannelMax];
+	streamSound->_1D4 = new (JAIBasic::msCurrentHeap, 0x20) MoveParaSet[sChannelMax];
+	streamUpdate      = new (JAIBasic::msCurrentHeap, 0x20) StreamUpdate();
+	streamUpdate->reset();
+	if (externalAram == 0) {
+		getDecodedBufferSize(10);
+		aramBufferHeap->alloc(JASKernel::getAramHeap(), getDecodedBufferSize(10));
+	} else if (externalAramCallback != nullptr) {
+		aramParentHeap = externalAramCallback();
+	}
 	/*
 	stwu     r1, -0x30(r1)
 	mflr     r0
@@ -571,50 +601,19 @@ void JAInter::StreamMgr::storeStreamBuffer(JAIStream**, JAInter::Actor*, unsigne
  * Address:	800B7CC0
  * Size:	000088
  */
-void JAInter::StreamMgr::releaseStreamBuffer(JAIStream*, unsigned long)
+void JAInter::StreamMgr::releaseStreamBuffer(JAIStream* stream, unsigned long p2)
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	cmplwi   r4, 0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	mr       r31, r3
-	beq      lbl_800B7CE8
-	lbz      r0, 0x15(r31)
-	cmplwi   r0, 4
-	bge      lbl_800B7D18
-
-lbl_800B7CE8:
-	bl       stopDirect__Q27JAInter9StreamMgrFv
-	li       r0, 0
-	mr       r3, r31
-	stb      r0, 0x15(r31)
-	lwz      r4, 0x1b4(r31)
-	stw      r0, 0x1c(r4)
-	lwz      r4, 0x1b4(r31)
-	stw      r0, 0x18(r4)
-	bl       clearMainSoundPPointer__8JAISoundFv
-	li       r0, 0
-	stw      r0, mgrCallback__Q27JAInter9StreamMgr@sda21(r13)
-	b        lbl_800B7D34
-
-lbl_800B7D18:
-	lwz      r3, 0x1b4(r31)
-	cmplwi   r3, 0
-	beq      lbl_800B7D34
-	lwz      r0, 0x18(r3)
-	ori      r0, r0, 2
-	stw      r0, 0x18(r3)
-	stw      r4, 0x28(r31)
-
-lbl_800B7D34:
-	lwz      r0, 0x14(r1)
-	lwz      r31, 0xc(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	if (p2 == 0 || stream->_15 < 4) {
+		stopDirect();
+		stream->_15       = 0;
+		stream->_1B4->_1C = 0;
+		stream->_1B4->_18 = 0;
+		stream->clearMainSoundPPointer();
+		mgrCallback = 0;
+	} else if (stream->_1B4 != nullptr) {
+		stream->_1B4->_18 |= 2;
+		stream->_28 = p2;
+	}
 }
 
 /*
@@ -622,8 +621,76 @@ lbl_800B7D34:
  * Address:	800B7D48
  * Size:	0001AC
  */
-void JAInter::StreamMgr::checkSystem(void)
+void JAInter::StreamMgr::checkSystem()
 {
+	if (finishFlag == 2) {
+		if (controlStatus == 5) {
+			if (mgrCallback != nullptr) {
+				mgrCallback();
+			}
+			controlStatus = 0;
+		} else if (controlStatus == 6) {
+			controlStatus = 0;
+		}
+		finishFlag = 0;
+	}
+	switch (controlStatus) {
+	case 1:
+		if (finishFlag == 0) {
+			if (dataFileNumber == 0) {
+				controlStatus = 0;
+			} else {
+				controlStatus = 2;
+			}
+		}
+		break;
+	case 2:
+		if (dataFileNumber == 0) {
+			controlStatus = 0;
+		} else {
+			prepareSystem(dataFileNumber);
+			initChannel();
+			controlStatus = 4;
+		}
+		break;
+	case 4:
+		if (prepareFlag == 1) {
+			if (mgrCallback != nullptr) {
+				mgrCallback();
+			}
+			if (prepareSw != 0) {
+				break;
+			}
+			controlStatus = 3;
+		}
+		if (controlStatus != 3) {
+			break;
+		}
+		// lack of break is intentional
+	case 3:
+		if (mgrCallback != nullptr) {
+			mgrCallback();
+		}
+		streamSystem->start();
+		prepareFlag   = 0;
+		controlStatus = 5;
+		break;
+	case 6:
+		finishFlag = 1;
+		streamSystem->stop(0);
+		controlStatus = 1;
+		break;
+	case 7:
+		finishFlag = 1;
+		streamSystem->cancel();
+		controlStatus = 1;
+		break;
+	case 5:
+		if (mgrCallback != nullptr) {
+			mgrCallback();
+		}
+		break;
+	}
 	/*
 	stwu     r1, -0x10(r1)
 	mflr     r0
@@ -1654,22 +1721,10 @@ lbl_800B898C:
  */
 void JAInter::StreamMgr::processGFrameStream(void)
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	lbz      r0, flags__Q27JAInter9StreamMgr@sda21(r13)
-	rlwinm.  r0, r0, 0x1a, 0x1f, 0x1f
-	bne      lbl_800B89BC
-	bl       checkSystem__Q27JAInter9StreamMgrFv
-	bl       checkEntriedStream__Q27JAInter9StreamMgrFv
-
-lbl_800B89BC:
-	lwz      r0, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	if (flags._1 == 0) {
+		checkSystem();
+		checkEntriedStream();
+	}
 }
 
 /*
@@ -1679,6 +1734,13 @@ lbl_800B89BC:
  */
 void JAInter::StreamMgr::checkEntriedStream(void)
 {
+	if (streamSound->_15 != 1) {
+		return;
+	}
+	streamSound->_15 = 2;
+	streamUpdate->reset();
+	streamUpdate->_1C = streamSound;
+	// TODO: the rest
 	/*
 	stwu     r1, -0x110(r1)
 	mflr     r0
@@ -1993,29 +2055,12 @@ lbl_800B8D6C:
  */
 void JAInter::StreamMgr::stopDirect(void)
 {
-	/*
-	lwz      r0, controlStatus__Q27JAInter9StreamMgr@sda21(r13)
-	cmplwi   r0, 5
-	bne      lbl_800B8D9C
-	li       r0, 6
-	stw      r0, controlStatus__Q27JAInter9StreamMgr@sda21(r13)
-	b        lbl_800B8DB4
-
-lbl_800B8D9C:
-	cmplwi   r0, 3
-	beq      lbl_800B8DAC
-	cmplwi   r0, 4
-	bne      lbl_800B8DB4
-
-lbl_800B8DAC:
-	li       r0, 7
-	stw      r0, controlStatus__Q27JAInter9StreamMgr@sda21(r13)
-
-lbl_800B8DB4:
-	li       r0, 0
-	stw      r0, dataFileNumber__Q27JAInter9StreamMgr@sda21(r13)
-	blr
-	*/
+	if (controlStatus == 5) {
+		controlStatus = 6;
+	} else if (controlStatus == 3 || controlStatus == 4) {
+		controlStatus = 7;
+	}
+	dataFileNumber = 0;
 }
 
 /*
@@ -2107,26 +2152,14 @@ lbl_800B8E90:
  * Address:	800B8EAC
  * Size:	000008
  */
-JASAramStream* JAInter::StreamMgr::getStreamObjectPointer(void)
-{
-	/*
-	lwz      r3, streamSystem__Q27JAInter9StreamMgr@sda21(r13)
-	blr
-	*/
-}
+JASAramStream* JAInter::StreamMgr::getStreamObjectPointer() { return streamSystem; }
 
 /*
  * --INFO--
  * Address:	800B8EB4
  * Size:	000008
  */
-u32 JAInter::StreamMgr::getSystemStatus(void)
-{
-	/*
-	lwz      r3, systemStatus__Q27JAInter9StreamMgr@sda21(r13)
-	blr
-	*/
-}
+u32 JAInter::StreamMgr::getSystemStatus() { return systemStatus; }
 
 /*
  * --INFO--
@@ -2163,22 +2196,17 @@ void JAInter::StreamMgr::setDeallockCallback(JAInter::StreamMgr::DeallocCallback
  * Address:	800B8EBC
  * Size:	000008
  */
-u32 JAInter::StreamMgr::getDecodedBufferBlocks(void)
-{
-	/*
-	lwz      r3, decodedBufferBlocks__Q27JAInter9StreamMgr@sda21(r13)
-	blr
-	*/
-}
+u32 JAInter::StreamMgr::getDecodedBufferBlocks() { return decodedBufferBlocks; }
 
 /*
  * --INFO--
  * Address:	........
  * Size:	000008
  */
-void JAInter::StreamMgr::setDecodedBufferBlocks(unsigned long)
+void JAInter::StreamMgr::setDecodedBufferBlocks(unsigned long count)
 {
 	// UNUSED FUNCTION
+	decodedBufferBlocks = count;
 }
 
 /*
@@ -2186,16 +2214,17 @@ void JAInter::StreamMgr::setDecodedBufferBlocks(unsigned long)
  * Address:	800B8EC4
  * Size:	000018
  */
-void JAInter::StreamMgr::getDecodedBufferSize(unsigned long)
+u32 JAInter::StreamMgr::getDecodedBufferSize(unsigned long p1) { return decodedBufferBlocks * p1 * sChannelMax >> 1; }
+
+/*
+ * --INFO--
+ * Address:	........
+ * Size:	000008
+ */
+JAIStream* JAInter::StreamMgr::getStreamSound()
 {
-	/*
-	lwz      r0, decodedBufferBlocks__Q27JAInter9StreamMgr@sda21(r13)
-	lwz      r4, sChannelMax__Q27JAInter9StreamMgr@sda21(r13)
-	mullw    r0, r0, r3
-	mullw    r0, r4, r0
-	srwi     r3, r0, 1
-	blr
-	*/
+	// UNUSED FUNCTION
+	return streamSound;
 }
 
 /*
@@ -2203,19 +2232,10 @@ void JAInter::StreamMgr::getDecodedBufferSize(unsigned long)
  * Address:	........
  * Size:	000008
  */
-void JAInter::StreamMgr::getStreamSound(void)
+void JAInter::StreamMgr::setChannelMax(unsigned long max)
 {
 	// UNUSED FUNCTION
-}
-
-/*
- * --INFO--
- * Address:	........
- * Size:	000008
- */
-void JAInter::StreamMgr::setChannelMax(unsigned long)
-{
-	// UNUSED FUNCTION
+	sChannelMax = max;
 }
 
 /*
@@ -2223,13 +2243,7 @@ void JAInter::StreamMgr::setChannelMax(unsigned long)
  * Address:	800B8EDC
  * Size:	000008
  */
-u32 JAInter::StreamMgr::getChannelMax(void)
-{
-	/*
-	lwz      r3, sChannelMax__Q27JAInter9StreamMgr@sda21(r13)
-	blr
-	*/
-}
+u32 JAInter::StreamMgr::getChannelMax() { return sChannelMax; }
 
 /*
  * --INFO--

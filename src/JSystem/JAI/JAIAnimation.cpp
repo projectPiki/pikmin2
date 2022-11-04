@@ -359,8 +359,18 @@ void JAIAnimeSound::initActorAnimSound(JAIAnimeSoundData*, unsigned long, float,
  * Address:	800AB444
  * Size:	000040
  */
-void JAIAnimeSound::checkLoopStartCount(float)
+int JAIAnimeSound::checkLoopStartCount(float p1)
 {
+	u32 i = 0;
+	// if (m_soundData->_00 == 0) {
+	// 	return i;
+	// }
+	for (; i < m_soundData->_00; i++) {
+		if (p1 <= m_soundData->_0C[i]._00) {
+			return i;
+		}
+	}
+	return i;
 	/*
 	lwz      r5, 0x78(r3)
 	li       r3, 0
@@ -1095,8 +1105,12 @@ lbl_800ABC34:
  * Address:	800ABC50
  * Size:	00004C
  */
-void JAIAnimeSound::startAnimSound(unsigned long, JAISound**, JAInter::Actor*, unsigned char)
+void JAIAnimeSound::startAnimSound(unsigned long id, JAISound** handlePtr, JAInter::Actor* actor, unsigned char p4)
 {
+	JAIBasic::msBasic->startSoundActorT(id, handlePtr, actor, 0, p4);
+	if (*handlePtr != nullptr) {
+		(*handlePtr)->_1A = 1;
+	}
 	/*
 	.loc_0x0:
 	  stwu      r1, -0x10(r1)
@@ -1262,8 +1276,8 @@ void JAIAnimeSound::setSpeedModifySound(JAISound*, JAIAnimeFrameSoundData*, floa
  * Address:	800ABE38
  * Size:	00000C
  */
-void JAInter::ObjectBase::enable(void)
-{
-	// Generated from stb r0, 0x18(r3)
-	_18 = 1;
-}
+// void JAInter::ObjectBase::enable(void)
+// {
+// 	// Generated from stb r0, 0x18(r3)
+// 	_18 = 1;
+// }

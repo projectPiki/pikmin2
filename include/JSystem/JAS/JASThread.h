@@ -16,8 +16,13 @@ struct JASTaskThread : public JKRThread {
 	void sendCmdMsg(void (*)(void*), const void*, u32);
 	void sendCmdMsg(void (*)(void*), void*);
 
+	// unused/inlined:
+	void allocCallStack(void (*)(void*), const void*, unsigned long);
+	void allocCallStack(void (*)(void*), void*);
+	void pause(bool);
+
 	OSThreadQueue _7C; // _7C
-	u8 _84[0x4];       // _84 - unknown
+	u8 _84;            // _84
 };
 
 /**

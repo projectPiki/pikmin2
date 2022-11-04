@@ -7,21 +7,26 @@
 #include "JSystem/JUT/TColor.h"
 #include "Dolphin/mtx.h"
 
+/**
+ * @fabricated
+ */
+enum J2DGrafType { J2DGraf_Base = 0, J2DGraf_Ortho, J2DGraf_Persp };
+
 struct J2DGrafContext {
 	J2DGrafContext(float, float, float, float);
 
-	virtual ~J2DGrafContext() { }                 // _08
+	virtual ~J2DGrafContext() { }                 // _08 (weak)
 	virtual void place(const JGeometry::TBox2f&); // _0C
 	virtual void place(f32 x, f32 y, f32 width, f32 height)
 	{
 		JGeometry::TBox2f box(x, y, x + width, y + height);
 		place(box);
-	}                                             // _10
-	virtual void setPort();                       // _14
-	virtual void setup2D();                       // _18
-	virtual void setScissor();                    // _1C
-	virtual int getGrafType() const { return 0; } // _20
-	virtual void setLookat() { }                  // _24
+	}                                                                // _10 (weak)
+	virtual void setPort();                                          // _14
+	virtual void setup2D();                                          // _18
+	virtual void setScissor();                                       // _1C
+	virtual J2DGrafType getGrafType() const { return J2DGraf_Base; } // _20 (weak)
+	virtual void setLookat() { }                                     // _24 (weak)
 
 	void drawFrame(const JGeometry::TBox2f&);
 	void fillBox(const JGeometry::TBox2f&);
@@ -59,10 +64,10 @@ struct J2DGrafContext {
 struct J2DPerspGraph : public J2DGrafContext {
 	J2DPerspGraph();
 
-	virtual ~J2DPerspGraph() { }                  // _08
-	virtual void setPort();                       // _14
-	virtual int getGrafType() const { return 2; } // _20
-	virtual void setLookat();                     // _24
+	virtual ~J2DPerspGraph() { }                                      // _08 (weak)
+	virtual void setPort();                                           // _14
+	virtual J2DGrafType getGrafType() const { return J2DGraf_Persp; } // _20 (weak)
+	virtual void setLookat();                                         // _24
 
 	void makeLookat();
 	void set(float, float, float);
@@ -77,10 +82,10 @@ struct J2DPerspGraph : public J2DGrafContext {
 };
 
 struct J2DOrthoGraph : public J2DGrafContext {
-	virtual ~J2DOrthoGraph() {};                   // _08
-	virtual void setPort();                        // _14
-	virtual int getGrafType() const { return 1; }; // _20
-	virtual void setLookat();                      // _24
+	virtual ~J2DOrthoGraph() {};                                       // _08 (weak)
+	virtual void setPort();                                            // _14
+	virtual J2DGrafType getGrafType() const { return J2DGraf_Ortho; }; // _20 (weak)
+	virtual void setLookat();                                          // _24
 
 	// _00 VTBL
 	J2DOrthoGraph();

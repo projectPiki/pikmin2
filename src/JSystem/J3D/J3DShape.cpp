@@ -2,6 +2,8 @@
 #include "Dolphin/gd.h"
 #include "Dolphin/gx.h"
 #include "Dolphin/os.h"
+#include "JSystem/J3D/J3DGD.h"
+#include "JSystem/J3D/J3DPacket.h"
 #include "JSystem/J3D/J3DSys.h"
 #include "JSystem/J3D/J3DVertexData.h"
 #include "types.h"
@@ -362,20 +364,20 @@ lbl_80060D70:
  */
 void J3DShape::makeVcdVatCmd()
 {
-	// static int sInterruptFlag = OSDisableInterrupts();
-	// OSDisableScheduler();
-	// GDCurrentDL displayList;
-	// // TODO: Is 0xC0 a sizeof something?
-	// GDInitGDLObj(&displayList, _2C, 0xC0);
-	// __GDCurrentDL = &displayList;
-	// GDSetVtxDescv(_30);
-	// makeVtxArrayCmd();
-	// J3DGDSetVtxAttrFmtv(0, m_vtxData->_14, m_mode);
-	// GDPadCurr32();
-	// GDFlushCurrToMem();
-	// __GDCurrentDL = nullptr;
-	// OSEnableScheduler();
-	// OSRestoreInterrupts(sInterruptFlag);
+	static int sInterruptFlag = OSDisableInterrupts();
+	OSDisableScheduler();
+	GDCurrentDL displayList;
+	// TODO: Is 0xC0 a sizeof something?
+	GDInitGDLObj(&displayList, _2C, 0xC0);
+	__GDCurrentDL = &displayList;
+	GDSetVtxDescv(_30);
+	makeVtxArrayCmd();
+	J3DGDSetVtxAttrFmtv(GX_VTXFMT0, m_vtxData->_14, m_mode);
+	GDPadCurr32();
+	GDFlushCurrToMem();
+	__GDCurrentDL = nullptr;
+	OSEnableScheduler();
+	OSRestoreInterrupts(sInterruptFlag);
 	/*
 	stwu     r1, -0x20(r1)
 	mflr     r0
@@ -434,17 +436,17 @@ void J3DShape::loadPreDrawSetting() const
 		GXCallDisplayList(_2C, 0xC0);
 		sOldVcdVatCmd = _2C;
 	}
-	HW_REG(GXFIFO_ADDR, u8)  = 0x08;
-	HW_REG(GXFIFO_ADDR, u8)  = 0x30;
-	HW_REG(GXFIFO_ADDR, u32) = _40;
-	HW_REG(GXFIFO_ADDR, u8)  = 0x08;
-	HW_REG(GXFIFO_ADDR, u8)  = 0x40;
-	HW_REG(GXFIFO_ADDR, u32) = _44;
-	HW_REG(GXFIFO_ADDR, u8)  = 0x10;
-	HW_REG(GXFIFO_ADDR, u16) = 0x0001;
-	HW_REG(GXFIFO_ADDR, u16) = 0x1018;
-	HW_REG(GXFIFO_ADDR, u32) = _40;
-	HW_REG(GXFIFO_ADDR, u32) = _44;
+	GXWGFifo.u8  = 0x08;
+	GXWGFifo.u8  = 0x30;
+	GXWGFifo.u32 = _40;
+	GXWGFifo.u8  = 0x08;
+	GXWGFifo.u8  = 0x40;
+	GXWGFifo.u32 = _44;
+	GXWGFifo.u8  = 0x10;
+	GXWGFifo.u16 = 0x0001;
+	GXWGFifo.u16 = 0x1018;
+	GXWGFifo.u32 = _40;
+	GXWGFifo.u32 = _44;
 
 	/*
 	stwu     r1, -0x10(r1)
@@ -499,6 +501,65 @@ lbl_80060E74:
  */
 void J3DShape::drawFast() const
 {
+	// if (sOldVcdVatCmd != _2C) {
+	// 	GXCallDisplayList(_2C, 0xC0);
+	// 	sOldVcdVatCmd = _2C;
+	// }
+	// if (sEnvelopeFlag != 0 && _48 == 0) {
+	// 	GXWGFifo.u8  = 0x08;
+	// 	GXWGFifo.u8  = 0x30;
+	// 	GXWGFifo.u32 = _40;
+	// 	GXWGFifo.u8  = 0x08;
+	// 	GXWGFifo.u8  = 0x40;
+	// 	GXWGFifo.u32 = _44;
+	// 	GXWGFifo.u8  = 0x10;
+	// 	GXWGFifo.u16 = 0x0001;
+	// 	GXWGFifo.u16 = 0x1018;
+	// 	GXWGFifo.u32 = _40;
+	// 	GXWGFifo.u32 = _44;
+	// }
+	// J3DShapeMtx::sCurrentPipeline = m_flags >> 2 & 7;
+	// GXWGFifo.u8                   = 0x08;
+	// GXWGFifo.u8                   = 0xA0;
+	// GXWGFifo.u32                  = j3dSys._10C & 0x7FFFFFFF;
+	// if (m_mode == 0) {
+	// 	GXWGFifo.u8  = 0x08;
+	// 	GXWGFifo.u8  = 0xA1;
+	// 	GXWGFifo.u32 = j3dSys._110 & 0x7FFFFFFF;
+	// }
+	// GXWGFifo.u8  = 0x08;
+	// GXWGFifo.u8  = 0xA2;
+	// GXWGFifo.u32 = j3dSys._114 & 0x7FFFFFFF;
+	// j3dSys._104  = m_tree1[*_60];
+	// GXSetArray(0x15, j3dSys._104, 0x30);
+	// j3dSys._108 = m_tree2[*_60];
+	// GXSetArray(0x16, j3dSys._108, 0x30);
+	// J3DShapeMtx::sCurrentScaleFlag = m_flagList;
+	// J3DShapeMtx::sNBTFlag          = m_mode;
+	// sEnvelopeFlag                  = _48;
+	// J3DShapeMtx::sTexMtxLoadType   = m_flags & 0xF000;
+	// if ((m_flags & 0x200) == 0) {
+	// 	if (J3DShapeMtx::sLODFlag != 0) {
+	// 		J3DShapeMtx::resetMtxLoadCache();
+	// 	}
+	// 	for (u32 i = 0; i < _0A; i++) {
+	// 		if (_38[i] != nullptr) {
+	// 			_38[i]->load();
+	// 		}
+	// 		if (_3C[i] != nullptr) {
+	// 			_3C[i]->draw();
+	// 		}
+	// 	}
+	// } else {
+	// 	J3DFifoLoadPosMtxImm(j3dSys.m_shapePacket->_30, 0);
+	// 	J3DFifoLoadNrmMtxImm(j3dSys.m_shapePacket->_30, 0);
+	// 	for (u32 i = 0; i < _0A; i++) {
+	// 		if (_3C[i] != nullptr) {
+	// 			_3C[i]->draw();
+	// 		}
+	// 	}
+	// }
+
 	/*
 	stwu     r1, -0x20(r1)
 	mflr     r0
@@ -691,9 +752,28 @@ lbl_80061144:
  * --INFO--
  * Address:	80061158
  * Size:	0000B8
+ * draw__8J3DShapeCFv
  */
 void J3DShape::draw() const
 {
+	sOldVcdVatCmd = nullptr;
+	if (_2C != sOldVcdVatCmd) {
+		// TODO: Is 0xC0 a sizeof?
+		GXCallDisplayList(_2C, 0xC0);
+		sOldVcdVatCmd = _2C;
+	}
+	GXWGFifo.u8  = 0x08;
+	GXWGFifo.u8  = 0x30;
+	GXWGFifo.u32 = _40;
+	GXWGFifo.u8  = 0x08;
+	GXWGFifo.u8  = 0x40;
+	GXWGFifo.u32 = _44;
+	GXWGFifo.u8  = 0x10;
+	GXWGFifo.u16 = 0x0001;
+	GXWGFifo.u16 = 0x1018;
+	GXWGFifo.u32 = _40;
+	GXWGFifo.u32 = _44;
+	drawFast();
 	/*
 	stwu     r1, -0x10(r1)
 	mflr     r0
@@ -753,6 +833,39 @@ lbl_80061190:
  */
 void J3DShape::simpleDraw() const
 {
+	sOldVcdVatCmd = nullptr;
+	if (sOldVcdVatCmd != _2C) {
+		GXCallDisplayList(_2C, 0xC0);
+		sOldVcdVatCmd = _2C;
+	}
+	GXWGFifo.u8                   = 0x08;
+	GXWGFifo.u8                   = 0x30;
+	GXWGFifo.u32                  = _40;
+	GXWGFifo.u8                   = 0x08;
+	GXWGFifo.u8                   = 0x40;
+	GXWGFifo.u32                  = _44;
+	J3DShapeMtx::sCurrentPipeline = m_flags >> 2 & 7;
+	GXWGFifo.u8                   = 0x10;
+	GXWGFifo.u16                  = 0x0001;
+	GXWGFifo.u16                  = 0x1018;
+	GXWGFifo.u32                  = _40;
+	GXWGFifo.u32                  = _44;
+	GXWGFifo.u8                   = 0x08;
+	GXWGFifo.u8                   = 0xA0;
+	GXWGFifo.u32                  = j3dSys._10C & 0x7FFFFFFF;
+	if (m_mode == 0) {
+		GXWGFifo.u8  = 0x08;
+		GXWGFifo.u8  = 0xA1;
+		GXWGFifo.u32 = j3dSys._110 & 0x7FFFFFFF;
+	}
+	GXWGFifo.u8  = 0x08;
+	GXWGFifo.u8  = 0xA2;
+	GXWGFifo.u32 = j3dSys._114 & 0x7FFFFFFF;
+	for (u32 i = 0; i < _0A; i++) {
+		if (_3C[i] != nullptr) {
+			_3C[i]->draw();
+		}
+	}
 	/*
 	stwu     r1, -0x20(r1)
 	mflr     r0

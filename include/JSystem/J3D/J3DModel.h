@@ -30,13 +30,13 @@ struct J3DModelData {
 	 * @reifiedAddress{80083BB4}
 	 * @reifiedFile{JSystem/J3D/J3DModelLoader.cpp}
 	 */
-	virtual ~J3DModelData() {}; // _00
+	virtual ~J3DModelData() { } // _08 (weak)
 
 	void clear();
 	void newSharedDisplayList(u32);
 	void indexToPtr();
 	void makeSharedDL();
-	void simpleCalcMaterial(u16, Mtx);
+	void simpleCalcMaterial(u16, float (*)[4]);
 	void syncJ3DSysFlags() const;
 
 	inline u16 getShapeCount() { return m_shapeTable.m_count; }
@@ -86,7 +86,7 @@ struct J3DModel {
 	 * @reifiedAddress{800675CC}
 	 * @reifiedFile{JSystem/J3D/J3DModel.cpp}
 	 */
-	virtual ~J3DModel() {}; // _20
+	virtual ~J3DModel() { } // _20 (weak)
 
 	void initialize();
 	int entryModelData(J3DModelData*, u32, u32);

@@ -1,9 +1,14 @@
+#include "Dolphin/math.h"
 #include "JSystem/JAI/JAIBasic.h"
+#include "JSystem/JAI/JAIConst.h"
+#include "JSystem/JAI/JAIGlobalParameter.h"
 #include "JSystem/JAI/JAISe.h"
 #include "JSystem/JAI/JAISequence.h"
 #include "JSystem/JAI/JAISound.h"
 #include "JSystem/JAI/JAIStream.h"
+#include "JSystem/JAI/JAInter.h"
 #include "JSystem/JAI/JAInter/SeMgr.h"
+#include "JSystem/JAI/JAInter/StreamMgr.h"
 #include "JSystem/JSupport/JSUList.h"
 #include "types.h"
 
@@ -320,11 +325,18 @@
  * --INFO--
  * Address:	........
  * Size:	000078
+ * __ct__8JAISoundFv
  */
-// JAISound::JAISound()
-// {
-// 	// UNUSED FUNCTION
-// }
+JAISound::JAISound()
+    : JSULink<JAISound>(this)
+    , _15(0)
+    , _16(10)
+    , _38(nullptr)
+{
+	// UNUSED FUNCTION
+	JKRHeap* heap = JAIBasic::msCurrentHeap;
+	_34           = new (heap, 0x20) JAISound_0x34[JAIGlobalParameter::getParamAudioCameraMax()];
+}
 
 /*
  * --INFO--
@@ -340,70 +352,12 @@
  * --INFO--
  * Address:	800B3838
  * Size:	0000EC
+ * __ct__11JAISequenceFv
  */
 JAISequence::JAISequence()
+    : JAISound()
+    , m_seqParameter()
 {
-	/*
-	stwu     r1, -0x20(r1)
-	mflr     r0
-	stw      r0, 0x24(r1)
-	stw      r31, 0x1c(r1)
-	stw      r30, 0x18(r1)
-	stw      r29, 0x14(r1)
-	mr       r29, r3
-	mr       r4, r29
-	mr       r30, r4
-	bl       __ct__10JSUPtrLinkFPv
-	lis      r4, __vt__8JAISound@ha
-	li       r3, 0
-	addi     r4, r4, __vt__8JAISound@l
-	li       r0, 0xa
-	stw      r4, 0x10(r30)
-	stb      r3, 0x15(r30)
-	stb      r0, 0x16(r30)
-	stw      r3, 0x38(r30)
-	lwz      r31, msCurrentHeap__8JAIBasic@sda21(r13)
-	bl       getParamAudioCameraMax__18JAIGlobalParameterFv
-	mulli    r3, r3, 0x1c
-	mr       r4, r31
-	li       r5, 0x20
-	bl       __nwa__FUlP7JKRHeapi
-	stw      r3, 0x34(r30)
-	lis      r3, __vt__11JAISequence@ha
-	addi     r0, r3, __vt__11JAISequence@l
-	lfs      f0, lbl_80516FE0@sda21(r2)
-	stw      r0, 0x10(r29)
-	lis      r3, __defctor__Q27JAInter11MoveParaSetFv@ha
-	addi     r4, r3, __defctor__Q27JAInter11MoveParaSetFv@l
-	li       r0, 0
-	stfs     f0, 0x4c(r29)
-	addi     r3, r29, 0x58
-	li       r5, 0
-	li       r6, 0x10
-	stfs     f0, 0x48(r29)
-	li       r7, 0x10
-	stw      r0, 0x54(r29)
-	bl       __construct_array
-	lis      r4, __defctor__Q27JAInter11MoveParaSetFv@ha
-	addi     r3, r29, 0x158
-	addi     r4, r4, __defctor__Q27JAInter11MoveParaSetFv@l
-	li       r5, 0
-	li       r6, 0x10
-	li       r7, 0x14
-	bl       __construct_array
-	addi     r3, r29, 0x30c
-	bl       __ct__8JASTrackFv
-	addi     r3, r29, 0x674
-	bl       __ct__13JASOuterParamFv
-	lwz      r0, 0x24(r1)
-	mr       r3, r29
-	lwz      r31, 0x1c(r1)
-	lwz      r30, 0x18(r1)
-	lwz      r29, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x20
-	blr
-	*/
 }
 
 /*
@@ -430,152 +384,24 @@ JAISound::~JAISound()
  * --INFO--
  * Address:	800B3924
  * Size:	000154
+ * __ct__5JAISeFv
  */
 JAISe::JAISe()
+    : JAISound()
+    , m_seParam()
 {
-	/*
-	stwu     r1, -0x20(r1)
-	mflr     r0
-	stw      r0, 0x24(r1)
-	stw      r31, 0x1c(r1)
-	mr       r31, r3
-	mr       r4, r31
-	stw      r30, 0x18(r1)
-	stw      r29, 0x14(r1)
-	mr       r29, r4
-	bl       __ct__10JSUPtrLinkFPv
-	lis      r4, __vt__8JAISound@ha
-	li       r3, 0
-	addi     r4, r4, __vt__8JAISound@l
-	li       r0, 0xa
-	stw      r4, 0x10(r29)
-	stb      r3, 0x15(r29)
-	stb      r0, 0x16(r29)
-	stw      r3, 0x38(r29)
-	lwz      r30, msCurrentHeap__8JAIBasic@sda21(r13)
-	bl       getParamAudioCameraMax__18JAIGlobalParameterFv
-	mulli    r3, r3, 0x1c
-	mr       r4, r30
-	li       r5, 0x20
-	bl       __nwa__FUlP7JKRHeapi
-	stw      r3, 0x34(r29)
-	lis      r3, __vt__5JAISe@ha
-	addi     r0, r3, __vt__5JAISe@l
-	li       r5, 0
-	lis      r3, __defctor__Q27JAInter11MoveParaSetFv@ha
-	stw      r0, 0x10(r31)
-	addi     r4, r3, __defctor__Q27JAInter11MoveParaSetFv@l
-	li       r6, 0x10
-	addi     r3, r31, 0x6c
-	li       r7, 0x10
-	bl       __construct_array
-	lis      r4, __defctor__Q27JAInter11MoveParaSetFv@ha
-	addi     r3, r31, 0x16c
-	addi     r4, r4, __defctor__Q27JAInter11MoveParaSetFv@l
-	li       r5, 0
-	li       r6, 0x10
-	li       r7, 8
-	bl       __construct_array
-	lis      r4, __ct__Q27JAInter19MoveParaSetInitHalfFv@ha
-	addi     r3, r31, 0x1ec
-	addi     r4, r4, __ct__Q27JAInter19MoveParaSetInitHalfFv@l
-	li       r5, 0
-	li       r6, 0x10
-	li       r7, 8
-	bl       __construct_array
-	lis      r4, __defctor__Q27JAInter11MoveParaSetFv@ha
-	addi     r3, r31, 0x26c
-	addi     r4, r4, __defctor__Q27JAInter11MoveParaSetFv@l
-	li       r5, 0
-	li       r6, 0x10
-	li       r7, 8
-	bl       __construct_array
-	lis      r4, __ct__Q27JAInter19MoveParaSetInitZeroFv@ha
-	addi     r3, r31, 0x2ec
-	addi     r4, r4, __ct__Q27JAInter19MoveParaSetInitZeroFv@l
-	li       r5, 0
-	li       r6, 0x10
-	li       r7, 8
-	bl       __construct_array
-	lis      r4, __ct__Q27JAInter19MoveParaSetInitZeroFv@ha
-	addi     r3, r31, 0x36c
-	addi     r4, r4, __ct__Q27JAInter19MoveParaSetInitZeroFv@l
-	li       r5, 0
-	li       r6, 0x10
-	li       r7, 8
-	bl       __construct_array
-	lis      r4, __defctor__Q27JAInter11MoveParaSetFv@ha
-	addi     r3, r31, 0x3ec
-	addi     r4, r4, __defctor__Q27JAInter11MoveParaSetFv@l
-	li       r5, 0
-	li       r6, 0x10
-	li       r7, 8
-	bl       __construct_array
-	lwz      r0, 0x24(r1)
-	mr       r3, r31
-	lwz      r31, 0x1c(r1)
-	lwz      r30, 0x18(r1)
-	lwz      r29, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x20
-	blr
-	*/
 }
 
 /*
  * --INFO--
  * Address:	800B3A78
  * Size:	0000AC
+ * __ct__9JAIStreamFv
  */
 JAIStream::JAIStream()
     : JAISound()
     , _64()
 {
-	/*
-	stwu     r1, -0x20(r1)
-	mflr     r0
-	stw      r0, 0x24(r1)
-	stw      r31, 0x1c(r1)
-	stw      r30, 0x18(r1)
-	stw      r29, 0x14(r1)
-	mr       r29, r3
-	mr       r4, r29
-	mr       r30, r4
-	bl       __ct__10JSUPtrLinkFPv
-	lis      r4, __vt__8JAISound@ha
-	li       r3, 0
-	addi     r4, r4, __vt__8JAISound@l
-	li       r0, 0xa
-	stw      r4, 0x10(r30)
-	stb      r3, 0x15(r30)
-	stb      r0, 0x16(r30)
-	stw      r3, 0x38(r30)
-	lwz      r31, msCurrentHeap__8JAIBasic@sda21(r13)
-	bl       getParamAudioCameraMax__18JAIGlobalParameterFv
-	mulli    r3, r3, 0x1c
-	mr       r4, r31
-	li       r5, 0x20
-	bl       __nwa__FUlP7JKRHeapi
-	stw      r3, 0x34(r30)
-	lis      r3, __vt__9JAIStream@ha
-	addi     r0, r3, __vt__9JAIStream@l
-	li       r5, 0
-	lis      r3, __defctor__Q27JAInter11MoveParaSetFv@ha
-	stw      r0, 0x10(r29)
-	addi     r4, r3, __defctor__Q27JAInter11MoveParaSetFv@l
-	li       r6, 0x10
-	addi     r3, r29, 0x64
-	li       r7, 0x14
-	bl       __construct_array
-	lwz      r0, 0x24(r1)
-	mr       r3, r29
-	lwz      r31, 0x1c(r1)
-	lwz      r30, 0x18(r1)
-	lwz      r29, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x20
-	blr
-	*/
 }
 
 /*
@@ -623,14 +449,10 @@ u32 JAISound::getInfoPriority() { return m_soundInfo->count.v2[0]; }
  */
 void JAISound::clearMainSoundPPointer()
 {
-	/*
-	lwz      r3, 0x40(r3)
-	cmplwi   r3, 0
-	beqlr
-	li       r0, 0
-	stw      r0, 0(r3)
-	blr
-	*/
+	if (_40 == nullptr) {
+		return;
+	}
+	*_40 = nullptr;
 }
 
 /*
@@ -640,13 +462,8 @@ void JAISound::clearMainSoundPPointer()
  */
 void JAISound::release()
 {
-	/*
-	lwz      r4, 0x40(r3)
-	li       r0, 0
-	stw      r0, 0(r4)
-	stw      r0, 0x40(r3)
-	blr
-	*/
+	*_40 = nullptr;
+	_40  = nullptr;
 }
 
 /*
@@ -674,97 +491,33 @@ void JAISound::stop(unsigned long p1) { JAIBasic::msBasic->stopSoundHandle(this,
  */
 void JAISound::setPrepareFlag(unsigned char prepareFlag)
 {
-	switch (m_soundID & 0xC0000000) {
-	case 0x80000000:
+	switch (m_soundID & JAISoundID_TypeMask) {
+	case JAISoundID_Type_Sequence:
 		setPrepareFlag(prepareFlag);
 		break;
-	case 0x40000000:
+	case JAISoundID_Type_Se:
 		break;
-	case 0xC0000000:
+	case JAISoundID_Type_Stream:
 		setPrepareFlag(prepareFlag);
 		break;
 	}
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	lis      r0, 0xc000
-	lwz      r5, 0x20(r3)
-	rlwinm   r6, r5, 0, 0, 1
-	cmpw     r6, r0
-	beq      lbl_800B3C70
-	bge      lbl_800B3C50
-	lis      r5, 0x80000001@ha
-	addi     r0, r5, 0x80000001@l
-	cmpw     r6, r0
-	bge      lbl_800B3C80
-	b        lbl_800B3C5C
-
-lbl_800B3C50:
-	cmpwi    r6, 0
-	beq      lbl_800B3C80
-	b        lbl_800B3C80
-
-lbl_800B3C5C:
-	lwz      r12, 0x10(r3)
-	lwz      r12, 0xa8(r12)
-	mtctr    r12
-	bctrl
-	b        lbl_800B3C80
-
-lbl_800B3C70:
-	lwz      r12, 0x10(r3)
-	lwz      r12, 0xa8(r12)
-	mtctr    r12
-	bctrl
-
-lbl_800B3C80:
-	lwz      r0, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
 }
 
 /*
  * --INFO--
  * Address:	800B3C90
  * Size:	000020
+ * setPrepareFlag__9JAIStreamFUc
  */
-void JAIStream::setPrepareFlag(unsigned char p1)
-{
-	setStreamPrepareFlag(p1);
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	bl       setStreamPrepareFlag__9JAIStreamFUc
-	lwz      r0, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
-}
+void JAIStream::setPrepareFlag(unsigned char p1) { setStreamPrepareFlag(p1); }
 
 /*
  * --INFO--
  * Address:	800B3CB0
  * Size:	000020
+ * setPrepareFlag__11JAISequenceFUc
  */
-void JAISequence::setPrepareFlag(unsigned char p1)
-{
-	setSeqPrepareFlag(p1);
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	bl       setSeqPrepareFlag__11JAISequenceFUc
-	lwz      r0, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
-}
+void JAISequence::setPrepareFlag(unsigned char p1) { setSeqPrepareFlag(p1); }
 
 /*
  * --INFO--
@@ -773,206 +526,72 @@ void JAISequence::setPrepareFlag(unsigned char p1)
  */
 void JAISound::checkReady()
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	lis      r0, 0xc000
-	lwz      r4, 0x20(r3)
-	rlwinm   r5, r4, 0, 0, 1
-	cmpw     r5, r0
-	beq      lbl_800B3D28
-	bge      lbl_800B3D08
-	lis      r4, 0x80000001@ha
-	addi     r0, r4, 0x80000001@l
-	cmpw     r5, r0
-	bge      lbl_800B3D38
-	b        lbl_800B3D14
-
-lbl_800B3D08:
-	cmpwi    r5, 0
-	beq      lbl_800B3D38
-	b        lbl_800B3D38
-
-lbl_800B3D14:
-	lwz      r12, 0x10(r3)
-	lwz      r12, 0xac(r12)
-	mtctr    r12
-	bctrl
-	b        lbl_800B3D38
-
-lbl_800B3D28:
-	lwz      r12, 0x10(r3)
-	lwz      r12, 0xac(r12)
-	mtctr    r12
-	bctrl
-
-lbl_800B3D38:
-	lwz      r0, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	switch (m_soundID & JAISoundID_TypeMask) {
+	case JAISoundID_Type_Sequence:
+		checkReady();
+		break;
+	case JAISoundID_Type_Se:
+		break;
+	case JAISoundID_Type_Stream:
+		checkReady();
+		break;
+	}
 }
 
 /*
  * --INFO--
  * Address:	800B3D48
  * Size:	000020
+ * checkReady__9JAIStreamFv
  */
-void JAIStream::checkReady()
-{
-	checkStreamReady();
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	bl       checkStreamReady__9JAIStreamFv
-	lwz      r0, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
-}
+void JAIStream::checkReady() { checkStreamReady(); }
 
 /*
  * --INFO--
  * Address:	800B3D68
  * Size:	000020
+ * checkReady__11JAISequenceFv
  */
-void JAISequence::checkReady()
-{
-	checkSeqReady();
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	bl       checkSeqReady__11JAISequenceFv
-	lwz      r0, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
-}
+void JAISequence::checkReady() { checkSeqReady(); }
 
 /*
  * --INFO--
  * Address:	800B3D88
  * Size:	000154
  */
-void JAISound::setDistanceVolumeCommon(float, unsigned char)
+float JAISound::setDistanceVolumeCommon(float p1, unsigned char p2)
 {
-	/*
-	stwu     r1, -0x10(r1)
-	lbz      r0, 0x18(r3)
-	cmplwi   r0, 4
-	beq      lbl_800B3DAC
-	mulli    r0, r0, 0x1c
-	lwz      r3, 0x34(r3)
-	add      r3, r3, r0
-	lfs      f2, 0x18(r3)
-	b        lbl_800B3DEC
-
-lbl_800B3DAC:
-	lwz      r6, 0x34(r3)
-	li       r7, 1
-	lwz      r5, audioCameraMax__18JAIGlobalParameter@sda21(r13)
-	lfs      f2, 0x18(r6)
-	b        lbl_800B3DE0
-
-lbl_800B3DC0:
-	clrlwi   r0, r7, 0x18
-	mulli    r3, r0, 0x1c
-	addi     r0, r3, 0x18
-	lfsx     f0, r6, r0
-	fcmpo    cr0, f0, f2
-	bge      lbl_800B3DDC
-	fmr      f2, f0
-
-lbl_800B3DDC:
-	addi     r7, r7, 1
-
-lbl_800B3DE0:
-	clrlwi   r0, r7, 0x18
-	cmplw    r0, r5
-	blt      lbl_800B3DC0
-
-lbl_800B3DEC:
-	lfs      f0, maxVolumeDistance__18JAIGlobalParameter@sda21(r13)
-	fcmpo    cr0, f2, f0
-	bge      lbl_800B3E00
-	lfs      f1, lbl_80516FE0@sda21(r2)
-	b        lbl_800B3ED4
-
-lbl_800B3E00:
-	clrlwi   r0, r4, 0x18
-	fsubs    f2, f2, f0
-	cmplwi   r0, 3
-	fsubs    f3, f1, f0
-	ble      lbl_800B3E48
-	clrlwi   r3, r4, 0x1e
-	lis      r0, 0x4330
-	addi     r3, r3, 1
-	li       r5, 1
-	slw      r3, r5, r3
-	stw      r0, 8(r1)
-	xoris    r0, r3, 0x8000
-	lfd      f1, lbl_80516FF0@sda21(r2)
-	stw      r0, 0xc(r1)
-	lfd      f0, 8(r1)
-	fsubs    f0, f0, f1
-	fdivs    f3, f3, f0
-	b        lbl_800B3E7C
-
-lbl_800B3E48:
-	cmplwi   r0, 0
-	beq      lbl_800B3E7C
-	clrlwi   r0, r4, 0x1e
-	li       r3, 1
-	slw      r3, r3, r0
-	lis      r0, 0x4330
-	xoris    r3, r3, 0x8000
-	stw      r0, 8(r1)
-	lfd      f1, lbl_80516FF0@sda21(r2)
-	stw      r3, 0xc(r1)
-	lfd      f0, 8(r1)
-	fsubs    f0, f0, f1
-	fmuls    f3, f3, f0
-
-lbl_800B3E7C:
-	fcmpo    cr0, f2, f3
-	bge      lbl_800B3EBC
-	clrlwi   r0, r4, 0x18
-	cmplwi   r0, 3
-	ble      lbl_800B3EA0
-	fdivs    f0, f2, f3
-	lfs      f1, lbl_80516FE0@sda21(r2)
-	fsubs    f1, f1, f0
-	b        lbl_800B3ED4
-
-lbl_800B3EA0:
-	fdivs    f0, f2, f3
-	lfs      f2, lbl_80516FE0@sda21(r2)
-	lfs      f3, minDistanceVolume__18JAIGlobalParameter@sda21(r13)
-	fsubs    f1, f2, f3
-	fsubs    f0, f2, f0
-	fmadds   f1, f1, f0, f3
-	b        lbl_800B3ED4
-
-lbl_800B3EBC:
-	clrlwi   r0, r4, 0x18
-	cmplwi   r0, 3
-	ble      lbl_800B3ED0
-	lfs      f1, lbl_80516FE4@sda21(r2)
-	b        lbl_800B3ED4
-
-lbl_800B3ED0:
-	lfs      f1, minDistanceVolume__18JAIGlobalParameter@sda21(r13)
-
-lbl_800B3ED4:
-	addi     r1, r1, 0x10
-	blr
-	*/
+	float v1;
+	if (_18 != 4) {
+		v1 = _34[_18]._18;
+	} else {
+		v1 = _34[0]._18;
+		for (u8 i = 1; i < JAIGlobalParameter::audioCameraMax; i++) {
+			if (_34[i]._18 < v1) {
+				v1 = _34[i]._18;
+			}
+		}
+	}
+	if (v1 < JAIGlobalParameter::maxVolumeDistance) {
+		return 1.0f;
+	}
+	v1 -= JAIGlobalParameter::maxVolumeDistance;
+	p1 -= JAIGlobalParameter::maxVolumeDistance;
+	if (p2 > 3) {
+		p1 /= 1 << (p2 & 3) + 1;
+	} else if (p2 != 0) {
+		p1 *= 1 << (p2 & 3);
+	}
+	if (v1 < p1) {
+		if (p2 > 3) {
+			return 1.0f - v1 / p1;
+		}
+		return (1.0f - JAIGlobalParameter::minDistanceVolume) * (1.0f - v1 / p1) + JAIGlobalParameter::minDistanceVolume;
+	}
+	if (p2 > 3) {
+		return 0.0f;
+	}
+	return JAIGlobalParameter::minDistanceVolume;
 }
 
 /*
@@ -980,8 +599,39 @@ lbl_800B3ED4:
  * Address:	800B3EDC
  * Size:	00015C
  */
-void JAISound::setDistancePanCommon()
+float JAISound::setDistancePanCommon()
 {
+	if (JAIGlobalParameter::audioCameraMax == 1) {
+		JAISound_0x34* v0 = _34;
+		float v1          = FABS(v0->_00);
+		float v2          = FABS(v0->_08);
+		if (v1 < 1.0f && v2 < 1.0f) {
+			return 0.5f;
+		}
+		if (JAIGlobalParameter::panDistanceMax < v1) {
+			v1 = JAIGlobalParameter::panDistanceMax;
+		}
+		if (JAIGlobalParameter::panDistanceMax < v2) {
+			v2 = JAIGlobalParameter::panDistanceMax;
+		}
+		if (v0->_00 == 0.0f && v0->_08 == 0.0f) {
+			return 0.5f;
+		}
+		if (v0->_00 > 0.0f && v1 >= v2) {
+			return 1.0f
+			     - (JAIGlobalParameter::panDistance2Max - v1)
+			           / (JAIGlobalParameter::panAngleParameter * (JAIGlobalParameter::panDistance2Max - v2));
+		}
+		if (v0->_00 <= 0.0f && v1 >= v2) {
+			return (JAIGlobalParameter::panDistance2Max - v1)
+			     / (JAIGlobalParameter::panAngleParameter * (JAIGlobalParameter::panDistance2Max - v2));
+		}
+		return v0->_00 / (JAIGlobalParameter::panAngleParameter2 * v2) + 0.5f;
+	}
+	if (_18 != 4) {
+		return _18 & 1;
+	}
+	return 0.5f;
 	/*
 	stwu     r1, -0x10(r1)
 	lwz      r0, audioCameraMax__18JAIGlobalParameter@sda21(r13)
@@ -1098,7 +748,7 @@ lbl_800B4030:
  * Address:	800B4038
  * Size:	000270
  */
-void JAISound::setPositionDopplarCommon(unsigned long)
+float JAISound::setPositionDopplarCommon(unsigned long)
 {
 	/*
 	stwu     r1, -0x20(r1)
@@ -1307,47 +957,21 @@ lbl_800B42A0:
  * Address:	800B42A8
  * Size:	000074
  */
-void JAISound::setDistanceDolbyCommon()
+float JAISound::setDistanceDolbyCommon()
 {
-	/*
-	lwz      r0, 0x3c(r3)
-	lwz      r3, 0x34(r3)
-	cmplwi   r0, 0
-	beq      lbl_800B42C8
-	lfs      f1, 8(r3)
-	lfs      f2, seDolbyFrontDistanceMax__18JAIGlobalParameter@sda21(r13)
-	fcmpo    cr0, f1, f2
-	bge      lbl_800B42D0
-
-lbl_800B42C8:
-	lfs      f1, lbl_80516FE4@sda21(r2)
-	blr
-
-lbl_800B42D0:
-	lfs      f0, lbl_80516FE4@sda21(r2)
-	fcmpo    cr0, f1, f0
-	bge      lbl_800B42F0
-	fsubs    f0, f2, f1
-	lfs      f1, seDolbyCenterValue__18JAIGlobalParameter@sda21(r13)
-	fmuls    f0, f1, f0
-	fdivs    f1, f0, f2
-	blr
-
-lbl_800B42F0:
-	lfs      f0, seDolbyBehindDistanceMax__18JAIGlobalParameter@sda21(r13)
-	fcmpo    cr0, f1, f0
-	bge      lbl_800B4314
-	fdivs    f0, f1, f0
-	lfs      f2, seDolbyCenterValue__18JAIGlobalParameter@sda21(r13)
-	lfs      f1, lbl_80517020@sda21(r2)
-	fsubs    f1, f1, f2
-	fmadds   f1, f1, f0, f2
-	blr
-
-lbl_800B4314:
-	lfs      f1, lbl_80517020@sda21(r2)
-	blr
-	*/
+	JAISound_0x34* obj = _34;
+	if (_3C == 0 || obj->_08 < JAIGlobalParameter::seDolbyFrontDistanceMax) {
+		return 0.0f;
+	}
+	if (obj->_08 < 0.0f) {
+		return (JAIGlobalParameter::seDolbyCenterValue * (JAIGlobalParameter::seDolbyFrontDistanceMax - obj->_08))
+		     / JAIGlobalParameter::seDolbyFrontDistanceMax;
+	}
+	if (obj->_08 < JAIGlobalParameter::seDolbyBehindDistanceMax) {
+		return (127.0f - JAIGlobalParameter::seDolbyCenterValue) * (obj->_08 / JAIGlobalParameter::seDolbyBehindDistanceMax)
+		     + JAIGlobalParameter::seDolbyCenterValue;
+	}
+	return 127.0f;
 }
 
 /*
@@ -1364,46 +988,6 @@ void JAISequence::setSeqInterVolume(unsigned char p1, float p2, unsigned long p3
 	if (m_seqParameter._2C0 != nullptr && result != 2) {
 		m_seqParameter._2C0->_08 |= 0x40000;
 	}
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	mr       r31, r4
-	rlwinm   r4, r4, 4, 0x14, 0x1b
-	stw      r30, 8(r1)
-	mr       r30, r3
-	addi     r3, r4, 0x158
-	mr       r4, r5
-	add      r3, r30, r3
-	bl       set__Q27JAInter11MoveParaSetFfUl
-	cmpwi    r3, 1
-	bne      lbl_800B436C
-	clrlwi   r0, r31, 0x18
-	li       r4, 1
-	lwz      r5, 0x2cc(r30)
-	slw      r0, r4, r0
-	or       r0, r5, r0
-	stw      r0, 0x2cc(r30)
-
-lbl_800B436C:
-	lwz      r4, 0x308(r30)
-	cmplwi   r4, 0
-	beq      lbl_800B438C
-	cmpwi    r3, 2
-	beq      lbl_800B438C
-	lwz      r0, 8(r4)
-	oris     r0, r0, 4
-	stw      r0, 8(r4)
-
-lbl_800B438C:
-	lwz      r0, 0x14(r1)
-	lwz      r31, 0xc(r1)
-	lwz      r30, 8(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
 }
 
 /*
@@ -1420,46 +1004,6 @@ void JAISequence::setSeqInterPan(unsigned char p1, float p2, unsigned long p3)
 	if (m_seqParameter._2C0 != nullptr && result != 2) {
 		m_seqParameter._2C0->_08 |= 0x80000;
 	}
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	rlwinm   r0, r4, 4, 0x14, 0x1b
-	stw      r31, 0xc(r1)
-	mr       r31, r4
-	mr       r4, r5
-	stw      r30, 8(r1)
-	mr       r30, r3
-	lwz      r3, 0x298(r3)
-	add      r3, r3, r0
-	bl       set__Q27JAInter11MoveParaSetFfUl
-	cmpwi    r3, 1
-	bne      lbl_800B43F4
-	clrlwi   r0, r31, 0x18
-	li       r4, 1
-	lwz      r5, 0x2d0(r30)
-	slw      r0, r4, r0
-	or       r0, r5, r0
-	stw      r0, 0x2d0(r30)
-
-lbl_800B43F4:
-	lwz      r4, 0x308(r30)
-	cmplwi   r4, 0
-	beq      lbl_800B4414
-	cmpwi    r3, 2
-	beq      lbl_800B4414
-	lwz      r0, 8(r4)
-	oris     r0, r0, 8
-	stw      r0, 8(r4)
-
-lbl_800B4414:
-	lwz      r0, 0x14(r1)
-	lwz      r31, 0xc(r1)
-	lwz      r30, 8(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
 }
 
 /*
@@ -1476,46 +1020,6 @@ void JAISequence::setSeqInterPitch(unsigned char p1, float p2, unsigned long p3)
 	if (m_seqParameter._2C0 != nullptr && result != 2) {
 		m_seqParameter._2C0->_08 |= 0x100000;
 	}
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	rlwinm   r0, r4, 4, 0x14, 0x1b
-	stw      r31, 0xc(r1)
-	mr       r31, r4
-	mr       r4, r5
-	stw      r30, 8(r1)
-	mr       r30, r3
-	lwz      r3, 0x29c(r3)
-	add      r3, r3, r0
-	bl       set__Q27JAInter11MoveParaSetFfUl
-	cmpwi    r3, 1
-	bne      lbl_800B447C
-	clrlwi   r0, r31, 0x18
-	li       r4, 1
-	lwz      r5, 0x2d4(r30)
-	slw      r0, r4, r0
-	or       r0, r5, r0
-	stw      r0, 0x2d4(r30)
-
-lbl_800B447C:
-	lwz      r4, 0x308(r30)
-	cmplwi   r4, 0
-	beq      lbl_800B449C
-	cmpwi    r3, 2
-	beq      lbl_800B449C
-	lwz      r0, 8(r4)
-	oris     r0, r0, 0x10
-	stw      r0, 8(r4)
-
-lbl_800B449C:
-	lwz      r0, 0x14(r1)
-	lwz      r31, 0xc(r1)
-	lwz      r30, 8(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
 }
 
 /*
@@ -1620,18 +1124,6 @@ void JAISequence::setTrackInterruptSwitch(unsigned char p1, unsigned char p2)
 		return;
 	}
 	m_seqParameter._2C0->_08 |= 0x800000;
-	/*
-	lwz      r6, 0x300(r3)
-	clrlwi   r0, r4, 0x18
-	stbx     r5, r6, r0
-	lwz      r3, 0x308(r3)
-	cmplwi   r3, 0
-	beqlr
-	lwz      r0, 8(r3)
-	oris     r0, r0, 0x80
-	stw      r0, 8(r3)
-	blr
-	*/
 }
 
 /*
@@ -1679,60 +1171,18 @@ void JAISequence::setTrackPitchMulti(unsigned char, unsigned long, float, unsign
  * Address:	800B44DC
  * Size:	0000B0
  */
-void JAISequence::setTrackFxmix(unsigned char, float, unsigned long)
+void JAISequence::setTrackFxmix(unsigned char p1, float p2, unsigned long p3)
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	mr       r31, r4
-	stw      r30, 8(r1)
-	mr       r30, r3
-	lbz      r0, 0x15(r3)
-	cmplwi   r0, 4
-	blt      lbl_800B4520
-	lwz      r4, 0x308(r30)
-	clrlwi   r0, r31, 0x18
-	li       r3, 1
-	lwz      r4, 4(r4)
-	slw      r0, r3, r0
-	and.     r0, r4, r0
-	beq      lbl_800B4574
-
-lbl_800B4520:
-	lwz      r3, 0x2b4(r30)
-	rlwinm   r0, r31, 4, 0x14, 0x1b
-	mr       r4, r5
-	add      r3, r3, r0
-	bl       set__Q27JAInter11MoveParaSetFfUl
-	cmpwi    r3, 1
-	bne      lbl_800B4554
-	clrlwi   r0, r31, 0x18
-	li       r4, 1
-	lwz      r5, 0x2ec(r30)
-	slw      r0, r4, r0
-	or       r0, r5, r0
-	stw      r0, 0x2ec(r30)
-
-lbl_800B4554:
-	lwz      r4, 0x308(r30)
-	cmplwi   r4, 0
-	beq      lbl_800B4574
-	cmpwi    r3, 2
-	beq      lbl_800B4574
-	lwz      r0, 8(r4)
-	ori      r0, r0, 0x800
-	stw      r0, 8(r4)
-
-lbl_800B4574:
-	lwz      r0, 0x14(r1)
-	lwz      r31, 0xc(r1)
-	lwz      r30, 8(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	if (_15 >= 4 && (m_seqParameter._2C0->_04 & 1 << p1) == 0) {
+		return;
+	}
+	int result = m_seqParameter._26C[p1].set(p2, p3);
+	if (result == 1) {
+		m_seqParameter._2A4 |= 1 << p1;
+	}
+	if (m_seqParameter._2C0 != nullptr && result != 2) {
+		m_seqParameter._2C0->_08 |= 0x800;
+	}
 }
 
 /*
@@ -1770,68 +1220,19 @@ void JAISequence::setTrackDolbyMulti(unsigned char, unsigned long, float, unsign
  * Address:	800B458C
  * Size:	0000D0
  */
-void JAISequence::setTrackPortData(unsigned char, unsigned char, unsigned short)
+void JAISequence::setTrackPortData(unsigned char p1, unsigned char p2, unsigned short p3)
 {
-	/*
-	stwu     r1, -0x20(r1)
-	mflr     r0
-	stw      r0, 0x24(r1)
-	stw      r31, 0x1c(r1)
-	mr       r31, r6
-	stw      r30, 0x18(r1)
-	mr       r30, r5
-	stw      r29, 0x14(r1)
-	mr       r29, r4
-	stw      r28, 0x10(r1)
-	mr       r28, r3
-	lwz      r7, 0x308(r3)
-	cmplwi   r7, 0
-	beq      lbl_800B463C
-	lbz      r0, 0x15(r28)
-	cmplwi   r0, 4
-	blt      lbl_800B45E8
-	bl       getTrackPortRoute__8JAISoundFUcUc
-	mr       r4, r3
-	mr       r5, r31
-	addi     r3, r28, 0x30c
-	bl       writePortApp__8JASTrackFUlUs
-	b        lbl_800B4628
-
-lbl_800B45E8:
-	lwz      r4, 8(r7)
-	clrlwi   r3, r29, 0x18
-	li       r5, 1
-	clrlwi   r0, r30, 0x18
-	ori      r6, r4, 0x1000
-	rlwinm   r4, r29, 2, 0x16, 0x1d
-	stw      r6, 8(r7)
-	slw      r3, r5, r3
-	slw      r0, r5, r0
-	lwz      r5, 0x2f8(r28)
-	or       r3, r5, r3
-	stw      r3, 0x2f8(r28)
-	lwz      r5, 0x2fc(r28)
-	lwzx     r3, r5, r4
-	or       r0, r3, r0
-	stwx     r0, r5, r4
-
-lbl_800B4628:
-	lwz      r4, 0x2bc(r28)
-	rlwinm   r3, r29, 2, 0x16, 0x1d
-	rlwinm   r0, r30, 1, 0x17, 0x1e
-	lwzx     r3, r4, r3
-	sthx     r31, r3, r0
-
-lbl_800B463C:
-	lwz      r0, 0x24(r1)
-	lwz      r31, 0x1c(r1)
-	lwz      r30, 0x18(r1)
-	lwz      r29, 0x14(r1)
-	lwz      r28, 0x10(r1)
-	mtlr     r0
-	addi     r1, r1, 0x20
-	blr
-	*/
+	if (m_seqParameter._2C0 == nullptr) {
+		return;
+	}
+	if (_15 >= 4) {
+		m_seqParameter.m_track.writePortApp(getTrackPortRoute(p1, p2), p3);
+	} else {
+		m_seqParameter._2C0->_08 |= 0x1000;
+		m_seqParameter._2B0 |= 1 << p1;
+		m_seqParameter._2B4[p1] |= 1 << p2;
+	}
+	m_seqParameter._274[p1][p2] = p3;
 }
 
 /*
@@ -1849,8 +1250,28 @@ void JAISe::setSeInterRandomPara(float*, unsigned long, float, float)
  * Address:	800B465C
  * Size:	000158
  */
-void JAISe::setSeInterVolume(unsigned char, float, unsigned long, unsigned char)
+void JAISe::setSeInterVolume(unsigned char p1, float p2, unsigned long p3, unsigned char p4)
 {
+	// float v5 = p2;
+	// if (p4 != 0) {
+	// 	// TODO: I think this is a mapping function of TRandom_fast_. v3 and v1 are probably a max and min, in some order?
+	// 	// 	uint v3  = (p4 * 1000) / 0x7F;
+	// 	// 	v3       = (p4 * 1000 - (v3 >> 1)) + (v3 >> 6);
+	// 	// 	u32 v2   = JAInter::Const::random.nextFloat_0_1();
+	// 	// 	u32 v1   = v3 * 2;
+	// 	// 	v5       = 1.0f;
+	// 	// 	float v7 = (float)((v2 - (v2 / v1) * v1) + 1) - ((float)(v3) / 1000.0f);
+	// 	// 	if (p2 + v7 <= v5) {
+	// 	// 		v5 = 0.0f;
+	// 	// 		if (v5 - v7 <= p2) {
+	// 	// 			v5 = p2 + v7;
+	// 	// 		}
+	// 	// 	}
+	// 	v5 = JAInter::Const::random.nextFloat(p2, p4);
+	// }
+	// m_seParam._124[p1].set(v5, p3);
+	m_seParam._124[p1].set(p4 != 0 ? JAInter::Const::random.nextFloat(p2, p4) : p2, p3);
+
 	/*
 	stwu     r1, -0x40(r1)
 	mflr     r0
@@ -2239,42 +1660,11 @@ void JAISe::setFxmix(float p1, unsigned long p2, unsigned char p3) { m_seParam._
  * Address:	800B4BC0
  * Size:	000070
  */
-void JAISe::setSeDistanceVolume(unsigned char)
+void JAISe::setSeDistanceVolume(unsigned char p1)
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	mr       r31, r4
-	stw      r30, 8(r1)
-	mr       r30, r3
-	lwz      r4, 0x44(r3)
-	lwz      r4, 0(r4)
-	rlwinm.  r0, r4, 0, 0x1e, 0x1e
-	bne      lbl_800B4C08
-	lwz      r12, 0x10(r3)
-	rlwinm   r4, r4, 0x10, 0x1d, 0x1f
-	lfs      f1, distanceMax__18JAIGlobalParameter@sda21(r13)
-	lwz      r12, 0xbc(r12)
-	mtctr    r12
-	bctrl
-	b        lbl_800B4C0C
-
-lbl_800B4C08:
-	lfs      f1, lbl_80516FE0@sda21(r2)
-
-lbl_800B4C0C:
-	addi     r3, r30, 0x1ac
-	clrlwi   r4, r31, 0x18
-	bl       set__Q27JAInter11MoveParaSetFfUl
-	lwz      r0, 0x14(r1)
-	lwz      r31, 0xc(r1)
-	lwz      r30, 8(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	m_seParam._124[4].set(
+	    (m_soundInfo->unk1 & 2) == 0 ? setDistanceVolumeCommon(JAIGlobalParameter::distanceMax, (m_soundInfo->unk1 >> 0x10) & 7) : 1.0f,
+	    p1);
 }
 
 /*
@@ -2326,8 +1716,30 @@ lbl_800B4C80:
  * Address:	800B4CA4
  * Size:	000138
  */
-void JAISe::setSeDistancePitch(unsigned char)
+void JAISe::setSeDistancePitch(unsigned char p1)
 {
+	f32 pitch = 1.0f;
+	if ((m_soundInfo->unk1 & 0x10) != 0) {
+		// pitch = 1.0f - ((JAInter::Const::random.nextFloat_0_1() * 16.0f) / 192.0f;
+		// pitch = 1.0f - ((JAInter::Const::random.idkanymore() & 0xF) ^ 0x80000000) / 192.0f;
+		// pitch = 1.0f - JAInter::Const::random.idkanymore() / 192.0f;
+		pitch = JAInter::Const::random.idkanymore();
+	}
+	if ((m_soundInfo->unk1 & 0x4000) != 0) {
+		if ((m_soundInfo->unk1 & 2) == 0 && (m_soundInfo->unk1 & 0x300) == 0) {
+			if (JAIGlobalParameter::audioCameraMax == 1) {
+				if (_34->_18 >= JAIGlobalParameter::distanceMax) {
+					pitch += JAIGlobalParameter::seDistancepitchMax;
+				} else {
+					pitch = JAIGlobalParameter::seDistancepitchMax * (_34->_18 / JAIGlobalParameter::distanceMax) + pitch;
+				}
+			}
+		}
+	}
+	if ((m_soundInfo->unk1 & 0xC0) != 0) {
+		pitch += _17 / 192.0f;
+	}
+	m_seParam._224[4].set(pitch, p1);
 	/*
 	stwu     r1, -0x20(r1)
 	mflr     r0
@@ -2425,44 +1837,13 @@ lbl_800B4DC0:
  */
 void JAISe::setSePositionDopplar()
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	stw      r30, 8(r1)
-	mr       r30, r3
-	lbz      r0, 0x15(r3)
-	lwz      r31, dopplarMoveTime__18JAIGlobalParameter@sda21(r13)
-	cmplwi   r0, 2
-	bne      lbl_800B4E08
-	li       r31, 1
-
-lbl_800B4E08:
-	lwz      r3, 0x44(r30)
-	lwz      r0, 0(r3)
-	rlwinm.  r4, r0, 0, 0x16, 0x17
-	beq      lbl_800B4E44
-	lwz      r0, audioCameraMax__18JAIGlobalParameter@sda21(r13)
-	cmplwi   r0, 1
-	bne      lbl_800B4E44
-	lwz      r12, 0x10(r30)
-	mr       r3, r30
-	lwz      r12, 0xb8(r12)
-	mtctr    r12
-	bctrl
-	mr       r4, r31
-	addi     r3, r30, 0x27c
-	bl       set__Q27JAInter11MoveParaSetFfUl
-
-lbl_800B4E44:
-	lwz      r0, 0x14(r1)
-	lwz      r31, 0xc(r1)
-	lwz      r30, 8(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	u32 moveTime = JAIGlobalParameter::dopplarMoveTime;
+	if (_15 == 2) {
+		moveTime = 1;
+	}
+	if ((m_soundInfo->unk1 & 0x300) != 0 && JAIGlobalParameter::audioCameraMax == 1) {
+		m_seParam._224[1].set(setPositionDopplarCommon(m_soundInfo->unk1 & 0x300), moveTime);
+	}
 }
 
 /*
@@ -2470,66 +1851,20 @@ lbl_800B4E44:
  * Address:	800B4E5C
  * Size:	0000C8
  */
-void JAISe::setSeDistanceFxmix(unsigned char)
+void JAISe::setSeDistanceFxmix(unsigned char p1)
 {
-	/*
-	stwu     r1, -0x20(r1)
-	mflr     r0
-	stw      r0, 0x24(r1)
-	lwz      r5, 0x44(r3)
-	lhz      r6, seDefaultFx__18JAIGlobalParameter@sda21(r13)
-	lwz      r0, 0(r5)
-	rlwinm.  r0, r0, 0, 0x1d, 0x1d
-	bne      lbl_800B4ED4
-	lwz      r0, audioCameraMax__18JAIGlobalParameter@sda21(r13)
-	cmplwi   r0, 1
-	bne      lbl_800B4ED4
-	lwz      r5, 0x34(r3)
-	lfs      f0, distanceMax__18JAIGlobalParameter@sda21(r13)
-	lfs      f1, 0x18(r5)
-	fcmpo    cr0, f1, f0
-	bge      lbl_800B4ED0
-	fdivs    f0, f1, f0
-	lhz      r5, seDistanceFxParameter__18JAIGlobalParameter@sda21(r13)
-	lis      r0, 0x4330
-	lfd      f2, lbl_80517018@sda21(r2)
-	stw      r5, 0xc(r1)
-	stw      r0, 8(r1)
-	lfd      f1, 8(r1)
-	fsubs    f1, f1, f2
-	fmuls    f0, f1, f0
-	fctiwz   f0, f0
-	stfd     f0, 0x10(r1)
-	lwz      r6, 0x14(r1)
-	b        lbl_800B4ED4
-
-lbl_800B4ED0:
-	lhz      r6, seDistanceFxParameter__18JAIGlobalParameter@sda21(r13)
-
-lbl_800B4ED4:
-	clrlwi   r0, r6, 0x10
-	cmplwi   r0, 0x7f
-	ble      lbl_800B4EE4
-	li       r6, 0x7f
-
-lbl_800B4EE4:
-	clrlwi   r5, r6, 0x18
-	lis      r0, 0x4330
-	stw      r5, 0x14(r1)
-	addi     r3, r3, 0x32c
-	lfd      f2, lbl_80517018@sda21(r2)
-	clrlwi   r4, r4, 0x18
-	stw      r0, 0x10(r1)
-	lfs      f0, lbl_80517020@sda21(r2)
-	lfd      f1, 0x10(r1)
-	fsubs    f1, f1, f2
-	fdivs    f1, f1, f0
-	bl       set__Q27JAInter11MoveParaSetFfUl
-	lwz      r0, 0x24(r1)
-	mtlr     r0
-	addi     r1, r1, 0x20
-	blr
-	*/
+	u16 fx = JAIGlobalParameter::seDefaultFx;
+	if ((m_soundInfo->unk1 & 4) == 0 && JAIGlobalParameter::audioCameraMax == 1) {
+		if (_34->_18 < JAIGlobalParameter::distanceMax) {
+			fx = (JAIGlobalParameter::seDistanceFxParameter * (_34->_18 / JAIGlobalParameter::distanceMax));
+		} else {
+			fx = JAIGlobalParameter::seDistanceFxParameter;
+		}
+	}
+	if (0x7F < fx) {
+		fx = 0x7F;
+	}
+	m_seParam._2A4[4].set((u8)fx / 127.0f, p1);
 }
 
 /*
@@ -2660,44 +1995,19 @@ void JAIStream::setStreamInterDolby(unsigned char, float, unsigned long)
  * Address:	800B4FCC
  * Size:	00000C
  */
-void JAIStream::setStreamPrepareFlag(unsigned char)
-{
-	/*
-	lwz      r3, streamUpdate__Q27JAInter9StreamMgr@sda21(r13)
-	stb      r4, 2(r3)
-	blr
-	*/
-}
+void JAIStream::setStreamPrepareFlag(unsigned char p1) { JAInter::StreamMgr::streamUpdate->_02 = p1; }
 
 /*
  * --INFO--
  * Address:	800B4FD8
  * Size:	000040
  */
-void JAIStream::checkStreamReady()
+bool JAIStream::checkStreamReady()
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	lbz      r0, 0x15(r3)
-	cmplwi   r0, 3
-	bne      lbl_800B5004
-	bl       getSystemStatus__Q27JAInter9StreamMgrFv
-	cmplwi   r3, 1
-	bne      lbl_800B5004
-	li       r3, 1
-	b        lbl_800B5008
-
-lbl_800B5004:
-	li       r3, 0
-
-lbl_800B5008:
-	lwz      r0, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	if (_15 == 3 && JAInter::StreamMgr::getSystemStatus() == 1) {
+		return true;
+	}
+	return false;
 }
 
 /*
@@ -2705,54 +2015,16 @@ lbl_800B5008:
  * Address:	800B5018
  * Size:	0000A0
  */
-void JAIStream::setChannelVolume(unsigned char, float, unsigned long)
+void JAIStream::setChannelVolume(unsigned char p1, float p2, unsigned long p3)
 {
-	/*
-	stwu     r1, -0x20(r1)
-	mflr     r0
-	stw      r0, 0x24(r1)
-	stfd     f31, 0x18(r1)
-	fmr      f31, f1
-	stw      r31, 0x14(r1)
-	mr       r31, r5
-	stw      r30, 0x10(r1)
-	mr       r30, r4
-	stw      r29, 0xc(r1)
-	mr       r29, r3
-	bl       getChannelMax__Q27JAInter9StreamMgrFv
-	fmr      f1, f31
-	lwz      r3, 0x1c8(r29)
-	rlwinm   r0, r30, 4, 0x14, 0x1b
-	mr       r4, r31
-	add      r3, r3, r0
-	bl       set__Q27JAInter11MoveParaSetFfUl
-	cmpwi    r3, 1
-	bne      lbl_800B5080
-	clrlwi   r0, r30, 0x18
-	li       r4, 1
-	lwz      r5, 0x1b8(r29)
-	slw      r0, r4, r0
-	or       r0, r5, r0
-	stw      r0, 0x1b8(r29)
-
-lbl_800B5080:
-	cmpwi    r3, 2
-	beq      lbl_800B5098
-	lwz      r3, 0x1b4(r29)
-	lwz      r0, 0x18(r3)
-	ori      r0, r0, 0x40
-	stw      r0, 0x18(r3)
-
-lbl_800B5098:
-	lwz      r0, 0x24(r1)
-	lfd      f31, 0x18(r1)
-	lwz      r31, 0x14(r1)
-	lwz      r30, 0x10(r1)
-	lwz      r29, 0xc(r1)
-	mtlr     r0
-	addi     r1, r1, 0x20
-	blr
-	*/
+	JAInter::StreamMgr::getChannelMax();
+	int result = _1C8[p1].set(p2, p3);
+	if (result == 1) {
+		_1B8 |= 1 << p1;
+	}
+	if (result != 2) {
+		_1B4->_18 |= 0x40;
+	}
 }
 
 /*
@@ -2760,54 +2032,16 @@ lbl_800B5098:
  * Address:	800B50B8
  * Size:	0000A0
  */
-void JAIStream::setChannelPan(unsigned char, float, unsigned long)
+void JAIStream::setChannelPan(unsigned char p1, float p2, unsigned long p3)
 {
-	/*
-	stwu     r1, -0x20(r1)
-	mflr     r0
-	stw      r0, 0x24(r1)
-	stfd     f31, 0x18(r1)
-	fmr      f31, f1
-	stw      r31, 0x14(r1)
-	mr       r31, r5
-	stw      r30, 0x10(r1)
-	mr       r30, r4
-	stw      r29, 0xc(r1)
-	mr       r29, r3
-	bl       getChannelMax__Q27JAInter9StreamMgrFv
-	fmr      f1, f31
-	lwz      r3, 0x1cc(r29)
-	rlwinm   r0, r30, 4, 0x14, 0x1b
-	mr       r4, r31
-	add      r3, r3, r0
-	bl       set__Q27JAInter11MoveParaSetFfUl
-	cmpwi    r3, 1
-	bne      lbl_800B5120
-	clrlwi   r0, r30, 0x18
-	li       r4, 1
-	lwz      r5, 0x1bc(r29)
-	slw      r0, r4, r0
-	or       r0, r5, r0
-	stw      r0, 0x1bc(r29)
-
-lbl_800B5120:
-	cmpwi    r3, 2
-	beq      lbl_800B5138
-	lwz      r3, 0x1b4(r29)
-	lwz      r0, 0x18(r3)
-	ori      r0, r0, 0x80
-	stw      r0, 0x18(r3)
-
-lbl_800B5138:
-	lwz      r0, 0x24(r1)
-	lfd      f31, 0x18(r1)
-	lwz      r31, 0x14(r1)
-	lwz      r30, 0x10(r1)
-	lwz      r29, 0xc(r1)
-	mtlr     r0
-	addi     r1, r1, 0x20
-	blr
-	*/
+	JAInter::StreamMgr::getChannelMax();
+	int result = _1CC[p1].set(p2, p3);
+	if (result == 1) {
+		_1BC |= 1 << p1;
+	}
+	if (result != 2) {
+		_1B4->_18 |= 0x80;
+	}
 }
 
 /*
@@ -2875,8 +2109,64 @@ void JAIStream::getChannelDolby(unsigned char)
  * Address:	800B5158
  * Size:	0001E8
  */
-void JAISound::setPauseMode(unsigned char, unsigned char)
+void JAISound::setPauseMode(unsigned char p1, unsigned char p2)
 {
+	switch (m_soundID & JAISoundID_TypeMask) {
+	case JAISoundID_Type_Sequence: {
+		JAISequence* sequence = static_cast<JAISequence*>(this);
+		if (p1 == 3) {
+			p1 = 4;
+		}
+		switch (p1) {
+		case 1:
+			setVolumeU7(p2, 1, 11);
+			break;
+		case 2:
+			sequence->m_seqParameter.m_track.pause(true, true);
+			break;
+		case 0:
+			switch (sequence->m_seqParameter._279) {
+			case 1:
+				setVolume(1.0f, 1, 11);
+				break;
+			case 2:
+				sequence->m_seqParameter.m_track.pause(false, true);
+				break;
+			}
+			break;
+		}
+		sequence->m_seqParameter._279 = p1;
+		break;
+	}
+	case JAISoundID_Type_Se:
+		break;
+	case JAISoundID_Type_Stream: {
+		JAIStream* stream = static_cast<JAIStream*>(this);
+		switch (p1) {
+		case 1:
+			// TODO: Will invoking it using the casted pointer actually inline JAIStream::setVolumeU7, without JAISequence::setVolumeU7
+			// getting inlined?
+			stream->setVolumeU7(p2, 1, 11);
+			break;
+		case 2:
+			// JAInter::StreamMgr::getStreamObjectPointer()->pause(true);
+			break;
+		case 0:
+			switch (stream->_48) {
+			case 1:
+				setVolume(1.0f, 1, 11);
+				break;
+			case 2:
+				// JAInter::StreamMgr::getStreamObjectPointer()->pause(false);
+				break;
+			}
+			break;
+		}
+		stream->_48 = p1;
+		break;
+	}
+	}
+
 	/*
 	stwu     r1, -0x20(r1)
 	mflr     r0
@@ -3038,169 +2328,68 @@ lbl_800B5328:
  * Address:	800B5340
  * Size:	000084
  */
-void JAIStream::setVolume(float, unsigned long, unsigned char)
-{
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	mr       r31, r5
-	stw      r30, 8(r1)
-	mr       r30, r3
-	rlwinm   r3, r5, 4, 0x14, 0x1b
-	addi     r3, r3, 0x64
-	add      r3, r30, r3
-	bl       set__Q27JAInter11MoveParaSetFfUl
-	cmpwi    r3, 1
-	bne      lbl_800B538C
-	clrlwi   r0, r31, 0x18
-	li       r4, 1
-	lwz      r5, 0x50(r30)
-	slw      r0, r4, r0
-	or       r0, r5, r0
-	stw      r0, 0x50(r30)
-
-lbl_800B538C:
-	lwz      r4, 0x1b4(r30)
-	cmplwi   r4, 0
-	beq      lbl_800B53AC
-	cmpwi    r3, 2
-	beq      lbl_800B53AC
-	lwz      r0, 0x18(r4)
-	oris     r0, r0, 4
-	stw      r0, 0x18(r4)
-
-lbl_800B53AC:
-	lwz      r0, 0x14(r1)
-	lwz      r31, 0xc(r1)
-	lwz      r30, 8(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
-}
+// void JAIStream::setVolume(float p1, unsigned long p2, unsigned char p3)
+// {
+// 	int result = _64[p3].set(p1, p2);
+// 	if (result == 1) {
+// 		_50 |= 1 << p3;
+// 	}
+// 	if (_1B4 != nullptr && result != 2) {
+// 		_1B4->_18 |= 0x40000;
+// 	}
+// }
 
 /*
  * --INFO--
  * Address:	800B53C4
  * Size:	0000AC
+ * setVolumeU7__11JAISequenceFUcUlUc
  */
-void JAISequence::setVolumeU7(unsigned char, unsigned long, unsigned char)
+void JAISequence::setVolumeU7(unsigned char p1, unsigned long p2, unsigned char p3)
 {
-	/*
-	stwu     r1, -0x20(r1)
-	mflr     r0
-	clrlwi   r4, r4, 0x18
-	lfd      f2, lbl_80517018@sda21(r2)
-	stw      r0, 0x24(r1)
-	lis      r0, 0x4330
-	lfs      f0, lbl_80517020@sda21(r2)
-	stw      r4, 0xc(r1)
-	rlwinm   r4, r6, 4, 0x14, 0x1b
-	stw      r0, 8(r1)
-	lfd      f1, 8(r1)
-	stw      r31, 0x1c(r1)
-	mr       r31, r6
-	fsubs    f1, f1, f2
-	stw      r30, 0x18(r1)
-	mr       r30, r3
-	addi     r3, r4, 0x158
-	mr       r4, r5
-	fdivs    f1, f1, f0
-	add      r3, r30, r3
-	bl       set__Q27JAInter11MoveParaSetFfUl
-	cmpwi    r3, 1
-	bne      lbl_800B5438
-	clrlwi   r0, r31, 0x18
-	li       r4, 1
-	lwz      r5, 0x2cc(r30)
-	slw      r0, r4, r0
-	or       r0, r5, r0
-	stw      r0, 0x2cc(r30)
-
-lbl_800B5438:
-	lwz      r4, 0x308(r30)
-	cmplwi   r4, 0
-	beq      lbl_800B5458
-	cmpwi    r3, 2
-	beq      lbl_800B5458
-	lwz      r0, 8(r4)
-	oris     r0, r0, 4
-	stw      r0, 8(r4)
-
-lbl_800B5458:
-	lwz      r0, 0x24(r1)
-	lwz      r31, 0x1c(r1)
-	lwz      r30, 0x18(r1)
-	mtlr     r0
-	addi     r1, r1, 0x20
-	blr
-	*/
+	int result = m_seqParameter._110[p3].set(p1 / 127.0f, p2);
+	if (result == 1) {
+		m_seqParameter._284 |= 1 << p3;
+	}
+	if (m_seqParameter._2C0 != nullptr && result != 2) {
+		m_seqParameter._2C0->_08 |= 0x40000;
+	}
 }
 
 /*
  * --INFO--
  * Address:	800B5470
  * Size:	00000C
+ * setSeqPrepareFlag__11JAISequenceFUc
  */
-void JAISequence::setSeqPrepareFlag(unsigned char)
-{
-	/*
-	lwz      r3, 0x308(r3)
-	stb      r4, 2(r3)
-	blr
-	*/
-}
+void JAISequence::setSeqPrepareFlag(unsigned char seqPrepareFlag) { m_seqParameter._2C0->_02 = seqPrepareFlag; }
 
 /*
  * --INFO--
  * Address:	800B547C
  * Size:	00002C
+ * checkSeqReady__11JAISequenceFv
  */
-void JAISequence::checkSeqReady()
+bool JAISequence::checkSeqReady()
 {
-	/*
-	lbz      r0, 0x15(r3)
-	cmplwi   r0, 2
-	bne      lbl_800B54A0
-	lwz      r3, 0x2c4(r3)
-	addis    r0, r3, 1
-	cmplwi   r0, 0xffff
-	bne      lbl_800B54A0
-	li       r3, 1
-	blr
-
-lbl_800B54A0:
-	li       r3, 0
-	blr
-	*/
+	if (_15 == 2 && m_seqParameter._27C == 0xFFFFFFFF) {
+		return true;
+	}
+	return false;
 }
 
 /*
  * --INFO--
  * Address:	800B54A8
  * Size:	00002C
+ * getSeqInterVolume__11JAISequenceFUc
  */
-float JAISequence::getSeqInterVolume(unsigned char)
+float JAISequence::getSeqInterVolume(unsigned char p1)
 {
-	/*
-	lbz      r0, 0x15(r3)
-	cmplwi   r0, 4
-	beq      lbl_800B54BC
-	cmplwi   r0, 5
-	bne      lbl_800B54CC
-
-lbl_800B54BC:
-	rlwinm   r0, r4, 4, 0x14, 0x1b
-	add      r3, r3, r0
-	lfs      f1, 0x15c(r3)
-	blr
-
-lbl_800B54CC:
-	lfs      f1, lbl_80517034@sda21(r2)
-	blr
-	*/
+	if (_15 == 4 || _15 == 5) {
+		return m_seqParameter._110[p1]._04;
+	}
+	return -1.0f;
 }
 
 /*
@@ -3378,8 +2567,16 @@ void JAISound::getActorGroundNumber()
  * Address:	800B54D4
  * Size:	00003C
  */
-void JAISound::getTrackPortRoute(unsigned char, unsigned char)
+u32 JAISound::getTrackPortRoute(unsigned char p1, unsigned char p2)
 {
+	if ((m_soundID & 0x800) != 0) {
+		return (p1 >> 4) + 0x20000000 + p2 * 0x10000 + (p1 & 0xF) * 0x10;
+	} else {
+		return (p1 & 0xF) + 0x10000000 + p2 * 0x10000;
+	}
+	// return ((m_soundID & 0x800) != 0) ? (p1 >> 4) + 0x20000000 + p2 * 0x10000 + (p1 & 0xF) * 0x10 : (p1 & 0xF) + 0x10000000 + p2 *
+	// 0x10000;
+
 	/*
 	lwz      r0, 0x20(r3)
 	rlwinm.  r0, r0, 0, 0x14, 0x14
@@ -3416,120 +2613,53 @@ void JAISe::getSeInfoPointer()
  * Address:	800B5510
  * Size:	000088
  */
-void JAISound::checkSoundHandle(unsigned long, void*)
+bool JAISound::checkSoundHandle(unsigned long id, void* p2)
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	rlwinm   r0, r4, 0, 0, 1
-	stw      r31, 0xc(r1)
-	li       r31, 0
-	lwz      r6, 0x20(r3)
-	rlwinm   r4, r6, 0, 0, 1
-	cmplw    r4, r0
-	beq      lbl_800B5550
-	lwz      r12, 0x10(r3)
-	li       r4, 0
-	lwz      r12, 0x14(r12)
-	mtctr    r12
-	bctrl
-	b        lbl_800B5580
-
-lbl_800B5550:
-	lwz      r4, 0x44(r3)
-	lbz      r0, 4(r5)
-	lbz      r4, 4(r4)
-	cmplw    r4, r0
-	bgt      lbl_800B557C
-	lwz      r12, 0x10(r3)
-	li       r4, 0
-	lwz      r12, 0x14(r12)
-	mtctr    r12
-	bctrl
-	b        lbl_800B5580
-
-lbl_800B557C:
-	li       r31, 1
-
-lbl_800B5580:
-	lwz      r0, 0x14(r1)
-	mr       r3, r31
-	lwz      r31, 0xc(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	bool result = false;
+	if ((m_soundID & JAISoundID_TypeMask) != (id & JAISoundID_TypeMask)) {
+		stop(0);
+	} else if (m_soundInfo->count.v2[0] <= static_cast<JAInter::SoundInfo*>(p2)->count.v2[0]) {
+		stop(0);
+	} else {
+		result = true;
+	}
+	return result;
 }
 
 /*
  * --INFO--
  * Address:	800B5598
  * Size:	00004C
+ * getFadeCounter__11JAISequenceFv
  */
-void JAISequence::getFadeCounter()
+u32 JAISequence::getFadeCounter()
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	mr       r31, r3
-	lbz      r3, 0x14(r3)
-	bl       getPlayTrackInfo__Q27JAInter11SequenceMgrFUl
-	lwz      r0, 8(r3)
-	rlwinm.  r0, r0, 0, 0x1e, 0x1e
-	beq      lbl_800B55C8
-	lwz      r3, 0x28(r31)
-	b        lbl_800B55D0
-
-lbl_800B55C8:
-	lwz      r3, 0x1d4(r31)
-	addi     r3, r3, -1
-
-lbl_800B55D0:
-	lwz      r0, 0x14(r1)
-	lwz      r31, 0xc(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	if ((JAInter::SequenceMgr::getPlayTrackInfo(_14)->_08 & 2) != 0) {
+		return _28;
+	}
+	return m_seqParameter._110[7]._0C - 1;
 }
 
 /*
  * --INFO--
  * Address:	800B55E4
  * Size:	00000C
+ * getFadeCounter__5JAISeFv
  */
-void JAISe::getFadeCounter()
-{
-	/*
-	lwz      r3, 0x1d8(r3)
-	addi     r3, r3, -1
-	blr
-	*/
-}
+u32 JAISe::getFadeCounter() { return m_seParam._124[6]._0C - 1; }
 
 /*
  * --INFO--
  * Address:	800B55F0
  * Size:	000024
+ * getFadeCounter__9JAIStreamFv
  */
-void JAIStream::getFadeCounter()
+u32 JAIStream::getFadeCounter()
 {
-	/*
-	lwz      r4, 0x1b4(r3)
-	lwz      r0, 0x18(r4)
-	rlwinm.  r0, r0, 0, 0x1e, 0x1e
-	beq      lbl_800B5608
-	lwz      r3, 0x28(r3)
-	blr
-
-lbl_800B5608:
-	lwz      r3, 0xe0(r3)
-	addi     r3, r3, -1
-	blr
-	*/
+	if ((_1B4->_18 & 2) != 0) {
+		return _28;
+	}
+	return _64[7]._0C - 1;
 }
 
 /*
@@ -3537,81 +2667,39 @@ lbl_800B5608:
  * Address:	800B5614
  * Size:	0000E8
  */
-void JAISound::initParameter(void*, JAInter::Actor*, unsigned long, unsigned long, unsigned char, JAInter::SoundInfo*)
+void JAISound::initParameter(void* handlePtr, JAInter::Actor* actor, unsigned long id, unsigned long p4, unsigned char p5,
+                             JAInter::SoundInfo* info)
 {
-	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  cmplwi    r5, 0
-	  stw       r0, 0x14(r1)
-	  stw       r31, 0xC(r1)
-	  mr        r31, r3
-	  stw       r6, 0x20(r3)
-	  beq-      .loc_0x64
-	  lwz       r0, 0x0(r5)
-	  stw       r0, 0x38(r31)
-	  lwz       r0, 0x0(r5)
-	  cmplwi    r0, 0
-	  beq-      .loc_0x48
-	  lwz       r0, 0x4(r5)
-	  stw       r0, 0x3C(r31)
-	  lwz       r0, 0xC(r5)
-	  stw       r0, 0x30(r31)
-	  b         .loc_0x58
-
-	.loc_0x48:
-	  li        r0, 0
-	  stw       r0, 0x3C(r31)
-	  lwz       r0, 0xC(r5)
-	  stw       r0, 0x30(r31)
-
-	.loc_0x58:
-	  lbz       r0, 0x10(r5)
-	  stb       r0, 0x1A(r31)
-	  b         .loc_0x78
-
-	.loc_0x64:
-	  li        r0, 0
-	  stw       r0, 0x38(r31)
-	  stw       r0, 0x3C(r31)
-	  stb       r0, 0x1A(r31)
-	  stw       r0, 0x30(r31)
-
-	.loc_0x78:
-	  stw       r4, 0x40(r31)
-	  li        r0, 0xA
-	  stw       r7, 0x28(r31)
-	  stb       r8, 0x18(r31)
-	  stw       r9, 0x44(r31)
-	  stb       r0, 0x16(r31)
-	  bl        -0x7B48
-	  stb       r3, 0x19(r31)
-	  li        r0, 0
-	  sth       r0, 0x1C(r31)
-	  stw       r0, 0x2C(r31)
-	  lwz       r0, 0x3C(r31)
-	  cmplwi    r0, 0
-	  beq-      .loc_0xC8
-	  bl        -0x7BF0
-	  lfs       f0, -0x7328(r2)
-	  lwz       r3, 0x34(r31)
-	  fmuls     f0, f0, f1
-	  stfs      f0, 0x18(r3)
-	  b         .loc_0xD4
-
-	.loc_0xC8:
-	  lfs       f0, -0x737C(r2)
-	  lwz       r3, 0x34(r31)
-	  stfs      f0, 0x18(r3)
-
-	.loc_0xD4:
-	  lwz       r0, 0x14(r1)
-	  lwz       r31, 0xC(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
-	*/
+	m_soundID = id;
+	if (actor != nullptr) {
+		_38 = actor->m_vec1;
+		if (actor->m_vec1 != nullptr) {
+			_3C = actor->m_vec2;
+			_30 = actor->m_unk;
+		} else {
+			_3C = nullptr;
+			_30 = actor->m_unk;
+		}
+		_1A = actor->m_flag.boolView[0];
+	} else {
+		_38 = nullptr;
+		_3C = nullptr;
+		_1A = 0;
+		_30 = 0;
+	}
+	_40                         = (void**)handlePtr;
+	_28                         = p4;
+	_18                         = p5;
+	m_soundInfo                 = info;
+	_16                         = 10;
+	m_distanceParameterMoveTime = JAIGlobalParameter::getParamDistanceParameterMoveTime();
+	m_adjustPriority            = 0;
+	_2C                         = 0;
+	if (_3C != nullptr) {
+		_34->_18 = JAIGlobalParameter::getParamDistanceMax() * 10.0f;
+	} else {
+		_34->_18 = 0.0f;
+	}
 }
 
 /*
@@ -3624,40 +2712,6 @@ void JAInter::LinkSound::init()
 {
 	_00 = new (JAIBasic::msCurrentHeap, 0x20) JSUList<JAISound>();
 	_04 = new (JAIBasic::msCurrentHeap, 0x20) JSUList<JAISound>();
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	li       r5, 0x20
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	stw      r30, 8(r1)
-	mr       r30, r3
-	li       r3, 0xc
-	lwz      r4, msCurrentHeap__8JAIBasic@sda21(r13)
-	bl       __nw__FUlP7JKRHeapi
-	or.      r31, r3, r3
-	beq      lbl_800B5730
-	bl       initiate__10JSUPtrListFv
-
-lbl_800B5730:
-	stw      r31, 0(r30)
-	li       r3, 0xc
-	li       r5, 0x20
-	lwz      r4, msCurrentHeap__8JAIBasic@sda21(r13)
-	bl       __nw__FUlP7JKRHeapi
-	or.      r31, r3, r3
-	beq      lbl_800B5750
-	bl       initiate__10JSUPtrListFv
-
-lbl_800B5750:
-	stw      r31, 4(r30)
-	lwz      r0, 0x14(r1)
-	lwz      r31, 0xc(r1)
-	lwz      r30, 8(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
 }
 
 /*
@@ -3667,41 +2721,15 @@ lbl_800B5750:
  */
 JAISound* JAInter::LinkSound::getSound()
 {
-	/*
-	stwu     r1, -0x20(r1)
-	mflr     r0
-	stw      r0, 0x24(r1)
-	stw      r31, 0x1c(r1)
-	stw      r30, 0x18(r1)
-	li       r30, 0
-	stw      r29, 0x14(r1)
-	mr       r29, r3
-	lwz      r3, 0(r3)
-	lwz      r31, 0(r3)
-	cmplwi   r31, 0
-	beq      lbl_800B57C8
-	mr       r4, r31
-	bl       remove__10JSUPtrListFP10JSUPtrLink
-	lwz      r3, 4(r29)
-	mr       r4, r31
-	bl       prepend__10JSUPtrListFP10JSUPtrLink
-	lwz      r3, 0(r31)
-	lwz      r12, 0x10(r3)
-	mr       r30, r3
-	lwz      r12, 0xcc(r12)
-	mtctr    r12
-	bctrl
-
-lbl_800B57C8:
-	lwz      r0, 0x24(r1)
-	mr       r3, r30
-	lwz      r31, 0x1c(r1)
-	lwz      r30, 0x18(r1)
-	lwz      r29, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x20
-	blr
-	*/
+	JAISound* sound         = nullptr;
+	JSULink<JAISound>* link = _00->getFirst();
+	if (link != nullptr) {
+		_00->remove(link);
+		_04->prepend(link);
+		sound = link->getObject();
+		sound->onGet();
+	}
+	return sound;
 }
 
 /*
@@ -3711,43 +2739,20 @@ lbl_800B57C8:
  */
 void JAISound::onGet() { }
 
-/*
+/**
  * --INFO--
  * Address:	800B57EC
  * Size:	000068
+ * @warning This function checks for null, and then calls a virtual function on the arg regardless of it being null.
  */
-void JAInter::LinkSound::releaseSound(JAISound*)
+void JAInter::LinkSound::releaseSound(JAISound* sound)
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	or.      r31, r4, r4
-	stw      r30, 8(r1)
-	mr       r30, r3
-	beq      lbl_800B5828
-	lwz      r3, 4(r30)
-	bl       remove__10JSUPtrListFP10JSUPtrLink
-	clrlwi.  r0, r3, 0x18
-	beq      lbl_800B5828
-	lwz      r3, 0(r30)
-	mr       r4, r31
-	bl       prepend__10JSUPtrListFP10JSUPtrLink
-
-lbl_800B5828:
-	mr       r3, r31
-	lwz      r12, 0x10(r31)
-	lwz      r12, 0xd0(r12)
-	mtctr    r12
-	bctrl
-	lwz      r0, 0x14(r1)
-	lwz      r31, 0xc(r1)
-	lwz      r30, 8(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	if (sound != nullptr) {
+		if (_04->remove(sound) != 0) {
+			_00->prepend(sound);
+		}
+	}
+	sound->onRelease();
 }
 
 /*
@@ -3781,93 +2786,47 @@ void JAInter::LinkSound::getUsedEndFirstObject(void)
  * --INFO--
  * Address:	800B5858
  * Size:	000098
+ * set__Q27JAInter11MoveParaSetFfUl
  */
-int JAInter::MoveParaSet::set(float, unsigned long)
+int JAInter::MoveParaSet::set(float p1, unsigned long p2)
 {
-	/*
-	stwu     r1, -0x10(r1)
-	lwz      r0, 0xc(r3)
-	cmplwi   r0, 0
-	bne      lbl_800B587C
-	lfs      f0, 4(r3)
-	fcmpu    cr0, f0, f1
-	bne      lbl_800B587C
-	li       r3, 2
-	b        lbl_800B58E8
-
-lbl_800B587C:
-	cmplwi   r0, 0
-	beq      lbl_800B5898
-	lfs      f0, 0(r3)
-	fcmpu    cr0, f0, f1
-	bne      lbl_800B5898
-	li       r3, 2
-	b        lbl_800B58E8
-
-lbl_800B5898:
-	cmplwi   r4, 0
-	stfs     f1, 0(r3)
-	bne      lbl_800B58B0
-	stfs     f1, 4(r3)
-	li       r3, 0
-	b        lbl_800B58E8
-
-lbl_800B58B0:
-	addi     r4, r4, 1
-	lis      r0, 0x4330
-	stw      r4, 0xc(r1)
-	lfs      f3, 4(r3)
-	stw      r0, 8(r1)
-	lfs      f2, 0(r3)
-	lfd      f1, lbl_80517018@sda21(r2)
-	lfd      f0, 8(r1)
-	fsubs    f2, f3, f2
-	fsubs    f0, f0, f1
-	fdivs    f0, f2, f0
-	stfs     f0, 8(r3)
-	stw      r4, 0xc(r3)
-	li       r3, 1
-
-lbl_800B58E8:
-	addi     r1, r1, 0x10
-	blr
-	*/
+	if (_0C == 0 && _04 == p1) {
+		return 2;
+	}
+	if (_0C != 0 && _00 == p1) {
+		return 2;
+	}
+	_00 = p1;
+	if (p2 == 0) {
+		_04 = p1;
+		return 0;
+	}
+	_08 = (_04 - _00) / (p2 + 1);
+	_0C = p2 + 1;
+	return 1;
 }
 
 /*
  * --INFO--
  * Address:	800B58F0
  * Size:	00004C
+ * move__Q27JAInter11MoveParaSetFv
  */
-void JAInter::MoveParaSet::move(void)
+BOOL JAInter::MoveParaSet::move(void)
 {
-	/*
-	lwz      r4, 0xc(r3)
-	cmplwi   r4, 0
-	bne      lbl_800B5904
-	li       r0, 0
-	b        lbl_800B5934
-
-lbl_800B5904:
-	addic.   r0, r4, -1
-	stw      r0, 0xc(r3)
-	beq      lbl_800B5928
-	lfs      f1, 4(r3)
-	li       r0, 1
-	lfs      f0, 8(r3)
-	fsubs    f0, f1, f0
-	stfs     f0, 4(r3)
-	b        lbl_800B5934
-
-lbl_800B5928:
-	lfs      f0, 0(r3)
-	li       r0, 0
-	stfs     f0, 4(r3)
-
-lbl_800B5934:
-	mr       r3, r0
-	blr
-	*/
+	BOOL result;
+	if (_0C == 0) {
+		result = FALSE;
+	} else {
+		if (--_0C != 0) {
+			result = TRUE;
+			_04 -= _08;
+		} else {
+			result = FALSE;
+			_04    = _00;
+		}
+	}
+	return result;
 }
 
 /*
@@ -3888,80 +2847,17 @@ float JAIStream::getVolume(unsigned char p1)
  * --INFO--
  * Address:	800B5968
  * Size:	0000E4
+ * setPan__9JAIStreamFfUlUc
  */
-void JAIStream::setPan(float, unsigned long, unsigned char)
+void JAIStream::setPan(float p1, unsigned long p2, unsigned char p3)
 {
-	/*
-	stwu     r1, -0x10(r1)
-	rlwinm   r0, r5, 4, 0x14, 0x1b
-	lwz      r6, 0x1a8(r3)
-	add      r7, r6, r0
-	lwz      r0, 0xc(r7)
-	cmplwi   r0, 0
-	bne      lbl_800B5998
-	lfs      f0, 4(r7)
-	fcmpu    cr0, f0, f1
-	bne      lbl_800B5998
-	li       r6, 2
-	b        lbl_800B5A04
-
-lbl_800B5998:
-	cmplwi   r0, 0
-	beq      lbl_800B59B4
-	lfs      f0, 0(r7)
-	fcmpu    cr0, f0, f1
-	bne      lbl_800B59B4
-	li       r6, 2
-	b        lbl_800B5A04
-
-lbl_800B59B4:
-	cmplwi   r4, 0
-	stfs     f1, 0(r7)
-	bne      lbl_800B59CC
-	stfs     f1, 4(r7)
-	li       r6, 0
-	b        lbl_800B5A04
-
-lbl_800B59CC:
-	addi     r4, r4, 1
-	lis      r0, 0x4330
-	stw      r4, 0xc(r1)
-	li       r6, 1
-	lfs      f3, 4(r7)
-	stw      r0, 8(r1)
-	lfs      f2, 0(r7)
-	lfd      f1, lbl_80517018@sda21(r2)
-	lfd      f0, 8(r1)
-	fsubs    f2, f3, f2
-	fsubs    f0, f0, f1
-	fdivs    f0, f2, f0
-	stfs     f0, 8(r7)
-	stw      r4, 0xc(r7)
-
-lbl_800B5A04:
-	cmpwi    r6, 1
-	bne      lbl_800B5A24
-	clrlwi   r0, r5, 0x18
-	li       r4, 1
-	lwz      r5, 0x58(r3)
-	slw      r0, r4, r0
-	or       r0, r5, r0
-	stw      r0, 0x58(r3)
-
-lbl_800B5A24:
-	lwz      r3, 0x1b4(r3)
-	cmplwi   r3, 0
-	beq      lbl_800B5A44
-	cmpwi    r6, 2
-	beq      lbl_800B5A44
-	lwz      r0, 0x18(r3)
-	oris     r0, r0, 8
-	stw      r0, 0x18(r3)
-
-lbl_800B5A44:
-	addi     r1, r1, 0x10
-	blr
-	*/
+	int result = _1A8[p3].set(p1, p2);
+	if (result == 1) {
+		_58 |= 1 << p3;
+	}
+	if (_1B4 != nullptr && result != 2) {
+		_1B4->_18 |= 0x80000;
+	}
 }
 
 /*
@@ -3982,80 +2878,17 @@ float JAIStream::getPan(unsigned char p1)
  * --INFO--
  * Address:	800B5A7C
  * Size:	0000E4
+ * setPitch__9JAIStreamFfUlUc
  */
-void JAIStream::setPitch(float, unsigned long, unsigned char)
+void JAIStream::setPitch(float p1, unsigned long p2, unsigned char p3)
 {
-	/*
-	stwu     r1, -0x10(r1)
-	rlwinm   r0, r5, 4, 0x14, 0x1b
-	lwz      r6, 0x1a4(r3)
-	add      r7, r6, r0
-	lwz      r0, 0xc(r7)
-	cmplwi   r0, 0
-	bne      lbl_800B5AAC
-	lfs      f0, 4(r7)
-	fcmpu    cr0, f0, f1
-	bne      lbl_800B5AAC
-	li       r6, 2
-	b        lbl_800B5B18
-
-lbl_800B5AAC:
-	cmplwi   r0, 0
-	beq      lbl_800B5AC8
-	lfs      f0, 0(r7)
-	fcmpu    cr0, f0, f1
-	bne      lbl_800B5AC8
-	li       r6, 2
-	b        lbl_800B5B18
-
-lbl_800B5AC8:
-	cmplwi   r4, 0
-	stfs     f1, 0(r7)
-	bne      lbl_800B5AE0
-	stfs     f1, 4(r7)
-	li       r6, 0
-	b        lbl_800B5B18
-
-lbl_800B5AE0:
-	addi     r4, r4, 1
-	lis      r0, 0x4330
-	stw      r4, 0xc(r1)
-	li       r6, 1
-	lfs      f3, 4(r7)
-	stw      r0, 8(r1)
-	lfs      f2, 0(r7)
-	lfd      f1, lbl_80517018@sda21(r2)
-	lfd      f0, 8(r1)
-	fsubs    f2, f3, f2
-	fsubs    f0, f0, f1
-	fdivs    f0, f2, f0
-	stfs     f0, 8(r7)
-	stw      r4, 0xc(r7)
-
-lbl_800B5B18:
-	cmpwi    r6, 1
-	bne      lbl_800B5B38
-	clrlwi   r0, r5, 0x18
-	li       r4, 1
-	lwz      r5, 0x54(r3)
-	slw      r0, r4, r0
-	or       r0, r5, r0
-	stw      r0, 0x54(r3)
-
-lbl_800B5B38:
-	lwz      r3, 0x1b4(r3)
-	cmplwi   r3, 0
-	beq      lbl_800B5B58
-	cmpwi    r6, 2
-	beq      lbl_800B5B58
-	lwz      r0, 0x18(r3)
-	oris     r0, r0, 0x10
-	stw      r0, 0x18(r3)
-
-lbl_800B5B58:
-	addi     r1, r1, 0x10
-	blr
-	*/
+	int result = _1A4[p3].set(p1, p2);
+	if (result == 1) {
+		_54 |= 1 << p3;
+	}
+	if (_1B4 != nullptr && result != 2) {
+		_1B4->_18 |= 0x100000;
+	}
 }
 
 /*
@@ -4076,80 +2909,17 @@ float JAIStream::getPitch(unsigned char p1)
  * --INFO--
  * Address:	800B5B90
  * Size:	0000E4
+ * setFxmix__9JAIStreamFfUlUc
  */
-void JAIStream::setFxmix(float, unsigned long, unsigned char)
+void JAIStream::setFxmix(float p1, unsigned long p2, unsigned char p3)
 {
-	/*
-	stwu     r1, -0x10(r1)
-	rlwinm   r0, r5, 4, 0x14, 0x1b
-	lwz      r6, 0x1ac(r3)
-	add      r7, r6, r0
-	lwz      r0, 0xc(r7)
-	cmplwi   r0, 0
-	bne      lbl_800B5BC0
-	lfs      f0, 4(r7)
-	fcmpu    cr0, f0, f1
-	bne      lbl_800B5BC0
-	li       r6, 2
-	b        lbl_800B5C2C
-
-lbl_800B5BC0:
-	cmplwi   r0, 0
-	beq      lbl_800B5BDC
-	lfs      f0, 0(r7)
-	fcmpu    cr0, f0, f1
-	bne      lbl_800B5BDC
-	li       r6, 2
-	b        lbl_800B5C2C
-
-lbl_800B5BDC:
-	cmplwi   r4, 0
-	stfs     f1, 0(r7)
-	bne      lbl_800B5BF4
-	stfs     f1, 4(r7)
-	li       r6, 0
-	b        lbl_800B5C2C
-
-lbl_800B5BF4:
-	addi     r4, r4, 1
-	lis      r0, 0x4330
-	stw      r4, 0xc(r1)
-	li       r6, 1
-	lfs      f3, 4(r7)
-	stw      r0, 8(r1)
-	lfs      f2, 0(r7)
-	lfd      f1, lbl_80517018@sda21(r2)
-	lfd      f0, 8(r1)
-	fsubs    f2, f3, f2
-	fsubs    f0, f0, f1
-	fdivs    f0, f2, f0
-	stfs     f0, 8(r7)
-	stw      r4, 0xc(r7)
-
-lbl_800B5C2C:
-	cmpwi    r6, 1
-	bne      lbl_800B5C4C
-	clrlwi   r0, r5, 0x18
-	li       r4, 1
-	lwz      r5, 0x5c(r3)
-	slw      r0, r4, r0
-	or       r0, r5, r0
-	stw      r0, 0x5c(r3)
-
-lbl_800B5C4C:
-	lwz      r3, 0x1b4(r3)
-	cmplwi   r3, 0
-	beq      lbl_800B5C6C
-	cmpwi    r6, 2
-	beq      lbl_800B5C6C
-	lwz      r0, 0x18(r3)
-	oris     r0, r0, 0x20
-	stw      r0, 0x18(r3)
-
-lbl_800B5C6C:
-	addi     r1, r1, 0x10
-	blr
-	*/
+	int result = _1AC[p3].set(p1, p2);
+	if (result == 1) {
+		_5C |= 1 << p3;
+	}
+	if (_1B4 != nullptr && result != 2) {
+		_1B4->_18 |= 0x200000;
+	}
 }
 
 /*
@@ -4170,80 +2940,17 @@ float JAIStream::getFxmix(unsigned char p1)
  * --INFO--
  * Address:	800B5CA4
  * Size:	0000E4
+ * setDolby__9JAIStreamFfUlUc
  */
-void JAIStream::setDolby(float, unsigned long, unsigned char)
+void JAIStream::setDolby(float p1, unsigned long p2, unsigned char p3)
 {
-	/*
-	stwu     r1, -0x10(r1)
-	rlwinm   r0, r5, 4, 0x14, 0x1b
-	lwz      r6, 0x1b0(r3)
-	add      r7, r6, r0
-	lwz      r0, 0xc(r7)
-	cmplwi   r0, 0
-	bne      lbl_800B5CD4
-	lfs      f0, 4(r7)
-	fcmpu    cr0, f0, f1
-	bne      lbl_800B5CD4
-	li       r6, 2
-	b        lbl_800B5D40
-
-lbl_800B5CD4:
-	cmplwi   r0, 0
-	beq      lbl_800B5CF0
-	lfs      f0, 0(r7)
-	fcmpu    cr0, f0, f1
-	bne      lbl_800B5CF0
-	li       r6, 2
-	b        lbl_800B5D40
-
-lbl_800B5CF0:
-	cmplwi   r4, 0
-	stfs     f1, 0(r7)
-	bne      lbl_800B5D08
-	stfs     f1, 4(r7)
-	li       r6, 0
-	b        lbl_800B5D40
-
-lbl_800B5D08:
-	addi     r4, r4, 1
-	lis      r0, 0x4330
-	stw      r4, 0xc(r1)
-	li       r6, 1
-	lfs      f3, 4(r7)
-	stw      r0, 8(r1)
-	lfs      f2, 0(r7)
-	lfd      f1, lbl_80517018@sda21(r2)
-	lfd      f0, 8(r1)
-	fsubs    f2, f3, f2
-	fsubs    f0, f0, f1
-	fdivs    f0, f2, f0
-	stfs     f0, 8(r7)
-	stw      r4, 0xc(r7)
-
-lbl_800B5D40:
-	cmpwi    r6, 1
-	bne      lbl_800B5D60
-	clrlwi   r0, r5, 0x18
-	li       r4, 1
-	lwz      r5, 0x60(r3)
-	slw      r0, r4, r0
-	or       r0, r5, r0
-	stw      r0, 0x60(r3)
-
-lbl_800B5D60:
-	lwz      r3, 0x1b4(r3)
-	cmplwi   r3, 0
-	beq      lbl_800B5D80
-	cmpwi    r6, 2
-	beq      lbl_800B5D80
-	lwz      r0, 0x18(r3)
-	oris     r0, r0, 0x40
-	stw      r0, 0x18(r3)
-
-lbl_800B5D80:
-	addi     r1, r1, 0x10
-	blr
-	*/
+	int result = _1B0[p3].set(p1, p2);
+	if (result == 1) {
+		_60 |= 1 << p3;
+	}
+	if (_1B4 != nullptr && result != 2) {
+		_1B4->_18 |= 0x400000;
+	}
 }
 
 /*
@@ -4264,241 +2971,65 @@ float JAIStream::getDolby(unsigned char p1)
  * --INFO--
  * Address:	800B5DB8
  * Size:	000058
+ * setVolumeU7__9JAIStreamFUcUlUc
  */
-void JAIStream::setVolumeU7(unsigned char, unsigned long, unsigned char)
-{
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	clrlwi   r4, r4, 0x18
-	lfd      f2, lbl_80517018@sda21(r2)
-	stw      r0, 0x14(r1)
-	lis      r0, 0x4330
-	lfs      f0, lbl_80517020@sda21(r2)
-	stw      r4, 0xc(r1)
-	mr       r4, r5
-	lwz      r12, 0x10(r3)
-	mr       r5, r6
-	stw      r0, 8(r1)
-	lwz      r12, 0x1c(r12)
-	lfd      f1, 8(r1)
-	fsubs    f1, f1, f2
-	fdivs    f1, f1, f0
-	mtctr    r12
-	bctrl
-	lwz      r0, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
-}
+// void JAIStream::setVolumeU7(unsigned char p1, unsigned long p2, unsigned char p3) { setVolume(p1 / 127.0f, p2, p3); }
 
 /*
  * --INFO--
  * Address:	800B5E10
  * Size:	000040
+ * getVolumeU7__9JAIStreamFUc
  */
-u8 JAIStream::getVolumeU7(unsigned char)
-{
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	lwz      r12, 0x10(r3)
-	lwz      r12, 0x20(r12)
-	mtctr    r12
-	bctrl
-	lfs      f0, lbl_80517020@sda21(r2)
-	fmuls    f0, f0, f1
-	fctiwz   f0, f0
-	stfd     f0, 8(r1)
-	lwz      r3, 0xc(r1)
-	lwz      r0, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
-}
+u8 JAIStream::getVolumeU7(unsigned char p1) { return getVolume(p1) * 127.0f; }
 
 /*
  * --INFO--
  * Address:	800B5E50
  * Size:	000058
+ * setPanU7__9JAIStreamFUcUlUc
  */
-void JAIStream::setPanU7(unsigned char, unsigned long, unsigned char)
-{
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	clrlwi   r4, r4, 0x18
-	lfd      f2, lbl_80517018@sda21(r2)
-	stw      r0, 0x14(r1)
-	lis      r0, 0x4330
-	lfs      f0, lbl_80517020@sda21(r2)
-	stw      r4, 0xc(r1)
-	mr       r4, r5
-	lwz      r12, 0x10(r3)
-	mr       r5, r6
-	stw      r0, 8(r1)
-	lwz      r12, 0x24(r12)
-	lfd      f1, 8(r1)
-	fsubs    f1, f1, f2
-	fdivs    f1, f1, f0
-	mtctr    r12
-	bctrl
-	lwz      r0, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
-}
+void JAIStream::setPanU7(unsigned char p1, unsigned long p2, unsigned char p3) { setPan(p1 / 127.0f, p2, p3); }
 
 /*
  * --INFO--
  * Address:	800B5EA8
  * Size:	000040
+ * getPanU7__9JAIStreamFUc
  */
-u8 JAIStream::getPanU7(unsigned char)
-{
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	lwz      r12, 0x10(r3)
-	lwz      r12, 0x28(r12)
-	mtctr    r12
-	bctrl
-	lfs      f0, lbl_80517020@sda21(r2)
-	fmuls    f0, f0, f1
-	fctiwz   f0, f0
-	stfd     f0, 8(r1)
-	lwz      r3, 0xc(r1)
-	lwz      r0, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
-}
+u8 JAIStream::getPanU7(unsigned char p1) { return getPan(p1) * 127.0f; }
 
 /*
  * --INFO--
  * Address:	800B5EE8
  * Size:	000058
+ * setFxmixU7__9JAIStreamFUcUlUc
  */
-void JAIStream::setFxmixU7(unsigned char, unsigned long, unsigned char)
-{
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	clrlwi   r4, r4, 0x18
-	lfd      f2, lbl_80517018@sda21(r2)
-	stw      r0, 0x14(r1)
-	lis      r0, 0x4330
-	lfs      f0, lbl_80517020@sda21(r2)
-	stw      r4, 0xc(r1)
-	mr       r4, r5
-	lwz      r12, 0x10(r3)
-	mr       r5, r6
-	stw      r0, 8(r1)
-	lwz      r12, 0x34(r12)
-	lfd      f1, 8(r1)
-	fsubs    f1, f1, f2
-	fdivs    f1, f1, f0
-	mtctr    r12
-	bctrl
-	lwz      r0, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
-}
+void JAIStream::setFxmixU7(unsigned char p1, unsigned long p2, unsigned char p3) { setFxmix(p1 / 127.0f, p2, p3); }
 
 /*
  * --INFO--
  * Address:	800B5F40
  * Size:	000040
+ * getFxmixU7__9JAIStreamFUc
  */
-u8 JAIStream::getFxmixU7(unsigned char)
-{
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	lwz      r12, 0x10(r3)
-	lwz      r12, 0x38(r12)
-	mtctr    r12
-	bctrl
-	lfs      f0, lbl_80517020@sda21(r2)
-	fmuls    f0, f0, f1
-	fctiwz   f0, f0
-	stfd     f0, 8(r1)
-	lwz      r3, 0xc(r1)
-	lwz      r0, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
-}
+u8 JAIStream::getFxmixU7(unsigned char p1) { return getFxmix(p1) * 127.0f; }
 
 /*
  * --INFO--
  * Address:	800B5F80
  * Size:	000058
+ * setDolbyU7__9JAIStreamFUcUlUc
  */
-void JAIStream::setDolbyU7(unsigned char, unsigned long, unsigned char)
-{
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	clrlwi   r4, r4, 0x18
-	lfd      f2, lbl_80517018@sda21(r2)
-	stw      r0, 0x14(r1)
-	lis      r0, 0x4330
-	lfs      f0, lbl_80517020@sda21(r2)
-	stw      r4, 0xc(r1)
-	mr       r4, r5
-	lwz      r12, 0x10(r3)
-	mr       r5, r6
-	stw      r0, 8(r1)
-	lwz      r12, 0x3c(r12)
-	lfd      f1, 8(r1)
-	fsubs    f1, f1, f2
-	fdivs    f1, f1, f0
-	mtctr    r12
-	bctrl
-	lwz      r0, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
-}
+void JAIStream::setDolbyU7(unsigned char p1, unsigned long p2, unsigned char p3) { setDolby(p1 / 127.0f, p2, p3); }
 
 /*
  * --INFO--
  * Address:	800B5FD8
  * Size:	000040
+ * getDolbyU7__9JAIStreamFUc
  */
-u8 JAIStream::getDolbyU7(unsigned char)
-{
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	lwz      r12, 0x10(r3)
-	lwz      r12, 0x40(r12)
-	mtctr    r12
-	bctrl
-	lfs      f0, lbl_80517020@sda21(r2)
-	fmuls    f0, f0, f1
-	fctiwz   f0, f0
-	stfd     f0, 8(r1)
-	lwz      r3, 0xc(r1)
-	lwz      r0, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
-}
+u8 JAIStream::getDolbyU7(unsigned char p1) { return getDolby(p1) * 127.0f; }
 
 /*
  * --INFO--
@@ -4511,16 +3042,9 @@ void JAIStream::setPortData(unsigned char, unsigned short) { }
  * --INFO--
  * Address:	800B601C
  * Size:	00000C
+ * getPortData__9JAIStreamFUc
  */
-s16 JAIStream::getPortData(unsigned char)
-{
-	return -1;
-	/*
-	lis      r3, 0x0000FFFF@ha
-	addi     r3, r3, 0x0000FFFF@l
-	blr
-	*/
-}
+u16 JAIStream::getPortData(unsigned char) { return 0xFFFF; }
 
 /*
  * --INFO--
@@ -4534,13 +3058,7 @@ void JAISound::setTempoProportion(float, unsigned long) { }
  * Address:	800B602C
  * Size:	000008
  */
-float JAISound::getTempoProportion()
-{
-	/*
-	lfs      f1, lbl_80516FE0@sda21(r2)
-	blr
-	*/
-}
+float JAISound::getTempoProportion() { return 1.0f; }
 
 /*
  * --INFO--
@@ -4674,56 +3192,9 @@ float JAISe::getVolume(unsigned char p1) { return m_seParam._124[p1]._04; }
  * --INFO--
  * Address:	800B62F4
  * Size:	000090
+ * setPan__5JAISeFfUlUc
  */
-void JAISe::setPan(float, unsigned long, unsigned char)
-{
-	/*
-	rlwinm   r0, r5, 4, 0x14, 0x1b
-	stwu     r1, -0x10(r1)
-	add      r6, r3, r0
-	lwz      r5, 0x1f8(r6)
-	cmplwi   r5, 0
-	bne      lbl_800B6318
-	lfs      f0, 0x1f0(r6)
-	fcmpu    cr0, f0, f1
-	beq      lbl_800B637C
-
-lbl_800B6318:
-	cmplwi   r5, 0
-	beq      lbl_800B6330
-	add      r5, r3, r0
-	lfs      f0, 0x1ec(r5)
-	fcmpu    cr0, f0, f1
-	beq      lbl_800B637C
-
-lbl_800B6330:
-	add      r5, r3, r0
-	cmplwi   r4, 0
-	stfs     f1, 0x1ec(r5)
-	bne      lbl_800B6348
-	stfs     f1, 0x1f0(r5)
-	b        lbl_800B637C
-
-lbl_800B6348:
-	addi     r3, r4, 1
-	lis      r0, 0x4330
-	stw      r3, 0xc(r1)
-	lfs      f3, 0x1f0(r5)
-	stw      r0, 8(r1)
-	lfs      f2, 0x1ec(r5)
-	lfd      f1, lbl_80517018@sda21(r2)
-	lfd      f0, 8(r1)
-	fsubs    f2, f3, f2
-	fsubs    f0, f0, f1
-	fdivs    f0, f2, f0
-	stfs     f0, 0x1f4(r5)
-	stw      r3, 0x1f8(r6)
-
-lbl_800B637C:
-	addi     r1, r1, 0x10
-	blr
-	*/
-}
+void JAISe::setPan(float p1, unsigned long p2, unsigned char p3) { m_seParam._1A4[p3].set(p1, p2); }
 
 /*
  * --INFO--
@@ -4737,56 +3208,9 @@ float JAISe::getPan(unsigned char p1) { return m_seParam._1A4[p1]._04; }
  * --INFO--
  * Address:	800B6394
  * Size:	000090
+ * setPitch__5JAISeFfUlUc
  */
-void JAISe::setPitch(float, unsigned long, unsigned char)
-{
-	/*
-	rlwinm   r0, r5, 4, 0x14, 0x1b
-	stwu     r1, -0x10(r1)
-	add      r6, r3, r0
-	lwz      r5, 0x278(r6)
-	cmplwi   r5, 0
-	bne      lbl_800B63B8
-	lfs      f0, 0x270(r6)
-	fcmpu    cr0, f0, f1
-	beq      lbl_800B641C
-
-lbl_800B63B8:
-	cmplwi   r5, 0
-	beq      lbl_800B63D0
-	add      r5, r3, r0
-	lfs      f0, 0x26c(r5)
-	fcmpu    cr0, f0, f1
-	beq      lbl_800B641C
-
-lbl_800B63D0:
-	add      r5, r3, r0
-	cmplwi   r4, 0
-	stfs     f1, 0x26c(r5)
-	bne      lbl_800B63E8
-	stfs     f1, 0x270(r5)
-	b        lbl_800B641C
-
-lbl_800B63E8:
-	addi     r3, r4, 1
-	lis      r0, 0x4330
-	stw      r3, 0xc(r1)
-	lfs      f3, 0x270(r5)
-	stw      r0, 8(r1)
-	lfs      f2, 0x26c(r5)
-	lfd      f1, lbl_80517018@sda21(r2)
-	lfd      f0, 8(r1)
-	fsubs    f2, f3, f2
-	fsubs    f0, f0, f1
-	fdivs    f0, f2, f0
-	stfs     f0, 0x274(r5)
-	stw      r3, 0x278(r6)
-
-lbl_800B641C:
-	addi     r1, r1, 0x10
-	blr
-	*/
-}
+void JAISe::setPitch(float p1, unsigned long p2, unsigned char p3) { m_seParam._224[p3].set(p1, p2); }
 
 /*
  * --INFO--
@@ -4808,56 +3232,9 @@ float JAISe::getFxmix(unsigned char p1) { return m_seParam._2A4[p1]._04; }
  * --INFO--
  * Address:	800B6444
  * Size:	000090
+ * setDolby__5JAISeFfUlUc
  */
-void JAISe::setDolby(float, unsigned long, unsigned char)
-{
-	/*
-	rlwinm   r0, r5, 4, 0x14, 0x1b
-	stwu     r1, -0x10(r1)
-	add      r6, r3, r0
-	lwz      r5, 0x3f8(r6)
-	cmplwi   r5, 0
-	bne      lbl_800B6468
-	lfs      f0, 0x3f0(r6)
-	fcmpu    cr0, f0, f1
-	beq      lbl_800B64CC
-
-lbl_800B6468:
-	cmplwi   r5, 0
-	beq      lbl_800B6480
-	add      r5, r3, r0
-	lfs      f0, 0x3ec(r5)
-	fcmpu    cr0, f0, f1
-	beq      lbl_800B64CC
-
-lbl_800B6480:
-	add      r5, r3, r0
-	cmplwi   r4, 0
-	stfs     f1, 0x3ec(r5)
-	bne      lbl_800B6498
-	stfs     f1, 0x3f0(r5)
-	b        lbl_800B64CC
-
-lbl_800B6498:
-	addi     r3, r4, 1
-	lis      r0, 0x4330
-	stw      r3, 0xc(r1)
-	lfs      f3, 0x3f0(r5)
-	stw      r0, 8(r1)
-	lfs      f2, 0x3ec(r5)
-	lfd      f1, lbl_80517018@sda21(r2)
-	lfd      f0, 8(r1)
-	fsubs    f2, f3, f2
-	fsubs    f0, f0, f1
-	fdivs    f0, f2, f0
-	stfs     f0, 0x3f4(r5)
-	stw      r3, 0x3f8(r6)
-
-lbl_800B64CC:
-	addi     r1, r1, 0x10
-	blr
-	*/
-}
+void JAISe::setDolby(float p1, unsigned long p2, unsigned char p3) { m_seParam._3A4[p3].set(p1, p2); }
 
 /*
  * --INFO--
@@ -4871,64 +3248,12 @@ float JAISe::getDolby(unsigned char p1) { return m_seParam._3A4[p1]._04; }
  * --INFO--
  * Address:	800B64E4
  * Size:	0000B4
+ * setVolumeU7__5JAISeFUcUlUc
  */
-void JAISe::setVolumeU7(unsigned char, unsigned long, unsigned char)
+void JAISe::setVolumeU7(unsigned char p1, unsigned long p2, unsigned char p3)
 {
-	/*
-	stwu     r1, -0x10(r1)
-	clrlwi   r4, r4, 0x18
-	lis      r0, 0x4330
-	rlwinm   r6, r6, 4, 0x14, 0x1b
-	stw      r4, 0xc(r1)
-	add      r7, r3, r6
-	lfd      f2, lbl_80517018@sda21(r2)
-	stw      r0, 8(r1)
-	lwz      r0, 0x178(r7)
-	lfd      f1, 8(r1)
-	lfs      f0, lbl_80517020@sda21(r2)
-	cmplwi   r0, 0
-	fsubs    f1, f1, f2
-	fdivs    f1, f1, f0
-	bne      lbl_800B652C
-	lfs      f0, 0x170(r7)
-	fcmpu    cr0, f0, f1
-	beq      lbl_800B6590
-
-lbl_800B652C:
-	cmplwi   r0, 0
-	beq      lbl_800B6544
-	add      r4, r3, r6
-	lfs      f0, 0x16c(r4)
-	fcmpu    cr0, f0, f1
-	beq      lbl_800B6590
-
-lbl_800B6544:
-	add      r4, r3, r6
-	cmplwi   r5, 0
-	stfs     f1, 0x16c(r4)
-	bne      lbl_800B655C
-	stfs     f1, 0x170(r4)
-	b        lbl_800B6590
-
-lbl_800B655C:
-	addi     r3, r5, 1
-	lis      r0, 0x4330
-	stw      r3, 0xc(r1)
-	lfs      f3, 0x170(r4)
-	stw      r0, 8(r1)
-	lfs      f2, 0x16c(r4)
-	lfd      f1, lbl_80517018@sda21(r2)
-	lfd      f0, 8(r1)
-	fsubs    f2, f3, f2
-	fsubs    f0, f0, f1
-	fdivs    f0, f2, f0
-	stfs     f0, 0x174(r4)
-	stw      r3, 0x178(r7)
-
-lbl_800B6590:
-	addi     r1, r1, 0x10
-	blr
-	*/
+	float v1 = p1 / 127.0f;
+	m_seParam._124[p3].set(v1, p2);
 }
 
 /*
@@ -4943,64 +3268,12 @@ u8 JAISe::getVolumeU7(unsigned char p1) { return m_seParam._124[p1]._04 * 127.0f
  * --INFO--
  * Address:	800B65C4
  * Size:	0000B4
+ * setPanU7__5JAISeFUcUlUc
  */
-void JAISe::setPanU7(unsigned char, unsigned long, unsigned char)
+void JAISe::setPanU7(unsigned char p1, unsigned long p2, unsigned char p3)
 {
-	/*
-	stwu     r1, -0x10(r1)
-	clrlwi   r4, r4, 0x18
-	lis      r0, 0x4330
-	rlwinm   r6, r6, 4, 0x14, 0x1b
-	stw      r4, 0xc(r1)
-	add      r7, r3, r6
-	lfd      f2, lbl_80517018@sda21(r2)
-	stw      r0, 8(r1)
-	lwz      r0, 0x1f8(r7)
-	lfd      f1, 8(r1)
-	lfs      f0, lbl_80517020@sda21(r2)
-	cmplwi   r0, 0
-	fsubs    f1, f1, f2
-	fdivs    f1, f1, f0
-	bne      lbl_800B660C
-	lfs      f0, 0x1f0(r7)
-	fcmpu    cr0, f0, f1
-	beq      lbl_800B6670
-
-lbl_800B660C:
-	cmplwi   r0, 0
-	beq      lbl_800B6624
-	add      r4, r3, r6
-	lfs      f0, 0x1ec(r4)
-	fcmpu    cr0, f0, f1
-	beq      lbl_800B6670
-
-lbl_800B6624:
-	add      r4, r3, r6
-	cmplwi   r5, 0
-	stfs     f1, 0x1ec(r4)
-	bne      lbl_800B663C
-	stfs     f1, 0x1f0(r4)
-	b        lbl_800B6670
-
-lbl_800B663C:
-	addi     r3, r5, 1
-	lis      r0, 0x4330
-	stw      r3, 0xc(r1)
-	lfs      f3, 0x1f0(r4)
-	stw      r0, 8(r1)
-	lfs      f2, 0x1ec(r4)
-	lfd      f1, lbl_80517018@sda21(r2)
-	lfd      f0, 8(r1)
-	fsubs    f2, f3, f2
-	fsubs    f0, f0, f1
-	fdivs    f0, f2, f0
-	stfs     f0, 0x1f4(r4)
-	stw      r3, 0x1f8(r7)
-
-lbl_800B6670:
-	addi     r1, r1, 0x10
-	blr
-	*/
+	float v1 = p1 / 127.0f;
+	m_seParam._1A4[p3].set(v1, p2);
 }
 
 /*
@@ -5015,64 +3288,12 @@ u8 JAISe::getPanU7(unsigned char p1) { return m_seParam._1A4[p1]._04 * 127.0f; }
  * --INFO--
  * Address:	800B66A4
  * Size:	0000B4
+ * setFxmixU7__5JAISeFUcUlUc
  */
-void JAISe::setFxmixU7(unsigned char, unsigned long, unsigned char)
+void JAISe::setFxmixU7(unsigned char p1, unsigned long p2, unsigned char p3)
 {
-	/*
-	stwu     r1, -0x10(r1)
-	clrlwi   r4, r4, 0x18
-	lis      r0, 0x4330
-	rlwinm   r6, r6, 4, 0x14, 0x1b
-	stw      r4, 0xc(r1)
-	add      r7, r3, r6
-	lfd      f2, lbl_80517018@sda21(r2)
-	stw      r0, 8(r1)
-	lwz      r0, 0x2f8(r7)
-	lfd      f1, 8(r1)
-	lfs      f0, lbl_80517020@sda21(r2)
-	cmplwi   r0, 0
-	fsubs    f1, f1, f2
-	fdivs    f1, f1, f0
-	bne      lbl_800B66EC
-	lfs      f0, 0x2f0(r7)
-	fcmpu    cr0, f0, f1
-	beq      lbl_800B6750
-
-lbl_800B66EC:
-	cmplwi   r0, 0
-	beq      lbl_800B6704
-	add      r4, r3, r6
-	lfs      f0, 0x2ec(r4)
-	fcmpu    cr0, f0, f1
-	beq      lbl_800B6750
-
-lbl_800B6704:
-	add      r4, r3, r6
-	cmplwi   r5, 0
-	stfs     f1, 0x2ec(r4)
-	bne      lbl_800B671C
-	stfs     f1, 0x2f0(r4)
-	b        lbl_800B6750
-
-lbl_800B671C:
-	addi     r3, r5, 1
-	lis      r0, 0x4330
-	stw      r3, 0xc(r1)
-	lfs      f3, 0x2f0(r4)
-	stw      r0, 8(r1)
-	lfs      f2, 0x2ec(r4)
-	lfd      f1, lbl_80517018@sda21(r2)
-	lfd      f0, 8(r1)
-	fsubs    f2, f3, f2
-	fsubs    f0, f0, f1
-	fdivs    f0, f2, f0
-	stfs     f0, 0x2f4(r4)
-	stw      r3, 0x2f8(r7)
-
-lbl_800B6750:
-	addi     r1, r1, 0x10
-	blr
-	*/
+	float v1 = p1 / 127.0f;
+	m_seParam._2A4[p3].set(v1, p2);
 }
 
 /*
@@ -5087,64 +3308,12 @@ u8 JAISe::getFxmixU7(unsigned char p1) { return m_seParam._2A4[p1]._04 * 127.0f;
  * --INFO--
  * Address:	800B6784
  * Size:	0000B4
+ * setDolbyU7__5JAISeFUcUlUc
  */
-void JAISe::setDolbyU7(unsigned char, unsigned long, unsigned char)
+void JAISe::setDolbyU7(unsigned char p1, unsigned long p2, unsigned char p3)
 {
-	/*
-	stwu     r1, -0x10(r1)
-	clrlwi   r4, r4, 0x18
-	lis      r0, 0x4330
-	rlwinm   r6, r6, 4, 0x14, 0x1b
-	stw      r4, 0xc(r1)
-	add      r7, r3, r6
-	lfd      f2, lbl_80517018@sda21(r2)
-	stw      r0, 8(r1)
-	lwz      r0, 0x3f8(r7)
-	lfd      f1, 8(r1)
-	lfs      f0, lbl_80517020@sda21(r2)
-	cmplwi   r0, 0
-	fsubs    f1, f1, f2
-	fdivs    f1, f1, f0
-	bne      lbl_800B67CC
-	lfs      f0, 0x3f0(r7)
-	fcmpu    cr0, f0, f1
-	beq      lbl_800B6830
-
-lbl_800B67CC:
-	cmplwi   r0, 0
-	beq      lbl_800B67E4
-	add      r4, r3, r6
-	lfs      f0, 0x3ec(r4)
-	fcmpu    cr0, f0, f1
-	beq      lbl_800B6830
-
-lbl_800B67E4:
-	add      r4, r3, r6
-	cmplwi   r5, 0
-	stfs     f1, 0x3ec(r4)
-	bne      lbl_800B67FC
-	stfs     f1, 0x3f0(r4)
-	b        lbl_800B6830
-
-lbl_800B67FC:
-	addi     r3, r5, 1
-	lis      r0, 0x4330
-	stw      r3, 0xc(r1)
-	lfs      f3, 0x3f0(r4)
-	stw      r0, 8(r1)
-	lfs      f2, 0x3ec(r4)
-	lfd      f1, lbl_80517018@sda21(r2)
-	lfd      f0, 8(r1)
-	fsubs    f2, f3, f2
-	fsubs    f0, f0, f1
-	fdivs    f0, f2, f0
-	stfs     f0, 0x3f4(r4)
-	stw      r3, 0x3f8(r7)
-
-lbl_800B6830:
-	addi     r1, r1, 0x10
-	blr
-	*/
+	float v1 = p1 / 127.0f;
+	m_seParam._3A4[p3].set(v1, p2);
 }
 
 /*
@@ -5153,28 +3322,13 @@ lbl_800B6830:
  * Size:	00002C
  * getDolbyU7__5JAISeFUc
  */
-u8 JAISe::getDolbyU7(unsigned char p1)
-{
-	return m_seParam._2A4[p1]._04 * 127.0f;
-	/*
-	rlwinm   r0, r4, 4, 0x14, 0x1b
-	stwu     r1, -0x10(r1)
-	add      r3, r3, r0
-	lfs      f1, lbl_80517020@sda21(r2)
-	lfs      f0, 0x3f0(r3)
-	fmuls    f0, f1, f0
-	fctiwz   f0, f0
-	stfd     f0, 8(r1)
-	lwz      r3, 0xc(r1)
-	addi     r1, r1, 0x10
-	blr
-	*/
-}
+u8 JAISe::getDolbyU7(unsigned char p1) { return m_seParam._3A4[p1]._04 * 127.0f; }
 
 /*
  * --INFO--
  * Address:	800B6864
  * Size:	000130
+ * setPortData__5JAISeFUcUs
  */
 void JAISe::setPortData(unsigned char, unsigned short)
 {
@@ -5276,8 +3430,24 @@ lbl_800B6974:
  * Size:	0000AC
  * getPortData__5JAISeFUc
  */
-s16 JAISe::getPortData(unsigned char p1)
+u16 JAISe::getPortData(unsigned char p1)
 {
+	if ((m_soundID & JAISoundID_TypeMask) == JAISoundID_Type_Se) {
+		u8 v1            = _14;
+		static u16 _port = -1;
+		if (JAInter::SeMgr::seHandle->_15 >= 4) {
+			u32 v2;
+			if ((JAInter::SeMgr::seHandle->m_soundID & 0x800) != 0) {
+				v2 = (v1 >> 4) + 0x20000000 + (v1 & 0xF) * 0x10 + p1 * 0x10000;
+			} else {
+				v2 = (v1 & 0xF) + 0x10000000 + p1 * 0x10000;
+			}
+			JAInter::SeMgr::seHandle->m_seqParameter.m_track.readPortApp(v2, &_port);
+		}
+		return _port;
+	} else {
+		return 0;
+	}
 	/*
 	stwu     r1, -0x10(r1)
 	mflr     r0
@@ -5341,60 +3511,35 @@ lbl_800B6A30:
  * --INFO--
  * Address:	800B6A40
  * Size:	000030
+ * getPan__11JAISequenceFUc
  */
-float JAISequence::getPan(unsigned char)
+float JAISequence::getPan(unsigned char p1)
 {
-	/*
-	lbz      r0, 0x15(r3)
-	cmplwi   r0, 4
-	beq      lbl_800B6A54
-	cmplwi   r0, 5
-	bne      lbl_800B6A68
-
-lbl_800B6A54:
-	lwz      r3, 0x298(r3)
-	rlwinm   r0, r4, 4, 0x14, 0x1b
-	add      r3, r3, r0
-	lfs      f1, 4(r3)
-	blr
-
-lbl_800B6A68:
-	lfs      f1, lbl_80517034@sda21(r2)
-	blr
-	*/
+	if (_15 == 4 || _15 == 5) {
+		return m_seqParameter._250[p1]._04;
+	}
+	return -1.0f;
 }
 
 /*
  * --INFO--
  * Address:	800B6A70
  * Size:	000030
+ * getPitch__11JAISequenceFUc
  */
-float JAISequence::getPitch(unsigned char)
+float JAISequence::getPitch(unsigned char p1)
 {
-	/*
-	lbz      r0, 0x15(r3)
-	cmplwi   r0, 4
-	beq      lbl_800B6A84
-	cmplwi   r0, 5
-	bne      lbl_800B6A98
-
-lbl_800B6A84:
-	lwz      r3, 0x29c(r3)
-	rlwinm   r0, r4, 4, 0x14, 0x1b
-	add      r3, r3, r0
-	lfs      f1, 4(r3)
-	blr
-
-lbl_800B6A98:
-	lfs      f1, lbl_80517034@sda21(r2)
-	blr
-	*/
+	if (_15 == 4 || _15 == 5) {
+		return m_seqParameter._254[p1]._04;
+	}
+	return -1.0f;
 }
 
 /*
  * --INFO--
  * Address:	800B6AA0
  * Size:	0000E4
+ * setFxmix__11JAISequenceFfUlUc
  */
 void JAISequence::setFxmix(float, unsigned long, unsigned char)
 {
@@ -5475,33 +3620,21 @@ lbl_800B6B7C:
  * --INFO--
  * Address:	800B6B84
  * Size:	000030
+ * getFxmix__11JAISequenceFUc
  */
-float JAISequence::getFxmix(unsigned char)
+float JAISequence::getFxmix(unsigned char p1)
 {
-	/*
-	lbz      r0, 0x15(r3)
-	cmplwi   r0, 4
-	beq      lbl_800B6B98
-	cmplwi   r0, 5
-	bne      lbl_800B6BAC
-
-lbl_800B6B98:
-	lwz      r3, 0x2a0(r3)
-	rlwinm   r0, r4, 4, 0x14, 0x1b
-	add      r3, r3, r0
-	lfs      f1, 4(r3)
-	blr
-
-lbl_800B6BAC:
-	lfs      f1, lbl_80517034@sda21(r2)
-	blr
-	*/
+	if (_15 == 4 || _15 == 5) {
+		return m_seqParameter._258[p1]._04;
+	}
+	return -1.0f;
 }
 
 /*
  * --INFO--
  * Address:	800B6BB4
  * Size:	000110
+ * setDolby__11JAISequenceFfUlUc
  */
 void JAISequence::setDolby(float, unsigned long, unsigned char)
 {
@@ -5595,33 +3728,21 @@ lbl_800B6CBC:
  * --INFO--
  * Address:	800B6CC4
  * Size:	000030
+ * getDolby__11JAISequenceFUc
  */
-float JAISequence::getDolby(unsigned char)
+float JAISequence::getDolby(unsigned char p1)
 {
-	/*
-	lbz      r0, 0x15(r3)
-	cmplwi   r0, 4
-	beq      lbl_800B6CD8
-	cmplwi   r0, 5
-	bne      lbl_800B6CEC
-
-lbl_800B6CD8:
-	lwz      r3, 0x2a4(r3)
-	rlwinm   r0, r4, 4, 0x14, 0x1b
-	add      r3, r3, r0
-	lfs      f1, 4(r3)
-	blr
-
-lbl_800B6CEC:
-	lfs      f1, lbl_80517034@sda21(r2)
-	blr
-	*/
+	if (_15 == 4 || _15 == 5) {
+		return m_seqParameter._25C[p1]._04;
+	}
+	return -1.0f;
 }
 
 /*
  * --INFO--
  * Address:	800B6CF4
  * Size:	000098
+ * setTempoProportion__11JAISequenceFfUl
  */
 void JAISequence::setTempoProportion(float, unsigned long)
 {
@@ -5681,65 +3802,29 @@ lbl_800B6D84:
  * --INFO--
  * Address:	800B6D8C
  * Size:	000024
+ * getTempoProportion__11JAISequenceFv
  */
 float JAISequence::getTempoProportion()
 {
-	/*
-	lbz      r0, 0x15(r3)
-	cmplwi   r0, 4
-	beq      lbl_800B6DA0
-	cmplwi   r0, 5
-	bne      lbl_800B6DA8
-
-lbl_800B6DA0:
-	lfs      f1, 0x4c(r3)
-	blr
-
-lbl_800B6DA8:
-	lfs      f1, lbl_80517034@sda21(r2)
-	blr
-	*/
+	if (_15 == 4 || _15 == 5) {
+		return m_seqParameter._04;
+	}
+	return -1.0f;
 }
 
 /*
  * --INFO--
  * Address:	800B6DB0
  * Size:	000048
+ * getVolumeU7__11JAISequenceFUc
  */
-u8 JAISequence::getVolumeU7(unsigned char)
-{
-	/*
-	stwu     r1, -0x10(r1)
-	lbz      r0, 0x15(r3)
-	cmplwi   r0, 4
-	beq      lbl_800B6DC8
-	cmplwi   r0, 5
-	bne      lbl_800B6DD8
-
-lbl_800B6DC8:
-	rlwinm   r0, r4, 4, 0x14, 0x1b
-	add      r3, r3, r0
-	lfs      f1, 0x15c(r3)
-	b        lbl_800B6DDC
-
-lbl_800B6DD8:
-	lfs      f1, lbl_80517034@sda21(r2)
-
-lbl_800B6DDC:
-	lfs      f0, lbl_80517020@sda21(r2)
-	fmuls    f0, f0, f1
-	fctiwz   f0, f0
-	stfd     f0, 8(r1)
-	lwz      r3, 0xc(r1)
-	addi     r1, r1, 0x10
-	blr
-	*/
-}
+u8 JAISequence::getVolumeU7(unsigned char p1) { return JAISequence::getVolume(p1) * 127.0f; }
 
 /*
  * --INFO--
  * Address:	800B6DF8
  * Size:	000148
+ * setPanU7__11JAISequenceFUcUlUc
  */
 void JAISequence::setPanU7(unsigned char, unsigned long, unsigned char)
 {
@@ -5845,42 +3930,15 @@ lbl_800B6F38:
  * --INFO--
  * Address:	800B6F40
  * Size:	00004C
+ * getPanU7__11JAISequenceFUc
  */
-u8 JAISequence::getPanU7(unsigned char)
-{
-	/*
-	stwu     r1, -0x10(r1)
-	lbz      r0, 0x15(r3)
-	cmplwi   r0, 4
-	beq      lbl_800B6F58
-	cmplwi   r0, 5
-	bne      lbl_800B6F6C
-
-lbl_800B6F58:
-	lwz      r3, 0x298(r3)
-	rlwinm   r0, r4, 4, 0x14, 0x1b
-	add      r3, r3, r0
-	lfs      f1, 4(r3)
-	b        lbl_800B6F70
-
-lbl_800B6F6C:
-	lfs      f1, lbl_80517034@sda21(r2)
-
-lbl_800B6F70:
-	lfs      f0, lbl_80517020@sda21(r2)
-	fmuls    f0, f0, f1
-	fctiwz   f0, f0
-	stfd     f0, 8(r1)
-	lwz      r3, 0xc(r1)
-	addi     r1, r1, 0x10
-	blr
-	*/
-}
+u8 JAISequence::getPanU7(unsigned char p1) { return JAISequence::getPan(p1) * 127.0f; }
 
 /*
  * --INFO--
  * Address:	800B6F8C
  * Size:	000148
+ * setFxmixU7__11JAISequenceFUcUlUc
  */
 void JAISequence::setFxmixU7(unsigned char, unsigned long, unsigned char)
 {
@@ -5986,42 +4044,15 @@ lbl_800B70CC:
  * --INFO--
  * Address:	800B70D4
  * Size:	00004C
+ * getFxmixU7__11JAISequenceFUc
  */
-u8 JAISequence::getFxmixU7(unsigned char)
-{
-	/*
-	stwu     r1, -0x10(r1)
-	lbz      r0, 0x15(r3)
-	cmplwi   r0, 4
-	beq      lbl_800B70EC
-	cmplwi   r0, 5
-	bne      lbl_800B7100
-
-lbl_800B70EC:
-	lwz      r3, 0x2a0(r3)
-	rlwinm   r0, r4, 4, 0x14, 0x1b
-	add      r3, r3, r0
-	lfs      f1, 4(r3)
-	b        lbl_800B7104
-
-lbl_800B7100:
-	lfs      f1, lbl_80517034@sda21(r2)
-
-lbl_800B7104:
-	lfs      f0, lbl_80517020@sda21(r2)
-	fmuls    f0, f0, f1
-	fctiwz   f0, f0
-	stfd     f0, 8(r1)
-	lwz      r3, 0xc(r1)
-	addi     r1, r1, 0x10
-	blr
-	*/
-}
+u8 JAISequence::getFxmixU7(unsigned char p1) { return JAISequence::getFxmix(p1) * 127.0f; }
 
 /*
  * --INFO--
  * Address:	800B7120
  * Size:	000134
+ * setDolbyU7__11JAISequenceFUcUlUc
  */
 void JAISequence::setDolbyU7(unsigned char, unsigned long, unsigned char)
 {
@@ -6124,42 +4155,15 @@ lbl_800B724C:
  * --INFO--
  * Address:	800B7254
  * Size:	00004C
+ * getDolbyU7__11JAISequenceFUc
  */
-u8 JAISequence::getDolbyU7(unsigned char)
-{
-	/*
-	stwu     r1, -0x10(r1)
-	lbz      r0, 0x15(r3)
-	cmplwi   r0, 4
-	beq      lbl_800B726C
-	cmplwi   r0, 5
-	bne      lbl_800B7280
-
-lbl_800B726C:
-	lwz      r3, 0x2a4(r3)
-	rlwinm   r0, r4, 4, 0x14, 0x1b
-	add      r3, r3, r0
-	lfs      f1, 4(r3)
-	b        lbl_800B7284
-
-lbl_800B7280:
-	lfs      f1, lbl_80517034@sda21(r2)
-
-lbl_800B7284:
-	lfs      f0, lbl_80517020@sda21(r2)
-	fmuls    f0, f0, f1
-	fctiwz   f0, f0
-	stfd     f0, 8(r1)
-	lwz      r3, 0xc(r1)
-	addi     r1, r1, 0x10
-	blr
-	*/
-}
+u8 JAISequence::getDolbyU7(unsigned char p1) { return JAISequence::getDolby(p1) * 127.0f; }
 
 /*
  * --INFO--
  * Address:	800B72A0
  * Size:	00017C
+ * setPortData__11JAISequenceFUcUs
  */
 void JAISequence::setPortData(unsigned char, unsigned short)
 {
@@ -6280,23 +4284,9 @@ lbl_800B7408:
  * Size:	000030
  * getPortData__11JAISequenceFUc
  */
-s16 JAISequence::getPortData(unsigned char p1)
+u16 JAISequence::getPortData(unsigned char p1)
 {
 	static u16 _port;
 	m_seqParameter.m_track.readPortApp(p1 << 0x10, &_port);
 	return _port;
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	addi     r3, r3, 0x30c
-	addi     r5, r13, _port$2234@sda21
-	stw      r0, 0x14(r1)
-	rlwinm   r4, r4, 0x10, 8, 0xf
-	bl       readPortApp__8JASTrackFUlPUs
-	lwz      r0, 0x14(r1)
-	lhz      r3, _port$2234@sda21(r13)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
 }

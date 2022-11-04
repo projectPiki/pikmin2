@@ -893,7 +893,7 @@ void JAIGlobalParameter::getParamInterfaceHeapSize()
  * Address:	800ADA70
  * Size:	000024
  */
-void JAIGlobalParameter::getParamSeCategoryMax()
+u8 JAIGlobalParameter::getParamSeCategoryMax()
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -913,7 +913,7 @@ void JAIGlobalParameter::getParamSeCategoryMax()
  * Address:	800ADA94
  * Size:	000008
  */
-void JAIGlobalParameter::getParamSoundSceneMax()
+u32 JAIGlobalParameter::getParamSoundSceneMax()
 {
 	/*
 	lwz      r3, soundSceneMax__18JAIGlobalParameter@sda21(r13)
@@ -926,7 +926,7 @@ void JAIGlobalParameter::getParamSoundSceneMax()
  * Address:	800ADA9C
  * Size:	000008
  */
-void JAIGlobalParameter::getParamSeRegistMax()
+int JAIGlobalParameter::getParamSeRegistMax()
 {
 	/*
 	lwz      r3, seRegistMax__18JAIGlobalParameter@sda21(r13)
@@ -998,7 +998,7 @@ void JAIGlobalParameter::getParamStreamParameterBufferMax()
  * Address:	800ADABC
  * Size:	000008
  */
-void JAIGlobalParameter::getParamAutoHeapMax()
+int JAIGlobalParameter::getParamAutoHeapMax()
 {
 	/*
 	lwz      r3, autoHeapMax__18JAIGlobalParameter@sda21(r13)
@@ -1011,7 +1011,7 @@ void JAIGlobalParameter::getParamAutoHeapMax()
  * Address:	800ADAC4
  * Size:	000008
  */
-void JAIGlobalParameter::getParamStayHeapMax()
+int JAIGlobalParameter::getParamStayHeapMax()
 {
 	/*
 	lwz      r3, stayHeapMax__18JAIGlobalParameter@sda21(r13)
@@ -1024,7 +1024,7 @@ void JAIGlobalParameter::getParamStayHeapMax()
  * Address:	800ADACC
  * Size:	000008
  */
-void JAIGlobalParameter::getParamSeqPlayTrackMax()
+uint JAIGlobalParameter::getParamSeqPlayTrackMax()
 {
 	/*
 	lwz      r3, seqPlayTrackMax__18JAIGlobalParameter@sda21(r13)
@@ -1057,7 +1057,7 @@ void JAIGlobalParameter::getParamOutputGainUp()
  * Address:	800ADAD4
  * Size:	000008
  */
-void JAIGlobalParameter::getParamDistanceMax()
+float JAIGlobalParameter::getParamDistanceMax()
 {
 	/*
 	lfs      f1, distanceMax__18JAIGlobalParameter@sda21(r13)

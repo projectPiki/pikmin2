@@ -32,9 +32,9 @@ struct J2DMaterial {
 	J2DMaterial();
 	J2DMaterial(u32);
 
+	virtual ~J2DMaterial(); // _00
+
 	void animation();
-	static J2DTevBlock* createTevBlock(int, bool);
-	static J2DIndBlock* createIndBlock(int, bool);
 	void makeAnmPointer();
 	void setAnimation(J2DAnmColor*);
 	void setAnimation(J2DAnmTevRegKey*);
@@ -42,7 +42,8 @@ struct J2DMaterial {
 	void setAnimation(J2DAnmTexPattern*);
 	void setGX();
 
-	virtual ~J2DMaterial(); // _00
+	static J2DTevBlock* createTevBlock(int, bool);
+	static J2DIndBlock* createIndBlock(int, bool);
 
 	// _00 VTBL
 	struct J2DPane* m_pane;       // _04

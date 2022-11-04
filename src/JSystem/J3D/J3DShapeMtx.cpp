@@ -1,4 +1,11 @@
+#include "Dolphin/gx.h"
+#include "Dolphin/mtx.h"
+#include "JSystem/J3D/J3DGD.h"
+#include "JSystem/J3D/J3DModel.h"
+#include "JSystem/J3D/J3DPacket.h"
 #include "JSystem/J3D/J3DShape.h"
+#include "JSystem/J3D/J3DSys.h"
+#include "JSystem/J3D/J3DTexMtx.h"
 #include "types.h"
 
 /*
@@ -268,6 +275,9 @@
  */
 void J3DShapeMtx::resetMtxLoadCache()
 {
+	for (int i = 0; i < 10; i++) {
+		sMtxLoadCache[i] = 0xFFFF;
+	}
 	/*
 	lis      r4, 0x0000FFFF@ha
 	lis      r3, sMtxLoadCache__11J3DShapeMtx@ha
@@ -292,8 +302,14 @@ void J3DShapeMtx::resetMtxLoadCache()
  * Address:	80086140
  * Size:	000044
  */
-void J3DShapeMtx::loadMtxIndx_PNGP(int, unsigned short) const
+void J3DShapeMtx::loadMtxIndx_PNGP(int p1, unsigned short p2) const
 {
+	GXWGFifo.u8  = 0x20;
+	GXWGFifo.u16 = p2;
+	GXWGFifo.u16 = p1 * 0xC | 0xB000;
+	GXWGFifo.u8  = 0x28;
+	GXWGFifo.u16 = p2;
+	GXWGFifo.u16 = p1 * 0x9 + 0x400 | 0x8000;
 	/*
 	mulli    r3, r4, 0xc
 	li       r0, 0x20
@@ -320,34 +336,10 @@ void J3DShapeMtx::loadMtxIndx_PNGP(int, unsigned short) const
  * Address:	80086184
  * Size:	000060
  */
-void J3DShapeMtx::loadMtxIndx_PCPU(int, unsigned short) const
+void J3DShapeMtx::loadMtxIndx_PCPU(int p1, unsigned short p2) const
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	lis      r3, j3dSys@ha
-	stw      r0, 0x14(r1)
-	addi     r3, r3, j3dSys@l
-	stw      r31, 0xc(r1)
-	mr       r31, r5
-	stw      r30, 8(r1)
-	mr       r30, r4
-	mulli    r4, r30, 3
-	lwz      r3, 0x40(r3)
-	lwz      r3, 0x30(r3)
-	bl       J3DFifoLoadPosMtxImm__FPA4_fUl
-	lis      r3, j3dSys@ha
-	mr       r4, r30
-	addi     r3, r3, j3dSys@l
-	mr       r5, r31
-	bl       loadNrmMtxIndx__6J3DSysCFiUs
-	lwz      r0, 0x14(r1)
-	lwz      r31, 0xc(r1)
-	lwz      r30, 8(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	J3DFifoLoadPosMtxImm(*j3dSys.m_shapePacket->_30, p1 * 3);
+	j3dSys.loadNrmMtxIndx(p1, p2);
 }
 
 /*
@@ -355,29 +347,10 @@ void J3DShapeMtx::loadMtxIndx_PCPU(int, unsigned short) const
  * Address:	800861E4
  * Size:	00004C
  */
-void J3DShapeMtx::loadMtxIndx_NCPU(int, unsigned short) const
+void J3DShapeMtx::loadMtxIndx_NCPU(int p1, unsigned short p2) const
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	lis      r3, j3dSys@ha
-	stw      r0, 0x14(r1)
-	addi     r3, r3, j3dSys@l
-	stw      r31, 0xc(r1)
-	mr       r31, r4
-	bl       loadPosMtxIndx__6J3DSysCFiUs
-	lis      r3, j3dSys@ha
-	addi     r3, r3, j3dSys@l
-	lwz      r3, 0x40(r3)
-	mulli    r4, r31, 3
-	lwz      r3, 0x30(r3)
-	bl       J3DFifoLoadNrmMtxImm__FPA4_fUl
-	lwz      r0, 0x14(r1)
-	lwz      r31, 0xc(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	j3dSys.loadPosMtxIndx(p1, p2);
+	J3DFifoLoadNrmMtxImm(*j3dSys.m_shapePacket->_30, p1 * 3);
 }
 
 /*
@@ -385,32 +358,10 @@ void J3DShapeMtx::loadMtxIndx_NCPU(int, unsigned short) const
  * Address:	80086230
  * Size:	000058
  */
-void J3DShapeMtx::loadMtxIndx_PNCPU(int, unsigned short) const
+void J3DShapeMtx::loadMtxIndx_PNCPU(int p1, unsigned short p2) const
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	lis      r3, j3dSys@ha
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	addi     r31, r3, j3dSys@l
-	stw      r30, 8(r1)
-	mulli    r30, r4, 3
-	lwz      r3, 0x40(r31)
-	mr       r4, r30
-	lwz      r3, 0x30(r3)
-	bl       J3DFifoLoadPosMtxImm__FPA4_fUl
-	lwz      r3, 0x40(r31)
-	mr       r4, r30
-	lwz      r3, 0x30(r3)
-	bl       J3DFifoLoadNrmMtxImm__FPA4_fUl
-	lwz      r0, 0x14(r1)
-	lwz      r31, 0xc(r1)
-	lwz      r30, 8(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	J3DFifoLoadPosMtxImm(*j3dSys.m_shapePacket->_30, p1 * 3);
+	J3DFifoLoadNrmMtxImm(*j3dSys.m_shapePacket->_30, p1 * 3);
 }
 
 /*
@@ -865,8 +816,16 @@ lbl_800867FC:
  * Address:	80086810
  * Size:	0000A8
  */
-void J3DShapeMtxConcatView::loadMtxConcatView_PNGP(int, unsigned short) const
+void J3DShapeMtxConcatView::loadMtxConcatView_PNGP(int p1, unsigned short p2) const
 {
+	Mtx v1;
+	PSMTXConcat(*j3dSys.m_shapePacket->_30, j3dSys._104[p2], v1);
+	if (J3DDifferedTexMtx::sTexGenBlock != nullptr) {
+		J3DDifferedTexMtx::loadExecute(v1);
+	}
+	J3DFifoLoadPosMtxImm(v1, p1 * 3);
+	loadNrmMtx(p1, p2, v1);
+
 	/*
 	stwu     r1, -0x50(r1)
 	mflr     r0
@@ -1095,8 +1054,17 @@ lbl_80086AB0:
  * Address:	80086AC8
  * Size:	0000D4
  */
-void J3DShapeMtxConcatView::loadMtxConcatView_PNGP_LOD(int, unsigned short) const
+void J3DShapeMtxConcatView::loadMtxConcatView_PNGP_LOD(int p1, unsigned short p2) const
 {
+	Mtx v1;
+	PSMTXConcat(*j3dSys.m_shapePacket->_30, j3dSys._104[p2], v1);
+	PSMTXConcat(v1, j3dSys._38->m_modelData->m_jointTree._2C[p2], v1);
+	if (J3DDifferedTexMtx::sTexGenBlock != nullptr) {
+		J3DDifferedTexMtx::loadExecute(v1);
+	}
+	J3DFifoLoadPosMtxImm(v1, p1 * 3);
+	loadNrmMtx(p1, p2, v1);
+
 	/*
 	.loc_0x0:
 	  stwu      r1, -0x50(r1)

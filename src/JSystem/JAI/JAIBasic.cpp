@@ -500,14 +500,14 @@ void JAIBasic::processFrameWork()
 void JAIBasic::startSoundBasic(unsigned long id, JAISound** handlePtr, JAInter::Actor* actor, unsigned long p4, unsigned char p5,
                                JAInter::SoundInfo* info)
 {
-	switch (id & 0xC0000000) {
-	case 0x80000000:
+	switch (id & JAISoundID_TypeMask) {
+	case JAISoundID_Type_Sequence:
 		startSoundBasic(id, (JAISequence**)handlePtr, actor, p4, p5, info);
 		break;
-	case 0x00000000:
+	case JAISoundID_Type_Se:
 		startSoundBasic(id, (JAISe**)handlePtr, actor, p4, p5, info);
 		break;
-	case 0xC0000000:
+	case JAISoundID_Type_Stream:
 		startSoundBasic(id, (JAIStream**)handlePtr, actor, p4, p5, info);
 		break;
 	}
@@ -580,14 +580,14 @@ void JAIBasic::stopSoundHandle(JAISound* handle, unsigned long p2)
 	if (handle == nullptr) {
 		return;
 	}
-	switch (handle->m_soundID & 0xC0000000) {
-	case 0x80000000:
+	switch (handle->m_soundID & JAISoundID_TypeMask) {
+	case JAISoundID_Type_Sequence:
 		JAInter::SequenceMgr::releaseSeqBuffer((JAISequence*)handle, p2);
 		break;
-	case 0x00000000:
+	case JAISoundID_Type_Se:
 		JAInter::SeMgr::releaseSeBuffer((JAISe*)handle, p2);
 		break;
-	case 0xC0000000:
+	case JAISoundID_Type_Stream:
 		JAInter::StreamMgr::releaseStreamBuffer((JAIStream*)handle, p2);
 		break;
 	}

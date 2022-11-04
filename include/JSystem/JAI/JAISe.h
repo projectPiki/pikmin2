@@ -9,7 +9,7 @@ struct JAISe : public JAISound {
 	JAISe();
 
 	virtual void setPortData(u8, u16);      // _08 (weak)
-	virtual short getPortData(u8);          // _0C (weak)
+	virtual u16 getPortData(u8);            // _0C (weak)
 	virtual void stop(u32);                 // _14 (weak)
 	virtual void setVolume(float, u32, u8); // _1C (weak)
 	virtual float getVolume(u8);            // _20 (weak)
@@ -29,7 +29,7 @@ struct JAISe : public JAISound {
 	virtual u8 getFxmixU7(u8);              // _60 (weak)
 	virtual void setDolbyU7(u8, u32, u8);   // _64 (weak)
 	virtual u8 getDolbyU7(u8);              // _68 (weak)
-	virtual void getFadeCounter();          // _A4
+	virtual u32 getFadeCounter();           // _A4
 	virtual void setSeDistanceParameters(); // _D4
 	virtual void setSeDistanceVolume(u8);   // _D8
 	virtual void setSeDistancePan(u8);      // _DC

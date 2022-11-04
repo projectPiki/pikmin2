@@ -1,4 +1,7 @@
+#include "Dolphin/os.h"
+#include "JSystem/JAS/JASHeap.h"
 #include "JSystem/JAS/JASThread.h"
+#include "JSystem/JKR/JKRThread.h"
 #include "types.h"
 
 /*
@@ -18,34 +21,11 @@
  * Address:	800A8840
  * Size:	000060
  */
-JASTaskThread::JASTaskThread(int, int, unsigned long)
+JASTaskThread::JASTaskThread(int threadPriority, int msgCount, unsigned long stackSize)
+    : JKRThread(JASDram, stackSize, msgCount, threadPriority)
+    , _84(0)
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	mr       r7, r4
-	stw      r0, 0x14(r1)
-	mr       r0, r6
-	mr       r6, r5
-	stw      r31, 0xc(r1)
-	mr       r31, r3
-	mr       r5, r0
-	lwz      r4, JASDram@sda21(r13)
-	bl       __ct__9JKRThreadFP7JKRHeapUlii
-	lis      r3, __vt__13JASTaskThread@ha
-	li       r0, 0
-	addi     r4, r3, __vt__13JASTaskThread@l
-	addi     r3, r31, 0x7c
-	stw      r4, 0(r31)
-	stb      r0, 0x84(r31)
-	bl       OSInitThreadQueue
-	lwz      r0, 0x14(r1)
-	mr       r3, r31
-	lwz      r31, 0xc(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	OSInitThreadQueue(&_7C);
 }
 
 /*
@@ -565,7 +545,7 @@ lbl_800A8E48:
  * Address:	800A8E5C
  * Size:	000148
  */
-void JASTaskThread::run()
+void* JASTaskThread::run()
 {
 	/*
 	stwu     r1, -0x20(r1)

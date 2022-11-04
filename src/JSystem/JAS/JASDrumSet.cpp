@@ -43,12 +43,18 @@
         .4byte 0x00000000
 */
 
+// TODO: This file only has static data issues left.
+
+// __declspec(section ".data") JASOscillator::Data osc;
+// __declspec(section ".data") static JASOscillator::Data osc;
 static JASOscillator::Data osc;
+// JASOscillator::Data osc;
 
 /*
  * --INFO--
  * Address:	8009B0B8
  * Size:	0001FC
+ * TODO: I think this is done? last diff is addi v. li sbss
  */
 bool JASDrumSet::getParam(int percIndex, int p2, JASInstParam* instParam) const
 {
@@ -64,10 +70,16 @@ bool JASDrumSet::getParam(int percIndex, int p2, JASInstParam* instParam) const
 	instParam->_26    = perc->m_release;
 	// static const float osc[6] = { 0.0f, 1.0f, 0.0f, 0.0f, 1.0f, 0.0f };
 	// static JASOscillator::Data osc;
-	osc                              = { 0, 1.0f, nullptr, nullptr, 1.0f, 0.0f };
+	// osc                              = { 0, 1.0f, nullptr, nullptr, 1.0f, 0.0f };
+	osc._00                          = 0;
+	osc._04                          = 1.0f;
+	osc._08                          = nullptr;
+	osc._0C                          = nullptr;
+	osc._10                          = 1.0f;
+	osc._14                          = 0.0f;
 	static JASOscillator::Data* oscp = &osc;
-	instParam->m_oscData             = oscp;
-	instParam->_0C                   = 1;
+	instParam->m_oscData             = &oscp;
+	instParam->m_oscCount            = 1;
 	for (u32 i = 0; i < perc->m_effectCount; i++) {
 		JASInstEffect* effect = perc->m_effects[i];
 		if (effect) {
@@ -398,15 +410,11 @@ void JASDrumSet::TPerc::setRelease(u32 release)
  * Size:	000084
  * __dt__10JASDrumSetFv
  */
-// JASDrumSet::~JASDrumSet()
-// {
-// }
+// JASDrumSet::~JASDrumSet() { }
 
 /*
  * --INFO--
  * Address:	8009B4D4
  * Size:	00000C
  */
-// u32 JASDrumSet::getType() const
-// {
-// }
+// u32 JASDrumSet::getType() const { }

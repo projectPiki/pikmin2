@@ -14,14 +14,20 @@ struct JASGenericMemPool {
 
 	// unused/inlined:
 	~JASGenericMemPool();
+
+	u32 _00; // _00
+	u32 _04; // _04
+	u32 _08; // _08
 };
 
+// TODO: each of these is probably a struct
 enum JASCreationPolicy {
 	NewFromRootHeap,
 	/** @fabricated */
 	NewFromSystemHeap
 };
 
+// TODO: each of these is probably a struct
 enum JASThreadingModel {
 	SingleThreaded,
 	/** @fabricated */
@@ -34,6 +40,13 @@ struct JASMemPool : public JASGenericMemPool {
 
 template <typename T, JASCreationPolicy CreationPolicy>
 struct JASSingletonHolder {
+	static T* createInstance()
+	{
+		if (sInstance == nullptr) {
+			sInstance = new (JASDram, 0) T();
+		}
+		return sInstance;
+	}
 	/**
 	 * @fabricated
 	 */
@@ -42,7 +55,7 @@ struct JASSingletonHolder {
 		T* instance = sInstance;
 		if (!instance) {
 			int interrupts = OSDisableInterrupts();
-			sInstance      = new (JASDram, 0) T();
+			instance       = createInstance();
 			OSRestoreInterrupts(interrupts);
 			instance = sInstance;
 		}
@@ -60,9 +73,12 @@ struct JASPoolAllocObject {
 	/**
 	 * @fabricated
 	 */
-	void* operator new(size_t size) { return ::new (SingletonHolder::getInstance()->alloc(size)) T(); }
+	// void* operator new(size_t size) { return ::new (SingletonHolder::getInstance()->alloc(size)) T(); }
 
-	virtual ~JASPoolAllocObject<T, CreationPolicy, ThreadingModel>() // _08
+	// static inline T* alloc() { return ::new (SingletonHolder::getInstance()->alloc(sizeof(T))) T(); }
+	static inline void* alloc() { return (SingletonHolder::getInstance()->alloc(sizeof(T))); }
+
+	inline virtual ~JASPoolAllocObject<T, CreationPolicy, ThreadingModel>() // _08
 	{
 		SingletonHolder::getInstance()->free(this, 4);
 	}

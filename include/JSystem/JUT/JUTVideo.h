@@ -12,8 +12,7 @@
 struct JUTVideo {
 	JUTVideo(const _GXRenderModeObj*);
 
-	virtual ~JUTVideo(); // _00
-	// virtual void _04() = 0; // _04
+	virtual ~JUTVideo(); // _08
 
 	static JUTVideo* createManager(const _GXRenderModeObj*);
 	static void destroyManager();

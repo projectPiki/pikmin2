@@ -59,9 +59,7 @@ JASBasicInst::JASBasicInst()
  * Size:	000048
  * __dt__7JASInstFv
  */
-// JASInst::~JASInst()
-// {
-// }
+// JASInst::~JASInst() { }
 
 /*
  * --INFO--
@@ -91,166 +89,58 @@ void JASBasicInst::searchKeymap(int) const
  * Address:	800999A0
  * Size:	0001E8
  */
-bool JASBasicInst::getParam(int, int, JASInstParam*) const
+bool JASBasicInst::getParam(int p1, int p2, JASInstParam* param) const
 {
-	/*
-	stwu     r1, -0x30(r1)
-	mflr     r0
-	stw      r0, 0x34(r1)
-	li       r0, 0
-	stmw     r24, 0x10(r1)
-	mr       r24, r3
-	lwz      r28, 0xc(r3)
-	mr       r31, r6
-	lwz      r3, 0x14(r3)
-	mr       r25, r4
-	lfs      f1, 4(r24)
-	mr       r30, r5
-	lfs      f0, 8(r24)
-	li       r27, 0
-	lwz      r29, 0x10(r24)
-	stb      r0, 0(r6)
-	stb      r0, 0x24(r6)
-	lwz      r0, 0x18(r24)
-	stw      r3, 8(r6)
-	stw      r0, 0xc(r6)
-	stfs     f1, 0x10(r6)
-	stfs     f0, 0x14(r6)
-	b        lbl_80099AB4
-
-lbl_800999FC:
-	lwz      r26, 0(r28)
-	cmplwi   r26, 0
-	beq      lbl_80099AAC
-	mr       r3, r26
-	mr       r4, r25
-	lwz      r12, 0(r26)
-	mr       r5, r30
-	lwz      r12, 8(r12)
-	mtctr    r12
-	bctrl
-	lbz      r0, 4(r26)
-	cmpwi    r0, 2
-	beq      lbl_80099A74
-	bge      lbl_80099A44
-	cmpwi    r0, 0
-	beq      lbl_80099A54
-	bge      lbl_80099A64
-	b        lbl_80099AAC
-
-lbl_80099A44:
-	cmpwi    r0, 4
-	beq      lbl_80099AA0
-	bge      lbl_80099AAC
-	b        lbl_80099A90
-
-lbl_80099A54:
-	lfs      f0, 0x10(r31)
-	fmuls    f0, f0, f1
-	stfs     f0, 0x10(r31)
-	b        lbl_80099AAC
-
-lbl_80099A64:
-	lfs      f0, 0x14(r31)
-	fmuls    f0, f0, f1
-	stfs     f0, 0x14(r31)
-	b        lbl_80099AAC
-
-lbl_80099A74:
-	lfd      f0, lbl_80516CB0@sda21(r2)
-	lfs      f2, 0x18(r31)
-	fsub     f0, f1, f0
-	fadd     f0, f2, f0
-	frsp     f0, f0
-	stfs     f0, 0x18(r31)
-	b        lbl_80099AAC
-
-lbl_80099A90:
-	lfs      f0, 0x1c(r31)
-	fadds    f0, f0, f1
-	stfs     f0, 0x1c(r31)
-	b        lbl_80099AAC
-
-lbl_80099AA0:
-	lfs      f0, 0x20(r31)
-	fadds    f0, f0, f1
-	stfs     f0, 0x20(r31)
-
-lbl_80099AAC:
-	addi     r28, r28, 4
-	addi     r27, r27, 1
-
-lbl_80099AB4:
-	cmplw    r27, r29
-	blt      lbl_800999FC
-	lwz      r4, 0x20(r24)
-	li       r26, 0
-	lwz      r0, 0x1c(r24)
-	li       r5, 0
-	mr       r3, r4
-	mtctr    r0
-	cmplwi   r0, 0
-	ble      lbl_80099B00
-
-lbl_80099ADC:
-	lwz      r0, 0(r3)
-	cmpw     r25, r0
-	bgt      lbl_80099AF4
-	mulli    r0, r5, 0xc
-	add      r26, r4, r0
-	b        lbl_80099B00
-
-lbl_80099AF4:
-	addi     r3, r3, 0xc
-	addi     r5, r5, 1
-	bdnz     lbl_80099ADC
-
-lbl_80099B00:
-	cmplwi   r26, 0
-	bne      lbl_80099B10
-	li       r3, 0
-	b        lbl_80099B74
-
-lbl_80099B10:
-	li       r27, 0
-	b        lbl_80099B64
-
-lbl_80099B18:
-	mr       r3, r26
-	mr       r4, r27
-	bl       getVeloRegion__Q212JASBasicInst7TKeymapCFi
-	lwz      r0, 0(r3)
-	cmpw     r30, r0
-	bgt      lbl_80099B60
-	lfs      f1, 0x10(r31)
-	lfs      f0, 8(r3)
-	fmuls    f0, f1, f0
-	stfs     f0, 0x10(r31)
-	lfs      f1, 0x14(r31)
-	lfs      f0, 0xc(r3)
-	fmuls    f0, f1, f0
-	stfs     f0, 0x14(r31)
-	lwz      r0, 4(r3)
-	li       r3, 1
-	stw      r0, 4(r31)
-	b        lbl_80099B74
-
-lbl_80099B60:
-	addi     r27, r27, 1
-
-lbl_80099B64:
-	lwz      r0, 4(r26)
-	cmplw    r27, r0
-	blt      lbl_80099B18
-	li       r3, 0
-
-lbl_80099B74:
-	lmw      r24, 0x10(r1)
-	lwz      r0, 0x34(r1)
-	mtlr     r0
-	addi     r1, r1, 0x30
-	blr
-	*/
+	param->_00        = 0;
+	param->_24        = 0;
+	param->m_oscData  = m_oscData;
+	param->m_oscCount = m_oscCount;
+	param->_10        = _04;
+	param->_14        = _08;
+	for (int i = 0; i < m_effectCount; i++) {
+		JASInstEffect* effect = m_effects[i];
+		if (effect != nullptr) {
+			// This pattern exists in JASDrumSet as well...
+			float y = effect->getY(p1, p2);
+			switch (effect->m_target) {
+			case 0:
+				param->_10 *= y;
+				break;
+			case 1:
+				param->_14 *= y;
+				break;
+			case 2:
+				param->_18 += y - 0.5; // double is intentional
+				break;
+			case 3:
+				param->_1C += y;
+				break;
+			case 4:
+				param->_20 += y;
+				break;
+			}
+		}
+	}
+	const TKeymap* keymap = nullptr;
+	for (int i = 0; i < m_keymapCount; i++) {
+		if (p1 <= m_keymap[i]._00) {
+			keymap = &m_keymap[i];
+			break;
+		}
+	}
+	if (keymap == nullptr) {
+		return false;
+	}
+	for (int i = 0; i < keymap->m_veloRegionCount; i++) {
+		TVeloRegion* veloRegion = keymap->getVeloRegion(i);
+		if (p2 <= veloRegion->_00) {
+			param->_10 *= veloRegion->_08;
+			param->_14 *= veloRegion->_0C;
+			param->_04 = veloRegion->_04;
+			return true;
+		}
+	}
+	return false;
 }
 
 /*
@@ -279,9 +169,9 @@ void JASBasicInst::setKeyRegionCount(u32 count)
  */
 JASBasicInst::TKeymap::TKeymap(void)
 {
-	_00 = -1;
-	_04 = 0;
-	_08 = nullptr;
+	_00               = -1;
+	m_veloRegionCount = 0;
+	m_veloRegions     = nullptr;
 }
 
 /*
@@ -382,7 +272,7 @@ JASBasicInst::TKeymap* JASBasicInst::getKeyRegion(int index) const
  * Size:	000054
  * __dt__Q212JASBasicInst7TKeymapFv
  */
-JASBasicInst::TKeymap::~TKeymap() { delete[] _08; }
+JASBasicInst::TKeymap::~TKeymap() { delete[] m_veloRegions; }
 
 /*
  * --INFO--
@@ -391,30 +281,9 @@ JASBasicInst::TKeymap::~TKeymap() { delete[] _08; }
  */
 void JASBasicInst::TKeymap::setVeloRegionCount(u32 count)
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	mr       r31, r4
-	stw      r30, 8(r1)
-	mr       r30, r3
-	lwz      r3, 8(r3)
-	bl       __dla__FPv
-	bl       getCurrentHeap__7JASBankFv
-	mr       r4, r3
-	slwi     r3, r31, 4
-	li       r5, 0
-	bl       __nwa__FUlP7JKRHeapi
-	stw      r3, 8(r30)
-	stw      r31, 4(r30)
-	lwz      r0, 0x14(r1)
-	lwz      r31, 0xc(r1)
-	lwz      r30, 8(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	delete[] m_veloRegions;
+	m_veloRegions     = new (JASBank::getCurrentHeap(), 0) TVeloRegion[count];
+	m_veloRegionCount = count;
 }
 
 /*
@@ -423,22 +292,9 @@ void JASBasicInst::TKeymap::setVeloRegionCount(u32 count)
  * Size:	000024
  * getVeloRegion__Q212JASBasicInst7TKeymapFi
  */
-void JASBasicInst::TKeymap::getVeloRegion(int index)
+JASBasicInst::TVeloRegion* JASBasicInst::TKeymap::getVeloRegion(int index)
 {
-	// return (index >= _04) ? nullptr : _08 + index;
-	/*
-	lwz      r0, 4(r3)
-	cmplw    r4, r0
-	blt      lbl_80099E20
-	li       r3, 0
-	blr
-
-lbl_80099E20:
-	lwz      r3, 8(r3)
-	slwi     r0, r4, 4
-	add      r3, r3, r0
-	blr
-	*/
+	return (index >= m_veloRegionCount) ? nullptr : m_veloRegions + index;
 }
 
 /*
@@ -447,22 +303,9 @@ lbl_80099E20:
  * Size:	000024
  * getVeloRegion__Q212JASBasicInst7TKeymapCFi
  */
-void JASBasicInst::TKeymap::getVeloRegion(int) const
+JASBasicInst::TVeloRegion* JASBasicInst::TKeymap::getVeloRegion(int index) const
 {
-	// return (index >= _04) ? nullptr : _08 + index;
-	/*
-	lwz      r0, 4(r3)
-	cmplw    r4, r0
-	blt      lbl_80099E44
-	li       r3, 0
-	blr
-
-lbl_80099E44:
-	lwz      r3, 8(r3)
-	slwi     r0, r4, 4
-	add      r3, r3, r0
-	blr
-	*/
+	return (index >= m_veloRegionCount) ? nullptr : m_veloRegions + index;
 }
 
 /*
@@ -470,6 +313,4 @@ lbl_80099E44:
  * Address:	80099E54
  * Size:	00000C
  */
-// u32 JASBasicInst::getType() const
-// {
-// }
+// u32 JASBasicInst::getType() const { }

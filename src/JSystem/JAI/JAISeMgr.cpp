@@ -384,16 +384,16 @@ lbl_800AE40C:
  * Size:	0000F0
  * __ct__Q27JAInter11SeParameterFv
  */
-JAInter::SeParameter::SeParameter(void)
-    : _24()
-    , _124()
-    , _1A4()
-    , _224()
-    , _2A4()
-    , _324()
-    , _3A4()
-{
-}
+// JAInter::SeParameter::SeParameter(void)
+//     : _24()
+//     , _124()
+//     , _1A4()
+//     , _224()
+//     , _2A4()
+//     , _324()
+//     , _3A4()
+// {
+// }
 
 /*
  * --INFO--
@@ -432,6 +432,8 @@ JAInter::SeParameter::SeParameter(void)
  */
 void JAInter::SeMgr::startSeSequence(void)
 {
+	seHandle = nullptr;
+	SequenceMgr::storeSeqBuffer(&seHandle, nullptr, 0x80000800, 1, 4, SoundTable::getInfoPointer(0x80000800));
 	/*
 	stwu     r1, -0x10(r1)
 	mflr     r0
@@ -1490,8 +1492,8 @@ void JAInter::SeMgr::setSeqMuteFromSeStart(JAISound* p1)
 		SeqUpdateData* info = SequenceMgr::getPlayTrackInfo(i);
 		if (i != seHandle->_14 && info->m_sequence != nullptr && (info->m_sequence->getSwBit() & 8) == 0) {
 			// TODO: are these args in the right order?
-			info->m_sequence->setVolume(JAIGlobalParameter::getParamSeqMuteMoveSpeedSePlay(),
-			                            JAIGlobalParameter::getParamSeqMuteVolumeSePlay(), 9);
+			info->m_sequence->setVolume(JAIGlobalParameter::getParamSeqMuteVolumeSePlay() / 127.0f,
+			                            JAIGlobalParameter::getParamSeqMuteMoveSpeedSePlay(), 9);
 			seqMuteFlagFromSe |= 1 << p1->_14;
 		}
 	}
@@ -1985,13 +1987,7 @@ void JAInter::SeMgr::checkPlayingSeUpdateAddition(JAISe*, JAInter::SeqUpdateData
  * Address:	800AF84C
  * Size:	000008
  */
-u32 JAInter::SeMgr::changeIDToCategory(unsigned long)
-{
-	/*
-	rlwinm   r3, r3, 0x14, 0x18, 0x1f
-	blr
-	*/
-}
+u32 JAInter::SeMgr::changeIDToCategory(unsigned long id) { return id >> 0xC & 0xFF; }
 
 /*
  * --INFO--

@@ -17,6 +17,7 @@ struct _UnknownJ3DTextureParent {
  * @size{0xC}
  */
 struct J3DTexture : _UnknownJ3DTextureParent {
+	/** @fabricated */
 	inline J3DTexture(u16 p1, ResTIMG* res)
 	{
 		_00 = p1;
@@ -24,13 +25,14 @@ struct J3DTexture : _UnknownJ3DTextureParent {
 		_04 = res;
 	}
 
-	virtual ~J3DTexture(); // _00
+	virtual ~J3DTexture(); // _08 (weak)
 
+	// fabricated:
 	inline void setImageOffset(u32 format) { _04[0].m_imageDataOffset = (int)((format + _04[0].m_imageDataOffset) - (u32)&_04[0]); }
 	inline void setImageOffset2(u32 format) { _04[1].m_imageDataOffset = (int)((format + _04[1].m_imageDataOffset) - (u32)&_04[1]); }
-
 	inline void setPaletteOffset(u32 format) { _04[0].m_paletteOffset = (int)((format + _04[0].m_paletteOffset) - (u32)&_04[0]); }
 	inline void setPaletteOffset2(u32 format) { _04[1].m_paletteOffset = (int)((format + _04[1].m_paletteOffset) - (u32)&_04[1]); }
+
 	// _08 VTBL
 };
 

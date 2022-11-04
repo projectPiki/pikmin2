@@ -1,6 +1,10 @@
 #ifndef _JSYSTEM_JAS_JASBANK_H
 #define _JSYSTEM_JAS_JASBANK_H
 
+#include "Dolphin/os.h"
+#include "JSystem/JAS/JASChannel.h"
+#include "JSystem/JAS/JASOscillator.h"
+#include "JSystem/JAS/JASWave.h"
 #include "JSystem/JKR/JKRHeap.h"
 #include "types.h"
 
@@ -22,13 +26,15 @@ struct JASBank {
 
 	static JKRHeap* getCurrentHeap();
 
-	u32 _04; // _04
+	JASWaveBank* _04; // _04
 
 	// Unsure of type
 	static JKRHeap* sCurrentHeap;
 };
 
 struct JASBasicBank : public JASBank {
+	JASBasicBank();
+
 	virtual ~JASBasicBank();             // _08
 	virtual JASInst* getInst(int) const; // _0C
 	/**
@@ -37,19 +43,32 @@ struct JASBasicBank : public JASBank {
 	 */
 	virtual u32 getType() const { return 'BSIC'; } // _10 (weak)
 
-	JASBasicBank();
-	void setInstCount(unsigned long);
+	void setInstCount(u32);
 	void setInst(int, JASInst*);
 
 	JASInst** m_insts; // _08
 	u32 m_instCount;   // _0C
 };
 
-struct JASWaveBank {
-	void* getCurrentHeap();
+namespace JASBankMgr {
+void init(int tableSize);
+bool registBankBNK(int bankIndex, void* data);
+u16 getPhysicalNumber(u16 virtualNumber);
+void setVir2PhyTable(u32 virtualNumber, int physicalNumber);
+bool assignWaveBank(int, int);
+JASChannel* noteOn(int, int, u8, u8, u16, void (*)(u32, JASChannel*, JASDsp::TChannel*, void*), void*);
+JASChannel* noteOnOsc(int, u8, u8, u16, void (*)(u32, JASChannel*, JASDsp::TChannel*, void*), void*);
+void gateOn(JASChannel*, u8, u8);
 
-	// Unsure of type
-	static void* sCurrentHeap;
-};
+// unused/inlined:
+bool registBank(int bankIndex, JASBank* bank);
+JASBank* getBank(int bankIndex);
+size_t getUsedHeapSize();
+
+extern int sTableSize;
+extern JASBank** sBankArray;
+extern u16* sVir2PhyTable;
+extern const JASOscillator::Data OSC_ENV;
+} // namespace JASBankMgr
 
 #endif

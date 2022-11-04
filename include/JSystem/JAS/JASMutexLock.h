@@ -7,6 +7,11 @@
 struct JASMutexLock {
 	// unused/inlined:
 	JASMutexLock(OSMutex*);
+	~JASMutexLock();
+};
+
+struct JASCriticalSection {
+	~JASCriticalSection();
 };
 
 #endif

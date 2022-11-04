@@ -1,11 +1,11 @@
-#include "JSystem/JAS/JASBank.h"
+#include "JSystem/JAS/JASWave.h"
 
-extern void* JASDram;
-void* JASWaveBank::sCurrentHeap;
+extern JKRSolidHeap* JASDram;
+JKRHeap* JASWaveBank::sCurrentHeap;
 
 /*
  * --INFO--
  * Address:	8009C2FC
  * Size:	000014
  */
-void* JASWaveBank::getCurrentHeap() { return sCurrentHeap ? sCurrentHeap : JASDram; }
+JKRHeap* JASWaveBank::getCurrentHeap() { return sCurrentHeap ? sCurrentHeap : JASDram; }

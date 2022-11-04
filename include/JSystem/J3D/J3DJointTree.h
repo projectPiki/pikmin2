@@ -25,8 +25,6 @@ struct J3DJointTree {
 	 */
 	virtual ~J3DJointTree() {}; // _0C (weak)
 
-	// virtual void _010() = 0;                                              // _010
-
 	void findImportantMtxIndex();
 	void makeHierarchy(J3DJoint*, const J3DModelHierarchy**, J3DMaterialTable*, J3DShapeTable*);
 
