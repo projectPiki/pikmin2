@@ -250,8 +250,8 @@ struct ActBore : public Action {
 	ActOneshot* m_oneshot; // _20
 };
 
-struct ActBreakGateArg {
-	void getName(); // _08 (weak)
+struct ActBreakGateArg : public ActionArg {
+	virtual char* getName(); // _08 (weak)
 
 	// _00 = VTBL
 	Game::ItemGate* m_gate; // _04
@@ -267,15 +267,16 @@ struct ActBreakGate : public Action, virtual SysShape::MotionListener {
 	virtual void bounceCallback(Game::Piki*, Sys::Triangle*);      // _24
 	virtual void collisionCallback(Game::Piki*, Game::CollEvent&); // _28
 	virtual void platCallback(Game::Piki*, Game::PlatEvent&);      // _2C
-	virtual void onKeyEvent(const SysShape::KeyEvent&);            // _3C (weak)
+	virtual void onKeyEvent(const SysShape::KeyEvent&);            // _3C
 
 	void initFollow();
+	inline void initStickAttack();
 
 	// _00     = VTBL
 	// _00-_0C = Action
 	// _0C-_10 = MotionListener*
 	Game::ItemGate* m_gate;              // _10
-	u16 _14;                             // _14
+	u16 m_state;                         // _14
 	ActStickAttack* m_stickAttack;       // _18
 	ActGotoPos* m_gotoPos;               // _1C
 	ActFollowVectorField* m_followField; // _20
@@ -506,6 +507,9 @@ struct FollowVectorFieldActionArg : public ActionArg {
 	}
 
 	virtual char* getName(); // _08 (weak)
+	// {
+	// 	return "FollowVectorFieldActionArg";
+	// }
 
 	// _00 = VTBL
 	Game::BaseItem* m_item; // _04

@@ -67,7 +67,7 @@ static const char followFieldArgName[] = "FollowVectorFieldActionArg";
 /*
  * --INFO--
  * Address:	--------
- * Size:	000068
+ * Size:	0000E4
  * --INLINE--
  */
 void ActBreakRock::initStickAttack()

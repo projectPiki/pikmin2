@@ -317,6 +317,15 @@ struct PikiDyingState : public PikiState {
 	bool _14;      // _14, unknown
 };
 
+struct EmotionStateArg : public StateArg {
+	inline EmotionStateArg(u16 p1)
+	    : _00(p1)
+	{
+	}
+
+	u16 _00; // _00
+};
+
 struct PikiEmotionState : public PikiState {
 	inline PikiEmotionState()
 	    : PikiState(PIKISTATE_Emotion, "EMOTION")
