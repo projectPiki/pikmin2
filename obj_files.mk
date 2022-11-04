@@ -171,7 +171,7 @@ JSYSTEM:=\
 	$(BUILD_DIR)/asm/JSystem/JAS/JASWSParser.o\
 	$(BUILD_DIR)/asm/JSystem/JAS/JASBankMgr.o\
 	$(BUILD_DIR)/asm/JSystem/JAS/JASBasicBank.o\
-	$(BUILD_DIR)/asm/JSystem/JAS/JASBasicInst.o\
+	$(BUILD_DIR)/src/JSystem/JAS/JASBasicInst.o\
 	$(BUILD_DIR)/asm/JSystem/JAS/JASBasicWaveBank.o\
 	$(BUILD_DIR)/asm/JSystem/JAS/JASBNKParser.o\
 	$(BUILD_DIR)/asm/JSystem/JAS/JASDrumSet.o\
@@ -181,7 +181,7 @@ JSYSTEM:=\
 	$(BUILD_DIR)/asm/JSystem/JAS/JASSimpleWaveBank.o\
 	$(BUILD_DIR)/asm/JSystem/JAS/JASWaveArcLoader.o\
 	$(BUILD_DIR)/src/JSystem/JAS/JASWaveBank.o\
-	$(BUILD_DIR)/asm/JSystem/JAS/JASWaveBankMgr.o\
+	$(BUILD_DIR)/src/JSystem/JAS/JASWaveBankMgr.o\
 	$(BUILD_DIR)/src/JSystem/JAS/JASBank.o\
 	$(BUILD_DIR)/src/JSystem/JAS/JASTrackPort.o\
 	$(BUILD_DIR)/src/JSystem/JAS/JASOuterParam.o\

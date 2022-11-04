@@ -5,8 +5,11 @@
 #include "JSystem/JGadget/linklist.h"
 #include "JSystem/fvb/fvb-data.h"
 
+struct TFunctionValue;
+
 namespace JStudio {
 namespace fvb {
+struct TControl;
 
 void getCompositeData_raw_(const void*);
 void getCompositeData_index_(const void*);
@@ -52,7 +55,7 @@ struct TObject_composite {
 	TObject_composite();
 
 	virtual ~TObject_composite();
-	void prepare_data_(const data::TParse_TParagraph::TData&, TControl*);
+	void prepare_data_(const data::TParse_TParagraph::TData&, JStudio::fvb::TControl*);
 };
 
 struct TObject_constant {

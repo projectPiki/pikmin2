@@ -23,11 +23,14 @@ struct SoundInfo;
 namespace SequenceMgr {
 struct CustomHeapInfo {
 };
+
+typedef JAInter::SequenceMgr::CustomHeapInfo (*CustomHeapCallback)(unsigned long, unsigned short, JAISequence*);
+
 void init();
 void getArchiveName(char*);
 void setArchivePointer(JKRArchive*);
 JKRArchive* getArchivePointer();
-void setCustomHeapCallback(JAInter::SequenceMgr::CustomHeapInfo (*)(unsigned long, unsigned short, JAISequence*));
+void setCustomHeapCallback(CustomHeapCallback);
 void processGFrameSequence();
 void checkEntriedSeq();
 void checkFadeoutSeq();
@@ -58,6 +61,8 @@ void loadCustomArcSeqData(unsigned short, bool);
 
 extern JAISequence** FixSeqBufPointer;
 extern SeqUpdateData* seqTrackInfo;
+extern JKRArchive* arcPointer;
+extern CustomHeapCallback customHeapCallback;
 } // namespace SequenceMgr
 
 struct Actor {
@@ -171,7 +176,16 @@ struct PlayerParameter {
 };
 
 struct SeParameter {
-	SeParameter();
+	SeParameter()
+	    : _24()
+	    , _124()
+	    , _1A4()
+	    , _224()
+	    , _2A4()
+	    , _324()
+	    , _3A4()
+	{
+	}
 
 	u8 _00[0x20];                // _00 - unknown
 	short _20;                   // _20
@@ -217,15 +231,14 @@ struct SeqUpdateData {
 	PlayerParameter* _4C;    // _4C - pointer to array of 33 parameters
 };
 
-struct SeqParameter {
-	// might extend MoveParaSet?
+struct SeqParameter : MoveParaSet {
 	~SeqParameter();
 	void init();
 
-	float _00;                  // _00
-	float _04;                  // _04 - tempo proportion?
-	float _08;                  // _08 - affected by tempo?
-	u32 _0C;                    // _0C
+	// float _00;                  // _00
+	// float _04;                  // _04 - tempo proportion?
+	// float _08;                  // _08 - affected by tempo?
+	// u32 _0C;                    // _0C
 	MoveParaSet _10[16];        // _10
 	MoveParaSet _110[20];       // _110
 	MoveParaSet* _250;          // _250
@@ -237,17 +250,20 @@ struct SeqParameter {
 	MoveParaSet* _268;          // _268
 	MoveParaSetInitZero* _26C;  // _26C
 	MoveParaSetInitZero* _270;  // _270
-	void* _274;                 // _274 - unknown pointer
+	u16** _274;                 // _274
 	u8 _278;                    // _278 - auto heap index?
 	u8 _279;                    // _279
 	short _27A;                 // _27A
-	int _27C;                   // _27C
+	u32 _27C;                   // _27C
 	u8 _280[0x4];               // _280
 	u32 _284;                   // _284
 	u32 _288;                   // _288
 	u32 _28C;                   // _28C
-	u8 _290[0x24];              // _290
-	void* _2B4;                 // _2B4 - unknown pointer
+	u8 _290[0x14];              // _290
+	u32 _2A4;                   // _2A4
+	u8 _2A8[0x8];               // _2A8
+	u32 _2B0;                   // _2B0
+	u32* _2B4;                  // _2B4
 	u8* _2B8;                   // _2B8 - unknown pointer
 	MuteBit* _2BC;              // _2BC
 	SeqUpdateData* _2C0;        // _2C0
@@ -319,5 +335,12 @@ void* getAudioThreadPointer();
 void* getDvdThreadPointer();
 void setAudioThreadPauseFlag(bool);
 }; // namespace JAInterface
+
+#define IsJAISoundIDInUse(id)    (((id)&0x800) == 0)
+#define IsJAISoundIDFree(id)     (((id)&0x800) == 1)
+#define JAISoundID_TypeMask      0xC0000000
+#define JAISoundID_Type_Se       0x00000000
+#define JAISoundID_Type_Sequence 0x80000000
+#define JAISoundID_Type_Stream   0xC0000000
 
 #endif

@@ -143,17 +143,18 @@ JAInter::SoundInfo* JAInter::SoundTable::getInfoPointer(u32 soundID)
  * Address:	800B75DC
  * Size:	000058
  */
-u32 JAInter::SoundTable::getInfoFormat(unsigned long p1)
+u32 JAInter::SoundTable::getInfoFormat(unsigned long id)
 {
-	switch (p1 & 0xC0000000) {
+	switch (id & JAISoundID_TypeMask) {
 	case 0x00000000:
 		return mAddress[0];
 	case 0x80000000:
 		return mAddress[1];
 	case 0xC0000000:
 		return mAddress[2];
+	default:
+		return 0;
 	}
-	return 0;
 	/*
 	rlwinm   r5, r3, 0, 0, 1
 	lis      r0, 0xc000

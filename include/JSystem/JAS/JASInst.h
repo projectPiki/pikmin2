@@ -62,18 +62,33 @@ struct JASInstSense : public JASInstEffect {
  * @size = 0x28
  */
 struct JASInstParam {
-	u8 _00;                         // _00
-	u32 _04;                        // _04
-	JASOscillator::Data* m_oscData; // _08
-	int _0C;                        // _0C - possibly oscillator count?
-	float _10;                      // _10
-	float _14;                      // _14
-	float _18;                      // _18
-	float _1C;                      // _1C
-	float _20;                      // _20
-	u8 _24;                         // _24
-	u8 _25;                         // _25
-	short _26;                      // _26
+	inline JASInstParam()
+	    : _00(0)
+	    , _04(0)
+	    , m_oscData(nullptr)
+	    , m_oscCount(0)
+	    , _10(1.0f)
+	    , _14(1.0f)
+	    , _18(0.5f)
+	    , _1C(0.0f)
+	    , _20(0.0f)
+	    , _24(0)
+	    , _26(0)
+	{
+	}
+
+	u8 _00;                          // _00
+	u32 _04;                         // _04
+	JASOscillator::Data** m_oscData; // _08
+	int m_oscCount;                  // _0C - possibly oscillator count?
+	float _10;                       // _10
+	float _14;                       // _14
+	float _18;                       // _18
+	float _1C;                       // _1C
+	float _20;                       // _20
+	u8 _24;                          // _24
+	u8 _25;                          // _25
+	short _26;                       // _26
 };
 
 /**
@@ -107,12 +122,12 @@ struct JASBasicInst : public JASInst {
 		~TKeymap();
 
 		void setVeloRegionCount(u32);
-		void getVeloRegion(int);
-		void getVeloRegion(int) const;
+		TVeloRegion* getVeloRegion(int);
+		TVeloRegion* getVeloRegion(int) const;
 
-		int _00;   // _00
-		uint _04;  // _04 - velo region count?
-		void* _08; // _08 - velo region pointer?
+		int _00;                    // _00
+		u32 m_veloRegionCount;      // _04 - velo region count?
+		TVeloRegion* m_veloRegions; // _08 - velo region pointer?
 	};
 
 	JASBasicInst();

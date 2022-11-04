@@ -3,6 +3,7 @@
 #include "Dolphin/os.h"
 #include "Dolphin/stl.h"
 #include "JSystem/J3D/J3DDisplayListObj.h"
+#include "JSystem/J3D/J3DMaterial.h"
 #include "JSystem/J3D/J3DPacket.h"
 #include "JSystem/J3D/J3DShape.h"
 #include "JSystem/J3D/J3DTevBlock.h"

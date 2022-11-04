@@ -105,8 +105,28 @@ lbl_800AD51C:
  * Address:	800AD56C
  * Size:	000068
  */
-JAInter::DummyObjectMgr::DummyObject* JAInter::DummyObjectMgr::getPointer(u32)
+JAInter::DummyObjectMgr::DummyObject* JAInter::DummyObjectMgr::getPointer(u32 p1)
 {
+	DummyObject* ptr = deadObjectFreePointer;
+	if (deadObjectFreePointer != nullptr) {
+		if (deadObjectUsedPointer != nullptr) {
+			DummyObject** v1      = &deadObjectFreePointer->_04;
+			deadObjectFreePointer = deadObjectFreePointer->_04;
+			*v1                   = nullptr;
+		} else {
+			DummyObject** v1           = &deadObjectFreePointer->_04;
+			deadObjectFreePointer      = deadObjectFreePointer->_04;
+			*v1                        = nullptr;
+			deadObjectUsedPointer->_00 = ptr;
+		}
+		ptr->_00              = nullptr;
+		deadObjectUsedPointer = ptr;
+		ptr->_18              = p1;
+		ptr->m_sound          = nullptr;
+	} else {
+		ptr = nullptr;
+	}
+	return ptr;
 	/*
 	lwz      r0, deadObjectFreePointer__Q27JAInter14DummyObjectMgr@sda21(r13)
 	addi     r5, r13, deadObjectFreePointer__Q27JAInter14DummyObjectMgr@sda21

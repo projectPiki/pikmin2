@@ -1,3 +1,12 @@
+#include "JSystem/JAS/JASBank.h"
+#include "JSystem/JAS/JASCalc.h"
+#include "JSystem/JAS/JASChannel.h"
+#include "JSystem/JAS/JASDriver.h"
+#include "JSystem/JAS/JASGenericMemPool.h"
+#include "JSystem/JAS/JASHeap.h"
+#include "JSystem/JAS/JASInst.h"
+#include "JSystem/JAS/JASMutexLock.h"
+#include "JSystem/JAS/JASWave.h"
 #include "types.h"
 
 /*
@@ -62,96 +71,15 @@
  * Address:	80098F34
  * Size:	000138
  */
-void JASBankMgr::init(int)
+void JASBankMgr::init(int tableSize)
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	li       r5, 0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	mr       r31, r3
-	stw      r30, 8(r1)
-	slwi     r30, r3, 2
-	mr       r3, r30
-	lwz      r4, JASDram@sda21(r13)
-	bl       __nwa__FUlP7JKRHeapi
-	stw      r3, sBankArray__10JASBankMgr@sda21(r13)
-	slwi     r3, r31, 1
-	lwz      r4, JASDram@sda21(r13)
-	li       r5, 0
-	bl       __nwa__FUlP7JKRHeapi
-	stw      r3, sVir2PhyTable__10JASBankMgr@sda21(r13)
-	mr       r4, r30
-	lwz      r3, sBankArray__10JASBankMgr@sda21(r13)
-	bl       bzero__7JASCalcFPvUl
-	cmpwi    r31, 0
-	li       r12, 0
-	ble      lbl_80099050
-	cmpwi    r31, 8
-	addi     r4, r31, -8
-	ble      lbl_80099024
-	addi     r0, r4, 7
-	lis      r3, 0x0000FFFF@ha
-	srwi     r0, r0, 3
-	li       r11, 0
-	addi     r10, r3, 0x0000FFFF@l
-	mtctr    r0
-	cmpwi    r4, 0
-	ble      lbl_80099024
-
-lbl_80098FBC:
-	lwz      r3, sVir2PhyTable__10JASBankMgr@sda21(r13)
-	addi     r8, r11, 2
-	addi     r7, r11, 4
-	addi     r6, r11, 6
-	sthx     r10, r3, r11
-	addi     r5, r11, 8
-	addi     r4, r11, 0xa
-	addi     r3, r11, 0xc
-	lwz      r9, sVir2PhyTable__10JASBankMgr@sda21(r13)
-	addi     r0, r11, 0xe
-	addi     r11, r11, 0x10
-	addi     r12, r12, 8
-	sthx     r10, r9, r8
-	lwz      r8, sVir2PhyTable__10JASBankMgr@sda21(r13)
-	sthx     r10, r8, r7
-	lwz      r7, sVir2PhyTable__10JASBankMgr@sda21(r13)
-	sthx     r10, r7, r6
-	lwz      r6, sVir2PhyTable__10JASBankMgr@sda21(r13)
-	sthx     r10, r6, r5
-	lwz      r5, sVir2PhyTable__10JASBankMgr@sda21(r13)
-	sthx     r10, r5, r4
-	lwz      r4, sVir2PhyTable__10JASBankMgr@sda21(r13)
-	sthx     r10, r4, r3
-	lwz      r3, sVir2PhyTable__10JASBankMgr@sda21(r13)
-	sthx     r10, r3, r0
-	bdnz     lbl_80098FBC
-
-lbl_80099024:
-	lis      r3, 0x0000FFFF@ha
-	subf     r0, r12, r31
-	slwi     r5, r12, 1
-	addi     r4, r3, 0x0000FFFF@l
-	mtctr    r0
-	cmpw     r12, r31
-	bge      lbl_80099050
-
-lbl_80099040:
-	lwz      r3, sVir2PhyTable__10JASBankMgr@sda21(r13)
-	sthx     r4, r3, r5
-	addi     r5, r5, 2
-	bdnz     lbl_80099040
-
-lbl_80099050:
-	stw      r31, sTableSize__10JASBankMgr@sda21(r13)
-	lwz      r0, 0x14(r1)
-	lwz      r31, 0xc(r1)
-	lwz      r30, 8(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	sBankArray    = new (JASDram, 0) JASBank*[tableSize];
+	sVir2PhyTable = new (JASDram, 0) u16[tableSize];
+	JASCalc::bzero(sBankArray, tableSize * sizeof(JASBank*));
+	for (int i = 0; i < tableSize; i++) {
+		sVir2PhyTable[i] = 0xFFFF;
+	}
+	sTableSize = tableSize;
 }
 
 /*
@@ -159,7 +87,7 @@ lbl_80099050:
  * Address:	........
  * Size:	000014
  */
-void JASBankMgr::registBank(int, JASBank*)
+bool JASBankMgr::registBank(int bankIndex, JASBank* bank)
 {
 	// UNUSED FUNCTION
 }
@@ -169,7 +97,7 @@ void JASBankMgr::registBank(int, JASBank*)
  * Address:	8009906C
  * Size:	000068
  */
-void JASBankMgr::registBankBNK(int, void*)
+bool JASBankMgr::registBankBNK(int bankIndex, void* data)
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -210,9 +138,16 @@ lbl_800990BC:
  * Address:	........
  * Size:	000034
  */
-void JASBankMgr::getBank(int)
+JASBank* JASBankMgr::getBank(int bankIndex)
 {
 	// UNUSED FUNCTION
+	if (bankIndex < 0) {
+		return nullptr;
+	}
+	if (bankIndex >= sTableSize) {
+		return nullptr;
+	}
+	return sBankArray[bankIndex];
 }
 
 /*
@@ -220,31 +155,19 @@ void JASBankMgr::getBank(int)
  * Address:	800990D4
  * Size:	000010
  */
-void JASBankMgr::getPhysicalNumber(unsigned short)
-{
-	/*
-	lwz      r4, sVir2PhyTable__10JASBankMgr@sda21(r13)
-	rlwinm   r0, r3, 1, 0xf, 0x1e
-	lhzx     r3, r4, r0
-	blr
-	*/
-}
+u16 JASBankMgr::getPhysicalNumber(unsigned short virtualNumber) { return sVir2PhyTable[virtualNumber]; }
 
 /*
  * --INFO--
  * Address:	800990E4
  * Size:	000018
  */
-void JASBankMgr::setVir2PhyTable(unsigned long, int)
+void JASBankMgr::setVir2PhyTable(unsigned long virtualNumber, int physicalNumber)
 {
-	/*
-	cmplwi   r3, 0xffff
-	beqlr
-	lwz      r5, sVir2PhyTable__10JASBankMgr@sda21(r13)
-	slwi     r0, r3, 1
-	sthx     r4, r5, r0
-	blr
-	*/
+	if (virtualNumber == 0xFFFF) {
+		return;
+	}
+	sVir2PhyTable[virtualNumber] = physicalNumber;
 }
 
 /*
@@ -252,55 +175,18 @@ void JASBankMgr::setVir2PhyTable(unsigned long, int)
  * Address:	800990FC
  * Size:	000084
  */
-void JASBankMgr::assignWaveBank(int, int)
+bool JASBankMgr::assignWaveBank(int bankIndex, int waveBankIndex)
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	cmpwi    r3, 0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	bge      lbl_8009911C
-	li       r31, 0
-	b        lbl_8009913C
-
-lbl_8009911C:
-	lwz      r0, sTableSize__10JASBankMgr@sda21(r13)
-	cmpw     r3, r0
-	blt      lbl_80099130
-	li       r31, 0
-	b        lbl_8009913C
-
-lbl_80099130:
-	lwz      r5, sBankArray__10JASBankMgr@sda21(r13)
-	slwi     r0, r3, 2
-	lwzx     r31, r5, r0
-
-lbl_8009913C:
-	cmplwi   r31, 0
-	bne      lbl_8009914C
-	li       r3, 0
-	b        lbl_8009916C
-
-lbl_8009914C:
-	mr       r3, r4
-	bl       getWaveBank__14JASWaveBankMgrFi
-	cmplwi   r3, 0
-	bne      lbl_80099164
-	li       r3, 0
-	b        lbl_8009916C
-
-lbl_80099164:
-	stw      r3, 4(r31)
-	li       r3, 1
-
-lbl_8009916C:
-	lwz      r0, 0x14(r1)
-	lwz      r31, 0xc(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	JASBank* bank = getBank(bankIndex);
+	if (bank == nullptr) {
+		return false;
+	}
+	JASWaveBank* waveBank = JASWaveBankMgr::getWaveBank(waveBankIndex);
+	if (waveBank == nullptr) {
+		return false;
+	}
+	bank->_04 = waveBank;
+	return true;
 }
 
 /*
@@ -308,9 +194,70 @@ lbl_8009916C:
  * Address:	80099180
  * Size:	000360
  */
-void JASBankMgr::noteOn(int, int, unsigned char, unsigned char, unsigned short,
-                        void (*)(unsigned long, JASChannel*, JASDsp::TChannel*, void*), void*)
+JASChannel* JASBankMgr::noteOn(int bankIndex, int instIndex, unsigned char p3, unsigned char p4, unsigned short p5,
+                               void (*p6)(unsigned long, JASChannel*, JASDsp::TChannel*, void*), void* p7)
 {
+	if (instIndex > 0xEF) {
+		return noteOnOsc(instIndex - 0xF0, p3, p4, p5, p6, p7);
+	}
+	JASBank* bank = getBank(bankIndex);
+	if (bank == nullptr) {
+		return nullptr;
+	}
+	JASInst* inst = bank->getInst(instIndex);
+	if (inst == nullptr) {
+		return nullptr;
+	}
+	JASInstParam instParam;
+	if (inst->getParam(p3, p4, &instParam) == false) {
+		return nullptr;
+	}
+	JASWaveBank* waveBank = bank->_04;
+	if (waveBank == nullptr) {
+		return nullptr;
+	}
+	JASWaveHandle* waveHandle = waveBank->getWaveHandle(instParam._04);
+	if (waveHandle == nullptr) {
+		return nullptr;
+	}
+	const JASWaveInfo* waveInfo = waveHandle->getWaveInfo();
+	if (waveInfo == nullptr) {
+		return nullptr;
+	}
+	void* wavePtr = waveHandle->getWavePtr();
+	if (wavePtr == nullptr) {
+		return nullptr;
+	}
+	// JASMemPool<JASChannel, JASThreadingModel::SingleThreaded>* channelMemPool = JASSingletonHolder<JASMemPool<JASChannel,
+	// JASThreadingModel::SingleThreaded>, JASCreationPolicy::NewFromRootHeap>::getInstance(); channelMemPool->alloc(sizeof(JASChannel));
+	JASChannel* channel = new (JASPoolAllocObject<JASChannel, NewFromRootHeap, SingleThreaded>::alloc()) JASChannel(p6, p7);
+	if (channel == nullptr) {
+		return nullptr;
+	}
+	channel->setPanPower(1.0f, 1.0f, 1.0f);
+	channel->_BC = p5;
+	channel->_E8 = waveInfo;
+	channel->_EC = wavePtr;
+	channel->_E4 = instParam._00;
+	channel->_F0 = instParam._14 * (waveInfo->_04 / JASDriver::getDacRate());
+	channel->_F8 = channel->_F0;
+	if (instParam._24 == 0) {
+		channel->_F8 *= JASDriver::key2pitch_c5(p3 + 60 - waveInfo->_01);
+	}
+	channel->_F4 = instParam._10;
+	channel->_FC = p4 / 127.0f;
+	channel->_FC = channel->_FC * channel->_FC * channel->_F4;
+	channel->_CC = instParam._18;
+	channel->_D4 = instParam._1C;
+	channel->_DC = instParam._20;
+	for (int i = 0; i < instParam.m_oscCount; i++) {
+		channel->setOscInit(i, instParam.m_oscData[i]);
+	}
+	channel->directReleaseOsc(instParam._26);
+	if (!channel->play()) {
+		return nullptr;
+	}
+	return channel;
 	/*
 	.loc_0x0:
 	  stwu      r1, -0x60(r1)
@@ -591,9 +538,28 @@ JASCriticalSection::~JASCriticalSection()
  * Address:	800994E0
  * Size:	000174
  */
-void JASBankMgr::noteOnOsc(int, unsigned char, unsigned char, unsigned short,
-                           void (*)(unsigned long, JASChannel*, JASDsp::TChannel*, void*), void*)
+JASChannel* JASBankMgr::noteOnOsc(int p1, unsigned char p2, unsigned char p3, unsigned short p4,
+                                  void (*p5)(unsigned long, JASChannel*, JASDsp::TChannel*, void*), void* p6)
 {
+	JASChannel* channel = new (JASPoolAllocObject<JASChannel, NewFromRootHeap, SingleThreaded>::alloc()) JASChannel(p5, p6);
+	if (channel == nullptr) {
+		return nullptr;
+	}
+	channel->setPanPower(1.0f, 1.0f, 1.0f);
+	channel->_BC = p4;
+	channel->_EC = (void*)p1;
+	channel->_E4 = 2;
+	channel->_F0 = 16736.02f / JASDriver::getDacRate();
+	channel->_F8 = channel->_F0;
+	channel->_F8 *= JASDriver::key2pitch_c5(p2);
+	channel->_F4 = 1.0f;
+	channel->_FC = p3 / 127.0f;
+	channel->_FC *= channel->_FC;
+	channel->setOscInit(0, &OSC_ENV);
+	if (channel->play() != false) {
+		return channel;
+	}
+	return nullptr;
 	/*
 	.loc_0x0:
 	  stwu      r1, -0x40(r1)
@@ -711,56 +677,11 @@ void JASBankMgr::noteOnOsc(int, unsigned char, unsigned char, unsigned short,
  * Address:	80099654
  * Size:	0000A8
  */
-void JASBankMgr::gateOn(JASChannel*, unsigned char, unsigned char)
+void JASBankMgr::gateOn(JASChannel* channel, unsigned char p2, unsigned char p3)
 {
-	/*
-	stwu     r1, -0x20(r1)
-	mflr     r0
-	stw      r0, 0x24(r1)
-	stw      r31, 0x1c(r1)
-	mr       r31, r5
-	stw      r30, 0x18(r1)
-	mr       r30, r3
-	lbz      r0, 0xe4(r3)
-	cmplwi   r0, 2
-	bne      lbl_80099684
-	clrlwi   r3, r4, 0x18
-	b        lbl_80099698
-
-lbl_80099684:
-	lwz      r5, 0xe8(r30)
-	clrlwi   r3, r4, 0x18
-	addi     r0, r3, 0x3c
-	lbz      r3, 1(r5)
-	subf     r3, r3, r0
-
-lbl_80099698:
-	bl       key2pitch_c5__9JASDriverFi
-	clrlwi   r3, r31, 0x18
-	lis      r0, 0x4330
-	stw      r3, 0xc(r1)
-	lfs      f0, 0xf0(r30)
-	stw      r0, 8(r1)
-	lfd      f2, lbl_80516C98@sda21(r2)
-	fmuls    f3, f0, f1
-	lfd      f1, 8(r1)
-	lfs      f0, lbl_80516C94@sda21(r2)
-	fsubs    f1, f1, f2
-	stfs     f3, 0xf8(r30)
-	fdivs    f0, f1, f0
-	stfs     f0, 0xfc(r30)
-	lfs      f0, 0xfc(r30)
-	lfs      f1, 0xf4(r30)
-	fmuls    f0, f0, f0
-	fmuls    f0, f1, f0
-	stfs     f0, 0xfc(r30)
-	lwz      r31, 0x1c(r1)
-	lwz      r30, 0x18(r1)
-	lwz      r0, 0x24(r1)
-	mtlr     r0
-	addi     r1, r1, 0x20
-	blr
-	*/
+	channel->_F8 = channel->_F0 * JASDriver::key2pitch_c5(channel->_E4 == 2 ? p2 : p2 + 60 - channel->_E8->_01);
+	channel->_FC = p3 / 127.0f;
+	channel->_FC = channel->_FC * channel->_FC * channel->_F4;
 }
 
 /*
@@ -768,7 +689,7 @@ lbl_80099698:
  * Address:	........
  * Size:	000020
  */
-void JASBankMgr::getUsedHeapSize()
+size_t JASBankMgr::getUsedHeapSize()
 {
 	// UNUSED FUNCTION
 }

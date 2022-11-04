@@ -1,3 +1,4 @@
+#include "Dolphin/string.h"
 #include "JSystem/JAI/JAIGlobalParameter.h"
 #include "JSystem/JAI/JAISequence.h"
 #include "JSystem/JAI/JAInter.h"
@@ -614,39 +615,14 @@ lbl_800B100C:
  * Address:	800B1028
  * Size:	00006C
  */
-void JAInter::SequenceMgr::getArchiveName(char*)
+void JAInter::SequenceMgr::getArchiveName(char* path)
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	li       r0, 0
-	stw      r31, 0xc(r1)
-	mr       r31, r3
-	stb      r0, 0(r3)
-	bl       getParamAudioResPath__18JAIGlobalParameterFv
-	cmplwi   r3, 0
-	beq      lbl_800B1060
-	bl       getParamAudioResPath__18JAIGlobalParameterFv
-	mr       r4, r3
-	mr       r3, r31
-	bl       strcat
-
-lbl_800B1060:
-	bl       getParamSequenceArchivesPath__18JAIGlobalParameterFv
-	mr       r4, r3
-	mr       r3, r31
-	bl       strcat
-	bl       getParamSequenceArchivesFileName__18JAIGlobalParameterFv
-	mr       r4, r3
-	mr       r3, r31
-	bl       strcat
-	lwz      r0, 0x14(r1)
-	lwz      r31, 0xc(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	path[0] = '\0';
+	if (JAIGlobalParameter::getParamAudioResPath() != nullptr) {
+		strcat(path, JAIGlobalParameter::getParamAudioResPath());
+	}
+	strcat(path, JAIGlobalParameter::getParamSequenceArchivesPath());
+	strcat(path, JAIGlobalParameter::getParamSequenceArchivesFileName());
 }
 
 /*
@@ -654,39 +630,24 @@ lbl_800B1060:
  * Address:	800B1094
  * Size:	000008
  */
-void JAInter::SequenceMgr::setArchivePointer(JKRArchive*)
-{
-	/*
-	stw      r3, arcPointer__Q27JAInter11SequenceMgr@sda21(r13)
-	blr
-	*/
-}
+void JAInter::SequenceMgr::setArchivePointer(JKRArchive* archive) { arcPointer = archive; }
 
 /*
  * --INFO--
  * Address:	800B109C
  * Size:	000008
  */
-JKRArchive* JAInter::SequenceMgr::getArchivePointer(void)
-{
-	/*
-	lwz      r3, arcPointer__Q27JAInter11SequenceMgr@sda21(r13)
-	blr
-	*/
-}
+JKRArchive* JAInter::SequenceMgr::getArchivePointer() { return arcPointer; }
 
 /*
  * --INFO--
  * Address:	800B10A4
  * Size:	000008
  */
-void JAInter::SequenceMgr::setCustomHeapCallback(JAInter::SequenceMgr::CustomHeapInfo (*)(unsigned long, unsigned short, JAISequence*))
+void JAInter::SequenceMgr::setCustomHeapCallback(JAInter::SequenceMgr::CustomHeapInfo (*callback)(unsigned long, unsigned short,
+                                                                                                  JAISequence*))
 {
-	/*
-	.loc_0x0:
-	  stw       r3, -0x73E4(r13)
-	  blr
-	*/
+	customHeapCallback = callback;
 }
 
 /*
@@ -1057,7 +1018,7 @@ void JAInter::SequenceMgr::checkFadeoutSeq(void)
  * Address:	800B15CC
  * Size:	000020
  */
-float JAISequence::getVolume(unsigned char p1) { return getSeqInterVolume(p1); }
+// float JAISequence::getVolume(unsigned char p1) { return getSeqInterVolume(p1); }
 
 /*
  * --INFO--

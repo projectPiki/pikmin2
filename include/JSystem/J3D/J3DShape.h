@@ -33,10 +33,10 @@ struct J3DShapeInitData {
 
 struct J3DShape {
 	enum Flags { IsHidden = 0x1, Invalid = 0xFFFFFFFF };
-	virtual void draw() const;            // _00
-	virtual void drawFast() const;        // _04
-	virtual void simpleDraw() const;      // _08
-	virtual void simpleDrawCache() const; // _0C
+	virtual void draw() const;            // _08
+	virtual void drawFast() const;        // _0C
+	virtual void simpleDraw() const;      // _10
+	virtual void simpleDrawCache() const; // _14
 
 	void calcNBTScale(const Vec&, Mtx33*, Mtx33*);
 	int countBumpMtxNum() const;
@@ -82,14 +82,18 @@ struct J3DShapeMtx {
 	virtual void load() const;                                               // _18
 	virtual void calcNBTScale(const Vec&, float (*)[3][3], float (*)[3][3]); // _1C
 
-	void resetMtxLoadCache();
 	void loadMtxIndx_PNGP(int, u16) const;
 	void loadMtxIndx_PCPU(int, u16) const;
 	void loadMtxIndx_NCPU(int, u16) const;
 	void loadMtxIndx_PNCPU(int, u16) const;
 
+	static void resetMtxLoadCache();
+
 	// VTBL _00
 	u16 m_useMtxIndex; // _04
+
+	static u32 sCurrentPipeline;
+	static u16 sMtxLoadCache[10];
 };
 
 struct J3DShapeDraw {
@@ -119,7 +123,7 @@ struct J3DShapeTable {
 	 * @reifiedAddress{8008382C}
 	 * @reifiedFile{JSystem/J3D/J3DModelData.cpp}
 	 */
-	virtual ~J3DShapeTable() {}; // _00
+	virtual ~J3DShapeTable() {}; // _08 (weak)
 
 	void initShapeNodes(J3DDrawMtxData*, J3DVertexData*);
 	void sortVcdVatCmd();

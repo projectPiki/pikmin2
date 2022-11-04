@@ -80,7 +80,7 @@ struct J3DTevBlock {
 	virtual u32 getTevRegOffset() const;                               // _CC (weak)
 	virtual void setTexNoOffset(u32);                                  // _D0 (weak)
 	virtual void setTevRegOffset(u32);                                 // _D4 (weak)
-	virtual ~J3DTevBlock();                                            // _D8 (weak)
+	virtual ~J3DTevBlock() { }                                         // _D8 (weak)
 
 	void indexToPtr_private(u32);
 
@@ -88,6 +88,8 @@ struct J3DTevBlock {
 };
 
 struct J3DTevBlock1 : public J3DTevBlock {
+	inline J3DTevBlock1() { initialize(); }
+
 	virtual void reset(J3DTevBlock*);                        // _08
 	virtual void load();                                     // _0C
 	virtual void diffTexNo();                                // _14
@@ -126,14 +128,16 @@ struct J3DTevBlock1 : public J3DTevBlock {
 	u16 m_texIndices[1];           // _08
 	J3DTevOrder m_orders[1];       // _0A
 	J3DTevStage m_stages[1];       // _0E
-	J3DIndTevStage m_indStages[1]; // _16
-	u8 _1A[2];                     // _1A
+	u8 _16[2];                     // _16
+	J3DIndTevStage m_indStages[1]; // _18
 };
 
 /**
  * @size{0x6C}
  */
 struct J3DTevBlock2 : public J3DTevBlock {
+	inline J3DTevBlock2() { initialize(); }
+
 	virtual void reset(J3DTevBlock*);                                  // _08
 	virtual void load();                                               // _0C
 	virtual void diffTexNo();                                          // _14
@@ -206,6 +210,8 @@ struct J3DTevBlock2 : public J3DTevBlock {
  * @size{0x94}
  */
 struct J3DTevBlock4 : public J3DTevBlock {
+	inline J3DTevBlock4() { initialize(); }
+
 	virtual void reset(J3DTevBlock*);                                  // _08
 	virtual void load();                                               // _0C
 	virtual void diffTexNo();                                          // _14
@@ -272,13 +278,14 @@ struct J3DTevBlock4 : public J3DTevBlock {
 	u8 _7E[2];                               // _7E
 	J3DIndTevStage m_indStages[4];           // _80
 	u32 m_regOffset;                         // _90
-	u8 _94[4];                               // _94
 };
 
 /**
  * @size{0x174}
  */
 struct J3DTevBlock16 : public J3DTevBlock {
+	inline J3DTevBlock16() { initialize(); }
+
 	virtual void reset(J3DTevBlock*);                    // _08
 	virtual void load();                                 // _0C
 	virtual void diffTexNo();                            // _14
@@ -353,7 +360,6 @@ struct J3DTevBlock16 : public J3DTevBlock {
 	u8 _12E[2];                              // _12E
 	J3DIndTevStage m_indStages[16];          // _130
 	u32 m_regOffset;                         // _170
-	u8 _174[0x10];                           // _174
 };
 
 /**

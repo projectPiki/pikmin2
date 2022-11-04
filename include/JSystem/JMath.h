@@ -136,6 +136,43 @@ struct TRandom_fast_ {
 		u32 nextValue = (next() >> 9) | 0x3F800000;
 		return *(float*)(void*)&nextValue - 1.0f;
 	}
+
+	/**
+	 * @fabricated
+	 */
+	inline f32 idkanymore()
+	{
+		float nextValue = nextFloat_0_1();
+		nextValue       = nextValue * 16.0f;
+		return 1.0f - ((*(u32*)(void*)&nextValue) & 0xF ^ 0x80000000) / 192.0f;
+	}
+
+	/**
+	 * @fabricated
+	 */
+	inline float currentFloat_0_1() { return *(float*)(void*)((value >> 9) | 0x3F800000) - 1.0f; }
+
+	/**
+	 * @fabricated
+	 * Needs work. See JAISe::setSeInterVolume.
+	 * IDK if min is really min.
+	 */
+	inline float nextFloat(float min, u32 p2)
+	{
+		next();
+		uint v3 = (p2 * 1000) / 0x7F;
+		v3      = (p2 * 1000 - v3 >> 1) + (v3 >> 6);
+		u32 v2  = currentFloat_0_1(); // * 0x4F800000;
+		// u32 v1   = v3 * 2;
+		float v7 = (float)((v2 - (v2 / (v3 * 2)) * (v3 * 2)) + 1) - ((float)(v3) / 1000.0f);
+		if (min + v7 > 1.0f) {
+			return 1.0f;
+		}
+		if (min < 0.0f - v7) {
+			return 0.0f;
+		}
+		return min + v7;
+	}
 };
 } // namespace JMath
 

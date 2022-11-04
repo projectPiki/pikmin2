@@ -17,11 +17,11 @@ struct MoveParaSet {
 	}
 
 	int set(float, unsigned long);
-	void move();
+	BOOL move();
 
 	float _00; // _00
 	float _04; // _04
-	u32 _08;   // _08 - unknown
+	float _08; // _08 - unknown
 	u32 _0C;   // _0C - unknown
 };
 

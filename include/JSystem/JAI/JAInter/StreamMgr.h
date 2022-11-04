@@ -11,6 +11,41 @@ namespace StreamMgr {
 struct BufferInfo {
 };
 
+/**
+ * @fabricated
+ * @size{0x20}
+ */
+struct StreamUpdate {
+	inline StreamUpdate()
+	    : _18(0)
+	    , _1C(nullptr)
+	{
+	}
+
+	inline void reset()
+	{
+		_00 = 0;
+		_01 = 0;
+		_04 = 1.0f;
+		_08 = 1.0f;
+		_0C = 0.5f;
+		_10 = 0.5f;
+		_14 = 0.5f;
+		_1C = nullptr;
+	}
+
+	u8 _00;
+	u8 _01;
+	u8 _02;
+	f32 _04;
+	f32 _08;
+	f32 _0C;
+	f32 _10;
+	f32 _14;
+	u32 _18;
+	JAIStream* _1C;
+};
+
 typedef void (*AllocCallback)(BufferInfo);
 typedef void (*DeallocCallback)();
 typedef void (*ExternalAramBufferCallback)(JASHeap*);
@@ -32,7 +67,7 @@ void initChannel();
 JASAramStream* getStreamObjectPointer();
 u32 getSystemStatus();
 u32 getDecodedBufferBlocks();
-void getDecodedBufferSize(u32);
+u32 getDecodedBufferSize(u32);
 u32 getChannelMax();
 
 // unused/inlined:
@@ -41,7 +76,7 @@ void setParentHeap(JASHeap*);
 void setAllockCallback(AllocCallback);
 void setDeallockCallback(DeallocCallback);
 void setDecodedBufferBlocks(u32);
-void getStreamSound();
+JAIStream* getStreamSound();
 void setChannelMax(u32);
 void setExternalAramBuffer(ExternalAramBufferCallback);
 
@@ -58,13 +93,13 @@ extern u8 prepareSw;
 extern u8 prepareFlag;
 extern u8 externalAram;
 extern u8 finishFlag;
-extern void* streamUpdate;
+extern StreamUpdate* streamUpdate;
 extern void* streamList;
 extern JAIStream* streamSound;
 extern void* initOnCodeStrm;
 extern JASAramStream* streamSystem;
 extern u32 systemStatus;
-extern int controlStatus;
+extern u32 controlStatus;
 extern JASHeap* aramBufferHeap;
 extern void* aramParentHeap;
 extern AllocCallback allocCallback;
@@ -73,12 +108,12 @@ extern DeallocCallback deallocCallback;
  * This isn't the same type as the param to setExternalAramBuffer.
  * It must return typeof(aramParentHeap).
  */
-extern void* externalAramCallback;
-extern u32 dataFileNumber;
+extern void* (*externalAramCallback)(void);
+extern int dataFileNumber;
 extern MgrCallback mgrCallback;
 
-extern const u32 sChannelMax;
-extern const u32 decodedBufferBlocks;
+extern u32 sChannelMax;
+extern u32 decodedBufferBlocks;
 } // namespace StreamMgr
 } // namespace JAInter
 

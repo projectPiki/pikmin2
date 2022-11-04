@@ -1,6 +1,7 @@
 #ifndef _JSYSTEM_J3D_J3DCOLORBLOCK_H
 #define _JSYSTEM_J3D_J3DCOLORBLOCK_H
 
+#include "Dolphin/gx.h"
 #include "JSystem/J3D/J3DGXColor.h"
 #include "JSystem/J3D/J3DTypes.h"
 #include "types.h"
@@ -89,6 +90,7 @@ struct J3DColorBlockLightOff : public J3DColorBlock {
 
 	J3DGXColor _04[2];               // _04
 	u8 m_colorChannelNum;            // _0C
+	u8 _0D;                          // _0D
 	J3DColorChan m_colorChannels[4]; // _0E
 	u8 m_cullMode;                   // _16
 	u32 m_materialColorOffset;       // _18
@@ -165,6 +167,7 @@ struct J3DColorBlockLightOn : public J3DColorBlock {
 	J3DGXColor _04[2];               // _04
 	J3DGXColor _0C[2];               // _0C
 	u8 m_colorChannelNum;            // _14
+	u8 _15;                          // _15
 	J3DColorChan m_colorChannels[4]; // _16
 	J3DLightObj* _20;                // _20
 	u8 _24[0x1C];                    // _24

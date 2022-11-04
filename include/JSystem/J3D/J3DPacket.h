@@ -23,8 +23,8 @@ struct J3DPacket {
 	}
 
 	virtual bool entry(J3DDrawBuffer*); // _08
-	virtual void draw();                // _0C
-	virtual ~J3DPacket();               // _10
+	virtual void draw();                // _0C (weak)
+	virtual ~J3DPacket();               // _10 (weak)
 
 	void addChildPacket(J3DPacket*);
 
@@ -61,14 +61,13 @@ struct J3DDrawPacket : public J3DPacket {
 	void* _24;                        // _24
 };
 
-// TODO: Data members
 /**
  * @size{0x40}
  */
 struct J3DMatPacket : public J3DDrawPacket {
 	J3DMatPacket();
 
-	virtual bool entry(J3DDrawBuffer*); // _08
+	virtual bool entry(J3DDrawBuffer*); // _08 (weak)
 	virtual void draw();                // _0C
 	virtual ~J3DMatPacket();            // _10
 

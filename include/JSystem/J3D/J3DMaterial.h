@@ -63,8 +63,8 @@ struct J3DMaterial {
 	static J3DTevBlock* createTevBlock(int);
 	static J3DTexGenBlock* createTexGenBlock(u32);
 	void initialize();
-	int newSharedDisplayList(u32);
-	int newSingleSharedDisplayList(u32);
+	J3DErrType newSharedDisplayList(u32);
+	J3DErrType newSingleSharedDisplayList(u32);
 	void setCurrentMtx();
 
 	// VTBL _00
@@ -72,7 +72,7 @@ struct J3DMaterial {
 	J3DShape* m_shape; // _08
 	J3DJoint* m_joint; // _0C
 	u32 _10;           // _10
-	short _14;         // _14
+	u16 _14;           // _14
 	u32 _18;           // _18
 	u8 _1C[4];         // _1C
 	/* RAM address of display list divided by 16? */
@@ -100,15 +100,15 @@ struct J3DLockedMaterial : public J3DMaterial {
 		initialize();
 	}
 
-	virtual void calc(const float (*)[4]); // _00
-	virtual void makeDisplayList();        // _08
-	virtual void makeSharedDisplayList();  // _0C
-	virtual void load();                   // _10
-	virtual void loadSharedDL();           // _14
-	virtual void patch();                  // _18
-	virtual void diff(u32);                // _1C
-	virtual void reset();                  // _20
-	virtual void change();                 // _24
+	virtual void calc(const float (*)[4]); // _08
+	virtual void makeDisplayList();        // _10
+	virtual void makeSharedDisplayList();  // _14
+	virtual void load();                   // _18
+	virtual void loadSharedDL();           // _1C
+	virtual void patch();                  // _20
+	virtual void diff(u32);                // _24
+	virtual void reset();                  // _28
+	virtual void change();                 // _2C
 
 	void initialize();
 };
@@ -119,12 +119,12 @@ struct J3DLockedMaterial : public J3DMaterial {
  * @size{0x4C}
  */
 struct J3DPatchedMaterial : public J3DMaterial {
-	virtual void makeDisplayList();       // _08
-	virtual void makeSharedDisplayList(); // _0C
-	virtual void load();                  // _10
-	virtual void loadSharedDL();          // _14
-	virtual void reset();                 // _20
-	virtual void change();                // _24
+	virtual void makeDisplayList();       // _10
+	virtual void makeSharedDisplayList(); // _14
+	virtual void load();                  // _18
+	virtual void loadSharedDL();          // _1C
+	virtual void reset();                 // _28
+	virtual void change();                // _2C
 
 	void initialize();
 };
@@ -135,9 +135,7 @@ struct J3DPatchedMaterial : public J3DMaterial {
 struct J3DMaterialTable {
 	J3DMaterialTable();
 
-	virtual ~J3DMaterialTable(); // _00
-
-	// virtual void _04(); // _04
+	virtual ~J3DMaterialTable(); // _08
 
 	void clear();
 

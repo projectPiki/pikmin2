@@ -56,7 +56,7 @@ struct J3DSys {
 	static Mtx mCurrentMtx;
 	static JGeometry::TVec3f mCurrentS;
 	static JGeometry::TVec3f mParentS;
-	static u16 sTexCoordScaleTable[32];
+	static u16 sTexCoordScaleTable[8][4];
 };
 
 extern J3DSys j3dSys;

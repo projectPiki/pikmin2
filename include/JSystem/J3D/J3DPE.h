@@ -71,7 +71,7 @@ struct J3DPEBlock {
 	virtual u8 getDither() const;                   // _6C (weak)
 	virtual u32 getFogOffset() const;               // _70 (weak)
 	virtual void setFogOffset(unsigned long);       // _74 (weak)
-	virtual ~J3DPEBlock();                          // _78 (weak)
+	virtual ~J3DPEBlock() { }                       // _78 (weak)
 };
 
 struct J3DPEBlockFogOff : public J3DPEBlock {

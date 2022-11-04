@@ -254,7 +254,7 @@ void J3DModelData::makeSharedDL()
  * Address:	80083AB0
  * Size:	0000C8
  */
-void J3DModelData::simpleCalcMaterial(u16 jointIndex, Mtx*) // float (*)[4])
+void J3DModelData::simpleCalcMaterial(u16 jointIndex, Mtx) // float (*)[4])
 {
 	syncJ3DSysFlags();
 	for (J3DMaterial* material = m_jointTree.m_joints[jointIndex]->m_material; material != nullptr; material = material->_04) {

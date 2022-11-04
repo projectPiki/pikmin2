@@ -39,7 +39,7 @@ struct J3DMtxCalcNoAnmBase : public J3DMtxCalc {
 	 * @reifiedAddress{80070510}
 	 * @reifiedFile{JSystem/J3D/J3DModelLoader.cpp}
 	 */
-	virtual ~J3DMtxCalcNoAnmBase() {}; // _08
+	virtual ~J3DMtxCalcNoAnmBase() { } // _08 (weak)
 };
 
 template <typename Calc, typename Init>
@@ -92,13 +92,13 @@ struct J3DMtxCalcAnimation : public J3DMtxCalcAnmBase {
 };
 
 struct J3DMtxCalcBlendAnmBase : public J3DMtxCalcAnmBase {
-	virtual ~J3DMtxCalcBlendAnmBase();                             // _08
-	virtual void setAnmTransform(J3DAnmTransform*);                // _0C
-	virtual J3DAnmTransform* getAnmTransform();                    // _10
-	virtual void setAnmTransform(unsigned char, J3DAnmTransform*); // _14
-	virtual void getAnmTransform(unsigned char);                   // _18
-	virtual void setWeight(unsigned char, float);                  // _1C
-	virtual void getWeight(unsigned char) const;                   // _20
+	virtual ~J3DMtxCalcBlendAnmBase();                             // _08 (weak)
+	virtual void setAnmTransform(J3DAnmTransform*);                // _0C (weak)
+	virtual J3DAnmTransform* getAnmTransform();                    // _10 (weak)
+	virtual void setAnmTransform(unsigned char, J3DAnmTransform*); // _14 (weak)
+	virtual void getAnmTransform(unsigned char);                   // _18 (weak)
+	virtual void setWeight(unsigned char, float);                  // _1C (weak)
+	virtual void getWeight(unsigned char) const;                   // _20 (weak)
 
 	J3DAnmTransform* _08; // _08
 	J3DAnmTransform* _0C; // _0C

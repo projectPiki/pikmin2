@@ -633,39 +633,9 @@ J3DMtxCalcAnmBase* J3DNewMtxCalcAnm(u32 type, J3DAnmTransform* p2)
  * --INFO--
  * Address:	8006B82C
  * Size:	00005C
+ * __dt__17J3DMtxCalcAnmBaseFv
  */
-J3DMtxCalcAnmBase::~J3DMtxCalcAnmBase()
-{
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	or.      r31, r3, r3
-	beq      lbl_8006B870
-	lis      r3, __vt__17J3DMtxCalcAnmBase@ha
-	addi     r0, r3, __vt__17J3DMtxCalcAnmBase@l
-	stw      r0, 0(r31)
-	beq      lbl_8006B860
-	lis      r3, __vt__10J3DMtxCalc@ha
-	addi     r0, r3, __vt__10J3DMtxCalc@l
-	stw      r0, 0(r31)
-
-lbl_8006B860:
-	extsh.   r0, r4
-	ble      lbl_8006B870
-	mr       r3, r31
-	bl       __dl__FPv
-
-lbl_8006B870:
-	lwz      r0, 0x14(r1)
-	mr       r3, r31
-	lwz      r31, 0xc(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
-}
+J3DMtxCalcAnmBase::~J3DMtxCalcAnmBase() { }
 
 /*
  * --INFO--

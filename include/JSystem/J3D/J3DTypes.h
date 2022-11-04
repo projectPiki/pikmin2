@@ -96,10 +96,36 @@ struct J3DColorChan {
 	u8 _01; // _01
 };
 
+// IDK what the structure of this is meant to be
+struct J3DIndTevStageInfo {
+	u8 _00 : 2;
+};
+
+extern const J3DIndTevStageInfo j3dDefaultIndTevStageInfo[8];
+
 struct J3DIndTevStage {
 	J3DIndTevStage();
 
-	u8 _00[4]; // _00
+	u32 _00 : 10;
+	// u32 _01 : 1;
+	// u32 _02 : 1;
+	// u32 _03 : 1;
+	// u32 _04 : 1;
+	// u32 _05 : 1;
+	// u32 _06 : 1;
+	// u32 _07 : 1;
+	// u32 _08 : 1;
+	// u32 _09 : 1;
+	// u32 _0A : 1;
+	u32 _0B : 1;
+	u32 _0C : 1;
+	u32 _0D : 3;
+	u32 _10 : 3;
+	u32 _13 : 4;
+	u32 _17 : 2;
+	u32 _19 : 3;
+	u32 _1C : 2;
+	u32 _1E : 2;
 };
 
 struct J3DLightObj {
@@ -202,32 +228,37 @@ struct J3DTransformInfo {
 extern const J3DTransformInfo j3dDefaultTransformInfo;
 
 struct J3DNBTScaleInfo {
-	u8 _00;    // _00
-	float _04; // _04
-	float _08; // _08
-	float _0C; // _0C
+	u8 _00;                // _00
+	JGeometry::TVec3f _04; // _04
+
+	// float _08; // _08
+	// float _0C; // _0C
 };
+
+extern const J3DNBTScaleInfo j3dDefaultNBTScaleInfo;
 
 struct J3DNBTScale {
 	inline J3DNBTScale()
-	    : _00(0)
+	    : _00(j3dDefaultNBTScaleInfo._00)
+	    , _04(j3dDefaultNBTScaleInfo._04)
 	{
-		_04.x = 1.0f;
-		_04.y = 1.0f;
-		_04.z = 1.0f;
+		// _04.x = j3dDefaultNBTScaleInfo._04;
+		// _04.y = j3dDefaultNBTScaleInfo._08;
+		// _04.z = j3dDefaultNBTScaleInfo._0C;
 	}
 
 	/** @fabricated */
 	inline J3DNBTScale(const J3DNBTScaleInfo& info)
 	    : _00(info._00)
+	    , _04(info._04)
 	{
-		_04.x = info._04;
-		_04.y = info._08;
-		_04.z = info._0C;
+		// _04.x = info._04;
+		// _04.y = info._08;
+		// _04.z = info._0C;
 	}
 
 	u8 _00; // _00
-	Vec _04;
+	JGeometry::TVec3f _04;
 };
 void loadNBTScale(J3DNBTScale&);
 
@@ -237,12 +268,12 @@ enum J3DTexDiffFlag { TexDiff_0 = 0, TexDiff_1 };
 
 enum J3DDeformAttachFlag { DeformAttach_0 = 0, DeformAttach_1 = 1 };
 
-extern const J3DNBTScaleInfo j3dDefaultNBTScaleInfo;
-
 extern const u32 j3dDefaultColInfo;
 // extern const J3DGXColor j3dDefaultTevColor;
 // extern const J3DGXColorS10 j3dDefaultTevKColor;
-extern const u64 j3dDefaultTevKColor;
 extern const u32 j3dDefaultTevColor;
+extern const u64 j3dDefaultTevKColor;
+
+extern const u8 j3dDefaultTevSwapTableID;
 
 #endif

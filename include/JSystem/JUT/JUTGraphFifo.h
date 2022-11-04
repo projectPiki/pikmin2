@@ -7,7 +7,7 @@
 struct JUTGraphFifo {
 	JUTGraphFifo(u32);
 
-	virtual ~JUTGraphFifo(); // _00
+	virtual ~JUTGraphFifo(); // _08
 
 	void becomeCurrent();
 	void setBreakPt();

@@ -1,5 +1,10 @@
+#include "Dolphin/vec.h"
+#include "JSystem/JAI/JAIBasic.h"
+#include "JSystem/JAI/JAISound.h"
 #include "JSystem/JAI/JAInter.h"
 #include "JSystem/JAI/JAInter/Object.h"
+#include "JSystem/JKR/JKRDisposer.h"
+#include "JSystem/JKR/JKRHeap.h"
 #include "types.h"
 
 /*
@@ -67,60 +72,63 @@
  * Address:	........
  * Size:	0000C8
  */
-JAInter::ObjectBase::ObjectBase(Vec*, JKRHeap*, unsigned char)
+JAInter::ObjectBase::ObjectBase(Vec* p1, JKRHeap* heap, unsigned char handleCount)
+    : JKRDisposer()
 {
 	// UNUSED FUNCTION
+	if (heap == nullptr) {
+		heap = JKRHeap::sCurrentHeap;
+	}
+	m_handleCount = handleCount;
+	m_sounds      = new (heap, 0) JAISound*[m_handleCount];
+	for (u8 i = 0; i < m_handleCount; i++) {
+		m_sounds[i] = nullptr;
+	}
+	_24 = p1;
+	_20 = 0;
+	_18 = 1;
 }
 
 /*
  * --INFO--
  * Address:	800B95FC
  * Size:	000074
+ * __dt__Q27JAInter10ObjectBaseFv
  */
-JAInter::ObjectBase::~ObjectBase(void)
-{
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	mr       r31, r4
-	stw      r30, 8(r1)
-	or.      r30, r3, r3
-	beq      lbl_800B9654
-	lis      r4, __vt__Q27JAInter10ObjectBase@ha
-	addi     r0, r4, __vt__Q27JAInter10ObjectBase@l
-	stw      r0, 0(r30)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x28(r12)
-	mtctr    r12
-	bctrl
-	mr       r3, r30
-	li       r4, 0
-	bl       __dt__11JKRDisposerFv
-	extsh.   r0, r31
-	ble      lbl_800B9654
-	mr       r3, r30
-	bl       __dl__FPv
-
-lbl_800B9654:
-	lwz      r0, 0x14(r1)
-	mr       r3, r30
-	lwz      r31, 0xc(r1)
-	lwz      r30, 8(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
-}
+JAInter::ObjectBase::~ObjectBase() { dispose(); }
 
 /*
  * --INFO--
  * Address:	800B9670
  * Size:	000164
  */
-void JAInter::ObjectBase::startSound(unsigned long, unsigned long)
+JAISound* JAInter::ObjectBase::startSound(unsigned long id, unsigned long p2)
 {
+	JAISound** handlePtr = nullptr;
+	if (IsJAISoundIDInUse(id)) {
+		handlePtr = getUseSoundHandlePointer(id);
+	}
+	if (handlePtr == nullptr) {
+		handlePtr = getFreeSoundHandlePointer();
+	}
+	if (handlePtr != nullptr) {
+		JAIBasic::msBasic->startSoundVecT(id, handlePtr, _24, p2, 0, 4);
+		return *handlePtr;
+	}
+	u8 v1       = 0xFF;
+	u8 handleNo = 0xFF;
+	for (u8 i = 0; i < m_handleCount; i++) {
+		if (m_sounds[i]->m_soundInfo->count.v2[0] <= v1) {
+			v1       = m_sounds[i]->m_soundInfo->count.v2[0];
+			handleNo = i;
+		}
+	}
+	if (handleNo == 0xFF || SoundTable::getInfoPointer(id)->count.v2[0] < v1) {
+		return nullptr;
+	}
+	handleStop(handleNo, 0);
+	JAIBasic::msBasic->startSoundVecT(id, m_sounds + handleNo, _24, p2, 0, 4);
+	return m_sounds[handleNo];
 	/*
 	stwu     r1, -0x20(r1)
 	mflr     r0
@@ -235,29 +243,11 @@ lbl_800B97C0:
  * Address:	800B97D4
  * Size:	000044
  */
-void JAInter::ObjectBase::handleStop(unsigned char, unsigned long)
+void JAInter::ObjectBase::handleStop(unsigned char handleNo, unsigned long p2)
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	rlwinm   r0, r4, 2, 0x16, 0x1d
-	lwz      r3, 0x1c(r3)
-	lwzx     r3, r3, r0
-	cmplwi   r3, 0
-	beq      lbl_800B9808
-	lwz      r12, 0x10(r3)
-	mr       r4, r5
-	lwz      r12, 0x14(r12)
-	mtctr    r12
-	bctrl
-
-lbl_800B9808:
-	lwz      r0, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	if (m_sounds[handleNo] != nullptr) {
+		m_sounds[handleNo]->stop(p2);
+	}
 }
 
 /*
@@ -265,8 +255,9 @@ lbl_800B9808:
  * Address:	800B9818
  * Size:	000048
  */
-void JAInter::ObjectBase::startSound(unsigned char, unsigned long, unsigned long)
+void JAInter::ObjectBase::startSound(unsigned char handleNo, unsigned long id, unsigned long p3)
 {
+	JAIBasic::msBasic->startSoundVecT(id, m_sounds + handleNo, _24, p3, 0, 4);
 	/*
 	.loc_0x0:
 	  stwu      r1, -0x10(r1)
@@ -295,8 +286,9 @@ void JAInter::ObjectBase::startSound(unsigned char, unsigned long, unsigned long
  * Address:	800B9860
  * Size:	000044
  */
-void JAInter::ObjectBase::startSound(JAISound**, unsigned long, unsigned long)
+void JAInter::ObjectBase::startSound(JAISound** handlePtr, unsigned long id, unsigned long p3)
 {
+	JAIBasic::msBasic->startSoundVecT(id, handlePtr, _24, p3, 0, 4);
 	/*
 	stwu     r1, -0x10(r1)
 	mflr     r0
@@ -323,36 +315,12 @@ void JAInter::ObjectBase::startSound(JAISound**, unsigned long, unsigned long)
  * Address:	800B98A4
  * Size:	000060
  */
-void JAInter::ObjectBase::stopSound(unsigned long, unsigned long)
+void JAInter::ObjectBase::stopSound(unsigned long id, unsigned long p2)
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	mr       r31, r5
-	stw      r30, 8(r1)
-	mr       r30, r3
-	bl       getUseSoundHandleNo__Q27JAInter10ObjectBaseFUl
-	clrlwi   r0, r3, 0x18
-	mr       r4, r3
-	cmplwi   r0, 0xff
-	beq      lbl_800B98EC
-	lwz      r12, 0(r30)
-	mr       r3, r30
-	mr       r5, r31
-	lwz      r12, 0x34(r12)
-	mtctr    r12
-	bctrl
-
-lbl_800B98EC:
-	lwz      r0, 0x14(r1)
-	lwz      r31, 0xc(r1)
-	lwz      r30, 8(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	u8 handleNo = getUseSoundHandleNo(id);
+	if (handleNo != 0xFF) {
+		handleStop(handleNo, p2);
+	}
 }
 
 /*
@@ -360,40 +328,11 @@ lbl_800B98EC:
  * Address:	800B9904
  * Size:	000068
  */
-void JAInter::ObjectBase::stopAllSound(void)
+void JAInter::ObjectBase::stopAllSound()
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	li       r31, 0
-	stw      r30, 8(r1)
-	mr       r30, r3
-	b        lbl_800B9944
-
-lbl_800B9924:
-	mr       r3, r30
-	mr       r4, r31
-	lwz      r12, 0(r30)
-	li       r5, 0
-	lwz      r12, 0x34(r12)
-	mtctr    r12
-	bctrl
-	addi     r31, r31, 1
-
-lbl_800B9944:
-	lbz      r0, 0x19(r30)
-	clrlwi   r3, r31, 0x18
-	cmplw    r3, r0
-	blt      lbl_800B9924
-	lwz      r0, 0x14(r1)
-	lwz      r31, 0xc(r1)
-	lwz      r30, 8(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	for (u8 i = 0; i < m_handleCount; i++) {
+		handleStop(i, 0);
+	}
 }
 
 /*
@@ -401,27 +340,11 @@ lbl_800B9944:
  * Address:	800B996C
  * Size:	000044
  */
-void JAInter::ObjectBase::disable(void)
+void JAInter::ObjectBase::disable()
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	mr       r31, r3
-	lwz      r12, 0(r3)
-	lwz      r12, 0x18(r12)
-	mtctr    r12
-	bctrl
-	li       r0, 0
-	stb      r0, 0x18(r31)
-	stw      r0, 0x20(r31)
-	lwz      r31, 0xc(r1)
-	lwz      r0, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	stopAllSound();
+	_18 = 0;
+	_20 = 0;
 }
 
 /*
@@ -429,26 +352,10 @@ void JAInter::ObjectBase::disable(void)
  * Address:	800B99B0
  * Size:	000040
  */
-void JAInter::ObjectBase::dispose(void)
+void JAInter::ObjectBase::dispose()
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	mr       r31, r3
-	lwz      r12, 0(r3)
-	lwz      r12, 0x24(r12)
-	mtctr    r12
-	bctrl
-	lwz      r3, 0x1c(r31)
-	bl       __dla__FPv
-	lwz      r0, 0x14(r1)
-	lwz      r31, 0xc(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	disable();
+	delete[] m_sounds;
 }
 
 /*
@@ -456,39 +363,14 @@ void JAInter::ObjectBase::dispose(void)
  * Address:	800B99F0
  * Size:	00005C
  */
-void JAInter::ObjectBase::getFreeSoundHandlePointer(void)
+JAISound** JAInter::ObjectBase::getFreeSoundHandlePointer()
 {
-	/*
-	lbz      r0, 0x19(r3)
-	li       r8, 0
-	li       r6, 0
-	li       r4, 1
-	mtctr    r0
-	cmplwi   r0, 0
-	ble      lbl_800B9A44
-
-lbl_800B9A0C:
-	lwz      r7, 0x1c(r3)
-	lwzx     r0, r7, r6
-	cmplwi   r0, 0
-	bne      lbl_800B9A38
-	lwz      r5, 0x20(r3)
-	slw      r0, r4, r8
-	and.     r0, r5, r0
-	bne      lbl_800B9A38
-	slwi     r0, r8, 2
-	add      r3, r7, r0
-	blr
-
-lbl_800B9A38:
-	addi     r6, r6, 4
-	addi     r8, r8, 1
-	bdnz     lbl_800B9A0C
-
-lbl_800B9A44:
-	li       r3, 0
-	blr
-	*/
+	for (u32 i = 0; i < m_handleCount; i++) {
+		if (m_sounds[i] == nullptr && (_20 & 1 << i) == 0) {
+			return m_sounds + i;
+		}
+	}
+	return nullptr;
 }
 
 /*
@@ -496,9 +378,15 @@ lbl_800B9A44:
  * Address:	........
  * Size:	000058
  */
-void JAInter::ObjectBase::getFreeSoundHandleNo(void)
+u8 JAInter::ObjectBase::getFreeSoundHandleNo()
 {
 	// UNUSED FUNCTION
+	for (u8 i = 0; i < m_handleCount; i++) {
+		if (m_sounds[i] == nullptr && (_20 & 1 << i) == 0) {
+			return i;
+		}
+	}
+	return 0xFF;
 }
 
 /*
@@ -506,37 +394,14 @@ void JAInter::ObjectBase::getFreeSoundHandleNo(void)
  * Address:	800B9A4C
  * Size:	000054
  */
-void JAInter::ObjectBase::getUseSoundHandlePointer(unsigned long)
+JAISound** JAInter::ObjectBase::getUseSoundHandlePointer(unsigned long id)
 {
-	/*
-	lbz      r0, 0x19(r3)
-	li       r8, 0
-	li       r5, 0
-	mtctr    r0
-	cmplwi   r0, 0
-	ble      lbl_800B9A98
-
-lbl_800B9A64:
-	lwz      r7, 0x1c(r3)
-	lwzx     r6, r7, r5
-	cmplwi   r6, 0
-	beq      lbl_800B9A8C
-	lwz      r0, 0x20(r6)
-	cmplw    r4, r0
-	bne      lbl_800B9A8C
-	slwi     r0, r8, 2
-	add      r3, r7, r0
-	blr
-
-lbl_800B9A8C:
-	addi     r5, r5, 4
-	addi     r8, r8, 1
-	bdnz     lbl_800B9A64
-
-lbl_800B9A98:
-	li       r3, 0
-	blr
-	*/
+	for (u32 i = 0; i < m_handleCount; i++) {
+		if (m_sounds[i] != nullptr && id == m_sounds[i]->m_soundID) {
+			return m_sounds + i;
+		}
+	}
+	return nullptr;
 }
 
 /*
@@ -544,35 +409,14 @@ lbl_800B9A98:
  * Address:	800B9AA0
  * Size:	00004C
  */
-void JAInter::ObjectBase::getUseSoundHandleNo(unsigned long)
+u8 JAInter::ObjectBase::getUseSoundHandleNo(unsigned long id)
 {
-	/*
-	lbz      r6, 0x19(r3)
-	li       r7, 0
-	b        lbl_800B9AD8
-
-lbl_800B9AAC:
-	lwz      r5, 0x1c(r3)
-	rlwinm   r0, r7, 2, 0x16, 0x1d
-	lwzx     r5, r5, r0
-	cmplwi   r5, 0
-	beq      lbl_800B9AD4
-	lwz      r0, 0x20(r5)
-	cmplw    r4, r0
-	bne      lbl_800B9AD4
-	mr       r3, r7
-	blr
-
-lbl_800B9AD4:
-	addi     r7, r7, 1
-
-lbl_800B9AD8:
-	clrlwi   r0, r7, 0x18
-	cmplw    r0, r6
-	blt      lbl_800B9AAC
-	li       r3, 0xff
-	blr
-	*/
+	for (u8 i = 0; i < m_handleCount; i++) {
+		if (m_sounds[i] != nullptr && id == m_sounds[i]->m_soundID) {
+			return i;
+		}
+	}
+	return 0xFF;
 }
 
 /*
@@ -599,134 +443,33 @@ void JAInter::ObjectBase::cancelSoundHandle(unsigned char)
  * --INFO--
  * Address:	800B9AEC
  * Size:	0000F4
+ * __ct__Q27JAInter6ObjectFP3VecP7JKRHeapUc
  */
-JAInter::Object::Object(Vec*, JKRHeap*, unsigned char)
+JAInter::Object::Object(Vec* p1, JKRHeap* heap, unsigned char handleCount)
+    : ObjectBase(p1, heap, handleCount)
 {
-	/*
-	stwu     r1, -0x20(r1)
-	mflr     r0
-	stw      r0, 0x24(r1)
-	stw      r31, 0x1c(r1)
-	mr       r31, r5
-	stw      r30, 0x18(r1)
-	mr       r30, r6
-	stw      r29, 0x14(r1)
-	mr       r29, r4
-	stw      r28, 0x10(r1)
-	mr       r28, r3
-	bl       __ct__11JKRDisposerFv
-	lis      r3, __vt__Q27JAInter10ObjectBase@ha
-	cmplwi   r31, 0
-	addi     r0, r3, __vt__Q27JAInter10ObjectBase@l
-	stw      r0, 0(r28)
-	bne      lbl_800B9B34
-	lwz      r31, sCurrentHeap__7JKRHeap@sda21(r13)
-
-lbl_800B9B34:
-	stb      r30, 0x19(r28)
-	mr       r4, r31
-	li       r5, 0
-	lbz      r0, 0x19(r28)
-	slwi     r3, r0, 2
-	bl       __nwa__FUlP7JKRHeapi
-	li       r5, 0
-	stw      r3, 0x1c(r28)
-	mr       r4, r5
-	b        lbl_800B9B6C
-
-lbl_800B9B5C:
-	lwz      r3, 0x1c(r28)
-	rlwinm   r0, r5, 2, 0x16, 0x1d
-	addi     r5, r5, 1
-	stwx     r4, r3, r0
-
-lbl_800B9B6C:
-	lbz      r0, 0x19(r28)
-	clrlwi   r3, r5, 0x18
-	cmplw    r3, r0
-	blt      lbl_800B9B5C
-	stw      r29, 0x24(r28)
-	li       r0, 0
-	lis      r3, __vt__Q27JAInter6Object@ha
-	li       r4, 1
-	stw      r0, 0x20(r28)
-	addi     r0, r3, __vt__Q27JAInter6Object@l
-	lfs      f1, lbl_80517058@sda21(r2)
-	mr       r3, r28
-	stb      r4, 0x18(r28)
-	lfs      f0, lbl_8051705C@sda21(r2)
-	stw      r0, 0(r28)
-	stfs     f1, 0x28(r28)
-	stfs     f1, 0x2c(r28)
-	stfs     f1, 0x30(r28)
-	stfs     f1, 0x34(r28)
-	stfs     f0, 0x38(r28)
-	stfs     f1, 0x3c(r28)
-	lwz      r31, 0x1c(r1)
-	lwz      r30, 0x18(r1)
-	lwz      r29, 0x14(r1)
-	lwz      r28, 0x10(r1)
-	lwz      r0, 0x24(r1)
-	mtlr     r0
-	addi     r1, r1, 0x20
-	blr
-	*/
+	_28.x = 0.0f;
+	_28.y = 0.0f;
+	_28.z = 0.0f;
+	_34   = 0.0f;
+	_38   = 0.5f;
+	_3C   = 0.0f;
 }
 
 /*
  * --INFO--
  * Address:	800B9BE0
  * Size:	000084
+ * __dt__Q27JAInter6ObjectFv
  */
-JAInter::Object::~Object(void)
-{
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	mr       r31, r4
-	stw      r30, 8(r1)
-	or.      r30, r3, r3
-	beq      lbl_800B9C48
-	lis      r4, __vt__Q27JAInter6Object@ha
-	addi     r0, r4, __vt__Q27JAInter6Object@l
-	stw      r0, 0(r30)
-	beq      lbl_800B9C38
-	lis      r4, __vt__Q27JAInter10ObjectBase@ha
-	addi     r0, r4, __vt__Q27JAInter10ObjectBase@l
-	stw      r0, 0(r30)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x28(r12)
-	mtctr    r12
-	bctrl
-	mr       r3, r30
-	li       r4, 0
-	bl       __dt__11JKRDisposerFv
-
-lbl_800B9C38:
-	extsh.   r0, r31
-	ble      lbl_800B9C48
-	mr       r3, r30
-	bl       __dl__FPv
-
-lbl_800B9C48:
-	lwz      r0, 0x14(r1)
-	mr       r3, r30
-	lwz      r31, 0xc(r1)
-	lwz      r30, 8(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
-}
+JAInter::Object::~Object() { }
 
 /*
  * --INFO--
  * Address:	800B9C64
  * Size:	00021C
  */
-void JAInter::Object::startSound(unsigned long, unsigned long)
+JAISound* JAInter::Object::startSound(unsigned long, unsigned long)
 {
 	/*
 	stwu     r1, -0x50(r1)

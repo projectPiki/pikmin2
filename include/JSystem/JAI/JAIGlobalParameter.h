@@ -46,13 +46,13 @@ char* getParamSequenceArchivesPath(void);
 char* getParamStreamPath(void);
 char* getParamAudioResPath(void);
 char* getParamSequenceArchivesFileName(void);
-int getParamDopplarMoveTime(void);
+u32 getParamDopplarMoveTime(void);
 u8 getParamDistanceParameterMoveTime(void);
 int getParamDummyObjectLifeTime(void);
 int getParamDummyObjectMax(void);
 u8 getParamSeqMuteVolumeSePlay(void);
 int getParamSeqMuteMoveSpeedSePlay(void);
-uint getParamAudioCameraMax(void);
+u32 getParamAudioCameraMax(void);
 u8 getParamSeqParameterLines(void);
 u8 getParamStreamParameterLines(void);
 short getParamSeDistanceWaitMax(void);
@@ -60,6 +60,11 @@ short getParamSeDistanceWaitMax(void);
 extern const u8 distanceParameterMoveTime;
 extern const u8 audioSystemThreadPriority;
 extern const u8 audioDvdThreadPriority;
+extern const u8 seqMuteVolumeSePlay;
+extern const u8 seqParameterLines;
+extern const u8 streamParameterLines;
+extern const u16 seDistanceFxParameter;
+// ...
 extern const u32 autoHeapMax;
 extern const u32 stayHeapMax;
 extern const u32 autoHeapRoomSize;
@@ -72,9 +77,29 @@ extern const char* audioResPath;
 extern const char* sequenceArchivesFileName;
 extern const float inputGainDown;
 extern const float outputGainUp;
-extern const u32 audioCameraMax;
+extern const float distanceMax;
+extern const float maxVolumeDistance;
+extern const float seDolbyCenterValue;
+extern const float seDolbyFrontDistanceMax;
+extern const float seDolbyBehindDistanceMax;
+extern u32 dopplarMoveTime;
+extern const int dummyObjectLifeTime;
+extern const int dummyObjectMax;
+extern const int seqMuteMoveSpeedSePlay;
+extern u32 audioCameraMax;
 extern const s32 systemTrackMax;
+extern const s32 systemRootTrackMax;
+extern const float panDistanceMax;
+extern const float panDistance2Max;
+extern const float panAngleParameter;
+extern const float panAngleParameter2;
+extern const float dopplarParameter;
+extern const s16 seDistanceWaitMax;
+extern const float seDistancepitchMax;
+
+extern u16 seDefaultFx;
 extern u32 interfaceHeapSize;
+extern float minDistanceVolume;
 } // namespace JAIGlobalParameter
 
 #endif

@@ -339,7 +339,7 @@ void J3DTexNoAnm::calc(u16* p1) const
  * Size:	0000D0
  * __dt__14J3DMaterialAnmFv
  */
-J3DMaterialAnm::~J3DMaterialAnm() { }
+// J3DMaterialAnm::~J3DMaterialAnm() { }
 
 /*
  * --INFO--

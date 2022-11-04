@@ -24,7 +24,7 @@ struct JUTFader {
 	 * @reifiedAddress{8002D0FC}
 	 * @reifiedFile{JSystem/JUT/JUTFader.cpp}
 	 */
-	virtual ~JUTFader() {};                  // _08
+	virtual ~JUTFader() { }                  // _08 (weak)
 	virtual bool startFadeIn(int duration);  // _0C
 	virtual bool startFadeOut(int duration); // _10
 	virtual void draw();                     // _14
