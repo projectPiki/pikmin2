@@ -36,7 +36,6 @@ struct JKRAramHeap : public JKRDisposer {
 	JKRAramHeap(u32, u32);
 
 	virtual ~JKRAramHeap(); // _08
-	// virtual void _0C() = 0;
 
 	JKRAramBlock* alloc(u32, EAllocMode);
 	JKRAramBlock* allocFromHead(u32);

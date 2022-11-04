@@ -84,24 +84,23 @@ struct JKRArchive : public JKRFileLoader {
 
 	JKRArchive(long, EMountMode);
 
-	virtual ~JKRArchive(); // _00
-	// virtual void unmount();                                       // _04
-	virtual bool becomeCurrent(const char*);                                                                  // _08
-	virtual void* getResource(const char*);                                                                   // _0C
-	virtual void* getResource(u32, const char*);                                                              // _10
-	virtual u32 readResource(void*, u32, const char*);                                                        // _14
-	virtual u32 readResource(void*, u32, u32, const char*);                                                   // _18
-	virtual void removeResourceAll();                                                                         // _1C
-	virtual bool removeResource(void*);                                                                       // _20
-	virtual bool detachResource(void*);                                                                       // _24
-	virtual long getResSize(const void*) const;                                                               // _28
-	virtual u16 countFile(const char*) const;                                                                 // _2C
-	virtual JKRFileFinder* getFirstFile(const char*) const;                                                   // _30
-	virtual u32 getExpandedResSize(const void*) const;                                                        // _34
-	virtual void* fetchResource(SDIFileEntry* entry, u32* outSize)                                       = 0; // _38
-	virtual void* fetchResource(void* resourceBuffer, u32 bufferSize, SDIFileEntry* entry, u32* resSize) = 0; // _3C
-	virtual void setExpandSize(SDIFileEntry*, u32);                                                           // _40
-	virtual u32 getExpandSize(SDIFileEntry*) const;                                                           // _44
+	virtual ~JKRArchive();                                                                                    // _08
+	virtual bool becomeCurrent(const char*);                                                                  // _10
+	virtual void* getResource(const char*);                                                                   // _14
+	virtual void* getResource(u32, const char*);                                                              // _18
+	virtual u32 readResource(void*, u32, const char*);                                                        // _1C
+	virtual u32 readResource(void*, u32, u32, const char*);                                                   // _20
+	virtual void removeResourceAll();                                                                         // _24
+	virtual bool removeResource(void*);                                                                       // _28
+	virtual bool detachResource(void*);                                                                       // _2C
+	virtual long getResSize(const void*) const;                                                               // _30
+	virtual u16 countFile(const char*) const;                                                                 // _34
+	virtual JKRFileFinder* getFirstFile(const char*) const;                                                   // _38
+	virtual u32 getExpandedResSize(const void*) const;                                                        // _3C (weak)
+	virtual void* fetchResource(SDIFileEntry* entry, u32* outSize)                                       = 0; // _40
+	virtual void* fetchResource(void* resourceBuffer, u32 bufferSize, SDIFileEntry* entry, u32* resSize) = 0; // _44
+	virtual void setExpandSize(SDIFileEntry*, u32);                                                           // _48
+	virtual u32 getExpandSize(SDIFileEntry*) const;                                                           // _4C
 
 	SDirEntry* findDirectory(const char*, u32) const;
 	SDIFileEntry* findFsResource(const char*, u32) const;
@@ -188,12 +187,12 @@ struct JKRMemArchive : public JKRArchive {
 struct JKRCompArchive : public JKRArchive {
 	JKRCompArchive(long, EMountDirection);
 
-	virtual ~JKRCompArchive();
-	virtual void removeResourceAll();                                                                     // _1C
-	virtual bool removeResource(void*);                                                                   // _20
-	virtual u32 getExpandedResSize(const void*) const;                                                    // _34
-	virtual void* fetchResource(SDIFileEntry* entry, u32* outSize);                                       // _38
-	virtual void* fetchResource(void* resourceBuffer, u32 bufferSize, SDIFileEntry* entry, u32* resSize); // _3C
+	virtual ~JKRCompArchive();                                                                            // _08
+	virtual void removeResourceAll();                                                                     // _24
+	virtual bool removeResource(void*);                                                                   // _28
+	virtual u32 getExpandedResSize(const void*) const;                                                    // _3C
+	virtual void* fetchResource(SDIFileEntry* entry, u32* outSize);                                       // _40
+	virtual void* fetchResource(void* resourceBuffer, u32 bufferSize, SDIFileEntry* entry, u32* resSize); // _44
 
 	bool open(long);
 

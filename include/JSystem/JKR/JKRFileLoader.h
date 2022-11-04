@@ -23,8 +23,6 @@ struct JKRFileLoader : public JKRDisposer {
 	virtual u16 countFile(const char*) const                                   = 0; // _34
 	virtual JKRFileFinder* getFirstFile(const char*) const                     = 0; // _38
 
-	// +4 bytes vtable padding
-
 	static void* getGlbResource(char const*);
 	static void* getGlbResource(char const*, JKRFileLoader*);
 	static JKRFileLoader* findVolume(char const**);

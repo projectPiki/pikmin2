@@ -15,12 +15,12 @@ struct JKRFile : public JKRDisposer {
 	    , _18(false)
 	{
 	}
-	virtual ~JKRFile();                                 // _00
-	virtual u8 open(const char*)                   = 0; // _04
-	virtual void close()                           = 0; // _08
-	virtual int readData(void*, long, long)        = 0; // _0C
-	virtual int writeData(const void*, long, long) = 0; // _10
-	virtual int getFileSize() const                = 0; // _14
+	virtual ~JKRFile();                                 // _08 (weak)
+	virtual u8 open(const char*)                   = 0; // _0C
+	virtual void close()                           = 0; // _10
+	virtual int readData(void*, long, long)        = 0; // _14
+	virtual int writeData(const void*, long, long) = 0; // _18
+	virtual int getFileSize() const                = 0; // _1C
 
 	void read(void* a1, long a2, long a3);
 
@@ -32,13 +32,13 @@ struct JKRDvdFile : public JKRFile {
 	JKRDvdFile();
 	JKRDvdFile(const char*);
 	JKRDvdFile(long);
-	virtual ~JKRDvdFile();                          // _00
-	virtual u8 open(const char*);                   // _04
-	virtual void close();                           // _08
-	virtual int readData(void*, long, long);        // _0C
-	virtual int writeData(const void*, long, long); // _10
-	virtual int getFileSize() const;                // _14
-	virtual u8 open(long);                          // _18
+	virtual ~JKRDvdFile();                          // _08
+	virtual u8 open(const char*);                   // _0C
+	virtual void close();                           // _10
+	virtual int readData(void*, long, long);        // _14
+	virtual int writeData(const void*, long, long); // _18
+	virtual int getFileSize() const;                // _1C (weak)
+	virtual u8 open(long);                          // _20
 
 	inline int readDataAsync(void* buffer, long byteCount, long startOffset)
 	{
