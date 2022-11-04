@@ -570,7 +570,7 @@ KANDO:=\
 	$(BUILD_DIR)/asm/plugProjectKandoU/aiWeed.o\
 	$(BUILD_DIR)/asm/plugProjectKandoU/flockMgr.o\
 	$(BUILD_DIR)/asm/plugProjectKandoU/itemWeed.o\
-	$(BUILD_DIR)/asm/plugProjectKandoU/aiBridge.o\
+	$(BUILD_DIR)/src/plugProjectKandoU/aiBridge.o\
 	$(BUILD_DIR)/asm/plugProjectKandoU/aiTeki.o\
 	$(BUILD_DIR)/asm/plugProjectKandoU/singleGS_MainGame.o\
 	$(BUILD_DIR)/asm/plugProjectKandoU/singleGS_CaveGame.o\

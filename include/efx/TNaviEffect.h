@@ -1,5 +1,5 @@
-#ifndef _EFX_TFUEACT_H
-#define _EFX_TNavi_H
+#ifndef _EFX_TNAVIEFFECT_H
+#define _EFX_TNAVIEFFECT_H
 
 #include "efx/TFueact.h"
 #include "efx/TCursor.h"

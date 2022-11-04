@@ -45,7 +45,7 @@ inline void checkNaviIndex(int index)
 	P2ASSERTLINE(119, check);
 }
 
-extern PikiNaviCounter* workPikis;
+extern PikiNaviCounter workPikis;
 extern PikiNaviCounter formationPikis;
 
 } // namespace GameStat

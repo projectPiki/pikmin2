@@ -158,7 +158,7 @@ struct Piki : public FakePiki {
 	bool doped();
 	void extendDopeTime();
 	bool gasInvicible();
-	void getAttackDamage();
+	f32 getAttackDamage();
 	f32 getBaseScale();
 	PikiAI::Action* getCurrAction();
 	int getCurrActionID();

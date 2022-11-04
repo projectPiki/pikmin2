@@ -337,7 +337,7 @@ struct ActBridge : public Action, virtual SysShape::MotionListener {
 	virtual void bounceCallback(Game::Piki*, Sys::Triangle*);      // _24
 	virtual void collisionCallback(Game::Piki*, Game::CollEvent&); // _28
 	virtual void platCallback(Game::Piki*, Game::PlatEvent&);      // _2C
-	virtual void onKeyEvent(const SysShape::KeyEvent&);            // _3C (weak)
+	virtual void onKeyEvent(const SysShape::KeyEvent&) { }         // _3C (weak)
 
 	void initFollow();
 	inline void initGoto();
@@ -499,6 +499,11 @@ struct ActFlockAttack : public Action, virtual SysShape::MotionListener {
 };
 
 struct FollowVectorFieldActionArg : public ActionArg {
+	inline FollowVectorFieldActionArg(Game::BaseItem* item)
+	    : m_item(item)
+	{
+	}
+
 	virtual char* getName(); // _08 (weak)
 
 	// _00 = VTBL
@@ -824,6 +829,14 @@ struct ActRest : public ActBoreBase {
 };
 
 struct StickAttackActionArg : public ActionArg {
+	inline StickAttackActionArg(f32 damage, Game::Creature* creature, int state, u8 p1)
+	    : m_attackDamage(damage)
+	    , m_creature(creature)
+	    , m_nextState(state)
+	    , _10(p1)
+	{
+	}
+
 	virtual char* getName(); // _08 (weak)
 
 	// _00 = VTBL
