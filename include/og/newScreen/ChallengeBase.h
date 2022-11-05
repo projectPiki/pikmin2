@@ -5,18 +5,11 @@
 #include "og/Screen/ogScreen.h"
 
 namespace og {
-namespace Screen {
-struct DispMemberDayEndCount : public DispMemberBase {
-	f32 _08;
-	f32 _0C;
-};
-} // namespace Screen
-
 namespace newScreen {
 struct ChallengeBase : public ::Screen::SceneBase {
 	ChallengeBase();
 	~ChallengeBase();
-	void updateCountDown(f32, Screen::DispMemberDayEndCount*);
+	void updateCountDown(f32, og::Screen::DispMemberDayEndCount*);
 
 	virtual void startCountDown() = 0; // _50
 

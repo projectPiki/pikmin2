@@ -6,6 +6,7 @@
 #include "Screen/Enums.h"
 #include "Vector2.h"
 #include "JSystem/ResTIMG.h"
+#include "og/Screen/DispMember.h"
 
 struct J2DPane;
 struct ResTIMG;
@@ -83,36 +84,6 @@ void setP2DScreen(char*, u32, JKRArchive*);
 J2DPane* TagSearch(J2DScreen*, u64);
 void TagToHex(u64, char*);
 void TagToName(u64, char*);
-
-struct DispMemberBase {
-	inline DispMemberBase()
-	    : m_subMember(nullptr)
-	{
-	}
-	virtual u32 getSize()     = 0;    // _00
-	virtual u32 getOwnerID()  = 0;    // _04
-	virtual u64 getMemberID() = 0;    // _08
-	virtual void doSetSubMemberAll(); // _10
-
-	bool isID(u32, u64);
-	void getMemberName(char*);
-	bool setSubMember(DispMemberBase*);
-	DispMemberBase* getSubMember(u32, u64);
-	void setSubMemberAll();
-
-	// inline void getOwnerName(char* outName) {
-	// 	TagToName(getOwnerID(), outName);
-	// }
-	// inline void dump() {
-	// 	char owner[12];
-	// 	char member[12];
-	// 	getOwnerName(owner);
-	// 	getMemberName(member);
-	// }
-
-	// _00 VTBL
-	DispMemberBase* m_subMember; // _04
-};
 
 extern const char* PikiIconTextureName[19];
 

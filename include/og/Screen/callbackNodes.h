@@ -32,14 +32,14 @@ struct DataNavi;
 struct CallBack_CatchPiki : public P2DScreen::CallBackNode {
 	CallBack_CatchPiki();
 
-	virtual ~CallBack_CatchPiki(); // _00
-	virtual void update();         // _08
-	virtual void _14();            // _14
+	virtual ~CallBack_CatchPiki(); // _08
+	virtual void update();         // _10
 
-	// TODO: Could init have been virtual, but not inserted into vtable?
 	void init(J2DScreen*, u64, u32*, JKRArchive*);
 	void setPikiIcon(int);
 
+	// _00     = VTBL
+	// _00-_1C = P2DScreen::CallBackNode
 	u32* _1C;            // _1C
 	J2DPicture* _20;     // _20
 	u32 _24;             // _24
@@ -51,15 +51,15 @@ struct CallBack_CounterRV : public P2DScreen::CallBackNode {
 
 	CallBack_CounterRV(char**, u16, u16, JKRArchive*);
 
-	virtual ~CallBack_CounterRV();                 // _00
-	virtual void update();                         // _08
-	virtual void draw(Graphics&, J2DGrafContext&); // _0C
+	virtual ~CallBack_CounterRV();                 // _08 (weak)
+	virtual void update();                         // _10
+	virtual void draw(Graphics&, J2DGrafContext&); // _14
 	virtual void init(J2DScreen*, u64, u64, u64, u32*,
-	                  bool);           // _14
-	virtual void show();               // _18
-	virtual void hide();               // _1C
-	virtual void setValue(bool, bool); // _20
-	virtual void setValue();           // _24
+	                  bool);           // _1C
+	virtual void show();               // _20
+	virtual void hide();               // _24
+	virtual void setValue(bool, bool); // _28
+	virtual void setValue();           // _2C (weak)
 
 	J2DPane* getMotherPane();
 	void setBlind(bool);
@@ -71,8 +71,10 @@ struct CallBack_CounterRV : public P2DScreen::CallBackNode {
 	void setRandMode(bool);
 	void setValPtr(u32*);
 	void setZeroAlpha(u8);
-	void startPuyoUp(float);
+	void startPuyoUp(f32);
 
+	// _00     = VTBL
+	// _00-_1C = P2DScreen::CallBackNode
 	char** m_characterTexturePaths;    // _1C
 	u32* _20;                          // _20
 	u32 _24;                           // _24
@@ -80,17 +82,17 @@ struct CallBack_CounterRV : public P2DScreen::CallBackNode {
 	u16 _2C;                           // _2C
 	u16 m_counterLimit;                // _2E /* allocated slot count of _7C */
 	u16 _30;                           // _30
-	float _34;                         // _34
-	float _38;                         // _38
-	float _3C;                         // _3C
-	float _40;                         // _40
-	float _44;                         // _44
-	float m_widthMaybe;                // _48
-	float m_heightMaybe;               // _4C
-	float _50;                         // _50
-	float _54;                         // _54
-	float _58;                         // _58
-	float _5C;                         // _5C
+	f32 _34;                           // _34
+	f32 _38;                           // _38
+	f32 _3C;                           // _3C
+	f32 _40;                           // _40
+	f32 _44;                           // _44
+	f32 m_widthMaybe;                  // _48
+	f32 m_heightMaybe;                 // _4C
+	f32 _50;                           // _50
+	f32 _54;                           // _54
+	f32 _58;                           // _58
+	f32 _5C;                           // _5C
 	u32 m_basePosition;                // _60 /* Use J2DBasePosition constants. */
 	u8 _64;                            // _64
 	u8 _65[7];                         // _65 /* Hopefully this doesn't mess with size. */
@@ -111,27 +113,29 @@ struct CallBack_CounterRV : public P2DScreen::CallBackNode {
 	SoundID m_scaleUpSoundID;          // _94
 	SoundID m_scaleDownSoundID;        // _98
 	u8 _9C;                            // _9C
-	float _A0;                         // _A0
-	float _A4;                         // _A4
+	f32 _A0;                           // _A0
+	f32 _A4;                           // _A4
 
 	static struct {
-		float _00;
-		float _04;
-		float _08;
+		f32 _00;
+		f32 _04;
+		f32 _08;
 	} msVal;
 };
 
 struct CallBack_CounterDay : public CallBack_CounterRV {
 	CallBack_CounterDay(char**, unsigned short, JKRArchive*);
 
-	virtual ~CallBack_CounterDay(); // _00
-	virtual void update();          // _08
+	virtual ~CallBack_CounterDay(); // _08 (weak)
+	virtual void update();          // _10
 	virtual void init(J2DScreen*, u64, u64, u64, u32*,
-	                  bool); // _14
-	virtual void show();     // _18
-	virtual void hide();     // _1C
-	virtual void setValue(); // _24
+	                  bool); // _1C
+	virtual void show();     // _20
+	virtual void hide();     // _24
+	virtual void setValue(); // _2C
 
+	// _00     = VTBL
+	// _00-_A8 = CallBack_CounterRV
 	J2DPicture* _A8; // _A8
 };
 
@@ -139,28 +143,30 @@ struct CallBack_CounterDay : public CallBack_CounterRV {
 struct CallBack_CounterSlot : public CallBack_CounterRV {
 	CallBack_CounterSlot(char**, u16, u16, JKRArchive*);
 
-	virtual ~CallBack_CounterSlot(); // _00
-	virtual void update();           // _08
+	virtual ~CallBack_CounterSlot(); // _08 (weak)
+	virtual void update();           // _10
 	virtual void init(J2DScreen*, u64, u64, u64, u32*,
-	                  bool);           // _14
-	virtual void setValue(bool, bool); // _20
-	virtual void setValue();           // _24
+	                  bool);           // _1C
+	virtual void setValue(bool, bool); // _28
+	virtual void setValue();           // _2C (weak)
 
-	void setPuyoParam(float, float, float);
+	void setPuyoParam(f32, f32, f32);
 	void slot_up(int);
-	void startSlot(float);
+	void startSlot(f32);
 
+	// _00     = VTBL
+	// _00-_A8 = CallBack_CounterRV
 	u8 _A8;      // _A8
 	u8 _A9;      // _A9
 	u8 _AA;      // _AA
 	u8 _AB;      // _AB
 	u8 _AC;      // _AC
 	u32 _B0;     // _B0
-	float _B4;   // _B4
-	float _B8;   // _B8
-	float _BC;   // _BC
-	float _C0;   // _C0
-	float _C4;   // _C4
+	f32 _B4;     // _B4
+	f32 _B8;     // _B8
+	f32 _BC;     // _BC
+	f32 _C0;     // _C0
+	f32 _C4;     // _C4
 	SoundID _C8; // _C8
 };
 
@@ -168,11 +174,12 @@ struct CallBack_CounterSlot : public CallBack_CounterRV {
 struct CallBack_DrawAfter : public P2DScreen::CallBackNode {
 	CallBack_DrawAfter(P2DScreen::Mgr*, u64);
 
-	virtual ~CallBack_DrawAfter();                 // _00
-	virtual void update();                         // _08
-	virtual void draw(Graphics&, J2DGrafContext&); // _0C
-	virtual void _14();                            // _14
+	virtual ~CallBack_DrawAfter();                 // _08 (weak)
+	virtual void update();                         // _10
+	virtual void draw(Graphics&, J2DGrafContext&); // _14
 
+	// _00     = VTBL
+	// _00-_1C = P2DScreen::CallBackNode
 	J2DPictureEx* _1C; // _1C
 	J2DPictureEx* _20; // _20
 	u8 _24;            // _24
@@ -182,29 +189,29 @@ struct CallBack_DrawAfter : public P2DScreen::CallBackNode {
 struct CallBack_Furiko : public P2DScreen::CallBackNode {
 	CallBack_Furiko();
 
-	virtual ~CallBack_Furiko();                    // _00
-	virtual void update();                         // _08
-	virtual void draw(Graphics&, J2DGrafContext&); // _0C
-	virtual void _14();                            // _14
+	virtual ~CallBack_Furiko();                    // _08 (weak)
+	virtual void update();                         // _10
+	virtual void draw(Graphics&, J2DGrafContext&); // _14
 
-	// TODO: Could init have been virtual, but not inserted into vtable?
-	void init(J2DPane*, float, float, float);
-	void setParam(float, float, float);
+	void init(J2DPane*, f32, f32, f32);
+	void setParam(f32, f32, f32);
 	void stop();
 
+	// _00     = VTBL
+	// _00-_1C = P2DScreen::CallBackNode
 	J2DPane* _1C; // _1C
 	u8 _20;       // _20
 	u8 _21;       // _21
-	float _24;    // _24
-	float _28;    // _28
-	float _2C;    // _2C
-	float _30;    // _30
-	float _34;    // _34
-	float _38;    // _38
-	float _3C;    // _3C
-	float _40;    // _40
-	float _44;    // _44
-	float _48;    // _48
+	f32 _24;      // _24
+	f32 _28;      // _28
+	f32 _2C;      // _2C
+	f32 _30;      // _30
+	f32 _34;      // _34
+	f32 _38;      // _38
+	f32 _3C;      // _3C
+	f32 _40;      // _40
+	f32 _44;      // _44
+	f32 _48;      // _48
 };
 
 struct CallBack_LifeGauge : public P2DScreen::CallBackNode {
@@ -213,31 +220,33 @@ struct CallBack_LifeGauge : public P2DScreen::CallBackNode {
 
 	CallBack_LifeGauge();
 
-	virtual ~CallBack_LifeGauge();                 // _00
-	virtual void update();                         // _08
-	virtual void draw(Graphics&, J2DGrafContext&); // _0C
+	virtual ~CallBack_LifeGauge();                 // _08
+	virtual void update();                         // _10
+	virtual void draw(Graphics&, J2DGrafContext&); // _14
 
 	void init(P2DScreen::Mgr*, DataNavi*, LifeGaugeType);
 	void moveIcon();
 	void setType(LifeGaugeType);
-	void setOffset(float, float);
+	void setOffset(f32, f32);
 
+	// _00     = VTBL
+	// _00-_1C = P2DScreen::CallBackNode
 	DataNavi* m_data;              // _1C
-	float m_naviLifeRatioMaybe;    // _20
-	float m_widthOrRadiusMaybe;    // _24
-	float m_offsetX;               // _28
-	float m_offsetY;               // _2C
-	float _30;                     // _30
+	f32 m_naviLifeRatioMaybe;      // _20
+	f32 m_widthOrRadiusMaybe;      // _24
+	f32 m_offsetX;                 // _28
+	f32 m_offsetY;                 // _2C
+	f32 _30;                       // _30
 	u8 _34[8];                     // _34
-	float m_na_i_d4;               // _3C
-	float m_na_i_d8;               // _40
-	float m_li_i_d4;               // _44
-	float m_li_i_d8;               // _48
+	f32 m_na_i_d4;                 // _3C
+	f32 m_na_i_d8;                 // _40
+	f32 m_li_i_d4;                 // _44
+	f32 m_li_i_d8;                 // _48
 	LifeGauge* m_lifeGauge;        // _4C
 	u8 _50;                        // _50
 	u8 _51;                        // _51
-	float _54;                     // _54
-	float _58;                     // _58
+	f32 _54;                       // _54
+	f32 _58;                       // _58
 	P2DScreen::Mgr* _5C;           // _5C
 	J2DPane* m_pin1;               // _60
 	J2DPicture* m_pin2;            // _64
@@ -259,78 +268,87 @@ struct CallBack_LifeGauge : public P2DScreen::CallBackNode {
 struct CallBack_Message : public P2DScreen::CallBackNode {
 	CallBack_Message();
 
-	virtual ~CallBack_Message();                   // _00
-	virtual void update();                         // _08
-	virtual void draw(Graphics&, J2DGrafContext&); // _0C
-	virtual void _14();                            // _14
+	virtual ~CallBack_Message();                   // _08 (weak)
+	virtual void update();                         // _10 (weak)
+	virtual void draw(Graphics&, J2DGrafContext&); // _14
 
 	// Unused/inlined:
 	void drawInfo(J2DGrafContext&);
 
+	// _00     = VTBL
+	// _00-_1C = P2DScreen::CallBackNode
 	P2JME::SimpleMessage* m_message; // _1C
 	u64 m_messageIDAsULL;            // _20
 	u32 m_messageIDAs2UL[2];         // _28
-	float _30;                       // _30
-	float _34;                       // _34
-	float _38;                       // _38
-	float _3C;                       // _3C
-	float _40;                       // _40
-	float _44;                       // _44
+	f32 _30;                         // _30
+	f32 _34;                         // _34
+	f32 _38;                         // _38
+	f32 _3C;                         // _3C
+	f32 _40;                         // _40
+	f32 _44;                         // _44
 };
 
 /**
  * @unused
  */
 struct CallBack_MessageAndShadow : public CallBack_Message {
-	CallBack_MessageAndShadow(float, float, J2DPane*);
+	CallBack_MessageAndShadow(f32, f32, J2DPane*);
 
-	virtual ~CallBack_MessageAndShadow();          // _00
-	virtual void draw(Graphics&, J2DGrafContext&); // _0C
+	virtual ~CallBack_MessageAndShadow();          // _08
+	virtual void draw(Graphics&, J2DGrafContext&); // _14
+
+	// _00     = VTBL
+	// _00-_48 = CallBack_Message
 };
 
 // Unused/inlined:
 void MessageSetInfoShadow(J2DPane*, P2JME::TRenderingProcessor*, J2DPane*);
 
 struct CallBack_Screen : public P2DScreen::CallBackNode {
-	virtual ~CallBack_Screen();                    // _00
-	virtual void update();                         // _08
-	virtual void draw(Graphics&, J2DGrafContext&); // _0C
-	virtual void _14();                            // _14
+	CallBack_Screen(P2DScreen::Mgr*, u64);
+
+	virtual ~CallBack_Screen();                    // _08 (weak)
+	virtual void update();                         // _10
+	virtual void draw(Graphics&, J2DGrafContext&); // _14
 
 	void changeScreen(P2DScreen::Mgr*, u64);
 	J2DScreen* getPartsScreen();
 
+	// _00     = VTBL
+	// _00-_1C = P2DScreen::CallBackNode
 	J2DScreen* m_partsScreen; // _1C
 	J2DPane* _20;             // _20
 	J2DTextBox* _24;          // _24
-	float _28;                // _28
-	float _2C;                // _2C
-	float _30;                // _30
+	f32 _28;                  // _28
+	f32 _2C;                  // _2C
+	f32 _30;                  // _30
 };
 
 // Size: 0x38
 struct CallBack_Picture : public CallBack_Screen {
-	CallBack_Picture(P2DScreen::Mgr*, unsigned long long); // Unused/inlined
-	virtual ~CallBack_Picture();                           // _00
-	virtual void update();                                 // _08
-	virtual void draw(Graphics&, J2DGrafContext&);         // _0C
-	virtual void _14();                                    // _14
+	CallBack_Picture(P2DScreen::Mgr*, u64); // Unused/inlined
 
+	virtual ~CallBack_Picture();                   // _08
+	virtual void update();                         // _10
+	virtual void draw(Graphics&, J2DGrafContext&); // _14
+
+	// _00     = VTBL
+	// _00-_34 = CallBack_Screen
 	AnimGroup* m_animGroup; // _34
 };
 
 struct CallBack_SunMeter : public P2DScreen::CallBackNode {
 	CallBack_SunMeter();
 
-	virtual ~CallBack_SunMeter(); // _00
-	virtual void update();        // _08
-	virtual void _14();           // _14
+	virtual ~CallBack_SunMeter(); // _08
+	virtual void update();        // _10
 
-	// TODO: Could init have been virtual, but not inserted into vtable?
-	void init(J2DScreen*, float*);
+	void init(J2DScreen*, f32*);
 	void startEffectChime();
 
-	float _1C;            // _1C
+	// _00     = VTBL
+	// _00-_1C = P2DScreen::CallBackNode
+	f32 _1C;              // _1C
 	u8 _20[4];            // _20
 	J2DPane* _24;         // _24
 	J2DPane* _28;         // _28
@@ -344,10 +362,20 @@ struct CallBack_SunMeter : public P2DScreen::CallBackNode {
 };
 
 struct AnimText_Screen : public CallBack_Screen {
-	void open(float);
+	AnimText_Screen(P2DScreen::Mgr*, u64);
+
+	virtual ~AnimText_Screen(); // _08 (weak)
+	virtual void update();      // _10
+
+	void setAnimScreen(AnimScreen*);
+	void close();
+	void blink(f32, f32);
+	void open(f32);
 	void stop();
 	void setText(u64);
 
+	// _00     = VTBL
+	// _00-_34 = CallBack_Screen
 	int _34;                   // _34
 	AnimScreen* _38;           // _38
 	u8 _3C;                    // _3C
@@ -357,12 +385,12 @@ struct AnimText_Screen : public CallBack_Screen {
 	u32 _4C;                   // _4C
 	u32 _50;                   // _50
 	u32 _54;                   // _54
-	float _58;                 // _58
-	float _5C;                 // _5C
-	float _60;                 // _60
-	float _64;                 // _64
+	f32 _58;                   // _58
+	f32 _5C;                   // _5C
+	f32 _60;                   // _60
+	f32 _64;                   // _64
 	int _68;                   // _68
-	float _6C;                 // _6C
+	f32 _6C;                   // _6C
 	JUtility::TColor _70;      // _70
 	JUtility::TColor _74;      // _74
 	JUtility::TColor _78;      // _78
@@ -384,14 +412,14 @@ struct AnimText_Screen : public CallBack_Screen {
 };
 
 struct CounterKeta {
-	void setSuji(ResTIMG**, unsigned long);
+	void setSuji(ResTIMG**, u32);
 	void calcScale();
 
 	J2DPicture* m_picture; // _00
 	u32 m_textureIndex;    // _04
 	ScaleMgr* m_scaleMgr;  // _08
-	float _0C;             // _0C
-	float _10;             // _10
+	f32 _0C;               // _0C
+	f32 _10;               // _10
 };
 
 extern const char* SujiTex32[11];

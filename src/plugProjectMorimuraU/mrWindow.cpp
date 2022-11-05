@@ -1,4 +1,4 @@
-#include "og/Screen/DispMemberWorldMapInfoWin0.h"
+#include "og/Screen/DispMember.h"
 #include "og/Screen/ScaleMgr.h"
 #include "og/Screen/anime.h"
 #include "og/Screen/callbackNodes.h"

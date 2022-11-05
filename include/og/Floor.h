@@ -6,6 +6,7 @@
 #include "types.h"
 #include "Screen/Bases.h"
 #include "og/Screen/ogScreen.h"
+#include "og/Screen/DispMember.h"
 
 struct Graphics;
 struct JKRArchive;
@@ -20,45 +21,6 @@ namespace Screen {
 struct AnimGroup;
 struct AlphaMgr;
 struct CallBack_CounterRV;
-
-/**
- * @size{0x14}
- */
-struct DispMemberFloor : public DispMemberBase {
-	/**
-	 * @reifiedAddress{8022D610}
-	 * @reifiedFile{plugProjectKandoU/vsGS_Load.cpp}
-	 */
-	virtual u32 getSize() // _00
-	{
-		return sizeof(DispMemberFloor);
-	}
-
-	/**
-	 * @reifiedAddress{8022D618}
-	 * @reifiedFile{plugProjectKandoU/vsGS_Load.cpp}
-	 */
-	virtual u32 getOwnerID() // _04
-	{
-		return OWNER_OGA;
-	}
-
-	/**
-	 * @reifiedAddress{8022D624}
-	 * @reifiedFile{plugProjectKandoU/vsGS_Load.cpp}
-	 */
-	virtual u64 getMemberID() // _08
-	{
-		return MEMBER_FLOOR;
-	}
-
-	int _08;      // _08
-	int m_caveID; // _0C
-	u8 _10;       // _10
-	u8 _11;       // _11
-	u8 _12;       // _12
-};
-
 } // namespace Screen
 
 namespace newScreen {

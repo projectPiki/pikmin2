@@ -5,7 +5,7 @@
 #include "Morimura/DispMemberZukanEnemy.h"
 #include "Morimura/DispMemberZukanItem.h"
 #include "Screen/Enums.h"
-#include "og/Screen/DispMemberWorldMapInfoWin0.h"
+#include "og/Screen/DispMember.h"
 #include "og/Screen/MenuMgr.h"
 #include "og/Screen/ogScreen.h"
 #include "og/Screen/callbackNodes.h"

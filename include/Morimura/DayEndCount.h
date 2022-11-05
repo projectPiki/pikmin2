@@ -18,47 +18,6 @@ namespace P2DScreen {
 struct Mgr_tuning;
 }
 
-namespace og {
-namespace Screen {
-
-/**
- * @size{0x10}
- */
-struct DispMemberDayEndCount : public DispMemberBase {
-	/**
-	 * @reifiedAddress{}
-	 * @reifiedFile{}
-	 */
-	virtual u32 getSize() // _00
-	{
-		return sizeof(DispMemberDayEndCount);
-	}
-
-	/**
-	 * @reifiedAddress{}
-	 * @reifiedFile{}
-	 */
-	virtual u32 getOwnerID() // _04
-	{
-		return OWNER_MRMR;
-	}
-
-	/**
-	 * @reifiedAddress{}
-	 * @reifiedFile{}
-	 */
-	virtual u64 getMemberID() // _08
-	{
-		return MEMBER_DAY_END_COUNT;
-	}
-
-	float _08; // _08
-	float _0C; // _0C
-};
-
-} // namespace Screen
-} // namespace og
-
 namespace Morimura {
 
 /**

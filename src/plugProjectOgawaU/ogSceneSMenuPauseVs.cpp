@@ -1,5 +1,5 @@
 #include "Screen/Enums.h"
-#include "og/Screen/DispMemberSMenuPauseVS.h"
+#include "og/Screen/DispMember.h"
 #include "og/newScreen/ObjSMenuPauseVS.h"
 #include "og/newScreen/SMenuPauseVS.h"
 #include "types.h"

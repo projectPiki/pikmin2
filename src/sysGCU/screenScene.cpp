@@ -5,7 +5,7 @@
 #include "JSystem/JUT/TColor.h"
 #include "Screen/Enums.h"
 #include "Screen/SceneInfoList.h"
-#include "og/Screen/DispMemberDummy.h"
+#include "og/Screen/DispMember.h"
 #include "og/Screen/ogScreen.h"
 #include "og/newScreen/ogUtil.h"
 #include "Screen/Bases.h"

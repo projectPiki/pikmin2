@@ -7,7 +7,7 @@
 #include "JSystem/JUT/TColor.h"
 #include "Resource.h"
 #include "Screen/Enums.h"
-#include "og/Screen/DispMemberDummy.h"
+#include "og/Screen/DispMember.h"
 #include "Screen/SceneInfoList.h"
 #include "Graphics.h"
 
@@ -69,7 +69,7 @@ struct SetSceneArg : public SceneArgBase {
 };
 
 struct EndSceneArg : public SceneArgBase {
-	virtual void getClassSize(); // _0C (weak)
+	virtual int getClassSize(); // _0C (weak)
 
 	u8 _04; // _04
 };
@@ -204,9 +204,11 @@ struct MgrBase : public JKRDisposer {
 };
 
 struct Mgr : public MgrBase {
+	Mgr();
+
 	virtual ~Mgr();                             // _08 (weak)
-	virtual void setScene(SetSceneArg&);        // _0C
-	virtual void startScene(StartSceneArg*);    // _10
+	virtual bool setScene(SetSceneArg&);        // _0C
+	virtual bool startScene(StartSceneArg*);    // _10
 	virtual void endScene(EndSceneArg*);        // _14
 	virtual void reset();                       // _18
 	virtual void setColorBG(JUtility::TColor&); // _1C (weak)
@@ -215,7 +217,6 @@ struct Mgr : public MgrBase {
 	virtual void drawBG(Graphics&);             // _28 (weak)
 	virtual void drawWipe(Graphics&);           // _2C (weak)
 
-	Mgr();
 	void init();
 	void getCurrentCommand();
 	void getNewCommand();
@@ -256,6 +257,7 @@ struct Mgr : public MgrBase {
 	JUtility::TColor _A0;          // _A0
 	int m_bgMode;                  // _A4
 };
+
 struct ObjMgrBase {
 	ObjMgrBase();
 

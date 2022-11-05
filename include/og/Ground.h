@@ -3,9 +3,9 @@
 
 #include "JSystem/J2D/J2DPane.h"
 #include "JSystem/JUT/TColor.h"
-#include "Morimura/DayEndCount.h"
-#include "Morimura/HurryUp.h"
 #include "og/Screen/ogScreen.h"
+#include "og/Screen/Data.h"
+#include "og/Screen/DispMember.h"
 #include "Screen/Bases.h"
 #include "types.h"
 
@@ -25,74 +25,6 @@ struct NaviLifeGauge;
 struct OtakaraSensor;
 struct PikminCounter;
 struct SunMeter;
-
-struct DataNavi {
-	float m_naviLifeRatio; // _00
-	u32 _04;               // _04
-	u32 m_nextThrowPiki;   // _08
-	u32 m_dope1Count;      // _0C
-	u32 m_dope0Count;      // _10
-	u8 _14;                // _14
-};
-
-struct DataGame {
-	float _00;
-	u32 _04;
-	u32 _08;
-	u32 _0C;
-	u32 _10;
-	u8 _14;
-	uint m_pokoCountMaybe;
-};
-
-/**
- * @size{0x88}
- */
-struct DispMemberGround : public DispMemberBase {
-	/**
-	 * @reifiedAddress{801560B4}
-	 * @reifiedFile{plugProjectKandoU/singleGameSection.cpp}
-	 */
-	virtual u32 getSize() // _00
-	{
-		return sizeof(DispMemberGround);
-	}
-
-	/**
-	 * @reifiedAddress{801560BC}
-	 * @reifiedFile{plugProjectKandoU/singleGameSection.cpp}
-	 */
-	virtual u32 getOwnerID() // _04
-	{
-		return OWNER_OGA;
-	}
-
-	/**
-	 * @reifiedAddress{801560C8}
-	 * @reifiedFile{plugProjectKandoU/singleGameSection.cpp}
-	 */
-	virtual u64 getMemberID() // _08
-	{
-		return MEMBER_GROUND;
-	}
-
-	DataGame m_dataGame;                 // _08
-	DataNavi m_dataNavi[2];              // _24
-	float _54;                           // _54
-	int _58;                             // _58
-	u8 _5C;                              // _5C
-	u8 _5D;                              // _5D
-	u8 _5E;                              // _5E
-	bool _5F;                            // _5F
-	bool _60;                            // _60
-	u8 _61;                              // _61
-	u8 _62;                              // _62
-	bool _63;                            // _63
-	bool _64;                            // _64
-	DispMemberDayEndCount m_dayEndCount; // _68
-	DispMemberHurryUp m_hurryUp;         // _78
-};
-
 } // namespace Screen
 
 namespace newScreen {

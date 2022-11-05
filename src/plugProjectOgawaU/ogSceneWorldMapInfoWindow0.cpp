@@ -1,4 +1,4 @@
-#include "og/Screen/DispMemberWorldMapInfoWin0.h"
+#include "og/Screen/DispMember.h"
 #include "og/newScreen/ObjWorldMapInfoWindow0.h"
 #include "og/newScreen/WorldMapInfoWindow0.h"
 #include "types.h"
