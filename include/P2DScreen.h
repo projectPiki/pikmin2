@@ -27,8 +27,8 @@ struct Node : public CNode {
 struct CallBackNode : public Node {
 	CallBackNode() { }
 
-	virtual ~CallBackNode(); // _08
-	virtual void update();   // _10
+	virtual ~CallBackNode() { } // _08
+	virtual void update();      // _10
 
 	// _00     = VTBL
 	// _00-_1C = Node

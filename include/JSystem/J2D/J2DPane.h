@@ -32,7 +32,11 @@ struct ResTIMG;
 struct ResTLUT;
 struct TMaterial;
 
-typedef u32 J2DRotateAxis;
+enum J2DRotateAxis {
+	J2DROTATE_X = 'x', // 0x78
+	J2DROTATE_Y = 'y', // 0x79
+	J2DROTATE_Z = 'z', // 0x7A
+};
 
 // Intended to be size 0x1.
 enum J2DBasePosition {
@@ -196,6 +200,12 @@ struct J2DPane {
 		setBasePosition(POS_CENTER);
 		m_scale.x = width;
 		m_scale.y = height;
+		calcMtx();
+	}
+
+	inline void updateScale(f32 scale)
+	{
+		m_scale = JGeometry::TVec2f(scale, scale);
 		calcMtx();
 	}
 

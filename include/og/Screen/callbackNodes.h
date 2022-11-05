@@ -32,18 +32,18 @@ struct DataNavi;
 struct CallBack_CatchPiki : public P2DScreen::CallBackNode {
 	CallBack_CatchPiki();
 
-	virtual ~CallBack_CatchPiki(); // _08
-	virtual void update();         // _10
+	virtual ~CallBack_CatchPiki() { } // _08
+	virtual void update();            // _10
 
 	void init(J2DScreen*, u64, u32*, JKRArchive*);
 	void setPikiIcon(int);
 
 	// _00     = VTBL
 	// _00-_1C = P2DScreen::CallBackNode
-	u32* _1C;            // _1C
-	J2DPicture* _20;     // _20
-	u32 _24;             // _24
-	ScaleMgr m_scaleMgr; // _28
+	u32* m_pikiTypePtr;     // _1C
+	J2DPicture* m_pikiIcon; // _20
+	u32 m_currPikiType;     // _24
+	ScaleMgr m_scaleMgr;    // _28
 };
 
 struct CallBack_CounterRV : public P2DScreen::CallBackNode {
