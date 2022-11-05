@@ -23,9 +23,10 @@ Mgr::Mgr(int objLimit, u8 modelType)
  */
 void Mgr::loadModelData()
 {
-	int ids[3] = { EnemyTypeID::EnemyID_Kogane, EnemyTypeID::EnemyID_Wealthy, EnemyTypeID::EnemyID_Fart };
+	EnemyTypeID::EEnemyTypeID ids[] = { EnemyTypeID::EnemyID_Kogane, EnemyTypeID::EnemyID_Wealthy, EnemyTypeID::EnemyID_Fart };
+	int id_count                    = sizeof(ids) / sizeof(EnemyTypeID::EEnemyTypeID);
 
-	for (int i = 0; i < 3; i++) {
+	for (int i = 0; i < id_count; i++) {
 		EnemyMgrBase* mgr = generalEnemyMgr->getEnemyMgr(ids[i]);
 		if (mgr) {
 			J3DModelData* storedModelData = mgr->getJ3DModelData();
@@ -52,9 +53,10 @@ void Mgr::loadModelData()
  */
 void Mgr::loadAnimData()
 {
-	int ids[3] = { EnemyTypeID::EnemyID_Kogane, EnemyTypeID::EnemyID_Wealthy, EnemyTypeID::EnemyID_Fart };
+	EnemyTypeID::EEnemyTypeID ids[] = { EnemyTypeID::EnemyID_Kogane, EnemyTypeID::EnemyID_Wealthy, EnemyTypeID::EnemyID_Fart };
+	int id_count                    = sizeof(ids) / sizeof(EnemyTypeID::EEnemyTypeID);
 
-	for (int i = 0; i < 3; i++) {
+	for (int i = 0; i < id_count; i++) {
 		EnemyMgrBase* mgr = generalEnemyMgr->getEnemyMgr(ids[i]);
 		if (mgr) {
 			SysShape::AnimMgr* storedAnimMgr = mgr->m_animMgr;
