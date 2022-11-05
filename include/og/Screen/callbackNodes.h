@@ -307,21 +307,21 @@ void MessageSetInfoShadow(J2DPane*, P2JME::TRenderingProcessor*, J2DPane*);
 struct CallBack_Screen : public P2DScreen::CallBackNode {
 	CallBack_Screen(P2DScreen::Mgr*, u64);
 
-	virtual ~CallBack_Screen();                    // _08 (weak)
+	virtual ~CallBack_Screen() { }                 // _08 (weak)
 	virtual void update();                         // _10
 	virtual void draw(Graphics&, J2DGrafContext&); // _14
 
 	void changeScreen(P2DScreen::Mgr*, u64);
-	J2DScreen* getPartsScreen();
+	P2DScreen::Mgr* getPartsScreen();
 
 	// _00     = VTBL
 	// _00-_1C = P2DScreen::CallBackNode
-	J2DScreen* m_partsScreen; // _1C
-	J2DPane* _20;             // _20
-	J2DTextBox* _24;          // _24
-	f32 _28;                  // _28
-	f32 _2C;                  // _2C
-	f32 _30;                  // _30
+	P2DScreen::Mgr* m_partsScreen; // _1C
+	J2DPane* m_pane;               // _20
+	J2DTextBox* m_textBox;         // _24
+	f32 _28;                       // _28
+	f32 _2C;                       // _2C
+	f32 _30;                       // _30
 };
 
 // Size: 0x38

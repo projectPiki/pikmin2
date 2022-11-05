@@ -870,7 +870,7 @@ OGAWA:=\
 	$(BUILD_DIR)/asm/plugProjectOgawaU/ogAnimTextScreen.o\
 	$(BUILD_DIR)/asm/plugProjectOgawaU/ogCallBackMessage.o\
 	$(BUILD_DIR)/asm/plugProjectOgawaU/ogMenuMgr.o\
-	$(BUILD_DIR)/asm/plugProjectOgawaU/ogCallBackScreen.o\
+	$(BUILD_DIR)/src/plugProjectOgawaU/ogCallBackScreen.o\
 	$(BUILD_DIR)/asm/plugProjectOgawaU/ogCounterRV.o\
 	$(BUILD_DIR)/asm/plugProjectOgawaU/ogSE.o\
 	$(BUILD_DIR)/asm/plugProjectOgawaU/ogCounterDay.o\
