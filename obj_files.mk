@@ -928,7 +928,7 @@ OGAWA:=\
 	$(BUILD_DIR)/src/plugProjectOgawaU/ogSceneWorldMapInfoWindow0.o\
 	$(BUILD_DIR)/asm/plugProjectOgawaU/ogObjWorldMapInfoWindow1.o\
 	$(BUILD_DIR)/asm/plugProjectOgawaU/ogSceneWorldMapInfoWindow1.o\
-	$(BUILD_DIR)/asm/plugProjectOgawaU/ogTotalPokoScreen.o\
+	$(BUILD_DIR)/src/plugProjectOgawaU/ogTotalPokoScreen.o\
 	$(BUILD_DIR)/asm/plugProjectOgawaU/ogObjChallengeBase.o\
 	$(BUILD_DIR)/src/plugProjectOgawaU/ogSceneChallengeBase.o\
 	$(BUILD_DIR)/asm/plugProjectOgawaU/ogCallBackPicture.o\
