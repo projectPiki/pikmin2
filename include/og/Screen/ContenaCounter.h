@@ -12,7 +12,7 @@ struct CallBack_CounterRV;
 struct ContenaCounter : public P2DScreen::Mgr_tuning {
 	ContenaCounter(DispMemberContena*);
 
-	virtual ~ContenaCounter(); // _08 (weak)
+	virtual ~ContenaCounter() { } // _08 (weak)
 
 	void setblo(char*, JKRArchive*);
 
@@ -24,10 +24,10 @@ struct ContenaCounter : public P2DScreen::Mgr_tuning {
 	CallBack_CounterRV* _154;     // _154
 	CallBack_CounterRV* _158;     // _158
 	u8 _15C[0x8];                 // _15C, unknown
-	u32* _164;                    // _164, ptr?
-	u32* _168;                    // _168, ptr?
-	u32* _16C;                    // _16C, ptr?
-	u32* _170;                    // _170, ptr?
+	u32* _164;                    // _164, ptr to m_contena->_0C
+	u32* _168;                    // _168, ptr to m_contena->_28
+	u32* _16C;                    // _16C, ptr to m_contena->_14
+	u32* _170;                    // _170, ptr to m_contena->_20
 };
 } // namespace Screen
 } // namespace og
