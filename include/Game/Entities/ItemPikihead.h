@@ -128,18 +128,18 @@ struct WaitState : public State {
 struct Item : public FSMItem<Item, FSM, State> {
 	Item();
 
-	virtual void onInit(CreatureInitArg*);              // _30
-	virtual void onKill(CreatureKillArg*);              // _34
-	virtual void doSimulation(f32);                     // _4C
-	virtual void getLODSphere(Sys::Sphere&);            // _140
-	virtual char* getCreatureName();                    // _1A8 (weak)
-	virtual void makeTrMatrix();                        // _1C4
-	virtual void doAI();                                // _1C8
-	virtual void changeMaterial();                      // _1D0
-	virtual bool interactFue(InteractFue&);             // _1F4
-	virtual void updateBoundSphere();                   // _210
-	virtual void onSetPosition();                       // _21C
-	virtual void onKeyEvent(const SysShape::KeyEvent&); // _220 (weak)
+	virtual void onInit(CreatureInitArg*);                    // _30
+	virtual void onKill(CreatureKillArg*);                    // _34
+	virtual void doSimulation(f32);                           // _4C
+	virtual void getLODSphere(Sys::Sphere& lodSphere);        // _140
+	virtual char* getCreatureName();                          // _1A8 (weak)
+	virtual void makeTrMatrix();                              // _1C4
+	virtual void doAI();                                      // _1C8
+	virtual void changeMaterial();                            // _1D0
+	virtual bool interactFue(InteractFue&);                   // _1F4
+	virtual void updateBoundSphere();                         // _210
+	virtual void onSetPosition();                             // _21C
+	virtual void onKeyEvent(const SysShape::KeyEvent& event); // _220 (weak)
 
 	void needSave();
 	void cacheSave(Stream&);

@@ -17,16 +17,16 @@ struct Obj : public ChappyBase::Obj {
 	Obj();
 
 	//////////////// VTABLE
-	virtual void onInit(CreatureInitArg* settings);    // _30
-	virtual void onKill(CreatureKillArg* settings);    // _34
-	virtual void doDirectDraw(Graphics& gfx);          // _50
-	virtual void collisionCallback(CollEvent&);        // _EC
-	virtual void getShadowParam(ShadowParam&);         // _134
-	virtual ~Obj() { }                                 // _1BC (weak)
-	virtual void doUpdateCommon();                     // _1D0
-	virtual void doDebugDraw(Graphics&);               // _1EC
-	virtual void changeMaterial();                     // _200
-	virtual EnemyTypeID::EEnemyTypeID getEnemyTypeID() // _258 (weak)
+	virtual void onInit(CreatureInitArg* settings);     // _30
+	virtual void onKill(CreatureKillArg* settings);     // _34
+	virtual void doDirectDraw(Graphics& gfx);           // _50
+	virtual void collisionCallback(CollEvent& event);   // _EC
+	virtual void getShadowParam(ShadowParam& settings); // _134
+	virtual ~Obj() { }                                  // _1BC (weak)
+	virtual void doUpdateCommon();                      // _1D0
+	virtual void doDebugDraw(Graphics&);                // _1EC
+	virtual void changeMaterial();                      // _200
+	virtual EnemyTypeID::EEnemyTypeID getEnemyTypeID()  // _258 (weak)
 	{
 		return EnemyTypeID::EnemyID_FireChappy;
 	}

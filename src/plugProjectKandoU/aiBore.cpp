@@ -169,7 +169,7 @@
  * Address:	802312F4
  * Size:	000098
  */
-PikiAI::ActBore::ActBore(Game::Piki*)
+PikiAI::ActBore::ActBore(Game::Piki* p)
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -633,7 +633,7 @@ void PikiAI::ActBore::cleanup(void) { }
  * Address:	802318A0
  * Size:	00009C
  */
-PikiAI::ActRest::ActRest(Game::Piki*)
+PikiAI::ActRest::ActRest(Game::Piki* p)
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -1259,7 +1259,7 @@ lbl_80231F9C:
  * Address:	80231FB8
  * Size:	0000BC
  */
-PikiAI::ActOneshot::ActOneshot(Game::Piki*)
+PikiAI::ActOneshot::ActOneshot(Game::Piki* p)
 {
 	/*
 	stwu     r1, -0x10(r1)

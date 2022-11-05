@@ -106,25 +106,25 @@ struct Item : public WorkItem<Item, FSM, State> {
 	{ // probably needs things in here, just an initial guess
 	}
 
-	virtual void constructor();                           // _2C
-	virtual void onInit(CreatureInitArg*);                // _30
-	virtual void doSimulation(f32);                       // _4C
-	virtual void doDirectDraw(Graphics&);                 // _50
-	virtual f32 getFaceDir();                             // _64 (weak)
-	virtual bool sound_culling();                         // _104 (weak)
-	virtual void movieUserCommand(u32, MoviePlayer*);     // _130
-	virtual char* getCreatureName();                      // _1A8 (weak)
-	virtual void initDependency();                        // _1BC
-	virtual void makeTrMatrix();                          // _1C4
-	virtual void doAI();                                  // _1C8
-	virtual bool interactAttack(InteractAttack&);         // _1E0
-	virtual bool interactGotKey(InteractGotKey&);         // _200
-	virtual bool getVectorField(Sys::Sphere&, Vector3f&); // _204
-	virtual f32 getWorkDistance(Sys::Sphere&);            // _208
-	virtual void updateBoundSphere();                     // _210
-	virtual void update();                                // _214
-	virtual void onSetPosition();                         // _21C
-	virtual void onKeyEvent(const SysShape::KeyEvent&);   // _220 (weak)
+	virtual void constructor();                                         // _2C
+	virtual void onInit(CreatureInitArg*);                              // _30
+	virtual void doSimulation(f32);                                     // _4C
+	virtual void doDirectDraw(Graphics&);                               // _50
+	virtual f32 getFaceDir();                                           // _64 (weak)
+	virtual bool sound_culling();                                       // _104 (weak)
+	virtual void movieUserCommand(u32 command, MoviePlayer* curPlayer); // _130
+	virtual char* getCreatureName();                                    // _1A8 (weak)
+	virtual void initDependency();                                      // _1BC
+	virtual void makeTrMatrix();                                        // _1C4
+	virtual void doAI();                                                // _1C8
+	virtual bool interactAttack(InteractAttack&);                       // _1E0
+	virtual bool interactGotKey(InteractGotKey&);                       // _200
+	virtual bool getVectorField(Sys::Sphere&, Vector3f&);               // _204
+	virtual f32 getWorkDistance(Sys::Sphere&);                          // _208
+	virtual void updateBoundSphere();                                   // _210
+	virtual void update();                                              // _214
+	virtual void onSetPosition();                                       // _21C
+	virtual void onKeyEvent(const SysShape::KeyEvent& event);           // _220 (weak)
 
 	void killAllEffect();
 	bool canRide();

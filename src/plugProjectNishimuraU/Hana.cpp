@@ -989,7 +989,7 @@ lbl_802F38B8:
  * Address:	802F38CC
  * Size:	00007C
  */
-void ConditionNotStickSlot::satisfy(Game::Piki*)
+void ConditionNotStickSlot::satisfy(Game::Piki* p)
 {
 	/*
 	stwu     r1, -0x10(r1)

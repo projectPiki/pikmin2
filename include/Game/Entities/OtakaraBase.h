@@ -48,7 +48,7 @@ struct Obj : public EnemyBase {
 	virtual void onKill(CreatureKillArg* settings);         // _34
 	virtual void doDirectDraw(Graphics& gfx);               // _50
 	virtual f32 getCellRadius() { return m_cellRadius; }    // _58 (weak)
-	virtual void getShadowParam(ShadowParam&);              // _134
+	virtual void getShadowParam(ShadowParam& settings);     // _134
 	virtual ~Obj() { }                                      // _1BC (weak)
 	virtual void setInitialSetting(EnemyInitialParamBase*); // _1C4
 	virtual void doUpdate();                                // _1CC

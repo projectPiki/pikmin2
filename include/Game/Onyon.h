@@ -44,31 +44,31 @@ struct Onyon : public BaseItem {
 	struct cSpotState; // struct? enum?
 
 	/////////////// VTABLE
-	virtual void onInit(CreatureInitArg* settings);           // _30
-	virtual void onKill(CreatureKillArg* settings);           // _34
-	virtual void doDirectDraw(Graphics& gfx);                 // _50
-	virtual float getFaceDir();                               // _64 (weak)
-	virtual bool sound_culling();                             // _104
-	virtual void on_movie_end(bool);                          // _114
-	virtual void movieUserCommand(u32, MoviePlayer*);         // _130
-	virtual void getShadowParam(ShadowParam&);                // _134
-	virtual bool needShadow();                                // _138
-	virtual void getLODCylinder(Sys::Cylinder&);              // _144
-	virtual Vector3f getSuckPos();                            // _194
-	virtual Vector3f getGoalPos();                            // _198
-	virtual bool isSuckReady();                               // _19C
-	virtual BOOL isSuckArriveWait();                          // _1A0
-	virtual bool stimulate(Interaction&);                     // _1A4
-	virtual char* getCreatureName();                          // _1A8 (weak)
-	virtual void makeTrMatrix();                              // _1C4
-	virtual void doAI();                                      // _1C8
-	virtual void changeMaterial();                            // _1D0
-	virtual void do_updateLOD();                              // _1D4
-	virtual void do_doAnimation();                            // _20C
-	virtual void onSetPosition();                             // _21C
-	virtual void onKeyEvent(const SysShape::KeyEvent&);       // _220 (weak)
-	virtual void onKeyEvent_UFO(const SysShape::KeyEvent&);   // _224
-	virtual void onKeyEvent_Onyon(const SysShape::KeyEvent&); // _228
+	virtual void onInit(CreatureInitArg* settings);                     // _30
+	virtual void onKill(CreatureKillArg* settings);                     // _34
+	virtual void doDirectDraw(Graphics& gfx);                           // _50
+	virtual float getFaceDir();                                         // _64 (weak)
+	virtual bool sound_culling();                                       // _104
+	virtual void on_movie_end(bool shouldResetAnims);                   // _114
+	virtual void movieUserCommand(u32 command, MoviePlayer* curPlayer); // _130
+	virtual void getShadowParam(ShadowParam& settings);                 // _134
+	virtual bool needShadow();                                          // _138
+	virtual void getLODCylinder(Sys::Cylinder&);                        // _144
+	virtual Vector3f getSuckPos();                                      // _194
+	virtual Vector3f getGoalPos();                                      // _198
+	virtual bool isSuckReady();                                         // _19C
+	virtual BOOL isSuckArriveWait();                                    // _1A0
+	virtual bool stimulate(Interaction& data);                          // _1A4
+	virtual char* getCreatureName();                                    // _1A8 (weak)
+	virtual void makeTrMatrix();                                        // _1C4
+	virtual void doAI();                                                // _1C8
+	virtual void changeMaterial();                                      // _1D0
+	virtual void do_updateLOD();                                        // _1D4
+	virtual void do_doAnimation();                                      // _20C
+	virtual void onSetPosition();                                       // _21C
+	virtual void onKeyEvent(const SysShape::KeyEvent& event);           // _220 (weak)
+	virtual void onKeyEvent_UFO(const SysShape::KeyEvent&);             // _224
+	virtual void onKeyEvent_Onyon(const SysShape::KeyEvent&);           // _228
 	/////////////// VTABLE END
 
 	void setType(int);

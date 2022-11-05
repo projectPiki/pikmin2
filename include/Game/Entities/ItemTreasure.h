@@ -69,7 +69,7 @@ struct Item : public WorkItem<Item, FSM, State> {
 	virtual void constructor();                           // _2C
 	virtual void onInit(CreatureInitArg* settings);       // _30
 	virtual void doDirectDraw(Graphics& gfx);             // _50
-	virtual bool ignoreAtari(Creature*);                  // _190
+	virtual bool ignoreAtari(Creature* toIgnore);         // _190
 	virtual char* getCreatureName();                      // _1A8 (weak)
 	virtual void doAI();                                  // _1C8
 	virtual bool interactAttack(InteractAttack&);         // _1E0

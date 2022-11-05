@@ -8155,7 +8155,7 @@ lbl_80462284:
  * Address:	804622A0
  * Size:	000148
  */
-Piki::Piki(Game::Piki*)
+Piki::Piki(Game::Piki* p)
 {
 	/*
 	stwu     r1, -0x20(r1)

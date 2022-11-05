@@ -61,7 +61,7 @@
  * Address:	80196A18
  * Size:	00001C
  */
-PikiAI::Action::Action(Game::Piki* piki)
+PikiAI::Action::Action(Game::Piki* p)
 {
 	_04 = piki;
 	_08 = "Action";
@@ -108,7 +108,7 @@ void PikiAI::Action::getInfo(char* dest)
  * Address:	80196A64
  * Size:	000280
  */
-PikiAI::Brain::Brain(Game::Piki*)
+PikiAI::Brain::Brain(Game::Piki* p)
 {
 	/*
 	stwu     r1, -0x10(r1)

@@ -83,24 +83,24 @@ struct ItemGate : public FSMItem<ItemGate, GateFSM, GateState> {
 	{ // probably needs things in here, just an initial guess
 	}
 
-	virtual void constructor();                           // _2C
-	virtual void onInit(CreatureInitArg*);                // _30
-	virtual f32 getFaceDir();                             // _64 (weak)
-	virtual void doSave(Stream&);                         // _E0
-	virtual void doLoad(Stream&);                         // _E4
-	virtual void getLifeGaugeParam(LifeGaugeParam&);      // _13C
-	virtual u32* getMabiki();                             // _150 (weak)
-	virtual char* getCreatureName();                      // _1A8 (weak)
-	virtual void makeTrMatrix();                          // _1C4 (weak)
-	virtual void doAI();                                  // _1C8
-	virtual void changeMaterial();                        // _1D0
-	virtual bool interactAttack(InteractAttack&);         // _1E0
-	virtual bool getVectorField(Sys::Sphere&, Vector3f&); // _204
-	virtual f32 getWorkDistance(Sys::Sphere&);            // _208
-	virtual void updateBoundSphere();                     // _210
-	virtual void update();                                // _214
-	virtual void onSetPosition();                         // _21C
-	virtual void onKeyEvent(const SysShape::KeyEvent&);   // _220 (weak)
+	virtual void constructor();                               // _2C
+	virtual void onInit(CreatureInitArg*);                    // _30
+	virtual f32 getFaceDir();                                 // _64 (weak)
+	virtual void doSave(Stream&);                             // _E0
+	virtual void doLoad(Stream&);                             // _E4
+	virtual void getLifeGaugeParam(LifeGaugeParam&);          // _13C
+	virtual u32* getMabiki();                                 // _150 (weak)
+	virtual char* getCreatureName();                          // _1A8 (weak)
+	virtual void makeTrMatrix();                              // _1C4 (weak)
+	virtual void doAI();                                      // _1C8
+	virtual void changeMaterial();                            // _1D0
+	virtual bool interactAttack(InteractAttack&);             // _1E0
+	virtual bool getVectorField(Sys::Sphere&, Vector3f&);     // _204
+	virtual f32 getWorkDistance(Sys::Sphere&);                // _208
+	virtual void updateBoundSphere();                         // _210
+	virtual void update();                                    // _214
+	virtual void onSetPosition();                             // _21C
+	virtual void onKeyEvent(const SysShape::KeyEvent& event); // _220 (weak)
 
 	void initMotion();
 	void initPlanes();
@@ -136,7 +136,7 @@ struct ItemGateMgr : public BaseItemMgr {
 	virtual void doEntry();                                               // _0C (weak)
 	virtual void doSetView(int viewportNumber);                           // _10 (weak)
 	virtual void doViewCalc();                                            // _14 (weak)
-	virtual void doSimulation(float);                                     // _18 (weak)
+	virtual void doSimulation(float rate);                                // _18 (weak)
 	virtual void doDirectDraw(Graphics& gfx);                             // _1C (weak)
 	virtual void initDependency();                                        // _38
 	virtual u32 generatorGetID();                                         // _58 (weak)

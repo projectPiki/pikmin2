@@ -36,11 +36,11 @@ struct Obj : public EnemyBase {
 	virtual void doDirectDraw(Graphics& gfx);               // _50
 	virtual f32 getBodyRadius();                            // _54 (weak)
 	virtual f32 getCellRadius();                            // _58 (weak)
-	virtual void inWaterCallback(WaterBox*);                // _84
+	virtual void inWaterCallback(WaterBox* wb);             // _84
 	virtual void outWaterCallback();                        // _88
 	virtual bool isLivingThing();                           // _D4
-	virtual void collisionCallback(CollEvent&);             // _EC
-	virtual void getShadowParam(ShadowParam&);              // _134
+	virtual void collisionCallback(CollEvent& event);       // _EC
+	virtual void getShadowParam(ShadowParam& settings);     // _134
 	virtual bool needShadow();                              // _138
 	virtual Vector3f getGoalPos();                          // _198 (weak)
 	virtual ~Obj() { }                                      // _1BC (weak)

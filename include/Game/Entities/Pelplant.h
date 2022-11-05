@@ -181,8 +181,8 @@ struct Obj : public EnemyBase {
 	{
 		return (m_flags >> 1 & 1);
 	}
-	virtual void getShadowParam(ShadowParam&); // _134
-	virtual void onStickStart(Creature*);      // _158
+	virtual void getShadowParam(ShadowParam& settings); // _134
+	virtual void onStickStart(Creature*);               // _158
 	// vtable 2 (MotionListener+EnemyBase+self, _00, _1BC-1D0)
 	virtual ~Obj() { }                  // _1BC (weak)
 	virtual void birth(Vector3f&, f32); // _1C0

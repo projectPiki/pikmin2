@@ -92,7 +92,7 @@
  * Address:	80238EB0
  * Size:	0000B8
  */
-PikiAI::ActRescue::ActRescue(Game::Piki*)
+PikiAI::ActRescue::ActRescue(Game::Piki* p)
 {
 	/*
 	stwu     r1, -0x10(r1)

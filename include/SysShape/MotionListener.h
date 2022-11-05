@@ -8,7 +8,7 @@ struct KeyEvent;
 
 // @size{0x4}
 struct MotionListener {
-	virtual void onKeyEvent(const KeyEvent&) = 0; // _08
+	virtual void onKeyEvent(const KeyEvent& event) = 0; // _08
 };
 
 } // namespace SysShape

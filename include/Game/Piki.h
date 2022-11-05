@@ -56,9 +56,20 @@ typedef enum EPikiHappa {
 	Bud    = 1,
 	Flower = 2,
 	PikiGrowthStageCount,
+
 	Bud_Red    = 3,
 	Flower_Red = 4,
 } EPikiHappa;
+
+typedef enum EMovieUserCommands {
+	ForceOnionPikis = 100, // Calls enterAllPikis and forceEnterPikis based on moviePlayer flags
+	EnterCave       = 102, // Going into cave via the hole
+	ExitCave        = 103, // Exit using fountain
+	RemoveShadow    = 104,
+	StopFX          = 105,
+	ResetFX         = 106,
+	AddShadow       = 107
+} EMovieUserCommands;
 
 struct PikiInitArg : public CreatureInitArg {
 	virtual const char* getName(); // _08 (weak)
@@ -106,47 +117,47 @@ struct Piki : public FakePiki {
 	Piki();
 
 	// vtable 1 (Creature)
-	virtual bool deferPikiCollision();                          // _20 (weak)
-	virtual void onInit(CreatureInitArg* settings);             // _30
-	virtual void onKill(CreatureKillArg* settings);             // _34
-	virtual void doAnimation();                                 // _3C
-	virtual void doDirectDraw(Graphics& gfx);                   // _50
-	virtual void inWaterCallback(WaterBox*);                    // _84
-	virtual void outWaterCallback();                            // _88
-	virtual bool isAlive();                                     // _A8
-	virtual void bounceCallback(Sys::Triangle*);                // _E8
-	virtual void collisionCallback(CollEvent&);                 // _EC
-	virtual void platCallback(PlatEvent&);                      // _F0
-	virtual JAInter::Object* getJAIObject();                    // _F4
-	virtual PSM::Creature* getPSCreature();                     // _F8
-	virtual void on_movie_begin(bool);                          // _110
-	virtual void on_movie_end(bool);                            // _114
-	virtual void movieStartAnimation(u32);                      // _118
-	virtual void movieStartDemoAnimation(SysShape::AnimInfo*);  // _11C
-	virtual void movieSetTranslation(Vector3f&, f32);           // _124
-	virtual bool movieGotoPosition(Vector3f&);                  // _12C
-	virtual void movieUserCommand(unsigned long, MoviePlayer*); // _130
-	virtual void getShadowParam(ShadowParam&);                  // _134
-	virtual void getLODSphere(Sys::Sphere&);                    // _140
-	virtual void onStickStartSelf(Creature*);                   // _160
-	virtual void onStickEndSelf(Creature*);                     // _164
-	virtual bool ignoreAtari(Creature*);                        // _190
-	virtual bool stimulate(Interaction&);                       // _1A4
-	virtual char* getCreatureName();                            // _1A8 (weak)
-	virtual s32 getCreatureID();                                // _1AC (weak)
+	virtual bool deferPikiCollision();                                  // _20 (weak)
+	virtual void onInit(CreatureInitArg* settings);                     // _30
+	virtual void onKill(CreatureKillArg* settings);                     // _34
+	virtual void doAnimation();                                         // _3C
+	virtual void doDirectDraw(Graphics& gfx);                           // _50
+	virtual void inWaterCallback(WaterBox* wb);                         // _84
+	virtual void outWaterCallback();                                    // _88
+	virtual bool isAlive();                                             // _A8
+	virtual void bounceCallback(Sys::Triangle* tri);                    // _E8
+	virtual void collisionCallback(CollEvent& event);                   // _EC
+	virtual void platCallback(PlatEvent& event);                        // _F0
+	virtual JAInter::Object* getJAIObject();                            // _F4
+	virtual PSM::Creature* getPSCreature();                             // _F8
+	virtual void on_movie_begin(bool shouldResetAnims);                 // _110
+	virtual void on_movie_end(bool shouldResetAnims);                   // _114
+	virtual void movieStartAnimation(u32 animIdx);                      // _118
+	virtual void movieStartDemoAnimation(SysShape::AnimInfo* info);     // _11C
+	virtual void movieSetTranslation(Vector3f& dest, f32 faceDir);      // _124
+	virtual bool movieGotoPosition(Vector3f& dest);                     // _12C
+	virtual void movieUserCommand(u32 command, MoviePlayer* curPlayer); // _130, check EMoviePlayerCommands enum for possible values
+	virtual void getShadowParam(ShadowParam& settings);                 // _134
+	virtual void getLODSphere(Sys::Sphere& lodSphere);                  // _140
+	virtual void onStickStartSelf(Creature* c);                         // _160
+	virtual void onStickEndSelf(Creature* c);                           // _164
+	virtual bool ignoreAtari(Creature* toIgnore);                       // _190
+	virtual bool stimulate(Interaction& data);                          // _1A4
+	virtual char* getCreatureName();                                    // _1A8 (weak)
+	virtual s32 getCreatureID();                                        // _1AC (weak)
 	// vtable 2 (MotionListener + FakePiki + self)
-	virtual int getDownfloorMass();       // _1BC
-	virtual bool isPikmin();              // _1C0
-	virtual void doColorChange();         // _1C4
-	virtual void doDebugDL();             // _1C8
-	virtual void update();                // _1CC
-	virtual void wallCallback(Vector3f&); // _204
-	virtual void startMotion(int, int, SysShape::MotionListener*,
-	                         SysShape::MotionListener*); // _208
-	virtual void onKeyEvent(const SysShape::KeyEvent&);  // _20C (weak)
-	virtual void do_updateLookCreature();                // _214
-	virtual void onSetPosition();                        // _218
-	virtual bool isWalking();                            // _21C
+	virtual int getDownfloorMass();           // _1BC
+	virtual bool isPikmin();                  // _1C0
+	virtual void doColorChange();             // _1C4
+	virtual void doDebugDL();                 // _1C8
+	virtual void update();                    // _1CC
+	virtual void wallCallback(Vector3f& pos); // _204
+	virtual void startMotion(int anim1Idx, int anim2Idx, SysShape::MotionListener* ml1,
+	                         SysShape::MotionListener* ml2);  // _208
+	virtual void onKeyEvent(const SysShape::KeyEvent& event); // _20C (weak)
+	virtual void do_updateLookCreature();                     // _214
+	virtual void onSetPosition();                             // _218
+	virtual bool isWalking();                                 // _21C
 
 	void attachRadar(bool);
 	bool canVsBattle();
@@ -223,8 +234,8 @@ struct Piki : public FakePiki {
 	JUtility::TColor _2AB;             // _2AB
 	JUtility::TColor m_pikiColor;      // _2AF
 	f32 m_colorFloat;                  // _2B4
-	u8 m_pikminType;                   // _2B8
-	u8 m_pikminGrowth;                 // _2B9
+	u8 m_colorType;                    // _2B8
+	u8 m_headType;                     // _2B9, aka Head type (leaf, bud, flower)
 	u32 m_leafModel;                   // _2BC
 	int m_mgrIndex;                    // _2C0
 	Navi* m_navi;                      // _2C4

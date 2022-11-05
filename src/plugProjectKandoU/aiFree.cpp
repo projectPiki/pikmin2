@@ -18,10 +18,10 @@ namespace PikiAI {
  * Address:	8019FF38
  * Size:	0000D0
  */
-ActFree::ActFree(Game::Piki* parent)
-    : Action(parent)
-    , m_gather(new ActGather(parent))
-    , m_bore(new ActBore(parent))
+ActFree::ActFree(Game::Piki* p)
+    : Action(p)
+    , m_gather(new ActGather(p))
+    , m_bore(new ActBore(p))
 {
 	m_name = "Free";
 }
@@ -31,19 +31,19 @@ ActFree::ActFree(Game::Piki* parent)
  * Address:	801A0008
  * Size:	000190
  */
-void ActFree::init(ActionArg* arg)
+void ActFree::init(ActionArg* settings)
 {
 	m_parent->m_navi = nullptr;
 	m_parent->m_soundObj->becomeFree();
 
-	ActFreeArg* freeArg = static_cast<ActFreeArg*>(arg);
+	ActFreeArg* freeArg = static_cast<ActFreeArg*>(settings);
 
 	m_state = PIKIAI_FREE_DEFAULT;
 	if (freeArg) {
-		bool isFreeArg = strcmp("ActFreeArg", arg->getName()) == 0;
+		bool isFreeArg = strcmp("ActFreeArg", settings->getName()) == 0;
 		P2ASSERTLINE(119, isFreeArg);
 
-		freeArg = static_cast<ActFreeArg*>(arg);
+		freeArg = static_cast<ActFreeArg*>(settings);
 		if (freeArg->_04) {
 			m_state = PIKIAI_FREE_GATHER;
 		}
@@ -91,9 +91,9 @@ s32 ActFree::exec()
 		s32 status = m_bore->exec();
 
 		// Let's try invoke the AI, and finish the boredom if we succeed
-		Game::Piki::InvokeAIFreeArg invokeArg(0, 0);
-		invokeArg._01 = 1;
-		if (m_parent->invokeAIFree(invokeArg)) {
+		Game::Piki::InvokeAIFreeArg settings(0, 0);
+		settings._01 = 1;
+		if (m_parent->invokeAIFree(settings)) {
 			m_bore->finish();
 		}
 
@@ -109,8 +109,8 @@ s32 ActFree::exec()
 		// We aren't moving anywhere anymore
 		m_parent->m_velocity = Vector3f(0.0f);
 
-		Game::Piki::InvokeAIFreeArg invokeArg(0, 0);
-		if (m_parent->invokeAIFree(invokeArg)) {
+		Game::Piki::InvokeAIFreeArg settings(0, 0);
+		if (m_parent->invokeAIFree(settings)) {
 			return 0;
 		}
 
@@ -153,7 +153,7 @@ void ActFree::onKeyEvent(SysShape::KeyEvent const&) { }
  * Address:	801A03B8
  * Size:	0000EC
  */
-void ActFree::collisionCallback(Game::Piki* piki, Game::CollEvent& event)
+void ActFree::collisionCallback(Game::Piki* p, Game::CollEvent& event)
 {
 	if (!event.m_collidingCreature->isNavi()) {
 		return;
@@ -177,7 +177,7 @@ void ActFree::collisionCallback(Game::Piki* piki, Game::CollEvent& event)
 	// Assuming the Navi touched us, rumble and call to squad (eventually)
 	Game::rumbleMgr->startRumble(2, navi->m_naviIndex.typeView);
 	Game::InteractFue fue(event.m_collidingCreature, 0, 1);
-	piki->stimulate(fue);
+	p->stimulate(fue);
 }
 
 const char str_LINK[] = "ActionArg";

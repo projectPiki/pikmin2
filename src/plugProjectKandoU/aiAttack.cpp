@@ -233,7 +233,7 @@ void PikiAI::ActAttack::emotion_success(void)
  * Address:	801A0580
  * Size:	0000D4
  */
-PikiAI::ActAttack::ActAttack(Game::Piki*)
+PikiAI::ActAttack::ActAttack(Game::Piki* p)
 {
 	/*
 	stwu     r1, -0x10(r1)

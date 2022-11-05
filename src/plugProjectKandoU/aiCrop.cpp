@@ -120,7 +120,7 @@
  * Address:	801E3E50
  * Size:	0000D4
  */
-PikiAI::ActCrop::ActCrop(Game::Piki*)
+PikiAI::ActCrop::ActCrop(Game::Piki* p)
 {
 	/*
 	stwu     r1, -0x10(r1)

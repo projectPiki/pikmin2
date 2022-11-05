@@ -19,9 +19,9 @@ struct DynCreature : public Creature {
 	virtual Vector3f getPosition();                       // _08
 	virtual void getBoundingSphere(Sys::Sphere&) = 0;     // _10
 	virtual float getFaceDir()                   = 0;     // _64
-	virtual void setVelocity(Vector3f&);                  // _68
+	virtual void setVelocity(Vector3f& vel);              // _68
 	virtual Vector3f getVelocity();                       // _6C
-	virtual void onSetPosition(Vector3f&);                // _70
+	virtual void onSetPosition(Vector3f& dest);           // _70
 	virtual void updateTrMatrix() = 0;                    // _78
 	virtual void getVelocityAt(Vector3f&, Vector3f&);     // _184
 	virtual float getAngularEffect(Vector3f&, Vector3f&); // _188

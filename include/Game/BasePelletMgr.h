@@ -27,7 +27,7 @@ struct BasePelletMgr : public GenericObjectMgr, virtual public _BasePelletMgrPar
 	virtual void doEntry() { }                                           // _0C (weak)
 	virtual void doSetView(int) { }                                      // _10 (weak)
 	virtual void doViewCalc() { }                                        // _14 (weak)
-	virtual void doSimulation(float) { }                                 // _18 (weak)
+	virtual void doSimulation(float rate) { }                            // _18 (weak)
 	virtual void doDirectDraw(Graphics& gfx) { }                         // _1C (weak)
 	virtual void resetMgrAndResources()          = 0;                    // _38
 	virtual Pellet* birth()                      = 0;                    // _3C
@@ -89,7 +89,7 @@ struct FixedSizePelletMgr : public BasePelletMgr, public Container<T> {
 	virtual void doEntry();                     // _0C
 	virtual void doSetView(int viewportNumber); // _10
 	virtual void doViewCalc();                  // _14
-	virtual void doSimulation(float);           // _18
+	virtual void doSimulation(float rate);      // _18
 	virtual void doDirectDraw(Graphics& gfx);   // _1C
 	virtual void resetMgr()                     // _28 (weak)
 	{

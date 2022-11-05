@@ -39,8 +39,8 @@ struct Obj : public EnemyBase {
 	//////////////// VTABLE - Note: this order is needed for correct weak function ordering
 	virtual void onInit(CreatureInitArg* settings);         // _30
 	virtual void doDirectDraw(Graphics& gfx);               // _50
-	virtual void collisionCallback(CollEvent&);             // _EC
-	virtual void getShadowParam(ShadowParam&);              // _134
+	virtual void collisionCallback(CollEvent& event);       // _EC
+	virtual void getShadowParam(ShadowParam& settings);     // _134
 	virtual ~Obj() { }                                      // _1BC (weak)
 	virtual void birth(Vector3f&, f32);                     // _1C0
 	virtual void setInitialSetting(EnemyInitialParamBase*); // _1C4

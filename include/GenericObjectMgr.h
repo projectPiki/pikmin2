@@ -11,7 +11,7 @@ struct GenericObject {
 	virtual void doEntry()                   = 0; // _0C
 	virtual void doSetView(int)              = 0; // _10
 	virtual void doViewCalc()                = 0; // _14
-	virtual void doSimulation(float)         = 0; // _18
+	virtual void doSimulation(float rate)    = 0; // _18
 	virtual void doDirectDraw(Graphics& gfx) = 0; // _1C
 };
 
@@ -20,7 +20,7 @@ struct GenericObjectMgr {
 	virtual void doEntry() { }                    // _0C (weak)
 	virtual void doSetView(int)              = 0; // _10
 	virtual void doViewCalc()                = 0; // _14
-	virtual void doSimulation(float)         = 0; // _18
+	virtual void doSimulation(float rate)    = 0; // _18
 	virtual void doDirectDraw(Graphics& gfx) = 0; // _1C
 	/**
 	 * @reifiedAddress{8010A7C4}

@@ -99,21 +99,21 @@ struct WaitState : public State {
 };
 
 struct Item : public FSMItem<Item, FSM, State> {
-	virtual void constructor();                         // _2C
-	virtual void onInit(CreatureInitArg*);              // _30
-	virtual f32 getFaceDir();                           // _64 (weak)
-	virtual void doSave(Stream&);                       // _E0
-	virtual void doLoad(Stream&);                       // _E4
-	virtual void platCallback(PlatEvent&);              // _F0
-	virtual char* getCreatureName();                    // _1A8 (weak)
-	virtual void initDependency();                      // _1BC
-	virtual void makeTrMatrix();                        // _1C4 (weak)
-	virtual void doAI();                                // _1C8
-	virtual void changeMaterial();                      // _1D0
-	virtual void updateBoundSphere();                   // _210
-	virtual void onSetPosition();                       // _21C
-	virtual void onKeyEvent(const SysShape::KeyEvent&); // _220 (weak)
-	virtual void getCarryInfoParam(CarryInfoParam&);    // _230 (weak)
+	virtual void constructor();                               // _2C
+	virtual void onInit(CreatureInitArg*);                    // _30
+	virtual f32 getFaceDir();                                 // _64 (weak)
+	virtual void doSave(Stream&);                             // _E0
+	virtual void doLoad(Stream&);                             // _E4
+	virtual void platCallback(PlatEvent& event);              // _F0
+	virtual char* getCreatureName();                          // _1A8 (weak)
+	virtual void initDependency();                            // _1BC
+	virtual void makeTrMatrix();                              // _1C4 (weak)
+	virtual void doAI();                                      // _1C8
+	virtual void changeMaterial();                            // _1D0
+	virtual void updateBoundSphere();                         // _210
+	virtual void onSetPosition();                             // _21C
+	virtual void onKeyEvent(const SysShape::KeyEvent& event); // _220 (weak)
+	virtual void getCarryInfoParam(CarryInfoParam&);          // _230 (weak)
 
 	void startDamageMotion();
 	void startDownMotion();

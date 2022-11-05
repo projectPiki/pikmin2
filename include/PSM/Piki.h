@@ -10,7 +10,7 @@ struct Piki;
 
 namespace PSM {
 struct Piki : public CreatureObj {
-	Piki(Game::Piki*);
+	Piki(Game::Piki* p);
 
 	virtual ~Piki();                             // _14 (weak)
 	virtual PSM::CreatureCastType getCastType(); // _1C (weak)

@@ -45,12 +45,12 @@ struct Item : public CFSMItem {
 	}
 
 	// vtable 1
-	virtual void onInit(CreatureInitArg* settings);   // _30
-	virtual void doDirectDraw(Graphics& gfx);         // _50
-	virtual f32 getFaceDir();                         // _64 (weak)
-	virtual bool sound_culling();                     // _104
-	virtual void movieUserCommand(u32, MoviePlayer*); // _130
-	virtual char* getCreatureName();                  // _1A8 (weak)
+	virtual void onInit(CreatureInitArg* settings);                     // _30
+	virtual void doDirectDraw(Graphics& gfx);                           // _50
+	virtual f32 getFaceDir();                                           // _64 (weak)
+	virtual bool sound_culling();                                       // _104
+	virtual void movieUserCommand(u32 command, MoviePlayer* curPlayer); // _130
+	virtual char* getCreatureName();                                    // _1A8 (weak)
 
 	// vtable 2
 	virtual void initDependency();                // _1BC

@@ -101,20 +101,20 @@ struct Item : public WorkItem<Item, FSM, State> {
 	{ // probably needs things in here, just an initial guess
 	}
 
-	virtual void constructor();                           // _2C
-	virtual void onInit(CreatureInitArg*);                // _30
-	virtual void onKill(CreatureKillArg*);                // _34
-	virtual void doSave(Stream&);                         // _E0
-	virtual void doLoad(Stream&);                         // _E4
-	virtual void on_movie_end(bool);                      // _114
-	virtual char* getCreatureName();                      // _1A8 (weak)
-	virtual void doAI();                                  // _1C8
-	virtual bool interactAttack(InteractAttack&);         // _1E0
-	virtual bool getVectorField(Sys::Sphere&, Vector3f&); // _204
-	virtual f32 getWorkDistance(Sys::Sphere&);            // _208
-	virtual void updateBoundSphere();                     // _210
-	virtual void onSetPosition();                         // _21C
-	virtual void onKeyEvent(const SysShape::KeyEvent&);   // _220 (weak)
+	virtual void constructor();                               // _2C
+	virtual void onInit(CreatureInitArg*);                    // _30
+	virtual void onKill(CreatureKillArg*);                    // _34
+	virtual void doSave(Stream&);                             // _E0
+	virtual void doLoad(Stream&);                             // _E4
+	virtual void on_movie_end(bool shouldResetAnims);         // _114
+	virtual char* getCreatureName();                          // _1A8 (weak)
+	virtual void doAI();                                      // _1C8
+	virtual bool interactAttack(InteractAttack&);             // _1E0
+	virtual bool getVectorField(Sys::Sphere&, Vector3f&);     // _204
+	virtual f32 getWorkDistance(Sys::Sphere&);                // _208
+	virtual void updateBoundSphere();                         // _210
+	virtual void onSetPosition();                             // _21C
+	virtual void onKeyEvent(const SysShape::KeyEvent& event); // _220 (weak)
 
 	void startLoopEffect();
 	void finishLoopEffect();

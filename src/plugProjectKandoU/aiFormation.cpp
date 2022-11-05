@@ -21,7 +21,7 @@ static const char formationName[]      = "actFormation";
  * Address:	8019CD70
  * Size:	0000F8
  */
-ActFormation::ActFormation(Game::Piki* piki)
+ActFormation::ActFormation(Game::Piki* p)
     : Action(piki)
     , m_initArg(nullptr, 0)
 {
@@ -1946,7 +1946,7 @@ lbl_8019ED1C:
  * Address:	8019ED68
  * Size:	000074
  */
-void ActFormation::collisionCallback(Game::Piki* piki, Game::CollEvent& collEvent)
+void ActFormation::collisionCallback(Game::Piki* p, Game::CollEvent& collEvent)
 {
 	bool commandCheck = false;
 	Game::Navi* navi  = piki->m_navi;
@@ -1965,7 +1965,7 @@ void ActFormation::collisionCallback(Game::Piki* piki, Game::CollEvent& collEven
  * Address:	8019EDDC
  * Size:	000058
  */
-void ActFormation::platCallback(Game::Piki* piki, Game::PlatEvent& platEvent)
+void ActFormation::platCallback(Game::Piki* p, Game::PlatEvent& platEvent)
 {
 	Game::Navi* navi = piki->m_navi;
 	if (navi && navi->commandOn()) {

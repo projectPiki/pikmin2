@@ -9683,7 +9683,7 @@ void BaseGameSection::drawRadarmap(Graphics&)
  * Address:	80151738
  * Size:	000018
  */
-void PikiCond_ExceptChappyPikmin::satisfy(Game::Piki*)
+void PikiCond_ExceptChappyPikmin::satisfy(Game::Piki* p)
 {
 	/*
 	lbz      r4, 0x2b8(r4)
@@ -9969,7 +9969,7 @@ void BaseGameSection::playMovie_bootup(Game::Onyon*) { }
  * Address:	80151924
  * Size:	000004
  */
-void BaseGameSection::playMovie_helloPikmin(Game::Piki*) { }
+void BaseGameSection::playMovie_helloPikmin(Game::Piki* p) { }
 
 /*
  * --INFO--

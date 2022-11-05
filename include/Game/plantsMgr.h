@@ -37,9 +37,9 @@ struct Obj : public EnemyBase {
 	Obj();
 
 	//////////////// VTABLE
-	virtual void onInit(CreatureInitArg* settings); // _30
-	virtual void doAnimation();                     // _3C
-	virtual void collisionCallback(CollEvent&);     // _EC
+	virtual void onInit(CreatureInitArg* settings);   // _30
+	virtual void doAnimation();                       // _3C
+	virtual void collisionCallback(CollEvent& event); // _EC
 
 	virtual void birth(Vector3f&, f32);                        // _1C0
 	virtual void update();                                     // _1C8

@@ -49,7 +49,7 @@ struct Obj : public EnemyBase {
 	virtual void inWaterCallback(WaterBox*) { }             // _84 (weak)
 	virtual void outWaterCallback() { }                     // _88 (weak)
 	virtual bool isLivingThing() { return _2C0; }           // _D4 (weak)
-	virtual void getShadowParam(ShadowParam&);              // _134
+	virtual void getShadowParam(ShadowParam& settings);     // _134
 	virtual ~Obj() { }                                      // _1BC (weak)
 	virtual void birth(Vector3f&, f32);                     // _1C0
 	virtual void setInitialSetting(EnemyInitialParamBase*); // _1C4

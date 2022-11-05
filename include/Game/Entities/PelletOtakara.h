@@ -12,18 +12,18 @@ namespace PelletOtakara {
 struct Object : public Pellet {
 	Object();
 
-	virtual void constructor();                // _2C
-	virtual void getShadowParam(ShadowParam&); // _134
-	virtual void do_onInit(CreatureInitArg*);  // _1CC
-	virtual void onCreateShape();              // _1D0
-	virtual void theEntry();                   // _1D4
-	virtual s32 getBedamaColor();              // _1E8 (weak)
-	virtual u8 getKind();                      // _1F4 (weak)
-	virtual void changeMaterial();             // _1F8
-	virtual void sound_otakaraEventStart();    // _20C
-	virtual void sound_otakaraEventRestart();  // _210
-	virtual void sound_otakaraEventStop();     // _214
-	virtual void sound_otakaraEventFinish();   // _218
+	virtual void constructor();                         // _2C
+	virtual void getShadowParam(ShadowParam& settings); // _134
+	virtual void do_onInit(CreatureInitArg*);           // _1CC
+	virtual void onCreateShape();                       // _1D0
+	virtual void theEntry();                            // _1D4
+	virtual s32 getBedamaColor();                       // _1E8 (weak)
+	virtual u8 getKind();                               // _1F4 (weak)
+	virtual void changeMaterial();                      // _1F8
+	virtual void sound_otakaraEventStart();             // _20C
+	virtual void sound_otakaraEventRestart();           // _210
+	virtual void sound_otakaraEventStop();              // _214
+	virtual void sound_otakaraEventFinish();            // _218
 
 	// _00      = VTBL
 	// _00-_458 = Pellet

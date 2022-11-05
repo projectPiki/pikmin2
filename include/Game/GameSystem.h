@@ -24,7 +24,7 @@ struct GameSystem : public NodeObjectMgr<GenericObjectMgr> {
 	virtual void doEntry();                     // _68 (weak)
 	virtual void doSetView(int viewportNumber); // _6C (weak)
 	virtual void doViewCalc();                  // _70 (weak)
-	virtual void doSimulation(float);           // _74 (weak)
+	virtual void doSimulation(float rate);      // _74 (weak)
 	virtual void doDirectDraw(Graphics& gfx);   // _78 (weak)
 	virtual void startFrame();                  // _80
 	virtual void endFrame();                    // _84

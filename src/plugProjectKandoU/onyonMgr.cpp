@@ -6928,7 +6928,7 @@ void Onyon::getStoreCount(void)
  * Address:	801795C8
  * Size:	000244
  */
-void Onyon::enterPiki(Game::Piki*)
+void Onyon::enterPiki(Game::Piki* p)
 {
 	/*
 	stwu     r1, -0x30(r1)

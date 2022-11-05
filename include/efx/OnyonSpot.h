@@ -16,10 +16,10 @@ struct OnyonSpotData : public ModelEffectData {
 };
 
 struct OnyonSpot : public ModelEffect {
-	virtual void changeMaterial();               // _1C
-	virtual void getLODSphere(Sys::Sphere&);     // _20
-	virtual void useCylinderLOD();               // _24 (weak)
-	virtual void getLODCylinder(Sys::Cylinder&); // _28
+	virtual void changeMaterial();                     // _1C
+	virtual void getLODSphere(Sys::Sphere& lodSphere); // _20
+	virtual void useCylinderLOD();                     // _24 (weak)
+	virtual void getLODCylinder(Sys::Cylinder&);       // _28
 };
 } // namespace efx
 

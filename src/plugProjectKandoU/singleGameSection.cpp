@@ -2787,7 +2787,7 @@ void Onyon::getFaceDir(void)
  * Address:	80153870
  * Size:	000454
  */
-void SingleGameSection::playMovie_helloPikmin(Game::Piki*)
+void SingleGameSection::playMovie_helloPikmin(Game::Piki* p)
 {
 	/*
 	stwu     r1, -0x160(r1)
@@ -3105,8 +3105,8 @@ void SingleGameSection::saveMainMapSituation(bool isSubmergedCastle)
 		iterator.first();
 		while (!iterator.isDone()) {
 			Piki* piki = (*iterator);
-			if (piki->isAlive() && piki->m_pikminType != Blue) {
-				playData->m_pikiContainer.getCount(piki->m_pikminType, piki->m_pikminGrowth)++;
+			if (piki->isAlive() && piki->m_colorType != Blue) {
+				playData->m_pikiContainer.getCount(piki->m_colorType, piki->m_headType)++;
 				PikiKillArg killArg(0x10001);
 				piki->kill(&pikiKillArg);
 			}

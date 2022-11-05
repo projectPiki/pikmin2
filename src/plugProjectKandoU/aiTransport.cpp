@@ -160,7 +160,7 @@ void PikiAI::ActTransport::getInfo(char*)
  * Address:	801A1978
  * Size:	0000D0
  */
-PikiAI::ActTransport::ActTransport(Game::Piki*)
+PikiAI::ActTransport::ActTransport(Game::Piki* p)
 {
 	/*
 	stwu     r1, -0x10(r1)

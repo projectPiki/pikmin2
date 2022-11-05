@@ -331,7 +331,7 @@ void GameStat::PikiCounter::clear()
  * Address:	801D1094
  * Size:	000084
  */
-void GameStat::PikiCounter::inc(Game::Piki*)
+void GameStat::PikiCounter::inc(Game::Piki* p)
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -379,7 +379,7 @@ lbl_801D10EC:
  * Address:	801D1118
  * Size:	000084
  */
-void GameStat::PikiCounter::dec(Game::Piki*)
+void GameStat::PikiCounter::dec(Game::Piki* p)
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -583,7 +583,7 @@ void GameStat::PikiNaviCounter::clear()
  * Address:	801D1368
  * Size:	0000AC
  */
-void GameStat::PikiNaviCounter::inc(Game::Piki*)
+void GameStat::PikiNaviCounter::inc(Game::Piki* p)
 {
 	/*
 	stwu     r1, -0x20(r1)
@@ -645,7 +645,7 @@ lbl_801D13DC:
  * Address:	801D1414
  * Size:	0000AC
  */
-void GameStat::PikiNaviCounter::dec(Game::Piki*)
+void GameStat::PikiNaviCounter::dec(Game::Piki* p)
 {
 	/*
 	stwu     r1, -0x20(r1)

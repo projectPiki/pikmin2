@@ -24,7 +24,7 @@ struct Obj : public EnemyBase {
 	virtual void onInit(CreatureInitArg* settings);         // _30
 	virtual void doSimulation(f32);                         // _4C
 	virtual void doDirectDraw(Graphics& gfx);               // _50
-	virtual void getShadowParam(ShadowParam&);              // _134
+	virtual void getShadowParam(ShadowParam& settings);     // _134
 	virtual void applyImpulse(Vector3f&, Vector3f&);        // _18C (weak)
 	virtual Vector3f getGoalPos();                          // _198 (weak)
 	virtual ~Obj() { }                                      // _1BC (weak)

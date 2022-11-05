@@ -10,7 +10,6 @@
 static const char fakeMatch__UnitName[] = "pikiContainer";
 
 namespace Game {
-
 /*
  * --INFO--
  * Address:	801F1240
@@ -18,10 +17,7 @@ namespace Game {
  */
 PikiContainer::PikiContainer()
 {
-	// const char* colNames[7] = { nullptr, nullptr, nullptr, nullptr, nullptr, nullptr, nullptr };
-	// const char* happaNames[3] = { nullptr, nullptr, nullptr };
 	m_container = new int[CONTAINER_LENGTH];
-	// m_container = new int[PikiColorCount][PikiGrowthStageCount];
 	clear();
 }
 
@@ -78,11 +74,11 @@ void PikiContainer::dump(char* sourceOfCall)
  * Address:	801F141C
  * Size:	0000C8
  */
-int& PikiContainer::getCount(int type, int happa)
+int& PikiContainer::getCount(int color, int headType)
 {
-	P2ASSERTBOUNDSLINE(95, 0, type, 7);
-	P2ASSERTBOUNDSLINE(96, 0, happa, 3);
-	return m_container[happa + type * PikiGrowthStageCount];
+	P2ASSERTBOUNDSLINE(95, 0, color, 7);
+	P2ASSERTBOUNDSLINE(96, 0, headType, 3);
+	return m_container[headType + color * PikiGrowthStageCount];
 }
 
 /*
@@ -91,10 +87,10 @@ int& PikiContainer::getCount(int type, int happa)
  * Address:	801F14E4
  * Size:	0000CC
  */
-int& PikiContainer::operator()(Game::Piki* piki)
+int& PikiContainer::operator()(Game::Piki* p)
 {
-	int happa = piki->m_pikminGrowth;
-	int type  = piki->m_pikminType;
+	int happa = p->m_headType;
+	int type  = p->m_colorType;
 	return getCount(type, happa);
 }
 
@@ -153,11 +149,11 @@ void PikiContainer::write(Stream& output)
 	char buffer[256];
 	output.textWriteTab(output.m_tabCount);
 	output.textWriteText("# PikiCounter\r\n");
-	for (int type = 0; type < PikiColorCount; type++) {
+	for (int col = 0; col < PikiColorCount; col++) {
 		for (int happa = 0; happa < PikiGrowthStageCount; happa++) {
 			output.textWriteTab(output.m_tabCount);
-			output.writeInt(getCount(type, happa));
-			sprintf(buffer, "\t# col%d happa%d\r\n", type, happa);
+			output.writeInt(getCount(col, happa));
+			sprintf(buffer, "\t# col%d happa%d\r\n", col, happa);
 			output.textWriteText(buffer);
 		}
 	}

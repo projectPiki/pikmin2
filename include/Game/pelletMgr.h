@@ -79,7 +79,7 @@ struct PelletMgr : public NodeObjectMgr<GenericObjectMgr> {
 	virtual void doEntry();                     // _68 (weak)
 	virtual void doSetView(int viewportNumber); // _6C (weak)
 	virtual void doViewCalc();                  // _70 (weak)
-	virtual void doSimulation(float);           // _74 (weak)
+	virtual void doSimulation(float rate);      // _74 (weak)
 	virtual void doDirectDraw(Graphics& gfx);   // _78 (weak)
 	virtual char* getMgrName()                  // _80 (weak)
 	{
@@ -205,12 +205,12 @@ struct Pellet : public DynCreature, public SysShape::MotionListener, public Carr
 	virtual void doEntry();                                           // _40
 	virtual void doSetView(int viewportNumber);                       // _44
 	virtual void doViewCalc();                                        // _48
-	virtual void doSimulation(float);                                 // _4C
+	virtual void doSimulation(float rate);                            // _4C
 	virtual void doDirectDraw(Graphics& gfx);                         // _50
 	virtual float getFaceDir() { return m_faceDir; }                  // _64 (weak)
-	virtual void setVelocity(Vector3f&);                              // _68
+	virtual void setVelocity(Vector3f& vel);                          // _68
 	virtual Vector3f getVelocity();                                   // _6C
-	virtual void onSetPosition(Vector3f&);                            // _70 (weak)
+	virtual void onSetPosition(Vector3f& dest);                       // _70 (weak)
 	virtual void updateTrMatrix();                                    // _78
 	virtual bool inWater() { return m_isInWater; }                    // _8C (weak)
 	virtual void onStartCapture();                                    // _94
@@ -218,13 +218,13 @@ struct Pellet : public DynCreature, public SysShape::MotionListener, public Carr
 	virtual void onEndCapture();                                      // _9C
 	virtual void doSave(Stream&);                                     // _E0
 	virtual void doLoad(Stream&);                                     // _E4
-	virtual void bounceCallback(Sys::Triangle*);                      // _E8
+	virtual void bounceCallback(Sys::Triangle* tri);                  // _E8
 	virtual JAInter::Object* getJAIObject();                          // _F4
 	virtual PSM::Creature* getPSCreature();                           // _F8
 	virtual Vector3f* getSound_PosPtr() { return &m_pelletPosition; } // _100 (weak)
-	virtual void getShadowParam(ShadowParam&);                        // _134
+	virtual void getShadowParam(ShadowParam& settings);               // _134
 	virtual bool needShadow();                                        // _138
-	virtual void getLODSphere(Sys::Sphere&);                          // _140
+	virtual void getLODSphere(Sys::Sphere& lodSphere);                // _140
 	virtual void startPick();                                         // _148
 	virtual void endPick(bool);                                       // _14C
 	virtual bool isSlotFree(short);                                   // _168
@@ -234,7 +234,7 @@ struct Pellet : public DynCreature, public SysShape::MotionListener, public Carr
 	virtual void onSlotStickStart(Creature*, short);                  // _178
 	virtual void onSlotStickEnd(Creature*, short);                    // _17C
 	virtual void calcStickSlotGlobal(short, Vector3f&);               // _180
-	virtual bool stimulate(Interaction&);                             // _1A4
+	virtual bool stimulate(Interaction& data);                        // _1A4
 	virtual char* getCreatureName();                                  // _1A8
 	virtual s32 getCreatureID();                                      // _1AC
 	virtual void onSetPosition();                                     // _1B0

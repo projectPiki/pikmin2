@@ -985,7 +985,7 @@ void Obj::resetAttrHitCount()
  */
 void Obj::addAttrAttackCount(Piki* piki)
 {
-	int type = piki->m_pikminType;
+	int type = piki->m_colorType;
 	if (type == Red) {
 		m_redAttrAttackCount++;
 	} else if (type == Blue) {

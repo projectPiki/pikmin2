@@ -18,7 +18,7 @@ struct Obj : public ChappyBase::Obj {
 	virtual void onInit(CreatureInitArg* settings);        // _30
 	virtual void doDirectDraw(Graphics& gfx);              // _50
 	virtual bool isUnderground();                          // _D0 (weak)
-	virtual void getShadowParam(ShadowParam&);             // _134
+	virtual void getShadowParam(ShadowParam& settings);    // _134
 	virtual ~Obj() { }                                     // _1BC (weak)
 	virtual void changeMaterial();                         // _200 (weak)
 	virtual void initMouthSlots();                         // _22C

@@ -18,16 +18,13 @@ struct PikiContainer {
 	int& operator()(Piki*);
 	void clear();
 	void dump(char*);
-	int& getCount(int, int);
+	int& getCount(int color, int headType);
 	int getColorSum(int);
 	int getHappaSum(int);
 	int getTotalSum();
 
 	// VTBL _00
-	// 0x54 (84) bytes allocated in ctor. Stores counts of Pikmin. Int at byte
-	// offset (pikminGrowth + pikminColor*3)*4.
-	// int (*m_container)[PikiGrowthStageCount]; // _04
-	int* m_container; // _04
+	int* m_container; // _04, 2D array simplified into 1D access
 };
 } // namespace Game
 

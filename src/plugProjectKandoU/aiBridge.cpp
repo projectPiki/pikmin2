@@ -175,7 +175,7 @@ void ActBridge::cleanup()
  * Address:	8021282C
  * Size:	000110
  */
-void ActBridge::platCallback(Game::Piki* piki, Game::PlatEvent& platEvent)
+void ActBridge::platCallback(Game::Piki* p, Game::PlatEvent& platEvent)
 {
 	Game::PlatInstance* instance = platEvent.m_instance;
 	if (platEvent.m_item == m_bridge) {

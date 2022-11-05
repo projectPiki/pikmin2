@@ -155,7 +155,7 @@ void ActBreakRock::cleanup()
  * Address:	801E3C48
  * Size:	0000F0
  */
-void ActBreakRock::platCallback(Game::Piki* piki, Game::PlatEvent& platEvent)
+void ActBreakRock::platCallback(Game::Piki* p, Game::PlatEvent& platEvent)
 {
 	if (m_state == 1) {
 		initStickAttack();
@@ -167,7 +167,7 @@ void ActBreakRock::platCallback(Game::Piki* piki, Game::PlatEvent& platEvent)
  * Address:	801E3D38
  * Size:	0000FC
  */
-void ActBreakRock::collisionCallback(Game::Piki* piki, Game::CollEvent& collEvent)
+void ActBreakRock::collisionCallback(Game::Piki* p, Game::CollEvent& collEvent)
 {
 	if (collEvent.m_collidingCreature == m_rock && m_state == 1) {
 		initStickAttack();

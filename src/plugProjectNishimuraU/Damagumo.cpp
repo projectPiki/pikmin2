@@ -4877,7 +4877,7 @@ namespace Game {
  * Address:	802A88F4
  * Size:	000088
  */
-void ConditionNotStickClient::satisfy(Game::Piki*)
+void ConditionNotStickClient::satisfy(Game::Piki* p)
 {
 	/*
 	stwu     r1, -0x10(r1)

@@ -125,17 +125,17 @@ struct Creature : public CellObject {
 	virtual void doEntry();                                           // _40
 	virtual void doSetView(int viewportNumber);                       // _44
 	virtual void doViewCalc();                                        // _48
-	virtual void doSimulation(float) { }                              // _4C (weak)
+	virtual void doSimulation(float rate) { }                         // _4C (weak)
 	virtual void doDirectDraw(Graphics& gfx) { }                      // _50 (weak)
 	virtual float getBodyRadius();                                    // _54
 	virtual float getCellRadius();                                    // _58
-	virtual void initPosition(Vector3f&);                             // _5C
-	virtual void onInitPosition(Vector3f&) { }                        // _60 (weak)
-	virtual float getFaceDir()            = 0;                        // _64
-	virtual void setVelocity(Vector3f&)   = 0;                        // _68
-	virtual Vector3f getVelocity()        = 0;                        // _6C
-	virtual void onSetPosition(Vector3f&) = 0;                        // _70
-	virtual void onSetPositionPost(Vector3f& pos) { }                 // _74 (weak)
+	virtual void initPosition(Vector3f& dest);                        // _5C
+	virtual void onInitPosition(Vector3f& dest) { }                   // _60 (weak)
+	virtual float getFaceDir()                 = 0;                   // _64
+	virtual void setVelocity(Vector3f& vel)    = 0;                   // _68
+	virtual Vector3f getVelocity()             = 0;                   // _6C
+	virtual void onSetPosition(Vector3f& dest) = 0;                   // _70
+	virtual void onSetPositionPost(Vector3f& dest) { }                // _74 (weak)
 	virtual void updateTrMatrix() = 0;                                // _78
 	virtual bool isTeki();                                            // _7C
 	virtual bool isPellet();                                          // _80
@@ -214,9 +214,9 @@ struct Creature : public CellObject {
 	}
 	virtual void doSave(Stream&) { }                              // _E0 (weak)
 	virtual void doLoad(Stream&) { }                              // _E4 (weak)
-	virtual void bounceCallback(Sys::Triangle*) { }               // _E8 (weak)
-	virtual void collisionCallback(CollEvent&) { }                // _EC (weak)
-	virtual void platCallback(PlatEvent&) { }                     // _F0 (weak)
+	virtual void bounceCallback(Sys::Triangle* tri) { }           // _E8 (weak)
+	virtual void collisionCallback(CollEvent& event) { }          // _EC (weak)
+	virtual void platCallback(PlatEvent& event) { }               // _F0 (weak)
 	virtual JAInter::Object* getJAIObject() { return nullptr; }   // _F4 (weak)
 	virtual PSM::Creature* getPSCreature() { return nullptr; }    // _F8 (weak)
 	virtual AILOD* getSound_AILOD() { return &m_lod; }            // _FC (weak)
@@ -233,7 +233,7 @@ struct Creature : public CellObject {
 	virtual void movieSetFaceDir(float) { }                       // _128 (weak)
 	virtual bool movieGotoPosition(Vector3f&) { return true; }    // _12C (weak)
 	virtual void movieUserCommand(u32, MoviePlayer*) { }          // _130 (weak)
-	virtual void getShadowParam(ShadowParam&);                    // _134
+	virtual void getShadowParam(ShadowParam& settings);           // _134
 	virtual bool needShadow();                                    // _138
 	virtual void getLifeGaugeParam(LifeGaugeParam&);              // _13C
 	virtual void getLODSphere(Sys::Sphere& sphere)                // _140 (weak)
@@ -273,7 +273,7 @@ struct Creature : public CellObject {
 	}
 	virtual bool isSuckReady() { return true; }       // _19C (weak)
 	virtual BOOL isSuckArriveWait() { return FALSE; } // _1A0 (weak)
-	virtual bool stimulate(Interaction&);             // _1A4 (weak)
+	virtual bool stimulate(Interaction& data);        // _1A4 (weak)
 	virtual char* getCreatureName();                  // _1A8 (weak)
 	virtual s32 getCreatureID() { return -1; }        // _1AC (weak)
 

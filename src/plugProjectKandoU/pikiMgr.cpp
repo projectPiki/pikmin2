@@ -2810,7 +2810,7 @@ namespace Game {
  * Address:	8015E738
  * Size:	000060
  */
-void PikiMgr::setupPiki(Game::Piki*)
+void PikiMgr::setupPiki(Game::Piki* p)
 {
 	/*
 	stwu     r1, -0x10(r1)

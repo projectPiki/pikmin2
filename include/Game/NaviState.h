@@ -75,7 +75,7 @@ struct NaviState : public FSMState<Navi> {
 	virtual void bounceCallback(Navi*, Sys::Triangle*);        // _30 (weak)
 	virtual bool pressable();                                  // _34 (weak)
 	virtual bool callable();                                   // _38 (weak)
-	virtual bool ignoreAtari(Creature*);                       // _3C (weak)
+	virtual bool ignoreAtari(Creature* toIgnore);              // _3C (weak)
 	virtual bool needYChangeMotion();                          // _40 (weak)
 	virtual bool vsUsableY();                                  // _44 (weak)
 	virtual void draw2d(J2DGrafContext&, int&);                // _48
@@ -320,7 +320,7 @@ struct NaviNukuAdjustState : public NaviState {
 	virtual void cleanup(Navi*);                       // _10
 	virtual void collisionCallback(Navi*, CollEvent&); // _28
 	virtual void wallCallback(Navi*, Vector3f&);       // _2C
-	virtual bool ignoreAtari(Creature*);               // _3C
+	virtual bool ignoreAtari(Creature* toIgnore);      // _3C
 
 	// _00     = VTBL
 	// _00-_0C = NaviState
@@ -436,10 +436,10 @@ struct NaviStuckState : public NaviState {
 struct NaviThrowState : public NaviState {
 	inline NaviThrowState(); // likely
 
-	virtual void init(Navi*, StateArg*);                // _08
-	virtual void exec(Navi*);                           // _0C
-	virtual void cleanup(Navi*);                        // _10
-	virtual void onKeyEvent(const SysShape::KeyEvent&); // _4C (weak)
+	virtual void init(Navi*, StateArg*);                      // _08
+	virtual void exec(Navi*);                                 // _0C
+	virtual void cleanup(Navi*);                              // _10
+	virtual void onKeyEvent(const SysShape::KeyEvent& event); // _4C (weak)
 
 	// _00     = VTBL
 	// _00-_0C = NaviState
@@ -448,13 +448,13 @@ struct NaviThrowState : public NaviState {
 struct NaviThrowWaitState : public NaviState {
 	NaviThrowWaitState();
 
-	virtual void init(Navi*, StateArg*);                // _08
-	virtual void exec(Navi*);                           // _0C
-	virtual void cleanup(Navi*);                        // _10
-	virtual void resume(Navi*);                         // _14
-	virtual void restart(Navi*);                        // _18
-	virtual void draw2d(J2DGrafContext&, int&);         // _48
-	virtual void onKeyEvent(const SysShape::KeyEvent&); // _4C (weak)
+	virtual void init(Navi*, StateArg*);                      // _08
+	virtual void exec(Navi*);                                 // _0C
+	virtual void cleanup(Navi*);                              // _10
+	virtual void resume(Navi*);                               // _14
+	virtual void restart(Navi*);                              // _18
+	virtual void draw2d(J2DGrafContext&, int&);               // _48
+	virtual void onKeyEvent(const SysShape::KeyEvent& event); // _4C (weak)
 
 	void doAnimCallback();
 	void lockHangPiki(Navi*);

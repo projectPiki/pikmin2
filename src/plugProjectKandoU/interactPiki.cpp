@@ -307,7 +307,7 @@ namespace Game {
  * Address:	80192C84
  * Size:	0000E4
  */
-void InteractFueFuki::actPiki(Game::Piki*)
+void InteractFueFuki::actPiki(Game::Piki* p)
 {
 	/*
 	stwu     r1, -0x20(r1)
@@ -385,7 +385,7 @@ lbl_80192D50:
  * Address:	80192D68
  * Size:	000BD0
  */
-void InteractFue::actPiki(Game::Piki*)
+void InteractFue::actPiki(Game::Piki* p)
 {
 	/*
 	stwu     r1, -0x1c0(r1)
@@ -1254,7 +1254,7 @@ lbl_801938E4:
  * Address:	80193938
  * Size:	00015C
  */
-void InteractDope::actPiki(Game::Piki*)
+void InteractDope::actPiki(Game::Piki* p)
 {
 	/*
 	stwu     r1, -0x20(r1)
@@ -1360,7 +1360,7 @@ lbl_80193A78:
  * Address:	80193A94
  * Size:	000100
  */
-void InteractWind::actPiki(Game::Piki*)
+void InteractWind::actPiki(Game::Piki* p)
 {
 	/*
 	stwu     r1, -0x30(r1)
@@ -1445,7 +1445,7 @@ lbl_80193B7C:
  * Address:	80193B94
  * Size:	000120
  */
-void InteractHanaChirashi::actPiki(Game::Piki*)
+void InteractHanaChirashi::actPiki(Game::Piki* p)
 {
 	/*
 	stwu     r1, -0x30(r1)
@@ -1538,7 +1538,7 @@ lbl_80193C9C:
  * Address:	80193CB4
  * Size:	00015C
  */
-void InteractBomb::actPiki(Game::Piki*)
+void InteractBomb::actPiki(Game::Piki* p)
 {
 	/*
 	stwu     r1, -0x30(r1)
@@ -1650,7 +1650,7 @@ lbl_80193DF8:
  * Address:	80193E10
  * Size:	000114
  */
-void InteractDenki::actPiki(Game::Piki*)
+void InteractDenki::actPiki(Game::Piki* p)
 {
 	/*
 	stwu     r1, -0x20(r1)
@@ -1740,7 +1740,7 @@ lbl_80193F08:
  * Address:	80193F24
  * Size:	0000A0
  */
-void InteractFallMeck::actPiki(Game::Piki*)
+void InteractFallMeck::actPiki(Game::Piki* p)
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -1797,7 +1797,7 @@ lbl_80193FB0:
  * Address:	80193FC4
  * Size:	000288
  */
-void InteractBury::actPiki(Game::Piki*)
+void InteractBury::actPiki(Game::Piki* p)
 {
 	/*
 	stwu     r1, -0x90(r1)
@@ -1980,7 +1980,7 @@ lbl_80194234:
  * Address:	8019424C
  * Size:	0000DC
  */
-void InteractSuikomi_Test::actPiki(Game::Piki*)
+void InteractSuikomi_Test::actPiki(Game::Piki* p)
 {
 	/*
 	stwu     r1, -0x20(r1)
@@ -2054,7 +2054,7 @@ lbl_80194310:
  * Address:	80194328
  * Size:	000118
  */
-void InteractFire::actPiki(Game::Piki*)
+void InteractFire::actPiki(Game::Piki* p)
 {
 	/*
 	stwu     r1, -0x20(r1)
@@ -2145,7 +2145,7 @@ lbl_80194424:
  * Address:	80194440
  * Size:	000134
  */
-void InteractAstonish::actPiki(Game::Piki*)
+void InteractAstonish::actPiki(Game::Piki* p)
 {
 	/*
 	stwu     r1, -0x20(r1)
@@ -2243,7 +2243,7 @@ lbl_80194558:
  * Address:	80194574
  * Size:	000118
  */
-void InteractBubble::actPiki(Game::Piki*)
+void InteractBubble::actPiki(Game::Piki* p)
 {
 	/*
 	stwu     r1, -0x20(r1)
@@ -2334,7 +2334,7 @@ lbl_80194670:
  * Address:	8019468C
  * Size:	00013C
  */
-void InteractGas::actPiki(Game::Piki*)
+void InteractGas::actPiki(Game::Piki* p)
 {
 	/*
 	stwu     r1, -0x20(r1)
@@ -2436,7 +2436,7 @@ lbl_801947AC:
  * Address:	801947C8
  * Size:	0000C0
  */
-void InteractBattle::actPiki(Game::Piki*)
+void InteractBattle::actPiki(Game::Piki* p)
 {
 	/*
 	stwu     r1, -0x20(r1)
@@ -2501,7 +2501,7 @@ lbl_80194870:
  * Address:	80194888
  * Size:	000120
  */
-void InteractPress::actPiki(Game::Piki*)
+void InteractPress::actPiki(Game::Piki* p)
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -2596,7 +2596,7 @@ lbl_80194990:
  * Address:	801949A8
  * Size:	000260
  */
-void InteractFlick::actPiki(Game::Piki*)
+void InteractFlick::actPiki(Game::Piki* p)
 {
 	/*
 	stwu     r1, -0x90(r1)
@@ -2777,7 +2777,7 @@ lbl_80194BD4:
  * Address:	80194C08
  * Size:	0002EC
  */
-void InteractSwallow::actPiki(Game::Piki*)
+void InteractSwallow::actPiki(Game::Piki* p)
 {
 	/*
 	stwu     r1, -0x80(r1)
@@ -3001,7 +3001,7 @@ lbl_80194EC0:
  * Address:	80194EF4
  * Size:	0000CC
  */
-void InteractKill::actPiki(Game::Piki*)
+void InteractKill::actPiki(Game::Piki* p)
 {
 	/*
 	stwu     r1, -0x10(r1)

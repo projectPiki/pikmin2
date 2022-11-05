@@ -35,7 +35,7 @@ struct BaseItemMgr : public GenericObjectMgr, virtual public _BaseItemMgrParent2
 	virtual void doEntry();                                                   // _0C (weak)
 	virtual void doSetView(int viewportNumber);                               // _10 (weak)
 	virtual void doViewCalc();                                                // _14 (weak)
-	virtual void doSimulation(float);                                         // _18 (weak)
+	virtual void doSimulation(float rate);                                    // _18 (weak)
 	virtual void doDirectDraw(Graphics& gfx);                                 // _1C (weak)
 	virtual void loadResources();                                             // _24
 	virtual void initDependency() = 0;                                        // _38
@@ -116,7 +116,7 @@ struct TNodeItemMgr : public BaseItemMgr, public Container<BaseItem> {
 	virtual void doEntry();                     // _0C (weak)
 	virtual void doSetView(int viewportNumber); // _10 (weak)
 	virtual void doViewCalc();                  // _14 (weak)
-	virtual void doSimulation(float);           // _18 (weak)
+	virtual void doSimulation(float rate);      // _18 (weak)
 	virtual void doDirectDraw(Graphics& gfx);   // _1C (weak)
 	virtual void initDependency();              // _38
 	virtual void killAll();                     // _3C
@@ -142,14 +142,14 @@ struct ItemMgr : public NodeObjectMgr<GenericObjectMgr> {
 	// vtable 1
 	virtual ~ItemMgr(); // _08
 	// vtable 2
-	virtual void doAnimation();           // _64 (weak)
-	virtual void doEntry();               // _68 (weak)
-	virtual void doSetView(int);          // _6C (weak)
-	virtual void doViewCalc();            // _70 (weak)
-	virtual void doSimulation(float);     // _74 (weak)
-	virtual void doDirectDraw(Graphics&); // _78 (weak)
-	virtual void loadResources();         // _80 (weak)
-	virtual void doSimpleDraw(Viewport*); // _84 (weak)
+	virtual void doAnimation();            // _64 (weak)
+	virtual void doEntry();                // _68 (weak)
+	virtual void doSetView(int);           // _6C (weak)
+	virtual void doViewCalc();             // _70 (weak)
+	virtual void doSimulation(float rate); // _74 (weak)
+	virtual void doDirectDraw(Graphics&);  // _78 (weak)
+	virtual void loadResources();          // _80 (weak)
+	virtual void doSimpleDraw(Viewport*);  // _84 (weak)
 
 	void addMgr(BaseItemMgr*);
 	void initDependency();
@@ -175,7 +175,7 @@ struct FixedSizeItemMgr : public BaseItemMgr, public Container<T> {
 	virtual void doEntry();                                                   // _0C (weak)
 	virtual void doSetView(int viewportNumber);                               // _10 (weak)
 	virtual void doViewCalc();                                                // _14 (weak)
-	virtual void doSimulation(float);                                         // _18 (weak)
+	virtual void doSimulation(float rate);                                    // _18 (weak)
 	virtual void doDirectDraw(Graphics& gfx);                                 // _1C (weak)
 	virtual void initDependency();                                            // _38 (weak)
 	virtual void killAll();                                                   // _3C (weak)

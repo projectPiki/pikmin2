@@ -27,8 +27,8 @@ struct Obj : public EnemyBase {
 	virtual void onInit(CreatureInitArg* settings);         // _30
 	virtual void onKill(CreatureKillArg* settings);         // _34
 	virtual void doDirectDraw(Graphics& gfx);               // _50
-	virtual void collisionCallback(CollEvent&);             // _EC
-	virtual void getShadowParam(ShadowParam&);              // _134
+	virtual void collisionCallback(CollEvent& event);       // _EC
+	virtual void getShadowParam(ShadowParam& settings);     // _134
 	virtual bool needShadow();                              // _138
 	virtual ~Obj() { }                                      // _1BC (weak)
 	virtual void setInitialSetting(EnemyInitialParamBase*); // _1C4

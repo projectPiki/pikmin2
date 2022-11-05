@@ -47,51 +47,51 @@ struct BaseItem : public Creature, public SysShape::MotionListener {
 	{
 		m_velocity = velocity;
 	}
-	virtual Vector3f getVelocity();                            // _6C (weak)
-	virtual void onSetPosition(Vector3f&);                     // _70 (weak)
-	virtual void updateTrMatrix();                             // _78
-	virtual void bounceCallback(Sys::Triangle*);               // _E8 (weak)
-	virtual void collisionCallback(CollEvent&);                // _EC (weak)
-	virtual void platCallback(PlatEvent&);                     // _F0 (weak)
-	virtual JAInter::Object* getJAIObject();                   // _F4
-	virtual PSM::Creature* getPSCreature();                    // _F8
-	virtual Vector3f* getSound_PosPtr();                       // _100 (weak)
-	virtual void movieStartAnimation(u32);                     // _118
-	virtual void movieStartDemoAnimation(SysShape::AnimInfo*); // _11C
-	virtual void movieSetAnimationLastFrame();                 // _120
-	virtual void movieSetTranslation(Vector3f&, f32);          // _124
-	virtual void getVelocityAt(Vector3f&, Vector3f&);          // _184 (weak)
-	virtual bool stimulate(Interaction&);                      // _1A4
-	virtual char* getCreatureName();                           // _1A8 (weak)
-	virtual s32 getCreatureID();                               // _1AC (weak)
+	virtual Vector3f getVelocity();                                 // _6C (weak)
+	virtual void onSetPosition(Vector3f& dest);                     // _70 (weak)
+	virtual void updateTrMatrix();                                  // _78
+	virtual void bounceCallback(Sys::Triangle* tri);                // _E8 (weak)
+	virtual void collisionCallback(CollEvent& event);               // _EC (weak)
+	virtual void platCallback(PlatEvent& event);                    // _F0 (weak)
+	virtual JAInter::Object* getJAIObject();                        // _F4
+	virtual PSM::Creature* getPSCreature();                         // _F8
+	virtual Vector3f* getSound_PosPtr();                            // _100 (weak)
+	virtual void movieStartAnimation(u32 animIdx);                  // _118
+	virtual void movieStartDemoAnimation(SysShape::AnimInfo* info); // _11C
+	virtual void movieSetAnimationLastFrame();                      // _120
+	virtual void movieSetTranslation(Vector3f& dest, f32 faceDir);  // _124
+	virtual void getVelocityAt(Vector3f&, Vector3f&);               // _184 (weak)
+	virtual bool stimulate(Interaction& data);                      // _1A4
+	virtual char* getCreatureName();                                // _1A8 (weak)
+	virtual s32 getCreatureID();                                    // _1AC (weak)
 
 	// vtable 2 (MotionListener + self)
-	virtual void onKeyEvent(const SysShape::KeyEvent&) = 0; // _1B8
-	virtual void initDependency();                          // _1BC (weak)
-	virtual void startSound(u32);                           // _1C0
-	virtual void makeTrMatrix();                            // _1C4
-	virtual void doAI();                                    // _1C8 (weak)
-	virtual void move(f32);                                 // _1CC
-	virtual void changeMaterial();                          // _1D0 (weak)
-	virtual void do_updateLOD();                            // _1D4
-	virtual void do_setLODParm(AILODParm&);                 // _1D8 (weak)
-	virtual f32 getMapCollisionRadius();                    // _1DC (weak)
-	virtual bool interactAttack(InteractAttack&);           // _1E0 (weak)
-	virtual bool interactBreakBridge(InteractBreakBridge&); // _1E4 (weak)
-	virtual bool interactEat(InteractEat&);                 // _1E8 (weak)
-	virtual bool interactFlockAttack(InteractFlockAttack&); // _1EC (weak)
-	virtual bool interactAbsorb(InteractAbsorb&);           // _1F0 (weak)
-	virtual bool interactFue(InteractFue&);                 // _1F4 (weak)
-	virtual bool interactFarmKarero(InteractFarmKarero&);   // _1F8 (weak)
-	virtual bool interactFarmHaero(InteractFarmHaero&);     // _1FC (weak)
-	virtual bool interactGotKey(InteractGotKey&);           // _200 (weak)
-	virtual bool getVectorField(Sys::Sphere&, Vector3f&);   // _204 (weak)
-	virtual f32 getWorkDistance(Sys::Sphere&);              // _208 (weak)
-	virtual void do_doAnimation();                          // _20C (weak)
-	virtual void updateBoundSphere();                       // _210 (weak)
-	virtual void update();                                  // _214
-	virtual void entryShape();                              // _218
-	virtual void onSetPosition();                           // _21C (weak)
+	virtual void onKeyEvent(const SysShape::KeyEvent& event) = 0; // _1B8
+	virtual void initDependency();                                // _1BC (weak)
+	virtual void startSound(u32);                                 // _1C0
+	virtual void makeTrMatrix();                                  // _1C4
+	virtual void doAI();                                          // _1C8 (weak)
+	virtual void move(f32);                                       // _1CC
+	virtual void changeMaterial();                                // _1D0 (weak)
+	virtual void do_updateLOD();                                  // _1D4
+	virtual void do_setLODParm(AILODParm&);                       // _1D8 (weak)
+	virtual f32 getMapCollisionRadius();                          // _1DC (weak)
+	virtual bool interactAttack(InteractAttack&);                 // _1E0 (weak)
+	virtual bool interactBreakBridge(InteractBreakBridge&);       // _1E4 (weak)
+	virtual bool interactEat(InteractEat&);                       // _1E8 (weak)
+	virtual bool interactFlockAttack(InteractFlockAttack&);       // _1EC (weak)
+	virtual bool interactAbsorb(InteractAbsorb&);                 // _1F0 (weak)
+	virtual bool interactFue(InteractFue&);                       // _1F4 (weak)
+	virtual bool interactFarmKarero(InteractFarmKarero&);         // _1F8 (weak)
+	virtual bool interactFarmHaero(InteractFarmHaero&);           // _1FC (weak)
+	virtual bool interactGotKey(InteractGotKey&);                 // _200 (weak)
+	virtual bool getVectorField(Sys::Sphere&, Vector3f&);         // _204 (weak)
+	virtual f32 getWorkDistance(Sys::Sphere&);                    // _208 (weak)
+	virtual void do_doAnimation();                                // _20C (weak)
+	virtual void updateBoundSphere();                             // _210 (weak)
+	virtual void update();                                        // _214
+	virtual void entryShape();                                    // _218
+	virtual void onSetPosition();                                 // _21C (weak)
 
 	void updateCollTree();
 
@@ -118,15 +118,15 @@ struct CFSMItem : public BaseItem {
 	}
 
 	// vtable 1
-	virtual void constructor();                  // _2C
-	virtual void bounceCallback(Sys::Triangle*); // _E8
-	virtual void collisionCallback(CollEvent&);  // _EC
-	virtual void platCallback(PlatEvent&);       // _F0
+	virtual void constructor();                       // _2C
+	virtual void bounceCallback(Sys::Triangle* tri);  // _E8
+	virtual void collisionCallback(CollEvent& event); // _EC
+	virtual void platCallback(PlatEvent& event);      // _F0
 
 	// vtable 2
-	virtual void doAI();                                // _1C8
-	virtual CItemFSM* createFSM() = 0;                  // _220
-	virtual void onKeyEvent(const SysShape::KeyEvent&); // _224 (weak)
+	virtual void doAI();                                      // _1C8
+	virtual CItemFSM* createFSM() = 0;                        // _220
+	virtual void onKeyEvent(const SysShape::KeyEvent& event); // _224 (weak)
 
 	void initFSM();
 	void setCurrState(FSMState<CFSMItem>*);

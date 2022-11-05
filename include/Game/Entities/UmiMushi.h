@@ -52,8 +52,8 @@ struct Obj : public EnemyBase {
 	virtual void doSimulation(f32);                          // _4C
 	virtual void doDirectDraw(Graphics& gfx);                // _50
 	virtual f32 getBodyRadius();                             // _54
-	virtual void collisionCallback(CollEvent&);              // _EC
-	virtual void getShadowParam(ShadowParam&);               // _134
+	virtual void collisionCallback(CollEvent& event);        // _EC
+	virtual void getShadowParam(ShadowParam& settings);      // _134
 	virtual void applyImpulse(Vector3f&, Vector3f&);         // _18C (weak)
 	virtual ~Obj() { }                                       // _1BC (weak)
 	virtual void birth(Vector3f&, f32);                      // _1C0

@@ -81,7 +81,7 @@ struct EnemyMgrBase : public IEnemyMgrBase {
 	virtual void doEntry();                     // _0C
 	virtual void doSetView(int viewportNumber); // _10
 	virtual void doViewCalc();                  // _14
-	virtual void doSimulation(float);           // _18
+	virtual void doSimulation(float rate);      // _18
 	virtual void doDirectDraw(Graphics& gfx);   // _1C
 	// vtable 2 (GenericContainer + IEnemyMgrBase + self, _00, _40-_E0)
 	// GenericContainer thunks _40-_58

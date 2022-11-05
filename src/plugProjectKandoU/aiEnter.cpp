@@ -153,7 +153,7 @@
  * Address:	801A2720
  * Size:	0000D0
  */
-PikiAI::ActEnter::ActEnter(Game::Piki*)
+PikiAI::ActEnter::ActEnter(Game::Piki* p)
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -1000,7 +1000,7 @@ lbl_801A31C8:
  * Address:	801A31DC
  * Size:	000070
  */
-PikiAI::ActExit::ActExit(Game::Piki*)
+PikiAI::ActExit::ActExit(Game::Piki* p)
 {
 	/*
 	stwu     r1, -0x10(r1)

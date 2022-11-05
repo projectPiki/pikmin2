@@ -85,7 +85,7 @@
  * Address:	8021295C
  * Size:	000090
  */
-PikiAI::ActTeki::ActTeki(Game::Piki*)
+PikiAI::ActTeki::ActTeki(Game::Piki* p)
 {
 	/*
 	stwu     r1, -0x10(r1)

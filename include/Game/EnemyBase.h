@@ -220,7 +220,7 @@ struct EnemyBase : public Creature, public SysShape::MotionListener, virtual pub
 		return m_creatureID;
 	}
 	// vtable 2 (MotionListener+self)
-	// virtual void onKeyEvent(const SysShape::KeyEvent&); - thunk _1B8
+	// virtual void onKeyEvent(const SysShape::KeyEvent& event); - thunk _1B8
 	virtual ~EnemyBase() { }                                             // _1BC (weak)
 	virtual void birth(Vector3f& position, f32 faceDirection);           // _1C0
 	virtual void setInitialSetting(EnemyInitialParamBase* settings) = 0; // _1C4

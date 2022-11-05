@@ -40,16 +40,16 @@ struct Obj : public EnemyBase {
 	virtual void doAnimation();                              // _3C
 	virtual void doSimulation(f32);                          // _4C
 	virtual void doDirectDraw(Graphics& gfx);                // _50
-	virtual void inWaterCallback(WaterBox*);                 // _84
+	virtual void inWaterCallback(WaterBox* wb);              // _84
 	virtual void outWaterCallback();                         // _88
 	virtual bool isUnderground();                            // _D0 (weak)
 	virtual bool isLivingThing();                            // _D4 (weak)
-	virtual void bounceCallback(Sys::Triangle*);             // _E8
-	virtual void collisionCallback(CollEvent&);              // _EC
-	virtual void getShadowParam(ShadowParam&);               // _134
+	virtual void bounceCallback(Sys::Triangle* tri);         // _E8
+	virtual void collisionCallback(CollEvent& event);        // _EC
+	virtual void getShadowParam(ShadowParam& settings);      // _134
 	virtual bool needShadow();                               // _138
 	virtual void applyImpulse(Vector3f&, Vector3f&);         // _18C (weak)
-	virtual bool ignoreAtari(Creature*);                     // _190 (weak)
+	virtual bool ignoreAtari(Creature* toIgnore);            // _190 (weak)
 	virtual ~Obj();                                          // _1BC (weak)
 	virtual void birth(Vector3f&, f32);                      // _1C0
 	virtual void setInitialSetting(EnemyInitialParamBase*);  // _1C4 (weak)

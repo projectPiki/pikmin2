@@ -3539,7 +3539,7 @@ lbl_80368730:
  * Address:	80368740
  * Size:	0000F0
  */
-void Jigumo::ConditionHeightCheckPiki::satisfy(Game::Piki*)
+void Jigumo::ConditionHeightCheckPiki::satisfy(Game::Piki* p)
 {
 	/*
 	stwu     r1, -0x30(r1)

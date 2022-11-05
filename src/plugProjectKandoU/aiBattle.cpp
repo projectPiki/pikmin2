@@ -119,7 +119,7 @@ extern char* lbl_8051A320;
  * Address:	8022ECB4
  * Size:	0000B8
  */
-asm PikiAI::ActBattle::ActBattle(Game::Piki*)
+asm PikiAI::ActBattle::ActBattle(Game::Piki* p)
 {
 	// clang-format off
 nofralloc

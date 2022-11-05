@@ -43,28 +43,28 @@ struct Item : public CFSMItem {
 	Item();
 
 	// vtable 1 (Creature)
-	virtual void onInit(CreatureInitArg* settings); // _30
-	virtual void doSimulation(float);               // _4C
-	virtual void doDirectDraw(Graphics& gfx);       // _50
-	virtual void onStartCapture();                  // _94
-	virtual void onUpdateCapture(Matrixf&);         // _98
-	virtual void onEndCapture();                    // _9C
-	virtual void collisionCallback(CollEvent&);     // _EC
-	virtual void on_movie_end(bool);                // _114
-	virtual char* getCreatureName();                // _1A8 (weak)
+	virtual void onInit(CreatureInitArg* settings);   // _30
+	virtual void doSimulation(float rate);            // _4C
+	virtual void doDirectDraw(Graphics& gfx);         // _50
+	virtual void onStartCapture();                    // _94
+	virtual void onUpdateCapture(Matrixf&);           // _98
+	virtual void onEndCapture();                      // _9C
+	virtual void collisionCallback(CollEvent& event); // _EC
+	virtual void on_movie_end(bool shouldResetAnims); // _114
+	virtual char* getCreatureName();                  // _1A8 (weak)
 
 	// vtable 2 (MotionListener + BaseItem + self)
-	virtual void makeTrMatrix();                        // _1C4
-	virtual void doAI();                                // _1C8
-	virtual void changeMaterial();                      // _1D0
-	virtual float getMapCollisionRadius();              // _1DC
-	virtual bool interactAbsorb(InteractAbsorb&);       // _1F0
-	virtual void updateBoundSphere();                   // _210
-	virtual void onSetPosition();                       // _21C
-	virtual CItemFSM* createFSM();                      // _220
-	virtual void onKeyEvent(const SysShape::KeyEvent&); // _224 (weak)
-	virtual void absorbable();                          // _228
-	virtual void demoOK();                              // _22C
+	virtual void makeTrMatrix();                              // _1C4
+	virtual void doAI();                                      // _1C8
+	virtual void changeMaterial();                            // _1D0
+	virtual float getMapCollisionRadius();                    // _1DC
+	virtual bool interactAbsorb(InteractAbsorb&);             // _1F0
+	virtual void updateBoundSphere();                         // _210
+	virtual void onSetPosition();                             // _21C
+	virtual CItemFSM* createFSM();                            // _220
+	virtual void onKeyEvent(const SysShape::KeyEvent& event); // _224 (weak)
+	virtual void absorbable();                                // _228
+	virtual void demoOK();                                    // _22C
 
 	bool isShrinking();
 

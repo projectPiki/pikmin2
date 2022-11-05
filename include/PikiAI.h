@@ -96,21 +96,21 @@ struct CreatureActionArg : public ActionArg {
 };
 
 struct Action {
-	Action(Game::Piki*);
+	Action(Game::Piki* p);
 
-	virtual void init(ActionArg*);                                 // _08 (weak)
-	virtual s32 exec();                                            // _0C (weak)
-	virtual void cleanup();                                        // _10 (weak)
-	virtual void emotion_success();                                // _14 (weak)
-	virtual void emotion_fail();                                   // _18 (weak)
-	virtual void applicable();                                     // _1C (weak)
-	virtual u32 getNextAIType();                                   // _20 (weak)
-	virtual void bounceCallback(Game::Piki*, Sys::Triangle*);      // _24 (weak)
-	virtual void collisionCallback(Game::Piki*, Game::CollEvent&); // _28 (weak)
-	virtual void platCallback(Game::Piki*, Game::PlatEvent&);      // _2C (weak)
-	virtual void doDirectDraw(Graphics& gfx);                      // _30 (weak)
-	virtual void wallCallback(Vector3f&);                          // _34 (weak)
-	virtual void getInfo(char*);                                   // _38
+	virtual void init(ActionArg* settings);                                // _08 (weak)
+	virtual s32 exec();                                                    // _0C (weak)
+	virtual void cleanup();                                                // _10 (weak)
+	virtual void emotion_success();                                        // _14 (weak)
+	virtual void emotion_fail();                                           // _18 (weak)
+	virtual void applicable();                                             // _1C (weak)
+	virtual u32 getNextAIType();                                           // _20 (weak)
+	virtual void bounceCallback(Game::Piki* p, Sys::Triangle* hit);        // _24 (weak)
+	virtual void collisionCallback(Game::Piki* p, Game::CollEvent& event); // _28 (weak)
+	virtual void platCallback(Game::Piki* p, Game::PlatEvent& event);      // _2C (weak)
+	virtual void doDirectDraw(Graphics& gfx);                              // _30 (weak)
+	virtual void wallCallback(Vector3f& pos);                              // _34 (weak)
+	virtual void getInfo(char*);                                           // _38
 
 	// _00 = VTBL
 	Game::Piki* m_parent; // _04
@@ -129,11 +129,11 @@ struct ApproachPosActionArg : public ActionArg {
 };
 
 struct ActApproachPos : public Action {
-	ActApproachPos(Game::Piki*);
+	ActApproachPos(Game::Piki* p);
 
-	virtual void init(ActionArg*); // _08
-	virtual s32 exec();            // _0C
-	virtual void cleanup();        // _10
+	virtual void init(ActionArg* settings); // _08
+	virtual s32 exec();                     // _0C
+	virtual void cleanup();                 // _10
 
 	// _00     = VTBL
 	// _00-_0C = Action
@@ -154,18 +154,18 @@ struct ActAttackArg : public ActionArg {
 };
 
 struct ActAttack : public Action, virtual SysShape::MotionListener {
-	ActAttack(Game::Piki*);
+	ActAttack(Game::Piki* p);
 
-	virtual void init(ActionArg*);                                 // _08
-	virtual s32 exec();                                            // _0C
-	virtual void cleanup();                                        // _10
-	virtual void emotion_success();                                // _14
-	virtual void applicable();                                     // _1C
-	virtual u32 getNextAIType();                                   // _20 (weak)
-	virtual void bounceCallback(Game::Piki*, Sys::Triangle*);      // _24
-	virtual void collisionCallback(Game::Piki*, Game::CollEvent&); // _28
-	virtual void getInfo(char*);                                   // _38
-	virtual void onKeyEvent(const SysShape::KeyEvent&);            // _3C (weak)
+	virtual void init(ActionArg* settings);                                // _08
+	virtual s32 exec();                                                    // _0C
+	virtual void cleanup();                                                // _10
+	virtual void emotion_success();                                        // _14
+	virtual void applicable();                                             // _1C
+	virtual u32 getNextAIType();                                           // _20 (weak)
+	virtual void bounceCallback(Game::Piki* p, Sys::Triangle* hit);        // _24
+	virtual void collisionCallback(Game::Piki* p, Game::CollEvent& event); // _28
+	virtual void getInfo(char*);                                           // _38
+	virtual void onKeyEvent(const SysShape::KeyEvent& event);              // _3C (weak)
 
 	void initStickAttack();
 	void initAdjust();
@@ -196,14 +196,14 @@ struct ActBattleArg : public ActionArg {
 
 // Pikmin hitting eachother, like in VS mode
 struct ActBattle : public Action, virtual SysShape::MotionListener {
-	ActBattle(Game::Piki*);
+	ActBattle(Game::Piki* p);
 
-	virtual void init(ActionArg*);                                 // _08
-	virtual s32 exec();                                            // _0C
-	virtual void cleanup();                                        // _10
-	virtual void emotion_success();                                // _14
-	virtual void collisionCallback(Game::Piki*, Game::CollEvent&); // _28
-	virtual void onKeyEvent(const SysShape::KeyEvent&);            // _3C (weak)
+	virtual void init(ActionArg* settings);                                // _08
+	virtual s32 exec();                                                    // _0C
+	virtual void cleanup();                                                // _10
+	virtual void emotion_success();                                        // _14
+	virtual void collisionCallback(Game::Piki* p, Game::CollEvent& event); // _28
+	virtual void onKeyEvent(const SysShape::KeyEvent& event);              // _3C (weak)
 
 	void initApproach();
 	void execApproach();
@@ -222,8 +222,8 @@ struct ActBattle : public Action, virtual SysShape::MotionListener {
 };
 
 struct ActBoreBase : public Action, virtual SysShape::MotionListener {
-	virtual void finish()                              = 0; // _3C
-	virtual void onKeyEvent(const SysShape::KeyEvent&) = 0; // _40
+	virtual void finish()                                    = 0; // _3C
+	virtual void onKeyEvent(const SysShape::KeyEvent& event) = 0; // _40
 
 	// _00     = VTBL
 	// _00-_0C = Action
@@ -231,11 +231,11 @@ struct ActBoreBase : public Action, virtual SysShape::MotionListener {
 };
 
 struct ActBore : public Action {
-	ActBore(Game::Piki*);
+	ActBore(Game::Piki* p);
 
-	virtual void init(ActionArg*); // _08
-	virtual s32 exec();            // _0C
-	virtual void cleanup();        // _10
+	virtual void init(ActionArg* settings); // _08
+	virtual s32 exec();                     // _0C
+	virtual void cleanup();                 // _10
 
 	void startCurrAction();
 	void finish();
@@ -258,16 +258,16 @@ struct ActBreakGateArg : public ActionArg {
 };
 
 struct ActBreakGate : public Action, virtual SysShape::MotionListener {
-	ActBreakGate(Game::Piki*);
+	ActBreakGate(Game::Piki* p);
 
-	virtual void init(ActionArg*);                                 // _08
-	virtual s32 exec();                                            // _0C
-	virtual void cleanup();                                        // _10
-	virtual void emotion_success();                                // _14
-	virtual void bounceCallback(Game::Piki*, Sys::Triangle*);      // _24
-	virtual void collisionCallback(Game::Piki*, Game::CollEvent&); // _28
-	virtual void platCallback(Game::Piki*, Game::PlatEvent&);      // _2C
-	virtual void onKeyEvent(const SysShape::KeyEvent&);            // _3C
+	virtual void init(ActionArg* settings);                                // _08
+	virtual s32 exec();                                                    // _0C
+	virtual void cleanup();                                                // _10
+	virtual void emotion_success();                                        // _14
+	virtual void bounceCallback(Game::Piki* p, Sys::Triangle* hit);        // _24
+	virtual void collisionCallback(Game::Piki* p, Game::CollEvent& event); // _28
+	virtual void platCallback(Game::Piki* p, Game::PlatEvent& event);      // _2C
+	virtual void onKeyEvent(const SysShape::KeyEvent& event);              // _3C
 
 	void initFollow();
 	inline void initStickAttack();
@@ -294,15 +294,15 @@ struct ActBreakRockArg : public ActionArg {
 };
 
 struct ActBreakRock : public Action, public virtual SysShape::MotionListener {
-	ActBreakRock(Game::Piki*);
+	ActBreakRock(Game::Piki* p);
 
-	virtual void init(ActionArg*);                                 // _08
-	virtual s32 exec();                                            // _0C
-	virtual void cleanup();                                        // _10
-	virtual void bounceCallback(Game::Piki*, Sys::Triangle*);      // _24
-	virtual void collisionCallback(Game::Piki*, Game::CollEvent&); // _28
-	virtual void platCallback(Game::Piki*, Game::PlatEvent&);      // _2C
-	virtual void onKeyEvent(const SysShape::KeyEvent&) { }         // _3C
+	virtual void init(ActionArg* settings);                                // _08
+	virtual s32 exec();                                                    // _0C
+	virtual void cleanup();                                                // _10
+	virtual void bounceCallback(Game::Piki* p, Sys::Triangle* hit);        // _24
+	virtual void collisionCallback(Game::Piki* p, Game::CollEvent& event); // _28
+	virtual void platCallback(Game::Piki* p, Game::PlatEvent& event);      // _2C
+	virtual void onKeyEvent(const SysShape::KeyEvent& event) { }           // _3C
 
 	void initFollow();
 	inline void initStickAttack();
@@ -331,15 +331,15 @@ struct ActBridgeArg : public ActionArg {
 #define PIKIAI_BRIDGE_STICKATTACK 2
 
 struct ActBridge : public Action, virtual SysShape::MotionListener {
-	ActBridge(Game::Piki*);
+	ActBridge(Game::Piki* p);
 
-	virtual void init(PikiAI::ActionArg*);                         // _08
-	virtual s32 exec();                                            // _0C
-	virtual void cleanup();                                        // _10
-	virtual void bounceCallback(Game::Piki*, Sys::Triangle*);      // _24
-	virtual void collisionCallback(Game::Piki*, Game::CollEvent&); // _28
-	virtual void platCallback(Game::Piki*, Game::PlatEvent&);      // _2C
-	virtual void onKeyEvent(const SysShape::KeyEvent&) { }         // _3C (weak)
+	virtual void init(PikiAI::ActionArg*);                                 // _08
+	virtual s32 exec();                                                    // _0C
+	virtual void cleanup();                                                // _10
+	virtual void bounceCallback(Game::Piki* p, Sys::Triangle* hit);        // _24
+	virtual void collisionCallback(Game::Piki* p, Game::CollEvent& event); // _28
+	virtual void platCallback(Game::Piki* p, Game::PlatEvent& event);      // _2C
+	virtual void onKeyEvent(const SysShape::KeyEvent& event) { }           // _3C (weak)
 
 	void initFollow();
 	inline void initGoto();
@@ -371,11 +371,11 @@ struct ClimbActionArg : public ActionArg {
 };
 
 struct ActClimb : public Action {
-	ActClimb(Game::Piki*);
+	ActClimb(Game::Piki* p);
 
-	virtual void init(ActionArg*); // _08
-	virtual s32 exec();            // _0C
-	virtual void cleanup();        // _10
+	virtual void init(ActionArg* settings); // _08
+	virtual s32 exec();                     // _0C
+	virtual void cleanup();                 // _10
 
 	// _00     = VTBL
 	// _00-_0C = Action
@@ -393,14 +393,14 @@ struct ActCropArg : public ActionArg {
 };
 
 struct ActCrop : public Action, virtual SysShape::MotionListener {
-	ActCrop(Game::Piki*);
+	ActCrop(Game::Piki* p);
 
-	virtual void init(ActionArg*);                                 // _08
-	virtual s32 exec();                                            // _0C
-	virtual void cleanup();                                        // _10
-	virtual u32 getNextAIType();                                   // _20 (weak)
-	virtual void collisionCallback(Game::Piki*, Game::CollEvent&); // _28
-	virtual void onKeyEvent(const SysShape::KeyEvent&);            // _3C (weak)
+	virtual void init(ActionArg* settings);                                // _08
+	virtual s32 exec();                                                    // _0C
+	virtual void cleanup();                                                // _10
+	virtual u32 getNextAIType();                                           // _20 (weak)
+	virtual void collisionCallback(Game::Piki* p, Game::CollEvent& event); // _28
+	virtual void onKeyEvent(const SysShape::KeyEvent& event);              // _3C (weak)
 
 	void execClimb();
 	void initGoto();
@@ -422,12 +422,12 @@ struct ActCrop : public Action, virtual SysShape::MotionListener {
 };
 
 struct ActEnter : public Action, virtual SysShape::MotionListener {
-	ActEnter(Game::Piki*);
+	ActEnter(Game::Piki* p);
 
-	virtual void init(ActionArg*);                      // _08
-	virtual s32 exec();                                 // _0C
-	virtual void cleanup();                             // _10
-	virtual void onKeyEvent(const SysShape::KeyEvent&); // _3C (weak)
+	virtual void init(ActionArg* settings);                   // _08
+	virtual s32 exec();                                       // _0C
+	virtual void cleanup();                                   // _10
+	virtual void onKeyEvent(const SysShape::KeyEvent& event); // _3C (weak)
 
 	void initStay();
 	void execStay();
@@ -455,11 +455,11 @@ struct ActEnter : public Action, virtual SysShape::MotionListener {
 };
 
 struct ActExit : public Action {
-	ActExit(Game::Piki*);
+	ActExit(Game::Piki* p);
 
-	virtual void init(ActionArg*); // _08
-	virtual s32 exec();            // _0C
-	virtual void cleanup();        // _10
+	virtual void init(ActionArg* settings); // _08
+	virtual s32 exec();                     // _0C
+	virtual void cleanup();                 // _10
 
 	// _00     = VTBL
 	// _00-_0C = Action
@@ -480,12 +480,12 @@ struct FlockAttackActionArg : public ActionArg {
 };
 
 struct ActFlockAttack : public Action, virtual SysShape::MotionListener {
-	ActFlockAttack(Game::Piki*);
+	ActFlockAttack(Game::Piki* p);
 
-	virtual void init(ActionArg*);                      // _08
-	virtual s32 exec();                                 // _0C
-	virtual void cleanup();                             // _10
-	virtual void onKeyEvent(const SysShape::KeyEvent&); // _3C (weak)
+	virtual void init(ActionArg* settings);                   // _08
+	virtual s32 exec();                                       // _0C
+	virtual void cleanup();                                   // _10
+	virtual void onKeyEvent(const SysShape::KeyEvent& event); // _3C (weak)
 
 	// _00     = VTBL
 	// _00-_0C = Action
@@ -516,11 +516,11 @@ struct FollowVectorFieldActionArg : public ActionArg {
 };
 
 struct ActFollowVectorField : public Action {
-	ActFollowVectorField(Game::Piki*);
+	ActFollowVectorField(Game::Piki* p);
 
-	virtual void init(ActionArg*); // _08
-	virtual s32 exec();            // _0C
-	virtual void cleanup();        // _10
+	virtual void init(ActionArg* settings); // _08
+	virtual s32 exec();                     // _0C
+	virtual void cleanup();                 // _10
 
 	// _00     = VTBL
 	// _00-_0C = Action
@@ -541,18 +541,18 @@ struct ActFormationInitArg : public CreatureActionArg {
 };
 
 struct ActFormation : public Action, virtual Game::SlotChangeListener, virtual SysShape::MotionListener {
-	ActFormation(Game::Piki*);
+	ActFormation(Game::Piki* p);
 
-	virtual void init(ActionArg*);                                 // _08
-	virtual s32 exec();                                            // _0C
-	virtual void cleanup();                                        // _10
-	virtual u32 getNextAIType();                                   // _20 (weak)
-	virtual void collisionCallback(Game::Piki*, Game::CollEvent&); // _28
-	virtual void platCallback(Game::Piki*, Game::PlatEvent&);      // _2C
-	virtual void wallCallback(Vector3f&);                          // _34
-	virtual bool resumable();                                      // _3C (weak)
-	virtual void inform(int);                                      // _40 (weak)
-	virtual void onKeyEvent(const SysShape::KeyEvent&);            // _44 (weak)
+	virtual void init(ActionArg* settings);                                // _08
+	virtual s32 exec();                                                    // _0C
+	virtual void cleanup();                                                // _10
+	virtual u32 getNextAIType();                                           // _20 (weak)
+	virtual void collisionCallback(Game::Piki* p, Game::CollEvent& event); // _28
+	virtual void platCallback(Game::Piki* p, Game::PlatEvent& event);      // _2C
+	virtual void wallCallback(Vector3f& pos);                              // _34
+	virtual bool resumable();                                              // _3C (weak)
+	virtual void inform(int);                                              // _40 (weak)
+	virtual void onKeyEvent(const SysShape::KeyEvent& event);              // _44 (weak)
 
 	void startSort();
 	void setFormed();
@@ -601,14 +601,14 @@ struct ActFreeArg : public ActionArg {
 #define PIKIAI_FREE_BORE    2
 
 struct ActFree : public Action, virtual SysShape::MotionListener {
-	ActFree(Game::Piki*);
+	ActFree(Game::Piki* p);
 
-	virtual void init(PikiAI::ActionArg*);                         // _08
-	virtual s32 exec();                                            // _0C
-	virtual void cleanup();                                        // _10
-	virtual u32 getNextAIType();                                   // _20 (weak)
-	virtual void collisionCallback(Game::Piki*, Game::CollEvent&); // _28
-	virtual void onKeyEvent(const SysShape::KeyEvent&);            // _3C (weak)
+	virtual void init(PikiAI::ActionArg*);                                 // _08
+	virtual s32 exec();                                                    // _0C
+	virtual void cleanup();                                                // _10
+	virtual u32 getNextAIType();                                           // _20 (weak)
+	virtual void collisionCallback(Game::Piki* p, Game::CollEvent& event); // _28
+	virtual void onKeyEvent(const SysShape::KeyEvent& event);              // _3C (weak)
 
 	// _00     = VTBL
 	// _00-_0C = Action
@@ -637,7 +637,7 @@ struct GatherActionArg : public ActionArg {
 };
 
 struct ActGather : public Action {
-	ActGather(Game::Piki*);
+	ActGather(Game::Piki* p);
 
 	virtual void cleanup();                // _08
 	virtual s32 exec();                    // _0C
@@ -659,7 +659,7 @@ struct GotoPosActionArg : public ActionArg {
 };
 
 struct ActGotoPos : public Action {
-	ActGotoPos(Game::Piki*);
+	ActGotoPos(Game::Piki* p);
 
 	virtual void init(PikiAI::ActionArg*); // _08
 	virtual s32 exec();                    // _0C
@@ -680,12 +680,12 @@ struct GotoSlotArg : public ActionArg {
 };
 
 struct ActGotoSlot : public Action {
-	ActGotoSlot(Game::Piki*);
+	ActGotoSlot(Game::Piki* p);
 
-	virtual void init(ActionArg*);        // _08
-	virtual s32 exec();                   // _0C
-	virtual void cleanup();               // _10
-	virtual void wallCallback(Vector3f&); // _34
+	virtual void init(ActionArg* settings);   // _08
+	virtual s32 exec();                       // _0C
+	virtual void cleanup();                   // _10
+	virtual void wallCallback(Vector3f& pos); // _34
 
 	void resetTimers();
 
@@ -705,13 +705,13 @@ struct ActOneshotArg : public ActionArg {
 };
 
 struct ActOneshot : public ActBoreBase {
-	ActOneshot(Game::Piki*);
+	ActOneshot(Game::Piki* p);
 
-	virtual void init(ActionArg*);                      // _08
-	virtual s32 exec();                                 // _0C
-	virtual void cleanup();                             // _10
-	virtual void finish();                              // _3C
-	virtual void onKeyEvent(const SysShape::KeyEvent&); // _40 (weak)
+	virtual void init(ActionArg* settings);                   // _08
+	virtual s32 exec();                                       // _0C
+	virtual void cleanup();                                   // _10
+	virtual void finish();                                    // _3C
+	virtual void onKeyEvent(const SysShape::KeyEvent& event); // _40 (weak)
 
 	// _00     = VTBL
 	// _00-_10 = ActBoreBase
@@ -731,11 +731,11 @@ struct PathMoveArg : public ActionArg {
 };
 
 struct ActPathMove : public Action {
-	ActPathMove(Game::Piki*);
+	ActPathMove(Game::Piki* p);
 
-	virtual void init(ActionArg*); // _08
-	virtual s32 exec();            // _0C
-	virtual void cleanup();        // _10
+	virtual void init(ActionArg* settings); // _08
+	virtual s32 exec();                     // _0C
+	virtual void cleanup();                 // _10
 
 	void initPathfinding(bool);
 	void decideGoal();
@@ -784,16 +784,16 @@ struct ActPathMove : public Action {
 };
 
 struct ActRescue : public Action, virtual SysShape::MotionListener {
-	ActRescue(Game::Piki*);
+	ActRescue(Game::Piki* p);
 
-	virtual void init(ActionArg*);                                 // _08
-	virtual s32 exec();                                            // _0C
-	virtual void cleanup();                                        // _10
-	virtual void emotion_success();                                // _14
-	virtual u32 getNextAIType();                                   // _20 (weak)
-	virtual void collisionCallback(Game::Piki*, Game::CollEvent&); // _28
-	virtual void doDirectDraw(Graphics& gfx);                      // _30
-	virtual void onKeyEvent(const SysShape::KeyEvent&);            // _3C (weak)
+	virtual void init(ActionArg* settings);                                // _08
+	virtual s32 exec();                                                    // _0C
+	virtual void cleanup();                                                // _10
+	virtual void emotion_success();                                        // _14
+	virtual u32 getNextAIType();                                           // _20 (weak)
+	virtual void collisionCallback(Game::Piki* p, Game::CollEvent& event); // _28
+	virtual void doDirectDraw(Graphics& gfx);                              // _30
+	virtual void onKeyEvent(const SysShape::KeyEvent& event);              // _3C (weak)
 
 	void initApproach();
 	void execApproach();
@@ -815,13 +815,13 @@ struct ActRescue : public Action, virtual SysShape::MotionListener {
 };
 
 struct ActRest : public ActBoreBase {
-	ActRest(Game::Piki*);
+	ActRest(Game::Piki* p);
 
-	virtual void init(ActionArg*);                      // _08
-	virtual s32 exec();                                 // _0C
-	virtual void cleanup();                             // _10
-	virtual void finish();                              // _3C
-	virtual void onKeyEvent(const SysShape::KeyEvent&); // _40 (weak)
+	virtual void init(ActionArg* settings);                   // _08
+	virtual s32 exec();                                       // _0C
+	virtual void cleanup();                                   // _10
+	virtual void finish();                                    // _3C
+	virtual void onKeyEvent(const SysShape::KeyEvent& event); // _40 (weak)
 
 	void sitDown();
 
@@ -852,12 +852,12 @@ struct StickAttackActionArg : public ActionArg {
 };
 
 struct ActStickAttack : public Action, virtual SysShape::MotionListener {
-	ActStickAttack(Game::Piki*);
+	ActStickAttack(Game::Piki* p);
 
-	virtual void init(ActionArg*);                      // _08
-	virtual s32 exec();                                 // _0C
-	virtual void cleanup();                             // _10
-	virtual void onKeyEvent(const SysShape::KeyEvent&); // _3C (weak)
+	virtual void init(ActionArg* settings);                   // _08
+	virtual s32 exec();                                       // _0C
+	virtual void cleanup();                                   // _10
+	virtual void onKeyEvent(const SysShape::KeyEvent& event); // _3C (weak)
 
 	void createEfx();
 
@@ -877,16 +877,16 @@ struct ActStickAttack : public Action, virtual SysShape::MotionListener {
 };
 
 struct ActTeki : public Action, virtual SysShape::MotionListener {
-	ActTeki(Game::Piki*);
+	ActTeki(Game::Piki* p);
 
-	virtual void init(ActionArg*);                                 // _08
-	virtual s32 exec();                                            // _0C
-	virtual void cleanup();                                        // _10
-	virtual void emotion_success();                                // _14
-	virtual u32 getNextAIType();                                   // _20 (weak)
-	virtual void collisionCallback(Game::Piki*, Game::CollEvent&); // _28
-	virtual void doDirectDraw(Graphics& gfx);                      // _30
-	virtual void onKeyEvent(const SysShape::KeyEvent&);            // _3C (weak)
+	virtual void init(ActionArg* settings);                                // _08
+	virtual s32 exec();                                                    // _0C
+	virtual void cleanup();                                                // _10
+	virtual void emotion_success();                                        // _14
+	virtual u32 getNextAIType();                                           // _20 (weak)
+	virtual void collisionCallback(Game::Piki* p, Game::CollEvent& event); // _28
+	virtual void doDirectDraw(Graphics& gfx);                              // _30
+	virtual void onKeyEvent(const SysShape::KeyEvent& event);              // _3C (weak)
 
 	void makeTarget();
 	void test_0();
@@ -914,15 +914,15 @@ struct ActTransportArg : public ActionArg {
 };
 
 struct ActTransport : public Action, virtual SysShape::MotionListener {
-	ActTransport(Game::Piki*);
+	ActTransport(Game::Piki* p);
 
-	virtual void init(ActionArg*);                      // _08
-	virtual s32 exec();                                 // _0C
-	virtual void cleanup();                             // _10
-	virtual void emotion_success();                     // _14
-	virtual void emotion_fail();                        // _18
-	virtual void getInfo(char*);                        // _38
-	virtual void onKeyEvent(const SysShape::KeyEvent&); // _3C (weak)
+	virtual void init(ActionArg* settings);                   // _08
+	virtual s32 exec();                                       // _0C
+	virtual void cleanup();                                   // _10
+	virtual void emotion_success();                           // _14
+	virtual void emotion_fail();                              // _18
+	virtual void getInfo(char*);                              // _38
+	virtual void onKeyEvent(const SysShape::KeyEvent& event); // _3C (weak)
 
 	void isStickLeader();
 	void initLift();
@@ -954,13 +954,13 @@ struct ActWeedArg : public ActionArg {
 };
 
 struct ActWeed : public Action {
-	ActWeed(Game::Piki*);
+	ActWeed(Game::Piki* p);
 
-	virtual void init(ActionArg*);                                 // _08
-	virtual s32 exec();                                            // _0C
-	virtual void cleanup();                                        // _10
-	virtual void collisionCallback(Game::Piki*, Game::CollEvent&); // _28
-	virtual void getInfo(char*);                                   // _38
+	virtual void init(ActionArg* settings);                                // _08
+	virtual s32 exec();                                                    // _0C
+	virtual void cleanup();                                                // _10
+	virtual void collisionCallback(Game::Piki* p, Game::CollEvent& event); // _28
+	virtual void getInfo(char*);                                           // _38
 
 	void decideTarget();
 	void initAdjust();
@@ -979,7 +979,7 @@ struct ActWeed : public Action {
 };
 
 struct Brain {
-	Brain(Game::Piki*);
+	Brain(Game::Piki* p);
 
 	void addAction(PikiAI::Action*);
 	void exec();

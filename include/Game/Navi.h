@@ -80,53 +80,53 @@ struct Navi : public FakePiki, virtual public PelletView {
 	Navi();
 
 	// vtable 1 (Creature)
-	virtual Vector3f getPosition();                            // _08
-	virtual void onInit(CreatureInitArg* settings);            // _30
-	virtual void onKill(CreatureKillArg* settings);            // _34
-	virtual void doAnimation();                                // _3C
-	virtual void doEntry();                                    // _40
-	virtual void doSetView(int viewportNumber);                // _44
-	virtual void doViewCalc();                                 // _48
-	virtual void doSimulation(f32);                            // _4C
-	virtual void doDirectDraw(Graphics& gfx);                  // _50
-	virtual void setVelocity(Vector3f&);                       // _68 (weak)
-	virtual void onSetPosition(Vector3f&);                     // _70
-	virtual void inWaterCallback(WaterBox*);                   // _84
-	virtual void outWaterCallback();                           // _88
-	virtual void bounceCallback(Sys::Triangle*);               // _E8
-	virtual void collisionCallback(CollEvent&);                // _EC
-	virtual void platCallback(PlatEvent&);                     // _F0
-	virtual JAInter::Object* getJAIObject();                   // _F4
-	virtual PSM::Creature* getPSCreature();                    // _F8
-	virtual void on_movie_begin(bool);                         // _110
-	virtual void on_movie_end(bool);                           // _114
-	virtual void movieStartAnimation(u32);                     // _118
-	virtual void movieStartDemoAnimation(SysShape::AnimInfo*); // _11C
-	virtual void movieSetTranslation(Vector3f&, f32);          // _124
-	virtual void movieSetFaceDir(f32);                         // _128
-	virtual bool movieGotoPosition(Vector3f&);                 // _12C
-	virtual void movieUserCommand(u32, MoviePlayer*);          // _130
-	virtual void getShadowParam(ShadowParam&);                 // _134
-	virtual void getLODSphere(Sys::Sphere&);                   // _140
-	virtual void onStickStart(Creature*);                      // _158
-	virtual void onStickEnd(Creature*);                        // _15C
-	virtual bool ignoreAtari(Creature*);                       // _190
-	virtual bool stimulate(Interaction&);                      // _1A4
-	virtual char* getCreatureName();                           // _1A8 (weak)
-	virtual s32 getCreatureID();                               // _1AC (weak)
+	virtual Vector3f getPosition();                                     // _08
+	virtual void onInit(CreatureInitArg* settings);                     // _30
+	virtual void onKill(CreatureKillArg* settings);                     // _34
+	virtual void doAnimation();                                         // _3C
+	virtual void doEntry();                                             // _40
+	virtual void doSetView(int viewportNumber);                         // _44
+	virtual void doViewCalc();                                          // _48
+	virtual void doSimulation(f32);                                     // _4C
+	virtual void doDirectDraw(Graphics& gfx);                           // _50
+	virtual void setVelocity(Vector3f& vel);                            // _68 (weak)
+	virtual void onSetPosition(Vector3f& dest);                         // _70
+	virtual void inWaterCallback(WaterBox* wb);                         // _84
+	virtual void outWaterCallback();                                    // _88
+	virtual void bounceCallback(Sys::Triangle* tri);                    // _E8
+	virtual void collisionCallback(CollEvent& event);                   // _EC
+	virtual void platCallback(PlatEvent& event);                        // _F0
+	virtual JAInter::Object* getJAIObject();                            // _F4
+	virtual PSM::Creature* getPSCreature();                             // _F8
+	virtual void on_movie_begin(bool shouldResetAnims);                 // _110
+	virtual void on_movie_end(bool shouldResetAnims);                   // _114
+	virtual void movieStartAnimation(u32 animIdx);                      // _118
+	virtual void movieStartDemoAnimation(SysShape::AnimInfo* info);     // _11C
+	virtual void movieSetTranslation(Vector3f& dest, f32 faceDir);      // _124
+	virtual void movieSetFaceDir(f32);                                  // _128
+	virtual bool movieGotoPosition(Vector3f& dest);                     // _12C
+	virtual void movieUserCommand(u32 command, MoviePlayer* curPlayer); // _130
+	virtual void getShadowParam(ShadowParam& settings);                 // _134
+	virtual void getLODSphere(Sys::Sphere& lodSphere);                  // _140
+	virtual void onStickStart(Creature*);                               // _158
+	virtual void onStickEnd(Creature*);                                 // _15C
+	virtual bool ignoreAtari(Creature* toIgnore);                       // _190
+	virtual bool stimulate(Interaction& data);                          // _1A4
+	virtual char* getCreatureName();                                    // _1A8 (weak)
+	virtual s32 getCreatureID();                                        // _1AC (weak)
 
 	// vtable 2 (MotionListener + FakePiki + self)
-	virtual int getDownfloorMass();                     // _1BC
-	virtual void update();                              // _1CC
-	virtual f32 getMapCollisionRadius();                // _200
-	virtual void wallCallback(Vector3f&);               // _204
-	virtual void onKeyEvent(const SysShape::KeyEvent&); // _20C (weak)
-	virtual void do_updateLookCreature();               // _214
-	virtual bool isWalking();                           // _21C
-	virtual void viewEntryShape(Matrixf&, Vector3f&);   // _220 (weak)
-	virtual SysShape::Model* viewGetShape();            // _224 (weak)
-	virtual f32 viewGetBaseScale();                     // _228 (weak)
-	virtual void transit(int, StateArg*);               // _22C
+	virtual int getDownfloorMass();                           // _1BC
+	virtual void update();                                    // _1CC
+	virtual f32 getMapCollisionRadius();                      // _200
+	virtual void wallCallback(Vector3f& pos);                 // _204
+	virtual void onKeyEvent(const SysShape::KeyEvent& event); // _20C (weak)
+	virtual void do_updateLookCreature();                     // _214
+	virtual bool isWalking();                                 // _21C
+	virtual void viewEntryShape(Matrixf&, Vector3f&);         // _220 (weak)
+	virtual SysShape::Model* viewGetShape();                  // _224 (weak)
+	virtual f32 viewGetBaseScale();                           // _228 (weak)
+	virtual void transit(int, StateArg*);                     // _22C
 
 	// vtable 3 (PelletView) gets a few methods thunked by methods in vtable 2,
 	// but no direct overrides.

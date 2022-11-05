@@ -366,7 +366,7 @@
  * Address:	801972DC
  * Size:	00003C
  */
-PikiAI::ActGotoPos::ActGotoPos(Game::Piki*)
+PikiAI::ActGotoPos::ActGotoPos(Game::Piki* p)
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -534,7 +534,7 @@ void PikiAI::ActGotoPos::cleanup(void) { }
  * Address:	801974B0
  * Size:	00003C
  */
-PikiAI::ActApproachPos::ActApproachPos(Game::Piki*)
+PikiAI::ActApproachPos::ActApproachPos(Game::Piki* p)
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -907,7 +907,7 @@ void PikiAI::ActApproachPos::cleanup(void)
  * Address:	8019794C
  * Size:	00003C
  */
-PikiAI::ActGotoSlot::ActGotoSlot(Game::Piki*)
+PikiAI::ActGotoSlot::ActGotoSlot(Game::Piki* p)
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -1887,7 +1887,7 @@ void PikiAI::ActGotoSlot::cleanup(void) { }
  * Address:	801985D8
  * Size:	00007C
  */
-PikiAI::ActPathMove::ActPathMove(Game::Piki*)
+PikiAI::ActPathMove::ActPathMove(Game::Piki* p)
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -6246,7 +6246,7 @@ lbl_8019BC54:
  * Address:	8019BCB8
  * Size:	00007C
  */
-PikiAI::ActStickAttack::ActStickAttack(Game::Piki*)
+PikiAI::ActStickAttack::ActStickAttack(Game::Piki* p)
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -7094,7 +7094,7 @@ void PikiAI::ActStickAttack::cleanup(void)
  * Address:	8019C77C
  * Size:	00003C
  */
-PikiAI::ActClimb::ActClimb(Game::Piki*)
+PikiAI::ActClimb::ActClimb(Game::Piki* p)
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -7280,7 +7280,7 @@ void PikiAI::ActClimb::cleanup(void) { }
  * Address:	8019C9A0
  * Size:	00003C
  */
-PikiAI::ActGather::ActGather(Game::Piki*)
+PikiAI::ActGather::ActGather(Game::Piki* p)
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -7492,7 +7492,7 @@ void PikiAI::ActGather::cleanup(void) { }
  * Address:	8019CC14
  * Size:	00003C
  */
-PikiAI::ActFollowVectorField::ActFollowVectorField(Game::Piki*)
+PikiAI::ActFollowVectorField::ActFollowVectorField(Game::Piki* p)
 {
 	/*
 	stwu     r1, -0x10(r1)

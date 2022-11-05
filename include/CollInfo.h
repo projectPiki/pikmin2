@@ -39,7 +39,7 @@ struct CollPart : public CNode {
 	virtual void doEntry() { }                   // _20 (weak)
 	virtual void doSetView(u32) { }              // _24 (weak)
 	virtual void doViewCalc() { }                // _28 (weak)
-	virtual void doSimulation(float) { }         // _2C (weak)
+	virtual void doSimulation(float rate) { }    // _2C (weak)
 	virtual void doDirectDraw(Graphics& gfx) { } // _30 (weak)
 	////////////// END VTABLE
 

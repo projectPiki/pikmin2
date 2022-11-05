@@ -3771,7 +3771,7 @@ lbl_801156D4:
  * Address:	80115798
  * Size:	000080
  */
-void EnemyFunc::EatPikminDefaultCondition::satisfy(Game::Piki*)
+void EnemyFunc::EatPikminDefaultCondition::satisfy(Game::Piki* p)
 {
 	/*
 	stwu     r1, -0x20(r1)

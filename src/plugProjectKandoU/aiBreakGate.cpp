@@ -514,7 +514,7 @@ void ActBreakGate::emotion_success()
  * Address:	801D0C48
  * Size:	000144
  */
-void ActBreakGate::platCallback(Game::Piki* piki, Game::PlatEvent& platEvent)
+void ActBreakGate::platCallback(Game::Piki* p, Game::PlatEvent& platEvent)
 {
 	if (platEvent._08 > 0.7f) {
 		_24 = 1;

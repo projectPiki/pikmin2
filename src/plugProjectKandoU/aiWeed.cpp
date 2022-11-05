@@ -194,7 +194,7 @@ void PikiAI::ActWeed::getInfo(char*)
  * Address:	8020D7D0
  * Size:	000094
  */
-PikiAI::ActWeed::ActWeed(Game::Piki*)
+PikiAI::ActWeed::ActWeed(Game::Piki* p)
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -1249,7 +1249,7 @@ void PikiAI::ActWeed::collisionCallback(Game::Piki*, Game::CollEvent&) { }
  * Address:	8020E540
  * Size:	000088
  */
-PikiAI::ActFlockAttack::ActFlockAttack(Game::Piki*)
+PikiAI::ActFlockAttack::ActFlockAttack(Game::Piki* p)
 {
 	/*
 	stwu     r1, -0x10(r1)
