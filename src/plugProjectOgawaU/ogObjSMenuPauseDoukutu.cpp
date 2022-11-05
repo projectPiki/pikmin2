@@ -714,7 +714,7 @@ lbl_8032289C:
  * Address:	803228B8
  * Size:	00008C
  */
-void ObjSMenuPauseDoukutu::doDraw(Graphics&)
+void ObjSMenuPauseDoukutu::doDraw(Graphics& gfx)
 {
 	/*
 	stwu     r1, -0x20(r1)

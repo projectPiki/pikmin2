@@ -538,7 +538,7 @@ void ObjSMenuCont::doUpdate(void)
  * Address:	80330AD8
  * Size:	000084
  */
-void ObjSMenuCont::doDraw(Graphics&)
+void ObjSMenuCont::doDraw(Graphics& gfx)
 {
 	/*
 	stwu     r1, -0x20(r1)

@@ -47,7 +47,7 @@ bool MenuSection::runChildSection()
 		m_currentSection->init();
 
 		sys->heapStatusEnd("ChildSection::init");
-		sys->m_secondsPerFrame = sys->m_fpsFactor / 60.0f;
+		sys->m_deltaTime = sys->m_fpsFactor / 60.0f;
 		m_currentSection->run();
 		m_currentSection->exit();
 

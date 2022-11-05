@@ -1514,7 +1514,7 @@ blr
  * Address:	8040D1EC
  * Size:	0003F0
  */
-void ObjFinalResult::doDraw(Graphics&)
+void ObjFinalResult::doDraw(Graphics& gfx)
 {
 	/*
 stwu     r1, -0x80(r1)

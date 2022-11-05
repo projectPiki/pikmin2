@@ -28,7 +28,7 @@ struct SingleGameSection : public BaseGameSection {
 
 	virtual ~SingleGameSection();                                      // _08
 	virtual bool doUpdate();                                           // _3C
-	virtual void doDraw(Graphics&);                                    // _40
+	virtual void doDraw(Graphics& gfx);                                // _40
 	virtual int getCurrFloor();                                        // _58 (weak)
 	virtual bool isDevelopSection();                                   // _5C (weak)
 	virtual void startMainBgm();                                       // _64

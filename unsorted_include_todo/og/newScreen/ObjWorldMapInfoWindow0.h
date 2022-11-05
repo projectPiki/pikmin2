@@ -116,7 +116,7 @@ struct ObjSMenuPauseVS {
 	virtual void doUpdateFinish();                      // _5C
 	virtual void doUpdateFadeout();                     // _60
 	virtual void doUpdateFadeoutFinish();               // _64
-	virtual void doDraw(Graphics&);                     // _68
+	virtual void doDraw(Graphics& gfx);                 // _68
 	virtual void _6C() = 0;                             // _6C
 	virtual void _70() = 0;                             // _70
 	virtual void _74() = 0;                             // _74

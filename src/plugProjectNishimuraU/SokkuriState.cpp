@@ -303,7 +303,7 @@ void StateWait::exec(EnemyBase* enemy)
 			}
 		}
 
-		sokkuri->m_timer += sys->m_secondsPerFrame;
+		sokkuri->m_timer += sys->m_deltaTime;
 
 		if (sokkuri->m_curAnim->m_isRunning && (u32)sokkuri->m_curAnim->m_type == KEYEVENT_END) {
 			transit(sokkuri, sokkuri->m_nextState, nullptr);
@@ -386,7 +386,7 @@ void StateMoveGround::exec(EnemyBase* enemy)
 		                        parms->m_general.m_rotationalSpeed.m_value);
 	}
 
-	sokkuri->m_timer += sys->m_secondsPerFrame;
+	sokkuri->m_timer += sys->m_deltaTime;
 
 	if (sokkuri->m_curAnim->m_isRunning && (u32)sokkuri->m_curAnim->m_type == KEYEVENT_END) {
 		transit(enemy, sokkuri->m_nextState, nullptr); // no idea why this is enemy rather than sokkuri but it makes it match
@@ -462,7 +462,7 @@ void StateMoveWater::exec(EnemyBase* enemy)
 		}
 	}
 
-	sokkuri->m_timer += sys->m_secondsPerFrame;
+	sokkuri->m_timer += sys->m_deltaTime;
 
 	if (sokkuri->m_curAnim->m_isRunning && (u32)sokkuri->m_curAnim->m_type == KEYEVENT_END) {
 		transit(enemy, sokkuri->m_nextState, nullptr); // no idea why this is enemy rather than sokkuri but it makes it match
@@ -515,7 +515,7 @@ void StateFlick::exec(EnemyBase* enemy)
 		sokkuri->finishMotion();
 	}
 
-	sokkuri->m_timer += sys->m_secondsPerFrame;
+	sokkuri->m_timer += sys->m_deltaTime;
 
 	if (sokkuri->m_curAnim->m_isRunning) {
 		if ((u32)sokkuri->m_curAnim->m_type == KEYEVENT_2) {

@@ -172,7 +172,7 @@ void StateStay::exec(EnemyBase* enemy)
 			}
 		}
 	} else {
-		titan->m_stateTimer += sys->m_secondsPerFrame;
+		titan->m_stateTimer += sys->m_deltaTime;
 		if (titan->m_stateTimer > 4.0f) {
 			transit(titan, BIGTREASURE_Land, nullptr);
 		}
@@ -321,7 +321,7 @@ void StateWait::init(EnemyBase* enemy, StateArg* stateArg)
 void StateWait::exec(EnemyBase* enemy)
 {
 	Obj* titan = static_cast<Obj*>(enemy);
-	titan->m_stateTimer += sys->m_secondsPerFrame;
+	titan->m_stateTimer += sys->m_deltaTime;
 
 	if (titan->m_health <= 0.0f) {
 		titan->m_nextState = BIGTREASURE_Dead;
@@ -397,7 +397,7 @@ void StateItemWait::exec(EnemyBase* enemy)
 		titan->finishMotion();
 	}
 
-	titan->m_stateTimer += sys->m_secondsPerFrame;
+	titan->m_stateTimer += sys->m_deltaTime;
 
 	if (titan->m_curAnim->m_isRunning) {
 		if ((u32)titan->m_curAnim->m_type == KEYEVENT_END_BLEND) {
@@ -526,7 +526,7 @@ void StatePreAttack::exec(EnemyBase* enemy)
 		titan->finishMotion();
 	}
 
-	titan->m_stateTimer += sys->m_secondsPerFrame;
+	titan->m_stateTimer += sys->m_deltaTime;
 
 	if (titan->m_curAnim->m_isRunning) {
 		if ((u32)titan->m_curAnim->m_type == KEYEVENT_END_BLEND) {
@@ -605,7 +605,7 @@ void StateAttack::exec(EnemyBase* enemy)
 		titan->finishMotion();
 	}
 
-	titan->m_stateTimer += sys->m_secondsPerFrame;
+	titan->m_stateTimer += sys->m_deltaTime;
 
 	if (titan->m_curAnim->m_isRunning) {
 		if ((u32)titan->m_curAnim->m_type == KEYEVENT_END_BLEND) {
@@ -793,7 +793,7 @@ void StateWalk::exec(EnemyBase* enemy)
 		titan->finishIKMotion();
 	}
 
-	titan->m_stateTimer += sys->m_secondsPerFrame;
+	titan->m_stateTimer += sys->m_deltaTime;
 
 	if (titan->m_curAnim->m_isRunning) {
 		if ((u32)titan->m_curAnim->m_type == KEYEVENT_END_BLEND) {
@@ -875,7 +875,7 @@ void StateItemWalk::exec(EnemyBase* enemy)
 		}
 	}
 
-	titan->m_stateTimer += sys->m_secondsPerFrame;
+	titan->m_stateTimer += sys->m_deltaTime;
 
 	if (titan->isFinishIKMotion()) {
 		transit(titan, titan->m_nextState, nullptr);

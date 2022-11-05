@@ -552,7 +552,7 @@ lbl_80317974:
  * Address:	80317994
  * Size:	000170
  */
-void ObjCourseName::doDraw(Graphics&)
+void ObjCourseName::doDraw(Graphics& gfx)
 {
 	/*
 	stwu     r1, -0x60(r1)

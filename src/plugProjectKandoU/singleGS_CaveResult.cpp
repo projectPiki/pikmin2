@@ -590,7 +590,7 @@ void SingleGame::CaveResultState::exec(Game::SingleGameSection* section)
 		JUT_ASSERTLINE(408, Screen::gGame2DMgr->open_CaveResult(&disp) == 0, "cannot open caveresult\n");
 		return;
 	case 2:
-		_18 -= sys->m_secondsPerFrame;
+		_18 -= sys->m_deltaTime;
 		if (_18 < 0.0f) {
 			_12 = 3;
 		}
@@ -607,7 +607,7 @@ void SingleGame::CaveResultState::exec(Game::SingleGameSection* section)
 			return;
 		}
 	case 4:
-		_18 -= sys->m_secondsPerFrame;
+		_18 -= sys->m_deltaTime;
 		if (_18 < 0.0f) {
 			LoadState::Arg arg;
 			arg._04 = _10;

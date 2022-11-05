@@ -561,7 +561,7 @@ lbl_8034808C:
  * Address:	803480A4
  * Size:	000240
  */
-void Morimura::TGameOverBase::doDraw(Graphics&)
+void Morimura::TGameOverBase::doDraw(Graphics& gfx)
 {
 	/*
 	stwu     r1, -0x30(r1)

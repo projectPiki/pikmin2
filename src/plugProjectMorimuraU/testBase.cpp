@@ -56,7 +56,7 @@ bool TTestBase::doEnd(Screen::EndSceneArg const*)
 bool TTestBase::doUpdateFadein()
 {
 	// Increase the fade timer, if it goes over the max, then clamp it
-	m_timer += sys->m_secondsPerFrame;
+	m_timer += sys->m_deltaTime;
 	if (m_timer > m_timerLength) {
 		m_timer = m_timerLength;
 	}
@@ -90,7 +90,7 @@ void TTestBase::doUpdateFinish() { m_timer = 0.0f; }
 bool TTestBase::doUpdateFadeout()
 {
 	// Increase the fade timer, if it goes over the max, then clamp it
-	m_timer += sys->m_secondsPerFrame;
+	m_timer += sys->m_deltaTime;
 	if (m_timer > m_timerLength) {
 		m_timer = m_timerLength;
 	}

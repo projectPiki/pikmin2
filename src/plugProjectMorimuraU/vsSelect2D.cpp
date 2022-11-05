@@ -6624,7 +6624,7 @@ void Morimura::TVsSelectListScreen::update(void)
  * Address:	8039E454
  * Size:	000AF0
  */
-void Morimura::TVsSelect::doDraw(Graphics&)
+void Morimura::TVsSelect::doDraw(Graphics& gfx)
 {
 	/*
 	stwu     r1, -0x6e0(r1)

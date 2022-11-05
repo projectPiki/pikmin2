@@ -7516,7 +7516,7 @@ lbl_80391C0C:
  * Address:	80391C4C
  * Size:	000514
  */
-void Morimura::TChallengeSelect::doDraw(Graphics&)
+void Morimura::TChallengeSelect::doDraw(Graphics& gfx)
 {
 	/*
 	stwu     r1, -0x90(r1)

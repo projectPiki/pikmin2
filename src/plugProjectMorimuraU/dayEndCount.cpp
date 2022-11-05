@@ -1448,7 +1448,7 @@ lbl_80344F64:
  * Address:	80344F88
  * Size:	000078
  */
-void Morimura::TDayEndCount::doDraw(Graphics&)
+void Morimura::TDayEndCount::doDraw(Graphics& gfx)
 {
 	/*
 	stwu     r1, -0x10(r1)

@@ -85,7 +85,7 @@ void Obj::doUpdateCommon()
 {
 	EnemyBase::doUpdateCommon();
 	if (_2C8 < 1.0f) {
-		_2C8 += sys->m_secondsPerFrame;
+		_2C8 += sys->m_deltaTime;
 		startDisChargeSE();
 		attackTarget();
 	}
@@ -370,7 +370,7 @@ bool OtakaraBase::Obj::isMovePositionSet(bool ignoringTreasures)
 	if (!ignoringTreasures && (_2E8 > C_PARMS->m_properParms.m_fp21.m_value)) {
 		target = getNearestTreasure();
 	} else {
-		_2E8 += sys->m_secondsPerFrame;
+		_2E8 += sys->m_deltaTime;
 	}
 
 	if (target) {
@@ -1241,7 +1241,7 @@ void Obj::startEscapeSE()
 			getJAIObject()->startSound(PSSE_EN_OTAKARA_STANDUP, 0);
 			m_escapeSfxTimer = 0.0f;
 		} else {
-			m_escapeSfxTimer += sys->m_secondsPerFrame;
+			m_escapeSfxTimer += sys->m_deltaTime;
 		}
 	}
 }
@@ -1300,7 +1300,7 @@ bool Obj::isTransitChaseState()
  */
 bool Obj::stimulateBomb()
 {
-	_2E8 += sys->m_secondsPerFrame;
+	_2E8 += sys->m_deltaTime;
 	if ((_2E8 > 1.5f) && (m_targetCreature != nullptr) && (m_targetCreature->isAlive())) {
 		resetEvent(0, EB_Cullable);
 		static_cast<Bomb::Obj*>(m_targetCreature)->forceBomb();

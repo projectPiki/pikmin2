@@ -260,7 +260,7 @@ struct Pellet : public DynCreature, public SysShape::MotionListener, public Carr
 		if ((keyEvent.m_type == 1000U) && (_41C.m_flags & 2)) {
 			_41C.startAnim(0, this);
 			if (_3D0 & 1) {
-				_438 = 30.0f * sys->m_secondsPerFrame;
+				_438 = 30.0f * sys->m_deltaTime;
 				return;
 			}
 			_438 = 0.0f;

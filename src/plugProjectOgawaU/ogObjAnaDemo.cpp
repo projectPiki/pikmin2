@@ -2016,7 +2016,7 @@ lbl_8031E740:
  * Address:	8031E78C
  * Size:	000074
  */
-void ObjAnaDemo::doDraw(Graphics&)
+void ObjAnaDemo::doDraw(Graphics& gfx)
 {
 	/*
 	stwu     r1, -0x10(r1)

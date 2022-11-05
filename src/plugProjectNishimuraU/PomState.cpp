@@ -223,7 +223,7 @@ void StateSwing::exec(EnemyBase* enemy)
 {
 	Obj* pom = static_cast<Obj*>(enemy);
 	pom->changePomColor();
-	pom->_2E4 += sys->m_secondsPerFrame;
+	pom->_2E4 += sys->m_deltaTime;
 
 	if (pom->_2E4 > static_cast<Parms*>(pom->m_parms)->m_properParms.m_fp01.m_value || !(pom->_2C4 < pom->_2C8)) {
 		transit(pom, POM_Close, nullptr);

@@ -38,7 +38,7 @@ void ArrowAlphaBlink::setSpeed(float speed) { m_speed = speed; }
  */
 float ArrowAlphaBlink::calc()
 {
-	_00 += 30.0f * (m_speed * sys->m_secondsPerFrame);
+	_00 += 30.0f * (m_speed * sys->m_deltaTime);
 	if (_00 > TAU) {
 		_00 = _00 - TAU;
 	}
@@ -411,7 +411,7 @@ void AlphaMgr::in(float p1)
 
 	_04 = 0.0f;
 	_00 = 1;
-	_08 = (1.0f - _04) / (p1 / sys->m_secondsPerFrame);
+	_08 = (1.0f - _04) / (p1 / sys->m_deltaTime);
 }
 
 /*
@@ -435,7 +435,7 @@ void AlphaMgr::out(float p1)
 	}
 
 	_00 = 2;
-	_08 = -_04 / (p1 / sys->m_secondsPerFrame);
+	_08 = -_04 / (p1 / sys->m_deltaTime);
 }
 
 /*
@@ -447,7 +447,7 @@ void AlphaMgr::blink(float p1)
 {
 	if ((_00 == 0) || (_00 == 3)) {
 		_00             = 3;
-		float frametime = sys->m_secondsPerFrame;
+		float frametime = sys->m_deltaTime;
 		if (_08 > 0.0f) {
 			_08 = frametime / p1;
 			return;
@@ -482,7 +482,7 @@ u8 AlphaMgr::calc()
 
 			if ((_00 == 0) || (_00 == 3)) {
 				_00             = 3;
-				float frametime = sys->m_secondsPerFrame;
+				float frametime = sys->m_deltaTime;
 				if (_08 > 0.0f) {
 					_08 = frametime / tempC;
 				} else {

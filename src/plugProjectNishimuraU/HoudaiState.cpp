@@ -255,7 +255,7 @@ void StateWait::init(EnemyBase* enemy, StateArg* stateArg)
 void StateWait::exec(EnemyBase* enemy)
 {
 	Obj* houdai = static_cast<Obj*>(enemy);
-	houdai->m_stateTimer += sys->m_secondsPerFrame;
+	houdai->m_stateTimer += sys->m_deltaTime;
 
 	if (houdai->m_health <= 0.0f) {
 		houdai->m_nextState = HOUDAI_Dead;
@@ -369,7 +369,7 @@ void StateWalk::exec(EnemyBase* enemy)
 {
 	Obj* houdai = static_cast<Obj*>(enemy);
 	houdai->getTargetPosition();
-	houdai->m_stateTimer += sys->m_secondsPerFrame;
+	houdai->m_stateTimer += sys->m_deltaTime;
 
 	if (EnemyFunc::isStartFlick(houdai, false)) {
 		houdai->m_nextState = HOUDAI_Flick;
@@ -464,8 +464,8 @@ void StateShot::exec(EnemyBase* enemy)
 		}
 	}
 
-	houdai->_2CC += sys->m_secondsPerFrame;
-	houdai->m_stateTimer += sys->m_secondsPerFrame;
+	houdai->_2CC += sys->m_deltaTime;
+	houdai->m_stateTimer += sys->m_deltaTime;
 
 	if (houdai->m_health <= 0.0f) {
 		if (houdai->isStopMotion()) {

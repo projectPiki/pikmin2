@@ -3033,7 +3033,7 @@ void Morimura::THiScoreListScreen::update(void)
  * Address:	8037EBB4
  * Size:	0001A8
  */
-void Morimura::THiScore::doDraw(Graphics&)
+void Morimura::THiScore::doDraw(Graphics& gfx)
 {
 	/*
 	stwu     r1, -0x50(r1)

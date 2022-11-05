@@ -97,7 +97,7 @@ bool PelletCarry::frameWork(Vector3f& newPos)
 	// Work done in a frame
 	if (m_state != PCS_Idle) {
 		if (m_timer > 0.0f) {
-			m_timer -= sys->m_secondsPerFrame;
+			m_timer -= sys->m_deltaTime;
 			newPos.x = 0.0f;
 			newPos.y = 0.0f;
 			newPos.z = 0.0f;

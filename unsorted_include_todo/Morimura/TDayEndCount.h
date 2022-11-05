@@ -67,7 +67,7 @@ struct ObjBase {
 	virtual void _5C() = 0;                             // _5C
 	virtual void _60() = 0;                             // _60
 	virtual void doUpdateFadeoutFinish();               // _64 (weak)
-	virtual void doDraw(Graphics&);                     // _68
+	virtual void doDraw(Graphics& gfx);                 // _68
 	virtual void doConfirmSetScene(SetSceneArg&);       // _6C (weak)
 	virtual void doConfirmStartScene(StartSceneArg*);   // _70 (weak)
 	virtual void doConfirmEndScene(EndSceneArg*&);      // _74 (weak)
@@ -110,7 +110,7 @@ struct TDayEndCount : public CNode, public ObjBase, public TTestBase {
 	virtual void doStart(const Screen::StartSceneArg*); // _44 (weak)
 	virtual void doCreate(JKRArchive*);                 // _4C
 	virtual void doUpdate();                            // _58
-	virtual void doDraw(Graphics&);                     // _68
+	virtual void doDraw(Graphics& gfx);                 // _68
 	virtual void getDispMemberBase();                   // _78 (weak)
 
 	TDayEndCount();

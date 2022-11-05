@@ -4690,7 +4690,7 @@ void Piki::doAnimation(void)
 		return;
 	}
 
-	m_dopeTime -= sys->m_secondsPerFrame;
+	m_dopeTime -= sys->m_deltaTime;
 	if (m_dopeTime > 0) {
 		return;
 	}

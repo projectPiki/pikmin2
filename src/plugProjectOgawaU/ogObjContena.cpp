@@ -2322,7 +2322,7 @@ void ObjContena::doUpdate(void)
  * Address:	80321A00
  * Size:	000174
  */
-void ObjContena::doDraw(Graphics&)
+void ObjContena::doDraw(Graphics& gfx)
 {
 	/*
 	stwu     r1, -0x20(r1)

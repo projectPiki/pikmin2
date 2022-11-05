@@ -47,4 +47,4 @@ void RootMenuSection::drawInit(Graphics&) { }
  * Size:	000004
  */
 // WEAK  - in header
-// void RootMenuSection::doDraw(Graphics&) { }
+// void RootMenuSection::doDraw(Graphics& gfx) { }

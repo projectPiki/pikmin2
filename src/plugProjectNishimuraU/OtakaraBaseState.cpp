@@ -96,7 +96,7 @@ void StateFlick::exec(EnemyBase* enemy)
 	if (ota->_2C4 > static_cast<Parms*>(ota->m_parms)->m_properParms.m_fp10.m_value) {
 		ota->finishMotion();
 	}
-	ota->_2C4 += sys->m_secondsPerFrame;
+	ota->_2C4 += sys->m_deltaTime;
 
 	if (ota->_2D0) {
 		ota->getJAIObject()->startSound(PSSE_EN_OTAKARA_CHARGE, 0);
@@ -635,7 +635,7 @@ void StateItemFlick::exec(EnemyBase* enemy)
 	if (ota->_2C4 > static_cast<Parms*>(ota->m_parms)->m_properParms.m_fp11.m_value) {
 		ota->finishMotion();
 	}
-	ota->_2C4 += sys->m_secondsPerFrame;
+	ota->_2C4 += sys->m_deltaTime;
 
 	EnemyAnimKeyEvent* event = ota->m_curAnim;
 	if (event->m_isRunning) {

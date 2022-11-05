@@ -937,7 +937,7 @@ void ObjCave::doUpdate(void)
  * Address:	8031CA30
  * Size:	000064
  */
-void ObjCave::doDraw(Graphics&)
+void ObjCave::doDraw(Graphics& gfx)
 {
 	/*
 	stwu     r1, -0x10(r1)

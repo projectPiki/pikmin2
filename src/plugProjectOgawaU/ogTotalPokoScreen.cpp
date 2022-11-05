@@ -124,7 +124,7 @@ void TotalPokoScreen::update()
 	P2DScreen::Mgr::update();
 
 	if (m_isOpen) {
-		_174 -= sys->m_secondsPerFrame;
+		_174 -= sys->m_deltaTime;
 
 		if (_170 < _168) {
 			_170 += 20.0f;

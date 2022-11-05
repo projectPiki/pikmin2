@@ -67,7 +67,7 @@ struct ObjBase {
 	virtual void doUpdateFinish();                    // _5C (weak)
 	virtual void doUpdateFadeout();                   // _60
 	virtual void doUpdateFadeoutFinish();             // _64
-	virtual void doDraw(Graphics&);                   // _68
+	virtual void doDraw(Graphics& gfx);               // _68
 	virtual void doConfirmSetScene(SetSceneArg&);     // _6C (weak)
 	virtual void doConfirmStartScene(StartSceneArg*); // _70 (weak)
 	virtual void doConfirmEndScene(EndSceneArg*&);    // _74 (weak)
@@ -85,7 +85,7 @@ struct ObjFinalFloor : public CNode, public ObjBase {
 	virtual void doUpdate();              // _58
 	virtual void doUpdateFadeout();       // _60
 	virtual void doUpdateFadeoutFinish(); // _64
-	virtual void doDraw(Graphics&);       // _68
+	virtual void doDraw(Graphics& gfx);   // _68
 	virtual void _78() = 0;               // _78
 
 	void updateAnimation();

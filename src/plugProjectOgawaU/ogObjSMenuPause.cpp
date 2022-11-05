@@ -1124,7 +1124,7 @@ lbl_80314E44:
  * Address:	80314E60
  * Size:	000098
  */
-void ObjSMenuPause::doDraw(Graphics&)
+void ObjSMenuPause::doDraw(Graphics& gfx)
 {
 	/*
 	stwu     r1, -0x20(r1)

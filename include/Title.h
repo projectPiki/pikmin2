@@ -23,17 +23,17 @@ namespace Title {
 struct Section : public Game::BaseHIOSection {
 	Section(JKRHeap*);
 
-	virtual ~Section();             // _08
-	virtual void run();             // _0C
-	virtual void init();            // _18
-	virtual void doExit();          // _24
-	virtual bool forceReset();      // _2C (weak)
-	virtual void doLoadingStart();  // _34
-	virtual bool doLoading();       // _38
-	virtual bool doUpdate();        // _3C
-	virtual void doDraw(Graphics&); // _40
-	virtual bool isFinishable();    // _44
-	virtual void loadResource();    // _50
+	virtual ~Section();                 // _08
+	virtual void run();                 // _0C
+	virtual void init();                // _18
+	virtual void doExit();              // _24
+	virtual bool forceReset();          // _2C (weak)
+	virtual void doLoadingStart();      // _34
+	virtual bool doLoading();           // _38
+	virtual bool doUpdate();            // _3C
+	virtual void doDraw(Graphics& gfx); // _40
+	virtual bool isFinishable();        // _44
+	virtual void loadResource();        // _50
 
 	void loadResident();
 	// void menuCancel(Menu&);

@@ -383,7 +383,7 @@ void ObjBase::draw(Graphics& gfx)
  * Address:	80453ED0
  * Size:	0000D8
  */
-void ObjBase::doDraw(Graphics&)
+void ObjBase::doDraw(Graphics& gfx)
 {
 	// J2DPrint print(JFWSystem::systemFont, 0.0f);
 	// print.initiate();

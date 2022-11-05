@@ -83,7 +83,7 @@ void Obj::doDebugDraw(Graphics& gfx) { EnemyBase::doDebugDraw(gfx); }
 void Obj::interactFartGasAttack()
 {
 	if (m_fartTimer < 2.5f) {
-		m_fartTimer += sys->m_secondsPerFrame;
+		m_fartTimer += sys->m_deltaTime;
 		Kogane::Parms* parms = static_cast<Kogane::Parms*>(m_parms);
 		f32 max              = m_fartPosition.y + parms->m_general.m_fp22.m_value;
 		f32 min              = m_fartPosition.y - parms->m_general.m_fp22.m_value;

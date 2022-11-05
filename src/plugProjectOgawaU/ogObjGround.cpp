@@ -784,7 +784,7 @@ void ObjGround::doUpdate(void)
  * Address:	8030E71C
  * Size:	000090
  */
-void ObjGround::doDraw(Graphics&)
+void ObjGround::doDraw(Graphics& gfx)
 {
 	/*
 	stwu     r1, -0x10(r1)

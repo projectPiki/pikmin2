@@ -51,7 +51,7 @@ void StateStay::init(EnemyBase* enemy, StateArg* stateArg)
 void StateStay::exec(EnemyBase* enemy)
 {
 	Obj* wisp = static_cast<Obj*>(enemy);
-	wisp->m_utilityTimer += sys->m_secondsPerFrame;
+	wisp->m_utilityTimer += sys->m_deltaTime;
 
 	if ((wisp->m_utilityTimer > 1.0f) && wisp->isAppear()) {
 		transit(wisp, QURIONE_Appear, nullptr);
@@ -270,7 +270,7 @@ void StateDead::init(EnemyBase* enemy, StateArg* stateArg)
 void StateDead::exec(EnemyBase* enemy)
 {
 	Obj* wisp = static_cast<Obj*>(enemy);
-	wisp->m_utilityTimer += sys->m_secondsPerFrame;
+	wisp->m_utilityTimer += sys->m_deltaTime;
 
 	if (wisp->isFlyKill()) {
 		wisp->finishGlowEffect();

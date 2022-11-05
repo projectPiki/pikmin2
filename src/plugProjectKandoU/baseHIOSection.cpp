@@ -124,7 +124,7 @@ BaseHIOSection::BaseHIOSection(JKRHeap* heap)
     : Section(nullptr, heap, false)
 {
 	System::assert_fragmentation("BaseHIOSection");
-	m_hioRootNode = nullptr;
+	m_rootNode = nullptr;
 	JUT_ASSERTLINE(314, JKRHeap::sCurrentHeap->getTotalFreeSize() == JKRHeap::sCurrentHeap->getFreeSize(),
 	               "fragmentation occurred : after sound\n");
 	_44 = new Controller(Controller::PORT_3);
@@ -484,7 +484,7 @@ bool BaseHIOSection::doUpdate() { return true; }
  * Address:	80164FB0
  * Size:	000024
  */
-void BaseHIOSection::addGenNode(CNode* node) { m_hioRootNode->add(node); }
+void BaseHIOSection::addGenNode(CNode* node) { m_rootNode->add(node); }
 
 /*
  * --INFO--

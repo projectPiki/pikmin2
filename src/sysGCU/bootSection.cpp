@@ -2054,7 +2054,7 @@ void BootSection::drawScreenProgre(Graphics&)
  * Address:	804487F4
  * Size:	00019C
  */
-void BootSection::doDraw(Graphics&)
+void BootSection::doDraw(Graphics& gfx)
 {
 	/*
 	stwu     r1, -0x10(r1)

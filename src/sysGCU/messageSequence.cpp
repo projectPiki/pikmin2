@@ -231,7 +231,7 @@ bool TSequenceProcessor::do_isReady()
 	}
 
 	if (flags & 2) {
-		_50 -= sys->m_secondsPerFrame;
+		_50 -= sys->m_deltaTime;
 		if (_50 <= 0.0f) {
 			bool checkVars = (_54 || _58);
 			P2ASSERTLINE(381, checkVars);
@@ -254,7 +254,7 @@ bool TSequenceProcessor::do_isReady()
 			}
 		}
 
-		_50 = -((frameCount * sys->m_secondsPerFrame) - _50);
+		_50 = -((frameCount * sys->m_deltaTime) - _50);
 		if (_50 <= 0.0f) {
 			check = true;
 		}

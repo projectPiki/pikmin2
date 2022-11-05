@@ -182,7 +182,7 @@ void StateWait::exec(EnemyBase* enemy)
 		queen->finishMotion();
 	}
 
-	queen->m_waitTimer += sys->m_secondsPerFrame;
+	queen->m_waitTimer += sys->m_deltaTime;
 
 	if ((queen->m_curAnim->m_isRunning != 0) && ((u32)queen->m_curAnim->m_type == KEYEVENT_END)) {
 		transit(queen, queen->m_nextState, nullptr);
@@ -378,7 +378,7 @@ void StateRolling::exec(EnemyBase* enemy)
 
 		queen->flickPikmin(-1000.0f);
 		queen->rollingAttack();
-		queen->m_waitTimer += sys->m_secondsPerFrame;
+		queen->m_waitTimer += sys->m_deltaTime;
 
 		Vector3f camPos = queen->getPosition();
 		cameraMgr->startVibration(15, camPos, 2);

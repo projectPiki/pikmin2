@@ -19,7 +19,7 @@ void E3DAnimRes::load(J3DModelData* param_1, JKRArchive* param_2, char* param_3)
 	float_0xC         = pAnmTransform_0x0->m_time - 2.0f;
 	float_0x10        = float_0x8;
 	float_0x14        = float_0xC;
-	float_0x18        = sys->m_secondsPerFrame * 60.0f * 0.5f;
+	float_0x18        = sys->m_deltaTime * 60.0f * 0.5f;
 	int_0x1C          = 0;
 }
 

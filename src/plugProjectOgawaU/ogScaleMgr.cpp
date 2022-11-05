@@ -95,7 +95,7 @@ f32 ScaleMgr::calc()
 		break;
 
 	case SCM_Growing:
-		m_elapsedSeconds += sys->m_secondsPerFrame;
+		m_elapsedSeconds += sys->m_deltaTime;
 		if (m_elapsedSeconds > m_durationInSeconds) {
 			m_state          = SCM_Unknown_0;
 			m_scale          = 1.0f;
@@ -107,7 +107,7 @@ f32 ScaleMgr::calc()
 		break;
 
 	case SCM_Shrinking:
-		m_elapsedSeconds += sys->m_secondsPerFrame;
+		m_elapsedSeconds += sys->m_deltaTime;
 		if (m_elapsedSeconds > m_durationInSeconds) {
 			m_state          = SCM_Unknown_0;
 			m_scale          = 1.0f;
@@ -120,7 +120,7 @@ f32 ScaleMgr::calc()
 
 	case SCM_OtherGrowingMaybe:
 		m_scale = 1.0f;
-		_18 -= sys->m_secondsPerFrame;
+		_18 -= sys->m_deltaTime;
 		if (_18 < 0.0f) {
 			m_state = SCM_Growing;
 			_18     = 0.0f;

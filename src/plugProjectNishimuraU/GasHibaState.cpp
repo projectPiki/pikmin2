@@ -88,7 +88,7 @@ void StateWait::init(EnemyBase* enemy, StateArg* stateArg)
 void StateWait::exec(EnemyBase* enemy)
 {
 	Obj* hiba = static_cast<Obj*>(enemy);
-	hiba->m_timer += sys->m_secondsPerFrame;
+	hiba->m_timer += sys->m_deltaTime;
 
 	hiba->setInitLivingThing();
 	hiba->updateLivingThing();
@@ -140,7 +140,7 @@ void StateAttack::exec(EnemyBase* enemy)
 		hiba->finishMotion();
 	}
 
-	hiba->m_timer += sys->m_secondsPerFrame;
+	hiba->m_timer += sys->m_deltaTime;
 
 	hiba->updateEfxLod();
 	hiba->updateLivingThing();

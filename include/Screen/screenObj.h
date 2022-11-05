@@ -53,7 +53,7 @@
 // 	virtual void doUpdateFinish();                    // _44
 // 	virtual bool doUpdateFadeout();                   // _48
 // 	virtual void doUpdateFadeoutFinish();             // _4C
-// 	virtual void doDraw(Graphics&);                   // _50
+// 	virtual void doDraw(Graphics& gfx);                   // _50
 // 	virtual bool doConfirmSetScene(SetSceneArg&);     // _54
 // 	virtual bool doConfirmStartScene(StartSceneArg*); // _58
 // 	virtual bool doConfirmEndScene(EndSceneArg*&);    // _5C

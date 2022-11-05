@@ -42,8 +42,8 @@ struct Section : public ISection {
 	virtual Section* getCurrentSection();            // _30 (weak)
 	virtual void doLoadingStart();                   // _34 (weak)
 	virtual bool doLoading();                        // _38 (weak)
-	virtual bool doUpdate()        = 0;              // _3C
-	virtual void doDraw(Graphics&) = 0;              // _40
+	virtual bool doUpdate()            = 0;          // _3C
+	virtual void doDraw(Graphics& gfx) = 0;          // _40
 	virtual bool isFinishable();                     // _44 (weak)
 
 	bool beginFrame();

@@ -161,7 +161,7 @@ void WipeBase::update()
 {
 	draw();
 	if (_20) {
-		_18 += sys->m_secondsPerFrame / _1C;
+		_18 += sys->m_deltaTime / _1C;
 		if (_18 >= 1.0f) {
 			_18 = 1.0f;
 		}

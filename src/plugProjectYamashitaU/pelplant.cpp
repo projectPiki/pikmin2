@@ -274,9 +274,8 @@ void Obj::doAnimationUpdateAnimator()
 {
 	BlendAccelerationFunc func;
 	static_cast<EnemyBlendAnimatorBase*>(m_animator)
-	    ->animate(&func, EnemyAnimatorBase::defaultAnimSpeed * sys->m_secondsPerFrame,
-	              EnemyAnimatorBase::defaultAnimSpeed * sys->m_secondsPerFrame,
-	              EnemyAnimatorBase::defaultAnimSpeed * sys->m_secondsPerFrame);
+	    ->animate(&func, EnemyAnimatorBase::defaultAnimSpeed * sys->m_deltaTime, EnemyAnimatorBase::defaultAnimSpeed * sys->m_deltaTime,
+	              EnemyAnimatorBase::defaultAnimSpeed * sys->m_deltaTime);
 	SysShape::Model* model = m_model;
 	model->m_j3dModel->m_modelData->m_jointTree.m_joints[0]->m_mtxCalc
 	    = (J3DMtxCalcAnmBase*)(static_cast<EnemyBlendAnimatorBase*>(m_animator)->m_animator.getCalc());
@@ -447,7 +446,7 @@ void Obj::changePelletColor()
 			return;
 		}
 
-		const float dt = sys->m_secondsPerFrame;
+		const float dt = sys->m_deltaTime;
 		if (m_flags & PELPLANT_FLAGS_GROW) {
 			m_colorChangeTimer += dt;
 		}

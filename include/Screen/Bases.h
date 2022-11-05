@@ -198,7 +198,7 @@ struct ObjBase : public IObjBase {
 	virtual void doUpdateFinish();                    // _5C (weak)
 	virtual bool doUpdateFadeout();                   // _60 (weak)
 	virtual void doUpdateFadeoutFinish();             // _64 (weak)
-	virtual void doDraw(Graphics&);                   // _68
+	virtual void doDraw(Graphics& gfx);               // _68
 	virtual bool doConfirmSetScene(SetSceneArg&);     // _6C (weak)
 	virtual bool doConfirmStartScene(StartSceneArg*); // _70 (weak)
 	virtual bool doConfirmEndScene(EndSceneArg*&);    // _74 (weak)

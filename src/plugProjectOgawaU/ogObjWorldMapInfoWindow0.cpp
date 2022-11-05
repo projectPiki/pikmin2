@@ -197,7 +197,7 @@ bool ObjWorldMapInfoWindow0::doStart(::Screen::StartSceneArg const*)
 bool ObjWorldMapInfoWindow0::doUpdateFadein()
 {
 	commonUpdate();
-	_44 += sys->m_secondsPerFrame;
+	_44 += sys->m_deltaTime;
 	bool result = false;
 	if (_44 > msBaseVal._08) {
 		result = true;

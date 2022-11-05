@@ -35,7 +35,7 @@ void TTMBack::doSetArchive(JKRArchive* archive)
 void TTMBack::doOpenScreen(ArgOpen* arg)
 {
 	P2ASSERTLINE(33, arg != nullptr);
-	u32 duration = (u32)(static_cast<ArgOpenTMBack*>(arg)->_04 / sys->m_secondsPerFrame);
+	u32 duration = (u32)(static_cast<ArgOpenTMBack*>(arg)->_04 / sys->m_deltaTime);
 	_10          = duration;
 	_14          = duration;
 }
@@ -47,7 +47,7 @@ void TTMBack::doOpenScreen(ArgOpen* arg)
  */
 void TTMBack::doCloseScreen(ArgClose* arg)
 {
-	u32 duration = (u32)(0.5f / sys->m_secondsPerFrame);
+	u32 duration = (u32)(0.5f / sys->m_deltaTime);
 	_10          = duration;
 	_14          = duration;
 }

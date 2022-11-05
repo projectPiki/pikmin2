@@ -828,7 +828,7 @@ bool Pellet::stimulate(Game::Interaction& interaction)
 bool InteractMattuan::actPellet(Pellet* pellet)
 {
 	if (pellet->getKind() == PELTYPE_UPGRADE) {
-		pellet->startDiscoverDisable(_08 / sys->m_secondsPerFrame);
+		pellet->startDiscoverDisable(_08 / sys->m_deltaTime);
 	} else {
 		pellet->clearDiscoverDisable();
 	}
@@ -4819,7 +4819,7 @@ void Pellet::startPick()
 		if (_41C.m_animMgr) {
 			if (!(_41C.m_flags & 2)) {
 				_41C.startAnim(0, this);
-				_438 = 30.0f * sys->m_secondsPerFrame;
+				_438 = 30.0f * sys->m_deltaTime;
 			}
 		} else if (m_pelletView) {
 			m_pelletView->view_start_carrymotion();

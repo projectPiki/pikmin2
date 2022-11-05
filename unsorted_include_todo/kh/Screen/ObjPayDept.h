@@ -66,7 +66,7 @@ struct ObjBase {
 	virtual void doUpdateFinish();                    // _5C (weak)
 	virtual void doUpdateFadeout();                   // _60 (weak)
 	virtual void doUpdateFadeoutFinish();             // _64
-	virtual void doDraw(Graphics&);                   // _68
+	virtual void doDraw(Graphics& gfx);               // _68
 	virtual void doConfirmSetScene(SetSceneArg&);     // _6C (weak)
 	virtual void doConfirmStartScene(StartSceneArg*); // _70 (weak)
 	virtual void doConfirmEndScene(EndSceneArg*&);    // _74 (weak)
@@ -83,7 +83,7 @@ struct ObjPayDept : public CNode, public ObjBase {
 	virtual void doUpdateFadein();        // _50
 	virtual void doUpdate();              // _58
 	virtual void doUpdateFadeoutFinish(); // _64
-	virtual void doDraw(Graphics&);       // _68
+	virtual void doDraw(Graphics& gfx);   // _68
 
 	void updateAnimation();
 	void searchNumPane(J2DPane*, int, int);

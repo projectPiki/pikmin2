@@ -162,8 +162,8 @@ void StateMove::exec(EnemyBase* enemy)
 		kogane->finishMotion();
 	}
 
-	kogane->m_appearTimer += sys->m_secondsPerFrame;
-	kogane->m_moveTimer += sys->m_secondsPerFrame;
+	kogane->m_appearTimer += sys->m_deltaTime;
+	kogane->m_moveTimer += sys->m_deltaTime;
 
 	if (kogane->m_curAnim->m_isRunning && (u32)kogane->m_curAnim->m_type == KEYEVENT_END) {
 		if (kogane->m_appearTimer > static_cast<Parms*>(kogane->m_parms)->m_properParms.m_fp02.m_value) {
@@ -211,8 +211,8 @@ void StateWait::exec(EnemyBase* enemy)
 		kogane->finishMotion();
 	}
 
-	kogane->m_appearTimer += sys->m_secondsPerFrame;
-	kogane->m_moveTimer += sys->m_secondsPerFrame;
+	kogane->m_appearTimer += sys->m_deltaTime;
+	kogane->m_moveTimer += sys->m_deltaTime;
 
 	if (kogane->m_curAnim->m_isRunning && (u32)kogane->m_curAnim->m_type == KEYEVENT_END) {
 		transit(kogane, KOGANE_Move, nullptr);
@@ -255,7 +255,7 @@ void StatePress::exec(EnemyBase* enemy)
 	Obj* kogane = static_cast<Obj*>(enemy);
 
 	kogane->koganeScaleUp();
-	kogane->m_appearTimer += sys->m_secondsPerFrame;
+	kogane->m_appearTimer += sys->m_deltaTime;
 
 	if (kogane->m_curAnim->m_isRunning) {
 		if ((u32)kogane->m_curAnim->m_type == KEYEVENT_2) {

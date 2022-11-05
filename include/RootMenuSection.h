@@ -32,7 +32,7 @@ struct RootMenuSection : public MenuSection {
 	virtual ~RootMenuSection();                  // _08
 	virtual void drawInit(struct Graphics&);     // _1C
 	virtual bool doUpdate() { return false; }    // _3C
-	virtual void doDraw(Graphics&) { }           // _40
+	virtual void doDraw(Graphics& gfx) { }       // _40
 	virtual ISection* setChildSection(JKRHeap*); // _48
 };
 

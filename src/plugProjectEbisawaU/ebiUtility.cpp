@@ -98,12 +98,12 @@ void EUTPadInterface_countNum::update()
 				_0D = 1;
 				if (_0C == 0) {
 					_0C           = 1;
-					f32 temp_r3_3 = (_20 / sys->m_secondsPerFrame);
+					f32 temp_r3_3 = (_20 / sys->m_deltaTime);
 					_04           = temp_r3_3;
 					_08           = temp_r3_3;
 					return;
 				}
-				f32 temp_r3_4 = (_24 / sys->m_secondsPerFrame);
+				f32 temp_r3_4 = (_24 / sys->m_deltaTime);
 				_04           = temp_r3_4;
 				_08           = temp_r3_4;
 			}
@@ -116,12 +116,12 @@ void EUTPadInterface_countNum::update()
 				_0D = 1;
 				if (_0C == 0) {
 					_0C           = 1;
-					f32 temp_r3_6 = (_20 / sys->m_secondsPerFrame);
+					f32 temp_r3_6 = (_20 / sys->m_deltaTime);
 					_04           = temp_r3_6;
 					_08           = temp_r3_6;
 					return;
 				}
-				f32 temp_r3_7 = (_24 / sys->m_secondsPerFrame);
+				f32 temp_r3_7 = (_24 / sys->m_deltaTime);
 				_04           = temp_r3_7;
 				_08           = temp_r3_7;
 			}

@@ -602,7 +602,7 @@ lbl_80325594:
  * Address:	803255BC
  * Size:	000060
  */
-void ObjFinalMsg::doDraw(Graphics&)
+void ObjFinalMsg::doDraw(Graphics& gfx)
 {
 	/*
 	stwu     r1, -0x10(r1)

@@ -30,7 +30,7 @@ struct TDayEndCount : public TTestBase {
 	virtual bool doStart(const ::Screen::StartSceneArg*);    // _2C
 	virtual void doCreate(JKRArchive*);                      // _34
 	virtual bool doUpdate();                                 // _40
-	virtual void doDraw(Graphics&);                          // _50
+	virtual void doDraw(Graphics& gfx);                      // _50
 	virtual og::Screen::DispMemberBase* getDispMemberBase(); // _60
 
 	void reset();

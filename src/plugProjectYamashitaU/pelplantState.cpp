@@ -200,7 +200,7 @@ void StateWait::init(EnemyBase* e, StateArg* stateArg)
  */
 void StateWait::exec(EnemyBase* enemy)
 {
-	float frameTime = sys->m_secondsPerFrame;
+	float frameTime = sys->m_deltaTime;
 	if (static_cast<Obj*>(enemy)->m_flags & 1) {
 		static_cast<Obj*>(enemy)->_2C0 += frameTime;
 	}

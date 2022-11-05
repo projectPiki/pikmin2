@@ -65,7 +65,7 @@ struct ObjFloor : public ::Screen::ObjBase {
 	virtual void doUpdateFinish();                        // _44
 	virtual bool doUpdateFadeout();                       // _48
 	virtual void doUpdateFadeoutFinish();                 // _4C
-	virtual void doDraw(Graphics&);                       // _50
+	virtual void doDraw(Graphics& gfx);                   // _50
 
 	bool isFLOOR();
 	bool isCHALLENGE();

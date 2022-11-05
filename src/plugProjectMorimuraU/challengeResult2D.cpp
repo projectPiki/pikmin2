@@ -4807,7 +4807,7 @@ lbl_803968DC:
  * Address:	8039690C
  * Size:	000160
  */
-void Morimura::TChallengeResult::doDraw(Graphics&)
+void Morimura::TChallengeResult::doDraw(Graphics& gfx)
 {
 	/*
 	stwu     r1, -0x50(r1)

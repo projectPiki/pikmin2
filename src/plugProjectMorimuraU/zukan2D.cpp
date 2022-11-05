@@ -4047,7 +4047,7 @@ void Morimura::TZukanBase::isComplete(void)
  * Address:	80372B68
  * Size:	000714
  */
-void Morimura::TZukanBase::doDraw(Graphics&)
+void Morimura::TZukanBase::doDraw(Graphics& gfx)
 {
 	/*
 	stwu     r1, -0xe0(r1)

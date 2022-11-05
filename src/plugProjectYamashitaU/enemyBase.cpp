@@ -312,7 +312,7 @@ void AppearState::init(EnemyBase* enemy, StateArg* arg)
  */
 void AppearState::update(EnemyBase* enemy)
 {
-	enemy->m_stunAnimTimer += 2.0f * sys->m_secondsPerFrame;
+	enemy->m_stunAnimTimer += 2.0f * sys->m_deltaTime;
 	if (enemy->m_stunAnimTimer > 1.0f) {
 		transit(enemy, EBS_Living, 0);
 		return;
@@ -433,7 +433,7 @@ void LivingState::update(EnemyBase* enemy)
 		}
 
 		if (enemy->_2AC > 0.0f) {
-			enemy->_2A8 += sys->m_secondsPerFrame;
+			enemy->_2A8 += sys->m_deltaTime;
 
 			if (enemy->_2A8 > enemy->_2AC) {
 				enemy->addDamage(enemy->m_maxHealth, 1.0f);
@@ -506,7 +506,7 @@ void FitState::cleanup(EnemyBase* enemy)
  */
 void FitState::updateAlways(EnemyBase* enemy)
 {
-	enemy->m_stunAnimTimer += sys->m_secondsPerFrame;
+	enemy->m_stunAnimTimer += sys->m_deltaTime;
 	if ((enemy->m_stunAnimTimer > ((EnemyParmsBase*)enemy->m_parms)->m_general.m_purplePikminStunTime.m_value) || (enemy->isEvent(0, EB_21))
 	    || (((enemy->m_health <= 0.0f)))) {
 		enemy->m_stunAnimTimer = 0.0f;
@@ -659,7 +659,7 @@ void StoneState::cleanup(EnemyBase* enemy)
 void StoneState::updateAlways(EnemyBase* enemy)
 {
 	enemy->m_enemyStoneObj->update();
-	enemy->m_stoneTimer += sys->m_secondsPerFrame;
+	enemy->m_stoneTimer += sys->m_deltaTime;
 
 	if (enemy->m_enemyStoneObj->_50 & 4) {
 		if (enemy->m_curTriangle == nullptr) {
@@ -2222,7 +2222,7 @@ void EnemyBase::doAnimation() { static_cast<EnemyBaseFSM::StateMachine*>(m_lifec
  */
 void EnemyBase::doAnimationUpdateAnimator()
 {
-	m_animator->animate(m_animator->m_animSpeed * sys->m_secondsPerFrame);
+	m_animator->animate(m_animator->m_animSpeed * sys->m_deltaTime);
 
 	SysShape::Animator* animator = &m_animator->getAnimator();
 	SysShape::Model* model       = m_model;
@@ -3490,7 +3490,7 @@ void EnemyBase::scaleDamageAnim()
 	if ((isEvent(0, EB_Flying)) || (0.0f != m_damageAnimTimer)) {
 		if (0.0f == m_damageAnimTimer) {
 			if (isEvent(0, EB_Damage)) {
-				m_damageAnimTimer = m_damageAnimTimer + sys->m_secondsPerFrame;
+				m_damageAnimTimer = m_damageAnimTimer + sys->m_deltaTime;
 			}
 
 		} else {
@@ -3505,9 +3505,9 @@ void EnemyBase::scaleDamageAnim()
 			}
 
 			if (isEvent(0, EB_15)) {
-				m_damageAnimTimer += 0.5f * sys->m_secondsPerFrame;
+				m_damageAnimTimer += 0.5f * sys->m_deltaTime;
 			} else {
-				m_damageAnimTimer += sys->m_secondsPerFrame;
+				m_damageAnimTimer += sys->m_deltaTime;
 			}
 
 			if (isEvent(0, EB_Bittered)) {
@@ -4628,7 +4628,7 @@ bool EnemyBase::eatWhitePikminCallBack(Creature* creature, f32 damage)
 	if (!(isEvent(0, EB_15))) {
 		setEvent(0, EB_15);
 
-		m_damageAnimTimer = sys->m_secondsPerFrame;
+		m_damageAnimTimer = sys->m_deltaTime;
 
 		for (int i = 0; i < m_enemyStoneObj->m_info->m_infoCnt; i++) {
 			EnemyStone::DrawInfo drawInfo(false);

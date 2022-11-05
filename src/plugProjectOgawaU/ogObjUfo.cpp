@@ -1040,7 +1040,7 @@ lbl_80324418:
  * Address:	80324430
  * Size:	0000B4
  */
-void ObjUfoMenu::doDraw(Graphics&)
+void ObjUfoMenu::doDraw(Graphics& gfx)
 {
 	/*
 	stwu     r1, -0x20(r1)

@@ -66,7 +66,7 @@ struct ObjBase {
 	virtual void doUpdateFinish();                    // _5C (weak)
 	virtual void doUpdateFadeout();                   // _60 (weak)
 	virtual void doUpdateFadeoutFinish();             // _64 (weak)
-	virtual void doDraw(Graphics&);                   // _68
+	virtual void doDraw(Graphics& gfx);               // _68
 	virtual void doConfirmSetScene(SetSceneArg&);     // _6C (weak)
 	virtual void doConfirmStartScene(StartSceneArg*); // _70 (weak)
 	virtual void doConfirmEndScene(EndSceneArg*&);    // _74 (weak)
@@ -81,7 +81,7 @@ struct ObjWinLoseReason : public CNode, public ObjBase {
 	virtual void _14() = 0;             // _14
 	virtual void doCreate(JKRArchive*); // _4C
 	virtual void doUpdate();            // _58
-	virtual void doDraw(Graphics&);     // _68
+	virtual void doDraw(Graphics& gfx); // _68
 };
 } // namespace Screen
 } // namespace kh

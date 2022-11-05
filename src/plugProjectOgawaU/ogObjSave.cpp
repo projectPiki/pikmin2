@@ -327,7 +327,7 @@ lbl_80324D04:
  * Address:	80324D20
  * Size:	000030
  */
-void ObjSave::doDraw(Graphics&)
+void ObjSave::doDraw(Graphics& gfx)
 {
 	/*
 	stwu     r1, -0x10(r1)

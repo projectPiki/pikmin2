@@ -81,7 +81,7 @@ inline AnimBaseBase::AnimBaseBase()
 	_30         = 1.0f;
 	_34         = _30 - _2C;
 	// TODO: Could this calculation be an inlined function of System?
-	_28            = sys->m_secondsPerFrame / 0.016666668f;
+	_28            = sys->m_deltaTime / 0.016666668f;
 	m_anm          = nullptr;
 	m_resourcePath = nullptr;
 	_08            = false;
@@ -211,7 +211,7 @@ bool AnimBaseBase::updateSub()
 bool AnimBaseBase::update(void)
 {
 	if (_08) {
-		_0C -= sys->m_secondsPerFrame;
+		_0C -= sys->m_deltaTime;
 		if (_0C <= 0.0f) {
 			_08 = false;
 			_0C = 0.0f;

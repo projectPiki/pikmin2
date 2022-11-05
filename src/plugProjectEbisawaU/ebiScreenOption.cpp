@@ -397,7 +397,7 @@ void TOption::doSetArchive(JKRArchive* archive)
 	_1D4.m_black   = tb->getBlack();
 	_240.set((J2DTextBox*)E2DScreen_searchAssert(_10C, 'Tsin_y'), (J2DTextBox*)E2DScreen_searchAssert(_10C, 'Tscolor'));
 	_240._1C = 1;
-	_240._44 = sys->m_secondsPerFrame * 3.3333333f;
+	_240._44 = sys->m_deltaTime * 3.3333333f;
 	_240._40 = 0.0f;
 	_240._48 = 1;
 	_240._49 = 0;
@@ -406,7 +406,7 @@ void TOption::doSetArchive(JKRArchive* archive)
 	_28C._2C       = 0xff;
 	_28C._2D       = 0x55;
 	_28C._1C       = 1;
-	_28C._24       = sys->m_secondsPerFrame * 3.3333333f;
+	_28C._24       = sys->m_deltaTime * 3.3333333f;
 	_28C._20       = 0.0f;
 	_28C._28       = 1;
 	_28C._29       = 0;
@@ -1008,9 +1008,9 @@ blr
  */
 void TOption::doOpenScreen(ebi::Screen::ArgOpen*)
 {
-	_1E4.play(60.0f * sys->m_secondsPerFrame, J3DAA_UNKNOWN_0, true);
+	_1E4.play(60.0f * sys->m_deltaTime, J3DAA_UNKNOWN_0, true);
 	setOptionParamToScreen_();
-	u32 uVar2                 = __cvt_fp2unsigned(E2DFader::kFadeTime / sys->m_secondsPerFrame);
+	u32 uVar2                 = __cvt_fp2unsigned(E2DFader::kFadeTime / sys->m_deltaTime);
 	_0FC                      = uVar2;
 	_100                      = uVar2;
 	_0F8                      = 1;
@@ -1018,7 +1018,7 @@ void TOption::doOpenScreen(ebi::Screen::ArgOpen*)
 	_108                      = 1;
 	_180[0]->m_isVisible      = false;
 	JGeometry::TBox2f* bounds = _1A8[_104].getBounds();
-	uVar2                     = __cvt_fp2unsigned(0.1f / sys->m_secondsPerFrame);
+	uVar2                     = __cvt_fp2unsigned(0.1f / sys->m_deltaTime);
 	_EAC->_40                 = uVar2;
 	_EAC->_44                 = uVar2;
 	_EAC->_20                 = *bounds;
@@ -1114,7 +1114,7 @@ blr
  */
 void TOption::doCloseScreen(ebi::Screen::ArgClose*)
 {
-	u32 v1 = __cvt_fp2unsigned((float)E2DFader::kFadeTime / sys->m_secondsPerFrame);
+	u32 v1 = __cvt_fp2unsigned((float)E2DFader::kFadeTime / sys->m_deltaTime);
 	_0FC   = v1;
 	_100   = v1;
 	_0F8   = 2;

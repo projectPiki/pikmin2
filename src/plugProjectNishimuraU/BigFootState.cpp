@@ -224,7 +224,7 @@ void StateWait::init(EnemyBase* enemy, StateArg* stateArg)
 void StateWait::exec(EnemyBase* enemy)
 {
 	Obj* bigfoot = static_cast<Obj*>(enemy);
-	bigfoot->m_stateTimer += sys->m_secondsPerFrame;
+	bigfoot->m_stateTimer += sys->m_deltaTime;
 
 	if (bigfoot->m_health <= 0.0f) {
 		bigfoot->m_nextState = BIGFOOT_Dead;
@@ -334,7 +334,7 @@ void StateWalk::exec(EnemyBase* enemy)
 {
 	Obj* bigfoot = static_cast<Obj*>(enemy);
 	bigfoot->getTargetPosition();
-	bigfoot->m_stateTimer += sys->m_secondsPerFrame;
+	bigfoot->m_stateTimer += sys->m_deltaTime;
 	if (bigfoot->m_health <= 0.0f) {
 		transit(bigfoot, BIGFOOT_Dead, nullptr);
 	} else {

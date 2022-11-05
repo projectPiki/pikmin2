@@ -801,7 +801,7 @@ void ObjSMenuPauseVS::doUpdateCancelAction(void)
  * Address:	80329A2C
  * Size:	000060
  */
-void ObjSMenuPauseVS::doDraw(Graphics&)
+void ObjSMenuPauseVS::doDraw(Graphics& gfx)
 {
 	/*
 	stwu     r1, -0x10(r1)

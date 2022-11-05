@@ -3609,7 +3609,7 @@ lbl_80312084:
  * Address:	803120B4
  * Size:	000138
  */
-void ObjSMenuMap::doDraw(Graphics&)
+void ObjSMenuMap::doDraw(Graphics& gfx)
 {
 	/*
 	stwu     r1, -0x2c0(r1)

@@ -1213,7 +1213,7 @@ lbl_8044AB70:
  * Address:	8044AB80
  * Size:	000110
  */
-void Title::Section::doDraw(Graphics&)
+void Title::Section::doDraw(Graphics& gfx)
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -3280,7 +3280,7 @@ void TitleDummy::Section::doUpdate(void)
  * Address:	........
  * Size:	0000C0
  */
-void TitleDummy::Section::doDraw(Graphics&)
+void TitleDummy::Section::doDraw(Graphics& gfx)
 {
 	// UNUSED FUNCTION
 }

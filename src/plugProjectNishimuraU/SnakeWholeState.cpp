@@ -198,7 +198,7 @@ void StateStay::exec(EnemyBase* enemy)
 		}
 	}
 
-	snagret->m_stateTimer += sys->m_secondsPerFrame;
+	snagret->m_stateTimer += sys->m_deltaTime;
 	if (target) {
 		snagret->m_targetCreature = target;
 		snagret->appearNearByTarget(target);
@@ -990,7 +990,7 @@ void StateWait::exec(EnemyBase* enemy)
 		snagret->m_nextState = SNAKEWHOLE_Wait;
 	}
 
-	snagret->m_stateTimer += sys->m_secondsPerFrame;
+	snagret->m_stateTimer += sys->m_deltaTime;
 
 	if (snagret->m_curAnim->m_isRunning && (u32)snagret->m_curAnim->m_type == KEYEVENT_END) {
 		if (snagret->m_nextState == SNAKEWHOLE_Attack && snagret->getStickHeadPikmin() != 0) {
@@ -1380,7 +1380,7 @@ void StateStruggle::exec(EnemyBase* enemy)
 		snagret->finishMotion();
 	}
 
-	snagret->m_stateTimer += sys->m_secondsPerFrame;
+	snagret->m_stateTimer += sys->m_deltaTime;
 	if (snagret->m_curAnim->m_isRunning && (u32)snagret->m_curAnim->m_type == KEYEVENT_END) {
 		snagret->setAttackPosition();
 

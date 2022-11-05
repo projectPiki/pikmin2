@@ -364,7 +364,7 @@ lbl_80319FB8:
  * Address:	80319FCC
  * Size:	000104
  */
-void ObjSpecialItem::doDraw(Graphics&)
+void ObjSpecialItem::doDraw(Graphics& gfx)
 {
 	/*
 	stwu     r1, -0x20(r1)

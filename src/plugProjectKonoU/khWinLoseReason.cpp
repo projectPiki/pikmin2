@@ -190,7 +190,7 @@ u32 ObjWinLoseReason::doUpdate() { return 0x0; }
  * Address:	804107E8
  * Size:	000004
  */
-void ObjWinLoseReason::doDraw(Graphics&) { }
+void ObjWinLoseReason::doDraw(Graphics& gfx) { }
 
 /*
  * --INFO--

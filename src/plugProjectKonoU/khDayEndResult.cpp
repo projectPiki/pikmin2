@@ -1383,7 +1383,7 @@ blr
  * Address:	80402FC4
  * Size:	000118
  */
-void ObjDayEndResultBase::doDraw(Graphics&)
+void ObjDayEndResultBase::doDraw(Graphics& gfx)
 {
 	/*
 stwu     r1, -0x10(r1)
@@ -2875,7 +2875,7 @@ blr
  * Address:	8040443C
  * Size:	0006C4
  */
-void ObjDayEndResultItem::doDraw(Graphics&)
+void ObjDayEndResultItem::doDraw(Graphics& gfx)
 {
 	/*
 stwu     r1, -0xa0(r1)
@@ -6159,7 +6159,7 @@ blr
  * Address:	804071C8
  * Size:	000148
  */
-void ObjDayEndResultIncP::doDraw(Graphics&)
+void ObjDayEndResultIncP::doDraw(Graphics& gfx)
 {
 	/*
 stwu     r1, -0x10(r1)
@@ -9242,7 +9242,7 @@ blr
  * Address:	8040996C
  * Size:	0001C4
  */
-void ObjDayEndResultMail::doDraw(Graphics&)
+void ObjDayEndResultMail::doDraw(Graphics& gfx)
 {
 	/*
 stwu     r1, -0x10(r1)
@@ -10253,7 +10253,7 @@ blr
  * Address:	8040A634
  * Size:	000144
  */
-void ObjDayEndResultTitl::doDraw(Graphics&)
+void ObjDayEndResultTitl::doDraw(Graphics& gfx)
 {
 	/*
 stwu     r1, -0x50(r1)

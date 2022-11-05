@@ -1832,7 +1832,7 @@ void SingleGame::State::on_demo_timer(Game::SingleGameSection*, unsigned long) {
  * Address:	80152E0C
  * Size:	000050
  */
-void SingleGameSection::doDraw(Graphics&)
+void SingleGameSection::doDraw(Graphics& gfx)
 {
 	/*
 	stwu     r1, -0x10(r1)

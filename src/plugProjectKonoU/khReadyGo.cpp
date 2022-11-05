@@ -408,7 +408,7 @@ blr
  * Address:	80401500
  * Size:	0000DC
  */
-void ObjReadyGo::doDraw(Graphics&)
+void ObjReadyGo::doDraw(Graphics& gfx)
 {
 	/*
 stwu     r1, -0x40(r1)

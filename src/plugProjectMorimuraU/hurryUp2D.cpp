@@ -957,7 +957,7 @@ lbl_803469E8:
  * Address:	80346A20
  * Size:	00040C
  */
-void Morimura::THurryUp2D::doDraw(Graphics&)
+void Morimura::THurryUp2D::doDraw(Graphics& gfx)
 {
 	/*
 	stwu     r1, -0xa0(r1)

@@ -578,7 +578,7 @@ blr
  * Address:	804101D8
  * Size:	0000B8
  */
-void ObjWinLose::doDraw(Graphics&)
+void ObjWinLose::doDraw(Graphics& gfx)
 {
 	/*
 stwu     r1, -0x20(r1)

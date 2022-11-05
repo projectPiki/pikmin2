@@ -164,7 +164,7 @@ f32 TimeMgr::getSunGaugeRatio()
 void TimeMgr::update()
 {
 	if (!(m_flags & TIMEMGR_FLAG_STOPPED)) {
-		m_currentHour += m_speedFactor * sys->m_secondsPerFrame;
+		m_currentHour += m_speedFactor * sys->m_deltaTime;
 
 		if (m_currentHour > m_parms.parms.m_dayLengthSeconds.m_value) {
 			m_currentHour -= m_parms.parms.m_dayLengthSeconds.m_value;

@@ -1283,7 +1283,7 @@ void VsGame::State::pre2dDraw(Graphics&, Game::VsGameSection*) { }
  * Address:	801C1618
  * Size:	000050
  */
-void VsGameSection::doDraw(Graphics&)
+void VsGameSection::doDraw(Graphics& gfx)
 {
 	/*
 	stwu     r1, -0x10(r1)

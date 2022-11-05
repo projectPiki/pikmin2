@@ -1180,7 +1180,7 @@ void ObjSMenuItem::doUpdate(void)
  * Address:	80313C2C
  * Size:	0000D4
  */
-void ObjSMenuItem::doDraw(Graphics&)
+void ObjSMenuItem::doDraw(Graphics& gfx)
 {
 	/*
 	stwu     r1, -0x20(r1)

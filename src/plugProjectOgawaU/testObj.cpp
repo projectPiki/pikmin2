@@ -140,7 +140,7 @@ void Test::doUpdate(void)
  * Address:	........
  * Size:	000034
  */
-void Test::doDraw(Graphics&)
+void Test::doDraw(Graphics& gfx)
 {
 	// UNUSED FUNCTION
 }

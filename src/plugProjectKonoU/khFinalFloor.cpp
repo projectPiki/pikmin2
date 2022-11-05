@@ -362,7 +362,7 @@ blr
  * Address:	80401F74
  * Size:	0000DC
  */
-void ObjFinalFloor::doDraw(Graphics&)
+void ObjFinalFloor::doDraw(Graphics& gfx)
 {
 	/*
 stwu     r1, -0x40(r1)

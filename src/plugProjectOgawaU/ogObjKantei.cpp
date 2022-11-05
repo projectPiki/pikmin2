@@ -1530,7 +1530,7 @@ lbl_803193C4:
  * Address:	803193D4
  * Size:	000290
  */
-void ObjKantei::doDraw(Graphics&)
+void ObjKantei::doDraw(Graphics& gfx)
 {
 	/*
 	stwu     r1, -0x2d0(r1)

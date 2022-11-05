@@ -82,7 +82,7 @@ struct ObjBase {
 	virtual void doUpdateFinish();                      // _5C
 	virtual void doUpdateFadeout();                     // _60
 	virtual void doUpdateFadeoutFinish();               // _64
-	virtual void doDraw(Graphics&);                     // _68
+	virtual void doDraw(Graphics& gfx);                 // _68
 	virtual void doConfirmSetScene(SetSceneArg&);       // _6C (weak)
 	virtual void doConfirmStartScene(StartSceneArg*);   // _70 (weak)
 	virtual void doConfirmEndScene(EndSceneArg*&);      // _74 (weak)
@@ -116,7 +116,7 @@ struct ObjSMenuBase {
 	virtual void doUpdateFinish();                      // _5C
 	virtual void doUpdateFadeout();                     // _60
 	virtual void doUpdateFadeoutFinish();               // _64
-	virtual void doDraw(Graphics&);                     // _68
+	virtual void doDraw(Graphics& gfx);                 // _68
 	virtual void _6C() = 0;                             // _6C
 	virtual void _70() = 0;                             // _70
 	virtual void _74() = 0;                             // _74
@@ -150,7 +150,7 @@ struct ObjSMenuPauseVS : public CNode, public ObjBase, public ObjSMenuBase {
 	virtual void doUpdateFinish();                      // _5C
 	virtual void doUpdateFadeout();                     // _60
 	virtual void doUpdateFadeoutFinish();               // _64
-	virtual void doDraw(Graphics&);                     // _68
+	virtual void doDraw(Graphics& gfx);                 // _68
 	virtual void in_L();                                // _78
 	virtual void in_R();                                // _7C (weak)
 	virtual void wait();                                // _80

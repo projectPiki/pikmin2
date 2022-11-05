@@ -2504,7 +2504,7 @@ lbl_8032796C:
  * Address:	80327984
  * Size:	000130
  */
-void ObjVs::doDraw(Graphics&)
+void ObjVs::doDraw(Graphics& gfx)
 {
 	/*
 	stwu     r1, -0x60(r1)

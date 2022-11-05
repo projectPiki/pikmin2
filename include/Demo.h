@@ -26,23 +26,24 @@ struct HIORootNode : public Game::HIORootNode {
 struct Section : public Game::BaseHIOSection {
 	Section(JKRHeap*);
 
-	virtual ~Section() { }          // _08
-	virtual void init();            // _18
-	virtual void doExit();          // _24
-	virtual bool forceReset();      // _2C (weak)
-	virtual void doLoadingStart();  // _34
-	virtual bool doLoading();       // _38
-	virtual bool doUpdate();        // _3C
-	virtual void doDraw(Graphics&); // _40
+	virtual ~Section();                 // _08
+	virtual void init();                // _18
+	virtual void doExit();              // _24
+	virtual bool forceReset();          // _2C (weak)
+	virtual void doLoadingStart();      // _34
+	virtual bool doLoading();           // _38
+	virtual bool doUpdate();            // _3C
+	virtual void doDraw(Graphics& gfx); // _40
 
 	void loadResource();
 
 	// _00		= VTBL
 	// _00-_48	= Game::BaseHIOSection
 	DvdThreadCommand m_threadCommand; // _048
-	Controller* _D8;                  // _0D8
-	float _DC;                        // _0DC
-	Game::THPPlayer m_thpPlayer;      // _0E0
+	CNode* m_genNode;                 // _0B4
+	Controller* m_controller;         // _0B8
+	float _BC;                        // _0BC
+	Game::THPPlayer m_moviePlayer;    // _0C0
 	JUTTexture* _1AC;                 // _1AC
 };
 } // namespace Demo

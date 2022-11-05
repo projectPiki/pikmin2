@@ -190,7 +190,7 @@ void StateStay::init(EnemyBase* enemy, StateArg* stateArg)
 void StateStay::exec(EnemyBase* enemy)
 {
 	Obj* imomushi = static_cast<Obj*>(enemy);
-	imomushi->_2C8 += sys->m_secondsPerFrame;
+	imomushi->_2C8 += sys->m_deltaTime;
 	if ((imomushi->_2C8 > 6.0f)
 	    && !(EnemyFunc::isTherePikmin(imomushi, static_cast<Parms*>(imomushi->m_parms)->m_general.m_privateRadius.m_value, nullptr))) {
 		if (imomushi->m_targetCreature = imomushi->getRandFruitsPlant()) {
@@ -671,7 +671,7 @@ void StateAttack::exec(EnemyBase* enemy)
 			}
 		}
 	}
-	imomushi->_2C8 += sys->m_secondsPerFrame;
+	imomushi->_2C8 += sys->m_deltaTime;
 	if (imomushi->m_curAnim->m_isRunning) {
 		if (((u32)imomushi->m_curAnim->m_type == KEYEVENT_2)) {
 			imomushi->eatTsuyukusa();
@@ -784,7 +784,7 @@ void StateZukanStay::init(EnemyBase* enemy, StateArg* stateArg)
 void StateZukanStay::exec(EnemyBase* enemy)
 {
 	Obj* imomushi = static_cast<Obj*>(enemy);
-	imomushi->_2C8 += sys->m_secondsPerFrame;
+	imomushi->_2C8 += sys->m_deltaTime;
 	if (imomushi->_2C8 > 5.0f) {
 		transit(imomushi, IMOMUSHI_ZukanAppear, nullptr);
 	}

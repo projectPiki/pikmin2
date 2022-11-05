@@ -120,7 +120,7 @@ void StateWait::init(EnemyBase* enemy, StateArg* stateArg)
 void StateWait::exec(EnemyBase* enemy)
 {
 	Obj* elecHiba = static_cast<Obj*>(enemy);
-	elecHiba->m_waitTimer += sys->m_secondsPerFrame;
+	elecHiba->m_waitTimer += sys->m_deltaTime;
 
 	if (elecHiba->_2F4 != 0) {
 		if (elecHiba->isWaitFinish()) {
@@ -169,7 +169,7 @@ void StateSign::init(EnemyBase* enemy, StateArg* stateArg)
 void StateSign::exec(EnemyBase* enemy)
 {
 	Obj* elecHiba = static_cast<Obj*>(enemy);
-	elecHiba->m_waitTimer += sys->m_secondsPerFrame;
+	elecHiba->m_waitTimer += sys->m_deltaTime;
 	elecHiba->getJAIObject()->startSound(PSSE_EN_ELEC_HIBA_CHARGE, 0);
 
 	if (elecHiba->m_health <= 0.0f) {
@@ -231,7 +231,7 @@ void StateAttack::init(EnemyBase* enemy, StateArg* stateArg)
 void StateAttack::exec(EnemyBase* enemy)
 {
 	Obj* elecHiba = static_cast<Obj*>(enemy);
-	elecHiba->m_waitTimer += sys->m_secondsPerFrame;
+	elecHiba->m_waitTimer += sys->m_deltaTime;
 
 	if (elecHiba->_2F4 != 0) {
 		if (elecHiba->isAttackFinish()) {

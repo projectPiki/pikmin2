@@ -100,7 +100,7 @@ struct TDayEndCount {
 	virtual void _5C() = 0;                             // _5C
 	virtual void _60() = 0;                             // _60
 	virtual void _64() = 0;                             // _64
-	virtual void doDraw(Graphics&);                     // _68
+	virtual void doDraw(Graphics& gfx);                 // _68
 	virtual void _6C() = 0;                             // _6C
 	virtual void _70() = 0;                             // _70
 	virtual void _74() = 0;                             // _74

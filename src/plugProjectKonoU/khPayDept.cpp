@@ -581,7 +581,7 @@ blr
  * Address:	8040F614
  * Size:	000064
  */
-void ObjPayDept::doDraw(Graphics&)
+void ObjPayDept::doDraw(Graphics& gfx)
 {
 	/*
 stwu     r1, -0x10(r1)

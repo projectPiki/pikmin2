@@ -740,7 +740,7 @@ void BaseItem::startSound(unsigned long soundID)
 void BaseItem::doAnimation()
 {
 	if (m_animator.m_animMgr) {
-		m_animator.animate(m_animSpeed * sys->m_secondsPerFrame);
+		m_animator.animate(m_animSpeed * sys->m_deltaTime);
 		SysShape::Model* model                                             = m_model;
 		model->m_j3dModel->m_modelData->m_jointTree.m_joints[0]->m_mtxCalc = (J3DMtxCalcAnmBase*)m_animator.getCalc();
 		do_doAnimation();

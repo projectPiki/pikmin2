@@ -68,7 +68,7 @@ struct ObjBase {
 	virtual void _5C() = 0;                           // _5C
 	virtual void doUpdateFadeout();                   // _60 (weak)
 	virtual void doUpdateFadeoutFinish();             // _64 (weak)
-	virtual void doDraw(Graphics&);                   // _68
+	virtual void doDraw(Graphics& gfx);               // _68
 	virtual void doConfirmSetScene(SetSceneArg&);     // _6C (weak)
 	virtual void doConfirmStartScene(StartSceneArg*); // _70 (weak)
 	virtual void doConfirmEndScene(EndSceneArg*&);    // _74 (weak)
@@ -104,14 +104,14 @@ struct TTestBase {
 
 namespace Morimura {
 struct TGameOverBase : public CNode, public ObjBase, public TTestBase {
-	virtual ~TGameOverBase();         // _08 (weak)
-	virtual void _10() = 0;           // _10
-	virtual void _14() = 0;           // _14
-	virtual void doUpdate();          // _58
-	virtual void doUpdateFadeout();   // _60 (weak)
-	virtual void doDraw(Graphics&);   // _68
-	virtual void getDispMemberBase(); // _78 (weak)
-	virtual void _7C() = 0;           // _7C
+	virtual ~TGameOverBase();           // _08 (weak)
+	virtual void _10() = 0;             // _10
+	virtual void _14() = 0;             // _14
+	virtual void doUpdate();            // _58
+	virtual void doUpdateFadeout();     // _60 (weak)
+	virtual void doDraw(Graphics& gfx); // _68
+	virtual void getDispMemberBase();   // _78 (weak)
+	virtual void _7C() = 0;             // _7C
 
 	TGameOverBase(char*);
 };

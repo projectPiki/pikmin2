@@ -151,7 +151,7 @@ void StateWait::exec(EnemyBase* enemy)
 		return;
 	}
 
-	kurage->m_stateTimer += sys->m_secondsPerFrame;
+	kurage->m_stateTimer += sys->m_deltaTime;
 
 	if (kurage->m_curAnim->m_isRunning && (u32)kurage->m_curAnim->m_type == KEYEVENT_END) {
 		transit(kurage, kurage->m_nextState, nullptr);
@@ -227,7 +227,7 @@ void StateMove::exec(EnemyBase* enemy)
 		kurage->m_simVelocity = Vector3f(0.0f);
 	}
 
-	kurage->m_stateTimer += sys->m_secondsPerFrame;
+	kurage->m_stateTimer += sys->m_deltaTime;
 
 	if (kurage->m_curAnim->m_isRunning && (u32)kurage->m_curAnim->m_type == KEYEVENT_END) {
 		transit(kurage, kurage->m_nextState, nullptr);
@@ -357,7 +357,7 @@ void StateAttack::exec(EnemyBase* enemy)
 		kurage->updateCollPartOffset();
 	}
 
-	kurage->m_stateTimer += sys->m_secondsPerFrame;
+	kurage->m_stateTimer += sys->m_deltaTime;
 
 	if (kurage->m_curAnim->m_isRunning) {
 		if ((u32)kurage->m_curAnim->m_type == KEYEVENT_2) {
@@ -452,7 +452,7 @@ void StateFall::exec(EnemyBase* enemy)
 		}
 	}
 
-	kurage->m_stateTimer += sys->m_secondsPerFrame;
+	kurage->m_stateTimer += sys->m_deltaTime;
 
 	if (kurage->m_curAnim->m_isRunning && (u32)kurage->m_curAnim->m_type == KEYEVENT_END) {
 		if (kurage->m_health <= 0.0f) {
@@ -502,7 +502,7 @@ void StateDrop::exec(EnemyBase* enemy)
 		kurage->finishMotion();
 	}
 
-	kurage->m_stateTimer += sys->m_secondsPerFrame;
+	kurage->m_stateTimer += sys->m_deltaTime;
 
 	if (kurage->m_curAnim->m_isRunning && (u32)kurage->m_curAnim->m_type == KEYEVENT_END) {
 		if (kurage->m_health <= 0.0f) {
@@ -641,7 +641,7 @@ void StateGround::exec(EnemyBase* enemy)
 		kurage->finishMotion();
 	}
 
-	kurage->m_stateTimer += sys->m_secondsPerFrame;
+	kurage->m_stateTimer += sys->m_deltaTime;
 
 	if (kurage->m_curAnim->m_isRunning && (u32)kurage->m_curAnim->m_type == KEYEVENT_END) {
 		if (kurage->m_health <= 0.0f) {

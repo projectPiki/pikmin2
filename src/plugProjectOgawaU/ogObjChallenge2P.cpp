@@ -1075,7 +1075,7 @@ void ObjChallenge2P::doUpdate(void)
  * Address:	8031F8B8
  * Size:	0001F8
  */
-void ObjChallenge2P::doDraw(Graphics&)
+void ObjChallenge2P::doDraw(Graphics& gfx)
 {
 	/*
 	stwu     r1, -0xa0(r1)

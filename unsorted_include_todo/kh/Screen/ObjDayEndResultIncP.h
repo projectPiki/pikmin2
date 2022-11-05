@@ -78,7 +78,7 @@ struct ObjBase {
 	virtual void _5C() = 0;                           // _5C
 	virtual void doUpdateFadeout();                   // _60
 	virtual void doUpdateFadeoutFinish();             // _64 (weak)
-	virtual void doDraw(Graphics&);                   // _68
+	virtual void doDraw(Graphics& gfx);               // _68
 	virtual void doConfirmSetScene(SetSceneArg&);     // _6C (weak)
 	virtual void doConfirmStartScene(StartSceneArg*); // _70 (weak)
 	virtual void doConfirmEndScene(EndSceneArg*&);    // _74 (weak)
@@ -124,7 +124,7 @@ struct ObjDayEndResultIncP : public CNode, public ObjBase, public ObjDayEndResul
 	virtual void doUpdateFadein();             // _50
 	virtual void doUpdate();                   // _58
 	virtual void doUpdateFadeout();            // _60
-	virtual void doDraw(Graphics&);            // _68
+	virtual void doDraw(Graphics& gfx);        // _68
 	virtual void updateCommon();               // _78
 	virtual void getFadeinUpMinFrm() const;    // _7C (weak)
 	virtual void getFadeinUpMaxFrm() const;    // _80 (weak)

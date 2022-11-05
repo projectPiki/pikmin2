@@ -368,8 +368,8 @@ void AABBWaterBox::startUp(float) { JUT_PANICLINE(167, "まんだ! startUp\n"); 
 inline bool AABBWaterBox::update(void)
 {
 	if (_08 == 1) {
-		_0C = -(_38 * sys->m_secondsPerFrame - _0C);
-		_38 = sys->m_secondsPerFrame * 5.0f + _38;
+		_0C = -(_38 * sys->m_deltaTime - _0C);
+		_38 = sys->m_deltaTime * 5.0f + _38;
 		_34 = _30 + _0C;
 		if (_0C <= _10) {
 			_0C = _10;

@@ -558,7 +558,7 @@ void ItemHole::AppearState::init(Game::CFSMItem* item, Game::StateArg* arg)
  */
 void ItemHole::AppearState::exec(Game::CFSMItem* item)
 {
-	_10 += sys->m_secondsPerFrame;
+	_10 += sys->m_deltaTime;
 	float v1 = -(_10 * 0.8333333f - 1.0f);
 	if (v1 <= 0.0f) {
 		efx::Arg arg;

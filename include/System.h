@@ -111,7 +111,7 @@ struct System {
 	struct DvdStatus* m_dvdStatus;                // _48
 	struct JFWDisplay* m_display;                 // _4C
 	struct HeapStatus* m_heapStatus;              // _50
-	float m_secondsPerFrame;                      // _54
+	float m_deltaTime;                            // _54
 	struct JKRTask* m_task;                       // _58
 	struct MemoryCardMgr* m_cardMgr;              // _5C
 	struct Game::CommonSaveData::Mgr* m_playData; // _60

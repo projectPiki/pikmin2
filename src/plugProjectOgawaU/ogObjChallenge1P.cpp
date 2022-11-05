@@ -813,7 +813,7 @@ lbl_80328610:
  * Address:	80328670
  * Size:	000030
  */
-void ObjChallenge1P::doDraw(Graphics&)
+void ObjChallenge1P::doDraw(Graphics& gfx)
 {
 	/*
 	stwu     r1, -0x10(r1)

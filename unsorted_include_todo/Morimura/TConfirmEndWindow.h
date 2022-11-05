@@ -82,7 +82,7 @@ struct ObjBase {
 	virtual void _5C() = 0;                             // _5C
 	virtual void doUpdateFadeout();                     // _60
 	virtual void doUpdateFadeoutFinish();               // _64
-	virtual void doDraw(Graphics&);                     // _68
+	virtual void doDraw(Graphics& gfx);                 // _68
 	virtual void doConfirmSetScene(SetSceneArg&);       // _6C (weak)
 	virtual void doConfirmStartScene(StartSceneArg*);   // _70 (weak)
 	virtual void doConfirmEndScene(EndSceneArg*&);      // _74 (weak)
@@ -116,7 +116,7 @@ struct ObjSMenuPauseVS {
 	virtual void doUpdateFinish();                      // _5C
 	virtual void doUpdateFadeout();                     // _60
 	virtual void doUpdateFadeoutFinish();               // _64
-	virtual void doDraw(Graphics&);                     // _68
+	virtual void doDraw(Graphics& gfx);                 // _68
 	virtual void _6C() = 0;                             // _6C
 	virtual void _70() = 0;                             // _70
 	virtual void _74() = 0;                             // _74
@@ -160,7 +160,7 @@ struct ObjWorldMapInfoWindow0 {
 	virtual void _5C() = 0;                             // _5C
 	virtual void doUpdateFadeout();                     // _60
 	virtual void doUpdateFadeoutFinish();               // _64
-	virtual void doDraw(Graphics&);                     // _68
+	virtual void doDraw(Graphics& gfx);                 // _68
 	virtual void _6C() = 0;                             // _6C
 	virtual void _70() = 0;                             // _70
 	virtual void _74() = 0;                             // _74
@@ -211,7 +211,7 @@ struct ObjSMenuBase {
 	virtual void _5C() = 0;                             // _5C
 	virtual void doUpdateFadeout();                     // _60
 	virtual void doUpdateFadeoutFinish();               // _64
-	virtual void doDraw(Graphics&);                     // _68
+	virtual void doDraw(Graphics& gfx);                 // _68
 	virtual void _6C() = 0;                             // _6C
 	virtual void _70() = 0;                             // _70
 	virtual void _74() = 0;                             // _74
@@ -240,7 +240,7 @@ struct TConfirmEndWindow : public CNode, public ObjBase, public ObjSMenuPauseVS,
 	virtual void doUpdateFadeinFinish();                // _54
 	virtual void doUpdateFadeout();                     // _60
 	virtual void doUpdateFadeoutFinish();               // _64
-	virtual void doDraw(Graphics&);                     // _68
+	virtual void doDraw(Graphics& gfx);                 // _68
 
 	TConfirmEndWindow(const char*);
 	void setRetireMsg(unsigned long long);

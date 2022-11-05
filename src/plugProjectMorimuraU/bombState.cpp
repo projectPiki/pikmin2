@@ -62,7 +62,7 @@ void Bomb::StateWait::exec(EnemyBase* enemy)
 	}
 
 	if (!bomb->isStopMotion()) {
-		bomb->addDamage(sys->m_secondsPerFrame, 1.0f);
+		bomb->addDamage(sys->m_deltaTime, 1.0f);
 		bomb->m_soundObj->startSound(PSSE_EN_BOMB_LOOP, 0);
 	} else if (bomb->isAnimStart()) {
 		bomb->setEvent(0, EB_22);
@@ -115,7 +115,7 @@ void Bomb::StateBomb::init(EnemyBase* enemy, StateArg* stateArg)
 void StateBomb::exec(EnemyBase* enemy)
 {
 	enemy->m_soundObj->startSound(PSSE_EN_BOMB_LOOP, 0);
-	enemy->addDamage(sys->m_secondsPerFrame, 1.0f);
+	enemy->addDamage(sys->m_deltaTime, 1.0f);
 
 	if (enemy->m_health <= 0.0f) {
 		_10++;

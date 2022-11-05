@@ -52,7 +52,7 @@ void StateWait::exec(EnemyBase* enemy)
 {
 	Obj* rock = static_cast<Obj*>(enemy);
 	if (rock->_2AC != 0.0f) {
-		rock->m_timer += sys->m_secondsPerFrame;
+		rock->m_timer += sys->m_deltaTime;
 		if (rock->m_timer > 1.5f) {
 			transit(rock, ROCK_Appear, nullptr);
 		}
@@ -243,7 +243,7 @@ void StateMove::exec(EnemyBase* enemy)
 	Obj* rock = static_cast<Obj*>(enemy);
 	rock->updateMoveVelocity();
 	rock->moveRockScaleUp();
-	rock->m_timer += sys->m_secondsPerFrame;
+	rock->m_timer += sys->m_deltaTime;
 	rock->updateWaterEffectPosition();
 	rock->getJAIObject()->startSound(PSSE_EN_ROCK_ROLL, 0);
 

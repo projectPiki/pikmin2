@@ -104,7 +104,7 @@ void Obj::startEscapeSE()
 		return;
 	}
 
-	m_escapeSfxTimer += sys->m_secondsPerFrame;
+	m_escapeSfxTimer += sys->m_deltaTime;
 }
 } // namespace BombOtakara
 } // namespace Game

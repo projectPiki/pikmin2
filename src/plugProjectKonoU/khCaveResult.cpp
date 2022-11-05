@@ -1521,7 +1521,7 @@ blr
  * Address:	803F9744
  * Size:	000760
  */
-void ObjCaveResult::doDraw(Graphics&)
+void ObjCaveResult::doDraw(Graphics& gfx)
 {
 	/*
 stwu     r1, -0xd0(r1)

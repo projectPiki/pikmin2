@@ -95,7 +95,7 @@ struct ObjBase {
 	virtual void _5C() = 0;                           // _5C
 	virtual void doUpdateFadeout();                   // _60 (weak)
 	virtual void doUpdateFadeoutFinish();             // _64
-	virtual void doDraw(Graphics&);                   // _68
+	virtual void doDraw(Graphics& gfx);               // _68
 	virtual void doConfirmSetScene(SetSceneArg&);     // _6C (weak)
 	virtual void doConfirmStartScene(StartSceneArg*); // _70 (weak)
 	virtual void doConfirmEndScene(EndSceneArg*&);    // _74 (weak)
@@ -155,7 +155,7 @@ struct TScrollList {
 	virtual void _5C() = 0;                       // _5C
 	virtual void doUpdateFadeout();               // _60 (weak)
 	virtual void doUpdateFadeoutFinish();         // _64
-	virtual void doDraw(Graphics&);               // _68
+	virtual void doDraw(Graphics& gfx);           // _68
 	virtual void _6C() = 0;                       // _6C
 	virtual void _70() = 0;                       // _70
 	virtual void _74() = 0;                       // _74
@@ -185,7 +185,7 @@ struct TZukanBase : public CNode, public ObjBase, public TTestBase, public TScro
 	virtual void doUpdate();                       // _58
 	virtual void doUpdateFadeout();                // _60 (weak)
 	virtual void doUpdateFadeoutFinish();          // _64
-	virtual void doDraw(Graphics&);                // _68
+	virtual void doDraw(Graphics& gfx);            // _68
 	virtual void _78() = 0;                        // _78
 	virtual void paneInit();                       // _80
 	virtual void changePaneInfo();                 // _84

@@ -234,7 +234,7 @@ void StateWait::init(EnemyBase* enemy, StateArg* stateArg)
 void StateWait::exec(EnemyBase* enemy)
 {
 	Obj* damagumo = static_cast<Obj*>(enemy);
-	damagumo->m_stateTimer += sys->m_secondsPerFrame;
+	damagumo->m_stateTimer += sys->m_deltaTime;
 
 	if (damagumo->m_health <= 0.0f) {
 		damagumo->m_nextState = DAMAGUMO_Dead;
@@ -338,7 +338,7 @@ void StateWalk::exec(EnemyBase* enemy)
 {
 	Obj* damagumo = static_cast<Obj*>(enemy);
 	damagumo->getTargetPosition();
-	damagumo->m_stateTimer += sys->m_secondsPerFrame;
+	damagumo->m_stateTimer += sys->m_deltaTime;
 
 	if (EnemyFunc::isStartFlick(damagumo, false)) {
 		damagumo->m_nextState = DAMAGUMO_Flick;

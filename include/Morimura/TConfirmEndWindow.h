@@ -16,7 +16,7 @@ struct TConfirmEndWindow : public og::newScreen::ObjWorldMapInfoWindow0 {
 	virtual void doUpdateFadeinFinish();                // _4C
 	virtual bool doUpdateFadeout();                     // _58
 	virtual void doUpdateFadeoutFinish();               // _5C
-	virtual void doDraw(Graphics&);                     // _60
+	virtual void doDraw(Graphics& gfx);                 // _60
 
 	void setRetireMsg(u64);
 
