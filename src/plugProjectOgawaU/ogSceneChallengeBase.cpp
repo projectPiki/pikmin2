@@ -1,5 +1,5 @@
 #include "types.h"
-#include "og/newScreen/ChallengeBase.h"
+#include "og/newScreen/Challenge.h"
 
 namespace og {
 namespace newScreen {

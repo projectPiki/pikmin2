@@ -34,15 +34,22 @@ struct Mgr;
 
 struct MgrCommand : public CNode {
 	virtual ~MgrCommand(); // _08 (weak)
+
+	// _00     = VTBL
+	// _00-_18 = CNode
 };
 
 struct SceneArgBase {
 	virtual SceneType getSceneType() const; // _08 (weak)
 	virtual int getClassSize() = 0;         // _0C
+
+	// _00 = VTBL
 };
 
 struct StartSceneArg : public SceneArgBase {
-	float _04; // _04
+
+	// _00 = VTBL
+	f32 _04; // _04
 };
 
 struct SetSceneArg : public SceneArgBase {
@@ -62,6 +69,7 @@ struct SetSceneArg : public SceneArgBase {
 	virtual SceneType getSceneType() const; // _08
 	virtual int getClassSize();             // _0C
 
+	// _00 = VTBL
 	SceneType m_sceneType;                    // _04
 	u8 _08;                                   // _08
 	bool _09;                                 // _09
@@ -71,6 +79,7 @@ struct SetSceneArg : public SceneArgBase {
 struct EndSceneArg : public SceneArgBase {
 	virtual int getClassSize(); // _0C (weak)
 
+	// _00 = VTBL
 	u8 _04; // _04
 };
 
@@ -131,24 +140,24 @@ struct SceneBase {
 	u32 getBackupSceneType();
 	void setBGMode(int);
 
-	// VTBL _00
+	// _00 = VTBL
 	char m_name[256];                                 // _004
 	Controller* m_controller;                         // _104
 	Mgr* m_screenMgr;                                 // _108
 	Delegate1<SceneBase, Resource::MgrCommand*> _10C; // _10C
 	int m_stateID;                                    // _120
-	float m_someTime;                                 // _124
+	f32 m_someTime;                                   // _124
 	Resource::MgrCommand m_command;                   // _128
 	ObjMgrBase* m_objMgr;                             // _218
 	u8* m_dispMemberBuffer;                           // _21C
 };
 
-struct IObjBase : public CNode, JKRDisposer {
+struct IObjBase : public CNode, public JKRDisposer {
 	IObjBase()
 	    : CNode("No Name")
-	    , JKRDisposer()
 	{
 	}
+
 	// vtable 2
 	virtual ~IObjBase();                          // _00
 	virtual bool update()                    = 0; // _04
@@ -158,6 +167,11 @@ struct IObjBase : public CNode, JKRDisposer {
 	virtual void setOwner(SceneBase*)        = 0; // _14
 	virtual SceneBase* getOwner() const      = 0; // _18
 	virtual void create(JKRArchive*)         = 0; // _1C
+
+	// _00     = VTBL1
+	// _18     = VTBL2
+	// _00-_18 = CNode
+	// _18-_30 = JKRDisposer
 };
 
 struct ObjBase : public IObjBase {
@@ -192,6 +206,9 @@ struct ObjBase : public IObjBase {
 	og::Screen::DispMemberBase* getDispMember();
 	Controller* getGamePad() const;
 
+	// _00     = VTBL1
+	// _18     = VTBL2
+	// _00-_30 = IObjBase
 	int _30;            // _30
 	SceneBase* m_owner; // _34
 };
@@ -201,6 +218,9 @@ struct MgrBase : public JKRDisposer {
 	virtual bool setScene(SetSceneArg&)     = 0; // _0C
 	virtual bool startScene(StartSceneArg*) = 0; // _10
 	virtual void endScene(EndSceneArg*)     = 0; // _14
+
+	// _00     = VTBL
+	// _00-_18 = JKRDisposer
 };
 
 struct Mgr : public MgrBase {
@@ -224,9 +244,9 @@ struct Mgr : public MgrBase {
 	void update();
 	void draw(Graphics&);
 	void clearBackupSceneInfo();
-	void changeScene(Screen::SetSceneArg&, unsigned char*);
+	void changeScene(Screen::SetSceneArg&, u8*);
 	void isCurrentSceneLoading();
-	void copyDispMember(unsigned char*, unsigned char*);
+	void copyDispMember(u8*, u8*);
 	void setDispMember(og::Screen::DispMemberBase*);
 	void getDispMember();
 	void getSceneType();
@@ -236,6 +256,8 @@ struct Mgr : public MgrBase {
 	void setBackupScene();
 	void isAnyReservation() const;
 
+	// _00     = VTBL
+	// _00-_18 = MgrBase
 	u8 _18;                        // _18
 	u8 _19;                        // _19
 	u8 _1A;                        // _1A
@@ -272,7 +294,7 @@ struct ObjMgrBase {
 	bool update();
 	bool end(EndSceneArg*);
 
-	CNode _00;
+	CNode _00; // _00
 };
 } // namespace Screen
 
@@ -286,6 +308,9 @@ struct Mgr : public Screen::Mgr {
 	virtual void drawBG(Graphics&);             // _28
 
 	void create();
+
+	// _00     = VTBL
+	// _00-_A8 = Mgr
 };
 
 } // namespace newScreen

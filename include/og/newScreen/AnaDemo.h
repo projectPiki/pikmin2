@@ -42,35 +42,55 @@ struct AnaDemo : public ::Screen::SceneBase {
 	virtual void doCreateObj(JKRArchive*);                  // _20
 	virtual void doUserCallBackFunc(Resource::MgrCommand*); // _24
 
+	// _00      = VTBL
+	// _00-_220 = Screen::SceneBase
 	SceneType m_sceneType; // _220
 };
 
 struct ObjAnaDemo : public ::Screen::ObjBase {
 	ObjAnaDemo(const char*);
 
-	og::Screen::DispMemberAnaDemo* _38;
-	u32 _3C;
-	u32 _40;
-	u32 _44;
-	u32 _48;
-	P2DScreen::Mgr_tuning* m_mgrTuning;
-	og::Screen::MenuMgr* m_menuMgr;
-	u32 _54;
-	og::Screen::AnimText_Screen* _58;
-	og::Screen::AnimText_Screen* _5C;
-	og::Screen::AnimText_Screen* _60;
-	og::Screen::AnimGroup* m_animGroup;
-	float _68;
-	u32 _6C;
-	J2DPane* m_pane;
-	float _74;
-	float _78;
-	u8 _7C[4];
-	float _80;
-	float _84;
-	u32 _88;
-	float _8C;
-	float _90;
+	virtual ~ObjAnaDemo();                                // _08 (weak)
+	virtual bool doStart(const ::Screen::StartSceneArg*); // _44
+	virtual bool doEnd(const ::Screen::EndSceneArg*);     // _48
+	virtual void doCreate(JKRArchive*);                   // _4C
+	virtual bool doUpdateFadein();                        // _50
+	virtual void doUpdateFadeinFinish();                  // _54
+	virtual bool doUpdate();                              // _58
+	virtual void doUpdateFinish();                        // _5C
+	virtual bool doUpdateFadeout();                       // _60
+	virtual void doUpdateFadeoutFinish();                 // _64
+	virtual void doDraw(Graphics&);                       // _68
+
+	void setBlinkMenu();
+	void commonUpdate();
+
+	// _00     = VTBL1
+	// _18     = VTBL2
+	// _00-_38 = Screen::ObjBase
+	og::Screen::DispMemberAnaDemo* _38; // _38
+	u32 _3C;                            // _3C
+	u32 _40;                            // _40
+	u32 _44;                            // _44
+	u32 _48;                            // _48
+	P2DScreen::Mgr_tuning* m_mgrTuning; // _4C
+	og::Screen::MenuMgr* m_menuMgr;     // _50
+	u32 _54;                            // _54
+	og::Screen::AnimText_Screen* _58;   // _58
+	og::Screen::AnimText_Screen* _5C;   // _5C
+	og::Screen::AnimText_Screen* _60;   // _60
+	og::Screen::AnimGroup* m_animGroup; // _64
+	f32 _68;                            // _68
+	u32 _6C;                            // _6C
+	J2DPane* m_pane;                    // _70
+	f32 _74;                            // _74
+	f32 _78;                            // _78
+	u8 _7C[4];                          // _7C
+	f32 _80;                            // _80
+	f32 _84;                            // _84
+	u32 _88;                            // _88
+	f32 _8C;                            // _8C
+	f32 _90;                            // _90
 };
 } // namespace newScreen
 } // namespace og
