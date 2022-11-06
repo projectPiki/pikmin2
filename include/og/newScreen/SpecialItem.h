@@ -5,13 +5,11 @@
 #include "JSystem/J2D/J2DPane.h"
 
 namespace P2DScreen {
-// this is just a temp dec until the header is made
 struct Mgr_tuning;
 } // namespace P2DScreen
 
 namespace og {
 namespace Screen {
-// these are temp decs until these headers are made
 struct DispMemberSpecialItem;
 } // namespace Screen
 
@@ -27,18 +25,36 @@ struct SpecialItem : public ::Screen::SceneBase {
 	virtual void doCreateObj(JKRArchive*);                                    // _20
 	virtual void doUserCallBackFunc(Resource::MgrCommand*);                   // _24
 	virtual bool doConfirmSetScene(::Screen::SetSceneArg&);                   // _30
+
+	// _00      = VTBL
+	// _00-_220 = Screen::SceneBase
 };
 
 struct ObjSpecialItem : public ::Screen::ObjBase {
 	ObjSpecialItem(const char*);
 
+	virtual ~ObjSpecialItem();                            // _08 (weak)
+	virtual bool doStart(const ::Screen::StartSceneArg*); // _44
+	virtual bool doEnd(const ::Screen::EndSceneArg*);     // _48
+	virtual void doCreate(JKRArchive*);                   // _4C
+	virtual bool doUpdateFadein();                        // _50
+	virtual void doUpdateFadeinFinish();                  // _54
+	virtual bool doUpdate();                              // _58
+	virtual void doUpdateFinish();                        // _5C
+	virtual bool doUpdateFadeout();                       // _60
+	virtual void doUpdateFadeoutFinish();                 // _64
+	virtual void doDraw(Graphics& gfx);                   // _68
+
+	// _00     = VTBL1
+	// _18     = VTBL2
+	// _00-_38 = Screen::ObjBase
 	og::Screen::DispMemberSpecialItem* _38; // _38
 	P2DScreen::Mgr_tuning* _3C;             // _3C
 	J2DPane* _40;                           // _40
 	u8 _44[0x10];                           // _44 - unknown type(s)
 	u8 _54[0x4];                            // _54 - unknown type
-	float _58;                              // _58
-	float _5C;                              // _5C
+	f32 _58;                                // _58
+	f32 _5C;                                // _5C
 };
 } // namespace newScreen
 } // namespace og

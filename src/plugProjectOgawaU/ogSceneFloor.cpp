@@ -1,7 +1,7 @@
 #include "Dolphin/stl.h"
 #include "JSystem/JUT/JUTException.h"
 #include "LoadResource.h"
-#include "og/Floor.h"
+#include "og/newScreen/Floor.h"
 #include "og/newScreen/ogUtil.h"
 #include "og/Screen/ogScreen.h"
 #include "Screen/Enums.h"

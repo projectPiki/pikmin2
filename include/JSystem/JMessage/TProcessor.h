@@ -53,6 +53,7 @@ struct TProcessor {
 	unknown on_tag_();
 	unknown process_character_();
 
+	// _00 = VTBL
 	TReference* _04;              // _04
 	TResource* _08;               // _08
 	const char* _0C;              // _0C
@@ -107,6 +108,8 @@ struct TSequenceProcessor : public TProcessor {
 	unknown process_setMessageIndex_reserved_(u16);
 	unknown process_setMessageCode_(const TSequenceProcessor*, u16, u16);
 
+	// _00     = VTBL
+	// _00-_38 = TProcessor
 	TControl* _38;              // _38
 	int _3C;                    // _3C
 	ProcessOnJumpCallBack* _40; // _40 - processorCallBack(void*, ulong) pointer?
@@ -127,6 +130,9 @@ struct TRenderingProcessor : public TProcessor {
 	virtual void do_end();                                                      // _44
 
 	void process(const char*);
+
+	// _00     = VTBL
+	// _00-_38 = TProcessor
 };
 } // namespace JMessage
 

@@ -43,13 +43,34 @@ struct KanteiDemo : public ::Screen::SceneBase {
 	virtual void doCreateObj(JKRArchive*);                              // _20
 	virtual void doUserCallBackFunc(Resource::MgrCommand*);             // _24
 
-	// _00 VTBL
-	::Screen::ObjBase* m_objBase;
+	// _00      = VTBL
+	// _00-_220 = Screen::SceneBase
+	::Screen::ObjBase* m_objBase; // _220
 };
 
 struct ObjKantei : ::Screen::ObjBase {
 	ObjKantei(const char*);
 
+	virtual ~ObjKantei();                                 // _08 (weak)
+	virtual bool doStart(const ::Screen::StartSceneArg*); // _44
+	virtual bool doEnd(const ::Screen::EndSceneArg*);     // _48
+	virtual void doCreate(JKRArchive*);                   // _4C
+	virtual bool doUpdateFadein();                        // _50
+	virtual void doUpdateFadeinFinish();                  // _54
+	virtual bool doUpdate();                              // _58
+	virtual void doUpdateFinish();                        // _5C
+	virtual bool doUpdateFadeout();                       // _60
+	virtual void doUpdateFadeoutFinish();                 // _64
+	virtual void doDraw(Graphics& gfx);                   // _68
+
+	void scaleAnimItemName();
+	void commonUpdate();
+	void finishKantei();
+	void doDrawMsg(Graphics&);
+
+	// _00     = VTBL1
+	// _18     = VTBL2
+	// _00-_38 = Screen::ObjBase
 	og::Screen::DispMemberKantei* _38;     // _38
 	P2DScreen::Mgr_tuning* _3C;            // _3C
 	P2DScreen::Mgr_tuning* _40;            // _40

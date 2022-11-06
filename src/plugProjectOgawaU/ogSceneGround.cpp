@@ -2,7 +2,7 @@
 #include "Morimura/HurryUp.h"
 #include "Screen/Bases.h"
 #include "Screen/Enums.h"
-#include "og/Ground.h"
+#include "og/newScreen/Ground.h"
 #include "types.h"
 
 /*

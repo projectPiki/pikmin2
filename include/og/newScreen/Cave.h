@@ -5,12 +5,10 @@
 #include "JSystem/J2D/J2DPane.h"
 
 namespace P2DScreen {
-// this is just a temp dec until the header is made
 struct Mgr_tuning;
 } // namespace P2DScreen
 
 namespace og {
-// these are temp decs until these headers are made
 namespace Screen {
 struct DispMemberCave;
 struct OtakaraSensor;

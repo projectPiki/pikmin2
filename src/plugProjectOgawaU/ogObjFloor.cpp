@@ -1,7 +1,7 @@
 #include "JSystem/JGeometry.h"
 #include "JSystem/JUT/TColor.h"
 #include "types.h"
-#include "og/Floor.h"
+#include "og/newScreen/Floor.h"
 #include "Dolphin/string.h"
 #include "Dolphin/stl.h"
 #include "Graphics.h"
