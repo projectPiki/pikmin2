@@ -9,14 +9,15 @@ struct TPressStart : public TScreenBase {
 	virtual void doSetArchive(JKRArchive*); // _24
 	virtual void doOpenScreen(ArgOpen*);    // _28
 	virtual void doCloseScreen(ArgClose*);  // _2C
-	virtual void doUpdateStateWait();       // _3C
-	virtual void doUpdateStateClose();      // _40
+	virtual bool doUpdateStateWait();       // _3C
+	virtual bool doUpdateStateClose();      // _40
 	virtual void doDraw();                  // _44
-	virtual void getName();                 // _48 (weak)
+	virtual char* getName();                // _48 (weak)
 
 	void startLoop_();
 
-	// _00 VTBL
+	// _00     = VTBL
+	// _00-_08 = TScreenBase
 };
 } // namespace Screen
 } // namespace ebi

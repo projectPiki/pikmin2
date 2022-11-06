@@ -14,32 +14,40 @@ struct TObjBase;
 namespace Pikmin {
 struct TBoidParamMgr : public CNode {
 	virtual ~TBoidParamMgr(); // _08 (weak)
+
+	// _00     = VTBL
+	// _00-_18 = CNode
 };
 
 struct TUnit {
 	enum enumState { UNKNOWN = 0 };
 
+	TUnit();
+
+	~TUnit();
+
 	virtual void getCreatureType(); // _08 (weak)
 	virtual void isCalc();          // _0C
 
-	~TUnit();
 	void init(TMgr*, long);
 	void goDestination();
 	void beAttacked();
 	void alive();
 	void isAssemble();
 	void isWalk();
-	void startState(TUnit::enumState);
+	void startState(enumState);
 	void update();
 	void updateSmoothWalk_(Vector2f&);
 	void updateEnemyReaction_();
-	TUnit();
+
+	// _00 = VTBL
 };
 
 struct TMgr : public CNode {
+	TMgr();
+
 	virtual ~TMgr(); // _08 (weak)
 
-	TMgr();
 	void setArchive(JKRArchive*);
 	void initUnit();
 	void update();
@@ -48,15 +56,18 @@ struct TMgr : public CNode {
 	void forceArriveDest();
 	void assemble();
 	void quickAssemble();
-	void startBoid1(float);
-	void startBoid2(float);
-	void startBoid3(float);
-	void startWindBlow(ebi::EGEBox2f&);
+	void startBoid1(f32);
+	void startBoid2(f32);
+	void startBoid3(f32);
+	void startWindBlow(EGEBox2f&);
 	void startDemo();
-	void enemyPushOut(ebi::title::TObjBase*);
+	void enemyPushOut(TObjBase*);
 	void updateCalcBoid_();
 	void isAssemble();
 	void getUnit(long);
+
+	// _00     = VTBL
+	// _00-_18 = CNode
 };
 } // namespace Pikmin
 } // namespace title

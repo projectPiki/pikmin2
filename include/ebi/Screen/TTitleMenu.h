@@ -19,11 +19,14 @@ struct TTitleMenu : public TScreenBase {
 	virtual char* getName();                // _48 (weak)
 
 	void setController(Controller*);
-	void openMenuSet(ebi::Screen::ArgOpen*);
+	void openMenuSet(ArgOpen*);
 	void isDecide();
 	void isCancel();
 	void showPika_(long);
 	void hidePika_(long);
+
+	// _00     = VTBL
+	// _00-_08 = TScreenBase
 };
 } // namespace Screen
 } // namespace ebi

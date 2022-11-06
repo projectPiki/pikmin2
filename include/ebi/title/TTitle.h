@@ -17,8 +17,8 @@ struct TTitleCameraMgr : public LookAtCamera {
 	struct Parms : public Parameters {
 		inline Parms();
 
-		Parm<f32> m_cam1;
-		Parm<f32> m_cam2;
+		Parm<f32> m_cam1; // _1A4
+		Parm<f32> m_cam2; // _1CC
 	};
 
 	virtual ~TTitleCameraMgr(); // _08 (weak)
@@ -26,7 +26,9 @@ struct TTitleCameraMgr : public LookAtCamera {
 
 	void update();
 
-	Parms m_parms;
+	// _00      = VTBL
+	// _00-_198 = LookAtCamera
+	Parms m_parms; // _198
 };
 
 /**
@@ -121,9 +123,10 @@ struct TTitleLightMgr : public LightMgr {
 struct TTitleMgr : public CNode {
 	enum enumState { UNKNOWN };
 
+	TTitleMgr();
+
 	virtual ~TTitleMgr(); // _08 (weak)
 
-	TTitleMgr();
 	void globalInstance();
 	void Instance();
 	void deleteInstance();
@@ -132,11 +135,11 @@ struct TTitleMgr : public CNode {
 	void loadResource();
 	void initAfterLoadRes();
 	void setController(Controller*);
-	void inField(ebi::title::TObjBase*);
-	void inViewField(ebi::title::TObjBase*);
-	void isInViewField(ebi::title::TObjBase*);
-	void isOutViewField(Vector2f&, float);
-	void isOutViewField(ebi::title::TObjBase*);
+	void inField(TObjBase*);
+	void inViewField(TObjBase*);
+	void isInViewField(TObjBase*);
+	void isOutViewField(Vector2f&, f32);
+	void isOutViewField(TObjBase*);
 	void getPosOutOfViewField();
 	void start();
 	void breakup();
@@ -145,12 +148,15 @@ struct TTitleMgr : public CNode {
 	void boidToAssemble(long);
 	void isControllerOK();
 	void isPressStart();
-	void startState(ebi::title::TTitleMgr::enumState);
+	void startState(enumState);
 	void update();
 	void updateState();
 	void checkEncounter_();
 	void draw();
 	void readTitleParam(JKRArchive*, char*);
+
+	// _00     = VTBL
+	// _00-_18 = CNode
 };
 } // namespace title
 } // namespace ebi

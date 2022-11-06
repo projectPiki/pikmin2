@@ -20,9 +20,6 @@ struct TMgr;
 } // namespace ebi
 
 namespace ebi {
-/*
- * Option Screens
- */
 namespace Screen {
 struct TOptionParameter {
 	void initParamForTest();
@@ -39,23 +36,26 @@ struct TOptionParameter {
 
 struct TOption : public TScreenBase {
 	TOption();
+
 	~TOption();
 
-	virtual void doSetArchive(JKRArchive*); // _1C
-	virtual void doOpenScreen(ArgOpen*);    // _20
-	virtual void doCloseScreen(ArgClose*);  // _24
-	virtual void doInitWaitState();         // _2C
-	virtual bool doUpdateStateOpen();       // _30
-	virtual bool doUpdateStateWait();       // _34
-	virtual bool doUpdateStateClose();      // _38
-	virtual void doDraw();                  // _3C
-	virtual char* getName();                // _40
+	virtual void doSetArchive(JKRArchive*); // _24
+	virtual void doOpenScreen(ArgOpen*);    // _28
+	virtual void doCloseScreen(ArgClose*);  // _2C
+	virtual void doInitWaitState();         // _34
+	virtual bool doUpdateStateOpen();       // _38
+	virtual bool doUpdateStateWait();       // _3C
+	virtual bool doUpdateStateClose();      // _40
+	virtual void doDraw();                  // _44
+	virtual char* getName();                // _48
 
 	void initScreen_() const;
 	void setOptionParamToScreen_();
 	void loadResource();
 	void setController(Controller*);
 
+	// _00     = VTBL
+	// _00-_08 = TScreenBase
 	Controller* m_controller;                    // _00C
 	u8 _010;                                     // _010
 	EUTPadInterface_countNum m_padInterfaces[4]; // _014
@@ -114,111 +114,6 @@ struct TOption : public TScreenBase {
 	E2DCallBack_WindowCursor _EAC[10]; // __EAC
 };
 } // namespace Screen
-
-/*
- * ebi::Option::*
- */
-namespace Option {
-enum StateID { Standby = 0, LoadOption, ScreenOpen, ScreenWait, ScreenClose, SaveMgr, WaitCloseForNoCard, WorldMapInfoWindow };
-// TODO: Additional state data members, if any.
-struct FSMState : public Game::FSMState<TMgr> {
-	inline FSMState(int id, const char* name)
-	    : Game::FSMState<TMgr>(id)
-	    , m_name(name) {};
-
-	virtual void init(TMgr*, Game::StateArg*);    // _00
-	virtual void exec(TMgr*);                     // _04
-	virtual void do_init(TMgr*, Game::StateArg*); // _18
-	virtual void do_exec(TMgr*);                  // _1C
-
-	const char* m_name; // _0C
-};
-
-struct FSMState_LoadOption : public ebi::Option::FSMState {
-	inline FSMState_LoadOption(int id, const char* name)
-	    : FSMState(id, name) {};
-	virtual void do_init(TMgr*, Game::StateArg*); // _18
-	virtual void do_exec(TMgr*);                  // _1C
-
-	u32 _10;
-};
-
-struct FSMState_SaveMgr : public FSMState {
-	inline FSMState_SaveMgr(int id, const char* name)
-	    : FSMState(id, name) {};
-	virtual void do_init(TMgr*, Game::StateArg*); // _18
-	virtual void do_exec(TMgr*);                  // _1C
-};
-
-struct FSMState_ScreenClose : public FSMState {
-	inline FSMState_ScreenClose(int id, const char* name)
-	    : FSMState(id, name) {};
-	virtual void do_init(TMgr*, Game::StateArg*); // _18
-	virtual void do_exec(TMgr*);                  // _1C
-};
-
-struct FSMState_ScreenOpen : public FSMState {
-	inline FSMState_ScreenOpen(int id, const char* name)
-	    : FSMState(id, name) {};
-	virtual void do_init(TMgr*, Game::StateArg*); // _18
-	virtual void do_exec(TMgr*);                  // _1C
-};
-
-struct FSMState_ScreenWait : public FSMState {
-	inline FSMState_ScreenWait(int id, const char* name)
-	    : FSMState(id, name) {};
-	virtual void do_init(TMgr*, Game::StateArg*); // _18
-	virtual void do_exec(TMgr*);                  // _1C
-};
-
-struct FSMState_WaitCloseForNoCard : public FSMState {
-	inline FSMState_WaitCloseForNoCard(int id, const char* name)
-	    : FSMState(id, name)
-	    , _10(0)
-	    , _14(0) {};
-	virtual void do_init(TMgr*, Game::StateArg*); // _18
-	virtual void do_exec(TMgr*);                  // _1C
-
-	u32 _10; // _10
-	u32 _14; // _14
-};
-
-struct FSMState_WorldMapInfoWindow : public FSMState {
-	inline FSMState_WorldMapInfoWindow(int id, const char* name)
-	    : FSMState(id, name) {};
-	virtual void do_init(TMgr*, Game::StateArg*); // _18
-	virtual void do_exec(TMgr*);                  // _1C
-};
-
-struct FSMStateMachine : public Game::StateMachine<TMgr> {
-	virtual void init(TMgr*); // _00
-};
-
-struct TMgr {
-
-	TMgr();
-	~TMgr();
-
-	void draw();
-	int getStateID();
-	void goEnd_();
-	bool isFinish();
-	void loadResource();
-	void setController(Controller*);
-	void start();
-	void update();
-
-	void forceQuit();
-	void showInfo();
-
-	Screen::TOption m_optionScreen; // _000
-	ebi::Save::TMgr* m_saveMgr;     // _F18
-	Controller* m_controller;       // _F1C
-	u8 _F20;                        // _F20
-	FSMStateMachine m_stateMachine; // _F24
-	u8 _F28;                        // _F28
-};
-} // namespace Option
 } // namespace ebi
 
 #endif

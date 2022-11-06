@@ -12,14 +12,20 @@ namespace title {
 namespace Kogane {
 struct TAnimFolder {
 	virtual void getAnimRes(long); // _08 (weak)
+
+	// _00 = VTBL
 };
 
 struct TMgr : public CNode {
+	TMgr();
+
 	virtual ~TMgr(); // _08 (weak)
 
-	TMgr();
 	void setArchive(JKRArchive*);
 	void initUnit();
+
+	// _00     = VTBL
+	// _00-_18 = CNode
 };
 
 struct TUnit {
@@ -34,8 +40,10 @@ struct TUnit {
 	void goHome();
 	void outOfCalc();
 	void isController();
-	void startState(TUnit::enumState);
+	void startState(enumState);
 	void update();
+
+	// _00 = VTBL
 };
 } // namespace Kogane
 } // namespace title

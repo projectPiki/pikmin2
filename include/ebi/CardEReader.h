@@ -1,5 +1,5 @@
-#ifndef _EBI_CARDEREADER_TMGR_H
-#define _EBI_CARDEREADER_TMGR_H
+#ifndef _EBI_CARDEREADER_H
+#define _EBI_CARDEREADER_H
 
 namespace ebi {
 namespace CardEReader {
@@ -17,7 +17,8 @@ struct TMgr {
 	void isFinish();
 	void threadProc(void*);
 	void tryUploadToGBA_();
-	void goEnd_(ebi::CardEReader::TMgr::enumErr);
+	void goEnd_(enumErr);
+
 	// _00 VTBL
 };
 } // namespace CardEReader

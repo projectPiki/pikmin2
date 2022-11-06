@@ -8,35 +8,46 @@ namespace ebi {
 struct TScreenProgre {
 	enum enumState { UNKNOWN };
 
+	TScreenProgre();
+
 	virtual void setArchive(JKRArchive*); // _08
 
 	void loadResource();
-	void startScreen(long, unsigned long);
-	void fadeout(unsigned long);
+	void startScreen(long, u32);
+	void fadeout(u32);
 	void isFinish();
-	void startState(ebi::TScreenProgre::enumState, unsigned long);
+	void startState(enumState, u32);
 	void update();
 	void draw();
 	void setDecide();
-	TScreenProgre();
+
+	// _00 = VTBL
 };
 
 namespace Screen {
 enum UpdateState { TSB_US_Finish = 0, TSB_US_Open = 1, TSB_US_Wait = 2, TSB_US_Close = 3 };
 
 struct ArgOpen {
-	virtual char* getName() { return "ArgOpen"; }
+	virtual char* getName() { return "ArgOpen"; } // _08 (weak)
+
+	// _00 = VTBL
 };
 
 struct ArgOpenOmake : public ArgOpen {
-	virtual char* getName();
+	virtual char* getName(); // _08 (weak)
+
+	// _00 = VTBL
 };
 
 struct ArgOpenTitleMenu : public ArgOpen {
+
+	// _00 = VTBL
 };
 
 struct ArgOpenTMBack : public ArgOpen {
-	float _04; // _04
+
+	// _00 = VTBL
+	f32 _04; // _04
 };
 
 struct ArgClose {
@@ -54,6 +65,8 @@ struct TScreenBaseInterface {
 	virtual void update()                = 0; // _18
 	virtual void draw()                  = 0; // _1C
 	virtual u8 isFinishScreen()          = 0; // _20
+
+	// _00 = VTBL
 };
 
 struct TScreenBase : public TScreenBaseInterface {
@@ -85,6 +98,7 @@ struct TScreenBase : public TScreenBaseInterface {
 	u8 isWaitScreen();
 	u8 isCloseScreen();
 
+	// _00 = VTBL
 	JKRArchive* m_archive; // _04
 	s32 m_state;           // _08
 };

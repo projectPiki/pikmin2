@@ -7,6 +7,10 @@ namespace ebi {
 namespace Screen {
 namespace FileSelect {
 struct TMainScreen : public TScreenBase {
+	TMainScreen();
+
+	~TMainScreen();
+
 	virtual void doSetArchive(JKRArchive*); // _24
 	virtual void doOpenScreen(ArgOpen*);    // _28
 	virtual void doCloseScreen(ArgClose*);  // _2C
@@ -18,7 +22,6 @@ struct TMainScreen : public TScreenBase {
 	virtual void doDraw();                  // _44
 	virtual char* getName();                // _48 (weak)
 
-	TMainScreen();
 	void loadResource();
 	void inDataBall(long);
 	void outDataBall(long);
@@ -43,7 +46,7 @@ struct TMainScreen : public TScreenBase {
 	void isFinishCloseMSG();
 	void setYesNo(bool);
 	void updateMsg_();
-	void setMsgID_(unsigned long long, unsigned long long, unsigned long long);
+	void setMsgID_(u64, u64, u64);
 	void inCopyErase();
 	void outCopyErase();
 	void inYesNo_();
@@ -54,9 +57,11 @@ struct TMainScreen : public TScreenBase {
 	void initDataBalls_();
 	void setColorTimgDataBall_(long);
 	void getDataBallColor_(long);
-	void calcDataBallColor_(unsigned long, unsigned long, unsigned long, unsigned long, unsigned long);
-	void setIconColorAlpha_(unsigned char);
-	~TMainScreen();
+	void calcDataBallColor_(u32, u32, u32, u32, u32);
+	void setIconColorAlpha_(u8);
+
+	// _00     = VTBL
+	// _00-_08 = TScreenBase
 };
 } // namespace FileSelect
 } // namespace Screen

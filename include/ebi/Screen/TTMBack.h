@@ -16,7 +16,8 @@ struct TTMBack : public TScreenBase {
 	virtual void doDraw();                              // _44
 	virtual char* getName() { return "TNintendoLogo"; } // _48 (weak)
 
-	// _00 VTBL
+	// _00     = VTBL
+	// _00-_08 = TScreenBase
 	P2DScreen::Mgr_tuning* m_mgrTuning; // _0C
 	u32 _10;                            // _10
 	u32 _14;                            // _14

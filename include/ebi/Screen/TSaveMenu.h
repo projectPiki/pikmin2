@@ -8,6 +8,8 @@ namespace Screen {
 struct TSaveMenu : public TScreenBase {
 	enum enumMsgState { UNKNOWN };
 
+	TSaveMenu();
+
 	virtual void doSetArchive(JKRArchive*); // _24
 	virtual void doOpenScreen(ArgOpen*);    // _28
 	virtual void doCloseScreen(ArgClose*);  // _2C
@@ -18,16 +20,16 @@ struct TSaveMenu : public TScreenBase {
 	virtual void doDraw();                  // _44
 	virtual char* getName();                // _48 (weak)
 
-	TSaveMenu();
 	void loadResource();
 	void openMsg(long);
 	void closeMsg();
 	void noMsg();
 	void isFinishMsg();
-	void startMsgState_(ebi::Screen::TSaveMenu::enumMsgState);
+	void startMsgState_(enumMsgState);
 	void updateMsg_();
 
-	// _00 VTBL
+	// _00     = VTBL
+	// _00-_08 = TScreenBase
 };
 } // namespace Screen
 } // namespace ebi
