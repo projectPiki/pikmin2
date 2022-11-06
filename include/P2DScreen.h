@@ -27,8 +27,8 @@ struct Node : public CNode {
 struct CallBackNode : public Node {
 	CallBackNode() { }
 
-	virtual ~CallBackNode() { } // _08
-	virtual void update();      // _10
+	virtual ~CallBackNode() { } // _08 (weak)
+	virtual void update();      // _10 (weak)
 
 	// _00     = VTBL
 	// _00-_1C = Node
@@ -38,7 +38,7 @@ struct CallBackNode : public Node {
 struct Mgr : public J2DScreen {
 	Mgr();
 
-	virtual ~Mgr() { }                             // _08
+	virtual ~Mgr() { }                             // _08 (weak)
 	virtual void update();                         // _30
 	virtual void draw(Graphics&, J2DGrafContext&); // _9C
 
@@ -55,7 +55,7 @@ struct Mgr : public J2DScreen {
 struct Mgr_tuning : public Mgr {
 	Mgr_tuning();
 
-	virtual ~Mgr_tuning() { }                      // _08
+	virtual ~Mgr_tuning() { }                      // _08 (weak)
 	virtual void draw(Graphics&, J2DGrafContext&); // _9C
 
 	// _00      = VTBL

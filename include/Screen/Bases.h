@@ -52,15 +52,26 @@ struct StartSceneArg : public SceneArgBase {
 	f32 _04; // _04
 };
 
+template <typename T>
+struct StartSceneArgTemplate : public StartSceneArg {
+	virtual int getClassSize(); // _08 (weak)
+
+	// _00     = VTBL
+	// _00-_04 = StartSceneArg
+	u8 _08[0x4]; // _08, unknown
+};
+
 struct SetSceneArg : public SceneArgBase {
 	/**
 	 * @fabricated
 	 * Unsure if p3 and p4 exist or are hardcoded.
 	 * Remove p3 and p4 if they appear to never be set to anything else by a ctor.
 	 */
-	inline SetSceneArg(SceneType sceneType, og::Screen::DispMemberBase* dispMember, u8 p3 = 0, bool p4 = true)
+	inline SetSceneArg(SceneType sceneType, og::Screen::DispMemberBase* dispMember, u8 p3, bool p4)
 	    : m_sceneType(sceneType)
 	    , m_dispMember(dispMember)
+	    , _08(p3)
+	    , _09(p4)
 	{
 		// _08 = p3;
 		// _09 = p4;
@@ -96,7 +107,7 @@ struct SceneBase {
 	virtual bool isDrawInDemo() const { return true; }                  // _18 (weak)
 	virtual const char* getResName() const = 0;                         // _1C
 	virtual void doCreateObj(JKRArchive*)  = 0;                         // _20
-	virtual void doUserCallBackFunc(Resource::MgrCommand*);             // _24 (weak)
+	virtual void doUserCallBackFunc(Resource::MgrCommand*) { }          // _24 (weak)
 	virtual void setPort(Graphics& gfx) { gfx.m_perspGraph.setPort(); } // _28 (weak)
 	virtual void doUpdateActive();                                      // _2C
 	virtual bool doConfirmSetScene(SetSceneArg&) { return true; }       // _30 (weak)
@@ -107,7 +118,7 @@ struct SceneBase {
 	virtual bool setDefaultDispMember()                                 // _44 (weak)
 	{
 		og::Screen::DispMemberDummy disp;
-		memcpy(m_dispMemberBuffer, (void*)&disp, sizeof(disp));
+		memcpy(m_dispMember, (void*)&disp, sizeof(disp));
 		return true;
 	}
 	virtual void doSetBackupScene(SetSceneArg&) { } // _48 (weak)
@@ -149,7 +160,7 @@ struct SceneBase {
 	f32 m_someTime;                                   // _124
 	Resource::MgrCommand m_command;                   // _128
 	ObjMgrBase* m_objMgr;                             // _218
-	u8* m_dispMemberBuffer;                           // _21C
+	og::Screen::DispMemberBase* m_dispMember;         // _21C
 };
 
 struct IObjBase : public CNode, public JKRDisposer {
@@ -213,73 +224,6 @@ struct ObjBase : public IObjBase {
 	SceneBase* m_owner; // _34
 };
 
-struct MgrBase : public JKRDisposer {
-	virtual ~MgrBase();                          // _08
-	virtual bool setScene(SetSceneArg&)     = 0; // _0C
-	virtual bool startScene(StartSceneArg*) = 0; // _10
-	virtual void endScene(EndSceneArg*)     = 0; // _14
-
-	// _00     = VTBL
-	// _00-_18 = JKRDisposer
-};
-
-struct Mgr : public MgrBase {
-	Mgr();
-
-	virtual ~Mgr();                             // _08 (weak)
-	virtual bool setScene(SetSceneArg&);        // _0C
-	virtual bool startScene(StartSceneArg*);    // _10
-	virtual void endScene(EndSceneArg*);        // _14
-	virtual void reset();                       // _18
-	virtual void setColorBG(JUtility::TColor&); // _1C (weak)
-	virtual void setBGMode(int);                // _20 (weak)
-	virtual void doGetSceneBase(long);          // _24
-	virtual void drawBG(Graphics&);             // _28 (weak)
-	virtual void drawWipe(Graphics&);           // _2C (weak)
-
-	void init();
-	void getCurrentCommand();
-	void getNewCommand();
-	void releaseCommand(Screen::MgrCommand*);
-	void update();
-	void draw(Graphics&);
-	void clearBackupSceneInfo();
-	void changeScene(Screen::SetSceneArg&, u8*);
-	void isCurrentSceneLoading();
-	void copyDispMember(u8*, u8*);
-	void setDispMember(og::Screen::DispMemberBase*);
-	void getDispMember();
-	void getSceneType();
-	void isSceneFinish();
-	void getSceneFinishState();
-	void setGamePad(Controller*);
-	void setBackupScene();
-	void isAnyReservation() const;
-
-	// _00     = VTBL
-	// _00-_18 = MgrBase
-	u8 _18;                        // _18
-	u8 _19;                        // _19
-	u8 _1A;                        // _1A
-	u8 _1B;                        // _1B
-	SceneBase* m_backupScene;      // _1C
-	Controller* m_controller;      // _20
-	u8 _24[8];                     // _24
-	CNode _2C;                     // _2C
-	CNode _44;                     // _44
-	JKRSolidHeap* _5C;             // _5C
-	CNode _60;                     // _60
-	SceneInfoList m_sceneInfoList; // _78
-	u8 _90;                        // _90
-	u8 _91;                        // _91
-	u8 _92;                        // _92
-	u32 _94;                       // _94
-	u32 _98;                       // _98
-	JUtility::TColor m_bgColor;    // _9C
-	JUtility::TColor _A0;          // _A0
-	int m_bgMode;                  // _A4
-};
-
 struct ObjMgrBase {
 	ObjMgrBase();
 
@@ -297,22 +241,5 @@ struct ObjMgrBase {
 	CNode _00; // _00
 };
 } // namespace Screen
-
-namespace newScreen {
-struct Mgr : public Screen::Mgr {
-	virtual ~Mgr();                             // _08 (weak)
-	virtual void reset();                       // _18
-	virtual void setColorBG(JUtility::TColor&); // _1C (weak)
-	virtual void setBGMode(int);                // _20 (weak)
-	virtual void doGetSceneBase(long);          // _24
-	virtual void drawBG(Graphics&);             // _28
-
-	void create();
-
-	// _00     = VTBL
-	// _00-_A8 = Mgr
-};
-
-} // namespace newScreen
 
 #endif

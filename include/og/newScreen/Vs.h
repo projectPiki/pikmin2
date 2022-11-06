@@ -5,13 +5,11 @@
 #include "JSystem/J2D/J2DPane.h"
 
 namespace P2DScreen {
-// this is just a temp dec until the header is made
 struct Mgr_tuning;
 } // namespace P2DScreen
 
 namespace og {
 namespace Screen {
-// these are temp decs until these headers are made
 struct DispMemberVs;
 struct BloGroup;
 struct CallBack_LifeGauge;
@@ -30,6 +28,9 @@ struct Vs : public ::Screen::SceneBase {
 	virtual bool isDrawInDemo() const { return false; }             // _18 (weak)
 	virtual void doCreateObj(JKRArchive*);                          // _20
 	virtual void doUserCallBackFunc(Resource::MgrCommand*);         // _24
+
+	// _00      = VTBL
+	// _00-_220 = Screen::SceneBase
 };
 
 struct ObjVs : public ::Screen::ObjBase {
@@ -44,6 +45,22 @@ struct ObjVs : public ::Screen::ObjBase {
 	};
 
 	ObjVs(const char*);
+
+	virtual ~ObjVs();                                     // _08 (weak)
+	virtual bool doStart(const ::Screen::StartSceneArg*); // _44
+	virtual bool doEnd(const ::Screen::EndSceneArg*);     // _48
+	virtual void doCreate(JKRArchive*);                   // _4C
+	virtual bool doUpdateFadein();                        // _50
+	virtual void doUpdateFadeinFinish();                  // _54
+	virtual bool doUpdate();                              // _58
+	virtual void doUpdateFinish();                        // _5C
+	virtual bool doUpdateFadeout();                       // _60
+	virtual void doUpdateFadeoutFinish();                 // _64
+	virtual void doDraw(Graphics& gfx);                   // _68
+
+	void setOnOffBdama(bool);
+	void checkObake();
+	void doUpdateCommon();
 
 	og::Screen::DispMemberVs* _38; // _38
 	og::Screen::BloGroup* _3C;     // _3C
@@ -65,13 +82,12 @@ struct ObjVs : public ::Screen::ObjBase {
 	int _100;                      // _100
 	bool _104;                     // _104
 	bool _105;                     // _105
-	u8 _106[0x2];                  // _106 - probably just padding
-	float _108;                    // _108
+	f32 _108;                      // _108
 	u8 _10C[0x4];                  // _10C - unknown
 	J2DPictureEx* _110;            // _110
 	J2DPictureEx* _114;            // _114
-	float _118;                    // _118
-	float _11C;                    // _11C
+	f32 _118;                      // _118
+	f32 _11C;                      // _11C
 	u8 _120[0x8];                  // _120 - unknown
 	u8 _129;                       // _129 - unknown
 };

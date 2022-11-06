@@ -1,7 +1,7 @@
 #ifndef _MORIMURA_TCONFIRMENDWINDOW_H
 #define _MORIMURA_TCONFIRMENDWINDOW_H
 
-#include "og/newScreen/ObjWorldMapInfoWindow0.h"
+#include "og/newScreen/WorldMapInfoWindow.h"
 
 namespace Morimura {
 /**

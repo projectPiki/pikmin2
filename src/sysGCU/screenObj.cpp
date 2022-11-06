@@ -459,7 +459,7 @@ void ObjBase::doDraw(Graphics& gfx)
  * Address:	80453FA8
  * Size:	00000C
  */
-og::Screen::DispMemberBase* ObjBase::getDispMember(void) { return (og::Screen::DispMemberBase*)m_owner->m_dispMemberBuffer; }
+og::Screen::DispMemberBase* ObjBase::getDispMember() { return m_owner->m_dispMember; }
 
 /*
  * --INFO--

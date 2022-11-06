@@ -10,7 +10,7 @@
 #include "og/Screen/ogScreen.h"
 #include "og/Screen/callbackNodes.h"
 #include "og/Sound.h"
-#include "og/newScreen/ObjWorldMapInfoWindow0.h"
+#include "og/newScreen/WorldMapInfoWindow.h"
 #include "P2DScreen.h"
 #include "System.h"
 #include "types.h"
