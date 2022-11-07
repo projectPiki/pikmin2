@@ -35,11 +35,11 @@ struct Arg {
 };
 
 struct ArgEnemyType : public Arg {
-	ArgEnemyType(Vector3f position, Game::EnemyTypeID::EEnemyTypeID typeID, float p3)
+	ArgEnemyType(Vector3f position, Game::EnemyTypeID::EEnemyTypeID typeID, float scale)
 	    : Arg(position)
 	    , m_typeID(typeID)
 	{
-		_14 = p3;
+		m_scale = scale;
 	};
 	ArgEnemyType(Vector3f position)
 	    : Arg(position) {};
@@ -54,7 +54,7 @@ struct ArgEnemyType : public Arg {
 	}
 
 	Game::EnemyTypeID::EEnemyTypeID m_typeID;
-	float _14;
+	float m_scale;
 };
 
 struct ArgScale : public Arg {

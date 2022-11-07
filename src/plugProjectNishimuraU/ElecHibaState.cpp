@@ -46,11 +46,9 @@ void StateDead::init(EnemyBase* enemy, StateArg* stateArg)
 
 	efx::ArgEnemyType fxArg(position, id, scale);
 	efx::TEnemyBomb bombEffect;
-
 	bombEffect.create(&fxArg);
 
 	Obj* childHiba = elecHiba->getChildObjPtr();
-
 	if (childHiba) {
 		childHiba->setEvent(0, EB_3);
 		childHiba->resetEvent(0, EB_LifegaugeVisible);
@@ -97,6 +95,7 @@ void StateWait::init(EnemyBase* enemy, StateArg* stateArg)
 {
 	Obj* elecHiba     = static_cast<Obj*>(enemy);
 	WaitStateArg* arg = static_cast<WaitStateArg*>(stateArg);
+
 	if (arg) {
 		elecHiba->m_waitTimer = arg->m_waitTimer;
 	} else {
@@ -106,7 +105,6 @@ void StateWait::init(EnemyBase* enemy, StateArg* stateArg)
 	elecHiba->startMotion(0, nullptr);
 
 	Obj* childHiba = elecHiba->getChildObjPtr();
-
 	if (childHiba) {
 		childHiba->startMotion(0, nullptr);
 	}
@@ -120,6 +118,7 @@ void StateWait::init(EnemyBase* enemy, StateArg* stateArg)
 void StateWait::exec(EnemyBase* enemy)
 {
 	Obj* elecHiba = static_cast<Obj*>(enemy);
+
 	elecHiba->m_waitTimer += sys->m_deltaTime;
 
 	if (elecHiba->_2F4 != 0) {
@@ -128,7 +127,7 @@ void StateWait::exec(EnemyBase* enemy)
 		}
 	} else if (elecHiba->m_health <= 0.0f) {
 		transit(elecHiba, ELECHIBA_Dead, nullptr);
-	} else if (elecHiba->m_waitTimer > static_cast<Parms*>(elecHiba->m_parms)->m_properParms.m_waitTime.m_value) {
+	} else if (elecHiba->m_waitTimer > CG_PROPERPARMS(elecHiba).m_waitTime.m_value) {
 		transit(elecHiba, ELECHIBA_Sign, nullptr);
 	}
 }
@@ -147,13 +146,13 @@ void StateWait::cleanup(EnemyBase* enemy) { }
  */
 void StateSign::init(EnemyBase* enemy, StateArg* stateArg)
 {
-	Obj* elecHiba         = static_cast<Obj*>(enemy);
+	Obj* elecHiba = static_cast<Obj*>(enemy);
+
 	elecHiba->m_waitTimer = 0.0f;
 	elecHiba->resetEvent(0, EB_Cullable);
 	elecHiba->startMotion(0, nullptr);
 
 	Obj* childHiba = elecHiba->getChildObjPtr();
-
 	if (childHiba) {
 		childHiba->resetEvent(0, EB_Cullable);
 		childHiba->startMotion(0, nullptr);
@@ -169,6 +168,7 @@ void StateSign::init(EnemyBase* enemy, StateArg* stateArg)
 void StateSign::exec(EnemyBase* enemy)
 {
 	Obj* elecHiba = static_cast<Obj*>(enemy);
+
 	elecHiba->m_waitTimer += sys->m_deltaTime;
 	elecHiba->getJAIObject()->startSound(PSSE_EN_ELEC_HIBA_CHARGE, 0);
 
@@ -179,7 +179,7 @@ void StateSign::exec(EnemyBase* enemy)
 		}
 
 		transit(elecHiba, ELECHIBA_Dead, nullptr);
-	} else if (elecHiba->m_waitTimer > static_cast<Parms*>(elecHiba->m_parms)->m_properParms.m_warningTime.m_value) {
+	} else if (elecHiba->m_waitTimer > CG_PROPERPARMS(elecHiba).m_warningTime.m_value) {
 		transit(elecHiba, ELECHIBA_Attack, nullptr);
 	}
 }
@@ -192,10 +192,10 @@ void StateSign::exec(EnemyBase* enemy)
 void StateSign::cleanup(EnemyBase* enemy)
 {
 	Obj* elecHiba = static_cast<Obj*>(enemy);
+
 	elecHiba->setEvent(0, EB_Cullable);
 
 	Obj* childHiba = elecHiba->getChildObjPtr();
-
 	if (childHiba) {
 		childHiba->setEvent(0, EB_Cullable);
 	}
@@ -208,14 +208,14 @@ void StateSign::cleanup(EnemyBase* enemy)
  */
 void StateAttack::init(EnemyBase* enemy, StateArg* stateArg)
 {
-	Obj* elecHiba         = static_cast<Obj*>(enemy);
+	Obj* elecHiba = static_cast<Obj*>(enemy);
+
 	elecHiba->m_waitTimer = 0.0f;
 	elecHiba->resetEvent(0, EB_Cullable);
 	elecHiba->startMotion(0, nullptr);
 	elecHiba->setVersusHibaType();
 
 	Obj* childHiba = elecHiba->getChildObjPtr();
-
 	if (childHiba) {
 		childHiba->resetEvent(0, EB_Cullable);
 		childHiba->startMotion(0, nullptr);
@@ -231,6 +231,7 @@ void StateAttack::init(EnemyBase* enemy, StateArg* stateArg)
 void StateAttack::exec(EnemyBase* enemy)
 {
 	Obj* elecHiba = static_cast<Obj*>(enemy);
+
 	elecHiba->m_waitTimer += sys->m_deltaTime;
 
 	if (elecHiba->_2F4 != 0) {
@@ -239,12 +240,11 @@ void StateAttack::exec(EnemyBase* enemy)
 		}
 	} else if (elecHiba->m_health <= 0.0f) {
 		transit(elecHiba, ELECHIBA_Dead, nullptr);
-	} else if (elecHiba->m_waitTimer > static_cast<Parms*>(elecHiba->m_parms)->m_properParms.m_activeTime.m_value) {
+	} else if (elecHiba->m_waitTimer > CG_PROPERPARMS(elecHiba).m_activeTime.m_value) {
 		transit(elecHiba, ELECHIBA_Wait, nullptr);
 	}
 
 	Obj* childHiba = elecHiba->getChildObjPtr();
-
 	if (childHiba) {
 		Vector3f childPos = childHiba->getPosition();
 		elecHiba->interactDenkiAttack(childPos);
@@ -262,10 +262,10 @@ void StateAttack::exec(EnemyBase* enemy)
 void StateAttack::cleanup(EnemyBase* enemy)
 {
 	Obj* elecHiba = static_cast<Obj*>(enemy);
+
 	elecHiba->setEvent(0, EB_Cullable);
 
 	Obj* childHiba = elecHiba->getChildObjPtr();
-
 	if (childHiba) {
 		childHiba->setEvent(0, EB_Cullable);
 		elecHiba->finishDisChargeEffect();
