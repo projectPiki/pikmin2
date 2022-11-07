@@ -6,6 +6,13 @@
 #include "Game/itemMgr.h"
 #include "Game/PlatInstance.h"
 #include "efx/TGeyser.h"
+#include "Condition.h"
+
+struct PikiCond_ExceptChappyPikmin : public Condition<Game::Piki> {
+	virtual bool satisfy(Game::Piki*); // _08 (weak)
+
+	// _00 = VTBL
+};
 
 namespace Game {
 namespace ItemBigFountain {

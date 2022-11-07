@@ -117,8 +117,8 @@ struct Item : public WorkItem<Item, FSM, State> {
 
 	// _00      = VTBL
 	// _00-_1EC = WorkItem
-	s32 _1EC;                                    // _1EC, mabiki? might be size 0x8?
-	s32 _1F0;                                    // _1F0, unknown
+	int _1EC;                                    // _1EC, mabiki? might be size 0x8?
+	int _1F0;                                    // _1F0, unknown
 	f32 _1F4;                                    // _1F4
 	u8 _1F8;                                     // _1F8
 	WayPoint* _1FC;                              // _1FC

@@ -72,7 +72,7 @@ void ActFree::init(ActionArg* settings)
  * Address:	801A0198
  * Size:	0001D0
  */
-s32 ActFree::exec()
+int ActFree::exec()
 {
 	switch (m_state) {
 	case PIKIAI_FREE_GATHER: {
@@ -88,7 +88,7 @@ s32 ActFree::exec()
 	}
 
 	case PIKIAI_FREE_BORE: {
-		s32 status = m_bore->exec();
+		int status = m_bore->exec();
 
 		// Let's try invoke the AI, and finish the boredom if we succeed
 		Game::Piki::InvokeAIFreeArg settings(0, 0);

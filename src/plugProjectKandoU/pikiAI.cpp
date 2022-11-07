@@ -179,7 +179,7 @@ int Piki::graspSituation_Fast(Game::Creature** localCreatures)
 
 	Creature* cCreature = nullptr;
 	f32 cDist           = 400.0f;
-	s32 retVal          = -1;
+	int retVal          = -1;
 	bool v10            = false;
 
 	Sys::Sphere sp(m_shadowParam.m_position, 300.0f);

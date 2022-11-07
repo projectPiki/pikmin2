@@ -22,7 +22,7 @@ static const char formationName[]      = "actFormation";
  * Size:	0000F8
  */
 ActFormation::ActFormation(Game::Piki* p)
-    : Action(piki)
+    : Action(p)
     , m_initArg(nullptr, 0)
 {
 	m_name            = "Formation";
@@ -263,7 +263,7 @@ void ActFormation::cleanup()
  * Address:	8019D680
  * Size:	0016E8
  */
-s32 PikiAI::ActFormation::exec()
+int PikiAI::ActFormation::exec()
 {
 	/*
 	stwu     r1, -0x1c0(r1)
@@ -1949,7 +1949,7 @@ lbl_8019ED1C:
 void ActFormation::collisionCallback(Game::Piki* p, Game::CollEvent& collEvent)
 {
 	bool commandCheck = false;
-	Game::Navi* navi  = piki->m_navi;
+	Game::Navi* navi  = p->m_navi;
 	if (navi) {
 		commandCheck = navi->commandOn();
 		if (_38) {
@@ -1957,7 +1957,7 @@ void ActFormation::collisionCallback(Game::Piki* p, Game::CollEvent& collEvent)
 		}
 	}
 
-	piki->invokeAI(&collEvent, commandCheck);
+	p->invokeAI(&collEvent, commandCheck);
 }
 
 /*
@@ -1967,9 +1967,9 @@ void ActFormation::collisionCallback(Game::Piki* p, Game::CollEvent& collEvent)
  */
 void ActFormation::platCallback(Game::Piki* p, Game::PlatEvent& platEvent)
 {
-	Game::Navi* navi = piki->m_navi;
+	Game::Navi* navi = p->m_navi;
 	if (navi && navi->commandOn()) {
-		piki->invokeAI(&platEvent);
+		p->invokeAI(&platEvent);
 	}
 }
 

@@ -97,7 +97,7 @@ void ActBreakRock::initStickAttack()
  * Address:	801E38C0
  * Size:	00032C
  */
-s32 ActBreakRock::exec()
+int ActBreakRock::exec()
 {
 	if (!m_rock->isAlive()) {
 		return 0;

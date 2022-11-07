@@ -102,7 +102,7 @@ void ActBridge::initStickAttack()
  * Address:	802124B4
  * Size:	00031C
  */
-s32 ActBridge::exec()
+int ActBridge::exec()
 {
 	if (!m_bridge->isAlive()) {
 		_30 = 0;

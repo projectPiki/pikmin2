@@ -646,7 +646,7 @@ void Obj::onInit(CreatureInitArg* arg)
 		RESET_FLAG(m_flags, PELPLANT_FLAGS_GROW);
 	}
 
-	s32 stateID = getStateID();
+	int stateID = getStateID();
 	if (stateID == PELPLANT_Invalid) {
 		stateID = PELPLANT_WaitSmall;
 	}

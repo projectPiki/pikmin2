@@ -99,7 +99,7 @@ void ActBreakGate::initStickAttack()
  * Address:	801D0710
  * Size:	000498
  */
-s32 ActBreakGate::exec()
+int ActBreakGate::exec()
 {
 	if (!m_gate->isAlive()) {
 		return 0;
