@@ -260,108 +260,16 @@ Obj* Obj::getChildObjPtr()
  * Address:	8026F954
  * Size:	000170
  */
-void Obj::setElecHibaPosition(InitialParam*, float)
+void Obj::setElecHibaPosition(InitialParam* param, f32 p1)
 {
-	/*
-	stwu     r1, -0x80(r1)
-	mflr     r0
-	stw      r0, 0x84(r1)
-	stfd     f31, 0x70(r1)
-	psq_st   f31, 120(r1), 0, qr0
-	stfd     f30, 0x60(r1)
-	psq_st   f30, 104(r1), 0, qr0
-	stfd     f29, 0x50(r1)
-	psq_st   f29, 88(r1), 0, qr0
-	stfd     f28, 0x40(r1)
-	psq_st   f28, 72(r1), 0, qr0
-	stw      r31, 0x3c(r1)
-	stw      r30, 0x38(r1)
-	lwz      r12, 0(r3)
-	mr       r30, r3
-	fmr      f28, f1
-	mr       r31, r4
-	lwz      r12, 0x64(r12)
-	lfs      f31, 0x2e4(r3)
-	lfs      f30, 0x2e8(r3)
-	lfs      f29, 0x2ec(r3)
-	mtctr    r12
-	bctrl
-	lfs      f0, lbl_8051B100@sda21(r2)
-	lfs      f2, 0(r31)
-	fadds    f4, f0, f1
-	lfs      f1, lbl_8051B0F8@sda21(r2)
-	lfs      f0, lbl_8051B0E0@sda21(r2)
-	fmuls    f3, f2, f1
-	fmr      f1, f4
-	fcmpo    cr0, f4, f0
-	bge      lbl_8026F9D8
-	fneg     f1, f4
+	Vector3f initPos = _2E4;
+	f32 theta        = HALF_PI + getFaceDir();
+	f32 halfFactor   = param->_00 / 2;
 
-lbl_8026F9D8:
-	lfs      f2, lbl_8051B104@sda21(r2)
-	lis      r3, sincosTable___5JMath@ha
-	lfs      f0, lbl_8051B0E0@sda21(r2)
-	addi     r4, r3, sincosTable___5JMath@l
-	fmuls    f1, f1, f2
-	fcmpo    cr0, f4, f0
-	fmuls    f3, f28, f3
-	fctiwz   f0, f1
-	stfd     f0, 0x18(r1)
-	lwz      r0, 0x1c(r1)
-	rlwinm   r0, r0, 3, 0x12, 0x1c
-	add      r3, r4, r0
-	lfs      f0, 4(r3)
-	fmadds   f1, f3, f0, f29
-	bge      lbl_8026FA38
-	lfs      f0, lbl_8051B108@sda21(r2)
-	fmuls    f0, f4, f0
-	fctiwz   f0, f0
-	stfd     f0, 0x20(r1)
-	lwz      r0, 0x24(r1)
-	rlwinm   r0, r0, 3, 0x12, 0x1c
-	lfsx     f0, r4, r0
-	fneg     f0, f0
-	b        lbl_8026FA50
-
-lbl_8026FA38:
-	fmuls    f0, f4, f2
-	fctiwz   f0, f0
-	stfd     f0, 0x28(r1)
-	lwz      r0, 0x2c(r1)
-	rlwinm   r0, r0, 3, 0x12, 0x1c
-	lfsx     f0, r4, r0
-
-lbl_8026FA50:
-	fmadds   f0, f3, f0, f31
-	stfs     f30, 0xc(r1)
-	lwz      r3, mapMgr__4Game@sda21(r13)
-	addi     r4, r1, 8
-	stfs     f1, 0x10(r1)
-	stfs     f0, 8(r1)
-	lwz      r12, 4(r3)
-	lwz      r12, 0x28(r12)
-	mtctr    r12
-	bctrl
-	stfs     f1, 0xc(r1)
-	mr       r3, r30
-	addi     r4, r1, 8
-	li       r5, 0
-	bl       "setPosition__Q24Game8CreatureFR10Vector3<f>b"
-	psq_l    f31, 120(r1), 0, qr0
-	lfd      f31, 0x70(r1)
-	psq_l    f30, 104(r1), 0, qr0
-	lfd      f30, 0x60(r1)
-	psq_l    f29, 88(r1), 0, qr0
-	lfd      f29, 0x50(r1)
-	psq_l    f28, 72(r1), 0, qr0
-	lfd      f28, 0x40(r1)
-	lwz      r31, 0x3c(r1)
-	lwz      r0, 0x84(r1)
-	lwz      r30, 0x38(r1)
-	mtlr     r0
-	addi     r1, r1, 0x80
-	blr
-	*/
+	Vector3f finalPos
+	    = Vector3f((p1 * halfFactor) * pikmin2_sinf(theta) + initPos.x, initPos.y, (p1 * halfFactor) * pikmin2_cosf(theta) + initPos.z);
+	finalPos.y = mapMgr->getMinY(finalPos);
+	setPosition(finalPos, false);
 }
 
 /*
@@ -369,8 +277,68 @@ lbl_8026FA50:
  * Address:	8026FAC4
  * Size:	0005C8
  */
-void Obj::interactDenkiAttack(Vector3f&)
+void Obj::interactDenkiAttack(Vector3f& position)
 {
+	Vector3f sep     = position - m_position;
+	Vector3f normSep = sep;
+	f32 theta        = m_faceDir;
+	Vector3f dirXZ   = Vector3f(pikmin2_sinf(theta), 0.0f, pikmin2_cosf(theta));
+	normSep.normalise();
+
+	// Vector3f crossProd = normSep cross dirXZ
+	// crossProd.normalise();
+	f32 distance = sep.length();
+
+	// some vector addition/scalar multiplication here
+	Vector3f spherePos;
+	spherePos.x     = (position.x - m_position.x) / 2;
+	spherePos.y     = (position.y - m_position.y) / 2;
+	spherePos.z     = (position.z - m_position.z) / 2;
+	f32 attackRange = C_PARMS->m_general.m_fp20.m_value;
+	f32 negRange    = -attackRange;
+	f32 totalRange  = distance + C_PARMS->m_general.m_fp20.m_value;
+	f32 radius      = (totalRange - negRange) / 2;
+	Sys::Sphere sphere(spherePos, radius);
+
+	// also some other constants pulled from parms
+
+	CellIteratorArg iterArg(sphere);
+	iterArg._1C = 1;
+
+	CellIterator iter(iterArg);
+
+	CI_LOOP(iter)
+	{
+		Creature* creature = static_cast<Creature*>(*iter);
+		if (creature->isAlive() && (creature->isNavi() || creature->isPiki())) {
+			Vector3f creaturePos = creature->getPosition();
+			// Vector3f creatureSep = creaturePos - some other vector of consts;
+
+			// f32 dotProd = dot(crossProd, creatureSep);
+			f32 dotProd = 1.0f;
+			if (!(dotProd > 0.0f)) { // make sure it's positive
+				dotProd = -dotProd;
+			}
+
+			if (dotProd < C_PARMS->m_general.m_fp23.m_value) {
+				if (m_versusHibaType == VHT_Neutral) {
+					// some math to determine attack direction
+					// Vector3f attackDirection = something
+					InteractDenki zap(this, C_PARMS->m_general.m_attackDamage.m_value,
+					                  &creaturePos); // should be &attackDirection eventually
+					creature->stimulate(zap);
+
+				} else if (m_versusHibaType == VHT_Red) {
+					InteractFire fire(this, C_PARMS->m_general.m_attackDamage.m_value);
+					creature->stimulate(fire);
+
+				} else if (m_versusHibaType == VHT_Blue) {
+					InteractBubble bubble(this, C_PARMS->m_general.m_attackDamage.m_value);
+					creature->stimulate(bubble);
+				}
+			}
+		}
+	}
 	/*
 	stwu     r1, -0x210(r1)
 	mflr     r0
