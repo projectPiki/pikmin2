@@ -863,7 +863,7 @@ OGAWA:=\
 	$(BUILD_DIR)/asm/plugProjectOgawaU/ogAnime.o\
 	$(BUILD_DIR)/src/plugProjectOgawaU/ogCounter.o\
 	$(BUILD_DIR)/asm/plugProjectOgawaU/ogLifeGauge.o\
-	$(BUILD_DIR)/asm/plugProjectOgawaU/ogSunMeter.o\
+	$(BUILD_DIR)/src/plugProjectOgawaU/ogSunMeter.o\
 	$(BUILD_DIR)/src/plugProjectOgawaU/ogCatchPiki.o\
 	$(BUILD_DIR)/src/plugProjectOgawaU/ogContenaCounter.o\
 	$(BUILD_DIR)/asm/plugProjectOgawaU/ogMapCounter.o\
@@ -873,7 +873,7 @@ OGAWA:=\
 	$(BUILD_DIR)/src/plugProjectOgawaU/ogCallBackScreen.o\
 	$(BUILD_DIR)/asm/plugProjectOgawaU/ogCounterRV.o\
 	$(BUILD_DIR)/asm/plugProjectOgawaU/ogSE.o\
-	$(BUILD_DIR)/asm/plugProjectOgawaU/ogCounterDay.o\
+	$(BUILD_DIR)/src/plugProjectOgawaU/ogCounterDay.o\
 	$(BUILD_DIR)/src/plugProjectOgawaU/testScene.o\
 	$(BUILD_DIR)/asm/plugProjectOgawaU/testObj.o\
 	$(BUILD_DIR)/asm/plugProjectOgawaU/ogSceneGround.o\
@@ -932,7 +932,7 @@ OGAWA:=\
 	$(BUILD_DIR)/asm/plugProjectOgawaU/ogObjChallengeBase.o\
 	$(BUILD_DIR)/src/plugProjectOgawaU/ogSceneChallengeBase.o\
 	$(BUILD_DIR)/asm/plugProjectOgawaU/ogCallBackPicture.o\
-	$(BUILD_DIR)/asm/plugProjectOgawaU/ogDrawAfter.o\
+	$(BUILD_DIR)/src/plugProjectOgawaU/ogDrawAfter.o\
 	$(BUILD_DIR)/asm/plugProjectOgawaU/ogOtakaraSensor.o\
 	$(BUILD_DIR)/asm/plugProjectOgawaU/ogTitleMsg.o\
 	$(BUILD_DIR)/src/plugProjectOgawaU/ogAngleMgr.o\

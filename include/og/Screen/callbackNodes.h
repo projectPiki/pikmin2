@@ -51,7 +51,7 @@ struct CallBack_CounterRV : public P2DScreen::CallBackNode {
 
 	CallBack_CounterRV(char**, u16, u16, JKRArchive*);
 
-	virtual ~CallBack_CounterRV();                 // _08 (weak)
+	virtual ~CallBack_CounterRV() { }              // _08 (weak)
 	virtual void update();                         // _10
 	virtual void draw(Graphics&, J2DGrafContext&); // _14
 	virtual void init(J2DScreen*, u64, u64, u64, u32*,
@@ -124,10 +124,10 @@ struct CallBack_CounterRV : public P2DScreen::CallBackNode {
 };
 
 struct CallBack_CounterDay : public CallBack_CounterRV {
-	CallBack_CounterDay(char**, unsigned short, JKRArchive*);
+	CallBack_CounterDay(char**, u16, JKRArchive*);
 
-	virtual ~CallBack_CounterDay(); // _08 (weak)
-	virtual void update();          // _10
+	virtual ~CallBack_CounterDay() { } // _08 (weak)
+	virtual void update();             // _10
 	virtual void init(J2DScreen*, u64, u64, u64, u32*,
 	                  bool); // _1C
 	virtual void show();     // _20
@@ -174,15 +174,15 @@ struct CallBack_CounterSlot : public CallBack_CounterRV {
 struct CallBack_DrawAfter : public P2DScreen::CallBackNode {
 	CallBack_DrawAfter(P2DScreen::Mgr*, u64);
 
-	virtual ~CallBack_DrawAfter();                 // _08 (weak)
-	virtual void update();                         // _10
-	virtual void draw(Graphics&, J2DGrafContext&); // _14
+	virtual ~CallBack_DrawAfter() { }                          // _08 (weak)
+	virtual void update();                                     // _10
+	virtual void draw(Graphics& gfx, J2DGrafContext& context); // _14
 
 	// _00     = VTBL
 	// _00-_1C = P2DScreen::CallBackNode
 	J2DPictureEx* _1C; // _1C
 	J2DPictureEx* _20; // _20
-	u8 _24;            // _24
+	bool _24;          // _24
 };
 
 // Size: 0x4C
@@ -340,25 +340,25 @@ struct CallBack_Picture : public CallBack_Screen {
 struct CallBack_SunMeter : public P2DScreen::CallBackNode {
 	CallBack_SunMeter();
 
-	virtual ~CallBack_SunMeter(); // _08
-	virtual void update();        // _10
+	virtual ~CallBack_SunMeter() { } // _08 (weak)
+	virtual void update();           // _10
 
 	void init(J2DScreen*, f32*);
 	void startEffectChime();
 
 	// _00     = VTBL
 	// _00-_1C = P2DScreen::CallBackNode
-	f32 _1C;              // _1C
-	u8 _20[4];            // _20
-	J2DPane* _24;         // _24
-	J2DPane* _28;         // _28
-	J2DPane* _2C;         // _2C
-	J2DPane* _30;         // _30
-	u8 _34[4];            // _34
-	u8 _38;               // _38
-	u8 _39;               // _39
-	u8 _3A;               // _3A
-	ScaleMgr* m_scaleMgr; // _3C
+	f32 _1C;                 // _1C
+	f32* m_currentTimePtr;   // _20, ptr to current time, as fraction (0 = start of day, 1 = end of day)
+	J2DPane* m_startPane;    // _24
+	J2DPane* m_endPane;      // _28
+	J2DPane* m_suniPane;     // _2C
+	J2DPane* m_sun1Pane;     // _30
+	J2DPane* m_sun2Pane;     // _34
+	bool m_hasChimedNoon;    // _38
+	bool m_hasChimedMorning; // _39
+	bool m_hasChimedEvening; // _3A
+	ScaleMgr* m_scaleMgr;    // _3C
 };
 
 struct AnimText_Screen : public CallBack_Screen {

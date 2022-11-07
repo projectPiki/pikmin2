@@ -209,6 +209,23 @@ struct J2DPane {
 		calcMtx();
 	}
 
+	inline void updateScale(f32 scaleX, f32 scaleY)
+	{
+		m_scale = JGeometry::TVec2f(scaleX, scaleY);
+		calcMtx();
+	}
+
+	inline void setAlphaFromFloat(f32 alpha)
+	{
+		if (alpha >= 0.0f) {
+			alpha = 0.5f + alpha;
+		} else {
+			alpha = alpha - 0.5f;
+		}
+
+		setAlpha((int)alpha);
+	}
+
 	// /**
 	//  * @fabricated
 	//  */
