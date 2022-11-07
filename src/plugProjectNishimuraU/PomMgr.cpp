@@ -36,22 +36,29 @@ EnemyBase* Mgr::birth(EnemyBirthArg& birthArg)
 
 		if (birthArg.m_typeID == EnemyTypeID::EnemyID_BlackPom) { // PURPLE CANDYPOP
 			BaseGameSection* section = gs->m_section;
-			if (section && (section->getCurrFloor() < 2 || section->getCaveID() == 't_01')) { // emergence cave
-				int colorSum      = playData->m_caveSaveData._14.getColorSum(Purple);
-				int purplePikmins = GameStat::getAllPikmins(Purple);
-				if (!(purplePikmins + colorSum < 20)) {
+
+			// Emergence cave
+			if (section && (section->getCurrFloor() < 2 || section->getCaveID() == 't_01')) {
+				const s32 cavePikis = playData->m_caveSaveData.m_cavePikis.getColorSum(Purple);
+				const s32 purpPikis = GameStat::getAllPikmins(Purple);
+
+				// Don't generate if above 20 purple Pikmin
+				if (purpPikis + cavePikis >= 20) {
 					return nullptr;
 				}
 			}
-
 		} else if (birthArg.m_typeID == EnemyTypeID::EnemyID_WhitePom) { // WHITE CANDYPOP
 			BaseGameSection* section = gs->m_section;
+
 			if (section) {
 				if (playData->hasMetPikmin(White)) {
-					if (section->getCurrFloor() < 2 || section->getCaveID() == 'f_02') { // white flower garden
-						int colorSum     = playData->m_caveSaveData._14.getColorSum(White);
-						int whitePikmins = GameStat::getAllPikmins(White);
-						if (!(whitePikmins + colorSum < 20)) {
+					// White flower garden
+					if (section->getCurrFloor() < 2 || section->getCaveID() == 'f_02') {
+						const s32 cavePikis  = playData->m_caveSaveData.m_cavePikis.getColorSum(White);
+						const s32 whitePikis = GameStat::getAllPikmins(White);
+
+						// Don't generate if above 20 white Pikmin
+						if (whitePikis + cavePikis >= 20) {
 							return nullptr;
 						}
 					}
@@ -59,7 +66,6 @@ EnemyBase* Mgr::birth(EnemyBirthArg& birthArg)
 					return nullptr;
 				}
 			}
-
 		} else if (birthArg.m_typeID == EnemyTypeID::EnemyID_BluePom) { // BLUE CANDYPOP
 			if (!playData->hasMetPikmin(Blue)) {
 				return nullptr;

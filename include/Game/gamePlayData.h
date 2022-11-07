@@ -78,10 +78,10 @@ struct CaveSaveData {
 
 	void clear()
 	{
-		_14.clear();
-		m_time          = 0.0f;
-		m_isInCave      = false;
-		m_currentCourse = -1;
+		m_cavePikis.clear();
+		m_time      = 0.0f;
+		m_isInCave  = false;
+		m_courseIdx = -1;
 		m_currentCaveID.setID('none');
 		m_isWaterwraithAlive = 1;
 		m_waterwraithTimer   = 0.0f;
@@ -90,16 +90,16 @@ struct CaveSaveData {
 	void write(Stream&);
 	void read(Stream&, u32);
 
-	bool m_isInCave;         // _00
-	int m_currentCourse;     // _04 // TODO: Should this be currentCourseIndex?
-	ID32 m_currentCaveID;    // _08
-	PikiContainer _14;       // _14
-	f32 m_time;              // _1C
-	u8 m_isWaterwraithAlive; // _20
-	f32 m_waterwraithTimer;  // _24
-	int m_currentFloor;      // _28
-	u8 m_activeNaviID;       // _2C
-	PikiContainer _30;       // _30
+	bool m_isInCave;           // _00
+	int m_courseIdx;           // _04
+	ID32 m_currentCaveID;      // _08
+	PikiContainer m_cavePikis; // _14, guessed name
+	f32 m_time;                // _1C
+	u8 m_isWaterwraithAlive;   // _20
+	f32 m_waterwraithTimer;    // _24
+	int m_currentFloor;        // _28
+	u8 m_activeNaviID;         // _2C
+	PikiContainer _30;         // _30
 };
 
 struct KindCounter {

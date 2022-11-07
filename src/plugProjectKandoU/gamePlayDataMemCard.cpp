@@ -389,29 +389,29 @@ void PlayData::write(Stream& output)
 	output.writeInt(gameSystem->m_timeMgr->m_dayCount);
 	output.textWriteText("\r\n");
 	output.textEndGroup();
-	output.textBeginGroup("* オリマー装備他/OlimarData *");
+	output.textBeginGroup("* オリマ�?��?備�?/OlimarData *");
 	m_olimarData[0].write(output);
 	m_olimarData[1].write(output);
 	output.textEndGroup();
-	output.textBeginGroup("* 洞窟状況/CaveSaveData *");
+	output.textBeginGroup("* 洞窟状�?/CaveSaveData *");
 	m_caveSaveData.write(output);
 	output.textEndGroup();
 	output.textBeginGroup("* メール/MailSaveData *");
 	m_mailSaveData.write(output);
 	output.textEndGroup();
-	output.textBeginGroup("* コンテナ/ContainerPikmin *");
+	output.textBeginGroup("* コン�?�?/ContainerPikmin *");
 	m_pikiContainer.write(output);
 	output.textEndGroup();
-	output.textBeginGroup("* ペレット/PelletMemory *");
+	output.textBeginGroup("* ペレ�?�?/PelletMemory *");
 	_B0->write(output);
 	output.textEndGroup();
-	output.textBeginGroup("* ペレット/１日にとったもの(Main) *");
+	output.textBeginGroup("* ペレ�?�?/?��日にとったもの(Main) *");
 	m_mainCropMemory->write(output);
 	output.textEndGroup();
-	output.textBeginGroup("* ペレット/地下でとったもの(Cave) *");
+	output.textBeginGroup("* ペレ�?�?/地下でとったもの(Cave) *");
 	m_caveCropMemory->write(output);
 	output.textEndGroup();
-	output.textBeginGroup("* ドーピング情報/Doping *");
+	output.textBeginGroup("* ド�?�ピング�?報/Doping *");
 	char acStack300[272];
 	for (u32 i = 0; i < 2; i++) {
 		output.textWriteTab(output.m_tabCount);
@@ -444,7 +444,7 @@ void PlayData::write(Stream& output)
 	// 	i++;
 	// } while (i < 2);
 	output.textEndGroup();
-	output.textBeginGroup("* コース情報 *");
+	output.textBeginGroup("* コース�?報 *");
 	u32 courseCount = stageList->m_courseCount;
 	output.textWriteTab(output.m_tabCount);
 	output.writeInt((uint)courseCount);
@@ -461,7 +461,7 @@ void PlayData::write(Stream& output)
 				m_limitGen[i].write(output);
 			}
 			output.textEndGroup();
-			output.textBeginGroup("* お金/洞窟で取得した一時的なお金 *");
+			output.textBeginGroup("* お��/洞窟で取得した一時的なお�� *");
 			output.textWriteTab(output.m_tabCount);
 			output.writeInt(m_pokoCount);
 			output.writeInt(_EC);
@@ -473,7 +473,7 @@ void PlayData::write(Stream& output)
 			output.textBeginGroup("* 死亡数 *");
 			Game::DeathMgr::write(output);
 			output.textEndGroup();
-			output.textBeginGroup("* オリマー死亡フラグ *");
+			output.textBeginGroup("* オリマ�?�死亡フラグ *");
 			output.textWriteTab(output.m_tabCount);
 			output.writeByte(_20);
 			output.textWriteText("\r\n");
@@ -482,13 +482,13 @@ void PlayData::write(Stream& output)
 			output.writeFloat(m_naviLifeMax[1]);
 			output.textWriteText("\r\n");
 			output.textEndGroup();
-			output.textBeginGroup("* デモフラグ/特殊発見デモフラグ *");
+			output.textBeginGroup("* �?モフラグ/特殊発見デモフラグ *");
 			output.textWriteTab(output.m_tabCount);
 			m_demoFlags.write(output);
 			m_findItemFlags.write(output);
 			output.textWriteText("\r\n");
 			output.textEndGroup();
-			output.textBeginGroup("* WorldMap 演出用 *");
+			output.textBeginGroup("* WorldMap 演�?�用 *");
 			for (u32 i = 0; i < stageList->m_courseCount; i += 1) {
 				output.writeByte(m_groundOtakaraCollectedOld[i]);
 			}
@@ -514,7 +514,7 @@ void PlayData::write(Stream& output)
 			// // } while (iVar8 < 6);
 			// } while (i < 6);
 			output.textEndGroup();
-			output.textBeginGroup("* ジェネレータキャッシュ/GeneratorCache *");
+			output.textBeginGroup("* ジェネレータキャ�?シュ/GeneratorCache *");
 			generatorCache->write(output);
 			output.textEndGroup();
 			_1C = 0;
@@ -1700,12 +1700,12 @@ void CaveSaveData::write(Stream& output)
 {
 	output.textWriteTab(output.m_tabCount);
 	output.textWriteText("# formationPikmin\r\n");
-	_14.write(output);
+	m_cavePikis.write(output);
 	output.textWriteTab(output.m_tabCount);
 	output.writeFloat(m_time);
 	output.textWriteText("\t# time\r\n");
 	output.textWriteTab(output.m_tabCount);
-	output.writeByte(m_currentCourse);
+	output.writeByte(m_courseIdx);
 	output.textWriteText("\t# curr course\r\n");
 	output.textWriteTab(output.m_tabCount);
 	m_currentCaveID.write(output);

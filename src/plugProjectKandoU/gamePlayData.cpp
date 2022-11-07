@@ -2719,7 +2719,7 @@ bool PlayData::isFindItemDemoFlag(int flag) { return m_findItemFlags.isFlag(flag
 void PlayData::setCurrentCourse(int a1)
 {
 	// Generated from stw r4, 0x50(r3)
-	m_caveSaveData.m_currentCourse = a1;
+	m_caveSaveData.m_courseIdx = a1;
 }
 
 /*
@@ -2761,7 +2761,7 @@ void PlayData::setCurrentCaveFloor(int floor)
  * Address:	801E74DC
  * Size:	000008
  */
-int PlayData::getCurrentCourseIndex() { return m_caveSaveData.m_currentCourse; }
+int PlayData::getCurrentCourseIndex() { return m_caveSaveData.m_courseIdx; }
 
 /*
  * --INFO--
@@ -2770,10 +2770,10 @@ int PlayData::getCurrentCourseIndex() { return m_caveSaveData.m_currentCourse; }
  */
 CourseInfo* PlayData::getCurrentCourse()
 {
-	if (m_caveSaveData.m_currentCourse == -1) {
+	if (m_caveSaveData.m_courseIdx == -1) {
 		return nullptr;
 	}
-	return stageList->getCourseInfo(m_caveSaveData.m_currentCourse);
+	return stageList->getCourseInfo(m_caveSaveData.m_courseIdx);
 	/*
 	stwu     r1, -0x10(r1)
 	mflr     r0
@@ -5606,7 +5606,7 @@ bool PlayData::courseVisited(int index)
  */
 CaveSaveData::CaveSaveData()
     : m_currentCaveID()
-    , _14()
+    , m_cavePikis()
     , _30()
 {
 	clear();
