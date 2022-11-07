@@ -20,9 +20,9 @@ Obj::Obj()
  * Address:	8028F6D8
  * Size:	000058
  */
-void Obj::onInit(CreatureInitArg* arg)
+void Obj::onInit(CreatureInitArg* initArg)
 {
-	ChappyBase::Obj::onInit(arg);
+	ChappyBase::Obj::onInit(initArg);
 	setupEffect();
 	m_onFire = false;
 	startFireState();
@@ -254,12 +254,12 @@ void Obj::updateMaterialAnimation()
 	f32 p1 = 30.0f;
 	if (!m_onFire) {
 		Sys::MatBaseAnimation* animation = m_loopAnimators[0].m_animation;
-		p1                               = m_loopAnimators[0]._08;
+		f32 p2                           = m_loopAnimators[0]._08;
 		f32 frameMax                     = (animation) ? animation->getFrameMax() : 0.0f;
 		frameMax -= 30.0f;
 
 		if (_2F8 == 30.0f) {
-			if (p1 >= frameMax - 1.0f && p1 <= frameMax) {
+			if (p2 >= frameMax - 1.0f && p2 <= frameMax) {
 				_2F8 -= 0.5f;
 			}
 		} else {
@@ -269,7 +269,6 @@ void Obj::updateMaterialAnimation()
 			}
 		}
 
-		// register is getting optimised out where it shouldn't be
 		if (_2F8 <= 0.0f) {
 			p1 = 0.0f;
 		} else {
@@ -279,86 +278,6 @@ void Obj::updateMaterialAnimation()
 
 	m_loopAnimators[0].animate(p1);
 	m_loopAnimators[1].animate(p1);
-	/*
-	stwu     r1, -0x20(r1)
-	mflr     r0
-	stw      r0, 0x24(r1)
-	stfd     f31, 0x10(r1)
-	psq_st   f31, 24(r1), 0, qr0
-	stw      r31, 0xc(r1)
-	mr       r31, r3
-	lfs      f31, lbl_8051B9E0@sda21(r2)
-	lbz      r0, 0x2e4(r3)
-	cmplwi   r0, 0
-	bne      lbl_8028FE1C
-	lwz      r4, 0x2fc(r31)
-	lwz      r3, 4(r4)
-	lfs      f31, 8(r4)
-	cmplwi   r3, 0
-	beq      lbl_8028FD94
-	bl       getFrameMax__Q23Sys16MatBaseAnimationFv
-	b        lbl_8028FD98
-
-lbl_8028FD94:
-	lfs      f1, lbl_8051B9CC@sda21(r2)
-
-lbl_8028FD98:
-	lfs      f0, lbl_8051B9E0@sda21(r2)
-	lfs      f2, 0x2f8(r31)
-	fsubs    f1, f1, f0
-	fcmpu    cr0, f0, f2
-	bne      lbl_8028FDDC
-	lfs      f0, lbl_8051B9D0@sda21(r2)
-	fsubs    f0, f1, f0
-	fcmpo    cr0, f31, f0
-	cror     2, 1, 2
-	bne      lbl_8028FDFC
-	fcmpo    cr0, f31, f1
-	cror     2, 0, 2
-	bne      lbl_8028FDFC
-	lfs      f0, lbl_8051B9E4@sda21(r2)
-	fsubs    f0, f2, f0
-	stfs     f0, 0x2f8(r31)
-	b        lbl_8028FDFC
-
-lbl_8028FDDC:
-	lfs      f1, lbl_8051B9E4@sda21(r2)
-	lfs      f0, lbl_8051B9CC@sda21(r2)
-	fsubs    f1, f2, f1
-	stfs     f1, 0x2f8(r31)
-	lfs      f1, 0x2f8(r31)
-	fcmpo    cr0, f1, f0
-	bge      lbl_8028FDFC
-	stfs     f0, 0x2f8(r31)
-
-lbl_8028FDFC:
-	lfs      f1, 0x2f8(r31)
-	lfs      f0, lbl_8051B9CC@sda21(r2)
-	fcmpo    cr0, f1, f0
-	cror     2, 0, 2
-	bne      lbl_8028FE18
-	fmr      f31, f0
-	b        lbl_8028FE1C
-
-lbl_8028FE18:
-	fmr      f31, f1
-
-lbl_8028FE1C:
-	fmr      f1, f31
-	lwz      r3, 0x2fc(r31)
-	bl       animate__Q23Sys15MatBaseAnimatorFf
-	lwz      r3, 0x2fc(r31)
-	fmr      f1, f31
-	addi     r3, r3, 0xc
-	bl       animate__Q23Sys15MatBaseAnimatorFf
-	psq_l    f31, 24(r1), 0, qr0
-	lwz      r0, 0x24(r1)
-	lfd      f31, 0x10(r1)
-	lwz      r31, 0xc(r1)
-	mtlr     r0
-	addi     r1, r1, 0x20
-	blr
-	*/
 }
 
 /*

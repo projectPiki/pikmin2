@@ -735,7 +735,7 @@ NISHIMURA:=\
 	$(BUILD_DIR)/asm/plugProjectNishimuraU/Demon.o\
 	$(BUILD_DIR)/asm/plugProjectNishimuraU/QueenShadow.o\
 	$(BUILD_DIR)/src/plugProjectNishimuraU/FireChappyMgr.o\
-	$(BUILD_DIR)/asm/plugProjectNishimuraU/FireChappy.o\
+	$(BUILD_DIR)/src/plugProjectNishimuraU/FireChappy.o\
 	$(BUILD_DIR)/asm/plugProjectNishimuraU/SnakeCrowState.o\
 	$(BUILD_DIR)/src/plugProjectNishimuraU/SnakeCrowAnimator.o\
 	$(BUILD_DIR)/src/plugProjectNishimuraU/SnakeCrowMgr.o\
