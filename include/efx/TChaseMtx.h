@@ -87,7 +87,7 @@ struct TChaseMtxT : public TSync {
 	}
 
 	virtual void doExecuteEmitterOperation(JPABaseEmitter*); // _38
-	virtual ~TChaseMtxT();                                   // _48 (weak)
+	virtual ~TChaseMtxT() { }                                // _48 (weak)
 
 	// _00		= VTBL
 	// _00-_10	= TSync

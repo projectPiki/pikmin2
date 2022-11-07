@@ -1,4 +1,5 @@
 #include "Game/Entities/FireChappy.h"
+#include "efx/THanacho.h"
 
 namespace Game {
 namespace FireChappy {
@@ -23,7 +24,7 @@ void Obj::onInit(CreatureInitArg* arg)
 {
 	ChappyBase::Obj::onInit(arg);
 	setupEffect();
-	_2E4 = false;
+	m_onFire = false;
 	startFireState();
 	startMaterialAnimation();
 }
@@ -33,28 +34,10 @@ void Obj::onInit(CreatureInitArg* arg)
  * Address:	8028F730
  * Size:	000048
  */
-void Obj::onKill(CreatureKillArg* inputArg)
+void Obj::onKill(CreatureKillArg* killArg)
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	mr       r31, r4
-	li       r4, 0
-	stw      r30, 8(r1)
-	mr       r30, r3
-	bl       finishFireState__Q34Game10FireChappy3ObjFb
-	mr       r3, r30
-	mr       r4, r31
-	bl       onKill__Q24Game9EnemyBaseFPQ24Game15CreatureKillArg
-	lwz      r0, 0x14(r1)
-	lwz      r31, 0xc(r1)
-	lwz      r30, 8(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	finishFireState(false);
+	EnemyBase::onKill(killArg);
 }
 
 /*
@@ -78,60 +61,18 @@ void Obj::doDebugDraw(Graphics& gfx) { EnemyBase::doDebugDraw(gfx); }
  */
 void Obj::changeMaterial()
 {
-	/*
-	stwu     r1, -0x20(r1)
-	mflr     r0
-	stw      r0, 0x24(r1)
-	stw      r31, 0x1c(r1)
-	stw      r30, 0x18(r1)
-	stw      r29, 0x14(r1)
-	stw      r28, 0x10(r1)
-	mr       r28, r3
-	lwz      r3, 0x174(r3)
-	lwz      r29, 8(r3)
-	lwz      r12, 0(r29)
-	mr       r3, r29
-	lwz      r30, 4(r29)
-	lwz      r12, 0x14(r12)
-	mtctr    r12
-	bctrl
-	mr       r3, r28
-	bl       updateMaterialAnimation__Q34Game10FireChappy3ObjFv
-	lis      r3, j3dSys@ha
-	li       r28, 0
-	addi     r31, r3, j3dSys@l
-	b        lbl_8028F82C
+	J3DModelData* modelData;
+	J3DModel* j3dModel = m_model->m_j3dModel;
+	modelData          = j3dModel->m_modelData;
+	j3dModel->calcMaterial();
+	updateMaterialAnimation();
 
-lbl_8028F7F4:
-	lwz      r4, 0xc0(r29)
-	rlwinm   r3, r28, 6, 0xa, 0x19
-	rlwinm   r0, r28, 2, 0xe, 0x1d
-	add      r4, r4, r3
-	stw      r4, 0x3c(r31)
-	lwz      r3, 0x60(r30)
-	lwz      r4, 0x2c(r4)
-	lwzx     r3, r3, r0
-	lwz      r4, 0x34(r4)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x24(r12)
-	mtctr    r12
-	bctrl
-	addi     r28, r28, 1
-
-lbl_8028F82C:
-	lhz      r0, 0x5c(r30)
-	clrlwi   r3, r28, 0x10
-	cmplw    r3, r0
-	blt      lbl_8028F7F4
-	lwz      r0, 0x24(r1)
-	lwz      r31, 0x1c(r1)
-	lwz      r30, 0x18(r1)
-	lwz      r29, 0x14(r1)
-	lwz      r28, 0x10(r1)
-	mtlr     r0
-	addi     r1, r1, 0x20
-	blr
-	*/
+	for (u16 i = 0; i < modelData->m_materialTable.m_count1; i++) {
+		J3DMatPacket* packet  = &j3dModel->m_matPackets[i];
+		j3dSys.m_matPacket    = packet;
+		J3DMaterial* material = modelData->m_materialTable.m_materials1[i];
+		material->diff(packet->_2C->_34);
+	}
 }
 
 /*
@@ -141,21 +82,8 @@ lbl_8028F82C:
  */
 void Obj::doUpdateCommon()
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	mr       r31, r3
-	bl       doUpdateCommon__Q24Game9EnemyBaseFv
-	mr       r3, r31
-	bl       updateFireState__Q34Game10FireChappy3ObjFv
-	lwz      r0, 0x14(r1)
-	lwz      r31, 0xc(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	EnemyBase::doUpdateCommon();
+	updateFireState();
 }
 
 /*
@@ -163,54 +91,20 @@ void Obj::doUpdateCommon()
  * Address:	8028F890
  * Size:	0000A0
  */
-void Obj::getShadowParam(ShadowParam&)
+void Obj::getShadowParam(ShadowParam& shadowParam)
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	mr       r31, r4
-	stw      r30, 8(r1)
-	mr       r30, r3
-	lwz      r3, 0x2c8(r3)
-	bl       getWorldMatrix__Q28SysShape5JointFv
-	lfs      f4, 0x2c(r3)
-	lfs      f2, 0x1c(r3)
-	lfs      f0, 0xc(r3)
-	lfs      f3, lbl_8051B9C8@sda21(r2)
-	stfs     f0, 0(r31)
-	lfs      f1, lbl_8051B9CC@sda21(r2)
-	stfs     f2, 4(r31)
-	lfs      f0, lbl_8051B9D0@sda21(r2)
-	stfs     f4, 8(r31)
-	lfs      f2, 0x190(r30)
-	fadds    f2, f3, f2
-	stfs     f2, 4(r31)
-	stfs     f1, 0xc(r31)
-	stfs     f0, 0x10(r31)
-	stfs     f1, 0x14(r31)
-	lwz      r0, 0x1e4(r30)
-	clrlwi.  r0, r0, 0x1f
-	beq      lbl_8028F908
-	lfs      f0, lbl_8051B9D4@sda21(r2)
-	stfs     f0, 0x18(r31)
-	b        lbl_8028F910
+	Matrixf* worldMat      = m_shadowJoint->getWorldMatrix();
+	shadowParam.m_position = Vector3f(worldMat->m_matrix.mtxView[0][3], worldMat->m_matrix.mtxView[1][3], worldMat->m_matrix.mtxView[2][3]);
+	shadowParam.m_position.y                = m_position.y + 5.0f;
+	shadowParam.m_boundingSphere.m_position = Vector3f(0.0f, 1.0f, 0.0f);
 
-lbl_8028F908:
-	lfs      f0, lbl_8051B9D8@sda21(r2)
-	stfs     f0, 0x18(r31)
+	if (isEvent(1, EB2_1)) {
+		shadowParam.m_boundingSphere.m_radius = 75.0f;
+	} else {
+		shadowParam.m_boundingSphere.m_radius = 50.0f;
+	}
 
-lbl_8028F910:
-	lfs      f0, lbl_8051B9DC@sda21(r2)
-	stfs     f0, 0x1c(r31)
-	lwz      r0, 0x14(r1)
-	lwz      r31, 0xc(r1)
-	lwz      r30, 8(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	shadowParam._1C = 32.0f;
 }
 
 /*
@@ -218,70 +112,14 @@ lbl_8028F910:
  * Address:	8028F930
  * Size:	0000E0
  */
-void Obj::collisionCallback(CollEvent&)
+void Obj::collisionCallback(CollEvent& collEvent)
 {
-	/*
-	stwu     r1, -0x20(r1)
-	mflr     r0
-	stw      r0, 0x24(r1)
-	stw      r31, 0x1c(r1)
-	mr       r31, r4
-	stw      r30, 0x18(r1)
-	mr       r30, r3
-	bl       collisionCallback__Q34Game10ChappyBase3ObjFRQ24Game9CollEvent
-	lbz      r0, 0x2e4(r30)
-	cmplwi   r0, 0
-	beq      lbl_8028F9F8
-	lwz      r3, 0(r31)
-	cmplwi   r3, 0
-	beq      lbl_8028F9F8
-	lwz      r12, 0(r3)
-	lwz      r12, 0xa8(r12)
-	mtctr    r12
-	bctrl
-	clrlwi.  r0, r3, 0x18
-	beq      lbl_8028F9F8
-	lwz      r3, 0(r31)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x18(r12)
-	mtctr    r12
-	bctrl
-	clrlwi.  r0, r3, 0x18
-	bne      lbl_8028F9B8
-	lwz      r3, 0(r31)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x1c(r12)
-	mtctr    r12
-	bctrl
-	clrlwi.  r0, r3, 0x18
-	beq      lbl_8028F9F8
-
-lbl_8028F9B8:
-	lwz      r6, 0xc0(r30)
-	lis      r5, __vt__Q24Game11Interaction@ha
-	lis      r3, __vt__Q24Game12InteractFire@ha
-	addi     r4, r1, 8
-	lfs      f0, 0x604(r6)
-	addi     r5, r5, __vt__Q24Game11Interaction@l
-	addi     r0, r3, __vt__Q24Game12InteractFire@l
-	stw      r5, 8(r1)
-	stw      r30, 0xc(r1)
-	stw      r0, 8(r1)
-	stfs     f0, 0x10(r1)
-	lwz      r3, 0(r31)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x1a4(r12)
-	mtctr    r12
-	bctrl
-
-lbl_8028F9F8:
-	lwz      r0, 0x24(r1)
-	lwz      r31, 0x1c(r1)
-	lwz      r30, 0x18(r1)
-	mtlr     r0
-	addi     r1, r1, 0x20
-	blr
-	*/
+	ChappyBase::Obj::collisionCallback(collEvent);
+	if (m_onFire && collEvent.m_collidingCreature && collEvent.m_collidingCreature->isAlive()
+	    && (collEvent.m_collidingCreature->isPiki() || collEvent.m_collidingCreature->isNavi())) {
+		InteractFire fire(this, static_cast<ChappyBase::Parms*>(m_parms)->m_general.m_attackDamage.m_value);
+		collEvent.m_collidingCreature->stimulate(fire);
+	}
 }
 
 /*
@@ -291,21 +129,8 @@ lbl_8028F9F8:
  */
 void Obj::doStartWaitingBirthTypeDrop()
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	mr       r31, r3
-	bl       doStartWaitingBirthTypeDrop__Q24Game9EnemyBaseFv
-	mr       r3, r31
-	bl       effectDrawOff__Q34Game10FireChappy3ObjFv
-	lwz      r0, 0x14(r1)
-	lwz      r31, 0xc(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	EnemyBase::doStartWaitingBirthTypeDrop();
+	effectDrawOff();
 }
 
 /*
@@ -315,21 +140,8 @@ void Obj::doStartWaitingBirthTypeDrop()
  */
 void Obj::doFinishWaitingBirthTypeDrop()
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	mr       r31, r3
-	bl       doFinishWaitingBirthTypeDrop__Q24Game9EnemyBaseFv
-	mr       r3, r31
-	bl       effectDrawOn__Q34Game10FireChappy3ObjFv
-	lwz      r0, 0x14(r1)
-	lwz      r31, 0xc(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	EnemyBase::doFinishWaitingBirthTypeDrop();
+	effectDrawOn();
 }
 
 /*
@@ -337,38 +149,14 @@ void Obj::doFinishWaitingBirthTypeDrop()
  * Address:	8028FA78
  * Size:	000020
  */
-void Obj::doStartMovie()
-{
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	bl       effectDrawOff__Q34Game10FireChappy3ObjFv
-	lwz      r0, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
-}
+void Obj::doStartMovie() { effectDrawOff(); }
 
 /*
  * --INFO--
  * Address:	8028FA98
  * Size:	000020
  */
-void Obj::doEndMovie()
-{
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	bl       effectDrawOn__Q34Game10FireChappy3ObjFv
-	lwz      r0, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
-}
+void Obj::doEndMovie() { effectDrawOn(); }
 
 /*
  * --INFO--
@@ -377,28 +165,11 @@ void Obj::doEndMovie()
  */
 void Obj::startFireState()
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	mr       r31, r3
-	lbz      r0, 0x2e4(r3)
-	cmplwi   r0, 0
-	bne      lbl_8028FAE4
-	li       r0, 1
-	stb      r0, 0x2e4(r31)
-	bl       startBodyEffect__Q34Game10FireChappy3ObjFv
-
-lbl_8028FAE4:
-	lfs      f0, lbl_8051B9E0@sda21(r2)
-	stfs     f0, 0x2f8(r31)
-	lwz      r0, 0x14(r1)
-	lwz      r31, 0xc(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	if (!m_onFire) {
+		m_onFire = true;
+		startBodyEffect();
+	}
+	_2F8 = 30.0f;
 }
 
 /*
@@ -406,53 +177,18 @@ lbl_8028FAE4:
  * Address:	8028FB00
  * Size:	000094
  */
-void Obj::finishFireState(bool)
+void Obj::finishFireState(bool check)
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	mr       r31, r4
-	stw      r30, 8(r1)
-	mr       r30, r3
-	lbz      r0, 0x2e4(r3)
-	cmplwi   r0, 0
-	beq      lbl_8028FB7C
-	li       r0, 0
-	stb      r0, 0x2e4(r30)
-	bl       finishBodyEffect__Q34Game10FireChappy3ObjFv
-	clrlwi.  r0, r31, 0x18
-	beq      lbl_8028FB48
-	mr       r3, r30
-	bl       createDeadSteamEffect__Q34Game10FireChappy3ObjFv
-	b        lbl_8028FB50
-
-lbl_8028FB48:
-	mr       r3, r30
-	bl       createDeadSmokeEffect__Q34Game10FireChappy3ObjFv
-
-lbl_8028FB50:
-	mr       r3, r30
-	lwz      r12, 0(r30)
-	lwz      r12, 0xf4(r12)
-	mtctr    r12
-	bctrl
-	lwz      r12, 0(r3)
-	li       r4, 0x58b5
-	li       r5, 0
-	lwz      r12, 0xc(r12)
-	mtctr    r12
-	bctrl
-
-lbl_8028FB7C:
-	lwz      r0, 0x14(r1)
-	lwz      r31, 0xc(r1)
-	lwz      r30, 8(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	if (m_onFire) {
+		m_onFire = false;
+		finishBodyEffect();
+		if (check) {
+			createDeadSteamEffect();
+		} else {
+			createDeadSmokeEffect();
+		}
+		getJAIObject()->startSound(PSSE_EN_FIRE_CHAPPY_F_END, 0);
+	}
 }
 
 /*
@@ -462,81 +198,27 @@ lbl_8028FB7C:
  */
 void Obj::updateFireState()
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	mr       r31, r3
-	lbz      r0, 0x2e4(r3)
-	cmplwi   r0, 0
-	beq      lbl_8028FC44
-	lwz      r12, 0(r3)
-	lwz      r12, 0xf4(r12)
-	mtctr    r12
-	bctrl
-	lwz      r12, 0(r3)
-	li       r4, 0x50b4
-	li       r5, 0
-	lwz      r12, 0xc(r12)
-	mtctr    r12
-	bctrl
-	mr       r3, r31
-	bl       updateEfxLod__Q34Game10FireChappy3ObjFv
-	lwz      r0, 0x280(r31)
-	cmplwi   r0, 0
-	beq      lbl_8028FC8C
-	lbz      r0, 0x2e4(r31)
-	cmplwi   r0, 0
-	beq      lbl_8028FC8C
-	li       r0, 0
-	mr       r3, r31
-	stb      r0, 0x2e4(r31)
-	bl       finishBodyEffect__Q34Game10FireChappy3ObjFv
-	mr       r3, r31
-	bl       createDeadSteamEffect__Q34Game10FireChappy3ObjFv
-	mr       r3, r31
-	lwz      r12, 0(r31)
-	lwz      r12, 0xf4(r12)
-	mtctr    r12
-	bctrl
-	lwz      r12, 0(r3)
-	li       r4, 0x58b5
-	li       r5, 0
-	lwz      r12, 0xc(r12)
-	mtctr    r12
-	bctrl
-	b        lbl_8028FC8C
+	if (m_onFire) {
+		getJAIObject()->startSound(PSSE_EN_FIRE_CHAPPY_FLAME, 0);
+		updateEfxLod();
 
-lbl_8028FC44:
-	lwz      r12, 0(r3)
-	lwz      r12, 0xa8(r12)
-	mtctr    r12
-	bctrl
-	clrlwi.  r0, r3, 0x18
-	beq      lbl_8028FC8C
-	lwz      r0, 0x280(r31)
-	cmplwi   r0, 0
-	bne      lbl_8028FC8C
-	lbz      r0, 0x2e4(r31)
-	cmplwi   r0, 0
-	bne      lbl_8028FC84
-	li       r0, 1
-	mr       r3, r31
-	stb      r0, 0x2e4(r31)
-	bl       startBodyEffect__Q34Game10FireChappy3ObjFv
+		if (m_waterBox && m_onFire) {
+			m_onFire = false;
+			finishBodyEffect();
+			createDeadSteamEffect();
+			getJAIObject()->startSound(PSSE_EN_FIRE_CHAPPY_F_END, 0);
+		}
+		return;
+	}
 
-lbl_8028FC84:
-	lfs      f0, lbl_8051B9E0@sda21(r2)
-	stfs     f0, 0x2f8(r31)
+	if (isAlive() && !m_waterBox) {
+		if (!m_onFire) {
+			m_onFire = true;
+			startBodyEffect();
+		}
 
-lbl_8028FC8C:
-	lwz      r0, 0x14(r1)
-	lwz      r31, 0xc(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+		_2F8 = 30.0f;
+	}
 }
 
 /*
@@ -544,30 +226,7 @@ lbl_8028FC8C:
  * Address:	8028FCA0
  * Size:	00004C
  */
-void Obj::createMaterialAnimation()
-{
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	mr       r31, r3
-	li       r3, 0x28
-	bl       __nwa__FUl
-	lis      r4, __ct__Q23Sys15MatLoopAnimatorFv@ha
-	li       r5, 0
-	addi     r4, r4, __ct__Q23Sys15MatLoopAnimatorFv@l
-	li       r6, 0xc
-	li       r7, 2
-	bl       __construct_new_array
-	stw      r3, 0x2fc(r31)
-	lwz      r0, 0x14(r1)
-	lwz      r31, 0xc(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
-}
+void Obj::createMaterialAnimation() { m_loopAnimators = new Sys::MatLoopAnimator[2]; }
 
 /*
  * --INFO--
@@ -576,32 +235,13 @@ void Obj::createMaterialAnimation()
  */
 void Obj::startMaterialAnimation()
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	mr       r31, r3
-	lwz      r3, 0x2fc(r3)
-	lwz      r4, 0x180(r31)
-	lwz      r12, 0(r3)
-	lwz      r4, 0x48(r4)
-	lwz      r12, 8(r12)
-	mtctr    r12
-	bctrl
-	lwz      r3, 0x2fc(r31)
-	lwzu     r12, 0xc(r3)
-	lwz      r4, 0x180(r31)
-	lwz      r12, 8(r12)
-	lwz      r4, 0x4c(r4)
-	mtctr    r12
-	bctrl
-	lwz      r0, 0x14(r1)
-	lwz      r31, 0xc(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	Sys::MatLoopAnimator* texLoopAnimator = &m_loopAnimators[0];
+	Sys::MatTexAnimation* texAnimation    = static_cast<Mgr*>(m_mgr)->m_texAnimation;
+	texLoopAnimator->start(texAnimation);
+
+	Sys::MatLoopAnimator* tevRegLoopAnimator = &m_loopAnimators[1];
+	Sys::MatTevRegAnimation* tevRegAnimation = static_cast<Mgr*>(m_mgr)->m_tevRegAnimation;
+	tevRegLoopAnimator->start(tevRegAnimation);
 }
 
 /*
@@ -611,6 +251,34 @@ void Obj::startMaterialAnimation()
  */
 void Obj::updateMaterialAnimation()
 {
+	f32 p1 = 30.0f;
+	if (!m_onFire) {
+		Sys::MatBaseAnimation* animation = m_loopAnimators[0].m_animation;
+		p1                               = m_loopAnimators[0]._08;
+		f32 frameMax                     = (animation) ? animation->getFrameMax() : 0.0f;
+		frameMax -= 30.0f;
+
+		if (_2F8 == 30.0f) {
+			if (p1 >= frameMax - 1.0f && p1 <= frameMax) {
+				_2F8 -= 0.5f;
+			}
+		} else {
+			_2F8 -= 0.5f;
+			if (_2F8 < 0.0f) {
+				_2F8 = 0.0f;
+			}
+		}
+
+		// register is getting optimised out where it shouldn't be
+		if (_2F8 <= 0.0f) {
+			p1 = 0.0f;
+		} else {
+			p1 = _2F8;
+		}
+	}
+
+	m_loopAnimators[0].animate(p1);
+	m_loopAnimators[1].animate(p1);
 	/*
 	stwu     r1, -0x20(r1)
 	mflr     r0
@@ -698,22 +366,7 @@ lbl_8028FE1C:
  * Address:	8028FE54
  * Size:	00002C
  */
-void Obj::updateEfxLod()
-{
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	lbz      r0, 0xd8(r3)
-	lwz      r3, 0x2e8(r3)
-	clrlwi   r4, r0, 0x1e
-	bl       setRateLOD__Q23efx9TYakiBodyFi
-	lwz      r0, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
-}
+void Obj::updateEfxLod() { m_efxBody->setRateLOD(m_lod.m_flags & (AILOD_FLAG_IS_MID + AILOD_FLAG_IS_FAR)); }
 
 /*
  * --INFO--
@@ -722,180 +375,11 @@ void Obj::updateEfxLod()
  */
 void Obj::createEffect()
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	mr       r31, r3
-	li       r3, 0x54
-	stw      r30, 8(r1)
-	bl       __nw__FUl
-	or.      r30, r3, r3
-	beq      lbl_8028FECC
-	li       r4, 0
-	li       r5, 0x1e6
-	li       r6, 0x1e7
-	li       r7, 0x1e8
-	li       r8, 0x1e9
-	bl       __ct__Q23efx10TChaseMtx4FPA4_fUsUsUsUs
-	lis      r3, __vt__Q23efx9TYakiBody@ha
-	addi     r0, r3, __vt__Q23efx9TYakiBody@l
-	stw      r0, 0(r30)
-
-lbl_8028FECC:
-	stw      r30, 0x2e8(r31)
-	li       r3, 0x14
-	bl       __nw__FUl
-	cmplwi   r3, 0
-	beq      lbl_8028FF54
-	lis      r4, __vt__Q23efx5TBase@ha
-	lis      r5, __vt__18JPAEmitterCallBack@ha
-	addi     r0, r4, __vt__Q23efx5TBase@l
-	lis      r4, __vt__Q23efx5TSync@ha
-	stw      r0, 0(r3)
-	addi     r0, r5, __vt__18JPAEmitterCallBack@l
-	addi     r5, r4, __vt__Q23efx5TSync@l
-	lis      r4, __vt__Q23efx9TChaseMtx@ha
-	stw      r0, 4(r3)
-	addi     r7, r4, __vt__Q23efx9TChaseMtx@l
-	lis      r4, __vt__Q23efx9THanachoY@ha
-	addi     r0, r5, 0x14
-	stw      r5, 0(r3)
-	addi     r4, r4, __vt__Q23efx9THanachoY@l
-	li       r9, 0
-	li       r8, 0x2b2
-	stw      r0, 4(r3)
-	addi     r6, r7, 0x14
-	li       r5, 0x8c
-	addi     r0, r4, 0x14
-	stw      r9, 8(r3)
-	sth      r8, 0xc(r3)
-	stb      r9, 0xe(r3)
-	stw      r7, 0(r3)
-	stw      r6, 4(r3)
-	stw      r9, 0x10(r3)
-	sth      r5, 0xc(r3)
-	stw      r4, 0(r3)
-	stw      r0, 4(r3)
-
-lbl_8028FF54:
-	stw      r3, 0x2d8(r31)
-	li       r3, 0x14
-	bl       __nw__FUl
-	cmplwi   r3, 0
-	beq      lbl_8028FFDC
-	lis      r4, __vt__Q23efx5TBase@ha
-	lis      r5, __vt__18JPAEmitterCallBack@ha
-	addi     r0, r4, __vt__Q23efx5TBase@l
-	lis      r4, __vt__Q23efx5TSync@ha
-	stw      r0, 0(r3)
-	addi     r0, r5, __vt__18JPAEmitterCallBack@l
-	addi     r5, r4, __vt__Q23efx5TSync@l
-	lis      r4, __vt__Q23efx9TChaseMtx@ha
-	stw      r0, 4(r3)
-	addi     r7, r4, __vt__Q23efx9TChaseMtx@l
-	lis      r4, __vt__Q23efx10TYakiFlick@ha
-	addi     r0, r5, 0x14
-	stw      r5, 0(r3)
-	addi     r4, r4, __vt__Q23efx10TYakiFlick@l
-	li       r9, 0
-	li       r8, 0x2b2
-	stw      r0, 4(r3)
-	addi     r6, r7, 0x14
-	li       r5, 0x242
-	addi     r0, r4, 0x14
-	stw      r9, 8(r3)
-	sth      r8, 0xc(r3)
-	stb      r9, 0xe(r3)
-	stw      r7, 0(r3)
-	stw      r6, 4(r3)
-	stw      r9, 0x10(r3)
-	sth      r5, 0xc(r3)
-	stw      r4, 0(r3)
-	stw      r0, 4(r3)
-
-lbl_8028FFDC:
-	stw      r3, 0x2ec(r31)
-	li       r3, 0x14
-	bl       __nw__FUl
-	cmplwi   r3, 0
-	beq      lbl_80290064
-	lis      r4, __vt__Q23efx5TBase@ha
-	lis      r5, __vt__18JPAEmitterCallBack@ha
-	addi     r0, r4, __vt__Q23efx5TBase@l
-	lis      r4, __vt__Q23efx5TSync@ha
-	stw      r0, 0(r3)
-	addi     r0, r5, __vt__18JPAEmitterCallBack@l
-	addi     r5, r4, __vt__Q23efx5TSync@l
-	lis      r4, __vt__Q23efx10TChaseMtxT@ha
-	stw      r0, 4(r3)
-	addi     r7, r4, __vt__Q23efx10TChaseMtxT@l
-	lis      r4, __vt__Q23efx14TYakiDeadsmoke@ha
-	addi     r0, r5, 0x14
-	stw      r5, 0(r3)
-	addi     r4, r4, __vt__Q23efx14TYakiDeadsmoke@l
-	li       r9, 0
-	li       r8, 0x2b2
-	stw      r0, 4(r3)
-	addi     r6, r7, 0x14
-	li       r5, 0x241
-	addi     r0, r4, 0x14
-	stw      r9, 8(r3)
-	sth      r8, 0xc(r3)
-	stb      r9, 0xe(r3)
-	stw      r7, 0(r3)
-	stw      r6, 4(r3)
-	stw      r9, 0x10(r3)
-	sth      r5, 0xc(r3)
-	stw      r4, 0(r3)
-	stw      r0, 4(r3)
-
-lbl_80290064:
-	stw      r3, 0x2f0(r31)
-	li       r3, 0x14
-	bl       __nw__FUl
-	cmplwi   r3, 0
-	beq      lbl_802900EC
-	lis      r4, __vt__Q23efx5TBase@ha
-	lis      r5, __vt__18JPAEmitterCallBack@ha
-	addi     r0, r4, __vt__Q23efx5TBase@l
-	lis      r4, __vt__Q23efx5TSync@ha
-	stw      r0, 0(r3)
-	addi     r0, r5, __vt__18JPAEmitterCallBack@l
-	addi     r5, r4, __vt__Q23efx5TSync@l
-	lis      r4, __vt__Q23efx9TChaseMtx@ha
-	stw      r0, 4(r3)
-	addi     r7, r4, __vt__Q23efx9TChaseMtx@l
-	lis      r4, __vt__Q23efx10TYakiSteam@ha
-	addi     r0, r5, 0x14
-	stw      r5, 0(r3)
-	addi     r4, r4, __vt__Q23efx10TYakiSteam@l
-	li       r9, 0
-	li       r8, 0x2b2
-	stw      r0, 4(r3)
-	addi     r6, r7, 0x14
-	li       r5, 0x286
-	addi     r0, r4, 0x14
-	stw      r9, 8(r3)
-	sth      r8, 0xc(r3)
-	stb      r9, 0xe(r3)
-	stw      r7, 0(r3)
-	stw      r6, 4(r3)
-	stw      r9, 0x10(r3)
-	sth      r5, 0xc(r3)
-	stw      r4, 0(r3)
-	stw      r0, 4(r3)
-
-lbl_802900EC:
-	stw      r3, 0x2f4(r31)
-	lwz      r0, 0x14(r1)
-	lwz      r31, 0xc(r1)
-	lwz      r30, 8(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	m_efxBody      = new efx::TYakiBody;
+	m_efxHanacho   = new efx::THanachoY;
+	m_efxFlick     = new efx::TYakiFlick;
+	m_efxDeadsmoke = new efx::TYakiDeadsmoke;
+	m_efxSteam     = new efx::TYakiSteam;
 }
 
 /*
@@ -905,41 +389,14 @@ lbl_802900EC:
  */
 void Obj::setupEffect()
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	addi     r4, r2, lbl_8051B9E8@sda21
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	stw      r30, 8(r1)
-	mr       r30, r3
-	lwz      r3, 0x174(r3)
-	bl       getJoint__Q28SysShape5ModelFPc
-	bl       getWorldMatrix__Q28SysShape5JointFv
-	mr       r0, r3
-	lwz      r3, 0x2e8(r30)
-	mr       r31, r0
-	mr       r4, r31
-	bl       setMtxptr__Q23efx10TChaseMtx4FPA4_f
-	lwz      r3, 0x2ec(r30)
-	addi     r4, r2, lbl_8051B9F0@sda21
-	stw      r31, 0x10(r3)
-	lwz      r3, 0x2f0(r30)
-	stw      r31, 0x10(r3)
-	lwz      r3, 0x2f4(r30)
-	stw      r31, 0x10(r3)
-	lwz      r3, 0x174(r30)
-	bl       getJoint__Q28SysShape5ModelFPc
-	bl       getWorldMatrix__Q28SysShape5JointFv
-	lwz      r4, 0x2d8(r30)
-	stw      r3, 0x10(r4)
-	lwz      r0, 0x14(r1)
-	lwz      r31, 0xc(r1)
-	lwz      r30, 8(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	Matrixf* bodyMat = m_model->getJoint("body")->getWorldMatrix();
+	m_efxBody->setMtxptr(bodyMat->m_matrix.mtxView);
+	m_efxFlick->m_mtx     = bodyMat;
+	m_efxDeadsmoke->m_mtx = bodyMat;
+	m_efxSteam->m_mtx     = bodyMat;
+
+	Matrixf* headMat    = m_model->getJoint("head")->getWorldMatrix();
+	m_efxHanacho->m_mtx = headMat;
 }
 
 /*
@@ -947,94 +404,28 @@ void Obj::setupEffect()
  * Address:	8029018C
  * Size:	000034
  */
-void Obj::startSleepEffect()
-{
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	li       r4, 0
-	stw      r0, 0x14(r1)
-	lwz      r3, 0x2d8(r3)
-	lwz      r12, 0(r3)
-	lwz      r12, 8(r12)
-	mtctr    r12
-	bctrl
-	lwz      r0, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
-}
+void Obj::startSleepEffect() { m_efxHanacho->create(nullptr); }
 
 /*
  * --INFO--
  * Address:	802901C0
  * Size:	000030
  */
-void Obj::finishSleepEffect()
-{
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	lwz      r3, 0x2d8(r3)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x10(r12)
-	mtctr    r12
-	bctrl
-	lwz      r0, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
-}
+void Obj::finishSleepEffect() { m_efxHanacho->fade(); }
 
 /*
  * --INFO--
  * Address:	802901F0
  * Size:	000034
  */
-void Obj::startBodyEffect()
-{
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	li       r4, 0
-	stw      r0, 0x14(r1)
-	lwz      r3, 0x2e8(r3)
-	lwz      r12, 0(r3)
-	lwz      r12, 8(r12)
-	mtctr    r12
-	bctrl
-	lwz      r0, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
-}
+void Obj::startBodyEffect() { m_efxBody->create(nullptr); }
 
 /*
  * --INFO--
  * Address:	80290224
  * Size:	000030
  */
-void Obj::finishBodyEffect()
-{
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	lwz      r3, 0x2e8(r3)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x10(r12)
-	mtctr    r12
-	bctrl
-	lwz      r0, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
-}
+void Obj::finishBodyEffect() { m_efxBody->fade(); }
 
 /*
  * --INFO--
@@ -1043,26 +434,9 @@ void Obj::finishBodyEffect()
  */
 void Obj::createFlickEffect()
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	lbz      r0, 0x2e4(r3)
-	cmplwi   r0, 0
-	beq      lbl_80290284
-	lwz      r3, 0x2ec(r3)
-	li       r4, 0
-	lwz      r12, 0(r3)
-	lwz      r12, 8(r12)
-	mtctr    r12
-	bctrl
-
-lbl_80290284:
-	lwz      r0, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	if (m_onFire) {
+		m_efxFlick->create(nullptr);
+	}
 }
 
 /*
@@ -1070,48 +444,14 @@ lbl_80290284:
  * Address:	80290294
  * Size:	000034
  */
-void Obj::createDeadSmokeEffect()
-{
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	li       r4, 0
-	stw      r0, 0x14(r1)
-	lwz      r3, 0x2f0(r3)
-	lwz      r12, 0(r3)
-	lwz      r12, 8(r12)
-	mtctr    r12
-	bctrl
-	lwz      r0, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
-}
+void Obj::createDeadSmokeEffect() { m_efxDeadsmoke->create(nullptr); }
 
 /*
  * --INFO--
  * Address:	802902C8
  * Size:	000034
  */
-void Obj::createDeadSteamEffect()
-{
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	li       r4, 0
-	stw      r0, 0x14(r1)
-	lwz      r3, 0x2f4(r3)
-	lwz      r12, 0(r3)
-	lwz      r12, 8(r12)
-	mtctr    r12
-	bctrl
-	lwz      r0, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
-}
+void Obj::createDeadSteamEffect() { m_efxSteam->create(nullptr); }
 
 /*
  * --INFO--
@@ -1120,43 +460,11 @@ void Obj::createDeadSteamEffect()
  */
 void Obj::effectDrawOn()
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	mr       r31, r3
-	lwz      r3, 0x2e8(r3)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x18(r12)
-	mtctr    r12
-	bctrl
-	lwz      r3, 0x2ec(r31)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x44(r12)
-	mtctr    r12
-	bctrl
-	lwz      r3, 0x2f0(r31)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x44(r12)
-	mtctr    r12
-	bctrl
-	lwz      r3, 0x2f4(r31)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x44(r12)
-	mtctr    r12
-	bctrl
-	lwz      r3, 0x2d8(r31)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x44(r12)
-	mtctr    r12
-	bctrl
-	lwz      r0, 0x14(r1)
-	lwz      r31, 0xc(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	m_efxBody->endDemoDrawOn();
+	m_efxFlick->endDemoDrawOn();
+	m_efxDeadsmoke->endDemoDrawOn();
+	m_efxSteam->endDemoDrawOn();
+	m_efxHanacho->endDemoDrawOn();
 }
 
 /*
@@ -1166,43 +474,11 @@ void Obj::effectDrawOn()
  */
 void Obj::effectDrawOff()
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	mr       r31, r3
-	lwz      r3, 0x2e8(r3)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x14(r12)
-	mtctr    r12
-	bctrl
-	lwz      r3, 0x2ec(r31)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x40(r12)
-	mtctr    r12
-	bctrl
-	lwz      r3, 0x2f0(r31)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x40(r12)
-	mtctr    r12
-	bctrl
-	lwz      r3, 0x2f4(r31)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x40(r12)
-	mtctr    r12
-	bctrl
-	lwz      r3, 0x2d8(r31)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x40(r12)
-	mtctr    r12
-	bctrl
-	lwz      r0, 0x14(r1)
-	lwz      r31, 0xc(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	m_efxBody->startDemoDrawOff();
+	m_efxFlick->startDemoDrawOff();
+	m_efxDeadsmoke->startDemoDrawOff();
+	m_efxSteam->startDemoDrawOff();
+	m_efxHanacho->startDemoDrawOff();
 }
 
 } // namespace FireChappy

@@ -22,7 +22,7 @@ struct TYakiDeadsmoke : public TChaseMtxT {
 	{
 	}
 
-	virtual ~TYakiDeadsmoke(); // _48 (weak)
+	virtual ~TYakiDeadsmoke() { } // _48 (weak)
 
 	// _00     = VTBL
 	// _00-_14 = TChaseMtxT
@@ -34,7 +34,7 @@ struct TYakiFlick : public TChaseMtx {
 	{
 	}
 
-	virtual ~TYakiFlick(); // _48 (weak)
+	virtual ~TYakiFlick() { } // _48 (weak)
 
 	// _00     = VTBL
 	// _00-_14 = TChaseMtx
@@ -46,7 +46,7 @@ struct TYakiSteam : public TChaseMtx {
 	{
 	}
 
-	virtual ~TYakiSteam(); // _48 (weak)
+	virtual ~TYakiSteam() { } // _48 (weak)
 
 	// _00     = VTBL
 	// _00-_14 = TChaseMtx

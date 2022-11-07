@@ -55,15 +55,25 @@ struct Obj : public ChappyBase::Obj {
 	void effectDrawOn();
 	void effectDrawOff();
 
+	inline f32 setLowBound(f32 bound, f32 result)
+	{
+		if (_2F8 <= bound) {
+			return result;
+		} else {
+			return _2F8;
+		}
+	}
+
 	// _00 		= VTBL
 	// _00-_2E4	= ChappyBase::Obj
-	bool _2E4;                           // _2E4, unknown
-	efx::TYakiBody* m_efxBody;           // _2E8
-	efx::TYakiFlick* m_efxFlick;         // _2EC
-	efx::TYakiDeadsmoke* m_efxDeadsmoke; // _2F0
-	efx::TYakiSteam* m_efxSteam;         // _2F4
-	u8 _2F8[0x8];                        // _2F8, unknown
-	                                     // _300 = PelletView
+	bool m_onFire;                         // _2E4
+	efx::TYakiBody* m_efxBody;             // _2E8
+	efx::TYakiFlick* m_efxFlick;           // _2EC
+	efx::TYakiDeadsmoke* m_efxDeadsmoke;   // _2F0
+	efx::TYakiSteam* m_efxSteam;           // _2F4
+	f32 _2F8;                              // _2F8
+	Sys::MatLoopAnimator* m_loopAnimators; // _2FC, array of 2 animators
+	                                       // _300 = PelletView
 };
 
 struct Mgr : public EnemyMgrBase {

@@ -94,7 +94,7 @@ struct Obj : public EnemyBase {
 	SysShape::Joint* m_shadowJoint;      // _2C8
 	f32 _2CC;                            // _2CC
 	WalkSmokeEffect::Mgr m_walkSmokeMgr; // _2D0
-	efx::THanachoN* m_efxHanacho;        // _2D8
+	efx::TChaseMtx* m_efxHanacho;        // _2D8, either efx::THanachoN or efx::THanachoY
 	f32 _2DC;                            // _2DC
 	f32 _2E0;                            // _2E0
 	                                     // _2E4 = PelletView

@@ -17,7 +17,12 @@ struct THanachoN : public TChaseMtx {
 };
 
 struct THanachoY : public TChaseMtx {
-	virtual ~THanachoY(); // _48 (weak)
+	inline THanachoY()
+	    : TChaseMtx(PID_HanachoY, nullptr)
+	{
+	}
+
+	virtual ~THanachoY() { } // _48 (weak)
 
 	// _00      = VTBL
 	// _00-_14  = TChaseMtx

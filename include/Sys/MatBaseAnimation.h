@@ -19,7 +19,7 @@ struct MatBaseAnimation {
 	virtual bool remove()                = 0; // _14
 
 	void attachResource(void*, J3DModelData*);
-	void getFrameMax();
+	f32 getFrameMax();
 
 	// _00 = VTBL
 	J3DModelData* m_modelData; // _04

@@ -394,14 +394,14 @@ void Obj::setupEffect()
  * Address:	8012B770
  * Size:	000034
  */
-void Obj::startSleepEffect() { m_efxHanacho->create(nullptr); }
+void Obj::startSleepEffect() { static_cast<efx::THanachoN*>(m_efxHanacho)->create(nullptr); }
 
 /*
  * --INFO--
  * Address:	8012B7A4
  * Size:	000030
  */
-void Obj::finishSleepEffect() { m_efxHanacho->fade(); }
+void Obj::finishSleepEffect() { static_cast<efx::THanachoN*>(m_efxHanacho)->fade(); }
 
 } // namespace ChappyBase
 } // namespace Game

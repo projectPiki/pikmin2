@@ -676,8 +676,8 @@
 #define PID_TamagoAp_1 (0x23F) // mitites appear 1
 #define PID_TamagoAp_2 (0x240) // mitites appear 2
 
-#define PID_YakiDeadSmoke (0x240) // fiery bulblax smoke on death
-#define PID_YakiFlick     (0x241) // fiery bulblax shake off
+#define PID_YakiDeadSmoke (0x241) // fiery bulblax smoke on death
+#define PID_YakiFlick     (0x242) // fiery bulblax shake off
 
 #define PID_UNK_243 (0x243) // unknown
 #define PID_UNK_244 (0x244) // unknown
