@@ -147,6 +147,8 @@ struct SceneBase {
 	bool updateActive();
 	void userCallBackFunc(Resource::MgrCommand*);
 
+	inline og::Screen::DispMemberBase* getDispMember() { return m_dispMember; }
+
 	// Unused/inlined:
 	u32 getBackupSceneType();
 	void setBGMode(int);

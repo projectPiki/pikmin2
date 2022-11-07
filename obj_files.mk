@@ -883,10 +883,10 @@ OGAWA:=\
 	$(BUILD_DIR)/src/plugProjectOgawaU/DispMemberBase.o\
 	$(BUILD_DIR)/src/plugProjectOgawaU/ogLib2D.o\
 	$(BUILD_DIR)/asm/plugProjectOgawaU/ogObjSMenuMap.o\
-	$(BUILD_DIR)/asm/plugProjectOgawaU/ogSceneSMenuMap.o\
+	$(BUILD_DIR)/src/plugProjectOgawaU/ogSceneSMenuMap.o\
 	$(BUILD_DIR)/asm/plugProjectOgawaU/ogObjSMenuItem.o\
-	$(BUILD_DIR)/asm/plugProjectOgawaU/ogSceneSMenuItem.o\
-	$(BUILD_DIR)/asm/plugProjectOgawaU/ogSceneSMenuPause.o\
+	$(BUILD_DIR)/src/plugProjectOgawaU/ogSceneSMenuItem.o\
+	$(BUILD_DIR)/src/plugProjectOgawaU/ogSceneSMenuPause.o\
 	$(BUILD_DIR)/asm/plugProjectOgawaU/ogObjSMenuPause.o\
 	$(BUILD_DIR)/asm/plugProjectOgawaU/ogObjSMenuBase.o\
 	$(BUILD_DIR)/asm/plugProjectOgawaU/ogObjCourseName.o\
@@ -908,7 +908,7 @@ OGAWA:=\
 	$(BUILD_DIR)/asm/plugProjectOgawaU/ogObjContena.o\
 	$(BUILD_DIR)/asm/plugProjectOgawaU/ogSceneContena.o\
 	$(BUILD_DIR)/asm/plugProjectOgawaU/ogObjSMenuPauseDoukutu.o\
-	$(BUILD_DIR)/asm/plugProjectOgawaU/ogSceneSMenuPauseDoukutu.o\
+	$(BUILD_DIR)/src/plugProjectOgawaU/ogSceneSMenuPauseDoukutu.o\
 	$(BUILD_DIR)/asm/plugProjectOgawaU/ogObjUfo.o\
 	$(BUILD_DIR)/asm/plugProjectOgawaU/ogSceneUfo.o\
 	$(BUILD_DIR)/asm/plugProjectOgawaU/ogObjSave.o\
@@ -936,7 +936,7 @@ OGAWA:=\
 	$(BUILD_DIR)/asm/plugProjectOgawaU/ogOtakaraSensor.o\
 	$(BUILD_DIR)/asm/plugProjectOgawaU/ogTitleMsg.o\
 	$(BUILD_DIR)/src/plugProjectOgawaU/ogAngleMgr.o\
-	$(BUILD_DIR)/asm/plugProjectOgawaU/ogSceneSMenuCont.o\
+	$(BUILD_DIR)/src/plugProjectOgawaU/ogSceneSMenuCont.o\
 	$(BUILD_DIR)/asm/plugProjectOgawaU/ogObjSMenuCont.o\
 
 HIKINO:=\

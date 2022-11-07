@@ -21,26 +21,31 @@ struct MenuMgr;
 
 namespace newScreen {
 struct SceneSMenuBase : public ::Screen::SceneBase {
-	virtual int doGetFinishState(); // _4C (weak)
+	inline SceneSMenuBase()
+	    : m_finishState(1)
+	{
+	}
+
+	virtual int doGetFinishState() { return m_finishState; } // _4C (weak)
 
 	// _00      = VTBL
 	// _00-_220 = Screen::SceneBase
-	int _220; // _220
+	int m_finishState; // _220
 };
 
 struct SMenuCont : public SceneSMenuBase {
 	SMenuCont();
 
-	virtual SceneType getSceneType();                       // _08 (weak)
-	virtual ScreenOwnerID getOwnerID();                     // _0C (weak)
-	virtual ScreenMemberID getMemberID();                   // _10 (weak)
-	virtual bool isUseBackupSceneInfo();                    // _14 (weak)
-	virtual const char* getResName() const;                 // _1C (weak)
-	virtual void doCreateObj(JKRArchive*);                  // _20
-	virtual void doUserCallBackFunc(Resource::MgrCommand*); // _24
-	virtual void doUpdateActive();                          // _2C
-	virtual bool doConfirmSetScene(::Screen::SetSceneArg&); // _30
-	virtual void doSetBackupScene(::Screen::SetSceneArg&);  // _48
+	virtual const char* getResName() const { return "res_s_menu_controller.szs"; } // _1C (weak)
+	virtual SceneType getSceneType() { return SCENE_PAUSE_MENU_CONTROLS; }         // _08 (weak)
+	virtual ScreenOwnerID getOwnerID() { return OWNER_OGA; }                       // _0C (weak)
+	virtual ScreenMemberID getMemberID() { return MEMBER_START_MENU_CONTROLS; }    // _10 (weak)
+	virtual bool isUseBackupSceneInfo() { return true; }                           // _14 (weak)
+	virtual void doCreateObj(JKRArchive*);                                         // _20
+	virtual void doUserCallBackFunc(Resource::MgrCommand*);                        // _24
+	virtual void doUpdateActive();                                                 // _2C
+	virtual bool doConfirmSetScene(::Screen::SetSceneArg&);                        // _30
+	virtual void doSetBackupScene(::Screen::SetSceneArg&);                         // _48
 
 	// _00      = VTBL
 	// _00-_224 = SceneSMenuBase
@@ -49,16 +54,16 @@ struct SMenuCont : public SceneSMenuBase {
 struct SMenuItem : public SceneSMenuBase {
 	SMenuItem();
 
-	virtual SceneType getSceneType();                       // _08 (weak)
-	virtual ScreenOwnerID getOwnerID();                     // _0C (weak)
-	virtual ScreenMemberID getMemberID();                   // _10 (weak)
-	virtual bool isUseBackupSceneInfo();                    // _14 (weak)
-	virtual const char* getResName() const;                 // _1C (weak)
-	virtual void doCreateObj(JKRArchive*);                  // _20
-	virtual void doUserCallBackFunc(Resource::MgrCommand*); // _24
-	virtual void doUpdateActive();                          // _2C
-	virtual bool doConfirmSetScene(::Screen::SetSceneArg&); // _30
-	virtual void doSetBackupScene(::Screen::SetSceneArg&);  // _48
+	virtual const char* getResName() const { return "res_s_menu_item.szs"; } // _1C (weak)
+	virtual SceneType getSceneType() { return SCENE_PAUSE_MENU_ITEMS; }      // _08 (weak)
+	virtual ScreenOwnerID getOwnerID() { return OWNER_OGA; }                 // _0C (weak)
+	virtual ScreenMemberID getMemberID() { return MEMBER_START_MENU_ITEM; }  // _10 (weak)
+	virtual bool isUseBackupSceneInfo() { return true; }                     // _14 (weak)
+	virtual void doCreateObj(JKRArchive*);                                   // _20
+	virtual void doUserCallBackFunc(Resource::MgrCommand*);                  // _24
+	virtual void doUpdateActive();                                           // _2C
+	virtual bool doConfirmSetScene(::Screen::SetSceneArg&);                  // _30
+	virtual void doSetBackupScene(::Screen::SetSceneArg&);                   // _48
 
 	// _00      = VTBL
 	// _00-_224 = SceneSMenuBase
@@ -67,16 +72,16 @@ struct SMenuItem : public SceneSMenuBase {
 struct SMenuMap : public SceneSMenuBase {
 	SMenuMap();
 
-	virtual SceneType getSceneType();                       // _08 (weak)
-	virtual ScreenOwnerID getOwnerID();                     // _0C (weak)
-	virtual ScreenMemberID getMemberID();                   // _10 (weak)
-	virtual bool isUseBackupSceneInfo();                    // _14 (weak)
-	virtual const char* getResName() const;                 // _1C (weak)
-	virtual void doCreateObj(JKRArchive*);                  // _20
-	virtual void doUserCallBackFunc(Resource::MgrCommand*); // _24
-	virtual void doUpdateActive();                          // _2C
-	virtual bool doConfirmSetScene(::Screen::SetSceneArg&); // _30
-	virtual void doSetBackupScene(::Screen::SetSceneArg&);  // _48
+	virtual const char* getResName() const { return "res_s_menu_map.szs"; } // _1C (weak)
+	virtual SceneType getSceneType() { return SCENE_PAUSE_MENU_MAP; }       // _08 (weak)
+	virtual ScreenOwnerID getOwnerID() { return OWNER_OGA; }                // _0C (weak)
+	virtual ScreenMemberID getMemberID() { return MEMBER_START_MENU_MAP; }  // _10 (weak)
+	virtual bool isUseBackupSceneInfo() { return true; }                    // _14 (weak)
+	virtual void doCreateObj(JKRArchive*);                                  // _20
+	virtual void doUserCallBackFunc(Resource::MgrCommand*);                 // _24
+	virtual void doUpdateActive();                                          // _2C
+	virtual bool doConfirmSetScene(::Screen::SetSceneArg&);                 // _30
+	virtual void doSetBackupScene(::Screen::SetSceneArg&);                  // _48
 
 	// _00      = VTBL
 	// _00-_224 = SceneSMenuBase
@@ -85,15 +90,15 @@ struct SMenuMap : public SceneSMenuBase {
 struct SMenuPause : public SceneSMenuBase {
 	SMenuPause();
 
-	virtual SceneType getSceneType();                       // _08 (weak)
-	virtual ScreenOwnerID getOwnerID();                     // _0C (weak)
-	virtual ScreenMemberID getMemberID();                   // _10 (weak)
-	virtual bool isUseBackupSceneInfo();                    // _14 (weak)
-	virtual const char* getResName() const;                 // _1C (weak)
-	virtual void doCreateObj(JKRArchive*);                  // _20
-	virtual void doUserCallBackFunc(Resource::MgrCommand*); // _24
-	virtual void doUpdateActive();                          // _2C
-	virtual bool doConfirmSetScene(::Screen::SetSceneArg&); // _30
+	virtual const char* getResName() const { return "res_s_menu_pause.szs"; } // _1C (weak)
+	virtual SceneType getSceneType() { return SCENE_PAUSE_MENU; }             // _08 (weak)
+	virtual ScreenOwnerID getOwnerID() { return OWNER_OGA; }                  // _0C (weak)
+	virtual ScreenMemberID getMemberID() { return MEMBER_START_MENU_PAUSE; }  // _10 (weak)
+	virtual bool isUseBackupSceneInfo() { return true; }                      // _14 (weak)
+	virtual void doCreateObj(JKRArchive*);                                    // _20
+	virtual void doUserCallBackFunc(Resource::MgrCommand*);                   // _24
+	virtual void doUpdateActive();                                            // _2C
+	virtual bool doConfirmSetScene(::Screen::SetSceneArg&);                   // _30
 
 	// _00      = VTBL
 	// _00-_224 = SceneSMenuBase
@@ -102,16 +107,16 @@ struct SMenuPause : public SceneSMenuBase {
 struct SMenuPauseDoukutu : public SceneSMenuBase {
 	SMenuPauseDoukutu();
 
-	virtual SceneType getSceneType();                       // _08 (weak)
-	virtual ScreenOwnerID getOwnerID();                     // _0C (weak)
-	virtual ScreenMemberID getMemberID();                   // _10 (weak)
-	virtual bool isUseBackupSceneInfo();                    // _14 (weak)
-	virtual const char* getResName() const;                 // _1C (weak)
-	virtual void doCreateObj(JKRArchive*);                  // _20
-	virtual void doUserCallBackFunc(Resource::MgrCommand*); // _24
-	virtual void doUpdateActive();                          // _2C
-	virtual bool doConfirmSetScene(::Screen::SetSceneArg&); // _30
-	virtual int doGetFinishState();                         // _4C
+	virtual const char* getResName() const { return "res_s_menu_pause_doukutu.szs"; } // _1C (weak)
+	virtual SceneType getSceneType() { return SCENE_PAUSE_MENU_DOUKUTU; }             // _08 (weak)
+	virtual ScreenOwnerID getOwnerID() { return OWNER_OGA; }                          // _0C (weak)
+	virtual ScreenMemberID getMemberID() { return MEMBER_START_MENU_PAUSE_DOUKUTU; }  // _10 (weak)
+	virtual bool isUseBackupSceneInfo() { return true; }                              // _14 (weak)
+	virtual void doCreateObj(JKRArchive*);                                            // _20
+	virtual void doUserCallBackFunc(Resource::MgrCommand*);                           // _24
+	virtual void doUpdateActive();                                                    // _2C
+	virtual bool doConfirmSetScene(::Screen::SetSceneArg&);                           // _30
+	virtual int doGetFinishState();                                                   // _4C
 
 	// _00      = VTBL
 	// _00-_224 = SceneSMenuBase
@@ -218,6 +223,7 @@ struct ObjSMenuBase : public ::Screen::ObjBase {
 	} msBaseVal;
 };
 
+// size: 0xBC
 struct ObjSMenuCont : public ObjSMenuBase {
 	ObjSMenuCont(const char*);
 
@@ -245,6 +251,7 @@ struct ObjSMenuCont : public ObjSMenuBase {
 	og::Screen::DispMemberSMenuCont* m_disp; // _A8
 	P2DScreen::Mgr_tuning* _AC;              // _AC
 	og::Screen::AnimGroup* m_animGroup;      // _B0
+	u8 _B4[0x8];                             // _B4, unknown
 };
 
 struct ObjSMenuItem : public ObjSMenuBase {
@@ -357,6 +364,32 @@ struct ObjSMenuMap : public ObjSMenuBase {
 	u8 _13C;                                // _13C
 	J2DTextBox* m_caveLabelTextBoxes[5];    // _140
 	int m_caveLabelCount;                   // _154
+
+	static struct StaticValues {
+		f32 _00;                                 // _00
+		f32 _04;                                 // _04
+		u8 _08;                                  // _08
+		u8 _09;                                  // _09
+		u8 _0A;                                  // _0A
+		Color4 _0B;                              // _0B
+		Color4 _0F;                              // _0F
+		JUtility::TColor m_itemPelletWhiteColor; // _13
+		JUtility::TColor m_itemPelletBlackColor; // _17
+		u8 _1B;                                  // _1B
+		f32 _1C;                                 // _1C
+		f32 _20;                                 // _20
+		f32 _24;                                 // _24
+		f32 _28;                                 // _28
+		f32 _2C;                                 // _2C
+		f32 _30;                                 // _30
+		f32 _34;                                 // _34
+		f32 _38;                                 // _38
+		f32 _3C;                                 // _3C
+		f32 _40;                                 // _40
+		f32 _44;                                 // _44
+		Color4 _48;                              // _48
+		Color4 _4C;                              // _4C
+	} msVal;
 };
 
 struct ObjSMenuPause : public ObjSMenuBase {
