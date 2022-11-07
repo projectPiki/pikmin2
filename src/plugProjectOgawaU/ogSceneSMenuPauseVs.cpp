@@ -28,8 +28,7 @@ void SMenuPauseVS::doUserCallBackFunc(Resource::MgrCommand*) { }
  */
 void SMenuPauseVS::doCreateObj(JKRArchive* archive)
 {
-	ObjSMenuPauseVS* obj = new ObjSMenuPauseVS("SMenuPauseVS screen");
-	registObj(obj, archive);
+	registObj(new ObjSMenuPauseVS("SMenuPauseVS screen"), archive);
 	setColorBG(0, 0, 0, 180);
 }
 

@@ -35,6 +35,9 @@ struct TDayEndCount : public TTestBase {
 
 	void reset();
 
+	// _00     = VTBL1
+	// _18     = VTBL2
+	// _00-_78 = TTestBase
 	JKRArchive* m_archive;                           // _78
 	og::Screen::DispMemberDayEndCount* m_dispMember; // _7C
 	P2DScreen::Mgr_tuning* _80;                      // _80
@@ -43,17 +46,17 @@ struct TDayEndCount : public TTestBase {
 	J2DPicture* _8C;                                 // _8C
 	int _90;                                         // _90
 	u8 _94;                                          // _94
-	JGeometry::TVec2<short> _96[4];                  // _96
-	JGeometry::TVec2<short> _A6[4];                  // _A6
-	float _B8;                                       // _B8
-	float _BC;                                       // _BC
-	float _C0;                                       // _C0
-	float _C4;                                       // _C4
+	JGeometry::TVec2<s16> _96[4];                    // _96
+	JGeometry::TVec2<s16> _A6[4];                    // _A6
+	f32 _B8;                                         // _B8
+	f32 _BC;                                         // _BC
+	f32 _C0;                                         // _C0
+	f32 _C4;                                         // _C4
 	u8 _C8;                                          // _C8
 	u8 _C9;                                          // _C9
 	u8 _CA;                                          // _CA
-	float m_scale;                                   // _CC
-	float m_offsetY;                                 // _D0
+	f32 m_scale;                                     // _CC
+	f32 m_offsetY;                                   // _D0
 };
 
 } // namespace Morimura

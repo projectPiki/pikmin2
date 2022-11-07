@@ -24,8 +24,7 @@ void Cave::doUserCallBackFunc(Resource::MgrCommand*) { }
  */
 void Cave::doCreateObj(JKRArchive* archive)
 {
-	::Screen::ObjBase* obj = new ObjCave("cave screen");
-	registObj(obj, archive);
+	registObj(new ObjCave("cave screen"), archive);
 	setColorBG(0, 0, 0, 0);
 }
 } // namespace newScreen

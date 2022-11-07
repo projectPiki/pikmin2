@@ -25,9 +25,12 @@ struct TTestBase : public Screen::ObjBase {
 
 	static u64 mIsSection;
 
-	float m_timer;         // _38
-	float m_timerLength;   // _3C
-	float m_fadeFraction;  // _40
+	// _00     = VTBL1
+	// _18     = VTBL2
+	// _00-_38 = Screen::ObjBase
+	f32 m_timer;           // _38
+	f32 m_timerLength;     // _3C
+	f32 m_fadeFraction;    // _40
 	u8 m_fadeAlpha;        // _44
 	u8 _45;                // _45
 	char m_baseName[0x32]; // _46

@@ -22,11 +22,7 @@ void SpecialItem::doUserCallBackFunc(Resource::MgrCommand*) { }
  * Address:	8031A2E0
  * Size:	000060
  */
-void SpecialItem::doCreateObj(JKRArchive* archive)
-{
-	::Screen::ObjBase* obj = new ObjSpecialItem("special item screen");
-	registObj(obj, archive);
-}
+void SpecialItem::doCreateObj(JKRArchive* archive) { registObj(new ObjSpecialItem("special item screen"), archive); }
 
 /*
  * --INFO--
@@ -35,11 +31,11 @@ void SpecialItem::doCreateObj(JKRArchive* archive)
  */
 bool SpecialItem::doConfirmSetScene(::Screen::SetSceneArg& arg)
 {
-	bool b = false;
+	bool result = false;
 	if (arg.getSceneType() != SCENE_SPECIAL_ITEM) {
-		b = true;
+		result = true;
 	}
-	return b;
+	return result;
 }
 } // namespace newScreen
 } // namespace og

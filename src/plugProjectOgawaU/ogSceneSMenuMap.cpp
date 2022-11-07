@@ -23,7 +23,7 @@ void SMenuMap::doUserCallBackFunc(Resource::MgrCommand* command)
 {
 	Screen::DispMemberSMenuAll* dispMember = static_cast<Screen::DispMemberSMenuAll*>(m_dispMember);
 	int courseIndex                        = 0;
-	if (dispMember->isID('OGA', 'SM_ALL')) {
+	if (dispMember->isID(OWNER_OGA, MEMBER_START_MENU_ALL)) {
 		courseIndex = dispMember->m_sMenuMap.m_courseIndex;
 	} else {
 		JUT_PANICLINE(70, "DispMember ERR! (%s)\n", 0);

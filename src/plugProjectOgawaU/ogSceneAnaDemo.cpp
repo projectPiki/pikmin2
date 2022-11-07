@@ -32,8 +32,7 @@ void AnaDemo::doUserCallBackFunc(Resource::MgrCommand*) { }
  */
 void AnaDemo::doCreateObj(JKRArchive* archive)
 {
-	::Screen::ObjBase* obj = new ObjAnaDemo("ana demo screen");
-	registObj(obj, archive);
+	registObj(new ObjAnaDemo("ana demo screen"), archive);
 	setColorBG(0, 0, 0, 150);
 }
 } // namespace newScreen

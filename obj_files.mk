@@ -897,28 +897,28 @@ OGAWA:=\
 	$(BUILD_DIR)/asm/plugProjectOgawaU/ogObjSpecialItem.o\
 	$(BUILD_DIR)/src/plugProjectOgawaU/ogSceneSpecialItem.o\
 	$(BUILD_DIR)/asm/plugProjectOgawaU/ogObjFloor.o\
-	$(BUILD_DIR)/asm/plugProjectOgawaU/ogSceneFloor.o\
+	$(BUILD_DIR)/src/plugProjectOgawaU/ogSceneFloor.o\
 	$(BUILD_DIR)/asm/plugProjectOgawaU/ogObjCave.o\
 	$(BUILD_DIR)/src/plugProjectOgawaU/ogSceneCave.o\
 	$(BUILD_DIR)/src/plugProjectOgawaU/ogObjAnaDemo.o\
 	$(BUILD_DIR)/asm/plugProjectOgawaU/ogObjAnaDemo.o\
 	$(BUILD_DIR)/src/plugProjectOgawaU/ogSceneAnaDemo.o\
 	$(BUILD_DIR)/asm/plugProjectOgawaU/ogObjChallenge2P.o\
-	$(BUILD_DIR)/asm/plugProjectOgawaU/ogSceneChallenge2P.o\
+	$(BUILD_DIR)/src/plugProjectOgawaU/ogSceneChallenge2P.o\
 	$(BUILD_DIR)/asm/plugProjectOgawaU/ogObjContena.o\
-	$(BUILD_DIR)/asm/plugProjectOgawaU/ogSceneContena.o\
+	$(BUILD_DIR)/src/plugProjectOgawaU/ogSceneContena.o\
 	$(BUILD_DIR)/asm/plugProjectOgawaU/ogObjSMenuPauseDoukutu.o\
 	$(BUILD_DIR)/src/plugProjectOgawaU/ogSceneSMenuPauseDoukutu.o\
 	$(BUILD_DIR)/asm/plugProjectOgawaU/ogObjUfo.o\
-	$(BUILD_DIR)/asm/plugProjectOgawaU/ogSceneUfo.o\
+	$(BUILD_DIR)/src/plugProjectOgawaU/ogSceneUfo.o\
 	$(BUILD_DIR)/asm/plugProjectOgawaU/ogObjSave.o\
-	$(BUILD_DIR)/asm/plugProjectOgawaU/ogSceneSave.o\
+	$(BUILD_DIR)/src/plugProjectOgawaU/ogSceneSave.o\
 	$(BUILD_DIR)/asm/plugProjectOgawaU/ogObjFinalMsg.o\
-	$(BUILD_DIR)/asm/plugProjectOgawaU/ogSceneFinalMsg.o\
+	$(BUILD_DIR)/src/plugProjectOgawaU/ogSceneFinalMsg.o\
 	$(BUILD_DIR)/asm/plugProjectOgawaU/ogObjVs.o\
 	$(BUILD_DIR)/src/plugProjectOgawaU/ogSceneVs.o\
 	$(BUILD_DIR)/asm/plugProjectOgawaU/ogObjChallenge1P.o\
-	$(BUILD_DIR)/asm/plugProjectOgawaU/ogSceneChallenge1P.o\
+	$(BUILD_DIR)/src/plugProjectOgawaU/ogSceneChallenge1P.o\
 	$(BUILD_DIR)/src/plugProjectOgawaU/ogScaleMgr.o\
 	$(BUILD_DIR)/asm/plugProjectOgawaU/ogObjSMenuPauseVs.o\
 	$(BUILD_DIR)/src/plugProjectOgawaU/ogSceneSMenuPauseVs.o\
@@ -927,7 +927,7 @@ OGAWA:=\
 	$(BUILD_DIR)/asm/plugProjectOgawaU/ogObjWorldMapInfoWindow0.o\
 	$(BUILD_DIR)/src/plugProjectOgawaU/ogSceneWorldMapInfoWindow0.o\
 	$(BUILD_DIR)/asm/plugProjectOgawaU/ogObjWorldMapInfoWindow1.o\
-	$(BUILD_DIR)/asm/plugProjectOgawaU/ogSceneWorldMapInfoWindow1.o\
+	$(BUILD_DIR)/src/plugProjectOgawaU/ogSceneWorldMapInfoWindow1.o\
 	$(BUILD_DIR)/src/plugProjectOgawaU/ogTotalPokoScreen.o\
 	$(BUILD_DIR)/asm/plugProjectOgawaU/ogObjChallengeBase.o\
 	$(BUILD_DIR)/src/plugProjectOgawaU/ogSceneChallengeBase.o\

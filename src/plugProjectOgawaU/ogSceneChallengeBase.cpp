@@ -9,21 +9,14 @@ namespace newScreen {
  * Address:	8032CD30
  * Size:	000044
  */
-ChallengeBase::ChallengeBase()
-    : SceneBase()
-{
-	isCountingDown = false;
-}
+ChallengeBase::ChallengeBase() { isCountingDown = false; }
 
 /*
  * --INFO--
  * Address:	........
  * Size:	000074
  */
-ChallengeBase::~ChallengeBase()
-{
-	// UNUSED FUNCTION
-}
+ChallengeBase::~ChallengeBase() { }
 
 /*
  * --INFO--

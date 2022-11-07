@@ -193,11 +193,7 @@
 ### <section id="plugProjectOgawaU">plugProjectOgawaU</section>
 | File | Size (bytes) | File | Size (bytes) |
 | ---- | ---- | ---- | ---- |
-| <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectOgawaU/ogSceneUfo.cpp">ogSceneUfo.cpp</a> | 5051 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectOgawaU/ogSceneFinalMsg.cpp">ogSceneFinalMsg.cpp</a> | 5107 |
-| <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectOgawaU/ogSceneSave.cpp">ogSceneSave.cpp</a> | 5149 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectOgawaU/ogSceneContena.cpp">ogSceneContena.cpp</a> | 5304 |
-| <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectOgawaU/testObj.cpp">testObj.cpp</a> | 6249 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectOgawaU/ogSceneChallenge1P.cpp">ogSceneChallenge1P.cpp</a> | 6457 |
-| <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectOgawaU/ogSceneWorldMapInfoWindow1.cpp">ogSceneWorldMapInfoWindow1.cpp</a> | 6928 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectOgawaU/ogSceneChallenge2P.cpp">ogSceneChallenge2P.cpp</a> | 7324 |
-| <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectOgawaU/ogBloGroup.cpp">ogBloGroup.cpp</a> | 8075 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectOgawaU/ogSceneFloor.cpp">ogSceneFloor.cpp</a> | 8711 |
+| <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectOgawaU/testObj.cpp">testObj.cpp</a> | 6249 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectOgawaU/ogBloGroup.cpp">ogBloGroup.cpp</a> | 8075 |
 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectOgawaU/ogObjSave.cpp">ogObjSave.cpp</a> | 9529 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectOgawaU/ogSceneGround.cpp">ogSceneGround.cpp</a> | 9854 |
 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectOgawaU/ogObjWorldMapInfoWindow0.cpp">ogObjWorldMapInfoWindow0.cpp</a> | 10133 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectOgawaU/ogSceneCourseName.cpp">ogSceneCourseName.cpp</a> | 10259 |
 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectOgawaU/ogCopyPane.cpp">ogCopyPane.cpp</a> | 10962 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectOgawaU/ogObjChallengeBase.cpp">ogObjChallengeBase.cpp</a> | 12161 |
@@ -206,7 +202,9 @@
 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectOgawaU/ogFuriko.cpp">ogFuriko.cpp</a> | 16001 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectOgawaU/ogCallBackPicture.cpp">ogCallBackPicture.cpp</a> | 17788 |
 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectOgawaU/ogMapCounter.cpp">ogMapCounter.cpp</a> | 19621 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectOgawaU/ogObjSMenuCont.cpp">ogObjSMenuCont.cpp</a> | 20244 |
 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectOgawaU/ogObjFinalMsg.cpp">ogObjFinalMsg.cpp</a> | 21757 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectOgawaU/ogCounterSlot.cpp">ogCounterSlot.cpp</a> | 22304 |
-| <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectOgawaU/ogObjCourseName.cpp">ogObjCourseName.cpp</a> | 23941 |
+| <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectOgawaU/ogObjCourseName.cpp">ogObjCourseName.cpp</a> | 23941 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectOgawaU/ogObjSMenuPauseVs.cpp">ogObjSMenuPauseVs.cpp</a> | 25253 |
+| <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectOgawaU/ogDopingScreen.cpp">ogDopingScreen.cpp</a> | 25662 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectOgawaU/ogObjGround.cpp">ogObjGround.cpp</a> | 25690 |
+| <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectOgawaU/ogPikminCounter.cpp">ogPikminCounter.cpp</a> | 25876 |
 
 ### <section id="plugProjectYamashitaU">plugProjectYamashitaU</section>
 | File | Size (bytes) | File | Size (bytes) |

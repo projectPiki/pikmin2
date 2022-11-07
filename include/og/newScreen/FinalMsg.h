@@ -19,14 +19,14 @@ namespace newScreen {
 struct FinalMsg : public ::Screen::SceneBase {
 	FinalMsg();
 
-	virtual SceneType getSceneType();                       // _08 (weak)
-	virtual ScreenOwnerID getOwnerID();                     // _0C (weak)
-	virtual ScreenMemberID getMemberID();                   // _10 (weak)
-	virtual bool isUseBackupSceneInfo();                    // _14 (weak)
-	virtual const char* getResName() const;                 // _1C (weak)
-	virtual void doCreateObj(JKRArchive*);                  // _20
-	virtual void doUserCallBackFunc(Resource::MgrCommand*); // _24
-	virtual int doGetFinishState();                         // _4C
+	virtual const char* getResName() const { return "res_final_message.szs"; } // _1C (weak)
+	virtual SceneType getSceneType() { return SCENE_FINAL_MSG; }               // _08 (weak)
+	virtual ScreenOwnerID getOwnerID() { return OWNER_OGA; }                   // _0C (weak)
+	virtual ScreenMemberID getMemberID() { return MEMBER_FINAL_MSG; }          // _10 (weak)
+	virtual bool isUseBackupSceneInfo() { return true; }                       // _14 (weak)
+	virtual void doCreateObj(JKRArchive*);                                     // _20
+	virtual void doUserCallBackFunc(Resource::MgrCommand*);                    // _24
+	virtual int doGetFinishState();                                            // _4C
 
 	// _00      = VTBL
 	// _00-_220 = Screen::SceneBase

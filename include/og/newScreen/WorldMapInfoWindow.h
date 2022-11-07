@@ -12,15 +12,13 @@ namespace newScreen {
 struct WorldMapInfoWindow0 : public SMenuPauseVS {
 	WorldMapInfoWindow0();
 
-	~WorldMapInfoWindow0(); // unused/inlined
-
-	virtual SceneType getSceneType();                       // _08 (weak)
-	virtual ScreenMemberID getMemberID();                   // _10 (weak)
-	virtual bool isUseBackupSceneInfo();                    // _14 (weak)
-	virtual const char* getResName() const;                 // _1C (weak)
-	virtual void doCreateObj(JKRArchive*);                  // _20
-	virtual bool doConfirmSetScene(::Screen::SetSceneArg&); // _30
-	virtual int doGetFinishState();                         // _4C
+	virtual const char* getResName() const { return "res_world_map_info_window0.szs"; } // _1C (weak)
+	virtual SceneType getSceneType() { return SCENE_WORLD_MAP_INFO_WINDOW_0; }          // _08 (weak)
+	virtual ScreenMemberID getMemberID() { return MEMBER_WORLD_MAP_INFO_WINDOW_0; }     // _10 (weak)
+	virtual bool isUseBackupSceneInfo() { return false; }                               // _14 (weak)
+	virtual void doCreateObj(JKRArchive*);                                              // _20
+	virtual bool doConfirmSetScene(::Screen::SetSceneArg&);                             // _30
+	virtual int doGetFinishState();                                                     // _4C
 
 	// _00      = VTBL
 	// _00-_220 = SMenuPauseVS
@@ -29,15 +27,13 @@ struct WorldMapInfoWindow0 : public SMenuPauseVS {
 struct WorldMapInfoWindow1 : public SMenuPauseVS {
 	WorldMapInfoWindow1();
 
-	~WorldMapInfoWindow1(); // unused/inlined
-
-	virtual SceneType getSceneType();                       // _08 (weak)
-	virtual ScreenMemberID getMemberID();                   // _10 (weak)
-	virtual bool isUseBackupSceneInfo();                    // _14 (weak)
-	virtual const char* getResName() const;                 // _1C (weak)
-	virtual void doCreateObj(JKRArchive*);                  // _20
-	virtual bool doConfirmSetScene(::Screen::SetSceneArg&); // _30
-	virtual int doGetFinishState();                         // _4C
+	virtual const char* getResName() const { return "res_world_map_info_window1.szs"; } // _1C (weak)
+	virtual SceneType getSceneType() { return SCENE_WORLD_MAP_INFO_WINDOW_1; }          // _08 (weak)
+	virtual ScreenMemberID getMemberID() { return MEMBER_WORLD_MAP_INFO_WINDOW_1; }     // _10 (weak)
+	virtual bool isUseBackupSceneInfo() { return false; }                               // _14 (weak)
+	virtual void doCreateObj(JKRArchive*);                                              // _20
+	virtual bool doConfirmSetScene(::Screen::SetSceneArg&);                             // _30
+	virtual int doGetFinishState();                                                     // _4C
 
 	// _00      = VTBL
 	// _00-_220 = SMenuPauseVS

@@ -3,6 +3,7 @@
 
 #include "types.h"
 #include "ebi/Screen/TScreenBase.h"
+#include "ebi/Screen/TMemoryCard.h"
 #include "Game/StateMachine.h"
 
 struct Controller;
@@ -370,14 +371,19 @@ struct FSMState_WN1_NowCreateNewFile : public FSMState_CardRequest {
 };
 ////////////////////////////////////////////////////////////
 
-struct TMgr {
+struct TMgr : Screen::TMemoryCard {
 	enum enumStart {
 
 	};
 
 	TMgr();
 
-	// TODO: functions + members
+	// _00-_298 = TMemoryCard
+	u8 _298[0x8];                   // _298, unknown
+	u32 _2A0;                       // _2A0, unknown
+	int _2A4;                       // _2A4
+	FSMStateMachine m_stateMachine; // _2A8
+	u32 _2C4;                       // _2C4, unknown
 };
 } // namespace CardError
 } // namespace ebi

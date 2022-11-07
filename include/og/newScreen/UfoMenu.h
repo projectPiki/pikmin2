@@ -19,15 +19,15 @@ namespace newScreen {
 struct UfoMenu : public ::Screen::SceneBase {
 	UfoMenu();
 
-	virtual SceneType getSceneType();                       // _08 (weak)
-	virtual ScreenOwnerID getOwnerID();                     // _0C (weak)
-	virtual ScreenMemberID getMemberID();                   // _10 (weak)
-	virtual bool isUseBackupSceneInfo();                    // _14 (weak)
-	virtual const char* getResName() const;                 // _1C (weak)
-	virtual void doCreateObj(JKRArchive*);                  // _20
-	virtual void doUserCallBackFunc(Resource::MgrCommand*); // _24
-	virtual bool doConfirmSetScene(::Screen::SetSceneArg&); // _30
-	virtual void doSetBackupScene(::Screen::SetSceneArg&);  // _48
+	virtual const char* getResName() const { return "res_ufo.szs"; } // _1C (weak)
+	virtual SceneType getSceneType() { return SCENE_UFO_MENU; }      // _08 (weak)
+	virtual ScreenOwnerID getOwnerID() { return OWNER_OGA; }         // _0C (weak)
+	virtual ScreenMemberID getMemberID() { return MEMBER_UFO_MENU; } // _10 (weak)
+	virtual bool isUseBackupSceneInfo() { return true; }             // _14 (weak)
+	virtual void doCreateObj(JKRArchive*);                           // _20
+	virtual void doUserCallBackFunc(Resource::MgrCommand*);          // _24
+	virtual bool doConfirmSetScene(::Screen::SetSceneArg&);          // _30
+	virtual void doSetBackupScene(::Screen::SetSceneArg&);           // _48
 
 	// _00      = VTBL
 	// _00-_220 = Screen::SceneBase

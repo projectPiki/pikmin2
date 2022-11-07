@@ -30,14 +30,12 @@ struct TitleMsg;
 struct Floor : public ::Screen::SceneBase {
 	Floor();
 
-	~Floor(); // unused/inlined
-
-	virtual SceneType getSceneType();                       // _08 (weak)
-	virtual ScreenOwnerID getOwnerID();                     // _0C (weak)
-	virtual ScreenMemberID getMemberID();                   // _10 (weak)
-	virtual const char* getResName() const;                 // _1C (weak)
-	virtual void doCreateObj(JKRArchive*);                  // _20
-	virtual void doUserCallBackFunc(Resource::MgrCommand*); // _24
+	virtual const char* getResName() const { return ""; }         // _1C (weak)
+	virtual SceneType getSceneType() { return SCENE_FLOOR; }      // _08 (weak)
+	virtual ScreenOwnerID getOwnerID() { return OWNER_OGA; }      // _0C (weak)
+	virtual ScreenMemberID getMemberID() { return MEMBER_FLOOR; } // _10 (weak)
+	virtual void doCreateObj(JKRArchive*);                        // _20
+	virtual void doUserCallBackFunc(Resource::MgrCommand*);       // _24
 
 	// _00      = VTBL
 	// _00-_220 = Screen::SceneBase
@@ -80,6 +78,7 @@ struct ObjFloor : public ::Screen::ObjBase {
 	f32 _5C;                              // _5C
 	f32 _60;                              // _60
 	u8 _64;                               // _64
+	u8 _65[0x3];                          // _65, padding/unknown
 	JUtility::TColor _68;                 // _68
 	u8 _6C;                               // _6C
 	f32 _70;                              // _70

@@ -24,18 +24,20 @@ namespace newScreen {
 struct Save : public ::Screen::SceneBase {
 	Save();
 
-	virtual SceneType getSceneType();                       // _08 (weak)
-	virtual ScreenOwnerID getOwnerID();                     // _0C (weak)
-	virtual ScreenMemberID getMemberID();                   // _10 (weak)
-	virtual const char* getResName() const;                 // _1C (weak)
-	virtual void doCreateObj(JKRArchive*);                  // _20
-	virtual void doUserCallBackFunc(Resource::MgrCommand*); // _24
+	virtual const char* getResName() const { return ""; }        // _1C (weak)
+	virtual SceneType getSceneType() { return SCENE_SAVE; }      // _08 (weak)
+	virtual ScreenOwnerID getOwnerID() { return OWNER_OGA; }     // _0C (weak)
+	virtual ScreenMemberID getMemberID() { return MEMBER_SAVE; } // _10 (weak)
+	virtual void doCreateObj(JKRArchive*);                       // _20
+	virtual void doUserCallBackFunc(Resource::MgrCommand*);      // _24
 
 	void doCreateObjUserCallBackFunc(JKRArchive*);
 
+	inline ebi::Save::TMgr* getSaveMgr() { return m_saveMgr; }
+
 	// _00      = VTBL
 	// _00-_220 = Screen::SceneBase
-	ebi::Save::TMgr* saveMgr; // _220
+	ebi::Save::TMgr* m_saveMgr; // _220
 };
 
 struct ObjSave : public ::Screen::ObjBase {

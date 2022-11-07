@@ -22,13 +22,13 @@ namespace newScreen {
 struct Contena : public ::Screen::SceneBase {
 	Contena();
 
-	virtual SceneType getSceneType();                       // _08 (weak)
-	virtual ScreenOwnerID getOwnerID();                     // _0C (weak)
-	virtual ScreenMemberID getMemberID();                   // _10 (weak)
-	virtual bool isUseBackupSceneInfo();                    // _14 (weak)
-	virtual const char* getResName() const;                 // _1C (weak)
-	virtual void doCreateObj(JKRArchive*);                  // _20
-	virtual void doUserCallBackFunc(Resource::MgrCommand*); // _24
+	virtual const char* getResName() const { return "res_contena.szs"; } // _1C (weak)
+	virtual SceneType getSceneType() { return m_sceneType; }             // _08 (weak)
+	virtual ScreenOwnerID getOwnerID() { return OWNER_OGA; }             // _0C (weak)
+	virtual ScreenMemberID getMemberID() { return MEMBER_CONTENA; }      // _10 (weak)
+	virtual bool isUseBackupSceneInfo() { return true; }                 // _14 (weak)
+	virtual void doCreateObj(JKRArchive*);                               // _20
+	virtual void doUserCallBackFunc(Resource::MgrCommand*);              // _24
 
 	// _00      = VTBL
 	// _00-_220 = Screen::SceneBase

@@ -19,9 +19,10 @@ namespace newScreen {
 struct ChallengeBase : public ::Screen::SceneBase {
 	ChallengeBase();
 
+	~ChallengeBase();
+
 	virtual void startCountDown() = 0; // _50
 
-	~ChallengeBase();
 	void updateCountDown(f32, og::Screen::DispMemberDayEndCount*);
 
 	// _00      = VTBL
@@ -32,16 +33,16 @@ struct ChallengeBase : public ::Screen::SceneBase {
 struct Challenge1P : public ChallengeBase {
 	Challenge1P();
 
-	virtual SceneType getSceneType();                       // _08 (weak)
-	virtual ScreenOwnerID getOwnerID();                     // _0C (weak)
-	virtual ScreenMemberID getMemberID();                   // _10 (weak)
-	virtual bool isDrawInDemo() const;                      // _18 (weak)
-	virtual const char* getResName() const;                 // _1C (weak)
-	virtual void doCreateObj(JKRArchive*);                  // _20
-	virtual void doUserCallBackFunc(Resource::MgrCommand*); // _24
-	virtual void doUpdateActive();                          // _2C
-	virtual bool doStart(::Screen::StartSceneArg*);         // _3C
-	virtual void startCountDown();                          // _50
+	virtual const char* getResName() const { return "res_challenge_1p.szs"; } // _1C (weak)
+	virtual SceneType getSceneType() { return SCENE_CHALLENGE_1P; }           // _08 (weak)
+	virtual ScreenOwnerID getOwnerID() { return OWNER_OGA; }                  // _0C (weak)
+	virtual ScreenMemberID getMemberID() { return MEMBER_CHALLENGE_1P; }      // _10 (weak)
+	virtual bool isDrawInDemo() const { return false; }                       // _18 (weak)
+	virtual void doCreateObj(JKRArchive*);                                    // _20
+	virtual void doUserCallBackFunc(Resource::MgrCommand*);                   // _24
+	virtual void doUpdateActive();                                            // _2C
+	virtual bool doStart(::Screen::StartSceneArg*);                           // _3C
+	virtual void startCountDown();                                            // _50
 
 	// _00      = VTBL
 	// _00-_224 = ChallengeBase
@@ -50,16 +51,16 @@ struct Challenge1P : public ChallengeBase {
 struct Challenge2P : public ChallengeBase {
 	Challenge2P();
 
-	virtual SceneType getSceneType();                       // _08 (weak)
-	virtual ScreenOwnerID getOwnerID();                     // _0C (weak)
-	virtual ScreenMemberID getMemberID();                   // _10 (weak)
-	virtual bool isDrawInDemo() const;                      // _18 (weak)
-	virtual const char* getResName() const;                 // _1C (weak)
-	virtual void doCreateObj(JKRArchive*);                  // _20
-	virtual void doUserCallBackFunc(Resource::MgrCommand*); // _24
-	virtual void doUpdateActive();                          // _2C
-	virtual bool doStart(::Screen::StartSceneArg*);         // _3C
-	virtual void startCountDown();                          // _50
+	virtual const char* getResName() const { return "res_challenge_2p.szs"; } // _1C (weak)
+	virtual SceneType getSceneType() { return SCENE_CHALLENGE_2P; }           // _08 (weak)
+	virtual ScreenOwnerID getOwnerID() { return OWNER_OGA; }                  // _0C (weak)
+	virtual ScreenMemberID getMemberID() { return MEMBER_CHALLENGE_2P; }      // _10 (weak)
+	virtual bool isDrawInDemo() const { return false; }                       // _18 (weak)
+	virtual void doCreateObj(JKRArchive*);                                    // _20
+	virtual void doUserCallBackFunc(Resource::MgrCommand*);                   // _24
+	virtual void doUpdateActive();                                            // _2C
+	virtual bool doStart(::Screen::StartSceneArg*);                           // _3C
+	virtual void startCountDown();                                            // _50
 
 	// _00      = VTBL
 	// _00-_224 = ChallengeBase

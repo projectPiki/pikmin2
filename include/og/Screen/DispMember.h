@@ -226,7 +226,7 @@ struct DispMemberFinalMessage : public DispMemberBase {
 
 	// _00     = VTBL
 	// _00-_08 = DispMemberBase
-	int _08; // _08, state maybe?
+	int m_finalState; // _08
 };
 
 // size 0x14
