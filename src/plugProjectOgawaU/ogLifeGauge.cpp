@@ -1,484 +1,113 @@
 #include "og/Screen/callbackNodes.h"
+#include "og/Screen/NaviLifeGauge.h"
+#include "og/Screen/AngleMgr.h"
+#include "og/Screen/ScaleMgr.h"
+#include "og/Screen/ogScreen.h"
+#include "JSystem/J2D/J2DGrafContext.h"
+#include "LifeGaugeMgr.h"
 #include "types.h"
 
-/*
-    Generated from dpostproc
-
-    .section .ctors, "wa"  # 0x80472F00 - 0x804732C0
-    .4byte __sinit_ogLifeGauge_cpp
-
-    .section .rodata  # 0x804732E0 - 0x8049E220
-    .global lbl_8048DFB8
-    lbl_8048DFB8:
-        .asciz "ogLifeGauge.cpp"
-    .global lbl_8048DFC8
-    lbl_8048DFC8:
-        .asciz "ERR! : NULL Pane !!!\n"
-        .skip 2
-
-    .section .data, "wa"  # 0x8049E220 - 0x804EFC20
-    .global __vt__Q32og6Screen13NaviLifeGauge
-    __vt__Q32og6Screen13NaviLifeGauge:
-        .4byte 0
-        .4byte 0
-        .4byte __dt__Q32og6Screen13NaviLifeGaugeFv
-        .4byte getTypeID__9J2DScreenCFv
-        .4byte move__7J2DPaneFff
-        .4byte add__7J2DPaneFff
-        .4byte resize__7J2DPaneFff
-        .4byte setCullBack__7J2DPaneFb
-        .4byte setCullBack__7J2DPaneF11_GXCullMode
-        .4byte setAlpha__7J2DPaneFUc
-        .4byte setConnectParent__7J2DPaneFb
-        .4byte calcMtx__9J2DScreenFv
-        .4byte update__Q32og6Screen13NaviLifeGaugeFv
-        .4byte drawSelf__7J2DPaneFff
-        .4byte drawSelf__9J2DScreenFffPA3_A4_f
-        .4byte search__9J2DScreenFUx
-        .4byte searchUserInfo__9J2DScreenFUx
-        .4byte makeMatrix__7J2DPaneFff
-        .4byte makeMatrix__7J2DPaneFffff
-        .4byte isUsed__9J2DScreenFPC7ResTIMG
-        .4byte isUsed__9J2DScreenFPC7ResFONT
-        .4byte clearAnmTransform__9J2DScreenFv
-        .4byte rewriteAlpha__7J2DPaneFv
-        .4byte setAnimation__9J2DScreenFP10J2DAnmBase
-        .4byte setAnimation__9J2DScreenFP15J2DAnmTransform
-        .4byte setAnimation__9J2DScreenFP11J2DAnmColor
-        .4byte setAnimation__9J2DScreenFP16J2DAnmTexPattern
-        .4byte setAnimation__9J2DScreenFP19J2DAnmTextureSRTKey
-        .4byte setAnimation__9J2DScreenFP15J2DAnmTevRegKey
-        .4byte setAnimation__9J2DScreenFP20J2DAnmVisibilityFull
-        .4byte setAnimation__9J2DScreenFP14J2DAnmVtxColor
-        .4byte animationTransform__7J2DPaneFPC15J2DAnmTransform
-        .4byte setVisibileAnimation__7J2DPaneFP20J2DAnmVisibilityFull
-        .4byte setAnimationVF__9J2DScreenFP20J2DAnmVisibilityFull
-        .4byte setVtxColorAnimation__7J2DPaneFP14J2DAnmVtxColor
-        .4byte setAnimationVC__9J2DScreenFP14J2DAnmVtxColor
-        .4byte animationPane__7J2DPaneFPC15J2DAnmTransform
-        .4byte
-   createPane__9J2DScreenFRC18J2DScrnBlockHeaderP20JSURandomInputStreamP7J2DPaneUl
-        .4byte
-   createPane__9J2DScreenFRC18J2DScrnBlockHeaderP20JSURandomInputStreamP7J2DPaneUlP10JKRArchive
-        .4byte draw__Q29P2DScreen10Mgr_tuningFR8GraphicsR14J2DGrafContext
-    .global __vt__Q32og6Screen18CallBack_LifeGauge
-    __vt__Q32og6Screen18CallBack_LifeGauge:
-        .4byte 0
-        .4byte 0
-        .4byte __dt__Q32og6Screen18CallBack_LifeGaugeFv
-        .4byte getChildCount__5CNodeFv
-        .4byte update__Q32og6Screen18CallBack_LifeGaugeFv
-        .4byte
-   draw__Q32og6Screen18CallBack_LifeGaugeFR8GraphicsR14J2DGrafContext .4byte
-   doInit__Q29P2DScreen4NodeFv .global __vt__Q29P2DScreen12CallBackNode
-    __vt__Q29P2DScreen12CallBackNode:
-        .4byte 0
-        .4byte 0
-        .4byte __dt__Q29P2DScreen12CallBackNodeFv
-        .4byte getChildCount__5CNodeFv
-        .4byte update__Q29P2DScreen12CallBackNodeFv
-        .4byte draw__Q29P2DScreen4NodeFR8GraphicsR14J2DGrafContext
-        .4byte doInit__Q29P2DScreen4NodeFv
-
-    .section .bss  # 0x804EFC20 - 0x8051467C
-    .global msVal__Q32og6Screen18CallBack_LifeGauge
-    msVal__Q32og6Screen18CallBack_LifeGauge:
-        .skip 0x10
-
-    .section .sdata2, "a"     # 0x80516360 - 0x80520E40
-    .global lbl_8051D5B0
-    lbl_8051D5B0:
-        .float 1.0
-    .global lbl_8051D5B4
-    lbl_8051D5B4:
-        .4byte 0x41880000
-    .global lbl_8051D5B8
-    lbl_8051D5B8:
-        .4byte 0x00000000
-    .global lbl_8051D5BC
-    lbl_8051D5BC:
-        .4byte 0x43000000
-    .global lbl_8051D5C0
-    lbl_8051D5C0:
-        .4byte 0x40490FDB
-    .global lbl_8051D5C4
-    lbl_8051D5C4:
-        .float 0.5
-    .global lbl_8051D5C8
-    lbl_8051D5C8:
-        .4byte 0x3ECCCCCD
-    .global lbl_8051D5CC
-    lbl_8051D5CC:
-        .4byte 0x41F00000
-    .global lbl_8051D5D0
-    lbl_8051D5D0:
-        .4byte 0x3F19999A
-    .global lbl_8051D5D4
-    lbl_8051D5D4:
-        .4byte 0x42480000
-    .global lbl_8051D5D8
-    lbl_8051D5D8:
-        .4byte 0xC3A2F983
-    .global lbl_8051D5DC
-    lbl_8051D5DC:
-        .4byte 0x43A2F983
-    .global lbl_8051D5E0
-    lbl_8051D5E0:
-        .float 0.7
-    .global lbl_8051D5E4
-    lbl_8051D5E4:
-        .4byte 0x437F0000
-    .global lbl_8051D5E8
-    lbl_8051D5E8:
-        .float 0.3
-        .4byte 0x00000000
-*/
+namespace og {
+namespace Screen {
 
 /*
  * --INFO--
  * Address:	80306038
  * Size:	000158
  */
-og::Screen::CallBack_LifeGauge::CallBack_LifeGauge(void)
+CallBack_LifeGauge::CallBack_LifeGauge()
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	mr       r31, r3
-	mr       r0, r31
-	stw      r30, 8(r1)
-	mr       r30, r0
-	bl       __ct__5CNodeFv
-	lis      r3, __vt__Q29P2DScreen4Node@ha
-	lis      r4, __vt__Q29P2DScreen12CallBackNode@ha
-	addi     r0, r3, __vt__Q29P2DScreen4Node@l
-	lis      r3, __vt__Q32og6Screen18CallBack_LifeGauge@ha
-	stw      r0, 0(r30)
-	li       r5, 0
-	addi     r4, r4, __vt__Q29P2DScreen12CallBackNode@l
-	addi     r0, r3, __vt__Q32og6Screen18CallBack_LifeGauge@l
-	stw      r5, 0x18(r30)
-	li       r3, 0xc
-	lfs      f2, lbl_8051D5B0@sda21(r2)
-	stw      r4, 0(r30)
-	lfs      f1, lbl_8051D5B4@sda21(r2)
-	stw      r0, 0(r31)
-	lfs      f0, lbl_8051D5B8@sda21(r2)
-	stw      r5, 0x1c(r31)
-	stfs     f2, 0x20(r31)
-	stfs     f1, 0x24(r31)
-	stfs     f0, 0x28(r31)
-	stfs     f0, 0x2c(r31)
-	stfs     f0, 0x54(r31)
-	stfs     f2, 0x58(r31)
-	stw      r5, 0x5c(r31)
-	stw      r5, 0x60(r31)
-	stw      r5, 0x64(r31)
-	stw      r5, 0x68(r31)
-	stw      r5, 0x6c(r31)
-	bl       __nw__FUl
-	or.      r0, r3, r3
-	beq      lbl_803060DC
-	bl       __ct__9LifeGaugeFv
-	mr       r0, r3
+	m_data               = nullptr;
+	m_naviLifeRatioMaybe = 1.0f;
+	m_widthOrRadiusMaybe = 17.0f;
+	m_offsetX            = 0.0f;
+	m_offsetY            = 0.0f;
+	_54                  = 0.0f;
+	_58                  = 1.0f;
+	_5C                  = nullptr;
+	m_pin1               = nullptr;
+	m_pin2               = nullptr;
+	m_na_i               = nullptr;
+	m_li_i               = nullptr;
 
-lbl_803060DC:
-	stw      r0, 0x4c(r31)
-	li       r4, 1
-	lfs      f0, lbl_8051D5B8@sda21(r2)
-	li       r0, 0
-	li       r3, 0x18
-	stfs     f0, 0x34(r31)
-	stfs     f0, 0x38(r31)
-	stfs     f0, 0x3c(r31)
-	stfs     f0, 0x40(r31)
-	stfs     f0, 0x44(r31)
-	stfs     f0, 0x48(r31)
-	stfs     f0, 0x30(r31)
-	stb      r4, 0x50(r31)
-	lbz      r4, 0x50(r31)
-	stb      r4, 0x51(r31)
-	stw      r0, 0x70(r31)
-	stw      r0, 0x74(r31)
-	stw      r0, 0x78(r31)
-	stw      r0, 0x7c(r31)
-	stw      r0, 0x80(r31)
-	stw      r0, 0x84(r31)
-	bl       __nw__FUl
-	or.      r0, r3, r3
-	beq      lbl_80306144
-	bl       __ct__Q32og6Screen8AngleMgrFv
-	mr       r0, r3
+	m_lifeGauge = new LifeGauge;
+	_34         = 0.0f;
+	_38         = 0.0f;
+	m_na_i_d4   = 0.0f;
+	m_na_i_d8   = 0.0f;
+	m_li_i_d4   = 0.0f;
+	m_li_i_d8   = 0.0f;
+	_30         = 0.0f;
+	_50         = 1;
+	_51         = _50;
+	_70         = nullptr;
+	_74         = nullptr;
+	_78         = nullptr;
+	_7C         = nullptr;
+	_80         = nullptr;
+	_84         = nullptr;
 
-lbl_80306144:
-	stw      r0, 0x88(r31)
-	li       r3, 0x1c
-	bl       __nw__FUl
-	or.      r0, r3, r3
-	beq      lbl_80306160
-	bl       __ct__Q32og6Screen8ScaleMgrFv
-	mr       r0, r3
+	m_angleMgr = new AngleMgr;
+	m_scaleMgr = new ScaleMgr;
 
-lbl_80306160:
-	stw      r0, 0x8c(r31)
-	li       r0, 0
-	lfs      f0, lbl_8051D5B8@sda21(r2)
-	mr       r3, r31
-	stb      r0, 0x94(r31)
-	stfs     f0, 0x98(r31)
-	lwz      r31, 0xc(r1)
-	lwz      r30, 8(r1)
-	lwz      r0, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	_94 = 0;
+	_98 = 0.0f;
 }
 
-/*
- * --INFO--
- * Address:	80306190
- * Size:	000070
- */
-P2DScreen::CallBackNode::~CallBackNode(void)
-{
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	mr       r31, r4
-	stw      r30, 8(r1)
-	or.      r30, r3, r3
-	beq      lbl_803061E4
-	lis      r4, __vt__Q29P2DScreen12CallBackNode@ha
-	addi     r0, r4, __vt__Q29P2DScreen12CallBackNode@l
-	stw      r0, 0(r30)
-	beq      lbl_803061D4
-	lis      r5, __vt__Q29P2DScreen4Node@ha
-	li       r4, 0
-	addi     r0, r5, __vt__Q29P2DScreen4Node@l
-	stw      r0, 0(r30)
-	bl       __dt__5CNodeFv
-
-lbl_803061D4:
-	extsh.   r0, r31
-	ble      lbl_803061E4
-	mr       r3, r30
-	bl       __dl__FPv
-
-lbl_803061E4:
-	lwz      r0, 0x14(r1)
-	mr       r3, r30
-	lwz      r31, 0xc(r1)
-	lwz      r30, 8(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
-}
-
-namespace og {
-namespace Screen {
 /*
  * --INFO--
  * Address:	80306200
  * Size:	0002C4
  */
-void CallBack_LifeGauge::init(P2DScreen::Mgr*, DataNavi*, LifeGaugeType)
+void CallBack_LifeGauge::init(P2DScreen::Mgr* mgr, DataNavi* data, LifeGaugeType lifeGaugeType)
 {
-	/*
-	.loc_0x0:
-	  stwu      r1, -0x20(r1)
-	  mflr      r0
-	  stw       r0, 0x24(r1)
-	  stw       r31, 0x1C(r1)
-	  mr        r31, r6
-	  stw       r30, 0x18(r1)
-	  mr        r30, r5
-	  stw       r29, 0x14(r1)
-	  mr        r29, r4
-	  stw       r28, 0x10(r1)
-	  mr        r28, r3
-	  lwz       r0, 0x1C(r3)
-	  cmplwi    r0, 0
-	  bne-      .loc_0x2A4
-	  stw       r30, 0x1C(r28)
-	  li        r4, 0x80
-	  lfs       f0, 0x0(r30)
-	  stfs      f0, 0x20(r28)
-	  lwz       r3, 0x4C(r28)
-	  bl        -0x1EC61C
-	  lfs       f1, -0xDA4(r2)
-	  lis       r4, 0x7069
-	  lfs       f0, 0x20(r28)
-	  mr        r3, r29
-	  lwz       r7, 0x4C(r28)
-	  addi      r6, r4, 0x6E31
-	  fmuls     f0, f1, f0
-	  li        r5, 0
-	  fctiwz    f0, f0
-	  stfd      f0, 0x8(r1)
-	  lwz       r0, 0xC(r1)
-	  stb       r0, 0x8(r7)
-	  stw       r29, 0x5C(r28)
-	  bl        -0x33D8
-	  stw       r3, 0x60(r28)
-	  lis       r4, 0x7069
-	  mr        r3, r29
-	  li        r5, 0
-	  addi      r6, r4, 0x6E32
-	  bl        -0x33F0
-	  stw       r3, 0x64(r28)
-	  lis       r4, 0x6E61
-	  mr        r3, r29
-	  li        r5, 0
-	  addi      r6, r4, 0x5F69
-	  bl        -0x3408
-	  stw       r3, 0x68(r28)
-	  lis       r4, 0x6C69
-	  mr        r3, r29
-	  li        r5, 0
-	  addi      r6, r4, 0x5F69
-	  bl        -0x3420
-	  stw       r3, 0x6C(r28)
-	  lis       r4, 0x7669
-	  li        r0, 0
-	  mr        r3, r29
-	  lwz       r7, 0x68(r28)
-	  addi      r6, r4, 0x5F69
-	  li        r5, 0x6E61
-	  lfs       f0, 0xD4(r7)
-	  stfs      f0, 0x3C(r28)
-	  lwz       r4, 0x68(r28)
-	  lfs       f0, 0xD8(r4)
-	  stfs      f0, 0x40(r28)
-	  lwz       r4, 0x6C(r28)
-	  lfs       f0, 0xD4(r4)
-	  stfs      f0, 0x44(r28)
-	  lwz       r4, 0x6C(r28)
-	  lfs       f0, 0xD8(r4)
-	  stfs      f0, 0x48(r28)
-	  lwz       r4, 0x60(r28)
-	  stb       r0, 0xB0(r4)
-	  lwz       r4, 0x64(r28)
-	  stb       r0, 0xB0(r4)
-	  lwz       r12, 0x0(r29)
-	  lwz       r12, 0x3C(r12)
-	  mtctr     r12
-	  bctrl
-	  stw       r3, 0x70(r28)
-	  mr        r3, r29
-	  lis       r5, 0x6932
-	  lis       r4, 0x6E
-	  lwz       r12, 0x0(r29)
-	  addi      r6, r5, 0x5F69
-	  addi      r5, r4, 0x6176
-	  lwz       r12, 0x3C(r12)
-	  mtctr     r12
-	  bctrl
-	  stw       r3, 0x74(r28)
-	  mr        r3, r29
-	  lis       r5, 0x6933
-	  lis       r4, 0x6E
-	  lwz       r12, 0x0(r29)
-	  addi      r6, r5, 0x5F69
-	  addi      r5, r4, 0x6176
-	  lwz       r12, 0x3C(r12)
-	  mtctr     r12
-	  bctrl
-	  stw       r3, 0x78(r28)
-	  mr        r3, r29
-	  lis       r4, 0x6E61
-	  li        r5, 0
-	  lwz       r12, 0x0(r29)
-	  addi      r6, r4, 0x7669
-	  lwz       r12, 0x3C(r12)
-	  mtctr     r12
-	  bctrl
-	  stw       r3, 0x7C(r28)
-	  mr        r3, r29
-	  lis       r4, 0x6176
-	  li        r5, 0x6E
-	  lwz       r12, 0x0(r29)
-	  addi      r6, r4, 0x6932
-	  lwz       r12, 0x3C(r12)
-	  mtctr     r12
-	  bctrl
-	  stw       r3, 0x80(r28)
-	  mr        r3, r29
-	  lis       r4, 0x6176
-	  li        r5, 0x6E
-	  lwz       r12, 0x0(r29)
-	  addi      r6, r4, 0x6933
-	  lwz       r12, 0x3C(r12)
-	  mtctr     r12
-	  bctrl
-	  stw       r3, 0x84(r28)
-	  lwz       r4, 0x80(r28)
-	  cmplwi    r4, 0
-	  beq-      .loc_0x22C
-	  lwz       r0, 0x84(r28)
-	  cmplwi    r0, 0
-	  beq-      .loc_0x22C
-	  li        r0, 0
-	  mr        r3, r28
-	  stb       r0, 0xB0(r4)
-	  mr        r4, r31
-	  lwz       r5, 0x84(r28)
-	  stb       r0, 0xB0(r5)
-	  bl        .loc_0x2C4
+	if (!m_data) {
+		m_data               = data;
+		m_naviLifeRatioMaybe = data->m_naviLifeRatio;
+		m_lifeGauge->init(128);
+		m_lifeGauge->_08 = 128.0f * m_naviLifeRatioMaybe;
+		_5C              = mgr;
 
-	.loc_0x22C:
-	  lbz       r0, 0x14(r30)
-	  cmplwi    r0, 0
-	  beq-      .loc_0x26C
-	  lfs       f1, -0xDA8(r2)
-	  lis       r3, 0x8051
-	  li        r0, 0x1
-	  stfs      f1, 0x30(r28)
-	  addi      r4, r3, 0x3BFC
-	  stb       r0, 0x50(r28)
-	  lbz       r0, 0x50(r28)
-	  stb       r0, 0x51(r28)
-	  lwz       r3, 0x88(r28)
-	  lfs       f2, 0x8(r4)
-	  lfs       f3, 0xC(r4)
-	  bl        0x29E54
-	  b         .loc_0x29C
+		m_pin1 = TagSearch(mgr, 'pin1');
+		m_pin2 = static_cast<J2DPicture*>(TagSearch(mgr, 'pin2'));
+		m_na_i = TagSearch(mgr, 'na_i');
+		m_li_i = TagSearch(mgr, 'li_i');
 
-	.loc_0x26C:
-	  lfs       f1, -0xDA0(r2)
-	  lis       r3, 0x8051
-	  li        r0, 0
-	  stfs      f1, 0x30(r28)
-	  addi      r4, r3, 0x3BFC
-	  stb       r0, 0x50(r28)
-	  lbz       r0, 0x50(r28)
-	  stb       r0, 0x51(r28)
-	  lwz       r3, 0x88(r28)
-	  lfs       f2, 0x8(r4)
-	  lfs       f3, 0xC(r4)
-	  bl        0x29E20
+		m_na_i_d4 = m_na_i->_0D4.x;
+		m_na_i_d8 = m_na_i->_0D4.y;
 
-	.loc_0x29C:
-	  li        r0, 0
-	  stb       r0, 0x94(r28)
+		m_li_i_d4 = m_li_i->_0D4.x;
+		m_li_i_d8 = m_li_i->_0D4.y;
 
-	.loc_0x2A4:
-	  lwz       r0, 0x24(r1)
-	  lwz       r31, 0x1C(r1)
-	  lwz       r30, 0x18(r1)
-	  lwz       r29, 0x14(r1)
-	  lwz       r28, 0x10(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x20
-	  blr
+		m_pin1->m_isVisible = false;
+		m_pin2->m_isVisible = false;
+		_70                 = static_cast<J2DPicture*>(mgr->search('navi_i'));
+		_74                 = static_cast<J2DPicture*>(mgr->search('navi2_i'));
+		_78                 = static_cast<J2DPicture*>(mgr->search('navi3_i'));
+		_7C                 = static_cast<J2DPicture*>(mgr->search('navi'));
+		_80                 = static_cast<J2DPicture*>(mgr->search('navi2'));
+		_84                 = static_cast<J2DPicture*>(mgr->search('navi3'));
 
-	.loc_0x2C4:
-	*/
+		if (_80 && _84) {
+			_80->m_isVisible = false;
+			_84->m_isVisible = false;
+			setType(lifeGaugeType);
+		}
+
+		if (data->_14) {
+			_30 = 0.0f;
+			_50 = 1;
+			_51 = _50;
+			m_angleMgr->init(0.0f, msVal._08, msVal._0C);
+		} else {
+			_30 = PI;
+			_50 = 0;
+			_51 = _50;
+			m_angleMgr->init(PI, msVal._08, msVal._0C);
+		}
+
+		_94 = 0;
+	}
 }
 
 /*
@@ -486,8 +115,44 @@ void CallBack_LifeGauge::init(P2DScreen::Mgr*, DataNavi*, LifeGaugeType)
  * Address:	803064C4
  * Size:	000434
  */
-void CallBack_LifeGauge::setType(LifeGaugeType)
+void CallBack_LifeGauge::setType(LifeGaugeType lifeGaugeType)
 {
+	JUtility::TColor color(0xFF, 0xFF, 0xFF, 0xFF);
+	m_lifeGaugeType = lifeGaugeType;
+
+	switch (lifeGaugeType) {
+	LIFEGAUGE_UNK1:
+		JUTTexture* texture1 = _74->getTexture(0);
+		_70->changeTexture(texture1->_20, 0);
+
+		JUtility::TColor white1 = _80->getWhite();
+		_7C->setWhite(white1);
+
+		JUtility::TColor black1 = _80->getBlack();
+		_7C->setBlack(black1);
+
+		_7C->_150[0] = _80->_150[0];
+		_7C->_150[1] = _80->_150[1];
+		_7C->_150[2] = _80->_150[2];
+		_7C->_150[3] = _80->_150[3];
+		break;
+
+	LIFEGAUGE_UNK2:
+		JUTTexture* texture2 = _78->getTexture(0);
+		_70->changeTexture(texture2->_20, 0);
+
+		JUtility::TColor white2 = _84->getWhite();
+		_7C->setWhite(white2);
+
+		JUtility::TColor black2 = _84->getBlack();
+		_7C->setBlack(black2);
+
+		_7C->_150[0] = _84->_150[0];
+		_7C->_150[1] = _84->_150[1];
+		_7C->_150[2] = _84->_150[2];
+		_7C->_150[3] = _84->_150[3];
+		break;
+	}
 	/*
 	.loc_0x0:
 	  stwu      r1, -0x90(r1)
@@ -773,44 +438,14 @@ void CallBack_LifeGauge::setType(LifeGaugeType)
  * Address:	803068F8
  * Size:	000078
  */
-void CallBack_LifeGauge::setOffset(float, float)
+void CallBack_LifeGauge::setOffset(f32 x, f32 y)
 {
-	/*
-stwu     r1, -0x10(r1)
-mflr     r0
-stw      r0, 0x14(r1)
-lwz      r4, 0x18(r3)
-cmplwi   r4, 0
-bne      lbl_80306930
-lis      r3, lbl_8048DFB8@ha
-lis      r5, lbl_8048DFC8@ha
-addi     r3, r3, lbl_8048DFB8@l
-li       r4, 0xf3
-addi     r5, r5, lbl_8048DFC8@l
-crclr    6
-bl       panic_f__12JUTExceptionFPCciPCce
-b        lbl_80306960
-
-lbl_80306930:
-lfs      f4, 0x28(r4)
-lfs      f0, 0x20(r4)
-lfs      f3, lbl_8051D5C4@sda21(r2)
-fsubs    f0, f4, f0
-fmadds   f0, f0, f3, f1
-stfs     f0, 0x28(r3)
-lwz      r4, 0x18(r3)
-lfs      f1, 0x2c(r4)
-lfs      f0, 0x24(r4)
-fsubs    f0, f1, f0
-fmadds   f0, f0, f3, f2
-stfs     f0, 0x2c(r3)
-
-lbl_80306960:
-lwz      r0, 0x14(r1)
-mtlr     r0
-addi     r1, r1, 0x10
-blr
-	*/
+	if (!_18) {
+		JUT_PANICLINE(243, "ERR! : NULL Pane !!!\n");
+	} else {
+		m_offsetX = (_18->_020.getWidth() / 2) + x;
+		m_offsetY = (_18->_020.getHeight() / 2) + y;
+	}
 }
 
 /*
@@ -818,7 +453,7 @@ blr
  * Address:	80306970
  * Size:	000318
  */
-void CallBack_LifeGauge::moveIcon(void)
+void CallBack_LifeGauge::moveIcon()
 {
 	/*
 stwu     r1, -0x40(r1)
@@ -1043,7 +678,7 @@ blr
  * Address:	80306C88
  * Size:	00026C
  */
-void CallBack_LifeGauge::update(void)
+void CallBack_LifeGauge::update()
 {
 	/*
 stwu     r1, -0x40(r1)
@@ -1219,57 +854,20 @@ blr
  * Address:	80306EF4
  * Size:	0000B4
  */
-void CallBack_LifeGauge::draw(Graphics&, J2DGrafContext&)
+void CallBack_LifeGauge::draw(Graphics& gfx, J2DGrafContext& context)
 {
-	/*
-stwu     r1, -0x40(r1)
-mflr     r0
-lfs      f0, lbl_8051D5B8@sda21(r2)
-stw      r0, 0x44(r1)
-stw      r31, 0x3c(r1)
-mr       r31, r5
-stw      r30, 0x38(r1)
-mr       r30, r3
-lfs      f1, 0x20(r3)
-fcmpo    cr0, f1, f0
-ble      lbl_80306F90
-bl       initLifeGaugeDraw__9LifeGaugeFv
-lwz      r4, 0x18(r30)
-addi     r3, r31, 0x80
-addi     r5, r1, 8
-addi     r4, r4, 0x80
-bl       PSMTXConcat
-addi     r3, r1, 8
-li       r4, 0
-bl       GXLoadPosMtxImm
-lwz      r3, 0x4c(r30)
-lfs      f1, 0x24(r30)
-lfs      f2, 0x28(r30)
-lfs      f3, 0x2c(r30)
-bl       draw__9LifeGaugeFfff
-lfs      f1, 0x20(r30)
-lfs      f0, lbl_8051D5C4@sda21(r2)
-fcmpo    cr0, f1, f0
-bge      lbl_80306F90
-lwz      r3, 0x64(r30)
-li       r4, 0
-lfs      f1, 0x28(r30)
-li       r5, 0
-lwz      r12, 0(r3)
-li       r6, 0
-lfs      f2, 0x2c(r30)
-lwz      r12, 0xe4(r12)
-mtctr    r12
-bctrl
+	if (m_naviLifeRatioMaybe > 0.0f) {
+		LifeGauge::initLifeGaugeDraw();
+		Mtx concatMtx;
+		PSMTXConcat(context.m_posMtx, _18->_080, concatMtx);
+		GXLoadPosMtxImm(concatMtx, 0);
 
-lbl_80306F90:
-lwz      r0, 0x44(r1)
-lwz      r31, 0x3c(r1)
-lwz      r30, 0x38(r1)
-mtlr     r0
-addi     r1, r1, 0x40
-blr
-	*/
+		m_lifeGauge->draw(m_widthOrRadiusMaybe, m_offsetX, m_offsetY);
+
+		if (m_naviLifeRatioMaybe < 0.5f) {
+			m_pin2->draw(m_offsetX, m_offsetY, false, false, false);
+		}
+	}
 }
 
 /*
@@ -1277,7 +875,7 @@ blr
  * Address:	80306FA8
  * Size:	000118
  */
-void NaviLifeGauge::setCallBack(DataNavi*, CallBack_LifeGauge::LifeGaugeType)
+void NaviLifeGauge::setCallBack(DataNavi* data, CallBack_LifeGauge::LifeGaugeType lifeGaugeType)
 {
 	/*
 	.loc_0x0:
@@ -1365,24 +963,11 @@ void NaviLifeGauge::setCallBack(DataNavi*, CallBack_LifeGauge::LifeGaugeType)
  * Address:	803070C0
  * Size:	00002C
  */
-void NaviLifeGauge::setType(CallBack_LifeGauge::LifeGaugeType)
+void NaviLifeGauge::setType(CallBack_LifeGauge::LifeGaugeType lifeGaugeType)
 {
-	/*
-stwu     r1, -0x10(r1)
-mflr     r0
-stw      r0, 0x14(r1)
-lwz      r3, 0x148(r3)
-cmplwi   r3, 0
-beq      lbl_803070DC
-bl
-setType__Q32og6Screen18CallBack_LifeGaugeFQ42og6Screen18CallBack_LifeGauge13LifeGaugeType
-
-lbl_803070DC:
-lwz      r0, 0x14(r1)
-mtlr     r0
-addi     r1, r1, 0x10
-blr
-	*/
+	if (m_callBackLifeGauge) {
+		m_callBackLifeGauge->setType(lifeGaugeType);
+	}
 }
 
 /*
@@ -1390,153 +975,20 @@ blr
  * Address:	803070EC
  * Size:	00005C
  */
-void NaviLifeGauge::update(void)
+void NaviLifeGauge::update()
 {
-	/*
-stwu     r1, -0x10(r1)
-mflr     r0
-stw      r0, 0x14(r1)
-stw      r31, 0xc(r1)
-mr       r31, r3
-bl       update__Q29P2DScreen3MgrFv
-lwz      r3, 0x150(r31)
-lfs      f0, lbl_8051D5B8@sda21(r2)
-lfs      f1, 0(r3)
-fcmpo    cr0, f1, f0
-ble      lbl_80307128
-lwz      r3, 0x14c(r31)
-li       r0, 1
-stb      r0, 0x24(r3)
-b        lbl_80307134
-
-lbl_80307128:
-lwz      r3, 0x14c(r31)
-li       r0, 0
-stb      r0, 0x24(r3)
-
-lbl_80307134:
-lwz      r0, 0x14(r1)
-lwz      r31, 0xc(r1)
-mtlr     r0
-addi     r1, r1, 0x10
-blr
-	*/
+	P2DScreen::Mgr::update();
+	if (m_dataNavi->m_naviLifeRatio > 0.0f) {
+		m_callBackDrawAfter->_24 = true;
+	} else {
+		m_callBackDrawAfter->_24 = false;
+	}
 }
 
-/*
- * --INFO--
- * Address:	80307148
- * Size:	0000A4
- */
-NaviLifeGauge::~NaviLifeGauge(void)
-{
-	/*
-stwu     r1, -0x10(r1)
-mflr     r0
-stw      r0, 0x14(r1)
-stw      r31, 0xc(r1)
-mr       r31, r4
-stw      r30, 8(r1)
-or.      r30, r3, r3
-beq      lbl_803071D0
-lis      r3, __vt__Q32og6Screen13NaviLifeGauge@ha
-addi     r0, r3, __vt__Q32og6Screen13NaviLifeGauge@l
-stw      r0, 0(r30)
-beq      lbl_803071C0
-lis      r3, __vt__Q29P2DScreen10Mgr_tuning@ha
-addi     r0, r3, __vt__Q29P2DScreen10Mgr_tuning@l
-stw      r0, 0(r30)
-beq      lbl_803071C0
-lis      r3, __vt__Q29P2DScreen3Mgr@ha
-addic.   r0, r30, 0x118
-addi     r0, r3, __vt__Q29P2DScreen3Mgr@l
-stw      r0, 0(r30)
-beq      lbl_803071B4
-lis      r4, __vt__Q29P2DScreen4Node@ha
-addi     r3, r30, 0x118
-addi     r0, r4, __vt__Q29P2DScreen4Node@l
-li       r4, 0
-stw      r0, 0x118(r30)
-bl       __dt__5CNodeFv
-
-lbl_803071B4:
-mr       r3, r30
-li       r4, 0
-bl       __dt__9J2DScreenFv
-
-lbl_803071C0:
-extsh.   r0, r31
-ble      lbl_803071D0
-mr       r3, r30
-bl       __dl__FPv
-
-lbl_803071D0:
-lwz      r0, 0x14(r1)
-mr       r3, r30
-lwz      r31, 0xc(r1)
-lwz      r30, 8(r1)
-mtlr     r0
-addi     r1, r1, 0x10
-blr
-	*/
-}
-
-/*
- * --INFO--
- * Address:	803071EC
- * Size:	000080
- */
-CallBack_LifeGauge::~CallBack_LifeGauge(void)
-{
-	/*
-stwu     r1, -0x10(r1)
-mflr     r0
-stw      r0, 0x14(r1)
-stw      r31, 0xc(r1)
-mr       r31, r4
-stw      r30, 8(r1)
-or.      r30, r3, r3
-beq      lbl_80307250
-lis      r4, __vt__Q32og6Screen18CallBack_LifeGauge@ha
-addi     r0, r4, __vt__Q32og6Screen18CallBack_LifeGauge@l
-stw      r0, 0(r30)
-beq      lbl_80307240
-lis      r4, __vt__Q29P2DScreen12CallBackNode@ha
-addi     r0, r4, __vt__Q29P2DScreen12CallBackNode@l
-stw      r0, 0(r30)
-beq      lbl_80307240
-lis      r5, __vt__Q29P2DScreen4Node@ha
-li       r4, 0
-addi     r0, r5, __vt__Q29P2DScreen4Node@l
-stw      r0, 0(r30)
-bl       __dt__5CNodeFv
-
-lbl_80307240:
-extsh.   r0, r31
-ble      lbl_80307250
-mr       r3, r30
-bl       __dl__FPv
-
-lbl_80307250:
-lwz      r0, 0x14(r1)
-mr       r3, r30
-lwz      r31, 0xc(r1)
-lwz      r30, 8(r1)
-mtlr     r0
-addi     r1, r1, 0x10
-blr
-	*/
-}
+CallBack_LifeGauge::StaticValues CallBack_LifeGauge::msVal = CallBack_LifeGauge::StaticValues();
 
 } // namespace Screen
 } // namespace og
-
-/*
- * --INFO--
- * Address:	8030726C
- * Size:	000004
- */
-void P2DScreen::CallBackNode::update(void) { }
 
 /*
  * --INFO--

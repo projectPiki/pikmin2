@@ -28,7 +28,7 @@ struct CallBackNode : public Node {
 	CallBackNode() { }
 
 	virtual ~CallBackNode() { } // _08 (weak)
-	virtual void update();      // _10 (weak)
+	virtual void update() { }   // _10 (weak)
 
 	// _00     = VTBL
 	// _00-_1C = Node

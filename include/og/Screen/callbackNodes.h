@@ -216,18 +216,24 @@ struct CallBack_Furiko : public P2DScreen::CallBackNode {
 
 struct CallBack_LifeGauge : public P2DScreen::CallBackNode {
 	// what goes here?
-	enum LifeGaugeType {};
+	enum LifeGaugeType {
+		LIFEGAUGE_UNK0 = 0,
+		LIFEGAUGE_UNK1 = 1,
+		LIFEGAUGE_UNK2 = 2,
+	};
 
 	CallBack_LifeGauge();
 
-	virtual ~CallBack_LifeGauge();                 // _08
-	virtual void update();                         // _10
-	virtual void draw(Graphics&, J2DGrafContext&); // _14
+	virtual ~CallBack_LifeGauge() { }                          // _08 (weak)
+	virtual void update();                                     // _10
+	virtual void draw(Graphics& gfx, J2DGrafContext& context); // _14
 
-	void init(P2DScreen::Mgr*, DataNavi*, LifeGaugeType);
+	void init(P2DScreen::Mgr* mgr, DataNavi* data, LifeGaugeType lifeGaugeType);
 	void moveIcon();
-	void setType(LifeGaugeType);
-	void setOffset(f32, f32);
+	void setType(LifeGaugeType lifeGaugeType);
+	void setOffset(f32 x, f32 y);
+
+	static inline void initialiseStaticValues();
 
 	// _00     = VTBL
 	// _00-_1C = P2DScreen::CallBackNode
@@ -237,7 +243,8 @@ struct CallBack_LifeGauge : public P2DScreen::CallBackNode {
 	f32 m_offsetX;                 // _28
 	f32 m_offsetY;                 // _2C
 	f32 _30;                       // _30
-	u8 _34[8];                     // _34
+	f32 _34;                       // _34
+	f32 _38;                       // _38
 	f32 m_na_i_d4;                 // _3C
 	f32 m_na_i_d8;                 // _40
 	f32 m_li_i_d4;                 // _44
@@ -262,6 +269,22 @@ struct CallBack_LifeGauge : public P2DScreen::CallBackNode {
 	ScaleMgr* m_scaleMgr;          // _8C
 	LifeGaugeType m_lifeGaugeType; // _90
 	u8 _94;                        // _94
+	f32 _98;                       // _98
+
+	static struct StaticValues {
+		inline StaticValues()
+		{
+			_00 = 0.4f;
+			_04 = 0.6f;
+			_08 = 0.3f;
+			_0C = 0.4f;
+		}
+
+		u32 _00; // _00, unknown
+		u32 _04; // _04, unknown
+		f32 _08; // _08
+		f32 _0C; // _0C
+	} msVal;
 };
 
 // Size: 0x48
