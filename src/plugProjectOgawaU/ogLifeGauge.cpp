@@ -117,40 +117,60 @@ void CallBack_LifeGauge::init(P2DScreen::Mgr* mgr, DataNavi* data, LifeGaugeType
  */
 void CallBack_LifeGauge::setType(LifeGaugeType lifeGaugeType)
 {
-	JUtility::TColor color(0xFF, 0xFF, 0xFF, 0xFF);
+	JUtility::TColor color[4];
 	m_lifeGaugeType = lifeGaugeType;
 
 	switch (lifeGaugeType) {
-	LIFEGAUGE_UNK1:
+	case 1:
 		JUTTexture* texture1 = _74->getTexture(0);
 		_70->changeTexture(texture1->_20, 0);
 
-		JUtility::TColor white1 = _80->getWhite();
-		_7C->setWhite(white1);
+		_7C->setWhite(_80->getWhite());
+		_7C->setBlack(_80->getBlack());
 
-		JUtility::TColor black1 = _80->getBlack();
-		_7C->setBlack(black1);
+		J2DPicture* src1    = _80;
+		J2DPicture* target1 = _7C;
 
-		_7C->_150[0] = _80->_150[0];
-		_7C->_150[1] = _80->_150[1];
-		_7C->_150[2] = _80->_150[2];
-		_7C->_150[3] = _80->_150[3];
+		color[0].setRGBA(src1->_150[0]);
+		color[1].setRGBA(src1->_150[1]);
+		color[2].setRGBA(src1->_150[2]);
+		color[3].setRGBA(src1->_150[3]);
+
+		target1->setColor(color[0], 0);
+		target1->setColor(color[2], 2);
+		target1->setColor(color[1], 1);
+		target1->setColor(color[3], 3);
+
+		JUtility::TColor color10 = color[0];
+		JUtility::TColor color11 = color[1];
+		JUtility::TColor color12 = color[2];
+		JUtility::TColor color13 = color[3];
 		break;
 
-	LIFEGAUGE_UNK2:
+	case 2:
 		JUTTexture* texture2 = _78->getTexture(0);
 		_70->changeTexture(texture2->_20, 0);
 
-		JUtility::TColor white2 = _84->getWhite();
-		_7C->setWhite(white2);
+		_7C->setWhite(_84->getWhite());
+		_7C->setBlack(_84->getBlack());
 
-		JUtility::TColor black2 = _84->getBlack();
-		_7C->setBlack(black2);
+		J2DPicture* src2    = _84;
+		J2DPicture* target2 = _7C;
 
-		_7C->_150[0] = _84->_150[0];
-		_7C->_150[1] = _84->_150[1];
-		_7C->_150[2] = _84->_150[2];
-		_7C->_150[3] = _84->_150[3];
+		color[0].setRGBA(src2->_150[0]);
+		color[1].setRGBA(src2->_150[1]);
+		color[2].setRGBA(src2->_150[2]);
+		color[3].setRGBA(src2->_150[3]);
+
+		target2->setColor(color[0], 0);
+		target2->setColor(color[2], 2);
+		target2->setColor(color[1], 1);
+		target2->setColor(color[3], 3);
+
+		JUtility::TColor color20 = color[0];
+		JUtility::TColor color21 = color[1];
+		JUtility::TColor color22 = color[2];
+		JUtility::TColor color23 = color[3];
 		break;
 	}
 	/*
@@ -985,7 +1005,7 @@ void NaviLifeGauge::update()
 	}
 }
 
-CallBack_LifeGauge::StaticValues CallBack_LifeGauge::msVal = CallBack_LifeGauge::StaticValues();
+// CallBack_LifeGauge::StaticValues CallBack_LifeGauge::msVal = CallBack_LifeGauge::StaticValues();
 
 } // namespace Screen
 } // namespace og

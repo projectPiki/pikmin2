@@ -414,6 +414,10 @@ struct J2DPicture : public J2DPane {
 	u8 getTlutID(const ResTIMG*, unsigned char);
 	void operator=(const J2DPicture&);
 
+	inline JUtility::TColor getColor(int i) { return _150[i]; }
+
+	inline void setColor(JUtility::TColor color, int i) { _150[i] = color; }
+
 	// J2DPane _000
 	JUTTexture* m_textures[4];       // _100
 	u8 m_textureCount;               // _110
