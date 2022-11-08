@@ -9,7 +9,7 @@
 #include "PSM/EnemyBoss.h"
 #include "PSM/BossBgmFader.h"
 #include "PSM/PikiHumming.h"
-#include "PSM/PersEnv.h"
+#include "PSM/Se.h"
 #include "PSM/WorldMapRocket.h"
 #include "JSystem/JSupport/JSUList.h"
 

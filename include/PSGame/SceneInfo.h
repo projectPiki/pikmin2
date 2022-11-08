@@ -21,48 +21,32 @@ struct SceneInfo {
 
 	SceneInfo();
 
-	/**
-	 * @reifiedAddress{803381EC}
-	 * @reifiedFile{plugProjectHikinoU/PSGame.cpp}
-	 */
-	virtual bool isCaveFloor() // _00
-	{
-		return false;
-	}
+	virtual bool isCaveFloor() { return false; } // _08 (weak)
 
 	void setStageFlag(FlagDef, FlagBitShift);
-	FlagDef getFlag(const FlagBitShift);
+	FlagDef getFlag(FlagBitShift) const;
 	void setStageCamera() const;
 
-	FlagDef m_stageFlags; // _04
-	u8 m_gameType;        // _06
-	u8 _07;
-	Vector3f* _08;
-	u32 _0C;
-	Vector3f* _10;
-	u32 _14;
-	Vector3f* _18;
-	u32 _1C;
-	JGeometry::TBox3f _20;
+	// _00 = VTBL
+	FlagDef m_stageFlags;  // _04
+	u8 m_gameType;         // _06
+	u8 _07;                // _07
+	Vector3f* _08;         // _08
+	u32 _0C;               // _0C
+	Vector3f* _10;         // _10
+	u32 _14;               // _14
+	Vector3f* _18;         // _18
+	u32 _1C;               // _1C
+	JGeometry::TBox3f _20; // _20
 };
 
 /**
  * @size{0x4C}
  */
 struct CaveFloorInfo : public SceneInfo {
-	/**
-	 * @reifiedAddress{8015633C}
-	 * @reifiedFile{src/plugProjectKandoU/singleGameSection.cpp}
-	 */
-	virtual bool isCaveFloor() // _00
-	{
-		return true;
-	}
-	/**
-	 * @reifiedAddress{80156344}
-	 * @reifiedFile{src/plugProjectKandoU/singleGameSection.cpp}
-	 */
-	virtual bool isBossFloor(); // _04
+
+	virtual bool isCaveFloor() { return true; } // _08 (weak)
+	virtual bool isBossFloor();                 // _0C (weak)
 	// {
 	// 	/*
 	// 	lwz      r0, 0x3c(r3)
@@ -72,11 +56,7 @@ struct CaveFloorInfo : public SceneInfo {
 	// 	blr
 	// 	*/
 	// }
-	/**
-	 * @reifiedAddress{80156358}
-	 * @reifiedFile{src/plugProjectKandoU/singleGameSection.cpp}
-	 */
-	virtual bool isRelaxFloor(); // _08
+	virtual bool isRelaxFloor(); // _10 (weak)
 	// {
 	// 	/*
 	// 	lwz      r0, 0x3c(r3)
@@ -89,6 +69,8 @@ struct CaveFloorInfo : public SceneInfo {
 
 	u32 getCaveNoFromID();
 
+	// _00     = VTBL
+	// _00-_38 = SceneInfo
 	uint m_alphaType; // _38
 	uint m_betaType;  // _3C
 	u8 _40;           // _40
