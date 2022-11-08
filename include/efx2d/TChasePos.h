@@ -14,7 +14,7 @@ struct TChasePos : public TForever {
 
 	// _00		= VTBL
 	// _00-_14	= TForever
-	Vector2f* _14;
+	Vector2f* _14; // _14
 };
 
 struct TChasePosDir : public TForever {
@@ -26,8 +26,8 @@ struct TChasePosDir : public TForever {
 
 	// _00		= VTBL
 	// _00-_14	= TForever
-	Vector2f* _14;
-	Vector2f* _18;
+	Vector2f* _14; // _14
+	Vector2f* _18; // _18
 };
 } // namespace efx2d
 

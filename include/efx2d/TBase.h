@@ -2,6 +2,7 @@
 #define _EFX2D_TBASE_H
 
 #include "types.h"
+#include "ParticleID.h"
 
 namespace efx2d {
 struct Arg;

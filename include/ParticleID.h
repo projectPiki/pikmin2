@@ -4,8 +4,53 @@
 /*
  * Particle ID define list for efx headers, for game.jpc
  * - IDs are u16s.
- * - TODO: make define list for cutscene effects and 2D effects.
+ * - TODO: make define list for cutscene effects.
  */
+
+/////////////////////////////////////////
+// 2D EFFECTS
+#define PID_RocketA (0x01)
+
+#define PID_BattleDive_1 (0x02)
+#define PID_BattleDive_2 (0x03)
+#define PID_BattleDive_3 (0x04)
+
+#define PID_Newmap_1 (0x05)
+#define PID_Newmap_2 (0x06) // same effect as ChalDiveEnd maybe?
+
+#define PID_ChalDiveEnd (0x06)
+
+#define PID_Changesmoke (0x07)
+
+#define PID_ShootingStar (0x08)
+
+#define PID_ExtractUp (0x09)
+
+#define PID_Cavecomp_1 (0x0A)
+#define PID_Cavecomp_2 (0x0B)
+
+#define PID_GoBatl_1 (0x0D)
+#define PID_GoBatl_2 (0x0E)
+#define PID_GoBatl_3 (0x0F)
+
+#define PID_GoChal_1 (0x10)
+#define PID_GoChal_2 (0x11)
+
+#define PID_SensorAct_1 (0x18)
+#define PID_SensorAct_2 (0x19)
+
+#define PID_SensorGet_1 (0x1A)
+#define PID_SensorGet_2 (0x1B)
+#define PID_SensorGet_3 (0x1C)
+
+#define PID_SpraySet_1 (0x22)
+#define PID_SpraySet_2 (0x23)
+
+#define PID_SensorComp_1 (0x24)
+#define PID_SensorComp_2 (0x25)
+
+/////////////////////////////////////////
+// 3D EFFECTS
 
 #define PID_BabaFly  (0x000) // doodlebug flies
 #define PID_BabaHe_1 (0x001) // doodlebug short fart

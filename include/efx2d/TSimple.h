@@ -14,19 +14,37 @@ struct TSimple1 : public TBase {
 		m_emitters[0]  = emitter;
 	}
 
+	inline TSimple1(u16 effectID)
+	{
+		m_effectIDs[0] = effectID;
+		m_emitters[0]  = nullptr;
+	}
+
 	virtual bool create(Arg*); // _08
 	virtual void kill();       // _0C (weak)
 	virtual void fade();       // _10 (weak)
 
+	// _00     = VTBL
+	// _00-_08 = TBase
 	u16 m_effectIDs[1];            // _08
 	JPABaseEmitter* m_emitters[1]; // _0C
 };
 
 struct TSimple2 : public TBase {
+	TSimple2(u16 effectID1, u16 effectID2)
+	{
+		m_effectIDs[0] = effectID1;
+		m_effectIDs[1] = effectID2;
+		m_emitters[0]  = nullptr;
+		m_emitters[1]  = nullptr;
+	}
+
 	virtual bool create(Arg*); // _08
 	virtual void kill();       // _0C (weak)
 	virtual void fade();       // _10 (weak)
 
+	// _00     = VTBL
+	// _00-_08 = TBase
 	u16 m_effectIDs[2];            // _08
 	JPABaseEmitter* m_emitters[2]; // _0C
 };
@@ -46,7 +64,8 @@ struct TSimple3 : public TBase {
 	virtual void kill();       // _0C (weak)
 	virtual void fade();       // _10 (weak)
 
-	// _00 VTBL
+	// _00     = VTBL
+	// _00-_08 = TBase
 	u16 m_effectIDs[3];            // _08
 	JPABaseEmitter* m_emitters[3]; // _10
 };

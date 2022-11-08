@@ -21,6 +21,11 @@ struct ArgDirScale : public Arg {
 };
 
 struct TSimple_ArgDirScale : public TSimple1 {
+	inline TSimple_ArgDirScale(u16 effectID)
+	    : TSimple1(effectID)
+	{
+	}
+
 	virtual bool create(Arg*); // _08
 
 	// _00		= VTBL
@@ -39,6 +44,11 @@ struct T2DMapFlare : public TChasePos {
 };
 
 struct T2DNewmap : public TSimple2 {
+	inline T2DNewmap()
+	    : TSimple2(PID_Newmap_1, PID_Newmap_2)
+	{
+	}
+
 	virtual bool create(Arg*); // _08
 
 	// _00		= VTBL
@@ -62,6 +72,11 @@ struct T2DOnyonKira : public TChasePosDir {
 };
 
 struct T2DRocketA : public TSimple_ArgDirScale {
+	inline T2DRocketA()
+	    : TSimple_ArgDirScale(PID_RocketA)
+	{
+	}
+
 	// _00		= VTBL
 	// _00-_10	= TSimple_ArgDirScale
 };
@@ -106,6 +121,11 @@ struct T2DShstar1 : public TChasePos {
 };
 
 struct T2DShstar2 : public TSimple1 {
+	inline T2DShstar2()
+	    : TSimple1(PID_ShootingStar)
+	{
+	}
+
 	virtual bool create(Arg*); // _08
 
 	// _00		= VTBL
