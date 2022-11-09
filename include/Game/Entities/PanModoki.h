@@ -10,12 +10,18 @@
 namespace Game {
 namespace PanModoki {
 struct Obj : public PanModokiBase::Obj {
-	Obj();
+	Obj() { }
 
-	virtual ~Obj();                                     // _1BC (weak)
-	virtual EnemyTypeID::EEnemyTypeID getEnemyTypeID(); // _258 (weak)
-	virtual f32 getDownSmokeScale();                    // _2EC (weak)
-	virtual void canTarget(int, int);                   // _308 (weak)
+	virtual ~Obj() { }                       // _1BC (weak)
+	virtual bool canTarget(int id1, int id2) // _308 (weak)
+	{
+		return id2 > id1;
+	}
+	virtual f32 getDownSmokeScale() { return 0.6f; }   // _2EC (weak)
+	virtual EnemyTypeID::EEnemyTypeID getEnemyTypeID() // _258 (weak)
+	{
+		return EnemyTypeID::EnemyID_PanModoki;
+	}
 
 	// _00 		= VTBL
 	// _00-_3C8	= PanModokiBase
@@ -24,12 +30,21 @@ struct Obj : public PanModokiBase::Obj {
 struct Mgr : public EnemyMgrBase {
 	Mgr(int objLimit, u8 modelType);
 
-	virtual ~Mgr();                                     // _58 (weak)
-	virtual EnemyBase* birth(EnemyBirthArg&);           // _70
-	virtual void createObj(int);                        // _A0 (weak)
-	virtual EnemyBase* getEnemy(int idx);               // _A4 (weak)
-	virtual void doAlloc();                             // _A8
-	virtual EnemyTypeID::EEnemyTypeID getEnemyTypeID(); // _AC (weak)
+	// virtual ~Mgr();                                     // _58 (weak)
+	virtual EnemyBase* birth(EnemyBirthArg&);          // _70
+	virtual void doAlloc();                            // _A8
+	virtual EnemyTypeID::EEnemyTypeID getEnemyTypeID() // _AC (weak)
+	{
+		return EnemyTypeID::EnemyID_PanModoki;
+	}
+	virtual void createObj(int count) // _A0 (weak)
+	{
+		m_obj = new Obj[count];
+	}
+	virtual EnemyBase* getEnemy(int index) // _A4 (weak)
+	{
+		return &m_obj[index];
+	}
 
 	// _00 		= VTBL
 	// _00-_44	= EnemyMgrBase

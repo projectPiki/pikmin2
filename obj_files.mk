@@ -970,7 +970,7 @@ MORIMURA:=\
 	$(BUILD_DIR)/asm/plugProjectMorimuraU/egg.o\
 	$(BUILD_DIR)/asm/plugProjectMorimuraU/panModokiState.o\
 	$(BUILD_DIR)/src/plugProjectMorimuraU/panModokiAnimator.o\
-	$(BUILD_DIR)/asm/plugProjectMorimuraU/panModokiMgr.o\
+	$(BUILD_DIR)/src/plugProjectMorimuraU/panModokiMgr.o\
 	$(BUILD_DIR)/asm/plugProjectMorimuraU/panModoki.o\
 	$(BUILD_DIR)/src/plugProjectMorimuraU/plantsMgr.o\
 	$(BUILD_DIR)/src/plugProjectMorimuraU/plantsAnimator.o\

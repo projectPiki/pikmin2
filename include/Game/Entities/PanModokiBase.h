@@ -30,52 +30,74 @@ struct Obj;
 struct Pellet;
 
 namespace PanModokiBase {
-struct FSM;
+struct FSM : public EnemyStateMachine {
+	virtual void init(EnemyBase*); // _08
+
+	// _00		= VTBL
+	// _00-_1C	= EnemyStateMachine
+};
 
 struct Obj : public EnemyBase {
 	Obj();
 
-	virtual void onInit(CreatureInitArg* settings);          // _30
-	virtual void onKill(CreatureKillArg* settings);          // _34
-	virtual void doAnimation();                              // _3C
-	virtual void doSimulation(f32);                          // _4C
-	virtual void doDirectDraw(Graphics& gfx);                // _50
-	virtual void inWaterCallback(WaterBox* wb);              // _84
-	virtual void outWaterCallback();                         // _88
-	virtual bool isUnderground();                            // _D0 (weak)
-	virtual bool isLivingThing();                            // _D4 (weak)
-	virtual void bounceCallback(Sys::Triangle* tri);         // _E8
-	virtual void collisionCallback(CollEvent& event);        // _EC
-	virtual void getShadowParam(ShadowParam& settings);      // _134
-	virtual bool needShadow();                               // _138
-	virtual void applyImpulse(Vector3f&, Vector3f&);         // _18C (weak)
-	virtual bool ignoreAtari(Creature* toIgnore);            // _190 (weak)
-	virtual ~Obj();                                          // _1BC (weak)
-	virtual void birth(Vector3f&, f32);                      // _1C0
-	virtual void setInitialSetting(EnemyInitialParamBase*);  // _1C4 (weak)
-	virtual void doUpdate();                                 // _1CC
-	virtual void doAnimationStick();                         // _1E4
-	virtual void doDebugDraw(Graphics&);                     // _1EC
-	virtual void setParameters();                            // _228
-	virtual void initMouthSlots();                           // _22C
-	virtual void initWalkSmokeEffect();                      // _230
-	virtual WalkSmokeEffect::Mgr* getWalkSmokeEffectMgr();   // _234
-	virtual EnemyTypeID::EEnemyTypeID getEnemyTypeID() = 0;  // _258
-	virtual MouthSlots* getMouthSlots();                     // _25C (weak)
-	virtual bool damageCallBack(Creature*, f32, CollPart*);  // _278
-	virtual bool pressCallBack(Creature*, f32, CollPart*);   // _27C
-	virtual bool hipdropCallBack(Creature*, f32, CollPart*); // _284
-	virtual void doStartStoneState();                        // _2A4
-	virtual void doFinishStoneState();                       // _2A8
-	virtual void startCarcassMotion();                       // _2C4
-	virtual void doStartMovie();                             // _2F0
-	virtual void doEndMovie();                               // _2F4
-	virtual void appearRumble();                             // _2F8 (weak)
-	virtual void hideRumble();                               // _2FC (weak)
-	virtual void damageRumble();                             // _300
-	virtual void walkFunc();                                 // _304
-	virtual void canTarget(int, int) = 0;                    // _308
-	virtual void setFSM(FSM*);                               // _30C (weak)
+	virtual void onInit(CreatureInitArg* settings);            // _30
+	virtual void onKill(CreatureKillArg* settings);            // _34
+	virtual void doAnimation();                                // _3C
+	virtual void doSimulation(f32);                            // _4C
+	virtual void doDirectDraw(Graphics& gfx);                  // _50
+	virtual void inWaterCallback(WaterBox* wb);                // _84
+	virtual void outWaterCallback();                           // _88
+	virtual void bounceCallback(Sys::Triangle* tri);           // _E8
+	virtual void collisionCallback(CollEvent& event);          // _EC
+	virtual void getShadowParam(ShadowParam& settings);        // _134
+	virtual bool needShadow();                                 // _138
+	virtual ~Obj() { }                                         // _1BC (weak)
+	virtual void birth(Vector3f&, f32);                        // _1C0
+	virtual void doUpdate();                                   // _1CC
+	virtual void doAnimationStick();                           // _1E4
+	virtual void doDebugDraw(Graphics&);                       // _1EC
+	virtual void setParameters();                              // _228
+	virtual void initMouthSlots();                             // _22C
+	virtual void initWalkSmokeEffect();                        // _230
+	virtual WalkSmokeEffect::Mgr* getWalkSmokeEffectMgr();     // _234
+	virtual EnemyTypeID::EEnemyTypeID getEnemyTypeID() = 0;    // _258
+	virtual bool damageCallBack(Creature*, f32, CollPart*);    // _278
+	virtual bool pressCallBack(Creature*, f32, CollPart*);     // _27C
+	virtual bool hipdropCallBack(Creature*, f32, CollPart*);   // _284
+	virtual void doStartStoneState();                          // _2A4
+	virtual void doFinishStoneState();                         // _2A8
+	virtual void startCarcassMotion();                         // _2C4
+	virtual void doStartMovie();                               // _2F0
+	virtual void doEndMovie();                                 // _2F4
+	virtual void appearRumble();                               // _2F8 (weak)
+	virtual void hideRumble();                                 // _2FC (weak)
+	virtual void damageRumble();                               // _300
+	virtual void walkFunc();                                   // _304
+	virtual bool canTarget(int, int) = 0;                      // _308
+	virtual void setInitialSetting(EnemyInitialParamBase*) { } // _1C4 (weak)
+	virtual void applyImpulse(Vector3f&, Vector3f&) { }        // _18C (weak)
+	virtual bool isLivingThing()                               // _D4 (weak)
+	{
+		return isEvent(0, EB_Bittered);
+	}
+	virtual bool isUnderground() // _D0 (weak)
+	{
+		return !isEvent(0, EB_Bittered);
+	}
+	virtual bool ignoreAtari(Creature* toIgnore) // _190 (weak)
+	{
+		return (u8)(toIgnore == m_targetCreature);
+	}
+	virtual MouthSlots* getMouthSlots() // _25C (weak)
+	{
+		return &m_mouthSlots;
+	}
+	virtual void setFSM(FSM* fsm) // _30C (weak)
+	{
+		m_FSM = fsm;
+		m_FSM->init(this);
+		m_currentLifecycleState = nullptr;
+	}
 
 	void updateCaptureMatrix();
 	void findNextRoutePoint(bool);
@@ -151,7 +173,20 @@ struct Obj : public EnemyBase {
 
 struct Parms : public EnemyParmsBase {
 	struct ProperParms : public Parameters {
-		ProperParms(); // (weak)
+		ProperParms()
+		    : Parameters(nullptr, "EnemyParmsBase")
+		    , m_fp00(this, 'fp00', "巣スケール", 1.0f, 0.0f, 5.0f)             // 'nest scale'
+		    , m_fp16(this, 'fp16', "歩きモーションスピード", 1.0f, 0.0f, 5.0f) // 'walking motion speed'
+		    , m_fp02(this, 'fp02', "急回転速度率", 0.1f, 0.0f, 1.0f)           // 'rapid rotation speed rate'
+		    , m_fp05(this, 'fp05', "急回転速度最大", 1.0f, 0.0f, 180.0f)       // 'rapid rotation speed max'
+		    , m_fp03(this, 'fp03', "戻り速度", 10.0f, 0.0f, 100.0f)            // 'return speed'
+		    , m_fp04(this, 'fp04', "コンテナダメージ", 10.0f, 0.0f, 1000.0f)   // 'container [onyon/ship] damage'
+		    , m_fp06(this, 'fp06', "プレスダメージ", 10.0f, 0.0f, 1000.0f)     // 'press damage'
+		    , m_fp14(this, 'fp14', "待機時間", 20.0f, 0.0f, 500.0f)            // 'wait time'
+		    , m_fp15(this, 'fp15', "潜伏時間", 50.0f, 0.0f, 300.0f)            // 'incubation time'
+		    , m_ip01(this, 'ip01', "ターゲットスロット数境界", 5, 1, 20)       // 'target slot limit'
+		{
+		}
 
 		Parm<f32> m_fp00; // _804
 		Parm<f32> m_fp16; // _82C
@@ -165,9 +200,20 @@ struct Parms : public EnemyParmsBase {
 		Parm<int> m_ip01; // _96C
 	};
 
-	Parms();
+	Parms()
+	{
+		_998 = 0;
+		_999 = 0;
+		_99A = 1;
+		_99C = 20.0f;
+	}
 
-	virtual void read(Stream&); // _08 (weak)
+	virtual void read(Stream& stream) // _08 (weak)
+	{
+		CreatureParms::read(stream);
+		m_general.read(stream);
+		m_properParms.read(stream);
+	}
 
 	// _00-_7F8	= EnemyParmsBase
 	ProperParms m_properParms; // _7F8
@@ -190,13 +236,6 @@ struct ProperAnimator : public EnemyAnimatorBase {
 
 /////////////////////////////////////////////////////////////////
 // STATE MACHINE DEFINITIONS
-struct FSM : public EnemyStateMachine {
-	virtual void init(EnemyBase*); // _08
-
-	// _00		= VTBL
-	// _00-_1C	= EnemyStateMachine
-};
-
 struct State : public EnemyFSMState {
 	inline State(int); // likely
 
