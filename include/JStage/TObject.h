@@ -70,7 +70,8 @@ struct TFog : public TObject {
 	_GXColor m_color;
 };
 
-struct TLight : public TObject { };
+struct TLight : public TObject {
+};
 } // namespace JStage
 
 #endif
