@@ -1,3 +1,4 @@
+#include "JStudio/object.h"
 #include "types.h"
 
 /*
@@ -11,8 +12,45 @@ namespace JStudio {
  * Address:	80010188
  * Size:	0000F0
  */
-void object::TIDData::isEqual(JStudio::object::TIDData const&, JStudio::object::TIDData const&)
+bool object::TIDData::isEqual(JStudio::object::TIDData const& a, JStudio::object::TIDData const& b)
 {
+	// u32 bytesRemaining = a.lengthInBytes_0x4;
+	if (a.lengthInBytes_0x4 != b.lengthInBytes_0x4) {
+		return false;
+	}
+	u32 bytesRemaining = a.lengthInBytes_0x4;
+	u32* aStr          = (u32*)a.idString_0x0;
+	u32* bStr          = (u32*)b.idString_0x0;
+	// if (a.idString_0x0 == b.idString_0x0) {
+	if (aStr == bStr) {
+		// they point to the same id
+		return true;
+	}
+	for (; bytesRemaining >= 4; bytesRemaining -= 4, aStr++, bStr++) {
+		if (*aStr != *bStr) {
+			return false;
+		}
+	}
+	switch (bytesRemaining) {
+	case 3:
+		if (*(u8*)aStr != *(u8*)bStr) {
+			return false;
+		}
+		aStr = (u32*)((u8*)aStr + 1);
+		bStr = (u32*)((u8*)bStr + 1);
+	case 2:
+		if (*(u8*)aStr != *(u8*)bStr) {
+			return false;
+		}
+		aStr = (u32*)((u8*)aStr + 1);
+		bStr = (u32*)((u8*)bStr + 1);
+	case 1:
+		if (*(u8*)aStr != *(u8*)bStr) {
+			return false;
+		}
+	default:
+		return true;
+	}
 	/*
 	.loc_0x0:
 	  lwz       r5, 0x4(r3)

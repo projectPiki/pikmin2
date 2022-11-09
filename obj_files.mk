@@ -26,11 +26,11 @@ JSYSTEM:=\
 	$(BUILD_DIR)/asm/JSystem/object/object-light.o\
 	$(BUILD_DIR)/asm/JSystem/object/object.o\
 	$(BUILD_DIR)/asm/JSystem/object/object-actor.o\
-	$(BUILD_DIR)/asm/JSystem/object/object-ambientlight.o\
+	$(BUILD_DIR)/src/JSystem/object/object-ambientlight.o\
 	$(BUILD_DIR)/asm/JSystem/object/object-camera.o\
-	$(BUILD_DIR)/asm/JSystem/object/object-fog.o\
+	$(BUILD_DIR)/src/JSystem/object/object-fog.o\
 	$(BUILD_DIR)/asm/JSystem/JSG/control.o\
-	$(BUILD_DIR)/asm/JSystem/object/object-message.o\
+	$(BUILD_DIR)/src/JSystem/object/object-message.o\
 	$(BUILD_DIR)/asm/JSystem/object/control.o\
 	$(BUILD_DIR)/asm/JSystem/object/object-sound.o\
 	$(BUILD_DIR)/asm/JSystem/JAI/control.o\

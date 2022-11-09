@@ -4,7 +4,7 @@
 #include "JStage/TObject.h"
 
 namespace JStage {
-typedef struct TEObject;
+enum TEObject { TEO_Unknown_0 = 0 };
 struct TSystem : public TObject {
 	virtual ~TSystem() = 0;                                            // _08
 	virtual int JSGFGetType() const;                                   // _0C

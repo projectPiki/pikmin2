@@ -421,7 +421,7 @@ typedef struct OSThreadQueue OSThreadQueue;
 typedef struct OSThreadLink OSThreadLink;
 typedef s32 OSPriority; //  0 highest, 31 lowest
 
-typedef struct OSMutex OSMutex;
+typedef struct OSMutexObject OSMutex;
 typedef struct OSMutexQueue OSMutexQueue;
 typedef struct OSMutexLink OSMutexLink;
 typedef struct OSCond OSCond;

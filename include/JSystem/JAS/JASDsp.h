@@ -18,6 +18,7 @@ struct TChannel {
 		u16 _04;
 		u16 _06;
 	};
+
 	void init();
 	void playStart();
 	void playStop();

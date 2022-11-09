@@ -6,8 +6,36 @@
 #include "JSystem/JSupport/JSUList.h"
 #include "types.h"
 
+struct JKRThread;
+struct JUTConsole;
+struct JUTFont;
+
+struct JKRThreadName_ {
+};
+
 struct JKRThreadSwitch {
+	typedef void (*Callback)(OSThread*, OSThread*);
+	JKRThreadSwitch(JKRHeap*); // unused/inlined
+	~JKRThreadSwitch();        // unused/inlined
+
+	// vtable is optimized out. Was 14 bytes large.
+	virtual void v_08(); // _08
+	virtual void v_0C(); // _0C
+	virtual void v_10(); // _10
+
 	void loopProc();
+
+	// unused/inlined:
+	void createManager(JKRHeap*);
+	void enter(OSThread*, JKRHeap*, int);
+	void enter(JKRThread*, int);
+	Callback setPreCallback(Callback);
+	Callback setPostCallback(Callback);
+	void callback(OSThread*, OSThread*);
+	void resetAll();
+	void draw(JKRThreadName_*);
+	void draw(JKRThreadName_*, JUTConsole*);
+	void createConsole(JUTFont*, int, JKRHeap*);
 };
 
 struct JKRThread : public JKRDisposer {
@@ -15,12 +43,17 @@ struct JKRThread : public JKRDisposer {
 	JKRThread(JKRHeap*, unsigned long stackSize, int msgCount, int threadPriority);
 	JKRThread(OSThread*, int);
 
-	virtual ~JKRThread(); // _08
-	virtual void* run();  // _0C (weak)
+	virtual ~JKRThread();                   // _08
+	virtual void* run() { return nullptr; } // _0C (weak)
 
 	void setCommon_mesgQueue(JKRHeap*, int);
 	BOOL setCommon_heapSpecified(JKRHeap*, unsigned long, int);
 	static void* start(void*);
+
+	// unused/inlined:
+	void searchThread(OSThread*);
+	void searchThreadLoad(OSThread*);
+	void dump();
 
 	JSULink<JKRThread> m_link; // _18
 	JKRHeap* m_heap;           // _28
@@ -46,19 +79,48 @@ struct JKRThread : public JKRDisposer {
  */
 struct JKRTask : public JKRThread {
 	typedef void RequestCallback(void*);
+
+	JKRTask(int, int, u32); // unused/inlined
+
 	virtual ~JKRTask();  // _08
 	virtual void* run(); // _0C
 
+	void request(RequestCallback*, void*, void*);
+
 	static JKRTask* create(int, int, unsigned long, JKRHeap*);
 
-	void request(RequestCallback*, void*, void*);
+	// unused/inlined:
+	void searchBlank();
+	void requestJam(RequestCallback, void*, void*);
+	void cancelAll();
+	void createTaskEndMessageQueue(int, JKRHeap*);
+	void destroyTaskEndMessageQueue();
+	void waitQueueMessageBlock(OSMessageQueue*, int*);
+	void waitQueueMessage(OSMessageQueue*, int*);
+
+	static void destroy(JKRTask*);
 
 	// u32 _78;			 // _78
 	JSULink<JKRTask> _7C; // _7C
-	u8 _8C[8];            // _8C
+	void* _8C;            // _8C - ptr to array with elements of size 0xc
+	u32 _90;              // _90 - element count of _8C
 	OSMessageQueue* _94;  // _94
 
 	static JSUList<JKRTask> sTaskList;
+};
+
+/** @unused */
+struct JKRIdleThread : JKRThread {
+	// vtable is optimized out. Was 14 bytes large.
+	virtual ~JKRIdleThread(); // _08
+	virtual void* run();      // _0C
+	virtual void v_10();      // _10
+
+	void destroy() { }
+
+	static void create(JKRHeap*, int, u32);
+
+	static JKRIdleThread* sThread;
 };
 
 #endif

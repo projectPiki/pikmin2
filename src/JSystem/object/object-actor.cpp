@@ -1,3 +1,11 @@
+#include "Dolphin/mtx.h"
+#include "JStage/TActor.h"
+#include "JStudio/TAdaptor.h"
+#include "JStudio/TControl.h"
+#include "JStudio/TObject.h"
+#include "JStudio/data.h"
+#include "JStudio/math.h"
+#include "JSystem/JStudio_JStage.h"
 #include "types.h"
 
 /*
@@ -143,118 +151,60 @@
         .4byte 0x00000000
 */
 
+namespace JStudio_JStage {
+
+const TAdaptor_actor::TVVOutputObject TAdaptor_actor::saoVVOutput_[2]
+    = { TVVOutputObject(4, &JStage::TActor::JSGSetAnimationTransition, &JStage::TActor::JSGGetAnimationTransition),
+	    TVVOutputObject(5, nullptr, nullptr) };
+
+const TAdaptor_actor::TVVOutput_ANIMATION_FRAME_ TAdaptor_actor::saoVVOutput_ANIMATION_FRAME_[3]
+    = { TVVOutput_ANIMATION_FRAME_(4, &JStage::TActor::JSGSetAnimationFrame, &JStage::TActor::JSGGetAnimationFrame,
+	                               &JStage::TActor::JSGGetAnimationFrameMax),
+	    TVVOutput_ANIMATION_FRAME_(5, &JStage::TActor::JSGSetTextureAnimationFrame, &JStage::TActor::JSGGetTextureAnimationFrame,
+	                               &JStage::TActor::JSGGetTextureAnimationFrameMax),
+	    TVVOutput_ANIMATION_FRAME_(5, nullptr, nullptr, nullptr) };
+
 /*
  * --INFO--
  * Address:	80012198
  * Size:	0000C8
  */
-JStudio_JStage::TAdaptor_actor::TAdaptor_actor(const JStage::TSystem*, JStage::TActor*)
+TAdaptor_actor::TAdaptor_actor(const JStage::TSystem* system, JStage::TActor* actor)
+    : JStudio::TAdaptor_actor()
+    , m_system(system)
+    , m_object(actor)
+    , _12C(0)
+    , _130(0)
+    , _134(0)
+    , _138(nullptr)
+    , _13C(0xFFFFFFFF)
+    , _140(0)
+    , _144(nullptr)
+    , _148(0xFFFFFFFF)
 {
-	/*
-	.loc_0x0:
-	  stwu      r1, -0x20(r1)
-	  mflr      r0
-	  lis       r6, 0x804A
-	  lis       r7, 0x804A
-	  stw       r0, 0x24(r1)
-	  subi      r0, r6, 0xB98
-	  lis       r6, 0x8000
-	  stw       r31, 0x1C(r1)
-	  mr        r31, r5
-	  subi      r5, r7, 0xC08
-	  li        r7, 0xE
-	  stw       r30, 0x18(r1)
-	  mr        r30, r4
-	  stw       r29, 0x14(r1)
-	  mr        r29, r3
-	  mr        r8, r29
-	  stw       r0, 0x0(r3)
-	  addi      r3, r8, 0xC
-	  li        r0, 0xE
-	  stw       r3, 0x4(r29)
-	  stw       r0, 0x8(r29)
-	  addi      r0, r6, 0x5808
-	  mr        r4, r0
-	  li        r6, 0x14
-	  stw       r5, 0x0(r29)
-	  li        r5, 0
-	  bl        0xAF63C
-	  lis       r3, 0x804A
-	  li        r4, 0
-	  subi      r3, r3, 0x9BC
-	  li        r0, -0x1
-	  stw       r3, 0x0(r29)
-	  mr        r3, r29
-	  stw       r30, 0x124(r29)
-	  stw       r31, 0x128(r29)
-	  stw       r4, 0x12C(r29)
-	  stw       r4, 0x130(r29)
-	  stw       r4, 0x134(r29)
-	  stw       r4, 0x138(r29)
-	  stw       r0, 0x13C(r29)
-	  stb       r4, 0x140(r29)
-	  stw       r4, 0x144(r29)
-	  stw       r0, 0x148(r29)
-	  lwz       r31, 0x1C(r1)
-	  lwz       r30, 0x18(r1)
-	  lwz       r29, 0x14(r1)
-	  lwz       r0, 0x24(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x20
-	  blr
-	*/
 }
 
 /*
  * --INFO--
  * Address:	80012260
  * Size:	000078
+ * __dt__Q214JStudio_JStage14TAdaptor_actorFv
  */
-JStudio_JStage::TAdaptor_actor::~TAdaptor_actor()
-{
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	mr       r31, r4
-	stw      r30, 8(r1)
-	or.      r30, r3, r3
-	beq      lbl_800122BC
-	lis      r5, __vt__Q214JStudio_JStage14TAdaptor_actor@ha
-	li       r4, 0
-	addi     r0, r5, __vt__Q214JStudio_JStage14TAdaptor_actor@l
-	stw      r0, 0(r30)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x14(r12)
-	mtctr    r12
-	bctrl
-	mr       r3, r30
-	li       r4, 0
-	bl       __dt__Q27JStudio14TAdaptor_actorFv
-	extsh.   r0, r31
-	ble      lbl_800122BC
-	mr       r3, r30
-	bl       __dl__FPv
-
-lbl_800122BC:
-	lwz      r0, 0x14(r1)
-	mr       r3, r30
-	lwz      r31, 0xc(r1)
-	lwz      r30, 8(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
-}
+TAdaptor_actor::~TAdaptor_actor() { adaptor_do_end(nullptr); }
 
 /*
  * --INFO--
  * Address:	800122D8
  * Size:	00008C
  */
-void JStudio_JStage::TAdaptor_actor::adaptor_do_prepare(const JStudio::TObject*)
+void TAdaptor_actor::adaptor_do_prepare(const JStudio::TObject*)
 {
+	for (const TVVOutputObject* output = saoVVOutput_; output->m_valueIndex != -1; output++) {
+		_04[output->m_valueIndex].setOutput(output);
+	}
+	for (const TVVOutput_ANIMATION_FRAME_* output = saoVVOutput_ANIMATION_FRAME_; output->m_valueIndex != -1; output++) {
+		_04[output->m_valueIndex].setOutput(output);
+	}
 	/*
 	lis      r4, saoVVOutput___Q214JStudio_JStage14TAdaptor_actor@ha
 	addi     r0, r4, saoVVOutput___Q214JStudio_JStage14TAdaptor_actor@l
@@ -315,96 +265,16 @@ lbl_80012354:
  * Address:	80012364
  * Size:	000130
  */
-void JStudio_JStage::TAdaptor_actor::adaptor_do_begin(const JStudio::TObject*)
+void TAdaptor_actor::adaptor_do_begin(const JStudio::TObject* object)
 {
-	/*
-	stwu     r1, -0x20(r1)
-	mflr     r0
-	stw      r0, 0x24(r1)
-	stw      r31, 0x1c(r1)
-	mr       r31, r3
-	stw      r30, 0x18(r1)
-	stw      r29, 0x14(r1)
-	stw      r28, 0x10(r1)
-	mr       r28, r4
-	lwz      r29, 0x128(r3)
-	lwz      r12, 0(r29)
-	mr       r3, r29
-	lwz      r12, 0x18(r12)
-	mtctr    r12
-	bctrl
-	lwz      r12, 0(r29)
-	ori      r4, r3, 1
-	mr       r3, r29
-	lwz      r12, 0x1c(r12)
-	mtctr    r12
-	bctrl
-	lwz      r4, 0x14(r28)
-	mr       r3, r31
-	bl getJSG_SRT___Q214JStudio_JStage14TAdaptor_actorFPCQ27JStudio8TControl lis
-r4, saoVVOutput___Q214JStudio_JStage14TAdaptor_actor@ha lis      r3,
-update_immediate___Q27JStudio14TVariableValueFPQ27JStudio14TVariableValued@ha
-	addi     r0, r4, saoVVOutput___Q214JStudio_JStage14TAdaptor_actor@l
-	li       r29, 0
-	mr       r28, r0
-	addi     r30, r3,
-update_immediate___Q27JStudio14TVariableValueFPQ27JStudio14TVariableValued@l b
-lbl_80012410
-
-lbl_800123E0:
-	lwz      r3, 0x128(r31)
-	addi     r12, r28, 0x14
-	bl       __ptmf_scall
-	nop
-	lwz      r0, 4(r28)
-	addi     r28, r28, 0x20
-	lwz      r3, 4(r31)
-	mulli    r0, r0, 0x14
-	add      r3, r3, r0
-	stw      r30, 8(r3)
-	stw      r29, 4(r3)
-	stfs     f1, 0xc(r3)
-
-lbl_80012410:
-	lwz      r0, 4(r28)
-	cmpwi    r0, -1
-	bne      lbl_800123E0
-	lis      r4,
-saoVVOutput_ANIMATION_FRAME___Q214JStudio_JStage14TAdaptor_actor@ha lis      r3,
-update_immediate___Q27JStudio14TVariableValueFPQ27JStudio14TVariableValued@ha
-	addi     r0, r4,
-saoVVOutput_ANIMATION_FRAME___Q214JStudio_JStage14TAdaptor_actor@l li       r30,
-0 mr       r28, r0 addi     r29, r3,
-update_immediate___Q27JStudio14TVariableValueFPQ27JStudio14TVariableValued@l b
-lbl_80012468
-
-lbl_80012438:
-	lwz      r3, 0x128(r31)
-	addi     r12, r28, 0x18
-	bl       __ptmf_scall
-	nop
-	lwz      r0, 4(r28)
-	addi     r28, r28, 0x30
-	lwz      r3, 4(r31)
-	mulli    r0, r0, 0x14
-	add      r3, r3, r0
-	stw      r29, 8(r3)
-	stw      r30, 4(r3)
-	stfs     f1, 0xc(r3)
-
-lbl_80012468:
-	lwz      r0, 4(r28)
-	cmpwi    r0, -1
-	bne      lbl_80012438
-	lwz      r0, 0x24(r1)
-	lwz      r31, 0x1c(r1)
-	lwz      r30, 0x18(r1)
-	lwz      r29, 0x14(r1)
-	lwz      r28, 0x10(r1)
-	mtlr     r0
-	addi     r1, r1, 0x20
-	blr
-	*/
+	m_object->setFlagOn(1);
+	getJSG_SRT_((const JStudio::TControl*)object->pControl);
+	for (const TVVOutputObject* output = saoVVOutput_; output->m_valueIndex != -1; output++) {
+		_04[output->m_valueIndex].set(JStudio::TVariableValue::update_immediate_, 0, (m_object->*(output->m_getter))());
+	}
+	for (const TVVOutput_ANIMATION_FRAME_* output = saoVVOutput_ANIMATION_FRAME_; output->m_valueIndex != -1; output++) {
+		_04[output->m_valueIndex].set(JStudio::TVariableValue::update_immediate_, 0, (m_object->*(output->m_getter))());
+	}
 }
 
 /*
@@ -412,60 +282,17 @@ lbl_80012468:
  * Address:	80012494
  * Size:	000054
  */
-void JStudio_JStage::TAdaptor_actor::adaptor_do_end(const JStudio::TObject*)
-{
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	lwz      r31, 0x128(r3)
-	lwz      r12, 0(r31)
-	mr       r3, r31
-	lwz      r12, 0x18(r12)
-	mtctr    r12
-	bctrl
-	lwz      r12, 0(r31)
-	rlwinm   r4, r3, 0, 0, 0x1e
-	mr       r3, r31
-	lwz      r12, 0x1c(r12)
-	mtctr    r12
-	bctrl
-	lwz      r0, 0x14(r1)
-	lwz      r31, 0xc(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
-}
+void TAdaptor_actor::adaptor_do_end(const JStudio::TObject*) { m_object->setFlagOff(1); }
 
 /*
  * --INFO--
  * Address:	800124E8
  * Size:	000044
  */
-void JStudio_JStage::TAdaptor_actor::adaptor_do_update(const JStudio::TObject*, unsigned long)
+void TAdaptor_actor::adaptor_do_update(const JStudio::TObject* object, unsigned long p2)
 {
-	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  lwz       r4, 0x14(r4)
-	  stw       r0, 0x14(r1)
-	  stw       r31, 0xC(r1)
-	  mr        r31, r3
-	  bl        0x3F4
-	  lwz       r3, 0x128(r31)
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0x14(r12)
-	  mtctr     r12
-	  bctrl
-	  lwz       r0, 0x14(r1)
-	  lwz       r31, 0xC(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
-	*/
+	setJSG_SRT_(static_cast<JStudio::TControl*>(object->pControl));
+	m_object->JSGUpdate();
 }
 
 /*
@@ -473,24 +300,9 @@ void JStudio_JStage::TAdaptor_actor::adaptor_do_update(const JStudio::TObject*, 
  * Address:	8001252C
  * Size:	000034
  */
-void JStudio_JStage::TAdaptor_actor::adaptor_do_data(const JStudio::TObject*, const void*, unsigned long, const void*, unsigned long)
+void TAdaptor_actor::adaptor_do_data(const JStudio::TObject* object, const void* p2, unsigned long p3, const void* p4, unsigned long p5)
 {
-	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  mr        r4, r5
-	  mr        r5, r6
-	  stw       r0, 0x14(r1)
-	  mr        r6, r7
-	  mr        r7, r8
-	  lwz       r3, 0x128(r3)
-	  bl        -0x508
-	  lwz       r0, 0x14(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
-	*/
+	TAdaptor_object_::adaptor_data_(m_object, p2, p3, p4, p5);
 }
 
 /*
@@ -498,32 +310,9 @@ void JStudio_JStage::TAdaptor_actor::adaptor_do_data(const JStudio::TObject*, co
  * Address:	80012560
  * Size:	000054
  */
-void JStudio_JStage::TAdaptor_actor::adaptor_do_SHAPE(JStudio::data::TEOperationData, const void*, unsigned long)
+void TAdaptor_actor::adaptor_do_SHAPE(JStudio::data::TEOperationData operation, const void* p2, unsigned long p3)
 {
-	/*
-	.loc_0x0:
-	  stwu      r1, -0x20(r1)
-	  mflr      r0
-	  lis       r7, 0x804A
-	  mr        r11, r5
-	  stw       r0, 0x24(r1)
-	  subi      r10, r7, 0xA50
-	  mr        r7, r6
-	  mr        r5, r4
-	  lwz       r9, 0x0(r10)
-	  mr        r6, r11
-	  lwz       r8, 0x4(r10)
-	  addi      r4, r1, 0x8
-	  lwz       r0, 0x8(r10)
-	  stw       r9, 0x8(r1)
-	  stw       r8, 0xC(r1)
-	  stw       r0, 0x10(r1)
-	  bl        0x318
-	  lwz       r0, 0x24(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x20
-	  blr
-	*/
+	setJSG_ID_(&JStage::TActor::JSGSetShape, operation, p2, p3);
 }
 
 /*
@@ -531,32 +320,9 @@ void JStudio_JStage::TAdaptor_actor::adaptor_do_SHAPE(JStudio::data::TEOperation
  * Address:	800125B4
  * Size:	000054
  */
-void JStudio_JStage::TAdaptor_actor::adaptor_do_ANIMATION(JStudio::data::TEOperationData, const void*, unsigned long)
+void TAdaptor_actor::adaptor_do_ANIMATION(JStudio::data::TEOperationData operation, const void* p2, unsigned long p3)
 {
-	/*
-	.loc_0x0:
-	  stwu      r1, -0x20(r1)
-	  mflr      r0
-	  lis       r7, 0x804A
-	  mr        r11, r5
-	  stw       r0, 0x24(r1)
-	  subi      r10, r7, 0xA44
-	  mr        r7, r6
-	  mr        r5, r4
-	  lwz       r9, 0x0(r10)
-	  mr        r6, r11
-	  lwz       r8, 0x4(r10)
-	  addi      r4, r1, 0x8
-	  lwz       r0, 0x8(r10)
-	  stw       r9, 0x8(r1)
-	  stw       r8, 0xC(r1)
-	  stw       r0, 0x10(r1)
-	  bl        0x2C4
-	  lwz       r0, 0x24(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x20
-	  blr
-	*/
+	setJSG_ID_(&JStage::TActor::JSGSetAnimation, operation, p2, p3);
 }
 
 /*
@@ -564,16 +330,12 @@ void JStudio_JStage::TAdaptor_actor::adaptor_do_ANIMATION(JStudio::data::TEOpera
  * Address:	80012608
  * Size:	000014
  */
-void JStudio_JStage::TAdaptor_actor::adaptor_do_ANIMATION_MODE(JStudio::data::TEOperationData, const void*, unsigned long)
+void TAdaptor_actor::adaptor_do_ANIMATION_MODE(JStudio::data::TEOperationData operation, const void* p2, unsigned long p3)
 {
-	/*
-	.loc_0x0:
-	  cmpwi     r4, 0x2
-	  bnelr-
-	  lwz       r0, 0x0(r5)
-	  stw       r0, 0x12C(r3)
-	  blr
-	*/
+	if (operation != JStudio::data::TEOD_Unknown_02) {
+		return;
+	}
+	_12C = *(u32*)p2;
 }
 
 /*
@@ -581,32 +343,9 @@ void JStudio_JStage::TAdaptor_actor::adaptor_do_ANIMATION_MODE(JStudio::data::TE
  * Address:	8001261C
  * Size:	000054
  */
-void JStudio_JStage::TAdaptor_actor::adaptor_do_TEXTURE_ANIMATION(JStudio::data::TEOperationData, const void*, unsigned long)
+void TAdaptor_actor::adaptor_do_TEXTURE_ANIMATION(JStudio::data::TEOperationData operation, const void* p2, unsigned long p3)
 {
-	/*
-	.loc_0x0:
-	  stwu      r1, -0x20(r1)
-	  mflr      r0
-	  lis       r7, 0x804A
-	  mr        r11, r5
-	  stw       r0, 0x24(r1)
-	  subi      r10, r7, 0xA38
-	  mr        r7, r6
-	  mr        r5, r4
-	  lwz       r9, 0x0(r10)
-	  mr        r6, r11
-	  lwz       r8, 0x4(r10)
-	  addi      r4, r1, 0x8
-	  lwz       r0, 0x8(r10)
-	  stw       r9, 0x8(r1)
-	  stw       r8, 0xC(r1)
-	  stw       r0, 0x10(r1)
-	  bl        0x25C
-	  lwz       r0, 0x24(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x20
-	  blr
-	*/
+	setJSG_ID_(&JStage::TActor::JSGSetTextureAnimation, operation, p2, p3);
 }
 
 /*
@@ -614,16 +353,12 @@ void JStudio_JStage::TAdaptor_actor::adaptor_do_TEXTURE_ANIMATION(JStudio::data:
  * Address:	80012670
  * Size:	000014
  */
-void JStudio_JStage::TAdaptor_actor::adaptor_do_TEXTURE_ANIMATION_MODE(JStudio::data::TEOperationData, const void*, unsigned long)
+void TAdaptor_actor::adaptor_do_TEXTURE_ANIMATION_MODE(JStudio::data::TEOperationData operation, const void* p2, unsigned long p3)
 {
-	/*
-	.loc_0x0:
-	  cmpwi     r4, 0x2
-	  bnelr-
-	  lwz       r0, 0x0(r5)
-	  stw       r0, 0x130(r3)
-	  blr
-	*/
+	if (operation != JStudio::data::TEOD_Unknown_02) {
+		return;
+	}
+	_130 = *(u32*)p2;
 }
 
 /*
@@ -631,32 +366,13 @@ void JStudio_JStage::TAdaptor_actor::adaptor_do_TEXTURE_ANIMATION_MODE(JStudio::
  * Address:	80012684
  * Size:	000044
  */
-void JStudio_JStage::TAdaptor_actor::adaptor_do_PARENT(JStudio::data::TEOperationData, const void*, unsigned long)
+void TAdaptor_actor::adaptor_do_PARENT(JStudio::data::TEOperationData operation, const void* p2, unsigned long p3)
 {
-	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  cmpwi     r4, 0x18
-	  stw       r0, 0x14(r1)
-	  stw       r31, 0xC(r1)
-	  mr        r31, r3
-	  beq-      .loc_0x20
-	  b         .loc_0x30
-
-	.loc_0x20:
-	  lwz       r3, 0x124(r31)
-	  mr        r4, r5
-	  bl        -0x620
-	  stw       r3, 0x138(r31)
-
-	.loc_0x30:
-	  lwz       r0, 0x14(r1)
-	  lwz       r31, 0xC(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
-	*/
+	switch (operation) {
+	case JStudio::data::TEOD_Unknown_18:
+		_138 = TAdaptor_object_::adaptor_findJSGObject_(m_system, (const char*)p2);
+		break;
+	}
 }
 
 /*
@@ -664,40 +380,16 @@ void JStudio_JStage::TAdaptor_actor::adaptor_do_PARENT(JStudio::data::TEOperatio
  * Address:	800126C8
  * Size:	00005C
  */
-void JStudio_JStage::TAdaptor_actor::adaptor_do_PARENT_NODE(JStudio::data::TEOperationData, const void*, unsigned long)
+void TAdaptor_actor::adaptor_do_PARENT_NODE(JStudio::data::TEOperationData operation, const void* p2, unsigned long p3)
 {
-	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  cmpwi     r4, 0x19
-	  stw       r0, 0x14(r1)
-	  stw       r31, 0xC(r1)
-	  mr        r31, r3
-	  beq-      .loc_0x40
-	  bge-      .loc_0x48
-	  cmpwi     r4, 0x18
-	  bge-      .loc_0x2C
-	  b         .loc_0x48
-
-	.loc_0x2C:
-	  lwz       r3, 0x138(r31)
-	  mr        r4, r5
-	  bl        -0x624
-	  stw       r3, 0x13C(r31)
-	  b         .loc_0x48
-
-	.loc_0x40:
-	  lwz       r0, 0x0(r5)
-	  stw       r0, 0x13C(r31)
-
-	.loc_0x48:
-	  lwz       r0, 0x14(r1)
-	  lwz       r31, 0xC(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
-	*/
+	switch (operation) {
+	case JStudio::data::TEOD_Unknown_18:
+		_13C = TAdaptor_object_::adaptor_findJSGObjectNode_(_138, (const char*)p2);
+		break;
+	case JStudio::data::TEOD_Unknown_19:
+		_13C = *(u32*)p2;
+		break;
+	}
 }
 
 /*
@@ -705,53 +397,29 @@ void JStudio_JStage::TAdaptor_actor::adaptor_do_PARENT_NODE(JStudio::data::TEOpe
  * Address:	80012724
  * Size:	000088
  */
-void JStudio_JStage::TAdaptor_actor::adaptor_do_PARENT_ENABLE(JStudio::data::TEOperationData, const void*, unsigned long)
+void TAdaptor_actor::adaptor_do_PARENT_ENABLE(JStudio::data::TEOperationData operation, const void* p2, unsigned long p3)
 {
-	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  cmpwi     r4, 0x2
-	  stw       r0, 0x14(r1)
-	  beq-      .loc_0x18
-	  b         .loc_0x78
-
-	.loc_0x18:
-	  lwz       r5, 0x0(r5)
-	  lbz       r0, 0x140(r3)
-	  neg       r4, r5
-	  or        r4, r4, r5
-	  rlwinm    r4,r4,1,31,31
-	  cmplw     r0, r4
-	  beq-      .loc_0x78
-	  stb       r4, 0x140(r3)
-	  lwz       r0, 0x134(r3)
-	  cmpwi     r0, 0x1
-	  beq-      .loc_0x4C
-	  bge-      .loc_0x78
-	  b         .loc_0x78
-
-	.loc_0x4C:
-	  cmplwi    r4, 0
-	  li        r4, 0
-	  li        r5, -0x1
-	  beq-      .loc_0x64
-	  lwz       r4, 0x138(r3)
-	  lwz       r5, 0x13C(r3)
-
-	.loc_0x64:
-	  lwz       r3, 0x128(r3)
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0x2C(r12)
-	  mtctr     r12
-	  bctrl
-
-	.loc_0x78:
-	  lwz       r0, 0x14(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
-	*/
+	switch (operation) {
+	case JStudio::data::TEOD_Unknown_02:
+		bool v0 = (*(u32*)p2 != 0);
+		if (_140 != v0) {
+			_140 = v0;
+			switch (_134) {
+			case 0:
+				break;
+			case 1:
+				JStage::TObject* object = nullptr;
+				u32 v1                  = 0xFFFFFFFF;
+				if (v0 != 0) {
+					object = _138;
+					v1     = _13C;
+				}
+				m_object->JSGSetParent(object, v1);
+				break;
+			}
+		}
+		break;
+	}
 }
 
 /*
@@ -759,16 +427,12 @@ void JStudio_JStage::TAdaptor_actor::adaptor_do_PARENT_ENABLE(JStudio::data::TEO
  * Address:	800127AC
  * Size:	000014
  */
-void JStudio_JStage::TAdaptor_actor::adaptor_do_PARENT_FUNCTION(JStudio::data::TEOperationData, const void*, unsigned long)
+void TAdaptor_actor::adaptor_do_PARENT_FUNCTION(JStudio::data::TEOperationData operation, const void* p2, unsigned long p3)
 {
-	/*
-	.loc_0x0:
-	  cmpwi     r4, 0x2
-	  bnelr-
-	  lwz       r0, 0x0(r5)
-	  stw       r0, 0x134(r3)
-	  blr
-	*/
+	if (operation != JStudio::data::TEOD_Unknown_02) {
+		return;
+	}
+	_134 = *(u32*)p2;
 }
 
 /*
@@ -776,32 +440,13 @@ void JStudio_JStage::TAdaptor_actor::adaptor_do_PARENT_FUNCTION(JStudio::data::T
  * Address:	800127C0
  * Size:	000044
  */
-void JStudio_JStage::TAdaptor_actor::adaptor_do_RELATION(JStudio::data::TEOperationData, const void*, unsigned long)
+void TAdaptor_actor::adaptor_do_RELATION(JStudio::data::TEOperationData operation, const void* p2, unsigned long p3)
 {
-	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  cmpwi     r4, 0x18
-	  stw       r0, 0x14(r1)
-	  stw       r31, 0xC(r1)
-	  mr        r31, r3
-	  beq-      .loc_0x20
-	  b         .loc_0x30
-
-	.loc_0x20:
-	  lwz       r3, 0x124(r31)
-	  mr        r4, r5
-	  bl        -0x75C
-	  stw       r3, 0x144(r31)
-
-	.loc_0x30:
-	  lwz       r0, 0x14(r1)
-	  lwz       r31, 0xC(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
-	*/
+	switch (operation) {
+	case JStudio::data::TEOD_Unknown_18:
+		_144 = TAdaptor_object_::adaptor_findJSGObject_(m_system, (const char*)p2);
+		break;
+	}
 }
 
 /*
@@ -809,40 +454,16 @@ void JStudio_JStage::TAdaptor_actor::adaptor_do_RELATION(JStudio::data::TEOperat
  * Address:	80012804
  * Size:	00005C
  */
-void JStudio_JStage::TAdaptor_actor::adaptor_do_RELATION_NODE(JStudio::data::TEOperationData, const void*, unsigned long)
+void TAdaptor_actor::adaptor_do_RELATION_NODE(JStudio::data::TEOperationData operation, const void* p2, unsigned long p3)
 {
-	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  cmpwi     r4, 0x19
-	  stw       r0, 0x14(r1)
-	  stw       r31, 0xC(r1)
-	  mr        r31, r3
-	  beq-      .loc_0x40
-	  bge-      .loc_0x48
-	  cmpwi     r4, 0x18
-	  bge-      .loc_0x2C
-	  b         .loc_0x48
-
-	.loc_0x2C:
-	  lwz       r3, 0x138(r31)
-	  mr        r4, r5
-	  bl        -0x760
-	  stw       r3, 0x148(r31)
-	  b         .loc_0x48
-
-	.loc_0x40:
-	  lwz       r0, 0x0(r5)
-	  stw       r0, 0x148(r31)
-
-	.loc_0x48:
-	  lwz       r0, 0x14(r1)
-	  lwz       r31, 0xC(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
-	*/
+	switch (operation) {
+	case JStudio::data::TEOD_Unknown_18:
+		_148 = TAdaptor_object_::adaptor_findJSGObjectNode_(_138, (const char*)p2);
+		break;
+	case JStudio::data::TEOD_Unknown_19:
+		_148 = *(u32*)p2;
+		break;
+	}
 }
 
 /*
@@ -850,69 +471,28 @@ void JStudio_JStage::TAdaptor_actor::adaptor_do_RELATION_NODE(JStudio::data::TEO
  * Address:	80012860
  * Size:	000058
  */
-void JStudio_JStage::TAdaptor_actor::adaptor_do_RELATION_ENABLE(JStudio::data::TEOperationData, const void*, unsigned long)
+void TAdaptor_actor::adaptor_do_RELATION_ENABLE(JStudio::data::TEOperationData operation, const void* p2, unsigned long p3)
 {
-	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  cmpwi     r4, 0x2
-	  mr        r6, r3
-	  stw       r0, 0x14(r1)
-	  beq-      .loc_0x1C
-	  b         .loc_0x48
-
-	.loc_0x1C:
-	  lwz       r3, 0x128(r6)
-	  lwz       r4, 0x0(r5)
-	  lwz       r12, 0x0(r3)
-	  neg       r0, r4
-	  lwz       r5, 0x144(r6)
-	  lwz       r12, 0x30(r12)
-	  or        r0, r0, r4
-	  rlwinm    r4,r0,1,31,31
-	  lwz       r6, 0x148(r6)
-	  mtctr     r12
-	  bctrl
-
-	.loc_0x48:
-	  lwz       r0, 0x14(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
-	*/
+	switch (operation) {
+	case JStudio::data::TEOD_Unknown_02:
+		m_object->JSGSetRelation(*(u32*)p2, _144, _148);
+		break;
+	}
 }
 
 /*
  * --INFO--
  * Address:	800128B8
  * Size:	00003C
+ * setJSG_ID___Q214JStudio_JStage14TAdaptor_actorFMQ26JStage6TActorFPCvPvUl_vQ37JStudio4data15TEOperationDataPCvUl
  */
-void JStudio_JStage::TAdaptor_actor::setJSG_ID_(JStage::TActor, void(const void*, void*, unsigned long), JStudio::data::TEOperationData,
-                                                const void*, unsigned long)
+void TAdaptor_actor::setJSG_ID_(IDFunction function, JStudio::data::TEOperationData operation, const void* p3, unsigned long p4)
 {
-	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  cmpwi     r5, 0x19
-	  stw       r0, 0x14(r1)
-	  beq-      .loc_0x18
-	  b         .loc_0x2C
-
-	.loc_0x18:
-	  lwz       r3, 0x128(r3)
-	  mr        r12, r4
-	  lwz       r4, 0x0(r6)
-	  bl        0xAF248
-	  nop
-
-	.loc_0x2C:
-	  lwz       r0, 0x14(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
-	*/
+	switch (operation) {
+	case JStudio::data::TEOD_Unknown_19:
+		(m_object->*function)(*(u32*)p3);
+		break;
+	}
 }
 
 /*
@@ -920,8 +500,44 @@ void JStudio_JStage::TAdaptor_actor::setJSG_ID_(JStage::TActor, void(const void*
  * Address:	800128F4
  * Size:	000178
  */
-void JStudio_JStage::TAdaptor_actor::setJSG_SRT_(const JStudio::TControl*)
+void TAdaptor_actor::setJSG_SRT_(const JStudio::TControl* control)
 {
+	JStudio::TControl::TTransform_translation_rotation_scaling transform;
+	JStudio::TControl::TTransform_translation_rotation_scaling multipliedTransform;
+	adaptor_getVariableValue_Vec(&transform.getTranslation(), sauVariableValue_3_TRANSLATION_XYZ);
+	adaptor_getVariableValue_Vec(&transform.getRotation(), sauVariableValue_3_ROTATION_XYZ);
+	adaptor_getVariableValue_Vec(&transform.getScaling(), sauVariableValue_3_SCALING_XYZ);
+	JStudio::TControl::TTransform_translation_rotation_scaling* pTransform;
+	if (_140 == 0) {
+		if (control->_74 == 0) {
+			pTransform = &transform;
+		} else {
+			PSMTXMultVec(*const_cast<Mtx*>(&control->_98), transform.getAll(), multipliedTransform.getAll());
+			pTransform                          = &multipliedTransform;
+			multipliedTransform.getRotation().y = transform.getRotation().y + control->_90;
+			multipliedTransform.getRotation().x = transform.getRotation().x;
+			multipliedTransform.getRotation().z = transform.getRotation().z;
+		}
+	} else {
+		pTransform = &transform;
+		switch (_134) {
+		case 0: {
+			Mtx mtx;
+			if (transform_toGlobalFromLocal(mtx, *pTransform, _138, _13C) == false) {
+				return;
+			}
+			JStudio::math::getFromTransformation_SRxyzT(&multipliedTransform.getScaling(), &multipliedTransform.getRotation(),
+			                                            &multipliedTransform.getTranslation(), mtx);
+			pTransform = &multipliedTransform;
+			break;
+		}
+		case 1:
+			break;
+		}
+	}
+	m_object->JSGSetTranslation(pTransform->getTranslation());
+	m_object->JSGSetRotation(pTransform->getRotation());
+	m_object->JSGSetScaling(pTransform->getScaling());
 	/*
 	stwu     r1, -0x90(r1)
 	mflr     r0
@@ -1035,7 +651,7 @@ lbl_80012A54:
  * Address:	80012A6C
  * Size:	00017C
  */
-void JStudio_JStage::TAdaptor_actor::getJSG_SRT_(const JStudio::TControl*)
+void TAdaptor_actor::getJSG_SRT_(const JStudio::TControl*)
 {
 	/*
 	stwu     r1, -0x90(r1)
@@ -1156,7 +772,7 @@ lbl_80012BD0:
  * Address:	80012BE8
  * Size:	0000E4
  */
-void JStudio_JStage::TAdaptor_actor::TVVOutput_ANIMATION_FRAME_::operator()(float, JStudio::TAdaptor*) const
+void TAdaptor_actor::TVVOutput_ANIMATION_FRAME_::operator()(float, JStudio::TAdaptor*) const
 {
 	/*
 	.loc_0x0:
@@ -1231,335 +847,337 @@ void JStudio_JStage::TAdaptor_actor::TVVOutput_ANIMATION_FRAME_::operator()(floa
  * Address:	80012CCC
  * Size:	000060
  */
-void JStudio_JStage::TAdaptor_actor::TVVOutput_ANIMATION_FRAME_::~TVVOutput_ANIMATION_FRAME_()
-{
-	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  stw       r0, 0x14(r1)
-	  stw       r31, 0xC(r1)
-	  mr        r31, r4
-	  stw       r30, 0x8(r1)
-	  mr.       r30, r3
-	  beq-      .loc_0x44
-	  lis       r5, 0x804A
-	  li        r4, 0
-	  subi      r0, r5, 0x9CC
-	  stw       r0, 0x0(r30)
-	  bl        -0x5C94
-	  extsh.    r0, r31
-	  ble-      .loc_0x44
-	  mr        r3, r30
-	  bl        0x113A8
+// TAdaptor_actor::TVVOutput_ANIMATION_FRAME_::~TVVOutput_ANIMATION_FRAME_()
+// {
+// 	/*
+// 	.loc_0x0:
+// 	  stwu      r1, -0x10(r1)
+// 	  mflr      r0
+// 	  stw       r0, 0x14(r1)
+// 	  stw       r31, 0xC(r1)
+// 	  mr        r31, r4
+// 	  stw       r30, 0x8(r1)
+// 	  mr.       r30, r3
+// 	  beq-      .loc_0x44
+// 	  lis       r5, 0x804A
+// 	  li        r4, 0
+// 	  subi      r0, r5, 0x9CC
+// 	  stw       r0, 0x0(r30)
+// 	  bl        -0x5C94
+// 	  extsh.    r0, r31
+// 	  ble-      .loc_0x44
+// 	  mr        r3, r30
+// 	  bl        0x113A8
 
-	.loc_0x44:
-	  lwz       r0, 0x14(r1)
-	  mr        r3, r30
-	  lwz       r31, 0xC(r1)
-	  lwz       r30, 0x8(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
-	*/
-}
+// 	.loc_0x44:
+// 	  lwz       r0, 0x14(r1)
+// 	  mr        r3, r30
+// 	  lwz       r31, 0xC(r1)
+// 	  lwz       r30, 0x8(r1)
+// 	  mtlr      r0
+// 	  addi      r1, r1, 0x10
+// 	  blr
+// 	*/
+// }
 
 /*
  * --INFO--
  * Address:	80012D2C
  * Size:	0003D0
  */
-void __sinit_object - actor_cpp(void)
-{
-	/*
-	stwu     r1, -0x110(r1)
-	mflr     r0
-	lis      r3, lbl_8049F5B0@ha
-	lis      r4, __vt__Q37JStudio14TVariableValue7TOutput@ha
-	stw      r0, 0x114(r1)
-	lis      r5,
-	"__vt__Q214JStudio_JStage81TVariableValueOutput_object_<Q214JStudio_JStage14TAdaptor_actor,Q26JStage6TActor>"@ha
-	lis      r12, lbl_804EFDE8@ha
-	li       r11, 1
-	stmw     r25, 0xf4(r1)
-	addi     r31, r3, lbl_8049F5B0@l
-	addi     r25, r4, __vt__Q37JStudio14TVariableValue7TOutput@l
-	lis      r3, saoVVOutput___Q214JStudio_JStage14TAdaptor_actor@ha
-	addi     r30, r12, lbl_804EFDE8@l
-	addi     r12, r5,
-	"__vt__Q214JStudio_JStage81TVariableValueOutput_object_<Q214JStudio_JStage14TAdaptor_actor,Q26JStage6TActor>"@l
-	lis      r4,
-	"__dt__Q214JStudio_JStage81TVariableValueOutput_object_<Q214JStudio_JStage14TAdaptor_actor,Q26JStage6TActor>Fv"@ha
-	addi     r4, r4,
-	"__dt__Q214JStudio_JStage81TVariableValueOutput_object_<Q214JStudio_JStage14TAdaptor_actor,Q26JStage6TActor>Fv"@l
-	addi     r5, r30, 0
-	stwu     r25, saoVVOutput___Q214JStudio_JStage14TAdaptor_actor@l(r3)
-	lwz      r10, 0x24(r31)
-	lwz      r9, 0x28(r31)
-	lwz      r8, 0x2c(r31)
-	lwz      r7, 0x30(r31)
-	lwz      r6, 0x34(r31)
-	lwz      r0, 0x38(r31)
-	stw      r25, 0x34(r1)
-	stw      r12, 0x34(r1)
-	stw      r11, 0x38(r1)
-	stw      r10, 0x3c(r1)
-	stw      r9, 0x40(r1)
-	stw      r8, 0x44(r1)
-	stw      r7, 0x48(r1)
-	stw      r6, 0x4c(r1)
-	stw      r0, 0x50(r1)
-	stw      r12, 0(r3)
-	stw      r11, 4(r3)
-	stw      r10, 8(r3)
-	stw      r9, 0xc(r3)
-	stw      r8, 0x10(r3)
-	stw      r7, 0x14(r3)
-	stw      r6, 0x18(r3)
-	stw      r0, 0x1c(r3)
-	bl       __register_global_object
-	lis      r4,
-	"__vt__Q214JStudio_JStage81TVariableValueOutput_object_<Q214JStudio_JStage14TAdaptor_actor,Q26JStage6TActor>"@ha
-	addi     r3, r1, 0x34
-	addi     r0, r4,
-	"__vt__Q214JStudio_JStage81TVariableValueOutput_object_<Q214JStudio_JStage14TAdaptor_actor,Q26JStage6TActor>"@l
-	li       r4, 0
-	stw      r0, 0x34(r1)
-	bl       __dt__Q37JStudio14TVariableValue7TOutputFv
-	lis      r4, __vt__Q37JStudio14TVariableValue7TOutput@ha
-	lis      r3,
-	"__vt__Q214JStudio_JStage81TVariableValueOutput_object_<Q214JStudio_JStage14TAdaptor_actor,Q26JStage6TActor>"@ha
-	addi     r11, r4, __vt__Q37JStudio14TVariableValue7TOutput@l
-	li       r9, -1
-	stw      r11, 0x14(r1)
-	addi     r10, r3,
-	"__vt__Q214JStudio_JStage81TVariableValueOutput_object_<Q214JStudio_JStage14TAdaptor_actor,Q26JStage6TActor>"@l
-	lis      r4, __ptmf_null@ha
-	lis      r3, saoVVOutput___Q214JStudio_JStage14TAdaptor_actor@ha
-	stw      r10, 0x14(r1)
-	addi     r8, r4, __ptmf_null@l
-	lis      r4,
-	"__dt__Q214JStudio_JStage81TVariableValueOutput_object_<Q214JStudio_JStage14TAdaptor_actor,Q26JStage6TActor>Fv"@ha
-	lwz      r7, 0(r8)
-	stw      r9, 0x18(r1)
-	addi     r3, r3, saoVVOutput___Q214JStudio_JStage14TAdaptor_actor@l
-	addi     r4, r4,
-	"__dt__Q214JStudio_JStage81TVariableValueOutput_object_<Q214JStudio_JStage14TAdaptor_actor,Q26JStage6TActor>Fv"@l
-	addi     r5, r30, 0xc
-	lwz      r6, 4(r8)
-	stw      r7, 0x1c(r1)
-	stw      r6, 0x20(r1)
-	lwz      r0, 8(r8)
-	stwu     r11, 0x20(r3)
-	stw      r0, 0x24(r1)
-	stw      r7, 0x28(r1)
-	stw      r6, 0x2c(r1)
-	stw      r0, 0x30(r1)
-	stw      r10, 0(r3)
-	stw      r9, 4(r3)
-	stw      r7, 8(r3)
-	stw      r6, 0xc(r3)
-	stw      r0, 0x10(r3)
-	stw      r7, 0x14(r3)
-	stw      r6, 0x18(r3)
-	stw      r0, 0x1c(r3)
-	bl       __register_global_object
-	lis      r4,
-	"__vt__Q214JStudio_JStage81TVariableValueOutput_object_<Q214JStudio_JStage14TAdaptor_actor,Q26JStage6TActor>"@ha
-	addi     r3, r1, 0x14
-	addi     r0, r4,
-	"__vt__Q214JStudio_JStage81TVariableValueOutput_object_<Q214JStudio_JStage14TAdaptor_actor,Q26JStage6TActor>"@l
-	li       r4, 0
-	stw      r0, 0x14(r1)
-	bl       __dt__Q37JStudio14TVariableValue7TOutputFv
-	lis      r4, __vt__Q37JStudio14TVariableValue7TOutput@ha
-	lwz      r25, 0x3c(r31)
-	addi     r29, r4, __vt__Q37JStudio14TVariableValue7TOutput@l
-	lis      r3,
-	saoVVOutput_ANIMATION_FRAME___Q214JStudio_JStage14TAdaptor_actor@ha lwz r12,
-	0x40(r31) li       r27, 0 stwu     r29,
-	saoVVOutput_ANIMATION_FRAME___Q214JStudio_JStage14TAdaptor_actor@l(r3) li
-	r26, 0x12d lwz      r11, 0x44(r31) addi     r28, r31, 0x84 lwz      r10,
-	0x48(r31) lis      r4,
-	__dt__Q314JStudio_JStage14TAdaptor_actor26TVVOutput_ANIMATION_FRAME_Fv@ha
-	lwz      r9, 0x4c(r31)
-	addi     r4, r4,
-	__dt__Q314JStudio_JStage14TAdaptor_actor26TVVOutput_ANIMATION_FRAME_Fv@l lwz
-	r8, 0x50(r31) addi     r5, r30, 0x18 lwz      r7, 0x54(r31) lwz      r6,
-	0x58(r31) lwz      r0, 0x5c(r31) stw      r29, 0xb4(r1) stw      r28,
-	0xb4(r1) stw      r27, 0xb8(r1) stw      r26, 0xbc(r1) stw      r25,
-	0xc0(r1) stw      r12, 0xc4(r1) stw      r11, 0xc8(r1) stw      r10,
-	0xcc(r1) stw      r9, 0xd0(r1) stw      r8, 0xd4(r1) stw      r7, 0xd8(r1)
-	stw      r6, 0xdc(r1)
-	stw      r0, 0xe0(r1)
-	stw      r28, 0(r3)
-	stw      r27, 4(r3)
-	stw      r26, 8(r3)
-	stw      r25, 0xc(r3)
-	stw      r12, 0x10(r3)
-	stw      r11, 0x14(r3)
-	stw      r10, 0x18(r3)
-	stw      r9, 0x1c(r3)
-	stw      r8, 0x20(r3)
-	stw      r7, 0x24(r3)
-	stw      r6, 0x28(r3)
-	stw      r0, 0x2c(r3)
-	bl       __register_global_object
-	mr       r0, r28
-	addi     r3, r1, 0xb4
-	stw      r0, 0xb4(r1)
-	li       r4, 0
-	bl       __dt__Q37JStudio14TVariableValue7TOutputFv
-	lis      r4, __vt__Q37JStudio14TVariableValue7TOutput@ha
-	lis      r3,
-	saoVVOutput_ANIMATION_FRAME___Q214JStudio_JStage14TAdaptor_actor@ha addi
-	r25, r4, __vt__Q37JStudio14TVariableValue7TOutput@l lwz      r29, 0x60(r31)
-	addi     r3, r3,
-	saoVVOutput_ANIMATION_FRAME___Q214JStudio_JStage14TAdaptor_actor@l lwz r12,
-	0x64(r31) stwu     r25, 0x30(r3) li       r27, 2 lwz      r11, 0x68(r31) li
-	r28, 0x131 lwz      r10, 0x6c(r31) addi     r26, r31, 0x84 lwz      r9,
-	0x70(r31) lis      r4,
-	__dt__Q314JStudio_JStage14TAdaptor_actor26TVVOutput_ANIMATION_FRAME_Fv@ha
-	lwz      r8, 0x74(r31)
-	addi     r4, r4,
-	__dt__Q314JStudio_JStage14TAdaptor_actor26TVVOutput_ANIMATION_FRAME_Fv@l lwz
-	r7, 0x78(r31) addi     r5, r30, 0x24 lwz      r6, 0x7c(r31) lwz      r0,
-	0x80(r31) stw      r25, 0x84(r1) stw      r26, 0x84(r1) stw      r27,
-	0x88(r1) stw      r28, 0x8c(r1) stw      r29, 0x90(r1) stw      r12,
-	0x94(r1) stw      r11, 0x98(r1) stw      r10, 0x9c(r1) stw      r9, 0xa0(r1)
-	stw      r8, 0xa4(r1)
-	stw      r7, 0xa8(r1)
-	stw      r6, 0xac(r1)
-	stw      r0, 0xb0(r1)
-	stw      r26, 0(r3)
-	stw      r27, 4(r3)
-	stw      r28, 8(r3)
-	stw      r29, 0xc(r3)
-	stw      r12, 0x10(r3)
-	stw      r11, 0x14(r3)
-	stw      r10, 0x18(r3)
-	stw      r9, 0x1c(r3)
-	stw      r8, 0x20(r3)
-	stw      r7, 0x24(r3)
-	stw      r6, 0x28(r3)
-	stw      r0, 0x2c(r3)
-	bl       __register_global_object
-	mr       r0, r26
-	addi     r3, r1, 0x84
-	stw      r0, 0x84(r1)
-	li       r4, 0
-	bl       __dt__Q37JStudio14TVariableValue7TOutputFv
-	lis      r3, __vt__Q37JStudio14TVariableValue7TOutput@ha
-	li       r10, -1
-	addi     r12, r3, __vt__Q37JStudio14TVariableValue7TOutput@l
-	li       r9, 0
-	stw      r12, 0x54(r1)
-	mr       r11, r26
-	lis      r4, __ptmf_null@ha
-	lis      r3,
-	saoVVOutput_ANIMATION_FRAME___Q214JStudio_JStage14TAdaptor_actor@ha stw r11,
-	0x54(r1) addi     r8, r4, __ptmf_null@l lwz      r7, 0(r8) lis      r4,
-	__dt__Q314JStudio_JStage14TAdaptor_actor26TVVOutput_ANIMATION_FRAME_Fv@ha
-	stw      r10, 0x58(r1)
-	addi     r3, r3,
-	saoVVOutput_ANIMATION_FRAME___Q214JStudio_JStage14TAdaptor_actor@l addi r5,
-	r30, 0x30 addi     r4, r4,
-	__dt__Q314JStudio_JStage14TAdaptor_actor26TVVOutput_ANIMATION_FRAME_Fv@l stw
-	r9, 0x5c(r1) lwz      r6, 4(r8) stw      r7, 8(r1) stw      r7, 0x60(r1) stw
-	r6, 0x64(r1) lwz      r0, 8(r8) stw      r6, 0xc(r1) stwu     r12, 0x60(r3)
-	stw      r0, 0x68(r1)
-	stw      r0, 0x10(r1)
-	stw      r7, 0x6c(r1)
-	stw      r6, 0x70(r1)
-	stw      r0, 0x74(r1)
-	stw      r7, 0x78(r1)
-	stw      r6, 0x7c(r1)
-	stw      r0, 0x80(r1)
-	stw      r11, 0(r3)
-	stw      r10, 4(r3)
-	stw      r9, 8(r3)
-	stw      r7, 0xc(r3)
-	stw      r6, 0x10(r3)
-	stw      r0, 0x14(r3)
-	stw      r7, 0x18(r3)
-	stw      r6, 0x1c(r3)
-	stw      r0, 0x20(r3)
-	stw      r7, 0x24(r3)
-	stw      r6, 0x28(r3)
-	stw      r0, 0x2c(r3)
-	bl       __register_global_object
-	mr       r0, r26
-	addi     r3, r1, 0x54
-	stw      r0, 0x54(r1)
-	li       r4, 0
-	bl       __dt__Q37JStudio14TVariableValue7TOutputFv
-	lmw      r25, 0xf4(r1)
-	lwz      r0, 0x114(r1)
-	mtlr     r0
-	addi     r1, r1, 0x110
-	blr
-	*/
-}
+// void __sinit_object - actor_cpp(void)
+// {
+// 	/*
+// 	stwu     r1, -0x110(r1)
+// 	mflr     r0
+// 	lis      r3, lbl_8049F5B0@ha
+// 	lis      r4, __vt__Q37JStudio14TVariableValue7TOutput@ha
+// 	stw      r0, 0x114(r1)
+// 	lis      r5,
+// 	"__vt__Q214JStudio_JStage81TVariableValueOutput_object_<Q214JStudio_JStage14TAdaptor_actor,Q26JStage6TActor>"@ha
+// 	lis      r12, lbl_804EFDE8@ha
+// 	li       r11, 1
+// 	stmw     r25, 0xf4(r1)
+// 	addi     r31, r3, lbl_8049F5B0@l
+// 	addi     r25, r4, __vt__Q37JStudio14TVariableValue7TOutput@l
+// 	lis      r3, saoVVOutput___Q214JStudio_JStage14TAdaptor_actor@ha
+// 	addi     r30, r12, lbl_804EFDE8@l
+// 	addi     r12, r5,
+// 	"__vt__Q214JStudio_JStage81TVariableValueOutput_object_<Q214JStudio_JStage14TAdaptor_actor,Q26JStage6TActor>"@l
+// 	lis      r4,
+// 	"__dt__Q214JStudio_JStage81TVariableValueOutput_object_<Q214JStudio_JStage14TAdaptor_actor,Q26JStage6TActor>Fv"@ha
+// 	addi     r4, r4,
+// 	"__dt__Q214JStudio_JStage81TVariableValueOutput_object_<Q214JStudio_JStage14TAdaptor_actor,Q26JStage6TActor>Fv"@l
+// 	addi     r5, r30, 0
+// 	stwu     r25, saoVVOutput___Q214JStudio_JStage14TAdaptor_actor@l(r3)
+// 	lwz      r10, 0x24(r31)
+// 	lwz      r9, 0x28(r31)
+// 	lwz      r8, 0x2c(r31)
+// 	lwz      r7, 0x30(r31)
+// 	lwz      r6, 0x34(r31)
+// 	lwz      r0, 0x38(r31)
+// 	stw      r25, 0x34(r1)
+// 	stw      r12, 0x34(r1)
+// 	stw      r11, 0x38(r1)
+// 	stw      r10, 0x3c(r1)
+// 	stw      r9, 0x40(r1)
+// 	stw      r8, 0x44(r1)
+// 	stw      r7, 0x48(r1)
+// 	stw      r6, 0x4c(r1)
+// 	stw      r0, 0x50(r1)
+// 	stw      r12, 0(r3)
+// 	stw      r11, 4(r3)
+// 	stw      r10, 8(r3)
+// 	stw      r9, 0xc(r3)
+// 	stw      r8, 0x10(r3)
+// 	stw      r7, 0x14(r3)
+// 	stw      r6, 0x18(r3)
+// 	stw      r0, 0x1c(r3)
+// 	bl       __register_global_object
+// 	lis      r4,
+// 	"__vt__Q214JStudio_JStage81TVariableValueOutput_object_<Q214JStudio_JStage14TAdaptor_actor,Q26JStage6TActor>"@ha
+// 	addi     r3, r1, 0x34
+// 	addi     r0, r4,
+// 	"__vt__Q214JStudio_JStage81TVariableValueOutput_object_<Q214JStudio_JStage14TAdaptor_actor,Q26JStage6TActor>"@l
+// 	li       r4, 0
+// 	stw      r0, 0x34(r1)
+// 	bl       __dt__Q37JStudio14TVariableValue7TOutputFv
+// 	lis      r4, __vt__Q37JStudio14TVariableValue7TOutput@ha
+// 	lis      r3,
+// 	"__vt__Q214JStudio_JStage81TVariableValueOutput_object_<Q214JStudio_JStage14TAdaptor_actor,Q26JStage6TActor>"@ha
+// 	addi     r11, r4, __vt__Q37JStudio14TVariableValue7TOutput@l
+// 	li       r9, -1
+// 	stw      r11, 0x14(r1)
+// 	addi     r10, r3,
+// 	"__vt__Q214JStudio_JStage81TVariableValueOutput_object_<Q214JStudio_JStage14TAdaptor_actor,Q26JStage6TActor>"@l
+// 	lis      r4, __ptmf_null@ha
+// 	lis      r3, saoVVOutput___Q214JStudio_JStage14TAdaptor_actor@ha
+// 	stw      r10, 0x14(r1)
+// 	addi     r8, r4, __ptmf_null@l
+// 	lis      r4,
+// 	"__dt__Q214JStudio_JStage81TVariableValueOutput_object_<Q214JStudio_JStage14TAdaptor_actor,Q26JStage6TActor>Fv"@ha
+// 	lwz      r7, 0(r8)
+// 	stw      r9, 0x18(r1)
+// 	addi     r3, r3, saoVVOutput___Q214JStudio_JStage14TAdaptor_actor@l
+// 	addi     r4, r4,
+// 	"__dt__Q214JStudio_JStage81TVariableValueOutput_object_<Q214JStudio_JStage14TAdaptor_actor,Q26JStage6TActor>Fv"@l
+// 	addi     r5, r30, 0xc
+// 	lwz      r6, 4(r8)
+// 	stw      r7, 0x1c(r1)
+// 	stw      r6, 0x20(r1)
+// 	lwz      r0, 8(r8)
+// 	stwu     r11, 0x20(r3)
+// 	stw      r0, 0x24(r1)
+// 	stw      r7, 0x28(r1)
+// 	stw      r6, 0x2c(r1)
+// 	stw      r0, 0x30(r1)
+// 	stw      r10, 0(r3)
+// 	stw      r9, 4(r3)
+// 	stw      r7, 8(r3)
+// 	stw      r6, 0xc(r3)
+// 	stw      r0, 0x10(r3)
+// 	stw      r7, 0x14(r3)
+// 	stw      r6, 0x18(r3)
+// 	stw      r0, 0x1c(r3)
+// 	bl       __register_global_object
+// 	lis      r4,
+// 	"__vt__Q214JStudio_JStage81TVariableValueOutput_object_<Q214JStudio_JStage14TAdaptor_actor,Q26JStage6TActor>"@ha
+// 	addi     r3, r1, 0x14
+// 	addi     r0, r4,
+// 	"__vt__Q214JStudio_JStage81TVariableValueOutput_object_<Q214JStudio_JStage14TAdaptor_actor,Q26JStage6TActor>"@l
+// 	li       r4, 0
+// 	stw      r0, 0x14(r1)
+// 	bl       __dt__Q37JStudio14TVariableValue7TOutputFv
+// 	lis      r4, __vt__Q37JStudio14TVariableValue7TOutput@ha
+// 	lwz      r25, 0x3c(r31)
+// 	addi     r29, r4, __vt__Q37JStudio14TVariableValue7TOutput@l
+// 	lis      r3,
+// 	saoVVOutput_ANIMATION_FRAME___Q214JStudio_JStage14TAdaptor_actor@ha lwz r12,
+// 	0x40(r31) li       r27, 0 stwu     r29,
+// 	saoVVOutput_ANIMATION_FRAME___Q214JStudio_JStage14TAdaptor_actor@l(r3) li
+// 	r26, 0x12d lwz      r11, 0x44(r31) addi     r28, r31, 0x84 lwz      r10,
+// 	0x48(r31) lis      r4,
+// 	__dt__Q314JStudio_JStage14TAdaptor_actor26TVVOutput_ANIMATION_FRAME_Fv@ha
+// 	lwz      r9, 0x4c(r31)
+// 	addi     r4, r4,
+// 	__dt__Q314JStudio_JStage14TAdaptor_actor26TVVOutput_ANIMATION_FRAME_Fv@l lwz
+// 	r8, 0x50(r31) addi     r5, r30, 0x18 lwz      r7, 0x54(r31) lwz      r6,
+// 	0x58(r31) lwz      r0, 0x5c(r31) stw      r29, 0xb4(r1) stw      r28,
+// 	0xb4(r1) stw      r27, 0xb8(r1) stw      r26, 0xbc(r1) stw      r25,
+// 	0xc0(r1) stw      r12, 0xc4(r1) stw      r11, 0xc8(r1) stw      r10,
+// 	0xcc(r1) stw      r9, 0xd0(r1) stw      r8, 0xd4(r1) stw      r7, 0xd8(r1)
+// 	stw      r6, 0xdc(r1)
+// 	stw      r0, 0xe0(r1)
+// 	stw      r28, 0(r3)
+// 	stw      r27, 4(r3)
+// 	stw      r26, 8(r3)
+// 	stw      r25, 0xc(r3)
+// 	stw      r12, 0x10(r3)
+// 	stw      r11, 0x14(r3)
+// 	stw      r10, 0x18(r3)
+// 	stw      r9, 0x1c(r3)
+// 	stw      r8, 0x20(r3)
+// 	stw      r7, 0x24(r3)
+// 	stw      r6, 0x28(r3)
+// 	stw      r0, 0x2c(r3)
+// 	bl       __register_global_object
+// 	mr       r0, r28
+// 	addi     r3, r1, 0xb4
+// 	stw      r0, 0xb4(r1)
+// 	li       r4, 0
+// 	bl       __dt__Q37JStudio14TVariableValue7TOutputFv
+// 	lis      r4, __vt__Q37JStudio14TVariableValue7TOutput@ha
+// 	lis      r3,
+// 	saoVVOutput_ANIMATION_FRAME___Q214JStudio_JStage14TAdaptor_actor@ha addi
+// 	r25, r4, __vt__Q37JStudio14TVariableValue7TOutput@l lwz      r29, 0x60(r31)
+// 	addi     r3, r3,
+// 	saoVVOutput_ANIMATION_FRAME___Q214JStudio_JStage14TAdaptor_actor@l lwz r12,
+// 	0x64(r31) stwu     r25, 0x30(r3) li       r27, 2 lwz      r11, 0x68(r31) li
+// 	r28, 0x131 lwz      r10, 0x6c(r31) addi     r26, r31, 0x84 lwz      r9,
+// 	0x70(r31) lis      r4,
+// 	__dt__Q314JStudio_JStage14TAdaptor_actor26TVVOutput_ANIMATION_FRAME_Fv@ha
+// 	lwz      r8, 0x74(r31)
+// 	addi     r4, r4,
+// 	__dt__Q314JStudio_JStage14TAdaptor_actor26TVVOutput_ANIMATION_FRAME_Fv@l lwz
+// 	r7, 0x78(r31) addi     r5, r30, 0x24 lwz      r6, 0x7c(r31) lwz      r0,
+// 	0x80(r31) stw      r25, 0x84(r1) stw      r26, 0x84(r1) stw      r27,
+// 	0x88(r1) stw      r28, 0x8c(r1) stw      r29, 0x90(r1) stw      r12,
+// 	0x94(r1) stw      r11, 0x98(r1) stw      r10, 0x9c(r1) stw      r9, 0xa0(r1)
+// 	stw      r8, 0xa4(r1)
+// 	stw      r7, 0xa8(r1)
+// 	stw      r6, 0xac(r1)
+// 	stw      r0, 0xb0(r1)
+// 	stw      r26, 0(r3)
+// 	stw      r27, 4(r3)
+// 	stw      r28, 8(r3)
+// 	stw      r29, 0xc(r3)
+// 	stw      r12, 0x10(r3)
+// 	stw      r11, 0x14(r3)
+// 	stw      r10, 0x18(r3)
+// 	stw      r9, 0x1c(r3)
+// 	stw      r8, 0x20(r3)
+// 	stw      r7, 0x24(r3)
+// 	stw      r6, 0x28(r3)
+// 	stw      r0, 0x2c(r3)
+// 	bl       __register_global_object
+// 	mr       r0, r26
+// 	addi     r3, r1, 0x84
+// 	stw      r0, 0x84(r1)
+// 	li       r4, 0
+// 	bl       __dt__Q37JStudio14TVariableValue7TOutputFv
+// 	lis      r3, __vt__Q37JStudio14TVariableValue7TOutput@ha
+// 	li       r10, -1
+// 	addi     r12, r3, __vt__Q37JStudio14TVariableValue7TOutput@l
+// 	li       r9, 0
+// 	stw      r12, 0x54(r1)
+// 	mr       r11, r26
+// 	lis      r4, __ptmf_null@ha
+// 	lis      r3,
+// 	saoVVOutput_ANIMATION_FRAME___Q214JStudio_JStage14TAdaptor_actor@ha stw r11,
+// 	0x54(r1) addi     r8, r4, __ptmf_null@l lwz      r7, 0(r8) lis      r4,
+// 	__dt__Q314JStudio_JStage14TAdaptor_actor26TVVOutput_ANIMATION_FRAME_Fv@ha
+// 	stw      r10, 0x58(r1)
+// 	addi     r3, r3,
+// 	saoVVOutput_ANIMATION_FRAME___Q214JStudio_JStage14TAdaptor_actor@l addi r5,
+// 	r30, 0x30 addi     r4, r4,
+// 	__dt__Q314JStudio_JStage14TAdaptor_actor26TVVOutput_ANIMATION_FRAME_Fv@l stw
+// 	r9, 0x5c(r1) lwz      r6, 4(r8) stw      r7, 8(r1) stw      r7, 0x60(r1) stw
+// 	r6, 0x64(r1) lwz      r0, 8(r8) stw      r6, 0xc(r1) stwu     r12, 0x60(r3)
+// 	stw      r0, 0x68(r1)
+// 	stw      r0, 0x10(r1)
+// 	stw      r7, 0x6c(r1)
+// 	stw      r6, 0x70(r1)
+// 	stw      r0, 0x74(r1)
+// 	stw      r7, 0x78(r1)
+// 	stw      r6, 0x7c(r1)
+// 	stw      r0, 0x80(r1)
+// 	stw      r11, 0(r3)
+// 	stw      r10, 4(r3)
+// 	stw      r9, 8(r3)
+// 	stw      r7, 0xc(r3)
+// 	stw      r6, 0x10(r3)
+// 	stw      r0, 0x14(r3)
+// 	stw      r7, 0x18(r3)
+// 	stw      r6, 0x1c(r3)
+// 	stw      r0, 0x20(r3)
+// 	stw      r7, 0x24(r3)
+// 	stw      r6, 0x28(r3)
+// 	stw      r0, 0x2c(r3)
+// 	bl       __register_global_object
+// 	mr       r0, r26
+// 	addi     r3, r1, 0x54
+// 	stw      r0, 0x54(r1)
+// 	li       r4, 0
+// 	bl       __dt__Q37JStudio14TVariableValue7TOutputFv
+// 	lmw      r25, 0xf4(r1)
+// 	lwz      r0, 0x114(r1)
+// 	mtlr     r0
+// 	addi     r1, r1, 0x110
+// 	blr
+// 	*/
+// }
 
 /*
  * --INFO--
  * Address:	800130FC
  * Size:	000060
  */
-void JStudio_JStage::TVariableValueOutput_object_<JStudio_JStage::TAdaptor_actor, JStage::TActor>::~TVariableValueOutput_object_()
-{
-	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  stw       r0, 0x14(r1)
-	  stw       r31, 0xC(r1)
-	  mr        r31, r4
-	  stw       r30, 0x8(r1)
-	  mr.       r30, r3
-	  beq-      .loc_0x44
-	  lis       r5, 0x804A
-	  li        r4, 0
-	  subi      r0, r5, 0x91C
-	  stw       r0, 0x0(r30)
-	  bl        -0x60C4
-	  extsh.    r0, r31
-	  ble-      .loc_0x44
-	  mr        r3, r30
-	  bl        0x10F78
+// void TVariableValueOutput_object_<TAdaptor_actor, JStage::TActor>::~TVariableValueOutput_object_()
+// {
+// 	/*
+// 	.loc_0x0:
+// 	  stwu      r1, -0x10(r1)
+// 	  mflr      r0
+// 	  stw       r0, 0x14(r1)
+// 	  stw       r31, 0xC(r1)
+// 	  mr        r31, r4
+// 	  stw       r30, 0x8(r1)
+// 	  mr.       r30, r3
+// 	  beq-      .loc_0x44
+// 	  lis       r5, 0x804A
+// 	  li        r4, 0
+// 	  subi      r0, r5, 0x91C
+// 	  stw       r0, 0x0(r30)
+// 	  bl        -0x60C4
+// 	  extsh.    r0, r31
+// 	  ble-      .loc_0x44
+// 	  mr        r3, r30
+// 	  bl        0x10F78
 
-	.loc_0x44:
-	  lwz       r0, 0x14(r1)
-	  mr        r3, r30
-	  lwz       r31, 0xC(r1)
-	  lwz       r30, 0x8(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
-	*/
-}
+// 	.loc_0x44:
+// 	  lwz       r0, 0x14(r1)
+// 	  mr        r3, r30
+// 	  lwz       r31, 0xC(r1)
+// 	  lwz       r30, 0x8(r1)
+// 	  mtlr      r0
+// 	  addi      r1, r1, 0x10
+// 	  blr
+// 	*/
+// }
 
 /*
  * --INFO--
  * Address:	8001315C
  * Size:	000030
  */
-void JStudio_JStage::TVariableValueOutput_object_<JStudio_JStage::TAdaptor_actor, JStage::TActor>::operator()(float,
-                                                                                                              JStudio::TAdaptor*) const
-{
-	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  mr        r5, r3
-	  stw       r0, 0x14(r1)
-	  addi      r12, r5, 0x8
-	  lwz       r3, 0x128(r4)
-	  bl        0xAE9B0
-	  nop
-	  lwz       r0, 0x14(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
-	*/
-}
+// void TVariableValueOutput_object_<TAdaptor_actor, JStage::TActor>::operator()(float,
+//                                                                                                               JStudio::TAdaptor*) const
+// {
+// 	/*
+// 	.loc_0x0:
+// 	  stwu      r1, -0x10(r1)
+// 	  mflr      r0
+// 	  mr        r5, r3
+// 	  stw       r0, 0x14(r1)
+// 	  addi      r12, r5, 0x8
+// 	  lwz       r3, 0x128(r4)
+// 	  bl        0xAE9B0
+// 	  nop
+// 	  lwz       r0, 0x14(r1)
+// 	  mtlr      r0
+// 	  addi      r1, r1, 0x10
+// 	  blr
+// 	*/
+// }
+
+} // namespace JStudio_JStage

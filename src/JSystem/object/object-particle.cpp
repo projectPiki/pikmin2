@@ -1,3 +1,9 @@
+#include "JStage/TObject.h"
+#include "JStage/TSystem.h"
+#include "JStudio/data.h"
+#include "JSystem/JPA/JPAEmitter.h"
+#include "JSystem/JStudio_JParticle.h"
+#include "Dolphin/float.h"
 #include "types.h"
 
 /*
@@ -122,105 +128,28 @@
  * Address:	800056C0
  * Size:	0000E8
  */
-JStudio_JParticle::TAdaptor_particle::TAdaptor_particle(JPAEmitterManager*, const JStage::TSystem*)
+JStudio_JParticle::TAdaptor_particle::TAdaptor_particle(JPAEmitterManager* emitterManager, const JStage::TSystem* system)
+    : m_emitterManager(emitterManager)
+    , m_emitter(nullptr)
+    , m_callback(this)
+    , _188(-1)
+    , _18C(0)
+    , _190(0)
+    , _194(0)
+    , m_system(system)
+    , _19C(nullptr)
+    , _1A0(0xFFFFFFFF)
+    , _1A4(0)
 {
-	/*
-	.loc_0x0:
-	  stwu      r1, -0x20(r1)
-	  mflr      r0
-	  lis       r6, 0x804A
-	  lis       r7, 0x804A
-	  stw       r0, 0x24(r1)
-	  subi      r0, r6, 0xB98
-	  lis       r6, 0x8000
-	  stw       r31, 0x1C(r1)
-	  mr        r31, r3
-	  mr        r8, r31
-	  stw       r30, 0x18(r1)
-	  mr        r30, r5
-	  subi      r5, r7, 0x1D68
-	  li        r7, 0x12
-	  stw       r29, 0x14(r1)
-	  mr        r29, r4
-	  stw       r0, 0x0(r3)
-	  addi      r3, r8, 0xC
-	  li        r0, 0x12
-	  stw       r3, 0x4(r31)
-	  stw       r0, 0x8(r31)
-	  addi      r0, r6, 0x5808
-	  mr        r4, r0
-	  li        r6, 0x14
-	  stw       r5, 0x0(r31)
-	  li        r5, 0
-	  bl        0xBC114
-	  lis       r3, 0x804A
-	  lis       r4, 0x804A
-	  subi      r0, r3, 0x1DC4
-	  lis       r3, 0x804A
-	  stw       r0, 0x0(r31)
-	  li        r6, 0
-	  subi      r5, r4, 0x1D84
-	  subi      r4, r3, 0x1DE0
-	  stw       r29, 0x174(r31)
-	  li        r0, -0x1
-	  mr        r3, r31
-	  stw       r6, 0x178(r31)
-	  stw       r5, 0x17C(r31)
-	  stw       r4, 0x17C(r31)
-	  stw       r31, 0x180(r31)
-	  stw       r6, 0x184(r31)
-	  stw       r0, 0x188(r31)
-	  stw       r6, 0x18C(r31)
-	  stw       r6, 0x190(r31)
-	  stw       r6, 0x194(r31)
-	  stw       r30, 0x198(r31)
-	  stw       r6, 0x19C(r31)
-	  stw       r0, 0x1A0(r31)
-	  stb       r6, 0x1A4(r31)
-	  lwz       r31, 0x1C(r1)
-	  lwz       r30, 0x18(r1)
-	  lwz       r29, 0x14(r1)
-	  lwz       r0, 0x24(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x20
-	  blr
-	*/
 }
 
 /*
  * --INFO--
  * Address:	800057A8
  * Size:	000060
+ * __dt__Q317JStudio_JParticle17TAdaptor_particle13TJPACallback_Fv
  */
-JStudio_JParticle::TAdaptor_particle::TJPACallback_::~TJPACallback_()
-{
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	mr       r31, r4
-	stw      r30, 8(r1)
-	or.      r30, r3, r3
-	beq      lbl_800057EC
-	lis      r5,
-__vt__Q317JStudio_JParticle17TAdaptor_particle13TJPACallback_@ha li       r4, 0
-	addi     r0, r5,
-__vt__Q317JStudio_JParticle17TAdaptor_particle13TJPACallback_@l stw      r0,
-0(r30) bl       __dt__18JPAEmitterCallBackFv extsh.   r0, r31 ble lbl_800057EC
-	mr       r3, r30
-	bl       __dl__FPv
-
-lbl_800057EC:
-	lwz      r0, 0x14(r1)
-	mr       r3, r30
-	lwz      r31, 0xc(r1)
-	lwz      r30, 8(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
-}
+JStudio_JParticle::TAdaptor_particle::TJPACallback_::~TJPACallback_() { }
 
 namespace JStudio {
 
@@ -228,18 +157,19 @@ namespace JStudio {
  * --INFO--
  * Address:	80005808
  * Size:	000018
+ * __ct__Q27JStudio14TVariableValueFv
  */
-TVariableValue::TVariableValue()
-{
-	/*
-	li       r4, 0
-	addi     r0, r13, soOutput_none___Q27JStudio14TVariableValue@sda21
-	stw      r4, 4(r3)
-	stw      r4, 8(r3)
-	stw      r0, 0x10(r3)
-	blr
-	*/
-}
+// TVariableValue::TVariableValue()
+// {
+// 	/*
+// 	li       r4, 0
+// 	addi     r0, r13, soOutput_none___Q27JStudio14TVariableValue@sda21
+// 	stw      r4, 4(r3)
+// 	stw      r4, 8(r3)
+// 	stw      r0, 0x10(r3)
+// 	blr
+// 	*/
+// }
 
 } // namespace JStudio
 
@@ -247,55 +177,13 @@ TVariableValue::TVariableValue()
  * --INFO--
  * Address:	80005820
  * Size:	000098
+ * __dt__Q217JStudio_JParticle17TAdaptor_particleFv
  */
 JStudio_JParticle::TAdaptor_particle::~TAdaptor_particle()
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	mr       r31, r4
-	stw      r30, 8(r1)
-	or.      r30, r3, r3
-	beq      lbl_8000589C
-	lis      r3, __vt__Q217JStudio_JParticle17TAdaptor_particle@ha
-	addi     r0, r3, __vt__Q217JStudio_JParticle17TAdaptor_particle@l
-	stw      r0, 0(r30)
-	lwz      r4, 0x178(r30)
-	cmplwi   r4, 0
-	beq      lbl_80005860
-	lwz      r3, 0x174(r30)
-	bl       forceDeleteEmitter__17JPAEmitterManagerFP14JPABaseEmitter
-
-lbl_80005860:
-	addic.   r0, r30, 0x17c
-	beq      lbl_80005880
-	lis      r4,
-__vt__Q317JStudio_JParticle17TAdaptor_particle13TJPACallback_@ha addi     r3,
-r30, 0x17c addi     r0, r4,
-__vt__Q317JStudio_JParticle17TAdaptor_particle13TJPACallback_@l li       r4, 0
-	stw      r0, 0x17c(r30)
-	bl       __dt__18JPAEmitterCallBackFv
-
-lbl_80005880:
-	mr       r3, r30
-	li       r4, 0
-	bl       __dt__Q27JStudio17TAdaptor_particleFv
-	extsh.   r0, r31
-	ble      lbl_8000589C
-	mr       r3, r30
-	bl       __dl__FPv
-
-lbl_8000589C:
-	lwz      r0, 0x14(r1)
-	mr       r3, r30
-	lwz      r31, 0xc(r1)
-	lwz      r30, 8(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	if (m_emitter != nullptr) {
+		m_emitterManager->forceDeleteEmitter(m_emitter);
+	}
 }
 
 /*
@@ -303,8 +191,20 @@ lbl_8000589C:
  * Address:	800058B8
  * Size:	000144
  */
-void JStudio_JParticle::TAdaptor_particle::adaptor_do_prepare(const JStudio::TObject*)
+void JStudio_JParticle::TAdaptor_particle::adaptor_do_prepare(const JStudio::TObject* p1)
 {
+	static TSetVariableValue_immediate aoData[18]
+	    = { TSetVariableValue_immediate(0, 0.0f),    TSetVariableValue_immediate(1, 0.0f),
+		    TSetVariableValue_immediate(2, 0.0f),    TSetVariableValue_immediate(3, 0.0f),
+		    TSetVariableValue_immediate(4, 0.0f),    TSetVariableValue_immediate(5, 0.0f),
+		    TSetVariableValue_immediate(6, 1.0f),    TSetVariableValue_immediate(7, 1.0f),
+		    TSetVariableValue_immediate(8, 1.0f),    TSetVariableValue_immediate(9, 255.0f),
+		    TSetVariableValue_immediate(10, 255.0f), TSetVariableValue_immediate(11, 255.0f),
+		    TSetVariableValue_immediate(12, 255.0f), TSetVariableValue_immediate(13, 255.0f),
+		    TSetVariableValue_immediate(14, 255.0f), TSetVariableValue_immediate(15, 255.0f),
+		    TSetVariableValue_immediate(16, 255.0f), TSetVariableValue_immediate(0xFFFFFFFF, __float_nan) };
+	adaptor_setVariableValue_immediate(aoData);
+	m_callback.m_object = p1;
 	/*
 	.loc_0x0:
 	  stwu      r1, -0x30(r1)
@@ -405,65 +305,29 @@ void JStudio_JParticle::TAdaptor_particle::adaptor_do_end(const JStudio::TObject
  * Address:	80005A00
  * Size:	0000B0
  */
-void JStudio_JParticle::TAdaptor_particle::adaptor_do_update(const JStudio::TObject*, unsigned long)
+void JStudio_JParticle::TAdaptor_particle::adaptor_do_update(const JStudio::TObject* p1, unsigned long p2)
 {
-	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  stw       r0, 0x14(r1)
-	  stw       r31, 0xC(r1)
-	  mr        r31, r3
-	  lwz       r3, 0x190(r3)
-	  cmplwi    r3, 0
-	  beq-      .loc_0x9C
-	  lwz       r0, 0x194(r31)
-	  cmplw     r0, r3
-	  bge-      .loc_0x9C
-	  add       r0, r0, r5
-	  stw       r0, 0x194(r31)
-	  lwz       r3, 0x194(r31)
-	  lwz       r0, 0x190(r31)
-	  cmplw     r3, r0
-	  blt-      .loc_0x9C
-	  lwz       r0, 0x18C(r31)
-	  cmpwi     r0, 0x2
-	  beq-      .loc_0x90
-	  bge-      .loc_0x60
-	  cmpwi     r0, 0x1
-	  bge-      .loc_0x6C
-	  b         .loc_0x90
-
-	.loc_0x60:
-	  cmpwi     r0, 0x4
-	  bge-      .loc_0x90
-	  b         .loc_0x78
-
-	.loc_0x6C:
-	  li        r0, 0x2
-	  stw       r0, 0x18C(r31)
-	  b         .loc_0x90
-
-	.loc_0x78:
-	  lwz       r3, 0x174(r31)
-	  lwz       r4, 0x178(r31)
-	  bl        0x8B280
-	  li        r0, 0
-	  stw       r0, 0x178(r31)
-	  stw       r0, 0x18C(r31)
-
-	.loc_0x90:
-	  li        r0, 0
-	  stw       r0, 0x190(r31)
-	  stw       r0, 0x194(r31)
-
-	.loc_0x9C:
-	  lwz       r0, 0x14(r1)
-	  lwz       r31, 0xC(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
-	*/
+	if (_190 == 0) {
+		return;
+	}
+	if (_194 >= _190) {
+		return;
+	}
+	_194 += p2;
+	if (_194 < _190) {
+		return;
+	}
+	switch (_18C) {
+	case 1:
+		_18C = 2;
+		break;
+	case 3:
+		m_emitterManager->forceDeleteEmitter(m_emitter);
+		m_emitter = nullptr;
+		_18C      = 0;
+	}
+	_190 = 0;
+	_194 = 0;
 }
 
 /*
@@ -471,27 +335,13 @@ void JStudio_JParticle::TAdaptor_particle::adaptor_do_update(const JStudio::TObj
  * Address:	80005AB0
  * Size:	000030
  */
-void JStudio_JParticle::TAdaptor_particle::adaptor_do_BEGIN(JStudio::data::TEOperationData, const void*, unsigned long)
+void JStudio_JParticle::TAdaptor_particle::adaptor_do_BEGIN(JStudio::data::TEOperationData operation, const void* p2, unsigned long p3)
 {
-	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  cmpwi     r4, 0x1
-	  stw       r0, 0x14(r1)
-	  beq-      .loc_0x18
-	  b         .loc_0x20
-
-	.loc_0x18:
-	  li        r4, 0
-	  bl        0x548
-
-	.loc_0x20:
-	  lwz       r0, 0x14(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
-	*/
+	switch (operation) {
+	case JStudio::data::TEOD_Unknown_01:
+		beginParticle_fadeIn_(0);
+		break;
+	}
 }
 
 /*
@@ -499,33 +349,14 @@ void JStudio_JParticle::TAdaptor_particle::adaptor_do_BEGIN(JStudio::data::TEOpe
  * Address:	80005AE0
  * Size:	000048
  */
-void JStudio_JParticle::TAdaptor_particle::adaptor_do_BEGIN_FADE_IN(JStudio::data::TEOperationData, const void*, unsigned long)
+void JStudio_JParticle::TAdaptor_particle::adaptor_do_BEGIN_FADE_IN(JStudio::data::TEOperationData operation, const void* p2,
+                                                                    unsigned long p3)
 {
-	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  cmpwi     r4, 0x2
-	  stw       r0, 0x14(r1)
-	  stw       r31, 0xC(r1)
-	  mr        r31, r3
-	  beq-      .loc_0x20
-	  b         .loc_0x34
-
-	.loc_0x20:
-	  lfs       f1, 0x0(r5)
-	  bl        0xBC048
-	  mr        r4, r3
-	  mr        r3, r31
-	  bl        0x504
-
-	.loc_0x34:
-	  lwz       r0, 0x14(r1)
-	  lwz       r31, 0xC(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
-	*/
+	switch (operation) {
+	case JStudio::data::TEOD_Unknown_02:
+		beginParticle_fadeIn_(*(f32*)p2);
+		break;
+	}
 }
 
 /*
@@ -533,22 +364,17 @@ void JStudio_JParticle::TAdaptor_particle::adaptor_do_BEGIN_FADE_IN(JStudio::dat
  * Address:	80005B28
  * Size:	00002C
  */
-void JStudio_JParticle::TAdaptor_particle::adaptor_do_END(JStudio::data::TEOperationData, const void*, unsigned long)
+void JStudio_JParticle::TAdaptor_particle::adaptor_do_END(JStudio::data::TEOperationData operation, const void* p2, unsigned long p3)
 {
-	/*
-	.loc_0x0:
-	  cmpwi     r4, 0x1
-	  bnelr-
-	  lwz       r4, 0x178(r3)
-	  cmplwi    r4, 0
-	  beqlr-
-	  lwz       r3, 0xF4(r4)
-	  li        r0, 0x1
-	  ori       r3, r3, 0x1
-	  stw       r3, 0xF4(r4)
-	  stw       r0, 0x24(r4)
-	  blr
-	*/
+	if (operation != JStudio::data::TEOD_Unknown_01) {
+		return;
+	}
+	JPABaseEmitter* emitter = m_emitter;
+	if (emitter == nullptr) {
+		return;
+	}
+	emitter->_F4 |= 1;
+	emitter->_24 = 1;
 }
 
 /*
@@ -556,33 +382,14 @@ void JStudio_JParticle::TAdaptor_particle::adaptor_do_END(JStudio::data::TEOpera
  * Address:	80005B54
  * Size:	000048
  */
-void JStudio_JParticle::TAdaptor_particle::adaptor_do_END_FADE_OUT(JStudio::data::TEOperationData, const void*, unsigned long)
+void JStudio_JParticle::TAdaptor_particle::adaptor_do_END_FADE_OUT(JStudio::data::TEOperationData operation, const void* p2,
+                                                                   unsigned long p3)
 {
-	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  cmpwi     r4, 0x2
-	  stw       r0, 0x14(r1)
-	  stw       r31, 0xC(r1)
-	  mr        r31, r3
-	  beq-      .loc_0x20
-	  b         .loc_0x34
-
-	.loc_0x20:
-	  lfs       f1, 0x0(r5)
-	  bl        0xBBFD4
-	  mr        r4, r3
-	  mr        r3, r31
-	  bl        0x574
-
-	.loc_0x34:
-	  lwz       r0, 0x14(r1)
-	  lwz       r31, 0xC(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
-	*/
+	switch (operation) {
+	case JStudio::data::TEOD_Unknown_02:
+		endParticle_fadeOut_(*(f32*)p2);
+		break;
+	}
 }
 
 /*
@@ -590,16 +397,13 @@ void JStudio_JParticle::TAdaptor_particle::adaptor_do_END_FADE_OUT(JStudio::data
  * Address:	80005B9C
  * Size:	000014
  */
-void JStudio_JParticle::TAdaptor_particle::adaptor_do_PARTICLE(JStudio::data::TEOperationData, const void*, unsigned long)
+void JStudio_JParticle::TAdaptor_particle::adaptor_do_PARTICLE(JStudio::data::TEOperationData operation, const void* p2, unsigned long p3)
 {
-	/*
-	.loc_0x0:
-	  cmpwi     r4, 0x19
-	  bnelr-
-	  lwz       r0, 0x0(r5)
-	  stw       r0, 0x188(r3)
-	  blr
-	*/
+	switch (operation) {
+	case JStudio::data::TEOD_Unknown_19:
+		_188 = *(int*)p2;
+		break;
+	}
 }
 
 /*
@@ -607,41 +411,17 @@ void JStudio_JParticle::TAdaptor_particle::adaptor_do_PARTICLE(JStudio::data::TE
  * Address:	80005BB0
  * Size:	000068
  */
-void JStudio_JParticle::TAdaptor_particle::adaptor_do_PARENT(JStudio::data::TEOperationData, const void*, unsigned long)
+void JStudio_JParticle::TAdaptor_particle::adaptor_do_PARENT(JStudio::data::TEOperationData operation, const void* p2, unsigned long p3)
 {
-	/*
-	.loc_0x0:
-	  stwu      r1, -0x20(r1)
-	  mflr      r0
-	  cmpwi     r4, 0x18
-	  stw       r0, 0x24(r1)
-	  stw       r31, 0x1C(r1)
-	  mr        r31, r3
-	  beq-      .loc_0x20
-	  b         .loc_0x54
-
-	.loc_0x20:
-	  li        r0, 0
-	  addi      r4, r1, 0x8
-	  stw       r0, 0x19C(r31)
-	  li        r6, 0
-	  lwz       r3, 0x198(r31)
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0x3C(r12)
-	  mtctr     r12
-	  bctrl
-	  cmpwi     r3, 0
-	  bne-      .loc_0x54
-	  lwz       r0, 0x8(r1)
-	  stw       r0, 0x19C(r31)
-
-	.loc_0x54:
-	  lwz       r0, 0x24(r1)
-	  lwz       r31, 0x1C(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x20
-	  blr
-	*/
+	switch (operation) {
+	case JStudio::data::TEOD_Unknown_18:
+		_19C = nullptr;
+		JStage::TObject* object;
+		if (m_system->JSGFindObject(&object, (const char*)p2, JStage::TEO_Unknown_0) == 0) {
+			_19C = object;
+		}
+		break;
+	}
 }
 
 /*
@@ -649,49 +429,22 @@ void JStudio_JParticle::TAdaptor_particle::adaptor_do_PARENT(JStudio::data::TEOp
  * Address:	80005C18
  * Size:	000080
  */
-void JStudio_JParticle::TAdaptor_particle::adaptor_do_PARENT_NODE(JStudio::data::TEOperationData, const void*, unsigned long)
+void JStudio_JParticle::TAdaptor_particle::adaptor_do_PARENT_NODE(JStudio::data::TEOperationData operation, const void* p2,
+                                                                  unsigned long p3)
 {
-	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  cmpwi     r4, 0x19
-	  stw       r0, 0x14(r1)
-	  stw       r31, 0xC(r1)
-	  mr        r31, r3
-	  beq-      .loc_0x64
-	  bge-      .loc_0x6C
-	  cmpwi     r4, 0x18
-	  bge-      .loc_0x2C
-	  b         .loc_0x6C
-
-	.loc_0x2C:
-	  lwz       r3, 0x19C(r31)
-	  cmplwi    r3, 0
-	  beq-      .loc_0x6C
-	  lwz       r12, 0x0(r3)
-	  mr        r4, r5
-	  lwz       r12, 0x34(r12)
-	  mtctr     r12
-	  bctrl
-	  stw       r3, 0x1A0(r31)
-	  lwz       r3, 0x1A0(r31)
-	  addis     r0, r3, 0x1
-	  cmplwi    r0, 0xFFFF
-	  bne-      .loc_0x6C
-	  b         .loc_0x6C
-
-	.loc_0x64:
-	  lwz       r0, 0x0(r5)
-	  stw       r0, 0x1A0(r31)
-
-	.loc_0x6C:
-	  lwz       r0, 0x14(r1)
-	  lwz       r31, 0xC(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
-	*/
+	switch (operation) {
+	case JStudio::data::TEOD_Unknown_18:
+		if (_19C != nullptr) {
+			_1A0 = _19C->JSGFindNodeID((const char*)p2);
+			if (_1A0 == 0xFFFFFFFF) {
+				return;
+			}
+		}
+		break;
+	case JStudio::data::TEOD_Unknown_19:
+		_1A0 = *(u32*)p2;
+		break;
+	}
 }
 
 /*
@@ -699,19 +452,14 @@ void JStudio_JParticle::TAdaptor_particle::adaptor_do_PARENT_NODE(JStudio::data:
  * Address:	80005C98
  * Size:	000020
  */
-void JStudio_JParticle::TAdaptor_particle::adaptor_do_PARENT_ENABLE(JStudio::data::TEOperationData, const void*, unsigned long)
+void JStudio_JParticle::TAdaptor_particle::adaptor_do_PARENT_ENABLE(JStudio::data::TEOperationData operation, const void* p2,
+                                                                    unsigned long p3)
 {
-	/*
-	.loc_0x0:
-	  cmpwi     r4, 0x2
-	  bnelr-
-	  lwz       r4, 0x0(r5)
-	  neg       r0, r4
-	  or        r0, r0, r4
-	  rlwinm    r0,r0,1,31,31
-	  stb       r0, 0x1A4(r3)
-	  blr
-	*/
+	switch (operation) {
+	case JStudio::data::TEOD_Unknown_02:
+		_1A4 = *(u32*)p2;
+		break;
+	}
 }
 
 /*
@@ -719,7 +467,7 @@ void JStudio_JParticle::TAdaptor_particle::adaptor_do_PARENT_ENABLE(JStudio::dat
  * Address:	80005CB8
  * Size:	00035C
  */
-void JStudio_JParticle::TAdaptor_particle::TJPACallback_::execute(JPABaseEmitter*)
+void JStudio_JParticle::TAdaptor_particle::TJPACallback_::execute(JPABaseEmitter* emitter)
 {
 	/*
 	.loc_0x0:
@@ -972,7 +720,7 @@ void JStudio_JParticle::TAdaptor_particle::TJPACallback_::execute(JPABaseEmitter
  * Address:	80006014
  * Size:	0000E4
  */
-void JStudio_JParticle::TAdaptor_particle::beginParticle_fadeIn_(unsigned long)
+void JStudio_JParticle::TAdaptor_particle::beginParticle_fadeIn_(unsigned long p1)
 {
 	/*
 	stwu     r1, -0x30(r1)
@@ -1047,94 +795,36 @@ lbl_800060E0:
  * Address:	800060F8
  * Size:	000118
  */
-void JStudio_JParticle::TAdaptor_particle::endParticle_fadeOut_(unsigned long)
+void JStudio_JParticle::TAdaptor_particle::endParticle_fadeOut_(unsigned long p1)
 {
-	/*
-	stwu     r1, -0x30(r1)
-	mflr     r0
-	stw      r0, 0x34(r1)
-	stw      r31, 0x2c(r1)
-	mr       r31, r4
-	stw      r30, 0x28(r1)
-	mr       r30, r3
-	lwz      r4, 0x178(r3)
-	cmplwi   r4, 0
-	beq      lbl_800061F8
-	cmplwi   r31, 0
-	bne      lbl_80006148
-	lwz      r3, 0x174(r30)
-	bl       forceDeleteEmitter__17JPAEmitterManagerFP14JPABaseEmitter
-	li       r0, 0
-	stw      r0, 0x178(r30)
-	stw      r0, 0x18c(r30)
-	stw      r0, 0x190(r30)
-	stw      r0, 0x194(r30)
-	b        lbl_800061F8
-
-lbl_80006148:
-	lwz      r4, 0x18c(r30)
-	li       r0, 3
-	stw      r0, 0x18c(r30)
-	lwz      r3, 0x194(r30)
-	cmplwi   r3, 0
-	bne      lbl_80006168
-	stw      r31, 0x190(r30)
-	b        lbl_800061F8
-
-lbl_80006168:
-	cmpwi    r4, 2
-	li       r5, 0
-	beq      lbl_800061A0
-	bge      lbl_80006184
-	cmpwi    r4, 1
-	bge      lbl_80006190
-	b        lbl_800061A0
-
-lbl_80006184:
-	cmpwi    r4, 4
-	bge      lbl_800061A0
-	b        lbl_80006198
-
-lbl_80006190:
-	mr       r5, r3
-	b        lbl_800061A0
-
-lbl_80006198:
-	lwz      r0, 0x190(r30)
-	subf     r5, r3, r0
-
-lbl_800061A0:
-	lwz      r0, 0x190(r30)
-	lis      r3, 0x4330
-	stw      r31, 0xc(r1)
-	lfd      f3, lbl_80516390@sda21(r2)
-	stw      r3, 8(r1)
-	lfd      f0, 8(r1)
-	stw      r0, 0x14(r1)
-	fsub     f2, f0, f3
-	stw      r3, 0x10(r1)
-	lfd      f0, 0x10(r1)
-	stw      r5, 0x1c(r1)
-	fsub     f1, f0, f3
-	stw      r3, 0x18(r1)
-	lfd      f0, 0x18(r1)
-	fmul     f1, f2, f1
-	fsub     f0, f0, f3
-	fdiv     f1, f1, f0
-	bl       __cvt_fp2unsigned
-	stw      r3, 0x190(r30)
-	lwz      r0, 0x190(r30)
-	subf     r0, r31, r0
-	stw      r0, 0x194(r30)
-
-lbl_800061F8:
-	lwz      r0, 0x34(r1)
-	lwz      r31, 0x2c(r1)
-	lwz      r30, 0x28(r1)
-	mtlr     r0
-	addi     r1, r1, 0x30
-	blr
-	*/
+	if (m_emitter == nullptr) {
+		return;
+	}
+	if (p1 == 0) {
+		m_emitterManager->forceDeleteEmitter(m_emitter);
+		m_emitter = nullptr;
+		_18C      = 0;
+		_190      = 0;
+		_194      = 0;
+		return;
+	}
+	u32 v1 = _18C;
+	_18C   = 3;
+	if (_194 == 0) {
+		_190 = p1;
+		return;
+	}
+	u32 v2 = 0;
+	switch (v1) {
+	case 1:
+		v2 = _194;
+		break;
+	case 3:
+		v2 = _190 - _194;
+		break;
+	}
+	_190 = (f64)p1 * (f64)_190 / (f64)v2;
+	_194 = _190 - p1;
 }
 
 /*

@@ -1014,7 +1014,7 @@ void P2JST::ObjectSystem::JSGSetFlag(unsigned long a1)
  * Address:	80431358
  * Size:	000008
  */
-void P2JST::ObjectSystem::JSGGetFlag() const
+u32 P2JST::ObjectSystem::JSGGetFlag() const
 {
 	/*
 	lwz      r3, 0x10(r3)

@@ -2,6 +2,7 @@
 #define _JSTUDIO_STB_H
 
 #include "JStudio/object.h"
+#include "JSystem/JGadget/binary.h"
 #include "types.h"
 #include "JStudio/stb-data.h"
 #include "JSystem/JGadget/linklist.h"
@@ -11,25 +12,24 @@ namespace stb {
 struct TControl;
 struct TObject;
 
-struct TParse {
-	TParse(JStudio::stb::TControl*);
-	TParse();
+struct TParse : JGadget::binary::TParse_header_block {
+	TParse(TControl*);
+	TParse(); // unused/inlined?
 
-	// vt
-	virtual ~TParse();
-	virtual void parseHeader_next(void const**, u32*, u32);
-	virtual void parseBlock_next(void const**, u32*, u32);
-	virtual int parseHeader(data::TParse_THeader const&, u32);
-	virtual void parseBlock_block(data::TParse_TBlock const&, unsigned long);
-	virtual void parseBlock_object(data::TParse_TBlock_object const&, u32);
+	virtual ~TParse();                                                      // _08
+	virtual bool parseHeader_next(const void**, u32*, u32);                 // _0C
+	virtual bool parseBlock_next(const void**, u32*, u32);                  // _10
+	virtual bool parseHeader(const data::TParse_THeader&, u32);             // _14
+	virtual void parseBlock_block(const data::TParse_TBlock&, u32);         // _18
+	virtual void parseBlock_object(const data::TParse_TBlock_object&, u32); // _1C
 
-	// TControl* control;
+	TControl* m_control;
 };
 
 struct TFactory {
-	virtual ~TFactory();
-	virtual int create(data::TParse_TBlock_object const&);
-	virtual void destroy(TObject*);
+	virtual ~TFactory();                                   // _08
+	virtual int create(const data::TParse_TBlock_object&); // _0C
+	virtual void destroy(TObject*);                        // _10
 };
 
 struct TObject : JStudio::object::TObject_ID {
@@ -44,24 +44,24 @@ struct TObject : JStudio::object::TObject_ID {
 	};
 
 	TObject();
-	TObject(u32, void const*, u32);
-	TObject(data::TParse_TBlock_object const&);
+	TObject(u32, const void*, u32);
+	TObject(const data::TParse_TBlock_object&);
 
 	virtual ~TObject();                                       //_08
 	virtual void do_begin();                                  //_0C
 	virtual void do_end();                                    //_10
-	virtual void do_paragraph(u32, void const*, u32);         //_14
-	virtual void do_wait(unsigned long);                      //_18
-	virtual void do_data(void const*, u32, void const*, u32); //_1C
+	virtual void do_paragraph(u32, const void*, u32);         //_14
+	virtual void do_wait(u32);                                //_18
+	virtual void do_data(const void*, u32, const void*, u32); //_1C
 
-	bool forward(unsigned long);
+	bool forward(u32);
 	void process_paragraph_reserved(int, int*, int);
 	void process_sequence();
 	void toString_status(int);
-	void setFlag_operation(unsigned char, int);
-	void reset(void const*);
+	void setFlag_operation(u8, int);
+	void reset(const void*);
 	void process_sequence_();
-	void process_paragraph_reserved_(unsigned long, void const*, unsigned long);
+	void process_paragraph_reserved_(u32, const void*, u32);
 
 	// int* _00; // _00 through _10 are for something called object::TObject_ID
 	// in TP that doesnt exist here
@@ -81,25 +81,28 @@ struct TObject : JStudio::object::TObject_ID {
 };
 
 struct TObject_control : TObject {
-	TObject_control(void const*, u32);
-	TObject_control(data::TParse_TBlock_object const&);
+	TObject_control(const void*, u32);
+	TObject_control(const data::TParse_TBlock_object&);
 
 	inline virtual ~TObject_control() {}; // _08 (weak)
 };
 
 struct TControl {
 	TControl();
+
 	virtual ~TControl(); // _08
-	const TObject* getObject(void const*, unsigned long);
-	void forward(unsigned long);
+
+	const TObject* getObject(const void*, u32);
+	void forward(u32);
+
+	// unused/inlined:
 	void appendObject(TObject*);
 	void removeObject(TObject*);
 	void removeObject_all();
 	void destroyObject(TObject*);
 	void destroyObject_all();
-	void getObject_index(unsigned long);
+	void getObject_index(u32);
 	void reset();
-	// void forward(unsigned long);
 
 	// VTBL _00
 	int _4;             // _04

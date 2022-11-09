@@ -5,8 +5,8 @@
 #include "Dolphin/vec.h"
 
 namespace JStage {
-typedef struct TECameraProjection;
-typedef struct TECameraView;
+enum TECameraProjection {};
+enum TECameraView {};
 struct TCamera : public TObject {
 	virtual ~TCamera() = 0;                                // _08
 	virtual int JSGFGetType() const;                       // _0C

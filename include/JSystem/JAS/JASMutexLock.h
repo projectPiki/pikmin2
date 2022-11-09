@@ -6,8 +6,14 @@
 
 struct JASMutexLock {
 	// unused/inlined:
-	JASMutexLock(OSMutex*);
-	~JASMutexLock();
+	JASMutexLock(OSMutex* mutex)
+	    : m_mutex(mutex)
+	{
+		OSLockMutex(mutex);
+	}
+	~JASMutexLock() { OSUnlockMutex(m_mutex); }
+
+	OSMutex* m_mutex;
 };
 
 /**

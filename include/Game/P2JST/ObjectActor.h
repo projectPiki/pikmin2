@@ -22,7 +22,7 @@ struct ObjectActor : public JStage::TActor, public ObjectBase {
 
 	virtual ~ObjectActor();                                // _08
 	virtual char* JSGGetName() const;                      // _10
-	virtual int JSGGetFlag() const;                        // _18
+	virtual u32 JSGGetFlag() const;                        // _18
 	virtual void JSGSetFlag(u32);                          // _1C
 	virtual void JSGSetData(u32, const void*, u32);        // _24
 	virtual int JSGFindNodeID(const char*) const;          // _34

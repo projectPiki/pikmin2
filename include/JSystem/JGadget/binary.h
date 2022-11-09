@@ -10,6 +10,8 @@ struct TEBit {
 };
 
 struct TParse_header_block {
+	inline TParse_header_block() { }
+
 	virtual ~TParse_header_block()                         = 0; // _08
 	virtual bool parseHeader_next(const void**, u32*, u32) = 0; // _0C
 	virtual bool parseBlock_next(const void**, u32*, u32)  = 0; // _10

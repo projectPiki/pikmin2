@@ -403,7 +403,7 @@ void P2JST::ObjectCamera::JSGSetFlag(unsigned long a1)
  * Address:	8042FA04
  * Size:	000008
  */
-void P2JST::ObjectCamera::JSGGetFlag() const
+u32 P2JST::ObjectCamera::JSGGetFlag() const
 {
 	/*
 	lwz      r3, 0x10(r3)

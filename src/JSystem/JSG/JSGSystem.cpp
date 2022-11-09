@@ -4,9 +4,6 @@
 
 namespace JStage {
 
-typedef struct TEObject {
-};
-
 /*
  * --INFO--
  * Address:	8009876C

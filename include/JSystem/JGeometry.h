@@ -1,6 +1,7 @@
 #ifndef _JSYSTEM_JGEOMETRY_H
 #define _JSYSTEM_JGEOMETRY_H
 
+#include "Dolphin/vec.h"
 #include "types.h"
 
 namespace JGeometry {
@@ -96,6 +97,16 @@ struct TVec3 {
 		x = other.x;
 		y = other.y;
 		z = other.z;
+	}
+
+	// inline operator Vec() const { return *this; }
+	inline operator Vec() const
+	{
+		Vec other;
+		other.x = x;
+		other.y = y;
+		other.z = z;
+		return other;
 	}
 
 	T x;

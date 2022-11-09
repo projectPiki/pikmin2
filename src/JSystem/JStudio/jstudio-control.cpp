@@ -1,3 +1,11 @@
+#include "Dolphin/mtx.h"
+#include "JStudio/TControl.h"
+#include "JStudio/TCreateObject.h"
+#include "JStudio/TFactory.h"
+#include "JStudio/TParse.h"
+#include "JStudio/stb.h"
+#include "JSystem/JGadget/linklist.h"
+#include "JSystem/JGeometry.h"
 #include "types.h"
 
 /*
@@ -60,8 +68,15 @@ namespace JStudio {
  * Address:	8000CAA4
  * Size:	000090
  */
-TControl::TControl(void)
+TControl::TControl()
+    : stb::TControl()
+    , _60()
+    , _74(0)
+    , _75(0)
 {
+	Vec vec = JGeometry::TVec3f(0.0f, 0.0f, 0.0f);
+	transformOnSet_setOrigin(vec, 0.0f);
+	transformOnGet_setOrigin(vec, 0.0f);
 	/*
 	stwu     r1, -0x20(r1)
 	mflr     r0
@@ -106,84 +121,22 @@ TControl::TControl(void)
  * --INFO--
  * Address:	8000CB34
  * Size:	000070
+ * __dt
  */
-TControl::~TControl(void)
-{
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	mr       r31, r4
-	stw      r30, 8(r1)
-	or.      r30, r3, r3
-	beq      lbl_8000CB88
-	lis      r4, __vt__Q27JStudio8TControl@ha
-	addi     r3, r30, 0x60
-	addi     r0, r4, __vt__Q27JStudio8TControl@l
-	li       r4, -1
-	stw      r0, 0(r30)
-	bl       __dt__Q37JStudio3fvb8TControlFv
-	mr       r3, r30
-	li       r4, 0
-	bl       __dt__Q37JStudio3stb8TControlFv
-	extsh.   r0, r31
-	ble      lbl_8000CB88
-	mr       r3, r30
-	bl       __dl__FPv
-
-lbl_8000CB88:
-	lwz      r0, 0x14(r1)
-	mr       r3, r30
-	lwz      r31, 0xc(r1)
-	lwz      r30, 8(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
-}
+TControl::~TControl(void) { }
 
 /*
  * --INFO--
  * Address:	8000CBA4
  * Size:	000080
  */
-void TControl::transformOnSet_setOrigin(Vec const&, float)
+void TControl::transformOnSet_setOrigin(Vec const& p1, float p2)
 {
-	/*
-	stwu     r1, -0x40(r1)
-	mflr     r0
-	lfs      f2, 0(r4)
-	fmr      f4, f1
-	stw      r0, 0x44(r1)
-	lfs      f0, lbl_805163FC@sda21(r2)
-	stw      r31, 0x3c(r1)
-	mr       r31, r4
-	lfs      f3, 4(r31)
-	fmuls    f1, f0, f4
-	stw      r30, 0x38(r1)
-	mr       r30, r3
-	addi     r3, r1, 8
-	li       r4, 0x79
-	stfs     f2, 0x78(r30)
-	lfs      f2, 8(r31)
-	stfs     f3, 0x7c(r30)
-	stfs     f2, 0x80(r30)
-	stfs     f4, 0x90(r30)
-	bl       PSMTXRotRad
-	lfs      f1, 0(r31)
-	addi     r3, r1, 8
-	lfs      f2, 4(r31)
-	addi     r4, r30, 0x98
-	lfs      f3, 8(r31)
-	bl       PSMTXTransApply
-	lwz      r0, 0x44(r1)
-	lwz      r31, 0x3c(r1)
-	lwz      r30, 0x38(r1)
-	mtlr     r0
-	addi     r1, r1, 0x40
-	blr
-	*/
+	_78 = p1;
+	_90 = p2;
+	Mtx mtx;
+	PSMTXRotRad(mtx, 0x79, p2 * 0.01745329f);
+	PSMTXTransApply(mtx, _98, p1.x, p1.y, p1.z);
 }
 
 /*
@@ -191,47 +144,15 @@ void TControl::transformOnSet_setOrigin(Vec const&, float)
  * Address:	8000CC24
  * Size:	000094
  */
-void TControl::transformOnGet_setOrigin(Vec const&, float)
+void TControl::transformOnGet_setOrigin(Vec const& p1, float p2)
 {
-	/*
-	stwu     r1, -0x80(r1)
-	mflr     r0
-	stw      r0, 0x84(r1)
-	stfd     f31, 0x70(r1)
-	psq_st   f31, 120(r1), 0, qr0
-	stw      r31, 0x6c(r1)
-	lfs      f0, 0(r4)
-	mr       r31, r3
-	lfs      f3, 4(r4)
-	fmr      f31, f1
-	stfs     f0, 0x84(r3)
-	fneg     f1, f0
-	lfs      f0, 8(r4)
-	fneg     f2, f3
-	stfs     f3, 0x88(r3)
-	fneg     f3, f0
-	addi     r3, r1, 0x38
-	stfs     f0, 0x8c(r31)
-	stfs     f31, 0x94(r31)
-	bl       PSMTXTrans
-	fneg     f0, f31
-	lfs      f1, lbl_805163FC@sda21(r2)
-	addi     r3, r1, 8
-	li       r4, 0x79
-	fmuls    f1, f1, f0
-	bl       PSMTXRotRad
-	addi     r3, r1, 8
-	addi     r4, r1, 0x38
-	addi     r5, r31, 0xc8
-	bl       PSMTXConcat
-	psq_l    f31, 120(r1), 0, qr0
-	lwz      r0, 0x84(r1)
-	lfd      f31, 0x70(r1)
-	lwz      r31, 0x6c(r1)
-	mtlr     r0
-	addi     r1, r1, 0x80
-	blr
-	*/
+	_84 = p1;
+	_94 = p2;
+	Mtx v1;
+	PSMTXTrans(v1, -p1.x, -p1.y, -p1.z);
+	Mtx v2;
+	PSMTXRotRad(v2, 0x79, -p2 * 0.01745329f);
+	PSMTXConcat(v2, v1, _C8);
 }
 
 /*
@@ -248,37 +169,15 @@ void TControl::forward_value(unsigned long)
  * --INFO--
  * Address:	8000CCB8
  * Size:	000048
+ * __dt__Q27JStudio13TCreateObjectFv
  */
-TCreateObject::~TCreateObject(void)
-{
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	or.      r31, r3, r3
-	beq      lbl_8000CCE8
-	lis      r5, __vt__Q27JStudio13TCreateObject@ha
-	extsh.   r0, r4
-	addi     r0, r5, __vt__Q27JStudio13TCreateObject@l
-	stw      r0, 0(r31)
-	ble      lbl_8000CCE8
-	bl       __dl__FPv
-
-lbl_8000CCE8:
-	lwz      r0, 0x14(r1)
-	mr       r3, r31
-	lwz      r31, 0xc(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
-}
+TCreateObject::~TCreateObject(void) { }
 
 /*
  * --INFO--
  * Address:	8000CD00
  * Size:	000084
+ * __dt__Q27JStudio8TFactoryFv
  */
 TFactory::~TFactory(void)
 {
@@ -380,7 +279,7 @@ void TFactory::removeCreateObject_all(void)
  * Address:	8000CDD4
  * Size:	0000B4
  */
-void TFactory::create(JStudio::stb::data::TParse_TBlock_object const&)
+int TFactory::create(JStudio::stb::data::TParse_TBlock_object const&)
 {
 	/*
 	stwu     r1, -0x50(r1)
@@ -441,81 +340,29 @@ lbl_8000CE74:
  * --INFO--
  * Address:	8000CE88
  * Size:	000054
+ * __ct__Q27JStudio6TParseFPQ27JStudio8TControl
  */
-TParse::TParse(JStudio::TControl*)
+TParse::TParse(JStudio::TControl* control)
+    : stb::TParse(control)
+    , m_fvbParse(&control->_60)
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	mr       r31, r4
-	stw      r30, 8(r1)
-	mr       r30, r3
-	bl       __ct__Q37JStudio3stb6TParseFPQ37JStudio3stb8TControl
-	lis      r4, __vt__Q27JStudio6TParse@ha
-	addi     r3, r30, 8
-	addi     r0, r4, __vt__Q27JStudio6TParse@l
-	addi     r4, r31, 0x60
-	stw      r0, 0(r30)
-	bl       __ct__Q37JStudio3fvb6TParseFPQ37JStudio3fvb8TControl
-	lwz      r0, 0x14(r1)
-	mr       r3, r30
-	lwz      r31, 0xc(r1)
-	lwz      r30, 8(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
 }
 
 /*
  * --INFO--
  * Address:	8000CEDC
  * Size:	000070
+ * __dt__Q27JStudio6TParseFv
  */
-TParse::~TParse(void)
-{
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	mr       r31, r4
-	stw      r30, 8(r1)
-	or.      r30, r3, r3
-	beq      lbl_8000CF30
-	lis      r4, __vt__Q27JStudio6TParse@ha
-	addi     r3, r30, 8
-	addi     r0, r4, __vt__Q27JStudio6TParse@l
-	li       r4, -1
-	stw      r0, 0(r30)
-	bl       __dt__Q37JStudio3fvb6TParseFv
-	mr       r3, r30
-	li       r4, 0
-	bl       __dt__Q37JStudio3stb6TParseFv
-	extsh.   r0, r31
-	ble      lbl_8000CF30
-	mr       r3, r30
-	bl       __dl__FPv
-
-lbl_8000CF30:
-	lwz      r0, 0x14(r1)
-	mr       r3, r30
-	lwz      r31, 0xc(r1)
-	lwz      r30, 8(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
-}
+TParse::~TParse() { }
 
 /*
  * --INFO--
  * Address:	8000CF4C
  * Size:	000078
+ * parseHeader__Q27JStudio6TParseFRCQ47JStudio3stb4data14TParse_THeaderUl
  */
-void TParse::parseHeader(JStudio::stb::data::TParse_THeader const&, unsigned long)
+bool TParse::parseHeader(JStudio::stb::data::TParse_THeader const&, unsigned long)
 {
 	/*
 	.loc_0x0:
@@ -562,6 +409,7 @@ void TParse::parseHeader(JStudio::stb::data::TParse_THeader const&, unsigned lon
  * --INFO--
  * Address:	8000CFC4
  * Size:	000044
+ * parseBlock_block__Q27JStudio6TParseFRCQ47JStudio3stb4data13TParse_TBlockUl
  */
 void TParse::parseBlock_block(JStudio::stb::data::TParse_TBlock const&, unsigned long)
 {
@@ -599,6 +447,7 @@ void TParse::parseBlock_block(JStudio::stb::data::TParse_TBlock const&, unsigned
  * --INFO--
  * Address:	8000D008
  * Size:	000060
+ * parseBlock_block_fvb___Q27JStudio6TParseFRCQ47JStudio3stb4data13TParse_TBlockUl
  */
 void TParse::parseBlock_block_fvb_(JStudio::stb::data::TParse_TBlock const&, unsigned long)
 {

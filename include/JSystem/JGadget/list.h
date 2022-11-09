@@ -19,22 +19,29 @@ struct TList {
 };
 
 struct TList_pointer_void : public TList<void*, TAllocator<void*>> {
-	TList_pointer_void();
+	TList_pointer_void(); // unused/inlined?
+	TList_pointer_void(const TAllocator<void*>& allocator);
 	TList_pointer_void(u32, const void*&, const TAllocator<void*>&); // unused/inlined
 	~TList_pointer_void();
 
-	void insert(iterator, const void*&);
+	void insert(iterator, void* const&);
 	void erase(iterator);
 
 	// unused/inlined:
-	void insert(iterator, u32, const void*&);
+	void insert(iterator, u32, void* const&);
 	void erase(iterator, iterator);
-	void remove(const void*&);
-	void assign(u32, const void*&);
-	void resize(u32, const void*&);
+	void remove(void* const&);
+	void assign(u32, void* const&);
+	void resize(u32, void* const&);
 	void unique();
 	TList_pointer_void& operator=(const TList_pointer_void& other);
 };
+
+template <typename Iterator, typename Value>
+void findUpperBound_binary_current(Iterator, Iterator, Iterator, const Value&);
+
+template <typename Iterator, typename Value, typename Predicate>
+void findUpperBound_binary_current(Iterator, Iterator, Iterator, const Value&, Predicate);
 } // namespace JGadget
 
 #endif

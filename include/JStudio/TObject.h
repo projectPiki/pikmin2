@@ -2,19 +2,27 @@
 #define _JSTUDIO_TOBJECT_H
 
 #include "JStudio/TAdaptor.h"
+#include "JStudio/TControl.h"
 #include "JStudio/data.h"
+#include "JStudio/object.h"
+#include "JStudio/stb.h"
+#include "JSystem/JGadget/linklist.h"
 #include "types.h"
 
 namespace JStudio {
 namespace stb {
 namespace data {
 struct TParse_TBlock_object;
-}
+} // namespace data
 } // namespace stb
 
-struct TObject {
-	TObject(data::TE32Block, void const*, unsigned long, TAdaptor*);              // unused/inlined
-	TObject(JStudio::stb::data::TParse_TBlock_object const&, JStudio::TAdaptor*); // unused/inlined
+struct TObject : stb::TObject {
+	TObject(data::TE32Block, void const*, unsigned long, TAdaptor*);                          // unused/inlined
+	TObject(const JStudio::stb::data::TParse_TBlock_object& data, JStudio::TAdaptor* adaptor) // unused/inlined
+	    : stb::TObject(data)
+	    , m_adaptor(adaptor)
+	{
+	}
 
 	// TODO: Isn't there an unused ~TObject in jstudio-object.cpp???
 	virtual ~TObject() = 0;                                   // _08
@@ -26,6 +34,11 @@ struct TObject {
 
 	// unused/inlined:
 	void forward_value(u32);
+
+	// VTBL _04
+	// JGadget::TLinkListNode _0C; // _0C
+	// TControl* m_control;        // _14
+	TAdaptor* m_adaptor; // _34
 };
 
 struct TObject_actor : public TObject {
