@@ -3,18 +3,6 @@
 #include "JSystem/JAS/JASWave.h"
 #include "types.h"
 
-/*
-    Generated from dpostproc
-
-    .section .sbss # 0x80514D80 - 0x80516360
-    .global sTableSize__14JASWaveBankMgr
-    sTableSize__14JASWaveBankMgr:
-        .skip 0x4
-    .global sWaveBank__14JASWaveBankMgr
-    sWaveBank__14JASWaveBankMgr:
-        .skip 0x4
-*/
-
 int JASWaveBankMgr::sTableSize;
 JASWaveBank** JASWaveBankMgr::sWaveBank;
 
@@ -54,6 +42,8 @@ JASWaveBank* JASWaveBankMgr::getWaveBank(int bankIndex)
 bool JASWaveBankMgr::registWaveBank(int bankIndex, JASWaveBank* bank)
 {
 	// UNUSED FUNCTION
+	// putting this here so the compiler stops complaining. this isn't real code.
+	return false; // fake
 }
 
 /*
@@ -171,4 +161,6 @@ bool JASWaveBankMgr::eraseWave(int bankIndex, int arcIndex)
 size_t JASWaveBankMgr::getUsedHeapSize()
 {
 	// UNUSED FUNCTION
+	// putting this here so the compiler stops complaining. this isn't real code.
+	return sizeof(JKRExpHeap); // fake
 }

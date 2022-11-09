@@ -547,7 +547,7 @@ KANDO:=\
 	$(BUILD_DIR)/asm/plugProjectKandoU/itemRock.o\
 	$(BUILD_DIR)/src/plugProjectKandoU/aiBreakRock.o\
 	$(BUILD_DIR)/asm/plugProjectKandoU/aiCrop.o\
-	$(BUILD_DIR)/asm/plugProjectKandoU/registItem.o\
+	$(BUILD_DIR)/src/plugProjectKandoU/registItem.o\
 	$(BUILD_DIR)/asm/plugProjectKandoU/gamePlayData.o\
 	$(BUILD_DIR)/asm/plugProjectKandoU/itemCave.o\
 	$(BUILD_DIR)/asm/plugProjectKandoU/itemBigFountain.o\

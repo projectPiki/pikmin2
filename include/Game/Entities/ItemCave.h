@@ -127,6 +127,8 @@ struct Mgr : public TNodeItemMgr {
 	Platform* _8C; // _8C
 };
 
+extern Mgr* mgr;
+
 } // namespace ItemCave
 } // namespace Game
 

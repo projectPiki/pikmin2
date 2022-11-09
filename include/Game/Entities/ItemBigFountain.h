@@ -163,6 +163,8 @@ struct Mgr : public TNodeItemMgr {
 	FountainParms* m_parms; // _8C
 };
 
+extern Mgr* mgr;
+
 } // namespace ItemBigFountain
 } // namespace Game
 

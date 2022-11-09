@@ -73,14 +73,20 @@ struct Item : public CFSMItem {
 };
 
 struct Mgr : public FixedSizeItemMgr<ItemHoney::Item> {
+	Mgr();
+
 	virtual void onLoadResources();                                       // _48
 	virtual u32 generatorGetID();                                         // _58 (weak)
 	virtual BaseItem* generatorBirth(Vector3f&, Vector3f&, GenItemParm*); // _5C
 	virtual void onCreateModel(SysShape::Model*);                         // _A0
 	virtual ItemHoney::Item* birth();                                     // _A4
+	virtual Item* get(void*);                                             // _AC (weak, thunk at _94)
+	virtual void* getNext(void*);                                         // _B0 (weak, thunk at _88)
+	virtual void* getStart();                                             // _B4 (weak, thunk at _8C)
+	virtual void* getEnd();                                               // _B8 (weak, thunk at _90)
 	virtual ~Mgr();                                                       // _BC (weak)
 
-	u8 _7C[0x8]; // _7C - unknown
+	u8 _7C[0x4]; // _7C - unknown
 };
 
 struct FSM : public CItemFSM {

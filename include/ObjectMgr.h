@@ -116,27 +116,30 @@ struct NodeObjectMgr : public ObjectMgr<T> {
 		m_node.m_next   = nullptr;
 	}
 
-	void delNode(T* contents)
+	void delNode(T* contents);
+	// needs to not be inlined in ItemMgr::killAllExceptOnyonMgr();
+	/*
 	{
-		// for (TObjectNode<T>* node = (TObjectNode<T>*)m_node.m_child; node != nullptr; node = (TObjectNode<T>*)node->m_next) {
-		// 	if (node->m_contents == contents) {
-		// 		node->del();
-		// 		return;
-		// 	}
-		// }
-		TObjectNode<T>* node = (TObjectNode<T>*)m_node.m_child;
-		while (true) {
-			if (node == nullptr) {
-				return;
-			}
-			if (node->m_contents == contents) {
-				break;
-			}
-			node = (TObjectNode<T>*)node->m_next;
-		}
-		node->del();
-		return;
+	    // for (TObjectNode<T>* node = (TObjectNode<T>*)m_node.m_child; node != nullptr; node = (TObjectNode<T>*)node->m_next) {
+	    // 	if (node->m_contents == contents) {
+	    // 		node->del();
+	    // 		return;
+	    // 	}
+	    // }
+	    TObjectNode<T>* node = (TObjectNode<T>*)m_node.m_child;
+	    while (true) {
+	        if (node == nullptr) {
+	            return;
+	        }
+	        if (node->m_contents == contents) {
+	            break;
+	        }
+	        node = (TObjectNode<T>*)node->m_next;
+	    }
+	    node->del();
+	    return;
 	}
+	*/
 
 	TObjectNode<T> m_node; // _20
 };

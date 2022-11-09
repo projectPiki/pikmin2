@@ -176,7 +176,6 @@ struct Mgr : public TNodeItemMgr {
 	virtual Item* birth();                           // _BC (Yes, TNodeItemMgr::birth() isn't virtual, but this is. Deal with it.)
 
 	BarrelParms* m_parms; // _88
-	u8 _90[4];            // _8C
 };
 
 extern Mgr* mgr;

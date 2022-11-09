@@ -185,9 +185,9 @@ struct FixedSizeItemMgr : public BaseItemMgr, public Container<T> {
 	virtual T* birth();                                                       // _A4
 	virtual void kill(T*);                                                    // _A8 (weak)
 	virtual BaseItem* get(void*);                                             // _AC (weak, thunk at _94)
-	virtual void getNext(void*);                                              // _B0 (weak, thunk at _88)
-	virtual void getStart();                                                  // _B4 (weak, thunk at _8C)
-	virtual void getEnd();                                                    // _B8 (weak, thunk at _90)
+	virtual void* getNext(void*);                                             // _B0 (weak, thunk at _88)
+	virtual void* getStart();                                                 // _B4 (weak, thunk at _8C)
+	virtual void* getEnd();                                                   // _B8 (weak, thunk at _90)
 	virtual ~FixedSizeItemMgr<T>();                                           // _BC (weak, thunk at _7C)
 
 	void createModel(T*);
@@ -197,6 +197,9 @@ struct FixedSizeItemMgr : public BaseItemMgr, public Container<T> {
 
 	MonoObjectMgr<T> m_monoObjectMgr; // _4C
 };
+
+extern ItemMgr* itemMgr;
+
 } // namespace Game
 
 #endif

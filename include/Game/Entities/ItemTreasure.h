@@ -124,10 +124,7 @@ struct Mgr : public TNodeItemMgr {
 
 	// _00      = VTBL
 	// _00-_64  = TNodeItemMgr
-	u8 _64[0x8];               // _64, unknown
-	TObjectNode<BaseItem> _6C; // _6C
-	TreasureParms* m_parms;    // _88
-	u8 _8C[0x4];               // _8C, unknown
+	u8 _64[0x4]; // _64, unknown
 };
 
 extern Mgr* mgr;

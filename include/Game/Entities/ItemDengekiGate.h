@@ -28,6 +28,9 @@ struct Mgr : public NodeItemMgr<ItemGate> {
 	Platform* m_sidePlatform;            // _8C
 	Sys::MatTexAnimation m_matAnimation; // _90
 };
+
+extern Mgr* mgr;
+
 } // namespace ItemDengekiGate
 } // namespace Game
 

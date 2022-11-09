@@ -11,7 +11,7 @@ namespace ItemBarrel {
 struct Item;
 }
 
-namespace ItemCave {
+namespace ItemDownFloor {
 struct Item;
 
 struct FSM : public ItemFSM<Item> {
@@ -163,7 +163,9 @@ struct Mgr : public TNodeItemMgr {
 	Platform** m_platforms; // _88, might be array of platforms instead?
 };
 
-} // namespace ItemCave
+extern Mgr* mgr;
+
+} // namespace ItemDownFloor
 } // namespace Game
 
 struct GenDownFloorParm : public Game::GenItemParm {
