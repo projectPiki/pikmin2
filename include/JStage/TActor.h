@@ -5,6 +5,7 @@
 
 namespace JStage {
 struct TActor : public TObject {
+
 	virtual ~TActor() = 0;                              // _08
 	virtual int JSGFGetType() const;                    // _0C
 	virtual void JSGGetTranslation(Vec*) const;         // _3C

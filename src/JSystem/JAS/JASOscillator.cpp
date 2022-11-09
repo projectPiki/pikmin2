@@ -1,4 +1,5 @@
 #include "JSystem/JAS/JASOscillator.h"
+#include "JSystem/JAS/JASDriver.h"
 #include "types.h"
 
 /*
@@ -209,8 +210,38 @@ void JASOscillator::forceStop()
  * Address:	800A2D28
  * Size:	000168
  */
-void JASOscillator::release()
+bool JASOscillator::release()
 {
+	if (_1C == 4) {
+		return false;
+	}
+	if (m_data->_08 != m_data->_0C) {
+		_18 = 0;
+		_04 = 0.0f;
+		_0C = _08;
+	}
+	if (m_data->_0C == nullptr && _1A == 0) {
+		_1A = 0x10;
+	}
+	if (_1A != 0) {
+		_1C    = 5;
+		_1D    = _1A >> 0xE;
+		u16 v1 = (_1A & 0x3FFF ^ 0x80000000);
+		_04    = ((JASDriver::getDacRate() / 80.0f) / 600.0f) * v1;
+		if (_04 < 1.0f) {
+			_04 = 1.0f;
+		}
+		_14 = _04;
+		_0C = 0.0f;
+		if (_1D == 0) {
+			_10 = (_0C - _08) / _04;
+		} else {
+			_10 = _0C - _08;
+		}
+	} else {
+		_1C = 3;
+	}
+	return true;
 	/*
 	stwu     r1, -0x30(r1)
 	mflr     r0

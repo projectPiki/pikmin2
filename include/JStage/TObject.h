@@ -1,5 +1,6 @@
 #ifndef _JSTAGE_TOBJECT_H
 #define _JSTAGE_TOBJECT_H
+#include "Dolphin/gx.h"
 #include "types.h"
 /*
     __vt__Q26JStage7TObject:
@@ -26,7 +27,7 @@ struct TObject {
 	virtual int JSGFGetType() const = 0;                            // _0C
 	virtual char* JSGGetName() const;                               // _10
 	virtual void JSGUpdate();                                       // _14
-	virtual int JSGGetFlag() const;                                 // _18
+	virtual u32 JSGGetFlag() const;                                 // _18
 	virtual void JSGSetFlag(u32);                                   // _1C
 	virtual void* JSGGetData(u32, void*, u32) const;                // _20
 	virtual void JSGSetData(u32, const void*, u32);                 // _24
@@ -36,8 +37,40 @@ struct TObject {
 	virtual int JSGFindNodeID(const char*) const;                   // _34
 	virtual bool JSGGetNodeTransformation(u32, float (*)[4]) const; // _38
 
+	/** @fabricated */
+	inline void setFlagOff(u32 flag) { JSGSetFlag(JSGGetFlag() & ~flag); }
+	/** @fabricated */
+	inline void setFlagOn(u32 flag) { JSGSetFlag(JSGGetFlag() | flag); }
+
 	// _00 VTBL
 };
+
+// this cannot generate a vtable. There isn't even an unused vtable in the link map. And yet it definitely has one. Hmm.
+// There also aren't any unused funcs for this type at all.
+// It's not a typedef. Typedefs don't show on the link map.
+// Unless... maybe it's just a POD type that just has a pointer to a JStage::TObject?
+// But then there still needs to be a subclass of that somewhere. And that doesn't look right at all.
+struct TAmbientLight : public TObject {
+	inline virtual GXColor JSGGetColor() const { return GXColor(); } // _3C
+	inline virtual void JSGSetColor(GXColor) const { }               // _40
+};
+
+//  None of these should generate bodies. The vtbl should never be generated. Ever.
+struct TFog : public TObject {
+	inline virtual void virtual_3C() { }                                 // _3C
+	inline virtual void virtual_40() { }                                 // _40
+	inline virtual f32 virtual_44() const { return _04; }                // _44
+	inline virtual void virtual_48(f32 p1) { _04 = p1; }                 // _48
+	inline virtual f32 virtual_4C() const { return _04; }                // _4C
+	inline virtual void virtual_50(f32 p1) { _04 = p1; }                 // _50
+	inline virtual _GXColor JSGGetColor() const { return m_color; }      // _54
+	inline virtual void JSGSetColor(_GXColor color) { m_color = color; } // _58
+
+	f32 _04;
+	_GXColor m_color;
+};
+
+struct TLight : public TObject { };
 } // namespace JStage
 
 #endif

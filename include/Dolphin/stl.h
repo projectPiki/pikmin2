@@ -69,6 +69,7 @@ int vsnprintf(char*, size_t, const char*, va_list);
 int vsprintf(char* s, const char* format, va_list arg);
 
 void* memcpy(void* dest, const void* src, size_t n);
+int memcmp(const void* a, const void* b, size_t n);
 
 #ifdef __cplusplus
 };

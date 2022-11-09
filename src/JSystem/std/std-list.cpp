@@ -1,3 +1,5 @@
+#include "JSystem/JGadget/allocator.h"
+#include "JSystem/JGadget/list.h"
 #include "types.h"
 
 /*
@@ -9,7 +11,8 @@
  * Address:	80027484
  * Size:	000020
  */
-void __ct__Q27JGadget18TList_pointer_voidFRCQ27JGadget14TAllocator<void*>(void)
+// void __ct__Q27JGadget18TList_pointer_voidFRCQ27JGadget14TAllocator<void*>(void)
+JGadget::TList_pointer_void::TList_pointer_void(const JGadget::TAllocator<void*>& allocator)
 {
 	/*
 	lbz      r0, 0(r4)
@@ -28,20 +31,20 @@ void __ct__Q27JGadget18TList_pointer_voidFRCQ27JGadget14TAllocator<void*>(void)
  * Address:	........
  * Size:	0000BC
  */
-void __dt__Q27JGadget36TList<void*, JGadget::TAllocator<void*>> Fv(void)
-{
-	// UNUSED FUNCTION
-}
+// JGadget::TList<void*, JGadget::TAllocator<void*>>::~TList()
+// {
+// 	// UNUSED FUNCTION
+// }
 
 /*
  * --INFO--
  * Address:	........
  * Size:	0000BC
  */
-void __ct__Q27JGadget18TList_pointer_voidFUlRCPvRCQ27JGadget14TAllocator<void*>(void)
-{
-	// UNUSED FUNCTION
-}
+// JGadget::TList_pointer_void::TList_pointer_void(u32, const void*&, const TAllocator<void*>&)
+// {
+// 	// UNUSED FUNCTION
+// }
 
 /*
  * --INFO--
@@ -115,7 +118,7 @@ lbl_80027540:
  * Address:	80027564
  * Size:	000098
  */
-void insert__Q27JGadget18TList_pointer_voidFQ37JGadget36TList<void*, JGadget::TAllocator<void*>> 8iteratorRCPv(void)
+void JGadget::TList_pointer_void::insert(JGadget::TList_pointer_void::iterator, void* const&)
 {
 	/*
 	.loc_0x0:
@@ -173,7 +176,7 @@ void insert__Q27JGadget18TList_pointer_voidFQ37JGadget36TList<void*, JGadget::TA
  * Address:	........
  * Size:	00009C
  */
-void insert__Q27JGadget18TList_pointer_voidFQ37JGadget36TList<void*, JGadget::TAllocator<void*>> 8iteratorUlRCPv(void)
+void JGadget::TList_pointer_void::insert(JGadget::TList_pointer_void::iterator, u32, void* const&)
 {
 	// UNUSED FUNCTION
 }
@@ -183,7 +186,7 @@ void insert__Q27JGadget18TList_pointer_voidFQ37JGadget36TList<void*, JGadget::TA
  * Address:	800275FC
  * Size:	000070
  */
-void erase__Q27JGadget18TList_pointer_voidFQ37JGadget36TList<void*, JGadget::TAllocator<void*>> 8iterator(void)
+void JGadget::TList_pointer_void::erase(JGadget::TList_pointer_void::iterator)
 {
 	/*
 	.loc_0x0:
@@ -223,8 +226,7 @@ void erase__Q27JGadget18TList_pointer_voidFQ37JGadget36TList<void*, JGadget::TAl
  * Address:	........
  * Size:	0000A0
  */
-void erase__Q27JGadget18TList_pointer_voidFQ37JGadget36TList<void*, JGadget::TAllocator<void*>> 8iteratorQ37JGadget36TList < void *,
-    JGadget::TAllocator<void*> > 8iterator(void)
+void JGadget::TList_pointer_void::erase(JGadget::TList_pointer_void::iterator, JGadget::TList_pointer_void::iterator)
 {
 	// UNUSED FUNCTION
 }
@@ -254,7 +256,8 @@ void JGadget::TList_pointer_void::assign(unsigned long, void* const&)
  * Address:	........
  * Size:	000100
  */
-void assign__Q27JGadget36TList<void*, JGadget::TAllocator<void*>> FUlRCPv(void)
+template <>
+void JGadget::TList<void*, JGadget::TAllocator<void*>>::assign(u32, void* const&)
 {
 	// UNUSED FUNCTION
 }
@@ -274,7 +277,7 @@ void JGadget::TList_pointer_void::resize(unsigned long, void* const&)
  * Address:	........
  * Size:	0000DC
  */
-void JGadget::TList_pointer_void::unique(void)
+void JGadget::TList_pointer_void::unique()
 {
 	// UNUSED FUNCTION
 }
@@ -284,7 +287,7 @@ void JGadget::TList_pointer_void::unique(void)
  * Address:	........
  * Size:	000030
  */
-void JGadget::TList_pointer_void::operator=(JGadget::TList_pointer_void const&)
+JGadget::TList_pointer_void& JGadget::TList_pointer_void::operator=(JGadget::TList_pointer_void const&)
 {
 	// UNUSED FUNCTION
 }
@@ -294,7 +297,10 @@ void JGadget::TList_pointer_void::operator=(JGadget::TList_pointer_void const&)
  * Address:	........
  * Size:	000194
  */
-void __as__Q27JGadget36TList<void*, JGadget::TAllocator<void*>> FRCQ27JGadget36TList<void*, JGadget::TAllocator<void*>>(void)
+template <>
+JGadget::TList<void*, JGadget::TAllocator<void*>>&
+JGadget::TList<void*, JGadget::TAllocator<void*>>::operator=(const TList<void*, JGadget::TAllocator<void*>>& other)
+// void __as__Q27JGadget36TList<void*, JGadget::TAllocator<void*>> FRCQ27JGadget36TList<void*, JGadget::TAllocator<void*>>(void)
 {
 	// UNUSED FUNCTION
 }

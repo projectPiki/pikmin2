@@ -18,8 +18,7 @@ struct TParse_TParagraph {
 };
 
 // TODO: Define TParse_TBlock
-struct TParse_TBlock {
-};
+struct TParse_TBlock { };
 } // namespace data
 
 struct TControl {

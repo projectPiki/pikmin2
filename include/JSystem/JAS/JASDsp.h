@@ -18,6 +18,7 @@ struct TChannel {
 		u16 _04;
 		u16 _06;
 	};
+
 	void init();
 	void playStart();
 	void playStop();
@@ -94,8 +95,7 @@ struct TChannel {
 	short m_distFilter;       // _150
 };
 
-struct FxlineConfig_ {
-};
+struct FxlineConfig_ { };
 
 void boot(void (*)(void*));
 void releaseHalt(u32);

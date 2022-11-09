@@ -1,3 +1,4 @@
+#include "JSystem/JStudio_JStage.h"
 #include "types.h"
 
 /*
@@ -685,7 +686,7 @@ void JStudio_JStage::TAdaptor_light::TVVOutput_direction_::operator()(float, JSt
  * Address:	80011AD4
  * Size:	000060
  */
-void JStudio_JStage::TAdaptor_light::TVVOutput_direction_::~TVVOutput_direction_()
+JStudio_JStage::TAdaptor_light::TVVOutput_direction_::~TVVOutput_direction_()
 {
 	/*
 	.loc_0x0:
@@ -723,148 +724,148 @@ void JStudio_JStage::TAdaptor_light::TVVOutput_direction_::~TVVOutput_direction_
  * Address:	80011B34
  * Size:	000298
  */
-void __sinit_object - light_cpp(void)
-{
-	/*
-	stwu     r1, -0x60(r1)
-	mflr     r0
-	lis      r4, __vt__Q37JStudio14TVariableValue7TOutput@ha
-	lis      r3, saoVVOutput_direction___Q214JStudio_JStage14TAdaptor_light@ha
-	stw      r0, 0x64(r1)
-	addi     r5, r4, __vt__Q37JStudio14TVariableValue7TOutput@l
-	lis      r4,
-	__vt__Q314JStudio_JStage14TAdaptor_light20TVVOutput_direction_@ha li r6, 0xa
-	stw      r31, 0x5c(r1)
-	li       r0, 1
-	addi     r7, r4,
-	__vt__Q314JStudio_JStage14TAdaptor_light20TVVOutput_direction_@l lis r4,
-	__dt__Q314JStudio_JStage14TAdaptor_light20TVVOutput_direction_Fv@ha stwu r5,
-	saoVVOutput_direction___Q214JStudio_JStage14TAdaptor_light@l(r3) addi r4,
-	r4, __dt__Q314JStudio_JStage14TAdaptor_light20TVVOutput_direction_Fv@l stw
-	r5, 0x44(r1) lis      r5, lbl_804EFDA0@ha addi     r31, r5, lbl_804EFDA0@l
-	stw      r7, 0x44(r1)
-	addi     r5, r31, 0
-	stw      r6, 0x48(r1)
-	stw      r0, 0x4c(r1)
-	stw      r7, 0(r3)
-	stw      r6, 4(r3)
-	stw      r0, 8(r3)
-	bl       __register_global_object
-	lis      r4,
-	__vt__Q314JStudio_JStage14TAdaptor_light20TVVOutput_direction_@ha addi r3,
-	r1, 0x44 addi     r0, r4,
-	__vt__Q314JStudio_JStage14TAdaptor_light20TVVOutput_direction_@l li r4, 0
-	stw      r0, 0x44(r1)
-	bl       __dt__Q37JStudio14TVariableValue7TOutputFv
-	lis      r5, __vt__Q37JStudio14TVariableValue7TOutput@ha
-	lis      r3, saoVVOutput_direction___Q214JStudio_JStage14TAdaptor_light@ha
-	addi     r5, r5, __vt__Q37JStudio14TVariableValue7TOutput@l
-	lis      r4,
-	__vt__Q314JStudio_JStage14TAdaptor_light20TVVOutput_direction_@ha addi r3,
-	r3, saoVVOutput_direction___Q214JStudio_JStage14TAdaptor_light@l stw r5,
-	0x38(r1) addi     r7, r4,
-	__vt__Q314JStudio_JStage14TAdaptor_light20TVVOutput_direction_@l li r6, 0xb
-	stwu     r5, 0xc(r3)
-	li       r0, 1
-	lis      r4,
-	__dt__Q314JStudio_JStage14TAdaptor_light20TVVOutput_direction_Fv@ha addi r5,
-	r31, 0xc stw      r7, 0x38(r1) addi     r4, r4,
-	__dt__Q314JStudio_JStage14TAdaptor_light20TVVOutput_direction_Fv@l stw r6,
-	0x3c(r1) stw      r0, 0x40(r1) stw      r7, 0(r3) stw      r6, 4(r3) stw r0,
-	8(r3) bl       __register_global_object lis      r4,
-	__vt__Q314JStudio_JStage14TAdaptor_light20TVVOutput_direction_@ha addi r3,
-	r1, 0x38 addi     r0, r4,
-	__vt__Q314JStudio_JStage14TAdaptor_light20TVVOutput_direction_@l li r4, 0
-	stw      r0, 0x38(r1)
-	bl       __dt__Q37JStudio14TVariableValue7TOutputFv
-	lis      r5, __vt__Q37JStudio14TVariableValue7TOutput@ha
-	lis      r3, saoVVOutput_direction___Q214JStudio_JStage14TAdaptor_light@ha
-	addi     r5, r5, __vt__Q37JStudio14TVariableValue7TOutput@l
-	lis      r4,
-	__vt__Q314JStudio_JStage14TAdaptor_light20TVVOutput_direction_@ha addi r3,
-	r3, saoVVOutput_direction___Q214JStudio_JStage14TAdaptor_light@l stw r5,
-	0x2c(r1) addi     r7, r4,
-	__vt__Q314JStudio_JStage14TAdaptor_light20TVVOutput_direction_@l li r6, 7
-	stwu     r5, 0x18(r3)
-	li       r0, 2
-	lis      r4,
-	__dt__Q314JStudio_JStage14TAdaptor_light20TVVOutput_direction_Fv@ha addi r5,
-	r31, 0x18 stw      r7, 0x2c(r1) addi     r4, r4,
-	__dt__Q314JStudio_JStage14TAdaptor_light20TVVOutput_direction_Fv@l stw r6,
-	0x30(r1) stw      r0, 0x34(r1) stw      r7, 0(r3) stw      r6, 4(r3) stw r0,
-	8(r3) bl       __register_global_object lis      r4,
-	__vt__Q314JStudio_JStage14TAdaptor_light20TVVOutput_direction_@ha addi r3,
-	r1, 0x2c addi     r0, r4,
-	__vt__Q314JStudio_JStage14TAdaptor_light20TVVOutput_direction_@l li r4, 0
-	stw      r0, 0x2c(r1)
-	bl       __dt__Q37JStudio14TVariableValue7TOutputFv
-	lis      r5, __vt__Q37JStudio14TVariableValue7TOutput@ha
-	lis      r3, saoVVOutput_direction___Q214JStudio_JStage14TAdaptor_light@ha
-	addi     r5, r5, __vt__Q37JStudio14TVariableValue7TOutput@l
-	lis      r4,
-	__vt__Q314JStudio_JStage14TAdaptor_light20TVVOutput_direction_@ha addi r3,
-	r3, saoVVOutput_direction___Q214JStudio_JStage14TAdaptor_light@l stw r5,
-	0x20(r1) addi     r7, r4,
-	__vt__Q314JStudio_JStage14TAdaptor_light20TVVOutput_direction_@l li r6, 8
-	stwu     r5, 0x24(r3)
-	li       r0, 2
-	lis      r4,
-	__dt__Q314JStudio_JStage14TAdaptor_light20TVVOutput_direction_Fv@ha addi r5,
-	r31, 0x24 stw      r7, 0x20(r1) addi     r4, r4,
-	__dt__Q314JStudio_JStage14TAdaptor_light20TVVOutput_direction_Fv@l stw r6,
-	0x24(r1) stw      r0, 0x28(r1) stw      r7, 0(r3) stw      r6, 4(r3) stw r0,
-	8(r3) bl       __register_global_object lis      r4,
-	__vt__Q314JStudio_JStage14TAdaptor_light20TVVOutput_direction_@ha addi r3,
-	r1, 0x20 addi     r0, r4,
-	__vt__Q314JStudio_JStage14TAdaptor_light20TVVOutput_direction_@l li r4, 0
-	stw      r0, 0x20(r1)
-	bl       __dt__Q37JStudio14TVariableValue7TOutputFv
-	lis      r5, __vt__Q37JStudio14TVariableValue7TOutput@ha
-	lis      r3, saoVVOutput_direction___Q214JStudio_JStage14TAdaptor_light@ha
-	addi     r5, r5, __vt__Q37JStudio14TVariableValue7TOutput@l
-	lis      r4,
-	__vt__Q314JStudio_JStage14TAdaptor_light20TVVOutput_direction_@ha addi r3,
-	r3, saoVVOutput_direction___Q214JStudio_JStage14TAdaptor_light@l stw r5,
-	0x14(r1) addi     r7, r4,
-	__vt__Q314JStudio_JStage14TAdaptor_light20TVVOutput_direction_@l li r6, 9
-	stwu     r5, 0x30(r3)
-	li       r0, 2
-	lis      r4,
-	__dt__Q314JStudio_JStage14TAdaptor_light20TVVOutput_direction_Fv@ha addi r5,
-	r31, 0x30 stw      r7, 0x14(r1) addi     r4, r4,
-	__dt__Q314JStudio_JStage14TAdaptor_light20TVVOutput_direction_Fv@l stw r6,
-	0x18(r1) stw      r0, 0x1c(r1) stw      r7, 0(r3) stw      r6, 4(r3) stw r0,
-	8(r3) bl       __register_global_object lis      r4,
-	__vt__Q314JStudio_JStage14TAdaptor_light20TVVOutput_direction_@ha addi r3,
-	r1, 0x14 addi     r0, r4,
-	__vt__Q314JStudio_JStage14TAdaptor_light20TVVOutput_direction_@l li r4, 0
-	stw      r0, 0x14(r1)
-	bl       __dt__Q37JStudio14TVariableValue7TOutputFv
-	lis      r5, __vt__Q37JStudio14TVariableValue7TOutput@ha
-	lis      r3, saoVVOutput_direction___Q214JStudio_JStage14TAdaptor_light@ha
-	addi     r5, r5, __vt__Q37JStudio14TVariableValue7TOutput@l
-	lis      r4,
-	__vt__Q314JStudio_JStage14TAdaptor_light20TVVOutput_direction_@ha addi r3,
-	r3, saoVVOutput_direction___Q214JStudio_JStage14TAdaptor_light@l stw r5,
-	8(r1) addi     r7, r4,
-	__vt__Q314JStudio_JStage14TAdaptor_light20TVVOutput_direction_@l li r6, -1
-	stwu     r5, 0x3c(r3)
-	li       r0, 0
-	lis      r4,
-	__dt__Q314JStudio_JStage14TAdaptor_light20TVVOutput_direction_Fv@ha addi r5,
-	r31, 0x3c stw      r7, 8(r1) addi     r4, r4,
-	__dt__Q314JStudio_JStage14TAdaptor_light20TVVOutput_direction_Fv@l stw r6,
-	0xc(r1) stw      r0, 0x10(r1) stw      r7, 0(r3) stw      r6, 4(r3) stw r0,
-	8(r3) bl       __register_global_object lis      r4,
-	__vt__Q314JStudio_JStage14TAdaptor_light20TVVOutput_direction_@ha addi r3,
-	r1, 8 addi     r0, r4,
-	__vt__Q314JStudio_JStage14TAdaptor_light20TVVOutput_direction_@l li r4, 0
-	stw      r0, 8(r1)
-	bl       __dt__Q37JStudio14TVariableValue7TOutputFv
-	lwz      r0, 0x64(r1)
-	lwz      r31, 0x5c(r1)
-	mtlr     r0
-	addi     r1, r1, 0x60
-	blr
-	*/
-}
+// void __sinit_object - light_cpp(void)
+// {
+// 	/*
+// 	stwu     r1, -0x60(r1)
+// 	mflr     r0
+// 	lis      r4, __vt__Q37JStudio14TVariableValue7TOutput@ha
+// 	lis      r3, saoVVOutput_direction___Q214JStudio_JStage14TAdaptor_light@ha
+// 	stw      r0, 0x64(r1)
+// 	addi     r5, r4, __vt__Q37JStudio14TVariableValue7TOutput@l
+// 	lis      r4,
+// 	__vt__Q314JStudio_JStage14TAdaptor_light20TVVOutput_direction_@ha li r6, 0xa
+// 	stw      r31, 0x5c(r1)
+// 	li       r0, 1
+// 	addi     r7, r4,
+// 	__vt__Q314JStudio_JStage14TAdaptor_light20TVVOutput_direction_@l lis r4,
+// 	__dt__Q314JStudio_JStage14TAdaptor_light20TVVOutput_direction_Fv@ha stwu r5,
+// 	saoVVOutput_direction___Q214JStudio_JStage14TAdaptor_light@l(r3) addi r4,
+// 	r4, __dt__Q314JStudio_JStage14TAdaptor_light20TVVOutput_direction_Fv@l stw
+// 	r5, 0x44(r1) lis      r5, lbl_804EFDA0@ha addi     r31, r5, lbl_804EFDA0@l
+// 	stw      r7, 0x44(r1)
+// 	addi     r5, r31, 0
+// 	stw      r6, 0x48(r1)
+// 	stw      r0, 0x4c(r1)
+// 	stw      r7, 0(r3)
+// 	stw      r6, 4(r3)
+// 	stw      r0, 8(r3)
+// 	bl       __register_global_object
+// 	lis      r4,
+// 	__vt__Q314JStudio_JStage14TAdaptor_light20TVVOutput_direction_@ha addi r3,
+// 	r1, 0x44 addi     r0, r4,
+// 	__vt__Q314JStudio_JStage14TAdaptor_light20TVVOutput_direction_@l li r4, 0
+// 	stw      r0, 0x44(r1)
+// 	bl       __dt__Q37JStudio14TVariableValue7TOutputFv
+// 	lis      r5, __vt__Q37JStudio14TVariableValue7TOutput@ha
+// 	lis      r3, saoVVOutput_direction___Q214JStudio_JStage14TAdaptor_light@ha
+// 	addi     r5, r5, __vt__Q37JStudio14TVariableValue7TOutput@l
+// 	lis      r4,
+// 	__vt__Q314JStudio_JStage14TAdaptor_light20TVVOutput_direction_@ha addi r3,
+// 	r3, saoVVOutput_direction___Q214JStudio_JStage14TAdaptor_light@l stw r5,
+// 	0x38(r1) addi     r7, r4,
+// 	__vt__Q314JStudio_JStage14TAdaptor_light20TVVOutput_direction_@l li r6, 0xb
+// 	stwu     r5, 0xc(r3)
+// 	li       r0, 1
+// 	lis      r4,
+// 	__dt__Q314JStudio_JStage14TAdaptor_light20TVVOutput_direction_Fv@ha addi r5,
+// 	r31, 0xc stw      r7, 0x38(r1) addi     r4, r4,
+// 	__dt__Q314JStudio_JStage14TAdaptor_light20TVVOutput_direction_Fv@l stw r6,
+// 	0x3c(r1) stw      r0, 0x40(r1) stw      r7, 0(r3) stw      r6, 4(r3) stw r0,
+// 	8(r3) bl       __register_global_object lis      r4,
+// 	__vt__Q314JStudio_JStage14TAdaptor_light20TVVOutput_direction_@ha addi r3,
+// 	r1, 0x38 addi     r0, r4,
+// 	__vt__Q314JStudio_JStage14TAdaptor_light20TVVOutput_direction_@l li r4, 0
+// 	stw      r0, 0x38(r1)
+// 	bl       __dt__Q37JStudio14TVariableValue7TOutputFv
+// 	lis      r5, __vt__Q37JStudio14TVariableValue7TOutput@ha
+// 	lis      r3, saoVVOutput_direction___Q214JStudio_JStage14TAdaptor_light@ha
+// 	addi     r5, r5, __vt__Q37JStudio14TVariableValue7TOutput@l
+// 	lis      r4,
+// 	__vt__Q314JStudio_JStage14TAdaptor_light20TVVOutput_direction_@ha addi r3,
+// 	r3, saoVVOutput_direction___Q214JStudio_JStage14TAdaptor_light@l stw r5,
+// 	0x2c(r1) addi     r7, r4,
+// 	__vt__Q314JStudio_JStage14TAdaptor_light20TVVOutput_direction_@l li r6, 7
+// 	stwu     r5, 0x18(r3)
+// 	li       r0, 2
+// 	lis      r4,
+// 	__dt__Q314JStudio_JStage14TAdaptor_light20TVVOutput_direction_Fv@ha addi r5,
+// 	r31, 0x18 stw      r7, 0x2c(r1) addi     r4, r4,
+// 	__dt__Q314JStudio_JStage14TAdaptor_light20TVVOutput_direction_Fv@l stw r6,
+// 	0x30(r1) stw      r0, 0x34(r1) stw      r7, 0(r3) stw      r6, 4(r3) stw r0,
+// 	8(r3) bl       __register_global_object lis      r4,
+// 	__vt__Q314JStudio_JStage14TAdaptor_light20TVVOutput_direction_@ha addi r3,
+// 	r1, 0x2c addi     r0, r4,
+// 	__vt__Q314JStudio_JStage14TAdaptor_light20TVVOutput_direction_@l li r4, 0
+// 	stw      r0, 0x2c(r1)
+// 	bl       __dt__Q37JStudio14TVariableValue7TOutputFv
+// 	lis      r5, __vt__Q37JStudio14TVariableValue7TOutput@ha
+// 	lis      r3, saoVVOutput_direction___Q214JStudio_JStage14TAdaptor_light@ha
+// 	addi     r5, r5, __vt__Q37JStudio14TVariableValue7TOutput@l
+// 	lis      r4,
+// 	__vt__Q314JStudio_JStage14TAdaptor_light20TVVOutput_direction_@ha addi r3,
+// 	r3, saoVVOutput_direction___Q214JStudio_JStage14TAdaptor_light@l stw r5,
+// 	0x20(r1) addi     r7, r4,
+// 	__vt__Q314JStudio_JStage14TAdaptor_light20TVVOutput_direction_@l li r6, 8
+// 	stwu     r5, 0x24(r3)
+// 	li       r0, 2
+// 	lis      r4,
+// 	__dt__Q314JStudio_JStage14TAdaptor_light20TVVOutput_direction_Fv@ha addi r5,
+// 	r31, 0x24 stw      r7, 0x20(r1) addi     r4, r4,
+// 	__dt__Q314JStudio_JStage14TAdaptor_light20TVVOutput_direction_Fv@l stw r6,
+// 	0x24(r1) stw      r0, 0x28(r1) stw      r7, 0(r3) stw      r6, 4(r3) stw r0,
+// 	8(r3) bl       __register_global_object lis      r4,
+// 	__vt__Q314JStudio_JStage14TAdaptor_light20TVVOutput_direction_@ha addi r3,
+// 	r1, 0x20 addi     r0, r4,
+// 	__vt__Q314JStudio_JStage14TAdaptor_light20TVVOutput_direction_@l li r4, 0
+// 	stw      r0, 0x20(r1)
+// 	bl       __dt__Q37JStudio14TVariableValue7TOutputFv
+// 	lis      r5, __vt__Q37JStudio14TVariableValue7TOutput@ha
+// 	lis      r3, saoVVOutput_direction___Q214JStudio_JStage14TAdaptor_light@ha
+// 	addi     r5, r5, __vt__Q37JStudio14TVariableValue7TOutput@l
+// 	lis      r4,
+// 	__vt__Q314JStudio_JStage14TAdaptor_light20TVVOutput_direction_@ha addi r3,
+// 	r3, saoVVOutput_direction___Q214JStudio_JStage14TAdaptor_light@l stw r5,
+// 	0x14(r1) addi     r7, r4,
+// 	__vt__Q314JStudio_JStage14TAdaptor_light20TVVOutput_direction_@l li r6, 9
+// 	stwu     r5, 0x30(r3)
+// 	li       r0, 2
+// 	lis      r4,
+// 	__dt__Q314JStudio_JStage14TAdaptor_light20TVVOutput_direction_Fv@ha addi r5,
+// 	r31, 0x30 stw      r7, 0x14(r1) addi     r4, r4,
+// 	__dt__Q314JStudio_JStage14TAdaptor_light20TVVOutput_direction_Fv@l stw r6,
+// 	0x18(r1) stw      r0, 0x1c(r1) stw      r7, 0(r3) stw      r6, 4(r3) stw r0,
+// 	8(r3) bl       __register_global_object lis      r4,
+// 	__vt__Q314JStudio_JStage14TAdaptor_light20TVVOutput_direction_@ha addi r3,
+// 	r1, 0x14 addi     r0, r4,
+// 	__vt__Q314JStudio_JStage14TAdaptor_light20TVVOutput_direction_@l li r4, 0
+// 	stw      r0, 0x14(r1)
+// 	bl       __dt__Q37JStudio14TVariableValue7TOutputFv
+// 	lis      r5, __vt__Q37JStudio14TVariableValue7TOutput@ha
+// 	lis      r3, saoVVOutput_direction___Q214JStudio_JStage14TAdaptor_light@ha
+// 	addi     r5, r5, __vt__Q37JStudio14TVariableValue7TOutput@l
+// 	lis      r4,
+// 	__vt__Q314JStudio_JStage14TAdaptor_light20TVVOutput_direction_@ha addi r3,
+// 	r3, saoVVOutput_direction___Q214JStudio_JStage14TAdaptor_light@l stw r5,
+// 	8(r1) addi     r7, r4,
+// 	__vt__Q314JStudio_JStage14TAdaptor_light20TVVOutput_direction_@l li r6, -1
+// 	stwu     r5, 0x3c(r3)
+// 	li       r0, 0
+// 	lis      r4,
+// 	__dt__Q314JStudio_JStage14TAdaptor_light20TVVOutput_direction_Fv@ha addi r5,
+// 	r31, 0x3c stw      r7, 8(r1) addi     r4, r4,
+// 	__dt__Q314JStudio_JStage14TAdaptor_light20TVVOutput_direction_Fv@l stw r6,
+// 	0xc(r1) stw      r0, 0x10(r1) stw      r7, 0(r3) stw      r6, 4(r3) stw r0,
+// 	8(r3) bl       __register_global_object lis      r4,
+// 	__vt__Q314JStudio_JStage14TAdaptor_light20TVVOutput_direction_@ha addi r3,
+// 	r1, 8 addi     r0, r4,
+// 	__vt__Q314JStudio_JStage14TAdaptor_light20TVVOutput_direction_@l li r4, 0
+// 	stw      r0, 8(r1)
+// 	bl       __dt__Q37JStudio14TVariableValue7TOutputFv
+// 	lwz      r0, 0x64(r1)
+// 	lwz      r31, 0x5c(r1)
+// 	mtlr     r0
+// 	addi     r1, r1, 0x60
+// 	blr
+// 	*/
+// }

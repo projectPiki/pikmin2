@@ -239,28 +239,14 @@ void JASDriver::setDSPLevel(float dspMixerLevel) { JASDsp::setDSPMixerLevel(dspM
  * Address:	800A48D8
  * Size:	000008
  */
-s16 JASDriver::getChannelLevel()
-{
-	return MAX_MIXERLEVEL;
-	/*
-	lhz      r3, MAX_MIXERLEVEL__9JASDriver@sda21(r13)
-	blr
-	*/
-}
+u16 JASDriver::getChannelLevel() { return MAX_MIXERLEVEL; }
 
 /*
  * --INFO--
  * Address:	800A48E0
  * Size:	000008
  */
-s16 JASDriver::getAutoLevel()
-{
-	return MAX_AUTOMIXERLEVEL;
-	/*
-	lhz      r3, MAX_AUTOMIXERLEVEL__9JASDriver@sda21(r13)
-	blr
-	*/
-}
+u16 JASDriver::getAutoLevel() { return MAX_AUTOMIXERLEVEL; }
 
 /*
  * --INFO--

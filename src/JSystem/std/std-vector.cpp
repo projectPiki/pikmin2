@@ -1,15 +1,20 @@
+#include "JSystem/JGadget/allocator.h"
+#include "JSystem/JGadget/vector.h"
 #include "types.h"
 
 /*
     Generated from dpostproc
 */
 
+typedef JGadget::TVector<void*, JGadget::TAllocator<void*>> TVPVBase;
+
+namespace JGadget {
 /*
  * --INFO--
  * Address:	8002766C
  * Size:	000008
  */
-void JGadget::vector::extend_default(unsigned long, unsigned long, unsigned long)
+void vector::extend_default(unsigned long, unsigned long, unsigned long)
 {
 	/*
 	.loc_0x0:
@@ -22,8 +27,9 @@ void JGadget::vector::extend_default(unsigned long, unsigned long, unsigned long
  * --INFO--
  * Address:	80027674
  * Size:	00002C
+ * __ct__Q27JGadget20TVector_pointer_voidFRCQ27JGadget14TAllocator<Pv>
  */
-void __ct__Q27JGadget20TVector_pointer_voidFRCQ27JGadget14TAllocator<void*>(void)
+TVector_pointer_void::TVector_pointer_void(const TAllocator<void*>& allocator)
 {
 	/*
 	.loc_0x0:
@@ -46,7 +52,8 @@ void __ct__Q27JGadget20TVector_pointer_voidFRCQ27JGadget14TAllocator<void*>(void
  * Address:	........
  * Size:	000104
  */
-void __dt__Q27JGadget38TVector<void*, JGadget::TAllocator<void*>> Fv(void)
+template <>
+TVPVBase::~TVector()
 {
 	// UNUSED FUNCTION
 }
@@ -56,7 +63,7 @@ void __dt__Q27JGadget38TVector<void*, JGadget::TAllocator<void*>> Fv(void)
  * Address:	........
  * Size:	000030
  */
-void __ct__Q27JGadget20TVector_pointer_voidFUlRCPvRCQ27JGadget14TAllocator<void*>(void)
+TVector_pointer_void::TVector_pointer_void(u32, void* const&, const JGadget::TAllocator<void*>& allocator)
 {
 	// UNUSED FUNCTION
 }
@@ -66,7 +73,8 @@ void __ct__Q27JGadget20TVector_pointer_voidFUlRCPvRCQ27JGadget14TAllocator<void*
  * Address:	........
  * Size:	000064
  */
-void __ct__Q27JGadget38TVector<void*, JGadget::TAllocator<void*>> FUlRCPvRCQ27JGadget14TAllocator<void*>(void)
+template <>
+TVPVBase::TVector(u32, void* const&, const TAllocator<void*>&)
 {
 	// UNUSED FUNCTION
 }
@@ -76,7 +84,8 @@ void __ct__Q27JGadget38TVector<void*, JGadget::TAllocator<void*>> FUlRCPvRCQ27JG
  * Address:	800276A0
  * Size:	000078
  */
-void insert__Q27JGadget38TVector<void*, JGadget::TAllocator<void*>> FPPvUlRCPv(void)
+template <>
+void TVPVBase::insert(void**, u32, void* const&)
 {
 	/*
 	.loc_0x0:
@@ -126,7 +135,8 @@ void insert__Q27JGadget38TVector<void*, JGadget::TAllocator<void*>> FPPvUlRCPv(v
  * Address:	80027718
  * Size:	000470
  */
-void Insert_raw__Q27JGadget38TVector<void*, JGadget::TAllocator<void*>> FPPvUl(void)
+template <>
+void TVPVBase::Insert_raw(void**, u32)
 {
 	/*
 	.loc_0x0:
@@ -494,17 +504,18 @@ void Insert_raw__Q27JGadget38TVector<void*, JGadget::TAllocator<void*>> FPPvUl(v
  * Address:	........
  * Size:	000054
  */
-void __dt__Q37JGadget38TVector<void*, JGadget::TAllocator<void*>> 23TDestructed_deallocate_Fv(void)
-{
-	// UNUSED FUNCTION
-}
+// template <>
+// TVPVBase::Destructed_deallocate_::~Destructed_deallocate_()
+// {
+// 	// UNUSED FUNCTION
+// }
 
 /*
  * --INFO--
  * Address:	80027B88
  * Size:	000108
  */
-JGadget::TVector_pointer_void::~TVector_pointer_void(void)
+TVector_pointer_void::~TVector_pointer_void()
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -597,7 +608,7 @@ lbl_80027C74:
  * Address:	80027C90
  * Size:	000020
  */
-void JGadget::TVector_pointer_void::insert(void**, void* const&)
+void TVector_pointer_void::insert(void**, void* const&)
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -613,7 +624,8 @@ void JGadget::TVector_pointer_void::insert(void**, void* const&)
  * Address:	80027CB0
  * Size:	000058
  */
-void insert__Q27JGadget38TVector<void*, JGadget::TAllocator<void*>> FPPvRCPv(void)
+template <>
+void TVPVBase::insert(void**, void* const&)
 {
 	/*
 	.loc_0x0:
@@ -647,7 +659,7 @@ void insert__Q27JGadget38TVector<void*, JGadget::TAllocator<void*>> FPPvRCPv(voi
  * Address:	........
  * Size:	000020
  */
-void JGadget::TVector_pointer_void::insert(void**, unsigned long, void* const&)
+void TVector_pointer_void::insert(void**, unsigned long, void* const&)
 {
 	// UNUSED FUNCTION
 }
@@ -657,7 +669,7 @@ void JGadget::TVector_pointer_void::insert(void**, unsigned long, void* const&)
  * Address:	........
  * Size:	0000BC
  */
-void JGadget::TVector_pointer_void::erase(void**)
+void TVector_pointer_void::erase(void**)
 {
 	// UNUSED FUNCTION
 }
@@ -667,7 +679,7 @@ void JGadget::TVector_pointer_void::erase(void**)
  * Address:	80027D08
  * Size:	0000B8
  */
-void JGadget::TVector_pointer_void::erase(void**, void**)
+void TVector_pointer_void::erase(void**, void**)
 {
 	/*
 	lwz      r7, 8(r3)
@@ -736,7 +748,7 @@ lbl_80027DAC:
  * Address:	........
  * Size:	000020
  */
-void JGadget::TVector_pointer_void::assign(unsigned long, void* const&)
+void TVector_pointer_void::assign(unsigned long, void* const&)
 {
 	// UNUSED FUNCTION
 }
@@ -746,7 +758,8 @@ void JGadget::TVector_pointer_void::assign(unsigned long, void* const&)
  * Address:	........
  * Size:	0000DC
  */
-void assign__Q27JGadget38TVector<void*, JGadget::TAllocator<void*>> FUlRCPv(void)
+template <>
+void TVPVBase::assign(u32, void* const&)
 {
 	// UNUSED FUNCTION
 }
@@ -756,7 +769,7 @@ void assign__Q27JGadget38TVector<void*, JGadget::TAllocator<void*>> FUlRCPv(void
  * Address:	........
  * Size:	000020
  */
-void JGadget::TVector_pointer_void::resize(unsigned long, void* const&)
+void TVector_pointer_void::resize(unsigned long, void* const&)
 {
 	// UNUSED FUNCTION
 }
@@ -766,7 +779,8 @@ void JGadget::TVector_pointer_void::resize(unsigned long, void* const&)
  * Address:	........
  * Size:	00005C
  */
-void resize__Q27JGadget38TVector<void*, JGadget::TAllocator<void*>> FUlRCPv(void)
+template <>
+void TVPVBase::resize(u32, void* const&)
 {
 	// UNUSED FUNCTION
 }
@@ -776,7 +790,8 @@ void resize__Q27JGadget38TVector<void*, JGadget::TAllocator<void*>> FUlRCPv(void
  * Address:	........
  * Size:	00013C
  */
-void Resize_raw__Q27JGadget38TVector<void*, JGadget::TAllocator<void*>> FUl(void)
+template <>
+void TVPVBase::Resize_raw(u32)
 {
 	// UNUSED FUNCTION
 }
@@ -796,7 +811,7 @@ void JGadget::TVector_pointer_void::reserve(unsigned long)
  * Address:	........
  * Size:	000030
  */
-void JGadget::TVector_pointer_void::operator=((JGadget::TVector_pointer_void const&))
+void JGadget::TVector_pointer_void::operator=(TVector_pointer_void const&)
 {
 	// UNUSED FUNCTION
 }
@@ -806,7 +821,8 @@ void JGadget::TVector_pointer_void::operator=((JGadget::TVector_pointer_void con
  * Address:	........
  * Size:	000368
  */
-void __as__Q27JGadget38TVector<void*, JGadget::TAllocator<void*>> FRCQ27JGadget38TVector<void*, JGadget::TAllocator<void*>>(void)
+template <>
+void TVPVBase::operator=(const TVPVBase& rhs)
 {
 	// UNUSED FUNCTION
 }
@@ -830,3 +846,4 @@ void JGadget::TVector_pointer_void::Resize_raw(unsigned long)
 {
 	// UNUSED FUNCTION
 }
+} // namespace JGadget

@@ -1165,7 +1165,7 @@ void P2JST::ObjectActor::JSGSetFlag(unsigned long a1)
  * Address:	8042F56C
  * Size:	000008
  */
-void P2JST::ObjectActor::JSGGetFlag() const
+u32 P2JST::ObjectActor::JSGGetFlag() const
 {
 	/*
 	lwz      r3, 0x10(r3)

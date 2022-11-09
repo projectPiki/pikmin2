@@ -494,10 +494,10 @@ typedef enum _GXProjectionType {
 	GX_ORTHOGRAPHIC // 0x1
 } GXProjectionType;
 
-typedef struct _SDK_GXColor {
+typedef struct _GXColor {
 	u8 r, g, b, a;
 } GXColor;
-typedef GXColor _GXColor; // this might be a wrapper in Pikmin 2? IDK.
+typedef GXColor _SDK_GXColor; // this might be a wrapper in Pikmin 2? IDK.
 
 typedef struct _SDK_GXColorS10 {
 	s16 r, g, b, a;

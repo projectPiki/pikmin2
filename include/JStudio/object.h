@@ -17,7 +17,7 @@ struct TIDData {
 	{
 	}
 
-	inline ~TIDData() {}; // unused/inlined
+	~TIDData() {}; // unused/inlined
 
 	const void* idString_0x0;
 	u32 lengthInBytes_0x4;
@@ -26,8 +26,13 @@ struct TIDData {
 };
 
 struct TObject_ID : TIDData {
+	inline TObject_ID(const void* id, u32 length)
+	    : TIDData(id, length)
+	{
+	}
+
 	// inline virtual ~TObject_ID() {}; // _08
-	inline ~TObject_ID() {};
+	~TObject_ID() {}; // unused/inlined
 
 	// JGadget::TLinkListNode _0C;
 };

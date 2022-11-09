@@ -19,7 +19,7 @@ struct JASOscillator {
 	void initStart(const Data*);
 	void incCounter();
 	f32 getValue() const;
-	void release();
+	bool release();
 	f32 calc(const short*);
 
 	// unused/inlined
@@ -32,7 +32,7 @@ struct JASOscillator {
 	float _10;          // _10
 	float _14;          // _14
 	short _18;          // _18
-	short _1A;          // _1A
+	u16 _1A;            // _1A
 	u8 _1C;             // _1C
 	u8 _1D;             // _1D
 

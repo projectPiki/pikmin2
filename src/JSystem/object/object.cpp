@@ -1,3 +1,10 @@
+#include "Dolphin/mtx.h"
+#include "JStage/TObject.h"
+#include "JStage/TSystem.h"
+#include "JStudio/TControl.h"
+#include "JStudio/data.h"
+#include "JStudio/math.h"
+#include "JSystem/JStudio_JStage.h"
 #include "types.h"
 
 /*
@@ -9,113 +16,43 @@
  * Address:	80011DCC
  * Size:	000098
  */
-void JStudio_JStage::transform_toGlobalFromLocal(float (*)[4], const JStudio::TControl::TTransform_translation_rotation_scaling&,
-                                                 const JStage::TObject*, unsigned long)
+bool JStudio_JStage::transform_toGlobalFromLocal(float (*p1)[4],
+                                                 const JStudio::TControl::TTransform_translation_rotation_scaling& transform,
+                                                 const JStage::TObject* object, unsigned long p4)
 {
-	/*
-	.loc_0x0:
-	  stwu      r1, -0x70(r1)
-	  mflr      r0
-	  cmplwi    r5, 0
-	  stw       r0, 0x74(r1)
-	  stw       r31, 0x6C(r1)
-	  mr        r31, r4
-	  stw       r30, 0x68(r1)
-	  mr        r30, r3
-	  bne-      .loc_0x2C
-	  li        r3, 0
-	  b         .loc_0x80
-
-	.loc_0x2C:
-	  mr        r3, r5
-	  mr        r4, r6
-	  lwz       r12, 0x0(r5)
-	  addi      r5, r1, 0x38
-	  lwz       r12, 0x38(r12)
-	  mtctr     r12
-	  bctrl
-	  rlwinm.   r0,r3,0,24,31
-	  bne-      .loc_0x58
-	  li        r3, 0
-	  b         .loc_0x80
-
-	.loc_0x58:
-	  mr        r6, r31
-	  addi      r3, r1, 0x8
-	  addi      r4, r31, 0x18
-	  addi      r5, r31, 0xC
-	  bl        -0xE70
-	  mr        r5, r30
-	  addi      r3, r1, 0x38
-	  addi      r4, r1, 0x8
-	  bl        0xD84BC
-	  li        r3, 0x1
-
-	.loc_0x80:
-	  lwz       r0, 0x74(r1)
-	  lwz       r31, 0x6C(r1)
-	  lwz       r30, 0x68(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x70
-	  blr
-	*/
+	if (object == nullptr) {
+		return false;
+	}
+	Mtx v1;
+	if (object->JSGGetNodeTransformation(p4, v1) == 0) {
+		return false;
+	}
+	Mtx v2;
+	JStudio::math::getTransformation_SRxyzT(v2, transform.getScaling(), transform.getRotation(), transform.getTranslation());
+	PSMTXConcat(v1, v2, p1);
+	return true;
 }
 
 /*
  * --INFO--
  * Address:	80011E64
  * Size:	000098
+ * transform_toGlobalFromLocal__14JStudio_JStageFPA4_fRCQ37JStudio8TControl19TTransform_positionPCQ26JStage7TObjectUl
  */
-void JStudio_JStage::transform_toGlobalFromLocal(float (*)[4], const JStudio::TControl::TTransform_position&, const JStage::TObject*,
-                                                 unsigned long)
+bool JStudio_JStage::transform_toGlobalFromLocal(float (*p1)[4], const JStudio::TControl::TTransform_position& transform,
+                                                 const JStage::TObject* object, unsigned long p4)
 {
-	/*
-	.loc_0x0:
-	  stwu      r1, -0x70(r1)
-	  mflr      r0
-	  cmplwi    r5, 0
-	  stw       r0, 0x74(r1)
-	  stw       r31, 0x6C(r1)
-	  mr        r31, r4
-	  stw       r30, 0x68(r1)
-	  mr        r30, r3
-	  bne-      .loc_0x2C
-	  li        r3, 0
-	  b         .loc_0x80
-
-	.loc_0x2C:
-	  mr        r3, r5
-	  mr        r4, r6
-	  lwz       r12, 0x0(r5)
-	  addi      r5, r1, 0x38
-	  lwz       r12, 0x38(r12)
-	  mtctr     r12
-	  bctrl
-	  rlwinm.   r0,r3,0,24,31
-	  bne-      .loc_0x58
-	  li        r3, 0
-	  b         .loc_0x80
-
-	.loc_0x58:
-	  lfs       f1, 0x0(r31)
-	  addi      r3, r1, 0x8
-	  lfs       f2, 0x4(r31)
-	  lfs       f3, 0x8(r31)
-	  bl        0xD8888
-	  mr        r5, r30
-	  addi      r3, r1, 0x38
-	  addi      r4, r1, 0x8
-	  bl        0xD8424
-	  li        r3, 0x1
-
-	.loc_0x80:
-	  lwz       r0, 0x74(r1)
-	  lwz       r31, 0x6C(r1)
-	  lwz       r30, 0x68(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x70
-	  blr
-	*/
+	if (object == nullptr) {
+		return false;
+	}
+	Mtx v1;
+	if (object->JSGGetNodeTransformation(p4, v1) == 0) {
+		return false;
+	}
+	Mtx v2;
+	PSMTXTrans(v2, transform.m_position.x, transform.m_position.y, transform.m_position.z);
+	PSMTXConcat(v1, v2, p1);
+	return true;
 }
 
 /*
@@ -123,119 +60,47 @@ void JStudio_JStage::transform_toGlobalFromLocal(float (*)[4], const JStudio::TC
  * Address:	80011EFC
  * Size:	0000A4
  */
-void JStudio_JStage::transform_toLocalFromGlobal(float (*)[4], const JStudio::TControl::TTransform_translation_rotation_scaling&,
-                                                 const JStage::TObject*, unsigned long)
+bool JStudio_JStage::transform_toLocalFromGlobal(float (*p1)[4],
+                                                 const JStudio::TControl::TTransform_translation_rotation_scaling& transform,
+                                                 const JStage::TObject* object, unsigned long p4)
 {
-	/*
-	.loc_0x0:
-	  stwu      r1, -0xA0(r1)
-	  mflr      r0
-	  cmplwi    r5, 0
-	  stw       r0, 0xA4(r1)
-	  stw       r31, 0x9C(r1)
-	  mr        r31, r4
-	  stw       r30, 0x98(r1)
-	  mr        r30, r3
-	  bne-      .loc_0x2C
-	  li        r3, 0
-	  b         .loc_0x8C
-
-	.loc_0x2C:
-	  mr        r3, r5
-	  mr        r4, r6
-	  lwz       r12, 0x0(r5)
-	  addi      r5, r1, 0x68
-	  lwz       r12, 0x38(r12)
-	  mtctr     r12
-	  bctrl
-	  rlwinm.   r0,r3,0,24,31
-	  bne-      .loc_0x58
-	  li        r3, 0
-	  b         .loc_0x8C
-
-	.loc_0x58:
-	  mr        r6, r31
-	  addi      r3, r1, 0x38
-	  addi      r4, r31, 0x18
-	  addi      r5, r31, 0xC
-	  bl        -0xFA0
-	  addi      r3, r1, 0x68
-	  addi      r4, r1, 0x8
-	  bl        0xD84AC
-	  mr        r5, r30
-	  addi      r3, r1, 0x8
-	  addi      r4, r1, 0x38
-	  bl        0xD8380
-	  li        r3, 0x1
-
-	.loc_0x8C:
-	  lwz       r0, 0xA4(r1)
-	  lwz       r31, 0x9C(r1)
-	  lwz       r30, 0x98(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0xA0
-	  blr
-	*/
+	if (object == nullptr) {
+		return false;
+	}
+	Mtx v1;
+	if (object->JSGGetNodeTransformation(p4, v1) == 0) {
+		return false;
+	}
+	Mtx v2;
+	JStudio::math::getTransformation_SRxyzT(v2, transform.getScaling(), transform.getRotation(), transform.getTranslation());
+	Mtx v3;
+	PSMTXInverse(v1, v3);
+	PSMTXConcat(v3, v2, p1);
+	return true;
 }
 
 /*
  * --INFO--
  * Address:	80011FA0
  * Size:	0000A4
+ * transform_toLocalFromGlobal__14JStudio_JStageFPA4_fRCQ37JStudio8TControl19TTransform_positionPCQ26JStage7TObjectUl
  */
-void JStudio_JStage::transform_toLocalFromGlobal(float (*)[4], const JStudio::TControl::TTransform_position&, const JStage::TObject*,
-                                                 unsigned long)
+bool JStudio_JStage::transform_toLocalFromGlobal(float (*p1)[4], const JStudio::TControl::TTransform_position& transform,
+                                                 const JStage::TObject* object, unsigned long p4)
 {
-	/*
-	.loc_0x0:
-	  stwu      r1, -0xA0(r1)
-	  mflr      r0
-	  cmplwi    r5, 0
-	  stw       r0, 0xA4(r1)
-	  stw       r31, 0x9C(r1)
-	  mr        r31, r4
-	  stw       r30, 0x98(r1)
-	  mr        r30, r3
-	  bne-      .loc_0x2C
-	  li        r3, 0
-	  b         .loc_0x8C
-
-	.loc_0x2C:
-	  mr        r3, r5
-	  mr        r4, r6
-	  lwz       r12, 0x0(r5)
-	  addi      r5, r1, 0x68
-	  lwz       r12, 0x38(r12)
-	  mtctr     r12
-	  bctrl
-	  rlwinm.   r0,r3,0,24,31
-	  bne-      .loc_0x58
-	  li        r3, 0
-	  b         .loc_0x8C
-
-	.loc_0x58:
-	  lfs       f1, 0x0(r31)
-	  addi      r3, r1, 0x38
-	  lfs       f2, 0x4(r31)
-	  lfs       f3, 0x8(r31)
-	  bl        0xD874C
-	  addi      r3, r1, 0x68
-	  addi      r4, r1, 0x8
-	  bl        0xD8408
-	  mr        r5, r30
-	  addi      r3, r1, 0x8
-	  addi      r4, r1, 0x38
-	  bl        0xD82DC
-	  li        r3, 0x1
-
-	.loc_0x8C:
-	  lwz       r0, 0xA4(r1)
-	  lwz       r31, 0x9C(r1)
-	  lwz       r30, 0x98(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0xA0
-	  blr
-	*/
+	if (object == nullptr) {
+		return false;
+	}
+	Mtx v1;
+	if (object->JSGGetNodeTransformation(p4, v1) == 0) {
+		return false;
+	}
+	Mtx v2;
+	PSMTXTrans(v2, transform.m_position.x, transform.m_position.y, transform.m_position.z);
+	Mtx v3;
+	PSMTXInverse(v1, v3);
+	PSMTXConcat(v3, v2, p1);
+	return true;
 }
 
 /*
@@ -243,33 +108,10 @@ void JStudio_JStage::transform_toLocalFromGlobal(float (*)[4], const JStudio::TC
  * Address:	80012044
  * Size:	000048
  */
-void JStudio_JStage::TAdaptor_object_::adaptor_data_(JStage::TObject*, const void*, unsigned long, const void*, unsigned long)
+void JStudio_JStage::TAdaptor_object_::adaptor_data_(JStage::TObject* object, const void* p2, unsigned long p3, const void* p4,
+                                                     unsigned long p5)
 {
-	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  cmplwi    r5, 0
-	  stw       r0, 0x14(r1)
-	  bne-      .loc_0x1C
-	  li        r4, -0x1
-	  b         .loc_0x20
-
-	.loc_0x1C:
-	  lwz       r4, 0x0(r4)
-
-	.loc_0x20:
-	  lwz       r12, 0x0(r3)
-	  mr        r5, r6
-	  mr        r6, r7
-	  lwz       r12, 0x24(r12)
-	  mtctr     r12
-	  bctrl
-	  lwz       r0, 0x14(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
-	*/
+	object->JSGSetData((p3 == 0 ? 0xFFFFFFFF : *(u32*)p2), p4, p5);
 }
 
 /*
@@ -277,34 +119,13 @@ void JStudio_JStage::TAdaptor_object_::adaptor_data_(JStage::TObject*, const voi
  * Address:	8001208C
  * Size:	00004C
  */
-void JStudio_JStage::TAdaptor_object_::adaptor_findJSGObject_(const JStage::TSystem*, const char*)
+JStage::TObject* JStudio_JStage::TAdaptor_object_::adaptor_findJSGObject_(const JStage::TSystem* system, const char* name)
 {
-	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  mr        r5, r4
-	  li        r6, 0
-	  stw       r0, 0x14(r1)
-	  addi      r4, r1, 0x8
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0x3C(r12)
-	  mtctr     r12
-	  bctrl
-	  cmpwi     r3, 0
-	  beq-      .loc_0x38
-	  li        r3, 0
-	  b         .loc_0x3C
-
-	.loc_0x38:
-	  lwz       r3, 0x8(r1)
-
-	.loc_0x3C:
-	  lwz       r0, 0x14(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
-	*/
+	JStage::TObject* results;
+	if (system->JSGFindObject(&results, name, JStage::TEO_Unknown_0) != 0) {
+		return nullptr;
+	}
+	return results;
 }
 
 /*
@@ -312,22 +133,9 @@ void JStudio_JStage::TAdaptor_object_::adaptor_findJSGObject_(const JStage::TSys
  * Address:	800120D8
  * Size:	00002C
  */
-void JStudio_JStage::TAdaptor_object_::adaptor_findJSGObjectNode_(const JStage::TObject*, const char*)
+u32 JStudio_JStage::TAdaptor_object_::adaptor_findJSGObjectNode_(const JStage::TObject* object, const char* name)
 {
-	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  stw       r0, 0x14(r1)
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0x34(r12)
-	  mtctr     r12
-	  bctrl
-	  lwz       r0, 0x14(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
-	*/
+	return object->JSGFindNodeID(name);
 }
 
 /*
@@ -335,52 +143,17 @@ void JStudio_JStage::TAdaptor_object_::adaptor_findJSGObjectNode_(const JStage::
  * Address:	80012104
  * Size:	000094
  */
-void JStudio_JStage::TAdaptor_object_::adaptor_ENABLE_(JStage::TObject*, JStudio::data::TEOperationData, const void*, unsigned long)
+void JStudio_JStage::TAdaptor_object_::adaptor_ENABLE_(JStage::TObject* object, JStudio::data::TEOperationData operation, const void* p3,
+                                                       unsigned long p4)
 {
-	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  cmpwi     r4, 0x2
-	  stw       r0, 0x14(r1)
-	  stw       r31, 0xC(r1)
-	  mr        r31, r3
-	  beq-      .loc_0x20
-	  b         .loc_0x80
-
-	.loc_0x20:
-	  lwz       r0, 0x0(r5)
-	  cmplwi    r0, 0
-	  beq-      .loc_0x58
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0x18(r12)
-	  mtctr     r12
-	  bctrl
-	  lwz       r12, 0x0(r31)
-	  ori       r4, r3, 0x2
-	  mr        r3, r31
-	  lwz       r12, 0x1C(r12)
-	  mtctr     r12
-	  bctrl
-	  b         .loc_0x80
-
-	.loc_0x58:
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0x18(r12)
-	  mtctr     r12
-	  bctrl
-	  lwz       r12, 0x0(r31)
-	  rlwinm    r4,r3,0,31,29
-	  mr        r3, r31
-	  lwz       r12, 0x1C(r12)
-	  mtctr     r12
-	  bctrl
-
-	.loc_0x80:
-	  lwz       r0, 0x14(r1)
-	  lwz       r31, 0xC(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
-	*/
+	switch (operation) {
+	case JStudio::data::TEOD_Unknown_02: {
+		if ((*(u32*)p3) != 0) {
+			object->setFlagOn(2);
+		} else {
+			object->setFlagOff(2);
+		}
+		break;
+	}
+	}
 }

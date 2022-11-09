@@ -1,5 +1,6 @@
 #include "Dolphin/os.h"
 #include "JSystem/DSP.h"
+#include "JSystem/JAS/JASCalc.h"
 #include "JSystem/JAS/JASDsp.h"
 #include "JSystem/JAS/JASHeap.h"
 #include "types.h"
@@ -544,16 +545,16 @@ void JASDsp::invalChannelAll() { DCInvalidateRange(CH_BUF, sizeof(u8) * 0x6000);
  */
 void JASDsp::initBuffer()
 {
-	// CH_BUF = new(JASDram, 0x20) u8[0x6000];
-	// FX_BUF = new(JASDram, 0x20) u16[0x40];
-	// JASCalc::bzero(CH_BUF, sizeof(u8)*0x6000);
-	// JASCalc::bzero(FX_BUF, sizeof(u16)*0x40);
+	// CH_BUF = new (JASDram, 0x20) u8[0x6000];
+	// FX_BUF = new (JASDram, 0x20) u16[0x40];
+	// JASCalc::bzero(CH_BUF, sizeof(u8) * 0x6000);
+	// JASCalc::bzero(FX_BUF, sizeof(u16) * 0x40);
 	// for (int i = 0; i < 4; i++) {
 	// 	setFXLine(i, nullptr, nullptr);
 	// }
 	// DsetupTable(0x40, CH_BUF, DSPRES_FILTER, DSPADPCM_FILTER, FX_BUF);
-	// DCFlushRange(CH_BUF, sizeof(u8)*0x6000);
-	// DCFlushRange(FX_BUF, sizeof(u16)*0x40);
+	// DCFlushRange(CH_BUF, sizeof(u8) * 0x6000);
+	// DCFlushRange(FX_BUF, sizeof(u16) * 0x40);
 	/*
 	stwu     r1, -0x10(r1)
 	mflr     r0
@@ -638,6 +639,7 @@ void JASDsp::getFXHandleNc(unsigned char)
  */
 void JASDsp::setFXLine(unsigned char, short*, JASDsp::FxlineConfig_*)
 {
+
 	/*
 	stwu     r1, -0x20(r1)
 	mflr     r0
@@ -753,6 +755,7 @@ void JASDsp::changeFXLineParam(unsigned char, unsigned char, unsigned long)
  * --INFO--
  * Address:	800A5638
  * Size:	00003C
+ * init__Q26JASDsp8TChannelFv
  */
 void JASDsp::TChannel::init()
 {
@@ -763,23 +766,6 @@ void JASDsp::TChannel::init()
 	_58         = 0;
 	_68         = 0;
 	initFilter();
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	li       r0, 0
-	sth      r0, 0xc(r3)
-	sth      r0, 2(r3)
-	sth      r0, 0x10a(r3)
-	sth      r0, 0(r3)
-	sth      r0, 0x58(r3)
-	stw      r0, 0x68(r3)
-	bl       initFilter__Q26JASDsp8TChannelFv
-	lwz      r0, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
 }
 
 /*
@@ -1055,21 +1041,6 @@ void JASDsp::TChannel::initAutoMixer()
 		_54 = 0;
 		_58 = 1;
 	}
-	/*
-	lhz      r0, 0x58(r3)
-	cmplwi   r0, 0
-	beq      lbl_800A58D0
-	lhz      r0, 0x56(r3)
-	sth      r0, 0x54(r3)
-	blr
-
-lbl_800A58D0:
-	li       r4, 0
-	li       r0, 1
-	sth      r4, 0x54(r3)
-	sth      r0, 0x58(r3)
-	blr
-	*/
 }
 
 /*
@@ -1196,21 +1167,10 @@ void JASDsp::TChannel::setPauseFlag(u8 pauseFlag) { m_pauseFlag = pauseFlag; }
  * --INFO--
  * Address:	800A59C4
  * Size:	000024
+ * TODO: Sizeof?
+ * flush__Q26JASDsp8TChannelFv
  */
-void JASDsp::TChannel::flush(void)
-{
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	li       r4, 0x180
-	stw      r0, 0x14(r1)
-	bl       DCFlushRange
-	lwz      r0, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
-}
+void JASDsp::TChannel::flush() { DCFlushRange(this, 0x180); }
 
 /*
  * --INFO--
@@ -1235,28 +1195,17 @@ void JASDsp::TChannel::initFilter()
  * Address:	800A5A30
  * Size:	000038
  */
-void JASDsp::TChannel::setFilterMode(unsigned short)
+void JASDsp::TChannel::setFilterMode(unsigned short p1)
 {
-	/*
-	rlwinm.  r5, r4, 0, 0x1a, 0x1a
-	clrlwi   r0, r4, 0x1b
-	beq      lbl_800A5A4C
-	cmplwi   r0, 0x14
-	ble      lbl_800A5A58
-	li       r0, 0x14
-	b        lbl_800A5A58
-
-lbl_800A5A4C:
-	cmplwi   r0, 0x18
-	ble      lbl_800A5A58
-	li       r0, 0x18
-
-lbl_800A5A58:
-	clrlwi   r0, r0, 0x18
-	add      r0, r5, r0
-	sth      r0, 0x108(r3)
-	blr
-	*/
+	u8 v1 = p1 & 0x1F;
+	if ((p1 & 0x20) != 0) {
+		if (0x14 < v1) {
+			v1 = 0x14;
+		}
+	} else if (0x18 < v1) {
+		v1 = 0x18;
+	}
+	m_filterMode = (p1 & 0x20) + v1;
 }
 
 /*

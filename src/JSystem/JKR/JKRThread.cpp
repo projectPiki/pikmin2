@@ -175,7 +175,7 @@ void* JKRThread::start(void* thread) { return static_cast<JKRThread*>(thread)->r
  * Address:	80025A3C
  * Size:	000008
  */
-void* JKRThread::run() { return nullptr; }
+// void* JKRThread::run() { return nullptr; }
 
 /*
  * --INFO--

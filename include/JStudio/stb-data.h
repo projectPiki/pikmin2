@@ -23,7 +23,7 @@ const u32 gu32Mask_TSequence_value_signExpansion = 0xFF000000;
 extern const u32 ga4cSignature; // 'STB/0'
 extern const u32 gauDataSize_TEParagraph_data[8];
 
-inline void toString_block(char* a5c, u32 arg1);
+inline void toString_block(char* a5c, u32 arg1); // unused/inlined
 
 struct TParse_TParagraph_data {
 
@@ -75,8 +75,14 @@ struct TParse_TBlock_object {
 	int* filedata;
 };
 
+/** @size{0x20} */
 struct TParse_THeader {
-	int unk;
+	u32 m_signature; // _00
+	u16 _04;         // _04
+	u16 _06;         // _06
+	u8 _08[4];       // _08 - unknown
+	u32 blockCount;  // _0C
+	u8 _10[0x10];    // _10 - unknown
 };
 
 } // namespace data

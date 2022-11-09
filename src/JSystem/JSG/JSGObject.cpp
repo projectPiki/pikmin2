@@ -29,7 +29,7 @@ void TObject::JSGUpdate(void) { }
  * Address:	80098928
  * Size:	000008
  */
-int TObject::JSGGetFlag() const { return 0; }
+u32 TObject::JSGGetFlag() const { return 0; }
 
 /*
  * --INFO--

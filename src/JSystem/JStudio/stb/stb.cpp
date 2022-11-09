@@ -1,6 +1,8 @@
 #include "JStudio/stb.h"
+#include "Dolphin/stl.h"
 #include "JStudio/object.h"
 #include "JStudio/stb-data.h"
+#include "JSystem/JGadget/binary.h"
 #include "JSystem/JGadget/linklist.h"
 #include "std/algorithm.h"
 
@@ -81,15 +83,16 @@ void TObject::toString_status(int a)
  * Address:	........
  * Size:	000048
  */
-TObject::TObject(unsigned long p1, void const* p2, unsigned long p3)
-    : pControl(nullptr)
+TObject::TObject(unsigned long p1, void const* id, unsigned long idLength)
+    : JStudio::object::TObject_ID(id, idLength)
+    , pControl(nullptr)
     , signature(p1)
     , mFlag(0)
     , bSequence_(0)
     , _20(0)
-    , pSequence(p2)
+    , pSequence(nullptr)
     , pSequence_next(nullptr)
-    , u32Wait_(p3)
+    , u32Wait_(0)
     , mStatus(STATUS_STILL)
 {
 	// UNUSED FUNCTION
@@ -101,19 +104,20 @@ TObject::TObject(unsigned long p1, void const* p2, unsigned long p3)
  * Size:	000070
  */
 TObject::TObject(data::TParse_TBlock_object const& block)
+    : JStudio::object::TObject_ID((u32*)block.filedata + 3, block.filedata[2])
 {
-	idString_0x0      = (u32*)block.filedata + 3;
-	lengthInBytes_0x4 = block.filedata[2]; // should be short 0xa
-	_0C.m_prev        = 0;
-	_0C.m_next        = 0;
-	pControl          = nullptr;
-	signature         = block.filedata[1];
-	mFlag             = block.filedata[2]; // should be short 0x8
-	bSequence_        = false;
-	_20               = 0;
-	pSequence         = nullptr;
-	pSequence_next    = nullptr; //(int)iVar2 + (*(u16 *)((int)iVar2 + 10) + 3 &
-	                             // 0xfffffffc) + 0xc; this crap
+	// idString_0x0      = (u32*)block.filedata + 3;
+	// lengthInBytes_0x4 = block.filedata[2]; // should be short 0xa
+	_0C.m_prev     = 0;
+	_0C.m_next     = 0;
+	pControl       = nullptr;
+	signature      = block.filedata[1];
+	mFlag          = block.filedata[2]; // should be short 0x8
+	bSequence_     = false;
+	_20            = 0;
+	pSequence      = nullptr;
+	pSequence_next = nullptr; //(int)iVar2 + (*(u16 *)((int)iVar2 + 10) + 3 &
+	                          // 0xfffffffc) + 0xc; this crap
 	u32Wait_ = 0;
 	mStatus  = STATUS_STILL;
 	/*
@@ -834,45 +838,6 @@ TControl::TControl()
 {
 	mStatus                  = 0;
 	mObject_control.pControl = this;
-	/*
-	lis      r4, __vt__Q37JStudio3stb8TControl@ha
-	lis      r5, __vt__Q37JStudio3stb7TObject@ha
-	addi     r0, r4, __vt__Q37JStudio3stb8TControl@l
-	li       r8, 0
-	stw      r0, 0(r3)
-	addi     r6, r5, __vt__Q37JStudio3stb7TObject@l
-	lis      r4, __vt__Q37JStudio3stb15TObject_control@ha
-	addi     r7, r3, 0x14
-	stw      r8, 4(r3)
-	li       r5, -1
-	addi     r0, r4, __vt__Q37JStudio3stb15TObject_control@l
-	stw      r8, 8(r3)
-	stw      r8, 0xc(r3)
-	stw      r8, 0x14(r3)
-	stw      r8, 0x18(r3)
-	stw      r8, 0x10(r3)
-	stw      r7, 0x14(r3)
-	stw      r7, 0x18(r3)
-	stw      r8, 0x20(r3)
-	stw      r8, 0x24(r3)
-	stw      r6, 0x28(r3)
-	stw      r8, 0x2c(r3)
-	stw      r8, 0x30(r3)
-	stw      r8, 0x34(r3)
-	stw      r5, 0x38(r3)
-	sth      r8, 0x3c(r3)
-	stb      r8, 0x3e(r3)
-	stw      r8, 0x40(r3)
-	stw      r8, 0x44(r3)
-	stw      r8, 0x48(r3)
-	stw      r8, 0x4c(r3)
-	stw      r8, 0x50(r3)
-	stw      r0, 0x28(r3)
-	stw      r8, 0x54(r3)
-	stw      r8, 0x1c(r3)
-	stw      r3, 0x34(r3)
-	blr
-	*/
 }
 
 /*
@@ -902,57 +867,9 @@ TControl::TControl()
  * --INFO--
  * Address:	8001094C
  * Size:	00009C
+ * __dt__Q37JStudio3stb8TControlFv
  */
-stb::TControl::~TControl(void)
-{
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	mr       r31, r4
-	stw      r30, 8(r1)
-	or.      r30, r3, r3
-	beq      lbl_800109CC
-	lis      r3, __vt__Q37JStudio3stb8TControl@ha
-	addic.   r0, r30, 0x20
-	addi     r3, r3, __vt__Q37JStudio3stb8TControl@l
-	li       r0, 0
-	stw      r3, 0(r30)
-	stw      r0, 0x34(r30)
-	beq      lbl_800109A8
-	lis      r3, __vt__Q37JStudio3stb15TObject_control@ha
-	addic.   r0, r30, 0x20
-	addi     r0, r3, __vt__Q37JStudio3stb15TObject_control@l
-	stw      r0, 0x28(r30)
-	beq      lbl_800109A8
-	lis      r3, __vt__Q37JStudio3stb7TObject@ha
-	addi     r0, r3, __vt__Q37JStudio3stb7TObject@l
-	stw      r0, 0x28(r30)
-
-lbl_800109A8:
-	addic.   r0, r30, 0x10
-	beq      lbl_800109BC
-	addi     r3, r30, 0x10
-	li       r4, 0
-	bl       __dt__Q27JGadget13TNodeLinkListFv
-
-lbl_800109BC:
-	extsh.   r0, r31
-	ble      lbl_800109CC
-	mr       r3, r30
-	bl       __dl__FPv
-
-lbl_800109CC:
-	lwz      r0, 0x14(r1)
-	mr       r3, r30
-	lwz      r31, 0xc(r1)
-	lwz      r30, 8(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
-}
+stb::TControl::~TControl(void) { mObject_control.pControl = nullptr; }
 
 /*
  * --INFO--
@@ -1217,32 +1134,9 @@ lbl_80010BC4:
  * --INFO--
  * Address:	80010C08
  * Size:	000048
+ * __dt__Q37JStudio3stb8TFactoryFv
  */
-stb::TFactory::~TFactory(void)
-{
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	or.      r31, r3, r3
-	beq      lbl_80010C38
-	lis      r5, __vt__Q37JStudio3stb8TFactory@ha
-	extsh.   r0, r4
-	addi     r0, r5, __vt__Q37JStudio3stb8TFactory@l
-	stw      r0, 0(r31)
-	ble      lbl_80010C38
-	bl       __dl__FPv
-
-lbl_80010C38:
-	lwz      r0, 0x14(r1)
-	mr       r3, r31
-	lwz      r31, 0xc(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
-}
+stb::TFactory::~TFactory(void) { }
 
 /*
  * --INFO--
@@ -1255,93 +1149,59 @@ int stb::TFactory::create(JStudio::stb::data::TParse_TBlock_object const&) { ret
  * --INFO--
  * Address:	80010C58
  * Size:	00003C
+ * destroy__Q37JStudio3stb8TFactoryFPQ37JStudio3stb7TObject
  */
-void stb::TFactory::destroy(JStudio::stb::TObject*)
-{
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	cmplwi   r4, 0
-	stw      r0, 0x14(r1)
-	beq      lbl_80010C84
-	mr       r3, r4
-	li       r4, 1
-	lwz      r12, 8(r3)
-	lwz      r12, 8(r12)
-	mtctr    r12
-	bctrl
-
-lbl_80010C84:
-	lwz      r0, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
-}
+void stb::TFactory::destroy(JStudio::stb::TObject* object) { delete object; }
 
 /*
  * --INFO--
  * Address:	80010C94
  * Size:	000020
+ * __ct__Q37JStudio3stb6TParseFPQ37JStudio3stb8TControl
  */
-stb::TParse::TParse(JStudio::stb::TControl*)
+stb::TParse::TParse(JStudio::stb::TControl* control)
+    : JGadget::binary::TParse_header_block()
+    , m_control(control)
 {
-	/*
-	lis      r6, __vt__Q37JGadget6binary19TParse_header_block@ha
-	lis      r5, __vt__Q37JStudio3stb6TParse@ha
-	addi     r6, r6, __vt__Q37JGadget6binary19TParse_header_block@l
-	stw      r6, 0(r3)
-	addi     r0, r5, __vt__Q37JStudio3stb6TParse@l
-	stw      r0, 0(r3)
-	stw      r4, 4(r3)
-	blr
-	*/
 }
 
 /*
  * --INFO--
  * Address:	80010CB4
  * Size:	000060
+ * __dt__Q37JStudio3stb6TParseFv
  */
-stb::TParse::~TParse()
-{
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	mr       r31, r4
-	stw      r30, 8(r1)
-	or.      r30, r3, r3
-	beq      lbl_80010CF8
-	lis      r5, __vt__Q37JStudio3stb6TParse@ha
-	li       r4, 0
-	addi     r0, r5, __vt__Q37JStudio3stb6TParse@l
-	stw      r0, 0(r30)
-	bl       __dt__Q37JGadget6binary19TParse_header_blockFv
-	extsh.   r0, r31
-	ble      lbl_80010CF8
-	mr       r3, r30
-	bl       __dl__FPv
-
-lbl_80010CF8:
-	lwz      r0, 0x14(r1)
-	mr       r3, r30
-	lwz      r31, 0xc(r1)
-	lwz      r30, 8(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
-}
+stb::TParse::~TParse() { }
 
 /*
  * --INFO--
  * Address:	80010D14
  * Size:	0000C8
  */
-void stb::TParse::parseHeader_next(void const**, unsigned long*, unsigned long)
+bool stb::TParse::parseHeader_next(void const** data, unsigned long* blockCount, unsigned long p3)
 {
+	// const data::TParse_THeader* header = static_cast<const data::TParse_THeader*>(*data);
+	// *data                              = static_cast<const void*>(header + 1);
+	// *blockCount = header->blockCount;
+	const void* header = *data;
+	*data              = static_cast<const data::TParse_THeader*>(header) + 1;
+	*blockCount        = static_cast<const data::TParse_THeader*>(header)->blockCount;
+	if (memcmp(&static_cast<const data::TParse_THeader*>(header)->m_signature, &data::ga4cSignature, sizeof(u32)) != 0) {
+		return false;
+	}
+	// if (header->_04 != 0xFEFF) {
+	if (static_cast<const data::TParse_THeader*>(header)->_04 != 0xFEFF) {
+		return false;
+	}
+	// if (header->_06 < 1) {
+	if (static_cast<const data::TParse_THeader*>(header)->_06 < 1) {
+		return false;
+	}
+	// if (header->_06 > 3) {
+	if (static_cast<const data::TParse_THeader*>(header)->_06 > 3) {
+		return false;
+	}
+	return parseHeader(*static_cast<const data::TParse_THeader*>(header), p3);
 	/*
 	stwu     r1, -0x20(r1)
 	mflr     r0
@@ -1411,7 +1271,7 @@ lbl_80010DC4:
  * Address:	80010DDC
  * Size:	000054
  */
-void stb::TParse::parseBlock_next(void const**, unsigned long*, unsigned long)
+bool stb::TParse::parseBlock_next(void const**, unsigned long*, unsigned long)
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -1443,7 +1303,7 @@ void stb::TParse::parseBlock_next(void const**, unsigned long*, unsigned long)
  * Address:	80010E30
  * Size:	000008
  */
-int stb::TParse::parseHeader(JStudio::stb::data::TParse_THeader const&, unsigned long) { return 1; }
+bool stb::TParse::parseHeader(JStudio::stb::data::TParse_THeader const&, unsigned long) { return true; }
 
 /*
  * --INFO--

@@ -6,11 +6,6 @@
 
 namespace JStage {
 
-typedef struct TECameraProjection {
-};
-typedef struct TECameraView {
-};
-
 /*
  * --INFO--
  * Address:	800987F4
