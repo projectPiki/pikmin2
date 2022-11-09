@@ -1,4 +1,5 @@
 #include "Game/VsGameSection.h"
+#include "nans.h"
 #include "types.h"
 
 /*

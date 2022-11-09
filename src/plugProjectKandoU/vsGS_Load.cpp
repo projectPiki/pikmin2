@@ -1,4 +1,5 @@
 #include "og/newScreen/Floor.h"
+#include "nans.h"
 #include "types.h"
 
 /*

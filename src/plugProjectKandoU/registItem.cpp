@@ -64,6 +64,7 @@ void ItemMgr::createManagers(u32 flags)
 		ItemRock::mgr = nullptr;
 	}
 	sys->heapStatusEnd("-Rock-");
+
 	GenerateMgr<ItemHoney::Mgr>(ItemHoney::mgr, "-Honey-");
 
 	// Had to be custom
