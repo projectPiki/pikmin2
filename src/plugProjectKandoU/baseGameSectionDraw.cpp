@@ -44,7 +44,7 @@ void BaseGameSection::newdraw_draw3D_all(Graphics& gfx)
 	sys->m_timers->_stop("part-draw");
 
 	// Draw counters for both viewports
-	// (Life guage & Carry info)
+	// (Life gauge & Carry info)
 	sys->m_timers->_start("drct-post", true);
 	m_lightMgr->set(gfx);
 	Viewport* vp = gfx.getViewport(0);
