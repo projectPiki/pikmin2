@@ -1000,7 +1000,7 @@ MORIMURA:=\
 	$(BUILD_DIR)/asm/plugProjectMorimuraU/umiMushi.o\
 	$(BUILD_DIR)/asm/plugProjectMorimuraU/shijimiChouState.o\
 	$(BUILD_DIR)/src/plugProjectMorimuraU/shijimiChouAnimator.o\
-	$(BUILD_DIR)/asm/plugProjectMorimuraU/shijimiChouMgr.o\
+	$(BUILD_DIR)/src/plugProjectMorimuraU/shijimiChouMgr.o\
 	$(BUILD_DIR)/asm/plugProjectMorimuraU/shijimiChou.o\
 	$(BUILD_DIR)/asm/plugProjectMorimuraU/challengeSelect2D.o\
 	$(BUILD_DIR)/asm/plugProjectMorimuraU/challengeResult2D.o\

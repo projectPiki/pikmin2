@@ -32,6 +32,7 @@ enum SpectralidType { // spectralid color
 };
 
 enum SpectralidSpawnSource {
+	SHIJIMISOURCE_Null          = 0,
 	SHIJIMISOURCE_BeadyLongLegs = 1,
 	SHIJIMISOURCE_Plants        = 2,
 	SHIJIMISOURCE_Enemy         = 3,
@@ -90,19 +91,13 @@ struct Obj : public EnemyBase {
 	void deadEffect();
 	void fallBehavior();
 	void updateCluster();
-	void getFlyType();
+	u32 getFlyType();
 	void leaderInit();
 	void createAppearEffect();
 	void fadeAppearEffect();
 
 	// _00 		= VTBL
 	// _00-_2BC	= EnemyBase
-	/*
-	 * Ghidra has the struct offset for EnemyBase inheritance wrong here
-	 * so proceed with caution if using, may be off by 0x4 up or down.
-	 * Overall size is 0x34C, 0x10 of which is PelletView at the end.
-	 * 		- HP
-	 */
 	SpectralidType m_specType;           // _2BC
 	SpectralidSpawnSource m_spawnSource; // _2C0
 	u8 _2C4[0x4];                        // _2C4, unknown
@@ -121,8 +116,9 @@ struct Obj : public EnemyBase {
 	u8 _320;                             // _320
 	u8 _321;                             // _321
 	u8 _322[0x2];                        // _322, unknown/padding maybe
-	u8 _324[0x8];                        // _324, unknown
-	u32 _32C;                            // _32C, fly type maybe?
+	u8 _324[0x4];                        // _324, unknown
+	int m_groupCount;                    // _328
+	u32 m_flyType;                       // _32C
 	u8 _330[0x4];                        // _330, unknown
 	efx::TChouDown* m_efxDown;           // _334
 	PSM::Cluster* m_soundCluster;        // _338
@@ -188,14 +184,14 @@ struct Parms : public EnemyParmsBase {
 	struct ProperParms : public Parameters {
 		ProperParms()
 		    : Parameters(nullptr, "EnemyParmsBase")
-		    , m_fp01(this, 'fp01', "飛行期間", 300.0f, 0.0f, 1000.0f)
-		    , m_fp08(this, 'fp08', "プランツからの飛行期間", 100.0f, 0.0f, 1000.0f)
-		    , m_fp02(this, 'fp02', "蜜レート", 1.0f, 0.0f, 1.0f)
-		    , m_fp03(this, 'fp03', "飛行高さ", 100.0f, 0.0f, 200.0f)
-		    , m_fp04(this, 'fp04', "飛行レート", 0.05f, 0.0f, 1.0f)
-		    , m_fp05(this, 'fp05', "飛行高低", 1.0f, 0.0f, 10.0f)
-		    , m_fp06(this, 'fp06', "赤蝶率", 0.1f, 0.0f, 1.0f)
-		    , m_fp07(this, 'fp07', "黒蝶率", 0.1f, 0.0f, 1.0f)
+		    , m_fp01(this, 'fp01', "飛行期間", 300.0f, 0.0f, 1000.0f)               // 'flight duration'
+		    , m_fp08(this, 'fp08', "プランツからの飛行期間", 100.0f, 0.0f, 1000.0f) // 'flight duration from plants'
+		    , m_fp02(this, 'fp02', "蜜レート", 1.0f, 0.0f, 1.0f)                    // 'honey rate'
+		    , m_fp03(this, 'fp03', "飛行高さ", 100.0f, 0.0f, 200.0f)                // 'flight height'
+		    , m_fp04(this, 'fp04', "飛行レート", 0.05f, 0.0f, 1.0f)                 // 'flight rate'
+		    , m_fp05(this, 'fp05', "飛行高低", 1.0f, 0.0f, 10.0f)                   // 'flight altitude'
+		    , m_fp06(this, 'fp06', "赤蝶率", 0.1f, 0.0f, 1.0f)                      // 'red butterfly rate
+		    , m_fp07(this, 'fp07', "黒蝶率", 0.1f, 0.0f, 1.0f)                      // 'black butterfly rate'
 		{
 		}
 
@@ -211,7 +207,7 @@ struct Parms : public EnemyParmsBase {
 
 	Parms()
 	{
-		_948         = 0;
+		m_flyType    = 0;
 		_949         = 0;
 		_94A         = 0;
 		m_groupCount = 25;
@@ -237,7 +233,7 @@ struct Parms : public EnemyParmsBase {
 
 	// _00-_7F8	= EnemyParmsBase
 	ProperParms m_properParms; // _7F8
-	u8 _948;                   // _948, maybe fly type?
+	u8 m_flyType;              // _948
 	u8 _949;                   // _949, unknown
 	u8 _94A;                   // _94A, unknown
 	u8 m_groupCount;           // _94B
