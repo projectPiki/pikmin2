@@ -146,10 +146,8 @@ void Mgr::createGroup(Obj* leader, int count, bool check)
 		factor2 = 1.0f;
 	}
 
-	birthArg.m_position.x = leaderPos.x;
-	birthArg.m_faceDir    = 0.0f;
-	birthArg.m_position.y = leaderPos.y;
-	birthArg.m_position.z = leaderPos.z;
+	birthArg.m_faceDir  = 0.0f;
+	birthArg.m_position = leaderPos;
 
 	leader->onSetPosition(birthArg.m_position);
 
@@ -198,12 +196,8 @@ void Mgr::createGroupByBigFoot(Obj* leader, int count, bool check, f32 p1)
 	EnemyBirthArg birthArg;
 	Vector3f leaderPos = leader->getPosition();
 
-	f32 factor2 = 0.5f;
-
-	birthArg.m_position.x = leaderPos.x;
-	birthArg.m_faceDir    = 0.0f;
-	birthArg.m_position.y = leaderPos.y;
-	birthArg.m_position.z = leaderPos.z;
+	birthArg.m_faceDir  = 0.0f;
+	birthArg.m_position = leaderPos;
 
 	leader->onSetPosition(birthArg.m_position);
 
@@ -211,17 +205,15 @@ void Mgr::createGroupByBigFoot(Obj* leader, int count, bool check, f32 p1)
 	leader->m_rotation.y = leader->m_faceDir;
 
 	for (int i = 0; i < count - 1; i++) {
-		f32 factor1 = 0.8f * randFloat() + 0.2f;
+		f32 factor = 0.8f * randFloat() + 0.2f;
 
 		f32 angle           = TAU * randFloat() * i;
 		birthArg.m_faceDir  = TAU * angle;
 		birthArg.m_position = leaderPos;
-		f32 otherAngle      = angle / count;
+		angle /= count;
 
-		f32 sinComp = factor1 * pikmin2_sinf(otherAngle);
-		birthArg.m_position.x += factor2 * sinComp;
-		f32 cosComp = factor1 * pikmin2_cosf(otherAngle);
-		birthArg.m_position.z += factor2 * cosComp;
+		birthArg.m_position.x += (factor * pikmin2_sinf(angle)) / 2;
+		birthArg.m_position.z += (factor * pikmin2_cosf(angle)) / 2;
 
 		Obj* tamagomushi = static_cast<Obj*>(EnemyMgrBase::birth(birthArg));
 		if (tamagomushi) {
