@@ -6,6 +6,7 @@
 #include "Game/EnemyParmsBase.h"
 #include "Game/EnemyMgrBase.h"
 #include "Game/EnemyBase.h"
+#include "JSystem/J3D/J3DUMtxCache.h"
 #include "Collinfo.h"
 
 /**
@@ -27,7 +28,7 @@ struct Obj : public EnemyBase {
 	virtual void collisionCallback(CollEvent& event);        // _EC
 	virtual void getShadowParam(ShadowParam& settings);      // _134
 	virtual bool needShadow();                               // _138
-	virtual ~Obj();                                          // _1BC (weak)
+	virtual ~Obj() { }                                       // _1BC (weak)
 	virtual void birth(Vector3f&, f32);                      // _1C0
 	virtual void setInitialSetting(EnemyInitialParamBase*);  // _1C4 (weak)
 	virtual void doUpdate();                                 // _1CC
@@ -85,29 +86,67 @@ struct Mgr : public EnemyMgrBase {
 	Mgr(int objLimit, u8 modelType);
 
 	//////////////// VTABLE
-	virtual ~Mgr();                                     // _58 (weak)
-	virtual EnemyBase* birth(EnemyBirthArg&);           // _70
-	virtual void createObj(int);                        // _A0 (weak)
-	virtual EnemyBase* getEnemy(int idx);               // _A4 (weak)
-	virtual void doAlloc();                             // _A8
-	virtual EnemyTypeID::EEnemyTypeID getEnemyTypeID(); // _AC (weak)
+	// virtual ~Mgr();                                     // _58 (weak)
+	virtual EnemyBase* birth(EnemyBirthArg&); // _70
+	virtual void doAlloc();                   // _A8
+	virtual EnemyBase* getEnemy(int index)    // _A4 (weak)
+	{
+		return &m_obj[index];
+	}
+	virtual EnemyTypeID::EEnemyTypeID getEnemyTypeID() // _AC (weak)
+	{
+		return EnemyTypeID::EnemyID_TamagoMushi;
+	}
+	virtual void createObj(int count) // _A0 (weak)
+	{
+		m_obj = new Obj[count];
+	}
 	//////////////// VTABLE END
 
 	void fetch(J3DModel*, f32);
 	Obj* createGroup(EnemyBirthArg&, int, Vector3f&);
 	Obj* createGroupByBigFoot(EnemyBirthArg&, int, Vector3f&, f32);
-	Obj* createGroup(Obj*, int, bool);
-	Obj* createGroupByBigFoot(Obj*, int, bool, f32);
+	void createGroup(Obj*, int, bool);
+	void createGroupByBigFoot(Obj*, int, bool, f32);
+
+	inline int getFreeNum();
+
+	inline J3DModel* getModel()
+	{
+		Obj* tamagomushi = static_cast<Obj*>(getEnemy(0));
+		return tamagomushi->m_model->m_j3dModel;
+	}
+
+	inline J3DAnmTransform* getTransform()
+	{
+		SysShape::AnimInfo* animInfo = static_cast<SysShape::AnimInfo*>(m_animMgr->m_animInfo.m_child)->getInfoByID(2);
+		return animInfo->m_anm;
+	}
+
+	inline J3DUMtxAnmCacheTable* getCacheTable(J3DModel* model, J3DAnmTransform* transform)
+	{
+		return new J3DUMtxAnmCacheTable(model, transform);
+	}
 
 	// _00 		= VTBL
 	// _00-_44	= EnemyMgrBase
-	u32 _44;    // _44, J3DUMtxCacheRef<J3DUMtxAnmCacheTable>* according to Ghidra
-	Obj* m_obj; // _48, likely an array of Objs
+	J3DUMtxCacheRef<J3DUMtxAnmCacheTable>* m_mtxCacheRef; // _44
+	Obj* m_obj;                                           // _48, likely an array of Objs
 };
 
 struct Parms : public EnemyParmsBase {
 	struct ProperParms : public Parameters {
-		inline ProperParms(); // likely
+		inline ProperParms()
+		    : Parameters(nullptr, "EnemyParmsBase")
+		    , m_fp01(this, 'fp01', "生存時間", 300.0f, 0.0, 2000.0f)
+		    , m_fp02(this, 'fp02', "出現範囲", 80.0f, 0.0f, 200.0f)
+		    , m_fp03(this, 'fp03', "蜜レート", 1.0f, 0.0f, 1.0f)
+		    , m_ip01(this, 'ip01', "歩き時間最小", 60, 0, 300)
+		    , m_ip02(this, 'ip02', "歩き時間最大", 100, 0, 600)
+		    , m_ip03(this, 'ip03', "出現時間最小", 10, 0, 100)
+		    , m_ip04(this, 'ip04', "出現時間最大", 50, 0, 200)
+		{
+		}
 
 		Parm<f32> m_fp01; // _804
 		Parm<f32> m_fp02; // _82C
@@ -118,13 +157,47 @@ struct Parms : public EnemyParmsBase {
 		Parm<int> m_ip04; // _8F4
 	};
 
-	Parms();
+	Parms()
+	{
+		_920 = 0;
+		_921 = 0;
+		_922 = 0;
+		_923 = 0;
+		_924 = 40.0f;
+		_928 = 0.3f;
+		_92C = 10.0f;
+		_930 = 0.2f;
+		_934 = 50.0f;
+		_938 = 80.0f;
+		_93C = 80.0f;
+		_940 = 0.0f;
+		_944 = 30.0f;
+		_948 = 150.0f;
+	}
 
-	virtual void read(Stream&); // _08 (weak)
+	virtual void read(Stream& stream) // _08 (weak)
+	{
+		CreatureParms::read(stream);
+		m_general.read(stream);
+		m_properParms.read(stream);
+	}
 
 	// _00-_7F8	= EnemyParmsBase
 	ProperParms m_properParms; // _7F8
-	u8 _920[0x2C];             // _920, unknown
+	u8 _920;                   // _920
+	u8 _921;                   // _921
+	u8 _922;                   // _922
+	u8 _923;                   // _923
+	f32 _924;                  // _924
+	f32 _928;                  // _928
+	f32 _92C;                  // _92C
+	f32 _930;                  // _930
+	f32 _934;                  // _934
+	f32 _938;                  // _938
+	f32 _93C;                  // _93C
+	f32 _940;                  // _940
+	f32 _944;                  // _944
+	f32 _948;                  // _948
 };
 
 struct ProperAnimator : public EnemyAnimatorBase {
