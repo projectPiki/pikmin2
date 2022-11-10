@@ -57,7 +57,7 @@ struct DrawInfo : public CNode {
 struct Obj : public CNode {
 	Obj(EnemyBase*, Info*);
 
-	virtual ~Obj(); // _08 (weak)
+	virtual ~Obj() {}; // _08 (weak)
 
 	bool start();
 	void shake();

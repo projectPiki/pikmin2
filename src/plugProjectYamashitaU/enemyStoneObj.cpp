@@ -3,57 +3,7 @@
 #include "Game/generalEnemyMgr.h"
 #include "Game/gamePlayData.h"
 #include "Game/MoviePlayer.h"
-
-/*
-    Generated from dpostproc
-
-    .section .ctors, "wa"  # 0x80472F00 - 0x804732C0
-    .4byte __sinit_enemyStoneObj_cpp
-
-    .section .rodata  # 0x804732E0 - 0x8049E220
-    .global lbl_8047BF18
-    lbl_8047BF18:
-        .4byte 0x6731425F
-        .4byte 0x626C6163
-        .4byte 0x6B5F646F
-        .4byte 0x70696E67
-        .4byte 0x00000000
-        .4byte 0x00000000
-
-    .section .data, "wa"  # 0x8049E220 - 0x804EFC20
-    .global lbl_804ADDF8
-    lbl_804ADDF8:
-        .4byte 0x00000000
-        .4byte 0x00000000
-        .4byte 0x00000000
-    .global __vt__Q34Game10EnemyStone3Obj
-    __vt__Q34Game10EnemyStone3Obj:
-        .4byte 0
-        .4byte 0
-        .4byte __dt__Q34Game10EnemyStone3ObjFv
-        .4byte getChildCount__5CNodeFv
-        .4byte 0
-
-    .section .sbss # 0x80514D80 - 0x80516360
-    .global lbl_805158B8
-    lbl_805158B8:
-        .skip 0x4
-    .global lbl_805158BC
-    lbl_805158BC:
-        .skip 0x4
-
-    .section .sdata2, "a"     # 0x80516360 - 0x80520E40
-    .global lbl_80518038
-    lbl_80518038:
-        .4byte 0x00000000
-    .global lbl_8051803C
-    lbl_8051803C:
-        .float 1.0
-    .global lbl_80518040
-    lbl_80518040:
-        .4byte 0x43300000
-        .4byte 0x00000000
-*/
+#include "nans.h"
 
 namespace Game {
 namespace EnemyStone {
@@ -78,7 +28,7 @@ Obj::Obj(EnemyBase* enemy, Info* info)
  * Address:	80129BD8
  * Size:	000104
  */
-void Obj::start()
+bool Obj::start()
 {
 	_50         = 0;
 	bool result = false;
@@ -499,70 +449,5 @@ lbl_8012A12C:
 	*/
 }
 
-/*
- * --INFO--
- * Address:	8012A1A0
- * Size:	00007C
- */
-Obj::~Obj()
-{
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	mr       r31, r4
-	stw      r30, 8(r1)
-	or.      r30, r3, r3
-	beq      lbl_8012A200
-	lis      r3, __vt__Q34Game10EnemyStone3Obj@ha
-	lis      r4, __dt__5CNodeFv@ha
-	addi     r0, r3, __vt__Q34Game10EnemyStone3Obj@l
-	li       r5, 0x18
-	stw      r0, 0(r30)
-	addi     r3, r30, 0x1c
-	addi     r4, r4, __dt__5CNodeFv@l
-	li       r6, 2
-	bl       __destroy_arr
-	mr       r3, r30
-	li       r4, 0
-	bl       __dt__5CNodeFv
-	extsh.   r0, r31
-	ble      lbl_8012A200
-	mr       r3, r30
-	bl       __dl__FPv
-
-lbl_8012A200:
-	lwz      r0, 0x14(r1)
-	mr       r3, r30
-	lwz      r31, 0xc(r1)
-	lwz      r30, 8(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
-}
-
 } // namespace EnemyStone
 } // namespace Game
-
-/*
- * --INFO--
- * Address:	8012A21C
- * Size:	000028
- */
-void __sinit_enemyStoneObj_cpp(void)
-{
-	/*
-	lis      r4, __float_nan@ha
-	li       r0, -1
-	lfs      f0, __float_nan@l(r4)
-	lis      r3, lbl_804ADDF8@ha
-	stw      r0, lbl_805158B8@sda21(r13)
-	stfsu    f0, lbl_804ADDF8@l(r3)
-	stfs     f0, lbl_805158BC@sda21(r13)
-	stfs     f0, 4(r3)
-	stfs     f0, 8(r3)
-	blr
-	*/
-}
