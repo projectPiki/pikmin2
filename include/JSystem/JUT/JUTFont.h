@@ -262,23 +262,9 @@ struct JUTCacheFont : public JUTResFont {
 	JUTCacheFont(const ResFONT*, void*, u32, JKRHeap*);
 	JUTCacheFont(const ResFONT*, u32, JKRHeap*);
 
-	virtual ~JUTCacheFont();                                             // _08
-	virtual void setGX();                                                // _0C
-	virtual float drawChar_scale(float, float, float, float, int, bool); // _14
-	virtual u16 getLeading() const;                                      // _18
-	virtual int getAscent() const;                                       // _1C
-	virtual int getDescent() const;                                      // _20
-	virtual int getHeight() const;                                       // _24
-	virtual int getWidth() const;                                        // _28
-	virtual void getWidthEntry(int, JUTFont::TWidth*) const;             // _2C
-	virtual int getCellWidth() const;                                    // _30
-	virtual int getCellHeight() const;                                   // _34
-	virtual int getFontType() const;                                     // _38
-	virtual const ResFONT* getResFont() const;                           // _3C
-	virtual bool isLeadByte(int) const;                                  // _40
-	virtual void loadImage(int, _GXTexMapID);                            // _44
-	virtual void setBlock();                                             // _48
-	// virtual void _4C(); // _4C
+	virtual ~JUTCacheFont();                  // _08
+	virtual void loadImage(int, _GXTexMapID); // _44
+	virtual void setBlock();                  // _48
 
 	bool allocArea(void*, u32, JKRHeap*);
 	bool allocArray(JKRHeap*);

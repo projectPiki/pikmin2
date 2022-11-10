@@ -20,6 +20,7 @@ struct TControl {
 	bool setMessageID(u32, u32, bool*);
 	bool setMessageCode_inSequence_(const TProcessor*, u16, u16);
 
+	// _00 = VTBL
 	TProcessor* _04; // _04
 	TProcessor* _08; // _08
 	u16 _0C;         // _0C

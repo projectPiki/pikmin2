@@ -24,14 +24,14 @@ struct JPABaseParticle {
 	void calc_p(JPAEmitterWorkData*);
 	void calc_c(JPAEmitterWorkData*);
 	bool canCreateChild(JPAEmitterWorkData*);
-	float getCalcCurrentPositionX(const JPABaseEmitter*) const;
-	float getCalcCurrentPositionY(const JPABaseEmitter*) const;
-	float getCalcCurrentPositionZ(const JPABaseEmitter*) const;
+	f32 getCalcCurrentPositionX(const JPABaseEmitter*) const;
+	f32 getCalcCurrentPositionY(const JPABaseEmitter*) const;
+	f32 getCalcCurrentPositionZ(const JPABaseEmitter*) const;
 
 	// unused/inlined:
 	~JPABaseParticle();
-	float getWidth(const JPABaseEmitter*) const;
-	float getHeight(const JPABaseEmitter*) const;
+	f32 getWidth(const JPABaseEmitter*) const;
+	f32 getHeight(const JPABaseEmitter*) const;
 
 	JGeometry::TVec3f _00;        // _00
 	JGeometry::TVec3f m_position; // _0C
@@ -41,17 +41,17 @@ struct JPABaseParticle {
 	JGeometry::TVec3f _3C;        // _3C
 	JGeometry::TVec3f _48;        // _48
 	JGeometry::TVec3f _54;        // _54
-	float _60;                    // _60
-	float _64;                    // _64
-	float _68;                    // _68
-	float _6C;                    // _6C
-	float _70;                    // _70
-	float _74;                    // _74
+	f32 _60;                      // _60
+	f32 _64;                      // _64
+	f32 _68;                      // _68
+	f32 _6C;                      // _6C
+	f32 _70;                      // _70
+	f32 _74;                      // _74
 	unknown _78;                  // _78
 	uint _7C;                     // _7C
 	s16 _80;                      // _80
 	u16 _82;                      // _82
-	float _84;                    // _84
+	f32 _84;                      // _84
 	s16 _88;                      // _88
 	s16 _8A;                      // _8A
 	JUtility::TColor _8C;         // _8C
@@ -85,7 +85,7 @@ struct JPABaseEmitter {
 	void getEmitterAxisY(JGeometry::TVec3f*) const;
 	void getEmitterAxisZ(JGeometry::TVec3f*) const;
 	int getDrawCount() const;
-	void loadTexture(unsigned char, _GXTexMapID);
+	void loadTexture(u8, _GXTexMapID);
 
 	/**
 	 * @fabricated
@@ -97,20 +97,20 @@ struct JPABaseEmitter {
 	bool isFlag(u32 flag) { return _F4 & flag; }
 	bool is100() { return _F4 & 0x100; }
 
-	float _00;                  // _00
-	float _04;                  // _04
-	float _08;                  // _08
+	f32 _00;                    // _00
+	f32 _04;                    // _04
+	f32 _08;                    // _08
 	JGeometry::TVec3f _0C;      // _0C
 	JGeometry::TVec3f _18;      // _18
 	s32 _24;                    // _24
-	float _28;                  // _28
-	float _2C;                  // _2C
-	float _30;                  // _30
-	float _34;                  // _34
+	f32 _28;                    // _28
+	f32 _2C;                    // _2C
+	f32 _30;                    // _30
+	f32 _34;                    // _34
 	u8 _38[0x8];                // _38
-	float _40;                  // _40
+	f32 _40;                    // _40
 	u8 _44[4];                  // _44
-	float _48;                  // _48
+	f32 _48;                    // _48
 	s16 _4C;                    // _4C
 	s16 _4E;                    // _4E
 	s16 _50;                    // _50
@@ -120,8 +120,8 @@ struct JPABaseEmitter {
 	Mtx _68;                    // _68
 	JGeometry::TVec3f _98;      // _98
 	JGeometry::TVec3f _A4;      // _A4
-	float _B0;                  // _B0
-	float _B4;                  // _B4
+	f32 _B0;                    // _B0
+	f32 _B4;                    // _B4
 	u8 _B8;                     // _B8
 	u8 _B9;                     // _B9
 	u8 _BA;                     // _BA
@@ -145,8 +145,8 @@ struct JPABaseEmitter {
 	JPAEmitterCallBack* m_emitterCallback;   // _EC
 	JPAParticleCallBack* m_particleCallback; // _F0
 	u32 _F4;                                 // _F4
-	float _F8;                               // _F8
-	float _FC;                               // _FC
+	f32 _F8;                                 // _F8
+	f32 _FC;                                 // _FC
 	u32 _100;                                // _100
 	s16 _104;                                // _104
 	s16 _106;                                // _106
@@ -165,8 +165,10 @@ struct JPAEmitterCallBack {
 	virtual void draw(JPABaseEmitter*);         // _14 (weak)
 	virtual void drawAfter(JPABaseEmitter*);    // _18 (weak)
 
-	// TODO: How is this not virtual???
+	// not sure how this works with the pure virtual dtor
 	// ~JPAEmitterCallBack();
+
+	// _00 = VTBL
 };
 
 /**
@@ -180,9 +182,9 @@ struct JPAEmitterWorkData {
 	JGeometry::TVec3f _10;             // _10
 	JGeometry::TVec3f _1C;             // _1C
 	JGeometry::TVec3f _28;             // _28
-	float _34;                         // _34
-	float _38;                         // _38
-	float _3C;                         // _3C
+	f32 _34;                           // _34
+	f32 _38;                           // _38
+	f32 _3C;                           // _3C
 	int m_createNumber;                // _40;
 	u32 _44;                           // _44
 	Mtx _48;                           // _48
@@ -190,16 +192,16 @@ struct JPAEmitterWorkData {
 	Mtx _A8;                           // _A8
 	Mtx _D8;                           // _D8
 	JGeometry::TVec3f _108;            // _108
-	float _114;                        // _114
-	float _118;                        // _118
-	float _11C;                        // _11C
+	f32 _114;                          // _114
+	f32 _118;                          // _118
+	f32 _11C;                          // _11C
 	JGeometry::TVec3f _120;            // _120
 	JGeometry::TVec3f _12C;            // _120
 	JGeometry::TVec3f _138;            // _138
-	float _144;                        // _144
-	float _148;                        // _148
-	float _14C;                        // _14C
-	float _150;                        // _150
+	f32 _144;                          // _144
+	f32 _148;                          // _148
+	f32 _14C;                          // _14C
+	f32 _150;                          // _150
 	Mtx _154;                          // _154
 	Mtx _184;                          // _184
 	Mtx _1B4;                          // _1B4
@@ -209,7 +211,7 @@ struct JPAEmitterWorkData {
 	int _1F0;                          // _1F0
 	int _1F4;                          // _1F4
 	int _1F8;                          // _1F8
-	float _1FC;                        // _1FC
+	f32 _1FC;                          // _1FC
 	int _200;                          // _200
 	int _204;                          // _204
 	int _208;                          // _208
@@ -238,9 +240,9 @@ struct JPAEmitterManager {
 	// unused/inlined:
 	void createSimpleEmitter(const JGeometry::TVec3f&, u16, JPAEmitterCallBack*, JPAParticleCallBack*);
 	void calc(u8);
-	void draw(float (*)[4], u8);
+	void draw(f32 (*)[4], u8);
 	void draw(const JPADrawInfo*);
-	void draw(float (*)[4]);
+	void draw(f32 (*)[4]);
 
 	JSUList<JPABaseEmitter>* _00; // _00
 	JSUPtrList _04;               // _04

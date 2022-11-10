@@ -4,6 +4,7 @@
 #include "Camera.h"
 #include "Controller.h"
 #include "JSystem/JKR/JKRDisposer.h"
+#include "JStudio/JStudio_JAudio.h"
 #include "types.h"
 #include "CNode.h"
 #include "DvdThreadCommand.h"
@@ -12,7 +13,6 @@
 #include "TagParm.h"
 
 struct JPAResourceManager;
-struct Pikmin_TCreateObject_JAudio;
 struct Viewport;
 
 namespace JStudio {
@@ -33,6 +33,16 @@ struct TControl;
 namespace PSM {
 struct Demo;
 }
+
+struct Pikmin_TCreateObject_JAudio : public JStudio_JAudio::TCreateObject {
+	Pikmin_TCreateObject_JAudio(JAIBasic*, const JStage::TSystem*);
+
+	virtual ~Pikmin_TCreateObject_JAudio();                                                   // _08 (weak)
+	virtual void create(JStudio::TObject**, const JStudio::stb::data::TParse_TBlock_object&); // _0C
+
+	// _00     = VTBL
+	// _00-_14 = JStudio_JAudio::TCreateObject
+};
 
 namespace Game {
 struct Creature;

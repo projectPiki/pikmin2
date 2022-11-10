@@ -9,6 +9,7 @@
 struct JUTFont;
 struct JUTTexture;
 struct Matrixf;
+struct J2DPane;
 
 namespace P2JME {
 
@@ -34,7 +35,7 @@ struct TRenderingProcessorBase : public JMessage::TRenderingProcessor {
 struct TRenderingProcessor : public TRenderingProcessorBase {
 	TRenderingProcessor(JMessage::TReference const*);
 
-	virtual ~TRenderingProcessor();                            // _08
+	virtual ~TRenderingProcessor();                            // _08 (weak)
 	virtual void do_character(int);                            // _10
 	virtual bool do_tag(u32, const void*, u32);                // _14
 	virtual bool do_systemTagCode(u16, const void*, u32);      // _18
@@ -42,14 +43,14 @@ struct TRenderingProcessor : public TRenderingProcessorBase {
 	virtual void do_select_end();                              // _20
 	virtual void do_select_separate();                         // _24
 	virtual void do_begin(const void*, const char*);           // _40
-	virtual void tagColor(const void*, u32);                   // _48 (weak)
-	virtual void tagSize(const void*, u32);                    // _4C (weak)
-	virtual void tagRuby(const void*, u32);                    // _50 (weak)
-	virtual void tagFont(const void*, u32);                    // _54 (weak)
-	virtual void tagImage(u16, const void*, u32);              // _58 (weak)
-	virtual void tagColorEX(u16, const void*, u32);            // _5C (weak)
-	virtual void tagControl(u16, const void*, u32);            // _60 (weak)
-	virtual void tagPosition(u16, const void*, u32);           // _64 (weak)
+	virtual void tagColor(const void*, u32);                   // _48
+	virtual void tagSize(const void*, u32);                    // _4C
+	virtual void tagRuby(const void*, u32);                    // _50
+	virtual void tagFont(const void*, u32);                    // _54
+	virtual void tagImage(u16, const void*, u32);              // _58
+	virtual void tagColorEX(u16, const void*, u32);            // _5C
+	virtual void tagControl(u16, const void*, u32);            // _60
+	virtual void tagPosition(u16, const void*, u32);           // _64
 	virtual void update();                                     // _68 (weak)
 	virtual void reset();                                      // _6C
 	virtual void newParagraph();                               // _70
@@ -58,9 +59,23 @@ struct TRenderingProcessor : public TRenderingProcessorBase {
 	virtual void doDrawLetter(f32, f32, f32, f32, int, bool);  // _7C
 	virtual void doTagControlAbtnWait();                       // _80 (weak)
 
-	void init();
-	void setFont(JUTFont*); // TODO: code is _4C = arg1
+	void setDrawLocate();
+	void initRuby();
+	void drawRuby();
+	void setImageGX();
+	void drawImage(JUTTexture*, f32, f32, f32, f32);
+	void calcWidth(JUTFont*, int, f32, bool);
+	void setLineWidth();
+	void resetLineWidth();
+	void setOnePageLine();
+	void resetOnePageLine();
+	void setPageInfo();
+	void preProcCode(uint);
 	void preProcID(uint, uint);
+	void preProcCenteringCode(uint);
+	void preProcCenteringID(uint, uint);
+	void setFont(JUTFont*);
+	void setTextBoxInfo(J2DPane*);
 
 	// _00     = VTBL
 	// _00-_38 = JMessage::TRenderingProcessor

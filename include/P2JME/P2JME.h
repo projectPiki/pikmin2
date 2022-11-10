@@ -3,13 +3,32 @@
 
 #include "types.h"
 #include "JSystem/JKR/JKRDisposer.h"
+#include "JSystem/JKR/JKRHeap.h"
+#include "JSystem/JKR/JKRArchive.h"
 #include "JSystem/JUT/JUTFont.h"
 #include "JSystem/JMessage/TReference.h"
 
+struct JUTTexture;
+
 namespace P2JME {
+namespace ImageGroup {
+enum EID {};
+} // namespace ImageGroup
 
 struct Mgr : public JKRDisposer {
-	virtual ~Mgr();
+	Mgr(JKRExpHeap*);
+
+	virtual ~Mgr(); // _08
+
+	void create(JKRExpHeap*);
+	void setupMessage();
+	void setupTex();
+	void setupFont(const char*, JKRExpHeap*);
+	void createImage(ImageGroup::EID, int);
+	void setImage(ImageGroup::EID, int, JUTTexture*);
+	void getImage(ImageGroup::EID, int);
+	void setupMessageResource(JKRArchive*, const char*);
+	void setupColor(JKRArchive*, const char*);
 
 	// _00 VTBL
 	JUTFont* m_font;                // _18
@@ -24,8 +43,7 @@ struct Mgr : public JKRDisposer {
 
 void convertU64ToMessageID(u64, u32*, u32*);
 void convertCharToMessageID(char*, u32*, u32*);
-
-extern Mgr* gP2JMEMgr;
 } // namespace P2JME
 
+extern P2JME::Mgr* gP2JMEMgr;
 #endif

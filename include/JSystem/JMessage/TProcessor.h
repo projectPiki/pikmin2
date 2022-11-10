@@ -15,29 +15,30 @@ struct TProcessor {
 	typedef bool OnCharacterEndCallBack(TProcessor*);
 	typedef void OnSelectBeginCallBack(TProcessor*);
 	typedef char* ProcessOnSelectCallBack(TProcessor*);
-	virtual ~TProcessor();                                                          // _08
-	virtual void do_reset();                                                        // _0C
-	virtual void do_character(int);                                                 // _10
-	virtual bool do_tag(unsigned long, const void*, unsigned long);                 // _14
-	virtual bool do_systemTagCode(unsigned short, const void*, unsigned long);      // _18
-	virtual void do_select_begin(unsigned long);                                    // _1C
-	virtual void do_select_end();                                                   // _20
-	virtual void do_select_separate();                                              // _24
-	virtual void do_reset_(const char*) = 0;                                        // _28
-	virtual bool do_setBegin_isReady_() const;                                      // _2C
-	virtual void do_begin_(const void*, const char*)                           = 0; // _30
-	virtual void do_end_()                                                     = 0; // _34
-	virtual bool do_tag_(unsigned long, const void*, unsigned long)            = 0; // _38
-	virtual void do_systemTagCode_(unsigned short, const void*, unsigned long) = 0; // _3C
 
-	void setBegin_messageCode(unsigned short, unsigned short);
-	void setBegin_messageID(unsigned long, unsigned long, bool*);
-	void setBegin_messageCode(unsigned long); // weak
-	TResource* getResource_groupID(unsigned short) const;
-	u32 toMessageCode_messageID(unsigned long, unsigned long, bool*) const;
-	char* on_message_limited(unsigned short) const;        // weak
-	char* on_message(unsigned long) const;                 // weak
-	char* getMessageText_messageCode(unsigned long) const; // weak
+	virtual ~TProcessor();                                     // _08
+	virtual void do_reset();                                   // _0C
+	virtual void do_character(int);                            // _10
+	virtual bool do_tag(u32, const void*, u32);                // _14
+	virtual bool do_systemTagCode(u16, const void*, u32);      // _18
+	virtual void do_select_begin(u32);                         // _1C
+	virtual void do_select_end();                              // _20
+	virtual void do_select_separate();                         // _24
+	virtual void do_reset_(const char*) = 0;                   // _28
+	virtual bool do_setBegin_isReady_() const;                 // _2C
+	virtual void do_begin_(const void*, const char*)      = 0; // _30
+	virtual void do_end_()                                = 0; // _34
+	virtual bool do_tag_(u32, const void*, u32)           = 0; // _38
+	virtual void do_systemTagCode_(u16, const void*, u32) = 0; // _3C
+
+	void setBegin_messageCode(u16, u16);
+	void setBegin_messageID(u32, u32, bool*);
+	void setBegin_messageCode(u32); // weak
+	TResource* getResource_groupID(u16) const;
+	u32 toMessageCode_messageID(u32, u32, bool*) const;
+	char* on_message_limited(u16) const;         // weak
+	char* on_message(u32) const;                 // weak
+	char* getMessageText_messageCode(u32) const; // weak
 	static bool process_onCharacterEnd_normal_(TProcessor*);
 	static bool process_onCharacterEnd_select_(TProcessor*);
 	static char* process_onSelect_limited_(TProcessor*);
@@ -70,23 +71,23 @@ struct TSequenceProcessor : public TProcessor {
 	typedef void OnBranchRegisterCallBack(TSequenceProcessor*, u32);
 	typedef void* ProcessOnJumpCallBack(const TSequenceProcessor*);
 
-	TSequenceProcessor(const JMessage::TReference*, JMessage::TControl*);
+	TSequenceProcessor(const TReference*, TControl*);
 
-	virtual ~TSequenceProcessor();                                              // _08
-	virtual void do_reset_(const char*);                                        // _28
-	virtual bool do_setBegin_isReady_() const;                                  // _2C
-	virtual void do_begin_(const void*, const char*);                           // _30
-	virtual void do_end_();                                                     // _34
-	virtual bool do_tag_(unsigned long, const void*, unsigned long);            // _38
-	virtual void do_systemTagCode_(unsigned short, const void*, unsigned long); // _3C
-	virtual void do_begin(const void*, const char*);                            // _40
-	virtual void do_end();                                                      // _44
-	virtual bool do_isReady();                                                  // _48
-	virtual bool do_jump_isReady();                                             // _4C
-	virtual void do_jump(const void*, const char*);                             // _50
-	virtual void do_branch_query(unsigned short);                               // _54
-	virtual int do_branch_queryResult();                                        // _58
-	virtual void do_branch(const void*, const char*);                           // _5C
+	virtual ~TSequenceProcessor();                         // _08
+	virtual void do_reset_(const char*);                   // _28
+	virtual bool do_setBegin_isReady_() const;             // _2C
+	virtual void do_begin_(const void*, const char*);      // _30
+	virtual void do_end_();                                // _34
+	virtual bool do_tag_(u32, const void*, u32);           // _38
+	virtual void do_systemTagCode_(u16, const void*, u32); // _3C
+	virtual void do_begin(const void*, const char*);       // _40
+	virtual void do_end();                                 // _44
+	virtual bool do_isReady();                             // _48
+	virtual bool do_jump_isReady();                        // _4C
+	virtual void do_jump(const void*, const char*);        // _50
+	virtual void do_branch_query(u16);                     // _54
+	virtual int do_branch_queryResult();                   // _58
+	virtual void do_branch(const void*, const char*);      // _5C
 
 	char* process(const char*);
 	bool on_isReady();
@@ -96,8 +97,8 @@ struct TSequenceProcessor : public TProcessor {
 	void on_branch(const void*, const char*);
 	void process_onJump_limited_(const TSequenceProcessor*);
 	static void* process_onJump_(const TSequenceProcessor*);
-	void process_onBranch_limited_(const TSequenceProcessor*, unsigned long);
-	void process_onBranch_(const TSequenceProcessor*, unsigned long);
+	void process_onBranch_limited_(const TSequenceProcessor*, u32);
+	void process_onBranch_(const TSequenceProcessor*, u32);
 
 	// Unused/inlined:
 	const char* toString_status(int);
@@ -118,16 +119,16 @@ struct TSequenceProcessor : public TProcessor {
 };
 
 struct TRenderingProcessor : public TProcessor {
-	TRenderingProcessor(const JMessage::TReference*);
+	TRenderingProcessor(const TReference*);
 
-	virtual ~TRenderingProcessor();                                             // _08
-	virtual void do_reset_(const char*);                                        // _28
-	virtual void do_begin_(const void*, const char*);                           // _30
-	virtual void do_end_();                                                     // _34
-	virtual bool do_tag_(unsigned long, const void*, unsigned long);            // _38
-	virtual void do_systemTagCode_(unsigned short, const void*, unsigned long); // _3C
-	virtual void do_begin(const void*, const char*);                            // _40
-	virtual void do_end();                                                      // _44
+	virtual ~TRenderingProcessor();                        // _08
+	virtual void do_reset_(const char*);                   // _28
+	virtual void do_begin_(const void*, const char*);      // _30
+	virtual void do_end_();                                // _34
+	virtual bool do_tag_(u32, const void*, u32);           // _38
+	virtual void do_systemTagCode_(u16, const void*, u32); // _3C
+	virtual void do_begin(const void*, const char*);       // _40
+	virtual void do_end();                                 // _44
 
 	void process(const char*);
 
