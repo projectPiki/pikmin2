@@ -113,7 +113,7 @@ void Obstacle::setPower(float)
  * Size:	0000BC
  */
 Farm::Farm()
-    : CNode("農耕")
+    : CNode("農�?")
     , m_modelData(nullptr)
     , m_model(nullptr)
     , m_obstacleRootNode("ObstacleNode")
@@ -620,11 +620,13 @@ lbl_80123DDC:
  */
 void Farm::initAllObjectNodes()
 {
-	for (CNode* node = m_obstacleRootNode.m_child; node != nullptr; node = node->m_next) {
+	FOREACH_NODE(CNode, m_obstacleRootNode.m_child, node)
+	{
 		node->del();
 		delete node;
 	}
-	for (CNode* node = m_plantRootNode.m_child; node != nullptr; node = node->m_next) {
+	FOREACH_NODE(CNode, m_plantRootNode.m_child, node)
+	{
 		node->del();
 		delete node;
 	}
