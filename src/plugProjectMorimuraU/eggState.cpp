@@ -48,7 +48,7 @@ void StateWait::init(Game::EnemyBase* base, Game::StateArg* arg)
  */
 void StateWait::exec(Game::EnemyBase* base)
 {
-	Obj* eggObj = (Obj*)base;
+	Obj* eggObj = static_cast<Obj*>(base);
 
 	if (eggObj->m_health <= 0.0f) {
 		eggObj->genItem();
