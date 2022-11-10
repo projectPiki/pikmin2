@@ -1,6 +1,7 @@
 #include "Game/Creature.h"
 #include "Game/FieldVtxColorMgr.h"
 #include "JSystem/J3D/J3DModel.h"
+#include "JSystem/J3D/J3DModelLoader.h"
 #include "System.h"
 #include "Vector3.h"
 #include "types.h"
