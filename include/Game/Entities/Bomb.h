@@ -19,34 +19,42 @@ struct Obj;
 } // namespace OtakaraBase
 
 namespace Bomb {
-struct FSM;
+struct FSM : public EnemyStateMachine {
+	virtual void init(EnemyBase*); // _08
+
+	// _00		= VTBL
+	// _00-_1C	= EnemyStateMachine
+};
 
 struct Obj : public EnemyBase {
 	Obj();
 
 	//////////////// VTABLE
-	virtual void onInit(CreatureInitArg* settings);         // _30
-	virtual void onKill(CreatureKillArg* settings);         // _34
-	virtual void doEntry();                                 // _40
-	virtual void doSimulation(f32);                         // _4C
-	virtual void doDirectDraw(Graphics& gfx);               // _50
-	virtual void onStartCapture();                          // _94
-	virtual void onEndCapture();                            // _9C
-	virtual bool isUnderground();                           // _D0 (weak)
-	virtual bool isLivingThing();                           // _D4 (weak)
-	virtual void bounceCallback(Sys::Triangle* tri);        // _E8
-	virtual void collisionCallback(CollEvent& event);       // _EC
-	virtual void getShadowParam(ShadowParam& settings);     // _134
-	virtual bool needShadow();                              // _138
-	virtual ~Obj() { }                                      // _1BC (weak)
-	virtual void birth(Vector3f&, f32);                     // _1C0
-	virtual void setInitialSetting(EnemyInitialParamBase*); // _1C4 (weak)
-	virtual void doUpdate();                                // _1CC
-	virtual void doAnimationCullingOff();                   // _1DC
-	virtual void doAnimationCullingOn();                    // _1E0
-	virtual void doDebugDraw(Graphics&);                    // _1EC
-	virtual void setParameters();                           // _228
-	virtual EnemyTypeID::EEnemyTypeID getEnemyTypeID();     // _258 (weak)
+	virtual void onInit(CreatureInitArg* settings);                       // _30
+	virtual void onKill(CreatureKillArg* settings);                       // _34
+	virtual void doEntry();                                               // _40
+	virtual void doSimulation(f32);                                       // _4C
+	virtual void doDirectDraw(Graphics& gfx);                             // _50
+	virtual void onStartCapture();                                        // _94
+	virtual void onEndCapture();                                          // _9C
+	virtual bool isUnderground();                                         // _D0 (weak)
+	virtual bool isLivingThing() { return (m_captureMatrix == nullptr); } // _D4 (weak)
+	virtual void bounceCallback(Sys::Triangle* tri);                      // _E8
+	virtual void collisionCallback(CollEvent& event);                     // _EC
+	virtual void getShadowParam(ShadowParam& settings);                   // _134
+	virtual bool needShadow();                                            // _138
+	virtual ~Obj() { }                                                    // _1BC (weak)
+	virtual void birth(Vector3f&, f32);                                   // _1C0
+	virtual void setInitialSetting(EnemyInitialParamBase*) { }            // _1C4 (weak)
+	virtual void doUpdate();                                              // _1CC
+	virtual void doAnimationCullingOff();                                 // _1DC
+	virtual void doAnimationCullingOn();                                  // _1E0
+	virtual void doDebugDraw(Graphics&);                                  // _1EC
+	virtual void setParameters();                                         // _228
+	virtual EnemyTypeID::EEnemyTypeID getEnemyTypeID()                    // _258 (weak)
+	{
+		return EnemyTypeID::EnemyID_Bomb;
+	}
 	virtual bool damageCallBack(Creature*, f32, CollPart*); // _278
 	virtual bool pressCallBack(Creature*, f32, CollPart*);  // _27C
 	virtual bool bombCallBack(Creature*, Vector3f&, f32);   // _294
@@ -54,13 +62,19 @@ struct Obj : public EnemyBase {
 	virtual void doFinishStoneState();                      // _2A8
 	virtual void doStartMovie();                            // _2F0
 	virtual void doEndMovie();                              // _2F4
-	virtual void setFSM(FSM*);                              // _2F8 (weak)
+	virtual void setFSM(FSM* fsm)                           // _2F8 (weak)
+	{
+		m_FSM = fsm;
+		m_FSM->init(this);
+		m_currentLifecycleState = nullptr;
+	}
 	//////////////// VTABLE END
 
 	void forceBomb();
 	void bombEffInWater();
 	void canEat();
 	bool isAnimStart();
+	bool isBombStart();
 
 	// _00 		= VTBL
 	// _00-_2BC	= EnemyBase
@@ -144,13 +158,6 @@ enum StateID {
 	BOMB_Wait = 0,
 	BOMB_Bomb = 1,
 	BOMB_Count,
-};
-
-struct FSM : public EnemyStateMachine {
-	virtual void init(EnemyBase*); // _08
-
-	// _00		= VTBL
-	// _00-_1C	= EnemyStateMachine
 };
 
 struct State : public EnemyFSMState {
