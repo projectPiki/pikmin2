@@ -182,7 +182,7 @@ struct FixedSizeItemMgr : public BaseItemMgr, public Container<T> {
 	virtual u32 generatorGetID()                                         = 0; // _58
 	virtual BaseItem* generatorBirth(Vector3f&, Vector3f&, GenItemParm*) = 0; // _5C
 	virtual void onCreateModel(SysShape::Model*);                             // _A0
-	virtual T* birth();                                                       // _A4
+	virtual BaseItem* birth();                                                // _A4
 	virtual void kill(T*);                                                    // _A8 (weak)
 	virtual BaseItem* get(void*);                                             // _AC (weak, thunk at _94)
 	virtual void* getNext(void*);                                             // _B0 (weak, thunk at _88)

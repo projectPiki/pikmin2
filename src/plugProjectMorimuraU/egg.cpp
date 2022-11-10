@@ -4,6 +4,7 @@
 #include "Game/gamePlayData.h"
 #include "Game/Entities/TamagoMushi.h"
 #include "Game/generalEnemyMgr.h"
+#include "Game/Entities/PelletNumber.h"
 #include "Dolphin/rand.h"
 
 namespace Game {
@@ -36,7 +37,7 @@ void Obj::onInit(CreatureInitArg* initArg)
 	resetEvent(0, EB_9);
 	setEmotionNone();
 	setEvent(0, EB_BitterImmune);
-	_2BC = 0;
+	m_isFalling = false;
 	m_FSM->start(this, 0, nullptr);
 
 	if (!isBirthTypeDropGroup()) {
@@ -161,7 +162,7 @@ bool Obj::pressCallBack(Creature*, f32, CollPart*) { return false; }
  */
 void Obj::bounceCallback(Sys::Triangle* triangle)
 {
-	if (_2BC != 0 || isBirthTypeDropGroup()) {
+	if (m_isFalling || isBirthTypeDropGroup()) {
 		setEvent(0, EB_LifegaugeVisible);
 		m_health = 0.0f;
 	}
@@ -233,7 +234,7 @@ void Obj::onStartCapture()
 void Obj::onEndCapture()
 {
 	constraintOff();
-	_2BC = 1;
+	m_isFalling = true;
 	setEvent(0, EB_Cullable);
 }
 
@@ -245,7 +246,7 @@ void Obj::onEndCapture()
 void Obj::genItem()
 {
 	TamagoMushi::Obj* mititeGroup;
-	int dropType = 2;
+	int dropType = EGGDROP_SingleNectar;
 	Vector3f velocity(0.0f, 250.0f, 0.0f);
 	Vector3f position = m_position;
 	position.y += 2.0f;
@@ -253,23 +254,23 @@ void Obj::genItem()
 	f32 randVal = randFloat();
 	f32 test    = C_PARMS->m_properParms.m_singleNectarChance.m_value;
 	if (randVal < test) {
-		dropType = 2;
+		dropType = EGGDROP_SingleNectar;
 	} else {
 		test += C_PARMS->m_properParms.m_doubleNectarChance.m_value;
 		if (randVal < test) {
-			dropType = 3;
+			dropType = EGGDROP_DoubleNectar;
 		} else {
 			test += C_PARMS->m_properParms.m_mititesChance.m_value;
 			if (randVal < test) {
-				dropType = 4;
+				dropType = EGGDROP_Mitites;
 			} else {
 				test += C_PARMS->m_properParms.m_spicyChance.m_value;
 				if (randVal < test) {
-					dropType = 5;
+					dropType = EGGDROP_Spicy;
 				} else {
 					test += C_PARMS->m_properParms.m_bitterChance.m_value;
 					if (randVal < test) {
-						dropType = 6;
+						dropType = EGGDROP_Bitter;
 					}
 				}
 			}
@@ -281,57 +282,57 @@ void Obj::genItem()
 	}
 
 	if (C_PARMS->_8D1 != 0) {
-		if (dropType == 5) {
+		if (dropType == EGGDROP_Spicy) {
 			if (!playData->isDemoFlag(DEMO_First_Spicy_Spray_Made)) {
-				dropType = 2;
+				dropType = EGGDROP_SingleNectar;
 			}
-		} else if (dropType == 6 && !playData->isDemoFlag(DEMO_First_Bitter_Spray_Made)) {
-			dropType = 2;
+		} else if (dropType == EGGDROP_Bitter && !playData->isDemoFlag(DEMO_First_Bitter_Spray_Made)) {
+			dropType = EGGDROP_SingleNectar;
 		}
 	}
 
 	mititeGroup = nullptr;
 	Pellet* pellet;
 	switch (dropType) {
-	case 0:
-		PelletNumberInitArg initArg0(1, (int)3.0f * randFloat());
+	case EGGDROP_1Pellets:
+		PelletNumberInitArg initArg0(PELLET_NUMBER_ONE, (int)3.0f * randFloat());
 		pellet = pelletMgr->birth(&initArg0);
 		pellet->setPosition(position, false);
 		pellet->setVelocity(velocity);
 		break;
 
-	case 1:
-		PelletNumberInitArg initArg1(5, (int)3.0f * randFloat());
+	case EGGDROP_5Pellets:
+		PelletNumberInitArg initArg1(PELLET_NUMBER_FIVE, (int)3.0f * randFloat());
 		pellet = pelletMgr->birth(&initArg1);
 		pellet->setPosition(position, false);
 		pellet->setVelocity(velocity);
 		break;
 
-	case 2:
-		ItemHoney::Item* nectar1 = ItemHoney::mgr->birth();
-		if (nectar1) {
-			ItemHoney::Item* nectar = static_cast<ItemHoney::Item*>(nectar1);
+	case EGGDROP_SingleNectar:
+		BaseItem* nectarItem = ItemHoney::mgr->birth();
+		if (nectarItem) {
+			ItemHoney::Item* nectar = static_cast<ItemHoney::Item*>(nectarItem);
 			nectar->init(nullptr);
-			nectar->_1E0 = 0;
+			nectar->m_honeyType = HONEY_Y;
 			nectar->setPosition(position, false);
 			nectar->setVelocity(velocity);
 		}
 		break;
 
-	case 3:
+	case EGGDROP_DoubleNectar:
 		f32 angle = TAU * randFloat();
 
 		for (int i = 0; i < 2; i++) {
-			ItemHoney::Item* nectar1 = ItemHoney::mgr->birth();
-			Vector3f sprayVelocity   = velocity;
+			BaseItem* doubleNectarItem = ItemHoney::mgr->birth();
+			Vector3f sprayVelocity     = velocity;
 
-			if (nectar1) {
-				ItemHoney::Item* nectar = static_cast<ItemHoney::Item*>(nectar1);
+			if (doubleNectarItem) {
+				ItemHoney::Item* nectar = static_cast<ItemHoney::Item*>(doubleNectarItem);
 				f32 theta               = PI * i + angle;
 				sprayVelocity.x         = 50.0f * pikmin2_sinf(theta);
 				sprayVelocity.z         = 50.0f * pikmin2_cosf(theta);
 				nectar->init(nullptr);
-				nectar->_1E0 = 0;
+				nectar->m_honeyType = HONEY_Y;
 				nectar->setPosition(position, false);
 				nectar->setVelocity(sprayVelocity);
 			}
@@ -339,7 +340,7 @@ void Obj::genItem()
 
 		break;
 
-	case 4:
+	case EGGDROP_Mitites:
 		TamagoMushi::Mgr* mititeMgr = static_cast<TamagoMushi::Mgr*>(generalEnemyMgr->getEnemyMgr(EnemyTypeID::EnemyID_TamagoMushi));
 		if (mititeMgr) {
 			EnemyBirthArg birthArg;
@@ -351,11 +352,11 @@ void Obj::genItem()
 		}
 
 		if (mititeGroup == nullptr) {
-			ItemHoney::Item* nectar1 = ItemHoney::mgr->birth();
-			if (nectar1) {
-				ItemHoney::Item* nectar = static_cast<ItemHoney::Item*>(nectar1);
+			BaseItem* mititeBackupItem = ItemHoney::mgr->birth();
+			if (mititeBackupItem) {
+				ItemHoney::Item* nectar = static_cast<ItemHoney::Item*>(mititeBackupItem);
 				nectar->init(nullptr);
-				nectar->_1E0 = 0;
+				nectar->m_honeyType = HONEY_Y;
 				nectar->setPosition(position, false);
 				nectar->setVelocity(velocity);
 			}
@@ -363,21 +364,21 @@ void Obj::genItem()
 
 		break;
 
-	case 5:
-	case 6:
-		ItemHoney::Item* defNectar1 = ItemHoney::mgr->birth();
+	case EGGDROP_Spicy:
+	case EGGDROP_Bitter:
+		BaseItem* sprayItem = ItemHoney::mgr->birth();
 
-		if (defNectar1) {
-			ItemHoney::Item* defNectar = static_cast<ItemHoney::Item*>(defNectar1);
-			defNectar->init(nullptr);
+		if (sprayItem) {
+			ItemHoney::Item* spray = static_cast<ItemHoney::Item*>(sprayItem);
+			spray->init(nullptr);
 
-			defNectar->_1E0 = 1;
-			if (dropType == 6) {
-				defNectar->_1E0 = 2;
+			spray->m_honeyType = HONEY_R;
+			if (dropType == EGGDROP_Bitter) {
+				spray->m_honeyType = HONEY_B;
 			}
 
-			defNectar->setPosition(position, false);
-			defNectar->setVelocity(velocity);
+			spray->setPosition(position, false);
+			spray->setVelocity(velocity);
 		}
 
 		break;

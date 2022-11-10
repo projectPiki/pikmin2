@@ -156,7 +156,7 @@ struct Mgr : public TNodeItemMgr {
 
 	void setupDownFloor(Item*);
 	void setupPlatform(Item*);
-	Item* birth();
+	BaseItem* birth();
 
 	// _00     = VTBL
 	// _00-_88 = TNodeItemMgr

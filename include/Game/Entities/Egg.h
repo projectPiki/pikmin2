@@ -15,6 +15,16 @@
 
 namespace Game {
 namespace Egg {
+enum EggDrop {
+	EGGDROP_1Pellets     = 0,
+	EGGDROP_5Pellets     = 1,
+	EGGDROP_SingleNectar = 2,
+	EGGDROP_DoubleNectar = 3,
+	EGGDROP_Mitites      = 4,
+	EGGDROP_Spicy        = 5,
+	EGGDROP_Bitter       = 6,
+};
+
 struct FSM : public EnemyStateMachine {
 	virtual void init(EnemyBase*); // _08
 
@@ -61,9 +71,9 @@ struct Obj : public EnemyBase {
 
 	// _00 		= VTBL
 	// _00-_2BC	= EnemyBase
-	u8 _2BC;    // _2BC
-	FSM* m_FSM; // _2C0
-	            // _2C4 = PelletView
+	bool m_isFalling; // _2BC, set when released from capture
+	FSM* m_FSM;       // _2C0
+	                  // _2C4 = PelletView
 };
 
 struct Mgr : public EnemyMgrBase {

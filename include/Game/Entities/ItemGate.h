@@ -150,7 +150,7 @@ struct ItemGateMgr : public BaseItemMgr {
 
 	void setupGate(ItemGate*);
 	void setupPlatform(ItemGate*);
-	void birth();
+	BaseItem* birth();
 
 	// _00     = VTBL
 	// _00-_30 = BaseItemMgr

@@ -142,7 +142,7 @@ struct Mgr : public TNodeItemMgr {
 	virtual GenItemParm* generatorNewItemParm();                          // _70
 	virtual BaseItem* doNew();                                            // _A0 (weak)
 	virtual ~Mgr();                                                       // _B8 (weak)
-	virtual Item* birth();                                                // _BC
+	virtual BaseItem* birth();                                            // _BC
 
 	BridgeInfo* getBridgeInfo(int);
 	void createBridgeInfo(int);

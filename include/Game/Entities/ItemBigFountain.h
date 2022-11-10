@@ -155,7 +155,7 @@ struct Mgr : public TNodeItemMgr {
 	virtual BaseItem* doNew();                                            // _A0 (weak)
 	virtual ~Mgr();                                                       // _B8 (weak)
 
-	void birth();
+	BaseItem* birth();
 
 	// _00     = VTBL
 	// _00-_88 = TNodeItemMgr

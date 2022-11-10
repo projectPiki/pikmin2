@@ -68,8 +68,7 @@ struct Item : public CFSMItem {
 
 	bool isShrinking();
 
-	u8 _1E0;      // _1E0
-	u8 _1E1[0x3]; // _1E1 - padding maybe
+	u8 m_honeyType; // _1E0
 };
 
 struct Mgr : public FixedSizeItemMgr<ItemHoney::Item> {
@@ -79,7 +78,7 @@ struct Mgr : public FixedSizeItemMgr<ItemHoney::Item> {
 	virtual u32 generatorGetID();                                         // _58 (weak)
 	virtual BaseItem* generatorBirth(Vector3f&, Vector3f&, GenItemParm*); // _5C
 	virtual void onCreateModel(SysShape::Model*);                         // _A0
-	virtual ItemHoney::Item* birth();                                     // _A4
+	virtual BaseItem* birth();                                            // _A4
 	virtual Item* get(void*);                                             // _AC (weak, thunk at _94)
 	virtual void* getNext(void*);                                         // _B0 (weak, thunk at _88)
 	virtual void* getStart();                                             // _B4 (weak, thunk at _8C)

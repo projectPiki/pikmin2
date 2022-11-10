@@ -173,7 +173,7 @@ struct Mgr : public TNodeItemMgr {
 	// vtable 2
 	virtual BaseItem* doNew() { return new Item(); } // _A0 (weak)
 	virtual ~Mgr() { }                               // _B8 (weak, thunked at _00)
-	virtual Item* birth();                           // _BC (Yes, TNodeItemMgr::birth() isn't virtual, but this is. Deal with it.)
+	virtual BaseItem* birth();                       // _BC (Yes, TNodeItemMgr::birth() isn't virtual, but this is. Deal with it.)
 
 	BarrelParms* m_parms; // _88
 };

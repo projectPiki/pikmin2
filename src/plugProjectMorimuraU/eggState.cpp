@@ -12,7 +12,7 @@ namespace Egg {
  * Address:	8034B3C4
  * Size:	000054
  */
-void FSM::init(Game::EnemyBase* base)
+void FSM::init(Game::EnemyBase* enemy)
 {
 	create(EGG_Count);
 	registerState(new StateWait(EGG_Wait));
@@ -23,8 +23,8 @@ void FSM::init(Game::EnemyBase* base)
  * Address:	8034B418
  * Size:	00003C
  */
-StateWait::StateWait(int id)
-    : State(id)
+StateWait::StateWait(int stateID)
+    : State(stateID)
 {
 	m_name = "wait";
 }
@@ -35,10 +35,10 @@ StateWait::StateWait(int id)
  * Size:	000040
  */
 
-void StateWait::init(Game::EnemyBase* base, Game::StateArg* arg)
+void StateWait::init(EnemyBase* enemy, StateArg* stateArg)
 {
-	base->startMotion(0, nullptr);
-	base->stopMotion();
+	enemy->startMotion(0, nullptr);
+	enemy->stopMotion();
 }
 
 /*
@@ -46,17 +46,15 @@ void StateWait::init(Game::EnemyBase* base, Game::StateArg* arg)
  * Address:	8034B494
  * Size:	0001A8
  */
-void StateWait::exec(Game::EnemyBase* base)
+void StateWait::exec(EnemyBase* enemy)
 {
-	Obj* eggObj = static_cast<Obj*>(base);
-
-	if (eggObj->m_health <= 0.0f) {
-		eggObj->genItem();
+	if (enemy->m_health <= 0.0f) {
+		static_cast<Obj*>(enemy)->genItem();
 
 		Vector3f fxPos;
-		eggObj->getCommonEffectPos(fxPos);
+		enemy->getCommonEffectPos(fxPos);
 
-		EnemyTypeID::EEnemyTypeID id = eggObj->getEnemyTypeID();
+		EnemyTypeID::EEnemyTypeID id = enemy->getEnemyTypeID();
 		efx::ArgEnemyType type(fxPos, id, 1.0f);
 
 		efx::TEggdown eggdown;
@@ -65,20 +63,19 @@ void StateWait::exec(Game::EnemyBase* base)
 		efx::TEnemyBomb enemybomb;
 		enemybomb.create(&type);
 
-		eggObj->m_soundObj->startSound(0x58DC, 0);
+		enemy->m_soundObj->startSound(PSSE_EN_EGG_BREAK, 0);
 
-		eggObj->kill(nullptr);
+		enemy->kill(nullptr);
 	}
 
-	if (eggObj->m_toFlick >= 1.0f) {
-		eggObj->startMotion();
-		eggObj->m_toFlick = 0.0f;
+	if (enemy->m_toFlick >= 1.0f) {
+		enemy->startMotion();
+		enemy->m_toFlick = 0.0f;
 	}
 
-	EnemyAnimKeyEvent* ekEvent = eggObj->m_curAnim;
-	if (ekEvent->m_isRunning && (u32)ekEvent->m_type == 1000) {
-		eggObj->startMotion(0, nullptr);
-		eggObj->stopMotion();
+	if (enemy->m_curAnim->m_isRunning && (u32)enemy->m_curAnim->m_type == KEYEVENT_END) {
+		enemy->startMotion(0, nullptr);
+		enemy->stopMotion();
 	}
 }
 } // namespace Egg
