@@ -6,7 +6,6 @@
 #include "Game/gamePlayData.h"
 #include "Game/gameStages.h"
 #include "JSystem/JUT/JUTException.h"
-#include "kh/MailSaveData.h"
 #include "System.h"
 #include "types.h"
 

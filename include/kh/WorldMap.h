@@ -55,6 +55,7 @@ struct InitArg {
 		m_hasNewPiklopediaEntries    = false;
 		_16                          = 0;
 	}
+
 	JKRHeap* m_heap;                   // _00
 	Stages* m_stages;                  // _04
 	Controller* m_controller;          // _08
@@ -66,8 +67,8 @@ struct InitArg {
 };
 
 struct UpdateArg {
-	CourseInfo* m_courseInfo;
-	int _04;
+	CourseInfo* m_courseInfo; // _00
+	int _04;                  // _04
 };
 
 struct Base : public JKRDisposer {
@@ -80,6 +81,9 @@ struct Base : public JKRDisposer {
 	virtual void draw2nd(Graphics&); // _20 (weak)
 	virtual void draw3rd(Graphics&); // _24 (weak)
 	virtual void draw4th(Graphics&); // _28 (weak)
+
+	// _00     = VTBL
+	// _00-_18 = JKRDisposer
 };
 } // namespace WorldMap
 } // namespace Game
@@ -106,29 +110,29 @@ struct WorldMap : public Game::WorldMap::Base {
 		u8 _0C[8];                                  // _0C
 		Vector2f _14;                               // _14
 		efx2d::WorldMap::T2DOnyonKira* m_onyonKira; // _1C
-		float _20;                                  // _20
-		float _24;                                  // _24
-		float _28;                                  // _28
-		float _2C;                                  // _2C
-		short _30;                                  // _30
+		f32 _20;                                    // _20
+		f32 _24;                                    // _24
+		f32 _28;                                    // _28
+		f32 _2C;                                    // _2C
+		s16 _30;                                    // _30
 	};
 
 	WorldMap();
 
-	~WorldMap();                                     // _00
-	virtual void loadResource();                     // _04
-	virtual void init(Game::WorldMap::InitArg&);     // _08
-	virtual void update(Game::WorldMap::UpdateArg&); // _0C
-	virtual void draw1st(Graphics&);                 // _14
-	virtual void draw2nd(Graphics&);                 // _18
-	virtual void draw3rd(Graphics&);                 // _1C
-	virtual void draw4th(Graphics&);                 // _20
+	virtual ~WorldMap();                             // _08 (weak)
+	virtual void loadResource();                     // _0C
+	virtual void init(Game::WorldMap::InitArg&);     // _10
+	virtual void update(Game::WorldMap::UpdateArg&); // _14
+	virtual void draw1st(Graphics&);                 // _1C
+	virtual void draw2nd(Graphics&);                 // _20
+	virtual void draw3rd(Graphics&);                 // _24
+	virtual void draw4th(Graphics&);                 // _28
 
 	void changeInfo();
 	void changeState();
 	void effectFirstTime();
 	void finish();
-	void getRotDir(const JGeometry::TVec2f&, float);
+	void getRotDir(const JGeometry::TVec2f&, f32);
 	int getTarget();
 	void newMapOpen();
 	void onyonMove();
@@ -138,6 +142,8 @@ struct WorldMap : public Game::WorldMap::Base {
 	void rocketUpdate(J2DPane*);
 	void tag2num(u64);
 
+	// _00     = VTBL
+	// _00-_18 = Game::WorldMap::Base
 	Game::WorldMap::InitArg m_initArg;                         // _18
 	P2DScreen::Mgr_tuning* m_screenKitagawa;                   // _30
 	J2DAnmTransform* m_bckAnm1;                                // _34
@@ -153,34 +159,34 @@ struct WorldMap : public Game::WorldMap::Base {
 	J2DAnmTextureSRTKey* _5C;                                  // _5C
 	J2DAnmTextureSRTKey* _60;                                  // _60
 	og::Screen::ScaleMgr* m_scaleMgr;                          // _64
-	float m_frameOf34;                                         // _68
-	float m_frameOf38;                                         // _6C
-	float m_frameOf3C;                                         // _70
-	float m_frameOf40;                                         // _74
-	float m_frameOf44;                                         // _78
-	float m_frameOf4C;                                         // _7C
-	float m_frameOf50;                                         // _80
-	float m_frameOf58;                                         // _84
-	float m_frameOf5C;                                         // _88
-	float m_frameOf60;                                         // _8C
-	float _90;                                                 // _90
-	float _94;                                                 // _94
-	float _98;                                                 // _98
+	f32 m_frameOf34;                                           // _68
+	f32 m_frameOf38;                                           // _6C
+	f32 m_frameOf3C;                                           // _70
+	f32 m_frameOf40;                                           // _74
+	f32 m_frameOf44;                                           // _78
+	f32 m_frameOf4C;                                           // _7C
+	f32 m_frameOf50;                                           // _80
+	f32 m_frameOf58;                                           // _84
+	f32 m_frameOf5C;                                           // _88
+	f32 m_frameOf60;                                           // _8C
+	f32 _90;                                                   // _90
+	f32 _94;                                                   // _94
+	f32 _98;                                                   // _98
 	Vector2f _9C;                                              // _9C
-	float _A4;                                                 // _A4
-	float _A8;                                                 // _A8
+	f32 _A4;                                                   // _A4
+	f32 _A8;                                                   // _A8
 	Vector2f _AC;                                              // _AC
-	float _B4;                                                 // _B4
-	float _B8;                                                 // _B8
-	float _BC;                                                 // _BC
+	f32 _B4;                                                   // _B4
+	f32 _B8;                                                   // _B8
+	f32 _BC;                                                   // _BC
 	efx2d::WorldMap::T2DRocketGlow* m_rocketGlow;              // _C0
 	efx2d::WorldMap::T2DRocketB* m_rocketB;                    // _C4
 	efx2d::WorldMap::T2DMapFlare* m_mapFlare;                  // _C8
 	efx2d::WorldMap::T2DShstar1* m_shstar1;                    // _CC
-	float _D0;                                                 // _D0
-	float _D4;                                                 // _D4
-	float _D8;                                                 // _D8
-	float _DC;                                                 // _DC
+	f32 _D0;                                                   // _D0
+	f32 _D4;                                                   // _D4
+	f32 _D8;                                                   // _D8
+	f32 _DC;                                                   // _DC
 	Vector2f m_light01Center;                                  // _E0
 	Vector2f m_starCenter;                                     // _E8
 	OnyonDynamics* m_onyonDynamicsArray;                       // _F0

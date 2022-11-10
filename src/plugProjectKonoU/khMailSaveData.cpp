@@ -1,4 +1,4 @@
-#include "kh/MailSaveData.h"
+#include "kh/DayEndResult.h"
 #include "types.h"
 #include "stream.h"
 

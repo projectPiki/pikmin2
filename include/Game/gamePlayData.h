@@ -6,7 +6,7 @@
 #include "Game/PikiContainer.h"
 #include "Game/TekiStat.h"
 #include "id32.h"
-#include "kh/MailSaveData.h"
+#include "kh/DayEndResult.h"
 
 namespace Game {
 struct CourseInfo;

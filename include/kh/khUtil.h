@@ -27,17 +27,19 @@ struct khUtilFadePane : public P2DScreen::CallBackNode {
 		{
 		}
 
-		virtual ~khPaneNode(); // _00
+		virtual ~khPaneNode(); // _08 (weak)
 
+		// _00 = VTBL
 		J2DPane* m_pane;    // _04
 		khPaneNode* m_next; // _08
 	};
 
 	khUtilFadePane(u8);
 
-	virtual ~khUtilFadePane();     // _00
-	virtual void update();         // _08
-	virtual void fadeout_finish(); // _18
+	virtual ~khUtilFadePane();     // _08 (weak)
+	virtual void update();         // _10
+	virtual void fadein_finish();  // _1C (weak)
+	virtual void fadeout_finish(); // _20 (weak)
 
 	void add(J2DPane*);
 	khUtilFadePane* create(P2DScreen::Mgr*, u64, u8);
@@ -45,6 +47,8 @@ struct khUtilFadePane : public P2DScreen::CallBackNode {
 	void fadeout();
 	void set_init_alpha(u8);
 
+	// _00     = VTBL
+	// _00-_1C = P2DScreen::CallBackNode
 	khPaneNode m_paneNode; // _1C
 	int _28;               // _28
 	u8 m_fadePaneAlpha;    // _2C
@@ -52,19 +56,30 @@ struct khUtilFadePane : public P2DScreen::CallBackNode {
 };
 
 struct khUtilFadePaneWM : public khUtilFadePane {
-	virtual void fadeout_finish(); // _18
+	virtual ~khUtilFadePaneWM();   // _08 (weak)
+	virtual void fadeout_finish(); // _20
+
+	// _00     = VTBL
+	// _00-_30 = khUtilFadePane
 };
 
 struct khUtilColorAnm : public P2DScreen::Node {
 	khUtilColorAnm(P2DScreen::Mgr*, u64, int, int);
 
-	virtual ~khUtilColorAnm(); // _00
-	virtual void update();     // _08
-	virtual void do_update();  // _14
+	virtual ~khUtilColorAnm(); // _08 (weak)
+	virtual void update();     // _10 (weak)
+	virtual void do_update();  // _1C (weak)
+
+	// _00     = VTBL
+	// _00-_1C = P2DScreen::Node
 };
 
 struct khUtilColorAnmWM : public khUtilColorAnm {
-	virtual void do_update(); // _14
+	virtual ~khUtilColorAnmWM(); // _08 (weak)
+	virtual void do_update();    // _14
+
+	// _00     = VTBL
+	// _00-_1C = khUtilColorAnm
 };
 } // namespace Screen
 } // namespace kh
