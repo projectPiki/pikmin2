@@ -1,63 +1,17 @@
 #include "types.h"
-
-/*
-    Generated from dpostproc
-
-    .section .rodata  # 0x804732E0 - 0x8049E220
-    .global lbl_8047BE58
-    lbl_8047BE58:
-        .asciz "sekikaobj_large.bmd"
-    .global lbl_8047BE6C
-    lbl_8047BE6C:
-        .asciz "sekikaobj_small.bmd"
-        .4byte 0x456E656D
-        .4byte 0x7953746F
-        .4byte 0x6E653A3A
-        .4byte 0x4D67723A
-        .4byte 0x3A6C6F61
-        .4byte 0x64526573
-        .4byte 0x6F757263
-        .4byte 0x65000000
-        .4byte 0x456E656D
-        .4byte 0x7953746F
-        .4byte 0x6E653A3A
-        .4byte 0x4D67723A
-        .4byte 0x3A73746F
-        .4byte 0x6E654D6F
-        .4byte 0x64656C00
-        .4byte 0x2F656E65
-        .4byte 0x6D792F63
-        .4byte 0x6F6D6D6F
-        .4byte 0x6E2F656E
-        .4byte 0x656D7943
-        .4byte 0x6F6D6D6F
-        .4byte 0x6E2E737A
-        .4byte 0x73000000
-        .4byte 0x456E656D
-        .4byte 0x7953746F
-        .4byte 0x6E653A3A
-        .4byte 0x4D67723A
-        .4byte 0x3A447261
-        .4byte 0x77496E66
-        .4byte 0x6F5F6275
-        .4byte 0x66666572
-        .4byte 0x00000000
-
-    .section .sdata, "wa"  # 0x80514680 - 0x80514D80
-    .global "sStoneMdlName__27@unnamed@enemyStoneMgr_cpp@"
-    "sStoneMdlName__27@unnamed@enemyStoneMgr_cpp@":
-        .4byte lbl_8047BE58
-        .4byte lbl_8047BE6C
-*/
+#include "Game/EnemyStone.h"
+#include "JSystem/J3D/J3DSys.h"
+#include "System.h"
 
 namespace Game {
+namespace EnemyStone {
 
 /*
  * --INFO--
  * Address:	80127C00
  * Size:	000088
  */
-EnemyStone::Mgr::Mgr()
+Mgr::Mgr()
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -102,7 +56,7 @@ EnemyStone::Mgr::Mgr()
  * Address:	80127C88
  * Size:	000174
  */
-void EnemyStone::Mgr::loadResource()
+void Mgr::loadResource()
 {
 	/*
 	stwu     r1, -0x60(r1)
@@ -210,27 +164,27 @@ lbl_80127DB4:
  * Address:	80127DFC
  * Size:	000024
  */
-void EnemyStone::DrawInfo::__defctor()
-{
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	li       r4, 1
-	stw      r0, 0x14(r1)
-	bl       __ct__Q34Game10EnemyStone8DrawInfoFb
-	lwz      r0, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
-}
+// void DrawInfo::__defctor()
+//{
+/*
+stwu     r1, -0x10(r1)
+mflr     r0
+li       r4, 1
+stw      r0, 0x14(r1)
+bl       __ct__Q34Game10EnemyStone8DrawInfoFb
+lwz      r0, 0x14(r1)
+mtlr     r0
+addi     r1, r1, 0x10
+blr
+*/
+//}
 
 /*
  * --INFO--
  * Address:	80127E20
  * Size:	0000F8
  */
-void EnemyStone::Mgr::regist(Game::EnemyStone::Obj*)
+bool Mgr::regist(Obj* stone)
 {
 	/*
 	stwu     r1, -0x30(r1)
@@ -313,7 +267,7 @@ lbl_80127F00:
  * Address:	80127F18
  * Size:	00008C
  */
-void EnemyStone::Mgr::release(Game::EnemyStone::Obj*)
+void Mgr::release(Obj* stone)
 {
 	/*
 	stwu     r1, -0x20(r1)
@@ -367,7 +321,7 @@ lbl_80127F90:
  * Address:	80127FA4
  * Size:	000164
  */
-void EnemyStone::Mgr::draw(Viewport*)
+void Mgr::draw(Viewport* viewport)
 {
 	/*
 	stwu     r1, -0xf0(r1)
@@ -479,4 +433,5 @@ lbl_801280E0:
 	blr
 	*/
 }
+} // namespace EnemyStone
 } // namespace Game
