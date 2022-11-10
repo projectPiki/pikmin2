@@ -296,14 +296,14 @@ void Obj::genItem()
 		Pellet* pellet0 = pelletMgr->birth(&initArg0);
 		pellet0->setPosition(position, false);
 		pellet0->setVelocity(velocity);
-		return;
+		break;
 
 	case 1:
 		PelletNumberInitArg initArg1(5, (int)3.0f * randFloat());
 		Pellet* pellet1 = pelletMgr->birth(&initArg1);
 		pellet1->setPosition(position, false);
 		pellet1->setVelocity(velocity);
-		return;
+		break;
 
 	case 2:
 		ItemHoney::Item* nectar = ItemHoney::mgr->birth();
@@ -313,7 +313,7 @@ void Obj::genItem()
 			nectar->setPosition(position, false);
 			nectar->setVelocity(velocity);
 		}
-		return;
+		break;
 
 	case 3:
 		f32 angle = TAU * randFloat();
@@ -333,7 +333,7 @@ void Obj::genItem()
 			}
 		}
 
-		return;
+		break;
 
 	case 4:
 		TamagoMushi::Mgr* mititeMgr = static_cast<TamagoMushi::Mgr*>(generalEnemyMgr->getEnemyMgr(EnemyTypeID::EnemyID_TamagoMushi));
@@ -356,7 +356,7 @@ void Obj::genItem()
 			}
 		}
 
-		return;
+		break;
 
 	case 5:
 	case 6:
@@ -374,7 +374,7 @@ void Obj::genItem()
 			defNectar->setVelocity(velocity);
 		}
 
-		return;
+		break;
 	}
 	/*
 	stwu     r1, -0xf0(r1)
