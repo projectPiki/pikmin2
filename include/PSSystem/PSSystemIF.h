@@ -19,9 +19,9 @@ namespace PSSystem {
 struct SysIF : public JAIBasic {
 	SysIF(const SetupArg&);
 
-	virtual void makeSequence();          // _08 (weak)
-	virtual void makeSe();                // _0C
-	virtual void makeStream();            // _10 (weak)
+	virtual JAISequence* makeSequence();  // _08 (weak)
+	virtual JAISe* makeSe();              // _0C
+	virtual JAIStream* makeStream();      // _10 (weak)
 	virtual void initIF(const SetupArg&); // _28
 
 	void stopSoundSystem();

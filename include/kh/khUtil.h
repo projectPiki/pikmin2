@@ -42,10 +42,11 @@ struct khUtilFadePane : public P2DScreen::CallBackNode {
 	virtual void fadeout_finish(); // _20 (weak)
 
 	void add(J2DPane*);
-	khUtilFadePane* create(P2DScreen::Mgr*, u64, u8);
 	void fadein();
 	void fadeout();
 	void set_init_alpha(u8);
+
+	static khUtilFadePane* create(P2DScreen::Mgr*, u64, u8);
 
 	// _00     = VTBL
 	// _00-_1C = P2DScreen::CallBackNode

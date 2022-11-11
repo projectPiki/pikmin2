@@ -1,832 +1,38 @@
-#include "types.h"
-
-/*
-    Generated from dpostproc
-
-    .section .ctors, "wa"  # 0x80472F00 - 0x804732C0
-        .4byte __sinit_khDayEndResult_cpp
-
-    .section .rodata  # 0x804732E0 - 0x8049E220
-    .global lbl_80498830
-    lbl_80498830:
-        .4byte 0x6B684461
-        .4byte 0x79456E64
-        .4byte 0x52657375
-        .4byte 0x6C742E63
-        .4byte 0x70700000
-        .4byte 0x72657375
-        .4byte 0x6C745F74
-        .4byte 0x69746C65
-        .4byte 0x2E626C6F
-        .4byte 0x00000000
-        .4byte 0x72657375
-        .4byte 0x6C745F74
-        .4byte 0x69746C65
-        .4byte 0x2E62636B
-        .4byte 0x00000000
-        .4byte 0x72657375
-        .4byte 0x6C745F74
-        .4byte 0x69746C65
-        .4byte 0x2E62706B
-        .4byte 0x00000000
-        .4byte 0x72657375
-        .4byte 0x6C745F69
-        .4byte 0x74656D2E
-        .4byte 0x626C6F00
-        .4byte 0x72657375
-        .4byte 0x6C745F69
-        .4byte 0x74656D2E
-        .4byte 0x62636B00
-        .4byte 0x72657375
-        .4byte 0x6C745F69
-        .4byte 0x74656D2E
-        .4byte 0x62746B00
-        .4byte 0x72657375
-        .4byte 0x6C745F69
-        .4byte 0x74656D2E
-        .4byte 0x62726B00
-        .4byte 0x72657375
-        .4byte 0x6C745F69
-        .4byte 0x74656D5F
-        .4byte 0x636F6E73
-        .4byte 0x74656C6C
-        .4byte 0x6174696F
-        .4byte 0x6E2E626C
-        .4byte 0x6F000000
-        .4byte 0x72657375
-        .4byte 0x6C745F69
-        .4byte 0x74656D5F
-        .4byte 0x636F6E73
-        .4byte 0x74656C6C
-        .4byte 0x6174696F
-        .4byte 0x6E2E6270
-        .4byte 0x6B000000
-    .global lbl_80498900
-    lbl_80498900:
-        .4byte 0x64697370
-        .4byte 0x206D656D
-        .4byte 0x62657220
-        .4byte 0x65727200
-        .4byte 0x69506963
-        .4byte 0x6F6E3030
-        .4byte 0x69506963
-        .4byte 0x6F6E3031
-        .4byte 0x50696E61
-        .4byte 0x6D653030
-        .4byte 0x50696E61
-        .4byte 0x6D653031
-        .4byte 0x00000000
-        .4byte 0x00000000
-        .4byte 0x00000000
-        .4byte 0x00000000
-        .4byte 0x00000000
-        .4byte 0x00000000
-        .4byte 0x00000000
-        .4byte 0x00000000
-        .4byte 0x00000000
-        .4byte 0x00000000
-        .4byte 0x00000000
-        .4byte 0x00000000
-        .4byte 0x72657375
-        .4byte 0x6C745F66
-        .4byte 0x75657461
-        .4byte 0x68657461
-        .4byte 0x2E626C6F
-        .4byte 0x00000000
-        .4byte 0x72657375
-        .4byte 0x6C745F66
-        .4byte 0x75657461
-        .4byte 0x68657461
-        .4byte 0x2E62636B
-        .4byte 0x00000000
-        .4byte 0x72657375
-        .4byte 0x6C745F66
-        .4byte 0x75657461
-        .4byte 0x68657461
-        .4byte 0x2E62746B
-        .4byte 0x00000000
-        .4byte 0x72657375
-        .4byte 0x6C745F66
-        .4byte 0x75657461
-        .4byte 0x68657461
-        .4byte 0x2E62726B
-        .4byte 0x00000000
-        .4byte 0x72657375
-        .4byte 0x6C745F66
-        .4byte 0x75657461
-        .4byte 0x5F636F6E
-        .4byte 0x7374656C
-        .4byte 0x6C617469
-        .4byte 0x6F6E2E62
-        .4byte 0x6C6F0000
-        .4byte 0x72657375
-        .4byte 0x6C745F66
-        .4byte 0x75657461
-        .4byte 0x5F636F6E
-        .4byte 0x7374656C
-        .4byte 0x6C617469
-        .4byte 0x6F6E2E62
-        .4byte 0x706B0000
-        .4byte 0x00000000
-        .4byte 0x00000000
-        .4byte 0x00000000
-        .4byte 0x00000000
-        .4byte 0x00000000
-        .4byte 0x00000000
-        .4byte 0x00000000
-        .4byte 0x00000000
-        .4byte 0x00000000
-        .4byte 0x00000000
-        .4byte 0x00000000
-        .4byte 0x00000000
-        .4byte 0x00000000
-        .4byte 0x00000000
-        .4byte 0x00000000
-        .4byte 0x00000000
-        .4byte 0x00000000
-        .4byte 0x00000000
-        .4byte 0x00000000
-        .4byte 0x00000000
-        .4byte 0x00000000
-        .4byte 0x00000000
-        .4byte 0x00000000
-        .4byte 0x00000000
-        .4byte 0x00000000
-        .4byte 0x00000000
-        .4byte 0x00000000
-        .4byte 0x00000000
-        .4byte 0x00000000
-        .4byte 0x00000000
-        .4byte 0x00000000
-        .4byte 0x00000000
-        .4byte 0x00000000
-        .4byte 0x00000000
-        .4byte 0x00000000
-        .4byte 0x00000000
-        .4byte 0x00000000
-        .4byte 0x00000000
-        .4byte 0x00000000
-        .4byte 0x00000000
-        .4byte 0x00000000
-        .4byte 0x00000000
-        .4byte 0x00000000
-        .4byte 0x00000000
-        .4byte 0x00000000
-        .4byte 0x00000000
-        .4byte 0x00000000
-        .4byte 0x00000000
-        .4byte 0x00000000
-        .4byte 0x00000000
-        .4byte 0x00000000
-        .4byte 0x00000000
-        .4byte 0x00000000
-        .4byte 0x00000000
-        .4byte 0x00000000
-        .4byte 0x00000000
-        .4byte 0x00000000
-        .4byte 0x00000000
-        .4byte 0x00000000
-        .4byte 0x00000000
-        .4byte 0x00000000
-        .4byte 0x00000000
-        .4byte 0x00000000
-        .4byte 0x00000000
-        .4byte 0x72657375
-        .4byte 0x6C745F6D
-        .4byte 0x61696C2E
-        .4byte 0x626C6F00
-        .4byte 0x72657375
-        .4byte 0x6C745F6D
-        .4byte 0x61696C2E
-        .4byte 0x62636B00
-        .4byte 0x72657375
-        .4byte 0x6C745F6D
-        .4byte 0x61696C2E
-        .4byte 0x62746B00
-        .4byte 0x72657375
-        .4byte 0x6C745F6D
-        .4byte 0x61696C2E
-        .4byte 0x62726B00
-        .4byte 0x72657375
-        .4byte 0x6C745F6D
-        .4byte 0x61696C65
-        .4byte 0x5F626967
-        .4byte 0x5F69636F
-        .4byte 0x6E2E626C
-        .4byte 0x6F000000
-        .4byte 0x72657375
-        .4byte 0x6C745F6D
-        .4byte 0x61696C65
-        .4byte 0x5F626967
-        .4byte 0x5F69636F
-        .4byte 0x6E2E6263
-        .4byte 0x6B000000
-        .4byte 0x72657375
-        .4byte 0x6C745F6D
-        .4byte 0x61696C5F
-        .4byte 0x636F6E73
-        .4byte 0x74656C6C
-        .4byte 0x6174696F
-        .4byte 0x6E2E626C
-        .4byte 0x6F000000
-        .4byte 0x72657375
-        .4byte 0x6C745F6D
-        .4byte 0x61696C5F
-        .4byte 0x636F6E73
-        .4byte 0x74656C6C
-        .4byte 0x6174696F
-        .4byte 0x6E2E6270
-        .4byte 0x6B000000
-        .4byte 0x25732530
-        .4byte 0x3033642E
-        .4byte 0x62746900
-        .4byte 0x00000000
-        .4byte 0x6E756B69
-        .4byte 0x5F746578
-        .4byte 0x65666563
-        .4byte 0x745F3030
-        .4byte 0x65666563
-        .4byte 0x745F3031
-        .4byte 0x00000000
-        .4byte 0x00000000
-        .4byte 0x72657375
-        .4byte 0x6C745F74
-        .4byte 0x69746C65
-        .4byte 0x5F6E6577
-        .4byte 0x2E626C6F
-        .4byte 0x00000000
-        .4byte 0x72657375
-        .4byte 0x6C745F74
-        .4byte 0x69746C65
-        .4byte 0x5F6E6577
-        .4byte 0x2E62636B
-        .4byte 0x00000000
-        .4byte 0x72657375
-        .4byte 0x6C745F74
-        .4byte 0x69746C65
-        .4byte 0x5F6E6577
-        .4byte 0x2E62746B
-        .4byte 0x00000000
-        .4byte 0x2F757365
-        .4byte 0x722F4B6F
-        .4byte 0x6F6E6F2F
-        .4byte 0x6D61696C
-        .4byte 0x5F746162
-        .4byte 0x6C652E73
-        .4byte 0x7A730000
-        .4byte 0x6D61696C
-        .4byte 0x5F746162
-        .4byte 0x6C652E62
-        .4byte 0x696E0000
-        .4byte 0x2F757365
-        .4byte 0x722F4B6F
-        .4byte 0x6F6E6F2F
-        .4byte 0x6D61696C
-        .4byte 0x5F69636F
-        .4byte 0x6E2E737A
-        .4byte 0x73000000
-        .4byte 0x6E6F2065
-        .4byte 0x78697374
-        .4byte 0x00000000
-        .4byte 0x72657375
-        .4byte 0x6C745F6D
-        .4byte 0x61696C2E
-        .4byte 0x737A7300
-        .4byte 0x73637265
-        .4byte 0x656E4F62
-        .4byte 0x6A2E6800
-        .asciz "P2Assert"
-        .skip 3
-        .4byte 0x00000000
-
-    .section .data, "wa"  # 0x8049E220 - 0x804EFC20
-    .global arrow__Q22kh6Screen
-    arrow__Q22kh6Screen:
-        .4byte 0x004E7961
-        .4byte 0x6A693031
-        .4byte 0x004E7961
-        .4byte 0x6A693032
-        .4byte 0x004E7961
-        .4byte 0x6A693033
-        .4byte 0x004E7961
-        .4byte 0x6A693034
-        .4byte 0x004E7961
-        .4byte 0x6A693035
-        .4byte 0x004E7961
-        .4byte 0x6A693036
-    .global lbl_804EADA8
-    lbl_804EADA8:
-        .4byte lbl_80408AB8
-        .4byte lbl_80408AC4
-        .4byte lbl_80408AD0
-        .4byte lbl_80408ADC
-        .4byte lbl_80408AE8
-        .4byte lbl_80408AF4
-        .4byte lbl_80408B00
-        .4byte lbl_80408B0C
-    .global __vt__Q32kh6Screen21SceneDayEndResultMail
-    __vt__Q32kh6Screen21SceneDayEndResultMail:
-        .4byte 0
-        .4byte 0
-        .4byte getSceneType__Q32kh6Screen21SceneDayEndResultMailFv
-        .4byte getOwnerID__Q32kh6Screen21SceneDayEndResultMailFv
-        .4byte getMemberID__Q32kh6Screen21SceneDayEndResultMailFv
-        .4byte isUseBackupSceneInfo__Q26Screen9SceneBaseFv
-        .4byte isDrawInDemo__Q26Screen9SceneBaseCFv
-        .4byte getResName__Q32kh6Screen21SceneDayEndResultMailCFv
-        .4byte doCreateObj__Q32kh6Screen21SceneDayEndResultMailFP10JKRArchive
-        .4byte
-   doUserCallBackFunc__Q32kh6Screen21SceneDayEndResultMailFPQ28Resource10MgrCommand
-        .4byte setPort__Q26Screen9SceneBaseFR8Graphics
-        .4byte doUpdateActive__Q26Screen9SceneBaseFv
-        .4byte doConfirmSetScene__Q26Screen9SceneBaseFRQ26Screen11SetSceneArg
-        .4byte
-   doConfirmStartScene__Q26Screen9SceneBaseFPQ26Screen13StartSceneArg .4byte
-   doConfirmEndScene__Q26Screen9SceneBaseFRPQ26Screen11EndSceneArg .4byte
-   doStart__Q26Screen9SceneBaseFPQ26Screen13StartSceneArg .4byte
-   doEnd__Q26Screen9SceneBaseFPQ26Screen11EndSceneArg .4byte
-   setDefaultDispMember__Q26Screen9SceneBaseFv .4byte
-   doSetBackupScene__Q26Screen9SceneBaseFRQ26Screen11SetSceneArg .4byte
-   doGetFinishState__Q26Screen9SceneBaseFv .global
-   __vt__Q32kh6Screen19ObjDayEndResultTitl
-    __vt__Q32kh6Screen19ObjDayEndResultTitl:
-        .4byte 0
-        .4byte 0
-        .4byte __dt__Q32kh6Screen19ObjDayEndResultTitlFv
-        .4byte getChildCount__5CNodeFv
-        .4byte 0
-        .4byte 0
-        .4byte "@24@__dt__Q32kh6Screen19ObjDayEndResultTitlFv"
-        .4byte update__Q26Screen7ObjBaseFv
-        .4byte draw__Q26Screen7ObjBaseFR8Graphics
-        .4byte start__Q26Screen7ObjBaseFPCQ26Screen13StartSceneArg
-        .4byte end__Q26Screen7ObjBaseFPCQ26Screen11EndSceneArg
-        .4byte setOwner__Q26Screen7ObjBaseFPQ26Screen9SceneBase
-        .4byte getOwner__Q26Screen7ObjBaseCFv
-        .4byte create__Q26Screen7ObjBaseFP10JKRArchive
-        .4byte confirmSetScene__Q26Screen7ObjBaseFRQ26Screen11SetSceneArg
-        .4byte confirmStartScene__Q26Screen7ObjBaseFPQ26Screen13StartSceneArg
-        .4byte confirmEndScene__Q26Screen7ObjBaseFPQ26Screen11EndSceneArg
-        .4byte doStart__Q26Screen7ObjBaseFPCQ26Screen13StartSceneArg
-        .4byte doEnd__Q26Screen7ObjBaseFPCQ26Screen11EndSceneArg
-        .4byte doCreate__Q32kh6Screen19ObjDayEndResultTitlFP10JKRArchive
-        .4byte doUpdateFadein__Q32kh6Screen19ObjDayEndResultTitlFv
-        .4byte doUpdateFadeinFinish__Q26Screen7ObjBaseFv
-        .4byte doUpdate__Q32kh6Screen19ObjDayEndResultTitlFv
-        .4byte doUpdateFinish__Q26Screen7ObjBaseFv
-        .4byte doUpdateFadeout__Q32kh6Screen19ObjDayEndResultTitlFv
-        .4byte doUpdateFadeoutFinish__Q32kh6Screen19ObjDayEndResultTitlFv
-        .4byte doDraw__Q32kh6Screen19ObjDayEndResultTitlFR8Graphics
-        .4byte doConfirmSetScene__Q26Screen7ObjBaseFRQ26Screen11SetSceneArg
-        .4byte doConfirmStartScene__Q26Screen7ObjBaseFPQ26Screen13StartSceneArg
-        .4byte doConfirmEndScene__Q26Screen7ObjBaseFRPQ26Screen11EndSceneArg
-    .global __vt__Q32kh6Screen19ObjDayEndResultMail
-    __vt__Q32kh6Screen19ObjDayEndResultMail:
-        .4byte 0
-        .4byte 0
-        .4byte __dt__Q32kh6Screen19ObjDayEndResultMailFv
-        .4byte getChildCount__5CNodeFv
-        .4byte 0
-        .4byte 0
-        .4byte "@24@__dt__Q32kh6Screen19ObjDayEndResultMailFv"
-        .4byte update__Q26Screen7ObjBaseFv
-        .4byte draw__Q26Screen7ObjBaseFR8Graphics
-        .4byte start__Q26Screen7ObjBaseFPCQ26Screen13StartSceneArg
-        .4byte end__Q26Screen7ObjBaseFPCQ26Screen11EndSceneArg
-        .4byte setOwner__Q26Screen7ObjBaseFPQ26Screen9SceneBase
-        .4byte getOwner__Q26Screen7ObjBaseCFv
-        .4byte create__Q26Screen7ObjBaseFP10JKRArchive
-        .4byte confirmSetScene__Q26Screen7ObjBaseFRQ26Screen11SetSceneArg
-        .4byte confirmStartScene__Q26Screen7ObjBaseFPQ26Screen13StartSceneArg
-        .4byte confirmEndScene__Q26Screen7ObjBaseFPQ26Screen11EndSceneArg
-        .4byte
-   doStart__Q32kh6Screen19ObjDayEndResultMailFPCQ26Screen13StartSceneArg .4byte
-   doEnd__Q26Screen7ObjBaseFPCQ26Screen11EndSceneArg .4byte
-   doCreate__Q32kh6Screen19ObjDayEndResultMailFP10JKRArchive .4byte
-   doUpdateFadein__Q32kh6Screen19ObjDayEndResultMailFv .4byte
-   doUpdateFadeinFinish__Q32kh6Screen19ObjDayEndResultBaseFv .4byte
-   doUpdate__Q32kh6Screen19ObjDayEndResultMailFv .4byte
-   doUpdateFinish__Q32kh6Screen19ObjDayEndResultBaseFv .4byte
-   doUpdateFadeout__Q32kh6Screen19ObjDayEndResultMailFv .4byte
-   doUpdateFadeoutFinish__Q26Screen7ObjBaseFv .4byte
-   doDraw__Q32kh6Screen19ObjDayEndResultMailFR8Graphics .4byte
-   doConfirmSetScene__Q26Screen7ObjBaseFRQ26Screen11SetSceneArg .4byte
-   doConfirmStartScene__Q26Screen7ObjBaseFPQ26Screen13StartSceneArg .4byte
-   doConfirmEndScene__Q26Screen7ObjBaseFRPQ26Screen11EndSceneArg .4byte
-   updateCommon__Q32kh6Screen19ObjDayEndResultMailFv .4byte
-   getFadeinUpMinFrm__Q32kh6Screen19ObjDayEndResultMailCFv .4byte
-   getFadeinUpMaxFrm__Q32kh6Screen19ObjDayEndResultMailCFv .4byte
-   getFadeoutUpMinFrm__Q32kh6Screen19ObjDayEndResultMailCFv .4byte
-   getFadeoutUpMaxFrm__Q32kh6Screen19ObjDayEndResultMailCFv .4byte
-   getFadeinDownMinFrm__Q32kh6Screen19ObjDayEndResultMailCFv .4byte
-   getFadeinDownMaxFrm__Q32kh6Screen19ObjDayEndResultMailCFv .4byte
-   getFadeoutDownMinFrm__Q32kh6Screen19ObjDayEndResultMailCFv .4byte
-   getFadeoutDownMaxFrm__Q32kh6Screen19ObjDayEndResultMailCFv .4byte
-   getStarWTagNum__Q32kh6Screen19ObjDayEndResultMailCFv .4byte
-   getPStarWMinFrm__Q32kh6Screen19ObjDayEndResultMailCFv .4byte
-   getPStarWMaxFrm__Q32kh6Screen19ObjDayEndResultMailCFv .global
-   __vt__Q32kh6Screen20SArgDayEndResultItem
-    __vt__Q32kh6Screen20SArgDayEndResultItem:
-        .4byte 0
-        .4byte 0
-        .4byte getSceneType__Q32kh6Screen20SArgDayEndResultItemCFv
-        .4byte getClassSize__Q32kh6Screen20SArgDayEndResultItemFv
-    .global __vt__Q32kh6Screen20SArgDayEndResultMail
-    __vt__Q32kh6Screen20SArgDayEndResultMail:
-        .4byte 0
-        .4byte 0
-        .4byte getSceneType__Q32kh6Screen20SArgDayEndResultMailCFv
-        .4byte getClassSize__Q32kh6Screen20SArgDayEndResultMailFv
-    .global __vt__Q32kh6Screen19ObjDayEndResultIncP
-    __vt__Q32kh6Screen19ObjDayEndResultIncP:
-        .4byte 0
-        .4byte 0
-        .4byte __dt__Q32kh6Screen19ObjDayEndResultIncPFv
-        .4byte getChildCount__5CNodeFv
-        .4byte 0
-        .4byte 0
-        .4byte "@24@__dt__Q32kh6Screen19ObjDayEndResultIncPFv"
-        .4byte update__Q26Screen7ObjBaseFv
-        .4byte draw__Q26Screen7ObjBaseFR8Graphics
-        .4byte start__Q26Screen7ObjBaseFPCQ26Screen13StartSceneArg
-        .4byte end__Q26Screen7ObjBaseFPCQ26Screen11EndSceneArg
-        .4byte setOwner__Q26Screen7ObjBaseFPQ26Screen9SceneBase
-        .4byte getOwner__Q26Screen7ObjBaseCFv
-        .4byte create__Q26Screen7ObjBaseFP10JKRArchive
-        .4byte confirmSetScene__Q26Screen7ObjBaseFRQ26Screen11SetSceneArg
-        .4byte confirmStartScene__Q26Screen7ObjBaseFPQ26Screen13StartSceneArg
-        .4byte confirmEndScene__Q26Screen7ObjBaseFPQ26Screen11EndSceneArg
-        .4byte
-   doStart__Q32kh6Screen19ObjDayEndResultBaseFPCQ26Screen13StartSceneArg .4byte
-   doEnd__Q26Screen7ObjBaseFPCQ26Screen11EndSceneArg .4byte
-   doCreate__Q32kh6Screen19ObjDayEndResultIncPFP10JKRArchive .4byte
-   doUpdateFadein__Q32kh6Screen19ObjDayEndResultIncPFv .4byte
-   doUpdateFadeinFinish__Q32kh6Screen19ObjDayEndResultBaseFv .4byte
-   doUpdate__Q32kh6Screen19ObjDayEndResultIncPFv .4byte
-   doUpdateFinish__Q32kh6Screen19ObjDayEndResultBaseFv .4byte
-   doUpdateFadeout__Q32kh6Screen19ObjDayEndResultIncPFv .4byte
-   doUpdateFadeoutFinish__Q26Screen7ObjBaseFv .4byte
-   doDraw__Q32kh6Screen19ObjDayEndResultIncPFR8Graphics .4byte
-   doConfirmSetScene__Q26Screen7ObjBaseFRQ26Screen11SetSceneArg .4byte
-   doConfirmStartScene__Q26Screen7ObjBaseFPQ26Screen13StartSceneArg .4byte
-   doConfirmEndScene__Q26Screen7ObjBaseFRPQ26Screen11EndSceneArg .4byte
-   updateCommon__Q32kh6Screen19ObjDayEndResultIncPFv .4byte
-   getFadeinUpMinFrm__Q32kh6Screen19ObjDayEndResultIncPCFv .4byte
-   getFadeinUpMaxFrm__Q32kh6Screen19ObjDayEndResultIncPCFv .4byte
-   getFadeoutUpMinFrm__Q32kh6Screen19ObjDayEndResultIncPCFv .4byte
-   getFadeoutUpMaxFrm__Q32kh6Screen19ObjDayEndResultIncPCFv .4byte
-   getFadeinDownMinFrm__Q32kh6Screen19ObjDayEndResultIncPCFv .4byte
-   getFadeinDownMaxFrm__Q32kh6Screen19ObjDayEndResultIncPCFv .4byte
-   getFadeoutDownMinFrm__Q32kh6Screen19ObjDayEndResultIncPCFv .4byte
-   getFadeoutDownMaxFrm__Q32kh6Screen19ObjDayEndResultIncPCFv .4byte
-   getStarWTagNum__Q32kh6Screen19ObjDayEndResultIncPCFv .4byte
-   getPStarWMinFrm__Q32kh6Screen19ObjDayEndResultIncPCFv .4byte
-   getPStarWMaxFrm__Q32kh6Screen19ObjDayEndResultIncPCFv .global
-   __vt__Q32kh6Screen20SArgDayEndResultIncP
-    __vt__Q32kh6Screen20SArgDayEndResultIncP:
-        .4byte 0
-        .4byte 0
-        .4byte getSceneType__Q32kh6Screen20SArgDayEndResultIncPCFv
-        .4byte getClassSize__Q32kh6Screen20SArgDayEndResultIncPFv
-    .global __vt__Q32kh6Screen20SArgDayEndResultBase
-    __vt__Q32kh6Screen20SArgDayEndResultBase:
-        .4byte 0
-        .4byte 0
-        .4byte getSceneType__Q26Screen12SceneArgBaseCFv
-        .4byte getClassSize__Q32kh6Screen20SArgDayEndResultBaseFv
-    .global __vt__Q32kh6Screen19ObjDayEndResultItem
-    __vt__Q32kh6Screen19ObjDayEndResultItem:
-        .4byte 0
-        .4byte 0
-        .4byte __dt__Q32kh6Screen19ObjDayEndResultItemFv
-        .4byte getChildCount__5CNodeFv
-        .4byte 0
-        .4byte 0
-        .4byte "@24@__dt__Q32kh6Screen19ObjDayEndResultItemFv"
-        .4byte update__Q26Screen7ObjBaseFv
-        .4byte draw__Q26Screen7ObjBaseFR8Graphics
-        .4byte start__Q26Screen7ObjBaseFPCQ26Screen13StartSceneArg
-        .4byte end__Q26Screen7ObjBaseFPCQ26Screen11EndSceneArg
-        .4byte setOwner__Q26Screen7ObjBaseFPQ26Screen9SceneBase
-        .4byte getOwner__Q26Screen7ObjBaseCFv
-        .4byte create__Q26Screen7ObjBaseFP10JKRArchive
-        .4byte confirmSetScene__Q26Screen7ObjBaseFRQ26Screen11SetSceneArg
-        .4byte confirmStartScene__Q26Screen7ObjBaseFPQ26Screen13StartSceneArg
-        .4byte confirmEndScene__Q26Screen7ObjBaseFPQ26Screen11EndSceneArg
-        .4byte
-   doStart__Q32kh6Screen19ObjDayEndResultItemFPCQ26Screen13StartSceneArg .4byte
-   doEnd__Q26Screen7ObjBaseFPCQ26Screen11EndSceneArg .4byte
-   doCreate__Q32kh6Screen19ObjDayEndResultItemFP10JKRArchive .4byte
-   doUpdateFadein__Q32kh6Screen19ObjDayEndResultItemFv .4byte
-   doUpdateFadeinFinish__Q32kh6Screen19ObjDayEndResultBaseFv .4byte
-   doUpdate__Q32kh6Screen19ObjDayEndResultItemFv .4byte
-   doUpdateFinish__Q32kh6Screen19ObjDayEndResultBaseFv .4byte
-   doUpdateFadeout__Q32kh6Screen19ObjDayEndResultItemFv .4byte
-   doUpdateFadeoutFinish__Q26Screen7ObjBaseFv .4byte
-   doDraw__Q32kh6Screen19ObjDayEndResultItemFR8Graphics .4byte
-   doConfirmSetScene__Q26Screen7ObjBaseFRQ26Screen11SetSceneArg .4byte
-   doConfirmStartScene__Q26Screen7ObjBaseFPQ26Screen13StartSceneArg .4byte
-   doConfirmEndScene__Q26Screen7ObjBaseFRPQ26Screen11EndSceneArg .4byte
-   updateCommon__Q32kh6Screen19ObjDayEndResultItemFv .4byte
-   getFadeinUpMinFrm__Q32kh6Screen19ObjDayEndResultItemCFv .4byte
-   getFadeinUpMaxFrm__Q32kh6Screen19ObjDayEndResultItemCFv .4byte
-   getFadeoutUpMinFrm__Q32kh6Screen19ObjDayEndResultItemCFv .4byte
-   getFadeoutUpMaxFrm__Q32kh6Screen19ObjDayEndResultItemCFv .4byte
-   getFadeinDownMinFrm__Q32kh6Screen19ObjDayEndResultItemCFv .4byte
-   getFadeinDownMaxFrm__Q32kh6Screen19ObjDayEndResultItemCFv .4byte
-   getFadeoutDownMinFrm__Q32kh6Screen19ObjDayEndResultItemCFv .4byte
-   getFadeoutDownMaxFrm__Q32kh6Screen19ObjDayEndResultItemCFv .4byte
-   getStarWTagNum__Q32kh6Screen19ObjDayEndResultItemCFv .4byte
-   getPStarWMinFrm__Q32kh6Screen19ObjDayEndResultItemCFv .4byte
-   getPStarWMaxFrm__Q32kh6Screen19ObjDayEndResultItemCFv .global
-   __vt__Q32kh6Screen19ObjDayEndResultBase
-    __vt__Q32kh6Screen19ObjDayEndResultBase:
-        .4byte 0
-        .4byte 0
-        .4byte __dt__Q32kh6Screen19ObjDayEndResultBaseFv
-        .4byte getChildCount__5CNodeFv
-        .4byte 0
-        .4byte 0
-        .4byte "@24@__dt__Q32kh6Screen19ObjDayEndResultBaseFv"
-        .4byte update__Q26Screen7ObjBaseFv
-        .4byte draw__Q26Screen7ObjBaseFR8Graphics
-        .4byte start__Q26Screen7ObjBaseFPCQ26Screen13StartSceneArg
-        .4byte end__Q26Screen7ObjBaseFPCQ26Screen11EndSceneArg
-        .4byte setOwner__Q26Screen7ObjBaseFPQ26Screen9SceneBase
-        .4byte getOwner__Q26Screen7ObjBaseCFv
-        .4byte create__Q26Screen7ObjBaseFP10JKRArchive
-        .4byte confirmSetScene__Q26Screen7ObjBaseFRQ26Screen11SetSceneArg
-        .4byte confirmStartScene__Q26Screen7ObjBaseFPQ26Screen13StartSceneArg
-        .4byte confirmEndScene__Q26Screen7ObjBaseFPQ26Screen11EndSceneArg
-        .4byte
-   doStart__Q32kh6Screen19ObjDayEndResultBaseFPCQ26Screen13StartSceneArg .4byte
-   doEnd__Q26Screen7ObjBaseFPCQ26Screen11EndSceneArg .4byte
-   doCreate__Q32kh6Screen19ObjDayEndResultBaseFP10JKRArchive .4byte
-   doUpdateFadein__Q32kh6Screen19ObjDayEndResultBaseFv .4byte
-   doUpdateFadeinFinish__Q32kh6Screen19ObjDayEndResultBaseFv .4byte
-   doUpdate__Q26Screen7ObjBaseFv .4byte
-   doUpdateFinish__Q32kh6Screen19ObjDayEndResultBaseFv .4byte
-   doUpdateFadeout__Q32kh6Screen19ObjDayEndResultBaseFv .4byte
-   doUpdateFadeoutFinish__Q26Screen7ObjBaseFv .4byte
-   doDraw__Q32kh6Screen19ObjDayEndResultBaseFR8Graphics .4byte
-   doConfirmSetScene__Q26Screen7ObjBaseFRQ26Screen11SetSceneArg .4byte
-   doConfirmStartScene__Q26Screen7ObjBaseFPQ26Screen13StartSceneArg .4byte
-   doConfirmEndScene__Q26Screen7ObjBaseFRPQ26Screen11EndSceneArg .4byte
-   updateCommon__Q32kh6Screen19ObjDayEndResultBaseFv .4byte 0 .4byte 0 .4byte 0
-        .4byte 0
-        .4byte 0
-        .4byte 0
-        .4byte 0
-        .4byte 0
-        .4byte 0
-        .4byte 0
-        .4byte 0
-    .global __vt__Q32kh6Screen20DispDayEndResultMail
-    __vt__Q32kh6Screen20DispDayEndResultMail:
-        .4byte 0
-        .4byte 0
-        .4byte getSize__Q32kh6Screen20DispDayEndResultMailFv
-        .4byte getOwnerID__Q32kh6Screen20DispDayEndResultMailFv
-        .4byte getMemberID__Q32kh6Screen20DispDayEndResultMailFv
-        .4byte doSetSubMemberAll__Q32og6Screen14DispMemberBaseFv
-    .global __vt__Q32kh6Screen20DispDayEndResultIncP
-    __vt__Q32kh6Screen20DispDayEndResultIncP:
-        .4byte 0
-        .4byte 0
-        .4byte getSize__Q32kh6Screen20DispDayEndResultIncPFv
-        .4byte getOwnerID__Q32kh6Screen20DispDayEndResultIncPFv
-        .4byte getMemberID__Q32kh6Screen20DispDayEndResultIncPFv
-        .4byte doSetSubMemberAll__Q32og6Screen14DispMemberBaseFv
-    .global __vt__Q32kh6Screen20DispDayEndResultItem
-    __vt__Q32kh6Screen20DispDayEndResultItem:
-        .4byte 0
-        .4byte 0
-        .4byte getSize__Q32kh6Screen20DispDayEndResultItemFv
-        .4byte getOwnerID__Q32kh6Screen20DispDayEndResultItemFv
-        .4byte getMemberID__Q32kh6Screen20DispDayEndResultItemFv
-        .4byte doSetSubMemberAll__Q32og6Screen14DispMemberBaseFv
-
-    .section .bss  # 0x804EFC20 - 0x8051467C
-    .global msVal__Q32kh6Screen19ObjDayEndResultBase
-    msVal__Q32kh6Screen19ObjDayEndResultBase:
-        .skip 0x54
-
-    .section .sbss # 0x80514D80 - 0x80516360
-    .global msVal__Q32kh6Screen19ObjDayEndResultTitl
-    msVal__Q32kh6Screen19ObjDayEndResultTitl:
-        .skip 0x8
-
-    .section .sdata2, "a"     # 0x80516360 - 0x80520E40
-    .global lbl_805200A8
-    lbl_805200A8:
-        .4byte 0x00000000
-    .global lbl_805200AC
-    lbl_805200AC:
-        .4byte 0x437F0000
-    .global lbl_805200B0
-    lbl_805200B0:
-        .float 1.0
-        .4byte 0x00000000
-    .global lbl_805200B8
-    lbl_805200B8:
-        .4byte 0x43300000
-        .4byte 0x80000000
-    .global lbl_805200C0
-    lbl_805200C0:
-        .4byte 0x40000000
-        .4byte 0x00000000
-    .global lbl_805200C8
-    lbl_805200C8:
-        .4byte 0x43300000
-        .4byte 0x00000000
-    .global lbl_805200D0
-    lbl_805200D0:
-        .float 0.5
-    .global lbl_805200D4
-    lbl_805200D4:
-        .4byte 0x43C78000
-    .global lbl_805200D8
-    lbl_805200D8:
-        .4byte 0x43CA0000
-    .global lbl_805200DC
-    lbl_805200DC:
-        .4byte 0x40200000
-    .global lbl_805200E0
-    lbl_805200E0:
-        .4byte 0x420C0000
-    .global lbl_805200E4
-    lbl_805200E4:
-        .float 0.3
-    .global lbl_805200E8
-    lbl_805200E8:
-        .4byte 0x41F00000
-    .global lbl_805200EC
-    lbl_805200EC:
-        .4byte 0x43CC8000
-    .global lbl_805200F0
-    lbl_805200F0:
-        .4byte 0x43AE8000
-    .global lbl_805200F4
-    lbl_805200F4:
-        .4byte 0x43AC0000
-    .global lbl_805200F8
-    lbl_805200F8:
-        .4byte 0x3CA3D70A
-    .global lbl_805200FC
-    lbl_805200FC:
-        .float 0.1
-    .global lbl_80520100
-    lbl_80520100:
-        .4byte 0x00000000
-    .global lbl_80520104
-    lbl_80520104:
-        .4byte 0x6661696C
-        .4byte 0x65640000
-    .global lbl_8052010C
-    lbl_8052010C:
-        .4byte 0x6572726F
-        .4byte 0x72000000
-    .global lbl_80520114
-    lbl_80520114:
-        .4byte 0x47000000
-    .global lbl_80520118
-    lbl_80520118:
-        .4byte 0x42000000
-    .global lbl_8052011C
-    lbl_8052011C:
-        .4byte 0x42DA0000
-    .global lbl_80520120
-    lbl_80520120:
-        .4byte 0x43150000
-    .global lbl_80520124
-    lbl_80520124:
-        .4byte 0x43290000
-    .global lbl_80520128
-    lbl_80520128:
-        .4byte 0x434D0000
-    .global lbl_8052012C
-    lbl_8052012C:
-        .4byte 0x43840000
-    .global lbl_80520130
-    lbl_80520130:
-        .4byte 0x43958000
-    .global lbl_80520134
-    lbl_80520134:
-        .4byte 0x426C0000
-    .global lbl_80520138
-    lbl_80520138:
-        .4byte 0x42E80000
-    .global lbl_8052013C
-    lbl_8052013C:
-        .4byte 0x43110000
-    .global lbl_80520140
-    lbl_80520140:
-        .4byte 0x432A0000
-    .global lbl_80520144
-    lbl_80520144:
-        .4byte 0x43870000
-    .global lbl_80520148
-    lbl_80520148:
-        .4byte 0x41E80000
-    .global lbl_8052014C
-    lbl_8052014C:
-        .4byte 0x434A0000
-    .global lbl_80520150
-    lbl_80520150:
-        .4byte 0xBF800000
-    .global lbl_80520154
-    lbl_80520154:
-        .4byte 0x42C80000
-    .global lbl_80520158
-    lbl_80520158:
-        .float 0.25
-    .global lbl_8052015C
-    lbl_8052015C:
-        .4byte 0xC1000000
-    .global lbl_80520160
-    lbl_80520160:
-        .4byte 0x41B80000
-    .global lbl_80520164
-    lbl_80520164:
-        .4byte 0x3F6624DD
-    .global lbl_80520168
-    lbl_80520168:
-        .4byte 0x3F639581
-    .global lbl_8052016C
-    lbl_8052016C:
-        .4byte 0x3EAC0831
-    .global lbl_80520170
-    lbl_80520170:
-        .4byte 0x3EDDB22D
-    .global lbl_80520174
-    lbl_80520174:
-        .4byte 0x3ECCCCCD
-    .global lbl_80520178
-    lbl_80520178:
-        .4byte 0x3F2E147B
-        .4byte 0x00000000
-
-    .section .sbss2, "", @nobits # 0x80520e40 - 0x80520ED8
-    .global lbl_80520EC8
-    lbl_80520EC8:
-        .skip 0x4
-    .global lbl_80520ECC
-    lbl_80520ECC:
-        .skip 0x4
-*/
+#include "kh/DayEndResult.h"
+#include "Game/gamePlayData.h"
+#include "Game/Piki.h"
+#include "Game/DeathMgr.h"
+#include "Game/GameSystem.h"
+#include "PSSystem/PSSystemIF.h"
 
 namespace kh {
 namespace Screen {
+
+static void _Printf(char* format) { OSReport(format, __FILE__); }
 
 /*
  * --INFO--
  * Address:	8040284C
  * Size:	00008C
  */
-DispDayEndResultItem::DispDayEndResultItem(Game::Result::TNode*, int, int, bool)
+DispDayEndResultItem::DispDayEndResultItem(Game::Result::TNode* resultNode, int p1, int p2, bool check)
 {
-	/*
-	.loc_0x0:
-	  lis       r10, 0x804B
-	  lis       r8, 0x804F
-	  addi      r10, r10, 0x1148
-	  li        r9, 0
-	  stw       r10, 0x0(r3)
-	  subi      r0, r8, 0x4E60
-	  stw       r9, 0x4(r3)
-	  stw       r0, 0x0(r3)
-	  stw       r4, 0x8(r3)
-	  stw       r9, 0x14(r3)
-	  stw       r9, 0x10(r3)
-	  stw       r9, 0xC(r3)
-	  lwz       r4, 0x8(r3)
-	  lwz       r8, 0x24(r4)
-	  b         .loc_0x6C
+	m_resultNode = resultNode;
+	_14          = 0;
+	_10          = 0;
+	_0C          = 0;
 
-	.loc_0x3C:
-	  lwz       r4, 0xC(r3)
-	  addi      r0, r4, 0x1
-	  stw       r0, 0xC(r3)
-	  lwz       r4, 0x10(r3)
-	  lwz       r0, 0x30(r8)
-	  add       r0, r4, r0
-	  stw       r0, 0x10(r3)
-	  lwz       r4, 0x14(r3)
-	  lwz       r0, 0x38(r8)
-	  add       r0, r4, r0
-	  stw       r0, 0x14(r3)
-	  lwz       r8, 0x18(r8)
+	FOREACH_NODE(Game::Result::TNode, m_resultNode->m_child, node)
+	{
+		_0C++;
+		_10 += node->_30;
+		_14 += node->_38;
+	}
 
-	.loc_0x6C:
-	  cmplwi    r8, 0
-	  bne+      .loc_0x3C
-	  stw       r5, 0x18(r3)
-	  li        r0, 0
-	  stw       r6, 0x1C(r3)
-	  stb       r7, 0x20(r3)
-	  stb       r0, 0x21(r3)
-	  blr
-	*/
+	_18 = p1;
+	_1C = p2;
+	_20 = check;
+	_21 = 0;
 }
 
 /*
@@ -836,173 +42,76 @@ DispDayEndResultItem::DispDayEndResultItem(Game::Result::TNode*, int, int, bool)
  */
 IncP::IncP()
 {
-	/*
-stwu     r1, -0x10(r1)
-mflr     r0
-li       r4, 1
-stw      r0, 0x14(r1)
-li       r0, 0
-stw      r31, 0xc(r1)
-stw      r30, 8(r1)
-mr       r30, r3
-stw      r0, 0(r3)
-stw      r0, 4(r3)
-stw      r0, 8(r3)
-stw      r0, 0xc(r3)
-stw      r0, 0x10(r3)
-stw      r0, 0x14(r3)
-stw      r0, 0x18(r3)
-stw      r0, 0x1c(r3)
-stw      r0, 0x20(r3)
-stw      r0, 0x24(r3)
-stw      r0, 0x28(r3)
-stw      r0, 0x2c(r3)
-stw      r0, 0x30(r3)
-stw      r0, 0x34(r3)
-stw      r0, 0x38(r3)
-stw      r0, 0x3c(r3)
-stw      r0, 0x40(r3)
-stw      r0, 0x44(r3)
-stw      r0, 0x48(r3)
-stw      r0, 0x4c(r3)
-stw      r0, 0x50(r3)
-stw      r0, 0x54(r3)
-stw      r0, 0x58(r3)
-stw      r0, 0x5c(r3)
-stw      r0, 0x60(r3)
-stw      r0, 0x64(r3)
-stw      r0, 0x68(r3)
-stw      r0, 0x6c(r3)
-lwz      r3, playData__4Game@sda21(r13)
-bl       getPikminCount_Yesterday__Q24Game8PlayDataFi
-stw      r3, 0(r30)
-li       r4, 2
-lwz      r3, playData__4Game@sda21(r13)
-bl       getPikminCount_Yesterday__Q24Game8PlayDataFi
-stw      r3, 4(r30)
-li       r4, 0
-lwz      r3, playData__4Game@sda21(r13)
-bl       getPikminCount_Yesterday__Q24Game8PlayDataFi
-stw      r3, 8(r30)
-li       r4, 4
-lwz      r3, playData__4Game@sda21(r13)
-bl       getPikminCount_Yesterday__Q24Game8PlayDataFi
-stw      r3, 0xc(r30)
-li       r4, 3
-lwz      r3, playData__4Game@sda21(r13)
-bl       getPikminCount_Yesterday__Q24Game8PlayDataFi
-stw      r3, 0x10(r30)
-li       r4, 5
-lwz      r3, playData__4Game@sda21(r13)
-bl       getPikminCount_Yesterday__Q24Game8PlayDataFi
-stw      r3, 0x14(r30)
-li       r4, 1
-lwz      r3, playData__4Game@sda21(r13)
-bl       getPikminCount_Today__Q24Game8PlayDataFi
-stw      r3, 0x18(r30)
-li       r4, 2
-lwz      r3, playData__4Game@sda21(r13)
-bl       getPikminCount_Today__Q24Game8PlayDataFi
-stw      r3, 0x1c(r30)
-li       r4, 0
-lwz      r3, playData__4Game@sda21(r13)
-bl       getPikminCount_Today__Q24Game8PlayDataFi
-stw      r3, 0x20(r30)
-li       r4, 4
-lwz      r3, playData__4Game@sda21(r13)
-bl       getPikminCount_Today__Q24Game8PlayDataFi
-stw      r3, 0x24(r30)
-li       r4, 3
-lwz      r3, playData__4Game@sda21(r13)
-bl       getPikminCount_Today__Q24Game8PlayDataFi
-stw      r3, 0x28(r30)
-li       r4, 5
-lwz      r3, playData__4Game@sda21(r13)
-bl       getPikminCount_Today__Q24Game8PlayDataFi
-stw      r3, 0x2c(r30)
-li       r3, 0
-bl       get_today__Q24Game8DeathMgrFi
-stw      r3, 0x30(r30)
-li       r3, 1
-bl       get_today__Q24Game8DeathMgrFi
-stw      r3, 0x34(r30)
-li       r3, 2
-bl       get_today__Q24Game8DeathMgrFi
-stw      r3, 0x38(r30)
-li       r3, 3
-bl       get_today__Q24Game8DeathMgrFi
-stw      r3, 0x3c(r30)
-li       r3, 4
-bl       get_today__Q24Game8DeathMgrFi
-stw      r3, 0x40(r30)
-li       r3, 5
-bl       get_today__Q24Game8DeathMgrFi
-stw      r3, 0x44(r30)
-li       r3, 6
-bl       get_today__Q24Game8DeathMgrFi
-stw      r3, 0x48(r30)
-li       r3, 7
-bl       get_today__Q24Game8DeathMgrFi
-stw      r3, 0x4c(r30)
-bl       account_today__Q24Game8DeathMgrFv
-li       r3, 0
-bl       get_total__Q24Game8DeathMgrFi
-stw      r3, 0x50(r30)
-li       r3, 1
-bl       get_total__Q24Game8DeathMgrFi
-stw      r3, 0x54(r30)
-li       r3, 2
-bl       get_total__Q24Game8DeathMgrFi
-stw      r3, 0x58(r30)
-li       r3, 3
-bl       get_total__Q24Game8DeathMgrFi
-stw      r3, 0x5c(r30)
-li       r3, 4
-bl       get_total__Q24Game8DeathMgrFi
-stw      r3, 0x60(r30)
-li       r3, 5
-bl       get_total__Q24Game8DeathMgrFi
-stw      r3, 0x64(r30)
-li       r3, 6
-bl       get_total__Q24Game8DeathMgrFi
-stw      r3, 0x68(r30)
-li       r3, 7
-bl       get_total__Q24Game8DeathMgrFi
-stw      r3, 0x6c(r30)
-li       r4, 2
-lwz      r3, playData__4Game@sda21(r13)
-bl       hasContainer__Q24Game8PlayDataFi
-rlwinm   r31, r3, 1, 0x17, 0x1e
-lwz      r3, playData__4Game@sda21(r13)
-li       r4, 1
-bl       hasContainer__Q24Game8PlayDataFi
-or       r31, r3, r31
-lwz      r3, playData__4Game@sda21(r13)
-li       r4, 0
-bl       hasContainer__Q24Game8PlayDataFi
-rlwinm   r0, r3, 2, 0x16, 0x1d
-lwz      r3, playData__4Game@sda21(r13)
-or       r31, r0, r31
-li       r4, 4
-bl       hasContainer__Q24Game8PlayDataFi
-rlwinm   r0, r3, 3, 0x15, 0x1c
-lwz      r3, playData__4Game@sda21(r13)
-or       r31, r0, r31
-li       r4, 3
-bl       hasContainer__Q24Game8PlayDataFi
-rlwinm   r0, r3, 4, 0x14, 0x1b
-or       r0, r0, r31
-stb      r0, 0x70(r30)
-lwz      r3, playData__4Game@sda21(r13)
-bl       setPikminCounts_Yesterday__Q24Game8PlayDataFv
-lwz      r0, 0x14(r1)
-mr       r3, r30
-lwz      r31, 0xc(r1)
-lwz      r30, 8(r1)
-mtlr     r0
-addi     r1, r1, 0x10
-blr
-	*/
+	m_yesterdayRed    = 0;
+	m_yesterdayYellow = 0;
+	m_yesterdayBlue   = 0;
+	m_yesterdayWhite  = 0;
+	m_yesterdayPurple = 0;
+	m_yesterdayTotal  = 0;
+
+	m_todayRed    = 0;
+	m_todayYellow = 0;
+	m_todayBlue   = 0;
+	m_todayWhite  = 0;
+	m_todayPurple = 0;
+	m_todayTotal  = 0;
+
+	_30                    = 0;
+	_34                    = 0;
+	_38                    = 0;
+	m_deathsFromWaterToday = 0;
+	_40                    = 0;
+	_44                    = 0;
+	_48                    = 0;
+	m_totalDeathsToday     = 0;
+
+	_50                    = 0;
+	_54                    = 0;
+	_58                    = 0;
+	m_deathsFromWaterTotal = 0;
+	_60                    = 0;
+	_64                    = 0;
+	_68                    = 0;
+	m_totalDeaths          = 0;
+
+	m_yesterdayRed    = Game::playData->getPikminCount_Yesterday(Game::Red);
+	m_yesterdayYellow = Game::playData->getPikminCount_Yesterday(Game::Yellow);
+	m_yesterdayBlue   = Game::playData->getPikminCount_Yesterday(Game::Blue);
+	m_yesterdayWhite  = Game::playData->getPikminCount_Yesterday(Game::White);
+	m_yesterdayPurple = Game::playData->getPikminCount_Yesterday(Game::Purple);
+	m_yesterdayTotal  = Game::playData->getPikminCount_Yesterday(Game::AllPikmin);
+
+	m_todayRed    = Game::playData->getPikminCount_Today(Game::Red);
+	m_todayYellow = Game::playData->getPikminCount_Today(Game::Yellow);
+	m_todayBlue   = Game::playData->getPikminCount_Today(Game::Blue);
+	m_todayWhite  = Game::playData->getPikminCount_Today(Game::White);
+	m_todayPurple = Game::playData->getPikminCount_Today(Game::Purple);
+	m_todayTotal  = Game::playData->getPikminCount_Today(Game::AllPikmin);
+
+	_30                    = Game::deathMgr->get_today(Game::DeathCounter::COD_Unknown0);
+	_34                    = Game::deathMgr->get_today(Game::DeathCounter::COD_Unknown1);
+	_38                    = Game::deathMgr->get_today(Game::DeathCounter::COD_Unknown2);
+	m_deathsFromWaterToday = Game::deathMgr->get_today(Game::DeathCounter::COD_Water);
+	_40                    = Game::deathMgr->get_today(Game::DeathCounter::COD_Unknown4);
+	_44                    = Game::deathMgr->get_today(Game::DeathCounter::COD_Unknown5);
+	_48                    = Game::deathMgr->get_today(Game::DeathCounter::COD_Unknown6);
+	m_totalDeathsToday     = Game::deathMgr->get_today(Game::DeathCounter::COD_All);
+	Game::deathMgr->account_today();
+
+	_50                    = Game::deathMgr->get_total(Game::DeathCounter::COD_Unknown0);
+	_54                    = Game::deathMgr->get_total(Game::DeathCounter::COD_Unknown1);
+	_58                    = Game::deathMgr->get_total(Game::DeathCounter::COD_Unknown2);
+	m_deathsFromWaterTotal = Game::deathMgr->get_total(Game::DeathCounter::COD_Water);
+	_60                    = Game::deathMgr->get_total(Game::DeathCounter::COD_Unknown4);
+	_64                    = Game::deathMgr->get_total(Game::DeathCounter::COD_Unknown5);
+	_68                    = Game::deathMgr->get_total(Game::DeathCounter::COD_Unknown6);
+	m_totalDeaths          = Game::deathMgr->get_total(Game::DeathCounter::COD_All);
+
+	m_pikminUnlockedFlag = (Game::playData->hasContainer(Game::Red)) | (Game::playData->hasContainer(Game::Yellow) << 1)
+	                     | (Game::playData->hasContainer(Game::Blue) << 2) | (Game::playData->hasContainer(Game::White) << 3)
+	                     | (Game::playData->hasContainer(Game::Purple) << 4);
+
+	Game::playData->setPikminCounts_Yesterday();
 }
 
 /*
@@ -1010,22 +119,11 @@ blr
  * Address:	80402B6C
  * Size:	000030
  */
-DispDayEndResultIncP::DispDayEndResultIncP(const kh::Screen::IncP*)
+DispDayEndResultIncP::DispDayEndResultIncP(const IncP* incP)
 {
-	/*
-lis      r6, __vt__Q32og6Screen14DispMemberBase@ha
-lis      r5, __vt__Q32kh6Screen20DispDayEndResultIncP@ha
-addi     r0, r6, __vt__Q32og6Screen14DispMemberBase@l
-li       r6, 0
-stw      r0, 0(r3)
-addi     r0, r5, __vt__Q32kh6Screen20DispDayEndResultIncP@l
-stw      r6, 4(r3)
-stw      r0, 0(r3)
-stw      r4, 8(r3)
-stb      r6, 0xd(r3)
-stb      r6, 0xc(r3)
-blr
-	*/
+	m_pikminInfo = const_cast<IncP*>(incP);
+	_0D          = 0;
+	_0C          = 0;
 }
 
 /*
@@ -1033,31 +131,49 @@ blr
  * Address:	80402B9C
  * Size:	000050
  */
-DispDayEndResultMail::DispDayEndResultMail(JKRHeap*, kh::Screen::MailCategory)
+DispDayEndResultMail::DispDayEndResultMail(JKRHeap* heap, MailCategory category)
 {
-	/*
-	.loc_0x0:
-	  lis       r7, 0x804B
-	  lis       r6, 0x804F
-	  addi      r0, r7, 0x1148
-	  li        r7, 0
-	  stw       r0, 0x0(r3)
-	  subi      r6, r6, 0x4E90
-	  li        r0, -0x1
-	  stw       r7, 0x4(r3)
-	  stw       r6, 0x0(r3)
-	  stw       r4, 0x8(r3)
-	  stw       r7, 0xC(r3)
-	  stw       r5, 0x10(r3)
-	  stw       r7, 0x14(r3)
-	  stb       r7, 0x18(r3)
-	  stw       r0, 0x1C(r3)
-	  lwz       r4, -0x6C18(r13)
-	  lwz       r4, 0x40(r4)
-	  lwz       r0, 0x218(r4)
-	  stw       r0, 0x20(r3)
-	  blr
-	*/
+	m_heap         = heap;
+	_0C            = 0;
+	m_mailCategory = category;
+	_14            = 0;
+	_18            = 0;
+	_1C            = -1;
+	m_dayCount     = Game::gameSystem->m_timeMgr->m_dayCount;
+}
+
+/*
+ * --INFO--
+ * Address: ........
+ * Size:	0000b4
+ */
+ObjDayEndResultBase::ObjDayEndResultBase()
+{
+	m_resultTitleMgr          = nullptr;
+	m_resultTitleAnmTransform = nullptr;
+	m_resultTitleAnmColor     = nullptr;
+	_4C                       = nullptr;
+	_50                       = nullptr;
+	_54                       = nullptr;
+	_58                       = nullptr;
+	_5C                       = nullptr;
+	_70                       = nullptr;
+	_74                       = nullptr;
+	_78                       = nullptr;
+	_6C                       = 0.0f;
+	_68                       = 0.0f;
+	_64                       = 0.0f;
+	_60                       = 0.0f;
+	_48                       = 0.0f;
+	_44                       = 0.0f;
+	_88                       = 0.0f;
+	_84                       = 0.0f;
+	_80                       = 0.0f;
+	_7C                       = 0.0f;
+	m_nextBtnFadePane         = nullptr;
+	_95                       = 255;
+	_94                       = 255;
+	_90                       = 0;
 }
 
 /*
@@ -1065,75 +181,20 @@ DispDayEndResultMail::DispDayEndResultMail(JKRHeap*, kh::Screen::MailCategory)
  * Address:	80402BEC
  * Size:	0000FC
  */
-void ObjDayEndResultBase::doCreate(JKRArchive*)
+void ObjDayEndResultBase::doCreate(JKRArchive* archive)
 {
-	/*
-stwu     r1, -0x20(r1)
-mflr     r0
-lis      r5, lbl_80498830@ha
-stw      r0, 0x24(r1)
-stw      r31, 0x1c(r1)
-addi     r31, r5, lbl_80498830@l
-stw      r30, 0x18(r1)
-mr       r30, r4
-stw      r29, 0x14(r1)
-mr       r29, r3
-li       r3, 0x148
-bl       __nw__FUl
-or.      r0, r3, r3
-beq      lbl_80402C2C
-bl       __ct__Q29P2DScreen10Mgr_tuningFv
-mr       r0, r3
+	m_resultTitleMgr = new P2DScreen::Mgr_tuning;
+	m_resultTitleMgr->set("result_title.blo", 0x01040000, archive);
+	m_resultTitleAnmTransform
+	    = static_cast<J2DAnmTransform*>(J2DAnmLoaderDataBase::load(JKRFileLoader::getGlbResource("result_title.bck", archive)));
+	m_resultTitleAnmColor
+	    = static_cast<J2DAnmColor*>(J2DAnmLoaderDataBase::load(JKRFileLoader::getGlbResource("result_title.bpk", archive)));
 
-lbl_80402C2C:
-stw      r0, 0x38(r29)
-mr       r6, r30
-addi     r4, r31, 0x14
-lis      r5, 0x104
-lwz      r3, 0x38(r29)
-bl       set__9J2DScreenFPCcUlP10JKRArchive
-mr       r4, r30
-addi     r3, r31, 0x28
-bl       getGlbResource__13JKRFileLoaderFPCcP13JKRFileLoader
-bl       load__20J2DAnmLoaderDataBaseFPCv
-stw      r3, 0x3c(r29)
-mr       r4, r30
-addi     r3, r31, 0x3c
-bl       getGlbResource__13JKRFileLoaderFPCcP13JKRFileLoader
-bl       load__20J2DAnmLoaderDataBaseFPCv
-stw      r3, 0x40(r29)
-lwz      r3, 0x38(r29)
-lwz      r4, 0x3c(r29)
-lwz      r12, 0(r3)
-lwz      r12, 0x60(r12)
-mtctr    r12
-bctrl
-lwz      r3, 0x38(r29)
-lwz      r4, 0x40(r29)
-lwz      r12, 0(r3)
-lwz      r12, 0x64(r12)
-mtctr    r12
-bctrl
-lis      r4, 0x62746E32@ha
-lwz      r3, 0x38(r29)
-addi     r6, r4, 0x62746E32@l
-li       r5, 0x4e
-li       r7, 8
-bl       create__Q32kh6Screen14khUtilFadePaneFPQ29P2DScreen3MgrUxUc
-stw      r3, 0x8c(r29)
-lwz      r3, 0x8c(r29)
-bl       fadeout__Q32kh6Screen14khUtilFadePaneFv
-lwz      r3, 0x8c(r29)
-li       r4, 0
-bl       set_init_alpha__Q32kh6Screen14khUtilFadePaneFUc
-lwz      r0, 0x24(r1)
-lwz      r31, 0x1c(r1)
-lwz      r30, 0x18(r1)
-lwz      r29, 0x14(r1)
-mtlr     r0
-addi     r1, r1, 0x20
-blr
-	*/
+	m_resultTitleMgr->setAnimation(m_resultTitleAnmTransform);
+	m_resultTitleMgr->setAnimation(m_resultTitleAnmColor);
+	m_nextBtnFadePane = khUtilFadePane::create(m_resultTitleMgr, 'Nbtn2', 8);
+	m_nextBtnFadePane->fadeout();
+	m_nextBtnFadePane->set_init_alpha(0);
 }
 
 /*
@@ -1141,52 +202,19 @@ blr
  * Address:	80402CE8
  * Size:	000098
  */
-void ObjDayEndResultBase::doStart(const Screen::StartSceneArg*)
+bool ObjDayEndResultBase::doStart(const ::Screen::StartSceneArg* sceneArg)
 {
-	/*
-stwu     r1, -0x10(r1)
-mflr     r0
-cmplwi   r4, 0
-stw      r0, 0x14(r1)
-stw      r31, 0xc(r1)
-mr       r31, r3
-beq      lbl_80402D20
-lbz      r0, 4(r4)
-cmplwi   r0, 0
-beq      lbl_80402D20
-lwz      r0, 0x90(r31)
-rlwinm   r0, r0, 0, 0x1d, 0x1b
-stw      r0, 0x90(r31)
-b        lbl_80402D2C
+	if (sceneArg && sceneArg->_04) {
+		_90 &= ~0x8;
+	} else {
+		_90 |= 0x8;
+	}
 
-lbl_80402D20:
-lwz      r0, 0x90(r31)
-ori      r0, r0, 8
-stw      r0, 0x90(r31)
+	setFadeinFrm();
+	setInfAlpha(_70->search('Nall'));
 
-lbl_80402D2C:
-mr       r3, r31
-bl       setFadeinFrm__Q32kh6Screen19ObjDayEndResultBaseFv
-lwz      r3, 0x70(r31)
-lis      r4, 0x4E616C6C@ha
-addi     r6, r4, 0x4E616C6C@l
-li       r5, 0
-lwz      r12, 0(r3)
-lwz      r12, 0x3c(r12)
-mtctr    r12
-bctrl
-bl       setInfAlpha__Q22kh6ScreenFP7J2DPane
-lwz      r3, spSysIF__8PSSystem@sda21(r13)
-li       r4, 0x1811
-li       r5, 0
-bl       playSystemSe__Q28PSSystem5SysIFFUlUl
-lwz      r0, 0x14(r1)
-li       r3, 1
-lwz      r31, 0xc(r1)
-mtlr     r0
-addi     r1, r1, 0x10
-blr
-	*/
+	PSSystem::spSysIF->playSystemSe(PSSE_SY_MESSAGE_EXIT, 0);
+	return true;
 }
 
 /*
@@ -1196,25 +224,9 @@ blr
  */
 void ObjDayEndResultBase::doUpdateFinish()
 {
-	/*
-stwu     r1, -0x10(r1)
-mflr     r0
-stw      r0, 0x14(r1)
-stw      r31, 0xc(r1)
-mr       r31, r3
-bl       setFadeoutFrm__Q32kh6Screen19ObjDayEndResultBaseFv
-lwz      r3, 0x8c(r31)
-bl       fadeout__Q32kh6Screen14khUtilFadePaneFv
-lwz      r3, spSysIF__8PSSystem@sda21(r13)
-li       r4, 0x181d
-li       r5, 0
-bl       playSystemSe__Q28PSSystem5SysIFFUlUl
-lwz      r0, 0x14(r1)
-lwz      r31, 0xc(r1)
-mtlr     r0
-addi     r1, r1, 0x10
-blr
-	*/
+	setFadeoutFrm();
+	m_nextBtnFadePane->fadeout();
+	PSSystem::spSysIF->playSystemSe(PSSE_SY_REGI_RECEIPT, 0);
 }
 
 /*
@@ -1222,71 +234,19 @@ blr
  * Address:	80402DC4
  * Size:	0000F4
  */
-void ObjDayEndResultBase::doUpdateFadein()
+bool ObjDayEndResultBase::doUpdateFadein()
 {
-	/*
-stwu     r1, -0x20(r1)
-mflr     r0
-stw      r0, 0x24(r1)
-stw      r31, 0x1c(r1)
-mr       r31, r3
-lwz      r12, 0(r3)
-lwz      r12, 0x78(r12)
-mtctr    r12
-bctrl
-lfs      f0, 0x60(r31)
-lis      r3, 0x74656D57@ha
-lwz      r4, 0x50(r31)
-addi     r6, r3, 0x74656D57@l
-li       r5, 0x4e69
-stfs     f0, 8(r4)
-lwz      r3, 0x4c(r31)
-lwz      r12, 0(r3)
-lwz      r12, 0x3c(r12)
-mtctr    r12
-bctrl
-bl       animationTransform__7J2DPaneFv
-lis      r4, msVal__Q32kh6Screen19ObjDayEndResultBase@ha
-lis      r3, 0x4E616C6C@ha
-addi     r4, r4, msVal__Q32kh6Screen19ObjDayEndResultBase@l
-lfs      f1, 0x60(r31)
-lfs      f0, 8(r4)
-addi     r6, r3, 0x4E616C6C@l
-li       r5, 0
-fadds    f0, f1, f0
-stfs     f0, 0x60(r31)
-lwz      r3, 0x70(r31)
-lwz      r12, 0(r3)
-lwz      r12, 0x3c(r12)
-mtctr    r12
-bctrl
-lfs      f2, 0x7c(r31)
-lfs      f1, 0x60(r31)
-lfs      f0, 0x80(r31)
-fsubs    f1, f1, f2
-lwz      r12, 0(r3)
-fsubs    f0, f0, f2
-lfs      f2, lbl_805200AC@sda21(r2)
-lwz      r12, 0x24(r12)
-fdivs    f0, f1, f0
-fmuls    f0, f2, f0
-fctiwz   f0, f0
-stfd     f0, 8(r1)
-lwz      r4, 0xc(r1)
-mtctr    r12
-bctrl
-lfs      f1, 0x60(r31)
-lfs      f0, 0x80(r31)
-fcmpo    cr0, f1, f0
-cror     2, 1, 2
-mfcr     r0
-lwz      r31, 0x1c(r1)
-rlwinm   r3, r0, 3, 0x1f, 0x1f
-lwz      r0, 0x24(r1)
-mtlr     r0
-addi     r1, r1, 0x20
-blr
-	*/
+	updateCommon();
+	_50->m_currentFrame = _60;
+	J2DPane* itemPane   = _4C->search('NitemW');
+	itemPane->animationTransform();
+
+	_60 += msVal._08;
+
+	J2DPane* allPane = _70->search('Nall');
+	allPane->setAlpha((_60 - _7C) / (_80 - _7C) * 255.0f);
+
+	return (u8)(_60 >= _80);
 }
 
 /*
@@ -1296,12 +256,8 @@ blr
  */
 void ObjDayEndResultBase::doUpdateFadeinFinish()
 {
-	/*
-li       r0, 0
-stb      r0, 0x94(r3)
-stb      r0, 0x95(r3)
-blr
-	*/
+	_94 = 0;
+	_95 = 0;
 }
 
 /*
@@ -1309,73 +265,19 @@ blr
  * Address:	80402EC8
  * Size:	0000FC
  */
-void ObjDayEndResultBase::doUpdateFadeout()
+bool ObjDayEndResultBase::doUpdateFadeout()
 {
-	/*
-stwu     r1, -0x20(r1)
-mflr     r0
-stw      r0, 0x24(r1)
-stw      r31, 0x1c(r1)
-mr       r31, r3
-lwz      r12, 0(r3)
-lwz      r12, 0x78(r12)
-mtctr    r12
-bctrl
-lfs      f0, 0x60(r31)
-lis      r3, 0x74656D57@ha
-lwz      r4, 0x50(r31)
-addi     r6, r3, 0x74656D57@l
-li       r5, 0x4e69
-stfs     f0, 8(r4)
-lwz      r3, 0x4c(r31)
-lwz      r12, 0(r3)
-lwz      r12, 0x3c(r12)
-mtctr    r12
-bctrl
-bl       animationTransform__7J2DPaneFv
-lis      r4, msVal__Q32kh6Screen19ObjDayEndResultBase@ha
-lis      r3, 0x4E616C6C@ha
-addi     r4, r4, msVal__Q32kh6Screen19ObjDayEndResultBase@l
-lfs      f1, 0x60(r31)
-lfs      f0, 8(r4)
-addi     r6, r3, 0x4E616C6C@l
-li       r5, 0
-fadds    f0, f1, f0
-stfs     f0, 0x60(r31)
-lwz      r3, 0x70(r31)
-lwz      r12, 0(r3)
-lwz      r12, 0x3c(r12)
-mtctr    r12
-bctrl
-lfs      f2, 0x84(r31)
-lfs      f1, 0x60(r31)
-lfs      f0, 0x88(r31)
-fsubs    f1, f1, f2
-lwz      r12, 0(r3)
-fsubs    f0, f0, f2
-lfs      f2, lbl_805200B0@sda21(r2)
-lfs      f3, lbl_805200AC@sda21(r2)
-lwz      r12, 0x24(r12)
-fdivs    f0, f1, f0
-fsubs    f0, f2, f0
-fmuls    f0, f3, f0
-fctiwz   f0, f0
-stfd     f0, 8(r1)
-lwz      r4, 0xc(r1)
-mtctr    r12
-bctrl
-lfs      f1, 0x60(r31)
-lfs      f0, 0x88(r31)
-fcmpo    cr0, f1, f0
-cror     2, 1, 2
-mfcr     r0
-lwz      r31, 0x1c(r1)
-rlwinm   r3, r0, 3, 0x1f, 0x1f
-lwz      r0, 0x24(r1)
-mtlr     r0
-addi     r1, r1, 0x20
-blr
-	*/
+	updateCommon();
+	_50->m_currentFrame = _60;
+	J2DPane* itemPane   = _4C->search('NitemW');
+	itemPane->animationTransform();
+
+	_60 += msVal._08;
+
+	J2DPane* allPane = _70->search('Nall');
+	allPane->setAlpha((1.0f - (_60 - _84) / (_88 - _84)) * 255.0f);
+
+	return (u8)(_60 >= _88);
 }
 
 /*
@@ -1385,6 +287,16 @@ blr
  */
 void ObjDayEndResultBase::doDraw(Graphics& gfx)
 {
+	gfx.m_orthoGraph.setPort();
+	m_resultTitleMgr->m_offsets
+	    = Vector2f(msVal._1C, 0.0f) + Vector2f(P2DScreen::Mgr_tuning::mstTuningTransX, P2DScreen::Mgr_tuning::mstTuningTransY);
+	m_resultTitleMgr->draw(gfx, gfx.m_orthoGraph);
+
+	gfx.m_orthoGraph.setPort();
+	_70->m_offsets = Vector2f(msVal._14, 0.0f) + Vector2f(P2DScreen::Mgr_tuning::mstTuningTransX, P2DScreen::Mgr_tuning::mstTuningTransY);
+	_70->draw(gfx, gfx.m_orthoGraph);
+
+	_4C->m_offsets = Vector2f(msVal._18, 0.0f) + Vector2f(P2DScreen::Mgr_tuning::mstTuningTransX, P2DScreen::Mgr_tuning::mstTuningTransY);
 	/*
 stwu     r1, -0x10(r1)
 mflr     r0
@@ -1755,147 +667,32 @@ blr
  */
 ObjDayEndResultItem::ObjDayEndResultItem()
 {
-	/*
-stwu     r1, -0x10(r1)
-mflr     r0
-stw      r0, 0x14(r1)
-stw      r31, 0xc(r1)
-mr       r31, r3
-bl       __ct__Q26Screen7ObjBaseFv
-lis      r3, __vt__Q32kh6Screen19ObjDayEndResultBase@ha
-lis      r4, __vt__Q32kh6Screen19ObjDayEndResultItem@ha
-addi     r5, r3, __vt__Q32kh6Screen19ObjDayEndResultBase@l
-lis      r3, msVal__Q32kh6Screen19ObjDayEndResultBase@ha
-stw      r5, 0(r31)
-addi     r0, r5, 0x10
-addi     r7, r4, __vt__Q32kh6Screen19ObjDayEndResultItem@l
-li       r9, 0
-stw      r0, 0x18(r31)
-li       r8, 0xff
-lfs      f0, lbl_805200A8@sda21(r2)
-addi     r6, r7, 0x10
-stw      r9, 0x38(r31)
-li       r5, 3
-li       r0, -6
-addi     r4, r3, msVal__Q32kh6Screen19ObjDayEndResultBase@l
-stw      r9, 0x3c(r31)
-mr       r3, r31
-stw      r9, 0x40(r31)
-stw      r9, 0x4c(r31)
-stw      r9, 0x50(r31)
-stw      r9, 0x54(r31)
-stw      r9, 0x58(r31)
-stw      r9, 0x5c(r31)
-stw      r9, 0x70(r31)
-stw      r9, 0x74(r31)
-stfs     f0, 0x78(r31)
-stfs     f0, 0x6c(r31)
-stfs     f0, 0x68(r31)
-stfs     f0, 0x64(r31)
-stfs     f0, 0x60(r31)
-stfs     f0, 0x48(r31)
-stfs     f0, 0x44(r31)
-stfs     f0, 0x88(r31)
-stfs     f0, 0x84(r31)
-stfs     f0, 0x80(r31)
-stfs     f0, 0x7c(r31)
-stw      r9, 0x8c(r31)
-stb      r8, 0x95(r31)
-stb      r8, 0x94(r31)
-stw      r9, 0x90(r31)
-stw      r7, 0(r31)
-stw      r6, 0x18(r31)
-stw      r5, 0x98(r31)
-stw      r9, 0x9c(r31)
-stfs     f0, 0xa0(r31)
-stw      r9, 0xa8(r31)
-stw      r9, 0xa4(r31)
-stw      r9, 0xb0(r31)
-stw      r9, 0xac(r31)
-stw      r9, 0xd0(r31)
-stw      r9, 0xcc(r31)
-stw      r9, 0xc8(r31)
-stw      r9, 0xc4(r31)
-stw      r9, 0xb4(r31)
-stw      r9, 0xb8(r31)
-stw      r9, 0xc0(r31)
-stw      r9, 0xbc(r31)
-stfs     f0, 0xd4(r31)
-stfs     f0, 0xdc(r31)
-stw      r0, 0xe0(r31)
-stw      r9, 0xd8(r31)
-lwz      r0, 0x24(r4)
-stw      r0, 0xe4(r31)
-stw      r9, 0xe8(r31)
-stw      r9, 0xf0(r31)
-stw      r9, 0xec(r31)
-stw      r9, 0xf4(r31)
-stb      r9, 0xf9(r31)
-stb      r9, 0xf8(r31)
-lwz      r31, 0xc(r1)
-lwz      r0, 0x14(r1)
-mtlr     r0
-addi     r1, r1, 0x10
-blr
-	*/
-}
-
-/*
- * --INFO--
- * Address:	804035D0
- * Size:	0000AC
- */
-ObjDayEndResultBase::~ObjDayEndResultBase()
-{
-	/*
-stwu     r1, -0x10(r1)
-mflr     r0
-stw      r0, 0x14(r1)
-stw      r31, 0xc(r1)
-mr       r31, r4
-stw      r30, 8(r1)
-or.      r30, r3, r3
-beq      lbl_80403660
-lis      r4, __vt__Q32kh6Screen19ObjDayEndResultBase@ha
-addi     r4, r4, __vt__Q32kh6Screen19ObjDayEndResultBase@l
-stw      r4, 0(r30)
-addi     r0, r4, 0x10
-stw      r0, 0x18(r30)
-beq      lbl_80403650
-lis      r4, __vt__Q26Screen7ObjBase@ha
-addi     r4, r4, __vt__Q26Screen7ObjBase@l
-stw      r4, 0(r30)
-addi     r0, r4, 0x10
-stw      r0, 0x18(r30)
-beq      lbl_80403650
-lis      r4, __vt__Q26Screen8IObjBase@ha
-addi     r4, r4, __vt__Q26Screen8IObjBase@l
-stw      r4, 0(r30)
-addi     r0, r4, 0x10
-stw      r0, 0x18(r30)
-bl       del__5CNodeFv
-addi     r3, r30, 0x18
-li       r4, 0
-bl       __dt__11JKRDisposerFv
-mr       r3, r30
-li       r4, 0
-bl       __dt__5CNodeFv
-
-lbl_80403650:
-extsh.   r0, r31
-ble      lbl_80403660
-mr       r3, r30
-bl       __dl__FPv
-
-lbl_80403660:
-lwz      r0, 0x14(r1)
-mr       r3, r30
-lwz      r31, 0xc(r1)
-lwz      r30, 8(r1)
-mtlr     r0
-addi     r1, r1, 0x10
-blr
-	*/
+	_98            = 3;
+	_9C            = nullptr;
+	_A0            = 0.0f;
+	_A8            = nullptr;
+	_A4            = nullptr;
+	_B0            = 0;
+	_AC            = 0;
+	_D0            = 0;
+	_CC            = 0;
+	_C8            = 0;
+	_C4            = 0;
+	m_stickAnimMgr = nullptr;
+	_B8            = nullptr;
+	_C0            = nullptr;
+	_BC            = nullptr;
+	_D4            = 0.0f;
+	_DC            = 0.0f;
+	_E0            = -6;
+	_D8            = nullptr;
+	_E4            = ObjDayEndResultBase::msVal._24;
+	_E8            = 0;
+	_F0            = 0;
+	_EC            = 0;
+	_F4            = 0;
+	_F9            = 0;
+	_F8            = 0;
 }
 
 /*
@@ -1903,7 +700,7 @@ blr
  * Address:	8040367C
  * Size:	0007AC
  */
-void ObjDayEndResultItem::doCreate(JKRArchive*)
+void ObjDayEndResultItem::doCreate(JKRArchive* archive)
 {
 	/*
 stwu     r1, -0x40(r1)
@@ -2402,7 +1199,7 @@ blr
  * Address:	80403E28
  * Size:	000108
  */
-void ObjDayEndResultItem::doStart(const Screen::StartSceneArg*)
+bool ObjDayEndResultItem::doStart(const ::Screen::StartSceneArg*)
 {
 	/*
 stwu     r1, -0x10(r1)
@@ -2487,7 +1284,7 @@ blr
  * Address:	80403F30
  * Size:	00011C
  */
-void ObjDayEndResultItem::doUpdateFadein()
+bool ObjDayEndResultItem::doUpdateFadein()
 {
 	/*
 stwu     r1, -0x20(r1)
@@ -2573,7 +1370,7 @@ blr
  * Address:	8040404C
  * Size:	0002CC
  */
-void ObjDayEndResultItem::doUpdate()
+bool ObjDayEndResultItem::doUpdate()
 {
 	/*
 stwu     r1, -0x30(r1)
@@ -2787,7 +1584,7 @@ blr
  * Address:	80404318
  * Size:	000124
  */
-void ObjDayEndResultItem::doUpdateFadeout()
+bool ObjDayEndResultItem::doUpdateFadeout()
 {
 	/*
 stwu     r1, -0x20(r1)
@@ -5587,7 +4384,7 @@ blr
  * Address:	80406A4C
  * Size:	00017C
  */
-void ObjDayEndResultIncP::doUpdateFadein()
+bool ObjDayEndResultIncP::doUpdateFadein()
 {
 	/*
 stwu     r1, -0x40(r1)
@@ -5699,7 +4496,7 @@ blr
  * Address:	80406BC8
  * Size:	00047C
  */
-void ObjDayEndResultIncP::doUpdate()
+bool ObjDayEndResultIncP::doUpdate()
 {
 	/*
 stwu     r1, -0x50(r1)
@@ -6045,7 +4842,7 @@ blr
  * Address:	80407044
  * Size:	000184
  */
-void ObjDayEndResultIncP::doUpdateFadeout()
+bool ObjDayEndResultIncP::doUpdateFadeout()
 {
 	/*
 stwu     r1, -0x40(r1)
@@ -7750,7 +6547,7 @@ blr
  * Address:	8040867C
  * Size:	000170
  */
-void ObjDayEndResultMail::doStart(const Screen::StartSceneArg*)
+bool ObjDayEndResultMail::doStart(const ::Screen::StartSceneArg*)
 {
 	/*
 stwu     r1, -0x10(r1)
@@ -7865,7 +6662,7 @@ blr
  * Address:	804087EC
  * Size:	0001B8
  */
-void ObjDayEndResultMail::doUpdateFadein()
+bool ObjDayEndResultMail::doUpdateFadein()
 {
 	/*
 stwu     r1, -0x40(r1)
@@ -7990,7 +6787,7 @@ blr
  * Address:	804089A4
  * Size:	000280
  */
-void ObjDayEndResultMail::doUpdate()
+bool ObjDayEndResultMail::doUpdate()
 {
 	/*
 stwu     r1, -0x30(r1)
@@ -8203,7 +7000,7 @@ blr
  * Address:	80408C24
  * Size:	0001B4
  */
-void ObjDayEndResultMail::doUpdateFadeout()
+bool ObjDayEndResultMail::doUpdateFadeout()
 {
 	/*
 stwu     r1, -0x40(r1)
@@ -10058,7 +8855,7 @@ blr
  * Address:	8040A418
  * Size:	000078
  */
-void ObjDayEndResultTitl::doUpdateFadein()
+bool ObjDayEndResultTitl::doUpdateFadein()
 {
 	/*
 stwu     r1, -0x10(r1)
@@ -10103,7 +8900,7 @@ blr
  * Address:	8040A490
  * Size:	000064
  */
-void ObjDayEndResultTitl::doUpdate()
+bool ObjDayEndResultTitl::doUpdate()
 {
 	/*
 stwu     r1, -0x10(r1)
@@ -10145,7 +8942,7 @@ blr
  * Address:	8040A4F4
  * Size:	000074
  */
-void ObjDayEndResultTitl::doUpdateFadeout()
+bool ObjDayEndResultTitl::doUpdateFadeout()
 {
 	/*
 stwu     r1, -0x10(r1)
@@ -10864,7 +9661,7 @@ blr
  * Address:	8040AE2C
  * Size:	000008
  */
-void SceneDayEndResultMail::getResName() const
+const char* SceneDayEndResultMail::getResName() const
 {
 	/*
 addi     r3, r2, lbl_80520100@sda21
@@ -10877,21 +9674,21 @@ blr
  * Address:	8040AE34
  * Size:	000008
  */
-u32 SceneDayEndResultMail::getSceneType() { return 0x4E25; }
+SceneType SceneDayEndResultMail::getSceneType() { return SCENE_DAY_END_RESULT_MAIL; }
 
 /*
  * --INFO--
  * Address:	8040AE3C
  * Size:	000008
  */
-u32 SceneDayEndResultMail::getOwnerID() { return 0x4B48; }
+ScreenOwnerID SceneDayEndResultMail::getOwnerID() { return OWNER_KH; }
 
 /*
  * --INFO--
  * Address:	8040AE44
  * Size:	000014
  */
-void SceneDayEndResultMail::getMemberID()
+ScreenMemberID SceneDayEndResultMail::getMemberID()
 {
 	/*
 lis      r4, 0x4D41494C@ha
@@ -11173,28 +9970,28 @@ blr
  * Address:	8040B024
  * Size:	000008
  */
-u32 SArgDayEndResultItem::getClassSize() { return 0x8; }
+int SArgDayEndResultItem::getClassSize() { return 0x8; }
 
 /*
  * --INFO--
  * Address:	8040B02C
  * Size:	000008
  */
-u32 SArgDayEndResultItem::getSceneType() const { return 0x4E23; }
+SceneType SArgDayEndResultItem::getSceneType() const { return SCENE_DAY_END_RESULT_ITEM; }
 
 /*
  * --INFO--
  * Address:	8040B034
  * Size:	000008
  */
-u32 SArgDayEndResultMail::getClassSize() { return 0x8; }
+int SArgDayEndResultMail::getClassSize() { return 0x8; }
 
 /*
  * --INFO--
  * Address:	8040B03C
  * Size:	000008
  */
-u32 SArgDayEndResultMail::getSceneType() const { return 0x4E25; }
+SceneType SArgDayEndResultMail::getSceneType() const { return SCENE_DAY_END_RESULT_MAIL; }
 
 /*
  * --INFO--
@@ -11402,21 +10199,21 @@ blr
  * Address:	8040B160
  * Size:	000008
  */
-u32 SArgDayEndResultIncP::getClassSize() { return 0x8; }
+int SArgDayEndResultIncP::getClassSize() { return 0x8; }
 
 /*
  * --INFO--
  * Address:	8040B168
  * Size:	000008
  */
-u32 SArgDayEndResultIncP::getSceneType() const { return 0x4E24; }
+SceneType SArgDayEndResultIncP::getSceneType() const { return SCENE_DAY_END_RESULT_INC_P; }
 
 /*
  * --INFO--
  * Address:	8040B170
  * Size:	000008
  */
-u32 SArgDayEndResultBase::getClassSize() { return 0x8; }
+int SArgDayEndResultBase::getClassSize() { return 0x8; }
 
 /*
  * --INFO--
@@ -11638,7 +10435,7 @@ u32 DispDayEndResultMail::getOwnerID() { return 0x4B48; }
  * Address:	8040B2A4
  * Size:	000014
  */
-void DispDayEndResultMail::getMemberID()
+u64 DispDayEndResultMail::getMemberID()
 {
 	/*
 lis      r4, 0x4D41494C@ha
@@ -11668,7 +10465,7 @@ u32 DispDayEndResultIncP::getOwnerID() { return 0x4B48; }
  * Address:	8040B2C8
  * Size:	000014
  */
-void DispDayEndResultIncP::getMemberID()
+u64 DispDayEndResultIncP::getMemberID()
 {
 	/*
 lis      r4, 0x494E4350@ha
@@ -11698,7 +10495,7 @@ u32 DispDayEndResultItem::getOwnerID() { return 0x4B48; }
  * Address:	8040B2EC
  * Size:	000014
  */
-void DispDayEndResultItem::getMemberID()
+u64 DispDayEndResultItem::getMemberID()
 {
 	/*
 lis      r4, 0x4954454D@ha
@@ -11717,7 +10514,7 @@ blr
  * Address:	8040B300
  * Size:	0000CC
  */
-void __sinit_khDayEndResult_cpp(void)
+void __sinit_khDayEndResult_cpp()
 {
 	/*
 	lis      r3, msVal__Q32kh6Screen19ObjDayEndResultBase@ha
@@ -11773,73 +10570,3 @@ void __sinit_khDayEndResult_cpp(void)
 	blr
 	*/
 }
-
-namespace kh {
-namespace Screen {
-
-/*
- * --INFO--
- * Address:	8040B3CC
- * Size:	000008
- */
-ObjDayEndResultBase::@24 @~ObjDayEndResultBase()
-{
-	/*
-addi     r3, r3, -24
-b        __dt__Q32kh6Screen19ObjDayEndResultBaseFv
-	*/
-}
-
-/*
- * --INFO--
- * Address:	8040B3D4
- * Size:	000008
- */
-ObjDayEndResultItem::@24 @~ObjDayEndResultItem()
-{
-	/*
-addi     r3, r3, -24
-b        __dt__Q32kh6Screen19ObjDayEndResultItemFv
-	*/
-}
-
-/*
- * --INFO--
- * Address:	8040B3DC
- * Size:	000008
- */
-ObjDayEndResultIncP::@24 @~ObjDayEndResultIncP()
-{
-	/*
-addi     r3, r3, -24
-b        __dt__Q32kh6Screen19ObjDayEndResultIncPFv
-	*/
-}
-
-/*
- * --INFO--
- * Address:	8040B3E4
- * Size:	000008
- */
-ObjDayEndResultMail::@24 @~ObjDayEndResultMail()
-{
-	/*
-addi     r3, r3, -24
-b        __dt__Q32kh6Screen19ObjDayEndResultMailFv
-	*/
-}
-
-/*
- * --INFO--
- * Address:	8040B3EC
- * Size:	000008
- */
-ObjDayEndResultTitl::@24 @~ObjDayEndResultTitl()
-{
-	/*
-addi     r3, r3, -24
-b        __dt__Q32kh6Screen19ObjDayEndResultTitlFv
-	*/
-}
-} // namespace Screen
-} // namespace kh

@@ -12,9 +12,9 @@ struct DeathCounter {
 	 * @fabricated
 	 */
 	enum CauseOfDeath {
-		COD_Unknown1 = 0,
+		COD_Unknown0 = 0,
+		COD_Unknown1,
 		COD_Unknown2,
-		COD_Unknown3,
 		COD_Water,
 		COD_Unknown4,
 		COD_Unknown5,

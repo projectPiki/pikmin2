@@ -35,6 +35,8 @@ struct MailSaveData {
 };
 
 struct IncP {
+	IncP();
+
 	int m_yesterdayRed;         // _00
 	int m_yesterdayYellow;      // _04
 	int m_yesterdayBlue;        // _08
@@ -239,8 +241,9 @@ struct SceneDayEndResultTitl : public ::Screen::SceneBase {
 // OBJECTS
 
 struct ObjDayEndResultBase : public ::Screen::ObjBase {
+	ObjDayEndResultBase();
 
-	virtual ~ObjDayEndResultBase();                       // _08 (weak)
+	virtual ~ObjDayEndResultBase() { }                    // _08 (weak)
 	virtual bool doStart(const ::Screen::StartSceneArg*); // _44
 	virtual void doCreate(JKRArchive*);                   // _4C
 	virtual bool doUpdateFadein();                        // _50
@@ -257,7 +260,7 @@ struct ObjDayEndResultBase : public ::Screen::ObjBase {
 	virtual void getFadeinDownMaxFrm() const  = 0;        // _90
 	virtual void getFadeoutDownMinFrm() const = 0;        // _94
 	virtual void getFadeoutDownMaxFrm() const = 0;        // _98
-	virtual void getStarWTagNum() const       = 0;        // _9C
+	virtual u32 getStarWTagNum() const        = 0;        // _9C
 	virtual void getPStarWMinFrm() const      = 0;        // _A0
 	virtual void getPStarWMaxFrm() const      = 0;        // _A4
 
@@ -267,31 +270,58 @@ struct ObjDayEndResultBase : public ::Screen::ObjBase {
 	// _00     = VTBL1
 	// _18     = VTBL2
 	// _00-_38 = Screen::ObjBase
-	P2DScreen::Mgr_tuning* _38; // _38
-	J2DAnmTransform* _3C;       // _3C
-	J2DAnmColor* _40;           // _40
-	f32 _44;                    // _44
-	f32 _48;                    // _48
-	P2DScreen::Mgr_tuning* _4C; // _4C
-	J2DAnmTransform* _50;       // _50
-	J2DAnmTransform* _54;       // _54
-	J2DAnmTextureSRTKey* _58;   // _58
-	J2DAnmTevRegKey* _5C;       // _5C
-	f32 _60;                    // _60
-	f32 _64;                    // _64
-	f32 _68;                    // _68
-	f32 _6C;                    // _6C
-	P2DScreen::Mgr_tuning* _70; // _70
-	J2DAnmColor* _74;           // _74
-	f32 _78;                    // _78
-	f32 _7C;                    // _7C
-	f32 _80;                    // _80
-	f32 _84;                    // _84
-	f32 _88;                    // _88
-	khUtilFadePane* _8C;        // _8C
-	uint _90;                   // _90
-	u8 _94;                     // _94
-	u8 _95;                     // _95
+	P2DScreen::Mgr_tuning* m_resultTitleMgr;    // _38
+	J2DAnmTransform* m_resultTitleAnmTransform; // _3C
+	J2DAnmColor* m_resultTitleAnmColor;         // _40
+	f32 _44;                                    // _44
+	f32 _48;                                    // _48
+	P2DScreen::Mgr_tuning* _4C;                 // _4C
+	J2DAnmTransform* _50;                       // _50
+	J2DAnmTransform* _54;                       // _54
+	J2DAnmTextureSRTKey* _58;                   // _58
+	J2DAnmTevRegKey* _5C;                       // _5C
+	f32 _60;                                    // _60
+	f32 _64;                                    // _64
+	f32 _68;                                    // _68
+	f32 _6C;                                    // _6C
+	P2DScreen::Mgr_tuning* _70;                 // _70
+	J2DAnmColor* _74;                           // _74
+	f32 _78;                                    // _78
+	f32 _7C;                                    // _7C
+	f32 _80;                                    // _80
+	f32 _84;                                    // _84
+	f32 _88;                                    // _88
+	khUtilFadePane* m_nextBtnFadePane;          // _8C
+	uint _90;                                   // _90
+	u8 _94;                                     // _94
+	u8 _95;                                     // _95
+
+	static struct StaticValues {
+		f32 _00; // _00
+		u32 _04; // _04
+		f32 _08; // _08
+		u32 _0C; // _0C
+		f32 _10; // _10
+		f32 _14; // _14
+		f32 _18; // _18
+		f32 _1C; // _1C
+		u32 _20; // _20
+		u32 _24; // _24
+		u32 _28; // _28
+		f32 _2C; // _2C
+		f32 _30; // _30
+		f32 _34; // _34
+		f32 _38; // _38
+		f32 _3C; // _3C
+		f32 _40; // _40
+		f32 _44; // _44
+		f32 _48; // _48
+		u8 _4C;  // _4C
+		u8 _4D;  // _4D
+		u8 _4E;  // _4E
+		u8 _4F;  // _4F
+		u8 _50;  // _50
+	} msVal;
 };
 
 struct ObjDayEndResultIncP : public ObjDayEndResultBase {
@@ -312,7 +342,7 @@ struct ObjDayEndResultIncP : public ObjDayEndResultBase {
 	virtual void getFadeinDownMaxFrm() const;  // _90 (weak)
 	virtual void getFadeoutDownMinFrm() const; // _94 (weak)
 	virtual void getFadeoutDownMaxFrm() const; // _98 (weak)
-	virtual void getStarWTagNum() const;       // _9C (weak)
+	virtual u32 getStarWTagNum() const;        // _9C (weak)
 	virtual void getPStarWMinFrm() const;      // _A0 (weak)
 	virtual void getPStarWMaxFrm() const;      // _A4 (weak)
 
@@ -376,6 +406,8 @@ struct ObjDayEndResultIncP : public ObjDayEndResultBase {
 
 struct ObjDayEndResultMail : public ObjDayEndResultBase {
 	struct MailIconAnm {
+		MailIconAnm();
+
 		u32 _00; // _00, unknown
 		u32 _04; // _04, unknown
 	};
@@ -396,7 +428,7 @@ struct ObjDayEndResultMail : public ObjDayEndResultBase {
 	virtual void getFadeinDownMaxFrm() const;             // _90 (weak)
 	virtual void getFadeoutDownMinFrm() const;            // _94 (weak)
 	virtual void getFadeoutDownMaxFrm() const;            // _98 (weak)
-	virtual void getStarWTagNum() const;                  // _9C (weak)
+	virtual u32 getStarWTagNum() const;                   // _9C (weak)
 	virtual void getPStarWMinFrm() const;                 // _A0 (weak)
 	virtual void getPStarWMaxFrm() const;                 // _A4 (weak)
 
@@ -459,7 +491,7 @@ struct ObjDayEndResultItem : public ObjDayEndResultBase {
 	virtual void getFadeinDownMaxFrm() const;             // _90 (weak)
 	virtual void getFadeoutDownMinFrm() const;            // _94 (weak)
 	virtual void getFadeoutDownMaxFrm() const;            // _98 (weak)
-	virtual void getStarWTagNum() const;                  // _9C (weak)
+	virtual u32 getStarWTagNum() const;                   // _9C (weak)
 	virtual void getPStarWMinFrm() const;                 // _A0 (weak)
 	virtual void getPStarWMaxFrm() const;                 // _A4 (weak)
 

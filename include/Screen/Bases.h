@@ -49,7 +49,7 @@ struct SceneArgBase {
 struct StartSceneArg : public SceneArgBase {
 
 	// _00 = VTBL
-	f32 _04; // _04
+	u8 _04; // _04
 };
 
 template <typename T>
@@ -172,14 +172,14 @@ struct IObjBase : public CNode, public JKRDisposer {
 	}
 
 	// vtable 2
-	virtual ~IObjBase();                          // _00
-	virtual bool update()                    = 0; // _04
-	virtual void draw(Graphics&)             = 0; // _08
-	virtual bool start(const StartSceneArg*) = 0; // _0C
-	virtual bool end(const EndSceneArg*)     = 0; // _10
-	virtual void setOwner(SceneBase*)        = 0; // _14
-	virtual SceneBase* getOwner() const      = 0; // _18
-	virtual void create(JKRArchive*)         = 0; // _1C
+	virtual ~IObjBase() { CNode::del(); }         // _08 (weak)
+	virtual bool update()                    = 0; // _1C
+	virtual void draw(Graphics&)             = 0; // _20
+	virtual bool start(const StartSceneArg*) = 0; // _24
+	virtual bool end(const EndSceneArg*)     = 0; // _28
+	virtual void setOwner(SceneBase*)        = 0; // _2C
+	virtual SceneBase* getOwner() const      = 0; // _30
+	virtual void create(JKRArchive*)         = 0; // _34
 
 	// _00     = VTBL1
 	// _18     = VTBL2
@@ -191,7 +191,7 @@ struct ObjBase : public IObjBase {
 	ObjBase();
 
 	// vtable 2
-	virtual ~ObjBase();                               // _08 (weak)
+	virtual ~ObjBase() { }                            // _08 (weak)
 	virtual bool update();                            // _1C
 	virtual void draw(Graphics&);                     // _20
 	virtual bool start(const StartSceneArg*);         // _24

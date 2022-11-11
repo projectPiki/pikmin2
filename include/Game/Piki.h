@@ -46,6 +46,7 @@ typedef enum EPikiColor {
 	Purple              = 3,
 	White               = 4,
 	LastStoredPikiColor = White,
+	AllPikmin           = 5,
 	Bulbmin             = 5,
 	Carrot              = 6,
 	PikiColorCount,

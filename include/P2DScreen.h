@@ -4,6 +4,7 @@
 #include "JSystem/J2D/J2DPane.h"
 #include "types.h"
 #include "CNode.h"
+#include "Vector2.h"
 
 struct Graphics;
 
@@ -58,12 +59,14 @@ struct Mgr_tuning : public Mgr {
 	virtual ~Mgr_tuning() { }                      // _08 (weak)
 	virtual void draw(Graphics&, J2DGrafContext&); // _9C
 
+	static f32 mstTuningTransX;
+	static f32 mstTuningTransY;
+
 	// _00      = VTBL
 	// _00-_138 = Mgr
-	f32 m_widthMaybe;  // _138
-	f32 m_heightMaybe; // _13C
-	f32 m_someX;       // _140
-	f32 m_someY;       // _144
+	f32 m_widthMaybe;   // _138
+	f32 m_heightMaybe;  // _13C
+	Vector2f m_offsets; // _140
 };
 } // namespace P2DScreen
 
