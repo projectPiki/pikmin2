@@ -16,7 +16,7 @@ struct Context : public CNode {
 struct ContextChasePos : public CNode {
 	ContextChasePos();
 
-	virtual ~ContextChasePos(); // _08 (weak)
+	virtual ~ContextChasePos() { } // _08 (weak)
 
 	Vector3f* m_position; // _18
 };

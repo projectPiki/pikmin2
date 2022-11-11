@@ -9,6 +9,8 @@
 #include "ParticleID.h"
 
 namespace efx {
+void makeMtxZAxisAlongPosPos(Mtx, Vector3f&, Vector3f&);
+
 struct TBase {
 	virtual bool create(Arg*) = 0; // _08
 	virtual void forceKill()  = 0; // _0C
@@ -148,6 +150,7 @@ struct TBase {
 // 	} while (i++ < count);
 // 	return true;
 // }
+
 } // namespace efx
 
 #endif

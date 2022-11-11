@@ -18,337 +18,6 @@
 #include "types.h"
 #include "Vector3.h"
 
-/*
-    Generated from dpostproc
-
-    .section .ctors, "wa"  # 0x80472F00 - 0x804732C0
-        .4byte __sinit_efxBase_cpp
-
-    .section .rodata  # 0x804732E0 - 0x8049E220
-    .global lbl_80495880
-    lbl_80495880:
-        .4byte 0x65667842
-        .4byte 0x6173652E
-        .4byte 0x63707000
-    .global lbl_8049588C
-    lbl_8049588C:
-        .asciz "P2Assert"
-        .skip 3
-
-    .section .data, "wa"  # 0x8049E220 - 0x804EFC20
-    .global __vt__Q23efx23TChasePosPosLocalYScale
-    __vt__Q23efx23TChasePosPosLocalYScale:
-        .4byte 0
-        .4byte 0
-        .4byte create__Q23efx5TSyncFPQ23efx3Arg
-        .4byte forceKill__Q23efx5TSyncFv
-        .4byte fade__Q23efx5TSyncFv
-        .4byte 0
-        .4byte 0
-        .4byte "@4@__dt__Q23efx23TChasePosPosLocalYScaleFv"
-        .4byte "@4@execute__Q23efx5TSyncFP14JPABaseEmitter"
-        .4byte "@4@executeAfter__Q23efx5TSyncFP14JPABaseEmitter"
-        .4byte draw__18JPAEmitterCallBackFP14JPABaseEmitter
-        .4byte drawAfter__18JPAEmitterCallBackFP14JPABaseEmitter
-        .4byte execute__Q23efx5TSyncFP14JPABaseEmitter
-        .4byte executeAfter__Q23efx5TSyncFP14JPABaseEmitter
-        .4byte
-   doExecuteEmitterOperation__Q23efx23TChasePosPosLocalYScaleFP14JPABaseEmitter
-        .4byte doExecuteAfter__Q23efx5TSyncFP14JPABaseEmitter
-        .4byte startDemoDrawOff__Q23efx5TSyncFv
-        .4byte endDemoDrawOn__Q23efx5TSyncFv
-        .4byte __dt__Q23efx23TChasePosPosLocalYScaleFv
-    .global __vt__Q23efx23TChasePosPosLocalZScale
-    __vt__Q23efx23TChasePosPosLocalZScale:
-        .4byte 0
-        .4byte 0
-        .4byte create__Q23efx5TSyncFPQ23efx3Arg
-        .4byte forceKill__Q23efx5TSyncFv
-        .4byte fade__Q23efx5TSyncFv
-        .4byte 0
-        .4byte 0
-        .4byte "@4@__dt__Q23efx23TChasePosPosLocalZScaleFv"
-        .4byte "@4@execute__Q23efx5TSyncFP14JPABaseEmitter"
-        .4byte "@4@executeAfter__Q23efx5TSyncFP14JPABaseEmitter"
-        .4byte draw__18JPAEmitterCallBackFP14JPABaseEmitter
-        .4byte drawAfter__18JPAEmitterCallBackFP14JPABaseEmitter
-        .4byte execute__Q23efx5TSyncFP14JPABaseEmitter
-        .4byte executeAfter__Q23efx5TSyncFP14JPABaseEmitter
-        .4byte
-   doExecuteEmitterOperation__Q23efx23TChasePosPosLocalZScaleFP14JPABaseEmitter
-        .4byte doExecuteAfter__Q23efx5TSyncFP14JPABaseEmitter
-        .4byte startDemoDrawOff__Q23efx5TSyncFv
-        .4byte endDemoDrawOn__Q23efx5TSyncFv
-        .4byte __dt__Q23efx23TChasePosPosLocalZScaleFv
-    .global __vt__Q23efx12TChasePosPos
-    __vt__Q23efx12TChasePosPos:
-        .4byte 0
-        .4byte 0
-        .4byte create__Q23efx5TSyncFPQ23efx3Arg
-        .4byte forceKill__Q23efx5TSyncFv
-        .4byte fade__Q23efx5TSyncFv
-        .4byte 0
-        .4byte 0
-        .4byte "@4@__dt__Q23efx12TChasePosPosFv"
-        .4byte "@4@execute__Q23efx5TSyncFP14JPABaseEmitter"
-        .4byte "@4@executeAfter__Q23efx5TSyncFP14JPABaseEmitter"
-        .4byte draw__18JPAEmitterCallBackFP14JPABaseEmitter
-        .4byte drawAfter__18JPAEmitterCallBackFP14JPABaseEmitter
-        .4byte execute__Q23efx5TSyncFP14JPABaseEmitter
-        .4byte executeAfter__Q23efx5TSyncFP14JPABaseEmitter
-        .4byte doExecuteEmitterOperation__Q23efx12TChasePosPosFP14JPABaseEmitter
-        .4byte doExecuteAfter__Q23efx5TSyncFP14JPABaseEmitter
-        .4byte startDemoDrawOff__Q23efx5TSyncFv
-        .4byte endDemoDrawOn__Q23efx5TSyncFv
-        .4byte __dt__Q23efx12TChasePosPosFv
-    .global __vt__Q23efx10TChaseMtxT
-    __vt__Q23efx10TChaseMtxT:
-        .4byte 0
-        .4byte 0
-        .4byte create__Q23efx5TSyncFPQ23efx3Arg
-        .4byte forceKill__Q23efx5TSyncFv
-        .4byte fade__Q23efx5TSyncFv
-        .4byte 0
-        .4byte 0
-        .4byte "@4@__dt__Q23efx10TChaseMtxTFv"
-        .4byte "@4@execute__Q23efx5TSyncFP14JPABaseEmitter"
-        .4byte "@4@executeAfter__Q23efx5TSyncFP14JPABaseEmitter"
-        .4byte draw__18JPAEmitterCallBackFP14JPABaseEmitter
-        .4byte drawAfter__18JPAEmitterCallBackFP14JPABaseEmitter
-        .4byte execute__Q23efx5TSyncFP14JPABaseEmitter
-        .4byte executeAfter__Q23efx5TSyncFP14JPABaseEmitter
-        .4byte doExecuteEmitterOperation__Q23efx10TChaseMtxTFP14JPABaseEmitter
-        .4byte doExecuteAfter__Q23efx5TSyncFP14JPABaseEmitter
-        .4byte startDemoDrawOff__Q23efx5TSyncFv
-        .4byte endDemoDrawOn__Q23efx5TSyncFv
-        .4byte __dt__Q23efx10TChaseMtxTFv
-    .global __vt__Q23efx9TChaseMtx
-    __vt__Q23efx9TChaseMtx:
-        .4byte 0
-        .4byte 0
-        .4byte create__Q23efx5TSyncFPQ23efx3Arg
-        .4byte forceKill__Q23efx5TSyncFv
-        .4byte fade__Q23efx5TSyncFv
-        .4byte 0
-        .4byte 0
-        .4byte "@4@__dt__Q23efx9TChaseMtxFv"
-        .4byte "@4@execute__Q23efx5TSyncFP14JPABaseEmitter"
-        .4byte "@4@executeAfter__Q23efx5TSyncFP14JPABaseEmitter"
-        .4byte draw__18JPAEmitterCallBackFP14JPABaseEmitter
-        .4byte drawAfter__18JPAEmitterCallBackFP14JPABaseEmitter
-        .4byte execute__Q23efx5TSyncFP14JPABaseEmitter
-        .4byte executeAfter__Q23efx5TSyncFP14JPABaseEmitter
-        .4byte doExecuteEmitterOperation__Q23efx9TChaseMtxFP14JPABaseEmitter
-        .4byte doExecuteAfter__Q23efx5TSyncFP14JPABaseEmitter
-        .4byte startDemoDrawOff__Q23efx5TSyncFv
-        .4byte endDemoDrawOn__Q23efx5TSyncFv
-        .4byte __dt__Q23efx9TChaseMtxFv
-    .global __vt__Q23efx13TChasePosYRot
-    __vt__Q23efx13TChasePosYRot:
-        .4byte 0
-        .4byte 0
-        .4byte create__Q23efx5TSyncFPQ23efx3Arg
-        .4byte forceKill__Q23efx5TSyncFv
-        .4byte fade__Q23efx5TSyncFv
-        .4byte 0
-        .4byte 0
-        .4byte "@4@__dt__Q23efx13TChasePosYRotFv"
-        .4byte "@4@execute__Q23efx5TSyncFP14JPABaseEmitter"
-        .4byte "@4@executeAfter__Q23efx5TSyncFP14JPABaseEmitter"
-        .4byte draw__18JPAEmitterCallBackFP14JPABaseEmitter
-        .4byte drawAfter__18JPAEmitterCallBackFP14JPABaseEmitter
-        .4byte execute__Q23efx5TSyncFP14JPABaseEmitter
-        .4byte executeAfter__Q23efx5TSyncFP14JPABaseEmitter
-        .4byte
-   doExecuteEmitterOperation__Q23efx13TChasePosYRotFP14JPABaseEmitter .4byte
-   doExecuteAfter__Q23efx5TSyncFP14JPABaseEmitter .4byte
-   startDemoDrawOff__Q23efx5TSyncFv .4byte endDemoDrawOn__Q23efx5TSyncFv .4byte
-   __dt__Q23efx13TChasePosYRotFv .global __vt__Q23efx9TChasePos
-    __vt__Q23efx9TChasePos:
-        .4byte 0
-        .4byte 0
-        .4byte create__Q23efx5TSyncFPQ23efx3Arg
-        .4byte forceKill__Q23efx5TSyncFv
-        .4byte fade__Q23efx5TSyncFv
-        .4byte 0
-        .4byte 0
-        .4byte "@4@__dt__Q23efx9TChasePosFv"
-        .4byte "@4@execute__Q23efx5TSyncFP14JPABaseEmitter"
-        .4byte "@4@executeAfter__Q23efx5TSyncFP14JPABaseEmitter"
-        .4byte draw__18JPAEmitterCallBackFP14JPABaseEmitter
-        .4byte drawAfter__18JPAEmitterCallBackFP14JPABaseEmitter
-        .4byte execute__Q23efx5TSyncFP14JPABaseEmitter
-        .4byte executeAfter__Q23efx5TSyncFP14JPABaseEmitter
-        .4byte doExecuteEmitterOperation__Q23efx9TChasePosFP14JPABaseEmitter
-        .4byte doExecuteAfter__Q23efx5TSyncFP14JPABaseEmitter
-        .4byte startDemoDrawOff__Q23efx5TSyncFv
-        .4byte endDemoDrawOn__Q23efx5TSyncFv
-        .4byte __dt__Q23efx9TChasePosFv
-    .global __vt__Q23efx5TSync
-    __vt__Q23efx5TSync:
-        .4byte 0
-        .4byte 0
-        .4byte create__Q23efx5TSyncFPQ23efx3Arg
-        .4byte forceKill__Q23efx5TSyncFv
-        .4byte fade__Q23efx5TSyncFv
-        .4byte 0
-        .4byte 0
-        .4byte "@4@__dt__Q23efx5TSyncFv"
-        .4byte "@4@execute__Q23efx5TSyncFP14JPABaseEmitter"
-        .4byte "@4@executeAfter__Q23efx5TSyncFP14JPABaseEmitter"
-        .4byte draw__18JPAEmitterCallBackFP14JPABaseEmitter
-        .4byte drawAfter__18JPAEmitterCallBackFP14JPABaseEmitter
-        .4byte execute__Q23efx5TSyncFP14JPABaseEmitter
-        .4byte executeAfter__Q23efx5TSyncFP14JPABaseEmitter
-        .4byte 0
-        .4byte doExecuteAfter__Q23efx5TSyncFP14JPABaseEmitter
-        .4byte startDemoDrawOff__Q23efx5TSyncFv
-        .4byte endDemoDrawOn__Q23efx5TSyncFv
-        .4byte __dt__Q23efx5TSyncFv
-    .global __vt__Q23efx11TSimpleMtx4
-    __vt__Q23efx11TSimpleMtx4:
-        .4byte 0
-        .4byte 0
-        .4byte create__Q23efx11TSimpleMtx4FPQ23efx3Arg
-        .4byte forceKill__Q23efx8TSimple4Fv
-        .4byte fade__Q23efx8TSimple4Fv
-    .global __vt__Q23efx11TSimpleMtx3
-    __vt__Q23efx11TSimpleMtx3:
-        .4byte 0
-        .4byte 0
-        .4byte create__Q23efx11TSimpleMtx3FPQ23efx3Arg
-        .4byte forceKill__Q23efx8TSimple3Fv
-        .4byte fade__Q23efx8TSimple3Fv
-    .global __vt__Q23efx11TSimpleMtx2
-    __vt__Q23efx11TSimpleMtx2:
-        .4byte 0
-        .4byte 0
-        .4byte create__Q23efx11TSimpleMtx2FPQ23efx3Arg
-        .4byte forceKill__Q23efx8TSimple2Fv
-        .4byte fade__Q23efx8TSimple2Fv
-    .global __vt__Q23efx11TSimpleMtx1
-    __vt__Q23efx11TSimpleMtx1:
-        .4byte 0
-        .4byte 0
-        .4byte create__Q23efx11TSimpleMtx1FPQ23efx3Arg
-        .4byte forceKill__Q23efx8TSimple1Fv
-        .4byte fade__Q23efx8TSimple1Fv
-    .global __vt__Q23efx8TSimple5
-    __vt__Q23efx8TSimple5:
-        .4byte 0
-        .4byte 0
-        .4byte create__Q23efx8TSimple5FPQ23efx3Arg
-        .4byte forceKill__Q23efx8TSimple5Fv
-        .4byte fade__Q23efx8TSimple5Fv
-    .global __vt__Q23efx8TSimple4
-    __vt__Q23efx8TSimple4:
-        .4byte 0
-        .4byte 0
-        .4byte create__Q23efx8TSimple4FPQ23efx3Arg
-        .4byte forceKill__Q23efx8TSimple4Fv
-        .4byte fade__Q23efx8TSimple4Fv
-    .global __vt__Q23efx8TSimple3
-    __vt__Q23efx8TSimple3:
-        .4byte 0
-        .4byte 0
-        .4byte create__Q23efx8TSimple3FPQ23efx3Arg
-        .4byte forceKill__Q23efx8TSimple3Fv
-        .4byte fade__Q23efx8TSimple3Fv
-    .global __vt__Q23efx8TSimple2
-    __vt__Q23efx8TSimple2:
-        .4byte 0
-        .4byte 0
-        .4byte create__Q23efx8TSimple2FPQ23efx3Arg
-        .4byte forceKill__Q23efx8TSimple2Fv
-        .4byte fade__Q23efx8TSimple2Fv
-    .global __vt__Q23efx8TSimple1
-    __vt__Q23efx8TSimple1:
-        .4byte 0
-        .4byte 0
-        .4byte create__Q23efx8TSimple1FPQ23efx3Arg
-        .4byte forceKill__Q23efx8TSimple1Fv
-        .4byte fade__Q23efx8TSimple1Fv
-    .global __vt__Q23efx17TOneEmitterSimple
-    __vt__Q23efx17TOneEmitterSimple:
-        .4byte 0
-        .4byte 0
-        .4byte create__Q23efx17TOneEmitterSimpleFPQ23efx3Arg
-        .4byte forceKill__Q23efx17TOneEmitterSimpleFv
-        .4byte fade__Q23efx17TOneEmitterSimpleFv
-        .4byte 0
-        .4byte 0
-        .4byte "@4@__dt__Q23efx17TOneEmitterSimpleFv"
-        .4byte execute__18JPAEmitterCallBackFP14JPABaseEmitter
-        .4byte "@4@executeAfter__Q23efx17TOneEmitterSimpleFP14JPABaseEmitter"
-        .4byte draw__18JPAEmitterCallBackFP14JPABaseEmitter
-        .4byte drawAfter__18JPAEmitterCallBackFP14JPABaseEmitter
-        .4byte executeAfter__Q23efx17TOneEmitterSimpleFP14JPABaseEmitter
-        .4byte startDemoDrawOff__Q23efx17TOneEmitterSimpleFv
-        .4byte endDemoDrawOn__Q23efx17TOneEmitterSimpleFv
-        .4byte __dt__Q23efx17TOneEmitterSimpleFv
-    .global __vt__Q23efx19TOneEmitterChasePos
-    __vt__Q23efx19TOneEmitterChasePos:
-        .4byte 0
-        .4byte 0
-        .4byte create__Q23efx19TOneEmitterChasePosFPQ23efx3Arg
-        .4byte forceKill__Q23efx19TOneEmitterChasePosFv
-        .4byte fade__Q23efx19TOneEmitterChasePosFv
-        .4byte 0
-        .4byte 0
-        .4byte "@4@__dt__Q23efx19TOneEmitterChasePosFv"
-        .4byte execute__18JPAEmitterCallBackFP14JPABaseEmitter
-        .4byte "@4@executeAfter__Q23efx19TOneEmitterChasePosFP14JPABaseEmitter"
-        .4byte draw__18JPAEmitterCallBackFP14JPABaseEmitter
-        .4byte drawAfter__18JPAEmitterCallBackFP14JPABaseEmitter
-        .4byte executeAfter__Q23efx19TOneEmitterChasePosFP14JPABaseEmitter
-        .4byte startDemoDrawOff__Q23efx19TOneEmitterChasePosFv
-        .4byte endDemoDrawOn__Q23efx19TOneEmitterChasePosFv
-        .4byte __dt__Q23efx19TOneEmitterChasePosFv
-    .global __vt__Q23efx11TOneEmitter
-    __vt__Q23efx11TOneEmitter:
-        .4byte 0
-        .4byte 0
-        .4byte create__Q23efx11TOneEmitterFPQ23efx3Arg
-        .4byte forceKill__Q23efx11TOneEmitterFv
-        .4byte fade__Q23efx11TOneEmitterFv
-        .4byte 0
-        .4byte 0
-        .4byte "@4@__dt__Q23efx11TOneEmitterFv"
-        .4byte execute__18JPAEmitterCallBackFP14JPABaseEmitter
-        .4byte "@4@executeAfter__Q23efx11TOneEmitterFP14JPABaseEmitter"
-        .4byte draw__18JPAEmitterCallBackFP14JPABaseEmitter
-        .4byte drawAfter__18JPAEmitterCallBackFP14JPABaseEmitter
-        .4byte executeAfter__Q23efx11TOneEmitterFP14JPABaseEmitter
-        .4byte startDemoDrawOff__Q23efx11TOneEmitterFv
-        .4byte endDemoDrawOn__Q23efx11TOneEmitterFv
-        .4byte __dt__Q23efx11TOneEmitterFv
-    .global __vt__Q23efx24TCallBack_StaticClipping
-    __vt__Q23efx24TCallBack_StaticClipping:
-        .4byte 0
-        .4byte 0
-        .4byte __dt__Q23efx24TCallBack_StaticClippingFv
-        .4byte execute__18JPAEmitterCallBackFP14JPABaseEmitter
-        .4byte executeAfter__Q23efx24TCallBack_StaticClippingFP14JPABaseEmitter
-        .4byte draw__18JPAEmitterCallBackFP14JPABaseEmitter
-        .4byte drawAfter__18JPAEmitterCallBackFP14JPABaseEmitter
-
-    .section .sbss # 0x80514D80 - 0x80516360
-    .global mCallBack_StaticClipping__Q23efx5TBase
-    mCallBack_StaticClipping__Q23efx5TBase:
-        .skip 0x8
-
-    .section .sdata2, "a"     # 0x80516360 - 0x80520E40
-    .global lbl_8051F610
-    lbl_8051F610:
-        .float 0.5
-    .global lbl_8051F614
-    lbl_8051F614:
-        .4byte 0x00000000
-    .global lbl_8051F618
-    lbl_8051F618:
-        .float 1.0
-*/
-
 efx::TCallBack_StaticClipping efx::TBase::mCallBack_StaticClipping;
 
 namespace efx {
@@ -403,85 +72,11 @@ void TOneEmitter::executeAfter(JPABaseEmitter* emitter)
 			for (int i = 0; i < createCount; i++) {
 				JPABaseParticle* particle = emitter->createParticle();
 				if (particle) {
-					// JGeometry::TVec3f v2;
-					// v2.x = v1.x;
-					// v2.z = v1.z;
-					// v2.y = v1.y;
-					// particle->_18 = v2;
-					// particle->_18 = v1.toTVec();
-					// particle->_18 = *reinterpret_cast<JGeometry::TVec3f*>(&v1);
-					// particle->_18.x = v1.x;
-					// particle->_18.y = v1.y;
-					// particle->_18.z = v1.z;
-					// JGeometry::TVec3f v2 = v1.toTVec();
-					// particle->_18 = v2;
-					v1.setTVec(particle->_18);
+					particle->_18 = JGeometry::TVec3f(v1.x, v1.y, v1.z);
 				}
 			}
 		}
 	}
-	/*
-	stwu     r1, -0x30(r1)
-	mflr     r0
-	stw      r0, 0x34(r1)
-	stmw     r27, 0x1c(r1)
-	mr       r27, r3
-	mr       r28, r4
-	lwz      r3, particleMgr@sda21(r13)
-	bl       setGlobalColor__11ParticleMgrFP14JPABaseEmitter
-	lwz      r30, 0x20(r27)
-	b        lbl_803AE9D8
-
-lbl_803AE95C:
-	lfs      f0, 0x18(r30)
-	addi     r4, r1, 8
-	lwz      r3, particleMgr@sda21(r13)
-	stfs     f0, 8(r1)
-	lfs      f0, 0x1c(r30)
-	stfs     f0, 0xc(r1)
-	lfs      f0, 0x20(r30)
-	stfs     f0, 0x10(r1)
-	lhz      r5, 0xc(r27)
-	bl       "cullByResFlg__11ParticleMgrFR10Vector3<f>Us"
-	clrlwi.  r0, r3, 0x18
-	bne      lbl_803AE9D4
-	mr       r3, r28
-	bl       getCurrentCreateNumber__14JPABaseEmitterCFv
-	mr       r31, r3
-	li       r29, 0
-	b        lbl_803AE9CC
-
-lbl_803AE9A0:
-	mr       r3, r28
-	bl       createParticle__14JPABaseEmitterFv
-	cmplwi   r3, 0
-	beq      lbl_803AE9C8
-	lfs      f2, 0x10(r1)
-	lfs      f1, 0xc(r1)
-	lfs      f0, 8(r1)
-	stfs     f0, 0x18(r3)
-	stfs     f1, 0x1c(r3)
-	stfs     f2, 0x20(r3)
-
-lbl_803AE9C8:
-	addi     r29, r29, 1
-
-lbl_803AE9CC:
-	cmpw     r29, r31
-	blt      lbl_803AE9A0
-
-lbl_803AE9D4:
-	lwz      r30, 4(r30)
-
-lbl_803AE9D8:
-	cmplwi   r30, 0
-	bne      lbl_803AE95C
-	lmw      r27, 0x1c(r1)
-	lwz      r0, 0x34(r1)
-	mtlr     r0
-	addi     r1, r1, 0x30
-	blr
-	*/
 }
 
 /*
@@ -580,65 +175,21 @@ bool TOneEmitterChasePos::create(efx::Arg* arg)
  * Address:	803AEC60
  * Size:	0000AC
  */
-void TOneEmitterChasePos::executeAfter(JPABaseEmitter*)
+void TOneEmitterChasePos::executeAfter(JPABaseEmitter* emitter)
 {
-	/*
-	stwu     r1, -0x20(r1)
-	mflr     r0
-	stw      r0, 0x24(r1)
-	stmw     r26, 8(r1)
-	mr       r26, r3
-	mr       r27, r4
-	lwz      r3, particleMgr@sda21(r13)
-	bl       setGlobalColor__11ParticleMgrFP14JPABaseEmitter
-	lwz      r30, 0x18(r26)
-	b        lbl_803AECF0
-
-lbl_803AEC88:
-	lwz      r29, 0x18(r30)
-	lwz      r3, particleMgr@sda21(r13)
-	lhz      r5, 0x28(r26)
-	mr       r4, r29
-	bl       "cullByResFlg__11ParticleMgrFR10Vector3<f>Us"
-	clrlwi.  r0, r3, 0x18
-	bne      lbl_803AECEC
-	mr       r3, r27
-	bl       getCurrentCreateNumber__14JPABaseEmitterCFv
-	mr       r31, r3
-	li       r28, 0
-	b        lbl_803AECE4
-
-lbl_803AECB8:
-	mr       r3, r27
-	bl       createParticle__14JPABaseEmitterFv
-	cmplwi   r3, 0
-	beq      lbl_803AECE0
-	lfs      f2, 8(r29)
-	lfs      f1, 4(r29)
-	lfs      f0, 0(r29)
-	stfs     f0, 0x18(r3)
-	stfs     f1, 0x1c(r3)
-	stfs     f2, 0x20(r3)
-
-lbl_803AECE0:
-	addi     r28, r28, 1
-
-lbl_803AECE4:
-	cmpw     r28, r31
-	blt      lbl_803AECB8
-
-lbl_803AECEC:
-	lwz      r30, 4(r30)
-
-lbl_803AECF0:
-	cmplwi   r30, 0
-	bne      lbl_803AEC88
-	lmw      r26, 8(r1)
-	lwz      r0, 0x24(r1)
-	mtlr     r0
-	addi     r1, r1, 0x20
-	blr
-	*/
+	particleMgr->setGlobalColor(emitter);
+	for (ContextChasePos* context = (ContextChasePos*)m_context.m_child; context != nullptr; context = (ContextChasePos*)context->m_next) {
+		Vector3f* v1 = context->m_position;
+		if (particleMgr->cullByResFlg(*v1, m_effectID) == false) {
+			int createCount = emitter->getCurrentCreateNumber();
+			for (int i = 0; i < createCount; i++) {
+				JPABaseParticle* particle = emitter->createParticle();
+				if (particle) {
+					particle->_18 = JGeometry::TVec3f(v1->x, v1->y, v1->z);
+				}
+			}
+		}
+	}
 }
 
 /*
@@ -699,91 +250,24 @@ bool TOneEmitterSimple::create(efx::Arg* arg)
  * Address:	803AEE78
  * Size:	00010C
  */
-void TOneEmitterSimple::executeAfter(JPABaseEmitter*)
+void TOneEmitterSimple::executeAfter(JPABaseEmitter* emitter)
 {
-	/*
-	stwu     r1, -0x40(r1)
-	mflr     r0
-	stw      r0, 0x44(r1)
-	stmw     r26, 0x28(r1)
-	mr       r26, r3
-	mr       r27, r4
-	lwz      r3, particleMgr@sda21(r13)
-	bl       setGlobalColor__11ParticleMgrFP14JPABaseEmitter
-	lwz      r3, 0x14(r26)
-	lwz      r0, 0x18(r26)
-	cmpw     r3, r0
-	ble      lbl_803AEEC4
-	lis      r3, lbl_80495880@ha
-	lis      r5, lbl_8049588C@ha
-	addi     r3, r3, lbl_80495880@l
-	li       r4, 0x1bf
-	addi     r5, r5, lbl_8049588C@l
-	crclr    6
-	bl       panic_f__12JUTExceptionFPCciPCce
+	particleMgr->setGlobalColor(emitter);
+	P2ASSERTLINE(447, _14 <= _18);
+	for (int i = 0; i < _14; i++) {
+		Vector3f v1 = _10[i];
+		if (particleMgr->cullByResFlg(v1, m_effectID) == false) {
+			int createCount = (int)emitter->_28;
+			for (int i = 0; i < createCount; i++) {
+				JPABaseParticle* particle = emitter->createParticle();
+				if (particle) {
+					particle->_18 = JGeometry::TVec3f(v1.x, v1.y, v1.z);
+				}
+			}
+		}
+	}
 
-lbl_803AEEC4:
-	li       r30, 0
-	li       r31, 0
-	b        lbl_803AEF5C
-
-lbl_803AEED0:
-	lwz      r0, 0x10(r26)
-	addi     r4, r1, 8
-	lwz      r3, particleMgr@sda21(r13)
-	add      r5, r0, r31
-	lfs      f0, 0(r5)
-	stfs     f0, 8(r1)
-	lfs      f0, 4(r5)
-	stfs     f0, 0xc(r1)
-	lfs      f0, 8(r5)
-	stfs     f0, 0x10(r1)
-	lhz      r5, 0xc(r26)
-	bl       "cullByResFlg__11ParticleMgrFR10Vector3<f>Us"
-	clrlwi.  r0, r3, 0x18
-	bne      lbl_803AEF54
-	lfs      f0, 0x28(r27)
-	li       r28, 0
-	fctiwz   f0, f0
-	stfd     f0, 0x18(r1)
-	lwz      r29, 0x1c(r1)
-	b        lbl_803AEF4C
-
-lbl_803AEF20:
-	mr       r3, r27
-	bl       createParticle__14JPABaseEmitterFv
-	cmplwi   r3, 0
-	beq      lbl_803AEF48
-	lfs      f2, 0x10(r1)
-	lfs      f1, 0xc(r1)
-	lfs      f0, 8(r1)
-	stfs     f0, 0x18(r3)
-	stfs     f1, 0x1c(r3)
-	stfs     f2, 0x20(r3)
-
-lbl_803AEF48:
-	addi     r28, r28, 1
-
-lbl_803AEF4C:
-	cmpw     r28, r29
-	blt      lbl_803AEF20
-
-lbl_803AEF54:
-	addi     r31, r31, 0xc
-	addi     r30, r30, 1
-
-lbl_803AEF5C:
-	lwz      r0, 0x14(r26)
-	cmpw     r30, r0
-	blt      lbl_803AEED0
-	li       r0, 0
-	stw      r0, 0x14(r26)
-	lmw      r26, 0x28(r1)
-	lwz      r0, 0x44(r1)
-	mtlr     r0
-	addi     r1, r1, 0x40
-	blr
-	*/
+	_14 = 0;
 }
 
 /*
@@ -794,7 +278,7 @@ lbl_803AEF5C:
  */
 bool TSimple1::create(efx::Arg* arg)
 {
-	P2ASSERTLINE(558, arg != nullptr);
+	P2ASSERTLINE(558, arg);
 	for (int i = 0; i < 1; i++) {
 		m_emitters[i] = particleMgr->create(m_effectIDs[i], arg->m_position, 0);
 		if (m_emitters[i]) {
@@ -814,7 +298,7 @@ bool TSimple1::create(efx::Arg* arg)
  */
 bool TSimple2::create(efx::Arg* arg)
 {
-	P2ASSERTLINE(574, arg != nullptr);
+	P2ASSERTLINE(574, arg);
 	for (int i = 0; i < 2; i++) {
 		m_emitters[i] = particleMgr->create(m_effectIDs[i], arg->m_position, 0);
 		if (m_emitters[i]) {
@@ -835,14 +319,6 @@ bool TSimple2::create(efx::Arg* arg)
 bool TSimple3::create(efx::Arg* arg)
 {
 	P2ASSERTLINE(591, arg != nullptr);
-	// return TBase::create(m_emitters, arg->m_position, m_effectIDs, 3);
-	// return TBase::create(m_emitters, m_effectIDs, arg->m_position, 3);
-	// return TBase::create(m_emitters, 3, m_effectIDs, arg->m_position);
-	// return TBase::create(m_emitters, 3, arg, m_effectIDs);
-	// return TBase::create(arg, m_emitters, m_effectIDs, 3);
-	// TBase::create(3, m_emitters, arg->m_position, m_effectIDs);
-	// return TBase::create(3, arg->m_position, m_effectIDs, m_emitters);
-	// return createEmitters(arg, m_emitters, m_effectIDs, 3);
 	for (int i = 0; i < 3; i++) {
 		m_emitters[i] = particleMgr->create(m_effectIDs[i], arg->m_position, 0);
 		if (m_emitters[i]) {
@@ -863,7 +339,6 @@ bool TSimple3::create(efx::Arg* arg)
 bool TSimple4::create(efx::Arg* arg)
 {
 	P2ASSERTLINE(608, arg != nullptr);
-	// return _create(*arg);
 	for (int i = 0; i < 4; i++) {
 		m_emitters[i] = particleMgr->create(m_effectIDs[i], arg->m_position, 0);
 		if (m_emitters[i]) {
@@ -903,82 +378,17 @@ bool TSimple5::create(efx::Arg* arg)
  * Address:	803AF2B4
  * Size:	0000E4
  */
-bool TSimpleMtx1::create(efx::Arg* arg)
+bool TSimpleMtx1::create(Arg* arg)
 {
-	// TODO: The above loops might be an inlined func.
-	// If so, this might call that in like an if condition
-	return false;
-	/*
-	stwu     r1, -0x20(r1)
-	mflr     r0
-	lis      r4, "zero__10Vector3<f>"@ha
-	lis      r5, __vt__Q23efx3Arg@ha
-	stw      r0, 0x24(r1)
-	addi     r0, r5, __vt__Q23efx3Arg@l
-	addi     r5, r1, 0xc
-	li       r6, 0
-	stw      r31, 0x1c(r1)
-	addi     r31, r13, mCallBack_StaticClipping__Q23efx5TBase@sda21
-	stw      r30, 0x18(r1)
-	mr       r30, r3
-	lfsu     f2, "zero__10Vector3<f>"@l(r4)
-	stw      r0, 8(r1)
-	lfs      f1, 4(r4)
-	lfs      f0, 8(r4)
-	stfs     f2, 0xc(r1)
-	lwz      r3, particleMgr@sda21(r13)
-	stfs     f1, 0x10(r1)
-	stfs     f0, 0x14(r1)
-	lhz      r4, 4(r30)
-	bl       "create__11ParticleMgrFUsR10Vector3<f>Uc"
-	stw      r3, 8(r30)
-	lwz      r3, 8(r30)
-	cmplwi   r3, 0
-	beq      lbl_803AF324
-	stw      r31, 0xec(r3)
-	b        lbl_803AF32C
-
-lbl_803AF324:
-	li       r0, 0
-	b        lbl_803AF330
-
-lbl_803AF32C:
-	li       r0, 1
-
-lbl_803AF330:
-	clrlwi.  r0, r0, 0x18
-	beq      lbl_803AF37C
-	lwz      r0, 0xc(r30)
-	cmplwi   r0, 0
-	bne      lbl_803AF360
-	lis      r3, lbl_80495880@ha
-	lis      r5, lbl_8049588C@ha
-	addi     r3, r3, lbl_80495880@l
-	li       r4, 0x286
-	addi     r5, r5, lbl_8049588C@l
-	crclr    6
-	bl       panic_f__12JUTExceptionFPCciPCce
-
-lbl_803AF360:
-	lwz      r5, 8(r30)
-	lwz      r3, 0xc(r30)
-	addi     r4, r5, 0x68
-	addi     r5, r5, 0xa4
-	bl       "JPASetRMtxTVecfromMtx__FPA4_CfPA4_fPQ29JGeometry8TVec3<f>"
-	li       r3, 1
-	b        lbl_803AF380
-
-lbl_803AF37C:
-	li       r3, 0
-
-lbl_803AF380:
-	lwz      r0, 0x24(r1)
-	lwz      r31, 0x1c(r1)
-	lwz      r30, 0x18(r1)
-	mtlr     r0
-	addi     r1, r1, 0x20
-	blr
-	*/
+	if (setEmitterCallbacks()) {
+		P2ASSERTLINE(646, m_mtx);
+		for (int i = 0; i < (int)ARRAY_SIZE(m_emitters); i++) {
+			JPASetRMtxTVecfromMtx(m_mtx->m_matrix.mtxView, m_emitters[i]->_68, &m_emitters[i]->_A4);
+		}
+		return true;
+	} else {
+		return false;
+	}
 }
 
 /*
@@ -989,96 +399,15 @@ lbl_803AF380:
  */
 bool TSimpleMtx2::create(efx::Arg*)
 {
-	return false;
-	/*
-	stwu     r1, -0x30(r1)
-	mflr     r0
-	lis      r4, "zero__10Vector3<f>"@ha
-	stw      r0, 0x34(r1)
-	stmw     r26, 0x18(r1)
-	mr       r31, r3
-	addi     r3, r4, "zero__10Vector3<f>"@l
-	lis      r4, __vt__Q23efx3Arg@ha
-	addi     r0, r4, __vt__Q23efx3Arg@l
-	addi     r26, r1, 0xc
-	mr       r28, r31
-	mr       r27, r31
-	li       r29, 0
-	addi     r30, r13, mCallBack_StaticClipping__Q23efx5TBase@sda21
-	lfs      f2, 0(r3)
-	lfs      f1, 4(r3)
-	lfs      f0, 8(r3)
-	stw      r0, 8(r1)
-	stfs     f2, 0xc(r1)
-	stfs     f1, 0x10(r1)
-	stfs     f0, 0x14(r1)
-
-lbl_803AF3EC:
-	lwz      r3, particleMgr@sda21(r13)
-	mr       r5, r26
-	lhz      r4, 4(r28)
-	li       r6, 0
-	bl       "create__11ParticleMgrFUsR10Vector3<f>Uc"
-	stw      r3, 8(r27)
-	lwz      r3, 8(r27)
-	cmplwi   r3, 0
-	beq      lbl_803AF418
-	stw      r30, 0xec(r3)
-	b        lbl_803AF420
-
-lbl_803AF418:
-	li       r0, 0
-	b        lbl_803AF438
-
-lbl_803AF420:
-	addi     r29, r29, 1
-	addi     r27, r27, 4
-	cmpwi    r29, 2
-	addi     r28, r28, 2
-	blt      lbl_803AF3EC
-	li       r0, 1
-
-lbl_803AF438:
-	clrlwi.  r0, r0, 0x18
-	beq      lbl_803AF49C
-	lwz      r0, 0x10(r31)
-	cmplwi   r0, 0
-	bne      lbl_803AF468
-	lis      r3, lbl_80495880@ha
-	lis      r5, lbl_8049588C@ha
-	addi     r3, r3, lbl_80495880@l
-	li       r4, 0x294
-	addi     r5, r5, lbl_8049588C@l
-	crclr    6
-	bl       panic_f__12JUTExceptionFPCciPCce
-
-lbl_803AF468:
-	li       r26, 0
-	mr       r27, r31
-
-lbl_803AF470:
-	lwz      r5, 8(r27)
-	lwz      r3, 0x10(r31)
-	addi     r4, r5, 0x68
-	addi     r5, r5, 0xa4
-	bl       "JPASetRMtxTVecfromMtx__FPA4_CfPA4_fPQ29JGeometry8TVec3<f>"
-	addi     r26, r26, 1
-	addi     r27, r27, 4
-	cmpwi    r26, 2
-	blt      lbl_803AF470
-	li       r3, 1
-	b        lbl_803AF4A0
-
-lbl_803AF49C:
-	li       r3, 0
-
-lbl_803AF4A0:
-	lmw      r26, 0x18(r1)
-	lwz      r0, 0x34(r1)
-	mtlr     r0
-	addi     r1, r1, 0x30
-	blr
-	*/
+	if (setEmitterCallbacks()) {
+		P2ASSERTLINE(660, m_mtx);
+		for (int i = 0; i < (int)ARRAY_SIZE(m_emitters); i++) {
+			JPASetRMtxTVecfromMtx(m_mtx->m_matrix.mtxView, m_emitters[i]->_68, &m_emitters[i]->_A4);
+		}
+		return true;
+	} else {
+		return false;
+	}
 }
 
 /*
@@ -1089,96 +418,15 @@ lbl_803AF4A0:
  */
 bool TSimpleMtx3::create(efx::Arg*)
 {
-	return false;
-	/*
-	stwu     r1, -0x30(r1)
-	mflr     r0
-	lis      r4, "zero__10Vector3<f>"@ha
-	stw      r0, 0x34(r1)
-	stmw     r26, 0x18(r1)
-	mr       r31, r3
-	addi     r3, r4, "zero__10Vector3<f>"@l
-	lis      r4, __vt__Q23efx3Arg@ha
-	addi     r0, r4, __vt__Q23efx3Arg@l
-	addi     r26, r1, 0xc
-	mr       r28, r31
-	mr       r27, r31
-	li       r29, 0
-	addi     r30, r13, mCallBack_StaticClipping__Q23efx5TBase@sda21
-	lfs      f2, 0(r3)
-	lfs      f1, 4(r3)
-	lfs      f0, 8(r3)
-	stw      r0, 8(r1)
-	stfs     f2, 0xc(r1)
-	stfs     f1, 0x10(r1)
-	stfs     f0, 0x14(r1)
-
-lbl_803AF508:
-	lwz      r3, particleMgr@sda21(r13)
-	mr       r5, r26
-	lhz      r4, 4(r28)
-	li       r6, 0
-	bl       "create__11ParticleMgrFUsR10Vector3<f>Uc"
-	stw      r3, 0xc(r27)
-	lwz      r3, 0xc(r27)
-	cmplwi   r3, 0
-	beq      lbl_803AF534
-	stw      r30, 0xec(r3)
-	b        lbl_803AF53C
-
-lbl_803AF534:
-	li       r0, 0
-	b        lbl_803AF554
-
-lbl_803AF53C:
-	addi     r29, r29, 1
-	addi     r27, r27, 4
-	cmpwi    r29, 3
-	addi     r28, r28, 2
-	blt      lbl_803AF508
-	li       r0, 1
-
-lbl_803AF554:
-	clrlwi.  r0, r0, 0x18
-	beq      lbl_803AF5B8
-	lwz      r0, 0x18(r31)
-	cmplwi   r0, 0
-	bne      lbl_803AF584
-	lis      r3, lbl_80495880@ha
-	lis      r5, lbl_8049588C@ha
-	addi     r3, r3, lbl_80495880@l
-	li       r4, 0x2a2
-	addi     r5, r5, lbl_8049588C@l
-	crclr    6
-	bl       panic_f__12JUTExceptionFPCciPCce
-
-lbl_803AF584:
-	li       r26, 0
-	mr       r27, r31
-
-lbl_803AF58C:
-	lwz      r5, 0xc(r27)
-	lwz      r3, 0x18(r31)
-	addi     r4, r5, 0x68
-	addi     r5, r5, 0xa4
-	bl       "JPASetRMtxTVecfromMtx__FPA4_CfPA4_fPQ29JGeometry8TVec3<f>"
-	addi     r26, r26, 1
-	addi     r27, r27, 4
-	cmpwi    r26, 3
-	blt      lbl_803AF58C
-	li       r3, 1
-	b        lbl_803AF5BC
-
-lbl_803AF5B8:
-	li       r3, 0
-
-lbl_803AF5BC:
-	lmw      r26, 0x18(r1)
-	lwz      r0, 0x34(r1)
-	mtlr     r0
-	addi     r1, r1, 0x30
-	blr
-	*/
+	if (setEmitterCallbacks()) {
+		P2ASSERTLINE(674, m_mtx);
+		for (int i = 0; i < (int)ARRAY_SIZE(m_emitters); i++) {
+			JPASetRMtxTVecfromMtx(m_mtx->m_matrix.mtxView, m_emitters[i]->_68, &m_emitters[i]->_A4);
+		}
+		return true;
+	} else {
+		return false;
+	}
 }
 
 /*
@@ -1189,13 +437,9 @@ lbl_803AF5BC:
  */
 bool TSimpleMtx4::create(efx::Arg* arg)
 {
-	// bool result = true;
-	// Vector3f position = Vector3f::zero;
-	// Arg parentArg(&position);
-	Arg parentArg(Vector3f::zero);
-	if (_create(parentArg)) {
+	if (setEmitterCallbacks()) {
 		P2ASSERTLINE(688, m_mtx != nullptr);
-		for (int i = 0; i < 4; i++) {
+		for (int i = 0; i < (int)ARRAY_SIZE(m_emitters); i++) {
 			JPASetRMtxTVecfromMtx(m_mtx->m_matrix.mtxView, m_emitters[i]->_68, &m_emitters[i]->_A4);
 		}
 		return true;
@@ -1310,7 +554,7 @@ void TSync::fade(void)
  */
 void TChasePos::doExecuteEmitterOperation(JPABaseEmitter* emitter)
 {
-	P2ASSERTLINE(785, m_position != nullptr);
+	P2ASSERTLINE(785, m_position);
 	Vector3f* position = m_position;
 	emitter->_A4.x     = position->x;
 	emitter->_A4.y     = position->y;
@@ -1325,8 +569,8 @@ void TChasePos::doExecuteEmitterOperation(JPABaseEmitter* emitter)
  */
 void TChasePosYRot::doExecuteEmitterOperation(JPABaseEmitter* emitter)
 {
-	P2ASSERTLINE(794, m_position != nullptr);
-	P2ASSERTLINE(795, m_rotation != nullptr);
+	P2ASSERTLINE(794, m_position);
+	P2ASSERTLINE(795, m_rotation);
 	Matrixf mtx;
 	PSMTXRotRad(mtx.m_matrix.mtxView, 0x79, *m_rotation);
 	Vector3f* translation = m_position;
@@ -1371,67 +615,13 @@ void TChaseMtxT::doExecuteEmitterOperation(JPABaseEmitter* emitter)
  */
 void TChasePosPos::doExecuteEmitterOperation(JPABaseEmitter* emitter)
 {
-	/*
-	stwu     r1, -0x60(r1)
-	mflr     r0
-	stw      r0, 0x64(r1)
-	stw      r31, 0x5c(r1)
-	mr       r31, r4
-	stw      r30, 0x58(r1)
-	mr       r30, r3
-	lwz      r0, 0x10(r3)
-	cmplwi   r0, 0
-	bne      lbl_803AFBE8
-	lis      r3, lbl_80495880@ha
-	lis      r5, lbl_8049588C@ha
-	addi     r3, r3, lbl_80495880@l
-	li       r4, 0x33d
-	addi     r5, r5, lbl_8049588C@l
-	crclr    6
-	bl       panic_f__12JUTExceptionFPCciPCce
-
-lbl_803AFBE8:
-	lwz      r0, 0x14(r30)
-	cmplwi   r0, 0
-	bne      lbl_803AFC10
-	lis      r3, lbl_80495880@ha
-	lis      r5, lbl_8049588C@ha
-	addi     r3, r3, lbl_80495880@l
-	li       r4, 0x33e
-	addi     r5, r5, lbl_8049588C@l
-	crclr    6
-	bl       panic_f__12JUTExceptionFPCciPCce
-
-lbl_803AFC10:
-	lwz      r6, 0x10(r30)
-	addi     r3, r1, 0x20
-	addi     r4, r1, 0x14
-	addi     r5, r1, 8
-	lfs      f0, 0(r6)
-	stfs     f0, 0x14(r1)
-	lfs      f0, 4(r6)
-	stfs     f0, 0x18(r1)
-	lfs      f0, 8(r6)
-	stfs     f0, 0x1c(r1)
-	lwz      r6, 0x14(r30)
-	lfs      f0, 0(r6)
-	stfs     f0, 8(r1)
-	lfs      f0, 4(r6)
-	stfs     f0, 0xc(r1)
-	lfs      f0, 8(r6)
-	stfs     f0, 0x10(r1)
-	bl       "makeMtxZAxisAlongPosPos__3efxFPA4_fR10Vector3<f>R10Vector3<f>"
-	addi     r3, r1, 0x20
-	addi     r4, r31, 0x68
-	addi     r5, r31, 0xa4
-	bl       "JPASetRMtxTVecfromMtx__FPA4_CfPA4_fPQ29JGeometry8TVec3<f>"
-	lwz      r0, 0x64(r1)
-	lwz      r31, 0x5c(r1)
-	lwz      r30, 0x58(r1)
-	mtlr     r0
-	addi     r1, r1, 0x60
-	blr
-	*/
+	P2ASSERTLINE(829, _10);
+	P2ASSERTLINE(830, _14);
+	Mtx mtxZ;
+	Vector3f vec1 = *_10;
+	Vector3f vec2 = *_14;
+	makeMtxZAxisAlongPosPos(mtxZ, vec1, vec2);
+	JPASetRMtxTVecfromMtx(mtxZ, emitter->_68, &emitter->_A4);
 }
 
 /*
@@ -1440,12 +630,14 @@ lbl_803AFC10:
  * Address:	803AFC80
  * Size:	0000F8
  */
-void makeMtxZAxisAlongPosPos(float (*mtx)[4], Vector3f& p2, Vector3f& p3)
+#pragma dont_inline on
+void makeMtxZAxisAlongPosPos(Mtx mtx, Vector3f& p2, Vector3f& p3)
 {
-	float distance = qdist3(p2.x, p2.y, p2.z, p3.x, p3.y, p3.z);
-	if (0.0f < distance) {
-		distance = 1.0f / distance;
-	}
+	Vector3f diff = p3 - p2;
+	diff.normalise();
+	// some cross product/outer product to generate Mtx
+	mtx[0][0] = diff.x;
+
 	/*
 	lfs      f0, 4(r4)
 	lfs      f2, 4(r5)
@@ -1517,6 +709,7 @@ lbl_803AFD10:
 	blr
 	*/
 }
+#pragma dont_inline reset
 
 /*
  * doExecuteEmitterOperation__Q23efx23TChasePosPosLocalZScaleFP14JPABaseEmitter
@@ -1524,8 +717,16 @@ lbl_803AFD10:
  * Address:	803AFD78
  * Size:	00014C
  */
-void TChasePosPosLocalZScale::doExecuteEmitterOperation(JPABaseEmitter*)
+void TChasePosPosLocalZScale::doExecuteEmitterOperation(JPABaseEmitter* emitter)
 {
+	P2ASSERTLINE(848, _10);
+	P2ASSERTLINE(849, _14);
+	Mtx mtxZ;
+	Vector3f vec1 = *_10;
+	Vector3f vec2 = *_14;
+	makeMtxZAxisAlongPosPos(mtxZ, vec1, vec2);
+	JPASetRMtxTVecfromMtx(mtxZ, emitter->_68, &emitter->_A4);
+	// needs some extra math here
 	/*
 	stwu     r1, -0x70(r1)
 	mflr     r0
@@ -1627,8 +828,16 @@ lbl_803AFE88:
  * Address:	803AFEC4
  * Size:	00014C
  */
-void TChasePosPosLocalYScale::doExecuteEmitterOperation(JPABaseEmitter*)
+void TChasePosPosLocalYScale::doExecuteEmitterOperation(JPABaseEmitter* emitter)
 {
+	P2ASSERTLINE(880, _10);
+	P2ASSERTLINE(881, _14);
+	Mtx mtxZ;
+	Vector3f vec1 = *_10;
+	Vector3f vec2 = *_14;
+	makeMtxZAxisAlongPosPos(mtxZ, vec1, vec2);
+	JPASetRMtxTVecfromMtx(mtxZ, emitter->_68, &emitter->_A4);
+	// needs some extra math here
 	/*
 	stwu     r1, -0x70(r1)
 	mflr     r0
@@ -1836,16 +1045,16 @@ TChasePos2::TChasePos2(Vector3f* position, unsigned short effectID1, unsigned sh
 // 	// UNUSED FUNCTION
 // }
 
-/*
- * __ct__Q23efx9TChasePosFv
- * --INFO--
- * Address:	803B02EC
- * Size:	000058
- */
-TChasePos::TChasePos()
-    : TSync()
-{
-}
+// /*
+//  * __ct__Q23efx9TChasePosFv
+//  * --INFO--
+//  * Address:	803B02EC
+//  * Size:	000058
+//  */
+// TChasePos::TChasePos()
+//     : TSync()
+// {
+// }
 
 /*
  * setPosptr__Q23efx10TChasePos2FP10Vector3<f>
@@ -3781,136 +2990,6 @@ TCallBack_StaticClipping::~TCallBack_StaticClipping() { }
 // 	addi     r1, r1, 0x10
 // 	blr
 // 	*/
-// }
-
-/*
- * @generated{@4@executeAfter__Q23efx11TOneEmitterFP14JPABaseEmitter}
- * --INFO--
- * Address:	803B2D1C
- * Size:	000008
- */
-// void @4 @efx::TOneEmitter::executeAfter(JPABaseEmitter*)
-// {
-// }
-
-/*
- * @generated{@4@__dt__Q23efx11TOneEmitterFv}
- * --INFO--
- * Address:	803B2D24
- * Size:	000008
- */
-// @4 @efx::TOneEmitter::~TOneEmitter(void)
-// {
-// }
-
-/*
- * @generated{@4@executeAfter__Q23efx19TOneEmitterChasePosFP14JPABaseEmitter}
- * --INFO--
- * Address:	803B2D2C
- * Size:	000008
- */
-// void @4 @efx::TOneEmitterChasePos::executeAfter(JPABaseEmitter*)
-// {
-// }
-
-/*
- * @generated{@4@__dt__Q23efx19TOneEmitterChasePosFv}
- * --INFO--
- * Address:	803B2D34
- * Size:	000008
- */
-// @4 @efx::TOneEmitterChasePos::~TOneEmitterChasePos(void)
-// {
-// }
-
-/*
- * @generated{@4@__dt__Q23efx17TOneEmitterSimpleFv}
- * --INFO--
- * Address:	803B2D3C
- * Size:	000008
- */
-// @4 @efx::TOneEmitterSimple::~TOneEmitterSimple(void)
-// {
-// }
-
-/*
- * @generated{@4@__dt__Q23efx5TSyncFv}
- * --INFO--
- * Address:	803B2D44
- * Size:	000008
- */
-// @4 @efx::TSync::~TSync(void)
-// {
-// }
-
-/*
- * @generated{@4@__dt__Q23efx9TChasePosFv}
- * --INFO--
- * Address:	803B2D4C
- * Size:	000008
- */
-// @4 @efx::TChasePos::~TChasePos(void)
-// {
-// }
-
-/*
- * @generated{@4@__dt__Q23efx13TChasePosYRotFv}
- * --INFO--
- * Address:	803B2D54
- * Size:	000008
- */
-// @4 @efx::TChasePosYRot::~TChasePosYRot(void)
-// {
-// }
-
-/*
- * @generated{@4@__dt__Q23efx9TChaseMtxFv}
- * --INFO--
- * Address:	803B2D5C
- * Size:	000008
- */
-// @4 @efx::TChaseMtx::~TChaseMtx(void)
-// {
-// }
-
-/*
- * @generated{@4@__dt__Q23efx10TChaseMtxTFv}
- * --INFO--
- * Address:	803B2D64
- * Size:	000008
- */
-// @4 @efx::TChaseMtxT::~TChaseMtxT(void)
-// {
-// }
-
-/*
- * @generated{@4@__dt__Q23efx12TChasePosPosFv}
- * --INFO--
- * Address:	803B2D6C
- * Size:	000008
- */
-// @4 @efx::TChasePosPos::~TChasePosPos(void)
-// {
-// }
-
-/*
- * @generated{@4@__dt__Q23efx23TChasePosPosLocalZScaleFv}
- * --INFO--
- * Address:	803B2D74
- * Size:	000008
- */
-// @4 @efx::TChasePosPosLocalZScale::~TChasePosPosLocalZScale(void)
-// {
-// }
-
-/*
- * @generated{@4@__dt__Q23efx23TChasePosPosLocalYScaleFv}
- * --INFO--
- * Address:	803B2D7C
- * Size:	000008
- */
-// @4 @efx::TChasePosPosLocalYScale::~TChasePosPosLocalYScale(void)
-// {
 // }
 
 } // namespace efx

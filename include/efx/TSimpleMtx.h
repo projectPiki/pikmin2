@@ -3,6 +3,7 @@
 
 #include "Matrixf.h"
 #include "efx/TSimple.h"
+#include "efx/TCallBack_StaticClipping.h"
 
 namespace efx {
 struct TSimpleMtx1 : public TSimple1 {
@@ -13,6 +14,23 @@ struct TSimpleMtx1 : public TSimple1 {
 	}
 
 	virtual bool create(Arg*); // _08
+
+	inline bool setEmitterCallbacks() // this could afford to be a template for all these functions
+	{
+		Arg newArg;
+		for (int i = 0; i < (int)ARRAY_SIZE(m_emitters); i++) {
+			TCallBack_StaticClipping* callback = &mCallBack_StaticClipping;
+			m_emitters[i]                      = particleMgr->create(m_effectIDs[i], newArg.m_position, 0);
+
+			if (m_emitters[i]) {
+				m_emitters[i]->m_emitterCallback = callback;
+
+			} else {
+				return false;
+			}
+		}
+		return true;
+	}
 
 	// _00		= VTBL
 	// _00-_0C	= TSimple1
@@ -28,6 +46,23 @@ struct TSimpleMtx2 : public TSimple2 {
 
 	virtual bool create(Arg*); // _08
 
+	inline bool setEmitterCallbacks() // this could afford to be a template for all these functions
+	{
+		Arg newArg;
+		for (int i = 0; i < (int)ARRAY_SIZE(m_emitters); i++) {
+			TCallBack_StaticClipping* callback = &mCallBack_StaticClipping;
+			m_emitters[i]                      = particleMgr->create(m_effectIDs[i], newArg.m_position, 0);
+
+			if (m_emitters[i]) {
+				m_emitters[i]->m_emitterCallback = callback;
+
+			} else {
+				return false;
+			}
+		}
+		return true;
+	}
+
 	// _00		= VTBL
 	// _00-_10	= TSimple2
 	Matrixf* m_mtx; // _10
@@ -42,6 +77,23 @@ struct TSimpleMtx3 : public TSimple3 {
 
 	virtual bool create(Arg*); // _08
 
+	inline bool setEmitterCallbacks() // this could afford to be a template for all these functions
+	{
+		Arg newArg;
+		for (int i = 0; i < (int)ARRAY_SIZE(m_emitters); i++) {
+			TCallBack_StaticClipping* callback = &mCallBack_StaticClipping;
+			m_emitters[i]                      = particleMgr->create(m_effectIDs[i], newArg.m_position, 0);
+
+			if (m_emitters[i]) {
+				m_emitters[i]->m_emitterCallback = callback;
+
+			} else {
+				return false;
+			}
+		}
+		return true;
+	}
+
 	// _00		= VTBL
 	// _00-_18	= TSimple3
 	Matrixf* m_mtx; // _18
@@ -55,6 +107,23 @@ struct TSimpleMtx4 : public TSimple4 {
 	}
 
 	virtual bool create(Arg*); // _08
+
+	inline bool setEmitterCallbacks() // this could afford to be a template for all these functions
+	{
+		Arg newArg;
+		for (int i = 0; i < (int)(sizeof(m_emitters) / sizeof(m_emitters[0])); i++) {
+			TCallBack_StaticClipping* callback = &mCallBack_StaticClipping;
+			m_emitters[i]                      = particleMgr->create(m_effectIDs[i], newArg.m_position, 0);
+
+			if (m_emitters[i]) {
+				m_emitters[i]->m_emitterCallback = callback;
+
+			} else {
+				return false;
+			}
+		}
+		return true;
+	}
 
 	// _00		= VTBL
 	// _00-_1C	= TSimple4
