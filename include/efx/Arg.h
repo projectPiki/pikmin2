@@ -195,6 +195,10 @@ struct ArgKouhai : public Arg {
 	{
 		return "ArgKouhai";
 	}
+
+	// _00     = VTBL
+	// _00-_10 = Arg
+	int _10; // _10
 };
 
 struct ArgPelType : public Arg {

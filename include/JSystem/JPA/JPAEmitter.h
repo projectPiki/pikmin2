@@ -97,6 +97,20 @@ struct JPABaseEmitter {
 	bool isFlag(u32 flag) { return _F4 & flag; }
 	bool is100() { return _F4 & 0x100; }
 
+	inline void setScale(f32 scale)
+	{
+		_98 = JGeometry::TVec3f(scale);
+		_B0 = scale;
+		_B4 = scale;
+	}
+
+	inline void setScale(f32 scaleXY, f32 scaleZ)
+	{
+		_98 = JGeometry::TVec3f(scaleXY, scaleXY, scaleZ);
+		_B0 = scaleXY;
+		_B4 = scaleXY;
+	}
+
 	f32 _00;                    // _00
 	f32 _04;                    // _04
 	f32 _08;                    // _08
