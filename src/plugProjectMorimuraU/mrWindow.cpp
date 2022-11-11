@@ -2,10 +2,10 @@
 #include "og/Screen/ScaleMgr.h"
 #include "og/Screen/anime.h"
 #include "og/Screen/callbackNodes.h"
-#include "og/newScreen/ObjWorldMapInfoWindow0.h"
+#include "og/newScreen/WorldMapInfoWindow.h"
 #include "types.h"
-#include "Morimura/TScreenBase.h"
-#include "Morimura/TConfirmEndWindow.h"
+#include "Morimura/Bases.h"
+#include "Morimura/Window.h"
 
 /*
     Generated from dpostproc

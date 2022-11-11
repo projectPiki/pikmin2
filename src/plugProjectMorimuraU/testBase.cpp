@@ -1,4 +1,4 @@
-#include "Morimura/TTestBase.h"
+#include "Morimura/Bases.h"
 
 namespace Morimura {
 u64 TTestBase::mIsSection;

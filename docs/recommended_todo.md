@@ -152,7 +152,7 @@
 | File | Size (bytes) | File | Size (bytes) |
 | ---- | ---- | ---- | ---- |
 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectMorimuraU/enemyNestMgr.cpp">enemyNestMgr.cpp</a> | 9813 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectMorimuraU/tamagoMushiMgr.cpp">tamagoMushiMgr.cpp</a> | 13224 |
-| <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectMorimuraU/mrWindow.cpp">mrWindow.cpp</a> | 14710 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectMorimuraU/bomb.cpp">bomb.cpp</a> | 19743 |
+| <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectMorimuraU/mrWindow.cpp">mrWindow.cpp</a> | 14689 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectMorimuraU/bomb.cpp">bomb.cpp</a> | 19743 |
 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectMorimuraU/shijimiChouState.cpp">shijimiChouState.cpp</a> | 31896 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectMorimuraU/mrUtil.cpp">mrUtil.cpp</a> | 38082 |
 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectMorimuraU/scrollList.cpp">scrollList.cpp</a> | 41235 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectMorimuraU/miulinState.cpp">miulinState.cpp</a> | 53516 |
 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectMorimuraU/gameOver2D.cpp">gameOver2D.cpp</a> | 54262 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectMorimuraU/hurryUp2D.cpp">hurryUp2D.cpp</a> | 60260 |
@@ -193,7 +193,7 @@
 | ---- | ---- | ---- | ---- |
 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectOgawaU/testObj.cpp">testObj.cpp</a> | 6249 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectOgawaU/ogBloGroup.cpp">ogBloGroup.cpp</a> | 8075 |
 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectOgawaU/ogObjSave.cpp">ogObjSave.cpp</a> | 9529 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectOgawaU/ogSceneGround.cpp">ogSceneGround.cpp</a> | 9854 |
-| <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectOgawaU/ogObjWorldMapInfoWindow0.cpp">ogObjWorldMapInfoWindow0.cpp</a> | 10133 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectOgawaU/ogSceneCourseName.cpp">ogSceneCourseName.cpp</a> | 10259 |
+| <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectOgawaU/ogObjWorldMapInfoWindow0.cpp">ogObjWorldMapInfoWindow0.cpp</a> | 10049 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectOgawaU/ogSceneCourseName.cpp">ogSceneCourseName.cpp</a> | 10259 |
 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectOgawaU/ogCopyPane.cpp">ogCopyPane.cpp</a> | 10962 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectOgawaU/ogObjChallengeBase.cpp">ogObjChallengeBase.cpp</a> | 12161 |
 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectOgawaU/ogSE.cpp">ogSE.cpp</a> | 12799 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectOgawaU/ogCallBackMessage.cpp">ogCallBackMessage.cpp</a> | 14032 |
 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectOgawaU/ogObjSpecialItem.cpp">ogObjSpecialItem.cpp</a> | 14603 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectOgawaU/ogObjWorldMapInfoWindow1.cpp">ogObjWorldMapInfoWindow1.cpp</a> | 15516 |

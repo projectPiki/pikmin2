@@ -1,5 +1,5 @@
 #include "og/newScreen/Challenge.h"
-#include "Morimura/TChallenge.h"
+#include "Morimura/Challenge.h"
 #include "Game/GameSystem.h"
 
 namespace og {

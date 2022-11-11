@@ -4,7 +4,7 @@
 #include "JSystem/J2D/J2DPane.h"
 #include "JSystem/JGeometry.h"
 #include "JSystem/JUT/TColor.h"
-#include "Morimura/TTestBase.h"
+#include "Morimura/Bases.h"
 #include "Screen/Enums.h"
 #include "og/Screen/ogScreen.h"
 #include "Screen/Bases.h"
@@ -19,6 +19,7 @@ struct Mgr_tuning;
 }
 
 namespace Morimura {
+struct TChallengeEndCount2p;
 
 /**
  * @size{0xD4}
@@ -26,12 +27,12 @@ namespace Morimura {
 struct TDayEndCount : public TTestBase {
 	TDayEndCount();
 
-	virtual ~TDayEndCount();                                 // _00
-	virtual bool doStart(const ::Screen::StartSceneArg*);    // _2C
-	virtual void doCreate(JKRArchive*);                      // _34
-	virtual bool doUpdate();                                 // _40
-	virtual void doDraw(Graphics& gfx);                      // _50
-	virtual og::Screen::DispMemberBase* getDispMemberBase(); // _60
+	virtual ~TDayEndCount();                                 // _08 (weak)
+	virtual bool doStart(const ::Screen::StartSceneArg*);    // _44 (weak)
+	virtual void doCreate(JKRArchive*);                      // _4C
+	virtual bool doUpdate();                                 // _58
+	virtual void doDraw(Graphics& gfx);                      // _68
+	virtual og::Screen::DispMemberBase* getDispMemberBase(); // _78 (weak)
 
 	void reset();
 
@@ -57,6 +58,20 @@ struct TDayEndCount : public TTestBase {
 	u8 _CA;                                          // _CA
 	f32 m_scale;                                     // _CC
 	f32 m_offsetY;                                   // _D0
+};
+
+struct TCountDownScene : public Screen::SceneBase {
+	virtual SceneType getSceneType();             // _08 (weak)
+	virtual ScreenOwnerID getOwnerID();           // _0C (weak)
+	virtual ScreenMemberID getMemberID();         // _10 (weak)
+	virtual const char* getResName() const;       // _1C (weak)
+	virtual void doCreateObj(JKRArchive*);        // _20 (weak)
+	virtual bool doStart(Screen::StartSceneArg*); // _3C
+
+	// _00      = VTBL
+	// _00-_220 = Screen::SceneBase
+	TDayEndCount* m_dayEndCount;                 // _220
+	TChallengeEndCount2p* m_challengeEndCount2p; // _224
 };
 
 } // namespace Morimura
