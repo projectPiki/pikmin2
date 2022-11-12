@@ -4203,8 +4203,8 @@ void SingleGameSection::goCave(Game::ItemCave::Item* cave)
 {
 	strcpy(m_caveFilename, cave->m_caveFilename);
 	m_caveID->setID(cave->m_caveID.getID());
-	_194            = true;
-	m_isInCaveMaybe = true;
+	_194     = true;
+	m_inCave = true;
 	m_currentState->onHoleIn(this, cave);
 	/*
 	stwu     r1, -0x10(r1)
@@ -4253,8 +4253,8 @@ void SingleGame::State::onHoleIn(Game::SingleGameSection*, Game::ItemCave::Item*
  */
 void SingleGameSection::goMainMap(Game::ItemBigFountain::Item* fountain)
 {
-	_194            = true;
-	m_isInCaveMaybe = false;
+	_194     = true;
+	m_inCave = false;
 	m_currentState->onFountainReturn(this, fountain);
 	/*
 	stwu     r1, -0x10(r1)

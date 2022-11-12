@@ -8,6 +8,7 @@ namespace Game {
 struct Piki;
 
 namespace GameStat {
+void clear();
 struct PikiCounter {
 	PikiCounter();
 

@@ -69,6 +69,15 @@ struct VsGameSection : public BaseGameSection {
 	void updateCardGeneration();
 	void updateCaveMenus();
 	void useCard();
+
+	u8 _174[0xA0]; // _174
+// not sure where this goes, but it goes after m_texData1 and before m_container1.
+#if BUILDTARGET == USADEMO1
+	u8 _DemoPadding3[0x4];
+#endif
+	// probably red and blue 2pbattle onyons
+	PikiContainer m_container1; // _214
+	PikiContainer m_container2; // _21C
 };
 } // namespace Game
 

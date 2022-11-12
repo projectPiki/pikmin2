@@ -1,8 +1,11 @@
 #include "types.h"
 #include "nans.h"
+#include "TParticle2dMgr.h"
+#include "Game/gameStat.h"
 #include "Game/SingleGame.h"
 #include "Game/MoviePlayer.h"
 #include "Screen/Game2DMgr.h"
+#include "Game/GameSystem.h"
 #include "Radar.h"
 
 namespace Game {
@@ -40,8 +43,8 @@ void LoadState::init(SingleGameSection* gs, StateArg* arg)
 	_27    = a->_00;
 	_28    = a->_02;
 
-	_26 = 0;
-	_14 = 0;
+	_26 = false;
+	_14 = false;
 }
 
 /*
@@ -49,7 +52,7 @@ void LoadState::init(SingleGameSection* gs, StateArg* arg)
  * Address:	........
  * Size:	000160
  */
-void LoadState::initNext(SingleGameSection*)
+void LoadState::initNext(SingleGameSection* gs)
 {
 	// UNUSED FUNCTION
 }
@@ -59,8 +62,62 @@ void LoadState::initNext(SingleGameSection*)
  * Address:	80239F38
  * Size:	000238
  */
-void LoadState::exec(SingleGameSection*)
+void LoadState::exec(SingleGameSection* gs)
 {
+	if (!_26) {
+		_26 = true;
+		if (!_29) {
+			gs->clearHeap();
+		}
+		if (_27) {
+			if (_28) {
+				gs->m_currentFloor++;
+			}
+			gs->m_inCave = true;
+			og::Screen::DispMemberFloor dispFloor;
+			dispFloor._10      = 0;
+			dispFloor._11      = 0;
+			dispFloor._12      = 0;
+			dispFloor._08      = gs->m_currentFloor + 1;
+			dispFloor.m_caveID = gs->_190;
+			Screen::gGame2DMgr->open_Floor(dispFloor);
+			gameSystem->m_inCave = true;
+		} else if (!_27) {
+			if (!_28) {
+				og::Screen::DispMemberCourseName dispCourseName;
+				dispCourseName.m_courseIndex = gs->m_currentCourseInfo->m_courseIndex;
+				dispCourseName._0C           = 0;
+				dispCourseName._0D           = 0;
+				Screen::gGame2DMgr->open_CourseName(dispCourseName);
+				gs->m_inCave         = false;
+				gameSystem->m_inCave = false;
+			}
+		}
+		GameStat::clear();
+		_10 = 0;
+		_15 = false;
+		_14 = false;
+	} else {
+		if (_14 && !_15) {
+			sys->dvdLoadUseCallBack(&gs->_1B8, gs->_224);
+			_15 = true;
+		}
+		if (gs->_1B8.m_mode == 2) {
+			gs->postSetupFloatMemory();
+			if (gs->m_inCave) {
+				transit(gs, 4, nullptr);
+			} else {
+				Arg arg;
+				arg._00 = true;
+				arg._04 = _24;
+				transit(gs, 3, &arg);
+			}
+		}
+		if (particle2dMgr) {
+			particle2dMgr->update();
+		}
+		Screen::gGame2DMgr->update();
+	}
 	/*
 	stwu     r1, -0x40(r1)
 	mflr     r0
@@ -234,48 +291,16 @@ lbl_8023A158:
  * Address:	8023A170
  * Size:	000090
  */
-void LoadState::draw(SingleGameSection*, Graphics&)
+void LoadState::draw(SingleGameSection* gs, Graphics& gfx)
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	mr       r31, r5
-	lbz      r0, 0x26(r3)
-	cmplwi   r0, 0
-	beq      lbl_8023A1EC
-	li       r0, 1
-	stb      r0, 0x14(r3)
-	addi     r3, r31, 0x190
-	lwz      r12, 0x190(r31)
-	lwz      r12, 0x14(r12)
-	mtctr    r12
-	bctrl
-	lwz      r3, particle2dMgr@sda21(r13)
-	li       r4, 1
-	li       r5, 0
-	bl       draw__14TParticle2dMgrFUcUs
-	lwz      r3, gGame2DMgr__6Screen@sda21(r13)
-	mr       r4, r31
-	bl       draw__Q26Screen9Game2DMgrFR8Graphics
-	addi     r3, r31, 0x190
-	lwz      r12, 0x190(r31)
-	lwz      r12, 0x14(r12)
-	mtctr    r12
-	bctrl
-	lwz      r3, particle2dMgr@sda21(r13)
-	li       r4, 0
-	li       r5, 0
-	bl       draw__14TParticle2dMgrFUcUs
-
-lbl_8023A1EC:
-	lwz      r0, 0x14(r1)
-	lwz      r31, 0xc(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	if (_26) {
+		_14 = true;
+		gfx.m_perspGraph.setPort();
+		particle2dMgr->draw(1, 0);
+		Screen::gGame2DMgr->draw(gfx);
+		gfx.m_perspGraph.setPort();
+		particle2dMgr->draw(0, 0);
+	}
 }
 
 /*
@@ -287,45 +312,3 @@ void LoadState::cleanup(SingleGameSection*) { }
 
 } // namespace SingleGame
 } // namespace Game
-
-namespace og {
-namespace Screen {
-
-/*
- * --INFO--
- * Address:	8023A204
- * Size:	000008
- */
-// u32 DispMemberCourseName::getSize(void) { return 0x10; }
-
-/*
- * --INFO--
- * Address:	8023A20C
- * Size:	00000C
- */
-// void DispMemberCourseName::getOwnerID(void)
-//{
-/*
-lis      r3, 0x004F4741@ha
-addi     r3, r3, 0x004F4741@l
-blr
-*/
-//}
-
-/*
- * --INFO--
- * Address:	8023A218
- * Size:	000010
- */
-// void DispMemberCourseName::getMemberID(void)
-//{
-/*
-lis      r4, 0x55525345@ha
-li       r3, 0x434f
-addi     r4, r4, 0x55525345@l
-blr
-*/
-//}
-
-} // namespace Screen
-} // namespace og

@@ -142,8 +142,8 @@ struct BaseGameSection : public BaseHIOSection {
 	virtual void drawParticle(Graphics& gfx, int viewportIndex);       // _114
 	virtual void draw_Ogawa2D(Graphics& gfx);                          // _118
 	virtual void do_drawOtakaraWindow(Graphics& gfx);                  // _11C
-	virtual void onSetupf32Memory();                                   // _120 (weak)
-	virtual void postSetupf32Memory();                                 // _124
+	virtual void onSetupFloatMemory();                                 // _120 (weak)
+	virtual void postSetupFloatMemory();                               // _124
 	virtual void onSetSoundScene();                                    // _128 (weak)
 	virtual void onStartHeap();                                        // _12C (weak)
 	virtual void onClearHeap();                                        // _130 (weak)
@@ -186,7 +186,7 @@ struct BaseGameSection : public BaseHIOSection {
 	void setupFixMemory_dvdload();
 	void enableAllocHalt();
 	void disableAllocHalt();
-	void setupf32Memory();
+	void SetupFloatMemory();
 	void setDrawBuffer(int);
 	void createFallPikminSound();
 	void captureRadarmap(Graphics& gfx);
@@ -253,13 +253,11 @@ struct BaseGameSection : public BaseHIOSection {
 	JUTTexture* _168;                                     // _168
 	int m_texData1;                                       // _16C
 	int _170;                                             // _170
-	u8 _174[0xA0];                                        // _174
-// not sure where this goes, but it goes after m_texData1 and before m_container1.
+	                                                      // u8 _174[0xA0];                                        // _174
+// not sure where this goes, but it goes after m_texData1 and before m_container1 (VsGameSection).
 #if BUILDTARGET == USADEMO1
 	u8 _DemoPadding3[0x4];
 #endif
-	PikiContainer m_container1; // _214
-	PikiContainer m_container2; // _21C
 };
 } // namespace Game
 

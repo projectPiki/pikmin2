@@ -305,10 +305,10 @@ struct LoadState : public State {
 	 * @fabricated
 	 */
 	struct Arg : StateArg {
-		u8 _00;  // _00
-		u8 _01;  // _01
-		u8 _02;  // _02
-		u16 _04; // _04
+		bool _00; // _00
+		bool _01; // _01
+		bool _02; // _02
+		u16 _04;  // _04
 	};
 
 	inline LoadState()
@@ -325,15 +325,15 @@ struct LoadState : public State {
 	void initNext(SingleGameSection*);
 
 	unknown _10; // _10
-	u8 _14;      // _14
-	u8 _15;      // _15
+	bool _14;    // _14
+	bool _15;    // _15
 	u32 : 0;
 	u8 _18[0xC]; // _18
 	u16 _24;     // _24
-	u8 _26;      // _26
-	u8 _27;      // _27
-	u8 _28;      // _28
-	u8 _29;      // _29
+	bool _26;    // _26
+	bool _27;    // _27
+	bool _28;    // _28
+	bool _29;    // _29
 };
 
 /**

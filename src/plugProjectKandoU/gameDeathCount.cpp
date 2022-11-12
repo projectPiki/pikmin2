@@ -203,7 +203,7 @@ void BirthMgr::inc(int pikiColor)
 void BirthMgr::dec(int pikiColor)
 {
 	if (0 <= pikiColor && pikiColor <= LastStoredPikiColor) {
-		if (gameSystem->m_isInCaveMaybe) {
+		if (gameSystem->m_inCave) {
 			dec_cave(pikiColor);
 		} else {
 			dec_today(pikiColor);

@@ -4,6 +4,7 @@
 #include "DvdThreadCommand.h"
 #include "Game/BaseGameSection.h"
 #include "Game/gamePlayData.h"
+#include "Game/gameStages.h"
 #include "efx/TChasePos.h"
 #include "id32.h"
 
@@ -91,8 +92,8 @@ struct SingleGameSection : public BaseGameSection {
 	Delegate<Game::SingleGameSection>* _224; // _224
 	u8 _228;                                 // _228
 	Game::CourseInfo* m_currentCourseInfo;   // _22C
-	ID32* m_caveID;                          // _230
-	bool m_isInCaveMaybe;                    // _23C
+	ID32 m_caveID;                           // _230
+	bool m_inCave;                           // _23C
 	u8 _23D;
 	u8 _23E;
 	Delegate<Game::SingleGameSection>* _240;
