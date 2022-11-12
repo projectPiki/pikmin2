@@ -59,14 +59,21 @@ struct Mgr_tuning : public Mgr {
 	virtual ~Mgr_tuning() { }                      // _08 (weak)
 	virtual void draw(Graphics&, J2DGrafContext&); // _9C
 
-	static f32 mstTuningTransX;
-	static f32 mstTuningTransY;
+	static const f32 mstTuningTransX;
+	static const f32 mstTuningTransY;
+
+	inline void setXY(f32 x, f32 y)
+	{
+		m_someX = x + mstTuningTransX;
+		m_someY = y + mstTuningTransY;
+	}
 
 	// _00      = VTBL
 	// _00-_138 = Mgr
-	f32 m_widthMaybe;   // _138
-	f32 m_heightMaybe;  // _13C
-	Vector2f m_offsets; // _140
+	f32 m_widthMaybe;  // _138
+	f32 m_heightMaybe; // _13C
+	f32 m_someX;       // _140
+	f32 m_someY;       // _144
 };
 } // namespace P2DScreen
 

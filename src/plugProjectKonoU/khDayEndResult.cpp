@@ -4,9 +4,14 @@
 #include "Game/DeathMgr.h"
 #include "Game/GameSystem.h"
 #include "PSSystem/PSSystemIF.h"
+#include "og/Screen/ogScreen.h"
+#include "og/Screen/StickAnimMgr.h"
+#include "Controller.h"
 
 namespace kh {
 namespace Screen {
+
+static const J2DPane* bufferPanes[2];
 
 static void _Printf(char* format) { OSReport(format, __FILE__); }
 
@@ -173,7 +178,7 @@ ObjDayEndResultBase::ObjDayEndResultBase()
 	m_nextBtnFadePane         = nullptr;
 	_95                       = 255;
 	_94                       = 255;
-	_90                       = 0;
+	m_flags                   = 0;
 }
 
 /*
@@ -205,9 +210,9 @@ void ObjDayEndResultBase::doCreate(JKRArchive* archive)
 bool ObjDayEndResultBase::doStart(const ::Screen::StartSceneArg* sceneArg)
 {
 	if (sceneArg && sceneArg->_04) {
-		_90 &= ~0x8;
+		m_flags &= ~0x8;
 	} else {
-		_90 |= 0x8;
+		m_flags |= 0x8;
 	}
 
 	setFadeinFrm();
@@ -288,87 +293,15 @@ bool ObjDayEndResultBase::doUpdateFadeout()
 void ObjDayEndResultBase::doDraw(Graphics& gfx)
 {
 	gfx.m_orthoGraph.setPort();
-	m_resultTitleMgr->m_offsets
-	    = Vector2f(msVal._1C, 0.0f) + Vector2f(P2DScreen::Mgr_tuning::mstTuningTransX, P2DScreen::Mgr_tuning::mstTuningTransY);
+
+	m_resultTitleMgr->setXY(msVal._1C, 0.0f);
 	m_resultTitleMgr->draw(gfx, gfx.m_orthoGraph);
 
 	gfx.m_orthoGraph.setPort();
-	_70->m_offsets = Vector2f(msVal._14, 0.0f) + Vector2f(P2DScreen::Mgr_tuning::mstTuningTransX, P2DScreen::Mgr_tuning::mstTuningTransY);
+	_70->setXY(msVal._14, 0.0f);
 	_70->draw(gfx, gfx.m_orthoGraph);
 
-	_4C->m_offsets = Vector2f(msVal._18, 0.0f) + Vector2f(P2DScreen::Mgr_tuning::mstTuningTransX, P2DScreen::Mgr_tuning::mstTuningTransY);
-	/*
-stwu     r1, -0x10(r1)
-mflr     r0
-stw      r0, 0x14(r1)
-stw      r31, 0xc(r1)
-mr       r31, r4
-stw      r30, 8(r1)
-mr       r30, r3
-addi     r3, r31, 0xbc
-lwz      r12, 0xbc(r4)
-lwz      r12, 0x14(r12)
-mtctr    r12
-bctrl
-lis      r3, msVal__Q32kh6Screen19ObjDayEndResultBase@ha
-lfs      f2, mstTuningTransX__Q29P2DScreen10Mgr_tuning@sda21(r2)
-addi     r3, r3, msVal__Q32kh6Screen19ObjDayEndResultBase@l
-lfs      f1, lbl_805200A8@sda21(r2)
-lfs      f3, 0x1c(r3)
-mr       r4, r31
-lfs      f0, mstTuningTransY__Q29P2DScreen10Mgr_tuning@sda21(r2)
-addi     r5, r31, 0xbc
-fadds    f2, f3, f2
-lwz      r3, 0x38(r30)
-fadds    f0, f1, f0
-stfs     f2, 0x140(r3)
-stfs     f0, 0x144(r3)
-lwz      r3, 0x38(r30)
-lwz      r12, 0(r3)
-lwz      r12, 0x9c(r12)
-mtctr    r12
-bctrl
-addi     r3, r31, 0xbc
-lwz      r12, 0xbc(r31)
-lwz      r12, 0x14(r12)
-mtctr    r12
-bctrl
-lis      r3, msVal__Q32kh6Screen19ObjDayEndResultBase@ha
-lfs      f2, mstTuningTransX__Q29P2DScreen10Mgr_tuning@sda21(r2)
-addi     r3, r3, msVal__Q32kh6Screen19ObjDayEndResultBase@l
-lfs      f1, lbl_805200A8@sda21(r2)
-lfs      f3, 0x14(r3)
-mr       r4, r31
-lfs      f0, mstTuningTransY__Q29P2DScreen10Mgr_tuning@sda21(r2)
-addi     r5, r31, 0xbc
-fadds    f2, f3, f2
-lwz      r3, 0x70(r30)
-fadds    f0, f1, f0
-stfs     f2, 0x140(r3)
-stfs     f0, 0x144(r3)
-lwz      r3, 0x70(r30)
-lwz      r12, 0(r3)
-lwz      r12, 0x9c(r12)
-mtctr    r12
-bctrl
-lis      r3, msVal__Q32kh6Screen19ObjDayEndResultBase@ha
-lfs      f2, mstTuningTransX__Q29P2DScreen10Mgr_tuning@sda21(r2)
-addi     r3, r3, msVal__Q32kh6Screen19ObjDayEndResultBase@l
-lfs      f1, lbl_805200A8@sda21(r2)
-lfs      f3, 0x18(r3)
-lfs      f0, mstTuningTransY__Q29P2DScreen10Mgr_tuning@sda21(r2)
-fadds    f2, f3, f2
-lwz      r3, 0x4c(r30)
-fadds    f0, f1, f0
-stfs     f2, 0x140(r3)
-stfs     f0, 0x144(r3)
-lwz      r31, 0xc(r1)
-lwz      r30, 8(r1)
-lwz      r0, 0x14(r1)
-mtlr     r0
-addi     r1, r1, 0x10
-blr
-	*/
+	_4C->setXY(msVal._18, 0.0f);
 }
 
 /*
@@ -378,180 +311,55 @@ blr
  */
 void ObjDayEndResultBase::updateCommon()
 {
-	/*
-stwu     r1, -0x20(r1)
-mflr     r0
-stw      r0, 0x24(r1)
-stw      r31, 0x1c(r1)
-mr       r31, r3
-lfs      f0, 0x44(r3)
-lwz      r3, 0x3c(r3)
-stfs     f0, 8(r3)
-lfs      f0, 0x48(r31)
-lwz      r3, 0x40(r31)
-stfs     f0, 8(r3)
-lwz      r3, 0x38(r31)
-bl       animation__9J2DScreenFv
-lfs      f0, 0x44(r31)
-lis      r0, 0x4330
-lfs      f2, lbl_805200B0@sda21(r2)
-stw      r0, 8(r1)
-fadds    f0, f0, f2
-lfd      f1, lbl_805200B8@sda21(r2)
-stfs     f0, 0x44(r31)
-lfs      f0, 0x48(r31)
-fadds    f0, f0, f2
-stfs     f0, 0x48(r31)
-lwz      r3, 0x3c(r31)
-lfs      f2, 0x44(r31)
-lha      r0, 6(r3)
-xoris    r0, r0, 0x8000
-stw      r0, 0xc(r1)
-lfd      f0, 8(r1)
-fsubs    f0, f0, f1
-fcmpo    cr0, f2, f0
-cror     2, 1, 2
-bne      lbl_80403168
-lfs      f0, lbl_805200A8@sda21(r2)
-stfs     f0, 0x44(r31)
+	m_resultTitleAnmTransform->m_currentFrame = _44;
+	m_resultTitleAnmColor->m_currentFrame     = _48;
+	m_resultTitleMgr->animation();
 
-lbl_80403168:
-lwz      r3, 0x40(r31)
-lis      r0, 0x4330
-stw      r0, 8(r1)
-lha      r0, 6(r3)
-lfd      f1, lbl_805200B8@sda21(r2)
-xoris    r0, r0, 0x8000
-lfs      f2, 0x48(r31)
-stw      r0, 0xc(r1)
-lfd      f0, 8(r1)
-fsubs    f0, f0, f1
-fcmpo    cr0, f2, f0
-cror     2, 1, 2
-bne      lbl_804031A4
-lfs      f0, lbl_805200A8@sda21(r2)
-stfs     f0, 0x48(r31)
+	_44++;
+	_48++;
 
-lbl_804031A4:
-lfs      f0, 0x68(r31)
-lwz      r3, 0x58(r31)
-stfs     f0, 8(r3)
-lfs      f0, 0x6c(r31)
-lwz      r3, 0x5c(r31)
-stfs     f0, 8(r3)
-lwz      r3, 0x4c(r31)
-bl       animation__9J2DScreenFv
-lfs      f0, 0x68(r31)
-lis      r0, 0x4330
-lfs      f2, lbl_805200B0@sda21(r2)
-stw      r0, 8(r1)
-fadds    f0, f0, f2
-lfd      f1, lbl_805200B8@sda21(r2)
-stfs     f0, 0x68(r31)
-lfs      f0, 0x6c(r31)
-fadds    f0, f0, f2
-stfs     f0, 0x6c(r31)
-lwz      r3, 0x58(r31)
-lfs      f2, 0x68(r31)
-lha      r0, 6(r3)
-xoris    r0, r0, 0x8000
-stw      r0, 0xc(r1)
-lfd      f0, 8(r1)
-fsubs    f0, f0, f1
-fcmpo    cr0, f2, f0
-cror     2, 1, 2
-bne      lbl_8040321C
-lfs      f0, lbl_805200A8@sda21(r2)
-stfs     f0, 0x68(r31)
+	if (_44 >= m_resultTitleAnmTransform->m_maxFrame) {
+		_44 = 0.0f;
+	}
 
-lbl_8040321C:
-lwz      r3, 0x5c(r31)
-lis      r0, 0x4330
-stw      r0, 8(r1)
-lha      r0, 6(r3)
-lfd      f1, lbl_805200B8@sda21(r2)
-xoris    r0, r0, 0x8000
-lfs      f2, 0x6c(r31)
-stw      r0, 0xc(r1)
-lfd      f0, 8(r1)
-fsubs    f0, f0, f1
-fcmpo    cr0, f2, f0
-cror     2, 1, 2
-bne      lbl_80403258
-lfs      f0, lbl_805200A8@sda21(r2)
-stfs     f0, 0x6c(r31)
+	if (_48 >= m_resultTitleAnmColor->m_maxFrame) {
+		_48 = 0.0f;
+	}
 
-lbl_80403258:
-lfs      f0, 0x64(r31)
-lis      r3, 0x69746C65@ha
-lwz      r4, 0x54(r31)
-addi     r6, r3, 0x69746C65@l
-li       r5, 0x4e74
-stfs     f0, 8(r4)
-lwz      r3, 0x4c(r31)
-lwz      r12, 0(r3)
-lwz      r12, 0x3c(r12)
-mtctr    r12
-bctrl
-bl       animationTransform__7J2DPaneFv
-lfs      f1, 0x64(r31)
-lis      r0, 0x4330
-lfs      f0, lbl_805200B0@sda21(r2)
-stw      r0, 8(r1)
-fadds    f0, f1, f0
-lfd      f1, lbl_805200B8@sda21(r2)
-stfs     f0, 0x64(r31)
-lwz      r3, 0x54(r31)
-lfs      f2, 0x64(r31)
-lha      r0, 6(r3)
-xoris    r0, r0, 0x8000
-stw      r0, 0xc(r1)
-lfd      f0, 8(r1)
-fsubs    f0, f0, f1
-fcmpo    cr0, f2, f0
-cror     2, 1, 2
-bne      lbl_804032D4
-lfs      f0, lbl_805200A8@sda21(r2)
-stfs     f0, 0x64(r31)
+	_58->m_currentFrame = _68;
+	_5C->m_currentFrame = _6C;
+	_4C->animation();
 
-lbl_804032D4:
-lfs      f0, 0x78(r31)
-lwz      r3, 0x74(r31)
-stfs     f0, 8(r3)
-lwz      r3, 0x70(r31)
-bl       animation__9J2DScreenFv
-lfs      f1, 0x78(r31)
-lis      r0, 0x4330
-lfs      f0, lbl_805200B0@sda21(r2)
-stw      r0, 8(r1)
-fadds    f0, f1, f0
-lfd      f1, lbl_805200B8@sda21(r2)
-stfs     f0, 0x78(r31)
-lwz      r3, 0x74(r31)
-lfs      f2, 0x78(r31)
-lha      r0, 6(r3)
-xoris    r0, r0, 0x8000
-stw      r0, 0xc(r1)
-lfd      f0, 8(r1)
-fsubs    f0, f0, f1
-fcmpo    cr0, f2, f0
-cror     2, 1, 2
-bne      lbl_80403334
-lfs      f0, lbl_805200A8@sda21(r2)
-stfs     f0, 0x78(r31)
+	_68++;
+	_6C++;
 
-lbl_80403334:
-lwz      r3, 0x38(r31)
-lwz      r12, 0(r3)
-lwz      r12, 0x30(r12)
-mtctr    r12
-bctrl
-lwz      r0, 0x24(r1)
-lwz      r31, 0x1c(r1)
-mtlr     r0
-addi     r1, r1, 0x20
-blr
-	*/
+	if (_68 >= _58->m_maxFrame) {
+		_68 = 0.0f;
+	}
+
+	if (_6C >= _5C->m_maxFrame) {
+		_6C = 0.0f;
+	}
+
+	_54->m_currentFrame = _64;
+	_4C->search('Ntitle')->animationTransform();
+
+	_64++;
+
+	if (_64 >= _54->m_maxFrame) {
+		_64 = 0.0f;
+	}
+
+	_74->m_currentFrame = _78;
+	_70->animation();
+
+	_78++;
+
+	if (_78 >= _74->m_maxFrame) {
+		_78 = 0.0f;
+	}
+
+	m_resultTitleMgr->update();
 }
 
 /*
@@ -561,50 +369,15 @@ blr
  */
 void ObjDayEndResultBase::setFadeinFrm()
 {
-	/*
-stwu     r1, -0x10(r1)
-mflr     r0
-stw      r0, 0x14(r1)
-stw      r31, 0xc(r1)
-mr       r31, r3
-lwz      r0, 0x90(r3)
-rlwinm.  r0, r0, 0, 0x1c, 0x1c
-beq      lbl_804033AC
-lwz      r12, 0(r3)
-lwz      r12, 0x8c(r12)
-mtctr    r12
-bctrl
-stfs     f1, 0x7c(r31)
-mr       r3, r31
-lwz      r12, 0(r31)
-lwz      r12, 0x90(r12)
-mtctr    r12
-bctrl
-stfs     f1, 0x80(r31)
-b        lbl_804033D8
+	if (m_flags & 0x8) {
+		_7C = getFadeinDownMinFrm();
+		_80 = getFadeinDownMaxFrm();
+	} else {
+		_7C = getFadeinUpMinFrm();
+		_80 = getFadeinUpMaxFrm();
+	}
 
-lbl_804033AC:
-lwz      r12, 0(r3)
-lwz      r12, 0x7c(r12)
-mtctr    r12
-bctrl
-stfs     f1, 0x7c(r31)
-mr       r3, r31
-lwz      r12, 0(r31)
-lwz      r12, 0x80(r12)
-mtctr    r12
-bctrl
-stfs     f1, 0x80(r31)
-
-lbl_804033D8:
-lfs      f0, 0x7c(r31)
-stfs     f0, 0x60(r31)
-lwz      r0, 0x14(r1)
-lwz      r31, 0xc(r1)
-mtlr     r0
-addi     r1, r1, 0x10
-blr
-	*/
+	_60 = _7C;
 }
 
 /*
@@ -614,50 +387,15 @@ blr
  */
 void ObjDayEndResultBase::setFadeoutFrm()
 {
-	/*
-stwu     r1, -0x10(r1)
-mflr     r0
-stw      r0, 0x14(r1)
-stw      r31, 0xc(r1)
-mr       r31, r3
-lwz      r0, 0x90(r3)
-rlwinm.  r0, r0, 0, 0x1b, 0x1b
-beq      lbl_80403444
-lwz      r12, 0(r3)
-lwz      r12, 0x94(r12)
-mtctr    r12
-bctrl
-stfs     f1, 0x84(r31)
-mr       r3, r31
-lwz      r12, 0(r31)
-lwz      r12, 0x98(r12)
-mtctr    r12
-bctrl
-stfs     f1, 0x88(r31)
-b        lbl_80403470
+	if (m_flags & 0x10) {
+		_84 = getFadeoutDownMinFrm();
+		_88 = getFadeoutDownMaxFrm();
+	} else {
+		_84 = getFadeoutUpMinFrm();
+		_88 = getFadeoutUpMaxFrm();
+	}
 
-lbl_80403444:
-lwz      r12, 0(r3)
-lwz      r12, 0x84(r12)
-mtctr    r12
-bctrl
-stfs     f1, 0x84(r31)
-mr       r3, r31
-lwz      r12, 0(r31)
-lwz      r12, 0x88(r12)
-mtctr    r12
-bctrl
-stfs     f1, 0x88(r31)
-
-lbl_80403470:
-lfs      f0, 0x84(r31)
-stfs     f0, 0x60(r31)
-lwz      r0, 0x14(r1)
-lwz      r31, 0xc(r1)
-mtlr     r0
-addi     r1, r1, 0x10
-blr
-	*/
+	_60 = _84;
 }
 
 /*
@@ -667,13 +405,13 @@ blr
  */
 ObjDayEndResultItem::ObjDayEndResultItem()
 {
-	_98            = 3;
+	m_status       = ITEMSTATUS_ForceScroll;
 	_9C            = nullptr;
 	_A0            = 0.0f;
 	_A8            = nullptr;
 	_A4            = nullptr;
-	_B0            = 0;
-	_AC            = 0;
+	_B0            = nullptr;
+	_AC            = nullptr;
 	_D0            = 0;
 	_CC            = 0;
 	_C8            = 0;
@@ -702,496 +440,122 @@ ObjDayEndResultItem::ObjDayEndResultItem()
  */
 void ObjDayEndResultItem::doCreate(JKRArchive* archive)
 {
-	/*
-stwu     r1, -0x40(r1)
-mflr     r0
-stw      r0, 0x44(r1)
-stfd     f31, 0x30(r1)
-psq_st   f31, 56(r1), 0, qr0
-stmw     r27, 0x1c(r1)
-lis      r5, lbl_80498830@ha
-mr       r29, r3
-mr       r30, r4
-li       r3, 0x148
-addi     r31, r5, lbl_80498830@l
-bl       __nw__FUl
-or.      r0, r3, r3
-beq      lbl_804036BC
-bl       __ct__Q29P2DScreen10Mgr_tuningFv
-mr       r0, r3
+	ObjDayEndResultBase::doCreate(archive);
 
-lbl_804036BC:
-stw      r0, 0x38(r29)
-mr       r6, r30
-addi     r4, r31, 0x14
-lis      r5, 0x104
-lwz      r3, 0x38(r29)
-bl       set__9J2DScreenFPCcUlP10JKRArchive
-mr       r4, r30
-addi     r3, r31, 0x28
-bl       getGlbResource__13JKRFileLoaderFPCcP13JKRFileLoader
-bl       load__20J2DAnmLoaderDataBaseFPCv
-stw      r3, 0x3c(r29)
-mr       r4, r30
-addi     r3, r31, 0x3c
-bl       getGlbResource__13JKRFileLoaderFPCcP13JKRFileLoader
-bl       load__20J2DAnmLoaderDataBaseFPCv
-stw      r3, 0x40(r29)
-lwz      r3, 0x38(r29)
-lwz      r4, 0x3c(r29)
-lwz      r12, 0(r3)
-lwz      r12, 0x60(r12)
-mtctr    r12
-bctrl
-lwz      r3, 0x38(r29)
-lwz      r4, 0x40(r29)
-lwz      r12, 0(r3)
-lwz      r12, 0x64(r12)
-mtctr    r12
-bctrl
-lis      r4, 0x62746E32@ha
-lwz      r3, 0x38(r29)
-addi     r6, r4, 0x62746E32@l
-li       r5, 0x4e
-li       r7, 8
-bl       create__Q32kh6Screen14khUtilFadePaneFPQ29P2DScreen3MgrUxUc
-stw      r3, 0x8c(r29)
-lwz      r3, 0x8c(r29)
-bl       fadeout__Q32kh6Screen14khUtilFadePaneFv
-lwz      r3, 0x8c(r29)
-li       r4, 0
-bl       set_init_alpha__Q32kh6Screen14khUtilFadePaneFUc
-li       r3, 0x148
-bl       __nw__FUl
-or.      r0, r3, r3
-beq      lbl_80403774
-bl       __ct__Q29P2DScreen10Mgr_tuningFv
-mr       r0, r3
+	_4C = new P2DScreen::Mgr_tuning;
+	_4C->set("result_item.blo", 0x00040000, archive);
+	void* resource = JKRFileLoader::getGlbResource("result_item.bck", archive);
+	_50            = static_cast<J2DAnmTransform*>(J2DAnmLoaderDataBase::load(resource));
+	_54            = static_cast<J2DAnmTransform*>(J2DAnmLoaderDataBase::load(resource));
+	_9C            = static_cast<J2DAnmTransform*>(J2DAnmLoaderDataBase::load(resource));
 
-lbl_80403774:
-stw      r0, 0x4c(r29)
-mr       r6, r30
-addi     r4, r31, 0x50
-lis      r5, 4
-lwz      r3, 0x4c(r29)
-bl       set__9J2DScreenFPCcUlP10JKRArchive
-mr       r4, r30
-addi     r3, r31, 0x60
-bl       getGlbResource__13JKRFileLoaderFPCcP13JKRFileLoader
-mr       r28, r3
-bl       load__20J2DAnmLoaderDataBaseFPCv
-stw      r3, 0x50(r29)
-mr       r3, r28
-bl       load__20J2DAnmLoaderDataBaseFPCv
-stw      r3, 0x54(r29)
-mr       r3, r28
-bl       load__20J2DAnmLoaderDataBaseFPCv
-stw      r3, 0x9c(r29)
-mr       r4, r30
-addi     r3, r31, 0x70
-bl       getGlbResource__13JKRFileLoaderFPCcP13JKRFileLoader
-bl       load__20J2DAnmLoaderDataBaseFPCv
-stw      r3, 0x58(r29)
-mr       r4, r30
-addi     r3, r31, 0x80
-bl       getGlbResource__13JKRFileLoaderFPCcP13JKRFileLoader
-bl       load__20J2DAnmLoaderDataBaseFPCv
-stw      r3, 0x5c(r29)
-lwz      r3, 0x4c(r29)
-lwz      r4, 0x58(r29)
-lwz      r12, 0(r3)
-lwz      r12, 0x6c(r12)
-mtctr    r12
-bctrl
-lwz      r3, 0x4c(r29)
-lwz      r4, 0x5c(r29)
-lwz      r12, 0(r3)
-lwz      r12, 0x70(r12)
-mtctr    r12
-bctrl
-lwz      r3, 0x4c(r29)
-lis      r4, 0x74656D57@ha
-addi     r6, r4, 0x74656D57@l
-li       r5, 0x4e69
-lwz      r12, 0(r3)
-lwz      r12, 0x3c(r12)
-mtctr    r12
-bctrl
-lwz      r12, 0(r3)
-lwz      r4, 0x50(r29)
-lwz      r12, 0x60(r12)
-mtctr    r12
-bctrl
-lwz      r3, 0x4c(r29)
-lis      r4, 0x69746C65@ha
-addi     r6, r4, 0x69746C65@l
-li       r5, 0x4e74
-lwz      r12, 0(r3)
-lwz      r12, 0x3c(r12)
-mtctr    r12
-bctrl
-lwz      r12, 0(r3)
-lwz      r4, 0x54(r29)
-lwz      r12, 0x60(r12)
-mtctr    r12
-bctrl
-lwz      r3, 0x4c(r29)
-lis      r4, 0x4E5F3364@ha
-addi     r6, r4, 0x4E5F3364@l
-li       r5, 0
-lwz      r12, 0(r3)
-lwz      r12, 0x3c(r12)
-mtctr    r12
-bctrl
-lwz      r12, 0(r3)
-lwz      r4, 0x9c(r29)
-lwz      r12, 0x60(r12)
-mtctr    r12
-bctrl
-li       r3, 0x148
-bl       __nw__FUl
-or.      r0, r3, r3
-beq      lbl_804038C8
-bl       __ct__Q29P2DScreen10Mgr_tuningFv
-mr       r0, r3
+	_58 = static_cast<J2DAnmTextureSRTKey*>(J2DAnmLoaderDataBase::load(JKRFileLoader::getGlbResource("result_item.btk", archive)));
+	_5C = static_cast<J2DAnmTevRegKey*>(J2DAnmLoaderDataBase::load(JKRFileLoader::getGlbResource("result_item.brk", archive)));
 
-lbl_804038C8:
-stw      r0, 0x70(r29)
-mr       r6, r30
-addi     r4, r31, 0x90
-lis      r5, 4
-lwz      r3, 0x70(r29)
-bl       set__9J2DScreenFPCcUlP10JKRArchive
-mr       r4, r30
-addi     r3, r31, 0xb0
-bl       getGlbResource__13JKRFileLoaderFPCcP13JKRFileLoader
-bl       load__20J2DAnmLoaderDataBaseFPCv
-stw      r3, 0x74(r29)
-lwz      r3, 0x70(r29)
-lwz      r4, 0x74(r29)
-lwz      r12, 0(r3)
-lwz      r12, 0x64(r12)
-mtctr    r12
-bctrl
-lwz      r3, 0x4c(r29)
-bl       setCallBackMessage__Q22og6ScreenFPQ29P2DScreen3Mgr
-mr       r3, r29
-bl       getDispMember__Q26Screen7ObjBaseFv
-lis      r4, 0x52534C54@ha
-lis      r5, 0x0044455F@ha
-addi     r6, r4, 0x52534C54@l
-li       r4, 0x4b48
-addi     r5, r5, 0x0044455F@l
-bl       isID__Q32og6Screen14DispMemberBaseFUlUx
-clrlwi.  r0, r3, 0x18
-bne      lbl_80403950
-addi     r3, r31, 0
-addi     r5, r31, 0xd0
-li       r4, 0x1f5
-crclr    6
-bl       panic_f__12JUTExceptionFPCciPCce
+	_4C->setAnimation(_58);
+	_4C->setAnimation(_5C);
 
-lbl_80403950:
-mr       r3, r29
-bl       getDispMember__Q26Screen7ObjBaseFv
-mr       r31, r3
-lwz      r0, 0x1c(r3)
-cmplwi   r0, 6
-ble      lbl_80403980
-lwz      r0, 0x90(r29)
-ori      r0, r0, 1
-stw      r0, 0x90(r29)
-lwz      r3, 0x1c(r31)
-addi     r0, r3, -6
-stw      r0, 0xd8(r29)
+	_4C->search('NitemW')->setAnimation(_50);
+	_4C->search('Ntitle')->setAnimation(_54);
+	_4C->search('N_3d')->setAnimation(_9C);
 
-lbl_80403980:
-lwz      r3, 0x4c(r29)
-lis      r5, 0x74703030@ha
-lis      r4, 0x004E7365@ha
-lwz      r12, 0(r3)
-addi     r6, r5, 0x74703030@l
-addi     r5, r4, 0x004E7365@l
-lwz      r12, 0x3c(r12)
-mtctr    r12
-bctrl
-bl       getBounds__7J2DPaneFv
-lfs      f31, 4(r3)
-lis      r5, 0x74703031@ha
-lwz      r3, 0x4c(r29)
-lis      r4, 0x004E7365@ha
-addi     r6, r5, 0x74703031@l
-lwz      r12, 0(r3)
-addi     r5, r4, 0x004E7365@l
-lwz      r12, 0x3c(r12)
-mtctr    r12
-bctrl
-bl       getBounds__7J2DPaneFv
-lfs      f0, 4(r3)
-lis      r0, 0x4330
-stw      r0, 0x10(r1)
-fsubs    f0, f0, f31
-lfd      f1, lbl_805200B8@sda21(r2)
-stfs     f0, 0xdc(r29)
-lwz      r0, 0xe0(r29)
-lfs      f2, 0xdc(r29)
-subfic   r0, r0, 1
-xoris    r0, r0, 0x8000
-stw      r0, 0x14(r1)
-lfd      f0, 0x10(r1)
-fsubs    f0, f0, f1
-fmuls    f0, f2, f0
-stfs     f0, 0xd4(r29)
-lbz      r0, 0x30(r31)
-cmplwi   r0, 0
-beq      lbl_80403A88
-lwz      r3, 0x4c(r29)
-lis      r5, 0x5F6D656E@ha
-lis      r4, 0x4E66696E@ha
-lwz      r12, 0(r3)
-addi     r6, r5, 0x5F6D656E@l
-addi     r5, r4, 0x4E66696E@l
-lwz      r12, 0x3c(r12)
-mtctr    r12
-bctrl
-li       r0, 0
-lis      r5, 0x6D656E75@ha
-stb      r0, 0xb0(r3)
-lis      r4, 0x4E636F5F@ha
-addi     r6, r5, 0x6D656E75@l
-lwz      r3, 0x4c(r29)
-addi     r5, r4, 0x4E636F5F@l
-lwz      r12, 0(r3)
-lwz      r12, 0x3c(r12)
-mtctr    r12
-bctrl
-li       r0, 1
-lis      r5, 0x6D703031@ha
-lis      r4, 0x0050636F@ha
-stb      r0, 0xb0(r3)
-addi     r27, r5, 0x6D703031@l
-addi     r28, r4, 0x0050636F@l
-b        lbl_80403AEC
+	_70 = new P2DScreen::Mgr_tuning;
+	_70->set("result_item_constellation.blo", 0x40000, archive);
 
-lbl_80403A88:
-lwz      r3, 0x4c(r29)
-lis      r5, 0x5F6D656E@ha
-lis      r4, 0x4E66696E@ha
-lwz      r12, 0(r3)
-addi     r6, r5, 0x5F6D656E@l
-addi     r5, r4, 0x4E66696E@l
-lwz      r12, 0x3c(r12)
-mtctr    r12
-bctrl
-li       r0, 1
-lis      r5, 0x6D656E75@ha
-stb      r0, 0xb0(r3)
-lis      r4, 0x4E636F5F@ha
-addi     r6, r5, 0x6D656E75@l
-lwz      r3, 0x4c(r29)
-addi     r5, r4, 0x4E636F5F@l
-lwz      r12, 0(r3)
-lwz      r12, 0x3c(r12)
-mtctr    r12
-bctrl
-li       r0, 0
-lis      r4, 0x696E3031@ha
-stb      r0, 0xb0(r3)
-addi     r27, r4, 0x696E3031@l
-li       r28, 0x5066
+	_74 = static_cast<J2DAnmColor*>(J2DAnmLoaderDataBase::load(JKRFileLoader::getGlbResource("result_item_constellation.bpk", archive)));
+	_70->setAnimation(_74);
 
-lbl_80403AEC:
-li       r0, 0
-lis      r4, 0x796F7031@ha
-stw      r0, 0xc8(r29)
-lis      r3, 0x50746F6B@ha
-addi     r6, r4, 0x796F7031@l
-addi     r7, r29, 0xc8
-lwz      r4, 0x24(r31)
-addi     r5, r3, 0x50746F6B@l
-lwz      r0, 0x2c(r31)
-li       r8, 9
-li       r9, 1
-li       r10, 0
-subf     r0, r4, r0
-stw      r0, 0xc4(r29)
-stw      r30, 8(r1)
-lwz      r3, 0x4c(r29)
-bl
-setCallBack_CounterRV__Q22og6ScreenFPQ29P2DScreen3MgrUxPUlUsbbP10JKRArchive stw
-r3, 0xa4(r29) mr       r6, r27 mr       r5, r28 addi     r7, r29, 0xc4 stw r30,
-8(r1) li       r8, 9 li       r9, 1 li       r10, 0 lwz      r3, 0x4c(r29) bl
-setCallBack_CounterRV__Q22og6ScreenFPQ29P2DScreen3MgrUxPUlUsbbP10JKRArchive stw
-r3, 0xa8(r29) lis      r4, 0x30305F31@ha lis      r3, 0x506D6164@ha addi     r7,
-r29, 0xcc stw      r30, 8(r1) addi     r6, r4, 0x30305F31@l addi     r5, r3,
-0x506D6164@l li       r8, 9 lwz      r3, 0x4c(r29) li       r9, 0 li       r10,
-0 bl setCallBack_CounterRV__Q22og6ScreenFPQ29P2DScreen3MgrUxPUlUsbbP10JKRArchive
-stw      r3, 0xac(r29)
-lis      r4, 0x30315F31@ha
-lis      r3, 0x506D6164@ha
-addi     r7, r29, 0xd0
-stw      r30, 8(r1)
-addi     r6, r4, 0x30315F31@l
-addi     r5, r3, 0x506D6164@l
-li       r8, 9
-lwz      r3, 0x4c(r29)
-li       r9, 0
-li       r10, 0
-bl
-setCallBack_CounterRV__Q22og6ScreenFPQ29P2DScreen3MgrUxPUlUsbbP10JKRArchive stw
-r3, 0xb0(r29) lis      r6, 0x00503364@ha mr       r3, r30 li       r5, 0 lwz r4,
-0x4c(r29) addi     r6, r6, 0x00503364@l bl
-setCallBack_3DStick__Q22og6ScreenFP10JKRArchivePQ29P2DScreen3MgrUx mr       r0,
-r3 li       r3, 8 mr       r27, r0 bl       __nw__FUl or.      r0, r3, r3 beq
-lbl_80403BF8 mr       r4, r27 bl
-__ct__Q32og6Screen12StickAnimMgrFPQ32og6Screen16CallBack_Picture mr       r0, r3
+	og::Screen::setCallBackMessage(_4C);
 
-lbl_80403BF8:
-stw      r0, 0xb4(r29)
-lwz      r3, 0xb4(r29)
-bl       stickUpDown__Q32og6Screen12StickAnimMgrFv
-lis      r5, 0x6D655F75@ha
-lis      r4, 0x004E7961@ha
-lwz      r3, 0x4c(r29)
-addi     r6, r5, 0x6D655F75@l
-addi     r5, r4, 0x004E7961@l
-li       r7, 0x10
-bl       create__Q32kh6Screen14khUtilFadePaneFPQ29P2DScreen3MgrUxUc
-stw      r3, 0xbc(r29)
-lwz      r3, 0xbc(r29)
-bl       fadeout__Q32kh6Screen14khUtilFadePaneFv
-lis      r5, 0x6D655F6C@ha
-lis      r4, 0x004E7961@ha
-lwz      r3, 0x4c(r29)
-addi     r6, r5, 0x6D655F6C@l
-addi     r5, r4, 0x004E7961@l
-li       r7, 0x10
-bl       create__Q32kh6Screen14khUtilFadePaneFPQ29P2DScreen3MgrUxUc
-stw      r3, 0xc0(r29)
-lwz      r3, 0xc0(r29)
-bl       fadeout__Q32kh6Screen14khUtilFadePaneFv
-lis      r4, 0x00503364@ha
-lwz      r3, 0x4c(r29)
-addi     r6, r4, 0x00503364@l
-li       r5, 0
-li       r7, 0x10
-bl       create__Q32kh6Screen14khUtilFadePaneFPQ29P2DScreen3MgrUxUc
-stw      r3, 0xb8(r29)
-lis      r3, 0x4E5F3364@ha
-addi     r6, r3, 0x4E5F3364@l
-li       r5, 0
-lwz      r3, 0x4c(r29)
-lwz      r12, 0(r3)
-lwz      r12, 0x3c(r12)
-mtctr    r12
-bctrl
-mr       r4, r3
-lwz      r3, 0xb8(r29)
-bl       add__Q32kh6Screen14khUtilFadePaneFP7J2DPane
-lwz      r3, 0xb8(r29)
-bl       fadeout__Q32kh6Screen14khUtilFadePaneFv
-lwz      r3, 0x4c(r29)
-lis      r5, 0x74703032@ha
-lis      r4, 0x004E7365@ha
-lwz      r12, 0(r3)
-addi     r6, r5, 0x74703032@l
-addi     r5, r4, 0x004E7365@l
-lwz      r12, 0x3c(r12)
-mtctr    r12
-bctrl
-li       r0, 0
-lis      r5, 0x74703033@ha
-stb      r0, 0xb0(r3)
-lis      r4, 0x004E7365@ha
-addi     r6, r5, 0x74703033@l
-lwz      r3, 0x4c(r29)
-addi     r5, r4, 0x004E7365@l
-lwz      r12, 0(r3)
-lwz      r12, 0x3c(r12)
-mtctr    r12
-bctrl
-li       r0, 0
-lis      r5, 0x74703034@ha
-stb      r0, 0xb0(r3)
-lis      r4, 0x004E7365@ha
-addi     r6, r5, 0x74703034@l
-lwz      r3, 0x4c(r29)
-addi     r5, r4, 0x004E7365@l
-lwz      r12, 0(r3)
-lwz      r12, 0x3c(r12)
-mtctr    r12
-bctrl
-li       r0, 0
-lis      r5, 0x74703035@ha
-stb      r0, 0xb0(r3)
-lis      r4, 0x004E7365@ha
-addi     r6, r5, 0x74703035@l
-lwz      r3, 0x4c(r29)
-addi     r5, r4, 0x004E7365@l
-lwz      r12, 0(r3)
-lwz      r12, 0x3c(r12)
-mtctr    r12
-bctrl
-li       r0, 0
-lis      r4, 0x62746E31@ha
-stb      r0, 0xb0(r3)
-addi     r6, r4, 0x62746E31@l
-li       r5, 0x4e
-lwz      r3, 0x38(r29)
-lwz      r12, 0(r3)
-lwz      r12, 0x3c(r12)
-mtctr    r12
-bctrl
-li       r4, 0
-stb      r4, 0xb0(r3)
-lbz      r0, 0x31(r31)
-cmplwi   r0, 0
-beq      lbl_80403E04
-stw      r4, 0x98(r29)
-lwz      r0, 0x24(r31)
-stw      r0, 0xc8(r29)
-lwz      r0, 0x2c(r31)
-stw      r0, 0xc4(r29)
-lwz      r3, 0xa4(r29)
-lwz      r12, 0(r3)
-lwz      r12, 0x20(r12)
-mtctr    r12
-bctrl
-lwz      r3, 0xa8(r29)
-lwz      r12, 0(r3)
-lwz      r12, 0x20(r12)
-mtctr    r12
-bctrl
-lwz      r3, 0x8c(r29)
-bl       fadein__Q32kh6Screen14khUtilFadePaneFv
-li       r0, 0
-lfs      f0, lbl_805200A8@sda21(r2)
-stw      r0, 0xe0(r29)
-stfs     f0, 0xd4(r29)
-lwz      r0, 0x90(r29)
-clrlwi.  r0, r0, 0x1f
-beq      lbl_80403DF8
-lwz      r3, 0xc0(r29)
-bl       fadein__Q32kh6Screen14khUtilFadePaneFv
-lwz      r3, 0xb8(r29)
-bl       fadein__Q32kh6Screen14khUtilFadePaneFv
+	if (!getDispMember()->isID(OWNER_KH, MEMBER_DAY_END_RESULT)) {
+		JUT_PANICLINE(501, "disp member err");
+	}
 
-lbl_80403DF8:
-lwz      r0, 0x90(r29)
-ori      r0, r0, 0x40
-stw      r0, 0x90(r29)
+	DispDayEndResult* dispResult = static_cast<DispDayEndResult*>(getDispMember());
+	if (dispResult->m_item._0C > 6) {
+		m_flags |= 0x1;
+		_D8 = dispResult->m_item._0C - 6;
+	}
 
-lbl_80403E04:
-li       r0, 1
-stb      r0, 0x31(r31)
-psq_l    f31, 56(r1), 0, qr0
-lfd      f31, 0x30(r1)
-lmw      r27, 0x1c(r1)
-lwz      r0, 0x44(r1)
-mtlr     r0
-addi     r1, r1, 0x40
-blr
-	*/
+	f32 y1 = _4C->search('Nsetp00')->getBounds()->i.y;
+	f32 y2 = _4C->search('Nsetp01')->getBounds()->i.y;
+
+	_DC = y2 - y1;
+	_D4 = _DC * (1 - _E0);
+
+	u64 code;
+	if (dispResult->m_item._20) {
+		J2DPane* paneFinMen     = _4C->search('Nfin_men');
+		paneFinMen->m_isVisible = false;
+
+		J2DPane* paneCoMenu     = _4C->search('Nco_menu');
+		paneCoMenu->m_isVisible = true;
+
+		code = 'Pcomp01';
+	} else {
+		J2DPane* paneFinMen     = _4C->search('Nfin_men');
+		paneFinMen->m_isVisible = true;
+
+		J2DPane* paneCoMenu     = _4C->search('Nco_menu');
+		paneCoMenu->m_isVisible = false;
+
+		code = 'Pfin01';
+	}
+
+	_C8 = 0;
+	_C4 = dispResult->m_item._1C - dispResult->m_item._14;
+
+	_A4 = og::Screen::setCallBack_CounterRV(_4C, 'Ptokyop1', &_C8, 9, true, false, archive);
+
+	_A8 = og::Screen::setCallBack_CounterRV(_4C, code, &_C4, 9, true, false, archive);
+
+	_AC = og::Screen::setCallBack_CounterRV(_4C, 'Pmad00_1', &_CC, 9, false, false, archive);
+
+	_B0 = og::Screen::setCallBack_CounterRV(_4C, 'Pmad01_1', &_D0, 9, false, false, archive);
+
+	og::Screen::CallBack_Picture* callback = og::Screen::setCallBack_3DStick(archive, _4C, 'P3d');
+	m_stickAnimMgr                         = new og::Screen::StickAnimMgr(callback);
+	m_stickAnimMgr->stickUpDown();
+
+	_BC = khUtilFadePane::create(_4C, 'Nyame_u', 16);
+	_BC->fadeout();
+
+	_C0 = khUtilFadePane::create(_4C, 'Nyame_l', 16);
+	_C0->fadeout();
+
+	_B8 = khUtilFadePane::create(_4C, 'P3d', 16);
+	_B8->add(_4C->search('N_3d'));
+	_B8->fadeout();
+
+	J2DPane* paneSetp02     = _4C->search('Nsetp02');
+	paneSetp02->m_isVisible = false;
+	J2DPane* paneSetp03     = _4C->search('Nsetp03');
+	paneSetp03->m_isVisible = false;
+	J2DPane* paneSetp04     = _4C->search('Nsetp04');
+	paneSetp04->m_isVisible = false;
+	J2DPane* paneSetp05     = _4C->search('Nsetp05');
+	paneSetp05->m_isVisible = false;
+
+	J2DPane* paneNbtn1     = m_resultTitleMgr->search('Nbtn1');
+	paneNbtn1->m_isVisible = false;
+
+	if (dispResult->m_item._21) {
+		m_status = ITEMSTATUS_Normal;
+		_C8      = dispResult->m_item._14;
+		_C4      = dispResult->m_item._1C;
+		_A4->show();
+		_A8->show();
+		m_nextBtnFadePane->fadein();
+		_E0 = 0;
+		_D4 = 0.0f;
+		if (m_flags & 0x1) {
+			_C0->fadein();
+			_B8->fadein();
+		}
+		m_flags |= 0x40;
+	}
+
+	dispResult->m_item._21 = true;
 }
 
 /*
@@ -1199,84 +563,28 @@ blr
  * Address:	80403E28
  * Size:	000108
  */
-bool ObjDayEndResultItem::doStart(const ::Screen::StartSceneArg*)
+bool ObjDayEndResultItem::doStart(const ::Screen::StartSceneArg* sceneArg)
 {
-	/*
-stwu     r1, -0x10(r1)
-mflr     r0
-cmplwi   r4, 0
-stw      r0, 0x14(r1)
-stw      r31, 0xc(r1)
-mr       r31, r3
-beq      lbl_80403E60
-lbz      r0, 4(r4)
-cmplwi   r0, 0
-beq      lbl_80403E60
-lwz      r0, 0x90(r31)
-rlwinm   r0, r0, 0, 0x1d, 0x1b
-stw      r0, 0x90(r31)
-b        lbl_80403E6C
+	if (sceneArg && sceneArg->_04) {
+		m_flags &= ~0x8;
+	} else {
+		m_flags |= 0x8;
+	}
 
-lbl_80403E60:
-lwz      r0, 0x90(r31)
-ori      r0, r0, 8
-stw      r0, 0x90(r31)
+	if (m_flags & 0x8) {
+		_7C = getFadeinDownMinFrm();
+		_80 = getFadeinDownMaxFrm();
+	} else {
+		_7C = getFadeinUpMinFrm();
+		_80 = getFadeinUpMaxFrm();
+	}
 
-lbl_80403E6C:
-lwz      r0, 0x90(r31)
-rlwinm.  r0, r0, 0, 0x1c, 0x1c
-beq      lbl_80403EAC
-mr       r3, r31
-lwz      r12, 0(r31)
-lwz      r12, 0x8c(r12)
-mtctr    r12
-bctrl
-stfs     f1, 0x7c(r31)
-mr       r3, r31
-lwz      r12, 0(r31)
-lwz      r12, 0x90(r12)
-mtctr    r12
-bctrl
-stfs     f1, 0x80(r31)
-b        lbl_80403EDC
+	_60 = _7C;
 
-lbl_80403EAC:
-mr       r3, r31
-lwz      r12, 0(r31)
-lwz      r12, 0x7c(r12)
-mtctr    r12
-bctrl
-stfs     f1, 0x7c(r31)
-mr       r3, r31
-lwz      r12, 0(r31)
-lwz      r12, 0x80(r12)
-mtctr    r12
-bctrl
-stfs     f1, 0x80(r31)
-
-lbl_80403EDC:
-lfs      f0, 0x7c(r31)
-lis      r3, 0x4E616C6C@ha
-addi     r6, r3, 0x4E616C6C@l
-li       r5, 0
-stfs     f0, 0x60(r31)
-lwz      r3, 0x70(r31)
-lwz      r12, 0(r3)
-lwz      r12, 0x3c(r12)
-mtctr    r12
-bctrl
-bl       setInfAlpha__Q22kh6ScreenFP7J2DPane
-lwz      r3, spSysIF__8PSSystem@sda21(r13)
-li       r4, 0x1811
-li       r5, 0
-bl       playSystemSe__Q28PSSystem5SysIFFUlUl
-lwz      r0, 0x14(r1)
-li       r3, 1
-lwz      r31, 0xc(r1)
-mtlr     r0
-addi     r1, r1, 0x10
-blr
-	*/
+	J2DPane* pane = _70->search('Nall');
+	setInfAlpha(pane);
+	PSSystem::spSysIF->playSystemSe(PSSE_SY_MESSAGE_EXIT, 0);
+	return true;
 }
 
 /*
@@ -1286,83 +594,24 @@ blr
  */
 bool ObjDayEndResultItem::doUpdateFadein()
 {
-	/*
-stwu     r1, -0x20(r1)
-mflr     r0
-stw      r0, 0x24(r1)
-stw      r31, 0x1c(r1)
-stw      r30, 0x18(r1)
-mr       r30, r3
-lwz      r12, 0(r3)
-lwz      r12, 0x78(r12)
-mtctr    r12
-bctrl
-lfs      f0, 0x60(r30)
-lis      r3, 0x74656D57@ha
-lwz      r4, 0x50(r30)
-addi     r6, r3, 0x74656D57@l
-li       r5, 0x4e69
-stfs     f0, 8(r4)
-lwz      r3, 0x4c(r30)
-lwz      r12, 0(r3)
-lwz      r12, 0x3c(r12)
-mtctr    r12
-bctrl
-bl       animationTransform__7J2DPaneFv
-lis      r4, msVal__Q32kh6Screen19ObjDayEndResultBase@ha
-lis      r3, 0x4E616C6C@ha
-addi     r4, r4, msVal__Q32kh6Screen19ObjDayEndResultBase@l
-lfs      f1, 0x60(r30)
-lfs      f0, 8(r4)
-addi     r6, r3, 0x4E616C6C@l
-li       r5, 0
-fadds    f0, f1, f0
-stfs     f0, 0x60(r30)
-lwz      r3, 0x70(r30)
-lwz      r12, 0(r3)
-lwz      r12, 0x3c(r12)
-mtctr    r12
-bctrl
-lfs      f2, 0x7c(r30)
-lfs      f1, 0x60(r30)
-lfs      f0, 0x80(r30)
-fsubs    f1, f1, f2
-lwz      r12, 0(r3)
-fsubs    f0, f0, f2
-lfs      f2, lbl_805200AC@sda21(r2)
-lwz      r12, 0x24(r12)
-fdivs    f0, f1, f0
-fmuls    f0, f2, f0
-fctiwz   f0, f0
-stfd     f0, 8(r1)
-lwz      r4, 0xc(r1)
-mtctr    r12
-bctrl
-lfs      f1, 0x60(r30)
-lfs      f0, 0x80(r30)
-fcmpo    cr0, f1, f0
-cror     2, 1, 2
-bne      lbl_80404018
-li       r31, 1
-b        lbl_8040401C
+	updateCommon();
+	_50->m_currentFrame = _60;
+	_4C->search('NitemW')->animationTransform();
 
-lbl_80404018:
-li       r31, 0
+	_60 += ObjDayEndResultBase::msVal._08;
 
-lbl_8040401C:
-lwz      r3, 0x4c(r30)
-lwz      r12, 0(r3)
-lwz      r12, 0x30(r12)
-mtctr    r12
-bctrl
-lwz      r0, 0x24(r1)
-mr       r3, r31
-lwz      r31, 0x1c(r1)
-lwz      r30, 0x18(r1)
-mtlr     r0
-addi     r1, r1, 0x20
-blr
-	*/
+	J2DPane* pane = _70->search('Nall');
+	pane->setAlpha((_60 - _7C) / (_80 - _7C) * 255.0f);
+
+	bool result;
+	if (_60 >= _80) {
+		result = true;
+	} else {
+		result = false;
+	}
+
+	_4C->update();
+	return result;
 }
 
 /*
@@ -1372,6 +621,70 @@ blr
  */
 bool ObjDayEndResultItem::doUpdate()
 {
+	updateCommon();
+	_4C->update();
+
+	switch (m_status) {
+	case ITEMSTATUS_Normal:
+		statusNormal();
+		break;
+	case ITEMSTATUS_ScrollUp:
+		statusScrollUp();
+		break;
+	case ITEMSTATUS_ScrollDown:
+		statusScrollDown();
+		break;
+	case ITEMSTATUS_ForceScroll:
+		statusForceScroll();
+		break;
+	case ITEMSTATUS_DrumRoll:
+		statusDrumRoll();
+		break;
+	case ITEMSTATUS_TotalValue:
+		statusTotalValue();
+		break;
+	}
+
+	if (getGamePad()->m_padButton.m_buttonDown & 0x100) {
+		if (getGamePad()->m_padButton.m_buttonDown & 0x100 && !(m_flags & 0x40)) {
+			// need this to re-load m_flags here rather than use the load from the check
+			m_flags |= 0x20;
+		}
+
+		if (m_status == ITEMSTATUS_Normal) {
+			DispDayEndResultIncP* dispIncP = static_cast<DispDayEndResultIncP*>(getDispMember());
+			::Screen::SetSceneArg setArg(SCENE_DAY_END_RESULT_INC_P, dispIncP, 0, 1);
+
+			if (getOwner()->setScene(setArg)) {
+				SArgDayEndResultIncP argIncP;
+				getOwner()->startScene(&argIncP);
+
+				m_flags &= ~0x10;
+			}
+		}
+	}
+
+	if (m_flags & 0x20) {
+		_E0      = _D8;
+		_D4      = -_DC * _E0;
+		_E8      = 0;
+		m_status = ITEMSTATUS_Normal;
+
+		if (!getDispMember()->isID(OWNER_KH, MEMBER_DAY_END_RESULT)) {
+			JUT_PANICLINE(664, "disp member err");
+		}
+
+		DispDayEndResult* dispResult = static_cast<DispDayEndResult*>(getDispMember());
+		_C8                          = dispResult->m_item._14;
+		_C4                          = dispResult->m_item._1C;
+		_A4->startPuyoUp(1.0f);
+		_A8->startPuyoUp(1.0f);
+		m_nextBtnFadePane->fadein();
+		PSSystem::spSysIF->playSystemSe(PSSE_SY_REGI_SUM_UP, 0);
+		m_flags &= ~0x20;
+		m_flags |= 0x40;
+	}
+	return false;
 	/*
 stwu     r1, -0x30(r1)
 mflr     r0
@@ -1586,85 +899,24 @@ blr
  */
 bool ObjDayEndResultItem::doUpdateFadeout()
 {
-	/*
-stwu     r1, -0x20(r1)
-mflr     r0
-stw      r0, 0x24(r1)
-stw      r31, 0x1c(r1)
-stw      r30, 0x18(r1)
-mr       r30, r3
-lwz      r12, 0(r3)
-lwz      r12, 0x78(r12)
-mtctr    r12
-bctrl
-lfs      f0, 0x60(r30)
-lis      r3, 0x74656D57@ha
-lwz      r4, 0x50(r30)
-addi     r6, r3, 0x74656D57@l
-li       r5, 0x4e69
-stfs     f0, 8(r4)
-lwz      r3, 0x4c(r30)
-lwz      r12, 0(r3)
-lwz      r12, 0x3c(r12)
-mtctr    r12
-bctrl
-bl       animationTransform__7J2DPaneFv
-lis      r4, msVal__Q32kh6Screen19ObjDayEndResultBase@ha
-lis      r3, 0x4E616C6C@ha
-addi     r4, r4, msVal__Q32kh6Screen19ObjDayEndResultBase@l
-lfs      f1, 0x60(r30)
-lfs      f0, 8(r4)
-addi     r6, r3, 0x4E616C6C@l
-li       r5, 0
-fadds    f0, f1, f0
-stfs     f0, 0x60(r30)
-lwz      r3, 0x70(r30)
-lwz      r12, 0(r3)
-lwz      r12, 0x3c(r12)
-mtctr    r12
-bctrl
-lfs      f2, 0x84(r30)
-lfs      f1, 0x60(r30)
-lfs      f0, 0x88(r30)
-fsubs    f1, f1, f2
-lwz      r12, 0(r3)
-fsubs    f0, f0, f2
-lfs      f2, lbl_805200B0@sda21(r2)
-lfs      f3, lbl_805200AC@sda21(r2)
-lwz      r12, 0x24(r12)
-fdivs    f0, f1, f0
-fsubs    f0, f2, f0
-fmuls    f0, f3, f0
-fctiwz   f0, f0
-stfd     f0, 8(r1)
-lwz      r4, 0xc(r1)
-mtctr    r12
-bctrl
-lfs      f1, 0x60(r30)
-lfs      f0, 0x88(r30)
-fcmpo    cr0, f1, f0
-cror     2, 1, 2
-bne      lbl_80404408
-li       r31, 1
-b        lbl_8040440C
+	updateCommon();
+	_50->m_currentFrame = _60;
+	_4C->search('NitemW')->animationTransform();
 
-lbl_80404408:
-li       r31, 0
+	_60 += ObjDayEndResultBase::msVal._08;
 
-lbl_8040440C:
-lwz      r3, 0x4c(r30)
-lwz      r12, 0(r3)
-lwz      r12, 0x30(r12)
-mtctr    r12
-bctrl
-lwz      r0, 0x24(r1)
-mr       r3, r31
-lwz      r31, 0x1c(r1)
-lwz      r30, 0x18(r1)
-mtlr     r0
-addi     r1, r1, 0x20
-blr
-	*/
+	J2DPane* pane = _70->search('Nall');
+	pane->setAlpha((1.0f - (_60 - _84) / (_88 - _84)) * 255.0f);
+
+	bool result;
+	if (_60 >= _88) {
+		result = true;
+	} else {
+		result = false;
+	}
+
+	_4C->update();
+	return result;
 }
 
 /*
@@ -1674,6 +926,71 @@ blr
  */
 void ObjDayEndResultItem::doDraw(Graphics& gfx)
 {
+	ObjDayEndResultBase::doDraw(gfx);
+
+	gfx.m_orthoGraph.setPort();
+
+	if (!getDispMember()->isID(OWNER_KH, MEMBER_DAY_END_RESULT)) {
+		JUT_PANICLINE(720, "disp member err");
+	}
+
+	DispDayEndResult* dispResult = static_cast<DispDayEndResult*>(getDispMember());
+	J2DPane* pane1               = _4C->search('NALL2');
+	J2DPane* pane2               = _4C->search('N_3d');
+
+	J2DPane* panes[2] = { const_cast<J2DPane*>(bufferPanes[0]), const_cast<J2DPane*>(bufferPanes[1]) };
+
+	panes[0]       = _4C->search('Nsetp00');
+	J2DPane* pane3 = _4C->search('Nsetp01');
+
+	u64 icons[2] = { 'iPicon00', 'iPicon01' };
+	u64 names[2] = { 'Piname00', 'Piname01' };
+
+	pane1->m_isVisible    = true;
+	pane2->m_isVisible    = false;
+	panes[0]->m_isVisible = false;
+	pane3->m_isVisible    = false;
+	panes[1]              = pane3;
+
+	_4C->draw(gfx, gfx.m_orthoGraph);
+	u32 left   = 0;
+	u32 top    = 0;
+	u32 width  = 0;
+	u32 height = 0;
+	GXSetScissor(left, top, width, height);
+	GXSetScissor(left, _EC, width, _F0);
+
+	pane1->m_isVisible = false;
+	pane2->m_isVisible = false;
+
+	f32 p1 = 2.0f * _DC;
+
+	for (int i = 0; i < 2; i++) {
+		panes[i]->add(0.0f, _D4 - p1);
+	}
+
+	for (int i = 0; i < 2; i++) {
+		_4C->search(icons[i])->m_isVisible = true;
+		_4C->search(names[i])->m_isVisible = true;
+		_AC->show();
+	}
+
+	int i = 0;
+	for (Game::Result::TNode* resultNode = dispResult->m_item.m_resultNode; resultNode;
+	     resultNode                      = static_cast<Game::Result::TNode*>(resultNode->m_next), i++) {
+		f32 check = i * _DC + _D4;
+		if (check < -_DC || _F0 < check) {
+			panes[i]->add(0.0f, p1);
+			continue;
+		}
+
+		panes[i]->m_isVisible     = true;
+		panes[i + 1]->m_isVisible = false;
+		panes[i % 2]->add(0.0f, p1);
+
+		JUTTexture* texture = resultNode->m_texture;
+		setTex(_4C, icons[i], texture->_20);
+	}
 	/*
 stwu     r1, -0xa0(r1)
 mflr     r0
@@ -4386,6 +3703,7 @@ blr
  */
 bool ObjDayEndResultIncP::doUpdateFadein()
 {
+	return false;
 	/*
 stwu     r1, -0x40(r1)
 mflr     r0
@@ -4498,6 +3816,7 @@ blr
  */
 bool ObjDayEndResultIncP::doUpdate()
 {
+	return false;
 	/*
 stwu     r1, -0x50(r1)
 mflr     r0
@@ -4844,6 +4163,7 @@ blr
  */
 bool ObjDayEndResultIncP::doUpdateFadeout()
 {
+	return false;
 	/*
 stwu     r1, -0x40(r1)
 mflr     r0
@@ -6549,6 +5869,7 @@ blr
  */
 bool ObjDayEndResultMail::doStart(const ::Screen::StartSceneArg*)
 {
+	return false;
 	/*
 stwu     r1, -0x10(r1)
 mflr     r0
@@ -6664,6 +5985,7 @@ blr
  */
 bool ObjDayEndResultMail::doUpdateFadein()
 {
+	return false;
 	/*
 stwu     r1, -0x40(r1)
 mflr     r0
@@ -6789,6 +6111,7 @@ blr
  */
 bool ObjDayEndResultMail::doUpdate()
 {
+	return false;
 	/*
 stwu     r1, -0x30(r1)
 mflr     r0
@@ -7002,6 +6325,7 @@ blr
  */
 bool ObjDayEndResultMail::doUpdateFadeout()
 {
+	return false;
 	/*
 stwu     r1, -0x40(r1)
 mflr     r0
@@ -8857,6 +8181,7 @@ blr
  */
 bool ObjDayEndResultTitl::doUpdateFadein()
 {
+	return false;
 	/*
 stwu     r1, -0x10(r1)
 mflr     r0
@@ -8902,6 +8227,7 @@ blr
  */
 bool ObjDayEndResultTitl::doUpdate()
 {
+	return false;
 	/*
 stwu     r1, -0x10(r1)
 mflr     r0
@@ -8944,6 +8270,7 @@ blr
  */
 bool ObjDayEndResultTitl::doUpdateFadeout()
 {
+	return false;
 	/*
 stwu     r1, -0x10(r1)
 mflr     r0
@@ -9216,26 +8543,8 @@ blr
  */
 SceneDayEndResultMail::SceneDayEndResultMail()
 {
-	/*
-stwu     r1, -0x10(r1)
-mflr     r0
-stw      r0, 0x14(r1)
-stw      r31, 0xc(r1)
-mr       r31, r3
-bl       __ct__Q26Screen9SceneBaseFv
-lis      r3, __vt__Q32kh6Screen21SceneDayEndResultMail@ha
-li       r0, 0
-addi     r4, r3, __vt__Q32kh6Screen21SceneDayEndResultMail@l
-mr       r3, r31
-stw      r4, 0(r31)
-stw      r0, 0x220(r31)
-stw      r0, 0x224(r31)
-lwz      r31, 0xc(r1)
-lwz      r0, 0x14(r1)
-mtlr     r0
-addi     r1, r1, 0x10
-blr
-	*/
+	_220         = 0;
+	m_memArchive = nullptr;
 }
 
 /*
@@ -9656,917 +8965,71 @@ blr
 	*/
 }
 
-/*
- * --INFO--
- * Address:	8040AE2C
- * Size:	000008
- */
-const char* SceneDayEndResultMail::getResName() const
-{
-	/*
-addi     r3, r2, lbl_80520100@sda21
-blr
-	*/
-}
-
-/*
- * --INFO--
- * Address:	8040AE34
- * Size:	000008
- */
-SceneType SceneDayEndResultMail::getSceneType() { return SCENE_DAY_END_RESULT_MAIL; }
-
-/*
- * --INFO--
- * Address:	8040AE3C
- * Size:	000008
- */
-ScreenOwnerID SceneDayEndResultMail::getOwnerID() { return OWNER_KH; }
-
-/*
- * --INFO--
- * Address:	8040AE44
- * Size:	000014
- */
-ScreenMemberID SceneDayEndResultMail::getMemberID()
-{
-	/*
-lis      r4, 0x4D41494C@ha
-lis      r3, 0x4445525F@ha
-addi     r4, r4, 0x4D41494C@l
-addi     r3, r3, 0x4445525F@l
-blr
-	*/
-}
-
-/*
- * --INFO--
- * Address:	8040AE58
- * Size:	000004
- */
-void SceneDayEndResultMail::doCreateObj(JKRArchive*) { }
-
-/*
- * --INFO--
- * Address:	8040AE5C
- * Size:	0000AC
- */
-ObjDayEndResultTitl::~ObjDayEndResultTitl()
-{
-	/*
-stwu     r1, -0x10(r1)
-mflr     r0
-stw      r0, 0x14(r1)
-stw      r31, 0xc(r1)
-mr       r31, r4
-stw      r30, 8(r1)
-or.      r30, r3, r3
-beq      lbl_8040AEEC
-lis      r4, __vt__Q32kh6Screen19ObjDayEndResultTitl@ha
-addi     r4, r4, __vt__Q32kh6Screen19ObjDayEndResultTitl@l
-stw      r4, 0(r30)
-addi     r0, r4, 0x10
-stw      r0, 0x18(r30)
-beq      lbl_8040AEDC
-lis      r4, __vt__Q26Screen7ObjBase@ha
-addi     r4, r4, __vt__Q26Screen7ObjBase@l
-stw      r4, 0(r30)
-addi     r0, r4, 0x10
-stw      r0, 0x18(r30)
-beq      lbl_8040AEDC
-lis      r4, __vt__Q26Screen8IObjBase@ha
-addi     r4, r4, __vt__Q26Screen8IObjBase@l
-stw      r4, 0(r30)
-addi     r0, r4, 0x10
-stw      r0, 0x18(r30)
-bl       del__5CNodeFv
-addi     r3, r30, 0x18
-li       r4, 0
-bl       __dt__11JKRDisposerFv
-mr       r3, r30
-li       r4, 0
-bl       __dt__5CNodeFv
-
-lbl_8040AEDC:
-extsh.   r0, r31
-ble      lbl_8040AEEC
-mr       r3, r30
-bl       __dl__FPv
-
-lbl_8040AEEC:
-lwz      r0, 0x14(r1)
-mr       r3, r30
-lwz      r31, 0xc(r1)
-lwz      r30, 8(r1)
-mtlr     r0
-addi     r1, r1, 0x10
-blr
-	*/
-}
-
-/*
- * --INFO--
- * Address:	8040AF08
- * Size:	0000C4
- */
-ObjDayEndResultMail::~ObjDayEndResultMail()
-{
-	/*
-stwu     r1, -0x10(r1)
-mflr     r0
-stw      r0, 0x14(r1)
-stw      r31, 0xc(r1)
-mr       r31, r4
-stw      r30, 8(r1)
-or.      r30, r3, r3
-beq      lbl_8040AFB0
-lis      r4, __vt__Q32kh6Screen19ObjDayEndResultMail@ha
-addi     r4, r4, __vt__Q32kh6Screen19ObjDayEndResultMail@l
-stw      r4, 0(r30)
-addi     r0, r4, 0x10
-stw      r0, 0x18(r30)
-beq      lbl_8040AFA0
-lis      r4, __vt__Q32kh6Screen19ObjDayEndResultBase@ha
-addi     r4, r4, __vt__Q32kh6Screen19ObjDayEndResultBase@l
-stw      r4, 0(r30)
-addi     r0, r4, 0x10
-stw      r0, 0x18(r30)
-beq      lbl_8040AFA0
-lis      r4, __vt__Q26Screen7ObjBase@ha
-addi     r4, r4, __vt__Q26Screen7ObjBase@l
-stw      r4, 0(r30)
-addi     r0, r4, 0x10
-stw      r0, 0x18(r30)
-beq      lbl_8040AFA0
-lis      r4, __vt__Q26Screen8IObjBase@ha
-addi     r4, r4, __vt__Q26Screen8IObjBase@l
-stw      r4, 0(r30)
-addi     r0, r4, 0x10
-stw      r0, 0x18(r30)
-bl       del__5CNodeFv
-addi     r3, r30, 0x18
-li       r4, 0
-bl       __dt__11JKRDisposerFv
-mr       r3, r30
-li       r4, 0
-bl       __dt__5CNodeFv
-
-lbl_8040AFA0:
-extsh.   r0, r31
-ble      lbl_8040AFB0
-mr       r3, r30
-bl       __dl__FPv
-
-lbl_8040AFB0:
-lwz      r0, 0x14(r1)
-mr       r3, r30
-lwz      r31, 0xc(r1)
-lwz      r30, 8(r1)
-mtlr     r0
-addi     r1, r1, 0x10
-blr
-	*/
-}
-
-/*
- * --INFO--
- * Address:	8040AFCC
- * Size:	000008
- */
-void ObjDayEndResultMail::getFadeinUpMinFrm() const
-{
-	/*
-lfs      f1, lbl_805200A8@sda21(r2)
-blr
-	*/
-}
-
-/*
- * --INFO--
- * Address:	8040AFD4
- * Size:	000008
- */
-void ObjDayEndResultMail::getFadeinUpMaxFrm() const
-{
-	/*
-lfs      f1, lbl_80520118@sda21(r2)
-blr
-	*/
-}
-
-/*
- * --INFO--
- * Address:	8040AFDC
- * Size:	000008
- */
-void ObjDayEndResultMail::getFadeoutUpMinFrm() const
-{
-	/*
-lfs      f1, lbl_8052011C@sda21(r2)
-blr
-	*/
-}
-
-/*
- * --INFO--
- * Address:	8040AFE4
- * Size:	000008
- */
-void ObjDayEndResultMail::getFadeoutUpMaxFrm() const
-{
-	/*
-lfs      f1, lbl_80520120@sda21(r2)
-blr
-	*/
-}
-
-/*
- * --INFO--
- * Address:	8040AFEC
- * Size:	000008
- */
-void ObjDayEndResultMail::getFadeinDownMinFrm() const
-{
-	/*
-lfs      f1, lbl_80520124@sda21(r2)
-blr
-	*/
-}
-
-/*
- * --INFO--
- * Address:	8040AFF4
- * Size:	000008
- */
-void ObjDayEndResultMail::getFadeinDownMaxFrm() const
-{
-	/*
-lfs      f1, lbl_80520128@sda21(r2)
-blr
-	*/
-}
-
-/*
- * --INFO--
- * Address:	8040AFFC
- * Size:	000008
- */
-void ObjDayEndResultMail::getFadeoutDownMinFrm() const
-{
-	/*
-lfs      f1, lbl_8052012C@sda21(r2)
-blr
-	*/
-}
-
-/*
- * --INFO--
- * Address:	8040B004
- * Size:	000008
- */
-void ObjDayEndResultMail::getFadeoutDownMaxFrm() const
-{
-	/*
-lfs      f1, lbl_80520130@sda21(r2)
-blr
-	*/
-}
-
-/*
- * --INFO--
- * Address:	8040B00C
- * Size:	000008
- */
-u32 ObjDayEndResultMail::getStarWTagNum() const { return 0x12; }
-
-/*
- * --INFO--
- * Address:	8040B014
- * Size:	000008
- */
-void ObjDayEndResultMail::getPStarWMinFrm() const
-{
-	/*
-lfs      f1, lbl_805200A8@sda21(r2)
-blr
-	*/
-}
-
-/*
- * --INFO--
- * Address:	8040B01C
- * Size:	000008
- */
-void ObjDayEndResultMail::getPStarWMaxFrm() const
-{
-	/*
-lfs      f1, lbl_80520134@sda21(r2)
-blr
-	*/
-}
-
-/*
- * --INFO--
- * Address:	8040B024
- * Size:	000008
- */
-int SArgDayEndResultItem::getClassSize() { return 0x8; }
-
-/*
- * --INFO--
- * Address:	8040B02C
- * Size:	000008
- */
-SceneType SArgDayEndResultItem::getSceneType() const { return SCENE_DAY_END_RESULT_ITEM; }
-
-/*
- * --INFO--
- * Address:	8040B034
- * Size:	000008
- */
-int SArgDayEndResultMail::getClassSize() { return 0x8; }
-
-/*
- * --INFO--
- * Address:	8040B03C
- * Size:	000008
- */
-SceneType SArgDayEndResultMail::getSceneType() const { return SCENE_DAY_END_RESULT_MAIL; }
-
-/*
- * --INFO--
- * Address:	8040B044
- * Size:	0000C4
- */
-ObjDayEndResultIncP::~ObjDayEndResultIncP()
-{
-	/*
-stwu     r1, -0x10(r1)
-mflr     r0
-stw      r0, 0x14(r1)
-stw      r31, 0xc(r1)
-mr       r31, r4
-stw      r30, 8(r1)
-or.      r30, r3, r3
-beq      lbl_8040B0EC
-lis      r4, __vt__Q32kh6Screen19ObjDayEndResultIncP@ha
-addi     r4, r4, __vt__Q32kh6Screen19ObjDayEndResultIncP@l
-stw      r4, 0(r30)
-addi     r0, r4, 0x10
-stw      r0, 0x18(r30)
-beq      lbl_8040B0DC
-lis      r4, __vt__Q32kh6Screen19ObjDayEndResultBase@ha
-addi     r4, r4, __vt__Q32kh6Screen19ObjDayEndResultBase@l
-stw      r4, 0(r30)
-addi     r0, r4, 0x10
-stw      r0, 0x18(r30)
-beq      lbl_8040B0DC
-lis      r4, __vt__Q26Screen7ObjBase@ha
-addi     r4, r4, __vt__Q26Screen7ObjBase@l
-stw      r4, 0(r30)
-addi     r0, r4, 0x10
-stw      r0, 0x18(r30)
-beq      lbl_8040B0DC
-lis      r4, __vt__Q26Screen8IObjBase@ha
-addi     r4, r4, __vt__Q26Screen8IObjBase@l
-stw      r4, 0(r30)
-addi     r0, r4, 0x10
-stw      r0, 0x18(r30)
-bl       del__5CNodeFv
-addi     r3, r30, 0x18
-li       r4, 0
-bl       __dt__11JKRDisposerFv
-mr       r3, r30
-li       r4, 0
-bl       __dt__5CNodeFv
-
-lbl_8040B0DC:
-extsh.   r0, r31
-ble      lbl_8040B0EC
-mr       r3, r30
-bl       __dl__FPv
-
-lbl_8040B0EC:
-lwz      r0, 0x14(r1)
-mr       r3, r30
-lwz      r31, 0xc(r1)
-lwz      r30, 8(r1)
-mtlr     r0
-addi     r1, r1, 0x10
-blr
-	*/
-}
-
-/*
- * --INFO--
- * Address:	8040B108
- * Size:	000008
- */
-void ObjDayEndResultIncP::getFadeinUpMinFrm() const
-{
-	/*
-lfs      f1, lbl_805200A8@sda21(r2)
-blr
-	*/
-}
-
-/*
- * --INFO--
- * Address:	8040B110
- * Size:	000008
- */
-void ObjDayEndResultIncP::getFadeinUpMaxFrm() const
-{
-	/*
-lfs      f1, lbl_805200E8@sda21(r2)
-blr
-	*/
-}
-
-/*
- * --INFO--
- * Address:	8040B118
- * Size:	000008
- */
-void ObjDayEndResultIncP::getFadeoutUpMinFrm() const
-{
-	/*
-lfs      f1, lbl_80520138@sda21(r2)
-blr
-	*/
-}
-
-/*
- * --INFO--
- * Address:	8040B120
- * Size:	000008
- */
-void ObjDayEndResultIncP::getFadeoutUpMaxFrm() const
-{
-	/*
-lfs      f1, lbl_8052013C@sda21(r2)
-blr
-	*/
-}
-
-/*
- * --INFO--
- * Address:	8040B128
- * Size:	000008
- */
-void ObjDayEndResultIncP::getFadeinDownMinFrm() const
-{
-	/*
-lfs      f1, lbl_80520140@sda21(r2)
-blr
-	*/
-}
-
-/*
- * --INFO--
- * Address:	8040B130
- * Size:	000008
- */
-void ObjDayEndResultIncP::getFadeinDownMaxFrm() const
-{
-	/*
-lfs      f1, lbl_80520128@sda21(r2)
-blr
-	*/
-}
-
-/*
- * --INFO--
- * Address:	8040B138
- * Size:	000008
- */
-void ObjDayEndResultIncP::getFadeoutDownMinFrm() const
-{
-	/*
-lfs      f1, lbl_80520144@sda21(r2)
-blr
-	*/
-}
-
-/*
- * --INFO--
- * Address:	8040B140
- * Size:	000008
- */
-void ObjDayEndResultIncP::getFadeoutDownMaxFrm() const
-{
-	/*
-lfs      f1, lbl_80520130@sda21(r2)
-blr
-	*/
-}
-
-/*
- * --INFO--
- * Address:	8040B148
- * Size:	000008
- */
-u32 ObjDayEndResultIncP::getStarWTagNum() const { return 0x13; }
-
-/*
- * --INFO--
- * Address:	8040B150
- * Size:	000008
- */
-void ObjDayEndResultIncP::getPStarWMinFrm() const
-{
-	/*
-lfs      f1, lbl_805200A8@sda21(r2)
-blr
-	*/
-}
-
-/*
- * --INFO--
- * Address:	8040B158
- * Size:	000008
- */
-void ObjDayEndResultIncP::getPStarWMaxFrm() const
-{
-	/*
-lfs      f1, lbl_80520134@sda21(r2)
-blr
-	*/
-}
-
-/*
- * --INFO--
- * Address:	8040B160
- * Size:	000008
- */
-int SArgDayEndResultIncP::getClassSize() { return 0x8; }
-
-/*
- * --INFO--
- * Address:	8040B168
- * Size:	000008
- */
-SceneType SArgDayEndResultIncP::getSceneType() const { return SCENE_DAY_END_RESULT_INC_P; }
-
-/*
- * --INFO--
- * Address:	8040B170
- * Size:	000008
- */
-int SArgDayEndResultBase::getClassSize() { return 0x8; }
-
-/*
- * --INFO--
- * Address:	8040B178
- * Size:	0000C4
- */
-ObjDayEndResultItem::~ObjDayEndResultItem()
-{
-	/*
-stwu     r1, -0x10(r1)
-mflr     r0
-stw      r0, 0x14(r1)
-stw      r31, 0xc(r1)
-mr       r31, r4
-stw      r30, 8(r1)
-or.      r30, r3, r3
-beq      lbl_8040B220
-lis      r4, __vt__Q32kh6Screen19ObjDayEndResultItem@ha
-addi     r4, r4, __vt__Q32kh6Screen19ObjDayEndResultItem@l
-stw      r4, 0(r30)
-addi     r0, r4, 0x10
-stw      r0, 0x18(r30)
-beq      lbl_8040B210
-lis      r4, __vt__Q32kh6Screen19ObjDayEndResultBase@ha
-addi     r4, r4, __vt__Q32kh6Screen19ObjDayEndResultBase@l
-stw      r4, 0(r30)
-addi     r0, r4, 0x10
-stw      r0, 0x18(r30)
-beq      lbl_8040B210
-lis      r4, __vt__Q26Screen7ObjBase@ha
-addi     r4, r4, __vt__Q26Screen7ObjBase@l
-stw      r4, 0(r30)
-addi     r0, r4, 0x10
-stw      r0, 0x18(r30)
-beq      lbl_8040B210
-lis      r4, __vt__Q26Screen8IObjBase@ha
-addi     r4, r4, __vt__Q26Screen8IObjBase@l
-stw      r4, 0(r30)
-addi     r0, r4, 0x10
-stw      r0, 0x18(r30)
-bl       del__5CNodeFv
-addi     r3, r30, 0x18
-li       r4, 0
-bl       __dt__11JKRDisposerFv
-mr       r3, r30
-li       r4, 0
-bl       __dt__5CNodeFv
-
-lbl_8040B210:
-extsh.   r0, r31
-ble      lbl_8040B220
-mr       r3, r30
-bl       __dl__FPv
-
-lbl_8040B220:
-lwz      r0, 0x14(r1)
-mr       r3, r30
-lwz      r31, 0xc(r1)
-lwz      r30, 8(r1)
-mtlr     r0
-addi     r1, r1, 0x10
-blr
-	*/
-}
-
-/*
- * --INFO--
- * Address:	8040B23C
- * Size:	000008
- */
-void ObjDayEndResultItem::getFadeinUpMinFrm() const
-{
-	/*
-lfs      f1, lbl_805200A8@sda21(r2)
-blr
-	*/
-}
-
-/*
- * --INFO--
- * Address:	8040B244
- * Size:	000008
- */
-void ObjDayEndResultItem::getFadeinUpMaxFrm() const
-{
-	/*
-lfs      f1, lbl_80520148@sda21(r2)
-blr
-	*/
-}
-
-/*
- * --INFO--
- * Address:	8040B24C
- * Size:	000008
- */
-void ObjDayEndResultItem::getFadeoutUpMinFrm() const
-{
-	/*
-lfs      f1, lbl_80520138@sda21(r2)
-blr
-	*/
-}
-
-/*
- * --INFO--
- * Address:	8040B254
- * Size:	000008
- */
-void ObjDayEndResultItem::getFadeoutUpMaxFrm() const
-{
-	/*
-lfs      f1, lbl_8052013C@sda21(r2)
-blr
-	*/
-}
-
-/*
- * --INFO--
- * Address:	8040B25C
- * Size:	000008
- */
-void ObjDayEndResultItem::getFadeinDownMinFrm() const
-{
-	/*
-lfs      f1, lbl_80520140@sda21(r2)
-blr
-	*/
-}
-
-/*
- * --INFO--
- * Address:	8040B264
- * Size:	000008
- */
-void ObjDayEndResultItem::getFadeinDownMaxFrm() const
-{
-	/*
-lfs      f1, lbl_8052014C@sda21(r2)
-blr
-	*/
-}
-
-/*
- * --INFO--
- * Address:	8040B26C
- * Size:	000008
- */
-void ObjDayEndResultItem::getFadeoutDownMinFrm() const
-{
-	/*
-lfs      f1, lbl_80520144@sda21(r2)
-blr
-	*/
-}
-
-/*
- * --INFO--
- * Address:	8040B274
- * Size:	000008
- */
-void ObjDayEndResultItem::getFadeoutDownMaxFrm() const
-{
-	/*
-lfs      f1, lbl_80520130@sda21(r2)
-blr
-	*/
-}
-
-/*
- * --INFO--
- * Address:	8040B27C
- * Size:	000008
- */
-u32 ObjDayEndResultItem::getStarWTagNum() const { return 0xF; }
-
-/*
- * --INFO--
- * Address:	8040B284
- * Size:	000008
- */
-void ObjDayEndResultItem::getPStarWMinFrm() const
-{
-	/*
-lfs      f1, lbl_80520150@sda21(r2)
-blr
-	*/
-}
-
-/*
- * --INFO--
- * Address:	8040B28C
- * Size:	000008
- */
-void ObjDayEndResultItem::getPStarWMaxFrm() const
-{
-	/*
-lfs      f1, lbl_80520134@sda21(r2)
-blr
-	*/
-}
-
-/*
- * --INFO--
- * Address:	8040B294
- * Size:	000008
- */
-u32 DispDayEndResultMail::getSize() { return 0x24; }
-
-/*
- * --INFO--
- * Address:	8040B29C
- * Size:	000008
- */
-u32 DispDayEndResultMail::getOwnerID() { return 0x4B48; }
-
-/*
- * --INFO--
- * Address:	8040B2A4
- * Size:	000014
- */
-u64 DispDayEndResultMail::getMemberID()
-{
-	/*
-lis      r4, 0x4D41494C@ha
-lis      r3, 0x4445525F@ha
-addi     r4, r4, 0x4D41494C@l
-addi     r3, r3, 0x4445525F@l
-blr
-	*/
-}
-
-/*
- * --INFO--
- * Address:	8040B2B8
- * Size:	000008
- */
-u32 DispDayEndResultIncP::getSize() { return 0x10; }
-
-/*
- * --INFO--
- * Address:	8040B2C0
- * Size:	000008
- */
-u32 DispDayEndResultIncP::getOwnerID() { return 0x4B48; }
-
-/*
- * --INFO--
- * Address:	8040B2C8
- * Size:	000014
- */
-u64 DispDayEndResultIncP::getMemberID()
-{
-	/*
-lis      r4, 0x494E4350@ha
-lis      r3, 0x4445525F@ha
-addi     r4, r4, 0x494E4350@l
-addi     r3, r3, 0x4445525F@l
-blr
-	*/
-}
-
-/*
- * --INFO--
- * Address:	8040B2DC
- * Size:	000008
- */
-u32 DispDayEndResultItem::getSize() { return 0x24; }
-
-/*
- * --INFO--
- * Address:	8040B2E4
- * Size:	000008
- */
-u32 DispDayEndResultItem::getOwnerID() { return 0x4B48; }
-
-/*
- * --INFO--
- * Address:	8040B2EC
- * Size:	000014
- */
-u64 DispDayEndResultItem::getMemberID()
-{
-	/*
-lis      r4, 0x4954454D@ha
-lis      r3, 0x4445525F@ha
-addi     r4, r4, 0x4954454D@l
-addi     r3, r3, 0x4445525F@l
-blr
-	*/
-}
+// members aren't getting initialised in correct order for some reason?
+ObjDayEndResultBase::StaticValues ObjDayEndResultBase::msVal = ObjDayEndResultBase::StaticValues();
+ObjDayEndResultTitl::StaticValues ObjDayEndResultTitl::msVal = ObjDayEndResultTitl::StaticValues();
 
 } // namespace Screen
 } // namespace kh
 
-/*
- * --INFO--
- * Address:	8040B300
- * Size:	0000CC
- */
-void __sinit_khDayEndResult_cpp()
-{
-	/*
-	lis      r3, msVal__Q32kh6Screen19ObjDayEndResultBase@ha
-	lfs      f12, lbl_80520154@sda21(r2)
-	addi     r11, r3, msVal__Q32kh6Screen19ObjDayEndResultBase@l
-	lfs      f9, lbl_805200FC@sda21(r2)
-	lfs      f10, lbl_805200B0@sda21(r2)
-	li       r7, 0x5a
-	lfs      f7, lbl_805200A8@sda21(r2)
-	li       r10, 8
-	lfs      f11, lbl_80520158@sda21(r2)
-	li       r9, 3
-	lfs      f8, lbl_8052015C@sda21(r2)
-	li       r8, 0x1e
-	lfs      f6, lbl_80520160@sda21(r2)
-	li       r6, 0xa0
-	lfs      f5, lbl_80520164@sda21(r2)
-	li       r5, 0x20
-	lfs      f4, lbl_80520168@sda21(r2)
-	li       r4, 0x14
-	lfs      f3, lbl_8052016C@sda21(r2)
-	li       r0, 0x10
-	lfs      f2, lbl_80520170@sda21(r2)
-	addi     r3, r13, msVal__Q32kh6Screen19ObjDayEndResultTitl@sda21
-	lfs      f1, lbl_80520174@sda21(r2)
-	lfs      f0, lbl_80520178@sda21(r2)
-	stfs     f12, 0(r11)
-	stfs     f11, 4(r11)
-	stfs     f10, 8(r11)
-	stfs     f10, 0xc(r11)
-	stfs     f9, 0x10(r11)
-	stw      r10, 0x24(r11)
-	stw      r9, 0x28(r11)
-	stb      r8, 0x4c(r11)
-	stb      r7, 0x4d(r11)
-	stb      r6, 0x4e(r11)
-	stb      r5, 0x4f(r11)
-	stb      r4, 0x50(r11)
-	stfs     f8, 0x14(r11)
-	stfs     f7, 0x18(r11)
-	stfs     f7, 0x1c(r11)
-	stfs     f6, 0x20(r11)
-	stfs     f5, 0x2c(r11)
-	stfs     f4, 0x30(r11)
-	stfs     f3, 0x34(r11)
-	stfs     f2, 0x38(r11)
-	stfs     f1, 0x40(r11)
-	stfs     f0, 0x48(r11)
-	stfs     f9, 0x3c(r11)
-	stfs     f9, 0x44(r11)
-	stw      r7, msVal__Q32kh6Screen19ObjDayEndResultTitl@sda21(r13)
-	stb      r0, 4(r3)
-	blr
-	*/
-}
+// /*
+//  * --INFO--
+//  * Address:	8040B300
+//  * Size:	0000CC
+//  */
+// void __sinit_khDayEndResult_cpp()
+// {
+// 	/*
+// 	lis      r3, msVal__Q32kh6Screen19ObjDayEndResultBase@ha
+// 	lfs      f12, lbl_80520154@sda21(r2)
+// 	addi     r11, r3, msVal__Q32kh6Screen19ObjDayEndResultBase@l
+// 	lfs      f9, lbl_805200FC@sda21(r2)
+// 	lfs      f10, lbl_805200B0@sda21(r2)
+// 	li       r7, 0x5a
+// 	lfs      f7, lbl_805200A8@sda21(r2)
+// 	li       r10, 8
+// 	lfs      f11, lbl_80520158@sda21(r2)
+// 	li       r9, 3
+// 	lfs      f8, lbl_8052015C@sda21(r2)
+// 	li       r8, 0x1e
+// 	lfs      f6, lbl_80520160@sda21(r2)
+// 	li       r6, 0xa0
+// 	lfs      f5, lbl_80520164@sda21(r2)
+// 	li       r5, 0x20
+// 	lfs      f4, lbl_80520168@sda21(r2)
+// 	li       r4, 0x14
+// 	lfs      f3, lbl_8052016C@sda21(r2)
+// 	li       r0, 0x10
+// 	lfs      f2, lbl_80520170@sda21(r2)
+// 	addi     r3, r13, msVal__Q32kh6Screen19ObjDayEndResultTitl@sda21
+// 	lfs      f1, lbl_80520174@sda21(r2)
+// 	lfs      f0, lbl_80520178@sda21(r2)
+// 	stfs     f12, 0(r11)
+// 	stfs     f11, 4(r11)
+// 	stfs     f10, 8(r11)
+// 	stfs     f10, 0xc(r11)
+// 	stfs     f9, 0x10(r11)
+// 	stw      r10, 0x24(r11)
+// 	stw      r9, 0x28(r11)
+// 	stb      r8, 0x4c(r11)
+// 	stb      r7, 0x4d(r11)
+// 	stb      r6, 0x4e(r11)
+// 	stb      r5, 0x4f(r11)
+// 	stb      r4, 0x50(r11)
+// 	stfs     f8, 0x14(r11)
+// 	stfs     f7, 0x18(r11)
+// 	stfs     f7, 0x1c(r11)
+// 	stfs     f6, 0x20(r11)
+// 	stfs     f5, 0x2c(r11)
+// 	stfs     f4, 0x30(r11)
+// 	stfs     f3, 0x34(r11)
+// 	stfs     f2, 0x38(r11)
+// 	stfs     f1, 0x40(r11)
+// 	stfs     f0, 0x48(r11)
+// 	stfs     f9, 0x3c(r11)
+// 	stfs     f9, 0x44(r11)
+// 	stw      r7, msVal__Q32kh6Screen19ObjDayEndResultTitl@sda21(r13)
+// 	stb      r0, 4(r3)
+// 	blr
+// 	*/
+// }

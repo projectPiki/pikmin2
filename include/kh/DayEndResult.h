@@ -8,6 +8,7 @@
 #include "og/Screen/callbackNodes.h"
 #include "Screen/Bases.h"
 #include "P2DScreen.h"
+#include "Controller.h"
 
 namespace og {
 namespace Screen {
@@ -75,9 +76,9 @@ struct IncP {
 struct DispDayEndResultIncP : public og::Screen::DispMemberBase {
 	DispDayEndResultIncP(const IncP*);
 
-	virtual u32 getSize();     // _08 (weak)
-	virtual u32 getOwnerID();  // _0C (weak)
-	virtual u64 getMemberID(); // _10 (weak)
+	virtual u32 getSize() { return sizeof(DispDayEndResultIncP); }    // _08 (weak)
+	virtual u32 getOwnerID() { return OWNER_KH; }                     // _0C (weak)
+	virtual u64 getMemberID() { return MEMBER_DAY_END_RESULT_INC_P; } // _10 (weak)
 
 	// _00     = VTBL
 	// _00-_08 = DispMemberBase
@@ -90,29 +91,28 @@ struct DispDayEndResultIncP : public og::Screen::DispMemberBase {
 struct DispDayEndResultItem : public og::Screen::DispMemberBase {
 	DispDayEndResultItem(Game::Result::TNode*, int, int, bool);
 
-	virtual u32 getSize();     // _08 (weak)
-	virtual u32 getOwnerID();  // _0C (weak)
-	virtual u64 getMemberID(); // _10 (weak)
-
+	virtual u32 getSize() { return sizeof(DispDayEndResultItem); }   // _08 (weak)
+	virtual u32 getOwnerID() { return OWNER_KH; }                    // _0C (weak)
+	virtual u64 getMemberID() { return MEMBER_DAY_END_RESULT_ITEM; } // _10 (weak)
 	// _00     = VTBL
 	// _00-_08 = DispMemberBase
 	Game::Result::TNode* m_resultNode; // _08
 	u32 _0C;                           // _0C, unknown
 	u32 _10;                           // _10, unknown
-	u32 _14;                           // _14, unknown
+	int _14;                           // _14
 	int _18;                           // _18
 	int _1C;                           // _1C
 	bool _20;                          // _20
-	u8 _21;                            // _21
+	bool _21;                          // _21
 };
 
 // Mail screen
 struct DispDayEndResultMail : public og::Screen::DispMemberBase {
 	DispDayEndResultMail(JKRHeap*, MailCategory);
 
-	virtual u32 getSize();     // _08 (weak)
-	virtual u32 getOwnerID();  // _0C (weak)
-	virtual u64 getMemberID(); // _10 (weak)
+	virtual u32 getSize() { return sizeof(DispDayEndResultMail); }   // _08 (weak)
+	virtual u32 getOwnerID() { return OWNER_KH; }                    // _0C (weak)
+	virtual u64 getMemberID() { return MEMBER_DAY_END_RESULT_MAIL; } // _10 (weak)
 
 	// _00     = VTBL
 	// _00-_08 = DispMemberBase
@@ -154,31 +154,37 @@ struct DispDayEndResult : public og::Screen::DispMemberBase {
 ////////////////////////////////////////////
 // SCENE ARGS
 
-struct SArgDayEndResultBase : public ::Screen::SceneArgBase {
-	virtual int getClassSize(); // _0C (weak)
+struct SArgDayEndResultBase : public ::Screen::StartSceneArg {
+	inline SArgDayEndResultBase() { _04 = 1; }
+
+	virtual int getClassSize() { return sizeof(SArgDayEndResultBase); } // _0C (weak)
 
 	// _00 = VTBL
+	// _00-_08 = Screen::StartSceneArg
 };
 
 struct SArgDayEndResultIncP : public SArgDayEndResultBase {
-	virtual SceneType getSceneType() const; // _08 (weak)
-	virtual int getClassSize();             // _0C (weak)
+	virtual int getClassSize() { return sizeof(SArgDayEndResultIncP); }           // _0C (weak)
+	virtual SceneType getSceneType() const { return SCENE_DAY_END_RESULT_INC_P; } // _08 (weak)
 
-	// _00 = VTBL
+	// _00     = VTBL
+	// _00-_04 = SArgDayEndResultBase
 };
 
 struct SArgDayEndResultItem : public SArgDayEndResultBase {
-	virtual SceneType getSceneType() const; // _08 (weak)
-	virtual int getClassSize();             // _0C (weak)
+	virtual int getClassSize() { return sizeof(SArgDayEndResultItem); }          // _0C (weak)
+	virtual SceneType getSceneType() const { return SCENE_DAY_END_RESULT_ITEM; } // _08 (weak)
 
-	// _00 = VTBL
+	// _00     = VTBL
+	// _00-_04 = SArgDayEndResultBase
 };
 
 struct SArgDayEndResultMail : public SArgDayEndResultBase {
-	virtual SceneType getSceneType() const; // _08 (weak)
-	virtual int getClassSize();             // _0C (weak)
+	virtual int getClassSize() { return sizeof(SArgDayEndResultMail); }          // _0C (weak)
+	virtual SceneType getSceneType() const { return SCENE_DAY_END_RESULT_MAIL; } // _08 (weak)
 
-	// _00 = VTBL
+	// _00     = VTBL
+	// _00-_04 = SArgDayEndResultBase
 };
 
 ////////////////////////////////////////////
@@ -211,16 +217,16 @@ struct SceneDayEndResultItem : public ::Screen::SceneBase {
 struct SceneDayEndResultMail : public ::Screen::SceneBase {
 	SceneDayEndResultMail();
 
-	virtual SceneType getSceneType();                       // _08 (weak)
-	virtual ScreenOwnerID getOwnerID();                     // _0C (weak)
-	virtual ScreenMemberID getMemberID();                   // _10 (weak)
-	virtual const char* getResName() const;                 // _1C (weak)
-	virtual void doCreateObj(JKRArchive*);                  // _20 (weak)
-	virtual void doUserCallBackFunc(Resource::MgrCommand*); // _24
+	virtual const char* getResName() const { return ""; }                       // _1C (weak)
+	virtual SceneType getSceneType() { return SCENE_DAY_END_RESULT_MAIL; }      // _08 (weak)
+	virtual ScreenOwnerID getOwnerID() { return OWNER_KH; }                     // _0C (weak)
+	virtual ScreenMemberID getMemberID() { return MEMBER_DAY_END_RESULT_MAIL; } // _10 (weak)
+	virtual void doCreateObj(JKRArchive*) { }                                   // _20 (weak)
+	virtual void doUserCallBackFunc(Resource::MgrCommand*);                     // _24
 
 	// _00      = VTBL
 	// _00-_220 = Screen::SceneBase
-	u8 _220[0x4];                // _220, unknown
+	u32 _220;                    // _220, unknown
 	JKRMemArchive* m_memArchive; // _224
 	u8 _228[0x14];               // _228, unknown
 };
@@ -252,17 +258,17 @@ struct ObjDayEndResultBase : public ::Screen::ObjBase {
 	virtual bool doUpdateFadeout();                       // _60
 	virtual void doDraw(Graphics& gfx);                   // _68
 	virtual void updateCommon();                          // _78
-	virtual void getFadeinUpMinFrm() const    = 0;        // _7C
-	virtual void getFadeinUpMaxFrm() const    = 0;        // _80
-	virtual void getFadeoutUpMinFrm() const   = 0;        // _84
-	virtual void getFadeoutUpMaxFrm() const   = 0;        // _88
-	virtual void getFadeinDownMinFrm() const  = 0;        // _8C
-	virtual void getFadeinDownMaxFrm() const  = 0;        // _90
-	virtual void getFadeoutDownMinFrm() const = 0;        // _94
-	virtual void getFadeoutDownMaxFrm() const = 0;        // _98
-	virtual u32 getStarWTagNum() const        = 0;        // _9C
-	virtual void getPStarWMinFrm() const      = 0;        // _A0
-	virtual void getPStarWMaxFrm() const      = 0;        // _A4
+	virtual f32 getFadeinUpMinFrm() const    = 0;         // _7C
+	virtual f32 getFadeinUpMaxFrm() const    = 0;         // _80
+	virtual f32 getFadeoutUpMinFrm() const   = 0;         // _84
+	virtual f32 getFadeoutUpMaxFrm() const   = 0;         // _88
+	virtual f32 getFadeinDownMinFrm() const  = 0;         // _8C
+	virtual f32 getFadeinDownMaxFrm() const  = 0;         // _90
+	virtual f32 getFadeoutDownMinFrm() const = 0;         // _94
+	virtual f32 getFadeoutDownMaxFrm() const = 0;         // _98
+	virtual u32 getStarWTagNum() const       = 0;         // _9C
+	virtual f32 getPStarWMinFrm() const      = 0;         // _A0
+	virtual f32 getPStarWMaxFrm() const      = 0;         // _A4
 
 	void setFadeinFrm();
 	void setFadeoutFrm();
@@ -292,20 +298,48 @@ struct ObjDayEndResultBase : public ::Screen::ObjBase {
 	f32 _84;                                    // _84
 	f32 _88;                                    // _88
 	khUtilFadePane* m_nextBtnFadePane;          // _8C
-	uint _90;                                   // _90
+	u32 m_flags;                                // _90
 	u8 _94;                                     // _94
 	u8 _95;                                     // _95
 
-	static struct StaticValues {
+	struct StaticValues {
+		inline StaticValues()
+		{
+			_00 = 100.0f;
+			_04 = 0.25f;
+			_08 = 1.0f;
+			_0C = 1.0f;
+			_10 = 0.1f;
+			_24 = 8;
+			_28 = 3;
+			_4C = 30;
+			_4D = 90;
+			_4E = 160;
+			_4F = 32;
+			_50 = 20;
+			_14 = -8.0f;
+			_18 = 0.0f;
+			_1C = 0.0f;
+			_20 = 23.0f;
+			_2C = 0.899;
+			_30 = 0.889;
+			_34 = 0.336;
+			_38 = 0.433;
+			_40 = 0.4f;
+			_48 = 0.68;
+			_3C = 0.1f;
+			_44 = 0.1f;
+		}
+
 		f32 _00; // _00
-		u32 _04; // _04
+		f32 _04; // _04
 		f32 _08; // _08
-		u32 _0C; // _0C
+		f32 _0C; // _0C
 		f32 _10; // _10
 		f32 _14; // _14
 		f32 _18; // _18
 		f32 _1C; // _1C
-		u32 _20; // _20
+		f32 _20; // _20
 		u32 _24; // _24
 		u32 _28; // _28
 		f32 _2C; // _2C
@@ -321,30 +355,32 @@ struct ObjDayEndResultBase : public ::Screen::ObjBase {
 		u8 _4E;  // _4E
 		u8 _4F;  // _4F
 		u8 _50;  // _50
-	} msVal;
+	};
+
+	static StaticValues msVal;
 };
 
 struct ObjDayEndResultIncP : public ObjDayEndResultBase {
 	ObjDayEndResultIncP();
 
-	virtual ~ObjDayEndResultIncP();            // _08 (weak)
-	virtual void doCreate(JKRArchive*);        // _4C
-	virtual bool doUpdateFadein();             // _50
-	virtual bool doUpdate();                   // _58
-	virtual bool doUpdateFadeout();            // _60
-	virtual void doDraw(Graphics& gfx);        // _68
-	virtual void updateCommon();               // _78
-	virtual void getFadeinUpMinFrm() const;    // _7C (weak)
-	virtual void getFadeinUpMaxFrm() const;    // _80 (weak)
-	virtual void getFadeoutUpMinFrm() const;   // _84 (weak)
-	virtual void getFadeoutUpMaxFrm() const;   // _88 (weak)
-	virtual void getFadeinDownMinFrm() const;  // _8C (weak)
-	virtual void getFadeinDownMaxFrm() const;  // _90 (weak)
-	virtual void getFadeoutDownMinFrm() const; // _94 (weak)
-	virtual void getFadeoutDownMaxFrm() const; // _98 (weak)
-	virtual u32 getStarWTagNum() const;        // _9C (weak)
-	virtual void getPStarWMinFrm() const;      // _A0 (weak)
-	virtual void getPStarWMaxFrm() const;      // _A4 (weak)
+	virtual ~ObjDayEndResultIncP() { }                          // _08 (weak)
+	virtual void doCreate(JKRArchive*);                         // _4C
+	virtual bool doUpdateFadein();                              // _50
+	virtual bool doUpdate();                                    // _58
+	virtual bool doUpdateFadeout();                             // _60
+	virtual void doDraw(Graphics& gfx);                         // _68
+	virtual void updateCommon();                                // _78
+	virtual f32 getFadeinUpMinFrm() const { return 0.0f; }      // _7C (weak)
+	virtual f32 getFadeinUpMaxFrm() const { return 30.0f; }     // _80 (weak)
+	virtual f32 getFadeoutUpMinFrm() const { return 116.0f; }   // _84 (weak)
+	virtual f32 getFadeoutUpMaxFrm() const { return 145.0f; }   // _88 (weak)
+	virtual f32 getFadeinDownMinFrm() const { return 170.0f; }  // _8C (weak)
+	virtual f32 getFadeinDownMaxFrm() const { return 205.0f; }  // _90 (weak)
+	virtual f32 getFadeoutDownMinFrm() const { return 270.0f; } // _94 (weak)
+	virtual f32 getFadeoutDownMaxFrm() const { return 299.0f; } // _98 (weak)
+	virtual u32 getStarWTagNum() const { return 19; }           // _9C (weak)
+	virtual f32 getPStarWMinFrm() const { return 0.0f; }        // _A0 (weak)
+	virtual f32 getPStarWMaxFrm() const { return 59.0f; }       // _A4 (weak)
 
 	void statusNormal();
 	void statusFadeout();
@@ -412,25 +448,25 @@ struct ObjDayEndResultMail : public ObjDayEndResultBase {
 		u32 _04; // _04, unknown
 	};
 
-	virtual ~ObjDayEndResultMail();                       // _08 (weak)
-	virtual bool doStart(const ::Screen::StartSceneArg*); // _44
-	virtual void doCreate(JKRArchive*);                   // _4C
-	virtual bool doUpdateFadein();                        // _50
-	virtual bool doUpdate();                              // _58
-	virtual bool doUpdateFadeout();                       // _60
-	virtual void doDraw(Graphics& gfx);                   // _68
-	virtual void updateCommon();                          // _78
-	virtual void getFadeinUpMinFrm() const;               // _7C (weak)
-	virtual void getFadeinUpMaxFrm() const;               // _80 (weak)
-	virtual void getFadeoutUpMinFrm() const;              // _84 (weak)
-	virtual void getFadeoutUpMaxFrm() const;              // _88 (weak)
-	virtual void getFadeinDownMinFrm() const;             // _8C (weak)
-	virtual void getFadeinDownMaxFrm() const;             // _90 (weak)
-	virtual void getFadeoutDownMinFrm() const;            // _94 (weak)
-	virtual void getFadeoutDownMaxFrm() const;            // _98 (weak)
-	virtual u32 getStarWTagNum() const;                   // _9C (weak)
-	virtual void getPStarWMinFrm() const;                 // _A0 (weak)
-	virtual void getPStarWMaxFrm() const;                 // _A4 (weak)
+	virtual ~ObjDayEndResultMail() { }                          // _08 (weak)
+	virtual bool doStart(const ::Screen::StartSceneArg*);       // _44
+	virtual void doCreate(JKRArchive*);                         // _4C
+	virtual bool doUpdateFadein();                              // _50
+	virtual bool doUpdate();                                    // _58
+	virtual bool doUpdateFadeout();                             // _60
+	virtual void doDraw(Graphics& gfx);                         // _68
+	virtual void updateCommon();                                // _78
+	virtual f32 getFadeinUpMinFrm() const { return 0.0f; }      // _7C (weak)
+	virtual f32 getFadeinUpMaxFrm() const { return 32.0f; }     // _80 (weak)
+	virtual f32 getFadeoutUpMinFrm() const { return 109.0f; }   // _84 (weak)
+	virtual f32 getFadeoutUpMaxFrm() const { return 149.0f; }   // _88 (weak)
+	virtual f32 getFadeinDownMinFrm() const { return 169.0f; }  // _8C (weak)
+	virtual f32 getFadeinDownMaxFrm() const { return 205.0f; }  // _90 (weak)
+	virtual f32 getFadeoutDownMinFrm() const { return 264.0f; } // _94 (weak)
+	virtual f32 getFadeoutDownMaxFrm() const { return 299.0f; } // _98 (weak)
+	virtual u32 getStarWTagNum() const { return 18; }           // _9C (weak)
+	virtual f32 getPStarWMinFrm() const { return 0.0f; }        // _A0 (weak)
+	virtual f32 getPStarWMaxFrm() const { return 59.0f; }       // _A4 (weak)
 
 	void statusNormal();
 	void statusFadeoutToLeft();
@@ -473,27 +509,36 @@ struct ObjDayEndResultMail : public ObjDayEndResultBase {
 };
 
 struct ObjDayEndResultItem : public ObjDayEndResultBase {
+	enum Status {
+		ITEMSTATUS_Normal      = 0,
+		ITEMSTATUS_ScrollUp    = 1,
+		ITEMSTATUS_ScrollDown  = 2,
+		ITEMSTATUS_ForceScroll = 3,
+		ITEMSTATUS_DrumRoll    = 4,
+		ITEMSTATUS_TotalValue  = 5,
+	};
+
 	ObjDayEndResultItem();
 
-	virtual ~ObjDayEndResultItem();                       // _08 (weak)
-	virtual bool doStart(const ::Screen::StartSceneArg*); // _44
-	virtual void doCreate(JKRArchive*);                   // _4C
-	virtual bool doUpdateFadein();                        // _50
-	virtual bool doUpdate();                              // _58
-	virtual bool doUpdateFadeout();                       // _60
-	virtual void doDraw(Graphics& gfx);                   // _68
-	virtual void updateCommon();                          // _78
-	virtual void getFadeinUpMinFrm() const;               // _7C (weak)
-	virtual void getFadeinUpMaxFrm() const;               // _80 (weak)
-	virtual void getFadeoutUpMinFrm() const;              // _84 (weak)
-	virtual void getFadeoutUpMaxFrm() const;              // _88 (weak)
-	virtual void getFadeinDownMinFrm() const;             // _8C (weak)
-	virtual void getFadeinDownMaxFrm() const;             // _90 (weak)
-	virtual void getFadeoutDownMinFrm() const;            // _94 (weak)
-	virtual void getFadeoutDownMaxFrm() const;            // _98 (weak)
-	virtual u32 getStarWTagNum() const;                   // _9C (weak)
-	virtual void getPStarWMinFrm() const;                 // _A0 (weak)
-	virtual void getPStarWMaxFrm() const;                 // _A4 (weak)
+	virtual ~ObjDayEndResultItem() { }                          // _08 (weak)
+	virtual bool doStart(const ::Screen::StartSceneArg*);       // _44
+	virtual void doCreate(JKRArchive*);                         // _4C
+	virtual bool doUpdateFadein();                              // _50
+	virtual bool doUpdate();                                    // _58
+	virtual bool doUpdateFadeout();                             // _60
+	virtual void doDraw(Graphics& gfx);                         // _68
+	virtual void updateCommon();                                // _78
+	virtual f32 getFadeinUpMinFrm() const { return 0.0f; }      // _7C (weak)
+	virtual f32 getFadeinUpMaxFrm() const { return 29.0f; }     // _80 (weak)
+	virtual f32 getFadeoutUpMinFrm() const { return 116.0f; }   // _84 (weak)
+	virtual f32 getFadeoutUpMaxFrm() const { return 145.0f; }   // _88 (weak)
+	virtual f32 getFadeinDownMinFrm() const { return 170.0f; }  // _8C (weak)
+	virtual f32 getFadeinDownMaxFrm() const { return 202.0f; }  // _90 (weak)
+	virtual f32 getFadeoutDownMinFrm() const { return 270.0f; } // _94 (weak)
+	virtual f32 getFadeoutDownMaxFrm() const { return 299.0f; } // _98 (weak)
+	virtual u32 getStarWTagNum() const { return 15; }           // _9C (weak)
+	virtual f32 getPStarWMinFrm() const { return -1.0f; }       // _A0 (weak)
+	virtual f32 getPStarWMaxFrm() const { return 59.0f; }       // _A4 (weak)
 
 	void statusNormal();
 	void statusScrollUp();
@@ -505,13 +550,13 @@ struct ObjDayEndResultItem : public ObjDayEndResultBase {
 	// _00     = VTBL1
 	// _18     = VTBL2
 	// _00-_98 = ObjDayEndResultBase
-	uint _98;                                 // _98
+	Status m_status;                          // _98
 	J2DAnmTransform* _9C;                     // _9C
 	f32 _A0;                                  // _A0
 	og::Screen::CallBack_CounterRV* _A4;      // _A4
 	og::Screen::CallBack_CounterRV* _A8;      // _A8
-	u32 _AC;                                  // _AC
-	u32 _B0;                                  // _B0
+	og::Screen::CallBack_CounterRV* _AC;      // _AC
+	og::Screen::CallBack_CounterRV* _B0;      // _B0
 	og::Screen::StickAnimMgr* m_stickAnimMgr; // _B4
 	khUtilFadePane* _B8;                      // _B8
 	khUtilFadePane* _BC;                      // _BC
@@ -536,7 +581,7 @@ struct ObjDayEndResultItem : public ObjDayEndResultBase {
 struct ObjDayEndResultTitl : public ::Screen::ObjBase {
 	ObjDayEndResultTitl();
 
-	virtual ~ObjDayEndResultTitl();       // _08 (weak)
+	virtual ~ObjDayEndResultTitl() { }    // _08 (weak)
 	virtual void doCreate(JKRArchive*);   // _4C
 	virtual bool doUpdateFadein();        // _50
 	virtual bool doUpdate();              // _58
@@ -556,6 +601,17 @@ struct ObjDayEndResultTitl : public ::Screen::ObjBase {
 	f32 _48;                    // _48
 	u32 _4C;                    // _4C
 	u8 _50;                     // _50
+
+	static struct StaticValues {
+		inline StaticValues()
+		{
+			_00 = 90;
+			_04 = 16;
+		}
+
+		u32 _00; // _00
+		u32 _04; // _04
+	} msVal;
 };
 
 } // namespace Screen

@@ -47,7 +47,6 @@ struct SceneArgBase {
 };
 
 struct StartSceneArg : public SceneArgBase {
-
 	// _00 = VTBL
 	u8 _04; // _04
 };
@@ -139,7 +138,7 @@ struct SceneBase {
 	IObjBase* searchObj(char*);
 	bool setBackupScene();
 	void setColorBG(u8, u8, u8, u8);
-	void setScene(SetSceneArg&);
+	bool setScene(SetSceneArg&);
 	bool setDispMember(og::Screen::DispMemberBase*);
 	bool start(StartSceneArg*);
 	void startScene(StartSceneArg*);
