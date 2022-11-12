@@ -20,7 +20,7 @@ struct THPPlayerLoadResourceArg {
 };
 
 struct THPPlayer : public JKRDisposer, public CNode {
-	enum EMovieIndex {};
+	enum EMovieIndex { OPENING_1 = 0, OPENING_2, ENDING_1, ENDING_2, STAFF_ROLL, PLAY_1, PLAY_2, PLAY_3, PLAY_4, PLAY_5, PLAY_6, CRIME };
 
 	THPPlayer();
 

@@ -30,7 +30,6 @@ struct WorldMap;
 } // namespace kh
 
 namespace Game {
-struct THPPlayer;
 
 namespace SingleGame {
 struct State;
@@ -387,12 +386,12 @@ struct MovieState : public State {
 	virtual void cleanup(SingleGameSection*);         // _10
 	virtual void draw(SingleGameSection*, Graphics&); // _20
 
-	unknown _10;     // _10
-	Controller* _14; // _14
-	JKRHeap* _18;    // _18
-	JKRHeap* _1C;    // _1C
-	THPPlayer* _20;  // _20
-	bool _24;        // _24
+	THPPlayer::EMovieIndex _10; // _10
+	Controller* _14;            // _14
+	JKRHeap* _18;               // _18
+	JKRHeap* _1C;               // _1C
+	THPPlayer* _20;             // _20
+	bool _24;                   // _24
 };
 
 /**

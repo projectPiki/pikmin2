@@ -1,221 +1,33 @@
 #include "types.h"
 #include "Game/SingleGame.h"
+#include "JSystem/JKR/JKRHeap.h"
+#include "nans.h"
 
-/*
-    Generated from dpostproc
-
-    .section .ctors, "wa"  # 0x80472F00 - 0x804732C0
-    .4byte __sinit_singleGS_Movie_cpp
-
-    .section .rodata  # 0x804732E0 - 0x8049E220
-    .global lbl_80482C20
-    lbl_80482C20:
-        .asciz "Opening Movie"
-        .skip 2
-    .global lbl_80482C30
-    lbl_80482C30:
-        .asciz "-- Director --"
-        .skip 1
-    .global lbl_80482C40
-    lbl_80482C40:
-        .asciz "Geshifumi Hino"
-        .skip 1
-    .global lbl_80482C50
-    lbl_80482C50:
-        .asciz "Mamamichi Abe"
-        .skip 2
-    .global lbl_80482C60
-    lbl_80482C60:
-        .asciz "-- Main Programmer --"
-        .skip 2
-    .global lbl_80482C78
-    lbl_80482C78:
-        .asciz "Tepen-kei"
-        .skip 2
-    .global lbl_80482C84
-    lbl_80482C84:
-        .asciz "(C) Nintendo"
-        .skip 3
-    .global lbl_80482C94
-    lbl_80482C94:
-        .asciz "Ending Movie"
-        .skip 3
-    .global lbl_80482CA4
-    lbl_80482CA4:
-        .asciz "(C) Ninteno"
-    .global lbl_80482CB0
-    lbl_80482CB0:
-        .asciz "Ending(Complete) Movie"
-        .skip 1
-    .global lbl_80482CC8
-    lbl_80482CC8:
-        .asciz "* Director"
-        .skip 1
-    .global lbl_80482CD4
-    lbl_80482CD4:
-        .asciz "* Otakara Design"
-        .skip 3
-    .global lbl_80482CE8
-    lbl_80482CE8:
-        .asciz "Hideo Ota"
-        .skip 2
-    .global lbl_80482CF4
-    lbl_80482CF4:
-        .asciz "Mezase Complete Movie"
-        .skip 2
-    .global lbl_80482D0C
-    lbl_80482D0C:
-        .asciz "singleGS_Movie.cpp"
-        .skip 1
-    .global lbl_80482D20
-    lbl_80482D20:
-        .asciz "P2Assert"
-        .skip 3
-
-    .section .data, "wa"  # 0x8049E220 - 0x804EFC20
-    .global lbl_804C0880
-    lbl_804C0880:
-        .4byte 0x00000000
-        .4byte 0x00000000
-        .4byte 0x00000000
-        .4byte 0x00000001
-        .4byte 0x00000002
-        .4byte 0x00000003
-        .4byte 0x00000000
-    .global opening_strings
-    opening_strings:
-        .4byte lbl_80482C20
-        .4byte lbl_8051A0C0
-        .4byte lbl_8051A0C0
-        .4byte lbl_80482C30
-        .4byte lbl_80482C40
-        .4byte lbl_80482C50
-        .4byte lbl_8051A0C0
-        .4byte lbl_8051A0C0
-        .4byte lbl_80482C60
-        .4byte lbl_80482C78
-        .4byte lbl_8051A0C0
-        .4byte lbl_8051A0C0
-        .4byte lbl_8051A0C0
-        .4byte lbl_8051A0C0
-        .4byte lbl_8051A0C0
-        .4byte lbl_8051A0C0
-        .4byte lbl_8051A0C0
-        .4byte lbl_80482C84
-        .4byte 0
-    .global ending_strings
-    ending_strings:
-        .4byte lbl_80482C94
-        .4byte lbl_8051A0C0
-        .4byte lbl_8051A0C0
-        .4byte lbl_8051A0C0
-        .4byte lbl_8051A0C0
-        .4byte lbl_8051A0C0
-        .4byte lbl_80482CA4
-    .global endingcomplete_strings
-    endingcomplete_strings:
-        .4byte lbl_80482CB0
-        .4byte lbl_8051A0C0
-        .4byte lbl_8051A0C0
-        .4byte lbl_8051A0C0
-        .4byte lbl_8051A0C0
-        .4byte lbl_8051A0C0
-        .4byte lbl_80482CA4
-    .global staffroll_strings
-    staffroll_strings:
-        .4byte lbl_8051A0C4
-        .4byte lbl_8051A0C0
-        .4byte lbl_8051A0C0
-        .4byte lbl_80482CC8
-        .4byte lbl_80482C40
-        .4byte lbl_80482C50
-        .4byte lbl_8051A0C0
-        .4byte lbl_80482CD4
-        .4byte lbl_80482CE8
-        .4byte lbl_8051A0C0
-        .4byte lbl_80482CA4
-    .global mezase_strings
-    mezase_strings:
-        .4byte lbl_80482CF4
-        .4byte lbl_8051A0C0
-        .4byte lbl_8051A0C0
-        .4byte lbl_8051A0C0
-        .4byte lbl_8051A0C0
-        .4byte lbl_8051A0C0
-        .4byte lbl_80482CA4
-    .global __vt__Q34Game10SingleGame10MovieState
-    __vt__Q34Game10SingleGame10MovieState:
-        .4byte 0
-        .4byte 0
-        .4byte
-   init__Q34Game10SingleGame10MovieStateFPQ24Game17SingleGameSectionPQ24Game8StateArg
-        .4byte exec__Q34Game10SingleGame10MovieStateFPQ24Game17SingleGameSection
-        .4byte
-   cleanup__Q34Game10SingleGame10MovieStateFPQ24Game17SingleGameSection .4byte
-   "resume__Q24Game36FSMState<Q24Game17SingleGameSection>FPQ24Game17SingleGameSection"
-        .4byte
-   "restart__Q24Game36FSMState<Q24Game17SingleGameSection>FPQ24Game17SingleGameSection"
-        .4byte
-   "transit__Q24Game36FSMState<Q24Game17SingleGameSection>FPQ24Game17SingleGameSectioniPQ24Game8StateArg"
-        .4byte
-   draw__Q34Game10SingleGame10MovieStateFPQ24Game17SingleGameSectionR8Graphics
-        .4byte
-   onOrimaDown__Q34Game10SingleGame5StateFPQ24Game17SingleGameSectioni .4byte
-   onMovieStart__Q34Game10SingleGame5StateFPQ24Game17SingleGameSectionPQ24Game11MovieConfigUlUl
-        .4byte
-   onMovieDone__Q34Game10SingleGame5StateFPQ24Game17SingleGameSectionPQ24Game11MovieConfigUlUl
-        .4byte
-   onMovieCommand__Q34Game10SingleGame5StateFPQ24Game17SingleGameSectioni .4byte
-   onHoleIn__Q34Game10SingleGame5StateFPQ24Game17SingleGameSectionPQ34Game8ItemCave4Item
-        .4byte
-   onNextFloor__Q34Game10SingleGame5StateFPQ24Game17SingleGameSectionPQ34Game8ItemHole4Item
-        .4byte
-   onFountainReturn__Q34Game10SingleGame5StateFPQ24Game17SingleGameSectionPQ34Game15ItemBigFountain4Item
-        .4byte
-   on_section_fadeout__Q34Game10SingleGame5StateFPQ24Game17SingleGameSection
-        .4byte
-   on_demo_timer__Q34Game10SingleGame5StateFPQ24Game17SingleGameSectionUl .4byte
-   0 .4byte 0 .4byte 0 .4byte 0 .4byte 0 .4byte 0 .4byte 0 .4byte 0 .4byte 0
-        .4byte 0
-        .4byte 0
-        .4byte 0
-        .4byte 0
-        .4byte 0
-        .4byte 0
-        .4byte 0
-        .4byte 0
-        .4byte 0
-        .4byte 0
-        .4byte 0
-        .4byte 0
-        .4byte 0
-        .4byte 0
-        .4byte 0
-        .4byte 0
-        .4byte 0
-
-    .section .sbss # 0x80514D80 - 0x80516360
-    .global lbl_80515C38
-    lbl_80515C38:
-        .skip 0x4
-    .global lbl_80515C3C
-    lbl_80515C3C:
-        .skip 0x4
-
-    .section .sdata2, "a"     # 0x80516360 - 0x80520E40
-    .global lbl_8051A0C0
-    lbl_8051A0C0:
-        .4byte 0x00000000
-    .global lbl_8051A0C4
-    lbl_8051A0C4:
-        .asciz "Pikmin2"
-    .global lbl_8051A0CC
-    lbl_8051A0CC:
-        .float 4.0
-    .global lbl_8051A0D0
-    lbl_8051A0D0:
-        .float 480.0
-*/
+int dummyplayer; // size 0xC, not actually an int
+static int idk[4]              = { 1, 2, 3, 0 };
+char* opening_strings[]        = { "Opening Movie",
+                            "",
+                            "",
+                            "-- Director --",
+                            "Geshifumi Hino",
+                            "Mamamichi Abe",
+                            "",
+                            "",
+                            "-- Main Programmer --",
+                            "Tepen-kei",
+                            "",
+                            "",
+                            "",
+                            "",
+                            "",
+                            "",
+                            "",
+                            "(C) Nintendo" };
+char* ending_strings[]         = { "Ending Movie", "", "", "", "", "", "(C) Ninteno" };
+char* endingcomplete_strings[] = { "Ending(Complete) Movie", "", "", "", "", "", "(C) Ninteno" };
+char* staffroll_strings[]
+    = { "Pikmin2", "", "", "* Director", "Geshifumi Hino", "Mamamichi Abe", "", "", "* Otakara Design", "Hideo Ota", "", "(C) Ninteno" };
+char* mezase_strings[] = { "Mezase Complete Movie", "", "", "", "", "", "(C) Ninteno" };
 
 namespace Game {
 namespace SingleGame {
@@ -240,6 +52,42 @@ MovieState::MovieState()
  */
 void MovieState::init(SingleGameSection* gs, StateArg* arg)
 {
+	_1C = nullptr;
+	_18 = nullptr;
+	_18 = JKRHeap::sCurrentHeap;
+	_18->getFreeSize();
+	_1C = JKRExpHeap::create(_18->getFreeSize(), _18, true);
+	_1C->becomeCurrentHeap();
+	_1C->getFreeSize();
+	_20 = new THPPlayer;
+	_20->init(nullptr);
+	_24 = false;
+	_20->load(THPPlayer::OPENING_1);
+	P2ASSERTLINE(223, arg);
+	_10 = *(THPPlayer::EMovieIndex*)arg;
+	if (arg) {
+		THPPlayer::EMovieIndex ind = _10;
+		switch (ind) {
+		case THPPlayer::OPENING_1:
+			dummyplayer = 0;
+			break;
+		case THPPlayer::OPENING_2:
+			dummyplayer = 0;
+			break;
+		case THPPlayer::ENDING_1:
+			dummyplayer = 0;
+			break;
+		case THPPlayer::ENDING_2:
+			dummyplayer = 0;
+			break;
+		case THPPlayer::STAFF_ROLL:
+			dummyplayer = 0;
+			break;
+		case THPPlayer::PLAY_1:
+			dummyplayer = 0;
+			break;
+		}
+	}
 	/*
 	stwu     r1, -0x20(r1)
 	mflr     r0
