@@ -9,6 +9,7 @@
 #include "Game/ResultTexMgr.h"
 #include "Game/SingleGameSection.h"
 #include "Game/StateMachine.h"
+#include "Game/THPPlayer.h"
 #include "GenericObjectMgr.h"
 #include "IDelegate.h"
 #include "JSystem/JKR/JKRHeap.h"
@@ -83,6 +84,16 @@ struct State : public FSMState<SingleGameSection> {
 	State* accountEarnings(SingleGameSection*, PelletCropMemory*, bool);
 
 	u8 _0C[4]; // _0C
+};
+
+/**
+ * @fabricated
+ */
+struct Arg : StateArg {
+	bool _00; // _00
+	bool _01; // _01
+	bool _02; // _02
+	u16 _04;  // _04
 };
 
 /**
@@ -301,15 +312,6 @@ struct GameState : public State {
  * @size{0x2C}
  */
 struct LoadState : public State {
-	/**
-	 * @fabricated
-	 */
-	struct Arg : StateArg {
-		bool _00; // _00
-		bool _01; // _01
-		bool _02; // _02
-		u16 _04;  // _04
-	};
 
 	inline LoadState()
 	    : State(SGS_Load)

@@ -1332,24 +1332,3 @@ void Delegate<Game::SingleGame::SelectState>::invoke()
 	blr
 	*/
 }
-
-/*
- * --INFO--
- * Address:	8021C6F0
- * Size:	000028
- */
-void __sinit_singleGS_WorldMap_cpp(void)
-{
-	/*
-	lis      r4, __float_nan@ha
-	li       r0, -1
-	lfs      f0, __float_nan@l(r4)
-	lis      r3, lbl_804C0770@ha
-	stw      r0, lbl_80515C10@sda21(r13)
-	stfsu    f0, lbl_804C0770@l(r3)
-	stfs     f0, lbl_80515C14@sda21(r13)
-	stfs     f0, 4(r3)
-	stfs     f0, 8(r3)
-	blr
-	*/
-}

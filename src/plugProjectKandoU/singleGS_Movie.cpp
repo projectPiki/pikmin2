@@ -218,53 +218,19 @@
 */
 
 namespace Game {
+namespace SingleGame {
 
 /*
  * --INFO--
  * Address:	8021EED8
  * Size:	00008C
  */
-SingleGame::MovieState::MovieState(void)
+MovieState::MovieState()
+    : State(SGS_Movie)
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	lis      r4, "__vt__Q24Game36FSMState<Q24Game17SingleGameSection>"@ha
-	li       r5, 0
-	stw      r0, 0x14(r1)
-	addi     r0, r4, "__vt__Q24Game36FSMState<Q24Game17SingleGameSection>"@l
-	lis      r4, __vt__Q34Game10SingleGame5State@ha
-	stw      r31, 0xc(r1)
-	mr       r31, r3
-	addi     r4, r4, __vt__Q34Game10SingleGame5State@l
-	stw      r0, 0(r3)
-	li       r0, 9
-	lis      r3, __vt__Q34Game10SingleGame10MovieState@ha
-	stw      r0, 4(r31)
-	addi     r0, r3, __vt__Q34Game10SingleGame10MovieState@l
-	li       r3, 0xb0
-	stw      r5, 8(r31)
-	stw      r4, 0(r31)
-	stw      r0, 0(r31)
-	bl       __nw__FUl
-	or.      r0, r3, r3
-	beq      lbl_8021EF3C
-	li       r4, 0
-	bl       __ct__10ControllerFQ210JUTGamePad8EPadPort
-	mr       r0, r3
-
-lbl_8021EF3C:
-	stw      r0, 0x14(r31)
-	li       r0, 0
-	mr       r3, r31
-	stw      r0, 0x1c(r31)
-	stw      r0, 0x18(r31)
-	lwz      r31, 0xc(r1)
-	lwz      r0, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	_14 = new Controller(JUTGamePad::PORT_0);
+	_1C = nullptr;
+	_18 = nullptr;
 }
 
 /*
@@ -272,7 +238,7 @@ lbl_8021EF3C:
  * Address:	8021EF64
  * Size:	000290
  */
-void SingleGame::MovieState::init(Game::SingleGameSection*, Game::StateArg*)
+void MovieState::init(SingleGameSection* gs, StateArg* arg)
 {
 	/*
 	stwu     r1, -0x20(r1)
@@ -485,87 +451,32 @@ lbl_8021F1D4:
  * Address:	8021F1F4
  * Size:	000114
  */
-void SingleGame::MovieState::exec(Game::SingleGameSection*)
+void MovieState::exec(SingleGameSection* gs)
 {
-	/*
-	stwu     r1, -0x20(r1)
-	mflr     r0
-	stw      r0, 0x24(r1)
-	stw      r31, 0x1c(r1)
-	mr       r31, r4
-	stw      r30, 0x18(r1)
-	mr       r30, r3
-	lwz      r0, 0x1c(r3)
-	cmplwi   r0, 0
-	beq      lbl_8021F2F0
-	lwz      r3, 0x20(r30)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x1c(r12)
-	mtctr    r12
-	bctrl
-	lbz      r0, 0x24(r30)
-	cmpwi    r0, 1
-	beq      lbl_8021F270
-	bge      lbl_8021F2F0
-	cmpwi    r0, 0
-	bge      lbl_8021F24C
-	b        lbl_8021F2F0
-
-lbl_8021F24C:
-	lwz      r3, 0x20(r30)
-	bl       isFinishLoading__Q24Game9THPPlayerFv
-	clrlwi.  r0, r3, 0x18
-	beq      lbl_8021F2F0
-	li       r0, 1
-	stb      r0, 0x24(r30)
-	lwz      r3, 0x20(r30)
-	bl       play__Q24Game9THPPlayerFv
-	b        lbl_8021F2F0
-
-lbl_8021F270:
-	lwz      r3, 0x14(r30)
-	lwz      r0, 0x1c(r3)
-	rlwinm.  r0, r0, 0, 0x13, 0x13
-	bne      lbl_8021F290
-	lwz      r3, 0x20(r30)
-	bl       isFinishPlaying__Q24Game9THPPlayerFv
-	clrlwi.  r0, r3, 0x18
-	beq      lbl_8021F2F0
-
-lbl_8021F290:
-	lwz      r0, 0xd4(r31)
-	lfs      f1, lbl_8051A0CC@sda21(r2)
-	stw      r0, 0x18(r31)
-	lwz      r3, 0xd4(r31)
-	bl       start__8WipeBaseFf
-	lwz      r3, stageList__4Game@sda21(r13)
-	li       r4, 0
-	bl       getCourseInfo__Q24Game6StagesFi
-	stw      r3, 0x22c(r31)
-	li       r7, 0
-	li       r5, 1
-	li       r0, 5
-	stb      r7, 8(r1)
-	mr       r3, r30
-	mr       r4, r31
-	addi     r6, r1, 8
-	stb      r5, 9(r1)
-	li       r5, 2
-	stb      r7, 0xa(r1)
-	sth      r0, 0xc(r1)
-	lwz      r12, 0(r30)
-	lwz      r12, 0x1c(r12)
-	mtctr    r12
-	bctrl
-
-lbl_8021F2F0:
-	lwz      r0, 0x24(r1)
-	lwz      r31, 0x1c(r1)
-	lwz      r30, 0x18(r1)
-	mtlr     r0
-	addi     r1, r1, 0x20
-	blr
-	*/
+	if (_1C) {
+		_20->update();
+		switch (_24) {
+		case false:
+			if (_20->isFinishLoading()) {
+				_24 = true;
+				_20->play();
+			}
+			break;
+		case true:
+			if ((_14->m_padButton.m_buttonDown & PAD_BUTTON_START) || _20->isFinishPlaying()) { // skip the movie with start
+				gs->_18 = gs->m_wipeInFader;
+				gs->m_wipeInFader->start(4.0f);
+				gs->m_currentCourseInfo = stageList->getCourseInfo(0);
+				Arg arg;
+				arg._00 = false;
+				arg._01 = true;
+				arg._02 = false;
+				arg._04 = 5;
+				transit(gs, SGS_Load, &arg);
+			}
+			break;
+		}
+	}
 }
 
 /*
@@ -573,28 +484,11 @@ lbl_8021F2F0:
  * Address:	8021F308
  * Size:	000040
  */
-void SingleGame::MovieState::draw(Game::SingleGameSection*, Graphics&)
+void MovieState::draw(SingleGameSection* gs, Graphics& gfx)
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	lwz      r0, 0x1c(r3)
-	cmplwi   r0, 0
-	beq      lbl_8021F338
-	lwz      r3, 0x20(r3)
-	mr       r4, r5
-	lwz      r12, 0(r3)
-	lwz      r12, 0x20(r12)
-	mtctr    r12
-	bctrl
-
-lbl_8021F338:
-	lwz      r0, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	if (_1C) {
+		_20->draw(gfx);
+	}
 }
 
 /*
@@ -602,55 +496,13 @@ lbl_8021F338:
  * Address:	8021F348
  * Size:	000048
  */
-void SingleGame::MovieState::cleanup(Game::SingleGameSection*)
+void MovieState::cleanup(SingleGameSection* gs)
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	mr       r31, r3
-	lwz      r3, 0x1c(r3)
-	bl       freeAll__7JKRHeapFv
-	lwz      r3, 0x1c(r31)
-	bl       destroy__7JKRHeapFv
-	li       r0, 0
-	stw      r0, 0x1c(r31)
-	lwz      r3, 0x18(r31)
-	bl       becomeCurrentHeap__7JKRHeapFv
-	lwz      r0, 0x14(r1)
-	lwz      r31, 0xc(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	_1C->freeAll();
+	_1C->destroy();
+	_1C = nullptr;
+	_18->becomeCurrentHeap();
 }
 
+} // namespace SingleGame
 } // namespace Game
-
-/*
- * --INFO--
- * Address:	8021F390
- * Size:	000040
- */
-void __sinit_singleGS_Movie_cpp(void)
-{
-	/*
-	lis      r3, __float_nan@ha
-	li       r0, 0
-	addi     r5, r3, __float_nan@l
-	lis      r4, lbl_804C0880@ha
-	lfs      f1, 0(r5)
-	lis      r3, dummyPlayer@ha
-	li       r5, -1
-	lfs      f0, lbl_8051A0D0@sda21(r2)
-	stfsu    f1, lbl_804C0880@l(r4)
-	stwu     r0, dummyPlayer@l(r3)
-	stw      r5, lbl_80515C38@sda21(r13)
-	stfs     f1, lbl_80515C3C@sda21(r13)
-	stfs     f1, 4(r4)
-	stfs     f1, 8(r4)
-	stfs     f0, 4(r3)
-	blr
-	*/
-}

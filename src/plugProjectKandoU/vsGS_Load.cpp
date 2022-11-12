@@ -88,13 +88,14 @@
 */
 
 namespace Game {
+namespace VsGame {
 
 /*
  * --INFO--
  * Address:	8022D0E8
  * Size:	0000F0
  */
-VsGame::LoadState::LoadState(void)
+LoadState::LoadState(void)
 {
 	/*
 	stwu     r1, -0x20(r1)
@@ -169,7 +170,7 @@ lbl_8022D1BC:
  * Address:	8022D1D8
  * Size:	0000D0
  */
-void VsGame::LoadState::init(Game::VsGameSection*, Game::StateArg*)
+void LoadState::init(VsGameSection*, StateArg*)
 {
 	/*
 	stwu     r1, -0x20(r1)
@@ -234,7 +235,7 @@ lbl_8022D210:
  * Address:	8022D2A8
  * Size:	000024
  */
-void VsGame::LoadState::dvdLoad(void)
+void LoadState::dvdLoad(void)
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -254,7 +255,7 @@ void VsGame::LoadState::dvdLoad(void)
  * Address:	8022D2CC
  * Size:	0002C4
  */
-void VsGame::LoadState::exec(Game::VsGameSection*)
+void LoadState::exec(VsGameSection*)
 {
 	/*
 	stwu     r1, -0x30(r1)
@@ -470,7 +471,7 @@ lbl_8022D578:
  * Address:	8022D590
  * Size:	00007C
  */
-void VsGame::LoadState::draw(Game::VsGameSection*, Graphics&)
+void LoadState::draw(VsGameSection*, Graphics&)
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -512,8 +513,9 @@ void VsGame::LoadState::draw(Game::VsGameSection*, Graphics&)
  * Address:	8022D60C
  * Size:	000004
  */
-void VsGame::LoadState::cleanup(Game::VsGameSection*) { }
+void LoadState::cleanup(VsGameSection*) { }
 
+} // namespace VsGame
 } // namespace Game
 
 /**
@@ -522,24 +524,3 @@ void VsGame::LoadState::cleanup(Game::VsGameSection*) { }
  * @reified{getMemberID__Q32og6Screen15DispMemberFloorFv}
  * @generated{invoke__34Delegate<Q34Game6VsGame9LoadState>Fv}
  */
-
-/*
- * --INFO--
- * Address:	8022D664
- * Size:	000028
- */
-void __sinit_vsGS_Load_cpp(void)
-{
-	/*
-	lis      r4, __float_nan@ha
-	li       r0, -1
-	lfs      f0, __float_nan@l(r4)
-	lis      r3, lbl_804C1068@ha
-	stw      r0, lbl_80515C78@sda21(r13)
-	stfsu    f0, lbl_804C1068@l(r3)
-	stfs     f0, lbl_80515C7C@sda21(r13)
-	stfs     f0, 4(r3)
-	stfs     f0, 8(r3)
-	blr
-	*/
-}

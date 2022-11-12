@@ -110,7 +110,7 @@ void LoadState::exec(SingleGameSection* gs)
 				Arg arg;
 				arg._00 = true;
 				arg._04 = _24;
-				transit(gs, 3, &arg);
+				transit(gs, SGS_Game, &arg);
 			}
 		}
 		if (particle2dMgr) {

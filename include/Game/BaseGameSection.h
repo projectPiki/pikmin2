@@ -204,6 +204,8 @@ struct BaseGameSection : public BaseHIOSection {
 	// _00 		= VTBL
 	// _00-_48 	= BaseHIOSection
 	// should there not be another 0x4 here in USA (not demo)? ...
+	u32 _PADDING00;                                       // STRUCTURE SIZE IS WRONG BY 8 BYTES!
+	u32 _PADDING01;                                       // STRUCTURE SIZE IS WRONG BY 8 BYTES!
 	BlendCamera* m_blendCamera;                           // _50
 	f32 m_blendFactor;                                    // _54
 	bool m_isBlendCameraActive;                           // _58
@@ -232,8 +234,6 @@ struct BaseGameSection : public BaseHIOSection {
 	u8 _11C;                                              // _11C
 	int _120;                                             // _120
 	u32 _124;                                             // _124
-	u32 _PADDING00;                                       // STRUCTURE SIZE IS WRONG BY 8 BYTES!
-	u32 _PADDING01;                                       // STRUCTURE SIZE IS WRONG BY 8 BYTES!
 	GameLightMgr* m_lightMgr;                             // _128
 	Sys::DrawBuffers* _12C;                               // _12C
 	Sys::DrawBuffers* _130;                               // _130
