@@ -5,6 +5,7 @@
 #include "JSystem/JKR/JKRDisposer.h"
 #include "JSystem/JUT/TColor.h"
 #include "Screen/Bases.h"
+#include "Screen/screenMgr.h"
 #include "types.h"
 
 struct Controller;

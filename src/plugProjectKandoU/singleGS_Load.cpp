@@ -1,76 +1,3 @@
-/*
-    Generated from dpostproc
-
-    .section .ctors, "wa"  # 0x80472F00 - 0x804732C0
-    .4byte __sinit_singleGS_Load_cpp
-
-    .section .rodata  # 0x804732E0 - 0x8049E220
-    .global lbl_80483D50
-    lbl_80483D50:
-        .asciz "singleGS_Load.cpp"
-        .skip 2
-    .global lbl_80483D64
-    lbl_80483D64:
-        .asciz "P2Assert"
-        .skip 3
-
-    .section .data, "wa"  # 0x8049E220 - 0x804EFC20
-    .global lbl_804C15C0
-    lbl_804C15C0:
-        .4byte 0x00000000
-        .4byte 0x00000000
-        .4byte 0x00000000
-    .global __vt__Q32og6Screen20DispMemberCourseName
-    __vt__Q32og6Screen20DispMemberCourseName:
-        .4byte 0
-        .4byte 0
-        .4byte getSize__Q32og6Screen20DispMemberCourseNameFv
-        .4byte getOwnerID__Q32og6Screen20DispMemberCourseNameFv
-        .4byte getMemberID__Q32og6Screen20DispMemberCourseNameFv
-        .4byte doSetSubMemberAll__Q32og6Screen14DispMemberBaseFv
-    .global __vt__Q34Game10SingleGame9LoadState
-    __vt__Q34Game10SingleGame9LoadState:
-        .4byte 0
-        .4byte 0
-        .4byte
-   init__Q34Game10SingleGame9LoadStateFPQ24Game17SingleGameSectionPQ24Game8StateArg
-        .4byte exec__Q34Game10SingleGame9LoadStateFPQ24Game17SingleGameSection
-        .4byte
-   cleanup__Q34Game10SingleGame9LoadStateFPQ24Game17SingleGameSection .4byte
-   "resume__Q24Game36FSMState<Q24Game17SingleGameSection>FPQ24Game17SingleGameSection"
-        .4byte
-   "restart__Q24Game36FSMState<Q24Game17SingleGameSection>FPQ24Game17SingleGameSection"
-        .4byte
-   "transit__Q24Game36FSMState<Q24Game17SingleGameSection>FPQ24Game17SingleGameSectioniPQ24Game8StateArg"
-        .4byte
-   draw__Q34Game10SingleGame9LoadStateFPQ24Game17SingleGameSectionR8Graphics
-        .4byte
-   onOrimaDown__Q34Game10SingleGame5StateFPQ24Game17SingleGameSectioni .4byte
-   onMovieStart__Q34Game10SingleGame5StateFPQ24Game17SingleGameSectionPQ24Game11MovieConfigUlUl
-        .4byte
-   onMovieDone__Q34Game10SingleGame5StateFPQ24Game17SingleGameSectionPQ24Game11MovieConfigUlUl
-        .4byte
-   onMovieCommand__Q34Game10SingleGame5StateFPQ24Game17SingleGameSectioni .4byte
-   onHoleIn__Q34Game10SingleGame5StateFPQ24Game17SingleGameSectionPQ34Game8ItemCave4Item
-        .4byte
-   onNextFloor__Q34Game10SingleGame5StateFPQ24Game17SingleGameSectionPQ34Game8ItemHole4Item
-        .4byte
-   onFountainReturn__Q34Game10SingleGame5StateFPQ24Game17SingleGameSectionPQ34Game15ItemBigFountain4Item
-        .4byte
-   on_section_fadeout__Q34Game10SingleGame5StateFPQ24Game17SingleGameSection
-        .4byte
-   on_demo_timer__Q34Game10SingleGame5StateFPQ24Game17SingleGameSectionUl .4byte
-   0
-
-    .section .sbss # 0x80514D80 - 0x80516360
-    .global lbl_80515CB8
-    lbl_80515CB8:
-        .skip 0x4
-    .global lbl_80515CBC
-    lbl_80515CBC:
-        .skip 0x4
-*/
-
 #include "types.h"
 #include "nans.h"
 #include "Game/SingleGame.h"
@@ -79,13 +6,14 @@
 #include "Radar.h"
 
 namespace Game {
+namespace SingleGame {
 
 /*
  * --INFO--
  * Address:	........
  * Size:	0000E4
  */
-// void SingleGame::_Print(char*, ...)
+// void _Print(char*, ...)
 //{
 // UNUSED FUNCTION
 //}
@@ -95,7 +23,7 @@ namespace Game {
  * Address:	80239E84
  * Size:	0000B4
  */
-void SingleGame::LoadState::init(Game::SingleGameSection* gs, Game::StateArg* arg)
+void LoadState::init(SingleGameSection* gs, StateArg* arg)
 {
 	moviePlayer->reset();
 	Screen::gGame2DMgr->m_screenMgr->reset();
@@ -121,7 +49,7 @@ void SingleGame::LoadState::init(Game::SingleGameSection* gs, Game::StateArg* ar
  * Address:	........
  * Size:	000160
  */
-void SingleGame::LoadState::initNext(Game::SingleGameSection*)
+void LoadState::initNext(SingleGameSection*)
 {
 	// UNUSED FUNCTION
 }
@@ -131,7 +59,7 @@ void SingleGame::LoadState::initNext(Game::SingleGameSection*)
  * Address:	80239F38
  * Size:	000238
  */
-void SingleGame::LoadState::exec(Game::SingleGameSection*)
+void LoadState::exec(SingleGameSection*)
 {
 	/*
 	stwu     r1, -0x40(r1)
@@ -306,7 +234,7 @@ lbl_8023A158:
  * Address:	8023A170
  * Size:	000090
  */
-void SingleGame::LoadState::draw(Game::SingleGameSection*, Graphics&)
+void LoadState::draw(SingleGameSection*, Graphics&)
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -355,8 +283,9 @@ lbl_8023A1EC:
  * Address:	8023A200
  * Size:	000004
  */
-void SingleGame::LoadState::cleanup(Game::SingleGameSection*) { }
+void LoadState::cleanup(SingleGameSection*) { }
 
+} // namespace SingleGame
 } // namespace Game
 
 namespace og {
@@ -400,24 +329,3 @@ blr
 
 } // namespace Screen
 } // namespace og
-
-/*
- * --INFO--
- * Address:	8023A228
- * Size:	000028
- */
-void __sinit_singleGS_Load_cpp(void)
-{
-	/*
-	lis      r4, __float_nan@ha
-	li       r0, -1
-	lfs      f0, __float_nan@l(r4)
-	lis      r3, lbl_804C15C0@ha
-	stw      r0, lbl_80515CB8@sda21(r13)
-	stfsu    f0, lbl_804C15C0@l(r3)
-	stfs     f0, lbl_80515CBC@sda21(r13)
-	stfs     f0, 4(r3)
-	stfs     f0, 8(r3)
-	blr
-	*/
-}
