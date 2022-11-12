@@ -11,6 +11,9 @@ VERBOSE ?= 0
 # If MAPGENFLAG set to 1, tells LDFLAGS to generate a mapfile, which makes linking take several minutes.
 MAPGENFLAG ?= 0
 
+# Use the all-in-one updater after successful build? (Fails on non-windows platforms)
+USE_AOI ?= 0
+
 ifeq ($(VERBOSE),0)
   QUIET := @
 endif
@@ -35,10 +38,15 @@ endif
 EPILOGUE_PROCESS := 1
 
 # Use the all-in-one updater after successful build? (Fails on non-windows platforms)
-ifeq ($(WINDOWS),1)
-USE_AOI ?= 1
+ifeq ($(USE_AOI), 1)
+  ifeq ($(WINDOWS), 1)
+  USE_AOI = 1
+  else
+  @echo "aoi.exe fails on non-windows platforms."
+  USE_AOI = 0
+  endif
 else
-USE_AOI ?= 0
+USE_AOI = 0
 endif
 
 BUILD_DIR := build/$(NAME).$(VERSION)
