@@ -646,8 +646,7 @@ bool ObjDayEndResultItem::doUpdate()
 	}
 
 	if (getGamePad()->m_padButton.m_buttonDown & 0x100) {
-		if (getGamePad()->m_padButton.m_buttonDown & 0x100 && !(m_flags & 0x40)) {
-			// need this to re-load m_flags here rather than use the load from the check
+		if (getGamePad()->m_padButton.m_buttonDown & 0x100 && !isFlag(0x40)) {
 			m_flags |= 0x20;
 		}
 
@@ -685,211 +684,6 @@ bool ObjDayEndResultItem::doUpdate()
 		m_flags |= 0x40;
 	}
 	return false;
-	/*
-stwu     r1, -0x30(r1)
-mflr     r0
-stw      r0, 0x34(r1)
-stw      r31, 0x2c(r1)
-mr       r31, r3
-lwz      r12, 0(r3)
-lwz      r12, 0x78(r12)
-mtctr    r12
-bctrl
-lwz      r3, 0x4c(r31)
-lwz      r12, 0(r3)
-lwz      r12, 0x30(r12)
-mtctr    r12
-bctrl
-lwz      r0, 0x98(r31)
-cmpwi    r0, 3
-beq      lbl_804040E0
-bge      lbl_804040AC
-cmpwi    r0, 1
-beq      lbl_804040C8
-bge      lbl_804040D4
-cmpwi    r0, 0
-bge      lbl_804040BC
-b        lbl_80404100
-
-lbl_804040AC:
-cmpwi    r0, 5
-beq      lbl_804040F8
-bge      lbl_80404100
-b        lbl_804040EC
-
-lbl_804040BC:
-mr       r3, r31
-bl       statusNormal__Q32kh6Screen19ObjDayEndResultItemFv
-b        lbl_80404100
-
-lbl_804040C8:
-mr       r3, r31
-bl       statusScrollUp__Q32kh6Screen19ObjDayEndResultItemFv
-b        lbl_80404100
-
-lbl_804040D4:
-mr       r3, r31
-bl       statusScrollDown__Q32kh6Screen19ObjDayEndResultItemFv
-b        lbl_80404100
-
-lbl_804040E0:
-mr       r3, r31
-bl       statusForceScroll__Q32kh6Screen19ObjDayEndResultItemFv
-b        lbl_80404100
-
-lbl_804040EC:
-mr       r3, r31
-bl       statusDrumRoll__Q32kh6Screen19ObjDayEndResultItemFv
-b        lbl_80404100
-
-lbl_804040F8:
-mr       r3, r31
-bl       statusTotalValue__Q32kh6Screen19ObjDayEndResultItemFv
-
-lbl_80404100:
-mr       r3, r31
-bl       getGamePad__Q26Screen7ObjBaseCFv
-lwz      r0, 0x1c(r3)
-rlwinm.  r0, r0, 0, 0x17, 0x17
-beq      lbl_8040420C
-mr       r3, r31
-bl       getGamePad__Q26Screen7ObjBaseCFv
-lwz      r0, 0x1c(r3)
-rlwinm.  r0, r0, 0, 0x17, 0x17
-beq      lbl_80404140
-lwz      r0, 0x90(r31)
-rlwinm.  r0, r0, 0, 0x19, 0x19
-bne      lbl_80404140
-lwz      r0, 0x90(r31)
-ori      r0, r0, 0x20
-stw      r0, 0x90(r31)
-
-lbl_80404140:
-lwz      r0, 0x98(r31)
-cmpwi    r0, 0
-bne      lbl_8040420C
-mr       r3, r31
-bl       getDispMember__Q26Screen7ObjBaseFv
-lis      r5, __vt__Q26Screen12SceneArgBase@ha
-lis      r4, __vt__Q26Screen11SetSceneArg@ha
-addi     r0, r5, __vt__Q26Screen12SceneArgBase@l
-li       r5, 0x4e24
-stw      r0, 0x10(r1)
-addi     r6, r4, __vt__Q26Screen11SetSceneArg@l
-li       r4, 0
-li       r0, 1
-stw      r3, 0x1c(r1)
-mr       r3, r31
-stw      r6, 0x10(r1)
-stw      r5, 0x14(r1)
-stb      r4, 0x18(r1)
-stb      r0, 0x19(r1)
-lwz      r12, 0(r31)
-lwz      r12, 0x30(r12)
-mtctr    r12
-bctrl
-addi     r4, r1, 0x10
-bl       setScene__Q26Screen9SceneBaseFRQ26Screen11SetSceneArg
-clrlwi.  r0, r3, 0x18
-beq      lbl_8040420C
-lis      r4, __vt__Q26Screen12SceneArgBase@ha
-lis      r3, __vt__Q26Screen13StartSceneArg@ha
-addi     r0, r4, __vt__Q26Screen12SceneArgBase@l
-lis      r5, __vt__Q32kh6Screen20SArgDayEndResultBase@ha
-stw      r0, 8(r1)
-addi     r0, r3, __vt__Q26Screen13StartSceneArg@l
-lis      r3, __vt__Q32kh6Screen20SArgDayEndResultIncP@ha
-li       r4, 1
-stw      r0, 8(r1)
-addi     r5, r5, __vt__Q32kh6Screen20SArgDayEndResultBase@l
-addi     r0, r3, __vt__Q32kh6Screen20SArgDayEndResultIncP@l
-mr       r3, r31
-stw      r5, 8(r1)
-stb      r4, 0xc(r1)
-stw      r0, 8(r1)
-lwz      r12, 0(r31)
-lwz      r12, 0x30(r12)
-mtctr    r12
-bctrl
-addi     r4, r1, 8
-bl       startScene__Q26Screen9SceneBaseFPQ26Screen13StartSceneArg
-lwz      r0, 0x90(r31)
-rlwinm   r0, r0, 0, 0x1c, 0x1a
-stw      r0, 0x90(r31)
-
-lbl_8040420C:
-lwz      r0, 0x90(r31)
-rlwinm.  r0, r0, 0, 0x1a, 0x1a
-beq      lbl_80404300
-lwz      r4, 0xd8(r31)
-lis      r0, 0x4330
-stw      r0, 0x20(r1)
-li       r0, 0
-lfd      f1, lbl_805200B8@sda21(r2)
-mr       r3, r31
-stw      r4, 0xe0(r31)
-lwz      r4, 0xe0(r31)
-lfs      f0, 0xdc(r31)
-xoris    r4, r4, 0x8000
-stw      r4, 0x24(r1)
-fneg     f2, f0
-lfd      f0, 0x20(r1)
-fsubs    f0, f0, f1
-fmuls    f0, f2, f0
-stfs     f0, 0xd4(r31)
-stw      r0, 0xe8(r31)
-stw      r0, 0x98(r31)
-bl       getDispMember__Q26Screen7ObjBaseFv
-lis      r4, 0x52534C54@ha
-lis      r5, 0x0044455F@ha
-addi     r6, r4, 0x52534C54@l
-li       r4, 0x4b48
-addi     r5, r5, 0x0044455F@l
-bl       isID__Q32og6Screen14DispMemberBaseFUlUx
-clrlwi.  r0, r3, 0x18
-bne      lbl_804042A0
-lis      r3, lbl_80498830@ha
-lis      r5, lbl_80498900@ha
-addi     r3, r3, lbl_80498830@l
-li       r4, 0x298
-addi     r5, r5, lbl_80498900@l
-crclr    6
-bl       panic_f__12JUTExceptionFPCciPCce
-
-lbl_804042A0:
-mr       r3, r31
-bl       getDispMember__Q26Screen7ObjBaseFv
-lwz      r0, 0x24(r3)
-lfs      f1, lbl_805200B0@sda21(r2)
-stw      r0, 0xc8(r31)
-lwz      r0, 0x2c(r3)
-stw      r0, 0xc4(r31)
-lwz      r3, 0xa4(r31)
-bl       startPuyoUp__Q32og6Screen18CallBack_CounterRVFf
-lwz      r3, 0xa8(r31)
-lfs      f1, lbl_805200B0@sda21(r2)
-bl       startPuyoUp__Q32og6Screen18CallBack_CounterRVFf
-lwz      r3, 0x8c(r31)
-bl       fadein__Q32kh6Screen14khUtilFadePaneFv
-lwz      r3, spSysIF__8PSSystem@sda21(r13)
-li       r4, 0x1814
-li       r5, 0
-bl       playSystemSe__Q28PSSystem5SysIFFUlUl
-lwz      r0, 0x90(r31)
-rlwinm   r0, r0, 0, 0x1b, 0x19
-stw      r0, 0x90(r31)
-lwz      r0, 0x90(r31)
-ori      r0, r0, 0x40
-stw      r0, 0x90(r31)
-
-lbl_80404300:
-lwz      r0, 0x34(r1)
-li       r3, 0
-lwz      r31, 0x2c(r1)
-mtlr     r0
-addi     r1, r1, 0x30
-blr
-	*/
 }
 
 /*
@@ -1461,149 +1255,56 @@ blr
  */
 void ObjDayEndResultItem::statusNormal()
 {
-	/*
-stwu     r1, -0x10(r1)
-mflr     r0
-stw      r0, 0x14(r1)
-stw      r31, 0xc(r1)
-mr       r31, r3
-lwz      r0, 0x90(r3)
-clrlwi.  r0, r0, 0x1f
-beq      lbl_80404B94
-lwz      r3, 0xe0(r31)
-cmpwi    r3, 0
-bne      lbl_80404B48
-lwz      r3, 0xbc(r31)
-bl       fadeout__Q32kh6Screen14khUtilFadePaneFv
-lwz      r3, 0xc0(r31)
-bl       fadein__Q32kh6Screen14khUtilFadePaneFv
-lwz      r3, 0xb4(r31)
-bl       stickDown__Q32og6Screen12StickAnimMgrFv
-b        lbl_80404B88
+	if (m_flags & 0x1) {
+		if (_E0 == 0) {
+			_BC->fadeout();
+			_C0->fadein();
+			m_stickAnimMgr->stickDown();
+		} else if (_E0 == _D8) {
+			_BC->fadein();
+			_C0->fadeout();
+			m_stickAnimMgr->stickUp();
+		} else {
+			_BC->fadein();
+			_C0->fadein();
+			m_stickAnimMgr->stickUpDown();
+		}
+		_B8->fadein();
+	} else {
+		_BC->fadeout();
+		_C0->fadeout();
+		_B8->fadeout();
+	}
 
-lbl_80404B48:
-lwz      r0, 0xd8(r31)
-cmpw     r3, r0
-bne      lbl_80404B70
-lwz      r3, 0xbc(r31)
-bl       fadein__Q32kh6Screen14khUtilFadePaneFv
-lwz      r3, 0xc0(r31)
-bl       fadeout__Q32kh6Screen14khUtilFadePaneFv
-lwz      r3, 0xb4(r31)
-bl       stickUp__Q32og6Screen12StickAnimMgrFv
-b        lbl_80404B88
+	if (m_flags & 0x1) {
+		if (getGamePad()->m_padButton.m_mask & 0x08000008 && _E0 != 0) {
+			_E0--;
+			if (_F8 >= 1) {
+				_E4 = ObjDayEndResultBase::msVal._28;
+			} else {
+				_F8++;
+			}
 
-lbl_80404B70:
-lwz      r3, 0xbc(r31)
-bl       fadein__Q32kh6Screen14khUtilFadePaneFv
-lwz      r3, 0xc0(r31)
-bl       fadein__Q32kh6Screen14khUtilFadePaneFv
-lwz      r3, 0xb4(r31)
-bl       stickUpDown__Q32og6Screen12StickAnimMgrFv
+			_F9      = 0;
+			m_status = ITEMSTATUS_ScrollUp;
+			statusScrollUp();
+		} else if (getGamePad()->m_padButton.m_mask & 0x04000004 && _E0 != _D8) {
+			_E0++;
+			if (_F9 >= 1) {
+				_E4 = ObjDayEndResultBase::msVal._28;
+			} else {
+				_F9++;
+			}
 
-lbl_80404B88:
-lwz      r3, 0xb8(r31)
-bl       fadein__Q32kh6Screen14khUtilFadePaneFv
-b        lbl_80404BAC
-
-lbl_80404B94:
-lwz      r3, 0xbc(r31)
-bl       fadeout__Q32kh6Screen14khUtilFadePaneFv
-lwz      r3, 0xc0(r31)
-bl       fadeout__Q32kh6Screen14khUtilFadePaneFv
-lwz      r3, 0xb8(r31)
-bl       fadeout__Q32kh6Screen14khUtilFadePaneFv
-
-lbl_80404BAC:
-lwz      r0, 0x90(r31)
-clrlwi.  r0, r0, 0x1f
-beq      lbl_80404CC0
-mr       r3, r31
-bl       getGamePad__Q26Screen7ObjBaseCFv
-lis      r4, 0x08000008@ha
-lwz      r3, 0x18(r3)
-addi     r0, r4, 0x08000008@l
-and.     r0, r3, r0
-beq      lbl_80404C2C
-lwz      r3, 0xe0(r31)
-cmpwi    r3, 0
-beq      lbl_80404C2C
-addi     r0, r3, -1
-stw      r0, 0xe0(r31)
-lbz      r3, 0xf8(r31)
-cmplwi   r3, 1
-blt      lbl_80404C08
-lis      r3, msVal__Q32kh6Screen19ObjDayEndResultBase@ha
-addi     r3, r3, msVal__Q32kh6Screen19ObjDayEndResultBase@l
-lwz      r0, 0x28(r3)
-stw      r0, 0xe4(r31)
-b        lbl_80404C10
-
-lbl_80404C08:
-addi     r0, r3, 1
-stb      r0, 0xf8(r31)
-
-lbl_80404C10:
-li       r3, 0
-li       r0, 1
-stb      r3, 0xf9(r31)
-mr       r3, r31
-stw      r0, 0x98(r31)
-bl       statusScrollUp__Q32kh6Screen19ObjDayEndResultItemFv
-b        lbl_80404CC0
-
-lbl_80404C2C:
-mr       r3, r31
-bl       getGamePad__Q26Screen7ObjBaseCFv
-lis      r4, 0x04000004@ha
-lwz      r3, 0x18(r3)
-addi     r0, r4, 0x04000004@l
-and.     r0, r3, r0
-beq      lbl_80404CA4
-lwz      r3, 0xe0(r31)
-lwz      r0, 0xd8(r31)
-cmpw     r3, r0
-beq      lbl_80404CA4
-addi     r0, r3, 1
-stw      r0, 0xe0(r31)
-lbz      r3, 0xf9(r31)
-cmplwi   r3, 1
-blt      lbl_80404C80
-lis      r3, msVal__Q32kh6Screen19ObjDayEndResultBase@ha
-addi     r3, r3, msVal__Q32kh6Screen19ObjDayEndResultBase@l
-lwz      r0, 0x28(r3)
-stw      r0, 0xe4(r31)
-b        lbl_80404C88
-
-lbl_80404C80:
-addi     r0, r3, 1
-stb      r0, 0xf9(r31)
-
-lbl_80404C88:
-li       r3, 0
-li       r0, 2
-stb      r3, 0xf8(r31)
-mr       r3, r31
-stw      r0, 0x98(r31)
-bl       statusScrollDown__Q32kh6Screen19ObjDayEndResultItemFv
-b        lbl_80404CC0
-
-lbl_80404CA4:
-li       r0, 0
-lis      r3, msVal__Q32kh6Screen19ObjDayEndResultBase@ha
-stb      r0, 0xf9(r31)
-addi     r3, r3, msVal__Q32kh6Screen19ObjDayEndResultBase@l
-stb      r0, 0xf8(r31)
-lwz      r0, 0x24(r3)
-stw      r0, 0xe4(r31)
-
-lbl_80404CC0:
-lwz      r0, 0x14(r1)
-lwz      r31, 0xc(r1)
-mtlr     r0
-addi     r1, r1, 0x10
-blr
-	*/
+			_F8      = 0;
+			m_status = ITEMSTATUS_ScrollDown;
+			statusScrollDown();
+		} else {
+			_F9 = 0;
+			_F8 = 0;
+			_E4 = ObjDayEndResultBase::msVal._24;
+		}
+	}
 }
 
 /*
@@ -1613,71 +1314,14 @@ blr
  */
 void ObjDayEndResultItem::statusScrollUp()
 {
-	/*
-stwu     r1, -0x30(r1)
-mflr     r0
-lis      r6, 0x4330
-lfd      f4, lbl_805200B8@sda21(r2)
-stw      r0, 0x34(r1)
-lwz      r4, 0xe0(r3)
-stw      r6, 0x18(r1)
-addi     r0, r4, 1
-xoris    r5, r4, 0x8000
-xoris    r0, r0, 0x8000
-lwz      r8, 0xe4(r3)
-stw      r0, 0x1c(r1)
-lwz      r7, 0xe8(r3)
-lfd      f0, 0x18(r1)
-subf     r0, r7, r8
-stw      r5, 0x14(r1)
-xoris    r4, r0, 0x8000
-fsubs    f0, f0, f4
-stw      r6, 0x10(r1)
-xoris    r7, r7, 0x8000
-lfs      f3, 0xdc(r3)
-xoris    r0, r8, 0x8000
-lfd      f2, 0x10(r1)
-stw      r4, 0x24(r1)
-fmuls    f1, f3, f0
-fsubs    f2, f2, f4
-stw      r6, 0x20(r1)
-lfd      f0, 0x20(r1)
-fmuls    f2, f3, f2
-stw      r7, 0xc(r1)
-fsubs    f0, f0, f4
-stw      r6, 8(r1)
-lfd      f3, 8(r1)
-fmuls    f1, f1, f0
-stw      r0, 0x2c(r1)
-fsubs    f3, f3, f4
-stw      r6, 0x28(r1)
-lfd      f0, 0x28(r1)
-fmadds   f1, f3, f2, f1
-fsubs    f0, f0, f4
-fdivs    f0, f1, f0
-fneg     f0, f0
-stfs     f0, 0xd4(r3)
-lwz      r4, 0xe8(r3)
-addi     r0, r4, 1
-stw      r0, 0xe8(r3)
-lwz      r0, 0xe4(r3)
-cmpw     r4, r0
-bne      lbl_80404DA8
-li       r4, 1
-li       r0, 0
-stw      r4, 0xe8(r3)
-stw      r0, 0x98(r3)
+	f32 p1 = _DC * (_E0 + 1) * (_E4 - _E8);
+	_D4    = -((_E8 * (_DC * _E0) + p1) / _E4);
+	if (_E8++ == _E4) {
+		_E8      = 1;
+		m_status = ITEMSTATUS_Normal;
+	}
 
-lbl_80404DA8:
-lwz      r3, spSysIF__8PSSystem@sda21(r13)
-li       r4, 0x101a
-li       r5, 0
-bl       playSystemSe__Q28PSSystem5SysIFFUlUl
-lwz      r0, 0x34(r1)
-mtlr     r0
-addi     r1, r1, 0x30
-blr
-	*/
+	PSSystem::spSysIF->playSystemSe(PSSE_SY_REGI_ROLL, 0);
 }
 
 /*
@@ -1687,71 +1331,14 @@ blr
  */
 void ObjDayEndResultItem::statusScrollDown()
 {
-	/*
-stwu     r1, -0x30(r1)
-mflr     r0
-lis      r6, 0x4330
-lfd      f4, lbl_805200B8@sda21(r2)
-stw      r0, 0x34(r1)
-lwz      r4, 0xe0(r3)
-stw      r6, 0x18(r1)
-addi     r0, r4, -1
-xoris    r5, r4, 0x8000
-xoris    r0, r0, 0x8000
-lwz      r8, 0xe4(r3)
-stw      r0, 0x1c(r1)
-lwz      r7, 0xe8(r3)
-lfd      f0, 0x18(r1)
-subf     r0, r7, r8
-stw      r5, 0x14(r1)
-xoris    r4, r0, 0x8000
-fsubs    f0, f0, f4
-stw      r6, 0x10(r1)
-xoris    r7, r7, 0x8000
-lfs      f3, 0xdc(r3)
-xoris    r0, r8, 0x8000
-lfd      f2, 0x10(r1)
-stw      r4, 0x24(r1)
-fmuls    f1, f3, f0
-fsubs    f2, f2, f4
-stw      r6, 0x20(r1)
-lfd      f0, 0x20(r1)
-fmuls    f2, f3, f2
-stw      r7, 0xc(r1)
-fsubs    f0, f0, f4
-stw      r6, 8(r1)
-lfd      f3, 8(r1)
-fmuls    f1, f1, f0
-stw      r0, 0x2c(r1)
-fsubs    f3, f3, f4
-stw      r6, 0x28(r1)
-lfd      f0, 0x28(r1)
-fmadds   f1, f3, f2, f1
-fsubs    f0, f0, f4
-fdivs    f0, f1, f0
-fneg     f0, f0
-stfs     f0, 0xd4(r3)
-lwz      r4, 0xe8(r3)
-addi     r0, r4, 1
-stw      r0, 0xe8(r3)
-lwz      r0, 0xe4(r3)
-cmpw     r4, r0
-bne      lbl_80404E9C
-li       r4, 1
-li       r0, 0
-stw      r4, 0xe8(r3)
-stw      r0, 0x98(r3)
+	f32 p1 = _DC * (_E0 - 1) * (_E4 - _E8);
+	_D4    = -((_E8 * (_DC * _E0) + p1) / _E4);
+	if (_E8++ == _E4) {
+		_E8      = 1;
+		m_status = ITEMSTATUS_Normal;
+	}
 
-lbl_80404E9C:
-lwz      r3, spSysIF__8PSSystem@sda21(r13)
-li       r4, 0x101a
-li       r5, 0
-bl       playSystemSe__Q28PSSystem5SysIFFUlUl
-lwz      r0, 0x34(r1)
-mtlr     r0
-addi     r1, r1, 0x30
-blr
-	*/
+	PSSystem::spSysIF->playSystemSe(PSSE_SY_REGI_ROLL, 0);
 }
 
 /*
@@ -1761,139 +1348,33 @@ blr
  */
 void ObjDayEndResultItem::statusForceScroll()
 {
-	/*
-stwu     r1, -0x40(r1)
-mflr     r0
-lis      r6, 0x4330
-lfd      f4, lbl_805200B8@sda21(r2)
-stw      r0, 0x44(r1)
-stw      r31, 0x3c(r1)
-mr       r31, r3
-lwz      r4, 0xe0(r3)
-stw      r6, 0x18(r1)
-addi     r0, r4, -1
-xoris    r5, r4, 0x8000
-xoris    r0, r0, 0x8000
-lwz      r8, 0xe4(r3)
-stw      r0, 0x1c(r1)
-lwz      r7, 0xe8(r3)
-lfd      f0, 0x18(r1)
-subf     r0, r7, r8
-stw      r5, 0x14(r1)
-xoris    r4, r0, 0x8000
-fsubs    f0, f0, f4
-stw      r6, 0x10(r1)
-xoris    r7, r7, 0x8000
-lfs      f3, 0xdc(r3)
-xoris    r0, r8, 0x8000
-lfd      f2, 0x10(r1)
-stw      r4, 0x24(r1)
-fmuls    f1, f3, f0
-fsubs    f2, f2, f4
-stw      r6, 0x20(r1)
-lfd      f0, 0x20(r1)
-fmuls    f2, f3, f2
-stw      r7, 0xc(r1)
-fsubs    f0, f0, f4
-stw      r6, 8(r1)
-lfd      f3, 8(r1)
-fmuls    f1, f1, f0
-stw      r0, 0x2c(r1)
-fsubs    f3, f3, f4
-stw      r6, 0x28(r1)
-lfd      f0, 0x28(r1)
-fmadds   f1, f3, f2, f1
-fsubs    f0, f0, f4
-fdivs    f0, f1, f0
-fneg     f0, f0
-stfs     f0, 0xd4(r3)
-lwz      r4, 0xe8(r3)
-addi     r0, r4, 1
-stw      r0, 0xe8(r3)
-lwz      r0, 0xe4(r3)
-cmpw     r4, r0
-bne      lbl_8040506C
-lwz      r4, 0xe0(r31)
-lwz      r0, 0xd8(r31)
-cmpw     r4, r0
-bne      lbl_80404FAC
-li       r3, 1
-li       r0, 4
-stw      r3, 0xe8(r31)
-stw      r0, 0x98(r31)
-b        lbl_8040506C
+	f32 p1 = _DC * (_E0 - 1) * (_E4 - _E8);
+	_D4    = -((_E8 * (_DC * _E0) + p1) / _E4);
+	if (_E8++ == _E4) {
+		if (_E0 == _D8) {
+			_E8      = 1;
+			m_status = ITEMSTATUS_DrumRoll;
+		} else {
+			if (!getDispMember()->isID(OWNER_KH, MEMBER_DAY_END_RESULT)) {
+				JUT_PANICLINE(958, "disp member err");
+			}
 
-lbl_80404FAC:
-bl       getDispMember__Q26Screen7ObjBaseFv
-lis      r4, 0x52534C54@ha
-lis      r5, 0x0044455F@ha
-addi     r6, r4, 0x52534C54@l
-li       r4, 0x4b48
-addi     r5, r5, 0x0044455F@l
-bl       isID__Q32og6Screen14DispMemberBaseFUlUx
-clrlwi.  r0, r3, 0x18
-bne      lbl_80404FEC
-lis      r3, lbl_80498830@ha
-lis      r5, lbl_80498900@ha
-addi     r3, r3, lbl_80498830@l
-li       r4, 0x3be
-addi     r5, r5, lbl_80498900@l
-crclr    6
-bl       panic_f__12JUTExceptionFPCciPCce
+			DispDayEndResult* dispResult = static_cast<DispDayEndResult*>(getDispMember());
 
-lbl_80404FEC:
-mr       r3, r31
-bl       getDispMember__Q26Screen7ObjBaseFv
-lwz      r3, 0x18(r3)
-li       r4, 0
-lwz      r5, 0x24(r3)
-b        lbl_8040500C
+			int i                           = 0;
+			Game::Result::TNode* resultNode = static_cast<Game::Result::TNode*>(dispResult->m_item.m_resultNode->m_child);
+			for (resultNode; resultNode && i != _E0 + 6; resultNode = static_cast<Game::Result::TNode*>(resultNode->m_next), i++) { }
 
-lbl_80405004:
-lwz      r5, 0x18(r5)
-addi     r4, r4, 1
+			if (resultNode && resultNode->_34 == 0) {
+				_C8 += resultNode->_38;
+				PSSystem::spSysIF->playSystemSe(PSSE_SY_COIN_COUNT, 0);
+			}
+			_E8 = 1;
+			_E0++;
+		}
+	}
 
-lbl_8040500C:
-cmplwi   r5, 0
-beq      lbl_80405024
-lwz      r3, 0xe0(r31)
-addi     r0, r3, 6
-cmpw     r4, r0
-bne      lbl_80405004
-
-lbl_80405024:
-cmplwi   r5, 0
-beq      lbl_80405058
-lwz      r0, 0x34(r5)
-cmpwi    r0, 0
-bne      lbl_80405058
-lwz      r3, 0xc8(r31)
-li       r4, 0x181e
-lwz      r0, 0x38(r5)
-li       r5, 0
-add      r0, r3, r0
-stw      r0, 0xc8(r31)
-lwz      r3, spSysIF__8PSSystem@sda21(r13)
-bl       playSystemSe__Q28PSSystem5SysIFFUlUl
-
-lbl_80405058:
-li       r0, 1
-stw      r0, 0xe8(r31)
-lwz      r3, 0xe0(r31)
-addi     r0, r3, 1
-stw      r0, 0xe0(r31)
-
-lbl_8040506C:
-lwz      r3, spSysIF__8PSSystem@sda21(r13)
-li       r4, 0x101a
-li       r5, 0
-bl       playSystemSe__Q28PSSystem5SysIFFUlUl
-lwz      r0, 0x44(r1)
-lwz      r31, 0x3c(r1)
-mtlr     r0
-addi     r1, r1, 0x40
-blr
-	*/
+	PSSystem::spSysIF->playSystemSe(PSSE_SY_REGI_ROLL, 0);
 }
 
 /*
@@ -1903,15 +1384,8 @@ blr
  */
 void ObjDayEndResultItem::statusDrumRoll()
 {
-	/*
-lis      r4, msVal__Q32kh6Screen19ObjDayEndResultBase@ha
-li       r0, 5
-addi     r4, r4, msVal__Q32kh6Screen19ObjDayEndResultBase@l
-lbz      r4, 0x50(r4)
-stw      r4, 0xf4(r3)
-stw      r0, 0x98(r3)
-blr
-	*/
+	_F4      = ObjDayEndResultBase::msVal._50;
+	m_status = ITEMSTATUS_TotalValue;
 }
 
 /*
@@ -1921,64 +1395,21 @@ blr
  */
 void ObjDayEndResultItem::statusTotalValue()
 {
-	/*
-stwu     r1, -0x10(r1)
-mflr     r0
-stw      r0, 0x14(r1)
-stw      r31, 0xc(r1)
-mr       r31, r3
-lwz      r4, 0xf4(r3)
-cmpwi    r4, 0
-bne      lbl_80405158
-bl       getDispMember__Q26Screen7ObjBaseFv
-lis      r4, 0x52534C54@ha
-lis      r5, 0x0044455F@ha
-addi     r6, r4, 0x52534C54@l
-li       r4, 0x4b48
-addi     r5, r5, 0x0044455F@l
-bl       isID__Q32og6Screen14DispMemberBaseFUlUx
-clrlwi.  r0, r3, 0x18
-bne      lbl_8040510C
-lis      r3, lbl_80498830@ha
-lis      r5, lbl_80498900@ha
-addi     r3, r3, lbl_80498830@l
-li       r4, 0x3f3
-addi     r5, r5, lbl_80498900@l
-crclr    6
-bl       panic_f__12JUTExceptionFPCciPCce
+	if (_F4 == 0) {
+		if (!getDispMember()->isID(OWNER_KH, MEMBER_DAY_END_RESULT)) {
+			JUT_PANICLINE(1011, "disp member err");
+		}
 
-lbl_8040510C:
-mr       r3, r31
-bl       getDispMember__Q26Screen7ObjBaseFv
-lwz      r0, 0x2c(r3)
-lfs      f1, lbl_805200B0@sda21(r2)
-stw      r0, 0xc4(r31)
-lwz      r3, 0xa8(r31)
-bl       startPuyoUp__Q32og6Screen18CallBack_CounterRVFf
-lwz      r3, 0x8c(r31)
-bl       fadein__Q32kh6Screen14khUtilFadePaneFv
-lwz      r3, spSysIF__8PSSystem@sda21(r13)
-li       r4, 0x1814
-li       r5, 0
-bl       playSystemSe__Q28PSSystem5SysIFFUlUl
-li       r0, 0
-stw      r0, 0x98(r31)
-lwz      r0, 0x90(r31)
-ori      r0, r0, 0x40
-stw      r0, 0x90(r31)
-b        lbl_80405160
-
-lbl_80405158:
-addi     r0, r4, -1
-stw      r0, 0xf4(r31)
-
-lbl_80405160:
-lwz      r0, 0x14(r1)
-lwz      r31, 0xc(r1)
-mtlr     r0
-addi     r1, r1, 0x10
-blr
-	*/
+		DispDayEndResult* dispResult = static_cast<DispDayEndResult*>(getDispMember());
+		_C4                          = dispResult->m_item._1C;
+		_A8->startPuyoUp(1.0f);
+		m_nextBtnFadePane->fadein();
+		PSSystem::spSysIF->playSystemSe(PSSE_SY_REGI_SUM_UP, 0);
+		m_status = ITEMSTATUS_Normal;
+		m_flags |= 0x40;
+	} else {
+		_F4--;
+	}
 }
 
 /*
@@ -1988,264 +1419,25 @@ blr
  */
 void ObjDayEndResultItem::updateCommon()
 {
-	/*
-stwu     r1, -0x60(r1)
-mflr     r0
-stw      r0, 0x64(r1)
-stfd     f31, 0x50(r1)
-psq_st   f31, 88(r1), 0, qr0
-stw      r31, 0x4c(r1)
-mr       r31, r3
-lfs      f0, 0x44(r3)
-lwz      r3, 0x3c(r3)
-stfs     f0, 8(r3)
-lfs      f0, 0x48(r31)
-lwz      r3, 0x40(r31)
-stfs     f0, 8(r3)
-lwz      r3, 0x38(r31)
-bl       animation__9J2DScreenFv
-lfs      f0, 0x44(r31)
-lis      r0, 0x4330
-lfs      f2, lbl_805200B0@sda21(r2)
-stw      r0, 0x38(r1)
-fadds    f0, f0, f2
-lfd      f1, lbl_805200B8@sda21(r2)
-stfs     f0, 0x44(r31)
-lfs      f0, 0x48(r31)
-fadds    f0, f0, f2
-stfs     f0, 0x48(r31)
-lwz      r3, 0x3c(r31)
-lfs      f2, 0x44(r31)
-lha      r0, 6(r3)
-xoris    r0, r0, 0x8000
-stw      r0, 0x3c(r1)
-lfd      f0, 0x38(r1)
-fsubs    f0, f0, f1
-fcmpo    cr0, f2, f0
-cror     2, 1, 2
-bne      lbl_80405208
-lfs      f0, lbl_805200A8@sda21(r2)
-stfs     f0, 0x44(r31)
+	ObjDayEndResultBase::updateCommon();
 
-lbl_80405208:
-lwz      r3, 0x40(r31)
-lis      r0, 0x4330
-stw      r0, 0x38(r1)
-lha      r0, 6(r3)
-lfd      f1, lbl_805200B8@sda21(r2)
-xoris    r0, r0, 0x8000
-lfs      f2, 0x48(r31)
-stw      r0, 0x3c(r1)
-lfd      f0, 0x38(r1)
-fsubs    f0, f0, f1
-fcmpo    cr0, f2, f0
-cror     2, 1, 2
-bne      lbl_80405244
-lfs      f0, lbl_805200A8@sda21(r2)
-stfs     f0, 0x48(r31)
+	Vector3f topLeft    = _4C->search('Nmask')->getGlbVtx(POS_TOP_LEFT);
+	Vector3f centerLeft = _4C->search('Nmask')->getGlbVtx(POS_CENTER_LEFT);
 
-lbl_80405244:
-lfs      f0, 0x68(r31)
-lwz      r3, 0x58(r31)
-stfs     f0, 8(r3)
-lfs      f0, 0x6c(r31)
-lwz      r3, 0x5c(r31)
-stfs     f0, 8(r3)
-lwz      r3, 0x4c(r31)
-bl       animation__9J2DScreenFv
-lfs      f0, 0x68(r31)
-lis      r0, 0x4330
-lfs      f2, lbl_805200B0@sda21(r2)
-stw      r0, 0x38(r1)
-fadds    f0, f0, f2
-lfd      f1, lbl_805200B8@sda21(r2)
-stfs     f0, 0x68(r31)
-lfs      f0, 0x6c(r31)
-fadds    f0, f0, f2
-stfs     f0, 0x6c(r31)
-lwz      r3, 0x58(r31)
-lfs      f2, 0x68(r31)
-lha      r0, 6(r3)
-xoris    r0, r0, 0x8000
-stw      r0, 0x3c(r1)
-lfd      f0, 0x38(r1)
-fsubs    f0, f0, f1
-fcmpo    cr0, f2, f0
-cror     2, 1, 2
-bne      lbl_804052BC
-lfs      f0, lbl_805200A8@sda21(r2)
-stfs     f0, 0x68(r31)
+	// this is so dumb. SO DUMB.
+	f32 yTop;
+	_EC = 0.5f + (yTop = topLeft.y);
+	_F0 = centerLeft.y - yTop;
 
-lbl_804052BC:
-lwz      r3, 0x5c(r31)
-lis      r0, 0x4330
-stw      r0, 0x38(r1)
-lha      r0, 6(r3)
-lfd      f1, lbl_805200B8@sda21(r2)
-xoris    r0, r0, 0x8000
-lfs      f2, 0x6c(r31)
-stw      r0, 0x3c(r1)
-lfd      f0, 0x38(r1)
-fsubs    f0, f0, f1
-fcmpo    cr0, f2, f0
-cror     2, 1, 2
-bne      lbl_804052F8
-lfs      f0, lbl_805200A8@sda21(r2)
-stfs     f0, 0x6c(r31)
+	_4C->animation();
 
-lbl_804052F8:
-lfs      f0, 0x64(r31)
-lis      r3, 0x69746C65@ha
-lwz      r4, 0x54(r31)
-addi     r6, r3, 0x69746C65@l
-li       r5, 0x4e74
-stfs     f0, 8(r4)
-lwz      r3, 0x4c(r31)
-lwz      r12, 0(r3)
-lwz      r12, 0x3c(r12)
-mtctr    r12
-bctrl
-bl       animationTransform__7J2DPaneFv
-lfs      f1, 0x64(r31)
-lis      r0, 0x4330
-lfs      f0, lbl_805200B0@sda21(r2)
-stw      r0, 0x38(r1)
-fadds    f0, f1, f0
-lfd      f1, lbl_805200B8@sda21(r2)
-stfs     f0, 0x64(r31)
-lwz      r3, 0x54(r31)
-lfs      f2, 0x64(r31)
-lha      r0, 6(r3)
-xoris    r0, r0, 0x8000
-stw      r0, 0x3c(r1)
-lfd      f0, 0x38(r1)
-fsubs    f0, f0, f1
-fcmpo    cr0, f2, f0
-cror     2, 1, 2
-bne      lbl_80405374
-lfs      f0, lbl_805200A8@sda21(r2)
-stfs     f0, 0x64(r31)
+	_9C->m_currentFrame = _A0;
+	_4C->search('N_3d')->animationTransform();
 
-lbl_80405374:
-lfs      f0, 0x78(r31)
-lwz      r3, 0x74(r31)
-stfs     f0, 8(r3)
-lwz      r3, 0x70(r31)
-bl       animation__9J2DScreenFv
-lfs      f1, 0x78(r31)
-lis      r0, 0x4330
-lfs      f0, lbl_805200B0@sda21(r2)
-stw      r0, 0x38(r1)
-fadds    f0, f1, f0
-lfd      f1, lbl_805200B8@sda21(r2)
-stfs     f0, 0x78(r31)
-lwz      r3, 0x74(r31)
-lfs      f2, 0x78(r31)
-lha      r0, 6(r3)
-xoris    r0, r0, 0x8000
-stw      r0, 0x3c(r1)
-lfd      f0, 0x38(r1)
-fsubs    f0, f0, f1
-fcmpo    cr0, f2, f0
-cror     2, 1, 2
-bne      lbl_804053D4
-lfs      f0, lbl_805200A8@sda21(r2)
-stfs     f0, 0x78(r31)
-
-lbl_804053D4:
-lwz      r3, 0x38(r31)
-lwz      r12, 0(r3)
-lwz      r12, 0x30(r12)
-mtctr    r12
-bctrl
-lwz      r3, 0x4c(r31)
-lis      r4, 0x6D61736B@ha
-addi     r6, r4, 0x6D61736B@l
-li       r5, 0x4e
-lwz      r12, 0(r3)
-lwz      r12, 0x3c(r12)
-mtctr    r12
-bctrl
-mr       r4, r3
-addi     r3, r1, 0x14
-li       r5, 0
-bl       getGlbVtx__7J2DPaneCFUc
-lwz      r3, 0x4c(r31)
-lis      r4, 0x6D61736B@ha
-lwz      r7, 0x14(r1)
-addi     r6, r4, 0x6D61736B@l
-lwz      r12, 0(r3)
-li       r5, 0x4e
-lwz      r4, 0x18(r1)
-lwz      r0, 0x1c(r1)
-lwz      r12, 0x3c(r12)
-stw      r7, 0x2c(r1)
-stw      r4, 0x30(r1)
-stw      r0, 0x34(r1)
-mtctr    r12
-bctrl
-mr       r4, r3
-addi     r3, r1, 8
-li       r5, 3
-bl       getGlbVtx__7J2DPaneCFUc
-lfs      f0, lbl_805200D0@sda21(r2)
-lfs      f31, 0x30(r1)
-lwz      r4, 8(r1)
-lwz      r3, 0xc(r1)
-fadds    f1, f0, f31
-lwz      r0, 0x10(r1)
-stw      r4, 0x20(r1)
-stw      r3, 0x24(r1)
-stw      r0, 0x28(r1)
-bl       __cvt_fp2unsigned
-lfs      f0, 0x24(r1)
-stw      r3, 0xec(r31)
-fsubs    f1, f0, f31
-bl       __cvt_fp2unsigned
-stw      r3, 0xf0(r31)
-lwz      r3, 0x4c(r31)
-bl       animation__9J2DScreenFv
-lfs      f0, 0xa0(r31)
-lis      r3, 0x4E5F3364@ha
-lwz      r4, 0x9c(r31)
-addi     r6, r3, 0x4E5F3364@l
-li       r5, 0
-stfs     f0, 8(r4)
-lwz      r3, 0x4c(r31)
-lwz      r12, 0(r3)
-lwz      r12, 0x3c(r12)
-mtctr    r12
-bctrl
-bl       animationTransform__7J2DPaneFv
-lfs      f1, 0xa0(r31)
-lis      r0, 0x4330
-lfs      f0, lbl_805200B0@sda21(r2)
-stw      r0, 0x38(r1)
-fadds    f0, f1, f0
-lfd      f1, lbl_805200B8@sda21(r2)
-stfs     f0, 0xa0(r31)
-lwz      r3, 0x9c(r31)
-lfs      f2, 0xa0(r31)
-lha      r0, 6(r3)
-xoris    r0, r0, 0x8000
-stw      r0, 0x3c(r1)
-lfd      f0, 0x38(r1)
-fsubs    f0, f0, f1
-fcmpo    cr0, f2, f0
-cror     2, 1, 2
-bne      lbl_80405520
-lfs      f0, lbl_805200A8@sda21(r2)
-stfs     f0, 0xa0(r31)
-
-lbl_80405520:
-psq_l    f31, 88(r1), 0, qr0
-lwz      r0, 0x64(r1)
-lfd      f31, 0x50(r1)
-lwz      r31, 0x4c(r1)
-mtlr     r0
-addi     r1, r1, 0x60
-blr
-	*/
+	_A0++;
+	if (_A0 >= _9C->m_maxFrame) {
+		_A0 = 0.0f;
+	}
 }
 
 /*
@@ -2255,111 +1447,53 @@ blr
  */
 ObjDayEndResultIncP::ObjDayEndResultIncP()
 {
-	/*
-stwu     r1, -0x10(r1)
-mflr     r0
-stw      r0, 0x14(r1)
-stw      r31, 0xc(r1)
-mr       r31, r3
-bl       __ct__Q26Screen7ObjBaseFv
-lis      r3, __vt__Q32kh6Screen19ObjDayEndResultBase@ha
-lis      r4, __vt__Q32kh6Screen19ObjDayEndResultIncP@ha
-addi     r5, r3, __vt__Q32kh6Screen19ObjDayEndResultBase@l
-lis      r3, msVal__Q32kh6Screen19ObjDayEndResultBase@ha
-stw      r5, 0(r31)
-addi     r0, r5, 0x10
-addi     r7, r4, __vt__Q32kh6Screen19ObjDayEndResultIncP@l
-li       r9, 0
-stw      r0, 0x18(r31)
-li       r8, 0xff
-lfs      f2, lbl_805200A8@sda21(r2)
-addi     r6, r7, 0x10
-stw      r9, 0x38(r31)
-li       r5, 4
-lfs      f1, lbl_805200D4@sda21(r2)
-li       r0, 0xa
-stw      r9, 0x3c(r31)
-addi     r4, r3, msVal__Q32kh6Screen19ObjDayEndResultBase@l
-lfs      f0, lbl_805200D8@sda21(r2)
-mr       r3, r31
-stw      r9, 0x40(r31)
-stw      r9, 0x4c(r31)
-stw      r9, 0x50(r31)
-stw      r9, 0x54(r31)
-stw      r9, 0x58(r31)
-stw      r9, 0x5c(r31)
-stw      r9, 0x70(r31)
-stw      r9, 0x74(r31)
-stfs     f2, 0x78(r31)
-stfs     f2, 0x6c(r31)
-stfs     f2, 0x68(r31)
-stfs     f2, 0x64(r31)
-stfs     f2, 0x60(r31)
-stfs     f2, 0x48(r31)
-stfs     f2, 0x44(r31)
-stfs     f2, 0x88(r31)
-stfs     f2, 0x84(r31)
-stfs     f2, 0x80(r31)
-stfs     f2, 0x7c(r31)
-stw      r9, 0x8c(r31)
-stb      r8, 0x95(r31)
-stb      r8, 0x94(r31)
-stw      r9, 0x90(r31)
-stw      r7, 0(r31)
-stw      r6, 0x18(r31)
-stw      r9, 0xcc(r31)
-stw      r9, 0xd0(r31)
-stw      r9, 0xd4(r31)
-stw      r9, 0xd8(r31)
-stw      r9, 0xdc(r31)
-stw      r9, 0xe0(r31)
-stw      r9, 0xe4(r31)
-stw      r9, 0xe8(r31)
-stw      r9, 0xec(r31)
-stw      r9, 0xf0(r31)
-stw      r9, 0xf4(r31)
-stw      r9, 0xf8(r31)
-stw      r9, 0xfc(r31)
-stw      r9, 0x100(r31)
-stw      r9, 0x104(r31)
-stw      r9, 0x108(r31)
-stw      r9, 0x10c(r31)
-stw      r9, 0x110(r31)
-stw      r9, 0x114(r31)
-stw      r9, 0x118(r31)
-stw      r9, 0x11c(r31)
-stw      r9, 0x120(r31)
-stw      r9, 0x124(r31)
-stw      r9, 0x128(r31)
-stw      r9, 0x12c(r31)
-stw      r9, 0x130(r31)
-stw      r9, 0x134(r31)
-stw      r9, 0x138(r31)
-stw      r5, 0x98(r31)
-stw      r9, 0x4c(r31)
-stw      r9, 0xa0(r31)
-stw      r9, 0x9c(r31)
-stfs     f1, 0xa4(r31)
-stfs     f0, 0xa8(r31)
-stw      r9, 0xac(r31)
-stw      r0, 0xb8(r31)
-stw      r9, 0xb4(r31)
-stw      r9, 0xb0(r31)
-stw      r9, 0xc8(r31)
-lbz      r0, 0x50(r4)
-stw      r0, 0x154(r31)
-stfs     f2, 0x13c(r31)
-stfs     f2, 0x140(r31)
-stfs     f2, 0x144(r31)
-stfs     f2, 0x148(r31)
-stfs     f2, 0x14c(r31)
-stfs     f2, 0x150(r31)
-lwz      r31, 0xc(r1)
-lwz      r0, 0x14(r1)
-mtlr     r0
-addi     r1, r1, 0x10
-blr
-	*/
+	_CC  = 0;
+	_D0  = 0;
+	_D4  = 0;
+	_D8  = 0;
+	_DC  = 0;
+	_E0  = 0;
+	_E4  = 0;
+	_E8  = 0;
+	_EC  = 0;
+	_F0  = 0;
+	_F4  = 0;
+	_F8  = 0;
+	_FC  = 0;
+	_100 = 0;
+	_104 = 0;
+	_108 = 0;
+	_10C = 0;
+	_110 = 0;
+	_114 = 0;
+	_118 = 0;
+	_11C = 0;
+	_120 = 0;
+	_124 = 0;
+	_128 = 0;
+	_12C = 0;
+	_130 = 0;
+	_134 = 0;
+	_138 = 0;
+
+	m_status   = INCPSTATUS_Slot;
+	_4C        = nullptr;
+	_A0        = nullptr;
+	_9C        = nullptr;
+	_A4        = 399.0f;
+	_A8        = 404.0f;
+	_AC        = nullptr;
+	_B8        = 10;
+	_B4        = nullptr;
+	_B0        = nullptr;
+	m_scaleMgr = nullptr;
+	_154       = ObjDayEndResultBase::msVal._50;
+	_13C[0]    = 0.0f;
+	_13C[1]    = 0.0f;
+	_13C[2]    = 0.0f;
+	_13C[3]    = 0.0f;
+	_13C[4]    = 0.0f;
+	_13C[5]    = 0.0f;
 }
 
 /*
@@ -2367,1333 +1501,1334 @@ blr
  * Address:	804056D8
  * Size:	001374
  */
-void ObjDayEndResultIncP::doCreate(JKRArchive*)
+void ObjDayEndResultIncP::doCreate(JKRArchive* archive)
 {
-	/*
-stwu     r1, -0x70(r1)
-mflr     r0
-lis      r5, lbl_80498830@ha
-stw      r0, 0x74(r1)
-stmw     r22, 0x48(r1)
-mr       r30, r3
-mr       r31, r4
-li       r3, 0x148
-addi     r27, r5, lbl_80498830@l
-bl       __nw__FUl
-or.      r0, r3, r3
-beq      lbl_80405710
-bl       __ct__Q29P2DScreen10Mgr_tuningFv
-mr       r0, r3
-
-lbl_80405710:
-stw      r0, 0x38(r30)
-mr       r6, r31
-addi     r4, r27, 0x14
-lis      r5, 0x104
-lwz      r3, 0x38(r30)
-bl       set__9J2DScreenFPCcUlP10JKRArchive
-mr       r4, r31
-addi     r3, r27, 0x28
-bl       getGlbResource__13JKRFileLoaderFPCcP13JKRFileLoader
-bl       load__20J2DAnmLoaderDataBaseFPCv
-stw      r3, 0x3c(r30)
-mr       r4, r31
-addi     r3, r27, 0x3c
-bl       getGlbResource__13JKRFileLoaderFPCcP13JKRFileLoader
-bl       load__20J2DAnmLoaderDataBaseFPCv
-stw      r3, 0x40(r30)
-lwz      r3, 0x38(r30)
-lwz      r4, 0x3c(r30)
-lwz      r12, 0(r3)
-lwz      r12, 0x60(r12)
-mtctr    r12
-bctrl
-lwz      r3, 0x38(r30)
-lwz      r4, 0x40(r30)
-lwz      r12, 0(r3)
-lwz      r12, 0x64(r12)
-mtctr    r12
-bctrl
-lis      r4, 0x62746E32@ha
-lwz      r3, 0x38(r30)
-addi     r6, r4, 0x62746E32@l
-li       r5, 0x4e
-li       r7, 8
-bl       create__Q32kh6Screen14khUtilFadePaneFPQ29P2DScreen3MgrUxUc
-stw      r3, 0x8c(r30)
-lwz      r3, 0x8c(r30)
-bl       fadeout__Q32kh6Screen14khUtilFadePaneFv
-lwz      r3, 0x8c(r30)
-li       r4, 0
-bl       set_init_alpha__Q32kh6Screen14khUtilFadePaneFUc
-li       r3, 0x148
-bl       __nw__FUl
-or.      r0, r3, r3
-beq      lbl_804057C8
-bl       __ct__Q29P2DScreen10Mgr_tuningFv
-mr       r0, r3
-
-lbl_804057C8:
-stw      r0, 0x4c(r30)
-mr       r6, r31
-addi     r4, r27, 0x130
-lis      r5, 4
-lwz      r3, 0x4c(r30)
-bl       set__9J2DScreenFPCcUlP10JKRArchive
-mr       r4, r31
-addi     r3, r27, 0x148
-bl       getGlbResource__13JKRFileLoaderFPCcP13JKRFileLoader
-mr       r22, r3
-bl       load__20J2DAnmLoaderDataBaseFPCv
-stw      r3, 0x50(r30)
-mr       r3, r22
-bl       load__20J2DAnmLoaderDataBaseFPCv
-stw      r3, 0x54(r30)
-mr       r3, r22
-bl       load__20J2DAnmLoaderDataBaseFPCv
-stw      r3, 0x9c(r30)
-mr       r3, r22
-bl       load__20J2DAnmLoaderDataBaseFPCv
-stw      r3, 0xa0(r30)
-mr       r4, r31
-addi     r3, r27, 0x160
-bl       getGlbResource__13JKRFileLoaderFPCcP13JKRFileLoader
-bl       load__20J2DAnmLoaderDataBaseFPCv
-stw      r3, 0x58(r30)
-mr       r4, r31
-addi     r3, r27, 0x178
-bl       getGlbResource__13JKRFileLoaderFPCcP13JKRFileLoader
-bl       load__20J2DAnmLoaderDataBaseFPCv
-stw      r3, 0x5c(r30)
-lwz      r3, 0x4c(r30)
-lwz      r4, 0x58(r30)
-lwz      r12, 0(r3)
-lwz      r12, 0x6c(r12)
-mtctr    r12
-bctrl
-lwz      r3, 0x4c(r30)
-lwz      r4, 0x5c(r30)
-lwz      r12, 0(r3)
-lwz      r12, 0x70(r12)
-mtctr    r12
-bctrl
-lwz      r3, 0x4c(r30)
-lis      r5, 0x656D5731@ha
-lis      r4, 0x004E6974@ha
-lwz      r12, 0(r3)
-addi     r6, r5, 0x656D5731@l
-addi     r5, r4, 0x004E6974@l
-lwz      r12, 0x3c(r12)
-mtctr    r12
-bctrl
-lwz      r12, 0(r3)
-lwz      r4, 0x9c(r30)
-lwz      r12, 0x60(r12)
-mtctr    r12
-bctrl
-lwz      r3, 0x4c(r30)
-lis      r4, 0x74656D57@ha
-addi     r6, r4, 0x74656D57@l
-li       r5, 0x4e69
-lwz      r12, 0(r3)
-lwz      r12, 0x3c(r12)
-mtctr    r12
-bctrl
-lwz      r12, 0(r3)
-lwz      r4, 0x50(r30)
-lwz      r12, 0x60(r12)
-mtctr    r12
-bctrl
-lwz      r3, 0x4c(r30)
-lis      r5, 0x74703030@ha
-lis      r4, 0x004E7365@ha
-lwz      r12, 0(r3)
-addi     r6, r5, 0x74703030@l
-addi     r5, r4, 0x004E7365@l
-lwz      r12, 0x3c(r12)
-mtctr    r12
-bctrl
-lwz      r12, 0(r3)
-lwz      r4, 0x50(r30)
-lwz      r12, 0x60(r12)
-mtctr    r12
-bctrl
-lwz      r3, 0x4c(r30)
-lis      r5, 0x74703031@ha
-lis      r4, 0x004E7365@ha
-lwz      r12, 0(r3)
-addi     r6, r5, 0x74703031@l
-addi     r5, r4, 0x004E7365@l
-lwz      r12, 0x3c(r12)
-mtctr    r12
-bctrl
-lwz      r12, 0(r3)
-lwz      r4, 0x50(r30)
-lwz      r12, 0x60(r12)
-mtctr    r12
-bctrl
-lwz      r3, 0x4c(r30)
-lis      r5, 0x74703032@ha
-lis      r4, 0x004E7365@ha
-lwz      r12, 0(r3)
-addi     r6, r5, 0x74703032@l
-addi     r5, r4, 0x004E7365@l
-lwz      r12, 0x3c(r12)
-mtctr    r12
-bctrl
-lwz      r12, 0(r3)
-lwz      r4, 0x50(r30)
-lwz      r12, 0x60(r12)
-mtctr    r12
-bctrl
-lwz      r3, 0x4c(r30)
-lis      r5, 0x74703033@ha
-lis      r4, 0x004E7365@ha
-lwz      r12, 0(r3)
-addi     r6, r5, 0x74703033@l
-addi     r5, r4, 0x004E7365@l
-lwz      r12, 0x3c(r12)
-mtctr    r12
-bctrl
-lwz      r12, 0(r3)
-lwz      r4, 0x50(r30)
-lwz      r12, 0x60(r12)
-mtctr    r12
-bctrl
-lwz      r3, 0x4c(r30)
-lis      r5, 0x74703034@ha
-lis      r4, 0x004E7365@ha
-lwz      r12, 0(r3)
-addi     r6, r5, 0x74703034@l
-addi     r5, r4, 0x004E7365@l
-lwz      r12, 0x3c(r12)
-mtctr    r12
-bctrl
-lwz      r12, 0(r3)
-lwz      r4, 0x50(r30)
-lwz      r12, 0x60(r12)
-mtctr    r12
-bctrl
-lwz      r3, 0x4c(r30)
-lis      r5, 0x74703035@ha
-lis      r4, 0x004E7365@ha
-lwz      r12, 0(r3)
-addi     r6, r5, 0x74703035@l
-addi     r5, r4, 0x004E7365@l
-lwz      r12, 0x3c(r12)
-mtctr    r12
-bctrl
-lwz      r12, 0(r3)
-lwz      r4, 0x50(r30)
-lwz      r12, 0x60(r12)
-mtctr    r12
-bctrl
-lwz      r3, 0x4c(r30)
-lis      r4, 0x69746C65@ha
-addi     r6, r4, 0x69746C65@l
-li       r5, 0x4e74
-lwz      r12, 0(r3)
-lwz      r12, 0x3c(r12)
-mtctr    r12
-bctrl
-lwz      r12, 0(r3)
-lwz      r4, 0x54(r30)
-lwz      r12, 0x60(r12)
-mtctr    r12
-bctrl
-lwz      r3, 0x4c(r30)
-lis      r4, 0x64656164@ha
-addi     r6, r4, 0x64656164@l
-li       r5, 0x4e
-lwz      r12, 0(r3)
-lwz      r12, 0x3c(r12)
-mtctr    r12
-bctrl
-lwz      r12, 0(r3)
-lwz      r4, 0xa0(r30)
-lwz      r12, 0x60(r12)
-mtctr    r12
-bctrl
-li       r3, 0x148
-bl       __nw__FUl
-or.      r0, r3, r3
-beq      lbl_80405AB0
-bl       __ct__Q29P2DScreen10Mgr_tuningFv
-mr       r0, r3
-
-lbl_80405AB0:
-stw      r0, 0x70(r30)
-mr       r6, r31
-addi     r4, r27, 0x190
-lis      r5, 4
-lwz      r3, 0x70(r30)
-bl       set__9J2DScreenFPCcUlP10JKRArchive
-mr       r4, r31
-addi     r3, r27, 0x1b0
-bl       getGlbResource__13JKRFileLoaderFPCcP13JKRFileLoader
-bl       load__20J2DAnmLoaderDataBaseFPCv
-stw      r3, 0x74(r30)
-lwz      r3, 0x70(r30)
-lwz      r4, 0x74(r30)
-lwz      r12, 0(r3)
-lwz      r12, 0x64(r12)
-mtctr    r12
-bctrl
-lwz      r3, 0x4c(r30)
-bl       setCallBackMessage__Q22og6ScreenFPQ29P2DScreen3Mgr
-mr       r3, r30
-bl       getDispMember__Q26Screen7ObjBaseFv
-lis      r4, 0x52534C54@ha
-lis      r5, 0x0044455F@ha
-addi     r6, r4, 0x52534C54@l
-li       r4, 0x4b48
-addi     r5, r5, 0x0044455F@l
-bl       isID__Q32og6Screen14DispMemberBaseFUlUx
-clrlwi.  r0, r3, 0x18
-bne      lbl_80405B38
-addi     r3, r27, 0
-addi     r5, r27, 0xd0
-li       r4, 0x486
-crclr    6
-bl       panic_f__12JUTExceptionFPCciPCce
-
-lbl_80405B38:
-mr       r3, r30
-bl       getDispMember__Q26Screen7ObjBaseFv
-mr       r28, r3
-lwz      r3, 0x3c(r3)
-lwz      r0, 0(r3)
-stw      r0, 0xcc(r30)
-lwz      r0, 4(r3)
-stw      r0, 0xd0(r30)
-lwz      r0, 8(r3)
-stw      r0, 0xd4(r30)
-lwz      r0, 0xc(r3)
-stw      r0, 0xd8(r30)
-lwz      r0, 0x10(r3)
-stw      r0, 0xdc(r30)
-lwz      r0, 0x14(r3)
-stw      r0, 0xe0(r30)
-lwz      r3, 0x3c(r28)
-lwz      r0, 0x18(r3)
-stw      r0, 0xe4(r30)
-lwz      r0, 0x1c(r3)
-stw      r0, 0xe8(r30)
-lwz      r0, 0x20(r3)
-stw      r0, 0xec(r30)
-lwz      r0, 0x24(r3)
-stw      r0, 0xf0(r30)
-lwz      r0, 0x28(r3)
-stw      r0, 0xf4(r30)
-lwz      r0, 0x2c(r3)
-stw      r0, 0xf8(r30)
-lwz      r3, 0x3c(r28)
-lwz      r0, 0x30(r3)
-stw      r0, 0xfc(r30)
-lwz      r0, 0x34(r3)
-stw      r0, 0x100(r30)
-lwz      r0, 0x38(r3)
-stw      r0, 0x104(r30)
-lwz      r0, 0x3c(r3)
-stw      r0, 0x108(r30)
-lwz      r0, 0x40(r3)
-stw      r0, 0x10c(r30)
-lwz      r0, 0x44(r3)
-stw      r0, 0x110(r30)
-lwz      r0, 0x48(r3)
-stw      r0, 0x114(r30)
-lwz      r0, 0x4c(r3)
-stw      r0, 0x118(r30)
-lwz      r3, 0x3c(r28)
-lwz      r0, 0x50(r3)
-stw      r0, 0x11c(r30)
-lwz      r0, 0x54(r3)
-stw      r0, 0x120(r30)
-lwz      r0, 0x58(r3)
-stw      r0, 0x124(r30)
-lwz      r0, 0x5c(r3)
-stw      r0, 0x128(r30)
-lwz      r0, 0x60(r3)
-stw      r0, 0x12c(r30)
-lwz      r0, 0x64(r3)
-stw      r0, 0x130(r30)
-lwz      r0, 0x68(r3)
-stw      r0, 0x134(r30)
-lwz      r0, 0x6c(r3)
-stw      r0, 0x138(r30)
-lwz      r3, 0x3c(r28)
-lbz      r29, 0x70(r3)
-clrlwi.  r26, r29, 0x1f
-bne      lbl_80405CD4
-lwz      r3, 0x4c(r30)
-lis      r5, 0x72653031@ha
-lis      r4, 0x4E666967@ha
-lwz      r12, 0(r3)
-addi     r6, r5, 0x72653031@l
-addi     r5, r4, 0x4E666967@l
-lwz      r12, 0x3c(r12)
-mtctr    r12
-bctrl
-li       r0, 0
-lis      r5, 0x6B693031@ha
-stb      r0, 0xb0(r3)
-lis      r4, 0x004E7069@ha
-addi     r6, r5, 0x6B693031@l
-lwz      r3, 0x4c(r30)
-addi     r5, r4, 0x004E7069@l
-lwz      r12, 0(r3)
-lwz      r12, 0x3c(r12)
-mtctr    r12
-bctrl
-li       r0, 0
-lis      r5, 0x70693031@ha
-stb      r0, 0xb0(r3)
-lis      r4, 0x004E746F@ha
-addi     r6, r5, 0x70693031@l
-lwz      r3, 0x4c(r30)
-addi     r5, r4, 0x004E746F@l
-lwz      r12, 0(r3)
-lwz      r12, 0x3c(r12)
-mtctr    r12
-bctrl
-li       r0, 0
-stb      r0, 0xb0(r3)
-lwz      r3, 0xb8(r30)
-addi     r0, r3, -2
-stw      r0, 0xb8(r30)
-
-lbl_80405CD4:
-rlwinm.  r25, r29, 0, 0x1e, 0x1e
-bne      lbl_80405D6C
-lwz      r3, 0x4c(r30)
-lis      r5, 0x72653032@ha
-lis      r4, 0x4E666967@ha
-lwz      r12, 0(r3)
-addi     r6, r5, 0x72653032@l
-addi     r5, r4, 0x4E666967@l
-lwz      r12, 0x3c(r12)
-mtctr    r12
-bctrl
-li       r0, 0
-lis      r5, 0x6B693032@ha
-stb      r0, 0xb0(r3)
-lis      r4, 0x004E7069@ha
-addi     r6, r5, 0x6B693032@l
-lwz      r3, 0x4c(r30)
-addi     r5, r4, 0x004E7069@l
-lwz      r12, 0(r3)
-lwz      r12, 0x3c(r12)
-mtctr    r12
-bctrl
-li       r0, 0
-lis      r5, 0x70693032@ha
-stb      r0, 0xb0(r3)
-lis      r4, 0x004E746F@ha
-addi     r6, r5, 0x70693032@l
-lwz      r3, 0x4c(r30)
-addi     r5, r4, 0x004E746F@l
-lwz      r12, 0(r3)
-lwz      r12, 0x3c(r12)
-mtctr    r12
-bctrl
-li       r0, 0
-stb      r0, 0xb0(r3)
-lwz      r3, 0xb8(r30)
-addi     r0, r3, -2
-stw      r0, 0xb8(r30)
-
-lbl_80405D6C:
-rlwinm.  r24, r29, 0, 0x1d, 0x1d
-bne      lbl_80405E04
-lwz      r3, 0x4c(r30)
-lis      r5, 0x72653033@ha
-lis      r4, 0x4E666967@ha
-lwz      r12, 0(r3)
-addi     r6, r5, 0x72653033@l
-addi     r5, r4, 0x4E666967@l
-lwz      r12, 0x3c(r12)
-mtctr    r12
-bctrl
-li       r0, 0
-lis      r5, 0x6B693033@ha
-stb      r0, 0xb0(r3)
-lis      r4, 0x004E7069@ha
-addi     r6, r5, 0x6B693033@l
-lwz      r3, 0x4c(r30)
-addi     r5, r4, 0x004E7069@l
-lwz      r12, 0(r3)
-lwz      r12, 0x3c(r12)
-mtctr    r12
-bctrl
-li       r0, 0
-lis      r5, 0x70693033@ha
-stb      r0, 0xb0(r3)
-lis      r4, 0x004E746F@ha
-addi     r6, r5, 0x70693033@l
-lwz      r3, 0x4c(r30)
-addi     r5, r4, 0x004E746F@l
-lwz      r12, 0(r3)
-lwz      r12, 0x3c(r12)
-mtctr    r12
-bctrl
-li       r0, 0
-stb      r0, 0xb0(r3)
-lwz      r3, 0xb8(r30)
-addi     r0, r3, -2
-stw      r0, 0xb8(r30)
-
-lbl_80405E04:
-rlwinm.  r23, r29, 0, 0x1c, 0x1c
-bne      lbl_80405E9C
-lwz      r3, 0x4c(r30)
-lis      r5, 0x72653034@ha
-lis      r4, 0x4E666967@ha
-lwz      r12, 0(r3)
-addi     r6, r5, 0x72653034@l
-addi     r5, r4, 0x4E666967@l
-lwz      r12, 0x3c(r12)
-mtctr    r12
-bctrl
-li       r0, 0
-lis      r5, 0x6B693034@ha
-stb      r0, 0xb0(r3)
-lis      r4, 0x004E7069@ha
-addi     r6, r5, 0x6B693034@l
-lwz      r3, 0x4c(r30)
-addi     r5, r4, 0x004E7069@l
-lwz      r12, 0(r3)
-lwz      r12, 0x3c(r12)
-mtctr    r12
-bctrl
-li       r0, 0
-lis      r5, 0x70693034@ha
-stb      r0, 0xb0(r3)
-lis      r4, 0x004E746F@ha
-addi     r6, r5, 0x70693034@l
-lwz      r3, 0x4c(r30)
-addi     r5, r4, 0x004E746F@l
-lwz      r12, 0(r3)
-lwz      r12, 0x3c(r12)
-mtctr    r12
-bctrl
-li       r0, 0
-stb      r0, 0xb0(r3)
-lwz      r3, 0xb8(r30)
-addi     r0, r3, -2
-stw      r0, 0xb8(r30)
-
-lbl_80405E9C:
-rlwinm.  r29, r29, 0, 0x1b, 0x1b
-bne      lbl_80405F34
-lwz      r3, 0x4c(r30)
-lis      r5, 0x72653035@ha
-lis      r4, 0x4E666967@ha
-lwz      r12, 0(r3)
-addi     r6, r5, 0x72653035@l
-addi     r5, r4, 0x4E666967@l
-lwz      r12, 0x3c(r12)
-mtctr    r12
-bctrl
-li       r0, 0
-lis      r5, 0x6B693035@ha
-stb      r0, 0xb0(r3)
-lis      r4, 0x004E7069@ha
-addi     r6, r5, 0x6B693035@l
-lwz      r3, 0x4c(r30)
-addi     r5, r4, 0x004E7069@l
-lwz      r12, 0(r3)
-lwz      r12, 0x3c(r12)
-mtctr    r12
-bctrl
-li       r0, 0
-lis      r5, 0x70693035@ha
-stb      r0, 0xb0(r3)
-lis      r4, 0x004E746F@ha
-addi     r6, r5, 0x70693035@l
-lwz      r3, 0x4c(r30)
-addi     r5, r4, 0x004E746F@l
-lwz      r12, 0(r3)
-lwz      r12, 0x3c(r12)
-mtctr    r12
-bctrl
-li       r0, 0
-stb      r0, 0xb0(r3)
-lwz      r3, 0xb8(r30)
-addi     r0, r3, -2
-stw      r0, 0xb8(r30)
-
-lbl_80405F34:
-lwz      r0, 0xb8(r30)
-li       r22, 0
-slwi     r3, r0, 2
-bl       __nwa__FUl
-cmpwi    r26, 0
-stw      r3, 0xac(r30)
-beq      lbl_80405FC8
-stw      r31, 8(r1)
-lis      r5, 0x6B796F31@ha
-lis      r4, 0x00507270@ha
-addi     r7, r30, 0xcc
-lwz      r3, 0x4c(r30)
-addi     r6, r5, 0x6B796F31@l
-addi     r5, r4, 0x00507270@l
-li       r8, 5
-li       r9, 1
-li       r10, 0
-bl
-setCallBack_CounterSlot__Q22og6ScreenFPQ29P2DScreen3MgrUxPUlUsbbP10JKRArchive
-lwz      r6, 0xac(r30)
-slwi     r0, r22, 2
-lis      r5, 0x61646531@ha
-lis      r4, 0x5072706D@ha
-stwx     r3, r6, r0
-addi     r6, r5, 0x61646531@l
-addi     r5, r4, 0x5072706D@l
-addi     r7, r30, 0xe4
-stw      r31, 8(r1)
-li       r8, 8
-li       r9, 1
-li       r10, 0
-lwz      r3, 0x4c(r30)
-li       r22, 1
-bl
-setCallBack_CounterSlot__Q22og6ScreenFPQ29P2DScreen3MgrUxPUlUsbbP10JKRArchive
-lwz      r4, 0xac(r30)
-slwi     r0, r22, 2
-li       r22, 2
-stwx     r3, r4, r0
-
-lbl_80405FC8:
-cmpwi    r25, 0
-beq      lbl_80406048
-stw      r31, 8(r1)
-lis      r5, 0x6B796F31@ha
-lis      r4, 0x00507970@ha
-addi     r7, r30, 0xd0
-lwz      r3, 0x4c(r30)
-addi     r6, r5, 0x6B796F31@l
-addi     r5, r4, 0x00507970@l
-li       r8, 5
-li       r9, 1
-li       r10, 0
-bl
-setCallBack_CounterSlot__Q22og6ScreenFPQ29P2DScreen3MgrUxPUlUsbbP10JKRArchive
-lwz      r6, 0xac(r30)
-slwi     r0, r22, 2
-lis      r5, 0x61646531@ha
-lis      r4, 0x5079706D@ha
-stwx     r3, r6, r0
-addi     r6, r5, 0x61646531@l
-addi     r5, r4, 0x5079706D@l
-addi     r7, r30, 0xe8
-stw      r31, 8(r1)
-li       r8, 8
-li       r9, 1
-li       r10, 0
-lwz      r3, 0x4c(r30)
-addi     r22, r22, 1
-bl
-setCallBack_CounterSlot__Q22og6ScreenFPQ29P2DScreen3MgrUxPUlUsbbP10JKRArchive
-lwz      r4, 0xac(r30)
-slwi     r0, r22, 2
-addi     r22, r22, 1
-stwx     r3, r4, r0
-
-lbl_80406048:
-cmpwi    r24, 0
-beq      lbl_804060C8
-stw      r31, 8(r1)
-lis      r5, 0x6B796F31@ha
-lis      r4, 0x00506270@ha
-addi     r7, r30, 0xd4
-lwz      r3, 0x4c(r30)
-addi     r6, r5, 0x6B796F31@l
-addi     r5, r4, 0x00506270@l
-li       r8, 5
-li       r9, 1
-li       r10, 0
-bl
-setCallBack_CounterSlot__Q22og6ScreenFPQ29P2DScreen3MgrUxPUlUsbbP10JKRArchive
-lwz      r6, 0xac(r30)
-slwi     r0, r22, 2
-lis      r5, 0x61646531@ha
-lis      r4, 0x5062706D@ha
-stwx     r3, r6, r0
-addi     r6, r5, 0x61646531@l
-addi     r5, r4, 0x5062706D@l
-addi     r7, r30, 0xec
-stw      r31, 8(r1)
-li       r8, 8
-li       r9, 1
-li       r10, 0
-lwz      r3, 0x4c(r30)
-addi     r22, r22, 1
-bl
-setCallBack_CounterSlot__Q22og6ScreenFPQ29P2DScreen3MgrUxPUlUsbbP10JKRArchive
-lwz      r4, 0xac(r30)
-slwi     r0, r22, 2
-addi     r22, r22, 1
-stwx     r3, r4, r0
-
-lbl_804060C8:
-cmpwi    r23, 0
-beq      lbl_80406148
-stw      r31, 8(r1)
-lis      r5, 0x6B796F31@ha
-lis      r4, 0x00507770@ha
-addi     r7, r30, 0xd8
-lwz      r3, 0x4c(r30)
-addi     r6, r5, 0x6B796F31@l
-addi     r5, r4, 0x00507770@l
-li       r8, 5
-li       r9, 1
-li       r10, 0
-bl
-setCallBack_CounterSlot__Q22og6ScreenFPQ29P2DScreen3MgrUxPUlUsbbP10JKRArchive
-lwz      r6, 0xac(r30)
-slwi     r0, r22, 2
-lis      r5, 0x61646531@ha
-lis      r4, 0x5077706D@ha
-stwx     r3, r6, r0
-addi     r6, r5, 0x61646531@l
-addi     r5, r4, 0x5077706D@l
-addi     r7, r30, 0xf0
-stw      r31, 8(r1)
-li       r8, 8
-li       r9, 1
-li       r10, 0
-lwz      r3, 0x4c(r30)
-addi     r22, r22, 1
-bl
-setCallBack_CounterSlot__Q22og6ScreenFPQ29P2DScreen3MgrUxPUlUsbbP10JKRArchive
-lwz      r4, 0xac(r30)
-slwi     r0, r22, 2
-addi     r22, r22, 1
-stwx     r3, r4, r0
-
-lbl_80406148:
-cmpwi    r29, 0
-beq      lbl_804061C4
-stw      r31, 8(r1)
-lis      r5, 0x6B796F31@ha
-lis      r4, 0x50626C70@ha
-addi     r7, r30, 0xdc
-lwz      r3, 0x4c(r30)
-addi     r6, r5, 0x6B796F31@l
-addi     r5, r4, 0x50626C70@l
-li       r8, 5
-li       r9, 1
-li       r10, 0
-bl
-setCallBack_CounterSlot__Q22og6ScreenFPQ29P2DScreen3MgrUxPUlUsbbP10JKRArchive
-lwz      r6, 0xac(r30)
-slwi     r0, r22, 2
-lis      r5, 0x6D616431@ha
-lis      r4, 0x50626C70@ha
-stwx     r3, r6, r0
-addi     r6, r5, 0x6D616431@l
-addi     r5, r4, 0x50626C70@l
-addi     r7, r30, 0xf4
-stw      r31, 8(r1)
-li       r8, 8
-li       r9, 1
-li       r10, 0
-lwz      r3, 0x4c(r30)
-addi     r22, r22, 1
-bl
-setCallBack_CounterSlot__Q22og6ScreenFPQ29P2DScreen3MgrUxPUlUsbbP10JKRArchive
-lwz      r4, 0xac(r30)
-slwi     r0, r22, 2
-stwx     r3, r4, r0
-
-lbl_804061C4:
-stw      r31, 8(r1)
-lis      r5, 0x79706F31@ha
-lis      r4, 0x50746F6B@ha
-addi     r7, r30, 0xe0
-lwz      r3, 0x4c(r30)
-addi     r6, r5, 0x79706F31@l
-addi     r5, r4, 0x50746F6B@l
-li       r8, 5
-li       r9, 0
-li       r10, 0
-bl
-setCallBack_CounterRV__Q22og6ScreenFPQ29P2DScreen3MgrUxPUlUsbbP10JKRArchive stw
-r3, 0xb0(r30) lis      r4, 0x64706F31@ha lis      r3, 0x50746F6D@ha addi     r7,
-r30, 0xf8 stw      r31, 8(r1) addi     r6, r4, 0x64706F31@l addi     r5, r3,
-0x50746F6D@l li       r8, 8 lwz      r3, 0x4c(r30) li       r9, 0 li       r10,
-0 bl setCallBack_CounterRV__Q22og6ScreenFPQ29P2DScreen3MgrUxPUlUsbbP10JKRArchive
-stw      r3, 0xb4(r30)
-lwz      r3, 0xb0(r30)
-lwz      r12, 0(r3)
-lwz      r12, 0x24(r12)
-mtctr    r12
-bctrl
-lwz      r3, 0xb4(r30)
-lwz      r12, 0(r3)
-lwz      r12, 0x24(r12)
-mtctr    r12
-bctrl
-li       r23, 0
-li       r22, 0
-b        lbl_80406278
-
-lbl_80406258:
-lwz      r3, 0xac(r30)
-lfs      f1, lbl_805200DC@sda21(r2)
-lwzx     r3, r3, r22
-lfs      f2, lbl_805200E0@sda21(r2)
-lfs      f3, lbl_805200E4@sda21(r2)
-bl       setPuyoParam__Q32og6Screen20CallBack_CounterSlotFfff
-addi     r22, r22, 4
-addi     r23, r23, 1
-
-lbl_80406278:
-lwz      r0, 0xb8(r30)
-cmpw     r23, r0
-blt      lbl_80406258
-li       r22, 0
-li       r3, 0x38
-bl       __nwa__FUl
-stw      r3, 0xbc(r30)
-lis      r4, 0x6B796F31@ha
-lis      r3, 0x00507461@ha
-addi     r7, r30, 0xfc
-stw      r31, 8(r1)
-addi     r6, r4, 0x6B796F31@l
-addi     r5, r3, 0x00507461@l
-li       r8, 4
-lwz      r3, 0x4c(r30)
-li       r9, 1
-li       r10, 0
-bl
-setCallBack_CounterSlot__Q22og6ScreenFPQ29P2DScreen3MgrUxPUlUsbbP10JKRArchive
-lwz      r6, 0xbc(r30)
-slwi     r0, r22, 2
-lis      r5, 0x61646531@ha
-lis      r4, 0x5074616D@ha
-stwx     r3, r6, r0
-addi     r6, r5, 0x61646531@l
-addi     r5, r4, 0x5074616D@l
-addi     r7, r30, 0x11c
-stw      r31, 8(r1)
-li       r8, 8
-li       r9, 1
-li       r10, 0
-lwz      r3, 0x4c(r30)
-li       r22, 1
-bl
-setCallBack_CounterSlot__Q22og6ScreenFPQ29P2DScreen3MgrUxPUlUsbbP10JKRArchive
-lwz      r6, 0xbc(r30)
-slwi     r0, r22, 2
-lis      r5, 0x6B796F31@ha
-lis      r4, 0x00506E69@ha
-stwx     r3, r6, r0
-addi     r6, r5, 0x6B796F31@l
-addi     r5, r4, 0x00506E69@l
-addi     r7, r30, 0x100
-stw      r31, 8(r1)
-li       r8, 4
-li       r9, 1
-li       r10, 0
-lwz      r3, 0x4c(r30)
-li       r22, 2
-bl
-setCallBack_CounterSlot__Q22og6ScreenFPQ29P2DScreen3MgrUxPUlUsbbP10JKRArchive
-lwz      r6, 0xbc(r30)
-slwi     r0, r22, 2
-lis      r5, 0x61646531@ha
-lis      r4, 0x506E696D@ha
-stwx     r3, r6, r0
-addi     r6, r5, 0x61646531@l
-addi     r5, r4, 0x506E696D@l
-addi     r7, r30, 0x120
-stw      r31, 8(r1)
-li       r8, 8
-li       r9, 1
-li       r10, 0
-lwz      r3, 0x4c(r30)
-li       r22, 3
-bl
-setCallBack_CounterSlot__Q22og6ScreenFPQ29P2DScreen3MgrUxPUlUsbbP10JKRArchive
-lwz      r6, 0xbc(r30)
-slwi     r0, r22, 2
-lis      r5, 0x6B796F31@ha
-lis      r4, 0x0050686F@ha
-stwx     r3, r6, r0
-addi     r6, r5, 0x6B796F31@l
-addi     r5, r4, 0x0050686F@l
-addi     r7, r30, 0x104
-stw      r31, 8(r1)
-li       r8, 4
-li       r9, 1
-li       r10, 0
-lwz      r3, 0x4c(r30)
-li       r22, 4
-bl
-setCallBack_CounterSlot__Q22og6ScreenFPQ29P2DScreen3MgrUxPUlUsbbP10JKRArchive
-lwz      r6, 0xbc(r30)
-slwi     r0, r22, 2
-lis      r5, 0x61646531@ha
-lis      r4, 0x50686F6D@ha
-stwx     r3, r6, r0
-addi     r6, r5, 0x61646531@l
-addi     r5, r4, 0x50686F6D@l
-addi     r7, r30, 0x124
-stw      r31, 8(r1)
-li       r8, 8
-li       r9, 1
-li       r10, 0
-lwz      r3, 0x4c(r30)
-li       r22, 5
-bl
-setCallBack_CounterSlot__Q22og6ScreenFPQ29P2DScreen3MgrUxPUlUsbbP10JKRArchive
-lwz      r6, 0xbc(r30)
-slwi     r0, r22, 2
-lis      r5, 0x6B796F31@ha
-lis      r4, 0x00507375@ha
-stwx     r3, r6, r0
-addi     r6, r5, 0x6B796F31@l
-addi     r5, r4, 0x00507375@l
-addi     r7, r30, 0x108
-stw      r31, 8(r1)
-li       r8, 4
-li       r9, 1
-li       r10, 0
-lwz      r3, 0x4c(r30)
-li       r22, 6
-bl
-setCallBack_CounterSlot__Q22og6ScreenFPQ29P2DScreen3MgrUxPUlUsbbP10JKRArchive
-lwz      r6, 0xbc(r30)
-slwi     r0, r22, 2
-lis      r5, 0x61646531@ha
-lis      r4, 0x5073756D@ha
-stwx     r3, r6, r0
-addi     r6, r5, 0x61646531@l
-addi     r5, r4, 0x5073756D@l
-addi     r7, r30, 0x128
-stw      r31, 8(r1)
-li       r8, 8
-li       r9, 1
-li       r10, 0
-lwz      r3, 0x4c(r30)
-li       r22, 7
-bl
-setCallBack_CounterSlot__Q22og6ScreenFPQ29P2DScreen3MgrUxPUlUsbbP10JKRArchive
-lwz      r6, 0xbc(r30)
-slwi     r0, r22, 2
-lis      r5, 0x6B796F31@ha
-lis      r4, 0x50646570@ha
-stwx     r3, r6, r0
-addi     r6, r5, 0x6B796F31@l
-addi     r5, r4, 0x50646570@l
-addi     r7, r30, 0x10c
-stw      r31, 8(r1)
-li       r8, 4
-li       r9, 1
-li       r10, 0
-lwz      r3, 0x4c(r30)
-li       r22, 8
-bl
-setCallBack_CounterSlot__Q22og6ScreenFPQ29P2DScreen3MgrUxPUlUsbbP10JKRArchive
-lwz      r6, 0xbc(r30)
-slwi     r0, r22, 2
-lis      r5, 0x6D616431@ha
-lis      r4, 0x50646570@ha
-stwx     r3, r6, r0
-addi     r6, r5, 0x6D616431@l
-addi     r5, r4, 0x50646570@l
-addi     r7, r30, 0x12c
-stw      r31, 8(r1)
-li       r8, 8
-li       r9, 1
-li       r10, 0
-lwz      r3, 0x4c(r30)
-li       r22, 9
-bl
-setCallBack_CounterSlot__Q22og6ScreenFPQ29P2DScreen3MgrUxPUlUsbbP10JKRArchive
-lwz      r6, 0xbc(r30)
-slwi     r0, r22, 2
-lis      r5, 0x6B796F31@ha
-lis      r4, 0x50626170@ha
-stwx     r3, r6, r0
-addi     r6, r5, 0x6B796F31@l
-addi     r5, r4, 0x50626170@l
-addi     r7, r30, 0x110
-stw      r31, 8(r1)
-li       r8, 4
-li       r9, 1
-li       r10, 0
-lwz      r3, 0x4c(r30)
-li       r22, 0xa
-bl
-setCallBack_CounterSlot__Q22og6ScreenFPQ29P2DScreen3MgrUxPUlUsbbP10JKRArchive
-lwz      r6, 0xbc(r30)
-slwi     r0, r22, 2
-lis      r5, 0x6D616431@ha
-lis      r4, 0x50626170@ha
-stwx     r3, r6, r0
-addi     r6, r5, 0x6D616431@l
-addi     r5, r4, 0x50626170@l
-addi     r7, r30, 0x130
-stw      r31, 8(r1)
-li       r8, 8
-li       r9, 1
-li       r10, 0
-lwz      r3, 0x4c(r30)
-li       r22, 0xb
-bl
-setCallBack_CounterSlot__Q22og6ScreenFPQ29P2DScreen3MgrUxPUlUsbbP10JKRArchive
-lwz      r6, 0xbc(r30)
-slwi     r0, r22, 2
-lis      r5, 0x6B796F31@ha
-lis      r4, 0x50646F70@ha
-stwx     r3, r6, r0
-addi     r6, r5, 0x6B796F31@l
-addi     r5, r4, 0x50646F70@l
-addi     r7, r30, 0x114
-stw      r31, 8(r1)
-li       r8, 4
-li       r9, 1
-li       r10, 0
-lwz      r3, 0x4c(r30)
-li       r22, 0xc
-bl
-setCallBack_CounterSlot__Q22og6ScreenFPQ29P2DScreen3MgrUxPUlUsbbP10JKRArchive
-lwz      r6, 0xbc(r30)
-slwi     r0, r22, 2
-lis      r5, 0x6D616431@ha
-lis      r4, 0x50646F70@ha
-stwx     r3, r6, r0
-addi     r6, r5, 0x6D616431@l
-addi     r5, r4, 0x50646F70@l
-addi     r7, r30, 0x134
-stw      r31, 8(r1)
-li       r8, 8
-li       r9, 1
-li       r10, 0
-lwz      r3, 0x4c(r30)
-li       r22, 0xd
-bl
-setCallBack_CounterSlot__Q22og6ScreenFPQ29P2DScreen3MgrUxPUlUsbbP10JKRArchive
-lwz      r6, 0xbc(r30)
-slwi     r0, r22, 2
-lis      r5, 0x6B797031@ha
-lis      r4, 0x5064746F@ha
-stwx     r3, r6, r0
-addi     r6, r5, 0x6B797031@l
-addi     r5, r4, 0x5064746F@l
-addi     r7, r30, 0x118
-stw      r31, 8(r1)
-li       r8, 4
-li       r9, 0
-li       r10, 0
-lwz      r3, 0x4c(r30)
-bl
-setCallBack_CounterRV__Q22og6ScreenFPQ29P2DScreen3MgrUxPUlUsbbP10JKRArchive stw
-r3, 0xc0(r30) lis      r4, 0x6D647031@ha lis      r3, 0x5064746F@ha addi     r7,
-r30, 0x138 stw      r31, 8(r1) addi     r6, r4, 0x6D647031@l addi     r5, r3,
-0x5064746F@l li       r8, 8 lwz      r3, 0x4c(r30) li       r9, 0 li       r10,
-0 bl setCallBack_CounterRV__Q22og6ScreenFPQ29P2DScreen3MgrUxPUlUsbbP10JKRArchive
-stw      r3, 0xc4(r30)
-lwz      r3, 0xc0(r30)
-lwz      r12, 0(r3)
-lwz      r12, 0x24(r12)
-mtctr    r12
-bctrl
-lwz      r3, 0xc4(r30)
-lwz      r12, 0(r3)
-lwz      r12, 0x24(r12)
-mtctr    r12
-bctrl
-li       r23, 0
-li       r22, 0
-
-lbl_80406668:
-lwz      r3, 0xbc(r30)
-lfs      f1, lbl_805200DC@sda21(r2)
-lwzx     r3, r3, r22
-lfs      f2, lbl_805200E0@sda21(r2)
-lfs      f3, lbl_805200E4@sda21(r2)
-bl       setPuyoParam__Q32og6Screen20CallBack_CounterSlotFfff
-addi     r23, r23, 1
-addi     r22, r22, 4
-cmpwi    r23, 0xe
-blt      lbl_80406668
-li       r3, 0x1c
-bl       __nw__FUl
-or.      r0, r3, r3
-beq      lbl_804066A8
-bl       __ct__Q32og6Screen8ScaleMgrFv
-mr       r0, r3
-
-lbl_804066A8:
-lis      r3, arrow__Q22kh6Screen@ha
-stw      r0, 0xc8(r30)
-addi     r23, r3, arrow__Q22kh6Screen@l
-li       r25, 0
-li       r22, 0
-mr       r24, r23
-
-lbl_804066C0:
-lwz      r3, 0x4c(r30)
-lwz      r5, 0(r24)
-lwz      r12, 0(r3)
-lwz      r6, 4(r24)
-lwz      r12, 0x3c(r12)
-mtctr    r12
-bctrl
-addi     r25, r25, 1
-stb      r22, 0xb0(r3)
-cmpwi    r25, 6
-addi     r24, r24, 8
-blt      lbl_804066C0
-lwz      r29, 0x100(r27)
-li       r0, 2
-lwz      r26, 0x104(r27)
-mr       r4, r30
-lwz      r25, 0x108(r27)
-addi     r3, r1, 0x10
-lwz      r24, 0x10c(r27)
-li       r5, 0
-lwz      r22, 0x110(r27)
-lwz      r12, 0x114(r27)
-lwz      r11, 0x118(r27)
-lwz      r10, 0x11c(r27)
-lwz      r9, 0x120(r27)
-lwz      r8, 0x124(r27)
-lwz      r7, 0x128(r27)
-lwz      r6, 0x12c(r27)
-lfs      f0, lbl_805200E8@sda21(r2)
-stw      r29, 0x10(r1)
-lwz      r27, 0xcc(r30)
-fneg     f1, f0
-stw      r26, 0x14(r1)
-lwz      r26, 0xe4(r30)
-stw      r25, 0x18(r1)
-lwz      r25, 0xd0(r30)
-stw      r24, 0x1c(r1)
-lwz      r24, 0xe8(r30)
-stw      r22, 0x20(r1)
-lwz      r22, 0xd4(r30)
-stw      r12, 0x24(r1)
-lwz      r12, 0xec(r30)
-stw      r11, 0x28(r1)
-lwz      r11, 0xd8(r30)
-stw      r10, 0x2c(r1)
-lwz      r10, 0xf0(r30)
-stw      r9, 0x30(r1)
-lwz      r9, 0xdc(r30)
-stw      r8, 0x34(r1)
-lwz      r8, 0xf4(r30)
-stw      r7, 0x38(r1)
-lwz      r7, 0xe0(r30)
-stw      r6, 0x3c(r1)
-lwz      r6, 0xf8(r30)
-stw      r27, 0x10(r1)
-stw      r26, 0x14(r1)
-stw      r25, 0x18(r1)
-stw      r24, 0x1c(r1)
-stw      r22, 0x20(r1)
-stw      r12, 0x24(r1)
-stw      r11, 0x28(r1)
-stw      r10, 0x2c(r1)
-stw      r9, 0x30(r1)
-stw      r8, 0x34(r1)
-stw      r7, 0x38(r1)
-stw      r6, 0x3c(r1)
-mtctr    r0
-
-lbl_804067CC:
-lwz      r6, 0(r3)
-lwz      r0, 4(r3)
-cmplw    r6, r0
-bge      lbl_804067E4
-stfs     f0, 0x13c(r4)
-b        lbl_804067EC
-
-lbl_804067E4:
-ble      lbl_804067EC
-stfs     f1, 0x13c(r4)
-
-lbl_804067EC:
-lwz      r6, 8(r3)
-lwz      r0, 0xc(r3)
-cmplw    r6, r0
-bge      lbl_80406804
-stfs     f0, 0x140(r4)
-b        lbl_8040680C
-
-lbl_80406804:
-ble      lbl_8040680C
-stfs     f1, 0x140(r4)
-
-lbl_8040680C:
-lwz      r6, 0x10(r3)
-lwz      r0, 0x14(r3)
-cmplw    r6, r0
-bge      lbl_80406824
-stfs     f0, 0x144(r4)
-b        lbl_8040682C
-
-lbl_80406824:
-ble      lbl_8040682C
-stfs     f1, 0x144(r4)
-
-lbl_8040682C:
-addi     r3, r3, 0x18
-addi     r4, r4, 0xc
-addi     r5, r5, 2
-bdnz     lbl_804067CC
-lbz      r0, 0x40(r28)
-cmplwi   r0, 0
-beq      lbl_80406918
-li       r5, 0
-li       r6, 0
-stw      r5, 0x98(r30)
-li       r4, 1
-b        lbl_8040687C
-
-lbl_8040685C:
-lwz      r3, 0xac(r30)
-addi     r6, r6, 1
-lwzx     r3, r3, r5
-stb      r4, 0xac(r3)
-lwz      r3, 0xac(r30)
-lwzx     r3, r3, r5
-addi     r5, r5, 4
-stb      r4, 0xa9(r3)
-
-lbl_8040687C:
-lwz      r0, 0xb8(r30)
-cmpw     r6, r0
-blt      lbl_8040685C
-lwz      r3, 0xb0(r30)
-lwz      r12, 0(r3)
-lwz      r12, 0x20(r12)
-mtctr    r12
-bctrl
-lwz      r3, 0xb4(r30)
-lwz      r12, 0(r3)
-lwz      r12, 0x20(r12)
-mtctr    r12
-bctrl
-lwz      r3, 0x8c(r30)
-bl       fadein__Q32kh6Screen14khUtilFadePaneFv
-li       r24, 0
-li       r22, 1
-
-lbl_804068C0:
-cmpwi    r24, 5
-beq      lbl_804068DC
-lwz      r3, 0x3c(r28)
-slw      r0, r22, r24
-lbz      r3, 0x70(r3)
-and.     r0, r3, r0
-beq      lbl_804068FC
-
-lbl_804068DC:
-lwz      r3, 0x4c(r30)
-lwz      r5, 0(r23)
-lwz      r12, 0(r3)
-lwz      r6, 4(r23)
-lwz      r12, 0x3c(r12)
-mtctr    r12
-bctrl
-stb      r22, 0xb0(r3)
-
-lbl_804068FC:
-addi     r24, r24, 1
-addi     r23, r23, 8
-cmpwi    r24, 6
-blt      lbl_804068C0
-lwz      r0, 0x90(r30)
-ori      r0, r0, 0x40
-stw      r0, 0x90(r30)
-
-lbl_80406918:
-li       r0, 1
-stb      r0, 0x40(r28)
-lbz      r0, 0x41(r28)
-cmplwi   r0, 0
-beq      lbl_80406A38
-li       r0, 2
-li       r3, 0
-mtctr    r0
-
-lbl_80406938:
-lwz      r4, 0xbc(r30)
-li       r0, 1
-addi     r10, r3, 4
-addi     r9, r3, 8
-lwzx     r4, r4, r3
-addi     r8, r3, 0xc
-addi     r7, r3, 0x10
-addi     r6, r3, 0x14
-stb      r0, 0xac(r4)
-addi     r5, r3, 0x18
-lwz      r4, 0xbc(r30)
-lwzx     r4, r4, r3
-addi     r3, r3, 0x1c
-stb      r0, 0xa9(r4)
-lwz      r4, 0xbc(r30)
-lwzx     r4, r4, r10
-stb      r0, 0xac(r4)
-lwz      r4, 0xbc(r30)
-lwzx     r4, r4, r10
-stb      r0, 0xa9(r4)
-lwz      r4, 0xbc(r30)
-lwzx     r4, r4, r9
-stb      r0, 0xac(r4)
-lwz      r4, 0xbc(r30)
-lwzx     r4, r4, r9
-stb      r0, 0xa9(r4)
-lwz      r4, 0xbc(r30)
-lwzx     r4, r4, r8
-stb      r0, 0xac(r4)
-lwz      r4, 0xbc(r30)
-lwzx     r4, r4, r8
-stb      r0, 0xa9(r4)
-lwz      r4, 0xbc(r30)
-lwzx     r4, r4, r7
-stb      r0, 0xac(r4)
-lwz      r4, 0xbc(r30)
-lwzx     r4, r4, r7
-stb      r0, 0xa9(r4)
-lwz      r4, 0xbc(r30)
-lwzx     r4, r4, r6
-stb      r0, 0xac(r4)
-lwz      r4, 0xbc(r30)
-lwzx     r4, r4, r6
-stb      r0, 0xa9(r4)
-lwz      r4, 0xbc(r30)
-lwzx     r4, r4, r5
-stb      r0, 0xac(r4)
-lwz      r4, 0xbc(r30)
-lwzx     r4, r4, r5
-stb      r0, 0xa9(r4)
-bdnz     lbl_80406938
-lwz      r3, 0xc0(r30)
-lwz      r12, 0(r3)
-lwz      r12, 0x20(r12)
-mtctr    r12
-bctrl
-lwz      r3, 0xc4(r30)
-lwz      r12, 0(r3)
-lwz      r12, 0x20(r12)
-mtctr    r12
-bctrl
-lwz      r0, 0x90(r30)
-ori      r0, r0, 0x100
-stw      r0, 0x90(r30)
-
-lbl_80406A38:
-lmw      r22, 0x48(r1)
-lwz      r0, 0x74(r1)
-mtlr     r0
-addi     r1, r1, 0x70
-blr
-	*/
+	ObjDayEndResultBase::doCreate(archive); // probably
+	                                        /*
+	                                    stwu     r1, -0x70(r1)
+	                                    mflr     r0
+	                                    lis      r5, lbl_80498830@ha
+	                                    stw      r0, 0x74(r1)
+	                                    stmw     r22, 0x48(r1)
+	                                    mr       r30, r3
+	                                    mr       r31, r4
+	                                    li       r3, 0x148
+	                                    addi     r27, r5, lbl_80498830@l
+	                                    bl       __nw__FUl
+	                                    or.      r0, r3, r3
+	                                    beq      lbl_80405710
+	                                    bl       __ct__Q29P2DScreen10Mgr_tuningFv
+	                                    mr       r0, r3
+	                                    
+	                                    lbl_80405710:
+	                                    stw      r0, 0x38(r30)
+	                                    mr       r6, r31
+	                                    addi     r4, r27, 0x14
+	                                    lis      r5, 0x104
+	                                    lwz      r3, 0x38(r30)
+	                                    bl       set__9J2DScreenFPCcUlP10JKRArchive
+	                                    mr       r4, r31
+	                                    addi     r3, r27, 0x28
+	                                    bl       getGlbResource__13JKRFileLoaderFPCcP13JKRFileLoader
+	                                    bl       load__20J2DAnmLoaderDataBaseFPCv
+	                                    stw      r3, 0x3c(r30)
+	                                    mr       r4, r31
+	                                    addi     r3, r27, 0x3c
+	                                    bl       getGlbResource__13JKRFileLoaderFPCcP13JKRFileLoader
+	                                    bl       load__20J2DAnmLoaderDataBaseFPCv
+	                                    stw      r3, 0x40(r30)
+	                                    lwz      r3, 0x38(r30)
+	                                    lwz      r4, 0x3c(r30)
+	                                    lwz      r12, 0(r3)
+	                                    lwz      r12, 0x60(r12)
+	                                    mtctr    r12
+	                                    bctrl
+	                                    lwz      r3, 0x38(r30)
+	                                    lwz      r4, 0x40(r30)
+	                                    lwz      r12, 0(r3)
+	                                    lwz      r12, 0x64(r12)
+	                                    mtctr    r12
+	                                    bctrl
+	                                    lis      r4, 0x62746E32@ha
+	                                    lwz      r3, 0x38(r30)
+	                                    addi     r6, r4, 0x62746E32@l
+	                                    li       r5, 0x4e
+	                                    li       r7, 8
+	                                    bl       create__Q32kh6Screen14khUtilFadePaneFPQ29P2DScreen3MgrUxUc
+	                                    stw      r3, 0x8c(r30)
+	                                    lwz      r3, 0x8c(r30)
+	                                    bl       fadeout__Q32kh6Screen14khUtilFadePaneFv
+	                                    lwz      r3, 0x8c(r30)
+	                                    li       r4, 0
+	                                    bl       set_init_alpha__Q32kh6Screen14khUtilFadePaneFUc
+	                                    li       r3, 0x148
+	                                    bl       __nw__FUl
+	                                    or.      r0, r3, r3
+	                                    beq      lbl_804057C8
+	                                    bl       __ct__Q29P2DScreen10Mgr_tuningFv
+	                                    mr       r0, r3
+	                                    
+	                                    lbl_804057C8:
+	                                    stw      r0, 0x4c(r30)
+	                                    mr       r6, r31
+	                                    addi     r4, r27, 0x130
+	                                    lis      r5, 4
+	                                    lwz      r3, 0x4c(r30)
+	                                    bl       set__9J2DScreenFPCcUlP10JKRArchive
+	                                    mr       r4, r31
+	                                    addi     r3, r27, 0x148
+	                                    bl       getGlbResource__13JKRFileLoaderFPCcP13JKRFileLoader
+	                                    mr       r22, r3
+	                                    bl       load__20J2DAnmLoaderDataBaseFPCv
+	                                    stw      r3, 0x50(r30)
+	                                    mr       r3, r22
+	                                    bl       load__20J2DAnmLoaderDataBaseFPCv
+	                                    stw      r3, 0x54(r30)
+	                                    mr       r3, r22
+	                                    bl       load__20J2DAnmLoaderDataBaseFPCv
+	                                    stw      r3, 0x9c(r30)
+	                                    mr       r3, r22
+	                                    bl       load__20J2DAnmLoaderDataBaseFPCv
+	                                    stw      r3, 0xa0(r30)
+	                                    mr       r4, r31
+	                                    addi     r3, r27, 0x160
+	                                    bl       getGlbResource__13JKRFileLoaderFPCcP13JKRFileLoader
+	                                    bl       load__20J2DAnmLoaderDataBaseFPCv
+	                                    stw      r3, 0x58(r30)
+	                                    mr       r4, r31
+	                                    addi     r3, r27, 0x178
+	                                    bl       getGlbResource__13JKRFileLoaderFPCcP13JKRFileLoader
+	                                    bl       load__20J2DAnmLoaderDataBaseFPCv
+	                                    stw      r3, 0x5c(r30)
+	                                    lwz      r3, 0x4c(r30)
+	                                    lwz      r4, 0x58(r30)
+	                                    lwz      r12, 0(r3)
+	                                    lwz      r12, 0x6c(r12)
+	                                    mtctr    r12
+	                                    bctrl
+	                                    lwz      r3, 0x4c(r30)
+	                                    lwz      r4, 0x5c(r30)
+	                                    lwz      r12, 0(r3)
+	                                    lwz      r12, 0x70(r12)
+	                                    mtctr    r12
+	                                    bctrl
+	                                    lwz      r3, 0x4c(r30)
+	                                    lis      r5, 0x656D5731@ha
+	                                    lis      r4, 0x004E6974@ha
+	                                    lwz      r12, 0(r3)
+	                                    addi     r6, r5, 0x656D5731@l
+	                                    addi     r5, r4, 0x004E6974@l
+	                                    lwz      r12, 0x3c(r12)
+	                                    mtctr    r12
+	                                    bctrl
+	                                    lwz      r12, 0(r3)
+	                                    lwz      r4, 0x9c(r30)
+	                                    lwz      r12, 0x60(r12)
+	                                    mtctr    r12
+	                                    bctrl
+	                                    lwz      r3, 0x4c(r30)
+	                                    lis      r4, 0x74656D57@ha
+	                                    addi     r6, r4, 0x74656D57@l
+	                                    li       r5, 0x4e69
+	                                    lwz      r12, 0(r3)
+	                                    lwz      r12, 0x3c(r12)
+	                                    mtctr    r12
+	                                    bctrl
+	                                    lwz      r12, 0(r3)
+	                                    lwz      r4, 0x50(r30)
+	                                    lwz      r12, 0x60(r12)
+	                                    mtctr    r12
+	                                    bctrl
+	                                    lwz      r3, 0x4c(r30)
+	                                    lis      r5, 0x74703030@ha
+	                                    lis      r4, 0x004E7365@ha
+	                                    lwz      r12, 0(r3)
+	                                    addi     r6, r5, 0x74703030@l
+	                                    addi     r5, r4, 0x004E7365@l
+	                                    lwz      r12, 0x3c(r12)
+	                                    mtctr    r12
+	                                    bctrl
+	                                    lwz      r12, 0(r3)
+	                                    lwz      r4, 0x50(r30)
+	                                    lwz      r12, 0x60(r12)
+	                                    mtctr    r12
+	                                    bctrl
+	                                    lwz      r3, 0x4c(r30)
+	                                    lis      r5, 0x74703031@ha
+	                                    lis      r4, 0x004E7365@ha
+	                                    lwz      r12, 0(r3)
+	                                    addi     r6, r5, 0x74703031@l
+	                                    addi     r5, r4, 0x004E7365@l
+	                                    lwz      r12, 0x3c(r12)
+	                                    mtctr    r12
+	                                    bctrl
+	                                    lwz      r12, 0(r3)
+	                                    lwz      r4, 0x50(r30)
+	                                    lwz      r12, 0x60(r12)
+	                                    mtctr    r12
+	                                    bctrl
+	                                    lwz      r3, 0x4c(r30)
+	                                    lis      r5, 0x74703032@ha
+	                                    lis      r4, 0x004E7365@ha
+	                                    lwz      r12, 0(r3)
+	                                    addi     r6, r5, 0x74703032@l
+	                                    addi     r5, r4, 0x004E7365@l
+	                                    lwz      r12, 0x3c(r12)
+	                                    mtctr    r12
+	                                    bctrl
+	                                    lwz      r12, 0(r3)
+	                                    lwz      r4, 0x50(r30)
+	                                    lwz      r12, 0x60(r12)
+	                                    mtctr    r12
+	                                    bctrl
+	                                    lwz      r3, 0x4c(r30)
+	                                    lis      r5, 0x74703033@ha
+	                                    lis      r4, 0x004E7365@ha
+	                                    lwz      r12, 0(r3)
+	                                    addi     r6, r5, 0x74703033@l
+	                                    addi     r5, r4, 0x004E7365@l
+	                                    lwz      r12, 0x3c(r12)
+	                                    mtctr    r12
+	                                    bctrl
+	                                    lwz      r12, 0(r3)
+	                                    lwz      r4, 0x50(r30)
+	                                    lwz      r12, 0x60(r12)
+	                                    mtctr    r12
+	                                    bctrl
+	                                    lwz      r3, 0x4c(r30)
+	                                    lis      r5, 0x74703034@ha
+	                                    lis      r4, 0x004E7365@ha
+	                                    lwz      r12, 0(r3)
+	                                    addi     r6, r5, 0x74703034@l
+	                                    addi     r5, r4, 0x004E7365@l
+	                                    lwz      r12, 0x3c(r12)
+	                                    mtctr    r12
+	                                    bctrl
+	                                    lwz      r12, 0(r3)
+	                                    lwz      r4, 0x50(r30)
+	                                    lwz      r12, 0x60(r12)
+	                                    mtctr    r12
+	                                    bctrl
+	                                    lwz      r3, 0x4c(r30)
+	                                    lis      r5, 0x74703035@ha
+	                                    lis      r4, 0x004E7365@ha
+	                                    lwz      r12, 0(r3)
+	                                    addi     r6, r5, 0x74703035@l
+	                                    addi     r5, r4, 0x004E7365@l
+	                                    lwz      r12, 0x3c(r12)
+	                                    mtctr    r12
+	                                    bctrl
+	                                    lwz      r12, 0(r3)
+	                                    lwz      r4, 0x50(r30)
+	                                    lwz      r12, 0x60(r12)
+	                                    mtctr    r12
+	                                    bctrl
+	                                    lwz      r3, 0x4c(r30)
+	                                    lis      r4, 0x69746C65@ha
+	                                    addi     r6, r4, 0x69746C65@l
+	                                    li       r5, 0x4e74
+	                                    lwz      r12, 0(r3)
+	                                    lwz      r12, 0x3c(r12)
+	                                    mtctr    r12
+	                                    bctrl
+	                                    lwz      r12, 0(r3)
+	                                    lwz      r4, 0x54(r30)
+	                                    lwz      r12, 0x60(r12)
+	                                    mtctr    r12
+	                                    bctrl
+	                                    lwz      r3, 0x4c(r30)
+	                                    lis      r4, 0x64656164@ha
+	                                    addi     r6, r4, 0x64656164@l
+	                                    li       r5, 0x4e
+	                                    lwz      r12, 0(r3)
+	                                    lwz      r12, 0x3c(r12)
+	                                    mtctr    r12
+	                                    bctrl
+	                                    lwz      r12, 0(r3)
+	                                    lwz      r4, 0xa0(r30)
+	                                    lwz      r12, 0x60(r12)
+	                                    mtctr    r12
+	                                    bctrl
+	                                    li       r3, 0x148
+	                                    bl       __nw__FUl
+	                                    or.      r0, r3, r3
+	                                    beq      lbl_80405AB0
+	                                    bl       __ct__Q29P2DScreen10Mgr_tuningFv
+	                                    mr       r0, r3
+	                                    
+	                                    lbl_80405AB0:
+	                                    stw      r0, 0x70(r30)
+	                                    mr       r6, r31
+	                                    addi     r4, r27, 0x190
+	                                    lis      r5, 4
+	                                    lwz      r3, 0x70(r30)
+	                                    bl       set__9J2DScreenFPCcUlP10JKRArchive
+	                                    mr       r4, r31
+	                                    addi     r3, r27, 0x1b0
+	                                    bl       getGlbResource__13JKRFileLoaderFPCcP13JKRFileLoader
+	                                    bl       load__20J2DAnmLoaderDataBaseFPCv
+	                                    stw      r3, 0x74(r30)
+	                                    lwz      r3, 0x70(r30)
+	                                    lwz      r4, 0x74(r30)
+	                                    lwz      r12, 0(r3)
+	                                    lwz      r12, 0x64(r12)
+	                                    mtctr    r12
+	                                    bctrl
+	                                    lwz      r3, 0x4c(r30)
+	                                    bl       setCallBackMessage__Q22og6ScreenFPQ29P2DScreen3Mgr
+	                                    mr       r3, r30
+	                                    bl       getDispMember__Q26Screen7ObjBaseFv
+	                                    lis      r4, 0x52534C54@ha
+	                                    lis      r5, 0x0044455F@ha
+	                                    addi     r6, r4, 0x52534C54@l
+	                                    li       r4, 0x4b48
+	                                    addi     r5, r5, 0x0044455F@l
+	                                    bl       isID__Q32og6Screen14DispMemberBaseFUlUx
+	                                    clrlwi.  r0, r3, 0x18
+	                                    bne      lbl_80405B38
+	                                    addi     r3, r27, 0
+	                                    addi     r5, r27, 0xd0
+	                                    li       r4, 0x486
+	                                    crclr    6
+	                                    bl       panic_f__12JUTExceptionFPCciPCce
+	                                    
+	                                    lbl_80405B38:
+	                                    mr       r3, r30
+	                                    bl       getDispMember__Q26Screen7ObjBaseFv
+	                                    mr       r28, r3
+	                                    lwz      r3, 0x3c(r3)
+	                                    lwz      r0, 0(r3)
+	                                    stw      r0, 0xcc(r30)
+	                                    lwz      r0, 4(r3)
+	                                    stw      r0, 0xd0(r30)
+	                                    lwz      r0, 8(r3)
+	                                    stw      r0, 0xd4(r30)
+	                                    lwz      r0, 0xc(r3)
+	                                    stw      r0, 0xd8(r30)
+	                                    lwz      r0, 0x10(r3)
+	                                    stw      r0, 0xdc(r30)
+	                                    lwz      r0, 0x14(r3)
+	                                    stw      r0, 0xe0(r30)
+	                                    lwz      r3, 0x3c(r28)
+	                                    lwz      r0, 0x18(r3)
+	                                    stw      r0, 0xe4(r30)
+	                                    lwz      r0, 0x1c(r3)
+	                                    stw      r0, 0xe8(r30)
+	                                    lwz      r0, 0x20(r3)
+	                                    stw      r0, 0xec(r30)
+	                                    lwz      r0, 0x24(r3)
+	                                    stw      r0, 0xf0(r30)
+	                                    lwz      r0, 0x28(r3)
+	                                    stw      r0, 0xf4(r30)
+	                                    lwz      r0, 0x2c(r3)
+	                                    stw      r0, 0xf8(r30)
+	                                    lwz      r3, 0x3c(r28)
+	                                    lwz      r0, 0x30(r3)
+	                                    stw      r0, 0xfc(r30)
+	                                    lwz      r0, 0x34(r3)
+	                                    stw      r0, 0x100(r30)
+	                                    lwz      r0, 0x38(r3)
+	                                    stw      r0, 0x104(r30)
+	                                    lwz      r0, 0x3c(r3)
+	                                    stw      r0, 0x108(r30)
+	                                    lwz      r0, 0x40(r3)
+	                                    stw      r0, 0x10c(r30)
+	                                    lwz      r0, 0x44(r3)
+	                                    stw      r0, 0x110(r30)
+	                                    lwz      r0, 0x48(r3)
+	                                    stw      r0, 0x114(r30)
+	                                    lwz      r0, 0x4c(r3)
+	                                    stw      r0, 0x118(r30)
+	                                    lwz      r3, 0x3c(r28)
+	                                    lwz      r0, 0x50(r3)
+	                                    stw      r0, 0x11c(r30)
+	                                    lwz      r0, 0x54(r3)
+	                                    stw      r0, 0x120(r30)
+	                                    lwz      r0, 0x58(r3)
+	                                    stw      r0, 0x124(r30)
+	                                    lwz      r0, 0x5c(r3)
+	                                    stw      r0, 0x128(r30)
+	                                    lwz      r0, 0x60(r3)
+	                                    stw      r0, 0x12c(r30)
+	                                    lwz      r0, 0x64(r3)
+	                                    stw      r0, 0x130(r30)
+	                                    lwz      r0, 0x68(r3)
+	                                    stw      r0, 0x134(r30)
+	                                    lwz      r0, 0x6c(r3)
+	                                    stw      r0, 0x138(r30)
+	                                    lwz      r3, 0x3c(r28)
+	                                    lbz      r29, 0x70(r3)
+	                                    clrlwi.  r26, r29, 0x1f
+	                                    bne      lbl_80405CD4
+	                                    lwz      r3, 0x4c(r30)
+	                                    lis      r5, 0x72653031@ha
+	                                    lis      r4, 0x4E666967@ha
+	                                    lwz      r12, 0(r3)
+	                                    addi     r6, r5, 0x72653031@l
+	                                    addi     r5, r4, 0x4E666967@l
+	                                    lwz      r12, 0x3c(r12)
+	                                    mtctr    r12
+	                                    bctrl
+	                                    li       r0, 0
+	                                    lis      r5, 0x6B693031@ha
+	                                    stb      r0, 0xb0(r3)
+	                                    lis      r4, 0x004E7069@ha
+	                                    addi     r6, r5, 0x6B693031@l
+	                                    lwz      r3, 0x4c(r30)
+	                                    addi     r5, r4, 0x004E7069@l
+	                                    lwz      r12, 0(r3)
+	                                    lwz      r12, 0x3c(r12)
+	                                    mtctr    r12
+	                                    bctrl
+	                                    li       r0, 0
+	                                    lis      r5, 0x70693031@ha
+	                                    stb      r0, 0xb0(r3)
+	                                    lis      r4, 0x004E746F@ha
+	                                    addi     r6, r5, 0x70693031@l
+	                                    lwz      r3, 0x4c(r30)
+	                                    addi     r5, r4, 0x004E746F@l
+	                                    lwz      r12, 0(r3)
+	                                    lwz      r12, 0x3c(r12)
+	                                    mtctr    r12
+	                                    bctrl
+	                                    li       r0, 0
+	                                    stb      r0, 0xb0(r3)
+	                                    lwz      r3, 0xb8(r30)
+	                                    addi     r0, r3, -2
+	                                    stw      r0, 0xb8(r30)
+	                                    
+	                                    lbl_80405CD4:
+	                                    rlwinm.  r25, r29, 0, 0x1e, 0x1e
+	                                    bne      lbl_80405D6C
+	                                    lwz      r3, 0x4c(r30)
+	                                    lis      r5, 0x72653032@ha
+	                                    lis      r4, 0x4E666967@ha
+	                                    lwz      r12, 0(r3)
+	                                    addi     r6, r5, 0x72653032@l
+	                                    addi     r5, r4, 0x4E666967@l
+	                                    lwz      r12, 0x3c(r12)
+	                                    mtctr    r12
+	                                    bctrl
+	                                    li       r0, 0
+	                                    lis      r5, 0x6B693032@ha
+	                                    stb      r0, 0xb0(r3)
+	                                    lis      r4, 0x004E7069@ha
+	                                    addi     r6, r5, 0x6B693032@l
+	                                    lwz      r3, 0x4c(r30)
+	                                    addi     r5, r4, 0x004E7069@l
+	                                    lwz      r12, 0(r3)
+	                                    lwz      r12, 0x3c(r12)
+	                                    mtctr    r12
+	                                    bctrl
+	                                    li       r0, 0
+	                                    lis      r5, 0x70693032@ha
+	                                    stb      r0, 0xb0(r3)
+	                                    lis      r4, 0x004E746F@ha
+	                                    addi     r6, r5, 0x70693032@l
+	                                    lwz      r3, 0x4c(r30)
+	                                    addi     r5, r4, 0x004E746F@l
+	                                    lwz      r12, 0(r3)
+	                                    lwz      r12, 0x3c(r12)
+	                                    mtctr    r12
+	                                    bctrl
+	                                    li       r0, 0
+	                                    stb      r0, 0xb0(r3)
+	                                    lwz      r3, 0xb8(r30)
+	                                    addi     r0, r3, -2
+	                                    stw      r0, 0xb8(r30)
+	                                    
+	                                    lbl_80405D6C:
+	                                    rlwinm.  r24, r29, 0, 0x1d, 0x1d
+	                                    bne      lbl_80405E04
+	                                    lwz      r3, 0x4c(r30)
+	                                    lis      r5, 0x72653033@ha
+	                                    lis      r4, 0x4E666967@ha
+	                                    lwz      r12, 0(r3)
+	                                    addi     r6, r5, 0x72653033@l
+	                                    addi     r5, r4, 0x4E666967@l
+	                                    lwz      r12, 0x3c(r12)
+	                                    mtctr    r12
+	                                    bctrl
+	                                    li       r0, 0
+	                                    lis      r5, 0x6B693033@ha
+	                                    stb      r0, 0xb0(r3)
+	                                    lis      r4, 0x004E7069@ha
+	                                    addi     r6, r5, 0x6B693033@l
+	                                    lwz      r3, 0x4c(r30)
+	                                    addi     r5, r4, 0x004E7069@l
+	                                    lwz      r12, 0(r3)
+	                                    lwz      r12, 0x3c(r12)
+	                                    mtctr    r12
+	                                    bctrl
+	                                    li       r0, 0
+	                                    lis      r5, 0x70693033@ha
+	                                    stb      r0, 0xb0(r3)
+	                                    lis      r4, 0x004E746F@ha
+	                                    addi     r6, r5, 0x70693033@l
+	                                    lwz      r3, 0x4c(r30)
+	                                    addi     r5, r4, 0x004E746F@l
+	                                    lwz      r12, 0(r3)
+	                                    lwz      r12, 0x3c(r12)
+	                                    mtctr    r12
+	                                    bctrl
+	                                    li       r0, 0
+	                                    stb      r0, 0xb0(r3)
+	                                    lwz      r3, 0xb8(r30)
+	                                    addi     r0, r3, -2
+	                                    stw      r0, 0xb8(r30)
+	                                    
+	                                    lbl_80405E04:
+	                                    rlwinm.  r23, r29, 0, 0x1c, 0x1c
+	                                    bne      lbl_80405E9C
+	                                    lwz      r3, 0x4c(r30)
+	                                    lis      r5, 0x72653034@ha
+	                                    lis      r4, 0x4E666967@ha
+	                                    lwz      r12, 0(r3)
+	                                    addi     r6, r5, 0x72653034@l
+	                                    addi     r5, r4, 0x4E666967@l
+	                                    lwz      r12, 0x3c(r12)
+	                                    mtctr    r12
+	                                    bctrl
+	                                    li       r0, 0
+	                                    lis      r5, 0x6B693034@ha
+	                                    stb      r0, 0xb0(r3)
+	                                    lis      r4, 0x004E7069@ha
+	                                    addi     r6, r5, 0x6B693034@l
+	                                    lwz      r3, 0x4c(r30)
+	                                    addi     r5, r4, 0x004E7069@l
+	                                    lwz      r12, 0(r3)
+	                                    lwz      r12, 0x3c(r12)
+	                                    mtctr    r12
+	                                    bctrl
+	                                    li       r0, 0
+	                                    lis      r5, 0x70693034@ha
+	                                    stb      r0, 0xb0(r3)
+	                                    lis      r4, 0x004E746F@ha
+	                                    addi     r6, r5, 0x70693034@l
+	                                    lwz      r3, 0x4c(r30)
+	                                    addi     r5, r4, 0x004E746F@l
+	                                    lwz      r12, 0(r3)
+	                                    lwz      r12, 0x3c(r12)
+	                                    mtctr    r12
+	                                    bctrl
+	                                    li       r0, 0
+	                                    stb      r0, 0xb0(r3)
+	                                    lwz      r3, 0xb8(r30)
+	                                    addi     r0, r3, -2
+	                                    stw      r0, 0xb8(r30)
+	                                    
+	                                    lbl_80405E9C:
+	                                    rlwinm.  r29, r29, 0, 0x1b, 0x1b
+	                                    bne      lbl_80405F34
+	                                    lwz      r3, 0x4c(r30)
+	                                    lis      r5, 0x72653035@ha
+	                                    lis      r4, 0x4E666967@ha
+	                                    lwz      r12, 0(r3)
+	                                    addi     r6, r5, 0x72653035@l
+	                                    addi     r5, r4, 0x4E666967@l
+	                                    lwz      r12, 0x3c(r12)
+	                                    mtctr    r12
+	                                    bctrl
+	                                    li       r0, 0
+	                                    lis      r5, 0x6B693035@ha
+	                                    stb      r0, 0xb0(r3)
+	                                    lis      r4, 0x004E7069@ha
+	                                    addi     r6, r5, 0x6B693035@l
+	                                    lwz      r3, 0x4c(r30)
+	                                    addi     r5, r4, 0x004E7069@l
+	                                    lwz      r12, 0(r3)
+	                                    lwz      r12, 0x3c(r12)
+	                                    mtctr    r12
+	                                    bctrl
+	                                    li       r0, 0
+	                                    lis      r5, 0x70693035@ha
+	                                    stb      r0, 0xb0(r3)
+	                                    lis      r4, 0x004E746F@ha
+	                                    addi     r6, r5, 0x70693035@l
+	                                    lwz      r3, 0x4c(r30)
+	                                    addi     r5, r4, 0x004E746F@l
+	                                    lwz      r12, 0(r3)
+	                                    lwz      r12, 0x3c(r12)
+	                                    mtctr    r12
+	                                    bctrl
+	                                    li       r0, 0
+	                                    stb      r0, 0xb0(r3)
+	                                    lwz      r3, 0xb8(r30)
+	                                    addi     r0, r3, -2
+	                                    stw      r0, 0xb8(r30)
+	                                    
+	                                    lbl_80405F34:
+	                                    lwz      r0, 0xb8(r30)
+	                                    li       r22, 0
+	                                    slwi     r3, r0, 2
+	                                    bl       __nwa__FUl
+	                                    cmpwi    r26, 0
+	                                    stw      r3, 0xac(r30)
+	                                    beq      lbl_80405FC8
+	                                    stw      r31, 8(r1)
+	                                    lis      r5, 0x6B796F31@ha
+	                                    lis      r4, 0x00507270@ha
+	                                    addi     r7, r30, 0xcc
+	                                    lwz      r3, 0x4c(r30)
+	                                    addi     r6, r5, 0x6B796F31@l
+	                                    addi     r5, r4, 0x00507270@l
+	                                    li       r8, 5
+	                                    li       r9, 1
+	                                    li       r10, 0
+	                                    bl
+	                                    setCallBack_CounterSlot__Q22og6ScreenFPQ29P2DScreen3MgrUxPUlUsbbP10JKRArchive
+	                                    lwz      r6, 0xac(r30)
+	                                    slwi     r0, r22, 2
+	                                    lis      r5, 0x61646531@ha
+	                                    lis      r4, 0x5072706D@ha
+	                                    stwx     r3, r6, r0
+	                                    addi     r6, r5, 0x61646531@l
+	                                    addi     r5, r4, 0x5072706D@l
+	                                    addi     r7, r30, 0xe4
+	                                    stw      r31, 8(r1)
+	                                    li       r8, 8
+	                                    li       r9, 1
+	                                    li       r10, 0
+	                                    lwz      r3, 0x4c(r30)
+	                                    li       r22, 1
+	                                    bl
+	                                    setCallBack_CounterSlot__Q22og6ScreenFPQ29P2DScreen3MgrUxPUlUsbbP10JKRArchive
+	                                    lwz      r4, 0xac(r30)
+	                                    slwi     r0, r22, 2
+	                                    li       r22, 2
+	                                    stwx     r3, r4, r0
+	                                    
+	                                    lbl_80405FC8:
+	                                    cmpwi    r25, 0
+	                                    beq      lbl_80406048
+	                                    stw      r31, 8(r1)
+	                                    lis      r5, 0x6B796F31@ha
+	                                    lis      r4, 0x00507970@ha
+	                                    addi     r7, r30, 0xd0
+	                                    lwz      r3, 0x4c(r30)
+	                                    addi     r6, r5, 0x6B796F31@l
+	                                    addi     r5, r4, 0x00507970@l
+	                                    li       r8, 5
+	                                    li       r9, 1
+	                                    li       r10, 0
+	                                    bl
+	                                    setCallBack_CounterSlot__Q22og6ScreenFPQ29P2DScreen3MgrUxPUlUsbbP10JKRArchive
+	                                    lwz      r6, 0xac(r30)
+	                                    slwi     r0, r22, 2
+	                                    lis      r5, 0x61646531@ha
+	                                    lis      r4, 0x5079706D@ha
+	                                    stwx     r3, r6, r0
+	                                    addi     r6, r5, 0x61646531@l
+	                                    addi     r5, r4, 0x5079706D@l
+	                                    addi     r7, r30, 0xe8
+	                                    stw      r31, 8(r1)
+	                                    li       r8, 8
+	                                    li       r9, 1
+	                                    li       r10, 0
+	                                    lwz      r3, 0x4c(r30)
+	                                    addi     r22, r22, 1
+	                                    bl
+	                                    setCallBack_CounterSlot__Q22og6ScreenFPQ29P2DScreen3MgrUxPUlUsbbP10JKRArchive
+	                                    lwz      r4, 0xac(r30)
+	                                    slwi     r0, r22, 2
+	                                    addi     r22, r22, 1
+	                                    stwx     r3, r4, r0
+	                                    
+	                                    lbl_80406048:
+	                                    cmpwi    r24, 0
+	                                    beq      lbl_804060C8
+	                                    stw      r31, 8(r1)
+	                                    lis      r5, 0x6B796F31@ha
+	                                    lis      r4, 0x00506270@ha
+	                                    addi     r7, r30, 0xd4
+	                                    lwz      r3, 0x4c(r30)
+	                                    addi     r6, r5, 0x6B796F31@l
+	                                    addi     r5, r4, 0x00506270@l
+	                                    li       r8, 5
+	                                    li       r9, 1
+	                                    li       r10, 0
+	                                    bl
+	                                    setCallBack_CounterSlot__Q22og6ScreenFPQ29P2DScreen3MgrUxPUlUsbbP10JKRArchive
+	                                    lwz      r6, 0xac(r30)
+	                                    slwi     r0, r22, 2
+	                                    lis      r5, 0x61646531@ha
+	                                    lis      r4, 0x5062706D@ha
+	                                    stwx     r3, r6, r0
+	                                    addi     r6, r5, 0x61646531@l
+	                                    addi     r5, r4, 0x5062706D@l
+	                                    addi     r7, r30, 0xec
+	                                    stw      r31, 8(r1)
+	                                    li       r8, 8
+	                                    li       r9, 1
+	                                    li       r10, 0
+	                                    lwz      r3, 0x4c(r30)
+	                                    addi     r22, r22, 1
+	                                    bl
+	                                    setCallBack_CounterSlot__Q22og6ScreenFPQ29P2DScreen3MgrUxPUlUsbbP10JKRArchive
+	                                    lwz      r4, 0xac(r30)
+	                                    slwi     r0, r22, 2
+	                                    addi     r22, r22, 1
+	                                    stwx     r3, r4, r0
+	                                    
+	                                    lbl_804060C8:
+	                                    cmpwi    r23, 0
+	                                    beq      lbl_80406148
+	                                    stw      r31, 8(r1)
+	                                    lis      r5, 0x6B796F31@ha
+	                                    lis      r4, 0x00507770@ha
+	                                    addi     r7, r30, 0xd8
+	                                    lwz      r3, 0x4c(r30)
+	                                    addi     r6, r5, 0x6B796F31@l
+	                                    addi     r5, r4, 0x00507770@l
+	                                    li       r8, 5
+	                                    li       r9, 1
+	                                    li       r10, 0
+	                                    bl
+	                                    setCallBack_CounterSlot__Q22og6ScreenFPQ29P2DScreen3MgrUxPUlUsbbP10JKRArchive
+	                                    lwz      r6, 0xac(r30)
+	                                    slwi     r0, r22, 2
+	                                    lis      r5, 0x61646531@ha
+	                                    lis      r4, 0x5077706D@ha
+	                                    stwx     r3, r6, r0
+	                                    addi     r6, r5, 0x61646531@l
+	                                    addi     r5, r4, 0x5077706D@l
+	                                    addi     r7, r30, 0xf0
+	                                    stw      r31, 8(r1)
+	                                    li       r8, 8
+	                                    li       r9, 1
+	                                    li       r10, 0
+	                                    lwz      r3, 0x4c(r30)
+	                                    addi     r22, r22, 1
+	                                    bl
+	                                    setCallBack_CounterSlot__Q22og6ScreenFPQ29P2DScreen3MgrUxPUlUsbbP10JKRArchive
+	                                    lwz      r4, 0xac(r30)
+	                                    slwi     r0, r22, 2
+	                                    addi     r22, r22, 1
+	                                    stwx     r3, r4, r0
+	                                    
+	                                    lbl_80406148:
+	                                    cmpwi    r29, 0
+	                                    beq      lbl_804061C4
+	                                    stw      r31, 8(r1)
+	                                    lis      r5, 0x6B796F31@ha
+	                                    lis      r4, 0x50626C70@ha
+	                                    addi     r7, r30, 0xdc
+	                                    lwz      r3, 0x4c(r30)
+	                                    addi     r6, r5, 0x6B796F31@l
+	                                    addi     r5, r4, 0x50626C70@l
+	                                    li       r8, 5
+	                                    li       r9, 1
+	                                    li       r10, 0
+	                                    bl
+	                                    setCallBack_CounterSlot__Q22og6ScreenFPQ29P2DScreen3MgrUxPUlUsbbP10JKRArchive
+	                                    lwz      r6, 0xac(r30)
+	                                    slwi     r0, r22, 2
+	                                    lis      r5, 0x6D616431@ha
+	                                    lis      r4, 0x50626C70@ha
+	                                    stwx     r3, r6, r0
+	                                    addi     r6, r5, 0x6D616431@l
+	                                    addi     r5, r4, 0x50626C70@l
+	                                    addi     r7, r30, 0xf4
+	                                    stw      r31, 8(r1)
+	                                    li       r8, 8
+	                                    li       r9, 1
+	                                    li       r10, 0
+	                                    lwz      r3, 0x4c(r30)
+	                                    addi     r22, r22, 1
+	                                    bl
+	                                    setCallBack_CounterSlot__Q22og6ScreenFPQ29P2DScreen3MgrUxPUlUsbbP10JKRArchive
+	                                    lwz      r4, 0xac(r30)
+	                                    slwi     r0, r22, 2
+	                                    stwx     r3, r4, r0
+	                                    
+	                                    lbl_804061C4:
+	                                    stw      r31, 8(r1)
+	                                    lis      r5, 0x79706F31@ha
+	                                    lis      r4, 0x50746F6B@ha
+	                                    addi     r7, r30, 0xe0
+	                                    lwz      r3, 0x4c(r30)
+	                                    addi     r6, r5, 0x79706F31@l
+	                                    addi     r5, r4, 0x50746F6B@l
+	                                    li       r8, 5
+	                                    li       r9, 0
+	                                    li       r10, 0
+	                                    bl
+	                                    setCallBack_CounterRV__Q22og6ScreenFPQ29P2DScreen3MgrUxPUlUsbbP10JKRArchive stw
+	                                    r3, 0xb0(r30) lis      r4, 0x64706F31@ha lis      r3, 0x50746F6D@ha addi     r7,
+	                                    r30, 0xf8 stw      r31, 8(r1) addi     r6, r4, 0x64706F31@l addi     r5, r3,
+	                                    0x50746F6D@l li       r8, 8 lwz      r3, 0x4c(r30) li       r9, 0 li       r10,
+	                                    0 bl setCallBack_CounterRV__Q22og6ScreenFPQ29P2DScreen3MgrUxPUlUsbbP10JKRArchive
+	                                    stw      r3, 0xb4(r30)
+	                                    lwz      r3, 0xb0(r30)
+	                                    lwz      r12, 0(r3)
+	                                    lwz      r12, 0x24(r12)
+	                                    mtctr    r12
+	                                    bctrl
+	                                    lwz      r3, 0xb4(r30)
+	                                    lwz      r12, 0(r3)
+	                                    lwz      r12, 0x24(r12)
+	                                    mtctr    r12
+	                                    bctrl
+	                                    li       r23, 0
+	                                    li       r22, 0
+	                                    b        lbl_80406278
+	                                    
+	                                    lbl_80406258:
+	                                    lwz      r3, 0xac(r30)
+	                                    lfs      f1, lbl_805200DC@sda21(r2)
+	                                    lwzx     r3, r3, r22
+	                                    lfs      f2, lbl_805200E0@sda21(r2)
+	                                    lfs      f3, lbl_805200E4@sda21(r2)
+	                                    bl       setPuyoParam__Q32og6Screen20CallBack_CounterSlotFfff
+	                                    addi     r22, r22, 4
+	                                    addi     r23, r23, 1
+	                                    
+	                                    lbl_80406278:
+	                                    lwz      r0, 0xb8(r30)
+	                                    cmpw     r23, r0
+	                                    blt      lbl_80406258
+	                                    li       r22, 0
+	                                    li       r3, 0x38
+	                                    bl       __nwa__FUl
+	                                    stw      r3, 0xbc(r30)
+	                                    lis      r4, 0x6B796F31@ha
+	                                    lis      r3, 0x00507461@ha
+	                                    addi     r7, r30, 0xfc
+	                                    stw      r31, 8(r1)
+	                                    addi     r6, r4, 0x6B796F31@l
+	                                    addi     r5, r3, 0x00507461@l
+	                                    li       r8, 4
+	                                    lwz      r3, 0x4c(r30)
+	                                    li       r9, 1
+	                                    li       r10, 0
+	                                    bl
+	                                    setCallBack_CounterSlot__Q22og6ScreenFPQ29P2DScreen3MgrUxPUlUsbbP10JKRArchive
+	                                    lwz      r6, 0xbc(r30)
+	                                    slwi     r0, r22, 2
+	                                    lis      r5, 0x61646531@ha
+	                                    lis      r4, 0x5074616D@ha
+	                                    stwx     r3, r6, r0
+	                                    addi     r6, r5, 0x61646531@l
+	                                    addi     r5, r4, 0x5074616D@l
+	                                    addi     r7, r30, 0x11c
+	                                    stw      r31, 8(r1)
+	                                    li       r8, 8
+	                                    li       r9, 1
+	                                    li       r10, 0
+	                                    lwz      r3, 0x4c(r30)
+	                                    li       r22, 1
+	                                    bl
+	                                    setCallBack_CounterSlot__Q22og6ScreenFPQ29P2DScreen3MgrUxPUlUsbbP10JKRArchive
+	                                    lwz      r6, 0xbc(r30)
+	                                    slwi     r0, r22, 2
+	                                    lis      r5, 0x6B796F31@ha
+	                                    lis      r4, 0x00506E69@ha
+	                                    stwx     r3, r6, r0
+	                                    addi     r6, r5, 0x6B796F31@l
+	                                    addi     r5, r4, 0x00506E69@l
+	                                    addi     r7, r30, 0x100
+	                                    stw      r31, 8(r1)
+	                                    li       r8, 4
+	                                    li       r9, 1
+	                                    li       r10, 0
+	                                    lwz      r3, 0x4c(r30)
+	                                    li       r22, 2
+	                                    bl
+	                                    setCallBack_CounterSlot__Q22og6ScreenFPQ29P2DScreen3MgrUxPUlUsbbP10JKRArchive
+	                                    lwz      r6, 0xbc(r30)
+	                                    slwi     r0, r22, 2
+	                                    lis      r5, 0x61646531@ha
+	                                    lis      r4, 0x506E696D@ha
+	                                    stwx     r3, r6, r0
+	                                    addi     r6, r5, 0x61646531@l
+	                                    addi     r5, r4, 0x506E696D@l
+	                                    addi     r7, r30, 0x120
+	                                    stw      r31, 8(r1)
+	                                    li       r8, 8
+	                                    li       r9, 1
+	                                    li       r10, 0
+	                                    lwz      r3, 0x4c(r30)
+	                                    li       r22, 3
+	                                    bl
+	                                    setCallBack_CounterSlot__Q22og6ScreenFPQ29P2DScreen3MgrUxPUlUsbbP10JKRArchive
+	                                    lwz      r6, 0xbc(r30)
+	                                    slwi     r0, r22, 2
+	                                    lis      r5, 0x6B796F31@ha
+	                                    lis      r4, 0x0050686F@ha
+	                                    stwx     r3, r6, r0
+	                                    addi     r6, r5, 0x6B796F31@l
+	                                    addi     r5, r4, 0x0050686F@l
+	                                    addi     r7, r30, 0x104
+	                                    stw      r31, 8(r1)
+	                                    li       r8, 4
+	                                    li       r9, 1
+	                                    li       r10, 0
+	                                    lwz      r3, 0x4c(r30)
+	                                    li       r22, 4
+	                                    bl
+	                                    setCallBack_CounterSlot__Q22og6ScreenFPQ29P2DScreen3MgrUxPUlUsbbP10JKRArchive
+	                                    lwz      r6, 0xbc(r30)
+	                                    slwi     r0, r22, 2
+	                                    lis      r5, 0x61646531@ha
+	                                    lis      r4, 0x50686F6D@ha
+	                                    stwx     r3, r6, r0
+	                                    addi     r6, r5, 0x61646531@l
+	                                    addi     r5, r4, 0x50686F6D@l
+	                                    addi     r7, r30, 0x124
+	                                    stw      r31, 8(r1)
+	                                    li       r8, 8
+	                                    li       r9, 1
+	                                    li       r10, 0
+	                                    lwz      r3, 0x4c(r30)
+	                                    li       r22, 5
+	                                    bl
+	                                    setCallBack_CounterSlot__Q22og6ScreenFPQ29P2DScreen3MgrUxPUlUsbbP10JKRArchive
+	                                    lwz      r6, 0xbc(r30)
+	                                    slwi     r0, r22, 2
+	                                    lis      r5, 0x6B796F31@ha
+	                                    lis      r4, 0x00507375@ha
+	                                    stwx     r3, r6, r0
+	                                    addi     r6, r5, 0x6B796F31@l
+	                                    addi     r5, r4, 0x00507375@l
+	                                    addi     r7, r30, 0x108
+	                                    stw      r31, 8(r1)
+	                                    li       r8, 4
+	                                    li       r9, 1
+	                                    li       r10, 0
+	                                    lwz      r3, 0x4c(r30)
+	                                    li       r22, 6
+	                                    bl
+	                                    setCallBack_CounterSlot__Q22og6ScreenFPQ29P2DScreen3MgrUxPUlUsbbP10JKRArchive
+	                                    lwz      r6, 0xbc(r30)
+	                                    slwi     r0, r22, 2
+	                                    lis      r5, 0x61646531@ha
+	                                    lis      r4, 0x5073756D@ha
+	                                    stwx     r3, r6, r0
+	                                    addi     r6, r5, 0x61646531@l
+	                                    addi     r5, r4, 0x5073756D@l
+	                                    addi     r7, r30, 0x128
+	                                    stw      r31, 8(r1)
+	                                    li       r8, 8
+	                                    li       r9, 1
+	                                    li       r10, 0
+	                                    lwz      r3, 0x4c(r30)
+	                                    li       r22, 7
+	                                    bl
+	                                    setCallBack_CounterSlot__Q22og6ScreenFPQ29P2DScreen3MgrUxPUlUsbbP10JKRArchive
+	                                    lwz      r6, 0xbc(r30)
+	                                    slwi     r0, r22, 2
+	                                    lis      r5, 0x6B796F31@ha
+	                                    lis      r4, 0x50646570@ha
+	                                    stwx     r3, r6, r0
+	                                    addi     r6, r5, 0x6B796F31@l
+	                                    addi     r5, r4, 0x50646570@l
+	                                    addi     r7, r30, 0x10c
+	                                    stw      r31, 8(r1)
+	                                    li       r8, 4
+	                                    li       r9, 1
+	                                    li       r10, 0
+	                                    lwz      r3, 0x4c(r30)
+	                                    li       r22, 8
+	                                    bl
+	                                    setCallBack_CounterSlot__Q22og6ScreenFPQ29P2DScreen3MgrUxPUlUsbbP10JKRArchive
+	                                    lwz      r6, 0xbc(r30)
+	                                    slwi     r0, r22, 2
+	                                    lis      r5, 0x6D616431@ha
+	                                    lis      r4, 0x50646570@ha
+	                                    stwx     r3, r6, r0
+	                                    addi     r6, r5, 0x6D616431@l
+	                                    addi     r5, r4, 0x50646570@l
+	                                    addi     r7, r30, 0x12c
+	                                    stw      r31, 8(r1)
+	                                    li       r8, 8
+	                                    li       r9, 1
+	                                    li       r10, 0
+	                                    lwz      r3, 0x4c(r30)
+	                                    li       r22, 9
+	                                    bl
+	                                    setCallBack_CounterSlot__Q22og6ScreenFPQ29P2DScreen3MgrUxPUlUsbbP10JKRArchive
+	                                    lwz      r6, 0xbc(r30)
+	                                    slwi     r0, r22, 2
+	                                    lis      r5, 0x6B796F31@ha
+	                                    lis      r4, 0x50626170@ha
+	                                    stwx     r3, r6, r0
+	                                    addi     r6, r5, 0x6B796F31@l
+	                                    addi     r5, r4, 0x50626170@l
+	                                    addi     r7, r30, 0x110
+	                                    stw      r31, 8(r1)
+	                                    li       r8, 4
+	                                    li       r9, 1
+	                                    li       r10, 0
+	                                    lwz      r3, 0x4c(r30)
+	                                    li       r22, 0xa
+	                                    bl
+	                                    setCallBack_CounterSlot__Q22og6ScreenFPQ29P2DScreen3MgrUxPUlUsbbP10JKRArchive
+	                                    lwz      r6, 0xbc(r30)
+	                                    slwi     r0, r22, 2
+	                                    lis      r5, 0x6D616431@ha
+	                                    lis      r4, 0x50626170@ha
+	                                    stwx     r3, r6, r0
+	                                    addi     r6, r5, 0x6D616431@l
+	                                    addi     r5, r4, 0x50626170@l
+	                                    addi     r7, r30, 0x130
+	                                    stw      r31, 8(r1)
+	                                    li       r8, 8
+	                                    li       r9, 1
+	                                    li       r10, 0
+	                                    lwz      r3, 0x4c(r30)
+	                                    li       r22, 0xb
+	                                    bl
+	                                    setCallBack_CounterSlot__Q22og6ScreenFPQ29P2DScreen3MgrUxPUlUsbbP10JKRArchive
+	                                    lwz      r6, 0xbc(r30)
+	                                    slwi     r0, r22, 2
+	                                    lis      r5, 0x6B796F31@ha
+	                                    lis      r4, 0x50646F70@ha
+	                                    stwx     r3, r6, r0
+	                                    addi     r6, r5, 0x6B796F31@l
+	                                    addi     r5, r4, 0x50646F70@l
+	                                    addi     r7, r30, 0x114
+	                                    stw      r31, 8(r1)
+	                                    li       r8, 4
+	                                    li       r9, 1
+	                                    li       r10, 0
+	                                    lwz      r3, 0x4c(r30)
+	                                    li       r22, 0xc
+	                                    bl
+	                                    setCallBack_CounterSlot__Q22og6ScreenFPQ29P2DScreen3MgrUxPUlUsbbP10JKRArchive
+	                                    lwz      r6, 0xbc(r30)
+	                                    slwi     r0, r22, 2
+	                                    lis      r5, 0x6D616431@ha
+	                                    lis      r4, 0x50646F70@ha
+	                                    stwx     r3, r6, r0
+	                                    addi     r6, r5, 0x6D616431@l
+	                                    addi     r5, r4, 0x50646F70@l
+	                                    addi     r7, r30, 0x134
+	                                    stw      r31, 8(r1)
+	                                    li       r8, 8
+	                                    li       r9, 1
+	                                    li       r10, 0
+	                                    lwz      r3, 0x4c(r30)
+	                                    li       r22, 0xd
+	                                    bl
+	                                    setCallBack_CounterSlot__Q22og6ScreenFPQ29P2DScreen3MgrUxPUlUsbbP10JKRArchive
+	                                    lwz      r6, 0xbc(r30)
+	                                    slwi     r0, r22, 2
+	                                    lis      r5, 0x6B797031@ha
+	                                    lis      r4, 0x5064746F@ha
+	                                    stwx     r3, r6, r0
+	                                    addi     r6, r5, 0x6B797031@l
+	                                    addi     r5, r4, 0x5064746F@l
+	                                    addi     r7, r30, 0x118
+	                                    stw      r31, 8(r1)
+	                                    li       r8, 4
+	                                    li       r9, 0
+	                                    li       r10, 0
+	                                    lwz      r3, 0x4c(r30)
+	                                    bl
+	                                    setCallBack_CounterRV__Q22og6ScreenFPQ29P2DScreen3MgrUxPUlUsbbP10JKRArchive stw
+	                                    r3, 0xc0(r30) lis      r4, 0x6D647031@ha lis      r3, 0x5064746F@ha addi     r7,
+	                                    r30, 0x138 stw      r31, 8(r1) addi     r6, r4, 0x6D647031@l addi     r5, r3,
+	                                    0x5064746F@l li       r8, 8 lwz      r3, 0x4c(r30) li       r9, 0 li       r10,
+	                                    0 bl setCallBack_CounterRV__Q22og6ScreenFPQ29P2DScreen3MgrUxPUlUsbbP10JKRArchive
+	                                    stw      r3, 0xc4(r30)
+	                                    lwz      r3, 0xc0(r30)
+	                                    lwz      r12, 0(r3)
+	                                    lwz      r12, 0x24(r12)
+	                                    mtctr    r12
+	                                    bctrl
+	                                    lwz      r3, 0xc4(r30)
+	                                    lwz      r12, 0(r3)
+	                                    lwz      r12, 0x24(r12)
+	                                    mtctr    r12
+	                                    bctrl
+	                                    li       r23, 0
+	                                    li       r22, 0
+	                                    
+	                                    lbl_80406668:
+	                                    lwz      r3, 0xbc(r30)
+	                                    lfs      f1, lbl_805200DC@sda21(r2)
+	                                    lwzx     r3, r3, r22
+	                                    lfs      f2, lbl_805200E0@sda21(r2)
+	                                    lfs      f3, lbl_805200E4@sda21(r2)
+	                                    bl       setPuyoParam__Q32og6Screen20CallBack_CounterSlotFfff
+	                                    addi     r23, r23, 1
+	                                    addi     r22, r22, 4
+	                                    cmpwi    r23, 0xe
+	                                    blt      lbl_80406668
+	                                    li       r3, 0x1c
+	                                    bl       __nw__FUl
+	                                    or.      r0, r3, r3
+	                                    beq      lbl_804066A8
+	                                    bl       __ct__Q32og6Screen8ScaleMgrFv
+	                                    mr       r0, r3
+	                                    
+	                                    lbl_804066A8:
+	                                    lis      r3, arrow__Q22kh6Screen@ha
+	                                    stw      r0, 0xc8(r30)
+	                                    addi     r23, r3, arrow__Q22kh6Screen@l
+	                                    li       r25, 0
+	                                    li       r22, 0
+	                                    mr       r24, r23
+	                                    
+	                                    lbl_804066C0:
+	                                    lwz      r3, 0x4c(r30)
+	                                    lwz      r5, 0(r24)
+	                                    lwz      r12, 0(r3)
+	                                    lwz      r6, 4(r24)
+	                                    lwz      r12, 0x3c(r12)
+	                                    mtctr    r12
+	                                    bctrl
+	                                    addi     r25, r25, 1
+	                                    stb      r22, 0xb0(r3)
+	                                    cmpwi    r25, 6
+	                                    addi     r24, r24, 8
+	                                    blt      lbl_804066C0
+	                                    lwz      r29, 0x100(r27)
+	                                    li       r0, 2
+	                                    lwz      r26, 0x104(r27)
+	                                    mr       r4, r30
+	                                    lwz      r25, 0x108(r27)
+	                                    addi     r3, r1, 0x10
+	                                    lwz      r24, 0x10c(r27)
+	                                    li       r5, 0
+	                                    lwz      r22, 0x110(r27)
+	                                    lwz      r12, 0x114(r27)
+	                                    lwz      r11, 0x118(r27)
+	                                    lwz      r10, 0x11c(r27)
+	                                    lwz      r9, 0x120(r27)
+	                                    lwz      r8, 0x124(r27)
+	                                    lwz      r7, 0x128(r27)
+	                                    lwz      r6, 0x12c(r27)
+	                                    lfs      f0, lbl_805200E8@sda21(r2)
+	                                    stw      r29, 0x10(r1)
+	                                    lwz      r27, 0xcc(r30)
+	                                    fneg     f1, f0
+	                                    stw      r26, 0x14(r1)
+	                                    lwz      r26, 0xe4(r30)
+	                                    stw      r25, 0x18(r1)
+	                                    lwz      r25, 0xd0(r30)
+	                                    stw      r24, 0x1c(r1)
+	                                    lwz      r24, 0xe8(r30)
+	                                    stw      r22, 0x20(r1)
+	                                    lwz      r22, 0xd4(r30)
+	                                    stw      r12, 0x24(r1)
+	                                    lwz      r12, 0xec(r30)
+	                                    stw      r11, 0x28(r1)
+	                                    lwz      r11, 0xd8(r30)
+	                                    stw      r10, 0x2c(r1)
+	                                    lwz      r10, 0xf0(r30)
+	                                    stw      r9, 0x30(r1)
+	                                    lwz      r9, 0xdc(r30)
+	                                    stw      r8, 0x34(r1)
+	                                    lwz      r8, 0xf4(r30)
+	                                    stw      r7, 0x38(r1)
+	                                    lwz      r7, 0xe0(r30)
+	                                    stw      r6, 0x3c(r1)
+	                                    lwz      r6, 0xf8(r30)
+	                                    stw      r27, 0x10(r1)
+	                                    stw      r26, 0x14(r1)
+	                                    stw      r25, 0x18(r1)
+	                                    stw      r24, 0x1c(r1)
+	                                    stw      r22, 0x20(r1)
+	                                    stw      r12, 0x24(r1)
+	                                    stw      r11, 0x28(r1)
+	                                    stw      r10, 0x2c(r1)
+	                                    stw      r9, 0x30(r1)
+	                                    stw      r8, 0x34(r1)
+	                                    stw      r7, 0x38(r1)
+	                                    stw      r6, 0x3c(r1)
+	                                    mtctr    r0
+	                                    
+	                                    lbl_804067CC:
+	                                    lwz      r6, 0(r3)
+	                                    lwz      r0, 4(r3)
+	                                    cmplw    r6, r0
+	                                    bge      lbl_804067E4
+	                                    stfs     f0, 0x13c(r4)
+	                                    b        lbl_804067EC
+	                                    
+	                                    lbl_804067E4:
+	                                    ble      lbl_804067EC
+	                                    stfs     f1, 0x13c(r4)
+	                                    
+	                                    lbl_804067EC:
+	                                    lwz      r6, 8(r3)
+	                                    lwz      r0, 0xc(r3)
+	                                    cmplw    r6, r0
+	                                    bge      lbl_80406804
+	                                    stfs     f0, 0x140(r4)
+	                                    b        lbl_8040680C
+	                                    
+	                                    lbl_80406804:
+	                                    ble      lbl_8040680C
+	                                    stfs     f1, 0x140(r4)
+	                                    
+	                                    lbl_8040680C:
+	                                    lwz      r6, 0x10(r3)
+	                                    lwz      r0, 0x14(r3)
+	                                    cmplw    r6, r0
+	                                    bge      lbl_80406824
+	                                    stfs     f0, 0x144(r4)
+	                                    b        lbl_8040682C
+	                                    
+	                                    lbl_80406824:
+	                                    ble      lbl_8040682C
+	                                    stfs     f1, 0x144(r4)
+	                                    
+	                                    lbl_8040682C:
+	                                    addi     r3, r3, 0x18
+	                                    addi     r4, r4, 0xc
+	                                    addi     r5, r5, 2
+	                                    bdnz     lbl_804067CC
+	                                    lbz      r0, 0x40(r28)
+	                                    cmplwi   r0, 0
+	                                    beq      lbl_80406918
+	                                    li       r5, 0
+	                                    li       r6, 0
+	                                    stw      r5, 0x98(r30)
+	                                    li       r4, 1
+	                                    b        lbl_8040687C
+	                                    
+	                                    lbl_8040685C:
+	                                    lwz      r3, 0xac(r30)
+	                                    addi     r6, r6, 1
+	                                    lwzx     r3, r3, r5
+	                                    stb      r4, 0xac(r3)
+	                                    lwz      r3, 0xac(r30)
+	                                    lwzx     r3, r3, r5
+	                                    addi     r5, r5, 4
+	                                    stb      r4, 0xa9(r3)
+	                                    
+	                                    lbl_8040687C:
+	                                    lwz      r0, 0xb8(r30)
+	                                    cmpw     r6, r0
+	                                    blt      lbl_8040685C
+	                                    lwz      r3, 0xb0(r30)
+	                                    lwz      r12, 0(r3)
+	                                    lwz      r12, 0x20(r12)
+	                                    mtctr    r12
+	                                    bctrl
+	                                    lwz      r3, 0xb4(r30)
+	                                    lwz      r12, 0(r3)
+	                                    lwz      r12, 0x20(r12)
+	                                    mtctr    r12
+	                                    bctrl
+	                                    lwz      r3, 0x8c(r30)
+	                                    bl       fadein__Q32kh6Screen14khUtilFadePaneFv
+	                                    li       r24, 0
+	                                    li       r22, 1
+	                                    
+	                                    lbl_804068C0:
+	                                    cmpwi    r24, 5
+	                                    beq      lbl_804068DC
+	                                    lwz      r3, 0x3c(r28)
+	                                    slw      r0, r22, r24
+	                                    lbz      r3, 0x70(r3)
+	                                    and.     r0, r3, r0
+	                                    beq      lbl_804068FC
+	                                    
+	                                    lbl_804068DC:
+	                                    lwz      r3, 0x4c(r30)
+	                                    lwz      r5, 0(r23)
+	                                    lwz      r12, 0(r3)
+	                                    lwz      r6, 4(r23)
+	                                    lwz      r12, 0x3c(r12)
+	                                    mtctr    r12
+	                                    bctrl
+	                                    stb      r22, 0xb0(r3)
+	                                    
+	                                    lbl_804068FC:
+	                                    addi     r24, r24, 1
+	                                    addi     r23, r23, 8
+	                                    cmpwi    r24, 6
+	                                    blt      lbl_804068C0
+	                                    lwz      r0, 0x90(r30)
+	                                    ori      r0, r0, 0x40
+	                                    stw      r0, 0x90(r30)
+	                                    
+	                                    lbl_80406918:
+	                                    li       r0, 1
+	                                    stb      r0, 0x40(r28)
+	                                    lbz      r0, 0x41(r28)
+	                                    cmplwi   r0, 0
+	                                    beq      lbl_80406A38
+	                                    li       r0, 2
+	                                    li       r3, 0
+	                                    mtctr    r0
+	                                    
+	                                    lbl_80406938:
+	                                    lwz      r4, 0xbc(r30)
+	                                    li       r0, 1
+	                                    addi     r10, r3, 4
+	                                    addi     r9, r3, 8
+	                                    lwzx     r4, r4, r3
+	                                    addi     r8, r3, 0xc
+	                                    addi     r7, r3, 0x10
+	                                    addi     r6, r3, 0x14
+	                                    stb      r0, 0xac(r4)
+	                                    addi     r5, r3, 0x18
+	                                    lwz      r4, 0xbc(r30)
+	                                    lwzx     r4, r4, r3
+	                                    addi     r3, r3, 0x1c
+	                                    stb      r0, 0xa9(r4)
+	                                    lwz      r4, 0xbc(r30)
+	                                    lwzx     r4, r4, r10
+	                                    stb      r0, 0xac(r4)
+	                                    lwz      r4, 0xbc(r30)
+	                                    lwzx     r4, r4, r10
+	                                    stb      r0, 0xa9(r4)
+	                                    lwz      r4, 0xbc(r30)
+	                                    lwzx     r4, r4, r9
+	                                    stb      r0, 0xac(r4)
+	                                    lwz      r4, 0xbc(r30)
+	                                    lwzx     r4, r4, r9
+	                                    stb      r0, 0xa9(r4)
+	                                    lwz      r4, 0xbc(r30)
+	                                    lwzx     r4, r4, r8
+	                                    stb      r0, 0xac(r4)
+	                                    lwz      r4, 0xbc(r30)
+	                                    lwzx     r4, r4, r8
+	                                    stb      r0, 0xa9(r4)
+	                                    lwz      r4, 0xbc(r30)
+	                                    lwzx     r4, r4, r7
+	                                    stb      r0, 0xac(r4)
+	                                    lwz      r4, 0xbc(r30)
+	                                    lwzx     r4, r4, r7
+	                                    stb      r0, 0xa9(r4)
+	                                    lwz      r4, 0xbc(r30)
+	                                    lwzx     r4, r4, r6
+	                                    stb      r0, 0xac(r4)
+	                                    lwz      r4, 0xbc(r30)
+	                                    lwzx     r4, r4, r6
+	                                    stb      r0, 0xa9(r4)
+	                                    lwz      r4, 0xbc(r30)
+	                                    lwzx     r4, r4, r5
+	                                    stb      r0, 0xac(r4)
+	                                    lwz      r4, 0xbc(r30)
+	                                    lwzx     r4, r4, r5
+	                                    stb      r0, 0xa9(r4)
+	                                    bdnz     lbl_80406938
+	                                    lwz      r3, 0xc0(r30)
+	                                    lwz      r12, 0(r3)
+	                                    lwz      r12, 0x20(r12)
+	                                    mtctr    r12
+	                                    bctrl
+	                                    lwz      r3, 0xc4(r30)
+	                                    lwz      r12, 0(r3)
+	                                    lwz      r12, 0x20(r12)
+	                                    mtctr    r12
+	                                    bctrl
+	                                    lwz      r0, 0x90(r30)
+	                                    ori      r0, r0, 0x100
+	                                    stw      r0, 0x90(r30)
+	                                    
+	                                    lbl_80406A38:
+	                                    lmw      r22, 0x48(r1)
+	                                    lwz      r0, 0x74(r1)
+	                                    mtlr     r0
+	                                    addi     r1, r1, 0x70
+	                                    blr
+	                                        */
 }
 
 /*
@@ -4278,90 +3413,10 @@ blr
  */
 void ObjDayEndResultIncP::doDraw(Graphics& gfx)
 {
-	/*
-stwu     r1, -0x10(r1)
-mflr     r0
-stw      r0, 0x14(r1)
-stw      r31, 0xc(r1)
-mr       r31, r4
-stw      r30, 8(r1)
-mr       r30, r3
-addi     r3, r31, 0xbc
-lwz      r12, 0xbc(r4)
-lwz      r12, 0x14(r12)
-mtctr    r12
-bctrl
-lis      r3, msVal__Q32kh6Screen19ObjDayEndResultBase@ha
-lfs      f2, mstTuningTransX__Q29P2DScreen10Mgr_tuning@sda21(r2)
-addi     r3, r3, msVal__Q32kh6Screen19ObjDayEndResultBase@l
-lfs      f1, lbl_805200A8@sda21(r2)
-lfs      f3, 0x1c(r3)
-mr       r4, r31
-lfs      f0, mstTuningTransY__Q29P2DScreen10Mgr_tuning@sda21(r2)
-addi     r5, r31, 0xbc
-fadds    f2, f3, f2
-lwz      r3, 0x38(r30)
-fadds    f0, f1, f0
-stfs     f2, 0x140(r3)
-stfs     f0, 0x144(r3)
-lwz      r3, 0x38(r30)
-lwz      r12, 0(r3)
-lwz      r12, 0x9c(r12)
-mtctr    r12
-bctrl
-addi     r3, r31, 0xbc
-lwz      r12, 0xbc(r31)
-lwz      r12, 0x14(r12)
-mtctr    r12
-bctrl
-lis      r3, msVal__Q32kh6Screen19ObjDayEndResultBase@ha
-lfs      f2, mstTuningTransX__Q29P2DScreen10Mgr_tuning@sda21(r2)
-addi     r3, r3, msVal__Q32kh6Screen19ObjDayEndResultBase@l
-lfs      f1, lbl_805200A8@sda21(r2)
-lfs      f3, 0x14(r3)
-mr       r4, r31
-lfs      f0, mstTuningTransY__Q29P2DScreen10Mgr_tuning@sda21(r2)
-addi     r5, r31, 0xbc
-fadds    f2, f3, f2
-lwz      r3, 0x70(r30)
-fadds    f0, f1, f0
-stfs     f2, 0x140(r3)
-stfs     f0, 0x144(r3)
-lwz      r3, 0x70(r30)
-lwz      r12, 0(r3)
-lwz      r12, 0x9c(r12)
-mtctr    r12
-bctrl
-lis      r3, msVal__Q32kh6Screen19ObjDayEndResultBase@ha
-lfs      f2, mstTuningTransX__Q29P2DScreen10Mgr_tuning@sda21(r2)
-addi     r3, r3, msVal__Q32kh6Screen19ObjDayEndResultBase@l
-lfs      f1, lbl_805200A8@sda21(r2)
-lfs      f3, 0x18(r3)
-addi     r3, r31, 0xbc
-lfs      f0, mstTuningTransY__Q29P2DScreen10Mgr_tuning@sda21(r2)
-fadds    f2, f3, f2
-lwz      r4, 0x4c(r30)
-fadds    f0, f1, f0
-stfs     f2, 0x140(r4)
-stfs     f0, 0x144(r4)
-lwz      r12, 0xbc(r31)
-lwz      r12, 0x14(r12)
-mtctr    r12
-bctrl
-lwz      r3, 0x4c(r30)
-mr       r4, r31
-addi     r5, r31, 0xbc
-lwz      r12, 0(r3)
-lwz      r12, 0x9c(r12)
-mtctr    r12
-bctrl
-lwz      r0, 0x14(r1)
-lwz      r31, 0xc(r1)
-lwz      r30, 8(r1)
-mtlr     r0
-addi     r1, r1, 0x10
-blr
-	*/
+	ObjDayEndResultBase::doDraw(gfx);
+
+	gfx.m_orthoGraph.setPort();
+	_4C->draw(gfx, gfx.m_orthoGraph);
 }
 
 /*
@@ -4371,30 +3426,10 @@ blr
  */
 void ObjDayEndResultIncP::statusNormal()
 {
-	/*
-stwu     r1, -0x10(r1)
-mflr     r0
-stw      r0, 0x14(r1)
-stw      r31, 0xc(r1)
-mr       r31, r3
-bl       getGamePad__Q26Screen7ObjBaseCFv
-lwz      r0, 0x1c(r3)
-rlwinm.  r0, r0, 0, 0x1b, 0x1b
-beq      lbl_8040734C
-lwz      r3, spSysIF__8PSSystem@sda21(r13)
-li       r4, 0x1811
-li       r5, 0
-bl       playSystemSe__Q28PSSystem5SysIFFUlUl
-li       r0, 1
-stw      r0, 0x98(r31)
-
-lbl_8040734C:
-lwz      r0, 0x14(r1)
-lwz      r31, 0xc(r1)
-mtlr     r0
-addi     r1, r1, 0x10
-blr
-	*/
+	if (getGamePad()->m_padButton.m_buttonDown & 0x10) {
+		PSSystem::spSysIF->playSystemSe(PSSE_SY_MESSAGE_EXIT, 0);
+		m_status = INCPSTATUS_Fadeout;
+	}
 }
 
 /*
@@ -4489,30 +3524,10 @@ blr
  */
 void ObjDayEndResultIncP::statusDecP()
 {
-	/*
-stwu     r1, -0x10(r1)
-mflr     r0
-stw      r0, 0x14(r1)
-stw      r31, 0xc(r1)
-mr       r31, r3
-bl       getGamePad__Q26Screen7ObjBaseCFv
-lwz      r0, 0x1c(r3)
-rlwinm.  r0, r0, 0, 0x1b, 0x1b
-beq      lbl_8040749C
-lwz      r3, spSysIF__8PSSystem@sda21(r13)
-li       r4, 0x1811
-li       r5, 0
-bl       playSystemSe__Q28PSSystem5SysIFFUlUl
-li       r0, 3
-stw      r0, 0x98(r31)
-
-lbl_8040749C:
-lwz      r0, 0x14(r1)
-lwz      r31, 0xc(r1)
-mtlr     r0
-addi     r1, r1, 0x10
-blr
-	*/
+	if (getGamePad()->m_padButton.m_buttonDown & 0x10) {
+		PSSystem::spSysIF->playSystemSe(PSSE_SY_MESSAGE_EXIT, 0);
+		m_status = INCPSTATUS_Fadein;
+	}
 }
 
 /*
@@ -4522,37 +3537,19 @@ blr
  */
 void ObjDayEndResultIncP::statusFadein()
 {
-	/*
-lfs      f1, 0xa8(r3)
-lwz      r4, 0xa0(r3)
-lfs      f0, lbl_805200D8@sda21(r2)
-stfs     f1, 8(r4)
-lfs      f1, 0xa8(r3)
-fcmpo    cr0, f1, f0
-ble      lbl_804074DC
-lfs      f0, lbl_805200B0@sda21(r2)
-fsubs    f0, f1, f0
-stfs     f0, 0xa8(r3)
-blr
+	_A0->m_currentFrame = _A8;
+	if (_A8 > 404.0f) {
+		_A8--;
+		return;
+	}
 
-lbl_804074DC:
-lfs      f1, 0xa4(r3)
-lwz      r4, 0x9c(r3)
-lfs      f0, lbl_805200D4@sda21(r2)
-stfs     f1, 8(r4)
-lfs      f1, 0xa4(r3)
-fcmpo    cr0, f1, f0
-ble      lbl_80407508
-lfs      f0, lbl_805200B0@sda21(r2)
-fsubs    f0, f1, f0
-stfs     f0, 0xa4(r3)
-blr
+	_9C->m_currentFrame = _A4;
+	if (_A4 > 399.0f) {
+		_A4--;
+		return;
+	}
 
-lbl_80407508:
-li       r0, 0
-stw      r0, 0x98(r3)
-blr
-	*/
+	m_status = INCPSTATUS_Normal;
 }
 
 /*
@@ -5849,21 +4846,6 @@ blr
 
 /*
  * --INFO--
- * Address:	8040866C
- * Size:	000010
- */
-ObjDayEndResultMail::MailIconAnm::MailIconAnm()
-{
-	/*
-li       r0, 0
-stw      r0, 0(r3)
-stw      r0, 4(r3)
-blr
-	*/
-}
-
-/*
- * --INFO--
  * Address:	8040867C
  * Size:	000170
  */
@@ -6960,63 +5942,23 @@ blr
  */
 void ObjDayEndResultMail::statusOpenH()
 {
-	/*
-stwu     r1, -0x10(r1)
-mflr     r0
-lis      r4, msVal__Q32kh6Screen19ObjDayEndResultBase@ha
-lfs      f4, lbl_805200B0@sda21(r2)
-stw      r0, 0x14(r1)
-stw      r31, 0xc(r1)
-mr       r31, r3
-addi     r3, r4, msVal__Q32kh6Screen19ObjDayEndResultBase@l
-lfs      f1, 0xe4(r31)
-lfs      f0, 0x48(r3)
-fmuls    f1, f1, f0
-lfs      f0, lbl_805200A8@sda21(r2)
-stfs     f1, 0xe4(r31)
-lfs      f1, 0xdc(r31)
-lfs      f2, 0x44(r3)
-fsubs    f3, f4, f1
-lfs      f1, 0xe4(r31)
-fmadds   f1, f3, f2, f1
-stfs     f1, 0xe4(r31)
-lfs      f2, 0xdc(r31)
-lfs      f1, 0xe4(r31)
-fadds    f1, f2, f1
-stfs     f1, 0xdc(r31)
-lfs      f1, 0xe4(r31)
-fcmpo    cr0, f1, f0
-bge      lbl_8040944C
-lfs      f1, 0xdc(r31)
-lfs      f0, lbl_805200FC@sda21(r2)
-fsubs    f1, f1, f4
-fcmpo    cr0, f1, f0
-bge      lbl_8040944C
-stfs     f4, 0xdc(r31)
-lwz      r3, 0x8c(r31)
-bl       fadein__Q32kh6Screen14khUtilFadePaneFv
-li       r0, 0
-stw      r0, 0x98(r31)
+	_E4 *= ObjDayEndResultBase::msVal._48;
+	_E4 += (1.0f - _DC) * ObjDayEndResultBase::msVal._44;
+	_DC += _E4;
 
-lbl_8040944C:
-lwz      r3, 0xe8(r31)
-addi     r0, r3, 0x20
-stw      r0, 0xe8(r31)
-lwz      r0, 0xe8(r31)
-cmpwi    r0, 0xff
-ble      lbl_8040946C
-li       r0, 0xff
-stw      r0, 0xe8(r31)
+	if (_E4 < 0.0f && (_DC - 1.0f) < 0.1f) {
+		_DC = 1.0f;
+		m_nextBtnFadePane->fadein();
+		m_status = MAILSTATUS_Normal;
+	}
 
-lbl_8040946C:
-mr       r3, r31
-bl       changeAlpha__Q32kh6Screen19ObjDayEndResultMailFv
-lwz      r0, 0x14(r1)
-lwz      r31, 0xc(r1)
-mtlr     r0
-addi     r1, r1, 0x10
-blr
-	*/
+	_E8 += 32;
+
+	if (_E8 > 255) {
+		_E8 = 255;
+	}
+
+	changeAlpha();
 }
 
 /*
@@ -7327,36 +6269,7 @@ blr
  * Address:	80409908
  * Size:	000064
  */
-void ObjDayEndResultMail::changeAlpha()
-{
-	/*
-stwu     r1, -0x10(r1)
-mflr     r0
-lis      r4, 0x74656D57@ha
-li       r5, 0x4e69
-stw      r0, 0x14(r1)
-addi     r6, r4, 0x74656D57@l
-stw      r31, 0xc(r1)
-mr       r31, r3
-lwz      r3, 0x9c(r3)
-lwz      r12, 0(r3)
-lwz      r12, 0x3c(r12)
-mtctr    r12
-bctrl
-lwz      r12, 0(r3)
-lwz      r0, 0xe8(r31)
-lwz      r12, 0x24(r12)
-subfic   r0, r0, 0xff
-clrlwi   r4, r0, 0x18
-mtctr    r12
-bctrl
-lwz      r0, 0x14(r1)
-lwz      r31, 0xc(r1)
-mtlr     r0
-addi     r1, r1, 0x10
-blr
-	*/
-}
+void ObjDayEndResultMail::changeAlpha() { _9C->search('NitemW')->setAlpha(255 - _E8); }
 
 /*
  * --INFO--
@@ -7365,123 +6278,19 @@ blr
  */
 void ObjDayEndResultMail::doDraw(Graphics& gfx)
 {
-	/*
-stwu     r1, -0x10(r1)
-mflr     r0
-stw      r0, 0x14(r1)
-stw      r31, 0xc(r1)
-mr       r31, r4
-stw      r30, 8(r1)
-mr       r30, r3
-addi     r3, r31, 0xbc
-lwz      r12, 0xbc(r4)
-lwz      r12, 0x14(r12)
-mtctr    r12
-bctrl
-lis      r3, msVal__Q32kh6Screen19ObjDayEndResultBase@ha
-lfs      f2, mstTuningTransX__Q29P2DScreen10Mgr_tuning@sda21(r2)
-addi     r3, r3, msVal__Q32kh6Screen19ObjDayEndResultBase@l
-lfs      f1, lbl_805200A8@sda21(r2)
-lfs      f3, 0x1c(r3)
-mr       r4, r31
-lfs      f0, mstTuningTransY__Q29P2DScreen10Mgr_tuning@sda21(r2)
-addi     r5, r31, 0xbc
-fadds    f2, f3, f2
-lwz      r3, 0x38(r30)
-fadds    f0, f1, f0
-stfs     f2, 0x140(r3)
-stfs     f0, 0x144(r3)
-lwz      r3, 0x38(r30)
-lwz      r12, 0(r3)
-lwz      r12, 0x9c(r12)
-mtctr    r12
-bctrl
-addi     r3, r31, 0xbc
-lwz      r12, 0xbc(r31)
-lwz      r12, 0x14(r12)
-mtctr    r12
-bctrl
-lis      r3, msVal__Q32kh6Screen19ObjDayEndResultBase@ha
-lfs      f2, mstTuningTransX__Q29P2DScreen10Mgr_tuning@sda21(r2)
-addi     r3, r3, msVal__Q32kh6Screen19ObjDayEndResultBase@l
-lfs      f1, lbl_805200A8@sda21(r2)
-lfs      f3, 0x14(r3)
-mr       r4, r31
-lfs      f0, mstTuningTransY__Q29P2DScreen10Mgr_tuning@sda21(r2)
-addi     r5, r31, 0xbc
-fadds    f2, f3, f2
-lwz      r3, 0x70(r30)
-fadds    f0, f1, f0
-stfs     f2, 0x140(r3)
-stfs     f0, 0x144(r3)
-lwz      r3, 0x70(r30)
-lwz      r12, 0(r3)
-lwz      r12, 0x9c(r12)
-mtctr    r12
-bctrl
-lis      r3, msVal__Q32kh6Screen19ObjDayEndResultBase@ha
-lfs      f2, mstTuningTransX__Q29P2DScreen10Mgr_tuning@sda21(r2)
-addi     r3, r3, msVal__Q32kh6Screen19ObjDayEndResultBase@l
-lfs      f1, lbl_805200A8@sda21(r2)
-lfs      f3, 0x18(r3)
-addi     r3, r31, 0xbc
-lfs      f0, mstTuningTransY__Q29P2DScreen10Mgr_tuning@sda21(r2)
-fadds    f2, f3, f2
-lwz      r4, 0x4c(r30)
-fadds    f0, f1, f0
-stfs     f2, 0x140(r4)
-stfs     f0, 0x144(r4)
-lwz      r12, 0xbc(r31)
-lwz      r12, 0x14(r12)
-mtctr    r12
-bctrl
-lwz      r3, 0x4c(r30)
-mr       r4, r31
-addi     r5, r31, 0xbc
-lwz      r12, 0(r3)
-lwz      r12, 0x9c(r12)
-mtctr    r12
-bctrl
-addi     r3, r31, 0xbc
-lwz      r12, 0xbc(r31)
-lwz      r12, 0x14(r12)
-mtctr    r12
-bctrl
-lwz      r3, 0x9c(r30)
-mr       r4, r31
-addi     r5, r31, 0xbc
-lwz      r12, 0(r3)
-lwz      r12, 0x9c(r12)
-mtctr    r12
-bctrl
-lwz      r0, 0x90(r30)
-rlwinm.  r0, r0, 0, 0x1d, 0x1d
-beq      lbl_80409B18
-addi     r3, r31, 0x190
-lwz      r12, 0x190(r31)
-lwz      r12, 0x14(r12)
-mtctr    r12
-bctrl
-lwz      r3, 0x4c(r30)
-lis      r5, 0x706F696E@ha
-lis      r4, 0x4E736574@ha
-lwz      r12, 0(r3)
-addi     r6, r5, 0x706F696E@l
-addi     r5, r4, 0x4E736574@l
-lwz      r12, 0x3c(r12)
-mtctr    r12
-bctrl
-lwz      r3, 0xa4(r30)
-bl       draw__Q33ebi4Save4TMgrFv
+	ObjDayEndResultBase::doDraw(gfx);
 
-lbl_80409B18:
-lwz      r0, 0x14(r1)
-lwz      r31, 0xc(r1)
-lwz      r30, 8(r1)
-mtlr     r0
-addi     r1, r1, 0x10
-blr
-	*/
+	gfx.m_orthoGraph.setPort();
+	_4C->draw(gfx, gfx.m_orthoGraph);
+
+	gfx.m_orthoGraph.setPort();
+	_9C->draw(gfx, gfx.m_orthoGraph);
+
+	if (m_flags & 0x4) {
+		gfx.m_perspGraph.setPort();
+		_4C->search('Nsetpoin');
+		m_saveMgr->draw();
+	}
 }
 
 /*
@@ -7674,7 +6483,7 @@ blr
  * Address:	80409DB8
  * Size:	0003BC
  */
-void ObjDayEndResultMail::setCallBackMessage(P2DScreen::Mgr*, J2DPane*)
+void ObjDayEndResultMail::setCallBackMessage(P2DScreen::Mgr* mgr, J2DPane* pane)
 {
 	/*
 stwu     r1, -0x40(r1)
@@ -7959,8 +6768,9 @@ blr
  * Address:	8040A174
  * Size:	000024
  */
-void ObjDayEndResultMail::setCallBackMessage(P2DScreen::Mgr*)
+void ObjDayEndResultMail::setCallBackMessage(P2DScreen::Mgr* mgr)
 {
+	setCallBackMessage(mgr, mgr);
 	/*
 stwu     r1, -0x10(r1)
 mflr     r0
@@ -8016,34 +6826,13 @@ blr
  */
 ObjDayEndResultTitl::ObjDayEndResultTitl()
 {
-	/*
-stwu     r1, -0x10(r1)
-mflr     r0
-stw      r0, 0x14(r1)
-stw      r31, 0xc(r1)
-mr       r31, r3
-bl       __ct__Q26Screen7ObjBaseFv
-lis      r3, __vt__Q32kh6Screen19ObjDayEndResultTitl@ha
-li       r0, 0
-addi     r3, r3, __vt__Q32kh6Screen19ObjDayEndResultTitl@l
-lfs      f0, lbl_805200A8@sda21(r2)
-stw      r3, 0(r31)
-addi     r4, r3, 0x10
-mr       r3, r31
-stw      r4, 0x18(r31)
-stw      r0, 0x38(r31)
-stw      r0, 0x3c(r31)
-stw      r0, 0x40(r31)
-stfs     f0, 0x48(r31)
-stfs     f0, 0x44(r31)
-stw      r0, 0x4c(r31)
-stb      r0, 0x50(r31)
-lwz      r31, 0xc(r1)
-lwz      r0, 0x14(r1)
-mtlr     r0
-addi     r1, r1, 0x10
-blr
-	*/
+	_38 = nullptr;
+	_3C = nullptr;
+	_40 = nullptr;
+	_48 = 0.0f;
+	_44 = 0.0f;
+	_4C = 0;
+	_50 = 0;
 }
 
 /*

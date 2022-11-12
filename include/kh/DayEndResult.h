@@ -273,6 +273,8 @@ struct ObjDayEndResultBase : public ::Screen::ObjBase {
 	void setFadeinFrm();
 	void setFadeoutFrm();
 
+	inline bool isFlag(u32 flag) const { return m_flags & flag; }
+
 	// _00     = VTBL1
 	// _18     = VTBL2
 	// _00-_38 = Screen::ObjBase
@@ -361,6 +363,15 @@ struct ObjDayEndResultBase : public ::Screen::ObjBase {
 };
 
 struct ObjDayEndResultIncP : public ObjDayEndResultBase {
+	enum Status {
+		INCPSTATUS_Normal   = 0,
+		INCPSTATUS_Fadeout  = 1, // probably this order?
+		INCPSTATUS_DecP     = 2,
+		INCPSTATUS_Fadein   = 3,
+		INCPSTATUS_Slot     = 4,
+		INCPSTATUS_DecPSlot = 5,
+	};
+
 	ObjDayEndResultIncP();
 
 	virtual ~ObjDayEndResultIncP() { }                          // _08 (weak)
@@ -395,7 +406,7 @@ struct ObjDayEndResultIncP : public ObjDayEndResultBase {
 	// _00     = VTBL1
 	// _18     = VTBL2
 	// _00-_98 = ObjDayEndResultBase
-	int m_stateID;                          // _98, enum?
+	int m_status;                           // _98
 	J2DAnmTransform* _9C;                   // _9C
 	J2DAnmTransform* _A0;                   // _A0
 	f32 _A4;                                // _A4
@@ -441,8 +452,23 @@ struct ObjDayEndResultIncP : public ObjDayEndResultBase {
 };
 
 struct ObjDayEndResultMail : public ObjDayEndResultBase {
+	enum Status {
+		MAILSTATUS_Normal          = 0,
+		MAILSTATUS_FadeoutToLeft   = 1, // probably this order?
+		MAILSTATUS_FadeinFromLeft  = 2,
+		MAILSTATUS_FadeoutToRight  = 3,
+		MAILSTATUS_FadeinFromRight = 4,
+		MAILSTATUS_WaitOpen        = 5,
+		MAILSTATUS_OpenW           = 6,
+		MAILSTATUS_OpenH           = 7,
+	};
+
 	struct MailIconAnm {
-		MailIconAnm();
+		MailIconAnm()
+		{
+			_00 = 0;
+			_04 = 0;
+		}
 
 		u32 _00; // _00, unknown
 		u32 _04; // _04, unknown
@@ -485,7 +511,7 @@ struct ObjDayEndResultMail : public ObjDayEndResultBase {
 	// _00     = VTBL1
 	// _18     = VTBL2
 	// _00-_98 = ObjDayEndResultBase
-	int m_status;                         // _98
+	Status m_status;                      // _98
 	P2DScreen::Mgr_tuning* _9C;           // _9C
 	J2DAnmTransform* _A0;                 // _A0
 	ebi::Save::TMgr* m_saveMgr;           // _A4
@@ -566,14 +592,14 @@ struct ObjDayEndResultItem : public ObjDayEndResultBase {
 	u32 _CC;                                  // _CC
 	u32 _D0;                                  // _D0
 	f32 _D4;                                  // _D4
-	u32 _D8;                                  // _D8
+	int _D8;                                  // _D8
 	f32 _DC;                                  // _DC
 	int _E0;                                  // _E0
-	u32 _E4;                                  // _E4
-	uint _E8;                                 // _E8
+	int _E4;                                  // _E4
+	int _E8;                                  // _E8
 	u32 _EC;                                  // _EC
 	u32 _F0;                                  // _F0
-	u32 _F4;                                  // _F4
+	int _F4;                                  // _F4
 	u8 _F8;                                   // _F8
 	u8 _F9;                                   // _F9
 };
