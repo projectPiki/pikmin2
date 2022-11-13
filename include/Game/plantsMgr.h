@@ -553,10 +553,8 @@ namespace Nekojarashi {
 struct Obj : public Plants::Obj {
 	Obj() { }
 
-	virtual void doEntry();                      // _40
-	virtual void getLODCylinder(Sys::Cylinder&); // _144 (weak)
-	virtual ~Obj() { }                           // _1BC (weak)
-	virtual void setParameters()                 // _228 (weak)
+	virtual void doEntry();      // _40
+	virtual void setParameters() // _228 (weak)
 	{
 		EnemyBase::setParameters();
 		Vector3f pos = m_position;
@@ -564,6 +562,20 @@ struct Obj : public Plants::Obj {
 		m_curLodSphere.m_position = pos;
 		m_lodParm.m_isCylinder    = true;
 	}
+	virtual void getLODCylinder(Sys::Cylinder& cylinder) // _144 (weak)
+	{
+		Vector3f pos = m_position;
+		Vector3f vec1, vec2;
+
+		pos.x -= 50.0f * pikmin2_sinf(m_faceDir);
+		pos.z -= 50.0f * pikmin2_cosf(m_faceDir);
+		vec2 = pos;
+		vec1 = vec2;
+		vec1.y += static_cast<EnemyParmsBase*>(m_parms)->m_general.m_privateRadius.m_value;
+
+		cylinder.set(vec1, vec2, static_cast<EnemyParmsBase*>(m_parms)->m_general.m_homeRadius.m_value);
+	}
+	virtual ~Obj() { }                                 // _1BC (weak)
 	virtual EnemyTypeID::EEnemyTypeID getEnemyTypeID() // _258 (weak)
 	{
 		return EnemyTypeID::EnemyID_Nekojarashi;

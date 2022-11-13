@@ -540,13 +540,6 @@ struct EnemyBase : public Creature, public SysShape::MotionListener, virtual pub
 		return homeRad * homeRad;
 	}
 
-	inline void getCylinderPoints(Vector3f& pos1, Vector3f& pos2)
-	{
-		pos1   = m_position;
-		pos2   = m_position;
-		pos2.y = pos1.y + static_cast<EnemyParmsBase*>(m_parms)->m_general.m_privateRadius.m_value;
-	}
-
 	// Creature: _000 - _178
 	// MotionListener: _178 - _17C
 	// ptr to PelletView: _17C

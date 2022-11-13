@@ -974,7 +974,7 @@ MORIMURA:=\
 	$(BUILD_DIR)/asm/plugProjectMorimuraU/panModoki.o\
 	$(BUILD_DIR)/src/plugProjectMorimuraU/plantsMgr.o\
 	$(BUILD_DIR)/src/plugProjectMorimuraU/plantsAnimator.o\
-	$(BUILD_DIR)/asm/plugProjectMorimuraU/plants.o\
+	$(BUILD_DIR)/src/plugProjectMorimuraU/plants.o\
 	$(BUILD_DIR)/asm/plugProjectMorimuraU/kingChappyState.o\
 	$(BUILD_DIR)/src/plugProjectMorimuraU/kingChappyMgr.o\
 	$(BUILD_DIR)/asm/plugProjectMorimuraU/kingChappy.o\

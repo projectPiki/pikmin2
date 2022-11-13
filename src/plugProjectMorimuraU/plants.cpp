@@ -246,7 +246,18 @@ void Watage::Obj::doEntry()
  */
 void Watage::Obj::touched()
 {
-	Plants::Obj::touched();
+	if (m_spawnsSpectralids) {
+		m_spawnsSpectralids   = false;
+		ShijimiChou::Mgr* mgr = static_cast<ShijimiChou::Mgr*>(generalEnemyMgr->getEnemyMgr(EnemyTypeID::EnemyID_ShijimiChou));
+		if (mgr) {
+			EnemyBirthArg birthArg;
+			birthArg.m_position   = m_position;
+			birthArg.m_position.y = m_position.y + static_cast<EnemyParmsBase*>(m_parms)->m_general.m_lifeMeterHeight.m_value;
+			birthArg.m_faceDir    = 0.0f;
+
+			mgr->createGroupByPlants(birthArg, 5);
+		}
+	}
 
 	efx::TWatage watageEFX;
 	efx::Arg arg(m_position);
@@ -312,102 +323,6 @@ void DiodeGreen::Obj::doEntry()
 	gameSystem->setDrawBuffer(7);
 	EnemyBase::doEntry();
 	gameSystem->setDrawBuffer(0);
-}
-
-/*
- * --INFO--
- * Address:	80358FA4
- * Size:	000114
- */
-void Nekojarashi::Obj::getLODCylinder(Sys::Cylinder& cylinder)
-{
-	Vector3f pos = m_position;
-	Vector3f vec1, vec2;
-
-	f32 x = -(50.0f * pikmin2_sinf(m_faceDir) - pos.x);
-	f32 z = -(50.0f * pikmin2_cosf(m_faceDir) - pos.z);
-	vec2  = Vector3f(x, pos.y, z);
-
-	vec1 = vec2;
-	vec1.y += static_cast<EnemyParmsBase*>(m_parms)->m_general.m_privateRadius.m_value;
-	cylinder.set(vec1, vec2, static_cast<EnemyParmsBase*>(m_parms)->m_general.m_homeRadius.m_value);
-	/*
-	stwu     r1, -0x40(r1)
-	mflr     r0
-	lfs      f0, lbl_8051E558@sda21(r2)
-	mr       r7, r4
-	stw      r0, 0x44(r1)
-	lfs      f2, lbl_8051E55C@sda21(r2)
-	lfs      f6, 0x1fc(r3)
-	lfs      f3, 0x18c(r3)
-	fcmpo    cr0, f6, f0
-	lfs      f4, 0x190(r3)
-	lfs      f5, 0x194(r3)
-	bge      lbl_80359000
-	lfs      f0, lbl_8051E560@sda21(r2)
-	lis      r4, sincosTable___5JMath@ha
-	addi     r4, r4, sincosTable___5JMath@l
-	fmuls    f0, f6, f0
-	fctiwz   f0, f0
-	stfd     f0, 0x20(r1)
-	lwz      r0, 0x24(r1)
-	rlwinm   r0, r0, 3, 0x12, 0x1c
-	lfsx     f0, r4, r0
-	fneg     f1, f0
-	b        lbl_80359024
-
-lbl_80359000:
-	lfs      f0, lbl_8051E564@sda21(r2)
-	lis      r4, sincosTable___5JMath@ha
-	addi     r4, r4, sincosTable___5JMath@l
-	fmuls    f0, f6, f0
-	fctiwz   f0, f0
-	stfd     f0, 0x28(r1)
-	lwz      r0, 0x2c(r1)
-	rlwinm   r0, r0, 3, 0x12, 0x1c
-	lfsx     f1, r4, r0
-
-lbl_80359024:
-	lfs      f0, lbl_8051E558@sda21(r2)
-	fnmsubs  f3, f2, f1, f3
-	fcmpo    cr0, f6, f0
-	bge      lbl_80359038
-	fneg     f6, f6
-
-lbl_80359038:
-	lfs      f0, lbl_8051E564@sda21(r2)
-	lis      r4, sincosTable___5JMath@ha
-	addi     r6, r4, sincosTable___5JMath@l
-	lfs      f2, lbl_8051E55C@sda21(r2)
-	fmuls    f0, f6, f0
-	stfs     f3, 8(r1)
-	frsp     f1, f4
-	addi     r4, r1, 0x14
-	stfs     f4, 0xc(r1)
-	addi     r5, r1, 8
-	fctiwz   f0, f0
-	stfs     f3, 0x14(r1)
-	stfs     f4, 0x18(r1)
-	stfd     f0, 0x30(r1)
-	lwz      r0, 0x34(r1)
-	rlwinm   r0, r0, 3, 0x12, 0x1c
-	add      r6, r6, r0
-	lfs      f0, 4(r6)
-	fnmsubs  f5, f2, f0, f5
-	stfs     f5, 0x10(r1)
-	stfs     f5, 0x1c(r1)
-	lwz      r6, 0xc0(r3)
-	mr       r3, r7
-	lfs      f0, 0x3ac(r6)
-	fadds    f0, f1, f0
-	stfs     f0, 0x18(r1)
-	lfs      f1, 0x384(r6)
-	bl       "set__Q23Sys8CylinderFRC10Vector3<f>RC10Vector3<f>f"
-	lwz      r0, 0x44(r1)
-	mtlr     r0
-	addi     r1, r1, 0x40
-	blr
-	*/
 }
 
 } // namespace Game
