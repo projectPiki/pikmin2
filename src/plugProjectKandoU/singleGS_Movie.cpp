@@ -73,42 +73,37 @@ void MovieState::init(SingleGameSection* gs, StateArg* arg)
 	_10 = *(THPPlayer::EMovieIndex*)arg;
 	switch (_10) {
 	case THPPlayer::OPENING_1:
-		char** openingStringsPtr = opening_strings;
-		dummyplayer.m_msgs       = openingStringsPtr;
-		dummyplayer.m_count      = 0;
+		dummyplayer.m_msgs  = opening_strings;
+		dummyplayer.m_count = 0;
 		for (int i = 0; ARRAY_SIZE(opening_strings); i++) {
 			dummyplayer.m_count++;
 		}
 		break;
 	case THPPlayer::OPENING_2:
-		char** endingStringsPtr = ending_strings;
-		dummyplayer.m_msgs      = endingStringsPtr;
-		dummyplayer.m_count     = 0;
+		dummyplayer.m_msgs  = ending_strings;
+		dummyplayer.m_count = 0;
 		for (int i = 0; ARRAY_SIZE(ending_strings); i++) {
 			dummyplayer.m_count++;
 		}
 		break;
 	case THPPlayer::ENDING_1:
-		char** endingCompStringsPtr = endingcomplete_strings;
-		dummyplayer.m_msgs          = endingCompStringsPtr;
-		dummyplayer.m_count         = 0;
+		dummyplayer.m_msgs  = endingcomplete_strings;
+		dummyplayer.m_count = 0;
 		for (int i = 0; ARRAY_SIZE(endingcomplete_strings); i++) {
 			dummyplayer.m_count++;
 		}
 		break;
 	case THPPlayer::ENDING_2:
-		char** staffRollStringsPtr = staffroll_strings;
-		dummyplayer.m_msgs         = staffRollStringsPtr;
-		dummyplayer.m_count        = 0;
+		dummyplayer.m_msgs  = staffroll_strings;
+		dummyplayer.m_count = 0;
 		for (int i = 0; i < ARRAY_SIZE(staffroll_strings); i++) {
 			dummyplayer.m_count++;
 		}
 		break;
 	case THPPlayer::STAFF_ROLL:
-		char** mezaseStringsPtr = mezase_strings;
-		dummyplayer.m_msgs      = mezaseStringsPtr;
-		dummyplayer.m_count     = 0;
-		for (int i = 0; mezaseStringsPtr[i]; i++) {
+		dummyplayer.m_msgs  = mezase_strings;
+		dummyplayer.m_count = 0;
+		for (int i = 0; ARRAY_SIZE(mezase_strings); i++) {
 			dummyplayer.m_count++;
 		}
 		break;
