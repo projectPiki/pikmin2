@@ -76,7 +76,7 @@ void MovieState::init(SingleGameSection* gs, StateArg* arg)
 		char** openingStringsPtr = opening_strings;
 		dummyplayer.m_msgs       = openingStringsPtr;
 		dummyplayer.m_count      = 0;
-		for (int i = 0; openingStringsPtr[i]; i++) {
+		for (int i = 0; ARRAY_SIZE(opening_strings); i++) {
 			dummyplayer.m_count++;
 		}
 		break;
@@ -84,7 +84,7 @@ void MovieState::init(SingleGameSection* gs, StateArg* arg)
 		char** endingStringsPtr = ending_strings;
 		dummyplayer.m_msgs      = endingStringsPtr;
 		dummyplayer.m_count     = 0;
-		for (int i = 0; endingStringsPtr[i]; i++) {
+		for (int i = 0; ARRAY_SIZE(ending_strings); i++) {
 			dummyplayer.m_count++;
 		}
 		break;
@@ -92,7 +92,7 @@ void MovieState::init(SingleGameSection* gs, StateArg* arg)
 		char** endingCompStringsPtr = endingcomplete_strings;
 		dummyplayer.m_msgs          = endingCompStringsPtr;
 		dummyplayer.m_count         = 0;
-		for (int i = 0; endingCompStringsPtr[i]; i++) {
+		for (int i = 0; ARRAY_SIZE(endingcomplete_strings); i++) {
 			dummyplayer.m_count++;
 		}
 		break;
@@ -100,7 +100,7 @@ void MovieState::init(SingleGameSection* gs, StateArg* arg)
 		char** staffRollStringsPtr = staffroll_strings;
 		dummyplayer.m_msgs         = staffRollStringsPtr;
 		dummyplayer.m_count        = 0;
-		for (int i = 0; staffRollStringsPtr[i]; i++) {
+		for (int i = 0; i < ARRAY_SIZE(staffroll_strings); i++) {
 			dummyplayer.m_count++;
 		}
 		break;
@@ -111,6 +111,8 @@ void MovieState::init(SingleGameSection* gs, StateArg* arg)
 		for (int i = 0; mezaseStringsPtr[i]; i++) {
 			dummyplayer.m_count++;
 		}
+		break;
+	default:
 		break;
 	}
 
