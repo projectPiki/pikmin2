@@ -51,6 +51,11 @@ struct ObjFinalFloor : public ::Screen::ObjBase {
 };
 
 struct SceneFinalFloor : public ::Screen::SceneBase {
+	inline SceneFinalFloor()
+	    : m_objFinalFloor(nullptr)
+	{
+	}
+
 	virtual SceneType getSceneType();                       // _08 (weak)
 	virtual ScreenOwnerID getOwnerID();                     // _0C (weak)
 	virtual ScreenMemberID getMemberID();                   // _10 (weak)

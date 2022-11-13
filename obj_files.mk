@@ -1069,7 +1069,7 @@ EBISAWA:=\
 KONO:=\
 	$(BUILD_DIR)/asm/plugProjectKonoU/khWorldMap.o\
 	$(BUILD_DIR)/asm/plugProjectKonoU/khCaveResult.o\
-	$(BUILD_DIR)/asm/plugProjectKonoU/khSceneLoader.o\
+	$(BUILD_DIR)/src/plugProjectKonoU/khSceneLoader.o\
 	$(BUILD_DIR)/asm/plugProjectKonoU/newGame2DMgr.o\
 	$(BUILD_DIR)/asm/plugProjectKonoU/newScreenMgr.o\
 	$(BUILD_DIR)/asm/plugProjectKonoU/khReadyGo.o\

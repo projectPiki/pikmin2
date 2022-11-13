@@ -83,11 +83,14 @@ struct ObjWinLoseReason : public ::Screen::ObjBase {
 };
 
 struct SceneWinLose : public ::Screen::SceneBase {
-	virtual SceneType getSceneType();       // _08 (weak)
-	virtual ScreenOwnerID getOwnerID();     // _0C (weak)
-	virtual ScreenMemberID getMemberID();   // _10 (weak)
-	virtual const char* getResName() const; // _1C (weak)
-	virtual void doCreateObj(JKRArchive*);  // _20 (weak)
+	virtual const char* getResName() const { return "win_lose.szs"; } // _1C (weak)
+	virtual SceneType getSceneType() { return SCENE_WIN_LOSE; }       // _08 (weak)
+	virtual ScreenOwnerID getOwnerID() { return OWNER_KH; }           // _0C (weak)
+	virtual ScreenMemberID getMemberID() { return MEMBER_WIN_LOSE; }  // _10 (weak)
+	virtual void doCreateObj(JKRArchive* archive)                     // _20 (weak)
+	{
+		registObj(new ObjWinLose, archive);
+	}
 
 	// _00      = VTBL
 	// _00-_220 = Screen::SceneBase

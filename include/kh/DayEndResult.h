@@ -188,62 +188,6 @@ struct SArgDayEndResultMail : public SArgDayEndResultBase {
 };
 
 ////////////////////////////////////////////
-// SCENES
-
-struct SceneDayEndResultIncP : public ::Screen::SceneBase {
-	virtual SceneType getSceneType();       // _08 (weak)
-	virtual ScreenOwnerID getOwnerID();     // _0C (weak)
-	virtual ScreenMemberID getMemberID();   // _10 (weak)
-	virtual const char* getResName() const; // _1C (weak)
-	virtual void doCreateObj(JKRArchive*);  // _20 (weak)
-
-	// _00      = VTBL
-	// _00-_220 = Screen::SceneBase
-	// TODO: work out if this has extra members
-};
-
-struct SceneDayEndResultItem : public ::Screen::SceneBase {
-	virtual SceneType getSceneType();       // _08 (weak)
-	virtual ScreenOwnerID getOwnerID();     // _0C (weak)
-	virtual ScreenMemberID getMemberID();   // _10 (weak)
-	virtual const char* getResName() const; // _1C (weak)
-	virtual void doCreateObj(JKRArchive*);  // _20 (weak)
-
-	// _00      = VTBL
-	// _00-_220 = Screen::SceneBase
-	// TODO: work out if this has extra members
-};
-
-struct SceneDayEndResultMail : public ::Screen::SceneBase {
-	SceneDayEndResultMail();
-
-	virtual const char* getResName() const { return ""; }                       // _1C (weak)
-	virtual SceneType getSceneType() { return SCENE_DAY_END_RESULT_MAIL; }      // _08 (weak)
-	virtual ScreenOwnerID getOwnerID() { return OWNER_KH; }                     // _0C (weak)
-	virtual ScreenMemberID getMemberID() { return MEMBER_DAY_END_RESULT_MAIL; } // _10 (weak)
-	virtual void doCreateObj(JKRArchive*) { }                                   // _20 (weak)
-	virtual void doUserCallBackFunc(Resource::MgrCommand*);                     // _24
-
-	// _00      = VTBL
-	// _00-_220 = Screen::SceneBase
-	u32 _220;                    // _220, unknown
-	JKRMemArchive* m_memArchive; // _224
-	u8 _228[0x14];               // _228, unknown
-};
-
-struct SceneDayEndResultTitl : public ::Screen::SceneBase {
-	virtual SceneType getSceneType();       // _08 (weak)
-	virtual ScreenOwnerID getOwnerID();     // _0C (weak)
-	virtual ScreenMemberID getMemberID();   // _10 (weak)
-	virtual const char* getResName() const; // _1C (weak)
-	virtual void doCreateObj(JKRArchive*);  // _20 (weak)
-
-	// _00      = VTBL
-	// _00-_220 = Screen::SceneBase
-	// TODO: work out if this has extra members
-};
-
-////////////////////////////////////////////
 // OBJECTS
 
 struct ObjDayEndResultBase : public ::Screen::ObjBase {
@@ -638,6 +582,71 @@ struct ObjDayEndResultTitl : public ::Screen::ObjBase {
 		u32 _00; // _00
 		u32 _04; // _04
 	} msVal;
+};
+
+////////////////////////////////////////////
+// SCENES
+
+struct SceneDayEndResultIncP : public ::Screen::SceneBase {
+	virtual const char* getResName() const { return "result_fuetaheta.szs"; }    // _1C (weak)
+	virtual SceneType getSceneType() { return SCENE_DAY_END_RESULT_INC_P; }      // _08 (weak)
+	virtual ScreenOwnerID getOwnerID() { return OWNER_KH; }                      // _0C (weak)
+	virtual ScreenMemberID getMemberID() { return MEMBER_DAY_END_RESULT_INC_P; } // _10 (weak)
+	virtual void doCreateObj(JKRArchive* archive)                                // _20 (weak)
+	{
+		registObj(new ObjDayEndResultIncP, archive);
+	}
+
+	// _00      = VTBL
+	// _00-_220 = Screen::SceneBase
+	// TODO: work out if this has extra members
+};
+
+struct SceneDayEndResultItem : public ::Screen::SceneBase {
+	virtual const char* getResName() const { return "result_item.szs"; }        // _1C (weak)
+	virtual SceneType getSceneType() { return SCENE_DAY_END_RESULT_ITEM; }      // _08 (weak)
+	virtual ScreenOwnerID getOwnerID() { return OWNER_KH; }                     // _0C (weak)
+	virtual ScreenMemberID getMemberID() { return MEMBER_DAY_END_RESULT_ITEM; } // _10 (weak)
+	virtual void doCreateObj(JKRArchive* archive)                               // _20 (weak)
+	{
+		registObj(new ObjDayEndResultItem, archive);
+	}
+
+	// _00      = VTBL
+	// _00-_220 = Screen::SceneBase
+	// TODO: work out if this has extra members
+};
+
+struct SceneDayEndResultMail : public ::Screen::SceneBase {
+	SceneDayEndResultMail();
+
+	virtual const char* getResName() const { return ""; }                       // _1C (weak)
+	virtual SceneType getSceneType() { return SCENE_DAY_END_RESULT_MAIL; }      // _08 (weak)
+	virtual ScreenOwnerID getOwnerID() { return OWNER_KH; }                     // _0C (weak)
+	virtual ScreenMemberID getMemberID() { return MEMBER_DAY_END_RESULT_MAIL; } // _10 (weak)
+	virtual void doCreateObj(JKRArchive*) { }                                   // _20 (weak)
+	virtual void doUserCallBackFunc(Resource::MgrCommand*);                     // _24
+
+	// _00      = VTBL
+	// _00-_220 = Screen::SceneBase
+	u32 _220;                    // _220, unknown
+	JKRMemArchive* m_memArchive; // _224
+	u8 _228[0x14];               // _228, unknown
+};
+
+struct SceneDayEndResultTitl : public ::Screen::SceneBase {
+	virtual const char* getResName() const { return "result_title_new.szs"; }    // _1C (weak)
+	virtual SceneType getSceneType() { return SCENE_DAY_END_RESULT_TITL; }       // _08 (weak)
+	virtual ScreenOwnerID getOwnerID() { return OWNER_KH; }                      // _0C (weak)
+	virtual ScreenMemberID getMemberID() { return MEMBER_DAY_END_RESULT_TITLE; } // _10 (weak)
+	virtual void doCreateObj(JKRArchive* archive)                                // _20 (weak)
+	{
+		registObj(new ObjDayEndResultTitl, archive);
+	}
+
+	// _00      = VTBL
+	// _00-_220 = Screen::SceneBase
+	// TODO: work out if this has extra members
 };
 
 } // namespace Screen
