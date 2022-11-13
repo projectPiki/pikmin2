@@ -32,13 +32,13 @@ struct EnemyBirthArg {
 	EnemyBirthArg();
 
 	Vector3f m_position;                          // _00
-	float m_faceDir;                              // _0C
+	f32 m_faceDir;                                // _0C
 	u8 m_tekiBirthType;                           // _10
 	EnemyGeneratorBase* m_generator;              // _14
 	PelletMgr::OtakaraItemCode m_otakaraItemCode; // _18
 	EnemyPelletInfo m_pelletInfo;                 // _1C
 	EnemyTypeID::EEnemyTypeID m_typeID;           // _28
-	float _2C;                                    // _2C
+	f32 _2C;                                      // _2C
 	u8 _30;                                       // _30
 };
 
@@ -81,7 +81,7 @@ struct EnemyMgrBase : public IEnemyMgrBase {
 	virtual void doEntry();                     // _0C
 	virtual void doSetView(int viewportNumber); // _10
 	virtual void doViewCalc();                  // _14
-	virtual void doSimulation(float rate);      // _18
+	virtual void doSimulation(f32 rate);        // _18
 	virtual void doDirectDraw(Graphics& gfx);   // _1C
 	// vtable 2 (GenericContainer + IEnemyMgrBase + self, _00, _40-_E0)
 	// GenericContainer thunks _40-_58
@@ -145,7 +145,7 @@ struct EnemyMgrBase : public IEnemyMgrBase {
 	bool setupParms(const char*);
 	void doAnimationAlwaysMovieActor();
 	void doEntryAlwaysMovieActor();
-	void doSimulationAlwaysMovieActor(float);
+	void doSimulationAlwaysMovieActor(f32);
 	void doDirectDrawAlwaysMovieActor(Graphics&);
 	void kill(EnemyBase*);
 

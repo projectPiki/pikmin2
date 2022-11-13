@@ -198,10 +198,25 @@ namespace DiodeRed {
 struct Obj : public Plants::Obj {
 	Obj() { }
 
-	virtual void doEntry();                            // _40
-	virtual void getLODCylinder(Sys::Cylinder&);       // _144 (weak)
+	virtual void doEntry();      // _40
+	virtual void setParameters() // _228 (weak)
+	{
+		EnemyBase::setParameters();
+		Vector3f pos = m_position;
+		pos.y += static_cast<EnemyParmsBase*>(m_parms)->m_general.m_territoryRadius.m_value;
+		m_curLodSphere.m_position = pos;
+		m_lodParm.m_isCylinder    = true;
+	}
+	virtual void getLODCylinder(Sys::Cylinder& cylinder) // _144 (weak)
+	{
+		Vector3f vec1;
+		Vector3f vec2         = m_position;
+		vec1                  = vec2;
+		EnemyParmsBase* parms = static_cast<EnemyParmsBase*>(m_parms);
+		vec1.y += parms->m_general.m_privateRadius.m_value;
+		cylinder.set(vec1, vec2, parms->m_general.m_homeRadius.m_value);
+	}
 	virtual ~Obj() { }                                 // _1BC (weak)
-	virtual void setParameters();                      // _228 (weak)
 	virtual EnemyTypeID::EEnemyTypeID getEnemyTypeID() // _258 (weak)
 	{
 		return EnemyTypeID::EnemyID_DaiodoRed;
@@ -259,15 +274,30 @@ namespace DiodeGreen {
 struct Obj : public Plants::Obj {
 	Obj() { }
 
-	virtual void doEntry();                            // _40
-	virtual void getLODCylinder(Sys::Cylinder&);       // _144 (weak)
+	virtual void touchedSE(Navi*); // _2FC
+	virtual void doEntry();        // _40
+	virtual void setParameters()   // _228 (weak)
+	{
+		EnemyBase::setParameters();
+		Vector3f pos = m_position;
+		pos.y += static_cast<EnemyParmsBase*>(m_parms)->m_general.m_territoryRadius.m_value;
+		m_curLodSphere.m_position = pos;
+		m_lodParm.m_isCylinder    = true;
+	}
+	virtual void getLODCylinder(Sys::Cylinder& cylinder) // _144 (weak)
+	{
+		Vector3f vec1;
+		Vector3f vec2         = m_position;
+		vec1                  = vec2;
+		EnemyParmsBase* parms = static_cast<EnemyParmsBase*>(m_parms);
+		vec1.y += parms->m_general.m_privateRadius.m_value;
+		cylinder.set(vec1, vec2, parms->m_general.m_homeRadius.m_value);
+	}
 	virtual ~Obj() { }                                 // _1BC (weak)
-	virtual void setParameters();                      // _228 (weak)
 	virtual EnemyTypeID::EEnemyTypeID getEnemyTypeID() // _258 (weak)
 	{
 		return EnemyTypeID::EnemyID_DaiodoGreen;
 	}
-	virtual void touchedSE(Navi*); // _2FC
 
 	// _00 		= VTBL
 	// _00-_2BF	= Plants::Obj
@@ -320,14 +350,29 @@ namespace HikariKinoko {
 struct Obj : public Plants::Obj {
 	Obj() { }
 
-	virtual void getLODCylinder(Sys::Cylinder&);       // _144 (weak)
+	virtual void touchedSE(Navi*); // _2FC
+	virtual void setParameters()   // _228 (weak)
+	{
+		EnemyBase::setParameters();
+		Vector3f pos = m_position;
+		pos.y += static_cast<EnemyParmsBase*>(m_parms)->m_general.m_territoryRadius.m_value;
+		m_curLodSphere.m_position = pos;
+		m_lodParm.m_isCylinder    = true;
+	}
+	virtual void getLODCylinder(Sys::Cylinder& cylinder) // _144 (weak)
+	{
+		Vector3f vec1;
+		Vector3f vec2         = m_position;
+		vec1                  = vec2;
+		EnemyParmsBase* parms = static_cast<EnemyParmsBase*>(m_parms);
+		vec1.y += parms->m_general.m_privateRadius.m_value;
+		cylinder.set(vec1, vec2, parms->m_general.m_homeRadius.m_value);
+	}
 	virtual ~Obj() { }                                 // _1BC (weak)
-	virtual void setParameters();                      // _228 (weak)
 	virtual EnemyTypeID::EEnemyTypeID getEnemyTypeID() // _258 (weak)
 	{
 		return EnemyTypeID::EnemyID_HikariKinoko;
 	}
-	virtual void touchedSE(Navi*); // _2FC
 
 	// _00 		= VTBL
 	// _00-_2BF	= Plants::Obj
@@ -508,10 +553,17 @@ namespace Nekojarashi {
 struct Obj : public Plants::Obj {
 	Obj() { }
 
-	virtual void doEntry();                            // _40
-	virtual void getLODCylinder(Sys::Cylinder&);       // _144 (weak)
-	virtual ~Obj() { }                                 // _1BC (weak)
-	virtual void setParameters();                      // _228 (weak)
+	virtual void doEntry();                      // _40
+	virtual void getLODCylinder(Sys::Cylinder&); // _144 (weak)
+	virtual ~Obj() { }                           // _1BC (weak)
+	virtual void setParameters()                 // _228 (weak)
+	{
+		EnemyBase::setParameters();
+		Vector3f pos = m_position;
+		pos.y += static_cast<EnemyParmsBase*>(m_parms)->m_general.m_territoryRadius.m_value;
+		m_curLodSphere.m_position = pos;
+		m_lodParm.m_isCylinder    = true;
+	}
 	virtual EnemyTypeID::EEnemyTypeID getEnemyTypeID() // _258 (weak)
 	{
 		return EnemyTypeID::EnemyID_Nekojarashi;
