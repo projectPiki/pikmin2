@@ -3,7 +3,12 @@
 #include "JSystem/JKR/JKRHeap.h"
 #include "nans.h"
 
-int dummyplayer; // size 0xC, not actually an int
+struct DummyPlayer {
+	int m_count;   // _00
+	u32 _04;       // _04, unknown
+	char** m_msgs; // _08
+} dummyplayer;
+
 static int idk[4]              = { 1, 2, 3, 0 };
 char* opening_strings[]        = { "Opening Movie",
                             "",
@@ -63,31 +68,52 @@ void MovieState::init(SingleGameSection* gs, StateArg* arg)
 	_20->init(nullptr);
 	_24 = false;
 	_20->load(THPPlayer::OPENING_1);
+
 	P2ASSERTLINE(223, arg);
 	_10 = *(THPPlayer::EMovieIndex*)arg;
-	if (arg) {
-		THPPlayer::EMovieIndex ind = _10;
-		switch (ind) {
-		case THPPlayer::OPENING_1:
-			dummyplayer = 0;
-			break;
-		case THPPlayer::OPENING_2:
-			dummyplayer = 0;
-			break;
-		case THPPlayer::ENDING_1:
-			dummyplayer = 0;
-			break;
-		case THPPlayer::ENDING_2:
-			dummyplayer = 0;
-			break;
-		case THPPlayer::STAFF_ROLL:
-			dummyplayer = 0;
-			break;
-		case THPPlayer::PLAY_1:
-			dummyplayer = 0;
-			break;
+	switch (_10) {
+	case THPPlayer::OPENING_1:
+		char** openingStringsPtr = opening_strings;
+		dummyplayer.m_msgs       = openingStringsPtr;
+		dummyplayer.m_count      = 0;
+		for (int i = 0; openingStringsPtr[i]; i++) {
+			dummyplayer.m_count++;
 		}
+		break;
+	case THPPlayer::OPENING_2:
+		char** endingStringsPtr = ending_strings;
+		dummyplayer.m_msgs      = endingStringsPtr;
+		dummyplayer.m_count     = 0;
+		for (int i = 0; endingStringsPtr[i]; i++) {
+			dummyplayer.m_count++;
+		}
+		break;
+	case THPPlayer::ENDING_1:
+		char** endingCompStringsPtr = endingcomplete_strings;
+		dummyplayer.m_msgs          = endingCompStringsPtr;
+		dummyplayer.m_count         = 0;
+		for (int i = 0; endingCompStringsPtr[i]; i++) {
+			dummyplayer.m_count++;
+		}
+		break;
+	case THPPlayer::ENDING_2:
+		char** staffRollStringsPtr = staffroll_strings;
+		dummyplayer.m_msgs         = staffRollStringsPtr;
+		dummyplayer.m_count        = 0;
+		for (int i = 0; staffRollStringsPtr[i]; i++) {
+			dummyplayer.m_count++;
+		}
+		break;
+	case THPPlayer::STAFF_ROLL:
+		char** mezaseStringsPtr = mezase_strings;
+		dummyplayer.m_msgs      = mezaseStringsPtr;
+		dummyplayer.m_count     = 0;
+		for (int i = 0; mezaseStringsPtr[i]; i++) {
+			dummyplayer.m_count++;
+		}
+		break;
 	}
+
 	/*
 	stwu     r1, -0x20(r1)
 	mflr     r0

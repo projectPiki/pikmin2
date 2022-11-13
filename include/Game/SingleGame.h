@@ -34,6 +34,12 @@ namespace Game {
 namespace SingleGame {
 struct State;
 
+struct DummyPlayer {
+	int m_index;   // _00
+	u32 _04;       // _04, unknown
+	char** m_msgs; // _08
+};
+
 /**
  * @fabricated
  */
