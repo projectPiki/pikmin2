@@ -307,6 +307,17 @@ struct GameState : public State {
 	u8 _20;    // _20
 };
 
+struct LoadArg : public StateArg {
+	inline LoadArg(bool check, u16 val)
+	    : _00(check)
+	    , _02(val)
+	{
+	}
+
+	bool _00; // _00
+	u16 _02;  // _02
+};
+
 /**
  * @size{0x2C}
  */

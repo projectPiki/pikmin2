@@ -610,7 +610,7 @@ KANDO:=\
 	$(BUILD_DIR)/asm/plugProjectKandoU/vsCardMgr.o\
 	$(BUILD_DIR)/asm/plugProjectKandoU/aiRescue.o\
 	$(BUILD_DIR)/src/plugProjectKandoU/baseGameSectionDraw.o\
-	$(BUILD_DIR)/asm/plugProjectKandoU/singleGS_Load.o\
+	$(BUILD_DIR)/src/plugProjectKandoU/singleGS_Load.o\
 	$(BUILD_DIR)/asm/plugProjectKandoU/singleGS_DayEnd.o\
 	$(BUILD_DIR)/asm/plugProjectKandoU/baseGameSectionKantei.o\
 	$(BUILD_DIR)/src/plugProjectKandoU/sweepPrune.o\

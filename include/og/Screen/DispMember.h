@@ -194,6 +194,12 @@ struct DispMemberContena : public DispMemberBase {
 
 // size 0x10
 struct DispMemberCourseName : public DispMemberBase {
+	inline DispMemberCourseName()
+	    : m_courseIndex(0)
+	{
+		_0C = 0;
+		_0D = 0;
+	}
 
 	virtual u32 getSize() { return sizeof(DispMemberCourseName); } // _08 (weak)
 	virtual u32 getOwnerID() { return OWNER_OGA; }                 // _0C (weak)
@@ -231,6 +237,14 @@ struct DispMemberFinalMessage : public DispMemberBase {
 
 // size 0x14
 struct DispMemberFloor : public DispMemberBase {
+	inline DispMemberFloor()
+	{
+		_08      = 55;
+		_10      = 0;
+		_11      = 0;
+		m_caveID = 't_01';
+		_12      = 0;
+	}
 
 	virtual u32 getSize() { return sizeof(DispMemberFloor); } // _08 (weak)
 	virtual u32 getOwnerID() { return OWNER_OGA; }            // _0C (weak)
