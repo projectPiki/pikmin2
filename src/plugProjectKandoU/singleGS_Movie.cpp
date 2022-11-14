@@ -89,7 +89,6 @@ void MovieState::init(SingleGameSection* gs, StateArg* arg)
 
 	P2ASSERTLINE(223, arg);
 	_10 = *(THPPlayer::EMovieIndex*)arg; // TODO: please make a struct for this, perhaps MovieArg
-	int count;
 	switch (_10) {
 	case THPPlayer::OPENING_1:
 		dummyPlayer.initMsgs(opening_strings);
