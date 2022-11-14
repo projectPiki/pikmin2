@@ -581,7 +581,7 @@ KANDO:=\
 	$(BUILD_DIR)/asm/plugProjectKandoU/gamePlayDataMemCard.o\
 	$(BUILD_DIR)/src/plugProjectKandoU/baseHIOparms.o\
 	$(BUILD_DIR)/asm/plugProjectKandoU/radarInfo.o\
-	$(BUILD_DIR)/asm/plugProjectKandoU/singleGS_Movie.o\
+	$(BUILD_DIR)/src/plugProjectKandoU/singleGS_Movie.o\
 	$(BUILD_DIR)/asm/plugProjectKandoU/navi_demoCheck.o\
 	$(BUILD_DIR)/asm/plugProjectKandoU/singleGS_Zukan.o\
 	$(BUILD_DIR)/asm/plugProjectKandoU/gameResultTexMgr.o\

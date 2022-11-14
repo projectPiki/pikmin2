@@ -4,8 +4,9 @@
 #include "nans.h"
 
 static struct DummyPlayer {
-	inline DummyPlayer(f32 v)
-	    : _04(v)
+	inline DummyPlayer(int count, f32 v)
+	    : m_count(count)
+	    , _04(v)
 	{
 	}
 	inline void initMsgs(const char** ptr)
@@ -23,7 +24,7 @@ static struct DummyPlayer {
 	int m_count;         // _00
 	f32 _04;             // _04, unknown
 	const char** m_msgs; // _08
-} dummyPlayer(480.0f);
+} dummyPlayer(0, 480.0f);
 
 static int idk[4]                    = { 1, 2, 3, 0 };
 const char* opening_strings[]        = { "Opening Movie",
@@ -87,8 +88,7 @@ void MovieState::init(SingleGameSection* gs, StateArg* arg)
 	_20->load(THPPlayer::OPENING_1);
 
 	P2ASSERTLINE(223, arg);
-	_10 = *(THPPlayer::EMovieIndex*)arg;
-	char** test;
+	_10 = *(THPPlayer::EMovieIndex*)arg; // TODO: please make a struct for this, perhaps MovieArg
 	int count;
 	switch (_10) {
 	case THPPlayer::OPENING_1:
@@ -96,7 +96,6 @@ void MovieState::init(SingleGameSection* gs, StateArg* arg)
 		break;
 	case THPPlayer::OPENING_2:
 		dummyPlayer.initMsgs(ending_strings);
-
 		break;
 	case THPPlayer::ENDING_1:
 		dummyPlayer.initMsgs(endingcomplete_strings);
