@@ -3,7 +3,11 @@
 #include "JSystem/JKR/JKRHeap.h"
 #include "nans.h"
 
-static struct {
+static struct DummyPlayer {
+	inline DummyPlayer(f32 v)
+	    : _04(v)
+	{
+	}
 	inline void initMsgs(const char** ptr)
 	{
 		m_msgs  = ptr;
@@ -17,9 +21,9 @@ static struct {
 		}
 	}
 	int m_count;         // _00
-	u32 _04;             // _04, unknown
+	f32 _04;             // _04, unknown
 	const char** m_msgs; // _08
-} dummyPlayer;
+} dummyPlayer(480.0f);
 
 static int idk[4]                    = { 1, 2, 3, 0 };
 const char* opening_strings[]        = { "Opening Movie",

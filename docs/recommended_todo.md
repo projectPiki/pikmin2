@@ -114,7 +114,7 @@
 ### <section id="plugProjectKandoU">plugProjectKandoU</section>
 | File | Size (bytes) | File | Size (bytes) |
 | ---- | ---- | ---- | ---- |
-| <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectKandoU/gameTekiStat.cpp">gameTekiStat.cpp</a> | 3302 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectKandoU/singleGS_Movie.cpp">singleGS_Movie.cpp</a> | 4158 |
+| <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectKandoU/gameTekiStat.cpp">gameTekiStat.cpp</a> | 3302 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectKandoU/singleGS_Movie.cpp">singleGS_Movie.cpp</a> | 4229 |
 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectKandoU/gameFootmark.cpp">gameFootmark.cpp</a> | 6723 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectKandoU/cellMgrParms.cpp">cellMgrParms.cpp</a> | 6740 |
 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectKandoU/mapMgrTraceMove.cpp">mapMgrTraceMove.cpp</a> | 10344 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectKandoU/efxModelObjects.cpp">efxModelObjects.cpp</a> | 11463 |
 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectKandoU/gameDeathCount.cpp">gameDeathCount.cpp</a> | 12487 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectKandoU/gamePelletList.cpp">gamePelletList.cpp</a> | 12594 |
