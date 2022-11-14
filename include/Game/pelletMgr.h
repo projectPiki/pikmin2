@@ -447,7 +447,7 @@ struct Pellet : public DynCreature, public SysShape::MotionListener, public Carr
 	short m_slotCount;            // _3F4
 	u8 _3F6;                      // _3F6
 	u8 _3F7;                      // _3F7 - unknown, maybe padding
-	u32 m_pikminCount[7];         // _3F8
+	u32 m_pikminCount[7];         // _3F8, TODO: likely [PikiColorCount]
 	u32 _414;                     // _414 - unknown
 	float m_carryPower;           // _418
 	SysShape::Animator _41C;      // _41C

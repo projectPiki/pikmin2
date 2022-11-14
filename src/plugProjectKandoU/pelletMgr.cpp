@@ -4510,7 +4510,7 @@ Onyon* Pellet::getPelletGoal()
 int Pellet::getTotalPikmins()
 {
 	int count = m_pikminCount[0];
-	for (int i = 1; i < 7; i++) {
+	for (int i = 1; i < PikiColorCount; i++) {
 		count += m_pikminCount[i];
 	}
 	return count;
@@ -4524,7 +4524,7 @@ int Pellet::getTotalPikmins()
 int Pellet::getTotalCarryPikmins()
 {
 	int total = 0;
-	for (int i = 0; i < 7; i++) {
+	for (int i = 0; i < PikiColorCount; i++) {
 		total += m_pikminCount[i] * pikiMgr->getColorTransportScale(i);
 	}
 	return total;
@@ -4537,7 +4537,7 @@ int Pellet::getTotalCarryPikmins()
  */
 int Pellet::getPikmins(int color)
 {
-	bool validColor = (color >= 0 && color < 7);
+	bool validColor = (color >= 0 && color < PikiColorCount);
 	P2ASSERTLINE(3902, validColor);
 	return m_pikminCount[color];
 }
@@ -4558,7 +4558,7 @@ void Pellet::onSlotStickStart(Creature* creature, short slot)
 
 	if (creature->isPiki()) {
 		int pikminType = static_cast<Piki*>(creature)->m_colorType;
-		bool validType = (pikminType >= 0 && pikminType < 7);
+		bool validType = (pikminType >= 0 && pikminType < PikiColorCount);
 		P2ASSERTLINE(3925, validType);
 
 		m_pikminCount[pikminType]++;
@@ -4592,7 +4592,7 @@ void Pellet::onSlotStickEnd(Creature* creature, short slot)
 
 	if (creature->isPiki()) {
 		int pikminType = static_cast<Piki*>(creature)->m_colorType;
-		bool validType = (pikminType >= 0 && pikminType < 7);
+		bool validType = (pikminType >= 0 && pikminType < PikiColorCount);
 		P2ASSERTLINE(3964, validType);
 
 		m_pikminCount[pikminType]--;

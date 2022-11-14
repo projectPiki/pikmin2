@@ -1,159 +1,17 @@
 #include "types.h"
+#include "nans.h"
 #include "Game/SingleGame.h"
-
-/*
-    Generated from dpostproc
-
-    .section .ctors, "wa"  # 0x80472F00 - 0x804732C0
-    .4byte __sinit_singleGS_DayEnd_cpp
-
-    .section .rodata  # 0x804732E0 - 0x8049E220
-    .global lbl_80483D70
-    lbl_80483D70:
-        .skip 0xC
-        .asciz "singleGS_DayEnd"
-    .global lbl_80483D8C
-    lbl_80483D8C:
-        .asciz "singleGS_DayEnd.cpp"
-    .global lbl_80483DA0
-    lbl_80483DA0:
-        .asciz "P2Assert"
-        .skip 3
-    .global lbl_80483DAC
-    lbl_80483DAC:
-        .asciz "s01_dayend"
-        .skip 1
-        .asciz "no alive:s01_dayend"
-        .asciz "s06_dayend_pikminzero"
-        .skip 2
-        .asciz "s06_dayend"
-        .skip 1
-        .asciz "s04_dayend_orimadown"
-        .skip 3
-        .asciz "s04_dayend"
-        .skip 1
-        .asciz "dayend-cache"
-        .skip 3
-        .asciz "no alive navi"
-        .skip 2
-    .global lbl_80483E34
-    lbl_80483E34:
-        .asciz "s21_dayend_takeoff"
-        .skip 1
-    .global lbl_80483E48
-    lbl_80483E48:
-        .asciz "dayend;cln"
-        .skip 1
-        .asciz "PikiInitArg"
-        .asciz "CreatureActionArg"
-        .skip 2
-        .asciz "ActionArg"
-        .skip 2
-        .asciz "PikiKillArg"
-        .asciz "CreatureKillArg"
-
-    .section .data, "wa"  # 0x8049E220 - 0x804EFC20
-    .global lbl_804C1630
-    lbl_804C1630:
-        .4byte 0x00000000
-        .4byte 0x00000000
-        .4byte 0x00000000
-    .global __vt__Q34Game10SingleGame11DayEndState
-    __vt__Q34Game10SingleGame11DayEndState:
-        .4byte 0
-        .4byte 0
-        .4byte
-   init__Q34Game10SingleGame11DayEndStateFPQ24Game17SingleGameSectionPQ24Game8StateArg
-        .4byte
-   exec__Q34Game10SingleGame11DayEndStateFPQ24Game17SingleGameSection .4byte
-   cleanup__Q34Game10SingleGame11DayEndStateFPQ24Game17SingleGameSection .4byte
-   "resume__Q24Game36FSMState<Q24Game17SingleGameSection>FPQ24Game17SingleGameSection"
-        .4byte
-   "restart__Q24Game36FSMState<Q24Game17SingleGameSection>FPQ24Game17SingleGameSection"
-        .4byte
-   "transit__Q24Game36FSMState<Q24Game17SingleGameSection>FPQ24Game17SingleGameSectioniPQ24Game8StateArg"
-        .4byte
-   draw__Q34Game10SingleGame11DayEndStateFPQ24Game17SingleGameSectionR8Graphics
-        .4byte
-   onOrimaDown__Q34Game10SingleGame5StateFPQ24Game17SingleGameSectioni .4byte
-   onMovieStart__Q34Game10SingleGame11DayEndStateFPQ24Game17SingleGameSectionPQ24Game11MovieConfigUlUl
-        .4byte
-   onMovieDone__Q34Game10SingleGame11DayEndStateFPQ24Game17SingleGameSectionPQ24Game11MovieConfigUlUl
-        .4byte
-   onMovieCommand__Q34Game10SingleGame11DayEndStateFPQ24Game17SingleGameSectioni
-        .4byte
-   onHoleIn__Q34Game10SingleGame5StateFPQ24Game17SingleGameSectionPQ34Game8ItemCave4Item
-        .4byte
-   onNextFloor__Q34Game10SingleGame5StateFPQ24Game17SingleGameSectionPQ34Game8ItemHole4Item
-        .4byte
-   onFountainReturn__Q34Game10SingleGame5StateFPQ24Game17SingleGameSectionPQ34Game15ItemBigFountain4Item
-        .4byte
-   on_section_fadeout__Q34Game10SingleGame5StateFPQ24Game17SingleGameSection
-        .4byte
-   on_demo_timer__Q34Game10SingleGame5StateFPQ24Game17SingleGameSectionUl .4byte
-   0
-
-    .section .sbss # 0x80514D80 - 0x80516360
-    .global lbl_80515CC0
-    lbl_80515CC0:
-        .skip 0x4
-    .global lbl_80515CC4
-    lbl_80515CC4:
-        .skip 0x4
-
-    .section .sdata2, "a"     # 0x80516360 - 0x80520E40
-    .global lbl_8051A538
-    lbl_8051A538:
-        .4byte 0x00000000
-    .global lbl_8051A53C
-    lbl_8051A53C:
-        .4byte 0x64617965
-        .4byte 0x6E640000
-    .global lbl_8051A544
-    lbl_8051A544:
-        .4byte 0x40800000
-    .global lbl_8051A548
-    lbl_8051A548:
-        .4byte 0x431C0000
-    .global lbl_8051A54C
-    lbl_8051A54C:
-        .4byte 0x43260000
-    .global lbl_8051A550
-    lbl_8051A550:
-        .4byte 0x42480000
-    .global lbl_8051A554
-    lbl_8051A554:
-        .4byte 0x43340000
-    .global lbl_8051A558
-    lbl_8051A558:
-        .4byte 0x47000000
-    .global lbl_8051A55C
-    lbl_8051A55C:
-        .4byte 0x40C90FDB
-    .global lbl_8051A560
-    lbl_8051A560:
-        .4byte 0x41F00000
-    .global lbl_8051A564
-    lbl_8051A564:
-        .4byte 0x43A2F983
-    .global lbl_8051A568
-    lbl_8051A568:
-        .4byte 0xC3A2F983
-        .4byte 0x00000000
-    .global lbl_8051A570
-    lbl_8051A570:
-        .4byte 0x43300000
-        .4byte 0x80000000
-*/
+#include "Game/gameStat.h"
 
 namespace Game {
+namespace SingleGame {
 
 /*
  * --INFO--
  * Address:	8023A250
  * Size:	0004A0
  */
-void SingleGame::DayEndState::init(Game::SingleGameSection*, Game::StateArg*)
+void DayEndState::init(SingleGameSection* gs, StateArg* arg)
 {
 	/*
 	stwu     r1, -0x50(r1)
@@ -494,7 +352,7 @@ lbl_8023A6CC:
  * Address:	8023A6F0
  * Size:	00040C
  */
-void SingleGame::DayEndState::exec(Game::SingleGameSection*)
+void DayEndState::exec(SingleGameSection* gs)
 {
 	/*
 	stwu     r1, -0xc0(r1)
@@ -802,7 +660,7 @@ lbl_8023AAE8:
  * Address:	8023AAFC
  * Size:	0005B8
  */
-void SingleGame::DayEndState::onMovieStart(Game::SingleGameSection*, Game::MovieConfig*, unsigned long, unsigned long)
+void DayEndState::onMovieStart(SingleGameSection* gs, MovieConfig* cfg, u32, u32)
 {
 	/*
 	.loc_0x0:
@@ -1228,7 +1086,7 @@ void SingleGame::DayEndState::onMovieStart(Game::SingleGameSection*, Game::Movie
  * Address:	8023B0B4
  * Size:	0000F4
  */
-void SingleGame::DayEndState::onMovieDone(Game::SingleGameSection*, Game::MovieConfig*, unsigned long, unsigned long)
+void DayEndState::onMovieDone(SingleGameSection* gs, MovieConfig* cfg, u32, u32)
 {
 	/*
 	.loc_0x0:
@@ -1307,7 +1165,7 @@ void SingleGame::DayEndState::onMovieDone(Game::SingleGameSection*, Game::MovieC
  * Address:	8023B1A8
  * Size:	0002C0
  */
-void SingleGame::DayEndState::onMovieCommand(Game::SingleGameSection*, int)
+void DayEndState::onMovieCommand(SingleGameSection* gs, int)
 {
 	/*
 	stwu     r1, -0x80(r1)
@@ -1518,29 +1376,17 @@ lbl_8023B454:
  * Address:	8023B468
  * Size:	000028
  */
-void SingleGame::DayEndState::draw(Game::SingleGameSection*, Graphics&)
-{
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	mr       r3, r4
-	mr       r4, r5
-	stw      r0, 0x14(r1)
-	bl       doDraw__Q24Game15BaseGameSectionFR8Graphics
-	lwz      r0, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
-}
+void DayEndState::draw(SingleGameSection* gs, Graphics& gfx) { static_cast<BaseGameSection*>(gs)->doDraw(gfx); }
 
 /*
  * --INFO--
  * Address:	8023B490
  * Size:	00007C
  */
-void SingleGame::DayEndState::cleanup(Game::SingleGameSection*)
+void DayEndState::cleanup(SingleGameSection* gs)
 {
+	playData->setPikminCounts_Today();
+	GameStat::getMapPikmins(-1);
 	/*
 	stwu     r1, -0x10(r1)
 	mflr     r0
@@ -1576,25 +1422,5 @@ void SingleGame::DayEndState::cleanup(Game::SingleGameSection*)
 	*/
 }
 
+} // namespace SingleGame
 } // namespace Game
-
-/*
- * --INFO--
- * Address:	8023B50C
- * Size:	000028
- */
-void __sinit_singleGS_DayEnd_cpp(void)
-{
-	/*
-	lis      r4, __float_nan@ha
-	li       r0, -1
-	lfs      f0, __float_nan@l(r4)
-	lis      r3, lbl_804C1630@ha
-	stw      r0, lbl_80515CC0@sda21(r13)
-	stfsu    f0, lbl_804C1630@l(r3)
-	stfs     f0, lbl_80515CC4@sda21(r13)
-	stfs     f0, 4(r3)
-	stfs     f0, 8(r3)
-	blr
-	*/
-}

@@ -3,6 +3,7 @@
 
 #include "types.h"
 #include "JSystem/JUT/JUTException.h"
+#include "Game/Piki.h"
 
 namespace Game {
 struct Piki;
@@ -22,7 +23,7 @@ struct PikiCounter {
 	void dec(int);
 
 	// _00 = VTBL
-	u32 m_pikiCounts[7]; // 04, counts of each piki type?
+	u32 m_pikiCounts[PikiColorCount]; // 04, counts of each piki type?
 };
 
 struct PikiNaviCounter {
@@ -30,7 +31,7 @@ struct PikiNaviCounter {
 	void inc(Piki*);
 	void dec(Piki*);
 
-	PikiCounter m_counter[7]; // _00, probably?
+	PikiCounter m_counter[PikiColorCount]; // _00, probably?
 };
 
 int getMapPikmins(int);
@@ -39,7 +40,7 @@ int getAllPikmins(int);
 inline void checkNaviIndex(int index)
 {
 	bool check = false;
-	if (index >= 0 && index < 7) {
+	if (index >= 0 && index < PikiColorCount) {
 		check = true;
 	}
 
