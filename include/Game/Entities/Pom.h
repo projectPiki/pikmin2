@@ -22,9 +22,6 @@ struct Obj : public EnemyBase {
 	//////////////// VTABLE
 	virtual void onInit(CreatureInitArg* settings);          // _30
 	virtual void doDirectDraw(Graphics& gfx);                // _50
-	virtual void inWaterCallback(WaterBox* wb);              // _84 (weak)
-	virtual void outWaterCallback();                         // _88 (weak)
-	virtual bool isLivingThing();                            // _D4 (weak)
 	virtual void collisionCallback(CollEvent& event);        // _EC
 	virtual void getShadowParam(ShadowParam& settings);      // _134
 	virtual ~Obj() { }                                       // _1BC (weak)
@@ -33,12 +30,18 @@ struct Obj : public EnemyBase {
 	virtual void doDebugDraw(Graphics&);                     // _1EC
 	virtual void changeMaterial();                           // _200
 	virtual void initMouthSlots();                           // _22C
-	virtual EnemyTypeID::EEnemyTypeID getEnemyTypeID();      // _258 (weak)
-	virtual MouthSlots* getMouthSlots();                     // _25C (weak)
 	virtual bool pressCallBack(Creature*, f32, CollPart*);   // _27C
 	virtual bool hipdropCallBack(Creature*, f32, CollPart*); // _284
-	virtual f32 getDownSmokeScale();                         // _2EC (weak)
 	virtual void setFSM(FSM*);                               // _2F8
+	virtual EnemyTypeID::EEnemyTypeID getEnemyTypeID()       // _258 (weak)
+	{
+		return m_pomID;
+	}
+	virtual void inWaterCallback(WaterBox* wb) { }                // _84 (weak)
+	virtual void outWaterCallback() { }                           // _88 (weak)
+	virtual bool isLivingThing() { return false; }                // _D4 (weak)
+	virtual MouthSlots* getMouthSlots() { return &m_mouthSlots; } // _25C (weak)
+	virtual f32 getDownSmokeScale() { return 0.8f; }              // _2EC (weak)
 	//////////////// VTABLE END
 
 	void setPomParms();
@@ -57,9 +60,12 @@ struct Obj : public EnemyBase {
 	int _2C8;                          // _2C8, remaining count?
 	u32 _2CC;                          // _2CC, unknown
 	MouthSlots m_mouthSlots;           // _2D0
-	u8 _2D8[0xC];                      // _2D8
+	int m_curQueenColor;               // _2D8
+	u16 m_red;                         // _2DC, red in RGB color?
+	u16 m_green;                       // _2DE, green in RGB color?
+	u16 m_blue;                        // _2E0, blue in RGB color?
 	f32 _2E4;                          // _2E4, timer?
-	u8 _2E8[0x4];                      // _2E8, unknown
+	f32 m_queenColorTimer;             // _2E8
 	EnemyTypeID::EEnemyTypeID m_pomID; // _2EC, B=3, R=4, Y=5, P=6, W=7, Q=8, base = 82
 	                                   // _2F0 = PelletView
 };
