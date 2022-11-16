@@ -74,10 +74,10 @@ void EnemyNode::makeGlobalData(MapNode* mapNode)
 		// get max radius of spawn
 		float radius = m_baseGen->m_radius;
 		// get random radius between 0 and max radius
-		radius = radius * (float)rand() / 32768.0f;
+		radius = randWeightFloat(radius);
 
 		// set random direction from 0 to 2pi (0 to 360 degrees)
-		m_direction = TAU * (float)rand() / 32768.0f;
+		m_direction = randWeightFloat(TAU);
 
 		// move position x and y (z) according to random radius and random direction
 		m_birthPos.x += radius * pikmin2_sinf(m_direction); // inlined in header

@@ -10,7 +10,7 @@
  */
 u32 KandoLib::getRandomChoice(KandoLib::Choice* choices, int choiceAmt)
 {
-	float rngChance             = rand() / RAND_MAX;
+	float rngChance             = randFloat();
 	KandoLib::Choice* curChoice = choices;
 	float curChance             = 0.0f;
 
