@@ -176,7 +176,7 @@ bool Obj::pressCallBack(Creature* creature, f32 damage, CollPart* collpart)
  * Address:	80254D6C
  * Size:	00002C
  */
-bool Obj::hipdropCallBack(Creature* creature, f32 damage, CollPart* collpart) { pressCallBack(creature, damage, collpart); }
+bool Obj::hipdropCallBack(Creature* creature, f32 damage, CollPart* collpart) { return pressCallBack(creature, damage, collpart); }
 
 /*
  * --INFO--
