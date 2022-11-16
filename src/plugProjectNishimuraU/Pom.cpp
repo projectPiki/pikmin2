@@ -93,7 +93,6 @@ void Obj::doUpdate()
  */
 void Obj::changeMaterial()
 {
-	// j3dSys somehow needs to load in the 'middle' of these register-wise
 	J3DModel* j3dModel      = m_model->m_j3dModel;
 	J3DModelData* modelData = j3dModel->m_modelData;
 
@@ -104,7 +103,7 @@ void Obj::changeMaterial()
 
 	for (u16 i = 0; i < modelData->m_materialTable.m_count1; i++) {
 		J3DMatPacket& packet = j3dModel->m_matPackets[i];
-		j3dSys.m_matPacket   = &j3dModel->m_matPackets[i]; // changing to &packet affects regs r29, r30, and r31
+		j3dSys.m_matPacket   = &j3dModel->m_matPackets[i];
 		modelData->m_materialTable.m_materials1[i]->diff(packet._2C->_34);
 	}
 }
@@ -209,10 +208,10 @@ void Obj::initMouthSlots()
  * Address:	........
  * Size:	0000B4
  */
-void Obj::setPomColor(int pikiColor)
+void Obj::setPomColor(int pikiKind)
 {
-	m_pikiColor = pikiColor;
-	switch (m_pikiColor) {
+	m_pikiKind = (EPikiKind)pikiKind;
+	switch (m_pikiKind) {
 	case Blue:
 		m_rgbColor.r = m_rgbColor.g = 50;
 		m_rgbColor.b                = 255;
@@ -297,10 +296,10 @@ void Obj::shotPikmin()
 	{
 		Creature* creature = (*iter);
 		if (creature->isPiki() && creature->isStickToMouth()) {
-			int pikiColor = static_cast<Piki*>(creature)->m_colorType;
-			if (pikiColor < 5) {
-				BirthMgr::dec(pikiColor);
-				if (getEnemyTypeID() != EnemyTypeID::EnemyID_RandPom && static_cast<Piki*>(creature)->m_colorType == m_pikiColor) {
+			int pikiKind = static_cast<Piki*>(creature)->m_pikiKind;
+			if (pikiKind < Bulbmin) {
+				BirthMgr::dec(pikiKind);
+				if (getEnemyTypeID() != EnemyTypeID::EnemyID_RandPom && static_cast<Piki*>(creature)->m_pikiKind == m_pikiKind) {
 					m_usedSlotCount--;
 				}
 			}
@@ -317,11 +316,11 @@ void Obj::shotPikmin()
 
 			// doesn't quite match here, but probably functionally equivalent?
 			Vector3f initPos = Vector3f(110.0f * pikmin2_cosf(randAngle), 750.0f, 110.0f * pikmin2_sinf(randAngle));
-			ItemPikihead::InitArg initArg(m_pikiColor, initPos);
+			ItemPikihead::InitArg initArg((EPikiKind)m_pikiKind, initPos);
 
 			sprout->init(&initArg);
 			sprout->setPosition(pos, false);
-			BirthMgr::inc(m_pikiColor);
+			BirthMgr::inc(m_pikiKind);
 		}
 	}
 
@@ -671,8 +670,8 @@ void Obj::changePomColor()
 {
 	if (getEnemyTypeID() == EnemyTypeID::EnemyID_RandPom) {
 		if (m_queenColorTimer > C_PROPERPARMS.m_colorChangeTime.m_value) {
-			int limit     = m_pikiColor + 3; // more than 3 and we loop back
-			int nextColor = m_pikiColor + 1; // first potential next color to try (Blue->Red->Yellow)
+			int limit     = m_pikiKind + 3; // more than 3 and we loop back
+			int nextColor = m_pikiKind + 1; // first potential next color to try (Blue->Red->Yellow)
 
 			int choosableColors[] = { Blue, Red, Yellow, 0, 0 }; // only set Blue, Red, Yellow as queen options
 

@@ -4557,7 +4557,7 @@ void Pellet::onSlotStickStart(Creature* creature, short slot)
 	}
 
 	if (creature->isPiki()) {
-		int pikminType = static_cast<Piki*>(creature)->m_colorType;
+		int pikminType = static_cast<Piki*>(creature)->m_pikiKind;
 		bool validType = (pikminType >= 0 && pikminType < PikiColorCount);
 		P2ASSERTLINE(3925, validType);
 
@@ -4591,7 +4591,7 @@ void Pellet::onSlotStickEnd(Creature* creature, short slot)
 	}
 
 	if (creature->isPiki()) {
-		int pikminType = static_cast<Piki*>(creature)->m_colorType;
+		int pikminType = static_cast<Piki*>(creature)->m_pikiKind;
 		bool validType = (pikminType >= 0 && pikminType < PikiColorCount);
 		P2ASSERTLINE(3964, validType);
 

@@ -64,7 +64,7 @@ struct Obj : public EnemyBase {
 	int m_totalSlotCount;              // _2C8, max conversion slots
 	int m_shotMultiplier;              // _2CC, multiplier for # seeds to shoot out
 	MouthSlots m_mouthSlots;           // _2D0
-	int m_pikiColor;                   // _2D8, color piki to shoot out
+	EPikiKind m_pikiKind;              // _2D8, color piki to shoot out
 	J3DGXColorS10 m_rgbColor;          // _2DC, red _2DC, green _2DE, blue _2E0, alpha _2E2
 	f32 m_swingTimer;                  // _2E4, how long pom has been open since touch/swallow
 	f32 m_queenColorTimer;             // _2E8, how long queen pom has been on current color

@@ -89,8 +89,8 @@ int& PikiContainer::getCount(int color, int headType)
  */
 int& PikiContainer::operator()(Game::Piki* p)
 {
-	int happa = p->m_headType;
-	int type  = p->m_colorType;
+	int happa = p->m_happaKind;
+	int type  = p->m_pikiKind;
 	return getCount(type, happa);
 }
 

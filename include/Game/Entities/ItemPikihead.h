@@ -11,7 +11,7 @@ namespace ItemPikihead {
 struct Item;
 
 struct InitArg : public CreatureInitArg {
-	inline InitArg(int pikiColor, Vector3f& vec)
+	inline InitArg(EPikiKind pikiColor, Vector3f& vec)
 	{
 		m_pikminType = pikiColor;
 		_08          = vec;
@@ -23,11 +23,11 @@ struct InitArg : public CreatureInitArg {
 	virtual const char* getName(); // _08 (weak)
 
 	// _00     = VTBL
-	int m_pikminType; // _04, enum?
-	Vector3f _08;     // _08
-	u8 _14;           // _14
-	int _18;          // _18
-	f32 _1C;          // _1C
+	EPikiKind m_pikminType; // _04, enum?
+	Vector3f _08;           // _08
+	u8 _14;                 // _14
+	int _18;                // _18
+	f32 _1C;                // _1C
 };
 
 struct FSM : public ItemFSM<Item> {

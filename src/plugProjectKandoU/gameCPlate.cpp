@@ -806,8 +806,8 @@ lbl_80195794:
 void CPlate::changeFlower(Game::Creature* creature)
 {
 	P2ASSERTLINE(312, creature->isPiki());
-	_104[static_cast<Piki*>(creature)->m_headType]++;
-	_104[(static_cast<Piki*>(creature)->m_headType + 2) % 3]--;
+	_104[static_cast<Piki*>(creature)->m_happaKind]++;
+	_104[(static_cast<Piki*>(creature)->m_happaKind + 2) % 3]--;
 
 	/*
 	stwu     r1, -0x10(r1)

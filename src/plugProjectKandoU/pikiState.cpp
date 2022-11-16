@@ -1297,7 +1297,7 @@ void PikiNukareState::init(Piki* piki, StateArg* stateArg)
 
 	piki->startMotion(m_animIdx, m_animIdx, piki, nullptr);
 	_14 = false;
-	if (!playData->hasMetPikmin(piki->m_colorType)) {
+	if (!playData->hasMetPikmin(piki->m_pikiKind)) {
 		gameSystem->m_flags |= 0x8;
 	}
 }
@@ -1329,9 +1329,9 @@ void PikiNukareState::exec(Piki* piki)
 		PikiAI::ActFormationInitArg initArg(piki->m_navi, 0);
 		piki->m_brain->start(0, &initArg);
 
-		int pikiType = piki->m_colorType;
+		int pikiType = piki->m_pikiKind;
 		if (pikiType >= 0 && pikiType <= 4) {
-			if (!playData->hasMetPikmin(piki->m_colorType)) {
+			if (!playData->hasMetPikmin(piki->m_pikiKind)) {
 				gameSystem->m_section->playMovie_helloPikmin(piki);
 			}
 		}
@@ -2217,7 +2217,7 @@ void PikiAutoNukiState::exec(Piki* piki)
 
 		transit(piki, PIKISTATE_Walk, nullptr);
 
-		int type = piki->m_colorType;
+		int type = piki->m_pikiKind;
 		if (type >= 0 && type <= 4 && !playData->hasMetPikmin(type)) {
 			gameSystem->m_section->playMovie_helloPikmin(piki);
 		}

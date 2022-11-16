@@ -4786,7 +4786,7 @@ void Piki::doDirectDraw(Graphics&) { }
  */
 float Piki::getBaseScale(void)
 {
-	switch (m_colorType) {
+	switch (m_pikiKind) {
 	case Purple:
 		return 1.2f;
 	case White:
@@ -4932,7 +4932,7 @@ lbl_8014A6C0:
  * Address:	8014A770
  * Size:	000008
  */
-void Piki::changeHappa(int a1) { m_headType = a1; }
+void Piki::changeHappa(int a1) { m_happaKind = a1; }
 
 /*
  * --INFO--

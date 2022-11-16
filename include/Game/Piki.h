@@ -38,7 +38,7 @@ struct Piki;
 struct PikiState;
 struct PikiParms;
 
-typedef enum EPikiColor {
+typedef enum EPikiKind {
 	Blue                = 0,
 	Red                 = 1,
 	Yellow              = 2,
@@ -50,7 +50,7 @@ typedef enum EPikiColor {
 	Bulbmin             = 5,
 	Carrot              = 6,
 	PikiColorCount,
-} EPikiColor;
+} EPikiKind;
 
 typedef enum EPikiHappa {
 	Leaf   = 0,
@@ -235,8 +235,8 @@ struct Piki : public FakePiki {
 	JUtility::TColor _2AB;             // _2AB
 	JUtility::TColor m_pikiColor;      // _2AF
 	f32 m_colorFloat;                  // _2B4
-	u8 m_colorType;                    // _2B8
-	u8 m_headType;                     // _2B9, aka Head type (leaf, bud, flower)
+	u8 m_pikiKind;                     // _2B8,  aka Piki kind (Blue, Yellow, Red, etc.)
+	u8 m_happaKind;                    // _2B9, aka Happa kind (leaf, bud, flower)
 	u32 m_leafModel;                   // _2BC
 	int m_mgrIndex;                    // _2C0
 	Navi* m_navi;                      // _2C4
