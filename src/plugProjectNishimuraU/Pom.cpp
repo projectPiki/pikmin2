@@ -204,26 +204,12 @@ void Obj::setFSM(FSM* fsm)
  */
 void Obj::getShadowParam(ShadowParam& shadowParam)
 {
-
-	/*
-	lfs      f0, 0x18c(r3)
-	lfs      f3, lbl_8051A9AC@sda21(r2)
-	stfs     f0, 0(r4)
-	lfs      f2, lbl_8051A9A8@sda21(r2)
-	lfs      f0, 0x190(r3)
-	lfs      f1, lbl_8051A9B0@sda21(r2)
-	fadds    f3, f3, f0
-	lfs      f0, lbl_8051A9B4@sda21(r2)
-	stfs     f3, 4(r4)
-	lfs      f3, 0x194(r3)
-	stfs     f3, 8(r4)
-	stfs     f2, 0xc(r4)
-	stfs     f1, 0x10(r4)
-	stfs     f2, 0x14(r4)
-	stfs     f0, 0x18(r4)
-	stfs     f0, 0x1c(r4)
-	blr
-	*/
+	shadowParam.m_position.x                = m_position.x;
+	shadowParam.m_position.y                = m_position.y + 2.0f;
+	shadowParam.m_position.z                = m_position.z;
+	shadowParam.m_boundingSphere.m_position = Vector3f(0.0f, 1.0f, 0.0f);
+	shadowParam.m_boundingSphere.m_radius   = 0.1f;
+	shadowParam._1C                         = 0.1f;
 }
 
 /*
