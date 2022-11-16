@@ -10,10 +10,10 @@ namespace Game {
 namespace ItemPikihead {
 struct Item;
 
-struct InitArg : public CreatureInitArg {
-	inline InitArg(EPikiKind pikiColor, Vector3f& vec)
+struct InitArg : public ItemInitArg {
+	inline InitArg(EPikiKind pikiKind, Vector3f& vec)
 	{
-		m_pikminType = pikiColor;
+		m_pikminType = pikiKind;
 		_08          = vec;
 		_14          = 0;
 		_18          = 0;
