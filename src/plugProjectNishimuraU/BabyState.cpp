@@ -558,7 +558,7 @@ void StateAttack::exec(EnemyBase* enemy)
 			}
 		} else if ((u32)baby->m_curAnim->m_type == KEYEVENT_3) {
 			Parms* parms = static_cast<Parms*>(baby->m_parms);
-			EnemyFunc::swallowPikmin(baby, parms->m_properParms.m_fp01.m_value, nullptr);
+			EnemyFunc::swallowPikmin(baby, parms->m_properParms.m_poisonDamage.m_value, nullptr);
 		} else if ((u32)baby->m_curAnim->m_type == KEYEVENT_END) {
 			if (baby->m_health <= 0.0f) {
 				transit(baby, BABY_Dead, nullptr);
