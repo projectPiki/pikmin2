@@ -1,5 +1,14 @@
 #include "Game/Entities/Pom.h"
+#include "Game/Entities/ItemPikihead.h"
 #include "Game/gamePlayData.h"
+#include "Game/Stickers.h"
+#include "Game/BirthMgr.h"
+#include "efx/TOnyon.h"
+#include "efx/TPonDead.h"
+#include "efx/TEnemyDownSmoke.h"
+#include "efx/TEnemyDownWat.h"
+#include "Iterator.h"
+#include "Dolphin/rand.h"
 
 namespace Game {
 namespace Pom {
@@ -49,10 +58,10 @@ void Obj::onInit(CreatureInitArg* initArg)
 
 	shadowMgr->killShadow(this);
 	setPomParms();
-	_2C0              = false;
-	_2C1              = 0;
-	_2C4              = 0;
-	_2E4              = 0.0f;
+	m_canTouchToClose = false;
+	m_canSwallowPiki  = false;
+	m_usedSlotCount   = 0;
+	m_swingTimer      = 0.0f;
 	m_queenColorTimer = 0.0f;
 
 	m_FSM->start(this, 0, nullptr);
@@ -84,9 +93,13 @@ void Obj::doUpdate()
  */
 void Obj::changeMaterial()
 {
-	J3DModelData* modelData;
-	J3DModel* j3dModel = m_model->m_j3dModel;
-	modelData          = j3dModel->m_modelData;
+	// j3dSys somehow needs to load in the 'middle' of these register-wise
+	J3DModel* j3dModel      = m_model->m_j3dModel;
+	J3DModelData* modelData = j3dModel->m_modelData;
+
+	u16 nameIdx           = modelData->m_materialTable._0C->getIndex("hanabiral_v");
+	J3DMaterial* material = modelData->m_materialTable.m_materials1[nameIdx];
+	material->m_tevBlock->setTevColor(0, m_rgbColor);
 	j3dModel->calcMaterial();
 
 	for (u16 i = 0; i < modelData->m_materialTable.m_count1; i++) {
@@ -219,89 +232,19 @@ void Obj::getShadowParam(ShadowParam& shadowParam)
  */
 bool Obj::pressCallBack(Creature* creature, f32 damage, CollPart* collpart)
 {
-	/*
-	stwu     r1, -0x30(r1)
-	mflr     r0
-	stw      r0, 0x34(r1)
-	stw      r31, 0x2c(r1)
-	mr       r31, r3
-	stw      r30, 0x28(r1)
-	mr       r30, r5
-	stw      r29, 0x24(r1)
-	or.      r29, r4, r4
-	beq      lbl_80254D4C
-	mr       r3, r29
-	lwz      r12, 0(r29)
-	lwz      r12, 0x18(r12)
-	mtctr    r12
-	bctrl
-	clrlwi.  r0, r3, 0x18
-	beq      lbl_80254D4C
-	cmplwi   r30, 0
-	beq      lbl_80254D4C
-	lis      r4, 0x736C6F74@ha
-	addi     r3, r30, 0x30
-	addi     r4, r4, 0x736C6F74@l
-	bl       __eq__4ID32FUl
-	clrlwi.  r0, r3, 0x18
-	beq      lbl_80254D4C
-	lbz      r0, 0x2c1(r31)
-	cmplwi   r0, 0
-	beq      lbl_80254D4C
-	lwz      r3, 0x2c4(r31)
-	lwz      r0, 0x2c8(r31)
-	cmpw     r3, r0
-	bge      lbl_80254D4C
-	addi     r3, r31, 0x2d0
-	li       r4, 0
-	bl       getSlot__10MouthSlotsFi
-	lis      r5, __vt__Q24Game11Interaction@ha
-	lis      r4, __vt__Q24Game14InteractAttack@ha
-	addi     r0, r5, __vt__Q24Game11Interaction@l
-	lfs      f0, lbl_8051A9B0@sda21(r2)
-	stw      r0, 8(r1)
-	addi     r5, r4, __vt__Q24Game14InteractAttack@l
-	lis      r4, __vt__Q24Game15InteractSwallow@ha
-	li       r0, 0
-	stw      r5, 8(r1)
-	addi     r5, r4, __vt__Q24Game15InteractSwallow@l
-	addi     r4, r1, 8
-	stw      r3, 0x14(r1)
-	mr       r3, r29
-	stw      r31, 0xc(r1)
-	stfs     f0, 0x10(r1)
-	stw      r5, 8(r1)
-	stw      r0, 0x18(r1)
-	lwz      r12, 0(r29)
-	lwz      r12, 0x1a4(r12)
-	mtctr    r12
-	bctrl
-	clrlwi.  r0, r3, 0x18
-	beq      lbl_80254D34
-	lwz      r3, 0x2c4(r31)
-	addi     r0, r3, 1
-	stw      r0, 0x2c4(r31)
-
-lbl_80254D34:
-	lfs      f0, lbl_8051A9A8@sda21(r2)
-	mr       r3, r31
-	stfs     f0, 0x2e4(r31)
-	bl       createSwingSmokeEffect__Q34Game3Pom3ObjFv
-	li       r3, 1
-	b        lbl_80254D50
-
-lbl_80254D4C:
-	li       r3, 0
-
-lbl_80254D50:
-	lwz      r0, 0x34(r1)
-	lwz      r31, 0x2c(r1)
-	lwz      r30, 0x28(r1)
-	lwz      r29, 0x24(r1)
-	mtlr     r0
-	addi     r1, r1, 0x30
-	blr
-	*/
+	if (creature && creature->isPiki() && collpart) {
+		if (collpart->m_currentID == 'slot' && m_canSwallowPiki && m_usedSlotCount < m_totalSlotCount) {
+			MouthCollPart* slot = m_mouthSlots.getSlot(0);
+			InteractSwallow swallow(this, 1.0f, slot, 0);
+			if (creature->stimulate(swallow)) {
+				m_usedSlotCount++;
+			}
+			m_swingTimer = 0.0f;
+			createSwingSmokeEffect();
+			return true;
+		}
+	}
+	return false;
 }
 
 /*
@@ -318,54 +261,11 @@ bool Obj::hipdropCallBack(Creature* creature, f32 damage, CollPart* collpart) { 
  */
 void Obj::collisionCallback(CollEvent& collEvent)
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	mr       r31, r4
-	stw      r30, 8(r1)
-	mr       r30, r3
-	lwz      r3, 0(r4)
-	cmplwi   r3, 0
-	beq      lbl_80254E28
-	lwz      r12, 0(r3)
-	lwz      r12, 0x18(r12)
-	mtctr    r12
-	bctrl
-	clrlwi.  r0, r3, 0x18
-	bne      lbl_80254E10
-	lwz      r3, 0(r31)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x1c(r12)
-	mtctr    r12
-	bctrl
-	clrlwi.  r0, r3, 0x18
-	bne      lbl_80254E10
-	lwz      r3, 0(r31)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x7c(r12)
-	mtctr    r12
-	bctrl
-	clrlwi.  r0, r3, 0x18
-	beq      lbl_80254E28
-
-lbl_80254E10:
-	mr       r3, r30
-	mr       r4, r31
-	lwz      r12, 0(r30)
-	lwz      r12, 0x240(r12)
-	mtctr    r12
-	bctrl
-
-lbl_80254E28:
-	lwz      r0, 0x14(r1)
-	lwz      r31, 0xc(r1)
-	lwz      r30, 8(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	if (collEvent.m_collidingCreature) {
+		if (collEvent.m_collidingCreature->isPiki() || collEvent.m_collidingCreature->isNavi() || collEvent.m_collidingCreature->isTeki()) {
+			setCollEvent(collEvent);
+		}
+	}
 }
 
 /*
@@ -381,429 +281,77 @@ void Obj::initMouthSlots()
 
 /*
  * --INFO--
+ * Address:	........
+ * Size:	0000B4
+ */
+void Obj::setPomColor(int pikiColor)
+{
+	m_pikiColor = pikiColor;
+	switch (m_pikiColor) {
+	case Blue:
+		m_rgbColor.r = m_rgbColor.g = 50;
+		m_rgbColor.b                = 255;
+		break;
+	case Red:
+		m_rgbColor.r = 255;
+		m_rgbColor.g = m_rgbColor.b = 20;
+		break;
+	case Yellow:
+		m_rgbColor.r = m_rgbColor.g = 255;
+		m_rgbColor.b                = 20;
+		break;
+	case Purple:
+		m_rgbColor.r = 28;
+		m_rgbColor.g = 0;
+		m_rgbColor.b = 52;
+		break;
+	case White:
+		m_rgbColor.r = 200;
+		m_rgbColor.g = 255;
+		m_rgbColor.b = 220;
+		break;
+	}
+}
+
+/*
+ * --INFO--
  * Address:	80254E8C
  * Size:	000510
  */
 void Obj::setPomParms()
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	mr       r31, r3
-	lwz      r12, 0(r3)
-	lwz      r12, 0x258(r12)
-	mtctr    r12
-	bctrl
-	cmpwi    r3, 6
-	beq      lbl_80255108
-	bge      lbl_80254ED4
-	cmpwi    r3, 4
-	beq      lbl_80254F98
-	bge      lbl_80255050
-	cmpwi    r3, 3
-	bge      lbl_80254EE4
-	b        lbl_8025532C
+	EnemyTypeID::EEnemyTypeID id = getEnemyTypeID();
 
-lbl_80254ED4:
-	cmpwi    r3, 8
-	beq      lbl_80255278
-	bge      lbl_8025532C
-	b        lbl_802551C0
+	switch (id) {
+	case EnemyTypeID::EnemyID_BluePom:
+		setPomColor(Blue);
+		break;
+	case EnemyTypeID::EnemyID_RedPom:
+		setPomColor(Red);
+		break;
+	case EnemyTypeID::EnemyID_YellowPom:
+		setPomColor(Yellow);
+		break;
+	case EnemyTypeID::EnemyID_BlackPom:
+		setPomColor(Purple);
+		break;
+	case EnemyTypeID::EnemyID_WhitePom:
+		setPomColor(White);
+		break;
+	case EnemyTypeID::EnemyID_RandPom:
+		setPomColor(Red);
+		break;
+	}
 
-lbl_80254EE4:
-	li       r4, 0
-	stw      r4, 0x2d8(r31)
-	lwz      r0, 0x2d8(r31)
-	cmpwi    r0, 2
-	beq      lbl_80254F4C
-	bge      lbl_80254F0C
-	cmpwi    r0, 0
-	beq      lbl_80254F1C
-	bge      lbl_80254F34
-	b        lbl_8025532C
-
-lbl_80254F0C:
-	cmpwi    r0, 4
-	beq      lbl_80254F7C
-	bge      lbl_8025532C
-	b        lbl_80254F64
-
-lbl_80254F1C:
-	li       r3, 0x32
-	li       r0, 0xff
-	sth      r3, 0x2de(r31)
-	sth      r3, 0x2dc(r31)
-	sth      r0, 0x2e0(r31)
-	b        lbl_8025532C
-
-lbl_80254F34:
-	li       r3, 0xff
-	li       r0, 0x14
-	sth      r3, 0x2dc(r31)
-	sth      r0, 0x2e0(r31)
-	sth      r0, 0x2de(r31)
-	b        lbl_8025532C
-
-lbl_80254F4C:
-	li       r3, 0xff
-	li       r0, 0x14
-	sth      r3, 0x2de(r31)
-	sth      r3, 0x2dc(r31)
-	sth      r0, 0x2e0(r31)
-	b        lbl_8025532C
-
-lbl_80254F64:
-	li       r3, 0x1c
-	li       r0, 0x34
-	sth      r3, 0x2dc(r31)
-	sth      r4, 0x2de(r31)
-	sth      r0, 0x2e0(r31)
-	b        lbl_8025532C
-
-lbl_80254F7C:
-	li       r0, 0xc8
-	li       r3, 0xff
-	sth      r0, 0x2dc(r31)
-	li       r0, 0xdc
-	sth      r3, 0x2de(r31)
-	sth      r0, 0x2e0(r31)
-	b        lbl_8025532C
-
-lbl_80254F98:
-	li       r0, 1
-	stw      r0, 0x2d8(r31)
-	lwz      r0, 0x2d8(r31)
-	cmpwi    r0, 2
-	beq      lbl_80255000
-	bge      lbl_80254FC0
-	cmpwi    r0, 0
-	beq      lbl_80254FD0
-	bge      lbl_80254FE8
-	b        lbl_8025532C
-
-lbl_80254FC0:
-	cmpwi    r0, 4
-	beq      lbl_80255034
-	bge      lbl_8025532C
-	b        lbl_80255018
-
-lbl_80254FD0:
-	li       r3, 0x32
-	li       r0, 0xff
-	sth      r3, 0x2de(r31)
-	sth      r3, 0x2dc(r31)
-	sth      r0, 0x2e0(r31)
-	b        lbl_8025532C
-
-lbl_80254FE8:
-	li       r3, 0xff
-	li       r0, 0x14
-	sth      r3, 0x2dc(r31)
-	sth      r0, 0x2e0(r31)
-	sth      r0, 0x2de(r31)
-	b        lbl_8025532C
-
-lbl_80255000:
-	li       r3, 0xff
-	li       r0, 0x14
-	sth      r3, 0x2de(r31)
-	sth      r3, 0x2dc(r31)
-	sth      r0, 0x2e0(r31)
-	b        lbl_8025532C
-
-lbl_80255018:
-	li       r0, 0x1c
-	li       r3, 0
-	sth      r0, 0x2dc(r31)
-	li       r0, 0x34
-	sth      r3, 0x2de(r31)
-	sth      r0, 0x2e0(r31)
-	b        lbl_8025532C
-
-lbl_80255034:
-	li       r0, 0xc8
-	li       r3, 0xff
-	sth      r0, 0x2dc(r31)
-	li       r0, 0xdc
-	sth      r3, 0x2de(r31)
-	sth      r0, 0x2e0(r31)
-	b        lbl_8025532C
-
-lbl_80255050:
-	li       r0, 2
-	stw      r0, 0x2d8(r31)
-	lwz      r0, 0x2d8(r31)
-	cmpwi    r0, 2
-	beq      lbl_802550B8
-	bge      lbl_80255078
-	cmpwi    r0, 0
-	beq      lbl_80255088
-	bge      lbl_802550A0
-	b        lbl_8025532C
-
-lbl_80255078:
-	cmpwi    r0, 4
-	beq      lbl_802550EC
-	bge      lbl_8025532C
-	b        lbl_802550D0
-
-lbl_80255088:
-	li       r3, 0x32
-	li       r0, 0xff
-	sth      r3, 0x2de(r31)
-	sth      r3, 0x2dc(r31)
-	sth      r0, 0x2e0(r31)
-	b        lbl_8025532C
-
-lbl_802550A0:
-	li       r3, 0xff
-	li       r0, 0x14
-	sth      r3, 0x2dc(r31)
-	sth      r0, 0x2e0(r31)
-	sth      r0, 0x2de(r31)
-	b        lbl_8025532C
-
-lbl_802550B8:
-	li       r3, 0xff
-	li       r0, 0x14
-	sth      r3, 0x2de(r31)
-	sth      r3, 0x2dc(r31)
-	sth      r0, 0x2e0(r31)
-	b        lbl_8025532C
-
-lbl_802550D0:
-	li       r0, 0x1c
-	li       r3, 0
-	sth      r0, 0x2dc(r31)
-	li       r0, 0x34
-	sth      r3, 0x2de(r31)
-	sth      r0, 0x2e0(r31)
-	b        lbl_8025532C
-
-lbl_802550EC:
-	li       r0, 0xc8
-	li       r3, 0xff
-	sth      r0, 0x2dc(r31)
-	li       r0, 0xdc
-	sth      r3, 0x2de(r31)
-	sth      r0, 0x2e0(r31)
-	b        lbl_8025532C
-
-lbl_80255108:
-	li       r0, 3
-	stw      r0, 0x2d8(r31)
-	lwz      r0, 0x2d8(r31)
-	cmpwi    r0, 2
-	beq      lbl_80255170
-	bge      lbl_80255130
-	cmpwi    r0, 0
-	beq      lbl_80255140
-	bge      lbl_80255158
-	b        lbl_8025532C
-
-lbl_80255130:
-	cmpwi    r0, 4
-	beq      lbl_802551A4
-	bge      lbl_8025532C
-	b        lbl_80255188
-
-lbl_80255140:
-	li       r3, 0x32
-	li       r0, 0xff
-	sth      r3, 0x2de(r31)
-	sth      r3, 0x2dc(r31)
-	sth      r0, 0x2e0(r31)
-	b        lbl_8025532C
-
-lbl_80255158:
-	li       r3, 0xff
-	li       r0, 0x14
-	sth      r3, 0x2dc(r31)
-	sth      r0, 0x2e0(r31)
-	sth      r0, 0x2de(r31)
-	b        lbl_8025532C
-
-lbl_80255170:
-	li       r3, 0xff
-	li       r0, 0x14
-	sth      r3, 0x2de(r31)
-	sth      r3, 0x2dc(r31)
-	sth      r0, 0x2e0(r31)
-	b        lbl_8025532C
-
-lbl_80255188:
-	li       r0, 0x1c
-	li       r3, 0
-	sth      r0, 0x2dc(r31)
-	li       r0, 0x34
-	sth      r3, 0x2de(r31)
-	sth      r0, 0x2e0(r31)
-	b        lbl_8025532C
-
-lbl_802551A4:
-	li       r0, 0xc8
-	li       r3, 0xff
-	sth      r0, 0x2dc(r31)
-	li       r0, 0xdc
-	sth      r3, 0x2de(r31)
-	sth      r0, 0x2e0(r31)
-	b        lbl_8025532C
-
-lbl_802551C0:
-	li       r0, 4
-	stw      r0, 0x2d8(r31)
-	lwz      r0, 0x2d8(r31)
-	cmpwi    r0, 2
-	beq      lbl_80255228
-	bge      lbl_802551E8
-	cmpwi    r0, 0
-	beq      lbl_802551F8
-	bge      lbl_80255210
-	b        lbl_8025532C
-
-lbl_802551E8:
-	cmpwi    r0, 4
-	beq      lbl_8025525C
-	bge      lbl_8025532C
-	b        lbl_80255240
-
-lbl_802551F8:
-	li       r3, 0x32
-	li       r0, 0xff
-	sth      r3, 0x2de(r31)
-	sth      r3, 0x2dc(r31)
-	sth      r0, 0x2e0(r31)
-	b        lbl_8025532C
-
-lbl_80255210:
-	li       r3, 0xff
-	li       r0, 0x14
-	sth      r3, 0x2dc(r31)
-	sth      r0, 0x2e0(r31)
-	sth      r0, 0x2de(r31)
-	b        lbl_8025532C
-
-lbl_80255228:
-	li       r3, 0xff
-	li       r0, 0x14
-	sth      r3, 0x2de(r31)
-	sth      r3, 0x2dc(r31)
-	sth      r0, 0x2e0(r31)
-	b        lbl_8025532C
-
-lbl_80255240:
-	li       r0, 0x1c
-	li       r3, 0
-	sth      r0, 0x2dc(r31)
-	li       r0, 0x34
-	sth      r3, 0x2de(r31)
-	sth      r0, 0x2e0(r31)
-	b        lbl_8025532C
-
-lbl_8025525C:
-	li       r0, 0xc8
-	li       r3, 0xff
-	sth      r0, 0x2dc(r31)
-	li       r0, 0xdc
-	sth      r3, 0x2de(r31)
-	sth      r0, 0x2e0(r31)
-	b        lbl_8025532C
-
-lbl_80255278:
-	li       r0, 1
-	stw      r0, 0x2d8(r31)
-	lwz      r0, 0x2d8(r31)
-	cmpwi    r0, 2
-	beq      lbl_802552E0
-	bge      lbl_802552A0
-	cmpwi    r0, 0
-	beq      lbl_802552B0
-	bge      lbl_802552C8
-	b        lbl_8025532C
-
-lbl_802552A0:
-	cmpwi    r0, 4
-	beq      lbl_80255314
-	bge      lbl_8025532C
-	b        lbl_802552F8
-
-lbl_802552B0:
-	li       r3, 0x32
-	li       r0, 0xff
-	sth      r3, 0x2de(r31)
-	sth      r3, 0x2dc(r31)
-	sth      r0, 0x2e0(r31)
-	b        lbl_8025532C
-
-lbl_802552C8:
-	li       r3, 0xff
-	li       r0, 0x14
-	sth      r3, 0x2dc(r31)
-	sth      r0, 0x2e0(r31)
-	sth      r0, 0x2de(r31)
-	b        lbl_8025532C
-
-lbl_802552E0:
-	li       r3, 0xff
-	li       r0, 0x14
-	sth      r3, 0x2de(r31)
-	sth      r3, 0x2dc(r31)
-	sth      r0, 0x2e0(r31)
-	b        lbl_8025532C
-
-lbl_802552F8:
-	li       r0, 0x1c
-	li       r3, 0
-	sth      r0, 0x2dc(r31)
-	li       r0, 0x34
-	sth      r3, 0x2de(r31)
-	sth      r0, 0x2e0(r31)
-	b        lbl_8025532C
-
-lbl_80255314:
-	li       r0, 0xc8
-	li       r3, 0xff
-	sth      r0, 0x2dc(r31)
-	li       r0, 0xdc
-	sth      r3, 0x2de(r31)
-	sth      r0, 0x2e0(r31)
-
-lbl_8025532C:
-	mr       r3, r31
-	lwz      r12, 0(r31)
-	lwz      r12, 0x258(r12)
-	mtctr    r12
-	bctrl
-	cmpwi    r3, 8
-	beq      lbl_80255368
-	lwz      r4, 0xc0(r31)
-	li       r3, 1
-	li       r0, 0
-	lwz      r4, 0x81c(r4)
-	stw      r4, 0x2c8(r31)
-	stw      r3, 0x2cc(r31)
-	sth      r0, 0x2e2(r31)
-	b        lbl_80255388
-
-lbl_80255368:
-	lwz      r3, 0xc0(r31)
-	li       r0, 0xff
-	lwz      r3, 0x844(r3)
-	stw      r3, 0x2c8(r31)
-	lwz      r3, 0xc0(r31)
-	lwz      r3, 0x86c(r3)
-	stw      r3, 0x2cc(r31)
-	sth      r0, 0x2e2(r31)
-
-lbl_80255388:
-	lwz      r0, 0x14(r1)
-	lwz      r31, 0xc(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	if (getEnemyTypeID() != EnemyTypeID::EnemyID_RandPom) {
+		m_totalSlotCount = C_PROPERPARMS.m_normalMaxSlots.m_value;
+		m_shotMultiplier = 1;
+		m_rgbColor.a     = 0;
+	} else {
+		m_totalSlotCount = C_PROPERPARMS.m_queenMaxSlots.m_value;
+		m_shotMultiplier = C_PROPERPARMS.m_queenShotMultiplier.m_value;
+		m_rgbColor.a     = 255;
+	}
 }
 
 /*
@@ -813,6 +361,47 @@ lbl_80255388:
  */
 void Obj::shotPikmin()
 {
+	Vector3f pos = getPosition();
+	pos.y += 50.0f;
+
+	int val = m_stuckPikminCount * m_shotMultiplier;
+	Stickers stickers(this);
+	Iterator<Creature> iter(&stickers);
+
+	CI_LOOP(iter)
+	{
+		Creature* creature = (*iter);
+		if (creature->isPiki() && creature->isStickToMouth()) {
+			int pikiColor = static_cast<Piki*>(creature)->m_colorType;
+			if (pikiColor < 5) {
+				BirthMgr::dec(pikiColor);
+				if (getEnemyTypeID() != EnemyTypeID::EnemyID_RandPom && static_cast<Piki*>(creature)->m_colorType == m_pikiColor) {
+					m_usedSlotCount--;
+				}
+			}
+			CreatureKillArg killArg(1);
+			InteractKill kill(this, &killArg);
+			creature->stimulate(kill);
+		}
+	}
+
+	for (int i = 0; i < val; i++) {
+		ItemPikihead::Item* sprout = static_cast<ItemPikihead::Item*>(ItemPikihead::mgr->birth());
+		if (sprout) {
+			f32 randAngle = randWeightFloat(TAU);
+
+			// doesn't quite match here, but probably functionally equivalent?
+			Vector3f initPos = Vector3f(110.0f * pikmin2_cosf(randAngle), 750.0f, 110.0f * pikmin2_sinf(randAngle));
+			ItemPikihead::InitArg initArg(m_pikiColor, initPos);
+
+			sprout->init(&initArg);
+			sprout->setPosition(pos, false);
+			BirthMgr::inc(m_pikiColor);
+		}
+	}
+
+	createShotEffect();
+	setZukanVisible(false);
 	/*
 	stwu     r1, -0xb0(r1)
 	mflr     r0
@@ -1156,9 +745,9 @@ lbl_80255808:
 void Obj::changePomColor()
 {
 	if (getEnemyTypeID() == EnemyTypeID::EnemyID_RandPom) {
-		if (m_queenColorTimer > C_PROPERPARMS.m_fp02.m_value) {
-			int limit     = m_curQueenColor + 3; // more than 3 and we loop back
-			int nextColor = m_curQueenColor + 1; // first potential next color to try (Blue->Red->Yellow)
+		if (m_queenColorTimer > C_PROPERPARMS.m_colorChangeTime.m_value) {
+			int limit     = m_pikiColor + 3; // more than 3 and we loop back
+			int nextColor = m_pikiColor + 1; // first potential next color to try (Blue->Red->Yellow)
 
 			int choosableColors[] = { Blue, Red, Yellow, 0, 0 }; // only set Blue, Red, Yellow as queen options
 
@@ -1168,38 +757,10 @@ void Obj::changePomColor()
 					colorIndex = nextColor - 3;
 				}
 
-				// if color is unlocked, set color of dots, reset timer + return
+				// if color is unlocked, set color of dots + output piki, reset timer + return
 				// NB: colors for purple and white are here, probably disabled before release
 				if (playData->hasMetPikmin(choosableColors[colorIndex])) {
-					m_curQueenColor = colorIndex;
-					switch (m_curQueenColor) {
-					case Blue:
-						m_green = 50;
-						m_red   = 50;
-						m_blue  = 255;
-						break;
-					case Red:
-						m_red   = 255;
-						m_blue  = 20;
-						m_green = 20;
-						break;
-					case Yellow:
-						m_green = 255;
-						m_red   = 255;
-						m_blue  = 20;
-						break;
-					case Purple:
-						m_red   = 28;
-						m_green = 0;
-						m_blue  = 52;
-						break;
-					case White:
-						m_red   = 200;
-						m_green = 255;
-						m_blue  = 220;
-						break;
-					}
-
+					setPomColor(colorIndex);
 					m_queenColorTimer = 0.0f;
 					return;
 				}
@@ -1217,109 +778,21 @@ void Obj::changePomColor()
  */
 void Obj::createSwingSmokeEffect()
 {
-	/*
-	stwu     r1, -0x70(r1)
-	mflr     r0
-	stw      r0, 0x74(r1)
-	lwz      r0, 0x280(r3)
-	cmplwi   r0, 0
-	beq      lbl_80255AE4
-	lfs      f2, 0x18c(r3)
-	lfs      f1, 0x190(r3)
-	lfs      f0, 0x194(r3)
-	mr       r3, r0
-	lwz      r12, 0(r3)
-	stfs     f2, 0x34(r1)
-	lwz      r12, 0x14(r12)
-	stfs     f1, 0x38(r1)
-	stfs     f0, 0x3c(r1)
-	mtctr    r12
-	bctrl
-	lfs      f0, 0(r3)
-	li       r5, 0
-	lwz      r8, 0x34(r1)
-	lis      r3, __vt__Q23efx5TBase@ha
-	stfs     f0, 0x38(r1)
-	addi     r0, r3, __vt__Q23efx5TBase@l
-	lwz      r6, 0x3c(r1)
-	lis      r4, __vt__Q23efx3Arg@ha
-	lwz      r7, 0x38(r1)
-	lis      r3, __vt__Q23efx8TSimple3@ha
-	stw      r8, 8(r1)
-	addi     r11, r4, __vt__Q23efx3Arg@l
-	lfs      f0, lbl_8051A9E0@sda21(r2)
-	lis      r4, __vt__Q23efx8ArgScale@ha
-	stw      r7, 0xc(r1)
-	addi     r9, r3, __vt__Q23efx8TSimple3@l
-	lfs      f3, 8(r1)
-	lis      r3, __vt__Q23efx13TEnemyDownWat@ha
-	stw      r6, 0x10(r1)
-	li       r8, 0x54
-	lfs      f2, 0xc(r1)
-	li       r7, 0x55
-	stw      r0, 0x40(r1)
-	li       r6, 0x56
-	lfs      f1, 0x10(r1)
-	addi     r10, r4, __vt__Q23efx8ArgScale@l
-	stw      r11, 0x58(r1)
-	addi     r0, r3, __vt__Q23efx13TEnemyDownWat@l
-	addi     r3, r1, 0x40
-	addi     r4, r1, 0x58
-	stw      r9, 0x40(r1)
-	stfs     f3, 0x5c(r1)
-	stfs     f2, 0x60(r1)
-	stfs     f1, 0x64(r1)
-	stw      r10, 0x58(r1)
-	stfs     f0, 0x68(r1)
-	sth      r8, 0x44(r1)
-	sth      r7, 0x46(r1)
-	sth      r6, 0x48(r1)
-	stw      r5, 0x4c(r1)
-	stw      r5, 0x50(r1)
-	stw      r5, 0x54(r1)
-	stw      r0, 0x40(r1)
-	bl       create__Q23efx13TEnemyDownWatFPQ23efx3Arg
-	b        lbl_80255B60
+	if (m_waterBox) {
+		Vector3f pos = m_position;
+		pos.y        = *m_waterBox->getSeaHeightPtr();
+		efx::ArgScale argScale(pos, 0.7f);
+		efx::TEnemyDownWat waterFX;
 
-lbl_80255AE4:
-	lis      r4, __vt__Q23efx5TBase@ha
-	lfs      f4, 0x194(r3)
-	lfs      f2, 0x190(r3)
-	addi     r4, r4, __vt__Q23efx5TBase@l
-	lfs      f3, 0x18c(r3)
-	lis      r3, __vt__Q23efx8TSimple1@ha
-	lfs      f0, lbl_8051A9E4@sda21(r2)
-	addi     r0, r3, __vt__Q23efx8TSimple1@l
-	stw      r4, 0x14(r1)
-	lis      r4, __vt__Q23efx3Arg@ha
-	lfs      f1, lbl_8051A9B0@sda21(r2)
-	fsubs    f2, f2, f0
-	lis      r3, __vt__Q23efx15TEnemyDownSmoke@ha
-	addi     r7, r4, __vt__Q23efx3Arg@l
-	li       r6, 0x53
-	li       r5, 0
-	stw      r0, 0x14(r1)
-	addi     r0, r3, __vt__Q23efx15TEnemyDownSmoke@l
-	lfs      f0, lbl_8051A9E0@sda21(r2)
-	stfs     f1, 0x20(r1)
-	addi     r3, r1, 0x14
-	addi     r4, r1, 0x24
-	stw      r7, 0x24(r1)
-	stfs     f3, 0x28(r1)
-	stfs     f2, 0x2c(r1)
-	stfs     f4, 0x30(r1)
-	sth      r6, 0x18(r1)
-	stw      r5, 0x1c(r1)
-	stw      r0, 0x14(r1)
-	stfs     f0, 0x20(r1)
-	bl       create__Q23efx15TEnemyDownSmokeFPQ23efx3Arg
+		waterFX.create(&argScale);
 
-lbl_80255B60:
-	lwz      r0, 0x74(r1)
-	mtlr     r0
-	addi     r1, r1, 0x70
-	blr
-	*/
+	} else {
+		efx::Arg arg(m_position.x, m_position.y - 5.0f, m_position.z);
+		efx::TEnemyDownSmoke smokeFX;
+
+		smokeFX._0C = 0.7f;
+		smokeFX.create(&arg);
+	}
 }
 
 /*
@@ -1329,45 +802,13 @@ lbl_80255B60:
  */
 void Obj::createShotEffect()
 {
-	/*
-	stwu     r1, -0x30(r1)
-	mflr     r0
-	lis      r4, __vt__Q23efx5TBase@ha
-	lfs      f0, lbl_8051A9E8@sda21(r2)
-	stw      r0, 0x34(r1)
-	addi     r4, r4, __vt__Q23efx5TBase@l
-	li       r5, 0
-	li       r7, 0x101
-	lfs      f2, 0x190(r3)
-	li       r6, 0x102
-	lfs      f1, 0x18c(r3)
-	lfs      f3, 0x194(r3)
-	lis      r3, __vt__Q23efx8TSimple2@ha
-	addi     r0, r3, __vt__Q23efx8TSimple2@l
-	fsubs    f2, f2, f0
-	stw      r4, 8(r1)
-	lis      r4, __vt__Q23efx3Arg@ha
-	addi     r4, r4, __vt__Q23efx3Arg@l
-	lis      r3, __vt__Q23efx9TOnyonLay@ha
-	stw      r0, 8(r1)
-	addi     r0, r3, __vt__Q23efx9TOnyonLay@l
-	addi     r3, r1, 8
-	stw      r4, 0x18(r1)
-	addi     r4, r1, 0x18
-	stfs     f1, 0x1c(r1)
-	stfs     f2, 0x20(r1)
-	stfs     f3, 0x24(r1)
-	sth      r7, 0xc(r1)
-	sth      r6, 0xe(r1)
-	stw      r5, 0x10(r1)
-	stw      r5, 0x14(r1)
-	stw      r0, 8(r1)
-	bl       create__Q23efx8TSimple2FPQ23efx3Arg
-	lwz      r0, 0x34(r1)
-	mtlr     r0
-	addi     r1, r1, 0x30
-	blr
-	*/
+	Vector3f pos = m_position;
+	pos.y -= 60.0f;
+
+	efx::Arg arg(pos);
+	efx::TOnyonLay laySeed;
+
+	laySeed.create(&arg);
 }
 
 /*
@@ -1377,40 +818,10 @@ void Obj::createShotEffect()
  */
 void Obj::createPomDeadEffect()
 {
-	/*
-	stwu     r1, -0x30(r1)
-	mflr     r0
-	lis      r6, __vt__Q23efx5TBase@ha
-	lis      r5, __vt__Q23efx8TSimple1@ha
-	stw      r0, 0x34(r1)
-	lis      r4, __vt__Q23efx3Arg@ha
-	addi     r0, r4, __vt__Q23efx3Arg@l
-	addi     r8, r6, __vt__Q23efx5TBase@l
-	stw      r0, 0x14(r1)
-	addi     r7, r5, __vt__Q23efx8TSimple1@l
-	lis      r4, __vt__Q23efx8TPonDead@ha
-	li       r6, 0x271
-	lfs      f0, 0x18c(r3)
-	addi     r0, r4, __vt__Q23efx8TPonDead@l
-	li       r5, 0
-	addi     r4, r1, 0x14
-	stfs     f0, 0x18(r1)
-	lfs      f0, 0x190(r3)
-	stfs     f0, 0x1c(r1)
-	lfs      f0, 0x194(r3)
-	addi     r3, r1, 8
-	stw      r8, 8(r1)
-	stw      r7, 8(r1)
-	stfs     f0, 0x20(r1)
-	sth      r6, 0xc(r1)
-	stw      r5, 0x10(r1)
-	stw      r0, 8(r1)
-	bl       create__Q23efx8TSimple1FPQ23efx3Arg
-	lwz      r0, 0x34(r1)
-	mtlr     r0
-	addi     r1, r1, 0x30
-	blr
-	*/
+	efx::Arg arg(m_position);
+	efx::TPonDead deadFX;
+
+	deadFX.create(&arg);
 }
 
 } // namespace Pom

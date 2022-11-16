@@ -11,6 +11,15 @@ namespace ItemPikihead {
 struct Item;
 
 struct InitArg : public CreatureInitArg {
+	inline InitArg(int pikiColor, Vector3f& vec)
+	{
+		m_pikminType = pikiColor;
+		_08          = vec;
+		_14          = 0;
+		_18          = 0;
+		_1C          = -1.0f;
+	}
+
 	virtual const char* getName(); // _08 (weak)
 
 	// _00     = VTBL

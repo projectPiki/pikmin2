@@ -6,6 +6,7 @@
 #include "Game/EnemyParmsBase.h"
 #include "Game/EnemyMgrBase.h"
 #include "Game/EnemyBase.h"
+#include "JSystem/JUT/JUTNameTab.h"
 #include "Collinfo.h"
 
 /**
@@ -51,22 +52,23 @@ struct Obj : public EnemyBase {
 	void createShotEffect();
 	void createPomDeadEffect();
 
+	// inline
+	void setPomColor(int);
+
 	// _00 		= VTBL
 	// _00-_2BC	= EnemyBase
 	FSM* m_FSM;                        // _2BC
-	bool _2C0;                         // _2C0
-	u8 _2C1;                           // _2C1, possibly bool?
-	int _2C4;                          // _2C4, eaten count?
-	int _2C8;                          // _2C8, remaining count?
-	u32 _2CC;                          // _2CC, unknown
+	bool m_canTouchToClose;            // _2C0, will swing closed on navi/piki/teki touch
+	bool m_canSwallowPiki;             // _2C1, will eat piki when thrown in
+	int m_usedSlotCount;               // _2C4, conversion slots used up
+	int m_totalSlotCount;              // _2C8, max conversion slots
+	int m_shotMultiplier;              // _2CC, multiplier for # seeds to shoot out
 	MouthSlots m_mouthSlots;           // _2D0
-	int m_curQueenColor;               // _2D8
-	u16 m_red;                         // _2DC, red in RGB color?
-	u16 m_green;                       // _2DE, green in RGB color?
-	u16 m_blue;                        // _2E0, blue in RGB color?
-	f32 _2E4;                          // _2E4, timer?
-	f32 m_queenColorTimer;             // _2E8
-	EnemyTypeID::EEnemyTypeID m_pomID; // _2EC, B=3, R=4, Y=5, P=6, W=7, Q=8, base = 82
+	int m_pikiColor;                   // _2D8, color piki to shoot out
+	J3DGXColorS10 m_rgbColor;          // _2DC, red _2DC, green _2DE, blue _2E0, alpha _2E2
+	f32 m_swingTimer;                  // _2E4, how long pom has been open since touch/swallow
+	f32 m_queenColorTimer;             // _2E8, how long queen pom has been on current color
+	EnemyTypeID::EEnemyTypeID m_pomID; // _2EC, B=3, R=4, Y=5, P=6, W=7, Q=8, base=82
 	                                   // _2F0 = PelletView
 };
 
@@ -93,21 +95,21 @@ struct Parms : public EnemyParmsBase {
 	struct ProperParms : public Parameters {
 		inline ProperParms()
 		    : Parameters(nullptr, "EnemyParmsBase")
-		    , m_ip01(this, 'ip01', "吸い込みピキ数(pom)", 5, 1, 50)  // 'sucking piki number (pom)'
-		    , m_ip11(this, 'ip11', "吸い込みピキ数(pop)", 1, 1, 50)  // 'sucking piki number (pop)'
-		    , m_ip13(this, 'ip13', "吐き出し倍数(pop)", 5, 1, 50)    // 'spitting multiple (pop)'
-		    , m_fp01(this, 'fp01', "開花時間", 30.0f, 0.0f, 60.0f)   // 'flowering time'
-		    , m_fp02(this, 'fp02', "色換え時間", 1.25f, 0.0f, 60.0f) // 'color change time'
-		    , m_fp03(this, 'fp03', "白黒出現率", 0.15f, 0.0f, 1.0f)  // 'black and white appearance rate'
+		    , m_normalMaxSlots(this, 'ip01', "吸い込みピキ数(pom)", 5, 1, 50)    // 'sucking piki number (pom)'
+		    , m_queenMaxSlots(this, 'ip11', "吸い込みピキ数(pop)", 1, 1, 50)     // 'sucking piki number (pop)'
+		    , m_queenShotMultiplier(this, 'ip13', "吐き出し倍数(pop)", 5, 1, 50) // 'spitting multiple (pop)'
+		    , m_remainOpenTime(this, 'fp01', "開花時間", 30.0f, 0.0f, 60.0f)     // 'flowering time'
+		    , m_colorChangeTime(this, 'fp02', "色換え時間", 1.25f, 0.0f, 60.0f)  // 'color change time'
+		    , m_fp03(this, 'fp03', "白黒出現率", 0.15f, 0.0f, 1.0f)              // 'black and white appearance rate'
 		{
 		}
 
-		Parm<int> m_ip01; // _804
-		Parm<int> m_ip11; // _82C
-		Parm<int> m_ip13; // _854
-		Parm<f32> m_fp01; // _87C
-		Parm<f32> m_fp02; // _8A4
-		Parm<f32> m_fp03; // _8CC
+		Parm<int> m_normalMaxSlots;      // _804, ip01
+		Parm<int> m_queenMaxSlots;       // _82C, ip11
+		Parm<int> m_queenShotMultiplier; // _854, ip13
+		Parm<f32> m_remainOpenTime;      // _87C, fp01
+		Parm<f32> m_colorChangeTime;     // _8A4, fp02
+		Parm<f32> m_fp03;                // _8CC
 	};
 
 	Parms() { }
