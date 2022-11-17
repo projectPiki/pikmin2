@@ -73,11 +73,17 @@ typedef enum EMovieUserCommands {
 } EMovieUserCommands;
 
 struct PikiInitArg : public CreatureInitArg {
+	inline PikiInitArg()
+	    : m_leader(nullptr)
+	    , _04(-1)
+	{
+	}
+
 	virtual const char* getName(); // _08 (weak)
 
 	// _00 VTBL
-	int _04; // _04
-	u32 _08; // _08, unknown
+	int _04;            // _04
+	Creature* m_leader; // _08
 };
 
 struct PikiKillArg : public CreatureKillArg {

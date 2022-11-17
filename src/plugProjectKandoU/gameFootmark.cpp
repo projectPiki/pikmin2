@@ -1,49 +1,5 @@
 
-/*
-    Generated from dpostproc
-
-    .section .sdata2, "a"     # 0x80516360 - 0x80520E40
-    .global lbl_80519418
-    lbl_80519418:
-        .4byte 0x00000000
-    .global lbl_8051941C
-    lbl_8051941C:
-        .4byte 0x41A00000
-    .global lbl_80519420
-    lbl_80519420:
-        .4byte 0x499C4000
-        .4byte 0x00000000
-*/
-#ifndef _GAME_FOOTMARK_H
-#define _GAME_FOOTMARK_H
-
-#include "types.h"
-#include "Vector3.h"
-
-namespace Game {
-struct Footmark {
-	Vector3f position; // _00
-	u32 flag;          // _0C
-
-	Footmark();
-};
-struct Footmarks {
-	Footmark* m_marks;   // _00
-	int _04;             // _04
-	int _08;             // _08
-	int m_count;         // _0C
-	int _10;             // _10
-	Vector3f m_position; // m_position
-
-	Footmarks();
-	void alloc(int);
-	void add(Footmark& mark);
-};
-
-} // namespace Game
-
-#endif
-
+#include "Game/Footmark.h"
 #include "Game/GameSystem.h"
 
 namespace Game {
@@ -53,12 +9,10 @@ namespace Game {
  * Address:	801B4794
  * Size:	00001C
  */
-Footmark::Footmark(void)
+Footmark::Footmark()
 {
-	position.x = 0.0f;
-	position.y = 0.0f;
-	position.z = 0.0f;
-	flag       = 0;
+	m_position = Vector3f(0.0f);
+	m_flags    = 0;
 }
 
 /*
@@ -66,7 +20,7 @@ Footmark::Footmark(void)
  * Address:	801B47B0
  * Size:	00001C
  */
-Footmarks::Footmarks(void)
+Footmarks::Footmarks()
 {
 	m_marks = nullptr;
 	m_count = 0;
@@ -95,24 +49,24 @@ void Footmarks::alloc(int amt)
  */
 void Footmarks::add(Footmark& mark)
 {
-	m_position.x = mark.position.x;
-	m_position.y = mark.position.y;
-	m_position.z = mark.position.z;
+	m_position = mark.m_position;
 	Footmark* v2;
 	float v3;
 	float v4;
 	float v5;
 	float v6;
 	if (_08 < 2
-	            || (v2 = &m_marks[_04 + m_count - 1 - (_04 + m_count - 1) / m_count * m_count], v3 = (v2->position.x - mark.position.y),
-	                v4 = (v2->position.z - mark.position.z),
-	                v5 = (v4 * v4) + ((v2->position.x - mark.position.x) * (v2->position.x - mark.position.x) + (v3 * v3)), v5 <= 0.0f)
+	            || (v2 = &m_marks[_04 + m_count - 1 - (_04 + m_count - 1) / m_count * m_count], v3 = (v2->m_position.x - mark.m_position.y),
+	                v4 = (v2->m_position.z - mark.m_position.z),
+	                v5 = (v4 * v4) + ((v2->m_position.x - mark.m_position.x) * (v2->m_position.x - mark.m_position.x) + (v3 * v3)),
+	                v5 <= 0.0f)
 	        ? (v6 = 0.0f)
-	        : (v6 = (__frsqrte(v5) * (v4 * v4) + ((v2->position.x - mark.position.x) * (v2->position.x - mark.position.x) + (v3 * v3))),
+	        : (v6 = (__frsqrte(v5) * (v4 * v4)
+	                 + ((v2->m_position.x - mark.m_position.x) * (v2->m_position.x - mark.m_position.x) + (v3 * v3))),
 	           v6 >= 20.0f)) {
-		m_marks[_04].position = mark.position;
-		m_marks[_04].flag     = Game::gameSystem->m_frameTimer;
-		_04                   = _04 + 1 - (_04 + 1) / m_count * m_count;
+		m_marks[_04].m_position = mark.m_position;
+		m_marks[_04].m_flags    = Game::gameSystem->m_frameTimer;
+		_04                     = _04 + 1 - (_04 + 1) / m_count * m_count;
 
 		u32 v8 = _08;
 		if (v8 < m_count)
