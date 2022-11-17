@@ -88,15 +88,18 @@ struct ArgChou : public Arg {
 };
 
 struct ArgCursor : public Arg {
-	ArgCursor(Vector3f position)
+	ArgCursor(Vector3f position, f32 scale)
 	    : Arg(position)
 	{
+		m_scale = scale;
 	}
 
 	virtual const char* getName() // _08 (weak)
 	{
 		return "ArgCursor";
 	}
+
+	f32 m_scale; // _10
 };
 
 struct ArgDenkiHiba : public Arg {

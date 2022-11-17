@@ -17,6 +17,20 @@ namespace Game {
 namespace Fuefuki {
 struct FSM;
 
+enum StateID {
+	FUEFUKI_NULL     = -1,
+	FUEFUKI_Dead     = 0,
+	FUEFUKI_Stay     = 1,
+	FUEFUKI_Land     = 2,
+	FUEFUKI_Jump     = 3,
+	FUEFUKI_Wait     = 4,
+	FUEFUKI_Turn     = 5,
+	FUEFUKI_Walk     = 6,
+	FUEFUKI_Whisle   = 7, // dev spelling
+	FUEFUKI_Struggle = 8,
+	FUEFUKI_StateCount,
+};
+
 struct Obj : public EnemyBase {
 	Obj();
 
@@ -52,13 +66,13 @@ struct Obj : public EnemyBase {
 
 	void resetAppearTimer();
 	void resetWhisleTimer(bool);
-	void isWhisleTimeMax();
+	bool isWhisleTimeMax();
 	void startWhisle();
 	void updateWhisle();
 	void finishWhisle();
 	void setTargetPosition(bool);
-	void isJumpAway();
-	void isArriveTarget();
+	bool isJumpAway();
+	bool isArriveTarget();
 	void createFootmarks();
 	void updateFootmarks();
 	void createEffect();
@@ -78,7 +92,7 @@ struct Obj : public EnemyBase {
 	f32 m_whistleTimer;          // _2CC
 	f32 _2D0;                    // _2D0, timer?
 	f32 _2D4;                    // _2D4, timer?
-	u32 m_stateID;               // _2D8, FuefukiStateID on ghidra - enum?
+	StateID m_stateID;           // _2D8
 	Vector3f m_targetPosition;   // _2DC
 	Footmarks* m_footmarks;      // _2E8
 	efx::TCursor* m_efxWhistle;  // _2EC
