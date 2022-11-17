@@ -72,14 +72,18 @@ struct Obj : public EnemyBase {
 
 	void forceBomb();
 	void bombEffInWater();
-	void canEat();
+	bool canEat();
 	bool isAnimStart();
 	bool isBombStart();
 
 	// _00 		= VTBL
 	// _00-_2BC	= EnemyBase
 	u8 _2BC;                         // _2BC
-	u8 _2BD[0xF];                    // _2BD, unknown
+	u8 _2BD;                         // _2BD
+	int _2C0;                        // _2C0
+	int _2C4;                        // _2C4
+	u8 _2C8;                         // _2C8
+	u8 _2C9;                         // _2C9
 	OtakaraBase::Obj* m_otakara;     // _2CC
 	FSM* m_FSM;                      // _2D0
 	efx::TBombrockLight* m_efxLight; // _2D4

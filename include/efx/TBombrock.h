@@ -45,7 +45,12 @@ struct TBombrock : public TBase {
 };
 
 struct TBombrockLight : public TChaseMtxT {
-	virtual ~TBombrockLight(); // _48 (weak)
+	inline TBombrockLight()
+	    : TChaseMtxT(PID_BombrockLight)
+	{
+	}
+
+	virtual ~TBombrockLight() { } // _48 (weak)
 
 	// _00      = VTBL
 	// _00-_14  = TChaseMtxT

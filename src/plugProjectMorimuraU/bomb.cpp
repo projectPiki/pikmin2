@@ -3,6 +3,7 @@
 #include "Game/EnemyAnimKeyEvent.h"
 #include "types.h"
 #include "Game/Entities/Bomb.h"
+#include "Game/Entities/BombOtakara.h"
 
 namespace Game {
 namespace Bomb {
@@ -20,13 +21,19 @@ void Obj::setParameters() { EnemyBase::setParameters(); }
  */
 void Obj::onStartCapture()
 {
+	m_FSM->start(this, BOMB_Wait, nullptr);
 	if (m_captureMatrix) {
 		Vector3f position = m_captureMatrix->getBasis(3);
 		onSetPosition(position);
 		m_impVelocity = Vector3f(0.0f);
 		m_simVelocity = Vector3f(0.0f);
 		setEvent(0, EB_Constraint);
-		setEvent(0, EB_Vulnerable);
+		if (gameSystem && gameSystem->m_mode == GSM_VERSUS_MODE) {
+			resetEvent(0, EB_Vulnerable);
+		} else {
+			setEvent(0, EB_Vulnerable);
+		}
+
 		resetEvent(0, EB_Cullable);
 	}
 }
@@ -39,8 +46,9 @@ void Obj::onStartCapture()
 void Obj::onEndCapture()
 {
 	constraintOff();
-	_2BC = 1;
-	setEvent(0, EB_Cullable);
+	resetEvent(0, EB_Vulnerable);
+	_2BC            = 1;
+	m_captureMatrix = nullptr;
 }
 
 /*
@@ -61,10 +69,15 @@ void Obj::onInit(CreatureInitArg* initArg)
 	resetEvent(0, EB_LeaveCarcass);
 	resetEvent(0, EB_Flying);
 	resetEvent(0, EB_9);
-	setEmotionNone();
-	setEvent(0, EB_BitterImmune);
-	_2BC = 0;
-	m_FSM->start(this, 0, nullptr);
+
+	_2BC      = 0;
+	_2BD      = 0;
+	_2C8      = 0;
+	_2C0      = 0;
+	_2C4      = 0;
+	m_otakara = nullptr;
+
+	m_FSM->start(this, BOMB_Wait, nullptr);
 
 	if (!isBirthTypeDropGroup()) {
 		setEvent(0, EB_Constraint);
@@ -73,15 +86,17 @@ void Obj::onInit(CreatureInitArg* initArg)
 			position.y += 20.0f;
 			m_position.y = mapMgr->getMinY(position);
 		}
-
-		m_curAnim->m_isRunning = 0;
-		doAnimationUpdateAnimator();
-
-		m_mainMatrix.makeSRT(m_scale, m_rotation, m_position);
-
-		PSMTXCopy(m_mainMatrix.m_matrix.mtxView, m_model->m_j3dModel->_24);
-		m_model->m_j3dModel->calc();
 	}
+
+	m_curAnim->m_isRunning = false;
+	doAnimationUpdateAnimator();
+
+	m_mainMatrix.makeSRT(m_scale, m_rotation, m_position);
+
+	PSMTXCopy(m_mainMatrix.m_matrix.mtxView, m_model->m_j3dModel->_24);
+	m_model->m_j3dModel->calc();
+
+	m_efxLight->m_mtx = m_model->getJoint("core1")->getWorldMatrix();
 }
 
 /*
@@ -91,9 +106,17 @@ void Obj::onInit(CreatureInitArg* initArg)
  */
 Obj::Obj()
 {
+	_2BC       = 0;
+	_2BD       = 0;
+	_2C0       = 0;
+	_2C4       = 0;
+	_2C8       = 0;
+	_2C9       = 0;
 	m_FSM      = nullptr;
+	m_efxLight = nullptr;
 	m_animator = new ProperAnimator;
 	setFSM(new FSM);
+	m_efxLight = new efx::TBombrockLight;
 }
 
 /*
@@ -103,6 +126,17 @@ Obj::Obj()
  */
 void Obj::doUpdate()
 {
+	if (_2C9) {
+		m_triangleNormal.x *= 0.9f;
+		m_triangleNormal.y *= 0.9f;
+		m_triangleNormal.z *= 0.9f;
+		m_impVelocity.x *= 0.9f;
+		if (m_impVelocity.y > 0.0f) {
+			m_impVelocity.y *= 0.9f;
+		}
+		m_impVelocity.z *= 0.9f;
+	}
+
 	if (m_curTriangle) {
 		m_simVelocity = Vector3f(0.0f);
 	} else {
@@ -131,23 +165,11 @@ void Obj::doDebugDraw(Graphics&) { }
  * Address:	8034A7FC
  * Size:	00002C
  */
-void Obj::doEntry(void)
+void Obj::doEntry()
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	lbz      r0, 0x2bd(r3)
-	cmplwi   r0, 0
-	bne      lbl_8034A818
-	bl       doEntry__Q24Game9EnemyBaseFv
-
-lbl_8034A818:
-	lwz      r0, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	if (!_2BD) {
+		EnemyBase::doEntry();
+	}
 }
 
 /*
@@ -188,33 +210,13 @@ void Obj::doAnimationCullingOff()
  * Address:	8034AA1C
  * Size:	00004C
  */
-void Obj::doAnimationCullingOn(void)
+void Obj::doAnimationCullingOn()
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	mr       r31, r3
-	bl       isAnimStart__Q34Game4Bomb3ObjFv
-	clrlwi.  r0, r3, 0x18
-	beq      lbl_8034AA4C
-	lwz      r0, 0x1e0(r31)
-	rlwinm   r0, r0, 0, 0x1a, 0x18
-	stw      r0, 0x1e0(r31)
-	b        lbl_8034AA54
-
-lbl_8034AA4C:
-	mr       r3, r31
-	bl       doAnimationCullingOn__Q24Game9EnemyBaseFv
-
-lbl_8034AA54:
-	lwz      r0, 0x14(r1)
-	lwz      r31, 0xc(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	if (isAnimStart()) {
+		resetEvent(0, EB_Cullable);
+	} else {
+		EnemyBase::doAnimationCullingOn();
+	}
 }
 
 /*
@@ -222,8 +224,9 @@ lbl_8034AA54:
  * Address:	8034AA68
  * Size:	000134
  */
-void Obj::doSimulation(float)
+void Obj::doSimulation(f32 simSpeed)
 {
+	if (isStickTo()) { }
 	/*
 	stwu     r1, -0x50(r1)
 	mflr     r0
@@ -322,30 +325,14 @@ lbl_8034AB80:
  * Address:	8034AB9C
  * Size:	000050
  */
-void Obj::getShadowParam(Game::ShadowParam&)
+void Obj::getShadowParam(ShadowParam& param)
 {
-	/*
-	lfs      f0, 0x18c(r3)
-	lfs      f5, lbl_8051E350@sda21(r2)
-	stfs     f0, 0(r4)
-	lfs      f3, lbl_8051E330@sda21(r2)
-	lfs      f0, 0x190(r3)
-	lfs      f2, lbl_8051E354@sda21(r2)
-	stfs     f0, 4(r4)
-	lfs      f1, lbl_8051E358@sda21(r2)
-	lfs      f4, 0x194(r3)
-	lfs      f0, lbl_8051E35C@sda21(r2)
-	stfs     f4, 8(r4)
-	lfs      f4, 0x190(r3)
-	fadds    f4, f5, f4
-	stfs     f4, 4(r4)
-	stfs     f3, 0xc(r4)
-	stfs     f2, 0x10(r4)
-	stfs     f3, 0x14(r4)
-	stfs     f1, 0x18(r4)
-	stfs     f0, 0x1c(r4)
-	blr
-	*/
+	param.m_position   = m_position;
+	param.m_position.y = m_position.y + 2.0f;
+
+	param.m_boundingSphere.m_position = Vector3f(0.0f, 1.0f, 0.0f);
+	param.m_boundingSphere.m_radius   = 30.0f;
+	param._1C                         = 10.0f;
 }
 
 /*
@@ -353,77 +340,22 @@ void Obj::getShadowParam(Game::ShadowParam&)
  * Address:	8034ABEC
  * Size:	000048
  */
-bool Obj::needShadow(void)
-{
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	mr       r31, r3
-	bl       needShadow__Q24Game9EnemyBaseFv
-	clrlwi.  r0, r3, 0x18
-	bne      lbl_8034AC14
-	li       r3, 0
-	b        lbl_8034AC20
-
-lbl_8034AC14:
-	lwz      r0, 0xb8(r31)
-	cntlzw   r0, r0
-	srwi     r3, r0, 5
-
-lbl_8034AC20:
-	lwz      r0, 0x14(r1)
-	lwz      r31, 0xc(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
-}
+bool Obj::needShadow() { return (!EnemyBase::needShadow()) ? false : m_captureMatrix == nullptr; }
 
 /*
  * --INFO--
  * Address:	8034AC34
  * Size:	000080
  */
-void Obj::doFinishStoneState(void)
+void Obj::doFinishStoneState()
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	mr       r31, r3
-	bl       doFinishStoneState__Q24Game9EnemyBaseFv
-	mr       r3, r31
-	bl       getStateID__Q24Game9EnemyBaseFv
-	cmpwi    r3, 0
-	bne      lbl_8034AC84
-	mr       r3, r31
-	bl       getMotionFrame__Q24Game9EnemyBaseFv
-	lfs      f0, lbl_8051E330@sda21(r2)
-	fcmpu    cr0, f0, f1
-	bne      lbl_8034AC84
-	lbz      r0, 0x2bc(r31)
-	cmplwi   r0, 0
-	bne      lbl_8034AC84
-	mr       r3, r31
-	bl       stopMotion__Q24Game9EnemyBaseFv
+	EnemyBase::doFinishStoneState();
+	if (getStateID() == BOMB_Wait && getMotionFrame() == 0.0f && !_2BC) {
+		stopMotion();
+	}
 
-lbl_8034AC84:
-	lwz      r0, 0x1e0(r31)
-	lfs      f0, lbl_8051E330@sda21(r2)
-	rlwinm   r0, r0, 0, 0, 0x1e
-	stw      r0, 0x1e0(r31)
-	stfs     f0, 0x1d4(r31)
-	stfs     f0, 0x1d8(r31)
-	stfs     f0, 0x1dc(r31)
-	lwz      r31, 0xc(r1)
-	lwz      r0, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	resetEvent(0, EB_Vulnerable);
+	m_simVelocity = Vector3f(0.0f);
 }
 
 /*
@@ -433,26 +365,9 @@ lbl_8034AC84:
  */
 void Obj::doStartStoneState(void)
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	mr       r31, r3
-	bl       doStartStoneState__Q24Game9EnemyBaseFv
-	lwz      r3, 0x2d4(r31)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x10(r12)
-	mtctr    r12
-	bctrl
-	li       r0, 0
-	stb      r0, 0x2c8(r31)
-	lwz      r0, 0x14(r1)
-	lwz      r31, 0xc(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	EnemyBase::doStartStoneState();
+	m_efxLight->fade();
+	_2C8 = 0;
 }
 
 /*
@@ -460,45 +375,14 @@ void Obj::doStartStoneState(void)
  * Address:	8034ACFC
  * Size:	000084
  */
-void Obj::onKill(CreatureKillArg*)
+void Obj::onKill(CreatureKillArg* killArg)
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	mr       r31, r4
-	stw      r30, 8(r1)
-	mr       r30, r3
-	lwz      r3, 0x2cc(r3)
-	cmplwi   r3, 0
-	beq      lbl_8034AD48
-	lwz      r12, 0(r3)
-	lwz      r12, 0x258(r12)
-	mtctr    r12
-	bctrl
-	cmpwi    r3, 0x5d
-	bne      lbl_8034AD48
-	lwz      r3, 0x2cc(r30)
-	li       r0, 0
-	stw      r0, 0x230(r3)
+	if (m_otakara && m_otakara->getEnemyTypeID() == EnemyTypeID::EnemyID_BombOtakara) {
+		m_otakara->m_targetCreature = nullptr;
+	}
 
-lbl_8034AD48:
-	lwz      r3, 0x2d4(r30)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x10(r12)
-	mtctr    r12
-	bctrl
-	mr       r3, r30
-	mr       r4, r31
-	bl       onKill__Q24Game9EnemyBaseFPQ24Game15CreatureKillArg
-	lwz      r0, 0x14(r1)
-	lwz      r31, 0xc(r1)
-	lwz      r30, 8(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	m_efxLight->fade();
+	EnemyBase::onKill(killArg);
 }
 
 /*
@@ -506,95 +390,35 @@ lbl_8034AD48:
  * Address:	8034AD80
  * Size:	000030
  */
-void Obj::doStartMovie(void)
-{
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	lwz      r3, 0x2d4(r3)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x40(r12)
-	mtctr    r12
-	bctrl
-	lwz      r0, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
-}
+void Obj::doStartMovie() { m_efxLight->startDemoDrawOff(); }
 
 /*
  * --INFO--
  * Address:	8034ADB0
  * Size:	000030
  */
-void Obj::doEndMovie(void)
-{
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	lwz      r3, 0x2d4(r3)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x44(r12)
-	mtctr    r12
-	bctrl
-	lwz      r0, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
-}
+void Obj::doEndMovie() { m_efxLight->endDemoDrawOn(); }
 
 /*
  * --INFO--
  * Address:	8034ADE0
  * Size:	000074
  */
-bool Obj::damageCallBack(Creature*, float, CollPart*)
+bool Obj::damageCallBack(Creature* creature, f32 damage, CollPart* collpart)
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	lbz      r0, 0x2bc(r3)
-	cmplwi   r0, 0
-	beq      lbl_8034AE04
-	lwz      r0, 0xc8(r3)
-	cmplwi   r0, 0
-	beq      lbl_8034AE40
+	if (!_2BC || m_curTriangle) {
+		if (isEvent(0, EB_Bittered)) {
+			_2C4++;
+			if (_2C4 > 4) {
+				kill(nullptr);
+			}
+			return true;
+		} else {
+			EnemyBase::damageCallBack(creature, 0.0f, collpart);
+		}
+	}
 
-lbl_8034AE04:
-	lwz      r0, 0x1e0(r3)
-	rlwinm.  r0, r0, 0, 0x16, 0x16
-	beq      lbl_8034AE38
-	lwz      r4, 0x2c4(r3)
-	addi     r0, r4, 1
-	stw      r0, 0x2c4(r3)
-	lwz      r0, 0x2c4(r3)
-	cmpwi    r0, 4
-	ble      lbl_8034AE30
-	li       r4, 0
-	bl       kill__Q24Game8CreatureFPQ24Game15CreatureKillArg
-
-lbl_8034AE30:
-	li       r3, 1
-	b        lbl_8034AE44
-
-lbl_8034AE38:
-	lfs      f1, lbl_8051E330@sda21(r2)
-	bl       damageCallBack__Q24Game9EnemyBaseFPQ24Game8CreaturefP8CollPart
-
-lbl_8034AE40:
-	li       r3, 0
-
-lbl_8034AE44:
-	lwz      r0, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	return false;
 }
 
 /*
@@ -602,8 +426,7 @@ lbl_8034AE44:
  * Address:	8034AE54
  * Size:	000160
  */
-// void bombCallBack__Q34Game4Bomb3ObjFPQ24Game8CreatureR10Vector3f f(void)
-bool Obj::bombCallBack(Creature*, Vector3f&, float)
+bool Obj::bombCallBack(Creature* creature, Vector3f& vec, f32 damage)
 {
 	/*
 	stwu     r1, -0x30(r1)
@@ -710,51 +533,24 @@ lbl_8034AF9C:
  * Address:	8034AFB4
  * Size:	000008
  */
-bool Obj::pressCallBack(Creature*, float, CollPart*) { return false; }
+bool Obj::pressCallBack(Creature*, f32, CollPart*) { return false; }
 
 /*
  * --INFO--
  * Address:	8034AFBC
  * Size:	000078
  */
-void Obj::bounceCallback(Sys::Triangle*)
+void Obj::bounceCallback(Sys::Triangle* triangle)
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	mr       r31, r3
-	lbz      r0, 0x2bc(r3)
-	cmplwi   r0, 0
-	beq      lbl_8034AFEC
-	lfs      f1, lbl_8051E368@sda21(r2)
-	addi     r4, r31, 0x18c
-	bl       "createBounceEffect__Q24Game9EnemyBaseFRC10Vector3<f>f"
-	b        lbl_8034B020
+	if (_2BC) {
+		createBounceEffect(m_position, 0.5f);
+		return;
+	}
 
-lbl_8034AFEC:
-	bl       isBirthTypeDropGroup__Q24Game9EnemyBaseFv
-	clrlwi.  r0, r3, 0x18
-	beq      lbl_8034B020
-	mr       r3, r31
-	bl       getStateID__Q24Game9EnemyBaseFv
-	cmpwi    r3, 0
-	bne      lbl_8034B020
-	lfs      f1, lbl_8051E368@sda21(r2)
-	mr       r3, r31
-	addi     r4, r31, 0x18c
-	bl       "createBounceEffect__Q24Game9EnemyBaseFRC10Vector3<f>f"
-	mr       r3, r31
-	bl       forceBomb__Q34Game4Bomb3ObjFv
-
-lbl_8034B020:
-	lwz      r0, 0x14(r1)
-	lwz      r31, 0xc(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	if (isBirthTypeDropGroup() && getStateID() == BOMB_Wait) {
+		createBounceEffect(m_position, 0.5f);
+		forceBomb();
+	}
 }
 
 /*
@@ -762,51 +558,14 @@ lbl_8034B020:
  * Address:	8034B034
  * Size:	00009C
  */
-void Obj::collisionCallback(CollEvent&)
+void Obj::collisionCallback(CollEvent& collEvent)
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	mr       r31, r4
-	stw      r30, 8(r1)
-	mr       r30, r3
-	bl       collisionCallback__Q24Game9EnemyBaseFRQ24Game9CollEvent
-	mr       r3, r30
-	bl       isBirthTypeDropGroup__Q24Game9EnemyBaseFv
-	clrlwi.  r0, r3, 0x18
-	beq      lbl_8034B0B8
-	lwz      r3, 0(r31)
-	cmplwi   r3, 0
-	beq      lbl_8034B0B8
-	lwz      r12, 0(r3)
-	lwz      r12, 0x7c(r12)
-	mtctr    r12
-	bctrl
-	clrlwi.  r0, r3, 0x18
-	bne      lbl_8034B0B8
-	mr       r3, r30
-	bl       getStateID__Q24Game9EnemyBaseFv
-	cmpwi    r3, 0
-	bne      lbl_8034B0B8
-	lfs      f1, lbl_8051E368@sda21(r2)
-	mr       r3, r30
-	addi     r4, r30, 0x18c
-	bl       "createBounceEffect__Q24Game9EnemyBaseFRC10Vector3<f>f"
-	mr       r3, r30
-	bl       forceBomb__Q34Game4Bomb3ObjFv
-	li       r0, 1
-	stb      r0, 0x2c9(r30)
-
-lbl_8034B0B8:
-	lwz      r0, 0x14(r1)
-	lwz      r31, 0xc(r1)
-	lwz      r30, 8(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	EnemyBase::collisionCallback(collEvent);
+	if (isBirthTypeDropGroup() && collEvent.m_collidingCreature && !collEvent.m_collidingCreature->isTeki() && getStateID() == BOMB_Wait) {
+		createBounceEffect(m_position, 0.5f);
+		forceBomb();
+		_2C9 = 1;
+	}
 }
 
 /*
@@ -814,36 +573,12 @@ lbl_8034B0B8:
  * Address:	8034B0D0
  * Size:	000060
  */
-void Obj::forceBomb(void)
+void Obj::forceBomb()
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	mr       r31, r3
-	bl       getStateID__Q24Game9EnemyBaseFv
-	cmpwi    r3, 0
-	bne      lbl_8034B11C
-	lwz      r0, 0x1e0(r31)
-	mr       r4, r31
-	li       r5, 1
-	li       r6, 0
-	rlwinm   r0, r0, 0, 0, 0x1e
-	stw      r0, 0x1e0(r31)
-	lwz      r3, 0x2d0(r31)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x14(r12)
-	mtctr    r12
-	bctrl
-
-lbl_8034B11C:
-	lwz      r0, 0x14(r1)
-	lwz      r31, 0xc(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	if (getStateID() == BOMB_Wait) {
+		resetEvent(0, EB_Vulnerable);
+		m_FSM->transit(this, BOMB_Bomb, nullptr);
+	}
 }
 
 /*
@@ -861,58 +596,20 @@ bool Obj::isBombStart(void)
  * Address:	8034B130
  * Size:	000028
  */
-void Obj::bombEffInWater(void)
-{
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	lfs      f1, lbl_8051E36C@sda21(r2)
-	addi     r4, r3, 0x18c
-	stw      r0, 0x14(r1)
-	bl       "createSplashDownEffect__Q24Game9EnemyBaseFRC10Vector3<f>f"
-	lwz      r0, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
-}
+void Obj::bombEffInWater() { EnemyBase::createSplashDownEffect(m_position, 1.3f); }
 
 /*
  * --INFO--
  * Address:	8034B158
  * Size:	00005C
  */
-void Obj::canEat(void)
+bool Obj::canEat()
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	mr       r31, r3
-	lwz      r12, 0(r3)
-	lwz      r12, 0xa8(r12)
-	mtctr    r12
-	bctrl
-	clrlwi.  r0, r3, 0x18
-	beq      lbl_8034B19C
-	mr       r3, r31
-	bl       getStateID__Q24Game9EnemyBaseFv
-	cmpwi    r3, 0
-	bne      lbl_8034B19C
-	li       r3, 1
-	b        lbl_8034B1A0
+	if (isAlive() && getStateID() == BOMB_Wait) {
+		return true;
+	}
 
-lbl_8034B19C:
-	li       r3, 0
-
-lbl_8034B1A0:
-	lwz      r0, 0x14(r1)
-	lwz      r31, 0xc(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	return false;
 }
 
 /*
@@ -920,8 +617,32 @@ lbl_8034B1A0:
  * Address:	8034B1B4
  * Size:	0000D8
  */
-bool Obj::isAnimStart(void)
+bool Obj::isAnimStart()
 {
+	if (isBirthTypeDropGroup() || !(m_toFlick >= C_PROPERPARMS.m_ip01.m_value)) {
+		if (!_2BC || m_curTriangle == nullptr) {
+			bool check;
+			if (!_2C0) {
+				check = false;
+			} else {
+
+				_2C0++;
+
+				if (_2C0 > C_PROPERPARMS.m_ip02.m_value) {
+					check = true;
+					_2C0  = 0;
+				} else {
+					check = false;
+				}
+			}
+
+			if (check) {
+				return false;
+			}
+		}
+	}
+
+	return true;
 	/*
 	stwu     r1, -0x20(r1)
 	mflr     r0
@@ -1001,30 +722,14 @@ lbl_8034B278:
  * Address:	8034B36C
  * Size:	000048
  */
-bool Obj::isUnderground(void)
+bool Obj::isUnderground()
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	li       r31, 0
-	lwz      r0, 0x1e0(r3)
-	rlwinm.  r0, r0, 0, 0x16, 0x16
-	bne      lbl_8034B39C
-	bl       isStopMotion__Q24Game9EnemyBaseFv
-	clrlwi.  r0, r3, 0x18
-	bne      lbl_8034B39C
-	li       r31, 1
+	bool result = false;
+	if (!isEvent(0, EB_Bittered) && !isStopMotion()) {
+		result = true;
+	}
 
-lbl_8034B39C:
-	lwz      r0, 0x14(r1)
-	mr       r3, r31
-	lwz      r31, 0xc(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	return result;
 }
 
 } // namespace Bomb

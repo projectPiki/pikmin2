@@ -76,22 +76,22 @@ DoorNode::DoorNode(Door& door)
  */
 bool DoorNode::isDoorAdjust(DoorNode* other)
 {
-	s32 x = m_node.m_direction;
-	s32 y = other->m_node.m_direction;
+	CardinalDirection x = (CardinalDirection)m_node.m_direction;
+	CardinalDirection y = (CardinalDirection)other->m_node.m_direction;
 
-	if (!x && y == 2) {
+	if (x == CD_UP && y == CD_DOWN) {
 		return true;
 	}
 
-	if (x == 2 && !y) {
+	if (x == CD_DOWN && y == CD_UP) {
 		return true;
 	}
 
-	if (x == 3 && y == 1) {
+	if (x == CD_LEFT && y == CD_RIGHT) {
 		return true;
 	}
 
-	if (x == 1 && y == 3) {
+	if (x == CD_RIGHT && y == CD_LEFT) {
 		return true;
 	}
 
