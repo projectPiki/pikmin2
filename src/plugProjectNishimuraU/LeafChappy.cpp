@@ -1,4 +1,5 @@
 #include "types.h"
+#include "Game/Entities/LeafChappy.h"
 
 /*
     Generated from dpostproc
@@ -290,64 +291,21 @@
 */
 
 namespace Game {
+namespace LeafChappy {
 
 /*
  * --INFO--
  * Address:	802C5C18
  * Size:	000098
  */
-LeafChappy::Obj::Obj()
-{
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	extsh.   r0, r4
-	stw      r31, 0xc(r1)
-	mr       r31, r3
-	beq      lbl_802C5C54
-	addi     r0, r31, 0x2fc
-	lis      r3, __vt__Q24Game10PelletView@ha
-	stw      r0, 0x17c(r31)
-	addi     r3, r3, __vt__Q24Game10PelletView@l
-	li       r0, 0
-	stw      r3, 0x2fc(r31)
-	stw      r0, 0x300(r31)
-	stw      r0, 0x304(r31)
-
-lbl_802C5C54:
-	mr       r3, r31
-	li       r4, 0
-	bl       __ct__Q34Game10KumaChappy3ObjFv
-	lis      r3, __vt__Q34Game10LeafChappy3Obj@ha
-	addi     r0, r31, 0x2fc
-	addi     r5, r3, __vt__Q34Game10LeafChappy3Obj@l
-	mr       r3, r31
-	stw      r5, 0(r31)
-	addi     r4, r5, 0x1b0
-	addi     r5, r5, 0x30c
-	stw      r4, 0x178(r31)
-	lwz      r4, 0x17c(r31)
-	stw      r5, 0(r4)
-	lwz      r4, 0x17c(r31)
-	subf     r0, r4, r0
-	stw      r0, 0xc(r4)
-	bl       createFootmarks__Q34Game10LeafChappy3ObjFv
-	lwz      r0, 0x14(r1)
-	mr       r3, r31
-	lwz      r31, 0xc(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
-}
+Obj::Obj() { createFootmarks(); }
 
 /*
  * --INFO--
  * Address:	802C5CB0
  * Size:	0000C0
  */
-void LeafChappy::Obj::doUpdate()
+void Obj::doUpdate()
 {
 	/*
 	stwu     r1, -0x40(r1)
@@ -412,72 +370,34 @@ lbl_802C5D5C:
  * Address:	802C5D70
  * Size:	000004
  */
-void LeafChappy::Obj::doDirectDraw(Graphics&) { }
+void Obj::doDirectDraw(Graphics&) { }
 
 /*
  * --INFO--
  * Address:	802C5D74
  * Size:	0000C4
  */
-void LeafChappy::Obj::getShadowParam(Game::ShadowParam&)
+void Obj::getShadowParam(Game::ShadowParam& param)
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	mr       r31, r4
-	addi     r4, r2, lbl_8051C608@sda21
-	stw      r30, 8(r1)
-	mr       r30, r3
-	lwz      r3, 0x174(r3)
-	bl       getJoint__Q28SysShape5ModelFPc
-	bl       getWorldMatrix__Q28SysShape5JointFv
-	lfs      f4, 0x2c(r3)
-	lfs      f3, 0x1c(r3)
-	lfs      f1, 0xc(r3)
-	lfs      f0, lbl_8051C60C@sda21(r2)
-	stfs     f1, 0(r31)
-	lfs      f2, lbl_8051C610@sda21(r2)
-	stfs     f3, 4(r31)
-	stfs     f4, 8(r31)
-	lfs      f1, 4(r31)
-	fsubs    f0, f1, f0
-	stfs     f0, 4(r31)
-	lfs      f1, 0x190(r30)
-	lfs      f0, 4(r31)
-	fadds    f1, f2, f1
-	fcmpo    cr0, f0, f1
-	bge      lbl_802C5DE4
-	stfs     f1, 4(r31)
+	Matrixf* worldMatrix = m_model->getJoint("ago")->getWorldMatrix();
 
-lbl_802C5DE4:
-	lfs      f1, lbl_8051C5F8@sda21(r2)
-	lfs      f0, lbl_8051C614@sda21(r2)
-	stfs     f1, 0xc(r31)
-	stfs     f0, 0x10(r31)
-	stfs     f1, 0x14(r31)
-	lwz      r0, 0x1e4(r30)
-	clrlwi.  r0, r0, 0x1f
-	beq      lbl_802C5E10
-	lfs      f0, lbl_8051C618@sda21(r2)
-	stfs     f0, 0x18(r31)
-	b        lbl_802C5E18
+	param.m_position
+	    = Vector3f(worldMatrix->m_matrix.mtxView[0][3], worldMatrix->m_matrix.mtxView[1][3], worldMatrix->m_matrix.mtxView[2][3]);
 
-lbl_802C5E10:
-	lfs      f0, lbl_8051C61C@sda21(r2)
-	stfs     f0, 0x18(r31)
+	param.m_position.y -= 7.0f;
+	f32 heightFloat = m_position.y + 5.0f;
+	if (param.m_position.y < heightFloat) {
+		param.m_position.y = heightFloat;
+	}
+	param.m_boundingSphere.m_position = Vector3f(0.0f, 1.0f, 0.0f);
 
-lbl_802C5E18:
-	lfs      f0, lbl_8051C620@sda21(r2)
-	stfs     f0, 0x1c(r31)
-	lwz      r0, 0x14(r1)
-	lwz      r31, 0xc(r1)
-	lwz      r30, 8(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	if (isEvent(1, EB2_1)) {
+		param.m_boundingSphere.m_radius = 30.0f;
+	} else {
+		param.m_boundingSphere.m_radius = 50.0f;
+	}
+
+	param._1C = 12.5f;
 }
 
 /*
@@ -485,7 +405,7 @@ lbl_802C5E18:
  * Address:	802C5E38
  * Size:	0000B4
  */
-void LeafChappy::Obj::initMouthSlots()
+void Obj::initMouthSlots()
 {
 	/*
 	stwu     r1, -0x20(r1)
@@ -545,7 +465,7 @@ lbl_802C5EC0:
  * Address:	802C5EEC
  * Size:	000064
  */
-void LeafChappy::Obj::initWalkSmokeEffect()
+void Obj::initWalkSmokeEffect()
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -581,18 +501,9 @@ void LeafChappy::Obj::initWalkSmokeEffect()
  * Address:	802C5F50
  * Size:	000020
  */
-void LeafChappy::Obj::doBecomeCarcass()
+bool Obj::doBecomeCarcass()
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	bl       doBecomeCarcass__Q24Game9EnemyBaseFv
-	lwz      r0, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	doBecomeCarcass(); // needs to be not virtual call
 }
 
 /*
@@ -600,18 +511,9 @@ void LeafChappy::Obj::doBecomeCarcass()
  * Address:	802C5F70
  * Size:	000020
  */
-void LeafChappy::Obj::doUpdateCarcass()
+void Obj::doUpdateCarcass()
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	bl       doUpdateCarcass__Q24Game9EnemyBaseFv
-	lwz      r0, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	doUpdateCarcass(); // needs to be not virtual call
 }
 
 /*
@@ -619,7 +521,7 @@ void LeafChappy::Obj::doUpdateCarcass()
  * Address:	802C5F90
  * Size:	000020
  */
-void LeafChappy::Obj::doGetLifeGaugeParam(Game::LifeGaugeParam&)
+void Obj::doGetLifeGaugeParam(LifeGaugeParam&)
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -638,7 +540,7 @@ void LeafChappy::Obj::doGetLifeGaugeParam(Game::LifeGaugeParam&)
  * Address:	802C5FB0
  * Size:	000244
  */
-void LeafChappy::Obj::birthChildren(Game::EnemyBirthArg&)
+void Obj::birthChildren(EnemyBirthArg&)
 {
 	/*
 	stwu     r1, -0xe0(r1)
@@ -804,7 +706,7 @@ lbl_802C618C:
  * Address:	802C61F4
  * Size:	00007C
  */
-void LeafChappy::Obj::startEnemyRumble()
+void Obj::startEnemyRumble()
 {
 	/*
 	stwu     r1, -0x20(r1)
@@ -846,7 +748,7 @@ void LeafChappy::Obj::startEnemyRumble()
  * Address:	802C6270
  * Size:	000050
  */
-void LeafChappy::Obj::createFootmarks()
+void Obj::createFootmarks()
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -874,57 +776,5 @@ lbl_802C629C:
 	*/
 }
 
-/*
- * --INFO--
- * Address:	802C62C0
- * Size:	000008
- */
-void LeafChappy::Obj::getDownSmokeScale()
-{
-	/*
-	lfs      f1, lbl_8051C660@sda21(r2)
-	blr
-	*/
-}
-
-/*
- * --INFO--
- * Address:	802C62C8
- * Size:	000008
- */
-u32 LeafChappy::Obj::getEnemyTypeID() { return 0x43; }
-
-/*
- * --INFO--
- * Address:	802C62D0
- * Size:	000004
- */
-void LeafChappy::Obj::createChappyRelation() { }
-
-/*
- * --INFO--
- * Address:	802C62D4
- * Size:	000004
- */
-void LeafChappy::Obj::resetChappyRelation() { }
-
-/*
- * --INFO--
- * Address:	802C62D8
- * Size:	000008
- */
-u32 LeafChappy::Obj::getChappyRelation() { return 0x0; }
-
-/*
- * --INFO--
- * Address:	802C62E0
- * Size:	000008
- */
-void LeafChappy::Obj::getFootmarks()
-{
-	/*
-	lwz      r3, 0x2f8(r3)
-	blr
-	*/
-}
+} // namespace LeafChappy
 } // namespace Game

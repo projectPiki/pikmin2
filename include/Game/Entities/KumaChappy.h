@@ -46,7 +46,7 @@ struct Obj : public EnemyBase {
 	virtual f32 getDownSmokeScale();                          // _2EC (weak)
 	virtual void setFSM(FSM*);                                // _2F8
 	virtual void createChappyRelation();                      // _2FC
-	virtual void getChappyRelation();                         // _300 (weak)
+	virtual u32 getChappyRelation();                          // _300 (weak)
 	virtual void startEnemyRumble();                          // _304
 	////////// VTABLE END
 
