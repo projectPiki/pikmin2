@@ -53,8 +53,8 @@ struct Mgr : public BaseItemMgr, public Container<Onyon> {
 	u32 _A0;                              // _A0, unknown
 	u32 _A4;                              // _A4, unknown
 	u32 _A8;                              // _A8, unknown
-	Onyon* _AC;                           // _AC, one of these is the ship and the other is the (cave) pod
-	Onyon* _B0;                           // _B0, one of these is the ship and the other is the (cave) pod
+	Onyon* m_pod;                         // _AC, (cave) pod
+	Onyon* m_ufo;                         // _B0, ufo (ship)
 	Sys::MatTevRegAnimation _B4[3];       // _B4
 	Sys::MatTevRegAnimation _F0[2];       // _F0
 };

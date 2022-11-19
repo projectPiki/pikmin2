@@ -18,7 +18,7 @@ struct TList {
 	TList& operator=(const TList& other);
 };
 
-struct TList_pointer_void : public TList<void*, TAllocator<void*>> {
+struct TList_pointer_void : public TList<void*, TAllocator<void*> /*space necessary here to prevent compiler error*/> {
 	TList_pointer_void(); // unused/inlined?
 	TList_pointer_void(const TAllocator<void*>& allocator);
 	TList_pointer_void(u32, const void*&, const TAllocator<void*>&); // unused/inlined

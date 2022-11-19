@@ -136,7 +136,7 @@ execCommandStay__Q210JASPortCmd9TPortHeadFv:
 /* 800A68C0 000A3800  38 21 00 10 */	addi r1, r1, 0x10
 /* 800A68C4 000A3804  4E 80 00 20 */	blr 
 
-__sinit_JASCmdStack_cpp: # static initializer
+fn local __sinit_JASCmdStack_cpp
 /* 800A68C8 000A3808  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 800A68CC 000A380C  7C 08 02 A6 */	mflr r0
 /* 800A68D0 000A3810  3C 60 80 51 */	lis r3, sCommandListOnce__10JASPortCmd@ha
@@ -164,6 +164,7 @@ __sinit_JASCmdStack_cpp: # static initializer
 /* 800A6928 000A3868  7C 08 03 A6 */	mtlr r0
 /* 800A692C 000A386C  38 21 00 10 */	addi r1, r1, 0x10
 /* 800A6930 000A3870  4E 80 00 20 */	blr 
+end __sinit_JASCmdStack_cpp
 
 .global __dt__Q210JASPortCmd9TPortHeadFv
 __dt__Q210JASPortCmd9TPortHeadFv:

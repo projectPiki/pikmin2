@@ -11448,7 +11448,7 @@ simulation__Q34Game12EnemyBaseFSM18BirthTypeDropStateFPQ24Game9EnemyBasef:
 animation__Q34Game12EnemyBaseFSM18BirthTypeDropStateFPQ24Game9EnemyBase:
 /* 80108214 00105154  4E 80 00 20 */	blr 
 
-__sinit_enemyBase_cpp: # static initializer
+fn local __sinit_enemyBase_cpp
 /* 80108218 00105158  3C 80 80 51 */	lis r4, __float_nan@ha
 /* 8010821C 0010515C  38 00 FF FF */	li r0, -1
 /* 80108220 00105160  C0 04 48 B0 */	lfs f0, __float_nan@l(r4)
@@ -11459,6 +11459,7 @@ __sinit_enemyBase_cpp: # static initializer
 /* 80108234 00105174  D0 03 00 04 */	stfs f0, 4(r3)
 /* 80108238 00105178  D0 03 00 08 */	stfs f0, 8(r3)
 /* 8010823C 0010517C  4E 80 00 20 */	blr 
+end __sinit_enemyBase_cpp
 
 .global "@376@onKeyEvent__Q24Game9EnemyBaseFRCQ28SysShape8KeyEvent"
 "@376@onKeyEvent__Q24Game9EnemyBaseFRCQ28SysShape8KeyEvent":

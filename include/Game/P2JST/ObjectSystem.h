@@ -2,6 +2,7 @@
 #define _GAME_P2JST_OBJECTSYSTEM_H
 
 #include "Game/P2JST/ObjectBase.h"
+#include "Game/Creature.h"
 #include "JStage/TSystem.h"
 #include "JSystem/JGadget/list.h"
 
@@ -27,7 +28,7 @@ struct ObjectSystem : public JStage::TSystem, public ObjectBase {
 
 	void destroyObjectAll();
 	void findObject(const char*, JStage::TEObject) const;
-	void findCreature(const char*) const;
+	Creature* findCreature(const char*) const;
 
 	// _00 = VTABLE (JStage::TSystem)
 	// _04 = VTABLE2 (ObjectBase)

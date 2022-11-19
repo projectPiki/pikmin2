@@ -1884,7 +1884,7 @@ getType__21J3DShapeMtxConcatViewCFv:
 /* 80087750 00084690  38 63 43 56 */	addi r3, r3, 0x534D4356@l
 /* 80087754 00084694  4E 80 00 20 */	blr 
 
-__sinit_J3DShapeMtx_cpp: # static initializer
+fn local __sinit_J3DShapeMtx_cpp
 /* 80087758 00084698  94 21 FF 80 */	stwu r1, -0x80(r1)
 /* 8008775C 0008469C  BD C1 00 38 */	stmw r14, 0x38(r1)
 /* 80087760 000846A0  3C 60 80 4A */	lis r3, lbl_804A2C98@ha
@@ -1991,3 +1991,4 @@ __sinit_J3DShapeMtx_cpp: # static initializer
 /* 800878F4 00084834  B9 C1 00 38 */	lmw r14, 0x38(r1)
 /* 800878F8 00084838  38 21 00 80 */	addi r1, r1, 0x80
 /* 800878FC 0008483C  4E 80 00 20 */	blr 
+end __sinit_J3DShapeMtx_cpp

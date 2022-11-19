@@ -505,7 +505,7 @@ setSePortParameter__Q27JAInter15SystemInterfaceFP11JASPortArgs:
 /* 800B95A0 000B64E0  38 21 00 20 */	addi r1, r1, 0x20
 /* 800B95A4 000B64E4  4E 80 00 20 */	blr 
 
-__sinit_JAISystemInterface_cpp: # static initializer
+fn local __sinit_JAISystemInterface_cpp
 /* 800B95A8 000B64E8  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 800B95AC 000B64EC  7C 08 02 A6 */	mflr r0
 /* 800B95B0 000B64F0  3C 60 80 51 */	lis r3, systemPortCmd__Q27JAInter15SystemInterface@ha
@@ -527,3 +527,4 @@ __sinit_JAISystemInterface_cpp: # static initializer
 /* 800B95F0 000B6530  7C 08 03 A6 */	mtlr r0
 /* 800B95F4 000B6534  38 21 00 10 */	addi r1, r1, 0x10
 /* 800B95F8 000B6538  4E 80 00 20 */	blr 
+end __sinit_JAISystemInterface_cpp

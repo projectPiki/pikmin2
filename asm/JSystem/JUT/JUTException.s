@@ -3418,7 +3418,7 @@ __dt__12JUTExceptionFv: # weak function
 /* 8002CDB8 00029CF8  38 21 00 10 */	addi r1, r1, 0x10
 /* 8002CDBC 00029CFC  4E 80 00 20 */	blr 
 
-__sinit_JUTException_cpp: # static initializer
+fn local __sinit_JUTException_cpp
 /* 8002CDC0 00029D00  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8002CDC4 00029D04  7C 08 02 A6 */	mflr r0
 /* 8002CDC8 00029D08  3C 60 80 50 */	lis r3, sMapFileList__12JUTException@ha
@@ -3437,6 +3437,7 @@ __sinit_JUTException_cpp: # static initializer
 /* 8002CDFC 00029D3C  7C 08 03 A6 */	mtlr r0
 /* 8002CE00 00029D40  38 21 00 10 */	addi r1, r1, 0x10
 /* 8002CE04 00029D44  4E 80 00 20 */	blr 
+end __sinit_JUTException_cpp
 
 .global "__dt__39JSUList<Q212JUTException12JUTExMapFile>Fv"
 "__dt__39JSUList<Q212JUTException12JUTExMapFile>Fv": # weak function

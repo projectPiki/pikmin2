@@ -4489,13 +4489,13 @@ Onyon* Pellet::getPelletGoal()
 		if (goalOnyon == nullptr) {
 			goalOnyon = ItemOnyon::mgr->getOnyon(ONYON_TYPE_RED);
 			if (goalOnyon == nullptr) {
-				goalOnyon = ItemOnyon::mgr->_AC;
+				goalOnyon = ItemOnyon::mgr->m_pod;
 			}
 		}
 	} else {
-		goalOnyon = ItemOnyon::mgr->_B0;
-		if (ItemOnyon::mgr->_B0 == nullptr) {
-			goalOnyon = ItemOnyon::mgr->_AC;
+		goalOnyon = ItemOnyon::mgr->m_ufo;
+		if (ItemOnyon::mgr->m_ufo == nullptr) {
+			goalOnyon = ItemOnyon::mgr->m_pod;
 		}
 	}
 

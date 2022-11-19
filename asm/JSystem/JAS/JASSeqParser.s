@@ -2722,8 +2722,7 @@ parseSeq__12JASSeqParserFP8JASTrack:
 /* 8009E84C 0009B78C  38 21 00 A0 */	addi r1, r1, 0xa0
 /* 8009E850 0009B790  4E 80 00 20 */	blr 
 
-.global __sinit_JASSeqParser_cpp
-__sinit_JASSeqParser_cpp:
+fn local __sinit_JASSeqParser_cpp
 /* 8009E854 0009B794  94 21 FE E0 */	stwu r1, -0x120(r1)
 /* 8009E858 0009B798  3C 80 80 4A */	lis r4, lbl_804A3D68@ha
 /* 8009E85C 0009B79C  3C 60 80 48 */	lis r3, __ptmf_null@ha
@@ -3188,3 +3187,4 @@ __sinit_JASSeqParser_cpp:
 /* 8009EF88 0009BEC8  B9 C1 00 D8 */	lmw r14, 0xd8(r1)
 /* 8009EF8C 0009BECC  38 21 01 20 */	addi r1, r1, 0x120
 /* 8009EF90 0009BED0  4E 80 00 20 */	blr 
+end __sinit_JASSeqParser_cpp

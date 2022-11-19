@@ -2077,10 +2077,11 @@ newSceneMgr__Q23PSM7FactoryFv: #weak function
 /* 80423750 00420690  38 21 00 10 */	addi r1, r1, 0x10
 /* 80423754 00420694  4E 80 00 20 */	blr 
 
-__sinit_system_cpp: # static initializer
+fn local __sinit_system_cpp
 /* 80423758 00420698  38 80 00 01 */	li r4, 1
 /* 8042375C 0042069C  38 00 00 00 */	li r0, 0
 /* 80423760 004206A0  38 6D 9A F0 */	addi r3, r13, sVerifyArg__6System@sda21
 /* 80423764 004206A4  90 8D 9A F0 */	stw r4, sVerifyArg__6System@sda21(r13)
 /* 80423768 004206A8  98 03 00 04 */	stb r0, 4(r3)
 /* 8042376C 004206AC  4E 80 00 20 */	blr 
+end __sinit_system_cpp
