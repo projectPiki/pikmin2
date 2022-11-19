@@ -7,6 +7,9 @@
 #include "Game/Entities/ItemOnyon.h"
 #include "JSystem/JUT/JUTException.h"
 
+static const u32 filler[] = { 0, 0, 0 };
+const char filename[]     = "JSTFindCreature";
+
 namespace Game {
 namespace P2JST {
 
