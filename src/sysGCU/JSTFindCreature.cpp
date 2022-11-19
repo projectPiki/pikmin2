@@ -18,16 +18,15 @@ namespace P2JST {
 Creature* ObjectSystem::findCreature(const char* stbData) const
 {
 	{
-		char charBuffer[268];
+		char charBuffer[256];
 		char loop_var            = stbData[0];
 		Creature* found_creature = nullptr;
 
-		if (loop_var == '_') {
-			loop_var = stbData[1];
-		}
-
 		for (int i = 0; ('/' < loop_var) && (loop_var < ':'); charBuffer[0] = '\0', i++) {
 
+			if (loop_var == '_') {
+				loop_var = stbData[1];
+			}
 			charBuffer[i] = loop_var;
 			if (loop_var == '\0') {
 				JUT_ASSERTLINE(117, i > 0xff, "OG-DRON\n");
@@ -64,7 +63,7 @@ Creature* ObjectSystem::findCreature(const char* stbData) const
 					}
 				} else if (!strcmp(charBuffer, "pikmin")) {
 					found_creature = moviePlayer->m_targetObject;
-					if (!found_creature->isPiki()) {
+					if (!moviePlayer->m_targetObject->isPiki()) {
 						found_creature = nullptr;
 					}
 				} else if (!strcmp(charBuffer, "target")) {
@@ -91,8 +90,9 @@ Creature* ObjectSystem::findCreature(const char* stbData) const
 					found_creature = ItemOnyon::mgr->m_pod;
 				}
 			}
-			return found_creature;
+			// return found_creature;
 		};
+		return found_creature;
 	}
 }
 

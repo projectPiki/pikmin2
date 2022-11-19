@@ -226,7 +226,7 @@
 ### <section id="sysGCU">sysGCU</section>
 | File | Size (bytes) | File | Size (bytes) |
 | ---- | ---- | ---- | ---- |
-| <a href="https://github.com/projectPiki/pikmin2/tree/main/src/sysGCU/JSTFindCreature.cpp">JSTFindCreature.cpp</a> | 3251 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/sysGCU/moviePlayerAudio.cpp">moviePlayerAudio.cpp</a> | 5656 |
+| <a href="https://github.com/projectPiki/pikmin2/tree/main/src/sysGCU/JSTFindCreature.cpp">JSTFindCreature.cpp</a> | 3294 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/sysGCU/moviePlayerAudio.cpp">moviePlayerAudio.cpp</a> | 5656 |
 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/sysGCU/aramMgr.cpp">aramMgr.cpp</a> | 6617 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/sysGCU/THPRead.c">THPRead.c</a> | 7147 |
 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/sysGCU/THPAudioDecode.c">THPAudioDecode.c</a> | 7342 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/sysGCU/moviePlayerPauseAndDraw.cpp">moviePlayerPauseAndDraw.cpp</a> | 8595 |
 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/sysGCU/screenScene.cpp">screenScene.cpp</a> | 9351 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/sysGCU/THPVideoDecode.c">THPVideoDecode.c</a> | 10029 |
