@@ -7,8 +7,8 @@
 #include "Game/EnemyMgrBase.h"
 #include "Game/EnemyBase.h"
 #include "Game/WalkSmokeEffect.h"
-#include "efx/TTank.h"
 #include "SysShape/Joint.h"
+#include "efx/TTank.h"
 
 /**
  * --Header for (Ground) Blowhogs--
@@ -17,9 +17,25 @@
  * Wtank	= Watery Blowhog
  */
 
+namespace efx {
+struct TTankEffect;
+} // namespace efx
+
 namespace Game {
 // Base Blowhog Structs
 namespace Tank {
+
+enum StateID {
+	TANK_Dead       = 0,
+	TANK_Wait       = 1,
+	TANK_Move       = 2,
+	TANK_MoveTurn   = 3,
+	TANK_ChaseTurn  = 4,
+	TANK_Attack     = 5,
+	TANK_Flick      = 6,
+	TANK_Count,
+};
+
 struct FSM;
 
 struct Obj : public EnemyBase {
@@ -29,7 +45,7 @@ struct Obj : public EnemyBase {
 	virtual void onInit(CreatureInitArg* settings);         // _30
 	virtual void onKill(CreatureKillArg* settings);         // _34
 	virtual void doDirectDraw(Graphics& gfx);               // _50
-	virtual void getShadowParam(ShadowParam& settings);     // _134
+	virtual void getShadowParam(ShadowParam&);              // _134
 	virtual ~Obj() { }                                      // _1BC (weak)
 	virtual void setInitialSetting(EnemyInitialParamBase*); // _1C4
 	virtual void doUpdate();                                // _1CC
@@ -82,7 +98,7 @@ struct Obj : public EnemyBase {
 	f32 _2EC;                            // _2EC, timer?
 	f32 _2F0;                            // _2F0
 	f32 _2F4;                            // _2F4
-	u8 _2F8[0xC];                        // _2F8, unknown
+	Vector3f _2F8;                        // _2F8, unknown
 	u8 _304;                             // _304, unknown
 	                                     // _308 = PelletView
 };
@@ -145,20 +161,31 @@ struct FSM : public EnemyStateMachine {
 };
 
 struct State : public EnemyFSMState {
+	inline State(int stateID, const char* name)
+	    : EnemyFSMState(stateID)
+	{
+        m_name = name;
+	}
 	// _00		= VTBL
 	// _00-_10 	= EnemyFSMState
 };
 
 struct StateAttack : public State {
+    inline StateAttack() : State(TANK_Attack, "attack") 
+    {
+    }
+    
 	virtual void init(EnemyBase*, StateArg*); // _08
 	virtual void exec(EnemyBase*);            // _0C
 	virtual void cleanup(EnemyBase*);         // _10
-
 	// _00		= VTBL
 	// _00-_10 	= EnemyFSMState
 };
 
 struct StateChaseTurn : public State {
+    inline StateChaseTurn() : State(TANK_ChaseTurn, "chaseturn") 
+    {
+    }
 	virtual void init(EnemyBase*, StateArg*); // _08
 	virtual void exec(EnemyBase*);            // _0C
 	virtual void cleanup(EnemyBase*);         // _10
@@ -168,6 +195,9 @@ struct StateChaseTurn : public State {
 };
 
 struct StateDead : public State {
+    inline StateDead() : State(TANK_Dead, "dead") 
+    {
+    }
 	virtual void init(EnemyBase*, StateArg*); // _08
 	virtual void exec(EnemyBase*);            // _0C
 	virtual void cleanup(EnemyBase*);         // _10
@@ -177,6 +207,9 @@ struct StateDead : public State {
 };
 
 struct StateFlick : public State {
+    inline StateFlick() : State(TANK_Flick, "flick") 
+    {
+    }
 	virtual void init(EnemyBase*, StateArg*); // _08
 	virtual void exec(EnemyBase*);            // _0C
 	virtual void cleanup(EnemyBase*);         // _10
@@ -186,6 +219,9 @@ struct StateFlick : public State {
 };
 
 struct StateMove : public State {
+    inline StateMove() : State(TANK_Move, "move") 
+    {
+    }
 	virtual void init(EnemyBase*, StateArg*); // _08
 	virtual void exec(EnemyBase*);            // _0C
 	virtual void cleanup(EnemyBase*);         // _10
@@ -195,6 +231,9 @@ struct StateMove : public State {
 };
 
 struct StateMoveTurn : public State {
+    inline StateMoveTurn() : State(TANK_MoveTurn, "moveturn") 
+    {
+    }
 	virtual void init(EnemyBase*, StateArg*); // _08
 	virtual void exec(EnemyBase*);            // _0C
 	virtual void cleanup(EnemyBase*);         // _10
@@ -204,6 +243,9 @@ struct StateMoveTurn : public State {
 };
 
 struct StateWait : public State {
+    inline StateWait() : State(TANK_Wait, "wait") 
+    {
+    }
 	virtual void init(EnemyBase*, StateArg*); // _08
 	virtual void exec(EnemyBase*);            // _0C
 	virtual void cleanup(EnemyBase*);         // _10
@@ -220,23 +262,20 @@ struct Obj : public Tank::Obj {
 	Obj();
 
 	//////////////// VTABLE
-	virtual ~Obj() { }                                 // _1BC (weak)
-	virtual void changeMaterial();                     // _200
-	virtual EnemyTypeID::EEnemyTypeID getEnemyTypeID() // _258 (weak)
-	{
-		return EnemyTypeID::EnemyID_Tank;
-	}
-	virtual void createEffect();              // _2FC
-	virtual void setupEffect();               // _300
-	virtual void startEffect();               // _304
-	virtual void startYodare();               // _308
-	virtual void finishEffect();              // _30C
-	virtual void effectDrawOn();              // _310
-	virtual void effectDrawOff();             // _314
-	virtual void interactCreature(Creature*); // _318
-	virtual void stopEffectRadius(f32);       // _31C
-	virtual void createChargeSE();            // _320
-	virtual void createDisChargeSE();         // _324
+	virtual ~Obj() { }                                  // _1BC (weak)
+	virtual void changeMaterial();                      // _200
+	virtual EnemyTypeID::EEnemyTypeID getEnemyTypeID(); // _258 (weak)
+	virtual void createEffect();                        // _2FC
+	virtual void setupEffect();                         // _300
+	virtual void startEffect();                         // _304
+	virtual void startYodare();                         // _308
+	virtual void finishEffect();                        // _30C
+	virtual void effectDrawOn();                        // _310
+	virtual void effectDrawOff();                       // _314
+	virtual void interactCreature(Creature*);           // _318
+	virtual void stopEffectRadius(f32);                 // _31C
+	virtual void createChargeSE();                      // _320
+	virtual void createDisChargeSE();                   // _324
 	//////////////// VTABLE END
 
 	// _00 		= VTBL
@@ -275,29 +314,26 @@ struct Obj : public Tank::Obj {
 	Obj();
 
 	//////////////// VTABLE
-	virtual ~Obj() { }                                 // _1BC (weak)
-	virtual void changeMaterial();                     // _200
-	virtual EnemyTypeID::EEnemyTypeID getEnemyTypeID() // _258 (weak)
-	{
-		return EnemyTypeID::EnemyID_Wtank;
-	}
-	virtual void createEffect();              // _2FC
-	virtual void setupEffect();               // _300
-	virtual void startEffect();               // _304
-	virtual void startYodare();               // _308
-	virtual void finishEffect();              // _30C
-	virtual void effectDrawOn();              // _310
-	virtual void effectDrawOff();             // _314
-	virtual void interactCreature(Creature*); // _318
-	virtual void stopEffectRadius(f32);       // _31C
-	virtual void createChargeSE();            // _320
-	virtual void createDisChargeSE();         // _324
+	virtual ~Obj() { }                                  // _1BC (weak)
+	virtual void changeMaterial();                      // _200
+	virtual EnemyTypeID::EEnemyTypeID getEnemyTypeID(); // _258 (weak)
+	virtual void createEffect();                        // _2FC
+	virtual void setupEffect();                         // _300
+	virtual void startEffect();                         // _304
+	virtual void startYodare();                         // _308
+	virtual void finishEffect();                        // _30C
+	virtual void effectDrawOn();                        // _310
+	virtual void effectDrawOff();                       // _314
+	virtual void interactCreature(Creature*);           // _318
+	virtual void stopEffectRadius(f32);                 // _31C
+	virtual void createChargeSE();                      // _320
+	virtual void createDisChargeSE();                   // _324
 	//////////////// VTABLE END
 
 	// _00 		= VTBL
 	// _00-_308	= Tank::Obj
-	efx::TWtankEffect* m_tankEffect; // _308
-	                                 // _30C = PelletView
+	efx::TTankEffect* m_tankEffect; // _308
+	                                // _30C = PelletView
 };
 
 struct Mgr : public Tank::Mgr {
