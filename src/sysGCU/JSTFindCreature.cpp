@@ -23,7 +23,6 @@ Creature* ObjectSystem::findCreature(const char* stbData) const
 		Creature* found_creature = nullptr;
 
 		for (int i = 0; ('/' < loop_var) && (loop_var < ':'); charBuffer[0] = '\0', i++) {
-
 			if (loop_var == '_') {
 				loop_var = stbData[1];
 			}
@@ -47,7 +46,7 @@ Creature* ObjectSystem::findCreature(const char* stbData) const
 					i = (int)loop_var;
 					OnyonTypes onyon_type;
 					if (!((i < '0') || ('2' < i))) {
-						onyon_type = (OnyonTypes)i;
+						onyon_type = (OnyonTypes)(i - '0'); // converts ascii numeral into integer
 					} else {
 						if (loop_var == 'R') {
 							onyon_type = ONYON_TYPE_RED;
@@ -77,10 +76,10 @@ Creature* ObjectSystem::findCreature(const char* stbData) const
 				} else if (!strcmp(charBuffer, "player")) {
 					found_creature = moviePlayer->getActiveOrima();
 				} else if (!strcmp(charBuffer, "orima")) {
-					found_creature = naviMgr->getAt((int)loop_var);
+					found_creature = naviMgr->getAt((int)loop_var - '0'); // converts ascii numeral into integer
 				} else if (!strcmp(charBuffer, "onyon")) {
-					found_creature = ItemOnyon::mgr->getOnyon((int)(loop_var));
-					if (!playData->hasBootContainer((EPikiKind)(loop_var))) {
+					found_creature = ItemOnyon::mgr->getOnyon((int)(loop_var - '0')); // converts ascii numeral into integer
+					if (!playData->hasBootContainer((EPikiKind)(loop_var - '0'))) {   // converts ascii numeral into integer
 						found_creature = nullptr;
 					}
 				} else if (!strcmp(charBuffer, "ufo")) {
