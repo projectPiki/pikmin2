@@ -225,7 +225,7 @@ EnemyBase* EnemyMgrBase::birth(Game::EnemyBirthArg& arg)
 		int objs = m_objCount;
 		m_objCount++;
 		enemy->birth(arg.m_position, arg.m_faceDir);
-		enemy->_2AC = arg._2C;
+		enemy->m_maxExistTime = arg._2C;
 		enemy->setOtakaraCode(arg.m_otakaraItemCode);
 
 		enemy->m_pelletInfo.m_color       = arg.m_pelletInfo.m_color;

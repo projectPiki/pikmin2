@@ -432,10 +432,10 @@ void LivingState::update(EnemyBase* enemy)
 			enemy->injure();
 		}
 
-		if (enemy->_2AC > 0.0f) {
-			enemy->_2A8 += sys->m_deltaTime;
+		if (enemy->m_maxExistTime > 0.0f) {
+			enemy->m_existTimer += sys->m_deltaTime;
 
-			if (enemy->_2A8 > enemy->_2AC) {
+			if (enemy->m_existTimer > enemy->m_maxExistTime) {
 				enemy->addDamage(enemy->m_maxHealth, 1.0f);
 				enemy->resetEvent(0, EB_Cullable);
 				enemy->resetEvent(0, EB_Flying);
@@ -769,8 +769,8 @@ EnemyBase::EnemyBase()
     , m_curWallTri(0)
     , m_soundObj(nullptr)
     , m_effectNodeHamonRoot()
-    , _2A8(0.0f)
-    , _2AC(0.0f)
+    , m_existTimer(0.0f)
+    , m_maxExistTime(0.0f)
     , m_dropGroup(0)
     , m_currentLifecycleState(nullptr)
     , m_lifecycleFSM(nullptr)
@@ -1218,7 +1218,7 @@ void EnemyBase::onKill(CreatureKillArg* inputArg)
 					getBoundingSphere(ball);
 
 					ItemHoney::InitArg honeyArg(honeyKind, 0);
-					ItemHoney::Item* drop = ItemHoney::mgr->birth();
+					ItemHoney::Item* drop = static_cast<ItemHoney::Item*>(ItemHoney::mgr->birth());
 
 					if (drop) {
 						drop->init((CreatureInitArg*)&honeyArg);
@@ -1239,7 +1239,7 @@ void EnemyBase::onKill(CreatureKillArg* inputArg)
 			}
 			becomeCarcass(true);
 
-		} else if ((0.0f == _2AC) && (isEvent(0, EB_LeaveCarcass)) && ((!killArg) || !(killArg->_04 & 0x20000000))) {
+		} else if ((0.0f == m_maxExistTime) && (isEvent(0, EB_LeaveCarcass)) && ((!killArg) || !(killArg->_04 & 0x20000000))) {
 			if (!m_pellet) {
 				PelletViewArg pvArg;
 				setCarcassArg(pvArg);
@@ -2079,8 +2079,8 @@ void EnemyBase::birth(Vector3f& pos, f32 faceDir)
 	}
 	m_model->hide();
 	m_sfxEmotion    = EMOTE_Caution;
-	_2AC            = 0.0f;
-	_2A8            = 0.0f;
+	m_maxExistTime  = 0.0f;
+	m_existTimer    = 0.0f;
 	m_stunAnimTimer = 0.0f;
 }
 

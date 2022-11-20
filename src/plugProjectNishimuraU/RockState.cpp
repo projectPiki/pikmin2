@@ -51,7 +51,7 @@ void StateWait::init(EnemyBase* enemy, StateArg* stateArg)
 void StateWait::exec(EnemyBase* enemy)
 {
 	Obj* rock = static_cast<Obj*>(enemy);
-	if (rock->_2AC != 0.0f) {
+	if (rock->m_maxExistTime != 0.0f) {
 		rock->m_timer += sys->m_deltaTime;
 		if (rock->m_timer > 1.5f) {
 			transit(rock, ROCK_Appear, nullptr);

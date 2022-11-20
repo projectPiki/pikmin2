@@ -609,11 +609,11 @@ struct EnemyBase : public Creature, public SysShape::MotionListener, virtual pub
 	Sys::Sphere m_curLodSphere;                  // _270
 	WaterBox* m_waterBox;                        // _280
 	EnemyEffectNodeHamon* m_effectNodeHamon;     // _284
-	Sys::Triangle* curWallTri;                   // _288
+	Sys::Triangle* m_curWallTri;                 // _288
 	PSM::EnemyBase* m_soundObj;                  // _28C
 	CNode m_effectNodeHamonRoot;                 // _290 - treat as EnemyEffectNodeBase with EnemyEffectNodeHamon nodes
-	f32 _2A8;                                    // _2A8
-	f32 _2AC;                                    // _2AC
+	f32 m_existTimer;                            // _2A8, how long cherry-spawned enemy has existed in 2P battle
+	f32 m_maxExistTime;                          // _2AC, how long cherry-spawned enemy should exist in 2P battle
 	s8 m_dropGroup;                              // _2B0
 	EnemyFSMState* m_currentLifecycleState;      // _2B4
 	EnemyBaseFSM::StateMachine* m_lifecycleFSM;  // _2B8

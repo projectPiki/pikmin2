@@ -627,8 +627,7 @@ void StateMoveTurn::exec(EnemyBase* enemy)
 	f32 view       = tank->getViewAngle();
 	Vector3f thing = tank->_2F8;
 	f32 deltaDir   = tank->changeFaceDir(thing);
-	f32 zero       = 0.0f;
-	if (tank->m_health <= zero) {
+	if (tank->m_health <= 0.0f) {
 		transit(enemy, TANK_Dead, nullptr);
 		return;
 	}
@@ -643,7 +642,7 @@ void StateMoveTurn::exec(EnemyBase* enemy)
 		}
 	}
 	if (enemy->m_curAnim->m_isRunning && (u32)enemy->m_curAnim->m_type == KEYEVENT_END) {
-		if (tank->m_health <= zero) {
+		if (tank->m_health <= 0.0f) {
 			transit(enemy, TANK_Dead, nullptr);
 			return;
 		}

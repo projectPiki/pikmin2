@@ -21,6 +21,15 @@ struct Item;
 struct MovieConfig;
 
 namespace VsGame {
+enum StateID {
+	VGS_Title  = 0,
+	VGS_Load   = 1,
+	VGS_Game   = 2,
+	VGS_VS     = 3,
+	VGS_Result = 4,
+	VGS_StateCount,
+};
+
 struct TekiNode : public CNode {
 	inline TekiNode() { }
 	virtual ~TekiNode() {}; // _08 (weak)
@@ -150,6 +159,11 @@ struct FSM : public StateMachine<VsGameSection> {
 };
 
 struct State : public FSMState<VsGameSection> {
+	inline State(int id)
+	    : FSMState(id)
+	{
+	}
+
 	virtual void draw(VsGameSection*, Graphics&);                      // _20 (weak)
 	virtual void pre2dDraw(Graphics&, VsGameSection*);                 // _24 (weak)
 	virtual void onOrimaDown(VsGameSection*, int);                     // _28 (weak)
