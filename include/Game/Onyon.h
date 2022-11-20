@@ -8,9 +8,10 @@
 #include "SysShape/KeyEvent.h"
 #include "Game/BaseItem.h"
 
-namespace efx {
+namespace Game::efx {
 // (almost) all of these need headers
 struct Container;
+struct ContainerAct;
 struct TForever2;
 struct TPodOpenA;
 struct TPodOpenB;
@@ -20,7 +21,14 @@ struct TChaseMtx2;
 struct TUfoPodOpenSuck;
 struct TUfoGasIn;
 struct TUfoGasOut;
+struct TPodSpot;
+struct TUfoSpot;
+struct TUfoPodOpen;
+struct TUfoSpotAct_ver01;
 } // namespace efx
+
+// this isnt part of any namespace
+struct ModelEffect;
 
 enum OnyonTypes {
 	ONYON_TYPE_BLUE = 0,
@@ -102,40 +110,43 @@ struct Onyon : public BaseItem {
 
 	// _00 		= VTBL
 	// _00-_1D8	= BaseItem
-	u8 _1D8[0xC];                            // _1D8, unknown
-	int _1E4;                                // _1E4
-	int _1E8;                                // _1E8
+	u32 m_pikisToWithdraw;                   // _1D8, red/blue/yellow pikmin queued to exit the onion
+	f32 m_releasePikisTimer;             	 // _1DC
+	u8 m_isReleasingPikis;                 	 // _1E0
+	u32 m_white_toWithdraw;                  // _1E4, white pikmin queued to exit the ship
+	u32 m_black_toWithdraw;                  // _1E8, purple pikmin queued to exit the ship
 	efx::Container* m_efxContainer;          // _1EC
-	efx::TForever2* _1F0;                    // _1F0
-	u32 _1F4;                                // _1F4, unknown
+	efx::ContainerAct* m_efxContainerAct;    // _1F0
+	ModelEffect* m_spotbeam_model;           // _1F4
 	efx::TPodOpenA* m_podOpenA;              // _1F8
 	efx::TPodOpenB* m_podOpenB;              // _1FC
-	efx::TChasePosYRot2* _200;               // _200
+	efx::TPodSpot* m_efxPodSpot;             // _200
 	efx::TPodKira* m_podKira;                // _204
-	efx::TChaseMtx2* _208;                   // _208, possibly TUfoSpot?
-	efx::TChaseMtx2* _20C;                   // _20C, possibly TUfoSpotact_ver01?
-	efx::TChaseMtx2* _210;                   // _210, possibly TUfoPodOpen?
-	efx::TUfoPodOpenSuck* m_podOpenSuck;     // _214
+	efx::TUfoSpot* m_ufoSpot;                // _208
+	efx::TUfoSpotAct_ver01* m_ufoSpotAct01;  // _20C
+	efx::TUfoPodOpen* m_ufoPodOpen;          // _210
+	efx::TUfoPodOpenSuck* m_ufoPodOpenSuck;  // _214
 	efx::TUfoGasIn* m_ufoGasIn;              // _218
 	efx::TUfoGasOut* m_ufoGasOut;            // _21C
-	u8 _220[0x8];                            // _220
-	float _228;                              // _228, faceDir?
-	short _22C;                              // _22C
+	f32 m_timer;                             // _220
+	u8 m_spotState;                          // _224
+	f32 m_faceDir;                           // _228
+	u16 m_toBirth;                           // _22C, used to track how many pikmin need to be spawned
 	u16 m_onyonType;                         // _22E
 	u16 m_pikminType;                        // _230
-	u8 _232[0x2];                            // _232, unknown/padding
-	Sys::MatLoopAnimator* m_matLoopAnimator; // _234
-	Sys::MatBaseAnimator* m_matAnimator;     // _238
-	WayPoint* m_wayPoint;                    // _23C
-	u8 m_carcassType;                        // _240
-	u8 _241[0x3];                            // _241, unknown/padding
-	float _244;                              // _244
-	SysShape::Joint* _248;                   // _248
-	SysShape::Joint* _24C;                   // _24C
-	int _250;                                // _250
-	SysShape::Animator* _254;                // _254
-	float* _258;                             // _258
-	float _25C;                              // _25C
+	// u8 _232[0x2];                         // _232, padding
+	Sys::MatLoopAnimator* m_matAnim1;        // _234, for the pistons
+	Sys::MatBaseAnimator* m_matAnim2;        // _238, for the glowing lights
+	WayPoint* m_goalWayPoint;                // _23C
+	u8 m_suckState;                          // _240
+	//u8 _241[0x3];                          // _241, padding
+	f32 m_suckTimer;                         // _244
+	SysShape::Joint* m_pikiInJoint;          // _248, what pikmin target when entering the ship
+	SysShape::Joint* m_pikiOutJoint;         // _24C, what pikmin appear from when exiting the ship
+	u32 m_pMotionCount;                      // _250, number of pMotions to use, always 3 (for the ship) normally
+	SysShape::Animator* m_pMotionList;       // _254, list of pAnim objects
+	f32* m_pMotionSpeeds;                    // _258
+	f32 m_propera;                           // _25C, controls speed of one of the ships pMotions
 };
 } // namespace Game
 
