@@ -7,6 +7,7 @@
 #include "Game/PlatInstance.h"
 #include "Sys/MatBaseAnimation.h"
 #include "Sys/MatBaseAnimator.h"
+#include "efx/TForever.h"
 
 namespace Game {
 struct ItemGate;

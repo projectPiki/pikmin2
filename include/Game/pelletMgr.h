@@ -8,7 +8,6 @@
 #include "Game/Interaction.h"
 #include "Game/PelletCarry.h"
 #include "Game/pelletConfig.h"
-#include "Game/Onyon.h"
 #include "Game/StateMachine.h"
 #include "Game/BasePelletMgr.h"
 #include "Game/GameSystem.h"
@@ -56,6 +55,7 @@ struct PelletView;
 struct PelletFSM;
 struct PathNode;
 struct PelletState;
+struct Onyon;
 
 struct PelletMgr : public NodeObjectMgr<GenericObjectMgr> {
 	struct OtakaraItemCode {

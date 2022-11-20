@@ -24,6 +24,7 @@ struct Node;
 
 namespace Game {
 struct BaseItem;
+struct WayPoint;
 
 struct _BaseItemMgrParent2 {
 };

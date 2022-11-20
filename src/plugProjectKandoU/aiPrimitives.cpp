@@ -3,7 +3,7 @@
 #include "Vector3.h"
 #include "PikiAI.h"
 #include "Game/pelletMgr.h"
-#include "Game/Onyon.h"
+#include "Game/Entities/ItemOnyon.h"
 #include "Game/pathfinder.h"
 #include "Game/routeMgr.h"
 #include "Game/MapMgr.h"

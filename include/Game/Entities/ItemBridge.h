@@ -7,6 +7,8 @@
 #include "Game/PlatInstance.h"
 
 namespace Game {
+struct WayPoint;
+
 namespace ItemBridge {
 
 #define ITEM_BRIDGE_STATE_NORMAL (0)
