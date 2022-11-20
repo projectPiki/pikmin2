@@ -5,7 +5,7 @@
 #include "Game/CollEvent.h"
 #include "Game/EnemyStateMachine.h"
 #include "Game/MoveInfo.h"
-
+#include "Game/EnemyEffectNode.h"
 #include "Game/PelletView.h"
 #include "Game/EnemyPelletInfo.h"
 #include "Game/pelletMgr.h"
@@ -48,7 +48,6 @@ struct EnemyMgrBase;
 struct WaterBox;
 struct LifeGaugeParam;
 struct Interaction;
-struct EnemyEffectNodeHamon;
 
 enum EnemyEvent {
 	EB_Vulnerable       = 0x1, // can take damage or not
@@ -101,7 +100,7 @@ struct EnemyKillArg : public CreatureKillArg {
 	 * @reifiedAddress{80107C38}
 	 * @reifiedFile{plugProjectYamashitaU/enemyBase.cpp}
 	 */
-	virtual const char* getName() // _00
+	virtual const char* getName() // _08 (weak)
 	{
 		return "EnemyKillArg";
 	}
@@ -219,7 +218,7 @@ struct EnemyBase : public Creature, public SysShape::MotionListener, virtual pub
 		return m_creatureID;
 	}
 	// vtable 2 (MotionListener+self)
-	// virtual void onKeyEvent(const SysShape::KeyEvent&); - thunk _1B8
+	// virtual void onKeyEvent(const SysShape::KeyEvent& event); - thunk _1B8
 	virtual ~EnemyBase() { }                                             // _1BC (weak)
 	virtual void birth(Vector3f& position, f32 faceDirection);           // _1C0
 	virtual void setInitialSetting(EnemyInitialParamBase* settings) = 0; // _1C4
@@ -610,7 +609,7 @@ struct EnemyBase : public Creature, public SysShape::MotionListener, virtual pub
 	Sys::Sphere m_curLodSphere;                  // _270
 	WaterBox* m_waterBox;                        // _280
 	EnemyEffectNodeHamon* m_effectNodeHamon;     // _284
-	Sys::Triangle* _288;                         // _288
+	Sys::Triangle* curWallTri;                   // _288
 	PSM::EnemyBase* m_soundObj;                  // _28C
 	CNode m_effectNodeHamonRoot;                 // _290 - treat as EnemyEffectNodeBase with EnemyEffectNodeHamon nodes
 	f32 _2A8;                                    // _2A8

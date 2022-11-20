@@ -1,216 +1,21 @@
-#include "types.h"
-
-/*
-    Generated from dpostproc
-
-    .section .rodata  # 0x804732E0 - 0x8049E220
-    .global lbl_80486C68
-    lbl_80486C68:
-        .4byte 0x6D6F7665
-        .4byte 0x7475726E
-        .4byte 0x00000000
-    .global lbl_80486C74
-    lbl_80486C74:
-        .4byte 0x63686173
-        .4byte 0x65747572
-        .4byte 0x6E000000
-
-    .section .data, "wa"  # 0x8049E220 - 0x804EFC20
-    .global __vt__Q34Game4Tank10StateFlick
-    __vt__Q34Game4Tank10StateFlick:
-        .4byte 0
-        .4byte 0
-        .4byte
-   init__Q34Game4Tank10StateFlickFPQ24Game9EnemyBasePQ24Game8StateArg .4byte
-   exec__Q34Game4Tank10StateFlickFPQ24Game9EnemyBase .4byte
-   cleanup__Q34Game4Tank10StateFlickFPQ24Game9EnemyBase .4byte
-   resume__Q24Game13EnemyFSMStateFPQ24Game9EnemyBase .4byte
-   restart__Q24Game13EnemyFSMStateFPQ24Game9EnemyBase .4byte
-   transit__Q24Game13EnemyFSMStateFPQ24Game9EnemyBaseiPQ24Game8StateArg .4byte
-   doDirectDraw__Q24Game13EnemyFSMStateFPQ24Game9EnemyBaseR8Graphics .global
-   __vt__Q34Game4Tank11StateAttack
-    __vt__Q34Game4Tank11StateAttack:
-        .4byte 0
-        .4byte 0
-        .4byte
-   init__Q34Game4Tank11StateAttackFPQ24Game9EnemyBasePQ24Game8StateArg .4byte
-   exec__Q34Game4Tank11StateAttackFPQ24Game9EnemyBase .4byte
-   cleanup__Q34Game4Tank11StateAttackFPQ24Game9EnemyBase .4byte
-   resume__Q24Game13EnemyFSMStateFPQ24Game9EnemyBase .4byte
-   restart__Q24Game13EnemyFSMStateFPQ24Game9EnemyBase .4byte
-   transit__Q24Game13EnemyFSMStateFPQ24Game9EnemyBaseiPQ24Game8StateArg .4byte
-   doDirectDraw__Q24Game13EnemyFSMStateFPQ24Game9EnemyBaseR8Graphics .global
-   __vt__Q34Game4Tank14StateChaseTurn
-    __vt__Q34Game4Tank14StateChaseTurn:
-        .4byte 0
-        .4byte 0
-        .4byte
-   init__Q34Game4Tank14StateChaseTurnFPQ24Game9EnemyBasePQ24Game8StateArg .4byte
-   exec__Q34Game4Tank14StateChaseTurnFPQ24Game9EnemyBase .4byte
-   cleanup__Q34Game4Tank14StateChaseTurnFPQ24Game9EnemyBase .4byte
-   resume__Q24Game13EnemyFSMStateFPQ24Game9EnemyBase .4byte
-   restart__Q24Game13EnemyFSMStateFPQ24Game9EnemyBase .4byte
-   transit__Q24Game13EnemyFSMStateFPQ24Game9EnemyBaseiPQ24Game8StateArg .4byte
-   doDirectDraw__Q24Game13EnemyFSMStateFPQ24Game9EnemyBaseR8Graphics .global
-   __vt__Q34Game4Tank13StateMoveTurn
-    __vt__Q34Game4Tank13StateMoveTurn:
-        .4byte 0
-        .4byte 0
-        .4byte
-   init__Q34Game4Tank13StateMoveTurnFPQ24Game9EnemyBasePQ24Game8StateArg .4byte
-   exec__Q34Game4Tank13StateMoveTurnFPQ24Game9EnemyBase .4byte
-   cleanup__Q34Game4Tank13StateMoveTurnFPQ24Game9EnemyBase .4byte
-   resume__Q24Game13EnemyFSMStateFPQ24Game9EnemyBase .4byte
-   restart__Q24Game13EnemyFSMStateFPQ24Game9EnemyBase .4byte
-   transit__Q24Game13EnemyFSMStateFPQ24Game9EnemyBaseiPQ24Game8StateArg .4byte
-   doDirectDraw__Q24Game13EnemyFSMStateFPQ24Game9EnemyBaseR8Graphics .global
-   __vt__Q34Game4Tank9StateMove
-    __vt__Q34Game4Tank9StateMove:
-        .4byte 0
-        .4byte 0
-        .4byte init__Q34Game4Tank9StateMoveFPQ24Game9EnemyBasePQ24Game8StateArg
-        .4byte exec__Q34Game4Tank9StateMoveFPQ24Game9EnemyBase
-        .4byte cleanup__Q34Game4Tank9StateMoveFPQ24Game9EnemyBase
-        .4byte resume__Q24Game13EnemyFSMStateFPQ24Game9EnemyBase
-        .4byte restart__Q24Game13EnemyFSMStateFPQ24Game9EnemyBase
-        .4byte
-   transit__Q24Game13EnemyFSMStateFPQ24Game9EnemyBaseiPQ24Game8StateArg .4byte
-   doDirectDraw__Q24Game13EnemyFSMStateFPQ24Game9EnemyBaseR8Graphics .global
-   __vt__Q34Game4Tank9StateWait
-    __vt__Q34Game4Tank9StateWait:
-        .4byte 0
-        .4byte 0
-        .4byte init__Q34Game4Tank9StateWaitFPQ24Game9EnemyBasePQ24Game8StateArg
-        .4byte exec__Q34Game4Tank9StateWaitFPQ24Game9EnemyBase
-        .4byte cleanup__Q34Game4Tank9StateWaitFPQ24Game9EnemyBase
-        .4byte resume__Q24Game13EnemyFSMStateFPQ24Game9EnemyBase
-        .4byte restart__Q24Game13EnemyFSMStateFPQ24Game9EnemyBase
-        .4byte
-   transit__Q24Game13EnemyFSMStateFPQ24Game9EnemyBaseiPQ24Game8StateArg .4byte
-   doDirectDraw__Q24Game13EnemyFSMStateFPQ24Game9EnemyBaseR8Graphics .global
-   __vt__Q34Game4Tank9StateDead
-    __vt__Q34Game4Tank9StateDead:
-        .4byte 0
-        .4byte 0
-        .4byte init__Q34Game4Tank9StateDeadFPQ24Game9EnemyBasePQ24Game8StateArg
-        .4byte exec__Q34Game4Tank9StateDeadFPQ24Game9EnemyBase
-        .4byte cleanup__Q34Game4Tank9StateDeadFPQ24Game9EnemyBase
-        .4byte resume__Q24Game13EnemyFSMStateFPQ24Game9EnemyBase
-        .4byte restart__Q24Game13EnemyFSMStateFPQ24Game9EnemyBase
-        .4byte
-   transit__Q24Game13EnemyFSMStateFPQ24Game9EnemyBaseiPQ24Game8StateArg .4byte
-   doDirectDraw__Q24Game13EnemyFSMStateFPQ24Game9EnemyBaseR8Graphics .global
-   __vt__Q34Game4Tank5State
-    __vt__Q34Game4Tank5State:
-        .4byte 0
-        .4byte 0
-        .4byte init__Q24Game13EnemyFSMStateFPQ24Game9EnemyBasePQ24Game8StateArg
-        .4byte exec__Q24Game13EnemyFSMStateFPQ24Game9EnemyBase
-        .4byte cleanup__Q24Game13EnemyFSMStateFPQ24Game9EnemyBase
-        .4byte resume__Q24Game13EnemyFSMStateFPQ24Game9EnemyBase
-        .4byte restart__Q24Game13EnemyFSMStateFPQ24Game9EnemyBase
-        .4byte
-   transit__Q24Game13EnemyFSMStateFPQ24Game9EnemyBaseiPQ24Game8StateArg .4byte
-   doDirectDraw__Q24Game13EnemyFSMStateFPQ24Game9EnemyBaseR8Graphics .global
-   __vt__Q34Game4Tank3FSM
-    __vt__Q34Game4Tank3FSM:
-        .4byte 0
-        .4byte 0
-        .4byte init__Q34Game4Tank3FSMFPQ24Game9EnemyBase
-        .4byte
-   start__Q24Game17EnemyStateMachineFPQ24Game9EnemyBaseiPQ24Game8StateArg .4byte
-   exec__Q24Game17EnemyStateMachineFPQ24Game9EnemyBase .4byte
-   transit__Q24Game17EnemyStateMachineFPQ24Game9EnemyBaseiPQ24Game8StateArg
-        .4byte
-   doDirectDraw__Q24Game17EnemyStateMachineFPQ24Game9EnemyBaseR8Graphics .4byte
-   getCurrState__Q24Game17EnemyStateMachineFPQ24Game9EnemyBase .4byte
-   setCurrState__Q24Game17EnemyStateMachineFPQ24Game9EnemyBasePQ24Game13EnemyFSMState
-        .4byte 0
-
-    .section .sdata2, "a"     # 0x80516360 - 0x80520E40
-    .global lbl_8051B268
-    lbl_8051B268:
-        .4byte 0x64656164
-        .4byte 0x00000000
-    .global lbl_8051B270
-    lbl_8051B270:
-        .4byte 0x77616974
-        .4byte 0x00000000
-    .global lbl_8051B278
-    lbl_8051B278:
-        .4byte 0x6D6F7665
-        .4byte 0x00000000
-    .global lbl_8051B280
-    lbl_8051B280:
-        .4byte 0x61747461
-        .4byte 0x636B0000
-    .global lbl_8051B288
-    lbl_8051B288:
-        .4byte 0x666C6963
-        .4byte 0x6B000000
-    .global lbl_8051B290
-    lbl_8051B290:
-        .4byte 0x00000000
-    .global lbl_8051B294
-    lbl_8051B294:
-        .4byte 0x42700000
-    .global lbl_8051B298
-    lbl_8051B298:
-        .float 1.0
-    .global lbl_8051B29C
-    lbl_8051B29C:
-        .4byte 0x47000000
-    .global lbl_8051B2A0
-    lbl_8051B2A0:
-        .4byte 0x3E4CCCCD
-        .4byte 0x00000000
-    .global lbl_8051B2A8
-    lbl_8051B2A8:
-        .4byte 0x43300000
-        .4byte 0x80000000
-    .global lbl_8051B2B0
-    lbl_8051B2B0:
-        .4byte 0x41F00000
-    .global lbl_8051B2B4
-    lbl_8051B2B4:
-        .4byte 0x451C4000
-    .global lbl_8051B2B8
-    lbl_8051B2B8:
-        .4byte 0x40400000
-    .global lbl_8051B2BC
-    lbl_8051B2BC:
-        .4byte 0x40490FDB
-    .global lbl_8051B2C0
-    lbl_8051B2C0:
-        .4byte 0x3BB60B61
-    .global lbl_8051B2C4
-    lbl_8051B2C4:
-        .4byte 0x3F860A92
-    .global lbl_8051B2C8
-    lbl_8051B2C8:
-        .4byte 0x43A2F983
-    .global lbl_8051B2CC
-    lbl_8051B2CC:
-        .4byte 0xC3A2F983
-    .global lbl_8051B2D0
-    lbl_8051B2D0:
-        .4byte 0x3E32B8C3
-    .global lbl_8051B2D4
-    lbl_8051B2D4:
-        .4byte 0xC47A0000
-*/
+#include "Game/Entities/Tank.h"
+#include "Game/EnemyAnimKeyEvent.h"
+#include "Game/EnemyFunc.h"
+#include "Dolphin/rand.h"
 
 namespace Game {
+namespace Tank {
 
-void Tank::FSM::init(Game::EnemyBase* enemy) {
-    create(TANK_Count);
-    registerState(new StateDead);
-    registerState(new StateWait);
-    registerState(new StateMove);
-    registerState(new StateMoveTurn);
-    registerState(new StateChaseTurn);
-    registerState(new StateAttack);
-    registerState(new StateFlick);
+void FSM::init(EnemyBase* enemy)
+{
+	create(TANK_Count);
+	registerState(new StateDead);
+	registerState(new StateWait);
+	registerState(new StateMove);
+	registerState(new StateMoveTurn);
+	registerState(new StateChaseTurn);
+	registerState(new StateAttack);
+	registerState(new StateFlick);
 }
 
 /*
@@ -219,31 +24,26 @@ void Tank::FSM::init(Game::EnemyBase* enemy) {
  * Size:	000070
  */
 
-void Tank::StateDead::init(Game::EnemyBase* enemy, Game::StateArg* Args) {
-    Obj* tank = static_cast<Obj*>(enemy);
-    tank->finishEffect();
-    tank->resetEvent(0, EB_Cullable);
-    tank->m_simVelocity = Vector3f(0.0f);
-    tank->deathProcedure();
-    tank->startMotion(0, nullptr);
+void StateDead::init(EnemyBase* enemy, StateArg* Args)
+{
+	Obj* tank = static_cast<Obj*>(enemy);
+	tank->finishEffect();
+	tank->resetEvent(0, EB_Cullable);
+	tank->m_simVelocity = Vector3f(0.0f);
+	tank->deathProcedure();
+	tank->startMotion(0, nullptr);
 }
-
-/*
- * --INFO--
- * Address:	802740D4
- * Size:	000004
- */
-void Tank::Obj::finishEffect() { }
 
 /*
  * --INFO--
  * Address:	802740D8
  * Size:	000044
  */
-void Tank::StateDead::exec(Game::EnemyBase* enemy) {
-    if (enemy->m_curAnim->m_isRunning && (u32)enemy->m_curAnim->m_type == KEYEVENT_END) {
+void StateDead::exec(EnemyBase* enemy)
+{
+	if (enemy->m_curAnim->m_isRunning && (u32)enemy->m_curAnim->m_type == KEYEVENT_END) {
 		enemy->kill(nullptr);
-    }
+	}
 }
 
 /*
@@ -251,18 +51,19 @@ void Tank::StateDead::exec(Game::EnemyBase* enemy) {
  * Address:	8027411C
  * Size:	000004
  */
-void Tank::StateDead::cleanup(Game::EnemyBase*) { }
+void StateDead::cleanup(EnemyBase*) { }
 
 /*
  * --INFO--
  * Address:	80274120
  * Size:	000044
  */
-void Tank::StateWait::init(Game::EnemyBase* enemy, Game::StateArg* args) {
-    Obj* tank = (Obj*)enemy;
-    tank->m_simVelocity = Vector3f(0.0f);
-    tank->m_targetCreature = nullptr;
-    tank->startMotion(5, nullptr);
+void StateWait::init(EnemyBase* enemy, StateArg* stateArg)
+{
+	Obj* tank              = static_cast<Obj*>(enemy);
+	tank->m_simVelocity    = Vector3f(0.0f);
+	tank->m_targetCreature = nullptr;
+	tank->startMotion(5, nullptr);
 }
 
 /*
@@ -270,44 +71,42 @@ void Tank::StateWait::init(Game::EnemyBase* enemy, Game::StateArg* args) {
  * Address:	80274164
  * Size:	000258
  */
-void Tank::StateWait::exec(Game::EnemyBase* enemy) {
-    Obj* tank = static_cast<Obj*>(enemy);
-    float view = tank->getViewAngle();
-    if (tank->m_health <= 0.0f) {
-        transit(enemy, TANK_Dead, nullptr);
-        return;
-    }
-    if (EnemyFunc::isStartFlick(tank, false) || tank->isAttackable(false)) {
-        tank->setAnimSpeed(60.0f);
-    }
-    if (enemy->m_curAnim->m_isRunning && (u32)enemy->m_curAnim->m_type == KEYEVENT_END) {
-        if (tank->m_health <= 0.0f) {
-            transit(enemy, TANK_Dead, nullptr);
-            return;
-        }
-        if (EnemyFunc::isStartFlick(tank, false)) {
-            transit(enemy, TANK_Flick, nullptr);
-            return;
-        } 
-        if (tank->isAttackable(false)) {
-            transit(enemy, TANK_Attack, nullptr); 
-            return;
-        }
-        float sightRad = tank->m_parms->m_general.m_sightRadius.m_value;
-        Creature* target = EnemyFunc::getNearestPikminOrNavi(
-        tank, view, sightRad, nullptr, nullptr, nullptr);
-        if (target) {
-            tank->m_targetCreature = target;
-            tank->_2EC = 0.0f; // some target chase timer?
-            transit(enemy, TANK_ChaseTurn, nullptr);
-        }
-        else if (randWeightFloat(0.0f) < 0.2f) {
-            transit(enemy, TANK_Wait, nullptr);
-        }
-        else {
-            transit(enemy, TANK_MoveTurn, nullptr);
-        }
-    }
+void StateWait::exec(EnemyBase* enemy)
+{
+	Obj* tank = static_cast<Obj*>(enemy);
+	f32 view  = tank->getViewAngle();
+	if (tank->m_health <= 0.0f) {
+		transit(enemy, TANK_Dead, nullptr);
+		return;
+	}
+	if (EnemyFunc::isStartFlick(tank, false) || tank->isAttackable(false)) {
+		tank->setAnimSpeed(60.0f);
+	}
+	if (enemy->m_curAnim->m_isRunning && (u32)enemy->m_curAnim->m_type == KEYEVENT_END) {
+		if (tank->m_health <= 0.0f) {
+			transit(enemy, TANK_Dead, nullptr);
+			return;
+		}
+		if (EnemyFunc::isStartFlick(tank, false)) {
+			transit(enemy, TANK_Flick, nullptr);
+			return;
+		}
+		if (tank->isAttackable(false)) {
+			transit(enemy, TANK_Attack, nullptr);
+			return;
+		}
+		f32 sightRad     = CG_PARMS(tank)->m_general.m_sightRadius.m_value;
+		Creature* target = EnemyFunc::getNearestPikminOrNavi(tank, view, sightRad, nullptr, nullptr, nullptr);
+		if (target) {
+			tank->m_targetCreature = target;
+			tank->_2EC             = 0.0f; // some target chase timer?
+			transit(enemy, TANK_ChaseTurn, nullptr);
+		} else if (randWeightFloat(1.0f) < 0.2f) {
+			transit(enemy, TANK_Wait, nullptr);
+		} else {
+			transit(enemy, TANK_MoveTurn, nullptr);
+		}
+	}
 }
 
 /*
@@ -315,9 +114,10 @@ void Tank::StateWait::exec(Game::EnemyBase* enemy) {
  * Address:	802743BC
  * Size:	000028
  */
-void Tank::StateWait::cleanup(Game::EnemyBase* enemy) {
-    Obj* tank = static_cast<Obj*>(enemy);
-    tank->setAnimSpeed(30.0f);
+void StateWait::cleanup(EnemyBase* enemy)
+{
+	Obj* tank = static_cast<Obj*>(enemy);
+	tank->setAnimSpeed(30.0f);
 }
 
 /*
@@ -325,12 +125,13 @@ void Tank::StateWait::cleanup(Game::EnemyBase* enemy) {
  * Address:	802743E4
  * Size:	000054
  */
-void Tank::StateMove::init(Game::EnemyBase* enemy, Game::StateArg* args) {
-    Obj* tank = static_cast<Obj*>(enemy);
-    tank->_2F0 = 0.0f;
-    tank->m_targetCreature = nullptr;
-    tank->startMotion(1, nullptr);
-    tank->setAnimSpeed(60.0f);
+void StateMove::init(EnemyBase* enemy, StateArg* stateArg)
+{
+	Obj* tank              = static_cast<Obj*>(enemy);
+	tank->_2F0             = 0.0f;
+	tank->m_targetCreature = nullptr;
+	tank->startMotion(1, nullptr);
+	tank->setAnimSpeed(60.0f);
 }
 
 /*
@@ -338,7 +139,7 @@ void Tank::StateMove::init(Game::EnemyBase* enemy, Game::StateArg* args) {
  * Address:	80274438
  * Size:	00056C
  */
-void Tank::StateMove::exec(Game::EnemyBase*)
+void StateMove::exec(EnemyBase* enemy)
 {
 	/*
 	stwu     r1, -0x130(r1)
@@ -727,9 +528,10 @@ lbl_80274948:
  * Address:	802749A4
  * Size:	000028
  */
-void Tank::StateMove::cleanup(Game::EnemyBase* enemy) {
-    Obj* tank = static_cast<Obj*>(enemy);
-    tank->setAnimSpeed(30.0f);
+void StateMove::cleanup(EnemyBase* enemy)
+{
+	Obj* tank = static_cast<Obj*>(enemy);
+	tank->setAnimSpeed(30.0f);
 }
 
 /*
@@ -737,7 +539,7 @@ void Tank::StateMove::cleanup(Game::EnemyBase* enemy) {
  * Address:	802749CC
  * Size:	000104
  */
-void Tank::StateMoveTurn::init(Game::EnemyBase*, Game::StateArg*)
+void StateMoveTurn::init(EnemyBase* enemy, StateArg* stateArg)
 {
 	/*
 	stwu     r1, -0x20(r1)
@@ -819,65 +621,61 @@ lbl_80274A8C:
  * Address:	80274AD0
  * Size:	000364
  */
-void Tank::StateMoveTurn::exec(Game::EnemyBase* enemy) {
-    Obj* tank = static_cast<Obj*>(enemy);
-    float view = tank->getViewAngle();
-    Vector3f thing = tank->_2F8;
-    float deltaDir = tank->changeFaceDir(thing);
-    float zero = 0.0f;
-    if (tank->m_health <= zero) {
-        transit(enemy, TANK_Dead, nullptr);
-        return;
-    }
-    if (EnemyFunc::isStartFlick(tank, false) || tank->isAttackable(false) || FABS(deltaDir) <= 10.0f * PI / 180) {
-        tank->finishMotion();
-        tank->setAnimSpeed(60.0f);
-    }
-    else {
-        float sightRad = tank->m_parms->m_general.m_sightRadius.m_value;
-        Creature* target = EnemyFunc::getNearestPikminOrNavi(
-        tank, view, sightRad, nullptr, nullptr, nullptr);
-        if (target) {
-            tank->finishMotion();
-        }
-    }
-    if (enemy->m_curAnim->m_isRunning && (u32)enemy->m_curAnim->m_type == KEYEVENT_END) {
-        if (tank->m_health <= zero) {
-            transit(enemy, TANK_Dead, nullptr);
-            return;
-        }
-        if (EnemyFunc::isStartFlick(tank, false)) {
-            transit(enemy, TANK_Flick, nullptr);
-            return;
-        } 
-        if (tank->isAttackable(false)) {
-            transit(enemy, TANK_Attack, nullptr);
-            return;
-        }
-        float sightRad = tank->m_parms->m_general.m_sightRadius.m_value;
-        Creature* target = EnemyFunc::getNearestPikminOrNavi(
-        tank, view, sightRad, nullptr, nullptr, nullptr);
-        if (target) {
-            tank->m_targetCreature = target;
-            tank->_2EC = 0.0f; // some target chase timer?
-            transit(enemy, TANK_ChaseTurn, nullptr);
-        }
-        else {
-            transit(enemy, TANK_Move, nullptr);
-        }
-    }
+void StateMoveTurn::exec(EnemyBase* enemy)
+{
+	Obj* tank      = static_cast<Obj*>(enemy);
+	f32 view       = tank->getViewAngle();
+	Vector3f thing = tank->_2F8;
+	f32 deltaDir   = tank->changeFaceDir(thing);
+	f32 zero       = 0.0f;
+	if (tank->m_health <= zero) {
+		transit(enemy, TANK_Dead, nullptr);
+		return;
+	}
+	if (EnemyFunc::isStartFlick(tank, false) || tank->isAttackable(false) || FABS(deltaDir) <= 10.0f * PI / 180) {
+		tank->finishMotion();
+		tank->setAnimSpeed(60.0f);
+	} else {
+		f32 sightRad     = CG_PARMS(tank)->m_general.m_sightRadius.m_value;
+		Creature* target = EnemyFunc::getNearestPikminOrNavi(tank, view, sightRad, nullptr, nullptr, nullptr);
+		if (target) {
+			tank->finishMotion();
+		}
+	}
+	if (enemy->m_curAnim->m_isRunning && (u32)enemy->m_curAnim->m_type == KEYEVENT_END) {
+		if (tank->m_health <= zero) {
+			transit(enemy, TANK_Dead, nullptr);
+			return;
+		}
+		if (EnemyFunc::isStartFlick(tank, false)) {
+			transit(enemy, TANK_Flick, nullptr);
+			return;
+		}
+		if (tank->isAttackable(false)) {
+			transit(enemy, TANK_Attack, nullptr);
+			return;
+		}
+		f32 sightRad     = CG_PARMS(tank)->m_general.m_sightRadius.m_value;
+		Creature* target = EnemyFunc::getNearestPikminOrNavi(tank, view, sightRad, nullptr, nullptr, nullptr);
+		if (target) {
+			tank->m_targetCreature = target;
+			tank->_2EC             = 0.0f; // some target chase timer?
+			transit(enemy, TANK_ChaseTurn, nullptr);
+		} else {
+			transit(enemy, TANK_Move, nullptr);
+		}
+	}
 }
-
 
 /*
  * --INFO--
  * Address:	80274E34
  * Size:	000028
  */
-void Tank::StateMoveTurn::cleanup(Game::EnemyBase* enemy)
+void StateMoveTurn::cleanup(EnemyBase* enemy)
 {
-    Obj* tank = static_cast<Obj*>(enemy);
-    tank->setAnimSpeed(30.0f);
+	Obj* tank = static_cast<Obj*>(enemy);
+	tank->setAnimSpeed(30.0f);
 }
 
 /*
@@ -885,20 +683,20 @@ void Tank::StateMoveTurn::cleanup(Game::EnemyBase* enemy)
  * Address:	80274E5C
  * Size:	000050
  */
-void Tank::StateChaseTurn::init(Game::EnemyBase* enemy, Game::StateArg* arg) {
-    Obj* tank = static_cast<Obj*>(enemy);
-    tank->m_simVelocity = Vector3f(0.0);
-    tank->setEmotionExcitement();
-    tank->startMotion(4, nullptr);
+void StateChaseTurn::init(EnemyBase* enemy, StateArg* stateArg)
+{
+	Obj* tank           = static_cast<Obj*>(enemy);
+	tank->m_simVelocity = Vector3f(0.0f);
+	tank->setEmotionExcitement();
+	tank->startMotion(4, nullptr);
 }
-
 
 /*
  * --INFO--
  * Address:	80274EAC
  * Size:	0005F4
  */
-void Tank::StateChaseTurn::exec(Game::EnemyBase*)
+void StateChaseTurn::exec(EnemyBase*)
 {
 	/*
 	stwu     r1, -0x110(r1)
@@ -1327,189 +1125,180 @@ lbl_80275444:
  * Address:	802754A0
  * Size:	00003C
  */
-void Tank::StateChaseTurn::cleanup(Game::EnemyBase* enemy) {
-    Obj* tank = static_cast<Obj*>(enemy);
-    tank->setEmotionCaution();
-    tank->setAnimSpeed(30.0f);
+void StateChaseTurn::cleanup(EnemyBase* enemy)
+{
+	Obj* tank = static_cast<Obj*>(enemy);
+	tank->setEmotionCaution();
+	tank->setAnimSpeed(30.0f);
 }
-
 
 /*
  * --INFO--
  * Address:	802754DC
  * Size:	000084
  */
-void Tank::StateAttack::init(Game::EnemyBase* enemy, Game::StateArg* args) {
-    Obj* tank = static_cast<Obj*>(enemy);
-    tank->_304 = 0;
-    tank->_2E4 = 0.0f;
-    tank->_2EC = 0.0f;
-    tank->resetEvent(0, EB_Cullable);
-    tank->m_targetCreature = nullptr;
-    tank->m_simVelocity = Vector3f(0.0);
-    tank->setEmotionExcitement();
-    tank->startMotion(3, nullptr);
-    tank->createChargeSE();
-    
+void StateAttack::init(EnemyBase* enemy, StateArg* stateArg)
+{
+	Obj* tank  = static_cast<Obj*>(enemy);
+	tank->_304 = 0;
+	tank->_2E4 = 0.0f;
+	tank->_2EC = 0.0f;
+	tank->resetEvent(0, EB_Cullable);
+	tank->m_targetCreature = nullptr;
+	tank->m_simVelocity    = Vector3f(0.0f);
+	tank->setEmotionExcitement();
+	tank->startMotion(3, nullptr);
+	tank->createChargeSE();
 }
-
 
 /*
  * --INFO--
  * Address:	80275560
  * Size:	000004
  */
-void Tank::Obj::createChargeSE() { }
+void Obj::createChargeSE() { }
 
 /*
  * --INFO--
  * Address:	80275564
  * Size:	0001E0
  */
-void Game::Tank::StateAttack::exec(Game::EnemyBase* enemy) {
-    Obj* tank = static_cast<Obj*>(enemy);
-    float view = tank->getViewAngle();
-    if (tank->m_health <= 0.0f) {
-        transit(enemy, TANK_Dead, nullptr);
-        return;
-    }
-    if (tank->_304) {
-        tank->isAttackable(true);
-        tank->createDisChargeSE();
-    }
-    if (!enemy->m_curAnim->m_isRunning) return;
-    
-    if ((u32)enemy->m_curAnim->m_type == KEYEVENT_2) {
-        tank->_304 = true;
-        tank->startEffect();
-        return;
-    }
-    if ((u32)enemy->m_curAnim->m_type == KEYEVENT_END) {
-        if (tank->m_health <= 0.0f) {
-            transit(enemy, TANK_Dead, nullptr);
-            return;
-        }
-        if (EnemyFunc::isStartFlick(tank, false)) {
-            transit(enemy, TANK_Flick, nullptr);  
-            return;
-        }
-        float sightRad = tank->m_parms->m_general.m_sightRadius.m_value;
-        Creature* target = EnemyFunc::getNearestPikminOrNavi(
-        tank, view, sightRad, nullptr, nullptr, nullptr);
-        if (target) {
-            tank->m_targetCreature = target;
-            tank->_2EC = 0.0f;
-            transit(enemy, TANK_ChaseTurn, nullptr);  
-            return;
-        }
-        transit(enemy, TANK_Wait, nullptr);  
+void StateAttack::exec(EnemyBase* enemy)
+{
+	Obj* tank = static_cast<Obj*>(enemy);
+	f32 view  = tank->getViewAngle();
+	if (tank->m_health <= 0.0f) {
+		transit(enemy, TANK_Dead, nullptr);
+		return;
+	}
+	if (tank->_304) {
+		tank->isAttackable(true);
+		tank->createDisChargeSE();
+	}
+	if (!enemy->m_curAnim->m_isRunning)
+		return;
 
-    }
+	if ((u32)enemy->m_curAnim->m_type == KEYEVENT_2) {
+		tank->_304 = true;
+		tank->startEffect();
+		return;
+	}
+	if ((u32)enemy->m_curAnim->m_type == KEYEVENT_END) {
+		if (tank->m_health <= 0.0f) {
+			transit(enemy, TANK_Dead, nullptr);
+			return;
+		}
+		if (EnemyFunc::isStartFlick(tank, false)) {
+			transit(enemy, TANK_Flick, nullptr);
+			return;
+		}
+		f32 sightRad     = CG_PARMS(tank)->m_general.m_sightRadius.m_value;
+		Creature* target = EnemyFunc::getNearestPikminOrNavi(tank, view, sightRad, nullptr, nullptr, nullptr);
+		if (target) {
+			tank->m_targetCreature = target;
+			tank->_2EC             = 0.0f;
+			transit(enemy, TANK_ChaseTurn, nullptr);
+			return;
+		}
+		transit(enemy, TANK_Wait, nullptr);
+	}
 }
-
 
 /*
  * --INFO--
  * Address:	80275744
  * Size:	000004
  */
-void Tank::Obj::startEffect() { }
+void Obj::startEffect() { }
 
 /*
  * --INFO--
  * Address:	80275748
  * Size:	000004
  */
-void Tank::Obj::createDisChargeSE() { }
+void Obj::createDisChargeSE() { }
 
 /*
  * --INFO--
  * Address:	8027574C
  * Size:	000058
  */
-void Game::Tank::StateAttack::cleanup(Game::EnemyBase* enemy) {
-    Obj* tank = static_cast<Obj*>(enemy);
-    tank->setEvent(0, EB_Cullable);
-    tank->_304 = false;
-    tank->startYodare();
-    tank->setEmotionCaution();
+void StateAttack::cleanup(EnemyBase* enemy)
+{
+	Obj* tank = static_cast<Obj*>(enemy);
+	tank->setEvent(0, EB_Cullable);
+	tank->_304 = false;
+	tank->startYodare();
+	tank->setEmotionCaution();
 }
-
 
 /*
  * --INFO--
  * Address:	802757A4
  * Size:	000004
  */
-void Tank::Obj::startYodare() { }
+void Obj::startYodare() { }
 
 /*
  * --INFO--
  * Address:	802757A8
  * Size:	000058
  */
-void Tank::StateFlick::init(Game::EnemyBase* enemy, Game::StateArg* args) {
-    Obj* tank = static_cast<Obj*>(enemy);
-    tank->m_targetCreature = nullptr;
-    tank->m_simVelocity = Vector3f(0.0f);
-    tank->setEmotionExcitement();
-    tank->startMotion(2, nullptr);
+void StateFlick::init(EnemyBase* enemy, StateArg* stateArg)
+{
+	Obj* tank              = static_cast<Obj*>(enemy);
+	tank->m_targetCreature = nullptr;
+	tank->m_simVelocity    = Vector3f(0.0f);
+	tank->setEmotionExcitement();
+	tank->startMotion(2, nullptr);
 }
-
 
 /*
  * --INFO--
  * Address:	80275800
  * Size:	000180
  */
-void Game::Tank::StateFlick::exec(Game::EnemyBase* enemy) {
-    Obj* tank = static_cast<Obj*>(enemy);
-    if (tank->m_health <= 0.0f) {
-        transit(enemy, TANK_Dead, nullptr);
-        return;
-    }
-    if (!enemy->m_curAnim->m_isRunning) return;
+void StateFlick::exec(EnemyBase* enemy)
+{
+	Obj* tank = static_cast<Obj*>(enemy);
+	if (tank->m_health <= 0.0f) {
+		transit(enemy, TANK_Dead, nullptr);
+		return;
+	}
+	if (!enemy->m_curAnim->m_isRunning)
+		return;
 
-    if ((u32)enemy->m_curAnim->m_type == KEYEVENT_2) {
-        EnemyParmsBase* parms = tank->m_parms;
-        Game::EnemyFunc::flickNearbyNavi(tank, 
-            parms->m_general.m_shakeRange.m_value, 
-            parms->m_general.m_shakeKnockback.m_value,
-            parms->m_general.m_shakeDamage.m_value, 
-            -1000.0f, nullptr);
-        parms = tank->m_parms;
-        Game::EnemyFunc::flickNearbyPikmin(tank, 
-            parms->m_general.m_shakeRange.m_value, 
-            parms->m_general.m_shakeKnockback.m_value,
-            parms->m_general.m_shakeDamage.m_value, 
-            tank->getFaceDir(), nullptr);
-        parms = tank->m_parms;
-        Game::EnemyFunc::flickStickPikmin(tank, 
-            parms->m_general.m_shakeRateMaybe.m_value, 
-            parms->m_general.m_shakeKnockback.m_value,
-            parms->m_general.m_shakeDamage.m_value, 
-            tank->getFaceDir(), nullptr);
-        tank->m_toFlick = 0.0f;
-        }
-    
-    if ((u32)enemy->m_curAnim->m_type == KEYEVENT_END) {
-        if (tank->m_health <= 0.0f) {
-            transit(enemy, TANK_Dead, nullptr);
-        }
-        else {
-            transit(enemy, TANK_Attack, nullptr); 
-        }
-    }
+	if ((u32)enemy->m_curAnim->m_type == KEYEVENT_2) {
+		EnemyParmsBase* parms = CG_PARMS(tank);
+		EnemyFunc::flickNearbyNavi(tank, parms->m_general.m_shakeRange.m_value, parms->m_general.m_shakeKnockback.m_value,
+		                           parms->m_general.m_shakeDamage.m_value, -1000.0f, nullptr);
+		parms = CG_PARMS(tank);
+		EnemyFunc::flickNearbyPikmin(tank, parms->m_general.m_shakeRange.m_value, parms->m_general.m_shakeKnockback.m_value,
+		                             parms->m_general.m_shakeDamage.m_value, tank->getFaceDir(), nullptr);
+		parms = CG_PARMS(tank);
+		EnemyFunc::flickStickPikmin(tank, parms->m_general.m_shakeRateMaybe.m_value, parms->m_general.m_shakeKnockback.m_value,
+		                            parms->m_general.m_shakeDamage.m_value, tank->getFaceDir(), nullptr);
+		tank->m_toFlick = 0.0f;
+	}
+
+	if ((u32)enemy->m_curAnim->m_type == KEYEVENT_END) {
+		if (tank->m_health <= 0.0f) {
+			transit(enemy, TANK_Dead, nullptr);
+		} else {
+			transit(enemy, TANK_Attack, nullptr);
+		}
+	}
 }
-
 
 /*
  * --INFO--
  * Address:	80275980
  * Size:	000024
  */
-void Game::Tank::StateFlick::cleanup(Game::EnemyBase* enemy) {
-    Obj* tank = static_cast<Obj*>(enemy);
-    tank->setEmotionCaution();
+void StateFlick::cleanup(EnemyBase* enemy)
+{
+	Obj* tank = static_cast<Obj*>(enemy);
+	tank->setEmotionCaution();
 }
+} // namespace Tank
 } // namespace Game
