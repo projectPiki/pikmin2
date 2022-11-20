@@ -7,8 +7,8 @@
 #include "Game/EnemyMgrBase.h"
 #include "Game/EnemyBase.h"
 #include "Game/WalkSmokeEffect.h"
-#include "efx/TTank.h"
 #include "SysShape/Joint.h"
+#include "efx/TTank.h"
 
 /**
  * --Header for (Ground) Blowhogs--
@@ -20,6 +20,18 @@
 namespace Game {
 // Base Blowhog Structs
 namespace Tank {
+
+enum StateID {
+	TANK_Dead      = 0,
+	TANK_Wait      = 1,
+	TANK_Move      = 2,
+	TANK_MoveTurn  = 3,
+	TANK_ChaseTurn = 4,
+	TANK_Attack    = 5,
+	TANK_Flick     = 6,
+	TANK_Count,
+};
+
 struct FSM;
 
 struct Obj : public EnemyBase {
@@ -55,7 +67,7 @@ struct Obj : public EnemyBase {
 	virtual void setupEffect();                             // _300 (weak)
 	virtual void startEffect();                             // _304 (weak)
 	virtual void startYodare();                             // _308 (weak)
-	virtual void finishEffect();                            // _30C (weak)
+	virtual void finishEffect() { }                         // _30C (weak)
 	virtual void effectDrawOn();                            // _310 (weak)
 	virtual void effectDrawOff();                           // _314 (weak)
 	virtual void interactCreature(Creature*);               // _318 (weak)
@@ -64,11 +76,11 @@ struct Obj : public EnemyBase {
 	virtual void createDisChargeSE();                       // _324 (weak)
 	//////////////// VTABLE END
 
-	void isAttackable(bool);
+	bool isAttackable(bool);
 	void emitCollideRatio(Vector3f&, Vector3f&, f32);
 	void updateEmit();
 	void updateCaution();
-	void getViewAngle();
+	f32 getViewAngle();
 
 	// _00 		= VTBL
 	// _00-_2BC	= EnemyBase
@@ -82,7 +94,7 @@ struct Obj : public EnemyBase {
 	f32 _2EC;                            // _2EC, timer?
 	f32 _2F0;                            // _2F0
 	f32 _2F4;                            // _2F4
-	u8 _2F8[0xC];                        // _2F8, unknown
+	Vector3f _2F8;                       // _2F8
 	u8 _304;                             // _304, unknown
 	                                     // _308 = PelletView
 };
@@ -145,11 +157,22 @@ struct FSM : public EnemyStateMachine {
 };
 
 struct State : public EnemyFSMState {
+	inline State(int stateID, const char* name)
+	    : EnemyFSMState(stateID)
+	{
+		m_name = name;
+	}
+
 	// _00		= VTBL
 	// _00-_10 	= EnemyFSMState
 };
 
 struct StateAttack : public State {
+	inline StateAttack()
+	    : State(TANK_Attack, "attack")
+	{
+	}
+
 	virtual void init(EnemyBase*, StateArg*); // _08
 	virtual void exec(EnemyBase*);            // _0C
 	virtual void cleanup(EnemyBase*);         // _10
@@ -159,6 +182,10 @@ struct StateAttack : public State {
 };
 
 struct StateChaseTurn : public State {
+	inline StateChaseTurn()
+	    : State(TANK_ChaseTurn, "chaseturn")
+	{
+	}
 	virtual void init(EnemyBase*, StateArg*); // _08
 	virtual void exec(EnemyBase*);            // _0C
 	virtual void cleanup(EnemyBase*);         // _10
@@ -168,6 +195,10 @@ struct StateChaseTurn : public State {
 };
 
 struct StateDead : public State {
+	inline StateDead()
+	    : State(TANK_Dead, "dead")
+	{
+	}
 	virtual void init(EnemyBase*, StateArg*); // _08
 	virtual void exec(EnemyBase*);            // _0C
 	virtual void cleanup(EnemyBase*);         // _10
@@ -177,6 +208,10 @@ struct StateDead : public State {
 };
 
 struct StateFlick : public State {
+	inline StateFlick()
+	    : State(TANK_Flick, "flick")
+	{
+	}
 	virtual void init(EnemyBase*, StateArg*); // _08
 	virtual void exec(EnemyBase*);            // _0C
 	virtual void cleanup(EnemyBase*);         // _10
@@ -186,6 +221,10 @@ struct StateFlick : public State {
 };
 
 struct StateMove : public State {
+	inline StateMove()
+	    : State(TANK_Move, "move")
+	{
+	}
 	virtual void init(EnemyBase*, StateArg*); // _08
 	virtual void exec(EnemyBase*);            // _0C
 	virtual void cleanup(EnemyBase*);         // _10
@@ -195,6 +234,10 @@ struct StateMove : public State {
 };
 
 struct StateMoveTurn : public State {
+	inline StateMoveTurn()
+	    : State(TANK_MoveTurn, "moveturn")
+	{
+	}
 	virtual void init(EnemyBase*, StateArg*); // _08
 	virtual void exec(EnemyBase*);            // _0C
 	virtual void cleanup(EnemyBase*);         // _10
@@ -204,6 +247,10 @@ struct StateMoveTurn : public State {
 };
 
 struct StateWait : public State {
+	inline StateWait()
+	    : State(TANK_Wait, "wait")
+	{
+	}
 	virtual void init(EnemyBase*, StateArg*); // _08
 	virtual void exec(EnemyBase*);            // _0C
 	virtual void cleanup(EnemyBase*);         // _10

@@ -1,390 +1,21 @@
-#include "types.h"
-
-/*
-    Generated from dpostproc
-
-    .section .rodata  # 0x804732E0 - 0x8049E220
-    .global lbl_80486C68
-    lbl_80486C68:
-        .4byte 0x6D6F7665
-        .4byte 0x7475726E
-        .4byte 0x00000000
-    .global lbl_80486C74
-    lbl_80486C74:
-        .4byte 0x63686173
-        .4byte 0x65747572
-        .4byte 0x6E000000
-
-    .section .data, "wa"  # 0x8049E220 - 0x804EFC20
-    .global __vt__Q34Game4Tank10StateFlick
-    __vt__Q34Game4Tank10StateFlick:
-        .4byte 0
-        .4byte 0
-        .4byte
-   init__Q34Game4Tank10StateFlickFPQ24Game9EnemyBasePQ24Game8StateArg .4byte
-   exec__Q34Game4Tank10StateFlickFPQ24Game9EnemyBase .4byte
-   cleanup__Q34Game4Tank10StateFlickFPQ24Game9EnemyBase .4byte
-   resume__Q24Game13EnemyFSMStateFPQ24Game9EnemyBase .4byte
-   restart__Q24Game13EnemyFSMStateFPQ24Game9EnemyBase .4byte
-   transit__Q24Game13EnemyFSMStateFPQ24Game9EnemyBaseiPQ24Game8StateArg .4byte
-   doDirectDraw__Q24Game13EnemyFSMStateFPQ24Game9EnemyBaseR8Graphics .global
-   __vt__Q34Game4Tank11StateAttack
-    __vt__Q34Game4Tank11StateAttack:
-        .4byte 0
-        .4byte 0
-        .4byte
-   init__Q34Game4Tank11StateAttackFPQ24Game9EnemyBasePQ24Game8StateArg .4byte
-   exec__Q34Game4Tank11StateAttackFPQ24Game9EnemyBase .4byte
-   cleanup__Q34Game4Tank11StateAttackFPQ24Game9EnemyBase .4byte
-   resume__Q24Game13EnemyFSMStateFPQ24Game9EnemyBase .4byte
-   restart__Q24Game13EnemyFSMStateFPQ24Game9EnemyBase .4byte
-   transit__Q24Game13EnemyFSMStateFPQ24Game9EnemyBaseiPQ24Game8StateArg .4byte
-   doDirectDraw__Q24Game13EnemyFSMStateFPQ24Game9EnemyBaseR8Graphics .global
-   __vt__Q34Game4Tank14StateChaseTurn
-    __vt__Q34Game4Tank14StateChaseTurn:
-        .4byte 0
-        .4byte 0
-        .4byte
-   init__Q34Game4Tank14StateChaseTurnFPQ24Game9EnemyBasePQ24Game8StateArg .4byte
-   exec__Q34Game4Tank14StateChaseTurnFPQ24Game9EnemyBase .4byte
-   cleanup__Q34Game4Tank14StateChaseTurnFPQ24Game9EnemyBase .4byte
-   resume__Q24Game13EnemyFSMStateFPQ24Game9EnemyBase .4byte
-   restart__Q24Game13EnemyFSMStateFPQ24Game9EnemyBase .4byte
-   transit__Q24Game13EnemyFSMStateFPQ24Game9EnemyBaseiPQ24Game8StateArg .4byte
-   doDirectDraw__Q24Game13EnemyFSMStateFPQ24Game9EnemyBaseR8Graphics .global
-   __vt__Q34Game4Tank13StateMoveTurn
-    __vt__Q34Game4Tank13StateMoveTurn:
-        .4byte 0
-        .4byte 0
-        .4byte
-   init__Q34Game4Tank13StateMoveTurnFPQ24Game9EnemyBasePQ24Game8StateArg .4byte
-   exec__Q34Game4Tank13StateMoveTurnFPQ24Game9EnemyBase .4byte
-   cleanup__Q34Game4Tank13StateMoveTurnFPQ24Game9EnemyBase .4byte
-   resume__Q24Game13EnemyFSMStateFPQ24Game9EnemyBase .4byte
-   restart__Q24Game13EnemyFSMStateFPQ24Game9EnemyBase .4byte
-   transit__Q24Game13EnemyFSMStateFPQ24Game9EnemyBaseiPQ24Game8StateArg .4byte
-   doDirectDraw__Q24Game13EnemyFSMStateFPQ24Game9EnemyBaseR8Graphics .global
-   __vt__Q34Game4Tank9StateMove
-    __vt__Q34Game4Tank9StateMove:
-        .4byte 0
-        .4byte 0
-        .4byte init__Q34Game4Tank9StateMoveFPQ24Game9EnemyBasePQ24Game8StateArg
-        .4byte exec__Q34Game4Tank9StateMoveFPQ24Game9EnemyBase
-        .4byte cleanup__Q34Game4Tank9StateMoveFPQ24Game9EnemyBase
-        .4byte resume__Q24Game13EnemyFSMStateFPQ24Game9EnemyBase
-        .4byte restart__Q24Game13EnemyFSMStateFPQ24Game9EnemyBase
-        .4byte
-   transit__Q24Game13EnemyFSMStateFPQ24Game9EnemyBaseiPQ24Game8StateArg .4byte
-   doDirectDraw__Q24Game13EnemyFSMStateFPQ24Game9EnemyBaseR8Graphics .global
-   __vt__Q34Game4Tank9StateWait
-    __vt__Q34Game4Tank9StateWait:
-        .4byte 0
-        .4byte 0
-        .4byte init__Q34Game4Tank9StateWaitFPQ24Game9EnemyBasePQ24Game8StateArg
-        .4byte exec__Q34Game4Tank9StateWaitFPQ24Game9EnemyBase
-        .4byte cleanup__Q34Game4Tank9StateWaitFPQ24Game9EnemyBase
-        .4byte resume__Q24Game13EnemyFSMStateFPQ24Game9EnemyBase
-        .4byte restart__Q24Game13EnemyFSMStateFPQ24Game9EnemyBase
-        .4byte
-   transit__Q24Game13EnemyFSMStateFPQ24Game9EnemyBaseiPQ24Game8StateArg .4byte
-   doDirectDraw__Q24Game13EnemyFSMStateFPQ24Game9EnemyBaseR8Graphics .global
-   __vt__Q34Game4Tank9StateDead
-    __vt__Q34Game4Tank9StateDead:
-        .4byte 0
-        .4byte 0
-        .4byte init__Q34Game4Tank9StateDeadFPQ24Game9EnemyBasePQ24Game8StateArg
-        .4byte exec__Q34Game4Tank9StateDeadFPQ24Game9EnemyBase
-        .4byte cleanup__Q34Game4Tank9StateDeadFPQ24Game9EnemyBase
-        .4byte resume__Q24Game13EnemyFSMStateFPQ24Game9EnemyBase
-        .4byte restart__Q24Game13EnemyFSMStateFPQ24Game9EnemyBase
-        .4byte
-   transit__Q24Game13EnemyFSMStateFPQ24Game9EnemyBaseiPQ24Game8StateArg .4byte
-   doDirectDraw__Q24Game13EnemyFSMStateFPQ24Game9EnemyBaseR8Graphics .global
-   __vt__Q34Game4Tank5State
-    __vt__Q34Game4Tank5State:
-        .4byte 0
-        .4byte 0
-        .4byte init__Q24Game13EnemyFSMStateFPQ24Game9EnemyBasePQ24Game8StateArg
-        .4byte exec__Q24Game13EnemyFSMStateFPQ24Game9EnemyBase
-        .4byte cleanup__Q24Game13EnemyFSMStateFPQ24Game9EnemyBase
-        .4byte resume__Q24Game13EnemyFSMStateFPQ24Game9EnemyBase
-        .4byte restart__Q24Game13EnemyFSMStateFPQ24Game9EnemyBase
-        .4byte
-   transit__Q24Game13EnemyFSMStateFPQ24Game9EnemyBaseiPQ24Game8StateArg .4byte
-   doDirectDraw__Q24Game13EnemyFSMStateFPQ24Game9EnemyBaseR8Graphics .global
-   __vt__Q34Game4Tank3FSM
-    __vt__Q34Game4Tank3FSM:
-        .4byte 0
-        .4byte 0
-        .4byte init__Q34Game4Tank3FSMFPQ24Game9EnemyBase
-        .4byte
-   start__Q24Game17EnemyStateMachineFPQ24Game9EnemyBaseiPQ24Game8StateArg .4byte
-   exec__Q24Game17EnemyStateMachineFPQ24Game9EnemyBase .4byte
-   transit__Q24Game17EnemyStateMachineFPQ24Game9EnemyBaseiPQ24Game8StateArg
-        .4byte
-   doDirectDraw__Q24Game17EnemyStateMachineFPQ24Game9EnemyBaseR8Graphics .4byte
-   getCurrState__Q24Game17EnemyStateMachineFPQ24Game9EnemyBase .4byte
-   setCurrState__Q24Game17EnemyStateMachineFPQ24Game9EnemyBasePQ24Game13EnemyFSMState
-        .4byte 0
-
-    .section .sdata2, "a"     # 0x80516360 - 0x80520E40
-    .global lbl_8051B268
-    lbl_8051B268:
-        .4byte 0x64656164
-        .4byte 0x00000000
-    .global lbl_8051B270
-    lbl_8051B270:
-        .4byte 0x77616974
-        .4byte 0x00000000
-    .global lbl_8051B278
-    lbl_8051B278:
-        .4byte 0x6D6F7665
-        .4byte 0x00000000
-    .global lbl_8051B280
-    lbl_8051B280:
-        .4byte 0x61747461
-        .4byte 0x636B0000
-    .global lbl_8051B288
-    lbl_8051B288:
-        .4byte 0x666C6963
-        .4byte 0x6B000000
-    .global lbl_8051B290
-    lbl_8051B290:
-        .4byte 0x00000000
-    .global lbl_8051B294
-    lbl_8051B294:
-        .4byte 0x42700000
-    .global lbl_8051B298
-    lbl_8051B298:
-        .float 1.0
-    .global lbl_8051B29C
-    lbl_8051B29C:
-        .4byte 0x47000000
-    .global lbl_8051B2A0
-    lbl_8051B2A0:
-        .4byte 0x3E4CCCCD
-        .4byte 0x00000000
-    .global lbl_8051B2A8
-    lbl_8051B2A8:
-        .4byte 0x43300000
-        .4byte 0x80000000
-    .global lbl_8051B2B0
-    lbl_8051B2B0:
-        .4byte 0x41F00000
-    .global lbl_8051B2B4
-    lbl_8051B2B4:
-        .4byte 0x451C4000
-    .global lbl_8051B2B8
-    lbl_8051B2B8:
-        .4byte 0x40400000
-    .global lbl_8051B2BC
-    lbl_8051B2BC:
-        .4byte 0x40490FDB
-    .global lbl_8051B2C0
-    lbl_8051B2C0:
-        .4byte 0x3BB60B61
-    .global lbl_8051B2C4
-    lbl_8051B2C4:
-        .4byte 0x3F860A92
-    .global lbl_8051B2C8
-    lbl_8051B2C8:
-        .4byte 0x43A2F983
-    .global lbl_8051B2CC
-    lbl_8051B2CC:
-        .4byte 0xC3A2F983
-    .global lbl_8051B2D0
-    lbl_8051B2D0:
-        .4byte 0x3E32B8C3
-    .global lbl_8051B2D4
-    lbl_8051B2D4:
-        .4byte 0xC47A0000
-*/
+#include "Game/Entities/Tank.h"
+#include "Game/EnemyAnimKeyEvent.h"
+#include "Game/EnemyFunc.h"
+#include "Dolphin/rand.h"
 
 namespace Game {
+namespace Tank {
 
-/*
- * --INFO--
- * Address:	80273DE4
- * Size:	000280
- */
-void Tank::FSM::init(Game::EnemyBase*)
+void FSM::init(EnemyBase* enemy)
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	li       r4, 7
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	mr       r31, r3
-	bl       create__Q24Game17EnemyStateMachineFi
-	li       r3, 0x10
-	bl       __nw__FUl
-	or.      r4, r3, r3
-	beq      lbl_80273E48
-	lis      r3, __vt__Q24Game13EnemyFSMState@ha
-	lis      r5, __vt__Q34Game4Tank5State@ha
-	addi     r0, r3, __vt__Q24Game13EnemyFSMState@l
-	lis      r3, __vt__Q34Game4Tank9StateDead@ha
-	stw      r0, 0(r4)
-	li       r7, 0
-	addi     r6, r5, __vt__Q34Game4Tank5State@l
-	addi     r5, r2, lbl_8051B268@sda21
-	stw      r7, 4(r4)
-	addi     r0, r3, __vt__Q34Game4Tank9StateDead@l
-	stw      r7, 8(r4)
-	stw      r6, 0(r4)
-	stw      r5, 0xc(r4)
-	stw      r0, 0(r4)
-
-lbl_80273E48:
-	mr       r3, r31
-	bl       registerState__Q24Game17EnemyStateMachineFPQ24Game13EnemyFSMState
-	li       r3, 0x10
-	bl       __nw__FUl
-	or.      r4, r3, r3
-	beq      lbl_80273E9C
-	lis      r3, __vt__Q24Game13EnemyFSMState@ha
-	lis      r5, __vt__Q34Game4Tank5State@ha
-	addi     r0, r3, __vt__Q24Game13EnemyFSMState@l
-	lis      r3, __vt__Q34Game4Tank9StateWait@ha
-	stw      r0, 0(r4)
-	li       r0, 1
-	li       r7, 0
-	addi     r6, r5, __vt__Q34Game4Tank5State@l
-	stw      r0, 4(r4)
-	addi     r5, r2, lbl_8051B270@sda21
-	addi     r0, r3, __vt__Q34Game4Tank9StateWait@l
-	stw      r7, 8(r4)
-	stw      r6, 0(r4)
-	stw      r5, 0xc(r4)
-	stw      r0, 0(r4)
-
-lbl_80273E9C:
-	mr       r3, r31
-	bl       registerState__Q24Game17EnemyStateMachineFPQ24Game13EnemyFSMState
-	li       r3, 0x10
-	bl       __nw__FUl
-	or.      r4, r3, r3
-	beq      lbl_80273EF0
-	lis      r3, __vt__Q24Game13EnemyFSMState@ha
-	lis      r5, __vt__Q34Game4Tank5State@ha
-	addi     r0, r3, __vt__Q24Game13EnemyFSMState@l
-	lis      r3, __vt__Q34Game4Tank9StateMove@ha
-	stw      r0, 0(r4)
-	li       r0, 2
-	li       r7, 0
-	addi     r6, r5, __vt__Q34Game4Tank5State@l
-	stw      r0, 4(r4)
-	addi     r5, r2, lbl_8051B278@sda21
-	addi     r0, r3, __vt__Q34Game4Tank9StateMove@l
-	stw      r7, 8(r4)
-	stw      r6, 0(r4)
-	stw      r5, 0xc(r4)
-	stw      r0, 0(r4)
-
-lbl_80273EF0:
-	mr       r3, r31
-	bl       registerState__Q24Game17EnemyStateMachineFPQ24Game13EnemyFSMState
-	li       r3, 0x10
-	bl       __nw__FUl
-	or.      r4, r3, r3
-	beq      lbl_80273F48
-	lis      r3, __vt__Q24Game13EnemyFSMState@ha
-	lis      r6, __vt__Q34Game4Tank5State@ha
-	addi     r0, r3, __vt__Q24Game13EnemyFSMState@l
-	lis      r5, lbl_80486C68@ha
-	stw      r0, 0(r4)
-	li       r0, 3
-	lis      r3, __vt__Q34Game4Tank13StateMoveTurn@ha
-	li       r7, 0
-	stw      r0, 4(r4)
-	addi     r6, r6, __vt__Q34Game4Tank5State@l
-	addi     r5, r5, lbl_80486C68@l
-	addi     r0, r3, __vt__Q34Game4Tank13StateMoveTurn@l
-	stw      r7, 8(r4)
-	stw      r6, 0(r4)
-	stw      r5, 0xc(r4)
-	stw      r0, 0(r4)
-
-lbl_80273F48:
-	mr       r3, r31
-	bl       registerState__Q24Game17EnemyStateMachineFPQ24Game13EnemyFSMState
-	li       r3, 0x10
-	bl       __nw__FUl
-	or.      r4, r3, r3
-	beq      lbl_80273FA0
-	lis      r3, __vt__Q24Game13EnemyFSMState@ha
-	lis      r6, __vt__Q34Game4Tank5State@ha
-	addi     r0, r3, __vt__Q24Game13EnemyFSMState@l
-	lis      r5, lbl_80486C74@ha
-	stw      r0, 0(r4)
-	li       r0, 4
-	lis      r3, __vt__Q34Game4Tank14StateChaseTurn@ha
-	li       r7, 0
-	stw      r0, 4(r4)
-	addi     r6, r6, __vt__Q34Game4Tank5State@l
-	addi     r5, r5, lbl_80486C74@l
-	addi     r0, r3, __vt__Q34Game4Tank14StateChaseTurn@l
-	stw      r7, 8(r4)
-	stw      r6, 0(r4)
-	stw      r5, 0xc(r4)
-	stw      r0, 0(r4)
-
-lbl_80273FA0:
-	mr       r3, r31
-	bl       registerState__Q24Game17EnemyStateMachineFPQ24Game13EnemyFSMState
-	li       r3, 0x10
-	bl       __nw__FUl
-	or.      r4, r3, r3
-	beq      lbl_80273FF4
-	lis      r3, __vt__Q24Game13EnemyFSMState@ha
-	lis      r5, __vt__Q34Game4Tank5State@ha
-	addi     r0, r3, __vt__Q24Game13EnemyFSMState@l
-	lis      r3, __vt__Q34Game4Tank11StateAttack@ha
-	stw      r0, 0(r4)
-	li       r0, 5
-	li       r7, 0
-	addi     r6, r5, __vt__Q34Game4Tank5State@l
-	stw      r0, 4(r4)
-	addi     r5, r2, lbl_8051B280@sda21
-	addi     r0, r3, __vt__Q34Game4Tank11StateAttack@l
-	stw      r7, 8(r4)
-	stw      r6, 0(r4)
-	stw      r5, 0xc(r4)
-	stw      r0, 0(r4)
-
-lbl_80273FF4:
-	mr       r3, r31
-	bl       registerState__Q24Game17EnemyStateMachineFPQ24Game13EnemyFSMState
-	li       r3, 0x10
-	bl       __nw__FUl
-	or.      r4, r3, r3
-	beq      lbl_80274048
-	lis      r3, __vt__Q24Game13EnemyFSMState@ha
-	lis      r5, __vt__Q34Game4Tank5State@ha
-	addi     r0, r3, __vt__Q24Game13EnemyFSMState@l
-	lis      r3, __vt__Q34Game4Tank10StateFlick@ha
-	stw      r0, 0(r4)
-	li       r0, 6
-	li       r7, 0
-	addi     r6, r5, __vt__Q34Game4Tank5State@l
-	stw      r0, 4(r4)
-	addi     r5, r2, lbl_8051B288@sda21
-	addi     r0, r3, __vt__Q34Game4Tank10StateFlick@l
-	stw      r7, 8(r4)
-	stw      r6, 0(r4)
-	stw      r5, 0xc(r4)
-	stw      r0, 0(r4)
-
-lbl_80274048:
-	mr       r3, r31
-	bl       registerState__Q24Game17EnemyStateMachineFPQ24Game13EnemyFSMState
-	lwz      r0, 0x14(r1)
-	lwz      r31, 0xc(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	create(TANK_Count);
+	registerState(new StateDead);
+	registerState(new StateWait);
+	registerState(new StateMove);
+	registerState(new StateMoveTurn);
+	registerState(new StateChaseTurn);
+	registerState(new StateAttack);
+	registerState(new StateFlick);
 }
 
 /*
@@ -392,75 +23,27 @@ lbl_80274048:
  * Address:	80274064
  * Size:	000070
  */
-void Tank::StateDead::init(Game::EnemyBase*, Game::StateArg*)
-{
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	mr       r31, r4
-	mr       r3, r31
-	lwz      r12, 0(r31)
-	lwz      r12, 0x30c(r12)
-	mtctr    r12
-	bctrl
-	lwz      r0, 0x1e0(r31)
-	mr       r3, r31
-	lfs      f0, lbl_8051B290@sda21(r2)
-	rlwinm   r0, r0, 0, 0x1a, 0x18
-	stw      r0, 0x1e0(r31)
-	stfs     f0, 0x1d4(r31)
-	stfs     f0, 0x1d8(r31)
-	stfs     f0, 0x1dc(r31)
-	bl       deathProcedure__Q24Game9EnemyBaseFv
-	mr       r3, r31
-	li       r4, 0
-	li       r5, 0
-	bl       startMotion__Q24Game9EnemyBaseFiPQ28SysShape14MotionListener
-	lwz      r0, 0x14(r1)
-	lwz      r31, 0xc(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
-}
 
-/*
- * --INFO--
- * Address:	802740D4
- * Size:	000004
- */
-void Tank::Obj::finishEffect() { }
+void StateDead::init(EnemyBase* enemy, StateArg* Args)
+{
+	Obj* tank = static_cast<Obj*>(enemy);
+	tank->finishEffect();
+	tank->resetEvent(0, EB_Cullable);
+	tank->m_simVelocity = Vector3f(0.0f);
+	tank->deathProcedure();
+	tank->startMotion(0, nullptr);
+}
 
 /*
  * --INFO--
  * Address:	802740D8
  * Size:	000044
  */
-void Tank::StateDead::exec(Game::EnemyBase*)
+void StateDead::exec(EnemyBase* enemy)
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	lwz      r3, 0x188(r4)
-	lbz      r0, 0x24(r3)
-	cmplwi   r0, 0
-	beq      lbl_8027410C
-	lwz      r0, 0x1c(r3)
-	cmplwi   r0, 0x3e8
-	bne      lbl_8027410C
-	mr       r3, r4
-	li       r4, 0
-	bl       kill__Q24Game8CreatureFPQ24Game15CreatureKillArg
-
-lbl_8027410C:
-	lwz      r0, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	if (enemy->m_curAnim->m_isRunning && (u32)enemy->m_curAnim->m_type == KEYEVENT_END) {
+		enemy->kill(nullptr);
+	}
 }
 
 /*
@@ -468,34 +51,19 @@ lbl_8027410C:
  * Address:	8027411C
  * Size:	000004
  */
-void Tank::StateDead::cleanup(Game::EnemyBase*) { }
+void StateDead::cleanup(EnemyBase*) { }
 
 /*
  * --INFO--
  * Address:	80274120
  * Size:	000044
  */
-void Tank::StateWait::init(Game::EnemyBase*, Game::StateArg*)
+void StateWait::init(EnemyBase* enemy, StateArg* stateArg)
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	lfs      f0, lbl_8051B290@sda21(r2)
-	mr       r3, r4
-	stw      r0, 0x14(r1)
-	li       r0, 0
-	li       r5, 0
-	stfs     f0, 0x1d4(r4)
-	li       r4, 5
-	stfs     f0, 0x1d8(r3)
-	stfs     f0, 0x1dc(r3)
-	stw      r0, 0x230(r3)
-	bl       startMotion__Q24Game9EnemyBaseFiPQ28SysShape14MotionListener
-	lwz      r0, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	Obj* tank              = static_cast<Obj*>(enemy);
+	tank->m_simVelocity    = Vector3f(0.0f);
+	tank->m_targetCreature = nullptr;
+	tank->startMotion(5, nullptr);
 }
 
 /*
@@ -503,179 +71,42 @@ void Tank::StateWait::init(Game::EnemyBase*, Game::StateArg*)
  * Address:	80274164
  * Size:	000258
  */
-void Tank::StateWait::exec(Game::EnemyBase*)
+void StateWait::exec(EnemyBase* enemy)
 {
-	/*
-	stwu     r1, -0x30(r1)
-	mflr     r0
-	stw      r0, 0x34(r1)
-	stfd     f31, 0x20(r1)
-	psq_st   f31, 40(r1), 0, qr0
-	stw      r31, 0x1c(r1)
-	stw      r30, 0x18(r1)
-	mr       r31, r4
-	mr       r30, r3
-	mr       r3, r31
-	bl       getViewAngle__Q34Game4Tank3ObjFv
-	lfs      f2, 0x200(r31)
-	fmr      f31, f1
-	lfs      f0, lbl_8051B290@sda21(r2)
-	fcmpo    cr0, f2, f0
-	cror     2, 0, 2
-	bne      lbl_802741CC
-	mr       r3, r30
-	mr       r4, r31
-	lwz      r12, 0(r30)
-	li       r5, 0
-	li       r6, 0
-	lwz      r12, 0x1c(r12)
-	mtctr    r12
-	bctrl
-	b        lbl_8027439C
-
-lbl_802741CC:
-	mr       r3, r31
-	li       r4, 0
-	bl       isStartFlick__Q24Game9EnemyFuncFPQ24Game9EnemyBaseb
-	clrlwi.  r0, r3, 0x18
-	bne      lbl_802741F4
-	mr       r3, r31
-	li       r4, 0
-	bl       isAttackable__Q34Game4Tank3ObjFb
-	clrlwi.  r0, r3, 0x18
-	beq      lbl_80274200
-
-lbl_802741F4:
-	lfs      f1, lbl_8051B294@sda21(r2)
-	mr       r3, r31
-	bl       setAnimSpeed__Q24Game9EnemyBaseFf
-
-lbl_80274200:
-	lwz      r3, 0x188(r31)
-	lbz      r0, 0x24(r3)
-	cmplwi   r0, 0
-	beq      lbl_8027439C
-	lwz      r0, 0x1c(r3)
-	cmplwi   r0, 0x3e8
-	bne      lbl_8027439C
-	lfs      f1, 0x200(r31)
-	lfs      f0, lbl_8051B290@sda21(r2)
-	fcmpo    cr0, f1, f0
-	cror     2, 0, 2
-	bne      lbl_80274254
-	mr       r3, r30
-	mr       r4, r31
-	lwz      r12, 0(r30)
-	li       r5, 0
-	li       r6, 0
-	lwz      r12, 0x1c(r12)
-	mtctr    r12
-	bctrl
-	b        lbl_8027439C
-
-lbl_80274254:
-	mr       r3, r31
-	li       r4, 0
-	bl       isStartFlick__Q24Game9EnemyFuncFPQ24Game9EnemyBaseb
-	clrlwi.  r0, r3, 0x18
-	beq      lbl_8027428C
-	mr       r3, r30
-	mr       r4, r31
-	lwz      r12, 0(r30)
-	li       r5, 6
-	li       r6, 0
-	lwz      r12, 0x1c(r12)
-	mtctr    r12
-	bctrl
-	b        lbl_8027439C
-
-lbl_8027428C:
-	mr       r3, r31
-	li       r4, 0
-	bl       isAttackable__Q34Game4Tank3ObjFb
-	clrlwi.  r0, r3, 0x18
-	beq      lbl_802742C4
-	mr       r3, r30
-	mr       r4, r31
-	lwz      r12, 0(r30)
-	li       r5, 5
-	li       r6, 0
-	lwz      r12, 0x1c(r12)
-	mtctr    r12
-	bctrl
-	b        lbl_8027439C
-
-lbl_802742C4:
-	lwz      r5, 0xc0(r31)
-	fmr      f1, f31
-	mr       r3, r31
-	li       r4, 0
-	lfs      f2, 0x3d4(r5)
-	li       r5, 0
-	li       r6, 0
-	bl
-"getNearestPikminOrNavi__Q24Game9EnemyFuncFPQ24Game8CreatureffPfP23Condition<Q24Game4Navi>P23Condition<Q24Game4Piki>"
-	cmplwi   r3, 0
-	beq      lbl_8027431C
-	stw      r3, 0x230(r31)
-	mr       r3, r30
-	lfs      f0, lbl_8051B290@sda21(r2)
-	mr       r4, r31
-	li       r5, 4
-	li       r6, 0
-	stfs     f0, 0x2ec(r31)
-	lwz      r12, 0(r30)
-	lwz      r12, 0x1c(r12)
-	mtctr    r12
-	bctrl
-	b        lbl_8027439C
-
-lbl_8027431C:
-	bl       rand
-	xoris    r3, r3, 0x8000
-	lis      r0, 0x4330
-	stw      r3, 0xc(r1)
-	lfd      f3, lbl_8051B2A8@sda21(r2)
-	stw      r0, 8(r1)
-	lfs      f2, lbl_8051B298@sda21(r2)
-	lfd      f0, 8(r1)
-	lfs      f1, lbl_8051B29C@sda21(r2)
-	fsubs    f3, f0, f3
-	lfs      f0, lbl_8051B2A0@sda21(r2)
-	fmuls    f2, f2, f3
-	fdivs    f1, f2, f1
-	fcmpo    cr0, f1, f0
-	bge      lbl_8027437C
-	mr       r3, r30
-	mr       r4, r31
-	lwz      r12, 0(r30)
-	li       r5, 1
-	li       r6, 0
-	lwz      r12, 0x1c(r12)
-	mtctr    r12
-	bctrl
-	b        lbl_8027439C
-
-lbl_8027437C:
-	mr       r3, r30
-	mr       r4, r31
-	lwz      r12, 0(r30)
-	li       r5, 3
-	li       r6, 0
-	lwz      r12, 0x1c(r12)
-	mtctr    r12
-	bctrl
-
-lbl_8027439C:
-	psq_l    f31, 40(r1), 0, qr0
-	lwz      r0, 0x34(r1)
-	lfd      f31, 0x20(r1)
-	lwz      r31, 0x1c(r1)
-	lwz      r30, 0x18(r1)
-	mtlr     r0
-	addi     r1, r1, 0x30
-	blr
-	*/
+	Obj* tank = static_cast<Obj*>(enemy);
+	f32 view  = tank->getViewAngle();
+	if (tank->m_health <= 0.0f) {
+		transit(enemy, TANK_Dead, nullptr);
+		return;
+	}
+	if (EnemyFunc::isStartFlick(tank, false) || tank->isAttackable(false)) {
+		tank->setAnimSpeed(60.0f);
+	}
+	if (enemy->m_curAnim->m_isRunning && (u32)enemy->m_curAnim->m_type == KEYEVENT_END) {
+		if (tank->m_health <= 0.0f) {
+			transit(enemy, TANK_Dead, nullptr);
+			return;
+		}
+		if (EnemyFunc::isStartFlick(tank, false)) {
+			transit(enemy, TANK_Flick, nullptr);
+			return;
+		}
+		if (tank->isAttackable(false)) {
+			transit(enemy, TANK_Attack, nullptr);
+			return;
+		}
+		f32 sightRad     = CG_PARMS(tank)->m_general.m_sightRadius.m_value;
+		Creature* target = EnemyFunc::getNearestPikminOrNavi(tank, view, sightRad, nullptr, nullptr, nullptr);
+		if (target) {
+			tank->m_targetCreature = target;
+			tank->_2EC             = 0.0f; // some target chase timer?
+			transit(enemy, TANK_ChaseTurn, nullptr);
+		} else if (randWeightFloat(1.0f) < 0.2f) {
+			transit(enemy, TANK_Wait, nullptr);
+		} else {
+			transit(enemy, TANK_MoveTurn, nullptr);
+		}
+	}
 }
 
 /*
@@ -683,20 +114,10 @@ lbl_8027439C:
  * Address:	802743BC
  * Size:	000028
  */
-void Tank::StateWait::cleanup(Game::EnemyBase*)
+void StateWait::cleanup(EnemyBase* enemy)
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	lfs      f1, lbl_8051B2B0@sda21(r2)
-	mr       r3, r4
-	stw      r0, 0x14(r1)
-	bl       setAnimSpeed__Q24Game9EnemyBaseFf
-	lwz      r0, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	Obj* tank = static_cast<Obj*>(enemy);
+	tank->setAnimSpeed(30.0f);
 }
 
 /*
@@ -704,31 +125,13 @@ void Tank::StateWait::cleanup(Game::EnemyBase*)
  * Address:	802743E4
  * Size:	000054
  */
-void Tank::StateMove::init(Game::EnemyBase*, Game::StateArg*)
+void StateMove::init(EnemyBase* enemy, StateArg* stateArg)
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	lfs      f0, lbl_8051B290@sda21(r2)
-	li       r5, 0
-	stw      r0, 0x14(r1)
-	li       r0, 0
-	stw      r31, 0xc(r1)
-	mr       r31, r4
-	mr       r3, r31
-	stfs     f0, 0x2f0(r4)
-	li       r4, 1
-	stw      r0, 0x230(r31)
-	bl       startMotion__Q24Game9EnemyBaseFiPQ28SysShape14MotionListener
-	lfs      f1, lbl_8051B294@sda21(r2)
-	mr       r3, r31
-	bl       setAnimSpeed__Q24Game9EnemyBaseFf
-	lwz      r0, 0x14(r1)
-	lwz      r31, 0xc(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	Obj* tank              = static_cast<Obj*>(enemy);
+	tank->_2F0             = 0.0f;
+	tank->m_targetCreature = nullptr;
+	tank->startMotion(1, nullptr);
+	tank->setAnimSpeed(60.0f);
 }
 
 /*
@@ -736,7 +139,7 @@ void Tank::StateMove::init(Game::EnemyBase*, Game::StateArg*)
  * Address:	80274438
  * Size:	00056C
  */
-void Tank::StateMove::exec(Game::EnemyBase*)
+void StateMove::exec(EnemyBase* enemy)
 {
 	/*
 	stwu     r1, -0x130(r1)
@@ -1125,20 +528,10 @@ lbl_80274948:
  * Address:	802749A4
  * Size:	000028
  */
-void Tank::StateMove::cleanup(Game::EnemyBase*)
+void StateMove::cleanup(EnemyBase* enemy)
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	lfs      f1, lbl_8051B2B0@sda21(r2)
-	mr       r3, r4
-	stw      r0, 0x14(r1)
-	bl       setAnimSpeed__Q24Game9EnemyBaseFf
-	lwz      r0, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	Obj* tank = static_cast<Obj*>(enemy);
+	tank->setAnimSpeed(30.0f);
 }
 
 /*
@@ -1146,7 +539,7 @@ void Tank::StateMove::cleanup(Game::EnemyBase*)
  * Address:	802749CC
  * Size:	000104
  */
-void Tank::StateMoveTurn::init(Game::EnemyBase*, Game::StateArg*)
+void StateMoveTurn::init(EnemyBase* enemy, StateArg* stateArg)
 {
 	/*
 	stwu     r1, -0x20(r1)
@@ -1228,251 +621,50 @@ lbl_80274A8C:
  * Address:	80274AD0
  * Size:	000364
  */
-void Tank::StateMoveTurn::exec(Game::EnemyBase*)
+void StateMoveTurn::exec(EnemyBase* enemy)
 {
-	/*
-	stwu     r1, -0x70(r1)
-	mflr     r0
-	stw      r0, 0x74(r1)
-	stfd     f31, 0x60(r1)
-	psq_st   f31, 104(r1), 0, qr0
-	stfd     f30, 0x50(r1)
-	psq_st   f30, 88(r1), 0, qr0
-	stfd     f29, 0x40(r1)
-	psq_st   f29, 72(r1), 0, qr0
-	stfd     f28, 0x30(r1)
-	psq_st   f28, 56(r1), 0, qr0
-	stfd     f27, 0x20(r1)
-	psq_st   f27, 40(r1), 0, qr0
-	stw      r31, 0x1c(r1)
-	stw      r30, 0x18(r1)
-	mr       r31, r4
-	mr       r30, r3
-	mr       r3, r31
-	bl       getViewAngle__Q34Game4Tank3ObjFv
-	lwz      r12, 0(r31)
-	fmr      f31, f1
-	lwz      r5, 0xc0(r31)
-	mr       r4, r31
-	lwz      r12, 8(r12)
-	addi     r3, r1, 8
-	lfs      f30, 0x2f8(r31)
-	lfs      f27, 0x300(r31)
-	lfs      f28, 0x334(r5)
-	lfs      f29, 0x30c(r5)
-	mtctr    r12
-	bctrl
-	lfs      f1, 8(r1)
-	lis      r3, atanTable___5JMath@ha
-	lfs      f0, 0x10(r1)
-	addi     r3, r3, atanTable___5JMath@l
-	fsubs    f1, f30, f1
-	fsubs    f2, f27, f0
-	bl       "atan2___Q25JMath18TAtanTable<1024,f>CFff"
-	bl       roundAng__Ff
-	lwz      r12, 0(r31)
-	fmr      f30, f1
-	mr       r3, r31
-	lwz      r12, 0x64(r12)
-	mtctr    r12
-	bctrl
-	fmr      f2, f1
-	fmr      f1, f30
-	bl       angDist__Fff
-	fmr      f30, f1
-	lfs      f0, lbl_8051B2C0@sda21(r2)
-	lfs      f1, lbl_8051B2BC@sda21(r2)
-	fmuls    f0, f0, f28
-	fmuls    f28, f30, f29
-	fmuls    f1, f1, f0
-	fabs     f0, f28
-	frsp     f0, f0
-	fcmpo    cr0, f0, f1
-	ble      lbl_80274BD0
-	lfs      f0, lbl_8051B290@sda21(r2)
-	fcmpo    cr0, f28, f0
-	ble      lbl_80274BCC
-	fmr      f28, f1
-	b        lbl_80274BD0
-
-lbl_80274BCC:
-	fneg     f28, f1
-
-lbl_80274BD0:
-	mr       r3, r31
-	lwz      r12, 0(r31)
-	lwz      r12, 0x64(r12)
-	mtctr    r12
-	bctrl
-	fadds    f1, f28, f1
-	bl       roundAng__Ff
-	stfs     f1, 0x1fc(r31)
-	lfs      f0, lbl_8051B290@sda21(r2)
-	lfs      f1, 0x1fc(r31)
-	stfs     f1, 0x1a8(r31)
-	lfs      f1, 0x200(r31)
-	fcmpo    cr0, f1, f0
-	cror     2, 0, 2
-	bne      lbl_80274C30
-	mr       r3, r30
-	mr       r4, r31
-	lwz      r12, 0(r30)
-	li       r5, 0
-	li       r6, 0
-	lwz      r12, 0x1c(r12)
-	mtctr    r12
-	bctrl
-	b        lbl_80274DF4
-
-lbl_80274C30:
-	mr       r3, r31
-	li       r4, 0
-	bl       isStartFlick__Q24Game9EnemyFuncFPQ24Game9EnemyBaseb
-	clrlwi.  r0, r3, 0x18
-	bne      lbl_80274C70
-	mr       r3, r31
-	li       r4, 0
-	bl       isAttackable__Q34Game4Tank3ObjFb
-	clrlwi.  r0, r3, 0x18
-	bne      lbl_80274C70
-	fabs     f1, f30
-	lfs      f0, lbl_8051B2D0@sda21(r2)
-	frsp     f1, f1
-	fcmpo    cr0, f1, f0
-	cror     2, 0, 2
-	bne      lbl_80274C88
-
-lbl_80274C70:
-	mr       r3, r31
-	bl       finishMotion__Q24Game9EnemyBaseFv
-	lfs      f1, lbl_8051B294@sda21(r2)
-	mr       r3, r31
-	bl       setAnimSpeed__Q24Game9EnemyBaseFf
-	b        lbl_80274CB8
-
-lbl_80274C88:
-	lwz      r5, 0xc0(r31)
-	fmr      f1, f31
-	mr       r3, r31
-	li       r4, 0
-	lfs      f2, 0x3d4(r5)
-	li       r5, 0
-	li       r6, 0
-	bl
-"getNearestPikminOrNavi__Q24Game9EnemyFuncFPQ24Game8CreatureffPfP23Condition<Q24Game4Navi>P23Condition<Q24Game4Piki>"
-	cmplwi   r3, 0
-	beq      lbl_80274CB8
-	mr       r3, r31
-	bl       finishMotion__Q24Game9EnemyBaseFv
-
-lbl_80274CB8:
-	lwz      r3, 0x188(r31)
-	lbz      r0, 0x24(r3)
-	cmplwi   r0, 0
-	beq      lbl_80274DF4
-	lwz      r0, 0x1c(r3)
-	cmplwi   r0, 0x3e8
-	bne      lbl_80274DF4
-	lfs      f1, 0x200(r31)
-	lfs      f0, lbl_8051B290@sda21(r2)
-	fcmpo    cr0, f1, f0
-	cror     2, 0, 2
-	bne      lbl_80274D0C
-	mr       r3, r30
-	mr       r4, r31
-	lwz      r12, 0(r30)
-	li       r5, 0
-	li       r6, 0
-	lwz      r12, 0x1c(r12)
-	mtctr    r12
-	bctrl
-	b        lbl_80274DF4
-
-lbl_80274D0C:
-	mr       r3, r31
-	li       r4, 0
-	bl       isStartFlick__Q24Game9EnemyFuncFPQ24Game9EnemyBaseb
-	clrlwi.  r0, r3, 0x18
-	beq      lbl_80274D44
-	mr       r3, r30
-	mr       r4, r31
-	lwz      r12, 0(r30)
-	li       r5, 6
-	li       r6, 0
-	lwz      r12, 0x1c(r12)
-	mtctr    r12
-	bctrl
-	b        lbl_80274DF4
-
-lbl_80274D44:
-	mr       r3, r31
-	li       r4, 0
-	bl       isAttackable__Q34Game4Tank3ObjFb
-	clrlwi.  r0, r3, 0x18
-	beq      lbl_80274D7C
-	mr       r3, r30
-	mr       r4, r31
-	lwz      r12, 0(r30)
-	li       r5, 5
-	li       r6, 0
-	lwz      r12, 0x1c(r12)
-	mtctr    r12
-	bctrl
-	b        lbl_80274DF4
-
-lbl_80274D7C:
-	lwz      r5, 0xc0(r31)
-	fmr      f1, f31
-	mr       r3, r31
-	li       r4, 0
-	lfs      f2, 0x3d4(r5)
-	li       r5, 0
-	li       r6, 0
-	bl
-"getNearestPikminOrNavi__Q24Game9EnemyFuncFPQ24Game8CreatureffPfP23Condition<Q24Game4Navi>P23Condition<Q24Game4Piki>"
-	cmplwi   r3, 0
-	beq      lbl_80274DD4
-	stw      r3, 0x230(r31)
-	mr       r3, r30
-	lfs      f0, lbl_8051B290@sda21(r2)
-	mr       r4, r31
-	li       r5, 4
-	li       r6, 0
-	stfs     f0, 0x2ec(r31)
-	lwz      r12, 0(r30)
-	lwz      r12, 0x1c(r12)
-	mtctr    r12
-	bctrl
-	b        lbl_80274DF4
-
-lbl_80274DD4:
-	mr       r3, r30
-	mr       r4, r31
-	lwz      r12, 0(r30)
-	li       r5, 2
-	li       r6, 0
-	lwz      r12, 0x1c(r12)
-	mtctr    r12
-	bctrl
-
-lbl_80274DF4:
-	psq_l    f31, 104(r1), 0, qr0
-	lfd      f31, 0x60(r1)
-	psq_l    f30, 88(r1), 0, qr0
-	lfd      f30, 0x50(r1)
-	psq_l    f29, 72(r1), 0, qr0
-	lfd      f29, 0x40(r1)
-	psq_l    f28, 56(r1), 0, qr0
-	lfd      f28, 0x30(r1)
-	psq_l    f27, 40(r1), 0, qr0
-	lfd      f27, 0x20(r1)
-	lwz      r31, 0x1c(r1)
-	lwz      r0, 0x74(r1)
-	lwz      r30, 0x18(r1)
-	mtlr     r0
-	addi     r1, r1, 0x70
-	blr
-	*/
+	Obj* tank      = static_cast<Obj*>(enemy);
+	f32 view       = tank->getViewAngle();
+	Vector3f thing = tank->_2F8;
+	f32 deltaDir   = tank->changeFaceDir(thing);
+	f32 zero       = 0.0f;
+	if (tank->m_health <= zero) {
+		transit(enemy, TANK_Dead, nullptr);
+		return;
+	}
+	if (EnemyFunc::isStartFlick(tank, false) || tank->isAttackable(false) || FABS(deltaDir) <= 10.0f * PI / 180) {
+		tank->finishMotion();
+		tank->setAnimSpeed(60.0f);
+	} else {
+		f32 sightRad     = CG_PARMS(tank)->m_general.m_sightRadius.m_value;
+		Creature* target = EnemyFunc::getNearestPikminOrNavi(tank, view, sightRad, nullptr, nullptr, nullptr);
+		if (target) {
+			tank->finishMotion();
+		}
+	}
+	if (enemy->m_curAnim->m_isRunning && (u32)enemy->m_curAnim->m_type == KEYEVENT_END) {
+		if (tank->m_health <= zero) {
+			transit(enemy, TANK_Dead, nullptr);
+			return;
+		}
+		if (EnemyFunc::isStartFlick(tank, false)) {
+			transit(enemy, TANK_Flick, nullptr);
+			return;
+		}
+		if (tank->isAttackable(false)) {
+			transit(enemy, TANK_Attack, nullptr);
+			return;
+		}
+		f32 sightRad     = CG_PARMS(tank)->m_general.m_sightRadius.m_value;
+		Creature* target = EnemyFunc::getNearestPikminOrNavi(tank, view, sightRad, nullptr, nullptr, nullptr);
+		if (target) {
+			tank->m_targetCreature = target;
+			tank->_2EC             = 0.0f; // some target chase timer?
+			transit(enemy, TANK_ChaseTurn, nullptr);
+		} else {
+			transit(enemy, TANK_Move, nullptr);
+		}
+	}
 }
 
 /*
@@ -1480,20 +672,10 @@ lbl_80274DF4:
  * Address:	80274E34
  * Size:	000028
  */
-void Tank::StateMoveTurn::cleanup(Game::EnemyBase*)
+void StateMoveTurn::cleanup(EnemyBase* enemy)
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	lfs      f1, lbl_8051B2B0@sda21(r2)
-	mr       r3, r4
-	stw      r0, 0x14(r1)
-	bl       setAnimSpeed__Q24Game9EnemyBaseFf
-	lwz      r0, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	Obj* tank = static_cast<Obj*>(enemy);
+	tank->setAnimSpeed(30.0f);
 }
 
 /*
@@ -1501,30 +683,12 @@ void Tank::StateMoveTurn::cleanup(Game::EnemyBase*)
  * Address:	80274E5C
  * Size:	000050
  */
-void Tank::StateChaseTurn::init(Game::EnemyBase*, Game::StateArg*)
+void StateChaseTurn::init(EnemyBase* enemy, StateArg* stateArg)
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	lfs      f0, lbl_8051B290@sda21(r2)
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	mr       r31, r4
-	mr       r3, r31
-	stfs     f0, 0x1d4(r4)
-	stfs     f0, 0x1d8(r4)
-	stfs     f0, 0x1dc(r4)
-	bl       setEmotionExcitement__Q24Game9EnemyBaseFv
-	mr       r3, r31
-	li       r4, 4
-	li       r5, 0
-	bl       startMotion__Q24Game9EnemyBaseFiPQ28SysShape14MotionListener
-	lwz      r0, 0x14(r1)
-	lwz      r31, 0xc(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	Obj* tank           = static_cast<Obj*>(enemy);
+	tank->m_simVelocity = Vector3f(0.0f);
+	tank->setEmotionExcitement();
+	tank->startMotion(4, nullptr);
 }
 
 /*
@@ -1532,7 +696,7 @@ void Tank::StateChaseTurn::init(Game::EnemyBase*, Game::StateArg*)
  * Address:	80274EAC
  * Size:	0005F4
  */
-void Tank::StateChaseTurn::exec(Game::EnemyBase*)
+void StateChaseTurn::exec(EnemyBase*)
 {
 	/*
 	stwu     r1, -0x110(r1)
@@ -1961,25 +1125,11 @@ lbl_80275444:
  * Address:	802754A0
  * Size:	00003C
  */
-void Tank::StateChaseTurn::cleanup(Game::EnemyBase*)
+void StateChaseTurn::cleanup(EnemyBase* enemy)
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	mr       r31, r4
-	mr       r3, r31
-	bl       setEmotionCaution__Q24Game9EnemyBaseFv
-	lfs      f1, lbl_8051B2B0@sda21(r2)
-	mr       r3, r31
-	bl       setAnimSpeed__Q24Game9EnemyBaseFf
-	lwz      r0, 0x14(r1)
-	lwz      r31, 0xc(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	Obj* tank = static_cast<Obj*>(enemy);
+	tank->setEmotionCaution();
+	tank->setAnimSpeed(30.0f);
 }
 
 /*
@@ -1987,43 +1137,18 @@ void Tank::StateChaseTurn::cleanup(Game::EnemyBase*)
  * Address:	802754DC
  * Size:	000084
  */
-void Tank::StateAttack::init(Game::EnemyBase*, Game::StateArg*)
+void StateAttack::init(EnemyBase* enemy, StateArg* stateArg)
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	li       r5, 0
-	lfs      f0, lbl_8051B290@sda21(r2)
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	mr       r31, r4
-	mr       r3, r31
-	stb      r5, 0x304(r4)
-	stfs     f0, 0x2e4(r4)
-	stfs     f0, 0x2ec(r4)
-	lwz      r0, 0x1e0(r4)
-	rlwinm   r0, r0, 0, 0x1a, 0x18
-	stw      r0, 0x1e0(r4)
-	stw      r5, 0x230(r4)
-	stfs     f0, 0x1d4(r4)
-	stfs     f0, 0x1d8(r4)
-	stfs     f0, 0x1dc(r4)
-	bl       setEmotionExcitement__Q24Game9EnemyBaseFv
-	mr       r3, r31
-	li       r4, 3
-	li       r5, 0
-	bl       startMotion__Q24Game9EnemyBaseFiPQ28SysShape14MotionListener
-	mr       r3, r31
-	lwz      r12, 0(r31)
-	lwz      r12, 0x320(r12)
-	mtctr    r12
-	bctrl
-	lwz      r0, 0x14(r1)
-	lwz      r31, 0xc(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	Obj* tank  = static_cast<Obj*>(enemy);
+	tank->_304 = 0;
+	tank->_2E4 = 0.0f;
+	tank->_2EC = 0.0f;
+	tank->resetEvent(0, EB_Cullable);
+	tank->m_targetCreature = nullptr;
+	tank->m_simVelocity    = Vector3f(0.0f);
+	tank->setEmotionExcitement();
+	tank->startMotion(3, nullptr);
+	tank->createChargeSE();
 }
 
 /*
@@ -2031,152 +1156,52 @@ void Tank::StateAttack::init(Game::EnemyBase*, Game::StateArg*)
  * Address:	80275560
  * Size:	000004
  */
-void Tank::Obj::createChargeSE() { }
+void Obj::createChargeSE() { }
 
 /*
  * --INFO--
  * Address:	80275564
  * Size:	0001E0
  */
-void Tank::StateAttack::exec(Game::EnemyBase*)
+void StateAttack::exec(EnemyBase* enemy)
 {
-	/*
-	stwu     r1, -0x20(r1)
-	mflr     r0
-	stw      r0, 0x24(r1)
-	stfd     f31, 0x10(r1)
-	psq_st   f31, 24(r1), 0, qr0
-	stw      r31, 0xc(r1)
-	stw      r30, 8(r1)
-	mr       r31, r4
-	mr       r30, r3
-	mr       r3, r31
-	bl       getViewAngle__Q34Game4Tank3ObjFv
-	lfs      f2, 0x200(r31)
-	fmr      f31, f1
-	lfs      f0, lbl_8051B290@sda21(r2)
-	fcmpo    cr0, f2, f0
-	cror     2, 0, 2
-	bne      lbl_802755CC
-	mr       r3, r30
-	mr       r4, r31
-	lwz      r12, 0(r30)
-	li       r5, 0
-	li       r6, 0
-	lwz      r12, 0x1c(r12)
-	mtctr    r12
-	bctrl
-	b        lbl_80275724
+	Obj* tank = static_cast<Obj*>(enemy);
+	f32 view  = tank->getViewAngle();
+	if (tank->m_health <= 0.0f) {
+		transit(enemy, TANK_Dead, nullptr);
+		return;
+	}
+	if (tank->_304) {
+		tank->isAttackable(true);
+		tank->createDisChargeSE();
+	}
+	if (!enemy->m_curAnim->m_isRunning)
+		return;
 
-lbl_802755CC:
-	lbz      r0, 0x304(r31)
-	cmplwi   r0, 0
-	beq      lbl_802755F8
-	mr       r3, r31
-	li       r4, 1
-	bl       isAttackable__Q34Game4Tank3ObjFb
-	mr       r3, r31
-	lwz      r12, 0(r31)
-	lwz      r12, 0x324(r12)
-	mtctr    r12
-	bctrl
-
-lbl_802755F8:
-	lwz      r3, 0x188(r31)
-	lbz      r0, 0x24(r3)
-	cmplwi   r0, 0
-	beq      lbl_80275724
-	lwz      r0, 0x1c(r3)
-	cmplwi   r0, 2
-	bne      lbl_80275634
-	li       r0, 1
-	mr       r3, r31
-	stb      r0, 0x304(r31)
-	lwz      r12, 0(r31)
-	lwz      r12, 0x304(r12)
-	mtctr    r12
-	bctrl
-	b        lbl_80275724
-
-lbl_80275634:
-	cmplwi   r0, 0x3e8
-	bne      lbl_80275724
-	lfs      f1, 0x200(r31)
-	lfs      f0, lbl_8051B290@sda21(r2)
-	fcmpo    cr0, f1, f0
-	cror     2, 0, 2
-	bne      lbl_80275674
-	mr       r3, r30
-	mr       r4, r31
-	lwz      r12, 0(r30)
-	li       r5, 0
-	li       r6, 0
-	lwz      r12, 0x1c(r12)
-	mtctr    r12
-	bctrl
-	b        lbl_80275724
-
-lbl_80275674:
-	mr       r3, r31
-	li       r4, 0
-	bl       isStartFlick__Q24Game9EnemyFuncFPQ24Game9EnemyBaseb
-	clrlwi.  r0, r3, 0x18
-	beq      lbl_802756AC
-	mr       r3, r30
-	mr       r4, r31
-	lwz      r12, 0(r30)
-	li       r5, 6
-	li       r6, 0
-	lwz      r12, 0x1c(r12)
-	mtctr    r12
-	bctrl
-	b        lbl_80275724
-
-lbl_802756AC:
-	lwz      r5, 0xc0(r31)
-	fmr      f1, f31
-	mr       r3, r31
-	li       r4, 0
-	lfs      f2, 0x3d4(r5)
-	li       r5, 0
-	li       r6, 0
-	bl
-"getNearestPikminOrNavi__Q24Game9EnemyFuncFPQ24Game8CreatureffPfP23Condition<Q24Game4Navi>P23Condition<Q24Game4Piki>"
-	cmplwi   r3, 0
-	beq      lbl_80275704
-	stw      r3, 0x230(r31)
-	mr       r3, r30
-	lfs      f0, lbl_8051B290@sda21(r2)
-	mr       r4, r31
-	li       r5, 4
-	li       r6, 0
-	stfs     f0, 0x2ec(r31)
-	lwz      r12, 0(r30)
-	lwz      r12, 0x1c(r12)
-	mtctr    r12
-	bctrl
-	b        lbl_80275724
-
-lbl_80275704:
-	mr       r3, r30
-	mr       r4, r31
-	lwz      r12, 0(r30)
-	li       r5, 1
-	li       r6, 0
-	lwz      r12, 0x1c(r12)
-	mtctr    r12
-	bctrl
-
-lbl_80275724:
-	psq_l    f31, 24(r1), 0, qr0
-	lwz      r0, 0x24(r1)
-	lfd      f31, 0x10(r1)
-	lwz      r31, 0xc(r1)
-	lwz      r30, 8(r1)
-	mtlr     r0
-	addi     r1, r1, 0x20
-	blr
-	*/
+	if ((u32)enemy->m_curAnim->m_type == KEYEVENT_2) {
+		tank->_304 = true;
+		tank->startEffect();
+		return;
+	}
+	if ((u32)enemy->m_curAnim->m_type == KEYEVENT_END) {
+		if (tank->m_health <= 0.0f) {
+			transit(enemy, TANK_Dead, nullptr);
+			return;
+		}
+		if (EnemyFunc::isStartFlick(tank, false)) {
+			transit(enemy, TANK_Flick, nullptr);
+			return;
+		}
+		f32 sightRad     = CG_PARMS(tank)->m_general.m_sightRadius.m_value;
+		Creature* target = EnemyFunc::getNearestPikminOrNavi(tank, view, sightRad, nullptr, nullptr, nullptr);
+		if (target) {
+			tank->m_targetCreature = target;
+			tank->_2EC             = 0.0f;
+			transit(enemy, TANK_ChaseTurn, nullptr);
+			return;
+		}
+		transit(enemy, TANK_Wait, nullptr);
+	}
 }
 
 /*
@@ -2184,46 +1209,27 @@ lbl_80275724:
  * Address:	80275744
  * Size:	000004
  */
-void Tank::Obj::startEffect() { }
+void Obj::startEffect() { }
 
 /*
  * --INFO--
  * Address:	80275748
  * Size:	000004
  */
-void Tank::Obj::createDisChargeSE() { }
+void Obj::createDisChargeSE() { }
 
 /*
  * --INFO--
  * Address:	8027574C
  * Size:	000058
  */
-void Tank::StateAttack::cleanup(Game::EnemyBase*)
+void StateAttack::cleanup(EnemyBase* enemy)
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	li       r0, 0
-	stw      r31, 0xc(r1)
-	mr       r31, r4
-	mr       r3, r31
-	lwz      r4, 0x1e0(r4)
-	ori      r4, r4, 0x40
-	stw      r4, 0x1e0(r31)
-	stb      r0, 0x304(r31)
-	lwz      r12, 0(r31)
-	lwz      r12, 0x308(r12)
-	mtctr    r12
-	bctrl
-	mr       r3, r31
-	bl       setEmotionCaution__Q24Game9EnemyBaseFv
-	lwz      r0, 0x14(r1)
-	lwz      r31, 0xc(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	Obj* tank = static_cast<Obj*>(enemy);
+	tank->setEvent(0, EB_Cullable);
+	tank->_304 = false;
+	tank->startYodare();
+	tank->setEmotionCaution();
 }
 
 /*
@@ -2231,39 +1237,20 @@ void Tank::StateAttack::cleanup(Game::EnemyBase*)
  * Address:	802757A4
  * Size:	000004
  */
-void Tank::Obj::startYodare() { }
+void Obj::startYodare() { }
 
 /*
  * --INFO--
  * Address:	802757A8
  * Size:	000058
  */
-void Tank::StateFlick::init(Game::EnemyBase*, Game::StateArg*)
+void StateFlick::init(EnemyBase* enemy, StateArg* stateArg)
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	lfs      f0, lbl_8051B290@sda21(r2)
-	stw      r0, 0x14(r1)
-	li       r0, 0
-	stw      r31, 0xc(r1)
-	mr       r31, r4
-	mr       r3, r31
-	stw      r0, 0x230(r4)
-	stfs     f0, 0x1d4(r4)
-	stfs     f0, 0x1d8(r4)
-	stfs     f0, 0x1dc(r4)
-	bl       setEmotionExcitement__Q24Game9EnemyBaseFv
-	mr       r3, r31
-	li       r4, 2
-	li       r5, 0
-	bl       startMotion__Q24Game9EnemyBaseFiPQ28SysShape14MotionListener
-	lwz      r0, 0x14(r1)
-	lwz      r31, 0xc(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	Obj* tank              = static_cast<Obj*>(enemy);
+	tank->m_targetCreature = nullptr;
+	tank->m_simVelocity    = Vector3f(0.0f);
+	tank->setEmotionExcitement();
+	tank->startMotion(2, nullptr);
 }
 
 /*
@@ -2271,117 +1258,36 @@ void Tank::StateFlick::init(Game::EnemyBase*, Game::StateArg*)
  * Address:	80275800
  * Size:	000180
  */
-void Tank::StateFlick::exec(Game::EnemyBase*)
+void StateFlick::exec(EnemyBase* enemy)
 {
-	/*
-	stwu     r1, -0x20(r1)
-	mflr     r0
-	lfs      f0, lbl_8051B290@sda21(r2)
-	stw      r0, 0x24(r1)
-	stw      r31, 0x1c(r1)
-	stw      r30, 0x18(r1)
-	mr       r30, r4
-	stw      r29, 0x14(r1)
-	mr       r29, r3
-	lfs      f1, 0x200(r4)
-	fcmpo    cr0, f1, f0
-	cror     2, 0, 2
-	bne      lbl_80275850
-	lwz      r12, 0(r3)
-	li       r5, 0
-	li       r6, 0
-	lwz      r12, 0x1c(r12)
-	mtctr    r12
-	bctrl
-	b        lbl_80275964
+	Obj* tank = static_cast<Obj*>(enemy);
+	if (tank->m_health <= 0.0f) {
+		transit(enemy, TANK_Dead, nullptr);
+		return;
+	}
+	if (!enemy->m_curAnim->m_isRunning)
+		return;
 
-lbl_80275850:
-	lwz      r3, 0x188(r30)
-	lbz      r0, 0x24(r3)
-	cmplwi   r0, 0
-	beq      lbl_80275964
-	lwz      r0, 0x1c(r3)
-	cmplwi   r0, 2
-	bne      lbl_802758FC
-	lwz      r5, 0xc0(r30)
-	mr       r3, r30
-	lfs      f4, lbl_8051B2D4@sda21(r2)
-	li       r4, 0
-	lfs      f1, 0x514(r5)
-	lfs      f2, 0x4c4(r5)
-	lfs      f3, 0x4ec(r5)
-	bl
-"flickNearbyNavi__Q24Game9EnemyFuncFPQ24Game8CreatureffffP23Condition<Q24Game4Navi>"
-	mr       r3, r30
-	lwz      r31, 0xc0(r30)
-	lwz      r12, 0(r30)
-	lwz      r12, 0x64(r12)
-	mtctr    r12
-	bctrl
-	fmr      f4, f1
-	lfs      f1, 0x514(r31)
-	lfs      f2, 0x4c4(r31)
-	mr       r3, r30
-	lfs      f3, 0x4ec(r31)
-	li       r4, 0
-	bl
-"flickNearbyPikmin__Q24Game9EnemyFuncFPQ24Game8CreatureffffP23Condition<Q24Game4Piki>"
-	mr       r3, r30
-	lwz      r31, 0xc0(r30)
-	lwz      r12, 0(r30)
-	lwz      r12, 0x64(r12)
-	mtctr    r12
-	bctrl
-	fmr      f4, f1
-	lfs      f1, 0x53c(r31)
-	lfs      f2, 0x4c4(r31)
-	mr       r3, r30
-	lfs      f3, 0x4ec(r31)
-	li       r4, 0
-	bl
-"flickStickPikmin__Q24Game9EnemyFuncFPQ24Game8CreatureffffP23Condition<Q24Game4Piki>"
-	lfs      f0, lbl_8051B290@sda21(r2)
-	stfs     f0, 0x20c(r30)
+	if ((u32)enemy->m_curAnim->m_type == KEYEVENT_2) {
+		EnemyParmsBase* parms = CG_PARMS(tank);
+		EnemyFunc::flickNearbyNavi(tank, parms->m_general.m_shakeRange.m_value, parms->m_general.m_shakeKnockback.m_value,
+		                           parms->m_general.m_shakeDamage.m_value, -1000.0f, nullptr);
+		parms = CG_PARMS(tank);
+		EnemyFunc::flickNearbyPikmin(tank, parms->m_general.m_shakeRange.m_value, parms->m_general.m_shakeKnockback.m_value,
+		                             parms->m_general.m_shakeDamage.m_value, tank->getFaceDir(), nullptr);
+		parms = CG_PARMS(tank);
+		EnemyFunc::flickStickPikmin(tank, parms->m_general.m_shakeRateMaybe.m_value, parms->m_general.m_shakeKnockback.m_value,
+		                            parms->m_general.m_shakeDamage.m_value, tank->getFaceDir(), nullptr);
+		tank->m_toFlick = 0.0f;
+	}
 
-lbl_802758FC:
-	lwz      r3, 0x188(r30)
-	lwz      r0, 0x1c(r3)
-	cmplwi   r0, 0x3e8
-	bne      lbl_80275964
-	lfs      f1, 0x200(r30)
-	lfs      f0, lbl_8051B290@sda21(r2)
-	fcmpo    cr0, f1, f0
-	cror     2, 0, 2
-	bne      lbl_80275944
-	mr       r3, r29
-	mr       r4, r30
-	lwz      r12, 0(r29)
-	li       r5, 0
-	li       r6, 0
-	lwz      r12, 0x1c(r12)
-	mtctr    r12
-	bctrl
-	b        lbl_80275964
-
-lbl_80275944:
-	mr       r3, r29
-	mr       r4, r30
-	lwz      r12, 0(r29)
-	li       r5, 5
-	li       r6, 0
-	lwz      r12, 0x1c(r12)
-	mtctr    r12
-	bctrl
-
-lbl_80275964:
-	lwz      r0, 0x24(r1)
-	lwz      r31, 0x1c(r1)
-	lwz      r30, 0x18(r1)
-	lwz      r29, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x20
-	blr
-	*/
+	if ((u32)enemy->m_curAnim->m_type == KEYEVENT_END) {
+		if (tank->m_health <= 0.0f) {
+			transit(enemy, TANK_Dead, nullptr);
+		} else {
+			transit(enemy, TANK_Attack, nullptr);
+		}
+	}
 }
 
 /*
@@ -2389,18 +1295,10 @@ lbl_80275964:
  * Address:	80275980
  * Size:	000024
  */
-void Tank::StateFlick::cleanup(Game::EnemyBase*)
+void StateFlick::cleanup(EnemyBase* enemy)
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	mr       r3, r4
-	stw      r0, 0x14(r1)
-	bl       setEmotionCaution__Q24Game9EnemyBaseFv
-	lwz      r0, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	Obj* tank = static_cast<Obj*>(enemy);
+	tank->setEmotionCaution();
 }
+} // namespace Tank
 } // namespace Game
