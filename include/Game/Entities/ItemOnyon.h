@@ -10,14 +10,13 @@
 #include "CollInfo.h"
 #include "Vector3.h"
 
-#define MAX_ONYON_COUNT (3)
-
 enum OnyonTypes {
 	ONYON_TYPE_BLUE   = 0,
 	ONYON_TYPE_RED    = 1,
 	ONYON_TYPE_YELLOW = 2,
-	ONYON_TYPE_POD    = 3,
-	ONYON_TYPE_SHIP   = 4,
+	ONYON_TYPE_MAX,
+	ONYON_TYPE_POD = ONYON_TYPE_MAX,
+	ONYON_TYPE_SHIP,
 };
 
 enum OnyonObjects {
@@ -184,18 +183,18 @@ struct Mgr : public BaseItemMgr, public Container<Onyon> {
 	// _00-_30  = BaseItemMgr
 	// _30-_48  = Container
 	// _48      = ptr to _BaseItemMgrParent2 or something?
-	NodeObjectMgr<Onyon> m_nodeObjectMgr;                    // _4C
-	SysShape::AnimMgr* m_onyonAnimMgrFile;                   // _88, animmgr.txt
-	SysShape::AnimMgr* m_podAnimMgrFile;                     // _8C
-	SysShape::AnimMgr* m_ufoAnimMgrFile;                     // _90
-	CollPartFactory* m_onyonColl;                            // _94, collinfo.txt
-	CollPartFactory* m_podColl;                              // _98
-	CollPartFactory* m_ufoColl;                              // _9C
-	Onyon* m_onyons[MAX_ONYON_COUNT];                        // _A0, blue (0), red (1) and yellow (2) onyon objects
-	Onyon* m_pod;                                            // _AC, (cave) pod
-	Onyon* m_ufo;                                            // _B0, ufo (ship)
-	Sys::MatTevRegAnimation m_onyonTevAnim[MAX_ONYON_COUNT]; // _B4, blue (0), red (1) and yellow (2)
-	Sys::MatTevRegAnimation m_ufoTevAnim[2];                 // _F0, ship lights/pistons
+	NodeObjectMgr<Onyon> m_nodeObjectMgr;                   // _4C
+	SysShape::AnimMgr* m_onyonAnimMgrFile;                  // _88, animmgr.txt
+	SysShape::AnimMgr* m_podAnimMgrFile;                    // _8C
+	SysShape::AnimMgr* m_ufoAnimMgrFile;                    // _90
+	CollPartFactory* m_onyonColl;                           // _94, collinfo.txt
+	CollPartFactory* m_podColl;                             // _98
+	CollPartFactory* m_ufoColl;                             // _9C
+	Onyon* m_onyons[ONYON_TYPE_MAX];                        // _A0, blue (0), red (1) and yellow (2) onyon objects
+	Onyon* m_pod;                                           // _AC, (cave) pod
+	Onyon* m_ufo;                                           // _B0, ufo (ship)
+	Sys::MatTevRegAnimation m_onyonTevAnim[ONYON_TYPE_MAX]; // _B4, blue (0), red (1) and yellow (2)
+	Sys::MatTevRegAnimation m_ufoTevAnim[2];                // _F0, ship lights/pistons
 };
 
 extern Mgr* mgr;
