@@ -8,7 +8,7 @@
 #include "SysShape/KeyEvent.h"
 #include "Game/BaseItem.h"
 
-namespace Game::efx {
+namespace efx {
 // (almost) all of these need headers
 struct Container;
 struct ContainerAct;
