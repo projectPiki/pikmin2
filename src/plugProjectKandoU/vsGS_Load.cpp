@@ -118,13 +118,13 @@ LoadState::LoadState()
  * Address:	8022D1D8
  * Size:	0000D0
  */
-void LoadState::init(Game::VsGameSection* VsSection, StateArg* args) {
+void LoadState::init(Game::VsGameSection* section, StateArg* args) {
     if (Radar::mgr) {
 		Radar::mgr->clear();
     }
     
     Screen::gGame2DMgr->m_screenMgr->reset();
-    m_section = VsSection;
+    m_section = section;
     Game::GameStat::clear();
     
     LoadArg* loadArg = static_cast<LoadArg*>(args);
@@ -132,13 +132,13 @@ void LoadState::init(Game::VsGameSection* VsSection, StateArg* args) {
     _24 = loadArg->_04;
     _28 = loadArg->_08;
     
-    VsSection->refreshHIO();
+    section->refreshHIO();
     _1C = 0;
     _9C = 0;
     _A0 = 15.0f;
 
     for (int i = 0; i < 7; i++) {
-        VsSection->m_marbleYellow[i] = nullptr;
+        section->m_marbleYellow[i] = nullptr;
     }
 }
 
@@ -157,21 +157,21 @@ void LoadState::dvdLoad() {
  * Address:	8022D2CC
  * Size:	0002C4
  */
-void LoadState::exec(VsGameSection* VsSection) {
+void LoadState::exec(VsGameSection* section) {
     if (!_1C) {
         if (_28) {
         sys->heapStatusDump(true);
-        VsSection->clearHeap();
+        section->clearHeap();
         sys->heapStatusDump(true);
         }
         og::Screen::DispMemberFloor floor;
-        floor._08 = VsSection->getCurrFloor() + 1;
+        floor._08 = section->getCurrFloor() + 1;
         ID32 id;
         if (gameSystem->isChallengeMode()) {
-            sprintf(id.getStr(), "c_%02d", VsSection->m_stageData->m_stageIndex);
+            sprintf(id.getStr(), "c_%02d", section->m_stageData->m_stageIndex);
         }
         else {
-            sprintf(id.getStr(), "vs%02d", VsSection->m_VsStageData->m_index2D);
+            sprintf(id.getStr(), "vs%02d", section->m_VsStageData->m_index2D);
         }
         id.updateID();
         floor.m_caveID = id.getID();
@@ -181,7 +181,7 @@ void LoadState::exec(VsGameSection* VsSection) {
         _9C = false;
     }
     else {
-        VsSection->BaseHIOSection::doUpdate();
+        section->BaseHIOSection::doUpdate();
         if (particle2dMgr) {
             particle2dMgr->update();
         }
@@ -198,13 +198,13 @@ void LoadState::exec(VsGameSection* VsSection) {
         }
         if (!_9C && m_dvdThreadCommand.m_mode == 2) {
             if (gameSystem->isChallengeMode() || (gameSystem->m_mode == GSM_VERSUS_MODE && _A0 <= 0.0f)) {
-                VsSection->postSetupFloatMemory();
+                section->postSetupFloatMemory();
                 _9C = true;
                 if (!_24) {
-                    transit(VsSection, VSGAME_LoadState, nullptr);
+                    transit(section, VSGAME_LoadState, nullptr);
                 }
                 else {
-                    transit(VsSection, VSGAME_ResultState, nullptr);
+                    transit(section, VSGAME_ResultState, nullptr);
                 }
             } 
         }
@@ -217,7 +217,7 @@ void LoadState::exec(VsGameSection* VsSection) {
  * Address:	8022D590
  * Size:	00007C
  */
-void LoadState::draw(VsGameSection* VsSection, Graphics& graphic) {
+void LoadState::draw(VsGameSection* section, Graphics& graphic) {
     graphic.m_perspGraph.setPort();
     particle2dMgr->draw(1, 0); // I bet these are booleans
     Screen::gGame2DMgr->draw(graphic);
