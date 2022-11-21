@@ -792,8 +792,8 @@ bool Onyon::isSuckReady()
 		default:
 			return false;
 		}
-		return true;
 	}
+	return true;
 	/*
 	stwu     r1, -0x10(r1)
 	mflr     r0
@@ -887,11 +887,12 @@ void Onyon::setType(int type)
 {
 	m_onyonType = type;
 	setupTevRegAnim(type);
-	m_container    = 0;
-	m_containerAct = 0;
-	m_ufoSpot      = 0;
-	m_ufoSpotAct01 = 0;
-	m_ufoPodOpen   = 0;
+	m_container    = nullptr;
+	m_containerAct = nullptr;
+	m_ufoSpot      = nullptr;
+	m_ufoSpotAct01 = nullptr;
+	m_ufoPodOpen   = nullptr;
+	SysShape::Joint* jnt;
 	switch (m_onyonType) {
 	case ONYON_TYPE_BLUE:
 	case ONYON_TYPE_RED:
@@ -900,7 +901,7 @@ void Onyon::setType(int type)
 		m_containerAct = new efx::ContainerAct;
 		break;
 	case ONYON_TYPE_POD:
-		SysShape::Joint* jnt = m_model->getJoint("pot_ctr");
+		jnt = m_model->getJoint("pot_ctr");
 		P2ASSERTLINE(788, jnt != nullptr);
 		m_podOpenA = new ::efx::TPodOpenA;
 		m_podOpenB = new ::efx::TPodOpenB;
@@ -913,16 +914,16 @@ void Onyon::setType(int type)
 		m_podOpenA->create(&arg);
 		break;
 	case ONYON_TYPE_SHIP:
-		SysShape::Joint* jnt = m_model->getJoint("start1");
-		m_ufoSpot            = new ::efx::TUfoSpot;
-		m_ufoPodOpenSuck     = new ::efx::TUfoPodOpenSuck;
-		m_ufoSpotAct01       = new ::efx::TUfoSpotact_ver01;
-		jnt                  = m_model->getJoint("pmotion3");
-		m_ufoPodOpen         = new ::efx::TUfoPodOpen;
-		jnt                  = m_model->getJoint("in1");
-		m_ufoGasIn           = new ::efx::TUfoGasIn;
-		jnt                  = m_model->getJoint("out");
-		m_ufoGasOut          = new ::efx::TUfoGasOut;
+		jnt              = m_model->getJoint("start1");
+		m_ufoSpot        = new ::efx::TUfoSpot;
+		m_ufoPodOpenSuck = new ::efx::TUfoPodOpenSuck;
+		m_ufoSpotAct01   = new ::efx::TUfoSpotact_ver01;
+		jnt              = m_model->getJoint("pmotion3");
+		m_ufoPodOpen     = new ::efx::TUfoPodOpen;
+		jnt              = m_model->getJoint("in1");
+		m_ufoGasIn       = new ::efx::TUfoGasIn;
+		jnt              = m_model->getJoint("out");
+		m_ufoGasOut      = new ::efx::TUfoGasOut;
 	}
 	/*
 	stwu     r1, -0x30(r1)
@@ -1833,18 +1834,18 @@ bool InteractSuckDone::actOnyon(Onyon* item)
 		return false;
 	}
 	P2ASSERTLINE(899, m_creature->isPellet());
-
+	SysShape::MotionListener* mlisten;
 	Pellet* pellet = static_cast<Pellet*>(m_creature);
 	switch (item->m_onyonType) {
 	case ONYON_TYPE_BLUE:
 	case ONYON_TYPE_RED:
 	case ONYON_TYPE_YELLOW:
-		SysShape::MotionListener* mlisten = item;
+		mlisten = item;
 		item->m_animator.startAnim(3, mlisten);
 		item->startSound(PSSE_EV_HOME_PELLET_FINISH);
 		break;
 	case ONYON_TYPE_POD:
-		SysShape::MotionListener* mlisten = item;
+		mlisten = item;
 		item->m_animator.startAnim(2, mlisten);
 		item->startSound(PSSE_EV_HOME_PELLET_FINISH);
 		efx::TPodGepu podefx;
@@ -1862,7 +1863,7 @@ bool InteractSuckDone::actOnyon(Onyon* item)
 		}
 		break;
 	case ONYON_TYPE_SHIP:
-		SysShape::MotionListener* mlisten = item;
+		mlisten = item;
 		item->m_animator.startAnim(0, mlisten);
 		item->m_animator.setFrameByKeyType(0);
 		item->m_suckState = Onyon::SUCKSTATE_GetPellet;
@@ -1895,21 +1896,23 @@ bool InteractSuckDone::actOnyon(Onyon* item)
 			onyonefx.create(nullptr);
 		}
 
+		/*
 		if (gameSystem->isChallengeMode() && !strcmp(pellet->m_config->m_params.m_name.m_name, "key")) {
-			InteractGotKey act(item);
-			Iterator<ItemBigFountain::Item> iterFountain(ItemBigFountain::mgr);
-			CI_LOOP(iterFountain)
-			{
-				Game::ItemBigFountain::Item* cFountain = (*iterFountain);
-				cFountain->stimulate(act);
-			}
-			Iterator<ItemHole::Item> iterHole(ItemHole::mgr);
-			CI_LOOP(iterHole)
-			{
-				Game::ItemHole::Item* cHole = (*iterHole);
-				cHole->stimulate(act);
-			}
+		    InteractGotKey act(item);
+		    Iterator<ItemBigFountain::Item> iterFountain(ItemBigFountain::mgr);
+		    CI_LOOP(iterFountain)
+		    {
+		        Game::ItemBigFountain::Item* cFountain = (*iterFountain);
+		        cFountain->stimulate(act);
+		    }
+		    Iterator<ItemHole::Item> iterHole(ItemHole::mgr);
+		    CI_LOOP(iterHole)
+		    {
+		        Game::ItemHole::Item* cHole = (*iterHole);
+		        cHole->stimulate(act);
+		    }
 		}
+		*/
 	}
 
 	/*
