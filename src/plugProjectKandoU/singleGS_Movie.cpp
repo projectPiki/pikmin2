@@ -88,7 +88,7 @@ void MovieState::init(SingleGameSection* gs, StateArg* arg)
 	_20->load(THPPlayer::OPENING_1);
 
 	P2ASSERTLINE(223, arg);
-	_10 = *(THPPlayer::EMovieIndex*)arg; // TODO: please make a struct for this, perhaps MovieArg
+	_10 = static_cast<MovieArg*>(arg)->m_movieIndex;
 	switch (_10) {
 	case THPPlayer::OPENING_1:
 		dummyPlayer.initMsgs(opening_strings);
@@ -131,7 +131,7 @@ void MovieState::exec(SingleGameSection* gs)
 				gs->_18 = gs->m_wipeInFader;
 				gs->m_wipeInFader->start(4.0f);
 				gs->m_currentCourseInfo = stageList->getCourseInfo(0);
-				Arg arg;
+				LoadArg arg;
 				arg._00 = false;
 				arg._01 = true;
 				arg._02 = false;

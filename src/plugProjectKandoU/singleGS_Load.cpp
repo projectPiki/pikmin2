@@ -37,11 +37,11 @@ void LoadState::init(SingleGameSection* gs, StateArg* arg)
 
 	P2ASSERTLINE(33, arg != nullptr);
 
-	Arg* a = static_cast<Arg*>(arg);
-	_24    = a->_04;
-	_29    = a->_01;
-	_27    = a->_00;
-	_28    = a->_02;
+	LoadArg* a = static_cast<LoadArg*>(arg);
+	_24        = a->_04;
+	_29        = a->_01;
+	_27        = a->_00;
+	_28        = a->_02;
 
 	_26 = false;
 	_14 = false;
@@ -107,7 +107,7 @@ void LoadState::exec(SingleGameSection* gs)
 			if (gs->m_inCave) {
 				transit(gs, 4, nullptr);
 			} else {
-				LoadArg arg(true, _24);
+				GameArg arg(true, _24);
 				transit(gs, SGS_Game, &arg);
 			}
 		}

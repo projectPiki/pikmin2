@@ -86,16 +86,6 @@ struct State : public FSMState<SingleGameSection> {
 };
 
 /**
- * @fabricated
- */
-struct Arg : StateArg {
-	bool _00; // _00
-	bool _01; // _01
-	bool _02; // _02
-	u16 _04;  // _04
-};
-
-/**
  * @size{0x14}
  */
 struct CaveDayEndState : public State {
@@ -262,6 +252,17 @@ struct FileState : public State {
 	Controller* _34;                     // _34
 };
 
+struct GameArg : public StateArg {
+	inline GameArg(bool check, u16 val)
+	    : _00(check)
+	    , _02(val)
+	{
+	}
+
+	bool _00; // _00
+	u16 _02;  // _02
+};
+
 /**
  * @size{0x24}
  */
@@ -308,14 +309,10 @@ struct GameState : public State {
 };
 
 struct LoadArg : public StateArg {
-	inline LoadArg(bool check, u16 val)
-	    : _00(check)
-	    , _02(val)
-	{
-	}
-
 	bool _00; // _00
-	u16 _02;  // _02
+	bool _01; // _01
+	bool _02; // _02
+	u16 _04;  // _04
 };
 
 /**
@@ -384,6 +381,10 @@ struct MainResultState : public State {
 	DvdThreadCommand _CC;               // _CC
 	SingleGameSection* _138;            // _138
 	Delegate<MainResultState>* _13C;    // _13C
+};
+
+struct MovieArg : public StateArg {
+	THPPlayer::EMovieIndex m_movieIndex; // _00
 };
 
 /**
