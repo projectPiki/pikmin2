@@ -177,6 +177,14 @@ struct State : public FSMState<VsGameSection> {
 	virtual void isCardUsable(VsGameSection*);                         // _48 (weak)
 };
 
+enum VsGameStates {
+    VSGAME_GameState = 0,
+    VSGAME_VSState,
+    VSGAME_LoadState,
+    VSGAME_ResultState,
+    VSGAME_TitleState
+};
+
 struct GameState : public State {
 	GameState();
 
@@ -211,6 +219,12 @@ struct VSState : public GameState {
 	virtual void do_init(VsGameSection*); // _50
 };
 
+struct LoadArg : public StateArg {
+    u32 _00; // _00, unknown
+    s32 _04; // _04, unknown
+    bool _08; // _08
+};
+
 struct LoadState : public State {
 	LoadState();
 
@@ -220,6 +234,20 @@ struct LoadState : public State {
 	virtual void draw(VsGameSection*, Graphics&); // _20
 
 	void dvdLoad();
+
+    f32 _0C; // _0C
+    f32 _14; // _10
+    Controller* m_controller; // _14
+    VsGameSection* m_section; // _18
+    bool _1C; // _1C
+    u32 _20; // _20
+    s32 _24; // _24
+    bool _28;  // _28
+    Delegate<Game::VsGame::LoadState>* m_delegate; // _2C
+    DvdThreadCommand m_dvdThreadCommand; // _30
+    bool _9C; // _9c
+    f32 _A0; // _A0
+    
 };
 
 struct ResultState : public State {
