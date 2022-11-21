@@ -57,6 +57,15 @@ struct Onyon : public BaseItem {
 		SPOTSTATE_Unk3 = 3,
 	};
 
+	enum cSuckState {
+		SUCKSTATE_Opening 	 = 0,	// begin the hatch opening animation
+		SUCKSTATE_Opened	 = 1,	// hatch is done opening
+		SUCKSTATE_GetPellet	 = 2,	// set when pellet reaches ship
+		SUCKSTATE_IdleOpen   = 3,	// ship waiting for more pellets (3 seconds)
+		SUCKSTATE_Closing	 = 4,	// begin hatch closing animation
+		SUCKSTATE_IdleClosed = 5,	// default idle state
+	};
+
 	/////////////// VTABLE
 	virtual void onInit(CreatureInitArg* settings);                     // _30
 	virtual void onKill(CreatureKillArg* settings);                     // _34
@@ -121,12 +130,12 @@ struct Onyon : public BaseItem {
 	bool m_isReleasingPikis;                // _1E0
 	u32 m_whitesToWithdraw;                 // _1E4, white pikmin queued to exit the ship
 	u32 m_purplesToWithdraw;                // _1E8, purple pikmin queued to exit the ship
-	efx::Container* m_efxContainer;         // _1EC
-	efx::ContainerAct* m_efxContainerAct;   // _1F0
+	efx::Container* m_container;            // _1EC
+	efx::ContainerAct* m_containerAct;      // _1F0
 	ModelEffect* m_spotbeam_model;          // _1F4
 	efx::TPodOpenA* m_podOpenA;             // _1F8
 	efx::TPodOpenB* m_podOpenB;             // _1FC
-	efx::TPodSpot* m_efxPodSpot;            // _200
+	efx::TPodSpot* m_podSpot;               // _200
 	efx::TPodKira* m_podKira;               // _204
 	efx::TUfoSpot* m_ufoSpot;               // _208
 	efx::TUfoSpotAct_ver01* m_ufoSpotAct01; // _20C
