@@ -1,7 +1,7 @@
 #ifndef _GAME_VSGAMESECTION_H
 #define _GAME_VSGAMESECTION_H
 
-#include "VsGame/VsGame.h"
+#include "Game/VsGame/VsGame.h"
 #include "types.h"
 #include "Game/BaseGameSection.h"
 #include "Game/ChallengeGame.h"
