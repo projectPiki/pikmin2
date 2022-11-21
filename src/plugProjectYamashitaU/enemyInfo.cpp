@@ -109,7 +109,7 @@ EnemyInfo gEnemyInfo[] = {
 };
 // clang-format on
 
-int gEnemyInfoNum = sizeof(gEnemyInfo) / sizeof(gEnemyInfo[0]);
+int gEnemyInfoNum = ARRAY_SIZE(gEnemyInfo);
 
 namespace EnemyInfoFunc {
 /**
