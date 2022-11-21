@@ -44,7 +44,7 @@ struct BaseItemMgr : public GenericObjectMgr, virtual public _BaseItemMgrParent2
 	virtual void setup(BaseItem*);                                            // _40 (weak)
 	virtual void setupSoundViewerAndBas();                                    // _44
 	virtual void onLoadResources();                                           // _48 (weak)
-	virtual void loadEverytime();                                             // _4C (weak)
+	virtual bool loadEverytime();                                             // _4C (weak)
 	virtual void updateUseList(GenItemParm*, int);                            // _50
 	virtual void onUpdateUseList(GenItemParm*, int);                          // _54 (weak)
 	virtual u32 generatorGetID()                                         = 0; // _58

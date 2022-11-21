@@ -49,6 +49,14 @@ inline void checkNaviIndex(int index)
 
 extern PikiNaviCounter workPikis;
 extern PikiNaviCounter formationPikis;
+extern PikiNaviCounter zikatuPikis;
+extern PikiCounter mePikis;
+
+inline bool checkZikatu(int onyonType)
+{
+	int zikatuCount = GameStat::zikatuPikis.m_counter[onyonType].m_pikiCounts[0];
+	return GameStat::getAllPikmins(onyonType) - zikatuCount > 0;
+}
 
 } // namespace GameStat
 } // namespace Game

@@ -1,1099 +1,150 @@
-#include "types.h"
 #include "Game/Entities/ItemOnyon.h"
-
-/*
-    Generated from dpostproc
-
-    .section .ctors, "wa"  # 0x80472F00 - 0x804732C0
-    .4byte __sinit_onyonMgr_cpp
-
-    .section .rodata  # 0x804732E0 - 0x8049E220
-    .global lbl_8047E620
-    lbl_8047E620:
-        .4byte 0x00000000
-        .4byte 0x00000000
-        .4byte 0x00000000
-        .4byte 0x6F6E796F
-        .4byte 0x6E4D6772
-        .4byte 0x00000000
-    .global lbl_8047E638
-    lbl_8047E638:
-        .asciz "onyonMgr.cpp"
-        .skip 3
-        .asciz "BIKKURI no boot!\n"
-        .skip 2
-        .asciz "onyon supply failure!\n"
-        .skip 1
-    .global lbl_8047E674
-    lbl_8047E674:
-        .asciz "pmotion3"
-        .skip 3
-    .global lbl_8047E680
-    lbl_8047E680:
-        .asciz "P2Assert"
-        .skip 3
-        .asciz "damedayo !: arrive  ufoSuckState=%d\n"
-        .skip 3
-    .global lbl_8047E6B4
-    lbl_8047E6B4:
-        .4byte 0x00000001
-        .4byte 0x00000000
-        .4byte 0x00000002
-        .4byte 0x50534761
-        .4byte 0x6D652E68
-        .4byte 0x00000000
-        .4byte 0x50535363
-        .4byte 0x656E652E
-        .4byte 0x68000000
-        .4byte 0x67657420
-        .4byte 0x736F756E
-        .4byte 0x64207363
-        .4byte 0x656E6520
-        .4byte 0x61740A69
-        .4byte 0x6E76616C
-        .4byte 0x69642074
-        .4byte 0x696D6D69
-        .4byte 0x6E670A00
-        .4byte 0x62696B6B
-        .4byte 0x75726921
-        .4byte 0x0A000000
-        .4byte 0x4927616D
-        .4byte 0x2062696B
-        .4byte 0x6B757269
-        .4byte 0x2D65640A
-        .4byte 0x00000000
-    .global lbl_8047E71C
-    lbl_8047E71C:
-        .4byte 0x6731365F
-        .4byte 0x39355F70
-        .4byte 0x696B6D69
-        .4byte 0x6E000000
-    .global lbl_8047E72C
-    lbl_8047E72C:
-        .4byte 0x6731365F
-        .4byte 0x3130305F
-        .4byte 0x70696B6D
-        .4byte 0x696E0000
-    .global lbl_8047E73C
-    lbl_8047E73C:
-        .4byte 0x7831385F
-        .4byte 0x6578705F
-        .4byte 0x70656C6C
-        .4byte 0x65740000
-        .4byte 0x6C656731
-        .4byte 0x6C656732
-        .4byte 0x6C656733
-        .4byte 0x666F7431
-        .4byte 0x666F7432
-        .4byte 0x666F7433
-        .asciz "oh! no!\n"
-        .skip 3
-    .global lbl_8047E770
-    lbl_8047E770:
-        .asciz "kasi1jnt1"
-        .skip 2
-    .global lbl_8047E77C
-    lbl_8047E77C:
-        .asciz "kass2jnt1"
-        .skip 2
-    .global lbl_8047E788
-    lbl_8047E788:
-        .asciz "kasi3jnt1"
-        .skip 2
-    .global lbl_8047E794
-    lbl_8047E794:
-        .4byte lbl_8047E770
-        .4byte lbl_8047E77C
-        .4byte lbl_8047E788
-        .asciz "exitWhite/Black zero (UFO)\n"
-    .global lbl_8047E7BC
-    lbl_8047E7BC:
-        .asciz "not ufo\n"
-        .skip 3
-    .global lbl_8047E7C8
-    lbl_8047E7C8:
-        .4byte 0x82BE82DF
-        .4byte 0x82C582B7
-        .4byte 0x00000000
-    .global lbl_8047E7D4
-    lbl_8047E7D4:
-        .asciz "pmotion1"
-        .skip 3
-    .global lbl_8047E7E0
-    lbl_8047E7E0:
-        .asciz "pmotion2"
-        .skip 3
-        .4byte lbl_8047E7D4
-        .4byte lbl_8047E7E0
-        .4byte lbl_8047E674
-        .asciz "no joint (%s)\n"
-        .skip 1
-    .global lbl_8047E808
-    lbl_8047E808:
-        .asciz "\t# onyon index\r\n"
-        .skip 3
-    .global lbl_8047E81C
-    lbl_8047E81C:
-        .asciz "\t# after boot? true==1\r\n"
-        .skip 3
-    .global lbl_8047E838
-    lbl_8047E838:
-        .asciz "illegal onyon index %d\n"
-        .asciz "onyon-arc"
-        .skip 2
-        .asciz "user/Kando/onyon/arc.szs"
-        .skip 3
-        .asciz "goal.bmd"
-        .skip 3
-        .asciz "goal.bmd not found !!\n"
-        .skip 1
-        .asciz "user/Kando/pod_gold/arc.szs"
-        .asciz "user/Kando/pod/arc.szs"
-        .skip 1
-        .asciz "pot.bmd not found !!\n"
-        .skip 2
-        .asciz "kidou_blue.brk"
-        .skip 1
-        .asciz "kidou_red.brk"
-        .skip 2
-        .asciz "kidou_yellow.brk"
-        .skip 3
-        .asciz "user/Kando/onyon"
-        .skip 3
-        .4byte 0x74657874
-        .4byte 0x732E737A
-        .4byte 0x73000000
-        .4byte 0x6F6E796F
-        .4byte 0x6E416E69
-        .4byte 0x6D4D6772
-        .4byte 0x2E747874
-        .4byte 0x00000000
-        .4byte 0x6F6E796F
-        .4byte 0x6E436F6C
-        .4byte 0x6C2E7478
-        .4byte 0x74000000
-        .4byte 0x75736572
-        .4byte 0x2F4B616E
-        .4byte 0x646F2F70
-        .4byte 0x6F645F67
-        .4byte 0x6F6C6400
-        .4byte 0x75736572
-        .4byte 0x2F4B616E
-        .4byte 0x646F2F70
-        .4byte 0x6F640000
-        .4byte 0x616E696D
-        .4byte 0x4D67722E
-        .4byte 0x74787400
-        .4byte 0x636F6C6C
-        .4byte 0x2E747874
-        .4byte 0x00000000
-        .4byte 0x75736572
-        .4byte 0x2F4B616E
-        .4byte 0x646F2F75
-        .4byte 0x666F5F67
-        .4byte 0x6F6C642F
-        .4byte 0x6172632E
-        .4byte 0x737A7300
-        .4byte 0x75736572
-        .4byte 0x2F4B616E
-        .4byte 0x646F2F75
-        .4byte 0x666F2F61
-        .4byte 0x72632E73
-        .4byte 0x7A730000
-        .4byte 0x75666F2E
-        .4byte 0x626D6420
-        .4byte 0x6E6F7420
-        .4byte 0x666F756E
-        .4byte 0x64210A00
-        .4byte 0x75666F5F
-        .4byte 0x322E6272
-        .4byte 0x6B000000
-        .4byte 0x75736572
-        .4byte 0x2F4B616E
-        .4byte 0x646F2F75
-        .4byte 0x666F5F67
-        .4byte 0x6F6C6400
-        .4byte 0x75736572
-        .4byte 0x2F4B616E
-        .4byte 0x646F2F75
-        .4byte 0x666F0000
-        .4byte 0x616E696D
-        .4byte 0x6D67722E
-        .4byte 0x74787400
-        .4byte 0x43726561
-        .4byte 0x74757265
-        .4byte 0x41637469
-        .4byte 0x6F6E4172
-        .4byte 0x67000000
-        .4byte 0x41637469
-        .4byte 0x6F6E4172
-        .4byte 0x67000000
-        .4byte 0x50696B69
-        .4byte 0x4B696C6C
-        .4byte 0x41726700
-        .4byte 0x43726561
-        .4byte 0x74757265
-        .4byte 0x4B696C6C
-        .4byte 0x41726700
-    .global lbl_8047EA5C
-    lbl_8047EA5C:
-        .asciz "ItemPikiHead::InitArg"
-        .skip 2
-    .global lbl_8047EA74
-    lbl_8047EA74:
-        .asciz "ItemInitArg"
-
-    .section .data, "wa"  # 0x8049E220 - 0x804EFC20
-    .global lbl_804B2420
-    lbl_804B2420:
-        .4byte 0x00000000
-        .4byte 0x00000000
-        .4byte 0x00000000
-    .global __vt__Q34Game9ItemOnyon3Mgr
-    __vt__Q34Game9ItemOnyon3Mgr:
-        .4byte 0
-        .4byte 0
-        .4byte doAnimation__Q34Game9ItemOnyon3MgrFv
-        .4byte doEntry__Q34Game9ItemOnyon3MgrFv
-        .4byte doSetView__Q34Game9ItemOnyon3MgrFi
-        .4byte doViewCalc__Q34Game9ItemOnyon3MgrFv
-        .4byte doSimulation__Q34Game9ItemOnyon3MgrFf
-        .4byte doDirectDraw__Q34Game9ItemOnyon3MgrFR8Graphics
-        .4byte doSimpleDraw__16GenericObjectMgrFP8Viewport
-        .4byte loadResources__Q24Game11BaseItemMgrFv
-        .4byte resetMgr__16GenericObjectMgrFv
-        .4byte pausable__16GenericObjectMgrFv
-        .4byte frozenable__16GenericObjectMgrFv
-        .4byte getMatrixLoadType__16GenericObjectMgrFv
-        .4byte initDependency__Q34Game9ItemOnyon3MgrFv
-        .4byte killAll__Q24Game11BaseItemMgrFv
-        .4byte setup__Q24Game11BaseItemMgrFPQ24Game8BaseItem
-        .4byte setupSoundViewerAndBas__Q34Game9ItemOnyon3MgrFv
-        .4byte onLoadResources__Q24Game11BaseItemMgrFv
-        .4byte loadEverytime__Q24Game11BaseItemMgrFv
-        .4byte updateUseList__Q24Game11BaseItemMgrFPQ24Game11GenItemParmi
-        .4byte onUpdateUseList__Q24Game11BaseItemMgrFPQ24Game11GenItemParmi
-        .4byte generatorGetID__Q34Game9ItemOnyon3MgrFv
-        .4byte
-   "generatorBirth__Q34Game9ItemOnyon3MgrFR10Vector3<f>R10Vector3<f>PQ24Game11GenItemParm"
-        .4byte
-   generatorWrite__Q34Game9ItemOnyon3MgrFR6StreamPQ24Game11GenItemParm .4byte
-   generatorRead__Q34Game9ItemOnyon3MgrFR6StreamPQ24Game11GenItemParmUl .4byte
-   generatorLocalVersion__Q34Game9ItemOnyon3MgrFv .4byte
-   generatorGetShape__Q34Game9ItemOnyon3MgrFPQ24Game11GenItemParm .4byte
-   generatorNewItemParm__Q34Game9ItemOnyon3MgrFv .4byte 0 .4byte 0 .4byte
-   "@48@__dt__Q34Game9ItemOnyon3MgrFv" .4byte getChildCount__5CNodeFv .4byte
-   "getObject__24Container<Q24Game5Onyon>FPv" .4byte
-   "@48@getNext__Q34Game9ItemOnyon3MgrFPv" .4byte
-   "@48@getStart__Q34Game9ItemOnyon3MgrFv" .4byte
-   "@48@getEnd__Q34Game9ItemOnyon3MgrFv" .4byte
-   "@48@get__Q34Game9ItemOnyon3MgrFPv" .4byte
-   "getAt__24Container<Q24Game5Onyon>Fi" .4byte
-   "getTo__24Container<Q24Game5Onyon>Fv" .4byte __dt__Q34Game9ItemOnyon3MgrFv
-        .4byte get__Q34Game9ItemOnyon3MgrFPv
-        .4byte getNext__Q34Game9ItemOnyon3MgrFPv
-        .4byte getStart__Q34Game9ItemOnyon3MgrFv
-        .4byte getEnd__Q34Game9ItemOnyon3MgrFv
-    .global "__vt__26TObjectNode<Q24Game5Onyon>"
-    "__vt__26TObjectNode<Q24Game5Onyon>":
-        .4byte 0
-        .4byte 0
-        .4byte "__dt__26TObjectNode<Q24Game5Onyon>Fv"
-        .4byte getChildCount__5CNodeFv
-    .global "__vt__28NodeObjectMgr<Q24Game5Onyon>"
-    "__vt__28NodeObjectMgr<Q24Game5Onyon>":
-        .4byte 0
-        .4byte 0
-        .4byte "__dt__28NodeObjectMgr<Q24Game5Onyon>Fv"
-        .4byte getChildCount__5CNodeFv
-        .4byte "getObject__24Container<Q24Game5Onyon>FPv"
-        .4byte "getNext__28NodeObjectMgr<Q24Game5Onyon>FPv"
-        .4byte "getStart__28NodeObjectMgr<Q24Game5Onyon>Fv"
-        .4byte "getEnd__28NodeObjectMgr<Q24Game5Onyon>Fv"
-        .4byte "get__28NodeObjectMgr<Q24Game5Onyon>FPv"
-        .4byte "getAt__24Container<Q24Game5Onyon>Fi"
-        .4byte "getTo__24Container<Q24Game5Onyon>Fv"
-        .4byte 0
-        .4byte 0
-        .4byte "@28@doAnimation__24ObjectMgr<Q24Game5Onyon>Fv"
-        .4byte "@28@doEntry__24ObjectMgr<Q24Game5Onyon>Fv"
-        .4byte "@28@doSetView__24ObjectMgr<Q24Game5Onyon>Fi"
-        .4byte "@28@doViewCalc__24ObjectMgr<Q24Game5Onyon>Fv"
-        .4byte "@28@doSimulation__24ObjectMgr<Q24Game5Onyon>Ff"
-        .4byte "@28@doDirectDraw__24ObjectMgr<Q24Game5Onyon>FR8Graphics"
-        .4byte doSimpleDraw__16GenericObjectMgrFP8Viewport
-        .4byte loadResources__16GenericObjectMgrFv
-        .4byte "@28@resetMgr__28NodeObjectMgr<Q24Game5Onyon>Fv"
-        .4byte pausable__16GenericObjectMgrFv
-        .4byte frozenable__16GenericObjectMgrFv
-        .4byte getMatrixLoadType__16GenericObjectMgrFv
-        .4byte "doAnimation__24ObjectMgr<Q24Game5Onyon>Fv"
-        .4byte "doEntry__24ObjectMgr<Q24Game5Onyon>Fv"
-        .4byte "doSetView__24ObjectMgr<Q24Game5Onyon>Fi"
-        .4byte "doViewCalc__24ObjectMgr<Q24Game5Onyon>Fv"
-        .4byte "doSimulation__24ObjectMgr<Q24Game5Onyon>Ff"
-        .4byte "doDirectDraw__24ObjectMgr<Q24Game5Onyon>FR8Graphics"
-        .4byte "resetMgr__28NodeObjectMgr<Q24Game5Onyon>Fv"
-    .global "__vt__24ObjectMgr<Q24Game5Onyon>"
-    "__vt__24ObjectMgr<Q24Game5Onyon>":
-        .4byte 0
-        .4byte 0
-        .4byte "__dt__24ObjectMgr<Q24Game5Onyon>Fv"
-        .4byte getChildCount__5CNodeFv
-        .4byte "getObject__24Container<Q24Game5Onyon>FPv"
-        .4byte 0
-        .4byte 0
-        .4byte 0
-        .4byte 0
-        .4byte "getAt__24Container<Q24Game5Onyon>Fi"
-        .4byte "getTo__24Container<Q24Game5Onyon>Fv"
-        .4byte 0
-        .4byte 0
-        .4byte "@28@doAnimation__24ObjectMgr<Q24Game5Onyon>Fv"
-        .4byte "@28@doEntry__24ObjectMgr<Q24Game5Onyon>Fv"
-        .4byte "@28@doSetView__24ObjectMgr<Q24Game5Onyon>Fi"
-        .4byte "@28@doViewCalc__24ObjectMgr<Q24Game5Onyon>Fv"
-        .4byte "@28@doSimulation__24ObjectMgr<Q24Game5Onyon>Ff"
-        .4byte "@28@doDirectDraw__24ObjectMgr<Q24Game5Onyon>FR8Graphics"
-        .4byte doSimpleDraw__16GenericObjectMgrFP8Viewport
-        .4byte loadResources__16GenericObjectMgrFv
-        .4byte resetMgr__16GenericObjectMgrFv
-        .4byte pausable__16GenericObjectMgrFv
-        .4byte frozenable__16GenericObjectMgrFv
-        .4byte getMatrixLoadType__16GenericObjectMgrFv
-        .4byte "doAnimation__24ObjectMgr<Q24Game5Onyon>Fv"
-        .4byte "doEntry__24ObjectMgr<Q24Game5Onyon>Fv"
-        .4byte "doSetView__24ObjectMgr<Q24Game5Onyon>Fi"
-        .4byte "doViewCalc__24ObjectMgr<Q24Game5Onyon>Fv"
-        .4byte "doSimulation__24ObjectMgr<Q24Game5Onyon>Ff"
-        .4byte "doDirectDraw__24ObjectMgr<Q24Game5Onyon>FR8Graphics"
-    .global "__vt__24Container<Q24Game5Onyon>"
-    "__vt__24Container<Q24Game5Onyon>":
-        .4byte 0
-        .4byte 0
-        .4byte "__dt__24Container<Q24Game5Onyon>Fv"
-        .4byte getChildCount__5CNodeFv
-        .4byte "getObject__24Container<Q24Game5Onyon>FPv"
-        .4byte 0
-        .4byte 0
-        .4byte 0
-        .4byte 0
-        .4byte "getAt__24Container<Q24Game5Onyon>Fi"
-        .4byte "getTo__24Container<Q24Game5Onyon>Fv"
-    .global __vt__12GenOnyonParm
-    __vt__12GenOnyonParm:
-        .4byte 0
-        .4byte 0
-        .4byte getShapeID__Q24Game11GenItemParmFv
-    .global __vt__Q24Game11GenItemParm
-    __vt__Q24Game11GenItemParm:
-        .4byte 0
-        .4byte 0
-        .4byte getShapeID__Q24Game11GenItemParmFv
-    .global __vt__Q23efx14TOnyonPuffKira
-    __vt__Q23efx14TOnyonPuffKira:
-        .4byte 0
-        .4byte 0
-        .4byte create__Q23efx8TSimple1FPQ23efx3Arg
-        .4byte forceKill__Q23efx8TSimple1Fv
-        .4byte fade__Q23efx8TSimple1Fv
-    .global __vt__Q23efx14TOnyonPuffPuff
-    __vt__Q23efx14TOnyonPuffPuff:
-        .4byte 0
-        .4byte 0
-        .4byte create__Q23efx11TSimpleMtx1FPQ23efx3Arg
-        .4byte forceKill__Q23efx8TSimple1Fv
-        .4byte fade__Q23efx8TSimple1Fv
-    .global __vt__Q23efx8TPodSuck
-    __vt__Q23efx8TPodSuck:
-        .4byte 0
-        .4byte 0
-        .4byte create__Q23efx8TSimple2FPQ23efx3Arg
-        .4byte forceKill__Q23efx8TSimple2Fv
-        .4byte fade__Q23efx8TSimple2Fv
-    .global __vt__Q23efx10TOnyonEatC
-    __vt__Q23efx10TOnyonEatC:
-        .4byte 0
-        .4byte 0
-        .4byte create__Q23efx11TSimpleMtx1FPQ23efx3Arg
-        .4byte forceKill__Q23efx8TSimple1Fv
-        .4byte fade__Q23efx8TSimple1Fv
-    .global __vt__Q23efx7ArgType
-    __vt__Q23efx7ArgType:
-        .4byte 0
-        .4byte 0
-        .4byte getName__Q23efx7ArgTypeFv
-    .global __vt__Q23efx9TOnyonLay
-    __vt__Q23efx9TOnyonLay:
-        .4byte 0
-        .4byte 0
-        .4byte create__Q23efx8TSimple2FPQ23efx3Arg
-        .4byte forceKill__Q23efx8TSimple2Fv
-        .4byte fade__Q23efx8TSimple2Fv
-    .global __vt__Q23efx12OnyonSpotArg
-    __vt__Q23efx12OnyonSpotArg:
-        .4byte 0
-        .4byte 0
-        .4byte getID__Q23efx12OnyonSpotArgFv
-    .global __vt__20ModelEffectCreateArg
-    __vt__20ModelEffectCreateArg:
-        .4byte 0
-        .4byte 0
-        .4byte 0
-    .global __vt__Q24Game5Onyon
-    __vt__Q24Game5Onyon:
-        .4byte 0
-        .4byte 0
-        .4byte getPosition__Q24Game8BaseItemFv
-        .4byte checkCollision__Q24Game8CreatureFPQ24Game10CellObject
-        .4byte getBoundingSphere__Q24Game8BaseItemFRQ23Sys6Sphere
-        .4byte collisionUpdatable__Q24Game8CreatureFv
-        .4byte isPiki__Q24Game8CreatureFv
-        .4byte isNavi__Q24Game8CreatureFv
-        .4byte deferPikiCollision__Q24Game10CellObjectFv
-        .4byte getTypeName__Q24Game8CreatureFv
-        .4byte getObjType__Q24Game8CreatureFv
-        .4byte constructor__Q24Game8BaseItemFv
-        .4byte onInit__Q24Game5OnyonFPQ24Game15CreatureInitArg
-        .4byte onKill__Q24Game5OnyonFPQ24Game15CreatureKillArg
-        .4byte onInitPost__Q24Game8CreatureFPQ24Game15CreatureInitArg
-        .4byte doAnimation__Q24Game8BaseItemFv
-        .4byte doEntry__Q24Game8BaseItemFv
-        .4byte doSetView__Q24Game8CreatureFi
-        .4byte doViewCalc__Q24Game8CreatureFv
-        .4byte doSimulation__Q24Game8BaseItemFf
-        .4byte doDirectDraw__Q24Game5OnyonFR8Graphics
-        .4byte getBodyRadius__Q24Game8CreatureFv
-        .4byte getCellRadius__Q24Game8CreatureFv
-        .4byte "initPosition__Q24Game8CreatureFR10Vector3<f>"
-        .4byte "onInitPosition__Q24Game8CreatureFR10Vector3<f>"
-        .4byte getFaceDir__Q24Game5OnyonFv
-        .4byte "setVelocity__Q24Game8BaseItemFR10Vector3<f>"
-        .4byte getVelocity__Q24Game8BaseItemFv
-        .4byte "onSetPosition__Q24Game8BaseItemFR10Vector3<f>"
-        .4byte "onSetPositionPost__Q24Game8CreatureFR10Vector3<f>"
-        .4byte updateTrMatrix__Q24Game8BaseItemFv
-        .4byte isTeki__Q24Game8CreatureFv
-        .4byte isPellet__Q24Game8CreatureFv
-        .4byte inWaterCallback__Q24Game8CreatureFPQ24Game8WaterBox
-        .4byte outWaterCallback__Q24Game8CreatureFv
-        .4byte inWater__Q24Game8CreatureFv
-        .4byte getFlockMgr__Q24Game8CreatureFv
-        .4byte onStartCapture__Q24Game8CreatureFv
-        .4byte onUpdateCapture__Q24Game8CreatureFR7Matrixf
-        .4byte onEndCapture__Q24Game8CreatureFv
-        .4byte isAtari__Q24Game8CreatureFv
-        .4byte setAtari__Q24Game8CreatureFb
-        .4byte isAlive__Q24Game8CreatureFv
-        .4byte setAlive__Q24Game8CreatureFb
-        .4byte isCollisionFlick__Q24Game8CreatureFv
-        .4byte setCollisionFlick__Q24Game8CreatureFb
-        .4byte isMovieActor__Q24Game8CreatureFv
-        .4byte isMovieExtra__Q24Game8CreatureFv
-        .4byte isMovieMotion__Q24Game8CreatureFv
-        .4byte setMovieMotion__Q24Game8CreatureFb
-        .4byte isBuried__Q24Game8CreatureFv
-        .4byte isFlying__Q24Game8CreatureFv
-        .4byte isUnderground__Q24Game8CreatureFv
-        .4byte isLivingThing__Q24Game8CreatureFv
-        .4byte isDebugCollision__Q24Game8CreatureFv
-        .4byte setDebugCollision__Q24Game8CreatureFb
-        .4byte doSave__Q24Game8CreatureFR6Stream
-        .4byte doLoad__Q24Game8CreatureFR6Stream
-        .4byte bounceCallback__Q24Game8BaseItemFPQ23Sys8Triangle
-        .4byte collisionCallback__Q24Game8BaseItemFRQ24Game9CollEvent
-        .4byte platCallback__Q24Game8BaseItemFRQ24Game9PlatEvent
-        .4byte getJAIObject__Q24Game8BaseItemFv
-        .4byte getPSCreature__Q24Game8BaseItemFv
-        .4byte getSound_AILOD__Q24Game8CreatureFv
-        .4byte getSound_PosPtr__Q24Game8BaseItemFv
-        .4byte sound_culling__Q24Game5OnyonFv
-        .4byte getSound_CurrAnimFrame__Q24Game8CreatureFv
-        .4byte getSound_CurrAnimSpeed__Q24Game8CreatureFv
-        .4byte on_movie_begin__Q24Game8CreatureFb
-        .4byte on_movie_end__Q24Game5OnyonFb
-        .4byte movieStartAnimation__Q24Game8BaseItemFUl
-        .4byte movieStartDemoAnimation__Q24Game8BaseItemFPQ28SysShape8AnimInfo
-        .4byte movieSetAnimationLastFrame__Q24Game8BaseItemFv
-        .4byte "movieSetTranslation__Q24Game8BaseItemFR10Vector3<f>f"
-        .4byte movieSetFaceDir__Q24Game8CreatureFf
-        .4byte "movieGotoPosition__Q24Game8CreatureFR10Vector3<f>"
-        .4byte movieUserCommand__Q24Game5OnyonFUlPQ24Game11MoviePlayer
-        .4byte getShadowParam__Q24Game5OnyonFRQ24Game11ShadowParam
-        .4byte needShadow__Q24Game5OnyonFv
-        .4byte getLifeGaugeParam__Q24Game8CreatureFRQ24Game14LifeGaugeParam
-        .4byte getLODSphere__Q24Game8CreatureFRQ23Sys6Sphere
-        .4byte getLODCylinder__Q24Game5OnyonFRQ23Sys8Cylinder
-        .4byte startPick__Q24Game8CreatureFv
-        .4byte endPick__Q24Game8CreatureFb
-        .4byte getMabiki__Q24Game8CreatureFv
-        .4byte getFootmarks__Q24Game8CreatureFv
-        .4byte onStickStart__Q24Game8CreatureFPQ24Game8Creature
-        .4byte onStickEnd__Q24Game8CreatureFPQ24Game8Creature
-        .4byte onStickStartSelf__Q24Game8CreatureFPQ24Game8Creature
-        .4byte onStickEndSelf__Q24Game8CreatureFPQ24Game8Creature
-        .4byte isSlotFree__Q24Game8CreatureFs
-        .4byte getFreeStickSlot__Q24Game8CreatureFv
-        .4byte "getNearFreeStickSlot__Q24Game8CreatureFR10Vector3<f>"
-        .4byte getRandomFreeStickSlot__Q24Game8CreatureFv
-        .4byte onSlotStickStart__Q24Game8CreatureFPQ24Game8Creatures
-        .4byte onSlotStickEnd__Q24Game8CreatureFPQ24Game8Creatures
-        .4byte "calcStickSlotGlobal__Q24Game8CreatureFsR10Vector3<f>"
-        .4byte "getVelocityAt__Q24Game8BaseItemFR10Vector3<f>R10Vector3<f>"
-        .4byte "getAngularEffect__Q24Game8CreatureFR10Vector3<f>R10Vector3<f>"
-        .4byte "applyImpulse__Q24Game8CreatureFR10Vector3<f>R10Vector3<f>"
-        .4byte ignoreAtari__Q24Game8CreatureFPQ24Game8Creature
-        .4byte getSuckPos__Q24Game5OnyonFv
-        .4byte getGoalPos__Q24Game5OnyonFv
-        .4byte isSuckReady__Q24Game5OnyonFv
-        .4byte isSuckArriveWait__Q24Game5OnyonFv
-        .4byte stimulate__Q24Game5OnyonFRQ24Game11Interaction
-        .4byte getCreatureName__Q24Game5OnyonFv
-        .4byte getCreatureID__Q24Game8BaseItemFv
-        .4byte 0
-        .4byte 0
-        .4byte "@376@onKeyEvent__Q24Game5OnyonFRCQ28SysShape8KeyEvent"
-        .4byte initDependency__Q24Game8BaseItemFv
-        .4byte startSound__Q24Game8BaseItemFUl
-        .4byte makeTrMatrix__Q24Game5OnyonFv
-        .4byte doAI__Q24Game5OnyonFv
-        .4byte move__Q24Game8BaseItemFf
-        .4byte changeMaterial__Q24Game5OnyonFv
-        .4byte do_updateLOD__Q24Game5OnyonFv
-        .4byte do_setLODParm__Q24Game8BaseItemFRQ24Game9AILODParm
-        .4byte getMapCollisionRadius__Q24Game8BaseItemFv
-        .4byte interactAttack__Q24Game8BaseItemFRQ24Game14InteractAttack
-        .4byte
-   interactBreakBridge__Q24Game8BaseItemFRQ24Game19InteractBreakBridge .4byte
-   interactEat__Q24Game8BaseItemFRQ24Game11InteractEat .4byte
-   interactFlockAttack__Q24Game8BaseItemFRQ24Game19InteractFlockAttack .4byte
-   interactAbsorb__Q24Game8BaseItemFRQ24Game14InteractAbsorb .4byte
-   interactFue__Q24Game8BaseItemFRQ24Game11InteractFue .4byte
-   interactFarmKarero__Q24Game8BaseItemFRQ24Game18InteractFarmKarero .4byte
-   interactFarmHaero__Q24Game8BaseItemFRQ24Game17InteractFarmHaero .4byte
-   interactGotKey__Q24Game8BaseItemFRQ24Game14InteractGotKey .4byte
-   "getVectorField__Q24Game8BaseItemFRQ23Sys6SphereR10Vector3<f>" .4byte
-   getWorkDistance__Q24Game8BaseItemFRQ23Sys6Sphere .4byte
-   do_doAnimation__Q24Game5OnyonFv .4byte updateBoundSphere__Q24Game8BaseItemFv
-        .4byte update__Q24Game8BaseItemFv
-        .4byte entryShape__Q24Game8BaseItemFv
-        .4byte onSetPosition__Q24Game5OnyonFv
-        .4byte onKeyEvent__Q24Game5OnyonFRCQ28SysShape8KeyEvent
-        .4byte onKeyEvent_UFO__Q24Game5OnyonFRCQ28SysShape8KeyEvent
-        .4byte onKeyEvent_Onyon__Q24Game5OnyonFRCQ28SysShape8KeyEvent
-    .global __vt__Q23efx11TOnyonEatAB
-    __vt__Q23efx11TOnyonEatAB:
-        .4byte 0
-        .4byte 0
-        .4byte create__Q23efx11TSimpleMtx2FPQ23efx3Arg
-        .4byte forceKill__Q23efx8TSimple2Fv
-        .4byte fade__Q23efx8TSimple2Fv
-    .global __vt__Q23efx11TUfoPodGepu
-    __vt__Q23efx11TUfoPodGepu:
-        .4byte 0
-        .4byte 0
-        .4byte create__Q23efx11TSimpleMtx2FPQ23efx3Arg
-        .4byte forceKill__Q23efx8TSimple2Fv
-        .4byte fade__Q23efx8TSimple2Fv
-    .global __vt__Q23efx8TPodGepu
-    __vt__Q23efx8TPodGepu:
-        .4byte 0
-        .4byte 0
-        .4byte create__Q23efx8TSimple2FPQ23efx3Arg
-        .4byte forceKill__Q23efx8TSimple2Fv
-        .4byte fade__Q23efx8TSimple2Fv
-    .global __vt__Q24Game16InteractSuckDone
-    __vt__Q24Game16InteractSuckDone:
-        .4byte 0
-        .4byte 0
-        .4byte actCommon__Q24Game11InteractionFPQ24Game8Creature
-        .4byte actPiki__Q24Game11InteractionFPQ24Game4Piki
-        .4byte actNavi__Q24Game11InteractionFPQ24Game4Navi
-        .4byte actEnemy__Q24Game11InteractionFPQ24Game9EnemyBase
-        .4byte actPellet__Q24Game11InteractionFPQ24Game6Pellet
-        .4byte actOnyon__Q24Game16InteractSuckDoneFPQ24Game5Onyon
-        .4byte actItem__Q24Game11InteractionFPQ24Game8BaseItem
-    .global __vt__Q23efx11TUfoPodSuck
-    __vt__Q23efx11TUfoPodSuck:
-        .4byte 0
-        .4byte 0
-        .4byte create__Q23efx11TSimpleMtx1FPQ23efx3Arg
-        .4byte forceKill__Q23efx8TSimple1Fv
-        .4byte fade__Q23efx8TSimple1Fv
-    .global __vt__Q24Game18InteractSuckArrive
-    __vt__Q24Game18InteractSuckArrive:
-        .4byte 0
-        .4byte 0
-        .4byte actCommon__Q24Game11InteractionFPQ24Game8Creature
-        .4byte actPiki__Q24Game11InteractionFPQ24Game4Piki
-        .4byte actNavi__Q24Game11InteractionFPQ24Game4Navi
-        .4byte actEnemy__Q24Game11InteractionFPQ24Game9EnemyBase
-        .4byte actPellet__Q24Game11InteractionFPQ24Game6Pellet
-        .4byte actOnyon__Q24Game18InteractSuckArriveFPQ24Game5Onyon
-        .4byte actItem__Q24Game11InteractionFPQ24Game8BaseItem
-    .global "__vt__Q23efx28TSyncGroup2<Q23efx8TForever>"
-    "__vt__Q23efx28TSyncGroup2<Q23efx8TForever>":
-        .4byte 0
-        .4byte 0
-        .4byte "create__Q23efx28TSyncGroup2<Q23efx8TForever>FPQ23efx3Arg"
-        .4byte "forceKill__Q23efx28TSyncGroup2<Q23efx8TForever>Fv"
-        .4byte "fade__Q23efx28TSyncGroup2<Q23efx8TForever>Fv"
-        .4byte "startDemoDrawOff__Q23efx28TSyncGroup2<Q23efx8TForever>Fv"
-        .4byte "endDemoDrawOn__Q23efx28TSyncGroup2<Q23efx8TForever>Fv"
-    .global __vt__Q23efx9TForever2
-    __vt__Q23efx9TForever2:
-        .4byte 0
-        .4byte 0
-        .4byte "create__Q23efx28TSyncGroup2<Q23efx8TForever>FPQ23efx3Arg"
-        .4byte "forceKill__Q23efx28TSyncGroup2<Q23efx8TForever>Fv"
-        .4byte "fade__Q23efx28TSyncGroup2<Q23efx8TForever>Fv"
-        .4byte "startDemoDrawOff__Q23efx28TSyncGroup2<Q23efx8TForever>Fv"
-        .4byte "endDemoDrawOn__Q23efx28TSyncGroup2<Q23efx8TForever>Fv"
-    .global "__vt__Q23efx34TSyncGroup2<Q23efx13TChasePosYRot>"
-    "__vt__Q23efx34TSyncGroup2<Q23efx13TChasePosYRot>":
-        .4byte 0
-        .4byte 0
-        .4byte "create__Q23efx34TSyncGroup2<Q23efx13TChasePosYRot>FPQ23efx3Arg"
-        .4byte "forceKill__Q23efx34TSyncGroup2<Q23efx13TChasePosYRot>Fv"
-        .4byte "fade__Q23efx34TSyncGroup2<Q23efx13TChasePosYRot>Fv"
-        .4byte "startDemoDrawOff__Q23efx34TSyncGroup2<Q23efx13TChasePosYRot>Fv"
-        .4byte "endDemoDrawOn__Q23efx34TSyncGroup2<Q23efx13TChasePosYRot>Fv"
-    .global __vt__Q23efx14TChasePosYRot2
-    __vt__Q23efx14TChasePosYRot2:
-        .4byte 0
-        .4byte 0
-        .4byte "create__Q23efx34TSyncGroup2<Q23efx13TChasePosYRot>FPQ23efx3Arg"
-        .4byte "forceKill__Q23efx34TSyncGroup2<Q23efx13TChasePosYRot>Fv"
-        .4byte "fade__Q23efx34TSyncGroup2<Q23efx13TChasePosYRot>Fv"
-        .4byte "startDemoDrawOff__Q23efx34TSyncGroup2<Q23efx13TChasePosYRot>Fv"
-        .4byte "endDemoDrawOn__Q23efx34TSyncGroup2<Q23efx13TChasePosYRot>Fv"
-    .global __vt__Q23efx8TPodKira
-    __vt__Q23efx8TPodKira:
-        .4byte 0
-        .4byte 0
-        .4byte create__Q23efx5TSyncFPQ23efx3Arg
-        .4byte forceKill__Q23efx5TSyncFv
-        .4byte fade__Q23efx5TSyncFv
-        .4byte 0
-        .4byte 0
-        .4byte "@4@__dt__Q23efx8TPodKiraFv"
-        .4byte "@4@execute__Q23efx5TSyncFP14JPABaseEmitter"
-        .4byte "@4@executeAfter__Q23efx5TSyncFP14JPABaseEmitter"
-        .4byte draw__18JPAEmitterCallBackFP14JPABaseEmitter
-        .4byte drawAfter__18JPAEmitterCallBackFP14JPABaseEmitter
-        .4byte execute__Q23efx5TSyncFP14JPABaseEmitter
-        .4byte executeAfter__Q23efx5TSyncFP14JPABaseEmitter
-        .4byte doExecuteEmitterOperation__Q23efx9TChaseMtxFP14JPABaseEmitter
-        .4byte doExecuteAfter__Q23efx5TSyncFP14JPABaseEmitter
-        .4byte startDemoDrawOff__Q23efx5TSyncFv
-        .4byte endDemoDrawOn__Q23efx5TSyncFv
-        .4byte __dt__Q23efx8TPodKiraFv
-    .global __vt__Q23efx8TPodSpot
-    __vt__Q23efx8TPodSpot:
-        .4byte 0
-        .4byte 0
-        .4byte "create__Q23efx34TSyncGroup2<Q23efx13TChasePosYRot>FPQ23efx3Arg"
-        .4byte "forceKill__Q23efx34TSyncGroup2<Q23efx13TChasePosYRot>Fv"
-        .4byte "fade__Q23efx34TSyncGroup2<Q23efx13TChasePosYRot>Fv"
-        .4byte "startDemoDrawOff__Q23efx34TSyncGroup2<Q23efx13TChasePosYRot>Fv"
-        .4byte "endDemoDrawOn__Q23efx34TSyncGroup2<Q23efx13TChasePosYRot>Fv"
-    .global __vt__Q23efx9TPodOpenB
-    __vt__Q23efx9TPodOpenB:
-        .4byte 0
-        .4byte 0
-        .4byte create__Q23efx5TSyncFPQ23efx3Arg
-        .4byte forceKill__Q23efx5TSyncFv
-        .4byte fade__Q23efx5TSyncFv
-        .4byte 0
-        .4byte 0
-        .4byte "@4@__dt__Q23efx9TPodOpenBFv"
-        .4byte "@4@execute__Q23efx5TSyncFP14JPABaseEmitter"
-        .4byte "@4@executeAfter__Q23efx5TSyncFP14JPABaseEmitter"
-        .4byte draw__18JPAEmitterCallBackFP14JPABaseEmitter
-        .4byte drawAfter__18JPAEmitterCallBackFP14JPABaseEmitter
-        .4byte execute__Q23efx5TSyncFP14JPABaseEmitter
-        .4byte executeAfter__Q23efx5TSyncFP14JPABaseEmitter
-        .4byte doExecuteEmitterOperation__Q23efx9TChaseMtxFP14JPABaseEmitter
-        .4byte doExecuteAfter__Q23efx5TSyncFP14JPABaseEmitter
-        .4byte startDemoDrawOff__Q23efx5TSyncFv
-        .4byte endDemoDrawOn__Q23efx5TSyncFv
-        .4byte __dt__Q23efx9TPodOpenBFv
-    .global __vt__Q23efx9TPodOpenA
-    __vt__Q23efx9TPodOpenA:
-        .4byte 0
-        .4byte 0
-        .4byte create__Q23efx5TSyncFPQ23efx3Arg
-        .4byte forceKill__Q23efx5TSyncFv
-        .4byte fade__Q23efx5TSyncFv
-        .4byte 0
-        .4byte 0
-        .4byte "@4@__dt__Q23efx9TPodOpenAFv"
-        .4byte "@4@execute__Q23efx5TSyncFP14JPABaseEmitter"
-        .4byte "@4@executeAfter__Q23efx5TSyncFP14JPABaseEmitter"
-        .4byte draw__18JPAEmitterCallBackFP14JPABaseEmitter
-        .4byte drawAfter__18JPAEmitterCallBackFP14JPABaseEmitter
-        .4byte execute__Q23efx5TSyncFP14JPABaseEmitter
-        .4byte executeAfter__Q23efx5TSyncFP14JPABaseEmitter
-        .4byte doExecuteEmitterOperation__Q23efx8TForeverFP14JPABaseEmitter
-        .4byte doExecuteAfter__Q23efx5TSyncFP14JPABaseEmitter
-        .4byte startDemoDrawOff__Q23efx5TSyncFv
-        .4byte endDemoDrawOn__Q23efx5TSyncFv
-        .4byte __dt__Q23efx9TPodOpenAFv
-    .global __vt__Q23efx10TUfoGasOut
-    __vt__Q23efx10TUfoGasOut:
-        .4byte 0
-        .4byte 0
-        .4byte create__Q23efx5TSyncFPQ23efx3Arg
-        .4byte forceKill__Q23efx5TSyncFv
-        .4byte fade__Q23efx5TSyncFv
-        .4byte 0
-        .4byte 0
-        .4byte "@4@__dt__Q23efx10TUfoGasOutFv"
-        .4byte "@4@execute__Q23efx5TSyncFP14JPABaseEmitter"
-        .4byte "@4@executeAfter__Q23efx5TSyncFP14JPABaseEmitter"
-        .4byte draw__18JPAEmitterCallBackFP14JPABaseEmitter
-        .4byte drawAfter__18JPAEmitterCallBackFP14JPABaseEmitter
-        .4byte execute__Q23efx5TSyncFP14JPABaseEmitter
-        .4byte executeAfter__Q23efx5TSyncFP14JPABaseEmitter
-        .4byte doExecuteEmitterOperation__Q23efx9TChaseMtxFP14JPABaseEmitter
-        .4byte doExecuteAfter__Q23efx5TSyncFP14JPABaseEmitter
-        .4byte startDemoDrawOff__Q23efx5TSyncFv
-        .4byte endDemoDrawOn__Q23efx5TSyncFv
-        .4byte __dt__Q23efx10TUfoGasOutFv
-    .global __vt__Q23efx9TUfoGasIn
-    __vt__Q23efx9TUfoGasIn:
-        .4byte 0
-        .4byte 0
-        .4byte create__Q23efx5TSyncFPQ23efx3Arg
-        .4byte forceKill__Q23efx5TSyncFv
-        .4byte fade__Q23efx5TSyncFv
-        .4byte 0
-        .4byte 0
-        .4byte "@4@__dt__Q23efx9TUfoGasInFv"
-        .4byte "@4@execute__Q23efx5TSyncFP14JPABaseEmitter"
-        .4byte "@4@executeAfter__Q23efx5TSyncFP14JPABaseEmitter"
-        .4byte draw__18JPAEmitterCallBackFP14JPABaseEmitter
-        .4byte drawAfter__18JPAEmitterCallBackFP14JPABaseEmitter
-        .4byte execute__Q23efx5TSyncFP14JPABaseEmitter
-        .4byte executeAfter__Q23efx5TSyncFP14JPABaseEmitter
-        .4byte doExecuteEmitterOperation__Q23efx9TChaseMtxFP14JPABaseEmitter
-        .4byte doExecuteAfter__Q23efx5TSyncFP14JPABaseEmitter
-        .4byte startDemoDrawOff__Q23efx5TSyncFv
-        .4byte endDemoDrawOn__Q23efx5TSyncFv
-        .4byte __dt__Q23efx9TUfoGasInFv
-    .global __vt__Q23efx11TUfoPodOpen
-    __vt__Q23efx11TUfoPodOpen:
-        .4byte 0
-        .4byte 0
-        .4byte "create__Q23efx29TSyncGroup2<Q23efx9TChaseMtx>FPQ23efx3Arg"
-        .4byte "forceKill__Q23efx29TSyncGroup2<Q23efx9TChaseMtx>Fv"
-        .4byte "fade__Q23efx29TSyncGroup2<Q23efx9TChaseMtx>Fv"
-        .4byte "startDemoDrawOff__Q23efx29TSyncGroup2<Q23efx9TChaseMtx>Fv"
-        .4byte "endDemoDrawOn__Q23efx29TSyncGroup2<Q23efx9TChaseMtx>Fv"
-    .global __vt__Q23efx17TUfoSpotact_ver01
-    __vt__Q23efx17TUfoSpotact_ver01:
-        .4byte 0
-        .4byte 0
-        .4byte "create__Q23efx29TSyncGroup2<Q23efx9TChaseMtx>FPQ23efx3Arg"
-        .4byte "forceKill__Q23efx29TSyncGroup2<Q23efx9TChaseMtx>Fv"
-        .4byte "fade__Q23efx29TSyncGroup2<Q23efx9TChaseMtx>Fv"
-        .4byte "startDemoDrawOff__Q23efx29TSyncGroup2<Q23efx9TChaseMtx>Fv"
-        .4byte "endDemoDrawOn__Q23efx29TSyncGroup2<Q23efx9TChaseMtx>Fv"
-    .global __vt__Q23efx15TUfoPodOpenSuck
-    __vt__Q23efx15TUfoPodOpenSuck:
-        .4byte 0
-        .4byte 0
-        .4byte create__Q23efx5TSyncFPQ23efx3Arg
-        .4byte forceKill__Q23efx5TSyncFv
-        .4byte fade__Q23efx5TSyncFv
-        .4byte 0
-        .4byte 0
-        .4byte "@4@__dt__Q23efx15TUfoPodOpenSuckFv"
-        .4byte "@4@execute__Q23efx5TSyncFP14JPABaseEmitter"
-        .4byte "@4@executeAfter__Q23efx5TSyncFP14JPABaseEmitter"
-        .4byte draw__18JPAEmitterCallBackFP14JPABaseEmitter
-        .4byte drawAfter__18JPAEmitterCallBackFP14JPABaseEmitter
-        .4byte execute__Q23efx5TSyncFP14JPABaseEmitter
-        .4byte executeAfter__Q23efx5TSyncFP14JPABaseEmitter
-        .4byte doExecuteEmitterOperation__Q23efx9TChaseMtxFP14JPABaseEmitter
-        .4byte doExecuteAfter__Q23efx5TSyncFP14JPABaseEmitter
-        .4byte startDemoDrawOff__Q23efx5TSyncFv
-        .4byte endDemoDrawOn__Q23efx5TSyncFv
-        .4byte __dt__Q23efx15TUfoPodOpenSuckFv
-    .global __vt__Q23efx8TUfoSpot
-    __vt__Q23efx8TUfoSpot:
-        .4byte 0
-        .4byte 0
-        .4byte "create__Q23efx29TSyncGroup2<Q23efx9TChaseMtx>FPQ23efx3Arg"
-        .4byte "forceKill__Q23efx29TSyncGroup2<Q23efx9TChaseMtx>Fv"
-        .4byte "fade__Q23efx29TSyncGroup2<Q23efx9TChaseMtx>Fv"
-        .4byte "startDemoDrawOff__Q23efx29TSyncGroup2<Q23efx9TChaseMtx>Fv"
-        .4byte "endDemoDrawOn__Q23efx29TSyncGroup2<Q23efx9TChaseMtx>Fv"
-    .global __vt__Q23efx8TForever
-    __vt__Q23efx8TForever:
-        .4byte 0
-        .4byte 0
-        .4byte create__Q23efx5TSyncFPQ23efx3Arg
-        .4byte forceKill__Q23efx5TSyncFv
-        .4byte fade__Q23efx5TSyncFv
-        .4byte 0
-        .4byte 0
-        .4byte "@4@__dt__Q23efx8TForeverFv"
-        .4byte "@4@execute__Q23efx5TSyncFP14JPABaseEmitter"
-        .4byte "@4@executeAfter__Q23efx5TSyncFP14JPABaseEmitter"
-        .4byte draw__18JPAEmitterCallBackFP14JPABaseEmitter
-        .4byte drawAfter__18JPAEmitterCallBackFP14JPABaseEmitter
-        .4byte execute__Q23efx5TSyncFP14JPABaseEmitter
-        .4byte executeAfter__Q23efx5TSyncFP14JPABaseEmitter
-        .4byte doExecuteEmitterOperation__Q23efx8TForeverFP14JPABaseEmitter
-        .4byte doExecuteAfter__Q23efx5TSyncFP14JPABaseEmitter
-        .4byte startDemoDrawOff__Q23efx5TSyncFv
-        .4byte endDemoDrawOn__Q23efx5TSyncFv
-        .4byte __dt__Q23efx8TForeverFv
-    .global __vt__Q34Game12ItemPikihead7InitArg
-    __vt__Q34Game12ItemPikihead7InitArg:
-        .4byte 0
-        .4byte 0
-        .4byte getName__Q34Game12ItemPikihead7InitArgFv
-    .global __vt__Q24Game11ItemInitArg
-    __vt__Q24Game11ItemInitArg:
-        .4byte 0
-        .4byte 0
-        .4byte getName__Q24Game11ItemInitArgFv
-
-    .section .sbss # 0x80514D80 - 0x80516360
-    .global lbl_805159A8
-    lbl_805159A8:
-        .skip 0x4
-    .global lbl_805159AC
-    lbl_805159AC:
-        .skip 0x4
-    .global mgr__Q24Game9ItemOnyon
-    mgr__Q24Game9ItemOnyon:
-        .skip 0x4
-    .global sVolveFlag
-    sVolveFlag:
-        .skip 0x4
-
-    .section .sdata2, "a"     # 0x80516360 - 0x80520E40
-    .global lbl_80518A28
-    lbl_80518A28:
-        .float -1.0
-    .global lbl_80518A2C
-    lbl_80518A2C:
-        .4byte 0x00000000
-    .global lbl_80518A30
-    lbl_80518A30:
-        .4byte 0x41F00000
-    .global lbl_80518A34
-    lbl_80518A34:
-        .4byte 0x73746172
-        .4byte 0x74310000
-    .global lbl_80518A3C
-    lbl_80518A3C:
-        .4byte 0x696E3100
-    .global lbl_80518A40
-    lbl_80518A40:
-        .4byte 0x6F757400
-    .global lbl_80518A44
-    lbl_80518A44:
-        .4byte 0x706F745F
-        .4byte 0x63747200
-    .global lbl_80518A4C
-    lbl_80518A4C:
-        .4byte 0x42A00000
-    .global lbl_80518A50
-    lbl_80518A50:
-        .4byte 0x42C80000
-    .global lbl_80518A54
-    lbl_80518A54:
-        .4byte 0x41D80000
-    .global lbl_80518A58
-    lbl_80518A58:
-        .float 1.0
-    .global lbl_80518A5C
-    lbl_80518A5C:
-        .4byte 0x41A00000
-    .global lbl_80518A60
-    lbl_80518A60:
-        .4byte 0x43A2F983
-    .global lbl_80518A64
-    lbl_80518A64:
-        .4byte 0xC3A2F983
-    .global lbl_80518A68
-    lbl_80518A68:
-        .4byte 0x42EA0000
-    .global lbl_80518A6C
-    lbl_80518A6C:
-        .4byte 0x626F6479
-        .4byte 0x5F310000
-    .global lbl_80518A74
-    lbl_80518A74:
-        .4byte 0x6B657900
-    .global lbl_80518A78
-    lbl_80518A78:
-        .4byte 0x40000000
-    .global lbl_80518A7C
-    lbl_80518A7C:
-        .float 0.5
-    .global lbl_80518A80
-    lbl_80518A80:
-        .4byte 0x43C80000
-    .global lbl_80518A84
-    lbl_80518A84:
-        .4byte 0x79657300
-    .global lbl_80518A88
-    lbl_80518A88:
-        .4byte 0xC1A00000
-    .global lbl_80518A8C
-    lbl_80518A8C:
-        .4byte 0x40A00000
-    .global lbl_80518A90
-    lbl_80518A90:
-        .4byte 0x42200000
-    .global lbl_80518A94
-    lbl_80518A94:
-        .4byte 0x41200000
-    .global lbl_80518A98
-    lbl_80518A98:
-        .float 0.7
-    .global lbl_80518A9C
-    lbl_80518A9C:
-        .4byte 0x676F616C
-        .4byte 0x00000000
-    .global lbl_80518AA4
-    lbl_80518AA4:
-        .4byte 0x42BE0000
-    .global lbl_80518AA8
-    lbl_80518AA8:
-        .4byte 0x43070000
-    .global lbl_80518AAC
-    lbl_80518AAC:
-        .4byte 0x43480000
-    .global lbl_80518AB0
-    lbl_80518AB0:
-        .4byte 0x3E4CCCCD
-    .global lbl_80518AB4
-    lbl_80518AB4:
-        .4byte 0x40400000
-    .global lbl_80518AB8
-    lbl_80518AB8:
-        .4byte 0x3ECCCCCD
-    .global lbl_80518ABC
-    lbl_80518ABC:
-        .4byte 0x41000000
-    .global lbl_80518AC0
-    lbl_80518AC0:
-        .4byte 0x437A0000
-    .global lbl_80518AC4
-    lbl_80518AC4:
-        .4byte 0x43FA0000
-    .global lbl_80518AC8
-    lbl_80518AC8:
-        .4byte 0x43960000
-    .global lbl_80518ACC
-    lbl_80518ACC:
-        .4byte 0x447A0000
-    .global lbl_80518AD0
-    lbl_80518AD0:
-        .4byte 0x43C30000
-    .global lbl_80518AD4
-    lbl_80518AD4:
-        .float 0.25
-    .global lbl_80518AD8
-    lbl_80518AD8:
-        .float 0.3
-        .4byte 0x00000000
-    .global lbl_80518AE0
-    lbl_80518AE0:
-        .4byte 0x43300000
-        .4byte 0x00000000
-    .global lbl_80518AE8
-    lbl_80518AE8:
-        .float 110.0
-    .global lbl_80518AEC
-    lbl_80518AEC:
-        .float 32768.0
-    .global lbl_80518AF0
-    lbl_80518AF0:
-        .float 1.5707964
-    .global lbl_80518AF4
-    lbl_80518AF4:
-        .float 0.7853982
-    .global lbl_80518AF8
-    lbl_80518AF8:
-        .float 6.2831855
-    .global lbl_80518AFC
-    lbl_80518AFC:
-        .float 130.0
-    .global lbl_80518B00
-    lbl_80518B00:
-        .float 700.0
-        .skip 0x4
-    .global lbl_80518B08
-    lbl_80518B08:
-        .4byte 0x43300000
-        .4byte 0x80000000
-    .global lbl_80518B10
-    lbl_80518B10:
-        .float 0.05
-    .global lbl_80518B14
-    lbl_80518B14:
-        .float 0.1
-    .global lbl_80518B18
-    lbl_80518B18:
-        .float 0.8
-    .global lbl_80518B1C
-    lbl_80518B1C:
-        .asciz "flow"
-        .skip 0x3
-    .global lbl_80518B24
-    lbl_80518B24:
-        .float 900.0
-    .global lbl_80518B28
-    lbl_80518B28:
-        .float 7.0
-    .global lbl_80518B2C
-    lbl_80518B2C:
-        .float 90.0
-    .global lbl_80518B30
-    lbl_80518B30:
-        .asciz "Onyon"
-        .skip 0x2
-    .global lbl_80518B38
-    lbl_80518B38:
-        .asciz "pot.bmd"
-    .global lbl_80518B40
-    lbl_80518B40:
-        .asciz "ufo.bmd"
-    .global lbl_80518B48
-    lbl_80518B48:
-        .asciz "ufo.brk"
-    .global lbl_80518B50
-    lbl_80518B50:
-        .asciz "ArgType"
-    .global lbl_80518B58
-    lbl_80518B58:
-        .float 128000.0
-
-    .section .sbss2, "", @nobits # 0x80520e40 - 0x80520ED8
-    .global lbl_80520E60
-    lbl_80520E60:
-        .skip 0x4
-    .global lbl_80520E64
-    lbl_80520E64:
-        .skip 0x4
-*/
+#include "Game/Entities/ItemPikihead.h"
+#include "Game/Piki.h"
+#include "Game/PikiMgr.h"
+#include "Game/MoviePlayer.h"
+#include "Game/gamePlayData.h"
+#include "Game/gameStat.h"
+#include "Game/BirthMgr.h"
+#include "efx/TPod.h"
+#include "efx/Container.h"
+#include "efx/TUfo.h"
+#include "efx/OnyonSpot.h"
+#include "SysShape/Animator.h"
+#include "Sys/DrawBuffers.h"
+#include "nans.h"
 
 namespace Game {
+
+static const char someOnyonMgrArray[] = { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 };
+static const char onyonMgrName[]      = "onyonMgr";
 
 /*
  * --INFO--
  * Address:	80174CA0
  * Size:	00080C
  */
-void Onyon::movieUserCommand(unsigned long, Game::MoviePlayer*)
+void Onyon::movieUserCommand(u32 code, MoviePlayer* player)
 {
+	switch (code) {
+	case 100: // 0x64
+	case 105: // 0x69
+		if (!playData->hasBootContainer(m_onyonType)) {
+			JUT_PANICLINE(534, "BIKKURI no boot!\n");
+		}
+
+		int allPikiCount = GameStat::getAllPikmins(m_onyonType);
+
+		// checkZikatu inline needs SLIGHTLY fixing.
+		if (code == 105 || !GameStat::checkZikatu(m_onyonType)) {
+			playData->setContainer(m_onyonType);
+			ItemPikihead::Item* pikiHead = static_cast<ItemPikihead::Item*>(ItemPikihead::mgr->birth());
+			if (pikiHead) {
+				ItemPikihead::InitArg pikiHeadInitArg((EPikiKind)m_onyonType, Vector3f::zero);
+				pikiHead->init(&pikiHeadInitArg);
+				BirthMgr::inc(pikiHead->_1F4);
+				pikiHead->movie_begin(false);
+				doEmit(pikiHead, true);
+				return;
+			}
+
+			gameSystem->m_section->_12C->frameInitAll();
+			gameSystem->m_section->_130->frameInitAll();
+			ItemPikihead::Item* targetPikihead = nullptr;
+			f32 maxDist                        = 0.0f;
+			Iterator<ItemPikihead::Item> iterSprout(ItemPikihead::mgr);
+
+			CI_LOOP(iterSprout)
+			{
+				ItemPikihead::Item* item = (*iterSprout);
+				if (item->isAlive()) {
+					f32 sphereDist = item->calcSphereDistance(this);
+					if (sphereDist > maxDist) {
+						maxDist        = sphereDist;
+						targetPikihead = item;
+					}
+				}
+			}
+
+			if (targetPikihead) {
+				GameStat::mePikis.dec(targetPikihead->_1F4);
+				int& pikiHeadCount = playData->m_pikiContainer.getCount(targetPikihead->_1F4, targetPikihead->_1F6);
+				pikiHeadCount++;
+				CreatureKillArg killArg(1);
+				targetPikihead->kill(&killArg);
+			} else {
+
+				Iterator<Piki> iterPiki(pikiMgr);
+				Piki* targetPiki = nullptr;
+				CI_LOOP(iterPiki)
+				{
+					Piki* piki = (*iterPiki);
+					if (piki->isAlive() && !piki->isZikatu()) {
+						f32 sphereDist = piki->calcSphereDistance(this);
+						if (sphereDist > maxDist) {
+							maxDist    = sphereDist;
+							targetPiki = piki;
+						}
+					}
+				}
+
+				if (targetPiki) {
+					int& pikiCount = playData->m_pikiContainer.getCount(targetPiki->m_pikiKind, targetPiki->m_happaKind);
+					pikiCount++;
+					CreatureKillArg pikiKillArg(1);
+					targetPiki->kill(&pikiKillArg);
+				}
+			}
+
+			ItemPikihead::Item* sprout = static_cast<ItemPikihead::Item*>(ItemPikihead::mgr->birth());
+			if (sprout) {
+				ItemPikihead::InitArg sproutInitArg((EPikiKind)m_onyonType, Vector3f::zero);
+				sprout->init(&sproutInitArg);
+				BirthMgr::inc(sprout->_1F4);
+				sprout->movie_begin(false);
+				doEmit(sprout, true);
+			} else {
+				JUT_PANICLINE(641, "onyon supply failure!\n");
+			}
+		}
+		break;
+
+	case 101: // 0x65
+		if (!(m_onyonType > ONYON_TYPE_YELLOW)) {
+			if (moviePlayer->m_flags & 0x2) {
+				setSpotState(SPOTSTATE_Unk3);
+			} else {
+				setSpotState(SPOTSTATE_Unk1);
+			}
+		} else if (m_onyonType == ONYON_TYPE_SHIP || m_onyonType == ONYON_TYPE_POD) {
+			setSpotEffect(true);
+		}
+		break;
+
+	case 102: // 0x66
+		if (!(m_onyonType > ONYON_TYPE_YELLOW)) {
+			if (moviePlayer->m_flags & 0x2) {
+				setSpotState(SPOTSTATE_Unk0);
+			} else {
+				setSpotState(SPOTSTATE_Unk2);
+			}
+		} else if (m_onyonType == ONYON_TYPE_SHIP || m_onyonType == ONYON_TYPE_POD) {
+			setSpotEffect(false);
+		}
+		break;
+
+	case 103: // 0x67
+		if (m_onyonType == ONYON_TYPE_SHIP) {
+			startPropera();
+		}
+		break;
+
+	case 104: // 0x68
+		if (m_onyonType == ONYON_TYPE_SHIP) {
+			stopPropera();
+		}
+		break;
+	}
 	/*
 	stwu     r1, -0xa0(r1)
 	mflr     r0
@@ -1124,7 +175,7 @@ lbl_80174CF8:
 	bge      lbl_80175484
 	b        lbl_80175474
 
-lbl_80174D08:
+lbl_80174D08: // 0x64 or 0x69
 	lwz      r3, playData__4Game@sda21(r13)
 	lhz      r4, 0x22e(r31)
 	bl       hasBootContainer__Q24Game8PlayDataFi
@@ -1604,7 +655,7 @@ lbl_801753A0:
 	bl       panic_f__12JUTExceptionFPCciPCce
 	b        lbl_80175484
 
-lbl_801753B8:
+lbl_801753B8: // 0x65
 	lhz      r0, 0x22e(r31)
 	cmplwi   r0, 2
 	bgt      lbl_801753EC
@@ -1633,7 +684,7 @@ lbl_801753FC:
 	bl       setSpotEffect__Q24Game5OnyonFb
 	b        lbl_80175484
 
-lbl_8017540C:
+lbl_8017540C: // 0x66
 	lhz      r0, 0x22e(r31)
 	cmplwi   r0, 2
 	bgt      lbl_80175440
@@ -1662,14 +713,14 @@ lbl_80175450:
 	bl       setSpotEffect__Q24Game5OnyonFb
 	b        lbl_80175484
 
-lbl_80175460:
+lbl_80175460: // 0x67
 	lhz      r0, 0x22e(r31)
 	cmplwi   r0, 4
 	bne      lbl_80175484
 	bl       startPropera__Q24Game5OnyonFv
 	b        lbl_80175484
 
-lbl_80175474:
+lbl_80175474: // 0x68
 	lhz      r0, 0x22e(r31)
 	cmplwi   r0, 4
 	bne      lbl_80175484
@@ -1689,32 +740,32 @@ lbl_80175484:
 	*/
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	000034
- */
-void Onyon::openUFO(void)
-{
-	// UNUSED FUNCTION
-}
+// /*
+//  * --INFO--
+//  * Address:	........
+//  * Size:	000034
+//  */
+// void Onyon::openUFO(void)
+// {
+// 	// UNUSED FUNCTION
+// }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	000068
- */
-void Onyon::closeUFO(void)
-{
-	// UNUSED FUNCTION
-}
+// /*
+//  * --INFO--
+//  * Address:	........
+//  * Size:	000068
+//  */
+// void Onyon::closeUFO(void)
+// {
+// 	// UNUSED FUNCTION
+// }
 
 /*
  * --INFO--
  * Address:	801754AC
  * Size:	0000E4
  */
-bool Onyon::isSuckReady(void)
+bool Onyon::isSuckReady()
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -1798,7 +849,7 @@ lbl_8017557C:
  * Matches!
  * Can either be C-style BOOL or weird if/else with temp and casting.
  */
-BOOL Onyon::isSuckArriveWait(void) { return m_onyonType == ONYON_TYPE_SHIP ? m_carcassType == 4 : FALSE; }
+BOOL Onyon::isSuckArriveWait() { return m_onyonType == ONYON_TYPE_SHIP ? m_suckState == 4 : FALSE; }
 
 /*
  * --INFO--
@@ -2266,17 +1317,18 @@ lbl_80175C24:
 	*/
 }
 
+} // namespace Game
 namespace efx {
 
-/*
- * --INFO--
- * Address:	........
- * Size:	000080
- */
-TChasePosYRot2::~TChasePosYRot2(void)
-{
-	// UNUSED FUNCTION
-}
+// /*
+//  * --INFO--
+//  * Address:	........
+//  * Size:	000080
+//  */
+// TChasePosYRot2::~TChasePosYRot2(void)
+// {
+// 	// UNUSED FUNCTION
+// }
 
 /*
  * --INFO--
@@ -2326,65 +1378,18 @@ blr
 	*/
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	000080
- */
-TForever2::~TForever2(void)
-{
-	// UNUSED FUNCTION
-}
-
-/*
- * --INFO--
- * Address:	80175CC8
- * Size:	000084
- */
-TForever::~TForever(void)
-{
-	/*
-stwu     r1, -0x10(r1)
-mflr     r0
-stw      r0, 0x14(r1)
-stw      r31, 0xc(r1)
-mr       r31, r4
-stw      r30, 8(r1)
-or.      r30, r3, r3
-beq      lbl_80175D30
-lis      r3, __vt__Q23efx8TForever@ha
-addi     r3, r3, __vt__Q23efx8TForever@l
-stw      r3, 0(r30)
-addi     r0, r3, 0x14
-stw      r0, 4(r30)
-beq      lbl_80175D20
-lis      r4, __vt__Q23efx5TSync@ha
-addi     r3, r30, 4
-addi     r5, r4, __vt__Q23efx5TSync@l
-li       r4, 0
-stw      r5, 0(r30)
-addi     r0, r5, 0x14
-stw      r0, 4(r30)
-bl       __dt__18JPAEmitterCallBackFv
-
-lbl_80175D20:
-extsh.   r0, r31
-ble      lbl_80175D30
-mr       r3, r30
-bl       __dl__FPv
-
-lbl_80175D30:
-lwz      r0, 0x14(r1)
-mr       r3, r30
-lwz      r31, 0xc(r1)
-lwz      r30, 8(r1)
-mtlr     r0
-addi     r1, r1, 0x10
-blr
-	*/
-}
+// /*
+//  * --INFO--
+//  * Address:	........
+//  * Size:	000080
+//  */
+// TForever2::~TForever2(void)
+// {
+// 	// UNUSED FUNCTION
+// }
 
 } // namespace efx
+namespace Game {
 
 /*
  * --INFO--
@@ -2460,7 +1465,7 @@ lbl_80175E04:
  * Address:	80175E1C
  * Size:	000074
  */
-void Onyon::stimulate(Game::Interaction&)
+bool Onyon::stimulate(Interaction&)
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -2504,7 +1509,7 @@ lbl_80175E78:
  * Address:	80175E90
  * Size:	000158
  */
-void InteractSuckArrive::actOnyon(Game::Onyon*)
+bool InteractSuckArrive::actOnyon(Onyon*)
 {
 	/*
 	stwu     r1, -0x20(r1)
@@ -2613,14 +1618,14 @@ lbl_80175FD0:
  * Address:	80175FE8
  * Size:	000008
  */
-u32 Onyon::needShadow(void) { return 0x0; }
+bool Onyon::needShadow() { return false; }
 
 /*
  * --INFO--
  * Address:	80175FF0
  * Size:	0000A4
  */
-void Onyon::getShadowParam(Game::ShadowParam&)
+void Onyon::getShadowParam(ShadowParam& param)
 {
 	/*
 	stwu     r1, -0x20(r1)
@@ -2674,7 +1679,7 @@ lbl_80176068:
  * Address:	80176094
  * Size:	000034
  */
-void Onyon::sound_culling(void)
+bool Onyon::sound_culling()
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -2702,7 +1707,7 @@ lbl_801760B8:
  * Address:	801760C8
  * Size:	000DBC
  */
-void InteractSuckDone::actOnyon(Game::Onyon*)
+bool InteractSuckDone::actOnyon(Onyon*)
 {
 	/*
 	stwu     r1, -0x140(r1)
@@ -3825,22 +2830,22 @@ lbl_80176FC0:
 	*/
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	0000B0
- */
-Onyon::Onyon(void)
-{
-	// UNUSED FUNCTION
-}
+// /*
+//  * --INFO--
+//  * Address:	........
+//  * Size:	0000B0
+//  */
+// Onyon::Onyon(void)
+// {
+// 	// UNUSED FUNCTION
+// }
 
 /*
  * --INFO--
  * Address:	80177008
  * Size:	000034
  */
-void Onyon::onInit(Game::CreatureInitArg*)
+void Onyon::onInit(CreatureInitArg*)
 {
 	/*
 	li       r4, 0
@@ -4051,7 +3056,7 @@ lbl_80177268:
  * Address:	8017727C
  * Size:	000110
  */
-void Onyon::setSpotState(Game::Onyon::cSpotState)
+void Onyon::setSpotState(Onyon::cSpotState)
 {
 	/*
 	stwu     r1, -0x50(r1)
@@ -4141,22 +3146,22 @@ lbl_80177378:
 	*/
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	000154
- */
-void Onyon::updateSpot(void)
-{
-	// UNUSED FUNCTION
-}
+// /*
+//  * --INFO--
+//  * Address:	........
+//  * Size:	000154
+//  */
+// void Onyon::updateSpot(void)
+// {
+// 	// UNUSED FUNCTION
+// }
 
 /*
  * --INFO--
  * Address:	8017738C
  * Size:	0000AC
  */
-void Onyon::getSuckPos(void)
+Vector3f Onyon::getSuckPos()
 {
 	/*
 	stwu     r1, -0x40(r1)
@@ -4214,7 +3219,7 @@ lbl_80177400:
  * Address:	80177438
  * Size:	0000D8
  */
-void Onyon::getGoalPos(void)
+Vector3f Onyon::getGoalPos()
 {
 	/*
 	stwu     r1, -0x20(r1)
@@ -4975,7 +3980,7 @@ lbl_80177DC8:
  * Address:	80177DEC
  * Size:	000008
  */
-void BaseItem::getSound_PosPtr(void)
+Vector3f* BaseItem::getSound_PosPtr()
 {
 	/*
 	addi     r3, r3, 0x19c
@@ -4983,15 +3988,15 @@ void BaseItem::getSound_PosPtr(void)
 	*/
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	0000E0
- */
-void Onyon::initTube(void)
-{
-	// UNUSED FUNCTION
-}
+// /*
+//  * --INFO--
+//  * Address:	........
+//  * Size:	0000E0
+//  */
+// void Onyon::initTube(void)
+// {
+// 	// UNUSED FUNCTION
+// }
 
 /*
  * --INFO--
@@ -5131,7 +4136,7 @@ lbl_80177F6C:
  * Address:	80177F8C
  * Size:	000078
  */
-void Onyon::onKeyEvent_UFO(SysShape::KeyEvent const&)
+void Onyon::onKeyEvent_UFO(const SysShape::KeyEvent&)
 {
 	/*
 	lwz      r0, 0x1c(r4)
@@ -7466,14 +6471,12 @@ lbl_80179C8C:
 	*/
 }
 
-} // namespace Game
-
 /*
  * --INFO--
  * Address:	80179CA8
  * Size:	0000B8
  */
-void insideAccessArea__Q24Game5OnyonFR10Vector3f(void)
+void Onyon::insideAccessArea(Vector3f&)
 {
 	/*
 	stwu     r1, -0x20(r1)
@@ -7531,34 +6534,32 @@ lbl_80179D4C:
 	*/
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	000048
- */
-void insideBootArea__Q24Game5OnyonFR10Vector3f(void)
-{
-	// UNUSED FUNCTION
-}
+// /*
+//  * --INFO--
+//  * Address:	........
+//  * Size:	000048
+//  */
+// void Onyon::insideBootArea(Vector3f&)
+// {
+// 	// UNUSED FUNCTION
+// }
 
-namespace Game {
-
-/*
- * --INFO--
- * Address:	........
- * Size:	000088
- */
-void Onyon::getOnyonState(void)
-{
-	// UNUSED FUNCTION
-}
+// /*
+//  * --INFO--
+//  * Address:	........
+//  * Size:	000088
+//  */
+// void Onyon::getOnyonState(void)
+// {
+// 	// UNUSED FUNCTION
+// }
 
 /*
  * --INFO--
  * Address:	80179D60
  * Size:	00011C
  */
-void generatorBirth__Q34Game9ItemOnyon3MgrFR10Vector3f R10Vector3f PQ24Game11GenItemParm(void)
+BaseItem* ItemOnyon::Mgr::generatorBirth(Vector3f&, Vector3f&, GenItemParm*)
 {
 	/*
 	.loc_0x0:
@@ -7902,43 +6903,15 @@ lbl_8017A15C:
 	*/
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	000124
- */
-void Onyon::init_pmotions(void)
-{
-	// UNUSED FUNCTION
-}
-
-namespace SysShape {
-
-/*
- * --INFO--
- * Address:	8017A170
- * Size:	000034
- */
-Animator::Animator(void)
-{
-	/*
-lis      r5, __vt__Q28SysShape12BaseAnimator@ha
-lis      r4, __vt__Q28SysShape8Animator@ha
-addi     r5, r5, __vt__Q28SysShape12BaseAnimator@l
-li       r0, 0
-stw      r5, 0(r3)
-addi     r4, r4, __vt__Q28SysShape8Animator@l
-stw      r4, 0(r3)
-stb      r0, 0x18(r3)
-stw      r0, 0xc(r3)
-stw      r0, 4(r3)
-stb      r0, 0x18(r3)
-stw      r0, 0x10(r3)
-blr
-	*/
-}
-
-} // namespace SysShape
+// /*
+//  * --INFO--
+//  * Address:	........
+//  * Size:	000124
+//  */
+// void Onyon::init_pmotions(void)
+// {
+// 	// UNUSED FUNCTION
+// }
 
 /*
  * --INFO--
@@ -8032,15 +7005,15 @@ lbl_8017A278:
 	*/
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	000094
- */
-void Onyon::start_pmotion(int, int)
-{
-	// UNUSED FUNCTION
-}
+// /*
+//  * --INFO--
+//  * Address:	........
+//  * Size:	000094
+//  */
+// void Onyon::start_pmotion(int, int)
+// {
+// 	// UNUSED FUNCTION
+// }
 
 /*
  * --INFO--
@@ -8327,14 +7300,14 @@ lbl_8017A5EC:
  * Address:	8017A61C
  * Size:	000004
  */
-void BaseItem::initDependency(void) { }
+void BaseItem::initDependency() { }
 
 /*
  * --INFO--
  * Address:	8017A620
  * Size:	00004C
  */
-void ItemOnyon::Mgr::generatorGetShape(Game::GenItemParm*)
+J3DModelData* ItemOnyon::Mgr::generatorGetShape(GenItemParm*)
 {
 	/*
 	lwz      r0, 4(r4)
@@ -8374,7 +7347,7 @@ lbl_8017A65C:
  * Address:	8017A66C
  * Size:	000054
  */
-void ItemOnyon::Mgr::generatorNewItemParm(void)
+GenItemParm* ItemOnyon::Mgr::generatorNewItemParm()
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -8602,206 +7575,6 @@ lbl_8017A7F0:
 	blr
 	*/
 }
-
-} // namespace Game
-
-/*
- * --INFO--
- * Address:	8017A94C
- * Size:	0000C8
- */
-void NodeObjectMgr<Game::Onyon>::~NodeObjectMgr()
-{
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	mr       r31, r4
-	stw      r30, 8(r1)
-	or.      r30, r3, r3
-	beq      lbl_8017A9F8
-	lis      r3, "__vt__28NodeObjectMgr<Q24Game5Onyon>"@ha
-	addic.   r0, r30, 0x20
-	addi     r3, r3, "__vt__28NodeObjectMgr<Q24Game5Onyon>"@l
-	stw      r3, 0(r30)
-	addi     r0, r3, 0x2c
-	stw      r0, 0x1c(r30)
-	beq      lbl_8017A9A0
-	lis      r4, "__vt__26TObjectNode<Q24Game5Onyon>"@ha
-	addi     r3, r30, 0x20
-	addi     r0, r4, "__vt__26TObjectNode<Q24Game5Onyon>"@l
-	li       r4, 0
-	stw      r0, 0x20(r30)
-	bl       __dt__5CNodeFv
-
-lbl_8017A9A0:
-	cmplwi   r30, 0
-	beq      lbl_8017A9E8
-	lis      r3, "__vt__24ObjectMgr<Q24Game5Onyon>"@ha
-	addi     r3, r3, "__vt__24ObjectMgr<Q24Game5Onyon>"@l
-	stw      r3, 0(r30)
-	addi     r0, r3, 0x2c
-	stw      r0, 0x1c(r30)
-	beq      lbl_8017A9E8
-	lis      r3, "__vt__24Container<Q24Game5Onyon>"@ha
-	addi     r0, r3, "__vt__24Container<Q24Game5Onyon>"@l
-	stw      r0, 0(r30)
-	beq      lbl_8017A9E8
-	lis      r4, __vt__16GenericContainer@ha
-	mr       r3, r30
-	addi     r0, r4, __vt__16GenericContainer@l
-	li       r4, 0
-	stw      r0, 0(r30)
-	bl       __dt__5CNodeFv
-
-lbl_8017A9E8:
-	extsh.   r0, r31
-	ble      lbl_8017A9F8
-	mr       r3, r30
-	bl       __dl__FPv
-
-lbl_8017A9F8:
-	lwz      r0, 0x14(r1)
-	mr       r3, r30
-	lwz      r31, 0xc(r1)
-	lwz      r30, 8(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
-}
-
-/*
- * --INFO--
- * Address:	8017AA14
- * Size:	000060
- */
-void TObjectNode<Game::Onyon>::~TObjectNode()
-{
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	mr       r31, r4
-	stw      r30, 8(r1)
-	or.      r30, r3, r3
-	beq      lbl_8017AA58
-	lis      r5, "__vt__26TObjectNode<Q24Game5Onyon>"@ha
-	li       r4, 0
-	addi     r0, r5, "__vt__26TObjectNode<Q24Game5Onyon>"@l
-	stw      r0, 0(r30)
-	bl       __dt__5CNodeFv
-	extsh.   r0, r31
-	ble      lbl_8017AA58
-	mr       r3, r30
-	bl       __dl__FPv
-
-lbl_8017AA58:
-	lwz      r0, 0x14(r1)
-	mr       r3, r30
-	lwz      r31, 0xc(r1)
-	lwz      r30, 8(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
-}
-
-/*
- * --INFO--
- * Address:	8017AA74
- * Size:	000088
- */
-void ObjectMgr<Game::Onyon>::~ObjectMgr()
-{
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	mr       r31, r4
-	stw      r30, 8(r1)
-	or.      r30, r3, r3
-	beq      lbl_8017AAE0
-	lis      r4, "__vt__24ObjectMgr<Q24Game5Onyon>"@ha
-	addi     r4, r4, "__vt__24ObjectMgr<Q24Game5Onyon>"@l
-	stw      r4, 0(r30)
-	addi     r0, r4, 0x2c
-	stw      r0, 0x1c(r30)
-	beq      lbl_8017AAD0
-	lis      r4, "__vt__24Container<Q24Game5Onyon>"@ha
-	addi     r0, r4, "__vt__24Container<Q24Game5Onyon>"@l
-	stw      r0, 0(r30)
-	beq      lbl_8017AAD0
-	lis      r5, __vt__16GenericContainer@ha
-	li       r4, 0
-	addi     r0, r5, __vt__16GenericContainer@l
-	stw      r0, 0(r30)
-	bl       __dt__5CNodeFv
-
-lbl_8017AAD0:
-	extsh.   r0, r31
-	ble      lbl_8017AAE0
-	mr       r3, r30
-	bl       __dl__FPv
-
-lbl_8017AAE0:
-	lwz      r0, 0x14(r1)
-	mr       r3, r30
-	lwz      r31, 0xc(r1)
-	lwz      r30, 8(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
-}
-
-/*
- * --INFO--
- * Address:	8017AAFC
- * Size:	000070
- */
-void Container<Game::Onyon>::~Container()
-{
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	mr       r31, r4
-	stw      r30, 8(r1)
-	or.      r30, r3, r3
-	beq      lbl_8017AB50
-	lis      r4, "__vt__24Container<Q24Game5Onyon>"@ha
-	addi     r0, r4, "__vt__24Container<Q24Game5Onyon>"@l
-	stw      r0, 0(r30)
-	beq      lbl_8017AB40
-	lis      r5, __vt__16GenericContainer@ha
-	li       r4, 0
-	addi     r0, r5, __vt__16GenericContainer@l
-	stw      r0, 0(r30)
-	bl       __dt__5CNodeFv
-
-lbl_8017AB40:
-	extsh.   r0, r31
-	ble      lbl_8017AB50
-	mr       r3, r30
-	bl       __dl__FPv
-
-lbl_8017AB50:
-	lwz      r0, 0x14(r1)
-	mr       r3, r30
-	lwz      r31, 0xc(r1)
-	lwz      r30, 8(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
-}
-
-namespace Game {
 
 /*
  * --INFO--
@@ -10000,7 +8773,7 @@ lbl_8017BA60:
  * Address:	8017BA9C
  * Size:	000060
  */
-void ItemOnyon::Mgr::getOnyon(int)
+Onyon* ItemOnyon::Mgr::getOnyon(int)
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -10464,7 +9237,7 @@ load__Q28SysShape7AnimMgrFP13JKRFileLoaderPcP12J3DModelDataP13JKRFileLoaderPc
  * Address:	8017C044
  * Size:	00000C
  */
-void ItemOnyon::Mgr::generatorGetID(void)
+u32 ItemOnyon::Mgr::generatorGetID()
 {
 	/*
 	lis      r3, 0x6F6E796E@ha
@@ -10478,7 +9251,7 @@ void ItemOnyon::Mgr::generatorGetID(void)
  * Address:	8017C050
  * Size:	00000C
  */
-void ItemOnyon::Mgr::generatorLocalVersion(void)
+u32 ItemOnyon::Mgr::generatorLocalVersion()
 {
 	/*
 	lis      r3, 0x30303031@ha
@@ -10492,7 +9265,7 @@ void ItemOnyon::Mgr::generatorLocalVersion(void)
  * Address:	8017C05C
  * Size:	00002C
  */
-void ItemOnyon::Mgr::doAnimation(void)
+void ItemOnyon::Mgr::doAnimation()
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -10645,21 +9418,21 @@ void BaseItemMgr::onLoadResources(void) { }
  * Address:	8017C170
  * Size:	000008
  */
-u32 BaseItemMgr::loadEverytime(void) { return 0x1; }
+bool BaseItemMgr::loadEverytime() { return true; }
 
 /*
  * --INFO--
  * Address:	8017C178
  * Size:	000004
  */
-void BaseItemMgr::onUpdateUseList(Game::GenItemParm*, int) { }
+void BaseItemMgr::onUpdateUseList(GenItemParm*, int) { }
 
 /*
  * --INFO--
  * Address:	8017C17C
  * Size:	00002C
  */
-void ItemOnyon::Mgr::getEnd(void)
+void* ItemOnyon::Mgr::getEnd()
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -10683,7 +9456,7 @@ void ItemOnyon::Mgr::getEnd(void)
  * Address:	8017C1A8
  * Size:	000008
  */
-u32 NodeObjectMgr<Game::Onyon>::getEnd() { return 0x0; }
+void* NodeObjectMgr<Game::Onyon>::getEnd() { return nullptr; }
 
 namespace Game {
 
@@ -10692,7 +9465,7 @@ namespace Game {
  * Address:	8017C1B0
  * Size:	00002C
  */
-void ItemOnyon::Mgr::getStart(void)
+void* ItemOnyon::Mgr::getStart()
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -10716,7 +9489,7 @@ void ItemOnyon::Mgr::getStart(void)
  * Address:	8017C1DC
  * Size:	000008
  */
-void NodeObjectMgr<Game::Onyon>::getStart()
+void* NodeObjectMgr<Game::Onyon>::getStart()
 {
 	/*
 	lwz      r3, 0x30(r3)
@@ -10731,7 +9504,7 @@ namespace Game {
  * Address:	8017C1E4
  * Size:	00002C
  */
-void ItemOnyon::Mgr::getNext(void*)
+void* ItemOnyon::Mgr::getNext(void*)
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -10755,7 +9528,7 @@ void ItemOnyon::Mgr::getNext(void*)
  * Address:	8017C210
  * Size:	000008
  */
-void NodeObjectMgr<Game::Onyon>::getNext(void*)
+void* NodeObjectMgr<Game::Onyon>::getNext(void*)
 {
 	/*
 	lwz      r3, 4(r4)
@@ -10770,7 +9543,7 @@ namespace Game {
  * Address:	8017C218
  * Size:	00002C
  */
-void ItemOnyon::Mgr::get(void*)
+Onyon* ItemOnyon::Mgr::get(void*)
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -10794,7 +9567,7 @@ void ItemOnyon::Mgr::get(void*)
  * Address:	8017C244
  * Size:	000008
  */
-void NodeObjectMgr<Game::Onyon>::get(void*)
+Game::Onyon* NodeObjectMgr<Game::Onyon>::get(void*)
 {
 	/*
 	lwz      r3, 0x18(r4)
@@ -10809,51 +9582,14 @@ namespace Game {
  * Address:	8017C24C
  * Size:	000008
  */
-u32 GenItemParm::getShapeID(void) { return 0x0; }
-
-} // namespace Game
-
-namespace efx {
-
-/*
- * --INFO--
- * Address:	8017C254
- * Size:	000008
- */
-void ArgType::getName(void)
-{
-	/*
-	addi     r3, r2, lbl_80518B50@sda21
-	blr
-	*/
-}
-
-/*
- * --INFO--
- * Address:	8017C25C
- * Size:	000014
- */
-void OnyonSpotArg::getID(void)
-{
-	/*
-	lis      r4, 0x53504F54@ha
-	lis      r3, 0x4F4E595F@ha
-	addi     r4, r4, 0x53504F54@l
-	addi     r3, r3, 0x4F4E595F@l
-	blr
-	*/
-}
-
-namespace Game {
-
-} // namespace Game
+int GenItemParm::getShapeID(void) { return 0x0; }
 
 /*
  * --INFO--
  * Address:	8017C270
  * Size:	000008
  */
-void Onyon::getCreatureName(void)
+char* Onyon::getCreatureName()
 {
 	/*
 	addi     r3, r2, lbl_80518B30@sda21
@@ -10866,7 +9602,7 @@ void Onyon::getCreatureName(void)
  * Address:	8017C278
  * Size:	000008
  */
-s32 BaseItem::getCreatureID(void) { return -0x1; }
+s32 BaseItem::getCreatureID() { return -0x1; }
 
 /*
  * --INFO--
@@ -10880,7 +9616,7 @@ void BaseItem::do_setLODParm(Game::AILODParm&) { }
  * Address:	8017C284
  * Size:	000008
  */
-void BaseItem::getMapCollisionRadius(void)
+f32 BaseItem::getMapCollisionRadius(void)
 {
 	/*
 	lfs      f1, 0x1d0(r3)
@@ -10893,81 +9629,77 @@ void BaseItem::getMapCollisionRadius(void)
  * Address:	8017C28C
  * Size:	000008
  */
-u32 BaseItem::interactAttack(Game::InteractAttack&) { return 0x0; }
+bool BaseItem::interactAttack(InteractAttack&) { return 0x0; }
 
 /*
  * --INFO--
  * Address:	8017C294
  * Size:	000008
  */
-u32 BaseItem::interactBreakBridge(Game::InteractBreakBridge&) { return 0x0; }
+bool BaseItem::interactBreakBridge(InteractBreakBridge&) { return 0x0; }
 
 /*
  * --INFO--
  * Address:	8017C29C
  * Size:	000008
  */
-u32 BaseItem::interactEat(Game::InteractEat&) { return 0x0; }
+bool BaseItem::interactEat(InteractEat&) { return 0x0; }
 
 /*
  * --INFO--
  * Address:	8017C2A4
  * Size:	000008
  */
-u32 BaseItem::interactFlockAttack(Game::InteractFlockAttack&) { return 0x0; }
+bool BaseItem::interactFlockAttack(Game::InteractFlockAttack&) { return 0x0; }
 
 /*
  * --INFO--
  * Address:	8017C2AC
  * Size:	000008
  */
-u32 BaseItem::interactAbsorb(Game::InteractAbsorb&) { return 0x0; }
+bool BaseItem::interactAbsorb(Game::InteractAbsorb&) { return 0x0; }
 
 /*
  * --INFO--
  * Address:	8017C2B4
  * Size:	000008
  */
-u32 BaseItem::interactFue(Game::InteractFue&) { return 0x0; }
+bool BaseItem::interactFue(Game::InteractFue&) { return 0x0; }
 
 /*
  * --INFO--
  * Address:	8017C2BC
  * Size:	000008
  */
-u32 BaseItem::interactFarmKarero(Game::InteractFarmKarero&) { return 0x0; }
+bool BaseItem::interactFarmKarero(Game::InteractFarmKarero&) { return 0x0; }
 
 /*
  * --INFO--
  * Address:	8017C2C4
  * Size:	000008
  */
-u32 BaseItem::interactFarmHaero(Game::InteractFarmHaero&) { return 0x0; }
+bool BaseItem::interactFarmHaero(Game::InteractFarmHaero&) { return 0x0; }
 
 /*
  * --INFO--
  * Address:	8017C2CC
  * Size:	000008
  */
-u32 BaseItem::interactGotKey(Game::InteractGotKey&) { return 0x0; }
-
-} // namespace efx
+bool BaseItem::interactGotKey(Game::InteractGotKey&) { return 0x0; }
 
 /*
  * --INFO--
  * Address:	8017C2D4
  * Size:	000008
  */
-u32 getVectorField__Q24Game8BaseItemFRQ23Sys6SphereR10Vector3f(void) { return 0x1; }
-
-namespace Game {
+bool BaseItem::getVectorField(Sys::Sphere&, Vector3f&) { return 0x1; }
 
 /*
  * --INFO--
  * Address:	8017C2DC
  * Size:	000008
  */
-void BaseItem::getWorkDistance(Sys::Sphere&)
+f32 BaseItem::getWorkDistance(Sys::Sphere&)
 {
 	/*
 	lfs      f1, lbl_80518B58@sda21(r2)
@@ -11023,14 +9755,12 @@ void BaseItem::getBoundingSphere(Sys::Sphere&)
 	*/
 }
 
-} // namespace Game
-
 /*
  * --INFO--
  * Address:	8017C318
  * Size:	000044
  */
-void onSetPosition__Q24Game8BaseItemFR10Vector3f(void)
+void BaseItem::onSetPosition(Vector3f&)
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -11053,21 +9783,19 @@ void onSetPosition__Q24Game8BaseItemFR10Vector3f(void)
 	*/
 }
 
-namespace Game {
-
 /*
  * --INFO--
  * Address:	8017C35C
  * Size:	000004
  */
-void BaseItem::onSetPosition(void) { }
+void BaseItem::onSetPosition() { }
 
 /*
  * --INFO--
  * Address:	8017C360
  * Size:	00001C
  */
-void BaseItem::getVelocity(void)
+Vector3f BaseItem::getVelocity()
 {
 	/*
 	lfs      f0, 0x190(r4)
@@ -11080,14 +9808,12 @@ void BaseItem::getVelocity(void)
 	*/
 }
 
-} // namespace Game
-
 /*
  * --INFO--
  * Address:	8017C37C
  * Size:	000014
  */
-void getVelocityAt__Q24Game8BaseItemFR10Vector3f R10Vector3f(void)
+void BaseItem::getVelocityAt(Vector3f&, Vector3f&)
 {
 	/*
 	lfs      f0, lbl_80518A2C@sda21(r2)
@@ -11097,6 +9823,8 @@ void getVelocityAt__Q24Game8BaseItemFR10Vector3f R10Vector3f(void)
 	blr
 	*/
 }
+
+} // namespace Game
 
 namespace efx {
 
@@ -11431,16 +10159,16 @@ lbl_8017C720:
 	*/
 }
 
-namespace Game {
+} // namespace efx
 
-} // namespace Game
+namespace Game {
 
 /*
  * --INFO--
  * Address:	8017C73C
  * Size:	00000C
  */
-void ItemPikihead::InitArg::getName(void)
+const char* ItemPikihead::InitArg::getName()
 {
 	/*
 	lis      r3, lbl_8047EA5C@ha
@@ -11454,7 +10182,7 @@ void ItemPikihead::InitArg::getName(void)
  * Address:	8017C748
  * Size:	00000C
  */
-void ItemInitArg::getName(void)
+const char* ItemInitArg::getName()
 {
 	/*
 	lis      r3, lbl_8047EA74@ha
@@ -11463,7 +10191,7 @@ void ItemInitArg::getName(void)
 	*/
 }
 
-} // namespace efx
+} // namespace Game
 
 /*
  * --INFO--
@@ -12387,7 +11115,7 @@ lbl_8017D2C0:
  * Address:	8017D2F4
  * Size:	00002C
  */
-void Container<Game::Onyon>::getObject(void*)
+void* Container<Game::Onyon>::getObject(void*)
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -12409,292 +11137,11 @@ void Container<Game::Onyon>::getObject(void*)
  * Address:	8017D320
  * Size:	000008
  */
-u32 Container<Game::Onyon>::getAt(int) { return 0x0; }
+Game::Onyon* Container<Game::Onyon>::getAt(int) { return 0x0; }
 
 /*
  * --INFO--
  * Address:	8017D328
  * Size:	000008
  */
-u32 Container<Game::Onyon>::getTo() { return 0x0; }
-
-/*
- * --INFO--
- * Address:	8017D330
- * Size:	000028
- */
-void __sinit_onyonMgr_cpp(void)
-{
-	/*
-	lis      r4, __float_nan@ha
-	li       r0, -1
-	lfs      f0, __float_nan@l(r4)
-	lis      r3, lbl_804B2420@ha
-	stw      r0, lbl_805159A8@sda21(r13)
-	stfsu    f0, lbl_804B2420@l(r3)
-	stfs     f0, lbl_805159AC@sda21(r13)
-	stfs     f0, 4(r3)
-	stfs     f0, 8(r3)
-	blr
-	*/
-}
-
-/*
- * --INFO--
- * Address:	8017D358
- * Size:	000008
- */
-@4 @efx::TForever::~TForever(void)
-{
-	/*
-	addi     r3, r3, -4
-	b        __dt__Q23efx8TForeverFv
-	*/
-}
-
-/*
- * --INFO--
- * Address:	8017D360
- * Size:	000008
- */
-@4 @efx::TUfoPodOpenSuck::~TUfoPodOpenSuck(void)
-{
-	/*
-	addi     r3, r3, -4
-	b        __dt__Q23efx15TUfoPodOpenSuckFv
-	*/
-}
-
-/*
- * --INFO--
- * Address:	8017D368
- * Size:	000008
- */
-@4 @efx::TUfoGasIn::~TUfoGasIn(void)
-{
-	/*
-	addi     r3, r3, -4
-	b        __dt__Q23efx9TUfoGasInFv
-	*/
-}
-
-/*
- * --INFO--
- * Address:	8017D370
- * Size:	000008
- */
-@4 @efx::TUfoGasOut::~TUfoGasOut(void)
-{
-	/*
-	addi     r3, r3, -4
-	b        __dt__Q23efx10TUfoGasOutFv
-	*/
-}
-
-/*
- * --INFO--
- * Address:	8017D378
- * Size:	000008
- */
-@4 @efx::TPodOpenA::~TPodOpenA(void)
-{
-	/*
-	addi     r3, r3, -4
-	b        __dt__Q23efx9TPodOpenAFv
-	*/
-}
-
-/*
- * --INFO--
- * Address:	8017D380
- * Size:	000008
- */
-@4 @efx::TPodOpenB::~TPodOpenB(void)
-{
-	/*
-	addi     r3, r3, -4
-	b        __dt__Q23efx9TPodOpenBFv
-	*/
-}
-
-/*
- * --INFO--
- * Address:	8017D388
- * Size:	000008
- */
-@4 @efx::TPodKira::~TPodKira(void)
-{
-	/*
-	addi     r3, r3, -4
-	b        __dt__Q23efx8TPodKiraFv
-	*/
-}
-
-/*
- * --INFO--
- * Address:	8017D390
- * Size:	000008
- */
-void @376 @Game::Onyon::onKeyEvent(SysShape::KeyEvent const&)
-{
-	/*
-	addi     r3, r3, -376
-	b        onKeyEvent__Q24Game5OnyonFRCQ28SysShape8KeyEvent
-	*/
-}
-
-/*
- * --INFO--
- * Address:	8017D398
- * Size:	000008
- */
-void NodeObjectMgr<Game::Onyon>::@28 @resetMgr()
-{
-	/*
-	addi     r3, r3, -28
-	b        "resetMgr__28NodeObjectMgr<Q24Game5Onyon>Fv"
-	*/
-}
-
-/*
- * --INFO--
- * Address:	8017D3A0
- * Size:	000008
- */
-void ObjectMgr<Game::Onyon>::@28 @doDirectDraw(Graphics&)
-{
-	/*
-	addi     r3, r3, -28
-	b        "doDirectDraw__24ObjectMgr<Q24Game5Onyon>FR8Graphics"
-	*/
-}
-
-/*
- * --INFO--
- * Address:	8017D3A8
- * Size:	000008
- */
-void ObjectMgr<Game::Onyon>::@28 @doSimulation(float)
-{
-	/*
-	addi     r3, r3, -28
-	b        "doSimulation__24ObjectMgr<Q24Game5Onyon>Ff"
-	*/
-}
-
-/*
- * --INFO--
- * Address:	8017D3B0
- * Size:	000008
- */
-void ObjectMgr<Game::Onyon>::@28 @doViewCalc()
-{
-	/*
-	addi     r3, r3, -28
-	b        "doViewCalc__24ObjectMgr<Q24Game5Onyon>Fv"
-	*/
-}
-
-/*
- * --INFO--
- * Address:	8017D3B8
- * Size:	000008
- */
-void ObjectMgr<Game::Onyon>::@28 @doSetView(int)
-{
-	/*
-	addi     r3, r3, -28
-	b        "doSetView__24ObjectMgr<Q24Game5Onyon>Fi"
-	*/
-}
-
-/*
- * --INFO--
- * Address:	8017D3C0
- * Size:	000008
- */
-void ObjectMgr<Game::Onyon>::@28 @doEntry()
-{
-	/*
-	addi     r3, r3, -28
-	b        "doEntry__24ObjectMgr<Q24Game5Onyon>Fv"
-	*/
-}
-
-/*
- * --INFO--
- * Address:	8017D3C8
- * Size:	000008
- */
-void ObjectMgr<Game::Onyon>::@28 @doAnimation()
-{
-	/*
-	addi     r3, r3, -28
-	b        "doAnimation__24ObjectMgr<Q24Game5Onyon>Fv"
-	*/
-}
-
-/*
- * --INFO--
- * Address:	8017D3D0
- * Size:	000008
- */
-void @48 @Game::ItemOnyon::Mgr::getEnd(void)
-{
-	/*
-	addi     r3, r3, -48
-	b        getEnd__Q34Game9ItemOnyon3MgrFv
-	*/
-}
-
-/*
- * --INFO--
- * Address:	8017D3D8
- * Size:	000008
- */
-void @48 @Game::ItemOnyon::Mgr::getStart(void)
-{
-	/*
-	addi     r3, r3, -48
-	b        getStart__Q34Game9ItemOnyon3MgrFv
-	*/
-}
-
-/*
- * --INFO--
- * Address:	8017D3E0
- * Size:	000008
- */
-void @48 @Game::ItemOnyon::Mgr::getNext(void*)
-{
-	/*
-	addi     r3, r3, -48
-	b        getNext__Q34Game9ItemOnyon3MgrFPv
-	*/
-}
-
-/*
- * --INFO--
- * Address:	8017D3E8
- * Size:	000008
- */
-void @48 @Game::ItemOnyon::Mgr::get(void*)
-{
-	/*
-	addi     r3, r3, -48
-	b        get__Q34Game9ItemOnyon3MgrFPv
-	*/
-}
-
-/*
- * --INFO--
- * Address:	8017D3F0
- * Size:	000008
- */
-@48 @Game::ItemOnyon::Mgr::~Mgr(void)
-{
-	/*
-	addi     r3, r3, -48
-	b        __dt__Q34Game9ItemOnyon3MgrFv
-	*/
-}
+int Container<Game::Onyon>::getTo() { return 0x0; }

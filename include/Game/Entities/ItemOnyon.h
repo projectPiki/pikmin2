@@ -50,7 +50,12 @@ struct Piki;
 struct WayPoint;
 
 struct Onyon : public BaseItem {
-	struct cSpotState; // struct? enum?
+	enum cSpotState {
+		SPOTSTATE_Unk0 = 0,
+		SPOTSTATE_Unk1 = 1,
+		SPOTSTATE_Unk2 = 2,
+		SPOTSTATE_Unk3 = 3,
+	};
 
 	/////////////// VTABLE
 	virtual void onInit(CreatureInitArg* settings);                     // _30
