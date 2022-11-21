@@ -589,7 +589,7 @@ KANDO:=\
 	$(BUILD_DIR)/asm/plugProjectKandoU/vsGS_Title.o\
 	$(BUILD_DIR)/asm/plugProjectKandoU/vsGS_Game.o\
 	$(BUILD_DIR)/asm/plugProjectKandoU/vsGS_Result.o\
-	$(BUILD_DIR)/asm/plugProjectKandoU/vsGS_Load.o\
+	$(BUILD_DIR)/src/plugProjectKandoU/vsGS_Load.o\
 	$(BUILD_DIR)/asm/plugProjectKandoU/vsStageData.o\
 	$(BUILD_DIR)/asm/plugProjectKandoU/cellMgrParms.o\
 	$(BUILD_DIR)/asm/plugProjectKandoU/cellIterator.o\

@@ -1,6 +1,6 @@
 #include "Game/enemyInfo.h"
 #include "Game/generalEnemyMgr.h"
-#include "Game/VsGame/VsGame.h"
+#include "Game/VsGame.h"
 #include "Dolphin/rand.h"
 
 namespace Game {

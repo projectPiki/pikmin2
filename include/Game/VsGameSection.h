@@ -3,6 +3,7 @@
 
 #include "types.h"
 #include "Game/BaseGameSection.h"
+#include "Game/ChallengeGame.h"
 #include "Vector3.h"
 
 namespace Game {
@@ -16,6 +17,12 @@ struct Item;
 namespace ItemBigFountain {
 struct Item;
 } // namespace ItemBigFountain
+
+namespace VsGame {
+struct TekiMgr;
+struct CardMgr;
+struct StageData;
+} // namespace VsGame
 
 struct VsGameSection : public BaseGameSection {
 	struct DropCardArg {
@@ -72,8 +79,47 @@ struct VsGameSection : public BaseGameSection {
 
 	u8 _174[0xA0]; // _174
 	// probably red and blue 2pbattle onyons
-	PikiContainer m_container1; // _214
-	PikiContainer m_container2; // _21C
+	PikiContainer m_container1;            // _214
+	PikiContainer m_container2;            // _21C
+	char m_caveInfoFilename[128];          // _248
+	char m_editFilename[128];              // _2A4
+	u32 m_currentFloor;                    // _324
+	u32 m_editNUmber;                      // _328
+	VsGame::TekiMgr* m_tekiMgr;            // _32C
+	VsGame::CardMgr* m_cardMgr;            // _330
+	ChallengeGame::StageData* m_stageData; // _334
+	u32 m_stageNum;                        // _338
+	VsGame::StageData* m_VsStageData;      // _33C
+	u32 m_VsStageNum;                      // _340
+	u32 m_player1Pikis;                    // _344
+	u32 m_player2Pikis;                    // _348
+	u32 m_vsWinner;                        // _34C
+	f32 _350;                              // _350
+	f32 m_pikminCountTimer;                // _354
+	f32 _358;                              // _358
+	f32 _35C;                              // _35C
+	f32 _360;                              // _360
+	f32 _364;                              // _364
+	f32 _368;                              // _368
+	f32 _36C;                              // _36C
+	f32 _370;                              // _370
+	f32 _374;                              // _374
+	f32 _378;                              // _378
+	f32 _37C;                              // _37C
+	Pellet* m_marbleRed;                   // _380
+	Pellet* m_marbleBlue;                  // _384
+	Pellet* m_marbleYellow[7];             // _388
+	u32 m_dopeCounts[2][2];                // _3A4
+	u32 m_player2Cherries;                 // _3A8
+	u32 m_player1Cherries;                 // _3AC
+	u32 m_pokoCount;                       // _3B0
+	f32 m_timeLimit;                       // _3B4
+	u32 m_cardCount;                       // _3C4
+	u32 m_maxCherries;                     // _3B8
+	Pellet** m_cherryArray;                // _3BC
+	u32 _3C0;                              // _3C0
+	u32 _3C4;                              // _3C4
+	u32 m_yellowMarbleCounts[2];           // _3C8
 };
 } // namespace Game
 

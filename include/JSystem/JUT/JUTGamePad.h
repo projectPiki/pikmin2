@@ -10,6 +10,41 @@ struct JUTGamePad : public JKRDisposer {
 	enum EPadPort { PORT_0 = 0, PORT_1, PORT_2, PORT_3, PORT_INVALID = 0xFFFFFFFF };
 	enum EStickMode { MODE_0 = 0, MODE_1 };
 	enum EWhichStick { STICK_0 = 0, STICK_1 };
+	enum EButton {
+		False            = 0x0,
+		PRESS_DPAD_LEFT  = 0x1,
+		PRESS_DPAD_RIGHT = 0x2,
+		PRESS_DPAD_DOWN  = 0x4,
+		PRESS_DPAD_UP    = 0x8,
+		PRESS_Z          = 0x10,
+		PRESS_R          = 0x20,
+		PRESS_L          = 0x40,
+		UNKNOWN_8        = 0x80,
+		PRESS_A          = 0x100,
+		PRESS_B          = 0x200,
+		PRESS_X          = 0x400,
+		PRESS_Y          = 0x800,
+		PRESS_START      = 0x1000,
+		UNKNOWN_14       = 0x2000,
+		UNKNOWN_15       = 0x4000,
+		UNKNOWN_16       = 0x8000,
+		UNKNOWN_17       = 0x10000,
+		UNKNOWN_18       = 0x20000,
+		UNKNOWN_19       = 0x40000,
+		UNKNOWN_20       = 0x80000,
+		UNKNOWN_21       = 0x100000,
+		UNKNOWN_22       = 0x200000,
+		UNKNOWN_23       = 0x400000,
+		UNKNOWN_24       = 0x800000,
+		UNKNOWN_25       = 0x100000,
+		UNKNOWN_26       = 0x200000,
+		UNKNOWN_27       = 0x400000,
+		UNKNOWN_28       = 0x800000,
+		UNKNOWN_29       = 0x1000000,
+		UNKNOWN_30       = 0x2000000,
+		UNKNOWN_31       = 0x4000000,
+		UNKNOWN_32       = 0x8000000
+	};
 
 	struct CButton {
 		/**
@@ -164,6 +199,7 @@ struct JUTGamePad : public JKRDisposer {
 	// #define JUTGamePadIsConnected(pad) ((0 <= pad->m_portNum && pad->m_portNum < 4))
 	/** @fabricated */
 	inline bool isConnected() const { return (0 <= m_portNum && m_portNum < 4); }
+	inline bool isButtonDown(u32 buttons) { return m_padButton.m_buttonDown & buttons; }
 
 	// _00 VTBL
 	JUTGamePad::CButton m_padButton;   // _18
