@@ -1,5 +1,4 @@
-#include "Game/Entities/ItemOnyon.h"
-#include "Game/Entities/ItemPikihead.h"
+#include "Game/Entities/Item.h"
 #include "Game/Piki.h"
 #include "Game/PikiMgr.h"
 #include "Game/MoviePlayer.h"
@@ -10,6 +9,7 @@
 #include "efx/Container.h"
 #include "efx/Arg.h"
 #include "efx/TUfo.h"
+#include "efx/TOnyon.h"
 #include "efx/OnyonSpot.h"
 #include "SysShape/Animator.h"
 #include "Sys/DrawBuffers.h"
@@ -770,8 +770,7 @@ lbl_80175484:
 bool Onyon::isSuckReady()
 {
 	if (m_onyonType == ONYON_TYPE_SHIP) {
-		switch (m_suckState)
-		{
+		switch (m_suckState) {
 		case SUCKSTATE_Opened:
 		case SUCKSTATE_GetPellet:
 		case SUCKSTATE_IdleOpen:
@@ -781,7 +780,7 @@ bool Onyon::isSuckReady()
 			m_animator.startAnim(1, listener);
 
 			SoundID sound = PSSE_EV_POD_OPEN;
-			if (playData->_2F & 1)	// debt repayed
+			if (playData->_2F & 1) // debt repayed
 				sound = PSSE_EV_PODGOLD_OPEN;
 			startSound(sound);
 
@@ -792,9 +791,9 @@ bool Onyon::isSuckReady()
 			return false;
 		default:
 			return false;
+		}
+		return true;
 	}
-	return true;
-
 	/*
 	stwu     r1, -0x10(r1)
 	mflr     r0
@@ -888,43 +887,42 @@ void Onyon::setType(int type)
 {
 	m_onyonType = type;
 	setupTevRegAnim(type);
-	m_container = 0;
+	m_container    = 0;
 	m_containerAct = 0;
-	m_ufoSpot = 0;
+	m_ufoSpot      = 0;
 	m_ufoSpotAct01 = 0;
-	m_ufoPodOpen = 0;
-	switch (m_onyonType)
-	{
-		case ONYON_TYPE_BLUE:
-		case ONYON_TYPE_RED:
-		case ONYON_TYPE_YELLOW:
-			m_container			 = new efx::Container();
-			m_containerAct		 = new efx::ContainerAct();
-			break;
-		case ONYON_TYPE_POD:
-			SysShape::Joint* jnt = m_model->getJoint("pot_ctr");
-			P2ASSERTLINE(788, jnt != nullptr);
-			m_podOpenA = new efx::TPodOpenA();
-			m_podOpenB = new efx::TPodOpenB();
-			m_podSpot  = new efx::TPodSpot();
-			m_podKira  = new efx::TPodKira();
-			m_podKira->create(0);
-			m_podOpenB->create(0);
-			m_podSpot->create(0);
-			efx::Arg arg = efx::Arg(&m_position);
-			m_podOpenA->create(&arg);
-			break;
-		case ONYON_TYPE_SHIP:
-			SysShape::Joint* jnt = m_model->getJoint("start1");
-			m_ufoSpot 			= new efx::TUfoSpot();
-			m_ufoPodOpenSuck	= new efx::TUfoPodOpenSuck();
-			m_ufoSpotAct01		= new efx::TUfoSpotact_ver01();
-			jnt = m_model->getJoint("pmotion3");
-			m_ufoPodOpen		= new efx::TUfoPodOpen();
-			jnt = m_model->getJoint("in1");
-			m_ufoGasIn			= new efx::TUfoGasIn();
-			jnt = m_model->getJoint("out");
-			m_ufoGasOut			= new efx::TUfoGasOut();
+	m_ufoPodOpen   = 0;
+	switch (m_onyonType) {
+	case ONYON_TYPE_BLUE:
+	case ONYON_TYPE_RED:
+	case ONYON_TYPE_YELLOW:
+		m_container    = new efx::Container;
+		m_containerAct = new efx::ContainerAct;
+		break;
+	case ONYON_TYPE_POD:
+		SysShape::Joint* jnt = m_model->getJoint("pot_ctr");
+		P2ASSERTLINE(788, jnt != nullptr);
+		m_podOpenA = new ::efx::TPodOpenA;
+		m_podOpenB = new ::efx::TPodOpenB;
+		m_podSpot  = new ::efx::TPodSpot;
+		m_podKira  = new ::efx::TPodKira;
+		m_podKira->create(0);
+		m_podOpenB->create(0);
+		m_podSpot->create(0);
+		::efx::Arg arg = ::efx::Arg(m_position);
+		m_podOpenA->create(&arg);
+		break;
+	case ONYON_TYPE_SHIP:
+		SysShape::Joint* jnt = m_model->getJoint("start1");
+		m_ufoSpot            = new ::efx::TUfoSpot;
+		m_ufoPodOpenSuck     = new ::efx::TUfoPodOpenSuck;
+		m_ufoSpotAct01       = new ::efx::TUfoSpotact_ver01;
+		jnt                  = m_model->getJoint("pmotion3");
+		m_ufoPodOpen         = new ::efx::TUfoPodOpen;
+		jnt                  = m_model->getJoint("in1");
+		m_ufoGasIn           = new ::efx::TUfoGasIn;
+		jnt                  = m_model->getJoint("out");
+		m_ufoGasOut          = new ::efx::TUfoGasOut;
 	}
 	/*
 	stwu     r1, -0x30(r1)
@@ -1466,18 +1464,17 @@ namespace Game {
  */
 void Onyon::setupTevRegAnim(int type)
 {
-	switch (m_onyonType)
-	{
-		case ONYON_TYPE_BLUE:
-		case ONYON_TYPE_RED:
-		case ONYON_TYPE_YELLOW:
-			m_matAnim1->start(ItemOnyon::mgr->m_onyonTevAnim[m_onyonType]);
-			m_onyonType = type;
-			break;
-		case ONYON_TYPE_SHIP:
-			m_matAnim1->start(ItemOnyon::mgr->m_ufoTevAnim[0]);
-			m_matAnim2 = new MatLoopAnimator();
-			m_matAnim2->start(ItemOnyon::mgr->m_ufoTevAnim[1]);
+	switch (m_onyonType) {
+	case ONYON_TYPE_BLUE:
+	case ONYON_TYPE_RED:
+	case ONYON_TYPE_YELLOW:
+		m_matAnim1->start(&ItemOnyon::mgr->m_onyonTevAnim[m_onyonType]);
+		m_onyonType = type;
+		break;
+	case ONYON_TYPE_SHIP:
+		m_matAnim1->start(&ItemOnyon::mgr->m_ufoTevAnim[0]);
+		m_matAnim2 = new Sys::MatLoopAnimator;
+		m_matAnim2->start(&ItemOnyon::mgr->m_ufoTevAnim[1]);
 	}
 	/*
 	stwu     r1, -0x10(r1)
@@ -1548,8 +1545,10 @@ lbl_80175E04:
  */
 bool Onyon::stimulate(Interaction& act)
 {
-	if (!act.actCommon(this)) return false;
-	else return act.actOnyon(this);
+	if (!act.actCommon(this))
+		return false;
+	else
+		return act.actOnyon(this);
 	/*
 	stwu     r1, -0x10(r1)
 	mflr     r0
@@ -1595,20 +1594,20 @@ lbl_80175E78:
 bool InteractSuckArrive::actOnyon(Onyon* item)
 {
 	if (item->m_onyonType == ONYON_TYPE_SHIP) {
-		SysShape::Joint jnt = item->m_model->getJoint("pmotion3");
+		SysShape::Joint* jnt = item->m_model->getJoint("pmotion3");
 		if (jnt != nullptr) {
 			efx::TUfoPodSuck efx;
-			efx.create();
+			efx.create(nullptr);
 		}
 		item->m_suckTimer = 0.0f;
 		if (item->m_suckState == Onyon::SUCKSTATE_IdleClosed) {
-			SysShape::MotionListener mlisten = item;
+			SysShape::MotionListener* mlisten = item;
 			item->m_animator.startAnim(0, mlisten);
 
 			SoundID sound = PSSE_EV_POD_OPEN;
-			if (playData->_2F & 1)	// debt repayed
+			if (playData->_2F & 1) // debt repayed
 				sound = PSSE_EV_PODGOLD_OPEN;
-			startSound(sound);
+			item->startSound(sound);
 			item->m_animSpeed = 30.0f;
 			item->m_suckState = Onyon::SUCKSTATE_Opening;
 			item->m_ufoPodOpen->create(0);
@@ -1739,7 +1738,7 @@ void Onyon::getShadowParam(ShadowParam& param)
 	if (m_onyonType == ONYON_OBJECT_POD) {
 		param.m_position.y += 80.0f;
 		param.m_boundingSphere.m_radius = 100.0f;
-		param._1C = 27.0f;	// shadow size
+		param._1C                       = 27.0f; // shadow size
 	}
 	param.m_boundingSphere.m_position = Vector3f(0.0f, 1.0f, 0.0f);
 	/*
@@ -1798,8 +1797,7 @@ bool Onyon::sound_culling()
 {
 	if (m_onyonType < ONYON_OBJECT_POD) {
 		return Creature::sound_culling();
-	}
-	else {
+	} else {
 		return false;
 	}
 	/*
@@ -1834,56 +1832,55 @@ bool InteractSuckDone::actOnyon(Onyon* item)
 	if (item->isMovieActor() && !item->isMovieExtra()) {
 		return false;
 	}
-	JUT_ASSERTLINE(899, m_creature->isPellet());
+	P2ASSERTLINE(899, m_creature->isPellet());
 
-	Pellet* pellet = m_creature;
-	switch (item->m_onyonType)
-	{
+	Pellet* pellet = static_cast<Pellet*>(m_creature);
+	switch (item->m_onyonType) {
 	case ONYON_TYPE_BLUE:
 	case ONYON_TYPE_RED:
 	case ONYON_TYPE_YELLOW:
-		SysShape::MotionListener mlisten = item;
+		SysShape::MotionListener* mlisten = item;
 		item->m_animator.startAnim(3, mlisten);
 		item->startSound(PSSE_EV_HOME_PELLET_FINISH);
 		break;
 	case ONYON_TYPE_POD:
-		SysShape::MotionListener mlisten = item;
+		SysShape::MotionListener* mlisten = item;
 		item->m_animator.startAnim(2, mlisten);
 		item->startSound(PSSE_EV_HOME_PELLET_FINISH);
 		efx::TPodGepu podefx;
-		efx::Arg arg(&item->m_position);
+		efx::Arg arg(item->m_position);
 		podefx.create(&arg);
 		if (moviePlayer && moviePlayer->m_demoState == 0) {
 			Vector3f pos = item->getPosition();
-			int money = pellet->m_config->m_params.m_money.m_data;
+			int money    = pellet->m_config->m_params.m_money.m_data;
 			if (money > 0 && pellet->getKind() == 1 || pellet->getKind() == 3 || pellet->getKind() == 4) {
 				pos.x += 0.0f; // bravo vince
 				pos.z += 0.0f;
 				pos.y += 80.0f;
-				CarryInfoMgr::appearPoko(pos, money);
+				carryInfoMgr->appearPoko(pos, money);
 			}
 		}
 		break;
 	case ONYON_TYPE_SHIP:
-		SysShape::MotionListener mlisten = item;
+		SysShape::MotionListener* mlisten = item;
 		item->m_animator.startAnim(0, mlisten);
 		item->m_animator.setFrameByKeyType(0);
 		item->m_suckState = Onyon::SUCKSTATE_GetPellet;
 		item->m_animSpeed = 30.0f;
 		item->startSound(PSSE_EV_HOME_PELLET_FINISH);
-		item->m_suckTimer = 0.0f;
-		SysShape::Joint jnt = item->m_model->getJoint("pmotion3");
+		item->m_suckTimer    = 0.0f;
+		SysShape::Joint* jnt = item->m_model->getJoint("pmotion3");
 		efx::TUfoPodGepu ufoefx;
 		ufoefx.m_mtx = jnt->getWorldMatrix();
-		ufoefx.create();
+		ufoefx.create(nullptr);
 		if (moviePlayer && moviePlayer->m_demoState == 0) {
 			Vector3f pos = item->getPosition();
-			int money = pellet->m_config->m_params.m_money.m_data;
+			int money    = pellet->m_config->m_params.m_money.m_data;
 			pos.x += 0.0f; // this isnt 0.0, its actual math may beyond my sanity
 			pos.z += 0.0f;
 			pos.y += 117.0f;
 			if (money > 0) {
-				CarryInfoMgr::appearPoko(pos, money);
+				carryInfoMgr->appearPoko(pos, money);
 			}
 		}
 		break;
@@ -1891,26 +1888,26 @@ bool InteractSuckDone::actOnyon(Onyon* item)
 
 	item->m_pikminType = item->m_onyonType;
 	if (item->m_onyonType < ONYON_TYPE_POD) {
-		SysShape::Joint jnt = item->m_model->getJoint("body_l");
+		SysShape::Joint* jnt = item->m_model->getJoint("body_l");
 		if (jnt) {
-			efx::TOnyonEatAB onyonefx;
+			::efx::TOnyonEatAB onyonefx;
 			onyonefx.m_mtx = jnt->getWorldMatrix();
-			onyonefx.create();
+			onyonefx.create(nullptr);
 		}
 
-		if (GameSystem::isChallengeMode() && !strcmp(pellet->m_config->m_params.m_name.m_name, "key")) {
+		if (gameSystem->isChallengeMode() && !strcmp(pellet->m_config->m_params.m_name.m_name, "key")) {
 			InteractGotKey act(item);
-			Iterator<Game::ItemBigFountain::Item> iterFountain(ItemBigFountain::mgr);
+			Iterator<ItemBigFountain::Item> iterFountain(ItemBigFountain::mgr);
 			CI_LOOP(iterFountain)
 			{
 				Game::ItemBigFountain::Item* cFountain = (*iterFountain);
-				cFountain->stimulate(&act);
+				cFountain->stimulate(act);
 			}
-			Iterator<Game::ItemHole::Item> iterHole(ItemHole::mgr);
+			Iterator<ItemHole::Item> iterHole(ItemHole::mgr);
 			CI_LOOP(iterHole)
 			{
 				Game::ItemHole::Item* cHole = (*iterHole);
-				cHole->stimulate(&act);
+				cHole->stimulate(act);
 			}
 		}
 	}

@@ -554,17 +554,17 @@ struct PelletReturnState : public PelletState {
 	void execMove(Pellet*);
 	void execMoveGoal(Pellet*);
 
-	float _10;                // _10
-	float _14;                // _14
-	u8 _18[0x2];              // _18
-	u16 _1A;                  // _1A
-	u32 _1C;                  // _1C
-	u8 _20[0xC];              // _20, unknown
-	PathNode* _24;            // _24
-	PathNode* _28;            // _28
-	int _2C;                  // _2C, maybe count of nodes traversed?
-	efx::TOrimaLight* _30;    // _30
-	efx::TOrimaLightAct* _34; // _34
+	float _10;                  // _10
+	float _14;                  // _14
+	u8 _18[0x2];                // _18
+	u16 _1A;                    // _1A
+	u32 _1C;                    // _1C
+	u8 _20[0xC];                // _20, unknown
+	PathNode* _24;              // _24
+	PathNode* _28;              // _28
+	int _2C;                    // _2C, maybe count of nodes traversed?
+	::efx::TOrimaLight* _30;    // _30
+	::efx::TOrimaLightAct* _34; // _34
 };
 
 struct PelletScaleAppearState : public PelletState {
