@@ -10,9 +10,8 @@ namespace PSGame {
  * @size{0x38}
  */
 struct SceneInfo {
-	enum FlagDef {
-		SF_0            = 0,
-		SF_FORCE_USHORT = 0xFFFF,
+	struct FlagDef {
+		u16 m_flags; // _00
 	};
 
 	enum FlagBitShift {

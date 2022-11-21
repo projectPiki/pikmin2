@@ -116,8 +116,8 @@ struct Game2DMgr : public JKRDisposer {
 	void check_CaveMoreMenu();
 	void open_FinalResult(kh::Screen::DispFinalResult&);
 	void check_FinalResult() const;
-	void open_CaveResult(kh::Screen::DispCaveResult&);
-	void check_CaveResult() const;
+	bool open_CaveResult(kh::Screen::DispCaveResult&);
+	int check_CaveResult() const;
 	void open_DayEndResult(kh::Screen::DispDayEndResult&);
 	void check_DayEndResult() const;
 	void open_PayDept(kh::Screen::DispPayDept&);

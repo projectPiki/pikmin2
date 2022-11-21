@@ -1,6 +1,6 @@
 #include "types.h"
 #include "PSGame/EnvSe.h"
-#include "PSGame/PikSceneMgr.h"
+#include "PSGame/PikScene.h"
 #include "PSGame/SceneInfo.h"
 #include "PSGame/SoundCreatureMgr.h"
 

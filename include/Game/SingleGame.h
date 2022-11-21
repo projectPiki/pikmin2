@@ -102,6 +102,10 @@ struct CaveDayEndState : public State {
 	f32 _10; // _10
 };
 
+struct CaveResultArg : public StateArg {
+	u16 _00; // _00
+};
+
 /**
  * @size{0x100}
  */
@@ -120,7 +124,7 @@ struct CaveResultState : public State {
 	void initNext(SingleGameSection*);
 	unknown open2D(SingleGameSection*);
 
-	s16 _10;                        //_10
+	u16 _10;                        //_10
 	u16 _12;                        //_12
 	unknown _14;                    //_14
 	f32 _18;                        //_18
@@ -309,6 +313,16 @@ struct GameState : public State {
 };
 
 struct LoadArg : public StateArg {
+	inline LoadArg() { }
+
+	inline LoadArg(u16 a, bool b, bool c, bool d)
+	    : _04(a)
+	    , _00(b)
+	    , _01(c)
+	    , _02(d)
+	{
+	}
+
 	bool _00; // _00
 	bool _01; // _01
 	bool _02; // _02

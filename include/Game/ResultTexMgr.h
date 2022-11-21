@@ -9,10 +9,18 @@
 namespace Game {
 namespace ResultTexMgr {
 struct Arg {
+	inline Arg()
+	{
+		m_heap              = nullptr;
+		m_itemConfigList    = nullptr;
+		m_otakaraConfigList = nullptr;
+		_0C                 = -1;
+	}
+
 	PelletConfigList* m_otakaraConfigList; // _00
 	PelletConfigList* m_itemConfigList;    // _04
 	JKRHeap* m_heap;                       // _08
-	u8 _0C;                                // _0C
+	s8 _0C;                                // _0C
 };
 
 struct Mgr : public JKRDisposer {
