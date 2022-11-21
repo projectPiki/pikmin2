@@ -1,7 +1,7 @@
 #include "types.h"
 #include "Game/GameSystem.h"
 #include "PSSystem/PSGame.h"
-#include "Game/VsGame/VsGame.h"
+#include "Game/VsGame.h"
 #include "nans.h"
 
 static void _Print(char*, ...)
