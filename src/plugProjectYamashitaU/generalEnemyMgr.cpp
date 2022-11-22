@@ -1,3 +1,4 @@
+#include "Dolphin/rand.h"
 #include "Game/generalEnemyMgr.h"
 #include "Game/Entities/Armor.h"
 #include "Game/Entities/Baby.h"
