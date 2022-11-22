@@ -43,16 +43,17 @@ struct ModelEffect {
 	virtual void doViewCalc();                   // _18
 	virtual void changeMaterial();               // _1C (weak)
 	virtual void getLODSphere(Sys::Sphere&) = 0; // _20
-	virtual void useCylinderLOD();               // _24 (weak)
+	virtual bool useCylinderLOD();               // _24 (weak)
 	virtual void getLODCylinder(Sys::Cylinder&); // _28 (weak)
 	virtual void doSimulation(f32);              // _2C (weak)
 	virtual void doDirectDraw(Graphics& gfx);    // _30 (weak)
 
 	// _00 VTBL
 	SysShape::Model* m_model; // _04
-	Matrixf _08;              // _08
+	Matrixf m_mtx;            // _08
 	u8 _38;                   // _38
 	u8 _39;                   // _39
+	bool m_culled;            // _3A
 };
 
 #endif

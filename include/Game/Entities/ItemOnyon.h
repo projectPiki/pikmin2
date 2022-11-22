@@ -51,10 +51,10 @@ struct WayPoint;
 
 struct Onyon : public BaseItem {
 	enum cSpotState {
-		SPOTSTATE_Unk0 = 0,
-		SPOTSTATE_Unk1 = 1,
-		SPOTSTATE_Unk2 = 2,
-		SPOTSTATE_Unk3 = 3,
+		SPOTSTATE_Closed  = 0,
+		SPOTSTATE_Closing = 1,
+		SPOTSTATE_Opening = 2,
+		SPOTSTATE_Opened  = 3,
 	};
 
 	enum cSuckState {
@@ -101,7 +101,7 @@ struct Onyon : public BaseItem {
 	void setSpotState(cSpotState);
 	void forceClose();
 	void startWaitMotion();
-	void getFlagSetPos();
+	Vector3f getFlagSetPos();
 	void vsChargePikmin();
 	void doEmit(Creature*, bool);
 	void getLegPart(int);
@@ -117,11 +117,13 @@ struct Onyon : public BaseItem {
 	void exitPiki();
 	void insideAccessArea(Vector3f&);
 	void getInEnd_UFO();
-	void getInStart_UFO();
-	void getOutStart_UFO();
+	Vector3f getInStart_UFO();
+	Vector3f getOutStart_UFO();
 	void getPMotionSpeed(int);
 	void getPAnimator(int);
 	void update_pmotions();
+
+	void updateSpot();
 
 	// _00 		= VTBL
 	// _00-_1D8	= BaseItem
@@ -143,7 +145,7 @@ struct Onyon : public BaseItem {
 	::efx::TUfoPodOpenSuck* m_ufoPodOpenSuck; // _214
 	::efx::TUfoGasIn* m_ufoGasIn;             // _218
 	::efx::TUfoGasOut* m_ufoGasOut;           // _21C
-	f32 m_timer;                              // _220
+	f32 m_spotGrowTimer;                      // _220
 	u8 m_spotState;                           // _224
 	f32 m_faceDir;                            // _228
 	u16 m_toBirth;                            // _22C, used to track how many pikmin need to be spawned

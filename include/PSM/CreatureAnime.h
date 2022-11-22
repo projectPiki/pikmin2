@@ -22,7 +22,7 @@ struct CreatureAnime : public Creature, public JAIAnimeSound {
 		return &m_sounds[idx];
 	}
 	// vtable 3 (JAIAnimeSound + self, _28)
-	virtual void startSound(u32, u32);                                 // _88 (weak)
+	virtual JAISound* startSound(u32, u32);                            // _88 (weak)
 	virtual void startSound(u8, u32, u32);                             // _8C (weak)
 	virtual void startSound(JAISound**, u32, u32);                     // _90 (weak)
 	virtual void startAnimSound(u32, JAISound**, JAInter::Actor*, u8); // _94 (weak)

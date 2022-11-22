@@ -5,7 +5,17 @@
 
 namespace efx {
 struct OnyonSpotArg : public ModelEffectCreateArg {
+	inline OnyonSpotArg(Vector3f& orig, u32 onyonType)
+	    : m_onyonType(onyonType)
+	{
+		m_orig = orig;
+	}
+
 	virtual u64 getID() { return 'ONY_SPOT'; } // _08 (weak)
+
+	// _00 		= VTBL
+	Vector3f m_orig; // _04
+	u32 m_onyonType; // _10
 };
 
 struct OnyonSpotData : public ModelEffectData {
@@ -18,7 +28,7 @@ struct OnyonSpotData : public ModelEffectData {
 struct OnyonSpot : public ModelEffect {
 	virtual void changeMaterial();                     // _1C
 	virtual void getLODSphere(Sys::Sphere& lodSphere); // _20
-	virtual void useCylinderLOD();                     // _24 (weak)
+	virtual bool useCylinderLOD();                     // _24 (weak)
 	virtual void getLODCylinder(Sys::Cylinder&);       // _28
 };
 } // namespace efx

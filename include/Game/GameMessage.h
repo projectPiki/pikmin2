@@ -70,6 +70,12 @@ struct GameMessageVsGetDoping : public GameMessage {
 };
 
 struct GameMessageVsGetOtakara : public GameMessage {
+	inline GameMessageVsGetOtakara(u32 onyonType)
+	    : _04(onyonType)
+	    , _08(1)
+	{
+	}
+
 	virtual bool actVs(VsGameSection*); // _10
 
 	// _00      = VTABLE
@@ -78,6 +84,11 @@ struct GameMessageVsGetOtakara : public GameMessage {
 };
 
 struct GameMessageVsGotCard : public GameMessage {
+	inline GameMessageVsGotCard(u32 onyonType)
+	    : _04(onyonType)
+	{
+	}
+
 	virtual bool actVs(VsGameSection*); // _10
 
 	// _00      = VTABLE
