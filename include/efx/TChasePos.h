@@ -175,7 +175,7 @@ struct TChasePosYRot : public TSync {
 	// vtable 1 (TBase)
 	// vtable 2 (JPAEmitterCallBack + self)
 	virtual void doExecuteEmitterOperation(JPABaseEmitter*); // _38
-	virtual ~TChasePosYRot();                                // _48 (weak, thunk at _1C)
+	virtual ~TChasePosYRot() { }                             // _48 (weak, thunk at _1C)
 
 	// _00		= VTBL
 	// _00-_10	= TSync

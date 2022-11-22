@@ -7,8 +7,8 @@
 
 namespace efx {
 struct TUfoGasIn : public TChaseMtx {
-	inline TUfoGasIn()
-	    : TChaseMtx(PID_UfoGasIn, nullptr)
+	inline TUfoGasIn(Matrixf* mtx)
+	    : TChaseMtx(PID_UfoGasIn, mtx)
 	{
 	}
 
@@ -19,8 +19,8 @@ struct TUfoGasIn : public TChaseMtx {
 };
 
 struct TUfoGasOut : public TChaseMtx {
-	inline TUfoGasOut()
-	    : TChaseMtx(PID_UfoGasOut, nullptr)
+	inline TUfoGasOut(Matrixf* mtx)
+	    : TChaseMtx(PID_UfoGasOut, mtx)
 	{
 	}
 
@@ -31,8 +31,8 @@ struct TUfoGasOut : public TChaseMtx {
 };
 
 struct TUfoPodGepu : public TSimpleMtx2 {
-	inline TUfoPodGepu()
-	    : TSimpleMtx2(nullptr, PID_UfoPodGeku_1, PID_UfoPodGeku_2)
+	inline TUfoPodGepu(Matrixf* mtx)
+	    : TSimpleMtx2(mtx, PID_UfoPodGeku_1, PID_UfoPodGeku_2)
 	{
 	}
 
@@ -41,8 +41,8 @@ struct TUfoPodGepu : public TSimpleMtx2 {
 };
 
 struct TUfoPodOpen : public TChaseMtx2 {
-	inline TUfoPodOpen()
-	    : TChaseMtx2(nullptr, PID_UfoPodOpen_1, PID_UfoPodOpen_2)
+	inline TUfoPodOpen(Mtx mtx)
+	    : TChaseMtx2(mtx, PID_UfoPodOpen_1, PID_UfoPodOpen_2)
 	{
 	}
 
@@ -51,8 +51,8 @@ struct TUfoPodOpen : public TChaseMtx2 {
 };
 
 struct TUfoPodOpenSuck : public TChaseMtx {
-	inline TUfoPodOpenSuck()
-	    : TChaseMtx(PID_UfoPodOpenSuck, nullptr)
+	inline TUfoPodOpenSuck(Matrixf* mtx)
+	    : TChaseMtx(PID_UfoPodOpenSuck, mtx)
 	{
 	}
 
@@ -62,19 +62,19 @@ struct TUfoPodOpenSuck : public TChaseMtx {
 	// _00-_14 = TChaseMtx
 };
 
-struct TUfoPodSuck : public TSimple1 {
-	inline TUfoPodSuck()
-	    : TSimple1(PID_UfoPodSuck)
+struct TUfoPodSuck : public TSimpleMtx1 {
+	inline TUfoPodSuck(Matrixf* mtx)
+	    : TSimpleMtx1(mtx, PID_UfoPodSuck)
 	{
 	}
 
 	// _00     = VTBL
-	// _00-_0C = TSimple1
+	// _00-_14 = TSimpleMtx1
 };
 
 struct TUfoSpot : public TChaseMtx2 {
-	inline TUfoSpot()
-	    : TChaseMtx2(nullptr, PID_UfoSpot_1, PID_UfoSpot_2)
+	inline TUfoSpot(Mtx mat)
+	    : TChaseMtx2(mat, PID_UfoSpot_1, PID_UfoSpot_2)
 	{
 	}
 
@@ -83,8 +83,8 @@ struct TUfoSpot : public TChaseMtx2 {
 };
 
 struct TUfoSpotact_ver01 : public TChaseMtx2 {
-	inline TUfoSpotact_ver01()
-	    : TChaseMtx2(nullptr, PID_UfoSpotAct_1, PID_UfoSpotAct_2)
+	inline TUfoSpotact_ver01(Mtx mtx)
+	    : TChaseMtx2(mtx, PID_UfoSpotAct_1, PID_UfoSpotAct_2)
 	{
 	}
 

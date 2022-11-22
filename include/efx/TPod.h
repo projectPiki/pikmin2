@@ -18,8 +18,8 @@ struct TPodGepu : public TSimple2 {
 };
 
 struct TPodKira : public TChaseMtx {
-	inline TPodKira()
-	    : TChaseMtx(PID_PodKira, nullptr)
+	inline TPodKira(Matrixf* mtx)
+	    : TChaseMtx(PID_PodKira, mtx)
 	{
 	}
 
@@ -42,8 +42,8 @@ struct TPodOpenA : public TForever {
 };
 
 struct TPodOpenB : public TChaseMtx {
-	inline TPodOpenB()
-	    : TChaseMtx(PID_PodOpenB, nullptr)
+	inline TPodOpenB(Matrixf* mtx)
+	    : TChaseMtx(PID_PodOpenB, mtx)
 	{
 	}
 
@@ -54,8 +54,8 @@ struct TPodOpenB : public TChaseMtx {
 };
 
 struct TPodSpot : public TChasePosYRot2 {
-	inline TPodSpot()
-	    : TChasePosYRot2(nullptr, nullptr, PID_PodSpot_1, PID_PodSpot_2)
+	inline TPodSpot(Vector3f* position, f32* faceDir)
+	    : TChasePosYRot2(position, faceDir, PID_PodSpot_1, PID_PodSpot_2)
 	{
 	}
 

@@ -6,8 +6,8 @@
 
 namespace efx {
 struct TOnyonEatAB : public TSimpleMtx2 {
-	inline TOnyonEatAB()
-	    : TSimpleMtx2(nullptr, PID_OnyonEatAB_1, PID_OnyonEatAB_2)
+	inline TOnyonEatAB(Matrixf* mtx)
+	    : TSimpleMtx2(mtx, PID_OnyonEatAB_1, PID_OnyonEatAB_2)
 	{
 	}
 

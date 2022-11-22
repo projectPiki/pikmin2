@@ -809,45 +809,50 @@ BOOL Onyon::isSuckArriveWait() { return m_onyonType == ONYON_TYPE_SHIP ? m_suckS
 void Onyon::setType(int type)
 {
 	m_onyonType = type;
-	setupTevRegAnim(type);
+	setupTevRegAnim(m_onyonType);
 	m_container    = nullptr;
 	m_containerAct = nullptr;
 	m_ufoSpot      = nullptr;
 	m_ufoSpotAct01 = nullptr;
 	m_ufoPodOpen   = nullptr;
 	SysShape::Joint* jnt;
-	switch (m_onyonType) {
-	case ONYON_TYPE_BLUE:
-	case ONYON_TYPE_RED:
-	case ONYON_TYPE_YELLOW:
+
+	if (m_onyonType <= ONYON_TYPE_YELLOW) {
 		m_container    = new efx::Container;
 		m_containerAct = new efx::ContainerAct;
-		break;
-	case ONYON_TYPE_POD:
+
+	} else if (m_onyonType == ONYON_TYPE_SHIP) {
+		jnt              = m_model->getJoint("start1");
+		m_ufoSpot        = new ::efx::TUfoSpot(jnt->getWorldMatrix()->m_matrix.mtxView);
+		m_ufoPodOpenSuck = new ::efx::TUfoPodOpenSuck(jnt->getWorldMatrix());
+		m_ufoSpotAct01   = new ::efx::TUfoSpotact_ver01(jnt->getWorldMatrix()->m_matrix.mtxView);
+
+		jnt          = m_model->getJoint("pmotion3");
+		m_ufoPodOpen = new ::efx::TUfoPodOpen(jnt->getWorldMatrix()->m_matrix.mtxView);
+
+		jnt = m_model->getJoint("in1");
+		P2ASSERTLINE(782, jnt);
+		m_ufoGasIn = new ::efx::TUfoGasIn(jnt->getWorldMatrix());
+		jnt        = m_model->getJoint("out");
+		P2ASSERTLINE(784, jnt);
+		m_ufoGasOut = new ::efx::TUfoGasOut(jnt->getWorldMatrix());
+
+	} else if (m_onyonType == ONYON_TYPE_POD) {
 		jnt = m_model->getJoint("pot_ctr");
 		P2ASSERTLINE(788, jnt);
 		m_podOpenA = new ::efx::TPodOpenA;
-		m_podOpenB = new ::efx::TPodOpenB;
-		m_podSpot  = new ::efx::TPodSpot;
-		m_podKira  = new ::efx::TPodKira;
-		m_podKira->create(0);
-		m_podOpenB->create(0);
-		m_podSpot->create(0);
-		::efx::Arg arg = ::efx::Arg(m_position);
+		m_podOpenB = new ::efx::TPodOpenB(jnt->getWorldMatrix());
+		m_podSpot  = new ::efx::TPodSpot(&m_position, &m_faceDir);
+		m_podKira  = new ::efx::TPodKira(jnt->getWorldMatrix());
+
+		m_podKira->create(nullptr);
+		m_podOpenB->create(nullptr);
+		m_podSpot->create(nullptr);
+
+		::efx::Arg arg = ::efx::Arg(m_position); // probably needs a baseitem inline
 		m_podOpenA->create(&arg);
-		break;
-	case ONYON_TYPE_SHIP:
-		jnt              = m_model->getJoint("start1");
-		m_ufoSpot        = new ::efx::TUfoSpot;
-		m_ufoPodOpenSuck = new ::efx::TUfoPodOpenSuck;
-		m_ufoSpotAct01   = new ::efx::TUfoSpotact_ver01;
-		jnt              = m_model->getJoint("pmotion3");
-		m_ufoPodOpen     = new ::efx::TUfoPodOpen;
-		jnt              = m_model->getJoint("in1");
-		m_ufoGasIn       = new ::efx::TUfoGasIn;
-		jnt              = m_model->getJoint("out");
-		m_ufoGasOut      = new ::efx::TUfoGasOut;
 	}
+
 	/*
 	stwu     r1, -0x30(r1)
 	mflr     r0
@@ -1307,80 +1312,6 @@ lbl_80175C24:
 	*/
 }
 
-} // namespace Game
-namespace efx {
-
-// /*
-//  * --INFO--
-//  * Address:	........
-//  * Size:	000080
-//  */
-// TChasePosYRot2::~TChasePosYRot2(void)
-// {
-// 	// UNUSED FUNCTION
-// }
-
-/*
- * --INFO--
- * Address:	80175C44
- * Size:	000084
- */
-TChasePosYRot::~TChasePosYRot(void)
-{
-	/*
-stwu     r1, -0x10(r1)
-mflr     r0
-stw      r0, 0x14(r1)
-stw      r31, 0xc(r1)
-mr       r31, r4
-stw      r30, 8(r1)
-or.      r30, r3, r3
-beq      lbl_80175CAC
-lis      r3, __vt__Q23efx13TChasePosYRot@ha
-addi     r3, r3, __vt__Q23efx13TChasePosYRot@l
-stw      r3, 0(r30)
-addi     r0, r3, 0x14
-stw      r0, 4(r30)
-beq      lbl_80175C9C
-lis      r4, __vt__Q23efx5TSync@ha
-addi     r3, r30, 4
-addi     r5, r4, __vt__Q23efx5TSync@l
-li       r4, 0
-stw      r5, 0(r30)
-addi     r0, r5, 0x14
-stw      r0, 4(r30)
-bl       __dt__18JPAEmitterCallBackFv
-
-lbl_80175C9C:
-extsh.   r0, r31
-ble      lbl_80175CAC
-mr       r3, r30
-bl       __dl__FPv
-
-lbl_80175CAC:
-lwz      r0, 0x14(r1)
-mr       r3, r30
-lwz      r31, 0xc(r1)
-lwz      r30, 8(r1)
-mtlr     r0
-addi     r1, r1, 0x10
-blr
-	*/
-}
-
-// /*
-//  * --INFO--
-//  * Address:	........
-//  * Size:	000080
-//  */
-// TForever2::~TForever2(void)
-// {
-// 	// UNUSED FUNCTION
-// }
-
-} // namespace efx
-namespace Game {
-
 /*
  * --INFO--
  * Address:	80175D4C
@@ -1414,9 +1345,8 @@ bool InteractSuckArrive::actOnyon(Onyon* item)
 {
 	if (item->m_onyonType == ONYON_TYPE_SHIP) {
 		SysShape::Joint* jnt = item->m_model->getJoint("pmotion3");
-		// Matrixf* worldMatrix = jnt->getWorldMatrix();
 		if (jnt) {
-			efx::TUfoPodSuck efx;
+			efx::TUfoPodSuck efx(jnt->getWorldMatrix());
 			efx.create(nullptr);
 		}
 		item->m_suckTimer = 0.0f;
@@ -1438,106 +1368,6 @@ bool InteractSuckArrive::actOnyon(Onyon* item)
 		}
 	}
 	return false;
-	/*
-	stwu     r1, -0x20(r1)
-	mflr     r0
-	lis      r3, lbl_8047E620@ha
-	stw      r0, 0x24(r1)
-	stw      r31, 0x1c(r1)
-	mr       r31, r4
-	stw      r30, 0x18(r1)
-	addi     r30, r3, lbl_8047E620@l
-	lhz      r0, 0x22e(r4)
-	cmplwi   r0, 4
-	bne      lbl_80175FCC
-	lwz      r3, 0x174(r31)
-	addi     r4, r30, 0x54
-	bl       getJoint__Q28SysShape5ModelFPc
-	cmplwi   r3, 0
-	beq      lbl_80175F24
-	bl       getWorldMatrix__Q28SysShape5JointFv
-	lis      r5, __vt__Q23efx5TBase@ha
-	lis      r4, __vt__Q23efx8TSimple1@ha
-	addi     r0, r5, __vt__Q23efx5TBase@l
-	lis      r5, __vt__Q23efx11TSimpleMtx1@ha
-	stw      r0, 8(r1)
-	addi     r0, r4, __vt__Q23efx8TSimple1@l
-	lis      r4, __vt__Q23efx11TUfoPodSuck@ha
-	li       r7, 0x1c9
-	stw      r0, 8(r1)
-	addi     r5, r5, __vt__Q23efx11TSimpleMtx1@l
-	li       r6, 0
-	addi     r0, r4, __vt__Q23efx11TUfoPodSuck@l
-	stw      r5, 8(r1)
-	li       r4, 0
-	stw      r3, 0x14(r1)
-	addi     r3, r1, 8
-	sth      r7, 0xc(r1)
-	stw      r6, 0x10(r1)
-	stw      r0, 8(r1)
-	bl       create__Q23efx11TSimpleMtx1FPQ23efx3Arg
-
-lbl_80175F24:
-	lfs      f0, lbl_80518A2C@sda21(r2)
-	stfs     f0, 0x244(r31)
-	lbz      r6, 0x240(r31)
-	cmplwi   r6, 5
-	bne      lbl_80175FB0
-	cmplwi   r31, 0
-	mr       r5, r31
-	beq      lbl_80175F48
-	addi     r5, r31, 0x178
-
-lbl_80175F48:
-	addi     r3, r31, 0x1a8
-	li       r4, 0
-	bl       startAnim__Q28SysShape8AnimatorFiPQ28SysShape14MotionListener
-	lwz      r3, playData__4Game@sda21(r13)
-	li       r4, 0x3836
-	lbz      r0, 0x2f(r3)
-	clrlwi.  r0, r0, 0x1f
-	beq      lbl_80175F6C
-	li       r4, 0x382f
-
-lbl_80175F6C:
-	lwz      r12, 0(r31)
-	mr       r3, r31
-	lwz      r12, 0x1c0(r12)
-	mtctr    r12
-	bctrl
-	lfs      f0, lbl_80518A30@sda21(r2)
-	li       r0, 0
-	li       r4, 0
-	stfs     f0, 0x1d4(r31)
-	stb      r0, 0x240(r31)
-	lwz      r3, 0x210(r31)
-	lwz      r12, 0(r3)
-	lwz      r12, 8(r12)
-	mtctr    r12
-	bctrl
-	li       r3, 1
-	b        lbl_80175FD0
-
-lbl_80175FB0:
-	cmplwi   r6, 4
-	bne      lbl_80175FCC
-	addi     r3, r30, 0x18
-	addi     r5, r30, 0x6c
-	li       r4, 0x35b
-	crclr    6
-	bl       panic_f__12JUTExceptionFPCciPCce
-
-lbl_80175FCC:
-	li       r3, 0
-
-lbl_80175FD0:
-	lwz      r0, 0x24(r1)
-	lwz      r31, 0x1c(r1)
-	lwz      r30, 0x18(r1)
-	mtlr     r0
-	addi     r1, r1, 0x20
-	blr
-	*/
 }
 
 /*
@@ -1581,86 +1411,76 @@ bool InteractSuckDone::actOnyon(Onyon* item)
 	if (item->isMovieActor() && !item->isMovieExtra()) {
 		return false;
 	}
+
 	P2ASSERTLINE(899, m_creature->isPellet());
-	SysShape::MotionListener* mlisten;
 	Pellet* pellet = static_cast<Pellet*>(m_creature);
-	switch (item->m_onyonType) {
-	case ONYON_TYPE_BLUE:
-	case ONYON_TYPE_RED:
-	case ONYON_TYPE_YELLOW:
-		mlisten = item;
-		item->m_animator.startAnim(3, mlisten);
+
+	if (item->m_onyonType <= ONYON_TYPE_YELLOW) {
+		item->m_animator.startAnim(3, item);
 		item->startSound(PSSE_EV_HOME_PELLET_FINISH);
-		break;
-	case ONYON_TYPE_POD:
-		mlisten = item;
-		item->m_animator.startAnim(2, mlisten);
+
+	} else if (item->m_onyonType == ONYON_TYPE_POD) {
+		item->m_animator.startAnim(2, item);
 		item->startSound(PSSE_EV_HOME_PELLET_FINISH);
-		efx::TPodGepu podefx;
-		efx::Arg arg(item->m_position);
-		podefx.create(&arg);
+		efx::TPodGepu podFX;
+		Vector3f position = item->getPosition();
+		efx::Arg arg(position);
+		podFX.create(&arg);
 		if (moviePlayer && moviePlayer->m_demoState == 0) {
 			Vector3f pos = item->getPosition();
 			int money    = pellet->m_config->m_params.m_money.m_data;
 			if (money > 0 && pellet->getKind() == 1 || pellet->getKind() == 3 || pellet->getKind() == 4) {
-				pos.x += 0.0f; // bravo vince
-				pos.z += 0.0f;
-				pos.y += 80.0f;
+				pos += Vector3f(0.0f, 80.0f, 0.0f);
 				carryInfoMgr->appearPoko(pos, money);
 			}
 		}
-		break;
-	case ONYON_TYPE_SHIP:
-		mlisten = item;
-		item->m_animator.startAnim(0, mlisten);
+
+	} else {
+		item->m_animator.startAnim(0, item);
 		item->m_animator.setFrameByKeyType(0);
 		item->m_suckState = Onyon::SUCKSTATE_GetPellet;
 		item->m_animSpeed = 30.0f;
 		item->startSound(PSSE_EV_HOME_PELLET_FINISH);
 		item->m_suckTimer    = 0.0f;
 		SysShape::Joint* jnt = item->m_model->getJoint("pmotion3");
-		efx::TUfoPodGepu ufoefx;
-		ufoefx.m_mtx = jnt->getWorldMatrix();
-		ufoefx.create(nullptr);
+		efx::TUfoPodGepu ufoFX(jnt->getWorldMatrix());
+		ufoFX.create(nullptr);
+
 		if (moviePlayer && moviePlayer->m_demoState == 0) {
 			Vector3f pos = item->getPosition();
-			int money    = pellet->m_config->m_params.m_money.m_data;
-			pos.x += 0.0f; // this isnt 0.0, its actual math may beyond my sanity
-			pos.z += 0.0f;
-			pos.y += 117.0f;
+
+			f32 theta = item->getFaceDir();
+			pos += Vector3f(20.0f * pikmin2_sinf(theta), 117.0f, 20.0f * pikmin2_cosf(theta));
+			int money = pellet->m_config->m_params.m_money.m_data;
 			if (money > 0) {
 				carryInfoMgr->appearPoko(pos, money);
 			}
 		}
-		break;
 	}
 
 	item->m_pikminType = item->m_onyonType;
-	if (item->m_onyonType < ONYON_TYPE_POD) {
+	if (item->m_onyonType <= ONYON_TYPE_YELLOW) {
 		SysShape::Joint* jnt = item->m_model->getJoint("body_l");
 		if (jnt) {
-			::efx::TOnyonEatAB onyonefx;
-			onyonefx.m_mtx = jnt->getWorldMatrix();
-			onyonefx.create(nullptr);
+			::efx::TOnyonEatAB onyonFX(jnt->getWorldMatrix());
+			onyonFX.create(nullptr);
 		}
 
-		/*
 		if (gameSystem->isChallengeMode() && !strcmp(pellet->m_config->m_params.m_name.m_name, "key")) {
-		    InteractGotKey act(item);
-		    Iterator<ItemBigFountain::Item> iterFountain(ItemBigFountain::mgr);
-		    CI_LOOP(iterFountain)
-		    {
-		        Game::ItemBigFountain::Item* cFountain = (*iterFountain);
-		        cFountain->stimulate(act);
-		    }
-		    Iterator<ItemHole::Item> iterHole(ItemHole::mgr);
-		    CI_LOOP(iterHole)
-		    {
-		        Game::ItemHole::Item* cHole = (*iterHole);
-		        cHole->stimulate(act);
-		    }
+			InteractGotKey act(item);
+			Iterator<BaseItem> iterFountain(ItemBigFountain::mgr);
+			CI_LOOP(iterFountain)
+			{
+				Game::ItemBigFountain::Item* cFountain = static_cast<ItemBigFountain::Item*>(*iterFountain);
+				cFountain->stimulate(act);
+			}
+			Iterator<BaseItem> iterHole(ItemHole::mgr);
+			CI_LOOP(iterHole)
+			{
+				Game::ItemHole::Item* cHole = static_cast<ItemHole::Item*>(*iterHole);
+				cHole->stimulate(act);
+			}
 		}
-		*/
 	}
 
 	/*
