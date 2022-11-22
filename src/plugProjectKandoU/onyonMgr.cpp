@@ -770,103 +770,26 @@ lbl_80175484:
 bool Onyon::isSuckReady()
 {
 	if (m_onyonType == ONYON_TYPE_SHIP) {
-		switch (m_suckState) {
-		case SUCKSTATE_Opened:
-		case SUCKSTATE_GetPellet:
-		case SUCKSTATE_IdleOpen:
+		if (m_suckState == SUCKSTATE_Opened || m_suckState == SUCKSTATE_GetPellet || m_suckState == SUCKSTATE_IdleOpen) {
 			return true;
-		case SUCKSTATE_IdleClosed:
-			SysShape::MotionListener* listener = this;
-			m_animator.startAnim(1, listener);
+		} else if (m_suckState == SUCKSTATE_IdleClosed) {
+			m_animator.startAnim(0, this);
 
 			SoundID sound = PSSE_EV_POD_OPEN;
-			if (playData->_2F & 1) // debt repayed
+			if (playData->_2F & 1) {
 				sound = PSSE_EV_PODGOLD_OPEN;
+			} // debt repayed
 			startSound(sound);
 
 			m_animSpeed = 30.0f;
 			m_suckState = SUCKSTATE_Opening;
-			m_podOpenA->create(0);
+			m_ufoPodOpen->create(nullptr);
 			m_suckTimer = 0.0f;
-			return false;
-		default:
-			return false;
 		}
+		return false;
+	} else {
+		return true;
 	}
-	return true;
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	mr       r31, r3
-	lhz      r0, 0x22e(r3)
-	cmplwi   r0, 4
-	bne      lbl_80175578
-	lbz      r0, 0x240(r31)
-	cmplwi   r0, 1
-	beq      lbl_801754E8
-	cmplwi   r0, 2
-	beq      lbl_801754E8
-	cmplwi   r0, 3
-	bne      lbl_801754F0
-
-lbl_801754E8:
-	li       r3, 1
-	b        lbl_8017557C
-
-lbl_801754F0:
-	cmplwi   r0, 5
-	bne      lbl_80175570
-	cmplwi   r31, 0
-	mr       r5, r31
-	beq      lbl_80175508
-	addi     r5, r5, 0x178
-
-lbl_80175508:
-	addi     r3, r31, 0x1a8
-	li       r4, 0
-	bl       startAnim__Q28SysShape8AnimatorFiPQ28SysShape14MotionListener
-	lwz      r3, playData__4Game@sda21(r13)
-	li       r4, 0x3836
-	lbz      r0, 0x2f(r3)
-	clrlwi.  r0, r0, 0x1f
-	beq      lbl_8017552C
-	li       r4, 0x382f
-
-lbl_8017552C:
-	lwz      r12, 0(r31)
-	mr       r3, r31
-	lwz      r12, 0x1c0(r12)
-	mtctr    r12
-	bctrl
-	lfs      f0, lbl_80518A30@sda21(r2)
-	li       r0, 0
-	li       r4, 0
-	stfs     f0, 0x1d4(r31)
-	stb      r0, 0x240(r31)
-	lwz      r3, 0x210(r31)
-	lwz      r12, 0(r3)
-	lwz      r12, 8(r12)
-	mtctr    r12
-	bctrl
-	lfs      f0, lbl_80518A2C@sda21(r2)
-	stfs     f0, 0x244(r31)
-
-lbl_80175570:
-	li       r3, 0
-	b        lbl_8017557C
-
-lbl_80175578:
-	li       r3, 1
-
-lbl_8017557C:
-	lwz      r0, 0x14(r1)
-	lwz      r31, 0xc(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
 }
 
 /*
@@ -1465,78 +1388,14 @@ namespace Game {
  */
 void Onyon::setupTevRegAnim(int type)
 {
-	switch (m_onyonType) {
-	case ONYON_TYPE_BLUE:
-	case ONYON_TYPE_RED:
-	case ONYON_TYPE_YELLOW:
-		m_matAnim1->start(&ItemOnyon::mgr->m_onyonTevAnim[m_onyonType]);
+	if (m_onyonType <= ONYON_TYPE_YELLOW) {
+		m_matAnim1->start(&ItemOnyon::mgr->m_onyonTevAnim[type]);
 		m_onyonType = type;
-		break;
-	case ONYON_TYPE_SHIP:
+	} else if (m_onyonType == ONYON_TYPE_SHIP) {
 		m_matAnim1->start(&ItemOnyon::mgr->m_ufoTevAnim[0]);
 		m_matAnim2 = new Sys::MatLoopAnimator;
 		m_matAnim2->start(&ItemOnyon::mgr->m_ufoTevAnim[1]);
 	}
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	mr       r31, r4
-	stw      r30, 8(r1)
-	mr       r30, r3
-	lhz      r0, 0x22e(r3)
-	cmplwi   r0, 2
-	bgt      lbl_80175DA0
-	lwz      r3, 0x234(r30)
-	mulli    r4, r31, 0x14
-	lwz      r0, mgr__Q24Game9ItemOnyon@sda21(r13)
-	lwz      r12, 0(r3)
-	addi     r4, r4, 0xb4
-	lwz      r12, 8(r12)
-	add      r4, r0, r4
-	mtctr    r12
-	bctrl
-	sth      r31, 0x22e(r30)
-	b        lbl_80175E04
-
-lbl_80175DA0:
-	cmplwi   r0, 4
-	bne      lbl_80175E04
-	lwz      r3, 0x234(r30)
-	lwz      r4, mgr__Q24Game9ItemOnyon@sda21(r13)
-	lwz      r12, 0(r3)
-	addi     r4, r4, 0xf0
-	lwz      r12, 8(r12)
-	mtctr    r12
-	bctrl
-	li       r3, 0xc
-	bl       __nw__FUl
-	or.      r31, r3, r3
-	beq      lbl_80175DE4
-	bl       __ct__Q23Sys15MatBaseAnimatorFv
-	lis      r3, __vt__Q23Sys15MatLoopAnimator@ha
-	addi     r0, r3, __vt__Q23Sys15MatLoopAnimator@l
-	stw      r0, 0(r31)
-
-lbl_80175DE4:
-	stw      r31, 0x238(r30)
-	lwz      r3, 0x238(r30)
-	lwz      r4, mgr__Q24Game9ItemOnyon@sda21(r13)
-	lwz      r12, 0(r3)
-	addi     r4, r4, 0x104
-	lwz      r12, 8(r12)
-	mtctr    r12
-	bctrl
-
-lbl_80175E04:
-	lwz      r0, 0x14(r1)
-	lwz      r31, 0xc(r1)
-	lwz      r30, 8(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
 }
 
 /*
@@ -1736,57 +1595,12 @@ bool Onyon::needShadow() { return false; }
 void Onyon::getShadowParam(ShadowParam& param)
 {
 	param.m_position = getPosition();
-	if (m_onyonType == ONYON_OBJECT_POD) {
+	if (m_onyonType == ONYON_TYPE_POD) {
 		param.m_position.y += 80.0f;
 		param.m_boundingSphere.m_radius = 100.0f;
 		param._1C                       = 27.0f; // shadow size
 	}
 	param.m_boundingSphere.m_position = Vector3f(0.0f, 1.0f, 0.0f);
-	/*
-	stwu     r1, -0x20(r1)
-	mflr     r0
-	stw      r0, 0x24(r1)
-	stw      r31, 0x1c(r1)
-	mr       r31, r4
-	stw      r30, 0x18(r1)
-	mr       r30, r3
-	mr       r4, r30
-	addi     r3, r1, 8
-	lwz      r12, 0(r30)
-	lwz      r12, 8(r12)
-	mtctr    r12
-	bctrl
-	lfs      f0, 8(r1)
-	stfs     f0, 0(r31)
-	lfs      f0, 0xc(r1)
-	stfs     f0, 4(r31)
-	lfs      f0, 0x10(r1)
-	stfs     f0, 8(r31)
-	lhz      r0, 0x22e(r30)
-	cmplwi   r0, 3
-	bne      lbl_80176068
-	lfs      f2, 4(r31)
-	lfs      f0, lbl_80518A4C@sda21(r2)
-	lfs      f1, lbl_80518A50@sda21(r2)
-	fadds    f2, f2, f0
-	lfs      f0, lbl_80518A54@sda21(r2)
-	stfs     f2, 4(r31)
-	stfs     f1, 0x18(r31)
-	stfs     f0, 0x1c(r31)
-
-lbl_80176068:
-	lfs      f1, lbl_80518A2C@sda21(r2)
-	lfs      f0, lbl_80518A58@sda21(r2)
-	stfs     f1, 0xc(r31)
-	stfs     f0, 0x10(r31)
-	stfs     f1, 0x14(r31)
-	lwz      r31, 0x1c(r1)
-	lwz      r30, 0x18(r1)
-	lwz      r0, 0x24(r1)
-	mtlr     r0
-	addi     r1, r1, 0x20
-	blr
-	*/
 }
 
 /*
@@ -1794,33 +1608,7 @@ lbl_80176068:
  * Address:	80176094
  * Size:	000034
  */
-bool Onyon::sound_culling()
-{
-	if (m_onyonType < ONYON_OBJECT_POD) {
-		return Creature::sound_culling();
-	} else {
-		return false;
-	}
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	lhz      r0, 0x22e(r3)
-	cmplwi   r0, 2
-	bgt      lbl_801760B4
-	bl       sound_culling__Q24Game8CreatureFv
-	b        lbl_801760B8
-
-lbl_801760B4:
-	li       r3, 0
-
-lbl_801760B8:
-	lwz      r0, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
-}
+bool Onyon::sound_culling() { return (m_onyonType <= ONYON_TYPE_YELLOW) ? Creature::sound_culling() : false; }
 
 /*
  * --INFO--

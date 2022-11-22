@@ -3,7 +3,6 @@
 #include "Dolphin/stl.h"
 #include "Game/BaseItem.h"
 #include "Game/Creature.h"
-#include "Game/genItem.h"
 #include "Game/Interaction.h"
 #include "Game/itemMgr.h"
 #include "Game/StateMachine.h"
