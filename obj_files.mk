@@ -1127,7 +1127,7 @@ GC:=\
 	$(BUILD_DIR)/asm/sysGCU/JSTObjectCamera.o\
 	$(BUILD_DIR)/asm/sysGCU/JSTObjectGameActor.o\
 	$(BUILD_DIR)/asm/sysGCU/JSTObjectSystem.o\
-	$(BUILD_DIR)/asm/sysGCU/JSTFindCreature.o\
+	$(BUILD_DIR)/src/sysGCU/JSTFindCreature.o\
 	$(BUILD_DIR)/asm/sysGCU/movieConfig.o\
 	$(BUILD_DIR)/src/sysGCU/gameConfig.o\
 	$(BUILD_DIR)/src/sysGCU/fogMgr.o\
