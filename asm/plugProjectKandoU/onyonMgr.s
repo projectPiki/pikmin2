@@ -915,7 +915,7 @@ lbl_80518A58:
 	.float 1.0
 .global lbl_80518A5C
 lbl_80518A5C:
-	.4byte 0x41A00000
+	.float 20.0
 .global lbl_80518A60
 lbl_80518A60:
 	.4byte 0x43A2F983
@@ -946,7 +946,7 @@ lbl_80518A84:
 	.4byte 0x79657300
 .global lbl_80518A88
 lbl_80518A88:
-	.4byte 0xC1A00000
+	.float -20.0
 .global lbl_80518A8C
 lbl_80518A8C:
 	.4byte 0x40A00000

@@ -825,7 +825,7 @@ void Onyon::setType(int type)
 		break;
 	case ONYON_TYPE_POD:
 		jnt = m_model->getJoint("pot_ctr");
-		P2ASSERTLINE(788, jnt != nullptr);
+		P2ASSERTLINE(788, jnt);
 		m_podOpenA = new ::efx::TPodOpenA;
 		m_podOpenB = new ::efx::TPodOpenB;
 		m_podSpot  = new ::efx::TPodSpot;
@@ -1403,48 +1403,7 @@ void Onyon::setupTevRegAnim(int type)
  * Address:	80175E1C
  * Size:	000074
  */
-bool Onyon::stimulate(Interaction& act)
-{
-	if (!act.actCommon(this))
-		return false;
-	else
-		return act.actOnyon(this);
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	mr       r31, r4
-	stw      r30, 8(r1)
-	mr       r30, r3
-	mr       r3, r31
-	lwz      r12, 0(r31)
-	mr       r4, r30
-	lwz      r12, 8(r12)
-	mtctr    r12
-	bctrl
-	clrlwi.  r0, r3, 0x18
-	beq      lbl_80175E74
-	mr       r3, r31
-	mr       r4, r30
-	lwz      r12, 0(r31)
-	lwz      r12, 0x1c(r12)
-	mtctr    r12
-	bctrl
-	b        lbl_80175E78
-
-lbl_80175E74:
-	li       r3, 0
-
-lbl_80175E78:
-	lwz      r0, 0x14(r1)
-	lwz      r31, 0xc(r1)
-	lwz      r30, 8(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
-}
+bool Onyon::stimulate(Interaction& act) { return act.actCommon(this) ? act.actOnyon(this) : false; }
 
 /*
  * --INFO--
@@ -1455,7 +1414,8 @@ bool InteractSuckArrive::actOnyon(Onyon* item)
 {
 	if (item->m_onyonType == ONYON_TYPE_SHIP) {
 		SysShape::Joint* jnt = item->m_model->getJoint("pmotion3");
-		if (jnt != nullptr) {
+		// Matrixf* worldMatrix = jnt->getWorldMatrix();
+		if (jnt) {
 			efx::TUfoPodSuck efx;
 			efx.create(nullptr);
 		}
@@ -1473,7 +1433,7 @@ bool InteractSuckArrive::actOnyon(Onyon* item)
 			item->m_ufoPodOpen->create(0);
 			return true;
 		}
-		if (item->SUCKSTATE_Closing) {
+		if (item->m_suckState == Onyon::SUCKSTATE_Closing) {
 			JUT_PANICLINE(859, "damedayo !: arrive  ufoSuckState=%d\n", item->m_suckState);
 		}
 	}
@@ -2697,28 +2657,14 @@ lbl_80176E70:
  * Address:	80176E84
  * Size:	00000C
  */
-void Onyon::startPropera(void)
-{
-	/*
-	lfs      f0, lbl_80518A5C@sda21(r2)
-	stfs     f0, 0x25c(r3)
-	blr
-	*/
-}
+void Onyon::startPropera(void) { m_propera = 20.0f; }
 
 /*
  * --INFO--
  * Address:	80176E90
  * Size:	00000C
  */
-void Onyon::stopPropera(void)
-{
-	/*
-	lfs      f0, lbl_80518A88@sda21(r2)
-	stfs     f0, 0x25c(r3)
-	blr
-	*/
-}
+void Onyon::stopPropera(void) { m_propera = -20.0f; }
 
 /*
  * --INFO--
@@ -9623,83 +9569,77 @@ f32 BaseItem::getMapCollisionRadius(void)
  * Address:	8017C28C
  * Size:	000008
  */
-bool BaseItem::interactAttack(InteractAttack&) { return 0x0; }
+bool BaseItem::interactAttack(InteractAttack&) { return false; }
 
 /*
  * --INFO--
  * Address:	8017C294
  * Size:	000008
  */
-bool BaseItem::interactBreakBridge(InteractBreakBridge&) { return 0x0; }
+bool BaseItem::interactBreakBridge(InteractBreakBridge&) { return false; }
 
 /*
  * --INFO--
  * Address:	8017C29C
  * Size:	000008
  */
-bool BaseItem::interactEat(InteractEat&) { return 0x0; }
+bool BaseItem::interactEat(InteractEat&) { return false; }
 
 /*
  * --INFO--
  * Address:	8017C2A4
  * Size:	000008
  */
-bool BaseItem::interactFlockAttack(Game::InteractFlockAttack&) { return 0x0; }
+bool BaseItem::interactFlockAttack(Game::InteractFlockAttack&) { return false; }
 
 /*
  * --INFO--
  * Address:	8017C2AC
  * Size:	000008
  */
-bool BaseItem::interactAbsorb(Game::InteractAbsorb&) { return 0x0; }
+bool BaseItem::interactAbsorb(Game::InteractAbsorb&) { return false; }
 
 /*
  * --INFO--
  * Address:	8017C2B4
  * Size:	000008
  */
-bool BaseItem::interactFue(Game::InteractFue&) { return 0x0; }
+bool BaseItem::interactFue(Game::InteractFue&) { return false; }
 
 /*
  * --INFO--
  * Address:	8017C2BC
  * Size:	000008
  */
-bool BaseItem::interactFarmKarero(Game::InteractFarmKarero&) { return 0x0; }
+bool BaseItem::interactFarmKarero(Game::InteractFarmKarero&) { return false; }
 
 /*
  * --INFO--
  * Address:	8017C2C4
  * Size:	000008
  */
-bool BaseItem::interactFarmHaero(Game::InteractFarmHaero&) { return 0x0; }
+bool BaseItem::interactFarmHaero(Game::InteractFarmHaero&) { return false; }
 
 /*
  * --INFO--
  * Address:	8017C2CC
  * Size:	000008
  */
-bool BaseItem::interactGotKey(Game::InteractGotKey&) { return 0x0; }
+bool BaseItem::interactGotKey(Game::InteractGotKey&) { return false; }
 
 /*
  * --INFO--
  * Address:	8017C2D4
  * Size:	000008
  */
-bool BaseItem::getVectorField(Sys::Sphere&, Vector3f&) { return 0x1; }
+bool BaseItem::getVectorField(Sys::Sphere&, Vector3f&) { return true; }
 
 /*
  * --INFO--
  * Address:	8017C2DC
  * Size:	000008
  */
-f32 BaseItem::getWorkDistance(Sys::Sphere&)
-{
-	/*
-	lfs      f1, lbl_80518B58@sda21(r2)
-	blr
-	*/
-}
+f32 BaseItem::getWorkDistance(Sys::Sphere& sphere) { return 128000.0f; }
 
 /*
  * --INFO--
@@ -9734,20 +9674,7 @@ void BaseItem::updateBoundSphere(void) { }
  * Address:	8017C2F4
  * Size:	000024
  */
-void BaseItem::getBoundingSphere(Sys::Sphere&)
-{
-	/*
-	lfs      f0, 0x1c4(r3)
-	stfs     f0, 0(r4)
-	lfs      f0, 0x1c8(r3)
-	stfs     f0, 4(r4)
-	lfs      f0, 0x1cc(r3)
-	stfs     f0, 8(r4)
-	lfs      f0, 0x1d0(r3)
-	stfs     f0, 0xc(r4)
-	blr
-	*/
-}
+void BaseItem::getBoundingSphere(Sys::Sphere& sphere) { sphere = m_boundingSphere; }
 
 /*
  * --INFO--
@@ -9789,373 +9716,14 @@ void BaseItem::onSetPosition() { }
  * Address:	8017C360
  * Size:	00001C
  */
-Vector3f BaseItem::getVelocity()
-{
-	/*
-	lfs      f0, 0x190(r4)
-	stfs     f0, 0(r3)
-	lfs      f0, 0x194(r4)
-	stfs     f0, 4(r3)
-	lfs      f0, 0x198(r4)
-	stfs     f0, 8(r3)
-	blr
-	*/
-}
+Vector3f BaseItem::getVelocity() { return m_velocity; }
 
 /*
  * --INFO--
  * Address:	8017C37C
  * Size:	000014
  */
-void BaseItem::getVelocityAt(Vector3f&, Vector3f&)
-{
-	/*
-	lfs      f0, lbl_80518A2C@sda21(r2)
-	stfs     f0, 0(r5)
-	stfs     f0, 4(r5)
-	stfs     f0, 8(r5)
-	blr
-	*/
-}
-
-} // namespace Game
-
-namespace efx {
-
-/*
- * --INFO--
- * Address:	8017C390
- * Size:	00009C
- */
-TPodKira::~TPodKira(void)
-{
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	mr       r31, r4
-	stw      r30, 8(r1)
-	or.      r30, r3, r3
-	beq      lbl_8017C410
-	lis      r3, __vt__Q23efx8TPodKira@ha
-	addi     r3, r3, __vt__Q23efx8TPodKira@l
-	stw      r3, 0(r30)
-	addi     r0, r3, 0x14
-	stw      r0, 4(r30)
-	beq      lbl_8017C400
-	lis      r3, __vt__Q23efx9TChaseMtx@ha
-	addi     r3, r3, __vt__Q23efx9TChaseMtx@l
-	stw      r3, 0(r30)
-	addi     r0, r3, 0x14
-	stw      r0, 4(r30)
-	beq      lbl_8017C400
-	lis      r4, __vt__Q23efx5TSync@ha
-	addi     r3, r30, 4
-	addi     r5, r4, __vt__Q23efx5TSync@l
-	li       r4, 0
-	stw      r5, 0(r30)
-	addi     r0, r5, 0x14
-	stw      r0, 4(r30)
-	bl       __dt__18JPAEmitterCallBackFv
-
-lbl_8017C400:
-	extsh.   r0, r31
-	ble      lbl_8017C410
-	mr       r3, r30
-	bl       __dl__FPv
-
-lbl_8017C410:
-	lwz      r0, 0x14(r1)
-	mr       r3, r30
-	lwz      r31, 0xc(r1)
-	lwz      r30, 8(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
-}
-
-/*
- * --INFO--
- * Address:	8017C42C
- * Size:	00009C
- */
-TPodOpenB::~TPodOpenB(void)
-{
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	mr       r31, r4
-	stw      r30, 8(r1)
-	or.      r30, r3, r3
-	beq      lbl_8017C4AC
-	lis      r3, __vt__Q23efx9TPodOpenB@ha
-	addi     r3, r3, __vt__Q23efx9TPodOpenB@l
-	stw      r3, 0(r30)
-	addi     r0, r3, 0x14
-	stw      r0, 4(r30)
-	beq      lbl_8017C49C
-	lis      r3, __vt__Q23efx9TChaseMtx@ha
-	addi     r3, r3, __vt__Q23efx9TChaseMtx@l
-	stw      r3, 0(r30)
-	addi     r0, r3, 0x14
-	stw      r0, 4(r30)
-	beq      lbl_8017C49C
-	lis      r4, __vt__Q23efx5TSync@ha
-	addi     r3, r30, 4
-	addi     r5, r4, __vt__Q23efx5TSync@l
-	li       r4, 0
-	stw      r5, 0(r30)
-	addi     r0, r5, 0x14
-	stw      r0, 4(r30)
-	bl       __dt__18JPAEmitterCallBackFv
-
-lbl_8017C49C:
-	extsh.   r0, r31
-	ble      lbl_8017C4AC
-	mr       r3, r30
-	bl       __dl__FPv
-
-lbl_8017C4AC:
-	lwz      r0, 0x14(r1)
-	mr       r3, r30
-	lwz      r31, 0xc(r1)
-	lwz      r30, 8(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
-}
-
-/*
- * --INFO--
- * Address:	8017C4C8
- * Size:	00009C
- */
-TPodOpenA::~TPodOpenA(void)
-{
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	mr       r31, r4
-	stw      r30, 8(r1)
-	or.      r30, r3, r3
-	beq      lbl_8017C548
-	lis      r3, __vt__Q23efx9TPodOpenA@ha
-	addi     r3, r3, __vt__Q23efx9TPodOpenA@l
-	stw      r3, 0(r30)
-	addi     r0, r3, 0x14
-	stw      r0, 4(r30)
-	beq      lbl_8017C538
-	lis      r3, __vt__Q23efx8TForever@ha
-	addi     r3, r3, __vt__Q23efx8TForever@l
-	stw      r3, 0(r30)
-	addi     r0, r3, 0x14
-	stw      r0, 4(r30)
-	beq      lbl_8017C538
-	lis      r4, __vt__Q23efx5TSync@ha
-	addi     r3, r30, 4
-	addi     r5, r4, __vt__Q23efx5TSync@l
-	li       r4, 0
-	stw      r5, 0(r30)
-	addi     r0, r5, 0x14
-	stw      r0, 4(r30)
-	bl       __dt__18JPAEmitterCallBackFv
-
-lbl_8017C538:
-	extsh.   r0, r31
-	ble      lbl_8017C548
-	mr       r3, r30
-	bl       __dl__FPv
-
-lbl_8017C548:
-	lwz      r0, 0x14(r1)
-	mr       r3, r30
-	lwz      r31, 0xc(r1)
-	lwz      r30, 8(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
-}
-
-/*
- * --INFO--
- * Address:	8017C564
- * Size:	000004
- */
-void TForever::doExecuteEmitterOperation(JPABaseEmitter*) { }
-
-/*
- * --INFO--
- * Address:	8017C568
- * Size:	00009C
- */
-TUfoGasOut::~TUfoGasOut(void)
-{
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	mr       r31, r4
-	stw      r30, 8(r1)
-	or.      r30, r3, r3
-	beq      lbl_8017C5E8
-	lis      r3, __vt__Q23efx10TUfoGasOut@ha
-	addi     r3, r3, __vt__Q23efx10TUfoGasOut@l
-	stw      r3, 0(r30)
-	addi     r0, r3, 0x14
-	stw      r0, 4(r30)
-	beq      lbl_8017C5D8
-	lis      r3, __vt__Q23efx9TChaseMtx@ha
-	addi     r3, r3, __vt__Q23efx9TChaseMtx@l
-	stw      r3, 0(r30)
-	addi     r0, r3, 0x14
-	stw      r0, 4(r30)
-	beq      lbl_8017C5D8
-	lis      r4, __vt__Q23efx5TSync@ha
-	addi     r3, r30, 4
-	addi     r5, r4, __vt__Q23efx5TSync@l
-	li       r4, 0
-	stw      r5, 0(r30)
-	addi     r0, r5, 0x14
-	stw      r0, 4(r30)
-	bl       __dt__18JPAEmitterCallBackFv
-
-lbl_8017C5D8:
-	extsh.   r0, r31
-	ble      lbl_8017C5E8
-	mr       r3, r30
-	bl       __dl__FPv
-
-lbl_8017C5E8:
-	lwz      r0, 0x14(r1)
-	mr       r3, r30
-	lwz      r31, 0xc(r1)
-	lwz      r30, 8(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
-}
-
-/*
- * --INFO--
- * Address:	8017C604
- * Size:	00009C
- */
-TUfoGasIn::~TUfoGasIn(void)
-{
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	mr       r31, r4
-	stw      r30, 8(r1)
-	or.      r30, r3, r3
-	beq      lbl_8017C684
-	lis      r3, __vt__Q23efx9TUfoGasIn@ha
-	addi     r3, r3, __vt__Q23efx9TUfoGasIn@l
-	stw      r3, 0(r30)
-	addi     r0, r3, 0x14
-	stw      r0, 4(r30)
-	beq      lbl_8017C674
-	lis      r3, __vt__Q23efx9TChaseMtx@ha
-	addi     r3, r3, __vt__Q23efx9TChaseMtx@l
-	stw      r3, 0(r30)
-	addi     r0, r3, 0x14
-	stw      r0, 4(r30)
-	beq      lbl_8017C674
-	lis      r4, __vt__Q23efx5TSync@ha
-	addi     r3, r30, 4
-	addi     r5, r4, __vt__Q23efx5TSync@l
-	li       r4, 0
-	stw      r5, 0(r30)
-	addi     r0, r5, 0x14
-	stw      r0, 4(r30)
-	bl       __dt__18JPAEmitterCallBackFv
-
-lbl_8017C674:
-	extsh.   r0, r31
-	ble      lbl_8017C684
-	mr       r3, r30
-	bl       __dl__FPv
-
-lbl_8017C684:
-	lwz      r0, 0x14(r1)
-	mr       r3, r30
-	lwz      r31, 0xc(r1)
-	lwz      r30, 8(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
-}
-
-/*
- * --INFO--
- * Address:	8017C6A0
- * Size:	00009C
- */
-TUfoPodOpenSuck::~TUfoPodOpenSuck(void)
-{
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	mr       r31, r4
-	stw      r30, 8(r1)
-	or.      r30, r3, r3
-	beq      lbl_8017C720
-	lis      r3, __vt__Q23efx15TUfoPodOpenSuck@ha
-	addi     r3, r3, __vt__Q23efx15TUfoPodOpenSuck@l
-	stw      r3, 0(r30)
-	addi     r0, r3, 0x14
-	stw      r0, 4(r30)
-	beq      lbl_8017C710
-	lis      r3, __vt__Q23efx9TChaseMtx@ha
-	addi     r3, r3, __vt__Q23efx9TChaseMtx@l
-	stw      r3, 0(r30)
-	addi     r0, r3, 0x14
-	stw      r0, 4(r30)
-	beq      lbl_8017C710
-	lis      r4, __vt__Q23efx5TSync@ha
-	addi     r3, r30, 4
-	addi     r5, r4, __vt__Q23efx5TSync@l
-	li       r4, 0
-	stw      r5, 0(r30)
-	addi     r0, r5, 0x14
-	stw      r0, 4(r30)
-	bl       __dt__18JPAEmitterCallBackFv
-
-lbl_8017C710:
-	extsh.   r0, r31
-	ble      lbl_8017C720
-	mr       r3, r30
-	bl       __dl__FPv
-
-lbl_8017C720:
-	lwz      r0, 0x14(r1)
-	mr       r3, r30
-	lwz      r31, 0xc(r1)
-	lwz      r30, 8(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
-}
-
-} // namespace efx
-
-namespace Game {
+void BaseItem::getVelocityAt(Vector3f& a, Vector3f& b) { b = Vector3f(0.0f); }
 
 /*
  * --INFO--
@@ -10957,7 +10525,7 @@ lbl_8017D0CC:
  * Address:	8017D100
  * Size:	0001F4
  */
-void ObjectMgr<Game::Onyon>::doDirectDraw(Graphics&)
+void ObjectMgr<Game::Onyon>::doDirectDraw(Graphics& gfx)
 {
 	/*
 	stwu     r1, -0x20(r1)
@@ -11109,7 +10677,7 @@ lbl_8017D2C0:
  * Address:	8017D2F4
  * Size:	00002C
  */
-void* Container<Game::Onyon>::getObject(void*)
+void* Container<Game::Onyon>::getObject(void* obj)
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -11131,11 +10699,11 @@ void* Container<Game::Onyon>::getObject(void*)
  * Address:	8017D320
  * Size:	000008
  */
-Game::Onyon* Container<Game::Onyon>::getAt(int) { return 0x0; }
+Game::Onyon* Container<Game::Onyon>::getAt(int to) { return nullptr; }
 
 /*
  * --INFO--
  * Address:	8017D328
  * Size:	000008
  */
-int Container<Game::Onyon>::getTo() { return 0x0; }
+int Container<Game::Onyon>::getTo() { return 0; }

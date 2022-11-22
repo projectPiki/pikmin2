@@ -12,7 +12,7 @@ struct TUfoGasIn : public TChaseMtx {
 	{
 	}
 
-	virtual ~TUfoGasIn(); // _48 (weak)
+	virtual ~TUfoGasIn() {}; // _48 (weak)
 
 	// _00     = VTBL
 	// _00-_14 = TChaseMtx
@@ -24,7 +24,7 @@ struct TUfoGasOut : public TChaseMtx {
 	{
 	}
 
-	virtual ~TUfoGasOut(); // _48 (weak)
+	virtual ~TUfoGasOut() {}; // _48 (weak)
 
 	// _00     = VTBL
 	// _00-_14 = TChaseMtx
@@ -56,7 +56,7 @@ struct TUfoPodOpenSuck : public TChaseMtx {
 	{
 	}
 
-	virtual ~TUfoPodOpenSuck(); // _48 (weak)
+	virtual ~TUfoPodOpenSuck() {}; // _48 (weak)
 
 	// _00     = VTBL
 	// _00-_14 = TChaseMtx
