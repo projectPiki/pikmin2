@@ -53,7 +53,7 @@ struct ParticleMgr : public CNode {
 	bool cullByResFlg(Vector3f&, u16);
 	bool cullByResFlg(JPABaseEmitter*);
 	void entryModelEffect(ModelEffectData*);
-	void createModelEffect(ModelEffectCreateArg*);
+	ModelEffect* createModelEffect(ModelEffectCreateArg*);
 
 	// Unused/inlined:
 	void destroyHeap();

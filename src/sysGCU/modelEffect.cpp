@@ -1,4 +1,5 @@
 #include "types.h"
+#include "ParticleMgr.h"
 
 /*
     Generated from dpostproc
@@ -221,7 +222,7 @@ void ParticleMgr::getModelEffectData(unsigned long long)
  * Address:	8043D638
  * Size:	00011C
  */
-void ParticleMgr::createModelEffect(ModelEffectCreateArg*)
+ModelEffect* ParticleMgr::createModelEffect(ModelEffectCreateArg*)
 {
 	/*
 	stwu     r1, -0x20(r1)

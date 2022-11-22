@@ -17,6 +17,8 @@ struct CategoryMgr {
 };
 
 struct SePerspInfo {
+	void set(f32, f32, f32, f32, f32);
+
 	f32 _00;               // _00
 	f32 _04;               // _04
 	f32 _08;               // _08
