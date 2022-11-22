@@ -22,7 +22,7 @@ struct Navi : public CreatureObj {
 	virtual CreatureCastType getCastType(); // _1C (weak)
 
 	// vtable 3 (JAInter::Object + self, _28)
-	virtual void startSound(u32, u32); // _7C (weak)
+	virtual JAISound* startSound(u32, u32); // _7C (weak)
 
 	void init(u16);
 	void setShacho();

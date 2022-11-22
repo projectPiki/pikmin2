@@ -5,11 +5,17 @@
 
 namespace efx {
 struct OnyonSpotArg : public ModelEffectCreateArg {
+	inline OnyonSpotArg(Vector3f& orig, u32 onyonType)
+	    : m_onyonType(onyonType)
+	{
+		m_orig = orig;
+	}
+
 	virtual u64 getID() { return 'ONY_SPOT'; } // _08 (weak)
 
 	// _00 		= VTBL
-	Vector3f orig; // _04
-	u32 onyonType; // _10
+	Vector3f m_orig; // _04
+	u32 m_onyonType; // _10
 };
 
 struct OnyonSpotData : public ModelEffectData {

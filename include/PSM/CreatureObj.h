@@ -19,7 +19,7 @@ struct CreatureObj : public Creature, public JAInter::Object {
 	virtual JAISound** getHandleArea(u8 i) { return m_sounds + i; }    // _3C (weak)
 
 	// vtable 3 (JAInter::ObjectBase -> JAInter::Object + self, _28)
-	virtual PSM::SeSound* startSound(u32, u32);    // _7C (thunk at _4C)
+	virtual JAISound* startSound(u32, u32);        // _7C (thunk at _4C)
 	virtual void startSound(u8, u32, u32);         // _80 (thunk at _50)
 	virtual void startSound(JAISound**, u32, u32); // _84 (thunk at _54)
 

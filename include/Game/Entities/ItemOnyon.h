@@ -123,6 +123,8 @@ struct Onyon : public BaseItem {
 	void getPAnimator(int);
 	void update_pmotions();
 
+	void updateSpot();
+
 	// _00 		= VTBL
 	// _00-_1D8	= BaseItem
 	u32 m_pikisToWithdraw;                    // _1D8, red/blue/yellow pikmin queued to exit the onion

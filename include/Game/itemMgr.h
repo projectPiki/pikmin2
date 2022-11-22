@@ -30,7 +30,7 @@ struct _BaseItemMgrParent2 {
 };
 
 struct BaseItemMgr : public GenericObjectMgr, virtual public _BaseItemMgrParent2 {
-	BaseItemMgr();
+	BaseItemMgr(int);
 
 	virtual void doAnimation();                                               // _08 (weak)
 	virtual void doEntry();                                                   // _0C (weak)
