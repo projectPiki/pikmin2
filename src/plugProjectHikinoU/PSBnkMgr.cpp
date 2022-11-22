@@ -1,82 +1,25 @@
-#include "types.h"
-
-/*
-    Generated from dpostproc
-
-    .section .rodata  # 0x804732E0 - 0x8049E220
-    .global lbl_8048FEF0
-    lbl_8048FEF0:
-        .4byte 0x5053426E
-        .4byte 0x6B4D6772
-        .4byte 0x2E637070
-        .4byte 0x00000000
-    .global lbl_8048FF00
-    lbl_8048FF00:
-        .asciz "P2Assert"
-        .skip 3
-        .4byte 0x2F417564
-        .4byte 0x696F5265
-        .4byte 0x732F4261
-        .4byte 0x6E6B7300
-
-    .section .data, "wa"  # 0x8049E220 - 0x804EFC20
-    .global __vt__Q38PSSystem9WaveScene8WaveArea
-    __vt__Q38PSSystem9WaveScene8WaveArea:
-        .4byte 0
-        .4byte 0
-        .4byte __dt__Q38PSSystem9WaveScene8WaveAreaFv
-    .global __vt__Q28PSSystem7BankMgr
-    __vt__Q28PSSystem7BankMgr:
-        .4byte 0
-        .4byte 0
-        .4byte __dt__Q28PSSystem7BankMgrFv
-
-    .section .sbss # 0x80514D80 - 0x80516360
-    .global sBankMgr__Q28PSSystem7BankMgr
-    sBankMgr__Q28PSSystem7BankMgr:
-        .skip 0x8
-*/
+#include "PSSystem/BankMgr.h"
+#include "PSSystem/WaveScene.h"
+#include "JSystem/JAI/JAInter/BankWave.h"
+#include "JSystem/JAI/JAInter/InitData.h"
+#include "JSystem/JAS/JASBank.h"
+#include "JSystem/JAS/JASWave.h"
 
 namespace PSSystem {
+
+BankMgr* BankMgr::sBankMgr;
 
 /*
  * --INFO--
  * Address:	8033D738
  * Size:	000064
  */
-void BankMgr::createInstance()
+BankMgr* BankMgr::createInstance()
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	lwz      r0, sBankMgr__Q28PSSystem7BankMgr@sda21(r13)
-	cmplwi   r0, 0
-	beq      lbl_8033D76C
-	lis      r3, lbl_8048FEF0@ha
-	lis      r5, lbl_8048FF00@ha
-	addi     r3, r3, lbl_8048FEF0@l
-	li       r4, 0xe
-	addi     r5, r5, lbl_8048FF00@l
-	crclr    6
-	bl       panic_f__12JUTExceptionFPCciPCce
-
-lbl_8033D76C:
-	li       r3, 0x28
-	bl       __nw__FUl
-	or.      r0, r3, r3
-	beq      lbl_8033D784
-	bl       __ct__Q28PSSystem7BankMgrFv
-	mr       r0, r3
-
-lbl_8033D784:
-	stw      r0, sBankMgr__Q28PSSystem7BankMgr@sda21(r13)
-	mr       r3, r0
-	lwz      r0, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	P2ASSERTLINE(14, !sBankMgr);
+	BankMgr* bankMgr = new BankMgr();
+	sBankMgr         = bankMgr;
+	return bankMgr;
 }
 
 /*
@@ -86,30 +29,12 @@ lbl_8033D784:
  */
 BankMgr::BankMgr()
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	mr       r31, r3
-	bl       __ct__11JKRDisposerFv
-	lis      r3, __vt__Q28PSSystem7BankMgr@ha
-	li       r0, 0
-	addi     r4, r3, __vt__Q28PSSystem7BankMgr@l
-	mr       r3, r31
-	stw      r4, 0(r31)
-	stb      r0, 0x1a(r31)
-	stw      r0, 0x1c(r31)
-	stb      r0, 0x20(r31)
-	stw      r0, 0x24(r31)
-	stb      r0, 0x18(r31)
-	stb      r0, 0x19(r31)
-	lwz      r31, 0xc(r1)
-	lwz      r0, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	_1A = 0;
+	_1C = nullptr;
+	_20 = 0;
+	_24 = nullptr;
+	_18 = 0;
+	_19 = 0;
 }
 
 /*
@@ -119,47 +44,13 @@ BankMgr::BankMgr()
  */
 void BankMgr::preInit()
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	mr       r31, r3
-	lbz      r0, 0x18(r3)
-	cmplwi   r0, 0
-	beq      lbl_8033D830
-	lis      r3, lbl_8048FEF0@ha
-	lis      r5, lbl_8048FF00@ha
-	addi     r3, r3, lbl_8048FEF0@l
-	li       r4, 0x77
-	addi     r5, r5, lbl_8048FF00@l
-	crclr    6
-	bl       panic_f__12JUTExceptionFPCciPCce
-
-lbl_8033D830:
-	li       r0, 1
-	lis      r3, setBankDataS__Q28PSSystem7BankMgrFPUl@ha
-	stb      r0, 0x18(r31)
-	addi     r3, r3, setBankDataS__Q28PSSystem7BankMgrFPUl@l
-	bl       setBnkInitCallback__Q27JAInter8InitDataFPFPUl_v
-	lis      r3, setWsDataS__Q28PSSystem7BankMgrFPUl@ha
-	addi     r3, r3, setWsDataS__Q28PSSystem7BankMgrFPUl@l
-	bl       setWsInitCallback__Q27JAInter8InitDataFPFPUl_v
-	lis      r3, initS__Q28PSSystem7BankMgrFv@ha
-	addi     r3, r3, initS__Q28PSSystem7BankMgrFv@l
-	bl       setInitCallback__Q27JAInter8BankWaveFPFv_v
-	lis      r3, firstLoadS__Q28PSSystem7BankMgrFv@ha
-	addi     r3, r3, firstLoadS__Q28PSSystem7BankMgrFv@l
-	bl       setFirstLoadCallback__Q27JAInter8BankWaveFPFv_v
-	lis      r3, secondLoadS__Q28PSSystem7BankMgrFv@ha
-	addi     r3, r3, secondLoadS__Q28PSSystem7BankMgrFv@l
-	bl       setSecondLoadCallback__Q27JAInter8BankWaveFPFv_v
-	lwz      r0, 0x14(r1)
-	lwz      r31, 0xc(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	P2ASSERTLINE(119, !_18);
+	_18 = 1;
+	JAInter::InitData::setBnkInitCallback(&setBankDataS);
+	JAInter::InitData::setWsInitCallback(&setWsDataS);
+	JAInter::BankWave::setInitCallback(&initS);
+	JAInter::BankWave::setFirstLoadCallback(&firstLoadS);
+	JAInter::BankWave::setSecondLoadCallback(&secondLoadS);
 }
 
 /*
@@ -169,6 +60,41 @@ lbl_8033D830:
  */
 void BankMgr::init()
 {
+	P2ASSERTLINE(132, !_19);
+	_19        = 1;
+	bool check = false;
+
+	if (_20 && _1A) {
+		check = true;
+	}
+
+	P2ASSERTLINE(134, check);
+	JASWaveArcLoader::setCurrentDir("/AudioRes/Banks");
+	JASWaveBankMgr::init(_20);
+	JASWaveArcLoader::init(nullptr);
+
+	if (_24) {
+		for (u8 i = 0; i < _20; i++) {
+			u32* ptr = _24[i * 3];
+			if (ptr) {
+				JASWaveBankMgr::registWaveBankWS(i, ptr);
+			}
+		}
+	}
+
+	JASBankMgr::init(256);
+	if (_1C) {
+		for (u8 i = 0; i < _1A; i++) {
+			u32* ptr = _1C[i * 3];
+			if (ptr) {
+				JASBankMgr::registBankBNK(i, ptr);
+			}
+		}
+
+		for (u8 i = 0; _1C[i * 3][0]; i++) {
+			JASBankMgr::assignWaveBank(i, _1C[i * 3][2]);
+		}
+	}
 	/*
 	stwu     r1, -0x10(r1)
 	mflr     r0
@@ -298,43 +224,10 @@ lbl_8033D9E8:
  * Address:	8033DA00
  * Size:	000078
  */
-void WaveScene::load(unsigned short, unsigned short, PSSystem::WaveScene::AreaArg, PSSystem::TaskChecker*)
+void WaveScene::load(u16 p1, u16 p2, AreaArg areaArg, TaskChecker* taskChecker)
 {
-	/*
-	.loc_0x0:
-	  stwu      r1, -0x20(r1)
-	  mflr      r0
-	  stw       r0, 0x24(r1)
-	  stmw      r27, 0xC(r1)
-	  mr        r30, r6
-	  cmpwi     r30, 0x2
-	  mr        r27, r3
-	  mr        r28, r4
-	  mr        r29, r5
-	  mr        r31, r7
-	  blt-      .loc_0x48
-	  lis       r3, 0x8049
-	  lis       r5, 0x8049
-	  subi      r3, r3, 0x110
-	  li        r4, 0xC5
-	  subi      r5, r5, 0x100
-	  crclr     6, 0x6
-	  bl        -0x313404
-
-	.loc_0x48:
-	  mulli     r3, r30, 0x14
-	  mr        r4, r28
-	  mr        r5, r29
-	  mr        r6, r31
-	  addi      r3, r3, 0x18
-	  add       r3, r27, r3
-	  bl        0x40
-	  lmw       r27, 0xC(r1)
-	  lwz       r0, 0x24(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x20
-	  blr
-	*/
+	P2ASSERTLINE(197, areaArg < 2);
+	_18[areaArg].loadWave(p1, p2, taskChecker);
 }
 
 /*
@@ -344,18 +237,11 @@ void WaveScene::load(unsigned short, unsigned short, PSSystem::WaveScene::AreaAr
  */
 WaveScene::WaveArea::WaveArea()
 {
-	/*
-	lis      r4, __vt__Q38PSSystem9WaveScene8WaveArea@ha
-	li       r0, 0
-	addi     r4, r4, __vt__Q38PSSystem9WaveScene8WaveArea@l
-	stw      r4, 0(r3)
-	stw      r0, 4(r3)
-	sth      r0, 8(r3)
-	sth      r0, 0xa(r3)
-	stb      r0, 0xc(r3)
-	stw      r0, 0x10(r3)
-	blr
-	*/
+	_04 = nullptr;
+	_08 = 0;
+	_0A = 0;
+	_0C = 0;
+	_10 = 0;
 }
 
 /*
@@ -363,7 +249,7 @@ WaveScene::WaveArea::WaveArea()
  * Address:	8033DAA0
  * Size:	000114
  */
-void WaveScene::WaveArea::loadWave(unsigned short, unsigned short, PSSystem::TaskChecker*)
+void WaveScene::WaveArea::loadWave(u16, u16, TaskChecker*)
 {
 	/*
 	.loc_0x0:
@@ -523,7 +409,7 @@ lbl_8033DC50:
  * Address:	8033DC64
  * Size:	00007C
  */
-void WaveScene::WaveArea::waveLoadCallback(unsigned long)
+void WaveScene::WaveArea::waveLoadCallback(u32)
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -569,50 +455,10 @@ lbl_8033DCC0:
  */
 BankMgr::~BankMgr()
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	mr       r31, r4
-	stw      r30, 8(r1)
-	or.      r30, r3, r3
-	beq      lbl_8033DD54
-	lis      r3, __vt__Q28PSSystem7BankMgr@ha
-	addi     r0, r3, __vt__Q28PSSystem7BankMgr@l
-	stw      r0, 0(r30)
-	lwz      r3, sBankMgr__Q28PSSystem7BankMgr@sda21(r13)
-	cmplwi   r3, 0
-	beq      lbl_8033DD38
-	beq      lbl_8033DD30
-	lwz      r12, 0(r3)
-	li       r4, 1
-	lwz      r12, 8(r12)
-	mtctr    r12
-	bctrl
-
-lbl_8033DD30:
-	li       r0, 0
-	stw      r0, sBankMgr__Q28PSSystem7BankMgr@sda21(r13)
-
-lbl_8033DD38:
-	mr       r3, r30
-	li       r4, 0
-	bl       __dt__11JKRDisposerFv
-	extsh.   r0, r31
-	ble      lbl_8033DD54
-	mr       r3, r30
-	bl       __dl__FPv
-
-lbl_8033DD54:
-	lwz      r0, 0x14(r1)
-	mr       r3, r30
-	lwz      r31, 0xc(r1)
-	lwz      r30, 8(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	if (sBankMgr) {
+		delete sBankMgr;
+		sBankMgr = nullptr;
+	}
 }
 
 /*
@@ -634,27 +480,14 @@ void BankMgr::firstLoadS() { }
  * Address:	8033DD78
  * Size:	000024
  */
-void BankMgr::initS()
-{
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	lwz      r3, sBankMgr__Q28PSSystem7BankMgr@sda21(r13)
-	bl       init__Q28PSSystem7BankMgrFv
-	lwz      r0, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
-}
+void BankMgr::initS() { sBankMgr->init(); }
 
 /*
  * --INFO--
  * Address:	8033DD9C
  * Size:	0001C8
  */
-void BankMgr::setWsDataS(unsigned long*)
+void BankMgr::setWsDataS(u32*)
 {
 	/*
 	stwu     r1, -0x20(r1)
@@ -799,7 +632,7 @@ lbl_8033DF38:
  * Address:	8033DF64
  * Size:	0001C8
  */
-void BankMgr::setBankDataS(unsigned long*)
+void BankMgr::setBankDataS(u32*)
 {
 	/*
 	stwu     r1, -0x20(r1)

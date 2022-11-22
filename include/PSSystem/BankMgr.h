@@ -10,22 +10,23 @@ struct BankMgr : public JKRDisposer {
 
 	virtual ~BankMgr(); // _08
 
-	void createInstance();
+	BankMgr* createInstance();
 	void preInit();
 	void init();
-	void secondLoadS();
-	void firstLoadS();
-	void initS();
-	void setWsDataS(u32*);
-	void setBankDataS(u32*);
 
-	u8 _18;      // _18
-	u8 _19;      // _19
-	u8 _1A;      // _1A
-	u8 _1B;      // _1B
-	void* _1C;   // _1C - unknown pointer
-	u8 _20[0x4]; // _20 - "bank count"?
-	void* _24;   // _24 - unknown pointer
+	static void setBankDataS(u32*);
+	static void setWsDataS(u32*);
+	static void initS();
+	static void firstLoadS();
+	static void secondLoadS();
+
+	u8 _18;    // _18
+	u8 _19;    // _19
+	u8 _1A;    // _1A
+	u8 _1B;    // _1B
+	u32** _1C; // _1C, array of u32* ptrs, in groups of 3
+	u8 _20;    // _20 - "bank count"?
+	u32** _24; // _24, array of u32* ptrs, in groups of 3
 
 	static BankMgr* sBankMgr;
 };

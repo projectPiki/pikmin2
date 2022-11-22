@@ -8,7 +8,9 @@
 namespace PSSystem {
 
 struct WaveScene : public JKRDisposer {
-	struct AreaArg;
+	enum AreaArg {
+
+	};
 
 	struct WaveArea {
 		WaveArea();
@@ -22,7 +24,7 @@ struct WaveScene : public JKRDisposer {
 		TaskChecker* _04; // _04
 		u16 _08;          // _08
 		u16 _0A;          // _0A
-		u8 _0C[0x4];      // _0C - unknown
+		u8 _0C;           // _0C
 		int _10;          // _10
 	};
 
