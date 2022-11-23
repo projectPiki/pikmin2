@@ -4,19 +4,19 @@
 #include "types.h"
 #include "Section.h"
 
-struct SectionInfo;
 struct ISection;
 struct Section;
 struct JKRHeap;
 
 struct GameFlow : public ISectionMgr {
 	GameFlow();
+	~GameFlow(); // unused and not virtual
 
 	virtual void run();                    // _08
 	virtual ISection* getCurrentSection(); // _0C (weak)
 
 	void setSection();
-	SectionInfo* getSectionInfo(int);
+	void* getSectionInfo(int);
 
 	static ISection* createSection(JKRHeap*);
 

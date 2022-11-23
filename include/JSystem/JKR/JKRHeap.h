@@ -14,8 +14,8 @@ struct JKRHeap : public JKRDisposer {
 		struct TLocation {
 			TLocation();
 
-			u32 _00; // _00
-			int _04; // _04
+			void* _00; // _00
+			int _04;   // _04
 		};
 
 		struct TArgument {
@@ -39,8 +39,8 @@ struct JKRHeap : public JKRDisposer {
 		TState(const JKRHeap::TState& other, bool p2);
 		TState(const JKRHeap::TState& other, const JKRHeap::TState::TLocation& location, bool p3);
 
-		u32 _00;                      // _00
-		u32 _04;                      // _04
+		TState* _00;                  // _00
+		u32 _04;                      // _04, plausibly TLocation when combined with _00
 		u8 _08[0x8];                  // _08
 		const JKRHeap* m_heap;        // _10
 		u32 m_id;                     // _14

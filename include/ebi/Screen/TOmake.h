@@ -9,11 +9,6 @@
 
 namespace ebi {
 namespace Screen {
-struct ArgOpenOmake : public ArgOpen {
-	virtual char* getName(); // _08 (weak)
-
-	// _00 = VTBL
-};
 
 // TODO: Data members.
 struct TOmake : public TScreenBase {

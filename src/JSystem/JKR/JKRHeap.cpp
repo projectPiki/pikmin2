@@ -1829,7 +1829,7 @@ bool JKRHeap::TState::isVerbose() { return bVerbose; }
  *  __ct__Q27JKRHeap6TStateFPC7JKRHeapUlb
  */
 JKRHeap::TState::TState(const JKRHeap* heap, u32 id, bool isCompareOnDestructed)
-    : _00(0)
+    : _00(nullptr)
     , _04(0)
     , m_heap(heap ? heap : sCurrentHeap)
     , m_id(id)
@@ -1853,7 +1853,7 @@ bool JKRHeap::TState::isCompareOnDestructed() const { return m_isCompareOnDestru
  * Size:	000014
  */
 JKRHeap::TState::TLocation::TLocation()
-    : _00(0)
+    : _00(nullptr)
     , _04(-1)
 {
 }

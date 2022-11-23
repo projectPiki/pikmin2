@@ -239,7 +239,8 @@
 
 // TODO: Finish
 // NOTE: Fabricated name.
-struct SectionInfo {
+namespace {
+static struct {
 	char* name;
 	u32 id;
 } sSectionInfo[] = { { "Root Menu", 0x00000000 },         { "Object Editor", 0x01010000 },
@@ -257,7 +258,7 @@ struct SectionInfo {
 	                 { "Message Previewer", 0x06010000 }, { "Ebi Main Title", 0x07010000 },
 	                 { "E3 Thanks Section", 0x06010000 }, { "Ebimun Effect", 0x07010000 },
 	                 { "2D Debug2", 0x07010000 } };
-
+} // namespace
 u32 GameFlow::mActiveSectionFlag;
 
 /*
@@ -275,6 +276,7 @@ GameFlow::GameFlow()
  * --INFO--
  * Address:	........
  * Size:	000048
+ * Matches size.
  */
 GameFlow::~GameFlow()
 {
@@ -291,6 +293,7 @@ void GameFlow::run()
 	do {
 		JKRHeap* parentHeap = JKRHeap::sCurrentHeap;
 		JKRHeap::TState state(nullptr, 0xffffffff, true);
+		JKRHeap::sCurrentHeap->state_register(state._00, state._04);
 		JKRExpHeap* expHeap = JKRExpHeap::create(parentHeap->getFreeSize(), parentHeap, true);
 		setSection();
 		m_section->init();
@@ -445,7 +448,7 @@ lbl_80424358:
  * Address:	8042436C
  * Size:	0000B0
  */
-SectionInfo* GameFlow::getSectionInfo(int id)
+void* GameFlow::getSectionInfo(int id)
 {
 	P2ASSERTLINE(201, (-1 < id && id < 0x23));
 	int i = 0x23;
@@ -660,50 +663,4 @@ lbl_80424548:
  * Address:	80424564
  * Size:	000040
  */
-ISection* GameFlow::getCurrentSection()
-{
-	return (m_section) ? m_section->getCurrentSection() : nullptr;
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	lwz      r3, 4(r3)
-	cmplwi   r3, 0
-	beq      lbl_80424590
-	lwz      r12, 0(r3)
-	lwz      r12, 0x30(r12)
-	mtctr    r12
-	bctrl
-	b        lbl_80424594
-
-lbl_80424590:
-	li       r3, 0
-
-lbl_80424594:
-	lwz      r0, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
-}
-
-/*
- * --INFO--
- * Address:	804245A4
- * Size:	000028
- */
-void __sinit_gameflow_cpp(void)
-{
-	/*
-	lis      r4, __float_nan@ha
-	li       r0, -1
-	lfs      f0, __float_nan@l(r4)
-	lis      r3, lbl_804EBBF0@ha
-	stw      r0, lbl_80516188@sda21(r13)
-	stfsu    f0, lbl_804EBBF0@l(r3)
-	stfs     f0, lbl_8051618C@sda21(r13)
-	stfs     f0, 4(r3)
-	stfs     f0, 8(r3)
-	blr
-	*/
-}
+ISection* GameFlow::getCurrentSection() { return (m_section) ? m_section->getCurrentSection() : nullptr; }
