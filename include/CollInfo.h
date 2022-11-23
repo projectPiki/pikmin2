@@ -19,6 +19,10 @@ struct CollPartMgr;
 #define COLLTYPE_TUBE     (1)
 #define COLLTYPE_TUBETREE (2)
 
+namespace Game {
+struct Creature;
+}
+
 struct CollPart : public CNode {
 	CollPart();
 	CollPart(SysShape::MtxObject*);
@@ -121,9 +125,9 @@ struct MouthCollPart : public CollPart {
 	// inlined
 	void setup(SysShape::Model* model, char* jointName, Vector3f& vector);
 
-	CollPart* _64;                 // _64
-	SysShape::Joint* m_mouthJoint; // _68
-	u8 _6C;                        // _6C
+	Game::Creature* m_stuckCreature; // _64
+	SysShape::Joint* m_mouthJoint;   // _68
+	u8 _6C;                          // _6C
 };
 
 struct MouthSlots {
