@@ -534,6 +534,13 @@ struct ActFormationInitArg : public CreatureActionArg {
 	{
 	}
 
+	inline ActFormationInitArg(Game::Creature* navi)
+	    : CreatureActionArg(navi)
+	    , _08(false)
+	    , _09(0)
+	{
+	}
+
 	// _00     = VTBL
 	// _00-_08 = CreatureActionArg, Creature* = Navi*
 	bool _08; // _08

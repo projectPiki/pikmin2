@@ -16,8 +16,8 @@ struct TOnyonEatAB : public TSimpleMtx2 {
 };
 
 struct TOnyonEatC : public TSimpleMtx1 {
-	inline TOnyonEatC()
-	    : TSimpleMtx1(nullptr, PID_OnyonEatC)
+	inline TOnyonEatC(Matrixf* mtx)
+	    : TSimpleMtx1(mtx, PID_OnyonEatC)
 	{
 	}
 
@@ -46,8 +46,8 @@ struct TOnyonPuffKira : public TSimple1 {
 };
 
 struct TOnyonPuffPuff : public TSimpleMtx1 {
-	inline TOnyonPuffPuff()
-	    : TSimpleMtx1(nullptr, PID_OnyonPuffPuff)
+	inline TOnyonPuffPuff(Matrixf* mtx)
+	    : TSimpleMtx1(mtx, PID_OnyonPuffPuff)
 	{
 	}
 

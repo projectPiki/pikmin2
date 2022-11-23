@@ -7,6 +7,8 @@
 
 namespace Game {
 struct EnemyBase;
+struct BaseItem;
+struct Onyon;
 } // namespace Game
 
 namespace efx {
@@ -26,7 +28,9 @@ struct Arg {
 	{
 	}
 
-	inline Arg(Game::EnemyBase*); // defined in Game/EnemyBase.h header to avoid include loop
+	inline Arg(Game::EnemyBase*); // defined in Game/EnemyBase.h header to avoid include loops
+
+	inline Arg(Game::BaseItem*); // defined in Game/BaseItem.h header to avoid include loops
 
 	/**
 	 * @reifiedAddress{80108200}
@@ -278,10 +282,14 @@ struct ArgType : public Arg {
 	{
 	}
 
+	inline ArgType(Game::Onyon* onyon);
+
 	virtual const char* getName() // _08 (weak)
 	{
 		return "ArgType";
 	}
+
+	u16 m_onyonType; // _10, onyon type
 };
 } // namespace efx
 

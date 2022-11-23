@@ -14,8 +14,8 @@ struct TForever : public TSync {
 		// m_effectID = effectID;
 	}
 
-	virtual void doExecuteEmitterOperation(JPABaseEmitter*); // _38 (weak)
-	virtual ~TForever() { }                                  // _48 (weak, thunk at _1C)
+	virtual void doExecuteEmitterOperation(JPABaseEmitter*) { } // _38 (weak)
+	virtual ~TForever() { }                                     // _48 (weak, thunk at _1C)
 
 	// _00		= VTBL
 	// _00-_0E	= TSync

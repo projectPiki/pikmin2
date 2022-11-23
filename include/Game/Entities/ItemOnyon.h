@@ -7,6 +7,7 @@
 #include "Sys/MatBaseAnimator.h"
 #include "SysShape/Joint.h"
 #include "SysShape/KeyEvent.h"
+#include "efx/Arg.h"
 #include "CollInfo.h"
 #include "Vector3.h"
 
@@ -223,5 +224,13 @@ struct GenOnyonParm : public Game::GenItemParm {
 	int m_onyonIndex;   // _04
 	bool m_isAfterBoot; // _08
 };
+
+namespace efx {
+inline ArgType::ArgType(Game::Onyon* onyon)
+{
+	m_onyonType = onyon->m_onyonType;
+	m_position  = onyon->m_position;
+}
+} // namespace efx
 
 #endif

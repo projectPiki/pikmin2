@@ -102,7 +102,6 @@ struct Scene_Objects : public SceneBase {
 	PSGame::CameraMgr* m_cameraMgr; // _28
 	ObjMgr* m_objMgr;               // _2C
 	u8 _30;                         // _30
-	u8 _31[0x3];                    // _31, unknown/possibly padding
 	int _34;                        // _34
 };
 
@@ -149,12 +148,12 @@ struct Scene_Game : public Scene_Objects {
 	// _00      = VTBL
 	// _00-_38  = Scene_Objects
 	JSUList<EnemyBoss> m_enemyBossList; // _38
-	PSSystem::EnvSeMgr* m_envSeMgr;     // _44
-	u32 _48;                            // _48, unknown
-	int _4C;                            // _4C
-	BossBgmFader::Mgr* m_bossFaderMgr;  // _50
-	PikiHummingMgr* m_hummingMgr;       // _54
-	PersEnvManager* m_persEnvMgr;       // _58
+	PSSystem::EnvSeMgr* m_envSeMgr;     // _48
+	u32 _4C;                            // _4C, unknown
+	int _50;                            // _50
+	BossBgmFader::Mgr* m_bossFaderMgr;  // _54
+	PikiHummingMgr* m_hummingMgr;       // _58
+	PersEnvManager* m_persEnvMgr;       // _5C
 };
 
 /**

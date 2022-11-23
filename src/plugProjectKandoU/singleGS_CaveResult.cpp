@@ -334,8 +334,8 @@ void CaveResultState::exec(SingleGameSection* section)
 		P2ASSERTLINE(381, courseInfo != nullptr);
 		s8 otakaraNum = playData->getOtakaraNum_Course_CaveID(courseInfo->m_courseIndex, section->m_caveID);
 		s8 otakaraMax = playData->getOtakaraMax_Course_CaveID(courseInfo->m_courseIndex, section->m_caveID);
-		kh::Screen::DispCaveResult disp(&_20, DeathMgr::get_cave(7), otakaraNum, otakaraMax, playData->m_pokoCount, playData->_2F & 1, _F0,
-		                                (_F8 != 0 && otakaraMax <= otakaraNum));
+		kh::Screen::DispCaveResult disp(&_20, DeathMgr::get_cave(7), otakaraNum, otakaraMax, playData->m_pokoCount,
+		                                playData->isStoryFlag(STORY_DebtPaid), _F0, (_F8 != 0 && otakaraMax <= otakaraNum));
 		DeathMgr::account_cave();
 		BirthMgr::account_cave();
 		JUT_ASSERTLINE(408, Screen::gGame2DMgr->open_CaveResult(disp), "cannot open caveresult\n");

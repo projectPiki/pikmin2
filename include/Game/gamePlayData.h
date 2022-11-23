@@ -13,6 +13,12 @@ struct CourseInfo;
 struct Pellet;
 struct BasePelletMgr;
 
+enum StoryFlags {
+	STORY_DebtPaid              = 0x1, // debt has been repaid
+	STORY_AllTreasuresCollected = 0x2, // all 201 treasures have been collected
+	STORY_LouieRescued          = 0x4, // louie collected? seems to get set by PelletGoalState::checkMovie and not used
+};
+
 enum DemoFlags {
 	DEMO_Pluck_First_Pikmin      = 0,  // 20s after first seed from red onion
 	DEMO_Discover_Treasure       = 1,  // within 200u (+ radius) of standard treasure
@@ -327,6 +333,8 @@ struct PlayData : public CNode {
 	bool isCaveFirstReturn(int, ID32&);
 	bool closeCourse(int);
 
+	inline bool isStoryFlag(StoryFlags flag) { return m_storyFlags & flag; }
+
 	bool _18;                                // _18
 	u8 _19;                                  // _19
 	u32 _1C;                                 // _1C
@@ -335,7 +343,7 @@ struct PlayData : public CNode {
 	u8 m_hasContainerFlags;                  // _2C
 	u8 m_hasBootContainerFlags;              // _2D
 	u8 m_meetPikminFlags;                    // _2E
-	u8 _2F;                                  // _2F
+	u8 m_storyFlags;                         // _2F, see StoryFlags enum
 	BitFlags m_demoFlags;                    // _30, see DemoFlags enum
 	BitFlags m_findItemFlags;                // _38
 	TekiStat::Mgr m_tekiStatMgr;             // _40
