@@ -145,6 +145,22 @@ struct ProperAnimator : public EnemyAnimatorBase {
 
 /////////////////////////////////////////////////////////////////
 // STATE MACHINE DEFINITIONS
+enum StateID {
+	SARAI_NULL     = -1,
+	SARAI_Dead     = 0,
+	SARAI_Fall     = 1,
+	SARAI_Damage   = 2,
+	SARAI_TakeOff  = 3,
+	SARAI_Flick    = 4,
+	SARAI_Wait     = 5,
+	SARAI_Move     = 6,
+	SARAI_Attack   = 7,
+	SARAI_Fail     = 8,
+	SARAI_CatchFly = 9,
+	SARAI_FallMeck = 10,
+	SARAI_StateCount,
+};
+
 struct FSM : public EnemyStateMachine {
 	virtual void init(EnemyBase*); // _08
 

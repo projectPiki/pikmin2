@@ -8,16 +8,17 @@
 #include "Dolphin/rand.h"
 
 namespace Game {
+namespace Sarai {
 
 /*
  * --INFO--
  * Address:	80272BC4
  * Size:	000138
  */
-Sarai::Obj::Obj()
+Obj::Obj()
 {
-	m_animator = new Sarai::ProperAnimator;
-	setFSM(new Sarai::FSM);
+	m_animator = new ProperAnimator;
+	setFSM(new FSM);
 }
 
 /*
@@ -25,23 +26,23 @@ Sarai::Obj::Obj()
  * Address:	80272CFC
  * Size:	000004
  */
-void Sarai::Obj::setInitialSetting(Game::EnemyInitialParamBase*) { }
+void Obj::setInitialSetting(EnemyInitialParamBase*) { }
 
 /*
  * --INFO--
  * Address:	80272D00
  * Size:	000078
  */
-void Sarai::Obj::onInit(Game::CreatureInitArg* arg)
+void Obj::onInit(CreatureInitArg* initArg)
 {
-	EnemyBase::onInit(arg);
+	EnemyBase::onInit(initArg);
 
 	setEvent(0, EB_3);
 
 	_2C0 = 0.0f;
 	resetAttackableTimer(12800.0f);
 
-	m_FSM->start(this, 6, nullptr);
+	m_FSM->start(this, SARAI_Move, nullptr);
 }
 
 /*
@@ -49,7 +50,7 @@ void Sarai::Obj::onInit(Game::CreatureInitArg* arg)
  * Address:	80272D78
  * Size:	000048
  */
-void Sarai::Obj::doUpdate()
+void Obj::doUpdate()
 {
 	m_FSM->exec(this);
 	m_mouthSlots.update();
@@ -60,7 +61,7 @@ void Sarai::Obj::doUpdate()
  * Address:	80272DC0
  * Size:	00004C
  */
-void Sarai::Obj::setFSM(Game::Sarai::FSM* fsm)
+void Obj::setFSM(FSM* fsm)
 {
 	m_FSM = fsm;
 	m_FSM->init(this);
@@ -72,29 +73,29 @@ void Sarai::Obj::setFSM(Game::Sarai::FSM* fsm)
  * Address:	80272E0C
  * Size:	000004
  */
-void Sarai::Obj::doDirectDraw(Graphics&) { }
+void Obj::doDirectDraw(Graphics&) { }
 
 /*
  * --INFO--
  * Address:	80272E10
  * Size:	000020
  */
-void Sarai::Obj::doDebugDraw(Graphics& gfx) { EnemyBase::doDebugDraw(gfx); }
+void Obj::doDebugDraw(Graphics& gfx) { EnemyBase::doDebugDraw(gfx); }
 
 /*
  * --INFO--
  * Address:	80272E30
  * Size:	000140
  */
-void Sarai::Obj::getShadowParam(Game::ShadowParam& shadowParam)
+void Obj::getShadowParam(ShadowParam& shadowParam)
 {
-	Matrixf* bodyMtx = m_model->getJoint("bodyjnt")->getWorldMatrix();
-	bodyMtx->getPosition(shadowParam.m_position);
+	Matrixf* bodyMtx       = m_model->getJoint("bodyjnt")->getWorldMatrix();
+	shadowParam.m_position = bodyMtx->getBasis(3);
 
 	if (isAlive()) {
 		s32 stateId = getStateID();
 
-		if (((u32)stateId - 1) <= 1 || stateId == 3) {
+		if (stateId == SARAI_Fall || stateId == SARAI_Damage || stateId == SARAI_TakeOff) {
 			shadowParam.m_position.y -= 5.0f;
 			shadowParam.m_boundingSphere.m_radius = 100.0f + static_cast<Parms*>(m_parms)->m_properParms.m_fp01.m_value;
 		} else if (m_curTriangle) {
@@ -118,7 +119,7 @@ void Sarai::Obj::getShadowParam(Game::ShadowParam& shadowParam)
  * Address:	80272F70
  * Size:	000034
  */
-void Sarai::Obj::doStartStoneState()
+void Obj::doStartStoneState()
 {
 	EnemyBase::doStartStoneState();
 	flickStickTarget();
@@ -129,13 +130,13 @@ void Sarai::Obj::doStartStoneState()
  * Address:	80272FA4
  * Size:	00005C
  */
-void Sarai::Obj::doFinishStoneState()
+void Obj::doFinishStoneState()
 {
 	EnemyBase::doFinishStoneState();
 
 	s32 stateId = getStateID();
-	if (stateId >= 3) {
-		m_FSM->transit(this, 3, nullptr);
+	if (stateId >= SARAI_TakeOff) {
+		m_FSM->transit(this, SARAI_TakeOff, nullptr);
 	}
 }
 
@@ -144,14 +145,14 @@ void Sarai::Obj::doFinishStoneState()
  * Address:	80273000
  * Size:	000028
  */
-void Sarai::Obj::startCarcassMotion() { EnemyBase::startMotion(11, nullptr); }
+void Obj::startCarcassMotion() { EnemyBase::startMotion(11, nullptr); }
 
 /*
  * --INFO--
  * Address:	80273028
  * Size:	0000A8
  */
-void Sarai::Obj::initMouthSlots()
+void Obj::initMouthSlots()
 {
 	m_mouthSlots.alloc(2);
 	m_mouthSlots.setup(0, m_model, "rkamujnt");
@@ -167,7 +168,7 @@ void Sarai::Obj::initMouthSlots()
  * Address:	802730D0
  * Size:	000108
  */
-f32 Sarai::Obj::setHeightVelocity()
+f32 Obj::setHeightVelocity()
 {
 	// The maximum amount of Pikmin that can have an effect on the upward velocity of the Sarai
 #define MAX_PIKMIN_STUCK_FACTOR 5
@@ -177,21 +178,21 @@ f32 Sarai::Obj::setHeightVelocity()
 	                           ? (0)
 	                           : (m_stuckPikminCount <= MAX_PIKMIN_STUCK_FACTOR ? (m_stuckPikminCount) : (MAX_PIKMIN_STUCK_FACTOR));
 
-	float riseFactor     = static_cast<Parms*>(m_parms)->m_properParms.m_fp11.m_value;
-	float climbingFactor = static_cast<Parms*>(m_parms)->m_properParms.m_fp12.m_value;
-	f32 weight           = pikminWeightFactor;
+	f32 riseFactor     = static_cast<Parms*>(m_parms)->m_properParms.m_fp11.m_value;
+	f32 climbingFactor = static_cast<Parms*>(m_parms)->m_properParms.m_fp12.m_value;
+	f32 weight         = pikminWeightFactor;
 
 	// Custom linear interpolation (https://en.wikipedia.org/wiki/Linear_interpolation)
 	// lerp v0, v1, t -> (1 - t) * v0 + t * v1
-	float velFactor = (((MAX_PIKMIN_STUCK_FACTOR - weight) / MAX_PIKMIN_STUCK_FACTOR) * riseFactor)
-	                + (weight / MAX_PIKMIN_STUCK_FACTOR) * climbingFactor;
+	f32 velFactor = (((MAX_PIKMIN_STUCK_FACTOR - weight) / MAX_PIKMIN_STUCK_FACTOR) * riseFactor)
+	              + (weight / MAX_PIKMIN_STUCK_FACTOR) * climbingFactor;
 
 	// Get the Y position of the map model (equivalent to a downwards raycast)
-	float mapPosY = mapMgr->getMinY(m_position);
+	f32 mapPosY = mapMgr->getMinY(m_position);
 
 	// Get intended flight height
-	float flightHeight = getCatchTargetNum() ? static_cast<Parms*>(m_parms)->m_properParms.m_fp02.m_value  // Grab flight height
-	                                         : static_cast<Parms*>(m_parms)->m_properParms.m_fp01.m_value; // Normal flight height
+	f32 flightHeight = getCatchTargetNum() ? static_cast<Parms*>(m_parms)->m_properParms.m_fp02.m_value  // Grab flight height
+	                                       : static_cast<Parms*>(m_parms)->m_properParms.m_fp01.m_value; // Normal flight height
 
 	// Upward velocity is offset by map height
 	m_impVelocity.y = velFactor * ((mapPosY + flightHeight) - m_position.y);
@@ -204,10 +205,10 @@ f32 Sarai::Obj::setHeightVelocity()
  * Address:	802731D8
  * Size:	000230
  */
-void Sarai::Obj::setRandTarget()
+void Obj::setRandTarget()
 {
 	// Set's a random target near the home radius, if in a cave then completely random
-	float radius;
+	f32 radius;
 	if (getCatchTargetNum()) {
 		radius = randWeightFloat(static_cast<Parms*>(m_parms)->m_general.m_homeRadius.m_value);
 	} else if (gameSystem && gameSystem->m_inCave) {
@@ -219,11 +220,11 @@ void Sarai::Obj::setRandTarget()
 	}
 
 	// Get the direction from the home position towards our position
-	float dirToSarai = JMath::atanTable_.atan2_(m_position.x - m_homePosition.x, m_position.z - m_homePosition.z);
+	f32 dirToSarai = JMath::atanTable_.atan2_(m_position.x - m_homePosition.x, m_position.z - m_homePosition.z);
 
 	// Randomise the angle a bit and set the target position
-	float rngAngle = HALF_PI + (dirToSarai + randWeightFloat(PI));
-	m_targetPos    = Vector3f((radius * pikmin2_sinf(rngAngle)) + m_homePosition.x, m_homePosition.y,
+	f32 rngAngle = HALF_PI + (dirToSarai + randWeightFloat(PI));
+	m_targetPos  = Vector3f((radius * pikmin2_sinf(rngAngle)) + m_homePosition.x, m_homePosition.y,
                            (radius * pikmin2_cosf(rngAngle)) + m_homePosition.z);
 }
 
@@ -232,18 +233,19 @@ void Sarai::Obj::setRandTarget()
  * Address:	80273408
  * Size:	000294
  */
-void Sarai::Obj::fallMeckGround()
+void Obj::fallMeckGround()
 {
 	Stickers sticker(this);
 	Iterator<Creature> iterator(&sticker);
 
-	for (iterator.first(); iterator.m_index != iterator.m_container->getEnd(); iterator.next()) {
+	CI_LOOP(iterator)
+	{
 		Creature* c = iterator.m_container->get(iterator.m_index);
 
 		if (!c->isStickToMouth()) {
 			continue;
 		}
-#
+
 		InteractFallMeck fallMeck(this, static_cast<Parms*>(m_parms)->m_general.m_attackDamage.m_value);
 		if (!c->stimulate(fallMeck)) {
 			continue;
@@ -251,8 +253,8 @@ void Sarai::Obj::fallMeckGround()
 
 		Vector3f fallVelocity = Vector3f(0.0f);
 
-		const f32 nectarDropSpeed = static_cast<Parms*>(m_parms)->m_properParms.m_fp41.m_value;
-		fallVelocity.y -= nectarDropSpeed;
+		const f32 fallMeckSpeed = static_cast<Parms*>(m_parms)->m_properParms.m_fp41.m_value;
+		fallVelocity.y -= fallMeckSpeed;
 		c->setVelocity(fallVelocity);
 	}
 }
@@ -262,7 +264,7 @@ void Sarai::Obj::fallMeckGround()
  * Address:	8027369C
  * Size:	00007C
  */
-int Sarai::Obj::getCatchTargetNum()
+int Obj::getCatchTargetNum()
 {
 	int max   = m_mouthSlots.m_max;
 	int count = 0;
@@ -281,19 +283,19 @@ int Sarai::Obj::getCatchTargetNum()
  * Size:	000144
  * TODO
  */
-int Sarai::Obj::getNextStateOnHeight()
+int Obj::getNextStateOnHeight()
 {
 	if (m_health <= 0.0f) {
-		return 1;
+		return SARAI_Fall;
 	}
 
-	s32 stuckPiki = getStickPikminNum();
+	int stuckPiki = getStickPikminNum();
 	if (stuckPiki) {
-		if (EnemyFunc::getStickPikminColorNum(this, 3) > 0) {
-			return 1;
+		if (EnemyFunc::getStickPikminColorNum(this, Purple) > 0) {
+			return SARAI_Fall;
 		}
 
-		s32 v1;
+		int v1;
 		if (stuckPiki - 1 < 0) {
 			v1 = 0;
 		} else {
@@ -303,23 +305,23 @@ int Sarai::Obj::getNextStateOnHeight()
 			}
 		}
 
-		float va1 = static_cast<Parms*>(m_parms)->m_properParms.m_fp21.m_value;
-		float va2 = static_cast<Parms*>(m_parms)->m_properParms.m_fp22.m_value;
+		f32 va1 = static_cast<Parms*>(m_parms)->m_properParms.m_fp21.m_value;
+		f32 va2 = static_cast<Parms*>(m_parms)->m_properParms.m_fp22.m_value;
 
-		f32 fv1  = v1;
-		float f4 = (4.0f - fv1) / 4;
-		float f5 = (fv1 / 4);
+		f32 fv1 = v1;
+		f32 f4  = (4.0f - fv1) / 4;
+		f32 f5  = (fv1 / 4);
 
-		float a = (f4 * va1) + (f5 * va2);
+		f32 fallChance = (f4 * va1) + (f5 * va2);
 
-		if (randWeightFloat(1.0f) < a) {
-			return 4;
+		if (randWeightFloat(1.0f) < fallChance) {
+			return SARAI_Flick;
 		} else {
-			return 1;
+			return SARAI_Fall;
 		}
 	}
 
-	return -1;
+	return SARAI_NULL;
 }
 
 /*
@@ -327,7 +329,7 @@ int Sarai::Obj::getNextStateOnHeight()
  * Address:	8027385C
  * Size:	0000B0
  */
-void Sarai::Obj::flickStickTarget()
+void Obj::flickStickTarget()
 {
 	int max = m_mouthSlots.m_max;
 	for (int i = 0; i < max; i++) {
@@ -345,14 +347,14 @@ void Sarai::Obj::flickStickTarget()
  * Address:	8027390C
  * Size:	000080
  */
-int Sarai::Obj::getStickPikminNum() { return m_stuckPikminCount - getCatchTargetNum(); }
+int Obj::getStickPikminNum() { return m_stuckPikminCount - getCatchTargetNum(); }
 
 /*
  * --INFO--
  * Address:	8027398C
  * Size:	0003D0
  */
-Piki* Sarai::Obj::getAttackableTarget()
+Piki* Obj::getAttackableTarget()
 {
 	Parms* parms  = static_cast<Parms*>(m_parms);
 	Vector3f dist = m_position - m_homePosition;
@@ -373,9 +375,8 @@ Piki* Sarai::Obj::getAttackableTarget()
 
 				f32 angleToPiki = angXZ(pikiPos, thisPos);
 				if (FABS(angDist(angleToPiki, getFaceDir())) <= maxAngle) {
-					Vector3f pos   = c->getPosition();
-					Vector3f delta = m_position - pos;
-					if (SQUARE(delta.x) + SQUARE(delta.z) < maxDist) {
+					Vector3f pos = c->getPosition();
+					if (sqrDistanceXZ(m_position, pos) < maxDist) {
 						return c;
 					}
 				}
@@ -661,12 +662,13 @@ lbl_80273D2C:
  * Address:	80273D5C
  * Size:	000024
  */
-void Sarai::Obj::catchTarget() { EnemyFunc::eatPikmin(this, nullptr); }
+void Obj::catchTarget() { EnemyFunc::eatPikmin(this, nullptr); }
 
 /*
  * --INFO--
  * Address:	80273D80
  * Size:	000044
  */
-void Sarai::Obj::createDownEffect() { EnemyBase::createBounceEffect(m_position, getDownSmokeScale()); }
+void Obj::createDownEffect() { EnemyBase::createBounceEffect(m_position, getDownSmokeScale()); }
+} // namespace Sarai
 } // namespace Game
