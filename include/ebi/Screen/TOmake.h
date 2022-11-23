@@ -1,5 +1,5 @@
-#ifndef _EBI_SCREEN_TOPTION_H
-#define _EBI_SCREEN_TOPTION_H
+#ifndef _EBI_SCREEN_TOMAKE_H
+#define _EBI_SCREEN_TOMAKE_H
 
 #include "ebi/E2DCallBack.h"
 #include "ebi/Screen/TScreenBase.h"
