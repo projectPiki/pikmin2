@@ -35,7 +35,7 @@ struct NaviState;
 struct NaviParms;
 
 namespace ItemPikihead {
-	struct Item;
+struct Item;
 }
 
 struct NaviDamageArg {

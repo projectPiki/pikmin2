@@ -2977,17 +2977,17 @@ void Onyon::do_doAnimation(void)
 			*speed += m_propera * sys->m_deltaTime;
 			if (30.0f <= *speed) {
 				if (30.0f < *speed) {
-					*speed = 30.0f;
+					*speed    = 30.0f;
 					m_propera = 0.0f;
 				}
 			} else {
-				*speed = 30.0f;
+				*speed    = 30.0f;
 				m_propera = 0.0f;
 			}
 		}
 		f32* speed = getPMotionSpeed(1);
 		if (0.0f < *speed) {
-			Vector3f* orig = getSound_PosPtr();
+			Vector3f* orig      = getSound_PosPtr();
 			PSM::SeSound* sound = PSStartSoundVec(PSSE_PK_SE_INSIDE_VOLVE, (Vec*)orig);
 			if (sound) {
 				PSGame::SoundTable::SePerspInfo persp;
@@ -3002,7 +3002,7 @@ void Onyon::do_doAnimation(void)
 				sound->specializePerspCalc(persp);
 			}
 			SysShape::Animator* anim = getPAnimator(1);
-			f32 time = anim->m_timer;
+			f32 time                 = anim->m_timer;
 			getPAnimator(1); // sus
 			if ((time <= 5.0f || time >= 8.0f) || sVolveFlag) {
 				if (time <= 10.0f) {
@@ -3056,7 +3056,7 @@ void Onyon::do_doAnimation(void)
 			if (scene) {
 				if (scene->_4C < 0x186) {
 					f32 calc = JALCalc::linearTransform((double)scene->_4C, 0.0, 390.0, 0.25, 1.0, true);
-					sound->setVolume(calc, 0,0);
+					sound->setVolume(calc, 0, 0);
 				} else {
 					sound->setVolume(1.0f, 0, 0);
 				}
@@ -3434,17 +3434,17 @@ void Onyon::startWaitMotion(void)
 			m_ufoGasIn->fade();
 			m_ufoGasOut->fade();
 			f32* speed = getPMotionSpeed(1);
-			*speed = 0.0f;
+			*speed     = 0.0f;
 		} else {
 			f32* speed = getPMotionSpeed(1);
-			*speed = 30.0f;
+			*speed     = 30.0f;
 			m_ufoGasIn->create(0);
 			m_ufoGasOut->create(0);
 		}
 	} else {
 		m_animSpeed = 30.0f;
 		if (m_onyonType == ONYON_TYPE_POD) {
-			m_animator.startAnim(0,0);
+			m_animator.startAnim(0, 0);
 		} else {
 			if (getStoreCount() < 1) {
 				SysShape::MotionListener* mlisten = this;
@@ -3607,12 +3607,15 @@ void Onyon::onKeyEvent_UFO(const SysShape::KeyEvent& evt)
 		return;
 	}
 	if (id > 0) {
-		if (id != 1000) return;
+		if (id != 1000)
+			return;
 		m_suckState = SUCKSTATE_IdleClosed;
 		return;
 	}
-	if (id < 0) return;
-	if (m_suckState != SUCKSTATE_Opening) return;
+	if (id < 0)
+		return;
+	if (m_suckState != SUCKSTATE_Opening)
+		return;
 	m_animSpeed = 0.0f;
 	m_suckState = SUCKSTATE_Opened;
 	/*
@@ -3664,9 +3667,9 @@ lbl_80177FF8:
  */
 Vector3f Onyon::getFlagSetPos(void)
 {
-	f32 dir = getFaceDir();
-	f32 x = pikmin2_sinf(dir);
-	f32 z = pikmin2_cosf(dir);
+	f32 dir      = getFaceDir();
+	f32 x        = pikmin2_sinf(dir);
+	f32 z        = pikmin2_cosf(dir);
 	Vector3f pos = getPosition();
 	return Vector3f(pos.x + x * 100.0f, pos.y + 0.0f, pos.z + z * 100.0f);
 	/*
@@ -3892,8 +3895,7 @@ void Onyon::onKeyEvent_Onyon(SysShape::KeyEvent const& evt)
 		animid = info->m_id;
 	}
 	int keyid = evt.m_type;
-	switch (keyid)
-	{
+	switch (keyid) {
 	case 100:
 		if (animid == 2)
 			efxPafuKira();
@@ -3908,10 +3910,10 @@ void Onyon::onKeyEvent_Onyon(SysShape::KeyEvent const& evt)
 						m_ufoGasIn->fade();
 						m_ufoGasOut->fade();
 						f32* speed = getPMotionSpeed(1);
-						*speed = 0.0f;
+						*speed     = 0.0f;
 					} else {
 						f32* speed = getPMotionSpeed(1);
-						*speed = 30.0f;
+						*speed     = 30.0f;
 						m_ufoGasIn->create(0);
 						m_ufoGasOut->create(0);
 					}
@@ -3940,20 +3942,19 @@ void Onyon::onKeyEvent_Onyon(SysShape::KeyEvent const& evt)
 			} else if (animid == 1) { // shoot out seeds
 				if (!m_toBirth) {
 					m_animator.m_flags |= 2;
-				}
-				else {
+				} else {
 					s16 shootcount = m_toBirth >> 1;
-					if (!shootcount) shootcount = 1;
+					if (!shootcount)
+						shootcount = 1;
 
 					for (int i = 0; i < shootcount; i++) {
 						if (gameSystem && gameSystem->m_mode == GSM_VERSUS_MODE) {
 							// versus mode onion counts
-							int reds = GameStat::getMapPikmins(1);
+							int reds  = GameStat::getMapPikmins(1);
 							int blues = GameStat::getMapPikmins(0);
 							if (m_onyonType == ONYON_TYPE_BLUE && blues > 50) {
 								m_toBirth--;
-							}
-							else if (m_onyonType == ONYON_TYPE_RED && reds > 50) {
+							} else if (m_onyonType == ONYON_TYPE_RED && reds > 50) {
 								m_toBirth--;
 							}
 						}
@@ -3974,12 +3975,12 @@ void Onyon::onKeyEvent_Onyon(SysShape::KeyEvent const& evt)
 									arg.m_movieName = "g16_95_pikmin";
 								}
 								arg.m_origin = getPosition();
-								arg.m_angle = getFaceDir();
+								arg.m_angle  = getFaceDir();
 								movie_begin(0);
 								moviePlayer->play(arg);
 							}
 							m_pikminType = m_onyonType;
-							int count = playData->m_pikiContainer.getCount(m_pikminType, 0);
+							int count    = playData->m_pikiContainer.getCount(m_pikminType, 0);
 							count++;
 							BirthMgr::inc(m_onyonType);
 							m_toBirth--;
@@ -3997,10 +3998,10 @@ void Onyon::onKeyEvent_Onyon(SysShape::KeyEvent const& evt)
 					m_ufoGasIn->fade();
 					m_ufoGasOut->fade();
 					f32* speed = getPMotionSpeed(1);
-					*speed = 0.0f;
+					*speed     = 0.0f;
 				} else {
 					f32* speed = getPMotionSpeed(1);
-					*speed = 30.0f;
+					*speed     = 30.0f;
 					m_ufoGasIn->create(0);
 					m_ufoGasOut->create(0);
 				}
@@ -4741,7 +4742,7 @@ CollPart* Onyon::getLegPart(int id)
 {
 	P2ASSERTLINE(2005, -1 < id && id < 3);
 
-	u32 tags[3] = {'leg1', 'leg2', 'leg3'};
+	u32 tags[3] = { 'leg1', 'leg2', 'leg3' };
 	return m_collTree->getCollPart(tags[id]);
 	/*
 	stwu     r1, -0x30(r1)
@@ -4800,65 +4801,65 @@ CollPart* Onyon::getFootPart(int id)
 {
 	P2ASSERTLINE(2014, -1 < id && id < 3);
 
-	u32 tags[3] = {'fot1', 'fot2', 'fot3'};
-	CollPart* part =  m_collTree->getCollPart(tags[id]);
+	u32 tags[3]    = { 'fot1', 'fot2', 'fot3' };
+	CollPart* part = m_collTree->getCollPart(tags[id]);
 	JUT_ASSERTLINE(2020, part, "oh! no!\n"); // oh no! indeed
-	/*
-	stwu     r1, -0x30(r1)
-	mflr     r0
-	stw      r0, 0x34(r1)
-	li       r0, 0
-	stw      r31, 0x2c(r1)
-	stw      r30, 0x28(r1)
-	or.      r30, r4, r4
-	lis      r4, lbl_8047E620@ha
-	stw      r29, 0x24(r1)
-	mr       r29, r3
-	addi     r31, r4, lbl_8047E620@l
-	blt      lbl_80178BF4
-	cmpwi    r30, 2
-	bgt      lbl_80178BF4
-	li       r0, 1
-
-lbl_80178BF4:
-	clrlwi.  r0, r0, 0x18
-	bne      lbl_80178C10
-	addi     r3, r31, 0x18
-	addi     r5, r31, 0x60
-	li       r4, 0x7de
-	crclr    6
-	bl       panic_f__12JUTExceptionFPCciPCce
-
-lbl_80178C10:
-	lwz      r3, 0x138(r31)
-	slwi     r0, r30, 2
-	lwz      r6, 0x13c(r31)
-	addi     r4, r1, 8
-	lwz      r5, 0x140(r31)
-	stw      r3, 8(r1)
-	lwz      r3, 0x114(r29)
-	stw      r6, 0xc(r1)
-	stw      r5, 0x10(r1)
-	lwzx     r4, r4, r0
-	bl       getCollPart__8CollTreeFUl
-	or.      r30, r3, r3
-	bne      lbl_80178C58
-	addi     r3, r31, 0x18
-	addi     r5, r31, 0x144
-	li       r4, 0x7e4
-	crclr    6
-	bl       panic_f__12JUTExceptionFPCciPCce
-
-lbl_80178C58:
-	lwz      r0, 0x34(r1)
-	mr       r3, r30
-	lwz      r31, 0x2c(r1)
-	lwz      r30, 0x28(r1)
-	lwz      r29, 0x24(r1)
-	mtlr     r0
-	addi     r1, r1, 0x30
-	blr
-	*/
+	                                         /*
+	                                         stwu     r1, -0x30(r1)
+	                                         mflr     r0
+	                                         stw      r0, 0x34(r1)
+	                                         li       r0, 0
+	                                         stw      r31, 0x2c(r1)
+	                                         stw      r30, 0x28(r1)
+	                                         or.      r30, r4, r4
+	                                         lis      r4, lbl_8047E620@ha
+	                                         stw      r29, 0x24(r1)
+	                                         mr       r29, r3
+	                                         addi     r31, r4, lbl_8047E620@l
+	                                         blt      lbl_80178BF4
+	                                         cmpwi    r30, 2
+	                                         bgt      lbl_80178BF4
+	                                         li       r0, 1
+	                                     
+	                                     lbl_80178BF4:
+	                                         clrlwi.  r0, r0, 0x18
+	                                         bne      lbl_80178C10
+	                                         addi     r3, r31, 0x18
+	                                         addi     r5, r31, 0x60
+	                                         li       r4, 0x7de
+	                                         crclr    6
+	                                         bl       panic_f__12JUTExceptionFPCciPCce
+	                                     
+	                                     lbl_80178C10:
+	                                         lwz      r3, 0x138(r31)
+	                                         slwi     r0, r30, 2
+	                                         lwz      r6, 0x13c(r31)
+	                                         addi     r4, r1, 8
+	                                         lwz      r5, 0x140(r31)
+	                                         stw      r3, 8(r1)
+	                                         lwz      r3, 0x114(r29)
+	                                         stw      r6, 0xc(r1)
+	                                         stw      r5, 0x10(r1)
+	                                         lwzx     r4, r4, r0
+	                                         bl       getCollPart__8CollTreeFUl
+	                                         or.      r30, r3, r3
+	                                         bne      lbl_80178C58
+	                                         addi     r3, r31, 0x18
+	                                         addi     r5, r31, 0x144
+	                                         li       r4, 0x7e4
+	                                         crclr    6
+	                                         bl       panic_f__12JUTExceptionFPCciPCce
+	                                     
+	                                     lbl_80178C58:
+	                                         lwz      r0, 0x34(r1)
+	                                         mr       r3, r30
+	                                         lwz      r31, 0x2c(r1)
+	                                         lwz      r30, 0x28(r1)
+	                                         lwz      r29, 0x24(r1)
+	                                         mtlr     r0
+	                                         addi     r1, r1, 0x30
+	                                         blr
+	                                         */
 }
 
 /*
@@ -4876,7 +4877,7 @@ void Onyon::makeTrMatrix(void)
 			m_releasePikisTimer -= sys->m_deltaTime;
 		} else {
 			if (exitPiki() == nullptr) {
-				m_pikisToWithdraw = 0;
+				m_pikisToWithdraw  = 0;
 				m_isReleasingPikis = 0;
 			} else {
 				m_pikisToWithdraw--;
@@ -5001,8 +5002,7 @@ void Onyon::changeMaterial(void)
 		if (animid == 4) {
 			if (m_animator.m_animInfo == nullptr) {
 				anmtime = 0.0f;
-			}
-			else {
+			} else {
 				anmtime = (f32)m_animator.m_animInfo->m_anm->m_time;
 			}
 
@@ -5135,8 +5135,7 @@ lbl_80178EC4:
  */
 void Onyon::setSpotEffect(bool flag)
 {
-	switch (m_onyonType)
-	{
+	switch (m_onyonType) {
 	case ONYON_TYPE_SHIP:
 		if (flag) {
 			m_ufoSpot->create(0);
@@ -5426,8 +5425,7 @@ lbl_801791CC:
  */
 void Onyon::efxSuikomi(void)
 {
-	switch (m_onyonType)
-	{
+	switch (m_onyonType) {
 	case ONYON_TYPE_BLUE:
 	case ONYON_TYPE_RED:
 	case ONYON_TYPE_YELLOW:
@@ -5554,8 +5552,8 @@ lbl_80179338:
 void Onyon::efxPafuPafu(void)
 {
 	if (randFloat() <= 0.05f) {
-		char* jntnames[3] = {"kasi1jnt1", "kasi1jnt2", "kasi1jnt3"};
-		int id = (int)(randFloat() * 3.0f);
+		char* jntnames[3]      = { "kasi1jnt1", "kasi1jnt2", "kasi1jnt3" };
+		int id                 = (int)(randFloat() * 3.0f);
 		SysShape::Joint* joint = m_model->getJoint(jntnames[id]);
 		if (joint && m_lod.m_flags & 4) {
 			efx::TOnyonPuffPuff efx;
@@ -5805,10 +5803,10 @@ void Onyon::enterPiki(Game::Piki* p)
 			m_ufoGasIn->fade();
 			m_ufoGasOut->fade();
 			f32* speed = getPMotionSpeed(1);
-			*speed = 0.0f;
+			*speed     = 0.0f;
 		} else {
 			f32* speed = getPMotionSpeed(1);
-			*speed = 30.0f;
+			*speed     = 30.0f;
 			m_ufoGasIn->create(0);
 			m_ufoGasOut->create(0);
 		}
@@ -6077,8 +6075,9 @@ Creature* Onyon::exitPiki(void)
 		int happa;
 		for (int i = 2; i >= 0; i--) {
 			int count = playData->m_pikiContainer.getCount(color, i);
-			happa = i;
-			if (count < 0) break;
+			happa     = i;
+			if (count < 0)
+				break;
 			happa--;
 		}
 
@@ -6087,11 +6086,11 @@ Creature* Onyon::exitPiki(void)
 		} else {
 			piki = pikiMgr->birth();
 			if (piki == nullptr) {
-				m_pikisToWithdraw = 0;
+				m_pikisToWithdraw   = 0;
 				m_purplesToWithdraw = 0;
-				m_whitesToWithdraw = 0;
-				m_isReleasingPikis = 0;
-				piki = nullptr;
+				m_whitesToWithdraw  = 0;
+				m_isReleasingPikis  = 0;
+				piki                = nullptr;
 			} else {
 				if (color == Purple)
 					m_purplesToWithdraw--;
@@ -6107,9 +6106,9 @@ Creature* Onyon::exitPiki(void)
 				piki->changeHappa(happa);
 
 				if (m_onyonType == ONYON_TYPE_SHIP) {
-					Vector3f outpos = getOutStart_UFO();
+					Vector3f outpos   = getOutStart_UFO();
 					Vector3f onyonpos = getPosition();
-					Vector3f vel = outpos - onyonpos;
+					Vector3f vel      = outpos - onyonpos;
 					vel *= randFloat() * 30.0f + 100.0f;
 					piki->setPosition(outpos, 0);
 					piki->setVelocity(vel);
@@ -6130,14 +6129,13 @@ Creature* Onyon::exitPiki(void)
 						m_ufoGasIn->fade();
 						m_ufoGasOut->fade();
 						f32* speed = getPMotionSpeed(1);
-						*speed = 0.0f;
+						*speed     = 0.0f;
 					}
 				} else {
 					PikiAI::CreatureActionArg arg(this);
 					piki->m_brain->start(3, &arg);
 				}
 			}
-
 		}
 	}
 	return piki;
@@ -6472,11 +6470,13 @@ bool Onyon::insideAccessArea(Vector3f& navipos)
 	if (m_onyonType == ONYON_TYPE_SHIP) {
 		Vector3f pos = getGoalPos();
 		pos -= navipos;
-		if (pos.x * pos.x + pos.z * pos.z < 900.0f) return true;
+		if (pos.x * pos.x + pos.z * pos.z < 900.0f)
+			return true;
 	} else {
 		Vector3f pos = m_position;
 		pos -= navipos;
-		if (pos.x * pos.x + pos.z * pos.z < 900.0f) return true;
+		if (pos.x * pos.x + pos.z * pos.z < 900.0f)
+			return true;
 	}
 	return false;
 	/*
