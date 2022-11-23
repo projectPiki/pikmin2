@@ -22,7 +22,11 @@ struct J3DAnmTransform : public J3DAnmBase {
 	{
 	}
 
-	virtual ~J3DAnmTransform(); // _08 (weak)
+	/**
+	 * @reifiedAddress{80069CE0}
+	 * @reifiedFile{JSystem/J3D/J3DAnimation.cpp}
+	 */
+	virtual ~J3DAnmTransform() { } // _08 (weak)
 	/**
 	 * @reifiedAddress{80069D3C}
 	 * @reifiedFile{JSystem/J3D/J3DAnimation.cpp}
@@ -52,9 +56,9 @@ struct J3DAnmTransformFull : public J3DAnmTransform {
 	{
 	}
 
-	virtual ~J3DAnmTransformFull();                                     // _08 (weak)
-	virtual J3DAnmKind getKind() const;                                 // _0C (weak)
-	virtual void getTransform(unsigned short, J3DTransformInfo*) const; // _10
+	virtual ~J3DAnmTransformFull() { }                                      // _08 (weak)
+	virtual J3DAnmKind getKind() const { return J3DAnmKind_TransformFull; } // _0C (weak)
+	virtual void getTransform(unsigned short, J3DTransformInfo*) const;     // _10
 
 	J3DAnmTransformFullTable* _20;
 };
@@ -67,6 +71,7 @@ struct J3DAnmTransformFullData : J3DAnmFullData {
 	void* _20;   // _20
 };
 struct J3DAnmTransformFullTable {
+	u16 _00[3][6];
 };
 
 /**
@@ -80,7 +85,7 @@ struct J3DAnmTransformKey : public J3DAnmTransform {
 	{
 	}
 
-	virtual ~J3DAnmTransformKey(); // _08 (weak)
+	virtual ~J3DAnmTransformKey() { } // _08 (weak)
 	/**
 	 * @reifiedAddress{800743DC}
 	 * @reifiedFile{JSystem/J3D/J3DAnmLoader.cpp}
@@ -89,7 +94,7 @@ struct J3DAnmTransformKey : public J3DAnmTransform {
 	{
 		return J3DAnmKind_TransformKey;
 	}
-	virtual void getTransform(unsigned short, J3DTransformInfo*) const; // _10 (weak)
+	virtual void getTransform(unsigned short p1, J3DTransformInfo* p2) const { calcTransform(m_fTime, p1, p2); } // _10 (weak)
 
 	void calcTransform(float, unsigned short, J3DTransformInfo*) const;
 
@@ -97,7 +102,12 @@ struct J3DAnmTransformKey : public J3DAnmTransform {
 	J3DAnmTransformKeyTable* _24; // _24
 };
 
-struct J3DAnmTransformKeyData : public J3DAnmKeyTableBase {
+struct J3DAnmTransformKeyData : public J3DAnmFullData {
+	u8 _10[0x4]; // _10
+	void* _14;   // _14
+	void* _18;   // _18
+	void* _1C;   // _1C
+	void* _20;   // _20
 };
 struct J3DAnmTransformKeyTable : public J3DAnmKeyTableBase {
 };

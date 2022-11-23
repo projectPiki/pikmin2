@@ -7,8 +7,8 @@
 #include "types.h"
 
 struct J3DAnmVtxColorIndexData {
-	u8 _00[4]; // _00
-	s32 _04;   // _04
+	u16 _00; // _00
+	s32 _04; // _04
 };
 
 struct J3DAnmVtxColor : public J3DAnmBase {
@@ -20,9 +20,9 @@ struct J3DAnmVtxColor : public J3DAnmBase {
 	{
 	}
 
-	virtual ~J3DAnmVtxColor();                                            // _08 (weak)
-	virtual J3DAnmKind getKind() const;                                   // _0C (weak)
-	virtual void getColor(unsigned char, unsigned short, GXColor*) const; // _10 (weak)
+	virtual ~J3DAnmVtxColor() { }                                            // _08 (weak)
+	virtual J3DAnmKind getKind() const { return J3DAnmKind_VtxColor; }       // _0C (weak)
+	virtual void getColor(unsigned char, unsigned short, GXColor*) const { } // _10 (weak)
 
 	u16 _0C;                      // _0C
 	u16 _0E;                      // _0E
@@ -41,9 +41,9 @@ struct J3DAnmVtxColorFull : public J3DAnmVtxColor {
 	{
 	}
 
-	virtual ~J3DAnmVtxColorFull();                                        // _08 (weak)
-	virtual J3DAnmKind getKind() const;                                   // _0C (weak)
-	virtual void getColor(unsigned char, unsigned short, GXColor*) const; // _10
+	virtual ~J3DAnmVtxColorFull() { }                                      // _08 (weak)
+	virtual J3DAnmKind getKind() const { return J3DAnmKind_VtxColorFull; } // _0C (weak)
+	virtual void getColor(unsigned char, unsigned short, GXColor*) const;  // _10
 
 	J3DAnmColorFullTable* _18; // _18
 	J3DAnmColorFullTable* _1C; // _1C
@@ -78,8 +78,8 @@ struct J3DAnmVtxColorKey : public J3DAnmVtxColor {
 	{
 	}
 
-	virtual ~J3DAnmVtxColorKey();                                         // _08 (weak)
-	virtual J3DAnmKind getKind() const;                                   // _0C (weak)
+	virtual ~J3DAnmVtxColorKey() { }                                      // _08 (weak)
+	virtual J3DAnmKind getKind() const { return J3DAnmKind_VtxColorKey; } // _0C (weak)
 	virtual void getColor(unsigned char, unsigned short, GXColor*) const; // _10
 
 	J3DAnmColorKeyTable* _18; // _18
@@ -90,7 +90,22 @@ struct J3DAnmVtxColorKey : public J3DAnmVtxColor {
 	s16* _2C;                 // _2C
 };
 
-struct J3DAnmVtxColorKeyData {
+struct J3DAnmVtxColorKeyData : J3DFileBlockBase {
+	u8 _08;    // _08
+	s16 _0A;   // _0A
+	u16 _0C;   // _0C
+	u16 _0E;   // _0E
+	u8 _10[8]; // _10 - unknown/filler
+	void* _18; // _18
+	void* _1C; // _1C
+	void* _20; // _20
+	void* _24; // _24
+	void* _28; // _28
+	void* _2C; // _2C
+	void* _30; // _30
+	void* _34; // _34
+	void* _38; // _38
+	void* _3C; // _3C
 };
 
 #endif

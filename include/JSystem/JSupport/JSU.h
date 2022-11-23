@@ -17,7 +17,8 @@ inline u8 JSUHiByte(u16 p1)
 // inline u8 JSUHiByte(u16 p1) { return ((u8*)&p1)[0]; }
 // inline u8* JSUHiByte(u16* p1) { return &((u8*)p1)[0]; }
 
-template <typename T> T* JSUConvertOffsetToPtr(const void* base, const void* offset)
+template <typename T>
+T* JSUConvertOffsetToPtr(const void* base, const void* offset)
 {
 	if (offset == 0) {
 		return nullptr;
@@ -25,7 +26,8 @@ template <typename T> T* JSUConvertOffsetToPtr(const void* base, const void* off
 	return reinterpret_cast<T*>(reinterpret_cast<s32>(base) + reinterpret_cast<s32>(offset));
 }
 
-template <typename T> T* JSUConvertOffsetToPtr(const void* base, u32 offset)
+template <typename T>
+T* JSUConvertOffsetToPtr(const void* base, u32 offset)
 {
 	if (offset == 0) {
 		return nullptr;
