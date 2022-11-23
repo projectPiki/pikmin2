@@ -6,7 +6,7 @@
 #include "DvdThreadCommand.h"
 #include "Game/BaseHIO.h"
 #include "Section.h"
-#include "ebi/Screen/TOption.h"
+#include "ebi/Option.h"
 #include "ebi/Omake.h"
 #include "ebi/TMainTitleMgr.h"
 

@@ -1,5 +1,5 @@
-#ifndef _EBI_OMAKE_H
-#define _EBI_OMAKE_H
+#ifndef _EBI_OPTION_H
+#define _EBI_OPTION_H
 
 #include "types.h"
 #include "ebi/Screen/TScreenBase.h"
