@@ -4,7 +4,7 @@
 #include "CNode.h"
 
 namespace SysShape {
-
+#define KEYEVENT_NULL      0
 #define KEYEVENT_1         1
 #define KEYEVENT_2         2
 #define KEYEVENT_3         3

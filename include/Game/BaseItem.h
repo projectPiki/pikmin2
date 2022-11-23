@@ -6,6 +6,7 @@
 #include "Game/TSoundEvent.h"
 #include "SysShape/MotionListener.h"
 #include "GenericObjectMgr.h"
+#include "efx/Arg.h"
 #include "types.h"
 
 namespace PSM {
@@ -241,5 +242,10 @@ struct WorkItem : public FSMItem<ItemClass, FSMClass, StateClass> {
 };
 
 } // namespace Game
+
+// defined here to avoid include loop
+namespace efx {
+inline Arg::Arg(Game::BaseItem* item) { m_position = item->m_position; }
+} // namespace efx
 
 #endif

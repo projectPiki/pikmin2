@@ -34,9 +34,9 @@ struct NaviNukuAdjustStateArg;
 struct NaviState;
 struct NaviParms;
 
-struct ItemPikihead {
-	struct Item;
-};
+namespace ItemPikihead {
+struct Item;
+}
 
 struct NaviDamageArg {
 	virtual const char* getName(); // _08 (weak)

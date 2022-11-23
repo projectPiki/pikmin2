@@ -7,6 +7,7 @@
 #include "Sys/MatBaseAnimator.h"
 #include "SysShape/Joint.h"
 #include "SysShape/KeyEvent.h"
+#include "efx/Arg.h"
 #include "CollInfo.h"
 #include "Vector3.h"
 
@@ -104,23 +105,23 @@ struct Onyon : public BaseItem {
 	Vector3f getFlagSetPos();
 	void vsChargePikmin();
 	void doEmit(Creature*, bool);
-	void getLegPart(int);
-	void getFootPart(int);
+	CollPart* getLegPart(int);
+	CollPart* getFootPart(int);
 	void setSpotEffect(bool);
 	void setSpotEffectActive(bool);
 	void efxSuikomi();
 	void efxPafuPafu();
 	void efxPafuKira();
-	void getStoreCount();
+	int getStoreCount();
 	void enterPiki(Piki*);
 	void exitPikis(int, int);
-	void exitPiki();
-	void insideAccessArea(Vector3f&);
+	Creature* exitPiki();
+	bool insideAccessArea(Vector3f&);
 	void getInEnd_UFO();
 	Vector3f getInStart_UFO();
 	Vector3f getOutStart_UFO();
-	void getPMotionSpeed(int);
-	void getPAnimator(int);
+	f32* getPMotionSpeed(int);
+	SysShape::Animator* getPAnimator(int);
 	void update_pmotions();
 
 	void updateSpot();
@@ -223,5 +224,13 @@ struct GenOnyonParm : public Game::GenItemParm {
 	int m_onyonIndex;   // _04
 	bool m_isAfterBoot; // _08
 };
+
+namespace efx {
+inline ArgType::ArgType(Game::Onyon* onyon)
+{
+	m_onyonType = onyon->m_onyonType;
+	m_position  = onyon->m_position;
+}
+} // namespace efx
 
 #endif

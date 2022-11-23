@@ -327,7 +327,7 @@ void SingleGame::SelectState::initNext(Game::SingleGameSection* section)
 	_1C->getTotalFreeSize();
 	_18 = JKRExpHeap::create(_1C->getFreeSize(), _1C, true);
 	_18->becomeCurrentHeap();
-	if (playData->courseOpen(2) && (playData->_2F & 1) && !playData->courseOpen(3)) {
+	if (playData->courseOpen(2) && (playData->isStoryFlag(STORY_DebtPaid)) && !playData->courseOpen(3)) {
 		playData->openCourse(3);
 	}
 	if (playData->courseOpen(1)) {

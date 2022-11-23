@@ -23,11 +23,12 @@ extern "C" {
 
 #define VECTOR_SQUARE_MAG(v) (SQUARE(v.x) + SQUARE(v.y) + SQUARE(v.z))
 
-#define LONG_TAU 6.2831854820251465
-#define TAU      6.2831855f
-#define PI       3.1415927f
-#define HALF_PI  1.5707964f
-#define THIRD_PI 1.0471976f
+#define LONG_TAU   6.2831854820251465
+#define TAU        6.2831855f
+#define PI         3.1415927f
+#define HALF_PI    1.5707964f
+#define THIRD_PI   1.0471976f
+#define QUARTER_PI 0.7853982f
 
 #define SIN_2_5 0.43633234f
 
