@@ -479,8 +479,8 @@ f32 Sarai::Obj::setHeightVelocity()
 
 	// Calculate the weight factor based on Pikmin stuck
 	int pikminWeightFactor = (m_stickPikminCount < 0)
-	                             ? (0)
-	                             : (m_stickPikminCount <= MAX_PIKMIN_STUCK_FACTOR ? (m_stickPikminCount) : (MAX_PIKMIN_STUCK_FACTOR));
+	                           ? (0)
+	                           : (m_stickPikminCount <= MAX_PIKMIN_STUCK_FACTOR ? (m_stickPikminCount) : (MAX_PIKMIN_STUCK_FACTOR));
 
 	float riseFactor     = static_cast<Parms*>(m_parms)->m_properParms.m_fp11.m_value;
 	float climbingFactor = static_cast<Parms*>(m_parms)->m_properParms.m_fp12.m_value;
@@ -489,7 +489,7 @@ f32 Sarai::Obj::setHeightVelocity()
 	// Custom linear interpolation (https://en.wikipedia.org/wiki/Linear_interpolation)
 	// lerp v0, v1, t -> (1 - t) * v0 + t * v1
 	float velFactor = (((MAX_PIKMIN_STUCK_FACTOR - weight) / MAX_PIKMIN_STUCK_FACTOR) * riseFactor)
-	                  + (weight / MAX_PIKMIN_STUCK_FACTOR) * climbingFactor;
+	                + (weight / MAX_PIKMIN_STUCK_FACTOR) * climbingFactor;
 
 	// Get the Y position of the map model (equivalent to a downwards raycast)
 	float mapPosY = mapMgr->getMinY(m_position);
@@ -519,8 +519,8 @@ void Sarai::Obj::setRandTarget()
 		radius = 50.0f + randFloatR(50.0f);
 	} else {
 		radius = static_cast<Parms*>(m_parms)->m_general.m_homeRadius.m_value
-		         + randFloatR(static_cast<Parms*>(m_parms)->m_general.m_territoryRadius.m_value
-		                      - static_cast<Parms*>(m_parms)->m_general.m_homeRadius.m_value);
+		       + randFloatR(static_cast<Parms*>(m_parms)->m_general.m_territoryRadius.m_value
+		                    - static_cast<Parms*>(m_parms)->m_general.m_homeRadius.m_value);
 	}
 
 	// Get the direction from the home position towards our position
@@ -529,7 +529,7 @@ void Sarai::Obj::setRandTarget()
 	// Randomise the angle a bit and set the target position
 	float rngAngle = HALF_PI + (dirToSarai + randFloatR(PI));
 	m_targetPos    = Vector3f((radius * pikmin2_sinf(rngAngle)) + m_homePosition.x, m_homePosition.y,
-	                          (radius * pikmin2_cosf(rngAngle)) + m_homePosition.z);
+                           (radius * pikmin2_cosf(rngAngle)) + m_homePosition.z);
 }
 
 /*

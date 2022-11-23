@@ -126,9 +126,8 @@ struct MouthCollPart : public CollPart {
 	void setup(SysShape::Model* model, char* jointName, Vector3f& vector);
 
 	Game::Creature* m_stuckCreature; // _64
-	SysShape::Joint* m_mouthJoint; // _68
-	u8 _6C;                        // _6C
-
+	SysShape::Joint* m_mouthJoint;   // _68
+	u8 _6C;                          // _6C
 };
 
 struct MouthSlots {
