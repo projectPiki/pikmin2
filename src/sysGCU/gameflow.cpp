@@ -251,12 +251,12 @@ struct SectionInfo {
 	                 { "Yamashita", 0x0B010000 },         { "Nishimura", 0x0C010000 },
 	                 { "Nishimura2", 0x0D010000 },        { "Morimura", 0x0E010000 },
 	                 { "2D Debug", 0x1A010100 },          { "Fujino", 0x1A010100 },
-	                 { "Cave Editor", 6, 1, 0, 0 },       { "JStudio CameraEditor", 7, 1, 0, 0 },
-	                 { "Movie Test", 6, 1, 0, 0 },        { "JStudio Kando Test", 7, 1, 0, 0 },
-	                 { "Pellet Test", 6, 1, 0, 0 },       { "Main Title", 7, 1, 0, 0 },
-	                 { "Message Previewer", 6, 1, 0, 0 }, { "Ebi Main Title", 7, 1, 0, 0 },
-	                 { "E3 Thanks Section", 6, 1, 0, 0 }, { "Ebimun Effect", 7, 1, 0, 0 },
-	                 { "2D Debug2", 7, 1, 0, 0 } };
+	                 { "Cave Editor", 0x06010000 },       { "JStudio CameraEditor", 0x07010000 },
+	                 { "Movie Test", 0x06010000 },        { "JStudio Kando Test", 0x07010000 },
+	                 { "Pellet Test", 0x06010000 },       { "Main Title", 0x07010000 },
+	                 { "Message Previewer", 0x06010000 }, { "Ebi Main Title", 0x07010000 },
+	                 { "E3 Thanks Section", 0x06010000 }, { "Ebimun Effect", 0x07010000 },
+	                 { "2D Debug2", 0x07010000 } };
 
 u32 GameFlow::mActiveSectionFlag;
 
