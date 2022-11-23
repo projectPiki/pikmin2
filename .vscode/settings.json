@@ -11,6 +11,7 @@
   "editor.tabSize": 4,
   "files.associations": {
     "source_location": "cpp",
-    "types.h": "c"
+    "types.h": "c",
+    "rand.h": "c"
   }
 }

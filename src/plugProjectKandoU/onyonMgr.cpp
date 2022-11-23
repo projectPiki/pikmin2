@@ -1,5 +1,6 @@
 #include "Game/Entities/Item.h"
 #include "Game/Piki.h"
+#include "Game/Navi.h"
 #include "Game/PikiMgr.h"
 #include "Game/MoviePlayer.h"
 #include "Game/gamePlayData.h"
@@ -19,6 +20,15 @@
 #include "ParticleID.h"
 #include "VSOtakaraName.h"
 #include "Radar.h"
+#include "PS.h"
+#include "PSSystem/PSGame.h"
+#include "PSSystem/PSScene.h"
+#include "PSM/Scene.h"
+#include "JSystem/JAL/JALCalc.h"
+#include "Dolphin/rand.h"
+#include "PikiAi.h"
+
+static bool sVolveFlag;
 
 namespace Game {
 
@@ -48,7 +58,7 @@ void Onyon::movieUserCommand(u32 code, MoviePlayer* player)
 			if (pikiHead) {
 				ItemPikihead::InitArg pikiHeadInitArg((EPikiKind)m_onyonType, Vector3f::zero);
 				pikiHead->init(&pikiHeadInitArg);
-				BirthMgr::inc(pikiHead->_1F4);
+				BirthMgr::inc(pikiHead->m_pikiColor);
 				pikiHead->movie_begin(false);
 				doEmit(pikiHead, true);
 				return;
@@ -73,8 +83,8 @@ void Onyon::movieUserCommand(u32 code, MoviePlayer* player)
 			}
 
 			if (targetPikihead) {
-				GameStat::mePikis.dec(targetPikihead->_1F4);
-				int& pikiHeadCount = playData->m_pikiContainer.getCount(targetPikihead->_1F4, targetPikihead->_1F6);
+				GameStat::mePikis.dec(targetPikihead->m_pikiColor);
+				int& pikiHeadCount = playData->m_pikiContainer.getCount(targetPikihead->m_pikiColor, targetPikihead->m_pikiHappa);
 				pikiHeadCount++;
 				CreatureKillArg killArg(1);
 				targetPikihead->kill(&killArg);
@@ -106,7 +116,7 @@ void Onyon::movieUserCommand(u32 code, MoviePlayer* player)
 			if (sprout) {
 				ItemPikihead::InitArg sproutInitArg((EPikiKind)m_onyonType, Vector3f::zero);
 				sprout->init(&sproutInitArg);
-				BirthMgr::inc(sprout->_1F4);
+				BirthMgr::inc(sprout->m_pikiColor);
 				sprout->movie_begin(false);
 				doEmit(sprout, true);
 			} else {
@@ -2961,6 +2971,116 @@ void Onyon::getLODCylinder(Sys::Cylinder& cylinder)
  */
 void Onyon::do_doAnimation(void)
 {
+	if (m_onyonType == ONYON_TYPE_SHIP) {
+		if (m_propera != 0.0f) {
+			f32* speed = getPMotionSpeed(1);
+			*speed += m_propera * sys->m_deltaTime;
+			if (30.0f <= *speed) {
+				if (30.0f < *speed) {
+					*speed = 30.0f;
+					m_propera = 0.0f;
+				}
+			} else {
+				*speed = 30.0f;
+				m_propera = 0.0f;
+			}
+		}
+		f32* speed = getPMotionSpeed(1);
+		if (0.0f < *speed) {
+			Vector3f* orig = getSound_PosPtr();
+			PSM::SeSound* sound = PSStartSoundVec(PSSE_PK_SE_INSIDE_VOLVE, (Vec*)orig);
+			if (sound) {
+				PSGame::SoundTable::SePerspInfo persp;
+				persp._04              = 0.0f;
+				persp._00              = 1.0f;
+				persp._08              = 0.0f;
+				persp._0C              = 0.0f;
+				persp._10              = 0.0f;
+				persp.m_isSpecialSound = 0;
+				persp.m_noGetDist      = 0;
+				persp.set(1.0, 200.0, 0.4, 400.0, 0.0);
+				sound->specializePerspCalc(persp);
+			}
+			SysShape::Animator* anim = getPAnimator(1);
+			f32 time = anim->m_timer;
+			getPAnimator(1); // sus
+			if ((time <= 5.0f || time >= 8.0f) || sVolveFlag) {
+				if (time <= 10.0f) {
+					sVolveFlag = false;
+				}
+			} else {
+				PSM::SeSound* sound = static_cast<PSM::SeSound*>(m_soundObj->startSound(PSSE_EV_ROCKET_VOLVE, 0));
+				if (sound) {
+					PSGame::SoundTable::SePerspInfo persp;
+					persp._04              = 0.0f;
+					persp._00              = 1.0f;
+					persp._08              = 0.0f;
+					persp._0C              = 0.0f;
+					persp._10              = 0.0f;
+					persp.m_isSpecialSound = 0;
+					persp.m_noGetDist      = 0;
+					persp.set(1.0, 250.0, 0.5, 500.0, 0.0);
+					sound->specializePerspCalc(persp);
+				}
+				sVolveFlag = true;
+			}
+		}
+	}
+	update_pmotions();
+	if (gameSystem->m_flags & 2) {
+		if (m_onyonType == ONYON_OBJECT_SHIP) {
+			SoundID soundid = PSSE_EV_UFO_PISTON;
+			if (playData->_2F & 1) // payed debt
+				soundid = PSSE_EV_DOL2GOLD_PISTON;
+
+			PSM::SeSound* sound = static_cast<PSM::SeSound*>(m_soundObj->startSound(soundid, 0));
+			if (sound) {
+				PSGame::SoundTable::SePerspInfo persp;
+				persp._04              = 0.0f;
+				persp._00              = 1.0f;
+				persp._08              = 0.0f;
+				persp._0C              = 0.0f;
+				persp._10              = 0.0f;
+				persp.m_isSpecialSound = 0;
+				persp.m_noGetDist      = 0;
+				persp.set(1.0, 300.0, 0.5, 1000.0, 0.0);
+				sound->specializePerspCalc(persp);
+			}
+			PSSystem::SceneMgr* mgr = PSSystem::getSceneMgr();
+			PSSystem::checkSceneMgr(mgr);
+			mgr->checkScene();
+			PSM::Scene_Game* scene = static_cast<PSM::Scene_Game*>(mgr->getChildScene());
+			if (!scene->isGameScene()) {
+				scene = 0;
+			}
+			if (scene) {
+				if (scene->_4C < 0x186) {
+					f32 calc = JALCalc::linearTransform((double)scene->_4C, 0.0, 390.0, 0.25, 1.0, true);
+					sound->setVolume(calc, 0,0);
+				} else {
+					sound->setVolume(1.0f, 0, 0);
+				}
+			}
+		} else if (m_onyonType == ONYON_TYPE_POD) {
+			SoundID soundid = PSSE_EV_POD_PROPELLER;
+			if (playData->_2F & 1) // payed debt
+				soundid = PSSE_EV_PODGOLD_PROPELLER;
+
+			PSM::SeSound* sound = static_cast<PSM::SeSound*>(m_soundObj->startSound(soundid, 0));
+			if (sound) {
+				PSGame::SoundTable::SePerspInfo persp;
+				persp._04              = 0.0f;
+				persp._00              = 1.0f;
+				persp._08              = 0.0f;
+				persp._0C              = 0.0f;
+				persp._10              = 0.0f;
+				persp.m_isSpecialSound = 0;
+				persp.m_noGetDist      = 0;
+				persp.set(1.0, 400.0, 0.3, 1000.0, 0.0);
+				sound->specializePerspCalc(persp);
+			}
+		}
+	}
 	/*
 	stwu     r1, -0x90(r1)
 	mflr     r0
@@ -3307,6 +3427,42 @@ Vector3f* BaseItem::getSound_PosPtr() { return &m_position; }
  */
 void Onyon::startWaitMotion(void)
 {
+	if (m_onyonType == ONYON_TYPE_SHIP) {
+		int whites = playData->m_pikiContainer.getColorSum(White);
+		int purple = playData->m_pikiContainer.getColorSum(Purple);
+		if (whites + purple < 1) {
+			m_ufoGasIn->fade();
+			m_ufoGasOut->fade();
+			f32* speed = getPMotionSpeed(1);
+			*speed = 0.0f;
+		} else {
+			f32* speed = getPMotionSpeed(1);
+			*speed = 30.0f;
+			m_ufoGasIn->create(0);
+			m_ufoGasOut->create(0);
+		}
+	} else {
+		m_animSpeed = 30.0f;
+		if (m_onyonType == ONYON_TYPE_POD) {
+			m_animator.startAnim(0,0);
+		} else {
+			if (getStoreCount() < 1) {
+				SysShape::MotionListener* mlisten = this;
+				m_animator.startAnim(0, mlisten);
+			} else {
+				s16 animid;
+				if (!m_animator.m_animInfo) {
+					animid = -1;
+				} else {
+					animid = m_animator.m_animInfo->m_id;
+				}
+				if (animid < 2 || animid == 3) {
+					SysShape::MotionListener* mlisten = this;
+					m_animator.startAnim(2, mlisten);
+				}
+			}
+		}
+	}
 	/*
 	stwu     r1, -0x20(r1)
 	mflr     r0
@@ -3438,8 +3594,27 @@ lbl_80177F6C:
  * Address:	80177F8C
  * Size:	000078
  */
-void Onyon::onKeyEvent_UFO(const SysShape::KeyEvent&)
+void Onyon::onKeyEvent_UFO(const SysShape::KeyEvent& evt)
 {
+	u8 id = evt.m_type;
+	if (id == 1) {
+		if (m_suckState != SUCKSTATE_GetPellet) {
+			return;
+		}
+		m_suckState = SUCKSTATE_IdleOpen;
+		m_suckTimer = 0.0f;
+		m_animSpeed = 0.0f;
+		return;
+	}
+	if (id > 0) {
+		if (id != 1000) return;
+		m_suckState = SUCKSTATE_IdleClosed;
+		return;
+	}
+	if (id < 0) return;
+	if (m_suckState != SUCKSTATE_Opening) return;
+	m_animSpeed = 0.0f;
+	m_suckState = SUCKSTATE_Opened;
 	/*
 	lwz      r0, 0x1c(r4)
 	cmpwi    r0, 1
@@ -3489,6 +3664,11 @@ lbl_80177FF8:
  */
 Vector3f Onyon::getFlagSetPos(void)
 {
+	f32 dir = getFaceDir();
+	f32 x = pikmin2_sinf(dir);
+	f32 z = pikmin2_cosf(dir);
+	Vector3f pos = getPosition();
+	return Vector3f(pos.x + x * 100.0f, pos.y + 0.0f, pos.z + z * 100.0f);
 	/*
 	stwu     r1, -0x60(r1)
 	mflr     r0
@@ -3583,8 +3763,13 @@ lbl_801780D0:
  * Address:	80178140
  * Size:	00004C
  */
-void Onyon::onKeyEvent(SysShape::KeyEvent const&)
+void Onyon::onKeyEvent(SysShape::KeyEvent const& evt)
 {
+	if (m_onyonType == ONYON_TYPE_SHIP) {
+		onKeyEvent_UFO(evt);
+	} else {
+		onKeyEvent_Onyon(evt);
+	}
 	/*
 	stwu     r1, -0x10(r1)
 	mflr     r0
@@ -3619,6 +3804,20 @@ lbl_8017817C:
  */
 void Onyon::vsChargePikmin(void)
 {
+	P2ASSERTLINE(1791, gameSystem->m_mode == GSM_VERSUS_MODE);
+	m_pikminType = m_onyonType;
+	m_toBirth++;
+	SysShape::AnimInfo* info = m_animator.m_animInfo;
+	int animid;
+	if (!info) {
+		animid = -1;
+	} else {
+		animid = info->m_id;
+	}
+	if (animid == 0 || animid == 2) {
+		SysShape::MotionListener* mlisten = this;
+		m_animator.startAnim(1, mlisten);
+	}
 	/*
 	stwu     r1, -0x10(r1)
 	mflr     r0
@@ -3683,8 +3882,159 @@ lbl_80178224:
  * Address:	80178238
  * Size:	000648
  */
-void Onyon::onKeyEvent_Onyon(SysShape::KeyEvent const&)
+void Onyon::onKeyEvent_Onyon(SysShape::KeyEvent const& evt)
 {
+	SysShape::AnimInfo* info = m_animator.m_animInfo;
+	int animid;
+	if (!info) {
+		animid = -1;
+	} else {
+		animid = info->m_id;
+	}
+	int keyid = evt.m_type;
+	switch (keyid)
+	{
+	case 100:
+		if (animid == 2)
+			efxPafuKira();
+		break;
+	case 1:
+		if (m_onyonType <= ONYON_TYPE_YELLOW) {
+			if (animid == 2) {
+				if (m_onyonType == ONYON_TYPE_SHIP) { // do you see a logic problem here?
+					int whites = playData->m_pikiContainer.getColorSum(White);
+					int purple = playData->m_pikiContainer.getColorSum(Purple);
+					if (whites + purple < 1) {
+						m_ufoGasIn->fade();
+						m_ufoGasOut->fade();
+						f32* speed = getPMotionSpeed(1);
+						*speed = 0.0f;
+					} else {
+						f32* speed = getPMotionSpeed(1);
+						*speed = 30.0f;
+						m_ufoGasIn->create(0);
+						m_ufoGasOut->create(0);
+					}
+				} else {
+					m_animSpeed = 30.0f;
+					if (m_onyonType == ONYON_TYPE_POD) {
+						m_animator.startAnim(0, nullptr);
+					} else {
+						if (getStoreCount() < 1) {
+							SysShape::MotionListener* mlisten = this;
+							m_animator.startAnim(0, mlisten);
+						} else {
+							int animid;
+							if (!m_animator.m_animInfo) {
+								animid = -1;
+							} else {
+								animid = m_animator.m_animInfo->m_id;
+							}
+							if (animid < 2 || animid == 3) {
+								SysShape::MotionListener* mlisten = this;
+								m_animator.startAnim(2, mlisten);
+							}
+						}
+					}
+				}
+			} else if (animid == 1) { // shoot out seeds
+				if (!m_toBirth) {
+					m_animator.m_flags |= 2;
+				}
+				else {
+					s16 shootcount = m_toBirth >> 1;
+					if (!shootcount) shootcount = 1;
+
+					for (int i = 0; i < shootcount; i++) {
+						if (gameSystem && gameSystem->m_mode == GSM_VERSUS_MODE) {
+							// versus mode onion counts
+							int reds = GameStat::getMapPikmins(1);
+							int blues = GameStat::getMapPikmins(0);
+							if (m_onyonType == ONYON_TYPE_BLUE && blues > 50) {
+								m_toBirth--;
+							}
+							else if (m_onyonType == ONYON_TYPE_RED && reds > 50) {
+								m_toBirth--;
+							}
+						}
+
+						ItemPikihead::Item* obj = static_cast<ItemPikihead::Item*>(ItemPikihead::mgr->birth());
+						if (obj) {
+							m_pikminType = m_onyonType;
+							ItemPikihead::InitArg arg((EPikiKind)m_pikminType, Vector3f::zero);
+							obj->init(&arg);
+							m_toBirth--;
+							BirthMgr::inc(obj->m_pikiColor);
+							doEmit(obj, false);
+						} else { // returned pikihead is null, 100 pikmin limit must be reached
+							if (gameSystem->m_flags & 0x20 && !playData->isDemoFlag(DEMO_Max_Pikmin_On_Field)) {
+								MoviePlayArg arg;
+								arg.m_movieName = "g16_100_pikmin";
+								if (GameStat::zikatuPikis > 0) {
+									arg.m_movieName = "g16_95_pikmin";
+								}
+								arg.m_origin = getPosition();
+								arg.m_angle = getFaceDir();
+								movie_begin(0);
+								moviePlayer->play(arg);
+							}
+							m_pikminType = m_onyonType;
+							int count = playData->m_pikiContainer.getCount(m_pikminType, 0);
+							count++;
+							BirthMgr::inc(m_onyonType);
+							m_toBirth--;
+						}
+					}
+				}
+			}
+		}
+	case 1000:
+		if (!m_toBirth) {
+			if (m_onyonType == ONYON_TYPE_SHIP) {
+				int whites = playData->m_pikiContainer.getColorSum(White);
+				int purple = playData->m_pikiContainer.getColorSum(Purple);
+				if (whites + purple < 1) {
+					m_ufoGasIn->fade();
+					m_ufoGasOut->fade();
+					f32* speed = getPMotionSpeed(1);
+					*speed = 0.0f;
+				} else {
+					f32* speed = getPMotionSpeed(1);
+					*speed = 30.0f;
+					m_ufoGasIn->create(0);
+					m_ufoGasOut->create(0);
+				}
+			} else {
+				m_animSpeed = 30.0f;
+				if (m_onyonType == ONYON_TYPE_POD) {
+					m_animator.startAnim(0, nullptr);
+				} else {
+					if (getStoreCount() < 1) {
+						SysShape::MotionListener* mlisten = this;
+						m_animator.startAnim(0, mlisten);
+					} else {
+						int animid;
+						if (!m_animator.m_animInfo) {
+							animid = -1;
+						} else {
+							animid = m_animator.m_animInfo->m_id;
+						}
+						if (animid < 2 || animid == 3) {
+							SysShape::MotionListener* mlisten = this;
+							m_animator.startAnim(2, mlisten);
+						}
+					}
+				}
+			}
+		} else {
+			if (m_onyonType <= ONYON_TYPE_YELLOW) {
+				SysShape::MotionListener* mlisten = this;
+				m_animator.startAnim(1, mlisten);
+			}
+		}
+	default:
+		break;
+	}
 	/*
 	stwu     r1, -0x90(r1)
 	mflr     r0
@@ -4174,8 +4524,30 @@ lbl_80178864:
  * Address:	80178880
  * Size:	000298
  */
-void Onyon::doEmit(Game::Creature*, bool)
+void Onyon::doEmit(Game::Creature* seed, bool isrand)
 {
+	startSound(PSSE_PK_SE_ONY_SEED_EJECT);
+	Vector3f onyonpos = getPosition();
+	onyonpos.y += 110.0f;
+	efx::TOnyonLay efx;
+	::efx::Arg arg(onyonpos);
+	efx.create(&arg);
+	seed->setPosition(onyonpos, 0);
+
+	if (gameSystem->m_mode == GSM_STORY_MODE && moviePlayer->m_flags & 1 && !moviePlayer->isPlaying("x18_exp_pellet")) {
+		seed->movie_begin(0);
+	}
+
+	float angle;
+	if (gameSystem->m_mode == GSM_VERSUS_MODE) {
+		angle = roundAng(randFloat() + getFaceDir());
+	} else if (!isrand) {
+		angle = randFloat() * TAU;
+	} else {
+		angle = 0.0f;
+	}
+	Vector3f velocity(pikmin2_sinf(angle) * 130.0f, 700.0f, pikmin2_cosf(angle) * 130.0f);
+	seed->setVelocity(velocity);
 	/*
 	stwu     r1, -0x80(r1)
 	mflr     r0
@@ -4365,8 +4737,12 @@ lbl_80178AC8:
  * Address:	80178B18
  * Size:	0000A0
  */
-void Onyon::getLegPart(int)
+CollPart* Onyon::getLegPart(int id)
 {
+	P2ASSERTLINE(2005, -1 < id && id < 3);
+
+	u32 tags[3] = {'leg1', 'leg2', 'leg3'};
+	return m_collTree->getCollPart(tags[id]);
 	/*
 	stwu     r1, -0x30(r1)
 	mflr     r0
@@ -4420,8 +4796,13 @@ lbl_80178B70:
  * Address:	80178BB8
  * Size:	0000C0
  */
-void Onyon::getFootPart(int)
+CollPart* Onyon::getFootPart(int id)
 {
+	P2ASSERTLINE(2014, -1 < id && id < 3);
+
+	u32 tags[3] = {'fot1', 'fot2', 'fot3'};
+	CollPart* part =  m_collTree->getCollPart(tags[id]);
+	JUT_ASSERTLINE(2020, part, "oh! no!\n"); // oh no! indeed
 	/*
 	stwu     r1, -0x30(r1)
 	mflr     r0
@@ -4487,6 +4868,24 @@ lbl_80178C58:
  */
 void Onyon::makeTrMatrix(void)
 {
+	Vector3f angle(0.0f, getFaceDir(), 0.0f);
+	m_mainMatrix.makeTR(m_position, angle);
+	updateCollTree();
+	if (!gameSystem->paused() && moviePlayer->m_demoState == 0 && m_isReleasingPikis) {
+		if (m_releasePikisTimer > 0.0f) {
+			m_releasePikisTimer -= sys->m_deltaTime;
+		} else {
+			if (exitPiki() == nullptr) {
+				m_pikisToWithdraw = 0;
+				m_isReleasingPikis = 0;
+			} else {
+				m_pikisToWithdraw--;
+				if (m_pikisToWithdraw < 1)
+					m_isReleasingPikis = 0;
+				m_releasePikisTimer = (randFloat() * 0.1 + 0.2) * 0.05;
+			}
+		}
+	}
 	/*
 	stwu     r1, -0x30(r1)
 	mflr     r0
@@ -4583,6 +4982,46 @@ lbl_80178D90:
  */
 void Onyon::changeMaterial(void)
 {
+	if (m_onyonType <= ONYON_TYPE_YELLOW) {
+		int animid;
+		if (!m_animator.m_animInfo) {
+			animid = -1;
+		} else {
+			animid = m_animator.m_animInfo->m_id;
+		}
+
+		f32 mattime, anmtime;
+		Sys::MatBaseAnimation* anim = m_matAnim1->m_animation;
+		if (anim == nullptr) {
+			mattime = 0.0f;
+		} else {
+			mattime = anim->getFrameMax();
+		}
+
+		if (animid == 4) {
+			if (m_animator.m_animInfo == nullptr) {
+				anmtime = 0.0f;
+			}
+			else {
+				anmtime = (f32)m_animator.m_animInfo->m_anm->m_time;
+			}
+
+			if (anmtime == 0.0f) {
+				anmtime = 1.0f;
+			} else {
+				anmtime /= m_animator.m_timer;
+			}
+			m_matAnim1->setCurrentFrame(anmtime * mattime);
+		} else {
+			m_matAnim1->setCurrentFrame(mattime);
+		}
+		m_matAnim1->animate(0.0f);
+	} else if (m_onyonType == ONYON_TYPE_SHIP) {
+		m_matAnim1->animate(30.0f);
+		m_matAnim2->animate(30.0f);
+		m_model->m_j3dModel->calcMaterial();
+		m_model->m_j3dModel->diff();
+	}
 	/*
 	stwu     r1, -0x20(r1)
 	mflr     r0
@@ -4694,8 +5133,41 @@ lbl_80178EC4:
  * Address:	80178EDC
  * Size:	0001D4
  */
-void Onyon::setSpotEffect(bool)
+void Onyon::setSpotEffect(bool flag)
 {
+	switch (m_onyonType)
+	{
+	case ONYON_TYPE_SHIP:
+		if (flag) {
+			m_ufoSpot->create(0);
+		} else {
+			m_ufoSpot->fade();
+		}
+		break;
+	case ONYON_TYPE_POD:
+		if (flag) {
+			::efx::Arg arg(m_position);
+			m_podOpenA->create(&arg);
+			m_podOpenB->create(0);
+			m_podSpot->create(0);
+		} else {
+			m_podOpenA->fade();
+			m_podOpenB->fade();
+			m_podOpenA->fade(); // yes it does this one twice for some reason
+			m_podSpot->fade();
+		}
+		break;
+	case ONYON_TYPE_BLUE:
+	case ONYON_TYPE_RED:
+	case ONYON_TYPE_YELLOW:
+		if (flag) {
+			::efx::ArgType arg(m_position); // this definitely should have a second argument for onion type
+			m_container->create(&arg);
+		} else {
+			m_container->fade();
+		}
+		break;
+	}
 	/*
 	stwu     r1, -0x40(r1)
 	mflr     r0
@@ -4834,8 +5306,28 @@ lbl_8017909C:
  * Address:	801790B0
  * Size:	000134
  */
-void Onyon::setSpotEffectActive(bool)
+void Onyon::setSpotEffectActive(bool flag)
 {
+	if (flag) {
+		if (gameSystem && gameSystem->m_flags & 0x20)
+			flag = false;
+	}
+
+	if (m_onyonType == ONYON_TYPE_SHIP) {
+		if (flag)
+			m_ufoSpotAct01->create(0);
+		else
+			m_ufoSpotAct01->fade();
+	}
+
+	if (m_onyonType <= ONYON_TYPE_YELLOW) {
+		if (flag) {
+			::efx::ArgType arg(m_position);
+			m_containerAct->create(&arg);
+		} else {
+			m_containerAct->fade();
+		}
+	}
 	/*
 	stwu     r1, -0x30(r1)
 	mflr     r0
@@ -4934,6 +5426,26 @@ lbl_801791CC:
  */
 void Onyon::efxSuikomi(void)
 {
+	switch (m_onyonType)
+	{
+	case ONYON_TYPE_BLUE:
+	case ONYON_TYPE_RED:
+	case ONYON_TYPE_YELLOW:
+		::efx::TOnyonEatC efxonyon;
+		efxonyon.create(0);
+		startSound(PSSE_EV_HOME_PELLET_BACUUM);
+		break;
+	case ONYON_TYPE_POD:
+		startSound(PSSE_EV_ROCKET_VACUUM);
+		efx::TPodSuck efx;
+		::efx::Arg arg(m_position);
+		efx.create(&arg);
+		break;
+	case ONYON_TYPE_SHIP:
+		startSound(PSSE_EV_ROCKET_VACUUM);
+		m_ufoPodOpenSuck->create(0);
+		break;
+	}
 	/*
 	stwu     r1, -0x40(r1)
 	mflr     r0
@@ -5041,6 +5553,30 @@ lbl_80179338:
  */
 void Onyon::efxPafuPafu(void)
 {
+	if (randFloat() <= 0.05f) {
+		char* jntnames[3] = {"kasi1jnt1", "kasi1jnt2", "kasi1jnt3"};
+		int id = (int)(randFloat() * 3.0f);
+		SysShape::Joint* joint = m_model->getJoint(jntnames[id]);
+		if (joint && m_lod.m_flags & 4) {
+			efx::TOnyonPuffPuff efx;
+			efx.m_mtx = joint->getWorldMatrix();
+			efx.create(0);
+
+			PSM::SeSound* sound = static_cast<PSM::SeSound*>(m_soundObj->startSound(PSSE_EV_ONYON_GAS, 0));
+			if (sound) {
+				PSGame::SoundTable::SePerspInfo persp;
+				persp._04              = 0.0f;
+				persp._00              = 1.0f;
+				persp._08              = 0.0f;
+				persp._0C              = 0.0f;
+				persp._10              = 0.0f;
+				persp.m_isSpecialSound = 0;
+				persp.m_noGetDist      = 0;
+				persp.set(1.0, 250.0, 0.8, 500.0, 0.0);
+				sound->specializePerspCalc(persp);
+			}
+		}
+	}
 	/*
 	stwu     r1, -0x60(r1)
 	mflr     r0
@@ -5158,6 +5694,13 @@ lbl_801794D8:
  */
 void Onyon::efxPafuKira(void)
 {
+	SysShape::Joint* joint = m_model->getJoint("flow");
+	if (joint && m_lod.m_flags & 4) {
+		efx::TOnyonPuffKira efx;
+		Matrixf* mtx = joint->getWorldMatrix();
+		::efx::Arg arg(mtx->m_matrix.structView.tx, mtx->m_matrix.structView.ty, mtx->m_matrix.structView.tz);
+		efx.create(&arg);
+	}
 	/*
 	stwu     r1, -0x30(r1)
 	mflr     r0
@@ -5213,8 +5756,9 @@ lbl_80179588:
  * Address:	8017959C
  * Size:	00002C
  */
-void Onyon::getStoreCount(void)
+int Onyon::getStoreCount(void)
 {
+	return playData->m_pikiContainer.getColorSum(m_onyonType);
 	/*
 	stwu     r1, -0x10(r1)
 	mflr     r0
@@ -5237,6 +5781,59 @@ void Onyon::getStoreCount(void)
  */
 void Onyon::enterPiki(Game::Piki* p)
 {
+	int count = playData->m_pikiContainer.getCount(p->m_pikiKind, p->m_happaKind);
+	count++;
+
+	PikiKillArg killarg(1);
+	p->kill(&killarg);
+
+	if (m_onyonType <= ONYON_TYPE_YELLOW && m_toBirth) {
+		int animid;
+		if (!m_animator.m_animInfo) {
+			animid = -1;
+		} else {
+			animid = m_animator.m_animInfo->m_id;
+		}
+		if (animid != 1) {
+			SysShape::MotionListener* mlisten = this;
+			m_animator.startAnim(1, mlisten);
+		}
+	} else if (m_onyonType == ONYON_TYPE_SHIP) {
+		int whites = playData->m_pikiContainer.getColorSum(White);
+		int purple = playData->m_pikiContainer.getColorSum(Purple);
+		if (whites + purple < 1) {
+			m_ufoGasIn->fade();
+			m_ufoGasOut->fade();
+			f32* speed = getPMotionSpeed(1);
+			*speed = 0.0f;
+		} else {
+			f32* speed = getPMotionSpeed(1);
+			*speed = 30.0f;
+			m_ufoGasIn->create(0);
+			m_ufoGasOut->create(0);
+		}
+	} else {
+		m_animSpeed = 30.0f;
+		if (m_onyonType == ONYON_TYPE_POD) {
+			m_animator.startAnim(0, nullptr);
+		} else {
+			if (playData->m_pikiContainer.getColorSum(m_onyonType) < 1) {
+				SysShape::MotionListener* mlisten = this;
+				m_animator.startAnim(0, mlisten);
+			} else {
+				int animid;
+				if (!m_animator.m_animInfo) {
+					animid = -1;
+				} else {
+					animid = m_animator.m_animInfo->m_id;
+				}
+				if (animid < 2 || animid == 3) {
+					SysShape::MotionListener* mlisten = this;
+					m_animator.startAnim(2, mlisten);
+				}
+			}
+		}
+	}
 	/*
 	stwu     r1, -0x30(r1)
 	mflr     r0
@@ -5419,8 +6016,17 @@ lbl_801797EC:
  * Address:	8017980C
  * Size:	000048
  */
-void Onyon::exitPikis(int, int)
+void Onyon::exitPikis(int add, int color)
 {
+	m_isReleasingPikis = true;
+	m_pikisToWithdraw += add;
+	m_releasePikisTimer = 0.0f;
+	if (color == Purple) {
+		m_purplesToWithdraw += add;
+	}
+	if (color == White) {
+		m_whitesToWithdraw += add;
+	}
 	/*
 	li       r0, 1
 	lfs      f0, lbl_80518A2C@sda21(r2)
@@ -5450,8 +6056,91 @@ lbl_8017983C:
  * Address:	80179854
  * Size:	000454
  */
-void Onyon::exitPiki(void)
+Creature* Onyon::exitPiki(void)
 {
+	Piki* piki;
+	if (gameSystem->m_flags & 0x20) {
+		piki = nullptr;
+	} else {
+		int color = m_onyonType;
+		if (color == ONYON_TYPE_SHIP) {
+			if (m_whitesToWithdraw < 1) {
+				if (m_purplesToWithdraw < 1) {
+					JUT_PANICLINE(2296, "exitWhite/Black zero (UFO)\n");
+				} else {
+					color = Purple;
+				}
+			} else {
+				color = White;
+			}
+		}
+		int happa;
+		for (int i = 2; i >= 0; i--) {
+			int count = playData->m_pikiContainer.getCount(color, i);
+			happa = i;
+			if (count < 0) break;
+			happa--;
+		}
+
+		if (happa == -1) {
+			return nullptr;
+		} else {
+			piki = pikiMgr->birth();
+			if (piki == nullptr) {
+				m_pikisToWithdraw = 0;
+				m_purplesToWithdraw = 0;
+				m_whitesToWithdraw = 0;
+				m_isReleasingPikis = 0;
+				piki = nullptr;
+			} else {
+				if (color == Purple)
+					m_purplesToWithdraw--;
+				if (color == White)
+					m_whitesToWithdraw--;
+				P2ASSERTLINE(2338, piki != nullptr);
+
+				int count = playData->m_pikiContainer.getCount(color, happa);
+				count--;
+				playData->m_pikiContainer.getColorSum(color);
+				piki->init(0);
+				piki->changeShape(color);
+				piki->changeHappa(happa);
+
+				if (m_onyonType == ONYON_TYPE_SHIP) {
+					Vector3f outpos = getOutStart_UFO();
+					Vector3f onyonpos = getPosition();
+					Vector3f vel = outpos - onyonpos;
+					vel *= randFloat() * 30.0f + 100.0f;
+					piki->setPosition(outpos, 0);
+					piki->setVelocity(vel);
+					piki->startSound(this, PSSE_PK_VC_ONY_EXIT, 1);
+					piki->m_faceDir = m_faceDir;
+
+					Navi* navi = piki->m_brain->searchOrima();
+					if (navi == nullptr) {
+						piki->m_brain->start(1, 0);
+					} else {
+						piki->m_navi = navi;
+						PikiAI::ActFormationInitArg arg(navi, false);
+						piki->m_brain->start(0, &arg);
+					}
+					int whites = playData->m_pikiContainer.getColorSum(White);
+					int purple = playData->m_pikiContainer.getColorSum(Purple);
+					if (whites + purple == 0) {
+						m_ufoGasIn->fade();
+						m_ufoGasOut->fade();
+						f32* speed = getPMotionSpeed(1);
+						*speed = 0.0f;
+					}
+				} else {
+					PikiAI::CreatureActionArg arg(this);
+					piki->m_brain->start(3, &arg);
+				}
+			}
+
+		}
+	}
+	return piki;
 	/*
 	stwu     r1, -0x80(r1)
 	mflr     r0
@@ -5778,8 +6467,18 @@ lbl_80179C8C:
  * Address:	80179CA8
  * Size:	0000B8
  */
-void Onyon::insideAccessArea(Vector3f&)
+bool Onyon::insideAccessArea(Vector3f& navipos)
 {
+	if (m_onyonType == ONYON_TYPE_SHIP) {
+		Vector3f pos = getGoalPos();
+		pos -= navipos;
+		if (pos.x * pos.x + pos.z * pos.z < 900.0f) return true;
+	} else {
+		Vector3f pos = m_position;
+		pos -= navipos;
+		if (pos.x * pos.x + pos.z * pos.z < 900.0f) return true;
+	}
+	return false;
 	/*
 	stwu     r1, -0x20(r1)
 	mflr     r0
@@ -6220,8 +6919,10 @@ lbl_8017A15C:
  * Address:	8017A1A4
  * Size:	00007C
  */
-void Onyon::getPMotionSpeed(int)
+f32* Onyon::getPMotionSpeed(int i)
 {
+	P2ASSERTLINE(2063, i > -1 && i < m_pMotionCount);
+	return &m_pMotionSpeeds[i];
 	/*
 	stwu     r1, -0x10(r1)
 	mflr     r0
@@ -6266,7 +6967,7 @@ lbl_8017A1FC:
  * Address:	8017A220
  * Size:	00007C
  */
-void Onyon::getPAnimator(int)
+SysShape::Animator* Onyon::getPAnimator(int)
 {
 	/*
 	stwu     r1, -0x10(r1)

@@ -1534,7 +1534,7 @@ lbl_8046E09C:
  * Address:	8046E0B4
  * Size:	00015C
  */
-void PSStartSoundVec(ulong, Vec*)
+PSM::SeSound* PSStartSoundVec(ulong, Vec*)
 {
 	/*
 	stwu     r1, -0x20(r1)

@@ -5,6 +5,8 @@
 #include "PSSystem/SingletonBase.h"
 #include "PSM/Scene.h"
 
+struct Scene_Objects;
+
 namespace PSM {
 struct ObjMgr : public JSUPtrList, public PSSystem::SingletonBase<ObjMgr>, public JKRDisposer {
 	// vtable 1 (SingletonBase)

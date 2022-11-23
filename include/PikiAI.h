@@ -984,7 +984,7 @@ struct Brain {
 	void addAction(PikiAI::Action*);
 	void exec();
 	void getCurrAction();
-	void searchOrima();
+	Game::Navi* searchOrima();
 	void start(int, PikiAI::ActionArg*);
 
 	Action* m_actions;  // _00, might be array of ptrs instead

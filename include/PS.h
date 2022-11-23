@@ -29,7 +29,7 @@ void PSStartEnemyDownSmokeSE(Game::EnemyBase*, float);
 void PSStartEnemyDownWatSE(Game::EnemyBase*, float);
 void PSStartEnemyFatalHitSE(Game::EnemyBase*, float);
 void PSStartEnemyGhostSE(Game::EnemyBase*, float);
-void PSStartSoundVec(u32, Vec*);
+PSM::SeSound* PSStartSoundVec(u32, Vec*);
 void PSStartTreasureLaderSE(float);
 void PSStartTresureLaderNoiseSE(u8, float, float);
 void PSMuteSE_on2D();
