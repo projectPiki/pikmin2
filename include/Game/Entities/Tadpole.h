@@ -20,23 +20,26 @@ struct Obj : public EnemyBase {
 	Obj();
 
 	//////////////// VTABLE
-	virtual void onInit(CreatureInitArg* settings);          // _30
-	virtual void doDirectDraw(Graphics& gfx);                // _50
-	virtual void inWaterCallback(WaterBox* wb);              // _84 (weak)
-	virtual void outWaterCallback();                         // _88 (weak)
-	virtual void getShadowParam(ShadowParam& settings);      // _134
-	virtual ~Obj() { }                                       // _1BC (weak)
-	virtual void setInitialSetting(EnemyInitialParamBase*);  // _1C4
-	virtual void doUpdate();                                 // _1CC
-	virtual void doDebugDraw(Graphics&);                     // _1EC
-	virtual EnemyTypeID::EEnemyTypeID getEnemyTypeID();      // _258 (weak)
+	virtual void onInit(CreatureInitArg* settings);         // _30
+	virtual void doDirectDraw(Graphics& gfx);               // _50
+	virtual void inWaterCallback(WaterBox* wb) { }          // _84 (weak)
+	virtual void outWaterCallback() { }                     // _88 (weak)
+	virtual void getShadowParam(ShadowParam& settings);     // _134
+	virtual ~Obj() { }                                      // _1BC (weak)
+	virtual void setInitialSetting(EnemyInitialParamBase*); // _1C4
+	virtual void doUpdate();                                // _1CC
+	virtual void doDebugDraw(Graphics&);                    // _1EC
+	virtual EnemyTypeID::EEnemyTypeID getEnemyTypeID()      // _258 (weak)
+	{
+		return EnemyTypeID::EnemyID_Tadpole;
+	}
 	virtual bool hipdropCallBack(Creature*, f32, CollPart*); // _284
 	virtual void startCarcassMotion();                       // _2C4
 	virtual void setFSM(FSM*);                               // _2F8
 	//////////////// VTABLE END
 
 	void setRandTarget(bool);
-	void getTargetPosition(Creature*);
+	Vector3f getTargetPosition(Creature*);
 	void createLeapEffect();
 
 	// _00 		= VTBL
@@ -103,6 +106,16 @@ struct ProperAnimator : public EnemyAnimatorBase {
 
 /////////////////////////////////////////////////////////////////
 // STATE MACHINE DEFINITIONS
+enum StateID {
+	TADPOLE_Dead   = 0,
+	TADPOLE_Wait   = 1,
+	TADPOLE_Move   = 2,
+	TADPOLE_Amaze  = 3,
+	TADPOLE_Escape = 4,
+	TADPOLE_Leap   = 5,
+	TADPOLE_StateCount,
+};
+
 struct FSM : public EnemyStateMachine {
 	virtual void init(EnemyBase*); // _08
 

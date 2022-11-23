@@ -5,6 +5,10 @@
 #include "types.h"
 #include "Vector3.h"
 
+namespace Game {
+struct EnemyBase;
+} // namespace Game
+
 namespace efx {
 struct Arg {
 	inline Arg()
@@ -21,6 +25,8 @@ struct Arg {
 	    : m_position(x, y, z)
 	{
 	}
+
+	inline Arg(Game::EnemyBase*); // defined in Game/EnemyBase.h header to avoid include loop
 
 	/**
 	 * @reifiedAddress{80108200}

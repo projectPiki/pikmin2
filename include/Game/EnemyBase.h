@@ -567,6 +567,8 @@ struct EnemyBase : public Creature, public SysShape::MotionListener, virtual pub
 		return homeRad * homeRad;
 	}
 
+	inline efx::Arg createFXArg() { return efx::Arg(m_position); }
+
 	// Creature: _000 - _178
 	// MotionListener: _178 - _17C
 	// ptr to PelletView: _17C
@@ -845,5 +847,10 @@ struct StateMachine : public Game::EnemyStateMachine {
 };
 } // namespace EnemyBaseFSM
 } // namespace Game
+
+// defined here to avoid include loop
+namespace efx {
+inline Arg::Arg(Game::EnemyBase* enemy) { m_position = enemy->m_position; }
+} // namespace efx
 
 #endif
