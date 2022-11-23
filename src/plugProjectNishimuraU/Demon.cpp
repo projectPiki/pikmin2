@@ -289,7 +289,7 @@ lbl_8028E3D0:
  * Address:	8028E424
  * Size:	0003F0
  */
-void Demon::Obj::getAttackableTarget()
+Piki* Demon::Obj::getAttackableTarget()
 {
 	/*
 	stwu     r1, -0xc0(r1)
@@ -827,7 +827,7 @@ u32 Demon::Obj::getEnemyTypeID() { return 0x20; }
  * Address:	8028EB58
  * Size:	000008
  */
-void Demon::Obj::getStickPikminNum()
+int Demon::Obj::getStickPikminNum()
 {
 	/*
 	lwz      r3, 0x1f4(r3)
