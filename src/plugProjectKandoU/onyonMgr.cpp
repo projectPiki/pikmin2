@@ -431,7 +431,7 @@ bool InteractSuckDone::actOnyon(Onyon* item)
 	if (gameSystem->m_mode == GSM_VERSUS_MODE) {
 		int i = 0;
 
-		const char* peltnames [2] = {VsOtakaraName::cBedamaRed, VsOtakaraName::cBedamaBlue}; 
+		const char* peltnames[2] = { VsOtakaraName::cBedamaRed, VsOtakaraName::cBedamaBlue };
 
 		while (i < 2) {
 			if (!strcmp(peltnames[i], pellet->m_config->m_params.m_name.m_data)) {
@@ -470,11 +470,7 @@ bool InteractSuckDone::actOnyon(Onyon* item)
 
 	if (gameSystem->m_mode != GSM_VERSUS_MODE) {
 		int money = pellet->m_config->m_params.m_money.m_data;
-		if (gameSystem->m_inCave) {
-			playData->_EC += money;
-		} else {
-			gameSystem->m_section->_PADDING00 += money;
-		}
+		gameSystem->m_inCave ? playData->_EC += money : gameSystem->m_section->_PADDING00 += money;
 	}
 
 	if (gameSystem->isChallengeMode()) {
@@ -484,11 +480,11 @@ bool InteractSuckDone::actOnyon(Onyon* item)
 	} else {
 		// number pellet (checks if color matches onion)
 		if (pellet->getKind() == PELTYPE_NUMBER) {
-			int color = pellet->m_pelletColor;
 			int min, max;
+			u16 color = (int)pellet->m_pelletColor;
 			pellet->getPikiBirthCount(min, max);
-			u16 type = item->m_onyonType;
-			if (type == ONYON_TYPE_POD || (u8)color == (u32)type ) {
+			u32 type = item->m_onyonType;
+			if (type == ONYON_TYPE_POD || (u32)color == (u16)type) { // mismatch on this line
 				item->m_toBirth += max;
 			} else {
 				item->m_toBirth += min;
