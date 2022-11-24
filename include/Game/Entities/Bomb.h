@@ -30,28 +30,35 @@ struct Obj : public EnemyBase {
 	Obj();
 
 	//////////////// VTABLE
-	virtual void onInit(CreatureInitArg* settings);                       // _30
-	virtual void onKill(CreatureKillArg* settings);                       // _34
-	virtual void doEntry();                                               // _40
-	virtual void doSimulation(f32);                                       // _4C
-	virtual void doDirectDraw(Graphics& gfx);                             // _50
-	virtual void onStartCapture();                                        // _94
-	virtual void onEndCapture();                                          // _9C
-	virtual bool isUnderground();                                         // _D0 (weak)
-	virtual bool isLivingThing() { return (m_captureMatrix == nullptr); } // _D4 (weak)
-	virtual void bounceCallback(Sys::Triangle* tri);                      // _E8
-	virtual void collisionCallback(CollEvent& event);                     // _EC
-	virtual void getShadowParam(ShadowParam& settings);                   // _134
-	virtual bool needShadow();                                            // _138
-	virtual ~Obj() { }                                                    // _1BC (weak)
-	virtual void birth(Vector3f&, f32);                                   // _1C0
-	virtual void setInitialSetting(EnemyInitialParamBase*) { }            // _1C4 (weak)
-	virtual void doUpdate();                                              // _1CC
-	virtual void doAnimationCullingOff();                                 // _1DC
-	virtual void doAnimationCullingOn();                                  // _1E0
-	virtual void doDebugDraw(Graphics&);                                  // _1EC
-	virtual void setParameters();                                         // _228
-	virtual EnemyTypeID::EEnemyTypeID getEnemyTypeID()                    // _258 (weak)
+	virtual void onInit(CreatureInitArg* settings); // _30
+	virtual void onKill(CreatureKillArg* settings); // _34
+	virtual void doEntry();                         // _40
+	virtual void doSimulation(f32);                 // _4C
+	virtual void doDirectDraw(Graphics& gfx);       // _50
+	virtual void onStartCapture();                  // _94
+	virtual void onEndCapture();                    // _9C
+	virtual bool isUnderground();                   // _D0 (weak)
+	virtual bool isLivingThing()                    // _D4 (weak)
+	{
+		if (m_captureMatrix || !isStopMotion()) {
+			return false;
+		} else {
+			return true;
+		}
+	}
+	virtual void bounceCallback(Sys::Triangle* tri);           // _E8
+	virtual void collisionCallback(CollEvent& event);          // _EC
+	virtual void getShadowParam(ShadowParam& settings);        // _134
+	virtual bool needShadow();                                 // _138
+	virtual ~Obj() { }                                         // _1BC (weak)
+	virtual void birth(Vector3f&, f32);                        // _1C0
+	virtual void setInitialSetting(EnemyInitialParamBase*) { } // _1C4 (weak)
+	virtual void doUpdate();                                   // _1CC
+	virtual void doAnimationCullingOff();                      // _1DC
+	virtual void doAnimationCullingOn();                       // _1E0
+	virtual void doDebugDraw(Graphics&);                       // _1EC
+	virtual void setParameters();                              // _228
+	virtual EnemyTypeID::EEnemyTypeID getEnemyTypeID()         // _258 (weak)
 	{
 		return EnemyTypeID::EnemyID_Bomb;
 	}
