@@ -92,7 +92,10 @@ struct PikiKillArg : public CreatureKillArg {
 	{
 	}
 
-	virtual const char* getName(); // _08 (weak)
+	virtual const char* getName() // _08 (weak)
+	{
+		return "PikiKillArg";
+	}
 
 	// _00		 = VTBL
 	// _00-_08 = CreatureKillArg

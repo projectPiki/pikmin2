@@ -78,7 +78,10 @@ struct ActTransport;
 struct ActWeed;
 
 struct ActionArg {
-	virtual char* getName(); // _08 (weak)
+	virtual char* getName() // _08 (weak)
+	{
+		return "ActionArg";
+	}
 
 	// _00 = VTBL
 };
@@ -89,7 +92,10 @@ struct CreatureActionArg : public ActionArg {
 	{
 	}
 
-	virtual char* getName(); // _08 (weak)
+	virtual char* getName() // _08 (weak)
+	{
+		return "CreatureActionArg";
+	}
 
 	// _00 VTBL
 	Game::Creature* m_creature; // _04
