@@ -431,9 +431,7 @@ bool InteractSuckDone::actOnyon(Onyon* item)
 	if (gameSystem->m_mode == GSM_VERSUS_MODE) {
 		int i = 0;
 
-		const char* peltnames[2] = { "", "" };
-		peltnames[0]             = VsOtakaraName::cBedamaRed;
-		peltnames[1]             = VsOtakaraName::cBedamaBlue;
+		const char* peltnames [2] = {VsOtakaraName::cBedamaRed, VsOtakaraName::cBedamaBlue}; 
 
 		while (i < 2) {
 			if (!strcmp(peltnames[i], pellet->m_config->m_params.m_name.m_data)) {
@@ -490,7 +488,7 @@ bool InteractSuckDone::actOnyon(Onyon* item)
 			int min, max;
 			pellet->getPikiBirthCount(min, max);
 			u16 type = item->m_onyonType;
-			if (type == ONYON_TYPE_POD || (u16)color == type) {
+			if (type == ONYON_TYPE_POD || (u8)color == (u32)type ) {
 				item->m_toBirth += max;
 			} else {
 				item->m_toBirth += min;
@@ -1829,7 +1827,7 @@ Vector3f Onyon::getOutStart_UFO()
 	if (m_pikiOutJoint) {
 		return getJointPosition(m_pikiOutJoint);
 	} else {
-		JUT_PANICLINE(2569, "‚¾‚ß‚Å‚·\n");
+		JUT_PANICLINE(2569, "‚¾‚ß‚Å‚·");
 		return Vector3f::zero;
 	}
 }
