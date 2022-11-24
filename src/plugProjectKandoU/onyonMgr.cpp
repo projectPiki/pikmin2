@@ -2271,7 +2271,7 @@ void ItemOnyon::Mgr::load()
 		ufoarc = nullptr;
 	}
 	file = JKRFileLoader::getGlbResource("ufo.bmd", nullptr);
-	JUT_ASSERTLINE(3123, file, "ufo.bmd not found !!\n");
+	JUT_ASSERTLINE(3123, file, "ufo.bmd not found!\n");
 	J3DModelData* modelDataUfo = J3DModelLoaderDataBase::load(file, 0x21020030);
 	m_modelData[2]             = modelDataUfo;
 	m_modelData[2]->newSharedDisplayList(0x40000);
