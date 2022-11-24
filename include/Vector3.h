@@ -29,6 +29,13 @@ struct Vector3 {
 	}
 	inline Vector3(JGeometry::TVec3<T> vec) { __memcpy(this, &vec, sizeof(Vector3)); }
 
+	inline Vector3(Vec& vec)
+	{
+		x = vec.x;
+		y = vec.y;
+		z = vec.z;
+	}
+
 	inline Vector3& operator=(const Vector3& other)
 	{
 		x = other.x;

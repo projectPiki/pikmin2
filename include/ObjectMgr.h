@@ -49,7 +49,7 @@ struct ObjectMgr : public Container<T>, GenericObjectMgr {
 			iter.next();
 		}
 	}
-	virtual void doSimulation(float constraint) // _44
+	virtual void doSimulation(f32 constraint) // _44
 	{
 		Iterator<T> iter(this);
 		iter.first();

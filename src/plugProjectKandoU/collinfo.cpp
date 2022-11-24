@@ -759,15 +759,15 @@ CollPart::CollPart() { init(nullptr); }
 void CollPart::init(SysShape::MtxObject* mtxObject)
 {
 	clearRelations();
-	m_radius      = 0.0f;
-	m_baseRadius  = 0.0f;
-	m_offset      = 0.0f;
-	m_position    = Vector3f(0.0f);
-	m_model       = mtxObject;
-	m_jointIndex  = -1;
-	_60           = 0;
-	m_attribute   = 0;
-	m_hasCollPart = COLLTYPE_SPHERE;
+	m_radius     = 0.0f;
+	m_baseRadius = 0.0f;
+	m_offset     = 0.0f;
+	m_position   = Vector3f(0.0f);
+	m_model      = mtxObject;
+	m_jointIndex = -1;
+	_60          = 0;
+	m_attribute  = 0;
+	m_partType   = COLLTYPE_SPHERE;
 	m_specialID.setID('____');
 }
 
@@ -821,9 +821,9 @@ void CollPart::makeMatrixTo(Matrixf& p1)
 void CollPart::makeTubeTree()
 {
 	if (getChild()) {
-		m_hasCollPart = 2;
+		m_partType = 2;
 	} else {
-		m_hasCollPart = 0;
+		m_partType = 0;
 	}
 	for (CollPart* part = getChild(); part != nullptr; part = part->getNext()) {
 		part->makeTubeTree();
@@ -1215,7 +1215,7 @@ lbl_801377B8:
  */
 void CollPart::calcStickGlobal(Vector3f& arg0, Vector3f& arg1)
 {
-	switch (m_hasCollPart) {
+	switch (m_partType) {
 	case COLLTYPE_SPHERE:
 		Matrixf mtx;
 		makeMatrixTo(mtx);
@@ -1671,15 +1671,15 @@ void CollPart::draw(Graphics&) { }
 MouthCollPart::MouthCollPart()
 {
 	clearRelations();
-	m_radius      = 0.0f;
-	m_baseRadius  = 0.0f;
-	m_offset      = 0.0f;
-	m_position    = Vector3f(0.0f);
-	m_model       = nullptr;
-	m_jointIndex  = -1;
-	_60           = 0;
-	m_attribute   = 0;
-	m_hasCollPart = COLLTYPE_SPHERE;
+	m_radius     = 0.0f;
+	m_baseRadius = 0.0f;
+	m_offset     = 0.0f;
+	m_position   = Vector3f(0.0f);
+	m_model      = nullptr;
+	m_jointIndex = -1;
+	_60          = 0;
+	m_attribute  = 0;
+	m_partType   = COLLTYPE_SPHERE;
 	m_specialID.setID('____');
 	_64 = nullptr;
 	_6C = 0;
@@ -1867,17 +1867,17 @@ CollPart* CollPart::clone(SysShape::MtxObject* mtxObject, CollPartMgr* mgr)
 		copy = new CollPart(mtxObject);
 	}
 
-	copy->m_radius      = m_radius;
-	copy->m_baseRadius  = copy->m_radius;
-	copy->m_currentID   = m_currentID;
-	copy->m_specialID   = m_specialID;
-	copy->m_offset      = m_offset;
-	copy->m_hasCollPart = m_hasCollPart;
-	copy->m_jointIndex  = m_jointIndex;
-	copy->m_model       = m_model;
-	copy->_60           = _60;
-	copy->m_attribute   = m_attribute;
-	copy->m_model       = mtxObject;
+	copy->m_radius     = m_radius;
+	copy->m_baseRadius = copy->m_radius;
+	copy->m_currentID  = m_currentID;
+	copy->m_specialID  = m_specialID;
+	copy->m_offset     = m_offset;
+	copy->m_partType   = m_partType;
+	copy->m_jointIndex = m_jointIndex;
+	copy->m_model      = m_model;
+	copy->_60          = _60;
+	copy->m_attribute  = m_attribute;
+	copy->m_model      = mtxObject;
 
 	int childCount  = getChildCount();
 	CollPart* child = getChild();
