@@ -40,13 +40,13 @@ struct BaseItemMgr : public GenericObjectMgr, virtual public _BaseItemMgrParent2
 	virtual void doDirectDraw(Graphics& gfx);                                 // _1C (weak)
 	virtual void loadResources();                                             // _24
 	virtual void initDependency() = 0;                                        // _38
-	virtual void killAll();                                                   // _3C (weak)
-	virtual void setup(BaseItem*);                                            // _40 (weak)
+	virtual void killAll() { }                                                // _3C (weak)
+	virtual void setup(BaseItem*) { }                                         // _40 (weak)
 	virtual void setupSoundViewerAndBas();                                    // _44
-	virtual void onLoadResources();                                           // _48 (weak)
-	virtual bool loadEverytime();                                             // _4C (weak)
+	virtual void onLoadResources() { }                                        // _48 (weak)
+	virtual bool loadEverytime() { return true; }                             // _4C (weak)
 	virtual void updateUseList(GenItemParm*, int);                            // _50
-	virtual void onUpdateUseList(GenItemParm*, int);                          // _54 (weak)
+	virtual void onUpdateUseList(GenItemParm*, int) { }                       // _54 (weak)
 	virtual u32 generatorGetID()                                         = 0; // _58
 	virtual BaseItem* generatorBirth(Vector3f&, Vector3f&, GenItemParm*) = 0; // _5C
 	virtual void generatorWrite(Stream&, GenItemParm*);                       // _60 (weak)

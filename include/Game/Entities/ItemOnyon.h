@@ -86,14 +86,14 @@ struct Onyon : public BaseItem {
 	virtual bool isSuckReady();                                         // _19C
 	virtual BOOL isSuckArriveWait();                                    // _1A0
 	virtual bool stimulate(Interaction& data);                          // _1A4
-	virtual char* getCreatureName();                                    // _1A8 (weak)
+	virtual char* getCreatureName() { return "Onyon"; }                 // _1A8 (weak)
 	virtual void makeTrMatrix();                                        // _1C4
 	virtual void doAI();                                                // _1C8
 	virtual void changeMaterial();                                      // _1D0
 	virtual void do_updateLOD();                                        // _1D4
 	virtual void do_doAnimation();                                      // _20C
 	virtual void onSetPosition();                                       // _21C
-	virtual void onKeyEvent(const SysShape::KeyEvent& event);           // _220 (weak)
+	virtual void onKeyEvent(const SysShape::KeyEvent& event);           // _220
 	virtual void onKeyEvent_UFO(const SysShape::KeyEvent&);             // _224
 	virtual void onKeyEvent_Onyon(const SysShape::KeyEvent&);           // _228
 	/////////////// VTABLE END
@@ -185,26 +185,26 @@ namespace ItemOnyon {
 struct Mgr : public BaseItemMgr, public Container<Onyon> {
 	Mgr();
 
-	virtual void doAnimation();                                           // _08 (weak)
-	virtual void doEntry();                                               // _0C (weak)
-	virtual void doSetView(int viewportNumber);                           // _10 (weak)
-	virtual void doViewCalc();                                            // _14 (weak)
-	virtual void doSimulation(f32);                                       // _18 (weak)
-	virtual void doDirectDraw(Graphics& gfx);                             // _1C (weak)
-	virtual void initDependency();                                        // _38
-	virtual void setupSoundViewerAndBas();                                // _44
-	virtual u32 generatorGetID();                                         // _58 (weak)
-	virtual BaseItem* generatorBirth(Vector3f&, Vector3f&, GenItemParm*); // _5C
-	virtual void generatorWrite(Stream&, GenItemParm*);                   // _60
-	virtual void generatorRead(Stream&, GenItemParm*, u32);               // _64
-	virtual u32 generatorLocalVersion();                                  // _68 (weak)
-	virtual J3DModelData* generatorGetShape(GenItemParm*);                // _6C
-	virtual GenItemParm* generatorNewItemParm();                          // _70
-	virtual ~Mgr();                                                       // _A0 (weak)
-	virtual Onyon* get(void*);                                            // _A4 (weak)
-	virtual void* getNext(void*);                                         // _A8 (weak)
-	virtual void* getStart();                                             // _AC (weak)
-	virtual void* getEnd();                                               // _B0 (weak)
+	virtual ~Mgr();                                                                             // _A0
+	virtual void initDependency();                                                              // _38
+	virtual void setupSoundViewerAndBas();                                                      // _44
+	virtual BaseItem* generatorBirth(Vector3f&, Vector3f&, GenItemParm*);                       // _5C
+	virtual void generatorWrite(Stream&, GenItemParm*);                                         // _60
+	virtual void generatorRead(Stream&, GenItemParm*, u32);                                     // _64
+	virtual J3DModelData* generatorGetShape(GenItemParm*);                                      // _6C
+	virtual GenItemParm* generatorNewItemParm();                                                // _70
+	virtual u32 generatorGetID() { return 'onyn'; }                                             // _58 (weak)
+	virtual u32 generatorLocalVersion() { return '0001'; }                                      // _68 (weak)
+	virtual void doAnimation() { m_nodeObjectMgr.doAnimation(); }                               // _08 (weak)
+	virtual void doEntry() { m_nodeObjectMgr.doEntry(); }                                       // _0C (weak)
+	virtual void doSetView(int viewportNumber) { m_nodeObjectMgr.doSetView(viewportNumber); }   // _10 (weak)
+	virtual void doViewCalc() { m_nodeObjectMgr.doViewCalc(); }                                 // _14 (weak)
+	virtual void doSimulation(f32 constraint) { m_nodeObjectMgr.doSimulation(constraint); }     // _18 (weak)
+	virtual void doDirectDraw(Graphics& gfx) { m_nodeObjectMgr.doDirectDraw(gfx); }             // _1C (weak)
+	virtual void* getEnd() { return m_nodeObjectMgr.getEnd(); }                                 // _B0 (weak)
+	virtual void* getStart() { return m_nodeObjectMgr.getStart(); }                             // _AC (weak)
+	virtual void* getNext(void* index) { return m_nodeObjectMgr.getNext(index); }               // _A8 (weak)
+	virtual Onyon* get(void* index) { return static_cast<Onyon*>(m_nodeObjectMgr.get(index)); } // _A4 (weak)
 
 	Onyon* birth(int, int);
 	Onyon* getOnyon(int);
