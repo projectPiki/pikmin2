@@ -403,7 +403,7 @@ updateDacCallback__9JASDriverFv:
 /* 800A4AB0 000A19F0  38 21 00 10 */	addi r1, r1, 0x10
 /* 800A4AB4 000A19F4  4E 80 00 20 */	blr 
 
-__sinit_JASDriverIF_cpp: # static initializer
+fn local __sinit_JASDriverIF_cpp
 /* 800A4AB8 000A19F8  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 800A4ABC 000A19FC  7C 08 02 A6 */	mflr r0
 /* 800A4AC0 000A1A00  3C 80 80 4F */	lis r4, sDspSyncCallback__9JASDriver@ha
@@ -436,6 +436,7 @@ __sinit_JASDriverIF_cpp: # static initializer
 /* 800A4B2C 000A1A6C  7C 08 03 A6 */	mtlr r0
 /* 800A4B30 000A1A70  38 21 00 10 */	addi r1, r1, 0x10
 /* 800A4B34 000A1A74  4E 80 00 20 */	blr 
+end __sinit_JASDriverIF_cpp
 
 .global __ct__Q214JASCallbackMgr9TCallbackFv
 __ct__Q214JASCallbackMgr9TCallbackFv:

@@ -1,4 +1,6 @@
 #include "types.h"
+#include "Game/Entities/BlackMan.h"
+#include "nans.h"
 
 /*
     Generated from dpostproc
@@ -819,28 +821,12 @@ lbl_803A5FAC:
 	*/
 }
 
-} // namespace Game
-
 /*
  * --INFO--
  * Address:	803A5FC8
  * Size:	000020
  */
-void birth__Q34Game8BlackMan3ObjFR10Vector3f f(void)
-{
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	bl       "birth__Q24Game9EnemyBaseFR10Vector3<f>f"
-	lwz      r0, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
-}
-
-namespace Game {
+void BlackMan::Obj::birth(Vector3f& position, f32 faceDirection) { EnemyBase::birth(position, faceDirection); }
 
 /*
  * --INFO--
@@ -2211,19 +2197,7 @@ void BlackMan::Obj::doDirectDraw(Graphics&) { }
  * Address:	803A7310
  * Size:	000020
  */
-void BlackMan::Obj::doDebugDraw(Graphics&)
-{
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	bl       doDebugDraw__Q24Game9EnemyBaseFR8Graphics
-	lwz      r0, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
-}
+void BlackMan::Obj::doDebugDraw(Graphics& gfx) { EnemyBase::doDebugDraw(gfx); }
 
 /*
  * --INFO--
@@ -2669,7 +2643,7 @@ lbl_803A788C:
  * Address:	803A78B0
  * Size:	000058
  */
-void BlackMan::Obj::isUnderground(void)
+bool BlackMan::Obj::isUnderground(void)
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -2899,7 +2873,7 @@ lbl_803A7B44:
  * Address:	803A7B64
  * Size:	00016C
  */
-void BlackMan::Obj::damageCallBack(Game::Creature*, float, CollPart*)
+bool BlackMan::Obj::damageCallBack(Game::Creature*, float, CollPart*)
 {
 	/*
 	stwu     r1, -0x30(r1)
@@ -3013,7 +2987,7 @@ lbl_803A7CA8:
  * Address:	803A7CD0
  * Size:	000134
  */
-void BlackMan::Obj::hipdropCallBack(Game::Creature*, float, CollPart*)
+bool BlackMan::Obj::hipdropCallBack(Game::Creature*, float, CollPart*)
 {
 	/*
 	stwu     r1, -0x30(r1)
@@ -3115,7 +3089,7 @@ lbl_803A7DE0:
  * Address:	803A7E04
  * Size:	0000DC
  */
-void BlackMan::Obj::earthquakeCallBack(Game::Creature*, float)
+bool BlackMan::Obj::earthquakeCallBack(Game::Creature*, float)
 {
 	/*
 	stwu     r1, -0x20(r1)
@@ -3511,7 +3485,7 @@ void BlackMan::Obj::initWalkSmokeEffect(void)
  * Address:	803A8318
  * Size:	00001C
  */
-void BlackMan::Obj::getWalkSmokeEffectMgr(void)
+WalkSmokeEffect::Mgr* BlackMan::Obj::getWalkSmokeEffectMgr(void)
 {
 	/*
 	lwz      r0, 0x364(r3)
@@ -4154,7 +4128,7 @@ lbl_803A8B4C:
  * Address:	803A8B7C
  * Size:	000034
  */
-void BlackMan::Obj::isReachToGoal(float)
+bool BlackMan::Obj::isReachToGoal(float)
 {
 	/*
 	fmuls    f0, f1, f1
@@ -5348,7 +5322,7 @@ lbl_803A9B3C:
  * Address:	803A9B50
  * Size:	000114
  */
-void BlackMan::Obj::isEndPathFinder(void)
+bool BlackMan::Obj::isEndPathFinder(void)
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -6210,7 +6184,7 @@ lbl_803AA684:
  * Address:	803AA69C
  * Size:	000040
  */
-void BlackMan::Obj::isTyreFreeze(void)
+bool BlackMan::Obj::isTyreFreeze(void)
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -6241,7 +6215,7 @@ lbl_803AA6CC:
  * Address:	803AA6DC
  * Size:	00009C
  */
-void BlackMan::Obj::isTyreDead(void)
+bool BlackMan::Obj::isTyreDead(void)
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -6297,7 +6271,7 @@ lbl_803AA764:
  * Address:	803AA778
  * Size:	000074
  */
-void BlackMan::Obj::isFallEnd(void)
+bool BlackMan::Obj::isFallEnd(void)
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -7209,7 +7183,7 @@ void BlackMan::Obj::fadeFlickEffect(void)
  * Address:	803AB17C
  * Size:	0000C4
  */
-void BlackMan::Obj::isFinalFloor(void)
+bool BlackMan::Obj::isFinalFloor(void)
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -7415,298 +7389,6 @@ lbl_803AB3E8:
 	*/
 }
 
-} // namespace Game
-
-namespace efx {
-
-/*
- * --INFO--
- * Address:	803AB400
- * Size:	00000C
- */
-void ArgPrmColor::getName(void)
-{
-	/*
-	lis      r3, lbl_804957C4@ha
-	addi     r3, r3, lbl_804957C4@l
-	blr
-	*/
-}
-
-/*
- * --INFO--
- * Address:	803AB40C
- * Size:	00009C
- */
-TKageFlick::~TKageFlick(void)
-{
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	mr       r31, r4
-	stw      r30, 8(r1)
-	or.      r30, r3, r3
-	beq      lbl_803AB48C
-	lis      r3, __vt__Q23efx10TKageFlick@ha
-	addi     r3, r3, __vt__Q23efx10TKageFlick@l
-	stw      r3, 0(r30)
-	addi     r0, r3, 0x14
-	stw      r0, 4(r30)
-	beq      lbl_803AB47C
-	lis      r3, __vt__Q23efx9TChasePos@ha
-	addi     r3, r3, __vt__Q23efx9TChasePos@l
-	stw      r3, 0(r30)
-	addi     r0, r3, 0x14
-	stw      r0, 4(r30)
-	beq      lbl_803AB47C
-	lis      r4, __vt__Q23efx5TSync@ha
-	addi     r3, r30, 4
-	addi     r5, r4, __vt__Q23efx5TSync@l
-	li       r4, 0
-	stw      r5, 0(r30)
-	addi     r0, r5, 0x14
-	stw      r0, 4(r30)
-	bl       __dt__18JPAEmitterCallBackFv
-
-lbl_803AB47C:
-	extsh.   r0, r31
-	ble      lbl_803AB48C
-	mr       r3, r30
-	bl       __dl__FPv
-
-lbl_803AB48C:
-	lwz      r0, 0x14(r1)
-	mr       r3, r30
-	lwz      r31, 0xc(r1)
-	lwz      r30, 8(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
-}
-
-/*
- * --INFO--
- * Address:	803AB4A8
- * Size:	00009C
- */
-TKageTyreup::~TKageTyreup(void)
-{
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	mr       r31, r4
-	stw      r30, 8(r1)
-	or.      r30, r3, r3
-	beq      lbl_803AB528
-	lis      r3, __vt__Q23efx11TKageTyreup@ha
-	addi     r3, r3, __vt__Q23efx11TKageTyreup@l
-	stw      r3, 0(r30)
-	addi     r0, r3, 0x14
-	stw      r0, 4(r30)
-	beq      lbl_803AB518
-	lis      r3, __vt__Q23efx13TChasePosYRot@ha
-	addi     r3, r3, __vt__Q23efx13TChasePosYRot@l
-	stw      r3, 0(r30)
-	addi     r0, r3, 0x14
-	stw      r0, 4(r30)
-	beq      lbl_803AB518
-	lis      r4, __vt__Q23efx5TSync@ha
-	addi     r3, r30, 4
-	addi     r5, r4, __vt__Q23efx5TSync@l
-	li       r4, 0
-	stw      r5, 0(r30)
-	addi     r0, r5, 0x14
-	stw      r0, 4(r30)
-	bl       __dt__18JPAEmitterCallBackFv
-
-lbl_803AB518:
-	extsh.   r0, r31
-	ble      lbl_803AB528
-	mr       r3, r30
-	bl       __dl__FPv
-
-lbl_803AB528:
-	lwz      r0, 0x14(r1)
-	mr       r3, r30
-	lwz      r31, 0xc(r1)
-	lwz      r30, 8(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
-}
-
-/*
- * --INFO--
- * Address:	803AB544
- * Size:	00009C
- */
-TKageDead1::~TKageDead1(void)
-{
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	mr       r31, r4
-	stw      r30, 8(r1)
-	or.      r30, r3, r3
-	beq      lbl_803AB5C4
-	lis      r3, __vt__Q23efx10TKageDead1@ha
-	addi     r3, r3, __vt__Q23efx10TKageDead1@l
-	stw      r3, 0(r30)
-	addi     r0, r3, 0x14
-	stw      r0, 4(r30)
-	beq      lbl_803AB5B4
-	lis      r3, __vt__Q23efx9TChaseMtx@ha
-	addi     r3, r3, __vt__Q23efx9TChaseMtx@l
-	stw      r3, 0(r30)
-	addi     r0, r3, 0x14
-	stw      r0, 4(r30)
-	beq      lbl_803AB5B4
-	lis      r4, __vt__Q23efx5TSync@ha
-	addi     r3, r30, 4
-	addi     r5, r4, __vt__Q23efx5TSync@l
-	li       r4, 0
-	stw      r5, 0(r30)
-	addi     r0, r5, 0x14
-	stw      r0, 4(r30)
-	bl       __dt__18JPAEmitterCallBackFv
-
-lbl_803AB5B4:
-	extsh.   r0, r31
-	ble      lbl_803AB5C4
-	mr       r3, r30
-	bl       __dl__FPv
-
-lbl_803AB5C4:
-	lwz      r0, 0x14(r1)
-	mr       r3, r30
-	lwz      r31, 0xc(r1)
-	lwz      r30, 8(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
-}
-
-/*
- * --INFO--
- * Address:	803AB5E0
- * Size:	00009C
- */
-TKageRun::~TKageRun(void)
-{
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	mr       r31, r4
-	stw      r30, 8(r1)
-	or.      r30, r3, r3
-	beq      lbl_803AB660
-	lis      r3, __vt__Q23efx8TKageRun@ha
-	addi     r3, r3, __vt__Q23efx8TKageRun@l
-	stw      r3, 0(r30)
-	addi     r0, r3, 0x14
-	stw      r0, 4(r30)
-	beq      lbl_803AB650
-	lis      r3, __vt__Q23efx13TChasePosYRot@ha
-	addi     r3, r3, __vt__Q23efx13TChasePosYRot@l
-	stw      r3, 0(r30)
-	addi     r0, r3, 0x14
-	stw      r0, 4(r30)
-	beq      lbl_803AB650
-	lis      r4, __vt__Q23efx5TSync@ha
-	addi     r3, r30, 4
-	addi     r5, r4, __vt__Q23efx5TSync@l
-	li       r4, 0
-	stw      r5, 0(r30)
-	addi     r0, r5, 0x14
-	stw      r0, 4(r30)
-	bl       __dt__18JPAEmitterCallBackFv
-
-lbl_803AB650:
-	extsh.   r0, r31
-	ble      lbl_803AB660
-	mr       r3, r30
-	bl       __dl__FPv
-
-lbl_803AB660:
-	lwz      r0, 0x14(r1)
-	mr       r3, r30
-	lwz      r31, 0xc(r1)
-	lwz      r30, 8(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
-}
-
-/*
- * --INFO--
- * Address:	803AB67C
- * Size:	00009C
- */
-TKageMove::~TKageMove(void)
-{
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	mr       r31, r4
-	stw      r30, 8(r1)
-	or.      r30, r3, r3
-	beq      lbl_803AB6FC
-	lis      r3, __vt__Q23efx9TKageMove@ha
-	addi     r3, r3, __vt__Q23efx9TKageMove@l
-	stw      r3, 0(r30)
-	addi     r0, r3, 0x14
-	stw      r0, 4(r30)
-	beq      lbl_803AB6EC
-	lis      r3, __vt__Q23efx13TChasePosYRot@ha
-	addi     r3, r3, __vt__Q23efx13TChasePosYRot@l
-	stw      r3, 0(r30)
-	addi     r0, r3, 0x14
-	stw      r0, 4(r30)
-	beq      lbl_803AB6EC
-	lis      r4, __vt__Q23efx5TSync@ha
-	addi     r3, r30, 4
-	addi     r5, r4, __vt__Q23efx5TSync@l
-	li       r4, 0
-	stw      r5, 0(r30)
-	addi     r0, r5, 0x14
-	stw      r0, 4(r30)
-	bl       __dt__18JPAEmitterCallBackFv
-
-lbl_803AB6EC:
-	extsh.   r0, r31
-	ble      lbl_803AB6FC
-	mr       r3, r30
-	bl       __dl__FPv
-
-lbl_803AB6FC:
-	lwz      r0, 0x14(r1)
-	mr       r3, r30
-	lwz      r31, 0xc(r1)
-	lwz      r30, 8(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
-}
-
-namespace Game {
-
-} // namespace Game
-
 /*
  * --INFO--
  * Address:	803AB718
@@ -7781,195 +7463,5 @@ lbl_803AB77C:
  * Address:	803AB78C
  * Size:	000008
  */
-void bombCallBack__Q34Game8BlackMan3ObjFPQ24Game8CreatureR10Vector3f f(void) { return 0x0; }
-
-/*
- * --INFO--
- * Address:	803AB794
- * Size:	000008
- */
-u32 BlackMan::Obj::getEnemyTypeID(void) { return 0x63; }
-
-} // namespace efx
-
-/*
- * --INFO--
- * Address:	803AB79C
- * Size:	000028
- */
-void __sinit_blackMan_cpp(void)
-{
-	/*
-	lis      r4, __float_nan@ha
-	li       r0, -1
-	lfs      f0, __float_nan@l(r4)
-	lis      r3, lbl_804E5D00@ha
-	stw      r0, lbl_80516058@sda21(r13)
-	stfsu    f0, lbl_804E5D00@l(r3)
-	stfs     f0, lbl_8051605C@sda21(r13)
-	stfs     f0, 4(r3)
-	stfs     f0, 8(r3)
-	blr
-	*/
-}
-
-/*
- * --INFO--
- * Address:	803AB7C4
- * Size:	000014
- */
-void @940 @12 @Game::EnemyBase::viewOnPelletKilled(void)
-{
-	/*
-	li       r11, 0xc
-	lwzx     r11, r3, r11
-	add      r3, r3, r11
-	addi     r3, r3, -940
-	b        viewOnPelletKilled__Q24Game9EnemyBaseFv
-	*/
-}
-
-/*
- * --INFO--
- * Address:	803AB7D8
- * Size:	000014
- */
-void @940 @12 @Game::EnemyBase::viewStartCarryMotion(void)
-{
-	/*
-	li       r11, 0xc
-	lwzx     r11, r3, r11
-	add      r3, r3, r11
-	addi     r3, r3, -940
-	b        viewStartCarryMotion__Q24Game9EnemyBaseFv
-	*/
-}
-
-/*
- * --INFO--
- * Address:	803AB7EC
- * Size:	000014
- */
-void @940 @12 @Game::EnemyBase::viewStartPreCarryMotion(void)
-{
-	/*
-	li       r11, 0xc
-	lwzx     r11, r3, r11
-	add      r3, r3, r11
-	addi     r3, r3, -940
-	b        viewStartPreCarryMotion__Q24Game9EnemyBaseFv
-	*/
-}
-
-/*
- * --INFO--
- * Address:	803AB800
- * Size:	000014
- */
-void @940 @12 @Game::EnemyBase::view_finish_carrymotion(void)
-{
-	/*
-	li       r11, 0xc
-	lwzx     r11, r3, r11
-	add      r3, r3, r11
-	addi     r3, r3, -940
-	b        view_finish_carrymotion__Q24Game9EnemyBaseFv
-	*/
-}
-
-/*
- * --INFO--
- * Address:	803AB814
- * Size:	000014
- */
-void @940 @12 @Game::EnemyBase::view_start_carrymotion(void)
-{
-	/*
-	li       r11, 0xc
-	lwzx     r11, r3, r11
-	add      r3, r3, r11
-	addi     r3, r3, -940
-	b        view_start_carrymotion__Q24Game9EnemyBaseFv
-	*/
-}
-
-/*
- * --INFO--
- * Address:	803AB828
- * Size:	000014
- */
-void @940 @12 @Game::EnemyBase::viewGetShape(void)
-{
-	/*
-	li       r11, 0xc
-	lwzx     r11, r3, r11
-	add      r3, r3, r11
-	addi     r3, r3, -940
-	b        viewGetShape__Q24Game9EnemyBaseFv
-	*/
-}
-
-/*
- * --INFO--
- * Address:	803AB83C
- * Size:	000008
- */
-@4 @efx::TKageMove::~TKageMove(void)
-{
-	/*
-	addi     r3, r3, -4
-	b        __dt__Q23efx9TKageMoveFv
-	*/
-}
-
-/*
- * --INFO--
- * Address:	803AB844
- * Size:	000008
- */
-@4 @efx::TKageRun::~TKageRun(void)
-{
-	/*
-	addi     r3, r3, -4
-	b        __dt__Q23efx8TKageRunFv
-	*/
-}
-
-/*
- * --INFO--
- * Address:	803AB84C
- * Size:	000008
- */
-@4 @efx::TKageDead1::~TKageDead1(void)
-{
-	/*
-	addi     r3, r3, -4
-	b        __dt__Q23efx10TKageDead1Fv
-	*/
-}
-
-/*
- * --INFO--
- * Address:	803AB854
- * Size:	000008
- */
-@4 @efx::TKageTyreup::~TKageTyreup(void)
-{
-	/*
-	addi     r3, r3, -4
-	b        __dt__Q23efx11TKageTyreupFv
-	*/
-}
-
-/*
- * --INFO--
- * Address:	803AB85C
- * Size:	000008
- */
-@4 @efx::TKageFlick::~TKageFlick(void)
-{
-	/*
-	addi     r3, r3, -4
-	b        __dt__Q23efx10TKageFlickFv
-	*/
-}
+bool BlackMan::Obj::bombCallBack(Creature* creature, Vector3f& vec, f32 f) { return false; }
+} // namespace Game

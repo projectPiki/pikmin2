@@ -351,7 +351,7 @@ namespace Game {
  * Address:	80368EA0
  * Size:	000038
  */
-void Jigumo::mouthScaleCallBack(J3DJoint*, int)
+bool Jigumo::mouthScaleCallBack(J3DJoint*, int)
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -489,7 +489,7 @@ lbl_80368FE8:
  * Size:	00017C
  */
 // void birth__Q34Game6Jigumo3ObjFR10Vector3f f(void)
-Creature* Jigumo::Obj::birth(Vector3f&, float) const
+void Jigumo::Obj::birth(Vector3f&, f32)
 {
 	/*
 	stwu     r1, -0x70(r1)
@@ -605,7 +605,7 @@ lbl_8036918C:
  * Address:	803691C0
  * Size:	000008
  */
-u32 Jigumo::Obj::getEnemyTypeID(void) { return EnemyID_Jigumo; }
+EnemyTypeID::EEnemyTypeID Jigumo::Obj::getEnemyTypeID(void) { return EnemyTypeID::EnemyID_Jigumo; }
 
 /*
  * --INFO--
@@ -1380,7 +1380,7 @@ lbl_80369B48:
  * Address:	80369B64
  * Size:	000108
  */
-void Jigumo::Obj::pressCallBack(Game::Creature*, float, CollPart*)
+bool Jigumo::Obj::pressCallBack(Game::Creature*, float, CollPart*)
 {
 	/*
 	stwu     r1, -0x20(r1)
@@ -1465,7 +1465,7 @@ lbl_80369C50:
  * Address:	80369C6C
  * Size:	0001B4
  */
-void Jigumo::Obj::damageCallBack(Game::Creature*, float, CollPart*)
+bool Jigumo::Obj::damageCallBack(Game::Creature*, float, CollPart*)
 {
 	/*
 	stwu     r1, -0xb0(r1)
@@ -1860,7 +1860,7 @@ lbl_8036A14C:
  * Address:	8036A160
  * Size:	00007C
  */
-void Jigumo::Obj::earthquakeCallBack(Game::Creature*, float)
+bool Jigumo::Obj::earthquakeCallBack(Game::Creature*, float)
 {
 	/*
 	stwu     r1, -0x20(r1)
@@ -1956,7 +1956,7 @@ void Jigumo::Obj::getShadowParam(Game::ShadowParam&)
  * Address:	8036A278
  * Size:	00007C
  */
-void Jigumo::Obj::needShadow(void)
+bool Jigumo::Obj::needShadow()
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -2150,7 +2150,7 @@ void Jigumo::Obj::onKill(Game::CreatureKillArg*)
  * Address:	8036A49C
  * Size:	000008
  */
-u32 Jigumo::Obj::isLivingThing(void) { return 0x1; }
+bool Jigumo::Obj::isLivingThing(void) { return true; }
 
 /*
  * --INFO--
@@ -2997,7 +2997,7 @@ lbl_8036AF4C:
  * Address:	8036AF8C
  * Size:	00019C
  */
-void Jigumo::Obj::getOffsetForMapCollision(void)
+Vector3f Jigumo::Obj::getOffsetForMapCollision(void)
 {
 	/*
 	stwu     r1, -0x20(r1)
@@ -3738,7 +3738,7 @@ lbl_8036B90C:
  * Address:	........
  * Size:	0000E8
  */
-void Jigumo::Obj::isUnitePos(void)
+bool Jigumo::Obj::isUnitePos(void)
 {
 	// UNUSED FUNCTION
 }
@@ -4403,7 +4403,7 @@ void Jigumo::Obj::setInitialSetting(Game::EnemyInitialParamBase*) { }
  * Address:	8036C08C
  * Size:	000014
  */
-void Jigumo::Obj::getCellRadius(void)
+f32 Jigumo::Obj::getCellRadius(void)
 {
 	/*
 	lwz      r4, 0xc0(r3)
@@ -4419,7 +4419,7 @@ void Jigumo::Obj::getCellRadius(void)
  * Address:	8036C0A0
  * Size:	000008
  */
-void Jigumo::Obj::getBodyRadius(void)
+f32 Jigumo::Obj::getBodyRadius(void)
 {
 	/*
 	lfs      f1, 0x2f0(r3)
@@ -4432,7 +4432,7 @@ void Jigumo::Obj::getBodyRadius(void)
  * Address:	8036C0A8
  * Size:	000028
  */
-void Jigumo::Obj::eatWhitePikminCallBack(Game::Creature*, float)
+bool Jigumo::Obj::eatWhitePikminCallBack(Game::Creature*, float)
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -4453,7 +4453,7 @@ void Jigumo::Obj::eatWhitePikminCallBack(Game::Creature*, float)
  * Address:	8036C0D0
  * Size:	000008
  */
-void Jigumo::Obj::getDownSmokeScale(void)
+f32 Jigumo::Obj::getDownSmokeScale(void)
 {
 	/*
 	lfs      f1, lbl_8051E9E8@sda21(r2)
@@ -4466,7 +4466,7 @@ void Jigumo::Obj::getDownSmokeScale(void)
  * Address:	8036C0D8
  * Size:	000008
  */
-void Jigumo::Obj::getMouthSlots(void)
+MouthSlots* Jigumo::Obj::getMouthSlots(void)
 {
 	/*
 	addi     r3, r3, 0x2d8
@@ -4503,99 +4503,3 @@ lbl_8036C108:
 }
 
 } // namespace Game
-
-/*
- * --INFO--
- * Address:	8036C11C
- * Size:	000014
- */
-void @908 @12 @Game::EnemyBase::viewOnPelletKilled(void)
-{
-	/*
-	li       r11, 0xc
-	lwzx     r11, r3, r11
-	add      r3, r3, r11
-	addi     r3, r3, -908
-	b        viewOnPelletKilled__Q24Game9EnemyBaseFv
-	*/
-}
-
-/*
- * --INFO--
- * Address:	8036C130
- * Size:	000014
- */
-void @908 @12 @Game::EnemyBase::viewStartCarryMotion(void)
-{
-	/*
-	li       r11, 0xc
-	lwzx     r11, r3, r11
-	add      r3, r3, r11
-	addi     r3, r3, -908
-	b        viewStartCarryMotion__Q24Game9EnemyBaseFv
-	*/
-}
-
-/*
- * --INFO--
- * Address:	8036C144
- * Size:	000014
- */
-void @908 @12 @Game::EnemyBase::viewStartPreCarryMotion(void)
-{
-	/*
-	li       r11, 0xc
-	lwzx     r11, r3, r11
-	add      r3, r3, r11
-	addi     r3, r3, -908
-	b        viewStartPreCarryMotion__Q24Game9EnemyBaseFv
-	*/
-}
-
-/*
- * --INFO--
- * Address:	8036C158
- * Size:	000014
- */
-void @908 @12 @Game::EnemyBase::view_finish_carrymotion(void)
-{
-	/*
-	li       r11, 0xc
-	lwzx     r11, r3, r11
-	add      r3, r3, r11
-	addi     r3, r3, -908
-	b        view_finish_carrymotion__Q24Game9EnemyBaseFv
-	*/
-}
-
-/*
- * --INFO--
- * Address:	8036C16C
- * Size:	000014
- */
-void @908 @12 @Game::EnemyBase::view_start_carrymotion(void)
-{
-	/*
-	li       r11, 0xc
-	lwzx     r11, r3, r11
-	add      r3, r3, r11
-	addi     r3, r3, -908
-	b        view_start_carrymotion__Q24Game9EnemyBaseFv
-	*/
-}
-
-/*
- * --INFO--
- * Address:	8036C180
- * Size:	000014
- */
-void @908 @12 @Game::EnemyBase::viewGetShape(void)
-{
-	/*
-	li       r11, 0xc
-	lwzx     r11, r3, r11
-	add      r3, r3, r11
-	addi     r3, r3, -908
-	b        viewGetShape__Q24Game9EnemyBaseFv
-	*/
-}

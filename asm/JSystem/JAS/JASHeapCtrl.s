@@ -749,7 +749,7 @@ getAramHeap__9JASKernelFv:
 /* 800A744C 000A438C  38 63 07 0C */	addi r3, r3, audioAramHeap__9JASKernel@l
 /* 800A7450 000A4390  4E 80 00 20 */	blr 
 
-__sinit_JASHeapCtrl_cpp: # static initializer
+fn local __sinit_JASHeapCtrl_cpp
 /* 800A7454 000A4394  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 800A7458 000A4398  7C 08 02 A6 */	mflr r0
 /* 800A745C 000A439C  3C 60 80 4F */	lis r3, audioAramHeap__9JASKernel@ha
@@ -782,3 +782,4 @@ __sinit_JASHeapCtrl_cpp: # static initializer
 /* 800A74C8 000A4408  7C 08 03 A6 */	mtlr r0
 /* 800A74CC 000A440C  38 21 00 10 */	addi r1, r1, 0x10
 /* 800A74D0 000A4410  4E 80 00 20 */	blr 
+end __sinit_JASHeapCtrl_cpp

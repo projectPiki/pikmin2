@@ -29,6 +29,12 @@ namespace BlackMan {
 struct Parms;
 struct FSM;
 
+void lHandCallBack(J3DJoint*, int);
+void rHandCallBack(J3DJoint*, int);
+void lFootCallBack(J3DJoint*, int);
+void rFootCallBack(J3DJoint*, int);
+void bodyCallBack(J3DJoint*, int);
+
 struct Obj : public EnemyBase {
 	Obj();
 
