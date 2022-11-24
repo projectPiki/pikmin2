@@ -67,6 +67,9 @@ struct Onyon : public BaseItem {
 		SUCKSTATE_IdleClosed = 5, // default idle state
 	};
 
+	Onyon();
+	Onyon(int); // this should be inline
+
 	/////////////// VTABLE
 	virtual void onInit(CreatureInitArg* settings);                     // _30
 	virtual void onKill(CreatureKillArg* settings);                     // _34
@@ -117,7 +120,7 @@ struct Onyon : public BaseItem {
 	void exitPikis(int, int);
 	Creature* exitPiki();
 	bool insideAccessArea(Vector3f&);
-	void getInEnd_UFO();
+	Vector3f getInEnd_UFO();
 	Vector3f getInStart_UFO();
 	Vector3f getOutStart_UFO();
 	f32* getPMotionSpeed(int);
@@ -125,6 +128,18 @@ struct Onyon : public BaseItem {
 	void update_pmotions();
 
 	void updateSpot();
+	void initTube();
+	void init_pmotions();
+
+	inline Vector3f getJointPosition(SysShape::Joint* joint)
+	{
+		Vec outVec;
+		Vector3f offs = Vector3f(0.0f, 0.0f, 7.0f);
+
+		PSMTXMultVec(joint->getWorldMatrix()->m_matrix.mtxView, (Vec*)&offs, &outVec);
+		offs = Vector3f(outVec);
+		return offs;
+	}
 
 	// _00 		= VTBL
 	// _00-_1D8	= BaseItem
@@ -191,7 +206,7 @@ struct Mgr : public BaseItemMgr, public Container<Onyon> {
 	virtual void* getStart();                                             // _AC (weak)
 	virtual void* getEnd();                                               // _B0 (weak)
 
-	void birth(int, int);
+	Onyon* birth(int, int);
 	Onyon* getOnyon(int);
 	void init();
 	void load();
@@ -201,12 +216,8 @@ struct Mgr : public BaseItemMgr, public Container<Onyon> {
 	// _30-_48  = Container
 	// _48      = ptr to _BaseItemMgrParent2 or something?
 	NodeObjectMgr<Onyon> m_nodeObjectMgr;                   // _4C
-	SysShape::AnimMgr* m_onyonAnimMgrFile;                  // _88, animmgr.txt
-	SysShape::AnimMgr* m_podAnimMgrFile;                    // _8C
-	SysShape::AnimMgr* m_ufoAnimMgrFile;                    // _90
-	CollPartFactory* m_onyonColl;                           // _94, collinfo.txt
-	CollPartFactory* m_podColl;                             // _98
-	CollPartFactory* m_ufoColl;                             // _9C
+	SysShape::AnimMgr* m_animMgrFiles[3];                   // _88, indexed by ONYON_OBJECT_TYPE
+	CollPartFactory* m_collFactories[3];                    // _94, indexed by ONYON_OBJECT_TYPE
 	Onyon* m_onyons[ONYON_TYPE_MAX];                        // _A0, blue (0), red (1) and yellow (2) onyon objects
 	Onyon* m_pod;                                           // _AC, (cave) pod
 	Onyon* m_ufo;                                           // _B0, ufo (ship)
@@ -219,6 +230,11 @@ extern Mgr* mgr;
 } // namespace Game
 
 struct GenOnyonParm : public Game::GenItemParm {
+	inline GenOnyonParm()
+	    : m_onyonIndex(0)
+	    , m_isAfterBoot(true)
+	{
+	}
 
 	// _00     = VTBL
 	int m_onyonIndex;   // _04

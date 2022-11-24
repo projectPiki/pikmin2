@@ -72,10 +72,10 @@ struct CollPart : public CNode {
 	void getTube(Sys::Tube&);
 
 	bool isLeaf() { return (getChild() == nullptr); }
-	bool isSphere() { return (m_hasCollPart == COLLTYPE_SPHERE); }
+	bool isSphere() { return (m_partType == COLLTYPE_SPHERE); }
 	bool isStickable();
-	bool isTube() { return (m_hasCollPart == COLLTYPE_TUBE); }
-	bool isTubeTree() { return (m_hasCollPart == COLLTYPE_TUBETREE); }
+	bool isTube() { return (m_partType == COLLTYPE_TUBE); }
+	bool isTubeTree() { return (m_partType == COLLTYPE_TUBETREE); }
 	bool isTubeLike() { return isTube() || isTubeTree(); }
 	bool isPrim() { return (getChild() == nullptr || isTube() || isTubeTree()); }
 
@@ -93,7 +93,7 @@ struct CollPart : public CNode {
 	ID32 m_specialID;             // _3C, used to detect whether the collpart is stickable, denoted by prefixed -s: e.g. 'sp01'
 	u16 m_attribute;              // _48
 	Vector3f m_position;          // _4C
-	u8 m_hasCollPart;             // _58
+	u8 m_partType;                // _58, using define list - 0=Sphere, 1=Tube, 2=TubeTree
 	SysShape::MtxObject* m_model; // _5C
 	u32 _60;                      // _60
 };
