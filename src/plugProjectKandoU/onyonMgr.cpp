@@ -1847,7 +1847,7 @@ void Onyon::init_pmotions()
 		m_pMotionList   = new SysShape::Animator[m_pMotionCount];
 		m_pMotionSpeeds = new f32[m_pMotionCount];
 
-		for (int i = 0; i < (int)m_pMotionCount; i++) {
+		for (int i = 0; i < m_pMotionCount; i++) {
 			m_pMotionList[i].m_animMgr = m_animator.m_animMgr;
 			if (i == 0) {
 				speed = 30.0f;
@@ -1877,7 +1877,7 @@ void Onyon::init_pmotions()
  */
 f32* Onyon::getPMotionSpeed(int i)
 {
-	bool check = (0 <= i && i < (int)m_pMotionCount);
+	bool check = (0 <= i && i < m_pMotionCount);
 	P2ASSERTLINE(2603, check);
 	return &m_pMotionSpeeds[i];
 }
@@ -1889,7 +1889,7 @@ f32* Onyon::getPMotionSpeed(int i)
  */
 SysShape::Animator* Onyon::getPAnimator(int i)
 {
-	bool check = (0 <= i && i < (int)m_pMotionCount);
+	bool check = (0 <= i && i < m_pMotionCount);
 	P2ASSERTLINE(2609, check);
 	return &m_pMotionList[i];
 }

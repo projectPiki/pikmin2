@@ -174,7 +174,7 @@ struct Onyon : public BaseItem {
 	f32 m_suckTimer;                          // _244
 	SysShape::Joint* m_pikiInJoint;           // _248, what pikmin target when entering the ship
 	SysShape::Joint* m_pikiOutJoint;          // _24C, what pikmin appear from when exiting the ship
-	u32 m_pMotionCount;                       // _250, number of pMotions to use, always 3 (for the ship) normally
+	int m_pMotionCount;                       // _250, number of pMotions to use, always 3 (for the ship) normally
 	SysShape::Animator* m_pMotionList;        // _254, list of pAnim objects
 	f32* m_pMotionSpeeds;                     // _258
 	f32 m_propera;                            // _25C, controls speed of one of the ships pMotions
