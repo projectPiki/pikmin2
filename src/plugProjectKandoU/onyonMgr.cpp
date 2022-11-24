@@ -469,8 +469,8 @@ bool InteractSuckDone::actOnyon(Onyon* item)
 	}
 
 	if (gameSystem->m_mode != GSM_VERSUS_MODE) {
-		int money = pellet->m_config->m_params.m_money.m_data;
-		gameSystem->m_inCave ? playData->_EC += money : gameSystem->m_section->_PADDING00 += money;
+		PrimTagParm<int> money = pellet->m_config->m_params.m_money;
+		gameSystem->m_inCave ? playData->_EC += money.m_data : gameSystem->m_section->_PADDING00 += money.m_data;
 	}
 
 	if (gameSystem->isChallengeMode()) {
@@ -484,7 +484,7 @@ bool InteractSuckDone::actOnyon(Onyon* item)
 			u16 color = (int)pellet->m_pelletColor;
 			pellet->getPikiBirthCount(min, max);
 			u32 type = item->m_onyonType;
-			if (type == ONYON_TYPE_POD || (u32)color == (u16)type) { // mismatch on this line
+			if (type == ONYON_TYPE_POD || (u32)color == (u16)type) {
 				item->m_toBirth += max;
 			} else {
 				item->m_toBirth += min;
@@ -492,12 +492,12 @@ bool InteractSuckDone::actOnyon(Onyon* item)
 		} else {
 			// carry treasure/item/carcass to an onion/ship
 			if (pellet->getKind() == PELTYPE_TREASURE || pellet->getKind() == PELTYPE_UPGRADE || pellet->getKind() == PELTYPE_CARCASS) {
-				// brought to the pod (the game just assumes youre in a cave)
+				// brought to the pod (the game just assumes you're in a cave)
 				if (item->m_onyonType == ONYON_TYPE_POD) {
 					if (pellet->m_config->m_params.m_money.m_data > 0) {
 						playData->obtainPellet_Cave(pellet);
 					}
-					// brought to the ship (the game just assumes youre above ground)
+					// brought to the ship (the game just assumes you're above ground)
 				} else if (item->m_onyonType == ONYON_TYPE_SHIP) {
 					if (pellet->m_config->m_params.m_money.m_data > 0) {
 						playData->obtainPellet_Main(pellet);
