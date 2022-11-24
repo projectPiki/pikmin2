@@ -30,6 +30,7 @@
 #include "PikiAi.h"
 #include "JSystem/J3D/J3DModelLoader.h"
 
+Game::ItemOnyon::Mgr* Game::ItemOnyon::mgr;
 static bool sVolveFlag;
 
 namespace Game {
