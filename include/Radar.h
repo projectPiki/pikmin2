@@ -3,10 +3,10 @@
 
 #include "types.h"
 #include "Vector3.h"
+#include "Game/cellPyramid.h"
+#include "CNode.h"
 
-namespace Game {
-struct TPositionObject;
-}
+#define RADAR_MAX_OBJECTS 0xa0
 
 struct Radar {
 	enum cRadarType {
@@ -36,33 +36,57 @@ struct Radar {
 		MAP_NULL_ICON,          // 0x17
 	};
 
-	struct Mgr {
-		Mgr();
-
-		static void entry(Game::TPositionObject*, Radar::cRadarType, u32);
-		static void exit(Game::TPositionObject*);
-
-		void attach(Game::TPositionObject*, Radar::cRadarType, unsigned long);
-		void bornFuefuki();
-		void calcNearestTreasure(Vector3f&, float, Vector3f&, float&);
-		void clear();
-		void detach(Game::TPositionObject*);
-		void dieFuefuki();
-
-		void fuefuki();
-		void getNumOtakaraItems();
-		void ogDummpyInit();
-	};
-
-	static Mgr* mgr;
-
 	struct Point : public CNode {
-		Point();
+		Point(); // seems to also have inline version
 
 		virtual ~Point(); // _08 (weak)
 
-		void getPosition();
+		Vector2f getPosition();
+
+		static void entry(Game::TPositionObject*, Radar::cRadarType, u32); // unused? or inline
+		inline void clear();
+
+		cRadarType m_objType;				// _18
+		Game::TPositionObject* m_object;	// _1c
+		u32 _20;							// _20
 	};
+
+	struct Mgr : public Point {
+		Mgr();
+
+		static void entry(Game::TPositionObject*, Radar::cRadarType, u32);
+		static bool exit(Game::TPositionObject*);
+
+		void attach(Game::TPositionObject*, Radar::cRadarType, unsigned long);
+		void bornFuefuki();
+		int calcNearestTreasure(Vector3f&, float, Vector3f&, float&);
+		void clear();
+		bool detach(Game::TPositionObject*);
+		void dieFuefuki();
+
+		void fuefuki();
+		static int getNumOtakaraItems();
+		void ogDummpyInit();
+
+		// _00-_24 Point
+		Point m_pointNode;						// _24
+		Point* m_pointList;						// _48
+		u32 m_objCount;							// _4C
+		u32 m_otakaraNum;						// _50
+		u32 m_fuefukiCount;						// _54
+		u32 m_fuefukiTimer;						// _58
+	};
+
+	static Mgr* mgr;
+};
+
+struct OgDummy : Game::TPositionObject { // this does inherit TPositionObject but the struct here doesnt work right
+	inline OgDummy() {
+		m_position = Vector3f(0.0f, 0.0f, 0.0f);
+	}
+	virtual Vector3f getPosition();
+
+	Vector3f m_position;
 };
 
 #endif

@@ -1,4 +1,6 @@
 #include "types.h"
+#include "Radar.h"
+#include "Game/pelletMgr.h"
 
 /*
     Generated from dpostproc
@@ -66,8 +68,14 @@
  * Address:	8021E28C
  * Size:	000068
  */
-void Radar::Point::getPosition(void)
+Vector2f Radar::Point::getPosition(void)
 {
+	if (m_object) {
+		Vector3f pos = m_object->getPosition();
+		return Vector2f(pos.z, pos.x);
+	} else {
+		return Vector2f(0.0f, 0.0f);
+	}
 	/*
 	stwu     r1, -0x20(r1)
 	mflr     r0
@@ -119,7 +127,10 @@ void Radar::Point::entry(Game::TPositionObject*, Radar::cRadarType, unsigned lon
  */
 void Radar::Point::clear(void)
 {
-	// UNUSED FUNCTION
+	m_child = nullptr;
+	m_parent = nullptr;
+	m_prev = nullptr;
+	m_next = nullptr;
 }
 
 /*
@@ -128,7 +139,15 @@ void Radar::Point::clear(void)
  * Size:	0000F4
  */
 Radar::Mgr::Mgr(void)
+	: Point()
 {
+	m_pointNode = Point();
+	m_pointNode.clear();
+	Point::clear();
+
+	m_objCount = RADAR_MAX_OBJECTS;
+	m_pointList = new Point[m_objCount];
+	clear();
 	/*
 	stwu     r1, -0x20(r1)
 	mflr     r0
@@ -200,7 +219,11 @@ Radar::Mgr::Mgr(void)
  * Size:	000050
  */
 Radar::Point::Point(void)
+    : CNode()
 {
+	m_objType = MAP_NULL_ICON;
+	m_object = nullptr;
+	_20 = nullptr;
 	/*
 	stwu     r1, -0x10(r1)
 	mflr     r0
@@ -269,6 +292,19 @@ lbl_8021E47C:
  */
 void Radar::Mgr::clear(void)
 {
+	m_pointNode.clear();
+	Point::clear();
+
+	for (int i = 0; i < m_objCount; i++) {
+		// m_pointList[i].clear();
+		m_pointList[i].m_objType = MAP_NULL_ICON;
+		m_pointList[i].m_object = nullptr;
+		m_pointList[i]._20 = nullptr;
+		m_pointNode.add(&m_pointList[i]);
+	}
+	m_otakaraNum = 0;
+	m_fuefukiCount = 0;
+	m_fuefukiTimer = 0;
 	/*
 	stwu     r1, -0x20(r1)
 	mflr     r0
@@ -329,6 +365,7 @@ lbl_8021E51C:
  */
 void Radar::Mgr::bornFuefuki(void)
 {
+	m_fuefukiCount++;
 	/*
 	lwz      r4, 0x54(r3)
 	addi     r0, r4, 1
@@ -344,6 +381,8 @@ void Radar::Mgr::bornFuefuki(void)
  */
 void Radar::Mgr::dieFuefuki(void)
 {
+	if ((int)m_fuefukiCount > 0)
+		m_fuefukiCount--;
 	/*
 	lwz      r4, 0x54(r3)
 	cmpwi    r4, 0
@@ -361,6 +400,7 @@ void Radar::Mgr::dieFuefuki(void)
  */
 void Radar::Mgr::fuefuki(void)
 {
+	m_fuefukiTimer++;
 	/*
 	lwz      r4, 0x58(r3)
 	addi     r0, r4, 1
@@ -374,8 +414,13 @@ void Radar::Mgr::fuefuki(void)
  * Address:	8021E584
  * Size:	000070
  */
-void Radar::Mgr::entry(Game::TPositionObject*, Radar::cRadarType, unsigned long)
+void Radar::Mgr::entry(Game::TPositionObject* obj, Radar::cRadarType type, unsigned long flag)
 {
+	if (mgr) {
+		mgr->attach(obj, type, flag);
+		if ((int)(type - 0x10) <= 1 || type == MAP_UPGRADE)
+			mgr->m_otakaraNum++;
+	}
 	/*
 	stwu     r1, -0x10(r1)
 	mflr     r0
@@ -414,8 +459,12 @@ lbl_8021E5E0:
  * Address:	8021E5F4
  * Size:	00003C
  */
-void Radar::Mgr::exit(Game::TPositionObject*)
+bool Radar::Mgr::exit(Game::TPositionObject* obj)
 {
+	if (mgr) {
+		return mgr->detach(obj);
+	}
+	return false;
 	/*
 	stwu     r1, -0x10(r1)
 	mflr     r0
@@ -444,8 +493,12 @@ lbl_8021E620:
  * Address:	8021E630
  * Size:	00001C
  */
-void Radar::Mgr::getNumOtakaraItems(void)
+int Radar::Mgr::getNumOtakaraItems(void)
 {
+	if (mgr) {
+		return mgr->m_otakaraNum;
+	}
+	return 0;
 	/*
 	lwz      r3, mgr__5Radar@sda21(r13)
 	cmplwi   r3, 0
@@ -464,8 +517,17 @@ lbl_8021E644:
  * Address:	8021E64C
  * Size:	000064
  */
-void Radar::Mgr::attach(Game::TPositionObject*, Radar::cRadarType, unsigned long)
+void Radar::Mgr::attach(Game::TPositionObject* obj, Radar::cRadarType type, unsigned long flag)
 {
+	detach(obj);
+	Point* point = static_cast<Point*>(m_pointNode.m_child);
+	if (point) {
+		point->del();
+		point->m_object = obj;
+		point->m_objType = type;
+		point->_20 = flag;
+		add(point);
+	}
 	/*
 	.loc_0x0:
 	  stwu      r1, -0x20(r1)
@@ -505,8 +567,25 @@ void Radar::Mgr::attach(Game::TPositionObject*, Radar::cRadarType, unsigned long
  * Address:	8021E6B0
  * Size:	0000C4
  */
-void Radar::Mgr::detach(Game::TPositionObject*)
+bool Radar::Mgr::detach(Game::TPositionObject* obj)
 {
+	Point* point = static_cast<Point*>(m_pointNode.m_child);
+	while (point->m_object != obj) {
+		if (point == nullptr)
+			return false;
+		point = static_cast<Point*>(point->m_next);
+	}
+	int id = point->m_objType;
+	point->del();
+	point->m_objType = MAP_NULL_ICON;
+	point->m_object = nullptr;
+	point->_20 = nullptr;
+
+	if (id - 10 < 2 || id == MAP_UPGRADE) {
+		m_otakaraNum--;
+	}
+	m_pointNode.add(point);
+	return true;
 	/*
 	stwu     r1, -0x20(r1)
 	mflr     r0
@@ -577,8 +656,44 @@ lbl_8021E758:
  * Address:	8021E774
  * Size:	0001E0
  */
-void calcNearestTreasure__Q25Radar3MgrFR10Vector3f fR10Vector3f Rf(void)
+int Radar::Mgr::calcNearestTreasure(Vector3f& naviPos, float mindist, Vector3f& treasurePos, float& dist2)
 {
+	if (m_fuefukiCount < 1) {
+		Point* retPoint = nullptr;
+		Point* cPoint = static_cast<Point*>(m_child);
+		u8 ret = 0;
+		while (cPoint) {
+			if (cPoint->m_objType == MAP_TREASURE || cPoint->m_objType == MAP_SWALLOWED_TREASURE || cPoint->m_objType == MAP_UPGRADE) {
+				ret++;
+				Game::Creature* cObj = static_cast<Game::Pellet*>(cPoint->m_object);
+				if (cObj->isTeki()) {
+					cObj->isPellet();
+				}
+				Vector3f objPos = cObj->getPosition();
+				Sys::Sphere test;
+				cObj->getBoundingSphere(test);
+				f32 cDist = _distanceXZ(objPos, naviPos);
+				if (cDist <= mindist) {
+					treasurePos = cObj->getPosition();
+					dist2 = cDist;
+					retPoint = cPoint;
+					mindist = cDist;
+				}
+			}
+			cPoint = static_cast<Point*>(cPoint->m_next);
+		}
+		// no treasure was found
+		if (retPoint == nullptr) {
+			return (ret != 0);
+		} else {
+			return 2;
+		}
+	} else if (m_fuefukiTimer < 1) {
+		return 3;
+	} else {
+		m_fuefukiTimer--;
+		return 4;
+	}
 	/*
 	stwu     r1, -0x80(r1)
 	mflr     r0
@@ -732,6 +847,146 @@ lbl_8021E928:
  */
 void Radar::Mgr::ogDummpyInit(void)
 {
+	// dummy Ship
+	OgDummy* obj = new OgDummy;
+	obj->m_position = Vector3f(-577.0f, -37.0f, 1984.0f);
+	Point* cPoint = static_cast<Point*>(m_child);
+	while (cPoint) {
+		if (cPoint->m_object == obj) {
+			int id = cPoint->m_objType;
+			cPoint->del();
+			cPoint->clear();
+
+			cPoint->m_objType = MAP_NULL_ICON;
+			cPoint->m_object = nullptr;
+			cPoint->_20 = nullptr;
+
+			if (id - 10 < 2 || id == MAP_UPGRADE) {
+				m_otakaraNum--;
+			}
+			m_pointNode.add(cPoint);
+		}
+	}
+	cPoint = static_cast<Point*>(m_child);
+	if (cPoint) {
+		cPoint->del();
+		cPoint->m_object = obj;
+		cPoint->m_objType = MAP_SHIP;
+		add(cPoint);
+	}
+
+	// dummy Blue Onion
+	obj = new OgDummy;
+	obj->m_position = Vector3f(-377.0f, -37.0f, 2155.0f);
+	cPoint = static_cast<Point*>(m_child);
+	while (cPoint) {
+		if (cPoint->m_object == obj) {
+			int id = cPoint->m_objType;
+			cPoint->del();
+			cPoint->clear();
+
+			cPoint->m_objType = MAP_NULL_ICON;
+			cPoint->m_object = nullptr;
+			cPoint->_20 = nullptr;
+
+			if (id - 10 < 2 || id == MAP_UPGRADE) {
+				m_otakaraNum--;
+			}
+			m_pointNode.add(cPoint);
+		}
+	}
+	cPoint = static_cast<Point*>(m_child);
+	if (cPoint) {
+		cPoint->del();
+		cPoint->m_object = obj;
+		cPoint->m_objType = MAP_BLUE_ONION;
+		add(cPoint);
+	}
+
+	// dummy blue onion again
+	obj = new OgDummy;
+	obj->m_position = Vector3f(-306.0f, -37.0f, 1823.0f);
+	cPoint = static_cast<Point*>(m_child);
+	while (cPoint) {
+		if (cPoint->m_object == obj) {
+			int id = cPoint->m_objType;
+			cPoint->del();
+			cPoint->clear();
+
+			cPoint->m_objType = MAP_NULL_ICON;
+			cPoint->m_object = nullptr;
+			cPoint->_20 = nullptr;
+
+			if (id - 10 < 2 || id == MAP_UPGRADE) {
+				m_otakaraNum--;
+			}
+			m_pointNode.add(cPoint);
+		}
+	}
+	cPoint = static_cast<Point*>(m_child);
+	if (cPoint) {
+		cPoint->del();
+		cPoint->m_object = obj;
+		cPoint->m_objType = MAP_BLUE_ONION;
+		add(cPoint);
+	}
+
+	// dummy blue onion again (3 blue onions)
+	obj = new OgDummy;
+	obj->m_position = Vector3f(64.0f, -37.0f, 1976.0f);
+	cPoint = static_cast<Point*>(m_child);
+	while (cPoint) {
+		if (cPoint->m_object == obj) {
+			int id = cPoint->m_objType;
+			cPoint->del();
+			cPoint->clear();
+
+			cPoint->m_objType = MAP_NULL_ICON;
+			cPoint->m_object = nullptr;
+			cPoint->_20 = nullptr;
+
+			if (id - 10 < 2 || id == MAP_UPGRADE) {
+				m_otakaraNum--;
+			}
+			m_pointNode.add(cPoint);
+		}
+	}
+	cPoint = static_cast<Point*>(m_child);
+	if (cPoint) {
+		cPoint->del();
+		cPoint->m_object = obj;
+		cPoint->m_objType = MAP_BLUE_ONION;
+		add(cPoint);
+	}
+
+	// and a red pikmin for good measure (this must be a debug function, even though the game calls it)
+	obj = new OgDummy;
+	obj->m_position = Vector3f(-337.0f, -37.0f, 2101.0f);
+	cPoint = static_cast<Point*>(m_child);
+	while (cPoint) {
+		if (cPoint->m_object == obj) {
+			int id = cPoint->m_objType;
+			cPoint->del();
+			cPoint->clear();
+
+			cPoint->m_objType = MAP_NULL_ICON;
+			cPoint->m_object = nullptr;
+			cPoint->_20 = nullptr;
+
+			if (id - 10 < 2 || id == MAP_UPGRADE) {
+				m_otakaraNum--;
+			}
+			m_pointNode.add(cPoint);
+		}
+	}
+	cPoint = static_cast<Point*>(m_child);
+	if (cPoint) {
+		cPoint->del();
+		cPoint->m_object = obj;
+		cPoint->m_objType = MAP_RED_PIKMIN;
+		add(cPoint);
+	}
+
 	/*
 	stwu     r1, -0x20(r1)
 	mflr     r0
@@ -1167,8 +1422,9 @@ lbl_8021EE9C:
  * Address:	8021EEBC
  * Size:	00001C
  */
-void OgDummy::getPosition()
+Vector3f OgDummy::getPosition(void)
 {
+	return m_position;
 	/*
 	lfs      f0, 4(r4)
 	stfs     f0, 0(r3)
