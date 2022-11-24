@@ -1203,7 +1203,7 @@ void Onyon::onKeyEvent_Onyon(SysShape::KeyEvent const& event)
 			switch (animid) {
 			case 1: // shoot out seeds
 				if (m_toBirth) {
-					int shootcount = m_toBirth >> 1;
+					int shootcount = m_toBirth / 2;
 					if (shootcount <= 0) {
 						shootcount = 1;
 					}
