@@ -6,6 +6,7 @@
 #include "efx/TPelkira.h"
 #include "efx/WarpZone.h"
 #include "JSystem/JPA/JPAMath.h"
+#include "Game/Entities/ItemOnyon.h"
 
 namespace efx {
 
@@ -282,8 +283,28 @@ lbl_803B60E4:
  * Address:	803B6110
  * Size:	0000E8
  */
-bool TPelkira_ver01::create(Arg*)
+bool TPelkira_ver01::create(Arg* arg)
 {
+	bool argCheck = strcmp("ArgPelType", arg->getName()) == 0;
+	P2ASSERTLINE(275, argCheck);
+
+	ArgPelType* argpel = static_cast<ArgPelType*>(arg);
+
+	switch (argpel->m_type) {
+	case 0:
+		m_effectID = PID_PelKira_1;
+		break;
+	case 1:
+		m_effectID = PID_PelKira_4;
+		break;
+	case 2:
+		m_effectID = PID_PelKira_2;
+		break;
+	case 3:
+		m_effectID = PID_PelKira_3;
+		break;
+	}
+	return TSync::create(arg);
 	/*
 	stwu     r1, -0x20(r1)
 	mflr     r0
@@ -365,8 +386,25 @@ lbl_803B61D4:
  * Address:	803B61F8
  * Size:	0000D0
  */
-bool Container::create(efx::Arg*)
+bool Container::create(efx::Arg* arg)
 {
+	bool argCheck = strcmp("ArgType", arg->getName()) == 0;
+	P2ASSERTLINE(301, argCheck);
+
+	ArgType* argtype = static_cast<ArgType*>(arg);
+
+	switch (argtype->m_onyonType) {
+	case ONYON_TYPE_BLUE:
+		m_effectID = PID_Container_Blue;
+		break;
+	case ONYON_TYPE_RED:
+		m_effectID = PID_Container_Red;
+		break;
+	case ONYON_TYPE_YELLOW:
+		m_effectID = PID_Container_Yellow;
+		break;
+	}
+	return TSync::create(arg);
 	/*
 	stwu     r1, -0x10(r1)
 	mflr     r0
@@ -440,8 +478,28 @@ lbl_803B62A8:
  * Address:	803B62C8
  * Size:	0000E8
  */
-bool ContainerAct::create(efx::Arg*)
+bool ContainerAct::create(efx::Arg* arg)
 {
+	bool argCheck = strcmp("ArgType", arg->getName()) == 0;
+	P2ASSERTLINE(322, argCheck);
+
+	ArgType* argtype = static_cast<ArgType*>(arg);
+
+	switch (argtype->m_onyonType) {
+	case ONYON_TYPE_BLUE:
+		m_items[0].m_effectID = PID_ContainerAct_Blue_1;
+		m_items[1].m_effectID = PID_ContainerAct_Blue_2;
+		break;
+	case ONYON_TYPE_RED:
+		m_items[0].m_effectID = PID_ContainerAct_Red_1;
+		m_items[1].m_effectID = PID_ContainerAct_Red_2;
+		break;
+	case ONYON_TYPE_YELLOW:
+		m_items[0].m_effectID = PID_ContainerAct_Yellow_1;
+		m_items[1].m_effectID = PID_ContainerAct_Yellow_2;
+		break;
+	}
+	return TSyncGroup2<TForever>::create(arg);
 	/*
 	stwu     r1, -0x10(r1)
 	mflr     r0
@@ -521,8 +579,46 @@ lbl_803B6390:
  * Address:	803B63B0
  * Size:	0001B0
  */
-void WarpZone::setRateLOD(int, bool)
+void WarpZone::setRateLOD(int offs, bool flag)
 {
+	JPABaseEmitter* emit;
+	if (flag) {
+		emit         = m_items[0].m_emitter;
+		f32 data[12] = { 0.3f, 0.25f, 0.15f, 0.06f, 0.05f, 0.04f, 0.0f, 0.0f, 0.0f, 0.1f, 0.08f, 0.06f };
+		if (emit) {
+			emit->_28 = data[offs];
+		}
+		emit = m_items[1].m_emitter;
+		if (emit) {
+			emit->_28 = data[offs + 3];
+		}
+		emit = m_items[2].m_emitter;
+		if (emit) {
+			emit->_28 = data[offs + 6];
+		}
+		emit = m_items[3].m_emitter;
+		if (emit) {
+			emit->_28 = data[offs + 9];
+		}
+	} else {
+		emit         = m_items[0].m_emitter;
+		f32 data[12] = { 0.3f, 0.25f, 0.15f, 0.06f, 0.05f, 0.04f, 0.225f, 0.2f, 0.15f, 0.1f, 0.08f, 0.06f };
+		if (emit) {
+			emit->_28 = data[offs];
+		}
+		emit = m_items[1].m_emitter;
+		if (emit) {
+			emit->_28 = data[offs + 3];
+		}
+		emit = m_items[2].m_emitter;
+		if (emit) {
+			emit->_28 = data[offs + 6];
+		}
+		emit = m_items[3].m_emitter;
+		if (emit) {
+			emit->_28 = data[offs + 9];
+		}
+	}
 	/*
 	stwu     r1, -0x80(r1)
 	clrlwi.  r0, r5, 0x18

@@ -224,6 +224,10 @@ struct ArgPelType : public Arg {
 	{
 		return "ArgPelType";
 	}
+
+	// _00     = VTBL
+	// _00-_10 = Arg
+	int m_type; // _10
 };
 
 struct ArgPosPos : public Arg {

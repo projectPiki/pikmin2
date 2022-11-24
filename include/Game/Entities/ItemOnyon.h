@@ -67,6 +67,8 @@ struct Onyon : public BaseItem {
 		SUCKSTATE_IdleClosed = 5, // default idle state
 	};
 
+	Onyon(int); // this should be inline
+
 	/////////////// VTABLE
 	virtual void onInit(CreatureInitArg* settings);                     // _30
 	virtual void onKill(CreatureKillArg* settings);                     // _34
@@ -117,7 +119,7 @@ struct Onyon : public BaseItem {
 	void exitPikis(int, int);
 	Creature* exitPiki();
 	bool insideAccessArea(Vector3f&);
-	void getInEnd_UFO();
+	Vector3f getInEnd_UFO();
 	Vector3f getInStart_UFO();
 	Vector3f getOutStart_UFO();
 	f32* getPMotionSpeed(int);
@@ -191,7 +193,7 @@ struct Mgr : public BaseItemMgr, public Container<Onyon> {
 	virtual void* getStart();                                             // _AC (weak)
 	virtual void* getEnd();                                               // _B0 (weak)
 
-	void birth(int, int);
+	Onyon* birth(int, int);
 	Onyon* getOnyon(int);
 	void init();
 	void load();

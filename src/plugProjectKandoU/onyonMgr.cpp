@@ -8,6 +8,7 @@
 #include "Game/MapMgr.h"
 #include "Game/BirthMgr.h"
 #include "Game/gameStages.h"
+#include "LoadResource.h"
 #include "efx/TPod.h"
 #include "efx/Container.h"
 #include "efx/Arg.h"
@@ -27,6 +28,7 @@
 #include "JSystem/JAL/JALCalc.h"
 #include "Dolphin/rand.h"
 #include "PikiAi.h"
+#include "JSystem/J3D/J3DModelLoader.h"
 
 static bool sVolveFlag;
 
@@ -2832,8 +2834,42 @@ bool Onyon::insideAccessArea(Vector3f& navipos)
  * Address:	80179D60
  * Size:	00011C
  */
-BaseItem* ItemOnyon::Mgr::generatorBirth(Vector3f&, Vector3f&, GenItemParm*)
+BaseItem* ItemOnyon::Mgr::generatorBirth(Vector3f& pos, Vector3f& angle, GenItemParm* parm)
 {
+	GenOnyonParm* onyonparm = static_cast<GenOnyonParm*>(parm);
+	int objectType;
+	int onyonType = ONYON_TYPE_BLUE;
+	switch (onyonparm->m_onyonIndex) {
+	case ONYON_TYPE_YELLOW:
+		objectType = ONYON_OBJECT_ONYON;
+		onyonType  = ONYON_TYPE_YELLOW;
+		break;
+	case ONYON_TYPE_RED:
+		objectType = ONYON_OBJECT_ONYON;
+		onyonType  = ONYON_TYPE_RED;
+		break;
+	case ONYON_TYPE_BLUE:
+		objectType = ONYON_OBJECT_ONYON;
+		onyonType  = ONYON_TYPE_BLUE;
+		break;
+	case ONYON_TYPE_POD:
+		objectType = ONYON_OBJECT_POD;
+		break;
+	case ONYON_TYPE_SHIP:
+		objectType = ONYON_OBJECT_SHIP;
+		break;
+	}
+
+	if (objectType == ONYON_OBJECT_ONYON) {
+		if (!playData->hasBootContainer(onyonType) && onyonparm->m_isAfterBoot)
+			return nullptr;
+		if (!onyonparm->m_isAfterBoot && playData->hasBootContainer(onyonType))
+			return nullptr;
+	}
+	Onyon* onyon     = birth(objectType, onyonType);
+	onyon->m_faceDir = angle.y;
+	onyon->setPosition(pos, 0);
+	return onyon;
 	/*
 	.loc_0x0:
 	  stwu      r1, -0x20(r1)
@@ -2942,8 +2978,17 @@ void ItemOnyon::Mgr::setupSoundViewerAndBas() { }
  * Address:	80179E80
  * Size:	0000C4
  */
-void Onyon::getInEnd_UFO(void)
+Vector3f Onyon::getInEnd_UFO(void)
 {
+	if (m_pikiInJoint) {
+		Vector3f offs(0.0f, 0.0f, 7.0f);
+		Vector3f pos;
+		PSMTXMultVec(m_pikiInJoint->getWorldMatrix()->m_matrix.mtxView, (Vec*)&offs, (Vec*)&pos);
+		return pos;
+	} else {
+		JUT_PANICLINE(2545, "not ufo\n");
+		return Vector3f::zero;
+	}
 	/*
 	stwu     r1, -0x30(r1)
 	mflr     r0
@@ -3008,6 +3053,21 @@ lbl_80179F30:
  */
 Vector3f Onyon::getInStart_UFO(void)
 {
+	Vector3f jntpos;
+	if (m_pikiInJoint) {
+		Vector3f offs(0.0f, 0.0f, 7.0f);
+		PSMTXMultVec(m_pikiInJoint->getWorldMatrix()->m_matrix.mtxView, (Vec*)&offs, (Vec*)&jntpos);
+		offs = jntpos;
+	} else {
+		JUT_PANICLINE(2545, "not ufo\n");
+		jntpos = Vector3f::zero;
+	}
+	double jX    = jntpos.x;
+	double jZ    = jntpos.z;
+	Vector3f pos = getPosition();
+	Vector3f fixpos(jX - pos.x, 0.0f, jZ - pos.z);
+	fixpos.normalise();
+	return (pos + (fixpos * 90.0f));
 	/*
 	stwu     r1, -0x60(r1)
 	mflr     r0
@@ -3119,6 +3179,15 @@ lbl_8017A05C:
  */
 Vector3f Onyon::getOutStart_UFO(void)
 {
+	if (m_pikiOutJoint) {
+		Vector3f offs(0.0f, 0.0f, 7.0f);
+		Vector3f pos;
+		PSMTXMultVec(m_pikiOutJoint->getWorldMatrix()->m_matrix.mtxView, (Vec*)&offs, (Vec*)&pos);
+		return pos;
+	} else {
+		JUT_PANICLINE(2569, "‚¾‚ß‚Å‚·\n");
+		return Vector3f::zero;
+	}
 	/*
 	stwu     r1, -0x30(r1)
 	mflr     r0
@@ -3202,8 +3271,10 @@ f32* Onyon::getPMotionSpeed(int i)
  * Address:	8017A220
  * Size:	00007C
  */
-SysShape::Animator* Onyon::getPAnimator(int)
+SysShape::Animator* Onyon::getPAnimator(int i)
 {
+	P2ASSERTBOUNDSLINE(2609, 0, i, (int)m_pMotionCount);
+	return &m_pMotionList[i];
 	/*
 	stwu     r1, -0x10(r1)
 	mflr     r0
@@ -3260,6 +3331,25 @@ lbl_8017A278:
  */
 void Onyon::update_pmotions(void)
 {
+	f32 time = sys->m_deltaTime;
+	if (m_onyonType == ONYON_TYPE_SHIP) {
+		for (int i = 0; i < m_pMotionCount; i++) {
+			char* names[3] = { "pmotion1", "pmotion2", "pmotion3" };
+			P2ASSERTBOUNDSLINE(2609, 0, i, (int)m_pMotionCount);
+			SysShape::Animator* panim = &m_pMotionList[i];
+			P2ASSERTBOUNDSLINE(2603, 0, i, (int)m_pMotionCount);
+			panim->animate(time * m_pMotionSpeeds[i]);
+			SysShape::Joint* jnt = m_model->getJoint(names[i]);
+			if (jnt) {
+				int id                                                              = jnt->m_jointIndex;
+				SysShape::Model* model                                              = m_model;
+				J3DMtxCalc* calc                                                    = panim->getCalc();
+				model->m_j3dModel->m_modelData->m_jointTree.m_joints[id]->m_mtxCalc = static_cast<J3DMtxCalcAnmBase*>(calc);
+			} else {
+				JUT_PANICLINE(2643, "no joint (%s)\n", names[i]);
+			}
+		}
+	}
 	/*
 	stwu     r1, -0x50(r1)
 	mflr     r0
@@ -3391,6 +3481,12 @@ lbl_8017A418:
  */
 void ItemOnyon::Mgr::initDependency(void)
 {
+	Iterator<Onyon> iterOnyon(&m_nodeObjectMgr);
+	CI_LOOP(iterOnyon)
+	{
+		Onyon* item = static_cast<Onyon*>(*iterOnyon);
+		item->initDependency();
+	}
 	/*
 	stwu     r1, -0x20(r1)
 	mflr     r0
@@ -3545,8 +3641,23 @@ void BaseItem::initDependency() { }
  * Address:	8017A620
  * Size:	00004C
  */
-J3DModelData* ItemOnyon::Mgr::generatorGetShape(GenItemParm*)
+J3DModelData* ItemOnyon::Mgr::generatorGetShape(GenItemParm* parm)
 {
+	GenOnyonParm* onyonparm = static_cast<GenOnyonParm*>(parm);
+	int id;
+	switch (onyonparm->m_onyonIndex) {
+	case ONYON_TYPE_RED:
+	case ONYON_TYPE_BLUE:
+	case ONYON_TYPE_YELLOW:
+		id = 0;
+		break;
+	case ONYON_TYPE_POD:
+		id = 1;
+		break;
+	case ONYON_TYPE_SHIP:
+		id = 2;
+	}
+	return m_modelData[id];
 	/*
 	lwz      r0, 4(r4)
 	cmpwi    r0, 3
@@ -3587,6 +3698,7 @@ lbl_8017A65C:
  */
 GenItemParm* ItemOnyon::Mgr::generatorNewItemParm()
 {
+	return new GenOnyonParm();
 	/*
 	stwu     r1, -0x10(r1)
 	mflr     r0
@@ -3619,8 +3731,16 @@ lbl_8017A6B0:
  * Address:	8017A6C0
  * Size:	00008C
  */
-void ItemOnyon::Mgr::generatorWrite(Stream&, Game::GenItemParm*)
+void ItemOnyon::Mgr::generatorWrite(Stream& ram, Game::GenItemParm* parm)
 {
+	GenOnyonParm* onyonparm = static_cast<GenOnyonParm*>(parm);
+	ram.textWriteTab(ram.m_tabCount);
+	ram.writeInt(onyonparm->m_onyonIndex);
+	ram.textWriteText("\t# onyon index\r\n");
+
+	ram.textWriteTab(ram.m_tabCount);
+	ram.writeByte(onyonparm->m_isAfterBoot);
+	ram.textWriteText("\t# after boot? true==1\r\n");
 	/*
 	stwu     r1, -0x10(r1)
 	mflr     r0
@@ -3665,8 +3785,13 @@ void ItemOnyon::Mgr::generatorWrite(Stream&, Game::GenItemParm*)
  * Address:	8017A74C
  * Size:	000078
  */
-void ItemOnyon::Mgr::generatorRead(Stream&, Game::GenItemParm*, unsigned long)
+void ItemOnyon::Mgr::generatorRead(Stream& ram, Game::GenItemParm* parm, unsigned long flag)
 {
+	GenOnyonParm* onyonparm = static_cast<GenOnyonParm*>(parm);
+	onyonparm->m_onyonIndex = ram.readInt();
+	if (flag >= '0001') {
+		onyonparm->m_isAfterBoot = ram.readByte();
+	}
 	/*
 	stwu     r1, -0x20(r1)
 	mflr     r0
@@ -3820,6 +3945,69 @@ lbl_8017AC6C:
  */
 void Onyon::on_movie_end(bool)
 {
+	if (m_onyonType == ONYON_TYPE_SHIP) {
+		if (m_suckState == SUCKSTATE_IdleClosed) {
+			m_animSpeed = 0.0f;
+		}
+	} else {
+		bool checkboot = false;
+		if (m_onyonType <= ONYON_TYPE_YELLOW && gameSystem->m_mode == GSM_STORY_MODE) {
+			checkboot = true;
+		}
+		if (checkboot) {
+			playData->hasBootContainer(m_onyonType);
+		}
+		m_animSpeed = 30.0f;
+	}
+
+	if (m_onyonType <= ONYON_TYPE_YELLOW) {
+		int animid;
+		if (!m_animator.m_animInfo) {
+			animid = -1;
+		} else {
+			animid = m_animator.m_animInfo->m_id;
+		}
+		if (animid == 1) {
+			return;
+		}
+	}
+
+	if (m_onyonType == ONYON_TYPE_SHIP) {
+		int whites = playData->m_pikiContainer.getColorSum(White);
+		int purple = playData->m_pikiContainer.getColorSum(Purple);
+		if (whites + purple > 0) {
+			P2ASSERTLINE(2603, m_pMotionCount > 1);
+			m_pMotionSpeeds[1] = 30.0f;
+			m_ufoGasIn->create(0);
+			m_ufoGasOut->create(0);
+		} else {
+			m_ufoGasIn->fade();
+			m_ufoGasOut->fade();
+			P2ASSERTLINE(2603, m_pMotionCount > 1);
+			m_pMotionSpeeds[1] = 0.0f;
+		}
+	} else {
+		m_animSpeed = 30.0f;
+		if (m_onyonType == ONYON_TYPE_POD) {
+			m_animator.startAnim(0, 0);
+		} else {
+			if (getStoreCount() > 0) {
+				int animid;
+				if (!m_animator.m_animInfo) {
+					animid = -1;
+				} else {
+					animid = m_animator.m_animInfo->m_id;
+				}
+				if (animid <= (u32)1 || animid == 3) {
+					SysShape::MotionListener* mlisten = this;
+					m_animator.startAnim(2, mlisten);
+				}
+			} else {
+				SysShape::MotionListener* mlisten = this;
+				m_animator.startAnim(0, mlisten);
+			}
+		}
+	}
 	/*
 	stwu     r1, -0x10(r1)
 	mflr     r0
@@ -4016,8 +4204,249 @@ lbl_8017AEC4:
  * Address:	8017AEDC
  * Size:	000BC0
  */
-void ItemOnyon::Mgr::birth(int, int)
+Onyon* ItemOnyon::Mgr::birth(int objtype, int onyontype)
 {
+	Onyon* onyon                = nullptr;
+	TObjectNode<Onyon>* nodeobj = new TObjectNode<Onyon>;
+
+	switch (objtype) {
+	case ONYON_OBJECT_ONYON:
+		onyon                   = new Onyon(OBJTYPE_Onyon); // this is supposed an inline constructor
+		onyon->m_collTree       = new CollTree();
+		onyon->m_mass           = 0.0f;
+		onyon->m_goalWayPoint   = nullptr;
+		onyon->m_faceDir        = 0.0f;
+		onyon->m_matAnim1       = new Sys::MatLoopAnimator;
+		onyon->m_matAnim2       = nullptr;
+		onyon->m_spotbeam_model = nullptr; // up to here
+
+		onyon->init(nullptr);
+		onyon->m_animator.m_animMgr = &m_onyonAnimMgrFile[objtype];
+		onyon->m_animator.startAnim(0, nullptr);
+		onyon->m_animSpeed = 30.0f;
+		onyon->m_model     = new SysShape::Model(m_modelData[0], 0, 2);
+		onyon->setType(onyontype);
+
+		onyon->m_collTree->createFromFactory(onyon->m_model, &m_onyonColl[objtype], nullptr);
+		CollPart* part = onyon->m_collTree->getCollPart('leg1');
+		if (part) {
+			part->m_hasCollPart = 1; // this member should be called partType but Im scared to touch it
+		}
+		part = onyon->m_collTree->getCollPart('leg2');
+		if (part) {
+			part->m_hasCollPart = 1;
+		}
+		part = onyon->m_collTree->getCollPart('leg3');
+		if (part) {
+			part->m_hasCollPart = 1;
+		} else {
+			JUT_PANICLINE(1685, "bikkuri!\n");
+		}
+		part = onyon->m_collTree->getCollPart('fot1');
+		JUT_ASSERTLINE(1685, part, "I\'am bikkuri-ed\n");
+
+		if (onyon->m_onyonType == ONYON_TYPE_SHIP) {
+			int whites = playData->m_pikiContainer.getColorSum(White);
+			int purple = playData->m_pikiContainer.getColorSum(Purple);
+			if (whites + purple > 0) {
+				P2ASSERTLINE(2603, onyon->m_pMotionCount > 1);
+				onyon->m_pMotionSpeeds[1] = 30.0f;
+				onyon->m_ufoGasIn->create(0);
+				onyon->m_ufoGasOut->create(0);
+			} else {
+				onyon->m_ufoGasIn->fade();
+				onyon->m_ufoGasOut->fade();
+				P2ASSERTLINE(2603, onyon->m_pMotionCount > 1);
+				onyon->m_pMotionSpeeds[1] = 0.0f;
+			}
+		} else {
+			onyon->m_animSpeed = 30.0f;
+			if (onyon->m_onyonType == ONYON_TYPE_POD) {
+				onyon->m_animator.startAnim(0, 0);
+			} else {
+				if (playData->m_pikiContainer.getColorSum(onyon->m_onyonType) > 0) {
+					int animid;
+					if (!onyon->m_animator.m_animInfo) {
+						animid = -1;
+					} else {
+						animid = onyon->m_animator.m_animInfo->m_id;
+					}
+					if (animid <= (u32)1 || animid == 3) {
+						SysShape::MotionListener* mlisten = onyon;
+						onyon->m_animator.startAnim(2, mlisten);
+					}
+				} else {
+					SysShape::MotionListener* mlisten = onyon;
+					onyon->m_animator.startAnim(0, mlisten);
+				}
+			}
+		}
+		m_onyons[onyontype] = onyon;
+		playData->hasBootContainer(onyontype);
+		// play boot animation if the onion isnt booted (glitched onion)
+		if (gameSystem->m_mode == GSM_STORY_MODE && !playData->hasBootContainer(onyontype)) {
+			onyon->m_animator.startAnim(4, nullptr);
+			onyon->m_animSpeed = 0.0f;
+		}
+		break;
+	case ONYON_OBJECT_POD:
+		onyon                   = new Onyon(OBJTYPE_Onyon); // this is supposed an inline constructor
+		onyon->m_collTree       = new CollTree();
+		onyon->m_mass           = 0.0f;
+		onyon->m_goalWayPoint   = nullptr;
+		onyon->m_faceDir        = 0.0f;
+		onyon->m_matAnim1       = new Sys::MatLoopAnimator;
+		onyon->m_matAnim2       = nullptr;
+		onyon->m_spotbeam_model = nullptr;
+		if (shadowMgr) {
+			shadowMgr->createShadow(onyon);
+			shadowMgr->addShadow(onyon);
+		}
+		onyon->init(nullptr);
+		onyon->m_animator.m_animMgr = m_podAnimMgrFile;
+		onyon->m_animator.startAnim(0, nullptr);
+		onyon->m_animSpeed = 30.0f;
+		onyon->m_model     = new SysShape::Model(m_modelData[1], 0, 2);
+		onyon->setType(ONYON_TYPE_POD);
+		onyon->m_collTree->createFromFactory(onyon->m_model, m_podColl, nullptr);
+
+		if (onyon->m_onyonType == ONYON_TYPE_SHIP) { // this whole thing MUST be an inline with how much they copy paste it
+			int whites = playData->m_pikiContainer.getColorSum(White);
+			int purple = playData->m_pikiContainer.getColorSum(Purple);
+			if (whites + purple > 0) {
+				P2ASSERTLINE(2603, onyon->m_pMotionCount > 1);
+				onyon->m_pMotionSpeeds[1] = 30.0f;
+				onyon->m_ufoGasIn->create(0);
+				onyon->m_ufoGasOut->create(0);
+			} else {
+				onyon->m_ufoGasIn->fade();
+				onyon->m_ufoGasOut->fade();
+				P2ASSERTLINE(2603, onyon->m_pMotionCount > 1);
+				onyon->m_pMotionSpeeds[1] = 0.0f;
+			}
+		} else {
+			onyon->m_animSpeed = 30.0f;
+			if (onyon->m_onyonType == ONYON_TYPE_POD) {
+				onyon->m_animator.startAnim(0, 0);
+			} else {
+				if (playData->m_pikiContainer.getColorSum(onyon->m_onyonType) > 0) {
+					int animid;
+					if (!onyon->m_animator.m_animInfo) {
+						animid = -1;
+					} else {
+						animid = onyon->m_animator.m_animInfo->m_id;
+					}
+					if (animid <= (u32)1 || animid == 3) {
+						SysShape::MotionListener* mlisten = onyon;
+						onyon->m_animator.startAnim(2, mlisten);
+					}
+				} else {
+					SysShape::MotionListener* mlisten = onyon;
+					onyon->m_animator.startAnim(0, mlisten);
+				}
+			}
+		}
+		onyon->m_model->m_j3dModel->calc();
+		onyon->m_model->m_j3dModel->calcMaterial();
+		onyon->m_model->m_j3dModel->makeDL();
+		onyon->m_model->m_j3dModel->lock();
+		m_pod = onyon;
+		break;
+	case ONYON_OBJECT_SHIP:
+		onyon                   = new Onyon(OBJTYPE_Onyon); // this is supposed an inline constructor
+		onyon->m_collTree       = new CollTree();
+		onyon->m_mass           = 0.0f;
+		onyon->m_goalWayPoint   = nullptr;
+		onyon->m_faceDir        = 0.0f;
+		onyon->m_matAnim1       = new Sys::MatLoopAnimator;
+		onyon->m_matAnim2       = nullptr;
+		onyon->m_spotbeam_model = nullptr;
+
+		onyon->init(nullptr);
+		onyon->m_animator.m_animMgr = m_ufoAnimMgrFile;
+		onyon->m_animator.startAnim(0, nullptr);
+		onyon->m_animSpeed    = 0.0f;
+		onyon->m_objectTypeID = OBJTYPE_Ufo;
+		onyon->m_model        = new SysShape::Model(m_modelData[2], 0, 2);
+
+		onyon->m_model->m_j3dModel->newDifferedDisplayList(0x1000000);
+		onyon->m_model->m_j3dModel->calc();
+		onyon->m_model->m_j3dModel->calcMaterial();
+		onyon->m_model->m_j3dModel->makeDL();
+		onyon->m_model->m_j3dModel->lock();
+
+		onyon->setType(ONYON_TYPE_SHIP);
+		onyon->m_collTree->createFromFactory(onyon->m_model, m_ufoColl, nullptr);
+		float speed;
+		if (onyon->m_onyonType == ONYON_TYPE_SHIP) {
+			onyon->m_pMotionCount  = 3;
+			onyon->m_pMotionList   = new SysShape::Animator[onyon->m_pMotionCount];
+			onyon->m_pMotionSpeeds = new float[onyon->m_pMotionCount];
+			for (int i = 0; i < onyon->m_pMotionCount; i++) {
+				onyon->m_pMotionList->m_animMgr = onyon->m_animator.m_animMgr;
+				if (i == 0) {
+					speed = 30.0f;
+				} else {
+					speed = 0.0f;
+				}
+				onyon->m_pMotionSpeeds[i] = speed;
+			}
+			P2ASSERTLINE(2609, onyon->m_pMotionCount >= 1);
+			onyon->m_pMotionList[0].startAnim(1, 0);
+			P2ASSERTLINE(2609, onyon->m_pMotionCount >= 2);
+			onyon->m_pMotionList[1].startAnim(2, 0);
+			P2ASSERTLINE(2609, onyon->m_pMotionCount >= 3);
+			onyon->m_pMotionList[2].startAnim(3, 0);
+			onyon->m_pMotionSpeeds[2] = 30.0f;
+		} else {
+			onyon->m_pMotionCount  = 0;
+			onyon->m_pMotionList   = nullptr;
+			onyon->m_pMotionSpeeds = nullptr;
+		}
+
+		if (onyon->m_onyonType == ONYON_TYPE_SHIP) { // this whole thing MUST be an inline with how much they copy paste it
+			int whites = playData->m_pikiContainer.getColorSum(White);
+			int purple = playData->m_pikiContainer.getColorSum(Purple);
+			if (whites + purple > 0) {
+				P2ASSERTLINE(2603, onyon->m_pMotionCount > 1);
+				onyon->m_pMotionSpeeds[1] = 30.0f;
+				onyon->m_ufoGasIn->create(0);
+				onyon->m_ufoGasOut->create(0);
+			} else {
+				onyon->m_ufoGasIn->fade();
+				onyon->m_ufoGasOut->fade();
+				P2ASSERTLINE(2603, onyon->m_pMotionCount > 1);
+				onyon->m_pMotionSpeeds[1] = 0.0f;
+			}
+		} else {
+			onyon->m_animSpeed = 30.0f;
+			if (onyon->m_onyonType == ONYON_TYPE_POD) {
+				onyon->m_animator.startAnim(0, 0);
+			} else {
+				if (playData->m_pikiContainer.getColorSum(onyon->m_onyonType) > 0) {
+					int animid;
+					if (!onyon->m_animator.m_animInfo) {
+						animid = -1;
+					} else {
+						animid = onyon->m_animator.m_animInfo->m_id;
+					}
+					if (animid <= (u32)1 || animid == 3) {
+						SysShape::MotionListener* mlisten = onyon;
+						onyon->m_animator.startAnim(2, mlisten);
+					}
+				} else {
+					SysShape::MotionListener* mlisten = onyon;
+					onyon->m_animator.startAnim(0, mlisten);
+				}
+			}
+		}
+		m_ufo = onyon;
+		break;
+	}
+	nodeobj->m_contents = onyon;
+	m_nodeObjectMgr.add(nodeobj);
+	nodeobj->m_contents->constructor();
+	return onyon;
 	/*
 	stwu     r1, -0x30(r1)
 	mflr     r0
@@ -4920,8 +5349,14 @@ lbl_8017BA60:
  * Address:	8017BA9C
  * Size:	000060
  */
-Onyon* ItemOnyon::Mgr::getOnyon(int)
+Onyon* ItemOnyon::Mgr::getOnyon(int i)
 {
+	if (i >= 0 && i < ONYON_TYPE_MAX) {
+		return m_onyons[i];
+	} else {
+		JUT_PANICLINE(2930, "illegal onyon index %d\n", i);
+		return nullptr;
+	}
 	/*
 	stwu     r1, -0x10(r1)
 	mflr     r0
@@ -4961,6 +5396,7 @@ lbl_8017BAEC:
  */
 void ItemOnyon::Mgr::init(void)
 {
+	load();
 	/*
 	stwu     r1, -0x10(r1)
 	mflr     r0
@@ -4980,6 +5416,120 @@ void ItemOnyon::Mgr::init(void)
  */
 void ItemOnyon::Mgr::load(void)
 {
+	sys->heapStatusStart("onyon-arc", nullptr);
+	LoadResource::Arg loadarg("user/Kando/onyon/arc.szs");
+	LoadResource::Node* node = gLoadResourceMgr->mountArchive(loadarg);
+	JKRArchive* onyonarc;
+	if (node) {
+		onyonarc = node->m_archive;
+	} else {
+		onyonarc = nullptr;
+	}
+	sys->heapStatusEnd("onyon-arc");
+
+	void* file = JKRFileLoader::getGlbResource("goal.bmd", nullptr);
+	JUT_ASSERTLINE(2966, file, "goal.bmd not found !!\n");
+	m_modelData[0] = J3DModelLoaderDataBase::load(file, 0x240000);
+
+	JKRArchive* podarc;
+	if ((gameSystem->isChallengeMode() || gameSystem->m_inCave) && gameSystem->m_mode != GSM_VERSUS_MODE) {
+		char* path = "user/Kando/pod/arc.szs";
+		if (playData->m_storyFlags & STORY_DebtPaid) {
+			path = "user/Kando/pod_gold/arc.szs";
+		}
+		LoadResource::Arg loadpodarg(path);
+		loadpodarg.m_heap = getCurrentHeap();
+		node              = gLoadResourceMgr->mountArchive(loadpodarg);
+		if (node) {
+			podarc = node->m_archive;
+		} else {
+			podarc = nullptr;
+		}
+		file = JKRFileLoader::getGlbResource("pot.bmd", nullptr);
+		JUT_ASSERTLINE(2988, file, "pot.bmd not found !!\n");
+		m_modelData[1] = J3DModelLoaderDataBase::load(file, 0x21020030);
+		m_modelData[1]->newSharedDisplayList(0x40000);
+		m_modelData[1]->makeSharedDL();
+		for (int i = 0; i < m_modelData[1]->m_shapeTable.m_count; i++) {
+			m_modelData[1]->m_shapeTable.m_items[i]->m_flags &= 0xffff0fff | 0x2000;
+		}
+	} else {
+		m_modelData[1] = nullptr;
+	}
+	SysShape::Model::enableMaterialAnim(m_modelData[0], 0);
+
+	file = JKRFileLoader::getGlbResource("kidou_blue.brk", nullptr);
+	m_onyonTevAnim[0].attachResource(file, m_modelData[0]); // blue mat anim
+
+	file = JKRFileLoader::getGlbResource("kidou_red.brk", nullptr);
+	m_onyonTevAnim[1].attachResource(file, m_modelData[0]); // red mat anim
+
+	file = JKRFileLoader::getGlbResource("kidou_yellow.brk", nullptr);
+	m_onyonTevAnim[2].attachResource(file, m_modelData[0]); // yellow mat anim
+
+	m_objectPathComponent    = "user/Kando/onyon";
+	JKRArchive* onyontextarc = openTextArc("texts.szs");
+	m_onyonAnimMgrFile       = SysShape::AnimMgr::load(onyontextarc, "onyonAnimMgr.txt", m_modelData[0], onyonarc, nullptr);
+	m_onyonColl              = CollPartFactory::load(onyontextarc, "onyonColl.txt");
+	closeTextArc(onyontextarc);
+
+	if ((gameSystem->isChallengeMode() || gameSystem->m_inCave) && gameSystem->m_mode != GSM_VERSUS_MODE) {
+		if (playData->m_storyFlags & STORY_DebtPaid) {
+			m_objectPathComponent = "user/Kando/pod_gold";
+		} else {
+			m_objectPathComponent = "user/Kando/pod";
+		}
+		JKRArchive* podtextarc = openTextArc("texts.szs");
+		m_podAnimMgrFile       = SysShape::AnimMgr::load(podtextarc, "animMgr.txt", m_modelData[1], podarc, nullptr);
+		m_podColl              = CollPartFactory::load(podtextarc, "coll.txt");
+		closeTextArc(podtextarc);
+	} else {
+		m_podAnimMgrFile = nullptr;
+		m_podColl        = nullptr;
+	}
+
+	JKRArchive* ufoarc;
+	char* path = "user/Kando/ufo/arc.szs";
+	if (playData->m_storyFlags & STORY_DebtPaid) {
+		path = "user/Kando/ufo_gold/arc.szs";
+	}
+	LoadResource::Arg loadufoarg(path);
+	loadufoarg.m_heap = getCurrentHeap();
+	node              = gLoadResourceMgr->mountArchive(loadufoarg);
+	if (node) {
+		ufoarc = node->m_archive;
+	} else {
+		ufoarc = nullptr;
+	}
+	file = JKRFileLoader::getGlbResource("ufo.bmd", nullptr);
+	JUT_ASSERTLINE(3123, file, "ufo.bmd not found !!\n");
+	m_modelData[2] = J3DModelLoaderDataBase::load(file, 0x21020030);
+	m_modelData[2]->newSharedDisplayList(0x40000);
+	m_modelData[2]->makeSharedDL();
+	for (int i = 0; i < m_modelData[1]->m_shapeTable.m_count; i++) {
+		m_modelData[1]->m_shapeTable.m_items[i]->m_flags &= 0xffff0fff | 0x2000;
+	}
+	SysShape::Model::enableMaterialAnim(m_modelData[2], 0);
+
+	file = JKRFileLoader::getGlbResource("ufo.brk", nullptr);
+	P2ASSERTLINE(3151, file);
+	m_ufoTevAnim[0].attachResource(file, m_modelData[2]);
+
+	file = JKRFileLoader::getGlbResource("ufo_2.brk", nullptr);
+	P2ASSERTLINE(3156, file);
+	m_ufoTevAnim[1].attachResource(file, m_modelData[2]);
+
+	if (playData->m_storyFlags & STORY_DebtPaid) {
+		m_objectPathComponent = "user/Kando/ufo_gold";
+	} else {
+		m_objectPathComponent = "user/Kando/ufo";
+	}
+
+	JKRArchive* ufotextarc = openTextArc("texts.szs");
+	m_ufoAnimMgrFile       = SysShape::AnimMgr::load(ufotextarc, "animmgr.txt", m_modelData[2], ufoarc, nullptr);
+	m_ufoColl              = CollPartFactory::load(ufotextarc, "coll.txt");
+	closeTextArc(ufotextarc);
+
 	/*
 	stwu     r1, -0xb0(r1)
 	mflr     r0
@@ -5386,6 +5936,7 @@ load__Q28SysShape7AnimMgrFP13JKRFileLoaderPcP12J3DModelDataP13JKRFileLoaderPc
  */
 u32 ItemOnyon::Mgr::generatorGetID()
 {
+	return 'onyn';
 	/*
 	lis      r3, 0x6F6E796E@ha
 	addi     r3, r3, 0x6F6E796E@l
@@ -5400,6 +5951,7 @@ u32 ItemOnyon::Mgr::generatorGetID()
  */
 u32 ItemOnyon::Mgr::generatorLocalVersion()
 {
+	return '0001';
 	/*
 	lis      r3, 0x30303031@ha
 	addi     r3, r3, 0x30303031@l
