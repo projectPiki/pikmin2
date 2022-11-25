@@ -29,11 +29,10 @@ struct Container : public GenericContainer {
 		return get(index);
 	}
 
-	virtual void* getNext(void*) = 0; // _14
-	virtual void* getStart()     = 0; // _18
 	virtual void* getEnd()       = 0; // _1C
+	virtual void* getStart()     = 0; // _18
+	virtual void* getNext(void*) = 0; // _14
 	virtual T* get(void*)        = 0; // _20
-
 	// Gets the object at the given slot index (or null if not occupied)
 	// (actually constrained to taking an int argument, instead of void*).
 	virtual T* getAt(int index) // _24 (weak)

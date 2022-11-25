@@ -85,12 +85,16 @@ struct TObjectNode : public CNode {
 template <typename T>
 struct NodeObjectMgr : public ObjectMgr<T> {
 	inline NodeObjectMgr()
-	    : ObjectMgr<T>()
-	    , m_node()
+	    : m_node()
 	{
 	}
+
 	// first VTBL:
 	// virtual ~NodeObjectMgr() { }      // _08
+	virtual T* get(void* node) // _20
+	{
+		return ((TObjectNode<T>*)node)->m_contents;
+	}
 	virtual void* getNext(void* node) // _14
 	{
 		return ((TObjectNode<T>*)node)->m_next;
@@ -103,10 +107,7 @@ struct NodeObjectMgr : public ObjectMgr<T> {
 	{
 		return nullptr;
 	}
-	virtual T* get(void* node) // _20
-	{
-		return ((TObjectNode<T>*)node)->m_contents;
-	}
+
 	// second VTBL:
 	virtual void resetMgr() // _20
 	{

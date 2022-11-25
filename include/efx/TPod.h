@@ -35,7 +35,7 @@ struct TPodOpenA : public TForever {
 	{
 	}
 
-	virtual ~TPodOpenA() {}; // _48 (weak)
+	// virtual ~TPodOpenA() {}; // _48 (weak)
 
 	// _00     = VTBL
 	// _00-_10 = TForever
