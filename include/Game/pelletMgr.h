@@ -271,12 +271,12 @@ struct Pellet : public DynCreature, public SysShape::MotionListener, public Carr
 	virtual void createKiraEffect(Vector3f&) { }              // _1FC (weak)
 	virtual void getCarryInfoParam(CarryInfoParam& infoParam) // _200 (weak, thunk at _1C8)
 	{
-		infoParam._00        = 0;
+		infoParam.m_useType        = 0;
 		infoParam.m_position = m_rigid.m_configs[0]._00;
-		infoParam._10        = 30.0f + m_config->m_params.m_height.m_data;
+		infoParam.m_yOffsetMax        = 30.0f + m_config->m_params.m_height.m_data;
 		infoParam._14        = 1;
-		infoParam._1C        = 1;
-		infoParam._18        = getTotalCarryPikmins();
+		infoParam.m_isTopFirst        = 1;
+		infoParam.m_value2        = getTotalCarryPikmins();
 
 		int minVal;
 		if (_3D8 > 0) {
@@ -284,9 +284,9 @@ struct Pellet : public DynCreature, public SysShape::MotionListener, public Carr
 		} else {
 			minVal = m_config->m_params.m_min.m_data;
 		}
-		infoParam._16 = minVal;
+		infoParam.m_value1 = minVal;
 
-		infoParam._15 = m_carryColor;
+		infoParam.m_color = m_carryColor;
 	}
 	virtual bool isCarried();                    // _204
 	virtual bool isPicked() { return _3D0 & 1; } // _208 (weak)

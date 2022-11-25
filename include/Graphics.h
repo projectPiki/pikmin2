@@ -136,7 +136,7 @@ struct Graphics : public _GraphicsParent {
 
 	void initGX();
 	void dirtyInitGX();
-	void clearInitGX();
+	static void clearInitGX();
 
 	// _GraphicsParent _000
 	// VTBL _26C
