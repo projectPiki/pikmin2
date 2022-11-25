@@ -17,365 +17,6 @@
 #include "Game/CollEvent.h"
 #include "nans.h"
 
-// inline float _sqrt(register float x) {
-// 	register float fthis;
-// 	asm {
-// 		frsqrte fthis, x
-// 		fmuls x, fthis, x
-// 	}
-// 	return x;
-// }
-
-// inline float pikmin2_sqrtf__(float x)
-// {
-// 	if (!(x > 0.0f)) { // if x <= 0
-// 		return x;
-// 	}
-// 	return _sqrt(x);
-// 	// asm {
-// 	// 	lfs f0, 0.0f
-// 	// 	fcmpo cr0, x, f0
-// 	// 	blelr
-// 	// 	frsqrte f0, x
-// 	// 	fmuls x, f0, x
-// 	// }
-// 	// return x;
-// 	// asm {
-// 	// 	opword 0xc0021f10
-// 	// 	opword 0xfc010040
-// 	// 	opword 0x4c810020
-// 	// 	opword 0xfc000834
-// 	// 	opword 0xec200072
-// 	// 	opword 0x4e800020
-// 	// };
-// 	// lfs f0, lbl_80520270
-// 	// fcmpo cr0, f1, f0
-// 	// blelr
-// 	// frsqrte f0, f1
-// 	// fmuls f1, f0, f1
-// 	// blr
-// 	// if (!(x > 0.0f)) { // if x <= 0
-// 	// 	return x;
-// 	// }
-
-// 	// register float reg1 = x;
-// 	// register float reg2 = 0.0f;
-// 	// register float result;
-
-// 	// asm {
-//     //   frsqrte reg2, reg1
-//     //   fmuls result, reg2, reg1
-// 	// }
-
-// 	// return result;
-// 	// return (x > 0.0f) ? x : __frsqrte(x) * (double)x;
-// }
-
-// inline float pikmin2_sqrtf_(float x)
-// {
-// 	if (!(x > 0.0f)) { // if x <= 0
-// 		return x;
-// 	}
-
-// 	register float reg1 = x;
-// 	register float reg2 = 0.0f;
-// 	register float result;
-
-// 	asm {
-//       frsqrte reg2, reg1
-//       fmuls result, reg2, reg1
-// 	}
-
-// 	return result;
-// }
-
-// template<> float Vector3f::normalise() {
-// 	register float que;
-// 	asm {
-// 		lfs f3, 0(r3)
-// 		lfs que, 4(r3)
-// 		fmuls f0,f3,f3
-// 		lfs f4, 8(r3)
-// 		fmuls que,que,que
-// 		fadds f0,f0,que
-// 		fadds f0,f4,f0
-// 		fcmpo cr0,f0,f2
-// 		ble LAB_80207E28
-// 		fmadds f0,f3,f3,que
-// 		fadds que,f4,f0
-// 		fcmpo cr0,que,f2
-// 		ble LAB_80207E2C
-// 		frsqrte f0,que
-// 		fmuls que,f0,que
-// 		b LAB_80207E2C
-// LAB_80207E28:
-// 		fmr que,f2
-// LAB_80207E2C:
-// 		// lfs f0,-0x45CC(r2)
-// 		// fcmpo cr0,que,f0
-// 		// ble LAB_80207E68
-// 		// lfs f2,-0x45C0(r2)
-// 		// lfs f0,0(r3)
-// 		// fdivs f2,f2,que
-// 	};
-// 	if (que <= 0.0f) {
-// 		return 0.0f;
-// 	}
-// 	x *= 1.0f / que;
-// 	y *= 1.0f / que;
-// 	z *= 1.0f / que;
-// 	return que;
-// }
-
-// TODO: replace with definition in itemUjamushi when we get there.
-// inline template <> float Vector3f::normalise()
-// {
-// 	// float f2 = 0.0f;
-// 	// if ((x*x + y*y + z*z > 0.0f)) {
-// 	float f2 = ((x * x + y * y + z * z > 0.0f)) ? pikmin2_sqrtf__(z * z + (x * x + y * y)) : 0.0f;
-// 	// if (f2 = x*x + y*y + z*z, f2 > 0.0f) {
-// 	// float x2 = x*x;
-// 	// float z2 = z*z;
-// 	// float y2 = y*y;
-// 	// if (x2 + y2 + z2 > 0.0f) {
-// 	// 	if (f2 = y2 + x2 + z2, f2 > 0.0f) {
-// 	// float f2 = x*x + y*y + z*z;
-// 	// if ((f2 > 0.0f) && (f2 > 0.0f)) {
-// 	// f2 *= (float)SQRT((float)f2);
-// 	// }
-// 	// f2 = pikmin2_sqrtf__(z*z + (x*x + y*y));
-// 	// }
-// 	if (f2 > 0.0f) {
-// 		// float f1 = 1.0f / f2;
-// 		x *= 1.0f / f2;
-// 		y *= 1.0f / f2;
-// 		z *= 1.0f / f2;
-// 		return f2;
-// 	}
-// 	return 0.0f;
-// }
-
-/*
-    Generated from dpostproc
-
-    .section .ctors, "wa"  # 0x80472F00 - 0x804732C0
-    .4byte __sinit_creature_cpp
-
-    .section .rodata  # 0x804732E0 - 0x8049E220
-    .global lbl_8047C6E8
-    lbl_8047C6E8:
-        .asciz "creature.cpp"
-        .skip 3
-    .global lbl_8047C6F8
-    lbl_8047C6F8:
-        .asciz "P2Assert"
-        .skip 3
-
-    .section .data, "wa"  # 0x8049E220 - 0x804EFC20
-    .global lbl_804B0098
-    lbl_804B0098:
-        .4byte 0x00000000
-        .4byte 0x00000000
-        .4byte 0x00000000
-    .global lbl_804B00A4
-    lbl_804B00A4:
-        .4byte 0x00000000
-        .4byte 0xFFFFFFFF
-        .4byte
-   "resolveOneColl__Q24Game8CreatureFP8CollPartP8CollPartR10Vector3<f>" .global
-   "__vt__63Delegate3<Q24Game8Creature,P8CollPart,P8CollPart,R10Vector3<f>>"
-    "__vt__63Delegate3<Q24Game8Creature,P8CollPart,P8CollPart,R10Vector3<f>>":
-        .4byte 0
-        .4byte 0
-        .4byte
-   "invoke__63Delegate3<Q24Game8Creature,P8CollPart,P8CollPart,R10Vector3<f>>FP8CollPartP8CollPartR10Vector3<f>"
-    .global "__vt__47IDelegate3<P8CollPart,P8CollPart,R10Vector3<f>>"
-    "__vt__47IDelegate3<P8CollPart,P8CollPart,R10Vector3<f>>":
-        .4byte 0
-        .4byte 0
-        .4byte 0
-    .global __vt__Q24Game8Creature
-    __vt__Q24Game8Creature:
-        .4byte 0
-        .4byte 0
-        .4byte 0
-        .4byte checkCollision__Q24Game8CreatureFPQ24Game10CellObject
-        .4byte 0
-        .4byte collisionUpdatable__Q24Game8CreatureFv
-        .4byte isPiki__Q24Game8CreatureFv
-        .4byte isNavi__Q24Game8CreatureFv
-        .4byte deferPikiCollision__Q24Game10CellObjectFv
-        .4byte getTypeName__Q24Game8CreatureFv
-        .4byte getObjType__Q24Game8CreatureFv
-        .4byte constructor__Q24Game8CreatureFv
-        .4byte onInit__Q24Game8CreatureFPQ24Game15CreatureInitArg
-        .4byte onKill__Q24Game8CreatureFPQ24Game15CreatureKillArg
-        .4byte onInitPost__Q24Game8CreatureFPQ24Game15CreatureInitArg
-        .4byte doAnimation__Q24Game8CreatureFv
-        .4byte doEntry__Q24Game8CreatureFv
-        .4byte doSetView__Q24Game8CreatureFi
-        .4byte doViewCalc__Q24Game8CreatureFv
-        .4byte doSimulation__Q24Game8CreatureFf
-        .4byte doDirectDraw__Q24Game8CreatureFR8Graphics
-        .4byte getBodyRadius__Q24Game8CreatureFv
-        .4byte getCellRadius__Q24Game8CreatureFv
-        .4byte "initPosition__Q24Game8CreatureFR10Vector3<f>"
-        .4byte "onInitPosition__Q24Game8CreatureFR10Vector3<f>"
-        .4byte 0
-        .4byte 0
-        .4byte 0
-        .4byte 0
-        .4byte "onSetPositionPost__Q24Game8CreatureFR10Vector3<f>"
-        .4byte 0
-        .4byte isTeki__Q24Game8CreatureFv
-        .4byte isPellet__Q24Game8CreatureFv
-        .4byte inWaterCallback__Q24Game8CreatureFPQ24Game8WaterBox
-        .4byte outWaterCallback__Q24Game8CreatureFv
-        .4byte inWater__Q24Game8CreatureFv
-        .4byte getFlockMgr__Q24Game8CreatureFv
-        .4byte onStartCapture__Q24Game8CreatureFv
-        .4byte onUpdateCapture__Q24Game8CreatureFR7Matrixf
-        .4byte onEndCapture__Q24Game8CreatureFv
-        .4byte isAtari__Q24Game8CreatureFv
-        .4byte setAtari__Q24Game8CreatureFb
-        .4byte isAlive__Q24Game8CreatureFv
-        .4byte setAlive__Q24Game8CreatureFb
-        .4byte isCollisionFlick__Q24Game8CreatureFv
-        .4byte setCollisionFlick__Q24Game8CreatureFb
-        .4byte isMovieActor__Q24Game8CreatureFv
-        .4byte isMovieExtra__Q24Game8CreatureFv
-        .4byte isMovieMotion__Q24Game8CreatureFv
-        .4byte setMovieMotion__Q24Game8CreatureFb
-        .4byte isBuried__Q24Game8CreatureFv
-        .4byte isFlying__Q24Game8CreatureFv
-        .4byte isUnderground__Q24Game8CreatureFv
-        .4byte isLivingThing__Q24Game8CreatureFv
-        .4byte isDebugCollision__Q24Game8CreatureFv
-        .4byte setDebugCollision__Q24Game8CreatureFb
-        .4byte doSave__Q24Game8CreatureFR6Stream
-        .4byte doLoad__Q24Game8CreatureFR6Stream
-        .4byte bounceCallback__Q24Game8CreatureFPQ23Sys8Triangle
-        .4byte collisionCallback__Q24Game8CreatureFRQ24Game9CollEvent
-        .4byte platCallback__Q24Game8CreatureFRQ24Game9PlatEvent
-        .4byte getJAIObject__Q24Game8CreatureFv
-        .4byte getPSCreature__Q24Game8CreatureFv
-        .4byte getSound_AILOD__Q24Game8CreatureFv
-        .4byte getSound_PosPtr__Q24Game8CreatureFv
-        .4byte sound_culling__Q24Game8CreatureFv
-        .4byte getSound_CurrAnimFrame__Q24Game8CreatureFv
-        .4byte getSound_CurrAnimSpeed__Q24Game8CreatureFv
-        .4byte on_movie_begin__Q24Game8CreatureFb
-        .4byte on_movie_end__Q24Game8CreatureFb
-        .4byte movieStartAnimation__Q24Game8CreatureFUl
-        .4byte movieStartDemoAnimation__Q24Game8CreatureFPQ28SysShape8AnimInfo
-        .4byte movieSetAnimationLastFrame__Q24Game8CreatureFv
-        .4byte "movieSetTranslation__Q24Game8CreatureFR10Vector3<f>f"
-        .4byte movieSetFaceDir__Q24Game8CreatureFf
-        .4byte "movieGotoPosition__Q24Game8CreatureFR10Vector3<f>"
-        .4byte movieUserCommand__Q24Game8CreatureFUlPQ24Game11MoviePlayer
-        .4byte getShadowParam__Q24Game8CreatureFRQ24Game11ShadowParam
-        .4byte needShadow__Q24Game8CreatureFv
-        .4byte getLifeGaugeParam__Q24Game8CreatureFRQ24Game14LifeGaugeParam
-        .4byte getLODSphere__Q24Game8CreatureFRQ23Sys6Sphere
-        .4byte getLODCylinder__Q24Game8CreatureFRQ23Sys8Cylinder
-        .4byte startPick__Q24Game8CreatureFv
-        .4byte endPick__Q24Game8CreatureFb
-        .4byte getMabiki__Q24Game8CreatureFv
-        .4byte getFootmarks__Q24Game8CreatureFv
-        .4byte onStickStart__Q24Game8CreatureFPQ24Game8Creature
-        .4byte onStickEnd__Q24Game8CreatureFPQ24Game8Creature
-        .4byte onStickStartSelf__Q24Game8CreatureFPQ24Game8Creature
-        .4byte onStickEndSelf__Q24Game8CreatureFPQ24Game8Creature
-        .4byte isSlotFree__Q24Game8CreatureFs
-        .4byte getFreeStickSlot__Q24Game8CreatureFv
-        .4byte "getNearFreeStickSlot__Q24Game8CreatureFR10Vector3<f>"
-        .4byte getRandomFreeStickSlot__Q24Game8CreatureFv
-        .4byte onSlotStickStart__Q24Game8CreatureFPQ24Game8Creatures
-        .4byte onSlotStickEnd__Q24Game8CreatureFPQ24Game8Creatures
-        .4byte "calcStickSlotGlobal__Q24Game8CreatureFsR10Vector3<f>"
-        .4byte 0
-        .4byte "getAngularEffect__Q24Game8CreatureFR10Vector3<f>R10Vector3<f>"
-        .4byte "applyImpulse__Q24Game8CreatureFR10Vector3<f>R10Vector3<f>"
-        .4byte ignoreAtari__Q24Game8CreatureFPQ24Game8Creature
-        .4byte getSuckPos__Q24Game8CreatureFv
-        .4byte getGoalPos__Q24Game8CreatureFv
-        .4byte isSuckReady__Q24Game8CreatureFv
-        .4byte isSuckArriveWait__Q24Game8CreatureFv
-        .4byte stimulate__Q24Game8CreatureFRQ24Game11Interaction
-        .4byte getCreatureName__Q24Game8CreatureFv
-        .4byte getCreatureID__Q24Game8CreatureFv
-    .global __vt__Q24Game10CellObject
-    __vt__Q24Game10CellObject:
-        .4byte 0
-        .4byte 0
-        .4byte 0
-        .4byte checkCollision__Q24Game10CellObjectFPQ24Game10CellObject
-        .4byte 0
-        .4byte 0
-        .4byte isPiki__Q24Game10CellObjectFv
-        .4byte isNavi__Q24Game10CellObjectFv
-        .4byte deferPikiCollision__Q24Game10CellObjectFv
-        .4byte 0
-        .4byte 0
-    .global __vt__Q24Game15TPositionObject
-    __vt__Q24Game15TPositionObject:
-        .4byte 0
-        .4byte 0
-        .4byte 0
-
-    .section .sdata, "wa"  # 0x80514680 - 0x80514D80
-    .global usePacketCulling__Q24Game8Creature
-    usePacketCulling__Q24Game8Creature:
-        .4byte 0x01000000
-
-    .section .sbss # 0x80514D80 - 0x80516360
-    .global lbl_805158F0
-    lbl_805158F0:
-        .skip 0x4
-    .global lbl_805158F4
-    lbl_805158F4:
-        .skip 0x4
-    .global currOp__Q24Game8Creature
-    currOp__Q24Game8Creature:
-        .skip 0x8
-
-    .section .sdata2, "a"     # 0x80516360 - 0x80520E40
-    .global lbl_80518280
-    lbl_80518280:
-        .4byte 0x42C80000
-    .global lbl_80518284
-    lbl_80518284:
-        .float 1.0
-    .global lbl_80518288
-    lbl_80518288:
-        .4byte 0x00000000
-    .global lbl_8051828C
-    lbl_8051828C:
-        .float 0.5
-    .global lbl_80518290
-    lbl_80518290:
-        .4byte 0x41200000
-    .global lbl_80518294
-    lbl_80518294:
-        .4byte 0x40800000
-    .global lbl_80518298
-    lbl_80518298:
-        .4byte 0xC3FA0000
-    .global lbl_8051829C
-    lbl_8051829C:
-        .4byte 0xC3960000
-    .global lbl_805182A0
-    lbl_805182A0:
-        .4byte 0x43480000
-    .global lbl_805182A4
-    lbl_805182A4:
-        .float 0.1
-    .global lbl_805182A8
-    lbl_805182A8:
-        .4byte 0x40000000
-        .4byte 0x00000000
-*/
-
 namespace Game {
 /*
  * --INFO--
@@ -552,13 +193,13 @@ void Creature::getYVector(Vector3f& outVector)
 	outVector.x = m_mainMatrix.m_matrix.structView.yx;
 	outVector.y = m_mainMatrix.m_matrix.structView.yy;
 	outVector.z = m_mainMatrix.m_matrix.structView.yz;
-	float sqlen = sqLen(outVector);
+	float sqlen = _lenVec(outVector);
 
 	register float norm;
 	if (sqlen > 0.0f) {
-		float Y       = S(outVector.y);
-		float complen = Y + S(outVector.x);
-		float Z       = S(outVector.z);
+		float Y       = SQUARE(outVector.y);
+		float complen = Y + SQUARE(outVector.x);
+		float Z       = SQUARE(outVector.z);
 		norm          = Z + complen;
 		if (norm > 0.0f) {
 			register float reg2 = 0.0f;
@@ -678,7 +319,7 @@ void Creature::getShadowParam(Game::ShadowParam& param)
  * Address:	8013B4F8
  * Size:	00000C
  */
-bool Creature::needShadow() { return m_lod.m_flags & AILOD::FLAG_NEED_SHADOW; }
+bool Creature::needShadow() { return m_lod.m_flags & AILOD_FLAG_NEED_SHADOW; }
 
 /*
  * --INFO--
@@ -900,7 +541,7 @@ bool Creature::isPellet() { return m_objectTypeID == OBJTYPE_Pellet; }
  * Address:	8013BA30
  * Size:	000020
  */
-bool Creature::sound_culling() { return !((m_lod.m_flags & AILOD::FLAG_UNKNOWN4) || (m_lod.m_flags & AILOD::FLAG_NEED_SHADOW)); }
+bool Creature::sound_culling() { return !((m_lod.m_flags & AILOD_FLAG_UNKNOWN4) || (m_lod.m_flags & AILOD_FLAG_NEED_SHADOW)); }
 
 /*
  * --INFO--
@@ -910,14 +551,14 @@ bool Creature::sound_culling() { return !((m_lod.m_flags & AILOD::FLAG_UNKNOWN4)
 void Creature::movie_begin(bool required)
 {
 	// m_flags.m_isMovieActor = TRUE;
-	m_flags.intView |= CF_IS_MOVIE_ACTOR;
+	m_flags.typeView |= CF_IS_MOVIE_ACTOR;
 	if (required == false) {
 		// 	m_flags.m_isMovieExtra = TRUE;
-		m_flags.intView |= CF_IS_MOVIE_EXTRA;
+		m_flags.typeView |= CF_IS_MOVIE_EXTRA;
 		isPiki();
 	} else {
 		// 	m_flags.m_isMovieExtra = FALSE;
-		m_flags.intView &= ~CF_IS_MOVIE_EXTRA;
+		m_flags.typeView &= ~CF_IS_MOVIE_EXTRA;
 		isPiki();
 	}
 	on_movie_begin(required);
@@ -932,8 +573,8 @@ void Creature::movie_begin(bool required)
 void Creature::movie_end(bool required)
 {
 	on_movie_end(required);
-	m_flags.intView &= ~CF_IS_MOVIE_ACTOR;
-	m_flags.intView &= ~CF_IS_MOVIE_EXTRA;
+	m_flags.typeView &= ~CF_IS_MOVIE_ACTOR;
+	m_flags.typeView &= ~CF_IS_MOVIE_EXTRA;
 }
 
 /*
@@ -941,7 +582,7 @@ void Creature::movie_end(bool required)
  * Address:	8013BB3C
  * Size:	0000E0
  */
-void Creature::checkWater(WaterBox* waterBox, Sys::Sphere& sphere)
+WaterBox* Creature::checkWater(WaterBox* waterBox, Sys::Sphere& sphere)
 {
 	if (waterBox) {
 		bool isInWater = waterBox->inWater(sphere);
@@ -1035,15 +676,12 @@ void Game::Creature::updateCell()
 		ball.m_position = getPosition();
 		ball.m_radius   = getCellRadius();
 
-		m_sweepPruneObject.m_minX.m_radius = ball.m_position.x - ball.m_radius;
-		m_sweepPruneObject.m_maxX.m_radius = ball.m_position.x + ball.m_radius;
-		m_sweepPruneObject.m_minZ.m_radius = ball.m_position.z - ball.m_radius;
-		m_sweepPruneObject.m_maxZ.m_radius = ball.m_position.z + ball.m_radius;
+		SweepPrune::Object::m_minX.m_radius = ball.m_position.x - ball.m_radius;
+		SweepPrune::Object::m_maxX.m_radius = ball.m_position.x + ball.m_radius;
+		SweepPrune::Object::m_minZ.m_radius = ball.m_position.z - ball.m_radius;
+		SweepPrune::Object::m_maxZ.m_radius = ball.m_position.z + ball.m_radius;
 
 		SweepPrune::Object* sweepObj = (SweepPrune::Object*)this;
-		if (this) {
-			sweepObj = &m_sweepPruneObject;
-		}
 
 		CellPyramid* mgr;
 		sweepObj->m_minX.insertSort((mgr = cellMgr)->_00);
@@ -1179,7 +817,7 @@ void Creature::checkCollision(Game::CellObject* cellObj)
 
 	Delegate3<Creature, CollPart*, CollPart*, Vector3f&> delegate
 	    = Delegate3<Creature, CollPart*, CollPart*, Vector3f&>(this, &resolveOneColl);
-	Creature::currOp = cellObj;
+	currOp = static_cast<Creature*>(cellObj);
 
 	if (isDebugCollision()) {
 		CollTree::mDebug = 1;
@@ -1204,7 +842,7 @@ void Creature::checkCollision(Game::CellObject* cellObj)
 	}
 
 	CollTree::mDebug = 0;
-	currOp           = (Game::CellObject*)0;
+	currOp           = nullptr;
 }
 
 /*

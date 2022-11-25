@@ -187,6 +187,8 @@ struct CollTree {
 	// Unused/inlined:
 	void checkCollisionMultiRec(CollPart*, CollPart*, IDelegate3<CollPart*, CollPart*, Vector3f&>*);
 
+	static bool mDebug;
+
 	CollPart* m_part;   // _00
 	CollPartMgr* m_mgr; // _04
 };
