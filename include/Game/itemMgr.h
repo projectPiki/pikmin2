@@ -32,12 +32,12 @@ struct _BaseItemMgrParent2 {
 struct BaseItemMgr : public GenericObjectMgr, virtual public _BaseItemMgrParent2 {
 	BaseItemMgr(int);
 
-	virtual void doAnimation();                                               // _08 (weak)
-	virtual void doEntry();                                                   // _0C (weak)
-	virtual void doSetView(int viewportNumber);                               // _10 (weak)
-	virtual void doViewCalc();                                                // _14 (weak)
-	virtual void doSimulation(float rate);                                    // _18 (weak)
-	virtual void doDirectDraw(Graphics& gfx);                                 // _1C (weak)
+	virtual void doAnimation() { }                                            // _08 (weak)
+	virtual void doEntry() { }                                                // _0C (weak)
+	virtual void doSetView(int viewportNumber) { }                            // _10 (weak)
+	virtual void doViewCalc() { }                                             // _14 (weak)
+	virtual void doSimulation(f32 rate) { }                                   // _18 (weak)
+	virtual void doDirectDraw(Graphics& gfx) { }                              // _1C (weak)
 	virtual void loadResources();                                             // _24
 	virtual void initDependency() = 0;                                        // _38
 	virtual void killAll() { }                                                // _3C (weak)
@@ -49,9 +49,9 @@ struct BaseItemMgr : public GenericObjectMgr, virtual public _BaseItemMgrParent2
 	virtual void onUpdateUseList(GenItemParm*, int) { }                       // _54 (weak)
 	virtual u32 generatorGetID()                                         = 0; // _58
 	virtual BaseItem* generatorBirth(Vector3f&, Vector3f&, GenItemParm*) = 0; // _5C
-	virtual void generatorWrite(Stream&, GenItemParm*);                       // _60 (weak)
-	virtual void generatorRead(Stream&, GenItemParm*, u32);                   // _64 (weak)
-	virtual u32 generatorLocalVersion();                                      // _68 (weak)
+	virtual void generatorWrite(Stream&, GenItemParm*) { }                    // _60 (weak)
+	virtual void generatorRead(Stream&, GenItemParm*, u32) { }                // _64 (weak)
+	virtual u32 generatorLocalVersion() { return '0000'; }                    // _68 (weak)
 	virtual J3DModelData* generatorGetShape(GenItemParm*);                    // _6C
 	virtual GenItemParm* generatorNewItemParm();                              // _70
 
