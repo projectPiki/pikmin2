@@ -127,10 +127,10 @@ void Radar::Point::entry(Game::TPositionObject*, Radar::cRadarType, unsigned lon
  */
 void Radar::Point::clear(void)
 {
-	m_child = nullptr;
+	m_child  = nullptr;
 	m_parent = nullptr;
-	m_prev = nullptr;
-	m_next = nullptr;
+	m_prev   = nullptr;
+	m_next   = nullptr;
 }
 
 /*
@@ -139,13 +139,13 @@ void Radar::Point::clear(void)
  * Size:	0000F4
  */
 Radar::Mgr::Mgr(void)
-	: Point()
+    : Point()
 {
 	m_pointNode = Point();
 	m_pointNode.clear();
 	Point::clear();
 
-	m_objCount = RADAR_MAX_OBJECTS;
+	m_objCount  = RADAR_MAX_OBJECTS;
 	m_pointList = new Point[m_objCount];
 	clear();
 	/*
@@ -222,8 +222,8 @@ Radar::Point::Point(void)
     : CNode()
 {
 	m_objType = MAP_NULL_ICON;
-	m_object = nullptr;
-	_20 = nullptr;
+	m_object  = nullptr;
+	_20       = nullptr;
 	/*
 	stwu     r1, -0x10(r1)
 	mflr     r0
@@ -298,11 +298,11 @@ void Radar::Mgr::clear(void)
 	for (int i = 0; i < m_objCount; i++) {
 		// m_pointList[i].clear();
 		m_pointList[i].m_objType = MAP_NULL_ICON;
-		m_pointList[i].m_object = nullptr;
-		m_pointList[i]._20 = nullptr;
+		m_pointList[i].m_object  = nullptr;
+		m_pointList[i]._20       = nullptr;
 		m_pointNode.add(&m_pointList[i]);
 	}
-	m_otakaraNum = 0;
+	m_otakaraNum   = 0;
 	m_fuefukiCount = 0;
 	m_fuefukiTimer = 0;
 	/*
@@ -523,9 +523,9 @@ void Radar::Mgr::attach(Game::TPositionObject* obj, Radar::cRadarType type, unsi
 	Point* point = static_cast<Point*>(m_pointNode.m_child);
 	if (point) {
 		point->del();
-		point->m_object = obj;
+		point->m_object  = obj;
 		point->m_objType = type;
-		point->_20 = flag;
+		point->_20       = flag;
 		add(point);
 	}
 	/*
@@ -578,8 +578,8 @@ bool Radar::Mgr::detach(Game::TPositionObject* obj)
 	int id = point->m_objType;
 	point->del();
 	point->m_objType = MAP_NULL_ICON;
-	point->m_object = nullptr;
-	point->_20 = nullptr;
+	point->m_object  = nullptr;
+	point->_20       = nullptr;
 
 	if (id - 10 < 2 || id == MAP_UPGRADE) {
 		m_otakaraNum--;
@@ -660,8 +660,8 @@ int Radar::Mgr::calcNearestTreasure(Vector3f& naviPos, float mindist, Vector3f& 
 {
 	if (m_fuefukiCount < 1) {
 		Point* retPoint = nullptr;
-		Point* cPoint = static_cast<Point*>(m_child);
-		u8 ret = 0;
+		Point* cPoint   = static_cast<Point*>(m_child);
+		u8 ret          = 0;
 		while (cPoint) {
 			if (cPoint->m_objType == MAP_TREASURE || cPoint->m_objType == MAP_SWALLOWED_TREASURE || cPoint->m_objType == MAP_UPGRADE) {
 				ret++;
@@ -675,9 +675,9 @@ int Radar::Mgr::calcNearestTreasure(Vector3f& naviPos, float mindist, Vector3f& 
 				f32 cDist = _distanceXZ(objPos, naviPos);
 				if (cDist <= mindist) {
 					treasurePos = cObj->getPosition();
-					dist2 = cDist;
-					retPoint = cPoint;
-					mindist = cDist;
+					dist2       = cDist;
+					retPoint    = cPoint;
+					mindist     = cDist;
 				}
 			}
 			cPoint = static_cast<Point*>(cPoint->m_next);
@@ -848,9 +848,9 @@ lbl_8021E928:
 void Radar::Mgr::ogDummpyInit(void)
 {
 	// dummy Ship
-	OgDummy* obj = new OgDummy;
+	OgDummy* obj    = new OgDummy;
 	obj->m_position = Vector3f(-577.0f, -37.0f, 1984.0f);
-	Point* cPoint = static_cast<Point*>(m_child);
+	Point* cPoint   = static_cast<Point*>(m_child);
 	while (cPoint) {
 		if (cPoint->m_object == obj) {
 			int id = cPoint->m_objType;
@@ -858,8 +858,8 @@ void Radar::Mgr::ogDummpyInit(void)
 			cPoint->clear();
 
 			cPoint->m_objType = MAP_NULL_ICON;
-			cPoint->m_object = nullptr;
-			cPoint->_20 = nullptr;
+			cPoint->m_object  = nullptr;
+			cPoint->_20       = nullptr;
 
 			if (id - 10 < 2 || id == MAP_UPGRADE) {
 				m_otakaraNum--;
@@ -870,15 +870,15 @@ void Radar::Mgr::ogDummpyInit(void)
 	cPoint = static_cast<Point*>(m_child);
 	if (cPoint) {
 		cPoint->del();
-		cPoint->m_object = obj;
+		cPoint->m_object  = obj;
 		cPoint->m_objType = MAP_SHIP;
 		add(cPoint);
 	}
 
 	// dummy Blue Onion
-	obj = new OgDummy;
+	obj             = new OgDummy;
 	obj->m_position = Vector3f(-377.0f, -37.0f, 2155.0f);
-	cPoint = static_cast<Point*>(m_child);
+	cPoint          = static_cast<Point*>(m_child);
 	while (cPoint) {
 		if (cPoint->m_object == obj) {
 			int id = cPoint->m_objType;
@@ -886,8 +886,8 @@ void Radar::Mgr::ogDummpyInit(void)
 			cPoint->clear();
 
 			cPoint->m_objType = MAP_NULL_ICON;
-			cPoint->m_object = nullptr;
-			cPoint->_20 = nullptr;
+			cPoint->m_object  = nullptr;
+			cPoint->_20       = nullptr;
 
 			if (id - 10 < 2 || id == MAP_UPGRADE) {
 				m_otakaraNum--;
@@ -898,15 +898,15 @@ void Radar::Mgr::ogDummpyInit(void)
 	cPoint = static_cast<Point*>(m_child);
 	if (cPoint) {
 		cPoint->del();
-		cPoint->m_object = obj;
+		cPoint->m_object  = obj;
 		cPoint->m_objType = MAP_BLUE_ONION;
 		add(cPoint);
 	}
 
 	// dummy blue onion again
-	obj = new OgDummy;
+	obj             = new OgDummy;
 	obj->m_position = Vector3f(-306.0f, -37.0f, 1823.0f);
-	cPoint = static_cast<Point*>(m_child);
+	cPoint          = static_cast<Point*>(m_child);
 	while (cPoint) {
 		if (cPoint->m_object == obj) {
 			int id = cPoint->m_objType;
@@ -914,8 +914,8 @@ void Radar::Mgr::ogDummpyInit(void)
 			cPoint->clear();
 
 			cPoint->m_objType = MAP_NULL_ICON;
-			cPoint->m_object = nullptr;
-			cPoint->_20 = nullptr;
+			cPoint->m_object  = nullptr;
+			cPoint->_20       = nullptr;
 
 			if (id - 10 < 2 || id == MAP_UPGRADE) {
 				m_otakaraNum--;
@@ -926,15 +926,15 @@ void Radar::Mgr::ogDummpyInit(void)
 	cPoint = static_cast<Point*>(m_child);
 	if (cPoint) {
 		cPoint->del();
-		cPoint->m_object = obj;
+		cPoint->m_object  = obj;
 		cPoint->m_objType = MAP_BLUE_ONION;
 		add(cPoint);
 	}
 
 	// dummy blue onion again (3 blue onions)
-	obj = new OgDummy;
+	obj             = new OgDummy;
 	obj->m_position = Vector3f(64.0f, -37.0f, 1976.0f);
-	cPoint = static_cast<Point*>(m_child);
+	cPoint          = static_cast<Point*>(m_child);
 	while (cPoint) {
 		if (cPoint->m_object == obj) {
 			int id = cPoint->m_objType;
@@ -942,8 +942,8 @@ void Radar::Mgr::ogDummpyInit(void)
 			cPoint->clear();
 
 			cPoint->m_objType = MAP_NULL_ICON;
-			cPoint->m_object = nullptr;
-			cPoint->_20 = nullptr;
+			cPoint->m_object  = nullptr;
+			cPoint->_20       = nullptr;
 
 			if (id - 10 < 2 || id == MAP_UPGRADE) {
 				m_otakaraNum--;
@@ -954,15 +954,15 @@ void Radar::Mgr::ogDummpyInit(void)
 	cPoint = static_cast<Point*>(m_child);
 	if (cPoint) {
 		cPoint->del();
-		cPoint->m_object = obj;
+		cPoint->m_object  = obj;
 		cPoint->m_objType = MAP_BLUE_ONION;
 		add(cPoint);
 	}
 
 	// and a red pikmin for good measure (this must be a debug function, even though the game calls it)
-	obj = new OgDummy;
+	obj             = new OgDummy;
 	obj->m_position = Vector3f(-337.0f, -37.0f, 2101.0f);
-	cPoint = static_cast<Point*>(m_child);
+	cPoint          = static_cast<Point*>(m_child);
 	while (cPoint) {
 		if (cPoint->m_object == obj) {
 			int id = cPoint->m_objType;
@@ -970,8 +970,8 @@ void Radar::Mgr::ogDummpyInit(void)
 			cPoint->clear();
 
 			cPoint->m_objType = MAP_NULL_ICON;
-			cPoint->m_object = nullptr;
-			cPoint->_20 = nullptr;
+			cPoint->m_object  = nullptr;
+			cPoint->_20       = nullptr;
 
 			if (id - 10 < 2 || id == MAP_UPGRADE) {
 				m_otakaraNum--;
@@ -982,7 +982,7 @@ void Radar::Mgr::ogDummpyInit(void)
 	cPoint = static_cast<Point*>(m_child);
 	if (cPoint) {
 		cPoint->del();
-		cPoint->m_object = obj;
+		cPoint->m_object  = obj;
 		cPoint->m_objType = MAP_RED_PIKMIN;
 		add(cPoint);
 	}
@@ -1422,16 +1422,16 @@ lbl_8021EE9C:
  * Address:	8021EEBC
  * Size:	00001C
  */
-Vector3f OgDummy::getPosition(void)
-{
-	return m_position;
-	/*
-	lfs      f0, 4(r4)
-	stfs     f0, 0(r3)
-	lfs      f0, 8(r4)
-	stfs     f0, 4(r3)
-	lfs      f0, 0xc(r4)
-	stfs     f0, 8(r3)
-	blr
-	*/
-}
+// Vector3f OgDummy::getPosition(void)
+// {
+//	return m_position;
+/*
+lfs      f0, 4(r4)
+stfs     f0, 0(r3)
+lfs      f0, 8(r4)
+stfs     f0, 4(r3)
+lfs      f0, 0xc(r4)
+stfs     f0, 8(r3)
+blr
+*/
+// }

@@ -20,10 +20,6 @@ namespace P2DScreen {
 struct Mgr;
 } // namespace P2DScreen
 
-struct OgDummy {
-	virtual void getPosition(); // _08 (weak)
-};
-
 namespace og {
 namespace Screen {
 struct AnimGroup;
