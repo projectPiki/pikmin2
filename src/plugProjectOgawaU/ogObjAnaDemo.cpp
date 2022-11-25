@@ -57,8 +57,6 @@ CaveTitleMsg CaveTitleMsg [45] = {
 } // namespace newScreen
 } // namespace og
 
-#if 0
-
 namespace og {
 
 namespace newScreen {
@@ -2310,4 +2308,3 @@ void __sinit_ogObjAnaDemo_cpp(void)
 	b        __dt__Q32og9newScreen10ObjAnaDemoFv
 	*/
 }
-#endif

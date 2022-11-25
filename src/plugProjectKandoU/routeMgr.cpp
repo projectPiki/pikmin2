@@ -272,8 +272,6 @@ s16 WayPointIterator::operator*(void)
 }
 } // namespace Game
 
-#if NOPE
-
 /*
  * --INFO--
  * Address:	801725F8
@@ -3364,8 +3362,6 @@ Game::EditorRouteMgr::~EditorRouteMgr(void)
 // 	  blr
 // 	*/
 // }
-
-#endif
 
 // /*
 //  * --INFO--

@@ -70,24 +70,26 @@
 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/JSystem/JUT/JUTDbPrint.cpp">JUT/JUTDbPrint.cpp</a> | 7478 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/JSystem/J3D/J3DModelData.cpp">J3D/J3DModelData.cpp</a> | 7504 |
 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/JSystem/JKR/JKRFileLoader.cpp">JKR/JKRFileLoader.cpp</a> | 7749 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/JSystem/JStudio/jstudio-math.cpp">JStudio/jstudio-math.cpp</a> | 8166 |
 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/JSystem/JAS/JASAudioThread.cpp">JAS/JASAudioThread.cpp</a> | 8465 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/JSystem/control.cpp">control.cpp</a> | 8564 |
-| <a href="https://github.com/projectPiki/pikmin2/tree/main/src/JSystem/JAU/JAUData.cpp">JAU/JAUData.cpp</a> | 9076 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/JSystem/JAS/JASDrumSet.cpp">JAS/JASDrumSet.cpp</a> | 9145 |
-| <a href="https://github.com/projectPiki/pikmin2/tree/main/src/JSystem/J3D/J3DMaterialAnm.cpp">J3D/J3DMaterialAnm.cpp</a> | 9362 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/JSystem/JAS/JASDriverIF.cpp">JAS/JASDriverIF.cpp</a> | 9483 |
-| <a href="https://github.com/projectPiki/pikmin2/tree/main/src/JSystem/JUT/JUTXfb.cpp">JUT/JUTXfb.cpp</a> | 9537 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/JSystem/J3D/J3DJointTree.cpp">J3D/J3DJointTree.cpp</a> | 9648 |
-| <a href="https://github.com/projectPiki/pikmin2/tree/main/src/JSystem/JPA/JPAExtraShape.cpp">JPA/JPAExtraShape.cpp</a> | 9733 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/JSystem/JAI/JAIBankWave.cpp">JAI/JAIBankWave.cpp</a> | 10030 |
-| <a href="https://github.com/projectPiki/pikmin2/tree/main/src/JSystem/JAS/JASWSParser.cpp">JAS/JASWSParser.cpp</a> | 10204 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/JSystem/JStudio/jstudio-control.cpp">JStudio/jstudio-control.cpp</a> | 10255 |
-| <a href="https://github.com/projectPiki/pikmin2/tree/main/src/JSystem/JPA/JPAMath.cpp">JPA/JPAMath.cpp</a> | 10353 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/JSystem/JKR/JKRDvdFile.cpp">JKR/JKRDvdFile.cpp</a> | 10560 |
-| <a href="https://github.com/projectPiki/pikmin2/tree/main/src/JSystem/J2D/J2DTevs.cpp">J2D/J2DTevs.cpp</a> | 10655 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/JSystem/JAS/JASCalc.cpp">JAS/JASCalc.cpp</a> | 10941 |
-| <a href="https://github.com/projectPiki/pikmin2/tree/main/src/JSystem/JUT/JUTAssert.cpp">JUT/JUTAssert.cpp</a> | 11104 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/JSystem/JAS/JASWaveArcLoader.cpp">JAS/JASWaveArcLoader.cpp</a> | 11790 |
-| <a href="https://github.com/projectPiki/pikmin2/tree/main/src/JSystem/JSG/control.cpp">JSG/control.cpp</a> | 11866 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/JSystem/JAI/JAIInitData.cpp">JAI/JAIInitData.cpp</a> | 11979 |
-| <a href="https://github.com/projectPiki/pikmin2/tree/main/src/JSystem/JAS/JASDSPChannel.cpp">JAS/JASDSPChannel.cpp</a> | 12103 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/JSystem/JAS/JASTaskThread.cpp">JAS/JASTaskThread.cpp</a> | 12404 |
-| <a href="https://github.com/projectPiki/pikmin2/tree/main/src/JSystem/JAS/JASOscillator.cpp">JAS/JASOscillator.cpp</a> | 13048 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/JSystem/JFW/JFWSystem.cpp">JFW/JFWSystem.cpp</a> | 13169 |
-| <a href="https://github.com/projectPiki/pikmin2/tree/main/src/JSystem/JMath/JMATrigonometric.cpp">JMath/JMATrigonometric.cpp</a> | 13465 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/JSystem/JKR/JKRDecomp.cpp">JKR/JKRDecomp.cpp</a> | 13705 |
-| <a href="https://github.com/projectPiki/pikmin2/tree/main/src/JSystem/JAI/JAISequenceHeap.cpp">JAI/JAISequenceHeap.cpp</a> | 14037 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/JSystem/JAS/JASPlayer_impl.cpp">JAS/JASPlayer_impl.cpp</a> | 14172 |
-| <a href="https://github.com/projectPiki/pikmin2/tree/main/src/JSystem/JKR/JKRThread.cpp">JKR/JKRThread.cpp</a> | 15080 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/JSystem/JPA/JPAEmitter.cpp">JPA/JPAEmitter.cpp</a> | 15234 |
-| <a href="https://github.com/projectPiki/pikmin2/tree/main/src/JSystem/JAS/JASBasicWaveBank.cpp">JAS/JASBasicWaveBank.cpp</a> | 15592 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/JSystem/J3D/J3DShapeFactory.cpp">J3D/J3DShapeFactory.cpp</a> | 16014 |
-| <a href="https://github.com/projectPiki/pikmin2/tree/main/src/JSystem/std/std-vector.cpp">std/std-vector.cpp</a> | 16116 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/JSystem/JAS/JASBankMgr.cpp">JAS/JASBankMgr.cpp</a> | 16245 |
-| <a href="https://github.com/projectPiki/pikmin2/tree/main/src/JSystem/JKR/JKRMemArchive.cpp">JKR/JKRMemArchive.cpp</a> | 16489 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/JSystem/JUT/JUTTexture.cpp">JUT/JUTTexture.cpp</a> | 16924 |
-| <a href="https://github.com/projectPiki/pikmin2/tree/main/src/JSystem/JKR/JKRSolidHeap.cpp">JKR/JKRSolidHeap.cpp</a> | 16943 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/JSystem/J3D/J3DDrawBuffer.cpp">J3D/J3DDrawBuffer.cpp</a> | 18271 |
+| <a href="https://github.com/projectPiki/pikmin2/tree/main/src/JSystem/JAL/JALCalc.cpp">JAL/JALCalc.cpp</a> | 9063 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/JSystem/JAU/JAUData.cpp">JAU/JAUData.cpp</a> | 9076 |
+| <a href="https://github.com/projectPiki/pikmin2/tree/main/src/JSystem/JAS/JASDrumSet.cpp">JAS/JASDrumSet.cpp</a> | 9145 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/JSystem/J3D/J3DMaterialAnm.cpp">J3D/J3DMaterialAnm.cpp</a> | 9362 |
+| <a href="https://github.com/projectPiki/pikmin2/tree/main/src/JSystem/JAS/JASDriverIF.cpp">JAS/JASDriverIF.cpp</a> | 9483 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/JSystem/JUT/JUTXfb.cpp">JUT/JUTXfb.cpp</a> | 9537 |
+| <a href="https://github.com/projectPiki/pikmin2/tree/main/src/JSystem/J3D/J3DJointTree.cpp">J3D/J3DJointTree.cpp</a> | 9648 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/JSystem/JPA/JPAExtraShape.cpp">JPA/JPAExtraShape.cpp</a> | 9733 |
+| <a href="https://github.com/projectPiki/pikmin2/tree/main/src/JSystem/JAI/JAIBankWave.cpp">JAI/JAIBankWave.cpp</a> | 10030 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/JSystem/JAS/JASWSParser.cpp">JAS/JASWSParser.cpp</a> | 10204 |
+| <a href="https://github.com/projectPiki/pikmin2/tree/main/src/JSystem/JStudio/jstudio-control.cpp">JStudio/jstudio-control.cpp</a> | 10255 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/JSystem/JPA/JPAMath.cpp">JPA/JPAMath.cpp</a> | 10353 |
+| <a href="https://github.com/projectPiki/pikmin2/tree/main/src/JSystem/JKR/JKRDvdFile.cpp">JKR/JKRDvdFile.cpp</a> | 10560 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/JSystem/J2D/J2DTevs.cpp">J2D/J2DTevs.cpp</a> | 10655 |
+| <a href="https://github.com/projectPiki/pikmin2/tree/main/src/JSystem/JAS/JASCalc.cpp">JAS/JASCalc.cpp</a> | 10941 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/JSystem/JUT/JUTAssert.cpp">JUT/JUTAssert.cpp</a> | 11104 |
+| <a href="https://github.com/projectPiki/pikmin2/tree/main/src/JSystem/JAS/JASWaveArcLoader.cpp">JAS/JASWaveArcLoader.cpp</a> | 11790 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/JSystem/JSG/control.cpp">JSG/control.cpp</a> | 11866 |
+| <a href="https://github.com/projectPiki/pikmin2/tree/main/src/JSystem/JAI/JAIInitData.cpp">JAI/JAIInitData.cpp</a> | 11979 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/JSystem/JAS/JASDSPChannel.cpp">JAS/JASDSPChannel.cpp</a> | 12103 |
+| <a href="https://github.com/projectPiki/pikmin2/tree/main/src/JSystem/JAS/JASTaskThread.cpp">JAS/JASTaskThread.cpp</a> | 12404 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/JSystem/JAS/JASOscillator.cpp">JAS/JASOscillator.cpp</a> | 13048 |
+| <a href="https://github.com/projectPiki/pikmin2/tree/main/src/JSystem/JFW/JFWSystem.cpp">JFW/JFWSystem.cpp</a> | 13169 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/JSystem/JMath/JMATrigonometric.cpp">JMath/JMATrigonometric.cpp</a> | 13465 |
+| <a href="https://github.com/projectPiki/pikmin2/tree/main/src/JSystem/JKR/JKRDecomp.cpp">JKR/JKRDecomp.cpp</a> | 13705 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/JSystem/JAI/JAISequenceHeap.cpp">JAI/JAISequenceHeap.cpp</a> | 14037 |
+| <a href="https://github.com/projectPiki/pikmin2/tree/main/src/JSystem/JAS/JASPlayer_impl.cpp">JAS/JASPlayer_impl.cpp</a> | 14172 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/JSystem/JKR/JKRThread.cpp">JKR/JKRThread.cpp</a> | 15080 |
+| <a href="https://github.com/projectPiki/pikmin2/tree/main/src/JSystem/JPA/JPAEmitter.cpp">JPA/JPAEmitter.cpp</a> | 15234 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/JSystem/JAS/JASBasicWaveBank.cpp">JAS/JASBasicWaveBank.cpp</a> | 15592 |
+| <a href="https://github.com/projectPiki/pikmin2/tree/main/src/JSystem/J3D/J3DShapeFactory.cpp">J3D/J3DShapeFactory.cpp</a> | 16014 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/JSystem/std/std-vector.cpp">std/std-vector.cpp</a> | 16116 |
+| <a href="https://github.com/projectPiki/pikmin2/tree/main/src/JSystem/JAS/JASBankMgr.cpp">JAS/JASBankMgr.cpp</a> | 16245 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/JSystem/JKR/JKRMemArchive.cpp">JKR/JKRMemArchive.cpp</a> | 16489 |
+| <a href="https://github.com/projectPiki/pikmin2/tree/main/src/JSystem/JUT/JUTTexture.cpp">JUT/JUTTexture.cpp</a> | 16924 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/JSystem/JKR/JKRSolidHeap.cpp">JKR/JKRSolidHeap.cpp</a> | 16943 |
+| <a href="https://github.com/projectPiki/pikmin2/tree/main/src/JSystem/J3D/J3DDrawBuffer.cpp">J3D/J3DDrawBuffer.cpp</a> | 18271 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/JSystem/JAS/JASBNKParser.cpp">JAS/JASBNKParser.cpp</a> | 18288 |
+| <a href="https://github.com/projectPiki/pikmin2/tree/main/src/JSystem/J3D/J3DTransform.cpp">J3D/J3DTransform.cpp</a> | 19101 |
 
 ### <section id="plugProjectEbisawaU">plugProjectEbisawaU</section>
 | File | Size (bytes) | File | Size (bytes) |
@@ -140,7 +142,6 @@
 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectKandoU/collinfo.cpp">collinfo.cpp</a> | 42495 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectKandoU/aiFormation.cpp">aiFormation.cpp</a> | 43415 |
 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectKandoU/gameCPlate.cpp">gameCPlate.cpp</a> | 43833 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectKandoU/gameSystem.cpp">gameSystem.cpp</a> | 46374 |
 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectKandoU/gameGeneratorCache.cpp">gameGeneratorCache.cpp</a> | 46655 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectKandoU/gamePlayDataMemCard.cpp">gamePlayDataMemCard.cpp</a> | 48714 |
-| <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectKandoU/gameCaveInfo.cpp">gameCaveInfo.cpp</a> | 49620 |
 
 ### <section id="plugProjectKonoU">plugProjectKonoU</section>
 | File | Size (bytes) | File | Size (bytes) |
@@ -202,7 +203,6 @@
 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectOgawaU/ogObjFinalMsg.cpp">ogObjFinalMsg.cpp</a> | 21757 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectOgawaU/ogCounterSlot.cpp">ogCounterSlot.cpp</a> | 22304 |
 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectOgawaU/ogObjCourseName.cpp">ogObjCourseName.cpp</a> | 23941 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectOgawaU/ogLifeGauge.cpp">ogLifeGauge.cpp</a> | 24777 |
 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectOgawaU/ogObjSMenuPauseVs.cpp">ogObjSMenuPauseVs.cpp</a> | 25253 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectOgawaU/ogDopingScreen.cpp">ogDopingScreen.cpp</a> | 25662 |
-| <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectOgawaU/ogObjGround.cpp">ogObjGround.cpp</a> | 25690 |
 
 ### <section id="plugProjectYamashitaU">plugProjectYamashitaU</section>
 | File | Size (bytes) | File | Size (bytes) |
@@ -210,7 +210,7 @@
 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectYamashitaU/enemyStoneMgr.cpp">enemyStoneMgr.cpp</a> | 8992 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectYamashitaU/enemyStoneObj.cpp">enemyStoneObj.cpp</a> | 9523 |
 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectYamashitaU/farmMgr.cpp">farmMgr.cpp</a> | 12281 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectYamashitaU/farm.cpp">farm.cpp</a> | 15591 |
 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectYamashitaU/vtxAnm.cpp">vtxAnm.cpp</a> | 26658 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectYamashitaU/effectAnimator.cpp">effectAnimator.cpp</a> | 27586 |
-| <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectYamashitaU/lifeGaugeMgr.cpp">lifeGaugeMgr.cpp</a> | 35502 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectYamashitaU/kochappyState.cpp">kochappyState.cpp</a> | 58846 |
+| <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectYamashitaU/lifeGaugeMgr.cpp">lifeGaugeMgr.cpp</a> | 35502 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectYamashitaU/carryInfoMgr.cpp">carryInfoMgr.cpp</a> | 58361 |
 
 ### <section id="sysBootupU">sysBootupU</section>
 | File | Size (bytes) | File | Size (bytes) |

@@ -230,7 +230,6 @@ JSYSTEM:=\
 	$(BUILD_DIR)/asm/JSystem/JAI/JAISystemInterface.o\
 	$(BUILD_DIR)/asm/JSystem/JAI/JAIObject.o\
 	$(BUILD_DIR)/src/JSystem/JAD/JADHioNode.o\
-	$(BUILD_DIR)/src/JSystem/JAL/JALCalc.o\
 	$(BUILD_DIR)/asm/JSystem/JAL/JALCalc.o\
 	$(BUILD_DIR)/asm/JSystem/JAU/JAUData.o\
 	$(BUILD_DIR)/asm/JSystem/JAU/JAUDataMgr.o\
@@ -441,7 +440,6 @@ YAMASHITA:=\
 	$(BUILD_DIR)/src/plugProjectYamashitaU/chappyAnimator.o\
 	$(BUILD_DIR)/src/plugProjectYamashitaU/chappyMgr.o\
 	$(BUILD_DIR)/asm/plugProjectYamashitaU/lifeGaugeMgr.o\
-	$(BUILD_DIR)/src/plugProjectYamashitaU/carryInfoMgr.o\
 	$(BUILD_DIR)/asm/plugProjectYamashitaU/carryInfoMgr.o\
 	$(BUILD_DIR)/asm/plugProjectYamashitaU/gameLightMgr.o\
 	$(BUILD_DIR)/asm/plugProjectYamashitaU/vtxAnm.o\
@@ -497,7 +495,6 @@ KANDO:=\
 	$(BUILD_DIR)/asm/plugProjectKandoU/baseHIOSection.o\
 	$(BUILD_DIR)/asm/plugProjectKandoU/naviWhistle.o\
 	$(BUILD_DIR)/asm/plugProjectKandoU/pelletMgr.o\
-	$(BUILD_DIR)/src/plugProjectKandoU/routeMgr.o\
 	$(BUILD_DIR)/asm/plugProjectKandoU/routeMgr.o\
 	$(BUILD_DIR)/asm/plugProjectKandoU/onyonMgr.o\
 	$(BUILD_DIR)/src/plugProjectKandoU/objectTypes.o\
@@ -531,7 +528,6 @@ KANDO:=\
 	$(BUILD_DIR)/src/plugProjectKandoU/aiConstants.o\
 	$(BUILD_DIR)/asm/plugProjectKandoU/gameMapParts.o\
 	$(BUILD_DIR)/asm/plugProjectKandoU/vsGameSection.o\
-	$(BUILD_DIR)/src/plugProjectKandoU/gamePlatMgr.o\
 	$(BUILD_DIR)/asm/plugProjectKandoU/gamePlatMgr.o\
 	$(BUILD_DIR)/asm/plugProjectKandoU/itemGate.o\
 	$(BUILD_DIR)/asm/plugProjectKandoU/itemMgr.o\
@@ -900,7 +896,6 @@ OGAWA:=\
 	$(BUILD_DIR)/src/plugProjectOgawaU/ogSceneFloor.o\
 	$(BUILD_DIR)/asm/plugProjectOgawaU/ogObjCave.o\
 	$(BUILD_DIR)/src/plugProjectOgawaU/ogSceneCave.o\
-	$(BUILD_DIR)/src/plugProjectOgawaU/ogObjAnaDemo.o\
 	$(BUILD_DIR)/asm/plugProjectOgawaU/ogObjAnaDemo.o\
 	$(BUILD_DIR)/src/plugProjectOgawaU/ogSceneAnaDemo.o\
 	$(BUILD_DIR)/asm/plugProjectOgawaU/ogObjChallenge2P.o\

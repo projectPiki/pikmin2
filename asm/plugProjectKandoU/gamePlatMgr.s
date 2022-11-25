@@ -194,6 +194,19 @@ lbl_8051958C:
 	.4byte 0x4B435000
 
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
+.global setCollision__Q24Game12PlatInstanceFb
+setCollision__Q24Game12PlatInstanceFb:
+/* 801C4BD4 001C1B14  54 80 06 3F */	clrlwi. r0, r4, 0x18
+/* 801C4BD8 001C1B18  41 82 00 14 */	beq lbl_801C4BEC
+/* 801C4BDC 001C1B1C  88 03 01 08 */	lbz r0, 0x108(r3)
+/* 801C4BE0 001C1B20  60 00 00 01 */	ori r0, r0, 1
+/* 801C4BE4 001C1B24  98 03 01 08 */	stb r0, 0x108(r3)
+/* 801C4BE8 001C1B28  4E 80 00 20 */	blr 
+lbl_801C4BEC:
+/* 801C4BEC 001C1B2C  88 03 01 08 */	lbz r0, 0x108(r3)
+/* 801C4BF0 001C1B30  54 00 06 3C */	rlwinm r0, r0, 0, 0x18, 0x1e
+/* 801C4BF4 001C1B34  98 03 01 08 */	stb r0, 0x108(r3)
+/* 801C4BF8 001C1B38  4E 80 00 20 */	blr 
 
 .global getPosition__Q24Game12PlatInstanceFv
 getPosition__Q24Game12PlatInstanceFv:

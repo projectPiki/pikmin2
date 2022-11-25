@@ -1,3 +1,4 @@
+#include "types.h"
 
 /*
     Generated from dpostproc
@@ -186,24 +187,6 @@
     lbl_80517BE8:
         .float 50.0
 */
-#ifndef _CARRYINFO_H
-#define _CARRYINFO_H
-
-#include "types.h"
-
-struct CarryInfo {
-	float _00;   // _00
-	float _04;   // _04
-	float _08;   // _08
-	bool hidden; // _0C
-	u8 alpha;    // _0D
-	u8 _0E;      // _0E
-	u8 _0F;      // _0F
-
-	void disappear();
-};
-
-#endif
 
 /*
  * --INFO--
@@ -211,7 +194,7 @@ struct CarryInfo {
  * Size:	00000C
  */
 void CarryInfo::disappear() { hidden = true; }
-#ifdef UNFINISHED
+
 /*
  * --INFO--
  * Address:	8011AFDC
@@ -2674,4 +2657,3 @@ void PokoInfoOwner::@4 @__dt()
 	b        __dt__13PokoInfoOwnerFv
 	*/
 }
-#endif

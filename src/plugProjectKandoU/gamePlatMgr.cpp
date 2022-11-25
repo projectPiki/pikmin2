@@ -220,8 +220,6 @@ void PlatInstance::setCollision(bool flag)
 	}
 }
 
-#if NOPE
-
 /*
  * --INFO--
  * Address:	801C4BFC
@@ -3831,7 +3829,5 @@ bool PlatInstance::collisionUpdatable() { return 0x0; }
 // 	  b         -0xC00
 // 	*/
 // }
-
-#endif
 
 } // namespace Game

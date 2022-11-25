@@ -185,6 +185,11 @@ lbl_80517BE8:
 	.float 50.0
 
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
+.global disappear__9CarryInfoFv
+disappear__9CarryInfoFv:
+/* 8011AFD0 00117F10  38 00 00 01 */	li r0, 1
+/* 8011AFD4 00117F14  98 03 00 0C */	stb r0, 0xc(r3)
+/* 8011AFD8 00117F18  4E 80 00 20 */	blr 
 
 .global update__9CarryInfoFRC14CarryInfoParam
 update__9CarryInfoFRC14CarryInfoParam:
