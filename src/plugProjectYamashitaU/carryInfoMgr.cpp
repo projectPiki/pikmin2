@@ -188,20 +188,97 @@
         .float 50.0
 */
 
+#include "CarryInfo.h"
+#include "Graphics.h"
+#include "Viewport.h"
+#include "JSystem/JKR/JKRArchive.h"
+#include "Game/MoviePlayer.h"
+#include "Dolphin/gx.h"
+
+Color4 sColorTableNumerator[7] = {
+	Color4(30, 30, 255, 255),   // blue
+	Color4(255, 0, 0, 255),     // red
+	Color4(234, 234, 0, 255),   // yellow
+	Color4(255, 255, 255, 255), // white (used for treasures to pod)
+	Color4(255, 255, 255, 255), // white (used for treasures to ship)
+	Color4(102, 153, 153, 255), // gray  (used when not enough to lift?)
+	Color4(102, 211, 211, 255), // gray  (used in scale blocks?)
+};
+
+Color4 sColorTableDenominator[7] = {
+	Color4(30, 30, 255, 255),   Color4(255, 0, 0, 255),     Color4(234, 234, 0, 255),   Color4(255, 255, 255, 255),
+	Color4(255, 255, 255, 255), Color4(102, 153, 153, 255), Color4(112, 216, 216, 255), // this is the only one where the denominator is
+	                                                                                    // different
+};
+
 /*
  * --INFO--
  * Address:	8011AFD0
  * Size:	00000C
  */
-void CarryInfo::disappear() { hidden = true; }
+void CarryInfo::disappear() { m_hidden = true; }
 
 /*
  * --INFO--
  * Address:	8011AFDC
  * Size:	000264
  */
-void CarryInfo::update(const CarryInfoParam&)
+void CarryInfo::update(const CarryInfoParam& param)
 {
+	if (m_hidden != CINFO_Hidden) {
+		if (param.m_useType == 1) {
+			m_counter++;
+			if (param.m_yOffsetMax > m_Yoffset) {
+				m_growRate += (param.m_yOffsetMax - m_Yoffset) * 0.04f;
+			}
+			m_Yoffset += m_growRate;
+			m_growRate *= 0.9f;
+			m_scale = m_Yoffset / param.m_yOffsetMax;
+			if (m_scale > 1.0f)
+				m_scale = 1.0f;
+
+			if (m_hidden == CINFO_1) {
+				if (m_alpha < 9) {
+					m_alpha    = 0;
+					m_growRate = 0.0f;
+					m_Yoffset  = 0.0f;
+					m_scale    = 0.0f;
+					m_hidden   = CINFO_Hidden;
+				} else {
+					m_alpha -= 8;
+				}
+			} else if (m_hidden == CINFO_Appear) {
+				f32 alpha = m_scale * 255.0f;
+				if (alpha < 0.0f)
+					alpha -= 0.5f;
+				else
+					alpha += 0.5f;
+				m_alpha = (u8)alpha;
+			}
+		} else if (param.m_useType == 0) {
+			if (m_hidden == CINFO_1) {
+				m_growRate += -m_Yoffset * 0.04f;
+				m_Yoffset += m_growRate;
+				if (m_Yoffset >= 0.0f) {
+					m_scale += m_Yoffset / param.m_yOffsetMax;
+				} else {
+					m_growRate += (param.m_yOffsetMax - m_Yoffset) * 0.04f;
+					m_Yoffset += m_growRate;
+					m_scale = m_Yoffset / param.m_yOffsetMax;
+				}
+				m_growRate *= 0.88f;
+				f32 alpha = m_scale;
+				if (alpha > 1.0f)
+					alpha = 1.0f;
+				m_scale *= 255.0f;
+				if (alpha < 0.0f)
+					alpha -= 0.5f;
+				else
+					alpha += 0.5f;
+				m_alpha = (u8)alpha;
+			}
+		}
+	}
 	/*
 	stwu     r1, -0x10(r1)
 	lbz      r5, 0xc(r3)
@@ -400,8 +477,77 @@ lbl_8011B238:
  * Address:	8011B240
  * Size:	0004AC
  */
-void CarryInfo::draw(Graphics&, CarryInfoParam&)
+void CarryInfo::draw(Graphics& gfx, CarryInfoParam& param)
 {
+	if (m_hidden != CINFO_Hidden) {
+		Viewport* vp = gfx.m_currentViewport;
+		Matrixf* mtx = vp->getMatrix(1);
+		Matrixf newmtx;
+
+		Vector3f temp = mtx->getBasis(0);
+		temp *= m_scale;
+		newmtx.setBasis(0, temp);
+		temp = mtx->getBasis(1);
+		temp *= m_scale;
+		newmtx.setBasis(1, temp);
+		temp = mtx->getBasis(2);
+		temp *= m_scale;
+		newmtx.setBasis(2, temp);
+		temp = mtx->getBasis(3);
+		temp *= m_scale;
+		newmtx.setBasis(3, temp);
+
+		Matrixf storemtx;
+		PSMTXConcat(vp->getMatrix(1)->m_matrix.mtxView, newmtx.m_matrix.mtxView, storemtx.m_matrix.mtxView);
+		GXLoadPosMtxImm(storemtx.m_matrix.mtxView, 0);
+
+		if (param.m_useType == 1) {
+			f32 temp = (f32)m_counter * TAU * 0.03125;
+			temp     = pikmin2_sinf(temp);
+			temp     = (temp + 1.0f) * 0.5f;
+			Color4 color2, color;
+			color2.a = m_alpha;
+
+			color.r = temp * (255.0f);
+			color.g = temp * (155.0f);
+			color.b = temp * (59.0f);
+			color.a = temp * (color2.a);
+
+			color2.r = 0xff;
+			color2.g = 0x8a;
+			color2.b = 0x15;
+
+			drawNumber(gfx, 7.0f, 0.0f, param.m_carryInfo.m_growRate, color2, 1.0f);
+			drawNumberPrim(gfx, (-7.0f * 0.5f - 3.0f), 0.0f, 11, color, 1.0f);
+		} else if (param.m_useType == 0) {
+			f32 scale1, scale2, offs1, offs2;
+			if (param.m_isTopFirst) {
+				scale1 = 1.1f;
+				scale2 = 0.75f;
+				offs1  = 10.15f;
+				offs2  = -7.7f;
+			} else {
+				scale1 = 0.75f;
+				scale2 = 1.1;
+				offs1  = 7.7f;
+				offs2  = -10.15f;
+			}
+			Color4 colortop, colorbottom;
+			colortop.r = sColorTableNumerator[param.m_color].r;
+			colortop.g = sColorTableNumerator[param.m_color].g;
+			colortop.b = sColorTableNumerator[param.m_color].b;
+			colortop.a = m_alpha;
+
+			colorbottom.r = sColorTableDenominator[param.m_color].r;
+			colorbottom.g = sColorTableDenominator[param.m_color].g;
+			colorbottom.b = sColorTableDenominator[param.m_color].b;
+			colorbottom.a = colortop.a;
+
+			drawNumberPrim(gfx, 0.0f, 0.0f, 10, colortop, 1.0f);
+			drawNumber(gfx, 0.0f, offs1, param.m_value1, colortop, scale1);
+			drawNumber(gfx, 0.0f, offs2, param.m_value2, colorbottom, scale2);
+		}
+	}
 	/*
 	stwu     r1, -0x150(r1)
 	mflr     r0
@@ -726,8 +872,36 @@ lbl_8011B6B8:
  * Address:	8011B6EC
  * Size:	000328
  */
-void CarryInfo::drawNumber(Graphics&, float, float, int, Color4&, float)
+void CarryInfo::drawNumber(Graphics& gfx, float xpos, float ypos, int dispNum, Color4& color, float scale)
 {
+	if (dispNum < 10) {
+		drawNumberPrim(gfx, xpos, ypos, dispNum, color, scale);
+	} else if (dispNum < 100) {
+		int ones = dispNum % 10;
+		f32 offs = scale * 5.6f;
+		int tens = dispNum / 10;
+		drawNumberPrim(gfx, xpos - offs, ypos, tens, color, scale);
+		drawNumberPrim(gfx, xpos + offs, ypos, ones, color, scale);
+	} else if (dispNum < 1000) {
+		f32 offs = scale * 12.6f;
+		int ones = dispNum % 10;
+		int tens = dispNum / 100;
+		int hund = dispNum / 10;
+		drawNumberPrim(gfx, xpos - offs, ypos, tens, color, scale);
+		drawNumberPrim(gfx, xpos, ypos, ones, color, scale);
+		drawNumberPrim(gfx, xpos + offs, ypos, hund, color, scale);
+	} else {
+		f32 offs1 = scale * 6.6f;
+		f32 offs2 = scale * 3.0f;
+		int ones  = dispNum % 10;
+		int tens  = dispNum / 1000;
+		int hund  = dispNum / 100;
+		int thou  = dispNum / 10;
+		drawNumberPrim(gfx, xpos - offs1, ypos, tens, color, scale);
+		drawNumberPrim(gfx, xpos - offs2, ypos, ones, color, scale);
+		drawNumberPrim(gfx, xpos + offs2, ypos, hund, color, scale);
+		drawNumberPrim(gfx, xpos + offs1, ypos, hund, color, scale);
+	}
 	/*
 	stwu     r1, -0x70(r1)
 	mflr     r0
@@ -949,6 +1123,7 @@ lbl_8011B9CC:
  */
 void CarryInfo::drawNumberPrim(Graphics&, float, float, int, Color4&, float)
 {
+	GXBegin(GX_TRIANGLESTRIP, GX_VTXFMT0, 4);
 	/*
 	stwu     r1, -0x80(r1)
 	mflr     r0
@@ -1076,6 +1251,8 @@ void CarryInfoList::init() { }
  */
 void CarryInfoList::update()
 {
+	m_owner->getCarryInfoParam(m_param);
+	m_param.m_carryInfo.update(m_param);
 	/*
 	stwu     r1, -0x10(r1)
 	mflr     r0
@@ -1104,8 +1281,9 @@ void CarryInfoList::update()
  * Address:	8011BC18
  * Size:	00002C
  */
-void CarryInfoList::draw(Graphics&)
+void CarryInfoList::draw(Graphics& gfx)
 {
+	m_param.m_carryInfo.draw(gfx, m_param);
 	/*
 	stwu     r1, -0x10(r1)
 	mflr     r0
@@ -1126,8 +1304,13 @@ void CarryInfoList::draw(Graphics&)
  * Address:	8011BC44
  * Size:	00003C
  */
-void PokoInfoOwner::getCarryInfoParam(CarryInfoParam&)
+void PokoInfoOwner::getCarryInfoParam(CarryInfoParam& param)
 {
+	param.m_useType    = 1;
+	param.m_position   = m_position;
+	param.m_yOffsetMax = 25.0f;
+	param.m_color      = 4;
+	param.m_list       = m_list;
 	/*
 	li       r0, 1
 	lfs      f0, lbl_80517BDC@sda21(r2)
@@ -1152,8 +1335,9 @@ void PokoInfoOwner::getCarryInfoParam(CarryInfoParam&)
  * Address:	8011BC80
  * Size:	000014
  */
-void CarryInfoList::isFinish()
+bool CarryInfoList::isFinish()
 {
+	return (m_param.m_carryInfo.m_hidden == 2);
 	/*
 	lbz      r0, 0x54(r3)
 	subfic   r0, r0, 2
@@ -1168,8 +1352,24 @@ void CarryInfoList::isFinish()
  * Address:	8011BC94
  * Size:	0000D4
  */
-CarryInfoMgr::CarryInfoMgr(int)
+CarryInfoMgr::CarryInfoMgr(int a)
+    : InfoMgr(a)
 {
+	m_node1.m_child  = 0;
+	m_node1.m_next   = 0;
+	m_node1.m_parent = 0;
+	m_node1.m_prev   = 0;
+
+	m_poko_node.m_child  = 0;
+	m_poko_node.m_next   = 0;
+	m_poko_node.m_parent = 0;
+	m_poko_node.m_prev   = 0;
+
+	PokoInfoOwner* pokolist = new PokoInfoOwner[MAX_POKOINFO];
+	for (int i = 0; i < MAX_POKOINFO; i++) {
+		m_poko_node.add(&pokolist[i]);
+	}
+
 	/*
 	stwu     r1, -0x20(r1)
 	mflr     r0
@@ -1277,7 +1477,12 @@ lbl_8011BDB8:
  * Size:	000078
  */
 PokoInfoOwner::PokoInfoOwner()
+    : CNode()
 {
+	m_timer    = 0.0f;
+	m_list     = nullptr;
+	m_position = Vector3f::zero;
+	m_value    = 0;
 	/*
 	lis      r4, __vt__14CarryInfoOwner@ha
 	lis      r5, __vt__13PokoInfoOwner@ha
@@ -1317,7 +1522,7 @@ PokoInfoOwner::PokoInfoOwner()
  * Address:	8011BE4C
  * Size:	00013C
  */
-void InfoMgr<CarryInfoOwner, CarryInfoList>::~InfoMgr()
+InfoMgr<CarryInfoOwner, CarryInfoList>::~InfoMgr()
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -1542,8 +1747,24 @@ lbl_8011C0DC:
  * Address:	8011C0F8
  * Size:	0000C0
  */
-void CarryInfoMgr::appearPoko(const Vector3f&, int)
+void CarryInfoMgr::appearPoko(const Vector3f& pos, int value)
 {
+	PokoInfoOwner* obj = static_cast<PokoInfoOwner*>(m_poko_node.m_child);
+
+	if (obj) {
+		CarryInfoList* newlist = regist(obj);
+		if (newlist) {
+			obj->del();
+			m_node1.add(obj);
+			obj->m_list                            = newlist;
+			obj->m_position                        = pos;
+			obj->m_value                           = value;
+			obj->m_timer                           = 0.0f;
+			newlist                                = obj->m_list;
+			newlist->m_param.m_carryInfo.m_hidden  = CINFO_Appear;
+			newlist->m_param.m_carryInfo.m_counter = 0;
+		}
+	}
 	/*
 	stwu     r1, -0x20(r1)
 	mflr     r0
@@ -1607,18 +1828,19 @@ lbl_8011C1A4:
  * Address:	8011C1B8
  * Size:	000020
  */
-void CarryInfoMgr::regist(CarryInfoOwner*)
+CarryInfoList* CarryInfoMgr::regist(CarryInfoOwner* owner)
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	bl "regist__41InfoMgr<14CarryInfoOwner,13CarryInfoList>FP14CarryInfoOwner"
-	lwz      r0, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	return regist(owner); // this should be the base class
+	                      /*
+	                      stwu     r1, -0x10(r1)
+	                      mflr     r0
+	                      stw      r0, 0x14(r1)
+	                      bl "regist__41InfoMgr<14CarryInfoOwner,13CarryInfoList>FP14CarryInfoOwner"
+	                      lwz      r0, 0x14(r1)
+	                      mtlr     r0
+	                      addi     r1, r1, 0x10
+	                      blr
+	                      */
 }
 
 /*
@@ -1626,8 +1848,14 @@ void CarryInfoMgr::regist(CarryInfoOwner*)
  * Address:	8011C1D8
  * Size:	000040
  */
-void CarryInfoMgr::appear(CarryInfoOwner*)
+CarryInfoList* CarryInfoMgr::appear(CarryInfoOwner* owner)
 {
+	CarryInfoList* list = regist(owner);
+	if (list) {
+		list->m_param.m_carryInfo.m_hidden  = CINFO_Appear;
+		list->m_param.m_carryInfo.m_counter = 0;
+	}
+	return list;
 	/*
 	stwu     r1, -0x10(r1)
 	mflr     r0
@@ -1657,6 +1885,11 @@ lbl_8011C208:
  */
 void CarryInfoMgr::loadResource()
 {
+	JKRArchive* arc = JKRArchive::mount("/user/Yamashita/arc/gameTex.szs", JKRArchive::EMM_Mem, nullptr, JKRArchive::EMD_Unk1);
+	void* timg      = JKRFileLoader::getGlbResource("item_0_0.bti", arc);
+	JUTTexture* tex = new JUTTexture;
+	tex->_20        = static_cast<ResTIMG*>(timg);
+	m_texture       = tex;
 	/*
 	stwu     r1, -0x20(r1)
 	mflr     r0
@@ -1707,8 +1940,34 @@ lbl_8011C290:
  * Address:	8011C2B0
  * Size:	000198
  */
-void CarryInfoMgr::draw(Graphics&)
+void CarryInfoMgr::draw(Graphics& gfx)
 {
+	if (Game::moviePlayer && Game::moviePlayer->m_flags & 1) {
+		Graphics::clearInitGX();
+		GXSetNumChans(1);
+		GXSetTevDirect(GX_TEVSTAGE0);
+		GXSetNumTevStages(1);
+		GXSetTevOp(GX_TEVSTAGE0, GX_MODULATE);
+		GXSetTevOrder(GX_TEVSTAGE0, GX_TEXCOORD0, GX_TEXMAP0, GX_COLOR0A0);
+		GXSetChanCtrl(GX_COLOR0A0, GX_FALSE, GX_SRC_REG, GX_SRC_VTX, GX_LIGHT_NULL, GX_DF_NONE, GX_AF_NONE);
+		GXClearVtxDesc();
+		GXSetVtxDesc(GX_VA_POS, GX_DIRECT);
+		GXSetVtxDesc(GX_VA_CLR0, GX_DIRECT);
+		GXSetVtxDesc(GX_VA_TEX0, GX_DIRECT);
+		GXSetVtxAttrFmt(GX_VTXFMT0, GX_VA_POS, GX_POS_XYZ, GX_F32, 0);
+		GXSetVtxAttrFmt(GX_VTXFMT0, GX_VA_CLR0, GX_POS_XYZ, GX_RGBA8, 0);
+		GXSetVtxAttrFmt(GX_VTXFMT0, GX_VA_TEX0, GX_POS_XYZ, GX_F32, 0);
+		GXSetBlendMode(GX_BM_BLEND, GX_BL_SRCALPHA, GX_BL_INVSRCALPHA, GX_LO_SET);
+		GXSetZMode(GX_FALSE, GX_LESS, GX_FALSE);
+		GXSetCurrentMtx(0);
+		GXSetNumTexGens(1);
+		GXSetTexCoordGen2(GX_TEXCOORD0, GX_TG_MTX3X4, GX_TG_TEXCOORD0, 0x3c, GX_FALSE, 0x7d);
+		Matrixf mtx;
+		PSMTXIdentity(mtx.m_matrix.mtxView);
+		GXLoadTexMtxImm(mtx.m_matrix.mtxView, 0x1e, GX_MTX2x4);
+		m_texture->load(GX_TEXMAP0);
+		draw(gfx); // should be base class
+	}
 	/*
 	stwu     r1, -0x40(r1)
 	mflr     r0
@@ -1826,21 +2085,23 @@ lbl_8011C430:
  */
 void CarryInfoMgr::update()
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	mr       r31, r3
-	bl       updatePokoInfoOwners__12CarryInfoMgrFv
-	mr       r3, r31
-	bl       "update__41InfoMgr<14CarryInfoOwner,13CarryInfoList>Fv"
-	lwz      r0, 0x14(r1)
-	lwz      r31, 0xc(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	updatePokoInfoOwners();
+	update(); // should be base class
+	          /*
+	          stwu     r1, -0x10(r1)
+	          mflr     r0
+	          stw      r0, 0x14(r1)
+	          stw      r31, 0xc(r1)
+	          mr       r31, r3
+	          bl       updatePokoInfoOwners__12CarryInfoMgrFv
+	          mr       r3, r31
+	          bl       "update__41InfoMgr<14CarryInfoOwner,13CarryInfoList>Fv"
+	          lwz      r0, 0x14(r1)
+	          lwz      r31, 0xc(r1)
+	          mtlr     r0
+	          addi     r1, r1, 0x10
+	          blr
+	          */
 }
 
 /*
@@ -1850,6 +2111,20 @@ void CarryInfoMgr::update()
  */
 void CarryInfoMgr::updatePokoInfoOwners()
 {
+	PokoInfoOwner* obj = static_cast<PokoInfoOwner*>(m_poko_node.m_child);
+
+	while (obj) {
+		if (!obj->m_list->isFinish() && obj->m_list->m_owner == obj) {
+			obj->m_timer += sys->m_deltaTime;
+			if (obj->m_timer > 1.5f) {
+				obj->m_list->m_param.m_carryInfo.m_hidden = CINFO_1;
+			}
+		} else {
+			obj->del();
+			m_poko_node.add(obj);
+		}
+		obj = static_cast<PokoInfoOwner*>(obj->m_next);
+	}
 	/*
 	stwu     r1, -0x20(r1)
 	mflr     r0
@@ -1943,18 +2218,19 @@ lbl_8011C55C:
  * Address:	8011C584
  * Size:	000020
  */
-void CarryInfoMgr::scratch(CarryInfoOwner*)
+CarryInfoList* CarryInfoMgr::scratch(CarryInfoOwner* owner)
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	bl "scratch__41InfoMgr<14CarryInfoOwner,13CarryInfoList>FP14CarryInfoOwner"
-	lwz      r0, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	return scratch(owner); // should be base class
+	                       /*
+	                       stwu     r1, -0x10(r1)
+	                       mflr     r0
+	                       stw      r0, 0x14(r1)
+	                       bl "scratch__41InfoMgr<14CarryInfoOwner,13CarryInfoList>FP14CarryInfoOwner"
+	                       lwz      r0, 0x14(r1)
+	                       mtlr     r0
+	                       addi     r1, r1, 0x10
+	                       blr
+	                       */
 }
 
 /*
@@ -2000,7 +2276,7 @@ void InfoListBase<CarryInfoOwner, CarryInfoList>::init() { }
  * Address:	8011C5F0
  * Size:	000098
  */
-void InfoListBase<CarryInfoOwner, CarryInfoList>::~InfoListBase()
+InfoListBase<CarryInfoOwner, CarryInfoList>::~InfoListBase()
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -2116,8 +2392,13 @@ lbl_8011C714:
  * Address:	8011C730
  * Size:	000044
  */
-void InfoMgr<CarryInfoOwner, CarryInfoList>::scratch(CarryInfoOwner*)
+CarryInfoList* InfoMgr<CarryInfoOwner, CarryInfoList>::scratch(CarryInfoOwner* owner)
 {
+	CarryInfoList* list = 0; // search(&m_activeList, owner); // this I cant get to work
+	if (list) {
+		addInactiveList(list);
+	}
+	return list;
 	/*
 	stwu     r1, -0x10(r1)
 	mflr     r0
@@ -2150,6 +2431,7 @@ lbl_8011C760:
  */
 void InfoMgr<CarryInfoOwner, CarryInfoList>::update()
 {
+	// these InfoMgr functions are all in InfoList.h
 	/*
 	stwu     r1, -0x20(r1)
 	mflr     r0
@@ -2244,7 +2526,7 @@ lbl_8011C850:
  * Address:	8011C868
  * Size:	00002C
  */
-void InfoMgr<CarryInfoOwner, CarryInfoList>::search(CarryInfoList*, CarryInfoOwner*)
+CarryInfoList* InfoMgr<CarryInfoOwner, CarryInfoList>::search(CarryInfoList*, CarryInfoOwner*)
 {
 	/*
 	.loc_0x0:
@@ -2329,7 +2611,7 @@ lbl_8011C8F8:
  * Address:	8011C900
  * Size:	000074
  */
-void InfoMgr<CarryInfoOwner, CarryInfoList>::regist(CarryInfoOwner*)
+CarryInfoList* InfoMgr<CarryInfoOwner, CarryInfoList>::regist(CarryInfoOwner*)
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -2382,7 +2664,7 @@ lbl_8011C95C:
  * Address:	8011C974
  * Size:	0002E0
  */
-void InfoMgr<CarryInfoOwner, CarryInfoList>::InfoMgr(int)
+InfoMgr<CarryInfoOwner, CarryInfoList>::InfoMgr(int)
 {
 	/*
 	stwu     r1, -0x20(r1)
@@ -2650,10 +2932,12 @@ void __sinit_carryInfoMgr_cpp(void)
  * Address:	8011CCD8
  * Size:	000008
  */
-void PokoInfoOwner::@4 @__dt()
-{
-	/*
-	addi     r3, r3, -4
-	b        __dt__13PokoInfoOwnerFv
-	*/
-}
+// PokoInfoOwner::~PokoInfoOwner() this is a thunked function
+//{
+/*
+addi     r3, r3, -4
+b        __dt__13PokoInfoOwnerFv
+*/
+//}
+
+#endif

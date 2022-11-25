@@ -42,7 +42,7 @@ struct InfoListBase : public JKRDisposer {
 template <typename Owner, typename List>
 struct InfoMgr : public InfoMgrBase {
 	// TODO: ctor
-	InfoMgr();
+	InfoMgr(int);
 
 	// TODO: dtor
 	virtual ~InfoMgr();              // _08
@@ -91,7 +91,9 @@ struct InfoMgr : public InfoMgrBase {
 		}
 		return list;
 	}
-	virtual List* search(List* list, Owner* owner) // _1C
+	virtual List* scratch(Owner* owner); // _1C
+
+	List* search(List* list, Owner* owner)
 	{
 		while (true) {
 			if (list == nullptr) {
