@@ -6,7 +6,7 @@
 #include "Game/cellPyramid.h"
 #include "CNode.h"
 
-#define RADAR_MAX_OBJECTS 0xa0
+#define RADAR_MAX_OBJECTS 160
 
 struct Radar {
 	enum cRadarType {
