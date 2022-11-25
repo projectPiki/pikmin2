@@ -12,8 +12,8 @@
 struct CarryInfoList;
 
 enum cCarryInfoState {
-	CINFO_Appear  = 0,
-	CINFO_1 = 1,
+	CINFO_Appear = 0,
+	CINFO_1      = 1,
 	CINFO_Hidden = 2,
 };
 
@@ -24,12 +24,12 @@ struct CarryInfo {
 	void drawNumberPrim(Graphics&, float, float, int, Color4&, float);
 	void update(const CarryInfoParam&);
 
-	float m_growRate;   	// _00
-	float m_Yoffset;	    // _04
-	float m_scale;		    // _08
-	u8 m_hidden; 			// _0C
-	u8 m_alpha;  			// _0D
-	u8 m_counter;	      	// _0E
+	float m_growRate; // _00
+	float m_Yoffset;  // _04
+	float m_scale;    // _08
+	u8 m_hidden;      // _0C
+	u8 m_alpha;       // _0D
+	u8 m_counter;     // _0E
 };
 
 struct CarryInfoParam {
@@ -62,10 +62,10 @@ struct PokoInfoOwner : public CarryInfoOwner, public CNode {
 	// vtable 2 (CNode)
 	virtual ~PokoInfoOwner(); // _1C (thunked at _14) (weak)
 
-	float m_timer;       				// _1C
-	CarryInfoList* m_list;              // _20
-	Vector3f m_position; 				// _24
-	u32 m_value;         				// _30
+	float m_timer;         // _1C
+	CarryInfoList* m_list; // _20
+	Vector3f m_position;   // _24
+	u32 m_value;           // _30
 };
 
 /**

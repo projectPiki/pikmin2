@@ -37,21 +37,28 @@ struct Radar {
 	};
 
 	struct Point : public CNode {
-		Point(); // seems to also have inline version
+		Point()
+		{
+			m_objType = MAP_NULL_ICON;
+			m_object  = nullptr;
+			_20       = nullptr;
+		}
 
-		virtual ~Point(); // _08 (weak)
+		virtual ~Point() { } // _08 (weak)
 
 		Vector2f getPosition();
 
 		static void entry(Game::TPositionObject*, Radar::cRadarType, u32); // unused? or inline
 		inline void clear();
 
+		// _00     = VTBL
+		// _00-_18 = CNode
 		cRadarType m_objType;            // _18
 		Game::TPositionObject* m_object; // _1c
 		u32 _20;                         // _20
 	};
 
-	struct Mgr : public Point {
+	struct Mgr {
 		Mgr();
 
 		static void entry(Game::TPositionObject*, Radar::cRadarType, u32);
@@ -68,23 +75,25 @@ struct Radar {
 		static int getNumOtakaraItems();
 		void ogDummpyInit();
 
-		// _00-_24 Point
-		Point m_pointNode;  // _24
+		Point m_pointNode1; // _00
+		Point m_pointNode2; // _24
 		Point* m_pointList; // _48
-		u32 m_objCount;     // _4C
-		u32 m_otakaraNum;   // _50
-		u32 m_fuefukiCount; // _54
-		u32 m_fuefukiTimer; // _58
+		int m_objCount;     // _4C
+		int m_otakaraNum;   // _50
+		int m_fuefukiCount; // _54
+		int m_fuefukiTimer; // _58
 	};
 
 	static Mgr* mgr;
 };
 
-struct OgDummy : Game::TPositionObject { // this does inherit TPositionObject but the struct here doesnt work right
-	inline OgDummy() { m_position = Vector3f(0.0f, 0.0f, 0.0f); }
-	virtual Vector3f getPosition() { return m_position; } // _08
+struct OgDummy : public Game::TPositionObject {
+	inline OgDummy() { m_position = Vector3f(0.0f); }
 
-	Vector3f m_position;
+	virtual Vector3f getPosition() { return m_position; } // _08 (weak)
+
+	// _00 = VTBL
+	Vector3f m_position; // _04
 };
 
 #endif

@@ -271,12 +271,12 @@ struct Pellet : public DynCreature, public SysShape::MotionListener, public Carr
 	virtual void createKiraEffect(Vector3f&) { }              // _1FC (weak)
 	virtual void getCarryInfoParam(CarryInfoParam& infoParam) // _200 (weak, thunk at _1C8)
 	{
-		infoParam.m_useType        = 0;
-		infoParam.m_position = m_rigid.m_configs[0]._00;
-		infoParam.m_yOffsetMax        = 30.0f + m_config->m_params.m_height.m_data;
-		infoParam._14        = 1;
-		infoParam.m_isTopFirst        = 1;
-		infoParam.m_value2        = getTotalCarryPikmins();
+		infoParam.m_useType    = 0;
+		infoParam.m_position   = m_rigid.m_configs[0]._00;
+		infoParam.m_yOffsetMax = 30.0f + m_config->m_params.m_height.m_data;
+		infoParam._14          = 1;
+		infoParam.m_isTopFirst = 1;
+		infoParam.m_value2     = getTotalCarryPikmins();
 
 		int minVal;
 		if (_3D8 > 0) {
