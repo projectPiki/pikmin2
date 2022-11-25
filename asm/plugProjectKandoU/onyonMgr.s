@@ -287,7 +287,7 @@ obj local govNAN___Q24Game5P2JST
 	.float 0.0
 	.float 0.0
 end govNAN___Q24Game5P2JST
-obj weak __vt__Q34Game9ItemOnyon3Mgr
+obj global __vt__Q34Game9ItemOnyon3Mgr
 	.4byte 0
 	.4byte 0
 	.4byte doAnimation__Q34Game9ItemOnyon3MgrFv
@@ -480,7 +480,7 @@ obj weak __vt__20ModelEffectCreateArg
 	.4byte 0
 	.4byte 0
 end __vt__20ModelEffectCreateArg
-obj weak __vt__Q24Game5Onyon
+obj global __vt__Q24Game5Onyon
 	.4byte 0
 	.4byte 0
 	.4byte getPosition__Q24Game8BaseItemFv
@@ -642,7 +642,7 @@ obj weak __vt__Q23efx8TPodGepu
 	.4byte forceKill__Q23efx8TSimple2Fv
 	.4byte fade__Q23efx8TSimple2Fv
 end __vt__Q23efx8TPodGepu
-obj weak __vt__Q24Game16InteractSuckDone
+obj global __vt__Q24Game16InteractSuckDone
 	.4byte 0
 	.4byte 0
 	.4byte actCommon__Q24Game11InteractionFPQ24Game8Creature
@@ -660,7 +660,7 @@ obj weak __vt__Q23efx11TUfoPodSuck
 	.4byte forceKill__Q23efx8TSimple1Fv
 	.4byte fade__Q23efx8TSimple1Fv
 end __vt__Q23efx11TUfoPodSuck
-obj weak __vt__Q24Game18InteractSuckArrive
+obj global __vt__Q24Game18InteractSuckArrive
 	.4byte 0
 	.4byte 0
 	.4byte actCommon__Q24Game11InteractionFPQ24Game8Creature
