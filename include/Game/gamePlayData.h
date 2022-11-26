@@ -127,7 +127,7 @@ struct KindCounter {
 
 	// Unused/inlined:
 	void copyFrom(KindCounter&);
-	void addTo(KindCounter&);
+	inline void addTo(KindCounter&);
 
 	u16 m_numKinds; // _00
 	u8* m_kinds;    // _04
@@ -187,9 +187,9 @@ struct PelletCropMemory {
 	int calcNumKinds();
 
 	// _00	= VTBL
-	KindCounter _04; // _04
-	KindCounter _0C; // _0C
-	KindCounter _14; // _14
+	KindCounter m_otakara; // _04
+	KindCounter m_item;    // _0C
+	KindCounter m_carcass; // _14
 };
 
 struct PelletFirstMemory : public PelletCropMemory {
@@ -373,13 +373,13 @@ struct PlayData : public CNode {
 
 	int m_cavePokoCount; // _EC
 
-	u8 _F0[2]; // _F0
+	u8 m_debtProgressFlags[2]; // _F0, represent which %of debt messages have been seen
 
 	// ptr to array of previous day's collected overworld treasure counts, per
 	// course.
 	u8* m_groundOtakaraCollectedOld; // _F4
 
-	CaveOtakara* _F8; // _F8
+	CaveOtakara* m_caveOtakaraOld; // _F8
 
 	// Previous day's Poko count.
 	int m_pokoCountOld; // _FC
