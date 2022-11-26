@@ -99,31 +99,13 @@
         .float -32768.0
 */
 
-extern const float lbl_80520268;  //-325.9493
-extern const float lbl_8052026C;  // 325.9493
-extern const float lbl_80520270;  // 0.0
-extern const float lbl_80520274;  // -1.0
-extern const float lbl_80520278;  // 1.0
-extern const float lbl_8052027C;  // 3.1415926 OR PI
-extern const float lbl_80520280;  // 1023.5
-extern const float lbl_80520284;  // 1.5707964 OR HALF PI
-extern const float lbl_80520288;  // 0.5
-extern const float lbl_8052028C;  // 1.5
-extern const float lbl_80520290;  // -1.5
-extern const float lbl_80520294;  // 2.0
-extern const float lbl_80520298;  // 4.5
-extern const float lbl_8052029C;  // 5.0
-extern const float lbl_805202A0;  // -4.5
-extern const float lbl_805202A4;  // 4.0
-extern const float lbl_805202A8;  // 6.2831855 OR TAU / 2Pi
-extern const float lbl_805202AC;  // 0.0099999998 OR 0.01
-extern const double lbl_805202B0; // 0.0
+// TODO: Matrix3f::calcEigenMatrix
 
-// FROM ANOTHER FILE.. WTF?
-extern const float lbl_805201B0;
-
-// TODO: CRSplineTangent, angDist, Matrix3f::calcEigenMatrix
-
+/*
+ * --INFO--
+ * Address:	80411730
+ * Size:	000068
+ */
 float pikmin2_sinf(float x)
 {
 	if (x < 0.0f) {
@@ -215,72 +197,32 @@ float _qdist3(float x1, float y1, float z1, float x2, float y2, float z2)
  * Address:	80411858
  * Size:	0000F4
  */
-asm void CRSplineTangent(float, Vector3f*)
+Vector3f CRSplineTangent(f32 t, Vector3f* controls)
+/* == Centripetal Catmull-Rom Spline tangent calculation ==
+Outputs tangent vector of desired point, given:
+- coords for a set of 4 control points (controls[0] to controls[4]) for the curve, and
+- a parameter for the curve, t, between 0 and 1
+    - t represents how 'far' between controls[1] and controls[2] the desired point is
+    - so t=0, point will be controls[1]; t=1, point will be controls[2]
+*/
 {
-	// clang-format off
-	nofralloc
-     stwu      r1, -0x20(r1)
-     stfd      f31, 0x10(r1)
-     psq_st    f31,0x18(r1),0,0
-     lfs       f0, lbl_80520294
-     fmuls     f10, f1, f1
-     lfs       f2, lbl_8052029C
-     fmuls     f5, f0, f1
-     lfs       f6, lbl_80520290
-     lfs       f0, lbl_805202A4
-     fmuls     f3, f2, f1
-     lfs       f4, lbl_80520298
-     fmadds    f5, f6, f10, f5
-     lfs       f7, lbl_80520288
-     fmuls     f0, f0, f1
-     lfs       f2, lbl_805202A0
-     fmsubs    f12, f4, f10, f3
-     fsubs     f11, f5, f7
-     fmadds    f6, f2, f10, f0
-     lfs       f2, 0x0(r4)
-     lfs       f0, 0xC(r4)
-     lfs       f5, 0x4(r4)
-     fmuls     f3, f2, f11
-     fmuls     f2, f0, f12
-     lfs       f4, 0x10(r4)
-     fadds     f13, f7, f6
-     lfs       f8, lbl_8052028C
-     fmuls     f6, f5, f11
-     lfs       f0, 0x18(r4)
-     fmuls     f5, f4, f12
-     lfs       f9, 0x8(r4)
-     lfs       f7, 0x14(r4)
-     fmsubs    f31, f8, f10, f1
-     lfs       f4, 0x1C(r4)
-     fadds     f2, f3, f2
-     fmuls     f1, f0, f13
-     lfs       f0, 0x24(r4)
-     lfs       f8, 0x20(r4)
-     fmuls     f10, f9, f11
-     fmuls     f9, f7, f12
-     lfs       f3, 0x28(r4)
-     lfs       f7, 0x2C(r4)
-     fadds     f5, f6, f5
-     fmuls     f4, f4, f13
-     fadds     f1, f2, f1
-     fmuls     f0, f0, f31
-     fadds     f9, f10, f9
-     fmuls     f6, f8, f13
-     fadds     f0, f1, f0
-     fadds     f2, f5, f4
-     fmuls     f1, f3, f31
-     fadds     f3, f9, f6
-     stfs      f0, 0x0(r3)
-     fmuls     f0, f7, f31
-     fadds     f1, f2, f1
-     fadds     f0, f3, f0
-     stfs      f1, 0x4(r3)
-     stfs      f0, 0x8(r3)
-     psq_l     f31,0x18(r1),0,0
-     lfd       f31, 0x10(r1)
-     addi      r1, r1, 0x20
-     blr
-	// clang-format on
+	f32 tSqr = t * t;
+	Vector3f out;
+
+	// set coefficients - the floats are from centripetal CR matrices, assuming no tension
+	// (this is actually just drawn out matrix multiplication)
+	float f0 = (-1.5f * tSqr) + (2.0f * t) - 0.5f;
+	float f1 = (4.5f * tSqr) - 5.0f * t;
+	float f2 = (-4.5f * tSqr) + (4.0f * t) + 0.5f;
+	float f3 = (1.5f * tSqr) - t;
+
+	Vector3f ctr0 = controls[0] * f0;
+	Vector3f ctr1 = controls[1] * f1;
+	Vector3f ctr2 = controls[2] * f2;
+	Vector3f ctr3 = controls[3] * f3;
+	out           = ctr0 + ctr1 + ctr2 + ctr3;
+
+	return out;
 }
 
 #include "BoundBox.h"
@@ -402,44 +344,14 @@ float roundAng(float angle)
  * Address:	80411BFC
  * Size:	000074
  */
-asm float angDist(float, float)
+f32 angDist(f32 angle1, f32 angle2)
 {
-	// clang-format off
-	nofralloc
-		fsubs f2, f1, f2
-		lfs f0, lbl_80520270
-		fcmpo cr0, f2, f0
-		bge lbl_80411C14
-		lfs f0, lbl_805202A8
-		fadds f2, f2, f0
-	lbl_80411C14:
-		lfs f0, lbl_805202A8
-		fcmpo cr0, f2, f0
-		cror 2, 1, 2
-		bne lbl_80411C28
-		fsubs f2, f2, f0
-	lbl_80411C28:
-		lfs f0, lbl_8052027C
-		fmr f1, f2
-		fcmpo cr0, f2, f0
-		cror 2, 1, 2
-		bnelr
-		lfs f1, lbl_805202A8
-		lfs f0, lbl_80520270
-		fsubs f2, f1, f2
-		fcmpo cr0, f2, f0
-		bge lbl_80411C54
-		fadds f2, f2, f1
-	lbl_80411C54:
-		lfs f0, lbl_805202A8
-		fcmpo cr0, f2, f0
-		cror 2, 1, 2
-		bne lbl_80411C68
-		fsubs f2, f2, f0
-	lbl_80411C68:
-		fneg f1, f2
-		blr
-	// clang-format on
+	f32 angle = roundAng(angle1 - angle2);
+
+	if (angle >= PI) {
+		angle = -roundAng(TAU - angle);
+	}
+	return angle;
 }
 
 #include "Matrix3f.h"
@@ -479,495 +391,147 @@ void Matrix3f::makeIdentity()
  * Address:	80411CA0
  * Size:	000728
  */
-// Massive fuckoff function, not doing this today, tomorrow, or ever.
-asm void Matrix3f::calcEigenMatrix(Matrix3f&, Matrix3f&)
+void Matrix3f::calcEigenMatrix(Matrix3f& D, Matrix3f& P)
 {
-	// clang-format off
-	nofralloc
-		stwu r1, -0x190(r1)
-		lfs f2, lbl_80520278
-		stmw r16, 0x150(r1)
-		addi r17, r1, 0x128
-		lfs f1, lbl_80520270
-		li r18, 0
-		lfs f0, lbl_805202AC
-		lwz r6, 0(r3)
-		lwz r0, 4(r3)
-		stw r6, 0(r4)
-		stw r0, 4(r4)
-		lwz r6, 8(r3)
-		lwz r0, 0xc(r3)
-		stw r6, 8(r4)
-		stw r0, 0xc(r4)
-		lwz r6, 0x10(r3)
-		lwz r0, 0x14(r3)
-		stw r6, 0x10(r4)
-		stw r0, 0x14(r4)
-		lwz r6, 0x18(r3)
-		lwz r0, 0x1c(r3)
-		stw r6, 0x18(r4)
-		stw r0, 0x1c(r4)
-		lwz r0, 0x20(r3)
-		stw r0, 0x20(r4)
-		stfs f2, 0(r5)
-		stfs f1, 4(r5)
-		stfs f1, 8(r5)
-		stfs f1, 0xc(r5)
-		stfs f2, 0x10(r5)
-		stfs f1, 0x14(r5)
-		stfs f1, 0x18(r5)
-		stfs f1, 0x1c(r5)
-		stfs f2, 0x20(r5)
-	lbl_80411D28:
-		li r0, 3
-		mr r6, r4
-		lfs f2, lbl_80520270
-		li r3, 0
-		mtctr r0
-	lbl_80411D3C:
-		li r0, 0
-		cmpw r3, r0
-		beq lbl_80411D50
-		lfs f1, 0(r6)
-		fadds f2, f2, f1
-	lbl_80411D50:
-		li r0, 1
-		cmpw r3, r0
-		beq lbl_80411D64
-		lfs f1, 4(r6)
-		fadds f2, f2, f1
-	lbl_80411D64:
-		li r0, 2
-		cmpw r3, r0
-		beq lbl_80411D78
-		lfs f1, 8(r6)
-		fadds f2, f2, f1
-	lbl_80411D78:
-		addi r6, r6, 0xc
-		addi r3, r3, 1
-		bdnz lbl_80411D3C
-		fabs f1, f2
-		frsp f1, f1
-		fcmpo cr0, f1, f0
-		bge lbl_80411DF4
-		lfs f1, lbl_80520270
-		fcmpu cr0, f1, f2
-		beq lbl_80411DEC
-		li r0, 3
-		mr r6, r4
-		li r3, 0
-		mtctr r0
-	lbl_80411DB0:
-		li r0, 0
-		cmpw r3, r0
-		beq lbl_80411DC0
-		stfs f1, 0(r6)
-	lbl_80411DC0:
-		li r0, 1
-		cmpw r3, r0
-		beq lbl_80411DD0
-		stfs f1, 4(r6)
-	lbl_80411DD0:
-		li r0, 2
-		cmpw r3, r0
-		beq lbl_80411DE0
-		stfs f1, 8(r6)
-	lbl_80411DE0:
-		addi r6, r6, 0xc
-		addi r3, r3, 1
-		bdnz lbl_80411DB0
-	lbl_80411DEC:
-		li r0, 1
-		b lbl_80411DF8
-	lbl_80411DF4:
-		li r0, 0
-	lbl_80411DF8:
-		clrlwi. r0, r0, 0x18
-		bne lbl_804123BC
-		li r24, 0
-		mr r19, r4
-		mr r25, r17
-		li r3, 0
-		mr r23, r24
-	lbl_80411E14:
-		addi r6, r3, 1
-		addi r27, r1, 0x128
-		mulli r21, r6, 0xc
-		slwi r22, r6, 2
-		add r28, r19, r22
-		add r26, r25, r22
-		add r27, r27, r21
-		b lbl_8041238C
-	lbl_80411E34:
-		lfs f1, 0(r28)
-		fcmpo cr0, f1, f0
-		blt lbl_80412374
-		lwz r29, 0(r4)
-		addi r30, r1, 0x128
-		lwz r20, 4(r4)
-		lwz r12, 8(r4)
-		lwz r11, 0xc(r4)
-		lwz r10, 0x10(r4)
-		lwz r9, 0x14(r4)
-		lwz r8, 0x18(r4)
-		lwz r7, 0x1c(r4)
-		lwz r0, 0x20(r4)
-		stw r29, 0x128(r1)
-		lfs f3, lbl_80520294
-		stw r20, 0x12c(r1)
-		lfs f2, lbl_80520270
-		stw r12, 0x130(r1)
-		stw r11, 0x134(r1)
-		stw r10, 0x138(r1)
-		stw r9, 0x13c(r1)
-		stw r8, 0x140(r1)
-		stw r7, 0x144(r1)
-		stw r0, 0x148(r1)
-		lfs f1, 0(r26)
-		lfsx f5, r27, r22
-		lfsx f4, r25, r24
-		fmuls f1, f3, f1
-		fsubs f3, f5, f4
-		fdivs f3, f3, f1
-		fcmpo cr0, f3, f2
-		ble lbl_80411EDC
-		lfs f1, lbl_80520278
-		fmadds f4, f3, f3, f1
-		fcmpo cr0, f4, f2
-		ble lbl_80411ECC
-		frsqrte f1, f4
-		fmuls f4, f1, f4
-	lbl_80411ECC:
-		fadds f1, f3, f4
-		lfs f2, lbl_80520278
-		fdivs f3, f2, f1
-		b lbl_80411F04
-	lbl_80411EDC:
-		lfs f1, lbl_80520278
-		fmadds f4, f3, f3, f1
-		fcmpo cr0, f4, f2
-		ble lbl_80411EF4
-		frsqrte f1, f4
-		fmuls f4, f1, f4
-	lbl_80411EF4:
-		fneg f1, f3
-		lfs f2, lbl_80520274
-		fadds f1, f1, f4
-		fdivs f3, f2, f1
-	lbl_80411F04:
-		lfs f2, lbl_80520278
-		lfs f1, lbl_80520270
-		fmadds f4, f3, f3, f2
-		fcmpo cr0, f4, f1
-		ble lbl_80411F20
-		frsqrte f1, f4
-		fmuls f4, f1, f4
-	lbl_80411F20:
-		lfs f2, lbl_80520278
-		add r9, r30, r23
-		lfs f8, lbl_80520270
-		add r10, r30, r21
-		fdivs f4, f2, f4
-		stfs f2, 0x128(r1)
-		li r0, 3
-		mr r8, r5
-		stfs f8, 0x12c(r1)
-		addi r7, r1, 0x50
-		fmuls f3, f3, f4
-		stfs f8, 0x130(r1)
-		stfs f8, 0x134(r1)
-		fneg f1, f3
-		stfs f2, 0x138(r1)
-		stfs f8, 0x13c(r1)
-		stfs f8, 0x140(r1)
-		stfs f8, 0x144(r1)
-		stfs f2, 0x148(r1)
-		stfsx f4, r9, r24
-		stfsx f4, r10, r22
-		stfsx f3, r9, r22
-		stfsx f1, r10, r24
-		mtctr r0
-	lbl_80411F80:
-		stfs f8, 0(r7)
-		lfs f7, 0(r8)
-		lfs f6, 0x128(r1)
-		lfs f1, 0(r7)
-		lfs f5, 4(r8)
-		fmadds f1, f7, f6, f1
-		lfs f3, 8(r8)
-		lfs f4, 0x134(r1)
-		addi r8, r8, 0xc
-		lfs f2, 0x140(r1)
-		stfs f1, 0(r7)
-		lfs f6, 0x12c(r1)
-		lfs f1, 0(r7)
-		fmadds f1, f5, f4, f1
-		lfs f4, 0x138(r1)
-		stfs f1, 0(r7)
-		lfs f1, 0(r7)
-		fmadds f1, f3, f2, f1
-		lfs f2, 0x144(r1)
-		stfs f1, 0(r7)
-		stfs f8, 4(r7)
-		lfs f1, 4(r7)
-		fmadds f1, f7, f6, f1
-		lfs f6, 0x130(r1)
-		stfs f1, 4(r7)
-		lfs f1, 4(r7)
-		fmadds f1, f5, f4, f1
-		lfs f4, 0x13c(r1)
-		stfs f1, 4(r7)
-		lfs f1, 4(r7)
-		fmadds f1, f3, f2, f1
-		lfs f2, 0x148(r1)
-		stfs f1, 4(r7)
-		stfs f8, 8(r7)
-		lfs f1, 8(r7)
-		fmadds f1, f7, f6, f1
-		stfs f1, 8(r7)
-		lfs f1, 8(r7)
-		fmadds f1, f5, f4, f1
-		stfs f1, 8(r7)
-		lfs f1, 8(r7)
-		fmadds f1, f3, f2, f1
-		stfs f1, 8(r7)
-		addi r7, r7, 0xc
-		bdnz lbl_80411F80
-		lwz r30, 0x50(r1)
-		li r16, 3
-		lwz r31, 0x54(r1)
-		addi r20, r1, 0xe0
-		stw r30, 0(r5)
-		addi r29, r1, 0x2c
-		lwz r12, 0x58(r1)
-		stw r31, 4(r5)
-		lwz r11, 0x5c(r1)
-		stw r12, 8(r5)
-		lwz r10, 0x60(r1)
-		stw r11, 0xc(r5)
-		lwz r9, 0x64(r1)
-		stw r10, 0x10(r5)
-		lwz r8, 0x68(r1)
-		stw r9, 0x14(r5)
-		lfs f3, 0x128(r1)
-		lwz r7, 0x6c(r1)
-		lfs f2, 0x134(r1)
-		lwz r0, 0x70(r1)
-		lfs f1, 0x140(r1)
-		stw r8, 0x18(r5)
-		lfs f8, lbl_80520270
-		stfs f3, 0xe0(r1)
-		lfs f3, 0x12c(r1)
-		stfs f2, 0xe4(r1)
-		lfs f2, 0x138(r1)
-		stfs f1, 0xe8(r1)
-		lfs f1, 0x144(r1)
-		stw r7, 0x1c(r5)
-		stfs f3, 0xec(r1)
-		lfs f3, 0x130(r1)
-		stfs f2, 0xf0(r1)
-		lfs f2, 0x13c(r1)
-		stfs f1, 0xf4(r1)
-		lfs f1, 0x148(r1)
-		stw r30, 0xbc(r1)
-		stw r31, 0xc0(r1)
-		stw r12, 0xc4(r1)
-		stw r11, 0xc8(r1)
-		stw r10, 0xcc(r1)
-		stw r9, 0xd0(r1)
-		stw r8, 0xd4(r1)
-		stw r7, 0xd8(r1)
-		stw r0, 0xdc(r1)
-		stw r30, 0x104(r1)
-		stw r31, 0x108(r1)
-		stw r12, 0x10c(r1)
-		stw r11, 0x110(r1)
-		stw r10, 0x114(r1)
-		stw r9, 0x118(r1)
-		stw r8, 0x11c(r1)
-		stw r7, 0x120(r1)
-		stw r0, 0x124(r1)
-		stw r0, 0x20(r5)
-		stfs f3, 0xf8(r1)
-		stfs f2, 0xfc(r1)
-		stfs f1, 0x100(r1)
-		mtctr r16
-	lbl_80412120:
-		stfs f8, 0(r29)
-		lfs f7, 0(r20)
-		lfs f6, 0(r4)
-		lfs f1, 0(r29)
-		lfs f5, 4(r20)
-		fmadds f1, f7, f6, f1
-		lfs f3, 8(r20)
-		lfs f4, 0xc(r4)
-		addi r20, r20, 0xc
-		lfs f2, 0x18(r4)
-		stfs f1, 0(r29)
-		lfs f6, 4(r4)
-		lfs f1, 0(r29)
-		fmadds f1, f5, f4, f1
-		lfs f4, 0x10(r4)
-		stfs f1, 0(r29)
-		lfs f1, 0(r29)
-		fmadds f1, f3, f2, f1
-		lfs f2, 0x1c(r4)
-		stfs f1, 0(r29)
-		stfs f8, 4(r29)
-		lfs f1, 4(r29)
-		fmadds f1, f7, f6, f1
-		lfs f6, 8(r4)
-		stfs f1, 4(r29)
-		lfs f1, 4(r29)
-		fmadds f1, f5, f4, f1
-		lfs f4, 0x14(r4)
-		stfs f1, 4(r29)
-		lfs f1, 4(r29)
-		fmadds f1, f3, f2, f1
-		lfs f2, 0x20(r4)
-		stfs f1, 4(r29)
-		stfs f8, 8(r29)
-		lfs f1, 8(r29)
-		fmadds f1, f7, f6, f1
-		stfs f1, 8(r29)
-		lfs f1, 8(r29)
-		fmadds f1, f5, f4, f1
-		stfs f1, 8(r29)
-		lfs f1, 8(r29)
-		fmadds f1, f3, f2, f1
-		stfs f1, 8(r29)
-		addi r29, r29, 0xc
-		bdnz lbl_80412120
-		lwz r31, 0x2c(r1)
-		li r16, 3
-		lwz r30, 0x30(r1)
-		addi r7, r1, 8
-		lwz r29, 0x34(r1)
-		addi r8, r1, 0x104
-		lwz r20, 0x38(r1)
-		lwz r12, 0x3c(r1)
-		lwz r11, 0x40(r1)
-		lwz r10, 0x44(r1)
-		lwz r9, 0x48(r1)
-		lwz r0, 0x4c(r1)
-		stw r31, 0x98(r1)
-		lfs f8, lbl_80520270
-		stw r30, 0x9c(r1)
-		stw r29, 0xa0(r1)
-		stw r20, 0xa4(r1)
-		stw r12, 0xa8(r1)
-		stw r11, 0xac(r1)
-		stw r10, 0xb0(r1)
-		stw r9, 0xb4(r1)
-		stw r0, 0xb8(r1)
-		stw r31, 0x104(r1)
-		stw r30, 0x108(r1)
-		stw r29, 0x10c(r1)
-		stw r20, 0x110(r1)
-		stw r12, 0x114(r1)
-		stw r11, 0x118(r1)
-		stw r10, 0x11c(r1)
-		stw r9, 0x120(r1)
-		stw r0, 0x124(r1)
-		mtctr r16
-	lbl_80412254:
-		stfs f8, 0(r7)
-		lfs f7, 0(r8)
-		lfs f6, 0x128(r1)
-		lfs f1, 0(r7)
-		lfs f5, 4(r8)
-		fmadds f1, f7, f6, f1
-		lfs f3, 8(r8)
-		lfs f4, 0x134(r1)
-		addi r8, r8, 0xc
-		lfs f2, 0x140(r1)
-		stfs f1, 0(r7)
-		lfs f6, 0x12c(r1)
-		lfs f1, 0(r7)
-		fmadds f1, f5, f4, f1
-		lfs f4, 0x138(r1)
-		stfs f1, 0(r7)
-		lfs f1, 0(r7)
-		fmadds f1, f3, f2, f1
-		lfs f2, 0x144(r1)
-		stfs f1, 0(r7)
-		stfs f8, 4(r7)
-		lfs f1, 4(r7)
-		fmadds f1, f7, f6, f1
-		lfs f6, 0x130(r1)
-		stfs f1, 4(r7)
-		lfs f1, 4(r7)
-		fmadds f1, f5, f4, f1
-		lfs f4, 0x13c(r1)
-		stfs f1, 4(r7)
-		lfs f1, 4(r7)
-		fmadds f1, f3, f2, f1
-		lfs f2, 0x148(r1)
-		stfs f1, 4(r7)
-		stfs f8, 8(r7)
-		lfs f1, 8(r7)
-		fmadds f1, f7, f6, f1
-		stfs f1, 8(r7)
-		lfs f1, 8(r7)
-		fmadds f1, f5, f4, f1
-		stfs f1, 8(r7)
-		lfs f1, 8(r7)
-		fmadds f1, f3, f2, f1
-		stfs f1, 8(r7)
-		addi r7, r7, 0xc
-		bdnz lbl_80412254
-		lwz r20, 8(r1)
-		lwz r16, 0xc(r1)
-		stw r20, 0(r4)
-		lwz r12, 0x10(r1)
-		stw r16, 4(r4)
-		lwz r11, 0x14(r1)
-		stw r12, 8(r4)
-		lwz r10, 0x18(r1)
-		stw r11, 0xc(r4)
-		lwz r9, 0x1c(r1)
-		stw r10, 0x10(r4)
-		lwz r8, 0x20(r1)
-		stw r9, 0x14(r4)
-		lwz r7, 0x24(r1)
-		stw r8, 0x18(r4)
-		lwz r0, 0x28(r1)
-		stw r7, 0x1c(r4)
-		stw r20, 0x74(r1)
-		stw r16, 0x78(r1)
-		stw r12, 0x7c(r1)
-		stw r11, 0x80(r1)
-		stw r10, 0x84(r1)
-		stw r9, 0x88(r1)
-		stw r8, 0x8c(r1)
-		stw r7, 0x90(r1)
-		stw r0, 0x94(r1)
-		stw r0, 0x20(r4)
-	lbl_80412374:
-		addi r28, r28, 4
-		addi r22, r22, 4
-		addi r27, r27, 0xc
-		addi r26, r26, 4
-		addi r21, r21, 0xc
-		addi r6, r6, 1
-	lbl_8041238C:
-		cmpwi r6, 3
-		blt lbl_80411E34
-		addi r3, r3, 1
-		addi r25, r25, 0xc
-		cmpwi r3, 2
-		addi r24, r24, 4
-		addi r23, r23, 0xc
-		addi r19, r19, 0xc
-		blt lbl_80411E14
-		addi r18, r18, 1
-		cmpwi r18, 0x32
-		blt lbl_80411D28
-	lbl_804123BC:
-		lmw r16, 0x150(r1)
-		addi r1, r1, 0x190
-		blr
-	// clang-format on
+	/*  Diagonalises matrix (M), producing a diagonal matrix D, and an orthogonal matrix P
+	 -- assumption is matrices D and P are both just 'locations' to store the outputs
+	 -- D = P * M * transpose(P)
+	 -- Diagonal elements of D are (approx) eigenvalues of M
+	 -- Corresponding columns of P are (approx) eigenvectors of M for each eigenvalue
+	 -- uses Jacobi algorithm with max 50 iterations for convergence
+	 -- Matrix M assumed to be symmetric and diagonalisable
+	*/
+	// make initial outputs
+	// initial D is just the 'input' matrix, i.e. what this is called on
+	D = *this;
+	// initial P is the identity (matrix equivalent of '1')
+	P.makeIdentity(); // P is 0x50(r1)
+
+	// declare some matrices we'll use to store stuff as we go
+	Matrix3f J;     // this is 0x128(r1), Jacobi rotation
+	Matrix3f J_int; // this is 0x104(r1), what we'll store successive matrix multiplication in
+	Matrix3f T;     // this is 0xe0(r1), transpose of Jacobi rotation
+	// 0x50, 0xbc = side-products of MM1
+	// 0x2c, 0x98 = side-products of MM2
+	// 0x8, 0x74 = side-products of MM3
+
+	float conv_thresh = 0.01f; // want off-diags to be smaller than this, effectively
+	bool hasConverged;
+
+	// actual Jacobi algorithm - repeat this 50x or until convergence threshold is reached
+	for (int conv_ctr = 0; conv_ctr < 50; conv_ctr++) {
+		hasConverged = D.isDiagonal(conv_thresh);
+		// check if elements are sufficient diagonal - if so, make them 0 and end; if not, we get to work
+		if (!hasConverged) {
+			// time to calculate some Jacobi rotation matrices
+			// go through each off-diagonal term and check if it needs work
+
+			// THIS SECTION ONWARD IS STILL DODGY REG-WISE
+
+			// int row_col = 0; // r24
+			// float *D_r19 = &D.m_matrix[0][0];
+			// float *J_r25 = &J.m_matrix[0][0];
+			// int row_OD = 0; // r3
+			// int row_row = row_col; // r23
+
+			// row_OD = row of off-diagonal we're looking at (row 0 for first and second, row 1 for third)
+			for (int row_OD = 0; row_OD < 2; row_OD++) {
+				// for (row_OD; row_OD < 2; row_OD++) {
+
+				// int col_OD = row_OD + 1; // r6
+				// float *J_r27 = &J.m_matrix[0][0];
+				// int col_row = col_OD * (0xc); // r21
+				// int col_col = col_OD; // r22
+				// float *D_r28 = D_r19 + col_col;
+				// float *J_r26 = J_r25 + col_col;
+				// J_r27 += col_row;
+
+				// col_OD = col of off-diagonal we're looking at (col 1 for first, col 2 for second and third)
+				for (int col_OD = row_OD + 1; col_OD < 3; col_OD++) {
+					// for (col_OD; col_OD < 3; col_OD++) {
+					// float D_row_col = *(D_r28);
+					if (!(D.m_matrix[row_OD][col_OD] < conv_thresh)) { // if this off-diagonal element is still too big
+						// if (!(D_row_col < conv_thresh)) { // if this off-diagonal element is still too big
+						J = D; // start with the attempted 'diagonal' matrix
+
+						// Jacobi rotation matrix requires cos(theta) and sin(theta) to be calculated
+						// so the rotation is the 'correct' one to get us closer to being diagonal
+						// the main things about this calc are c_theta and s_theta, most of this is just
+						// to make sure we're not doing dumb complex number math
+
+						// float y = (*(J_r27 + col_col) - *(J_r25 + row_col)) / (2.0f * *(&J_r26[0]));
+						// float y = (J.m_matrix[col_OD][col_OD] - J.m_matrix[row_OD][row_OD]) / (2.0f * J.m_matrix[row_OD][col_OD]);
+						float y = J.calcJacobi(row_OD, col_OD);
+						f32 r, t, d;
+						t = (y > 0.0f) ? 1.0f / (y + pikmin2_sqrtf(y * y + 1.0f)) : (-1.0f / (-y + pikmin2_sqrtf(y * y + 1.0f)));
+						d = pikmin2_sqrtf(t * t + 1.0f);
+						float c_theta = 1.0f / d;    //  cos(theta), for the diagonals
+						float s_theta = t * c_theta; // (minus?) sin(theta), for the off-diagonals
+
+						// Construct Jacobi rotation matrix
+						// make J identity first
+						J.makeIdentity();
+						// float *J_ptr_row = &J.m_matrix[row_OD][0];
+						// float *J_ptr_col = &J.m_matrix[col_OD][0];
+
+						// float *J_r30 = &J.m_matrix[0][0];
+						// float *J_r9 = J_r30 + row_row;
+						// float *J_r10 = J_r30 + col_row;
+
+						// replace 'inset' elements with cos or sin as required
+						J.createJacobi(row_OD, col_OD, c_theta, s_theta);
+						// createJacobi(J, row_row, row_col, col_row, col_col, c_theta, s_theta);
+						// *(J_r9 + row_col) = c_theta;
+						// *(J_r10 + col_col) = c_theta;
+						// *(J_r9 + col_col) = s_theta;
+						// *(J_r10 + row_col) = -s_theta;
+
+						// END DODGY SECTION - HERE OUT SEEMS FINE
+
+						// Matrix multiplication, round 1: M_1 = P * J
+						// this creates the updated P matrix, which is just
+						// all the Js so far, multiplied in order
+						// i.e. P = J1 * J2 * J3 * ... * J50, if we get that far
+						J_int = P * J;
+
+						// update P
+						P = J_int;
+
+						// make T = transpose of J, i.e. flip it along its diagonal
+						// J.makeTranspose(T);
+						for (int i = 0; i < 3; i++) {
+							for (int j = 0; j < 3; j++) {
+								T.m_matrix[i][j] = J.m_matrix[j][i];
+							}
+						}
+
+						// Matrix multiplication, round 2: M_2 = T * D
+						// this creates the left "half" of the multiplication
+						//   when updating D, store in M_2
+						J_int = T * D;
+
+						// Matrix multiplication, round 3: D = J_int * J!
+						// this finishes the right "half" of the multiplication
+						//   when updating D
+						D = J_int * J;
+
+					} // end if
+					  // D_r28 += 1;
+					  // col_col += 1;
+					  // J_r27 += 3;
+					  // J_r26 += 1;
+					  // col_row += 3;
+				}     // end col loop
+				      // J_r25 += 3;
+				      // row_col += 1;
+				      // row_row += 3;
+				      // D_r19 += 3;
+			}         // end row loop
+			          // if not diagonal, just move on to next one
+		} else {      // if diagonals are already sufficiently 0
+			break;
+		}
+	}
 }
 
 #include "Quat.h"
@@ -2259,29 +1823,6 @@ void BoundBox::transform(Matrixf&)
 	  lwz       r0, 0x94(r1)
 	  mtlr      r0
 	  addi      r1, r1, 0x90
-	  blr
-	*/
-}
-
-/*
- * --INFO--
- * Address:	80413228
- * Size:	00002C
- */
-void __sinit_sysMath_cpp(void)
-{
-	/*
-	.loc_0x0:
-	  lbz       r0, -0x6538(r13)
-	  extsb.    r0, r0
-	  bnelr-
-	  lfs       f0, 0x1F10(r2)
-	  lis       r3, 0x8051
-	  li        r0, 0x1
-	  stfsu     f0, 0x41E4(r3)
-	  stfs      f0, 0x4(r3)
-	  stfs      f0, 0x8(r3)
-	  stb       r0, -0x6538(r13)
 	  blr
 	*/
 }
