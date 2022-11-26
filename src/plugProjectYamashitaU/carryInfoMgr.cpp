@@ -2939,5 +2939,3 @@ addi     r3, r3, -4
 b        __dt__13PokoInfoOwnerFv
 */
 //}
-
-#endif
