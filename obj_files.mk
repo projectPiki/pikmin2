@@ -1082,7 +1082,6 @@ BOOTUP:=\
 
 COMMON:=\
 	$(BUILD_DIR)/src/sysCommonU/node.o\
-	$(BUILD_DIR)/src/sysCommonU/sysMath.o\
 	$(BUILD_DIR)/asm/sysCommonU/sysMath.o\
 	$(BUILD_DIR)/src/sysCommonU/id32.o\
 	$(BUILD_DIR)/src/sysCommonU/parameters.o\
