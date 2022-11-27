@@ -1,4 +1,10 @@
 #include "types.h"
+#include "efx/OnyonSpot.h"
+#include "Sys/Sphere.h"
+#include "Sys/Cylinder.h"
+#include "Game/GameSystem.h"
+#include "JSystem/J3D/J3DModelLoader.h"
+#include "Game/Entities/ItemOnyon.h"
 
 /*
     Generated from dpostproc
@@ -95,8 +101,12 @@ void OnyonSpot::initAnimators(Sys::MatTexAnimation*, Sys::MatTevRegAnimation*)
  * Address:	802055A4
  * Size:	000024
  */
-void OnyonSpot::getLODSphere(Sys::Sphere&)
+void OnyonSpot::getLODSphere(Sys::Sphere& sphere)
 {
+	sphere.m_position.x = m_mtx.m_matrix.structView.tx;
+	sphere.m_position.y = m_mtx.m_matrix.structView.ty;
+	sphere.m_position.z = m_mtx.m_matrix.structView.tz;
+	sphere.m_radius     = 10.0f;
 	/*
 	lfs      f1, 0x14(r3)
 	lfs      f0, lbl_80519D70@sda21(r2)
@@ -115,8 +125,16 @@ void OnyonSpot::getLODSphere(Sys::Sphere&)
  * Address:	802055C8
  * Size:	000054
  */
-void OnyonSpot::getLODCylinder(Sys::Cylinder&)
+void OnyonSpot::getLODCylinder(Sys::Cylinder& cyl)
 {
+	cyl.m_center.x = m_mtx.m_matrix.structView.tx;
+	cyl.m_center.y = m_mtx.m_matrix.structView.ty;
+	cyl.m_center.z = m_mtx.m_matrix.structView.tz;
+	cyl.m_radius   = 20.0f;
+	cyl.m_length   = 200.0f;
+	cyl.m_center.y += cyl.m_length * 0.5f;
+	cyl.m_axis = Vector3f(0.0f, 1.0f, 0.0f);
+
 	/*
 	lfs      f0, 0x14(r3)
 	lfs      f3, lbl_80519D74@sda21(r2)
@@ -149,6 +167,10 @@ void OnyonSpot::getLODCylinder(Sys::Cylinder&)
  */
 void OnyonSpot::changeMaterial(void)
 {
+	if (!Game::gameSystem->paused()) {
+		m_anim1.animate(30.0f);
+	}
+	m_anim2.animate(0.0f);
 	/*
 	stwu     r1, -0x10(r1)
 	mflr     r0
@@ -182,6 +204,28 @@ lbl_8020564C:
  */
 void OnyonSpotData::loadResources(void)
 {
+	allocModelData(1);
+	JKRArchive* arc = JKRArchive::mount("user/Kando/effect/modeleffect.szs", JKRArchive::EMM_Mem, nullptr, JKRArchive::EMD_Unk1);
+	P2ASSERTLINE(92, arc != 0);
+	void* file = JKRFileLoader::getGlbResource("onyonspot.bmd", nullptr);
+	P2ASSERTLINE(95, file != 0);
+
+	J3DModelData* model = J3DModelLoaderDataBase::load(file, 0x21020000);
+	*m_modelData        = model;
+	m_texAnimCount      = 1;
+	m_texanims          = new Sys::MatTexAnimation[m_texAnimCount];
+	m_tevAnimCount      = ONYON_TYPE_MAX;
+	m_tevanims          = new Sys::MatTevRegAnimation[m_tevAnimCount];
+
+	file = JKRFileLoader::getGlbResource("onyonspot.btk", nullptr);
+	m_texanims[0].attachResource(file, *m_modelData);
+
+	file = JKRFileLoader::getGlbResource("onyonspot_blue.brk", nullptr);
+	m_tevanims[0].attachResource(file, *m_modelData);
+	file = JKRFileLoader::getGlbResource("onyonspot_red.brk", nullptr);
+	m_tevanims[1].attachResource(file, *m_modelData);
+	file = JKRFileLoader::getGlbResource("onyonspot_yellow.brk", nullptr);
+	m_tevanims[2].attachResource(file, *m_modelData);
 	/*
 	stwu     r1, -0x20(r1)
 	mflr     r0
@@ -301,8 +345,31 @@ lbl_802056F0:
  * Address:	80205810
  * Size:	000180
  */
-void OnyonSpotData::onCreate(ModelEffectCreateArg*)
+OnyonSpot* OnyonSpotData::onCreate(ModelEffectCreateArg* arg)
 {
+	OnyonSpotArg* onyonarg = static_cast<OnyonSpotArg*>(arg);
+
+	u64 id1 = getID();
+	u64 id2 = onyonarg->getID();
+	P2ASSERTLINE(129, id1 == id2);
+
+	SysShape::Model* model = new SysShape::Model(*m_modelData, 0, 2);
+	int type               = onyonarg->m_onyonType;
+
+	OnyonSpot* spot = new OnyonSpot();
+	spot->m_model   = model;
+
+	Matrixf mtx;
+	mtx.makeT(onyonarg->m_orig);
+	PSMTXCopy(mtx.m_matrix.mtxView, spot->m_mtx.m_matrix.mtxView);
+
+	Sys::MatTevRegAnimation* tevanim = &m_tevanims[type];
+	Sys::MatTexAnimation* texanim    = m_texanims;
+	spot->m_model->enableMaterialAnim(0);
+	spot->m_anim2.start(tevanim);
+	spot->m_anim1.start(texanim);
+
+	return spot;
 	/*
 	stwu     r1, -0x50(r1)
 	mflr     r0
@@ -414,8 +481,9 @@ lbl_80205910:
  * Address:	80205990
  * Size:	000014
  */
-void OnyonSpotData::getID(void)
+u64 OnyonSpotData::getID(void)
 {
+	return 'ONY_SPOT';
 	/*
 	lis      r4, 0x53504F54@ha
 	lis      r3, 0x4F4E595F@ha
@@ -473,7 +541,7 @@ lbl_802059F8:
  * Address:	80205A14
  * Size:	000008
  */
-u32 OnyonSpot::useCylinderLOD(void) { return 0x1; }
+bool OnyonSpot::useCylinderLOD(void) { return true; }
 
 } // namespace efx
 
