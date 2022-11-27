@@ -116,7 +116,7 @@ struct RandMapMgr : public CNode {
 	void captureRadarMap(Graphics&);
 	bool isLastFloor();
 	bool isVersusHiba();
-	void getRadarMapTexture();
+	JUTTexture* getRadarMapTexture();
 	void radarMapPartsOpen(Vector3f&);
 	void getPositionOnTex(Vector3f&, f32&, f32&);
 	void getBaseGenData(Vector3f*, f32*);

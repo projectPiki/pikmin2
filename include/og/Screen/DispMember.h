@@ -417,8 +417,8 @@ struct DispMemberSMenuMap : public DispMemberBase {
 	bool m_unlockedBlues;   // _46
 	bool m_unlockedWhites;  // _47
 	bool m_unlockedPurples; // _48
-	u8 _49;                 // _49
-	bool _4A;               // _4A
+	u8 m_inCave;            // _49
+	bool m_activeNavi;      // _4A
 };
 
 // size 0x14

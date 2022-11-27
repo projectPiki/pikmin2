@@ -321,46 +321,56 @@ struct ObjSMenuMap : public ObjSMenuBase {
 	void drawRectZ(Graphics&, Rectf&, Color4&, f32);
 	void drawVecZ(Graphics&, Vec&, Vec&, Vec&, Vec&, Color4&, f32);
 
+	// unused/inlined
+	void calcMapScale();
+	void calcMapPos(Vector2f&);
+	void setMapPos();
+	void setCompass();
+	void rotateMap();
+	void scaleMap();
+	void setMapColor();
+	void calcCaveNameAlpha();
+
 	// _00     = VTBL1
 	// _18     = VTBL2
 	// _00-_A8 = ObjSMenuBase
 	og::Screen::DispMemberSMenuMap* m_disp; // _A8
 	og::Screen::MapCounter* m_mapCounter;   // _AC
 	og::Screen::AnimGroup* m_animGroup;     // _B0
-	J2DPictureEx* _B4;                      // _B4, map cent?
+	J2DPictureEx* m_pane_map;               // _B4, map_
 	u32 _B8;                                // _B8, unknown
-	P2DScreen::Mgr_tuning* _BC;             // _BC
+	P2DScreen::Mgr_tuning* m_iconScreen;    // _BC
 	JUTTexture* m_radarMapTexture;          // _C0
-	J2DPane* _C4;                           // _C4
-	J2DPictureEx* _C8;                      // _C8
+	J2DPane* m_rootPane;                    // _C4
+	J2DPictureEx* m_mapTexPane;             // _C8
 	J2DPane** _CC;                          // _CC
-	J2DPictureEx* _D0;                      // _D0, ic orima?
+	J2DPictureEx* m_orimaArrow;             // _D0, ic orima?
 	Game::Navi* m_orima;                    // _D4
-	J2DPictureEx* _D8;                      // _D8, ic louzy?
+	J2DPictureEx* m_loozyArrow;             // _D8, ic louzy?
 	Game::Navi* m_louzy;                    // _DC, or president
-	f32 _E0;                                // _E0
-	f32 _E4;                                // _E4
-	f32 _E8;                                // _E8
-	f32 _EC;                                // _EC
+	f32 m_mapXpos;                          // _E0
+	f32 m_mapYpos;                          // _E4
+	f32 m_zoom;                             // _E8
+	f32 m_mapAngle;                         // _EC
 	f32 _F0;                                // _F0
 	f32 _F4;                                // _F4
-	f32 _F8;                                // _F8
-	f32 _FC;                                // _FC
-	f32 _100;                               // _100, width maybe?
-	f32 _104;                               // _104, height maybe?
+	f32 m_mapTexWidth;                      // _F8
+	f32 m_mapTexHeight;                     // _FC
+	f32 m_mapXwidth;                        // _100, width maybe?
+	f32 m_mapYheight;                       // _104, height maybe?
 	f32 _108;                               // _108
 	f32 _10C;                               // _10C
-	f32 _110;                               // _110
-	f32 _112;                               // _112
-	Controller* m_controller;               // _114
-	int _11C;                               // _11C
-	u8 _120;                                // _120
-	P2DScreen::Mgr_tuning* _124;            // _124
-	J2DPane* _128;                          // _128, Ncompas?
-	J2DPictureEx* _12C;                     // _12C, compass?
-	J2DPictureEx* _130;                     // _130, ie orima?
-	J2DPictureEx* _134;                     // _134, ie louzy?
-	f32 _138;                               // _138
+	f32 m_mapXrot;                          // _110
+	f32 m_mapYrot;                          // _114
+	Controller* m_controller;               // _118
+	int m_mapIconNum;                       // _11C
+	u8 m_updateCaveTex;                     // _120
+	P2DScreen::Mgr_tuning* m_iconScreen2;   // _124
+	J2DPane* m_pane_Ncompas;                // _128, Ncompas?
+	J2DPictureEx* m_compassPic;             // _12C, compass?
+	J2DPictureEx* m_orimaGlowPic;           // _130, ie orima?
+	J2DPictureEx* m_loozyGlowPic;           // _134, ie louzy?
+	f32 m_startZoom;                        // _138
 	u8 _13C;                                // _13C
 	J2DTextBox* m_caveLabelTextBoxes[5];    // _140
 	int m_caveLabelCount;                   // _154
@@ -371,8 +381,8 @@ struct ObjSMenuMap : public ObjSMenuBase {
 		u8 _08;                                  // _08
 		u8 _09;                                  // _09
 		u8 _0A;                                  // _0A
-		Color4 _0B;                              // _0B
-		Color4 _0F;                              // _0F
+		JUtility::TColor _0B;                    // _0B
+		JUtility::TColor _0F;                    // _0F
 		JUtility::TColor m_itemPelletWhiteColor; // _13
 		JUtility::TColor m_itemPelletBlackColor; // _17
 		u8 _1B;                                  // _1B
@@ -380,8 +390,8 @@ struct ObjSMenuMap : public ObjSMenuBase {
 		f32 _20;                                 // _20
 		f32 _24;                                 // _24
 		f32 _28;                                 // _28
-		f32 _2C;                                 // _2C
-		f32 _30;                                 // _30
+		f32 m_groundZoom;                        // _2C
+		f32 m_caveZoom;                          // _30
 		f32 _34;                                 // _34
 		f32 _38;                                 // _38
 		f32 _3C;                                 // _3C
