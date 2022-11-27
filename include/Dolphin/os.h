@@ -48,6 +48,14 @@ typedef u64 OSTime;
 #define OS_ERROR_PROTECTION         15
 #define OS_ERROR_MAX                (OS_ERROR_PROTECTION + 1)
 
+volatile u16 OS_AI_DMA_ADDR_HI : 0xCC005030;
+volatile u16 OS_AI_DMA_ADDR_LO : 0xCC005032;
+
+volatile u16 OS_ARAM_DMA_BASE : 0xCC005000;
+volatile u16 OS_ARAM_DMA_ADDR_HI : 0xCC005020;
+volatile u16 OS_ARAM_DMA_ADDR_LO : 0xCC005022;
+volatile u16 OS_DI_DMA_ADDR : 0xCC006014;
+
 #define OSError(...) OSPanic(__FILE__, __LINE__, __VA_ARGS__)
 #ifndef MATCHING
 #define OSErrorLine(line, ...) OSError(__VA_ARGS__)

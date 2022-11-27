@@ -119,8 +119,8 @@ OSErrorHandler OSSetErrorHandler(OSError error, OSErrorHandler handler)
 				thread->context.fpscr &= ~FPSCR_ENABLE;
 				thread->context.fpscr &= 0x6005F8FF;
 			}
-			fpscr &= ~0x900;
-			msr &= ~FPSCR_ENABLE;
+			fpscr &= ~FPSCR_ENABLE;
+			msr &= ~0x900;
 		}
 
 		fpscr &= 0x6005F8FF; // mismatch on this line
@@ -141,15 +141,16 @@ OSErrorHandler OSSetErrorHandler(OSError error, OSErrorHandler handler)
 void __OSUnhandledException(__OSException exception, OSContext* context, u32 dsisr, u32 dar)
 {
 	OSTime now;
-
-	now = OSGetTime();
+	OSErrorHandler* errorTable = __OSErrorTable;
+	now                        = OSGetTime();
 
 	if (!(context->srr1 & 2)) {
 		OSReport("Non-recoverable Exception %d", exception);
 	} else {
-		if (exception == OS_ERROR_PROGRAM && (context->srr1 & (0x80000000 >> 11)) && __OSErrorTable[OS_ERROR_MAX] != 0) {
+		if (exception == OS_ERROR_PROGRAM && (context->srr1 & (0x80000000 >> 11)) && errorTable[OS_ERROR_MAX] != 0) {
 			u32 fpscr;
 			u32 msr;
+			u32 res;
 
 			// set exception
 			exception = OS_ERROR_MAX; // probably meant to be something related to FPU
@@ -164,19 +165,19 @@ void __OSUnhandledException(__OSException exception, OSContext* context, u32 dsi
 			}
 
 			// magic hex turns something off
-			fpscr = PPCMffpscr();
-			fpscr &= 0x6005F8FF;
-			PPCMtfpscr(fpscr);
+			res   = PPCMffpscr();
+			fpscr = 0x6005F8FF;
+			PPCMtfpscr(res & fpscr);
 
 			// Restore FPU
 			PPCMtmsr(msr);
 
 			if (__OSFPUContext == context) {
 				OSDisableScheduler();
-				__OSErrorTable[exception](exception, context, dsisr, dar);
+				errorTable[exception](exception, context, dsisr, dar);
 
 				// Clear FPU context so that the error handler can alter the FPU context
-				context->srr1 &= ~0x4;
+				context->srr1 &= ~0x2000;
 				__OSFPUContext = NULL;
 
 				// Turn off floating point exception
@@ -185,7 +186,7 @@ void __OSUnhandledException(__OSException exception, OSContext* context, u32 dsi
 				__OSReschedule();
 			} else {
 				// Clear FPU context
-				context->srr1 &= ~0x4;
+				context->srr1 &= ~0x2000;
 				__OSFPUContext = NULL;
 			}
 
@@ -193,9 +194,9 @@ void __OSUnhandledException(__OSException exception, OSContext* context, u32 dsi
 			// NOT REACHED HERE
 		}
 
-		if (__OSErrorTable[exception]) {
+		if (errorTable[exception]) {
 			OSDisableScheduler();
-			__OSErrorTable[exception](exception, context, dsisr, dar);
+			errorTable[exception](exception, context, dsisr, dar);
 			OSEnableScheduler();
 			__OSReschedule();
 			OSLoadContext(context);
@@ -240,9 +241,9 @@ void __OSUnhandledException(__OSException exception, OSContext* context, u32 dsi
 		break;
 	case OS_ERROR_PROTECTION:
 		OSReport("\n");
-		OSReport("AI DMA Address =   0x%04x%04x\n", __DSPRegs[0x5030], __DSPRegs[0x5030 + 1]); // fix this code block -epoch
-		OSReport("ARAM DMA Address = 0x%04x%04x\n", __DSPRegs[0x5032], __DSPRegs[0x5032 + 1]);
-		OSReport("DI DMA Address =   0x%08x\n", __DIRegs[3]);
+		OSReport("AI DMA Address =   0x%04x%04x\n", OS_AI_DMA_ADDR_HI, OS_AI_DMA_ADDR_LO); // fix this code block -epoch
+		OSReport("ARAM DMA Address = 0x%04x%04x\n", OS_ARAM_DMA_ADDR_HI, OS_ARAM_DMA_ADDR_LO);
+		OSReport("DI DMA Address =   0x%08x\n", OS_DI_DMA_ADDR);
 		break;
 	}
 
