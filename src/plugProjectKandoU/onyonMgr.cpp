@@ -1906,7 +1906,7 @@ void Onyon::update_pmotions()
 			if (jnt) {
 				u16 id                                                              = jnt->m_jointIndex;
 				SysShape::Model* model                                              = m_model;
-				J3DMtxCalc* calc                                                    = panim->getCalc();
+				J3DMtxCalc* calc                                                    = static_cast<SysShape::BaseAnimator*>(panim)->getCalc();
 				model->m_j3dModel->m_modelData->m_jointTree.m_joints[id]->m_mtxCalc = static_cast<J3DMtxCalcAnmBase*>(calc);
 			} else {
 				JUT_PANICLINE(2643, "no joint (%s)\n", names[i]);
