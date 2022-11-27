@@ -10,6 +10,7 @@ bool checkMovieActive();
 void drawObjName(Graphics&, char*);
 void getLanguageDir(char*&);
 void makeLanguageResName(char*, char const*);
+u64 caveIDtoMsgID(unsigned long);
 } // namespace newScreen
 } // namespace og
 

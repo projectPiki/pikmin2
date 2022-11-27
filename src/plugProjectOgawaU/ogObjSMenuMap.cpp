@@ -1,4 +1,18 @@
 #include "types.h"
+#include "og/newScreen/SMenu.h"
+#include "og/newScreen/ogUtil.h"
+#include "og/Screen/MapCounter.h"
+#include "og/Screen/anime.h"
+#include "og/Screen/ogScreen.h"
+#include "Game/Navi.h"
+#include "Game/CameraMgr.h"
+#include "Game/Cave/RandMapMgr.h"
+
+u64 map_icon_tag[22]
+    = { 'oniyon_r', 'oniyon_b', 'oniyon_y', 'piki_r',   'piki__b', 'piki_y',   'piki_bl',  'piki_w',   'piki_fr', 'piki_me', 'kanketu',
+	    'cave',     'pot',      'luji_bs',  'orima_bs', 'ufo',     'takar_bs', 'takar_bs', 'takar_bs', 'cave',    'comp_c',  'cave' };
+
+u64 map_icon_tag2[3] = { 'orima_l', 'luji_l', 'takara_l' };
 
 /*
     Generated from dpostproc
@@ -410,8 +424,53 @@ void getNaviPtr(int)
  * Address:	8030F6F0
  * Size:	000114
  */
-ObjSMenuMap::ObjSMenuMap(char const*)
+ObjSMenuMap::ObjSMenuMap(char const* name)
 {
+	m_mapXpos               = 0.0f;
+	m_mapYpos               = 0.0f;
+	m_zoom                  = 1.0f;
+	m_mapAngle              = 0.0f;
+	_F0                     = 0.0f;
+	_F4                     = 0.0f;
+	m_mapTexWidth           = 0.0f;
+	m_mapTexHeight          = 0.0f;
+	m_mapXwidth             = 0.0f;
+	m_mapYheight            = 0.0f;
+	_108                    = 0.0f;
+	_10C                    = 0.0f;
+	m_mapXrot               = 0.0f;
+	m_mapYrot               = 0.0f;
+	m_disp                  = nullptr;
+	m_mapCounter            = nullptr;
+	m_animGroup             = nullptr;
+	m_name                  = name;
+	m_pane_map              = nullptr;
+	_B8                     = nullptr;
+	m_iconScreen            = nullptr;
+	m_radarMapTexture       = nullptr;
+	m_rootPane              = nullptr;
+	m_pane_Ncompas          = nullptr;
+	m_mapTexPane            = nullptr;
+	_CC                     = nullptr;
+	m_orimaArrow            = nullptr;
+	m_orima                 = nullptr;
+	m_loozyArrow            = nullptr;
+	m_louzy                 = nullptr;
+	m_mapIconNum            = 0;
+	m_updateCaveTex         = false;
+	m_controller            = nullptr;
+	m_iconScreen2           = nullptr;
+	m_compassPic            = nullptr;
+	m_orimaGlowPic          = nullptr;
+	m_loozyGlowPic          = nullptr;
+	m_startZoom             = nullptr;
+	_13C                    = -1;
+	m_caveLabelCount        = nullptr;
+	m_caveLabelTextBoxes[0] = nullptr;
+	m_caveLabelTextBoxes[1] = nullptr;
+	m_caveLabelTextBoxes[2] = nullptr;
+	m_caveLabelTextBoxes[3] = nullptr;
+	m_caveLabelTextBoxes[4] = nullptr;
 	/*
 	stwu     r1, -0x10(r1)
 	mflr     r0
@@ -612,7 +671,7 @@ lbl_8030F958:
  * Address:	........
  * Size:	000024
  */
-void ObjSMenuMap::calcMapScale(void)
+void ObjSMenuMap::calcMapScale()
 {
 	// UNUSED FUNCTION
 }
@@ -622,7 +681,7 @@ void ObjSMenuMap::calcMapScale(void)
  * Address:	........
  * Size:	0000AC
  */
-void calcMapPos__Q32og9newScreen11ObjSMenuMapF10Vector2<float> P10Vector2<float>(void)
+void ObjSMenuMap::calcMapPos(Vector2f&)
 {
 	// UNUSED FUNCTION
 }
@@ -634,6 +693,43 @@ void calcMapPos__Q32og9newScreen11ObjSMenuMapF10Vector2<float> P10Vector2<float>
  */
 void ObjSMenuMap::setMapTexture(void)
 {
+	J2DPictureEx* mappic = og::Screen::CopyPictureToPane(m_pane_map, m_rootPane, 'new_map', 0.0, 0.0);
+	m_mapTexPane         = mappic;
+	m_mapTexPane->setAlpha(255);
+	m_mapTexPane->m_isVisible = false;
+
+	if (m_disp->m_inCave && m_disp->m_activeNavi) {
+		if (Game::Cave::randMapMgr) {
+			Game::Cave::randMapMgr->setCaptureOn();
+			m_radarMapTexture = Game::Cave::randMapMgr->getRadarMapTexture();
+			m_mapTexPane->changeTexture(m_radarMapTexture->_20, 0);
+		} else {
+			JUT_PANICLINE(390, "SMenuMap : randMapMgr is not found!!!\n");
+		}
+	} else {
+		switch (m_disp->m_courseIndex) {
+		case 0:
+			m_mapTexPane->changeTexture("map_tutorial.bti", 0);
+			break;
+		case 1:
+			m_mapTexPane->changeTexture("map_forest.bti", 0);
+			break;
+		case 2:
+			m_mapTexPane->changeTexture("map_yakushima.bti", 0);
+			break;
+		case 3:
+			m_mapTexPane->changeTexture("map_last.bti", 0);
+			break;
+		}
+	}
+
+	JUTTexture* tex = m_mapTexPane->getTexture(0);
+	m_mapTexWidth   = tex->_20->m_sizeX;
+	tex             = m_mapTexPane->getTexture(0);
+	m_mapTexHeight  = tex->_20->m_sizeY;
+	m_mapXpos       = m_mapTexPane->_020.f.x - m_mapTexPane->_020.i.x;
+	m_mapYpos       = m_mapTexPane->_020.f.y - m_mapTexPane->_020.i.x;
+	m_mapTexPane->resize(m_mapXpos, m_mapYpos);
 	/*
 	stwu     r1, -0x20(r1)
 	mflr     r0
@@ -836,6 +932,50 @@ void ObjSMenuMap::setCompass(void)
  */
 void ObjSMenuMap::tuningIcon(void)
 {
+	if (m_disp->m_activeNavi) {
+		Game::Navi* navi = Game::naviMgr->getActiveNavi();
+		if (navi->m_naviIndex.byteView[1] == 0) {
+			if (m_orimaArrow)
+				m_mapTexPane->appendChild(m_orimaArrow);
+			if (m_loozyArrow)
+				m_mapTexPane->appendChild(m_loozyArrow);
+		} else {
+			if (m_loozyArrow)
+				m_mapTexPane->appendChild(m_loozyArrow);
+			if (m_orimaArrow)
+				m_mapTexPane->appendChild(m_orimaArrow);
+		}
+	}
+
+	for (int i = 0; i < 22; i++) {
+		J2DPane* pane = m_iconScreen->search(map_icon_tag[i]);
+		if (pane) {
+			J2DPane* pane2 = pane->getParentPane();
+			if (pane2) {
+				pane2 = pane->getParentPane();
+				pane2->removeChild(pane);
+			}
+		}
+		pane = m_iconScreen->search(map_icon_tag[i]);
+		if (pane) {
+			J2DPane* pane2 = pane->getParentPane();
+			if (pane2) {
+				pane2 = pane->getParentPane();
+				pane2->removeChild(pane);
+			}
+		}
+	}
+
+	for (int i = 0; i < 3; i++) {
+		J2DPane* pane = m_iconScreen->search(map_icon_tag[2]);
+		if (pane) {
+			J2DPane* pane2 = pane->getParentPane();
+			if (pane2) {
+				pane2 = pane->getParentPane();
+				pane2->removeChild(pane);
+			}
+		}
+	}
 	/*
 	stwu     r1, -0x40(r1)
 	mflr     r0
@@ -2293,8 +2433,167 @@ void ObjSMenuMap::calcCaveNameAlpha(void)
  * Address:	80310ED8
  * Size:	000960
  */
-void ObjSMenuMap::doCreate(JKRArchive*)
+void ObjSMenuMap::doCreate(JKRArchive* arc)
 {
+	og::Screen::DispMemberSMenuAll* dispfull = static_cast<og::Screen::DispMemberSMenuAll*>(getDispMember());
+	og::Screen::DispMemberSMenuMap* disp     = static_cast<og::Screen::DispMemberSMenuMap*>(dispfull->getSubMember('SM', '_MAP'));
+	m_disp                                   = disp;
+	if (!m_disp) {
+		og::Screen::DispMemberSMenuAll* newdisp = new og::Screen::DispMemberSMenuAll;
+		m_disp                                  = static_cast<og::Screen::DispMemberSMenuMap*>(newdisp->getSubMember('SM', '_MAP'));
+	}
+
+	m_mapCounter = new og::Screen::MapCounter(&m_disp->m_dataMap);
+	m_mapCounter->set("s_menu_map_l.blo", 0x1040000, arc);
+	m_animGroup = new og::Screen::AnimGroup(3);
+	og::Screen::registAnimGroupScreen(m_animGroup, arc, m_mapCounter, "s_menu_map_l.btk", msBaseVal._04);
+	og::Screen::registAnimGroupScreen(m_animGroup, arc, m_mapCounter, "s_menu_map_l_02.btk", msBaseVal._04);
+	og::Screen::registAnimGroupScreen(m_animGroup, arc, m_mapCounter, "s_menu_map_l_03.btk", msBaseVal._04);
+	m_mapCounter->setCallBack(arc);
+	m_pane_map = static_cast<J2DPictureEx*>(og::Screen::TagSearch(m_mapCounter, 'map_cent'));
+
+	if (m_disp->m_inCave && m_disp->m_activeNavi) {
+		m_startZoom = msVal.m_caveZoom;
+	} else {
+		m_startZoom = msVal.m_groundZoom;
+	}
+	m_zoom     = m_startZoom;
+	m_mapAngle = 0.0f;
+	if (m_disp->m_activeNavi) {
+		Game::Navi* navi = Game::naviMgr->getActiveNavi();
+		Vector3f vec     = Game::cameraMgr->_24[navi->m_naviIndex.byteView[0]]->getViewVector();
+		m_mapAngle       = pikmin2_atan2f(vec.x, vec.z);
+	}
+	initMapIcon(arc);
+	JUtility::TColor color  = msVal._0B;
+	JUtility::TColor color2 = msVal._0F;
+	m_mapTexPane->setWhite(color);
+	m_mapTexPane->setBlack(color2);
+
+	u64 tag;
+	if (!m_disp->m_inCave || !m_disp->m_activeNavi) {
+		int stage = m_disp->m_courseIndex;
+		switch (stage) {
+		case 0:
+			tag = '8390_03';
+			break;
+		case 1:
+			tag = '8391_03';
+			break;
+		case 2:
+			tag = '8392_03';
+			break;
+		case 3:
+			tag = '8393_03';
+			break;
+		case 4:
+			tag = '8394_03';
+			break;
+		default:
+			break;
+		}
+	} else {
+		char buf[20];
+		tag = caveIDtoMsgID(disp->m_currentCave);
+		tag = og::Screen::maskTag(tag, 1, 3);
+		og::Screen::TagToName(tag, buf);
+	}
+	J2DPane* pane     = og::Screen::TagSearch(m_mapCounter, 'Tmapti');
+	pane->m_messageID = tag;
+	og::Screen::setCallBackMessage(m_iconScreen);
+
+	J2DPane* pane_red    = og::Screen::TagSearch(m_mapCounter, 'Npk01');
+	J2DPane* pane_yellow = og::Screen::TagSearch(m_mapCounter, 'Npk02');
+	J2DPane* pane_blue   = og::Screen::TagSearch(m_mapCounter, 'Npk03');
+	J2DPane* pane_white  = og::Screen::TagSearch(m_mapCounter, 'Npk04');
+	J2DPane* pane_purple = og::Screen::TagSearch(m_mapCounter, 'Npk05');
+
+	J2DPane* pane_red2    = og::Screen::TagSearch(m_mapCounter, 'Npk06');
+	J2DPane* pane_yellow2 = og::Screen::TagSearch(m_mapCounter, 'Npk07');
+	J2DPane* pane_blue2   = og::Screen::TagSearch(m_mapCounter, 'Npk08');
+	J2DPane* pane_white2  = og::Screen::TagSearch(m_mapCounter, 'Npk09');
+	J2DPane* pane_purple2 = og::Screen::TagSearch(m_mapCounter, 'Npk10');
+	J2DPane* pane_free    = og::Screen::TagSearch(m_mapCounter, 'Npk11');
+
+	if (!m_disp->m_unlockedReds) {
+		pane_red->m_isVisible  = false;
+		pane_red2->m_isVisible = false;
+		m_mapCounter->dispRed(false);
+	}
+	if (!m_disp->m_unlockedYellows) {
+		pane_yellow->m_isVisible  = false;
+		pane_yellow2->m_isVisible = false;
+		m_mapCounter->dispYellow(false);
+	}
+	if (!m_disp->m_unlockedBlues) {
+		pane_blue->m_isVisible  = false;
+		pane_blue2->m_isVisible = false;
+		m_mapCounter->dispBlue(false);
+	}
+	if (!m_disp->m_unlockedWhites) {
+		pane_white->m_isVisible  = false;
+		pane_white2->m_isVisible = false;
+		m_mapCounter->dispWhite(false);
+	}
+	if (!m_disp->m_unlockedPurples) {
+		pane_purple->m_isVisible  = false;
+		pane_purple2->m_isVisible = false;
+		m_mapCounter->dispBlack(false);
+	}
+	if (!m_disp->m_unlockedReds && !m_disp->m_unlockedYellows && !m_disp->m_unlockedBlues && !m_disp->m_unlockedWhites
+	    && !m_disp->m_unlockedPurples) {
+		pane_free->m_isVisible = false;
+		m_mapCounter->dispFree(false);
+	}
+
+	J2DPane* pane_rocket = og::Screen::TagSearch(m_mapCounter, 'Nrocket');
+	if (!m_disp->m_unlockedWhites && !m_disp->m_unlockedPurples) {
+		pane_rocket->m_isVisible = false;
+		pane_rocket              = og::Screen::TagSearch(m_mapCounter, 'Ntairetu');
+		pane_rocket->add(0.0f, 0.0f);
+	} else {
+		pane_rocket->m_isVisible              = true;
+		J2DPane* pane_rock1                   = og::Screen::TagSearch(m_mapCounter, 'Nrock_1');
+		J2DPane* pane_rock2                   = og::Screen::TagSearch(m_mapCounter, 'Nrock_2');
+		pane_rock1->m_isVisible               = false;
+		pane_rock2->m_isVisible               = false;
+		og::Screen::DispMemberSMenuMap* disp2 = static_cast<og::Screen::DispMemberSMenuMap*>(dispfull->getSubMember('SM', '_MAP'));
+		if (disp2->m_dataMap.m_debtRemaining < 10000) {
+			pane_rock1->m_isVisible = true;
+		} else {
+			pane_rock2->m_isVisible = true;
+		}
+	}
+	J2DPane* pane_onyn1     = og::Screen::TagSearch(m_mapCounter, 'Nonyn_1');
+	J2DPane* pane_onyn2     = og::Screen::TagSearch(m_mapCounter, 'Nonyn_2');
+	J2DPane* pane_onyn3     = og::Screen::TagSearch(m_mapCounter, 'Nonyn_3');
+	J2DPane* pane_onyn4     = og::Screen::TagSearch(m_mapCounter, 'Nonyn_4');
+	pane_onyn1->m_isVisible = false;
+	pane_onyn2->m_isVisible = false;
+	pane_onyn3->m_isVisible = false;
+	pane_onyn4->m_isVisible = false;
+	if (disp->m_unlockedReds && disp->m_unlockedYellows && disp->m_unlockedBlues) {
+		pane_onyn4->m_isVisible = true;
+	} else if (disp->m_unlockedReds && disp->m_unlockedBlues) {
+		pane_onyn3->m_isVisible = true;
+	} else if (disp->m_unlockedReds && disp->m_unlockedYellows) {
+		pane_onyn2->m_isVisible = true;
+	} else if (disp->m_unlockedReds) {
+		pane_onyn1->m_isVisible = true;
+	}
+
+	J2DPane* pane_ntai1     = og::Screen::TagSearch(m_mapCounter, 'Ntai_1');
+	J2DPane* pane_ntai2     = og::Screen::TagSearch(m_mapCounter, 'Ntai_2');
+	pane_ntai1->m_isVisible = false;
+	pane_ntai2->m_isVisible = false;
+	if (disp->m_unlockedBlues) {
+		pane_ntai1->m_isVisible = true;
+	}
+	if (disp->m_unlockedYellows) {
+		pane_ntai2->m_isVisible = true;
+	}
+	doCreateAfter(arc, m_mapCounter);
+
 	/*
 	stwu     r1, -0x70(r1)
 	mflr     r0
@@ -3519,7 +3818,7 @@ lbl_80311F94:
  * Address:	80311FA8
  * Size:	00010C
  */
-void ObjSMenuMap::doUpdate(void)
+bool ObjSMenuMap::doUpdate(void)
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -3890,7 +4189,7 @@ drawVecZ__Q32og9newScreen11ObjSMenuMapFR8GraphicsR3VecR3VecR3VecR3VecR6Color4f
  * Address:	80312518
  * Size:	0001E0
  */
-void drawRectZ__Q32og9newScreen11ObjSMenuMapFR8GraphicsR7Rect<float> R6Color4f(void)
+void ObjSMenuMap::drawRectZ(Graphics&, Rectf&, Color4&, f32)
 {
 	/*
 	.loc_0x0:
@@ -4167,7 +4466,7 @@ void ObjSMenuMap::drawVecZ(Graphics&, Vec&, Vec&, Vec&, Vec&, Color4&, float)
  * Address:	8031290C
  * Size:	0000A4
  */
-void ObjSMenuMap::doStart(Screen::StartSceneArg const*)
+bool ObjSMenuMap::doStart(::Screen::StartSceneArg const*)
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -4219,7 +4518,7 @@ void ObjSMenuMap::doStart(Screen::StartSceneArg const*)
  * Address:	803129B0
  * Size:	000008
  */
-u32 ObjSMenuMap::doEnd(Screen::EndSceneArg const*) { return 0x1; }
+bool ObjSMenuMap::doEnd(::Screen::EndSceneArg const*) { return true; }
 
 /*
  * --INFO--
@@ -4245,7 +4544,7 @@ void ObjSMenuMap::doUpdateFinish(void)
  * Address:	803129D8
  * Size:	00004C
  */
-void ObjSMenuMap::doUpdateFadeout(void)
+bool ObjSMenuMap::doUpdateFadeout(void)
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -4359,23 +4658,23 @@ void ObjSMenuMap::out_R(void)
 
 } // namespace newScreen
 
-namespace Screen {
+} // namespace og
 
-} // namespace Screen
+namespace Screen {
 
 /*
  * --INFO--
  * Address:	80312AB0
  * Size:	000008
  */
-u32 SetSceneArg::getClassSize(void) { return 0x10; }
+int SetSceneArg::getClassSize(void) { return 0x10; }
 
 /*
  * --INFO--
  * Address:	80312AB8
  * Size:	000008
  */
-void SetSceneArg::getSceneType() const
+SceneType SetSceneArg::getSceneType() const
 {
 	/*
 	lwz      r3, 4(r3)
@@ -4388,10 +4687,10 @@ void SetSceneArg::getSceneType() const
  * Address:	80312AC0
  * Size:	000008
  */
-u32 SceneArgBase::getSceneType() const { return 0x0; }
+SceneType SceneArgBase::getSceneType() const { return (SceneType)0; }
 
+} // namespace Screen
 namespace og {
-} // namespace og
 
 namespace newScreen {
 
@@ -4496,10 +4795,10 @@ void __sinit_ogObjSMenuMap_cpp(void)
  * Address:	80312BF4
  * Size:	000008
  */
-@24 @og::newScreen::ObjSMenuMap::~ObjSMenuMap(void)
-{
-	/*
-	addi     r3, r3, -24
-	b        __dt__Q32og9newScreen11ObjSMenuMapFv
-	*/
-}
+// og::newScreen::ObjSMenuMap::~ObjSMenuMap(void) thunk
+//{
+/*
+addi     r3, r3, -24
+b        __dt__Q32og9newScreen11ObjSMenuMapFv
+*/
+//}
