@@ -8,15 +8,17 @@
 #include "Sys/Cylinder.h"
 #include "SysShape/Model.h"
 
+struct ModelEffect;
+
 struct ModelEffectCreateArg {
 	virtual u64 getID() = 0; // _08
 };
 
 struct ModelEffectData : public CNode {
-	virtual ~ModelEffectData();                       // _08 (weak)
-	virtual void loadResources()                 = 0; // _10
-	virtual u64 getID()                          = 0; // _14
-	virtual void onCreate(ModelEffectCreateArg*) = 0; // _18
+	virtual ~ModelEffectData();                               // _08 (weak)
+	virtual void loadResources()                         = 0; // _10
+	virtual u64 getID()                                  = 0; // _14
+	virtual ModelEffect* onCreate(ModelEffectCreateArg*) = 0; // _18
 
 	void entry();
 	void create(ModelEffectCreateArg*);
@@ -24,18 +26,26 @@ struct ModelEffectData : public CNode {
 
 	// _00		= VTBL
 	// _00-_18	= CNode
-	int m_sizeInBytes;         // _18
-	J3DModelData* m_modelData; // _1C
+	int m_sizeInBytes;          // _18
+	J3DModelData** m_modelData; // _1C
 };
 
 struct ModelEffectDataRoot : public ModelEffectData {
-	virtual ~ModelEffectDataRoot();               // _08 (weak)
-	virtual void loadResources();                 // _10 (weak)
-	virtual u64 getID();                          // _14 (weak)
-	virtual void onCreate(ModelEffectCreateArg*); // _18 (weak)
+	virtual ~ModelEffectDataRoot();                       // _08 (weak)
+	virtual void loadResources();                         // _10 (weak)
+	virtual u64 getID();                                  // _14 (weak)
+	virtual ModelEffect* onCreate(ModelEffectCreateArg*); // _18 (weak)
 };
 
 struct ModelEffect {
+
+	inline ModelEffect()
+	{
+		_39      = 1;
+		_38      = 1;
+		m_culled = 0;
+	}
+
 	virtual void constructor();                  // _08 (weak)
 	virtual void doAnimation();                  // _0C
 	virtual void doEntry();                      // _10
