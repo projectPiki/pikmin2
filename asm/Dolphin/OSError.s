@@ -1,39 +1,67 @@
 .include "macros.inc"
 .section .data, "wa"  # 0x8049E220 - 0x804EFC20
 .balign 8
-.global lbl_804A8F90
-lbl_804A8F90:
+obj local lbl_804A8F90
 	.asciz " in \"%s\" on line %d.\n"
+end lbl_804A8F90
 .balign 4
+obj local lbl_804A8FA8
 	.asciz "\nAddress:      Back Chain    LR Save\n"
+end lbl_804A8FA8
 .balign 4
+obj local lbl_804A8FD0
 	.asciz "0x%08x:   0x%08x    0x%08x\n"
+end lbl_804A8FD0
 .balign 4
+obj local lbl_804A8FEC
 	.asciz "Non-recoverable Exception %d"
+end lbl_804A8FEC
 .balign 4
+obj local lbl_804A900C
 	.asciz "Unhandled Exception %d"
+end lbl_804A900C
 .balign 4
+obj local lbl_804A9024
 	.asciz "\nDSISR = 0x%08x                   DAR  = 0x%08x\n"
+end lbl_804A9024
 .balign 4
+obj local lbl_804A9058
 	.asciz "TB = 0x%016llx\n"
+end lbl_804A9058
 .balign 4
+obj local lbl_804A9068
 	.asciz "\nInstruction at 0x%x (read from SRR0) attempted to access invalid address 0x%x (read from DAR)\n"
+end lbl_804A9068
 .balign 4
+obj local lbl_804A90C8
 	.asciz "\nAttempted to fetch instruction from invalid address 0x%x (read from SRR0)\n"
+end lbl_804A90C8
 .balign 4
+obj local lbl_804A9114
 	.asciz "\nInstruction at 0x%x (read from SRR0) attempted to access unaligned address 0x%x (read from DAR)\n"
+end lbl_804A9114
 .balign 4
+obj local lbl_804A9178
 	.asciz "\nProgram exception : Possible illegal instruction/operation at or around 0x%x (read from SRR0)\n"
+end lbl_804A9178
 .balign 4
+obj local lbl_804A91D8
 	.asciz "AI DMA Address =   0x%04x%04x\n"
+end lbl_804A91D8
 .balign 4
+obj local lbl_804A91F8
 	.asciz "ARAM DMA Address = 0x%04x%04x\n"
+end lbl_804A91F8
 .balign 4
+obj local lbl_804A9218
 	.asciz "DI DMA Address =   0x%08x\n"
+end lbl_804A9218
 .balign 4
+obj local lbl_804A9234
 	.asciz "\nLast interrupt (%d): SRR0 = 0x%08x  TB = 0x%016llx\n"
+end lbl_804A9234
 .balign 4
-lbl_804A926C:
+obj local lbl_804A926C
 	.4byte .L_800EDD64
 	.4byte .L_800EDD64
 	.4byte .L_800EDCBC
@@ -50,23 +78,25 @@ lbl_804A926C:
 	.4byte .L_800EDD64
 	.4byte .L_800EDD64
 	.4byte .L_800EDD18
+end lbl_804A926C
 
 .section .bss  # 0x804EFC20 - 0x8051467C
-.global __OSErrorTable
-__OSErrorTable:
+obj global __OSErrorTable
 	.skip 0x44
+end __OSErrorTable
 
 .section .sdata, "wa"  # 0x80514680 - 0x80514D80
 .balign 8
-.global __OSFpscrEnableBits
-__OSFpscrEnableBits:
+obj global __OSFpscrEnableBits
 	.4byte 0x000000F8
-lbl_805149EC:
+end __OSFpscrEnableBits
+.balign 4
+obj local lbl_805149EC
 	.asciz "\n"
+end lbl_805149EC
 
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
-.global OSReport
-OSReport:
+fn weak OSReport
 /* 800ED6EC 000EA62C  7C 08 02 A6 */	mflr r0
 /* 800ED6F0 000EA630  90 01 00 04 */	stw r0, 4(r1)
 /* 800ED6F4 000EA634  94 21 FF 88 */	stwu r1, -0x78(r1)
@@ -100,9 +130,9 @@ OSReport:
 /* 800ED760 000EA6A0  38 21 00 78 */	addi r1, r1, 0x78
 /* 800ED764 000EA6A4  7C 08 03 A6 */	mtlr r0
 /* 800ED768 000EA6A8  4E 80 00 20 */	blr 
+end OSReport
 
-.global OSPanic
-OSPanic:
+fn weak OSPanic
 /* 800ED76C 000EA6AC  7C 08 02 A6 */	mflr r0
 /* 800ED770 000EA6B0  90 01 00 04 */	stw r0, 4(r1)
 /* 800ED774 000EA6B4  94 21 FF 70 */	stwu r1, -0x90(r1)
@@ -182,9 +212,9 @@ OSPanic:
 /* 800ED88C 000EA7CC  38 21 00 90 */	addi r1, r1, 0x90
 /* 800ED890 000EA7D0  7C 08 03 A6 */	mtlr r0
 /* 800ED894 000EA7D4  4E 80 00 20 */	blr 
+end OSPanic
 
-.global OSSetErrorHandler
-OSSetErrorHandler:
+fn global OSSetErrorHandler
 /* 800ED898 000EA7D8  7C 08 02 A6 */	mflr r0
 /* 800ED89C 000EA7DC  90 01 00 04 */	stw r0, 4(r1)
 /* 800ED8A0 000EA7E0  94 21 FF D0 */	stwu r1, -0x30(r1)
@@ -328,9 +358,9 @@ OSSetErrorHandler:
 /* 800EDAA4 000EA9E4  38 21 00 30 */	addi r1, r1, 0x30
 /* 800EDAA8 000EA9E8  7C 08 03 A6 */	mtlr r0
 /* 800EDAAC 000EA9EC  4E 80 00 20 */	blr 
+end OSSetErrorHandler
 
-.global __OSUnhandledException
-__OSUnhandledException:
+fn global __OSUnhandledException
 /* 800EDAB0 000EA9F0  7C 08 02 A6 */	mflr r0
 /* 800EDAB4 000EA9F4  3D 00 80 4F */	lis r8, __OSErrorTable@ha
 /* 800EDAB8 000EA9F8  90 01 00 04 */	stw r0, 4(r1)
@@ -531,3 +561,4 @@ __OSUnhandledException:
 /* 800EDD8C 000EACCC  38 21 00 40 */	addi r1, r1, 0x40
 /* 800EDD90 000EACD0  7C 08 03 A6 */	mtlr r0
 /* 800EDD94 000EACD4  4E 80 00 20 */	blr 
+end __OSUnhandledException
