@@ -22,10 +22,13 @@ extern void __OSCacheInit();
 void OSInit();
 
 // OS logging
-void OSReport(const char*, ...);
+void OSReport(const char* message, ...);
 void OSPanic(const char* file, int line, const char* message, ...);
 
+typedef u8 __OSException;
 typedef u16 OSError;
+typedef s16 __OSInterrupt;
+typedef u64 OSTime;
 
 #define OS_ERROR_SYSTEM_RESET       0
 #define OS_ERROR_MACHINE_CHECK      1
@@ -573,7 +576,7 @@ typedef struct OSFunctionInfo {
 void OSRegisterResetFunction(OSFunctionInfo*);
 BOOL OSGetResetSwitchState();
 
-typedef void (*OSErrorHandler)(unsigned short, OSContext*, unsigned long, unsigned long);
+typedef void (*OSErrorHandler)(unsigned short, OSContext*, unsigned long, unsigned long, ...);
 OSErrorHandler OSSetErrorHandler(OSError, OSErrorHandler);
 
 void OSFillFPUContext(OSContext*);

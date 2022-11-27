@@ -1,11 +1,13 @@
 #ifndef _PRINTF_H
 #define _PRINTF_H
 
+#include "Dolphin/stdarg.h"
+
 void sprintf(void);
 void snprintf(void);
 void vsnprintf(void);
 void vfprintf(void);
-void vprintf(void);
+void vprintf(const char* format, va_list arg);
 void fprintf(void);
 void printf(void);
 void __StringWrite(void);
