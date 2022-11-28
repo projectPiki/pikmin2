@@ -903,18 +903,18 @@ void Onyon::do_doAnimation()
 {
 	if (m_onyonType == ONYON_TYPE_SHIP) {
 		if (m_propera != 0.0f) {
-			f32* speed = getPMotionSpeed(2);
-			*speed += m_propera * sys->m_deltaTime;
-			if (*speed < 30.0f) {
-				*speed    = 30.0f;
+			f32& speed = getPMotionSpeed(2);
+			speed += m_propera * sys->m_deltaTime;
+			if (speed < 30.0f) {
+				speed     = 30.0f;
 				m_propera = 0.0f;
-			} else if (*speed > 30.0f) {
-				*speed    = 30.0f;
+			} else if (speed > 30.0f) {
+				speed     = 30.0f;
 				m_propera = 0.0f;
 			}
 		}
-		f32* speed = getPMotionSpeed(1);
-		if (*speed > 0.0f) {
+		f32& speed = getPMotionSpeed(1);
+		if (speed > 0.0f) {
 			PSM::SeSound* sound = PSStartSoundVec(PSSE_PK_SE_INSIDE_VOLVE, (Vec*)getSound_PosPtr());
 			if (sound) {
 				PSGame::SoundTable::SePerspInfo persp;
@@ -928,8 +928,8 @@ void Onyon::do_doAnimation()
 				persp.set(1.0, 200.0, 0.4, 400.0, 0.0);
 				sound->specializePerspCalc(persp);
 			}
-			SysShape::Animator* anim = getPAnimator(1);
-			f32 time                 = anim->m_timer;
+			SysShape::Animator anim = getPAnimator(1);
+			f32 time                = anim.m_timer;
 			getPAnimator(1); // sus
 			if (time > 5.0f && time < 8.0f && !sVolveFlag) {
 				PSM::SeSound* sound = static_cast<PSM::SeSound*>(m_soundObj->startSound(PSSE_EV_ROCKET_VOLVE, 0));
@@ -1053,13 +1053,13 @@ void Onyon::startWaitMotion(void)
 		int whites = playData->m_pikiContainer.getColorSum(White);
 		int purple = playData->m_pikiContainer.getColorSum(Purple);
 		if (whites + purple > 0) {
-			*getPMotionSpeed(1) = 30.0f;
+			getPMotionSpeed(1) = 30.0f;
 			m_ufoGasIn->create(0);
 			m_ufoGasOut->create(0);
 		} else {
 			m_ufoGasIn->fade();
 			m_ufoGasOut->fade();
-			*getPMotionSpeed(1) = 0.0f;
+			getPMotionSpeed(1) = 0.0f;
 		}
 
 	} else {
@@ -1692,7 +1692,7 @@ Creature* Onyon::exitPiki()
 				if (whites + purple == 0) {
 					m_ufoGasIn->fade();
 					m_ufoGasOut->fade();
-					*getPMotionSpeed(1) = 0.0f;
+					getPMotionSpeed(1) = 0.0f;
 				}
 
 			} else {
@@ -1851,9 +1851,9 @@ void Onyon::init_pmotions()
 			m_pMotionSpeeds[i] = speed;
 		}
 
-		getPAnimator(0)->startAnim(1, nullptr);
-		getPAnimator(1)->startAnim(2, nullptr);
-		getPAnimator(2)->startAnim(3, nullptr);
+		getPAnimator(0).startAnim(1, nullptr);
+		getPAnimator(1).startAnim(2, nullptr);
+		getPAnimator(2).startAnim(3, nullptr);
 
 		m_pMotionSpeeds[2] = 30.0f;
 
@@ -1869,11 +1869,11 @@ void Onyon::init_pmotions()
  * Address:	8017A1A4
  * Size:	00007C
  */
-f32* Onyon::getPMotionSpeed(int i)
+f32& Onyon::getPMotionSpeed(int i)
 {
 	bool check = (0 <= i && i < m_pMotionCount);
 	P2ASSERTLINE(2603, check);
-	return &m_pMotionSpeeds[i];
+	return m_pMotionSpeeds[i];
 }
 
 /*
@@ -1881,11 +1881,11 @@ f32* Onyon::getPMotionSpeed(int i)
  * Address:	8017A220
  * Size:	00007C
  */
-SysShape::Animator* Onyon::getPAnimator(int i)
+SysShape::Animator& Onyon::getPAnimator(int i)
 {
 	bool check = (0 <= i && i < m_pMotionCount);
 	P2ASSERTLINE(2609, check);
-	return &m_pMotionList[i];
+	return m_pMotionList[i];
 }
 
 /*
@@ -1900,13 +1900,13 @@ void Onyon::update_pmotions()
 		for (int i = 0; i < m_pMotionCount; i++) {
 			char* names[3] = { "pmotion1", "pmotion2", "pmotion3" };
 
-			SysShape::Animator* panim = getPAnimator(i);
-			panim->animate(time * *getPMotionSpeed(i));
+			SysShape::Animator& panim = getPAnimator(i);
+			panim.animate(time * getPMotionSpeed(i));
 			SysShape::Joint* jnt = m_model->getJoint(names[i]);
 			if (jnt) {
 				u16 id                 = jnt->m_jointIndex;
 				SysShape::Model* model = m_model;
-				J3DMtxCalc* calc       = static_cast<SysShape::BaseAnimator*>(panim)->getCalc();
+				J3DMtxCalc* calc       = static_cast<SysShape::BaseAnimator*>(&panim)->getCalc();
 				model->m_j3dModel->m_modelData->m_jointTree.m_joints[id]->m_mtxCalc = static_cast<J3DMtxCalcAnmBase*>(calc);
 			} else {
 				JUT_PANICLINE(2643, "no joint (%s)\n", names[i]);

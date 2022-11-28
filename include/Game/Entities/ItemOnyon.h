@@ -123,8 +123,8 @@ struct Onyon : public BaseItem {
 	Vector3f getInEnd_UFO();
 	Vector3f getInStart_UFO();
 	Vector3f getOutStart_UFO();
-	f32* getPMotionSpeed(int);
-	SysShape::Animator* getPAnimator(int);
+	f32& getPMotionSpeed(int);
+	SysShape::Animator& getPAnimator(int);
 	void update_pmotions();
 
 	void updateSpot();
