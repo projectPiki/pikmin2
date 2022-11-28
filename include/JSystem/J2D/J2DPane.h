@@ -273,7 +273,7 @@ struct J2DPane {
 	u8 m_basePosition;               // _0B7
 	float _0B8;                      // _0B8
 	float _0BC;                      // _0BC
-	float _0C0;                      // _0C0
+	float m_angle;                   // _0C0
 	JGeometry::TVec2f m_anchorPoint; // _0C4
 	JGeometry::TVec2f m_scale;       // _0CC
 	JGeometry::TVec2f _0D4;          // _0D4 /* offset X,Y? */
@@ -562,8 +562,7 @@ struct J2DTextBox : public J2DPane {
 	J2DTextBox();
 	J2DTextBox(J2DPane*, JSURandomInputStream*, JKRArchive*);
 	J2DTextBox(J2DPane*, JSURandomInputStream*, unsigned long, J2DMaterial*);
-	J2DTextBox(unsigned long long, const JGeometry::TBox2<float>&, const ResFONT*, const char*, short, J2DTextBoxHBinding,
-	           J2DTextBoxVBinding);
+	J2DTextBox(u64, const JGeometry::TBox2<float>&, const ResFONT*, const char*, short, J2DTextBoxHBinding, J2DTextBoxVBinding);
 
 	virtual ~J2DTextBox();                                          // _08
 	virtual u32 getTypeID() const;                                  // _0C (weak)
@@ -590,22 +589,22 @@ struct J2DTextBox : public J2DPane {
 	void setString(const char*, ...);
 
 	// J2DPane _000
-	JUTResFont* m_font;       // _100
-	JUtility::TColor _104;    // _104
-	JUtility::TColor _108;    // _108
-	float _10C;               // _10C
-	float _110;               // _110
-	float _114;               // _114
-	float _118;               // _118
-	float _11C;               // _11C
-	float _120;               // _120
-	char* _124;               // _124
-	JUtility::TColor m_white; // _128
-	JUtility::TColor m_black; // _12C
-	u8 _130;                  // _130
-	u8 _131;                  // _131
-	short _132;               // _132
-	u8 _134[4];               // _134
+	JUTResFont* m_font;        // _100
+	JUtility::TColor m_color1; // _104
+	JUtility::TColor m_color2; // _108
+	float _10C;                // _10C
+	float _110;                // _110
+	float _114;                // _114
+	float _118;                // _118
+	float _11C;                // _11C
+	float _120;                // _120
+	char* _124;                // _124
+	JUtility::TColor m_white;  // _128
+	JUtility::TColor m_black;  // _12C
+	u8 _130;                   // _130
+	u8 _131;                   // _131
+	short _132;                // _132
+	u8 _134[4];                // _134
 };
 
 // Size: 0x148

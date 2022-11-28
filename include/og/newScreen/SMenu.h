@@ -6,6 +6,9 @@
 #include "JSystem/J2D/J2DPane.h"
 #include "P2DScreen.h"
 
+#define MAX_CAVEDISP_NAME 5
+#define MAX_RADAR_COUNT   200
+
 namespace Game {
 struct Navi;
 } // namespace Game
@@ -334,46 +337,46 @@ struct ObjSMenuMap : public ObjSMenuBase {
 	// _00     = VTBL1
 	// _18     = VTBL2
 	// _00-_A8 = ObjSMenuBase
-	og::Screen::DispMemberSMenuMap* m_disp; // _A8
-	og::Screen::MapCounter* m_mapCounter;   // _AC
-	og::Screen::AnimGroup* m_animGroup;     // _B0
-	J2DPictureEx* m_pane_map;               // _B4, map_
-	u32 _B8;                                // _B8, unknown
-	P2DScreen::Mgr_tuning* m_iconScreen;    // _BC
-	JUTTexture* m_radarMapTexture;          // _C0
-	J2DPane* m_rootPane;                    // _C4
-	J2DPictureEx* m_mapTexPane;             // _C8
-	J2DPane** _CC;                          // _CC
-	J2DPictureEx* m_orimaArrow;             // _D0, ic orima?
-	Game::Navi* m_orima;                    // _D4
-	J2DPictureEx* m_loozyArrow;             // _D8, ic louzy?
-	Game::Navi* m_louzy;                    // _DC, or president
-	f32 m_mapXpos;                          // _E0
-	f32 m_mapYpos;                          // _E4
-	f32 m_zoom;                             // _E8
-	f32 m_mapAngle;                         // _EC
-	f32 _F0;                                // _F0
-	f32 _F4;                                // _F4
-	f32 m_mapTexWidth;                      // _F8
-	f32 m_mapTexHeight;                     // _FC
-	f32 m_mapXwidth;                        // _100, width maybe?
-	f32 m_mapYheight;                       // _104, height maybe?
-	f32 _108;                               // _108
-	f32 _10C;                               // _10C
-	f32 m_mapXrot;                          // _110
-	f32 m_mapYrot;                          // _114
-	Controller* m_controller;               // _118
-	int m_mapIconNum;                       // _11C
-	u8 m_updateCaveTex;                     // _120
-	P2DScreen::Mgr_tuning* m_iconScreen2;   // _124
-	J2DPane* m_pane_Ncompas;                // _128, Ncompas?
-	J2DPictureEx* m_compassPic;             // _12C, compass?
-	J2DPictureEx* m_orimaGlowPic;           // _130, ie orima?
-	J2DPictureEx* m_loozyGlowPic;           // _134, ie louzy?
-	f32 m_startZoom;                        // _138
-	u8 _13C;                                // _13C
-	J2DTextBox* m_caveLabelTextBoxes[5];    // _140
-	int m_caveLabelCount;                   // _154
+	og::Screen::DispMemberSMenuMap* m_disp;              // _A8
+	og::Screen::MapCounter* m_mapCounter;                // _AC
+	og::Screen::AnimGroup* m_animGroup;                  // _B0
+	J2DPictureEx* m_pane_map;                            // _B4, map_
+	u32 _B8;                                             // _B8, unknown
+	P2DScreen::Mgr_tuning* m_iconScreen;                 // _BC
+	JUTTexture* m_radarMapTexture;                       // _C0
+	J2DPane* m_rootPane;                                 // _C4
+	J2DPictureEx* m_mapTexPane;                          // _C8
+	J2DPane** m_radarPaneList;                           // _CC
+	J2DPictureEx* m_orimaArrow;                          // _D0, ic orima?
+	Game::Navi* m_orima;                                 // _D4
+	J2DPictureEx* m_loozyArrow;                          // _D8, ic louzy?
+	Game::Navi* m_louzy;                                 // _DC, or president
+	f32 m_mapXpos;                                       // _E0
+	f32 m_mapYpos;                                       // _E4
+	f32 m_zoom;                                          // _E8
+	f32 m_mapAngle;                                      // _EC
+	f32 m_mapTexScaleX;                                  // _F0
+	f32 m_mapTexScaleY;                                  // _F4
+	f32 m_mapTexWidth;                                   // _F8
+	f32 m_mapTexHeight;                                  // _FC
+	f32 m_mapXwidth;                                     // _100, width maybe?
+	f32 m_mapYheight;                                    // _104, height maybe?
+	f32 _108;                                            // _108
+	f32 _10C;                                            // _10C
+	f32 m_mapXrot;                                       // _110
+	f32 m_mapYrot;                                       // _114
+	Controller* m_controller;                            // _118
+	int m_mapIconNum;                                    // _11C
+	u8 m_updateCaveTex;                                  // _120
+	P2DScreen::Mgr_tuning* m_iconScreen2;                // _124
+	J2DPane* m_pane_Ncompas;                             // _128, Ncompas?
+	J2DPictureEx* m_compassPic;                          // _12C, compass?
+	J2DPictureEx* m_orimaGlowPic;                        // _130, ie orima?
+	J2DPictureEx* m_loozyGlowPic;                        // _134, ie louzy?
+	f32 m_startZoom;                                     // _138
+	u8 m_zoomAlpha;                                      // _13C
+	J2DTextBox* m_caveLabelTextBoxes[MAX_CAVEDISP_NAME]; // _140
+	int m_caveLabelCount;                                // _154
 
 	static struct StaticValues {
 		f32 _00;                                 // _00
@@ -397,8 +400,8 @@ struct ObjSMenuMap : public ObjSMenuBase {
 		f32 _3C;                                 // _3C
 		f32 _40;                                 // _40
 		f32 _44;                                 // _44
-		Color4 _48;                              // _48
-		Color4 _4C;                              // _4C
+		JUtility::TColor _48;                    // _48
+		JUtility::TColor _4C;                    // _4C
 	} msVal;
 };
 
