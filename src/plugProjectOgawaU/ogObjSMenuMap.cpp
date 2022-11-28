@@ -4,15 +4,21 @@
 #include "og/Screen/MapCounter.h"
 #include "og/Screen/anime.h"
 #include "og/Screen/ogScreen.h"
+#include "og/Sound.h"
 #include "Game/Navi.h"
 #include "Game/CameraMgr.h"
 #include "Game/Cave/RandMapMgr.h"
+#include "Radar.h"
 
 u64 map_icon_tag[22]
     = { 'oniyon_r', 'oniyon_b', 'oniyon_y', 'piki_r',   'piki__b', 'piki_y',   'piki_bl',  'piki_w',   'piki_fr', 'piki_me', 'kanketu',
 	    'cave',     'pot',      'luji_bs',  'orima_bs', 'ufo',     'takar_bs', 'takar_bs', 'takar_bs', 'cave',    'comp_c',  'cave' };
 
 u64 map_icon_tag2[3] = { 'orima_l', 'luji_l', 'takara_l' };
+
+bool updateFlag; // these are used in updateMap
+float updateTimer;
+float maxZoom, minZoom;
 
 /*
     Generated from dpostproc
@@ -430,8 +436,8 @@ ObjSMenuMap::ObjSMenuMap(char const* name)
 	m_mapYpos               = 0.0f;
 	m_zoom                  = 1.0f;
 	m_mapAngle              = 0.0f;
-	_F0                     = 0.0f;
-	_F4                     = 0.0f;
+	m_mapTexScaleX          = 0.0f;
+	m_mapTexScaleY          = 0.0f;
 	m_mapTexWidth           = 0.0f;
 	m_mapTexHeight          = 0.0f;
 	m_mapXwidth             = 0.0f;
@@ -451,7 +457,7 @@ ObjSMenuMap::ObjSMenuMap(char const* name)
 	m_rootPane              = nullptr;
 	m_pane_Ncompas          = nullptr;
 	m_mapTexPane            = nullptr;
-	_CC                     = nullptr;
+	m_radarPaneList         = nullptr;
 	m_orimaArrow            = nullptr;
 	m_orima                 = nullptr;
 	m_loozyArrow            = nullptr;
@@ -464,7 +470,7 @@ ObjSMenuMap::ObjSMenuMap(char const* name)
 	m_orimaGlowPic          = nullptr;
 	m_loozyGlowPic          = nullptr;
 	m_startZoom             = nullptr;
-	_13C                    = -1;
+	m_zoomAlpha             = -1;
 	m_caveLabelCount        = nullptr;
 	m_caveLabelTextBoxes[0] = nullptr;
 	m_caveLabelTextBoxes[1] = nullptr;
@@ -1113,8 +1119,157 @@ lbl_8030FD74:
  * Address:	8030FD98
  * Size:	000C74
  */
-void ObjSMenuMap::initMapIcon(JKRArchive*)
+void ObjSMenuMap::initMapIcon(JKRArchive* arc)
 {
+	J2DPane* pane  = m_mapCounter->search('map');
+	J2DPane* pane2 = pane->getParentPane();
+	if (pane2) {
+		pane2 = pane->getParentPane();
+		pane2->removeChild(pane);
+	}
+	m_iconScreen = new P2DScreen::Mgr_tuning;
+	m_iconScreen->set("map_icon.blo", 0x40000, arc);
+
+	m_rootPane = m_iconScreen->search('ROOT');
+
+	J2DPictureEx* pic = static_cast<J2DPictureEx*>(og::Screen::TagSearch(m_iconScreen, 'piki__b'));
+	pic->setWhite(msVal._48);
+	pic->setBlack(msVal._4C);
+
+	m_iconScreen2 = new P2DScreen::Mgr_tuning;
+	m_iconScreen2->set("map_icon.blo", 0x40000, arc);
+	setMapTexture();
+	m_mapXpos = -m_mapXwidth * 0.5f;
+	m_mapYpos = -m_mapYheight * 0.5f;
+
+	if (m_disp->m_activeNavi) {
+		Game::Navi* navi  = Game::naviMgr->getActiveNavi();
+		Vector3f aNaviPos = navi->getPosition();
+		float xpos;
+		float ypos;
+		if (!m_disp->m_inCave) {
+			xpos = 0.0f;
+			if (!m_disp->m_inCave) {
+				if (m_disp->m_courseIndex == 3) {
+					xpos = (m_mapXwidth * 1400.0f) / 4705.6f;
+				}
+				ypos = m_mapYheight * 0.5f + aNaviPos.z * 0.058f + -8.85f;
+				xpos += m_mapXwidth * 0.5f + aNaviPos.x * 0.058f + 24.5f;
+			} else {
+				ypos = aNaviPos.z * 0.047f + -0.6f;
+				xpos = aNaviPos.x * 0.047f + -0.2f;
+			}
+			m_mapXpos = -(xpos + 0.0f);
+			m_mapYpos = -(ypos + 0.0f);
+		} else {
+			if (Game::Cave::randMapMgr) {
+				Game::Cave::randMapMgr->getPositionOnTex(aNaviPos, xpos, ypos);
+				m_mapXpos = -(xpos + 0.2f);
+				m_mapYpos = -(ypos + 0.6f);
+			}
+		}
+	}
+	m_mapTexScaleX = m_mapXwidth / m_mapTexWidth;
+	m_mapTexScaleY = m_mapYheight / m_mapTexHeight;
+	m_pane_Ncompas = m_mapCounter->search('Ncompas');
+	m_compassPic   = static_cast<J2DPictureEx*>(m_iconScreen->search('compass'));
+
+	pane  = m_mapCounter->search('compass');
+	pane2 = pane->getParentPane();
+	if (pane2) {
+		pane2 = pane->getParentPane();
+		pane2->removeChild(pane);
+	}
+	m_radarPaneList = new J2DPane*[MAX_RADAR_COUNT];
+	for (int i = 0; i < MAX_RADAR_COUNT; i++) {
+		J2DPane** pane = new J2DPane*;
+		*pane          = nullptr;
+	}
+	m_caveLabelCount = 0;
+	int count;
+	if (Radar::mgr) {
+		if (!m_disp->m_activeNavi) {
+			Radar::mgr->ogDummpyInit();
+		}
+		Radar::Point* cPoint = static_cast<Radar::Point*>(Radar::mgr->m_pointNode1.m_child);
+		count                = 0;
+		while (cPoint) {
+			int id     = cPoint->m_objType;
+			bool check = id > 0 && id < 0x15;
+			JUT_ASSERTLINE(569, check, "Radar type ERR!! (%d)\n", id);
+			Vector2f cPos = cPoint->getPosition();
+
+			float xpos, ypos;
+			xpos = 0.0f;
+			if (!m_disp->m_inCave) {
+				if (m_disp->m_courseIndex == 3) {
+					xpos = (m_mapXwidth * 1400.0f) / 4705.6f;
+				}
+				ypos = m_mapYheight * 0.5f + cPos.y * 0.058f + -8.85f;
+				xpos += m_mapXwidth * 0.5f + cPos.x * 0.058f + 24.5f;
+			} else {
+				ypos = cPos.y * 0.047f + -0.6f;
+				xpos = cPos.x * 0.047f + -0.2f;
+			}
+			xpos           = -(xpos + 0.0f);
+			ypos           = -(ypos + 0.0f);
+			u64 tag        = map_icon_tag[id];
+			J2DPane* cPane = og::Screen::TagSearch(m_iconScreen, map_icon_tag[id]);
+			cPane->getTypeID();
+			char buf[28];
+			og::Screen::TagToName(tag, buf);
+
+			switch (id) {
+			case Radar::MAP_LOUIE_PRESIDENT:
+				Iterator<Game::Navi> iter(Game::naviMgr);
+				CI_LOOP(iter)
+				{
+					Game::Navi* navi = (*iter);
+					if (navi->m_naviIndex.byteView[0] == 1) {
+						m_louzy            = navi;
+						J2DPictureEx* pane = static_cast<J2DPictureEx*>(og::Screen::TagSearch(m_iconScreen, 'luji_l'));
+						m_loozyGlowPic     = og::Screen::CopyPictureToPane(pane, m_mapTexPane, 'ie_Luji', xpos, ypos);
+						m_loozyArrow
+						    = og::Screen::CopyPictureToPane(static_cast<J2DPictureEx*>(cPane), m_mapTexPane, 'ic_Luji', xpos, ypos);
+					}
+				}
+				break;
+			case Radar::MAP_OLIMAR:
+				Iterator<Game::Navi> iter2(Game::naviMgr);
+				CI_LOOP(iter2)
+				{
+					Game::Navi* navi = (*iter2);
+					if (navi->m_naviIndex.byteView[0] == 0) {
+						m_orima            = navi;
+						J2DPictureEx* pane = static_cast<J2DPictureEx*>(og::Screen::TagSearch(m_iconScreen, 'orima_l'));
+						m_orimaGlowPic     = og::Screen::CopyPictureToPane(pane, m_mapTexPane, 'ie_Orima', xpos, ypos);
+						m_orimaArrow
+						    = og::Screen::CopyPictureToPane(static_cast<J2DPictureEx*>(cPane), m_mapTexPane, 'ic_Orima', xpos, ypos);
+					}
+				}
+				break;
+			case Radar::MAP_SHIP:
+			case Radar::MAP_HOLE:
+			case Radar::MAP_UPGRADE:
+			case Radar::MAP_COMPLETED_CAVE:
+			case Radar::MAP_INCOMPLETE_CAVE:
+				if (id == Radar::MAP_UPGRADE) { }
+				if (id == Radar::MAP_COMPLETED_CAVE || id == Radar::MAP_INCOMPLETE_CAVE) {
+					u64 tag2 = caveIDtoMsgID(cPoint->_20);
+					tag2     = og::Screen::maskTag(tag2, 1, 3);
+					appendCaveName(pane, count & 0xffff, tag2);
+				}
+				break;
+			}
+
+			count++;
+			if (count >= MAX_RADAR_COUNT)
+				break;
+			cPoint = static_cast<Radar::Point*>(cPoint->m_next);
+		}
+	}
+	m_mapIconNum = count;
+	tuningIcon;
 	/*
 	stwu     r1, -0xf0(r1)
 	mflr     r0
@@ -2017,8 +2172,29 @@ lbl_803109DC:
  * Address:	80310A0C
  * Size:	0001E4
  */
-void ObjSMenuMap::appendCaveName(J2DPane*, unsigned short, unsigned long long)
+void ObjSMenuMap::appendCaveName(J2DPane* parent, u16 caveIndex, u64 tag)
 {
+	char buf[60];
+	u64 newtag = og::Screen::maskTag2('caveTx??', caveIndex);
+	og::Screen::TagToName(newtag, buf);
+	const JGeometry::TBox2f box(30.0f, 0.0f, 40.0f, 10.0f);
+
+	J2DTextBox* pane = new J2DTextBox(newtag, box, nullptr, "", -1, J2DTextBoxHBinding(2), J2DTextBoxVBinding(2));
+	pane->_11C       = 24.0f;
+	pane->_120       = 24.0f;
+	pane->m_color1   = JUtility::TColor(255, 255, 255, 255);
+	pane->m_color2   = JUtility::TColor(255, 255, 255, 255);
+	pane->setBlackWhite(JUtility::TColor(0), JUtility::TColor(-1));
+	parent->appendChild(pane);
+	pane->m_messageID = tag;
+
+	if (m_caveLabelCount < MAX_CAVEDISP_NAME) {
+		m_caveLabelTextBoxes[m_caveLabelCount] = pane;
+		m_caveLabelCount++;
+	} else {
+		JUT_PANICLINE(745, "cave name number is overflow!!\n");
+	}
+
 	/*
 	.loc_0x0:
 	  stwu      r1, -0x70(r1)
@@ -2168,6 +2344,69 @@ void ObjSMenuMap::rotateMap(void)
  */
 void ObjSMenuMap::transMap(void)
 {
+	f32 factor = msVal._1C;
+	if (m_radarMapTexture) {
+		factor = msVal._20;
+	}
+
+	f32 angle    = (m_mapAngle * TAU) / 360.0f;
+	f32 anglesin = pikmin2_sinf(angle) * 2.0f;
+	f32 anglecos = pikmin2_cosf(angle) * 2.0f;
+	int buttons  = m_controller->m_padButton.m_mask;
+	f32 inputx   = m_controller->m_padMStick.m_xPos;
+	f32 inputz   = m_controller->m_padMStick.m_xPos;
+
+	if (buttons & JUTGamePad::PRESS_DPAD_UP) {
+		inputz = 1.0f;
+	}
+	if (buttons & JUTGamePad::PRESS_DPAD_DOWN) {
+		inputz = -1.0f;
+	}
+	if (buttons & JUTGamePad::PRESS_DPAD_LEFT) {
+		inputx = -1.0f;
+	}
+	if (buttons & JUTGamePad::PRESS_DPAD_RIGHT) {
+		inputx = 1.0f;
+	}
+	f32 diff;
+	_sqrtf(inputx * inputx + inputz * inputz, &diff);
+	if (diff > 1.0f)
+		diff = 1.0f;
+	diff *= msVal._3C;
+	if (diff < 0.1f)
+		diff = 0.0f;
+	f32 move = factor * diff * (1.0f / m_zoom);
+
+	if (inputx > 0.1f) {
+		m_mapXpos += move * anglesin;
+		m_mapYpos += move * anglecos;
+		ogSound->setScroll();
+	}
+	if (inputx < -0.1f) {
+		m_mapXpos -= move * anglesin;
+		m_mapYpos -= move * anglecos;
+		ogSound->setScroll();
+	}
+	if (inputz > 0.1f) {
+		m_mapXpos += move * anglecos;
+		m_mapYpos += move * anglesin;
+		ogSound->setScroll();
+	}
+	if (inputx < -0.1f) {
+		m_mapXpos -= move * anglecos;
+		m_mapYpos -= move * anglesin;
+		ogSound->setScroll();
+	}
+
+	if (m_mapXpos < -m_mapTexWidth)
+		m_mapXpos = -m_mapTexWidth;
+	if (m_mapXpos > 0.0f)
+		m_mapXpos = 0.0f;
+
+	if (m_mapYpos < -m_mapTexHeight)
+		m_mapYpos = -m_mapTexHeight;
+	if (m_mapYpos > 0.0f)
+		m_mapYpos = 0.0f;
 	/*
 	stwu     r1, -0x80(r1)
 	mflr     r0
@@ -2498,22 +2737,22 @@ void ObjSMenuMap::doCreate(JKRArchive* arc)
 		tag = og::Screen::maskTag(tag, 1, 3);
 		og::Screen::TagToName(tag, buf);
 	}
-	J2DPane* pane     = og::Screen::TagSearch(m_mapCounter, 'Tmapti');
+	J2DPane* pane     = m_mapCounter->search('Tmapti');
 	pane->m_messageID = tag;
 	og::Screen::setCallBackMessage(m_iconScreen);
 
-	J2DPane* pane_red    = og::Screen::TagSearch(m_mapCounter, 'Npk01');
-	J2DPane* pane_yellow = og::Screen::TagSearch(m_mapCounter, 'Npk02');
-	J2DPane* pane_blue   = og::Screen::TagSearch(m_mapCounter, 'Npk03');
-	J2DPane* pane_white  = og::Screen::TagSearch(m_mapCounter, 'Npk04');
-	J2DPane* pane_purple = og::Screen::TagSearch(m_mapCounter, 'Npk05');
+	J2DPane* pane_red    = m_mapCounter->search('Npk01');
+	J2DPane* pane_yellow = m_mapCounter->search('Npk02');
+	J2DPane* pane_blue   = m_mapCounter->search('Npk03');
+	J2DPane* pane_white  = m_mapCounter->search('Npk04');
+	J2DPane* pane_purple = m_mapCounter->search('Npk05');
 
-	J2DPane* pane_red2    = og::Screen::TagSearch(m_mapCounter, 'Npk06');
-	J2DPane* pane_yellow2 = og::Screen::TagSearch(m_mapCounter, 'Npk07');
-	J2DPane* pane_blue2   = og::Screen::TagSearch(m_mapCounter, 'Npk08');
-	J2DPane* pane_white2  = og::Screen::TagSearch(m_mapCounter, 'Npk09');
-	J2DPane* pane_purple2 = og::Screen::TagSearch(m_mapCounter, 'Npk10');
-	J2DPane* pane_free    = og::Screen::TagSearch(m_mapCounter, 'Npk11');
+	J2DPane* pane_red2    = m_mapCounter->search('Npk06');
+	J2DPane* pane_yellow2 = m_mapCounter->search('Npk07');
+	J2DPane* pane_blue2   = m_mapCounter->search('Npk08');
+	J2DPane* pane_white2  = m_mapCounter->search('Npk09');
+	J2DPane* pane_purple2 = m_mapCounter->search('Npk10');
+	J2DPane* pane_free    = m_mapCounter->search('Npk11');
 
 	if (!m_disp->m_unlockedReds) {
 		pane_red->m_isVisible  = false;
@@ -2546,15 +2785,15 @@ void ObjSMenuMap::doCreate(JKRArchive* arc)
 		m_mapCounter->dispFree(false);
 	}
 
-	J2DPane* pane_rocket = og::Screen::TagSearch(m_mapCounter, 'Nrocket');
+	J2DPane* pane_rocket = m_mapCounter->search('Nrocket');
 	if (!m_disp->m_unlockedWhites && !m_disp->m_unlockedPurples) {
 		pane_rocket->m_isVisible = false;
-		pane_rocket              = og::Screen::TagSearch(m_mapCounter, 'Ntairetu');
+		pane_rocket              = m_mapCounter->search('Ntairetu');
 		pane_rocket->add(0.0f, 0.0f);
 	} else {
 		pane_rocket->m_isVisible              = true;
-		J2DPane* pane_rock1                   = og::Screen::TagSearch(m_mapCounter, 'Nrock_1');
-		J2DPane* pane_rock2                   = og::Screen::TagSearch(m_mapCounter, 'Nrock_2');
+		J2DPane* pane_rock1                   = m_mapCounter->search('Nrock_1');
+		J2DPane* pane_rock2                   = m_mapCounter->search('Nrock_2');
 		pane_rock1->m_isVisible               = false;
 		pane_rock2->m_isVisible               = false;
 		og::Screen::DispMemberSMenuMap* disp2 = static_cast<og::Screen::DispMemberSMenuMap*>(dispfull->getSubMember('SM', '_MAP'));
@@ -2564,10 +2803,10 @@ void ObjSMenuMap::doCreate(JKRArchive* arc)
 			pane_rock2->m_isVisible = true;
 		}
 	}
-	J2DPane* pane_onyn1     = og::Screen::TagSearch(m_mapCounter, 'Nonyn_1');
-	J2DPane* pane_onyn2     = og::Screen::TagSearch(m_mapCounter, 'Nonyn_2');
-	J2DPane* pane_onyn3     = og::Screen::TagSearch(m_mapCounter, 'Nonyn_3');
-	J2DPane* pane_onyn4     = og::Screen::TagSearch(m_mapCounter, 'Nonyn_4');
+	J2DPane* pane_onyn1     = m_mapCounter->search('Nonyn_1');
+	J2DPane* pane_onyn2     = m_mapCounter->search('Nonyn_2');
+	J2DPane* pane_onyn3     = m_mapCounter->search('Nonyn_3');
+	J2DPane* pane_onyn4     = m_mapCounter->search('Nonyn_4');
 	pane_onyn1->m_isVisible = false;
 	pane_onyn2->m_isVisible = false;
 	pane_onyn3->m_isVisible = false;
@@ -2582,8 +2821,8 @@ void ObjSMenuMap::doCreate(JKRArchive* arc)
 		pane_onyn1->m_isVisible = true;
 	}
 
-	J2DPane* pane_ntai1     = og::Screen::TagSearch(m_mapCounter, 'Ntai_1');
-	J2DPane* pane_ntai2     = og::Screen::TagSearch(m_mapCounter, 'Ntai_2');
+	J2DPane* pane_ntai1     = m_mapCounter->search('Ntai_1');
+	J2DPane* pane_ntai2     = m_mapCounter->search('Ntai_2');
 	pane_ntai1->m_isVisible = false;
 	pane_ntai2->m_isVisible = false;
 	if (disp->m_unlockedBlues) {
@@ -3268,6 +3507,108 @@ blr
  */
 void ObjSMenuMap::updateMap(void)
 {
+	::Screen::SceneBase* scene = getOwner();
+	m_controller               = scene->m_controller;
+
+	if (!updateFlag) {
+		updateFlag  = true;
+		updateTimer = 0.0f;
+	}
+	updateTimer += sys->m_deltaTime;
+
+	if (updateTimer > 1.0f)
+		updateTimer = 1.0f;
+
+	f32 angle    = updateTimer * TAU;
+	f32 anglesin = pikmin2_sinf(angle * 2.0f);
+	angle += PI;
+	u8 alphaLoozy  = ((anglesin + 1.0f) * 0.5f * 0.6f + 0.4f) * 255.0f;
+	f32 anglecos   = pikmin2_cosf(angle * 2.0f);
+	u8 zoombyte    = -1;
+	f32 oldzoom    = m_startZoom;
+	u8 alphaOlimar = ((anglecos + 1.0f) * 0.5f * 0.6f + 0.4f) * 255.0f;
+
+	if (m_zoom < oldzoom) {
+		zoombyte = (u8)(1.0f - (oldzoom - m_zoom) / (oldzoom - maxZoom)) * 255.0f;
+	}
+	m_zoomAlpha = zoombyte;
+	for (int i = 0; i < m_caveLabelCount; i++) {
+		m_caveLabelTextBoxes[i]->setAlpha(m_zoomAlpha);
+	}
+
+	float scale = m_zoom;
+	if (m_disp->m_inCave)
+		scale *= 2.0f;
+	float mapx = m_mapXpos;
+	float mapy = m_mapYpos;
+	m_mapXrot  = -mapx;
+	m_mapYrot  = -mapy;
+	m_mapTexPane->setBasePosition(POS_CENTER);
+	m_mapTexPane->m_scale.x = scale;
+	m_mapTexPane->m_scale.y = scale;
+	m_mapTexPane->calcMtx();
+	m_mapTexPane->rotate(m_mapXrot, m_mapYrot, J2DROTATE_Y, m_mapAngle);
+	m_mapTexPane->move(mapx + msVal._34, mapy + msVal._38);
+
+	f32 angleoffs = 360.0f;
+	for (int i = 0; i < m_mapIconNum; i++) {
+		f32 scalefactor  = msVal._24;
+		J2DPane* cPane   = m_radarPaneList[i];
+		cPane->m_scale.x = scalefactor / scale;
+		cPane->m_scale.y = scalefactor / scale;
+		cPane->calcMtx();
+		cPane          = m_radarPaneList[i];
+		cPane->m_angle = angleoffs - m_mapAngle;
+		cPane->calcMtx();
+	}
+
+	if (m_loozyArrow && m_louzy) {
+		f32 scalefactor = msVal._24 * (msVal._28 / scale);
+		f32 facedir     = m_louzy->getFaceDir();
+		m_loozyArrow->setBasePosition(POS_CENTER);
+		J2DPane* pane   = m_loozyArrow;
+		pane->m_scale.x = scalefactor;
+		pane->m_scale.y = scalefactor;
+		pane->calcMtx();
+		pane          = m_loozyArrow;
+		pane->m_angle = (facedir * 360.0f) / TAU + 45.0f;
+		facedir       = pane->m_angle;
+		pane->calcMtx();
+		m_loozyArrow->setBasePosition(POS_CENTER);
+		pane            = m_loozyArrow;
+		pane->m_scale.x = scalefactor;
+		pane->m_scale.y = scalefactor;
+		pane->calcMtx();
+		pane          = m_loozyArrow;
+		pane->m_angle = facedir;
+		pane->calcMtx();
+		m_loozyArrow->setAlpha(alphaLoozy);
+		m_loozyGlowPic->setAlpha(alphaLoozy);
+	}
+
+	if (m_orimaArrow && m_orima) {
+		f32 scalefactor = msVal._24 * (msVal._28 / scale);
+		f32 facedir     = m_orima->getFaceDir();
+		m_loozyArrow->setBasePosition(POS_CENTER);
+		J2DPane* pane   = m_orimaArrow;
+		pane->m_scale.x = scalefactor;
+		pane->m_scale.y = scalefactor;
+		pane->calcMtx();
+		pane          = m_orimaArrow;
+		pane->m_angle = (facedir * 360.0f) / TAU + 45.0f;
+		facedir       = pane->m_angle;
+		pane->calcMtx();
+		m_orimaArrow->setBasePosition(POS_CENTER);
+		pane            = m_orimaArrow;
+		pane->m_scale.x = scalefactor;
+		pane->m_scale.y = scalefactor;
+		pane->calcMtx();
+		pane          = m_orimaArrow;
+		pane->m_angle = facedir;
+		pane->calcMtx();
+		m_orimaArrow->setAlpha(alphaOlimar);
+		m_orimaGlowPic->setAlpha(alphaOlimar);
+	}
 	/*
 	stwu     r1, -0x90(r1)
 	mflr     r0
@@ -3665,6 +4006,18 @@ lbl_80311DA4:
  */
 void ObjSMenuMap::commonUpdate(void)
 {
+	commonUpdateBase();
+	setSMenuScale(msVal._40, msVal._44);
+	m_animGroup->update();
+	updateMap();
+
+	P2DScreen::Mgr_tuning* screen = m_mapCounter;
+	screen->m_someX               = _40 + -15.2f;
+	screen->m_someY               = -15.2f;
+
+	m_mapCounter->animation();
+	m_mapCounter->update();
+	m_iconScreen->update();
 	/*
 	stwu     r1, -0x10(r1)
 	mflr     r0
@@ -3718,6 +4071,9 @@ void ObjSMenuMap::commonUpdate(void)
  */
 void ObjSMenuMap::doUpdateLAction(void)
 {
+	::Screen::SetSceneArg arg(SCENE_PAUSE_MENU_ITEMS, getDispMember(), 0, true);
+	jump_L(arg);
+
 	/*
 	stwu     r1, -0x20(r1)
 	mflr     r0
@@ -3756,6 +4112,13 @@ void ObjSMenuMap::doUpdateLAction(void)
  */
 void ObjSMenuMap::doUpdateRAction(void)
 {
+	if (m_disp->m_inCave) {
+		::Screen::SetSceneArg arg(SCENE_PAUSE_MENU_DOUKUTU, getDispMember(), 0, true);
+		jump_R(arg);
+	} else {
+		::Screen::SetSceneArg arg(SCENE_PAUSE_MENU, getDispMember(), 0, true);
+		jump_R(arg);
+	}
 	/*
 	stwu     r1, -0x30(r1)
 	mflr     r0
@@ -3820,6 +4183,25 @@ lbl_80311F94:
  */
 bool ObjSMenuMap::doUpdate(void)
 {
+	::Screen::SceneBase* scene = getOwner();
+	m_controller               = scene->getGamePad();
+	transMap();
+
+	float cstick = m_controller->m_padSStick.m_yPos;
+
+	if (cstick > 0.4f) {
+		m_zoom = -(m_zoom * 0.03f - m_zoom);
+		if (m_zoom < maxZoom)
+			m_zoom = maxZoom;
+		ogSound->setZoomOut();
+	} else if (cstick < -0.4f) {
+		m_zoom += m_zoom * 0.03f;
+		if (m_zoom > minZoom)
+			m_zoom = minZoom;
+		ogSound->setZoomIn();
+	}
+	commonUpdate();
+	ObjSMenuBase::doUpdate();
 	/*
 	stwu     r1, -0x10(r1)
 	mflr     r0
@@ -3910,6 +4292,19 @@ lbl_80312084:
  */
 void ObjSMenuMap::doDraw(Graphics& gfx)
 {
+	J2DPerspGraph* graf = &gfx.m_perspGraph;
+	drawMap(gfx);
+
+	Graphics(gfx2);
+	m_iconScreen->draw(gfx2, *graf);
+
+	if (m_compassPic && m_mapTexPane) {
+		PSMTXCopy(m_mapTexPane->_080, m_compassPic->_050);
+	}
+	graf->setPort();
+	m_iconScreen2->draw(gfx, *graf);
+	graf->setPort();
+	drawYaji(gfx);
 	/*
 	stwu     r1, -0x2c0(r1)
 	mflr     r0
@@ -4003,8 +4398,54 @@ lbl_803121D0:
  * Address:	803121EC
  * Size:	00032C
  */
-void ObjSMenuMap::drawMap(Graphics&)
+void ObjSMenuMap::drawMap(Graphics& gfx)
 {
+	J2DPerspGraph* graf = &gfx.m_perspGraph;
+	if (m_updateCaveTex) {
+		m_radarMapTexture = Game::Cave::randMapMgr->getRadarMapTexture();
+		m_mapTexPane->changeTexture(m_radarMapTexture->_20, 0);
+		m_updateCaveTex = false;
+		m_mapTexWidth   = m_mapTexPane->getTexture(0)->_20->m_sizeX;
+		m_mapTexHeight  = m_mapTexPane->getTexture(0)->_20->m_sizeY;
+		m_mapTexScaleX  = m_mapXwidth / m_mapTexWidth;
+		m_mapTexScaleY  = m_mapYheight / m_mapTexHeight;
+	}
+
+	if (m_mapTexPane) {
+		m_mapTexPane->m_angle = m_mapAngle;
+		m_mapTexPane->calcMtx();
+	}
+
+	P2DScreen::Mgr_tuning* scrn = m_mapCounter;
+	if (scrn) {
+		scrn->draw(gfx, *graf);
+	}
+	graf->setPort();
+	j3dSys.drawInit();
+	sys->m_gfx->initPrimDraw(nullptr);
+
+	GXSetColorUpdate(GX_FALSE);
+	GXSetAlphaUpdate(GX_FALSE);
+	GXSetColorUpdate(GX_FALSE);
+
+	Rectf rect;
+	rect.p1.x = 0.0f;
+	rect.p1.y = 0.0f;
+	rect.p2.x = 640.0f;
+	rect.p2.y = 480.0f;
+	Color4 color(200, 10, 200, 155);
+	drawRectZ(gfx, rect, color, 0.999);
+	Vec vec1 = m_pane_map->getGlbVtx(0);
+	Vec vec2 = m_pane_map->getGlbVtx(1);
+	Vec vec3 = m_pane_map->getGlbVtx(2);
+	Vec vec4 = m_pane_map->getGlbVtx(3);
+	Color4 color2(100, 0, 0, 155);
+	drawVecZ(gfx, vec1, vec2, vec3, vec4, color2, -0.999);
+	GXSetColorUpdate(GX_TRUE);
+	PSMTXCopy(m_pane_map->_080, m_rootPane->_050);
+	graf->setPort();
+	GXSetZCompLoc(GX_TRUE);
+	GXSetZMode(GX_TRUE, GX_LESS, GX_FALSE);
 	/*
 	stwu     r1, -0xa0(r1)
 	mflr     r0
@@ -4189,8 +4630,26 @@ drawVecZ__Q32og9newScreen11ObjSMenuMapFR8GraphicsR3VecR3VecR3VecR3VecR6Color4f
  * Address:	80312518
  * Size:	0001E0
  */
-void ObjSMenuMap::drawRectZ(Graphics&, Rectf&, Color4&, f32)
+void ObjSMenuMap::drawRectZ(Graphics& gfx, Rectf& rect, Color4& color, f32)
 {
+	GXSetZMode(GX_TRUE, GX_ALWAYS, GX_TRUE);
+	Mtx temp, temp2;
+	C_MTXOrtho(temp, 0.0f, 480.0f, 0.0f, 640.0f, -1.0f, 1.0f);
+	GXSetProjection(temp, GX_ORTHOGRAPHIC);
+	PSMTXIdentity(temp2);
+	GXLoadPosMtxImm(temp2, 0);
+	GXSetCullMode(GX_CULL_NONE);
+	GXClearVtxDesc();
+	GXSetVtxDesc(GX_VA_POS, GX_DIRECT);
+	GXSetVtxDesc(GX_VA_CLR0, GX_DIRECT);
+	GXSetVtxAttrFmt(GX_VTXFMT0, GX_VA_POS, GX_POS_XYZ, GX_F32, 0);
+	GXSetVtxAttrFmt(GX_VTXFMT0, GX_VA_CLR0, GX_POS_XYZ, GX_RGBA8, 0);
+	GXBegin(GX_QUADS, GX_VTXFMT0, 4);
+
+	// lots of GX register setting
+
+	GXSetZMode(GX_TRUE, GX_LESS, GX_TRUE);
+
 	/*
 	.loc_0x0:
 	  stwu      r1, -0x90(r1)
@@ -4321,8 +4780,26 @@ void ObjSMenuMap::drawRectZ(Graphics&, Rectf&, Color4&, f32)
  * Address:	803126F8
  * Size:	000214
  */
-void ObjSMenuMap::drawVecZ(Graphics&, Vec&, Vec&, Vec&, Vec&, Color4&, float)
+void ObjSMenuMap::drawVecZ(Graphics& gfx, Vec& vec1, Vec& vec2, Vec& vec3, Vec&, Color4&, float)
 {
+	int wid = System::getRenderModeObj()->fbWidth;
+	int hei = System::getRenderModeObj()->viHeight;
+	GXSetZMode(GX_TRUE, GX_ALWAYS, GX_TRUE);
+	Mtx temp, temp2;
+	C_MTXOrtho(temp, 0.0f, (f32)wid, 0.0f, (f32)hei, -1.0f, 1.0f);
+	GXSetProjection(temp, GX_ORTHOGRAPHIC);
+	PSMTXIdentity(temp2);
+	GXLoadPosMtxImm(temp2, 0);
+	GXSetCullMode(GX_CULL_NONE);
+	GXClearVtxDesc();
+	GXSetVtxDesc(GX_VA_POS, GX_DIRECT);
+	GXSetVtxDesc(GX_VA_CLR0, GX_DIRECT);
+	GXSetVtxAttrFmt(GX_VTXFMT0, GX_VA_POS, GX_POS_XYZ, GX_F32, 0);
+	GXSetVtxAttrFmt(GX_VTXFMT0, GX_VA_CLR0, GX_POS_XYZ, GX_RGBA8, 0);
+	GXBegin(GX_QUADS, GX_VTXFMT0, 4);
+
+	GXSetZMode(GX_TRUE, GX_LESS, GX_TRUE);
+
 	/*
 	.loc_0x0:
 	  stwu      r1, -0xC0(r1)
@@ -4466,8 +4943,15 @@ void ObjSMenuMap::drawVecZ(Graphics&, Vec&, Vec&, Vec&, Vec&, Color4&, float)
  * Address:	8031290C
  * Size:	0000A4
  */
-bool ObjSMenuMap::doStart(::Screen::StartSceneArg const*)
+bool ObjSMenuMap::doStart(::Screen::StartSceneArg const* arg)
 {
+	m_animGroup->setFrame(0.0f);
+	m_animGroup->setRepeat(true);
+	m_animGroup->setSpeed(1.0f);
+	m_animGroup->start();
+	setYajiName('6051_00', '6052_00', '6050_00');
+	stopYaji();
+	start_LR(arg);
 	/*
 	stwu     r1, -0x10(r1)
 	mflr     r0
@@ -4527,6 +5011,7 @@ bool ObjSMenuMap::doEnd(::Screen::EndSceneArg const*) { return true; }
  */
 void ObjSMenuMap::doUpdateFinish(void)
 {
+	ObjSMenuBase::doUpdateFinish();
 	/*
 	stwu     r1, -0x10(r1)
 	mflr     r0
@@ -4546,6 +5031,8 @@ void ObjSMenuMap::doUpdateFinish(void)
  */
 bool ObjSMenuMap::doUpdateFadeout(void)
 {
+	commonUpdate();
+	updateFadeOut();
 	/*
 	stwu     r1, -0x10(r1)
 	mflr     r0
@@ -4576,6 +5063,8 @@ bool ObjSMenuMap::doUpdateFadeout(void)
  */
 void ObjSMenuMap::in_L(void)
 {
+	_38 = 0;
+	_4C = 15.0f;
 	/*
 	li       r0, 0
 	lfs      f0, lbl_8051D800@sda21(r2)
@@ -4592,6 +5081,8 @@ void ObjSMenuMap::in_L(void)
  */
 void ObjSMenuMap::in_R(void)
 {
+	_38 = 1;
+	_4C = 15.0f;
 	/*
 	li       r0, 1
 	lfs      f0, lbl_8051D800@sda21(r2)
@@ -4619,6 +5110,8 @@ void ObjSMenuMap::wait(void)
  */
 void ObjSMenuMap::out_L(void)
 {
+	_38 = 2;
+	ogSound->setSMenuLR();
 	/*
 	stwu     r1, -0x10(r1)
 	mflr     r0
@@ -4641,6 +5134,8 @@ void ObjSMenuMap::out_L(void)
  */
 void ObjSMenuMap::out_R(void)
 {
+	_38 = 3;
+	ogSound->setSMenuLR();
 	/*
 	stwu     r1, -0x10(r1)
 	mflr     r0
@@ -4676,6 +5171,7 @@ int SetSceneArg::getClassSize(void) { return 0x10; }
  */
 SceneType SetSceneArg::getSceneType() const
 {
+	return m_sceneType;
 	/*
 	lwz      r3, 4(r3)
 	blr
