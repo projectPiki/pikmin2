@@ -27,6 +27,13 @@ EXIInputFlag:
 	.skip 0x1
 
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
+.global DBClose
+DBClose:
+/* 800CFD68 000CCCA8  4E 80 00 20 */	blr
+
+.global DBOpen
+DBOpen:
+/* 800CFD6C 000CCCAC  4E 80 00 20 */	blr
 
 .global DBWrite
 DBWrite:

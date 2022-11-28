@@ -44,3 +44,5 @@ sheet.csv
 sheet.tsv
 *.lnk
 *.log
+build.ninja
+__pycache__
