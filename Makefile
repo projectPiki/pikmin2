@@ -76,7 +76,10 @@ ifeq ($(EPILOGUE_PROCESS),1)
 include e_files.mk
 endif
 
-O_FILES :=	$(GROUP_0_FILES) $(JSYSTEM) $(DOLPHIN)\
+O_FILES :=	$(GROUP_0_FILES) $(JSYSTEM)\
+			$(TRK_MINNOW_DOLPHIN) $(RUNTIME) $(MSL_C) $(ODEMUEXI2) $(VI) $(AMCSTUBS) $(AR) $(BASE)\
+			$(CARD) $(DB) $(DSP) $(DVD) $(EXI) $(GD) $(GX) $(MTX)\
+			$(ODENOTSTUB) $(OS) $(PAD) $(SI) $(AI) $(THP) $(GBA)\
 			$(YAMASHITA) $(KANDO) $(NISHIMURA) $(OGAWA) $(HIKINO) $(MORIMURA) $(EBISAWA) $(KONO)\
 			$(BOOTUP) $(COMMON) $(GC) $(UTILITY)
 ifeq ($(EPILOGUE_PROCESS),1)
@@ -151,55 +154,54 @@ ifeq ($(VERBOSE),0)
 ASFLAGS += -W
 endif
 
-$(BUILD_DIR)/src/Dolphin/dvdFatal.o: MWCC_VERSION := 1.2.5
-$(BUILD_DIR)/src/Dolphin/dvderror.o: MWCC_VERSION := 1.2.5
-$(BUILD_DIR)/src/Dolphin/dvdidutils.o: MWCC_VERSION := 1.2.5
-$(BUILD_DIR)/src/Dolphin/dvdqueue.o: MWCC_VERSION := 1.2.5
-$(BUILD_DIR)/src/Dolphin/__start.o: MWCC_VERSION := 1.2.5
-$(BUILD_DIR)/src/Dolphin/__ppc_eabi_init.o: MWCC_VERSION := 1.2.5
-$(BUILD_DIR)/src/Dolphin/OSLink.o: MWCC_VERSION := 1.2.5
-$(BUILD_DIR)/src/Dolphin/PPCArch.o: MWCC_VERSION := 1.2.5
-$(BUILD_DIR)/src/Dolphin/vec.o: MWCC_VERSION := 1.2.5
-$(BUILD_DIR)/src/Dolphin/GXBump.o: MWCC_VERSION := 1.2.5
-$(BUILD_DIR)/src/Dolphin/GBA.o: MWCC_VERSION := 1.2.5
-$(BUILD_DIR)/src/Dolphin/GBARead.o: MWCC_VERSION := 1.2.5
-$(BUILD_DIR)/src/Dolphin/GBAWrite.o: MWCC_VERSION := 1.2.5
-$(BUILD_DIR)/src/Dolphin/GDBase.o: MWCC_VERSION := 1.2.5
-$(BUILD_DIR)/src/Dolphin/SISamplingRate.o: MWCC_VERSION := 1.2.5
-$(BUILD_DIR)/src/Dolphin/fstload.o: MWCC_VERSION := 1.2.5
-$(BUILD_DIR)/src/Dolphin/db.o: MWCC_VERSION := 1.2.5
-$(BUILD_DIR)/src/Dolphin/OSAudioSystem.o: MWCC_VERSION := 1.2.5
-$(BUILD_DIR)/src/Dolphin/OSAlloc.o: MWCC_VERSION := 1.2.5
-$(BUILD_DIR)/src/Dolphin/OS.o: MWCC_VERSION := 1.2.5
-$(BUILD_DIR)/src/Dolphin/OSError.o: MWCC_VERSION := 1.2.5
-$(BUILD_DIR)/src/Dolphin/OSCache.o: MWCC_VERSION := 1.2.5
-$(BUILD_DIR)/src/Dolphin/OSSync.o: MWCC_VERSION := 1.2.5
-$(BUILD_DIR)/src/Dolphin/OSMessage.o: MWCC_VERSION := 1.2.5
-
-# Dirty hack to overwrite sdata
-# It seems TRK-related files need -sdata 0
-$(BUILD_DIR)/src/Dolphin/main_TRK.o: CFLAGS += -sdata 0
-$(BUILD_DIR)/src/Dolphin/mainloop.o: CFLAGS += -sdata 0
-$(BUILD_DIR)/src/Dolphin/nubinit.o: CFLAGS += -sdata 0
-$(BUILD_DIR)/src/Dolphin/target_options.o: CFLAGS += -sdata 0
-
-# Disable read-only strings
-$(BUILD_DIR)/src/Dolphin/SISamplingRate.o: CFLAGS += -str noreadonly
-$(BUILD_DIR)/src/Dolphin/fstload.o: CFLAGS += -str noreadonly
-$(BUILD_DIR)/src/Dolphin/db.o: CFLAGS += -str noreadonly
-$(BUILD_DIR)/src/Dolphin/OS.o: CFLAGS += -str noreadonly
-$(BUILD_DIR)/src/Dolphin/OSCache.o: CFLAGS += -str noreadonly
-$(BUILD_DIR)/src/Dolphin/OSError.o: CFLAGS += -str noreadonly
-$(BUILD_DIR)/src/Dolphin/GBA.o: CFLAGS += -str noreadonly
-
 # This is inline-deferred for some reason
 $(BUILD_DIR)/src/Dolphin/mbstring.o: CFLAGS := -Cpp_exceptions off -enum int -inline deferred -proc gekko -RTTI off -fp hard -fp_contract on -rostr -O4,p -use_lmw_stmw on -common on -sdata 8 -sdata2 8 -nodefaults -MMD -DVERNUM=$(VERNUM) $(INCLUDES)
 
-# Disable common BSS pool
-$(DOLPHIN): CFLAGS += -common off
-
 # Enable string pooling
 $(BUILD_DIR)/src/Dolphin/locale.o: CFLAGS += -str pool
+
+# Dirty hack to override sdata
+# It seems some TRK-related files need -sdata 0
+$(BUILD_DIR)/src/Dolphin/mainloop.o: CFLAGS += -sdata 0
+$(BUILD_DIR)/src/Dolphin/nubinit.o: CFLAGS += -sdata 0
+$(BUILD_DIR)/src/Dolphin/main_TRK.o: CFLAGS += -sdata 0
+$(BUILD_DIR)/src/Dolphin/target_options.o: CFLAGS += -sdata 0
+
+# Set Dolphin sub-library CFLAGS
+$(TRK_MINNOW_DOLPHIN): CFLAGS += -common off
+$(RUNTIME): CFLAGS += -common off
+$(MSL_C): CFLAGS += -common off
+$(ODEMUEXI2): CFLAGS += -common off
+$(VI): CFLAGS += -common off
+$(AMCSTUBS): CFLAGS += -common off
+$(AR): CFLAGS += -common off
+$(BASE): CFLAGS += -common off
+$(CARD): CFLAGS += -common off
+$(DB): CFLAGS += -common off -str noreadonly
+$(DSP): CFLAGS += -common off
+$(DVD): CFLAGS += -common off -str noreadonly
+$(EXI): CFLAGS += -common off
+$(GD): CFLAGS += -common off
+$(GX): CFLAGS += -common off
+$(MTX): CFLAGS += -common off
+$(ODENOTSTUB): CFLAGS += -common off
+$(OS): CFLAGS += -common off -str noreadonly
+$(PAD): CFLAGS += -common off
+$(SI): CFLAGS += -common off -str noreadonly
+$(AI): CFLAGS += -common off
+$(THP): CFLAGS += -common off
+$(GBA): CFLAGS += -common off -str noreadonly
+
+# Set compiler version for SDK sub-libraries
+$(BASE): MWCC_VERSION := 1.2.5
+$(DB): MWCC_VERSION := 1.2.5
+$(DVD): MWCC_VERSION := 1.2.5
+$(GD): MWCC_VERSION := 1.2.5
+$(GX): MWCC_VERSION := 1.2.5
+$(MTX): MWCC_VERSION := 1.2.5
+$(OS): MWCC_VERSION := 1.2.5
+$(SI): MWCC_VERSION := 1.2.5
+$(GBA): MWCC_VERSION := 1.2.5
 
 #-------------------------------------------------------------------------------
 # Recipes
