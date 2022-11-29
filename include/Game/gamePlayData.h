@@ -5,6 +5,7 @@
 #include "CNode.h"
 #include "Game/PikiContainer.h"
 #include "Game/TekiStat.h"
+#include "Game/gameStages.h"
 #include "id32.h"
 #include "kh/DayEndResult.h"
 
@@ -172,6 +173,7 @@ struct OlimarData {
 
 struct PelletCropMemory {
 	PelletCropMemory(int, int, int); // inlined
+	inline PelletCropMemory(PelletCropMemory&);
 
 	virtual void read(Stream&);  // _08
 	virtual void write(Stream&); // _0C
@@ -221,6 +223,22 @@ struct PlayData : public CNode {
 
 		void write(Stream&);
 		void read(Stream&);
+
+		inline void updateCounts(int i, CourseInfo* info)
+		{
+			int caves = info->getCaveNum();
+			if (caves > 0) {
+				m_caveCount        = caves;
+				m_otakaraCountsOld = new char[caves];
+				_08                = new int[caves];
+				if (m_caveCount > 0) {
+					for (int j = 0; j < m_caveCount; j++) {
+						m_otakaraCountsOld[j] = 0;
+						_08[j]                = 0;
+					}
+				}
+			}
+		}
 
 		u8 m_caveCount; // _00
 
