@@ -4,6 +4,27 @@
 #include "Container.h"
 #include "GenericObjectMgr.h"
 
+// TODO: this struct is 100% fake abomination. Destroy it in the future when onyonMgr cooperates. -EpochFlame
+struct IntermediateObjectMgr : public GenericObjectMgr {
+	virtual void fake1();
+	virtual void fake2();
+	virtual void fake3();
+	virtual void fake4();
+	virtual void fake5();
+	virtual void fake6();
+	virtual void fake7();
+	virtual void fake8();
+	virtual void fake9();
+	virtual void fake10();
+	virtual void fake11();
+	virtual void fake12();
+	virtual void fake13();
+	virtual void fake14(int viewportNumber);
+	virtual void fake15();
+	virtual void fake16(f32 constraint);
+	virtual void fake17(Graphics& gfx);
+};
+
 template <typename T>
 struct ObjectMgr : public Container<T>, GenericObjectMgr {
 	inline ObjectMgr()
