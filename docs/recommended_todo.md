@@ -30,7 +30,7 @@
 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/Dolphin/OSMemory.c">OSMemory.c</a> | 6385 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/Dolphin/OSReboot.c">OSReboot.c</a> | 6397 |
 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/Dolphin/CARDWrite.c">CARDWrite.c</a> | 6434 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/Dolphin/GBAXfer.c">GBAXfer.c</a> | 6477 |
 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/Dolphin/CARDCreate.c">CARDCreate.c</a> | 6611 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/Dolphin/OSResetSW.c">OSResetSW.c</a> | 6856 |
-| <a href="https://github.com/projectPiki/pikmin2/tree/main/src/Dolphin/OSError.c">OSError.c</a> | 6927 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/Dolphin/GXGeometry.c">GXGeometry.c</a> | 6983 |
+| <a href="https://github.com/projectPiki/pikmin2/tree/main/src/Dolphin/OSError.c">OSError.c</a> | 6942 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/Dolphin/GXGeometry.c">GXGeometry.c</a> | 6983 |
 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/Dolphin/CARDBlock.c">CARDBlock.c</a> | 7163 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/Dolphin/dsp_task.c">dsp_task.c</a> | 7801 |
 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/Dolphin/THPAudio.c">THPAudio.c</a> | 7974 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/Dolphin/arq.c">arq.c</a> | 8041 |
 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/Dolphin/OSReset.c">OSReset.c</a> | 8117 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/Dolphin/OSTime.c">OSTime.c</a> | 8247 |
