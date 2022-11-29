@@ -49,13 +49,16 @@ inline void checkNaviIndex(int index)
 
 extern PikiNaviCounter workPikis;
 extern PikiNaviCounter formationPikis;
-extern PikiCounter zikatuPikis;
+extern PikiCounter zikatuPikis; // Wild pikis, that you find & whistle to unlock the type
 extern PikiCounter mePikis;
 
-inline bool checkZikatu(int onyonType)
+/// @brief Checks for wild Pikmin
+/// @param pikiType type of Pikmin
+/// @return Is there wild Pikmin of type 'pikiType' on the map?
+inline bool checkZikatu(EPikiKind pikiType)
 {
-	int zikatuCount = GameStat::zikatuPikis.m_pikiCounts[onyonType];
-	return GameStat::getAllPikmins(onyonType) - zikatuCount > 0;
+	int zikatuCount = GameStat::zikatuPikis.m_pikiCounts[pikiType];
+	return GameStat::getAllPikmins(pikiType) - zikatuCount > 0;
 }
 
 } // namespace GameStat

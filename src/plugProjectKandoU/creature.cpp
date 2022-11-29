@@ -308,7 +308,7 @@ void Creature::getShadowParam(Game::ShadowParam& param)
 	param.m_position = getPosition();
 	param.m_position.y += 0.5f;
 	param.m_boundingSphere.m_radius     = 10.0f;
-	param._1C                           = 4.0f;
+	param.m_size                        = 4.0f;
 	param.m_boundingSphere.m_position.x = 0.0f;
 	param.m_boundingSphere.m_position.y = 1.0f;
 	param.m_boundingSphere.m_position.z = 0.0f;

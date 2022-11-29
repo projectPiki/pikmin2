@@ -121,7 +121,7 @@ struct FakePiki : public Creature, public SysShape::MotionListener {
 	virtual void setMoveVelocity(bool);       // _1E8 (weak)
 	virtual void useMapCollision();           // _1EC (weak)
 	virtual void setMapCollision(bool);       // _1F0 (weak)
-	virtual bool isZikatu();                  // _1F4 (weak)
+	virtual bool isZikatu();                  // _1F4 (weak), is this a Wild Piki? (before type discovery, useless Pikmin)
 	virtual void setZikatu(bool);             // _1F8 (weak)
 	virtual bool wasZikatu();                 // _1FC (weak)
 	virtual f32 getMapCollisionRadius();      // _200 (weak)

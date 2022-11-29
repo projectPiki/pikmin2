@@ -176,9 +176,9 @@ void Obj::getShadowParam(ShadowParam& shadowParam)
 	}
 
 	if (getEnemyTypeID() == EnemyTypeID::EnemyID_BombOtakara) {
-		shadowParam._1C = 12.5f;
+		shadowParam.m_size = 12.5f;
 	} else {
-		shadowParam._1C = 5.0f;
+		shadowParam.m_size = 5.0f;
 	}
 }
 

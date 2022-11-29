@@ -194,7 +194,7 @@ void Obj::getShadowParam(ShadowParam& shadowParam)
 	shadowParam.m_position.y                = m_position.y + 2.0f;
 	shadowParam.m_boundingSphere.m_position = Vector3f(0.0f, 1.0f, 0.0f);
 	shadowParam.m_boundingSphere.m_radius   = 20.0f;
-	shadowParam._1C                         = 10.0f;
+	shadowParam.m_size                      = 10.0f;
 }
 
 /*

@@ -104,7 +104,7 @@ void Pellet::getShadowParam(ShadowParam& shadow)
 	shadow.m_position                  = shadowPos;
 	shadow.m_boundingSphere.m_position = col;
 	shadow.m_boundingSphere.m_radius   = 90.0f;
-	shadow._1C                         = pickRadius * FABS(col.y);
+	shadow.m_size                      = pickRadius * FABS(col.y);
 }
 
 /*

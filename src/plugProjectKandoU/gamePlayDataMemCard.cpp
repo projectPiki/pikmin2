@@ -464,7 +464,7 @@ void PlayData::write(Stream& output)
 			output.textBeginGroup("* お��/洞窟で取得した一時的なお�� *");
 			output.textWriteTab(output.m_tabCount);
 			output.writeInt(m_pokoCount);
-			output.writeInt(_EC);
+			output.writeInt(m_cavePokoCount);
 			output.textWriteText("\r\n");
 			output.textEndGroup();
 			output.textBeginGroup("* 出生数 *");
@@ -1093,8 +1093,8 @@ void PlayData::read(Stream& input)
 	for (int i = 0; i < stageList->m_courseCount; i++) {
 		m_limitGen[i].read(input);
 	}
-	m_pokoCount = input.readInt();
-	_EC         = input.readInt();
+	m_pokoCount     = input.readInt();
+	m_cavePokoCount = input.readInt();
 	BirthMgr::read(input);
 	DeathMgr::read(input);
 	_20 = input.readByte();

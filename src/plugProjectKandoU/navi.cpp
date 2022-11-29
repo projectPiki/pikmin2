@@ -536,7 +536,7 @@ void Navi::getShadowParam(Game::ShadowParam& get)
 	get.m_position.y += 0.5f;
 
 	get.m_boundingSphere.m_radius = 10.0f;
-	get._1C                       = 4.0f;
+	get.m_size                    = 4.0f;
 
 	get.m_boundingSphere.m_position = Vector3f(0.0f, 1.0f, 0.0f);
 }

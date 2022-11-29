@@ -104,7 +104,7 @@ void Obj::getShadowParam(ShadowParam& shadowParam)
 		shadowParam.m_boundingSphere.m_radius = 50.0f;
 	}
 
-	shadowParam._1C = 32.0f;
+	shadowParam.m_size = 32.0f;
 }
 
 /*

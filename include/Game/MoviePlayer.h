@@ -218,7 +218,7 @@ struct MoviePlayer : public JKRDisposer {
 	u32 m_counter;                                                  // _1E8
 	void* m_stbFile;                                                // _1EC
 	// TODO: This might be a BitFlag<u32> object
-	enum { IS_ACTIVE = 1, _1F0_UNKNOWN_2 = 2, _FORCE_INT = 0xFFFFFFFF } m_flags; // _1F0
+	enum { IS_ACTIVE = 1, IS_FINISHED = 2, _FORCE_INT = 0xFFFFFFFF } m_flags; // _1F0
 	// u32 m_isActive : 1, m_1F0_Unknown : 1;
 	JPAResourceManager* m_resourceManager; // _1F4
 };

@@ -87,7 +87,7 @@ void Obj::getShadowParam(ShadowParam& param)
 	} else {
 		param.m_boundingSphere.m_radius = 7.5f;
 	}
-	param._1C = 7.5f;
+	param.m_size = 7.5f;
 }
 
 /*

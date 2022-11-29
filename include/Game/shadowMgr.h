@@ -25,7 +25,7 @@ struct JointShadowRootNode;
 struct ShadowParam {
 	Vector3f m_position;          // _00
 	Sys::Sphere m_boundingSphere; // _0C
-	float _1C;                    // _1C
+	float m_size;                 // _1C
 };
 
 // Size: 0x60

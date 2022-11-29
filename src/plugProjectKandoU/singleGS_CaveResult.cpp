@@ -58,7 +58,7 @@ CaveResultState::CaveResultState()
  */
 void CaveResultState::init(SingleGameSection* section, StateArg* arg)
 {
-	playData->_EC = 0;
+	playData->m_cavePokoCount = 0;
 	gameSystem->detachObjectMgr(generalEnemyMgr);
 	gameSystem->detachObjectMgr(mapMgr);
 	gameSystem->setPause(true, "caver-init", 3);

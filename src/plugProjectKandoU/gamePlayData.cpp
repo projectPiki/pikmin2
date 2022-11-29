@@ -2055,7 +2055,7 @@ void PlayData::reset()
 	}
 	generatorCache->clearCache();
 	m_pokoCount     = 0;
-	_EC             = 0;
+	m_cavePokoCount = 0;
 	m_pokoCountOld  = 0;
 	_C0[0]          = 0;
 	m_berryCount[0] = 0;

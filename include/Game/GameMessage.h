@@ -50,7 +50,7 @@ struct GameMessageVsBattleFinished : public GameMessage {
 	virtual bool actVs(VsGameSection*); // _10
 
 	// _00      = VTABLE
-	int _04; // _04
+	int m_winningSide; // _04
 };
 
 struct GameMessageVsBirthTekiTreasure : public GameMessage {

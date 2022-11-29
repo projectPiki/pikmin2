@@ -262,7 +262,7 @@ void Obj::getShadowParam(ShadowParam& param)
 	sum += newVec.z;
 	_sqrtf(sum, &sum);
 
-	param._1C = 8.0f * sum;
+	param.m_size = 8.0f * sum;
 }
 
 /*

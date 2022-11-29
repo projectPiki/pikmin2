@@ -35,8 +35,8 @@ static bool sVolveFlag;
 
 namespace Game {
 
-static const char someOnyonMgrArray[] = { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 };
-static const char onyonMgrName[]      = "onyonMgr";
+static const char UNUSED_1[] = { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 };
+static const char UNUSED_2[] = "onyonMgr";
 
 /*
  * --INFO--
@@ -45,6 +45,7 @@ static const char onyonMgrName[]      = "onyonMgr";
  */
 void Onyon::movieUserCommand(u32 code, MoviePlayer* player)
 {
+	// TODO: make code enum
 	switch (code) {
 	case 100: // 0x64
 	case 105: // 0x69
@@ -52,55 +53,66 @@ void Onyon::movieUserCommand(u32 code, MoviePlayer* player)
 			JUT_PANICLINE(534, "BIKKURI no boot!\n");
 		}
 
-		int allPikiCount = GameStat::getAllPikmins(m_onyonType);
+		// Redundant call
+		GameStat::getAllPikmins(m_onyonType);
 
-		if (code == 105 || !GameStat::checkZikatu(m_onyonType)) {
+		// This whole section of code is almost entirely redundant, it spawns a new sprout,
+		// kills it, then spawns the actual sprout it uses, WTF?
+		if (code == 105 || !GameStat::checkZikatu(static_cast<EPikiKind>(m_onyonType))) {
 			playData->setContainer(m_onyonType);
-			ItemPikihead::Item* pikiHead = static_cast<ItemPikihead::Item*>(ItemPikihead::mgr->birth());
-			if (pikiHead) {
-				ItemPikihead::InitArg pikiHeadInitArg((EPikiKind)m_onyonType, Vector3f::zero);
-				pikiHead->init(&pikiHeadInitArg);
-				BirthMgr::inc(pikiHead->m_pikiColor);
-				pikiHead->movie_begin(false);
-				doEmit(pikiHead, true);
+
+			// Generate new sprout and play cutscene
+			ItemPikihead::Item* newSprout = static_cast<ItemPikihead::Item*>(ItemPikihead::mgr->birth());
+			if (newSprout) {
+				ItemPikihead::InitArg newSproutArg((EPikiKind)m_onyonType, Vector3f::zero);
+				newSprout->init(&newSproutArg);
+				BirthMgr::inc(newSprout->m_color);
+				newSprout->movie_begin(false);
+				doEmit(newSprout, true);
 				return;
 			}
 
 			gameSystem->m_section->_12C->frameInitAll();
 			gameSystem->m_section->_130->frameInitAll();
-			ItemPikihead::Item* targetPikihead = nullptr;
-			f32 maxDist                        = 0.0f;
-			Iterator<ItemPikihead::Item> iterSprout(ItemPikihead::mgr);
 
-			CI_LOOP(iterSprout)
+			ItemPikihead::Item* furthestPiki = nullptr;
+			f32 maxDist                      = 0.0f;
+			Iterator<ItemPikihead::Item> iterHeads(ItemPikihead::mgr);
+			CI_LOOP(iterHeads)
 			{
-				ItemPikihead::Item* item = (*iterSprout);
-				if (item->isAlive()) {
-					f32 sphereDist = item->calcSphereDistance(this);
-					if (sphereDist > maxDist) {
-						maxDist        = sphereDist;
-						targetPikihead = item;
-					}
+				ItemPikihead::Item* head = *iterHeads;
+				if (!head->isAlive()) {
+					continue;
+				}
+
+				f32 curDist = head->calcSphereDistance(this);
+				if (curDist > maxDist) {
+					maxDist      = curDist;
+					furthestPiki = head;
 				}
 			}
 
-			if (targetPikihead) {
-				GameStat::mePikis.dec(targetPikihead->m_pikiColor);
-				int& pikiHeadCount = playData->m_pikiContainer.getCount(targetPikihead->m_pikiColor, targetPikihead->m_pikiHappa);
+			if (furthestPiki) {
+				GameStat::mePikis.dec(furthestPiki->m_color);
+
+				int& pikiHeadCount = playData->m_pikiContainer.getCount(furthestPiki->m_color, furthestPiki->m_headType);
 				pikiHeadCount++;
+
 				CreatureKillArg killArg(1);
-				targetPikihead->kill(&killArg);
+				furthestPiki->kill(&killArg);
 			} else {
+				// No piki head, try kill an actual Piki
 
 				Iterator<Piki> iterPiki(pikiMgr);
 				Piki* targetPiki = nullptr;
+
 				CI_LOOP(iterPiki)
 				{
-					Piki* piki = (*iterPiki);
+					Piki* piki = *iterPiki;
 					if (piki->isAlive() && !piki->isZikatu()) {
-						f32 sphereDist = piki->calcSphereDistance(this);
-						if (sphereDist > maxDist) {
-							maxDist    = sphereDist;
+						f32 curDist = piki->calcSphereDistance(this);
+						if (curDist > maxDist) {
+							maxDist    = curDist;
 							targetPiki = piki;
 						}
 					}
@@ -109,18 +121,19 @@ void Onyon::movieUserCommand(u32 code, MoviePlayer* player)
 				if (targetPiki) {
 					int& pikiCount = playData->m_pikiContainer.getCount(targetPiki->m_pikiKind, targetPiki->m_happaKind);
 					pikiCount++;
+
 					CreatureKillArg pikiKillArg(1);
 					targetPiki->kill(&pikiKillArg);
 				}
 			}
 
-			ItemPikihead::Item* sprout = static_cast<ItemPikihead::Item*>(ItemPikihead::mgr->birth());
-			if (sprout) {
-				ItemPikihead::InitArg sproutInitArg((EPikiKind)m_onyonType, Vector3f::zero);
-				sprout->init(&sproutInitArg);
-				BirthMgr::inc(sprout->m_pikiColor);
-				sprout->movie_begin(false);
-				doEmit(sprout, true);
+			newSprout = static_cast<ItemPikihead::Item*>(ItemPikihead::mgr->birth());
+			if (newSprout) {
+				ItemPikihead::InitArg sproutArg(static_cast<EPikiKind>(m_onyonType), Vector3f::zero);
+				newSprout->init(&sproutArg);
+				BirthMgr::inc(newSprout->m_color);
+				newSprout->movie_begin(false);
+				doEmit(newSprout, true);
 			} else {
 				JUT_PANICLINE(641, "onyon supply failure!\n");
 			}
@@ -128,8 +141,8 @@ void Onyon::movieUserCommand(u32 code, MoviePlayer* player)
 		break;
 
 	case 101: // 0x65
-		if (!(m_onyonType > ONYON_TYPE_YELLOW)) {
-			if (moviePlayer->m_flags & 0x2) {
+		if (m_onyonType <= ONYON_TYPE_YELLOW) {
+			if (moviePlayer->m_flags & MoviePlayer::IS_FINISHED) {
 				setSpotState(SPOTSTATE_Opened);
 			} else {
 				setSpotState(SPOTSTATE_Closing);
@@ -140,8 +153,8 @@ void Onyon::movieUserCommand(u32 code, MoviePlayer* player)
 		break;
 
 	case 102: // 0x66
-		if (!(m_onyonType > ONYON_TYPE_YELLOW)) {
-			if (moviePlayer->m_flags & 0x2) {
+		if (m_onyonType <= ONYON_TYPE_YELLOW) {
+			if (moviePlayer->m_flags & MoviePlayer::IS_FINISHED) {
 				setSpotState(SPOTSTATE_Closed);
 			} else {
 				setSpotState(SPOTSTATE_Opening);
@@ -175,13 +188,15 @@ bool Onyon::isSuckReady()
 	if (m_onyonType == ONYON_TYPE_SHIP) {
 		if (m_suckState == SUCKSTATE_Opened || m_suckState == SUCKSTATE_GetPellet || m_suckState == SUCKSTATE_IdleOpen) {
 			return true;
-		} else if (m_suckState == SUCKSTATE_IdleClosed) {
+		}
+
+		if (m_suckState == SUCKSTATE_IdleClosed) {
 			m_animator.startAnim(0, this);
 
 			SoundID sound = PSSE_EV_POD_OPEN;
 			if (playData->isStoryFlag(STORY_DebtPaid)) {
-				sound = PSSE_EV_PODGOLD_OPEN;
-			} // debt repayed
+				sound = PSSE_EV_PODGOLD_OPEN; // Gold UFO
+			}
 			startSound(sound);
 
 			m_animSpeed = 30.0f;
@@ -189,6 +204,7 @@ bool Onyon::isSuckReady()
 			m_ufoPodOpen->create(nullptr);
 			m_suckTimer = 0.0f;
 		}
+
 		return false;
 	} else {
 		return true;
@@ -199,8 +215,6 @@ bool Onyon::isSuckReady()
  * --INFO--
  * Address:	80175590
  * Size:	000028
- * Matches!
- * Can either be C-style BOOL or weird if/else with temp and casting.
  */
 BOOL Onyon::isSuckArriveWait() { return m_onyonType == ONYON_TYPE_SHIP ? m_suckState == SUCKSTATE_Closing : FALSE; }
 
@@ -218,8 +232,8 @@ void Onyon::setType(int type)
 	m_ufoSpot      = nullptr;
 	m_ufoSpotAct01 = nullptr;
 	m_ufoPodOpen   = nullptr;
-	SysShape::Joint* jnt;
 
+	SysShape::Joint* jnt;
 	if (m_onyonType <= ONYON_TYPE_YELLOW) {
 		m_container    = new efx::Container;
 		m_containerAct = new efx::ContainerAct;
@@ -294,24 +308,30 @@ bool InteractSuckArrive::actOnyon(Onyon* item)
 			efx::TUfoPodSuck efx(jnt->getWorldMatrix());
 			efx.create(nullptr);
 		}
+
 		item->m_suckTimer = 0.0f;
+
 		if (item->m_suckState == Onyon::SUCKSTATE_IdleClosed) {
 			SysShape::MotionListener* mlisten = item;
 			item->m_animator.startAnim(0, mlisten);
 
 			SoundID sound = PSSE_EV_POD_OPEN;
-			if (playData->isStoryFlag(STORY_DebtPaid)) // debt repayed
-				sound = PSSE_EV_PODGOLD_OPEN;
+			if (playData->isStoryFlag(STORY_DebtPaid)) {
+				sound = PSSE_EV_PODGOLD_OPEN; // Gold UFO
+			}
+
 			item->startSound(sound);
 			item->m_animSpeed = 30.0f;
 			item->m_suckState = Onyon::SUCKSTATE_Opening;
-			item->m_ufoPodOpen->create(0);
+			item->m_ufoPodOpen->create(nullptr);
 			return true;
 		}
+
 		if (item->m_suckState == Onyon::SUCKSTATE_Closing) {
 			JUT_PANICLINE(859, "damedayo !: arrive  ufoSuckState=%d\n", item->m_suckState);
 		}
 	}
+
 	return false;
 }
 
@@ -330,11 +350,13 @@ bool Onyon::needShadow() { return false; }
 void Onyon::getShadowParam(ShadowParam& param)
 {
 	param.m_position = getPosition();
+
 	if (m_onyonType == ONYON_TYPE_POD) {
 		param.m_position.y += 80.0f;
 		param.m_boundingSphere.m_radius = 100.0f;
-		param._1C                       = 27.0f; // shadow size
+		param.m_size                    = 27.0f;
 	}
+
 	param.m_boundingSphere.m_position = Vector3f(0.0f, 1.0f, 0.0f);
 }
 
@@ -352,7 +374,7 @@ bool Onyon::sound_culling() { return (m_onyonType <= ONYON_TYPE_YELLOW) ? Creatu
  */
 bool InteractSuckDone::actOnyon(Onyon* item)
 {
-	// this right here is what causes the glitch to break the seeds from stuff brought to onions during cutscenes
+	// Causes the glitch regarding sprouts and objects brought to onions during cutscenes
 	if (item->isMovieActor() && !item->isMovieExtra()) {
 		return false;
 	}
@@ -363,10 +385,10 @@ bool InteractSuckDone::actOnyon(Onyon* item)
 	if (item->m_onyonType <= ONYON_TYPE_YELLOW) {
 		item->m_animator.startAnim(3, item);
 		item->startSound(PSSE_EV_HOME_PELLET_FINISH);
-
 	} else if (item->m_onyonType == ONYON_TYPE_POD) {
 		item->m_animator.startAnim(2, item);
 		item->startSound(PSSE_EV_HOME_PELLET_FINISH);
+
 		efx::TPodGepu podFX;
 		Vector3f position = item->getPosition();
 		efx::Arg arg(position);
@@ -374,12 +396,13 @@ bool InteractSuckDone::actOnyon(Onyon* item)
 		if (moviePlayer && moviePlayer->m_demoState == 0) {
 			Vector3f pos = item->getPosition();
 			int money    = pellet->m_config->m_params.m_money.m_data;
+
+			// carcass (1), ?? (3) or item (4)
 			if (money > 0 && (pellet->getKind() == 1 || pellet->getKind() == 3 || pellet->getKind() == 4)) {
 				pos += Vector3f(0.0f, 80.0f, 0.0f);
 				carryInfoMgr->appearPoko(pos, money);
 			}
 		}
-
 	} else {
 		item->m_animator.startAnim(0, item);
 		item->m_animator.setFrameByKeyType(0);
@@ -429,30 +452,31 @@ bool InteractSuckDone::actOnyon(Onyon* item)
 	}
 
 	if (gameSystem->m_mode == GSM_VERSUS_MODE) {
-		int i = 0;
-
 		const char* peltnames[2] = { VsOtakaraName::cBedamaRed, VsOtakaraName::cBedamaBlue };
 
-		while (i < 2) {
+		for (int i = 0; i < 2; i++) {
 			if (!strcmp(peltnames[i], pellet->m_config->m_params.m_name.m_data)) {
 				if (i == 1 - item->m_onyonType) {
-					_08           = 1;
+					_08 = 1;
+
 					Vector3f offs = item->getFlagSetPos();
 					offs.y += (pellet->getCylinderHeight() * 0.5f + 2.0f);
 					pellet->setPosition(offs, 0);
+
 					Vector3f vel(0.0f, 400.0f, 0.0f);
 					pellet->setVelocity(vel);
 					pellet->setAlive(true);
 					pellet->finish_carrymotion();
-					pellet->m_pelletSM->transit(pellet, 5, 0);
+
+					// TODO: define when pellet states
+					pellet->m_pelletSM->transit(pellet, 5, nullptr);
 				} else {
-					GameMessageVsBattleFinished mesg;
-					mesg._04 = 1 - i;
-					gameSystem->m_section->sendMessage(mesg);
+					GameMessageVsBattleFinished msg;
+					msg.m_winningSide = 1 - i;
+					gameSystem->m_section->sendMessage(msg);
 					return true;
 				}
 			}
-			i++;
 		}
 
 		if (pellet->_32C == 6) {
@@ -470,55 +494,62 @@ bool InteractSuckDone::actOnyon(Onyon* item)
 
 	if (gameSystem->m_mode != GSM_VERSUS_MODE) {
 		int money = pellet->getPokoValue();
-		gameSystem->m_inCave ? playData->_EC += money : gameSystem->m_section->_PADDING00 += money;
+
+		if (gameSystem->m_inCave) {
+			playData->m_cavePokoCount += money;
+		} else {
+			gameSystem->m_section->_PADDING00 += money;
+		}
 	}
 
 	if (gameSystem->isChallengeMode()) {
 		gameSystem->m_section->addChallengeScore(pellet->m_config->m_params.m_money.m_data);
 		return true;
+	}
 
-	} else {
-		// number pellet (checks if color matches onion)
-		if (pellet->getKind() == PELTYPE_NUMBER) {
-			int min, max;
-			u16 color = (int)pellet->m_pelletColor;
-			pellet->getPikiBirthCount(min, max);
-			u32 type = item->m_onyonType;
-			if (type == ONYON_TYPE_POD || (u32)color == (u16)type) {
-				item->m_toBirth += max;
-			} else {
-				item->m_toBirth += min;
-			}
+	// number pellet (checks if color matches onion)
+	if (pellet->getKind() == PELTYPE_NUMBER) {
+		int min, max;
+
+		u16 color = (int)pellet->m_pelletColor;
+		pellet->getPikiBirthCount(min, max);
+
+		u32 type = item->m_onyonType;
+		if (type == ONYON_TYPE_POD || (u32)color == (u16)type) {
+			item->m_toBirth += max;
 		} else {
-			// carry treasure/item/carcass to an onion/ship
-			if (pellet->getKind() == PELTYPE_TREASURE || pellet->getKind() == PELTYPE_UPGRADE || pellet->getKind() == PELTYPE_CARCASS) {
-				// brought to the pod (the game just assumes you're in a cave)
-				if (item->m_onyonType == ONYON_TYPE_POD) {
-					if (pellet->m_config->m_params.m_money.m_data > 0) {
-						playData->obtainPellet_Cave(pellet);
-					}
-					// brought to the ship (the game just assumes you're above ground)
-				} else if (item->m_onyonType == ONYON_TYPE_SHIP) {
-					if (pellet->m_config->m_params.m_money.m_data > 0) {
-						playData->obtainPellet_Main(pellet);
-						if (!strcmp("yes", pellet->m_config->m_params.m_unique.m_data)) {
-							CourseInfo* info = gameSystem->m_section->getCurrentCourseInfo();
-							if (info) {
-								playData->incGroundOtakara(info->m_courseIndex);
-							}
+			item->m_toBirth += min;
+		}
+	} else {
+		// carry treasure/item/carcass to an onion/ship
+		if (pellet->getKind() == PELTYPE_TREASURE || pellet->getKind() == PELTYPE_UPGRADE || pellet->getKind() == PELTYPE_CARCASS) {
+			// brought to the pod (the game just assumes you're in a cave)
+			if (item->m_onyonType == ONYON_TYPE_POD) {
+				if (pellet->m_config->m_params.m_money.m_data > 0) {
+					playData->obtainPellet_Cave(pellet);
+				}
+				// brought to the ship (the game just assumes you're above ground)
+			} else if (item->m_onyonType == ONYON_TYPE_SHIP) {
+				if (pellet->m_config->m_params.m_money.m_data > 0) {
+					playData->obtainPellet_Main(pellet);
+					if (!strcmp("yes", pellet->m_config->m_params.m_unique.m_data)) {
+						CourseInfo* info = gameSystem->m_section->getCurrentCourseInfo();
+						if (info) {
+							playData->incGroundOtakara(info->m_courseIndex);
 						}
 					}
-					// carry carcass to onions
-				} else if (pellet->getKind() == PELTYPE_CARCASS) {
-					int min, max;
-					pellet->getPikiBirthCount(min, max);
-					item->m_toBirth += max;
 				}
-			} else {
-				pellet->getKind();
+				// carry carcass to onions
+			} else if (pellet->getKind() == PELTYPE_CARCASS) {
+				int min, max;
+				pellet->getPikiBirthCount(min, max);
+				item->m_toBirth += max;
 			}
+		} else {
+			pellet->getKind();
 		}
 	}
+
 	return true;
 }
 
@@ -1228,7 +1259,7 @@ void Onyon::onKeyEvent_Onyon(SysShape::KeyEvent const& event)
 							ItemPikihead::InitArg arg((EPikiKind)m_pikminType, Vector3f::zero);
 							obj->init(&arg);
 							m_toBirth--;
-							BirthMgr::inc(obj->m_pikiColor);
+							BirthMgr::inc(obj->m_color);
 							doEmit(obj, false);
 
 						} else { // returned pikihead is null, 100 pikmin limit must be reached

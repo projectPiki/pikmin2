@@ -160,8 +160,8 @@ struct Item : public FSMItem<Item, FSM, State> {
 	efx::TPkEffectTane* m_efxTane; // _1E0
 	f32 _1E4;                      // _1E4
 	u8 _1E8[0xC];                  // _1E8, unknown
-	u16 m_pikiColor;               // _1F
-	u16 m_pikiHappa;               // _1F6
+	u16 m_color;                   // _1F
+	u16 m_headType;                // _1F6
 };
 
 struct Mgr : public FixedSizeItemMgr<Item> {

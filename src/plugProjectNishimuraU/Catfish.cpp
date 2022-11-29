@@ -50,7 +50,7 @@ void Obj::getShadowParam(Game::ShadowParam& param)
 		param.m_boundingSphere.m_radius += 15.0f;
 	}
 
-	param._1C = 15.0f;
+	param.m_size = 15.0f;
 }
 
 /*

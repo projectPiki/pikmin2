@@ -113,7 +113,7 @@ struct BaseItem : public Creature, public SysShape::MotionListener {
 	Vector3f m_position;           // _19C
 	SysShape::Animator m_animator; // _1A8
 	Sys::Sphere m_boundingSphere;  // _1C4
-	f32 m_animSpeed;               // _1D4
+	f32 m_animSpeed;               // _1D4, in FPS
 };
 
 struct CFSMItem : public BaseItem {

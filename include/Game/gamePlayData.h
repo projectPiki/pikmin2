@@ -371,7 +371,7 @@ struct PlayData : public CNode {
 	// Current Poko count.
 	u32 m_pokoCount; // _E8
 
-	int _EC; // _EC
+	int m_cavePokoCount; // _EC
 
 	u8 _F0[2]; // _F0
 
