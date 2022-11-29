@@ -180,8 +180,6 @@ void ActFree::collisionCallback(Game::Piki* p, Game::CollEvent& event)
 	p->stimulate(fue);
 }
 
-const char str_LINK[] = "ActionArg";
-
 /*
  * --INFO--
  * Address:	801A04A4
