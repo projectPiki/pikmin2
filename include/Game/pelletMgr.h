@@ -403,6 +403,11 @@ struct Pellet : public DynCreature, public SysShape::MotionListener, public Carr
 		return check;
 	}
 
+	inline int getPokoValue()
+	{
+		return m_config->m_params.m_money.m_data;
+	}
+
 	// _00		= VTABLE 1
 	// _04-_314	= DYNCREATURE
 	// _318 	= VTABLE 2? 3?

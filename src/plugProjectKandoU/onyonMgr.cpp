@@ -469,8 +469,8 @@ bool InteractSuckDone::actOnyon(Onyon* item)
 	}
 
 	if (gameSystem->m_mode != GSM_VERSUS_MODE) {
-		PrimTagParm<int> money = pellet->m_config->m_params.m_money;
-		gameSystem->m_inCave ? playData->_EC += money.m_data : gameSystem->m_section->_PADDING00 += money.m_data;
+		int money = pellet->getPokoValue();
+		gameSystem->m_inCave ? playData->_EC += money : gameSystem->m_section->_PADDING00 += money;
 	}
 
 	if (gameSystem->isChallengeMode()) {
