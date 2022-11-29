@@ -54,6 +54,7 @@
 #include "System.h"
 #include "SysTimers.h"
 #include "TParticle2dMgr.h"
+#include "types.h"
 #include "utilityU.h"
 #include "VsOtakaraName.h"
 #include "wipe.h"
