@@ -26,6 +26,13 @@ enum MailCategory {
 };
 
 struct MailSaveData {
+	MailSaveData()
+	{
+		for (int i = 0; i < 16; i++) {
+			_00[i] = 0;
+		}
+	}
+
 	void clear();
 	void read(Stream&);
 	void write(Stream&);

@@ -2,10 +2,10 @@
 #define _GAME_GAMESTAGES_H
 
 #include "CNode.h"
-#include "Game/gamePlayData.h"
 #include "Game/routeMgr.h"
 #include "Matrixf.h"
 #include "Vector3.h"
+#include "id32.h"
 
 namespace Game {
 /**

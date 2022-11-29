@@ -13,148 +13,6 @@
 #include "Game/gameStat.h"
 
 /*
-    Generated from dpostproc
-
-    .section .rodata  # 0x804732E0 - 0x8049E220
-    .global lbl_80480E40
-    lbl_80480E40:
-        .4byte 0x506C6179
-        .4byte 0x44617461
-        .4byte 0x00000000
-    .global lbl_80480E4C
-    lbl_80480E4C:
-        .4byte 0x67616D65
-        .4byte 0x506C6179
-        .4byte 0x44617461
-        .4byte 0x2E637070
-        .4byte 0x00000000
-    .global lbl_80480E60
-    lbl_80480E60:
-        .asciz "P2Assert"
-        .skip 3
-        .4byte 0x706C6179
-        .4byte 0x44617461
-        .4byte 0x00000000
-        .4byte 0x67656E65
-        .4byte 0x7261746F
-        .4byte 0x72436163
-        .4byte 0x68650000
-        .4byte 0x6F74616B
-        .4byte 0x61726120
-        .4byte 0x6F722069
-        .4byte 0x74656D20
-        .4byte 0x21000000
-        .4byte 0x6E6F2074
-        .4byte 0x656B696E
-        .4byte 0x616D6520
-        .4byte 0x666F7220
-        .4byte 0x25640A00
-    .global lbl_80480EB0
-    lbl_80480EB0:
-        .4byte 0x6E6F2063
-        .4byte 0x61766520
-        .4byte 0x696E666F
-        .4byte 0x203A2063
-        .4byte 0x6F757273
-        .4byte 0x65282564
-        .4byte 0x293A5B25
-        .4byte 0x735D0A00
-    .global lbl_80480ED0
-    lbl_80480ED0:
-        .4byte 0x636F7572
-        .4byte 0x73652069
-        .4byte 0x6E646578
-        .4byte 0x20657272
-        .4byte 0x6F723A25
-        .4byte 0x64202867
-        .4byte 0x65744F74
-        .4byte 0x616B6172
-        .4byte 0x614E756D
-        .4byte 0x5F2A290A
-        .4byte 0x00000000
-    .global lbl_80480EFC
-    lbl_80480EFC:
-        .4byte 0x819693B4
-        .4byte 0x8C418FEE
-        .4byte 0x95F18196
-        .4byte 0x00000000
-        .4byte 0x23206361
-        .4byte 0x76659094
-        .4byte 0x0D0A0000
-        .4byte 0x23208CC2
-        .4byte 0x90940D0A
-        .4byte 0x00000000
-        .4byte 0x23208FF3
-        .4byte 0x91D40D0A
-        .4byte 0x00000000
-    .global lbl_80480F30
-    lbl_80480F30:
-        .4byte 0x835A815B
-        .4byte 0x837582B5
-        .4byte 0x82BD82C6
-        .4byte 0x82AB82C6
-        .4byte 0x93B48C41
-        .4byte 0x82CC9094
-        .4byte 0x82AA82A0
-        .4byte 0x82A282DC
-        .4byte 0x82B982F1
-        .4byte 0x0A000000
-    .global "repay_levs__26@unnamed@gamePlayData_cpp@"
-    "repay_levs__26@unnamed@gamePlayData_cpp@":
-        .4byte 0x41200000
-        .4byte 0x41A00000
-        .4byte 0x41F00000
-        .4byte 0x42200000
-        .4byte 0x42480000
-        .4byte 0x42700000
-        .4byte 0x428C0000
-        .4byte 0x42A00000
-        .4byte 0x42B40000
-        .4byte 0x42C80000
-        .4byte 0x819693B4
-        .4byte 0x8C418FEE
-        .4byte 0x95F1284F
-        .4byte 0x6C642981
-        .4byte 0x96000000
-        .4byte 0x00000000
-
-    .section .data, "wa"  # 0x8049E220 - 0x804EFC20
-    .global __vt__Q24Game8PlayData
-    __vt__Q24Game8PlayData:
-        .4byte 0
-        .4byte 0
-        .4byte __dt__Q24Game8PlayDataFv
-        .4byte getChildCount__5CNodeFv
-    .global __vt__Q24Game17PelletFirstMemory
-    __vt__Q24Game17PelletFirstMemory:
-        .4byte 0
-        .4byte 0
-        .4byte read__Q24Game16PelletCropMemoryFR6Stream
-        .4byte write__Q24Game16PelletCropMemoryFR6Stream
-        .4byte firstCarryPellet__Q24Game17PelletFirstMemoryFPQ24Game6Pellet
-        .4byte obtainPellet__Q24Game17PelletFirstMemoryFPQ24Game13BasePelletMgri
-        .4byte losePellet__Q24Game17PelletFirstMemoryFPQ24Game13BasePelletMgri
-        .4byte 0
-
-    .section .sbss # 0x80514D80 - 0x80516360
-    .global playData__4Game
-    playData__4Game:
-        .skip 0x8
-
-    .section .sdata2, "a"     # 0x80516360 - 0x80520E40
-    .global lbl_805199D0
-    lbl_805199D0:
-        .4byte 0x00000000
-    .global lbl_805199D4
-    lbl_805199D4:
-        .4byte 0x42C80000
-    .global lbl_805199D8
-    lbl_805199D8:
-        .4byte 0x43300000
-        .4byte 0x80000000
-*/
-
-/*
  * --INFO--
  * Address:	........
  * Size:	0000E4
@@ -162,6 +20,8 @@
 void _Print(char* name, ...) { OSReport("PlayData"); }
 
 namespace Game {
+
+PlayData* playData;
 
 /*
  * --INFO--
@@ -247,9 +107,6 @@ u8* KindCounter::operator()(int index)
  * Size:	00018C
  */
 PelletCropMemory::PelletCropMemory(int num1, int num2, int num3)
-    : m_otakara()
-    , m_item()
-    , m_carcass()
 {
 	m_otakara.alloc(num1);
 	m_item.alloc(num2);
@@ -475,113 +332,11 @@ lbl_801E56D4:
  * Address:	801E56F8
  * Size:	000148
  */
-void PelletCropMemory::addTo(Game::PelletCropMemory* add)
+void PelletCropMemory::addTo(PelletCropMemory* add)
 {
 	m_otakara.addTo(add->m_otakara);
 	m_item.addTo(add->m_item);
 	m_carcass.addTo(add->m_carcass);
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	mr       r31, r4
-	stw      r30, 8(r1)
-	mr       r30, r3
-	lhz      r3, 4(r3)
-	lhz      r0, 4(r4)
-	cmplw    r3, r0
-	beq      lbl_801E5740
-	lis      r3, lbl_80480E4C@ha
-	lis      r5, lbl_80480E60@ha
-	addi     r3, r3, lbl_80480E4C@l
-	li       r4, 0x142
-	addi     r5, r5, lbl_80480E60@l
-	crclr    6
-	bl       panic_f__12JUTExceptionFPCciPCce
-
-lbl_801E5740:
-	li       r6, 0
-	b        lbl_801E5764
-
-lbl_801E5748:
-	lwz      r5, 8(r30)
-	lwz      r3, 8(r31)
-	lbzx     r4, r5, r6
-	lbzx     r0, r3, r6
-	add      r0, r4, r0
-	stbx     r0, r5, r6
-	addi     r6, r6, 1
-
-lbl_801E5764:
-	lhz      r0, 4(r30)
-	cmpw     r6, r0
-	blt      lbl_801E5748
-	lhz      r3, 0xc(r30)
-	lhz      r0, 0xc(r31)
-	cmplw    r3, r0
-	beq      lbl_801E579C
-	lis      r3, lbl_80480E4C@ha
-	lis      r5, lbl_80480E60@ha
-	addi     r3, r3, lbl_80480E4C@l
-	li       r4, 0x142
-	addi     r5, r5, lbl_80480E60@l
-	crclr    6
-	bl       panic_f__12JUTExceptionFPCciPCce
-
-lbl_801E579C:
-	li       r6, 0
-	b        lbl_801E57C0
-
-lbl_801E57A4:
-	lwz      r5, 0x10(r30)
-	lwz      r3, 0x10(r31)
-	lbzx     r4, r5, r6
-	lbzx     r0, r3, r6
-	add      r0, r4, r0
-	stbx     r0, r5, r6
-	addi     r6, r6, 1
-
-lbl_801E57C0:
-	lhz      r0, 0xc(r30)
-	cmpw     r6, r0
-	blt      lbl_801E57A4
-	lhz      r3, 0x14(r30)
-	lhz      r0, 0x14(r31)
-	cmplw    r3, r0
-	beq      lbl_801E57F8
-	lis      r3, lbl_80480E4C@ha
-	lis      r5, lbl_80480E60@ha
-	addi     r3, r3, lbl_80480E4C@l
-	li       r4, 0x142
-	addi     r5, r5, lbl_80480E60@l
-	crclr    6
-	bl       panic_f__12JUTExceptionFPCciPCce
-
-lbl_801E57F8:
-	li       r6, 0
-	b        lbl_801E581C
-
-lbl_801E5800:
-	lwz      r5, 0x18(r30)
-	lwz      r3, 0x18(r31)
-	lbzx     r4, r5, r6
-	lbzx     r0, r3, r6
-	add      r0, r4, r0
-	stbx     r0, r5, r6
-	addi     r6, r6, 1
-
-lbl_801E581C:
-	lhz      r0, 0x14(r30)
-	cmpw     r6, r0
-	blt      lbl_801E5800
-	lwz      r0, 0x14(r1)
-	lwz      r31, 0xc(r1)
-	lwz      r30, 8(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
 }
 
 /*
@@ -594,48 +349,6 @@ void PelletCropMemory::clear()
 	m_otakara.clear();
 	m_item.clear();
 	m_carcass.clear();
-	/*
-	li       r6, 0
-	mr       r5, r6
-	b        lbl_801E5858
-
-lbl_801E584C:
-	lwz      r4, 8(r3)
-	stbx     r5, r4, r6
-	addi     r6, r6, 1
-
-lbl_801E5858:
-	lhz      r0, 4(r3)
-	cmpw     r6, r0
-	blt      lbl_801E584C
-	li       r6, 0
-	mr       r5, r6
-	b        lbl_801E587C
-
-lbl_801E5870:
-	lwz      r4, 0x10(r3)
-	stbx     r5, r4, r6
-	addi     r6, r6, 1
-
-lbl_801E587C:
-	lhz      r0, 0xc(r3)
-	cmpw     r6, r0
-	blt      lbl_801E5870
-	li       r6, 0
-	mr       r5, r6
-	b        lbl_801E58A0
-
-lbl_801E5894:
-	lwz      r4, 0x18(r3)
-	stbx     r5, r4, r6
-	addi     r6, r6, 1
-
-lbl_801E58A0:
-	lhz      r0, 0x14(r3)
-	cmpw     r6, r0
-	blt      lbl_801E5894
-	blr
-	*/
 }
 
 /*
@@ -677,255 +390,32 @@ PelletFirstMemory::PelletFirstMemory(int p1, int p2, int p3)
 bool PelletFirstMemory::firstCarryPellet(Pellet* pellet)
 {
 	if (pellet->getKind() == PELTYPE_TREASURE) {
-		int id     = pellet->getConfigIndex();
-		bool check = (id >= 0 && id < m_otakara.m_numKinds);
-		P2ASSERTLINE(330, check);
-		if (!(m_otakara.m_kinds[id] & 2)) {
-			check = (id >= 0 && id < m_otakara.m_numKinds);
-			P2ASSERTLINE(330, check);
-			u8* data = m_otakara.m_kinds;
-			data[id] |= 2;
+		int id = pellet->getConfigIndex();
+
+		if (!(*m_otakara(id) & 2)) {
+			*m_otakara(id) |= 2;
 			pellet->getConfigName();
 			return true;
 		}
+
 	} else if (pellet->getKind() == PELTYPE_UPGRADE) {
-		int id     = pellet->getConfigIndex();
-		bool check = (id >= 0 && id < m_item.m_numKinds);
-		P2ASSERTLINE(330, check);
-		if (!(m_item.m_kinds[id] & 2)) {
-			check = (id >= 0 && id < m_item.m_numKinds);
-			P2ASSERTLINE(330, check);
-			u8* data = m_item.m_kinds;
-			data[id] |= 2;
+		int id = pellet->getConfigIndex();
+		if (!(*m_item(id) & 2)) {
+			*m_item(id) |= 2;
 			pellet->getConfigName();
 			return true;
 		}
+
 	} else if (pellet->getKind() == PELTYPE_CARCASS) {
-		int id     = pellet->getConfigIndex();
-		bool check = (id >= 0 && id < m_carcass.m_numKinds);
-		P2ASSERTLINE(330, check);
-		if (!(m_carcass.m_kinds[id] & 2)) {
-			check = (id >= 0 && id < m_carcass.m_numKinds);
-			P2ASSERTLINE(330, check);
-			u8* data = m_carcass.m_kinds;
-			data[id] |= 2;
+		int id = pellet->getConfigIndex();
+		if (!(*m_carcass(id) & 2)) {
+			*m_carcass(id) |= 2;
 			pellet->getConfigName();
 			return true;
 		}
 	}
+
 	return false;
-	/*
-	stwu     r1, -0x20(r1)
-	mflr     r0
-	stw      r0, 0x24(r1)
-	stw      r31, 0x1c(r1)
-	stw      r30, 0x18(r1)
-	mr       r30, r4
-	stw      r29, 0x14(r1)
-	mr       r29, r3
-	mr       r3, r30
-	lwz      r12, 0(r30)
-	lwz      r12, 0x1f4(r12)
-	mtctr    r12
-	bctrl
-	clrlwi   r0, r3, 0x18
-	cmplwi   r0, 3
-	bne      lbl_801E59F0
-	mr       r3, r30
-	bl       getConfigIndex__Q24Game6PelletFv
-	or.      r31, r3, r3
-	li       r3, 0
-	blt      lbl_801E595C
-	lhz      r0, 4(r29)
-	cmpw     r31, r0
-	bge      lbl_801E595C
-	li       r3, 1
-
-lbl_801E595C:
-	clrlwi.  r0, r3, 0x18
-	bne      lbl_801E5980
-	lis      r3, lbl_80480E4C@ha
-	lis      r5, lbl_80480E60@ha
-	addi     r3, r3, lbl_80480E4C@l
-	li       r4, 0x14a
-	addi     r5, r5, lbl_80480E60@l
-	crclr    6
-	bl       panic_f__12JUTExceptionFPCciPCce
-
-lbl_801E5980:
-	lwz      r3, 8(r29)
-	lbzx     r0, r3, r31
-	rlwinm.  r0, r0, 0, 0x1e, 0x1e
-	bne      lbl_801E5BA0
-	cmpwi    r31, 0
-	li       r3, 0
-	blt      lbl_801E59AC
-	lhz      r0, 4(r29)
-	cmpw     r31, r0
-	bge      lbl_801E59AC
-	li       r3, 1
-
-lbl_801E59AC:
-	clrlwi.  r0, r3, 0x18
-	bne      lbl_801E59D0
-	lis      r3, lbl_80480E4C@ha
-	lis      r5, lbl_80480E60@ha
-	addi     r3, r3, lbl_80480E4C@l
-	li       r4, 0x14a
-	addi     r5, r5, lbl_80480E60@l
-	crclr    6
-	bl       panic_f__12JUTExceptionFPCciPCce
-
-lbl_801E59D0:
-	lwz      r4, 8(r29)
-	mr       r3, r30
-	lbzx     r0, r4, r31
-	ori      r0, r0, 2
-	stbx     r0, r4, r31
-	bl       getConfigName__Q24Game6PelletFv
-	li       r3, 1
-	b        lbl_801E5BA4
-
-lbl_801E59F0:
-	mr       r3, r30
-	lwz      r12, 0(r30)
-	lwz      r12, 0x1f4(r12)
-	mtctr    r12
-	bctrl
-	clrlwi   r0, r3, 0x18
-	cmplwi   r0, 4
-	bne      lbl_801E5AC8
-	mr       r3, r30
-	bl       getConfigIndex__Q24Game6PelletFv
-	or.      r31, r3, r3
-	li       r3, 0
-	blt      lbl_801E5A34
-	lhz      r0, 0xc(r29)
-	cmpw     r31, r0
-	bge      lbl_801E5A34
-	li       r3, 1
-
-lbl_801E5A34:
-	clrlwi.  r0, r3, 0x18
-	bne      lbl_801E5A58
-	lis      r3, lbl_80480E4C@ha
-	lis      r5, lbl_80480E60@ha
-	addi     r3, r3, lbl_80480E4C@l
-	li       r4, 0x14a
-	addi     r5, r5, lbl_80480E60@l
-	crclr    6
-	bl       panic_f__12JUTExceptionFPCciPCce
-
-lbl_801E5A58:
-	lwz      r3, 0x10(r29)
-	lbzx     r0, r3, r31
-	rlwinm.  r0, r0, 0, 0x1e, 0x1e
-	bne      lbl_801E5BA0
-	cmpwi    r31, 0
-	li       r3, 0
-	blt      lbl_801E5A84
-	lhz      r0, 0xc(r29)
-	cmpw     r31, r0
-	bge      lbl_801E5A84
-	li       r3, 1
-
-lbl_801E5A84:
-	clrlwi.  r0, r3, 0x18
-	bne      lbl_801E5AA8
-	lis      r3, lbl_80480E4C@ha
-	lis      r5, lbl_80480E60@ha
-	addi     r3, r3, lbl_80480E4C@l
-	li       r4, 0x14a
-	addi     r5, r5, lbl_80480E60@l
-	crclr    6
-	bl       panic_f__12JUTExceptionFPCciPCce
-
-lbl_801E5AA8:
-	lwz      r4, 0x10(r29)
-	mr       r3, r30
-	lbzx     r0, r4, r31
-	ori      r0, r0, 2
-	stbx     r0, r4, r31
-	bl       getConfigName__Q24Game6PelletFv
-	li       r3, 1
-	b        lbl_801E5BA4
-
-lbl_801E5AC8:
-	mr       r3, r30
-	lwz      r12, 0(r30)
-	lwz      r12, 0x1f4(r12)
-	mtctr    r12
-	bctrl
-	clrlwi   r0, r3, 0x18
-	cmplwi   r0, 1
-	bne      lbl_801E5BA0
-	mr       r3, r30
-	bl       getConfigIndex__Q24Game6PelletFv
-	or.      r31, r3, r3
-	li       r3, 0
-	blt      lbl_801E5B0C
-	lhz      r0, 0x14(r29)
-	cmpw     r31, r0
-	bge      lbl_801E5B0C
-	li       r3, 1
-
-lbl_801E5B0C:
-	clrlwi.  r0, r3, 0x18
-	bne      lbl_801E5B30
-	lis      r3, lbl_80480E4C@ha
-	lis      r5, lbl_80480E60@ha
-	addi     r3, r3, lbl_80480E4C@l
-	li       r4, 0x14a
-	addi     r5, r5, lbl_80480E60@l
-	crclr    6
-	bl       panic_f__12JUTExceptionFPCciPCce
-
-lbl_801E5B30:
-	lwz      r3, 0x18(r29)
-	lbzx     r0, r3, r31
-	rlwinm.  r0, r0, 0, 0x1e, 0x1e
-	bne      lbl_801E5BA0
-	cmpwi    r31, 0
-	li       r3, 0
-	blt      lbl_801E5B5C
-	lhz      r0, 0x14(r29)
-	cmpw     r31, r0
-	bge      lbl_801E5B5C
-	li       r3, 1
-
-lbl_801E5B5C:
-	clrlwi.  r0, r3, 0x18
-	bne      lbl_801E5B80
-	lis      r3, lbl_80480E4C@ha
-	lis      r5, lbl_80480E60@ha
-	addi     r3, r3, lbl_80480E4C@l
-	li       r4, 0x14a
-	addi     r5, r5, lbl_80480E60@l
-	crclr    6
-	bl       panic_f__12JUTExceptionFPCciPCce
-
-lbl_801E5B80:
-	lwz      r4, 0x18(r29)
-	mr       r3, r30
-	lbzx     r0, r4, r31
-	ori      r0, r0, 2
-	stbx     r0, r4, r31
-	bl       getConfigName__Q24Game6PelletFv
-	li       r3, 1
-	b        lbl_801E5BA4
-
-lbl_801E5BA0:
-	li       r3, 0
-
-lbl_801E5BA4:
-	lwz      r0, 0x24(r1)
-	lwz      r31, 0x1c(r1)
-	lwz      r30, 0x18(r1)
-	lwz      r29, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x20
-	blr
-	*/
 }
 
 /*
@@ -933,124 +423,19 @@ lbl_801E5BA4:
  * Address:	801E5BC0
  * Size:	000154
  */
-void PelletFirstMemory::obtainPellet(Game::BasePelletMgr* mgr, int id)
+void PelletFirstMemory::obtainPellet(BasePelletMgr* mgr, int id)
 {
 	if (mgr->getMgrID() == PELTYPE_TREASURE) {
-		bool check = (id >= 0 && id < m_otakara.m_numKinds);
-		P2ASSERTLINE(330, check);
-		u8* data = m_otakara.m_kinds;
-		data[id] |= 2;
+		*m_otakara(id) |= 2;
 		mgr->getPelletConfig(id);
+
 	} else if (mgr->getMgrID() == PELTYPE_UPGRADE) {
-		bool check = (id >= 0 && id < m_item.m_numKinds);
-		P2ASSERTLINE(330, check);
-		u8* data = m_item.m_kinds;
-		data[id] |= 2;
+		*m_item(id) |= 2;
 		mgr->getPelletConfig(id);
+
 	} else {
 		mgr->getMgrID();
 	}
-	/*
-	stwu     r1, -0x20(r1)
-	mflr     r0
-	stw      r0, 0x24(r1)
-	stw      r31, 0x1c(r1)
-	mr       r31, r5
-	stw      r30, 0x18(r1)
-	mr       r30, r4
-	stw      r29, 0x14(r1)
-	mr       r29, r3
-	mr       r3, r30
-	lwz      r12, 0(r30)
-	lwz      r12, 0x5c(r12)
-	mtctr    r12
-	bctrl
-	clrlwi   r0, r3, 0x18
-	cmplwi   r0, 3
-	bne      lbl_801E5C64
-	cmpwi    r31, 0
-	li       r3, 0
-	blt      lbl_801E5C20
-	lhz      r0, 4(r29)
-	cmpw     r31, r0
-	bge      lbl_801E5C20
-	li       r3, 1
-
-lbl_801E5C20:
-	clrlwi.  r0, r3, 0x18
-	bne      lbl_801E5C44
-	lis      r3, lbl_80480E4C@ha
-	lis      r5, lbl_80480E60@ha
-	addi     r3, r3, lbl_80480E4C@l
-	li       r4, 0x14a
-	addi     r5, r5, lbl_80480E60@l
-	crclr    6
-	bl       panic_f__12JUTExceptionFPCciPCce
-
-lbl_801E5C44:
-	lwz      r5, 8(r29)
-	mr       r3, r30
-	mr       r4, r31
-	lbzx     r0, r5, r31
-	ori      r0, r0, 2
-	stbx     r0, r5, r31
-	bl       getPelletConfig__Q24Game13BasePelletMgrFi
-	b        lbl_801E5CF8
-
-lbl_801E5C64:
-	mr       r3, r30
-	lwz      r12, 0(r30)
-	lwz      r12, 0x5c(r12)
-	mtctr    r12
-	bctrl
-	clrlwi   r0, r3, 0x18
-	cmplwi   r0, 4
-	bne      lbl_801E5CE4
-	cmpwi    r31, 0
-	li       r3, 0
-	blt      lbl_801E5CA0
-	lhz      r0, 0xc(r29)
-	cmpw     r31, r0
-	bge      lbl_801E5CA0
-	li       r3, 1
-
-lbl_801E5CA0:
-	clrlwi.  r0, r3, 0x18
-	bne      lbl_801E5CC4
-	lis      r3, lbl_80480E4C@ha
-	lis      r5, lbl_80480E60@ha
-	addi     r3, r3, lbl_80480E4C@l
-	li       r4, 0x14a
-	addi     r5, r5, lbl_80480E60@l
-	crclr    6
-	bl       panic_f__12JUTExceptionFPCciPCce
-
-lbl_801E5CC4:
-	lwz      r5, 0x10(r29)
-	mr       r3, r30
-	mr       r4, r31
-	lbzx     r0, r5, r31
-	ori      r0, r0, 2
-	stbx     r0, r5, r31
-	bl       getPelletConfig__Q24Game13BasePelletMgrFi
-	b        lbl_801E5CF8
-
-lbl_801E5CE4:
-	mr       r3, r30
-	lwz      r12, 0(r30)
-	lwz      r12, 0x5c(r12)
-	mtctr    r12
-	bctrl
-
-lbl_801E5CF8:
-	lwz      r0, 0x24(r1)
-	lwz      r31, 0x1c(r1)
-	lwz      r30, 0x18(r1)
-	lwz      r29, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x20
-	blr
-	*/
 }
 
 /*
@@ -1061,121 +446,16 @@ lbl_801E5CF8:
 void PelletFirstMemory::losePellet(Game::BasePelletMgr* mgr, int id)
 {
 	if (mgr->getMgrID() == PELTYPE_TREASURE) {
-		bool check = (id >= 0 && id < m_otakara.m_numKinds);
-		P2ASSERTLINE(330, check);
-		u8* data = m_otakara.m_kinds;
-		data[id] &= 0xfe;
+		*m_otakara(id) &= ~0x2;
 		mgr->getPelletConfig(id);
+
 	} else if (mgr->getMgrID() == PELTYPE_UPGRADE) {
-		bool check = (id >= 0 && id < m_item.m_numKinds);
-		P2ASSERTLINE(330, check);
-		u8* data = m_item.m_kinds;
-		data[id] &= 0xfe;
+		*m_item(id) &= ~0x2;
 		mgr->getPelletConfig(id);
+
 	} else {
 		mgr->getMgrID();
 	}
-	/*
-	stwu     r1, -0x20(r1)
-	mflr     r0
-	stw      r0, 0x24(r1)
-	stw      r31, 0x1c(r1)
-	mr       r31, r5
-	stw      r30, 0x18(r1)
-	mr       r30, r4
-	stw      r29, 0x14(r1)
-	mr       r29, r3
-	mr       r3, r30
-	lwz      r12, 0(r30)
-	lwz      r12, 0x5c(r12)
-	mtctr    r12
-	bctrl
-	clrlwi   r0, r3, 0x18
-	cmplwi   r0, 3
-	bne      lbl_801E5DB8
-	cmpwi    r31, 0
-	li       r3, 0
-	blt      lbl_801E5D74
-	lhz      r0, 4(r29)
-	cmpw     r31, r0
-	bge      lbl_801E5D74
-	li       r3, 1
-
-lbl_801E5D74:
-	clrlwi.  r0, r3, 0x18
-	bne      lbl_801E5D98
-	lis      r3, lbl_80480E4C@ha
-	lis      r5, lbl_80480E60@ha
-	addi     r3, r3, lbl_80480E4C@l
-	li       r4, 0x14a
-	addi     r5, r5, lbl_80480E60@l
-	crclr    6
-	bl       panic_f__12JUTExceptionFPCciPCce
-
-lbl_801E5D98:
-	lwz      r5, 8(r29)
-	mr       r3, r30
-	mr       r4, r31
-	lbzx     r0, r5, r31
-	rlwinm   r0, r0, 0, 0x1f, 0x1d
-	stbx     r0, r5, r31
-	bl       getPelletConfig__Q24Game13BasePelletMgrFi
-	b        lbl_801E5E4C
-
-lbl_801E5DB8:
-	mr       r3, r30
-	lwz      r12, 0(r30)
-	lwz      r12, 0x5c(r12)
-	mtctr    r12
-	bctrl
-	clrlwi   r0, r3, 0x18
-	cmplwi   r0, 4
-	bne      lbl_801E5E38
-	cmpwi    r31, 0
-	li       r3, 0
-	blt      lbl_801E5DF4
-	lhz      r0, 0xc(r29)
-	cmpw     r31, r0
-	bge      lbl_801E5DF4
-	li       r3, 1
-
-lbl_801E5DF4:
-	clrlwi.  r0, r3, 0x18
-	bne      lbl_801E5E18
-	lis      r3, lbl_80480E4C@ha
-	lis      r5, lbl_80480E60@ha
-	addi     r3, r3, lbl_80480E4C@l
-	li       r4, 0x14a
-	addi     r5, r5, lbl_80480E60@l
-	crclr    6
-	bl       panic_f__12JUTExceptionFPCciPCce
-
-lbl_801E5E18:
-	lwz      r5, 0x10(r29)
-	mr       r3, r30
-	mr       r4, r31
-	lbzx     r0, r5, r31
-	rlwinm   r0, r0, 0, 0x1f, 0x1d
-	stbx     r0, r5, r31
-	bl       getPelletConfig__Q24Game13BasePelletMgrFi
-	b        lbl_801E5E4C
-
-lbl_801E5E38:
-	mr       r3, r30
-	lwz      r12, 0(r30)
-	lwz      r12, 0x5c(r12)
-	mtctr    r12
-	bctrl
-
-lbl_801E5E4C:
-	lwz      r0, 0x24(r1)
-	lwz      r31, 0x1c(r1)
-	lwz      r30, 0x18(r1)
-	lwz      r29, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x20
-	blr
-	*/
 }
 
 /*
@@ -1186,32 +466,11 @@ lbl_801E5E4C:
 bool PlayData::isCompletePelletTrigger()
 {
 	// has payed debt, has not seen all treasures ending before, has all treasures
-	return ((m_storyFlags & STORY_DebtPaid) && !(m_storyFlags & STORY_AllTreasuresCollected) && _B0->completeAll());
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	lbz      r4, 0x2f(r3)
-	clrlwi.  r0, r4, 0x1f
-	beq      lbl_801E5EA0
-	rlwinm.  r0, r4, 0, 0x1e, 0x1e
-	bne      lbl_801E5EA0
-	lwz      r3, 0xb0(r3)
-	bl       completeAll__Q24Game16PelletCropMemoryFv
-	clrlwi.  r0, r3, 0x18
-	beq      lbl_801E5EA0
-	li       r3, 1
-	b        lbl_801E5EA4
+	if (isStoryFlag(STORY_DebtPaid) && !isStoryFlag(STORY_AllTreasuresCollected) && _B0->completeAll()) {
+		return true;
+	}
 
-lbl_801E5EA0:
-	li       r3, 0
-
-lbl_801E5EA4:
-	lwz      r0, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	return false;
 }
 
 /*
@@ -1222,37 +481,7 @@ lbl_801E5EA4:
  */
 bool PelletCropMemory::completeAll()
 {
-	if (!m_otakara.completeAll())
-		return false;
-	return m_item.completeAll();
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	mr       r31, r3
-	addi     r3, r31, 4
-	bl       completeAll__Q24Game11KindCounterFv
-	clrlwi.  r0, r3, 0x18
-	bne      lbl_801E5EE0
-	li       r3, 0
-	b        lbl_801E5EF8
-
-lbl_801E5EE0:
-	addi     r3, r31, 0xc
-	bl       completeAll__Q24Game11KindCounterFv
-	clrlwi   r3, r3, 0x18
-	neg      r0, r3
-	or       r0, r0, r3
-	srwi     r3, r0, 0x1f
-
-lbl_801E5EF8:
-	lwz      r0, 0x14(r1)
-	lwz      r31, 0xc(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	return (!m_otakara.completeAll()) ? false : m_item.completeAll() > 0; // sure.
 }
 
 /*
@@ -1307,12 +536,6 @@ void OlimarData::clear()
 {
 	m_flags[0] = 0;
 	m_flags[1] = 0;
-	/*
-	li       r0, 0
-	stb      r0, 0(r3)
-	stb      r0, 1(r3)
-	blr
-	*/
 }
 
 /*
@@ -1368,45 +591,6 @@ void PlayData::construct()
 	sys->heapStatusStart("playData", nullptr);
 	playData = new PlayData();
 	sys->heapStatusEnd("playData");
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	lis      r3, lbl_80480E40@ha
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	addi     r31, r3, lbl_80480E40@l
-	lwz      r0, playData__4Game@sda21(r13)
-	cmplwi   r0, 0
-	beq      lbl_801E616C
-	addi     r3, r31, 0xc
-	addi     r5, r31, 0x20
-	li       r4, 0x2b2
-	crclr    6
-	bl       panic_f__12JUTExceptionFPCciPCce
-
-lbl_801E616C:
-	lwz      r3, sys@sda21(r13)
-	addi     r4, r31, 0x2c
-	li       r5, 0
-	bl       heapStatusStart__6SystemFPcP7JKRHeap
-	li       r3, 0x130
-	bl       __nw__FUl
-	or.      r0, r3, r3
-	beq      lbl_801E6194
-	bl       __ct__Q24Game8PlayDataFv
-	mr       r0, r3
-
-lbl_801E6194:
-	stw      r0, playData__4Game@sda21(r13)
-	addi     r4, r31, 0x2c
-	lwz      r3, sys@sda21(r13)
-	bl       heapStatusEnd__6SystemFPc
-	lwz      r0, 0x14(r1)
-	lwz      r31, 0xc(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
 }
 
 /*
@@ -1415,31 +599,9 @@ lbl_801E6194:
  * Size:	000854
  */
 PlayData::PlayData()
-    : CNode()
-    , m_demoFlags()
-    , m_findItemFlags()
-    , m_tekiStatMgr()
-    , m_olimarData()
-    , m_caveSaveData()
-    , m_pikiContainer()
+    : _20(0)
+    , m_storyFlags(0)
 {
-	m_mailSaveData._00[0]  = 0;
-	m_mailSaveData._00[1]  = 0;
-	m_mailSaveData._00[2]  = 0;
-	m_mailSaveData._00[3]  = 0;
-	m_mailSaveData._00[4]  = 0;
-	m_mailSaveData._00[5]  = 0;
-	m_mailSaveData._00[6]  = 0;
-	m_mailSaveData._00[7]  = 0;
-	m_mailSaveData._00[8]  = 0;
-	m_mailSaveData._00[9]  = 0;
-	m_mailSaveData._00[10] = 0;
-	m_mailSaveData._00[11] = 0;
-	m_mailSaveData._00[12] = 0;
-	m_mailSaveData._00[13] = 0;
-	m_mailSaveData._00[14] = 0;
-	m_mailSaveData._00[15] = 0;
-
 	m_debtProgressFlags[0] = 0;
 	m_debtProgressFlags[1] = 0;
 
@@ -1456,46 +618,27 @@ PlayData::PlayData()
 	}
 
 	m_limitGen = new LimitGen[stageCount];
+
 	for (int i = 0; i < stageCount; i++) {
-		LimitGen gen     = m_limitGen[i];
+		LimitGen* gen    = &m_limitGen[i];
 		CourseInfo* info = stageList->getCourseInfo(i);
-		gen.m_loops.create(info->m_limitGenInfo.m_count, nullptr);
-		gen.m_nonLoops.create(info->m_loopGenInfo.m_count, nullptr);
+		gen->m_nonLoops.create(info->m_limitGenInfo.m_count, nullptr);
+		gen->m_loops.create(info->m_loopGenInfo.m_count, nullptr);
 	}
+
 	m_tekiStatMgr.allocate(102);
 
 	m_caveOtakara    = new CaveOtakara[stageCount];
 	m_caveOtakaraOld = new CaveOtakara[stageCount];
 
 	for (int i = 0; i < stageCount; i++) {
-		CaveOtakara cOta = m_caveOtakara[i];
-		CourseInfo* info = stageList->getCourseInfo(i);
-		int caves        = info->getCaveNum();
-		if (caves > 0) {
-			cOta.m_caveCount        = caves;
-			cOta.m_otakaraCountsOld = new char[caves];
-			cOta._08                = new int[caves];
-			if (cOta.m_caveCount > 0) {
-				for (int j = 0; j < cOta.m_caveCount; j++) {
-					cOta.m_otakaraCountsOld[j] = 0;
-					cOta._08[i]                = 0;
-				}
-			}
-		}
+		CourseInfo* info;
+		CaveOtakara* thisOtakara = &m_caveOtakara[i];
+		info                     = stageList->getCourseInfo(i);
+		thisOtakara->updateCounts(i, info);
 
-		cOta  = m_caveOtakaraOld[i];
-		caves = info->getCaveNum();
-		if (caves > 0) {
-			cOta.m_caveCount        = caves;
-			cOta.m_otakaraCountsOld = new char[caves];
-			cOta._08                = new int[caves];
-			if (cOta.m_caveCount > 0) {
-				for (int j = 0; j < cOta.m_caveCount; j++) {
-					cOta.m_otakaraCountsOld[j] = 0;
-					cOta._08[i]                = 0;
-				}
-			}
-		}
+		CaveOtakara* oldOtakara = &m_caveOtakaraOld[i];
+		oldOtakara->updateCounts(i, info);
 	}
 
 	int treasures = PelletList::Mgr::getCount(PelletList::OTAKARA);
@@ -1507,8 +650,7 @@ PlayData::PlayData()
 	m_caveCropMemory = new PelletCropMemory(treasures, items, carcasses);
 	m_demoFlags.create(57, nullptr);
 	m_demoFlags.reset();
-	int itemcount = PelletList::Mgr::getCount(PelletList::ITEM);
-	m_findItemFlags.create(itemcount, nullptr);
+	m_findItemFlags.create(PelletList::Mgr::getCount(PelletList::ITEM), nullptr);
 	m_findItemFlags.reset();
 
 	sys->heapStatusStart("generatorCache", nullptr);
@@ -2159,63 +1301,14 @@ PlayData::CaveOtakara::CaveOtakara()
  * Address:	801E6A20
  * Size:	000038
  */
-PlayData::LimitGen::LimitGen()
-    : m_nonLoops()
-    , m_loops()
-{
-}
-
-} // namespace Game
-
-/*
- * --INFO--
- * Address:	........
- * Size:	00003C
- */
-// kh::Screen::MailSaveData::~MailSaveData() {
-
-// }
-
-namespace Game {
+PlayData::LimitGen::LimitGen() { }
 
 /*
  * --INFO--
  * Address:	801E6A58
  * Size:	000068
  */
-PlayData::~PlayData()
-{
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	mr       r31, r4
-	stw      r30, 8(r1)
-	or.      r30, r3, r3
-	beq      lbl_801E6AA4
-	lis      r4, __vt__Q24Game8PlayData@ha
-	li       r0, 0
-	addi     r5, r4, __vt__Q24Game8PlayData@l
-	li       r4, 0
-	stw      r5, 0(r30)
-	stw      r0, playData__4Game@sda21(r13)
-	bl       __dt__5CNodeFv
-	extsh.   r0, r31
-	ble      lbl_801E6AA4
-	mr       r3, r30
-	bl       __dl__FPv
-
-lbl_801E6AA4:
-	lwz      r0, 0x14(r1)
-	mr       r3, r30
-	lwz      r31, 0xc(r1)
-	lwz      r30, 8(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
-}
+PlayData::~PlayData() { playData = nullptr; }
 
 /*
  * --INFO--
@@ -2589,11 +1682,11 @@ void PlayData::setDevelopSetting(bool p1, bool p2)
 		playData->openCourse(1);
 		initCourses(true);
 		if (!p2) {
-			m_demoFlags.resetFlag(0x32);
-			m_demoFlags.resetFlag(0x1B);
-			m_demoFlags.resetFlag(0x1C);
-			m_demoFlags.resetFlag(0x1D);
-			m_demoFlags.resetFlag(0x1E);
+			m_demoFlags.resetFlag(DEMO_Waterwraith_Appears);
+			m_demoFlags.resetFlag(DEMO_First_Spicy_Berry);
+			m_demoFlags.resetFlag(DEMO_First_Bitter_Berry);
+			m_demoFlags.resetFlag(DEMO_First_Spicy_Spray_Made);
+			m_demoFlags.resetFlag(DEMO_First_Bitter_Spray_Made);
 		}
 	}
 }

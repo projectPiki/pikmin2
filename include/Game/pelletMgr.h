@@ -306,7 +306,7 @@ struct Pellet : public DynCreature, public SysShape::MotionListener, public Carr
 	float getBottomRadius();
 	float getPickRadius();
 	float getCylinderHeight();
-	s16 getConfigIndex();
+	int getConfigIndex();
 	char* getConfigName();
 	int getPelletConfigMin();
 	int getPelletConfigMax();
