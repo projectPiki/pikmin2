@@ -18,6 +18,30 @@ struct SceneInfo {
 		SFBS_0 = 0,
 	};
 
+	enum GameType {
+        UNKNOWN_1 = 0,
+        COURSE_TUTORIAL,
+        COURSE_FOREST,
+        COURSE_YAKUSHIMA,
+        COURSE_LAST,
+        COURSE_TEST,
+        CHALLENGE_MODE,
+        TWO_PLAYER_BATTLE,
+        UNKNOWN_8,
+        CAVE_RESULTS,
+        UNKNOWN_10,
+        WORLD_MAP_11,
+        WORLD_MAP_12,
+        OBJECTS,
+        ENDING_14,
+        ENDING_15,
+        TITLE_16, // Seasons, I'm sure of it
+        TITLE_17,
+        TITLE_18,
+        TITLE_19,
+        UNKOWN_20
+    };
+
 	SceneInfo();
 
 	virtual bool isCaveFloor() { return false; } // _08 (weak)
