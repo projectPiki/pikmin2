@@ -212,17 +212,17 @@ struct ObjSMenuBase : public ::Screen::ObjBase {
 	f32 _A4;                                    // _A4
 
 	static struct StaticValues {
-		u32 _00; // _00
-		f32 _04; // _04
-		f32 _08; // _08
-		f32 _0C; // _0C
-		f32 _10; // _10
-		u8 _14;  // _14
-		u8 _15;  // _15
-		u8 _16;  // _16
-		u8 _17;  // _17
-		u8 _18;  // _18
-		u8 _19;  // _19
+		u32 _00;         // _00
+		f32 m_animSpeed; // _04
+		f32 _08;         // _08
+		f32 _0C;         // _0C
+		f32 _10;         // _10
+		u8 _14;          // _14
+		u8 _15;          // _15
+		u8 _16;          // _16
+		u8 _17;          // _17
+		u8 _18;          // _18
+		u8 _19;          // _19
 	} msBaseVal;
 };
 
@@ -340,68 +340,60 @@ struct ObjSMenuMap : public ObjSMenuBase {
 	og::Screen::DispMemberSMenuMap* m_disp;              // _A8
 	og::Screen::MapCounter* m_mapCounter;                // _AC
 	og::Screen::AnimGroup* m_animGroup;                  // _B0
-	J2DPictureEx* m_pane_map;                            // _B4, map_
+	J2DPictureEx* m_pane_map;                            // _B4, pane map_
 	u32 _B8;                                             // _B8, unknown
 	P2DScreen::Mgr_tuning* m_iconScreen;                 // _BC
-	JUTTexture* m_radarMapTexture;                       // _C0
-	J2DPane* m_rootPane;                                 // _C4
+	JUTTexture* m_radarMapTexture;                       // _C0, the actual texture
+	J2DPane* m_rootPane;                                 // _C4, for icon_screen
 	J2DPictureEx* m_mapTexPane;                          // _C8
 	J2DPane** m_radarPaneList;                           // _CC
-	J2DPictureEx* m_orimaArrow;                          // _D0, ic orima?
-	Game::Navi* m_orima;                                 // _D4
-	J2DPictureEx* m_loozyArrow;                          // _D8, ic louzy?
-	Game::Navi* m_louzy;                                 // _DC, or president
-	f32 m_mapXpos;                                       // _E0
-	f32 m_mapYpos;                                       // _E4
-	f32 m_zoom;                                          // _E8
+	J2DPictureEx* m_olimarArrow;                         // _D0, ic orima?
+	Game::Navi* m_olimarObj;                             // _D4
+	J2DPictureEx* m_louieArrow;                          // _D8, ic louzy?
+	Game::Navi* m_louieObj;                              // _DC, or president
+	Vector2f m_mapPosition;                              // _E0
+	f32 m_currentZoom;                                   // _E8
 	f32 m_mapAngle;                                      // _EC
-	f32 m_mapTexScaleX;                                  // _F0
-	f32 m_mapTexScaleY;                                  // _F4
-	f32 m_mapTexWidth;                                   // _F8
-	f32 m_mapTexHeight;                                  // _FC
-	f32 m_mapXwidth;                                     // _100, width maybe?
-	f32 m_mapYheight;                                    // _104, height maybe?
-	f32 _108;                                            // _108
-	f32 _10C;                                            // _10C
-	f32 m_mapXrot;                                       // _110
-	f32 m_mapYrot;                                       // _114
+	Vector2f m_mapTexScale;                              // _F0
+	Vector2f m_mapTextureDimensions;                     // _F8
+	Vector2f m_mapBounds;                                // _100
+	Vector2f _108;                                       // _108, seems to be unused
+	Vector2f m_mapRotationOrigin;                        // _110
 	Controller* m_controller;                            // _118
 	int m_mapIconNum;                                    // _11C
 	u8 m_updateCaveTex;                                  // _120
-	P2DScreen::Mgr_tuning* m_iconScreen2;                // _124
-	J2DPane* m_pane_Ncompas;                             // _128, Ncompas?
-	J2DPictureEx* m_compassPic;                          // _12C, compass?
-	J2DPictureEx* m_orimaGlowPic;                        // _130, ie orima?
-	J2DPictureEx* m_loozyGlowPic;                        // _134, ie louzy?
+	P2DScreen::Mgr_tuning* m_iconScreen2;                // _124, not sure why the game loads two of this screen file
+	J2DPane* m_pane_Ncompas;                             // _128, pane Ncompas
+	J2DPictureEx* m_compassPic;                          // _12C, pane compass
+	J2DPictureEx* m_olimarGlow;                          // _130, the glow behind the olimar arrow pane
+	J2DPictureEx* m_louieGlow;                           // _134, same for louie
 	f32 m_startZoom;                                     // _138
-	u8 m_zoomAlpha;                                      // _13C
+	u8 m_zoomCaveTextAlpha;                              // _13C
 	J2DTextBox* m_caveLabelTextBoxes[MAX_CAVEDISP_NAME]; // _140
 	int m_caveLabelCount;                                // _154
 
 	static struct StaticValues {
 		f32 _00;                                 // _00
-		f32 _04;                                 // _04
+		f32 m_animSpeed;                         // _04
 		u8 _08;                                  // _08
 		u8 _09;                                  // _09
 		u8 _0A;                                  // _0A
-		JUtility::TColor _0B;                    // _0B
-		JUtility::TColor _0F;                    // _0F
+		JUtility::TColor m_mapTexColorWhite;     // _0B
+		JUtility::TColor m_mapTexColorBlack;     // _0F
 		JUtility::TColor m_itemPelletWhiteColor; // _13
 		JUtility::TColor m_itemPelletBlackColor; // _17
 		u8 _1B;                                  // _1B
-		f32 _1C;                                 // _1C
-		f32 _20;                                 // _20
-		f32 _24;                                 // _24
-		f32 _28;                                 // _28
+		f32 m_mapMoveRate;                       // _1C
+		f32 m_mapMoveRate2;                      // _20
+		f32 m_mapIconScaleBase;                  // _24
+		f32 m_mapNaviArrowScaleMod;              // _28
 		f32 m_groundZoom;                        // _2C
 		f32 m_caveZoom;                          // _30
-		f32 _34;                                 // _34
-		f32 _38;                                 // _38
-		f32 _3C;                                 // _3C
-		f32 _40;                                 // _40
-		f32 _44;                                 // _44
-		JUtility::TColor _48;                    // _48
-		JUtility::TColor _4C;                    // _4C
+		Vector2f m_mapTexOffset;                 // _34
+		f32 m_mapMoveInputReduction;             // _3C
+		Vector2f m_mapScreenScale;               // _40
+		JUtility::TColor m_tempPikiColorWhite;   // _48
+		JUtility::TColor m_tempPikiColorBlack;   // _4C
 	} msVal;
 };
 
