@@ -80,7 +80,7 @@ bool TForever::create(Arg* arg)
 		return false;
 	}
 
-	m_emitter = particle2dMgr->create(_0C, vec, _05, _04);
+	m_emitter = particle2dMgr->create(m_efxID, vec, _05, _04);
 	return m_emitter != nullptr;
 }
 
@@ -168,7 +168,7 @@ TForeverN::TForeverN(u8 length)
  */
 TForever::TForever()
 {
-	_0C       = 0;
+	m_efxID   = 0;
 	m_emitter = nullptr;
 }
 
@@ -250,7 +250,7 @@ bool TChasePos::create(Arg* arg)
 		return false;
 	}
 
-	m_emitter = particle2dMgr->create(_0C, *_14, _05, _04);
+	m_emitter = particle2dMgr->create(m_efxID, *_14, _05, _04);
 
 	if (m_emitter) {
 		m_emitter->m_emitterCallback = this;
@@ -289,7 +289,7 @@ bool TChasePosDir::create(Arg* arg)
 		return false;
 	}
 
-	m_emitter = particle2dMgr->create(_0C, *_14, _05, _04);
+	m_emitter = particle2dMgr->create(m_efxID, *_14, _05, _04);
 
 	if (m_emitter) {
 		m_emitter->m_emitterCallback = this;

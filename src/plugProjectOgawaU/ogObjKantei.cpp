@@ -1,4 +1,19 @@
 #include "types.h"
+#include "og\newScreen\KanteiDemo.h"
+#include "P2DScreen.h"
+#include "og/Screen/ogScreen.h"
+#include "Morimura/mrUtil.h"
+#include "og/Screen/StickAnimMgr.h"
+#include "efx2d/Arg.h"
+#include "og/Sound.h"
+#include "System.h"
+#include "PSGame/SeMgr.h"
+#include "Game/GameConfig.h"
+#include "P2JME/P2JME.h"
+#include "TParticle2dMgr.h"
+#include "PSSystem/PSScene.h"
+#include "PSSystem/PSGame.h"
+#include "PSM/Scene.h"
 
 /*
     Generated from dpostproc
@@ -216,8 +231,51 @@ namespace newScreen {
  * Address:	80318244
  * Size:	000120
  */
-ObjKantei::ObjKantei(char const*)
+ObjKantei::ObjKantei(char const* name)
 {
+	m_fadeLevel  = 0.0f;
+	m_fadeLevel2 = 0.0f;
+	m_name       = name;
+	m_disp       = nullptr;
+	m_state      = 1;
+
+	m_screenOkWindow   = nullptr;
+	m_screenBG         = nullptr;
+	m_screenName       = nullptr;
+	m_screenButton     = nullptr;
+	m_tControl         = nullptr;
+	m_paneSetP         = nullptr;
+	_58.p1.x           = 0.0f;
+	_58.p1.y           = 0.0f;
+	_58.p2.x           = 0.0f;
+	_58.p2.y           = 0.0f;
+	_68[0]             = true;
+	m_tagId            = 0;
+	m_inTextBox        = false;
+	m_paneOk1          = nullptr;
+	m_startTimer       = 0.0f;
+	m_pokoCounterCurr  = nullptr;
+	m_pokoCounterTotal = nullptr;
+	m_currItemValue    = 0;
+	m_totalPokos       = 0;
+	m_totalPokosCave   = 0;
+	m_stickAnim        = nullptr;
+	_B0                = 0;
+	m_efx              = nullptr;
+	m_paneName         = nullptr;
+	m_scaleMgr         = nullptr;
+	m_nameScale        = 0.0f;
+	m_doScaleName      = false;
+	m_nameTimer        = msVal._24;
+	m_msgId            = 0;
+	m_nameStateChange  = true;
+	m_nameWaitTimer    = 0.0f;
+	m_nameState        = 0;
+	m_timer            = msVal._3C;
+	m_doShipSpeech     = false;
+	m_commonTimer      = 0.1f;
+	m_shipSpeechTimer  = 0.0f;
+	m_playExitSE       = false;
 	/*
 	stwu     r1, -0x10(r1)
 	mflr     r0
@@ -367,8 +425,109 @@ void ObjKantei::startItemName(unsigned long long)
  * Address:	80318410
  * Size:	0007CC
  */
-void ObjKantei::doCreate(JKRArchive*)
+void ObjKantei::doCreate(JKRArchive* arc)
 {
+	og::Screen::DispMemberKantei* disp = static_cast<og::Screen::DispMemberKantei*>(getDispMember());
+	if (disp->isID('OGA', 'KANTEI')) {
+		m_disp = disp;
+	} else {
+		if (disp->isID('OGA', 'DUMMY')) {
+			disp = new og::Screen::DispMemberKantei();
+		} else {
+			JUT_PANICLINE(258, "ERR! in ObjKantei CreateŽ¸”sI\n");
+		}
+	}
+
+	m_currItemValue          = m_disp->m_pelletValue;
+	m_totalPokos             = m_disp->m_totalPokos;
+	m_totalPokosCave         = m_disp->m_totalPokosCave;
+	m_totalPokosOld          = m_totalPokos - m_disp->m_pelletValue;
+	m_totalPokosCaveOld      = m_totalPokosCave - m_disp->m_pelletValue;
+	m_disp->m_totalPokos     = m_totalPokos;
+	m_disp->m_totalPokosCave = m_totalPokosCave;
+	u8 type                  = m_disp->m_kanteiType;
+
+	m_screenName = new P2DScreen::Mgr_tuning;
+	m_screenName->set("item_name.blo", 0x1040000, arc);
+	m_screenButton = new P2DScreen::Mgr_tuning;
+	m_screenButton->set("otakara_kantei_button.blo", 0x1040000, arc);
+
+	switch (type) {
+	case 0:
+		m_screenOkWindow = new P2DScreen::Mgr_tuning;
+		m_screenOkWindow->set("ok_message_window.blo", 0x1040000, arc);
+		m_pokoCounterTotal = og::Screen::setCallBack_CounterRV(m_screenOkWindow, 'PSsha1', &m_disp->m_totalPokos, 9, 0, 1, arc);
+		break;
+	case 1:
+		m_screenOkWindow = new P2DScreen::Mgr_tuning;
+		m_screenOkWindow->set("ok_message_window2.blo", 0x1040000, arc);
+		m_pokoCounterTotal = og::Screen::setCallBack_CounterRV(m_screenOkWindow, 'PSsha1', &m_disp->m_totalPokos, 9, 0, 1, arc);
+		break;
+	default:
+		m_screenOkWindow = nullptr;
+		JUT_PANICLINE(305, "ERR! UNKNOWN KANTEI_TYPE!!");
+	}
+
+	if (m_disp->m_inCave) {
+		J2DPane* pane     = m_screenOkWindow->search('Tzukan');
+		pane->m_messageID = '8551_00';
+	} else {
+		J2DPane* pane     = m_screenOkWindow->search('Tzukan');
+		pane->m_messageID = '8550_00';
+	}
+
+	int offs                     = m_disp->m_pelletOffset;
+	u64 idtags[3]                = { '101_01', '110_01', '200_01' };
+	Morimura::TOffsetMsgSet* msg = new Morimura::TOffsetMsgSet(idtags, '100_01', 3);
+	m_msgId                      = msg->getMsgID(offs);
+
+	m_paneName = m_screenName->search('ItemName');
+	m_paneName->add(msVal._18, msVal._1C);
+	m_paneName->setBasePosition(POS_CENTER);
+	m_paneName->m_messageID = '8557_00';
+	m_nameScale             = 0.0f;
+	m_paneName->m_scale.x   = m_nameScale;
+	m_paneName->m_scale.y   = m_nameScale;
+	m_paneName->calcMtx();
+	m_scaleMgr        = new og::Screen::ScaleMgr;
+	m_pokoCounterCurr = og::Screen::setCallBack_CounterSlot(m_screenOkWindow, 'PSota1', &m_disp->m_pelletValue, 4, true, true, arc);
+	m_pokoCounterCurr->hide();
+	m_pokoCounterCurr->setPuyoParam(msVal._0C, msVal._10, msVal._14);
+	m_pokoCounterCurr->m_scaleUpSoundID = PSSE_SY_COIN_COUNT;
+	m_screenBG                          = new P2DScreen::Mgr_tuning;
+	m_screenBG->set("ok_bg_normal.blo", 0x1040000, arc);
+	og::Screen::setAlphaScreen(m_screenOkWindow);
+	og::Screen::setAlphaScreen(m_screenBG);
+	og::Screen::setAlphaScreen(m_screenName);
+	og::Screen::setAlphaScreen(m_screenButton);
+	m_paneOk1              = m_screenOkWindow->search('NMsha');
+	m_paneOk2              = m_screenOkWindow->search('NMzukan');
+	m_paneOk2->m_isVisible = false;
+	J2DPane* pane          = m_screenBG->search('item');
+	if (pane)
+		pane->m_isVisible = false;
+	m_paneSetP = m_screenBG->search('Notsetp');
+	og::Screen::setCallBackMessage(m_screenOkWindow);
+	og::Screen::setCallBackMessage(m_screenName);
+	og::Screen::setCallBackMessage(m_screenButton);
+	m_tControl = new P2JME::Movie::TControl;
+	m_tControl->init();
+	m_tControl->_70 &= 0xfffffffe;
+	m_inTextBox                       = false;
+	og::Screen::CallBack_Picture* pic = og::Screen::setCallBack_3DStick(arc, m_screenButton, 'ota3dl');
+	m_stickAnim                       = new og::Screen::StickAnimMgr(pic);
+	m_stickAnim->stickUpDown();
+	pane              = m_screenButton->search('Ncstick');
+	pane->m_isVisible = false;
+	m_efx             = nullptr;
+	if (m_disp->m_pelletMessageID) {
+		efx2d::T2DOtakantei* efx = new efx2d::T2DOtakantei;
+		m_efx                    = efx;
+		efx2d::Arg arg(304.0f, 194.0f);
+		m_efx->setGroup(2);
+		m_efx->create(&arg);
+	}
+	commonUpdate();
 	/*
 	stwu     r1, -0x60(r1)
 	mflr     r0
@@ -938,6 +1097,70 @@ void ObjKantei::updateKanteiVoice(void)
  */
 void ObjKantei::scaleAnimItemName(void)
 {
+	f32 calcscale         = m_scaleMgr->calc();
+	m_paneName->m_scale.x = calcscale * m_nameScale;
+	m_paneName->m_scale.y = calcscale * m_nameScale;
+	m_paneName->calcMtx();
+
+	if (m_doScaleName) {
+		switch (m_nameState) {
+		case 0:
+			if (m_nameTimer > 0.0f) {
+				m_nameTimer -= sys->m_deltaTime;
+				if (m_nameTimer < 0.0f) {
+					m_nameState = 1;
+				}
+			}
+			m_nameScale = 0.0f;
+			break;
+		case 1:
+			m_nameScale += msVal._34;
+			if (m_nameScale > 1.0f) {
+				m_nameScale = 1.0f;
+				m_scaleMgr->up(msVal._28, msVal._2C, msVal._30, 0.0f);
+				if (!m_nameStateChange) {
+					m_doShipSpeech    = true;
+					m_commonTimer     = 0.1f;
+					m_shipSpeechTimer = 10;
+					// P2ASSERTLINE(567, PSGame::seMgr); there should be a global mgr pointer
+					// PSGame::seMgr->playMessageVoice(PSSE_MP_VOX_HEAD_A_FLAT, false);
+				}
+				m_nameState     = 2;
+				m_nameWaitTimer = msVal._38;
+			}
+			break;
+		case 2:
+			if (m_nameWaitTimer > 0.0f) {
+				m_nameWaitTimer -= sys->m_deltaTime;
+				if (m_nameStateChange && m_nameWaitTimer < 0.0f) {
+					m_nameState = 3;
+				}
+			}
+			break;
+		case 3:
+			if (m_nameScale > 0.0f) {
+				m_nameScale -= msVal._34;
+				if (m_nameScale < 0.0f)
+					m_nameScale = 0.0f;
+				if (m_nameStateChange) {
+					m_nameScale = 1.0f;
+					if (!m_nameStateChange) {
+						m_nameStateChange       = false;
+						m_nameState             = 2;
+						m_nameWaitTimer         = msVal._38;
+						m_paneName->m_messageID = m_msgId;
+						m_nameScale             = 0.0f;
+						m_paneName->m_scale.x   = calcscale * m_nameScale;
+						m_paneName->m_scale.y   = calcscale * m_nameScale;
+						m_paneName->calcMtx();
+						m_nameState = 1;
+					}
+				}
+			}
+			break;
+		}
+	}
+
 	/*
 	stwu     r1, -0x10(r1)
 	mflr     r0
@@ -1111,6 +1334,28 @@ lbl_80318E20:
  */
 void ObjKantei::commonUpdate(void)
 {
+	scaleAnimItemName();
+	if (m_doShipSpeech) {
+		if (m_commonTimer > 0.0f) {
+			m_commonTimer -= sys->m_deltaTime;
+			if (m_commonTimer <= 0.0f) {
+				m_commonTimer = 0.1f;
+				m_shipSpeechTimer--;
+				if (m_shipSpeechTimer < 1) {
+					m_doShipSpeech = false;
+					// P2ASSERTLINE(567, PSGame::seMgr); there should be a global mgr pointer
+					// PSGame::seMgr->playMessageVoice(PSSE_MP_VOX_FOOT_A_UP, false);
+				} else {
+					// P2ASSERTLINE(567, PSGame::seMgr); there should be a global mgr pointer
+					// PSGame::seMgr->playMessageVoice(PSSE_MP_VOX_BODY_MN, false);
+				}
+			}
+		}
+	}
+	m_screenBG->update();
+	m_screenOkWindow->update();
+	m_screenName->update();
+	m_screenButton->update();
 	/*
 	stwu     r1, -0x10(r1)
 	mflr     r0
@@ -1201,8 +1446,96 @@ lbl_80318F24:
  * Address:	80318F88
  * Size:	00040C
  */
-void ObjKantei::doUpdate(void)
+bool ObjKantei::doUpdate(void)
 {
+	Controller* pad = getGamePad();
+	switch (m_state) {
+	case 1:
+		m_state      = 2;
+		m_startTimer = 0.0f;
+		break;
+	case 2:
+		m_startTimer += sys->m_deltaTime;
+		if (m_startTimer >= msVal._00 || pad->m_padButton.m_mask & Controller::PRESS_A
+		    || m_disp->m_secondaryController->m_padButton.m_mask & Controller::PRESS_A) {
+			m_state               = 3;
+			m_disp->m_pelletValue = 0;
+			m_pokoCounterCurr->startSlot(msVal._08);
+			m_pokoCounterCurr->show();
+		}
+		break;
+	case 3:
+		m_state               = 4;
+		m_startTimer          = 0.0f;
+		m_disp->m_pelletValue = m_currItemValue;
+		break;
+	case 4:
+		m_startTimer += sys->m_deltaTime;
+		if (m_startTimer >= msVal._04) {
+			m_state                  = 6;
+			m_startTimer             = 0.0f;
+			m_disp->m_totalPokos     = 0;
+			m_disp->m_totalPokosCave = 0;
+			m_pokoCounterTotal->setPuyoAnim(true);
+		}
+		break;
+	case 6:
+		m_state                  = 7;
+		m_startTimer             = 0.0f;
+		m_disp->m_totalPokos     = m_totalPokos;
+		m_disp->m_totalPokosCave = m_totalPokosCave;
+		ogSound->setPlusTotalPoko();
+		m_doScaleName = true;
+		break;
+	case 7:
+		if (m_timer > 0.0f) {
+			m_timer -= sys->m_deltaTime;
+		} else {
+			if (pad->m_padButton.m_mask & Controller::PRESS_A || m_disp->m_secondaryController->m_padButton.m_mask & Controller::PRESS_A) {
+				m_tagId = m_disp->m_pelletMessageID;
+				if (m_tagId || Game::gGameConfig.m_parms.m_E3version.m_data) {
+					finishKantei();
+				} else {
+					u32 tagid, tagid2;
+					P2JME::convertU64ToMessageID(m_tagId, &tagid, &tagid2);
+					m_tControl->setMessageID(tagid, tagid2);
+					m_inTextBox = true;
+					m_state     = 8;
+				}
+			}
+		}
+	case 8:
+		m_tControl->update(pad, m_disp->m_secondaryController);
+		if (m_tControl->_68) {
+			finishKantei();
+		}
+	default:
+		break;
+	}
+	// is commonUpdate inlined???
+	scaleAnimItemName();
+	if (m_doShipSpeech) {
+		if (m_commonTimer > 0.0f) {
+			m_commonTimer -= sys->m_deltaTime;
+			if (m_commonTimer <= 0.0f) {
+				m_commonTimer = 0.1f;
+				m_shipSpeechTimer--;
+				if (m_shipSpeechTimer < 1) {
+					m_doShipSpeech = false;
+					// P2ASSERTLINE(567, PSGame::seMgr); there should be a global mgr pointer
+					// PSGame::seMgr->playMessageVoice(PSSE_MP_VOX_FOOT_A_UP, false);
+				} else {
+					// P2ASSERTLINE(567, PSGame::seMgr); there should be a global mgr pointer
+					// PSGame::seMgr->playMessageVoice(PSSE_MP_VOX_BODY_MN, false);
+				}
+			}
+		}
+	}
+	m_screenBG->update();
+	m_screenOkWindow->update();
+	m_screenName->update();
+	m_screenButton->update();
+	return false;
 	/*
 	stwu     r1, -0x20(r1)
 	mflr     r0
@@ -1503,6 +1836,11 @@ lbl_8031932C:
  */
 void ObjKantei::finishKantei(void)
 {
+	m_disp->m_isDone = true;
+	if (!m_playExitSE) {
+		m_playExitSE = true;
+		ogSound->setKanteiExit();
+	}
 	/*
 	stwu     r1, -0x10(r1)
 	mflr     r0
@@ -1532,6 +1870,40 @@ lbl_803193C4:
  */
 void ObjKantei::doDraw(Graphics& gfx)
 {
+	J2DPerspGraph graf = gfx.m_perspGraph;
+
+	Graphics(gfx2);
+	int alpha = m_fadeLevel * 255.0f;
+	m_screenBG->setAlpha(alpha);
+	m_screenBG->draw(gfx2, graf);
+
+	if (m_efx) {
+		graf.setPort();
+		particle2dMgr->draw(2, 0);
+	}
+
+	if (m_state != 8) {
+		alpha = m_fadeLevel * 255.0f;
+		m_screenOkWindow->setAlpha(alpha);
+		m_screenOkWindow->draw(gfx2, graf);
+		m_screenButton->m_someX = -15.2f;
+		m_screenButton->m_someY = msVal._20 + -15.2f;
+		alpha                   = m_fadeLevel * 255.0f;
+		m_screenButton->setAlpha(alpha);
+		m_screenButton->draw(gfx2, graf);
+	}
+	if (_68[0] && m_disp->m_delegate) {
+		J2DPane* pane = m_paneSetP;
+		_58.p1.x      = pane->_030;
+		_58.p1.y      = pane->_034;
+		_58.p2.x      = pane->_038;
+		_58.p2.y      = pane->_03C;
+		m_disp->m_delegate->invoke(_58);
+		_68[0] = 0;
+	}
+	alpha = m_fadeLevel * 255.0f;
+	m_screenName->setAlpha(alpha);
+	m_screenName->draw(gfx2, graf);
 	/*
 	stwu     r1, -0x2d0(r1)
 	mflr     r0
@@ -1715,8 +2087,11 @@ lbl_80319648:
  * Address:	80319664
  * Size:	00003C
  */
-void ObjKantei::doDrawMsg(Graphics&)
+void ObjKantei::doDrawMsg(Graphics& gfx)
 {
+	if (m_state == 8) {
+		m_tControl->draw(gfx);
+	}
 	/*
 	stwu     r1, -0x10(r1)
 	mflr     r0
@@ -1743,8 +2118,18 @@ lbl_80319690:
  * Address:	803196A0
  * Size:	00010C
  */
-void ObjKantei::doStart(Screen::StartSceneArg const*)
+bool ObjKantei::doStart(::Screen::StartSceneArg const*)
 {
+	m_fadeLevel  = 0.0f;
+	m_fadeLevel2 = 0.0f;
+	if (m_disp->_39) {
+		PSSystem::SceneMgr* mgr = PSSystem::getSceneMgr();
+		PSSystem::checkSceneMgr(mgr);
+		PSM::Scene_Game* scene = static_cast<PSM::Scene_Game*>(mgr->getChildScene());
+		scene                  = (scene->isGameScene()) ? scene : nullptr;
+		scene->startMainSeq();
+	}
+	return true;
 	/*
 	stwu     r1, -0x10(r1)
 	mflr     r0
@@ -1833,8 +2218,10 @@ lbl_80319790:
  * Address:	803197AC
  * Size:	000010
  */
-void ObjKantei::doEnd(Screen::EndSceneArg const*)
+bool ObjKantei::doEnd(::Screen::EndSceneArg const*)
 {
+	m_fadeLevel = 0.0f;
+	return true;
 	/*
 	lfs      f0, lbl_8051D938@sda21(r2)
 	stfs     f0, 0x7c(r3)
@@ -1857,6 +2244,10 @@ void ObjKantei::doUpdateFadeinFinish(void) { }
  */
 void ObjKantei::doUpdateFinish(void)
 {
+	m_fadeLevel = 0.0f;
+	if (m_efx) {
+		m_efx->fade();
+	}
 	/*
 	stwu     r1, -0x10(r1)
 	mflr     r0
@@ -1891,8 +2282,37 @@ void ObjKantei::doUpdateFadeoutFinish(void) { }
  * Address:	80319804
  * Size:	0001A4
  */
-void ObjKantei::doUpdateFadein(void)
+bool ObjKantei::doUpdateFadein(void)
 {
+	m_fadeLevel += sys->m_deltaTime;
+	bool calc = m_fadeLevel > 0.3f;
+	if (calc)
+		m_fadeLevel = 0.3f;
+
+	m_fadeLevel /= 0.3f;
+	scaleAnimItemName();
+	if (m_doShipSpeech) {
+		if (m_commonTimer > 0.0f) {
+			m_commonTimer -= sys->m_deltaTime;
+			if (m_commonTimer <= 0.0f) {
+				m_commonTimer = 0.1f;
+				m_shipSpeechTimer--;
+				if (m_shipSpeechTimer < 1) {
+					m_doShipSpeech = false;
+					// P2ASSERTLINE(567, PSGame::seMgr); there should be a global mgr pointer
+					// PSGame::seMgr->playMessageVoice(PSSE_MP_VOX_FOOT_A_UP, false);
+				} else {
+					// P2ASSERTLINE(567, PSGame::seMgr); there should be a global mgr pointer
+					// PSGame::seMgr->playMessageVoice(PSSE_MP_VOX_BODY_MN, false);
+				}
+			}
+		}
+	}
+	m_screenBG->update();
+	m_screenOkWindow->update();
+	m_screenName->update();
+	m_screenButton->update();
+	return calc;
 	/*
 	stwu     r1, -0x10(r1)
 	mflr     r0
@@ -2005,8 +2425,37 @@ lbl_8031993C:
  * Address:	803199A8
  * Size:	0001AC
  */
-void ObjKantei::doUpdateFadeout(void)
+bool ObjKantei::doUpdateFadeout(void)
 {
+	m_fadeLevel += sys->m_deltaTime;
+	bool calc = m_fadeLevel > 0.2f;
+	if (calc)
+		m_fadeLevel = 0.2f;
+
+	m_fadeLevel = 1.0f - (m_fadeLevel / 0.2f);
+	scaleAnimItemName();
+	if (m_doShipSpeech) {
+		if (m_commonTimer > 0.0f) {
+			m_commonTimer -= sys->m_deltaTime;
+			if (m_commonTimer <= 0.0f) {
+				m_commonTimer = 0.1f;
+				m_shipSpeechTimer--;
+				if (m_shipSpeechTimer < 1) {
+					m_doShipSpeech = false;
+					// P2ASSERTLINE(567, PSGame::seMgr); there should be a global mgr pointer
+					// PSGame::seMgr->playMessageVoice(PSSE_MP_VOX_FOOT_A_UP, false);
+				} else {
+					// P2ASSERTLINE(567, PSGame::seMgr); there should be a global mgr pointer
+					// PSGame::seMgr->playMessageVoice(PSSE_MP_VOX_BODY_MN, false);
+				}
+			}
+		}
+	}
+	m_screenBG->update();
+	m_screenOkWindow->update();
+	m_screenName->update();
+	m_screenButton->update();
+	return calc;
 	/*
 	stwu     r1, -0x10(r1)
 	mflr     r0
@@ -2167,10 +2616,10 @@ void __sinit_ogObjKantei_cpp(void)
  * Address:	80319BD4
  * Size:	000008
  */
-@24 @og::newScreen::ObjKantei::~ObjKantei(void)
-{
-	/*
-	addi     r3, r3, -24
-	b        __dt__Q32og9newScreen9ObjKanteiFv
-	*/
-}
+//@24 @og::newScreen::ObjKantei::~ObjKantei(void)
+//{
+/*
+addi     r3, r3, -24
+b        __dt__Q32og9newScreen9ObjKanteiFv
+*/
+//}
