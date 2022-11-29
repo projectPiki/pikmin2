@@ -115,16 +115,13 @@ struct VsGameSection : public BaseGameSection {
 	u32 m_player1Pikis;                       // _344
 	u32 m_player2Pikis;                       // _348
 	u32 m_vsWinner;                           // _34C
-	f32 _350;                                 // _350
+	f32 m_pikminRatio;                        // _350
 	f32 m_pikminCountTimer;                   // _354
-	f32 _358;                                 // _358
-	f32 _35C;                                 // _35C
-	f32 _360;                                 // _360
-	f32 _364;                                 // _364
-	f32 _368;                                 // _368
-	f32 _36C;                                 // _36C
-	f32 m_tobiWeight[2];                      // _370
-	f32 _378[2];                              // _378
+	f32 m_redBlueYellowScore[2];              // _358
+	f32 m_cherryScore[2];                     // _360
+	f32 m_maxCherryScore[2];                  // _368
+	f32 m_yellowScore[2];                     // _370
+	f32 m_redBlueScore[2];                    // _378
 	Pellet* m_marbleRedBlue[2];               // _380
 	Pellet* m_marbleYellow[7];                // _388
 	u32 m_dopeCounts[2][2];                   // _3A4
