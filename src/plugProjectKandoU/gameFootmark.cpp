@@ -50,33 +50,27 @@ void Footmarks::alloc(int amt)
 void Footmarks::add(Footmark& mark)
 {
 	m_position = mark.m_position;
-	Footmark* v2;
-	float v3;
-	float v4;
-	float v5;
-	float v6;
-	if (_08 < 2
-	            || (v2 = &m_marks[_04 + m_count - 1 - (_04 + m_count - 1) / m_count * m_count], v3 = (v2->m_position.x - mark.m_position.y),
-	                v4 = (v2->m_position.z - mark.m_position.z),
-	                v5 = (v4 * v4) + ((v2->m_position.x - mark.m_position.x) * (v2->m_position.x - mark.m_position.x) + (v3 * v3)),
-	                v5 <= 0.0f)
-	        ? (v6 = 0.0f)
-	        : (v6 = (__frsqrte(v5) * (v4 * v4)
-	                 + ((v2->m_position.x - mark.m_position.x) * (v2->m_position.x - mark.m_position.x) + (v3 * v3))),
-	           v6 >= 20.0f)) {
-		m_marks[_04].m_position = mark.m_position;
-		m_marks[_04].m_flags    = Game::gameSystem->m_frameTimer;
-		_04                     = _04 + 1 - (_04 + 1) / m_count * m_count;
-
-		u32 v8 = _08;
-		if (v8 < m_count)
-			_08 = v8 + 1;
-		_10 = Game::gameSystem->m_frameTimer;
+	if (_08 >= 2) {
+		int adjIndex       = (_04 + (m_count - 1)) % m_count;
+		f32 p1             = 0.0f;
+		Footmark* currMark = &m_marks[adjIndex];
+		Vector3f diff      = currMark->m_position - mark.m_position;
+		p1                 = _lenVec(diff);
+		if (p1 < 20.0f) {
+			return;
+		}
 	}
-}
-#ifdef UNFINISHED
-void Footmarks::add(Game::Footmark&)
-{
+
+	u32 timer            = gameSystem->m_frameTimer;
+	Footmark* testMark   = &m_marks[_04];
+	testMark->m_position = mark.m_position;
+	testMark->m_flags    = mark.m_flags;
+	m_marks[_04].m_flags = timer;
+	_04                  = (_04 + 1) % m_count;
+	if (_08 < m_count) {
+		_08++;
+	}
+	_10 = timer;
 	/*
 	.loc_0x0:
 	  lfs       f0, 0x0(r4)
@@ -172,45 +166,13 @@ void Footmarks::add(Game::Footmark&)
  * Address:	801B496C
  * Size:	00004C
  */
-void Footmarks::get(int)
+Footmark* Footmarks::get(int index)
 {
-	/*
-	cmpwi    r4, 0
-	blt      lbl_801B4980
-	lwz      r0, 8(r3)
-	cmpw     r4, r0
-	blt      lbl_801B4988
+	if (index < 0 || index >= _08) {
+		return nullptr;
+	}
 
-lbl_801B4980:
-	li       r3, 0
-	blr
-
-lbl_801B4988:
-	lwz      r6, 0xc(r3)
-	addi     r4, r4, 1
-	lwz      r0, 4(r3)
-	lwz      r5, 0(r3)
-	add      r0, r6, r0
-	subf     r3, r4, r0
-	divw     r0, r3, r6
-	mullw    r0, r0, r6
-	subf     r0, r0, r3
-	slwi     r0, r0, 4
-	add      r3, r5, r0
-	blr
-	*/
-}
-
-} // Game
-
-/*
- * --INFO--
- * Address:	........
- * Size:	00014C
- */
-void findNearest__Q24Game9FootmarksFR10Vector3f i(void)
-{
-	// UNUSED FUNCTION
+	return &m_marks[(((m_count + _04) - (index + 1)) % m_count)];
 }
 
 /*
@@ -218,82 +180,27 @@ void findNearest__Q24Game9FootmarksFR10Vector3f i(void)
  * Address:	801B49B8
  * Size:	0000C8
  */
-void findNearest2__Q24Game9FootmarksFR10Vector3f i(void)
+Footmark* Footmarks::findNearest2(Vector3f& position, int idx)
 {
-	/*
-	lwz      r6, 8(r3)
-	li       r8, -1
-	lfs      f5, lbl_80519420@sda21(r2)
-	li       r9, 0
-	addic.   r0, r6, -1
-	mtctr    r0
-	ble      lbl_801B4A60
+	int minIndex = -1;
+	f32 minDist  = 1280000.0f;
+	for (int i = 0; i < _08 - 1; i++) {
+		int adjIndex = (_04 + i) % m_count;
+		if (idx == -1 || (int)m_marks[adjIndex].m_flags > idx) {
+			Footmark* mark = &m_marks[adjIndex];
+			Vector3f diff  = position - mark->m_position;
+			f32 dist       = diff.x * diff.x + diff.y * diff.y + diff.z * diff.z;
+			if (dist < minDist) {
+				minDist  = dist;
+				minIndex = adjIndex;
+			}
+		}
+	}
 
-lbl_801B49D4:
-	lwz      r0, 4(r3)
-	cmpwi    r5, -1
-	lwz      r6, 0xc(r3)
-	add      r7, r0, r9
-	divw     r0, r7, r6
-	mullw    r0, r0, r6
-	subf     r10, r0, r7
-	beq      lbl_801B4A0C
-	slwi     r6, r10, 4
-	lwz      r7, 0(r3)
-	addi     r0, r6, 0xc
-	lwzx     r0, r7, r0
-	cmpw     r0, r5
-	ble      lbl_801B4A58
-
-lbl_801B4A0C:
-	lwz      r6, 0(r3)
-	slwi     r0, r10, 4
-	lfs      f3, 4(r4)
-	add      r6, r6, r0
-	lfs      f1, 0(r4)
-	lfs      f2, 4(r6)
-	lfs      f0, 0(r6)
-	fsubs    f4, f3, f2
-	lfs      f3, 8(r4)
-	lfs      f2, 8(r6)
-	fsubs    f1, f1, f0
-	fmuls    f0, f4, f4
-	fsubs    f2, f3, f2
-	fmadds   f0, f1, f1, f0
-	fmadds   f0, f2, f2, f0
-	fcmpo    cr0, f0, f5
-	bge      lbl_801B4A58
-	fmr      f5, f0
-	mr       r8, r10
-
-lbl_801B4A58:
-	addi     r9, r9, 1
-	bdnz     lbl_801B49D4
-
-lbl_801B4A60:
-	cmpwi    r8, -1
-	beq      lbl_801B4A78
-	lwz      r3, 0(r3)
-	slwi     r0, r8, 4
-	add      r3, r3, r0
-	blr
-
-lbl_801B4A78:
-	li       r3, 0
-	blr
-	*/
+	if (minIndex != -1) {
+		return &m_marks[minIndex];
+	}
+	return nullptr;
 }
 
-namespace Game {
-
-/*
- * --INFO--
- * Address:	........
- * Size:	000004
- */
-void Footmarks::draw(Graphics&)
-{
-	// UNUSED FUNCTION
-}
-#endif
-} // Game
+} // namespace Game

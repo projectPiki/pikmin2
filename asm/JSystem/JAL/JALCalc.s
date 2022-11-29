@@ -30,6 +30,36 @@ lbl_8051708C:
 	.4byte 0xC0000000
 
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
+.global linearTransform__7JALCalcFfffffb
+linearTransform__7JALCalcFfffffb:
+/* 800BA244 000B7184  EC 03 10 28 */	fsubs f0, f3, f2
+/* 800BA248 000B7188  54 60 06 3F */	clrlwi. r0, r3, 0x18
+/* 800BA24C 000B718C  EC 41 10 28 */	fsubs f2, f1, f2
+/* 800BA250 000B7190  EC 25 20 28 */	fsubs f1, f5, f4
+/* 800BA254 000B7194  EC 01 00 24 */	fdivs f0, f1, f0
+/* 800BA258 000B7198  EC 22 20 3A */	fmadds f1, f2, f0, f4
+/* 800BA25C 000B719C  4C 82 00 20 */	bnelr 
+/* 800BA260 000B71A0  FC 04 28 40 */	fcmpo cr0, f4, f5
+/* 800BA264 000B71A4  40 80 00 24 */	bge lbl_800BA288
+/* 800BA268 000B71A8  FC 01 28 40 */	fcmpo cr0, f1, f5
+/* 800BA26C 000B71AC  40 81 00 0C */	ble lbl_800BA278
+/* 800BA270 000B71B0  FC 20 28 90 */	fmr f1, f5
+/* 800BA274 000B71B4  4E 80 00 20 */	blr 
+lbl_800BA278:
+/* 800BA278 000B71B8  FC 01 20 40 */	fcmpo cr0, f1, f4
+/* 800BA27C 000B71BC  4C 80 00 20 */	bgelr 
+/* 800BA280 000B71C0  FC 20 20 90 */	fmr f1, f4
+/* 800BA284 000B71C4  4E 80 00 20 */	blr 
+lbl_800BA288:
+/* 800BA288 000B71C8  FC 01 20 40 */	fcmpo cr0, f1, f4
+/* 800BA28C 000B71CC  40 81 00 0C */	ble lbl_800BA298
+/* 800BA290 000B71D0  FC 20 20 90 */	fmr f1, f4
+/* 800BA294 000B71D4  4E 80 00 20 */	blr 
+lbl_800BA298:
+/* 800BA298 000B71D8  FC 01 28 40 */	fcmpo cr0, f1, f5
+/* 800BA29C 000B71DC  4C 80 00 20 */	bgelr 
+/* 800BA2A0 000B71E0  FC 20 28 90 */	fmr f1, f5
+/* 800BA2A4 000B71E4  4E 80 00 20 */	blr 
 
 .global getParamByExp__7JALCalcFffffffQ27JALCalc9CurveSign
 getParamByExp__7JALCalcFffffffQ27JALCalc9CurveSign:

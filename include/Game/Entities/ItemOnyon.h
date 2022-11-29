@@ -67,6 +67,9 @@ struct Onyon : public BaseItem {
 		SUCKSTATE_IdleClosed = 5, // default idle state
 	};
 
+	Onyon();
+	Onyon(int); // this should be inline
+
 	/////////////// VTABLE
 	virtual void onInit(CreatureInitArg* settings);                     // _30
 	virtual void onKill(CreatureKillArg* settings);                     // _34
@@ -83,14 +86,14 @@ struct Onyon : public BaseItem {
 	virtual bool isSuckReady();                                         // _19C
 	virtual BOOL isSuckArriveWait();                                    // _1A0
 	virtual bool stimulate(Interaction& data);                          // _1A4
-	virtual char* getCreatureName();                                    // _1A8 (weak)
+	virtual char* getCreatureName() { return "Onyon"; }                 // _1A8 (weak)
 	virtual void makeTrMatrix();                                        // _1C4
 	virtual void doAI();                                                // _1C8
 	virtual void changeMaterial();                                      // _1D0
 	virtual void do_updateLOD();                                        // _1D4
 	virtual void do_doAnimation();                                      // _20C
 	virtual void onSetPosition();                                       // _21C
-	virtual void onKeyEvent(const SysShape::KeyEvent& event);           // _220 (weak)
+	virtual void onKeyEvent(const SysShape::KeyEvent& event);           // _220
 	virtual void onKeyEvent_UFO(const SysShape::KeyEvent&);             // _224
 	virtual void onKeyEvent_Onyon(const SysShape::KeyEvent&);           // _228
 	/////////////// VTABLE END
@@ -117,7 +120,7 @@ struct Onyon : public BaseItem {
 	void exitPikis(int, int);
 	Creature* exitPiki();
 	bool insideAccessArea(Vector3f&);
-	void getInEnd_UFO();
+	Vector3f getInEnd_UFO();
 	Vector3f getInStart_UFO();
 	Vector3f getOutStart_UFO();
 	f32* getPMotionSpeed(int);
@@ -125,6 +128,18 @@ struct Onyon : public BaseItem {
 	void update_pmotions();
 
 	void updateSpot();
+	void initTube();
+	void init_pmotions();
+
+	inline Vector3f getJointPosition(SysShape::Joint* joint)
+	{
+		Vec outVec;
+		Vector3f offs = Vector3f(0.0f, 0.0f, 7.0f);
+
+		PSMTXMultVec(joint->getWorldMatrix()->m_matrix.mtxView, (Vec*)&offs, &outVec);
+		offs = Vector3f(outVec);
+		return offs;
+	}
 
 	// _00 		= VTBL
 	// _00-_1D8	= BaseItem
@@ -159,7 +174,7 @@ struct Onyon : public BaseItem {
 	f32 m_suckTimer;                          // _244
 	SysShape::Joint* m_pikiInJoint;           // _248, what pikmin target when entering the ship
 	SysShape::Joint* m_pikiOutJoint;          // _24C, what pikmin appear from when exiting the ship
-	u32 m_pMotionCount;                       // _250, number of pMotions to use, always 3 (for the ship) normally
+	int m_pMotionCount;                       // _250, number of pMotions to use, always 3 (for the ship) normally
 	SysShape::Animator* m_pMotionList;        // _254, list of pAnim objects
 	f32* m_pMotionSpeeds;                     // _258
 	f32 m_propera;                            // _25C, controls speed of one of the ships pMotions
@@ -170,28 +185,28 @@ namespace ItemOnyon {
 struct Mgr : public BaseItemMgr, public Container<Onyon> {
 	Mgr();
 
-	virtual void doAnimation();                                           // _08 (weak)
-	virtual void doEntry();                                               // _0C (weak)
-	virtual void doSetView(int viewportNumber);                           // _10 (weak)
-	virtual void doViewCalc();                                            // _14 (weak)
-	virtual void doSimulation(f32);                                       // _18 (weak)
-	virtual void doDirectDraw(Graphics& gfx);                             // _1C (weak)
-	virtual void initDependency();                                        // _38
-	virtual void setupSoundViewerAndBas();                                // _44
-	virtual u32 generatorGetID();                                         // _58 (weak)
-	virtual BaseItem* generatorBirth(Vector3f&, Vector3f&, GenItemParm*); // _5C
-	virtual void generatorWrite(Stream&, GenItemParm*);                   // _60
-	virtual void generatorRead(Stream&, GenItemParm*, u32);               // _64
-	virtual u32 generatorLocalVersion();                                  // _68 (weak)
-	virtual J3DModelData* generatorGetShape(GenItemParm*);                // _6C
-	virtual GenItemParm* generatorNewItemParm();                          // _70
-	virtual ~Mgr();                                                       // _A0 (weak)
-	virtual Onyon* get(void*);                                            // _A4 (weak)
-	virtual void* getNext(void*);                                         // _A8 (weak)
-	virtual void* getStart();                                             // _AC (weak)
-	virtual void* getEnd();                                               // _B0 (weak)
+	virtual ~Mgr();                                                                             // _A0
+	virtual void initDependency();                                                              // _38
+	virtual void setupSoundViewerAndBas();                                                      // _44
+	virtual BaseItem* generatorBirth(Vector3f&, Vector3f&, GenItemParm*);                       // _5C
+	virtual void generatorWrite(Stream&, GenItemParm*);                                         // _60
+	virtual void generatorRead(Stream&, GenItemParm*, u32);                                     // _64
+	virtual J3DModelData* generatorGetShape(GenItemParm*);                                      // _6C
+	virtual GenItemParm* generatorNewItemParm();                                                // _70
+	virtual u32 generatorGetID() { return 'onyn'; }                                             // _58 (weak)
+	virtual u32 generatorLocalVersion() { return '0001'; }                                      // _68 (weak)
+	virtual void doAnimation() { m_nodeObjectMgr.doAnimation(); }                               // _08 (weak)
+	virtual void doEntry() { m_nodeObjectMgr.doEntry(); }                                       // _0C (weak)
+	virtual void doSetView(int viewportNumber) { m_nodeObjectMgr.doSetView(viewportNumber); }   // _10 (weak)
+	virtual void doViewCalc() { m_nodeObjectMgr.doViewCalc(); }                                 // _14 (weak)
+	virtual void doSimulation(f32 constraint) { m_nodeObjectMgr.doSimulation(constraint); }     // _18 (weak)
+	virtual void doDirectDraw(Graphics& gfx) { m_nodeObjectMgr.doDirectDraw(gfx); }             // _1C (weak)
+	virtual void* getEnd() { return m_nodeObjectMgr.getEnd(); }                                 // _B0 (weak)
+	virtual void* getStart() { return m_nodeObjectMgr.getStart(); }                             // _AC (weak)
+	virtual void* getNext(void* index) { return m_nodeObjectMgr.getNext(index); }               // _A8 (weak)
+	virtual Onyon* get(void* index) { return static_cast<Onyon*>(m_nodeObjectMgr.get(index)); } // _A4 (weak)
 
-	void birth(int, int);
+	Onyon* birth(int, int);
 	Onyon* getOnyon(int);
 	void init();
 	void load();
@@ -201,12 +216,8 @@ struct Mgr : public BaseItemMgr, public Container<Onyon> {
 	// _30-_48  = Container
 	// _48      = ptr to _BaseItemMgrParent2 or something?
 	NodeObjectMgr<Onyon> m_nodeObjectMgr;                   // _4C
-	SysShape::AnimMgr* m_onyonAnimMgrFile;                  // _88, animmgr.txt
-	SysShape::AnimMgr* m_podAnimMgrFile;                    // _8C
-	SysShape::AnimMgr* m_ufoAnimMgrFile;                    // _90
-	CollPartFactory* m_onyonColl;                           // _94, collinfo.txt
-	CollPartFactory* m_podColl;                             // _98
-	CollPartFactory* m_ufoColl;                             // _9C
+	SysShape::AnimMgr* m_animMgrFiles[3];                   // _88, indexed by ONYON_OBJECT_TYPE
+	CollPartFactory* m_collFactories[3];                    // _94, indexed by ONYON_OBJECT_TYPE
 	Onyon* m_onyons[ONYON_TYPE_MAX];                        // _A0, blue (0), red (1) and yellow (2) onyon objects
 	Onyon* m_pod;                                           // _AC, (cave) pod
 	Onyon* m_ufo;                                           // _B0, ufo (ship)
@@ -219,6 +230,11 @@ extern Mgr* mgr;
 } // namespace Game
 
 struct GenOnyonParm : public Game::GenItemParm {
+	inline GenOnyonParm()
+	    : m_onyonIndex(0)
+	    , m_isAfterBoot(true)
+	{
+	}
 
 	// _00     = VTBL
 	int m_onyonIndex;   // _04

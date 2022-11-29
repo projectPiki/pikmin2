@@ -15,8 +15,10 @@ struct Footmark {
 struct Footmarks {
 	Footmarks();
 
-	void alloc(int);
+	void alloc(int count);
 	void add(Footmark& mark);
+	Footmark* get(int index);
+	Footmark* findNearest2(Vector3f&, int);
 
 	Footmark* m_marks;   // _00
 	int _04;             // _04

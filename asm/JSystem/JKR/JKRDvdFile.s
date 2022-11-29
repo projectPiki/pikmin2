@@ -445,7 +445,7 @@ getFileSize__10JKRDvdFileCFv:
 /* 8001D650 0001A590  80 63 00 90 */	lwz r3, 0x90(r3)
 /* 8001D654 0001A594  4E 80 00 20 */	blr 
 
-__sinit_JKRDvdFile_cpp: # static initializer
+fn local __sinit_JKRDvdFile_cpp
 /* 8001D658 0001A598  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8001D65C 0001A59C  7C 08 02 A6 */	mflr r0
 /* 8001D660 0001A5A0  3C 60 80 50 */	lis r3, sDvdList__10JKRDvdFile@ha
@@ -463,6 +463,7 @@ __sinit_JKRDvdFile_cpp: # static initializer
 /* 8001D690 0001A5D0  7C 08 03 A6 */	mtlr r0
 /* 8001D694 0001A5D4  38 21 00 10 */	addi r1, r1, 0x10
 /* 8001D698 0001A5D8  4E 80 00 20 */	blr 
+end __sinit_JKRDvdFile_cpp
 
 .global "__dt__21JSUList<10JKRDvdFile>Fv"
 "__dt__21JSUList<10JKRDvdFile>Fv":

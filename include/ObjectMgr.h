@@ -12,7 +12,7 @@ struct ObjectMgr : public Container<T>, GenericObjectMgr {
 	}
 
 	///////////////// VTABLE
-	virtual ~ObjectMgr() { }   // _08 (weak)
+	// virtual ~ObjectMgr() { }   // _08 (weak)
 	virtual void doAnimation() // _34
 	{
 		Iterator<T> iter(this);
@@ -49,7 +49,7 @@ struct ObjectMgr : public Container<T>, GenericObjectMgr {
 			iter.next();
 		}
 	}
-	virtual void doSimulation(float constraint) // _44
+	virtual void doSimulation(f32 constraint) // _44
 	{
 		Iterator<T> iter(this);
 		iter.first();
@@ -90,7 +90,7 @@ struct NodeObjectMgr : public ObjectMgr<T> {
 	{
 	}
 	// first VTBL:
-	virtual ~NodeObjectMgr() { }      // _08
+	// virtual ~NodeObjectMgr() { }      // _08
 	virtual void* getNext(void* node) // _14
 	{
 		return ((TObjectNode<T>*)node)->m_next;

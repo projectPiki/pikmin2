@@ -24,6 +24,8 @@ struct Plane {
 	}
 
 	inline void setDist(Plane& plane) { d = plane.d; }
+	void calcProjection(Vector3f&);
+	void intersectRay(Vector3f&, Vector3f&);
 
 	f32 a;
 	f32 b;

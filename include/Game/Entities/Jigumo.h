@@ -19,6 +19,8 @@
 
 namespace Game {
 namespace Jigumo {
+bool mouthScaleCallBack(J3DJoint*, int);
+
 struct FSM;
 
 struct ConditionHeightCheckPiki : public Condition<Piki> {
@@ -83,6 +85,11 @@ struct Obj : public EnemyBase {
 	void eatWaterEffect();
 	void killNest();
 	void mouthScaleMtxCalc();
+
+	// UNUSED
+	void appearEffectStart();
+	void appearEffectStop();
+	bool isUnitePos();
 
 	// _00 		= VTBL
 	// _00-_2BC	= EnemyBase

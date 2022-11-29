@@ -14,8 +14,8 @@ struct Obj : public Sarai::Obj {
 
 	virtual ~Obj() { }                                  // _1BC (weak)
 	virtual EnemyTypeID::EEnemyTypeID getEnemyTypeID(); // _258 (weak)
-	virtual void getStickPikminNum();                   // _2FC (weak)
-	virtual void getAttackableTarget();                 // _300
+	virtual int getStickPikminNum();                    // _2FC (weak)
+	virtual Piki* getAttackableTarget();                // _300
 	virtual void catchTarget();                         // _304
 	virtual void resetAttackableTimer(f32);             // _308 (weak)
 

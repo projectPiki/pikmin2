@@ -1,254 +1,293 @@
 .include "macros.inc"
 .section .ctors, "wa"  # 0x80472F00 - 0x804732C0
-lbl_constructor:
+obj local lbl_constructor
 .4byte __sinit_onyonMgr_cpp
+end lbl_constructor
 
 .section .rodata  # 0x804732E0 - 0x8049E220
 .balign 8
-.global lbl_8047E620
-lbl_8047E620:
+obj local lbl_8047E620
 	.4byte 0x00000000
 	.4byte 0x00000000
 	.4byte 0x00000000
-	.4byte 0x6F6E796F
-	.4byte 0x6E4D6772
-	.4byte 0x00000000
-.global lbl_8047E638
-lbl_8047E638:
+end lbl_8047E620
+.balign 4
+obj local lbl_8047E62C
+	.asciz "onyonMgr"
+end lbl_8047E62C
+.balign 4
+obj local lbl_8047E638
 	.asciz "onyonMgr.cpp"
-	.skip 3
+end lbl_8047E638
+.balign 4
+obj local lbl_8047E648
 	.asciz "BIKKURI no boot!\n"
-	.skip 2
+end lbl_8047E648
+.balign 4
+obj local lbl_8047E65C
 	.asciz "onyon supply failure!\n"
-	.skip 1
-.global lbl_8047E674
-lbl_8047E674:
+end lbl_8047E65C
+.balign 4
+obj local lbl_8047E674
 	.asciz "pmotion3"
-	.skip 3
-.global lbl_8047E680
-lbl_8047E680:
+end lbl_8047E674
+.balign 4
+obj local lbl_8047E680
 	.asciz "P2Assert"
-	.skip 3
+end lbl_8047E680
+.balign 4
+obj local lbl_8047E68C
 	.asciz "damedayo !: arrive  ufoSuckState=%d\n"
-	.skip 3
-.global lbl_8047E6B4
-lbl_8047E6B4:
+end lbl_8047E68C
+.balign 4
+obj local lbl_8047E6B4 # radar type
 	.4byte 0x00000001
 	.4byte 0x00000000
 	.4byte 0x00000002
-	.4byte 0x50534761
-	.4byte 0x6D652E68
-	.4byte 0x00000000
-	.4byte 0x50535363
-	.4byte 0x656E652E
-	.4byte 0x68000000
-	.4byte 0x67657420
-	.4byte 0x736F756E
-	.4byte 0x64207363
-	.4byte 0x656E6520
-	.4byte 0x61740A69
-	.4byte 0x6E76616C
-	.4byte 0x69642074
-	.4byte 0x696D6D69
-	.4byte 0x6E670A00
-	.4byte 0x62696B6B
-	.4byte 0x75726921
-	.4byte 0x0A000000
-	.4byte 0x4927616D
-	.4byte 0x2062696B
-	.4byte 0x6B757269
-	.4byte 0x2D65640A
-	.4byte 0x00000000
-.global lbl_8047E71C
-lbl_8047E71C:
-	.4byte 0x6731365F
-	.4byte 0x39355F70
-	.4byte 0x696B6D69
-	.4byte 0x6E000000
-.global lbl_8047E72C
-lbl_8047E72C:
-	.4byte 0x6731365F
-	.4byte 0x3130305F
-	.4byte 0x70696B6D
-	.4byte 0x696E0000
-.global lbl_8047E73C
-lbl_8047E73C:
-	.4byte 0x7831385F
-	.4byte 0x6578705F
-	.4byte 0x70656C6C
-	.4byte 0x65740000
-	.4byte 0x6C656731
-	.4byte 0x6C656732
-	.4byte 0x6C656733
-	.4byte 0x666F7431
-	.4byte 0x666F7432
-	.4byte 0x666F7433
+end lbl_8047E6B4
+.balign 4
+obj local lbl_8047E6C0
+	.asciz "PSGame.h"
+end lbl_8047E6C0
+.balign 4
+obj local lbl_8047E6CC
+	.asciz "PSScene.h"
+end lbl_8047E6CC
+.balign 4
+obj local lbl_8047E6D8
+	.asciz "get sound scene at\ninvalid timming\n"
+end lbl_8047E6D8
+.balign 4
+obj local lbl_8047E6FC
+	.asciz "bikkuri!\n"
+end lbl_8047E6FC
+.balign 4
+obj local lbl_8047E708
+	.asciz "I'am bikkuri-ed\n"
+end lbl_8047E708
+.balign 4
+obj local lbl_8047E71C
+	.asciz "g16_95_pikmin"
+end lbl_8047E71C
+.balign 4
+obj local lbl_8047E72C
+	.asciz "g16_100_pikmin"
+end lbl_8047E72C
+.balign 4
+obj local lbl_8047E73C
+	.asciz "x18_exp_pellet"
+end lbl_8047E73C
+.balign 4
+obj local lbl_8047E74C
+	.ascii "leg1"
+	.ascii "leg2"
+	.ascii "leg3"
+end lbl_8047E74C
+.balign 4
+obj local lbl_8047E758
+	.ascii "fot1"
+	.ascii "fot2"
+	.ascii "fot3"
+end lbl_8047E758
+.balign 4
+obj local lbl_8047E764
 	.asciz "oh! no!\n"
-	.skip 3
-.global lbl_8047E770
-lbl_8047E770:
+end lbl_8047E764
+.balign 4
+obj local lbl_8047E770
 	.asciz "kasi1jnt1"
-	.skip 2
-.global lbl_8047E77C
-lbl_8047E77C:
+end lbl_8047E770
+.balign 4
+obj local lbl_8047E77C
 	.asciz "kass2jnt1"
-	.skip 2
-.global lbl_8047E788
-lbl_8047E788:
+end lbl_8047E77C
+.balign 4
+obj local lbl_8047E788
 	.asciz "kasi3jnt1"
-	.skip 2
-.global lbl_8047E794
-lbl_8047E794:
+end lbl_8047E788
+.balign 4
+obj local lbl_8047E794
 	.4byte lbl_8047E770
 	.4byte lbl_8047E77C
 	.4byte lbl_8047E788
+end lbl_8047E794
+.balign 4
+obj local lbl_8047E7A0
 	.asciz "exitWhite/Black zero (UFO)\n"
-.global lbl_8047E7BC
-lbl_8047E7BC:
+end lbl_8047E7A0
+.balign 4
+obj local lbl_8047E7BC
 	.asciz "not ufo\n"
-	.skip 3
-.global lbl_8047E7C8
-lbl_8047E7C8:
+end lbl_8047E7BC
+.balign 4
+obj local lbl_8047E7C8 # Shift-JIS
 	.4byte 0x82BE82DF
 	.4byte 0x82C582B7
-	.4byte 0x00000000
-.global lbl_8047E7D4
-lbl_8047E7D4:
+	.byte 0x00
+end lbl_8047E7C8
+.balign 4
+obj local lbl_8047E7D4
 	.asciz "pmotion1"
-	.skip 3
-.global lbl_8047E7E0
-lbl_8047E7E0:
+end lbl_8047E7D4
+.balign 4
+obj local lbl_8047E7E0
 	.asciz "pmotion2"
-	.skip 3
+end lbl_8047E7E0
+.balign 4
+obj local lbl_8047E7EC
 	.4byte lbl_8047E7D4
 	.4byte lbl_8047E7E0
 	.4byte lbl_8047E674
+end lbl_8047E7EC
+.balign 4
+obj local lbl_8047E7F8
 	.asciz "no joint (%s)\n"
-	.skip 1
-.global lbl_8047E808
-lbl_8047E808:
+end lbl_8047E7F8
+.balign 4
+obj local lbl_8047E808
 	.asciz "\t# onyon index\r\n"
-	.skip 3
-.global lbl_8047E81C
-lbl_8047E81C:
+end lbl_8047E808
+.balign 4
+obj local lbl_8047E81C
 	.asciz "\t# after boot? true==1\r\n"
-	.skip 3
-.global lbl_8047E838
-lbl_8047E838:
+end lbl_8047E81C
+.balign 4
+obj local lbl_8047E838
 	.asciz "illegal onyon index %d\n"
+end lbl_8047E838
+.balign 4
+obj local lbl_8047E850
 	.asciz "onyon-arc"
-	.skip 2
+end lbl_8047E850
+.balign 4
+obj local lbl_8047E85C
 	.asciz "user/Kando/onyon/arc.szs"
-	.skip 3
+end lbl_8047E85C
+.balign 4
+obj local lbl_8047E878
 	.asciz "goal.bmd"
-	.skip 3
+end lbl_8047E878
+.balign 4
+obj local lbl_8047E884
 	.asciz "goal.bmd not found !!\n"
-	.skip 1
+end lbl_8047E884
+.balign 4
+obj local lbl_8047E89C
 	.asciz "user/Kando/pod_gold/arc.szs"
+end lbl_8047E89C
+.balign 4
+obj local lbl_8047E8B8
 	.asciz "user/Kando/pod/arc.szs"
-	.skip 1
+end lbl_8047E8B8
+.balign 4
+obj local lbl_8047E8D0
 	.asciz "pot.bmd not found !!\n"
-	.skip 2
+end lbl_8047E8D0
+.balign 4
+obj local lbl_8047E8E8
 	.asciz "kidou_blue.brk"
-	.skip 1
+end lbl_8047E8E8
+.balign 4
+obj local lbl_8047E8F8
 	.asciz "kidou_red.brk"
-	.skip 2
+end lbl_8047E8F8
+.balign 4
+obj local lbl_8047E908
 	.asciz "kidou_yellow.brk"
-	.skip 3
+end lbl_8047E908
+.balign 4
+obj local lbl_8047E91C
 	.asciz "user/Kando/onyon"
-	.skip 3
-	.4byte 0x74657874
-	.4byte 0x732E737A
-	.4byte 0x73000000
-	.4byte 0x6F6E796F
-	.4byte 0x6E416E69
-	.4byte 0x6D4D6772
-	.4byte 0x2E747874
-	.4byte 0x00000000
-	.4byte 0x6F6E796F
-	.4byte 0x6E436F6C
-	.4byte 0x6C2E7478
-	.4byte 0x74000000
-	.4byte 0x75736572
-	.4byte 0x2F4B616E
-	.4byte 0x646F2F70
-	.4byte 0x6F645F67
-	.4byte 0x6F6C6400
-	.4byte 0x75736572
-	.4byte 0x2F4B616E
-	.4byte 0x646F2F70
-	.4byte 0x6F640000
-	.4byte 0x616E696D
-	.4byte 0x4D67722E
-	.4byte 0x74787400
-	.4byte 0x636F6C6C
-	.4byte 0x2E747874
-	.4byte 0x00000000
-	.4byte 0x75736572
-	.4byte 0x2F4B616E
-	.4byte 0x646F2F75
-	.4byte 0x666F5F67
-	.4byte 0x6F6C642F
-	.4byte 0x6172632E
-	.4byte 0x737A7300
-	.4byte 0x75736572
-	.4byte 0x2F4B616E
-	.4byte 0x646F2F75
-	.4byte 0x666F2F61
-	.4byte 0x72632E73
-	.4byte 0x7A730000
-	.4byte 0x75666F2E
-	.4byte 0x626D6420
-	.4byte 0x6E6F7420
-	.4byte 0x666F756E
-	.4byte 0x64210A00
-	.4byte 0x75666F5F
-	.4byte 0x322E6272
-	.4byte 0x6B000000
-	.4byte 0x75736572
-	.4byte 0x2F4B616E
-	.4byte 0x646F2F75
-	.4byte 0x666F5F67
-	.4byte 0x6F6C6400
-	.4byte 0x75736572
-	.4byte 0x2F4B616E
-	.4byte 0x646F2F75
-	.4byte 0x666F0000
-	.4byte 0x616E696D
-	.4byte 0x6D67722E
-	.4byte 0x74787400
-	.4byte 0x43726561
-	.4byte 0x74757265
-	.4byte 0x41637469
-	.4byte 0x6F6E4172
-	.4byte 0x67000000
-	.4byte 0x41637469
-	.4byte 0x6F6E4172
-	.4byte 0x67000000
-	.4byte 0x50696B69
-	.4byte 0x4B696C6C
-	.4byte 0x41726700
-	.4byte 0x43726561
-	.4byte 0x74757265
-	.4byte 0x4B696C6C
-	.4byte 0x41726700
-.global lbl_8047EA5C
-lbl_8047EA5C:
+end lbl_8047E91C
+.balign 4
+obj local lbl_8047E930
+	.asciz "texts.szs"
+end lbl_8047E930
+.balign 4
+obj local lbl_8047E93C
+	.asciz "onyonAnimMgr.txt"
+end lbl_8047E93C
+.balign 4
+obj local lbl_8047E950
+	.asciz "onyonColl.txt"
+end lbl_8047E950
+.balign 4
+obj local lbl_8047E960
+	.asciz "user/Kando/pod_gold"
+end lbl_8047E960
+.balign 4
+obj local lbl_8047E974
+	.asciz "user/Kando/pod"
+end lbl_8047E974
+.balign 4
+obj local lbl_8047E984
+	.asciz "animMgr.txt"
+end lbl_8047E984
+.balign 4
+obj local lbl_8047E990
+	.asciz "coll.txt"
+end lbl_8047E990
+.balign 4
+obj local lbl_8047E99C
+	.asciz "user/Kando/ufo_gold/arc.szs"
+end lbl_8047E99C
+.balign 4
+obj local lbl_8047E9B8
+	.asciz "user/Kando/ufo/arc.szs"
+end lbl_8047E9B8
+.balign 4
+obj local lbl_8047E9D0
+	.asciz "ufo.bmd not found!\n"
+end lbl_8047E9D0
+.balign 4
+obj local lbl_8047E9E4
+	.asciz "ufo_2.brk"
+end lbl_8047E9E4
+.balign 4
+obj local lbl_8047E9F0
+	.asciz "user/Kando/ufo_gold"
+end lbl_8047E9F0
+.balign 4
+obj local lbl_8047EA04
+	.asciz "user/Kando/ufo"
+end lbl_8047EA04
+.balign 4
+obj local lbl_8047EA14
+	.asciz "animmgr.txt"
+end lbl_8047EA14
+.balign 4
+obj local lbl_8047EA20
+	.asciz "CreatureActionArg"
+end lbl_8047EA20
+.balign 4
+obj local lbl_8047EA34
+	.asciz "ActionArg"
+end lbl_8047EA34
+.balign 4
+obj local lbl_8047EA40
+	.asciz "PikiKillArg"
+end lbl_8047EA40
+.balign 4
+obj local lbl_8047EA4C
+	.asciz "CreatureKillArg"
+end lbl_8047EA4C
+.balign 4
+obj local lbl_8047EA5C
 	.asciz "ItemPikiHead::InitArg"
-	.skip 2
-.global lbl_8047EA74
-lbl_8047EA74:
+end lbl_8047EA5C
+.balign 4
+obj local lbl_8047EA74
 	.asciz "ItemInitArg"
+end lbl_8047EA74
 
 .section .data, "wa"  # 0x8049E220 - 0x804EFC20
 .balign 8
-.global lbl_804B2420
-lbl_804B2420:
-	.4byte 0x00000000
-	.4byte 0x00000000
-	.4byte 0x00000000
-.global __vt__Q34Game9ItemOnyon3Mgr
-__vt__Q34Game9ItemOnyon3Mgr:
+obj local govNAN___Q24Game5P2JST
+	.float 0.0
+	.float 0.0
+	.float 0.0
+end govNAN___Q24Game5P2JST
+obj weak __vt__Q34Game9ItemOnyon3Mgr
 	.4byte 0
 	.4byte 0
 	.4byte doAnimation__Q34Game9ItemOnyon3MgrFv
@@ -294,6 +333,7 @@ __vt__Q34Game9ItemOnyon3Mgr:
 	.4byte getNext__Q34Game9ItemOnyon3MgrFPv
 	.4byte getStart__Q34Game9ItemOnyon3MgrFv
 	.4byte getEnd__Q34Game9ItemOnyon3MgrFv
+end __vt__Q34Game9ItemOnyon3Mgr
 .global "__vt__26TObjectNode<Q24Game5Onyon>"
 "__vt__26TObjectNode<Q24Game5Onyon>":
 	.4byte 0
@@ -380,68 +420,67 @@ __vt__Q34Game9ItemOnyon3Mgr:
 	.4byte 0
 	.4byte "getAt__24Container<Q24Game5Onyon>Fi"
 	.4byte "getTo__24Container<Q24Game5Onyon>Fv"
-.global __vt__12GenOnyonParm
-__vt__12GenOnyonParm:
+obj weak __vt__12GenOnyonParm
 	.4byte 0
 	.4byte 0
 	.4byte getShapeID__Q24Game11GenItemParmFv
-.global __vt__Q24Game11GenItemParm
-__vt__Q24Game11GenItemParm:
+end __vt__12GenOnyonParm
+obj weak __vt__Q24Game11GenItemParm
 	.4byte 0
 	.4byte 0
 	.4byte getShapeID__Q24Game11GenItemParmFv
-.global __vt__Q23efx14TOnyonPuffKira
-__vt__Q23efx14TOnyonPuffKira:
+end __vt__Q24Game11GenItemParm
+obj weak __vt__Q23efx14TOnyonPuffKira
 	.4byte 0
 	.4byte 0
 	.4byte create__Q23efx8TSimple1FPQ23efx3Arg
 	.4byte forceKill__Q23efx8TSimple1Fv
 	.4byte fade__Q23efx8TSimple1Fv
-.global __vt__Q23efx14TOnyonPuffPuff
-__vt__Q23efx14TOnyonPuffPuff:
+end __vt__Q23efx14TOnyonPuffKira
+obj weak __vt__Q23efx14TOnyonPuffPuff
 	.4byte 0
 	.4byte 0
 	.4byte create__Q23efx11TSimpleMtx1FPQ23efx3Arg
 	.4byte forceKill__Q23efx8TSimple1Fv
 	.4byte fade__Q23efx8TSimple1Fv
-.global __vt__Q23efx8TPodSuck
-__vt__Q23efx8TPodSuck:
+end __vt__Q23efx14TOnyonPuffPuff
+obj weak __vt__Q23efx8TPodSuck
 	.4byte 0
 	.4byte 0
 	.4byte create__Q23efx8TSimple2FPQ23efx3Arg
 	.4byte forceKill__Q23efx8TSimple2Fv
 	.4byte fade__Q23efx8TSimple2Fv
-.global __vt__Q23efx10TOnyonEatC
-__vt__Q23efx10TOnyonEatC:
+end __vt__Q23efx8TPodSuck
+obj weak __vt__Q23efx10TOnyonEatC
 	.4byte 0
 	.4byte 0
 	.4byte create__Q23efx11TSimpleMtx1FPQ23efx3Arg
 	.4byte forceKill__Q23efx8TSimple1Fv
 	.4byte fade__Q23efx8TSimple1Fv
-.global __vt__Q23efx7ArgType
-__vt__Q23efx7ArgType:
+end __vt__Q23efx10TOnyonEatC
+obj weak __vt__Q23efx7ArgType
 	.4byte 0
 	.4byte 0
 	.4byte getName__Q23efx7ArgTypeFv
-.global __vt__Q23efx9TOnyonLay
-__vt__Q23efx9TOnyonLay:
+end __vt__Q23efx7ArgType
+obj weak __vt__Q23efx9TOnyonLay
 	.4byte 0
 	.4byte 0
 	.4byte create__Q23efx8TSimple2FPQ23efx3Arg
 	.4byte forceKill__Q23efx8TSimple2Fv
 	.4byte fade__Q23efx8TSimple2Fv
-.global __vt__Q23efx12OnyonSpotArg
-__vt__Q23efx12OnyonSpotArg:
+end __vt__Q23efx9TOnyonLay
+obj weak __vt__Q23efx12OnyonSpotArg
 	.4byte 0
 	.4byte 0
 	.4byte getID__Q23efx12OnyonSpotArgFv
-.global __vt__20ModelEffectCreateArg
-__vt__20ModelEffectCreateArg:
+end __vt__Q23efx12OnyonSpotArg
+obj weak __vt__20ModelEffectCreateArg
 	.4byte 0
 	.4byte 0
 	.4byte 0
-.global __vt__Q24Game5Onyon
-__vt__Q24Game5Onyon:
+end __vt__20ModelEffectCreateArg
+obj weak __vt__Q24Game5Onyon
 	.4byte 0
 	.4byte 0
 	.4byte getPosition__Q24Game8BaseItemFv
@@ -581,29 +620,29 @@ __vt__Q24Game5Onyon:
 	.4byte onKeyEvent__Q24Game5OnyonFRCQ28SysShape8KeyEvent
 	.4byte onKeyEvent_UFO__Q24Game5OnyonFRCQ28SysShape8KeyEvent
 	.4byte onKeyEvent_Onyon__Q24Game5OnyonFRCQ28SysShape8KeyEvent
-.global __vt__Q23efx11TOnyonEatAB
-__vt__Q23efx11TOnyonEatAB:
+end __vt__Q24Game5Onyon
+obj weak __vt__Q23efx11TOnyonEatAB
 	.4byte 0
 	.4byte 0
 	.4byte create__Q23efx11TSimpleMtx2FPQ23efx3Arg
 	.4byte forceKill__Q23efx8TSimple2Fv
 	.4byte fade__Q23efx8TSimple2Fv
-.global __vt__Q23efx11TUfoPodGepu
-__vt__Q23efx11TUfoPodGepu:
+end __vt__Q23efx11TOnyonEatAB
+obj weak __vt__Q23efx11TUfoPodGepu
 	.4byte 0
 	.4byte 0
 	.4byte create__Q23efx11TSimpleMtx2FPQ23efx3Arg
 	.4byte forceKill__Q23efx8TSimple2Fv
 	.4byte fade__Q23efx8TSimple2Fv
-.global __vt__Q23efx8TPodGepu
-__vt__Q23efx8TPodGepu:
+end __vt__Q23efx11TUfoPodGepu
+obj weak __vt__Q23efx8TPodGepu
 	.4byte 0
 	.4byte 0
 	.4byte create__Q23efx8TSimple2FPQ23efx3Arg
 	.4byte forceKill__Q23efx8TSimple2Fv
 	.4byte fade__Q23efx8TSimple2Fv
-.global __vt__Q24Game16InteractSuckDone
-__vt__Q24Game16InteractSuckDone:
+end __vt__Q23efx8TPodGepu
+obj weak __vt__Q24Game16InteractSuckDone
 	.4byte 0
 	.4byte 0
 	.4byte actCommon__Q24Game11InteractionFPQ24Game8Creature
@@ -613,15 +652,15 @@ __vt__Q24Game16InteractSuckDone:
 	.4byte actPellet__Q24Game11InteractionFPQ24Game6Pellet
 	.4byte actOnyon__Q24Game16InteractSuckDoneFPQ24Game5Onyon
 	.4byte actItem__Q24Game11InteractionFPQ24Game8BaseItem
-.global __vt__Q23efx11TUfoPodSuck
-__vt__Q23efx11TUfoPodSuck:
+end __vt__Q24Game16InteractSuckDone
+obj weak __vt__Q23efx11TUfoPodSuck
 	.4byte 0
 	.4byte 0
 	.4byte create__Q23efx11TSimpleMtx1FPQ23efx3Arg
 	.4byte forceKill__Q23efx8TSimple1Fv
 	.4byte fade__Q23efx8TSimple1Fv
-.global __vt__Q24Game18InteractSuckArrive
-__vt__Q24Game18InteractSuckArrive:
+end __vt__Q23efx11TUfoPodSuck
+obj weak __vt__Q24Game18InteractSuckArrive
 	.4byte 0
 	.4byte 0
 	.4byte actCommon__Q24Game11InteractionFPQ24Game8Creature
@@ -631,6 +670,7 @@ __vt__Q24Game18InteractSuckArrive:
 	.4byte actPellet__Q24Game11InteractionFPQ24Game6Pellet
 	.4byte actOnyon__Q24Game18InteractSuckArriveFPQ24Game5Onyon
 	.4byte actItem__Q24Game11InteractionFPQ24Game8BaseItem
+end __vt__Q24Game18InteractSuckArrive
 .global "__vt__Q23efx28TSyncGroup2<Q23efx8TForever>"
 "__vt__Q23efx28TSyncGroup2<Q23efx8TForever>":
 	.4byte 0
@@ -640,8 +680,7 @@ __vt__Q24Game18InteractSuckArrive:
 	.4byte "fade__Q23efx28TSyncGroup2<Q23efx8TForever>Fv"
 	.4byte "startDemoDrawOff__Q23efx28TSyncGroup2<Q23efx8TForever>Fv"
 	.4byte "endDemoDrawOn__Q23efx28TSyncGroup2<Q23efx8TForever>Fv"
-.global __vt__Q23efx9TForever2
-__vt__Q23efx9TForever2:
+obj weak __vt__Q23efx9TForever2
 	.4byte 0
 	.4byte 0
 	.4byte "create__Q23efx28TSyncGroup2<Q23efx8TForever>FPQ23efx3Arg"
@@ -649,6 +688,7 @@ __vt__Q23efx9TForever2:
 	.4byte "fade__Q23efx28TSyncGroup2<Q23efx8TForever>Fv"
 	.4byte "startDemoDrawOff__Q23efx28TSyncGroup2<Q23efx8TForever>Fv"
 	.4byte "endDemoDrawOn__Q23efx28TSyncGroup2<Q23efx8TForever>Fv"
+end __vt__Q23efx9TForever2
 .global "__vt__Q23efx34TSyncGroup2<Q23efx13TChasePosYRot>"
 "__vt__Q23efx34TSyncGroup2<Q23efx13TChasePosYRot>":
 	.4byte 0
@@ -658,8 +698,7 @@ __vt__Q23efx9TForever2:
 	.4byte "fade__Q23efx34TSyncGroup2<Q23efx13TChasePosYRot>Fv"
 	.4byte "startDemoDrawOff__Q23efx34TSyncGroup2<Q23efx13TChasePosYRot>Fv"
 	.4byte "endDemoDrawOn__Q23efx34TSyncGroup2<Q23efx13TChasePosYRot>Fv"
-.global __vt__Q23efx14TChasePosYRot2
-__vt__Q23efx14TChasePosYRot2:
+obj weak __vt__Q23efx14TChasePosYRot2
 	.4byte 0
 	.4byte 0
 	.4byte "create__Q23efx34TSyncGroup2<Q23efx13TChasePosYRot>FPQ23efx3Arg"
@@ -667,8 +706,8 @@ __vt__Q23efx14TChasePosYRot2:
 	.4byte "fade__Q23efx34TSyncGroup2<Q23efx13TChasePosYRot>Fv"
 	.4byte "startDemoDrawOff__Q23efx34TSyncGroup2<Q23efx13TChasePosYRot>Fv"
 	.4byte "endDemoDrawOn__Q23efx34TSyncGroup2<Q23efx13TChasePosYRot>Fv"
-.global __vt__Q23efx8TPodKira
-__vt__Q23efx8TPodKira:
+end __vt__Q23efx14TChasePosYRot2
+obj weak __vt__Q23efx8TPodKira
 	.4byte 0
 	.4byte 0
 	.4byte create__Q23efx5TSyncFPQ23efx3Arg
@@ -688,8 +727,8 @@ __vt__Q23efx8TPodKira:
 	.4byte startDemoDrawOff__Q23efx5TSyncFv
 	.4byte endDemoDrawOn__Q23efx5TSyncFv
 	.4byte __dt__Q23efx8TPodKiraFv
-.global __vt__Q23efx8TPodSpot
-__vt__Q23efx8TPodSpot:
+end __vt__Q23efx8TPodKira
+obj weak __vt__Q23efx8TPodSpot
 	.4byte 0
 	.4byte 0
 	.4byte "create__Q23efx34TSyncGroup2<Q23efx13TChasePosYRot>FPQ23efx3Arg"
@@ -697,8 +736,8 @@ __vt__Q23efx8TPodSpot:
 	.4byte "fade__Q23efx34TSyncGroup2<Q23efx13TChasePosYRot>Fv"
 	.4byte "startDemoDrawOff__Q23efx34TSyncGroup2<Q23efx13TChasePosYRot>Fv"
 	.4byte "endDemoDrawOn__Q23efx34TSyncGroup2<Q23efx13TChasePosYRot>Fv"
-.global __vt__Q23efx9TPodOpenB
-__vt__Q23efx9TPodOpenB:
+end __vt__Q23efx8TPodSpot
+obj weak __vt__Q23efx9TPodOpenB
 	.4byte 0
 	.4byte 0
 	.4byte create__Q23efx5TSyncFPQ23efx3Arg
@@ -718,8 +757,8 @@ __vt__Q23efx9TPodOpenB:
 	.4byte startDemoDrawOff__Q23efx5TSyncFv
 	.4byte endDemoDrawOn__Q23efx5TSyncFv
 	.4byte __dt__Q23efx9TPodOpenBFv
-.global __vt__Q23efx9TPodOpenA
-__vt__Q23efx9TPodOpenA:
+end __vt__Q23efx9TPodOpenB
+obj weak __vt__Q23efx9TPodOpenA
 	.4byte 0
 	.4byte 0
 	.4byte create__Q23efx5TSyncFPQ23efx3Arg
@@ -739,8 +778,8 @@ __vt__Q23efx9TPodOpenA:
 	.4byte startDemoDrawOff__Q23efx5TSyncFv
 	.4byte endDemoDrawOn__Q23efx5TSyncFv
 	.4byte __dt__Q23efx9TPodOpenAFv
-.global __vt__Q23efx10TUfoGasOut
-__vt__Q23efx10TUfoGasOut:
+end __vt__Q23efx9TPodOpenA
+obj weak __vt__Q23efx10TUfoGasOut
 	.4byte 0
 	.4byte 0
 	.4byte create__Q23efx5TSyncFPQ23efx3Arg
@@ -760,8 +799,8 @@ __vt__Q23efx10TUfoGasOut:
 	.4byte startDemoDrawOff__Q23efx5TSyncFv
 	.4byte endDemoDrawOn__Q23efx5TSyncFv
 	.4byte __dt__Q23efx10TUfoGasOutFv
-.global __vt__Q23efx9TUfoGasIn
-__vt__Q23efx9TUfoGasIn:
+end __vt__Q23efx10TUfoGasOut
+obj weak __vt__Q23efx9TUfoGasIn
 	.4byte 0
 	.4byte 0
 	.4byte create__Q23efx5TSyncFPQ23efx3Arg
@@ -781,8 +820,8 @@ __vt__Q23efx9TUfoGasIn:
 	.4byte startDemoDrawOff__Q23efx5TSyncFv
 	.4byte endDemoDrawOn__Q23efx5TSyncFv
 	.4byte __dt__Q23efx9TUfoGasInFv
-.global __vt__Q23efx11TUfoPodOpen
-__vt__Q23efx11TUfoPodOpen:
+end __vt__Q23efx9TUfoGasIn
+obj weak __vt__Q23efx11TUfoPodOpen
 	.4byte 0
 	.4byte 0
 	.4byte "create__Q23efx29TSyncGroup2<Q23efx9TChaseMtx>FPQ23efx3Arg"
@@ -790,8 +829,8 @@ __vt__Q23efx11TUfoPodOpen:
 	.4byte "fade__Q23efx29TSyncGroup2<Q23efx9TChaseMtx>Fv"
 	.4byte "startDemoDrawOff__Q23efx29TSyncGroup2<Q23efx9TChaseMtx>Fv"
 	.4byte "endDemoDrawOn__Q23efx29TSyncGroup2<Q23efx9TChaseMtx>Fv"
-.global __vt__Q23efx17TUfoSpotact_ver01
-__vt__Q23efx17TUfoSpotact_ver01:
+end __vt__Q23efx11TUfoPodOpen
+obj weak __vt__Q23efx17TUfoSpotact_ver01
 	.4byte 0
 	.4byte 0
 	.4byte "create__Q23efx29TSyncGroup2<Q23efx9TChaseMtx>FPQ23efx3Arg"
@@ -799,8 +838,8 @@ __vt__Q23efx17TUfoSpotact_ver01:
 	.4byte "fade__Q23efx29TSyncGroup2<Q23efx9TChaseMtx>Fv"
 	.4byte "startDemoDrawOff__Q23efx29TSyncGroup2<Q23efx9TChaseMtx>Fv"
 	.4byte "endDemoDrawOn__Q23efx29TSyncGroup2<Q23efx9TChaseMtx>Fv"
-.global __vt__Q23efx15TUfoPodOpenSuck
-__vt__Q23efx15TUfoPodOpenSuck:
+end __vt__Q23efx17TUfoSpotact_ver01
+obj weak __vt__Q23efx15TUfoPodOpenSuck
 	.4byte 0
 	.4byte 0
 	.4byte create__Q23efx5TSyncFPQ23efx3Arg
@@ -820,8 +859,8 @@ __vt__Q23efx15TUfoPodOpenSuck:
 	.4byte startDemoDrawOff__Q23efx5TSyncFv
 	.4byte endDemoDrawOn__Q23efx5TSyncFv
 	.4byte __dt__Q23efx15TUfoPodOpenSuckFv
-.global __vt__Q23efx8TUfoSpot
-__vt__Q23efx8TUfoSpot:
+end __vt__Q23efx15TUfoPodOpenSuck
+obj weak __vt__Q23efx8TUfoSpot
 	.4byte 0
 	.4byte 0
 	.4byte "create__Q23efx29TSyncGroup2<Q23efx9TChaseMtx>FPQ23efx3Arg"
@@ -829,8 +868,8 @@ __vt__Q23efx8TUfoSpot:
 	.4byte "fade__Q23efx29TSyncGroup2<Q23efx9TChaseMtx>Fv"
 	.4byte "startDemoDrawOff__Q23efx29TSyncGroup2<Q23efx9TChaseMtx>Fv"
 	.4byte "endDemoDrawOn__Q23efx29TSyncGroup2<Q23efx9TChaseMtx>Fv"
-.global __vt__Q23efx8TForever
-__vt__Q23efx8TForever:
+end __vt__Q23efx8TUfoSpot
+obj weak __vt__Q23efx8TForever
 	.4byte 0
 	.4byte 0
 	.4byte create__Q23efx5TSyncFPQ23efx3Arg
@@ -850,246 +889,192 @@ __vt__Q23efx8TForever:
 	.4byte startDemoDrawOff__Q23efx5TSyncFv
 	.4byte endDemoDrawOn__Q23efx5TSyncFv
 	.4byte __dt__Q23efx8TForeverFv
-.global __vt__Q34Game12ItemPikihead7InitArg
-__vt__Q34Game12ItemPikihead7InitArg:
+end __vt__Q23efx8TForever
+obj weak __vt__Q34Game12ItemPikihead7InitArg
 	.4byte 0
 	.4byte 0
 	.4byte getName__Q34Game12ItemPikihead7InitArgFv
-.global __vt__Q24Game11ItemInitArg
-__vt__Q24Game11ItemInitArg:
+end __vt__Q34Game12ItemPikihead7InitArg
+obj weak __vt__Q24Game11ItemInitArg
 	.4byte 0
 	.4byte 0
 	.4byte getName__Q24Game11ItemInitArgFv
+end __vt__Q24Game11ItemInitArg
 
 .section .sbss # 0x80514D80 - 0x80516360
 .balign 8
-.global lbl_805159A8
-lbl_805159A8:
+gu32NAN___Q24Game5P2JST:
 	.skip 0x4
-.global lbl_805159AC
-lbl_805159AC:
+gfNAN___Q24Game5P2JST:
 	.skip 0x4
 .global mgr__Q24Game9ItemOnyon
 mgr__Q24Game9ItemOnyon:
 	.skip 0x4
-.global sVolveFlag
 sVolveFlag:
-	.skip 0x4
+	.skip 0x1
 
 .section .sdata2, "a"     # 0x80516360 - 0x80520E40
 .balign 8
-.global lbl_80518A28
-lbl_80518A28:
+obj local lbl_80518A28
 	.float -1.0
-.global lbl_80518A2C
-lbl_80518A2C:
-	.4byte 0x00000000
-.global lbl_80518A30
-lbl_80518A30:
-	.4byte 0x41F00000
-.global lbl_80518A34
-lbl_80518A34:
-	.4byte 0x73746172
-	.4byte 0x74310000
-.global lbl_80518A3C
+end lbl_80518A28
+obj local lbl_80518A2C
+	.float 0.0
+end lbl_80518A2C
+obj local lbl_80518A30
+	.float 30.0
+end lbl_80518A30
+.balign 4
+obj local lbl_80518A34
+	.asciz "start1"
+end lbl_80518A34
+.balign 4
 lbl_80518A3C:
-	.4byte 0x696E3100
-.global lbl_80518A40
+	.asciz "in1"
+.balign 4
 lbl_80518A40:
-	.4byte 0x6F757400
-.global lbl_80518A44
+	.asciz "out"
+.balign 4
 lbl_80518A44:
-	.4byte 0x706F745F
-	.4byte 0x63747200
-.global lbl_80518A4C
+	.asciz "pot_ctr"
+.balign 4
 lbl_80518A4C:
-	.4byte 0x42A00000
-.global lbl_80518A50
+	.float 80.0
 lbl_80518A50:
-	.4byte 0x42C80000
-.global lbl_80518A54
+	.float 100.0
 lbl_80518A54:
-	.4byte 0x41D80000
-.global lbl_80518A58
+	.float 27.0
 lbl_80518A58:
 	.float 1.0
-.global lbl_80518A5C
 lbl_80518A5C:
 	.float 20.0
-.global lbl_80518A60
 lbl_80518A60:
-	.4byte 0x43A2F983
-.global lbl_80518A64
+	.float 325.9493
 lbl_80518A64:
-	.4byte 0xC3A2F983
-.global lbl_80518A68
+	.float -325.9493
 lbl_80518A68:
-	.4byte 0x42EA0000
-.global lbl_80518A6C
+	.float 117.0
 lbl_80518A6C:
-	.4byte 0x626F6479
-	.4byte 0x5F310000
-.global lbl_80518A74
+	.asciz "body_1"
+.balign 4
 lbl_80518A74:
-	.4byte 0x6B657900
-.global lbl_80518A78
+	.asciz "key"
+.balign 4
 lbl_80518A78:
-	.4byte 0x40000000
-.global lbl_80518A7C
+	.float 2.0
 lbl_80518A7C:
 	.float 0.5
-.global lbl_80518A80
 lbl_80518A80:
-	.4byte 0x43C80000
-.global lbl_80518A84
+	.float 400.0
 lbl_80518A84:
-	.4byte 0x79657300
-.global lbl_80518A88
+	.asciz "yes"
+.balign 4
 lbl_80518A88:
 	.float -20.0
-.global lbl_80518A8C
 lbl_80518A8C:
-	.4byte 0x40A00000
-.global lbl_80518A90
+	.float 5.0
 lbl_80518A90:
-	.4byte 0x42200000
-.global lbl_80518A94
+	.float 40.0
 lbl_80518A94:
-	.4byte 0x41200000
-.global lbl_80518A98
+	.float 10.0
 lbl_80518A98:
 	.float 0.7
-.global lbl_80518A9C
+.balign 4
 lbl_80518A9C:
-	.4byte 0x676F616C
-	.4byte 0x00000000
-.global lbl_80518AA4
+	.asciz "goal"
+.balign 4
 lbl_80518AA4:
-	.4byte 0x42BE0000
-.global lbl_80518AA8
+	.float 95.0
 lbl_80518AA8:
-	.4byte 0x43070000
-.global lbl_80518AAC
+	.float 135.0
 lbl_80518AAC:
-	.4byte 0x43480000
-.global lbl_80518AB0
+	.float 200.0
 lbl_80518AB0:
-	.4byte 0x3E4CCCCD
-.global lbl_80518AB4
+	.float 0.2
 lbl_80518AB4:
-	.4byte 0x40400000
-.global lbl_80518AB8
+	.float 3.0
 lbl_80518AB8:
-	.4byte 0x3ECCCCCD
-.global lbl_80518ABC
+	.float 0.4
 lbl_80518ABC:
-	.4byte 0x41000000
-.global lbl_80518AC0
+	.float 8.0
 lbl_80518AC0:
-	.4byte 0x437A0000
-.global lbl_80518AC4
+	.float 250.0
 lbl_80518AC4:
-	.4byte 0x43FA0000
-.global lbl_80518AC8
+	.float 500.0
 lbl_80518AC8:
-	.4byte 0x43960000
-.global lbl_80518ACC
+	.float 300.0
 lbl_80518ACC:
-	.4byte 0x447A0000
-.global lbl_80518AD0
+	.float 1000.0
 lbl_80518AD0:
-	.4byte 0x43C30000
-.global lbl_80518AD4
+	.float 390.0
 lbl_80518AD4:
 	.float 0.25
-.global lbl_80518AD8
 lbl_80518AD8:
 	.float 0.3
-	.4byte 0x00000000
-.global lbl_80518AE0
+.balign 8
 lbl_80518AE0:
 	.4byte 0x43300000
 	.4byte 0x00000000
-.global lbl_80518AE8
 lbl_80518AE8:
 	.float 110.0
-.global lbl_80518AEC
 lbl_80518AEC:
 	.float 32768.0
-.global lbl_80518AF0
 lbl_80518AF0:
 	.float 1.5707964
-.global lbl_80518AF4
 lbl_80518AF4:
 	.float 0.7853982
-.global lbl_80518AF8
 lbl_80518AF8:
 	.float 6.2831855
-.global lbl_80518AFC
 lbl_80518AFC:
 	.float 130.0
-.global lbl_80518B00
 lbl_80518B00:
 	.float 700.0
-	.skip 0x4
-.global lbl_80518B08
+.balign 8
 lbl_80518B08:
 	.4byte 0x43300000
 	.4byte 0x80000000
-.global lbl_80518B10
 lbl_80518B10:
 	.float 0.05
-.global lbl_80518B14
 lbl_80518B14:
 	.float 0.1
-.global lbl_80518B18
 lbl_80518B18:
 	.float 0.8
-.global lbl_80518B1C
+.balign 4
 lbl_80518B1C:
 	.asciz "flow"
-	.skip 0x3
-.global lbl_80518B24
+.balign 4
 lbl_80518B24:
 	.float 900.0
-.global lbl_80518B28
 lbl_80518B28:
 	.float 7.0
-.global lbl_80518B2C
 lbl_80518B2C:
 	.float 90.0
-.global lbl_80518B30
+.balign 4
 lbl_80518B30:
 	.asciz "Onyon"
-	.skip 0x2
-.global lbl_80518B38
+.balign 4
 lbl_80518B38:
 	.asciz "pot.bmd"
-.global lbl_80518B40
+.balign 4
 lbl_80518B40:
 	.asciz "ufo.bmd"
-.global lbl_80518B48
+.balign 4
 lbl_80518B48:
 	.asciz "ufo.brk"
-.global lbl_80518B50
+.balign 4
 lbl_80518B50:
 	.asciz "ArgType"
-.global lbl_80518B58
+.balign 4
 lbl_80518B58:
 	.float 128000.0
 
 .section .sbss2, "", @nobits # 0x80520E40 - 0x80520ED8
-.global lbl_80520E60
 lbl_80520E60:
-	.skip 0x4
-.global lbl_80520E64
-lbl_80520E64:
-	.skip 0x4
+	.skip 0x8
 
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .if version == 1
-.global movieUserCommand__Q24Game5OnyonFUlPQ24Game11MoviePlayer
-movieUserCommand__Q24Game5OnyonFUlPQ24Game11MoviePlayer:
+fn global movieUserCommand__Q24Game5OnyonFUlPQ24Game11MoviePlayer
 /* 80174CA0 00171BE0  94 21 FF 60 */	stwu r1, -0xa0(r1)
 /* 80174CA4 00171BE4  7C 08 02 A6 */	mflr r0
 /* 80174CA8 00171BE8  90 01 00 A4 */	stw r0, 0xa4(r1)
@@ -1643,9 +1628,9 @@ movieUserCommand__Q24Game5OnyonFUlPQ24Game11MoviePlayer:
 /* 801754A0 001723E0  7C 08 03 A6 */	mtlr r0
 /* 801754A4 001723E4  38 21 00 A0 */	addi r1, r1, 0xa0
 /* 801754A8 001723E8  4E 80 00 20 */	blr 
+end movieUserCommand__Q24Game5OnyonFUlPQ24Game11MoviePlayer
 .else
-.global movieUserCommand__Q24Game5OnyonFUlPQ24Game11MoviePlayer
-movieUserCommand__Q24Game5OnyonFUlPQ24Game11MoviePlayer:
+fn global movieUserCommand__Q24Game5OnyonFUlPQ24Game11MoviePlayer
 /* 80174CA0 00171BE0  94 21 FF 60 */	stwu r1, -0xa0(r1)
 /* 80174CA4 00171BE4  7C 08 02 A6 */	mflr r0
 /* 80174CA8 00171BE8  90 01 00 A4 */	stw r0, 0xa4(r1)
@@ -2199,10 +2184,10 @@ movieUserCommand__Q24Game5OnyonFUlPQ24Game11MoviePlayer:
 /* 801754A0 001723E0  7C 08 03 A6 */	mtlr r0
 /* 801754A4 001723E4  38 21 00 A0 */	addi r1, r1, 0xa0
 /* 801754A8 001723E8  4E 80 00 20 */	blr 
+end movieUserCommand__Q24Game5OnyonFUlPQ24Game11MoviePlayer
 .endif
 
-.global isSuckReady__Q24Game5OnyonFv
-isSuckReady__Q24Game5OnyonFv:
+fn global isSuckReady__Q24Game5OnyonFv
 /* 801754AC 001723EC  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 801754B0 001723F0  7C 08 02 A6 */	mflr r0
 /* 801754B4 001723F4  90 01 00 14 */	stw r0, 0x14(r1)
@@ -2267,9 +2252,9 @@ isSuckReady__Q24Game5OnyonFv:
 /* 80175584 001724C4  7C 08 03 A6 */	mtlr r0
 /* 80175588 001724C8  38 21 00 10 */	addi r1, r1, 0x10
 /* 8017558C 001724CC  4E 80 00 20 */	blr 
+end isSuckReady__Q24Game5OnyonFv
 
-.global isSuckArriveWait__Q24Game5OnyonFv
-isSuckArriveWait__Q24Game5OnyonFv:
+fn global isSuckArriveWait__Q24Game5OnyonFv
 /* 80175590 001724D0  A0 03 02 2E */	lhz r0, 0x22e(r3)
 /* 80175594 001724D4  28 00 00 04 */	cmplwi r0, 4
 /* 80175598 001724D8  40 82 00 18 */	bne .L_801755B0
@@ -2281,9 +2266,9 @@ isSuckArriveWait__Q24Game5OnyonFv:
 .L_801755B0:
 /* 801755B0 001724F0  38 60 00 00 */	li r3, 0
 /* 801755B4 001724F4  4E 80 00 20 */	blr 
+end isSuckArriveWait__Q24Game5OnyonFv
 
-.global setType__Q24Game5OnyonFi
-setType__Q24Game5OnyonFi:
+fn global setType__Q24Game5OnyonFi
 /* 801755B8 001724F8  94 21 FF D0 */	stwu r1, -0x30(r1)
 /* 801755BC 001724FC  7C 08 02 A6 */	mflr r0
 /* 801755C0 00172500  3C A0 80 48 */	lis r5, lbl_8047E620@ha
@@ -2721,9 +2706,9 @@ setType__Q24Game5OnyonFi:
 /* 80175C38 00172B78  7C 08 03 A6 */	mtlr r0
 /* 80175C3C 00172B7C  38 21 00 30 */	addi r1, r1, 0x30
 /* 80175C40 00172B80  4E 80 00 20 */	blr 
+end setType__Q24Game5OnyonFi
 
-.global __dt__Q23efx13TChasePosYRotFv
-__dt__Q23efx13TChasePosYRotFv:
+fn weak __dt__Q23efx13TChasePosYRotFv
 /* 80175C44 00172B84  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80175C48 00172B88  7C 08 02 A6 */	mflr r0
 /* 80175C4C 00172B8C  90 01 00 14 */	stw r0, 0x14(r1)
@@ -2759,9 +2744,9 @@ __dt__Q23efx13TChasePosYRotFv:
 /* 80175CBC 00172BFC  7C 08 03 A6 */	mtlr r0
 /* 80175CC0 00172C00  38 21 00 10 */	addi r1, r1, 0x10
 /* 80175CC4 00172C04  4E 80 00 20 */	blr 
+end __dt__Q23efx13TChasePosYRotFv
 
-.global __dt__Q23efx8TForeverFv
-__dt__Q23efx8TForeverFv:
+fn weak __dt__Q23efx8TForeverFv
 /* 80175CC8 00172C08  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80175CCC 00172C0C  7C 08 02 A6 */	mflr r0
 /* 80175CD0 00172C10  90 01 00 14 */	stw r0, 0x14(r1)
@@ -2797,9 +2782,9 @@ __dt__Q23efx8TForeverFv:
 /* 80175D40 00172C80  7C 08 03 A6 */	mtlr r0
 /* 80175D44 00172C84  38 21 00 10 */	addi r1, r1, 0x10
 /* 80175D48 00172C88  4E 80 00 20 */	blr 
+end __dt__Q23efx8TForeverFv
 
-.global setupTevRegAnim__Q24Game5OnyonFi
-setupTevRegAnim__Q24Game5OnyonFi:
+fn global setupTevRegAnim__Q24Game5OnyonFi
 /* 80175D4C 00172C8C  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80175D50 00172C90  7C 08 02 A6 */	mflr r0
 /* 80175D54 00172C94  90 01 00 14 */	stw r0, 0x14(r1)
@@ -2855,9 +2840,9 @@ setupTevRegAnim__Q24Game5OnyonFi:
 /* 80175E10 00172D50  7C 08 03 A6 */	mtlr r0
 /* 80175E14 00172D54  38 21 00 10 */	addi r1, r1, 0x10
 /* 80175E18 00172D58  4E 80 00 20 */	blr 
+end setupTevRegAnim__Q24Game5OnyonFi
 
-.global stimulate__Q24Game5OnyonFRQ24Game11Interaction
-stimulate__Q24Game5OnyonFRQ24Game11Interaction:
+fn global stimulate__Q24Game5OnyonFRQ24Game11Interaction
 /* 80175E1C 00172D5C  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80175E20 00172D60  7C 08 02 A6 */	mflr r0
 /* 80175E24 00172D64  90 01 00 14 */	stw r0, 0x14(r1)
@@ -2889,9 +2874,9 @@ stimulate__Q24Game5OnyonFRQ24Game11Interaction:
 /* 80175E84 00172DC4  7C 08 03 A6 */	mtlr r0
 /* 80175E88 00172DC8  38 21 00 10 */	addi r1, r1, 0x10
 /* 80175E8C 00172DCC  4E 80 00 20 */	blr 
+end stimulate__Q24Game5OnyonFRQ24Game11Interaction
 
-.global actOnyon__Q24Game18InteractSuckArriveFPQ24Game5Onyon
-actOnyon__Q24Game18InteractSuckArriveFPQ24Game5Onyon:
+fn global actOnyon__Q24Game18InteractSuckArriveFPQ24Game5Onyon
 /* 80175E90 00172DD0  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 80175E94 00172DD4  7C 08 02 A6 */	mflr r0
 /* 80175E98 00172DD8  3C 60 80 48 */	lis r3, lbl_8047E620@ha
@@ -2984,14 +2969,14 @@ actOnyon__Q24Game18InteractSuckArriveFPQ24Game5Onyon:
 /* 80175FDC 00172F1C  7C 08 03 A6 */	mtlr r0
 /* 80175FE0 00172F20  38 21 00 20 */	addi r1, r1, 0x20
 /* 80175FE4 00172F24  4E 80 00 20 */	blr 
+end actOnyon__Q24Game18InteractSuckArriveFPQ24Game5Onyon
 
-.global needShadow__Q24Game5OnyonFv
-needShadow__Q24Game5OnyonFv:
+fn global needShadow__Q24Game5OnyonFv
 /* 80175FE8 00172F28  38 60 00 00 */	li r3, 0
 /* 80175FEC 00172F2C  4E 80 00 20 */	blr 
+end needShadow__Q24Game5OnyonFv
 
-.global getShadowParam__Q24Game5OnyonFRQ24Game11ShadowParam
-getShadowParam__Q24Game5OnyonFRQ24Game11ShadowParam:
+fn global getShadowParam__Q24Game5OnyonFRQ24Game11ShadowParam
 /* 80175FF0 00172F30  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 80175FF4 00172F34  7C 08 02 A6 */	mflr r0
 /* 80175FF8 00172F38  90 01 00 24 */	stw r0, 0x24(r1)
@@ -3034,9 +3019,9 @@ getShadowParam__Q24Game5OnyonFRQ24Game11ShadowParam:
 /* 80176088 00172FC8  7C 08 03 A6 */	mtlr r0
 /* 8017608C 00172FCC  38 21 00 20 */	addi r1, r1, 0x20
 /* 80176090 00172FD0  4E 80 00 20 */	blr 
+end getShadowParam__Q24Game5OnyonFRQ24Game11ShadowParam
 
-.global sound_culling__Q24Game5OnyonFv
-sound_culling__Q24Game5OnyonFv:
+fn global sound_culling__Q24Game5OnyonFv
 /* 80176094 00172FD4  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80176098 00172FD8  7C 08 02 A6 */	mflr r0
 /* 8017609C 00172FDC  90 01 00 14 */	stw r0, 0x14(r1)
@@ -3052,10 +3037,10 @@ sound_culling__Q24Game5OnyonFv:
 /* 801760BC 00172FFC  7C 08 03 A6 */	mtlr r0
 /* 801760C0 00173000  38 21 00 10 */	addi r1, r1, 0x10
 /* 801760C4 00173004  4E 80 00 20 */	blr 
+end sound_culling__Q24Game5OnyonFv
 
 .if version == 1
-.global actOnyon__Q24Game16InteractSuckDoneFPQ24Game5Onyon
-actOnyon__Q24Game16InteractSuckDoneFPQ24Game5Onyon:
+fn global actOnyon__Q24Game16InteractSuckDoneFPQ24Game5Onyon
 /* 801760C8 00173008  94 21 FE C0 */	stwu r1, -0x140(r1)
 /* 801760CC 0017300C  7C 08 02 A6 */	mflr r0
 /* 801760D0 00173010  90 01 01 44 */	stw r0, 0x144(r1)
@@ -3681,7 +3666,7 @@ actOnyon__Q24Game16InteractSuckDoneFPQ24Game5Onyon:
 /* 801769F8 00173938  40 82 02 20 */	bne .L_80176C18
 /* 801769FC 0017393C  80 62 2B 00 */	lwz r3, lbl_80520E60@sda21(r2)
 /* 80176A00 00173940  3B 81 00 28 */	addi r28, r1, 0x28
-/* 80176A04 00173944  80 02 2B 04 */	lwz r0, lbl_80520E64@sda21(r2)
+/* 80176A04 00173944  80 02 2B 04 */	lwz r0, lbl_80520E60+4@sda21(r2)
 /* 80176A08 00173948  3B 60 00 00 */	li r27, 0
 /* 80176A0C 0017394C  90 61 00 28 */	stw r3, 0x28(r1)
 /* 80176A10 00173950  80 6D 84 80 */	lwz r3, cBedamaRed__13VsOtakaraName@sda21(r13)
@@ -3988,9 +3973,9 @@ actOnyon__Q24Game16InteractSuckDoneFPQ24Game5Onyon:
 /* 80176E78 00173DB8  7C 08 03 A6 */	mtlr r0
 /* 80176E7C 00173DBC  38 21 01 40 */	addi r1, r1, 0x140
 /* 80176E80 00173DC0  4E 80 00 20 */	blr 
+end actOnyon__Q24Game16InteractSuckDoneFPQ24Game5Onyon
 .else
-.global actOnyon__Q24Game16InteractSuckDoneFPQ24Game5Onyon
-actOnyon__Q24Game16InteractSuckDoneFPQ24Game5Onyon:
+fn global actOnyon__Q24Game16InteractSuckDoneFPQ24Game5Onyon
 /* 801760C8 00173008  94 21 FE C0 */	stwu r1, -0x140(r1)
 /* 801760CC 0017300C  7C 08 02 A6 */	mflr r0
 /* 801760D0 00173010  90 01 01 44 */	stw r0, 0x144(r1)
@@ -4616,7 +4601,7 @@ actOnyon__Q24Game16InteractSuckDoneFPQ24Game5Onyon:
 /* 801769F8 00173938  40 82 02 20 */	bne .L_80176C18
 /* 801769FC 0017393C  80 62 2B 00 */	lwz r3, lbl_80520E60@sda21(r2)
 /* 80176A00 00173940  3B 81 00 28 */	addi r28, r1, 0x28
-/* 80176A04 00173944  80 02 2B 04 */	lwz r0, lbl_80520E64@sda21(r2)
+/* 80176A04 00173944  80 02 2B 04 */	lwz r0, lbl_80520E60+4@sda21(r2)
 /* 80176A08 00173948  3B 60 00 00 */	li r27, 0
 /* 80176A0C 0017394C  90 61 00 28 */	stw r3, 0x28(r1)
 /* 80176A10 00173950  80 6D 84 80 */	lwz r3, cBedamaRed__13VsOtakaraName@sda21(r13)
@@ -4923,22 +4908,22 @@ actOnyon__Q24Game16InteractSuckDoneFPQ24Game5Onyon:
 /* 80176E78 00173DB8  7C 08 03 A6 */	mtlr r0
 /* 80176E7C 00173DBC  38 21 01 40 */	addi r1, r1, 0x140
 /* 80176E80 00173DC0  4E 80 00 20 */	blr 
+end actOnyon__Q24Game16InteractSuckDoneFPQ24Game5Onyon
 .endif
 
-.global startPropera__Q24Game5OnyonFv
-startPropera__Q24Game5OnyonFv:
+fn global startPropera__Q24Game5OnyonFv
 /* 80176E84 00173DC4  C0 02 A6 FC */	lfs f0, lbl_80518A5C@sda21(r2)
 /* 80176E88 00173DC8  D0 03 02 5C */	stfs f0, 0x25c(r3)
 /* 80176E8C 00173DCC  4E 80 00 20 */	blr 
+end startPropera__Q24Game5OnyonFv
 
-.global stopPropera__Q24Game5OnyonFv
-stopPropera__Q24Game5OnyonFv:
+fn global stopPropera__Q24Game5OnyonFv
 /* 80176E90 00173DD0  C0 02 A7 28 */	lfs f0, lbl_80518A88@sda21(r2)
 /* 80176E94 00173DD4  D0 03 02 5C */	stfs f0, 0x25c(r3)
 /* 80176E98 00173DD8  4E 80 00 20 */	blr 
+end stopPropera__Q24Game5OnyonFv
 
-.global doDirectDraw__Q24Game5OnyonFR8Graphics
-doDirectDraw__Q24Game5OnyonFR8Graphics:
+fn global doDirectDraw__Q24Game5OnyonFR8Graphics
 /* 80176E9C 00173DDC  94 21 FF C0 */	stwu r1, -0x40(r1)
 /* 80176EA0 00173DE0  7C 08 02 A6 */	mflr r0
 /* 80176EA4 00173DE4  90 01 00 44 */	stw r0, 0x44(r1)
@@ -5031,9 +5016,9 @@ doDirectDraw__Q24Game5OnyonFR8Graphics:
 /* 80176FFC 00173F3C  7C 08 03 A6 */	mtlr r0
 /* 80177000 00173F40  38 21 00 40 */	addi r1, r1, 0x40
 /* 80177004 00173F44  4E 80 00 20 */	blr 
+end doDirectDraw__Q24Game5OnyonFR8Graphics
 
-.global onInit__Q24Game5OnyonFPQ24Game15CreatureInitArg
-onInit__Q24Game5OnyonFPQ24Game15CreatureInitArg:
+fn global onInit__Q24Game5OnyonFPQ24Game15CreatureInitArg
 /* 80177008 00173F48  38 80 00 00 */	li r4, 0
 /* 8017700C 00173F4C  C0 02 A6 CC */	lfs f0, lbl_80518A2C@sda21(r2)
 /* 80177010 00173F50  B0 83 02 2C */	sth r4, 0x22c(r3)
@@ -5047,13 +5032,13 @@ onInit__Q24Game5OnyonFPQ24Game15CreatureInitArg:
 /* 80177030 00173F70  90 83 02 48 */	stw r4, 0x248(r3)
 /* 80177034 00173F74  98 03 02 40 */	stb r0, 0x240(r3)
 /* 80177038 00173F78  4E 80 00 20 */	blr 
+end onInit__Q24Game5OnyonFPQ24Game15CreatureInitArg
 
-.global onKill__Q24Game5OnyonFPQ24Game15CreatureKillArg
-onKill__Q24Game5OnyonFPQ24Game15CreatureKillArg:
+fn global onKill__Q24Game5OnyonFPQ24Game15CreatureKillArg
 /* 8017703C 00173F7C  4E 80 00 20 */	blr 
+end onKill__Q24Game5OnyonFPQ24Game15CreatureKillArg
 
-.global onSetPosition__Q24Game5OnyonFv
-onSetPosition__Q24Game5OnyonFv:
+fn global onSetPosition__Q24Game5OnyonFv
 /* 80177040 00173F80  94 21 FF B0 */	stwu r1, -0x50(r1)
 /* 80177044 00173F84  7C 08 02 A6 */	mflr r0
 /* 80177048 00173F88  90 01 00 54 */	stw r0, 0x54(r1)
@@ -5210,6 +5195,7 @@ onSetPosition__Q24Game5OnyonFv:
 /* 80177270 001741B0  7C 08 03 A6 */	mtlr r0
 /* 80177274 001741B4  38 21 00 50 */	addi r1, r1, 0x50
 /* 80177278 001741B8  4E 80 00 20 */	blr 
+end onSetPosition__Q24Game5OnyonFv
 
 .global setSpotState__Q24Game5OnyonFQ34Game5Onyon10cSpotState
 setSpotState__Q24Game5OnyonFQ34Game5Onyon10cSpotState:
@@ -11757,8 +11743,7 @@ __dt__Q23efx9TUfoGasInFv:
 /* 8017C698 001795D8  38 21 00 10 */	addi r1, r1, 0x10
 /* 8017C69C 001795DC  4E 80 00 20 */	blr 
 
-.global __dt__Q23efx15TUfoPodOpenSuckFv
-__dt__Q23efx15TUfoPodOpenSuckFv:
+fn weak __dt__Q23efx15TUfoPodOpenSuckFv
 /* 8017C6A0 001795E0  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8017C6A4 001795E4  7C 08 02 A6 */	mflr r0
 /* 8017C6A8 001795E8  90 01 00 14 */	stw r0, 0x14(r1)
@@ -11800,18 +11785,19 @@ __dt__Q23efx15TUfoPodOpenSuckFv:
 /* 8017C730 00179670  7C 08 03 A6 */	mtlr r0
 /* 8017C734 00179674  38 21 00 10 */	addi r1, r1, 0x10
 /* 8017C738 00179678  4E 80 00 20 */	blr 
+end __dt__Q23efx15TUfoPodOpenSuckFv
 
-.global getName__Q34Game12ItemPikihead7InitArgFv
-getName__Q34Game12ItemPikihead7InitArgFv:
+fn weak getName__Q34Game12ItemPikihead7InitArgFv
 /* 8017C73C 0017967C  3C 60 80 48 */	lis r3, lbl_8047EA5C@ha
 /* 8017C740 00179680  38 63 EA 5C */	addi r3, r3, lbl_8047EA5C@l
 /* 8017C744 00179684  4E 80 00 20 */	blr 
+end getName__Q34Game12ItemPikihead7InitArgFv
 
-.global getName__Q24Game11ItemInitArgFv
-getName__Q24Game11ItemInitArgFv:
+fn weak getName__Q24Game11ItemInitArgFv
 /* 8017C748 00179688  3C 60 80 48 */	lis r3, lbl_8047EA74@ha
 /* 8017C74C 0017968C  38 63 EA 74 */	addi r3, r3, lbl_8047EA74@l
 /* 8017C750 00179690  4E 80 00 20 */	blr 
+end getName__Q24Game11ItemInitArgFv
 
 .global "resetMgr__28NodeObjectMgr<Q24Game5Onyon>Fv"
 "resetMgr__28NodeObjectMgr<Q24Game5Onyon>Fv":
@@ -12650,18 +12636,18 @@ getName__Q24Game11ItemInitArgFv:
 /* 8017D328 0017A268  38 60 00 00 */	li r3, 0
 /* 8017D32C 0017A26C  4E 80 00 20 */	blr 
 
-.global __sinit_onyonMgr_cpp
-__sinit_onyonMgr_cpp:
+fn local __sinit_onyonMgr_cpp
 /* 8017D330 0017A270  3C 80 80 51 */	lis r4, __float_nan@ha
 /* 8017D334 0017A274  38 00 FF FF */	li r0, -1
 /* 8017D338 0017A278  C0 04 48 B0 */	lfs f0, __float_nan@l(r4)
-/* 8017D33C 0017A27C  3C 60 80 4B */	lis r3, lbl_804B2420@ha
-/* 8017D340 0017A280  90 0D 93 28 */	stw r0, lbl_805159A8@sda21(r13)
-/* 8017D344 0017A284  D4 03 24 20 */	stfsu f0, lbl_804B2420@l(r3)
-/* 8017D348 0017A288  D0 0D 93 2C */	stfs f0, lbl_805159AC@sda21(r13)
+/* 8017D33C 0017A27C  3C 60 80 4B */	lis r3, govNAN___Q24Game5P2JST@ha
+/* 8017D340 0017A280  90 0D 93 28 */	stw r0, gu32NAN___Q24Game5P2JST@sda21(r13)
+/* 8017D344 0017A284  D4 03 24 20 */	stfsu f0, govNAN___Q24Game5P2JST@l(r3)
+/* 8017D348 0017A288  D0 0D 93 2C */	stfs f0, gfNAN___Q24Game5P2JST@sda21(r13)
 /* 8017D34C 0017A28C  D0 03 00 04 */	stfs f0, 4(r3)
 /* 8017D350 0017A290  D0 03 00 08 */	stfs f0, 8(r3)
 /* 8017D354 0017A294  4E 80 00 20 */	blr 
+end __sinit_onyonMgr_cpp
 
 .global "@4@__dt__Q23efx8TForeverFv"
 "@4@__dt__Q23efx8TForeverFv":

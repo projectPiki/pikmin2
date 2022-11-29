@@ -8,6 +8,7 @@
 #include "Game/MapMgr.h"
 #include "Game/BirthMgr.h"
 #include "Game/gameStages.h"
+#include "LoadResource.h"
 #include "efx/TPod.h"
 #include "efx/Container.h"
 #include "efx/Arg.h"
@@ -27,7 +28,9 @@
 #include "JSystem/JAL/JALCalc.h"
 #include "Dolphin/rand.h"
 #include "PikiAi.h"
+#include "JSystem/J3D/J3DModelLoader.h"
 
+Game::ItemOnyon::Mgr* Game::ItemOnyon::mgr;
 static bool sVolveFlag;
 
 namespace Game {
@@ -161,26 +164,6 @@ void Onyon::movieUserCommand(u32 code, MoviePlayer* player)
 		break;
 	}
 }
-
-// /*
-//  * --INFO--
-//  * Address:	........
-//  * Size:	000034
-//  */
-// void Onyon::openUFO(void)
-// {
-// 	// UNUSED FUNCTION
-// }
-
-// /*
-//  * --INFO--
-//  * Address:	........
-//  * Size:	000068
-//  */
-// void Onyon::closeUFO(void)
-// {
-// 	// UNUSED FUNCTION
-// }
 
 /*
  * --INFO--
@@ -411,7 +394,7 @@ bool InteractSuckDone::actOnyon(Onyon* item)
 		if (moviePlayer && moviePlayer->m_demoState == 0) {
 			Vector3f pos = item->getPosition();
 
-			f32 theta = item->getFaceDir();
+			const f32 theta = item->getFaceDir();
 			pos += Vector3f(20.0f * pikmin2_sinf(theta), 117.0f, 20.0f * pikmin2_cosf(theta));
 			int money = pellet->m_config->m_params.m_money.m_data;
 			if (money > 0) {
@@ -543,993 +526,6 @@ bool InteractSuckDone::actOnyon(Onyon* item)
 		}
 	}
 	return true;
-	/*
-	stwu     r1, -0x140(r1)
-	mflr     r0
-	stw      r0, 0x144(r1)
-	stmw     r27, 0x12c(r1)
-	mr       r30, r4
-	lis      r4, lbl_8047E620@ha
-	mr       r29, r3
-	mr       r3, r30
-	addi     r28, r4, lbl_8047E620@l
-	lwz      r12, 0(r30)
-	lwz      r12, 0xb8(r12)
-	mtctr    r12
-	bctrl
-	clrlwi.  r0, r3, 0x18
-	beq      lbl_80176128
-	mr       r3, r30
-	lwz      r12, 0(r30)
-	lwz      r12, 0xbc(r12)
-	mtctr    r12
-	bctrl
-	clrlwi.  r0, r3, 0x18
-	bne      lbl_80176128
-	li       r3, 0
-	b        lbl_80176E70
-
-lbl_80176128:
-	lwz      r3, 4(r29)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x80(r12)
-	mtctr    r12
-	bctrl
-	clrlwi.  r0, r3, 0x18
-	bne      lbl_80176158
-	addi     r3, r28, 0x18
-	addi     r5, r28, 0x60
-	li       r4, 0x383
-	crclr    6
-	bl       panic_f__12JUTExceptionFPCciPCce
-
-lbl_80176158:
-	lhz      r0, 0x22e(r30)
-	lwz      r31, 4(r29)
-	cmplwi   r0, 2
-	bgt      lbl_801761A0
-	cmplwi   r30, 0
-	mr       r5, r30
-	beq      lbl_80176178
-	addi     r5, r30, 0x178
-
-lbl_80176178:
-	addi     r3, r30, 0x1a8
-	li       r4, 3
-	bl       startAnim__Q28SysShape8AnimatorFiPQ28SysShape14MotionListener
-	mr       r3, r30
-	li       r4, 0x3805
-	lwz      r12, 0(r30)
-	lwz      r12, 0x1c0(r12)
-	mtctr    r12
-	bctrl
-	b        lbl_80176550
-
-lbl_801761A0:
-	cmplwi   r0, 3
-	bne      lbl_8017635C
-	cmplwi   r30, 0
-	mr       r5, r30
-	beq      lbl_801761B8
-	addi     r5, r30, 0x178
-
-lbl_801761B8:
-	addi     r3, r30, 0x1a8
-	li       r4, 2
-	bl       startAnim__Q28SysShape8AnimatorFiPQ28SysShape14MotionListener
-	mr       r3, r30
-	li       r4, 0x3805
-	lwz      r12, 0(r30)
-	lwz      r12, 0x1c0(r12)
-	mtctr    r12
-	bctrl
-	lis      r3, __vt__Q23efx5TBase@ha
-	li       r5, 0
-	addi     r0, r3, __vt__Q23efx5TBase@l
-	lis      r3, __vt__Q23efx8TSimple2@ha
-	stw      r0, 0xd4(r1)
-	addi     r0, r3, __vt__Q23efx8TSimple2@l
-	lis      r3, __vt__Q23efx8TPodGepu@ha
-	li       r7, 0x17e
-	stw      r0, 0xd4(r1)
-	addi     r0, r3, __vt__Q23efx8TPodGepu@l
-	li       r6, 0x17f
-	mr       r4, r30
-	sth      r7, 0xd8(r1)
-	addi     r3, r1, 0x5c
-	sth      r6, 0xda(r1)
-	stw      r5, 0xdc(r1)
-	stw      r5, 0xe0(r1)
-	stw      r0, 0xd4(r1)
-	lwz      r12, 0(r30)
-	lwz      r12, 8(r12)
-	mtctr    r12
-	bctrl
-	lfs      f2, 0x5c(r1)
-	lis      r3, __vt__Q23efx3Arg@ha
-	lfs      f1, 0x60(r1)
-	addi     r0, r3, __vt__Q23efx3Arg@l
-	lfs      f0, 0x64(r1)
-	addi     r3, r1, 0xd4
-	stw      r0, 0xc4(r1)
-	addi     r4, r1, 0xc4
-	stfs     f2, 0xc8(r1)
-	stfs     f1, 0xcc(r1)
-	stfs     f0, 0xd0(r1)
-	bl       create__Q23efx8TSimple2FPQ23efx3Arg
-	lwz      r3, moviePlayer__4Game@sda21(r13)
-	cmplwi   r3, 0
-	beq      lbl_80176550
-	lwz      r0, 0x18(r3)
-	cmpwi    r0, 0
-	bne      lbl_80176550
-	mr       r4, r30
-	addi     r3, r1, 0x50
-	lwz      r12, 0(r30)
-	lwz      r12, 8(r12)
-	mtctr    r12
-	bctrl
-	lfs      f2, 0x50(r1)
-	lfs      f1, 0x54(r1)
-	lfs      f0, 0x58(r1)
-	stfs     f2, 0xb8(r1)
-	stfs     f1, 0xbc(r1)
-	stfs     f0, 0xc0(r1)
-	lwz      r3, 0x35c(r31)
-	lwz      r28, 0x170(r3)
-	cmpwi    r28, 0
-	ble      lbl_80176550
-	mr       r3, r31
-	lwz      r12, 0(r31)
-	lwz      r12, 0x1f4(r12)
-	mtctr    r12
-	bctrl
-	clrlwi   r0, r3, 0x18
-	cmplwi   r0, 1
-	beq      lbl_8017631C
-	mr       r3, r31
-	lwz      r12, 0(r31)
-	lwz      r12, 0x1f4(r12)
-	mtctr    r12
-	bctrl
-	clrlwi   r0, r3, 0x18
-	cmplwi   r0, 3
-	beq      lbl_8017631C
-	mr       r3, r31
-	lwz      r12, 0(r31)
-	lwz      r12, 0x1f4(r12)
-	mtctr    r12
-	bctrl
-	clrlwi   r0, r3, 0x18
-	cmplwi   r0, 4
-	bne      lbl_80176550
-
-lbl_8017631C:
-	lfs      f1, 0xb8(r1)
-	mr       r5, r28
-	lfs      f4, lbl_80518A2C@sda21(r2)
-	addi     r4, r1, 0xb8
-	lfs      f0, 0xc0(r1)
-	fadds    f3, f1, f4
-	lfs      f2, 0xbc(r1)
-	lfs      f1, lbl_80518A4C@sda21(r2)
-	fadds    f0, f0, f4
-	lwz      r3, carryInfoMgr@sda21(r13)
-	fadds    f1, f2, f1
-	stfs     f3, 0xb8(r1)
-	stfs     f1, 0xbc(r1)
-	stfs     f0, 0xc0(r1)
-	bl       "appearPoko__12CarryInfoMgrFRC10Vector3<f>i"
-	b        lbl_80176550
-
-lbl_8017635C:
-	cmplwi   r30, 0
-	mr       r5, r30
-	beq      lbl_8017636C
-	addi     r5, r30, 0x178
-
-lbl_8017636C:
-	addi     r3, r30, 0x1a8
-	li       r4, 0
-	bl       startAnim__Q28SysShape8AnimatorFiPQ28SysShape14MotionListener
-	addi     r3, r30, 0x1a8
-	li       r4, 0
-	bl       setFrameByKeyType__Q28SysShape8AnimatorFUl
-	li       r0, 2
-	lfs      f0, lbl_80518A30@sda21(r2)
-	stb      r0, 0x240(r30)
-	mr       r3, r30
-	li       r4, 0x3805
-	stfs     f0, 0x1d4(r30)
-	lwz      r12, 0(r30)
-	lwz      r12, 0x1c0(r12)
-	mtctr    r12
-	bctrl
-	lfs      f0, lbl_80518A2C@sda21(r2)
-	addi     r4, r28, 0x54
-	stfs     f0, 0x244(r30)
-	lwz      r3, 0x174(r30)
-	bl       getJoint__Q28SysShape5ModelFPc
-	bl       getWorldMatrix__Q28SysShape5JointFv
-	lis      r4, __vt__Q23efx5TBase@ha
-	li       r6, 0
-	addi     r0, r4, __vt__Q23efx5TBase@l
-	lis      r4, __vt__Q23efx8TSimple2@ha
-	stw      r0, 0xf8(r1)
-	addi     r0, r4, __vt__Q23efx8TSimple2@l
-	lis      r5, __vt__Q23efx11TSimpleMtx2@ha
-	lis      r4, __vt__Q23efx11TUfoPodGepu@ha
-	stw      r0, 0xf8(r1)
-	addi     r0, r5, __vt__Q23efx11TSimpleMtx2@l
-	li       r7, 0x1c4
-	li       r5, 0x1c5
-	stw      r0, 0xf8(r1)
-	addi     r0, r4, __vt__Q23efx11TUfoPodGepu@l
-	li       r4, 0
-	stw      r3, 0x108(r1)
-	addi     r3, r1, 0xf8
-	sth      r7, 0xfc(r1)
-	sth      r5, 0xfe(r1)
-	stw      r6, 0x100(r1)
-	stw      r6, 0x104(r1)
-	stw      r0, 0xf8(r1)
-	bl       create__Q23efx11TSimpleMtx2FPQ23efx3Arg
-	lwz      r3, moviePlayer__4Game@sda21(r13)
-	cmplwi   r3, 0
-	beq      lbl_80176550
-	lwz      r0, 0x18(r3)
-	cmpwi    r0, 0
-	bne      lbl_80176550
-	mr       r4, r30
-	addi     r3, r1, 0x44
-	lwz      r12, 0(r30)
-	lwz      r12, 8(r12)
-	mtctr    r12
-	bctrl
-	lfs      f2, 0x44(r1)
-	mr       r3, r30
-	lfs      f1, 0x48(r1)
-	lfs      f0, 0x4c(r1)
-	stfs     f2, 0xac(r1)
-	stfs     f1, 0xb0(r1)
-	stfs     f0, 0xb4(r1)
-	lwz      r12, 0(r30)
-	lwz      r12, 0x64(r12)
-	mtctr    r12
-	bctrl
-	fmr      f2, f1
-	lfs      f0, lbl_80518A2C@sda21(r2)
-	fcmpo    cr0, f2, f0
-	bge      lbl_80176490
-	fneg     f2, f2
-
-lbl_80176490:
-	lfs      f3, lbl_80518A60@sda21(r2)
-	lis      r3, sincosTable___5JMath@ha
-	lfs      f0, lbl_80518A2C@sda21(r2)
-	addi     r4, r3, sincosTable___5JMath@l
-	fmuls    f2, f2, f3
-	lfs      f5, lbl_80518A5C@sda21(r2)
-	fcmpo    cr0, f1, f0
-	lfs      f4, 0xac(r1)
-	fctiwz   f0, f2
-	stfd     f0, 0x110(r1)
-	lwz      r0, 0x114(r1)
-	rlwinm   r0, r0, 3, 0x12, 0x1c
-	add      r3, r4, r0
-	lfs      f0, 4(r3)
-	fmuls    f6, f5, f0
-	bge      lbl_801764F4
-	lfs      f0, lbl_80518A64@sda21(r2)
-	fmuls    f0, f1, f0
-	fctiwz   f0, f0
-	stfd     f0, 0x118(r1)
-	lwz      r0, 0x11c(r1)
-	rlwinm   r0, r0, 3, 0x12, 0x1c
-	lfsx     f0, r4, r0
-	fneg     f0, f0
-	b        lbl_8017650C
-
-lbl_801764F4:
-	fmuls    f0, f1, f3
-	fctiwz   f0, f0
-	stfd     f0, 0x120(r1)
-	lwz      r0, 0x124(r1)
-	rlwinm   r0, r0, 3, 0x12, 0x1c
-	lfsx     f0, r4, r0
-
-lbl_8017650C:
-	fmuls    f3, f5, f0
-	lfs      f0, 0xb4(r1)
-	lfs      f2, 0xb0(r1)
-	lfs      f1, lbl_80518A68@sda21(r2)
-	fadds    f0, f0, f6
-	fadds    f3, f4, f3
-	fadds    f1, f2, f1
-	stfs     f0, 0xb4(r1)
-	stfs     f3, 0xac(r1)
-	stfs     f1, 0xb0(r1)
-	lwz      r3, 0x35c(r31)
-	lwz      r5, 0x170(r3)
-	cmpwi    r5, 0
-	ble      lbl_80176550
-	lwz      r3, carryInfoMgr@sda21(r13)
-	addi     r4, r1, 0xac
-	bl       "appearPoko__12CarryInfoMgrFRC10Vector3<f>i"
-
-lbl_80176550:
-	lhz      r0, 0x22e(r30)
-	sth      r0, 0x230(r30)
-	lhz      r0, 0x22e(r30)
-	cmplwi   r0, 2
-	bgt      lbl_801765D8
-	lwz      r3, 0x174(r30)
-	addi     r4, r2, lbl_80518A6C@sda21
-	bl       getJoint__Q28SysShape5ModelFPc
-	cmplwi   r3, 0
-	beq      lbl_801765D8
-	bl       getWorldMatrix__Q28SysShape5JointFv
-	lis      r4, __vt__Q23efx5TBase@ha
-	li       r6, 0
-	addi     r0, r4, __vt__Q23efx5TBase@l
-	lis      r4, __vt__Q23efx8TSimple2@ha
-	stw      r0, 0xe4(r1)
-	addi     r0, r4, __vt__Q23efx8TSimple2@l
-	lis      r5, __vt__Q23efx11TSimpleMtx2@ha
-	lis      r4, __vt__Q23efx11TOnyonEatAB@ha
-	stw      r0, 0xe4(r1)
-	addi     r0, r5, __vt__Q23efx11TSimpleMtx2@l
-	li       r7, 0xfe
-	li       r5, 0xff
-	stw      r0, 0xe4(r1)
-	addi     r0, r4, __vt__Q23efx11TOnyonEatAB@l
-	li       r4, 0
-	stw      r3, 0xf4(r1)
-	addi     r3, r1, 0xe4
-	sth      r7, 0xe8(r1)
-	sth      r5, 0xea(r1)
-	stw      r6, 0xec(r1)
-	stw      r6, 0xf0(r1)
-	stw      r0, 0xe4(r1)
-	bl       create__Q23efx11TSimpleMtx2FPQ23efx3Arg
-
-lbl_801765D8:
-	lwz      r4, gameSystem__4Game@sda21(r13)
-	li       r3, 0
-	lwz      r0, 0x44(r4)
-	cmpwi    r0, 2
-	beq      lbl_801765F4
-	cmpwi    r0, 3
-	bne      lbl_801765F8
-
-lbl_801765F4:
-	li       r3, 1
-
-lbl_801765F8:
-	clrlwi.  r0, r3, 0x18
-	beq      lbl_801769EC
-	lwz      r3, 0x35c(r31)
-	addi     r4, r2, lbl_80518A74@sda21
-	lwz      r3, 0x40(r3)
-	bl       strcmp
-	cmpwi    r3, 0
-	bne      lbl_801769EC
-	lis      r4, __vt__Q24Game11Interaction@ha
-	lwz      r3, mgr__Q24Game15ItemBigFountain@sda21(r13)
-	addi     r0, r4, __vt__Q24Game11Interaction@l
-	stw      r30, 0x34(r1)
-	lis      r4, __vt__Q24Game14InteractGotKey@ha
-	cmplwi   r3, 0
-	stw      r0, 0x30(r1)
-	addi     r0, r4, __vt__Q24Game14InteractGotKey@l
-	stw      r0, 0x30(r1)
-	beq      lbl_80176644
-	addi     r3, r3, 0x30
-
-lbl_80176644:
-	li       r0, 0
-	lis      r4, "__vt__26Iterator<Q24Game8BaseItem>"@ha
-	addi     r4, r4, "__vt__26Iterator<Q24Game8BaseItem>"@l
-	stw      r0, 0xa8(r1)
-	cmplwi   r0, 0
-	stw      r4, 0x9c(r1)
-	stw      r0, 0xa0(r1)
-	stw      r3, 0xa4(r1)
-	bne      lbl_80176680
-	lwz      r12, 0(r3)
-	lwz      r12, 0x18(r12)
-	mtctr    r12
-	bctrl
-	stw      r3, 0xa0(r1)
-	b        lbl_801767F0
-
-lbl_80176680:
-	lwz      r12, 0(r3)
-	lwz      r12, 0x18(r12)
-	mtctr    r12
-	bctrl
-	stw      r3, 0xa0(r1)
-	b        lbl_801766EC
-
-lbl_80176698:
-	lwz      r3, 0xa4(r1)
-	lwz      r4, 0xa0(r1)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x20(r12)
-	mtctr    r12
-	bctrl
-	mr       r4, r3
-	lwz      r3, 0xa8(r1)
-	lwz      r12, 0(r3)
-	lwz      r12, 8(r12)
-	mtctr    r12
-	bctrl
-	clrlwi.  r0, r3, 0x18
-	bne      lbl_801767F0
-	lwz      r3, 0xa4(r1)
-	lwz      r4, 0xa0(r1)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x14(r12)
-	mtctr    r12
-	bctrl
-	stw      r3, 0xa0(r1)
-
-lbl_801766EC:
-	lwz      r12, 0x9c(r1)
-	addi     r3, r1, 0x9c
-	lwz      r12, 0x10(r12)
-	mtctr    r12
-	bctrl
-	clrlwi.  r0, r3, 0x18
-	beq      lbl_80176698
-	b        lbl_801767F0
-
-lbl_8017670C:
-	lwz      r3, 0xa4(r1)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x20(r12)
-	mtctr    r12
-	bctrl
-	lwz      r12, 0(r3)
-	addi     r4, r1, 0x30
-	lwz      r12, 0x1a4(r12)
-	mtctr    r12
-	bctrl
-	lwz      r0, 0xa8(r1)
-	cmplwi   r0, 0
-	bne      lbl_80176760
-	lwz      r3, 0xa4(r1)
-	lwz      r4, 0xa0(r1)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x14(r12)
-	mtctr    r12
-	bctrl
-	stw      r3, 0xa0(r1)
-	b        lbl_801767F0
-
-lbl_80176760:
-	lwz      r3, 0xa4(r1)
-	lwz      r4, 0xa0(r1)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x14(r12)
-	mtctr    r12
-	bctrl
-	stw      r3, 0xa0(r1)
-	b        lbl_801767D4
-
-lbl_80176780:
-	lwz      r3, 0xa4(r1)
-	lwz      r4, 0xa0(r1)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x20(r12)
-	mtctr    r12
-	bctrl
-	mr       r4, r3
-	lwz      r3, 0xa8(r1)
-	lwz      r12, 0(r3)
-	lwz      r12, 8(r12)
-	mtctr    r12
-	bctrl
-	clrlwi.  r0, r3, 0x18
-	bne      lbl_801767F0
-	lwz      r3, 0xa4(r1)
-	lwz      r4, 0xa0(r1)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x14(r12)
-	mtctr    r12
-	bctrl
-	stw      r3, 0xa0(r1)
-
-lbl_801767D4:
-	lwz      r12, 0x9c(r1)
-	addi     r3, r1, 0x9c
-	lwz      r12, 0x10(r12)
-	mtctr    r12
-	bctrl
-	clrlwi.  r0, r3, 0x18
-	beq      lbl_80176780
-
-lbl_801767F0:
-	lwz      r3, 0xa4(r1)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x1c(r12)
-	mtctr    r12
-	bctrl
-	lwz      r4, 0xa0(r1)
-	cmplw    r4, r3
-	bne      lbl_8017670C
-	lwz      r3, mgr__Q24Game8ItemHole@sda21(r13)
-	cmplwi   r3, 0
-	beq      lbl_80176820
-	addi     r3, r3, 0x30
-
-lbl_80176820:
-	li       r0, 0
-	lis      r4, "__vt__26Iterator<Q24Game8BaseItem>"@ha
-	addi     r4, r4, "__vt__26Iterator<Q24Game8BaseItem>"@l
-	stw      r0, 0x98(r1)
-	cmplwi   r0, 0
-	stw      r4, 0x8c(r1)
-	stw      r0, 0x90(r1)
-	stw      r3, 0x94(r1)
-	bne      lbl_8017685C
-	lwz      r12, 0(r3)
-	lwz      r12, 0x18(r12)
-	mtctr    r12
-	bctrl
-	stw      r3, 0x90(r1)
-	b        lbl_801769CC
-
-lbl_8017685C:
-	lwz      r12, 0(r3)
-	lwz      r12, 0x18(r12)
-	mtctr    r12
-	bctrl
-	stw      r3, 0x90(r1)
-	b        lbl_801768C8
-
-lbl_80176874:
-	lwz      r3, 0x94(r1)
-	lwz      r4, 0x90(r1)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x20(r12)
-	mtctr    r12
-	bctrl
-	mr       r4, r3
-	lwz      r3, 0x98(r1)
-	lwz      r12, 0(r3)
-	lwz      r12, 8(r12)
-	mtctr    r12
-	bctrl
-	clrlwi.  r0, r3, 0x18
-	bne      lbl_801769CC
-	lwz      r3, 0x94(r1)
-	lwz      r4, 0x90(r1)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x14(r12)
-	mtctr    r12
-	bctrl
-	stw      r3, 0x90(r1)
-
-lbl_801768C8:
-	lwz      r12, 0x8c(r1)
-	addi     r3, r1, 0x8c
-	lwz      r12, 0x10(r12)
-	mtctr    r12
-	bctrl
-	clrlwi.  r0, r3, 0x18
-	beq      lbl_80176874
-	b        lbl_801769CC
-
-lbl_801768E8:
-	lwz      r3, 0x94(r1)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x20(r12)
-	mtctr    r12
-	bctrl
-	lwz      r12, 0(r3)
-	addi     r4, r1, 0x30
-	lwz      r12, 0x1a4(r12)
-	mtctr    r12
-	bctrl
-	lwz      r0, 0x98(r1)
-	cmplwi   r0, 0
-	bne      lbl_8017693C
-	lwz      r3, 0x94(r1)
-	lwz      r4, 0x90(r1)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x14(r12)
-	mtctr    r12
-	bctrl
-	stw      r3, 0x90(r1)
-	b        lbl_801769CC
-
-lbl_8017693C:
-	lwz      r3, 0x94(r1)
-	lwz      r4, 0x90(r1)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x14(r12)
-	mtctr    r12
-	bctrl
-	stw      r3, 0x90(r1)
-	b        lbl_801769B0
-
-lbl_8017695C:
-	lwz      r3, 0x94(r1)
-	lwz      r4, 0x90(r1)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x20(r12)
-	mtctr    r12
-	bctrl
-	mr       r4, r3
-	lwz      r3, 0x98(r1)
-	lwz      r12, 0(r3)
-	lwz      r12, 8(r12)
-	mtctr    r12
-	bctrl
-	clrlwi.  r0, r3, 0x18
-	bne      lbl_801769CC
-	lwz      r3, 0x94(r1)
-	lwz      r4, 0x90(r1)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x14(r12)
-	mtctr    r12
-	bctrl
-	stw      r3, 0x90(r1)
-
-lbl_801769B0:
-	lwz      r12, 0x8c(r1)
-	addi     r3, r1, 0x8c
-	lwz      r12, 0x10(r12)
-	mtctr    r12
-	bctrl
-	clrlwi.  r0, r3, 0x18
-	beq      lbl_8017695C
-
-lbl_801769CC:
-	lwz      r3, 0x94(r1)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x1c(r12)
-	mtctr    r12
-	bctrl
-	lwz      r4, 0x90(r1)
-	cmplw    r4, r3
-	bne      lbl_801768E8
-
-lbl_801769EC:
-	lwz      r3, gameSystem__4Game@sda21(r13)
-	lwz      r0, 0x44(r3)
-	cmpwi    r0, 1
-	bne      lbl_80176C18
-	lwz      r3, lbl_80520E60@sda21(r2)
-	addi     r28, r1, 0x28
-	lwz      r0, lbl_80520E64@sda21(r2)
-	li       r27, 0
-	stw      r3, 0x28(r1)
-	lwz      r3, cBedamaRed__13VsOtakaraName@sda21(r13)
-	stw      r0, 0x2c(r1)
-	lwz      r0, cBedamaBlue__13VsOtakaraName@sda21(r13)
-	stw      r3, 0x28(r1)
-	stw      r0, 0x2c(r1)
-
-lbl_80176A24:
-	lwz      r4, 0x35c(r31)
-	lwz      r3, 0(r28)
-	lwz      r4, 0x40(r4)
-	bl       strcmp
-	cmpwi    r3, 0
-	bne      lbl_80176B5C
-	lhz      r0, 0x22e(r30)
-	subfic   r0, r0, 1
-	cmpw     r27, r0
-	bne      lbl_80176B18
-	li       r0, 1
-	mr       r4, r30
-	stb      r0, 8(r29)
-	addi     r3, r1, 0x38
-	bl       getFlagSetPos__Q24Game5OnyonFv
-	lfs      f2, 0x38(r1)
-	mr       r3, r31
-	lfs      f1, 0x3c(r1)
-	lfs      f0, 0x40(r1)
-	stfs     f2, 0x80(r1)
-	stfs     f1, 0x84(r1)
-	stfs     f0, 0x88(r1)
-	bl       getCylinderHeight__Q24Game6PelletFv
-	lfs      f3, lbl_80518A7C@sda21(r2)
-	mr       r3, r31
-	lfs      f2, lbl_80518A78@sda21(r2)
-	addi     r4, r1, 0x80
-	lfs      f0, 0x84(r1)
-	li       r5, 0
-	fmadds   f1, f3, f1, f2
-	fadds    f0, f0, f1
-	stfs     f0, 0x84(r1)
-	bl       "setPosition__Q24Game8CreatureFR10Vector3<f>b"
-	lfs      f1, lbl_80518A2C@sda21(r2)
-	mr       r3, r31
-	lfs      f0, lbl_80518A80@sda21(r2)
-	addi     r4, r1, 0x74
-	stfs     f1, 0x74(r1)
-	stfs     f0, 0x78(r1)
-	stfs     f1, 0x7c(r1)
-	lwz      r12, 0(r31)
-	lwz      r12, 0x68(r12)
-	mtctr    r12
-	bctrl
-	mr       r3, r31
-	li       r4, 1
-	lwz      r12, 0(r31)
-	lwz      r12, 0xac(r12)
-	mtctr    r12
-	bctrl
-	mr       r3, r31
-	bl       finish_carrymotion__Q24Game6PelletFv
-	lwz      r3, 0x3c8(r31)
-	mr       r4, r31
-	li       r5, 5
-	li       r6, 0
-	lwz      r12, 0(r3)
-	lwz      r12, 0x14(r12)
-	mtctr    r12
-	bctrl
-	b        lbl_80176B5C
-
-lbl_80176B18:
-	lis      r4, __vt__Q24Game11GameMessage@ha
-	lis      r3, __vt__Q24Game27GameMessageVsBattleFinished@ha
-	addi     r4, r4, __vt__Q24Game11GameMessage@l
-	subfic   r0, r27, 1
-	stw      r4, 0x20(r1)
-	addi     r5, r3, __vt__Q24Game27GameMessageVsBattleFinished@l
-	lwz      r3, gameSystem__4Game@sda21(r13)
-	addi     r4, r1, 0x20
-	stw      r5, 0x20(r1)
-	stw      r0, 0x24(r1)
-	lwz      r3, 0x58(r3)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x50(r12)
-	mtctr    r12
-	bctrl
-	li       r3, 1
-	b        lbl_80176E70
-
-lbl_80176B5C:
-	addi     r27, r27, 1
-	addi     r28, r28, 4
-	cmpwi    r27, 2
-	blt      lbl_80176A24
-	lbz      r0, 0x32c(r31)
-	cmplwi   r0, 6
-	bne      lbl_80176BC8
-	lhz      r4, 0x22e(r30)
-	lis      r3, __vt__Q24Game11GameMessage@ha
-	addi     r0, r3, __vt__Q24Game11GameMessage@l
-	lis      r3, __vt__Q24Game23GameMessageVsGetOtakara@ha
-	stw      r0, 0x68(r1)
-	subfic   r5, r4, 1
-	addi     r3, r3, __vt__Q24Game23GameMessageVsGetOtakara@l
-	li       r0, 1
-	stw      r3, 0x68(r1)
-	addi     r4, r1, 0x68
-	lwz      r3, gameSystem__4Game@sda21(r13)
-	stw      r5, 0x6c(r1)
-	stw      r0, 0x70(r1)
-	lwz      r3, 0x58(r3)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x50(r12)
-	mtctr    r12
-	bctrl
-	li       r3, 1
-	b        lbl_80176E70
-
-lbl_80176BC8:
-	cmplwi   r0, 3
-	bne      lbl_80176C18
-	lhz      r4, 0x22e(r30)
-	lis      r3, __vt__Q24Game11GameMessage@ha
-	addi     r0, r3, __vt__Q24Game11GameMessage@l
-	lis      r3, __vt__Q24Game20GameMessageVsGotCard@ha
-	stw      r0, 0x18(r1)
-	subfic   r5, r4, 1
-	addi     r0, r3, __vt__Q24Game20GameMessageVsGotCard@l
-	lwz      r3, gameSystem__4Game@sda21(r13)
-	stw      r0, 0x18(r1)
-	addi     r4, r1, 0x18
-	stw      r5, 0x1c(r1)
-	lwz      r3, 0x58(r3)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x50(r12)
-	mtctr    r12
-	bctrl
-	li       r3, 1
-	b        lbl_80176E70
-
-lbl_80176C18:
-	lwz      r5, gameSystem__4Game@sda21(r13)
-	lwz      r0, 0x44(r5)
-	cmpwi    r0, 1
-	beq      lbl_80176C60
-	lbz      r0, 0x48(r5)
-	lwz      r3, 0x35c(r31)
-	cmplwi   r0, 0
-	lwz      r4, 0x170(r3)
-	beq      lbl_80176C50
-	lwz      r3, playData__4Game@sda21(r13)
-	lwz      r0, 0xec(r3)
-	add      r0, r0, r4
-	stw      r0, 0xec(r3)
-	b        lbl_80176C60
-
-lbl_80176C50:
-	lwz      r3, 0x58(r5)
-	lwz      r0, 0x48(r3)
-	add      r0, r0, r4
-	stw      r0, 0x48(r3)
-
-lbl_80176C60:
-	lwz      r4, gameSystem__4Game@sda21(r13)
-	li       r3, 0
-	lwz      r0, 0x44(r4)
-	cmpwi    r0, 2
-	beq      lbl_80176C7C
-	cmpwi    r0, 3
-	bne      lbl_80176C80
-
-lbl_80176C7C:
-	li       r3, 1
-
-lbl_80176C80:
-	clrlwi.  r0, r3, 0x18
-	beq      lbl_80176CAC
-	lwz      r3, 0x58(r4)
-	lwz      r4, 0x35c(r31)
-	lwz      r12, 0(r3)
-	lwz      r4, 0x170(r4)
-	lwz      r12, 0x60(r12)
-	mtctr    r12
-	bctrl
-	li       r3, 1
-	b        lbl_80176E70
-
-lbl_80176CAC:
-	mr       r3, r31
-	lwz      r12, 0(r31)
-	lwz      r12, 0x1f4(r12)
-	mtctr    r12
-	bctrl
-	clrlwi.  r0, r3, 0x18
-	bne      lbl_80176D1C
-	lhz      r29, 0x43e(r31)
-	mr       r3, r31
-	addi     r4, r1, 0x14
-	addi     r5, r1, 0x10
-	bl       getPikiBirthCount__Q24Game6PelletFRiRi
-	lhz      r3, 0x22e(r30)
-	cmplwi   r3, 3
-	beq      lbl_80176CF4
-	clrlwi   r0, r29, 0x10
-	cmplw    r0, r3
-	bne      lbl_80176D08
-
-lbl_80176CF4:
-	lhz      r3, 0x22c(r30)
-	lwz      r0, 0x10(r1)
-	add      r0, r3, r0
-	sth      r0, 0x22c(r30)
-	b        lbl_80176E6C
-
-lbl_80176D08:
-	lhz      r3, 0x22c(r30)
-	lwz      r0, 0x14(r1)
-	add      r0, r3, r0
-	sth      r0, 0x22c(r30)
-	b        lbl_80176E6C
-
-lbl_80176D1C:
-	mr       r3, r31
-	lwz      r12, 0(r31)
-	lwz      r12, 0x1f4(r12)
-	mtctr    r12
-	bctrl
-	clrlwi   r0, r3, 0x18
-	cmplwi   r0, 3
-	beq      lbl_80176D7C
-	mr       r3, r31
-	lwz      r12, 0(r31)
-	lwz      r12, 0x1f4(r12)
-	mtctr    r12
-	bctrl
-	clrlwi   r0, r3, 0x18
-	cmplwi   r0, 4
-	beq      lbl_80176D7C
-	mr       r3, r31
-	lwz      r12, 0(r31)
-	lwz      r12, 0x1f4(r12)
-	mtctr    r12
-	bctrl
-	clrlwi   r0, r3, 0x18
-	cmplwi   r0, 1
-	bne      lbl_80176E58
-
-lbl_80176D7C:
-	lhz      r0, 0x22e(r30)
-	cmplwi   r0, 3
-	bne      lbl_80176DA8
-	lwz      r3, 0x35c(r31)
-	lwz      r0, 0x170(r3)
-	cmpwi    r0, 0
-	ble      lbl_80176E6C
-	lwz      r3, playData__4Game@sda21(r13)
-	mr       r4, r31
-	bl       obtainPellet_Cave__Q24Game8PlayDataFPQ24Game6Pellet
-	b        lbl_80176E6C
-
-lbl_80176DA8:
-	cmplwi   r0, 4
-	bne      lbl_80176E14
-	lwz      r3, 0x35c(r31)
-	lwz      r0, 0x170(r3)
-	cmpwi    r0, 0
-	ble      lbl_80176E6C
-	lwz      r3, playData__4Game@sda21(r13)
-	mr       r4, r31
-	bl       obtainPellet_Main__Q24Game8PlayDataFPQ24Game6Pellet
-	lwz      r4, 0x35c(r31)
-	addi     r3, r2, lbl_80518A84@sda21
-	lwz      r4, 0x180(r4)
-	bl       strcmp
-	cmpwi    r3, 0
-	bne      lbl_80176E6C
-	lwz      r3, gameSystem__4Game@sda21(r13)
-	lwz      r3, 0x58(r3)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x7c(r12)
-	mtctr    r12
-	bctrl
-	or.      r4, r3, r3
-	beq      lbl_80176E6C
-	lwz      r3, playData__4Game@sda21(r13)
-	lwz      r4, 0x48(r4)
-	bl       incGroundOtakara__Q24Game8PlayDataFi
-	b        lbl_80176E6C
-
-lbl_80176E14:
-	mr       r3, r31
-	lwz      r12, 0(r31)
-	lwz      r12, 0x1f4(r12)
-	mtctr    r12
-	bctrl
-	clrlwi   r0, r3, 0x18
-	cmplwi   r0, 1
-	bne      lbl_80176E6C
-	mr       r3, r31
-	addi     r4, r1, 0xc
-	addi     r5, r1, 8
-	bl       getPikiBirthCount__Q24Game6PelletFRiRi
-	lhz      r3, 0x22c(r30)
-	lwz      r0, 8(r1)
-	add      r0, r3, r0
-	sth      r0, 0x22c(r30)
-	b        lbl_80176E6C
-
-lbl_80176E58:
-	mr       r3, r31
-	lwz      r12, 0(r31)
-	lwz      r12, 0x1f4(r12)
-	mtctr    r12
-	bctrl
-
-lbl_80176E6C:
-	li       r3, 1
-
-lbl_80176E70:
-	lmw      r27, 0x12c(r1)
-	lwz      r0, 0x144(r1)
-	mtlr     r0
-	addi     r1, r1, 0x140
-	blr
-	*/
 }
 
 /*
@@ -1583,15 +579,22 @@ void Onyon::doDirectDraw(Graphics& gfx)
 	drawLODInfo(gfx, orig);
 }
 
-// /*
-//  * --INFO--
-//  * Address:	........
-//  * Size:	0000B0
-//  */
-// Onyon::Onyon(void)
-// {
-// 	// UNUSED FUNCTION
-// }
+/*
+ * --INFO--
+ * Address:	........
+ * Size:	0000B0
+ */
+Onyon::Onyon()
+    : BaseItem(OBJTYPE_Onyon)
+{
+	m_collTree       = new CollTree();
+	m_mass           = 0.0f;
+	m_goalWayPoint   = nullptr;
+	m_faceDir        = 0.0f;
+	m_matAnim1       = new Sys::MatLoopAnimator;
+	m_matAnim2       = nullptr;
+	m_spotbeam_model = nullptr;
+}
 
 /*
  * --INFO--
@@ -2018,20 +1021,32 @@ void Onyon::do_doAnimation()
 
 /*
  * --INFO--
- * Address:	80177DEC
- * Size:	000008
+ * Address:	........
+ * Size:	0000E0
  */
-Vector3f* BaseItem::getSound_PosPtr() { return &m_position; }
+void Onyon::initTube()
+{
+	CollPart* part = m_collTree->getCollPart('leg1');
+	if (part) {
+		part->m_partType = COLLTYPE_TUBE;
+	}
 
-// /*
-//  * --INFO--
-//  * Address:	........
-//  * Size:	0000E0
-//  */
-// void Onyon::initTube(void)
-// {
-// 	// UNUSED FUNCTION
-// }
+	part = m_collTree->getCollPart('leg2');
+	if (part) {
+		part->m_partType = COLLTYPE_TUBE;
+	}
+
+	part = m_collTree->getCollPart('leg3');
+	if (part) {
+		part->m_partType = COLLTYPE_TUBE;
+	}
+	if (!part) {
+		JUT_PANICLINE(1685, "bikkuri!\n");
+	}
+
+	part = m_collTree->getCollPart('fot1');
+	JUT_ASSERTLINE(1690, part, "I\'am bikkuri-ed\n");
+}
 
 /*
  * --INFO--
@@ -2066,12 +1081,10 @@ void Onyon::startWaitMotion(void)
 					animid = m_animator.m_animInfo->m_id;
 				}
 				if (animid <= (u32)1 || animid == 3) {
-					SysShape::MotionListener* mlisten = this;
-					m_animator.startAnim(2, mlisten);
+					m_animator.startAnim(2, this);
 				}
 			} else {
-				SysShape::MotionListener* mlisten = this;
-				m_animator.startAnim(0, mlisten);
+				m_animator.startAnim(0, this);
 			}
 		}
 	}
@@ -2113,101 +1126,13 @@ void Onyon::onKeyEvent_UFO(const SysShape::KeyEvent& event)
  * Address:	80178004
  * Size:	00013C
  */
-// almost matches, something weird happening with cos function? might need inline
 Vector3f Onyon::getFlagSetPos()
 {
-	f32 dir         = getFaceDir();
+	const f32 dir   = getFaceDir();
 	Vector3f offset = Vector3f(100.0f * pikmin2_sinf(dir), 0.0f, 100.0f * pikmin2_cosf(dir));
 	Vector3f pos    = getPosition();
 	pos += offset;
 	return pos;
-	/*
-	stwu     r1, -0x60(r1)
-	mflr     r0
-	stw      r0, 0x64(r1)
-	stfd     f31, 0x50(r1)
-	psq_st   f31, 88(r1), 0, qr0
-	stfd     f30, 0x40(r1)
-	psq_st   f30, 72(r1), 0, qr0
-	stw      r31, 0x3c(r1)
-	stw      r30, 0x38(r1)
-	mr       r31, r4
-	mr       r30, r3
-	mr       r3, r31
-	lwz      r12, 0(r31)
-	lwz      r12, 0x64(r12)
-	mtctr    r12
-	bctrl
-	fmr      f2, f1
-	lfs      f0, lbl_80518A2C@sda21(r2)
-	fcmpo    cr0, f2, f0
-	bge      lbl_80178058
-	fneg     f2, f2
-
-lbl_80178058:
-	lfs      f3, lbl_80518A60@sda21(r2)
-	lis      r3, sincosTable___5JMath@ha
-	lfs      f0, lbl_80518A2C@sda21(r2)
-	addi     r4, r3, sincosTable___5JMath@l
-	fmuls    f2, f2, f3
-	lfs      f4, lbl_80518A50@sda21(r2)
-	fcmpo    cr0, f1, f0
-	fctiwz   f0, f2
-	stfd     f0, 0x18(r1)
-	lwz      r0, 0x1c(r1)
-	rlwinm   r0, r0, 3, 0x12, 0x1c
-	add      r3, r4, r0
-	lfs      f0, 4(r3)
-	fmuls    f31, f4, f0
-	bge      lbl_801780B8
-	lfs      f0, lbl_80518A64@sda21(r2)
-	fmuls    f0, f1, f0
-	fctiwz   f0, f0
-	stfd     f0, 0x20(r1)
-	lwz      r0, 0x24(r1)
-	rlwinm   r0, r0, 3, 0x12, 0x1c
-	lfsx     f0, r4, r0
-	fneg     f30, f0
-	b        lbl_801780D0
-
-lbl_801780B8:
-	fmuls    f0, f1, f3
-	fctiwz   f0, f0
-	stfd     f0, 0x28(r1)
-	lwz      r0, 0x2c(r1)
-	rlwinm   r0, r0, 3, 0x12, 0x1c
-	lfsx     f30, r4, r0
-
-lbl_801780D0:
-	mr       r4, r31
-	addi     r3, r1, 8
-	lwz      r12, 0(r31)
-	lwz      r12, 8(r12)
-	mtctr    r12
-	bctrl
-	lfs      f0, lbl_80518A50@sda21(r2)
-	lfs      f4, 0x10(r1)
-	fmuls    f1, f0, f30
-	lfs      f2, 8(r1)
-	lfs      f3, 0xc(r1)
-	fadds    f4, f4, f31
-	lfs      f0, lbl_80518A2C@sda21(r2)
-	fadds    f2, f2, f1
-	fadds    f3, f3, f0
-	stfs     f2, 0(r30)
-	stfs     f3, 4(r30)
-	stfs     f4, 8(r30)
-	psq_l    f31, 88(r1), 0, qr0
-	lfd      f31, 0x50(r1)
-	psq_l    f30, 72(r1), 0, qr0
-	lfd      f30, 0x40(r1)
-	lwz      r31, 0x3c(r1)
-	lwz      r0, 0x64(r1)
-	lwz      r30, 0x38(r1)
-	mtlr     r0
-	addi     r1, r1, 0x60
-	blr
-	*/
 }
 
 /*
@@ -2215,7 +1140,7 @@ lbl_801780D0:
  * Address:	80178140
  * Size:	00004C
  */
-void Onyon::onKeyEvent(SysShape::KeyEvent const& event)
+void Onyon::onKeyEvent(const SysShape::KeyEvent& event)
 {
 	if (m_onyonType == ONYON_TYPE_SHIP) {
 		onKeyEvent_UFO(event);
@@ -2807,127 +1732,53 @@ bool Onyon::insideAccessArea(Vector3f& navipos)
 	return false;
 }
 
-// /*
-//  * --INFO--
-//  * Address:	........
-//  * Size:	000048
-//  */
-// void Onyon::insideBootArea(Vector3f&)
-// {
-// 	// UNUSED FUNCTION
-// }
-
-// /*
-//  * --INFO--
-//  * Address:	........
-//  * Size:	000088
-//  */
-// void Onyon::getOnyonState(void)
-// {
-// 	// UNUSED FUNCTION
-// }
-
 /*
  * --INFO--
  * Address:	80179D60
  * Size:	00011C
  */
-BaseItem* ItemOnyon::Mgr::generatorBirth(Vector3f&, Vector3f&, GenItemParm*)
+BaseItem* ItemOnyon::Mgr::generatorBirth(Vector3f& pos, Vector3f& angle, GenItemParm* parm)
 {
-	/*
-	.loc_0x0:
-	  stwu      r1, -0x20(r1)
-	  mflr      r0
-	  stw       r0, 0x24(r1)
-	  stmw      r26, 0x8(r1)
-	  mr        r29, r6
-	  mr        r26, r3
-	  mr        r27, r4
-	  mr        r28, r5
-	  li        r30, 0
-	  lwz       r0, 0x4(r6)
-	  cmpwi     r0, 0x2
-	  beq-      .loc_0x6C
-	  bge-      .loc_0x44
-	  cmpwi     r0, 0
-	  beq-      .loc_0x54
-	  bge-      .loc_0x60
-	  b         .loc_0x84
+	GenOnyonParm* onyonparm = static_cast<GenOnyonParm*>(parm);
+	int objectType;
+	int onyonType = ONYON_TYPE_BLUE;
 
-	.loc_0x44:
-	  cmpwi     r0, 0x4
-	  beq-      .loc_0x80
-	  bge-      .loc_0x84
-	  b         .loc_0x78
+	switch (onyonparm->m_onyonIndex) {
+	case ONYON_TYPE_BLUE:
+		objectType = ONYON_OBJECT_ONYON;
+		onyonType  = ONYON_TYPE_BLUE;
+		break;
 
-	.loc_0x54:
-	  li        r31, 0
-	  li        r30, 0
-	  b         .loc_0x84
+	case ONYON_TYPE_RED:
+		objectType = ONYON_OBJECT_ONYON;
+		onyonType  = ONYON_TYPE_RED;
+		break;
 
-	.loc_0x60:
-	  li        r31, 0
-	  li        r30, 0x1
-	  b         .loc_0x84
+	case ONYON_TYPE_YELLOW:
+		objectType = ONYON_OBJECT_ONYON;
+		onyonType  = ONYON_TYPE_YELLOW;
+		break;
 
-	.loc_0x6C:
-	  li        r31, 0
-	  li        r30, 0x2
-	  b         .loc_0x84
+	case ONYON_TYPE_POD:
+		objectType = ONYON_OBJECT_POD;
+		break;
 
-	.loc_0x78:
-	  li        r31, 0x1
-	  b         .loc_0x84
+	case ONYON_TYPE_SHIP:
+		objectType = ONYON_OBJECT_SHIP;
+		break;
+	}
 
-	.loc_0x80:
-	  li        r31, 0x2
+	if (objectType == ONYON_OBJECT_ONYON) {
+		if (!playData->hasContainer(onyonType) && onyonparm->m_isAfterBoot)
+			return nullptr;
+		if (!onyonparm->m_isAfterBoot && playData->hasContainer(onyonType))
+			return nullptr;
+	}
 
-	.loc_0x84:
-	  cmpwi     r31, 0
-	  bne-      .loc_0xDC
-	  lwz       r3, -0x6B70(r13)
-	  mr        r4, r30
-	  bl        0x6D22C
-	  rlwinm.   r0,r3,0,24,31
-	  bne-      .loc_0xB4
-	  lbz       r0, 0x8(r29)
-	  cmplwi    r0, 0
-	  beq-      .loc_0xB4
-	  li        r3, 0
-	  b         .loc_0x108
-
-	.loc_0xB4:
-	  lbz       r0, 0x8(r29)
-	  cmplwi    r0, 0
-	  bne-      .loc_0xDC
-	  lwz       r3, -0x6B70(r13)
-	  mr        r4, r30
-	  bl        0x6D1F8
-	  rlwinm.   r0,r3,0,24,31
-	  beq-      .loc_0xDC
-	  li        r3, 0
-	  b         .loc_0x108
-
-	.loc_0xDC:
-	  mr        r3, r26
-	  mr        r4, r31
-	  mr        r5, r30
-	  bl        0x1094
-	  lfs       f0, 0x4(r28)
-	  mr        r30, r3
-	  mr        r4, r27
-	  li        r5, 0
-	  stfs      f0, 0x228(r3)
-	  bl        -0x3ECB8
-	  mr        r3, r30
-
-	.loc_0x108:
-	  lmw       r26, 0x8(r1)
-	  lwz       r0, 0x24(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x20
-	  blr
-	*/
+	Onyon* onyon     = birth(objectType, onyonType);
+	onyon->m_faceDir = angle.y;
+	onyon->setPosition(pos, false);
+	return onyon;
 }
 
 /*
@@ -2942,63 +1793,14 @@ void ItemOnyon::Mgr::setupSoundViewerAndBas() { }
  * Address:	80179E80
  * Size:	0000C4
  */
-void Onyon::getInEnd_UFO(void)
+Vector3f Onyon::getInEnd_UFO()
 {
-	/*
-	stwu     r1, -0x30(r1)
-	mflr     r0
-	stw      r0, 0x34(r1)
-	stw      r31, 0x2c(r1)
-	mr       r31, r3
-	lwz      r0, 0x248(r4)
-	cmplwi   r0, 0
-	beq      lbl_80179EF8
-	lfs      f1, lbl_80518A2C@sda21(r2)
-	mr       r3, r0
-	lfs      f0, lbl_80518B28@sda21(r2)
-	stfs     f1, 0x14(r1)
-	stfs     f1, 0x18(r1)
-	stfs     f0, 0x1c(r1)
-	bl       getWorldMatrix__Q28SysShape5JointFv
-	addi     r4, r1, 0x14
-	addi     r5, r1, 8
-	bl       PSMTXMultVec
-	lfs      f2, 8(r1)
-	lfs      f1, 0xc(r1)
-	lfs      f0, 0x10(r1)
-	stfs     f2, 0x14(r1)
-	stfs     f1, 0x18(r1)
-	stfs     f0, 0x1c(r1)
-	stfs     f2, 0(r31)
-	lfs      f0, 0x18(r1)
-	stfs     f0, 4(r31)
-	lfs      f0, 0x1c(r1)
-	stfs     f0, 8(r31)
-	b        lbl_80179F30
-
-lbl_80179EF8:
-	lis      r3, lbl_8047E638@ha
-	lis      r5, lbl_8047E7BC@ha
-	addi     r3, r3, lbl_8047E638@l
-	li       r4, 0x9f1
-	addi     r5, r5, lbl_8047E7BC@l
-	crclr    6
-	bl       panic_f__12JUTExceptionFPCciPCce
-	lis      r3, "zero__10Vector3<f>"@ha
-	lfsu     f0, "zero__10Vector3<f>"@l(r3)
-	stfs     f0, 0(r31)
-	lfs      f0, 4(r3)
-	stfs     f0, 4(r31)
-	lfs      f0, 8(r3)
-	stfs     f0, 8(r31)
-
-lbl_80179F30:
-	lwz      r0, 0x34(r1)
-	lwz      r31, 0x2c(r1)
-	mtlr     r0
-	addi     r1, r1, 0x30
-	blr
-	*/
+	if (m_pikiInJoint) {
+		return getJointPosition(m_pikiInJoint); // this is necessary to make the stack line up for both this and the next function
+	} else {
+		JUT_PANICLINE(2545, "not ufo\n");
+		return Vector3f::zero;
+	}
 }
 
 /*
@@ -3006,110 +1808,15 @@ lbl_80179F30:
  * Address:	80179F44
  * Size:	000168
  */
-Vector3f Onyon::getInStart_UFO(void)
+Vector3f Onyon::getInStart_UFO()
 {
-	/*
-	stwu     r1, -0x60(r1)
-	mflr     r0
-	stw      r0, 0x64(r1)
-	stfd     f31, 0x50(r1)
-	psq_st   f31, 88(r1), 0, qr0
-	stfd     f30, 0x40(r1)
-	psq_st   f30, 72(r1), 0, qr0
-	stw      r31, 0x3c(r1)
-	stw      r30, 0x38(r1)
-	mr       r31, r4
-	mr       r30, r3
-	lwz      r3, 0x248(r4)
-	cmplwi   r3, 0
-	beq      lbl_80179FBC
-	lfs      f1, lbl_80518A2C@sda21(r2)
-	lfs      f0, lbl_80518B28@sda21(r2)
-	stfs     f1, 0x14(r1)
-	stfs     f1, 0x18(r1)
-	stfs     f0, 0x1c(r1)
-	bl       getWorldMatrix__Q28SysShape5JointFv
-	addi     r4, r1, 0x14
-	addi     r5, r1, 8
-	bl       PSMTXMultVec
-	lfs      f31, 8(r1)
-	lfs      f30, 0x10(r1)
-	lfs      f0, 0xc(r1)
-	stfs     f31, 0x14(r1)
-	stfs     f0, 0x18(r1)
-	stfs     f30, 0x1c(r1)
-	b        lbl_80179FE4
-
-lbl_80179FBC:
-	lis      r3, lbl_8047E638@ha
-	lis      r5, lbl_8047E7BC@ha
-	addi     r3, r3, lbl_8047E638@l
-	li       r4, 0x9f1
-	addi     r5, r5, lbl_8047E7BC@l
-	crclr    6
-	bl       panic_f__12JUTExceptionFPCciPCce
-	lis      r3, "zero__10Vector3<f>"@ha
-	lfsu     f31, "zero__10Vector3<f>"@l(r3)
-	lfs      f30, 8(r3)
-
-lbl_80179FE4:
-	mr       r4, r31
-	addi     r3, r1, 0x20
-	lwz      r12, 0(r31)
-	lwz      r12, 8(r12)
-	mtctr    r12
-	bctrl
-	lfs      f7, 0x20(r1)
-	lfs      f4, 0x28(r1)
-	fsubs    f2, f31, f7
-	lfs      f5, lbl_80518A2C@sda21(r2)
-	fsubs    f6, f30, f4
-	lfs      f3, 0x24(r1)
-	fmadds   f0, f2, f2, f5
-	fmuls    f1, f6, f6
-	fadds    f1, f1, f0
-	fcmpo    cr0, f1, f5
-	ble      lbl_8017A038
-	ble      lbl_8017A03C
-	frsqrte  f0, f1
-	fmuls    f1, f0, f1
-	b        lbl_8017A03C
-
-lbl_8017A038:
-	fmr      f1, f5
-
-lbl_8017A03C:
-	lfs      f0, lbl_80518A2C@sda21(r2)
-	fcmpo    cr0, f1, f0
-	ble      lbl_8017A05C
-	lfs      f0, lbl_80518A58@sda21(r2)
-	fdivs    f0, f0, f1
-	fmuls    f2, f2, f0
-	fmuls    f5, f5, f0
-	fmuls    f6, f6, f0
-
-lbl_8017A05C:
-	lfs      f0, lbl_80518B2C@sda21(r2)
-	fmuls    f2, f2, f0
-	fmuls    f1, f5, f0
-	fmuls    f0, f6, f0
-	fadds    f2, f7, f2
-	fadds    f1, f3, f1
-	fadds    f0, f4, f0
-	stfs     f2, 0(r30)
-	stfs     f1, 4(r30)
-	stfs     f0, 8(r30)
-	psq_l    f31, 88(r1), 0, qr0
-	lfd      f31, 0x50(r1)
-	psq_l    f30, 72(r1), 0, qr0
-	lfd      f30, 0x40(r1)
-	lwz      r31, 0x3c(r1)
-	lwz      r0, 0x64(r1)
-	lwz      r30, 0x38(r1)
-	mtlr     r0
-	addi     r1, r1, 0x60
-	blr
-	*/
+	Vector3f jntpos = getInEnd_UFO();
+	f32 jX          = jntpos.x;
+	f32 jZ          = jntpos.z;
+	Vector3f pos    = getPosition();
+	Vector3f fixpos(jX - pos.x, 0.0f, jZ - pos.z);
+	_normalise(fixpos);
+	return (pos + (fixpos * 90.0f));
 }
 
 /*
@@ -3117,74 +1824,51 @@ lbl_8017A05C:
  * Address:	8017A0AC
  * Size:	0000C4
  */
-Vector3f Onyon::getOutStart_UFO(void)
+Vector3f Onyon::getOutStart_UFO()
 {
-	/*
-	stwu     r1, -0x30(r1)
-	mflr     r0
-	stw      r0, 0x34(r1)
-	stw      r31, 0x2c(r1)
-	mr       r31, r3
-	lwz      r0, 0x24c(r4)
-	cmplwi   r0, 0
-	beq      lbl_8017A124
-	lfs      f1, lbl_80518A2C@sda21(r2)
-	mr       r3, r0
-	lfs      f0, lbl_80518B28@sda21(r2)
-	stfs     f1, 0x14(r1)
-	stfs     f1, 0x18(r1)
-	stfs     f0, 0x1c(r1)
-	bl       getWorldMatrix__Q28SysShape5JointFv
-	addi     r4, r1, 0x14
-	addi     r5, r1, 8
-	bl       PSMTXMultVec
-	lfs      f2, 8(r1)
-	lfs      f1, 0xc(r1)
-	lfs      f0, 0x10(r1)
-	stfs     f2, 0x14(r1)
-	stfs     f1, 0x18(r1)
-	stfs     f0, 0x1c(r1)
-	stfs     f2, 0(r31)
-	lfs      f0, 0x18(r1)
-	stfs     f0, 4(r31)
-	lfs      f0, 0x1c(r1)
-	stfs     f0, 8(r31)
-	b        lbl_8017A15C
-
-lbl_8017A124:
-	lis      r3, lbl_8047E638@ha
-	lis      r5, lbl_8047E7C8@ha
-	addi     r3, r3, lbl_8047E638@l
-	li       r4, 0xa09
-	addi     r5, r5, lbl_8047E7C8@l
-	crclr    6
-	bl       panic_f__12JUTExceptionFPCciPCce
-	lis      r3, "zero__10Vector3<f>"@ha
-	lfsu     f0, "zero__10Vector3<f>"@l(r3)
-	stfs     f0, 0(r31)
-	lfs      f0, 4(r3)
-	stfs     f0, 4(r31)
-	lfs      f0, 8(r3)
-	stfs     f0, 8(r31)
-
-lbl_8017A15C:
-	lwz      r0, 0x34(r1)
-	lwz      r31, 0x2c(r1)
-	mtlr     r0
-	addi     r1, r1, 0x30
-	blr
-	*/
+	if (m_pikiOutJoint) {
+		return getJointPosition(m_pikiOutJoint);
+	} else {
+		JUT_PANICLINE(2569, "‚¾‚ß‚Å‚·\n");
+		return Vector3f::zero;
+	}
 }
 
-// /*
-//  * --INFO--
-//  * Address:	........
-//  * Size:	000124
-//  */
-// void Onyon::init_pmotions(void)
-// {
-// 	// UNUSED FUNCTION
-// }
+/*
+ * --INFO--
+ * Address:	........
+ * Size:	000124
+ */
+void Onyon::init_pmotions()
+{
+	f32 speed;
+	if (m_onyonType == ONYON_TYPE_SHIP) {
+		m_pMotionCount  = 3;
+		m_pMotionList   = new SysShape::Animator[m_pMotionCount];
+		m_pMotionSpeeds = new f32[m_pMotionCount];
+
+		for (int i = 0; i < m_pMotionCount; i++) {
+			m_pMotionList[i].m_animMgr = m_animator.m_animMgr;
+			if (i == 0) {
+				speed = 30.0f;
+			} else {
+				speed = 0.0f;
+			}
+			m_pMotionSpeeds[i] = speed;
+		}
+
+		getPAnimator(0)->startAnim(1, nullptr);
+		getPAnimator(1)->startAnim(2, nullptr);
+		getPAnimator(2)->startAnim(3, nullptr);
+
+		m_pMotionSpeeds[2] = 30.0f;
+
+	} else {
+		m_pMotionCount  = 0;
+		m_pMotionList   = nullptr;
+		m_pMotionSpeeds = nullptr;
+	}
+}
 
 /*
  * --INFO--
@@ -3193,7 +1877,8 @@ lbl_8017A15C:
  */
 f32* Onyon::getPMotionSpeed(int i)
 {
-	P2ASSERTBOUNDSLINE(2603, 0, i, (int)m_pMotionCount);
+	bool check = (0 <= i && i < m_pMotionCount);
+	P2ASSERTLINE(2603, check);
 	return &m_pMotionSpeeds[i];
 }
 
@@ -3202,186 +1887,38 @@ f32* Onyon::getPMotionSpeed(int i)
  * Address:	8017A220
  * Size:	00007C
  */
-SysShape::Animator* Onyon::getPAnimator(int)
+SysShape::Animator* Onyon::getPAnimator(int i)
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	or.      r31, r4, r4
-	stw      r30, 8(r1)
-	mr       r30, r3
-	li       r3, 0
-	blt      lbl_8017A254
-	lwz      r0, 0x250(r30)
-	cmpw     r31, r0
-	bge      lbl_8017A254
-	li       r3, 1
-
-lbl_8017A254:
-	clrlwi.  r0, r3, 0x18
-	bne      lbl_8017A278
-	lis      r3, lbl_8047E638@ha
-	lis      r5, lbl_8047E680@ha
-	addi     r3, r3, lbl_8047E638@l
-	li       r4, 0xa31
-	addi     r5, r5, lbl_8047E680@l
-	crclr    6
-	bl       panic_f__12JUTExceptionFPCciPCce
-
-lbl_8017A278:
-	mulli    r0, r31, 0x1c
-	lwz      r3, 0x254(r30)
-	add      r3, r3, r0
-	lwz      r31, 0xc(r1)
-	lwz      r30, 8(r1)
-	lwz      r0, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	bool check = (0 <= i && i < m_pMotionCount);
+	P2ASSERTLINE(2609, check);
+	return &m_pMotionList[i];
 }
-
-// /*
-//  * --INFO--
-//  * Address:	........
-//  * Size:	000094
-//  */
-// void Onyon::start_pmotion(int, int)
-// {
-// 	// UNUSED FUNCTION
-// }
 
 /*
  * --INFO--
  * Address:	8017A29C
  * Size:	000198
  */
-void Onyon::update_pmotions(void)
+void Onyon::update_pmotions()
 {
-	/*
-	stwu     r1, -0x50(r1)
-	mflr     r0
-	stw      r0, 0x54(r1)
-	stfd     f31, 0x40(r1)
-	psq_st   f31, 72(r1), 0, qr0
-	stmw     r24, 0x20(r1)
-	mr       r26, r3
-	lwz      r3, sys@sda21(r13)
-	lhz      r0, 0x22e(r26)
-	lis      r4, lbl_8047E620@ha
-	lfs      f31, 0x54(r3)
-	addi     r31, r4, lbl_8047E620@l
-	cmplwi   r0, 4
-	bne      lbl_8017A418
-	li       r30, 0
-	addi     r28, r1, 8
-	mr       r29, r30
-	li       r27, 0
-	b        lbl_8017A40C
+	f32 time = sys->m_deltaTime;
+	if (m_onyonType == ONYON_TYPE_SHIP) {
+		for (int i = 0; i < m_pMotionCount; i++) {
+			char* names[3] = { "pmotion1", "pmotion2", "pmotion3" };
 
-lbl_8017A2E8:
-	lwz      r5, 0x1cc(r31)
-	cmpwi    r27, 0
-	lwz      r4, 0x1d0(r31)
-	li       r3, 0
-	lwz      r0, 0x1d4(r31)
-	stw      r5, 8(r1)
-	stw      r4, 0xc(r1)
-	stw      r0, 0x10(r1)
-	blt      lbl_8017A31C
-	lwz      r0, 0x250(r26)
-	cmpw     r27, r0
-	bge      lbl_8017A31C
-	li       r3, 1
-
-lbl_8017A31C:
-	clrlwi.  r0, r3, 0x18
-	bne      lbl_8017A338
-	addi     r3, r31, 0x18
-	addi     r5, r31, 0x60
-	li       r4, 0xa31
-	crclr    6
-	bl       panic_f__12JUTExceptionFPCciPCce
-
-lbl_8017A338:
-	lwz      r0, 0x254(r26)
-	cmpwi    r27, 0
-	li       r3, 0
-	add      r25, r0, r30
-	blt      lbl_8017A35C
-	lwz      r0, 0x250(r26)
-	cmpw     r27, r0
-	bge      lbl_8017A35C
-	li       r3, 1
-
-lbl_8017A35C:
-	clrlwi.  r0, r3, 0x18
-	bne      lbl_8017A378
-	addi     r3, r31, 0x18
-	addi     r5, r31, 0x60
-	li       r4, 0xa2b
-	crclr    6
-	bl       panic_f__12JUTExceptionFPCciPCce
-
-lbl_8017A378:
-	mr       r3, r25
-	lwz      r4, 0x258(r26)
-	lwz      r12, 0(r25)
-	lfsx     f0, r4, r29
-	lwz      r12, 0xc(r12)
-	fmuls    f1, f31, f0
-	mtctr    r12
-	bctrl
-	lwz      r3, 0x174(r26)
-	lwz      r4, 0(r28)
-	bl       getJoint__Q28SysShape5ModelFPc
-	cmplwi   r3, 0
-	beq      lbl_8017A3E4
-	lhz      r24, 0x38(r3)
-	mr       r3, r25
-	lwz      r12, 0(r25)
-	lwz      r25, 0x174(r26)
-	lwz      r12, 8(r12)
-	mtctr    r12
-	bctrl
-	lwz      r4, 8(r25)
-	rlwinm   r0, r24, 2, 0xe, 0x1d
-	lwz      r4, 4(r4)
-	lwz      r4, 0x28(r4)
-	lwzx     r4, r4, r0
-	stw      r3, 0x54(r4)
-	b        lbl_8017A3FC
-
-lbl_8017A3E4:
-	lwz      r6, 0(r28)
-	addi     r3, r31, 0x18
-	addi     r5, r31, 0x1d8
-	li       r4, 0xa53
-	crclr    6
-	bl       panic_f__12JUTExceptionFPCciPCce
-
-lbl_8017A3FC:
-	addi     r30, r30, 0x1c
-	addi     r29, r29, 4
-	addi     r28, r28, 4
-	addi     r27, r27, 1
-
-lbl_8017A40C:
-	lwz      r0, 0x250(r26)
-	cmpw     r27, r0
-	blt      lbl_8017A2E8
-
-lbl_8017A418:
-	psq_l    f31, 72(r1), 0, qr0
-	lfd      f31, 0x40(r1)
-	lmw      r24, 0x20(r1)
-	lwz      r0, 0x54(r1)
-	mtlr     r0
-	addi     r1, r1, 0x50
-	blr
-	*/
+			SysShape::Animator* panim = getPAnimator(i);
+			panim->animate(time * *getPMotionSpeed(i));
+			SysShape::Joint* jnt = m_model->getJoint(names[i]);
+			if (jnt) {
+				u16 id                                                              = jnt->m_jointIndex;
+				SysShape::Model* model                                              = m_model;
+				J3DMtxCalc* calc                                                    = panim->getCalc();
+				model->m_j3dModel->m_modelData->m_jointTree.m_joints[id]->m_mtxCalc = static_cast<J3DMtxCalcAnmBase*>(calc);
+			} else {
+				JUT_PANICLINE(2643, "no joint (%s)\n", names[i]);
+			}
+		}
+	}
 }
 
 /*
@@ -3389,195 +1926,41 @@ lbl_8017A418:
  * Address:	8017A434
  * Size:	0001E8
  */
-void ItemOnyon::Mgr::initDependency(void)
+void ItemOnyon::Mgr::initDependency()
 {
-	/*
-	stwu     r1, -0x20(r1)
-	mflr     r0
-	lis      r4, "__vt__23Iterator<Q24Game5Onyon>"@ha
-	addi     r3, r3, 0x4c
-	stw      r0, 0x24(r1)
-	li       r0, 0
-	addi     r4, r4, "__vt__23Iterator<Q24Game5Onyon>"@l
-	cmplwi   r0, 0
-	stw      r4, 8(r1)
-	stw      r0, 0x14(r1)
-	stw      r0, 0xc(r1)
-	stw      r3, 0x10(r1)
-	bne      lbl_8017A480
-	lwz      r12, 0(r3)
-	lwz      r12, 0x18(r12)
-	mtctr    r12
-	bctrl
-	stw      r3, 0xc(r1)
-	b        lbl_8017A5EC
-
-lbl_8017A480:
-	lwz      r12, 0(r3)
-	lwz      r12, 0x18(r12)
-	mtctr    r12
-	bctrl
-	stw      r3, 0xc(r1)
-	b        lbl_8017A4EC
-
-lbl_8017A498:
-	lwz      r3, 0x10(r1)
-	lwz      r4, 0xc(r1)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x20(r12)
-	mtctr    r12
-	bctrl
-	mr       r4, r3
-	lwz      r3, 0x14(r1)
-	lwz      r12, 0(r3)
-	lwz      r12, 8(r12)
-	mtctr    r12
-	bctrl
-	clrlwi.  r0, r3, 0x18
-	bne      lbl_8017A5EC
-	lwz      r3, 0x10(r1)
-	lwz      r4, 0xc(r1)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x14(r12)
-	mtctr    r12
-	bctrl
-	stw      r3, 0xc(r1)
-
-lbl_8017A4EC:
-	lwz      r12, 8(r1)
-	addi     r3, r1, 8
-	lwz      r12, 0x10(r12)
-	mtctr    r12
-	bctrl
-	clrlwi.  r0, r3, 0x18
-	beq      lbl_8017A498
-	b        lbl_8017A5EC
-
-lbl_8017A50C:
-	lwz      r3, 0x10(r1)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x20(r12)
-	mtctr    r12
-	bctrl
-	lwz      r12, 0(r3)
-	lwz      r12, 0x1bc(r12)
-	mtctr    r12
-	bctrl
-	lwz      r0, 0x14(r1)
-	cmplwi   r0, 0
-	bne      lbl_8017A55C
-	lwz      r3, 0x10(r1)
-	lwz      r4, 0xc(r1)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x14(r12)
-	mtctr    r12
-	bctrl
-	stw      r3, 0xc(r1)
-	b        lbl_8017A5EC
-
-lbl_8017A55C:
-	lwz      r3, 0x10(r1)
-	lwz      r4, 0xc(r1)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x14(r12)
-	mtctr    r12
-	bctrl
-	stw      r3, 0xc(r1)
-	b        lbl_8017A5D0
-
-lbl_8017A57C:
-	lwz      r3, 0x10(r1)
-	lwz      r4, 0xc(r1)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x20(r12)
-	mtctr    r12
-	bctrl
-	mr       r4, r3
-	lwz      r3, 0x14(r1)
-	lwz      r12, 0(r3)
-	lwz      r12, 8(r12)
-	mtctr    r12
-	bctrl
-	clrlwi.  r0, r3, 0x18
-	bne      lbl_8017A5EC
-	lwz      r3, 0x10(r1)
-	lwz      r4, 0xc(r1)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x14(r12)
-	mtctr    r12
-	bctrl
-	stw      r3, 0xc(r1)
-
-lbl_8017A5D0:
-	lwz      r12, 8(r1)
-	addi     r3, r1, 8
-	lwz      r12, 0x10(r12)
-	mtctr    r12
-	bctrl
-	clrlwi.  r0, r3, 0x18
-	beq      lbl_8017A57C
-
-lbl_8017A5EC:
-	lwz      r3, 0x10(r1)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x1c(r12)
-	mtctr    r12
-	bctrl
-	lwz      r4, 0xc(r1)
-	cmplw    r4, r3
-	bne      lbl_8017A50C
-	lwz      r0, 0x24(r1)
-	mtlr     r0
-	addi     r1, r1, 0x20
-	blr
-	*/
+	Iterator<Onyon> iterOnyon(&m_nodeObjectMgr);
+	CI_LOOP(iterOnyon)
+	{
+		Onyon* item = static_cast<Onyon*>(*iterOnyon);
+		item->initDependency();
+	}
 }
-
-/*
- * --INFO--
- * Address:	8017A61C
- * Size:	000004
- */
-void BaseItem::initDependency() { }
 
 /*
  * --INFO--
  * Address:	8017A620
  * Size:	00004C
  */
-J3DModelData* ItemOnyon::Mgr::generatorGetShape(GenItemParm*)
+J3DModelData* ItemOnyon::Mgr::generatorGetShape(GenItemParm* parm)
 {
-	/*
-	lwz      r0, 4(r4)
-	cmpwi    r0, 3
-	beq      lbl_8017A650
-	bge      lbl_8017A63C
-	cmpwi    r0, 0
-	bge      lbl_8017A648
-	b        lbl_8017A65C
+	GenOnyonParm* onyonparm = static_cast<GenOnyonParm*>(parm);
 
-lbl_8017A63C:
-	cmpwi    r0, 5
-	bge      lbl_8017A65C
-	b        lbl_8017A658
+	int objType;
+	switch (onyonparm->m_onyonIndex) {
+	case ONYON_TYPE_RED:
+	case ONYON_TYPE_BLUE:
+	case ONYON_TYPE_YELLOW:
+		objType = ONYON_OBJECT_ONYON;
+		break;
+	case ONYON_TYPE_POD:
+		objType = ONYON_OBJECT_POD;
+		break;
+	case ONYON_TYPE_SHIP:
+		objType = ONYON_OBJECT_SHIP;
+		break;
+	}
 
-lbl_8017A648:
-	li       r4, 0
-	b        lbl_8017A65C
-
-lbl_8017A650:
-	li       r4, 1
-	b        lbl_8017A65C
-
-lbl_8017A658:
-	li       r4, 2
-
-lbl_8017A65C:
-	lwz      r3, 0x1c(r3)
-	slwi     r0, r4, 2
-	lwzx     r3, r3, r0
-	blr
-	*/
+	return m_modelData[objType];
 }
 
 /*
@@ -3585,79 +1968,23 @@ lbl_8017A65C:
  * Address:	8017A66C
  * Size:	000054
  */
-GenItemParm* ItemOnyon::Mgr::generatorNewItemParm()
-{
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	li       r3, 0xc
-	stw      r0, 0x14(r1)
-	bl       __nw__FUl
-	cmplwi   r3, 0
-	beq      lbl_8017A6B0
-	lis      r4, __vt__Q24Game11GenItemParm@ha
-	lis      r5, __vt__12GenOnyonParm@ha
-	addi     r0, r4, __vt__Q24Game11GenItemParm@l
-	li       r4, 0
-	stw      r0, 0(r3)
-	addi     r5, r5, __vt__12GenOnyonParm@l
-	li       r0, 1
-	stw      r5, 0(r3)
-	stw      r4, 4(r3)
-	stb      r0, 8(r3)
-
-lbl_8017A6B0:
-	lwz      r0, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
-}
+GenItemParm* ItemOnyon::Mgr::generatorNewItemParm() { return new GenOnyonParm(); }
 
 /*
  * --INFO--
  * Address:	8017A6C0
  * Size:	00008C
  */
-void ItemOnyon::Mgr::generatorWrite(Stream&, Game::GenItemParm*)
+void ItemOnyon::Mgr::generatorWrite(Stream& ram, Game::GenItemParm* parm)
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	mr       r31, r5
-	stw      r30, 8(r1)
-	mr       r30, r4
-	mr       r3, r30
-	lwz      r4, 0x414(r4)
-	bl       textWriteTab__6StreamFi
-	lwz      r4, 4(r31)
-	mr       r3, r30
-	bl       writeInt__6StreamFi
-	lis      r4, lbl_8047E808@ha
-	mr       r3, r30
-	addi     r4, r4, lbl_8047E808@l
-	crclr    6
-	bl       textWriteText__6StreamFPce
-	lwz      r4, 0x414(r30)
-	mr       r3, r30
-	bl       textWriteTab__6StreamFi
-	lbz      r4, 8(r31)
-	mr       r3, r30
-	bl       writeByte__6StreamFUc
-	lis      r4, lbl_8047E81C@ha
-	mr       r3, r30
-	addi     r4, r4, lbl_8047E81C@l
-	crclr    6
-	bl       textWriteText__6StreamFPce
-	lwz      r0, 0x14(r1)
-	lwz      r31, 0xc(r1)
-	lwz      r30, 8(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	GenOnyonParm* onyonparm = static_cast<GenOnyonParm*>(parm);
+	ram.textWriteTab(ram.m_tabCount);
+	ram.writeInt(onyonparm->m_onyonIndex);
+	ram.textWriteText("\t# onyon index\r\n");
+
+	ram.textWriteTab(ram.m_tabCount);
+	ram.writeByte(onyonparm->m_isAfterBoot);
+	ram.textWriteText("\t# after boot? true==1\r\n");
 }
 
 /*
@@ -3665,42 +1992,13 @@ void ItemOnyon::Mgr::generatorWrite(Stream&, Game::GenItemParm*)
  * Address:	8017A74C
  * Size:	000078
  */
-void ItemOnyon::Mgr::generatorRead(Stream&, Game::GenItemParm*, unsigned long)
+void ItemOnyon::Mgr::generatorRead(Stream& ram, Game::GenItemParm* parm, unsigned long flag)
 {
-	/*
-	stwu     r1, -0x20(r1)
-	mflr     r0
-	stw      r0, 0x24(r1)
-	stw      r31, 0x1c(r1)
-	mr       r31, r6
-	stw      r30, 0x18(r1)
-	mr       r30, r5
-	stw      r29, 0x14(r1)
-	mr       r29, r4
-	mr       r3, r29
-	bl       readInt__6StreamFv
-	lis      r4, 0x30303031@ha
-	stw      r3, 4(r30)
-	addi     r0, r4, 0x30303031@l
-	cmplw    r31, r0
-	blt      lbl_8017A7A8
-	mr       r3, r29
-	bl       readByte__6StreamFv
-	clrlwi   r0, r3, 0x18
-	subfic   r0, r0, 1
-	cntlzw   r0, r0
-	srwi     r0, r0, 5
-	stb      r0, 8(r30)
-
-lbl_8017A7A8:
-	lwz      r0, 0x24(r1)
-	lwz      r31, 0x1c(r1)
-	lwz      r30, 0x18(r1)
-	lwz      r29, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x20
-	blr
-	*/
+	GenOnyonParm* onyonparm = static_cast<GenOnyonParm*>(parm);
+	onyonparm->m_onyonIndex = ram.readInt();
+	if (flag >= '0001') {
+		onyonparm->m_isAfterBoot = !(1 - ram.readByte());
+	}
 }
 
 /*
@@ -3718,100 +2016,17 @@ ItemOnyon::Mgr::Mgr()
 	m_pod                       = nullptr;
 	BaseItemMgr::m_name         = "Onyon";
 	m_modelData                 = new J3DModelData*[3];
-	m_onyonAnimMgrFile          = nullptr;
-	m_podAnimMgrFile            = nullptr;
-	m_ufoAnimMgrFile            = nullptr;
+	m_animMgrFiles[0]           = nullptr;
+	m_animMgrFiles[1]           = nullptr;
+	m_animMgrFiles[2]           = nullptr;
 }
 
 /*
  * --INFO--
- * Address:	8017AB6C
- * Size:	00011C
+ * Address:	8017A7C4
+ * Size:	000188
  */
-ItemOnyon::Mgr::~Mgr(void)
-{
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	mr       r31, r4
-	stw      r30, 8(r1)
-	or.      r30, r3, r3
-	beq      lbl_8017AC6C
-	lis      r3, __vt__Q34Game9ItemOnyon3Mgr@ha
-	addic.   r0, r30, 0x4c
-	addi     r3, r3, __vt__Q34Game9ItemOnyon3Mgr@l
-	stw      r3, 0(r30)
-	addi     r0, r3, 0x74
-	stw      r0, 0x30(r30)
-	beq      lbl_8017AC28
-	lis      r4, "__vt__28NodeObjectMgr<Q24Game5Onyon>"@ha
-	addic.   r3, r30, 0x6c
-	addi     r4, r4, "__vt__28NodeObjectMgr<Q24Game5Onyon>"@l
-	stw      r4, 0x4c(r30)
-	addi     r0, r4, 0x2c
-	stw      r0, 0x68(r30)
-	beq      lbl_8017ABD8
-	lis      r4, "__vt__26TObjectNode<Q24Game5Onyon>"@ha
-	addi     r0, r4, "__vt__26TObjectNode<Q24Game5Onyon>"@l
-	stw      r0, 0x6c(r30)
-	li       r4, 0
-	bl       __dt__5CNodeFv
-
-lbl_8017ABD8:
-	addic.   r0, r30, 0x4c
-	beq      lbl_8017AC28
-	lis      r3, "__vt__24ObjectMgr<Q24Game5Onyon>"@ha
-	addic.   r0, r30, 0x4c
-	addi     r3, r3, "__vt__24ObjectMgr<Q24Game5Onyon>"@l
-	stw      r3, 0x4c(r30)
-	addi     r0, r3, 0x2c
-	stw      r0, 0x68(r30)
-	beq      lbl_8017AC28
-	lis      r3, "__vt__24Container<Q24Game5Onyon>"@ha
-	addic.   r0, r30, 0x4c
-	addi     r0, r3, "__vt__24Container<Q24Game5Onyon>"@l
-	stw      r0, 0x4c(r30)
-	beq      lbl_8017AC28
-	lis      r4, __vt__16GenericContainer@ha
-	addi     r3, r30, 0x4c
-	addi     r0, r4, __vt__16GenericContainer@l
-	li       r4, 0
-	stw      r0, 0x4c(r30)
-	bl       __dt__5CNodeFv
-
-lbl_8017AC28:
-	addic.   r0, r30, 0x30
-	beq      lbl_8017AC5C
-	lis      r3, "__vt__24Container<Q24Game5Onyon>"@ha
-	addic.   r0, r30, 0x30
-	addi     r0, r3, "__vt__24Container<Q24Game5Onyon>"@l
-	stw      r0, 0x30(r30)
-	beq      lbl_8017AC5C
-	lis      r4, __vt__16GenericContainer@ha
-	addi     r3, r30, 0x30
-	addi     r0, r4, __vt__16GenericContainer@l
-	li       r4, 0
-	stw      r0, 0x30(r30)
-	bl       __dt__5CNodeFv
-
-lbl_8017AC5C:
-	extsh.   r0, r31
-	ble      lbl_8017AC6C
-	mr       r3, r30
-	bl       __dl__FPv
-
-lbl_8017AC6C:
-	lwz      r0, 0x14(r1)
-	mr       r3, r30
-	lwz      r31, 0xc(r1)
-	lwz      r30, 8(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
-}
+ItemOnyon::Mgr::~Mgr() { }
 
 /*
  * --INFO--
@@ -3820,195 +2035,31 @@ lbl_8017AC6C:
  */
 void Onyon::on_movie_end(bool)
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	mr       r31, r3
-	stw      r30, 8(r1)
-	lhz      r4, 0x22e(r3)
-	cmplwi   r4, 4
-	bne      lbl_8017ACC4
-	lbz      r0, 0x240(r31)
-	cmplwi   r0, 5
-	bne      lbl_8017ACFC
-	lfs      f0, lbl_80518A2C@sda21(r2)
-	stfs     f0, 0x1d4(r31)
-	b        lbl_8017ACFC
+	if (m_onyonType == ONYON_TYPE_SHIP) {
+		if (m_suckState == SUCKSTATE_IdleClosed) {
+			m_animSpeed = 0.0f;
+		}
+	} else {
+		bool checkboot = false;
+		if (m_onyonType <= ONYON_TYPE_YELLOW && gameSystem->m_mode == GSM_STORY_MODE) {
+			checkboot = true;
+		}
+		if (checkboot) {
+			playData->hasBootContainer(m_onyonType);
+		}
+		m_animSpeed = 30.0f;
+	}
 
-lbl_8017ACC4:
-	cmplwi   r4, 2
-	li       r5, 0
-	bgt      lbl_8017ACE4
-	lwz      r3, gameSystem__4Game@sda21(r13)
-	lwz      r0, 0x44(r3)
-	cmpwi    r0, 0
-	bne      lbl_8017ACE4
-	li       r5, 1
+	if (m_onyonType <= ONYON_TYPE_YELLOW) {
 
-lbl_8017ACE4:
-	clrlwi.  r0, r5, 0x18
-	beq      lbl_8017ACF4
-	lwz      r3, playData__4Game@sda21(r13)
-	bl       hasBootContainer__Q24Game8PlayDataFi
+		int animid = (m_animator.m_animInfo) ? m_animator.m_animInfo->m_id : -1;
 
-lbl_8017ACF4:
-	lfs      f0, lbl_80518A30@sda21(r2)
-	stfs     f0, 0x1d4(r31)
+		if (animid == 1) {
+			return;
+		}
+	}
 
-lbl_8017ACFC:
-	lhz      r4, 0x22e(r31)
-	cmplwi   r4, 2
-	bgt      lbl_8017AD28
-	lwz      r3, 0x1b4(r31)
-	cmplwi   r3, 0
-	beq      lbl_8017AD1C
-	lha      r0, 0x20(r3)
-	b        lbl_8017AD20
-
-lbl_8017AD1C:
-	li       r0, -1
-
-lbl_8017AD20:
-	cmpwi    r0, 1
-	beq      lbl_8017AEC4
-
-lbl_8017AD28:
-	cmplwi   r4, 4
-	bne      lbl_8017AE24
-	lwz      r3, playData__4Game@sda21(r13)
-	li       r4, 4
-	addi     r3, r3, 0xa8
-	bl       getColorSum__Q24Game13PikiContainerFi
-	lwz      r5, playData__4Game@sda21(r13)
-	mr       r30, r3
-	li       r4, 3
-	addi     r3, r5, 0xa8
-	bl       getColorSum__Q24Game13PikiContainerFi
-	add.     r0, r30, r3
-	ble      lbl_8017ADC4
-	lwz      r0, 0x250(r31)
-	cmpwi    r0, 1
-	bgt      lbl_8017AD84
-	lis      r3, lbl_8047E638@ha
-	lis      r5, lbl_8047E680@ha
-	addi     r3, r3, lbl_8047E638@l
-	li       r4, 0xa2b
-	addi     r5, r5, lbl_8047E680@l
-	crclr    6
-	bl       panic_f__12JUTExceptionFPCciPCce
-
-lbl_8017AD84:
-	lfs      f0, lbl_80518A30@sda21(r2)
-	li       r4, 0
-	lwz      r3, 0x258(r31)
-	stfs     f0, 4(r3)
-	lwz      r3, 0x218(r31)
-	lwz      r12, 0(r3)
-	lwz      r12, 8(r12)
-	mtctr    r12
-	bctrl
-	lwz      r3, 0x21c(r31)
-	li       r4, 0
-	lwz      r12, 0(r3)
-	lwz      r12, 8(r12)
-	mtctr    r12
-	bctrl
-	b        lbl_8017AEC4
-
-lbl_8017ADC4:
-	lwz      r3, 0x218(r31)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x10(r12)
-	mtctr    r12
-	bctrl
-	lwz      r3, 0x21c(r31)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x10(r12)
-	mtctr    r12
-	bctrl
-	lwz      r0, 0x250(r31)
-	cmpwi    r0, 1
-	bgt      lbl_8017AE14
-	lis      r3, lbl_8047E638@ha
-	lis      r5, lbl_8047E680@ha
-	addi     r3, r3, lbl_8047E638@l
-	li       r4, 0xa2b
-	addi     r5, r5, lbl_8047E680@l
-	crclr    6
-	bl       panic_f__12JUTExceptionFPCciPCce
-
-lbl_8017AE14:
-	lfs      f0, lbl_80518A2C@sda21(r2)
-	lwz      r3, 0x258(r31)
-	stfs     f0, 4(r3)
-	b        lbl_8017AEC4
-
-lbl_8017AE24:
-	lfs      f0, lbl_80518A30@sda21(r2)
-	stfs     f0, 0x1d4(r31)
-	lhz      r4, 0x22e(r31)
-	cmplwi   r4, 3
-	bne      lbl_8017AE4C
-	addi     r3, r31, 0x1a8
-	li       r4, 0
-	li       r5, 0
-	bl       startAnim__Q28SysShape8AnimatorFiPQ28SysShape14MotionListener
-	b        lbl_8017AEC4
-
-lbl_8017AE4C:
-	lwz      r3, playData__4Game@sda21(r13)
-	addi     r3, r3, 0xa8
-	bl       getColorSum__Q24Game13PikiContainerFi
-	cmpwi    r3, 0
-	ble      lbl_8017AEA8
-	lwz      r3, 0x1b4(r31)
-	cmplwi   r3, 0
-	beq      lbl_8017AE74
-	lha      r0, 0x20(r3)
-	b        lbl_8017AE78
-
-lbl_8017AE74:
-	li       r0, -1
-
-lbl_8017AE78:
-	cmplwi   r0, 1
-	ble      lbl_8017AE88
-	cmpwi    r0, 3
-	bne      lbl_8017AEC4
-
-lbl_8017AE88:
-	cmplwi   r31, 0
-	mr       r5, r31
-	beq      lbl_8017AE98
-	addi     r5, r31, 0x178
-
-lbl_8017AE98:
-	addi     r3, r31, 0x1a8
-	li       r4, 2
-	bl       startAnim__Q28SysShape8AnimatorFiPQ28SysShape14MotionListener
-	b        lbl_8017AEC4
-
-lbl_8017AEA8:
-	cmplwi   r31, 0
-	mr       r5, r31
-	beq      lbl_8017AEB8
-	addi     r5, r31, 0x178
-
-lbl_8017AEB8:
-	addi     r3, r31, 0x1a8
-	li       r4, 0
-	bl       startAnim__Q28SysShape8AnimatorFiPQ28SysShape14MotionListener
-
-lbl_8017AEC4:
-	lwz      r0, 0x14(r1)
-	lwz      r31, 0xc(r1)
-	lwz      r30, 8(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	startWaitMotion();
 }
 
 /*
@@ -4016,903 +2067,96 @@ lbl_8017AEC4:
  * Address:	8017AEDC
  * Size:	000BC0
  */
-void ItemOnyon::Mgr::birth(int, int)
+Onyon* ItemOnyon::Mgr::birth(int objtype, int onyontype)
 {
-	/*
-	stwu     r1, -0x30(r1)
-	mflr     r0
-	lis      r6, lbl_8047E620@ha
-	stw      r0, 0x34(r1)
-	stmw     r25, 0x14(r1)
-	mr       r30, r3
-	mr       r28, r4
-	mr       r26, r5
-	addi     r31, r6, lbl_8047E620@l
-	li       r25, 0
-	li       r3, 0x1c
-	bl       __nw__FUl
-	or.      r29, r3, r3
-	beq      lbl_8017AF24
-	bl       __ct__5CNodeFv
-	lis      r3, "__vt__26TObjectNode<Q24Game5Onyon>"@ha
-	addi     r0, r3, "__vt__26TObjectNode<Q24Game5Onyon>"@l
-	stw      r0, 0(r29)
-
-lbl_8017AF24:
-	cmpwi    r28, 1
-	beq      lbl_8017B2EC
-	bge      lbl_8017AF3C
-	cmpwi    r28, 0
-	bge      lbl_8017AF48
-	b        lbl_8017BA60
-
-lbl_8017AF3C:
-	cmpwi    r28, 3
-	bge      lbl_8017BA60
-	b        lbl_8017B600
-
-lbl_8017AF48:
-	li       r3, 0x260
-	bl       __nw__FUl
-	or.      r27, r3, r3
-	beq      lbl_8017AFD4
-	li       r4, 0x402
-	bl       __ct__Q24Game8BaseItemFi
-	lis      r4, __vt__Q24Game5Onyon@ha
-	li       r3, 8
-	addi     r4, r4, __vt__Q24Game5Onyon@l
-	stw      r4, 0(r27)
-	addi     r0, r4, 0x1b0
-	stw      r0, 0x178(r27)
-	bl       __nw__FUl
-	or.      r0, r3, r3
-	beq      lbl_8017AF8C
-	bl       __ct__8CollTreeFv
-	mr       r0, r3
-
-lbl_8017AF8C:
-	stw      r0, 0x114(r27)
-	li       r0, 0
-	lfs      f0, lbl_80518A2C@sda21(r2)
-	li       r3, 0xc
-	stfs     f0, 0x118(r27)
-	stw      r0, 0x23c(r27)
-	stfs     f0, 0x228(r27)
-	bl       __nw__FUl
-	or.      r25, r3, r3
-	beq      lbl_8017AFC4
-	bl       __ct__Q23Sys15MatBaseAnimatorFv
-	lis      r3, __vt__Q23Sys15MatLoopAnimator@ha
-	addi     r0, r3, __vt__Q23Sys15MatLoopAnimator@l
-	stw      r0, 0(r25)
-
-lbl_8017AFC4:
-	stw      r25, 0x234(r27)
-	li       r0, 0
-	stw      r0, 0x238(r27)
-	stw      r0, 0x1f4(r27)
-
-lbl_8017AFD4:
-	mr       r3, r27
-	li       r4, 0
-	bl       init__Q24Game8CreatureFPQ24Game15CreatureInitArg
-	slwi     r25, r28, 2
-	addi     r3, r27, 0x1a8
-	add      r5, r30, r25
-	li       r4, 0
-	lwz      r0, 0x88(r5)
-	li       r5, 0
-	stw      r0, 0x1b8(r27)
-	bl       startAnim__Q28SysShape8AnimatorFiPQ28SysShape14MotionListener
-	lfs      f0, lbl_80518A30@sda21(r2)
-	li       r3, 0x14
-	stfs     f0, 0x1d4(r27)
-	bl       __nw__FUl
-	or.      r0, r3, r3
-	beq      lbl_8017B030
-	lwz      r4, 0x1c(r30)
-	li       r5, 0
-	li       r6, 2
-	lwzx     r4, r4, r25
-	bl       __ct__Q28SysShape5ModelFP12J3DModelDataUlUl
-	mr       r0, r3
-
-lbl_8017B030:
-	stw      r0, 0x174(r27)
-	mr       r3, r27
-	mr       r4, r26
-	bl       setType__Q24Game5OnyonFi
-	add      r5, r30, r25
-	lwz      r3, 0x114(r27)
-	lwz      r4, 0x174(r27)
-	li       r6, 0
-	lwz      r5, 0x94(r5)
-	bl
-createFromFactory__8CollTreeFPQ28SysShape9MtxObjectP15CollPartFactoryP11CollPartMgr
-	lis      r4, 0x6C656731@ha
-	lwz      r3, 0x114(r27)
-	addi     r4, r4, 0x6C656731@l
-	bl       getCollPart__8CollTreeFUl
-	cmplwi   r3, 0
-	beq      lbl_8017B078
-	li       r0, 1
-	stb      r0, 0x58(r3)
-
-lbl_8017B078:
-	lis      r4, 0x6C656732@ha
-	lwz      r3, 0x114(r27)
-	addi     r4, r4, 0x6C656732@l
-	bl       getCollPart__8CollTreeFUl
-	cmplwi   r3, 0
-	beq      lbl_8017B098
-	li       r0, 1
-	stb      r0, 0x58(r3)
-
-lbl_8017B098:
-	lis      r4, 0x6C656733@ha
-	lwz      r3, 0x114(r27)
-	addi     r4, r4, 0x6C656733@l
-	bl       getCollPart__8CollTreeFUl
-	cmplwi   r3, 0
-	beq      lbl_8017B0B8
-	li       r0, 1
-	stb      r0, 0x58(r3)
-
-lbl_8017B0B8:
-	cmplwi   r3, 0
-	bne      lbl_8017B0D4
-	addi     r3, r31, 0x18
-	addi     r5, r31, 0xdc
-	li       r4, 0x695
-	crclr    6
-	bl       panic_f__12JUTExceptionFPCciPCce
-
-lbl_8017B0D4:
-	lis      r4, 0x666F7431@ha
-	lwz      r3, 0x114(r27)
-	addi     r4, r4, 0x666F7431@l
-	bl       getCollPart__8CollTreeFUl
-	cmplwi   r3, 0
-	bne      lbl_8017B100
-	addi     r3, r31, 0x18
-	addi     r5, r31, 0xe8
-	li       r4, 0x69a
-	crclr    6
-	bl       panic_f__12JUTExceptionFPCciPCce
-
-lbl_8017B100:
-	lhz      r0, 0x22e(r27)
-	cmplwi   r0, 4
-	bne      lbl_8017B1F0
-	lwz      r3, playData__4Game@sda21(r13)
-	li       r4, 4
-	addi     r3, r3, 0xa8
-	bl       getColorSum__Q24Game13PikiContainerFi
-	lwz      r5, playData__4Game@sda21(r13)
-	mr       r28, r3
-	li       r4, 3
-	addi     r3, r5, 0xa8
-	bl       getColorSum__Q24Game13PikiContainerFi
-	add.     r0, r28, r3
-	ble      lbl_8017B198
-	lwz      r0, 0x250(r27)
-	cmpwi    r0, 1
-	bgt      lbl_8017B158
-	addi     r3, r31, 0x18
-	addi     r5, r31, 0x60
-	li       r4, 0xa2b
-	crclr    6
-	bl       panic_f__12JUTExceptionFPCciPCce
-
-lbl_8017B158:
-	lfs      f0, lbl_80518A30@sda21(r2)
-	li       r4, 0
-	lwz      r3, 0x258(r27)
-	stfs     f0, 4(r3)
-	lwz      r3, 0x218(r27)
-	lwz      r12, 0(r3)
-	lwz      r12, 8(r12)
-	mtctr    r12
-	bctrl
-	lwz      r3, 0x21c(r27)
-	li       r4, 0
-	lwz      r12, 0(r3)
-	lwz      r12, 8(r12)
-	mtctr    r12
-	bctrl
-	b        lbl_8017B290
-
-lbl_8017B198:
-	lwz      r3, 0x218(r27)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x10(r12)
-	mtctr    r12
-	bctrl
-	lwz      r3, 0x21c(r27)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x10(r12)
-	mtctr    r12
-	bctrl
-	lwz      r0, 0x250(r27)
-	cmpwi    r0, 1
-	bgt      lbl_8017B1E0
-	addi     r3, r31, 0x18
-	addi     r5, r31, 0x60
-	li       r4, 0xa2b
-	crclr    6
-	bl       panic_f__12JUTExceptionFPCciPCce
-
-lbl_8017B1E0:
-	lfs      f0, lbl_80518A2C@sda21(r2)
-	lwz      r3, 0x258(r27)
-	stfs     f0, 4(r3)
-	b        lbl_8017B290
-
-lbl_8017B1F0:
-	lfs      f0, lbl_80518A30@sda21(r2)
-	stfs     f0, 0x1d4(r27)
-	lhz      r4, 0x22e(r27)
-	cmplwi   r4, 3
-	bne      lbl_8017B218
-	addi     r3, r27, 0x1a8
-	li       r4, 0
-	li       r5, 0
-	bl       startAnim__Q28SysShape8AnimatorFiPQ28SysShape14MotionListener
-	b        lbl_8017B290
-
-lbl_8017B218:
-	lwz      r3, playData__4Game@sda21(r13)
-	addi     r3, r3, 0xa8
-	bl       getColorSum__Q24Game13PikiContainerFi
-	cmpwi    r3, 0
-	ble      lbl_8017B274
-	lwz      r3, 0x1b4(r27)
-	cmplwi   r3, 0
-	beq      lbl_8017B240
-	lha      r0, 0x20(r3)
-	b        lbl_8017B244
-
-lbl_8017B240:
-	li       r0, -1
-
-lbl_8017B244:
-	cmplwi   r0, 1
-	ble      lbl_8017B254
-	cmpwi    r0, 3
-	bne      lbl_8017B290
-
-lbl_8017B254:
-	cmplwi   r27, 0
-	mr       r5, r27
-	beq      lbl_8017B264
-	addi     r5, r27, 0x178
-
-lbl_8017B264:
-	addi     r3, r27, 0x1a8
-	li       r4, 2
-	bl       startAnim__Q28SysShape8AnimatorFiPQ28SysShape14MotionListener
-	b        lbl_8017B290
-
-lbl_8017B274:
-	cmplwi   r27, 0
-	mr       r5, r27
-	beq      lbl_8017B284
-	addi     r5, r27, 0x178
-
-lbl_8017B284:
-	addi     r3, r27, 0x1a8
-	li       r4, 0
-	bl       startAnim__Q28SysShape8AnimatorFiPQ28SysShape14MotionListener
-
-lbl_8017B290:
-	slwi     r0, r26, 2
-	mr       r25, r27
-	add      r3, r30, r0
-	mr       r4, r26
-	stw      r27, 0xa0(r3)
-	lwz      r3, playData__4Game@sda21(r13)
-	bl       hasBootContainer__Q24Game8PlayDataFi
-	lwz      r3, gameSystem__4Game@sda21(r13)
-	lwz      r0, 0x44(r3)
-	cmpwi    r0, 0
-	bne      lbl_8017BA60
-	lwz      r3, playData__4Game@sda21(r13)
-	mr       r4, r26
-	bl       hasBootContainer__Q24Game8PlayDataFi
-	clrlwi.  r0, r3, 0x18
-	bne      lbl_8017BA60
-	addi     r3, r27, 0x1a8
-	li       r4, 4
-	li       r5, 0
-	bl       startAnim__Q28SysShape8AnimatorFiPQ28SysShape14MotionListener
-	lfs      f0, lbl_80518A2C@sda21(r2)
-	stfs     f0, 0x1d4(r27)
-	b        lbl_8017BA60
-
-lbl_8017B2EC:
-	li       r3, 0x260
-	bl       __nw__FUl
-	or.      r27, r3, r3
-	beq      lbl_8017B378
-	li       r4, 0x402
-	bl       __ct__Q24Game8BaseItemFi
-	lis      r4, __vt__Q24Game5Onyon@ha
-	li       r3, 8
-	addi     r4, r4, __vt__Q24Game5Onyon@l
-	stw      r4, 0(r27)
-	addi     r0, r4, 0x1b0
-	stw      r0, 0x178(r27)
-	bl       __nw__FUl
-	or.      r0, r3, r3
-	beq      lbl_8017B330
-	bl       __ct__8CollTreeFv
-	mr       r0, r3
-
-lbl_8017B330:
-	stw      r0, 0x114(r27)
-	li       r0, 0
-	lfs      f0, lbl_80518A2C@sda21(r2)
-	li       r3, 0xc
-	stfs     f0, 0x118(r27)
-	stw      r0, 0x23c(r27)
-	stfs     f0, 0x228(r27)
-	bl       __nw__FUl
-	or.      r26, r3, r3
-	beq      lbl_8017B368
-	bl       __ct__Q23Sys15MatBaseAnimatorFv
-	lis      r3, __vt__Q23Sys15MatLoopAnimator@ha
-	addi     r0, r3, __vt__Q23Sys15MatLoopAnimator@l
-	stw      r0, 0(r26)
-
-lbl_8017B368:
-	stw      r26, 0x234(r27)
-	li       r0, 0
-	stw      r0, 0x238(r27)
-	stw      r0, 0x1f4(r27)
-
-lbl_8017B378:
-	lwz      r3, shadowMgr__4Game@sda21(r13)
-	cmplwi   r3, 0
-	beq      lbl_8017B398
-	mr       r4, r27
-	bl       createShadow__Q24Game9ShadowMgrFPQ24Game8Creature
-	lwz      r3, shadowMgr__4Game@sda21(r13)
-	mr       r4, r27
-	bl       addShadow__Q24Game9ShadowMgrFPQ24Game8Creature
-
-lbl_8017B398:
-	mr       r3, r27
-	li       r4, 0
-	bl       init__Q24Game8CreatureFPQ24Game15CreatureInitArg
-	slwi     r25, r28, 2
-	addi     r3, r27, 0x1a8
-	add      r5, r30, r25
-	li       r4, 0
-	lwz      r0, 0x88(r5)
-	li       r5, 0
-	stw      r0, 0x1b8(r27)
-	bl       startAnim__Q28SysShape8AnimatorFiPQ28SysShape14MotionListener
-	lfs      f0, lbl_80518A30@sda21(r2)
-	li       r3, 0x14
-	stfs     f0, 0x1d4(r27)
-	bl       __nw__FUl
-	or.      r0, r3, r3
-	beq      lbl_8017B3F4
-	lwz      r4, 0x1c(r30)
-	li       r5, 0
-	li       r6, 2
-	lwzx     r4, r4, r25
-	bl       __ct__Q28SysShape5ModelFP12J3DModelDataUlUl
-	mr       r0, r3
-
-lbl_8017B3F4:
-	stw      r0, 0x174(r27)
-	mr       r3, r27
-	li       r4, 3
-	bl       setType__Q24Game5OnyonFi
-	add      r5, r30, r25
-	lwz      r3, 0x114(r27)
-	lwz      r4, 0x174(r27)
-	li       r6, 0
-	lwz      r5, 0x94(r5)
-	bl
-createFromFactory__8CollTreeFPQ28SysShape9MtxObjectP15CollPartFactoryP11CollPartMgr
-	lhz      r0, 0x22e(r27)
-	cmplwi   r0, 4
-	bne      lbl_8017B50C
-	lwz      r3, playData__4Game@sda21(r13)
-	li       r4, 4
-	addi     r3, r3, 0xa8
-	bl       getColorSum__Q24Game13PikiContainerFi
-	lwz      r5, playData__4Game@sda21(r13)
-	mr       r26, r3
-	li       r4, 3
-	addi     r3, r5, 0xa8
-	bl       getColorSum__Q24Game13PikiContainerFi
-	add.     r0, r26, r3
-	ble      lbl_8017B4B4
-	lwz      r0, 0x250(r27)
-	cmpwi    r0, 1
-	bgt      lbl_8017B474
-	addi     r3, r31, 0x18
-	addi     r5, r31, 0x60
-	li       r4, 0xa2b
-	crclr    6
-	bl       panic_f__12JUTExceptionFPCciPCce
-
-lbl_8017B474:
-	lfs      f0, lbl_80518A30@sda21(r2)
-	li       r4, 0
-	lwz      r3, 0x258(r27)
-	stfs     f0, 4(r3)
-	lwz      r3, 0x218(r27)
-	lwz      r12, 0(r3)
-	lwz      r12, 8(r12)
-	mtctr    r12
-	bctrl
-	lwz      r3, 0x21c(r27)
-	li       r4, 0
-	lwz      r12, 0(r3)
-	lwz      r12, 8(r12)
-	mtctr    r12
-	bctrl
-	b        lbl_8017B5AC
-
-lbl_8017B4B4:
-	lwz      r3, 0x218(r27)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x10(r12)
-	mtctr    r12
-	bctrl
-	lwz      r3, 0x21c(r27)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x10(r12)
-	mtctr    r12
-	bctrl
-	lwz      r0, 0x250(r27)
-	cmpwi    r0, 1
-	bgt      lbl_8017B4FC
-	addi     r3, r31, 0x18
-	addi     r5, r31, 0x60
-	li       r4, 0xa2b
-	crclr    6
-	bl       panic_f__12JUTExceptionFPCciPCce
-
-lbl_8017B4FC:
-	lfs      f0, lbl_80518A2C@sda21(r2)
-	lwz      r3, 0x258(r27)
-	stfs     f0, 4(r3)
-	b        lbl_8017B5AC
-
-lbl_8017B50C:
-	lfs      f0, lbl_80518A30@sda21(r2)
-	stfs     f0, 0x1d4(r27)
-	lhz      r4, 0x22e(r27)
-	cmplwi   r4, 3
-	bne      lbl_8017B534
-	addi     r3, r27, 0x1a8
-	li       r4, 0
-	li       r5, 0
-	bl       startAnim__Q28SysShape8AnimatorFiPQ28SysShape14MotionListener
-	b        lbl_8017B5AC
-
-lbl_8017B534:
-	lwz      r3, playData__4Game@sda21(r13)
-	addi     r3, r3, 0xa8
-	bl       getColorSum__Q24Game13PikiContainerFi
-	cmpwi    r3, 0
-	ble      lbl_8017B590
-	lwz      r3, 0x1b4(r27)
-	cmplwi   r3, 0
-	beq      lbl_8017B55C
-	lha      r0, 0x20(r3)
-	b        lbl_8017B560
-
-lbl_8017B55C:
-	li       r0, -1
-
-lbl_8017B560:
-	cmplwi   r0, 1
-	ble      lbl_8017B570
-	cmpwi    r0, 3
-	bne      lbl_8017B5AC
-
-lbl_8017B570:
-	cmplwi   r27, 0
-	mr       r5, r27
-	beq      lbl_8017B580
-	addi     r5, r27, 0x178
-
-lbl_8017B580:
-	addi     r3, r27, 0x1a8
-	li       r4, 2
-	bl       startAnim__Q28SysShape8AnimatorFiPQ28SysShape14MotionListener
-	b        lbl_8017B5AC
-
-lbl_8017B590:
-	cmplwi   r27, 0
-	mr       r5, r27
-	beq      lbl_8017B5A0
-	addi     r5, r27, 0x178
-
-lbl_8017B5A0:
-	addi     r3, r27, 0x1a8
-	li       r4, 0
-	bl       startAnim__Q28SysShape8AnimatorFiPQ28SysShape14MotionListener
-
-lbl_8017B5AC:
-	lwz      r3, 0x174(r27)
-	lwz      r3, 8(r3)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x10(r12)
-	mtctr    r12
-	bctrl
-	lwz      r3, 0x174(r27)
-	lwz      r3, 8(r3)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x14(r12)
-	mtctr    r12
-	bctrl
-	lwz      r3, 0x174(r27)
-	lwz      r3, 8(r3)
-	bl       makeDL__8J3DModelFv
-	lwz      r3, 0x174(r27)
-	lwz      r3, 8(r3)
-	bl       lock__8J3DModelFv
-	stw      r27, 0xac(r30)
-	mr       r25, r27
-	b        lbl_8017BA60
-
-lbl_8017B600:
-	li       r3, 0x260
-	bl       __nw__FUl
-	or.      r27, r3, r3
-	beq      lbl_8017B68C
-	li       r4, 0x402
-	bl       __ct__Q24Game8BaseItemFi
-	lis      r4, __vt__Q24Game5Onyon@ha
-	li       r3, 8
-	addi     r4, r4, __vt__Q24Game5Onyon@l
-	stw      r4, 0(r27)
-	addi     r0, r4, 0x1b0
-	stw      r0, 0x178(r27)
-	bl       __nw__FUl
-	or.      r0, r3, r3
-	beq      lbl_8017B644
-	bl       __ct__8CollTreeFv
-	mr       r0, r3
-
-lbl_8017B644:
-	stw      r0, 0x114(r27)
-	li       r0, 0
-	lfs      f0, lbl_80518A2C@sda21(r2)
-	li       r3, 0xc
-	stfs     f0, 0x118(r27)
-	stw      r0, 0x23c(r27)
-	stfs     f0, 0x228(r27)
-	bl       __nw__FUl
-	or.      r26, r3, r3
-	beq      lbl_8017B67C
-	bl       __ct__Q23Sys15MatBaseAnimatorFv
-	lis      r3, __vt__Q23Sys15MatLoopAnimator@ha
-	addi     r0, r3, __vt__Q23Sys15MatLoopAnimator@l
-	stw      r0, 0(r26)
-
-lbl_8017B67C:
-	stw      r26, 0x234(r27)
-	li       r0, 0
-	stw      r0, 0x238(r27)
-	stw      r0, 0x1f4(r27)
-
-lbl_8017B68C:
-	mr       r3, r27
-	li       r4, 0
-	bl       init__Q24Game8CreatureFPQ24Game15CreatureInitArg
-	slwi     r25, r28, 2
-	addi     r3, r27, 0x1a8
-	add      r5, r30, r25
-	li       r4, 0
-	lwz      r0, 0x88(r5)
-	li       r5, 0
-	stw      r0, 0x1b8(r27)
-	bl       startAnim__Q28SysShape8AnimatorFiPQ28SysShape14MotionListener
-	lfs      f0, lbl_80518A2C@sda21(r2)
-	li       r0, 0x403
-	li       r3, 0x14
-	stfs     f0, 0x1d4(r27)
-	sth      r0, 0x128(r27)
-	bl       __nw__FUl
-	or.      r0, r3, r3
-	beq      lbl_8017B6F0
-	lwz      r4, 0x1c(r30)
-	lis      r5, 8
-	li       r6, 2
-	lwzx     r4, r4, r25
-	bl       __ct__Q28SysShape5ModelFP12J3DModelDataUlUl
-	mr       r0, r3
-
-lbl_8017B6F0:
-	stw      r0, 0x174(r27)
-	lis      r4, 0x100
-	lwz      r3, 0x174(r27)
-	lwz      r3, 8(r3)
-	bl       newDifferedDisplayList__8J3DModelFUl
-	lwz      r3, 0x174(r27)
-	lwz      r3, 8(r3)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x10(r12)
-	mtctr    r12
-	bctrl
-	lwz      r3, 0x174(r27)
-	lwz      r3, 8(r3)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x14(r12)
-	mtctr    r12
-	bctrl
-	lwz      r3, 0x174(r27)
-	lwz      r3, 8(r3)
-	bl       makeDL__8J3DModelFv
-	lwz      r3, 0x174(r27)
-	lwz      r3, 8(r3)
-	bl       lock__8J3DModelFv
-	mr       r3, r27
-	li       r4, 4
-	bl       setType__Q24Game5OnyonFi
-	add      r5, r30, r25
-	lwz      r3, 0x114(r27)
-	lwz      r4, 0x174(r27)
-	li       r6, 0
-	lwz      r5, 0x94(r5)
-	bl
-createFromFactory__8CollTreeFPQ28SysShape9MtxObjectP15CollPartFactoryP11CollPartMgr
-	lhz      r0, 0x22e(r27)
-	cmplwi   r0, 4
-	bne      lbl_8017B8B8
-	li       r0, 3
-	stw      r0, 0x250(r27)
-	lwz      r25, 0x250(r27)
-	mulli    r3, r25, 0x1c
-	addi     r3, r3, 0x10
-	bl       __nwa__FUl
-	lis      r4, __ct__Q28SysShape8AnimatorFv@ha
-	mr       r7, r25
-	addi     r4, r4, __ct__Q28SysShape8AnimatorFv@l
-	li       r5, 0
-	li       r6, 0x1c
-	bl       __construct_new_array
-	stw      r3, 0x254(r27)
-	lwz      r0, 0x250(r27)
-	slwi     r3, r0, 2
-	bl       __nwa__FUl
-	li       r5, 0
-	stw      r3, 0x258(r27)
-	mr       r6, r5
-	mr       r7, r5
-	b        lbl_8017B808
-
-lbl_8017B7D0:
-	lwz      r4, 0x1b8(r27)
-	cmpwi    r5, 0
-	lwz      r3, 0x254(r27)
-	addi     r0, r6, 0x10
-	stwx     r4, r3, r0
-	bne      lbl_8017B7F0
-	lfs      f0, lbl_80518A30@sda21(r2)
-	b        lbl_8017B7F4
-
-lbl_8017B7F0:
-	lfs      f0, lbl_80518A2C@sda21(r2)
-
-lbl_8017B7F4:
-	lwz      r3, 0x258(r27)
-	addi     r6, r6, 0x1c
-	addi     r5, r5, 1
-	stfsx    f0, r3, r7
-	addi     r7, r7, 4
-
-lbl_8017B808:
-	lwz      r0, 0x250(r27)
-	cmpw     r5, r0
-	blt      lbl_8017B7D0
-	cmpwi    r0, 0
-	bgt      lbl_8017B830
-	addi     r3, r31, 0x18
-	addi     r5, r31, 0x60
-	li       r4, 0xa31
-	crclr    6
-	bl       panic_f__12JUTExceptionFPCciPCce
-
-lbl_8017B830:
-	lwz      r3, 0x254(r27)
-	li       r4, 1
-	li       r5, 0
-	bl       startAnim__Q28SysShape8AnimatorFiPQ28SysShape14MotionListener
-	lwz      r0, 0x250(r27)
-	cmpwi    r0, 1
-	bgt      lbl_8017B860
-	addi     r3, r31, 0x18
-	addi     r5, r31, 0x60
-	li       r4, 0xa31
-	crclr    6
-	bl       panic_f__12JUTExceptionFPCciPCce
-
-lbl_8017B860:
-	lwz      r3, 0x254(r27)
-	li       r4, 2
-	li       r5, 0
-	addi     r3, r3, 0x1c
-	bl       startAnim__Q28SysShape8AnimatorFiPQ28SysShape14MotionListener
-	lwz      r0, 0x250(r27)
-	cmpwi    r0, 2
-	bgt      lbl_8017B894
-	addi     r3, r31, 0x18
-	addi     r5, r31, 0x60
-	li       r4, 0xa31
-	crclr    6
-	bl       panic_f__12JUTExceptionFPCciPCce
-
-lbl_8017B894:
-	lwz      r3, 0x254(r27)
-	li       r4, 3
-	li       r5, 0
-	addi     r3, r3, 0x38
-	bl       startAnim__Q28SysShape8AnimatorFiPQ28SysShape14MotionListener
-	lfs      f0, lbl_80518A30@sda21(r2)
-	lwz      r3, 0x258(r27)
-	stfs     f0, 8(r3)
-	b        lbl_8017B8C8
-
-lbl_8017B8B8:
-	li       r0, 0
-	stw      r0, 0x250(r27)
-	stw      r0, 0x254(r27)
-	stw      r0, 0x258(r27)
-
-lbl_8017B8C8:
-	lhz      r0, 0x22e(r27)
-	cmplwi   r0, 4
-	bne      lbl_8017B9B8
-	lwz      r3, playData__4Game@sda21(r13)
-	li       r4, 4
-	addi     r3, r3, 0xa8
-	bl       getColorSum__Q24Game13PikiContainerFi
-	lwz      r5, playData__4Game@sda21(r13)
-	mr       r26, r3
-	li       r4, 3
-	addi     r3, r5, 0xa8
-	bl       getColorSum__Q24Game13PikiContainerFi
-	add.     r0, r26, r3
-	ble      lbl_8017B960
-	lwz      r0, 0x250(r27)
-	cmpwi    r0, 1
-	bgt      lbl_8017B920
-	addi     r3, r31, 0x18
-	addi     r5, r31, 0x60
-	li       r4, 0xa2b
-	crclr    6
-	bl       panic_f__12JUTExceptionFPCciPCce
-
-lbl_8017B920:
-	lfs      f0, lbl_80518A30@sda21(r2)
-	li       r4, 0
-	lwz      r3, 0x258(r27)
-	stfs     f0, 4(r3)
-	lwz      r3, 0x218(r27)
-	lwz      r12, 0(r3)
-	lwz      r12, 8(r12)
-	mtctr    r12
-	bctrl
-	lwz      r3, 0x21c(r27)
-	li       r4, 0
-	lwz      r12, 0(r3)
-	lwz      r12, 8(r12)
-	mtctr    r12
-	bctrl
-	b        lbl_8017BA58
-
-lbl_8017B960:
-	lwz      r3, 0x218(r27)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x10(r12)
-	mtctr    r12
-	bctrl
-	lwz      r3, 0x21c(r27)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x10(r12)
-	mtctr    r12
-	bctrl
-	lwz      r0, 0x250(r27)
-	cmpwi    r0, 1
-	bgt      lbl_8017B9A8
-	addi     r3, r31, 0x18
-	addi     r5, r31, 0x60
-	li       r4, 0xa2b
-	crclr    6
-	bl       panic_f__12JUTExceptionFPCciPCce
-
-lbl_8017B9A8:
-	lfs      f0, lbl_80518A2C@sda21(r2)
-	lwz      r3, 0x258(r27)
-	stfs     f0, 4(r3)
-	b        lbl_8017BA58
-
-lbl_8017B9B8:
-	lfs      f0, lbl_80518A30@sda21(r2)
-	stfs     f0, 0x1d4(r27)
-	lhz      r4, 0x22e(r27)
-	cmplwi   r4, 3
-	bne      lbl_8017B9E0
-	addi     r3, r27, 0x1a8
-	li       r4, 0
-	li       r5, 0
-	bl       startAnim__Q28SysShape8AnimatorFiPQ28SysShape14MotionListener
-	b        lbl_8017BA58
-
-lbl_8017B9E0:
-	lwz      r3, playData__4Game@sda21(r13)
-	addi     r3, r3, 0xa8
-	bl       getColorSum__Q24Game13PikiContainerFi
-	cmpwi    r3, 0
-	ble      lbl_8017BA3C
-	lwz      r3, 0x1b4(r27)
-	cmplwi   r3, 0
-	beq      lbl_8017BA08
-	lha      r0, 0x20(r3)
-	b        lbl_8017BA0C
-
-lbl_8017BA08:
-	li       r0, -1
-
-lbl_8017BA0C:
-	cmplwi   r0, 1
-	ble      lbl_8017BA1C
-	cmpwi    r0, 3
-	bne      lbl_8017BA58
-
-lbl_8017BA1C:
-	cmplwi   r27, 0
-	mr       r5, r27
-	beq      lbl_8017BA2C
-	addi     r5, r27, 0x178
-
-lbl_8017BA2C:
-	addi     r3, r27, 0x1a8
-	li       r4, 2
-	bl       startAnim__Q28SysShape8AnimatorFiPQ28SysShape14MotionListener
-	b        lbl_8017BA58
-
-lbl_8017BA3C:
-	cmplwi   r27, 0
-	mr       r5, r27
-	beq      lbl_8017BA4C
-	addi     r5, r27, 0x178
-
-lbl_8017BA4C:
-	addi     r3, r27, 0x1a8
-	li       r4, 0
-	bl       startAnim__Q28SysShape8AnimatorFiPQ28SysShape14MotionListener
-
-lbl_8017BA58:
-	mr       r25, r27
-	stw      r27, 0xb0(r30)
-
-lbl_8017BA60:
-	stw      r25, 0x18(r29)
-	mr       r4, r29
-	addi     r3, r30, 0x6c
-	bl       add__5CNodeFP5CNode
-	lwz      r3, 0x18(r29)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x2c(r12)
-	mtctr    r12
-	bctrl
-	mr       r3, r25
-	lmw      r25, 0x14(r1)
-	lwz      r0, 0x34(r1)
-	mtlr     r0
-	addi     r1, r1, 0x30
-	blr
-	*/
+	Onyon* resultOnyon          = nullptr;
+	TObjectNode<Onyon>* nodeobj = new TObjectNode<Onyon>;
+
+	switch (objtype) {
+	case ONYON_OBJECT_ONYON:
+		Onyon* onyon = new Onyon;
+		onyon->init(nullptr);
+
+		onyon->m_animator.m_animMgr = m_animMgrFiles[objtype];
+		onyon->m_animator.startAnim(0, nullptr);
+		onyon->m_animSpeed = 30.0f;
+		onyon->m_model     = new SysShape::Model(m_modelData[objtype], 0, 2);
+		onyon->setType(onyontype);
+
+		onyon->m_collTree->createFromFactory(onyon->m_model, m_collFactories[objtype], nullptr);
+		onyon->initTube();
+
+		onyon->startWaitMotion();
+
+		resultOnyon         = onyon;
+		m_onyons[onyontype] = onyon;
+		playData->hasBootContainer(onyontype);
+
+		// play boot animation if the onion isnt booted (glitched onion)
+		if (gameSystem->m_mode == GSM_STORY_MODE && !playData->hasBootContainer(onyontype)) {
+			onyon->m_animator.startAnim(4, nullptr);
+			onyon->m_animSpeed = 0.0f;
+		}
+		break;
+
+	case ONYON_OBJECT_POD:
+		onyon = new Onyon;
+		if (shadowMgr) {
+			shadowMgr->createShadow(onyon);
+			shadowMgr->addShadow(onyon);
+		}
+		onyon->init(nullptr);
+		onyon->m_animator.m_animMgr = m_animMgrFiles[objtype];
+		onyon->m_animator.startAnim(0, nullptr);
+		onyon->m_animSpeed = 30.0f;
+		onyon->m_model     = new SysShape::Model(m_modelData[objtype], 0, 2);
+		onyon->setType(ONYON_TYPE_POD);
+
+		onyon->m_collTree->createFromFactory(onyon->m_model, m_collFactories[objtype], nullptr);
+
+		onyon->startWaitMotion();
+
+		onyon->m_model->m_j3dModel->calc();
+		onyon->m_model->m_j3dModel->calcMaterial();
+		onyon->m_model->m_j3dModel->makeDL();
+		onyon->m_model->m_j3dModel->lock();
+
+		m_pod       = onyon;
+		resultOnyon = onyon;
+		break;
+
+	case ONYON_OBJECT_SHIP:
+		onyon = new Onyon;
+
+		onyon->init(nullptr);
+		onyon->m_animator.m_animMgr = m_animMgrFiles[objtype];
+		onyon->m_animator.startAnim(0, nullptr);
+		onyon->m_animSpeed    = 0.0f;
+		onyon->m_objectTypeID = OBJTYPE_Ufo;
+		onyon->m_model        = new SysShape::Model(m_modelData[objtype], 0x00080000, 2);
+
+		onyon->m_model->m_j3dModel->newDifferedDisplayList(0x1000000);
+		onyon->m_model->m_j3dModel->calc();
+		onyon->m_model->m_j3dModel->calcMaterial();
+		onyon->m_model->m_j3dModel->makeDL();
+		onyon->m_model->m_j3dModel->lock();
+
+		onyon->setType(ONYON_TYPE_SHIP);
+		onyon->m_collTree->createFromFactory(onyon->m_model, m_collFactories[objtype], nullptr);
+
+		onyon->init_pmotions();
+
+		onyon->startWaitMotion();
+		resultOnyon = onyon;
+		m_ufo       = onyon;
+
+		break;
+	}
+
+	nodeobj->m_contents = resultOnyon;
+	m_nodeObjectMgr.m_node.add(nodeobj);
+	nodeobj->m_contents->constructor();
+	return resultOnyon;
 }
 
 /*
@@ -4920,38 +2164,14 @@ lbl_8017BA60:
  * Address:	8017BA9C
  * Size:	000060
  */
-Onyon* ItemOnyon::Mgr::getOnyon(int)
+Onyon* ItemOnyon::Mgr::getOnyon(int i)
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	cmpwi    r4, 0
-	stw      r0, 0x14(r1)
-	blt      lbl_8017BAC8
-	cmpwi    r4, 3
-	bge      lbl_8017BAC8
-	slwi     r0, r4, 2
-	add      r3, r3, r0
-	lwz      r3, 0xa0(r3)
-	b        lbl_8017BAEC
-
-lbl_8017BAC8:
-	lis      r3, lbl_8047E638@ha
-	lis      r5, lbl_8047E838@ha
-	mr       r6, r4
-	li       r4, 0xb72
-	addi     r3, r3, lbl_8047E638@l
-	addi     r5, r5, lbl_8047E838@l
-	crclr    6
-	bl       panic_f__12JUTExceptionFPCciPCce
-	li       r3, 0
-
-lbl_8017BAEC:
-	lwz      r0, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	if (i >= 0 && i < ONYON_TYPE_MAX) {
+		return m_onyons[i];
+	} else {
+		JUT_PANICLINE(2930, "illegal onyon index %d\n", i);
+		return nullptr;
+	}
 }
 
 /*
@@ -4959,1958 +2179,128 @@ lbl_8017BAEC:
  * Address:	8017BAFC
  * Size:	000020
  */
-void ItemOnyon::Mgr::init(void)
-{
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	bl       load__Q34Game9ItemOnyon3MgrFv
-	lwz      r0, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
-}
+void ItemOnyon::Mgr::init() { load(); }
 
 /*
  * --INFO--
  * Address:	8017BB1C
  * Size:	000528
  */
-void ItemOnyon::Mgr::load(void)
+void ItemOnyon::Mgr::load()
 {
-	/*
-	stwu     r1, -0xb0(r1)
-	mflr     r0
-	lis      r4, lbl_8047E620@ha
-	li       r5, 0
-	stw      r0, 0xb4(r1)
-	stmw     r27, 0x9c(r1)
-	mr       r31, r3
-	addi     r30, r4, lbl_8047E620@l
-	addi     r4, r30, 0x230
-	lwz      r3, sys@sda21(r13)
-	bl       heapStatusStart__6SystemFPcP7JKRHeap
-	addi     r3, r1, 0x68
-	addi     r4, r30, 0x23c
-	bl       __ct__Q212LoadResource3ArgFPCc
-	lwz      r3, gLoadResourceMgr@sda21(r13)
-	addi     r4, r1, 0x68
-	bl       mountArchive__Q212LoadResource3MgrFRQ212LoadResource3Arg
-	cmplwi   r3, 0
-	beq      lbl_8017BB70
-	lwz      r29, 0x34(r3)
-	b        lbl_8017BB74
+	sys->heapStatusStart("onyon-arc", nullptr);
+	LoadResource::Arg loadarg("user/Kando/onyon/arc.szs");
+	LoadResource::Node* node = gLoadResourceMgr->mountArchive(loadarg);
+	JKRArchive* onyonarc;
+	if (node) {
+		onyonarc = node->m_archive;
+	} else {
+		onyonarc = nullptr;
+	}
+	sys->heapStatusEnd("onyon-arc");
 
-lbl_8017BB70:
-	li       r29, 0
+	void* file = JKRFileLoader::getGlbResource("goal.bmd", nullptr);
+	JUT_ASSERTLINE(2966, file, "goal.bmd not found !!\n");
+	m_modelData[0] = J3DModelLoaderDataBase::load(file, 0x240000);
 
-lbl_8017BB74:
-	lwz      r3, sys@sda21(r13)
-	addi     r4, r30, 0x230
-	bl       heapStatusEnd__6SystemFPc
-	addi     r3, r30, 0x258
-	li       r4, 0
-	bl       getGlbResource__13JKRFileLoaderFPCcP13JKRFileLoader
-	or.      r27, r3, r3
-	bne      lbl_8017BBA8
-	addi     r3, r30, 0x18
-	addi     r5, r30, 0x264
-	li       r4, 0xb96
-	crclr    6
-	bl       panic_f__12JUTExceptionFPCciPCce
+	JKRArchive* podarc = nullptr;
+	if ((gameSystem->isChallengeMode() || gameSystem->m_inCave) && gameSystem->m_mode != GSM_VERSUS_MODE) {
+		LoadResource::Arg loadpodarg(playData->isStoryFlag(STORY_DebtPaid) ? "user/Kando/pod_gold/arc.szs" : "user/Kando/pod/arc.szs");
+		loadpodarg.m_heap = getCurrentHeap();
+		node              = gLoadResourceMgr->mountArchive(loadpodarg);
+		if (node) {
+			podarc = node->m_archive;
+		} else {
+			podarc = nullptr;
+		}
 
-lbl_8017BBA8:
-	mr       r3, r27
-	lis      r4, 0x24
-	bl       load__22J3DModelLoaderDataBaseFPCvUl
-	lwz      r4, 0x1c(r31)
-	li       r28, 0
-	li       r0, 0
-	stw      r3, 0(r4)
-	lwz      r3, gameSystem__4Game@sda21(r13)
-	lwz      r4, 0x44(r3)
-	cmpwi    r4, 2
-	beq      lbl_8017BBDC
-	cmpwi    r4, 3
-	bne      lbl_8017BBE0
+		file = JKRFileLoader::getGlbResource("pot.bmd", nullptr);
+		JUT_ASSERTLINE(2998, file, "pot.bmd not found !!\n");
+		J3DModelData* modelDataPod = J3DModelLoaderDataBase::load(file, 0x00000030);
+		m_modelData[1]             = modelDataPod;
+		m_modelData[1]->newSharedDisplayList(0x40000);
+		m_modelData[1]->makeSharedDL();
+		for (u16 i = 0; i < modelDataPod->m_shapeTable.m_count; i++) {
+			u32 flags                                      = modelDataPod->m_shapeTable.m_items[i]->m_flags & 0xFFFF0FFF;
+			modelDataPod->m_shapeTable.m_items[i]->m_flags = flags | 0x2000;
+		}
 
-lbl_8017BBDC:
-	li       r0, 1
+	} else {
+		m_modelData[1] = nullptr;
+	}
 
-lbl_8017BBE0:
-	clrlwi.  r0, r0, 0x18
-	bne      lbl_8017BBF4
-	lbz      r0, 0x48(r3)
-	cmplwi   r0, 0
-	beq      lbl_8017BCDC
+	SysShape::Model::enableMaterialAnim(m_modelData[0], 0);
 
-lbl_8017BBF4:
-	cmpwi    r4, 1
-	beq      lbl_8017BCDC
-	lwz      r5, playData__4Game@sda21(r13)
-	addi     r3, r1, 0x38
-	addi     r4, r30, 0x298
-	lbz      r0, 0x2f(r5)
-	clrlwi.  r0, r0, 0x1f
-	beq      lbl_8017BC18
-	addi     r4, r30, 0x27c
+	file = JKRFileLoader::getGlbResource("kidou_blue.brk", nullptr);
+	m_onyonTevAnim[0].attachResource(file, m_modelData[0]); // blue mat anim
 
-lbl_8017BC18:
-	bl       __ct__Q212LoadResource3ArgFPCc
-	lwz      r0, sCurrentHeap__7JKRHeap@sda21(r13)
-	addi     r4, r1, 0x38
-	lwz      r3, gLoadResourceMgr@sda21(r13)
-	stw      r0, 0x50(r1)
-	bl       mountArchive__Q212LoadResource3MgrFRQ212LoadResource3Arg
-	cmplwi   r3, 0
-	beq      lbl_8017BC40
-	lwz      r28, 0x34(r3)
-	b        lbl_8017BC44
+	file = JKRFileLoader::getGlbResource("kidou_red.brk", nullptr);
+	m_onyonTevAnim[1].attachResource(file, m_modelData[0]); // red mat anim
 
-lbl_8017BC40:
-	li       r28, 0
+	file = JKRFileLoader::getGlbResource("kidou_yellow.brk", nullptr);
+	m_onyonTevAnim[2].attachResource(file, m_modelData[0]); // yellow mat anim
 
-lbl_8017BC44:
-	addi     r3, r2, lbl_80518B38@sda21
-	li       r4, 0
-	bl       getGlbResource__13JKRFileLoaderFPCcP13JKRFileLoader
-	or.      r27, r3, r3
-	bne      lbl_8017BC6C
-	addi     r3, r30, 0x18
-	addi     r5, r30, 0x2b0
-	li       r4, 0xbb6
-	crclr    6
-	bl       panic_f__12JUTExceptionFPCciPCce
+	m_objectPathComponent               = "user/Kando/onyon";
+	JKRArchive* onyontextarc            = openTextArc("texts.szs");
+	m_animMgrFiles[ONYON_OBJECT_ONYON]  = SysShape::AnimMgr::load(onyontextarc, "onyonAnimMgr.txt", m_modelData[0], onyonarc, nullptr);
+	m_collFactories[ONYON_OBJECT_ONYON] = CollPartFactory::load(onyontextarc, "onyonColl.txt");
+	closeTextArc(onyontextarc);
 
-lbl_8017BC6C:
-	mr       r3, r27
-	li       r4, 0x30
-	bl       load__22J3DModelLoaderDataBaseFPCvUl
-	lwz      r5, 0x1c(r31)
-	mr       r27, r3
-	lis      r4, 4
-	stw      r27, 4(r5)
-	lwz      r3, 0x1c(r31)
-	lwz      r3, 4(r3)
-	bl       newSharedDisplayList__12J3DModelDataFUl
-	lwz      r3, 0x1c(r31)
-	lwz      r3, 4(r3)
-	bl       makeSharedDL__12J3DModelDataFv
-	li       r4, 0
-	b        lbl_8017BCC8
+	if ((gameSystem->isChallengeMode() || gameSystem->m_inCave) && gameSystem->m_mode != GSM_VERSUS_MODE) {
+		if (playData->m_storyFlags & STORY_DebtPaid) {
+			m_objectPathComponent = "user/Kando/pod_gold";
+		} else {
+			m_objectPathComponent = "user/Kando/pod";
+		}
+		JKRArchive* podtextarc            = openTextArc("texts.szs");
+		m_animMgrFiles[ONYON_OBJECT_POD]  = SysShape::AnimMgr::load(podtextarc, "animMgr.txt", m_modelData[1], podarc, nullptr);
+		m_collFactories[ONYON_OBJECT_POD] = CollPartFactory::load(podtextarc, "coll.txt");
+		closeTextArc(podtextarc);
+	} else {
+		m_animMgrFiles[ONYON_OBJECT_POD]  = nullptr;
+		m_collFactories[ONYON_OBJECT_POD] = nullptr;
+	}
 
-lbl_8017BCA8:
-	lwz      r3, 0x80(r27)
-	rlwinm   r0, r4, 2, 0xe, 0x1d
-	addi     r4, r4, 1
-	lwzx     r3, r3, r0
-	lwz      r0, 0xc(r3)
-	rlwinm   r0, r0, 0, 0x14, 0xf
-	ori      r0, r0, 0x2000
-	stw      r0, 0xc(r3)
+	JKRArchive* ufoarc;
+	LoadResource::Arg loadufoarg(playData->isStoryFlag(STORY_DebtPaid) ? "user/Kando/ufo_gold/arc.szs" : "user/Kando/ufo/arc.szs");
+	loadufoarg.m_heap = getCurrentHeap();
+	node              = gLoadResourceMgr->mountArchive(loadufoarg);
+	if (node) {
+		ufoarc = node->m_archive;
+	} else {
+		ufoarc = nullptr;
+	}
+	file = JKRFileLoader::getGlbResource("ufo.bmd", nullptr);
+	JUT_ASSERTLINE(3123, file, "ufo.bmd not found!\n");
+	J3DModelData* modelDataUfo = J3DModelLoaderDataBase::load(file, 0x21020030);
+	m_modelData[2]             = modelDataUfo;
+	m_modelData[2]->newSharedDisplayList(0x40000);
+	m_modelData[2]->makeSharedDL();
+	for (u16 i = 0; i < modelDataUfo->m_shapeTable.m_count; i++) {
+		u32 flags                                      = modelDataUfo->m_shapeTable.m_items[i]->m_flags & 0xFFFF0FFF;
+		modelDataUfo->m_shapeTable.m_items[i]->m_flags = flags | 0x2000;
+	}
 
-lbl_8017BCC8:
-	lhz      r0, 0x7c(r27)
-	clrlwi   r3, r4, 0x10
-	cmplw    r3, r0
-	blt      lbl_8017BCA8
-	b        lbl_8017BCE8
+	SysShape::Model::enableMaterialAnim(m_modelData[2], 0);
 
-lbl_8017BCDC:
-	lwz      r3, 0x1c(r31)
-	li       r0, 0
-	stw      r0, 4(r3)
+	file = JKRFileLoader::getGlbResource("ufo.brk", nullptr);
+	P2ASSERTLINE(3151, file);
+	m_ufoTevAnim[0].attachResource(file, m_modelData[2]);
 
-lbl_8017BCE8:
-	lwz      r3, 0x1c(r31)
-	li       r4, 0
-	lwz      r3, 0(r3)
-	bl       enableMaterialAnim__Q28SysShape5ModelFP12J3DModelDatai
-	addi     r3, r30, 0x2c8
-	li       r4, 0
-	bl       getGlbResource__13JKRFileLoaderFPCcP13JKRFileLoader
-	lwz      r5, 0x1c(r31)
-	mr       r4, r3
-	addi     r3, r31, 0xb4
-	lwz      r5, 0(r5)
-	bl       attachResource__Q23Sys16MatBaseAnimationFPvP12J3DModelData
-	addi     r3, r30, 0x2d8
-	li       r4, 0
-	bl       getGlbResource__13JKRFileLoaderFPCcP13JKRFileLoader
-	lwz      r5, 0x1c(r31)
-	mr       r4, r3
-	addi     r3, r31, 0xc8
-	lwz      r5, 0(r5)
-	bl       attachResource__Q23Sys16MatBaseAnimationFPvP12J3DModelData
-	addi     r3, r30, 0x2e8
-	li       r4, 0
-	bl       getGlbResource__13JKRFileLoaderFPCcP13JKRFileLoader
-	lwz      r5, 0x1c(r31)
-	mr       r4, r3
-	addi     r3, r31, 0xdc
-	lwz      r5, 0(r5)
-	bl       attachResource__Q23Sys16MatBaseAnimationFPvP12J3DModelData
-	addi     r0, r30, 0x2fc
-	mr       r3, r31
-	stw      r0, 0x28(r31)
-	addi     r4, r30, 0x310
-	bl       openTextArc__Q24Game11BaseItemMgrFPc
-	lwz      r4, 0x1c(r31)
-	mr       r27, r3
-	mr       r6, r29
-	li       r7, 0
-	lwz      r5, 0(r4)
-	addi     r4, r30, 0x31c
-	bl
-load__Q28SysShape7AnimMgrFP13JKRFileLoaderPcP12J3DModelDataP13JKRFileLoaderPc
-	stw      r3, 0x88(r31)
-	mr       r3, r27
-	addi     r4, r30, 0x330
-	bl       load__15CollPartFactoryFP13JKRFileLoaderPc
-	stw      r3, 0x94(r31)
-	mr       r3, r31
-	mr       r4, r27
-	bl       closeTextArc__Q24Game11BaseItemMgrFP10JKRArchive
-	lwz      r3, gameSystem__4Game@sda21(r13)
-	li       r0, 0
-	lwz      r4, 0x44(r3)
-	cmpwi    r4, 2
-	beq      lbl_8017BDC4
-	cmpwi    r4, 3
-	bne      lbl_8017BDC8
+	file = JKRFileLoader::getGlbResource("ufo_2.brk", nullptr);
+	P2ASSERTLINE(3156, file);
+	m_ufoTevAnim[1].attachResource(file, m_modelData[2]);
 
-lbl_8017BDC4:
-	li       r0, 1
+	if (playData->m_storyFlags & STORY_DebtPaid) {
+		m_objectPathComponent = "user/Kando/ufo_gold";
+	} else {
+		m_objectPathComponent = "user/Kando/ufo";
+	}
 
-lbl_8017BDC8:
-	clrlwi.  r0, r0, 0x18
-	bne      lbl_8017BDDC
-	lbz      r0, 0x48(r3)
-	cmplwi   r0, 0
-	beq      lbl_8017BE54
-
-lbl_8017BDDC:
-	cmpwi    r4, 1
-	beq      lbl_8017BE54
-	lwz      r3, playData__4Game@sda21(r13)
-	lbz      r0, 0x2f(r3)
-	clrlwi.  r0, r0, 0x1f
-	beq      lbl_8017BE00
-	addi     r0, r30, 0x340
-	stw      r0, 0x28(r31)
-	b        lbl_8017BE08
-
-lbl_8017BE00:
-	addi     r0, r30, 0x354
-	stw      r0, 0x28(r31)
-
-lbl_8017BE08:
-	mr       r3, r31
-	addi     r4, r30, 0x310
-	bl       openTextArc__Q24Game11BaseItemMgrFPc
-	lwz      r4, 0x1c(r31)
-	mr       r27, r3
-	mr       r6, r28
-	li       r7, 0
-	lwz      r5, 4(r4)
-	addi     r4, r30, 0x364
-	bl
-load__Q28SysShape7AnimMgrFP13JKRFileLoaderPcP12J3DModelDataP13JKRFileLoaderPc
-	stw      r3, 0x8c(r31)
-	mr       r3, r27
-	addi     r4, r30, 0x370
-	bl       load__15CollPartFactoryFP13JKRFileLoaderPc
-	stw      r3, 0x98(r31)
-	mr       r3, r31
-	mr       r4, r27
-	bl       closeTextArc__Q24Game11BaseItemMgrFP10JKRArchive
-	b        lbl_8017BE60
-
-lbl_8017BE54:
-	li       r0, 0
-	stw      r0, 0x8c(r31)
-	stw      r0, 0x98(r31)
-
-lbl_8017BE60:
-	lwz      r5, playData__4Game@sda21(r13)
-	addi     r3, r1, 8
-	addi     r4, r30, 0x398
-	lbz      r0, 0x2f(r5)
-	clrlwi.  r0, r0, 0x1f
-	beq      lbl_8017BE7C
-	addi     r4, r30, 0x37c
-
-lbl_8017BE7C:
-	bl       __ct__Q212LoadResource3ArgFPCc
-	lwz      r0, sCurrentHeap__7JKRHeap@sda21(r13)
-	addi     r4, r1, 8
-	lwz      r3, gLoadResourceMgr@sda21(r13)
-	stw      r0, 0x20(r1)
-	bl       mountArchive__Q212LoadResource3MgrFRQ212LoadResource3Arg
-	cmplwi   r3, 0
-	beq      lbl_8017BEA4
-	lwz      r28, 0x34(r3)
-	b        lbl_8017BEA8
-
-lbl_8017BEA4:
-	li       r28, 0
-
-lbl_8017BEA8:
-	addi     r3, r2, lbl_80518B40@sda21
-	li       r4, 0
-	bl       getGlbResource__13JKRFileLoaderFPCcP13JKRFileLoader
-	or.      r27, r3, r3
-	bne      lbl_8017BED0
-	addi     r3, r30, 0x18
-	addi     r5, r30, 0x3b0
-	li       r4, 0xc33
-	crclr    6
-	bl       panic_f__12JUTExceptionFPCciPCce
-
-lbl_8017BED0:
-	lis      r4, 0x21020030@ha
-	mr       r3, r27
-	addi     r4, r4, 0x21020030@l
-	bl       load__22J3DModelLoaderDataBaseFPCvUl
-	lwz      r5, 0x1c(r31)
-	mr       r29, r3
-	lis      r4, 4
-	stw      r29, 8(r5)
-	lwz      r3, 0x1c(r31)
-	lwz      r3, 8(r3)
-	bl       newSharedDisplayList__12J3DModelDataFUl
-	lwz      r3, 0x1c(r31)
-	lwz      r3, 8(r3)
-	bl       makeSharedDL__12J3DModelDataFv
-	li       r4, 0
-	b        lbl_8017BF30
-
-lbl_8017BF10:
-	lwz      r3, 0x80(r29)
-	rlwinm   r0, r4, 2, 0xe, 0x1d
-	addi     r4, r4, 1
-	lwzx     r3, r3, r0
-	lwz      r0, 0xc(r3)
-	rlwinm   r0, r0, 0, 0x14, 0xf
-	ori      r0, r0, 0x2000
-	stw      r0, 0xc(r3)
-
-lbl_8017BF30:
-	lhz      r0, 0x7c(r29)
-	clrlwi   r3, r4, 0x10
-	cmplw    r3, r0
-	blt      lbl_8017BF10
-	lwz      r3, 0x1c(r31)
-	li       r4, 0
-	lwz      r3, 8(r3)
-	bl       enableMaterialAnim__Q28SysShape5ModelFP12J3DModelDatai
-	addi     r3, r2, lbl_80518B48@sda21
-	li       r4, 0
-	bl       getGlbResource__13JKRFileLoaderFPCcP13JKRFileLoader
-	or.      r27, r3, r3
-	bne      lbl_8017BF78
-	addi     r3, r30, 0x18
-	addi     r5, r30, 0x60
-	li       r4, 0xc4f
-	crclr    6
-	bl       panic_f__12JUTExceptionFPCciPCce
-
-lbl_8017BF78:
-	lwz      r5, 0x1c(r31)
-	mr       r4, r27
-	addi     r3, r31, 0xf0
-	lwz      r5, 8(r5)
-	bl       attachResource__Q23Sys16MatBaseAnimationFPvP12J3DModelData
-	addi     r3, r30, 0x3c4
-	li       r4, 0
-	bl       getGlbResource__13JKRFileLoaderFPCcP13JKRFileLoader
-	or.      r27, r3, r3
-	bne      lbl_8017BFB4
-	addi     r3, r30, 0x18
-	addi     r5, r30, 0x60
-	li       r4, 0xc54
-	crclr    6
-	bl       panic_f__12JUTExceptionFPCciPCce
-
-lbl_8017BFB4:
-	lwz      r5, 0x1c(r31)
-	mr       r4, r27
-	addi     r3, r31, 0x104
-	lwz      r5, 8(r5)
-	bl       attachResource__Q23Sys16MatBaseAnimationFPvP12J3DModelData
-	lwz      r3, playData__4Game@sda21(r13)
-	lbz      r0, 0x2f(r3)
-	clrlwi.  r0, r0, 0x1f
-	beq      lbl_8017BFE4
-	addi     r0, r30, 0x3d0
-	stw      r0, 0x28(r31)
-	b        lbl_8017BFEC
-
-lbl_8017BFE4:
-	addi     r0, r30, 0x3e4
-	stw      r0, 0x28(r31)
-
-lbl_8017BFEC:
-	mr       r3, r31
-	addi     r4, r30, 0x310
-	bl       openTextArc__Q24Game11BaseItemMgrFPc
-	mr       r5, r29
-	mr       r27, r3
-	mr       r6, r28
-	addi     r4, r30, 0x3f4
-	li       r7, 0
-	bl
-load__Q28SysShape7AnimMgrFP13JKRFileLoaderPcP12J3DModelDataP13JKRFileLoaderPc
-	stw      r3, 0x90(r31)
-	mr       r3, r27
-	addi     r4, r30, 0x370
-	bl       load__15CollPartFactoryFP13JKRFileLoaderPc
-	stw      r3, 0x9c(r31)
-	mr       r3, r31
-	mr       r4, r27
-	bl       closeTextArc__Q24Game11BaseItemMgrFP10JKRArchive
-	lmw      r27, 0x9c(r1)
-	lwz      r0, 0xb4(r1)
-	mtlr     r0
-	addi     r1, r1, 0xb0
-	blr
-	*/
-}
-
-/*
- * --INFO--
- * Address:	8017C044
- * Size:	00000C
- */
-u32 ItemOnyon::Mgr::generatorGetID()
-{
-	/*
-	lis      r3, 0x6F6E796E@ha
-	addi     r3, r3, 0x6F6E796E@l
-	blr
-	*/
-}
-
-/*
- * --INFO--
- * Address:	8017C050
- * Size:	00000C
- */
-u32 ItemOnyon::Mgr::generatorLocalVersion()
-{
-	/*
-	lis      r3, 0x30303031@ha
-	addi     r3, r3, 0x30303031@l
-	blr
-	*/
-}
-
-/*
- * --INFO--
- * Address:	8017C05C
- * Size:	00002C
- */
-void ItemOnyon::Mgr::doAnimation()
-{
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	lwzu     r12, 0x4c(r3)
-	lwz      r12, 0x64(r12)
-	mtctr    r12
-	bctrl
-	lwz      r0, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
-}
-
-/*
- * --INFO--
- * Address:	8017C088
- * Size:	00002C
- */
-void ItemOnyon::Mgr::doEntry(void)
-{
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	lwzu     r12, 0x4c(r3)
-	lwz      r12, 0x68(r12)
-	mtctr    r12
-	bctrl
-	lwz      r0, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
-}
-
-/*
- * --INFO--
- * Address:	8017C0B4
- * Size:	00002C
- */
-void ItemOnyon::Mgr::doSetView(int)
-{
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	lwzu     r12, 0x4c(r3)
-	lwz      r12, 0x6c(r12)
-	mtctr    r12
-	bctrl
-	lwz      r0, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
-}
-
-/*
- * --INFO--
- * Address:	8017C0E0
- * Size:	00002C
- */
-void ItemOnyon::Mgr::doViewCalc(void)
-{
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	lwzu     r12, 0x4c(r3)
-	lwz      r12, 0x70(r12)
-	mtctr    r12
-	bctrl
-	lwz      r0, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
-}
-
-/*
- * --INFO--
- * Address:	8017C10C
- * Size:	00002C
- */
-void ItemOnyon::Mgr::doSimulation(float)
-{
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	lwzu     r12, 0x4c(r3)
-	lwz      r12, 0x74(r12)
-	mtctr    r12
-	bctrl
-	lwz      r0, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
-}
-
-/*
- * --INFO--
- * Address:	8017C138
- * Size:	00002C
- */
-void ItemOnyon::Mgr::doDirectDraw(Graphics&)
-{
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	lwzu     r12, 0x4c(r3)
-	lwz      r12, 0x78(r12)
-	mtctr    r12
-	bctrl
-	lwz      r0, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
-}
-
-/*
- * --INFO--
- * Address:	8017C164
- * Size:	000004
- */
-void BaseItemMgr::killAll(void) { }
-
-/*
- * --INFO--
- * Address:	8017C168
- * Size:	000004
- */
-void BaseItemMgr::setup(Game::BaseItem*) { }
-
-/*
- * --INFO--
- * Address:	8017C16C
- * Size:	000004
- */
-void BaseItemMgr::onLoadResources(void) { }
-
-/*
- * --INFO--
- * Address:	8017C170
- * Size:	000008
- */
-bool BaseItemMgr::loadEverytime() { return true; }
-
-/*
- * --INFO--
- * Address:	8017C178
- * Size:	000004
- */
-void BaseItemMgr::onUpdateUseList(GenItemParm*, int) { }
-
-/*
- * --INFO--
- * Address:	8017C17C
- * Size:	00002C
- */
-void* ItemOnyon::Mgr::getEnd()
-{
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	lwzu     r12, 0x4c(r3)
-	lwz      r12, 0x1c(r12)
-	mtctr    r12
-	bctrl
-	lwz      r0, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	JKRArchive* ufotextarc             = openTextArc("texts.szs");
+	m_animMgrFiles[ONYON_OBJECT_SHIP]  = SysShape::AnimMgr::load(ufotextarc, "animmgr.txt", modelDataUfo, ufoarc, nullptr);
+	m_collFactories[ONYON_OBJECT_SHIP] = CollPartFactory::load(ufotextarc, "coll.txt");
+	closeTextArc(ufotextarc);
 }
 
 } // namespace Game
-
-/*
- * --INFO--
- * Address:	8017C1A8
- * Size:	000008
- */
-void* NodeObjectMgr<Game::Onyon>::getEnd() { return nullptr; }
-
-namespace Game {
-
-/*
- * --INFO--
- * Address:	8017C1B0
- * Size:	00002C
- */
-void* ItemOnyon::Mgr::getStart()
-{
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	lwzu     r12, 0x4c(r3)
-	lwz      r12, 0x18(r12)
-	mtctr    r12
-	bctrl
-	lwz      r0, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
-}
-
-} // namespace Game
-
-/*
- * --INFO--
- * Address:	8017C1DC
- * Size:	000008
- */
-void* NodeObjectMgr<Game::Onyon>::getStart()
-{
-	/*
-	lwz      r3, 0x30(r3)
-	blr
-	*/
-}
-
-namespace Game {
-
-/*
- * --INFO--
- * Address:	8017C1E4
- * Size:	00002C
- */
-void* ItemOnyon::Mgr::getNext(void*)
-{
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	lwzu     r12, 0x4c(r3)
-	lwz      r12, 0x14(r12)
-	mtctr    r12
-	bctrl
-	lwz      r0, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
-}
-
-} // namespace Game
-
-/*
- * --INFO--
- * Address:	8017C210
- * Size:	000008
- */
-void* NodeObjectMgr<Game::Onyon>::getNext(void*)
-{
-	/*
-	lwz      r3, 4(r4)
-	blr
-	*/
-}
-
-namespace Game {
-
-/*
- * --INFO--
- * Address:	8017C218
- * Size:	00002C
- */
-Onyon* ItemOnyon::Mgr::get(void*)
-{
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	lwzu     r12, 0x4c(r3)
-	lwz      r12, 0x20(r12)
-	mtctr    r12
-	bctrl
-	lwz      r0, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
-}
-
-} // namespace Game
-
-/*
- * --INFO--
- * Address:	8017C244
- * Size:	000008
- */
-Game::Onyon* NodeObjectMgr<Game::Onyon>::get(void*)
-{
-	/*
-	lwz      r3, 0x18(r4)
-	blr
-	*/
-}
-
-namespace Game {
-
-/*
- * --INFO--
- * Address:	8017C24C
- * Size:	000008
- */
-int GenItemParm::getShapeID(void) { return 0x0; }
-
-/*
- * --INFO--
- * Address:	8017C270
- * Size:	000008
- */
-char* Onyon::getCreatureName()
-{
-	/*
-	addi     r3, r2, lbl_80518B30@sda21
-	blr
-	*/
-}
-
-/*
- * --INFO--
- * Address:	8017C278
- * Size:	000008
- */
-s32 BaseItem::getCreatureID() { return -0x1; }
-
-/*
- * --INFO--
- * Address:	8017C280
- * Size:	000004
- */
-void BaseItem::do_setLODParm(Game::AILODParm&) { }
-
-/*
- * --INFO--
- * Address:	8017C284
- * Size:	000008
- */
-f32 BaseItem::getMapCollisionRadius(void)
-{
-	/*
-	lfs      f1, 0x1d0(r3)
-	blr
-	*/
-}
-
-/*
- * --INFO--
- * Address:	8017C28C
- * Size:	000008
- */
-bool BaseItem::interactAttack(InteractAttack&) { return false; }
-
-/*
- * --INFO--
- * Address:	8017C294
- * Size:	000008
- */
-bool BaseItem::interactBreakBridge(InteractBreakBridge&) { return false; }
-
-/*
- * --INFO--
- * Address:	8017C29C
- * Size:	000008
- */
-bool BaseItem::interactEat(InteractEat&) { return false; }
-
-/*
- * --INFO--
- * Address:	8017C2A4
- * Size:	000008
- */
-bool BaseItem::interactFlockAttack(Game::InteractFlockAttack&) { return false; }
-
-/*
- * --INFO--
- * Address:	8017C2AC
- * Size:	000008
- */
-bool BaseItem::interactAbsorb(Game::InteractAbsorb&) { return false; }
-
-/*
- * --INFO--
- * Address:	8017C2B4
- * Size:	000008
- */
-bool BaseItem::interactFue(Game::InteractFue&) { return false; }
-
-/*
- * --INFO--
- * Address:	8017C2BC
- * Size:	000008
- */
-bool BaseItem::interactFarmKarero(Game::InteractFarmKarero&) { return false; }
-
-/*
- * --INFO--
- * Address:	8017C2C4
- * Size:	000008
- */
-bool BaseItem::interactFarmHaero(Game::InteractFarmHaero&) { return false; }
-
-/*
- * --INFO--
- * Address:	8017C2CC
- * Size:	000008
- */
-bool BaseItem::interactGotKey(Game::InteractGotKey&) { return false; }
-
-/*
- * --INFO--
- * Address:	8017C2D4
- * Size:	000008
- */
-bool BaseItem::getVectorField(Sys::Sphere&, Vector3f&) { return true; }
-
-/*
- * --INFO--
- * Address:	8017C2DC
- * Size:	000008
- */
-f32 BaseItem::getWorkDistance(Sys::Sphere& sphere) { return 128000.0f; }
-
-/*
- * --INFO--
- * Address:	8017C2E4
- * Size:	000004
- */
-void BaseItem::bounceCallback(Sys::Triangle*) { }
-
-/*
- * --INFO--
- * Address:	8017C2E8
- * Size:	000004
- */
-void BaseItem::collisionCallback(Game::CollEvent&) { }
-
-/*
- * --INFO--
- * Address:	8017C2EC
- * Size:	000004
- */
-void BaseItem::platCallback(Game::PlatEvent&) { }
-
-/*
- * --INFO--
- * Address:	8017C2F0
- * Size:	000004
- */
-void BaseItem::updateBoundSphere(void) { }
-
-/*
- * --INFO--
- * Address:	8017C2F4
- * Size:	000024
- */
-void BaseItem::getBoundingSphere(Sys::Sphere& sphere) { sphere = m_boundingSphere; }
-
-/*
- * --INFO--
- * Address:	8017C318
- * Size:	000044
- */
-void BaseItem::onSetPosition(Vector3f&)
-{
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	lfs      f0, 0(r4)
-	stfs     f0, 0x19c(r3)
-	lfs      f0, 4(r4)
-	stfs     f0, 0x1a0(r3)
-	lfs      f0, 8(r4)
-	stfs     f0, 0x1a4(r3)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x21c(r12)
-	mtctr    r12
-	bctrl
-	lwz      r0, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
-}
-
-/*
- * --INFO--
- * Address:	8017C35C
- * Size:	000004
- */
-void BaseItem::onSetPosition() { }
-
-/*
- * --INFO--
- * Address:	8017C360
- * Size:	00001C
- */
-Vector3f BaseItem::getVelocity() { return m_velocity; }
-
-/*
- * --INFO--
- * Address:	8017C37C
- * Size:	000014
- */
-void BaseItem::getVelocityAt(Vector3f& a, Vector3f& b) { b = Vector3f(0.0f); }
-
-/*
- * --INFO--
- * Address:	8017C73C
- * Size:	00000C
- */
-const char* ItemPikihead::InitArg::getName()
-{
-	/*
-	lis      r3, lbl_8047EA5C@ha
-	addi     r3, r3, lbl_8047EA5C@l
-	blr
-	*/
-}
-
-/*
- * --INFO--
- * Address:	8017C748
- * Size:	00000C
- */
-const char* ItemInitArg::getName()
-{
-	/*
-	lis      r3, lbl_8047EA74@ha
-	addi     r3, r3, lbl_8047EA74@l
-	blr
-	*/
-}
-
-} // namespace Game
-
-/*
- * --INFO--
- * Address:	8017C754
- * Size:	000018
- */
-void NodeObjectMgr<Game::Onyon>::resetMgr()
-{
-	/*
-	li       r0, 0
-	stw      r0, 0x30(r3)
-	stw      r0, 0x2c(r3)
-	stw      r0, 0x28(r3)
-	stw      r0, 0x24(r3)
-	blr
-	*/
-}
-
-/*
- * --INFO--
- * Address:	8017C76C
- * Size:	0001E4
- */
-void ObjectMgr<Game::Onyon>::doAnimation()
-{
-	/*
-	stwu     r1, -0x20(r1)
-	mflr     r0
-	lis      r4, "__vt__23Iterator<Q24Game5Onyon>"@ha
-	stw      r0, 0x24(r1)
-	li       r0, 0
-	addi     r4, r4, "__vt__23Iterator<Q24Game5Onyon>"@l
-	cmplwi   r0, 0
-	stw      r0, 0x14(r1)
-	stw      r4, 8(r1)
-	stw      r0, 0xc(r1)
-	stw      r3, 0x10(r1)
-	bne      lbl_8017C7B4
-	lwz      r12, 0(r3)
-	lwz      r12, 0x18(r12)
-	mtctr    r12
-	bctrl
-	stw      r3, 0xc(r1)
-	b        lbl_8017C920
-
-lbl_8017C7B4:
-	lwz      r12, 0(r3)
-	lwz      r12, 0x18(r12)
-	mtctr    r12
-	bctrl
-	stw      r3, 0xc(r1)
-	b        lbl_8017C820
-
-lbl_8017C7CC:
-	lwz      r3, 0x10(r1)
-	lwz      r4, 0xc(r1)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x20(r12)
-	mtctr    r12
-	bctrl
-	mr       r4, r3
-	lwz      r3, 0x14(r1)
-	lwz      r12, 0(r3)
-	lwz      r12, 8(r12)
-	mtctr    r12
-	bctrl
-	clrlwi.  r0, r3, 0x18
-	bne      lbl_8017C920
-	lwz      r3, 0x10(r1)
-	lwz      r4, 0xc(r1)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x14(r12)
-	mtctr    r12
-	bctrl
-	stw      r3, 0xc(r1)
-
-lbl_8017C820:
-	lwz      r12, 8(r1)
-	addi     r3, r1, 8
-	lwz      r12, 0x10(r12)
-	mtctr    r12
-	bctrl
-	clrlwi.  r0, r3, 0x18
-	beq      lbl_8017C7CC
-	b        lbl_8017C920
-
-lbl_8017C840:
-	lwz      r3, 0x10(r1)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x20(r12)
-	mtctr    r12
-	bctrl
-	lwz      r12, 0(r3)
-	lwz      r12, 0x3c(r12)
-	mtctr    r12
-	bctrl
-	lwz      r0, 0x14(r1)
-	cmplwi   r0, 0
-	bne      lbl_8017C890
-	lwz      r3, 0x10(r1)
-	lwz      r4, 0xc(r1)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x14(r12)
-	mtctr    r12
-	bctrl
-	stw      r3, 0xc(r1)
-	b        lbl_8017C920
-
-lbl_8017C890:
-	lwz      r3, 0x10(r1)
-	lwz      r4, 0xc(r1)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x14(r12)
-	mtctr    r12
-	bctrl
-	stw      r3, 0xc(r1)
-	b        lbl_8017C904
-
-lbl_8017C8B0:
-	lwz      r3, 0x10(r1)
-	lwz      r4, 0xc(r1)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x20(r12)
-	mtctr    r12
-	bctrl
-	mr       r4, r3
-	lwz      r3, 0x14(r1)
-	lwz      r12, 0(r3)
-	lwz      r12, 8(r12)
-	mtctr    r12
-	bctrl
-	clrlwi.  r0, r3, 0x18
-	bne      lbl_8017C920
-	lwz      r3, 0x10(r1)
-	lwz      r4, 0xc(r1)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x14(r12)
-	mtctr    r12
-	bctrl
-	stw      r3, 0xc(r1)
-
-lbl_8017C904:
-	lwz      r12, 8(r1)
-	addi     r3, r1, 8
-	lwz      r12, 0x10(r12)
-	mtctr    r12
-	bctrl
-	clrlwi.  r0, r3, 0x18
-	beq      lbl_8017C8B0
-
-lbl_8017C920:
-	lwz      r3, 0x10(r1)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x1c(r12)
-	mtctr    r12
-	bctrl
-	lwz      r4, 0xc(r1)
-	cmplw    r4, r3
-	bne      lbl_8017C840
-	lwz      r0, 0x24(r1)
-	mtlr     r0
-	addi     r1, r1, 0x20
-	blr
-	*/
-}
-
-/*
- * --INFO--
- * Address:	8017C950
- * Size:	0001E4
- */
-void ObjectMgr<Game::Onyon>::doEntry()
-{
-	/*
-	stwu     r1, -0x20(r1)
-	mflr     r0
-	lis      r4, "__vt__23Iterator<Q24Game5Onyon>"@ha
-	stw      r0, 0x24(r1)
-	li       r0, 0
-	addi     r4, r4, "__vt__23Iterator<Q24Game5Onyon>"@l
-	cmplwi   r0, 0
-	stw      r0, 0x14(r1)
-	stw      r4, 8(r1)
-	stw      r0, 0xc(r1)
-	stw      r3, 0x10(r1)
-	bne      lbl_8017C998
-	lwz      r12, 0(r3)
-	lwz      r12, 0x18(r12)
-	mtctr    r12
-	bctrl
-	stw      r3, 0xc(r1)
-	b        lbl_8017CB04
-
-lbl_8017C998:
-	lwz      r12, 0(r3)
-	lwz      r12, 0x18(r12)
-	mtctr    r12
-	bctrl
-	stw      r3, 0xc(r1)
-	b        lbl_8017CA04
-
-lbl_8017C9B0:
-	lwz      r3, 0x10(r1)
-	lwz      r4, 0xc(r1)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x20(r12)
-	mtctr    r12
-	bctrl
-	mr       r4, r3
-	lwz      r3, 0x14(r1)
-	lwz      r12, 0(r3)
-	lwz      r12, 8(r12)
-	mtctr    r12
-	bctrl
-	clrlwi.  r0, r3, 0x18
-	bne      lbl_8017CB04
-	lwz      r3, 0x10(r1)
-	lwz      r4, 0xc(r1)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x14(r12)
-	mtctr    r12
-	bctrl
-	stw      r3, 0xc(r1)
-
-lbl_8017CA04:
-	lwz      r12, 8(r1)
-	addi     r3, r1, 8
-	lwz      r12, 0x10(r12)
-	mtctr    r12
-	bctrl
-	clrlwi.  r0, r3, 0x18
-	beq      lbl_8017C9B0
-	b        lbl_8017CB04
-
-lbl_8017CA24:
-	lwz      r3, 0x10(r1)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x20(r12)
-	mtctr    r12
-	bctrl
-	lwz      r12, 0(r3)
-	lwz      r12, 0x40(r12)
-	mtctr    r12
-	bctrl
-	lwz      r0, 0x14(r1)
-	cmplwi   r0, 0
-	bne      lbl_8017CA74
-	lwz      r3, 0x10(r1)
-	lwz      r4, 0xc(r1)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x14(r12)
-	mtctr    r12
-	bctrl
-	stw      r3, 0xc(r1)
-	b        lbl_8017CB04
-
-lbl_8017CA74:
-	lwz      r3, 0x10(r1)
-	lwz      r4, 0xc(r1)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x14(r12)
-	mtctr    r12
-	bctrl
-	stw      r3, 0xc(r1)
-	b        lbl_8017CAE8
-
-lbl_8017CA94:
-	lwz      r3, 0x10(r1)
-	lwz      r4, 0xc(r1)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x20(r12)
-	mtctr    r12
-	bctrl
-	mr       r4, r3
-	lwz      r3, 0x14(r1)
-	lwz      r12, 0(r3)
-	lwz      r12, 8(r12)
-	mtctr    r12
-	bctrl
-	clrlwi.  r0, r3, 0x18
-	bne      lbl_8017CB04
-	lwz      r3, 0x10(r1)
-	lwz      r4, 0xc(r1)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x14(r12)
-	mtctr    r12
-	bctrl
-	stw      r3, 0xc(r1)
-
-lbl_8017CAE8:
-	lwz      r12, 8(r1)
-	addi     r3, r1, 8
-	lwz      r12, 0x10(r12)
-	mtctr    r12
-	bctrl
-	clrlwi.  r0, r3, 0x18
-	beq      lbl_8017CA94
-
-lbl_8017CB04:
-	lwz      r3, 0x10(r1)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x1c(r12)
-	mtctr    r12
-	bctrl
-	lwz      r4, 0xc(r1)
-	cmplw    r4, r3
-	bne      lbl_8017CA24
-	lwz      r0, 0x24(r1)
-	mtlr     r0
-	addi     r1, r1, 0x20
-	blr
-	*/
-}
-
-/*
- * --INFO--
- * Address:	8017CB34
- * Size:	0001F4
- */
-void ObjectMgr<Game::Onyon>::doSetView(int)
-{
-	/*
-	stwu     r1, -0x20(r1)
-	mflr     r0
-	lis      r5, "__vt__23Iterator<Q24Game5Onyon>"@ha
-	stw      r0, 0x24(r1)
-	li       r0, 0
-	addi     r5, r5, "__vt__23Iterator<Q24Game5Onyon>"@l
-	stw      r31, 0x1c(r1)
-	cmplwi   r0, 0
-	mr       r31, r4
-	stw      r0, 0x14(r1)
-	stw      r5, 8(r1)
-	stw      r0, 0xc(r1)
-	stw      r3, 0x10(r1)
-	bne      lbl_8017CB84
-	lwz      r12, 0(r3)
-	lwz      r12, 0x18(r12)
-	mtctr    r12
-	bctrl
-	stw      r3, 0xc(r1)
-	b        lbl_8017CCF4
-
-lbl_8017CB84:
-	lwz      r12, 0(r3)
-	lwz      r12, 0x18(r12)
-	mtctr    r12
-	bctrl
-	stw      r3, 0xc(r1)
-	b        lbl_8017CBF0
-
-lbl_8017CB9C:
-	lwz      r3, 0x10(r1)
-	lwz      r4, 0xc(r1)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x20(r12)
-	mtctr    r12
-	bctrl
-	mr       r4, r3
-	lwz      r3, 0x14(r1)
-	lwz      r12, 0(r3)
-	lwz      r12, 8(r12)
-	mtctr    r12
-	bctrl
-	clrlwi.  r0, r3, 0x18
-	bne      lbl_8017CCF4
-	lwz      r3, 0x10(r1)
-	lwz      r4, 0xc(r1)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x14(r12)
-	mtctr    r12
-	bctrl
-	stw      r3, 0xc(r1)
-
-lbl_8017CBF0:
-	lwz      r12, 8(r1)
-	addi     r3, r1, 8
-	lwz      r12, 0x10(r12)
-	mtctr    r12
-	bctrl
-	clrlwi.  r0, r3, 0x18
-	beq      lbl_8017CB9C
-	b        lbl_8017CCF4
-
-lbl_8017CC10:
-	lwz      r3, 0x10(r1)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x20(r12)
-	mtctr    r12
-	bctrl
-	lwz      r12, 0(r3)
-	mr       r4, r31
-	lwz      r12, 0x44(r12)
-	mtctr    r12
-	bctrl
-	lwz      r0, 0x14(r1)
-	cmplwi   r0, 0
-	bne      lbl_8017CC64
-	lwz      r3, 0x10(r1)
-	lwz      r4, 0xc(r1)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x14(r12)
-	mtctr    r12
-	bctrl
-	stw      r3, 0xc(r1)
-	b        lbl_8017CCF4
-
-lbl_8017CC64:
-	lwz      r3, 0x10(r1)
-	lwz      r4, 0xc(r1)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x14(r12)
-	mtctr    r12
-	bctrl
-	stw      r3, 0xc(r1)
-	b        lbl_8017CCD8
-
-lbl_8017CC84:
-	lwz      r3, 0x10(r1)
-	lwz      r4, 0xc(r1)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x20(r12)
-	mtctr    r12
-	bctrl
-	mr       r4, r3
-	lwz      r3, 0x14(r1)
-	lwz      r12, 0(r3)
-	lwz      r12, 8(r12)
-	mtctr    r12
-	bctrl
-	clrlwi.  r0, r3, 0x18
-	bne      lbl_8017CCF4
-	lwz      r3, 0x10(r1)
-	lwz      r4, 0xc(r1)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x14(r12)
-	mtctr    r12
-	bctrl
-	stw      r3, 0xc(r1)
-
-lbl_8017CCD8:
-	lwz      r12, 8(r1)
-	addi     r3, r1, 8
-	lwz      r12, 0x10(r12)
-	mtctr    r12
-	bctrl
-	clrlwi.  r0, r3, 0x18
-	beq      lbl_8017CC84
-
-lbl_8017CCF4:
-	lwz      r3, 0x10(r1)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x1c(r12)
-	mtctr    r12
-	bctrl
-	lwz      r4, 0xc(r1)
-	cmplw    r4, r3
-	bne      lbl_8017CC10
-	lwz      r0, 0x24(r1)
-	lwz      r31, 0x1c(r1)
-	mtlr     r0
-	addi     r1, r1, 0x20
-	blr
-	*/
-}
-
-/*
- * --INFO--
- * Address:	8017CD28
- * Size:	0001E4
- */
-void ObjectMgr<Game::Onyon>::doViewCalc()
-{
-	/*
-	stwu     r1, -0x20(r1)
-	mflr     r0
-	lis      r4, "__vt__23Iterator<Q24Game5Onyon>"@ha
-	stw      r0, 0x24(r1)
-	li       r0, 0
-	addi     r4, r4, "__vt__23Iterator<Q24Game5Onyon>"@l
-	cmplwi   r0, 0
-	stw      r0, 0x14(r1)
-	stw      r4, 8(r1)
-	stw      r0, 0xc(r1)
-	stw      r3, 0x10(r1)
-	bne      lbl_8017CD70
-	lwz      r12, 0(r3)
-	lwz      r12, 0x18(r12)
-	mtctr    r12
-	bctrl
-	stw      r3, 0xc(r1)
-	b        lbl_8017CEDC
-
-lbl_8017CD70:
-	lwz      r12, 0(r3)
-	lwz      r12, 0x18(r12)
-	mtctr    r12
-	bctrl
-	stw      r3, 0xc(r1)
-	b        lbl_8017CDDC
-
-lbl_8017CD88:
-	lwz      r3, 0x10(r1)
-	lwz      r4, 0xc(r1)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x20(r12)
-	mtctr    r12
-	bctrl
-	mr       r4, r3
-	lwz      r3, 0x14(r1)
-	lwz      r12, 0(r3)
-	lwz      r12, 8(r12)
-	mtctr    r12
-	bctrl
-	clrlwi.  r0, r3, 0x18
-	bne      lbl_8017CEDC
-	lwz      r3, 0x10(r1)
-	lwz      r4, 0xc(r1)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x14(r12)
-	mtctr    r12
-	bctrl
-	stw      r3, 0xc(r1)
-
-lbl_8017CDDC:
-	lwz      r12, 8(r1)
-	addi     r3, r1, 8
-	lwz      r12, 0x10(r12)
-	mtctr    r12
-	bctrl
-	clrlwi.  r0, r3, 0x18
-	beq      lbl_8017CD88
-	b        lbl_8017CEDC
-
-lbl_8017CDFC:
-	lwz      r3, 0x10(r1)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x20(r12)
-	mtctr    r12
-	bctrl
-	lwz      r12, 0(r3)
-	lwz      r12, 0x48(r12)
-	mtctr    r12
-	bctrl
-	lwz      r0, 0x14(r1)
-	cmplwi   r0, 0
-	bne      lbl_8017CE4C
-	lwz      r3, 0x10(r1)
-	lwz      r4, 0xc(r1)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x14(r12)
-	mtctr    r12
-	bctrl
-	stw      r3, 0xc(r1)
-	b        lbl_8017CEDC
-
-lbl_8017CE4C:
-	lwz      r3, 0x10(r1)
-	lwz      r4, 0xc(r1)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x14(r12)
-	mtctr    r12
-	bctrl
-	stw      r3, 0xc(r1)
-	b        lbl_8017CEC0
-
-lbl_8017CE6C:
-	lwz      r3, 0x10(r1)
-	lwz      r4, 0xc(r1)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x20(r12)
-	mtctr    r12
-	bctrl
-	mr       r4, r3
-	lwz      r3, 0x14(r1)
-	lwz      r12, 0(r3)
-	lwz      r12, 8(r12)
-	mtctr    r12
-	bctrl
-	clrlwi.  r0, r3, 0x18
-	bne      lbl_8017CEDC
-	lwz      r3, 0x10(r1)
-	lwz      r4, 0xc(r1)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x14(r12)
-	mtctr    r12
-	bctrl
-	stw      r3, 0xc(r1)
-
-lbl_8017CEC0:
-	lwz      r12, 8(r1)
-	addi     r3, r1, 8
-	lwz      r12, 0x10(r12)
-	mtctr    r12
-	bctrl
-	clrlwi.  r0, r3, 0x18
-	beq      lbl_8017CE6C
-
-lbl_8017CEDC:
-	lwz      r3, 0x10(r1)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x1c(r12)
-	mtctr    r12
-	bctrl
-	lwz      r4, 0xc(r1)
-	cmplw    r4, r3
-	bne      lbl_8017CDFC
-	lwz      r0, 0x24(r1)
-	mtlr     r0
-	addi     r1, r1, 0x20
-	blr
-	*/
-}
-
-/*
- * --INFO--
- * Address:	8017CF0C
- * Size:	0001F4
- */
-void ObjectMgr<Game::Onyon>::doSimulation(float)
-{
-	/*
-	stwu     r1, -0x20(r1)
-	mflr     r0
-	lis      r4, "__vt__23Iterator<Q24Game5Onyon>"@ha
-	stw      r0, 0x24(r1)
-	li       r0, 0
-	addi     r4, r4, "__vt__23Iterator<Q24Game5Onyon>"@l
-	stfd     f31, 0x18(r1)
-	fmr      f31, f1
-	cmplwi   r0, 0
-	stw      r4, 8(r1)
-	stw      r0, 0x14(r1)
-	stw      r0, 0xc(r1)
-	stw      r3, 0x10(r1)
-	bne      lbl_8017CF5C
-	lwz      r12, 0(r3)
-	lwz      r12, 0x18(r12)
-	mtctr    r12
-	bctrl
-	stw      r3, 0xc(r1)
-	b        lbl_8017D0CC
-
-lbl_8017CF5C:
-	lwz      r12, 0(r3)
-	lwz      r12, 0x18(r12)
-	mtctr    r12
-	bctrl
-	stw      r3, 0xc(r1)
-	b        lbl_8017CFC8
-
-lbl_8017CF74:
-	lwz      r3, 0x10(r1)
-	lwz      r4, 0xc(r1)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x20(r12)
-	mtctr    r12
-	bctrl
-	mr       r4, r3
-	lwz      r3, 0x14(r1)
-	lwz      r12, 0(r3)
-	lwz      r12, 8(r12)
-	mtctr    r12
-	bctrl
-	clrlwi.  r0, r3, 0x18
-	bne      lbl_8017D0CC
-	lwz      r3, 0x10(r1)
-	lwz      r4, 0xc(r1)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x14(r12)
-	mtctr    r12
-	bctrl
-	stw      r3, 0xc(r1)
-
-lbl_8017CFC8:
-	lwz      r12, 8(r1)
-	addi     r3, r1, 8
-	lwz      r12, 0x10(r12)
-	mtctr    r12
-	bctrl
-	clrlwi.  r0, r3, 0x18
-	beq      lbl_8017CF74
-	b        lbl_8017D0CC
-
-lbl_8017CFE8:
-	lwz      r3, 0x10(r1)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x20(r12)
-	mtctr    r12
-	bctrl
-	lwz      r12, 0(r3)
-	fmr      f1, f31
-	lwz      r12, 0x4c(r12)
-	mtctr    r12
-	bctrl
-	lwz      r0, 0x14(r1)
-	cmplwi   r0, 0
-	bne      lbl_8017D03C
-	lwz      r3, 0x10(r1)
-	lwz      r4, 0xc(r1)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x14(r12)
-	mtctr    r12
-	bctrl
-	stw      r3, 0xc(r1)
-	b        lbl_8017D0CC
-
-lbl_8017D03C:
-	lwz      r3, 0x10(r1)
-	lwz      r4, 0xc(r1)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x14(r12)
-	mtctr    r12
-	bctrl
-	stw      r3, 0xc(r1)
-	b        lbl_8017D0B0
-
-lbl_8017D05C:
-	lwz      r3, 0x10(r1)
-	lwz      r4, 0xc(r1)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x20(r12)
-	mtctr    r12
-	bctrl
-	mr       r4, r3
-	lwz      r3, 0x14(r1)
-	lwz      r12, 0(r3)
-	lwz      r12, 8(r12)
-	mtctr    r12
-	bctrl
-	clrlwi.  r0, r3, 0x18
-	bne      lbl_8017D0CC
-	lwz      r3, 0x10(r1)
-	lwz      r4, 0xc(r1)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x14(r12)
-	mtctr    r12
-	bctrl
-	stw      r3, 0xc(r1)
-
-lbl_8017D0B0:
-	lwz      r12, 8(r1)
-	addi     r3, r1, 8
-	lwz      r12, 0x10(r12)
-	mtctr    r12
-	bctrl
-	clrlwi.  r0, r3, 0x18
-	beq      lbl_8017D05C
-
-lbl_8017D0CC:
-	lwz      r3, 0x10(r1)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x1c(r12)
-	mtctr    r12
-	bctrl
-	lwz      r4, 0xc(r1)
-	cmplw    r4, r3
-	bne      lbl_8017CFE8
-	lwz      r0, 0x24(r1)
-	lfd      f31, 0x18(r1)
-	mtlr     r0
-	addi     r1, r1, 0x20
-	blr
-	*/
-}
-
-/*
- * --INFO--
- * Address:	8017D100
- * Size:	0001F4
- */
-void ObjectMgr<Game::Onyon>::doDirectDraw(Graphics& gfx)
-{
-	/*
-	stwu     r1, -0x20(r1)
-	mflr     r0
-	lis      r5, "__vt__23Iterator<Q24Game5Onyon>"@ha
-	stw      r0, 0x24(r1)
-	li       r0, 0
-	addi     r5, r5, "__vt__23Iterator<Q24Game5Onyon>"@l
-	stw      r31, 0x1c(r1)
-	cmplwi   r0, 0
-	mr       r31, r4
-	stw      r0, 0x14(r1)
-	stw      r5, 8(r1)
-	stw      r0, 0xc(r1)
-	stw      r3, 0x10(r1)
-	bne      lbl_8017D150
-	lwz      r12, 0(r3)
-	lwz      r12, 0x18(r12)
-	mtctr    r12
-	bctrl
-	stw      r3, 0xc(r1)
-	b        lbl_8017D2C0
-
-lbl_8017D150:
-	lwz      r12, 0(r3)
-	lwz      r12, 0x18(r12)
-	mtctr    r12
-	bctrl
-	stw      r3, 0xc(r1)
-	b        lbl_8017D1BC
-
-lbl_8017D168:
-	lwz      r3, 0x10(r1)
-	lwz      r4, 0xc(r1)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x20(r12)
-	mtctr    r12
-	bctrl
-	mr       r4, r3
-	lwz      r3, 0x14(r1)
-	lwz      r12, 0(r3)
-	lwz      r12, 8(r12)
-	mtctr    r12
-	bctrl
-	clrlwi.  r0, r3, 0x18
-	bne      lbl_8017D2C0
-	lwz      r3, 0x10(r1)
-	lwz      r4, 0xc(r1)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x14(r12)
-	mtctr    r12
-	bctrl
-	stw      r3, 0xc(r1)
-
-lbl_8017D1BC:
-	lwz      r12, 8(r1)
-	addi     r3, r1, 8
-	lwz      r12, 0x10(r12)
-	mtctr    r12
-	bctrl
-	clrlwi.  r0, r3, 0x18
-	beq      lbl_8017D168
-	b        lbl_8017D2C0
-
-lbl_8017D1DC:
-	lwz      r3, 0x10(r1)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x20(r12)
-	mtctr    r12
-	bctrl
-	lwz      r12, 0(r3)
-	mr       r4, r31
-	lwz      r12, 0x50(r12)
-	mtctr    r12
-	bctrl
-	lwz      r0, 0x14(r1)
-	cmplwi   r0, 0
-	bne      lbl_8017D230
-	lwz      r3, 0x10(r1)
-	lwz      r4, 0xc(r1)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x14(r12)
-	mtctr    r12
-	bctrl
-	stw      r3, 0xc(r1)
-	b        lbl_8017D2C0
-
-lbl_8017D230:
-	lwz      r3, 0x10(r1)
-	lwz      r4, 0xc(r1)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x14(r12)
-	mtctr    r12
-	bctrl
-	stw      r3, 0xc(r1)
-	b        lbl_8017D2A4
-
-lbl_8017D250:
-	lwz      r3, 0x10(r1)
-	lwz      r4, 0xc(r1)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x20(r12)
-	mtctr    r12
-	bctrl
-	mr       r4, r3
-	lwz      r3, 0x14(r1)
-	lwz      r12, 0(r3)
-	lwz      r12, 8(r12)
-	mtctr    r12
-	bctrl
-	clrlwi.  r0, r3, 0x18
-	bne      lbl_8017D2C0
-	lwz      r3, 0x10(r1)
-	lwz      r4, 0xc(r1)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x14(r12)
-	mtctr    r12
-	bctrl
-	stw      r3, 0xc(r1)
-
-lbl_8017D2A4:
-	lwz      r12, 8(r1)
-	addi     r3, r1, 8
-	lwz      r12, 0x10(r12)
-	mtctr    r12
-	bctrl
-	clrlwi.  r0, r3, 0x18
-	beq      lbl_8017D250
-
-lbl_8017D2C0:
-	lwz      r3, 0x10(r1)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x1c(r12)
-	mtctr    r12
-	bctrl
-	lwz      r4, 0xc(r1)
-	cmplw    r4, r3
-	bne      lbl_8017D1DC
-	lwz      r0, 0x24(r1)
-	lwz      r31, 0x1c(r1)
-	mtlr     r0
-	addi     r1, r1, 0x20
-	blr
-	*/
-}
-
-/*
- * --INFO--
- * Address:	8017D2F4
- * Size:	00002C
- */
-void* Container<Game::Onyon>::getObject(void* obj)
-{
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x20(r12)
-	mtctr    r12
-	bctrl
-	lwz      r0, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
-}
-
-/*
- * --INFO--
- * Address:	8017D320
- * Size:	000008
- */
-Game::Onyon* Container<Game::Onyon>::getAt(int to) { return nullptr; }
-
-/*
- * --INFO--
- * Address:	8017D328
- * Size:	000008
- */
-int Container<Game::Onyon>::getTo() { return 0; }

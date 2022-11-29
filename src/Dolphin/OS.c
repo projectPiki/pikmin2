@@ -4,8 +4,6 @@
 
 __declspec(section ".init") extern char _db_stack_end[];
 
-typedef u8 __OSException;
-
 // memory locations for important stuff
 #define OS_CACHED_REGION_PREFIX 0x8000
 #define OS_DBINTERFACE_ADDR     0x40

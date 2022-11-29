@@ -6969,8 +6969,7 @@ loadResources__Q24Game7PikiMgrFv:
 /* 801622D4 0015F214  38 21 00 10 */	addi r1, r1, 0x10
 /* 801622D8 0015F218  4E 80 00 20 */	blr 
 
-.global __sinit_pikiMgr_cpp
-__sinit_pikiMgr_cpp:
+fn local __sinit_pikiMgr_cpp
 /* 801622DC 0015F21C  3C 80 80 51 */	lis r4, __float_nan@ha
 /* 801622E0 0015F220  38 00 FF FF */	li r0, -1
 /* 801622E4 0015F224  C0 04 48 B0 */	lfs f0, __float_nan@l(r4)
@@ -6981,6 +6980,7 @@ __sinit_pikiMgr_cpp:
 /* 801622F8 0015F238  D0 03 00 04 */	stfs f0, 4(r3)
 /* 801622FC 0015F23C  D0 03 00 08 */	stfs f0, 8(r3)
 /* 80162300 0015F240  4E 80 00 20 */	blr 
+end __sinit_pikiMgr_cpp
 
 .global "@28@resetMgr__27MonoObjectMgr<Q24Game4Piki>Fv"
 "@28@resetMgr__27MonoObjectMgr<Q24Game4Piki>Fv":

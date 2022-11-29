@@ -4,6 +4,7 @@
 #include "types.h"
 #include "Vector3.h"
 #include "Matrixf.h"
+#include "Matrix3f.h"
 
 // Quat(ernion)
 struct Quat {
@@ -30,17 +31,16 @@ struct Quat {
 	// z = vec.z;
 	// };
 	void set(Vector3f& vec);
-	void set(float a, float b, float c, float d)
-	{
-		w = a;
-		x = b;
-		y = c;
-		z = d;
-	};
+	void set(float a, float b, float c, float d);
+	void set(float, Vector3f& vec);
+	void norm();
+	void conjugate();
+	void rotate(Quat&, Vector3f&);
 	Quat operator*(Quat& q2);
 	void inverse();
 	void normalise();
 	void slerp(Quat& q1, float f, Quat& q2);
+	void toMatrix(Matrix3f& arg0);
 	void fromMatrixf(Matrixf& arg0);
 };
 

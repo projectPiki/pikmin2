@@ -20,14 +20,13 @@ struct TPositionObject {
 	virtual Vector3f getPosition() = 0; // _08
 
 	// VTBL _00
-	SweepPrune::Object m_sweepPruneObject; // _04
 };
 
 struct CollNode {
 	CollNode();
 
 	CellObject* m_cellObject; // _00
-	float _04;                // _04
+	f32 _04;                  // _04
 };
 
 struct CollisionBuffer {
@@ -36,10 +35,10 @@ struct CollisionBuffer {
 	void init(CellObject*, CollNode*, int);
 	void alloc(CellObject*, int);
 	void clear();
-	void insert(CellObject*, float);
-	void pikiInsertPiki(CellObject*, float);
-	void pikiInsertOther(CellObject*, float);
-	void insertSort(CellObject*, float);
+	void insert(CellObject*, f32);
+	void pikiInsertPiki(CellObject*, f32);
+	void pikiInsertOther(CellObject*, f32);
+	void insertSort(CellObject*, f32);
 	int findIndex(CellObject*);
 
 	int m_nodeCount;          // _00/
@@ -99,7 +98,7 @@ struct Cell {
 	static CellPyramid* sCurrCellMgr;
 };
 
-struct CellObject : public TPositionObject {
+struct CellObject : public TPositionObject, public SweepPrune::Object {
 	inline CellObject()
 	{
 		m_cellLegs[0].m_flags  = 1;
@@ -123,7 +122,7 @@ struct CellObject : public TPositionObject {
 	virtual u16 getObjType()    = 0;                    // _28
 
 	void exitCell();
-	float calcCollisionDistance(CellObject*);
+	f32 calcCollisionDistance(CellObject*);
 	void updateCollisionBuffer(CellObject*);
 	void resolveUsingBuffer();
 
@@ -143,7 +142,7 @@ struct CellLayer {
 	void createBottom(int, int);
 	Cell* operator()(int, int);
 	void pileup(CellLayer&);
-	void drawCell(Graphics&, Vector3f&, int, int, float) const;
+	void drawCell(Graphics&, Vector3f&, int, int, f32) const;
 	void assertExtent(Recti&) const;
 	void checkPoint(Vector2i&) const;
 
@@ -166,10 +165,10 @@ struct CellPyramid : public SweepPrune::World {
 	void calcExtent(Sys::Sphere&, int&, Recti&);
 	void entry(CellObject*, Sys::Sphere&);
 	void entry(CellObject*, Sys::Sphere&, int&, Recti&);
-	void create(BoundBox2d&, float);
+	void create(BoundBox2d&, f32);
 	void drawCell(Graphics&, Sys::Sphere&);
 	int getPikiCount(int, Recti&);
-	void drawCell(Graphics&, int, Recti&, float) const;
+	void drawCell(Graphics&, int, Recti&, f32) const;
 	void drawCell(Graphics&, int);
 	void drawCell(Graphics&);
 	void dumpCount(int&, int&);
@@ -177,10 +176,10 @@ struct CellPyramid : public SweepPrune::World {
 	int m_memoryUsageMaybe; // _28
 	int m_layerCount;       // _2C
 	CellLayer* m_layers;    // _30
-	float _34;              // _34
-	float _38;              // _38
-	float _3C;              // _3C
-	float _40;              // _40
+	f32 _34;                // _34
+	f32 _38;                // _38
+	f32 _3C;                // _3C
+	f32 _40;                // _40
 	/*
 	 * Incremented at the start of every resolve/search pass.
 	 * Passed on to CellObjects to prevent evaluating multiple times per pass.

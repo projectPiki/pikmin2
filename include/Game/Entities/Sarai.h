@@ -24,43 +24,44 @@ struct Obj : public EnemyBase {
 	//////////////// VTABLE
 	virtual void onInit(CreatureInitArg* settings);         // _30
 	virtual void doDirectDraw(Graphics& gfx);               // _50
-	virtual void inWaterCallback(WaterBox* wb);             // _84 (weak)
-	virtual void outWaterCallback();                        // _88 (weak)
+	virtual void inWaterCallback(WaterBox* wb) { }          // _84 (weak)
+	virtual void outWaterCallback() { }                     // _88 (weak)
 	virtual void getShadowParam(ShadowParam& settings);     // _134
 	virtual ~Obj() { }                                      // _1BC (weak)
 	virtual void setInitialSetting(EnemyInitialParamBase*); // _1C4
 	virtual void doUpdate();                                // _1CC
 	virtual void doDebugDraw(Graphics&);                    // _1EC
 	virtual void initMouthSlots();                          // _22C
-	virtual EnemyTypeID::EEnemyTypeID getEnemyTypeID();     // _258 (weak)
-	virtual MouthSlots* getMouthSlots();                    // _25C (weak)
-	virtual void doStartStoneState();                       // _2A4
-	virtual void doFinishStoneState();                      // _2A8
-	virtual void startCarcassMotion();                      // _2C4
-	virtual f32 getDownSmokeScale();                        // _2EC (weak)
-	virtual void setFSM(FSM*);                              // _2F8
-	virtual void getStickPikminNum();                       // _2FC
-	virtual void getAttackableTarget();                     // _300
-	virtual void catchTarget();                             // _304
-	virtual void resetAttackableTimer(f32);                 // _308 (weak)
+	virtual EnemyTypeID::EEnemyTypeID getEnemyTypeID()      // _258 (weak)
+	{
+		return EnemyTypeID::EnemyID_Sarai;
+	}
+	virtual MouthSlots* getMouthSlots() { return &m_mouthSlots; } // _25C (weak)
+	virtual void doStartStoneState();                             // _2A4
+	virtual void doFinishStoneState();                            // _2A8
+	virtual void startCarcassMotion();                            // _2C4
+	virtual f32 getDownSmokeScale() { return 0.65f; }             // _2EC (weak)
+	virtual void setFSM(FSM*);                                    // _2F8
+	virtual int getStickPikminNum();                              // _2FC
+	virtual Piki* getAttackableTarget();                          // _300
+	virtual void catchTarget();                                   // _304
+	virtual void resetAttackableTimer(f32);                       // _308 (weak)
 	//////////////// VTABLE END
 
-	void setHeightVelocity();
+	f32 setHeightVelocity();
 	void setRandTarget();
 	void fallMeckGround();
-	void getCatchTargetNum();
-	void getNextStateOnHeight();
+	int getCatchTargetNum();
+	int getNextStateOnHeight();
 	void flickStickTarget();
 	void createDownEffect();
 
 	// _00 		= VTBL
 	// _00-_2BC	= EnemyBase
-	u8 _2BC[0x4];            // _2BC, unknown
+	FSM* m_FSM;              // _2BC
 	f32 _2C0;                // _2C0
 	MouthSlots m_mouthSlots; // _2C4
-	f32 _2CC;                // _2CC, may be a Vector3f with _2D0 and _2D4
-	f32 _2D0;                // _2D0
-	f32 _2D4;                // _2D4
+	Vector3f m_targetPos;    // _2CC
 	                         // _2D8 = PelletView
 };
 
@@ -144,6 +145,22 @@ struct ProperAnimator : public EnemyAnimatorBase {
 
 /////////////////////////////////////////////////////////////////
 // STATE MACHINE DEFINITIONS
+enum StateID {
+	SARAI_NULL     = -1,
+	SARAI_Dead     = 0,
+	SARAI_Fall     = 1,
+	SARAI_Damage   = 2,
+	SARAI_TakeOff  = 3,
+	SARAI_Flick    = 4,
+	SARAI_Wait     = 5,
+	SARAI_Move     = 6,
+	SARAI_Attack   = 7,
+	SARAI_Fail     = 8,
+	SARAI_CatchFly = 9,
+	SARAI_FallMeck = 10,
+	SARAI_StateCount,
+};
+
 struct FSM : public EnemyStateMachine {
 	virtual void init(EnemyBase*); // _08
 

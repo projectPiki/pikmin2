@@ -7,6 +7,16 @@
 #include "types.h"
 #include "Vector3.h"
 
+#define MAX_POKOINFO 5
+
+struct CarryInfoList;
+
+enum cCarryInfoState {
+	CINFO_Appear = 0,
+	CINFO_1      = 1,
+	CINFO_Hidden = 2,
+};
+
 struct CarryInfo {
 	void disappear();
 	void draw(struct Graphics&, struct CarryInfoParam&);
@@ -14,24 +24,25 @@ struct CarryInfo {
 	void drawNumberPrim(Graphics&, float, float, int, Color4&, float);
 	void update(const CarryInfoParam&);
 
-	float _00;   // _00
-	float _04;   // _04
-	float _08;   // _08
-	u8 m_hidden; // _0C
-	u8 m_alpha;  // _0D
-	u8 _0E;      // _0E
+	float m_growRate; // _00
+	float m_Yoffset;  // _04
+	float m_scale;    // _08
+	u8 m_hidden;      // _0C
+	u8 m_alpha;       // _0D
+	u8 m_counter;     // _0E
 };
 
 struct CarryInfoParam {
-	u32 _00;               // _00
+	u32 m_useType;         // _00, 1 means color by scale, 0 means color by coded table
 	Vector3f m_position;   // _04
-	float _10;             // _10
+	float m_yOffsetMax;    // _10
 	u8 _14;                // _14
-	u8 _15;                // _15
-	short _16;             // _16
-	short _18;             // _18
-	u32 _1C;               // _1C
-	CarryInfo m_carryInfo; // _20
+	u8 m_color;            // _15
+	short m_value1;        // _16
+	short m_value2;        // _18
+	u32 m_isTopFirst;      // _1C, 0 means value1 on bottom, 1 means value2 on bottom
+	CarryInfoList* m_list; // _20
+	CarryInfo m_carryInfo; // _24
 };
 
 struct CarryInfoOwner {
@@ -44,15 +55,17 @@ struct CarryInfoOwner {
  * @size{0x34}
  */
 struct PokoInfoOwner : public CarryInfoOwner, public CNode {
+	PokoInfoOwner();
+
 	// vtable 1 (CarryInfoOwner)
 	virtual void getCarryInfoParam(CarryInfoParam&); // _08
 	// vtable 2 (CNode)
 	virtual ~PokoInfoOwner(); // _1C (thunked at _14) (weak)
 
-	float _1C;           // _1C
-	u32 _20;             // _20
-	Vector3f m_position; // _24
-	u32 _30;             // _30
+	float m_timer;         // _1C
+	CarryInfoList* m_list; // _20
+	Vector3f m_position;   // _24
+	u32 m_value;           // _30
 };
 
 /**
@@ -81,13 +94,13 @@ struct CarryInfoMgr : public InfoMgr<CarryInfoOwner, CarryInfoList> {
 	virtual CarryInfoList* regist(CarryInfoOwner*);  // _18 (weak)
 	virtual CarryInfoList* scratch(CarryInfoOwner*); // _1C (weak)
 
-	CarryInfoMgr* appear(CarryInfoOwner*);
+	CarryInfoList* appear(CarryInfoOwner*);
 	void appearPoko(const Vector3f&, int);
 	void updatePokoInfoOwners();
 
 	JUTTexture* m_texture; // _B8
-	CNode _BC;             // _BC
-	CNode _D4;             // _D4
+	CNode m_node1;         // _BC
+	CNode m_poko_node;     // _D4
 };
 
 extern CarryInfoMgr* carryInfoMgr;

@@ -22,10 +22,13 @@ extern void __OSCacheInit();
 void OSInit();
 
 // OS logging
-void OSReport(const char*, ...);
+void OSReport(const char* message, ...);
 void OSPanic(const char* file, int line, const char* message, ...);
 
+typedef u8 __OSException;
 typedef u16 OSError;
+typedef s16 __OSInterrupt;
+typedef u64 OSTime;
 
 #define OS_ERROR_SYSTEM_RESET       0
 #define OS_ERROR_MACHINE_CHECK      1
@@ -44,6 +47,14 @@ typedef u16 OSError;
 #define OS_ERROR_THERMAL_INTERRUPT  14
 #define OS_ERROR_PROTECTION         15
 #define OS_ERROR_MAX                (OS_ERROR_PROTECTION + 1)
+
+volatile u16 OS_AI_DMA_ADDR_HI : 0xCC005030;
+volatile u16 OS_AI_DMA_ADDR_LO : 0xCC005032;
+
+volatile u16 OS_ARAM_DMA_BASE : 0xCC005000;
+volatile u16 OS_ARAM_DMA_ADDR_HI : 0xCC005020;
+volatile u16 OS_ARAM_DMA_ADDR_LO : 0xCC005022;
+volatile u16 OS_DI_DMA_ADDR : 0xCC006014;
 
 #define OSError(...) OSPanic(__FILE__, __LINE__, __VA_ARGS__)
 #ifndef MATCHING
@@ -573,7 +584,7 @@ typedef struct OSFunctionInfo {
 void OSRegisterResetFunction(OSFunctionInfo*);
 BOOL OSGetResetSwitchState();
 
-typedef void (*OSErrorHandler)(unsigned short, OSContext*, unsigned long, unsigned long);
+typedef void (*OSErrorHandler)(unsigned short, OSContext*, unsigned long, unsigned long, ...);
 OSErrorHandler OSSetErrorHandler(OSError, OSErrorHandler);
 
 void OSFillFPUContext(OSContext*);

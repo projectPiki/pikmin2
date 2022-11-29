@@ -12,6 +12,8 @@
   "files.associations": {
     "source_location": "cpp",
     "types.h": "c",
-    "rand.h": "c"
+    "rand.h": "c",
+    "os.h": "c",
+    "ppcarch.h": "c"
   }
 }

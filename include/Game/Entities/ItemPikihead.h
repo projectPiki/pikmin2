@@ -20,7 +20,7 @@ struct InitArg : public ItemInitArg {
 		_1C          = -1.0f;
 	}
 
-	virtual const char* getName(); // _08 (weak)
+	virtual const char* getName() { return "ItemPikiHead::InitArg"; } // _08 (weak)
 
 	// _00     = VTBL
 	EPikiKind m_pikminType; // _04, enum?

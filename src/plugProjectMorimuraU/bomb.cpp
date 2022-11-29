@@ -619,9 +619,9 @@ bool Obj::canEat()
  */
 bool Obj::isAnimStart()
 {
+	bool check = false;
 	if (isBirthTypeDropGroup() || !(m_toFlick >= C_PROPERPARMS.m_ip01.m_value)) {
 		if (!_2BC || m_curTriangle == nullptr) {
-			bool check;
 			if (!_2C0) {
 				check = false;
 			} else {
@@ -637,12 +637,12 @@ bool Obj::isAnimStart()
 			}
 
 			if (check) {
-				return false;
+				return true;
 			}
 		}
 	}
 
-	return true;
+	return false;
 	/*
 	stwu     r1, -0x20(r1)
 	mflr     r0
