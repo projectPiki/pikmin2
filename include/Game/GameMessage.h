@@ -3,6 +3,7 @@
 
 #include "types.h"
 #include "Vector3.h"
+#include "Game/enemyInfo.h"
 
 namespace Game {
 struct BaseGameSection;
@@ -42,8 +43,8 @@ struct GameMessageVsAddEnemy : public GameMessage {
 	virtual bool actVs(VsGameSection*); // _10
 
 	// _00      = VTABLE
-	int _04; // _04
-	int _08; // _08
+	EnemyTypeID::EEnemyTypeID _04; // _04 (enemy ID)
+	int _08; // _08 (spawn num)
 };
 
 struct GameMessageVsBattleFinished : public GameMessage {
@@ -70,12 +71,6 @@ struct GameMessageVsGetDoping : public GameMessage {
 };
 
 struct GameMessageVsGetOtakara : public GameMessage {
-	inline GameMessageVsGetOtakara(u32 onyonType)
-	    : _04(onyonType)
-	    , _08(1)
-	{
-	}
-
 	virtual bool actVs(VsGameSection*); // _10
 
 	// _00      = VTABLE
@@ -84,11 +79,6 @@ struct GameMessageVsGetOtakara : public GameMessage {
 };
 
 struct GameMessageVsGotCard : public GameMessage {
-	inline GameMessageVsGotCard(u32 onyonType)
-	    : _04(onyonType)
-	{
-	}
-
 	virtual bool actVs(VsGameSection*); // _10
 
 	// _00      = VTABLE
@@ -103,7 +93,7 @@ struct GameMessageVsRedOrSuckStart : public GameMessage {
 	virtual bool actVs(VsGameSection*); // _10
 
 	int _04; // _04
-	u8 _08;  // _08 - unknown
+	bool _08;  // _08 - unknown
 };
 
 struct GameMessageVsUseCard : public GameMessage {
