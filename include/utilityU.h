@@ -13,34 +13,13 @@
 #include "Game/EnemyBase.h"
 #include "SoundID.h"
 
-namespace Game {
-	struct EnemyBase;
-};
-
-struct JAIStream;
-struct JAISound;
-struct JAISe;
 
 namespace PSM {
 	struct DirectorBase;
-	struct ActorDirector_Battle;
-	struct ActorDirector_TrackOn;
-	struct ActorDirector_Scaled;
-	struct ActorDirector_Kehai;
-	struct ActorDirector_TempoChange;
-	struct TrackOnDirector_Voting;
-	struct PikminNumberDirector;
-	struct DamageDirector;
-	struct SceneBase;
-	struct WorldMapRocket;
-	struct Cluster;
-	struct Creature;
 	f32 sBoss_DistMax = 4000.0f;
 	f32 sBoss_ViewDist = 1300.0f;
 	f32 sBoss_ViewDistVol = 0.3f;
 	f32 sCamFov = 0.25f;
-	Creature sInsReal;
-	f32 sTHPDinamicsProc; // f32 might not be right
 }
 
 void PSChangeBgm_ChallengeGame();
@@ -57,7 +36,7 @@ PSM::ActorDirector_TrackOn* PSMGetIchouForLugieD();
 PSM::ActorDirector_TrackOn* PSMGetIchouForOrimerD();
 PSM::ActorDirector_Kehai* PSMGetKehaiD();
 PSM::ActorDirector_TempoChange* PSMGetLifeD();
-f64 PSMGetNoukouDIst() { return 300.0; };
+f64 PSMGetNoukouDist(); // { return 300.0; };
 PSM::ActorDirector_TrackOn* PSMGetOtakaraEventD();
 PSM::TrackOnDirector_Voting* PSMGetPikiBattleD();
 PSM::PikminNumberDirector* PSMGetPikminNumD();
@@ -77,7 +56,7 @@ JAIStream* PSStartEnemyDownSmokeSE(Game::EnemyBase*, f32);
 JAIStream* PSStartEnemyDownWatSE(f64, Game::EnemyBase*);
 JAISound* PSStartEnemyFatalHitSE(Game::EnemyBase*, f32);
 int PSStartEnemyGhostSE(Game::EnemyBase*, f32);
-JAISound* PSStartSoundVec(SoundID, Vector3*)
+JAISound* PSStartSoundVec(SoundID, Vec*);
 JAISe* PSStartTreasureLaderSE(f64);
 JAISe* PSStartTreasureLaderNoiseSE(f64, u8, u32, u32, u8);
 u8 PSStop2DStream();
