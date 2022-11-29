@@ -60,7 +60,6 @@ void ActBreakGate::initFollow()
 	m_state = 1;
 }
 
-static const char actionArgName[]      = "ActionArg";
 static const char stickAttackArgName[] = "StickAttackActionArg";
 static const char gotoPosArgName[]     = "GotoPosActionArg";
 static const char followFieldArgName[] = "FollowVectorFieldActionArg";

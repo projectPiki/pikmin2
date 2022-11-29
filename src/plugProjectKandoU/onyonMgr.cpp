@@ -405,7 +405,7 @@ bool InteractSuckDone::actOnyon(Onyon* item)
 
 	item->m_pikminType = item->m_onyonType;
 	if (item->m_onyonType <= ONYON_TYPE_YELLOW) {
-		SysShape::Joint* jnt = item->m_model->getJoint("body_l");
+		SysShape::Joint* jnt = item->m_model->getJoint("body_1");
 		if (jnt) {
 			::efx::TOnyonEatAB onyonFX(jnt->getWorldMatrix());
 			onyonFX.create(nullptr);
@@ -1511,7 +1511,7 @@ void Onyon::efxSuikomi()
 void Onyon::efxPafuPafu()
 {
 	if (!(randFloat() > 0.05f)) {
-		char* jntnames[3]      = { "kasi1jnt1", "kasi1jnt2", "kasi1jnt3" };
+		char* jntnames[3]      = { "kasi1jnt1", "kass2jnt1", "kasi3jnt1" };
 		int id                 = (int)(randFloat() * 3.0f);
 		SysShape::Joint* joint = m_model->getJoint(jntnames[id]);
 		if (joint && m_lod.m_flags & 4) {
