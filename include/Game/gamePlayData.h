@@ -307,7 +307,7 @@ struct PlayData : public CNode {
 	void incDopeCount(int);
 	bool hasDope(int);
 	int getDopeFruitCount(int);
-	void addDopeFruit(int);
+	bool addDopeFruit(int);
 	void useDope(int);
 	bool isCaveFirstTime(int, ID32&);
 	void setCaveVisit(int, ID32&);

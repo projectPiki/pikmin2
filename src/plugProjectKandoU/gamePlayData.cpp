@@ -1321,16 +1321,16 @@ void PlayData::reset()
 	m_naviLifeMax[0]       = 0.0f;
 	_20                    = 0;
 	u64 osTime             = OSGetTime();
-	m_osTimeLo             = (int)osTime;
-	m_osTimeHi             = (int)(osTime >> 0x20);
+	m_osTimeLo             = (u32)osTime;
+	m_osTimeHi             = (u32)(osTime >> 0x20);
 	_18                    = false;
 	_19                    = 0;
 	m_storyFlags           = 0;
 	m_debtProgressFlags[0] = 0;
 	m_debtProgressFlags[1] = 0;
-	for (int i = 0; i < 0; i++) {
+	for (int i = 0; i <= -1; i++) {
 		if (i < 0x10) {
-			m_debtProgressFlags[1 - (i >> 3)] |= 1 << (i - (8 * (i >> 3)));
+			m_debtProgressFlags[1 - (i >> 3)] |= 1 << (i - (8 * (i >> 3))); // ?????
 		}
 	}
 	generatorCache->clearCache();
@@ -2050,30 +2050,10 @@ int PlayData::getCurrentCourseIndex() { return m_caveSaveData.m_courseIdx; }
  */
 CourseInfo* PlayData::getCurrentCourse()
 {
-	if (m_caveSaveData.m_courseIdx == -1) {
-		return nullptr;
+	if (m_caveSaveData.m_courseIdx != -1) {
+		return stageList->getCourseInfo(m_caveSaveData.m_courseIdx);
 	}
-	return stageList->getCourseInfo(m_caveSaveData.m_courseIdx);
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	lwz      r4, 0x50(r3)
-	cmpwi    r4, -1
-	beq      lbl_801E7508
-	lwz      r3, stageList__4Game@sda21(r13)
-	bl       getCourseInfo__Q24Game6StagesFi
-	b        lbl_801E750C
-
-lbl_801E7508:
-	li       r3, 0
-
-lbl_801E750C:
-	lwz      r0, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	return nullptr;
 }
 
 /*
@@ -2116,48 +2096,14 @@ bool PlayData::firstCarryPellet(Game::Pellet* pellet)
  * Address:	801E7594
  * Size:	000030
  */
-void PlayData::obtainPellet(BasePelletMgr* mgr, int p2)
-{
-	_B0->obtainPellet(mgr, p2);
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	lwz      r3, 0xb0(r3)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x14(r12)
-	mtctr    r12
-	bctrl
-	lwz      r0, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
-}
+void PlayData::obtainPellet(BasePelletMgr* mgr, int p2) { _B0->obtainPellet(mgr, p2); }
 
 /*
  * --INFO--
  * Address:	801E75C4
  * Size:	000030
  */
-void PlayData::losePellet(Game::BasePelletMgr* mgr, int p2)
-{
-	_B0->losePellet(mgr, p2);
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	lwz      r3, 0xb0(r3)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x18(r12)
-	mtctr    r12
-	bctrl
-	lwz      r0, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
-}
+void PlayData::losePellet(Game::BasePelletMgr* mgr, int p2) { _B0->losePellet(mgr, p2); }
 
 /*
  * --INFO--
@@ -2166,7 +2112,7 @@ void PlayData::losePellet(Game::BasePelletMgr* mgr, int p2)
  */
 void PlayData::obtainPellet_Main(Game::Pellet* pellet)
 {
-	PelletCropMemory* mem = _B0;
+	PelletCropMemory* mem = m_mainCropMemory;
 	if (pellet->getKind() == PELTYPE_TREASURE) {
 		int id     = pellet->getConfigIndex();
 		bool check = (id >= 0 && id < mem->m_otakara.m_numKinds);
@@ -2185,7 +2131,7 @@ void PlayData::obtainPellet_Main(Game::Pellet* pellet)
 		pellet->getConfigName();
 		check = (id >= 0 && id < mem->m_item.m_numKinds);
 		P2ASSERTLINE(330, check);
-	} else {
+	} else if (pellet->getKind() == 1) {
 		int id     = pellet->getConfigIndex();
 		bool check = (id >= 0 && id < mem->m_carcass.m_numKinds);
 		P2ASSERTLINE(330, check);
@@ -2204,242 +2150,9 @@ void PlayData::obtainPellet_Main(Game::Pellet* pellet)
 	}
 
 	if (mgr) {
-		int id = pellet->getConfigIndex();
-		_B0->obtainPellet(mgr, id);
+		_B0->obtainPellet(mgr, pellet->getConfigIndex());
 	}
 	m_pokoCount += pellet->m_config->m_params.m_money.m_data;
-	/*
-	stwu     r1, -0x20(r1)
-	mflr     r0
-	stw      r0, 0x24(r1)
-	stw      r31, 0x1c(r1)
-	stw      r30, 0x18(r1)
-	mr       r30, r4
-	stw      r29, 0x14(r1)
-	mr       r29, r3
-	mr       r3, r30
-	stw      r28, 0x10(r1)
-	lwz      r12, 0(r30)
-	lwz      r31, 0xb4(r29)
-	lwz      r12, 0x1f4(r12)
-	mtctr    r12
-	bctrl
-	clrlwi   r0, r3, 0x18
-	cmplwi   r0, 3
-	bne      lbl_801E76E0
-	mr       r3, r30
-	bl       getConfigIndex__Q24Game6PelletFv
-	or.      r28, r3, r3
-	li       r3, 0
-	blt      lbl_801E7660
-	lhz      r0, 4(r31)
-	cmpw     r28, r0
-	bge      lbl_801E7660
-	li       r3, 1
-
-lbl_801E7660:
-	clrlwi.  r0, r3, 0x18
-	bne      lbl_801E7684
-	lis      r3, lbl_80480E4C@ha
-	lis      r5, lbl_80480E60@ha
-	addi     r3, r3, lbl_80480E4C@l
-	li       r4, 0x14a
-	addi     r5, r5, lbl_80480E60@l
-	crclr    6
-	bl       panic_f__12JUTExceptionFPCciPCce
-
-lbl_801E7684:
-	lwz      r5, 8(r31)
-	mr       r3, r30
-	lbzx     r4, r5, r28
-	addi     r0, r4, 1
-	stbx     r0, r5, r28
-	bl       getConfigName__Q24Game6PelletFv
-	cmpwi    r28, 0
-	li       r3, 0
-	blt      lbl_801E76B8
-	lhz      r0, 4(r31)
-	cmpw     r28, r0
-	bge      lbl_801E76B8
-	li       r3, 1
-
-lbl_801E76B8:
-	clrlwi.  r0, r3, 0x18
-	bne      lbl_801E7864
-	lis      r3, lbl_80480E4C@ha
-	lis      r5, lbl_80480E60@ha
-	addi     r3, r3, lbl_80480E4C@l
-	li       r4, 0x14a
-	addi     r5, r5, lbl_80480E60@l
-	crclr    6
-	bl       panic_f__12JUTExceptionFPCciPCce
-	b        lbl_801E7864
-
-lbl_801E76E0:
-	mr       r3, r30
-	lwz      r12, 0(r30)
-	lwz      r12, 0x1f4(r12)
-	mtctr    r12
-	bctrl
-	clrlwi   r0, r3, 0x18
-	cmplwi   r0, 4
-	bne      lbl_801E77A4
-	mr       r3, r30
-	bl       getConfigIndex__Q24Game6PelletFv
-	or.      r28, r3, r3
-	li       r3, 0
-	blt      lbl_801E7724
-	lhz      r0, 0xc(r31)
-	cmpw     r28, r0
-	bge      lbl_801E7724
-	li       r3, 1
-
-lbl_801E7724:
-	clrlwi.  r0, r3, 0x18
-	bne      lbl_801E7748
-	lis      r3, lbl_80480E4C@ha
-	lis      r5, lbl_80480E60@ha
-	addi     r3, r3, lbl_80480E4C@l
-	li       r4, 0x14a
-	addi     r5, r5, lbl_80480E60@l
-	crclr    6
-	bl       panic_f__12JUTExceptionFPCciPCce
-
-lbl_801E7748:
-	lwz      r5, 0x10(r31)
-	mr       r3, r30
-	lbzx     r4, r5, r28
-	addi     r0, r4, 1
-	stbx     r0, r5, r28
-	bl       getConfigName__Q24Game6PelletFv
-	cmpwi    r28, 0
-	li       r3, 0
-	blt      lbl_801E777C
-	lhz      r0, 0xc(r31)
-	cmpw     r28, r0
-	bge      lbl_801E777C
-	li       r3, 1
-
-lbl_801E777C:
-	clrlwi.  r0, r3, 0x18
-	bne      lbl_801E7864
-	lis      r3, lbl_80480E4C@ha
-	lis      r5, lbl_80480E60@ha
-	addi     r3, r3, lbl_80480E4C@l
-	li       r4, 0x14a
-	addi     r5, r5, lbl_80480E60@l
-	crclr    6
-	bl       panic_f__12JUTExceptionFPCciPCce
-	b        lbl_801E7864
-
-lbl_801E77A4:
-	mr       r3, r30
-	lwz      r12, 0(r30)
-	lwz      r12, 0x1f4(r12)
-	mtctr    r12
-	bctrl
-	clrlwi   r0, r3, 0x18
-	cmplwi   r0, 1
-	bne      lbl_801E7864
-	mr       r3, r30
-	bl       getConfigIndex__Q24Game6PelletFv
-	or.      r28, r3, r3
-	li       r3, 0
-	blt      lbl_801E77E8
-	lhz      r0, 0x14(r31)
-	cmpw     r28, r0
-	bge      lbl_801E77E8
-	li       r3, 1
-
-lbl_801E77E8:
-	clrlwi.  r0, r3, 0x18
-	bne      lbl_801E780C
-	lis      r3, lbl_80480E4C@ha
-	lis      r5, lbl_80480E60@ha
-	addi     r3, r3, lbl_80480E4C@l
-	li       r4, 0x14a
-	addi     r5, r5, lbl_80480E60@l
-	crclr    6
-	bl       panic_f__12JUTExceptionFPCciPCce
-
-lbl_801E780C:
-	lwz      r5, 0x18(r31)
-	mr       r3, r30
-	lbzx     r4, r5, r28
-	addi     r0, r4, 1
-	stbx     r0, r5, r28
-	bl       getConfigName__Q24Game6PelletFv
-	cmpwi    r28, 0
-	li       r3, 0
-	blt      lbl_801E7840
-	lhz      r0, 0x14(r31)
-	cmpw     r28, r0
-	bge      lbl_801E7840
-	li       r3, 1
-
-lbl_801E7840:
-	clrlwi.  r0, r3, 0x18
-	bne      lbl_801E7864
-	lis      r3, lbl_80480E4C@ha
-	lis      r5, lbl_80480E60@ha
-	addi     r3, r3, lbl_80480E4C@l
-	li       r4, 0x14a
-	addi     r5, r5, lbl_80480E60@l
-	crclr    6
-	bl       panic_f__12JUTExceptionFPCciPCce
-
-lbl_801E7864:
-	mr       r3, r30
-	li       r28, 0
-	lwz      r12, 0(r30)
-	lwz      r12, 0x1f4(r12)
-	mtctr    r12
-	bctrl
-	clrlwi   r0, r3, 0x18
-	cmplwi   r0, 3
-	bne      lbl_801E7890
-	lwz      r28, mgr__Q24Game13PelletOtakara@sda21(r13)
-	b        lbl_801E78B4
-
-lbl_801E7890:
-	mr       r3, r30
-	lwz      r12, 0(r30)
-	lwz      r12, 0x1f4(r12)
-	mtctr    r12
-	bctrl
-	clrlwi   r0, r3, 0x18
-	cmplwi   r0, 4
-	bne      lbl_801E78B4
-	lwz      r28, mgr__Q24Game10PelletItem@sda21(r13)
-
-lbl_801E78B4:
-	cmplwi   r28, 0
-	beq      lbl_801E78E0
-	mr       r3, r30
-	bl       getConfigIndex__Q24Game6PelletFv
-	mr       r5, r3
-	lwz      r3, 0xb0(r29)
-	mr       r4, r28
-	lwz      r12, 0(r3)
-	lwz      r12, 0x14(r12)
-	mtctr    r12
-	bctrl
-
-lbl_801E78E0:
-	lwz      r3, 0x35c(r30)
-	lwz      r4, 0xe8(r29)
-	lwz      r0, 0x170(r3)
-	add      r0, r4, r0
-	stw      r0, 0xe8(r29)
-	lwz      r31, 0x1c(r1)
-	lwz      r30, 0x18(r1)
-	lwz      r29, 0x14(r1)
-	lwz      r28, 0x10(r1)
-	lwz      r0, 0x24(r1)
-	mtlr     r0
-	addi     r1, r1, 0x20
-	blr
-	*/
 }
 
 /*
@@ -2468,7 +2181,7 @@ void PlayData::obtainPellet_Cave(Game::Pellet* pellet)
 		pellet->getConfigName();
 		check = (id >= 0 && id < mem->m_item.m_numKinds);
 		P2ASSERTLINE(330, check);
-	} else {
+	} else if (pellet->getKind() == 1) {
 		int id     = pellet->getConfigIndex();
 		bool check = (id >= 0 && id < mem->m_carcass.m_numKinds);
 		P2ASSERTLINE(330, check);
@@ -2478,193 +2191,6 @@ void PlayData::obtainPellet_Cave(Game::Pellet* pellet)
 		check = (id >= 0 && id < mem->m_carcass.m_numKinds);
 		P2ASSERTLINE(330, check);
 	}
-	/*
-	stwu     r1, -0x20(r1)
-	mflr     r0
-	stw      r0, 0x24(r1)
-	stw      r31, 0x1c(r1)
-	stw      r30, 0x18(r1)
-	mr       r30, r4
-	stw      r29, 0x14(r1)
-	lwz      r12, 0(r30)
-	lwz      r31, 0xb8(r3)
-	mr       r3, r30
-	lwz      r12, 0x1f4(r12)
-	mtctr    r12
-	bctrl
-	clrlwi   r0, r3, 0x18
-	cmplwi   r0, 3
-	bne      lbl_801E79F8
-	mr       r3, r30
-	bl       getConfigIndex__Q24Game6PelletFv
-	or.      r29, r3, r3
-	li       r3, 0
-	blt      lbl_801E7978
-	lhz      r0, 4(r31)
-	cmpw     r29, r0
-	bge      lbl_801E7978
-	li       r3, 1
-
-lbl_801E7978:
-	clrlwi.  r0, r3, 0x18
-	bne      lbl_801E799C
-	lis      r3, lbl_80480E4C@ha
-	lis      r5, lbl_80480E60@ha
-	addi     r3, r3, lbl_80480E4C@l
-	li       r4, 0x14a
-	addi     r5, r5, lbl_80480E60@l
-	crclr    6
-	bl       panic_f__12JUTExceptionFPCciPCce
-
-lbl_801E799C:
-	lwz      r5, 8(r31)
-	mr       r3, r30
-	lbzx     r4, r5, r29
-	addi     r0, r4, 1
-	stbx     r0, r5, r29
-	bl       getConfigName__Q24Game6PelletFv
-	cmpwi    r29, 0
-	li       r3, 0
-	blt      lbl_801E79D0
-	lhz      r0, 4(r31)
-	cmpw     r29, r0
-	bge      lbl_801E79D0
-	li       r3, 1
-
-lbl_801E79D0:
-	clrlwi.  r0, r3, 0x18
-	bne      lbl_801E7B7C
-	lis      r3, lbl_80480E4C@ha
-	lis      r5, lbl_80480E60@ha
-	addi     r3, r3, lbl_80480E4C@l
-	li       r4, 0x14a
-	addi     r5, r5, lbl_80480E60@l
-	crclr    6
-	bl       panic_f__12JUTExceptionFPCciPCce
-	b        lbl_801E7B7C
-
-lbl_801E79F8:
-	mr       r3, r30
-	lwz      r12, 0(r30)
-	lwz      r12, 0x1f4(r12)
-	mtctr    r12
-	bctrl
-	clrlwi   r0, r3, 0x18
-	cmplwi   r0, 4
-	bne      lbl_801E7ABC
-	mr       r3, r30
-	bl       getConfigIndex__Q24Game6PelletFv
-	or.      r29, r3, r3
-	li       r3, 0
-	blt      lbl_801E7A3C
-	lhz      r0, 0xc(r31)
-	cmpw     r29, r0
-	bge      lbl_801E7A3C
-	li       r3, 1
-
-lbl_801E7A3C:
-	clrlwi.  r0, r3, 0x18
-	bne      lbl_801E7A60
-	lis      r3, lbl_80480E4C@ha
-	lis      r5, lbl_80480E60@ha
-	addi     r3, r3, lbl_80480E4C@l
-	li       r4, 0x14a
-	addi     r5, r5, lbl_80480E60@l
-	crclr    6
-	bl       panic_f__12JUTExceptionFPCciPCce
-
-lbl_801E7A60:
-	lwz      r5, 0x10(r31)
-	mr       r3, r30
-	lbzx     r4, r5, r29
-	addi     r0, r4, 1
-	stbx     r0, r5, r29
-	bl       getConfigName__Q24Game6PelletFv
-	cmpwi    r29, 0
-	li       r3, 0
-	blt      lbl_801E7A94
-	lhz      r0, 0xc(r31)
-	cmpw     r29, r0
-	bge      lbl_801E7A94
-	li       r3, 1
-
-lbl_801E7A94:
-	clrlwi.  r0, r3, 0x18
-	bne      lbl_801E7B7C
-	lis      r3, lbl_80480E4C@ha
-	lis      r5, lbl_80480E60@ha
-	addi     r3, r3, lbl_80480E4C@l
-	li       r4, 0x14a
-	addi     r5, r5, lbl_80480E60@l
-	crclr    6
-	bl       panic_f__12JUTExceptionFPCciPCce
-	b        lbl_801E7B7C
-
-lbl_801E7ABC:
-	mr       r3, r30
-	lwz      r12, 0(r30)
-	lwz      r12, 0x1f4(r12)
-	mtctr    r12
-	bctrl
-	clrlwi   r0, r3, 0x18
-	cmplwi   r0, 1
-	bne      lbl_801E7B7C
-	mr       r3, r30
-	bl       getConfigIndex__Q24Game6PelletFv
-	or.      r29, r3, r3
-	li       r3, 0
-	blt      lbl_801E7B00
-	lhz      r0, 0x14(r31)
-	cmpw     r29, r0
-	bge      lbl_801E7B00
-	li       r3, 1
-
-lbl_801E7B00:
-	clrlwi.  r0, r3, 0x18
-	bne      lbl_801E7B24
-	lis      r3, lbl_80480E4C@ha
-	lis      r5, lbl_80480E60@ha
-	addi     r3, r3, lbl_80480E4C@l
-	li       r4, 0x14a
-	addi     r5, r5, lbl_80480E60@l
-	crclr    6
-	bl       panic_f__12JUTExceptionFPCciPCce
-
-lbl_801E7B24:
-	lwz      r5, 0x18(r31)
-	mr       r3, r30
-	lbzx     r4, r5, r29
-	addi     r0, r4, 1
-	stbx     r0, r5, r29
-	bl       getConfigName__Q24Game6PelletFv
-	cmpwi    r29, 0
-	li       r3, 0
-	blt      lbl_801E7B58
-	lhz      r0, 0x14(r31)
-	cmpw     r29, r0
-	bge      lbl_801E7B58
-	li       r3, 1
-
-lbl_801E7B58:
-	clrlwi.  r0, r3, 0x18
-	bne      lbl_801E7B7C
-	lis      r3, lbl_80480E4C@ha
-	lis      r5, lbl_80480E60@ha
-	addi     r3, r3, lbl_80480E4C@l
-	li       r4, 0x14a
-	addi     r5, r5, lbl_80480E60@l
-	crclr    6
-	bl       panic_f__12JUTExceptionFPCciPCce
-
-lbl_801E7B7C:
-	lwz      r0, 0x24(r1)
-	lwz      r31, 0x1c(r1)
-	lwz      r30, 0x18(r1)
-	lwz      r29, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x20
-	blr
-	*/
 }
 
 /*
@@ -3209,6 +2735,7 @@ lbl_801E809C:
  * --INFO--
  * Address:	801E80B8
  * Size:	0001A8
+ * Note the assert is an inline
  */
 void PlayData::setPelletZukanOutOfDateAll()
 {
@@ -3385,43 +2912,6 @@ int PlayData::getGroundOtakaraNum(int id)
 	bool check = (id >= 0 && id < stageList->m_courseCount);
 	P2ASSERTLINE(1543, check);
 	return m_groundOtakaraCollected[id];
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	or.      r31, r4, r4
-	li       r4, 0
-	stw      r30, 8(r1)
-	mr       r30, r3
-	blt      lbl_801E8298
-	lwz      r3, stageList__4Game@sda21(r13)
-	lhz      r0, 0x100(r3)
-	cmpw     r31, r0
-	bge      lbl_801E8298
-	li       r4, 1
-
-lbl_801E8298:
-	clrlwi.  r0, r4, 0x18
-	bne      lbl_801E82BC
-	lis      r3, lbl_80480E4C@ha
-	lis      r5, lbl_80480E60@ha
-	addi     r3, r3, lbl_80480E4C@l
-	li       r4, 0x607
-	addi     r5, r5, lbl_80480E60@l
-	crclr    6
-	bl       panic_f__12JUTExceptionFPCciPCce
-
-lbl_801E82BC:
-	lwz      r3, 0xdc(r30)
-	lwz      r0, 0x14(r1)
-	lbzx     r3, r3, r31
-	lwz      r31, 0xc(r1)
-	lwz      r30, 8(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
 }
 
 /*
@@ -3435,42 +2925,6 @@ int PlayData::getGroundOtakaraMax(int id)
 	P2ASSERTLINE(1550, check);
 	CourseInfo* info = stageList->getCourseInfo(id);
 	return info->m_groundOtakaraMax;
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	or.      r31, r4, r4
-	li       r4, 0
-	blt      lbl_801E830C
-	lwz      r3, stageList__4Game@sda21(r13)
-	lhz      r0, 0x100(r3)
-	cmpw     r31, r0
-	bge      lbl_801E830C
-	li       r4, 1
-
-lbl_801E830C:
-	clrlwi.  r0, r4, 0x18
-	bne      lbl_801E8330
-	lis      r3, lbl_80480E4C@ha
-	lis      r5, lbl_80480E60@ha
-	addi     r3, r3, lbl_80480E4C@l
-	li       r4, 0x60e
-	addi     r5, r5, lbl_80480E60@l
-	crclr    6
-	bl       panic_f__12JUTExceptionFPCciPCce
-
-lbl_801E8330:
-	lwz      r3, stageList__4Game@sda21(r13)
-	mr       r4, r31
-	bl       getCourseInfo__Q24Game6StagesFi
-	lwz      r0, 0x14(r1)
-	lwz      r3, 0xcc(r3)
-	lwz      r31, 0xc(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
 }
 
 /*
@@ -3568,7 +3022,7 @@ int PlayData::getDopeFruitCount(int sprayIndex)
  * Address:	801E8650
  * Size:	0000B4
  */
-void PlayData::addDopeFruit(int sprayIndex)
+bool PlayData::addDopeFruit(int sprayIndex)
 {
 	bool isValidIndex = false;
 	if (0 <= sprayIndex && sprayIndex < 2) {
@@ -3580,62 +3034,10 @@ void PlayData::addDopeFruit(int sprayIndex)
 	if (m_berryCount[sprayIndex] >= _aiConstants->m_dopeCount.m_data) {
 		m_berryCount[sprayIndex] = 0;
 		_C0[sprayIndex]++;
+		return true;
+	} else {
+		return false;
 	}
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	li       r0, 0
-	stw      r31, 0xc(r1)
-	or.      r31, r4, r4
-	stw      r30, 8(r1)
-	mr       r30, r3
-	blt      lbl_801E8680
-	cmpwi    r31, 2
-	bge      lbl_801E8680
-	li       r0, 1
-
-lbl_801E8680:
-	clrlwi.  r0, r0, 0x18
-	bne      lbl_801E86A4
-	lis      r3, lbl_80480E4C@ha
-	lis      r5, lbl_80480E60@ha
-	addi     r3, r3, lbl_80480E4C@l
-	li       r4, 0x642
-	addi     r5, r5, lbl_80480E60@l
-	crclr    6
-	bl       panic_f__12JUTExceptionFPCciPCce
-
-lbl_801E86A4:
-	slwi     r0, r31, 2
-	add      r5, r30, r0
-	lwz      r3, 0xc8(r5)
-	addi     r0, r3, 1
-	stw      r0, 0xc8(r5)
-	lwz      r3, _aiConstants__4Game@sda21(r13)
-	lwz      r4, 0xc8(r5)
-	lwz      r0, 0x38(r3)
-	cmpw     r4, r0
-	blt      lbl_801E86E8
-	li       r0, 0
-	li       r3, 1
-	stw      r0, 0xc8(r5)
-	lwz      r4, 0xc0(r5)
-	addi     r0, r4, 1
-	stw      r0, 0xc0(r5)
-	b        lbl_801E86EC
-
-lbl_801E86E8:
-	li       r3, 0
-
-lbl_801E86EC:
-	lwz      r0, 0x14(r1)
-	lwz      r31, 0xc(r1)
-	lwz      r30, 8(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
 }
 
 /*
@@ -4504,7 +3906,7 @@ float PlayData::getRepayLevelPercent(int state)
 	if (state < 0) {
 		return (float)state;
 	} else {
-		return; // todo global array of percent floats here
+		return; // TODO: local unnamed struct array of percent floats
 	}
 	/*
 	cmpwi    r4, 0
@@ -5089,11 +4491,11 @@ bool PlayData::courseJustOpen(int index)
 	}
 	P2ASSERTLINE(1930, isValidIndex);
 
-	if (m_bitfieldPerCourse[index] & PDCF_Open) {
-		m_bitfieldPerCourse[index] |= 2;
-		return (m_bitfieldPerCourse[index] & PDCF_Unknown2) != 0;
-	} else {
+	if (!(m_bitfieldPerCourse[index] & PDCF_Open)) {
 		return false;
+	} else {
+		m_bitfieldPerCourse[index] |= 2;
+		return (m_bitfieldPerCourse[index] & PDCF_Unknown2);
 	}
 	/*
 	stwu     r1, -0x10(r1)
