@@ -44,7 +44,7 @@ lbl_80483FBC:
 	.4byte 0x00000000
 
 .section .data, "wa"  # 0x8049E220 - 0x804EFC20
-.balign 8
+.balign 32
 .global lbl_804C1780
 lbl_804C1780:
 	.4byte 0x00000000

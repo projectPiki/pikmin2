@@ -136,10 +136,10 @@ struct JUTException : public JKRThread {
 	P2ASSERTLINE(line, check##line)
 
 #define JUTASSERTBOUNDSLINE(line, lowerLimitInclusive, var, upperLimitExclusive, ...) \
-	bool check##line = false;                                                        \
-	if (lowerLimitInclusive <= var && var < upperLimitExclusive) {                   \
-		check##line = true;                                                          \
-	}                                                                                \
+	bool check##line = false;                                                         \
+	if (lowerLimitInclusive <= var && var < upperLimitExclusive) {                    \
+		check##line = true;                                                           \
+	}                                                                                 \
 	JUT_ASSERTLINE(line, check##line, __VA_ARGS__, var)
 
 #define JUTASSERTBOUNDSINCLUSIVELINE(line, lowerLimitInclusive, var, upperLimitInclusive, ...) \

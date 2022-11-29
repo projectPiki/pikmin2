@@ -1002,6 +1002,7 @@ typedef void GXDrawDoneCallback(void);
 
 GXDrawDoneCallback* GXSetDrawDoneCallback(GXDrawDoneCallback*);
 void GXSetDrawDone();
+void GXDrawDone();
 
 void GXCopyDisp(void*, GXBool); // TODO: Confirm types
 

@@ -113,11 +113,14 @@ struct Item : public WorkItem<Item, FSM, State> {
 	{ // probably needs things in here, just an initial guess
 	}
 
-	virtual void constructor();                                         // _2C
-	virtual void onInit(CreatureInitArg*);                              // _30
-	virtual void doSimulation(f32);                                     // _4C
-	virtual void doDirectDraw(Graphics&);                               // _50
-	virtual f32 getFaceDir();                                           // _64 (weak)
+	virtual void constructor();            // _2C
+	virtual void onInit(CreatureInitArg*); // _30
+	virtual void doSimulation(f32);        // _4C
+	virtual void doDirectDraw(Graphics&);  // _50
+	virtual f32 getFaceDir()               // _64 (weak)
+	{
+		return m_faceDir;
+	}
 	virtual bool sound_culling();                                       // _104 (weak)
 	virtual void movieUserCommand(u32 command, MoviePlayer* curPlayer); // _130
 	virtual char* getCreatureName();                                    // _1A8 (weak)
@@ -138,7 +141,7 @@ struct Item : public WorkItem<Item, FSM, State> {
 
 	// _00      = VTBL
 	// _00-_1EC = WorkItem
-	f32 _1EC;                        // _1EC
+	f32 m_faceDir;                   // _1EC
 	f32 _1F0;                        // _1F0
 	efx::TGeyserAct* m_efxGeyserAct; // _1F4
 	efx::TGeyserSet* m_efxGeyserSet; // _1F8

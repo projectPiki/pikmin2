@@ -110,10 +110,10 @@ struct Game2DMgr : public JKRDisposer {
 	void open_CaveInMenu(og::Screen::DispMemberAnaDemo&);
 	void check_CaveInMenu();
 	void open_KanketuMenu(og::Screen::DispMemberKanketuMenu&);
-	void open_ChallengeKanketuMenu(og::Screen::DispMemberKanketuMenu&);
-	void check_KanketuMenu();
-	void open_CaveMoreMenu(og::Screen::DispMemberCaveMore&);
-	void check_CaveMoreMenu();
+	bool open_ChallengeKanketuMenu(og::Screen::DispMemberKanketuMenu&);
+	int check_KanketuMenu();
+	bool open_CaveMoreMenu(og::Screen::DispMemberCaveMore&);
+	int check_CaveMoreMenu();
 	void open_FinalResult(kh::Screen::DispFinalResult&);
 	void check_FinalResult() const;
 	bool open_CaveResult(kh::Screen::DispCaveResult&);

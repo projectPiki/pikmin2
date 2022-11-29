@@ -34,4 +34,11 @@ inline f32 qdist3(f32 x1, f32 y1, f32 z1, f32 x2, f32 y2, f32 z2)
 	return dist;
 }
 
+inline float log(float& a, double b)
+{
+	float divisor  = log10(b);
+	float dividend = log10(a);
+	return dividend / divisor;
+}
+
 #endif

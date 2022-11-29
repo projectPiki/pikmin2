@@ -136,7 +136,7 @@ void Obj::birthChildren(EnemyBirthArg& birthArg)
 		f32 modifier        = 2.5f * i + 17.5f;
 		Vector3f bulbminPos = Vector3f(modifier * vec.x, 0.0f, modifier * vec.z);
 		Piki* bulbmin       = pikiMgr->birth();
-		PikiInitArg initArg;
+		PikiInitArg initArg(-1);
 		initArg.m_leader = this;
 
 		if (bulbmin) {

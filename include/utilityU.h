@@ -13,21 +13,20 @@
 #include "Game/EnemyBase.h"
 #include "SoundID.h"
 
-
-namespace PSM {
-	struct DirectorBase;
-	f32 sBoss_DistMax = 4000.0f;
-	f32 sBoss_ViewDist = 1300.0f;
-	f32 sBoss_ViewDistVol = 0.3f;
-	f32 sCamFov = 0.25f;
-}
+// namespace PSM {
+// 	struct DirectorBase;
+// 	f32 sBoss_DistMax = 4000.0f;
+// 	f32 sBoss_ViewDist = 1300.0f;
+// 	f32 sBoss_ViewDistVol = 0.3f;
+// 	f32 sCamFov = 0.25f;
+// }
 
 void PSChangeBgm_ChallengeGame();
 void PSCancelToPauseOffMainBgm();
 PSM::ActorDirector_Battle* PSMGetBattleD();
-PSM::DirectorBase* PSMGetBattleDirector(u8);
-PSM::ActorDirector_TrackOn*  PSMGetBeedamaForLugieD();
-PSM::ActorDirector_TrackOn*  PSMGetBeedamaForOrimerD();
+PSSystem::DirectorBase* PSMGetBattleDirector(u8);
+PSM::ActorDirector_TrackOn* PSMGetBeedamaForLugieD();
+PSM::ActorDirector_TrackOn* PSMGetBeedamaForOrimerD();
 PSM::DamageDirector* PSMGetDamageD();
 PSM::ActorDirector_Scaled* PSMGetEventD();
 PSM::SceneBase* PSMGetGameSceneA();
@@ -61,21 +60,18 @@ JAISe* PSStartTreasureLaderSE(f64);
 JAISe* PSStartTreasureLaderNoiseSE(f64, u8, u32, u32, u8);
 u8 PSStop2DStream();
 
-f32 sLaderNoiseFuefukiSensMax = 0.3f;
-f32 sLaderNoiseFuefukiSensMin;
-s16 sLaderNoiseFuefukiTimerCenter = 0x3C;
-s16 sLaderNoiseFuefukiTimerRandam = 0x08;
-f32 sLaderNoiseFuefukiVolumeMax = 0.5f;
-f32 sLaderNoiseFuefukiVolumeMin = 0.25f;
-s16 sLaderNoiseTimer;
-f32 sLaderNoiseVolumeExp = 7.18f;
-s16 sLaderNoiseWait;
-f32 sTreasureLader_DistanceExp = 5.0f;
-f32 sTreasureLader_MinimumVolume = 0.3f;
-f32 sTreasureLader_Pitch = 1.04f;
-f32 sTreasureLader_PitchDistance;
-
-
-
+// f32 sLaderNoiseFuefukiSensMax = 0.3f;
+// f32 sLaderNoiseFuefukiSensMin;
+// s16 sLaderNoiseFuefukiTimerCenter = 0x3C;
+// s16 sLaderNoiseFuefukiTimerRandam = 0x08;
+// f32 sLaderNoiseFuefukiVolumeMax = 0.5f;
+// f32 sLaderNoiseFuefukiVolumeMin = 0.25f;
+// s16 sLaderNoiseTimer;
+// f32 sLaderNoiseVolumeExp = 7.18f;
+// s16 sLaderNoiseWait;
+// f32 sTreasureLader_DistanceExp = 5.0f;
+// f32 sTreasureLader_MinimumVolume = 0.3f;
+// f32 sTreasureLader_Pitch = 1.04f;
+// f32 sTreasureLader_PitchDistance;
 
 #endif

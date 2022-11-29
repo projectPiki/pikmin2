@@ -50,6 +50,19 @@ struct DispMemberBase {
 
 // size 0x24
 struct DispMemberAnaDemo : public DispMemberBase {
+	inline DispMemberAnaDemo()
+	    : _20(0)
+	    , m_caveOtakaraNum(24)
+	    , m_caveOtakaraMax(69)
+	    , _10(1)
+	    , DispMemberBase()
+	{
+		_1F      = 1;
+		_14      = 1;
+		m_caveID = 't_01';
+		_1C      = 0;
+		_1D      = 0;
+	}
 
 	virtual u32 getSize() { return sizeof(DispMemberAnaDemo); } // _08 (weak)
 	virtual u32 getOwnerID() { return OWNER_OGA; }              // _0C (weak)
@@ -120,6 +133,16 @@ struct DispMemberCave : public DispMemberBase {
 
 // size 0x28
 struct DispMemberCaveMore : public DispMemberAnaDemo {
+	inline DispMemberCaveMore()
+	{
+		_24              = 0;
+		_25              = 0;
+		_20              = 0;
+		m_caveOtakaraNum = 4;
+		m_caveOtakaraMax = 4;
+		_10              = 10;
+		m_caveID         = '2p_c';
+	}
 
 	virtual u32 getSize() { return sizeof(DispMemberCaveMore); } // _08 (weak)
 	virtual u32 getOwnerID() { return OWNER_OGA; }               // _0C (weak)
@@ -287,6 +310,16 @@ struct DispMemberGround : public DispMemberBase {
 
 // size 0x28
 struct DispMemberKanketuMenu : public DispMemberAnaDemo {
+	inline DispMemberKanketuMenu()
+	{
+		_24              = 0;
+		_25              = 0;
+		_26              = 0;
+		_20              = 0;
+		m_caveOtakaraNum = 4;
+		m_caveOtakaraMax = 4;
+		_10              = 10;
+	}
 
 	virtual u32 getSize() { return sizeof(DispMemberKanketuMenu); } // _08 (weak)
 	virtual u32 getOwnerID() { return OWNER_OGA; }                  // _0C (weak)

@@ -307,9 +307,10 @@ inline f32 sqrDistanceXZ(Vector3f& vec1, Vector3f& vec2)
 
 inline f32 _distanceXZ(Vector3f& vec1, Vector3f& vec2)
 {
-	f32 x    = vec1.x - vec2.x;
-	f32 z    = vec1.z - vec2.z;
-	f32 dist = x * x + z * z;
+	Vector2f vec;
+	vec.x    = vec1.x - vec2.x;
+	vec.y    = vec1.z - vec2.z;
+	f32 dist = vec.x * vec.x + vec.y * vec.y;
 	_sqrtf(dist, &dist);
 	return dist;
 }
