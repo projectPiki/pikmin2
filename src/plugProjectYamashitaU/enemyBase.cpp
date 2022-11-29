@@ -662,7 +662,7 @@ void StoneState::updateAlways(EnemyBase* enemy)
 	enemy->m_stoneTimer += sys->m_deltaTime;
 
 	if (enemy->m_enemyStoneObj->_50 & 4) {
-		if (enemy->m_curTriangle == nullptr) {
+		if (!enemy->m_curTriangle) {
 			enemy->constraintOff();
 			enemy->resetEvent(0, EB_3);
 		}
@@ -1139,7 +1139,7 @@ void EnemyBase::onKill(CreatureKillArg* inputArg)
 	getCreatureID();
 
 	CreatureKillArg* killArg = nullptr; // killArg
-	if (inputArg != NULL) {
+	if (inputArg) {
 		// inputArg->getName();
 		if (strcmp(inputArg->getName(), "EnemyKillArg") == 0) {
 			killArg = inputArg;
@@ -1243,7 +1243,7 @@ void EnemyBase::onKill(CreatureKillArg* inputArg)
 			if (!m_pellet) {
 				PelletViewArg pvArg;
 				setCarcassArg(pvArg);
-				if (becomePellet(&pvArg) == 0) {
+				if (!becomePellet(&pvArg)) {
 					becomeCarcass(true);
 
 				} else {
@@ -3320,7 +3320,7 @@ void EnemyBase::startBlend(int start, int end, SysShape::BlendFunction* blendFun
 			SysShape::KeyEvent* event1 = info->getAnimKeyByType(0);
 			SysShape::KeyEvent* event2 = info->getAnimKeyByType(1);
 
-			if (event1 != nullptr && event2) {
+			if (event1 && event2) {
 				f32 val1 = (f32)event1->m_frame;
 				f32 val2 = (f32)event2->m_frame;
 				m_soundObj->setAnime((JAIAnimeSoundData*)file, 1, val1, val2);
