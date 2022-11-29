@@ -25,12 +25,12 @@ struct TForever : public TBase, public JPAEmitterCallBack {
 
 	// _00		= VTBL
 	// _04-_0C	= JPAEmitterCallBack
-	u16 _0C;                   // _0C
+	u16 m_efxID;               // _0C
 	JPABaseEmitter* m_emitter; // _10
 };
 
 struct TForeverN : public TBaseIF {
-	TForeverN(u8);
+	TForeverN(u8 c);
 
 	virtual bool create(Arg*); // _08
 	virtual void kill();       // _0C

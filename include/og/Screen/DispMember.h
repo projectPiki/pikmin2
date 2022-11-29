@@ -335,25 +335,41 @@ struct DispMemberKanketuMenu : public DispMemberAnaDemo {
 // size 0x40
 struct DispMemberKantei : public DispMemberBase {
 
+	inline DispMemberKantei()
+	{
+		m_pelletValue         = 123;
+		m_totalPokos          = 5000;
+		m_kanteiType          = 0;
+		m_delegate            = nullptr;
+		m_pelletOffset        = 0;
+		m_totalPokosCave      = 5555;
+		_28                   = 0;
+		m_secondaryController = nullptr;
+		_29                   = false;
+		m_isDone              = false;
+		m_inCave              = false;
+		_39                   = true;
+	}
+
 	virtual u32 getSize() { return sizeof(DispMemberKantei); } // _08 (weak)
 	virtual u32 getOwnerID() { return OWNER_OGA; }             // _0C (weak)
 	virtual u64 getMemberID() { return MEMBER_KANTEI; }        // _10 (weak)
 
 	// _00     = VTBL
 	// _00-_08 = DispMemberBase
-	int m_pelletValue;                                    // _08
-	u32 _0C;                                              // _0C
+	u32 m_pelletValue;                                    // _08
+	u32 m_totalPokos;                                     // _0C
 	Delegate1<Game::BaseGameSection, Rectf&>* m_delegate; // _10
 	u8 _14[0x4];                                          // _14, unknown
 	u64 m_pelletMessageID;                                // _18
-	u32 m_pelletOffset;                                   // _1C
-	int _24;                                              // _24
+	u32 m_pelletOffset;                                   // _20
+	int m_totalPokosCave;                                 // _24
 	u8 _28;                                               // _28
 	u8 _29;                                               // _29
 	Controller* m_secondaryController;                    // _2C
-	u8 _30;                                               // _30
-	u32 _34;                                              // _34, unknown
-	u8 _38;                                               // _38
+	u8 m_isDone;                                          // _30
+	u32 m_kanteiType;                                     // _34, pre or post-debt
+	u8 m_inCave;                                          // _38
 	u8 _39;                                               // _39
 	u8 _3A[0x2];                                          // _3A, unknown, possibly padding
 	u8 _3C[0x4];                                          // _3C, unknown

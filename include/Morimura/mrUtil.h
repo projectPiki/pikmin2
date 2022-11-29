@@ -9,11 +9,15 @@ struct J2DPane;
 
 namespace Morimura {
 struct TOffsetMsgSet {
+	TOffsetMsgSet(u64*, u64, int);
+
+	u64 getMsgID(int);
+
 	u64* _00;    // _00
 	int* _04;    // _04
-	u64 _08;     // _08
+	u64 m_msgID; // _08
 	int _0C;     // _0C
-	u8 _10[0x4]; // _10, unknown
+	int m_size;  // _10
 };
 
 struct TScaleUpCounter : public og::Screen::CallBack_CounterRV {
