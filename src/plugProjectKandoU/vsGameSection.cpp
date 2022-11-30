@@ -948,9 +948,9 @@ bool GameMessageVsBirthTekiTreasure::actVs(VsGameSection* section)
 		if (cell->isPiki()) {
 			Piki* piki = (Piki*)cell;
 			if (piki->isAlive()) {
-				if ((s32)piki->m_pikiKind == Red) {
+				if ((int)piki->m_pikiKind == Red) {
 					redPikis++;
-				} else if ((s32)piki->m_pikiKind == Blue) {
+				} else if ((int)piki->m_pikiKind == Blue) {
 					bluePikis++;
 				}
 			}
@@ -980,7 +980,7 @@ bool GameMessageVsBirthTekiTreasure::actVs(VsGameSection* section)
 	} else if (tobiFactor > -0.8f) {
 		tobiChance = 0.051f;
 	} else {
-		tobiChance = 0.01;
+		tobiChance = 0.01f;
 	}
 	if (!(randFloat() > tobiChance)) {
 		int nodes = section->m_tekiMgr->m_nodeCount - 1;
