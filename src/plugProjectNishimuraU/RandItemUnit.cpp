@@ -1,109 +1,29 @@
 #include "types.h"
-
-/*
-    Generated from dpostproc
-
-    .section .rodata  # 0x804732E0 - 0x8049E220
-    .global lbl_80484128
-    lbl_80484128:
-        .4byte 0x3234362D
-        .4byte 0x52616E64
-        .4byte 0x4974656D
-        .4byte 0x556E6974
-        .4byte 0x00000000
-    .global lbl_8048413C
-    lbl_8048413C:
-        .4byte 0x52616E64
-        .4byte 0x4974656D
-        .4byte 0x556E6974
-        .4byte 0x2E637070
-        .4byte 0x00000000
-        .4byte 0x6974656D
-        .4byte 0x20736C6F
-        .4byte 0x74206E6F
-        .4byte 0x6E650A00
-        .4byte 0x6974656D
-        .4byte 0x20736C6F
-        .4byte 0x74206E6F
-        .4byte 0x7420656E
-        .4byte 0x6F756768
-        .4byte 0x0A000000
-    .global lbl_80484178
-    lbl_80484178:
-        .4byte 0x6E6F7420
-        .4byte 0x73656172
-        .4byte 0x63682069
-        .4byte 0x74656D20
-        .4byte 0x736C6F74
-        .4byte 0x0A000000
-
-    .section .sdata2, "a"     # 0x80516360 - 0x80520E40
-    .global lbl_8051A840
-    lbl_8051A840:
-        .float 1.0
-        .4byte 0x00000000
-    .global lbl_8051A848
-    lbl_8051A848:
-        .4byte 0x43300000
-        .4byte 0x80000000
-    .global lbl_8051A850
-    lbl_8051A850:
-        .4byte 0x6974656D
-        .4byte 0x00000000
-    .global lbl_8051A858
-    lbl_8051A858:
-        .4byte 0x47000000
-    .global lbl_8051A85C
-    lbl_8051A85C:
-        .float 0.5
-    .global lbl_8051A860
-    lbl_8051A860:
-        .4byte 0x43C80000
-    .global lbl_8051A864
-    lbl_8051A864:
-        .4byte 0x00000000
-*/
+#include "Game/Cave/RandMapMgr.h"
+#include "Game/Cave/RandMapUnit.h"
+#include "Game/Cave/Node.h"
+#include "Game/Cave/Info.h"
+#include "Dolphin/rand.h"
 
 namespace Game {
+namespace Cave {
 
 /*
  * --INFO--
  * Address:	8024E38C
  * Size:	000064
  */
-Cave::RandItemUnit::RandItemUnit(Game::Cave::MapUnitGenerator*)
+RandItemUnit::RandItemUnit(MapUnitGenerator* generator)
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	li       r0, 0
-	stw      r31, 0xc(r1)
-	mr       r31, r3
-	stw      r4, 8(r3)
-	stw      r0, 0(r3)
-	lwz      r3, 8(r3)
-	lwz      r3, 8(r3)
-	cmplwi   r3, 0
-	beq      lbl_8024E3C8
-	bl       getItemMax__Q34Game4Cave9FloorInfoFv
-	stw      r3, 4(r31)
-	b        lbl_8024E3CC
-
-lbl_8024E3C8:
-	stw      r0, 4(r31)
-
-lbl_8024E3CC:
-	li       r0, 0
-	mr       r3, r31
-	stw      r0, 0x10(r31)
-	stw      r0, 0x14(r31)
-	lwz      r31, 0xc(r1)
-	lwz      r0, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	m_mapUnitGenerator = generator;
+	m_items            = 0;
+	if (m_mapUnitGenerator->m_floorInfo) {
+		m_max = m_mapUnitGenerator->m_floorInfo->getItemMax();
+	} else {
+		m_max = 0;
+	}
+	m_mapNode = nullptr;
+	m_baseGen = nullptr;
 }
 
 /*
@@ -111,10 +31,10 @@ lbl_8024E3CC:
  * Address:	8024E3F0
  * Size:	000008
  */
-void Cave::RandItemUnit::setManageClassPtr(Game::Cave::RandMapScore* a1)
+void RandItemUnit::setManageClassPtr(RandMapScore* a1)
 {
 	// Generated from stw r4, 0xC(r3)
-	_0C = a1;
+	m_randMapScore = a1;
 }
 
 /*
@@ -122,88 +42,44 @@ void Cave::RandItemUnit::setManageClassPtr(Game::Cave::RandMapScore* a1)
  * Address:	8024E3F8
  * Size:	000104
  */
-void Cave::RandItemUnit::setItemSlot()
+void RandItemUnit::setItemSlot()
 {
-	/*
-	stwu     r1, -0x30(r1)
-	mflr     r0
-	stw      r0, 0x34(r1)
-	stmw     r27, 0x1c(r1)
-	mr       r31, r3
-	lwz      r3, 0(r3)
-	lwz      r0, 4(r31)
-	cmpw     r3, r0
-	bge      lbl_8024E4E8
-	li       r29, 0
+	// check that we have space for new items
+	if (m_items < m_max) {
+		// only try to place a max of 100 items, regardless of desired item count
+		for (int i = 0; i < 100; i++) {
+			// initially null basegen pointer
+			BaseGen* currBaseGen = nullptr;
+			MapNode* currMapNode;
+			// check for hard mode
+			if (isItemSetHard()) {
+				currMapNode = getItemHardSetMapNode(&currBaseGen);
+			} else {
+				currMapNode = getItemNormalSetMapNode(&currBaseGen);
+			}
 
-lbl_8024E420:
-	li       r0, 0
-	mr       r3, r31
-	stw      r0, 8(r1)
-	bl       isItemSetHard__Q34Game4Cave12RandItemUnitFv
-	clrlwi.  r0, r3, 0x18
-	beq      lbl_8024E44C
-	mr       r3, r31
-	addi     r4, r1, 8
-	bl getItemHardSetMapNode__Q34Game4Cave12RandItemUnitFPPQ34Game4Cave7BaseGen
-	mr       r30, r3
-	b        lbl_8024E45C
+			// get an item unit
+			ItemUnit* curritemUnit = getItemUnit();
 
-lbl_8024E44C:
-	mr       r3, r31
-	addi     r4, r1, 8
-	bl
-getItemNormalSetMapNode__Q34Game4Cave12RandItemUnitFPPQ34Game4Cave7BaseGen mr
-r30, r3
-
-lbl_8024E45C:
-	mr       r28, r30
-	mr       r3, r31
-	bl       getItemUnit__Q34Game4Cave12RandItemUnitFv
-	cmplwi   r30, 0
-	mr       r27, r3
-	beq      lbl_8024E4E8
-	cmplwi   r27, 0
-	beq      lbl_8024E4E8
-	li       r3, 0x34
-	bl       __nw__FUl
-	or.      r30, r3, r3
-	beq      lbl_8024E4A0
-	lwz      r5, 8(r1)
-	mr       r4, r27
-	li       r6, 1
-	bl __ct__Q34Game4Cave8ItemNodeFPQ34Game4Cave8ItemUnitPQ34Game4Cave7BaseGeni
-	mr       r30, r3
-
-lbl_8024E4A0:
-	mr       r3, r30
-	mr       r4, r28
-	bl       makeGlobalData__Q34Game4Cave8ItemNodeFPQ34Game4Cave7MapNode
-	lwz      r3, 0x24(r28)
-	mr       r4, r30
-	bl       add__5CNodeFP5CNode
-	lwz      r3, 0(r31)
-	addi     r0, r3, 1
-	stw      r0, 0(r31)
-	lwz      r3, 0(r31)
-	lwz      r0, 4(r31)
-	cmpw     r3, r0
-	blt      lbl_8024E4DC
-	b        lbl_8024E4E8
-	b        lbl_8024E4E8
-
-lbl_8024E4DC:
-	addi     r29, r29, 1
-	cmpwi    r29, 0x64
-	blt      lbl_8024E420
-
-lbl_8024E4E8:
-	lmw      r27, 0x1c(r1)
-	lwz      r0, 0x34(r1)
-	mtlr     r0
-	addi     r1, r1, 0x30
-	blr
-	*/
+			// if mapnode and item unit exist, make a new item node
+			if (currMapNode && curritemUnit) {
+				// make item
+				ItemNode* newitem = new ItemNode(curritemUnit, currBaseGen, 1);
+				// make data global on map node
+				newitem->makeGlobalData(currMapNode);
+				// add item to nodes
+				currMapNode->m_itemNode->add((ItemNode*)newitem);
+				// increment item count and check we haven't hit our item limit
+				m_items++;
+				if (m_items < m_max) {
+					continue;
+				} else {
+					return;
+				}
+			}
+			return;
+		}
+	}
 }
 
 /*
@@ -211,103 +87,35 @@ lbl_8024E4E8:
  * Address:	8024E4FC
  * Size:	000110
  */
-void Cave::RandItemUnit::isItemSetDone(Game::Cave::MapNode*, Game::Cave::BaseGen*)
+bool RandItemUnit::isItemSetDone(MapNode* mapNode, BaseGen* baseGen)
 {
-	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  cmplwi    r5, 0
-	  stw       r0, 0x14(r1)
-	  stw       r31, 0xC(r1)
-	  mr        r31, r4
-	  stw       r30, 0x8(r1)
-	  mr        r30, r3
-	  beq-      .loc_0x54
-	  lwz       r3, 0x24(r31)
-	  lwz       r3, 0x10(r3)
-	  b         .loc_0x48
+	if (baseGen) {
+		FOREACH_NODE(ItemNode, mapNode->m_itemNode->m_child, node)
+		{
+			if (node->m_generator == baseGen) {
+				return true;
+			}
+		}
+	} else {
+		if (mapNode == m_randMapScore->getFixObjNode(1)) {
+			return true;
+		}
+		if (mapNode == m_randMapScore->getFixObjNode(2)) {
+			return true;
+		}
+		if (mapNode->m_itemNode->m_child) {
+			return true;
+		}
 
-	.loc_0x30:
-	  lwz       r0, 0x1C(r3)
-	  cmplw     r0, r5
-	  bne-      .loc_0x44
-	  li        r3, 0x1
-	  b         .loc_0xF8
-
-	.loc_0x44:
-	  lwz       r3, 0x4(r3)
-
-	.loc_0x48:
-	  cmplwi    r3, 0
-	  bne+      .loc_0x30
-	  b         .loc_0xF4
-
-	.loc_0x54:
-	  lwz       r3, 0xC(r30)
-	  li        r4, 0x1
-	  bl        -0x19B0
-	  cmplw     r31, r3
-	  bne-      .loc_0x70
-	  li        r3, 0x1
-	  b         .loc_0xF8
-
-	.loc_0x70:
-	  lwz       r3, 0xC(r30)
-	  li        r4, 0x2
-	  bl        -0x19CC
-	  cmplw     r31, r3
-	  bne-      .loc_0x8C
-	  li        r3, 0x1
-	  b         .loc_0xF8
-
-	.loc_0x8C:
-	  lwz       r3, 0x24(r31)
-	  lwz       r0, 0x10(r3)
-	  cmplwi    r0, 0
-	  beq-      .loc_0xA4
-	  li        r3, 0x1
-	  b         .loc_0xF8
-
-	.loc_0xA4:
-	  lwz       r3, 0x1C(r31)
-	  lwz       r4, 0x10(r3)
-	  b         .loc_0xEC
-
-	.loc_0xB0:
-	  lwz       r3, 0x18(r4)
-	  lwz       r3, 0x0(r3)
-	  cmplwi    r3, 0
-	  beq-      .loc_0xE8
-	  lbz       r0, 0x24(r3)
-	  cmplwi    r0, 0
-	  bne-      .loc_0xE8
-	  lwz       r0, 0x20(r3)
-	  cmpwi     r0, 0x5
-	  beq-      .loc_0xE8
-	  cmpwi     r0, 0x6
-	  beq-      .loc_0xE8
-	  li        r3, 0x1
-	  b         .loc_0xF8
-
-	.loc_0xE8:
-	  lwz       r4, 0x4(r4)
-
-	.loc_0xEC:
-	  cmplwi    r4, 0
-	  bne+      .loc_0xB0
-
-	.loc_0xF4:
-	  li        r3, 0
-
-	.loc_0xF8:
-	  lwz       r0, 0x14(r1)
-	  lwz       r31, 0xC(r1)
-	  lwz       r30, 0x8(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
-	*/
+		FOREACH_NODE(EnemyNode, mapNode->m_enemyNode->m_child, node)
+		{
+			TekiInfo* info = node->m_enemyUnit->m_tekiInfo;
+			if (info && (info->m_dropMode == 0) && (info->m_type != BaseGen::Seam__Door) && (info->m_type != BaseGen::Plant)) {
+				return true;
+			}
+		}
+	}
+	return false;
 }
 
 /*
@@ -315,84 +123,26 @@ void Cave::RandItemUnit::isItemSetDone(Game::Cave::MapNode*, Game::Cave::BaseGen
  * Address:	8024E60C
  * Size:	0000E8
  */
-void Cave::RandItemUnit::isGroundCapEnemySetDone(Game::Cave::MapNode*)
+bool RandItemUnit::isGroundCapEnemySetDone(MapNode* mapNode)
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	mr       r31, r4
-	li       r4, 1
-	stw      r30, 8(r1)
-	mr       r30, r3
-	lwz      r3, 0xc(r3)
-	bl       getFixObjNode__Q34Game4Cave12RandMapScoreFi
-	cmplw    r31, r3
-	bne      lbl_8024E644
-	li       r3, 1
-	b        lbl_8024E6DC
+		if (mapNode == m_randMapScore->getFixObjNode(1)) {
+			return true;
+		}
+		if (mapNode == m_randMapScore->getFixObjNode(2)) {
+			return true;
+		}
+		if (mapNode->m_itemNode->m_child) {
+			return true;
+		}
 
-lbl_8024E644:
-	lwz      r3, 0xc(r30)
-	li       r4, 2
-	bl       getFixObjNode__Q34Game4Cave12RandMapScoreFi
-	cmplw    r31, r3
-	bne      lbl_8024E660
-	li       r3, 1
-	b        lbl_8024E6DC
-
-lbl_8024E660:
-	lwz      r3, 0x24(r31)
-	lwz      r0, 0x10(r3)
-	cmplwi   r0, 0
-	beq      lbl_8024E678
-	li       r3, 1
-	b        lbl_8024E6DC
-
-lbl_8024E678:
-	lwz      r3, 0x1c(r31)
-	lwz      r31, 0x10(r3)
-	b        lbl_8024E6D0
-
-lbl_8024E684:
-	lwz      r3, 0x18(r31)
-	lwz      r4, 0(r3)
-	cmplwi   r4, 0
-	beq      lbl_8024E6CC
-	lwz      r0, 0x20(r4)
-	cmpwi    r0, 5
-	beq      lbl_8024E6CC
-	cmpwi    r0, 6
-	beq      lbl_8024E6CC
-	lbz      r0, 0x24(r4)
-	cmplwi   r0, 0
-	beq      lbl_8024E6C4
-	lwz      r3, 8(r30)
-	bl       isPomGroup__Q34Game4Cave16MapUnitGeneratorFPQ34Game4Cave8TekiInfo
-	clrlwi.  r0, r3, 0x18
-	beq      lbl_8024E6CC
-
-lbl_8024E6C4:
-	li       r3, 1
-	b        lbl_8024E6DC
-
-lbl_8024E6CC:
-	lwz      r31, 4(r31)
-
-lbl_8024E6D0:
-	cmplwi   r31, 0
-	bne      lbl_8024E684
-	li       r3, 0
-
-lbl_8024E6DC:
-	lwz      r0, 0x14(r1)
-	lwz      r31, 0xc(r1)
-	lwz      r30, 8(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+		FOREACH_NODE(EnemyNode, mapNode->m_enemyNode->m_child, node)
+		{
+			TekiInfo* info = node->m_enemyUnit->m_tekiInfo;
+			if (info && (info->m_type != BaseGen::Seam__Door) && (info->m_type != BaseGen::Plant) && (info->m_dropMode == 0 || (m_mapUnitGenerator->isPomGroup(info)))) {
+				return true;
+			}
+		}
+	return false;
 }
 
 /*
@@ -400,7 +150,7 @@ lbl_8024E6DC:
  * Address:	8024E6F4
  * Size:	0000D0
  */
-void Cave::RandItemUnit::isFallCapEnemySetDone(Game::Cave::MapNode*)
+bool RandItemUnit::isFallCapEnemySetDone(MapNode*)
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -477,14 +227,10 @@ lbl_8024E7AC:
  * Address:	8024E7C4
  * Size:	00000C
  */
-void Cave::RandItemUnit::setItemDropPositionList(Game::Cave::MapNode**, Game::Cave::BaseGen**)
+void RandItemUnit::setItemDropPositionList(MapNode** node, BaseGen** gen)
 {
-	/*
-	.loc_0x0:
-	  stw       r4, 0x10(r3)
-	  stw       r5, 0x14(r3)
-	  blr
-	*/
+	m_mapNode = node;
+	m_baseGen = gen;
 }
 
 /*
@@ -492,7 +238,7 @@ void Cave::RandItemUnit::setItemDropPositionList(Game::Cave::MapNode**, Game::Ca
  * Address:	8024E7D0
  * Size:	000228
  */
-void Cave::RandItemUnit::getItemDropPosition(Vector3f&, float, int)
+void RandItemUnit::getItemDropPosition(Vector3f&, float, int)
 {
 	/*
 	stwu     r1, -0x890(r1)
@@ -664,7 +410,7 @@ lbl_8024E9D4:
  * Address:	8024E9F8
  * Size:	00038C
  */
-void Cave::RandItemUnit::getItemNormalSetMapNode(Game::Cave::BaseGen**)
+MapNode* RandItemUnit::getItemNormalSetMapNode(BaseGen**)
 {
 	/*
 	stwu     r1, -0x1850(r1)
@@ -962,7 +708,7 @@ lbl_8024ED70:
  * Address:	8024ED84
  * Size:	000340
  */
-void Cave::RandItemUnit::getItemHardSetMapNode(Game::Cave::BaseGen**)
+MapNode* RandItemUnit::getItemHardSetMapNode(BaseGen**)
 {
 	/*
 	stwu     r1, -0x1040(r1)
@@ -1241,7 +987,7 @@ lbl_8024F0B0:
  * Address:	8024F0C4
  * Size:	000180
  */
-void Cave::RandItemUnit::getItemUnit()
+ItemUnit* RandItemUnit::getItemUnit()
 {
 	/*
 	stwu     r1, -0x1030(r1)
@@ -1364,7 +1110,7 @@ lbl_8024F228:
  * Address:	8024F244
  * Size:	000060
  */
-void Cave::RandItemUnit::getItemSlotNum(Game::Cave::MapNode*)
+int RandItemUnit::getItemSlotNum(MapNode*)
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -1407,7 +1153,7 @@ lbl_8024F28C:
  * Address:	8024F2A4
  * Size:	00005C
  */
-void Cave::RandItemUnit::isItemSetHard()
+bool RandItemUnit::isItemSetHard()
 {
 	/*
 	lwz      r4, 8(r3)
@@ -1451,7 +1197,7 @@ lbl_8024F2F8:
  * Address:	8024F300
  * Size:	000148
  */
-void Cave::RandItemUnit::getItemDropMapNode(Game::Cave::MapNode*, Game::Cave::MapNode**, int, int&)
+MapNode* RandItemUnit::getItemDropMapNode(MapNode*, MapNode**, int, int&)
 {
 	/*
 	.loc_0x0:
@@ -1557,7 +1303,7 @@ void Cave::RandItemUnit::getItemDropMapNode(Game::Cave::MapNode*, Game::Cave::Ma
  * Address:	8024F448
  * Size:	000314
  */
-void Cave::RandItemUnit::getItemBaseGenPosition(Game::Cave::MapNode*, int)
+Vector3f RandItemUnit::getItemBaseGenPosition(MapNode*, int)
 {
 	/*
 	stwu     r1, -0x330(r1)
@@ -1777,7 +1523,7 @@ lbl_8024F728:
  * Address:	8024F75C
  * Size:	00018C
  */
-void Cave::RandItemUnit::getItemDropList(Game::Cave::MapNode*, Game::Cave::MapNode**, Game::Cave::BaseGen**, int&)
+void RandItemUnit::getItemDropList(MapNode*, MapNode**, BaseGen**, int&)
 {
 	/*
 	.loc_0x0:
@@ -1902,7 +1648,7 @@ void Cave::RandItemUnit::getItemDropList(Game::Cave::MapNode*, Game::Cave::MapNo
  * Address:	8024F8E8
  * Size:	0002CC
  */
-void Cave::RandItemUnit::getItemBaseGenPosition(Game::Cave::MapNode**, Game::Cave::BaseGen**, int, int, int)
+Vector3f RandItemUnit::getItemBaseGenPosition(MapNode**, BaseGen**, int, int, int)
 {
 	/*
 	.loc_0x0:
@@ -2129,7 +1875,7 @@ void Cave::RandItemUnit::getItemBaseGenPosition(Game::Cave::MapNode**, Game::Cav
  * Address:	8024FBB4
  * Size:	000114
  */
-void Cave::RandItemUnit::getItemDropSortingList(Game::Cave::MapNode**, Game::Cave::BaseGen**, int*, int)
+void RandItemUnit::getItemDropSortingList(MapNode**, BaseGen**, int*, int)
 {
 	/*
 	.loc_0x0:
@@ -2216,4 +1962,5 @@ void Cave::RandItemUnit::getItemDropSortingList(Game::Cave::MapNode**, Game::Cav
 	  blr
 	*/
 }
+} // namespace Cave
 } // namespace Game

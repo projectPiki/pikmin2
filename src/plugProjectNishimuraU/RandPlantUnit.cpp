@@ -5,20 +5,6 @@
 #include "Game/Cave/Info.h"
 #include "Dolphin/rand.h"
 
-/*
-    Generated from dpostproc
-
-    .section .sdata2, "a"     # 0x80516360 - 0x80520E40
-    .global lbl_8051BCF8
-    lbl_8051BCF8:
-        .4byte 0x47000000
-        .4byte 0x00000000
-    .global lbl_8051BD00
-    lbl_8051BD00:
-        .4byte 0x43300000
-        .4byte 0x80000000
-*/
-
 namespace Game {
 
 /*
@@ -65,8 +51,8 @@ void Game::Cave::RandPlantUnit::setPlantSlot()
 
 		// only try to place a max of 100 plants, regardless of desired plant count
 		for (int i = 0; i < 100; i++) {
-			// inintially null basegen pointer
-			BaseGen* currBaseGen = 0;
+			// initially null basegen pointer
+			BaseGen* currBaseGen = nullptr;
 			// get an empty plant spot and basegen pointer
 			MapNode* currMapNode = getPlantSetMapNode(&currBaseGen);
 			// get a plant unit/type

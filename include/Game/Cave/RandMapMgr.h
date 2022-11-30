@@ -64,11 +64,28 @@ struct RandPlantUnit {
  * @size{0x18}
  */
 struct RandItemUnit {
+	RandItemUnit(MapUnitGenerator* generator);
+	void setManageClassPtr(Game::Cave::RandMapScore* a1);
+	void setItemSlot();
+
 	bool isItemSetDone(MapNode*, BaseGen*);
 	bool isGroundCapEnemySetDone(MapNode*);
 	bool isFallCapEnemySetDone(MapNode*);
 
-	ItemInfo* m_itemInfo;                 // _00
+	void setItemDropPositionList(Game::Cave::MapNode**, Game::Cave::BaseGen**);
+	void getItemDropPosition(Vector3f&, float, int);
+	MapNode* getItemNormalSetMapNode(Game::Cave::BaseGen**);
+	MapNode* getItemHardSetMapNode(Game::Cave::BaseGen**);
+	ItemUnit* getItemUnit();
+	int getItemSlotNum(MapNode*);
+	bool isItemSetHard();
+	MapNode* getItemDropMapNode(MapNode*, MapNode**, int, int&);
+	Vector3f getItemBaseGenPosition(MapNode*, int);
+	void getItemDropList(MapNode*, MapNode**, BaseGen**, int&);
+	Vector3f getItemBaseGenPosition(MapNode**, BaseGen**, int, int, int);
+	void getItemDropSortingList(MapNode**, BaseGen**, int*, int);
+
+	int m_items;                          // _00
 	int m_max;                            // _04
 	MapUnitGenerator* m_mapUnitGenerator; // _08
 	RandMapScore* m_randMapScore;         // _0C
