@@ -536,8 +536,8 @@ struct DispMemberSpecialItem : public DispMemberBase {
 struct DispMemberUfoMenu : public DispMemberBase {
 	inline DispMemberUfoMenu()
 	{
-		_08 = 1;
-		_0C = 0;
+		m_contenaType = 1;
+		_0C           = 0;
 	}
 
 	virtual u32 getSize() { return sizeof(DispMemberUfoMenu); } // _08 (weak)
@@ -546,8 +546,8 @@ struct DispMemberUfoMenu : public DispMemberBase {
 
 	// _00     = VTBL
 	// _00-_08 = DispMemberBase
-	int _08; // _08
-	u8 _0C;  // _0C
+	int m_contenaType; // _08
+	u8 _0C;            // _0C
 };
 
 // size 0x8C

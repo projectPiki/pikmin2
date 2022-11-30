@@ -39,8 +39,8 @@ bool UfoMenu::doConfirmSetScene(::Screen::SetSceneArg& sceneArg)
 
 	switch (sceneArg.getSceneType()) {
 	case SCENE_GROUND:
-	case SCENE_2717:
-	case SCENE_2718:
+	case SCENE_CONTENA_WHITE:
+	case SCENE_CONTENA_PURPLE:
 		result = true;
 	}
 
