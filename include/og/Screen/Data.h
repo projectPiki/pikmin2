@@ -26,10 +26,10 @@ struct DataGame {
 
 struct DataMap {
 	u32 m_napsackDetectorFlags;   // _00
-	int m_totalPikminCounts[5];   // _04, 0R, 1Y, 2B, 3W, 4P
-	int m_currentPikminCounts[5]; // _18, 0R, 1Y, 2B, 3W, 4P
-	int _2C;                      // _2C, something to do with alive pikis
-	uint m_debtRemaining;         // _30
+	u32 m_onyonPikminCounts[5];   // _04, 0R, 1Y, 2B, 3W, 4P
+	u32 m_currentPikminCounts[5]; // _18, 0R, 1Y, 2B, 3W, 4P
+	u32 m_freePikmin;             // _2C
+	u32 m_pokos;                  // _30
 };
 } // namespace Screen
 } // namespace og

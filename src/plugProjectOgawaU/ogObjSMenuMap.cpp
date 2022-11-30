@@ -2796,7 +2796,7 @@ void ObjSMenuMap::doCreate(JKRArchive* arc)
 		pane_rock1->m_isVisible               = false;
 		pane_rock2->m_isVisible               = false;
 		og::Screen::DispMemberSMenuMap* disp2 = static_cast<og::Screen::DispMemberSMenuMap*>(dispfull->getSubMember('SM', '_MAP'));
-		if (disp2->m_dataMap.m_debtRemaining < 10000) {
+		if (disp2->m_dataMap.m_pokos < 10000) {
 			pane_rock1->m_isVisible = true;
 		} else {
 			pane_rock2->m_isVisible = true;
