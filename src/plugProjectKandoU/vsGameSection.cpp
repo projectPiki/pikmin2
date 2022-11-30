@@ -827,8 +827,7 @@ void VsGameSection::sendMessage(GameMessage& message)
  */
 bool GameMessageVsGetDoping::actVs(VsGameSection* section)
 {
-	u32& dope = section->getGetDopeCount(_04, _08);
-	dope += 1;
+	section->getGetDopeCount(_04, _08)++;
 	return true;
 }
 
@@ -952,9 +951,9 @@ bool GameMessageVsBirthTekiTreasure::actVs(VsGameSection* section)
 		if (cell->isPiki()) {
 			Piki* piki = (Piki*)cell;
 			if (piki->isAlive()) {
-				if ((s32)piki->m_pikiKind == Red) {
+				if ((int)piki->m_pikiKind == Red) {
 					redPikis++;
-				} else if ((s32)piki->m_pikiKind == Blue) {
+				} else if ((int)piki->m_pikiKind == Blue) {
 					bluePikis++;
 				}
 			}
@@ -1170,7 +1169,7 @@ void VsGameSection::updateCardGeneration()
 	m_cardCount = 0;
 	for (int i = 0; i < (int)m_maxCherries; i++) {
 		if (m_cherryArray[i]->isAlive()) {
-			m_cardCount += 1;
+			m_cardCount++;
 		}
 	}
 
