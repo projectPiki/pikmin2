@@ -2,6 +2,8 @@
 #include "og/newScreen/UfoMenu.h"
 #include "P2DScreen.h"
 #include "og/Screen/ogScreen.h"
+#include "og/Screen/callbackNodes.h"
+#include "og/Screen/MenuMgr.h"
 
 /*
     Generated from dpostproc
@@ -283,6 +285,19 @@ void ObjUfoMenu::doCreate(JKRArchive* arc)
 	m_paneAllPurple   = og::Screen::TagSearch(m_pikiScreen, 'Nall_p');
 	m_paneN00         = og::Screen::TagSearch(m_pikiScreen, 'N00_c');
 	m_paneN01         = og::Screen::TagSearch(m_pikiScreen, 'N01_c');
+
+	og::Screen::setCallBack_Furiko(m_ufoScreen, 'furiko00');
+	og::Screen::setCallBack_CounterRV(m_ufoScreen, 'Ppi00_1', m_disp->m_contena1.m_inOnion, 10, 0, 1, arc);
+	og::Screen::setCallBack_CounterRV(m_ufoScreen, 'Ppi01_1', m_disp->m_contena2.m_inOnion, 10, 0, 1, arc);
+	og::Screen::setCallBackMessage(m_ufoScreen);
+	m_selectIndex = 0;
+	setSelectPikmin(m_selectIndex);
+	m_menu = new og::Screen::MenuMgr;
+	m_menu->init(m_ufoScreen, 2, 'N00', 'h_00', 's_00', 'il00', 'ir00');
+	m_menu->m_doScale = true;
+	m_menu->_74 = msVal._24;
+	//m_lightAnims = new og::Screen::AnimGroup(3);
+	//m_lightAnims->regist
 	/*
 	stwu     r1, -0x40(r1)
 	mflr     r0

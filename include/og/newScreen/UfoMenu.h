@@ -80,6 +80,19 @@ struct ObjUfoMenu : public ::Screen::ObjBase {
 	u8 m_doDraw;                        // _88
 	u8 _89[0x3];                        // _89, probably padding
 	u32 _8C;                            // _8C, unknown
+
+	static struct StaticValues {
+		f32 _00;       // _00
+		f32 _04;      // _04
+		f32 _08;        // _08
+		f32 _0C;             // _0C
+		f32 _10;             // _10
+		f32 _14;             // _14
+		f32 _18;
+		f32 _1C;
+		f32 _20;       // _20
+		f32 _24;      // _24
+	} msVal;
 };
 } // namespace newScreen
 } // namespace og

@@ -52,7 +52,7 @@ struct MenuMgr {
 	J2DPane** _28;               // _28 /* ptr to array of ptrs */
 	u8 _2C;                      // _2C
 	u8 _2D;                      // _2D
-	char _2E;                    // _2E
+	char m_doScale;                    // _2E
 	float _30;                   // _30
 	float _34;                   // _34
 	float _38;                   // _38

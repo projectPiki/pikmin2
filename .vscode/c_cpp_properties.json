@@ -9,7 +9,8 @@
             "cppStandard": "c++98",
             "intelliSenseMode": "linux-clang-x86",
             "compilerPath": "",
-            "configurationProvider": "ms-vscode.makefile-tools"
+            "configurationProvider": "ms-vscode.makefile-tools",
+            "forcedInclude": [".vscode/warnings.h"]
         }
     ],
     "version": 4
