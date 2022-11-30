@@ -10,7 +10,7 @@ namespace Screen {
 struct MapCounter : public P2DScreen::Mgr_tuning {
 	MapCounter(DataMap*);
 
-	virtual ~MapCounter(); // _08 (weak)
+	virtual ~MapCounter() { } // _08 (weak)
 
 	void dispRed(bool);
 	void dispYellow(bool);
