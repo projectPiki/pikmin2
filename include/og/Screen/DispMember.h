@@ -194,19 +194,20 @@ struct DispMemberChallenge2P : public DispMemberBase {
 
 // size 0x38
 struct DispMemberContena : public DispMemberBase {
-	inline DispMemberContena() {
-		m_inOnion = 100;
-		m_currInMap = 1000;
-		m_inParty = 0;
-		m_maxPikiField = 20;
-		m_inParty2 = 50;
-		m_onMapMinusWild = 60;
+	inline DispMemberContena()
+	{
+		m_inOnion          = 100;
+		m_currInMap        = 1000;
+		m_inParty          = 0;
+		m_maxPikiField     = 20;
+		m_inParty2         = 50;
+		m_onMapMinusWild   = 60;
 		m_maxPikiMinusWild = 200;
-		m_onyonID = -1;
-		_28 = 0;
-		_2C = 0;
-		_30 = 0;
-		m_result = 0;
+		m_onyonID          = -1;
+		_28                = 0;
+		_2C                = 0;
+		_30                = 0;
+		m_result           = 0;
 	}
 
 	virtual u32 getSize() { return sizeof(DispMemberContena); } // _08 (weak)
@@ -215,18 +216,18 @@ struct DispMemberContena : public DispMemberBase {
 
 	// _00     = VTBL
 	// _00-_08 = DispMemberBase
-	int m_onyonID;      // _08
-	u32 m_inOnion;      // _0C
-	int m_currInMap;      // _10
-	u32 m_inParty;      // _14
-	int m_maxPikiField;      // _18
-	int m_inParty2;      // _1C
-	u32 m_onMapMinusWild;      // _20
-	int m_maxPikiMinusWild;      // _24
-	u32 _28;      // _28
-	u8 _2C;       // _2C
-	int _30;      // _30
-	s16 m_result; // _34
+	int m_onyonID;          // _08
+	u32 m_inOnion;          // _0C
+	int m_currInMap;        // _10
+	u32 m_inParty;          // _14
+	int m_maxPikiField;     // _18
+	int m_inParty2;         // _1C
+	u32 m_onMapMinusWild;   // _20
+	int m_maxPikiMinusWild; // _24
+	u32 _28;                // _28
+	u8 _2C;                 // _2C
+	int _30;                // _30
+	s16 m_result;           // _34
 };
 
 // size 0x10
@@ -533,6 +534,11 @@ struct DispMemberSpecialItem : public DispMemberBase {
 
 // size 0x10
 struct DispMemberUfoMenu : public DispMemberBase {
+	inline DispMemberUfoMenu()
+	{
+		_08 = 1;
+		_0C = 0;
+	}
 
 	virtual u32 getSize() { return sizeof(DispMemberUfoMenu); } // _08 (weak)
 	virtual u32 getOwnerID() { return OWNER_OGA; }              // _0C (weak)
@@ -546,17 +552,14 @@ struct DispMemberUfoMenu : public DispMemberBase {
 
 // size 0x8C
 struct DispMemberUfoGroup : public DispMemberBase {
-	DispMemberUfoGroup() {
-		m_ufoMenu._08 = 1;
-		m_ufoMenu._0C = false;
-		DispMemberContena(m_contena1);
-		DispMemberContena(m_contena2);
-		m_hasPurple = false;
-		m_hasWhite = false;
+	inline DispMemberUfoGroup()
+	{
+		m_hasPurple          = false;
+		m_hasWhite           = false;
 		m_contena1.m_onyonID = 4;
 		m_contena2.m_onyonID = 3;
-		m_payedDebt = false;
-	};
+		m_hasPaidDebt        = false;
+	}
 
 	virtual u32 getSize() { return sizeof(DispMemberUfoGroup); } // _08 (weak)
 	virtual u32 getOwnerID() { return OWNER_OGA; }               // _0C (weak)
@@ -564,12 +567,12 @@ struct DispMemberUfoGroup : public DispMemberBase {
 
 	// _00     = VTBL
 	// _00-_08 = DispMemberBase
-	DispMemberUfoMenu m_ufoMenu; // _08
-	DispMemberContena m_contena1;       // _18
-	DispMemberContena m_contena2;       // _50
-	u8 m_hasPurple;                      // _88
-	u8 m_hasWhite;                      // _89
-	u8 m_payedDebt;                      // _8A
+	DispMemberUfoMenu m_ufoMenu;  // _08
+	DispMemberContena m_contena1; // _18
+	DispMemberContena m_contena2; // _50
+	bool m_hasPurple;             // _88
+	bool m_hasWhite;              // _89
+	bool m_hasPaidDebt;           // _8A
 };
 
 // size 0x74
