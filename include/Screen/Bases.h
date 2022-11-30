@@ -141,7 +141,7 @@ struct SceneBase {
 	bool setScene(SetSceneArg&);
 	bool setDispMember(og::Screen::DispMemberBase*);
 	bool start(StartSceneArg*);
-	void startScene(StartSceneArg*);
+	bool startScene(StartSceneArg*);
 	void update();
 	bool updateActive();
 	void userCallBackFunc(Resource::MgrCommand*);

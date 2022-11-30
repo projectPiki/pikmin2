@@ -8,11 +8,11 @@ enum SceneType {
 	SCENE_CAVE,
 	SCENE_VS,
 	SCENE_FLOOR,
-	SCENE_2714, // related to Contena - onyon menu maybe?
-	SCENE_2715,
-	SCENE_2716,
-	SCENE_2717, // related to Contena - one of the ship pikmin maybe?
-	SCENE_2718, // related to Contena - one of the ship pikmin maybe?
+	SCENE_CONTENA_BLUE,
+	SCENE_CONTENA_RED,
+	SCENE_CONTENA_YELLOW,
+	SCENE_CONTENA_WHITE,
+	SCENE_CONTENA_PURPLE,
 	SCENE_UFO_MENU,
 	SCENE_PAUSE_MENU,
 	SCENE_PAUSE_MENU_DOUKUTU,

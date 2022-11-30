@@ -4,6 +4,10 @@
 #include "og/Screen/ogScreen.h"
 #include "og/Screen/callbackNodes.h"
 #include "og/Screen/MenuMgr.h"
+#include "og/Screen/anime.h"
+#include "Controller.h"
+#include "og/Sound.h"
+#include "System.h"
 
 /*
     Generated from dpostproc
@@ -266,6 +270,7 @@ lbl_803238D8:
  */
 void ObjUfoMenu::doCreate(JKRArchive* arc)
 {
+	m_disp                               = nullptr;
 	og::Screen::DispMemberUfoGroup* disp = static_cast<og::Screen::DispMemberUfoGroup*>(getDispMember());
 	if (disp->isID(OWNER_OGA, MEMBER_UFO_GROUP)) {
 		m_disp = disp;
@@ -274,7 +279,7 @@ void ObjUfoMenu::doCreate(JKRArchive* arc)
 	}
 	m_ufoScreen = new P2DScreen::Mgr_tuning;
 	m_ufoScreen->set("ufo.blo", 0x1040000, arc);
-	m_pikiScreen = new P2DScreen::Mgr_tuning;
+	m_pikiScreen = new P2DScreen::Mgr;
 	m_pikiScreen->set("ufo_pikmin_icon.blo", 0x1040000, arc);
 
 	m_paneWhiteWalk   = og::Screen::TagSearch(m_pikiScreen, 'P_w_00');
@@ -283,21 +288,26 @@ void ObjUfoMenu::doCreate(JKRArchive* arc)
 	m_panePurpleStand = og::Screen::TagSearch(m_pikiScreen, 'P_b_s_00');
 	m_paneAllWhite    = og::Screen::TagSearch(m_pikiScreen, 'Nall_w');
 	m_paneAllPurple   = og::Screen::TagSearch(m_pikiScreen, 'Nall_p');
-	m_paneN00         = og::Screen::TagSearch(m_pikiScreen, 'N00_c');
-	m_paneN01         = og::Screen::TagSearch(m_pikiScreen, 'N01_c');
+	m_paneN00         = og::Screen::TagSearch(m_ufoScreen, 'N00_c');
+	m_paneN01         = og::Screen::TagSearch(m_ufoScreen, 'N01_c');
 
 	og::Screen::setCallBack_Furiko(m_ufoScreen, 'furiko00');
-	og::Screen::setCallBack_CounterRV(m_ufoScreen, 'Ppi00_1', m_disp->m_contena1.m_inOnion, 10, 0, 1, arc);
-	og::Screen::setCallBack_CounterRV(m_ufoScreen, 'Ppi01_1', m_disp->m_contena2.m_inOnion, 10, 0, 1, arc);
+	og::Screen::setCallBack_CounterRV(m_ufoScreen, 'Ppi00_1', &m_disp->m_contena1.m_inOnion, 10, 0, 1, arc);
+	og::Screen::setCallBack_CounterRV(m_ufoScreen, 'Ppi01_1', &m_disp->m_contena2.m_inOnion, 10, 0, 1, arc);
 	og::Screen::setCallBackMessage(m_ufoScreen);
 	m_selectIndex = 0;
 	setSelectPikmin(m_selectIndex);
 	m_menu = new og::Screen::MenuMgr;
 	m_menu->init(m_ufoScreen, 2, 'N00', 'h_00', 's_00', 'il00', 'ir00');
 	m_menu->m_doScale = true;
-	m_menu->_74 = msVal._24;
-	//m_lightAnims = new og::Screen::AnimGroup(3);
-	//m_lightAnims->regist
+	m_menu->_74       = msVal._24;
+	m_lightAnims      = new og::Screen::AnimGroup(3);
+	og::Screen::registAnimGroupPane(m_lightAnims, arc, m_ufoScreen, 'Plight00', "ufo.bck", 0.5f);
+	og::Screen::registAnimGroupPane(m_lightAnims, arc, m_ufoScreen, 'Plight01', "ufo.bck", 0.5f);
+	og::Screen::registAnimGroupScreen(m_lightAnims, arc, m_ufoScreen, "ufo.bpk", 0.5f);
+	m_pikiAnims = new og::Screen::AnimGroup(1);
+	og::Screen::registAnimGroupScreen(m_pikiAnims, arc, m_pikiScreen, "ufo_pikmin_icon.btp", 0.5f);
+
 	/*
 	stwu     r1, -0x40(r1)
 	mflr     r0
@@ -608,7 +618,24 @@ registAnimGroupScreen__Q22og6ScreenFPQ32og6Screen9AnimGroupP10JKRArchiveP9J2DScr
  */
 void ObjUfoMenu::commonUpdate(void)
 {
-	// UNUSED FUNCTION
+	m_lightAnims->update();
+	m_pikiAnims->update();
+	m_paneN00->move(msVal._0C, msVal._10);
+	J2DPane* pane   = m_paneN00;
+	pane->m_scale.x = msVal._14;
+	pane->m_scale.y = msVal._14;
+	pane->calcMtx();
+	m_paneN01->move(msVal._18, msVal._1C);
+	pane            = m_paneN01;
+	pane->m_scale.x = msVal._20;
+	pane->m_scale.y = msVal._20;
+	pane->calcMtx();
+	m_doDraw             = true;
+	m_ufoScreen->m_someX = m_screenMovePos - 15.2f;
+	m_ufoScreen->m_someY = -15.2f;
+	m_ufoScreen->update();
+	m_menu->update();
+	m_pikiScreen->update();
 }
 
 /*
@@ -616,8 +643,19 @@ void ObjUfoMenu::commonUpdate(void)
  * Address:	80323D84
  * Size:	0000F4
  */
-void ObjUfoMenu::setSelectPikmin(int)
+void ObjUfoMenu::setSelectPikmin(int doEnable)
 {
+	if (!doEnable) {
+		m_paneWhiteStand->setAlpha(255);
+		m_panePurpleWalk->setAlpha(255);
+		m_paneWhiteWalk->setAlpha(0);
+		m_panePurpleStand->setAlpha(0);
+	} else {
+		m_paneWhiteStand->setAlpha(0);
+		m_panePurpleWalk->setAlpha(0);
+		m_paneWhiteWalk->setAlpha(255);
+		m_panePurpleStand->setAlpha(255);
+	}
 	/*
 	stwu     r1, -0x10(r1)
 	mflr     r0
@@ -694,6 +732,75 @@ lbl_80323E64:
  */
 bool ObjUfoMenu::doUpdate(void)
 {
+	bool ret        = false;
+	Controller* pad = getGamePad();
+	if (m_disp->m_hasPurple && m_disp->m_hasWhite) {
+		if (pad->m_padButton.m_mask & (Controller::PRESS_DPAD_UP | Controller::UNKNOWN_28)) {
+			if (m_selectIndex > 0) {
+				m_selectIndex--;
+				m_menu->select(m_selectIndex & 0xffff);
+				if (!m_selectIndex) {
+					m_paneWhiteStand->setAlpha(255);
+					m_panePurpleWalk->setAlpha(255);
+					m_paneWhiteWalk->setAlpha(0);
+					m_panePurpleStand->setAlpha(0);
+				} else {
+					m_paneWhiteStand->setAlpha(0);
+					m_panePurpleWalk->setAlpha(0);
+					m_paneWhiteWalk->setAlpha(255);
+					m_panePurpleStand->setAlpha(255);
+				}
+			}
+		} else if (pad->m_padButton.m_mask & (Controller::PRESS_DPAD_DOWN | Controller::UNKNOWN_27)) {
+			if (m_selectIndex < 1) {
+				m_selectIndex++;
+				m_menu->select(m_selectIndex & 0xffff);
+				if (!m_selectIndex) {
+					m_paneWhiteStand->setAlpha(255);
+					m_panePurpleWalk->setAlpha(255);
+					m_paneWhiteWalk->setAlpha(0);
+					m_panePurpleStand->setAlpha(0);
+				} else {
+					m_paneWhiteStand->setAlpha(0);
+					m_panePurpleWalk->setAlpha(0);
+					m_paneWhiteWalk->setAlpha(255);
+					m_panePurpleStand->setAlpha(255);
+				}
+			}
+		}
+	}
+	if (pad->m_padButton.m_mask & Controller::PRESS_A) {
+		ogSound->setDecide();
+		ret = 1;
+		if (m_selectIndex == 0) {
+			m_disp->m_ufoMenu.m_contenaType = 1;
+			::Screen::SetSceneArg arg(SCENE_CONTENA_WHITE, getDispMember(), 0, true);
+			::Screen::SceneBase* base = getOwner();
+			arg._09                   = false;
+			bool check                = base->setScene(arg);
+			if (check) {
+				check = base->startScene(nullptr);
+				JUT_ASSERTLINE(356, check, "‚¾‚ß‚Å‚·\n");
+			}
+		} else if (m_selectIndex == 1) {
+			m_disp->m_ufoMenu.m_contenaType = 2;
+			::Screen::SetSceneArg arg(SCENE_CONTENA_PURPLE, getDispMember(), 0, true);
+			::Screen::SceneBase* base = getOwner();
+			arg._09                   = false;
+			bool check                = base->setScene(arg);
+			if (check) {
+				check = base->startScene(nullptr);
+				JUT_ASSERTLINE(356, check, "‚¾‚ß‚Å‚·\n");
+			}
+		}
+	} else if (pad->m_padButton.m_mask & Controller::PRESS_B) {
+		ogSound->setClose();
+		m_disp->m_ufoMenu.m_contenaType = 0;
+		setBackupScene();
+		ret = 1;
+	}
+	commonUpdate();
+	return ret;
 	/*
 	stwu     r1, -0x40(r1)
 	mflr     r0
@@ -1048,6 +1155,15 @@ lbl_80324278:
  */
 void ObjUfoMenu::setBackupScene(void)
 {
+	if (!m_doEnd) {
+		::Screen::SceneBase* base = getOwner();
+		if (base->setBackupScene()) {
+			if (!base->startScene(nullptr)) {
+				JUT_PANICLINE(409, "‚¾‚ß‚Å‚·\n");
+			}
+		}
+		m_doEnd = true;
+	}
 	/*
 	stwu     r1, -0x10(r1)
 	mflr     r0
@@ -1100,6 +1216,14 @@ lbl_80324418:
  */
 void ObjUfoMenu::doDraw(Graphics& gfx)
 {
+	J2DPerspGraph& graf = gfx.m_perspGraph;
+	if (m_doDraw) {
+		m_ufoScreen->draw(gfx, graf);
+		PSMTXCopy(m_paneN00->_080, m_paneAllWhite->_050);
+		PSMTXCopy(m_paneN01->_080, m_paneAllPurple->_050);
+		m_pikiScreen->draw(gfx, graf);
+		m_menu->draw(&graf);
+	}
 	/*
 	stwu     r1, -0x20(r1)
 	mflr     r0
@@ -1158,6 +1282,10 @@ lbl_803244C8:
  */
 bool ObjUfoMenu::doStart(::Screen::StartSceneArg const*)
 {
+	m_fadeTimer     = 0.0f;
+	m_screenMovePos = 800.0f;
+	m_doDraw        = false;
+	return true;
 	/*
 	lfs      f1, lbl_8051DD2C@sda21(r2)
 	li       r0, 0
@@ -1175,7 +1303,7 @@ bool ObjUfoMenu::doStart(::Screen::StartSceneArg const*)
  * Address:	80324504
  * Size:	000008
  */
-bool ObjUfoMenu::doEnd(::Screen::EndSceneArg const*) { return 0x1; }
+bool ObjUfoMenu::doEnd(::Screen::EndSceneArg const*) { return true; }
 
 /*
  * --INFO--
@@ -1184,6 +1312,8 @@ bool ObjUfoMenu::doEnd(::Screen::EndSceneArg const*) { return 0x1; }
  */
 void ObjUfoMenu::doUpdateFadeinFinish(void)
 {
+	m_menu->initSelNum(m_selectIndex);
+	m_menu->startCursor(0.1f);
 	/*
 	stwu     r1, -0x10(r1)
 	mflr     r0
@@ -1212,6 +1342,8 @@ void ObjUfoMenu::doUpdateFadeinFinish(void)
  */
 void ObjUfoMenu::doUpdateFinish(void)
 {
+	m_fadeTimer = 0.0f;
+	m_menu->killCursor();
 	/*
 	stwu     r1, -0x10(r1)
 	mflr     r0
@@ -1234,6 +1366,7 @@ void ObjUfoMenu::doUpdateFinish(void)
  */
 void ObjUfoMenu::doUpdateFadeoutFinish(void)
 {
+	m_menu->killCursor();
 	/*
 	stwu     r1, -0x10(r1)
 	mflr     r0
@@ -1254,6 +1387,11 @@ void ObjUfoMenu::doUpdateFadeoutFinish(void)
  */
 bool ObjUfoMenu::doUpdateFadein(void)
 {
+	commonUpdate();
+	m_fadeTimer += sys->m_deltaTime;
+	bool check      = m_fadeTimer >= msVal._08;
+	m_screenMovePos = (og::Screen::calcSmooth0to1(m_fadeTimer, msVal._08) * -800.0f);
+	return check;
 	/*
 	stwu     r1, -0x10(r1)
 	mflr     r0
@@ -1365,6 +1503,11 @@ lbl_803246F4:
  */
 bool ObjUfoMenu::doUpdateFadeout(void)
 {
+	commonUpdate();
+	m_fadeTimer += sys->m_deltaTime;
+	bool check      = m_fadeTimer >= msVal._08;
+	m_screenMovePos = (og::Screen::calcSmooth0to1(m_fadeTimer, msVal._08) * -800.0f);
+	return check;
 	/*
 	stwu     r1, -0x10(r1)
 	mflr     r0

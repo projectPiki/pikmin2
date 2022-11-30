@@ -13,10 +13,10 @@ namespace Screen {
 ContenaCounter::ContenaCounter(DispMemberContena* contena)
 {
 	m_contena = contena;
-	_164      = &m_contena->_0C;
+	_164      = &m_contena->m_inOnion;
 	_168      = &m_contena->_28;
-	_16C      = &m_contena->_14;
-	_170      = &m_contena->_20;
+	_16C      = &m_contena->m_inParty;
+	_170      = &m_contena->m_onMapMinusWild;
 	_14C      = nullptr;
 	_150      = nullptr;
 	_154      = nullptr;
