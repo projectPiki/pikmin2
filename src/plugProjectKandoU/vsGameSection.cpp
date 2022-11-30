@@ -3,7 +3,7 @@
 #include "Dolphin/dvd.h"
 #include "Dolphin/gx.h"
 #include "Dolphin/rand.h"
-#include "Dolphin/stl.h"
+
 #include "DvdThreadCommand.h"
 #include "efx/TEnemyApsmoke.h"
 #include "Game/BaseGameSection.h"
@@ -730,11 +730,11 @@ void VsGameSection::createFallPikmins(PikiContainer& setPikmin, int param_2)
 void VsGameSection::createVsPikmins()
 {
 	Onyon* redOnyon = ItemOnyon::mgr->getOnyon(ONYON_TYPE_RED);
-	P2ASSERTLINE(0x545, redOnyon);
+	P2ASSERTLINE(1349, redOnyon);
 	Vector3f redOnyonPos = redOnyon->getPosition();
 
 	Onyon* blueOnyon = ItemOnyon::mgr->getOnyon(ONYON_TYPE_BLUE);
-	P2ASSERTLINE(0x54a, blueOnyon);
+	P2ASSERTLINE(1354, blueOnyon);
 	Vector3f blueOnyonPos = blueOnyon->getPosition();
 	PikiContainer* pikmin = &m_container1;
 	pikmin->clear();
@@ -837,7 +837,7 @@ bool GameMessageVsGetDoping::actVs(VsGameSection* section)
 bool GameMessageVsBattleFinished::actVs(VsGameSection* section)
 {
 	if (section->m_state) {
-		section->m_state->onBattleFinished(section, _04, 0);
+		section->m_state->onBattleFinished(section, m_winningSide, 0);
 	}
 	return true;
 }
@@ -903,7 +903,7 @@ bool GameMessagePelletBorn::actVs(VsGameSection* section)
 				return true;
 			}
 		}
-		JUT_PANICLINE(0x638, "no space for new yellow\n");
+		JUT_PANICLINE(1592, "no space for new yellow\n");
 	}
 	return false;
 }
@@ -922,7 +922,7 @@ bool GameMessagePelletDead::actVs(VsGameSection* section)
 				return true;
 			}
 		}
-		JUT_PANICLINE(0x651, "no entry for pellet\n");
+		JUT_PANICLINE(1617, "no entry for pellet\n");
 	}
 
 	return false;
@@ -1063,7 +1063,7 @@ void VsGameSection::initCardPellets()
 	PelletInitArg arg;
 
 	PelletConfig* config = PelletList::Mgr::getConfigAndKind(name, kind);
-	JUT_ASSERTLINE(0x704, config, "zannenn\n");
+	JUT_ASSERTLINE(1796, config, "zannenn\n");
 	arg._10              = config->m_params.m_index;
 	arg.m_textIdentifier = config->m_params.m_name.m_data;
 	arg.m_pelletType     = kind;
@@ -1211,7 +1211,7 @@ Pellet* VsGameSection::createCardPellet()
 	PelletInitArg pelletArg; // at 0x4c
 
 	PelletConfig* config = PelletList::Mgr::getConfigAndKind(name, kind);
-	JUT_ASSERTLINE(0x6df, config, "zannenn\n");
+	JUT_ASSERTLINE(1759, config, "zannenn\n");
 	pelletArg._10              = config->m_params.m_index;
 	pelletArg.m_textIdentifier = config->m_params.m_name.m_data;
 	pelletArg.m_pelletType     = kind;
@@ -1281,7 +1281,7 @@ void VsGameSection::createYellowBedamas(int bedamas)
 	PelletInitArg pelletArg;
 
 	PelletConfig* config = PelletList::Mgr::getConfigAndKind(name, kind);
-	JUT_ASSERTLINE(0x86a, config, "zannenn\n");
+	JUT_ASSERTLINE(2154, config, "zannenn\n");
 
 	pelletArg._10 = config->m_params.m_index;
 
@@ -1289,7 +1289,7 @@ void VsGameSection::createYellowBedamas(int bedamas)
 	pelletArg.m_pelletType     = kind;
 	pelletArg.m_minCarriers    = 1;
 	pelletArg.m_maxCarriers    = 8;
-	JUT_ASSERTLINE(0x873, bedamas <= 50, "oosugi %d\n", bedamas);
+	JUT_ASSERTLINE(2163, bedamas <= 50, "oosugi %d\n", bedamas);
 	Vector3f positions[50];
 	Cave::randMapMgr->getItemDropPosition(positions, bedamas, 0.4f, 0.6f);
 	for (int i = 0; i < bedamas; i++) {
@@ -1309,7 +1309,7 @@ void VsGameSection::createRedBlueBedamas(Vector3f& pos)
 		PelletInitArg pelletArg;
 		char* name           = const_cast<char*>(marbles[i]);
 		PelletConfig* config = PelletList::Mgr::getConfigAndKind(name, kind);
-		JUT_ASSERTLINE(0x8a3, config, "zannenn\n");
+		JUT_ASSERTLINE(2211, config, "zannenn\n");
 		pelletArg._10              = config->m_params.m_index;
 		pelletArg.m_textIdentifier = config->m_params.m_name.m_data;
 		pelletArg.m_pelletType     = kind;
@@ -1520,8 +1520,8 @@ void VsGameSection::clearGetDopeCount()
  */
 u32* VsGameSection::getGetDopeCount(int player, int type)
 {
-	JUTASSERTBOUNDSINCLUSIVELINE(0xa07, 0, player, 1, "%d playerID\n");
-	JUTASSERTBOUNDSINCLUSIVELINE(0xa08, 0, type, 1, "%d typeID\n");
+	JUTASSERTBOUNDSINCLUSIVELINE(2567, 0, player, 1, "%d playerID\n");
+	JUTASSERTBOUNDSINCLUSIVELINE(2568, 0, type, 1, "%d typeID\n");
 	return &m_dopeCounts[player][type];
 }
 

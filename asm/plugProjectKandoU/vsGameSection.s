@@ -8729,7 +8729,7 @@ getVsEditNumber__Q24Game13VsGameSectionFv:
 "exec__Q24Game32FSMState<Q24Game13VsGameSection>FPQ24Game13VsGameSection":
 /* 801C4BA8 001C1AE8  4E 80 00 20 */	blr 
 
-__sinit_vsGameSection_cpp: # static initializer
+fn local __sinit_vsGameSection_cpp
 /* 801C4BAC 001C1AEC  3C 80 80 51 */	lis r4, __float_nan@ha
 /* 801C4BB0 001C1AF0  38 00 FF FF */	li r0, -1
 /* 801C4BB4 001C1AF4  C0 04 48 B0 */	lfs f0, __float_nan@l(r4)
@@ -8740,3 +8740,4 @@ __sinit_vsGameSection_cpp: # static initializer
 /* 801C4BC8 001C1B08  D0 03 00 04 */	stfs f0, 4(r3)
 /* 801C4BCC 001C1B0C  D0 03 00 08 */	stfs f0, 8(r3)
 /* 801C4BD0 001C1B10  4E 80 00 20 */	blr 
+end __sinit_vsGameSection_cpp
