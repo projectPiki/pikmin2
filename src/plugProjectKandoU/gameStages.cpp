@@ -7,138 +7,6 @@
 
 const char gameStages[] = "gameStages";
 
-/*
-    Generated from dpostproc
-
-    .section .rodata  # 0x804732E0 - 0x8049E220
-    .global lbl_8047F8A8
-    lbl_8047F8A8:
-        .4byte 0x67616D65
-        .4byte 0x53746167
-        .4byte 0x65730000
-    .global lbl_8047F8B4
-    lbl_8047F8B4:
-        .4byte 0x6B656967
-        .4byte 0x6F5F6465
-        .4byte 0x5F736F78
-        .4byte 0x2E747874
-        .4byte 0x00000000
-        .4byte 0x6162655F
-        .4byte 0x666F6C64
-        .4byte 0x65720000
-        .4byte 0x636F6C6C
-        .4byte 0x6973696F
-        .4byte 0x6E000000
-        .4byte 0x77617465
-        .4byte 0x72626F78
-        .4byte 0x00000000
-        .4byte 0x73746172
-        .4byte 0x74616E67
-        .4byte 0x6C650000
-    .global lbl_8047F8F8
-    lbl_8047F8F8:
-        .4byte 0x67616D65
-        .4byte 0x53746167
-        .4byte 0x65732E63
-        .4byte 0x70700000
-    .global lbl_8047F908
-    lbl_8047F908:
-        .asciz "P2Assert"
-        .skip 3
-    .global lbl_8047F914
-    lbl_8047F914:
-        .4byte 0x75736572
-        .4byte 0x2F416265
-        .4byte 0x2F737461
-        .4byte 0x6765732E
-        .4byte 0x74787400
-        .4byte 0x53656C65
-        .4byte 0x63742043
-        .4byte 0x6F757273
-        .4byte 0x65000000
-        .4byte 0x2573203A
-        .4byte 0x20256420
-        .4byte 0x63617665
-        .4byte 0x730A0000
-        .4byte 0x5B25735D
-        .4byte 0x2025642F
-        .4byte 0x25640000
-        .4byte 0x00000000
-
-    .section .data, "wa"  # 0x8049E220 - 0x804EFC20
-    .global __vt__Q24Game10CourseInfo
-    __vt__Q24Game10CourseInfo:
-        .4byte 0
-        .4byte 0
-        .4byte __dt__Q24Game10CourseInfoFv
-        .4byte getChildCount__5CNodeFv
-    .global __vt__Q24Game8LimitGen
-    __vt__Q24Game8LimitGen:
-        .4byte 0
-        .4byte 0
-        .4byte __dt__Q24Game8LimitGenFv
-        .4byte getChildCount__5CNodeFv
-    .global __vt__Q24Game11CaveOtakara
-    __vt__Q24Game11CaveOtakara:
-        .4byte 0
-        .4byte 0
-        .4byte __dt__Q24Game11CaveOtakaraFv
-        .4byte getChildCount__5CNodeFv
-
-    .section .sbss # 0x80514D80 - 0x80516360
-    .global stageList__4Game
-    stageList__4Game:
-        .skip 0x8
-
-    .section .sdata2, "a"     # 0x80516360 - 0x80520E40
-    .global lbl_805192C8
-    lbl_805192C8:
-        .4byte 0x6E6F6E61
-        .4byte 0x6D650000
-    .global lbl_805192D0
-    lbl_805192D0:
-        .4byte 0x00000000
-    .global lbl_805192D4
-    lbl_805192D4:
-        .4byte 0x6E616D65
-        .4byte 0x00000000
-    .global lbl_805192DC
-    lbl_805192DC:
-        .4byte 0x666F6C64
-        .4byte 0x65720000
-    .global lbl_805192E4
-    lbl_805192E4:
-        .4byte 0x6D6F6465
-        .4byte 0x6C000000
-    .global lbl_805192EC
-    lbl_805192EC:
-        .4byte 0x6D617063
-        .4byte 0x6F646500
-    .global lbl_805192F4
-    lbl_805192F4:
-        .4byte 0x6661726D
-        .4byte 0x00000000
-    .global lbl_805192FC
-    lbl_805192FC:
-        .4byte 0x726F7574
-        .4byte 0x65000000
-    .global lbl_80519304
-    lbl_80519304:
-        .4byte 0x73746172
-        .4byte 0x74000000
-    .global lbl_8051930C
-    lbl_8051930C:
-        .4byte 0x40490FDB
-    .global lbl_80519310
-    lbl_80519310:
-        .4byte 0x3BB60B61
-    .global lbl_80519314
-    lbl_80519314:
-        .4byte 0x25732F25
-        .4byte 0x73000000
-        .4byte 0x00000000
-*/
-
 namespace Game {
 Stages* stageList;
 
@@ -590,9 +458,9 @@ void Stages::createMapMgr(Game::CourseInfo* info, Game::RouteMgr* routeMgr)
 		sprintf(routePathTxt, "%s/%s", info->m_abeFolder, info->m_routePath);
 	}
 
-	mapMgr               = new ShapeMapMgr;
-	mapMgr->m_routeMgr   = routeMgr;
-	mapMgr->m_courseInfo = info;
+	mapMgr                                          = new ShapeMapMgr;
+	static_cast<ShapeMapMgr*>(mapMgr)->m_routeMgr   = routeMgr;
+	static_cast<ShapeMapMgr*>(mapMgr)->m_courseInfo = info;
 
 	ShapeMapMgr::LoadArg loadarg(info->m_modelPath ? modelPathTxt : nullptr, info->m_collisionPath ? collPathTxt : nullptr,
 	                             info->m_routePath ? routePathTxt : nullptr);
@@ -603,7 +471,7 @@ void Stages::createMapMgr(Game::CourseInfo* info, Game::RouteMgr* routeMgr)
 	loadarg.m_waterboxPath = info->m_waterboxPath ? wboxPathTxt : nullptr;
 	loadarg.m_mapcodePath  = info->m_mapcodePath ? codePathTxt : nullptr;
 
-	mapMgr->load(loadarg);
+	static_cast<ShapeMapMgr*>(mapMgr)->load(loadarg);
 }
 
 } // namespace Game

@@ -8,9 +8,9 @@
 #include "types.h"
 #include "stream.h"
 
-namespace Game {
 struct Controller;
 
+namespace Game {
 struct RumbleData {
 	RumbleData();
 

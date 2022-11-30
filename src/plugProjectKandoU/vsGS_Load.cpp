@@ -82,7 +82,7 @@ void LoadState::exec(VsGameSection* section)
 		floor._08 = section->getCurrFloor() + 1;
 		ID32 id;
 		if (gameSystem->isChallengeMode()) {
-			sprintf(id.getStr(), "c_%02d", section->m_stageData->m_stageIndex);
+			sprintf(id.getStr(), "c_%02d", section->m_challengeStageData->m_stageIndex);
 		} else {
 			sprintf(id.getStr(), "vs%02d", section->m_VsStageData->m_index2D);
 		}

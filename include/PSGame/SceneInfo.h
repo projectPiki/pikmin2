@@ -10,12 +10,38 @@ namespace PSGame {
  * @size{0x38}
  */
 struct SceneInfo {
-	struct FlagDef {
-		u16 m_flags; // _00
+	enum FlagDef {
+		SCENEFLAG_Unk0 = 0,
+		SCENEFLAG_Unk1 = 1,
 	};
 
 	enum FlagBitShift {
 		SFBS_0 = 0,
+		SFBS_1 = 1,
+	};
+
+	enum GameType {
+		UNKNOWN_1 = 0,
+		COURSE_TUTORIAL,
+		COURSE_FOREST,
+		COURSE_YAKUSHIMA,
+		COURSE_LAST,
+		COURSE_TEST,
+		CHALLENGE_MODE,
+		TWO_PLAYER_BATTLE,
+		UNKNOWN_8,
+		CAVE_RESULTS,
+		UNKNOWN_10,
+		WORLD_MAP_11,
+		WORLD_MAP_12,
+		OBJECTS,
+		ENDING_14,
+		ENDING_15,
+		TITLE_16, // Seasons, I'm sure of it
+		TITLE_17,
+		TITLE_18,
+		TITLE_19,
+		UNKOWN_20
 	};
 
 	SceneInfo();
@@ -27,7 +53,7 @@ struct SceneInfo {
 	void setStageCamera() const;
 
 	// _00 = VTBL
-	FlagDef m_stageFlags;  // _04
+	u16 m_stageFlags;      // _04
 	u8 m_gameType;         // _06
 	u8 _07;                // _07
 	Vector3f* _08;         // _08
@@ -43,6 +69,15 @@ struct SceneInfo {
  * @size{0x4C}
  */
 struct CaveFloorInfo : public SceneInfo {
+	inline CaveFloorInfo()
+	{
+		m_alphaType = 0;
+		m_betaType  = 0;
+		_40         = 0;
+		m_caveID    = 0xFFFF;
+		_48         = 0xFF;
+		_49         = 0xFF;
+	}
 
 	virtual bool isCaveFloor() { return true; } // _08 (weak)
 	virtual bool isBossFloor();                 // _0C (weak)

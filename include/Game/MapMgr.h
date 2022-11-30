@@ -128,7 +128,7 @@ struct ShapeMapMgr : public MapMgr {
 	MapCollision _38;                 // _38
 };
 
-extern ShapeMapMgr* mapMgr;
+extern MapMgr* mapMgr;
 } // namespace Game
 
 #endif
