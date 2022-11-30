@@ -561,7 +561,7 @@ KANDO:=\
 	$(BUILD_DIR)/asm/plugProjectKandoU/genPellet.o\
 	$(BUILD_DIR)/asm/plugProjectKandoU/pelletItem.o\
 	$(BUILD_DIR)/asm/plugProjectKandoU/mapMgrTraceMove.o\
-	$(BUILD_DIR)/asm/plugProjectKandoU/efxModelObjects.o\
+	$(BUILD_DIR)/src/plugProjectKandoU/efxModelObjects.o\
 	$(BUILD_DIR)/asm/plugProjectKandoU/itemUjamushi.o\
 	$(BUILD_DIR)/asm/plugProjectKandoU/aiWeed.o\
 	$(BUILD_DIR)/asm/plugProjectKandoU/flockMgr.o\
