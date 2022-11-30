@@ -5,6 +5,14 @@
 
 namespace og {
 namespace Screen {
+enum MapPiki {
+	MAPPIKI_Red    = 0,
+	MAPPIKI_Yellow = 1,
+	MAPPIKI_Blue   = 2,
+	MAPPIKI_White  = 3,
+	MAPPIKI_Purple = 4,
+};
+
 struct DataNavi {
 	f32 m_naviLifeRatio; // _00
 	u32 _04;             // _04
@@ -26,8 +34,8 @@ struct DataGame {
 
 struct DataMap {
 	u32 m_napsackDetectorFlags;   // _00
-	u32 m_onyonPikminCounts[5];   // _04, 0R, 1Y, 2B, 3W, 4P
-	u32 m_currentPikminCounts[5]; // _18, 0R, 1Y, 2B, 3W, 4P
+	u32 m_onyonPikminCounts[5];   // _04, indexed by MapPiki enum
+	u32 m_currentPikminCounts[5]; // _18, indexed by MapPiki enum
 	u32 m_freePikmin;             // _2C
 	u32 m_pokos;                  // _30
 };
