@@ -348,7 +348,7 @@ struct DispMemberKantei : public DispMemberBase {
 		_29                   = false;
 		m_isDone              = false;
 		m_inCave              = false;
-		_39                   = true;
+		m_doPlayBGM           = true;
 	}
 
 	virtual u32 getSize() { return sizeof(DispMemberKantei); } // _08 (weak)
@@ -370,7 +370,7 @@ struct DispMemberKantei : public DispMemberBase {
 	u8 m_isDone;                                          // _30
 	u32 m_kanteiType;                                     // _34, pre or post-debt
 	u8 m_inCave;                                          // _38
-	u8 _39;                                               // _39
+	u8 m_doPlayBGM;                                       // _39
 	u8 _3A[0x2];                                          // _3A, unknown, possibly padding
 	u8 _3C[0x4];                                          // _3C, unknown
 };

@@ -96,9 +96,9 @@ struct TControl : public P2JME::Window::TControl {
 	MessageWindowScreen* m_messageWindowScreen; // _5C
 	PodIconScreen* m_podIconScreen;             // _60
 	J2DPane* _64;                               // _64
-	u8 _68;                                     // _68
+	u8 m_finished;                              // _68
 	EModeFlag m_modeFlag;                       // _6C
-	uint _70;                                   // _70
+	uint m_flags;                               // _70
 	bool m_isPaused;                            // _74
 };
 } // namespace Movie

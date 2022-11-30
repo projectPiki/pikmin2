@@ -6,6 +6,20 @@
 #include "P2JME/Movie.h"
 #include "efx2d/T2DOtakantei.h"
 
+enum KanteiState {
+	Kantei_Begin            = 1,
+	Kantei_PokoAppearDelay  = 2,
+	Kantei_SetPokoValue     = 3,
+	Kantei_WaitAppearPokos  = 4,
+	Kantei_AppearTotalPokos = 6,
+	Kantei_Idle             = 7,
+	Kantei_MessageBox       = 8
+};
+
+enum KanteiNameState { KanteiName_StartDelay, KanteiName_Growing, KanteiName_VisibleDelay, KanteiName_Shrinking };
+
+enum KanteiType { KanteiType_PreDebt, KanteiType_PostDebt };
+
 namespace P2DScreen {
 // this is just a temp dec until the header is made
 struct Mgr_tuning;
@@ -71,15 +85,16 @@ struct ObjKantei : ::Screen::ObjBase {
 	P2DScreen::Mgr_tuning* m_screenBG;                   // _40
 	P2DScreen::Mgr_tuning* m_screenName;                 // _44
 	P2DScreen::Mgr_tuning* m_screenButton;               // _48
-	int m_state;                                         // _4C
+	KanteiState m_state;                                 // _4C
 	P2JME::Movie::TControl* m_tControl;                  // _50
-	J2DPane* m_paneSetP;                                 // _54
-	Rectf _58;                                           // _58
-	u8 _68[0x8];                                         // _68 - unknown type
-	u64 m_tagId;                                         // _70
-	u8 m_inTextBox;                                      // _78 - unknown type
-	f32 m_fadeLevel;                                     // _7C
-	f32 m_fadeLevel2;                                    // _80
+	J2DPane* m_paneSetP;                                 // _54, "Notsetp"
+	Rectf m_drawBox;                                     // _58
+	u8 m_doDrawBox;                                      // _68, not sure what the purpose of this box is
+	u32 _6C;                                             // _6C, completely unused?
+	u64 m_shipMessageBoxID;                              // _70, message ID for ship text when collecting upgrades
+	u8 m_inTextBox;                                      // _78, true when in ship text box, doesnt actually do anything?
+	f32 m_fadeLevel;                                     // _7C, controls alpha during screen fadein/fadeout
+	f32 m_fadeLevel2;                                    // _80, not used?
 	J2DPane* m_paneOk1;                                  // _84
 	J2DPane* m_paneOk2;                                  // _88
 	f32 m_startTimer;                                    // _8C
@@ -91,40 +106,39 @@ struct ObjKantei : ::Screen::ObjBase {
 	u32 m_totalPokosOld;                                 // _A4
 	int m_totalPokosCaveOld;                             // _A8
 	og::Screen::StickAnimMgr* m_stickAnim;               // _AC
-	u32 _B0;                                             // _B0 - unknown type
+	u32 _B0;                                             // _B0, completely unused?
 	efx2d::T2DOtakantei* m_efx;                          // _B4
 	J2DPane* m_paneName;                                 // _B8
 	og::Screen::ScaleMgr* m_scaleMgr;                    // _BC
 	f32 m_nameScale;                                     // _C0
 	f32 m_nameTimer;                                     // _C4
 	u8 m_doScaleName;                                    // _C8 - unknown type
-	int m_nameState;                                     // _CC
-	u64 m_msgId;                                         // _D0
-	u8 m_nameStateChange;                                // _D8 - unknown type
+	KanteiNameState m_nameState;                         // _CC
+	u64 m_treasureNameMesgID;                            // _D0, treasure name message id
+	u8 m_isPelletNameNotAppeared;                        // _D8, starts true, set to false when pellet name appears
 	float m_nameWaitTimer;                               // _DC
-	float m_timer;                                       // _E0
+	float m_idleStateTimer;                              // _E0
 	u8 m_doShipSpeech;                                   // _E4 - unknown type
 	float m_commonTimer;                                 // _E8
 	int m_shipSpeechTimer;                               // _EC
 	u8 m_playExitSE;                                     // _F0
 
 	static struct StaticValues {
-		f32 _00; // _00
-		f32 _04; // _04
-		f32 _08; // _08
-		f32 _0C; // _0C
-		f32 _10; // _10
-		f32 _14; // _14
-		f32 _18; // _18
-		f32 _1C; // _1C
-		f32 _20; // _20
-		f32 _24; // _24
-		f32 _28; // _28
-		f32 _2C; // _2C
-		f32 _30; // _30
-		f32 _34; // _34
-		f32 _38; // _38
-		f32 _3C; // _3C
+		f32 m_nameAppearDelay;       // _00
+		f32 m_priceAppearDelay;      // _04
+		f32 m_pokoSlotFactor;        // _08
+		f32 m_pokoPuyo1;             // _0C
+		f32 m_pokoPuyo2;             // _10
+		f32 m_pokoPuyo3;             // _14
+		Vector2f m_namePaneAdd;      // _18
+		f32 m_screenMoveStart;       // _20
+		f32 m_nameTimerDefault;      // _24
+		f32 m_counterGrow1;          // _28
+		f32 m_counterGrow2;          // _2C
+		f32 m_counterGrow3;          // _30
+		f32 m_nameScaleGrowFactor;   // _34
+		f32 m_waitTimerReset;        // _38
+		f32 m_idleStateTimerDefault; // _3C
 	} msVal;
 };
 } // namespace newScreen

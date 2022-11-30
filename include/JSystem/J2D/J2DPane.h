@@ -253,10 +253,7 @@ struct J2DPane {
 	u64 m_tag;                       // _010
 	u64 m_messageID;                 // _018
 	JGeometry::TBox2f _020;          // _020
-	float _030;                      // _030
-	float _034;                      // _034
-	float _038;                      // _038
-	float _03C;                      // _03C
+	JGeometry::TBox2f _030;          // _030
 	float _040;                      // _040
 	float _044;                      // _044
 	float _048;                      // _048
