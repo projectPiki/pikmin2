@@ -82,14 +82,28 @@ struct ObjUfoMenu : public ::Screen::ObjBase {
 	u32 _8C;                            // _8C, unknown
 
 	static struct StaticValues {
+		inline StaticValues()
+		{
+			_00 = 0.5f;
+			_04 = 1.5f;
+			_08 = 0.35f;
+			_0C = 0.0f;
+			_10 = 0.0f;
+			_14 = 0.7f;
+			_18 = 0.0f;
+			_1C = 0.0f;
+			_20 = 0.7f;
+			_24 = 1.4f;
+		}
+
 		f32 _00; // _00
 		f32 _04; // _04
 		f32 _08; // _08
 		f32 _0C; // _0C
 		f32 _10; // _10
 		f32 _14; // _14
-		f32 _18;
-		f32 _1C;
+		f32 _18; // _18
+		f32 _1C; // _1C
 		f32 _20; // _20
 		f32 _24; // _24
 	} msVal;
