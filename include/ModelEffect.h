@@ -15,7 +15,7 @@ struct ModelEffectCreateArg {
 };
 
 struct ModelEffectData : public CNode {
-	virtual ~ModelEffectData();                               // _08 (weak)
+	virtual ~ModelEffectData() { }                            // _08 (weak)
 	virtual void loadResources()                         = 0; // _10
 	virtual u64 getID()                                  = 0; // _14
 	virtual ModelEffect* onCreate(ModelEffectCreateArg*) = 0; // _18
@@ -46,7 +46,7 @@ struct ModelEffect {
 		m_culled = 0;
 	}
 
-	virtual void constructor();                  // _08 (weak)
+	virtual void constructor() { }               // _08 (weak)
 	virtual void doAnimation();                  // _0C
 	virtual void doEntry();                      // _10
 	virtual void doSetView(int viewportNumber);  // _14
@@ -55,8 +55,8 @@ struct ModelEffect {
 	virtual void getLODSphere(Sys::Sphere&) = 0; // _20
 	virtual bool useCylinderLOD();               // _24 (weak)
 	virtual void getLODCylinder(Sys::Cylinder&); // _28 (weak)
-	virtual void doSimulation(f32);              // _2C (weak)
-	virtual void doDirectDraw(Graphics& gfx);    // _30 (weak)
+	virtual void doSimulation(f32) { }           // _2C (weak)
+	virtual void doDirectDraw(Graphics& gfx) { } // _30 (weak)
 
 	// _00 VTBL
 	SysShape::Model* m_model; // _04

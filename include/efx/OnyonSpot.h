@@ -24,10 +24,10 @@ struct OnyonSpotArg : public ModelEffectCreateArg {
 };
 
 struct OnyonSpotData : public ModelEffectData {
-	virtual ~OnyonSpotData();                           // _08 (weak)
-	virtual void loadResources();                       // _10
-	virtual u64 getID();                                // _14 (weak)
-	virtual OnyonSpot* onCreate(ModelEffectCreateArg*); // _18
+	virtual ~OnyonSpotData() { }                          // _08 (weak)
+	virtual void loadResources();                         // _10
+	virtual u64 getID() { return 'ONY_SPOT'; }            // _14 (weak)
+	virtual ModelEffect* onCreate(ModelEffectCreateArg*); // _18
 
 	int m_texAnimCount;                  // _20
 	Sys::MatTexAnimation* m_texanims;    // _24
@@ -38,7 +38,7 @@ struct OnyonSpotData : public ModelEffectData {
 struct OnyonSpot : public ModelEffect {
 	virtual void changeMaterial();                     // _1C
 	virtual void getLODSphere(Sys::Sphere& lodSphere); // _20
-	virtual bool useCylinderLOD();                     // _24 (weak)
+	virtual bool useCylinderLOD() { return true; }     // _24 (weak)
 	virtual void getLODCylinder(Sys::Cylinder&);       // _28
 
 	// unused/inlined
