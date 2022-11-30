@@ -79,7 +79,10 @@ struct PikiInitArg : public CreatureInitArg {
 	{
 	}
 
-	virtual const char* getName(); // _08 (weak)
+	virtual const char* getName() // _08 (weak)
+	{
+		return "PikiInitArg";
+	}
 
 	// _00 VTBL
 	int _04;            // _04

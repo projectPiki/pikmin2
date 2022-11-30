@@ -696,9 +696,9 @@ void VsGameSection::createFallPikmins(PikiContainer& setPikmin, int param_2)
 		for (int happa = Leaf; happa < PikiGrowthStageCount; happa++) {
 			for (int i = 0; i < setPikmin.getCount(color, happa); i++) {
 				// Gets Random in cylindrical geometry for some reason
-				float radius = (randFloat() * 120.0f + 770.0f);
+				float radius = (randFloat() * 30.0f + 15.0f);
 				float angle  = randFloat() * TAU;
-				float height = (randFloat() * 30.0f + 15.0f) + 850.0f;
+				float height = (randFloat() * 120.0f + 850.0f) + 770.0f;
 
 				Vector3f spawn = Vector3f(radius * pikmin2_sinf(angle), height, radius * pikmin2_cosf(angle));
 
@@ -978,7 +978,7 @@ bool GameMessageVsBirthTekiTreasure::actVs(VsGameSection* section)
 	} else if (tobiFactor > -0.5f) {
 		tobiChance = 0.1f;
 	} else if (tobiFactor > -0.8f) {
-		tobiChance = 0.05;
+		tobiChance = 0.051f;
 	} else {
 		tobiChance = 0.01;
 	}
