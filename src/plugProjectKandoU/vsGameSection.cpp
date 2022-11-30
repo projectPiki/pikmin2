@@ -827,8 +827,8 @@ void VsGameSection::sendMessage(GameMessage& message)
  */
 bool GameMessageVsGetDoping::actVs(VsGameSection* section)
 {
-	u32* dope = section->getGetDopeCount(_04, _08);
-	*dope += 1;
+	u32& dope = section->getGetDopeCount(_04, _08);
+	dope += 1;
 	return true;
 }
 
@@ -1523,11 +1523,11 @@ void VsGameSection::clearGetDopeCount()
  * Address:	801C48D8
  * Size:	0000D0
  */
-u32* VsGameSection::getGetDopeCount(int player, int type)
+u32& VsGameSection::getGetDopeCount(int player, int type)
 {
 	JUTASSERTBOUNDSINCLUSIVELINE(2567, 0, player, 1, "%d playerID\n");
 	JUTASSERTBOUNDSINCLUSIVELINE(2568, 0, type, 1, "%d typeID\n");
-	return &m_dopeCounts[player][type];
+	return m_dopeCounts[player][type];
 }
 
 /*

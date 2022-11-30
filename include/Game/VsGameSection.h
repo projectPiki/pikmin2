@@ -77,7 +77,7 @@ struct VsGameSection : public BaseGameSection {
 	void createYellowBedamas(int);
 	void dropCard(DropCardArg&);
 	u32* getGetCherryCount(int);
-	u32* getGetDopeCount(int, int);
+	u32& getGetDopeCount(int, int);
 	void initCardGeneration();
 	void initCardPellets();
 	void initPlayData();
