@@ -1,4 +1,7 @@
 #include "types.h"
+#include "og/newScreen/UfoMenu.h"
+#include "P2DScreen.h"
+#include "og/Screen/ogScreen.h"
 
 /*
     Generated from dpostproc
@@ -125,8 +128,29 @@ namespace newScreen {
  * Address:	80323798
  * Size:	0000B0
  */
-ObjUfoMenu::ObjUfoMenu(char const*)
+ObjUfoMenu::ObjUfoMenu(char const* name)
 {
+	m_name = name;
+	m_disp = nullptr;
+	m_ufoScreen = nullptr;
+	m_pikiScreen = nullptr;
+	m_selectIndex = 0;
+	m_menu = nullptr;
+	m_doEnd = false;
+	m_screenMovePos = 0.0f;
+	m_lightAnims = nullptr;
+	m_pikiAnims = nullptr;
+	m_fadeTimer = 0.0f;
+	m_paneWhiteWalk = nullptr;
+	m_panePurpleWalk = nullptr;
+	m_paneWhiteStand = nullptr;
+	m_panePurpleStand = nullptr;
+	m_paneAllWhite = nullptr;
+	m_paneAllPurple = nullptr;
+	m_paneN00 = nullptr;
+	m_paneN01 = nullptr;
+	_8C = 0;
+	m_doDraw = false;
 	/*
 	stwu     r1, -0x10(r1)
 	mflr     r0
@@ -238,8 +262,27 @@ lbl_803238D8:
  * Address:	803238F4
  * Size:	000490
  */
-void ObjUfoMenu::doCreate(JKRArchive*)
+void ObjUfoMenu::doCreate(JKRArchive* arc)
 {
+	og::Screen::DispMemberUfoGroup* disp = static_cast<og::Screen::DispMemberUfoGroup*>(getDispMember());
+	if (disp->isID(OWNER_OGA, MEMBER_UFO_GROUP)) {
+		m_disp = disp;
+	} else {
+		m_disp = new og::Screen::DispMemberUfoGroup();
+	}
+	m_ufoScreen = new P2DScreen::Mgr_tuning;
+	m_ufoScreen->set("ufo.blo", 0x1040000, arc);
+	m_pikiScreen = new P2DScreen::Mgr_tuning;
+	m_pikiScreen->set("ufo_pikmin_icon.blo", 0x1040000, arc);
+
+	m_paneWhiteWalk = og::Screen::TagSearch(m_pikiScreen, 'P_w_00');
+	m_paneWhiteStand  = og::Screen::TagSearch(m_pikiScreen, 'P_w_s00');
+	m_panePurpleWalk = og::Screen::TagSearch(m_pikiScreen, 'P_b_00');
+	m_panePurpleStand = og::Screen::TagSearch(m_pikiScreen, 'P_b_s_00');
+	m_paneAllWhite = og::Screen::TagSearch(m_pikiScreen, 'Nall_w');
+	m_paneAllPurple = og::Screen::TagSearch(m_pikiScreen, 'Nall_p');
+	m_paneN00 = og::Screen::TagSearch(m_pikiScreen, 'N00_c');
+	m_paneN01 = og::Screen::TagSearch(m_pikiScreen, 'N01_c');
 	/*
 	stwu     r1, -0x40(r1)
 	mflr     r0
@@ -634,7 +677,7 @@ lbl_80323E64:
  * Address:	80323E78
  * Size:	000524
  */
-void ObjUfoMenu::doUpdate(void)
+bool ObjUfoMenu::doUpdate(void)
 {
 	/*
 	stwu     r1, -0x40(r1)
@@ -1098,7 +1141,7 @@ lbl_803244C8:
  * Address:	803244E4
  * Size:	000020
  */
-void ObjUfoMenu::doStart(Screen::StartSceneArg const*)
+bool ObjUfoMenu::doStart(::Screen::StartSceneArg const*)
 {
 	/*
 	lfs      f1, lbl_8051DD2C@sda21(r2)
@@ -1117,7 +1160,7 @@ void ObjUfoMenu::doStart(Screen::StartSceneArg const*)
  * Address:	80324504
  * Size:	000008
  */
-u32 ObjUfoMenu::doEnd(Screen::EndSceneArg const*) { return 0x1; }
+bool ObjUfoMenu::doEnd(::Screen::EndSceneArg const*) { return 0x1; }
 
 /*
  * --INFO--
@@ -1194,7 +1237,7 @@ void ObjUfoMenu::doUpdateFadeoutFinish(void)
  * Address:	803245A0
  * Size:	000188
  */
-void ObjUfoMenu::doUpdateFadein(void)
+bool ObjUfoMenu::doUpdateFadein(void)
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -1305,7 +1348,7 @@ lbl_803246F4:
  * Address:	80324728
  * Size:	00017C
  */
-void ObjUfoMenu::doUpdateFadeout(void)
+bool ObjUfoMenu::doUpdateFadeout(void)
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -1445,10 +1488,10 @@ void __sinit_ogObjUfo_cpp(void)
  * Address:	803248EC
  * Size:	000008
  */
-@24 @og::newScreen::ObjUfoMenu::~ObjUfoMenu(void)
-{
+//@24 @og::newScreen::ObjUfoMenu::~ObjUfoMenu(void)
+//{
 	/*
 	addi     r3, r3, -24
 	b        __dt__Q32og9newScreen10ObjUfoMenuFv
 	*/
-}
+//}
