@@ -86,8 +86,8 @@ VsGameSection::VsGameSection(JKRHeap* heap, bool gameMode)
 	m_challengeStageNum     = 0;
 	m_VsStageNum            = 0;
 	m_vsWinner              = -1;
-	m_player2Pikis          = 2;
-	m_player1Pikis          = 2;
+	m_louieHandicap         = 2;
+	m_olimarHandicap        = 2;
 	_3D8                    = 0;
 	_3D4                    = 0;
 	m_yellowMarbleCounts[1] = 0;
@@ -96,8 +96,8 @@ VsGameSection::VsGameSection(JKRHeap* heap, bool gameMode)
 	m_vsFifo                = nullptr;
 
 	if (gGameConfig.m_parms.m_vsFifo.m_data > 0) {
-		u32 fifo_param = gGameConfig.m_parms.m_vsFifo.m_data << 10;
-		m_vsFifo       = new VSFifo(fifo_param);
+		size_t size = gGameConfig.m_parms.m_vsFifo.m_data * KILOBYTE_BYTECOUNT;
+		m_vsFifo    = new VSFifo(size);
 		m_vsFifo->becomeCurrent();
 		GXSetGPFifo(m_vsFifo->m_fifo);
 	}
@@ -127,7 +127,7 @@ VsGameSection::~VsGameSection()
  * --INFO--
  * Address:	801C10B4
  * Size:	00005C
- * --should be weak--
+ * TODO: should be weak
  */
 bool VSFifo::isGPActive()
 {
@@ -253,8 +253,8 @@ bool VsGameSection::doUpdate()
 	m_FSM->exec(this);
 
 	if (gameSystem->m_mode == GSM_VERSUS_MODE) {
-		int redPikmins  = GameStat::getMapPikmins(1) - (m_player1Pikis - 3);
-		int bluePikmins = GameStat::getMapPikmins(0) - (m_player2Pikis - 3);
+		int redPikmins  = GameStat::getMapPikmins(1) - (m_olimarHandicap - 3);
+		int bluePikmins = GameStat::getMapPikmins(0) - (m_louieHandicap - 3);
 		if (redPikmins < 0) {
 			redPikmins = 1;
 		}
@@ -742,10 +742,10 @@ void VsGameSection::createVsPikmins()
 	PikiContainer* pikmin = &m_container1;
 	pikmin->clear();
 
-	int* reds  = &pikmin->getCount(Red, Leaf);
-	*reds      = m_player1Pikis * 5;
-	int* blues = &pikmin->getCount(Blue, Leaf);
-	*blues     = m_player2Pikis * 5;
+	int& reds  = pikmin->getCount(Red, Leaf);
+	reds       = m_olimarHandicap * 5;
+	int& blues = pikmin->getCount(Blue, Leaf);
+	blues      = m_louieHandicap * 5;
 	Vector3f spawnOnyonPos;
 
 	for (int color = Blue; color < PikiColorCount; color++) {
@@ -1522,7 +1522,7 @@ void VsGameSection::clearGetDopeCount()
  * Address:	801C48D8
  * Size:	0000D0
  */
-u32& VsGameSection::getGetDopeCount(int player, int type)
+int& VsGameSection::getGetDopeCount(int player, int type)
 {
 	JUTASSERTBOUNDSINCLUSIVELINE(2567, 0, player, 1, "%d playerID\n");
 	JUTASSERTBOUNDSINCLUSIVELINE(2568, 0, type, 1, "%d typeID\n");
@@ -1573,7 +1573,7 @@ char* VsGameSection::getEditorFilename() { return m_editFilename; }
  * Address:	801C49D8
  * Size:	000008
  */
-u32 VsGameSection::getVsEditNumber() { return m_editNumber; }
+int VsGameSection::getVsEditNumber() { return m_editNumber; }
 
 /*
  * --INFO--

@@ -105,7 +105,7 @@ struct BaseGameSection : public BaseHIOSection {
 	virtual bool challengeDisablePelplant();                           // _80 (weak)
 	virtual char* getCaveFilename();                                   // _84 (weak)
 	virtual char* getEditorFilename();                                 // _88 (weak)
-	virtual u32 getVsEditNumber();                                     // _8C (weak)
+	virtual int getVsEditNumber();                                     // _8C (weak)
 	virtual void openContainerWindow();                                // _90 (weak)
 	virtual void closeContainerWindow();                               // _94 (weak)
 	virtual void playMovie_firstexperience(int, Creature*);            // _98 (weak)

@@ -9,7 +9,7 @@ u8 VSFifo::mGpStatus[5];
  * Address:	8023D64C
  * Size:	000090
  */
-VSFifo::VSFifo(unsigned long size)
+VSFifo::VSFifo(size_t size)
 {
 	m_size = OSRoundUp32B(size);
 

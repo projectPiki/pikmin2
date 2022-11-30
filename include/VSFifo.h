@@ -6,13 +6,13 @@
 #include "Dolphin/gx.h"
 
 struct VSFifo {
-	VSFifo(u32);
+	VSFifo(size_t size);
 
 	virtual ~VSFifo(); // _08
 
 	void becomeCurrent();
 
-	static bool isGPActive();
+	static bool isGPActive(); // should be weak
 
 	static u8 mGpStatus[5];
 

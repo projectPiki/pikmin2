@@ -74,12 +74,12 @@ struct Stream {
 		}
 	}
 
-	int m_endian;        // _04
-	int m_position;      // _08
-	int m_mode;          // _0C
-	int m_bufferPos;     // _10
-	char m_buffer[1024]; // _14
-	int m_tabCount;      // _414
+	int m_endian;                      // _04
+	int m_position;                    // _08
+	int m_mode;                        // _0C
+	int m_bufferPos;                   // _10
+	char m_buffer[KILOBYTE_BYTECOUNT]; // _14
+	int m_tabCount;                    // _414
 };
 
 struct RamStream : Stream {

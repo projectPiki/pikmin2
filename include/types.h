@@ -76,4 +76,7 @@ typedef u32 unknown;
 // Get the minimum of two values
 #define MIN(a, b) (((a) < (b)) ? (a) : (b))
 
+// number of bytes in a kilobyte
+#define KILOBYTE_BYTECOUNT 1024
+
 #endif
