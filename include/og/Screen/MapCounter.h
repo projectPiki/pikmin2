@@ -22,30 +22,30 @@ struct MapCounter : public P2DScreen::Mgr_tuning {
 
 	// _00      = VTBL
 	// _00-_148 = P2DScreen::Mgr_tuning
-	int* m_napsackDetectorFlags;  // _148, is this a ptr?
-	J2DPane* m_redPikminPane1;    // _14C
-	J2DPane* m_yellowPikminPane1; // _150
-	J2DPane* m_bluePikminPane1;   // _154
-	J2DPane* m_whitePikminPane1;  // _158
-	J2DPane* m_purplePikminPane1; // _15C
-	J2DPane* m_redPikminPane2;    // _160
-	J2DPane* m_yellowPikminPane2; // _164
-	J2DPane* m_bluePikminPane2;   // _168
-	J2DPane* m_whitePikminPane2;  // _16C
-	J2DPane* m_purplePikminPane2; // _170
-	J2DPane* m_freePikminPane;    // _174
-	int* m_totalRedPikmin;        // _178, is this a ptr?
-	int* m_totalYellowPikmin;     // _17C, is this a ptr?
-	int* m_totalBluePikmin;       // _180, is this a ptr?
-	int* m_totalWhitePikmin;      // _184, is this a ptr?
-	int* m_totalPurplePikmin;     // _188, is this a ptr?
-	uint* m_currRedPikmin;        // _18C, is this a ptr?
-	uint* m_currYellowPikmin;     // _190, is this a ptr?
-	uint* m_currBluePikmin;       // _194, is this a ptr?
-	uint* m_currWhitePikmin;      // _198, is this a ptr?
-	uint* m_currPurplePikmin;     // _19C, is this a ptr?
-	uint* _1A0;                   // _1A0, something to do with alive pikmin, ptr?
-	uint* m_debtRemaining;        // _1A4, is this a ptr?
+	DataMap* m_dataMap;         // _148
+	J2DPane* m_paneRPikiOnyon;  // _14C, reds in onyon
+	J2DPane* m_paneYPikiOnyon;  // _150, yellows in onyon
+	J2DPane* m_paneBPikiOnyon;  // _154, blues in onyon
+	J2DPane* m_paneWPikiShip;   // _158, whites in ship
+	J2DPane* m_panePPikiShip;   // _15C, purples in ship
+	J2DPane* m_paneRPikiLeader; // _160, reds with leader
+	J2DPane* m_paneYPikiLeader; // _164, yellows with leader
+	J2DPane* m_paneBPikiLeader; // _168, blues with leader
+	J2DPane* m_paneWPikiLeader; // _16C, whites with leader
+	J2DPane* m_panePPikiLeader; // _170, purples with leader
+	J2DPane* m_paneFreePiki;    // _174, free pikmin
+	u32* m_onyonRedPikmin;      // _178
+	u32* m_onyonYellowPikmin;   // _17C
+	u32* m_onyonBluePikmin;     // _180
+	u32* m_shipWhitePikmin;     // _184
+	u32* m_shipPurplePikmin;    // _188
+	u32* m_leaderRedPikmin;     // _18C
+	u32* m_leaderYellowPikmin;  // _190
+	u32* m_leaderBluePikmin;    // _194
+	u32* m_leaderWhitePikmin;   // _198
+	u32* m_leaderPurplePikmin;  // _19C
+	u32* m_freePikmin;          // _1A0
+	u32* m_pokos;               // _1A4
 };
 } // namespace Screen
 } // namespace og

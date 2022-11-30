@@ -1,5 +1,6 @@
 #include "types.h"
-
+#include "og/Screen/MapCounter.h"
+#include "og/Screen/callbackNodes.h"
 /*
     Generated from dpostproc
 
@@ -58,8 +59,35 @@ namespace Screen {
  * Address:	80307DCC
  * Size:	0000E4
  */
-MapCounter::MapCounter(og::Screen::DataMap*)
+MapCounter::MapCounter(og::Screen::DataMap* data)
 {
+	m_dataMap           = data;
+	m_onyonRedPikmin    = &data->m_onyonPikminCounts[0];
+	m_onyonYellowPikmin = &data->m_onyonPikminCounts[1];
+	m_onyonBluePikmin   = &data->m_onyonPikminCounts[2];
+	m_shipWhitePikmin   = &data->m_onyonPikminCounts[3];
+	m_shipPurplePikmin  = &data->m_onyonPikminCounts[4];
+
+	m_leaderRedPikmin    = &data->m_currentPikminCounts[0];
+	m_leaderYellowPikmin = &data->m_currentPikminCounts[1];
+	m_leaderBluePikmin   = &data->m_currentPikminCounts[2];
+	m_leaderWhitePikmin  = &data->m_currentPikminCounts[3];
+	m_leaderPurplePikmin = &data->m_currentPikminCounts[4];
+	m_freePikmin         = &data->m_freePikmin;
+	m_pokos              = &data->m_pokos;
+
+	m_paneRPikiOnyon  = nullptr;
+	m_paneYPikiOnyon  = nullptr;
+	m_paneBPikiOnyon  = nullptr;
+	m_paneWPikiShip   = nullptr;
+	m_panePPikiShip   = nullptr;
+	m_paneRPikiLeader = nullptr;
+	m_paneYPikiLeader = nullptr;
+	m_paneBPikiLeader = nullptr;
+	m_paneWPikiLeader = nullptr;
+	m_panePPikiLeader = nullptr;
+	m_paneFreePiki    = nullptr;
+
 	/*
 stwu     r1, -0x20(r1)
 mflr     r0
@@ -126,8 +154,15 @@ blr
  * Address:	80307EB0
  * Size:	000038
  */
-void MapCounter::dispRed(bool)
+void MapCounter::dispRed(bool i)
 {
+	if (i) {
+		m_paneRPikiOnyon->m_isVisible  = true;
+		m_paneRPikiLeader->m_isVisible = true;
+		return;
+	}
+	m_paneRPikiOnyon->m_isVisible  = false;
+	m_paneRPikiLeader->m_isVisible = false;
 	/*
 clrlwi.  r0, r4, 0x18
 beq      lbl_80307ED0
@@ -153,8 +188,15 @@ blr
  * Address:	80307EE8
  * Size:	000038
  */
-void MapCounter::dispYellow(bool)
+void MapCounter::dispYellow(bool i)
 {
+	if (i) {
+		m_paneYPikiOnyon->m_isVisible  = true;
+		m_paneYPikiLeader->m_isVisible = true;
+		return;
+	}
+	m_paneYPikiOnyon->m_isVisible  = false;
+	m_paneYPikiLeader->m_isVisible = false;
 	/*
 clrlwi.  r0, r4, 0x18
 beq      lbl_80307F08
@@ -180,8 +222,15 @@ blr
  * Address:	80307F20
  * Size:	000038
  */
-void MapCounter::dispBlue(bool)
+void MapCounter::dispBlue(bool i)
 {
+	if (i) {
+		m_paneBPikiOnyon->m_isVisible  = true;
+		m_paneBPikiLeader->m_isVisible = true;
+		return;
+	}
+	m_paneBPikiOnyon->m_isVisible  = false;
+	m_paneBPikiLeader->m_isVisible = false;
 	/*
 clrlwi.  r0, r4, 0x18
 beq      lbl_80307F40
@@ -207,8 +256,15 @@ blr
  * Address:	80307F58
  * Size:	000038
  */
-void MapCounter::dispWhite(bool)
+void MapCounter::dispWhite(bool i)
 {
+	if (i) {
+		m_paneWPikiShip->m_isVisible   = true;
+		m_paneWPikiLeader->m_isVisible = true;
+		return;
+	}
+	m_paneWPikiShip->m_isVisible   = false;
+	m_paneWPikiLeader->m_isVisible = false;
 	/*
 clrlwi.  r0, r4, 0x18
 beq      lbl_80307F78
@@ -234,8 +290,15 @@ blr
  * Address:	80307F90
  * Size:	000038
  */
-void MapCounter::dispBlack(bool)
+void MapCounter::dispBlack(bool i)
 {
+	if (i) {
+		m_panePPikiShip->m_isVisible   = true;
+		m_panePPikiLeader->m_isVisible = true;
+		return;
+	}
+	m_panePPikiShip->m_isVisible   = false;
+	m_panePPikiLeader->m_isVisible = false;
 	/*
 clrlwi.  r0, r4, 0x18
 beq      lbl_80307FB0
@@ -261,8 +324,13 @@ blr
  * Address:	80307FC8
  * Size:	000028
  */
-void MapCounter::dispFree(bool)
+void MapCounter::dispFree(bool i)
 {
+	if (i) {
+		m_paneFreePiki->m_isVisible = true;
+		return;
+	}
+	m_paneFreePiki->m_isVisible = false;
 	/*
 clrlwi.  r0, r4, 0x18
 beq      lbl_80307FE0
@@ -295,8 +363,87 @@ void setCallBack_CounterMap(P2DScreen::Mgr*, unsigned long long, unsigned long l
  * Address:	80307FF0
  * Size:	000724
  */
-void MapCounter::setCallBack(JKRArchive*)
+void MapCounter::setCallBack(JKRArchive* arc)
 {
+	// onyon pikis
+	u32* count                  = m_onyonRedPikmin;
+	CallBack_CounterRV* counter = new CallBack_CounterRV(const_cast<char**>(SujiTexMap), 6, 3, arc);
+	counter->init(this, 'or_r', 'or_c', 'or_l', count, 1);
+	counter->setPuyoAnim(false);
+	addCallBack('or_r', counter);
+	m_paneRPikiOnyon = counter->getMotherPane();
+
+	count   = m_onyonYellowPikmin;
+	counter = new CallBack_CounterRV(const_cast<char**>(SujiTexMap), 6, 3, arc);
+	counter->init(this, 'oy_r', 'oy_c', 'oy_l', count, 1);
+	counter->setPuyoAnim(false);
+	addCallBack('oy_r', counter);
+	m_paneYPikiOnyon = counter->getMotherPane();
+
+	count   = m_onyonBluePikmin;
+	counter = new CallBack_CounterRV(const_cast<char**>(SujiTexMap), 6, 3, arc);
+	counter->init(this, 'ob_r', 'ob_c', 'ob_l', count, 1);
+	counter->setPuyoAnim(false);
+	addCallBack('ob_r', counter);
+	m_paneBPikiOnyon = counter->getMotherPane();
+
+	// ship pikis
+	count   = m_shipWhitePikmin;
+	counter = new CallBack_CounterRV(const_cast<char**>(SujiTexMap), 6, 3, arc);
+	counter->init(this, 'uw_r', 'uw_c', 'uw_l', count, 1);
+	counter->setPuyoAnim(false);
+	addCallBack('uw_r', counter);
+	m_paneWPikiShip = counter->getMotherPane();
+
+	count   = m_shipPurplePikmin;
+	counter = new CallBack_CounterRV(const_cast<char**>(SujiTexMap), 6, 3, arc);
+	counter->init(this, 'ubkr', 'ubkc', 'ubkl', count, 1);
+	counter->setPuyoAnim(false);
+	addCallBack('ubkr', counter);
+	m_panePPikiShip = counter->getMotherPane();
+
+	// leader pikis
+	count   = m_leaderRedPikmin;
+	counter = new CallBack_CounterRV(const_cast<char**>(SujiTexMap), 3, 3, arc);
+	counter->init(this, 'tr_r', 'tr_c', 'tr_l', count, 1);
+	counter->setPuyoAnim(false);
+	addCallBack('tr_r', counter);
+	m_paneRPikiLeader = counter->getMotherPane();
+
+	count   = m_leaderYellowPikmin;
+	counter = new CallBack_CounterRV(const_cast<char**>(SujiTexMap), 3, 3, arc);
+	counter->init(this, 'ty_r', 'ty_c', 'ty_l', count, 1);
+	counter->setPuyoAnim(false);
+	addCallBack('ty_r', counter);
+	m_paneYPikiLeader = counter->getMotherPane();
+
+	count   = m_leaderBluePikmin;
+	counter = new CallBack_CounterRV(const_cast<char**>(SujiTexMap), 3, 3, arc);
+	counter->init(this, 'tb_r', 'tb_c', 'tb_l', count, 1);
+	counter->setPuyoAnim(false);
+	addCallBack('tb_r', counter);
+	m_paneBPikiLeader = counter->getMotherPane();
+
+	count   = m_leaderWhitePikmin;
+	counter = new CallBack_CounterRV(const_cast<char**>(SujiTexMap), 3, 3, arc);
+	counter->init(this, 'tw_r', 'tw_c', 'tw_l', count, 1);
+	counter->setPuyoAnim(false);
+	addCallBack('tw_r', counter);
+	m_paneWPikiLeader = counter->getMotherPane();
+
+	count   = m_leaderPurplePikmin;
+	counter = new CallBack_CounterRV(const_cast<char**>(SujiTexMap), 3, 3, arc);
+	counter->init(this, 'tbkr', 'tbkc', 'tbkl', count, 1);
+	counter->setPuyoAnim(false);
+	addCallBack('tbkr', counter);
+	m_panePPikiLeader = counter->getMotherPane();
+
+	count   = m_freePikmin;
+	counter = new CallBack_CounterRV(const_cast<char**>(SujiTexMap), 3, 3, arc);
+	counter->init(this, 'frer', 'frec', 'frel', count, 1);
+	counter->setPuyoAnim(false);
+	addCallBack('frer', counter);
+	m_paneFreePiki = counter->getMotherPane();
 	/*
 stwu     r1, -0x20(r1)
 mflr     r0
