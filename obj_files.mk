@@ -904,7 +904,7 @@ OGAWA:=\
 	$(BUILD_DIR)/src/plugProjectOgawaU/ogSceneContena.o\
 	$(BUILD_DIR)/asm/plugProjectOgawaU/ogObjSMenuPauseDoukutu.o\
 	$(BUILD_DIR)/src/plugProjectOgawaU/ogSceneSMenuPauseDoukutu.o\
-	$(BUILD_DIR)/asm/plugProjectOgawaU/ogObjUfo.o\
+	$(BUILD_DIR)/src/plugProjectOgawaU/ogObjUfo.o\
 	$(BUILD_DIR)/src/plugProjectOgawaU/ogSceneUfo.o\
 	$(BUILD_DIR)/asm/plugProjectOgawaU/ogObjSave.o\
 	$(BUILD_DIR)/src/plugProjectOgawaU/ogSceneSave.o\
