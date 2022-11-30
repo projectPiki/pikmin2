@@ -496,6 +496,7 @@ struct DispMemberSMenuPauseVS : public DispMemberBase {
 
 // size 0xC4
 struct DispMemberSMenuAll : public DispMemberBase {
+	DispMemberSMenuAll();
 
 	virtual u32 getSize() { return sizeof(DispMemberSMenuAll); } // _08 (weak)
 	virtual u32 getOwnerID() { return OWNER_OGA; }               // _0C (weak)
