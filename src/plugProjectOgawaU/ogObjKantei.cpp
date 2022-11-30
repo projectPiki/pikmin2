@@ -432,7 +432,7 @@ void ObjKantei::doCreate(JKRArchive* arc)
 		m_disp = disp;
 	} else {
 		if (disp->isID(OWNER_OGA, MEMBER_DUMMY)) {
-			disp = new og::Screen::DispMemberKantei();
+			m_disp = new og::Screen::DispMemberKantei();
 		} else {
 			JUT_PANICLINE(258, "ERR! in ObjKantei Createé∏îsÅI\n");
 		}

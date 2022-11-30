@@ -1,4 +1,11 @@
 #include "types.h"
+#include "og/newScreen/SpecialItem.h"
+#include "P2DScreen.h"
+#include "og/Screen/ogScreen.h"
+#include "PSSystem/PSScene.h"
+#include "PSSystem/PSGame.h"
+#include "PSM/Scene.h"
+#include "System.h"
 
 /*
     Generated from dpostproc
@@ -108,8 +115,19 @@ namespace newScreen {
  * Address:	80319CC4
  * Size:	000088
  */
-ObjSpecialItem::ObjSpecialItem(char const*)
+ObjSpecialItem::ObjSpecialItem(char const* name)
 {
+	m_fadeTimer1   = 0.0f;
+	m_fadeTimer2   = 0.0f;
+	m_name         = name;
+	m_disp         = nullptr;
+	m_screen       = nullptr;
+	m_paneSetP     = nullptr;
+	m_drawBox.p1.x = 0.0f;
+	m_drawBox.p1.y = 0.0f;
+	m_drawBox.p2.x = 0.0f;
+	m_drawBox.p2.y = 0.0f;
+	m_doDrawBox    = true;
 	/*
 	stwu     r1, -0x10(r1)
 	mflr     r0
@@ -211,8 +229,28 @@ lbl_80319DDC:
  * Address:	80319DF8
  * Size:	000194
  */
-void ObjSpecialItem::doCreate(JKRArchive*)
+void ObjSpecialItem::doCreate(JKRArchive* arc)
 {
+	og::Screen::DispMemberSpecialItem* disp = static_cast<og::Screen::DispMemberSpecialItem*>(getDispMember());
+	if (disp->isID(OWNER_OGA, MEMBER_SPECIAL_ITEM)) {
+		m_disp = disp;
+	} else {
+		if (disp->isID(OWNER_OGA, MEMBER_DUMMY)) {
+			m_disp = new og::Screen::DispMemberSpecialItem();
+		} else {
+			JUT_PANICLINE(81, "ERR! in ObjTest CreateŽ¸”sI\n");
+		}
+	}
+	m_screen = new P2DScreen::Mgr_tuning;
+	m_screen->set("ok_bg_tokushu.blo", 0x1040000, arc);
+	og::Screen::setAlphaScreen(m_screen);
+
+	J2DPane* pane = m_screen->search('item');
+	if (pane)
+		pane->m_isVisible = false;
+
+	m_paneSetP  = m_screen->search('Notsetp');
+	m_doDrawBox = true;
 	/*
 	stwu     r1, -0x20(r1)
 	mflr     r0
@@ -335,8 +373,12 @@ lbl_80319F3C:
  * Address:	80319F8C
  * Size:	000040
  */
-void ObjSpecialItem::doUpdate(void)
+bool ObjSpecialItem::doUpdate(void)
 {
+	if (m_disp) {
+		m_screen->update();
+	}
+	return false;
 	/*
 	stwu     r1, -0x10(r1)
 	mflr     r0
@@ -366,6 +408,32 @@ lbl_80319FB8:
  */
 void ObjSpecialItem::doDraw(Graphics& gfx)
 {
+	m_screen->setAlpha((u8)(m_fadeTimer2 * 255.0f));
+	m_screen->draw(gfx, gfx.m_perspGraph);
+
+	J2DPane* pane  = m_paneSetP;
+	f32 y2         = pane->_030.f.y;
+	f32 x2         = pane->_030.f.x;
+	f32 y1         = pane->_030.i.y;
+	f32 x1         = pane->_030.i.x;
+	m_drawBox.p1.x = x1;
+	m_drawBox.p1.y = y1;
+	m_drawBox.p2.x = x2;
+	m_drawBox.p2.y = y2;
+
+	if (m_doDrawBox && m_disp->m_delegate) {
+		pane           = m_paneSetP;
+		y2             = pane->_030.f.y;
+		x2             = pane->_030.f.x;
+		y1             = pane->_030.i.y;
+		x1             = pane->_030.i.x;
+		m_drawBox.p1.x = x1;
+		m_drawBox.p1.y = y1;
+		m_drawBox.p2.x = x1;
+		m_drawBox.p2.y = y2;
+		m_disp->m_delegate->invoke(m_drawBox);
+		m_doDrawBox = 0;
+	}
 	/*
 	stwu     r1, -0x20(r1)
 	mflr     r0
@@ -442,8 +510,18 @@ lbl_8031A0B8:
  * Address:	8031A0D0
  * Size:	00010C
  */
-void ObjSpecialItem::doStart(Screen::StartSceneArg const*)
+bool ObjSpecialItem::doStart(::Screen::StartSceneArg const*)
 {
+	m_fadeTimer1 = 0.0f;
+	m_fadeTimer2 = 0.0f;
+	if (m_disp->m_doPlayBGM) {
+		PSSystem::SceneMgr* mgr = PSSystem::getSceneMgr();
+		PSSystem::checkSceneMgr(mgr);
+		PSM::Scene_Game* scene = static_cast<PSM::Scene_Game*>(mgr->getChildScene());
+		P2ASSERTLINE(90, scene->m_child);
+		scene->startMainSeq();
+	}
+	return true;
 	/*
 	stwu     r1, -0x10(r1)
 	mflr     r0
@@ -532,8 +610,10 @@ lbl_8031A1C0:
  * Address:	8031A1DC
  * Size:	000010
  */
-void ObjSpecialItem::doEnd(Screen::EndSceneArg const*)
+bool ObjSpecialItem::doEnd(::Screen::EndSceneArg const*)
 {
+	m_fadeTimer1 = 0.0f;
+	return true;
 	/*
 	lfs      f0, lbl_8051D980@sda21(r2)
 	stfs     f0, 0x58(r3)
@@ -556,6 +636,7 @@ void ObjSpecialItem::doUpdateFadeinFinish(void) { }
  */
 void ObjSpecialItem::doUpdateFinish(void)
 {
+	m_fadeTimer1 = 0.0f;
 	/*
 	lfs      f0, lbl_8051D980@sda21(r2)
 	stfs     f0, 0x58(r3)
@@ -575,8 +656,15 @@ void ObjSpecialItem::doUpdateFadeoutFinish(void) { }
  * Address:	8031A200
  * Size:	000048
  */
-void ObjSpecialItem::doUpdateFadein(void)
+bool ObjSpecialItem::doUpdateFadein(void)
 {
+	m_fadeTimer1 += sys->m_deltaTime;
+	bool check = m_fadeTimer1 > 0.3f;
+	if (check)
+		m_fadeTimer1 = 0.3f;
+
+	m_fadeTimer2 /= 0.3f;
+	return check;
 	/*
 	lwz      r4, sys@sda21(r13)
 	li       r0, 0
@@ -606,8 +694,15 @@ lbl_8031A230:
  * Address:	8031A248
  * Size:	000050
  */
-void ObjSpecialItem::doUpdateFadeout(void)
+bool ObjSpecialItem::doUpdateFadeout(void)
 {
+	m_fadeTimer1 += sys->m_deltaTime;
+	bool check = m_fadeTimer1 > 0.2f;
+	if (check)
+		m_fadeTimer1 = 0.2f;
+
+	m_fadeTimer2 = 1.0f - (m_fadeTimer1 / 0.2f);
+	return check;
 	/*
 	lwz      r4, sys@sda21(r13)
 	li       r0, 0
@@ -639,12 +734,12 @@ lbl_8031A278:
  * Address:	8031A298
  * Size:	000008
  */
-@24 @og::newScreen::ObjSpecialItem::~ObjSpecialItem(void)
-{
-	/*
-	addi     r3, r3, -24
-	b        __dt__Q32og9newScreen14ObjSpecialItemFv
-	*/
-}
+//@24 @og::newScreen::ObjSpecialItem::~ObjSpecialItem(void)
+//{
+/*
+addi     r3, r3, -24
+b        __dt__Q32og9newScreen14ObjSpecialItemFv
+*/
+//}
 } // namespace newScreen
 } // namespace og
