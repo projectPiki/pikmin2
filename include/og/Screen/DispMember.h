@@ -501,6 +501,12 @@ struct DispMemberSMenuAll : public DispMemberBase {
 // size 0x10
 struct DispMemberSpecialItem : public DispMemberBase {
 
+	DispMemberSpecialItem()
+	{
+		m_delegate  = nullptr;
+		m_doPlayBGM = true;
+	}
+
 	virtual u32 getSize() { return sizeof(DispMemberSpecialItem); } // _08 (weak)
 	virtual u32 getOwnerID() { return OWNER_OGA; }                  // _0C (weak)
 	virtual u64 getMemberID() { return MEMBER_SPECIAL_ITEM; }       // _10 (weak)
@@ -508,7 +514,7 @@ struct DispMemberSpecialItem : public DispMemberBase {
 	// _00     = VTBL
 	// _00-_08 = DispMemberBase
 	Delegate1<Game::BaseGameSection, Rectf&>* m_delegate; // _08
-	u8 _0C;                                               // _0C
+	u8 m_doPlayBGM;                                       // _0C
 };
 
 // size 0x10
