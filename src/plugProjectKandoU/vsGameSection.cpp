@@ -3,7 +3,6 @@
 #include "Dolphin/dvd.h"
 #include "Dolphin/gx.h"
 #include "Dolphin/rand.h"
-
 #include "DvdThreadCommand.h"
 #include "efx/TEnemyApsmoke.h"
 #include "Game/BaseGameSection.h"
@@ -624,8 +623,8 @@ bool VsGameSection::updateCaveMenus()
 		case 0:
 			break;
 		case 1:
-			gameSystem->setPause(false, "kk-no", 3);
-			gameSystem->setMoviePause(false, "kk-no");
+			gameSystem->setPause(false, "kk-yes", 3);
+			gameSystem->setMoviePause(false, "kk-yes");
 			m_menuFlags &= ~4;
 			MoviePlayArg arg("s0C_cv_escape", nullptr, _C8, 0);
 			arg.m_origin = m_fountain->getPosition();
@@ -636,8 +635,8 @@ bool VsGameSection::updateCaveMenus()
 			moviePlayer->play(arg);
 			return true;
 		case 2:
-			gameSystem->setPause(false, "kk-yes", 3);
-			gameSystem->setMoviePause(false, "kk-yes");
+			gameSystem->setPause(false, "kk-no", 3);
+			gameSystem->setMoviePause(false, "kk-no");
 			m_menuFlags &= ~4;
 			break;
 		case 3:
