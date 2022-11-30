@@ -59,7 +59,7 @@ struct _GraphicsParent {
 	Viewport* m_currentViewport; // _25C
 	u8 _260[4];                  // _260
 	int m_viewportCount;         // _264
-	Viewport* m_viewports[2];    // _268
+	Viewport* m_viewport;        // _268
 };
 
 // Size: 0x2A0
@@ -140,7 +140,7 @@ struct Graphics : public _GraphicsParent {
 
 	// _GraphicsParent _000
 	// VTBL _26C
-	u8 _270[0x30 - 0xC]; // _270
+	u8 _270[0x40 - 0xC]; // _270
 };
 
 #endif

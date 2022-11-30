@@ -147,7 +147,7 @@ struct SMenuPauseVS : public ::Screen::SceneBase {
 struct ObjSMenuBase : public ::Screen::ObjBase {
 	ObjSMenuBase();
 
-	virtual ~ObjSMenuBase();                 // _08
+	virtual ~ObjSMenuBase() { }              // _08
 	virtual bool doUpdateFadein();           // _50
 	virtual void doUpdateFadeinFinish();     // _54
 	virtual bool doUpdate();                 // _58
@@ -212,7 +212,7 @@ struct ObjSMenuBase : public ::Screen::ObjBase {
 	f32 _A4;                                    // _A4
 
 	static struct StaticValues {
-		u32 _00;         // _00
+		f32 _00;         // _00
 		f32 m_animSpeed; // _04
 		f32 _08;         // _08
 		f32 _0C;         // _0C
@@ -346,7 +346,7 @@ struct ObjSMenuMap : public ObjSMenuBase {
 	JUTTexture* m_radarMapTexture;                       // _C0, the actual texture
 	J2DPane* m_rootPane;                                 // _C4, for icon_screen
 	J2DPictureEx* m_mapTexPane;                          // _C8
-	J2DPane** m_radarPaneList;                           // _CC
+	J2DPane*** m_radarPaneList;                          // _CC
 	J2DPictureEx* m_olimarArrow;                         // _D0, ic orima?
 	Game::Navi* m_olimarObj;                             // _D4
 	J2DPictureEx* m_louieArrow;                          // _D8, ic louzy?
