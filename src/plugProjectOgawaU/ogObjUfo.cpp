@@ -130,27 +130,27 @@ namespace newScreen {
  */
 ObjUfoMenu::ObjUfoMenu(char const* name)
 {
-	m_name = name;
-	m_disp = nullptr;
-	m_ufoScreen = nullptr;
-	m_pikiScreen = nullptr;
-	m_selectIndex = 0;
-	m_menu = nullptr;
-	m_doEnd = false;
-	m_screenMovePos = 0.0f;
-	m_lightAnims = nullptr;
-	m_pikiAnims = nullptr;
-	m_fadeTimer = 0.0f;
-	m_paneWhiteWalk = nullptr;
-	m_panePurpleWalk = nullptr;
-	m_paneWhiteStand = nullptr;
+	m_name            = name;
+	m_disp            = nullptr;
+	m_ufoScreen       = nullptr;
+	m_pikiScreen      = nullptr;
+	m_selectIndex     = 0;
+	m_menu            = nullptr;
+	m_doEnd           = false;
+	m_screenMovePos   = 0.0f;
+	m_lightAnims      = nullptr;
+	m_pikiAnims       = nullptr;
+	m_fadeTimer       = 0.0f;
+	m_paneWhiteWalk   = nullptr;
+	m_panePurpleWalk  = nullptr;
+	m_paneWhiteStand  = nullptr;
 	m_panePurpleStand = nullptr;
-	m_paneAllWhite = nullptr;
-	m_paneAllPurple = nullptr;
-	m_paneN00 = nullptr;
-	m_paneN01 = nullptr;
-	_8C = 0;
-	m_doDraw = false;
+	m_paneAllWhite    = nullptr;
+	m_paneAllPurple   = nullptr;
+	m_paneN00         = nullptr;
+	m_paneN01         = nullptr;
+	_8C               = 0;
+	m_doDraw          = false;
 	/*
 	stwu     r1, -0x10(r1)
 	mflr     r0
@@ -275,14 +275,14 @@ void ObjUfoMenu::doCreate(JKRArchive* arc)
 	m_pikiScreen = new P2DScreen::Mgr_tuning;
 	m_pikiScreen->set("ufo_pikmin_icon.blo", 0x1040000, arc);
 
-	m_paneWhiteWalk = og::Screen::TagSearch(m_pikiScreen, 'P_w_00');
+	m_paneWhiteWalk   = og::Screen::TagSearch(m_pikiScreen, 'P_w_00');
 	m_paneWhiteStand  = og::Screen::TagSearch(m_pikiScreen, 'P_w_s00');
-	m_panePurpleWalk = og::Screen::TagSearch(m_pikiScreen, 'P_b_00');
+	m_panePurpleWalk  = og::Screen::TagSearch(m_pikiScreen, 'P_b_00');
 	m_panePurpleStand = og::Screen::TagSearch(m_pikiScreen, 'P_b_s_00');
-	m_paneAllWhite = og::Screen::TagSearch(m_pikiScreen, 'Nall_w');
-	m_paneAllPurple = og::Screen::TagSearch(m_pikiScreen, 'Nall_p');
-	m_paneN00 = og::Screen::TagSearch(m_pikiScreen, 'N00_c');
-	m_paneN01 = og::Screen::TagSearch(m_pikiScreen, 'N01_c');
+	m_paneAllWhite    = og::Screen::TagSearch(m_pikiScreen, 'Nall_w');
+	m_paneAllPurple   = og::Screen::TagSearch(m_pikiScreen, 'Nall_p');
+	m_paneN00         = og::Screen::TagSearch(m_pikiScreen, 'N00_c');
+	m_paneN01         = og::Screen::TagSearch(m_pikiScreen, 'N01_c');
 	/*
 	stwu     r1, -0x40(r1)
 	mflr     r0
@@ -1490,8 +1490,8 @@ void __sinit_ogObjUfo_cpp(void)
  */
 //@24 @og::newScreen::ObjUfoMenu::~ObjUfoMenu(void)
 //{
-	/*
-	addi     r3, r3, -24
-	b        __dt__Q32og9newScreen10ObjUfoMenuFv
-	*/
+/*
+addi     r3, r3, -24
+b        __dt__Q32og9newScreen10ObjUfoMenuFv
+*/
 //}

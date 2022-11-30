@@ -51,7 +51,7 @@ struct ObjUfoMenu : public ::Screen::ObjBase {
 	void setSelectPikmin(int);
 	void setBackupScene();
 
-	//unused / inline
+	// unused / inline
 	void commonUpdate();
 
 	// _00     = VTBL1
@@ -68,18 +68,18 @@ struct ObjUfoMenu : public ::Screen::ObjBase {
 	Screen::AnimGroup* m_lightAnims;    // _58
 	u8 _5C[0x4];                        // _5C, unknown
 	Screen::AnimGroup* m_pikiAnims;     // _60
-	J2DPane* m_paneWhiteWalk;          // _64
-	J2DPane* m_paneWhiteStand;           // _68
-	J2DPane* m_panePurpleWalk;                       // _6C
-	J2DPane* m_panePurpleStand;                       // _70
-	J2DPane* m_paneAllWhite;                       // _74
-	J2DPane* m_paneAllPurple;                       // _78
-	J2DPane* m_paneN00;                       // _7C
-	J2DPane* m_paneN01;                       // _80
-	f32 m_fadeTimer;                            // _84
-	u8 m_doDraw;                             // _88
+	J2DPane* m_paneWhiteWalk;           // _64
+	J2DPane* m_paneWhiteStand;          // _68
+	J2DPane* m_panePurpleWalk;          // _6C
+	J2DPane* m_panePurpleStand;         // _70
+	J2DPane* m_paneAllWhite;            // _74
+	J2DPane* m_paneAllPurple;           // _78
+	J2DPane* m_paneN00;                 // _7C
+	J2DPane* m_paneN01;                 // _80
+	f32 m_fadeTimer;                    // _84
+	u8 m_doDraw;                        // _88
 	u8 _89[0x3];                        // _89, probably padding
-	u32 _8C;                        // _8C, unknown
+	u32 _8C;                            // _8C, unknown
 };
 } // namespace newScreen
 } // namespace og
