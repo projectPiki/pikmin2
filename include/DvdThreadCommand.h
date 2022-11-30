@@ -2,6 +2,7 @@
 #define _DVDTHREADCOMMAND_H
 
 #include "JSystem/JSupport/JSUList.h"
+#include "Dolphin/os.h"
 #include "AppThread.h"
 #include "types.h"
 
@@ -23,10 +24,9 @@ struct DvdThreadCommand {
 	char m_os;                        // _1C
 	u8 _1D[0x16];                     // _1D
 	JKRHeap* m_heap;                  // _34
-	u8 _38[0x8];                      // _38
-	s32* _40;                         // _40
-	u8 _44[0x18];                     // _44
-	JSULink<DvdThreadCommand> m_link; // _5C, definitely JSULink, template type may be different, fix when known
+	OSMessageQueue m_msgQueue;        // _38
+	void* m_msgBuffer;                // _58
+	JSULink<DvdThreadCommand> m_link; // _5C
 };
 
 struct DvdThread : public AppThread {
