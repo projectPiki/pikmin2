@@ -59,6 +59,8 @@ struct Mgr_tuning : public Mgr {
 	virtual ~Mgr_tuning() { }                      // _08 (weak)
 	virtual void draw(Graphics&, J2DGrafContext&); // _9C
 
+	static const f32 mstTuningScaleX;
+	static const f32 mstTuningScaleY;
 	static const f32 mstTuningTransX;
 	static const f32 mstTuningTransY;
 

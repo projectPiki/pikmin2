@@ -3795,8 +3795,7 @@ getMemberID__Q32kh6Screen14DispCaveResultFv:
 /* 803FBA38 003F8978  38 84 4C 54 */	addi r4, r4, 0x52534C54@l
 /* 803FBA3C 003F897C  4E 80 00 20 */	blr 
 
-.global __sinit_khCaveResult_cpp # static initializer
-__sinit_khCaveResult_cpp:
+fn local __sinit_khCaveResult_cpp
 /* 803FBA40 003F8980  3C 60 80 51 */	lis r3, msVal__Q32kh6Screen13ObjCaveResult@ha
 /* 803FBA44 003F8984  C1 22 1C B8 */	lfs f9, lbl_80520018@sda21(r2)
 /* 803FBA48 003F8988  39 03 40 D4 */	addi r8, r3, msVal__Q32kh6Screen13ObjCaveResult@l
@@ -3832,6 +3831,7 @@ __sinit_khCaveResult_cpp:
 /* 803FBAC0 003F8A00  D0 28 00 30 */	stfs f1, 0x30(r8)
 /* 803FBAC4 003F8A04  D0 08 00 34 */	stfs f0, 0x34(r8)
 /* 803FBAC8 003F8A08  4E 80 00 20 */	blr 
+end __sinit_khCaveResult_cpp
 
 .global "@24@__dt__Q32kh6Screen13ObjCaveResultFv"
 "@24@__dt__Q32kh6Screen13ObjCaveResultFv":

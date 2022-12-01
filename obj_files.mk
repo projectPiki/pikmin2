@@ -868,14 +868,14 @@ OGAWA:=\
 	$(BUILD_DIR)/asm/plugProjectOgawaU/ogMenuMgr.o\
 	$(BUILD_DIR)/src/plugProjectOgawaU/ogCallBackScreen.o\
 	$(BUILD_DIR)/asm/plugProjectOgawaU/ogCounterRV.o\
-	$(BUILD_DIR)/asm/plugProjectOgawaU/ogSE.o\
+	$(BUILD_DIR)/src/plugProjectOgawaU/ogSE.o\
 	$(BUILD_DIR)/src/plugProjectOgawaU/ogCounterDay.o\
 	$(BUILD_DIR)/src/plugProjectOgawaU/testScene.o\
 	$(BUILD_DIR)/asm/plugProjectOgawaU/testObj.o\
 	$(BUILD_DIR)/asm/plugProjectOgawaU/ogSceneGround.o\
 	$(BUILD_DIR)/asm/plugProjectOgawaU/ogObjGround.o\
 	$(BUILD_DIR)/asm/plugProjectOgawaU/ogCopyPane.o\
-	$(BUILD_DIR)/asm/plugProjectOgawaU/ogBloGroup.o\
+	$(BUILD_DIR)/src/plugProjectOgawaU/ogBloGroup.o\
 	$(BUILD_DIR)/src/plugProjectOgawaU/DispMemberBase.o\
 	$(BUILD_DIR)/src/plugProjectOgawaU/ogLib2D.o\
 	$(BUILD_DIR)/asm/plugProjectOgawaU/ogObjSMenuMap.o\
