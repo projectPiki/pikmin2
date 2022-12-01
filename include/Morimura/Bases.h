@@ -58,7 +58,7 @@ struct TScreenBase {
 
 	// _00 = VTBL
 	og::Screen::AnimScreen** m_animScreens; // _04
-	J2DScreen* _08;                         // _08 This might be P2DScreen/Mgr?
+	P2DScreen::Mgr_tuning* _08;             // _08
 	JKRArchive* _0C;                        // _0C
 	int _10;                                // _10
 	int m_animCount;                        // _14

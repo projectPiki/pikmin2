@@ -128,29 +128,6 @@ void Morimura::TConfirmEndWindow::doUpdateFadeinFinish(void)
 	_BC->open(0.1f);
 	blink_Menu(_AC);
 	og::newScreen::ObjSMenuPauseVS::doUpdateFadeinFinish();
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	lfs      f1, lbl_8051F35C@sda21(r2)
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	mr       r31, r3
-	lwz      r3, 0xb8(r3)
-	bl       open__Q32og6Screen15AnimText_ScreenFf
-	lwz      r3, 0xbc(r31)
-	lfs      f1, lbl_8051F360@sda21(r2)
-	bl       open__Q32og6Screen15AnimText_ScreenFf
-	lwz      r4, 0xac(r31)
-	mr       r3, r31
-	bl       blink_Menu__Q32og9newScreen15ObjSMenuPauseVSFi
-	mr       r3, r31
-	bl       doUpdateFadeinFinish__Q32og9newScreen15ObjSMenuPauseVSFv
-	lwz      r0, 0x14(r1)
-	lwz      r31, 0xc(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
 }
 
 /*
@@ -183,24 +160,6 @@ void Morimura::TConfirmEndWindow::doUpdateFadeoutFinish(void)
 	m_isOpenMaybe = false;
 	_B8->stop();
 	_BC->stop();
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	li       r0, 0
-	stw      r31, 0xc(r1)
-	mr       r31, r3
-	stb      r0, 0xd4(r3)
-	lwz      r3, 0xb8(r3)
-	bl       stop__Q32og6Screen15AnimText_ScreenFv
-	lwz      r3, 0xbc(r31)
-	bl       stop__Q32og6Screen15AnimText_ScreenFv
-	lwz      r0, 0x14(r1)
-	lwz      r31, 0xc(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
 }
 
 /*
@@ -212,18 +171,6 @@ bool Morimura::TConfirmEndWindow::doUpdateFadeout()
 {
 	_D5 = 0;
 	return og::newScreen::ObjSMenuPauseVS::doUpdateFadeout();
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	li       r0, 0
-	stb      r0, 0xd5(r3)
-	bl       doUpdateFadeout__Q32og9newScreen15ObjSMenuPauseVSFv
-	lwz      r0, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
 }
 
 /*
@@ -238,26 +185,6 @@ void Morimura::TConfirmEndWindow::doDraw(Graphics& gfx)
 	} else {
 		m_isOpenMaybe = true;
 	}
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	lbz      r0, 0xd4(r3)
-	cmplwi   r0, 0
-	beq      lbl_803A37D0
-	bl       doDraw__Q32og9newScreen15ObjSMenuPauseVSFR8Graphics
-	b        lbl_803A37D8
-
-lbl_803A37D0:
-	li       r0, 1
-	stb      r0, 0xd4(r3)
-
-lbl_803A37D8:
-	lwz      r0, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
 }
 
 /*
@@ -265,21 +192,7 @@ lbl_803A37D8:
  * Address:	803A37E8
  * Size:	000024
  */
-void Morimura::TConfirmEndWindow::setRetireMsg(u64 msgID)
-{
-	_BC->setText(msgID);
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	lwz      r3, 0xbc(r3)
-	bl       setText__Q32og6Screen15AnimText_ScreenFUx
-	lwz      r0, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
-}
+void Morimura::TConfirmEndWindow::setRetireMsg(u64 msgID) { _BC->setText(msgID); }
 
 /*
  * --INFO--
@@ -289,45 +202,12 @@ void Morimura::TConfirmEndWindow::setRetireMsg(u64 msgID)
 Morimura::TSelectExplanationWindow::TSelectExplanationWindow(JKRArchive* archive, int p2)
     : TScreenBase(archive, p2)
 {
-	unknown_0x18   = 0;
-	_24            = 0.0f;
-	_28            = 0.0f;
-	_1C            = 0.0f;
-	_20            = 0.0f;
-	pScaleMgr_0x2c = new og::Screen::ScaleMgr();
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	mr       r31, r3
-	bl       __ct__Q28Morimura11TScreenBaseFP10JKRArchivei
-	lis      r3, __vt__Q28Morimura24TSelectExplanationWindow@ha
-	li       r0, 0
-	addi     r3, r3, __vt__Q28Morimura24TSelectExplanationWindow@l
-	lfs      f0, lbl_8051F358@sda21(r2)
-	stw      r3, 0(r31)
-	li       r3, 0x1c
-	stw      r0, 0x18(r31)
-	stfs     f0, 0x24(r31)
-	stfs     f0, 0x28(r31)
-	stfs     f0, 0x1c(r31)
-	stfs     f0, 0x20(r31)
-	bl       __nw__FUl
-	or.      r0, r3, r3
-	beq      lbl_803A3864
-	bl       __ct__Q32og6Screen8ScaleMgrFv
-	mr       r0, r3
-
-lbl_803A3864:
-	stw      r0, 0x2c(r31)
-	mr       r3, r31
-	lwz      r0, 0x14(r1)
-	lwz      r31, 0xc(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	_18        = 0;
+	_24        = 0.0f;
+	_28        = 0.0f;
+	_1C        = 0.0f;
+	_20        = 0.0f;
+	m_scaleMgr = new og::Screen::ScaleMgr();
 }
 
 /*
@@ -337,22 +217,20 @@ lbl_803A3864:
  */
 void Morimura::TSelectExplanationWindow::update(void)
 {
-	if (unknown_0x18 == 0) {
+	if (_18 == 0) {
 		_24 = 0.0f;
 	} else {
-		m_pJ2DScreen_0x8->update();
-		for (int i = 0; i < m_0x10; i++) {
-			m_apAnimScreens[i]->update();
+		_08->update();
+		for (int i = 0; i < _10; i++) {
+			m_animScreens[i]->update();
 		}
-		switch (unknown_0x18) {
-		case 0:
-			break;
+		switch (_18) {
 		case 1:
 			_28 += _24;
 			if (1.0f <= _28) {
 				_28 = 1.0f;
-				_0C();
-				unknown_0x18 = 2;
+				_0C = nullptr;
+				_18 = 2;
 			}
 			break;
 		case 2:
@@ -360,21 +238,19 @@ void Morimura::TSelectExplanationWindow::update(void)
 		case 3:
 			_28 += _24;
 			if (_28 < 0.0f) {
-				_28          = 0.0f;
-				_24          = 0.0f;
-				unknown_0x18 = 0;
+				_28 = 0.0f;
+				_24 = 0.0f;
+				_18 = 0;
 			}
 			break;
-		default:
-			break;
 		}
-		m_pJ2DScreen_0x8->animation();
+		_08->animation();
 	}
-	m_pJ2DScreen_0x8->_138 = (1.0f - _28) * _1C - 15.2f;
-	m_pJ2DScreen_0x8->_13C = (1.0f - _28) * _20 - 15.2f;
-	float calcResult       = pScaleMgr_0x2c->calc();
-	m_pJ2DScreen_0x8->_140 = calcResult * 0.95f;
-	m_pJ2DScreen_0x8->_144 = calcResult * 0.95f;
+	_08->m_screenScaleX = (1.0f - _28) * _1C - P2DScreen::Mgr_tuning::mstTuningTransX;
+	_08->m_screenScaleY = (1.0f - _28) * _20 - P2DScreen::Mgr_tuning::mstTuningTransY;
+	float calcResult    = m_scaleMgr->calc();
+	_08->m_someX        = calcResult * P2DScreen::Mgr_tuning::mstTuningScaleX;
+	_08->m_someY        = calcResult * P2DScreen::Mgr_tuning::mstTuningScaleY;
 	/*
 	stwu     r1, -0x20(r1)
 	mflr     r0
@@ -503,24 +379,9 @@ lbl_803A399C:
  */
 void Morimura::TSelectExplanationWindow::draw(Graphics& gfx, J2DPerspGraph* perspGraph)
 {
-	if (unknown_0x18 != 0) {
+	if (_18 != 0) {
 		TScreenBase::draw(gfx, perspGraph);
 	}
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	lwz      r0, 0x18(r3)
-	cmpwi    r0, 0
-	beq      lbl_803A3A30
-	bl       draw__Q28Morimura11TScreenBaseFR8GraphicsP13J2DPerspGraph
-
-lbl_803A3A30:
-	lwz      r0, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
 }
 
 /*
@@ -530,8 +391,8 @@ lbl_803A3A30:
  */
 void Morimura::TSelectExplanationWindow::openWindow(void)
 {
-	_24          = 0.12f;
-	unknown_0x18 = 1;
+	_24 = 0.12f;
+	_18 = 1;
 }
 
 /*
@@ -541,66 +402,6 @@ void Morimura::TSelectExplanationWindow::openWindow(void)
  */
 void Morimura::TSelectExplanationWindow::closeWindow(void)
 {
-	_24          = -0.12f;
-	unknown_0x18 = 3;
+	_24 = -0.12f;
+	_18 = 3;
 }
-
-/*
- * --INFO--
- * Address:	803A3A68
- * Size:	000080
- */
-Morimura::TConfirmEndWindow::~TConfirmEndWindow(void)
-{
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	mr       r31, r4
-	stw      r30, 8(r1)
-	or.      r30, r3, r3
-	beq      lbl_803A3ACC
-	lis      r4, __vt__Q28Morimura17TConfirmEndWindow@ha
-	addi     r4, r4, __vt__Q28Morimura17TConfirmEndWindow@l
-	stw      r4, 0(r30)
-	addi     r0, r4, 0x10
-	stw      r0, 0x18(r30)
-	beq      lbl_803A3ABC
-	lis      r5, __vt__Q32og9newScreen22ObjWorldMapInfoWindow0@ha
-	li       r4, 0
-	addi     r5, r5, __vt__Q32og9newScreen22ObjWorldMapInfoWindow0@l
-	stw      r5, 0(r30)
-	addi     r0, r5, 0x10
-	stw      r0, 0x18(r30)
-	bl       __dt__Q32og9newScreen15ObjSMenuPauseVSFv
-
-lbl_803A3ABC:
-	extsh.   r0, r31
-	ble      lbl_803A3ACC
-	mr       r3, r30
-	bl       __dl__FPv
-
-lbl_803A3ACC:
-	lwz      r0, 0x14(r1)
-	mr       r3, r30
-	lwz      r31, 0xc(r1)
-	lwz      r30, 8(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
-}
-
-// /*
-//  * --INFO--
-//  * Address:	803A3AE8
-//  * Size:	000008
-//  */
-// @24 @Morimura::TConfirmEndWindow::~TConfirmEndWindow(void)
-// {
-// 	/*
-// 	addi     r3, r3, -24
-// 	b        __dt__Q28Morimura17TConfirmEndWindowFv
-// 	*/
-// }

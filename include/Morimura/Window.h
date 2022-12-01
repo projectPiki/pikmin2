@@ -8,7 +8,7 @@ namespace Morimura {
 struct TConfirmEndWindow : public og::newScreen::ObjWorldMapInfoWindow0 {
 	TConfirmEndWindow(const char*);
 
-	virtual ~TConfirmEndWindow();                       // _08 (weak)
+	virtual ~TConfirmEndWindow() { }                    // _08 (weak)
 	virtual bool doStart(const Screen::StartSceneArg*); // _44
 	virtual bool doUpdateFadein();                      // _50
 	virtual void doUpdateFadeinFinish();                // _54
@@ -37,7 +37,7 @@ struct TSelectExplanationWindow : public TScreenBase {
 
 	// _00     = VTBL
 	// _00-_18 = TScreenBase
-	u32 _18;                          // _18
+	int _18;                          // _18
 	f32 _1C;                          // _1C
 	f32 _20;                          // _20
 	f32 _24;                          // _24
