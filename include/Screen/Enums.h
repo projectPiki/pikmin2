@@ -78,7 +78,7 @@ enum ScreenMemberID {
 	MEMBER_CHALLENGE_1P             = 'CHAL1P',
 	MEMBER_CHALLENGE_2P             = 'CHAL2P',
 	MEMBER_COURSE_NAME              = 'COURSE',
-	MEMBER_CAVE_RESULT              = 'CRSLT',
+	MEMBER_CAVE_RESULT              = 'C_RSLT',
 	MEMBER_ZUKAN_ENEMY              = 'DENEMY',
 	MEMBER_FINAL_RESULT             = 'F_RSLT',
 	MEMBER_GROUND                   = 'GROUND',

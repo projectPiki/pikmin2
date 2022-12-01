@@ -1,4 +1,15 @@
 #include "types.h"
+#include "kh/CaveResult.h"
+#include "kh/LostItem.h"
+#include "Dolphin/rand.h"
+#include "efx2d/T2DChangesmoke.h"
+#include "PSSystem/PSSystemIF.h"
+#include "JSystem/JKR/JKRFileLoader.h"
+#include "JSystem/J2D/J2DAnmLoader.h"
+#include "og/Screen/ogScreen.h"
+#include "og/Screen/StickAnimMgr.h"
+#include "Game/MemoryCard/Mgr.h"
+#include "Controller.h"
 
 /*
     Generated from dpostproc
@@ -311,8 +322,14 @@ namespace Screen {
  * Address:	803F8694
  * Size:	00007C
  */
-DispCaveResult::DispCaveResult(Game::Result::TNode*, unsigned long, unsigned long, unsigned long, unsigned long, bool, JKRHeap*, bool)
+DispCaveResult::DispCaveResult(Game::Result::TNode* node, unsigned long death, unsigned long otakara, unsigned long otakaraMax, unsigned long pokos, bool paydebt, JKRHeap* heap, bool caveComp)
 {
+    init(node, death, caveComp);
+    m_totalPokos = pokos;
+    m_debtPayed = paydebt;
+    m_collectedOtakara = otakara;
+    m_maxOtakara = otakaraMax;
+    m_heap = heap;
 	/*
 	.loc_0x0:
 	  stwu      r1, -0x20(r1)
@@ -356,8 +373,31 @@ DispCaveResult::DispCaveResult(Game::Result::TNode*, unsigned long, unsigned lon
  * Address:	803F8710
  * Size:	0000AC
  */
-void DispCaveResult::init(Game::Result::TNode*, unsigned long, bool)
+void DispCaveResult::init(Game::Result::TNode* node, unsigned long death, bool caveComp)
 {
+    m_resultNode = node;
+    m_lostTreasures = 0;
+    _14 = 0;
+    m_cavePokos = 0;
+    m_treasureNodeCount = 0;
+    Game::Result::TNode* cNode = static_cast<Game::Result::TNode*>(m_resultNode->m_child);
+    while (cNode) {
+        if (cNode->m_quantity > 0 || cNode->m_isLost != 0) {
+            _14++;
+        }
+        m_treasureNodeCount++;
+        m_lostTreasures += cNode->m_isLost;
+
+        if (cNode->m_quantity > 0 || !cNode->m_isLost) {
+            m_cavePokos += cNode->m_pokoValue;
+        }
+
+        cNode = static_cast<Game::Result::TNode*>(cNode->m_next);
+    }
+
+    m_deadPikis = death;
+    m_caveComp = caveComp;
+    m_isFinished = 0;
 	/*
 stw      r4, 0xc(r3)
 li       r0, 0
@@ -424,6 +464,66 @@ blr
  */
 ObjCaveResult::ObjCaveResult()
 {
+    m_saveMgr = nullptr;
+    m_resultNode = nullptr;
+    m_screenComplete = nullptr;
+    m_screenDropItem = nullptr;
+    m_screenMain = nullptr;
+
+    m_completeAnim = nullptr;
+    m_mainAnim = nullptr;
+    m_completeAnimColor = nullptr;
+    m_mainAnimColor = nullptr;
+	m_animTexSRT = nullptr;
+	m_animTevReg = nullptr;
+
+    m_animTimers[0] = 0.0f;
+    m_animTimers[1] = 0.0f;
+    m_animTimers[2] = 0.0f;
+    m_animTimers[3] = 0.0f;
+    m_animTimers[4] = 0.0f;
+    m_animTimers[5] = 0.0f;
+    m_efxComp = nullptr;
+    m_stickAnim = nullptr;
+
+    m_fadePane1 = nullptr;
+    m_fadePane2 = nullptr;
+    m_fadePane3 = nullptr;
+    m_fadePane4 = nullptr;
+
+    m_counterTotalPokos = nullptr;
+    m_counterTreasureMax = nullptr;
+    m_counterTreasureCollected = nullptr;
+    _A4 = nullptr;
+    _A0 = nullptr;
+    m_counterDeadPiki = nullptr;
+    m_counterCavePokos = nullptr;
+
+    m_totalPokos = 0;
+    m_maxOtakara = 0;
+    m_otakaraCount = 0;
+    _C0 = 0;
+    _BC = 0;
+    m_deadPiki = 0;
+    m_cavePokos = 0;
+    
+    m_scrollPos = 0.0f;
+    m_scrollUpDown = 0.0f;
+    m_scrollIndex = -6;
+    m_scrollIndexNew = 0;
+    _E0 = msVal._1C;
+
+    _E4 = 0;
+    _EC = 0;
+    _E8 = 0;
+    m_status = 3;
+    _F4 = 0;
+    _F8 = 0;
+    m_flag = 0;
+    m_alpha = 255;
+    _107 = 0;
+    _106 = 0;
+
 	/*
 stwu     r1, -0x10(r1)
 mflr     r0
@@ -510,8 +610,151 @@ blr
  * Address:	803F88F0
  * Size:	000B08
  */
-void ObjCaveResult::doCreate(JKRArchive*)
+void ObjCaveResult::doCreate(JKRArchive* arc)
 {
+    DispCaveResult* disp = static_cast<DispCaveResult*>(getDispMember());
+    JUT_ASSERTLINE(191, disp->isID(OWNER_KH, MEMBER_CAVE_RESULT), "disp member err");
+
+    m_screenMain = new P2DScreen::Mgr_tuning;
+    m_screenMain->set("result_doukutu.blo", 0x1040000, arc);
+    m_screenDropItem = new P2DScreen::Mgr_tuning;
+    m_screenDropItem->set("result_doukutu_drop_item.blo", 0x1040000, arc);
+
+    void* file = JKRFileLoader::getGlbResource("result_doukutu.bck", arc);
+    m_mainAnim = static_cast<J2DAnmTransform*>(J2DAnmLoaderDataBase::load(file));
+    file = JKRFileLoader::getGlbResource("result_doukutu.bpk", arc);
+    m_mainAnimColor = static_cast<J2DAnmColor*>(J2DAnmLoaderDataBase::load(file));
+    file = JKRFileLoader::getGlbResource("result_doukutu.btk", arc);
+    m_animTexSRT = static_cast<J2DAnmTextureSRTKey*>(J2DAnmLoaderDataBase::load(file));
+    file = JKRFileLoader::getGlbResource("result_doukutu.brk", arc);
+    m_animTevReg = static_cast<J2DAnmTevRegKey*>(J2DAnmLoaderDataBase::load(file));
+
+    m_screenMain->setAnimation(m_mainAnim);
+    m_screenMain->setAnimation(m_mainAnimColor);
+    m_screenMain->setAnimation(m_animTexSRT);
+    m_screenMain->setAnimation(m_animTevReg);
+
+    JKRHeap* oldHeap = getCurrentHeap();
+    if (disp->m_heap) {
+        disp->m_heap->becomeCurrentHeap();
+    }
+
+    m_screenComplete = new P2DScreen::Mgr_tuning;
+    m_screenComplete->set("doukutu_complete.blo", 0x40000, arc);
+    file = JKRFileLoader::getGlbResource("doukutu_complete.bck", arc);
+    m_completeAnim = static_cast<J2DAnmTransform*>(J2DAnmLoaderDataBase::load(file));
+    file = JKRFileLoader::getGlbResource("doukutu_complete.bpk", arc);
+    m_completeAnimColor = static_cast<J2DAnmColor*>(J2DAnmLoaderDataBase::load(file));
+    m_screenComplete->setAnimation(m_completeAnim);
+    m_screenComplete->setAnimation(m_completeAnimColor);
+    m_screenComplete->animation();
+
+    og::Screen::setCallBackMessage(m_screenMain);
+    m_resultNode = disp->m_resultNode;
+
+    Game::Result::TNode* cNode = static_cast<Game::Result::TNode*>(m_resultNode->m_child);
+    while (cNode) {
+        cNode->itemMgr = new kh::Screen::LostItemMgr(cNode->m_isLost);
+        cNode = static_cast<Game::Result::TNode*>(cNode->m_next);
+    }
+
+    if (disp->m_treasureNodeCount > 6) {
+        m_flag |= 1;
+        m_scrollIndexNew = disp->m_treasureNodeCount - 6;
+    }
+
+    JGeometry::TBox2f* rect = m_screenMain->search('Nsetp00')->getBounds();
+    JGeometry::TBox2f* rect2 = m_screenMain->search('Nsetp01')->getBounds();
+
+    m_scrollUpDown = rect2->f.y - rect->f.y;
+    m_scrollPos = m_scrollUpDown * (int)m_scrollIndex;
+
+    kh::Screen::setInfAlpha(m_screenMain->search('Nicon00'));
+    kh::Screen::setInfAlpha(m_screenMain->search('Nicon01'));
+
+    m_cavePokos = 0;
+    m_deadPiki = 0;
+    m_otakaraCount = disp->m_collectedOtakara + disp->m_lostTreasures - disp->_14; 
+    m_maxOtakara = disp->m_maxOtakara;
+    m_totalPokos = disp->m_totalPokos - disp->m_cavePokos;
+
+    u64 debtTag;
+    if (disp->m_debtPayed) {
+        m_screenMain->search('Nfi_menu')->m_isVisible = false;
+        m_screenMain->search('Nco_menu')->m_isVisible = true;
+        debtTag = 'Pcomp01';
+    } else {
+        m_screenMain->search('Nfi_menu')->m_isVisible = true;
+        m_screenMain->search('Nco_menu')->m_isVisible = false;
+        debtTag = 'Pfin01';
+    }
+
+    if (!disp->m_caveComp && (disp->m_maxOtakara == disp->m_collectedOtakara)) {
+        m_screenMain->search('Pananorm')->m_isVisible = false;
+        m_screenMain->search('Panacomp')->m_isVisible = true;
+    } else {
+        m_screenMain->search('Pananorm')->m_isVisible = true;
+        m_screenMain->search('Panacomp')->m_isVisible = false;
+    }
+
+    m_screenMain->search('Panacomp')->setBasePosition(POS_CENTER);;
+
+    og::Screen::CallBack_Picture* pic = og::Screen::setCallBack_3DStick(arc, m_screenMain, 'PICT_004');
+    m_stickAnim = new og::Screen::StickAnimMgr(pic);
+    m_stickAnim->stickUpDown();
+
+    m_fadePane2 = kh::Screen::khUtilFadePane::create(m_screenMain, 'Nyame_u', 0x10);
+    m_fadePane2->fadeout();
+    m_fadePane3 = kh::Screen::khUtilFadePane::create(m_screenMain, 'Nyame_l', 0x10);
+    m_fadePane3->fadeout();
+    m_fadePane1 = kh::Screen::khUtilFadePane::create(m_screenMain, 'PICT_004', 0x10);
+    m_fadePane1->add(m_screenMain->search('N_3d'));
+    m_fadePane1->fadeout();
+    m_fadePane4 = kh::Screen::khUtilFadePane::create(m_screenMain, 'Nmain_m', 0x10);
+    m_fadePane4->fadeout();
+
+    m_counterCavePokos = og::Screen::setCallBack_CounterRV(m_screenMain, 'Ptomadp1', &m_cavePokos, 6, true, false, arc);
+    m_counterDeadPiki = og::Screen::setCallBack_CounterRV(m_screenMain, 'Ppiki1', &m_deadPiki, 3, true, false, arc);
+    _A0 = og::Screen::setCallBack_CounterRV(m_screenMain, 'Pmad00_1', &_BC, 4, false, false, arc);
+    _A4 = og::Screen::setCallBack_CounterRV(m_screenMain, 'Pmad01_1', &_C0, 4, false, false, arc);
+    m_counterTreasureCollected = og::Screen::setCallBack_CounterRV(m_screenMain, 'Pota_1', &m_otakaraCount, 2, true, true, arc);
+    m_counterTreasureMax = og::Screen::setCallBack_CounterRV(m_screenMain, 'Pota_to1', &m_maxOtakara, 2, false, true, arc);
+    m_counterTotalPokos = og::Screen::setCallBack_CounterRV(m_screenMain, debtTag, &m_totalPokos, 9, false, false, arc);
+    m_counterTreasureMax->setCenteringMode(og::Screen::CallBack_CounterRV::ECM_Unknown1);
+
+    if (!disp->m_debtPayed && (disp->m_caveComp || disp->m_maxOtakara != disp->m_collectedOtakara)) {
+        J2DPane* compPane = m_counterTreasureMax->getMotherPane();
+        compPane->m_isVisible = false;
+        compPane = m_counterTreasureCollected->getMotherPane();
+        compPane->add(msVal._10, msVal._14);
+        m_screenMain->search('PICT_008')->m_isVisible = false;
+        m_screenMain->search('Ptits14')->m_isVisible = false;
+        m_screenMain->search('Ptits15')->m_isVisible = false;
+    }
+    m_scaleMgr = new og::Screen::ScaleMgr;
+
+    m_screenMain->search('Nsetp02')->m_isVisible = false;
+    m_screenMain->search('Nsetp03')->m_isVisible = false;
+    m_screenMain->search('Nsetp04')->m_isVisible = false;
+    m_screenMain->search('Nsetp05')->m_isVisible = false;
+    m_screenMain->search('Piname00')->m_messageID = '0101_00';
+    m_screenMain->search('Piname01')->m_messageID = '0101_00';
+
+    m_saveMgr = ebi::Save::TMgr::createInstance();
+    m_saveMgr->m_saveMenu.loadResource();
+    m_saveMgr->m_memCardErrorMgr.loadResource(getCurrentHeap());
+    Game::MemoryCard::Mgr* mgr = static_cast<Game::MemoryCard::Mgr*>(sys->m_cardMgr);
+    mgr->loadResource(getCurrentHeap());
+    Controller* pad = getGamePad();
+    m_saveMgr->m_controller = pad;
+    m_saveMgr->m_saveMenu.m_controller = pad;
+    m_saveMgr->m_memCardErrorMgr.m_controller = pad;
+    m_saveMgr->m_saveType = 1;
+    m_efxComp = new efx2d::T2DCavecompLoop;
+
+    if (m_heap) {
+        oldHeap->becomeCurrentHeap();
+    }
 	/*
 stwu     r1, -0x50(r1)
 mflr     r0
@@ -1242,8 +1485,104 @@ blr
  * Address:	803F93F8
  * Size:	00034C
  */
-void ObjCaveResult::doUpdate()
+bool ObjCaveResult::doUpdate()
 {
+    DispCaveResult* disp = static_cast<DispCaveResult*>(getDispMember());
+    JUT_ASSERTLINE(376, disp->isID(OWNER_KH, MEMBER_CAVE_RESULT), "disp member err");
+
+    disp = static_cast<DispCaveResult*>(getDispMember());
+    updateAnimation();
+    if (!(m_flag & 4)) {
+        m_saveMgr->update();
+        if (m_saveMgr->isFinish()) {
+            switch (m_saveMgr->_474)
+            {
+            case 1:
+                m_flag &= 0xfb;
+                break;
+            case 0:
+                disp->m_isFinished = 1;
+                break;
+            }
+        }
+    } else {
+        switch (m_status)
+        {
+        case 0:
+            statusNormal();
+            break;
+        case 1:
+            statusScrollUp();
+            break;
+        case 2:
+            statusScrollDown();
+            break;
+        case 3:
+            statusForceScroll();
+            break;
+        case 4:
+            statusDrumRoll();
+            break;
+        case 5:
+            statusLost();
+            break;
+        case 6:
+            statusDecP();
+            break;
+        case 7:
+            statusEffect();
+            break;
+        case 8:
+            statusAllMoney();
+            break;
+        }
+        Controller* pad = getGamePad();
+        if (pad->m_padButton.m_buttonDown & Controller::PRESS_A) {
+            if (!(m_flag & 8)) {
+                m_flag |= 2;
+            }
+            if (m_status == 0) {
+                m_flag |= 4;
+                m_efxComp->fade();
+                m_saveMgr->start();
+            }
+        }
+
+        if (m_flag & 2) {
+            m_scrollIndex = m_scrollIndexNew;
+            m_scrollPos = -m_scrollUpDown * (f32)m_scrollIndex;
+            _E4 = 0;
+            m_cavePokos = disp->m_cavePokos;
+            m_deadPiki = disp->m_deadPikis;
+            m_totalPokos = disp->m_totalPokos;
+            m_otakaraCount = disp->m_collectedOtakara;
+            m_counterCavePokos->startPuyoUp(1.0f);
+            m_counterDeadPiki->startPuyoUp(1.0f);
+            m_counterTotalPokos->startPuyoUp(1.0f);
+            PSSystem::spSysIF->playSystemSe(PSSE_SY_REGI_SUM_UP, 0);
+            pikminSE();
+            if (!disp->m_caveComp) {
+                m_otakaraCount = disp->m_collectedOtakara;
+                m_status = 0;
+            } else {
+                m_status = 7;
+                _F4 = msVal._3B;
+            }
+            Game::Result::TNode* cNode = static_cast<Game::Result::TNode*>(m_resultNode->m_child);
+            while (cNode) {
+                kh::Screen::LostItemMgr* mgr = cNode->itemMgr;
+                if (mgr->m_flags & 1 && mgr->m_maxPanes > 0) {
+                    mgr->m_flags |= 2;
+                }
+            }
+            m_flag &= 0xfd;
+            m_flag |= 8;
+        }
+    }
+    if (!(m_flag & 4) && m_status != 7 && m_alpha != 0) {
+        m_alpha -= msVal._3A;
+    }
+    return false;
 	/*
 stwu     r1, -0x20(r1)
 mflr     r0
@@ -2050,8 +2389,14 @@ blr
  * Address:	803F9EA4
  * Size:	000068
  */
-void ObjCaveResult::doUpdateFadein()
+bool ObjCaveResult::doUpdateFadein()
 {
+    updateAnimation();
+    m_alpha -= msVal._38;
+    bool check = m_alpha < msVal._38;
+    if (check)
+        m_alpha = 0;
+    return check;
 	/*
 stwu     r1, -0x10(r1)
 mflr     r0
@@ -2093,6 +2438,8 @@ blr
  */
 void ObjCaveResult::doUpdateFadeinFinish()
 {
+    _FC = 175.0f;
+    _100 = 224.5f;
 	/*
 lfs      f1, lbl_8051FFC8@sda21(r2)
 lfs      f0, lbl_8051FFCC@sda21(r2)
@@ -2107,8 +2454,14 @@ blr
  * Address:	803F9F20
  * Size:	00006C
  */
-void ObjCaveResult::doUpdateFadeout()
+bool ObjCaveResult::doUpdateFadeout()
 {
+    updateAnimation();
+    m_alpha += msVal._38;
+    bool check = m_alpha > (255 - msVal._38);
+    if (check)
+        m_alpha = 255;
+    return check;
 	/*
 stwu     r1, -0x10(r1)
 mflr     r0
@@ -2684,6 +3037,8 @@ blr
  */
 void ObjCaveResult::statusDrumRoll()
 {
+    _F4 = msVal._3B;
+    m_status = 8;
 	/*
 lis      r4, msVal__Q32kh6Screen13ObjCaveResult@ha
 li       r0, 8
@@ -3552,6 +3907,16 @@ blr
  */
 LostItem::LostItem()
 {
+    m_rect.p1.y = 0.0f;
+    m_rect.p1.x = 0.0f;
+    m_rect.p2.y = 0.0f;
+    m_rect.p2.x = 0.0f;
+    m_alpha = 255;
+    _14 = -0x28;
+    _1A = 0;
+    m_angle = 0;
+    m_counter = false;
+
 	/*
 lfs      f0, lbl_8051FFA8@sda21(r2)
 li       r5, 0xff
@@ -3575,8 +3940,15 @@ blr
  * Address:	803FB1C0
  * Size:	000080
  */
-LostItemMgr::LostItemMgr(int)
+LostItemMgr::LostItemMgr(int count)
 {
+    m_maxPanes = count;
+    if (count) {
+        m_itemList = new LostItem[count];
+    } else {
+        m_itemList = nullptr;
+    }
+    m_flags = 0;
 	/*
 stwu     r1, -0x10(r1)
 mflr     r0
@@ -3622,8 +3994,46 @@ blr
  * Address:	803FB240
  * Size:	0003EC
  */
-void LostItemMgr::init(const JGeometry::TVec2<float>&, bool)
+void LostItemMgr::init(const JGeometry::TVec2<float>& pos, bool flag)
 {
+    if (m_maxPanes) {
+        f32 x = pos.x;
+        f32 y = pos.y;
+        if (flag) {
+            x += 60.0f;
+        }
+
+        for (int i = 0; i < m_maxPanes; i++) {
+            f32 x1 = randFloat();
+            f32 x2 = randFloat();
+            f32 y1 = randFloat();
+            f32 y2 = randFloat();
+
+            LostItem item = m_itemList[i];
+            item.m_rect.p1.x = x;
+            item.m_rect.p1.y = y;
+            item.m_rect.p2.x = 40.0f * randFloat() - 20.0f;
+            item.m_rect.p2.y = 32.0f * y2 - 30.0f;
+            item._10 = (u16)(4.0f * y1  + 2.0f);
+            item._1A = (u16)(10000.0f * x2 - 5000.0f);
+            item.m_counter = (u8)(10.0f * x1 - 8.0f);
+        }
+        float xoffs[5] = {kh::Screen::ObjCaveResult::msVal._24[0], kh::Screen::ObjCaveResult::msVal._24[1],
+                            kh::Screen::ObjCaveResult::msVal._24[2], kh::Screen::ObjCaveResult::msVal._24[3], kh::Screen::ObjCaveResult::msVal._24[4]};
+
+        if (flag) {
+            xoffs[0] += 60.0f;
+        }
+        f32 efxY = pos.y - 10.0f;
+        f32 efxX = pos.x;
+        for (int i = 0; i < 5; i++) {
+            efx2d::T2DChangesmoke efx;
+            efx2d::Arg arg(efxX + xoffs[i], efxY);
+            efx.create(&arg);
+        }
+        PSSystem::spSysIF->playSystemSe(PSSE_SY_PIKI_DECREMENT, 0);
+        m_flags |= 3;
+    }
 	/*
 stwu     r1, -0x1c0(r1)
 mflr     r0
@@ -3898,6 +4308,37 @@ blr
  */
 void LostItemMgr::update()
 {
+    bool flag, doend;
+    if (!(m_flags & 1)) {
+        return;
+    }
+    doend = true;
+    for (int i = 0; i < (int)m_maxPanes; i++) {
+            LostItem* item = &m_itemList[i];
+            if (item->m_alpha == 0) {
+                flag = 1;
+            } else {
+            if (item->m_counter == 0) {
+                item->m_alpha += item->_14;
+                if (item->m_alpha < (int)-item->_14) {
+                    item->m_alpha = 0;
+                }
+            } else {
+                item->m_counter--;
+            }
+            flag = 0;
+            item->m_rect.p2.y += item->_10;
+            item->m_rect.p2.x *= 0.85f;
+            item->m_rect.p2.y *= 0.85f;
+            item->m_rect.p1.x += item->m_rect.p2.x;
+            item->m_rect.p1.y += item->m_rect.p2.y;
+            item->m_angle += item->_1A;
+        }
+        doend &= flag;
+    }
+    if (doend) {
+        m_flags &= 0xfffffffe;
+    }
 	/*
 lwz      r0, 8(r3)
 clrlwi.  r0, r0, 0x1f
@@ -3985,8 +4426,22 @@ blr
  * Address:	803FB734
  * Size:	000170
  */
-void LostItemMgr::draw(P2DScreen::Mgr_tuning*, unsigned long long, const ResTIMG*, Graphics&)
+void LostItemMgr::draw(P2DScreen::Mgr_tuning* screen, u64 tag, const ResTIMG* timg, Graphics& gfx)
 {
+    if (m_flags & 1) {
+        kh::Screen::setTex(screen, tag, timg);
+        J2DPane* pane = screen->search(tag);
+        for (int i = 0; i < (int)m_maxPanes; i++) {
+            LostItem* item = &m_itemList[i];
+            pane->_0D4.x = item->m_rect.p1.x;
+            pane->_0D4.y = item->m_rect.p1.y;
+            pane->calcMtx();
+            pane->setAlpha(item->m_alpha);
+            pane->m_angle = 360.0f * ((f32)item->m_angle / 65536.0f);
+            pane->calcMtx();
+            screen->draw(gfx, gfx.m_orthoGraph);
+        }
+    }
 	/*
 	.loc_0x0:
 	  stwu      r1, -0x60(r1)
@@ -4153,8 +4608,9 @@ blr
  * Address:	803FB948
  * Size:	000008
  */
-void SceneCaveResult::getResName() const
+const char* SceneCaveResult::getResName() const
 {
+    return "";
 	/*
 addi     r3, r2, lbl_80520014@sda21
 blr
@@ -4166,29 +4622,21 @@ blr
  * Address:	803FB950
  * Size:	000008
  */
-u32 SceneCaveResult::getSceneType() { return 0x4E20; }
+SceneType SceneCaveResult::getSceneType() { return SCENE_CAVE_RESULT; }
 
 /*
  * --INFO--
  * Address:	803FB958
  * Size:	000008
  */
-u32 SceneCaveResult::getOwnerID() { return 0x4B48; }
+ScreenOwnerID SceneCaveResult::getOwnerID() { return OWNER_KH; }
 
 /*
  * --INFO--
  * Address:	803FB960
  * Size:	000010
  */
-void SceneCaveResult::getMemberID()
-{
-	/*
-lis      r4, 0x52534C54@ha
-li       r3, 0x435f
-addi     r4, r4, 0x52534C54@l
-blr
-	*/
-}
+ScreenMemberID SceneCaveResult::getMemberID() { return MEMBER_CAVE_RESULT; }
 
 /*
  * --INFO--
@@ -4260,29 +4708,21 @@ blr
  * Address:	803FBA20
  * Size:	000008
  */
-u32 DispCaveResult::getSize() { return 0x38; }
+u32 DispCaveResult::getSize() { return sizeof(DispCaveResult); }
 
 /*
  * --INFO--
  * Address:	803FBA28
  * Size:	000008
  */
-u32 DispCaveResult::getOwnerID() { return 0x4B48; }
+u32 DispCaveResult::getOwnerID() { return OWNER_KH; }
 
 /*
  * --INFO--
  * Address:	803FBA30
  * Size:	000010
  */
-void DispCaveResult::getMemberID()
-{
-	/*
-lis      r4, 0x52534C54@ha
-li       r3, 0x435f
-addi     r4, r4, 0x52534C54@l
-blr
-	*/
-}
+u64 DispCaveResult::getMemberID() { return (u64)MEMBER_CAVE_RESULT; }
 
 } // namespace Screen
 } // namespace kh
@@ -4341,12 +4781,12 @@ namespace Screen {
  * Address:	803FBACC
  * Size:	000008
  */
-ObjCaveResult::@24 @~ObjCaveResult()
-{
+//ObjCaveResult::@24 @~ObjCaveResult()
+//{
 	/*
 addi     r3, r3, -24
 b        __dt__Q32kh6Screen13ObjCaveResultFv
 	*/
-}
+//}
 } // namespace Screen
 } // namespace kh

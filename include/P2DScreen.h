@@ -70,10 +70,10 @@ struct Mgr_tuning : public Mgr {
 
 	// _00      = VTBL
 	// _00-_138 = Mgr
-	f32 m_widthMaybe;  // _138
-	f32 m_heightMaybe; // _13C
-	f32 m_someX;       // _140
-	f32 m_someY;       // _144
+	f32 m_screenScaleX; // _138
+	f32 m_screenScaleY; // _13C
+	f32 m_someX;        // _140
+	f32 m_someY;        // _144
 };
 } // namespace P2DScreen
 

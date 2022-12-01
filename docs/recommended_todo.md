@@ -179,8 +179,8 @@
 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectNishimuraU/Hana.cpp">Hana.cpp</a> | 31984 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectNishimuraU/TadpoleState.cpp">TadpoleState.cpp</a> | 34258 |
 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectNishimuraU/SnakeWholeState.cpp">SnakeWholeState.cpp</a> | 35172 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectNishimuraU/IKSystemMgr.cpp">IKSystemMgr.cpp</a> | 35787 |
 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectNishimuraU/MapNode.cpp">MapNode.cpp</a> | 36411 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectNishimuraU/Baby.cpp">Baby.cpp</a> | 36633 |
-| <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectNishimuraU/Kabuto.cpp">Kabuto.cpp</a> | 36767 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectNishimuraU/RandItemUnit.cpp">RandItemUnit.cpp</a> | 37283 |
-| <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectNishimuraU/Sokkuri.cpp">Sokkuri.cpp</a> | 39216 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectNishimuraU/KumaKochappy.cpp">KumaKochappy.cpp</a> | 41034 |
+| <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectNishimuraU/Kabuto.cpp">Kabuto.cpp</a> | 36767 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectNishimuraU/Sokkuri.cpp">Sokkuri.cpp</a> | 39216 |
+| <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectNishimuraU/RandItemUnit.cpp">RandItemUnit.cpp</a> | 39997 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectNishimuraU/KumaKochappy.cpp">KumaKochappy.cpp</a> | 41034 |
 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectNishimuraU/SnakeCrowState.cpp">SnakeCrowState.cpp</a> | 41570 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectNishimuraU/shadowMgr.cpp">shadowMgr.cpp</a> | 43137 |
 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectNishimuraU/Tank.cpp">Tank.cpp</a> | 43887 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectNishimuraU/KumaChappy.cpp">KumaChappy.cpp</a> | 44812 |
 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectNishimuraU/BombSarai.cpp">BombSarai.cpp</a> | 45463 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectNishimuraU/BigTreasureShadow.cpp">BigTreasureShadow.cpp</a> | 45533 |
@@ -191,11 +191,11 @@
 ### <section id="plugProjectOgawaU">plugProjectOgawaU</section>
 | File | Size (bytes) | File | Size (bytes) |
 | ---- | ---- | ---- | ---- |
-| <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectOgawaU/testObj.cpp">testObj.cpp</a> | 6249 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectOgawaU/ogBloGroup.cpp">ogBloGroup.cpp</a> | 8075 |
+| <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectOgawaU/testObj.cpp">testObj.cpp</a> | 6249 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectOgawaU/ogBloGroup.cpp">ogBloGroup.cpp</a> | 9370 |
 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectOgawaU/ogObjSave.cpp">ogObjSave.cpp</a> | 9529 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectOgawaU/ogSceneGround.cpp">ogSceneGround.cpp</a> | 9854 |
 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectOgawaU/ogObjWorldMapInfoWindow0.cpp">ogObjWorldMapInfoWindow0.cpp</a> | 10049 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectOgawaU/ogSceneCourseName.cpp">ogSceneCourseName.cpp</a> | 10259 |
 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectOgawaU/ogCopyPane.cpp">ogCopyPane.cpp</a> | 10962 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectOgawaU/ogObjChallengeBase.cpp">ogObjChallengeBase.cpp</a> | 12161 |
-| <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectOgawaU/ogSE.cpp">ogSE.cpp</a> | 12799 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectOgawaU/ogCallBackMessage.cpp">ogCallBackMessage.cpp</a> | 14032 |
+| <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectOgawaU/ogSE.cpp">ogSE.cpp</a> | 13800 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectOgawaU/ogCallBackMessage.cpp">ogCallBackMessage.cpp</a> | 14032 |
 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectOgawaU/ogObjWorldMapInfoWindow1.cpp">ogObjWorldMapInfoWindow1.cpp</a> | 15516 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectOgawaU/ogFuriko.cpp">ogFuriko.cpp</a> | 16001 |
 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectOgawaU/ogObjSpecialItem.cpp">ogObjSpecialItem.cpp</a> | 17274 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectOgawaU/ogCallBackPicture.cpp">ogCallBackPicture.cpp</a> | 17788 |
 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectOgawaU/ogObjSMenuCont.cpp">ogObjSMenuCont.cpp</a> | 20244 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectOgawaU/ogObjFinalMsg.cpp">ogObjFinalMsg.cpp</a> | 21757 |
@@ -207,10 +207,10 @@
 ### <section id="plugProjectYamashitaU">plugProjectYamashitaU</section>
 | File | Size (bytes) | File | Size (bytes) |
 | ---- | ---- | ---- | ---- |
-| <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectYamashitaU/enemyStoneMgr.cpp">enemyStoneMgr.cpp</a> | 8992 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectYamashitaU/farmMgr.cpp">farmMgr.cpp</a> | 12281 |
-| <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectYamashitaU/farm.cpp">farm.cpp</a> | 15591 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectYamashitaU/vtxAnm.cpp">vtxAnm.cpp</a> | 26658 |
-| <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectYamashitaU/effectAnimator.cpp">effectAnimator.cpp</a> | 27586 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectYamashitaU/lifeGaugeMgr.cpp">lifeGaugeMgr.cpp</a> | 35502 |
-| <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectYamashitaU/kochappyState.cpp">kochappyState.cpp</a> | 58846 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectYamashitaU/singleGS_ZukanParms.cpp">singleGS_ZukanParms.cpp</a> | 60582 |
+| <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectYamashitaU/enemyStoneMgr.cpp">enemyStoneMgr.cpp</a> | 8992 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectYamashitaU/enemyStoneObj.cpp">enemyStoneObj.cpp</a> | 9523 |
+| <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectYamashitaU/farmMgr.cpp">farmMgr.cpp</a> | 12281 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectYamashitaU/farm.cpp">farm.cpp</a> | 15591 |
+| <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectYamashitaU/vtxAnm.cpp">vtxAnm.cpp</a> | 26658 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectYamashitaU/effectAnimator.cpp">effectAnimator.cpp</a> | 27586 |
+| <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectYamashitaU/lifeGaugeMgr.cpp">lifeGaugeMgr.cpp</a> | 35502 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectYamashitaU/kochappyState.cpp">kochappyState.cpp</a> | 58846 |
 
 ### <section id="sysBootupU">sysBootupU</section>
 | File | Size (bytes) | File | Size (bytes) |

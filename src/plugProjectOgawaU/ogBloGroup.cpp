@@ -1,5 +1,7 @@
 #include "Graphics.h"
 #include "types.h"
+#include "og/Screen/BloGroup.h"
+#include "og/Screen/ogScreen.h"
 
 /*
     Generated from dpostproc
@@ -27,8 +29,18 @@ namespace Screen {
  * Address:	8030EF88
  * Size:	000098
  */
-BloGroup::BloGroup(unsigned short)
+BloGroup::BloGroup(unsigned short count)
 {
+	m_screens = new P2DScreen::Mgr_tuning*[count];
+	_04       = new u32[count];
+
+	m_screenNumMax     = count;
+	m_screenNumCurrent = 0;
+
+	for (int i = 0; i < m_screenNumMax; i++) {
+		m_screens[i] = nullptr;
+		_04[i]       = 0;
+	}
 	/*
 stwu     r1, -0x20(r1)
 mflr     r0
@@ -90,8 +102,19 @@ BloGroup::~BloGroup(void)
  * Address:	8030F020
  * Size:	0000A0
  */
-void BloGroup::addBlo(char*, P2DScreen::Mgr_tuning*, unsigned long, JKRArchive*)
+u32 BloGroup::addBlo(char* screename, P2DScreen::Mgr_tuning* screen, unsigned long flag, JKRArchive* arc)
 {
+	int count = m_screenNumCurrent;
+	if (m_screenNumCurrent >= m_screenNumMax) {
+		return -1;
+	} else {
+		m_screens[m_screenNumCurrent] = screen;
+		screen->set(screename, flag, arc);
+		_04[m_screenNumCurrent] = 0;
+		og::Screen::setAlphaScreen(screen);
+		m_screenNumCurrent++;
+	}
+	return count;
 	/*
 	.loc_0x0:
 	  stwu      r1, -0x20(r1)
@@ -166,8 +189,13 @@ void BloGroup::translate(float, float)
  * Address:	8030F0C0
  * Size:	000044
  */
-void BloGroup::scale(float)
+void BloGroup::scale(float scale)
 {
+	for (int i = 0; i < m_screenNumCurrent; i++) {
+		P2DScreen::Mgr_tuning* screen = m_screens[i];
+		screen->m_screenScaleX        = scale * 0.95f;
+		screen->m_screenScaleY        = scale * 0.95f;
+	}
 	/*
 lfs      f2, mstTuningScaleX__Q29P2DScreen10Mgr_tuning@sda21(r2)
 li       r6, 0
@@ -208,8 +236,12 @@ void BloGroup::setAlpha(unsigned char)
  * Address:	8030F104
  * Size:	0000A4
  */
-void BloGroup::rotate(float, float, J2DRotateAxis, float)
+void BloGroup::rotate(float axisX, float axisY, J2DRotateAxis type, float angle)
 {
+	for (int i = 0; i < m_screenNumCurrent; i++) {
+		P2DScreen::Mgr_tuning* screen = m_screens[i];
+		screen->rotate(axisX, axisY, type, angle);
+	}
 	/*
 stwu     r1, -0x30(r1)
 mflr     r0
@@ -266,6 +298,10 @@ blr
  */
 void BloGroup::update(void)
 {
+	for (int i = 0; i < m_screenNumCurrent; i++) {
+		P2DScreen::Mgr_tuning* screen = m_screens[i];
+		screen->update();
+	}
 	/*
 stwu     r1, -0x20(r1)
 mflr     r0
@@ -317,8 +353,13 @@ void BloGroup::animation(void)
  * Address:	8030F218
  * Size:	0000E8
  */
-void BloGroup::draw(J2DPerspGraph*)
+void BloGroup::draw(J2DPerspGraph* graf)
 {
+	Graphics gfx;
+	for (int i = 0; i < m_screenNumCurrent; i++) {
+		P2DScreen::Mgr_tuning* screen = m_screens[i];
+		screen->draw(gfx, *graf);
+	}
 	/*
 stwu     r1, -0x2c0(r1)
 mflr     r0
@@ -397,10 +438,10 @@ blr
  * Address:	........
  * Size:	00009C
  */
-Graphics::~Graphics()
-{
-	// UNUSED FUNCTION
-}
+// Graphics::~Graphics()
+//{
+// UNUSED FUNCTION
+//}
 
 /*
  * --INFO--

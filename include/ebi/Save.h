@@ -153,7 +153,7 @@ struct TMgr : public JKRDisposer {
 	void onDvdErrorRecovered();
 	void start();
 	void forceQuit();
-	void isFinish();
+	bool isFinish();
 	void goEnd_(enumEnd);
 	void update();
 	void draw();
@@ -175,7 +175,7 @@ struct TMgr : public JKRDisposer {
 	Game::MemoryCard::PlayerFileInfo m_playerFileInfo; // _3D4
 	int _470;                                          // _470
 	int _474;                                          // _474
-	u8 _478;                                           // _478
+	u8 m_saveType;                                           // _478
 	bool m_isAutosaveOn;                               // _479
 	u8 _47A;                                           // _47A
 	u8 _47B;                                           // _47B

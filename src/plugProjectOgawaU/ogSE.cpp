@@ -2,6 +2,10 @@
 #include "og/Sound.h"
 #include "PSSystem/PSSystemIF.h"
 #include "SoundID.h"
+#include "PSSystem/PSScene.h"
+#include "PSSystem/PSGame.h"
+#include "PSM/Scene.h"
+#include "utilityU.h"
 
 /*
     Generated from dpostproc
@@ -24,7 +28,6 @@
 */
 
 namespace og {
-Sound ogSound;
 
 /*
  * --INFO--
@@ -47,6 +50,13 @@ void Sound::setLifeDanger(void) { PSSystem::spSysIF->playSystemSe(PSSE_SY_LIFE_D
  */
 void Sound::setChimeNoon(void)
 {
+	PSSystem::spSysIF->playSystemSe(PSSE_SY_TIME_SIGNAL_NOON, 0);
+
+	PSSystem::SceneMgr* mgr = PSSystem::getSceneMgr();
+	PSSystem::checkSceneMgr(mgr);
+	PSM::Scene_Ground* scene = static_cast<PSM::Scene_Ground*>(mgr->getChildScene());
+	scene                    = (scene->isGameScene()) ? scene : nullptr;
+	scene->changeEnvSE_Noon();
 	/*
 	stwu     r1, -0x10(r1)
 	mflr     r0
@@ -398,8 +408,13 @@ void Sound::stopSound(void)
  */
 void Sound::setVsWin1P(void)
 {
-	// PSStart2DStream(0xc0011043)
-	// stopSound();
+	PSStart2DStream(0xc0011043);
+
+	PSSystem::SceneMgr* mgr = PSSystem::getSceneMgr();
+	PSSystem::checkSceneMgr(mgr);
+	PSM::Scene_Game* scene = static_cast<PSM::Scene_Game*>(mgr->getChildScene());
+	scene->stopAllSound(2);
+	PSMuteSE_on2D();
 	/*
 	stwu     r1, -0x10(r1)
 	mflr     r0
@@ -475,8 +490,13 @@ lbl_8030D098:
  */
 void Sound::setVsWin2P(void)
 {
-	// PSStart2DStream(0xc0011044)
-	// stopSound();
+	PSStart2DStream(0xc0011044);
+
+	PSSystem::SceneMgr* mgr = PSSystem::getSceneMgr();
+	PSSystem::checkSceneMgr(mgr);
+	PSM::Scene_Game* scene = static_cast<PSM::Scene_Game*>(mgr->getChildScene());
+	scene->stopAllSound(2);
+	PSMuteSE_on2D();
 	/*
 	stwu     r1, -0x10(r1)
 	mflr     r0
@@ -552,8 +572,13 @@ lbl_8030D178:
  */
 void Sound::setVsDraw(void)
 {
-	// PSStart2DStream(0xc0011045)
-	// stopSound();
+	PSStart2DStream(0xc0011045);
+
+	PSSystem::SceneMgr* mgr = PSSystem::getSceneMgr();
+	PSSystem::checkSceneMgr(mgr);
+	PSM::Scene_Game* scene = static_cast<PSM::Scene_Game*>(mgr->getChildScene());
+	scene->stopAllSound(2);
+	PSMuteSE_on2D();
 	/*
 	stwu     r1, -0x10(r1)
 	mflr     r0
