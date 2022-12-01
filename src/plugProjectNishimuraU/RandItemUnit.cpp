@@ -1081,22 +1081,18 @@ int RandItemUnit::getItemSlotNum(MapNode* mapNode)
  */
 bool RandItemUnit::isItemSetHard()
 {
-	// this switch case is driving me bonkers
-	// int di = m_mapUnitGenerator->_04;
 	switch (m_mapUnitGenerator->_04) {
 	case 0:
-		return false;
 	case 1:
-		return true;
+		return false;
 	case 2:
 	case 3:
 		if (m_items != 0) {
-			return true;
+			return false;
 		}
-		return false;
+		return true;
 	case 4:
 		return true;
-	case 5:
 	default:
 		return false;
 	}
