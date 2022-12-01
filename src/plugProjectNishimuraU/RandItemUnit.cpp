@@ -125,23 +125,24 @@ bool RandItemUnit::isItemSetDone(MapNode* mapNode, BaseGen* baseGen)
  */
 bool RandItemUnit::isGroundCapEnemySetDone(MapNode* mapNode)
 {
-		if (mapNode == m_randMapScore->getFixObjNode(1)) {
-			return true;
-		}
-		if (mapNode == m_randMapScore->getFixObjNode(2)) {
-			return true;
-		}
-		if (mapNode->m_itemNode->m_child) {
-			return true;
-		}
+	if (mapNode == m_randMapScore->getFixObjNode(1)) {
+		return true;
+	}
+	if (mapNode == m_randMapScore->getFixObjNode(2)) {
+		return true;
+	}
+	if (mapNode->m_itemNode->m_child) {
+		return true;
+	}
 
-		FOREACH_NODE(EnemyNode, mapNode->m_enemyNode->m_child, node)
-		{
-			TekiInfo* info = node->m_enemyUnit->m_tekiInfo;
-			if (info && (info->m_type != BaseGen::Seam__Door) && (info->m_type != BaseGen::Plant) && (info->m_dropMode == 0 || (m_mapUnitGenerator->isPomGroup(info)))) {
-				return true;
-			}
+	FOREACH_NODE(EnemyNode, mapNode->m_enemyNode->m_child, node)
+	{
+		TekiInfo* info = node->m_enemyUnit->m_tekiInfo;
+		if (info && (info->m_type != BaseGen::Seam__Door) && (info->m_type != BaseGen::Plant)
+		    && (info->m_dropMode == 0 || (m_mapUnitGenerator->isPomGroup(info)))) {
+			return true;
 		}
+	}
 	return false;
 }
 
@@ -150,76 +151,24 @@ bool RandItemUnit::isGroundCapEnemySetDone(MapNode* mapNode)
  * Address:	8024E6F4
  * Size:	0000D0
  */
-bool RandItemUnit::isFallCapEnemySetDone(MapNode*)
+bool RandItemUnit::isFallCapEnemySetDone(MapNode* mapNode)
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	mr       r31, r4
-	li       r4, 1
-	stw      r30, 8(r1)
-	mr       r30, r3
-	lwz      r3, 0xc(r3)
-	bl       getFixObjNode__Q34Game4Cave12RandMapScoreFi
-	cmplw    r31, r3
-	bne      lbl_8024E72C
-	li       r3, 1
-	b        lbl_8024E7AC
+	if (mapNode == m_randMapScore->getFixObjNode(1)) {
+		return true;
+	}
+	if (mapNode == m_randMapScore->getFixObjNode(2)) {
+		return true;
+	}
 
-lbl_8024E72C:
-	lwz      r3, 0xc(r30)
-	li       r4, 2
-	bl       getFixObjNode__Q34Game4Cave12RandMapScoreFi
-	cmplw    r31, r3
-	bne      lbl_8024E748
-	li       r3, 1
-	b        lbl_8024E7AC
-
-lbl_8024E748:
-	lwz      r3, 0x1c(r31)
-	lwz      r31, 0x10(r3)
-	b        lbl_8024E7A0
-
-lbl_8024E754:
-	lwz      r3, 0x18(r31)
-	lwz      r4, 0(r3)
-	cmplwi   r4, 0
-	beq      lbl_8024E79C
-	lwz      r0, 0x20(r4)
-	cmpwi    r0, 5
-	beq      lbl_8024E79C
-	cmpwi    r0, 6
-	beq      lbl_8024E79C
-	lbz      r0, 0x24(r4)
-	cmplwi   r0, 0
-	bne      lbl_8024E794
-	lwz      r3, 8(r30)
-	bl       isPomGroup__Q34Game4Cave16MapUnitGeneratorFPQ34Game4Cave8TekiInfo
-	clrlwi.  r0, r3, 0x18
-	beq      lbl_8024E79C
-
-lbl_8024E794:
-	li       r3, 1
-	b        lbl_8024E7AC
-
-lbl_8024E79C:
-	lwz      r31, 4(r31)
-
-lbl_8024E7A0:
-	cmplwi   r31, 0
-	bne      lbl_8024E754
-	li       r3, 0
-
-lbl_8024E7AC:
-	lwz      r0, 0x14(r1)
-	lwz      r31, 0xc(r1)
-	lwz      r30, 8(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	FOREACH_NODE(EnemyNode, mapNode->m_enemyNode->m_child, node)
+	{
+		TekiInfo* info = node->m_enemyUnit->m_tekiInfo;
+		if (info && (info->m_type != BaseGen::Seam__Door) && (info->m_type != BaseGen::Plant)
+		    && (info->m_dropMode != 0 || (m_mapUnitGenerator->isPomGroup(info)))) {
+			return true;
+		}
+	}
+	return false;
 }
 
 /*
@@ -1110,42 +1059,19 @@ lbl_8024F228:
  * Address:	8024F244
  * Size:	000060
  */
-int RandItemUnit::getItemSlotNum(MapNode*)
+int RandItemUnit::getItemSlotNum(MapNode* mapNode)
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	li       r31, 0
-	lwz      r3, 0x18(r4)
-	bl       getBaseGen__Q34Game4Cave8UnitInfoFv
-	cmplwi   r3, 0
-	beq      lbl_8024F28C
-	lwz      r3, 0x10(r3)
-	b        lbl_8024F284
-
-lbl_8024F270:
-	lwz      r0, 0x18(r3)
-	cmpwi    r0, 2
-	bne      lbl_8024F280
-	addi     r31, r31, 1
-
-lbl_8024F280:
-	lwz      r3, 4(r3)
-
-lbl_8024F284:
-	cmplwi   r3, 0
-	bne      lbl_8024F270
-
-lbl_8024F28C:
-	lwz      r0, 0x14(r1)
-	mr       r3, r31
-	lwz      r31, 0xc(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	int itemSlotNum  = 0;
+	BaseGen* baseGen = mapNode->m_unitInfo->getBaseGen();
+	if (baseGen) {
+		FOREACH_NODE(BaseGen, baseGen->m_child, node)
+		{
+			if (node->m_spawnType == BaseGen::Treasure__Item) {
+				itemSlotNum++;
+			}
+		}
+	}
+	return itemSlotNum;
 }
 
 /*
@@ -1155,41 +1081,25 @@ lbl_8024F28C:
  */
 bool RandItemUnit::isItemSetHard()
 {
-	/*
-	lwz      r4, 8(r3)
-	lwz      r0, 4(r4)
-	cmpwi    r0, 4
-	beq      lbl_8024F2F0
-	bge      lbl_8024F2F8
-	cmpwi    r0, 2
-	bge      lbl_8024F2D4
-	cmpwi    r0, 0
-	bge      lbl_8024F2CC
-	b        lbl_8024F2F8
-
-lbl_8024F2CC:
-	li       r3, 0
-	blr
-
-lbl_8024F2D4:
-	lwz      r0, 0(r3)
-	cmpwi    r0, 0
-	beq      lbl_8024F2E8
-	li       r3, 0
-	blr
-
-lbl_8024F2E8:
-	li       r3, 1
-	blr
-
-lbl_8024F2F0:
-	li       r3, 1
-	blr
-
-lbl_8024F2F8:
-	li       r3, 0
-	blr
-	*/
+	// this switch case is driving me bonkers
+	// int di = m_mapUnitGenerator->_04;
+	switch (m_mapUnitGenerator->_04) {
+	case 0:
+		return false;
+	case 1:
+		return true;
+	case 2:
+	case 3:
+		if (m_items != 0) {
+			return true;
+		}
+		return false;
+	case 4:
+		return true;
+	case 5:
+	default:
+		return false;
+	}
 }
 
 /*
