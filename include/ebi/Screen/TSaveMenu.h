@@ -32,8 +32,8 @@ struct TSaveMenu : public TScreenBase {
 
 	// _00     = VTBL
 	// _00-_08 = TScreenBase
-	Controller* m_controller;   // _0C
-	u8 _08[0xD8]; // _10, to do
+	Controller* m_controller; // _0C
+	u8 _08[0xD8];             // _10, to do
 };
 } // namespace Screen
 } // namespace ebi

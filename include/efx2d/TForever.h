@@ -12,6 +12,12 @@ namespace efx2d {
 struct TForever : public TBase, public JPAEmitterCallBack {
 	TForever();
 
+	TForever(u16 effectID)
+	{
+		m_efxID   = effectID;
+		m_emitter = nullptr;
+	}
+
 	// vtable 1 (TBase)
 	virtual bool create(Arg*); // _08
 	virtual void kill();       // _0C

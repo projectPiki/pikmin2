@@ -29,6 +29,8 @@
 #define PID_Cavecomp_1 (0x0A)
 #define PID_Cavecomp_2 (0x0B)
 
+#define PID_Cavecomp_Loop (0x0C)
+
 #define PID_GoBatl_1 (0x0D)
 #define PID_GoBatl_2 (0x0E)
 #define PID_GoBatl_3 (0x0F)
