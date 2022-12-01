@@ -79,7 +79,7 @@ struct RandItemUnit {
 	ItemUnit* getItemUnit();
 	int getItemSlotNum(MapNode*);
 	bool isItemSetHard();
-	MapNode* getItemDropMapNode(MapNode*, MapNode**, int, int&);
+	void getItemDropMapNode(MapNode*, MapNode**, int, int&);
 	Vector3f getItemBaseGenPosition(MapNode*, int);
 	void getItemDropList(MapNode*, MapNode**, BaseGen**, int&);
 	Vector3f getItemBaseGenPosition(MapNode**, BaseGen**, int, int, int);
@@ -175,8 +175,8 @@ struct RandMapScore {
 	MapNode* getFixObjNode(int);
 	void getFixObjGen(int);
 	void getGlobalPosition(int, Vector3f&);
-	void getVersusHighScore();
-	void getVersusLowScore();
+	int getVersusHighScore();
+	int getVersusLowScore();
 	bool isScoreSetDone();
 	void clearRoomAndDoorScore();
 	void setUnitAndDoorScore();

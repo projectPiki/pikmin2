@@ -8,6 +8,8 @@
 namespace Game {
 namespace Cave {
 
+static const char randItemUnitName[] = "246-RandItemUnit";
+
 /*
  * --INFO--
  * Address:	8024E38C
@@ -31,11 +33,7 @@ RandItemUnit::RandItemUnit(MapUnitGenerator* generator)
  * Address:	8024E3F0
  * Size:	000008
  */
-void RandItemUnit::setManageClassPtr(RandMapScore* a1)
-{
-	// Generated from stw r4, 0xC(r3)
-	m_randMapScore = a1;
-}
+void RandItemUnit::setManageClassPtr(RandMapScore* ptr) { m_randMapScore = ptr; }
 
 /*
  * --INFO--
@@ -187,171 +185,43 @@ void RandItemUnit::setItemDropPositionList(MapNode** node, BaseGen** gen)
  * Address:	8024E7D0
  * Size:	000228
  */
-void RandItemUnit::getItemDropPosition(Vector3f&, float, int)
+void RandItemUnit::getItemDropPosition(Vector3f& position, f32 weight, int floorIndex)
 {
-	/*
-	stwu     r1, -0x890(r1)
-	mflr     r0
-	stw      r0, 0x894(r1)
-	stfd     f31, 0x880(r1)
-	psq_st   f31, -1912(r1), 0, qr0
-	stfd     f30, 0x870(r1)
-	psq_st   f30, -1928(r1), 0, qr0
-	stmw     r24, 0x850(r1)
-	mr       r29, r3
-	lis      r7, lbl_80484128@ha
-	lwz      r6, 8(r3)
-	fmr      f30, f1
-	lwz      r3, 0xc(r3)
-	mr       r30, r4
-	lwz      r4, 0x28(r6)
-	mr       r31, r5
-	lwz      r0, 0x2c(r6)
-	stw      r4, 0x14(r1)
-	addi     r28, r7, lbl_80484128@l
-	stw      r0, 0x18(r1)
-	bl       getVersusHighScore__Q34Game4Cave12RandMapScoreFv
-	xoris    r3, r3, 0x8000
-	lis      r0, 0x4330
-	stw      r3, 0x83c(r1)
-	lfs      f0, lbl_8051A840@sda21(r2)
-	stw      r0, 0x838(r1)
-	lfd      f2, lbl_8051A848@sda21(r2)
-	fsubs    f0, f0, f30
-	lfd      f1, 0x838(r1)
-	lwz      r3, 0xc(r29)
-	fsubs    f1, f1, f2
-	fmuls    f31, f0, f1
-	bl       getVersusLowScore__Q34Game4Cave12RandMapScoreFv
-	xoris    r3, r3, 0x8000
-	lis      r0, 0x4330
-	stw      r3, 0x844(r1)
-	cmpwi    r31, 0
-	lfd      f1, lbl_8051A848@sda21(r2)
-	stw      r0, 0x840(r1)
-	lfd      f0, 0x840(r1)
-	fsubs    f0, f0, f1
-	fmadds   f0, f30, f0, f31
-	fctiwz   f0, f0
-	stfd     f0, 0x848(r1)
-	lwz      r26, 0x84c(r1)
-	bge      lbl_8024E92C
-	lis      r3, 0x00138800@ha
-	addi     r31, r1, 0x14
-	addi     r0, r3, 0x00138800@l
-	li       r27, 0
-	stw      r0, 0xc(r1)
 
-lbl_8024E89C:
-	lwz      r3, 0(r31)
-	lwz      r25, 0x10(r3)
-	b        lbl_8024E8C4
+	MapNode* nodes[2];
+	MapNode* dropList[256];
+	MapNode* dropNode;
 
-lbl_8024E8A8:
-	mr       r3, r29
-	mr       r4, r25
-	mr       r6, r26
-	addi     r5, r1, 0x10
-	addi     r7, r1, 0xc
-	bl
-getItemDropMapNode__Q34Game4Cave12RandItemUnitFPQ34Game4Cave7MapNodePPQ34Game4Cave7MapNodeiRi
-	lwz      r25, 4(r25)
+	nodes[0] = m_mapUnitGenerator->m_placedMapNodes;
+	nodes[1] = m_mapUnitGenerator->m_visitedMapNodes;
 
-lbl_8024E8C4:
-	cmplwi   r25, 0
-	bne      lbl_8024E8A8
-	addi     r27, r27, 1
-	addi     r31, r31, 4
-	cmpwi    r27, 2
-	blt      lbl_8024E89C
-	lwz      r5, 0x10(r1)
-	cmplwi   r5, 0
-	beq      lbl_8024E914
-	mr       r4, r29
-	mr       r6, r26
-	addi     r3, r1, 0x28
-	bl getItemBaseGenPosition__Q34Game4Cave12RandItemUnitFPQ34Game4Cave7MapNodei
-	lfs      f0, 0x28(r1)
-	stfs     f0, 0(r30)
-	lfs      f0, 0x2c(r1)
-	stfs     f0, 4(r30)
-	lfs      f0, 0x30(r1)
-	stfs     f0, 8(r30)
-	b        lbl_8024E9D4
+	int score = weight * (f32)m_randMapScore->getVersusLowScore() + (1.0f - weight) * (f32)m_randMapScore->getVersusHighScore();
 
-lbl_8024E914:
-	addi     r3, r28, 0x14
-	addi     r5, r28, 0x28
-	li       r4, 0x177
-	crclr    6
-	bl       panic_f__12JUTExceptionFPCciPCce
-	b        lbl_8024E9D4
+	if (floorIndex < 0) {
+		int dropIndex = 1280000;
+		for (int i = 0; i < 2; i++) {
+			FOREACH_NODE(MapNode, nodes[i]->m_child, mapNode) { getItemDropMapNode(mapNode, &dropNode, score, dropIndex); }
+		}
 
-lbl_8024E92C:
-	li       r0, 0
-	addi     r27, r1, 0x14
-	stw      r0, 8(r1)
-	li       r25, 0
+		if (dropNode) {
+			position = getItemBaseGenPosition(dropNode, score);
+		} else {
+			JUT_PANICLINE(375, "item slot none\n");
+		}
 
-lbl_8024E93C:
-	lwz      r3, 0(r27)
-	lwz      r24, 0x10(r3)
-	b        lbl_8024E964
+	} else {
+		int dropIndex = 0;
+		BaseGen* basegen[256];
+		for (int i = 0; i < 2; i++) {
+			FOREACH_NODE(MapNode, nodes[i]->m_child, mapNode) { getItemDropList(mapNode, dropList, basegen, dropIndex); }
+		}
 
-lbl_8024E948:
-	mr       r3, r29
-	mr       r4, r24
-	addi     r5, r1, 0x434
-	addi     r6, r1, 0x34
-	addi     r7, r1, 8
-	bl
-getItemDropList__Q34Game4Cave12RandItemUnitFPQ34Game4Cave7MapNodePPQ34Game4Cave7MapNodePPQ34Game4Cave7BaseGenRi
-	lwz      r24, 4(r24)
-
-lbl_8024E964:
-	cmplwi   r24, 0
-	bne      lbl_8024E948
-	addi     r25, r25, 1
-	addi     r27, r27, 4
-	cmpwi    r25, 2
-	blt      lbl_8024E93C
-	lwz      r7, 8(r1)
-	cmpw     r31, r7
-	bge      lbl_8024E9C0
-	mr       r4, r29
-	mr       r8, r26
-	mr       r9, r31
-	addi     r3, r1, 0x1c
-	addi     r5, r1, 0x434
-	addi     r6, r1, 0x34
-	bl
-getItemBaseGenPosition__Q34Game4Cave12RandItemUnitFPPQ34Game4Cave7MapNodePPQ34Game4Cave7BaseGeniii
-	lfs      f0, 0x1c(r1)
-	stfs     f0, 0(r30)
-	lfs      f0, 0x20(r1)
-	stfs     f0, 4(r30)
-	lfs      f0, 0x24(r1)
-	stfs     f0, 8(r30)
-	b        lbl_8024E9D4
-
-lbl_8024E9C0:
-	addi     r3, r28, 0x14
-	addi     r5, r28, 0x38
-	li       r4, 0x18e
-	crclr    6
-	bl       panic_f__12JUTExceptionFPCciPCce
-
-lbl_8024E9D4:
-	psq_l    f31, -1912(r1), 0, qr0
-	lfd      f31, 0x880(r1)
-	psq_l    f30, -1928(r1), 0, qr0
-	lfd      f30, 0x870(r1)
-	lmw      r24, 0x850(r1)
-	lwz      r0, 0x894(r1)
-	mtlr     r0
-	addi     r1, r1, 0x890
-	blr
-	*/
+		if (floorIndex < dropIndex) {
+			position = getItemBaseGenPosition(dropList, basegen, dropIndex, score, floorIndex);
+		} else {
+			JUT_PANICLINE(398, "item slot not enough\n");
+		}
+	}
 }
 
 /*
@@ -1103,7 +973,7 @@ bool RandItemUnit::isItemSetHard()
  * Address:	8024F300
  * Size:	000148
  */
-MapNode* RandItemUnit::getItemDropMapNode(MapNode*, MapNode**, int, int&)
+void RandItemUnit::getItemDropMapNode(MapNode*, MapNode**, int, int&)
 {
 	/*
 	.loc_0x0:
