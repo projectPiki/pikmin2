@@ -54,7 +54,7 @@ void TConfirmEndWindow::doUpdateFadeinFinish()
  * Address:	803A3728
  * Size:	000020
  */
-bool TConfirmEndWindow::doUpdateFadein() { og::newScreen::ObjWorldMapInfoWindow0::doUpdateFadein(); }
+bool TConfirmEndWindow::doUpdateFadein() { return og::newScreen::ObjWorldMapInfoWindow0::doUpdateFadein(); }
 
 /*
  * --INFO--

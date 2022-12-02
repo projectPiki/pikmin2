@@ -890,7 +890,7 @@ OGAWA:=\
 	$(BUILD_DIR)/asm/plugProjectOgawaU/ogSceneCourseName.o\
 	$(BUILD_DIR)/asm/plugProjectOgawaU/ogObjKantei.o\
 	$(BUILD_DIR)/src/plugProjectOgawaU/ogSceneKantei.o\
-	$(BUILD_DIR)/asm/plugProjectOgawaU/ogObjSpecialItem.o\
+	$(BUILD_DIR)/src/plugProjectOgawaU/ogObjSpecialItem.o\
 	$(BUILD_DIR)/src/plugProjectOgawaU/ogSceneSpecialItem.o\
 	$(BUILD_DIR)/asm/plugProjectOgawaU/ogObjFloor.o\
 	$(BUILD_DIR)/src/plugProjectOgawaU/ogSceneFloor.o\
