@@ -1002,7 +1002,7 @@ MORIMURA:=\
 	$(BUILD_DIR)/asm/plugProjectMorimuraU/vsSelect2D.o\
 	$(BUILD_DIR)/asm/plugProjectMorimuraU/mrUtil.o\
 	$(BUILD_DIR)/asm/plugProjectMorimuraU/scrollList.o\
-	$(BUILD_DIR)/asm/plugProjectMorimuraU/mrWindow.o\
+	$(BUILD_DIR)/src/plugProjectMorimuraU/mrWindow.o\
 	$(BUILD_DIR)/src/plugProjectMorimuraU/blackManState.o\
 	$(BUILD_DIR)/src/plugProjectMorimuraU/blackManAnimator.o\
 	$(BUILD_DIR)/src/plugProjectMorimuraU/blackManMgr.o\

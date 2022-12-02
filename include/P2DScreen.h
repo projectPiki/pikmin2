@@ -70,6 +70,12 @@ struct Mgr_tuning : public Mgr {
 		m_someY = y + mstTuningTransY;
 	}
 
+	inline void scaleScreen(f32 scale)
+	{
+		m_screenScaleX = scale * mstTuningScaleX;
+		m_screenScaleY = scale * mstTuningScaleY;
+	}
+
 	// _00      = VTBL
 	// _00-_138 = Mgr
 	f32 m_screenScaleX; // _138
