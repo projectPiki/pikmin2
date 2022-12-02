@@ -8,19 +8,29 @@
 struct J2DPane;
 
 namespace Morimura {
+
 struct TOffsetMsgSet {
 	TOffsetMsgSet(u64*, u64, int);
+	TOffsetMsgSet(u64*, u64, int, u64*, int*);
 
 	u64 getMsgID(int);
 
-	u64* _00;    // _00
-	int* _04;    // _04
-	u64 m_msgID; // _08
-	int _0C;     // _0C
-	int m_size;  // _10
+	u64* m_tagList; // _00
+	int* _04;       // _04
+	u64 m_msgID;    // _08
+	int m_size;     // _10
 };
 
 struct TScaleUpCounter : public og::Screen::CallBack_CounterRV {
+
+	inline TScaleUpCounter(char** name, u16 flag1, u16 flag2, JKRArchive* arc)
+	    : CallBack_CounterRV(name, flag1, flag2, arc)
+	{
+		_A8 = 0;
+		_A9 = 0;
+		_AA = 0;
+		_AC = 0.0f;
+	}
 
 	virtual ~TScaleUpCounter();                               // _08 (weak)
 	virtual void init(J2DScreen*, u64, u64, u64, u32*, bool); // _1C (weak)
@@ -62,10 +72,10 @@ struct TCallbackScissor : public P2DScreen::CallBackNode {
 
 	// _00     = VTBL
 	// _00-_1C = P2DScreen::CallBackNode
-	f32 _1C; // _1C
-	f32 _20; // _20
-	f32 _24; // _24
-	f32 _28; // _28
+	f32 m_X1; // _1C
+	f32 m_Y1; // _20
+	f32 m_X2; // _24
+	f32 m_Y2; // _28
 };
 
 struct TScissorPane : public J2DPictureEx {
@@ -136,6 +146,18 @@ struct TIndPane : public CNode {
 
 	// _00     = VTBL
 	// _00-_18 = CNode
+	JUTTexture* m_texture1; // _18
+	JUTTexture* m_texture2; // _1C
+	JUTTexture* m_texture3; // _20
+	f32 _24;
+	f32 _28;
+	f32 _2C;
+	f32 _30;
+	f32 _34;
+	f32 _38;
+	s16 _3C;
+	f32 _40;
+	u8 _44;
 };
 } // namespace Morimura
 

@@ -930,7 +930,10 @@ void GXSetTevKAlphaSel(GXTevStageID, u32); // params might not be right
 void GXSetVtxAttrFmt(GXVtxFmt, GXAttr, GXCompCnt, GXCompType, uint);
 void GXClearVtxDesc();
 void GXSetVtxDesc(GXAttr, GXAttrType);
-
+void GXSetIndTexOrder(GXIndTexStageID, GXTexCoordID, GXTexMapID);
+void GXSetIndTexCoordScale(GXIndTexStageID, GXIndTexScale, GXIndTexScale);
+void GXSetIndTexMtx(GXIndTexMtxID, const f32[6], s8);
+void GXSetTevIndWarp(GXTevStageID, GXIndTexStageID, u8, u8, GXIndTexMtxID);
 void GXBeginDisplayList(void*, u32 dlSize);
 u32 GXEndDisplayList(void);
 void GXCallDisplayList(void*, u32 byteCnt);

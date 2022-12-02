@@ -7,6 +7,7 @@
 #include "Morimura/mrUtil.h"
 #include "Morimura/Bases.h"
 #include "Morimura/Window.h"
+#include "Morimura/ScrollList.h"
 
 struct JKRExpHeap;
 

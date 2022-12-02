@@ -1,4 +1,7 @@
 #include "types.h"
+#include "Morimura/mrUtil.h"
+#include "Morimura/Bases.h"
+#include "og/Screen/ogScreen.h"
 
 /*
     Generated from dpostproc
@@ -184,13 +187,17 @@
         .4byte 0x3C8EFA35
 */
 
+namespace Morimura {
 /*
  * --INFO--
  * Address:	803A102C
  * Size:	0000B8
  */
-void Morimura::TCallbackScissor::draw(Graphics&, J2DGrafContext&)
+void TCallbackScissor::draw(Graphics& gfx, J2DGrafContext& graf)
 {
+	gfx.m_perspGraph.setPort();
+	GXSetScissor(m_X1, m_Y1, m_X2 - m_X1, m_Y2 - m_Y1);
+
 	/*
 	stwu     r1, -0x40(r1)
 	mflr     r0
@@ -246,8 +253,20 @@ void Morimura::TCallbackScissor::draw(Graphics&, J2DGrafContext&)
  * Address:	803A10E4
  * Size:	0000C0
  */
-Morimura::TOffsetMsgSet::TOffsetMsgSet(unsigned long long*, unsigned long long, int)
+TOffsetMsgSet::TOffsetMsgSet(u64* taglist, u64 newtag, int size)
 {
+	m_tagList = nullptr;
+	m_msgID   = newtag;
+	m_size    = size;
+
+	m_tagList = new u64[size];
+	_04       = new int[size];
+	for (int i = 0; i < m_size; i++) {
+		u64 temp     = taglist[i];
+		u64* currTag = &m_tagList[i];
+
+		*currTag = temp - m_msgID;
+	}
 	/*
 	.loc_0x0:
 	  stwu      r1, -0x20(r1)
@@ -310,8 +329,20 @@ Morimura::TOffsetMsgSet::TOffsetMsgSet(unsigned long long*, unsigned long long, 
  * Address:	803A11A4
  * Size:	000068
  */
-Morimura::TOffsetMsgSet::TOffsetMsgSet(unsigned long long*, unsigned long long, int, unsigned long long*, int*)
+TOffsetMsgSet::TOffsetMsgSet(u64* taglist, u64 newtag, int size, u64* taglist2, int* alloc)
 {
+	m_tagList = nullptr;
+	m_msgID   = newtag;
+	m_size    = size;
+	m_tagList = taglist2;
+	_04       = alloc;
+
+	for (int i = 0; i < m_size; i++) {
+		u64 temp     = taglist[i];
+		u64* currTag = &m_tagList[i];
+
+		*currTag = temp - m_msgID;
+	}
 	/*
 	.loc_0x0:
 	  li        r10, 0
@@ -352,8 +383,37 @@ Morimura::TOffsetMsgSet::TOffsetMsgSet(unsigned long long*, unsigned long long, 
  * Address:	803A120C
  * Size:	00019C
  */
-void Morimura::TOffsetMsgSet::getMsgID(int)
+u64 TOffsetMsgSet::getMsgID(int index)
 {
+	for (int i = 0; i < m_size; i++) {
+		_04[i] = 0;
+	}
+
+	int counter = 1;
+	for (int i = index + 1; i >= 10; i /= 10) {
+		counter++;
+	}
+	JUT_ASSERTLINE(91, counter <= m_size, nullptr);
+
+	int offs = index + 1;
+	for (; counter > 1; counter--) {
+		f64 calc     = pow(10.0f, counter);
+		int calc2    = offs / (int)calc;
+		_04[counter] = calc2;
+		offs -= calc2 * (int)calc;
+	}
+	_04[0]     = offs;
+	u64 retTag = m_msgID;
+
+	for (int i = m_size; i > 0; i--) {
+		int curr = _04[i];
+		if (curr) {
+			u64* currTag = &m_tagList[i];
+
+			retTag += *currTag * curr;
+		}
+	}
+	return retTag;
 	/*
 	stwu     r1, -0x40(r1)
 	mflr     r0
@@ -486,8 +546,13 @@ lbl_803A1390:
  * Address:	803A13A8
  * Size:	000028
  */
-Morimura::TScreenBase::TScreenBase(JKRArchive*, int)
+TScreenBase::TScreenBase(JKRArchive* arc, int anims)
 {
+	m_animScreens        = nullptr;
+	m_screenObj          = nullptr;
+	m_archive            = arc;
+	m_animScreenCountMax = anims;
+	m_currEntries        = 0;
 	/*
 	lis      r6, __vt__Q28Morimura11TScreenBase@ha
 	li       r0, 0
@@ -507,8 +572,16 @@ Morimura::TScreenBase::TScreenBase(JKRArchive*, int)
  * Address:	803A13D0
  * Size:	000090
  */
-void Morimura::TScreenBase::create(char const*, unsigned long)
+void TScreenBase::create(char const* name, unsigned long flags)
 {
+	m_screenObj = new P2DScreen::Mgr_tuning;
+	m_screenObj->set(name, flags, m_archive);
+	::og::Screen::setCallBackMessage(m_screenObj);
+
+	m_animScreens = new ::og::Screen::AnimScreen*[m_animScreenCountMax];
+
+	::og::Screen::setAlphaScreen(m_screenObj);
+
 	/*
 	stwu     r1, -0x20(r1)
 	mflr     r0
@@ -556,8 +629,13 @@ lbl_803A140C:
  * Address:	803A1460
  * Size:	0000B0
  */
-void Morimura::TScreenBase::addAnim(char*)
+void TScreenBase::addAnim(char* name)
 {
+	m_animScreens[m_currEntries] = new TTestAnimScreen;
+
+	m_animScreens[m_currEntries]->init(m_archive, m_screenObj, name);
+	m_animScreens[m_currEntries]->_20 = 0.5f;
+	m_currEntries++;
 	/*
 	stwu     r1, -0x20(r1)
 	mflr     r0
@@ -608,29 +686,30 @@ lbl_803A14A0:
 	*/
 }
 
-namespace og {
-namespace Screen {
-
 /*
  * --INFO--
  * Address:	........
  * Size:	000048
  */
-AnimScreen::~AnimScreen(void)
-{
-	// UNUSED FUNCTION
-}
-
-} // namespace Screen
-} // namespace og
+// AnimScreen::~AnimScreen(void)
+//{
+// UNUSED FUNCTION
+//}
 
 /*
  * --INFO--
  * Address:	803A1510
  * Size:	000088
  */
-void Morimura::TScreenBase::update(void)
+void TScreenBase::update(void)
 {
+	if (m_screenObj) {
+		m_screenObj->update();
+		for (int i = 0; i < m_animScreenCountMax; i++) {
+			m_animScreens[i]->update();
+		}
+		m_screenObj->animation();
+	}
 	/*
 	stwu     r1, -0x20(r1)
 	mflr     r0
@@ -680,8 +759,11 @@ lbl_803A157C:
  * Address:	803A1598
  * Size:	000038
  */
-void Morimura::TScreenBase::draw(Graphics&, J2DPerspGraph*)
+void TScreenBase::draw(Graphics& gfx, J2DPerspGraph* graf)
 {
+	if (m_screenObj) {
+		m_screenObj->draw(gfx, *graf);
+	}
 	/*
 	stwu     r1, -0x10(r1)
 	mflr     r0
@@ -707,8 +789,24 @@ lbl_803A15C0:
  * Address:	803A15D0
  * Size:	000124
  */
-Morimura::TIndPane::TIndPane(char const*, float, float)
+TIndPane::TIndPane(char const* name, f32 x, f32 y)
 {
+	m_texture1 = nullptr;
+	m_texture2 = nullptr;
+	m_texture3 = nullptr;
+	_34        = 0.0f;
+	_38        = 0.0f;
+	_3C        = 0;
+	_40        = 0.0f;
+	_44        = true;
+	m_texture1 = new JUTTexture;
+
+	_38 = 0.02f;
+	_34 = 0.02f;
+	_24 = 0.0f;
+	_28 = 0.0f;
+	_2C = x;
+	_30 = y;
 	/*
 	stwu     r1, -0x40(r1)
 	mflr     r0
@@ -793,8 +891,11 @@ lbl_803A16A0:
  * Address:	803A16F4
  * Size:	0000A4
  */
-void Morimura::TIndPane::createIndTexture(char const*)
+void TIndPane::createIndTexture(char const* name)
 {
+	m_texture1 = new JUTTexture;
+
+	P2ASSERTLINE(232, m_texture1);
 	/*
 	stwu     r1, -0x20(r1)
 	mflr     r0
@@ -849,8 +950,9 @@ lbl_803A177C:
  * Address:	803A1798
  * Size:	000074
  */
-void Morimura::TIndPane::createCaptureTexture(_GXTexFmt)
+void TIndPane::createCaptureTexture(_GXTexFmt fmt)
 {
+	m_texture3 = new JUTTexture(_2C, _30, fmt);
 	/*
 	stwu     r1, -0x20(r1)
 	mflr     r0
@@ -891,8 +993,57 @@ lbl_803A17F0:
  * Address:	803A180C
  * Size:	000308
  */
-void Morimura::TIndPane::draw(void)
+void TIndPane::draw(void)
 {
+	J2DOrthoGraph graf(0.0, 0.0, 640.0, 480.0, -1.0, 1.0);
+	graf.setPort();
+	P2ASSERTLINE(261, m_texture1);
+	P2ASSERTLINE(262, m_texture2);
+	m_texture1->load(GX_TEXMAP0);
+	m_texture2->load(GX_TEXMAP1);
+
+	GXSetNumTevStages(1);
+	GXSetNumIndStages(1);
+	GXSetNumChans(0);
+	GXSetNumTexGens(1);
+	GXSetTexCoordGen2(GX_TEXCOORD0, GX_TG_MTX3X4, GX_TG_TEX0, 0x1e, GX_FALSE, 0x7d);
+	GXSetIndTexOrder(GX_IND_TEX_STAGE_ID_0, GX_TEXCOORD0, GX_TEXMAP1);
+	GXSetIndTexCoordScale(GX_IND_TEX_STAGE_ID_0, GX_IND_TEX_SCALE_0, GX_IND_TEX_SCALE_0);
+	f32 mtx[6];
+
+	if (_44) {
+		mtx[0] = _34;
+		mtx[1] = 0.0f;
+		mtx[3] = 0.0f;
+		mtx[4] = _38;
+	} else {
+		Matrixf temp;
+		PSMTXRotRad(temp.m_matrix.mtxView, 'z', _40 * 0.01745329);
+		mtx[0] = temp.m_matrix.structView.xx * 0.5f;
+		mtx[1] = temp.m_matrix.structView.xy * 0.5f;
+		mtx[3] = temp.m_matrix.structView.yx * 0.5f;
+		mtx[4] = temp.m_matrix.structView.yy * 0.5f;
+	}
+
+	mtx[5] = 0.0f;
+	mtx[2] = 0.0f;
+	GXSetIndTexMtx(GX_IND_TEX_MTX_ID_1, mtx, _3C);
+	GXSetTevIndWarp(GX_TEVSTAGE0, GX_IND_TEX_STAGE_ID_0, 1, 0, GX_IND_TEX_MTX_ID_1);
+	GXSetTevOrder(GX_TEVSTAGE0, GX_TEXCOORD_NULL, GX_TEXMAP0, GX_COLOR0);
+	GXSetTevOp(GX_TEVSTAGE0, GX_REPLACE);
+	GXClearVtxDesc();
+	GXSetVtxDesc(GX_VA_POS, GX_DIRECT);
+	GXSetVtxDesc(GX_VA_TEX0, GX_DIRECT);
+	GXSetVtxAttrFmt(GX_VTXFMT0, GX_VA_POS, GX_POS_XY, GX_F32, 0);
+	GXSetVtxAttrFmt(GX_VTXFMT0, GX_VA_TEX0, GX_POS_XY, GX_F32, 0);
+	Matrixf mtx2;
+	PSMTXIdentity(mtx2.m_matrix.mtxView);
+	GXLoadPosMtxImm(mtx2.m_matrix.mtxView, 0);
+	GXLoadTexMtxImm(mtx2.m_matrix.mtxView, 0x1e, GX_MTX3x4);
+	GXSetCurrentMtx(0);
+	GXBegin(GX_QUADS, GX_VTXFMT0, 4);
+	// GX Register setting
+
 	/*
 	stwu     r1, -0x160(r1)
 	mflr     r0
@@ -1104,8 +1255,23 @@ lbl_803A1998:
  * Address:	803A1B14
  * Size:	0000A8
  */
-void Morimura::TScaleUpCounter::setValue(bool, bool)
+void TScaleUpCounter::setValue(bool flag1, bool flag2)
 {
+	if (_A9) {
+		og::Screen::CallBack_CounterRV::setValue(false, false);
+	} else {
+		if ((!flag1 && !flag2) && !_A8) {
+			og::Screen::CallBack_CounterRV::setValue(false, false);
+		} else {
+			_A8 = false;
+			if (_AA) {
+				og::Screen::CallBack_CounterRV::setValue(true, false);
+				_AA = false;
+			} else {
+				og::Screen::CallBack_CounterRV::setValue(false, true);
+			}
+		}
+	}
 	/*
 	stwu     r1, -0x10(r1)
 	mflr     r0
@@ -1167,8 +1333,15 @@ lbl_803A1BA8:
  * Address:	803A1BBC
  * Size:	000060
  */
-void Morimura::TScaleUpCounter::forceScaleUp(bool)
+void TScaleUpCounter::forceScaleUp(bool flag)
 {
+	if (!m_isBlind) {
+		setPuyoAnim(true);
+		_A8 = true;
+	} else {
+		setPuyoAnim(false);
+	}
+	_AA = flag;
 	/*
 	stwu     r1, -0x10(r1)
 	mflr     r0
@@ -1206,8 +1379,14 @@ lbl_803A1C00:
  * Address:	803A1C1C
  * Size:	000040
  */
-void Morimura::TScaleUpCounter::setScale(float, float)
+void TScaleUpCounter::setScale(float scale, float scalesub)
 {
+	_34 = _AC * scale;
+	for (int i = 0; i < _2C; i++) {
+		og::Screen::CounterKeta* keta = m_counters[i];
+		keta->_0C                     = scale;
+		keta->_10                     = scalesub;
+	}
 	/*
 	lfs      f0, 0xac(r3)
 	li       r6, 0
@@ -1237,8 +1416,28 @@ lbl_803A1C4C:
  * Address:	803A1C5C
  * Size:	0001A4
  */
-void Morimura::setScaleUpCounter(P2DScreen::Mgr*, unsigned long long, unsigned long*, unsigned short, JKRArchive*)
+TScaleUpCounter* setScaleUpCounter(P2DScreen::Mgr* screen, u64 inTag, u32* data, u16 flag, JKRArchive* arc)
 {
+	u64 tagSub1 = og::Screen::maskTag(inTag, 1, 1);
+	u64 tagSub2 = og::Screen::maskTag(inTag, 1, 2);
+	u64 tagSub3;
+
+	int offs = 1;
+	for (int i = 3; (i & 0xffff) <= 10; i++) {
+		u64 tagSub3   = og::Screen::maskTag(inTag, 1, i);
+		J2DPane* pane = screen->search(tagSub3);
+		if (!pane) {
+			offs = i - 1;
+			break;
+		}
+		pane->m_isVisible = false;
+	}
+
+	TScaleUpCounter* counter = new TScaleUpCounter(const_cast<char**>(og::Screen::SujiTex32), flag, offs, arc);
+	counter->init(screen, tagSub1, tagSub2, tagSub3, data, true);
+	counter->setPuyoAnim(true);
+	screen->addCallBack(inTag, counter);
+	return counter;
 	/*
 	.loc_0x0:
 	  stwu      r1, -0x50(r1)
@@ -1364,8 +1563,18 @@ void Morimura::setScaleUpCounter(P2DScreen::Mgr*, unsigned long long, unsigned l
  * Address:	803A1E00
  * Size:	00012C
  */
-void Morimura::setScaleUpCounter2(P2DScreen::Mgr*, unsigned long long, unsigned long long, unsigned long*, unsigned short, JKRArchive*)
+TScaleUpCounter* setScaleUpCounter2(P2DScreen::Mgr* screen, u64 inTag, u64 searchTag, u32* data, u16 flag, JKRArchive* arc)
 {
+	J2DPane* pane     = screen->search(inTag);
+	pane->m_isVisible = false;
+	pane              = screen->search(searchTag);
+	pane->m_isVisible = false;
+
+	TScaleUpCounter* counter = new TScaleUpCounter(const_cast<char**>(og::Screen::SujiTex32), flag, 2, arc);
+	counter->init(screen, inTag, searchTag, searchTag, data, true);
+	counter->setPuyoAnim(true);
+	screen->addCallBack(inTag, counter);
+	return counter;
 	/*
 	.loc_0x0:
 	  stwu      r1, -0x40(r1)
@@ -1453,8 +1662,13 @@ void Morimura::setScaleUpCounter2(P2DScreen::Mgr*, unsigned long long, unsigned 
  * Address:	803A1F2C
  * Size:	0000B8
  */
-void Morimura::TScissorPane::drawSelf(float, float, float (*)[3][4])
+void TScissorPane::drawSelf(float, float, float (*)[3][4])
 {
+	Matrixf mtx;
+	PSMTXIdentity(mtx.m_matrix.mtxView);
+	GXLoadPosMtxImm(mtx.m_matrix.mtxView, 0);
+
+	GXSetScissor(_1A8, _1AC, _1B0 - _1A8, _1B4 - _1AC);
 	/*
 	stwu     r1, -0x70(r1)
 	mflr     r0
@@ -1510,7 +1724,7 @@ void Morimura::TScissorPane::drawSelf(float, float, float (*)[3][4])
  * Address:	803A1FE4
  * Size:	000060
  */
-Morimura::TScissorPane::~TScissorPane(void)
+TScissorPane::~TScissorPane(void)
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -1547,7 +1761,7 @@ lbl_803A2028:
  * Address:	803A2044
  * Size:	000090
  */
-Morimura::TScaleUpCounter::~TScaleUpCounter(void)
+TScaleUpCounter::~TScaleUpCounter(void)
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -1598,7 +1812,7 @@ lbl_803A20B8:
  * Address:	803A20D4
  * Size:	000080
  */
-Morimura::TCallbackScissor::~TCallbackScissor(void)
+TCallbackScissor::~TCallbackScissor(void)
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -1639,3 +1853,5 @@ lbl_803A2138:
 	blr
 	*/
 }
+
+} // namespace Morimura

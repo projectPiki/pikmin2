@@ -60,9 +60,9 @@ struct TScreenBase {
 	// _00 = VTBL
 	og::Screen::AnimScreen** m_animScreens; // _04
 	P2DScreen::Mgr_tuning* m_screenObj;     // _08
-	JKRArchive* _0C;                        // _0C
-	int m_animScreenCount;                  // _10
-	int m_animCount;                        // _14
+	JKRArchive* m_archive;                  // _0C
+	int m_animScreenCountMax;               // _10
+	int m_currEntries;                      // _14
 };
 
 struct TTestAnimScreen : public og::Screen::AnimScreen {

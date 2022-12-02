@@ -127,7 +127,7 @@ void TSelectExplanationWindow::update()
 		m_scaleGrowRate = 0.0f;
 	} else {
 		m_screenObj->update();
-		for (int i = 0; i < m_animScreenCount; i++) {
+		for (int i = 0; i < m_animScreenCountMax; i++) {
 			m_animScreens[i]->update();
 		}
 
