@@ -98,7 +98,7 @@ void TConfirmEndWindow::doDraw(Graphics& gfx)
  * Address:	803A37E8
  * Size:	000024
  */
-void Morimura::TConfirmEndWindow::setRetireMsg(u64 msgID) { m_animText2->setText(msgID); }
+void TConfirmEndWindow::setRetireMsg(u64 msgID) { m_animText2->setText(msgID); }
 
 /*
  * --INFO--
@@ -123,13 +123,14 @@ TSelectExplanationWindow::TSelectExplanationWindow(JKRArchive* archive, int p2)
  */
 void TSelectExplanationWindow::update()
 {
-	if (m_state == 0) {
+	if (m_state == SelWinState_Disabled) {
 		m_scaleGrowRate = 0.0f;
 	} else {
 		m_screenObj->update();
 		for (int i = 0; i < m_animScreenCount; i++) {
 			m_animScreens[i]->update();
 		}
+
 		switch (m_state) {
 		case SelWinState_Opening:
 			m_currScreenScale += m_scaleGrowRate;
@@ -139,8 +140,10 @@ void TSelectExplanationWindow::update()
 				m_state = SelWinState_IdleOpen;
 			}
 			break;
+
 		case SelWinState_IdleOpen:
 			break;
+
 		case SelWinState_Closing:
 			m_currScreenScale += m_scaleGrowRate;
 			if (m_currScreenScale < 0.0f) {
@@ -150,6 +153,7 @@ void TSelectExplanationWindow::update()
 			}
 			break;
 		}
+
 		m_screenObj->animation();
 	}
 
