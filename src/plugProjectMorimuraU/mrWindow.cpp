@@ -43,8 +43,8 @@ bool TConfirmEndWindow::doStart(const Screen::StartSceneArg* arg)
  */
 void TConfirmEndWindow::doUpdateFadeinFinish()
 {
-	_B8->open(0.05f);
-	_BC->open(0.1f);
+	m_animText1->open(0.05f);
+	m_animText2->open(0.1f);
 	blink_Menu(_AC);
 	og::newScreen::ObjSMenuPauseVS::doUpdateFadeinFinish();
 }
@@ -64,8 +64,8 @@ bool TConfirmEndWindow::doUpdateFadein() { og::newScreen::ObjWorldMapInfoWindow0
 void TConfirmEndWindow::doUpdateFadeoutFinish()
 {
 	m_isOpenMaybe = false;
-	_B8->stop();
-	_BC->stop();
+	m_animText1->stop();
+	m_animText2->stop();
 }
 
 /*
@@ -98,7 +98,7 @@ void TConfirmEndWindow::doDraw(Graphics& gfx)
  * Address:	803A37E8
  * Size:	000024
  */
-void TConfirmEndWindow::setRetireMsg(u64 msgID) { _BC->setText(msgID); }
+void Morimura::TConfirmEndWindow::setRetireMsg(u64 msgID) { m_animText2->setText(msgID); }
 
 /*
  * --INFO--
@@ -108,12 +108,12 @@ void TConfirmEndWindow::setRetireMsg(u64 msgID) { _BC->setText(msgID); }
 TSelectExplanationWindow::TSelectExplanationWindow(JKRArchive* archive, int p2)
     : TScreenBase(archive, p2)
 {
-	_18        = 0;
-	_24        = 0.0f;
-	_28        = 0.0f;
-	_1C        = 0.0f;
-	_20        = 0.0f;
-	m_scaleMgr = new og::Screen::ScaleMgr();
+	m_state           = SelWinState_Disabled;
+	m_scaleGrowRate   = 0.0f;
+	m_currScreenScale = 0.0f;
+	m_transXModifier  = 0.0f;
+	m_transYModifier  = 0.0f;
+	m_scaleMgr        = new og::Screen::ScaleMgr();
 }
 
 /*
@@ -123,39 +123,38 @@ TSelectExplanationWindow::TSelectExplanationWindow(JKRArchive* archive, int p2)
  */
 void TSelectExplanationWindow::update()
 {
-	if (_18 == 0) {
-		_24 = 0.0f;
+	if (m_state == 0) {
+		m_scaleGrowRate = 0.0f;
 	} else {
-		_08->update();
-		for (int i = 0; i < _10; i++) {
+		m_screenObj->update();
+		for (int i = 0; i < m_animScreenCount; i++) {
 			m_animScreens[i]->update();
 		}
-
-		switch (_18) {
-		case 1:
-			_28 += _24;
-			if (_28 >= 1.0f) {
-				_28 = 1.0f;
+		switch (m_state) {
+		case SelWinState_Opening:
+			m_currScreenScale += m_scaleGrowRate;
+			if (m_currScreenScale >= 1.0f) {
+				m_currScreenScale = 1.0f;
 				screenScaleUp();
-				_18 = 2;
+				m_state = SelWinState_IdleOpen;
 			}
 			break;
-		case 2:
+		case SelWinState_IdleOpen:
 			break;
-		case 3:
-			_28 += _24;
-			if (_28 < 0.0f) {
-				_28 = 0.0f;
-				_24 = 0.0f;
-				_18 = 0;
+		case SelWinState_Closing:
+			m_currScreenScale += m_scaleGrowRate;
+			if (m_currScreenScale < 0.0f) {
+				m_currScreenScale = 0.0f;
+				m_scaleGrowRate   = 0.0f;
+				m_state           = SelWinState_Disabled;
 			}
 			break;
 		}
-		_08->animation();
+		m_screenObj->animation();
 	}
 
-	_08->setXY((1.0f - _28) * _1C, (1.0f - _28) * _20);
-	_08->scaleScreen(m_scaleMgr->calc());
+	m_screenObj->setXY((1.0f - m_currScreenScale) * m_transXModifier, (1.0f - m_currScreenScale) * m_transYModifier);
+	m_screenObj->scaleScreen(m_scaleMgr->calc());
 }
 
 /*
@@ -165,7 +164,7 @@ void TSelectExplanationWindow::update()
  */
 void TSelectExplanationWindow::draw(Graphics& gfx, J2DPerspGraph* perspGraph)
 {
-	if (_18 != 0) {
+	if (m_state != SelWinState_Disabled) {
 		TScreenBase::draw(gfx, perspGraph);
 	}
 }
@@ -177,8 +176,8 @@ void TSelectExplanationWindow::draw(Graphics& gfx, J2DPerspGraph* perspGraph)
  */
 void TSelectExplanationWindow::openWindow()
 {
-	_24 = 0.12f;
-	_18 = 1;
+	m_scaleGrowRate = 0.12f;
+	m_state         = SelWinState_Opening;
 }
 
 /*
@@ -188,8 +187,8 @@ void TSelectExplanationWindow::openWindow()
  */
 void TSelectExplanationWindow::closeWindow()
 {
-	_24 = -0.12f;
-	_18 = 3;
+	m_scaleGrowRate = -0.12f;
+	m_state         = SelWinState_Closing;
 }
 
 } // namespace Morimura

@@ -26,6 +26,9 @@ struct TConfirmEndWindow : public og::newScreen::ObjWorldMapInfoWindow0 {
 };
 
 struct TSelectExplanationWindow : public TScreenBase {
+
+	enum SelectWindowState { SelWinState_Disabled, SelWinState_Opening, SelWinState_IdleOpen, SelWinState_Closing };
+
 	TSelectExplanationWindow(JKRArchive*, int);
 
 	virtual void update();                        // _0C
@@ -37,11 +40,11 @@ struct TSelectExplanationWindow : public TScreenBase {
 
 	// _00     = VTBL
 	// _00-_18 = TScreenBase
-	int _18;                          // _18
-	f32 _1C;                          // _1C
-	f32 _20;                          // _20
-	f32 _24;                          // _24
-	f32 _28;                          // _28
+	int m_state;                      // _18
+	f32 m_transXModifier;             // _1C
+	f32 m_transYModifier;             // _20
+	f32 m_scaleGrowRate;              // _24
+	f32 m_currScreenScale;            // _28
 	og::Screen::ScaleMgr* m_scaleMgr; // _2C
 };
 } // namespace Morimura

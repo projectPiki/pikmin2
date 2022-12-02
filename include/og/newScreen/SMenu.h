@@ -554,8 +554,8 @@ struct ObjSMenuPauseVS : public ObjSMenuBase {
 	int _AC;                                // _AC
 	P2DScreen::Mgr* _B0;                    // _B0
 	Screen::MenuMgr* m_menuMgr;             // _B4
-	Screen::AnimText_Screen* _B8;           // _B8
-	Screen::AnimText_Screen* _BC;           // _BC
+	Screen::AnimText_Screen* m_animText1;   // _B8
+	Screen::AnimText_Screen* m_animText2;   // _BC
 	u8 _C0;                                 // _C0
 	f32 _C4;                                // _C4
 	u8 _C8;                                 // _C8
