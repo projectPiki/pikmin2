@@ -10,6 +10,7 @@
 #include "og/Screen/StickAnimMgr.h"
 #include "Game/MemoryCard/Mgr.h"
 #include "Controller.h"
+#include "Dolphin/gx.h"
 
 namespace kh {
 namespace Screen {
@@ -91,43 +92,43 @@ ObjCaveResult::ObjCaveResult()
 	m_efxComp   = nullptr;
 	m_stickAnim = nullptr;
 
-	m_fadePane4 = nullptr;
-	m_fadePane3 = nullptr;
-	m_fadePane2 = nullptr;
-	m_fadePane1 = nullptr;
+	m_fadePane4         = nullptr;
+	m_fadePaneDownArrow = nullptr;
+	m_fadePaneUpArrow   = nullptr;
+	m_fadePane1         = nullptr;
 
 	m_counterTotalPokos        = nullptr;
 	m_counterTreasureMax       = nullptr;
 	m_counterTreasureCollected = nullptr;
-	_A4                        = nullptr;
-	_A0                        = nullptr;
+	m_counterOtaValues[1]      = nullptr;
+	m_counterOtaValues[0]      = nullptr;
 	m_counterDeadPiki          = nullptr;
 	m_counterCavePokos         = nullptr;
 
-	m_totalPokos   = 0;
-	m_maxOtakara   = 0;
-	m_otakaraCount = 0;
-	_C0            = 0;
-	_BC            = 0;
-	m_deadPiki     = 0;
-	m_cavePokos    = 0;
+	m_totalPokos       = 0;
+	m_maxOtakara       = 0;
+	m_otakaraCount     = 0;
+	m_currOtaValues[1] = 0;
+	m_currOtaValues[0] = 0;
+	m_deadPiki         = 0;
+	m_cavePokos        = 0;
 
-	m_scrollPos      = 0.0f;
-	m_scrollUpDown   = 0.0f;
-	m_scrollIndex    = -6;
-	m_scrollIndexNew = 0;
-	_E0              = msVal._1C;
+	m_scrollPos         = 0.0f;
+	m_scrollUpDown      = 0.0f;
+	m_scrollSelIndex    = -6;
+	m_scrollSelIndexMax = 0;
+	m_scrollTargetDist  = msVal._1C;
 
-	_E4      = 0;
-	_EC      = 0;
-	_E8      = 0;
-	m_status = 3;
-	_F4      = 0;
-	_F8      = 0;
-	m_flag   = 0;
-	m_alpha  = 255;
-	_107     = 0;
-	_106     = 0;
+	m_scrollMoveTimer  = 0;
+	_EC                = 0;
+	_E8                = 0;
+	m_status           = 3;
+	m_changeStateDelay = 0;
+	_F8                = 0;
+	m_flag             = 0;
+	m_alpha            = 255;
+	_107               = 0;
+	_106               = 0;
 }
 
 /*
@@ -186,17 +187,17 @@ void ObjCaveResult::doCreate(JKRArchive* arc)
 	Game::Result::TNode* cNode = static_cast<Game::Result::TNode*>(m_resultNode->m_child);
 
 	while (cNode) {
-		cNode->itemMgr = new kh::Screen::LostItemMgr(cNode->m_isLost);
-		cNode          = static_cast<Game::Result::TNode*>(cNode->m_next);
+		cNode->m_itemMgr = new kh::Screen::LostItemMgr(cNode->m_isLost);
+		cNode            = static_cast<Game::Result::TNode*>(cNode->m_next);
 	}
 
 	if (disp->m_treasureNodeCount > 6) {
-		setFlag(0x1);
-		m_scrollIndexNew = disp->m_treasureNodeCount - 6;
+		setFlag(CAVERESFLAG_CanScroll);
+		m_scrollSelIndexMax = disp->m_treasureNodeCount - 6;
 	}
 
 	m_scrollUpDown = m_screenMain->search('Nsetp01')->getBounds()->i.y - m_screenMain->search('Nsetp00')->getBounds()->i.y;
-	m_scrollPos    = m_scrollUpDown * (int)(1 - m_scrollIndex);
+	m_scrollPos    = m_scrollUpDown * (int)(1 - m_scrollSelIndex);
 
 	kh::Screen::setInfAlpha(m_screenMain->search('Nicon00'));
 	kh::Screen::setInfAlpha(m_screenMain->search('Nicon01'));
@@ -246,10 +247,10 @@ void ObjCaveResult::doCreate(JKRArchive* arc)
 	m_stickAnim                       = new og::Screen::StickAnimMgr(pic);
 	m_stickAnim->stickUpDown();
 
-	m_fadePane2 = kh::Screen::khUtilFadePane::create(m_screenMain, 'Nyame_u', 16);
-	m_fadePane2->fadeout();
-	m_fadePane3 = kh::Screen::khUtilFadePane::create(m_screenMain, 'Nyame_l', 16);
-	m_fadePane3->fadeout();
+	m_fadePaneUpArrow = kh::Screen::khUtilFadePane::create(m_screenMain, 'Nyame_u', 16);
+	m_fadePaneUpArrow->fadeout();
+	m_fadePaneDownArrow = kh::Screen::khUtilFadePane::create(m_screenMain, 'Nyame_l', 16);
+	m_fadePaneDownArrow->fadeout();
 	m_fadePane1 = kh::Screen::khUtilFadePane::create(m_screenMain, 'PICT_004', 16);
 	m_fadePane1->add(m_screenMain->search('N_3d'));
 	m_fadePane1->fadeout();
@@ -258,8 +259,8 @@ void ObjCaveResult::doCreate(JKRArchive* arc)
 
 	m_counterCavePokos         = og::Screen::setCallBack_CounterRV(m_screenMain, 'Ptomadp1', &m_cavePokos, 6, true, false, arc);
 	m_counterDeadPiki          = og::Screen::setCallBack_CounterRV(m_screenMain, 'Ppiki1', &m_deadPiki, 3, true, false, arc);
-	_A0                        = og::Screen::setCallBack_CounterRV(m_screenMain, 'Pmad00_1', &_BC, 4, false, false, arc);
-	_A4                        = og::Screen::setCallBack_CounterRV(m_screenMain, 'Pmad01_1', &_C0, 4, false, false, arc);
+	m_counterOtaValues[0]      = og::Screen::setCallBack_CounterRV(m_screenMain, 'Pmad00_1', &m_currOtaValues[0], 4, false, false, arc);
+	m_counterOtaValues[1]      = og::Screen::setCallBack_CounterRV(m_screenMain, 'Pmad01_1', &m_currOtaValues[1], 4, false, false, arc);
 	m_counterTreasureCollected = og::Screen::setCallBack_CounterRV(m_screenMain, 'Pota_1', &m_otakaraCount, 2, true, true, arc);
 	m_counterTreasureMax       = og::Screen::setCallBack_CounterRV(m_screenMain, 'Pota_to1', &m_maxOtakara, 2, false, true, arc);
 	m_counterTotalPokos        = og::Screen::setCallBack_CounterRV(m_screenMain, debtTag, &m_totalPokos, 9, false, false, arc);
@@ -323,7 +324,7 @@ bool ObjCaveResult::doUpdate()
 	DispCaveResult* disp = static_cast<DispCaveResult*>(getDispMember());
 	updateAnimation();
 
-	if (isFlag(0x4)) {
+	if (isFlag(CAVERESFLAG_SaveOpen)) {
 		m_saveMgr->update();
 		if (m_saveMgr->isFinish()) {
 			switch (m_saveMgr->_474) {
@@ -333,7 +334,7 @@ bool ObjCaveResult::doUpdate()
 				break;
 
 			case 1:
-				resetFlag(0x4);
+				resetFlag(CAVERESFLAG_SaveOpen);
 				break;
 			}
 		}
@@ -371,24 +372,24 @@ bool ObjCaveResult::doUpdate()
 
 		Controller* pad = getGamePad();
 		if (pad->m_padButton.m_buttonDown & Controller::PRESS_A) {
-			if (!isFlag(0x8)) {
-				setFlag(0x2);
+			if (!isFlag(CAVERESFLAG_PikisKilledShown)) {
+				setFlag(CAVERESFLAG_FinishAutoScroll);
 			}
 			if (m_status == CAVERES_Normal) {
-				setFlag(0x4);
+				setFlag(CAVERESFLAG_SaveOpen);
 				m_efxComp->fade();
 				m_saveMgr->start();
 			}
 		}
 
-		if (isFlag(0x2)) {
-			m_scrollIndex  = m_scrollIndexNew;
-			m_scrollPos    = -m_scrollUpDown * (f32)m_scrollIndex;
-			_E4            = 0;
-			m_cavePokos    = disp->m_cavePokos;
-			m_deadPiki     = disp->m_deadPikis;
-			m_totalPokos   = disp->m_totalPokos;
-			m_otakaraCount = disp->m_collectedOtakara;
+		if (isFlag(CAVERESFLAG_FinishAutoScroll)) {
+			m_scrollSelIndex  = m_scrollSelIndexMax;
+			m_scrollPos       = -m_scrollUpDown * (f32)m_scrollSelIndex;
+			m_scrollMoveTimer = 0;
+			m_cavePokos       = disp->m_cavePokos;
+			m_deadPiki        = disp->m_deadPikis;
+			m_totalPokos      = disp->m_totalPokos;
+			m_otakaraCount    = disp->m_collectedOtakara;
 			m_counterCavePokos->startPuyoUp(1.0f);
 			m_counterDeadPiki->startPuyoUp(1.0f);
 			m_counterTotalPokos->startPuyoUp(1.0f);
@@ -396,8 +397,8 @@ bool ObjCaveResult::doUpdate()
 			pikminSE();
 
 			if (disp->m_caveComp) {
-				m_status = CAVERES_Effect;
-				_F4      = msVal._3B;
+				m_status           = CAVERES_Effect;
+				m_changeStateDelay = msVal._3B;
 			} else {
 				m_otakaraCount = disp->m_collectedOtakara;
 				m_status       = CAVERES_Normal;
@@ -406,17 +407,17 @@ bool ObjCaveResult::doUpdate()
 			kh::Screen::LostItemMgr* mgr;
 			FOREACH_NODE(Game::Result::TNode, m_resultNode->m_child, cNode)
 			{
-				mgr = cNode->itemMgr;
+				mgr = cNode->m_itemMgr;
 				if ((int)mgr->isFlag(0x1) != 1 && mgr->m_maxPanes != 0) {
 					mgr->setFlag(0x2);
 				}
 			}
-			resetFlag(0x2);
-			setFlag(0x8);
+			resetFlag(CAVERESFLAG_FinishAutoScroll);
+			setFlag(CAVERESFLAG_PikisKilledShown);
 		}
 	}
 
-	if (!isFlag(0x4) && (m_status != CAVERES_Effect) && m_alpha != 0) {
+	if (!isFlag(CAVERESFLAG_SaveOpen) && (m_status != CAVERES_Effect) && m_alpha != 0) {
 		m_alpha -= msVal._3A;
 	}
 
@@ -430,6 +431,123 @@ bool ObjCaveResult::doUpdate()
  */
 void ObjCaveResult::doDraw(Graphics& gfx)
 {
+	J2DPane* pane1       = m_screenMain->search('NALL2');
+	J2DPane* paneList[2] = { m_screenMain->search('Nsetp00'), m_screenMain->search('Nsetp01') };
+	J2DPane* pane2       = m_screenMain->search('N3DALL');
+
+	u64 tags[4] = { 'Piname00', 'Piname01', 'iPicon00', 'iPicon01' };
+	gfx.m_orthoGraph.setPort();
+	pane1->m_isVisible       = true;
+	pane2->m_isVisible       = false;
+	paneList[0]->m_isVisible = false;
+	paneList[1]->m_isVisible = false;
+	m_screenMain->draw(gfx, gfx.m_orthoGraph);
+
+	u32 x, y, wd, ht;
+	GXGetScissor(&x, &y, &wd, &ht);
+	GXSetScissor(x, _E8, wd, _EC);
+
+	pane1->m_isVisible = false;
+	pane2->m_isVisible = false;
+
+	f32 offs = m_scrollUpDown * 2.0f;
+	for (int i = 0; i < 2; i++) {
+		paneList[i]->add(0.0f, m_scrollPos - offs);
+	}
+
+	for (int i = 0; i < 2; i++) {
+		m_screenMain->search(tags[i + 2])->m_isVisible = true;
+		m_screenMain->search(tags[i])->m_isVisible     = true;
+		m_counterOtaValues[i]->show();
+	}
+
+	int i = 0;
+	int next;
+	FOREACH_NODE(Game::Result::TNode, m_resultNode->m_child, cNode)
+	{
+		int isOdd = i & 1;
+		f32 calc  = (f32)i * m_scrollUpDown + m_scrollPos;
+
+		if (calc < -m_scrollUpDown || (f32)_EC < calc) {
+			paneList[isOdd]->add(0.0f, offs);
+		} else {
+			if ((cNode->m_itemMgr->m_flags & 2) == 2) {
+				if (cNode->m_quantity < 0) {
+					next = 0;
+				} else {
+					next = cNode->_30 * cNode->m_quantity;
+				}
+				setAlpha(isOdd, 48);
+			} else {
+				if (cNode->m_quantity < 0) {
+					next = 0;
+				} else {
+					next = (cNode->_30 + cNode->m_isLost) * cNode->m_quantity;
+				}
+				setAlpha(isOdd, 255);
+			}
+		}
+		paneList[isOdd]->m_isVisible = false;
+		paneList[isOdd]->m_isVisible = true;
+		paneList[isOdd]->add(0.0f, offs);
+		setTex(m_screenMain, tags[isOdd + 2], cNode->m_texture->_20);
+		u64 tag = cNode->m_mesgTag;
+		if (tag == 0) {
+			m_screenMain->search(tags[isOdd + 2])->m_isVisible = false;
+		} else {
+			m_screenMain->search(tags[isOdd + 2])->m_messageID = tag;
+		}
+		m_currOtaValues[isOdd] = next;
+		m_counterOtaValues[isOdd]->update();
+		m_screenMain->draw(gfx, gfx.m_orthoGraph);
+		i++;
+	}
+
+	for (; i < 6; i++) {
+		int isOdd                    = i & 1;
+		paneList[isOdd]->m_isVisible = false;
+		paneList[isOdd]->m_isVisible = true;
+		paneList[isOdd]->add(0.0f, offs);
+		setAlpha(isOdd, 255);
+		m_screenMain->search(tags[isOdd + 2])->m_isVisible = false;
+		m_screenMain->search(tags[isOdd])->m_isVisible     = false;
+		m_counterOtaValues[i]->hide();
+		m_screenMain->draw(gfx, gfx.m_orthoGraph);
+	}
+
+	GXSetScissor(x, y, wd, ht);
+	pane1->m_isVisible       = true;
+	pane2->m_isVisible       = false;
+	paneList[0]->m_isVisible = false;
+	paneList[1]->m_isVisible = false;
+	m_screenMain->draw(gfx, gfx.m_orthoGraph);
+
+	FOREACH_NODE(Game::Result::TNode, m_resultNode->m_child, cNode)
+	{
+		cNode->m_itemMgr->draw(m_screenDropItem, 'iPicon00', cNode->m_texture->_20, gfx);
+	}
+
+	if (m_alpha) {
+		gfx.m_orthoGraph.setPort();
+		JUtility::TColor c(m_alpha);
+		gfx.m_orthoGraph.setColor(c);
+
+		int x = System::getRenderModeObj()->fbWidth;
+		int y = System::getRenderModeObj()->efbHeight;
+		JGeometry::TBox2f box(0.0f, x, 0.0f, y);
+		gfx.m_orthoGraph.fillBox(box);
+	}
+
+	if (isFlag(CAVERESFLAG_DrawComp)) {
+		gfx.m_orthoGraph.setPort();
+		m_screenComplete->draw(gfx, gfx.m_orthoGraph);
+	}
+
+	if (isFlag(CAVERESFLAG_SaveOpen)) {
+		gfx.m_orthoGraph.setPort();
+		m_saveMgr->draw();
+	}
+
 	/*
 stwu     r1, -0xd0(r1)
 mflr     r0
@@ -1004,6 +1122,67 @@ bool ObjCaveResult::doUpdateFadeout()
  */
 void ObjCaveResult::statusNormal()
 {
+	if (isFlag(CAVERESFLAG_CanScroll)) {
+		// at top of scroll list
+		if (!m_scrollSelIndex) {
+			m_fadePaneUpArrow->fadeout();
+			m_fadePaneDownArrow->fadein();
+			m_stickAnim->stickDown();
+		}
+		// at bottom of scroll list
+		else if (m_scrollSelIndex == m_scrollSelIndexMax) {
+			m_fadePaneUpArrow->fadein();
+			m_fadePaneDownArrow->fadeout();
+			m_stickAnim->stickDown();
+		}
+		// in middle of sroll list
+		else {
+			m_fadePaneUpArrow->fadein();
+			m_fadePaneDownArrow->fadein();
+			m_stickAnim->stickUpDown();
+		}
+		m_fadePane1->fadein();
+	} else {
+		m_fadePaneUpArrow->fadeout();
+		m_fadePaneDownArrow->fadeout();
+		m_fadePane4->fadeout();
+	}
+
+	m_fadePane4->fadein();
+	if (isFlag(CAVERESFLAG_CanScroll)) {
+		Controller* pad = getGamePad();
+		// press up, begin scroll up state
+		if (pad->m_padButton.m_buttonDown & (Controller::PRESS_DPAD_UP | Controller::UNKNOWN_32) && m_scrollSelIndex) {
+			m_scrollSelIndex--;
+			if (!_106)
+				_106 = true;
+			else
+				m_scrollTargetDist = msVal._20;
+			_107     = 0;
+			m_status = CAVERES_ScrollUp;
+			statusScrollUp();
+			return;
+		}
+
+		pad = getGamePad();
+		// press down, begin scroll down state
+		if (pad->m_padButton.m_buttonDown & (Controller::PRESS_DPAD_DOWN | Controller::UNKNOWN_31)
+		    && m_scrollSelIndex != m_scrollSelIndexMax) {
+			m_scrollSelIndex++;
+			if (!_106)
+				_106 = true;
+			else
+				m_scrollTargetDist = msVal._20;
+			_107     = 0;
+			m_status = CAVERES_ScrollDown;
+			statusScrollDown();
+			return;
+		} else {
+			_107               = 0;
+			_106               = 0;
+			m_scrollTargetDist = msVal._1C;
+		}
+	}
 	/*
 stwu     r1, -0x10(r1)
 mflr     r0
@@ -1158,6 +1337,16 @@ blr
  */
 void ObjCaveResult::statusScrollUp()
 {
+	m_scrollPos = -(((m_scrollMoveTimer * m_scrollUpDown)
+	                 + (m_scrollSelIndex * m_scrollUpDown) * ((m_scrollSelIndex + 1) * m_scrollTargetDist - m_scrollMoveTimer))
+	                / m_scrollTargetDist);
+	int e       = m_scrollMoveTimer;
+	m_scrollMoveTimer++;
+	if (e == m_scrollTargetDist) {
+		m_scrollMoveTimer = 1;
+		m_status          = CAVERES_Normal;
+	}
+	PSSystem::spSysIF->playSystemSe(PSSE_SY_REGI_ROLL, 0);
 	/*
 stwu     r1, -0x30(r1)
 mflr     r0
@@ -1232,6 +1421,16 @@ blr
  */
 void ObjCaveResult::statusScrollDown()
 {
+	m_scrollPos = -(((m_scrollMoveTimer * m_scrollUpDown)
+	                 + (m_scrollSelIndex * m_scrollUpDown) * ((m_scrollSelIndex - 1) * m_scrollTargetDist - m_scrollMoveTimer))
+	                / m_scrollTargetDist);
+	int e       = m_scrollMoveTimer;
+	m_scrollMoveTimer++;
+	if (e == m_scrollTargetDist) {
+		m_scrollMoveTimer = 1;
+		m_status          = CAVERES_Normal;
+	}
+	PSSystem::spSysIF->playSystemSe(PSSE_SY_REGI_ROLL, 0);
 	/*
 stwu     r1, -0x30(r1)
 mflr     r0
@@ -1306,6 +1505,58 @@ blr
  */
 void ObjCaveResult::statusForceScroll()
 {
+	m_scrollPos = -(((m_scrollMoveTimer * m_scrollUpDown)
+	                 + (m_scrollSelIndex * m_scrollUpDown) * ((m_scrollSelIndex - 1) * m_scrollTargetDist - m_scrollMoveTimer))
+	                / m_scrollTargetDist);
+
+	int e = m_scrollMoveTimer;
+	m_scrollMoveTimer++;
+	if (e == m_scrollTargetDist) {
+		if (m_scrollSelIndex == m_scrollSelIndexMax) {
+			bool check        = false;
+			m_scrollMoveTimer = 1;
+			FOREACH_NODE(Game::Result::TNode, m_resultNode->m_child, cNode)
+			{
+				if ((cNode->m_itemMgr->m_flags & 2 != 2) && cNode->m_isLost) {
+					m_status           = CAVERES_Lost;
+					check              = true;
+					m_changeStateDelay = 0;
+				}
+			}
+			if (check) {
+				m_status           = CAVERES_AllMoney;
+				m_changeStateDelay = msVal._3B;
+			}
+		} else {
+			JUT_ASSERTLINE(829, getDispMember()->isID(OWNER_KH, MEMBER_CAVE_RESULT), "disp member err");
+			getDispMember();
+			Game::Result::TNode* node = static_cast<Game::Result::TNode*>(m_resultNode->m_child);
+			for (int i = 0; node && i != m_scrollSelIndex + 6; i++) {
+				node = static_cast<Game::Result::TNode*>(node->m_next);
+			}
+			if (node && !node->m_isLost) {
+				if (node->m_quantity > 0) {
+					m_otakaraCount++;
+				}
+				if (node->m_quantity > 0 || !node->m_isLost) {
+					m_cavePokos += node->m_pokoValue;
+				}
+				PSSystem::spSysIF->playSystemSe(PSSE_SY_COIN_COUNT, 0);
+			}
+			m_scrollMoveTimer = 1;
+			m_scrollSelIndex++;
+		}
+	}
+	int i = 0;
+	JGeometry::TVec2f pos(_FC, _100);
+	FOREACH_NODE(Game::Result::TNode, m_resultNode->m_child, cNode)
+	{
+		if (i == m_scrollSelIndex + 2 && ((cNode->m_itemMgr->m_flags & 1) != 1)) {
+			cNode->m_itemMgr->init(pos, 0);
+		}
+		i++;
+	}
+	PSSystem::spSysIF->playSystemSe(PSSE_SY_REGI_ROLL, 0);
 	/*
 stwu     r1, -0x50(r1)
 mflr     r0
@@ -1537,8 +1788,8 @@ blr
  */
 void ObjCaveResult::statusDrumRoll()
 {
-	_F4      = msVal._3B;
-	m_status = CAVERES_AllMoney;
+	m_changeStateDelay = msVal._3B;
+	m_status           = CAVERES_AllMoney;
 }
 
 /*
@@ -1548,6 +1799,17 @@ void ObjCaveResult::statusDrumRoll()
  */
 void ObjCaveResult::statusAllMoney()
 {
+	if (!m_changeStateDelay) {
+		JUT_ASSERTLINE(910, getDispMember()->isID(OWNER_KH, MEMBER_CAVE_RESULT), "disp member err");
+		DispCaveResult* disp = static_cast<DispCaveResult*>(getDispMember());
+		m_totalPokos         = disp->m_totalPokos;
+		m_counterTotalPokos->startPuyoUp(1.0f);
+		PSSystem::spSysIF->playSystemSe(PSSE_SY_REGI_SUM_UP, 0);
+		m_changeStateDelay = msVal._3B;
+		m_status           = CAVERES_DecP;
+	} else {
+		m_changeStateDelay--;
+	}
 	/*
 stwu     r1, -0x10(r1)
 mflr     r0
@@ -1613,6 +1875,22 @@ blr
  */
 void ObjCaveResult::statusDecP()
 {
+	if (!m_changeStateDelay) {
+		JUT_ASSERTLINE(934, getDispMember()->isID(OWNER_KH, MEMBER_CAVE_RESULT), "disp member err");
+		DispCaveResult* disp = static_cast<DispCaveResult*>(getDispMember());
+		m_deadPiki           = disp->m_deadPikis;
+		m_counterDeadPiki->startPuyoUp(1.0f);
+		pikminSE();
+		if (disp->m_caveComp) {
+			m_status           = CAVERES_Effect;
+			m_changeStateDelay = msVal._3B;
+		} else {
+			m_status = CAVERES_Normal;
+		}
+		setFlag(CAVERESFLAG_PikisKilledShown);
+	} else {
+		m_changeStateDelay--;
+	}
 	/*
 stwu     r1, -0x10(r1)
 mflr     r0
@@ -1692,6 +1970,25 @@ blr
  */
 void ObjCaveResult::statusLost()
 {
+	if (!m_changeStateDelay) {
+		int i = 0;
+		JGeometry::TVec2f pos(_FC, _100);
+		FOREACH_NODE(Game::Result::TNode, m_resultNode->m_child, cNode)
+		{
+			if (cNode->m_isLost != 0 && ((cNode->m_itemMgr->m_flags & 2) != 2)) {
+				pos.y += _100 * m_scrollUpDown;
+				cNode->m_itemMgr->init(pos, i & 1);
+				m_changeStateDelay = m_scrollTargetDist;
+				return;
+			}
+			i++;
+		}
+		m_status           = CAVERES_AllMoney;
+		m_changeStateDelay = msVal._3B;
+	} else {
+		m_changeStateDelay--;
+	}
+
 	/*
 stwu     r1, -0x20(r1)
 mflr     r0
@@ -1781,6 +2078,29 @@ blr
  */
 void ObjCaveResult::statusEffect()
 {
+	if (!m_changeStateDelay) {
+		if (!isFlag(CAVERESFLAG_DrawComp)) {
+			m_screenMain->search('Pananorm')->m_isVisible = false;
+			m_screenMain->search('Panacomp')->m_isVisible = true;
+			m_scaleMgr->up();
+			m_counterTreasureMax->getMotherPane()->m_isVisible = true;
+			m_counterTreasureCollected->getMotherPane()->add(-msVal._10, -msVal._14);
+			m_screenMain->search('PICT_008')->m_isVisible = true;
+			m_screenMain->search('Ptits14')->m_isVisible  = true;
+			m_screenMain->search('Ptits15')->m_isVisible  = true;
+			m_status                                      = CAVERES_Normal;
+			PSSystem::spSysIF->playSystemSe(PSSE_SY_WMAP_CAVE_NAME, 0);
+		} else {
+			if (m_alpha < msVal._39)
+				m_alpha += msVal._3A;
+		}
+	} else {
+		m_changeStateDelay--;
+		if (m_changeStateDelay == 0) {
+			setFlag(CAVERESFLAG_DrawComp);
+			PSSystem::spSysIF->playSystemSe(PSSE_DOKUTSU_COMPLETE, 0);
+		}
+	}
 	/*
 stwu     r1, -0x10(r1)
 mflr     r0
@@ -1915,6 +2235,7 @@ blr
  */
 void ObjCaveResult::updateAnimation()
 {
+	FOREACH_NODE(Game::Result::TNode, m_resultNode->m_child, cNode) { cNode->m_itemMgr->update(); }
 	/*
 stwu     r1, -0xb0(r1)
 mflr     r0
@@ -2287,8 +2608,11 @@ blr
  * Address:	803FB04C
  * Size:	000078
  */
-void ObjCaveResult::setAlpha(int, unsigned char)
+void ObjCaveResult::setAlpha(int index, unsigned char alpha)
 {
+	u64 tag  = 'Nicon00';
+	u64 tag2 = 'Nicon01';
+	m_screenMain->search('Nicon00' + index)->setAlpha(alpha);
 	/*
 stwu     r1, -0x20(r1)
 mflr     r0
@@ -2330,6 +2654,20 @@ blr
  */
 void ObjCaveResult::pikminSE()
 {
+	uint dead = m_deadPiki;
+	if (dead == 0) {
+		PSSystem::spSysIF->playSystemSe(PSSE_SY_MENU_PLUS_MINUS, 0);
+		PSSystem::spSysIF->playSystemSe(PSSE_PK_RESULT_INCREMENT, 0);
+	} else if (dead <= 10) {
+		PSSystem::spSysIF->playSystemSe(PSSE_SY_PIKI_DECREMENT, 0);
+		PSSystem::spSysIF->playSystemSe(PSSE_PK_VC_SAVED, 0);
+	} else if (dead <= 50) {
+		PSSystem::spSysIF->playSystemSe(PSSE_SY_PIKI_DECRE_SUM, 0);
+		PSSystem::spSysIF->playSystemSe(PSSE_PK_RESULT_DECREMENT, 0);
+	} else {
+		PSSystem::spSysIF->playSystemSe(PSSE_SY_PIKI_DECRE_SUM, 0);
+		PSSystem::spSysIF->playSystemSe(PSSE_PK_VC_GHOST, 0);
+	}
 	/*
 stwu     r1, -0x10(r1)
 mflr     r0

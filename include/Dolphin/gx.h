@@ -994,6 +994,7 @@ void __GXFifoLink(u8);
 void __GXWriteFifoIntEnable(u32, u32);
 void __GXWriteFifoIntReset(u32, u32);
 
+void GXGetScissor(u32*, u32*, u32*, u32*);
 void GXSetScissor(u32, u32, u32, u32);
 void GXSetProjection(Mtx, GXProjectionType);
 

@@ -57,6 +57,14 @@ struct ObjCaveResult : public ::Screen::ObjBase {
 		CAVERES_AllMoney    = 8,
 	};
 
+	enum Flags {
+		CAVERESFLAG_CanScroll        = 1, // more than 6 items in list
+		CAVERESFLAG_FinishAutoScroll = 2,
+		CAVERESFLAG_SaveOpen         = 4,
+		CAVERESFLAG_PikisKilledShown = 8,
+		CAVERESFLAG_DrawComp         = 0x10
+	};
+
 	ObjCaveResult();
 
 	virtual ~ObjCaveResult() { }         // _08 (weak)
@@ -112,33 +120,31 @@ struct ObjCaveResult : public ::Screen::ObjBase {
 	og::Screen::StickAnimMgr* m_stickAnim;                      // _80
 	og::Screen::ScaleMgr* m_scaleMgr;                           // _84
 	khUtilFadePane* m_fadePane1;                                // _88
-	khUtilFadePane* m_fadePane2;                                // _8C
-	khUtilFadePane* m_fadePane3;                                // _90
+	khUtilFadePane* m_fadePaneUpArrow;                          // _8C
+	khUtilFadePane* m_fadePaneDownArrow;                        // _90
 	khUtilFadePane* m_fadePane4;                                // _94
 	og::Screen::CallBack_CounterRV* m_counterCavePokos;         // _98
 	og::Screen::CallBack_CounterRV* m_counterDeadPiki;          // _9C
-	og::Screen::CallBack_CounterRV* _A0;                        // _A0
-	og::Screen::CallBack_CounterRV* _A4;                        // _A4
+	og::Screen::CallBack_CounterRV* m_counterOtaValues[2];      // _A0
 	og::Screen::CallBack_CounterRV* m_counterTreasureCollected; // _A8
 	og::Screen::CallBack_CounterRV* m_counterTreasureMax;       // _AC
 	og::Screen::CallBack_CounterRV* m_counterTotalPokos;        // _B0
 	u32 m_cavePokos;                                            // _B4, unknown
 	u32 m_deadPiki;                                             // _B8
-	u32 _BC;                                                    // _BC, unknown
-	u32 _C0;                                                    // _C0
+	u32 m_currOtaValues[2];                                     // _BC, unknown
 	u32 m_otakaraCount;                                         // _C4, unknown
 	u32 m_maxOtakara;                                           // _C8, unknown
 	u32 m_totalPokos;                                           // _CC
 	f32 m_scrollPos;                                            // _D0
 	f32 m_scrollUpDown;                                         // _D4
-	int m_scrollIndex;                                          // _D8
-	u32 m_scrollIndexNew;                                       // _DC
-	uint _E0;                                                   // _E0
-	uint _E4;                                                   // _E4
+	int m_scrollSelIndex;                                       // _D8
+	u32 m_scrollSelIndexMax;                                    // _DC
+	int m_scrollTargetDist;                                     // _E0
+	uint m_scrollMoveTimer;                                     // _E4
 	u32 _E8;                                                    // _E8, unknown
 	u32 _EC;                                                    // _EC, unknown
 	int m_status;                                               // _F0, state or status?
-	int _F4;                                                    // _F4
+	int m_changeStateDelay;                                     // _F4
 	u32 _F8;                                                    // _F8, unknown
 	f32 _FC;                                                    // _FC
 	f32 _100;                                                   // _100

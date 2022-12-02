@@ -25,13 +25,13 @@ struct TNode : public DNode {
 
 	// _00     = VTBL
 	// _00-_2C = DNode
-	JUTTexture* m_texture;            // _2C
-	int _30;                          // _30
-	int m_isLost;                     // _34
-	int m_pokoValue;                  // _38
-	int m_quantity;                   // _3C
-	u64 _40;                          // _40
-	kh::Screen::LostItemMgr* itemMgr; // _48, unknown
+	JUTTexture* m_texture;              // _2C
+	int _30;                            // _30
+	int m_isLost;                       // _34
+	int m_pokoValue;                    // _38
+	int m_quantity;                     // _3C
+	u64 m_mesgTag;                      // _40
+	kh::Screen::LostItemMgr* m_itemMgr; // _48, unknown
 };
 } // namespace Result
 } // namespace Game
