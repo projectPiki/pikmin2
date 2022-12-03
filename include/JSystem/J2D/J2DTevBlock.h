@@ -6,7 +6,6 @@
 #include "JSystem/J2D/J2DTypes.h"
 #include "JSystem/JUT/JUTFont.h"
 #include "JSystem/JUT/JUTPalette.h"
-#include "JSystem/JUT/JUTTexture.h"
 #include "JSystem/JUT/TColor.h"
 #include "JSystem/ResTLUT.h"
 #include "types.h"

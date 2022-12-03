@@ -1000,7 +1000,7 @@ MORIMURA:=\
 	$(BUILD_DIR)/asm/plugProjectMorimuraU/challengeSelect2D.o\
 	$(BUILD_DIR)/asm/plugProjectMorimuraU/challengeResult2D.o\
 	$(BUILD_DIR)/asm/plugProjectMorimuraU/vsSelect2D.o\
-	$(BUILD_DIR)/asm/plugProjectMorimuraU/mrUtil.o\
+	$(BUILD_DIR)/src/plugProjectMorimuraU/mrUtil.o\
 	$(BUILD_DIR)/asm/plugProjectMorimuraU/scrollList.o\
 	$(BUILD_DIR)/src/plugProjectMorimuraU/mrWindow.o\
 	$(BUILD_DIR)/src/plugProjectMorimuraU/blackManState.o\

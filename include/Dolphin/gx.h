@@ -1110,9 +1110,9 @@ typedef union {
 } PPCWGPipe;
 
 #ifdef __MWERKS__
-volatile PPCWGPipe GXWGFifo : GXFIFO_ADDR;
+PPCWGPipe GXWGFifo : GXFIFO_ADDR;
 #else
-volatile PPCWGPipe GXWGFifo;
+PPCWGPipe GXWGFifo;
 #endif
 
 inline void GXSetWasteFlags()

@@ -15,6 +15,15 @@ struct TOffsetMsgSet {
 
 	u64 getMsgID(int);
 
+	inline void calcOffset(int& offset, int i)
+	{
+		int calc  = pow(10.0f, i);
+		int calc2 = offset / calc;
+		_04[i]    = offset / calc;
+		calc2 *= calc;
+		offset -= calc2;
+	}
+
 	u64* m_tagList; // _00
 	int* _04;       // _04
 	u64 m_msgID;    // _08
@@ -32,9 +41,13 @@ struct TScaleUpCounter : public og::Screen::CallBack_CounterRV {
 		_AC = 0.0f;
 	}
 
-	virtual ~TScaleUpCounter();                               // _08 (weak)
-	virtual void init(J2DScreen*, u64, u64, u64, u32*, bool); // _1C (weak)
-	virtual void setValue(bool, bool);                        // _28
+	virtual ~TScaleUpCounter() { }                                                           // _08 (weak)
+	virtual void init(J2DScreen* screen, u64 tag1, u64 tag2, u64 tag3, u32* ptr, bool check) // _1C (weak)
+	{
+		og::Screen::CallBack_CounterRV::init(screen, tag1, tag2, tag3, ptr, check);
+		_AC = _34;
+	}
+	virtual void setValue(bool, bool); // _28
 
 	void forceScaleUp(bool);
 	void setScale(f32, f32);
@@ -67,7 +80,7 @@ struct TCounterRV : public og::Screen::CallBack_CounterRV {
 
 struct TCallbackScissor : public P2DScreen::CallBackNode {
 
-	virtual ~TCallbackScissor();                   // _08 (weak)
+	virtual ~TCallbackScissor() { }                // _08 (weak)
 	virtual void draw(Graphics&, J2DGrafContext&); // _14
 
 	// _00     = VTBL
@@ -79,7 +92,7 @@ struct TCallbackScissor : public P2DScreen::CallBackNode {
 };
 
 struct TScissorPane : public J2DPictureEx {
-	virtual ~TScissorPane();               // _08 (weak)
+	virtual ~TScissorPane() { }            // _08 (weak)
 	virtual void drawSelf(f32, f32, Mtx*); // _38
 
 	// _00      = VTBL
@@ -138,8 +151,8 @@ struct THuWhitePaneSet : public J2DPictureEx {
 struct TIndPane : public CNode {
 	TIndPane(const char*, f32, f32);
 
-	virtual ~TIndPane(); // _08 (weak)
-	virtual void draw(); // _10
+	virtual ~TIndPane() { } // _08 (weak)
+	virtual void draw();    // _10
 
 	void createIndTexture(const char*);
 	void createCaptureTexture(_GXTexFmt);
@@ -149,15 +162,13 @@ struct TIndPane : public CNode {
 	JUTTexture* m_texture1; // _18
 	JUTTexture* m_texture2; // _1C
 	JUTTexture* m_texture3; // _20
-	f32 _24;
-	f32 _28;
-	f32 _2C;
-	f32 _30;
-	f32 _34;
-	f32 _38;
-	s16 _3C;
-	f32 _40;
-	u8 _44;
+	Vector2f m_minPos;      // _24
+	Vector2f m_maxPos;      // _2C
+	f32 _34;                // _34
+	f32 _38;                // _38
+	s16 _3C;                // _3C
+	f32 _40;                // _40
+	u8 _44;                 // _44
 };
 } // namespace Morimura
 

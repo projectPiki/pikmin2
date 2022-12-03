@@ -4,6 +4,7 @@
 #include "Dolphin/gx.h"
 #include "types.h"
 #include "JSystem/ResTIMG.h"
+#include "JSystem/J2D/J2DPane.h"
 
 struct JUTPalette;
 struct ResTIMG;
@@ -17,8 +18,17 @@ struct JUTTexture : public GXTexObj {
 		_20 = 0;
 	}
 	JUTTexture(int, int, _GXTexFmt);
+
+	inline JUTTexture(const char* resName)
+	{
+		const ResTIMG* resource = static_cast<ResTIMG*>(J2DScreen::getNameResource(resName));
+		_28                     = nullptr;
+		storeTIMG(resource, (u8)0);
+		m_flags &= 2;
+	}
+
 	~JUTTexture();
-	;
+
 	void attachPalette(JUTPalette*);
 	void capture(int, int, _GXTexFmt, bool, u8);
 	void captureTexture(int, int, int, int, bool, _GXTexFmt, _GXTexFmt);
