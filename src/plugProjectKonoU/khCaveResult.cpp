@@ -8,7 +8,9 @@
 #include "JSystem/J2D/J2DAnmLoader.h"
 #include "og/Screen/ogScreen.h"
 #include "og/Screen/StickAnimMgr.h"
+#include "og/newScreen/ogUtil.h"
 #include "Game/MemoryCard/Mgr.h"
+#include "LoadResource.h"
 #include "Controller.h"
 #include "Dolphin/gx.h"
 
@@ -435,15 +437,23 @@ void ObjCaveResult::doDraw(Graphics& gfx)
 	J2DPane* paneList[2] = { m_screenMain->search('Nsetp00'), m_screenMain->search('Nsetp01') };
 	J2DPane* pane2       = m_screenMain->search('N3DALL');
 
-	u64 tags[4] = { 'Piname00', 'Piname01', 'iPicon00', 'iPicon01' };
+	u64 nametags[2] = { 'Piname00', 'Piname01' };
+	u64 icontags[2] = { 'iPicon00', 'iPicon01' };
+
 	gfx.m_orthoGraph.setPort();
 	pane1->m_isVisible       = true;
 	pane2->m_isVisible       = false;
 	paneList[0]->m_isVisible = false;
 	paneList[1]->m_isVisible = false;
+
+	J2DPane** list = paneList;
 	m_screenMain->draw(gfx, gfx.m_orthoGraph);
 
 	u32 x, y, wd, ht;
+	x  = 0;
+	y  = 0;
+	wd = 0;
+	ht = 0;
 	GXGetScissor(&x, &y, &wd, &ht);
 	GXSetScissor(x, _E8, wd, _EC);
 
@@ -452,26 +462,28 @@ void ObjCaveResult::doDraw(Graphics& gfx)
 
 	f32 offs = m_scrollUpDown * 2.0f;
 	for (int i = 0; i < 2; i++) {
-		paneList[i]->add(0.0f, m_scrollPos - offs);
+		list[i]->add(0.0f, m_scrollPos - offs);
 	}
 
 	for (int i = 0; i < 2; i++) {
-		m_screenMain->search(tags[i + 2])->m_isVisible = true;
-		m_screenMain->search(tags[i])->m_isVisible     = true;
+		J2DPane* pane     = m_screenMain->search(nametags[i]);
+		pane->m_isVisible = true;
+		pane              = m_screenMain->search(icontags[i]);
+		pane->m_isVisible = true;
 		m_counterOtaValues[i]->show();
 	}
 
-	int i = 0;
+	u32 i = 0;
 	int next;
 	FOREACH_NODE(Game::Result::TNode, m_resultNode->m_child, cNode)
 	{
-		int isOdd = i & 1;
+		u32 isOdd = i & 1;
 		f32 calc  = (f32)i * m_scrollUpDown + m_scrollPos;
 
-		if (calc < -m_scrollUpDown || (f32)_EC < calc) {
+		if (calc < -m_scrollUpDown || _EC < calc) {
 			paneList[isOdd]->add(0.0f, offs);
 		} else {
-			if ((cNode->m_itemMgr->m_flags & 2) == 2) {
+			if (((int)cNode->m_itemMgr->m_flags & 2) == 2) {
 				if (cNode->m_quantity < 0) {
 					next = 0;
 				} else {
@@ -479,27 +491,24 @@ void ObjCaveResult::doDraw(Graphics& gfx)
 				}
 				setAlpha(isOdd, 48);
 			} else {
-				if (cNode->m_quantity < 0) {
-					next = 0;
-				} else {
-					next = (cNode->_30 + cNode->m_isLost) * cNode->m_quantity;
-				}
+				next = cNode->getNextIndex(cNode->_30, cNode->m_isLost);
 				setAlpha(isOdd, 255);
 			}
+			J2DPane* pane                = paneList[isOdd];
+			pane->m_isVisible            = false;
+			paneList[isOdd]->m_isVisible = true;
+			paneList[isOdd]->add(0.0f, offs);
+			setTex(m_screenMain, icontags[isOdd], cNode->m_texture->_20);
+			u64 tag = cNode->m_mesgTag;
+			if (tag == 0) {
+				m_screenMain->search(icontags[isOdd])->m_isVisible = false;
+			} else {
+				m_screenMain->search(icontags[isOdd])->m_messageID = tag;
+			}
+			m_currOtaValues[isOdd] = next;
+			m_counterOtaValues[isOdd]->update();
+			m_screenMain->draw(gfx, gfx.m_orthoGraph);
 		}
-		paneList[isOdd]->m_isVisible = false;
-		paneList[isOdd]->m_isVisible = true;
-		paneList[isOdd]->add(0.0f, offs);
-		setTex(m_screenMain, tags[isOdd + 2], cNode->m_texture->_20);
-		u64 tag = cNode->m_mesgTag;
-		if (tag == 0) {
-			m_screenMain->search(tags[isOdd + 2])->m_isVisible = false;
-		} else {
-			m_screenMain->search(tags[isOdd + 2])->m_messageID = tag;
-		}
-		m_currOtaValues[isOdd] = next;
-		m_counterOtaValues[isOdd]->update();
-		m_screenMain->draw(gfx, gfx.m_orthoGraph);
 		i++;
 	}
 
@@ -509,8 +518,8 @@ void ObjCaveResult::doDraw(Graphics& gfx)
 		paneList[isOdd]->m_isVisible = true;
 		paneList[isOdd]->add(0.0f, offs);
 		setAlpha(isOdd, 255);
-		m_screenMain->search(tags[isOdd + 2])->m_isVisible = false;
-		m_screenMain->search(tags[isOdd])->m_isVisible     = false;
+		m_screenMain->search(icontags[isOdd])->m_isVisible = false;
+		m_screenMain->search(nametags[isOdd])->m_isVisible = false;
 		m_counterOtaValues[i]->hide();
 		m_screenMain->draw(gfx, gfx.m_orthoGraph);
 	}
@@ -1133,7 +1142,7 @@ void ObjCaveResult::statusNormal()
 		else if (m_scrollSelIndex == m_scrollSelIndexMax) {
 			m_fadePaneUpArrow->fadein();
 			m_fadePaneDownArrow->fadeout();
-			m_stickAnim->stickDown();
+			m_stickAnim->stickUp();
 		}
 		// in middle of sroll list
 		else {
@@ -1145,189 +1154,45 @@ void ObjCaveResult::statusNormal()
 	} else {
 		m_fadePaneUpArrow->fadeout();
 		m_fadePaneDownArrow->fadeout();
-		m_fadePane4->fadeout();
+		m_fadePane1->fadeout();
 	}
 
 	m_fadePane4->fadein();
 	if (isFlag(CAVERESFLAG_CanScroll)) {
-		Controller* pad = getGamePad();
 		// press up, begin scroll up state
-		if (pad->m_padButton.m_buttonDown & (Controller::PRESS_DPAD_UP | Controller::UNKNOWN_32) && m_scrollSelIndex) {
+		if (getGamePad()->m_padButton.m_mask & (Controller::PRESS_DPAD_UP | Controller::UNKNOWN_32) && m_scrollSelIndex) {
 			m_scrollSelIndex--;
-			if (!_106)
-				_106 = true;
-			else
+			if (_106 >= 1) {
 				m_scrollTargetDist = msVal._20;
+			} else {
+				_106++;
+			}
+
 			_107     = 0;
 			m_status = CAVERES_ScrollUp;
 			statusScrollUp();
 			return;
 		}
 
-		pad = getGamePad();
 		// press down, begin scroll down state
-		if (pad->m_padButton.m_buttonDown & (Controller::PRESS_DPAD_DOWN | Controller::UNKNOWN_31)
+		if (getGamePad()->m_padButton.m_mask & (Controller::PRESS_DPAD_DOWN | Controller::UNKNOWN_31)
 		    && m_scrollSelIndex != m_scrollSelIndexMax) {
 			m_scrollSelIndex++;
-			if (!_106)
-				_106 = true;
-			else
+			if (_107 >= 1) {
 				m_scrollTargetDist = msVal._20;
-			_107     = 0;
+			} else {
+				_107++;
+			}
+			_106     = 0;
 			m_status = CAVERES_ScrollDown;
 			statusScrollDown();
 			return;
-		} else {
-			_107               = 0;
-			_106               = 0;
-			m_scrollTargetDist = msVal._1C;
 		}
+
+		_107               = 0;
+		_106               = 0;
+		m_scrollTargetDist = msVal._1C;
 	}
-	/*
-stwu     r1, -0x10(r1)
-mflr     r0
-stw      r0, 0x14(r1)
-stw      r31, 0xc(r1)
-mr       r31, r3
-lbz      r0, 0x104(r3)
-clrlwi.  r0, r0, 0x1f
-beq      lbl_803FA020
-lwz      r3, 0xd8(r31)
-cmpwi    r3, 0
-bne      lbl_803F9FD4
-lwz      r3, 0x8c(r31)
-bl       fadeout__Q32kh6Screen14khUtilFadePaneFv
-lwz      r3, 0x90(r31)
-bl       fadein__Q32kh6Screen14khUtilFadePaneFv
-lwz      r3, 0x80(r31)
-bl       stickDown__Q32og6Screen12StickAnimMgrFv
-b        lbl_803FA014
-
-lbl_803F9FD4:
-lwz      r0, 0xdc(r31)
-cmpw     r3, r0
-bne      lbl_803F9FFC
-lwz      r3, 0x8c(r31)
-bl       fadein__Q32kh6Screen14khUtilFadePaneFv
-lwz      r3, 0x90(r31)
-bl       fadeout__Q32kh6Screen14khUtilFadePaneFv
-lwz      r3, 0x80(r31)
-bl       stickUp__Q32og6Screen12StickAnimMgrFv
-b        lbl_803FA014
-
-lbl_803F9FFC:
-lwz      r3, 0x8c(r31)
-bl       fadein__Q32kh6Screen14khUtilFadePaneFv
-lwz      r3, 0x90(r31)
-bl       fadein__Q32kh6Screen14khUtilFadePaneFv
-lwz      r3, 0x80(r31)
-bl       stickUpDown__Q32og6Screen12StickAnimMgrFv
-
-lbl_803FA014:
-lwz      r3, 0x88(r31)
-bl       fadein__Q32kh6Screen14khUtilFadePaneFv
-b        lbl_803FA038
-
-lbl_803FA020:
-lwz      r3, 0x8c(r31)
-bl       fadeout__Q32kh6Screen14khUtilFadePaneFv
-lwz      r3, 0x90(r31)
-bl       fadeout__Q32kh6Screen14khUtilFadePaneFv
-lwz      r3, 0x88(r31)
-bl       fadeout__Q32kh6Screen14khUtilFadePaneFv
-
-lbl_803FA038:
-lwz      r3, 0x94(r31)
-bl       fadein__Q32kh6Screen14khUtilFadePaneFv
-lbz      r0, 0x104(r31)
-clrlwi.  r0, r0, 0x1f
-beq      lbl_803FA154
-mr       r3, r31
-bl       getGamePad__Q26Screen7ObjBaseCFv
-lis      r4, 0x08000008@ha
-lwz      r3, 0x18(r3)
-addi     r0, r4, 0x08000008@l
-and.     r0, r3, r0
-beq      lbl_803FA0C0
-lwz      r3, 0xd8(r31)
-cmpwi    r3, 0
-beq      lbl_803FA0C0
-addi     r0, r3, -1
-stw      r0, 0xd8(r31)
-lbz      r3, 0x106(r31)
-cmplwi   r3, 1
-blt      lbl_803FA09C
-lis      r3, msVal__Q32kh6Screen13ObjCaveResult@ha
-addi     r3, r3, msVal__Q32kh6Screen13ObjCaveResult@l
-lwz      r0, 0x20(r3)
-stw      r0, 0xe0(r31)
-b        lbl_803FA0A4
-
-lbl_803FA09C:
-addi     r0, r3, 1
-stb      r0, 0x106(r31)
-
-lbl_803FA0A4:
-li       r3, 0
-li       r0, 1
-stb      r3, 0x107(r31)
-mr       r3, r31
-stw      r0, 0xf0(r31)
-bl       statusScrollUp__Q32kh6Screen13ObjCaveResultFv
-b        lbl_803FA154
-
-lbl_803FA0C0:
-mr       r3, r31
-bl       getGamePad__Q26Screen7ObjBaseCFv
-lis      r4, 0x04000004@ha
-lwz      r3, 0x18(r3)
-addi     r0, r4, 0x04000004@l
-and.     r0, r3, r0
-beq      lbl_803FA138
-lwz      r3, 0xd8(r31)
-lwz      r0, 0xdc(r31)
-cmpw     r3, r0
-beq      lbl_803FA138
-addi     r0, r3, 1
-stw      r0, 0xd8(r31)
-lbz      r3, 0x107(r31)
-cmplwi   r3, 1
-blt      lbl_803FA114
-lis      r3, msVal__Q32kh6Screen13ObjCaveResult@ha
-addi     r3, r3, msVal__Q32kh6Screen13ObjCaveResult@l
-lwz      r0, 0x20(r3)
-stw      r0, 0xe0(r31)
-b        lbl_803FA11C
-
-lbl_803FA114:
-addi     r0, r3, 1
-stb      r0, 0x107(r31)
-
-lbl_803FA11C:
-li       r3, 0
-li       r0, 2
-stb      r3, 0x106(r31)
-mr       r3, r31
-stw      r0, 0xf0(r31)
-bl       statusScrollDown__Q32kh6Screen13ObjCaveResultFv
-b        lbl_803FA154
-
-lbl_803FA138:
-li       r0, 0
-lis      r3, msVal__Q32kh6Screen13ObjCaveResult@ha
-stb      r0, 0x107(r31)
-addi     r3, r3, msVal__Q32kh6Screen13ObjCaveResult@l
-stb      r0, 0x106(r31)
-lwz      r0, 0x1c(r3)
-stw      r0, 0xe0(r31)
-
-lbl_803FA154:
-lwz      r0, 0x14(r1)
-lwz      r31, 0xc(r1)
-mtlr     r0
-addi     r1, r1, 0x10
-blr
-	*/
 }
 
 /*
@@ -3158,57 +3023,17 @@ void LostItemMgr::draw(P2DScreen::Mgr_tuning* screen, u64 tag, const ResTIMG* ti
  * Address:	803FB8A4
  * Size:	0000A4
  */
-void SceneCaveResult::doUserCallBackFunc(Resource::MgrCommand*)
+void SceneCaveResult::doUserCallBackFunc(Resource::MgrCommand* command)
 {
-	/*
-stwu     r1, -0x40(r1)
-mflr     r0
-lis      r4, lbl_80498494@ha
-stw      r0, 0x44(r1)
-addi     r4, r4, lbl_80498494@l
-stw      r31, 0x3c(r1)
-stw      r30, 0x38(r1)
-mr       r30, r3
-addi     r3, r30, 4
-bl       makeLanguageResName__Q22og9newScreenFPcPCc
-addi     r3, r1, 8
-addi     r4, r30, 4
-bl       __ct__Q212LoadResource3ArgFPCc
-lwz      r3, gLoadResourceMgr@sda21(r13)
-addi     r4, r1, 8
-bl       mountArchive__Q212LoadResource3MgrFRQ212LoadResource3Arg
-cmplwi   r3, 0
-beq      lbl_803FB918
-lwz      r31, 0x34(r3)
-li       r3, 0x108
-bl       __nw__FUl
-or.      r4, r3, r3
-beq      lbl_803FB908
-bl       __ct__Q32kh6Screen13ObjCaveResultFv
-mr       r4, r3
-
-lbl_803FB908:
-mr       r3, r30
-mr       r5, r31
-bl       registObj__Q26Screen9SceneBaseFPQ26Screen7ObjBaseP10JKRArchive
-b        lbl_803FB930
-
-lbl_803FB918:
-lis      r3, lbl_80498360@ha
-li       r4, 0x513
-addi     r3, r3, lbl_80498360@l
-addi     r5, r2, lbl_8052000C@sda21
-crclr    6
-bl       panic_f__12JUTExceptionFPCciPCce
-
-lbl_803FB930:
-lwz      r0, 0x44(r1)
-lwz      r31, 0x3c(r1)
-lwz      r30, 0x38(r1)
-mtlr     r0
-addi     r1, r1, 0x40
-blr
-	*/
+	og::newScreen::makeLanguageResName(m_name, "result_doukutu.szs");
+	LoadResource::Arg loadArg(m_name);
+	LoadResource::Node* resource = gLoadResourceMgr->mountArchive(loadArg);
+	if (resource) {
+		JKRArchive* archive = resource->m_archive;
+		registObj(new ObjCaveResult, archive);
+	} else {
+		JUT_PANICLINE(1299, "failed");
+	}
 }
 
 ObjCaveResult::StaticValues ObjCaveResult::msVal;

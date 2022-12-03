@@ -23,6 +23,15 @@ struct TNode : public DNode {
 
 	static u64 convertByMorimun(int);
 
+	inline int getNextIndex(int a, int b)
+	{
+		if (m_quantity < 0) {
+			return 0;
+		} else {
+			return (a + b) * m_quantity;
+		}
+	}
+
 	// _00     = VTBL
 	// _00-_2C = DNode
 	JUTTexture* m_texture;              // _2C

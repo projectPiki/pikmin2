@@ -138,7 +138,7 @@ struct ObjCaveResult : public ::Screen::ObjBase {
 	f32 m_scrollPos;                                            // _D0
 	f32 m_scrollUpDown;                                         // _D4
 	int m_scrollSelIndex;                                       // _D8
-	u32 m_scrollSelIndexMax;                                    // _DC
+	int m_scrollSelIndexMax;                                    // _DC
 	int m_scrollTargetDist;                                     // _E0
 	uint m_scrollMoveTimer;                                     // _E4
 	u32 _E8;                                                    // _E8, unknown
