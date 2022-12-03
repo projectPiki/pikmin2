@@ -1,6 +1,8 @@
 #include "og/Screen/callbackNodes.h"
 #include "og/Screen/ogScreen.h"
-#include "types.h"
+#include "og/Screen/anime.h"
+#include "og/newscreen/SMenu.h"
+#include "System.h"
 
 /*
     Generated from dpostproc
@@ -82,8 +84,25 @@ namespace Screen {
  * Address:	803087B8
  * Size:	000134
  */
-void setAnimTextScreen(JKRArchive*, P2DScreen::Mgr*, unsigned long long)
+AnimText_Screen* setAnimTextScreen(JKRArchive* arc, P2DScreen::Mgr* parentScreen, u64 tag)
 {
+	P2DScreen::Mgr* scrn = new P2DScreen::Mgr;
+	scrn->set("anim_text.blo", 0x40000, arc);
+	J2DTextBoxEx* pane = static_cast<J2DTextBoxEx*>(og::Screen::TagSearch(parentScreen, tag));
+	pane->setString("");
+	pane->m_isVisible = false;
+
+	AnimText_Screen* anm = new AnimText_Screen(scrn, 'joint');
+	anm->m_textBox       = pane;
+	anm->setText(pane->m_messageID);
+	AnimScreen* anmscrn = new AnimScreen;
+	anmscrn->init(arc, scrn, "anim_text.bck");
+	anm->setAnimScreen(anmscrn);
+	parentScreen->addCallBack(tag, anm);
+	og::Screen::setCallBackMessage(scrn);
+	anmscrn->_38 = 0;
+	anm->stop();
+	return anm;
 	/*
 stwu     r1, -0x30(r1)
 mflr     r0
@@ -165,8 +184,26 @@ r25 lmw      r25, 0x14(r1) lwz      r0, 0x34(r1) mtlr     r0 addi     r1, r1,
  * Address:	803088EC
  * Size:	00013C
  */
-void setMenuScreen(JKRArchive*, P2DScreen::Mgr*, unsigned long long)
+AnimText_Screen* setMenuScreen(JKRArchive* arc, P2DScreen::Mgr* parentScreen, u64 tag)
 {
+	P2DScreen::Mgr* scrn = new P2DScreen::Mgr;
+	scrn->set("anim_text.blo", 0x40000, arc);
+	J2DTextBoxEx* pane = static_cast<J2DTextBoxEx*>(og::Screen::TagSearch(parentScreen, tag));
+	pane->setString("");
+	pane->m_isVisible = false;
+
+	AnimText_Screen* anm = new AnimText_Screen(scrn, 'joint');
+	anm->m_textBox       = pane;
+	anm->setText(pane->m_messageID);
+	AnimScreen* anmscrn = new AnimScreen;
+	anmscrn->init(arc, scrn, "anim_text.bck");
+	anm->setAnimScreen(anmscrn);
+	parentScreen->addCallBack(tag, anm);
+	og::Screen::setCallBackMessage(scrn);
+	anmscrn->_38 = 0;
+	anm->stop();
+	anm->m_colorType = 1;
+	return anm;
 	/*
 stwu     r1, -0x30(r1)
 mflr     r0
@@ -248,8 +285,26 @@ r25 stb      r0, 0x38(r27) bl       stop__Q32og6Screen15AnimText_ScreenFv li r0,
  * Address:	80308A28
  * Size:	00013C
  */
-void setMenuTitleScreen(JKRArchive*, P2DScreen::Mgr*, unsigned long long)
+AnimText_Screen* setMenuTitleScreen(JKRArchive* arc, P2DScreen::Mgr* parentScreen, u64 tag)
 {
+	P2DScreen::Mgr* scrn = new P2DScreen::Mgr;
+	scrn->set("anim_text.blo", 0x40000, arc);
+	J2DTextBoxEx* pane = static_cast<J2DTextBoxEx*>(og::Screen::TagSearch(parentScreen, tag));
+	pane->setString("");
+	pane->m_isVisible = false;
+
+	AnimText_Screen* anm = new AnimText_Screen(scrn, 'joint');
+	anm->m_textBox       = pane;
+	anm->setText(pane->m_messageID);
+	AnimScreen* anmscrn = new AnimScreen;
+	anmscrn->init(arc, scrn, "anim_text.bck");
+	anm->setAnimScreen(anmscrn);
+	parentScreen->addCallBack(tag, anm);
+	og::Screen::setCallBackMessage(scrn);
+	anmscrn->_38 = 0;
+	anm->stop();
+	anm->m_colorType = 3;
+	return anm;
 	/*
 stwu     r1, -0x30(r1)
 mflr     r0
@@ -331,8 +386,54 @@ r25 stb      r0, 0x38(r27) bl       stop__Q32og6Screen15AnimText_ScreenFv li r0,
  * Address:	80308B64
  * Size:	000228
  */
-AnimText_Screen::AnimText_Screen(P2DScreen::Mgr*, unsigned long long)
+AnimText_Screen::AnimText_Screen(P2DScreen::Mgr* scrn, u64 tag)
+    : CallBack_Screen(scrn, tag)
 {
+	u32 temp = -1;
+	m_color0.set(temp);
+	m_color1.set(temp);
+	m_color2.set(temp);
+	m_color3.set(temp);
+	m_color4.set(temp);
+	m_color5.set(temp);
+	m_color6.set(temp);
+	m_color7.set(temp);
+	m_color8.set(temp);
+	m_color9.set(temp);
+	m_color10.set(temp);
+	m_color11.set(temp);
+	m_color12.set(temp);
+	m_color13.set(temp);
+	m_color14.set(temp);
+	m_color15.set(temp);
+	m_color16.set(temp);
+
+	if (!m_pane) {
+		char buf[24];
+		TagToName(tag, buf);
+	}
+	m_anmScreen   = nullptr;
+	_3C           = false;
+	m_msgBodyPane = nullptr;
+	m_msgBackPane = nullptr;
+	_48           = 0;
+	m_tag         = 0;
+	m_msgBodyPane = static_cast<J2DTextBox*>(og::Screen::TagSearch(scrn, 'msg_body'));
+	m_msgBackPane = static_cast<J2DTextBox*>(og::Screen::TagSearch(scrn, 'msg_back'));
+	m_blinkTimer  = 0.0f;
+	m_blinkFactor = 0.0f;
+	m_blinkLevel  = 1.0f;
+	_68           = false;
+	_6C           = 1.0f;
+	og::newScreen::ObjSMenuMap::ObjHIOVal::getMenuColor(&m_color0, &m_color1, &m_color2, &m_color3, &m_color4, &m_color5, &m_color6,
+	                                                    &m_color7, &m_color8, &m_color9, &m_color10, &m_color11, &m_color12, &m_color13,
+	                                                    &m_color14, &m_color15, &m_color16);
+
+	m_color10   = m_msgBackPane->getWhite();
+	m_color11   = m_msgBackPane->getBlack();
+	m_color4    = m_color12;
+	m_colorType = 0;
+
 	/*
 stwu     r1, -0x50(r1)
 mflr     r0
@@ -483,9 +584,9 @@ blr
  * Address:	80308D8C
  * Size:	000080
  */
-CallBack_Screen::~CallBack_Screen(void)
-{
-	/*
+// CallBack_Screen::~CallBack_Screen(void)
+//{
+/*
 stwu     r1, -0x10(r1)
 mflr     r0
 stw      r0, 0x14(r1)
@@ -522,8 +623,8 @@ lwz      r30, 8(r1)
 mtlr     r0
 addi     r1, r1, 0x10
 blr
-	*/
-}
+*/
+//}
 
 /*
  * --INFO--
@@ -532,6 +633,101 @@ blr
  */
 void AnimText_Screen::update(void)
 {
+	og::Screen::CallBack_Screen::update();
+	if (!m_anmScreen) {
+		_3C = 0;
+		return;
+	}
+	_3C = m_anmScreen->update();
+
+	if (_48) {
+		if (!m_tag) {
+			if (!_3C) {
+				_48 = 0;
+			}
+		} else if (!_3C) {
+			setText(m_tag);
+			m_tag = 0;
+			open(0.0f);
+		}
+	}
+
+	J2DTextBox* pane = m_textBox;
+	JUtility::TColor col1(-1), col2(-1), col3(-1), col4(-1);
+	switch (m_colorType) {
+	case 0:
+		col1 = m_color4;
+		col2 = m_color5;
+		col3 = m_color6;
+		col4 = m_color7;
+		break;
+	case 1:
+		col1 = pane->getBlack();
+		col2 = pane->getWhite();
+		col3 = m_color10;
+		col4 = m_color11;
+		break;
+	case 2:
+		col1 = m_color0;
+		col2 = m_color1;
+		col3 = m_color8;
+		col4 = m_color9;
+		break;
+	case 3:
+		col1 = m_color13;
+		col2 = m_color14;
+		col3 = m_color15;
+		col4 = m_color16;
+		break;
+	default:
+		JUT_PANICLINE(229, "ColorType ERR!!\n");
+	}
+	m_msgBodyPane->setBlack(col2);
+	m_msgBodyPane->setWhite(col3);
+	m_msgBackPane->setBlack(col4);
+	if (!_68) {
+		m_msgBackPane->setWhite(col1);
+	} else {
+		if (m_blinkFactor < 0.0f) {
+			if (m_blinkLevel < 1.0f) {
+				m_blinkLevel += 0.05f;
+				if (m_blinkLevel > 1.0f) {
+					m_blinkLevel = 1.0f;
+				}
+			}
+		} else {
+			m_blinkTimer -= sys->m_deltaTime;
+			if (m_blinkTimer >= m_blinkFactor) {
+				m_blinkTimer = 0.0f;
+			}
+
+			if (m_blinkLevel > 0.0f) {
+				m_blinkLevel -= 0.1f;
+				if (m_blinkLevel < 0.0f) {
+					m_blinkLevel = 0.0f;
+				}
+			}
+			f32 calc = pikmin2_sinf((m_blinkTimer * TAU) / m_blinkFactor);
+			_64 += ((calc + 1.0f) * 0.5f - _64) / 3.0f;
+
+			JUtility::TColor color(-1);
+			if (m_blinkFactor < 0.0f) {
+				og::Screen::blendColor(m_color12, m_color4, m_blinkLevel, &color);
+			} else {
+				JUtility::TColor color2(-1);
+				og::Screen::blendColor(m_color2, m_color3, _64, &color2);
+				og::Screen::blendColor(color2, m_color4, m_blinkLevel, &color);
+				m_color12 = color;
+			}
+			m_msgBodyPane->setWhite(color);
+		}
+		u32 alpha = _6C * 255.0f;
+		if (m_colorType == 2) {
+			alpha = m_color0.a;
+		}
+		m_msgBodyPane->setAlpha(alpha);
+		m_msgBackPane->setAlpha(alpha);
+	}
 	/*
 stwu     r1, -0x70(r1)
 mflr     r0
@@ -978,7 +1174,7 @@ blr
 void AnimText_Screen::setAnimScreen(og::Screen::AnimScreen* a1)
 {
 	// Generated from stw r4, 0x38(r3)
-	_38 = a1;
+	m_anmScreen = a1;
 }
 
 /*
@@ -986,8 +1182,10 @@ void AnimText_Screen::setAnimScreen(og::Screen::AnimScreen* a1)
  * Address:	80309420
  * Size:	00001C
  */
-void AnimText_Screen::setText(unsigned long long)
+void AnimText_Screen::setText(u64 tag)
 {
+	m_msgBodyPane->m_messageID = tag;
+	m_msgBackPane->m_messageID = tag;
 	/*
 lwz      r4, 0x40(r3)
 stw      r6, 0x1c(r4)
@@ -1004,7 +1202,7 @@ blr
  * Address:	........
  * Size:	000030
  */
-void AnimText_Screen::setTextAnim(unsigned long long)
+void AnimText_Screen::setTextAnim(u64)
 {
 	// UNUSED FUNCTION
 }
@@ -1016,6 +1214,8 @@ void AnimText_Screen::setTextAnim(unsigned long long)
  */
 void AnimText_Screen::stop(void)
 {
+	m_anmScreen->_20     = 0.0f;
+	m_anmScreen->m_frame = 0.0f;
 	/*
 lfs      f0, lbl_8051D644@sda21(r2)
 lwz      r4, 0x38(r3)
@@ -1031,8 +1231,11 @@ blr
  * Address:	80309454
  * Size:	00003C
  */
-void AnimText_Screen::open(float)
+void AnimText_Screen::open(f32 a1)
 {
+	m_anmScreen->_20     = 1.0f;
+	m_anmScreen->m_frame = 0.0f;
+	// m_anmScreen->start(a1);
 	/*
 stwu     r1, -0x10(r1)
 mflr     r0
@@ -1059,6 +1262,9 @@ blr
  */
 void AnimText_Screen::close(void)
 {
+	m_anmScreen->_20     = -1.0f;
+	m_anmScreen->m_frame = m_anmScreen->m_lastFrame;
+	m_anmScreen->start();
 	/*
 stwu     r1, -0x10(r1)
 mflr     r0
@@ -1086,8 +1292,16 @@ blr
  * Address:	803094D8
  * Size:	0000AC
  */
-void AnimText_Screen::blink(float, float)
+void AnimText_Screen::blink(f32 arg1, f32 arg2)
 {
+	if (arg1 > 0.0f) {
+		_68 = 1;
+	}
+	m_blinkFactor = arg1;
+	m_blinkTimer  = arg2;
+	f32 calc      = sinf((m_blinkTimer * TAU) / m_blinkFactor);
+	_64           = (calc + 1.0f) * 0.5f;
+
 	/*
 lfs      f0, lbl_8051D644@sda21(r2)
 stwu     r1, -0x20(r1)

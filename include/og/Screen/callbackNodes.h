@@ -397,41 +397,43 @@ struct AnimText_Screen : public CallBack_Screen {
 	void stop();
 	void setText(u64);
 
+	// unused/inlined
+	void setTextAnim(u64);
+
 	// _00     = VTBL
 	// _00-_34 = CallBack_Screen
-	int _34;                   // _34
-	AnimScreen* _38;           // _38
-	u8 _3C;                    // _3C
-	void* m_msgBodyPane;       // _40
-	J2DTextBox* m_msgBackPane; // _44 // just a guess
-	u8 _48;                    // _48
-	u32 _4C;                   // _4C
-	u32 _50;                   // _50
-	u32 _54;                   // _54
-	f32 _58;                   // _58
-	f32 _5C;                   // _5C
-	f32 _60;                   // _60
-	f32 _64;                   // _64
-	int _68;                   // _68
-	f32 _6C;                   // _6C
-	JUtility::TColor _70;      // _70
-	JUtility::TColor _74;      // _74
-	JUtility::TColor _78;      // _78
-	JUtility::TColor _7C;      // _7C
-	JUtility::TColor _80;      // _80
-	JUtility::TColor _84;      // _84
-	JUtility::TColor _88;      // _88
-	JUtility::TColor _8C;      // _8C
-	JUtility::TColor _90;      // _90
-	JUtility::TColor _94;      // _94
-	u8 _98[4];                 // _98
-	int* _9C;                  // _9C
-	JUtility::TColor _A0;      // _A0
-	JUtility::TColor _A4;      // _A4
-	JUtility::TColor _A8;      // _A8
-	JUtility::TColor _AC;      // _AC
-	JUtility::TColor _B0;      // _B0
-	u8 _B4[4];                 // _B4
+	int m_colorType;            // _34
+	AnimScreen* m_anmScreen;    // _38
+	u8 _3C;                     // _3C
+	J2DTextBox* m_msgBodyPane;  // _40
+	J2DTextBox* m_msgBackPane;  // _44 // just a guess
+	u8 _48;                     // _48
+	u32 _4C;                    // _4C
+	u64 m_tag;                  // _50
+	f32 m_blinkTimer;           // _58
+	f32 m_blinkFactor;          // _5C
+	f32 m_blinkLevel;           // _60
+	f32 _64;                    // _64
+	u8 _68;                     // _68
+	f32 _6C;                    // _6C
+	JUtility::TColor m_color0;  // _70
+	JUtility::TColor m_color1;  // _74
+	JUtility::TColor m_color2;  // _78
+	JUtility::TColor m_color3;  // _7C
+	JUtility::TColor m_color4;  // _80
+	JUtility::TColor m_color5;  // _84
+	JUtility::TColor m_color6;  // _88
+	JUtility::TColor m_color7;  // _8C
+	JUtility::TColor m_color8;  // _90
+	JUtility::TColor m_color9;  // _94
+	JUtility::TColor m_color10; // _98
+	JUtility::TColor m_color11; // _9C
+	JUtility::TColor m_color12; // _A0
+	JUtility::TColor m_color13; // _A4
+	JUtility::TColor m_color14; // _A8
+	JUtility::TColor m_color15; // _AC
+	JUtility::TColor m_color16; // _B0
+	u8 _B4[4];                  // _B4
 };
 
 struct CounterKeta {

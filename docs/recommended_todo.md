@@ -202,7 +202,7 @@
 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectOgawaU/ogObjCourseName.cpp">ogObjCourseName.cpp</a> | 23941 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectOgawaU/ogLifeGauge.cpp">ogLifeGauge.cpp</a> | 24777 |
 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectOgawaU/ogObjSMenuPauseVs.cpp">ogObjSMenuPauseVs.cpp</a> | 25253 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectOgawaU/ogDopingScreen.cpp">ogDopingScreen.cpp</a> | 25662 |
 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectOgawaU/ogObjGround.cpp">ogObjGround.cpp</a> | 25690 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectOgawaU/ogPikminCounter.cpp">ogPikminCounter.cpp</a> | 25876 |
-| <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectOgawaU/ogAnimTextScreen.cpp">ogAnimTextScreen.cpp</a> | 27240 |
+| <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectOgawaU/ogAnime.cpp">ogAnime.cpp</a> | 27275 |
 
 ### <section id="plugProjectYamashitaU">plugProjectYamashitaU</section>
 | File | Size (bytes) | File | Size (bytes) |
