@@ -9,11 +9,16 @@
 struct JUTPalette;
 struct ResTIMG;
 
+enum TextureFlags {
+	TEXFLAG_Unk1 = 0x1,
+	TEXFLAG_Unk2 = 0x2,
+};
+
 // Size: 0x40
 struct JUTTexture : public GXTexObj {
 	JUTTexture()
 	{
-		m_flags &= 2;
+		m_flags &= TEXFLAG_Unk2;
 		_28 = 0;
 		_20 = 0;
 	}
@@ -24,7 +29,7 @@ struct JUTTexture : public GXTexObj {
 		const ResTIMG* resource = static_cast<ResTIMG*>(J2DScreen::getNameResource(resName));
 		_28                     = nullptr;
 		storeTIMG(resource, (u8)0);
-		m_flags &= 2;
+		m_flags &= TEXFLAG_Unk2;
 	}
 
 	~JUTTexture();

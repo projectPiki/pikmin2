@@ -31,17 +31,17 @@ struct DispCaveResult : public og::Screen::DispMemberBase {
 	// _00-_08 = DispMemberBase
 	JKRHeap* m_heap;                   // _08
 	Game::Result::TNode* m_resultNode; // _0C
-	u32 m_treasureNodeCount;           // _10, unknown
+	u32 m_treasureNodeCount;           // _10
 	u32 _14;                           // _14, unknown
-	u32 m_lostTreasures;               // _18, unknown
+	u32 m_lostTreasures;               // _18
 	u32 m_collectedOtakara;            // _1C
 	u32 m_maxOtakara;                  // _20
-	u32 m_cavePokos;                   // _24, unknown
+	u32 m_cavePokos;                   // _24
 	u32 m_totalPokos;                  // _28
 	u32 m_deadPikis;                   // _2C
 	bool m_debtPayed;                  // _30
 	bool m_caveComp;                   // _31
-	u32 m_isFinished;                  // _34, unknown
+	u32 m_isFinished;                  // _34
 };
 
 struct ObjCaveResult : public ::Screen::ObjBase {
@@ -129,11 +129,11 @@ struct ObjCaveResult : public ::Screen::ObjBase {
 	og::Screen::CallBack_CounterRV* m_counterTreasureCollected; // _A8
 	og::Screen::CallBack_CounterRV* m_counterTreasureMax;       // _AC
 	og::Screen::CallBack_CounterRV* m_counterTotalPokos;        // _B0
-	u32 m_cavePokos;                                            // _B4, unknown
+	u32 m_cavePokos;                                            // _B4
 	u32 m_deadPiki;                                             // _B8
-	u32 m_currOtaValues[2];                                     // _BC, unknown
-	u32 m_otakaraCount;                                         // _C4, unknown
-	u32 m_maxOtakara;                                           // _C8, unknown
+	u32 m_currOtaValues[2];                                     // _BC
+	u32 m_otakaraCount;                                         // _C4
+	u32 m_maxOtakara;                                           // _C8
 	u32 m_totalPokos;                                           // _CC
 	f32 m_scrollPos;                                            // _D0
 	f32 m_scrollUpDown;                                         // _D4
@@ -143,7 +143,7 @@ struct ObjCaveResult : public ::Screen::ObjBase {
 	uint m_scrollMoveTimer;                                     // _E4
 	u32 _E8;                                                    // _E8, unknown
 	u32 _EC;                                                    // _EC, unknown
-	int m_status;                                               // _F0, state or status?
+	int m_status;                                               // _F0
 	int m_changeStateDelay;                                     // _F4
 	u32 _F8;                                                    // _F8, unknown
 	f32 _FC;                                                    // _FC

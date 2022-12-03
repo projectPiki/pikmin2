@@ -6,6 +6,10 @@
 
 namespace kh {
 namespace Screen {
+enum LostItemFlags {
+	LOSTITEM_Unk1 = 0x1,
+	LOSTITEM_Unk2 = 0x2,
+};
 
 struct LostItem {
 	LostItem();

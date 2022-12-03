@@ -483,7 +483,7 @@ void ObjCaveResult::doDraw(Graphics& gfx)
 		if (calc < -m_scrollUpDown || _EC < calc) {
 			paneList[isOdd]->add(0.0f, offs);
 		} else {
-			if (((int)cNode->m_itemMgr->m_flags & 2) == 2) {
+			if (((int)cNode->m_itemMgr->m_flags & LOSTITEM_Unk2) == 2) {
 				if (cNode->m_quantity < 0) {
 					next = 0;
 				} else {
@@ -1382,7 +1382,7 @@ void ObjCaveResult::statusForceScroll()
 			m_scrollMoveTimer = 1;
 			FOREACH_NODE(Game::Result::TNode, m_resultNode->m_child, cNode)
 			{
-				if ((cNode->m_itemMgr->m_flags & 2 != 2) && cNode->m_isLost) {
+				if ((cNode->m_itemMgr->m_flags & LOSTITEM_Unk2 != 2) && cNode->m_isLost) {
 					m_status           = CAVERES_Lost;
 					check              = true;
 					m_changeStateDelay = 0;
@@ -1416,7 +1416,7 @@ void ObjCaveResult::statusForceScroll()
 	JGeometry::TVec2f pos(_FC, _100);
 	FOREACH_NODE(Game::Result::TNode, m_resultNode->m_child, cNode)
 	{
-		if (i == m_scrollSelIndex + 2 && ((cNode->m_itemMgr->m_flags & 1) != 1)) {
+		if (i == m_scrollSelIndex + 2 && ((cNode->m_itemMgr->m_flags & LOSTITEM_Unk1) != 1)) {
 			cNode->m_itemMgr->init(pos, 0);
 		}
 		i++;
@@ -1840,7 +1840,7 @@ void ObjCaveResult::statusLost()
 		JGeometry::TVec2f pos(_FC, _100);
 		FOREACH_NODE(Game::Result::TNode, m_resultNode->m_child, cNode)
 		{
-			if (cNode->m_isLost != 0 && ((cNode->m_itemMgr->m_flags & 2) != 2)) {
+			if (cNode->m_isLost != 0 && ((cNode->m_itemMgr->m_flags & LOSTITEM_Unk2) != 2)) {
 				pos.y += _100 * m_scrollUpDown;
 				cNode->m_itemMgr->init(pos, i & 1);
 				m_changeStateDelay = m_scrollTargetDist;

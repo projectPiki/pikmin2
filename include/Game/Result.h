@@ -40,7 +40,7 @@ struct TNode : public DNode {
 	int m_pokoValue;                    // _38
 	int m_quantity;                     // _3C
 	u64 m_mesgTag;                      // _40
-	kh::Screen::LostItemMgr* m_itemMgr; // _48, unknown
+	kh::Screen::LostItemMgr* m_itemMgr; // _48
 };
 } // namespace Result
 } // namespace Game
