@@ -268,7 +268,18 @@ struct ResultState : public State {
 
 	// _00     = VTBL
 	// _00-_0C = State
-	u8 _0C[0x30]; // _0C, unknown
+	f32 _0C;                                         // _0C
+	Controller* m_player1Controller;                 // _10
+	Controller* m_player2Controller;                 // _14
+	bool _18;                                        // _18
+	JKRExpHeap* m_expHeap;                           // _1C
+	JKRHeap* m_heap;                                 // _20
+	Delegate<Game::VsGame::ResultState>* m_delegate; // _24
+	int _28;                                         // _28
+	int _2C;                                         // _2C
+	int _30;                                         // _30
+	bool _34;                                        // _34
+	u32 _38;                                         // _38
 };
 
 struct TitleState : public State {
