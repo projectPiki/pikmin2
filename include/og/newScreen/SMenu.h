@@ -334,13 +334,6 @@ struct ObjSMenuMap : public ObjSMenuBase {
 	void setMapColor();
 	void calcCaveNameAlpha();
 
-	struct ObjHIOVal {
-		static void getMenuColor(JUtility::TColor*, JUtility::TColor*, JUtility::TColor*, JUtility::TColor*, JUtility::TColor*,
-		                         JUtility::TColor*, JUtility::TColor*, JUtility::TColor*, JUtility::TColor*, JUtility::TColor*,
-		                         JUtility::TColor*, JUtility::TColor*, JUtility::TColor*, JUtility::TColor*, JUtility::TColor*,
-		                         JUtility::TColor*, JUtility::TColor*);
-	};
-
 	// _00     = VTBL1
 	// _18     = VTBL2
 	// _00-_A8 = ObjSMenuBase
@@ -405,6 +398,12 @@ struct ObjSMenuMap : public ObjSMenuBase {
 };
 
 struct ObjSMenuPause : public ObjSMenuBase {
+	struct ObjHIOVal {
+		static void getMenuColor(JUtility::TColor*, JUtility::TColor*, JUtility::TColor*, JUtility::TColor*, JUtility::TColor*,
+		                         JUtility::TColor*, JUtility::TColor*, JUtility::TColor*, JUtility::TColor*, JUtility::TColor*,
+		                         JUtility::TColor*, JUtility::TColor*, JUtility::TColor*, JUtility::TColor*);
+	};
+
 	ObjSMenuPause(const char*);
 
 	virtual ~ObjSMenuPause();                             // _08 (weak)

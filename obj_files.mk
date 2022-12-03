@@ -863,7 +863,7 @@ OGAWA:=\
 	$(BUILD_DIR)/src/plugProjectOgawaU/ogCatchPiki.o\
 	$(BUILD_DIR)/src/plugProjectOgawaU/ogContenaCounter.o\
 	$(BUILD_DIR)/src/plugProjectOgawaU/ogMapCounter.o\
-	$(BUILD_DIR)/asm/plugProjectOgawaU/ogAnimTextScreen.o\
+	$(BUILD_DIR)/src/plugProjectOgawaU/ogAnimTextScreen.o\
 	$(BUILD_DIR)/asm/plugProjectOgawaU/ogCallBackMessage.o\
 	$(BUILD_DIR)/asm/plugProjectOgawaU/ogMenuMgr.o\
 	$(BUILD_DIR)/src/plugProjectOgawaU/ogCallBackScreen.o\

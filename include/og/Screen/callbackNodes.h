@@ -387,8 +387,8 @@ struct CallBack_SunMeter : public P2DScreen::CallBackNode {
 struct AnimText_Screen : public CallBack_Screen {
 	AnimText_Screen(P2DScreen::Mgr*, u64);
 
-	virtual ~AnimText_Screen(); // _08 (weak)
-	virtual void update();      // _10
+	virtual ~AnimText_Screen() { } // _08 (weak)
+	virtual void update();         // _10
 
 	void setAnimScreen(AnimScreen*);
 	void close();
@@ -404,17 +404,17 @@ struct AnimText_Screen : public CallBack_Screen {
 	// _00-_34 = CallBack_Screen
 	int m_colorType;            // _34
 	AnimScreen* m_anmScreen;    // _38
-	u8 _3C;                     // _3C
+	bool _3C;                   // _3C
 	J2DTextBox* m_msgBodyPane;  // _40
 	J2DTextBox* m_msgBackPane;  // _44 // just a guess
-	u8 _48;                     // _48
+	bool _48;                   // _48
 	u32 _4C;                    // _4C
 	u64 m_tag;                  // _50
 	f32 m_blinkTimer;           // _58
 	f32 m_blinkFactor;          // _5C
 	f32 m_blinkLevel;           // _60
 	f32 _64;                    // _64
-	u8 _68;                     // _68
+	bool m_isBlinking;          // _68
 	f32 _6C;                    // _6C
 	JUtility::TColor m_color0;  // _70
 	JUtility::TColor m_color1;  // _74
