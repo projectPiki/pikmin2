@@ -13,6 +13,15 @@ namespace Game {
 struct EnemyBase;
 
 namespace EnemyStone {
+enum StoneFlags {
+	STONE_Unk1          = 0x1,  // unsure
+	STONE_Fit           = 0x2,  // corresponds to DrawInfo::fit? unsure
+	STONE_HasViewedDemo = 0x4,  // has watched first bittered enemy cutscene
+	STONE_Shake         = 0x8,  // bittered enemy is shaking
+	STONE_Break         = 0x10, // bittered enemy has broken out or died
+	STONE_Unk6          = 0x20, // gets set on stone start, unsure
+};
+
 struct FSMState;
 
 struct ObjInfo {
@@ -38,7 +47,7 @@ struct DrawInfo : public CNode {
 	void reset();
 	void update(EnemyBase*);
 	void makeMatrix(Matrixf*, bool);
-	void getStateID();
+	int getStateID();
 	bool getPosAndScale(Vector3f*, f32*);
 	void appear(EnemyBase*, f32);
 	void fit(EnemyBase*);
@@ -57,21 +66,33 @@ struct DrawInfo : public CNode {
 struct Obj : public CNode {
 	Obj(EnemyBase*, Info*);
 
-	virtual ~Obj() {}; // _08 (weak)
+	virtual ~Obj() { } // _08 (weak)
 
 	bool start();
 	void shake();
 	void update();
-	void checkDrawInfoState(int);
+	bool checkDrawInfoState(int);
 	void dead();
+
+	// inlined:
+	void updateDrawInfo();
+	void fitDrawInfo();
+	void disappearDrawInfo();
+
+	inline void resetFlags() { m_flags = 0; }
+
+	inline void setFlag(u32 flag) { m_flags |= flag; }
+
+	inline void resetFlag(u32 flag) { m_flags &= ~flag; }
+
+	inline bool isFlag(u32 flag) { return m_flags & flag; }
 
 	// _00		= VTABLE
 	// _04-_18	= CNode
 	Info* m_info;         // _18
 	CNode m_nodeArray[2]; // _1C
 	EnemyBase* m_enemy;   // _4C
-	u8 _50;               // _50
-	u8 _51[3];            // _51 - possibly padding.
+	u8 m_flags;           // _50
 };
 
 /**
