@@ -11,25 +11,6 @@ and remove code as you see fit, for modding or research purposes.
 It builds the following DOL:
 pikmin2.usa.dol: `sha1: 90d328bf8f190c90472e8c19e7e53c6ad0fe0d1a`
 
-## Credits
-- intns
-- EpochFlame
-- SodiumChlorideLogic
-- GibHaltmannKill
-- kiwi
-- shibboleet
-- wowjinxy
-- nerduminer
-- JHawk
-- Minty-Meeo
-- Revo
-- ShadowLugia
-- HeartPiece
-- DroughtEnder
-- Altafen
-- encounter
-- ProfessionalNubtub
-
 ## Building
 
 ### Required Tools
