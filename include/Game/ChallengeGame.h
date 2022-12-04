@@ -26,7 +26,7 @@ struct StageList : public CNode {
 	virtual ~StageList(); // _08 (weak)
 
 	void read(Stream&);
-	void getStageData(int);
+	StageData* getStageData(int);
 
 	// _00     = VTBL
 	// _00-_18 = CNode

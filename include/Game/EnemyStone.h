@@ -129,6 +129,19 @@ struct Mgr {
 
 /////////////////////////////////////////////////////////////////
 // STATE MACHINE DEFINITIONS
+enum StateID {
+	STONESTATE_BaseState0    = 0, // unused but still registered?
+	STONESTATE_Expansion     = 1,
+	STONESTATE_ExpansionFull = 2,
+	STONESTATE_Fit           = 3,
+	STONESTATE_BaseState4    = 4, // unused but still registered?
+	STONESTATE_Shake         = 5,
+	STONESTATE_Breakable     = 6,
+	STONESTATE_Disappear     = 7,
+	STONESTATE_Dead          = 8,
+	STONESTATE_StateCount,
+};
+
 struct StateMachine : public Game::StateMachine<DrawInfo> {
 	virtual void init(DrawInfo*);                 // _08
 	virtual void makeMatrix(DrawInfo*, Matrixf*); // _18
@@ -151,7 +164,10 @@ struct FSMState : public Game::FSMState<DrawInfo> {
 };
 
 struct FSMStateBreakable : public FSMState {
-	// probably needs an inline ctor?
+	inline FSMStateBreakable()
+	    : FSMState(STONESTATE_Breakable)
+	{
+	}
 
 	virtual void init(DrawInfo*, StateArg*);      // _08
 	virtual void exec(DrawInfo*);                 // _0C
@@ -162,7 +178,10 @@ struct FSMStateBreakable : public FSMState {
 };
 
 struct FSMStateDead : public FSMState {
-	// probably needs an inline ctor?
+	inline FSMStateDead()
+	    : FSMState(STONESTATE_Dead)
+	{
+	}
 
 	virtual void init(DrawInfo*, StateArg*);      // _08
 	virtual void makeMatrix(DrawInfo*, Matrixf*); // _20
@@ -172,7 +191,10 @@ struct FSMStateDead : public FSMState {
 };
 
 struct FSMStateDisappear : public FSMState {
-	// probably needs an inline ctor?
+	inline FSMStateDisappear()
+	    : FSMState(STONESTATE_Disappear)
+	{
+	}
 
 	virtual void init(DrawInfo*, StateArg*);      // _08
 	virtual void exec(DrawInfo*);                 // _0C
@@ -184,7 +206,11 @@ struct FSMStateDisappear : public FSMState {
 };
 
 struct FSMStateExpansion : public FSMState {
-	// probably needs an inline ctor?
+	inline FSMStateExpansion()
+	    : FSMState(STONESTATE_Expansion)
+	{
+		_10 = 0;
+	}
 
 	virtual void init(DrawInfo*, StateArg*);      // _08
 	virtual void exec(DrawInfo*);                 // _0C
@@ -193,10 +219,14 @@ struct FSMStateExpansion : public FSMState {
 
 	// _00     = VTBL
 	// _00-_10 = FSMState
+	u8 _10; // _10, unknown
 };
 
 struct FSMStateExpansionFull : public FSMState {
-	// probably needs an inline ctor?
+	inline FSMStateExpansionFull()
+	    : FSMState(STONESTATE_ExpansionFull)
+	{
+	}
 
 	virtual void makeMatrix(DrawInfo*, Matrixf*); // _20
 
@@ -205,7 +235,10 @@ struct FSMStateExpansionFull : public FSMState {
 };
 
 struct FSMStateFit : public FSMState {
-	// probably needs an inline ctor?
+	inline FSMStateFit()
+	    : FSMState(STONESTATE_Fit)
+	{
+	}
 
 	virtual void init(DrawInfo*, StateArg*);      // _08
 	virtual void exec(DrawInfo*);                 // _0C
@@ -217,7 +250,12 @@ struct FSMStateFit : public FSMState {
 };
 
 struct FSMStateShake : public FSMState {
-	// probably needs an inline ctor?
+	inline FSMStateShake()
+	    : FSMState(STONESTATE_Shake)
+	{
+		_10 = -1;
+		_14 = 10.0f;
+	}
 
 	virtual void init(DrawInfo*, StateArg*);      // _08
 	virtual void exec(DrawInfo*);                 // _0C
@@ -226,6 +264,8 @@ struct FSMStateShake : public FSMState {
 
 	// _00     = VTBL
 	// _00-_10 = FSMState
+	int _10; // _10, unknown
+	f32 _14; // _14
 };
 /////////////////////////////////////////////////////////////////
 } // namespace EnemyStone

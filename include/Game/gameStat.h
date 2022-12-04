@@ -51,6 +51,7 @@ extern PikiNaviCounter workPikis;
 extern PikiNaviCounter formationPikis;
 extern PikiCounter zikatuPikis; // Wild pikis, that you find & whistle to unlock the type
 extern PikiCounter mePikis;
+extern PikiCounter alivePikis;
 
 /// @brief Checks for wild Pikmin
 /// @param pikiType type of Pikmin

@@ -80,15 +80,14 @@ Vs2D_TitleInfo::Info* Vs2D_TitleInfo::operator()(int infoIndex)
  * Address:	802352C8
  * Size:	000028
  */
-Challenge2D_ResultInfo::Challenge2D_ResultInfo(void)
+Challenge2D_ResultInfo::Challenge2D_ResultInfo()
 {
-	m_bool = false;
-	m_bool = false;
-	_08    = 0;
-	_0C    = 0;
-	_10    = 0;
-	_14    = 0;
-	_1C    = 0;
-	_18    = 0;
+	m_displayFlag.clear();
+	m_timeLeft     = 0;
+	m_pokos        = 0;
+	m_pikminLeft   = 0;
+	m_score        = 0;
+	m_highScore    = nullptr;
+	m_displayIndex = 0;
 }
 } // namespace Game

@@ -16,19 +16,28 @@ struct DispMemberWorldMapInfoWin0;
 
 namespace Game {
 struct Challenge2D_TitleInfo;
+struct Challenge2D_ResultInfo;
 } // namespace Game
 
 namespace Morimura {
 struct DispMemberChallengeResult : public og::Screen::DispMemberBase {
-	virtual u32 getSize();     // _08 (weak)
-	virtual u32 getOwnerID();  // _0C (weak)
-	virtual u64 getMemberID(); // _10 (weak)
+	DispMemberChallengeResult()
+	    : og::Screen::DispMemberBase()
+	{
+		m_resultInfo = nullptr;
+		m_heap       = nullptr;
+		_10          = 0;
+	}
+
+	virtual u32 getSize() { return sizeof(DispMemberChallengeResult); } // _08 (weak)
+	virtual u32 getOwnerID() { return OWNER_MRMR; }                     // _0C (weak)
+	virtual u64 getMemberID() { return MEMBER_CHALLENGE_RESULT; }       // _10 (weak)
 
 	// _00     = VTBL
 	// _00-_08 = og::Screen::DispMemberBase
-	u32 _08;            // _08, unknown
-	JKRExpHeap* m_heap; // _0C
-	int _10;            // _10
+	Game::Challenge2D_ResultInfo* m_resultInfo; // _08
+	JKRExpHeap* m_heap;                         // _0C
+	int _10;                                    // _10
 };
 
 struct DispMemberChallengeSelect : public og::Screen::DispMemberBase {

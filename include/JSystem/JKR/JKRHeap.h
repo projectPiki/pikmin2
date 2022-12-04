@@ -227,6 +227,8 @@ struct JKRExpHeap : public JKRHeap {
 	CMemBlock* m_tailUsedList; // _84
 };
 
+inline JKRExpHeap* makeExpHeap(size_t size, JKRHeap* heap, bool a) { return JKRExpHeap::create(size, heap, a); }
+
 struct JKRSolidHeap : public JKRHeap {
 	JKRSolidHeap(void*, u32, JKRHeap*, bool);
 

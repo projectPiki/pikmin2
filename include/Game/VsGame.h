@@ -19,6 +19,7 @@ struct Item;
 } // namespace ItemHole
 
 struct MovieConfig;
+struct Challenge2D_ResultInfo;
 
 namespace VsGame {
 enum StateID {
@@ -255,7 +256,17 @@ struct LoadState : public State {
 	f32 _A0;                                       // _A0
 };
 
+struct ResultArg : public StateArg {
+	bool m_isNormalEnd; // _00, false if extinction/captain down/give up, true if normal end
+};
+
 struct ResultState : public State {
+	enum ResultStage {
+		VSRES_PrepareInfo = 0,
+		VSRES_PrepareDisp = 1,
+		VSRES_Display     = 2,
+	};
+
 	ResultState();
 
 	virtual void init(VsGameSection*, StateArg*); // _08
@@ -266,20 +277,22 @@ struct ResultState : public State {
 	void prepareMorimuraInfo(VsGameSection*);
 	void dvdload();
 
+	inline bool isNormalEnd() { return m_endFlags.typeView & 1; }
+
 	// _00     = VTBL
 	// _00-_0C = State
 	f32 _0C;                                         // _0C
 	Controller* m_player1Controller;                 // _10
 	Controller* m_player2Controller;                 // _14
-	bool _18;                                        // _18
+	u8 m_resultStage;                                // _18
 	JKRExpHeap* m_expHeap;                           // _1C
 	JKRHeap* m_heap;                                 // _20
 	Delegate<Game::VsGame::ResultState>* m_delegate; // _24
-	int _28;                                         // _28
+	int m_pikminLeft;                                // _28
 	int _2C;                                         // _2C
-	int _30;                                         // _30
-	bool _34;                                        // _34
-	u32 _38;                                         // _38
+	int m_pokoTimeScore;                             // _30
+	BitFlag<u8> m_endFlags;                          // _34, 0 if pikmin extinction/captain down/given up
+	Challenge2D_ResultInfo* m_resultInfo;            // _38
 };
 
 struct TitleState : public State {
