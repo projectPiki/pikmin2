@@ -14,6 +14,8 @@ struct Arg : Vector2f {
 		this->y = y;
 	}
 
+	Arg(Vector2f vec) { (Vector2f)(*this) = vec; }
+
 	virtual const char* getName() // _08 (weak)
 	{
 		return "Arg";

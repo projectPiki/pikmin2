@@ -42,8 +42,8 @@ struct DopingCheck {
 struct DopingScreen : public P2DScreen::Mgr_tuning {
 	DopingScreen();
 
-	virtual ~DopingScreen(); // _08 (weak)
-	virtual void update();   // _30
+	virtual ~DopingScreen() { } // _08 (weak)
+	virtual void update();      // _30
 
 	void setCallBack(JKRArchive*);
 	void setParam(DataNavi&);
