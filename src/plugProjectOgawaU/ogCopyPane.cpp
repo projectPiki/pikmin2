@@ -1,5 +1,6 @@
 #include "types.h"
 #include "og/Screen/ogScreen.h"
+#include "JSystem/JUT/JUTTexture.h"
 
 /*
     Generated from dpostproc
@@ -21,8 +22,37 @@ namespace Screen {
  * Address:	8030E958
  * Size:	0002F8
  */
-J2DPictureEx* CopyPicture(J2DPictureEx*, unsigned long long)
+J2DPictureEx* CopyPicture(J2DPictureEx* pic, u64 tag)
 {
+	JUTTexture* tex        = pic->getTexture(0);
+	const ResTIMG* timg    = tex->_20;
+	JUtility::TColor white = pic->getWhite();
+	JUtility::TColor black = pic->getBlack();
+	u8 alpha               = pic->m_alpha;
+	JGeometry::TBox2f box(0.0f, pic->_020.f.x - pic->_020.i.x, 0.0f, pic->_020.f.y - pic->_020.i.y);
+	JUtility::TColor cols[4];
+	cols[0].set(pic->_150[0].r, pic->_150[0].g, pic->_150[0].b, pic->_150[0].a);
+	cols[1].set(pic->_150[1].r, pic->_150[1].g, pic->_150[1].b, pic->_150[1].a);
+	cols[2].set(pic->_150[2].r, pic->_150[2].g, pic->_150[2].b, pic->_150[2].a);
+	cols[3].set(pic->_150[3].r, pic->_150[3].g, pic->_150[3].b, pic->_150[3].a);
+
+	J2DPictureEx* copy = new J2DPictureEx(tag, box, timg, 0x1100000);
+
+	if (copy) {
+		copy->setBasePosition(POS_TOP_LEFT);
+		copy->place(box);
+		copy->setWhite(white);
+		copy->setBlack(black);
+		copy->_150[0].set(cols[0].r, cols[0].g, cols[0].b, cols[0].a);
+		copy->_150[1].set(cols[1].r, cols[1].g, cols[1].b, cols[1].a);
+		copy->_150[2].set(cols[2].r, cols[2].g, cols[2].b, cols[2].a);
+		copy->_150[3].set(cols[3].r, cols[3].g, cols[3].b, cols[3].a);
+		copy->setAlpha(alpha);
+		JGeometry::TVec2<short> pos(pic->_112[0]);
+		// should be a much bigger vector?
+		copy->setTexCoord(&pos);
+	}
+	return copy;
 	/*
 stwu     r1, -0xa0(r1)
 mflr     r0
@@ -226,8 +256,45 @@ blr
  * Address:	8030EC50
  * Size:	000338
  */
-J2DPictureEx* CopyPictureToPane(J2DPictureEx*, J2DPane*, float, float, u64)
+J2DPictureEx* CopyPictureToPane(J2DPictureEx* pic, J2DPane* pane, float x, float y, u64 tag)
 {
+	JUTTexture* tex        = pic->getTexture(0);
+	const ResTIMG* timg    = tex->_20;
+	JUtility::TColor white = pic->getWhite();
+	JUtility::TColor black = pic->getBlack();
+
+	f32 xoffs  = pic->_020.f.x - pic->_020.i.x;
+	f32 yoffs  = pic->_020.f.y - pic->_020.i.y;
+	f32 xoffs2 = -(xoffs * 0.5f - x);
+	u8 alpha   = pic->m_alpha;
+	f32 yoffs2 = -(xoffs * 0.5f - y);
+
+	JGeometry::TBox2f box(xoffs, xoffs + xoffs2, yoffs, yoffs + yoffs2);
+
+	JUtility::TColor cols[4];
+	cols[0].set(pic->_150[0].r, pic->_150[0].g, pic->_150[0].b, pic->_150[0].a);
+	cols[1].set(pic->_150[1].r, pic->_150[1].g, pic->_150[1].b, pic->_150[1].a);
+	cols[2].set(pic->_150[2].r, pic->_150[2].g, pic->_150[2].b, pic->_150[2].a);
+	cols[3].set(pic->_150[3].r, pic->_150[3].g, pic->_150[3].b, pic->_150[3].a);
+
+	J2DPictureEx* copy = new J2DPictureEx(tag, box, timg, 0x1100000);
+
+	if (copy) {
+		pane->appendChild(copy);
+		copy->setBasePosition(POS_CENTER);
+		copy->place(box);
+		copy->setWhite(white);
+		copy->setBlack(black);
+		copy->_150[0].set(cols[0].r, cols[0].g, cols[0].b, cols[0].a);
+		copy->_150[1].set(cols[1].r, cols[1].g, cols[1].b, cols[1].a);
+		copy->_150[2].set(cols[2].r, cols[2].g, cols[2].b, cols[2].a);
+		copy->_150[3].set(cols[3].r, cols[3].g, cols[3].b, cols[3].a);
+		copy->setAlpha(alpha);
+		JGeometry::TVec2<short> pos(pic->_112[0]);
+		// should be a much bigger vector?
+		copy->setTexCoord(&pos);
+	}
+	return copy;
 	/*
 	.loc_0x0:
 	  stwu      r1, -0xD0(r1)
@@ -461,10 +528,10 @@ void CopyTreeToPaneSub(J2DPane*, J2DPane*, bool, unsigned long long*, unsigned s
  * Address:	........
  * Size:	000170
  */
-void J2DMaterial::operator=(const J2DMaterial&)
-{
-	// UNUSED FUNCTION
-}
+// void J2DMaterial::operator=(const J2DMaterial&)
+//{
+// UNUSED FUNCTION
+//}
 
 namespace og {
 namespace Screen {

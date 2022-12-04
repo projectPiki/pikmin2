@@ -1,5 +1,10 @@
 #include "og/Screen/callbackNodes.h"
 #include "types.h"
+#include "System.h"
+#include "JSystem/JUT/JUTException.h"
+#include "og/Sound.h"
+#include "og/Screen/ogScreen.h"
+#include "Dolphin/rand.h"
 
 /*
     Generated from dpostproc
@@ -101,8 +106,9 @@ CallBack_CounterSlot::CallBack_CounterSlot(char** p1, u16 p2, u16 p3, JKRArchive
  * Address:	8032A754
  * Size:	000030
  */
-void CallBack_CounterSlot::init(J2DScreen*, unsigned long long, unsigned long long, unsigned long long, unsigned long*, bool)
+void CallBack_CounterSlot::init(J2DScreen* screen, u64 tag1, u64 tag2, u64 tag3, u32* data, bool flag)
 {
+	CallBack_CounterRV::init(screen, tag1, tag2, tag3, data, flag);
 	/*
 	.loc_0x0:
 	  stwu      r1, -0x10(r1)
@@ -125,8 +131,12 @@ void CallBack_CounterSlot::init(J2DScreen*, unsigned long long, unsigned long lo
  * Address:	8032A784
  * Size:	000010
  */
-void CallBack_CounterSlot::setPuyoParam(float, float, float)
+void CallBack_CounterSlot::setPuyoParam(f32 parm1, f32 parm2, f32 parm3)
 {
+	m_puyoParm1 = parm1;
+	m_puyoParm2 = parm2;
+	m_puyoParm3 = parm3;
+
 	/*
 stfs     f1, 0xbc(r3)
 stfs     f2, 0xc0(r3)
@@ -142,6 +152,43 @@ blr
  */
 void CallBack_CounterSlot::update(void)
 {
+	int goal = m_currCounters;
+	if (m_currCounters > m_counterLimit) {
+		goal = m_counterLimit;
+	}
+
+	if (_A8 && _AC) {
+		for (int i = 0; i < goal; i++) {
+			J2DPane* pane = m_counters[i]->m_picture;
+			if (i > _B0 || !_A9) {
+				pane->m_isVisible = false;
+			} else {
+				pane->m_isVisible = true;
+			}
+		}
+		m_timer += sys->m_deltaTime;
+		if (m_updateInterval <= m_timer) {
+			m_timer = 0.0f;
+			_B0++;
+			if (_B0 < m_currCounters) {
+				slot_up(_B0);
+			} else {
+				if (_B0 > m_counterLimit) {
+					_A8 = false;
+					_AB = true;
+				}
+				_AA = true;
+			}
+		}
+		setValue(false, false);
+	} else {
+		CallBack_CounterRV::update();
+		if (!_A9 && goal) {
+			for (int i = 0; i < goal; i++) {
+				m_counters[i]->m_picture->m_isVisible = false;
+			}
+		}
+	}
 	/*
 stwu     r1, -0x10(r1)
 mflr     r0
@@ -333,8 +380,16 @@ blr
  * Address:	8032AA04
  * Size:	000094
  */
-void CallBack_CounterSlot::slot_up(int)
+void CallBack_CounterSlot::slot_up(int k)
 {
+	if (k > m_counterLimit) {
+		JUT_PANICLINE(169, "slot_up overflow ! (k=%d)\n", k);
+	} else if (k != m_counterLimit) {
+		m_counters[k]->m_scaleMgr->up(m_puyoParm1, m_puyoParm2, m_puyoParm3, 0.0f);
+		if ((u32)_C8 != 0) {
+			ogSound->setSE(_C8);
+		}
+	}
 	/*
 stwu     r1, -0x10(r1)
 mflr     r0
@@ -385,8 +440,25 @@ blr
  * Address:	8032AA98
  * Size:	0000C0
  */
-void CallBack_CounterSlot::startSlot(float)
+void CallBack_CounterSlot::startSlot(f32 calc)
 {
+	if (!_AC) {
+		_A8              = true;
+		_A9              = true;
+		_AA              = false;
+		_B0              = 0;
+		m_timer          = 0.0f;
+		m_updateInterval = calc;
+		m_isPuyoAnim     = true;
+		if ((int)m_counterLimit < 0) {
+			JUT_PANICLINE(169, "slot_up overflow ! (k=%d)\n", 0);
+		} else if (m_counterLimit) {
+			m_counters[0]->m_scaleMgr->up(m_puyoParm1, m_puyoParm2, m_puyoParm3, 0.0f);
+			if ((u32)_C8 != 0) {
+				ogSound->setSE(_C8);
+			}
+		}
+	}
 	/*
 stwu     r1, -0x10(r1)
 mflr     r0
@@ -448,8 +520,116 @@ blr
  * Address:	8032AB58
  * Size:	000554
  */
-void CallBack_CounterSlot::setValue(bool, bool)
+void CallBack_CounterSlot::setValue(bool flag1, bool flag2)
 {
+	if (m_isBlind) {
+		_24 = 0;
+		_28 = 0;
+	}
+	m_currCounters = CalcKeta(_24);
+
+	int counts = m_currCounters;
+	if (m_currCounters > _30) {
+		counts = _30;
+	}
+
+	for (int i = 0; i < m_counterLimit; i++) {
+		// int power = pow(10.0f, (f32)i); I cant find pow in the math files
+		int power = 0;
+		if (m_isBlind) {
+			m_counters[i]->setSuji(m_imgResources, 10);
+		} else {
+			if (_89) {
+				m_counters[i]->setSuji(m_imgResources, (int)(randFloat() * 9.0f));
+			} else {
+				m_counters[i]->setSuji(m_imgResources, (_24 / power) % 10);
+			}
+		}
+		J2DPicture* keta = m_counters[i]->m_picture;
+		if (keta) {
+			if (i < counts) {
+				if (_AC) {
+					keta->m_isVisible = true;
+				}
+				if (i + 1 > m_currCounters) {
+					if (m_isBlind) {
+						keta->setAlpha(m_zeroAlpha);
+					} else {
+						keta->setAlpha(255);
+					}
+				} else {
+					keta->setAlpha(255);
+					ScaleMgr* smgr = m_counters[i]->m_scaleMgr;
+					if (!flag1) {
+						if (flag2)
+							smgr->down();
+					} else {
+						smgr->up(); // should have some msVal stuff
+					}
+				}
+				m_counters[i]->calcScale();
+			} else {
+				keta->m_isVisible = false;
+			}
+		}
+	}
+	f32 temp  = _40;
+	f32 temp3 = 0.0f;
+	if (m_counterLimit <= counts) {
+		counts = m_counterLimit;
+	}
+	if (counts > 1) {
+		f32 temp2 = _34 * (f32)(counts - 1) + m_widthMaybe;
+		if (temp2 > _38) {
+			temp  = (temp * _38) / temp2;
+			temp3 = m_widthMaybe * 0.5f * (1.0f - temp);
+		}
+	}
+	J2DPicture* pane = _6C;
+	pane->updateScale(temp, _44);
+	pane->_0D4.x = _50 + temp3;
+	pane->_0D4.y = _54;
+	pane->calcMtx();
+
+	_6C->calcMtx();
+	pane                   = _6C;
+	f32 ang                = pane->m_angle;
+	f32 newx               = pane->_0B8;
+	f32 newy               = pane->_0BC;
+	JUtility::TColor white = pane->getWhite();
+	JUtility::TColor black = pane->getBlack();
+	pane                   = _6C;
+	JGeometry::TBox2f* box = pane->getBounds();
+	_58                    = box->i.x;
+	_5C                    = box->i.y;
+	for (int i = 0; i < m_counterLimit; i++) {
+		J2DPicture* cPane = m_counters[i]->m_picture;
+		if (cPane) {
+			JGeometry::TBox2f cBox;
+			cBox.i.y = _5C;
+			cBox.i.x = (f32)i * (-_34 * temp);
+			cBox.f.y = cBox.i.y + m_heightMaybe;
+			cBox.f.x = cBox.i.x + _58 + m_widthMaybe;
+			cBox.i.x += _58;
+			cPane->place(cBox);
+			if (!m_isPuyoAnim || _AC) {
+				cPane->setBasePosition((J2DBasePosition)m_basePosition);
+				cPane->updateScale(temp, _44);
+			} else {
+				cPane->setBasePosition(POS_CENTER);
+				CounterKeta* cKeta = m_counters[i];
+				cKeta->_0C         = temp;
+				cKeta->_10         = _44;
+			}
+			cPane->_0B8    = newx;
+			cPane->_0BC    = newy;
+			cPane->m_angle = ang;
+			cPane->calcMtx();
+			cPane->setWhite(white);
+			cPane->setBlack(black);
+		}
+	}
+
 	/*
 stwu     r1, -0xb0(r1)
 mflr     r0
@@ -842,8 +1022,31 @@ blr
  * Address:	8032B0AC
  * Size:	0001D0
  */
-void setCallBack_CounterSlot(P2DScreen::Mgr*, unsigned long long, unsigned long*, unsigned short, bool, bool, JKRArchive*)
+CallBack_CounterSlot* setCallBack_CounterSlot(P2DScreen::Mgr* mgr, u64 tag, u32* data, u16 digit, bool flag1, bool flag2, JKRArchive* arc)
 {
+	u64 tag1 = maskTag(tag, 1, 1);
+	u64 tag2 = maskTag(tag, 1, 2);
+	u64 tag3;
+	int a = 1;
+
+	u64 tag4 = tag2;
+	for (int i = 3; i < 11; i++) {
+		tag3          = maskTag(tag, 1, i);
+		J2DPane* pane = mgr->search(tag3);
+		if (!pane) {
+			a    = i - 1;
+			tag3 = tag4;
+			break;
+		}
+		tag4              = tag3;
+		pane->m_isVisible = false;
+	}
+
+	CallBack_CounterSlot* slot = new CallBack_CounterSlot(const_cast<char**>(SujiTex32), digit, a, arc);
+	slot->init(mgr, tag1, tag2, tag3, data, flag2);
+	slot->setPuyoAnim(flag1);
+	mgr->addCallBack(tag, slot);
+	return slot;
 	/*
 	.loc_0x0:
 	  stwu      r1, -0x60(r1)
@@ -1031,6 +1234,7 @@ blr
  */
 void CallBack_CounterSlot::setValue(void)
 {
+	setValue(false, false);
 	/*
 stwu     r1, -0x10(r1)
 mflr     r0

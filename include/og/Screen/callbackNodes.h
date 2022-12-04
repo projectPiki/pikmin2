@@ -79,7 +79,7 @@ struct CallBack_CounterRV : public P2DScreen::CallBackNode {
 	u32* _20;                          // _20
 	u32 _24;                           // _24
 	u32 _28;                           // _28
-	u16 _2C;                           // _2C
+	u16 m_currCounters;                // _2C
 	u16 m_counterLimit;                // _2E /* allocated slot count of _7C */
 	u16 _30;                           // _30
 	f32 _34;                           // _34
@@ -156,18 +156,18 @@ struct CallBack_CounterSlot : public CallBack_CounterRV {
 
 	// _00     = VTBL
 	// _00-_A8 = CallBack_CounterRV
-	u8 _A8;      // _A8
-	u8 _A9;      // _A9
-	u8 _AA;      // _AA
-	u8 _AB;      // _AB
-	u8 _AC;      // _AC
-	u32 _B0;     // _B0
-	f32 _B4;     // _B4
-	f32 _B8;     // _B8
-	f32 _BC;     // _BC
-	f32 _C0;     // _C0
-	f32 _C4;     // _C4
-	SoundID _C8; // _C8
+	u8 _A8;               // _A8
+	u8 _A9;               // _A9
+	u8 _AA;               // _AA
+	u8 _AB;               // _AB
+	u8 _AC;               // _AC
+	u32 _B0;              // _B0
+	f32 m_timer;          // _B4
+	f32 m_updateInterval; // _B8
+	f32 m_puyoParm1;      // _BC
+	f32 m_puyoParm2;      // _C0
+	f32 m_puyoParm3;      // _C4
+	SoundID _C8;          // _C8
 };
 
 // Size: 0x28

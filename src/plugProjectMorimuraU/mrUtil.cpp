@@ -335,7 +335,7 @@ void TScaleUpCounter::forceScaleUp(bool flag)
 void TScaleUpCounter::setScale(f32 scale, f32 scalesub)
 {
 	_34 = _AC * scale;
-	for (int i = 0; i < _2C; i++) {
+	for (int i = 0; i < m_currCounters; i++) {
 		og::Screen::CounterKeta* keta = m_counters[i];
 		keta->_0C                     = scale;
 		keta->_10                     = scalesub;
