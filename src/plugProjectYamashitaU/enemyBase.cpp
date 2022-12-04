@@ -661,7 +661,7 @@ void StoneState::updateAlways(EnemyBase* enemy)
 	enemy->m_enemyStoneObj->update();
 	enemy->m_stoneTimer += sys->m_deltaTime;
 
-	if (enemy->m_enemyStoneObj->_50 & 4) {
+	if (enemy->m_enemyStoneObj->isFlag(EnemyStone::STONE_HasViewedDemo)) {
 		if (!enemy->m_curTriangle) {
 			enemy->constraintOff();
 			enemy->resetEvent(0, EB_3);
@@ -669,9 +669,9 @@ void StoneState::updateAlways(EnemyBase* enemy)
 		// why.
 		f32 comp = (enemy->m_stoneTimer > ((EnemyParmsBase*)enemy->m_parms)->m_general.m_stoneDuration.m_value);
 		if (comp) {
-			if (enemy->m_enemyStoneObj->_50 & 8) {
-				if ((enemy->m_enemyStoneObj->_50 & 0x10) && enemy->isAlive()) {
-					transit(enemy, EBS_Living, 0);
+			if (enemy->m_enemyStoneObj->isFlag(EnemyStone::STONE_Shake)) {
+				if ((enemy->m_enemyStoneObj->isFlag(EnemyStone::STONE_Break)) && enemy->isAlive()) {
+					transit(enemy, EBS_Living, nullptr);
 				}
 			} else {
 				enemy->m_enemyStoneObj->shake();
@@ -2299,7 +2299,7 @@ void EnemyBase::doAnimationCullingOn() { m_model->m_j3dModel->m_modelData->m_joi
 void EnemyBase::show()
 {
 	if (isEvent(0, EB_Bittered)) {
-		if (m_enemyStoneObj->_50 & 2) {
+		if (m_enemyStoneObj->isFlag(EnemyStone::STONE_Fit)) {
 			m_model->hide();
 		} else {
 			m_model->show();
