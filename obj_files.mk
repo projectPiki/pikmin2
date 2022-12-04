@@ -864,7 +864,7 @@ OGAWA:=\
 	$(BUILD_DIR)/src/plugProjectOgawaU/ogContenaCounter.o\
 	$(BUILD_DIR)/src/plugProjectOgawaU/ogMapCounter.o\
 	$(BUILD_DIR)/src/plugProjectOgawaU/ogAnimTextScreen.o\
-	$(BUILD_DIR)/asm/plugProjectOgawaU/ogCallBackMessage.o\
+	$(BUILD_DIR)/src/plugProjectOgawaU/ogCallBackMessage.o\
 	$(BUILD_DIR)/asm/plugProjectOgawaU/ogMenuMgr.o\
 	$(BUILD_DIR)/src/plugProjectOgawaU/ogCallBackScreen.o\
 	$(BUILD_DIR)/asm/plugProjectOgawaU/ogCounterRV.o\
@@ -906,7 +906,7 @@ OGAWA:=\
 	$(BUILD_DIR)/src/plugProjectOgawaU/ogSceneSMenuPauseDoukutu.o\
 	$(BUILD_DIR)/src/plugProjectOgawaU/ogObjUfo.o\
 	$(BUILD_DIR)/src/plugProjectOgawaU/ogSceneUfo.o\
-	$(BUILD_DIR)/asm/plugProjectOgawaU/ogObjSave.o\
+	$(BUILD_DIR)/src/plugProjectOgawaU/ogObjSave.o\
 	$(BUILD_DIR)/src/plugProjectOgawaU/ogSceneSave.o\
 	$(BUILD_DIR)/asm/plugProjectOgawaU/ogObjFinalMsg.o\
 	$(BUILD_DIR)/src/plugProjectOgawaU/ogSceneFinalMsg.o\

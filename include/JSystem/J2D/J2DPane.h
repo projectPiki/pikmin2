@@ -413,7 +413,11 @@ struct J2DPicture : public J2DPane {
 
 	inline JUtility::TColor getColor(int i) { return _150[i]; }
 
-	inline void setColor(JUtility::TColor color, int i) { _150[i] = color; }
+	inline JUtility::TColor setColor(JUtility::TColor color, int i)
+	{
+		_150[i] = color;
+		return color;
+	}
 
 	// J2DPane _000
 	JUTTexture* m_textures[4];       // _100

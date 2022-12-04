@@ -56,8 +56,8 @@ enum EnemyEvent {
 	EB_Flying           = 0x8,  // is ignored by pikmin
 	EB_Collision        = 0x10, // is colliding
 	EB_DropMassSet      = 0x20,
-	EB_Cullable         = 0x40, // can be culled/deloaded
-	EB_LeaveCarcass     = 0x80, // leaves carcass upon death
+	EB_Cullable         = 0x40,  // can be culled/deloaded
+	EB_LeaveCarcass     = 0x80,  // leaves carcass upon death
 	EB_9                = 0x100, // make death bomb effect on kill
 	EB_Bittered         = 0x200, // currently bittered
 	EB_Constraint       = 0x400,
@@ -68,7 +68,7 @@ enum EnemyEvent {
 	EB_16               = 0x8000, // set off at finishDamageScaleAnim
 	EB_17               = 0x10000,
 	EB_18               = 0x20000,
-	EB_HardConstraint   = 0x40000, // is HardConstraint on
+	EB_HardConstraint   = 0x40000,  // is HardConstraint on
 	EB_20               = 0x80000,  // set on at finishDropping, and HipDropCallback
 	EB_21               = 0x100000, // this and the one below seem to impact if a bitter works
 	EB_22               = 0x200000, // immune to being stunned?

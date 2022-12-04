@@ -291,8 +291,8 @@ struct CallBack_LifeGauge : public P2DScreen::CallBackNode {
 struct CallBack_Message : public P2DScreen::CallBackNode {
 	CallBack_Message();
 
-	virtual ~CallBack_Message();                   // _08 (weak)
-	virtual void update();                         // _10 (weak)
+	virtual ~CallBack_Message() { }                // _08 (weak)
+	virtual void update() { }                      // _10 (weak)
 	virtual void draw(Graphics&, J2DGrafContext&); // _14
 
 	// Unused/inlined:
@@ -305,7 +305,10 @@ struct CallBack_Message : public P2DScreen::CallBackNode {
 	u32 m_messageIDAs2UL[2];         // _28
 	f32 _30;                         // _30
 	f32 _34;                         // _34
-	JGeometry::TBox2f m_bounds;      // _38
+	f32 m_minX;                      // _38, yes this is floats not a TBox2f or TVec2f
+	f32 m_minY;                      // _3C, yes i know it's dumb.
+	f32 m_maxX;                      // _40, unfortunately the CallBack_Message ctor is thrown up by a recursion
+	f32 m_maxY;                      // _44, and it cannot have a ctor for these elements
 };
 
 /**
