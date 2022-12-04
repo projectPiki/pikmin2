@@ -14,7 +14,7 @@ struct EnemyBase;
 
 namespace EnemyStone {
 enum StoneFlags {
-	STONE_Unk1          = 0x1,  // unsure
+	STONE_Registered    = 0x1,  // registered with EnemyStone::Mgr, unset on release
 	STONE_Fit           = 0x2,  // corresponds to DrawInfo::fit? unsure
 	STONE_HasViewedDemo = 0x4,  // has watched first bittered enemy cutscene
 	STONE_Shake         = 0x8,  // bittered enemy is shaking
@@ -28,7 +28,7 @@ struct ObjInfo {
 	ObjInfo();
 
 	char* m_name;          // _00
-	s32 _04;               // _04
+	int _04;               // _04
 	Matrixf m_modelMatrix; // _08
 };
 
@@ -40,7 +40,7 @@ struct Info {
 };
 
 struct DrawInfo : public CNode {
-	DrawInfo(bool); // also has a defctor, so :shrug:
+	DrawInfo(bool check = true);
 
 	virtual ~DrawInfo() { } // _08 (weak)
 
@@ -59,8 +59,8 @@ struct DrawInfo : public CNode {
 	FSMState* m_currentState; // _34
 	f32 _38;                  // _38
 	f32 _3C;                  // _3C
-	ObjInfo* _40;             // _40
-	Matrixf* _44;             // _44
+	ObjInfo* m_objInfo;       // _40
+	Matrixf* m_matrix;        // _44
 };
 
 struct Obj : public CNode {
@@ -87,6 +87,14 @@ struct Obj : public CNode {
 
 	inline bool isFlag(u32 flag) { return m_flags & flag; }
 
+	inline ObjInfo* getObjInfo(int i) { return &m_info->m_infoArr[i]; }
+
+	inline u8 getInfoCount() { return m_info->m_infoCnt; }
+
+	inline DrawInfo* getDrawInfo(int i) { return static_cast<DrawInfo*>(m_nodeArray[i].m_child); }
+
+	inline Obj* getChild() { return static_cast<Obj*>(m_child); }
+
 	// _00		= VTABLE
 	// _04-_18	= CNode
 	Info* m_info;         // _18
@@ -107,14 +115,16 @@ struct Mgr {
 	void draw(Viewport*);
 
 	// Inlined/Unused:
-	void getDrawInfo();
-	void addDrawInfo(DrawInfo*);
+	// DrawInfo* getDrawInfo();
+	// void addDrawInfo(DrawInfo*);
 	// ~Mgr();
 
-	J3DModelData** _00; // _00 - could be an array of pointers
-	BitFlag<u32> _04;   // _04
-	CNode m_drawInfo;   // _08 - treat as DrawInfo
-	CNode m_obj;        // _20 - treat as Obj
+	inline DrawInfo* getChildDrawInfo() { return static_cast<DrawInfo*>(m_drawInfo.m_child); }
+
+	J3DModelData** m_modelData; // _00 - could be an array of pointers
+	BitFlag<u32> m_flags;       // _04
+	CNode m_drawInfo;           // _08 - treat as DrawInfo
+	CNode m_obj;                // _20 - treat as Obj
 };
 
 /////////////////////////////////////////////////////////////////

@@ -451,7 +451,7 @@ YAMASHITA:=\
 	$(BUILD_DIR)/src/plugProjectYamashitaU/pelplantGenerator.o\
 	$(BUILD_DIR)/src/plugProjectYamashitaU/enemyInteractActions.o\
 	$(BUILD_DIR)/src/plugProjectYamashitaU/enemyAnimatorBase.o\
-	$(BUILD_DIR)/asm/plugProjectYamashitaU/enemyStoneMgr.o\
+	$(BUILD_DIR)/src/plugProjectYamashitaU/enemyStoneMgr.o\
 	$(BUILD_DIR)/src/plugProjectYamashitaU/enemyStoenInfo.o\
 	$(BUILD_DIR)/asm/plugProjectYamashitaU/enemyStoneDrawInfo.o\
 	$(BUILD_DIR)/src/plugProjectYamashitaU/enemyStoneObj.o\

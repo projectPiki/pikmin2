@@ -16,6 +16,8 @@ struct Node : public CNode, JKRDisposer {
 
 	void dump();
 
+	inline JKRArchive* getArchive() { return m_archive; }
+
 	// _00 - _18: CNode
 	// _18 - _30: JKRDisposer
 	void* _30;             // _30
