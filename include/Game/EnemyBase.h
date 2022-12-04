@@ -449,7 +449,9 @@ struct EnemyBase : public Creature, public SysShape::MotionListener, virtual pub
 
 	void resetCollEvent();
 
-	void becomeCarcass(bool);
+	void becomeCarcass();
+
+	void updateEffects();
 
 	inline void setCreatureID(u8 idx) { m_creatureID = idx; }
 
@@ -468,6 +470,9 @@ struct EnemyBase : public Creature, public SysShape::MotionListener, virtual pub
 	{
 		return constraint / static_cast<EnemyParmsBase*>(m_parms)->m_creatureProps.m_props.m_accel.m_value;
 	}
+
+	void forceKillEffects();
+	void deathMethod();
 
 	inline void getDistance2D(Vector3f& point, Vector2f& sep)
 	{
