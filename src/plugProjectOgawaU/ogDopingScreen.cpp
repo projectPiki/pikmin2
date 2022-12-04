@@ -1,4 +1,12 @@
 #include "types.h"
+#include "og/Screen/DopingScreen.h"
+#include "efx2d/TSimple.h"
+#include "og/Screen/ScaleMgr.h"
+#include "og/Screen/ogScreen.h"
+#include "og/Screen/callbackNodes.h"
+#include "og/Sound.h"
+#include "og/newScreen/ogUtil.h"
+#include "efx2d/T2DSprayset.h"
 
 /*
     Generated from dpostproc
@@ -100,6 +108,26 @@ namespace Screen {
  */
 DopingScreen::DopingScreen(void)
 {
+	m_dopingCheck    = new DopingCheck;
+	m_paneAll        = nullptr;
+	m_paneSpray0     = nullptr;
+	m_paneSpray1     = nullptr;
+	m_paneJujiKey    = nullptr;
+	m_offset.x       = 0.0f;
+	m_offset.y       = 0.0f;
+	m_rootPosition.x = 0.0f;
+	m_rootPosition.y = 0.0f;
+	m_dope0Enabled   = false;
+	m_dope1Enabled   = false;
+	m_gottenSpray0   = false;
+	m_gottenSpray1   = false;
+	m_gottenJujiKey  = false;
+	m_scaleSpray0Get = 0.0f;
+	m_scaleSpray1Get = 0.0f;
+	m_scaleJujiKey   = 0.0f;
+	m_scaleMgr1      = new ScaleMgr;
+	m_scaleMgr2      = new ScaleMgr;
+	m_scaleMgr3      = new ScaleMgr;
 	/*
 stwu     r1, -0x10(r1)
 mflr     r0
@@ -178,8 +206,42 @@ blr
  * Address:	80303700
  * Size:	0002CC
  */
-void DopingScreen::setCallBack(JKRArchive*)
+void DopingScreen::setCallBack(JKRArchive* arc)
 {
+	m_paneAll = og::Screen::TagSearch(this, 'Nall');
+
+	J2DPane* temp1 = og::Screen::TagSearch(this, 'toyo_13');
+	J2DPane* temp2 = og::Screen::TagSearch(this, 'toyo_12');
+	m_dopingCheck->init(temp1, temp2, m_scaleMgr1, m_scaleMgr2);
+
+	m_paneBottleR = og::Screen::TagSearch(this, 'jb_r');
+	m_paneBottleY = og::Screen::TagSearch(this, 'jb_y');
+	og::Screen::setAlphaScreen(this);
+
+	CallBack_CounterRV* counter1 = setCallBack_CounterRV(this, 'dr_r', 'dr_l', 'dr_l', &m_dopingCheck->m_sprays1, 3, 2, 1, arc);
+	CallBack_CounterRV* counter2 = setCallBack_CounterRV(this, 'dy_r', 'dy_l', 'dy_l', &m_dopingCheck->m_sprays2, 3, 2, 1, arc);
+	counter1->setCenteringMode(CallBack_CounterRV::ECM_UNKNOWN_2);
+	counter2->setCenteringMode(CallBack_CounterRV::ECM_UNKNOWN_2);
+
+	temp1 = search('dr_c');
+	if (temp1->getParentPane()) {
+		temp1->getParentPane()->removeChild(temp1);
+	}
+
+	temp1 = search('dy_c');
+	if (temp1->getParentPane()) {
+		temp1->getParentPane()->removeChild(temp1);
+	}
+
+	m_paneSpray0  = search('Nspray0');
+	m_paneSpray1  = search('Nspray1');
+	m_paneJujiKey = search('Njujikey');
+	m_paneSpray0->setBasePosition(POS_CENTER);
+	m_paneSpray1->setBasePosition(POS_CENTER);
+	m_paneJujiKey->setBasePosition(POS_CENTER);
+	m_rootPosition.x = m_paneAll->_0D4.x;
+	m_rootPosition.y = m_paneAll->_0D4.y;
+
 	/*
 stwu     r1, -0x30(r1)
 mflr     r0
@@ -377,8 +439,16 @@ blr
  * Address:	803039CC
  * Size:	000038
  */
-void DopingScreen::setParam(og::Screen::DataNavi&)
+void DopingScreen::setParam(og::Screen::DataNavi& data)
 {
+	DopingCheck* check     = m_dopingCheck;
+	check->m_naviLife      = data.m_naviLifeRatio;
+	check->_0C             = data._04;
+	check->m_nextThrowPiki = data.m_nextThrowPiki;
+	check->m_sprays1       = data.m_dope1Count;
+	check->m_sprays2       = data.m_dope0Count;
+	check->_1C             = data._14;
+
 	/*
 lwz      r3, 0x148(r3)
 lfs      f0, 0(r4)
@@ -404,6 +474,69 @@ blr
  */
 void DopingScreen::update(void)
 {
+	P2DScreen::Mgr::update();
+	m_paneJujiKey->m_isVisible = false;
+	if (m_dope0Enabled) {
+		m_paneSpray0->m_isVisible  = true;
+		m_paneJujiKey->m_isVisible = true;
+		m_paneBottleR->m_isVisible = true;
+	} else {
+		m_paneSpray0->m_isVisible  = false;
+		m_paneBottleR->m_isVisible = false;
+	}
+
+	if (m_dope1Enabled) {
+		m_paneSpray1->m_isVisible  = true;
+		m_paneJujiKey->m_isVisible = true;
+		m_paneBottleY->m_isVisible = true;
+	} else {
+		m_paneSpray1->m_isVisible  = false;
+		m_paneBottleY->m_isVisible = false;
+	}
+	m_dopingCheck->update();
+
+	f32 yoffs     = m_rootPosition.y + m_offset.y;
+	J2DPane* pane = m_paneAll;
+	pane->_0D4.x  = m_rootPosition.x + m_offset.x;
+	pane->_0D4.y  = yoffs;
+	pane->calcMtx();
+
+	// when spray 0 is first goten
+	if (m_gottenSpray0 && m_scaleSpray0Get < 1.0f) {
+		m_scaleSpray0Get += 0.1f;
+		if (m_scaleSpray0Get >= 1.0f) {
+			m_scaleMgr1->up();
+			m_dopingCheck->startGetEff_Up();
+			ogSound->setGetSpray();
+		}
+	}
+
+	// when spray 1 is first goten
+	if (m_gottenSpray1 && m_scaleSpray1Get < 1.0f) {
+		m_scaleSpray1Get += 0.1f;
+		if (m_scaleSpray1Get >= 1.0f) {
+			m_scaleMgr2->up();
+			m_dopingCheck->startGetEff_Down();
+			ogSound->setGetSpray();
+		}
+	}
+
+	// when either spray is first gotten
+	if (m_gottenJujiKey && m_scaleJujiKey < 1.0f) {
+		m_scaleJujiKey += 0.1f;
+		if (m_scaleJujiKey >= 1.0f) {
+			m_scaleMgr3->up();
+		}
+	}
+
+	f64 scale1 = m_scaleSpray0Get * m_scaleMgr1->calc();
+	f64 scale2 = m_scaleSpray1Get * m_scaleMgr2->calc();
+	f64 scale3 = m_scaleJujiKey * m_scaleMgr3->calc();
+
+	m_paneSpray0->updateScale(scale1);
+	m_paneSpray1->updateScale(scale2);
+	m_paneJujiKey->updateScale(scale3);
+
 	/*
 stwu     r1, -0x40(r1)
 mflr     r0
@@ -588,8 +721,10 @@ blr
  * Address:	80303C88
  * Size:	00000C
  */
-void DopingScreen::adjPos(float, float)
+void DopingScreen::adjPos(f32 x, f32 y)
 {
+	m_offset.x = x;
+	m_offset.y = y;
 	/*
 stfs     f1, 0x16c(r3)
 stfs     f2, 0x170(r3)
@@ -602,8 +737,21 @@ blr
  * Address:	80303C94
  * Size:	000044
  */
-void DopingScreen::setDopingEnable(bool, bool)
+void DopingScreen::setDopingEnable(bool s0, bool s1)
 {
+	m_dope0Enabled = s0;
+	m_dope1Enabled = s1;
+	if (s0) {
+		m_scaleSpray0Get = 1.0f;
+	}
+	if (s1) {
+		m_scaleSpray1Get = 1.0f;
+	}
+
+	if (s0 || s1) {
+		m_scaleJujiKey = 1.0f;
+	}
+
 	/*
 stb      r4, 0x174(r3)
 clrlwi.  r0, r4, 0x18
@@ -638,6 +786,8 @@ blr
  */
 void DopingScreen::openDopingUp(void)
 {
+	m_gottenSpray0 = true;
+	m_dope0Enabled = true;
 	/*
 li       r0, 1
 stb      r0, 0x176(r3)
@@ -653,6 +803,8 @@ blr
  */
 void DopingScreen::openDopingDown(void)
 {
+	m_gottenSpray1 = true;
+	m_dope1Enabled = true;
 	/*
 li       r0, 1
 stb      r0, 0x177(r3)
@@ -669,7 +821,7 @@ blr
 void DopingScreen::openDopingKey(void)
 {
 	// Generated from stb r0, 0x178(r3)
-	_178 = 1;
+	m_gottenJujiKey = 1;
 }
 
 /*
@@ -679,6 +831,23 @@ void DopingScreen::openDopingKey(void)
  */
 DopingCheck::DopingCheck(void)
 {
+	m_naviLife      = 1.0f;
+	_0C             = 1;
+	m_nextThrowPiki = 2;
+	m_sprays1       = 10;
+	m_sprays2       = 10;
+	_1C             = 1;
+	m_pane1         = nullptr;
+	m_pane2         = nullptr;
+	_20             = &m_sprays1;
+	_24             = &m_sprays2;
+	_28             = *_20;
+	_2C             = *_24;
+	m_efx           = new efx2d::T2DExtractUp;
+	_40             = true;
+	m_scaleMgr1     = nullptr;
+	m_scaleMgr2     = nullptr;
+	_3C             = 20.0f;
 	/*
 stwu     r1, -0x10(r1)
 mflr     r0
@@ -754,8 +923,17 @@ blr
  * Address:	80303E04
  * Size:	000044
  */
-void DopingCheck::init(J2DPane*, J2DPane*, og::Screen::ScaleMgr*, og::Screen::ScaleMgr*)
+void DopingCheck::init(J2DPane* pane1, J2DPane* pane2, ScaleMgr* mgr1, ScaleMgr* mgr2)
 {
+	m_pane1     = pane1;
+	m_pane2     = pane2;
+	m_scaleMgr1 = mgr1;
+	m_scaleMgr2 = mgr2;
+	_20         = &m_sprays1;
+	_24         = &m_sprays2;
+	_28         = *_20;
+	_2C         = *_24;
+	_40         = true;
 	/*
 	.loc_0x0:
 	  stw       r4, 0x0(r3)
@@ -785,6 +963,37 @@ void DopingCheck::init(J2DPane*, J2DPane*, og::Screen::ScaleMgr*, og::Screen::Sc
  */
 void DopingCheck::update(void)
 {
+	int count1 = *_20;
+	int count2 = *_24;
+	if (_40) {
+		_40 = false;
+		_28 = count1;
+		_2C = count2;
+	} else {
+		if (og::newScreen::checkMovieActive()) {
+			_28 = count1;
+			_2C = count2;
+		} else {
+			if (count1 != _28) {
+				if (count1 > _28) {
+					effStart(m_pane1);
+					if (m_scaleMgr1) {
+						m_scaleMgr1->up(0.2, 30.0, 0.8, 0.0);
+					}
+				}
+				_28 = count1;
+			}
+			if (count2 != _2C) {
+				if (count2 > _2C) {
+					effStart(m_pane2);
+					if (m_scaleMgr2) {
+						m_scaleMgr2->up(0.2, 30.0, 0.8, 0.0);
+					}
+				}
+				_2C = count2;
+			}
+		}
+	}
 	/*
 stwu     r1, -0x20(r1)
 mflr     r0
@@ -870,8 +1079,15 @@ blr
  * Address:	80303F48
  * Size:	000080
  */
-void DopingCheck::effStart(J2DPane*)
+void DopingCheck::effStart(J2DPane* pane)
 {
+	Vector2f pos;
+	og::Screen::calcGlbCenter(pane, &pos);
+
+	efx2d::Arg arg(pos.x, pos.y);
+
+	m_efx->create(&arg);
+	ogSound->setSprayAdd();
 	/*
 stwu     r1, -0x30(r1)
 mflr     r0
@@ -913,8 +1129,14 @@ blr
  * Address:	........
  * Size:	0000D0
  */
-void DopingCheck::startGetEff(J2DPane*)
+void DopingCheck::startGetEff(J2DPane* pane)
 {
+	Vector2f pos;
+	og::Screen::calcGlbCenter(pane, &pos);
+
+	efx2d::Arg arg(pos.x + _3C, pos.y);
+	efx2d::T2DSprayset efx;
+	efx.create(&arg);
 	// UNUSED FUNCTION
 }
 
@@ -925,6 +1147,7 @@ void DopingCheck::startGetEff(J2DPane*)
  */
 void DopingCheck::startGetEff_Up(void)
 {
+	startGetEff(m_pane1);
 	/*
 stwu     r1, -0x40(r1)
 mflr     r0
@@ -988,6 +1211,8 @@ blr
  */
 void DopingCheck::startGetEff_Down(void)
 {
+	startGetEff(m_pane2);
+
 	/*
 stwu     r1, -0x40(r1)
 mflr     r0
