@@ -1138,15 +1138,13 @@ void EnemyBase::deathMethod()
  * Address:	80101EE8
  * Size:	0009EC
  */
-// WIP: https://decomp.me/scratch/vSUKZ
-// stack issues
 void EnemyBase::onKill(CreatureKillArg* inputArg)
 {
 	getCreatureName();
 	getCreatureID();
 
 	CreatureKillArg* killArg = nullptr; // killArg
-	if (inputArg != NULL) {
+	if (inputArg) {
 		// inputArg->getName();
 		if (strcmp(inputArg->getName(), "EnemyKillArg") == 0) {
 			killArg = inputArg;
@@ -1155,10 +1153,10 @@ void EnemyBase::onKill(CreatureKillArg* inputArg)
 
 	endStick();
 
-	if (((killArg == nullptr) || !(killArg->_04 & 0x10000000)) && (isEvent(0, EB_9))) {
+	if (((!killArg) || !(killArg->_04 & 0x10000000)) && (isEvent(0, EB_9))) {
 		Vector3f effectPos;
 		getCommonEffectPos(effectPos); // sp80, 4C
-		float scaleMod                    = m_scaleModifier;
+		f32 scaleMod                      = m_scaleModifier;
 		EnemyTypeID::EEnemyTypeID enemyID = getEnemyTypeID();
 
 		efx::ArgEnemyType efxArg(effectPos, enemyID, scaleMod);
@@ -1168,38 +1166,37 @@ void EnemyBase::onKill(CreatureKillArg* inputArg)
 		PSStartEnemyGhostSE(this, 0.0f);
 	}
 
-	if ((killArg == nullptr) || !(killArg->_04 & 0x40000000)) {
+	if ((!killArg) || !(killArg->_04 & 0x40000000)) {
 		if (isEvent(0, EB_Bittered)) {
 			m_enemyStoneObj->dead();
 			deathProcedure();
 			resetEvent(0, EB_Bittered); // 0xFFFFFDFF
 			constraintOff();
-			if (ItemHoney::mgr != nullptr) {
+			if (ItemHoney::mgr) {
 				s8 bitterDrop = (s8)EnemyInfoFunc::getEnemyInfo(getEnemyTypeID(), 0xFFFF)->m_bitterDrops;
-				float scaledChance;
-				float dropChance;
+				f32 scaledChance, dropChance;
 				int dropRolls;
 
 				switch (bitterDrop) {
-				case 0:
+				case BDT_Weak:
 					dropChance = 0.99f;
 					dropRolls  = 1;
 					break;
-				case 1:
-				case 2:
+				case BDT_Normal:
+				case BDT_Strong:
 					dropChance = 0.9f;
 					dropRolls  = 1;
 					break;
-				case 3:
+				case BDT_Triple:
 					dropChance = 0.9f;
 					dropRolls  = 3;
 					break;
-				case 6:
-				case 7:
+				case BDT_MiniBoss:
+				case BDT_Boss:
 					dropChance = 0.85f;
 					dropRolls  = 5;
 					break;
-				case 8:
+				case BDT_FinalBoss:
 					dropChance = 0.0f;
 					dropRolls  = 10;
 					break;
@@ -1212,28 +1209,28 @@ void EnemyBase::onKill(CreatureKillArg* inputArg)
 				scaledChance = (0.5f * (1.0f - dropChance)) + dropChance;
 
 				for (int i = 0; i < dropRolls; i++) {
-					float randRoll = randFloat();
-					u8 honeyByte;
+					f32 randRoll = randFloat();
+					u8 honeyKind;
 					if (randRoll < dropChance) {
-						honeyByte = 0;
+						honeyKind = HONEY_Y;
 					} else if (randRoll < scaledChance) {
-						honeyByte = 1;
+						honeyKind = HONEY_R;
 					} else {
-						honeyByte = 2;
+						honeyKind = HONEY_B;
 					}
 					Sys::Sphere ball; // sp64
 					getBoundingSphere(ball);
 
-					ItemHoney::InitArg honeyArg(honeyByte, 0);
+					ItemHoney::InitArg honeyArg(honeyKind, 0);
 					ItemHoney::Item* drop = static_cast<ItemHoney::Item*>(ItemHoney::mgr->birth());
 
 					if (drop != nullptr) {
 						drop->init((CreatureInitArg*)&honeyArg);
 						drop->setPosition(ball.m_position, false);
-						float theta    = TAU * randFloat(); // temp_f6
-						float scale    = 1.0f + ((f32)dropRolls / 10.0f);
-						float cosTheta = scale * (50.0f * pikmin2_cosf(theta));
-						float sinTheta = scale * (50.0f * pikmin2_sinf(theta));
+						f32 theta    = TAU * randFloat(); // temp_f6
+						f32 scale    = 1.0f + ((f32)dropRolls / 10.0f);
+						f32 cosTheta = scale * (50.0f * pikmin2_cosf(theta));
+						f32 sinTheta = scale * (50.0f * pikmin2_sinf(theta));
 
 						Vector3f dropVelocity; // sp58
 						dropVelocity.x = sinTheta;
@@ -1247,11 +1244,11 @@ void EnemyBase::onKill(CreatureKillArg* inputArg)
 			forceKillEffects();
 			becomeCarcass();
 
-		} else if ((0.0f == m_maxExistTime) && (isEvent(0, EB_LeaveCarcass)) && ((killArg == nullptr) || !(killArg->_04 & 0x20000000))) {
-			if (m_pellet == nullptr) {
+		} else if ((0.0f == m_maxExistTime) && (isEvent(0, EB_LeaveCarcass)) && (!killArg || !(killArg->_04 & 0x20000000))) {
+			if (!m_pellet) {
 				PelletViewArg pvArg;
 				setCarcassArg(pvArg);
-				if (becomePellet(&pvArg) == 0) {
+				if (!becomePellet(&pvArg)) {
 					deathMethod();
 
 				} else {
