@@ -67,6 +67,12 @@ struct SceneMgr {
 	Scene* m_endScene;
 };
 
+inline Scene* checkChildScene(Scene* scene)
+{
+	P2ASSERTLINE(90, scene->m_child);
+	return scene->m_child;
+}
+
 extern SceneMgr* spSceneMgr;
 } // namespace PSSystem
 

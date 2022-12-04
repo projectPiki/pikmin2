@@ -5,6 +5,12 @@
 #include "Game/DNode.h"
 #include "JSystem/JUT/JUTTexture.h"
 
+namespace kh {
+namespace Screen {
+struct LostItemMgr;
+}
+} // namespace kh
+
 namespace Game {
 namespace Result {
 struct TNode : public DNode {
@@ -17,15 +23,24 @@ struct TNode : public DNode {
 
 	static u64 convertByMorimun(int);
 
+	inline int getNextIndex(int a, int b)
+	{
+		if (m_quantity < 0) {
+			return 0;
+		} else {
+			return (a + b) * m_quantity;
+		}
+	}
+
 	// _00     = VTBL
 	// _00-_2C = DNode
-	JUTTexture* m_texture; // _2C
-	int _30;               // _30
-	int _34;               // _34
-	int _38;               // _38
-	int _3C;               // _3C
-	u64 _40;               // _40
-	u8 _48[0x8];           // _48, unknown
+	JUTTexture* m_texture;              // _2C
+	int _30;                            // _30
+	int m_isLost;                       // _34
+	int m_pokoValue;                    // _38
+	int m_quantity;                     // _3C
+	u64 m_mesgTag;                      // _40
+	kh::Screen::LostItemMgr* m_itemMgr; // _48
 };
 } // namespace Result
 } // namespace Game

@@ -59,6 +59,8 @@ struct Mgr_tuning : public Mgr {
 	virtual ~Mgr_tuning() { }                      // _08 (weak)
 	virtual void draw(Graphics&, J2DGrafContext&); // _9C
 
+	static const f32 mstTuningScaleX;
+	static const f32 mstTuningScaleY;
 	static const f32 mstTuningTransX;
 	static const f32 mstTuningTransY;
 
@@ -68,12 +70,18 @@ struct Mgr_tuning : public Mgr {
 		m_someY = y + mstTuningTransY;
 	}
 
+	inline void scaleScreen(f32 scale)
+	{
+		m_screenScaleX = scale * mstTuningScaleX;
+		m_screenScaleY = scale * mstTuningScaleY;
+	}
+
 	// _00      = VTBL
 	// _00-_138 = Mgr
-	f32 m_widthMaybe;  // _138
-	f32 m_heightMaybe; // _13C
-	f32 m_someX;       // _140
-	f32 m_someY;       // _144
+	f32 m_screenScaleX; // _138
+	f32 m_screenScaleY; // _13C
+	f32 m_someX;        // _140
+	f32 m_someY;        // _144
 };
 } // namespace P2DScreen
 

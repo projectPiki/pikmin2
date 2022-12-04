@@ -17,6 +17,11 @@ struct T2DCavecomp : public TSimple2 {
 };
 
 struct T2DCavecompLoop : public TForever {
+	inline T2DCavecompLoop()
+	    : TForever(PID_Cavecomp_Loop)
+	{
+	}
+
 	virtual ~T2DCavecompLoop(); // _34 (weak)
 
 	// _00     = VTBL

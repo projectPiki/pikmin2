@@ -6,7 +6,7 @@
 #include "JSystem/J3D/J3DAnmTextureSRTKey.h"
 #include "JSystem/J3D/J3DAnmTransform.h"
 #include "JSystem/J3D/J3DAnmVisibilityFull.h"
-#include "J2DAnm.h"
+#include "JSystem/J2D/J2DAnm.h"
 
 struct J2DAnmLoader {
 	virtual void _08() = 0;  // _08

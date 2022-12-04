@@ -8,23 +8,46 @@
 struct J2DPane;
 
 namespace Morimura {
+
 struct TOffsetMsgSet {
 	TOffsetMsgSet(u64*, u64, int);
+	TOffsetMsgSet(u64*, u64, int, u64*, int*);
 
 	u64 getMsgID(int);
 
-	u64* _00;    // _00
-	int* _04;    // _04
-	u64 m_msgID; // _08
-	int _0C;     // _0C
-	int m_size;  // _10
+	inline void calcOffset(int& offset, int i)
+	{
+		int calc  = pow(10.0f, i);
+		int calc2 = offset / calc;
+		_04[i]    = offset / calc;
+		calc2 *= calc;
+		offset -= calc2;
+	}
+
+	u64* m_tagList; // _00
+	int* _04;       // _04
+	u64 m_msgID;    // _08
+	int m_size;     // _10
 };
 
 struct TScaleUpCounter : public og::Screen::CallBack_CounterRV {
 
-	virtual ~TScaleUpCounter();                               // _08 (weak)
-	virtual void init(J2DScreen*, u64, u64, u64, u32*, bool); // _1C (weak)
-	virtual void setValue(bool, bool);                        // _28
+	inline TScaleUpCounter(char** name, u16 flag1, u16 flag2, JKRArchive* arc)
+	    : CallBack_CounterRV(name, flag1, flag2, arc)
+	{
+		_A8 = 0;
+		_A9 = 0;
+		_AA = 0;
+		_AC = 0.0f;
+	}
+
+	virtual ~TScaleUpCounter() { }                                                           // _08 (weak)
+	virtual void init(J2DScreen* screen, u64 tag1, u64 tag2, u64 tag3, u32* ptr, bool check) // _1C (weak)
+	{
+		og::Screen::CallBack_CounterRV::init(screen, tag1, tag2, tag3, ptr, check);
+		_AC = _34;
+	}
+	virtual void setValue(bool, bool); // _28
 
 	void forceScaleUp(bool);
 	void setScale(f32, f32);
@@ -57,19 +80,19 @@ struct TCounterRV : public og::Screen::CallBack_CounterRV {
 
 struct TCallbackScissor : public P2DScreen::CallBackNode {
 
-	virtual ~TCallbackScissor();                   // _08 (weak)
+	virtual ~TCallbackScissor() { }                // _08 (weak)
 	virtual void draw(Graphics&, J2DGrafContext&); // _14
 
 	// _00     = VTBL
 	// _00-_1C = P2DScreen::CallBackNode
-	f32 _1C; // _1C
-	f32 _20; // _20
-	f32 _24; // _24
-	f32 _28; // _28
+	f32 m_X1; // _1C
+	f32 m_Y1; // _20
+	f32 m_X2; // _24
+	f32 m_Y2; // _28
 };
 
 struct TScissorPane : public J2DPictureEx {
-	virtual ~TScissorPane();               // _08 (weak)
+	virtual ~TScissorPane() { }            // _08 (weak)
 	virtual void drawSelf(f32, f32, Mtx*); // _38
 
 	// _00      = VTBL
@@ -128,14 +151,24 @@ struct THuWhitePaneSet : public J2DPictureEx {
 struct TIndPane : public CNode {
 	TIndPane(const char*, f32, f32);
 
-	virtual ~TIndPane(); // _08 (weak)
-	virtual void draw(); // _10
+	virtual ~TIndPane() { } // _08 (weak)
+	virtual void draw();    // _10
 
 	void createIndTexture(const char*);
 	void createCaptureTexture(_GXTexFmt);
 
 	// _00     = VTBL
 	// _00-_18 = CNode
+	JUTTexture* m_texture1; // _18
+	JUTTexture* m_texture2; // _1C
+	JUTTexture* m_texture3; // _20
+	Vector2f m_minPos;      // _24
+	Vector2f m_maxPos;      // _2C
+	f32 _34;                // _34
+	f32 _38;                // _38
+	s16 _3C;                // _3C
+	f32 _40;                // _40
+	u8 _44;                 // _44
 };
 } // namespace Morimura
 

@@ -66,14 +66,13 @@ struct _GraphicsParent {
 struct Graphics : public _GraphicsParent {
 	Graphics();
 
-	virtual void doJ3DDrawInit();   // _08 (weak)
-	virtual void doJ3DDraw(int);    // _0C (weak)
-	virtual void doJ3DFrameInit();  // _10 (weak)
-	virtual void doJ3DAnimation();  // _14 (weak)
-	virtual void doJ3DUpdateInit(); // _18 (weak)
-	virtual void doJ3DSetView(int); // _1C (weak)
-	virtual void doJ3DViewCalc();   // _20 (weak)
-	// virtual void _24() = 0;         // _24 - might be fake
+	virtual void doJ3DDrawInit() { }   // _08 (weak)
+	virtual void doJ3DDraw(int) { }    // _0C (weak)
+	virtual void doJ3DFrameInit() { }  // _10 (weak)
+	virtual void doJ3DAnimation() { }  // _14 (weak)
+	virtual void doJ3DUpdateInit() { } // _18 (weak)
+	virtual void doJ3DSetView(int) { } // _1C (weak)
+	virtual void doJ3DViewCalc() { }   // _20 (weak)
 
 	void allocateViewports(int count);
 	void addViewport(Viewport* newVp);

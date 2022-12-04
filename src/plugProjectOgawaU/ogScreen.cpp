@@ -372,12 +372,12 @@ J2DPane* TagSearch(J2DScreen* screen, u64 tag)
  */
 AlphaMgr::AlphaMgr()
 {
-	_00 = 0;
-	_04 = 0.0f;
-	_08 = 0.0f;
-	_0C = 1.0f;
-	_10 = 0.0f;
-	_14 = 1.0f;
+	m_state         = ALPHAMGR_Disabled;
+	m_currAlpha     = 0.0f;
+	m_growRate      = 0.0f;
+	m_timerModifier = 1.0f;
+	m_alphaMin      = 0.0f;
+	m_alphaMax      = 1.0f;
 }
 
 /*
@@ -385,10 +385,10 @@ AlphaMgr::AlphaMgr()
  * Address:	80303060
  * Size:	00000C
  */
-void AlphaMgr::setBlinkArea(float arg0, float arg1)
+void AlphaMgr::setBlinkArea(f32 min, f32 max)
 {
-	_10 = arg0;
-	_14 = arg1;
+	m_alphaMin = min;
+	m_alphaMax = max;
 }
 
 /*
@@ -396,22 +396,22 @@ void AlphaMgr::setBlinkArea(float arg0, float arg1)
  * Address:	8030306C
  * Size:	000064
  */
-void AlphaMgr::in(float p1)
+void AlphaMgr::in(f32 p1)
 {
-	if (1.0f == _04) {
-		_00 = 0;
+	if (1.0f == m_currAlpha) {
+		m_state = ALPHAMGR_Disabled;
 		return;
 	}
 
 	if (0.0f == p1) {
-		_00 = 0;
-		_04 = 1.0f;
+		m_state     = ALPHAMGR_Disabled;
+		m_currAlpha = 1.0f;
 		return;
 	}
 
-	_04 = 0.0f;
-	_00 = 1;
-	_08 = (1.0f - _04) / (p1 / sys->m_deltaTime);
+	m_currAlpha = 0.0f;
+	m_state     = ALPHAMGR_Fadein;
+	m_growRate  = (1.0f - m_currAlpha) / (p1 / sys->m_deltaTime);
 }
 
 /*
@@ -421,21 +421,21 @@ void AlphaMgr::in(float p1)
  */
 void AlphaMgr::out(float p1)
 {
-	_04 = 1.0f;
+	m_currAlpha = 1.0f;
 
-	if (0.0f == _04) {
-		_00 = 0;
+	if (0.0f == m_currAlpha) {
+		m_state = ALPHAMGR_Disabled;
 		return;
 	}
 
 	if (0.0f == p1) {
-		_00 = 0;
-		_04 = 0.0f;
+		m_state     = ALPHAMGR_Disabled;
+		m_currAlpha = 0.0f;
 		return;
 	}
 
-	_00 = 2;
-	_08 = -_04 / (p1 / sys->m_deltaTime);
+	m_state    = ALPHAMGR_Fadeout;
+	m_growRate = -m_currAlpha / (p1 / sys->m_deltaTime);
 }
 
 /*
@@ -445,14 +445,14 @@ void AlphaMgr::out(float p1)
  */
 void AlphaMgr::blink(float p1)
 {
-	if ((_00 == 0) || (_00 == 3)) {
-		_00             = 3;
+	if ((m_state == ALPHAMGR_Disabled) || (m_state == ALPHAMGR_Blinking)) {
+		m_state         = ALPHAMGR_Blinking;
 		float frametime = sys->m_deltaTime;
-		if (_08 > 0.0f) {
-			_08 = frametime / p1;
+		if (m_growRate > 0.0f) {
+			m_growRate = frametime / p1;
 			return;
 		}
-		_08 = -(frametime / p1);
+		m_growRate = -(frametime / p1);
 	}
 }
 
@@ -463,54 +463,55 @@ void AlphaMgr::blink(float p1)
  */
 u8 AlphaMgr::calc()
 {
-	switch (_00) {
-	case 0:
+	switch (m_state) {
+	case ALPHAMGR_Disabled:
 		break;
-	case 1:
-		_04 += _08;
-		if (_04 >= 1.0f) {
-			_04 = 1.0f;
-			_00 = 0;
+	case ALPHAMGR_Fadein:
+		m_currAlpha += m_growRate;
+		if (m_currAlpha >= 1.0f) {
+			m_currAlpha = 1.0f;
+			m_state     = ALPHAMGR_Disabled;
 		}
 		break;
-	case 4:
-		_04 += _08;
+	case ALPHAMGR_Unused:
+		m_currAlpha += m_growRate;
 
-		if (_04 >= 1.0f) {
-			_04         = 1.0f;
-			float tempC = _0C;
+		if (m_currAlpha >= 1.0f) {
+			m_currAlpha = 1.0f;
+			f32 tempC   = m_timerModifier;
 
-			if ((_00 == 0) || (_00 == 3)) {
-				_00             = 3;
-				float frametime = sys->m_deltaTime;
-				if (_08 > 0.0f) {
-					_08 = frametime / tempC;
+			// looks like inlined AlphaMgr::blink
+			if ((m_state == ALPHAMGR_Disabled) || (m_state == ALPHAMGR_Blinking)) {
+				m_state       = ALPHAMGR_Blinking;
+				f32 frametime = sys->m_deltaTime;
+				if (m_growRate > 0.0f) {
+					m_growRate = frametime / tempC;
 				} else {
-					_08 = -(frametime / tempC);
+					m_growRate = -(frametime / tempC);
 				}
 			}
 		}
 		break;
-	case 2:
-		_04 += _08;
-		if (_04 <= 0.0f) {
-			_04 = 0.0f;
-			_00 = 0;
+	case ALPHAMGR_Fadeout:
+		m_currAlpha += m_growRate;
+		if (m_currAlpha <= 0.0f) {
+			m_currAlpha = 0.0f;
+			m_state     = ALPHAMGR_Disabled;
 		}
 		break;
-	case 3:
-		_04 += _08;
-		if (_04 >= _14) {
-			_04 = _14;
-			_08 = -_08;
-		} else if (_04 <= _10) {
-			_04 = _10;
-			_08 = -_08;
+	case ALPHAMGR_Blinking:
+		m_currAlpha += m_growRate;
+		if (m_currAlpha >= m_alphaMax) {
+			m_currAlpha = m_alphaMax;
+			m_growRate  = -m_growRate;
+		} else if (m_currAlpha <= m_alphaMin) {
+			m_currAlpha = m_alphaMin;
+			m_growRate  = -m_growRate;
 		}
 		break;
 	}
 
-	return 255.0f * _04;
+	return 255.0f * m_currAlpha;
 }
 
 /*

@@ -863,19 +863,19 @@ OGAWA:=\
 	$(BUILD_DIR)/src/plugProjectOgawaU/ogCatchPiki.o\
 	$(BUILD_DIR)/src/plugProjectOgawaU/ogContenaCounter.o\
 	$(BUILD_DIR)/src/plugProjectOgawaU/ogMapCounter.o\
-	$(BUILD_DIR)/asm/plugProjectOgawaU/ogAnimTextScreen.o\
+	$(BUILD_DIR)/src/plugProjectOgawaU/ogAnimTextScreen.o\
 	$(BUILD_DIR)/asm/plugProjectOgawaU/ogCallBackMessage.o\
 	$(BUILD_DIR)/asm/plugProjectOgawaU/ogMenuMgr.o\
 	$(BUILD_DIR)/src/plugProjectOgawaU/ogCallBackScreen.o\
 	$(BUILD_DIR)/asm/plugProjectOgawaU/ogCounterRV.o\
-	$(BUILD_DIR)/asm/plugProjectOgawaU/ogSE.o\
+	$(BUILD_DIR)/src/plugProjectOgawaU/ogSE.o\
 	$(BUILD_DIR)/src/plugProjectOgawaU/ogCounterDay.o\
 	$(BUILD_DIR)/src/plugProjectOgawaU/testScene.o\
 	$(BUILD_DIR)/asm/plugProjectOgawaU/testObj.o\
 	$(BUILD_DIR)/asm/plugProjectOgawaU/ogSceneGround.o\
 	$(BUILD_DIR)/asm/plugProjectOgawaU/ogObjGround.o\
 	$(BUILD_DIR)/asm/plugProjectOgawaU/ogCopyPane.o\
-	$(BUILD_DIR)/asm/plugProjectOgawaU/ogBloGroup.o\
+	$(BUILD_DIR)/src/plugProjectOgawaU/ogBloGroup.o\
 	$(BUILD_DIR)/src/plugProjectOgawaU/DispMemberBase.o\
 	$(BUILD_DIR)/src/plugProjectOgawaU/ogLib2D.o\
 	$(BUILD_DIR)/asm/plugProjectOgawaU/ogObjSMenuMap.o\
@@ -890,7 +890,7 @@ OGAWA:=\
 	$(BUILD_DIR)/asm/plugProjectOgawaU/ogSceneCourseName.o\
 	$(BUILD_DIR)/asm/plugProjectOgawaU/ogObjKantei.o\
 	$(BUILD_DIR)/src/plugProjectOgawaU/ogSceneKantei.o\
-	$(BUILD_DIR)/asm/plugProjectOgawaU/ogObjSpecialItem.o\
+	$(BUILD_DIR)/src/plugProjectOgawaU/ogObjSpecialItem.o\
 	$(BUILD_DIR)/src/plugProjectOgawaU/ogSceneSpecialItem.o\
 	$(BUILD_DIR)/asm/plugProjectOgawaU/ogObjFloor.o\
 	$(BUILD_DIR)/src/plugProjectOgawaU/ogSceneFloor.o\
@@ -1000,9 +1000,9 @@ MORIMURA:=\
 	$(BUILD_DIR)/asm/plugProjectMorimuraU/challengeSelect2D.o\
 	$(BUILD_DIR)/asm/plugProjectMorimuraU/challengeResult2D.o\
 	$(BUILD_DIR)/asm/plugProjectMorimuraU/vsSelect2D.o\
-	$(BUILD_DIR)/asm/plugProjectMorimuraU/mrUtil.o\
+	$(BUILD_DIR)/src/plugProjectMorimuraU/mrUtil.o\
 	$(BUILD_DIR)/asm/plugProjectMorimuraU/scrollList.o\
-	$(BUILD_DIR)/asm/plugProjectMorimuraU/mrWindow.o\
+	$(BUILD_DIR)/src/plugProjectMorimuraU/mrWindow.o\
 	$(BUILD_DIR)/src/plugProjectMorimuraU/blackManState.o\
 	$(BUILD_DIR)/src/plugProjectMorimuraU/blackManAnimator.o\
 	$(BUILD_DIR)/src/plugProjectMorimuraU/blackManMgr.o\
