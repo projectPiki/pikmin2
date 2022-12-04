@@ -1,4 +1,10 @@
 #include "types.h"
+#include "og/newScreen/Save.h"
+#include "og/Screen/ogScreen.h"
+#include "og/Sound.h"
+#include "ebi/Save.h"
+#include "System.h"
+#include "Game/GameConfig.h"
 
 /*
     Generated from dpostproc
@@ -72,8 +78,11 @@ namespace newScreen {
  * Address:	80324A54
  * Size:	000060
  */
-ObjSave::ObjSave(char const*)
+ObjSave::ObjSave(char const* name)
 {
+	m_saveMgr = nullptr;
+	m_name    = name;
+	m_disp    = nullptr;
 	/*
 	stwu     r1, -0x10(r1)
 	mflr     r0
@@ -165,8 +174,17 @@ lbl_80324B44:
  * Address:	80324B60
  * Size:	00008C
  */
-void ObjSave::doCreate(JKRArchive*)
+void ObjSave::doCreate(JKRArchive* arc)
 {
+	og::Screen::DispMemberSave* disp = static_cast<og::Screen::DispMemberSave*>(getDispMember());
+	if (disp->isID(OWNER_OGA, MEMBER_SAVE)) {
+		m_disp = disp;
+	} else {
+		JUT_PANICLINE(84, "ERR! in ObjSave CreateŽ¸”sI\n");
+	}
+	m_state = SAVESTATE_StartDelay;
+	m_timer = 0.0f;
+
 	/*
 	stwu     r1, -0x10(r1)
 	mflr     r0
@@ -225,8 +243,38 @@ void ObjSave::startSave(void)
  * Address:	80324BEC
  * Size:	000134
  */
-void ObjSave::doUpdate(void)
+bool ObjSave::doUpdate(void)
 {
+	bool check = false;
+	if (m_disp->m_doSound) {
+		ogSound->setSaveCave();
+	}
+	m_saveMgr->update();
+	switch (m_state) {
+	case SAVESTATE_StartDelay:
+		m_timer += sys->m_deltaTime;
+		if (m_timer > 0.1f) {
+			m_state = SAVESTATE_WaitForFinish;
+			m_saveMgr->setControllers(getGamePad());
+			m_saveMgr->_470       = 0;
+			m_saveMgr->m_saveType = 1;
+			if (!Game::gGameConfig.m_parms.m_autosaveOff.m_data) {
+				m_saveMgr->m_isAutosaveOn = true;
+			}
+			m_saveMgr->start();
+			m_saveMgr->update();
+		}
+		break;
+	case SAVESTATE_WaitForFinish:
+		if (m_saveMgr->isFinish()) {
+			m_state = SAVESTATE_Finished;
+		}
+		break;
+	case SAVESTATE_Finished:
+		check   = true;
+		m_state = 0;
+	}
+	return check;
 	/*
 	stwu     r1, -0x10(r1)
 	mflr     r0
@@ -329,6 +377,9 @@ lbl_80324D04:
  */
 void ObjSave::doDraw(Graphics& gfx)
 {
+	if (m_state == SAVESTATE_WaitForFinish) {
+		m_saveMgr->draw();
+	}
 	/*
 	stwu     r1, -0x10(r1)
 	mflr     r0
@@ -352,14 +403,14 @@ lbl_80324D40:
  * Address:	80324D50
  * Size:	000008
  */
-u32 ObjSave::doStart(Screen::StartSceneArg const*) { return 0x1; }
+bool ObjSave::doStart(::Screen::StartSceneArg const*) { return true; }
 
 /*
  * --INFO--
  * Address:	80324D58
  * Size:	000008
  */
-u32 ObjSave::doEnd(Screen::EndSceneArg const*) { return 0x1; }
+bool ObjSave::doEnd(::Screen::EndSceneArg const*) { return true; }
 
 /*
  * --INFO--
@@ -382,6 +433,7 @@ void ObjSave::doUpdateFinish(void) { }
  */
 void ObjSave::doUpdateFadeoutFinish(void)
 {
+	getOwner()->endScene(nullptr);
 	/*
 	stwu     r1, -0x10(r1)
 	mflr     r0
@@ -404,26 +456,27 @@ void ObjSave::doUpdateFadeoutFinish(void)
  * Address:	80324D9C
  * Size:	000008
  */
-u32 ObjSave::doUpdateFadein(void) { return 0x1; }
+bool ObjSave::doUpdateFadein(void) { return true; }
 
 /*
  * --INFO--
  * Address:	80324DA4
  * Size:	000008
  */
-u32 ObjSave::doUpdateFadeout(void) { return 0x1; }
+bool ObjSave::doUpdateFadeout(void) { return true; }
 
 /*
  * --INFO--
  * Address:	80324DAC
  * Size:	000008
  */
-@24 @og::newScreen::ObjSave::~ObjSave(void)
-{
-	/*
-	addi     r3, r3, -24
-	b        __dt__Q32og9newScreen7ObjSaveFv
-	*/
-}
+//@24 @og::newScreen::ObjSave::~ObjSave(void)
+//{
+/*
+addi     r3, r3, -24
+b        __dt__Q32og9newScreen7ObjSaveFv
+*/
+//}
+
 } // namespace newScreen
 } // namespace og

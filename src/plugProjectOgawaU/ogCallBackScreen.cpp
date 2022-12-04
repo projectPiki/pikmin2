@@ -14,9 +14,9 @@ CallBack_Screen::CallBack_Screen(P2DScreen::Mgr* mgr, u64 tag)
 	m_partsScreen = mgr;
 	m_pane        = TagSearch(m_partsScreen, tag);
 	m_textBox     = nullptr;
-	_28           = 1.0f;
-	_2C           = 0.0f;
-	_30           = 0.0f;
+	m_scale       = 1.0f;
+	m_xOffs       = 0.0f;
+	m_yOffs       = 0.0f;
 }
 
 /*
@@ -49,11 +49,11 @@ void CallBack_Screen::draw(Graphics& gfx, J2DGrafContext& grafContext)
 	if (getPartsScreen()) {
 		Mtx scaledMtx;
 		Mtx* mtxPtr = &m_textBox->_080;
-		PSMTXScale(scaledMtx, _28, _28, 0.0f);
+		PSMTXScale(scaledMtx, m_scale, m_scale, 0.0f);
 		PSMTXConcat(*mtxPtr, scaledMtx, scaledMtx);
 
 		Mtx transMtx;
-		PSMTXTrans(transMtx, _2C, _30, 0.0f);
+		PSMTXTrans(transMtx, m_xOffs, m_yOffs, 0.0f);
 		PSMTXConcat(scaledMtx, transMtx, *mtxPtr);
 
 		PSMTXCopy(*mtxPtr, m_pane->_050);

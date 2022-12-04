@@ -399,7 +399,7 @@ struct DispMemberSave : public DispMemberBase {
 
 	// _00     = VTBL
 	// _00-_08 = DispMemberBase
-	u8 _08; // _08
+	u8 m_doSound; // _08
 };
 
 // size 0x8

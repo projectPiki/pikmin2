@@ -1,6 +1,7 @@
 #include "P2DScreen.h"
 #include "og/Screen/callbackNodes.h"
 #include "og/ogLib2D.h"
+#include "og/Screen/ogScreen.h"
 #include "types.h"
 /*
     Generated from dpostproc
@@ -49,10 +50,10 @@ CallBack_Message::CallBack_Message()
 	m_messageIDAs2UL[1] = 0;
 	_30                 = 0.0f;
 	_34                 = 0.0f;
-	_44                 = 1.0f;
-	_40                 = 1.0f;
-	_3C                 = 1.0f;
-	_38                 = 1.0f;
+	m_bounds.f.y        = 1.0f;
+	m_bounds.f.x        = 1.0f;
+	m_bounds.i.y        = 1.0f;
+	m_bounds.i.x        = 1.0f;
 }
 
 /*
@@ -70,8 +71,50 @@ void CallBack_Message::drawInfo(J2DGrafContext&)
  * Address:	803096AC
  * Size:	0001B4
  */
-void CallBack_Message::draw(Graphics&, J2DGrafContext&)
+void CallBack_Message::draw(Graphics& gfx, J2DGrafContext& graf)
 {
+	Matrixf mtx;
+	if (og::Screen::checkVisibleGlb(m_pane)) {
+		u64 tag = m_pane->m_messageID;
+		if (tag ^ m_messageIDAsULL) {
+			m_messageIDAsULL = tag;
+			P2JME::convertU64ToMessageID(m_messageIDAsULL, &m_messageIDAs2UL[0], &m_messageIDAs2UL[1]);
+		}
+		PSMTXConcat(graf.m_posMtx, m_pane->_080, mtx.m_matrix.mtxView);
+		GXLoadPosMtxImm(mtx.m_matrix.mtxView, 0);
+
+		J2DPane* pane = m_pane;
+		f32 x1        = pane->_020.f.x - pane->_020.i.x;
+		f32 y1        = pane->_020.f.y - pane->_020.i.y;
+		int flag      = pane->m_basePosition % 3;
+		f32 x2, y2;
+		if (flag == 1) {
+			x2 = x1 * 0.5f;
+		} else {
+			x2 = 0.0f;
+			if (flag == 2) {
+				x2 = x1;
+			}
+		}
+		flag = pane->m_basePosition / 3;
+		if (flag == 1) {
+			y2 = y1 * 0.5f;
+		} else {
+			y2 = 0.0f;
+			if (flag == 2) {
+				y2 = y1;
+			}
+		}
+		_30                              = x2;
+		_34                              = y2;
+		P2JME::TRenderingProcessor* proc = m_message->m_processor;
+		proc->_54                        = -_30;
+		proc->_58                        = -_34;
+		proc->setTextBoxInfo(m_pane);
+		proc = m_message->m_processor;
+		proc->m_mesgBounds.set(m_bounds);
+		m_message->drawMessageID(gfx, m_messageIDAs2UL[0], m_messageIDAs2UL[1]);
+	}
 	/*
 stwu     r1, -0x50(r1)
 mflr     r0
@@ -301,8 +344,47 @@ bool checkVisibleGlb(J2DPane* pane)
  * Address:	80309A7C
  * Size:	00031C
  */
-void setCallBackMessageSub(P2DScreen::Mgr*, J2DPane*)
+void setCallBackMessageSub(P2DScreen::Mgr* mgr, J2DPane* pane)
 {
+	if (pane->getTypeID() == 0x13) {
+		if (pane->m_messageID) {
+			u64 tag                            = pane->m_tag;
+			og::Screen::CallBack_Message* mesg = new og::Screen::CallBack_Message;
+			mgr->addCallBack(tag, mesg);
+			static_cast<J2DTextBox*>(pane)->setString("");
+		}
+		JSUTree<J2DPane>* link0 = &pane->m_tree;
+		while (link0) {
+			J2DPane* cBox = link0->getObject();
+			if (cBox->getTypeID() == 0x13) {
+				u64 tag                            = cBox->m_tag;
+				og::Screen::CallBack_Message* mesg = new og::Screen::CallBack_Message;
+				mgr->addCallBack(tag, mesg);
+				static_cast<J2DTextBox*>(cBox)->setString("");
+			}
+			JSUTree<J2DPane>* link = cBox->m_tree.getFirstChild();
+			while (link != cBox->m_tree.getEndChild()) {
+				J2DPane* cPane = link->getObject();
+				if (cPane->getTypeID() == 0x13) {
+					if (cPane->getUserInfo()) {
+						u64 tag                            = cPane->getTagName();
+						og::Screen::CallBack_Message* mesg = new og::Screen::CallBack_Message;
+						mgr->addCallBack(tag, mesg);
+						static_cast<J2DTextBox*>(cPane)->setString("");
+					}
+				}
+				JSUTree<J2DPane>* link2 = cBox->getPaneTree();
+				JSUTree<J2DPane>* child = link2->getFirstChild();
+				JSUTreeIterator<J2DPane> it(child);
+				while (it != link2->getEndChild()) {
+					og::Screen::setCallBackMessageSub(mgr, cBox);
+					it++;
+				}
+				link = cBox->m_tree.getNextChild();
+			}
+			link0 = static_cast<JSUTree<J2DPane>*>(link0->m_next);
+		}
+	}
 	/*
 stwu     r1, -0x30(r1)
 mflr     r0
@@ -603,8 +685,9 @@ namespace Screen {
  * Address:	80309E00
  * Size:	000024
  */
-void setCallBackMessage(P2DScreen::Mgr*)
+void setCallBackMessage(P2DScreen::Mgr* mgr)
 {
+	setCallBackMessageSub(mgr, mgr);
 	/*
 stwu     r1, -0x10(r1)
 mflr     r0

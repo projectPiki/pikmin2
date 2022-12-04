@@ -43,6 +43,8 @@ struct Save : public ::Screen::SceneBase {
 struct ObjSave : public ::Screen::ObjBase {
 	ObjSave(const char*);
 
+	enum State { SAVESTATE_StartDelay, SAVESTATE_WaitForFinish, SAVESTATE_Finished };
+
 	virtual ~ObjSave();                                   // _08 (weak)
 	virtual bool doStart(const ::Screen::StartSceneArg*); // _44
 	virtual bool doEnd(const ::Screen::EndSceneArg*);     // _48
@@ -55,13 +57,16 @@ struct ObjSave : public ::Screen::ObjBase {
 	virtual void doUpdateFadeoutFinish();                 // _64
 	virtual void doDraw(Graphics& gfx);                   // _68
 
+	// inline/unused
+	void startSave();
+
 	// _00     = VTBL1
 	// _18     = VTBL2
 	// _00-_38 = Screen::ObjBase
-	og::Screen::DispMemberSave* m_dispMember; // _38
-	int _3C;                                  // _3C
-	ebi::Save::TMgr* m_saveMgr;               // _40
-	f32 _44;                                  // _44
+	og::Screen::DispMemberSave* m_disp; // _38
+	int m_state;                        // _3C
+	ebi::Save::TMgr* m_saveMgr;         // _40
+	f32 m_timer;                        // _44
 };
 } // namespace newScreen
 } // namespace og

@@ -118,7 +118,7 @@ void AnimText_Screen::update()
 			}
 		}
 
-		J2DTextBox* pane = m_textBox;
+		J2DTextBox* pane = static_cast<J2DTextBox*>(m_textBox);
 		JUtility::TColor bodyWhite, bodyBlack, bgWhite, bgBlack;
 
 		switch (m_colorType) {

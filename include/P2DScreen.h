@@ -11,7 +11,7 @@ struct Graphics;
 namespace P2DScreen {
 struct Node : public CNode {
 	Node()
-	    : _18(nullptr)
+	    : m_pane(nullptr)
 	{
 	}
 
@@ -22,7 +22,7 @@ struct Node : public CNode {
 
 	// _00     = VTBL
 	// _00-_18 = CNode
-	J2DPane* _18; // _18
+	J2DPane* m_pane; // _18
 };
 
 struct CallBackNode : public Node {

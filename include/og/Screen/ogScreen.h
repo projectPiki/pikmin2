@@ -57,7 +57,7 @@ void registAnimGroupScreen(AnimGroup*, JKRArchive*, J2DScreen*, char*, float);
 void setAlphaScreen(J2DPane*);
 AnimText_Screen* setAnimTextScreen(JKRArchive*, P2DScreen::Mgr*, u64);
 CallBack_Picture* setCallBack_3DStick(JKRArchive*, P2DScreen::Mgr*, u64);
-void setCallBack_3DStickSmall(JKRArchive*, P2DScreen::Mgr*, u64);
+CallBack_Picture* setCallBack_3DStickSmall(JKRArchive*, P2DScreen::Mgr*, u64);
 void setCallBack_CStick(JKRArchive*, P2DScreen::Mgr*, u64);
 void setCallBack_CStickSmall(JKRArchive*, P2DScreen::Mgr*, u64);
 CallBack_CounterDay* setCallBack_CounterDay(P2DScreen::Mgr*, u64, u64, u64, u32*, u16, JKRArchive*);

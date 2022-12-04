@@ -305,10 +305,7 @@ struct CallBack_Message : public P2DScreen::CallBackNode {
 	u32 m_messageIDAs2UL[2];         // _28
 	f32 _30;                         // _30
 	f32 _34;                         // _34
-	f32 _38;                         // _38
-	f32 _3C;                         // _3C
-	f32 _40;                         // _40
-	f32 _44;                         // _44
+	JGeometry::TBox2f m_bounds;      // _38
 };
 
 /**
@@ -341,15 +338,15 @@ struct CallBack_Screen : public P2DScreen::CallBackNode {
 	// _00-_1C = P2DScreen::CallBackNode
 	P2DScreen::Mgr* m_partsScreen; // _1C
 	J2DPane* m_pane;               // _20
-	J2DTextBox* m_textBox;         // _24
-	f32 _28;                       // _28
-	f32 _2C;                       // _2C
-	f32 _30;                       // _30
+	J2DPane* m_textBox;            // _24
+	f32 m_scale;                   // _28
+	f32 m_xOffs;                   // _2C
+	f32 m_yOffs;                   // _30
 };
 
 // Size: 0x38
 struct CallBack_Picture : public CallBack_Screen {
-	CallBack_Picture(P2DScreen::Mgr*, u64); // Unused/inlined
+	CallBack_Picture(P2DScreen::Mgr*, u64);
 
 	virtual ~CallBack_Picture();                   // _08
 	virtual void update();                         // _10

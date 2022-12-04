@@ -5,6 +5,7 @@
 #include "JSystem/JMessage/TProcessor.h"
 #include "JSystem/JMessage/TReference.h"
 #include "JSystem/JUT/TColor.h"
+#include "JSystem/JGeometry.h"
 
 struct JUTFont;
 struct JUTTexture;
@@ -79,16 +80,21 @@ struct TRenderingProcessor : public TRenderingProcessorBase {
 
 	// _00     = VTBL
 	// _00-_38 = JMessage::TRenderingProcessor
-	f32 _38;            // _38
-	f32 _3C;            // _3C
-	int _40;            // _40
-	Matrixf* _44;       // _44
-	Matrixf* _48;       // _48
-	JUTFont* _4C;       // _4C
-	JUTFont* m_jmeFont; // _50
-	f32 _54;            // _54
-	u32 _58;            // _58 - unknown type
-	u8 _5C[0xB4];       // _5C - padding/unknown/in ghidra
+	f32 _38;                        // _38
+	f32 _3C;                        // _3C
+	int _40;                        // _40
+	Matrixf* _44;                   // _44
+	Matrixf* _48;                   // _48
+	JUTFont* _4C;                   // _4C
+	JUTFont* m_jmeFont;             // _50
+	f32 _54;                        // _54
+	f32 _58;                        // _58
+	int _5C;                        // _5C
+	u32 _60;                        // _60
+	u8 m_colorData[0x14];           // _64
+	f32 _78;                        // _78
+	JGeometry::TBox2f m_mesgBounds; // _7C
+	u8 _8C[0x84];                   // _8C - padding/unknown/in ghidra
 };
 } // namespace P2JME
 
