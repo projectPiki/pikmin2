@@ -609,87 +609,24 @@ lbl_80123DDC:
  */
 void Farm::initAllObjectNodes()
 {
-	FOREACH_NODE(CNode, m_obstacleRootNode.m_child, node)
-	{
-		node->del();
-		delete node;
+	CNode* obstacleNode = m_obstacleRootNode.m_child;
+	while (obstacleNode) {
+		CNode* nextObstacleNode = obstacleNode->m_next;
+		obstacleNode->del();
+		delete obstacleNode;
+		obstacleNode = nextObstacleNode;
 	}
-	FOREACH_NODE(CNode, m_plantRootNode.m_child, node)
-	{
-		node->del();
-		delete node;
+
+	CNode* plantNode = m_plantRootNode.m_child;
+	while (plantNode) {
+		CNode* nextPlantNode = plantNode->m_next;
+		plantNode->del();
+		delete plantNode;
+		plantNode = nextPlantNode;
 	}
+
 	m_obstacleRootNode.clearRelations();
 	m_plantRootNode.clearRelations();
-	/*
-	stwu     r1, -0x20(r1)
-	mflr     r0
-	stw      r0, 0x24(r1)
-	stw      r31, 0x1c(r1)
-	stw      r30, 0x18(r1)
-	stw      r29, 0x14(r1)
-	mr       r29, r3
-	lwz      r31, 0x40(r3)
-	b        lbl_80123E54
-
-lbl_80123E24:
-	lwz      r30, 4(r31)
-	mr       r3, r31
-	bl       del__5CNodeFv
-	cmplwi   r31, 0
-	beq      lbl_80123E50
-	mr       r3, r31
-	li       r4, 1
-	lwz      r12, 0(r31)
-	lwz      r12, 8(r12)
-	mtctr    r12
-	bctrl
-
-lbl_80123E50:
-	mr       r31, r30
-
-lbl_80123E54:
-	cmplwi   r31, 0
-	bne      lbl_80123E24
-	lwz      r30, 0x58(r29)
-	b        lbl_80123E94
-
-lbl_80123E64:
-	lwz      r31, 4(r30)
-	mr       r3, r30
-	bl       del__5CNodeFv
-	cmplwi   r30, 0
-	beq      lbl_80123E90
-	mr       r3, r30
-	li       r4, 1
-	lwz      r12, 0(r30)
-	lwz      r12, 8(r12)
-	mtctr    r12
-	bctrl
-
-lbl_80123E90:
-	mr       r30, r31
-
-lbl_80123E94:
-	cmplwi   r30, 0
-	bne      lbl_80123E64
-	li       r0, 0
-	stw      r0, 0x40(r29)
-	stw      r0, 0x3c(r29)
-	stw      r0, 0x38(r29)
-	stw      r0, 0x34(r29)
-	stw      r0, 0x58(r29)
-	stw      r0, 0x54(r29)
-	stw      r0, 0x50(r29)
-	stw      r0, 0x4c(r29)
-	lwz      r31, 0x1c(r1)
-	lwz      r30, 0x18(r1)
-	lwz      r29, 0x14(r1)
-	lwz      r0, 0x24(r1)
-	mtlr     r0
-	addi     r1, r1, 0x20
-	blr
-	*/
 }
 } // namespace Farm
 } // namespace Game
