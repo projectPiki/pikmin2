@@ -6,11 +6,19 @@
 
 namespace efx2d {
 struct T2DCursor : public TChasePos {
+	T2DCursor(Vector2f* pos)
+	    : TChasePos(0)
+	{
+		_14 = pos;
+		_18 = 1.0f;
+	}
+
 	virtual bool create(Arg*); // _08
 	virtual ~T2DCursor();      // _34 (weak)
 
 	// _00     = VTBL
 	// _00-_18 = TChasePos
+	f32 _18; // _18
 };
 } // namespace efx2d
 

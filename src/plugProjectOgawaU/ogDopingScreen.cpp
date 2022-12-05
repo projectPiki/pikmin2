@@ -95,7 +95,7 @@ void DopingScreen::setParam(DataNavi& data)
 	check->m_nextThrowPiki = data.m_nextThrowPiki;
 	check->m_sprays1       = data.m_dope1Count;
 	check->m_sprays2       = data.m_dope0Count;
-	check->_1C             = data._14;
+	check->m_activeNaviID  = data.m_activeNaviID;
 }
 
 /*
@@ -242,7 +242,7 @@ DopingCheck::DopingCheck()
 	m_nextThrowPiki = 2;
 	m_sprays1       = 10;
 	m_sprays2       = 10;
-	_1C             = 1;
+	m_activeNaviID  = 1;
 	m_pane1         = nullptr;
 	m_pane2         = nullptr;
 	_20             = &m_sprays1;

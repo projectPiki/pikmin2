@@ -6,6 +6,10 @@
 
 namespace efx2d {
 struct TChasePos : public TForever {
+	TChasePos(u16 id)
+	    : TForever(id)
+	{
+	}
 	// vtable 1
 	virtual bool create(Arg*); // _08
 	// vtable 2

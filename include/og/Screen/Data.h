@@ -19,7 +19,7 @@ struct DataNavi {
 	u32 m_nextThrowPiki; // _08
 	u32 m_dope1Count;    // _0C
 	u32 m_dope0Count;    // _10
-	u8 _14;              // _14
+	u8 m_activeNaviID;   // _14
 };
 
 struct DataGame {

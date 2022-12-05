@@ -1,6 +1,13 @@
 #include "og/Screen/MenuMgr.h"
+#include "og/Screen/ScaleMgr.h"
+#include "og/Screen/ogScreen.h"
+#include "og/Sound.h"
+
 #include "types.h"
 #include "Vector2.h"
+#include "Vector3.h"
+#include "efx2d/T2DCursor.h"
+#include "System.h"
 
 /*
     Generated from dpostproc
@@ -34,6 +41,41 @@ namespace Screen {
  */
 MenuMgr::MenuMgr()
 {
+	m_elementCount         = 0;
+	m_cSelectId            = 0;
+	m_timer                = 0.0f;
+	m_timerMax             = 1.0f;
+	m_paneList1            = nullptr;
+	m_paneList2            = nullptr;
+	m_paneList3            = nullptr;
+	m_scaleMgrs            = nullptr;
+	m_paneList4            = nullptr;
+	m_paneList5            = nullptr;
+	m_efxCursor1           = nullptr;
+	m_efxCursor2           = nullptr;
+	m_isCursorActive       = false;
+	_2D                    = false;
+	m_doScale              = false;
+	m_cursorState          = 0;
+	m_cursorDelayTimer     = 0.0f;
+	m_cursorPos1.x         = 0.0f;
+	m_cursorPos1.y         = 0.0f;
+	m_cursorPos2.x         = 0.0f;
+	m_cursorPos2.y         = 0.0f;
+	_48                    = false;
+	m_transitionPosLeft.x  = 0.0f;
+	m_transitionPosLeft.y  = 0.0f;
+	m_transitionPosRight.x = 0.0f;
+	m_transitionPosRight.y = 0.0f;
+	m_selPosLeft.x         = 0.0f;
+	m_selPosLeft.y         = 0.0f;
+	m_selPosRight.x        = 0.0f;
+	m_selPosRight.y        = 0.0f;
+	_6C                    = 0.0f;
+	m_prevSelected         = 0;
+	m_efxCursor1           = new efx2d::T2DCursor(&m_cursorPos1);
+	m_efxCursor2           = new efx2d::T2DCursor(&m_cursorPos2);
+
 	/*
 stwu     r1, -0x10(r1)
 mflr     r0
@@ -169,9 +211,9 @@ blr
  * Address:	8030A010
  * Size:	000084
  */
-efx2d::TChasePos::~TChasePos(void)
-{
-	/*
+// efx2d::TChasePos::~TChasePos(void)
+//{
+/*
 stwu     r1, -0x10(r1)
 mflr     r0
 stw      r0, 0x14(r1)
@@ -209,17 +251,17 @@ lwz      r30, 8(r1)
 mtlr     r0
 addi     r1, r1, 0x10
 blr
-	*/
-}
+*/
+//}
 
 /*
  * --INFO--
  * Address:	8030A094
  * Size:	00006C
  */
-efx2d::TForever::~TForever(void)
-{
-	/*
+// efx2d::TForever::~TForever(void)
+//{
+/*
 stwu     r1, -0x10(r1)
 mflr     r0
 stw      r0, 0x14(r1)
@@ -249,16 +291,28 @@ lwz      r30, 8(r1)
 mtlr     r0
 addi     r1, r1, 0x10
 blr
-	*/
-}
+*/
+//}
 
 /*
  * --INFO--
  * Address:	8030A100
  * Size:	000094
  */
-void MenuMgr::startCursor(float)
+void MenuMgr::startCursor(f32 time)
 {
+	m_isCursorActive = true;
+	if (time == 0.0f) {
+		m_cursorState      = 2;
+		m_cursorDelayTimer = 0.0f;
+		if (m_efxCursor1)
+			m_efxCursor1->create(nullptr);
+		if (m_efxCursor2)
+			m_efxCursor2->create(nullptr);
+	} else {
+		m_cursorState      = 1;
+		m_cursorDelayTimer = time;
+	}
 	/*
 stwu     r1, -0x10(r1)
 mflr     r0
@@ -311,8 +365,14 @@ blr
  * Address:	8030A194
  * Size:	000070
  */
-void MenuMgr::killCursor(void)
+void MenuMgr::killCursor()
 {
+	m_cursorState    = 3;
+	m_isCursorActive = false;
+	if (m_efxCursor1)
+		m_efxCursor1->kill();
+	if (m_efxCursor2)
+		m_efxCursor2->kill();
 	/*
 stwu     r1, -0x10(r1)
 mflr     r0
@@ -364,7 +424,7 @@ void MenuMgr::initCommon(void)
  * Address:	........
  * Size:	0002F4
  */
-void MenuMgr::initSub(J2DScreen*, unsigned short, unsigned long long, unsigned long long, unsigned long long)
+void MenuMgr::initSub(J2DScreen*, unsigned short, u64, u64, u64)
 {
 	// UNUSED FUNCTION
 }
@@ -373,10 +433,44 @@ void MenuMgr::initSub(J2DScreen*, unsigned short, unsigned long long, unsigned l
  * --INFO--
  * Address:	8030A204
  * Size:	00021C
+ * This function and the one below it (init2TakuTitle) are byte for byte identical
+ * bravo Ogawa
  */
-void MenuMgr::init2taku(J2DScreen*, unsigned long long, unsigned long long, unsigned long long, unsigned long long, unsigned long long,
-                        unsigned long long, unsigned long long, unsigned long long)
+void MenuMgr::init2taku(J2DScreen* screen, u64 tag1, u64 tag2, u64 tag3, u64 tag4, u64 tag5, u64 tag6, u64 tag7, u64 tag8)
 {
+	m_elementCount = 2;
+	m_paneList1    = new J2DPane*[2];
+	m_paneList2    = new J2DPane*[2];
+	m_paneList3    = new J2DPane*[2];
+	m_scaleMgrs    = new ScaleMgr[2];
+
+	m_paneList1[0]     = og::Screen::TagSearch(screen, tag1);
+	m_paneList2[0]     = nullptr;
+	m_paneList3[0]     = og::Screen::TagSearch(screen, tag2);
+	m_paneList1[1]     = og::Screen::TagSearch(screen, tag5);
+	m_paneList2[1]     = nullptr;
+	m_paneList3[1]     = og::Screen::TagSearch(screen, tag6);
+	m_timer            = 0.0f;
+	m_timerMax         = 1.0f;
+	m_paneList4        = nullptr;
+	m_paneList5        = nullptr;
+	m_cSelectId        = 0;
+	m_cursorState      = 0;
+	m_cursorDelayTimer = 0.0f;
+	selectSub(m_cSelectId);
+
+	m_paneList4 = new J2DPane*[2];
+	m_paneList5 = new J2DPane*[2];
+
+	m_paneList4[0]              = og::Screen::TagSearch(screen, tag3);
+	m_paneList5[0]              = og::Screen::TagSearch(screen, tag4);
+	m_paneList4[0]->m_isVisible = false;
+	m_paneList5[0]->m_isVisible = false;
+
+	m_paneList4[1]              = og::Screen::TagSearch(screen, tag7);
+	m_paneList5[1]              = og::Screen::TagSearch(screen, tag8);
+	m_paneList4[1]->m_isVisible = false;
+	m_paneList5[1]->m_isVisible = false;
 	/*
 	.loc_0x0:
 	  stwu      r1, -0x50(r1)
@@ -522,9 +616,41 @@ void MenuMgr::init2taku(J2DScreen*, unsigned long long, unsigned long long, unsi
  * Address:	8030A420
  * Size:	00021C
  */
-void MenuMgr::init2takuTitle(J2DScreen*, unsigned long long, unsigned long long, unsigned long long, unsigned long long, unsigned long long,
-                             unsigned long long, unsigned long long, unsigned long long)
+void MenuMgr::init2takuTitle(J2DScreen* screen, u64 tag1, u64 tag2, u64 tag3, u64 tag4, u64 tag5, u64 tag6, u64 tag7, u64 tag8)
 {
+	m_elementCount = 2;
+	m_paneList1    = new J2DPane*[2];
+	m_paneList2    = new J2DPane*[2];
+	m_paneList3    = new J2DPane*[2];
+	m_scaleMgrs    = new ScaleMgr[2];
+
+	m_paneList1[0]     = og::Screen::TagSearch(screen, tag1);
+	m_paneList2[0]     = nullptr;
+	m_paneList3[0]     = og::Screen::TagSearch(screen, tag2);
+	m_paneList1[1]     = og::Screen::TagSearch(screen, tag5);
+	m_paneList2[1]     = nullptr;
+	m_paneList3[1]     = og::Screen::TagSearch(screen, tag6);
+	m_timer            = 0.0f;
+	m_timerMax         = 1.0f;
+	m_paneList4        = nullptr;
+	m_paneList5        = nullptr;
+	m_cSelectId        = 0;
+	m_cursorState      = 0;
+	m_cursorDelayTimer = 0.0f;
+	selectSub(m_cSelectId);
+
+	m_paneList4 = new J2DPane*[2];
+	m_paneList5 = new J2DPane*[2];
+
+	m_paneList4[0]              = og::Screen::TagSearch(screen, tag3);
+	m_paneList5[0]              = og::Screen::TagSearch(screen, tag4);
+	m_paneList4[0]->m_isVisible = false;
+	m_paneList5[0]->m_isVisible = false;
+
+	m_paneList4[1]              = og::Screen::TagSearch(screen, tag7);
+	m_paneList5[1]              = og::Screen::TagSearch(screen, tag8);
+	m_paneList4[1]->m_isVisible = false;
+	m_paneList5[1]->m_isVisible = false;
 	/*
 	.loc_0x0:
 	  stwu      r1, -0x50(r1)
@@ -670,7 +796,7 @@ void MenuMgr::init2takuTitle(J2DScreen*, unsigned long long, unsigned long long,
  * Address:	........
  * Size:	0002F0
  */
-void MenuMgr::init(J2DScreen*, unsigned short, unsigned long long, unsigned long long, unsigned long long)
+void MenuMgr::init(J2DScreen*, unsigned short, u64, u64, u64)
 {
 	// UNUSED FUNCTION
 }
@@ -680,9 +806,58 @@ void MenuMgr::init(J2DScreen*, unsigned short, unsigned long long, unsigned long
  * Address:	8030A63C
  * Size:	000494
  */
-void MenuMgr::init(J2DScreen*, unsigned short, unsigned long long, unsigned long long, unsigned long long, unsigned long long,
-                   unsigned long long)
+void MenuMgr::init(J2DScreen* screen, u16 options, u64 tag1, u64 tag2, u64 tag3, u64 tag4, u64 tag5)
 {
+	m_elementCount = options;
+	m_paneList1    = new J2DPane*[options];
+	m_paneList2    = new J2DPane*[options];
+	m_paneList3    = new J2DPane*[options];
+	m_scaleMgrs    = new ScaleMgr[options];
+
+	u64 mesg0 = 0;
+	if (tag1)
+		mesg0 = MojiToNum(tag1, 2);
+
+	u64 mesg1 = MojiToNum(tag2, 2);
+	u64 mesg2 = MojiToNum(tag3, 2);
+
+	for (int i = 0; i < options; i++) {
+		u64 cMesg      = mesg0 + i;
+		m_paneList1[i] = screen->search(cMesg);
+
+		cMesg          = mesg1 + i;
+		m_paneList2[i] = screen->search(cMesg);
+
+		cMesg          = mesg2 + i;
+		m_paneList3[i] = screen->search(cMesg);
+	}
+
+	m_timer            = 0.0f;
+	m_timerMax         = 1.0f;
+	m_paneList4        = nullptr;
+	m_paneList5        = nullptr;
+	m_cSelectId        = 0;
+	m_cursorState      = 0;
+	m_cursorDelayTimer = 0.0f;
+	selectSub(m_cSelectId);
+
+	m_paneList4 = new J2DPane*[options];
+	m_paneList5 = new J2DPane*[options];
+
+	mesg1 = MojiToNum(tag2, 2);
+	mesg2 = MojiToNum(tag3, 2);
+
+	for (int i = 0; i < options; i++) {
+		u64 cMesg      = mesg1 + i;
+		m_paneList4[i] = og::Screen::TagSearch(screen, cMesg);
+
+		cMesg          = mesg2 + i;
+		m_paneList5[i] = og::Screen::TagSearch(screen, cMesg);
+
+		m_paneList4[i]->m_isVisible = false;
+		m_paneList5[i]->m_isVisible = false;
+	}
+
 	/*
 	.loc_0x0:
 	  stwu      r1, -0x60(r1)
@@ -998,8 +1173,19 @@ void MenuMgr::init(J2DScreen*, unsigned short, unsigned long long, unsigned long
  * Address:	8030AAD0
  * Size:	000090
  */
-void MenuMgr::selectSub(unsigned short)
+void MenuMgr::selectSub(u16 sel)
 {
+	if (sel < m_elementCount) {
+		m_prevSelected = m_cSelectId;
+		m_cSelectId    = sel;
+		_48            = true;
+		_6C            = 0.0f;
+		if (_2D) {
+			MenuOnOff();
+		}
+		m_scaleMgrs[m_cSelectId].up(0.2f, 50.0f, 0.5f, 0.0f);
+		m_timer = 0.0f;
+	}
 	/*
 stwu     r1, -0x10(r1)
 mflr     r0
@@ -1048,9 +1234,22 @@ blr
  * --INFO--
  * Address:	8030AB60
  * Size:	000098
+ * Identical to selectSub minus one extra sound effect, very cool Ogawa
  */
-void MenuMgr::select(unsigned short)
+void MenuMgr::select(u16 sel)
 {
+	if (sel < m_elementCount) {
+		m_prevSelected = m_cSelectId;
+		m_cSelectId    = sel;
+		_48            = true;
+		_6C            = 0.0f;
+		if (_2D) {
+			MenuOnOff();
+		}
+		m_scaleMgrs[m_cSelectId].up(0.2f, 50.0f, 0.5f, 0.0f);
+		m_timer = 0.0f;
+	}
+	ogSound->setCursor();
 	/*
 stwu     r1, -0x10(r1)
 mflr     r0
@@ -1102,8 +1301,11 @@ blr
  * Address:	8030ABF8
  * Size:	000014
  */
-void MenuMgr::initSelNum(unsigned short)
+void MenuMgr::initSelNum(u16 sel)
 {
+	m_prevSelected = sel;
+	m_cSelectId    = sel;
+	_6C            = 0.0f;
 	/*
 sth      r4, 0x70(r3)
 lfs      f0, lbl_8051D680@sda21(r2)
@@ -1145,6 +1347,89 @@ void MenuMgr::calcPoint(Vector2f*, Vector2f*, float, Vector2f*)
  */
 void MenuMgr::update(void)
 {
+	switch (m_cursorState) {
+	case 1:
+		m_cursorDelayTimer -= sys->m_deltaTime;
+		if (m_cursorDelayTimer < 0.0f) {
+			m_isCursorActive   = true;
+			m_cursorState      = 2;
+			m_cursorDelayTimer = 0.0f;
+			m_efxCursor1->create(nullptr);
+			m_efxCursor2->create(nullptr);
+		}
+		break;
+	case 2:
+		if (m_paneList3) {
+			J2DPane* cPane = m_paneList3[m_cSelectId];
+			Vector3f pos1  = cPane->getGlbVtx(0);
+			Vector3f pos2  = cPane->getGlbVtx(3);
+			m_selPosLeft.x = (pos1.x + pos2.x) * 0.5f;
+			m_selPosLeft.y = (pos1.y + pos2.y) * 0.5f;
+		}
+		if (m_paneList4) {
+			J2DPane* cPane  = m_paneList4[m_cSelectId];
+			Vector3f pos1   = cPane->getGlbVtx(0);
+			Vector3f pos2   = cPane->getGlbVtx(3);
+			m_selPosRight.x = (pos1.x + pos2.x) * 0.5f;
+			m_selPosRight.y = (pos1.y + pos2.y) * 0.5f;
+		}
+		if (_48) {
+			_6C += sys->m_deltaTime;
+			if (_6C > 0.2f) {
+				m_cursorPos1 = m_selPosLeft;
+				m_cursorPos2 = m_selPosRight;
+				_48          = false;
+			} else {
+				f32 scale = _6C / 0.2f;
+				if (m_paneList4) {
+					J2DPane* cPane        = m_paneList4[m_cSelectId];
+					Vector3f pos1         = cPane->getGlbVtx(0);
+					Vector3f pos2         = cPane->getGlbVtx(3);
+					m_transitionPosLeft.x = (pos1.x + pos2.x) * 0.5f;
+					m_transitionPosLeft.y = (pos1.y + pos2.y) * 0.5f;
+					m_cursorPos1.x        = m_selPosLeft.x * scale + m_transitionPosLeft.x * (1.0f - scale);
+					m_cursorPos1.y        = m_selPosLeft.y * scale + m_transitionPosLeft.y * (1.0f - scale);
+				}
+				if (m_paneList5) {
+					J2DPane* cPane         = m_paneList5[m_cSelectId];
+					Vector3f pos1          = cPane->getGlbVtx(0);
+					Vector3f pos2          = cPane->getGlbVtx(3);
+					m_transitionPosRight.x = (pos1.x + pos2.x) * 0.5f;
+					m_transitionPosRight.y = (pos1.y + pos2.y) * 0.5f;
+					m_cursorPos2.x         = m_selPosRight.x * scale + m_transitionPosRight.x * (1.0f - scale);
+					m_cursorPos2.y         = m_selPosRight.y * scale + m_transitionPosRight.y * (1.0f - scale);
+				}
+			}
+		} else {
+			if (m_paneList4) {
+				m_cursorPos1 = m_selPosLeft;
+			}
+			if (m_paneList5) {
+				m_cursorPos2 = m_selPosRight;
+			}
+		}
+		break;
+	case 3:
+		if (m_paneList4) {
+			J2DPane* cPane = m_paneList4[m_cSelectId];
+			Vector3f pos1  = cPane->getGlbVtx(0);
+			Vector3f pos2  = cPane->getGlbVtx(3);
+			m_selPosLeft.x = (pos1.x + pos2.x) * 0.5f;
+			m_selPosLeft.y = (pos1.y + pos2.y) * 0.5f;
+			m_cursorPos1.x = m_selPosLeft.x;
+			m_cursorPos1.y = m_selPosLeft.y;
+		}
+		if (m_paneList5) {
+			J2DPane* cPane  = m_paneList5[m_cSelectId];
+			Vector3f pos1   = cPane->getGlbVtx(0);
+			Vector3f pos2   = cPane->getGlbVtx(3);
+			m_selPosRight.x = (pos1.x + pos2.x) * 0.5f;
+			m_selPosRight.y = (pos1.y + pos2.y) * 0.5f;
+			m_cursorPos2.x  = m_selPosRight.x;
+			m_cursorPos2.y  = m_selPosRight.y;
+		}
+		break;
+	}
 	/*
 stwu     r1, -0x140(r1)
 mflr     r0
@@ -1532,8 +1817,23 @@ blr
  * Address:	8030B18C
  * Size:	0000EC
  */
-void MenuMgr::draw(J2DGrafContext*)
+void MenuMgr::draw(J2DGrafContext* graf)
 {
+	for (int i = 0; i < m_elementCount; i++) {
+		if ((int)m_doScale) {
+			f32 scale = m_scaleMgrs[i].calc();
+			if (m_cSelectId == i) {
+				scale *= _74;
+			}
+			m_paneList1[i]->updateScale(scale);
+		}
+	}
+
+	if ((int)m_doScale) {
+		m_timer += sys->m_deltaTime;
+		if (m_timer > m_timerMax)
+			m_timer -= m_timerMax;
+	}
 	/*
 stwu     r1, -0x20(r1)
 mflr     r0
@@ -1614,6 +1914,23 @@ blr
  */
 void MenuMgr::MenuOnOff(void)
 {
+	for (int i = 0; i < m_elementCount; i++) {
+		if (i == m_cSelectId) {
+			J2DPane* pane = m_paneList2[i];
+			if (pane)
+				pane->setAlpha(255);
+			pane = m_paneList3[i];
+			if (pane)
+				pane->setAlpha(255);
+		} else {
+			J2DPane* pane = m_paneList2[i];
+			if (pane)
+				pane->setAlpha(0);
+			pane = m_paneList3[i];
+			if (pane)
+				pane->setAlpha(255);
+		}
+	}
 	/*
 stwu     r1, -0x20(r1)
 mflr     r0

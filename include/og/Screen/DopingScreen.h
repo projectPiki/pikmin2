@@ -27,7 +27,7 @@ struct DopingCheck {
 	int m_nextThrowPiki;        // _10
 	u32 m_sprays1;              // _14
 	u32 m_sprays2;              // _18
-	u8 _1C;                     // _1C
+	u8 m_activeNaviID;          // _1C
 	u32* _20;                   // _20, unknown
 	u32* _24;                   // _24, unknown
 	u32 _28;                    // _28, unknown

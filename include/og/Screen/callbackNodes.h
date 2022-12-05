@@ -182,12 +182,12 @@ struct CallBack_DrawAfter : public P2DScreen::CallBackNode {
 	// _00-_1C = P2DScreen::CallBackNode
 	J2DPictureEx* _1C; // _1C
 	J2DPictureEx* _20; // _20
-	bool _24;          // _24
+	bool m_isVisible;  // _24
 };
 
 // Size: 0x4C
 struct CallBack_Furiko : public P2DScreen::CallBackNode {
-	CallBack_Furiko();
+	inline CallBack_Furiko();
 
 	virtual ~CallBack_Furiko();                    // _08 (weak)
 	virtual void update();                         // _10
@@ -199,27 +199,24 @@ struct CallBack_Furiko : public P2DScreen::CallBackNode {
 
 	// _00     = VTBL
 	// _00-_1C = P2DScreen::CallBackNode
-	J2DPane* _1C; // _1C
-	u8 _20;       // _20
-	u8 _21;       // _21
-	f32 _24;      // _24
-	f32 _28;      // _28
-	f32 _2C;      // _2C
-	f32 _30;      // _30
-	f32 _34;      // _34
-	f32 _38;      // _38
-	f32 _3C;      // _3C
-	f32 _40;      // _40
-	f32 _44;      // _44
-	f32 _48;      // _48
+	J2DPane* m_pane;    // _1C
+	bool m_canUpdate;   // _20
+	bool m_doResetPane; // _21
+	Vector2f m_currPosition;
+	f32 m_offset;              // _2C
+	f32 m_param2;              // _30
+	f32 m_growth;              // _34
+	Vector2f m_goalPosition;   // _38
+	Vector2f m_changeModifier; // _40
+	f32 m_currPaneAngle;       // _48
 };
 
 struct CallBack_LifeGauge : public P2DScreen::CallBackNode {
-	// what goes here?
+
 	enum LifeGaugeType {
-		LIFEGAUGE_UNK0 = 0,
-		LIFEGAUGE_UNK1 = 1,
-		LIFEGAUGE_UNK2 = 2,
+		LIFEGAUGE_OLIMAR    = 0,
+		LIFEGAUGE_LOUIE     = 1,
+		LIFEGAUGE_PRESIDENT = 2,
 	};
 
 	CallBack_LifeGauge();
@@ -238,7 +235,7 @@ struct CallBack_LifeGauge : public P2DScreen::CallBackNode {
 	// _00     = VTBL
 	// _00-_1C = P2DScreen::CallBackNode
 	DataNavi* m_data;              // _1C
-	f32 m_naviLifeRatioMaybe;      // _20
+	f32 m_naviLifeRatio;           // _20
 	f32 m_widthOrRadiusMaybe;      // _24
 	f32 m_offsetX;                 // _28
 	f32 m_offsetY;                 // _2C
@@ -250,9 +247,9 @@ struct CallBack_LifeGauge : public P2DScreen::CallBackNode {
 	f32 m_li_i_d4;                 // _44
 	f32 m_li_i_d8;                 // _48
 	LifeGauge* m_lifeGauge;        // _4C
-	u8 _50;                        // _50
-	u8 _51;                        // _51
-	f32 _54;                       // _54
+	u8 m_isActiveNavi;             // _50
+	u8 m_isActiveNaviOld;          // _51
+	f32 m_lowLifeSoundTimer;       // _54
 	f32 _58;                       // _58
 	P2DScreen::Mgr* _5C;           // _5C
 	J2DPane* m_pin1;               // _60
@@ -268,8 +265,8 @@ struct CallBack_LifeGauge : public P2DScreen::CallBackNode {
 	AngleMgr* m_angleMgr;          // _88
 	ScaleMgr* m_scaleMgr;          // _8C
 	LifeGaugeType m_lifeGaugeType; // _90
-	u8 _94;                        // _94
-	f32 _98;                       // _98
+	u8 m_canNaviChange;            // _94
+	f32 m_moveTimer;               // _98
 
 	static struct StaticValues {
 		inline StaticValues()

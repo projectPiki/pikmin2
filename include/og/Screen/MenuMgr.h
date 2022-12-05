@@ -38,39 +38,33 @@ struct MenuMgr {
 	void update();
 	void MenuOnOff();
 
-	int _00;                     // _00
-	float _04;                   // _04
-	u16 m_elementCount;          // _08
-	u16 m_currentSelectionIndex; // _0A
-	float _0C;                   // _0C
-	float _10;                   // _10
-	J2DPane** _14;               // _14 /* ptr to array of ptrs */
-	J2DPane** _18;               // _18 /* ptr to array of ptrs */
-	J2DPane** _1C;               // _1C /* ptr to array of ptrs */
-	ScaleMgr* m_scaleMgrs;       // _20 /* ptr to array */
-	J2DPane** _24;               // _24 /* ptr to array of ptrs */
-	J2DPane** _28;               // _28 /* ptr to array of ptrs */
-	u8 _2C;                      // _2C
-	u8 _2D;                      // _2D
-	char m_doScale;              // _2E
-	float _30;                   // _30
-	float _34;                   // _34
-	float _38;                   // _38
-	float _3C;                   // _3C
-	efx2d::T2DCursor* _40;       // _40
-	efx2d::T2DCursor* _44;       // _44
-	u8 _48;                      // _48
-	float _4C;                   // _4C
-	float _50;                   // _50
-	float _54;                   // _54
-	float _58;                   // _58
-	float _5C;                   // _5C
-	float _60;                   // _60
-	float _64;                   // _64
-	float _68;                   // _68
-	float _6C;                   // _6C
-	u16 _70;                     // _70
-	float _74;                   // _74
+	int m_cursorState;              // _00, Ill enum this eventually
+	float m_cursorDelayTimer;       // _04
+	u16 m_elementCount;             // _08
+	u16 m_cSelectId;                // _0A
+	float m_timer;                  // _0C
+	float m_timerMax;               // _10
+	J2DPane** m_paneList1;          // _14 /* ptr to array of ptrs */
+	J2DPane** m_paneList2;          // _18 /* ptr to array of ptrs */
+	J2DPane** m_paneList3;          // _1C /* ptr to array of ptrs */
+	ScaleMgr* m_scaleMgrs;          // _20 /* ptr to array */
+	J2DPane** m_paneList4;          // _24 /* ptr to array of ptrs */
+	J2DPane** m_paneList5;          // _28 /* ptr to array of ptrs */
+	u8 m_isCursorActive;            // _2C
+	u8 _2D;                         // _2D
+	bool m_doScale;                 // _2E
+	Vector2f m_cursorPos1;          // _30
+	Vector2f m_cursorPos2;          // _38
+	efx2d::T2DCursor* m_efxCursor1; // _40
+	efx2d::T2DCursor* m_efxCursor2; // _44
+	u8 _48;                         // _48
+	Vector2f m_transitionPosLeft;   // _48
+	Vector2f m_transitionPosRight;  // _54
+	Vector2f m_selPosLeft;          // _5C
+	Vector2f m_selPosRight;         // _64
+	float _6C;                      // _6C
+	u16 m_prevSelected;             // _70
+	float _74;                      // _74
 };
 } // namespace Screen
 } // namespace og

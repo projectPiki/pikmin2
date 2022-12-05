@@ -16,7 +16,7 @@ CallBack_DrawAfter::CallBack_DrawAfter(P2DScreen::Mgr* mgr, u64 tag)
 	_1C              = static_cast<J2DPictureEx*>(TagSearch(mgr, tag));
 	_20              = CopyPicture(_1C, 'ogDAcopy');
 	_1C->m_isVisible = false;
-	_24              = true;
+	m_isVisible      = true;
 }
 
 /*
@@ -33,7 +33,7 @@ void CallBack_DrawAfter::update() { }
  */
 void CallBack_DrawAfter::draw(Graphics& gfx, J2DGrafContext& context)
 {
-	if (_24) {
+	if (m_isVisible) {
 		Vector3f globalVtx0 = _1C->getGlbVtx(0);
 		Vector3f globalVtx3 = _1C->getGlbVtx(3);
 
