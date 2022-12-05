@@ -5,23 +5,19 @@ lbl_8047B6C8:
 	.asciz "ObstacleNode"
 .balign 4
 lbl_8047B6D8:
-	.4byte 0x506C616E
-	.4byte 0x744E6F64
-	.4byte 0x65000000
-	.4byte 0x4661726D
-	.4byte 0x20726573
-	.4byte 0x6F757263
-	.4byte 0x65000000
-	.4byte 0x63726561
-	.4byte 0x74654D6F
-	.4byte 0x64656C00
-	.4byte 0x76747843
-	.4byte 0x6C72416E
-	.4byte 0x6D000000
+	.asciz "PlantNode"
+.balign 4
+lbl_8047B6E4:
+	.asciz "Farm resource"
+.balign 4
+lbl_8047B6F4:
+	.asciz "createModel"
+.balign 4
+lbl_8047B700:
+	.asciz "vtxClrAnm"
+.balign 4
 lbl_8047B70C:
-	.4byte 0x43726561
-	.4byte 0x74757265
-	.4byte 0x00000000
+	.asciz "Creature"
 
 .section .data, "wa"  # 0x8049E220 - 0x804EFC20
 .balign 8
@@ -47,15 +43,17 @@ __vt__Q34Game4Farm5Plant:
 .section .sdata2, "a"     # 0x80516360 - 0x80520E40
 .balign 8
 lbl_80517E78:
-	.4byte 0x00000000
+	.asciz ""
+.balign 4
 lbl_80517E7C:
 	.4byte 0x945F8D6B
 	.4byte 0x00000000
+.balign 4
 lbl_80517E84:
-	.4byte 0x6D646C44
-	.4byte 0x61746100
+	.asciz "mdlData"
+.balign 4
 lbl_80517E8C:
-	.4byte 0x00000000
+	.float 0.0
 lbl_80517E90:
 	.float 1.0
 .balign 8

@@ -19,6 +19,12 @@ struct FieldVtxColorInfo {
 
 // TODO fields
 struct FieldVtxColorControl {
+	unknown _00;            // _00
+	Vector3f m_position;    // _04
+	f32 _10;                // _10
+	f32 m_power;            // _14
+	f32 _18;                // _18
+	unknown _1C;            // _1C
 	FieldVtxColorControl(); // inlined
 };
 

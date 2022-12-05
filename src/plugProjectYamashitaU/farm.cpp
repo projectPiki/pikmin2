@@ -83,28 +83,16 @@
 
 namespace Game {
 namespace Farm {
-
+static void _Print(char*, ...) { OSReport(""); }
 /*
  * --INFO--
  * Address:	801234F8
  * Size:	000030
  */
-void Obstacle::setPower(float)
+void Obstacle::setPower(f32 power)
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	li       r4, 1
-	stw      r0, 0x14(r1)
-	lwz      r5, 0x20(r3)
-	stfs     f1, 0x14(r5)
-	lwz      r3, 0x18(r3)
-	bl       updateObjectRelation__Q34Game4Farm4FarmFb
-	lwz      r0, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	m_vtxColorControl->m_power = power;
+	m_farm->updateObjectRelation(true);
 }
 
 /*
@@ -114,7 +102,7 @@ void Obstacle::setPower(float)
  * Size:	0000BC
  */
 Farm::Farm()
-    : CNode("Ëæ≤ËÄ?")
+    : CNode("î_çk")
     , m_modelData(nullptr)
     , m_model(nullptr)
     , m_obstacleRootNode("ObstacleNode")
@@ -703,29 +691,5 @@ lbl_80123E94:
 	blr
 	*/
 }
-
-/*
- * __dt__Q34Game4Farm5PlantFv
- * --INFO--
- * Address:	80123EDC
- * Size:	000060
- */
-Plant::~Plant() { }
-
-/*
- * __dt__Q34Game4Farm8ObstacleFv
- * --INFO--
- * Address:	80123F3C
- * Size:	000060
- */
-Obstacle::~Obstacle() { }
-
-/*
- * __dt__Q34Game4Farm4FarmFv
- * --INFO--
- * Address:	80123F9C
- * Size:	00007C
- */
-Farm::~Farm() { }
 } // namespace Farm
 } // namespace Game

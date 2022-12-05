@@ -25,7 +25,7 @@ struct Plant;
 struct Farm : public CNode {
 	Farm();
 
-	virtual ~Farm(); // _08 (weak)
+	virtual ~Farm() {}; // _08 (weak)
 
 	void loadResource(u32, void*);
 	void update();
@@ -62,7 +62,7 @@ struct Obstacle : public CNode {
 		m_vtxColorControl = vtxColorMgr->createNewControl(position, p2, p3);
 	}
 
-	virtual ~Obstacle(); // _08 (weak)
+	virtual ~Obstacle() {}; // _08 (weak)
 
 	void setPower(f32);
 
@@ -85,7 +85,7 @@ struct Plant : public CNode {
 	{
 	}
 
-	virtual ~Plant(); // _08 (weak)
+	virtual ~Plant() {}; // _08 (weak)
 
 	// Unused/inlined:
 	void sendInteraction();
