@@ -24,7 +24,9 @@ inline Vector2f operator+(const Vector2f& a, const Vector2f& b) { return Vector2
 
 inline f32 _lenVec2D(Vector2f& vec)
 {
-	f32 length = vec.x * vec.x + vec.y * vec.y;
+	Vector2f a = vec;
+	a.y *= a.y;
+	f32 length = a.y + vec.x * vec.x;
 	_sqrtf(length, &length);
 	return length;
 }
