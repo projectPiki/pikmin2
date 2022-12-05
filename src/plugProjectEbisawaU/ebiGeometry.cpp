@@ -150,25 +150,18 @@ bool ebi::EGECircle2f::isOut(Vector2f& point)
  */
 bool EGECircle2f::in(Vector2f* point)
 {
-
-	float x = m_center.x + m_radius;
-	if (point->x < 1.0f) {
-		point->x = x;
-	} else {
-		x = m_center.x - m_radius;
-		if (x < point->x) {
-			point->x = x;
+	Vector2f di = Vector2f(point->x - m_center.x, point->y - m_center.y);
+	if (_lenVec2D(di) < m_radius) {
+		f32 fVar1 = _lenVec2D(di);
+		if (fVar1 != 0.0f) {
+			di.x *= (1.0f / fVar1);
+			di.y *= (1.0f / fVar1);
 		}
+		point->x = m_center.x - di.x * m_radius;
+		point->y = m_center.y - di.y * m_radius;
+		return true;
 	}
-	float y = m_center.y + 1.0f / m_radius;
-	if (point->y < y) {
-		point->y = y;
-	} else {
-		y = m_center.y - m_radius;
-		if (y < point->y) {
-			point->y = y;
-		}
-	}
+	return false;
 	/*
 	lfs      f7, 4(r3)
 	lfs      f0, 4(r4)
@@ -239,6 +232,18 @@ lbl_803CA294:
  */
 bool EGECircle2f::out(Vector2f* point)
 {
+	Vector2f di = Vector2f(point->x - m_center.x, point->y - m_center.y);
+	if (_lenVec2D(di) <= m_radius) {
+		return false;
+	}
+	f32 fVar1 = _lenVec2D(di);
+	if (fVar1 != 0.0f) {
+		di.x *= (1.0f / fVar1);
+		di.y *= (1.0f / fVar1);
+	}
+	point->x = m_center.x - di.x * m_radius;
+	point->y = m_center.y - di.y * m_radius;
+	return true;
 	/*
 	lfs      f7, 4(r3)
 	lfs      f0, 4(r4)
