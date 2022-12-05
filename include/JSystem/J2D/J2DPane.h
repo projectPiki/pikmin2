@@ -226,6 +226,12 @@ struct J2DPane {
 		setAlpha((int)alpha);
 	}
 
+	inline void resetAngle()
+	{
+		m_angle = 0.0f;
+		calcMtx();
+	}
+
 	// /**
 	//  * @fabricated
 	//  */

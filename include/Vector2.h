@@ -13,6 +13,12 @@ struct Vector2 {
 		y = _y;
 	}
 
+	Vector2(T val)
+	{
+		x = val;
+		y = val;
+	}
+
 	T x, y;
 };
 

@@ -189,7 +189,7 @@ struct CallBack_DrawAfter : public P2DScreen::CallBackNode {
 struct CallBack_Furiko : public P2DScreen::CallBackNode {
 	inline CallBack_Furiko();
 
-	virtual ~CallBack_Furiko();                    // _08 (weak)
+	virtual ~CallBack_Furiko() { }                 // _08 (weak)
 	virtual void update();                         // _10
 	virtual void draw(Graphics&, J2DGrafContext&); // _14
 
@@ -199,10 +199,10 @@ struct CallBack_Furiko : public P2DScreen::CallBackNode {
 
 	// _00     = VTBL
 	// _00-_1C = P2DScreen::CallBackNode
-	J2DPane* m_pane;    // _1C
-	bool m_canUpdate;   // _20
-	bool m_doResetPane; // _21
-	Vector2f m_currPosition;
+	J2DPane* m_pane;           // _1C
+	bool m_canUpdate;          // _20
+	bool m_doResetPane;        // _21
+	Vector2f m_currPosition;   // _24
 	f32 m_offset;              // _2C
 	f32 m_param2;              // _30
 	f32 m_growth;              // _34
