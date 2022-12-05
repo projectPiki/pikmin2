@@ -19,8 +19,8 @@ struct EGEBox2f : JGeometry::TBox2f {
 
 struct EGECircle2f {
 	bool isOut(Vector2f&);
-	void in(Vector2f*);
-	void out(Vector2f*);
+	bool in(Vector2f*);
+	bool out(Vector2f*);
 
 	Vector2f m_center; // _00
 	float m_radius;    // _08

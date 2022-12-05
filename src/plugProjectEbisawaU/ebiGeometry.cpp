@@ -34,16 +34,16 @@ bool EGEBox2f::isIn(Vector2f&)
  */
 bool EGEBox2f::isOut(Vector2f& point)
 {
-	if (point.x < minX) {
+	if (point.x < i.x) {
 		return true;
 	}
-	if (maxX < point.x) {
+	if (f.x < point.x) {
 		return true;
 	}
-	if (point.y < minY) {
+	if (point.y < i.y) {
 		return true;
 	}
-	if (maxY < point.y) {
+	if (f.y < point.y) {
 		return true;
 	}
 	return false;
@@ -68,16 +68,16 @@ void EGEBox2f::in(Vector2f*)
  */
 bool EGEBox2f::isIn(Vector2f& point, float pointSize)
 {
-	if (point.x - pointSize < minX) {
+	if (point.x - pointSize < i.x) {
 		return false;
 	}
-	if (maxX < point.x + pointSize) {
+	if (f.x < point.x + pointSize) {
 		return false;
 	}
-	if (point.y - pointSize < minY) {
+	if (point.y - pointSize < i.y) {
 		return false;
 	}
-	return (maxY < point.y + pointSize) == false;
+	return (f.y < point.y + pointSize) == false;
 }
 
 /*
@@ -88,16 +88,16 @@ bool EGEBox2f::isIn(Vector2f& point, float pointSize)
  */
 bool EGEBox2f::isOut(Vector2f& point, float pointSize)
 {
-	if (point.x + pointSize < minX) {
+	if (point.x + pointSize < i.x) {
 		return true;
 	}
-	if (maxX < point.x - pointSize) {
+	if (f.x < point.x - pointSize) {
 		return true;
 	}
-	if (point.y + pointSize < minY) {
+	if (point.y + pointSize < i.y) {
 		return true;
 	}
-	return (maxY < point.y - pointSize);
+	return (f.y < point.y - pointSize);
 }
 
 /*
@@ -110,20 +110,20 @@ bool EGEBox2f::isOut(Vector2f& point, float pointSize)
  */
 void EGEBox2f::in(Vector2f* point, float margin)
 {
-	float x = minX + margin;
+	float x = i.x + margin;
 	if (point->x < x) {
 		point->x = x;
 	} else {
-		x = maxX - margin;
+		x = f.x - margin;
 		if (x < point->x) {
 			point->x = x;
 		}
 	}
-	float y = minY + margin;
+	float y = i.y + margin;
 	if (point->y < y) {
 		point->y = y;
 	} else {
-		y = maxY - margin;
+		y = f.y - margin;
 		if (y < point->y) {
 			point->y = y;
 		}
@@ -136,45 +136,10 @@ void EGEBox2f::in(Vector2f* point, float margin)
  * Address:	803CA188
  * Size:	00005C
  */
-bool EGECircle2f::isOut(Vector2f& point)
+bool ebi::EGECircle2f::isOut(Vector2f& point)
 {
-	// float distanceFromCenter = temppikmin2_sqrtf(SQUARE(point.x - m_center.x) + SQUARE(point.y - m_center.y));
-	// if (m_radius < distanceFromCenter) {
-	if (m_radius < somesqrtfefunc(SQUARE(point.x - m_center.x) + SQUARE(point.y - m_center.y))) {
-		return true;
-	}
-	return false;
-	/*
-	lfs      f1, 4(r4)
-	lfs      f0, 4(r3)
-	lfs      f2, 0(r4)
-	fsubs    f3, f1, f0
-	lfs      f1, 0(r3)
-	lfs      f0, lbl_8051F9F0@sda21(r2)
-	fsubs    f1, f2, f1
-	fmuls    f2, f3, f3
-	fmadds   f1, f1, f1, f2
-	fcmpo    cr0, f1, f0
-	ble      lbl_803CA1C4
-	ble      lbl_803CA1C8
-	frsqrte  f0, f1
-	fmuls    f1, f0, f1
-	b        lbl_803CA1C8
-
-lbl_803CA1C4:
-	fmr      f1, f0
-
-lbl_803CA1C8:
-	lfs      f0, 8(r3)
-	fcmpo    cr0, f0, f1
-	bge      lbl_803CA1DC
-	li       r3, 1
-	blr
-
-lbl_803CA1DC:
-	li       r3, 0
-	blr
-	*/
+	Vector2f di = Vector2f(point.x - m_center.x, point.y - m_center.y);
+	return m_radius < _lenVec2D(di) ? true : false;
 }
 
 /*
@@ -183,8 +148,27 @@ lbl_803CA1DC:
  * Address:	803CA1E4
  * Size:	0000B8
  */
-void EGECircle2f::in(Vector2f*)
+bool EGECircle2f::in(Vector2f* point)
 {
+
+	float x = m_center.x + m_radius;
+	if (point->x < 1.0f) {
+		point->x = x;
+	} else {
+		x = m_center.x - m_radius;
+		if (x < point->x) {
+			point->x = x;
+		}
+	}
+	float y = m_center.y + 1.0f / m_radius;
+	if (point->y < y) {
+		point->y = y;
+	} else {
+		y = m_center.y - m_radius;
+		if (y < point->y) {
+			point->y = y;
+		}
+	}
 	/*
 	lfs      f7, 4(r3)
 	lfs      f0, 4(r4)
@@ -253,7 +237,7 @@ lbl_803CA294:
  * Address:	803CA29C
  * Size:	0000BC
  */
-void EGECircle2f::out(Vector2f* point)
+bool EGECircle2f::out(Vector2f* point)
 {
 	/*
 	lfs      f7, 4(r3)
