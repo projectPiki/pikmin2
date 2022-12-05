@@ -10,10 +10,17 @@ struct TChasePos : public TForever {
 	    : TForever(id)
 	{
 	}
+
+	inline TChasePos(u16 id, Vector2f* pos)
+	    : _14(pos)
+	    , TForever(id)
+	{
+	}
+
 	// vtable 1
 	virtual bool create(Arg*); // _08
 	// vtable 2
-	virtual ~TChasePos();                  // _34 (weak)
+	virtual ~TChasePos() { }               // _34 (weak)
 	virtual void execute(JPABaseEmitter*); // _38
 
 	// _00		= VTBL

@@ -22,7 +22,7 @@ namespace Screen {
 struct MenuMgr {
 	MenuMgr();
 	void calcCenter(J2DPane*, Vector2f*);
-	void calcPoint(Vector2f*, Vector2f*, float, Vector2f*);
+	void calcPoint(Vector2f&, Vector2f&, f32, Vector2f*);
 	void draw(J2DGrafContext*);
 	void init(J2DScreen*, u16, u64, u64, u64);
 	void init(J2DScreen*, u16, u64, u64, u64, u64, u64);

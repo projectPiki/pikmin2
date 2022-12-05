@@ -7,9 +7,8 @@
 namespace efx2d {
 struct T2DCursor : public TChasePos {
 	T2DCursor(Vector2f* pos)
-	    : TChasePos(0)
+	    : TChasePos(PID_2DCursor, pos)
 	{
-		_14 = pos;
 		_18 = 1.0f;
 	}
 
