@@ -229,8 +229,62 @@ void RandItemUnit::getItemDropPosition(Vector3f& position, f32 weight, int floor
  * Address:	8024E9F8
  * Size:	00038C
  */
-MapNode* RandItemUnit::getItemNormalSetMapNode(BaseGen**)
+MapNode* RandItemUnit::getItemNormalSetMapNode(BaseGen** outGens)
 {
+	int counter = 0;
+	MapNode* mapNodeList[512];
+	BaseGen* baseGenList[512];
+	int nodeScoreList[512];
+	int totalScore = 0;
+
+	FOREACH_NODE(MapNode, m_mapUnitGenerator->m_placedMapNodes->m_child, currMapNode)
+	{
+		if (currMapNode->m_unitInfo->getUnitKind() == 1) {
+			int slotNum = getItemSlotNum(currMapNode);
+			if (slotNum) {
+				BaseGen* baseGen = currMapNode->m_unitInfo->getBaseGen();
+				if (baseGen) {
+					FOREACH_NODE(BaseGen, baseGen->m_child, currBaseGen)
+					{
+						if (currBaseGen->m_spawnType == BaseGen::Treasure__Item) {
+							if (!isItemSetDone(currMapNode, currBaseGen)) {
+								mapNodeList[counter]   = currMapNode;
+								baseGenList[counter]   = currBaseGen;
+								nodeScoreList[counter] = (currMapNode->getNodeScore() / slotNum) + 1;
+								totalScore += nodeScoreList[counter];
+								counter++;
+							}
+						}
+					}
+				}
+			}
+		} else {
+			if (!strncmp(currMapNode->getUnitName(), "item", 4)) {
+				if (!isItemSetDone(currMapNode, nullptr)) {
+					mapNodeList[counter]   = currMapNode;
+					baseGenList[counter]   = nullptr;
+					nodeScoreList[counter] = (currMapNode->getNodeScore() * 10) + 1;
+					totalScore += nodeScoreList[counter];
+					counter++;
+				}
+			}
+		}
+	}
+
+	// regswaps here
+	if (totalScore) {
+		int randScore    = totalScore * randFloat();
+		int scoreCounter = 0;
+		for (int i = 0; i < counter; i++) {
+			scoreCounter += nodeScoreList[i];
+			if (scoreCounter > randScore) {
+				outGens[0] = baseGenList[i];
+				return mapNodeList[i];
+			}
+		}
+	}
+
+	return nullptr;
 	/*
 	stwu     r1, -0x1850(r1)
 	mflr     r0
@@ -527,278 +581,63 @@ lbl_8024ED70:
  * Address:	8024ED84
  * Size:	000340
  */
-MapNode* RandItemUnit::getItemHardSetMapNode(BaseGen**)
+MapNode* RandItemUnit::getItemHardSetMapNode(BaseGen** outGens)
 {
-	/*
-	stwu     r1, -0x1040(r1)
-	mflr     r0
-	stw      r0, 0x1044(r1)
-	stmw     r25, 0x1024(r1)
-	mr       r25, r3
-	mr       r26, r4
-	li       r31, 0
-	li       r30, -1
-	lwz      r3, 8(r3)
-	lwz      r3, 0x28(r3)
-	lwz      r29, 0x10(r3)
-	b        lbl_8024F034
+	int counter = 0;
+	MapNode* mapNodeList[512];
+	BaseGen* baseGenList[512];
+	int totalScore = -1;
 
-lbl_8024EDB4:
-	lwz      r3, 0x18(r29)
-	bl       getUnitKind__Q34Game4Cave8UnitInfoFv
-	cmpwi    r3, 1
-	bne      lbl_8024EF2C
-	lwz      r3, 0x24(r29)
-	lwz      r12, 0(r3)
-	lwz      r12, 0xc(r12)
-	mtctr    r12
-	bctrl
-	addi     r27, r3, 1
-	mr       r3, r29
-	bl       getNodeScore__Q34Game4Cave7MapNodeFv
-	divw     r28, r3, r27
-	lwz      r3, 0x18(r29)
-	bl       getBaseGen__Q34Game4Cave8UnitInfoFv
-	cmplwi   r3, 0
-	beq      lbl_8024F030
-	lwz      r27, 0x10(r3)
-	b        lbl_8024EF20
+	FOREACH_NODE(MapNode, m_mapUnitGenerator->m_placedMapNodes->m_child, currMapNode)
+	{
+		if (currMapNode->m_unitInfo->getUnitKind() == 1) {
+			int currItemCount = static_cast<ItemNode*>(currMapNode->m_itemNode)->getChildCount() + 1;
+			int currScore     = currMapNode->getNodeScore() / currItemCount;
+			BaseGen* baseGen  = currMapNode->m_unitInfo->getBaseGen();
+			if (baseGen) {
+				FOREACH_NODE(BaseGen, baseGen->m_child, currBaseGen)
+				{
+					if (currBaseGen->m_spawnType == BaseGen::Treasure__Item) {
+						if (!isItemSetDone(currMapNode, currBaseGen)) {
+							if (currScore >= totalScore) {
+								if (currScore > totalScore) {
+									counter    = 0;
+									totalScore = currScore;
+								}
+								mapNodeList[counter] = currMapNode;
+								baseGenList[counter] = currBaseGen;
+								counter++;
+							}
+						}
+					}
+				}
+			}
 
-lbl_8024EE00:
-	lwz      r0, 0x18(r27)
-	cmpwi    r0, 2
-	bne      lbl_8024EF1C
-	cmplwi   r27, 0
-	beq      lbl_8024EE44
-	lwz      r3, 0x24(r29)
-	lwz      r3, 0x10(r3)
-	b        lbl_8024EE38
+		} else {
+			if (!strncmp(currMapNode->getUnitName(), "item", 4)) {
+				int currScore = currMapNode->getNodeScore() + 1;
+				if (!isItemSetDone(currMapNode, nullptr)) {
+					if (currScore >= totalScore) {
+						if (currScore > totalScore) {
+							counter    = 0;
+							totalScore = currScore;
+						}
+						mapNodeList[counter] = currMapNode;
+						baseGenList[counter] = nullptr;
+						counter++;
+					}
+				}
+			}
+		}
+	}
 
-lbl_8024EE20:
-	lwz      r0, 0x1c(r3)
-	cmplw    r0, r27
-	bne      lbl_8024EE34
-	li       r0, 1
-	b        lbl_8024EEE8
+	if (counter) {
+		int randIndex = counter * randFloat();
+		outGens[0]    = baseGenList[randIndex];
+		return mapNodeList[randIndex];
+	}
 
-lbl_8024EE34:
-	lwz      r3, 4(r3)
-
-lbl_8024EE38:
-	cmplwi   r3, 0
-	bne      lbl_8024EE20
-	b        lbl_8024EEE4
-
-lbl_8024EE44:
-	lwz      r3, 0xc(r25)
-	li       r4, 1
-	bl       getFixObjNode__Q34Game4Cave12RandMapScoreFi
-	cmplw    r29, r3
-	bne      lbl_8024EE60
-	li       r0, 1
-	b        lbl_8024EEE8
-
-lbl_8024EE60:
-	lwz      r3, 0xc(r25)
-	li       r4, 2
-	bl       getFixObjNode__Q34Game4Cave12RandMapScoreFi
-	cmplw    r29, r3
-	bne      lbl_8024EE7C
-	li       r0, 1
-	b        lbl_8024EEE8
-
-lbl_8024EE7C:
-	lwz      r3, 0x24(r29)
-	lwz      r0, 0x10(r3)
-	cmplwi   r0, 0
-	beq      lbl_8024EE94
-	li       r0, 1
-	b        lbl_8024EEE8
-
-lbl_8024EE94:
-	lwz      r3, 0x1c(r29)
-	lwz      r4, 0x10(r3)
-	b        lbl_8024EEDC
-
-lbl_8024EEA0:
-	lwz      r3, 0x18(r4)
-	lwz      r3, 0(r3)
-	cmplwi   r3, 0
-	beq      lbl_8024EED8
-	lbz      r0, 0x24(r3)
-	cmplwi   r0, 0
-	bne      lbl_8024EED8
-	lwz      r0, 0x20(r3)
-	cmpwi    r0, 5
-	beq      lbl_8024EED8
-	cmpwi    r0, 6
-	beq      lbl_8024EED8
-	li       r0, 1
-	b        lbl_8024EEE8
-
-lbl_8024EED8:
-	lwz      r4, 4(r4)
-
-lbl_8024EEDC:
-	cmplwi   r4, 0
-	bne      lbl_8024EEA0
-
-lbl_8024EEE4:
-	li       r0, 0
-
-lbl_8024EEE8:
-	clrlwi.  r0, r0, 0x18
-	bne      lbl_8024EF1C
-	cmpw     r28, r30
-	blt      lbl_8024EF1C
-	ble      lbl_8024EF04
-	li       r31, 0
-	mr       r30, r28
-
-lbl_8024EF04:
-	slwi     r0, r31, 2
-	addi     r4, r1, 0x808
-	addi     r3, r1, 8
-	stwx     r29, r4, r0
-	addi     r31, r31, 1
-	stwx     r27, r3, r0
-
-lbl_8024EF1C:
-	lwz      r27, 4(r27)
-
-lbl_8024EF20:
-	cmplwi   r27, 0
-	bne      lbl_8024EE00
-	b        lbl_8024F030
-
-lbl_8024EF2C:
-	mr       r3, r29
-	bl       getUnitName__Q34Game4Cave7MapNodeFv
-	addi     r4, r2, lbl_8051A850@sda21
-	li       r5, 4
-	bl       strncmp
-	cmpwi    r3, 0
-	bne      lbl_8024F030
-	mr       r3, r29
-	bl       getNodeScore__Q34Game4Cave7MapNodeFv
-	addi     r27, r3, 1
-	lwz      r3, 0xc(r25)
-	li       r4, 1
-	bl       getFixObjNode__Q34Game4Cave12RandMapScoreFi
-	cmplw    r29, r3
-	bne      lbl_8024EF70
-	li       r0, 1
-	b        lbl_8024EFF8
-
-lbl_8024EF70:
-	lwz      r3, 0xc(r25)
-	li       r4, 2
-	bl       getFixObjNode__Q34Game4Cave12RandMapScoreFi
-	cmplw    r29, r3
-	bne      lbl_8024EF8C
-	li       r0, 1
-	b        lbl_8024EFF8
-
-lbl_8024EF8C:
-	lwz      r3, 0x24(r29)
-	lwz      r0, 0x10(r3)
-	cmplwi   r0, 0
-	beq      lbl_8024EFA4
-	li       r0, 1
-	b        lbl_8024EFF8
-
-lbl_8024EFA4:
-	lwz      r3, 0x1c(r29)
-	lwz      r4, 0x10(r3)
-	b        lbl_8024EFEC
-
-lbl_8024EFB0:
-	lwz      r3, 0x18(r4)
-	lwz      r3, 0(r3)
-	cmplwi   r3, 0
-	beq      lbl_8024EFE8
-	lbz      r0, 0x24(r3)
-	cmplwi   r0, 0
-	bne      lbl_8024EFE8
-	lwz      r0, 0x20(r3)
-	cmpwi    r0, 5
-	beq      lbl_8024EFE8
-	cmpwi    r0, 6
-	beq      lbl_8024EFE8
-	li       r0, 1
-	b        lbl_8024EFF8
-
-lbl_8024EFE8:
-	lwz      r4, 4(r4)
-
-lbl_8024EFEC:
-	cmplwi   r4, 0
-	bne      lbl_8024EFB0
-	li       r0, 0
-
-lbl_8024EFF8:
-	clrlwi.  r0, r0, 0x18
-	bne      lbl_8024F030
-	cmpw     r27, r30
-	blt      lbl_8024F030
-	ble      lbl_8024F014
-	li       r31, 0
-	mr       r30, r27
-
-lbl_8024F014:
-	slwi     r5, r31, 2
-	addi     r4, r1, 0x808
-	addi     r3, r1, 8
-	li       r0, 0
-	stwx     r29, r4, r5
-	addi     r31, r31, 1
-	stwx     r0, r3, r5
-
-lbl_8024F030:
-	lwz      r29, 4(r29)
-
-lbl_8024F034:
-	cmplwi   r29, 0
-	bne      lbl_8024EDB4
-	cmpwi    r31, 0
-	beq      lbl_8024F0AC
-	bl       rand
-	lis      r5, 0x4330
-	xoris    r0, r3, 0x8000
-	stw      r0, 0x100c(r1)
-	xoris    r0, r31, 0x8000
-	lfd      f2, lbl_8051A848@sda21(r2)
-	addi     r4, r1, 8
-	stw      r5, 0x1008(r1)
-	addi     r3, r1, 0x808
-	lfs      f0, lbl_8051A858@sda21(r2)
-	lfd      f1, 0x1008(r1)
-	stw      r0, 0x1014(r1)
-	fsubs    f1, f1, f2
-	stw      r5, 0x1010(r1)
-	fdivs    f1, f1, f0
-	lfd      f0, 0x1010(r1)
-	fsubs    f0, f0, f2
-	fmuls    f0, f0, f1
-	fctiwz   f0, f0
-	stfd     f0, 0x1018(r1)
-	lwz      r0, 0x101c(r1)
-	slwi     r5, r0, 2
-	lwzx     r0, r4, r5
-	lwzx     r3, r3, r5
-	stw      r0, 0(r26)
-	b        lbl_8024F0B0
-
-lbl_8024F0AC:
-	li       r3, 0
-
-lbl_8024F0B0:
-	lmw      r25, 0x1024(r1)
-	lwz      r0, 0x1044(r1)
-	mtlr     r0
-	addi     r1, r1, 0x1040
-	blr
-	*/
+	return nullptr;
 }
 
 /*

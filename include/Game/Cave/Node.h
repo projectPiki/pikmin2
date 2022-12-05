@@ -210,7 +210,7 @@ struct MapNode : public CNode {
 	int getNodeOffsetX();
 	int getNodeOffsetY();
 	void getEnemyScore();
-	void getNodeScore();
+	int getNodeScore();
 	void getVersusScore();
 	char* getUnitName();
 	void getNodeCentreOffset(f32&, f32&);
