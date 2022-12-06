@@ -912,7 +912,7 @@ OGAWA:=\
 	$(BUILD_DIR)/src/plugProjectOgawaU/ogSceneFinalMsg.o\
 	$(BUILD_DIR)/asm/plugProjectOgawaU/ogObjVs.o\
 	$(BUILD_DIR)/src/plugProjectOgawaU/ogSceneVs.o\
-	$(BUILD_DIR)/asm/plugProjectOgawaU/ogObjChallenge1P.o\
+	$(BUILD_DIR)/src/plugProjectOgawaU/ogObjChallenge1P.o\
 	$(BUILD_DIR)/src/plugProjectOgawaU/ogSceneChallenge1P.o\
 	$(BUILD_DIR)/src/plugProjectOgawaU/ogScaleMgr.o\
 	$(BUILD_DIR)/asm/plugProjectOgawaU/ogObjSMenuPauseVs.o\

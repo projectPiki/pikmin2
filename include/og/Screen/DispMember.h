@@ -85,8 +85,8 @@ struct DispMemberAnaDemo : public DispMemberBase {
 struct DispMemberDayEndCount : public DispMemberBase {
 	inline DispMemberDayEndCount()
 	{
-		_08 = 0.9f;
 		_0C = 0.9f;
+		_08 = 0.9f;
 	}
 
 	virtual u32 getSize() { return sizeof(DispMemberDayEndCount); } // _08 (weak)
@@ -182,6 +182,7 @@ struct DispMemberChallenge1P : public DispMemberBase {
 		_58        = false;
 		_5C        = 2469.0f;
 		m_deadPiki = 4242;
+		_60        = 0.0f;
 	}
 
 	virtual u32 getSize() { return sizeof(DispMemberChallenge1P); } // _08 (weak)
@@ -190,9 +191,9 @@ struct DispMemberChallenge1P : public DispMemberBase {
 
 	// _00     = VTBL
 	// _00-_08 = DispMemberBase
-	DataGame m_dataGame;  // _08
-	DataNavi m_dataNavi1; // _24
-	DataNavi m_dataNavi2;
+	DataGame m_dataGame;                 // _08
+	DataNavi m_dataNavi1;                // _24
+	DataNavi m_dataNavi2;                // _3C
 	u32 m_pokos;                         // _54
 	u8 _58;                              // _58
 	f32 _5C;                             // _5C

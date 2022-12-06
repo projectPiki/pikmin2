@@ -67,14 +67,6 @@ struct Challenge2P : public ChallengeBase {
 };
 
 struct ObjChallengeBase : public ::Screen::ObjBase {
-	static struct staticValues {
-		u32 _00;
-		u32 _04;
-		u32 _08;
-		u32 _0C;
-		u32 _10;
-	} msBaseVal;
-
 	ObjChallengeBase();
 
 	virtual ~ObjChallengeBase();                                              // _08 (weak)
@@ -99,6 +91,14 @@ struct ObjChallengeBase : public ::Screen::ObjBase {
 	JUtility::TColor m_white; // _54
 	JUtility::TColor m_black; // _58
 	u32 m_subLevel;           // _5C
+
+	static struct StaticValues {
+		f32 _00;
+		f32 _04;
+		f32 _08;
+		f32 _0C;
+		u32 _10;
+	} msBaseVal;
 };
 
 struct ObjChallenge1P : public ObjChallengeBase {
@@ -130,33 +130,66 @@ struct ObjChallenge1P : public ObjChallengeBase {
 	P2DScreen::Mgr_tuning* m_pokoScreen;                 // _78
 
 	static struct StaticValues {
-		f32 _00; // _00
-		f32 _04; // _04
-		f32 _08; // _08
-		f32 _0C; // _0C
-		f32 _10; // _10
-		f32 _14; // _14
-		f32 _18;
-		f32 _1C;
-		f32 _20;
-		J2DPane* _24;
-		f32 _28;
-		f32 _2C;
-		f32 _30;
-		f32 _34;
-		f32 _38;
-		f32 _3C;
-		f32 _40;
-		f32 _44;
-		J2DPane* _48;
-		f32 _4C;
-		f32 _50;
-		f32 _54;
-		f32 _58;
-		f32 _5C;
-		f32 _60;
-		f32 _64;
-		f32 _68;
+		inline StaticValues()
+		{
+			m_menu00 = nullptr;
+			_04      = 0.0f;
+			_08      = 0.0f;
+			_0C      = 1.0f;
+			_10      = 1.0f;
+			_14      = 0.0f;
+			_18      = 0.0f;
+			_1C      = 1.0f;
+			_20      = 1.0f;
+
+			m_menu01 = nullptr;
+			_28      = 0.0f;
+			_2C      = 0.0f;
+			_30      = 1.0f;
+			_34      = 1.0f;
+			_38      = 0.0f;
+			_3C      = 0.0f;
+			_40      = 1.0f;
+			_44      = 1.0f;
+
+			m_menu02 = nullptr;
+			_4C      = 0.0f;
+			_50      = 0.0f;
+			_54      = 1.0f;
+			_58      = 1.0f;
+			_5C      = 0.0f;
+			_60      = 0.0f;
+			_64      = 1.0f;
+			_68      = 1.0f;
+		}
+
+		J2DPane* m_menu00; // _00
+		f32 _04;           // _04
+		f32 _08;           // _08
+		f32 _0C;           // _0C
+		f32 _10;           // _10
+		f32 _14;           // _14
+		f32 _18;           // _18
+		f32 _1C;           // _1C
+		f32 _20;           // _20
+		J2DPane* m_menu01; // _24
+		f32 _28;           // _28
+		f32 _2C;           // _2C
+		f32 _30;           // _30
+		f32 _34;           // _34
+		f32 _38;           // _38
+		f32 _3C;           // _3C
+		f32 _40;           // _40
+		f32 _44;           // _44
+		J2DPane* m_menu02; // _48
+		f32 _4C;           // _4C
+		f32 _50;           // _50
+		f32 _54;           // _54
+		f32 _58;           // _58
+		f32 _5C;           // _5C
+		f32 _60;           // _60
+		f32 _64;           // _64
+		f32 _68;           // _68
 	} msVal;
 };
 
