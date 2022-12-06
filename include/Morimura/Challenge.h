@@ -29,9 +29,9 @@ struct DispMemberChallengeResult : public og::Screen::DispMemberBase {
 		_10          = 0;
 	}
 
-	virtual u32 getSize() { return sizeof(DispMemberChallengeResult); } // _08 (weak)
-	virtual u32 getOwnerID() { return OWNER_MRMR; }                     // _0C (weak)
-	virtual u64 getMemberID() { return MEMBER_CHALLENGE_RESULT; }       // _10 (weak)
+	virtual u32 getSize();     // _08 (weak)
+	virtual u32 getOwnerID();  // _0C (weak)
+	virtual u64 getMemberID(); // _10 (weak)
 
 	// _00     = VTBL
 	// _00-_08 = og::Screen::DispMemberBase
@@ -42,9 +42,9 @@ struct DispMemberChallengeResult : public og::Screen::DispMemberBase {
 
 struct DispMemberChallengeSelect : public og::Screen::DispMemberBase {
 
-	virtual u32 getSize() { return sizeof(DispMemberChallengeSelect); } // _08 (weak)
-	virtual u32 getOwnerID() { return OWNER_MRMR; }                     // _0C (weak)
-	virtual u64 getMemberID() { return MEMBER_CHALLENGE_SELECT; }       // _10 (weak)
+	virtual u32 getSize();     // _08 (weak)
+	virtual u32 getOwnerID();  // _0C (weak)
+	virtual u64 getMemberID(); // _10 (weak)
 
 	// _00     = VTBL
 	// _00-_08 = og::Screen::DispMemberBase
