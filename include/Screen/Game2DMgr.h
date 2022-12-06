@@ -155,7 +155,7 @@ struct Game2DMgr : public JKRDisposer {
 	void isZukanMemoWindow();
 	void isAppearConfirmWindow();
 	void open_ChallengeSelect(Morimura::DispMemberChallengeSelect&);
-	void check_ChallengeSelect(int&, int&);
+	int check_ChallengeSelect(int&, int&);
 	void open_ChallengeResult(Morimura::DispMemberChallengeResult&);
 	bool isEndChallengeResult();
 	void* open_VsSelect(Morimura::DispMemberVsSelect&);
