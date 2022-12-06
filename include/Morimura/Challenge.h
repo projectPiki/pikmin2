@@ -56,7 +56,46 @@ struct DispMemberChallengeSelect : public og::Screen::DispMemberBase {
 	int _1C;                                                        // _1C
 	og::Screen::DispMemberWorldMapInfoWin0* m_dispWorldMapInfoWin0; // _20
 };
+	
+struct DispMemberVsSelect : public og::Screen::DispMemberBase {
+	DispMemberVsSelect()
+	{
+		m_titleInfo = nullptr;
+		m_debugExpHeap = nullptr;
+        m_dispWorldMapInfoWin0 = nullptr;
+        m_selectedStageIndex = -1;
+        m_stageNumber = 0;
+        
+        _1C = 3;
+        _20 = 3;
+        m_redWinCount = 0;
+        m_blueWinCount = 0;
+        _2C = -1;
+        m_stageCount = 0;
+        _34 = 0;
+        
+	}
+	virtual u32 getSize() { return sizeof(DispMemberVsSelect); } // _08 (weak)
+	virtual u32 getOwnerID() { return OWNER_MRMR; }                     // _0C (weak)
+	virtual u64 getMemberID() { return MEMBER_VS_SELECT; }       // _10 (weak)
 
+
+	// _00     = VTBL
+	// _00-_08 = og::Screen::DispMemberBase
+	Game::Vs2D_TitleInfo* m_titleInfo;                              // _08
+	JKRExpHeap* m_debugExpHeap;                                     // _0C
+	og::Screen::DispMemberWorldMapInfoWin0* m_dispWorldMapInfoWin0; // _10
+	int m_selectedStageIndex;                                       // _14
+	int m_stageNumber;                                              // _18
+	int _1C;                                                        // _1C
+    int _20;                                                        // _20
+    u32 m_redWinCount;                                              // _24
+    u32 m_blueWinCount;                                             // _28
+	int _2C;                                                        // _2C
+    int m_stageCount;                                               // _30
+    int _34;                                                        // _34
+};
+	
 struct TChallengePlayModeScreen : public TScreenBase {
 	TChallengePlayModeScreen(JKRArchive*, int);
 
