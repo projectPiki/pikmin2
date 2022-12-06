@@ -573,7 +573,7 @@ bool ObjAnaDemo::doUpdate()
 		}
 		break;
 
-	case ANADEMOSTATE_Exit:
+	case ANADEMOSTATE_ErrorWait:
 		bool anyButtonDown = false;
 		u32 input          = pad->m_padButton.m_buttonDown;
 		if (input & Controller::PRESS_A || input & Controller::PRESS_B || input & Controller::PRESS_X || input & Controller::PRESS_Y
@@ -615,7 +615,7 @@ bool ObjAnaDemo::doUpdate()
 		}
 		break;
 
-	case ANADEMOSTATE_ErrorWait:
+	case ANADEMOSTATE_Exit:
 		m_closeTimer += sys->m_deltaTime;
 		_8C = og::Screen::calcSmooth0to1(m_closeTimer, msVal._00) * -800.0f;
 		if (m_closeTimer >= msVal._00) {
