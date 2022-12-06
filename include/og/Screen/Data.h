@@ -14,8 +14,18 @@ enum MapPiki {
 };
 
 struct DataNavi {
+	inline DataNavi()
+	{
+		m_naviLifeRatio = 1.0f;
+		m_followPikis   = 1;
+		m_nextThrowPiki = 2;
+		m_dope1Count    = 10;
+		m_dope0Count    = 10;
+		m_activeNaviID  = 1;
+	}
+
 	f32 m_naviLifeRatio; // _00
-	u32 _04;             // _04
+	u32 m_followPikis;   // _04
 	u32 m_nextThrowPiki; // _08
 	u32 m_dope1Count;    // _0C
 	u32 m_dope0Count;    // _10
@@ -23,6 +33,17 @@ struct DataNavi {
 };
 
 struct DataGame {
+	inline DataGame()
+	{
+		m_sunGaugeRatio    = 0.0f;
+		m_dayNum           = 0;
+		m_floorNum         = 0;
+		m_totalPikminCount = 1234;
+		m_mapPikminCount   = 50;
+		_14                = false;
+		m_pokoCount        = 0;
+	}
+
 	f32 m_sunGaugeRatio;    // _00
 	int m_dayNum;           // _04
 	int m_totalPikminCount; // _08

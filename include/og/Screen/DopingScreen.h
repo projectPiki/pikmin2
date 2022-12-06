@@ -23,7 +23,7 @@ struct DopingCheck {
 	J2DPane* m_pane1;           // _00
 	J2DPane* m_pane2;           // _04
 	f32 m_naviLife;             // _08
-	int _0C;                    // _0C
+	int m_followPiki;           // _0C
 	int m_nextThrowPiki;        // _10
 	u32 m_sprays1;              // _14
 	u32 m_sprays2;              // _18

@@ -110,6 +110,20 @@ struct DispMemberHurryUp : public DispMemberBase {
 
 // size 0x64
 struct DispMemberCave : public DispMemberBase {
+	inline DispMemberCave()
+	{
+		m_dataGame._14      = true;
+		m_payDebt           = false;
+		m_isFinalFloor      = false;
+		m_treasureDist      = 900.0f;
+		m_drawSensor        = false;
+		m_radarState        = 1;
+		_5F                 = false;
+		m_isBitterUnlocked  = false;
+		m_isSpicyUnlocked   = false;
+		m_radarEnabled      = false;
+		m_allTreasureGotten = false;
+	}
 
 	virtual u32 getSize() { return sizeof(DispMemberCave); } // _08 (weak)
 	virtual u32 getOwnerID() { return OWNER_OGA; }           // _0C (weak)
@@ -117,18 +131,19 @@ struct DispMemberCave : public DispMemberBase {
 
 	// _00     = VTBL
 	// _00-_08 = DispMemberBase
-	DataGame m_dataGame;     // _08
-	DataNavi m_dataNavi[2];  // _24
-	f32 _54;                 // _54
-	int _58;                 // _58
-	u8 _5C;                  // _5C
-	u8 _5D;                  // _5D
-	u8 _5E;                  // _5E
-	u8 _5F;                  // _5F
-	u8 _60;                  // _60
-	u8 _61;                  // _61
-	bool m_isBitterUnlocked; // _62, have made first bitter spray from berries
-	bool m_isSpicyUnlocked;  // _63, have made first spicy spray from berries
+	DataGame m_dataGame;      // _08
+	DataNavi m_dataNavi1;     // _24
+	DataNavi m_dataNavi2;     // _24
+	f32 m_treasureDist;       // _54
+	int m_radarState;         // _58
+	u8 m_drawSensor;          // _5C
+	u8 m_payDebt;             // _5D
+	u8 m_isFinalFloor;        // _5E
+	u8 _5F;                   // _5F
+	bool m_radarEnabled;      // _60
+	bool m_allTreasureGotten; // _61
+	bool m_isBitterUnlocked;  // _62, have made first bitter spray from berries
+	bool m_isSpicyUnlocked;   // _63, have made first spicy spray from berries
 };
 
 // size 0x28

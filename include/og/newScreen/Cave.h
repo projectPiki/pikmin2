@@ -55,23 +55,43 @@ struct ObjCave : public ::Screen::ObjBase {
 	// _00     = VTBL1
 	// _18     = VTBL2
 	// _00-_38 = Screen::ObjBase
-	og::Screen::DispMemberCave* _38;    // _38
-	og::Screen::OtakaraSensor* _3C;     // _3C
-	og::Screen::BloGroup* _40;          // _40
-	og::Screen::DopingScreen* _44;      // _44
-	og::Screen::NaviLifeGauge* _48;     // _48
-	og::Screen::NaviLifeGauge* _4C;     // _4C
-	og::Screen::PikminCounterCave* _50; // _50
-	og::Screen::TotalPokoScreen* _54;   // _54
-	P2DScreen::Mgr_tuning* _58;         // _58
-	f32 _5C;                            // _5C
-	f32 _60;                            // _60
-	u32 _64;                            // _64 - unknown type
-	u32 _68;                            // _68 - possibly pokoCount?
-	f32 _6C;                            // _6C
-	J2DPane* _70;                       // _70
-	J2DPane* _74;                       // _74
-	u32 _78;                            // _78 - unknown type
+	og::Screen::DispMemberCave* m_disp;           // _38
+	og::Screen::OtakaraSensor* m_otakara;         // _3C
+	og::Screen::BloGroup* m_bloGroup;             // _40
+	og::Screen::DopingScreen* m_doping;           // _44
+	og::Screen::NaviLifeGauge* m_lifeGauge1;      // _48
+	og::Screen::NaviLifeGauge* m_lifeGauge2;      // _4C
+	og::Screen::PikminCounterCave* m_pikiCounter; // _50
+	og::Screen::TotalPokoScreen* m_totalPoko;     // _54
+	P2DScreen::Mgr_tuning* m_sensorScreen;        // _58
+	f32 m_fadeLevel;                              // _5C
+	f32 m_scale;                                  // _60
+	bool m_totalPokoActive;                       // _64
+	u32 m_pokos;                                  // _68
+	f32 m_totalPokoTimer;                         // _6C
+	J2DPane* m_paneChika;                         // _70
+	J2DPane* m_paneFinalf;                        // _74
+	bool m_doSensorEff;                           // _78
+
+	static struct StaticValues {
+		f32 _00; // _00
+		f32 _04; // _04
+		f32 _08; // _08
+		f32 _0C; // _0C
+		f32 _10; // _10
+		f32 _14; // _14
+		f32 _18;
+		f32 _1C;
+		f32 _20;
+		f32 _24;
+		f32 _28;
+		f32 _2C;
+		f32 _30;
+		f32 _34;
+		f32 _38;
+		f32 _3C;
+		f32 _40;
+	} msVal;
 };
 } // namespace newScreen
 } // namespace og

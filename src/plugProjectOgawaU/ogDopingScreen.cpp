@@ -91,7 +91,7 @@ void DopingScreen::setParam(DataNavi& data)
 {
 	DopingCheck* check     = m_dopingCheck;
 	check->m_naviLife      = data.m_naviLifeRatio;
-	check->_0C             = data._04;
+	check->m_followPiki    = data.m_followPikis;
 	check->m_nextThrowPiki = data.m_nextThrowPiki;
 	check->m_sprays1       = data.m_dope1Count;
 	check->m_sprays2       = data.m_dope0Count;
@@ -238,7 +238,7 @@ void DopingScreen::openDopingKey() { m_gottenJujiKey = true; }
 DopingCheck::DopingCheck()
 {
 	m_naviLife      = 1.0f;
-	_0C             = 1;
+	m_followPiki    = 1;
 	m_nextThrowPiki = 2;
 	m_sprays1       = 10;
 	m_sprays2       = 10;
