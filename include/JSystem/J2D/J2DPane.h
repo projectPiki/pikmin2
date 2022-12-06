@@ -232,6 +232,8 @@ struct J2DPane {
 		calcMtx();
 	}
 
+	inline void setMsgID(u64 msgID) { m_messageID = msgID; }
+
 	// /**
 	//  * @fabricated
 	//  */

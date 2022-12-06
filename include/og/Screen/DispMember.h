@@ -51,17 +51,16 @@ struct DispMemberBase {
 // size 0x24
 struct DispMemberAnaDemo : public DispMemberBase {
 	inline DispMemberAnaDemo()
-	    : _20(0)
-	    , m_caveOtakaraNum(24)
-	    , m_caveOtakaraMax(69)
-	    , m_pikis(1)
-	    , DispMemberBase()
 	{
-		_1F          = 1;
-		m_pikisField = 1;
-		m_caveID     = 't_01';
-		_1C          = 0;
-		m_payedDebt  = 0;
+		_20              = 0;
+		m_caveOtakaraNum = 24;
+		m_caveOtakaraMax = 69;
+		_1F              = 1;
+		m_pikis          = 1;
+		m_pikisField     = 1;
+		m_caveID         = 't_01';
+		_1C              = 0;
+		m_payedDebt      = 0;
 	}
 
 	virtual u32 getSize() { return sizeof(DispMemberAnaDemo); } // _08 (weak)

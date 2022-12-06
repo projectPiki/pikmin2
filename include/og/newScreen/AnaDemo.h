@@ -91,10 +91,10 @@ struct ObjAnaDemo : public ::Screen::ObjBase {
 	// _18     = VTBL2
 	// _00-_38 = Screen::ObjBase
 	og::Screen::DispMemberAnaDemo* m_disp;       // _38
-	u32 m_anaType;                               // _3C
+	int m_anaType;                               // _3C
 	int m_state;                                 // _40
-	u32 m_anaTypeSub;                            // _44
-	u32 m_currMenuSel;                           // _48
+	int m_anaTypeSub;                            // _44
+	int m_currMenuSel;                           // _48
 	P2DScreen::Mgr_tuning* m_screen;             // _4C
 	og::Screen::MenuMgr* m_menuMgr;              // _50
 	u32 _54;                                     // _54
@@ -115,6 +115,14 @@ struct ObjAnaDemo : public ::Screen::ObjBase {
 	f32 m_closeTimer;                            // _90
 
 	static struct StaticValues {
+		inline StaticValues()
+		{
+			_00 = 0.3f;
+			_04 = 47.0f;
+			_08 = 1.0f;
+			_0C = 0.3f;
+		}
+
 		f32 _00; // _00
 		f32 _04; // _04
 		f32 _08; // _08

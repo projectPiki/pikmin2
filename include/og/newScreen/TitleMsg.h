@@ -14,7 +14,7 @@ struct T2DCvnameChal;
 
 namespace og {
 namespace newScreen {
-struct CaveTitleMsg {
+struct CaveTitleMsgEntry {
 	u32 id;        // _00
 	u32 _04;       // _04
 	u64 bmg_tag;   // _08
