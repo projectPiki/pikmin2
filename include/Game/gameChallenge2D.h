@@ -18,7 +18,9 @@ enum Challenge2D_ResultFlags {
 struct Challenge2D_TitleInfo {
 	struct Info {
 		Info();
-
+		
+		inline void setDisplayFlag(u32 flag) { m_displayFlag.typeView |= flag; }
+		
 		u32 m_floorCount;               // _00
 		u32 m_sprayCounts[2];           // _04
 		u32 _0C;                        // _0C
@@ -26,7 +28,7 @@ struct Challenge2D_TitleInfo {
 		Highscore* m_highscore1;        // _14
 		Highscore* m_highscore2;        // _18
 		u32 _1C;                        // _1C
-		bool m_bool;                    // _20
+		BitFlag<u8> m_displayFlag;      // _20
 	};
 
 	Challenge2D_TitleInfo(int);
