@@ -1,4 +1,9 @@
 #include "types.h"
+#include "og/newScreen/Challenge.h"
+#include "og/Screen/DopingScreen.h"
+#include "og/Screen/NaviLifeGauge.h"
+#include "og/Screen/PikminCounter.h"
+#include "System.h"
 
 /*
     Generated from dpostproc
@@ -159,8 +164,16 @@ namespace newScreen {
  * Address:	80327D48
  * Size:	000074
  */
-ObjChallenge1P::ObjChallenge1P(char const*)
+ObjChallenge1P::ObjChallenge1P(char const* name)
 {
+	m_name        = name;
+	m_disp        = nullptr;
+	m_bloGroup    = nullptr;
+	m_doping      = nullptr;
+	m_lifeGauge1  = nullptr;
+	m_lifeGauge2  = nullptr;
+	m_pikiCounter = nullptr;
+	m_pokoScreen  = nullptr;
 	/*
 	stwu     r1, -0x10(r1)
 	mflr     r0
@@ -238,8 +251,97 @@ lbl_80327E08:
  * Address:	80327E24
  * Size:	000678
  */
-void ObjChallenge1P::doCreate(JKRArchive*)
+void ObjChallenge1P::doCreate(JKRArchive* arc)
 {
+	og::Screen::DispMemberChallenge1P* disp = static_cast<og::Screen::DispMemberChallenge1P*>(getDispMember());
+	if (disp->isID(OWNER_OGA, MEMBER_CHALLENGE_1P)) {
+		m_disp = disp;
+	} else if (disp->isID(OWNER_OGA, MEMBER_DUMMY)) {
+		m_disp = new og::Screen::DispMemberChallenge1P;
+	} else {
+		JUT_PANICLINE(189, "ERR! in ObjChallenge1P CreateŽ¸”sI\n");
+	}
+
+	m_doping      = new og::Screen::DopingScreen;
+	m_lifeGauge1  = new og::Screen::NaviLifeGauge;
+	m_lifeGauge2  = new og::Screen::NaviLifeGauge;
+	m_pikiCounter = new og::Screen::PikminCounterChallenge1P;
+	m_pokoScreen  = new P2DScreen::Mgr_tuning;
+
+	m_bloGroup = new og::Screen::BloGroup(5);
+	m_bloGroup->addBlo("doping.blo", m_doping, 0x1040000, arc);
+	m_bloGroup->addBlo("orima.blo", m_lifeGauge1, 0x1040000, arc);
+	m_bloGroup->addBlo("orima.blo", m_lifeGauge2, 0x1040000, arc);
+	m_bloGroup->addBlo("cave_pikmin.blo", m_pikiCounter, 0x1040000, arc);
+	m_bloGroup->addBlo("2P_challenge_poko.blo", m_pokoScreen, 0x1040000, arc);
+
+	m_doping->setCallBack(arc);
+	m_lifeGauge1->setCallBack(&m_disp->m_dataNavi1, og::Screen::CallBack_LifeGauge::LIFEGAUGE_OLIMAR);
+	m_lifeGauge2->setCallBack(&m_disp->m_dataNavi2, og::Screen::CallBack_LifeGauge::LIFEGAUGE_LOUIE);
+	m_pikiCounter->setCallBack(arc);
+
+	m_doping->setDopingEnable(true, true);
+	og::Screen::CallBack_CounterRV* counter = og::Screen::setCallBack_CounterRV(m_pokoScreen, 'Ppoko1', &m_disp->m_pokos, 6, 1, 1, arc);
+	counter->m_scaleUpSoundID               = PSSE_SY_REGI_SUM_UP;
+	og::Screen::setCallBack_CounterRV(m_pokoScreen, 'PdeadP1', &m_disp->m_deadPiki, 6, 1, 1, arc);
+	m_timeLeftInt = m_timeLeft;
+	counter       = og::Screen::setCallBack_CounterRV(m_pokoScreen, 'Ptime1', &m_timeLeftInt, 6, 1, 1, arc);
+	counter->setCenteringMode(og::Screen::CallBack_CounterRV::ECM_Unknown1);
+
+	J2DPane* pane = m_pokoScreen->search('Nmenu01');
+	msVal._24     = pane;
+	msVal._28     = pane->_0D4.x;
+	msVal._2C     = pane->_0D4.y;
+	msVal._30     = pane->m_scale.x;
+	msVal._34     = pane->m_scale.y;
+	msVal._38     = 0.0f;
+	msVal._3C     = 0.0f;
+	msVal._40     = 1.0f;
+	msVal._44     = 1.0f;
+	if (pane) {
+		pane->_0D4.x = msVal._28;
+		pane->_0D4.y = msVal._2C;
+		pane->calcMtx();
+		pane->updateScale(msVal._30 * msVal._40, msVal._34 * msVal._44);
+	}
+
+	pane = m_pokoScreen->search('Nmenu00');
+	// msVal._00 = pane;
+	msVal._04 = pane->_0D4.x;
+	msVal._08 = pane->_0D4.y;
+	msVal._0C = pane->m_scale.x;
+	msVal._10 = pane->m_scale.y;
+	msVal._14 = -293.0f;
+	msVal._18 = -165.0f;
+	msVal._1C = 1.0f;
+	msVal._20 = 1.0f;
+	if (pane) {
+		pane->_0D4.x = msVal._04;
+		pane->_0D4.y = msVal._08;
+		pane->calcMtx();
+		pane->updateScale(msVal._0C * msVal._1C, msVal._10 * msVal._20);
+	}
+
+	pane      = m_pokoScreen->search('Nmenu02');
+	msVal._48 = pane;
+	msVal._4C = pane->_0D4.x;
+	msVal._50 = pane->_0D4.y;
+	msVal._54 = pane->m_scale.x;
+	msVal._58 = pane->m_scale.y;
+	msVal._5C = -160.0f;
+	msVal._60 = -200.0f;
+	msVal._64 = 1.0f;
+	msVal._68 = 1.0f;
+	if (pane) {
+		pane->_0D4.x = msVal._4C;
+		pane->_0D4.y = msVal._50;
+		pane->calcMtx();
+		pane->updateScale(msVal._54 * msVal._64, msVal._58 * msVal._68);
+	}
+
+	setSubLevel(m_disp->m_dataGame.m_floorNum);
+	doCreateAfter(arc, counter);
+
 	/*
 	stwu     r1, -0x20(r1)
 	mflr     r0
@@ -667,7 +769,32 @@ lbl_80328450:
  */
 void ObjChallenge1P::commonUpdate(void)
 {
-	// UNUSED FUNCTION
+	og::Screen::DispMemberChallenge1P* disp = m_disp;
+	if (disp) {
+		updateTimer(disp->_5C, disp->_60);
+		m_doping->setParam(disp->m_dataNavi1);
+		disp = m_disp;
+		if (disp->m_dataNavi1.m_activeNaviID) {
+			m_pikiCounter->setParam(disp->m_dataGame, disp->m_dataNavi1);
+		} else {
+			m_pikiCounter->setParam(disp->m_dataGame, disp->m_dataNavi2);
+		}
+	}
+	f32 scale1 = m_scale * PI;
+	if (scale1 < 0.0f)
+		scale1 = -scale1;
+
+	P2DScreen::Mgr_tuning* screen = m_pokoScreen;
+	screen->m_someX               = pikmin2_sinf(scale1) * 300.0f + screen->mstTuningTransX;
+	screen->m_someY               = screen->mstTuningTransY;
+
+	m_bloGroup->rotate(sys->getRenderModeObj()->fbWidth * 0.5f, sys->getRenderModeObj()->efbHeight * 0.5f, J2DROTATE_Y, 0.0f);
+
+	f32 scale = (m_scale + 1.0f) * PI * 0.5f;
+	if (scale < 0.0f)
+		scale = -scale;
+	m_bloGroup->scale((1.0f - -(pikmin2_sinf(scale))) * 0.4f + 1.0f);
+	m_bloGroup->update();
 }
 
 /*
@@ -675,8 +802,10 @@ void ObjChallenge1P::commonUpdate(void)
  * Address:	8032849C
  * Size:	0001D4
  */
-void ObjChallenge1P::doUpdate(void)
+bool ObjChallenge1P::doUpdate(void)
 {
+	commonUpdate();
+	return false;
 	/*
 	stwu     r1, -0x40(r1)
 	mflr     r0
@@ -815,6 +944,9 @@ lbl_80328610:
  */
 void ObjChallenge1P::doDraw(Graphics& gfx)
 {
+	if (m_bloGroup) {
+		m_bloGroup->draw(&gfx.m_perspGraph);
+	}
 	/*
 	stwu     r1, -0x10(r1)
 	mflr     r0
@@ -838,8 +970,17 @@ lbl_80328690:
  * Address:	803286A0
  * Size:	000228
  */
-void ObjChallenge1P::doUpdateFadein(void)
+bool ObjChallenge1P::doUpdateFadein(void)
 {
+	bool check = false;
+	m_fadeLevel += sys->m_deltaTime;
+	if (m_fadeLevel > msVal._00) {
+		m_fadeLevel = msVal._00;
+		check       = true;
+	}
+	m_scale = m_fadeLevel / msVal._00;
+	commonUpdate();
+	return check;
 	/*
 	stwu     r1, -0x40(r1)
 	mflr     r0
@@ -1008,6 +1149,7 @@ void ObjChallenge1P::doUpdateFadeinFinish(void) { }
  */
 void ObjChallenge1P::doUpdateFinish(void)
 {
+	m_fadeLevel = 0.0f;
 	/*
 	lfs      f0, lbl_8051DE28@sda21(r2)
 	stfs     f0, 0x38(r3)
@@ -1020,8 +1162,17 @@ void ObjChallenge1P::doUpdateFinish(void)
  * Address:	803288D8
  * Size:	000230
  */
-void ObjChallenge1P::doUpdateFadeout(void)
+bool ObjChallenge1P::doUpdateFadeout(void)
 {
+	bool check = false;
+	m_fadeLevel += sys->m_deltaTime;
+	if (m_fadeLevel > msVal._04) {
+		m_fadeLevel = msVal._04;
+		check       = true;
+	}
+	m_scale = 1.0f - m_fadeLevel / msVal._04;
+	commonUpdate();
+	return check;
 	/*
 	stwu     r1, -0x40(r1)
 	mflr     r0
@@ -1190,8 +1341,15 @@ void ObjChallenge1P::doUpdateFadeoutFinish(void) { }
  * Address:	80328B0C
  * Size:	000074
  */
-void ObjChallenge1P::doStart(Screen::StartSceneArg const*)
+bool ObjChallenge1P::doStart(::Screen::StartSceneArg const* arg)
 {
+	ObjChallengeBase::doStart(arg);
+	if (arg && arg->getSceneType() == '\'\'') {
+		_50 = arg->_04;
+	} else {
+		_50 = 0.0f;
+	}
+	return true;
 	/*
 	stwu     r1, -0x10(r1)
 	mflr     r0
@@ -1290,10 +1448,10 @@ void __sinit_ogObjChallenge1P_cpp(void)
  * Address:	80328C28
  * Size:	000008
  */
-@24 @og::newScreen::ObjChallenge1P::~ObjChallenge1P(void)
-{
-	/*
-	addi     r3, r3, -24
-	b        __dt__Q32og9newScreen14ObjChallenge1PFv
-	*/
-}
+//@24 @og::newScreen::ObjChallenge1P::~ObjChallenge1P(void)
+//{
+/*
+addi     r3, r3, -24
+b        __dt__Q32og9newScreen14ObjChallenge1PFv
+*/
+//}

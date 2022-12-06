@@ -88,10 +88,10 @@ struct ObjChallengeBase : public ::Screen::ObjBase {
 	// _00     = VTBL1
 	// _18     = VTBL2
 	// _00-_38 = Screen::ObjBase
-	f32 m_timer;              // _38
-	f32 _3C;                  // _3C
-	u32 _40;                  // _40
-	f32 _44;                  // _44
+	f32 m_fadeLevel;          // _38
+	f32 m_scale;              // _3C
+	u32 m_timeLeftInt;        // _40
+	f32 m_timeLeft;           // _44
 	u8 _48;                   // _48
 	u8 _49;                   // _49
 	J2DPictureEx* _4C;        // _4C
@@ -115,16 +115,49 @@ struct ObjChallenge1P : public ObjChallengeBase {
 	virtual void doUpdateFadeoutFinish();                 // _64
 	virtual void doDraw(Graphics&);                       // _68
 
+	// unused/inline
+	inline void commonUpdate();
+
 	// _00     = VTBL1
 	// _18     = VTBL2
 	// _00-_60 = ObjChallengeBase
-	og::Screen::DispMemberChallenge1P* m_challenge1P;      // _60
-	og::Screen::BloGroup* m_bloGroup;                      // _64
-	og::Screen::DopingScreen* m_dopingScreen;              // _68
-	og::Screen::NaviLifeGauge* _6C;                        // _6C
-	og::Screen::NaviLifeGauge* _70;                        // _70
-	og::Screen::PikminCounterChallenge1P* m_pikminCounter; // _74
-	P2DScreen::Mgr_tuning* _78;                            // _78
+	og::Screen::DispMemberChallenge1P* m_disp;           // _60
+	og::Screen::BloGroup* m_bloGroup;                    // _64
+	og::Screen::DopingScreen* m_doping;                  // _68
+	og::Screen::NaviLifeGauge* m_lifeGauge1;             // _6C
+	og::Screen::NaviLifeGauge* m_lifeGauge2;             // _70
+	og::Screen::PikminCounterChallenge1P* m_pikiCounter; // _74
+	P2DScreen::Mgr_tuning* m_pokoScreen;                 // _78
+
+	static struct StaticValues {
+		f32 _00; // _00
+		f32 _04; // _04
+		f32 _08; // _08
+		f32 _0C; // _0C
+		f32 _10; // _10
+		f32 _14; // _14
+		f32 _18;
+		f32 _1C;
+		f32 _20;
+		J2DPane* _24;
+		f32 _28;
+		f32 _2C;
+		f32 _30;
+		f32 _34;
+		f32 _38;
+		f32 _3C;
+		f32 _40;
+		f32 _44;
+		J2DPane* _48;
+		f32 _4C;
+		f32 _50;
+		f32 _54;
+		f32 _58;
+		f32 _5C;
+		f32 _60;
+		f32 _64;
+		f32 _68;
+	} msVal;
 };
 
 struct ObjChallenge2P : public ObjChallengeBase {

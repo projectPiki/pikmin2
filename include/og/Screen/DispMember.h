@@ -84,6 +84,11 @@ struct DispMemberAnaDemo : public DispMemberBase {
 
 // size 0x10
 struct DispMemberDayEndCount : public DispMemberBase {
+	inline DispMemberDayEndCount()
+	{
+		_08 = 0.9f;
+		_0C = 0.9f;
+	}
 
 	virtual u32 getSize() { return sizeof(DispMemberDayEndCount); } // _08 (weak)
 	virtual u32 getOwnerID() { return OWNER_OGA; }                  // _0C (weak)
@@ -172,19 +177,28 @@ struct DispMemberCaveMore : public DispMemberAnaDemo {
 // size 0x78
 struct DispMemberChallenge1P : public DispMemberBase {
 
+	inline DispMemberChallenge1P()
+	{
+		m_pokos    = 2540;
+		_58        = false;
+		_5C        = 2469.0f;
+		m_deadPiki = 4242;
+	}
+
 	virtual u32 getSize() { return sizeof(DispMemberChallenge1P); } // _08 (weak)
 	virtual u32 getOwnerID() { return OWNER_OGA; }                  // _0C (weak)
 	virtual u64 getMemberID() { return MEMBER_CHALLENGE_1P; }       // _10 (weak)
 
 	// _00     = VTBL
 	// _00-_08 = DispMemberBase
-	DataGame m_dataGame;                 // _08
-	DataNavi m_dataNavi[2];              // _24
-	u32 _54;                             // _54
+	DataGame m_dataGame;  // _08
+	DataNavi m_dataNavi1; // _24
+	DataNavi m_dataNavi2;
+	u32 m_pokos;                         // _54
 	u8 _58;                              // _58
 	f32 _5C;                             // _5C
 	f32 _60;                             // _60
-	u32 _64;                             // _64
+	u32 m_deadPiki;                      // _64
 	DispMemberDayEndCount m_dayEndCount; // _68
 };
 

@@ -48,7 +48,7 @@ struct SceneArgBase {
 
 struct StartSceneArg : public SceneArgBase {
 	// _00 = VTBL
-	u8 _04; // _04
+	f32 _04; // _04
 };
 
 template <typename T>
