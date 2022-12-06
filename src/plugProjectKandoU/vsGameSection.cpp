@@ -514,17 +514,17 @@ void VsGameSection::openCaveMoreMenu(ItemHole::Item* hole, Controller* controlle
 	og::Screen::DispMemberCaveMore cave;
 	int mePikis = GameStat::mePikis;
 	if (mePikis > 0) {
-		cave._24      = 1;
-		int map_pikis = GameStat::getMapPikmins(-1);
+		cave.m_pikiInDanger = true;
+		int map_pikis       = GameStat::getMapPikmins(-1);
 		if (mePikis == map_pikis) {
-			cave._25 = 1;
+			cave.m_cantProceed = true;
 		} else {
-			cave._25 = 0;
+			cave.m_cantProceed = false;
 		}
 
 	} else {
-		cave._25 = 0;
-		cave._24 = 0;
+		cave.m_cantProceed  = false;
+		cave.m_pikiInDanger = false;
 	}
 
 	bool open = Screen::gGame2DMgr->open_CaveMoreMenu(cave);
@@ -551,17 +551,17 @@ void VsGameSection::openKanketuMenu(ItemBigFountain::Item* fountain, Controller*
 	og::Screen::DispMemberKanketuMenu cave;
 	int mePikis = GameStat::mePikis;
 	if (mePikis > 0) {
-		cave._24      = 1;
-		int map_pikis = GameStat::getMapPikmins(-1);
+		cave.m_pikiInDanger = true;
+		int map_pikis       = GameStat::getMapPikmins(-1);
 		if (mePikis == map_pikis) {
-			cave._25 = 1;
+			cave.m_cantProceed = true;
 		} else {
-			cave._25 = 0;
+			cave.m_cantProceed = false;
 		}
 
 	} else {
-		cave._25 = 0;
-		cave._24 = 0;
+		cave.m_cantProceed  = false;
+		cave.m_pikiInDanger = false;
 	}
 
 	bool open = Screen::gGame2DMgr->open_ChallengeKanketuMenu(cave);

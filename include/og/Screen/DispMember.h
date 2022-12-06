@@ -54,14 +54,14 @@ struct DispMemberAnaDemo : public DispMemberBase {
 	    : _20(0)
 	    , m_caveOtakaraNum(24)
 	    , m_caveOtakaraMax(69)
-	    , _10(1)
+	    , m_pikis(1)
 	    , DispMemberBase()
 	{
-		_1F      = 1;
-		_14      = 1;
-		m_caveID = 't_01';
-		_1C      = 0;
-		_1D      = 0;
+		_1F          = 1;
+		m_pikisField = 1;
+		m_caveID     = 't_01';
+		_1C          = 0;
+		m_payedDebt  = 0;
 	}
 
 	virtual u32 getSize() { return sizeof(DispMemberAnaDemo); } // _08 (weak)
@@ -72,14 +72,14 @@ struct DispMemberAnaDemo : public DispMemberBase {
 	// _00-_08 = DispMemberBase
 	u32 m_caveOtakaraNum; // _08
 	u32 m_caveOtakaraMax; // _0C
-	u32 _10;              // _10
-	u32 _14;              // _14
+	u32 m_pikis;          // _10
+	u32 m_pikisField;     // _14
 	u32 m_caveID;         // _18
 	u8 _1C;               // _1C
-	u8 _1D;               // _1D
-	u8 _1E;               // _1E
+	u8 m_payedDebt;       // _1D
+	u8 m_selected;        // _1E
 	u8 _1F;               // _1F
-	u32 _20;              // _20, unknown
+	u32 _20;              // _20
 };
 
 // size 0x10
@@ -135,12 +135,12 @@ struct DispMemberCave : public DispMemberBase {
 struct DispMemberCaveMore : public DispMemberAnaDemo {
 	inline DispMemberCaveMore()
 	{
-		_24              = 0;
-		_25              = 0;
+		m_pikiInDanger   = 0;
+		m_cantProceed    = 0;
 		_20              = 0;
 		m_caveOtakaraNum = 4;
 		m_caveOtakaraMax = 4;
-		_10              = 10;
+		m_pikis          = 10;
 		m_caveID         = '2p_c';
 	}
 
@@ -150,8 +150,8 @@ struct DispMemberCaveMore : public DispMemberAnaDemo {
 
 	// _00     = VTBL
 	// _00-_24 = DispMemberAnaDemo
-	u8 _24; // _24
-	u8 _25; // _25
+	u8 m_pikiInDanger; // _24
+	u8 m_cantProceed;  // _25
 };
 
 // size 0x78
@@ -327,13 +327,13 @@ struct DispMemberGround : public DispMemberBase {
 struct DispMemberKanketuMenu : public DispMemberAnaDemo {
 	inline DispMemberKanketuMenu()
 	{
-		_24              = 0;
-		_25              = 0;
-		_26              = 0;
+		m_pikiInDanger   = 0;
+		m_cantProceed    = 0;
+		m_isChallenge    = 0;
 		_20              = 0;
 		m_caveOtakaraNum = 4;
 		m_caveOtakaraMax = 4;
-		_10              = 10;
+		m_pikis          = 10;
 	}
 
 	virtual u32 getSize() { return sizeof(DispMemberKanketuMenu); } // _08 (weak)
@@ -342,9 +342,9 @@ struct DispMemberKanketuMenu : public DispMemberAnaDemo {
 
 	// _00     = VTBL
 	// _00-_24 = DispMemberAnaDemo
-	u8 _24; // _24
-	u8 _25; // _25
-	u8 _26; // _26
+	u8 m_pikiInDanger; // _24
+	u8 m_cantProceed;  // _25
+	u8 m_isChallenge;  // _26
 };
 
 // size 0x40
