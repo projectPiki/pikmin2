@@ -75,9 +75,9 @@ struct DispMemberVsSelect : public og::Screen::DispMemberBase {
         _34 = 0;
         
 	}
-	virtual u32 getSize() { return sizeof(DispMemberVsSelect); } // _08 (weak)
-	virtual u32 getOwnerID() { return OWNER_MRMR; }                     // _0C (weak)
-	virtual u64 getMemberID() { return MEMBER_VS_SELECT; }       // _10 (weak)
+	virtual u32 getSize();           // _08 (weak)
+	virtual u32 getOwnerID();        // _0C (weak)
+	virtual u64 getMemberID();       // _10 (weak)
 
 
 	// _00     = VTBL
