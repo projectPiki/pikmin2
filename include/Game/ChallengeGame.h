@@ -14,10 +14,15 @@ struct StageData : public CNode {
 
 	// _00     = VTBL
 	// _00-_18 = CNode
-	PikiContainer m_pikiContainer; // _18
-	u8 _20[0x54];                  // _20, unknown
-	int m_stageIndex;              // _74
-	u8 _78[0x4];                   // _78, unknown
+	PikiContainer m_pikiContainer;  // _18
+	char m_caveInfoFilename[64];    // _20, default = "caveinfo.txt"
+	f32 m_timeLimit;                // _60
+	int m_startNumBitter;           // _64
+	int m_startNumSpicy;            // _68
+	int m_floorCounts;              // _6C
+	s32 _70;                        // _70
+	int m_stageIndex;               // _74
+	int m_startNumYellowMarbles;    // _78
 };
 
 struct StageList : public CNode {

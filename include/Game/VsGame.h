@@ -9,6 +9,7 @@
 #include "Game/StateMachine.h"
 #include "Game/VsGameSection.h"
 #include "Game/EnemyBase.h"
+#include "Game/gameChallenge2D.h"
 
 struct JUTTexture;
 struct LightObj;
@@ -145,7 +146,7 @@ struct StageList : public CNode {
 	virtual ~StageList(); // _08 (weak)
 
 	void read(Stream&);
-	void getStageData(int);
+	StageData* getStageData(int);
 
 	// _00 		= VTBL
 	// _00-_18	= CNode
@@ -225,9 +226,20 @@ struct VSState : public GameState {
 };
 
 struct LoadArg : public StateArg {
+	inline LoadArg(u32 a, s32 b, bool c)
+	    : _00(a)
+	    , _04(b)
+	    , _08(c)
+	{
+	}
+
 	u32 _00;  // _00, unknown
 	s32 _04;  // _04, unknown
 	bool _08; // _08
+};
+
+struct TitleArg : public StateArg {
+    u8 _00; // _00, unknown
 };
 
 struct LoadState : public State {
@@ -309,7 +321,20 @@ struct TitleState : public State {
 
 	// _00     = VTBL
 	// _00-_0C = State
-	u8 _0C[0x38]; // _0C, unknown
+	f32 _0C;                                         // _0C
+	u8 _10;                                          // _10
+	JKRExpHeap* m_expHeap;                           // _14
+	JKRHeap* m_heap;                                 // _18
+	Delegate<Game::VsGame::TitleState>* m_delegate;  // _1C
+	int _20;                                         // _20
+	int _24;                                         // _24
+	int _28;                                         // _28
+	int _2C;                                         // _2C
+	Controller* m_player1Controller;                 // _2C
+	Controller* m_player2Controller;                 // _30
+	VsGameSection* m_section;                        // _38
+	Challenge2D_TitleInfo* m_challengeTitleInfo;     // _3C
+	Vs2D_TitleInfo* m_vsTitleInfo;                   // _40
 };
 /////////////////////////////////////////////////////////////////
 } // namespace VsGame
