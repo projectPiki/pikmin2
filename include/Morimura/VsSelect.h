@@ -14,6 +14,22 @@ struct Vs2D_TitleInfo;
 
 namespace Morimura {
 struct DispMemberVsSelect : public og::Screen::DispMemberBase {
+	DispMemberVsSelect()
+	{
+		m_titleInfo            = nullptr;
+		m_debugExpHeap         = nullptr;
+		m_dispWorldMapInfoWin0 = nullptr;
+		m_selectedStageIndex   = -1;
+		m_stageNumber          = 0;
+		m_olimarHandicap       = 3;
+		m_louieHandicap        = 3;
+		m_redWinCount          = 0;
+		m_blueWinCount         = 0;
+		m_vsWinner             = -1;
+		m_stageCount           = 0;
+		_34                    = 0;
+	}
+
 	virtual u32 getSize() { return sizeof(DispMemberVsSelect); } // _08
 	virtual u32 getOwnerID() { return OWNER_MRMR; }              // _0C
 	virtual u64 getMemberID() { return MEMBER_VS_SELECT; }       // _10
@@ -21,15 +37,15 @@ struct DispMemberVsSelect : public og::Screen::DispMemberBase {
 	// _00     = VTBL
 	// _00-_08 = og::Screen::DispMemberBase
 	Game::Vs2D_TitleInfo* m_titleInfo;                              // _08
-	JKRHeap* m_heap;                                                // _0C
+	JKRHeap* m_debugExpHeap;                                        // _0C
 	og::Screen::DispMemberWorldMapInfoWin0* m_dispWorldMapInfoWin0; // _10
-	int _14;                                                        // _14
-	u32 _18;                                                        // _18
-	int _1C;                                                        // _1C
-	int _20;                                                        // _20
-	u32 m_redWinCount;                                              // _24
-	u32 m_blueWinCount;                                             // _28
-	int _2C;                                                        // _2C
+	int m_selectedStageIndex;                                       // _14
+	int m_stageNumber;                                              // _18
+	int m_olimarHandicap;                                           // _1C
+	int m_louieHandicap;                                            // _20
+	int m_redWinCount;                                              // _24
+	int m_blueWinCount;                                             // _28
+	int m_vsWinner;                                                 // _2C
 	int m_stageCount;                                               // _30
 	int _34;                                                        // _34
 };

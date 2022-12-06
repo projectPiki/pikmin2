@@ -1,721 +1,181 @@
 #include "types.h"
+#include "Game/VsGame.h"
+#include "Game/SingleGame.h"
+#include "Game/MoviePlayer.h"
+#include "Game/gameChallenge2D.h"
+#include "Game/gameStat.h"
+#include "Game/Data.h"
+#include "PSSystem/PSGame.h"
+#include "PSSystem/PSScene.h"
+#include "PSGame/SceneInfo.h"
+#include "PSGame/PikScene.h"
+#include "Screen/Game2DMgr.h"
+#include "Morimura/Challenge.h"
+#include "Morimura/VsSelect.h"
+#include "Controller.h"
+#include "TParticle2dMgr.h"
+#include "Game/Navi.h"
+#include "System.h"
 #include "nans.h"
 
-/*
-    Generated from dpostproc
+static const char vsGSTitleUnusedArray[] = { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 };
+static const char vsGSTitleName[]        = "vsGS_Title";
 
-    .section .ctors, "wa"  # 0x80472F00 - 0x804732C0
-    .4byte __sinit_vsGS_Title_cpp
-
-    .section .rodata  # 0x804732E0 - 0x8049E220
-    .global lbl_80483458
-    lbl_80483458:
-        .skip 0xC
-    .global lbl_80483464
-    lbl_80483464:
-        .asciz "vsGS_Title"
-        .skip 1
-    .global lbl_80483470
-    lbl_80483470:
-        .asciz "caveinfo.txt"
-        .skip 3
-    .global lbl_80483480
-    lbl_80483480:
-        .asciz "caveinfo_metal.txt"
-        .skip 1
-    .global lbl_80483494
-    lbl_80483494:
-        .asciz "caveinfo_conc.txt"
-        .skip 2
-    .global lbl_804834A8
-    lbl_804834A8:
-        .asciz "caveinfo_tsuchi.txt"
-        .4byte 0x83528393
-        .4byte 0x834E838A
-        .4byte 0x815B8367
-        .4byte 0x00000000
-    .global lbl_804834CC
-    lbl_804834CC:
-        .asciz "PSGame.h"
-        .skip 3
-    .global lbl_804834D8
-    lbl_804834D8:
-        .asciz "P2Assert"
-        .skip 3
-        .asciz "PSScene.h"
-        .skip 2
-        .asciz "from Morimun:STATE_GO:stageNo=%d:playType=%d\n"
-        .skip 2
-        .asciz "vsGS_Title.cpp"
-        .skip 1
-        .asciz "PikiContainer"
-        .skip 2
-        .4byte 0x00000000
-        .4byte 0x00000001
-        .4byte 0x00000002
-        .4byte 0xFFFFFFFF
-
-    .section .data, "wa"  # 0x8049E220 - 0x804EFC20
-    .global lbl_804C0DE8
-    lbl_804C0DE8:
-        .4byte 0x00000000
-        .4byte 0x00000000
-        .4byte 0x00000000
-    .global "cMaps__24@unnamed@vsGS_Title_cpp@"
-    "cMaps__24@unnamed@vsGS_Title_cpp@":
-        .4byte lbl_80483470
-        .4byte lbl_80483480
-        .4byte lbl_80483494
-        .4byte lbl_804834A8
-    .global lbl_804C0E04
-    lbl_804C0E04:
-        .4byte 0x00000000
-        .4byte 0xFFFFFFFF
-        .4byte dvdload__Q34Game6VsGame10TitleStateFv
-    .global __vt__Q28Morimura18DispMemberVsSelect
-    __vt__Q28Morimura18DispMemberVsSelect:
-        .4byte 0
-        .4byte 0
-        .4byte getSize__Q28Morimura18DispMemberVsSelectFv
-        .4byte getOwnerID__Q28Morimura18DispMemberVsSelectFv
-        .4byte getMemberID__Q28Morimura18DispMemberVsSelectFv
-        .4byte doSetSubMemberAll__Q32og6Screen14DispMemberBaseFv
-    .global __vt__Q28Morimura25DispMemberChallengeSelect
-    __vt__Q28Morimura25DispMemberChallengeSelect:
-        .4byte 0
-        .4byte 0
-        .4byte getSize__Q28Morimura25DispMemberChallengeSelectFv
-        .4byte getOwnerID__Q28Morimura25DispMemberChallengeSelectFv
-        .4byte getMemberID__Q28Morimura25DispMemberChallengeSelectFv
-        .4byte doSetSubMemberAll__Q32og6Screen14DispMemberBaseFv
-    .global __vt__Q34Game6VsGame10TitleState
-    __vt__Q34Game6VsGame10TitleState:
-        .4byte 0
-        .4byte 0
-        .4byte
-   init__Q34Game6VsGame10TitleStateFPQ24Game13VsGameSectionPQ24Game8StateArg
-        .4byte exec__Q34Game6VsGame10TitleStateFPQ24Game13VsGameSection
-        .4byte cleanup__Q34Game6VsGame10TitleStateFPQ24Game13VsGameSection
-        .4byte
-   "resume__Q24Game32FSMState<Q24Game13VsGameSection>FPQ24Game13VsGameSection"
-        .4byte
-   "restart__Q24Game32FSMState<Q24Game13VsGameSection>FPQ24Game13VsGameSection"
-        .4byte
-   "transit__Q24Game32FSMState<Q24Game13VsGameSection>FPQ24Game13VsGameSectioniPQ24Game8StateArg"
-        .4byte
-   draw__Q34Game6VsGame10TitleStateFPQ24Game13VsGameSectionR8Graphics .4byte
-   pre2dDraw__Q34Game6VsGame5StateFR8GraphicsPQ24Game13VsGameSection .4byte
-   onOrimaDown__Q34Game6VsGame5StateFPQ24Game13VsGameSectioni .4byte
-   onMovieStart__Q34Game6VsGame5StateFPQ24Game13VsGameSectionPQ24Game11MovieConfigUlUl
-        .4byte
-   onMovieDone__Q34Game6VsGame5StateFPQ24Game13VsGameSectionPQ24Game11MovieConfigUlUl
-        .4byte
-   onNextFloor__Q34Game6VsGame5StateFPQ24Game13VsGameSectionPQ34Game8ItemHole4Item
-        .4byte on_section_fadeout__Q34Game6VsGame5StateFPQ24Game13VsGameSection
-        .4byte goingToCave__Q34Game6VsGame5StateFPQ24Game13VsGameSection
-        .4byte onBattleFinished__Q34Game6VsGame5StateFPQ24Game13VsGameSectionib
-        .4byte
-   onRedOrBlueSuckStart__Q34Game6VsGame5StateFPQ24Game13VsGameSectionib .4byte
-   isCardUsable__Q34Game6VsGame5StateFPQ24Game13VsGameSection .global
-   "__vt__36Delegate<Q34Game6VsGame10TitleState>"
-    "__vt__36Delegate<Q34Game6VsGame10TitleState>":
-        .4byte 0
-        .4byte 0
-        .4byte "invoke__36Delegate<Q34Game6VsGame10TitleState>Fv"
-    .global __vt__Q34Game6VsGame5State
-    __vt__Q34Game6VsGame5State:
-        .4byte 0
-        .4byte 0
-        .4byte
-   "init__Q24Game32FSMState<Q24Game13VsGameSection>FPQ24Game13VsGameSectionPQ24Game8StateArg"
-        .4byte
-   "exec__Q24Game32FSMState<Q24Game13VsGameSection>FPQ24Game13VsGameSection"
-        .4byte
-   "cleanup__Q24Game32FSMState<Q24Game13VsGameSection>FPQ24Game13VsGameSection"
-        .4byte
-   "resume__Q24Game32FSMState<Q24Game13VsGameSection>FPQ24Game13VsGameSection"
-        .4byte
-   "restart__Q24Game32FSMState<Q24Game13VsGameSection>FPQ24Game13VsGameSection"
-        .4byte
-   "transit__Q24Game32FSMState<Q24Game13VsGameSection>FPQ24Game13VsGameSectioniPQ24Game8StateArg"
-        .4byte draw__Q34Game6VsGame5StateFPQ24Game13VsGameSectionR8Graphics
-        .4byte pre2dDraw__Q34Game6VsGame5StateFR8GraphicsPQ24Game13VsGameSection
-        .4byte onOrimaDown__Q34Game6VsGame5StateFPQ24Game13VsGameSectioni
-        .4byte
-   onMovieStart__Q34Game6VsGame5StateFPQ24Game13VsGameSectionPQ24Game11MovieConfigUlUl
-        .4byte
-   onMovieDone__Q34Game6VsGame5StateFPQ24Game13VsGameSectionPQ24Game11MovieConfigUlUl
-        .4byte
-   onNextFloor__Q34Game6VsGame5StateFPQ24Game13VsGameSectionPQ34Game8ItemHole4Item
-        .4byte on_section_fadeout__Q34Game6VsGame5StateFPQ24Game13VsGameSection
-        .4byte goingToCave__Q34Game6VsGame5StateFPQ24Game13VsGameSection
-        .4byte onBattleFinished__Q34Game6VsGame5StateFPQ24Game13VsGameSectionib
-        .4byte
-   onRedOrBlueSuckStart__Q34Game6VsGame5StateFPQ24Game13VsGameSectionib .4byte
-   isCardUsable__Q34Game6VsGame5StateFPQ24Game13VsGameSection .global
-   "__vt__Q24Game32FSMState<Q24Game13VsGameSection>"
-    "__vt__Q24Game32FSMState<Q24Game13VsGameSection>":
-        .4byte 0
-        .4byte 0
-        .4byte
-   "init__Q24Game32FSMState<Q24Game13VsGameSection>FPQ24Game13VsGameSectionPQ24Game8StateArg"
-        .4byte
-   "exec__Q24Game32FSMState<Q24Game13VsGameSection>FPQ24Game13VsGameSection"
-        .4byte
-   "cleanup__Q24Game32FSMState<Q24Game13VsGameSection>FPQ24Game13VsGameSection"
-        .4byte
-   "resume__Q24Game32FSMState<Q24Game13VsGameSection>FPQ24Game13VsGameSection"
-        .4byte
-   "restart__Q24Game32FSMState<Q24Game13VsGameSection>FPQ24Game13VsGameSection"
-        .4byte
-   "transit__Q24Game32FSMState<Q24Game13VsGameSection>FPQ24Game13VsGameSectioniPQ24Game8StateArg"
-        .4byte 0
-
-    .section .sbss # 0x80514D80 - 0x80516360
-    .global lbl_80515C60
-    lbl_80515C60:
-        .skip 0x4
-    .global lbl_80515C64
-    lbl_80515C64:
-        .skip 0x4
-
-    .section .sdata2, "a"     # 0x80516360 - 0x80520E40
-    .global lbl_8051A250
-    lbl_8051A250:
-        .4byte 0x00000000
-    .global lbl_8051A254
-    lbl_8051A254:
-        .float 1.0
-    .global lbl_8051A258
-    lbl_8051A258:
-        .4byte 0xBF800000
-    .global lbl_8051A25C
-    lbl_8051A25C:
-        .float 0.5
-    .global lbl_8051A260
-    lbl_8051A260:
-        .4byte 0x3F7FBE77
-        .4byte 0x00000000
-*/
+namespace {
+char* cMaps[4] = { "caveinfo.txt", "caveinfo_metal.txt", "caveinfo_conc.txt", "caveinfo_tsuchi.txt" };
+}
 
 namespace Game {
-
+namespace VsGame {
 /*
  * --INFO--
  * Address:	80228328
  * Size:	0000F8
  */
-VsGame::TitleState::TitleState(void)
+TitleState::TitleState()
+    : State(VGS_Title)
 {
-	/*
-	stwu     r1, -0x20(r1)
-	mflr     r0
-	lis      r4, "__vt__Q24Game32FSMState<Q24Game13VsGameSection>"@ha
-	li       r5, 0
-	stw      r0, 0x24(r1)
-	addi     r0, r4, "__vt__Q24Game32FSMState<Q24Game13VsGameSection>"@l
-	lis      r4, __vt__Q34Game6VsGame5State@ha
-	stw      r31, 0x1c(r1)
-	mr       r31, r3
-	addi     r4, r4, __vt__Q34Game6VsGame5State@l
-	stw      r0, 0(r3)
-	lis      r3, __vt__Q34Game6VsGame10TitleState@ha
-	addi     r0, r3, __vt__Q34Game6VsGame10TitleState@l
-	stw      r5, 4(r31)
-	li       r3, 0xb0
-	stw      r5, 8(r31)
-	stw      r4, 0(r31)
-	stw      r0, 0(r31)
-	bl       __nw__FUl
-	or.      r0, r3, r3
-	beq      lbl_80228388
-	li       r4, 0
-	bl       __ct__10ControllerFQ210JUTGamePad8EPadPort
-	mr       r0, r3
-
-lbl_80228388:
-	stw      r0, 0x30(r31)
-	li       r3, 0x14
-	bl       __nw__FUl
-	cmplwi   r3, 0
-	beq      lbl_802283E4
-	lis      r4, lbl_804C0E04@ha
-	lis      r5, __vt__9IDelegate@ha
-	addi     r8, r4, lbl_804C0E04@l
-	lis      r4, "__vt__36Delegate<Q34Game6VsGame10TitleState>"@ha
-	lwz      r7, 0(r8)
-	addi     r5, r5, __vt__9IDelegate@l
-	lwz      r6, 4(r8)
-	addi     r0, r4, "__vt__36Delegate<Q34Game6VsGame10TitleState>"@l
-	lwz      r4, 8(r8)
-	stw      r7, 8(r1)
-	stw      r5, 0(r3)
-	stw      r0, 0(r3)
-	stw      r31, 4(r3)
-	stw      r7, 8(r3)
-	stw      r6, 0xc(r3)
-	stw      r6, 0xc(r1)
-	stw      r4, 0x10(r1)
-	stw      r4, 0x10(r3)
-
-lbl_802283E4:
-	stw      r3, 0x1c(r31)
-	li       r3, 0xb0
-	bl       __nw__FUl
-	or.      r0, r3, r3
-	beq      lbl_80228404
-	li       r4, 1
-	bl       __ct__10ControllerFQ210JUTGamePad8EPadPort
-	mr       r0, r3
-
-lbl_80228404:
-	stw      r0, 0x34(r31)
-	mr       r3, r31
-	lwz      r0, 0x24(r1)
-	lwz      r31, 0x1c(r1)
-	mtlr     r0
-	addi     r1, r1, 0x20
-	blr
-	*/
+	m_player1Controller = new Controller(JUTGamePad::PORT_0);
+	m_delegate          = new Delegate<Game::VsGame::TitleState>(this, &dvdload);
+	m_player2Controller = new Controller(JUTGamePad::PORT_1);
 }
-
 /*
  * --INFO--
  * Address:	80228420
  * Size:	000134
  */
-void VsGame::TitleState::init(Game::VsGameSection*, Game::StateArg*)
+void TitleState::init(VsGameSection* section, StateArg* arg)
 {
-	/*
-	stwu     r1, -0x20(r1)
-	mflr     r0
-	stw      r0, 0x24(r1)
-	stw      r31, 0x1c(r1)
-	mr       r31, r5
-	stw      r30, 0x18(r1)
-	mr       r30, r4
-	stw      r29, 0x14(r1)
-	mr       r29, r3
-	lwz      r3, naviMgr__4Game@sda21(r13)
-	bl       clearDeadCount__Q24Game7NaviMgrFv
-	lfs      f0, lbl_8051A250@sda21(r2)
-	li       r0, 0
-	mr       r3, r30
-	stfs     f0, 0x1f4(r30)
-	stfs     f0, 0x1f0(r30)
-	stw      r0, 0x3bc(r30)
-	stfs     f0, 0x3c0(r30)
-	bl       clearGetDopeCount__Q24Game13VsGameSectionFv
-	mr       r3, r30
-	bl       clearGetCherryCount__Q24Game13VsGameSectionFv
-	li       r0, 0
-	cmplwi   r31, 0
-	stw      r0, 0x324(r30)
-	beq      lbl_80228498
-	lbz      r0, 0(r31)
-	cmplwi   r0, 0
-	beq      lbl_80228498
-	mr       r3, r30
-	bl       clearHeap__Q24Game15BaseGameSectionFv
+	naviMgr->clearDeadCount();
+	section->_1F0[1]     = 0.0f;
+	section->_1F0[0]     = 0.0f;
+	section->m_pokoCount = 0;
+	section->m_timeLimit = 0.0f;
+	section->clearGetDopeCount();
+	section->clearGetCherryCount();
+	section->m_currentFloor = 0;
 
-lbl_80228498:
-	li       r0, 1
-	lis      r3, "cMaps__24@unnamed@vsGS_Title_cpp@"@ha
-	stb      r0, 0x205(r30)
-	li       r0, 0
-	addi     r4, r3, "cMaps__24@unnamed@vsGS_Title_cpp@"@l
-	addi     r3, r30, 0x224
-	stw      r0, 0x208(r30)
-	stw      r0, 0x18(r29)
-	stw      r0, 0x14(r29)
-	stb      r0, 0x10(r29)
-	stw      r0, 0x2c(r29)
-	stw      r0, 0x24(r29)
-	lwz      r0, 0x24(r29)
-	slwi     r0, r0, 2
-	lwzx     r4, r4, r0
-	bl       strcpy
-	li       r0, 0
-	stw      r0, 0x20(r29)
-	lwz      r3, 0x20c(r30)
-	lwzu     r12, 0x18(r3)
-	lwz      r12, 0xc(r12)
-	mtctr    r12
-	bctrl
-	stw      r3, 0x28(r29)
-	mr       r3, r30
-	lwz      r12, 0(r30)
-	lwz      r12, 0x4c(r12)
-	mtctr    r12
-	bctrl
-	mr       r3, r30
-	bl       initPlayData__Q24Game13VsGameSectionFv
-	lwz      r3, gGame2DMgr__6Screen@sda21(r13)
-	lwz      r3, 0x18(r3)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x18(r12)
-	mtctr    r12
-	bctrl
-	li       r0, 0
-	stw      r0, 0x334(r30)
-	stw      r0, 0x33c(r30)
-	lwz      r31, 0x1c(r1)
-	lwz      r30, 0x18(r1)
-	lwz      r29, 0x14(r1)
-	lwz      r0, 0x24(r1)
-	mtlr     r0
-	addi     r1, r1, 0x20
-	blr
-	*/
+	TitleArg* titleArg = static_cast<TitleArg*>(arg);
+	if (titleArg && titleArg->_00) {
+		section->clearHeap();
+	}
+
+	section->_205 = true;
+	section->_208 = false;
+	m_heap        = nullptr;
+	m_expHeap     = nullptr;
+
+	m_titleStage = VSTITLE_PrepareInfo;
+	_2C          = 0;
+
+	m_caveInfoType = VSCAVEINFO_Default;
+	strcpy(section->m_caveInfoFilename, cMaps[m_caveInfoType]);
+
+	_20        = 0;
+	m_stageNum = section->m_challengeStageList->m_stageData.getChildCount(); // Stage Num
+
+	section->refreshHIO();
+	section->initPlayData();
+	Screen::gGame2DMgr->m_screenMgr->reset();
+
+	section->m_challengeStageData = nullptr;
+	section->m_VsStageData        = nullptr;
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	000084
- */
-void VsGame::TitleState::initNext(Game::VsGameSection*)
-{
-	// UNUSED FUNCTION
-}
+static const char unusedVsTitleString[] = "コンクリート"; // 'concrete'
 
 /*
  * --INFO--
  * Address:	80228554
  * Size:	0003F4
  */
-void VsGame::TitleState::dvdload(void)
+void TitleState::dvdload()
 {
-	/*
-	stwu     r1, -0x60(r1)
-	mflr     r0
-	lis      r4, lbl_80483458@ha
-	stw      r0, 0x64(r1)
-	stw      r31, 0x5c(r1)
-	stw      r30, 0x58(r1)
-	stw      r29, 0x54(r1)
-	mr       r29, r3
-	addi     r3, r1, 8
-	stw      r28, 0x50(r1)
-	addi     r28, r4, lbl_80483458@l
-	bl       __ct__Q26PSGame9SceneInfoFv
-	lwz      r4, gameSystem__4Game@sda21(r13)
-	li       r3, 0
-	lwz      r0, 0x44(r4)
-	cmpwi    r0, 2
-	beq      lbl_802285A0
-	cmpwi    r0, 3
-	bne      lbl_802285A4
+	PSGame::SceneInfo scene;
+	if (gameSystem->isChallengeMode()) {
+		scene.m_gameType = PSGame::SceneInfo::TITLE_17;
+	} else {
+		scene.m_gameType = PSGame::SceneInfo::TITLE_19;
+	}
+	scene._07 = 0;
+	static_cast<PSGame::PikSceneMgr*>(PSSystem::getSceneMgr())->newAndSetCurrentScene(&scene);
 
-lbl_802285A0:
-	li       r3, 1
+	PSSystem::SceneMgr* sceneMgr = PSSystem::getSceneMgr();
+	sceneMgr->checkScene();
+	sceneMgr->m_scenes->m_child->scene1stLoadSync();
 
-lbl_802285A4:
-	clrlwi.  r0, r3, 0x18
-	beq      lbl_802285B8
-	li       r0, 0x11
-	stb      r0, 0xe(r1)
-	b        lbl_802285C0
+	sceneMgr = PSSystem::getSceneMgr();
+	sceneMgr->checkScene();
+	sceneMgr->m_scenes->m_child->startMainSeq();
 
-lbl_802285B8:
-	li       r0, 0x13
-	stb      r0, 0xe(r1)
+	m_challengeTitleInfo = new Challenge2D_TitleInfo(getChallengeStageNum());
+	m_vsTitleInfo        = new Vs2D_TitleInfo(getVsStageNum());
 
-lbl_802285C0:
-	lwz      r0, spSceneMgr__8PSSystem@sda21(r13)
-	li       r3, 0
-	stb      r3, 0xf(r1)
-	cmplwi   r0, 0
-	bne      lbl_802285E8
-	addi     r3, r28, 0x74
-	addi     r5, r28, 0x80
-	li       r4, 0x1d3
-	crclr    6
-	bl       panic_f__12JUTExceptionFPCciPCce
+	for (int i = 0; i < 5; i++) {
+		sys->getPlayCommonData()->challenge_get_CourseState(i);
+	}
 
-lbl_802285E8:
-	lwz      r3, spSceneMgr__8PSSystem@sda21(r13)
-	addi     r4, r1, 8
-	lwz      r12, 0(r3)
-	lwz      r12, 0xc(r12)
-	mtctr    r12
-	bctrl
-	lwz      r0, spSceneMgr__8PSSystem@sda21(r13)
-	cmplwi   r0, 0
-	bne      lbl_80228620
-	addi     r3, r28, 0x74
-	addi     r5, r28, 0x80
-	li       r4, 0x1d3
-	crclr    6
-	bl       panic_f__12JUTExceptionFPCciPCce
+	for (int i = 0; i < getChallengeStageNum(); i++) {
+		PlayChallengeGameData::CourseState* scores = sys->getPlayCommonData()->challenge_get_CourseState(i);
+		Challenge2D_TitleInfo::Info* displayData   = (*m_challengeTitleInfo)(i);
+		ChallengeGame::StageData* fileData         = m_section->m_challengeStageList->getStageData(i);
 
-lbl_80228620:
-	lwz      r30, spSceneMgr__8PSSystem@sda21(r13)
-	lwz      r0, 4(r30)
-	cmplwi   r0, 0
-	bne      lbl_80228644
-	addi     r3, r28, 0x8c
-	addi     r5, r28, 0x80
-	li       r4, 0xc7
-	crclr    6
-	bl       panic_f__12JUTExceptionFPCciPCce
+		if (fileData) {
+			displayData->m_floorCount     = fileData->m_floorCounts;
+			displayData->m_timeLimit      = (int)fileData->m_timeLimit;
+			displayData->m_sprayCounts[0] = fileData->m_startNumBitter;
+			displayData->m_sprayCounts[1] = fileData->m_startNumSpicy;
+			displayData->m_pikiContainer  = &fileData->m_pikiContainer;
+			displayData->m_highscore1     = &scores->m_highscores[0];
+			displayData->m_highscore2     = &scores->m_highscores[1];
+			displayData->m_stageIndex     = fileData->m_stageIndex;
+			displayData->m_displayFlag.clear();
 
-lbl_80228644:
-	lwz      r3, 4(r30)
-	lwz      r3, 4(r3)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x14(r12)
-	mtctr    r12
-	bctrl
-	lwz      r0, spSceneMgr__8PSSystem@sda21(r13)
-	cmplwi   r0, 0
-	bne      lbl_8022867C
-	addi     r3, r28, 0x74
-	addi     r5, r28, 0x80
-	li       r4, 0x1d3
-	crclr    6
-	bl       panic_f__12JUTExceptionFPCciPCce
+			if (sys->getPlayCommonData()->challenge_checkOpen(i)) {
+				displayData->setDisplayFlag(PlayChallengeGameData::CourseState::CSF_IsOpen);
+			}
+			if (sys->getPlayCommonData()->challenge_checkClear(i)) {
+				displayData->setDisplayFlag(PlayChallengeGameData::CourseState::CSF_IsClear);
+			}
+			if (sys->getPlayCommonData()->challenge_checkJustOpen(i)) {
+				displayData->setDisplayFlag(PlayChallengeGameData::CourseState::CSF_WasOpen);
+			}
+			if (sys->getPlayCommonData()->challenge_checkJustClear(i)) {
+				displayData->setDisplayFlag(PlayChallengeGameData::CourseState::CSF_WasClear);
+			}
+			if (sys->getPlayCommonData()->challenge_checkJustKunsho(i)) {
+				displayData->setDisplayFlag(PlayChallengeGameData::CourseState::CSF_WasKunsho);
+			}
+			if (sys->getPlayCommonData()->challenge_checkKunsho(i)) {
+				displayData->setDisplayFlag(PlayChallengeGameData::CourseState::CSF_IsKunsho);
+			}
+		}
+	}
 
-lbl_8022867C:
-	lwz      r30, spSceneMgr__8PSSystem@sda21(r13)
-	lwz      r0, 4(r30)
-	cmplwi   r0, 0
-	bne      lbl_802286A0
-	addi     r3, r28, 0x8c
-	addi     r5, r28, 0x80
-	li       r4, 0xc7
-	crclr    6
-	bl       panic_f__12JUTExceptionFPCciPCce
+	for (int i = 0; i < 5; i++) {
+		sys->getPlayCommonData()->challenge_get_CourseState(i);
+	}
 
-lbl_802286A0:
-	lwz      r3, 4(r30)
-	lwz      r3, 4(r3)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x1c(r12)
-	mtctr    r12
-	bctrl
-	li       r3, 8
-	bl       __nw__FUl
-	or.      r0, r3, r3
-	beq      lbl_802286D4
-	li       r4, 0x1e
-	bl       __ct__Q24Game21Challenge2D_TitleInfoFi
-	mr       r0, r3
-
-lbl_802286D4:
-	stw      r0, 0x3c(r29)
-	li       r3, 8
-	bl       __nw__FUl
-	or.      r28, r3, r3
-	beq      lbl_80228710
-	lwz      r3, 0x38(r29)
-	lwz      r3, 0x210(r3)
-	lwzu     r12, 0x18(r3)
-	lwz      r12, 0xc(r12)
-	mtctr    r12
-	bctrl
-	mr       r4, r3
-	mr       r3, r28
-	bl       __ct__Q24Game14Vs2D_TitleInfoFi
-	mr       r28, r3
-
-lbl_80228710:
-	stw      r28, 0x40(r29)
-	li       r28, 0
-
-lbl_80228718:
-	lwz      r3, sys@sda21(r13)
-	bl       getPlayCommonData__6SystemFv
-	mr       r4, r28
-	bl       challenge_get_CourseState__Q24Game14PlayCommonDataFi
-	addi     r28, r28, 1
-	cmpwi    r28, 5
-	blt      lbl_80228718
-	li       r30, 0
-
-lbl_80228738:
-	lwz      r3, sys@sda21(r13)
-	bl       getPlayCommonData__6SystemFv
-	mr       r4, r30
-	bl       challenge_get_CourseState__Q24Game14PlayCommonDataFi
-	mr       r28, r3
-	lwz      r3, 0x3c(r29)
-	mr       r4, r30
-	bl       __cl__Q24Game21Challenge2D_TitleInfoFi
-	lwz      r5, 0x38(r29)
-	mr       r31, r3
-	mr       r4, r30
-	lwz      r3, 0x20c(r5)
-	bl       getStageData__Q34Game13ChallengeGame9StageListFi
-	cmplwi   r3, 0
-	beq      lbl_802288A0
-	lwz      r0, 0x6c(r3)
-	addi     r6, r3, 0x18
-	addi     r5, r28, 4
-	addi     r4, r28, 0x10
-	stw      r0, 0(r31)
-	li       r0, 0
-	lfs      f0, 0x60(r3)
-	fctiwz   f0, f0
-	stfd     f0, 0x40(r1)
-	lwz      r7, 0x44(r1)
-	stw      r7, 0xc(r31)
-	lwz      r7, 0x64(r3)
-	stw      r7, 4(r31)
-	lwz      r7, 0x68(r3)
-	stw      r7, 8(r31)
-	stw      r6, 0x10(r31)
-	stw      r5, 0x14(r31)
-	stw      r4, 0x18(r31)
-	lwz      r3, 0x74(r3)
-	stw      r3, 0x1c(r31)
-	stb      r0, 0x20(r31)
-	lwz      r3, sys@sda21(r13)
-	bl       getPlayCommonData__6SystemFv
-	mr       r4, r30
-	bl       challenge_checkOpen__Q24Game14PlayCommonDataFi
-	clrlwi.  r0, r3, 0x18
-	beq      lbl_802287EC
-	lbz      r0, 0x20(r31)
-	ori      r0, r0, 1
-	stb      r0, 0x20(r31)
-
-lbl_802287EC:
-	lwz      r3, sys@sda21(r13)
-	bl       getPlayCommonData__6SystemFv
-	mr       r4, r30
-	bl       challenge_checkClear__Q24Game14PlayCommonDataFi
-	clrlwi.  r0, r3, 0x18
-	beq      lbl_80228810
-	lbz      r0, 0x20(r31)
-	ori      r0, r0, 2
-	stb      r0, 0x20(r31)
-
-lbl_80228810:
-	lwz      r3, sys@sda21(r13)
-	bl       getPlayCommonData__6SystemFv
-	mr       r4, r30
-	bl       challenge_checkJustOpen__Q24Game14PlayCommonDataFi
-	clrlwi.  r0, r3, 0x18
-	beq      lbl_80228834
-	lbz      r0, 0x20(r31)
-	ori      r0, r0, 8
-	stb      r0, 0x20(r31)
-
-lbl_80228834:
-	lwz      r3, sys@sda21(r13)
-	bl       getPlayCommonData__6SystemFv
-	mr       r4, r30
-	bl       challenge_checkJustClear__Q24Game14PlayCommonDataFi
-	clrlwi.  r0, r3, 0x18
-	beq      lbl_80228858
-	lbz      r0, 0x20(r31)
-	ori      r0, r0, 0x10
-	stb      r0, 0x20(r31)
-
-lbl_80228858:
-	lwz      r3, sys@sda21(r13)
-	bl       getPlayCommonData__6SystemFv
-	mr       r4, r30
-	bl       challenge_checkJustKunsho__Q24Game14PlayCommonDataFi
-	clrlwi.  r0, r3, 0x18
-	beq      lbl_8022887C
-	lbz      r0, 0x20(r31)
-	ori      r0, r0, 0x20
-	stb      r0, 0x20(r31)
-
-lbl_8022887C:
-	lwz      r3, sys@sda21(r13)
-	bl       getPlayCommonData__6SystemFv
-	mr       r4, r30
-	bl       challenge_checkKunsho__Q24Game14PlayCommonDataFi
-	clrlwi.  r0, r3, 0x18
-	beq      lbl_802288A0
-	lbz      r0, 0x20(r31)
-	ori      r0, r0, 4
-	stb      r0, 0x20(r31)
-
-lbl_802288A0:
-	addi     r30, r30, 1
-	cmpwi    r30, 0x1e
-	blt      lbl_80228738
-	li       r28, 0
-
-lbl_802288B0:
-	lwz      r3, sys@sda21(r13)
-	bl       getPlayCommonData__6SystemFv
-	mr       r4, r28
-	bl       challenge_get_CourseState__Q24Game14PlayCommonDataFi
-	addi     r28, r28, 1
-	cmpwi    r28, 5
-	blt      lbl_802288B0
-	li       r28, 0
-	b        lbl_80228908
-
-lbl_802288D4:
-	lwz      r3, 0x40(r29)
-	mr       r4, r28
-	bl       __cl__Q24Game14Vs2D_TitleInfoFi
-	lwz      r5, 0x38(r29)
-	mr       r30, r3
-	mr       r4, r28
-	lwz      r3, 0x210(r5)
-	bl       getStageData__Q34Game6VsGame9StageListFi
-	cmplwi   r3, 0
-	beq      lbl_80228904
-	lwz      r0, 0x6c(r3)
-	stw      r0, 0(r30)
-
-lbl_80228904:
-	addi     r28, r28, 1
-
-lbl_80228908:
-	lwz      r3, 0x38(r29)
-	lwz      r3, 0x210(r3)
-	lwzu     r12, 0x18(r3)
-	lwz      r12, 0xc(r12)
-	mtctr    r12
-	bctrl
-	cmpw     r28, r3
-	blt      lbl_802288D4
-	lwz      r0, 0x64(r1)
-	lwz      r31, 0x5c(r1)
-	lwz      r30, 0x58(r1)
-	lwz      r29, 0x54(r1)
-	lwz      r28, 0x50(r1)
-	mtlr     r0
-	addi     r1, r1, 0x60
-	blr
-	*/
+	for (int i = 0; i < getVsStageNum(); i++) {
+		Vs2D_TitleInfo::Info* displayData = (*m_vsTitleInfo)(i);
+		VsGame::StageData* fileData       = m_section->m_VsStageList->getStageData(i);
+		if (fileData) {
+			displayData->m_info = fileData->m_index2D;
+		}
+	}
 }
-
 /*
  * --INFO--
  * Address:	80228948
  * Size:	000038
  */
-void VsGame::TitleState::exec(Game::VsGameSection*)
+void TitleState::exec(VsGameSection* section)
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	lwz      r5, gameSystem__4Game@sda21(r13)
-	lwz      r0, 0x44(r5)
-	cmpwi    r0, 1
-	bne      lbl_8022896C
-	bl       execVs__Q34Game6VsGame10TitleStateFPQ24Game13VsGameSection
-	b        lbl_80228970
-
-lbl_8022896C:
-	bl       execChallenge__Q34Game6VsGame10TitleStateFPQ24Game13VsGameSection
-
-lbl_80228970:
-	lwz      r0, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	if (gameSystem->m_mode == GSM_VERSUS_MODE) {
+		execVs(section);
+	} else {
+		execChallenge(section);
+	}
 }
 
 /*
@@ -723,246 +183,84 @@ lbl_80228970:
  * Address:	80228980
  * Size:	0002DC
  */
-void VsGame::TitleState::execChallenge(Game::VsGameSection*)
+void TitleState::execChallenge(VsGameSection* section)
 {
-	/*
-	stwu     r1, -0x50(r1)
-	mflr     r0
-	stw      r0, 0x54(r1)
-	stw      r31, 0x4c(r1)
-	mr       r31, r4
-	stw      r30, 0x48(r1)
-	mr       r30, r3
-	lis      r3, lbl_80483458@ha
-	stw      r29, 0x44(r1)
-	stw      r28, 0x40(r1)
-	addi     r28, r3, lbl_80483458@l
-	lbz      r0, 0x10(r30)
-	cmpwi    r0, 1
-	beq      lbl_80228A20
-	bge      lbl_802289C8
-	cmpwi    r0, 0
-	bge      lbl_802289D4
-	b        lbl_80228C1C
+	switch (m_titleStage) {
+	case VSTITLE_PrepareInfo:
+		m_heap    = getCurrentHeap();
+		m_expHeap = makeExpHeap(m_heap->getFreeSize(), m_heap, true);
+		m_expHeap->becomeCurrentHeap();
 
-lbl_802289C8:
-	cmpwi    r0, 3
-	bge      lbl_80228C1C
-	b        lbl_80228AD8
+		m_titleStage = VSTITLE_PrepareDisp;
+		m_section    = section;
 
-lbl_802289D4:
-	lwz      r0, sCurrentHeap__7JKRHeap@sda21(r13)
-	stw      r0, 0x18(r30)
-	lwz      r28, 0x18(r30)
-	mr       r3, r28
-	bl       getFreeSize__7JKRHeapFv
-	mr       r4, r28
-	li       r5, 1
-	bl       create__10JKRExpHeapFUlP7JKRHeapb
-	stw      r3, 0x14(r30)
-	lwz      r3, 0x14(r30)
-	bl       becomeCurrentHeap__7JKRHeapFv
-	li       r0, 1
-	addi     r4, r31, 0x184
-	stb      r0, 0x10(r30)
-	stw      r31, 0x38(r30)
-	lwz      r3, sys@sda21(r13)
-	lwz      r5, 0x1c(r30)
-	bl       dvdLoadUseCallBack__6SystemFP16DvdThreadCommandP9IDelegate
-	b        lbl_80228C3C
+		sys->dvdLoadUseCallBack(&section->m_dvdThreadCommand, m_delegate);
+		return;
 
-lbl_80228A20:
-	lwz      r0, 0x19c(r31)
-	cmpwi    r0, 2
-	bne      lbl_80228C3C
-	li       r0, 2
-	lis      r3, __vt__Q32og6Screen14DispMemberBase@ha
-	stb      r0, 0x10(r30)
-	li       r4, 0
-	addi     r0, r3, __vt__Q32og6Screen14DispMemberBase@l
-	lis      r3, __vt__Q28Morimura25DispMemberChallengeSelect@ha
-	stw      r0, 0x1c(r1)
-	addi     r3, r3, __vt__Q28Morimura25DispMemberChallengeSelect@l
-	li       r0, -1
-	lwz      r5, gameSystem__4Game@sda21(r13)
-	stw      r4, 0x20(r1)
-	stw      r3, 0x1c(r1)
-	stw      r4, 0x24(r1)
-	stw      r4, 0x28(r1)
-	stw      r0, 0x2c(r1)
-	stw      r4, 0x30(r1)
-	stw      r4, 0x34(r1)
-	stw      r4, 0x38(r1)
-	stw      r4, 0x3c(r1)
-	lwz      r0, 0x3c(r30)
-	stw      r0, 0x24(r1)
-	lwz      r0, 0x338(r31)
-	stw      r0, 0x30(r1)
-	lwz      r0, 0x14(r30)
-	stw      r0, 0x28(r1)
-	lwz      r0, 0x44(r5)
-	cmpwi    r0, 1
-	beq      lbl_80228AA4
-	cmpwi    r0, 3
-	bne      lbl_80228AA8
+	case VSTITLE_PrepareDisp:
+		if (section->m_dvdThreadCommand.m_mode == 2) {
+			m_titleStage = VSTITLE_Display;
 
-lbl_80228AA4:
-	li       r4, 1
+			Morimura::DispMemberChallengeSelect select;
+			select.m_titleInfo          = m_challengeTitleInfo;
+			select.m_selectedStageIndex = section->m_challengeStageNum;
+			select.m_debugExpHeap       = m_expHeap;
+			select.m_playType           = (gameSystem->isMultiplayerMode() > 0); // sure.
 
-lbl_80228AA8:
-	clrlwi   r4, r4, 0x18
-	lwz      r3, gGame2DMgr__6Screen@sda21(r13)
-	neg      r0, r4
-	or       r0, r0, r4
-	srwi     r0, r0, 0x1f
-	stw      r0, 0x34(r1)
-	lwz      r4, 0x30(r30)
-	bl       setGamePad__Q26Screen9Game2DMgrFP10Controller
-	lwz      r3, gGame2DMgr__6Screen@sda21(r13)
-	addi     r4, r1, 0x1c
-	bl
-open_ChallengeSelect__Q26Screen9Game2DMgrFRQ28Morimura25DispMemberChallengeSelect
-	b        lbl_80228C3C
+			Screen::gGame2DMgr->setGamePad(m_player1Controller);
+			Screen::gGame2DMgr->open_ChallengeSelect(select);
+		}
+		return;
 
-lbl_80228AD8:
-	lwz      r3, gGame2DMgr__6Screen@sda21(r13)
-	addi     r4, r1, 0xc
-	addi     r5, r1, 8
-	bl       check_ChallengeSelect__Q26Screen9Game2DMgrFRiRi
-	cmpwi    r3, 3
-	beq      lbl_80228B0C
-	bge      lbl_80228C1C
-	cmpwi    r3, 2
-	bge      lbl_80228B00
-	b        lbl_80228C1C
+	case VSTITLE_Display:
+		int stageNumber;
+		int playType;
+		int check = Screen::gGame2DMgr->check_ChallengeSelect(stageNumber, playType);
+		switch (check) {
+		case 2:
+			section->m_menuRunning = true;
+			return;
 
-lbl_80228B00:
-	li       r0, 1
-	stb      r0, 0x204(r31)
-	b        lbl_80228C3C
+		case 3:
+			OSReport("from Morimun:STATE_GO:stageNo=%d:playType=%d\n", stageNumber, playType);
 
-lbl_80228B0C:
-	lwz      r4, 0xc(r1)
-	addi     r3, r28, 0x98
-	lwz      r5, 8(r1)
-	crclr    6
-	bl       OSReport
-	lbz      r0, 0x174(r31)
-	cmplwi   r0, 0
-	beq      lbl_80228B3C
-	lwz      r3, gameSystem__4Game@sda21(r13)
-	li       r0, 1
-	stw      r0, 0x44(r3)
-	b        lbl_80228B64
+			if (section->m_isVersusMode) {
+				gameSystem->m_mode = GSM_VERSUS_MODE;
+			} else if (!playType) {
+				gameSystem->m_mode = GSM_ONE_PLAYER_CHALLENGE;
+			} else {
+				gameSystem->m_mode = GSM_TWO_PLAYER_CHALLENGE;
+			}
 
-lbl_80228B3C:
-	lwz      r0, 8(r1)
-	cmpwi    r0, 0
-	bne      lbl_80228B58
-	lwz      r3, gameSystem__4Game@sda21(r13)
-	li       r0, 2
-	stw      r0, 0x44(r3)
-	b        lbl_80228B64
+			LoadArg load(0, 0, 0);
+			ChallengeGame::StageData* data = section->m_challengeStageList->getStageData(stageNumber);
 
-lbl_80228B58:
-	lwz      r3, gameSystem__4Game@sda21(r13)
-	li       r0, 3
-	stw      r0, 0x44(r3)
+			P2ASSERTLINE(323, data);
+			section->m_challengeStageData = data;
+			section->m_challengeStageNum  = stageNumber;
 
-lbl_80228B64:
-	li       r0, 0
-	lwz      r4, 0xc(r1)
-	stw      r0, 0x10(r1)
-	stw      r0, 0x14(r1)
-	stb      r0, 0x18(r1)
-	lwz      r3, 0x20c(r31)
-	bl       getStageData__Q34Game13ChallengeGame9StageListFi
-	or.      r29, r3, r3
-	bne      lbl_80228B9C
-	addi     r3, r28, 0xc8
-	addi     r5, r28, 0x80
-	li       r4, 0x143
-	crclr    6
-	bl       panic_f__12JUTExceptionFPCciPCce
+			strcpy(section->m_caveInfoFilename, data->m_caveInfoFilename);
 
-lbl_80228B9C:
-	stw      r29, 0x334(r31)
-	addi     r3, r31, 0x224
-	addi     r4, r29, 0x20
-	lwz      r0, 0xc(r1)
-	stw      r0, 0x338(r31)
-	bl       strcpy
-	li       r0, 0
-	addi     r3, r31, 0x214
-	stw      r0, 0x14(r1)
-	addi     r4, r29, 0x18
-	bl       __as__Q24Game13PikiContainerFRQ24Game13PikiContainer
-	lwz      r3, playData__4Game@sda21(r13)
-	li       r4, 0
-	lwz      r5, 0x68(r29)
-	bl       setDopeCount__Q24Game8PlayDataFii
-	lwz      r3, playData__4Game@sda21(r13)
-	li       r4, 1
-	lwz      r5, 0x64(r29)
-	bl       setDopeCount__Q24Game8PlayDataFii
-	lfs      f0, lbl_8051A250@sda21(r2)
-	addi     r3, r29, 0x18
-	addi     r4, r28, 0xd8
-	stfs     f0, 0x3c0(r31)
-	bl       dump__Q24Game13PikiContainerFPc
-	mr       r3, r30
-	mr       r4, r31
-	lwz      r12, 0(r30)
-	addi     r6, r1, 0x10
-	li       r5, 1
-	lwz      r12, 0x1c(r12)
-	mtctr    r12
-	bctrl
+			load._04              = 0; // why...
+			section->m_container1 = data->m_pikiContainer;
 
-lbl_80228C1C:
-	mr       r3, r31
-	bl       doUpdate__Q24Game14BaseHIOSectionFv
-	lwz      r3, gGame2DMgr__6Screen@sda21(r13)
-	bl       update__Q26Screen9Game2DMgrFv
-	lwz      r3, particle2dMgr@sda21(r13)
-	cmplwi   r3, 0
-	beq      lbl_80228C3C
-	bl       update__14TParticle2dMgrFv
+			playData->setDopeCount(0, data->m_startNumSpicy);
+			playData->setDopeCount(1, data->m_startNumBitter);
 
-lbl_80228C3C:
-	lwz      r0, 0x54(r1)
-	lwz      r31, 0x4c(r1)
-	lwz      r30, 0x48(r1)
-	lwz      r29, 0x44(r1)
-	lwz      r28, 0x40(r1)
-	mtlr     r0
-	addi     r1, r1, 0x50
-	blr
-	*/
-}
+			section->m_timeLimit = 0.0f;
+			data->m_pikiContainer.dump("PikiContainer");
 
-/*
- * --INFO--
- * Address:	80228C5C
- * Size:	000030
- */
-void transit__Q24Game32FSMState<Game::VsGameSection> FPQ24Game13VsGameSectioniPQ24Game8StateArg(void)
-{
-	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  stw       r0, 0x14(r1)
-	  lwz       r3, 0x8(r3)
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0x14(r12)
-	  mtctr     r12
-	  bctrl
-	  lwz       r0, 0x14(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
-	*/
+			transit(section, VGS_Load, &load);
+			break;
+		}
+		break;
+	}
+
+	section->BaseHIOSection::doUpdate();
+	Screen::gGame2DMgr->update();
+	if (particle2dMgr) {
+		particle2dMgr->update();
+	}
 }
 
 /*
@@ -970,312 +268,107 @@ void transit__Q24Game32FSMState<Game::VsGameSection> FPQ24Game13VsGameSectioniPQ
  * Address:	80228C8C
  * Size:	000430
  */
-void VsGame::TitleState::execVs(Game::VsGameSection*)
+void TitleState::execVs(VsGameSection* section)
 {
-	/*
-	stwu     r1, -0xa0(r1)
-	mflr     r0
-	stw      r0, 0xa4(r1)
-	stw      r31, 0x9c(r1)
-	stw      r30, 0x98(r1)
-	mr       r30, r4
-	stw      r29, 0x94(r1)
-	mr       r29, r3
-	lis      r3, lbl_80483458@ha
-	stw      r28, 0x90(r1)
-	addi     r31, r3, lbl_80483458@l
-	lbz      r0, 0x10(r29)
-	cmpwi    r0, 1
-	beq      lbl_80228D2C
-	bge      lbl_80228CD4
-	cmpwi    r0, 0
-	bge      lbl_80228CE0
-	b        lbl_8022907C
+	switch (m_titleStage) {
+	case VSTITLE_PrepareInfo:
+		m_heap    = getCurrentHeap();
+		m_expHeap = makeExpHeap(m_heap->getFreeSize(), m_heap, true);
+		m_expHeap->becomeCurrentHeap();
 
-lbl_80228CD4:
-	cmpwi    r0, 3
-	bge      lbl_8022907C
-	b        lbl_80228E0C
+		m_titleStage = VSTITLE_PrepareDisp;
+		m_section    = section;
+		sys->dvdLoadUseCallBack(&section->m_dvdThreadCommand, m_delegate);
+		return;
 
-lbl_80228CE0:
-	lwz      r0, sCurrentHeap__7JKRHeap@sda21(r13)
-	stw      r0, 0x18(r29)
-	lwz      r28, 0x18(r29)
-	mr       r3, r28
-	bl       getFreeSize__7JKRHeapFv
-	mr       r4, r28
-	li       r5, 1
-	bl       create__10JKRExpHeapFUlP7JKRHeapb
-	stw      r3, 0x14(r29)
-	lwz      r3, 0x14(r29)
-	bl       becomeCurrentHeap__7JKRHeapFv
-	li       r0, 1
-	addi     r4, r30, 0x184
-	stb      r0, 0x10(r29)
-	stw      r30, 0x38(r29)
-	lwz      r3, sys@sda21(r13)
-	lwz      r5, 0x1c(r29)
-	bl       dvdLoadUseCallBack__6SystemFP16DvdThreadCommandP9IDelegate
-	b        lbl_8022909C
+	case VSTITLE_PrepareDisp:
+		if (section->m_dvdThreadCommand.m_mode == 2) {
+			m_titleStage = VSTITLE_Display;
 
-lbl_80228D2C:
-	lwz      r0, 0x19c(r30)
-	cmpwi    r0, 2
-	bne      lbl_8022909C
-	li       r0, 2
-	lis      r6, __vt__Q28Morimura18DispMemberVsSelect@ha
-	lis      r3, __vt__Q32og6Screen14DispMemberBase@ha
-	stb      r0, 0x10(r29)
-	addi     r0, r3, __vt__Q32og6Screen14DispMemberBase@l
-	li       r7, 0
-	stw      r0, 0x58(r1)
-	li       r5, -1
-	li       r4, 3
-	addi     r6, r6, __vt__Q28Morimura18DispMemberVsSelect@l
-	stw      r7, 0x5c(r1)
-	lwz      r3, mRedWinCount__Q24Game13VsGameSection@sda21(r13)
-	stw      r6, 0x58(r1)
-	lwz      r0, mBlueWinCount__Q24Game13VsGameSection@sda21(r13)
-	stw      r7, 0x60(r1)
-	stw      r7, 0x64(r1)
-	stw      r7, 0x68(r1)
-	stw      r5, 0x6c(r1)
-	stw      r7, 0x70(r1)
-	stw      r4, 0x74(r1)
-	stw      r4, 0x78(r1)
-	stw      r7, 0x7c(r1)
-	stw      r7, 0x80(r1)
-	stw      r5, 0x84(r1)
-	stw      r7, 0x88(r1)
-	stw      r7, 0x8c(r1)
-	lwz      r4, 0x40(r29)
-	stw      r4, 0x60(r1)
-	lwz      r4, 0x340(r30)
-	stw      r4, 0x70(r1)
-	lwz      r4, 0x14(r29)
-	stw      r4, 0x64(r1)
-	lwz      r4, 0x344(r30)
-	stw      r4, 0x74(r1)
-	lwz      r4, 0x348(r30)
-	stw      r4, 0x78(r1)
-	stw      r3, 0x7c(r1)
-	stw      r0, 0x80(r1)
-	lwz      r0, 0x34c(r30)
-	stw      r0, 0x84(r1)
-	lwz      r3, 0x210(r30)
-	lwzu     r12, 0x18(r3)
-	lwz      r12, 0xc(r12)
-	mtctr    r12
-	bctrl
-	stw      r3, 0x88(r1)
-	lwz      r3, gGame2DMgr__6Screen@sda21(r13)
-	lwz      r4, 0x30(r29)
-	bl       setGamePad__Q26Screen9Game2DMgrFP10Controller
-	lwz      r3, gGame2DMgr__6Screen@sda21(r13)
-	addi     r4, r1, 0x58
-	bl       open_VsSelect__Q26Screen9Game2DMgrFRQ28Morimura18DispMemberVsSelect
-	b        lbl_8022909C
+			Morimura::DispMemberVsSelect select;
+			select.m_titleInfo      = m_vsTitleInfo;
+			select.m_stageNumber    = section->m_VsStageNum;
+			select.m_debugExpHeap   = m_expHeap;
+			select.m_olimarHandicap = section->m_olimarHandicap;
+			select.m_louieHandicap  = section->m_louieHandicap;
+			select.m_redWinCount    = section->mRedWinCount;
+			select.m_blueWinCount   = section->mBlueWinCount;
+			select.m_vsWinner       = section->m_vsWinner;
+			select.m_stageCount     = section->m_VsStageList->m_stageData.getChildCount();
 
-lbl_80228E0C:
-	lwz      r3, 0x30(r29)
-	lfs      f3, lbl_8051A250@sda21(r2)
-	lfs      f5, 0x5c(r3)
-	lfs      f6, 0x58(r3)
-	fmuls    f4, f5, f5
-	lfs      f2, lbl_8051A254@sda21(r2)
-	fmadds   f0, f6, f6, f3
-	lfs      f1, lbl_8051A258@sda21(r2)
-	lwz      r5, 0xe8(r31)
-	lwz      r4, 0xec(r31)
-	fadds    f4, f4, f0
-	lwz      r3, 0xf0(r31)
-	lwz      r0, 0xf4(r31)
-	stfs     f3, 0x28(r1)
-	fcmpo    cr0, f4, f3
-	stfs     f3, 0x2c(r1)
-	stfs     f2, 0x30(r1)
-	stfs     f2, 0x34(r1)
-	stfs     f3, 0x38(r1)
-	stfs     f3, 0x3c(r1)
-	stfs     f3, 0x40(r1)
-	stfs     f3, 0x44(r1)
-	stfs     f1, 0x48(r1)
-	stfs     f1, 0x4c(r1)
-	stfs     f3, 0x50(r1)
-	stfs     f3, 0x54(r1)
-	stw      r5, 0x18(r1)
-	stw      r4, 0x1c(r1)
-	stw      r3, 0x20(r1)
-	stw      r0, 0x24(r1)
-	ble      lbl_80228E98
-	ble      lbl_80228E9C
-	frsqrte  f0, f4
-	fmuls    f4, f0, f4
-	b        lbl_80228E9C
+			Screen::gGame2DMgr->setGamePad(m_player1Controller);
+			Screen::gGame2DMgr->open_VsSelect(select);
+		}
+		return;
 
-lbl_80228E98:
-	fmr      f4, f3
+	case VSTITLE_Display:
+		JUTGamePad::CStick* stick = &m_player1Controller->m_padSStick;
+		f32 y                     = stick->m_yPos;
+		f32 x                     = stick->m_xPos;
+		Vector3f stickPos         = Vector3f(x, 0.0f, y);
 
-lbl_80228E9C:
-	lfs      f0, lbl_8051A25C@sda21(r2)
-	fcmpo    cr0, f4, f0
-	ble      lbl_80228F64
-	lfs      f4, lbl_8051A250@sda21(r2)
-	li       r0, 0
-	lfs      f0, 0x2c(r1)
-	lfs      f2, 0x28(r1)
-	fmr      f1, f4
-	fmuls    f0, f0, f4
-	lfs      f3, 0x30(r1)
-	fmadds   f0, f2, f6, f0
-	fmadds   f0, f3, f5, f0
-	fcmpo    cr0, f0, f4
-	ble      lbl_80228EDC
-	fmr      f4, f0
-	li       r0, 0
+		Vector3f directions[4];
+		directions[0]    = Vector3f(0.0f, 0.0f, 1.0f);  // UP
+		directions[1]    = Vector3f(1.0f, 0.0f, 0.0f);  // RIGHT
+		directions[2]    = Vector3f(0.0f, 0.0f, -1.0f); // DOWN
+		directions[3]    = Vector3f(-1.0f, 0.0f, 0.0f); // LEFT
+		int vsEditArr[4] = { 0, 1, 2, -1 };
 
-lbl_80228EDC:
-	lfs      f0, 0x38(r1)
-	lfs      f2, 0x34(r1)
-	fmuls    f0, f0, f1
-	lfs      f3, 0x3c(r1)
-	fmadds   f0, f2, f6, f0
-	fmadds   f0, f3, f5, f0
-	fcmpo    cr0, f0, f4
-	ble      lbl_80228F04
-	fmr      f4, f0
-	li       r0, 1
+		// if c-stick is pointing a direction, adjust editNumber
+		if (stickMagnitude(stickPos) > 0.5f) {
+			f32 highest     = 0.0f;
+			int vsEditIndex = 0;
+			for (int i = 0; i < 4; i++) {
+				f32 stickWeight = dot(directions[i], stickPos);
+				if (stickWeight > highest) {
+					highest     = stickWeight;
+					vsEditIndex = i; // up = 0, right = 1, down = 2, left = 3
+				}
+			}
+			section->m_editNumber = vsEditArr[vsEditIndex]; // up  = 0, right = 1, down = 2, left = -1
 
-lbl_80228F04:
-	lfs      f0, 0x44(r1)
-	lfs      f2, 0x40(r1)
-	fmuls    f0, f0, f1
-	lfs      f3, 0x48(r1)
-	fmadds   f0, f2, f6, f0
-	fmadds   f0, f3, f5, f0
-	fcmpo    cr0, f0, f4
-	ble      lbl_80228F2C
-	fmr      f4, f0
-	li       r0, 2
+		} else {                        // no c-stick input
+			section->m_editNumber = -2; // random?
+		}
 
-lbl_80228F2C:
-	lfs      f0, 0x50(r1)
-	lfs      f2, 0x4c(r1)
-	fmuls    f0, f0, f1
-	lfs      f3, 0x54(r1)
-	fmadds   f0, f2, f6, f0
-	fmadds   f0, f3, f5, f0
-	fcmpo    cr0, f0, f4
-	ble      lbl_80228F50
-	li       r0, 3
+		int stageNumber;
+		int check = Screen::gGame2DMgr->check_VsSelect(stageNumber, section->m_olimarHandicap, section->m_louieHandicap);
+		switch (check) {
+		case 2:
+			section->m_menuRunning = true;
+			return;
+		case 3:
+			gameSystem->m_mode = GSM_VERSUS_MODE;
 
-lbl_80228F50:
-	slwi     r0, r0, 2
-	addi     r3, r1, 0x18
-	lwzx     r0, r3, r0
-	stw      r0, 0x328(r30)
-	b        lbl_80228F6C
+			LoadArg load(0, 0, 0);
+			VsGame::StageData* data = section->m_VsStageList->getStageData(stageNumber);
 
-lbl_80228F64:
-	li       r0, -2
-	stw      r0, 0x328(r30)
+			P2ASSERTLINE(451, data);
+			section->m_VsStageData = data;
+			section->m_VsStageNum  = stageNumber;
 
-lbl_80228F6C:
-	lwz      r3, gGame2DMgr__6Screen@sda21(r13)
-	addi     r4, r1, 8
-	addi     r5, r30, 0x344
-	addi     r6, r30, 0x348
-	bl       check_VsSelect__Q26Screen9Game2DMgrFRiRiRi
-	cmpwi    r3, 3
-	beq      lbl_80228FA4
-	bge      lbl_8022907C
-	cmpwi    r3, 2
-	bge      lbl_80228F98
-	b        lbl_8022907C
+			strcpy(section->m_caveInfoFilename, data->m_caveInfoFilename);
+			strcpy(section->m_editFilename, data->m_stageLayoutFilePath);
 
-lbl_80228F98:
-	li       r0, 1
-	stb      r0, 0x204(r30)
-	b        lbl_8022909C
+			load._04              = 0; // why...
+			section->m_container1 = data->m_pikiContainer;
 
-lbl_80228FA4:
-	lwz      r3, gameSystem__4Game@sda21(r13)
-	li       r4, 1
-	li       r0, 0
-	stw      r4, 0x44(r3)
-	stw      r0, 0xc(r1)
-	lwz      r4, 8(r1)
-	stw      r0, 0x10(r1)
-	stb      r0, 0x14(r1)
-	lwz      r3, 0x210(r30)
-	bl       getStageData__Q34Game6VsGame9StageListFi
-	or.      r28, r3, r3
-	bne      lbl_80228FE8
-	addi     r3, r31, 0xc8
-	addi     r5, r31, 0x80
-	li       r4, 0x1c3
-	crclr    6
-	bl       panic_f__12JUTExceptionFPCciPCce
+			playData->setDopeCount(0, data->m_startNumSpicy);
+			playData->setDopeCount(1, data->m_startNumBitter);
 
-lbl_80228FE8:
-	stw      r28, 0x33c(r30)
-	addi     r3, r30, 0x224
-	addi     r4, r28, 0x20
-	lwz      r0, 8(r1)
-	stw      r0, 0x340(r30)
-	bl       strcpy
-	addi     r3, r30, 0x2a4
-	addi     r4, r28, 0x70
-	bl       strcpy
-	li       r0, 0
-	addi     r3, r30, 0x214
-	stw      r0, 0x10(r1)
-	addi     r4, r28, 0x18
-	bl       __as__Q24Game13PikiContainerFRQ24Game13PikiContainer
-	lwz      r3, playData__4Game@sda21(r13)
-	li       r4, 0
-	lwz      r5, 0x68(r28)
-	bl       setDopeCount__Q24Game8PlayDataFii
-	lwz      r3, playData__4Game@sda21(r13)
-	li       r4, 1
-	lwz      r5, 0x64(r28)
-	bl       setDopeCount__Q24Game8PlayDataFii
-	lfs      f1, lbl_8051A260@sda21(r2)
-	addi     r3, r28, 0x18
-	lfs      f0, 0x60(r28)
-	addi     r4, r31, 0xd8
-	fadds    f0, f1, f0
-	stfs     f0, 0x3c0(r30)
-	bl       dump__Q24Game13PikiContainerFPc
-	mr       r3, r29
-	mr       r4, r30
-	lwz      r12, 0(r29)
-	addi     r6, r1, 0xc
-	li       r5, 1
-	lwz      r12, 0x1c(r12)
-	mtctr    r12
-	bctrl
+			section->m_timeLimit = 0.999f + data->m_timeLimit;
+			data->m_pikiContainer.dump("PikiContainer");
 
-lbl_8022907C:
-	mr       r3, r30
-	bl       doUpdate__Q24Game14BaseHIOSectionFv
-	lwz      r3, gGame2DMgr__6Screen@sda21(r13)
-	bl       update__Q26Screen9Game2DMgrFv
-	lwz      r3, particle2dMgr@sda21(r13)
-	cmplwi   r3, 0
-	beq      lbl_8022909C
-	bl       update__14TParticle2dMgrFv
+			transit(section, VGS_Load, &load);
+		}
+		break;
+	}
 
-lbl_8022909C:
-	lwz      r0, 0xa4(r1)
-	lwz      r31, 0x9c(r1)
-	lwz      r30, 0x98(r1)
-	lwz      r29, 0x94(r1)
-	lwz      r28, 0x90(r1)
-	mtlr     r0
-	addi     r1, r1, 0xa0
-	blr
-	*/
+	section->BaseHIOSection::doUpdate();
+	Screen::gGame2DMgr->update();
+	if (particle2dMgr) {
+		particle2dMgr->update();
+	}
 }
 
 /*
@@ -1283,46 +376,18 @@ lbl_8022909C:
  * Address:	802290BC
  * Size:	000088
  */
-void VsGame::TitleState::draw(Game::VsGameSection*, Graphics&)
+void TitleState::draw(VsGameSection* section, Graphics& gfx)
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	mr       r31, r5
-	lbz      r0, 0x10(r3)
-	cmplwi   r0, 2
-	bne      lbl_80229130
-	addi     r3, r31, 0x190
-	lwz      r12, 0x190(r31)
-	lwz      r12, 0x14(r12)
-	mtctr    r12
-	bctrl
-	lwz      r3, particle2dMgr@sda21(r13)
-	li       r4, 1
-	li       r5, 0
-	bl       draw__14TParticle2dMgrFUcUs
-	lwz      r3, gGame2DMgr__6Screen@sda21(r13)
-	mr       r4, r31
-	bl       draw__Q26Screen9Game2DMgrFR8Graphics
-	addi     r3, r31, 0x190
-	lwz      r12, 0x190(r31)
-	lwz      r12, 0x14(r12)
-	mtctr    r12
-	bctrl
-	lwz      r3, particle2dMgr@sda21(r13)
-	li       r4, 0
-	li       r5, 0
-	bl       draw__14TParticle2dMgrFUcUs
+	if (m_titleStage != VSTITLE_Display) {
+		return;
+	}
 
-lbl_80229130:
-	lwz      r0, 0x14(r1)
-	lwz      r31, 0xc(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	gfx.m_perspGraph.setPort();
+	particle2dMgr->draw(1, 0);
+	Screen::gGame2DMgr->draw(gfx);
+
+	gfx.m_perspGraph.setPort();
+	particle2dMgr->draw(0, 0);
 }
 
 /*
@@ -1330,190 +395,18 @@ lbl_80229130:
  * Address:	80229144
  * Size:	0000B0
  */
-void VsGame::TitleState::cleanup(Game::VsGameSection*)
+void TitleState::cleanup(VsGameSection* section)
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	stw      r30, 8(r1)
-	mr       r30, r3
-	lwz      r0, spSceneMgr__8PSSystem@sda21(r13)
-	cmplwi   r0, 0
-	bne      lbl_80229184
-	lis      r3, lbl_804834CC@ha
-	lis      r5, lbl_804834D8@ha
-	addi     r3, r3, lbl_804834CC@l
-	li       r4, 0x1d3
-	addi     r5, r5, lbl_804834D8@l
-	crclr    6
-	bl       panic_f__12JUTExceptionFPCciPCce
+	PSSystem::SceneMgr* sceneMgr = PSSystem::getSceneMgr();
+	PSSystem::checkSceneMgr(sceneMgr);
+	sceneMgr->deleteCurrentScene();
 
-lbl_80229184:
-	lwz      r31, spSceneMgr__8PSSystem@sda21(r13)
-	cmplwi   r31, 0
-	bne      lbl_802291AC
-	lis      r3, lbl_804834CC@ha
-	lis      r5, lbl_804834D8@ha
-	addi     r3, r3, lbl_804834CC@l
-	li       r4, 0x1dc
-	addi     r5, r5, lbl_804834D8@l
-	crclr    6
-	bl       panic_f__12JUTExceptionFPCciPCce
+	particle2dMgr->killAll();
 
-lbl_802291AC:
-	mr       r3, r31
-	bl       deleteCurrentScene__Q28PSSystem8SceneMgrFv
-	lwz      r3, particle2dMgr@sda21(r13)
-	bl       killAll__14TParticle2dMgrFv
-	lwz      r3, 0x14(r30)
-	bl       freeAll__7JKRHeapFv
-	lwz      r3, 0x14(r30)
-	bl       destroy__7JKRHeapFv
-	li       r0, 0
-	stw      r0, 0x14(r30)
-	lwz      r3, 0x18(r30)
-	bl       becomeCurrentHeap__7JKRHeapFv
-	lwz      r0, 0x14(r1)
-	lwz      r31, 0xc(r1)
-	lwz      r30, 8(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	m_expHeap->freeAll();
+	m_expHeap->destroy();
+	m_expHeap = nullptr;
+	m_heap->becomeCurrentHeap();
 }
-
+} // namespace VsGame
 } // namespace Game
-
-/*
- * --INFO--
- * Address:	802291F4
- * Size:	000008
- */
-u32 Morimura::DispMemberVsSelect::getSize(void) { return 0x38; }
-
-/*
- * --INFO--
- * Address:	802291FC
- * Size:	00000C
- */
-void Morimura::DispMemberVsSelect::getOwnerID(void)
-{
-	/*
-	lis      r3, 0x4D524D52@ha
-	addi     r3, r3, 0x4D524D52@l
-	blr
-	*/
-}
-
-/*
- * --INFO--
- * Address:	80229208
- * Size:	000014
- */
-void Morimura::DispMemberVsSelect::getMemberID(void)
-{
-	/*
-	lis      r4, 0x4C454354@ha
-	lis      r3, 0x56535345@ha
-	addi     r4, r4, 0x4C454354@l
-	addi     r3, r3, 0x56535345@l
-	blr
-	*/
-}
-
-/*
- * --INFO--
- * Address:	8022921C
- * Size:	000008
- */
-u32 Morimura::DispMemberChallengeSelect::getSize(void) { return 0x24; }
-
-/*
- * --INFO--
- * Address:	80229224
- * Size:	00000C
- */
-void Morimura::DispMemberChallengeSelect::getOwnerID(void)
-{
-	/*
-	lis      r3, 0x4D524D52@ha
-	addi     r3, r3, 0x4D524D52@l
-	blr
-	*/
-}
-
-/*
- * --INFO--
- * Address:	80229230
- * Size:	000014
- */
-void Morimura::DispMemberChallengeSelect::getMemberID(void)
-{
-	/*
-	lis      r4, 0x4C454354@ha
-	lis      r3, 0x43485345@ha
-	addi     r4, r4, 0x4C454354@l
-	addi     r3, r3, 0x43485345@l
-	blr
-	*/
-}
-
-/*
- * --INFO--
- * Address:	80229244
- * Size:	000004
- */
-void resume__Q24Game32FSMState<Game::VsGameSection> FPQ24Game13VsGameSection(void) { }
-
-/*
- * --INFO--
- * Address:	80229248
- * Size:	000004
- */
-void restart__Q24Game32FSMState<Game::VsGameSection> FPQ24Game13VsGameSection(void) { }
-
-/*
- * --INFO--
- * Address:	8022924C
- * Size:	000030
- */
-void Delegate<Game::VsGame::TitleState>::invoke()
-{
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	mr       r4, r3
-	stw      r0, 0x14(r1)
-	addi     r12, r4, 8
-	lwz      r3, 4(r3)
-	bl       __ptmf_scall
-	nop
-	lwz      r0, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
-}
-
-/*
- * --INFO--
- * Address:	8022927C
- * Size:	000028
- */
-void __sinit_vsGS_Title_cpp(void)
-{
-	/*
-	lis      r4, __float_nan@ha
-	li       r0, -1
-	lfs      f0, __float_nan@l(r4)
-	lis      r3, lbl_804C0DE8@ha
-	stw      r0, lbl_80515C60@sda21(r13)
-	stfsu    f0, lbl_804C0DE8@l(r3)
-	stfs     f0, lbl_80515C64@sda21(r13)
-	stfs     f0, 4(r3)
-	stfs     f0, 8(r3)
-	blr
-	*/
-}

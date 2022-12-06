@@ -19,18 +19,17 @@ Challenge2D_TitleInfo::Challenge2D_TitleInfo(int count)
  * Address:	80235104
  * Size:	000030
  */
-Challenge2D_TitleInfo::Info::Info(void)
+Challenge2D_TitleInfo::Info::Info()
 {
-	m_bool           = false;
 	m_floorCount     = 0;
 	m_sprayCounts[1] = 0;
 	m_sprayCounts[0] = 0;
-	_0C              = 0;
+	m_timeLimit      = 0;
 	m_pikiContainer  = nullptr;
 	m_highscore2     = nullptr;
 	m_highscore1     = nullptr;
-	_1C              = 0;
-	m_bool           = false;
+	m_stageIndex     = 0;
+	m_displayFlag.clear();
 }
 
 /*

@@ -9,6 +9,7 @@
 #include "Game/StateMachine.h"
 #include "Game/VsGameSection.h"
 #include "Game/EnemyBase.h"
+#include "Game/gameChallenge2D.h"
 
 struct JUTTexture;
 struct LightObj;
@@ -29,6 +30,13 @@ enum StateID {
 	VGS_VS     = 3,
 	VGS_Result = 4,
 	VGS_StateCount,
+};
+
+enum VsCaveInfoType {
+	VSCAVEINFO_Default  = 0,
+	VSCAVEINFO_Metal    = 1,
+	VSCAVEINFO_Concrete = 2,
+	VSCAVEINFO_Tsuchi   = 3,
 };
 
 struct TekiNode : public CNode {
@@ -145,7 +153,7 @@ struct StageList : public CNode {
 	virtual ~StageList(); // _08 (weak)
 
 	void read(Stream&);
-	void getStageData(int);
+	StageData* getStageData(int);
 
 	// _00 		= VTBL
 	// _00-_18	= CNode
@@ -225,8 +233,15 @@ struct VSState : public GameState {
 };
 
 struct LoadArg : public StateArg {
+	inline LoadArg(u32 a, int b, bool c)
+	    : _00(a)
+	    , _04(b)
+	    , _08(c)
+	{
+	}
+
 	u32 _00;  // _00, unknown
-	s32 _04;  // _04, unknown
+	int _04;  // _04, unknown
 	bool _08; // _08
 };
 
@@ -248,7 +263,7 @@ struct LoadState : public State {
 	VsGameSection* m_section;                      // _18
 	bool _1C;                                      // _1C
 	u32 _20;                                       // _20
-	s32 _24;                                       // _24
+	int _24;                                       // _24
 	bool _28;                                      // _28
 	Delegate<Game::VsGame::LoadState>* m_delegate; // _2C
 	DvdThreadCommand m_dvdThreadCommand;           // _30
@@ -295,7 +310,17 @@ struct ResultState : public State {
 	Challenge2D_ResultInfo* m_resultInfo;            // _38
 };
 
+struct TitleArg : public StateArg {
+	u8 _00; // _00, unknown
+};
+
 struct TitleState : public State {
+	enum TitleStage {
+		VSTITLE_PrepareInfo = 0,
+		VSTITLE_PrepareDisp = 1,
+		VSTITLE_Display     = 2,
+	};
+
 	TitleState();
 
 	virtual void init(VsGameSection*, StateArg*); // _08
@@ -307,9 +332,26 @@ struct TitleState : public State {
 	void execChallenge(VsGameSection*);
 	void execVs(VsGameSection*);
 
+	inline int getChallengeStageNum() { return 30; }
+
+	inline int getVsStageNum() { return m_section->m_VsStageList->m_stageData.getChildCount(); }
+
 	// _00     = VTBL
 	// _00-_0C = State
-	u8 _0C[0x38]; // _0C, unknown
+	f32 _0C;                                        // _0C
+	u8 m_titleStage;                                // _10
+	JKRExpHeap* m_expHeap;                          // _14
+	JKRHeap* m_heap;                                // _18
+	Delegate<Game::VsGame::TitleState>* m_delegate; // _1C
+	int _20;                                        // _20
+	int m_caveInfoType;                             // _24
+	int m_stageNum;                                 // _28
+	int _2C;                                        // _2C
+	Controller* m_player1Controller;                // _2C
+	Controller* m_player2Controller;                // _30
+	VsGameSection* m_section;                       // _38
+	Challenge2D_TitleInfo* m_challengeTitleInfo;    // _3C
+	Vs2D_TitleInfo* m_vsTitleInfo;                  // _40
 };
 /////////////////////////////////////////////////////////////////
 } // namespace VsGame
