@@ -288,13 +288,13 @@ void TitleState::dvdload() {
         scene.m_gameType = PSGame::SceneInfo::TITLE_19;
     }
     scene._07 = 0;
-    static_cast<PSGame::PikSceneMgr*>(getSceneMgr())->newAndSetCurrentScene(&scene);
+    static_cast<PSGame::PikSceneMgr*>(PSSystem::getSceneMgr())->newAndSetCurrentScene(&scene);
     
-    PSSystem::SceneMgr* sceneMgr = getSceneMgr();
+    PSSystem::SceneMgr* sceneMgr = PSSystem::getSceneMgr();
     sceneMgr->checkScene();
     
     sceneMgr->m_scenes->m_child->scene1stLoadSync();
-    sceneMgr = getSceneMgr();
+    sceneMgr = PSSystem::getSceneMgr();
     sceneMgr->checkScene();
     sceneMgr->m_scenes->m_child->startMainSeq();
     m_challengeTitleInfo = new Challenge2D_TitleInfo(getChallengeStageNum()); // Stage Num
@@ -567,7 +567,7 @@ void TitleState::draw(Game::VsGameSection* section, Graphics& gfx) {
  */
 void Game::VsGame::TitleState::cleanup(Game::VsGameSection* section)
 {
-    PSSystem::SceneMgr* sceneMgr = getSceneMgr();
+    PSSystem::SceneMgr* sceneMgr = PSSystem::getSceneMgr();
     
     P2ASSERTLINE(476, PSSystem::spSceneMgr);
     
