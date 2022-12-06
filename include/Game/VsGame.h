@@ -335,6 +335,13 @@ struct TitleState : public State {
 	VsGameSection* m_section;                        // _38
 	Challenge2D_TitleInfo* m_challengeTitleInfo;     // _3C
 	Vs2D_TitleInfo* m_vsTitleInfo;                   // _40
+	inline int getChallengeStageNum() {
+        	return 30;
+    	}
+
+    	inline int getVsStageNum() {
+        	return m_section->m_VsStageList->m_stageData.getChildCount();
+    	}
 };
 /////////////////////////////////////////////////////////////////
 } // namespace VsGame
