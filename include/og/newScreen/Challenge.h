@@ -1,7 +1,7 @@
 #ifndef _OG_NEWSCREEN_CHALLENGEBASE_H
 #define _OG_NEWSCREEN_CHALLENGEBASE_H
 
-#include "Screen/Bases.h"
+#include "Screen/screenObj.h"
 #include "og/Screen/ogScreen.h"
 #include "og/Screen/BloGroup.h"
 

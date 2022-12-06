@@ -7,7 +7,7 @@
 #include "Morimura/Bases.h"
 #include "Screen/Enums.h"
 #include "og/Screen/ogScreen.h"
-#include "Screen/Bases.h"
+#include "Screen/screenObj.h"
 #include "types.h"
 
 struct Graphics;

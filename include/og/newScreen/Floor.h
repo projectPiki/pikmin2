@@ -4,7 +4,7 @@
 #include "JSystem/J2D/J2DPane.h"
 #include "JSystem/JUT/TColor.h"
 #include "types.h"
-#include "Screen/Bases.h"
+#include "Screen/screenObj.h"
 #include "og/Screen/ogScreen.h"
 #include "og/Screen/DispMember.h"
 

@@ -1,6 +1,5 @@
 #include "CNode.h"
 #include "JSystem/JUT/JUTException.h"
-#include "Screen/Bases.h"
 #include "Screen/screenObj.h"
 #include "og/Screen/ogScreen.h"
 #include "types.h"

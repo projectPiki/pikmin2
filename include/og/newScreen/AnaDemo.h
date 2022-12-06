@@ -1,7 +1,7 @@
 #ifndef _OG_NEWSCREEN_ANADEMO_H
 #define _OG_NEWSCREEN_ANADEMO_H
 
-#include "Screen/Bases.h"
+#include "Screen/screenObj.h"
 #include "og/Screen/anime.h"
 #include "og/Screen/callbackNodes.h"
 #include "og/Screen/MenuMgr.h"

@@ -258,9 +258,6 @@ bool ObjChallenge1P::doStart(::Screen::StartSceneArg const* arg)
 	return true;
 }
 
-static const char objChal1PUnusedHeaderName[] = "screenObj.h";
-static const char objChal1PUnusedAssert[]     = "P2Assert";
-
 ObjChallenge1P::StaticValues ObjChallenge1P::msVal;
 
 } // namespace newScreen

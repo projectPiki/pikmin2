@@ -1,7 +1,7 @@
 #ifndef _OG_NEWSCREEN_CAVE_H
 #define _OG_NEWSCREEN_CAVE_H
 
-#include "Screen/Bases.h"
+#include "Screen/screenObj.h"
 #include "JSystem/J2D/J2DPane.h"
 #include "og/Screen/OtakaraSensor.h"
 #include "og/Screen/DispMember.h"

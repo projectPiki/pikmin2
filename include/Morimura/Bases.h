@@ -6,7 +6,7 @@
 
 #include "Dolphin/string.h"
 #include "JSystem/JKR/JKRDisposer.h"
-#include "Screen/Bases.h"
+#include "Screen/screenObj.h"
 #include "og/Screen/anime.h"
 #include "P2DScreen.h"
 #include "System.h"

@@ -327,9 +327,6 @@ bool ObjCave::doUpdateFadeout()
  */
 void ObjCave::doUpdateFadeoutFinish() { }
 
-static const char objCaveUnusedHeaderName[] = "screenObj.h";
-static const char objCaveUnusedAssert[]     = "P2Assert";
-
 ObjCave::StaticValues ObjCave::msVal;
 
 } // namespace newScreen

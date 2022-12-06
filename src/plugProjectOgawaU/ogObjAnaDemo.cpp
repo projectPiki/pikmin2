@@ -3,7 +3,7 @@
 #include "og/newScreen/ogUtil.h"
 #include "og/newScreen/AnaDemo.h"
 #include "og/Screen/ogScreen.h"
-#include "Screen/Bases.h"
+#include "Screen/screenObj.h"
 #include "og/Sound.h"
 #include "System.h"
 #include "Controller.h"
@@ -747,9 +747,6 @@ bool ObjAnaDemo::doUpdateFadeout()
 	commonUpdate();
 	return true;
 }
-
-static const char anaDemoUnusedHeaderName[] = "screenObj.h";
-static const char anaDemoUnusedAssert[]     = "P2Assert";
 
 ObjAnaDemo::StaticValues ObjAnaDemo::msVal;
 

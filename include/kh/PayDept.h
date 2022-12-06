@@ -2,7 +2,7 @@
 #define _KH_PAYDEPT_H
 
 #include "og/Screen/DispMember.h"
-#include "Screen/Bases.h"
+#include "Screen/screenObj.h"
 #include "P2DScreen.h"
 
 namespace kh {

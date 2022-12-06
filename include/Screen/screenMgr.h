@@ -1,7 +1,7 @@
 #ifndef _SCREEN_SCREENMGR_H
 #define _SCREEN_SCREENMGR_H
 
-#include "Screen/Bases.h"
+#include "Screen/screenObj.h"
 
 namespace Screen {
 struct MgrBase : public JKRDisposer {

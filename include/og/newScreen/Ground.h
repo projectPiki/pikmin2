@@ -6,7 +6,7 @@
 #include "og/Screen/ogScreen.h"
 #include "og/Screen/Data.h"
 #include "og/Screen/DispMember.h"
-#include "Screen/Bases.h"
+#include "Screen/screenObj.h"
 #include "types.h"
 
 namespace P2DScreen {

@@ -340,8 +340,3 @@ int ObjWorldMapInfoWindow0::getResult() { return _CC->_08; }
 // 	*/
 // }
 // } // namespace Screen
-
-#pragma force_active on
-#include "Screen/screenObj.h"
-// const char* fakeMatch_screenObj_WMapWin0 = "screenObj.h";
-#pragma force_active reset

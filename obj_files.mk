@@ -871,7 +871,7 @@ OGAWA:=\
 	$(BUILD_DIR)/src/plugProjectOgawaU/ogSE.o\
 	$(BUILD_DIR)/src/plugProjectOgawaU/ogCounterDay.o\
 	$(BUILD_DIR)/src/plugProjectOgawaU/testScene.o\
-	$(BUILD_DIR)/asm/plugProjectOgawaU/testObj.o\
+	$(BUILD_DIR)/src/plugProjectOgawaU/testObj.o\
 	$(BUILD_DIR)/asm/plugProjectOgawaU/ogSceneGround.o\
 	$(BUILD_DIR)/asm/plugProjectOgawaU/ogObjGround.o\
 	$(BUILD_DIR)/asm/plugProjectOgawaU/ogCopyPane.o\

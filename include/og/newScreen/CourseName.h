@@ -1,7 +1,7 @@
 #ifndef _OG_NEWSCREEN_COURSENAME_H
 #define _OG_NEWSCREEN_COURSENAME_H
 
-#include "Screen/Bases.h"
+#include "Screen/screenObj.h"
 #include "JSystem/J2D/J2DPane.h"
 
 namespace P2DScreen {

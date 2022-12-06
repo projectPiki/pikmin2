@@ -6,7 +6,7 @@
 #include "ebi/Save.h"
 #include "og/Screen/DispMember.h"
 #include "og/Screen/callbackNodes.h"
-#include "Screen/Bases.h"
+#include "Screen/screenObj.h"
 #include "P2DScreen.h"
 #include "Controller.h"
 

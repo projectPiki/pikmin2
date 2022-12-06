@@ -2,7 +2,7 @@
 #define _MORIMURA_MRUTIL_H
 
 #include "og/Screen/callbackNodes.h"
-#include "Screen/Bases.h"
+#include "Screen/screenObj.h"
 #include "efx2d/T2DCountKira.h"
 
 struct J2DPane;
