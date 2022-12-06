@@ -165,8 +165,8 @@ void VsGameSection::onInit()
 {
 	m_pikminRatio      = 0.0f;
 	m_pikminCountTimer = 0.5f;
-	_1F4               = 0.0f;
-	_1F0               = 0.0f;
+	_1F0[1]            = 0.0f;
+	_1F0[0]            = 0.0f;
 
 	clearGetDopeCount();
 	clearGetCherryCount();
