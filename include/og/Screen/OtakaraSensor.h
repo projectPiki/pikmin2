@@ -2,6 +2,7 @@
 #define _OG_SCREEN_OTAKARASENSOR_H
 
 #include "types.h"
+#include "og/Screen/DispMember.h"
 
 struct J2DPane;
 struct J2DGrafContext;
@@ -16,13 +17,20 @@ struct OtakaraSensor {
 	OtakaraSensor();
 	void init(J2DPane*, J2DPane*, int);
 	void startSensorEff();
-	void setParam(f32, u32, u8, u8);
+	void setParam(f32, int, bool, bool);
 	void updateInit();
 	void show();
 	void update();
 	void adjPos(f32, f32);
 	void adjScale(f32);
 	void draw(J2DGrafContext&);
+	void hide();
+
+	inline void setSensorVec1(f32 x, f32 y) { _4C = Vector2f(x, y); }
+
+	inline void setSensorVec2(f32 x, f32 y) { _5C = Vector2f(x, y); }
+
+	inline void setSensorVec3(f32 x, f32 y) { _64 = Vector2f(x, y); }
 
 	f32 m_level;           // _00
 	f32 m_angle;           // _04
@@ -43,14 +51,11 @@ struct OtakaraSensor {
 	bool _40;              // _40
 	f32 _44;               // _44
 	f32 _48;               // _48
-	f32 _4C;               // _4C
-	f32 _50;               // _50
+	Vector2f _4C;          // _4C
 	bool _54;              // _54
 	f32 _58;               // _58
-	f32 _5C;               // _5C
-	f32 _60;               // _60
-	f32 _64;               // _64
-	f32 _68;               // _68
+	Vector2f _5C;          // _5C
+	Vector2f _64;          // _64
 	bool m_useAngleOffset; // _6C
 	bool m_isInit;         // _6D
 	int _70;               // _70

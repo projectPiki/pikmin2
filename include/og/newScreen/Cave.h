@@ -3,6 +3,8 @@
 
 #include "Screen/Bases.h"
 #include "JSystem/J2D/J2DPane.h"
+#include "og/Screen/OtakaraSensor.h"
+#include "og/Screen/DispMember.h"
 
 namespace P2DScreen {
 struct Mgr_tuning;
@@ -52,6 +54,11 @@ struct ObjCave : public ::Screen::ObjBase {
 
 	void commonUpdate();
 
+	void setSensorParam(u8 allTreasureGotten, u8 radarEnabled, u32 radarState, f32 treasureDist)
+	{
+		m_otakara->setParam(treasureDist, radarState, radarEnabled, allTreasureGotten);
+	}
+
 	// _00     = VTBL1
 	// _18     = VTBL2
 	// _00-_38 = Screen::ObjBase
@@ -74,23 +81,48 @@ struct ObjCave : public ::Screen::ObjBase {
 	bool m_doSensorEff;                           // _78
 
 	static struct StaticValues {
+		inline StaticValues()
+		{
+			_00 = 0.3f;
+			_04 = 0.1f;
+			_08 = -50.0f;
+			_0C = 0.0f;
+			_10 = 1.0f;
+			_14 = 1.0f;
+			_18 = 0.0f;
+			_1C = 2.0f;
+			_20 = 0.9f;
+			_24 = 0.0f;
+			_28 = -30.0f;
+			_2C = 0.2f;
+			_30 = 0.25f;
+			_34 = 0.0f;
+			_38 = -15.0f;
+			_3C = 0.0f;
+			_40 = -32.0f;
+			_44 = 5.0f;
+			_48 = 0.4f;
+		}
+
 		f32 _00; // _00
 		f32 _04; // _04
 		f32 _08; // _08
 		f32 _0C; // _0C
 		f32 _10; // _10
 		f32 _14; // _14
-		f32 _18;
-		f32 _1C;
-		f32 _20;
-		f32 _24;
-		f32 _28;
-		f32 _2C;
-		f32 _30;
-		f32 _34;
-		f32 _38;
-		f32 _3C;
-		f32 _40;
+		f32 _18; // _18
+		f32 _1C; // _1C
+		f32 _20; // _20
+		f32 _24; // _24
+		f32 _28; // _28
+		f32 _2C; // _2C
+		f32 _30; // _30
+		f32 _34; // _34
+		f32 _38; // _38
+		f32 _3C; // _3C
+		f32 _40; // _40
+		f32 _44; // _44
+		f32 _48; // _48
 	} msVal;
 };
 } // namespace newScreen
