@@ -269,10 +269,10 @@ void TitleState::init(VsGameSection* section, StateArg* arg) {
  * Address:	........
  * Size:	000084
  */
-void VsGame::TitleState::initNext(Game::VsGameSection*)
-{
-	// UNUSED FUNCTION
-}
+//void TitleState::initNext(Game::VsGameSection*)
+//{
+//	// UNUSED FUNCTION
+//}
 
 /*
  * --INFO--
