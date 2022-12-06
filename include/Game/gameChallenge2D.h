@@ -18,20 +18,20 @@ enum Challenge2D_ResultFlags {
 struct Challenge2D_TitleInfo {
 	struct Info {
 		Info();
-		
+
 		inline void setDisplayFlag(u32 flag) { m_displayFlag.typeView |= flag; }
-		
-		u32 m_floorCount;               // _00
-		u32 m_sprayCounts[2];           // _04
-		u32 _0C;                        // _0C
+
+		int m_floorCount;               // _00
+		int m_sprayCounts[2];           // _04
+		int m_timeLimit;                // _0C
 		PikiContainer* m_pikiContainer; // _10
 		Highscore* m_highscore1;        // _14
 		Highscore* m_highscore2;        // _18
-		u32 _1C;                        // _1C
+		u32 m_stageIndex;               // _1C
 		BitFlag<u8> m_displayFlag;      // _20
 	};
 
-	Challenge2D_TitleInfo(int);
+	Challenge2D_TitleInfo(int stageNum);
 
 	Challenge2D_TitleInfo::Info* operator()(int);
 
@@ -59,7 +59,8 @@ struct Vs2D_TitleInfo {
 		Info();
 		u32 m_info; // _00
 	};
-	Vs2D_TitleInfo(int);
+
+	Vs2D_TitleInfo(int stageNum);
 
 	Vs2D_TitleInfo::Info* operator()(int);
 

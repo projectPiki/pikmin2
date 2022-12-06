@@ -257,11 +257,11 @@ inline f32 _lenVec(Vector3f& vec)
 	return length;
 }
 
-inline f32 stickVec(Vector3f& vec)
+inline f32 stickMagnitude(Vector3f& vec)
 {
-    Vector3f a = vec;
-    a.z*=a.z;
-	f32 length = a.x*a.x+a.y*a.y+a.z;
+	Vector3f a = vec;
+	a.z *= a.z;
+	f32 length = a.x * a.x + a.y * a.y + a.z;
 	_sqrtf(length, &length);
 	return length;
 }
