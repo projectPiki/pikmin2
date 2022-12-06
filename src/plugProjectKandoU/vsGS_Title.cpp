@@ -580,6 +580,7 @@ void Game::VsGame::TitleState::cleanup(Game::VsGameSection* section)
 
 }
 
+} // namespace VsGame
 } // namespace Game
 
 /*
@@ -641,6 +642,7 @@ u64 Morimura::DispMemberChallengeSelect::getMemberID(void ){
  * Address:	80229244
  * Size:	000004
  */
+namespace Game {
 void FSMState<VsGameSection>::resume(Game::VsGameSection*) { }
 
 /*
@@ -658,7 +660,7 @@ void FSMState<VsGameSection>::restart(Game::VsGameSection*) { }
 void Delegate<Game::VsGame::TitleState>::invoke() {
     (m_object->*m_function)();
 }
-
+} // namespace Game
 /*
  * --INFO--
  * Address:	8022927C
