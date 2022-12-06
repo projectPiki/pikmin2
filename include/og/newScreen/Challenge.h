@@ -84,10 +84,10 @@ struct ObjChallengeBase : public ::Screen::ObjBase {
 	f32 m_scale;              // _3C
 	u32 m_timeLeftInt;        // _40
 	f32 m_timeLeft;           // _44
-	u8 _48;                   // _48
-	u8 _49;                   // _49
-	J2DPictureEx* _4C;        // _4C
-	f32 _50;                  // _50
+	u8 m_doneChime1;          // _48
+	u8 m_doneChime2;          // _49
+	J2DPictureEx* m_paneTime; // _4C
+	f32 m_incTimeLeftDelay;   // _50
 	JUtility::TColor m_white; // _54
 	JUtility::TColor m_black; // _58
 	u32 m_subLevel;           // _5C
@@ -95,9 +95,9 @@ struct ObjChallengeBase : public ::Screen::ObjBase {
 	static struct StaticValues {
 		f32 _00;
 		f32 _04;
-		f32 _08;
-		f32 _0C;
-		u32 _10;
+		JUtility::TColor m_timerLowWhite;
+		JUtility::TColor m_timerLowBlack;
+		u32 m_timerLimitLow;
 	} msBaseVal;
 };
 
@@ -195,6 +195,8 @@ struct ObjChallenge1P : public ObjChallengeBase {
 
 struct ObjChallenge2P : public ObjChallengeBase {
 	struct ScreenSet {
+		void init(og::Screen::DataNavi*, JKRArchive*, og::Screen::DispMemberChallenge2P*);
+		void update(og::Screen::DataNavi&);
 		P2DScreen::Mgr_tuning* _00;          // _00
 		og::Screen::CallBack_LifeGauge* _04; // _04
 		og::Screen::DopingCheck* _08;        // _08

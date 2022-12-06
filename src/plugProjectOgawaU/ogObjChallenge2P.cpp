@@ -1,4 +1,5 @@
 #include "types.h"
+#include "og/newScreen/Challenge.h"
 
 /*
     Generated from dpostproc
@@ -683,7 +684,7 @@ lbl_8031F32C:
  * Address:	8031F378
  * Size:	0002BC
  */
-void ObjChallenge2P::ScreenSet::init((og::Screen::DataNavi*, JKRArchive*, og::Screen::DispMemberChallenge2P*))
+void ObjChallenge2P::ScreenSet::init(og::Screen::DataNavi*, JKRArchive*, og::Screen::DispMemberChallenge2P*)
 {
 	/*
 	.loc_0x0:
@@ -1055,7 +1056,7 @@ lbl_8031F7BC:
  * Address:	8031F894
  * Size:	000024
  */
-void ObjChallenge2P::doUpdate(void)
+bool ObjChallenge2P::doUpdate(void)
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -1241,7 +1242,7 @@ void ObjChallenge2P::doUpdateFadeoutFinish(void) { }
  * Address:	8031FAC4
  * Size:	000074
  */
-void ObjChallenge2P::doUpdateFadein(void)
+bool ObjChallenge2P::doUpdateFadein(void)
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -1283,7 +1284,7 @@ lbl_8031FB08:
  * Address:	8031FB38
  * Size:	00007C
  */
-void ObjChallenge2P::doUpdateFadeout(void)
+bool ObjChallenge2P::doUpdateFadeout(void)
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -1327,7 +1328,7 @@ lbl_8031FB80:
  * Address:	8031FBB4
  * Size:	000074
  */
-void ObjChallenge2P::doStart(Screen::StartSceneArg const*)
+bool ObjChallenge2P::doStart(::Screen::StartSceneArg const*)
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -1438,10 +1439,10 @@ void __sinit_ogObjChallenge2P_cpp(void)
  * Address:	8031FCFC
  * Size:	000008
  */
-@24 @og::newScreen::ObjChallenge2P::~ObjChallenge2P(void)
-{
-	/*
-	addi     r3, r3, -24
-	b        __dt__Q32og9newScreen14ObjChallenge2PFv
-	*/
-}
+//@24 @og::newScreen::ObjChallenge2P::~ObjChallenge2P(void)
+//{
+/*
+addi     r3, r3, -24
+b        __dt__Q32og9newScreen14ObjChallenge2PFv
+*/
+//}

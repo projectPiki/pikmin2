@@ -1,4 +1,8 @@
 #include "types.h"
+#include "og/newScreen/Challenge.h"
+#include "og/Screen/callbackNodes.h"
+#include "System.h"
+#include "og/Sound.h"
 
 /*
     Generated from dpostproc
@@ -84,6 +88,18 @@ namespace newScreen {
  */
 ObjChallengeBase::ObjChallengeBase(void)
 {
+	m_fadeLevel = 0.0f;
+	m_scale     = 0.0f;
+	m_white.set(-1);
+	m_black.set(-1);
+	m_doneChime1       = false;
+	m_doneChime2       = false;
+	m_paneTime         = nullptr;
+	m_incTimeLeftDelay = 0.0f;
+	m_timeLeft         = 0.0f;
+	m_white.set(255, 255, 255, 255);
+	m_black.set(0, 0, 0, 0);
+
 	/*
 	stwu     r1, -0x10(r1)
 	mflr     r0
@@ -189,8 +205,11 @@ lbl_8032C9C8:
  * Address:	8032C9E4
  * Size:	0000A0
  */
-void ObjChallengeBase::doCreateAfter((JKRArchive*, og::Screen::CallBack_CounterRV*))
+void ObjChallengeBase::doCreateAfter(JKRArchive* arc, og::Screen::CallBack_CounterRV* timer)
 {
+	m_paneTime = timer->_6C;
+	m_white    = m_paneTime->getWhite();
+	m_black    = m_paneTime->getBlack();
 	/*
 	.loc_0x0:
 	  stwu      r1, -0x20(r1)
@@ -241,8 +260,11 @@ void ObjChallengeBase::doCreateAfter((JKRArchive*, og::Screen::CallBack_CounterR
  * Address:	8032CA84
  * Size:	000014
  */
-void ObjChallengeBase::doStart(Screen::StartSceneArg const*)
+bool ObjChallengeBase::doStart(::Screen::StartSceneArg const*)
 {
+	m_fadeLevel = 0.0f;
+	m_scale     = 0.0f;
+	return true;
 	/*
 	lfs      f0, lbl_8051DF40@sda21(r2)
 	stfs     f0, 0x38(r3)
@@ -257,8 +279,10 @@ void ObjChallengeBase::doStart(Screen::StartSceneArg const*)
  * Address:	8032CA98
  * Size:	000010
  */
-void ObjChallengeBase::doEnd(Screen::EndSceneArg const*)
+bool ObjChallengeBase::doEnd(::Screen::EndSceneArg const*)
 {
+	m_fadeLevel = 0.0f;
+	return true;
 	/*
 	lfs      f0, lbl_8051DF40@sda21(r2)
 	stfs     f0, 0x38(r3)
@@ -272,8 +296,42 @@ void ObjChallengeBase::doEnd(Screen::EndSceneArg const*)
  * Address:	8032CAA8
  * Size:	0001D0
  */
-void ObjChallengeBase::updateTimer(float, float)
+void ObjChallengeBase::updateTimer(f32 set, f32 dec)
 {
+	// for sublevels past 1, wait a set time before increasing the time
+	if (m_subLevel != 0 && m_incTimeLeftDelay < 0.0f) {
+		m_incTimeLeftDelay -= sys->m_deltaTime;
+		if (dec < 0.0f && m_incTimeLeftDelay < 0.0f) {
+			ogSound->setTimeCarry();
+		}
+		if (dec > 0.0f) {
+			m_timeLeft = set - dec;
+		} else {
+			m_timeLeft = set;
+		}
+	} else {
+		m_timeLeft = set;
+	}
+	m_timeLeftInt = m_timeLeft;
+
+	if (m_timeLeftInt <= msBaseVal.m_timerLimitLow) {
+		m_paneTime->setWhite(msBaseVal.m_timerLowWhite);
+		m_paneTime->setBlack(msBaseVal.m_timerLowBlack);
+	} else {
+		m_paneTime->setWhite(m_white);
+		m_paneTime->setBlack(m_black);
+	}
+
+	if (m_incTimeLeftDelay <= 0.0f) {
+		if (m_timeLeftInt == 30 && !m_doneChime1) {
+			m_doneChime1 = true;
+			ogSound->setChime();
+		}
+		if (m_timeLeftInt == 10 && !m_doneChime2) {
+			m_doneChime2 = true;
+			ogSound->setChime();
+		}
+	}
 	/*
 	stwu     r1, -0x40(r1)
 	mflr     r0
@@ -415,11 +473,7 @@ lbl_8032CC54:
  * Address:	8032CC78
  * Size:	000008
  */
-void ObjChallengeBase::setSubLevel(unsigned long a1)
-{
-	// Generated from stw r4, 0x5C(r3)
-	_5C = a1;
-}
+void ObjChallengeBase::setSubLevel(u32 a1) { m_subLevel = a1; }
 
 } // namespace newScreen
 
@@ -432,35 +486,35 @@ namespace Screen {
  * Address:	8032CC80
  * Size:	000008
  */
-u32 ObjBase::doUpdateFadein(void) { return 0x1; }
+// u32 ObjBase::doUpdateFadein(void) { return 0x1; }
 
 /*
  * --INFO--
  * Address:	8032CC88
  * Size:	000004
  */
-void ObjBase::doUpdateFadeinFinish(void) { }
+// void Screen::ObjBase::doUpdateFadeinFinish(void) { }
 
 /*
  * --INFO--
  * Address:	8032CC8C
  * Size:	000008
  */
-u32 ObjBase::doUpdate(void) { return 0x0; }
+// u32 Screen::ObjBase::doUpdate(void) { return 0x0; }
 
 /*
  * --INFO--
  * Address:	8032CC94
  * Size:	000004
  */
-void ObjBase::doUpdateFinish(void) { }
+// void ObjBase::doUpdateFinish(void) { }
 
 /*
  * --INFO--
  * Address:	8032CC98
  * Size:	000004
  */
-void ObjBase::doUpdateFadeoutFinish(void) { }
+// void ObjBase::doUpdateFadeoutFinish(void) { }
 
 } // namespace og
 
@@ -515,10 +569,10 @@ void __sinit_ogObjChallengeBase_cpp(void)
  * Address:	8032CD28
  * Size:	000008
  */
-@24 @og::newScreen::ObjChallengeBase::~ObjChallengeBase(void)
-{
-	/*
-	addi     r3, r3, -24
-	b        __dt__Q32og9newScreen16ObjChallengeBaseFv
-	*/
-}
+//@24 @og::newScreen::ObjChallengeBase::~ObjChallengeBase(void)
+//{
+/*
+addi     r3, r3, -24
+b        __dt__Q32og9newScreen16ObjChallengeBaseFv
+*/
+//}

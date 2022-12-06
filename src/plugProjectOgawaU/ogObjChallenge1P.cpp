@@ -251,9 +251,9 @@ bool ObjChallenge1P::doStart(::Screen::StartSceneArg const* arg)
 {
 	ObjChallengeBase::doStart(arg);
 	if (arg && arg->getSceneType() == SCENE_CHALLENGE_1P) {
-		_50 = arg->_04;
+		m_incTimeLeftDelay = arg->_04;
 	} else {
-		_50 = 0.0f;
+		m_incTimeLeftDelay = 0.0f;
 	}
 	return true;
 }
