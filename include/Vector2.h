@@ -27,8 +27,7 @@ inline f32 _lenVec2D(Vector2f& vec)
 	Vector2f a = vec;
 	a.y *= a.y;
 	f32 length = a.y + vec.x * vec.x;
-	_sqrtf(length, &length);
-	return length;
+	return _sqrtf(a.y + vec.x * vec.x);
 }
 
 #endif

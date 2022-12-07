@@ -18,12 +18,12 @@ inline f32 sqrtf(f32 __sqrtf_g)
 	return __sqrtf_g;
 }
 
-inline void _sqrtf(register float x, float* val)
+inline f32 _sqrtf(register float x)
 {
 	if (x > 0.0f) {
-		*val = sqrtf(x);
+		return sqrtf(x);
 	} else {
-		*val = 0.0f;
+		return 0.0f;
 	}
 }
 

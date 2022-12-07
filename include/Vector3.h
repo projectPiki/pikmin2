@@ -246,25 +246,21 @@ inline f32 Vector3f::normalise()
 inline f32 _lenVec(Vector3f& vec)
 {
 	Vector2f sqr(vec.z * vec.z, vec.x * vec.x + vec.y * vec.y);
-	f32 length = sqr.x + sqr.y;
-	_sqrtf(length, &length);
-	return length;
+	return _sqrtf(sqr.x + sqr.y);
 }
 
 inline f32 stickMagnitude(Vector3f& vec)
 {
 	Vector3f a = vec;
 	a.z *= a.z;
-	f32 length = a.x * a.x + a.y * a.y + a.z;
-	_sqrtf(length, &length);
-	return length;
+	return _sqrtf(a.x * a.x + a.y * a.y + a.z);
 }
 
 inline void _normalise(Vector3f& vec)
 {
 	Vector2f sqr(vec.z * vec.z, vec.x * vec.x + vec.y * vec.y);
 	f32 length = sqr.x + sqr.y;
-	_sqrtf(length, &length);
+	__sqrtf(length, &length);
 
 	if (length > 0.0f) {
 		f32 norm = 1.0f / length;
@@ -278,7 +274,7 @@ inline void _normaliseXZ(Vector3f& vec)
 {
 	Vector2f sqr(vec.z * vec.z, vec.x * vec.x + vec.y * vec.y);
 	f32 length = sqr.x + sqr.y;
-	_sqrtf(length, &length);
+	__sqrtf(length, &length);
 
 	if (length > 0.0f) {
 		f32 norm = 1.0f / length;
@@ -291,7 +287,7 @@ inline f32 _normaliseVec(Vector3f& vec)
 {
 	Vector2f sqr(vec.z * vec.z, vec.x * vec.x + vec.y * vec.y);
 	f32 length = sqr.x + sqr.y;
-	_sqrtf(length, &length);
+	__sqrtf(length, &length);
 
 	if (length > 0.0f) {
 		f32 norm = 1.0f / length;
@@ -311,11 +307,9 @@ inline f32 sqrDistanceXZ(Vector3f& vec1, Vector3f& vec2)
 inline f32 _distanceXZ(Vector3f& vec1, Vector3f& vec2)
 {
 	Vector2f vec;
-	vec.x    = vec1.x - vec2.x;
-	vec.y    = vec1.z - vec2.z;
-	f32 dist = vec.x * vec.x + vec.y * vec.y;
-	_sqrtf(dist, &dist);
-	return dist;
+	vec.x = vec1.x - vec2.x;
+	vec.y = vec1.z - vec2.z;
+	return _sqrtf(vec.x * vec.x + vec.y * vec.y);
 }
 
 inline void sumXY(Vector3f vec, float* sum) { *sum = (vec.x *= vec.x) + (vec.y *= vec.y); }
@@ -335,7 +329,6 @@ inline f32 Vector3f::distance(Vector3f& them)
 	sumXY(diff, &sum);
 	sumZ(diff, &sum);
 
-	_sqrtf(sum, &sum);
-	return sum;
+	return _sqrtf(sum);
 }
 #endif
