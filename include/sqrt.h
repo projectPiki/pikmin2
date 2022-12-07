@@ -18,7 +18,7 @@ inline f32 sqrtf(f32 __sqrtf_g)
 	return __sqrtf_g;
 }
 
-inline f32 _sqrtf(register float x)
+inline f32 _sqrtf(f32 x)
 {
 	if (x > 0.0f) {
 		return sqrtf(x);
