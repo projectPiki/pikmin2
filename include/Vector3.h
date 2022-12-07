@@ -234,10 +234,11 @@ inline f32 Vector3f::length2() const
 {
 	Vector3f vec(x, y, z);
 	f32 ze = z * z;
-	Vector2f squareXY(x * x, y * y);
+	f32 ye = y * y;
+	f32 ex = x * x;
 
-	if ((z * z + (squareXY.x + squareXY.y)) > 0.0f) {
-		return sqrtf((vec.x * vec.x) + squareXY.y + ze);
+	if ((ze + (ex + ye)) > 0.0f) {
+		return sqrtf((vec.x * vec.x) + y * y + z * z);
 	}
 	return 0.0f;
 }
