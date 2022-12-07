@@ -219,17 +219,11 @@ inline void weightVecXZ(Vector3f& vec, f32 weight)
 template <>
 inline f32 Vector3f::length() const
 {
-	f32 thing = x;
-	Vector2f thing2(x * x, y * y);
+	Vector3f vec(x, y, z);
+	Vector2f squareXY(x * x, y * y);
 
-	if ((z * z + (thing2.x + thing2.y)) > 0.0f) {
-		f32 result = z * z + ((thing * thing) + thing2.y);
-		if (result > 0.0f) {
-			register f32 __frsqrte_v = result;
-			asm { frsqrte __frsqrte_v, __frsqrte_v }
-			result = __frsqrte_v * result;
-		}
-		return result;
+	if ((z * z + (squareXY.x + squareXY.y)) > 0.0f) {
+		return sqrtf(z * z + ((vec.x * vec.x) + squareXY.y));
 	}
 	return 0.0f;
 }
