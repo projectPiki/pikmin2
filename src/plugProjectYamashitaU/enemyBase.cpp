@@ -1893,7 +1893,7 @@ void EnemyBase::collisionMapAndPlat(f32 accelRate)
 		m_impVelocity = velocityDest;
 
 		f32 velocityNorm  = m_impVelocity.normalise();
-		f32 collTriNormal = m_triangleNormal.length2();
+		f32 collTriNormal = m_triangleNormal.length();
 
 		if ((velocityNorm > collTriNormal)) {
 			velocityNorm -= collTriNormal;

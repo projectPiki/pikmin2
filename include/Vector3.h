@@ -126,7 +126,6 @@ struct Vector3 {
 	}
 
 	float length() const;
-	float length2() const;
 // TODO: Verify
 #pragma optimizewithasm off
 	inline float distance(register Vector3& them)
@@ -221,24 +220,12 @@ template <>
 inline f32 Vector3f::length() const
 {
 	Vector3f vec(x, y, z);
-	Vector2f squareXY(x * x, y * y);
-
-	if ((z * z + (squareXY.x + squareXY.y)) > 0.0f) {
-		return sqrtf(z * z + ((vec.x * vec.x) + squareXY.y));
-	}
-	return 0.0f;
-}
-
-template <>
-inline f32 Vector3f::length2() const
-{
-	Vector3f vec(x, y, z);
 	f32 z2 = z * z;
 	f32 y2 = y * y;
 	f32 x2 = x * x;
 
-	if ((z2 + (x2 + y2)) > 0.0f) {
-		return sqrtf((vec.x * vec.x) + y * y + z * z);
+	if (x2 + y2 + z2 > 0.0f) {
+		return sqrtf(vec.x * vec.x + y * y + z * z);
 	}
 	return 0.0f;
 }
