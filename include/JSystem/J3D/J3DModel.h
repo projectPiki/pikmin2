@@ -105,23 +105,23 @@ struct J3DModel {
 	void prepareShapePackets();
 
 	// _00 VTBL
-	J3DModelData* m_modelData;       // _04
-	u32 _08;                         // _08 /* bitfield of some sort */
-	u32 m_displayListFlag;           // _0C
-	void* _10;                       // _10
-	u32 _14;                         // _14
-	Vec m_modelScale;                // _18
-	Mtx _24;                         // _24
-	Mtx _54;                         // _54
-	J3DMtxBuffer* m_mtxBuffer;       // _84
-	J3DVertexBuffer m_vertexBuffer;  // _88
-	J3DMatPacket* m_matPackets;      // _C0
-	J3DShapePacket* m_shapePackets;  // _C4
-	J3DDeformData* m_deformData;     // _C8
-	J3DSkinDeform* m_skinDeform;     // _CC
-	J3DVtxColorCalc* m_vtxColorCalc; // _D0
-	u32 _D4;                         // _D4
-	void* _D8;                       // _D8
+	J3DModelData* m_modelData;          // _04
+	u32 _08;                            // _08 /* bitfield of some sort */
+	u32 m_displayListFlag;              // _0C
+	void* _10;                          // _10
+	u32 _14;                            // _14
+	JGeometry::TVec3<f32> m_modelScale; // _18
+	Mtx _24;                            // _24
+	Mtx _54;                            // _54
+	J3DMtxBuffer* m_mtxBuffer;          // _84
+	J3DVertexBuffer m_vertexBuffer;     // _88
+	J3DMatPacket* m_matPackets;         // _C0
+	J3DShapePacket* m_shapePackets;     // _C4
+	J3DDeformData* m_deformData;        // _C8
+	J3DSkinDeform* m_skinDeform;        // _CC
+	J3DVtxColorCalc* m_vtxColorCalc;    // _D0
+	u32 _D4;                            // _D4
+	void* _D8;                          // _D8
 };
 
 struct J3DModelHierarchy {

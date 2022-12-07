@@ -37,6 +37,7 @@
 #include "CollInfo.h"
 #include "Radar.h"
 #include "VsOtakaraName.h"
+#include "JSystem/J3D/J3DModelLoader.h"
 
 namespace {
 struct NotOff : public Game::WPCondition {
@@ -812,7 +813,7 @@ lbl_80166338:
  * Address:	80166378
  * Size:	000074
  */
-bool Pellet::stimulate(Game::Interaction& interaction)
+bool Pellet::stimulate(Interaction& interaction)
 {
 	if (interaction.actCommon(this)) {
 		return interaction.actPellet(this);
@@ -872,7 +873,7 @@ bool InteractEat::actPellet(Pellet* pellet)
  * Address:	801665FC
  * Size:	000080
  */
-bool InteractSuck::actPellet(Game::Pellet* pellet)
+bool InteractSuck::actPellet(Pellet* pellet)
 {
 	PelletGoalStateArg pelletGoalArg(m_creature);
 	if (m_creature) {
@@ -995,7 +996,7 @@ float Pellet::getCylinderHeight() { return m_config->m_params.m_height.m_data; }
  * Address:	801669E0
  * Size:	000058
  */
-s16 Pellet::getConfigIndex()
+int Pellet::getConfigIndex()
 {
 	P2ASSERTLINE(1433, m_config != nullptr);
 	return m_config->m_params.m_index;
@@ -1147,7 +1148,7 @@ void Pellet::onKill(CreatureKillArg* killArg)
  * Size:	000034
  */
 // should be weak, but also not generalisable to a template? who knows
-void StateMachine<Game::Pellet>::start(Pellet* pellet, int stateID, StateArg* arg)
+void StateMachine<Pellet>::start(Pellet* pellet, int stateID, StateArg* arg)
 {
 	pellet->m_pelletState = 0;
 	transit(pellet, stateID, arg);
@@ -1158,7 +1159,7 @@ void StateMachine<Game::Pellet>::start(Pellet* pellet, int stateID, StateArg* ar
  * Address:	80166F68
  * Size:	000620
  */
-void Pellet::onInit(Game::CreatureInitArg* initArg)
+void Pellet::onInit(CreatureInitArg* initArg)
 {
 	_3DC        = -1;
 	_3D8        = -1;
@@ -1984,30 +1985,30 @@ void Pellet::finishDisplayCarryInfo()
 	}
 }
 
-/*
- * --INFO--
- * Address:	80167E28
- * Size:	0000A0
- */
-void Pellet::getCarryInfoParam(CarryInfoParam& infoParam)
-{
-	infoParam._00        = 0;
-	infoParam.m_position = m_rigid.m_configs[0]._00;
-	infoParam._10        = 30.0f + m_config->m_params.m_height.m_data;
-	infoParam._14        = 1;
-	infoParam._1C        = 1;
-	infoParam._18        = getTotalCarryPikmins();
+// /*
+//  * --INFO--
+//  * Address:	80167E28
+//  * Size:	0000A0
+//  */
+// void Pellet::getCarryInfoParam(CarryInfoParam& infoParam)
+// {
+// 	infoParam._00        = 0;
+// 	infoParam.m_position = m_rigid.m_configs[0]._00;
+// 	infoParam._10        = 30.0f + m_config->m_params.m_height.m_data;
+// 	infoParam._14        = 1;
+// 	infoParam._1C        = 1;
+// 	infoParam._18        = getTotalCarryPikmins();
 
-	int minVal;
-	if (_3D8 > 0) {
-		minVal = _3D8;
-	} else {
-		minVal = m_config->m_params.m_min.m_data;
-	}
-	infoParam._16 = minVal;
+// 	int minVal;
+// 	if (_3D8 > 0) {
+// 		minVal = _3D8;
+// 	} else {
+// 		minVal = m_config->m_params.m_min.m_data;
+// 	}
+// 	infoParam._16 = minVal;
 
-	infoParam._15 = m_carryColor;
-}
+// 	infoParam._15 = m_carryColor;
+// }
 
 /*
  * --INFO--
@@ -3892,11 +3893,7 @@ void Pellet::doSimulation(float constraint)
 		wpPosition.y        = 0.0f;
 
 		NotOff condition;
-		WPSearchArg searchArg;
-		searchArg.m_position  = wpPosition;
-		searchArg.m_condition = &condition;
-		searchArg._10         = 0;
-		searchArg._14         = 10.0f;
+		WPSearchArg searchArg(wpPosition, &condition, 0, 10.0f);
 
 		WayPoint* wayPoint = mapMgr->m_routeMgr->getNearestWayPoint(searchArg);
 		if (wayPoint) {
@@ -4570,7 +4567,7 @@ void Pellet::onSlotStickStart(Creature* creature, short slot)
 	int max = _3DC > 0 ? _3DC : m_config->m_params.m_max.m_data;
 	if (max != 1) {
 		m_carryColor   = 5;
-		m_carryInfoMgr = carryInfoMgr->appear(this);
+		m_carryInfoMgr = reinterpret_cast<CarryInfoMgr*>(carryInfoMgr->appear(this));
 	}
 }
 
@@ -5365,8 +5362,8 @@ void BasePelletMgr::load()
 			data = J3DModelLoaderDataBase::load(resource, flags);
 
 			if (config->m_params.m_code.m_data & 2) {
-				for (u16 i = 0; i < data->m_shapeCnt; i++) {
-					data->m_shapes[i]->m_flags = data->m_shapes[i]->m_flags & 0xFFFF0FFF | 0x2000;
+				for (u16 i = 0; i < data->m_shapeTable.m_count; i++) {
+					data->m_shapeTable.m_items[i]->m_flags = data->m_shapeTable.m_items[i]->m_flags & 0xFFFF0FFF | 0x2000;
 				}
 			}
 
@@ -5730,7 +5727,7 @@ void BasePelletMgr::openTextArc(char* arc)
 	char filePath[512];
 
 	sprintf(filePath, "%s/%s", file, arc);
-	JKRArchive::mount(filePath, JKRArchive::EMM_Unk1, JKRHeap::sCurrentHeap, JKRArchive::EMD_Unk2);
+	JKRArchive::mount(filePath, JKRArchive::EMM_Mem, JKRHeap::sCurrentHeap, JKRArchive::EMD_Unk2);
 }
 
 /*
@@ -5786,7 +5783,7 @@ SysShape::Model* BasePelletMgr::createShape(int modelDataIndex, int arg2)
  * Address:	8016C7E4
  * Size:	000158
  */
-void BasePelletMgr::setCollTree(Game::Pellet* pellet, int partIndex)
+void BasePelletMgr::setCollTree(Pellet* pellet, int partIndex)
 {
 	SysShape::Model* pelletModel = pellet->m_model;
 
@@ -5816,14 +5813,14 @@ void BasePelletMgr::setCollTree(Game::Pellet* pellet, int partIndex)
  * Address:	8016C93C
  * Size:	000024
  */
-void* BasePelletMgr::generatorNewPelletParm() { return ::operator new(4); }
+GenPelletParm* BasePelletMgr::generatorNewPelletParm() { return reinterpret_cast<GenPelletParm*>(::operator new(4)); }
 
 /*
  * --INFO--
  * Address:	8016C960
  * Size:	000008
  */
-J3DModelData* BasePelletMgr::generatorGetShape(Game::GenPelletParm*) { return nullptr; }
+J3DModelData* BasePelletMgr::generatorGetShape(GenPelletParm*) { return nullptr; }
 
 /*
  * --INFO--
@@ -6091,7 +6088,7 @@ void PelletMgr::resetMgrs()
  * Address:	8016D3A8
  * Size:	000080
  */
-void Game::PelletMgr::setupResources()
+void PelletMgr::setupResources()
 {
 	PelletNumber::mgr->setupResources();
 	PelletCarcass::mgr->setupResources();
@@ -6153,13 +6150,13 @@ Pellet* PelletMgr::birth(PelletInitArg* arg)
 		if (strcmp("yes", config->m_params.m_unique.m_data) == 0) {
 			int unk = arg->_10;
 			if (arg->m_pelletType == PelletList::OTAKARA) {
-				u8* result = playData->_B0->_04(unk);
+				u8* result = playData->_B0->m_otakara(unk);
 				if (*result & 2) {
 					mgr->m_configList->getPelletConfig(arg->m_textIdentifier);
 					return nullptr;
 				}
 			} else if (arg->m_pelletType == PelletList::ITEM) {
-				u8* result = playData->_B0->_0C(unk);
+				u8* result = playData->_B0->m_item(unk);
 				if (*result & 2) {
 					mgr->m_configList->getPelletConfig(arg->m_textIdentifier);
 					return nullptr;
@@ -6212,13 +6209,13 @@ bool PelletMgr::setUse(PelletInitArg* arg)
 		if (strcmp("yes", config->m_params.m_unique.m_data) == 0) {
 			int unk = arg->_10;
 			if (arg->m_pelletType == PelletList::OTAKARA) {
-				u8* result = playData->_B0->_04(unk);
+				u8* result = playData->_B0->m_otakara(unk);
 				if (*result & 2) {
 					mgr->m_configList->getPelletConfig(arg->m_textIdentifier);
 					return false;
 				}
 			} else if (arg->m_pelletType == PelletList::ITEM) {
-				u8* result = playData->_B0->_0C(unk);
+				u8* result = playData->_B0->m_item(unk);
 				if (*result & 2) {
 					mgr->m_configList->getPelletConfig(arg->m_textIdentifier);
 					return false;
@@ -6277,12 +6274,12 @@ bool PelletMgr::OtakaraItemCode::isNull()
 	if (strcmp("yes", config->m_params.m_unique.m_data) == 0) {
 		u8 code = m_value;
 		if ((u8)(m_value >> 8) == 3) {
-			u8* result = playData->_B0->_04(code);
+			u8* result = playData->_B0->m_otakara(code);
 			if (*result & 2) {
 				return true;
 			}
 		} else {
-			u8* result = playData->_B0->_0C(code);
+			u8* result = playData->_B0->m_item(code);
 			if (*result & 2) {
 				return true;
 			}
@@ -6349,7 +6346,7 @@ void PelletMgr::makeVsCarryMinMax(PelletInitArg& arg, char* name)
  * Address:	8016DB90
  * Size:	0002EC
  */
-bool PelletMgr::makePelletInitArg(Game::PelletInitArg& arg, Game::PelletMgr::OtakaraItemCode& itemCode)
+bool PelletMgr::makePelletInitArg(PelletInitArg& arg, PelletMgr::OtakaraItemCode& itemCode)
 {
 	if (itemCode.isNull()) {
 		return false;
@@ -6792,7 +6789,7 @@ lbl_8016F0B8:
  * Address:	8016F0CC
  * Size:	00021C
  */
-Game::BasePelletMgr* PelletMgr::getMgrByID(unsigned char)
+BasePelletMgr* PelletMgr::getMgrByID(unsigned char)
 {
 	/*
 	stwu     r1, -0x20(r1)
@@ -6972,20 +6969,6 @@ lbl_8016F2D0:
  */
 // WEAK - in header
 // PelletMgr::~PelletMgr() { }
-
-/*
- * --INFO--
- * Address:	8016F3C8
- * Size:	00000C
- */
-char* PelletMgr::getMgrName(void)
-{
-	/*
-	lis      r3, lbl_8047E494@ha
-	addi     r3, r3, lbl_8047E494@l
-	blr
-	*/
-}
 
 } // namespace Game
 
@@ -7663,387 +7646,387 @@ lbl_8016FB54:
 	*/
 }
 
-/*
- * --INFO--
- * Address:	8016FB6C
- * Size:	0004DC
- */
-void satisfy__Q223 @unnamed @pelletMgr_cpp @6NotOffFPQ24Game8WayPoint(void)
-{
-	/*
-	stwu     r1, -0x80(r1)
-	mflr     r0
-	stw      r0, 0x84(r1)
-	stfd     f31, 0x70(r1)
-	psq_st   f31, 120(r1), 0, qr0
-	stfd     f30, 0x60(r1)
-	psq_st   f30, 104(r1), 0, qr0
-	stfd     f29, 0x50(r1)
-	psq_st   f29, 88(r1), 0, qr0
-	stfd     f28, 0x40(r1)
-	psq_st   f28, 72(r1), 0, qr0
-	lbz      r0, 0x34(r4)
-	clrlwi.  r0, r0, 0x1f
-	beq      lbl_8016FBAC
-	li       r3, 0
-	b        lbl_80170018
+// /*
+//  * --INFO--
+//  * Address:	8016FB6C
+//  * Size:	0004DC
+//  */
+// void satisfy__Q223 @unnamed @pelletMgr_cpp @6NotOffFPQ24Game8WayPoint(void)
+// {
+// 	/*
+// 	stwu     r1, -0x80(r1)
+// 	mflr     r0
+// 	stw      r0, 0x84(r1)
+// 	stfd     f31, 0x70(r1)
+// 	psq_st   f31, 120(r1), 0, qr0
+// 	stfd     f30, 0x60(r1)
+// 	psq_st   f30, 104(r1), 0, qr0
+// 	stfd     f29, 0x50(r1)
+// 	psq_st   f29, 88(r1), 0, qr0
+// 	stfd     f28, 0x40(r1)
+// 	psq_st   f28, 72(r1), 0, qr0
+// 	lbz      r0, 0x34(r4)
+// 	clrlwi.  r0, r0, 0x1f
+// 	beq      lbl_8016FBAC
+// 	li       r3, 0
+// 	b        lbl_80170018
 
-lbl_8016FBAC:
-	lwz      r3, mgr__Q24Game8ItemHole@sda21(r13)
-	lfs      f29, 0x4c(r4)
-	cmplwi   r3, 0
-	lfs      f28, 0x54(r4)
-	beq      lbl_8016FDE4
-	beq      lbl_8016FBC8
-	addi     r3, r3, 0x30
+// lbl_8016FBAC:
+// 	lwz      r3, mgr__Q24Game8ItemHole@sda21(r13)
+// 	lfs      f29, 0x4c(r4)
+// 	cmplwi   r3, 0
+// 	lfs      f28, 0x54(r4)
+// 	beq      lbl_8016FDE4
+// 	beq      lbl_8016FBC8
+// 	addi     r3, r3, 0x30
 
-lbl_8016FBC8:
-	li       r0, 0
-	lis      r4, "__vt__26Iterator<Q24Game8BaseItem>"@ha
-	addi     r4, r4, "__vt__26Iterator<Q24Game8BaseItem>"@l
-	stw      r0, 0x3c(r1)
-	cmplwi   r0, 0
-	stw      r4, 0x30(r1)
-	stw      r0, 0x34(r1)
-	stw      r3, 0x38(r1)
-	bne      lbl_8016FC04
-	lwz      r12, 0(r3)
-	lwz      r12, 0x18(r12)
-	mtctr    r12
-	bctrl
-	stw      r3, 0x34(r1)
-	b        lbl_8016FC8C
+// lbl_8016FBC8:
+// 	li       r0, 0
+// 	lis      r4, "__vt__26Iterator<Q24Game8BaseItem>"@ha
+// 	addi     r4, r4, "__vt__26Iterator<Q24Game8BaseItem>"@l
+// 	stw      r0, 0x3c(r1)
+// 	cmplwi   r0, 0
+// 	stw      r4, 0x30(r1)
+// 	stw      r0, 0x34(r1)
+// 	stw      r3, 0x38(r1)
+// 	bne      lbl_8016FC04
+// 	lwz      r12, 0(r3)
+// 	lwz      r12, 0x18(r12)
+// 	mtctr    r12
+// 	bctrl
+// 	stw      r3, 0x34(r1)
+// 	b        lbl_8016FC8C
 
-lbl_8016FC04:
-	lwz      r12, 0(r3)
-	lwz      r12, 0x18(r12)
-	mtctr    r12
-	bctrl
-	stw      r3, 0x34(r1)
-	b        lbl_8016FC70
+// lbl_8016FC04:
+// 	lwz      r12, 0(r3)
+// 	lwz      r12, 0x18(r12)
+// 	mtctr    r12
+// 	bctrl
+// 	stw      r3, 0x34(r1)
+// 	b        lbl_8016FC70
 
-lbl_8016FC1C:
-	lwz      r3, 0x38(r1)
-	lwz      r4, 0x34(r1)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x20(r12)
-	mtctr    r12
-	bctrl
-	mr       r4, r3
-	lwz      r3, 0x3c(r1)
-	lwz      r12, 0(r3)
-	lwz      r12, 8(r12)
-	mtctr    r12
-	bctrl
-	clrlwi.  r0, r3, 0x18
-	bne      lbl_8016FC8C
-	lwz      r3, 0x38(r1)
-	lwz      r4, 0x34(r1)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x14(r12)
-	mtctr    r12
-	bctrl
-	stw      r3, 0x34(r1)
+// lbl_8016FC1C:
+// 	lwz      r3, 0x38(r1)
+// 	lwz      r4, 0x34(r1)
+// 	lwz      r12, 0(r3)
+// 	lwz      r12, 0x20(r12)
+// 	mtctr    r12
+// 	bctrl
+// 	mr       r4, r3
+// 	lwz      r3, 0x3c(r1)
+// 	lwz      r12, 0(r3)
+// 	lwz      r12, 8(r12)
+// 	mtctr    r12
+// 	bctrl
+// 	clrlwi.  r0, r3, 0x18
+// 	bne      lbl_8016FC8C
+// 	lwz      r3, 0x38(r1)
+// 	lwz      r4, 0x34(r1)
+// 	lwz      r12, 0(r3)
+// 	lwz      r12, 0x14(r12)
+// 	mtctr    r12
+// 	bctrl
+// 	stw      r3, 0x34(r1)
 
-lbl_8016FC70:
-	lwz      r12, 0x30(r1)
-	addi     r3, r1, 0x30
-	lwz      r12, 0x10(r12)
-	mtctr    r12
-	bctrl
-	clrlwi.  r0, r3, 0x18
-	beq      lbl_8016FC1C
+// lbl_8016FC70:
+// 	lwz      r12, 0x30(r1)
+// 	addi     r3, r1, 0x30
+// 	lwz      r12, 0x10(r12)
+// 	mtctr    r12
+// 	bctrl
+// 	clrlwi.  r0, r3, 0x18
+// 	beq      lbl_8016FC1C
 
-lbl_8016FC8C:
-	lfs      f31, lbl_80518914@sda21(r2)
-	lfs      f30, lbl_805189FC@sda21(r2)
-	b        lbl_8016FDC4
+// lbl_8016FC8C:
+// 	lfs      f31, lbl_80518914@sda21(r2)
+// 	lfs      f30, lbl_805189FC@sda21(r2)
+// 	b        lbl_8016FDC4
 
-lbl_8016FC98:
-	lwz      r3, 0x38(r1)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x20(r12)
-	mtctr    r12
-	bctrl
-	mr       r4, r3
-	addi     r3, r1, 0x14
-	lwz      r12, 0(r4)
-	lwz      r12, 8(r12)
-	mtctr    r12
-	bctrl
-	lfs      f0, 0x1c(r1)
-	lfs      f1, 0x14(r1)
-	fsubs    f0, f0, f28
-	fsubs    f1, f1, f29
-	fmuls    f0, f0, f0
-	fmadds   f0, f1, f1, f0
-	fcmpo    cr0, f0, f31
-	ble      lbl_8016FCF4
-	ble      lbl_8016FCF8
-	frsqrte  f1, f0
-	fmuls    f0, f1, f0
-	b        lbl_8016FCF8
+// lbl_8016FC98:
+// 	lwz      r3, 0x38(r1)
+// 	lwz      r12, 0(r3)
+// 	lwz      r12, 0x20(r12)
+// 	mtctr    r12
+// 	bctrl
+// 	mr       r4, r3
+// 	addi     r3, r1, 0x14
+// 	lwz      r12, 0(r4)
+// 	lwz      r12, 8(r12)
+// 	mtctr    r12
+// 	bctrl
+// 	lfs      f0, 0x1c(r1)
+// 	lfs      f1, 0x14(r1)
+// 	fsubs    f0, f0, f28
+// 	fsubs    f1, f1, f29
+// 	fmuls    f0, f0, f0
+// 	fmadds   f0, f1, f1, f0
+// 	fcmpo    cr0, f0, f31
+// 	ble      lbl_8016FCF4
+// 	ble      lbl_8016FCF8
+// 	frsqrte  f1, f0
+// 	fmuls    f0, f1, f0
+// 	b        lbl_8016FCF8
 
-lbl_8016FCF4:
-	fmr      f0, f31
+// lbl_8016FCF4:
+// 	fmr      f0, f31
 
-lbl_8016FCF8:
-	fcmpo    cr0, f0, f30
-	bge      lbl_8016FD08
-	li       r3, 0
-	b        lbl_80170018
+// lbl_8016FCF8:
+// 	fcmpo    cr0, f0, f30
+// 	bge      lbl_8016FD08
+// 	li       r3, 0
+// 	b        lbl_80170018
 
-lbl_8016FD08:
-	lwz      r0, 0x3c(r1)
-	cmplwi   r0, 0
-	bne      lbl_8016FD34
-	lwz      r3, 0x38(r1)
-	lwz      r4, 0x34(r1)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x14(r12)
-	mtctr    r12
-	bctrl
-	stw      r3, 0x34(r1)
-	b        lbl_8016FDC4
+// lbl_8016FD08:
+// 	lwz      r0, 0x3c(r1)
+// 	cmplwi   r0, 0
+// 	bne      lbl_8016FD34
+// 	lwz      r3, 0x38(r1)
+// 	lwz      r4, 0x34(r1)
+// 	lwz      r12, 0(r3)
+// 	lwz      r12, 0x14(r12)
+// 	mtctr    r12
+// 	bctrl
+// 	stw      r3, 0x34(r1)
+// 	b        lbl_8016FDC4
 
-lbl_8016FD34:
-	lwz      r3, 0x38(r1)
-	lwz      r4, 0x34(r1)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x14(r12)
-	mtctr    r12
-	bctrl
-	stw      r3, 0x34(r1)
-	b        lbl_8016FDA8
+// lbl_8016FD34:
+// 	lwz      r3, 0x38(r1)
+// 	lwz      r4, 0x34(r1)
+// 	lwz      r12, 0(r3)
+// 	lwz      r12, 0x14(r12)
+// 	mtctr    r12
+// 	bctrl
+// 	stw      r3, 0x34(r1)
+// 	b        lbl_8016FDA8
 
-lbl_8016FD54:
-	lwz      r3, 0x38(r1)
-	lwz      r4, 0x34(r1)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x20(r12)
-	mtctr    r12
-	bctrl
-	mr       r4, r3
-	lwz      r3, 0x3c(r1)
-	lwz      r12, 0(r3)
-	lwz      r12, 8(r12)
-	mtctr    r12
-	bctrl
-	clrlwi.  r0, r3, 0x18
-	bne      lbl_8016FDC4
-	lwz      r3, 0x38(r1)
-	lwz      r4, 0x34(r1)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x14(r12)
-	mtctr    r12
-	bctrl
-	stw      r3, 0x34(r1)
+// lbl_8016FD54:
+// 	lwz      r3, 0x38(r1)
+// 	lwz      r4, 0x34(r1)
+// 	lwz      r12, 0(r3)
+// 	lwz      r12, 0x20(r12)
+// 	mtctr    r12
+// 	bctrl
+// 	mr       r4, r3
+// 	lwz      r3, 0x3c(r1)
+// 	lwz      r12, 0(r3)
+// 	lwz      r12, 8(r12)
+// 	mtctr    r12
+// 	bctrl
+// 	clrlwi.  r0, r3, 0x18
+// 	bne      lbl_8016FDC4
+// 	lwz      r3, 0x38(r1)
+// 	lwz      r4, 0x34(r1)
+// 	lwz      r12, 0(r3)
+// 	lwz      r12, 0x14(r12)
+// 	mtctr    r12
+// 	bctrl
+// 	stw      r3, 0x34(r1)
 
-lbl_8016FDA8:
-	lwz      r12, 0x30(r1)
-	addi     r3, r1, 0x30
-	lwz      r12, 0x10(r12)
-	mtctr    r12
-	bctrl
-	clrlwi.  r0, r3, 0x18
-	beq      lbl_8016FD54
+// lbl_8016FDA8:
+// 	lwz      r12, 0x30(r1)
+// 	addi     r3, r1, 0x30
+// 	lwz      r12, 0x10(r12)
+// 	mtctr    r12
+// 	bctrl
+// 	clrlwi.  r0, r3, 0x18
+// 	beq      lbl_8016FD54
 
-lbl_8016FDC4:
-	lwz      r3, 0x38(r1)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x1c(r12)
-	mtctr    r12
-	bctrl
-	lwz      r4, 0x34(r1)
-	cmplw    r4, r3
-	bne      lbl_8016FC98
+// lbl_8016FDC4:
+// 	lwz      r3, 0x38(r1)
+// 	lwz      r12, 0(r3)
+// 	lwz      r12, 0x1c(r12)
+// 	mtctr    r12
+// 	bctrl
+// 	lwz      r4, 0x34(r1)
+// 	cmplw    r4, r3
+// 	bne      lbl_8016FC98
 
-lbl_8016FDE4:
-	lwz      r3, mgr__Q24Game15ItemBigFountain@sda21(r13)
-	cmplwi   r3, 0
-	beq      lbl_80170014
-	beq      lbl_8016FDF8
-	addi     r3, r3, 0x30
+// lbl_8016FDE4:
+// 	lwz      r3, mgr__Q24Game15ItemBigFountain@sda21(r13)
+// 	cmplwi   r3, 0
+// 	beq      lbl_80170014
+// 	beq      lbl_8016FDF8
+// 	addi     r3, r3, 0x30
 
-lbl_8016FDF8:
-	li       r0, 0
-	lis      r4, "__vt__26Iterator<Q24Game8BaseItem>"@ha
-	addi     r4, r4, "__vt__26Iterator<Q24Game8BaseItem>"@l
-	stw      r0, 0x2c(r1)
-	cmplwi   r0, 0
-	stw      r4, 0x20(r1)
-	stw      r0, 0x24(r1)
-	stw      r3, 0x28(r1)
-	bne      lbl_8016FE34
-	lwz      r12, 0(r3)
-	lwz      r12, 0x18(r12)
-	mtctr    r12
-	bctrl
-	stw      r3, 0x24(r1)
-	b        lbl_8016FEBC
+// lbl_8016FDF8:
+// 	li       r0, 0
+// 	lis      r4, "__vt__26Iterator<Q24Game8BaseItem>"@ha
+// 	addi     r4, r4, "__vt__26Iterator<Q24Game8BaseItem>"@l
+// 	stw      r0, 0x2c(r1)
+// 	cmplwi   r0, 0
+// 	stw      r4, 0x20(r1)
+// 	stw      r0, 0x24(r1)
+// 	stw      r3, 0x28(r1)
+// 	bne      lbl_8016FE34
+// 	lwz      r12, 0(r3)
+// 	lwz      r12, 0x18(r12)
+// 	mtctr    r12
+// 	bctrl
+// 	stw      r3, 0x24(r1)
+// 	b        lbl_8016FEBC
 
-lbl_8016FE34:
-	lwz      r12, 0(r3)
-	lwz      r12, 0x18(r12)
-	mtctr    r12
-	bctrl
-	stw      r3, 0x24(r1)
-	b        lbl_8016FEA0
+// lbl_8016FE34:
+// 	lwz      r12, 0(r3)
+// 	lwz      r12, 0x18(r12)
+// 	mtctr    r12
+// 	bctrl
+// 	stw      r3, 0x24(r1)
+// 	b        lbl_8016FEA0
 
-lbl_8016FE4C:
-	lwz      r3, 0x28(r1)
-	lwz      r4, 0x24(r1)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x20(r12)
-	mtctr    r12
-	bctrl
-	mr       r4, r3
-	lwz      r3, 0x2c(r1)
-	lwz      r12, 0(r3)
-	lwz      r12, 8(r12)
-	mtctr    r12
-	bctrl
-	clrlwi.  r0, r3, 0x18
-	bne      lbl_8016FEBC
-	lwz      r3, 0x28(r1)
-	lwz      r4, 0x24(r1)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x14(r12)
-	mtctr    r12
-	bctrl
-	stw      r3, 0x24(r1)
+// lbl_8016FE4C:
+// 	lwz      r3, 0x28(r1)
+// 	lwz      r4, 0x24(r1)
+// 	lwz      r12, 0(r3)
+// 	lwz      r12, 0x20(r12)
+// 	mtctr    r12
+// 	bctrl
+// 	mr       r4, r3
+// 	lwz      r3, 0x2c(r1)
+// 	lwz      r12, 0(r3)
+// 	lwz      r12, 8(r12)
+// 	mtctr    r12
+// 	bctrl
+// 	clrlwi.  r0, r3, 0x18
+// 	bne      lbl_8016FEBC
+// 	lwz      r3, 0x28(r1)
+// 	lwz      r4, 0x24(r1)
+// 	lwz      r12, 0(r3)
+// 	lwz      r12, 0x14(r12)
+// 	mtctr    r12
+// 	bctrl
+// 	stw      r3, 0x24(r1)
 
-lbl_8016FEA0:
-	lwz      r12, 0x20(r1)
-	addi     r3, r1, 0x20
-	lwz      r12, 0x10(r12)
-	mtctr    r12
-	bctrl
-	clrlwi.  r0, r3, 0x18
-	beq      lbl_8016FE4C
+// lbl_8016FEA0:
+// 	lwz      r12, 0x20(r1)
+// 	addi     r3, r1, 0x20
+// 	lwz      r12, 0x10(r12)
+// 	mtctr    r12
+// 	bctrl
+// 	clrlwi.  r0, r3, 0x18
+// 	beq      lbl_8016FE4C
 
-lbl_8016FEBC:
-	lfs      f30, lbl_80518914@sda21(r2)
-	lfs      f31, lbl_805189FC@sda21(r2)
-	b        lbl_8016FFF4
+// lbl_8016FEBC:
+// 	lfs      f30, lbl_80518914@sda21(r2)
+// 	lfs      f31, lbl_805189FC@sda21(r2)
+// 	b        lbl_8016FFF4
 
-lbl_8016FEC8:
-	lwz      r3, 0x28(r1)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x20(r12)
-	mtctr    r12
-	bctrl
-	mr       r4, r3
-	addi     r3, r1, 8
-	lwz      r12, 0(r4)
-	lwz      r12, 8(r12)
-	mtctr    r12
-	bctrl
-	lfs      f0, 0x10(r1)
-	lfs      f1, 8(r1)
-	fsubs    f0, f0, f28
-	fsubs    f1, f1, f29
-	fmuls    f0, f0, f0
-	fmadds   f0, f1, f1, f0
-	fcmpo    cr0, f0, f30
-	ble      lbl_8016FF24
-	ble      lbl_8016FF28
-	frsqrte  f1, f0
-	fmuls    f0, f1, f0
-	b        lbl_8016FF28
+// lbl_8016FEC8:
+// 	lwz      r3, 0x28(r1)
+// 	lwz      r12, 0(r3)
+// 	lwz      r12, 0x20(r12)
+// 	mtctr    r12
+// 	bctrl
+// 	mr       r4, r3
+// 	addi     r3, r1, 8
+// 	lwz      r12, 0(r4)
+// 	lwz      r12, 8(r12)
+// 	mtctr    r12
+// 	bctrl
+// 	lfs      f0, 0x10(r1)
+// 	lfs      f1, 8(r1)
+// 	fsubs    f0, f0, f28
+// 	fsubs    f1, f1, f29
+// 	fmuls    f0, f0, f0
+// 	fmadds   f0, f1, f1, f0
+// 	fcmpo    cr0, f0, f30
+// 	ble      lbl_8016FF24
+// 	ble      lbl_8016FF28
+// 	frsqrte  f1, f0
+// 	fmuls    f0, f1, f0
+// 	b        lbl_8016FF28
 
-lbl_8016FF24:
-	fmr      f0, f30
+// lbl_8016FF24:
+// 	fmr      f0, f30
 
-lbl_8016FF28:
-	fcmpo    cr0, f0, f31
-	bge      lbl_8016FF38
-	li       r3, 0
-	b        lbl_80170018
+// lbl_8016FF28:
+// 	fcmpo    cr0, f0, f31
+// 	bge      lbl_8016FF38
+// 	li       r3, 0
+// 	b        lbl_80170018
 
-lbl_8016FF38:
-	lwz      r0, 0x2c(r1)
-	cmplwi   r0, 0
-	bne      lbl_8016FF64
-	lwz      r3, 0x28(r1)
-	lwz      r4, 0x24(r1)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x14(r12)
-	mtctr    r12
-	bctrl
-	stw      r3, 0x24(r1)
-	b        lbl_8016FFF4
+// lbl_8016FF38:
+// 	lwz      r0, 0x2c(r1)
+// 	cmplwi   r0, 0
+// 	bne      lbl_8016FF64
+// 	lwz      r3, 0x28(r1)
+// 	lwz      r4, 0x24(r1)
+// 	lwz      r12, 0(r3)
+// 	lwz      r12, 0x14(r12)
+// 	mtctr    r12
+// 	bctrl
+// 	stw      r3, 0x24(r1)
+// 	b        lbl_8016FFF4
 
-lbl_8016FF64:
-	lwz      r3, 0x28(r1)
-	lwz      r4, 0x24(r1)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x14(r12)
-	mtctr    r12
-	bctrl
-	stw      r3, 0x24(r1)
-	b        lbl_8016FFD8
+// lbl_8016FF64:
+// 	lwz      r3, 0x28(r1)
+// 	lwz      r4, 0x24(r1)
+// 	lwz      r12, 0(r3)
+// 	lwz      r12, 0x14(r12)
+// 	mtctr    r12
+// 	bctrl
+// 	stw      r3, 0x24(r1)
+// 	b        lbl_8016FFD8
 
-lbl_8016FF84:
-	lwz      r3, 0x28(r1)
-	lwz      r4, 0x24(r1)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x20(r12)
-	mtctr    r12
-	bctrl
-	mr       r4, r3
-	lwz      r3, 0x2c(r1)
-	lwz      r12, 0(r3)
-	lwz      r12, 8(r12)
-	mtctr    r12
-	bctrl
-	clrlwi.  r0, r3, 0x18
-	bne      lbl_8016FFF4
-	lwz      r3, 0x28(r1)
-	lwz      r4, 0x24(r1)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x14(r12)
-	mtctr    r12
-	bctrl
-	stw      r3, 0x24(r1)
+// lbl_8016FF84:
+// 	lwz      r3, 0x28(r1)
+// 	lwz      r4, 0x24(r1)
+// 	lwz      r12, 0(r3)
+// 	lwz      r12, 0x20(r12)
+// 	mtctr    r12
+// 	bctrl
+// 	mr       r4, r3
+// 	lwz      r3, 0x2c(r1)
+// 	lwz      r12, 0(r3)
+// 	lwz      r12, 8(r12)
+// 	mtctr    r12
+// 	bctrl
+// 	clrlwi.  r0, r3, 0x18
+// 	bne      lbl_8016FFF4
+// 	lwz      r3, 0x28(r1)
+// 	lwz      r4, 0x24(r1)
+// 	lwz      r12, 0(r3)
+// 	lwz      r12, 0x14(r12)
+// 	mtctr    r12
+// 	bctrl
+// 	stw      r3, 0x24(r1)
 
-lbl_8016FFD8:
-	lwz      r12, 0x20(r1)
-	addi     r3, r1, 0x20
-	lwz      r12, 0x10(r12)
-	mtctr    r12
-	bctrl
-	clrlwi.  r0, r3, 0x18
-	beq      lbl_8016FF84
+// lbl_8016FFD8:
+// 	lwz      r12, 0x20(r1)
+// 	addi     r3, r1, 0x20
+// 	lwz      r12, 0x10(r12)
+// 	mtctr    r12
+// 	bctrl
+// 	clrlwi.  r0, r3, 0x18
+// 	beq      lbl_8016FF84
 
-lbl_8016FFF4:
-	lwz      r3, 0x28(r1)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x1c(r12)
-	mtctr    r12
-	bctrl
-	lwz      r4, 0x24(r1)
-	cmplw    r4, r3
-	bne      lbl_8016FEC8
+// lbl_8016FFF4:
+// 	lwz      r3, 0x28(r1)
+// 	lwz      r12, 0(r3)
+// 	lwz      r12, 0x1c(r12)
+// 	mtctr    r12
+// 	bctrl
+// 	lwz      r4, 0x24(r1)
+// 	cmplw    r4, r3
+// 	bne      lbl_8016FEC8
 
-lbl_80170014:
-	li       r3, 1
+// lbl_80170014:
+// 	li       r3, 1
 
-lbl_80170018:
-	psq_l    f31, 120(r1), 0, qr0
-	lfd      f31, 0x70(r1)
-	psq_l    f30, 104(r1), 0, qr0
-	lfd      f30, 0x60(r1)
-	psq_l    f29, 88(r1), 0, qr0
-	lfd      f29, 0x50(r1)
-	psq_l    f28, 72(r1), 0, qr0
-	lwz      r0, 0x84(r1)
-	lfd      f28, 0x40(r1)
-	mtlr     r0
-	addi     r1, r1, 0x80
-	blr
-	*/
-}
+// lbl_80170018:
+// 	psq_l    f31, 120(r1), 0, qr0
+// 	lfd      f31, 0x70(r1)
+// 	psq_l    f30, 104(r1), 0, qr0
+// 	lfd      f30, 0x60(r1)
+// 	psq_l    f29, 88(r1), 0, qr0
+// 	lfd      f29, 0x50(r1)
+// 	psq_l    f28, 72(r1), 0, qr0
+// 	lwz      r0, 0x84(r1)
+// 	lfd      f28, 0x40(r1)
+// 	mtlr     r0
+// 	addi     r1, r1, 0x80
+// 	blr
+// 	*/
+// }
 
 namespace Game {
 
@@ -8194,30 +8177,12 @@ void Pellet::onSetPosition(Vector3f&)
  */
 // void CreatureObj::onCalcOn(void) { }
 
-namespace Game {
-
-/*
- * --INFO--
- * Address:	801701A0
- * Size:	00000C
- */
-void PelletGoalStateArg::getName(void)
-{
-	/*
-	lis      r3, lbl_8047E534@ha
-	addi     r3, r3, lbl_8047E534@l
-	blr
-	*/
-}
-
-} // namespace Game
-
 /*
  * --INFO--
  * Address:	801701AC
  * Size:	000004
  */
-void init__Q24Game28StateMachine<Game::Pellet> FPQ24Game6Pellet(void) { }
+// void init__Q24Game28StateMachine<Game::Pellet> FPQ24Game6Pellet(void) { }
 
 /*
  * --INFO--
@@ -8338,7 +8303,7 @@ void init__Q24Game28StateMachine<Game::Pellet> FPQ24Game6Pellet(void) { }
  * Address:	80170230
  * Size:	000040
  */
-void MonoObjectMgr<CollPart>::getNext(void*)
+void* MonoObjectMgr<CollPart>::getNext(void*)
 {
 	/*
 	lwz      r5, 0x24(r3)
@@ -8371,7 +8336,7 @@ lbl_80170268:
  * Address:	80170270
  * Size:	000030
  */
-void MonoObjectMgr<CollPart>::getStart()
+void* MonoObjectMgr<CollPart>::getStart()
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -8394,7 +8359,7 @@ void MonoObjectMgr<CollPart>::getStart()
  * Address:	801702A0
  * Size:	000008
  */
-void MonoObjectMgr<CollPart>::getEnd()
+void* MonoObjectMgr<CollPart>::getEnd()
 {
 	/*
 	lwz      r3, 0x24(r3)
@@ -8407,7 +8372,7 @@ void MonoObjectMgr<CollPart>::getEnd()
  * Address:	801702A8
  * Size:	000010
  */
-void MonoObjectMgr<CollPart>::getAt(int)
+CollPart* MonoObjectMgr<CollPart>::getAt(int)
 {
 	/*
 	mulli    r0, r4, 0x64
@@ -8422,7 +8387,7 @@ void MonoObjectMgr<CollPart>::getAt(int)
  * Address:	801702B8
  * Size:	000008
  */
-void MonoObjectMgr<CollPart>::getTo()
+int MonoObjectMgr<CollPart>::getTo()
 {
 	/*
 	lwz      r3, 0x24(r3)
@@ -8738,23 +8703,6 @@ lbl_801705C4:
 
 /*
  * --INFO--
- * Address:	801705F0
- * Size:	000018
- */
-void MonoObjectMgr<CollPart>::resetMgr()
-{
-	/*
-	li       r0, 0
-	stw      r0, 0x28(r3)
-	stw      r0, 0x24(r3)
-	stw      r0, 0x20(r3)
-	stw      r0, 0x2c(r3)
-	blr
-	*/
-}
-
-/*
- * --INFO--
  * Address:	80170608
  * Size:	000030
  */
@@ -8792,7 +8740,7 @@ void MonoObjectMgr<CollPart>::onAlloc() { }
  * Address:	8017063C
  * Size:	000010
  */
-void MonoObjectMgr<CollPart>::get(void*)
+CollPart* MonoObjectMgr<CollPart>::get(void*)
 {
 	/*
 	mulli    r0, r4, 0x64
@@ -10732,351 +10680,351 @@ lbl_80171E20:
  * Address:	80171E50
  * Size:	00009C
  */
-void MonoObjectMgr<CollPart>::MonoObjectMgr()
-{
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	mr       r31, r3
-	bl       __ct__5CNodeFv
-	lis      r4, __vt__16GenericContainer@ha
-	lis      r3, "__vt__20Container<8CollPart>"@ha
-	addi     r0, r4, __vt__16GenericContainer@l
-	lis      r6, __vt__16GenericObjectMgr@ha
-	stw      r0, 0(r31)
-	addi     r0, r3, "__vt__20Container<8CollPart>"@l
-	lis      r4, "__vt__20ObjectMgr<8CollPart>"@ha
-	lis      r3, "__vt__24MonoObjectMgr<8CollPart>"@ha
-	stw      r0, 0(r31)
-	li       r8, 0
-	addi     r7, r4, "__vt__20ObjectMgr<8CollPart>"@l
-	addi     r5, r3, "__vt__24MonoObjectMgr<8CollPart>"@l
-	stb      r8, 0x18(r31)
-	addi     r0, r6, __vt__16GenericObjectMgr@l
-	addi     r6, r7, 0x2c
-	addi     r4, r5, 0x2c
-	stw      r0, 0x1c(r31)
-	li       r0, 1
-	mr       r3, r31
-	stw      r7, 0(r31)
-	stw      r6, 0x1c(r31)
-	stw      r5, 0(r31)
-	stw      r4, 0x1c(r31)
-	stb      r0, 0x18(r31)
-	stw      r8, 0x24(r31)
-	stw      r8, 0x20(r31)
-	stw      r8, 0x28(r31)
-	stw      r8, 0x2c(r31)
-	lwz      r31, 0xc(r1)
-	lwz      r0, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
-}
+// MonoObjectMgr<CollPart>::MonoObjectMgr()
+// {
+// 	/*
+// 	stwu     r1, -0x10(r1)
+// 	mflr     r0
+// 	stw      r0, 0x14(r1)
+// 	stw      r31, 0xc(r1)
+// 	mr       r31, r3
+// 	bl       __ct__5CNodeFv
+// 	lis      r4, __vt__16GenericContainer@ha
+// 	lis      r3, "__vt__20Container<8CollPart>"@ha
+// 	addi     r0, r4, __vt__16GenericContainer@l
+// 	lis      r6, __vt__16GenericObjectMgr@ha
+// 	stw      r0, 0(r31)
+// 	addi     r0, r3, "__vt__20Container<8CollPart>"@l
+// 	lis      r4, "__vt__20ObjectMgr<8CollPart>"@ha
+// 	lis      r3, "__vt__24MonoObjectMgr<8CollPart>"@ha
+// 	stw      r0, 0(r31)
+// 	li       r8, 0
+// 	addi     r7, r4, "__vt__20ObjectMgr<8CollPart>"@l
+// 	addi     r5, r3, "__vt__24MonoObjectMgr<8CollPart>"@l
+// 	stb      r8, 0x18(r31)
+// 	addi     r0, r6, __vt__16GenericObjectMgr@l
+// 	addi     r6, r7, 0x2c
+// 	addi     r4, r5, 0x2c
+// 	stw      r0, 0x1c(r31)
+// 	li       r0, 1
+// 	mr       r3, r31
+// 	stw      r7, 0(r31)
+// 	stw      r6, 0x1c(r31)
+// 	stw      r5, 0(r31)
+// 	stw      r4, 0x1c(r31)
+// 	stb      r0, 0x18(r31)
+// 	stw      r8, 0x24(r31)
+// 	stw      r8, 0x20(r31)
+// 	stw      r8, 0x28(r31)
+// 	stw      r8, 0x2c(r31)
+// 	lwz      r31, 0xc(r1)
+// 	lwz      r0, 0x14(r1)
+// 	mtlr     r0
+// 	addi     r1, r1, 0x10
+// 	blr
+// 	*/
+// }
 
 /*
  * --INFO--
  * Address:	80171EEC
  * Size:	00009C
  */
-void transit__Q24Game28StateMachine<Game::Pellet> FPQ24Game6PelletiPQ24Game8StateArg(void)
-{
-	/*
-	.loc_0x0:
-	  stwu      r1, -0x20(r1)
-	  mflr      r0
-	  stw       r0, 0x24(r1)
-	  rlwinm    r0,r5,2,0,29
-	  stmw      r27, 0xC(r1)
-	  mr        r27, r3
-	  mr        r28, r4
-	  mr        r29, r6
-	  lwz       r30, 0x3CC(r4)
-	  lwz       r3, 0x14(r3)
-	  cmplwi    r30, 0
-	  lwzx      r31, r3, r0
-	  beq-      .loc_0x50
-	  mr        r3, r30
-	  lwz       r12, 0x0(r30)
-	  lwz       r12, 0x10(r12)
-	  mtctr     r12
-	  bctrl
-	  lwz       r0, 0x4(r30)
-	  stw       r0, 0x18(r27)
+// void transit__Q24Game28StateMachine<Game::Pellet> FPQ24Game6PelletiPQ24Game8StateArg(void)
+// {
+// 	/*
+// 	.loc_0x0:
+// 	  stwu      r1, -0x20(r1)
+// 	  mflr      r0
+// 	  stw       r0, 0x24(r1)
+// 	  rlwinm    r0,r5,2,0,29
+// 	  stmw      r27, 0xC(r1)
+// 	  mr        r27, r3
+// 	  mr        r28, r4
+// 	  mr        r29, r6
+// 	  lwz       r30, 0x3CC(r4)
+// 	  lwz       r3, 0x14(r3)
+// 	  cmplwi    r30, 0
+// 	  lwzx      r31, r3, r0
+// 	  beq-      .loc_0x50
+// 	  mr        r3, r30
+// 	  lwz       r12, 0x0(r30)
+// 	  lwz       r12, 0x10(r12)
+// 	  mtctr     r12
+// 	  bctrl
+// 	  lwz       r0, 0x4(r30)
+// 	  stw       r0, 0x18(r27)
 
-	.loc_0x50:
-	  lwz       r0, 0xC(r27)
-	  cmpw      r31, r0
-	  blt-      .loc_0x60
+// 	.loc_0x50:
+// 	  lwz       r0, 0xC(r27)
+// 	  cmpw      r31, r0
+// 	  blt-      .loc_0x60
 
-	.loc_0x5C:
-	  b         .loc_0x5C
+// 	.loc_0x5C:
+// 	  b         .loc_0x5C
 
-	.loc_0x60:
-	  lwz       r3, 0x4(r27)
-	  rlwinm    r0,r31,2,0,29
-	  mr        r4, r28
-	  mr        r5, r29
-	  lwzx      r3, r3, r0
-	  stw       r3, 0x3CC(r28)
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0x8(r12)
-	  mtctr     r12
-	  bctrl
-	  lmw       r27, 0xC(r1)
-	  lwz       r0, 0x24(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x20
-	  blr
-	*/
-}
+// 	.loc_0x60:
+// 	  lwz       r3, 0x4(r27)
+// 	  rlwinm    r0,r31,2,0,29
+// 	  mr        r4, r28
+// 	  mr        r5, r29
+// 	  lwzx      r3, r3, r0
+// 	  stw       r3, 0x3CC(r28)
+// 	  lwz       r12, 0x0(r3)
+// 	  lwz       r12, 0x8(r12)
+// 	  mtctr     r12
+// 	  bctrl
+// 	  lmw       r27, 0xC(r1)
+// 	  lwz       r0, 0x24(r1)
+// 	  mtlr      r0
+// 	  addi      r1, r1, 0x20
+// 	  blr
+// 	*/
+// }
 
-/*
- * --INFO--
- * Address:	80171F88
- * Size:	000004
- */
-void init__Q24Game24FSMState<Game::Pellet> FPQ24Game6PelletPQ24Game8StateArg(void) { }
+// /*
+//  * --INFO--
+//  * Address:	80171F88
+//  * Size:	000004
+//  */
+// void init__Q24Game24FSMState<Game::Pellet> FPQ24Game6PelletPQ24Game8StateArg(void) { }
 
-/*
- * --INFO--
- * Address:	80171F8C
- * Size:	000004
- */
-void cleanup__Q24Game24FSMState<Game::Pellet> FPQ24Game6Pellet(void) { }
+// /*
+//  * --INFO--
+//  * Address:	80171F8C
+//  * Size:	000004
+//  */
+// void cleanup__Q24Game24FSMState<Game::Pellet> FPQ24Game6Pellet(void) { }
 
-/*
- * --INFO--
- * Address:	80171F90
- * Size:	00001C
- */
-void getCurrID__Q24Game28StateMachine<Game::Pellet> FPQ24Game6Pellet(void)
-{
-	/*
-	lwz      r3, 0x3cc(r4)
-	cmplwi   r3, 0
-	beq      lbl_80171FA4
-	lwz      r3, 4(r3)
-	blr
+// /*
+//  * --INFO--
+//  * Address:	80171F90
+//  * Size:	00001C
+//  */
+// void getCurrID__Q24Game28StateMachine<Game::Pellet> FPQ24Game6Pellet(void)
+// {
+// 	/*
+// 	lwz      r3, 0x3cc(r4)
+// 	cmplwi   r3, 0
+// 	beq      lbl_80171FA4
+// 	lwz      r3, 4(r3)
+// 	blr
 
-lbl_80171FA4:
-	li       r3, -1
-	blr
-	*/
-}
+// lbl_80171FA4:
+// 	li       r3, -1
+// 	blr
+// 	*/
+// }
 
-/*
- * --INFO--
- * Address:	80171FAC
- * Size:	000038
- */
-void exec__Q24Game28StateMachine<Game::Pellet> FPQ24Game6Pellet(void)
-{
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	lwz      r3, 0x3cc(r4)
-	cmplwi   r3, 0
-	beq      lbl_80171FD4
-	lwz      r12, 0(r3)
-	lwz      r12, 0xc(r12)
-	mtctr    r12
-	bctrl
+// /*
+//  * --INFO--
+//  * Address:	80171FAC
+//  * Size:	000038
+//  */
+// void exec__Q24Game28StateMachine<Game::Pellet> FPQ24Game6Pellet(void)
+// {
+// 	/*
+// 	stwu     r1, -0x10(r1)
+// 	mflr     r0
+// 	stw      r0, 0x14(r1)
+// 	lwz      r3, 0x3cc(r4)
+// 	cmplwi   r3, 0
+// 	beq      lbl_80171FD4
+// 	lwz      r12, 0(r3)
+// 	lwz      r12, 0xc(r12)
+// 	mtctr    r12
+// 	bctrl
 
-lbl_80171FD4:
-	lwz      r0, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
-}
+// lbl_80171FD4:
+// 	lwz      r0, 0x14(r1)
+// 	mtlr     r0
+// 	addi     r1, r1, 0x10
+// 	blr
+// 	*/
+// }
 
-/*
- * --INFO--
- * Address:	80171FE4
- * Size:	000004
- */
-void exec__Q24Game24FSMState<Game::Pellet> FPQ24Game6Pellet(void) { }
+// /*
+//  * --INFO--
+//  * Address:	80171FE4
+//  * Size:	000004
+//  */
+// void exec__Q24Game24FSMState<Game::Pellet> FPQ24Game6Pellet(void) { }
 
-/*
- * --INFO--
- * Address:	80171FE8
- * Size:	00009C
- */
-void resetMgrAndResources__Q24Game49FixedSizePelletMgr<Game::PelletOtakara::Object> Fv(void)
-{
-	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  stw       r0, 0x14(r1)
-	  stw       r31, 0xC(r1)
-	  mr        r31, r3
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0x28(r12)
-	  mtctr     r12
-	  bctrl
-	  li        r8, 0
-	  li        r9, 0
-	  mr        r7, r8
-	  mr        r6, r8
-	  mr        r5, r8
-	  mr        r4, r8
-	  b         .loc_0x68
+// /*
+//  * --INFO--
+//  * Address:	80171FE8
+//  * Size:	00009C
+//  */
+// void resetMgrAndResources__Q24Game49FixedSizePelletMgr<Game::PelletOtakara::Object> Fv(void)
+// {
+// 	/*
+// 	.loc_0x0:
+// 	  stwu      r1, -0x10(r1)
+// 	  mflr      r0
+// 	  stw       r0, 0x14(r1)
+// 	  stw       r31, 0xC(r1)
+// 	  mr        r31, r3
+// 	  lwz       r12, 0x0(r3)
+// 	  lwz       r12, 0x28(r12)
+// 	  mtctr     r12
+// 	  bctrl
+// 	  li        r8, 0
+// 	  li        r9, 0
+// 	  mr        r7, r8
+// 	  mr        r6, r8
+// 	  mr        r5, r8
+// 	  mr        r4, r8
+// 	  b         .loc_0x68
 
-	.loc_0x40:
-	  lwz       r3, 0xC(r31)
-	  stwx      r7, r3, r8
-	  lwz       r3, 0x10(r31)
-	  stwx      r6, r3, r8
-	  lwz       r3, 0x14(r31)
-	  stwx      r5, r3, r8
-	  addi      r8, r8, 0x4
-	  lwz       r3, 0x4C(r31)
-	  stbx      r4, r3, r9
-	  addi      r9, r9, 0x1
+// 	.loc_0x40:
+// 	  lwz       r3, 0xC(r31)
+// 	  stwx      r7, r3, r8
+// 	  lwz       r3, 0x10(r31)
+// 	  stwx      r6, r3, r8
+// 	  lwz       r3, 0x14(r31)
+// 	  stwx      r5, r3, r8
+// 	  addi      r8, r8, 0x4
+// 	  lwz       r3, 0x4C(r31)
+// 	  stbx      r4, r3, r9
+// 	  addi      r9, r9, 0x1
 
-	.loc_0x68:
-	  lwz       r0, 0x50(r31)
-	  cmpw      r9, r0
-	  blt+      .loc_0x40
-	  lwz       r0, 0x48(r31)
-	  cmplwi    r0, 0
-	  beq-      .loc_0x88
-	  li        r0, 0
-	  stw       r0, 0x48(r31)
+// 	.loc_0x68:
+// 	  lwz       r0, 0x50(r31)
+// 	  cmpw      r9, r0
+// 	  blt+      .loc_0x40
+// 	  lwz       r0, 0x48(r31)
+// 	  cmplwi    r0, 0
+// 	  beq-      .loc_0x88
+// 	  li        r0, 0
+// 	  stw       r0, 0x48(r31)
 
-	.loc_0x88:
-	  lwz       r0, 0x14(r1)
-	  lwz       r31, 0xC(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
-	*/
-}
+// 	.loc_0x88:
+// 	  lwz       r0, 0x14(r1)
+// 	  lwz       r31, 0xC(r1)
+// 	  mtlr      r0
+// 	  addi      r1, r1, 0x10
+// 	  blr
+// 	*/
+// }
 
 /*
  * --INFO--
  * Address:	80172084
  * Size:	000050
  */
-void resetMgr__Q24Game49FixedSizePelletMgr<Game::PelletOtakara::Object> Fv(void)
-{
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	mr       r31, r3
-	addi     r3, r31, 0x70
-	lwz      r12, 0x70(r31)
-	lwz      r12, 0x80(r12)
-	mtctr    r12
-	bctrl
-	addi     r3, r31, 0x18
-	lwz      r12, 0x18(r31)
-	lwz      r12, 0x80(r12)
-	mtctr    r12
-	bctrl
-	lwz      r0, 0x14(r1)
-	lwz      r31, 0xc(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
-}
+// void resetMgr__Q24Game49FixedSizePelletMgr<Game::PelletOtakara::Object> Fv(void)
+// {
+// 	/*
+// 	stwu     r1, -0x10(r1)
+// 	mflr     r0
+// 	stw      r0, 0x14(r1)
+// 	stw      r31, 0xc(r1)
+// 	mr       r31, r3
+// 	addi     r3, r31, 0x70
+// 	lwz      r12, 0x70(r31)
+// 	lwz      r12, 0x80(r12)
+// 	mtctr    r12
+// 	bctrl
+// 	addi     r3, r31, 0x18
+// 	lwz      r12, 0x18(r31)
+// 	lwz      r12, 0x80(r12)
+// 	mtctr    r12
+// 	bctrl
+// 	lwz      r0, 0x14(r1)
+// 	lwz      r31, 0xc(r1)
+// 	mtlr     r0
+// 	addi     r1, r1, 0x10
+// 	blr
+// 	*/
+// }
 
 /*
  * --INFO--
  * Address:	801720D4
  * Size:	00009C
  */
-void resetMgrAndResources__Q24Game46FixedSizePelletMgr<Game::PelletItem::Object> Fv(void)
-{
-	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  stw       r0, 0x14(r1)
-	  stw       r31, 0xC(r1)
-	  mr        r31, r3
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0x28(r12)
-	  mtctr     r12
-	  bctrl
-	  li        r8, 0
-	  li        r9, 0
-	  mr        r7, r8
-	  mr        r6, r8
-	  mr        r5, r8
-	  mr        r4, r8
-	  b         .loc_0x68
+// void resetMgrAndResources__Q24Game46FixedSizePelletMgr<Game::PelletItem::Object> Fv(void)
+// {
+// 	/*
+// 	.loc_0x0:
+// 	  stwu      r1, -0x10(r1)
+// 	  mflr      r0
+// 	  stw       r0, 0x14(r1)
+// 	  stw       r31, 0xC(r1)
+// 	  mr        r31, r3
+// 	  lwz       r12, 0x0(r3)
+// 	  lwz       r12, 0x28(r12)
+// 	  mtctr     r12
+// 	  bctrl
+// 	  li        r8, 0
+// 	  li        r9, 0
+// 	  mr        r7, r8
+// 	  mr        r6, r8
+// 	  mr        r5, r8
+// 	  mr        r4, r8
+// 	  b         .loc_0x68
 
-	.loc_0x40:
-	  lwz       r3, 0xC(r31)
-	  stwx      r7, r3, r8
-	  lwz       r3, 0x10(r31)
-	  stwx      r6, r3, r8
-	  lwz       r3, 0x14(r31)
-	  stwx      r5, r3, r8
-	  addi      r8, r8, 0x4
-	  lwz       r3, 0x4C(r31)
-	  stbx      r4, r3, r9
-	  addi      r9, r9, 0x1
+// 	.loc_0x40:
+// 	  lwz       r3, 0xC(r31)
+// 	  stwx      r7, r3, r8
+// 	  lwz       r3, 0x10(r31)
+// 	  stwx      r6, r3, r8
+// 	  lwz       r3, 0x14(r31)
+// 	  stwx      r5, r3, r8
+// 	  addi      r8, r8, 0x4
+// 	  lwz       r3, 0x4C(r31)
+// 	  stbx      r4, r3, r9
+// 	  addi      r9, r9, 0x1
 
-	.loc_0x68:
-	  lwz       r0, 0x50(r31)
-	  cmpw      r9, r0
-	  blt+      .loc_0x40
-	  lwz       r0, 0x48(r31)
-	  cmplwi    r0, 0
-	  beq-      .loc_0x88
-	  li        r0, 0
-	  stw       r0, 0x48(r31)
+// 	.loc_0x68:
+// 	  lwz       r0, 0x50(r31)
+// 	  cmpw      r9, r0
+// 	  blt+      .loc_0x40
+// 	  lwz       r0, 0x48(r31)
+// 	  cmplwi    r0, 0
+// 	  beq-      .loc_0x88
+// 	  li        r0, 0
+// 	  stw       r0, 0x48(r31)
 
-	.loc_0x88:
-	  lwz       r0, 0x14(r1)
-	  lwz       r31, 0xC(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
-	*/
-}
+// 	.loc_0x88:
+// 	  lwz       r0, 0x14(r1)
+// 	  lwz       r31, 0xC(r1)
+// 	  mtlr      r0
+// 	  addi      r1, r1, 0x10
+// 	  blr
+// 	*/
+// }
 
-/*
- * --INFO--
- * Address:	80172170
- * Size:	000050
- */
-void resetMgr__Q24Game46FixedSizePelletMgr<Game::PelletItem::Object> Fv(void)
-{
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	mr       r31, r3
-	addi     r3, r31, 0x70
-	lwz      r12, 0x70(r31)
-	lwz      r12, 0x80(r12)
-	mtctr    r12
-	bctrl
-	addi     r3, r31, 0x18
-	lwz      r12, 0x18(r31)
-	lwz      r12, 0x80(r12)
-	mtctr    r12
-	bctrl
-	lwz      r0, 0x14(r1)
-	lwz      r31, 0xc(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
-}
+// /*
+//  * --INFO--
+//  * Address:	80172170
+//  * Size:	000050
+//  */
+// void resetMgr__Q24Game46FixedSizePelletMgr<Game::PelletItem::Object> Fv(void)
+// {
+// 	/*
+// 	stwu     r1, -0x10(r1)
+// 	mflr     r0
+// 	stw      r0, 0x14(r1)
+// 	stw      r31, 0xc(r1)
+// 	mr       r31, r3
+// 	addi     r3, r31, 0x70
+// 	lwz      r12, 0x70(r31)
+// 	lwz      r12, 0x80(r12)
+// 	mtctr    r12
+// 	bctrl
+// 	addi     r3, r31, 0x18
+// 	lwz      r12, 0x18(r31)
+// 	lwz      r12, 0x80(r12)
+// 	mtctr    r12
+// 	bctrl
+// 	lwz      r0, 0x14(r1)
+// 	lwz      r31, 0xc(r1)
+// 	mtlr     r0
+// 	addi     r1, r1, 0x10
+// 	blr
+// 	*/
+// }
 
 /*
  * --INFO--
@@ -11253,57 +11201,38 @@ void resetMgr__Q24Game46FixedSizePelletMgr<Game::PelletItem::Object> Fv(void)
 // 	*/
 // }
 
-/*
- * --INFO--
- * Address:	801723B8
- * Size:	000018
- */
-void MonoObjectMgr<Game::PelletItem::Object>::resetMgr()
-{
-	/*
-	li       r0, 0
-	stw      r0, 0x28(r3)
-	stw      r0, 0x24(r3)
-	stw      r0, 0x20(r3)
-	stw      r0, 0x2c(r3)
-	blr
-	*/
-}
+// /*
+//  * --INFO--
+//  * Address:	801723B8
+//  * Size:	000018
+//  */
+// void MonoObjectMgr<Game::PelletItem::Object>::resetMgr()
+// {
+// 	/*
+// 	li       r0, 0
+// 	stw      r0, 0x28(r3)
+// 	stw      r0, 0x24(r3)
+// 	stw      r0, 0x20(r3)
+// 	stw      r0, 0x2c(r3)
+// 	blr
+// 	*/
+// }
 
-/*
- * --INFO--
- * Address:	801723D0
- * Size:	000018
- */
-void MonoObjectMgr<Game::PelletOtakara::Object>::resetMgr()
-{
-	/*
-	li       r0, 0
-	stw      r0, 0x28(r3)
-	stw      r0, 0x24(r3)
-	stw      r0, 0x20(r3)
-	stw      r0, 0x2c(r3)
-	blr
-	*/
-}
-
-/*
- * --INFO--
- * Address:	801723E8
- * Size:	000028
- */
-void __sinit_pelletMgr_cpp(void)
-{
-	/*
-	lis      r4, __float_nan@ha
-	li       r0, -1
-	lfs      f0, __float_nan@l(r4)
-	lis      r3, lbl_804B1A60@ha
-	stw      r0, lbl_80515998@sda21(r13)
-	stfsu    f0, lbl_804B1A60@l(r3)
-	stfs     f0, lbl_8051599C@sda21(r13)
-	stfs     f0, 4(r3)
-	stfs     f0, 8(r3)
-	blr
-	*/
-}
+// /*
+//  * --INFO--
+//  * Address:	801723D0
+//  * Size:	000018
+//  */
+// void MonoObjectMgr<Game::PelletOtakara::Object>::resetMgr()
+// {
+// 	/*
+// 	li       r0, 0
+// 	stw      r0, 0x28(r3)
+// 	stw      r0, 0x24(r3)
+// 	stw      r0, 0x20(r3)
+// 	stw      r0, 0x2c(r3)
+// 	blr
+// 	*/
+// }
+} // namespace Game
+} // namespace Game
