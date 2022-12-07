@@ -1,5 +1,7 @@
 #include "types.h"
 #include "og/newScreen/Challenge.h"
+#include "trig.h"
+#include "System.h"
 
 /*
     Generated from dpostproc
@@ -143,8 +145,12 @@ namespace newScreen {
  * Address:	8031EBE8
  * Size:	000064
  */
-ObjChallenge2P::ObjChallenge2P(char const*)
+ObjChallenge2P::ObjChallenge2P(char const* name)
 {
+	m_name       = name;
+	m_disp       = nullptr;
+	m_bloGroup   = nullptr;
+	m_pokoScreen = nullptr;
 	/*
 	stwu     r1, -0x10(r1)
 	mflr     r0
@@ -218,8 +224,86 @@ lbl_8031EC98:
  * Address:	8031ECB4
  * Size:	0006C4
  */
-void ObjChallenge2P::doCreate(JKRArchive*)
+void ObjChallenge2P::doCreate(JKRArchive* arc)
 {
+	m_screenP1 = new ScreenSet;
+	m_screenP2 = new ScreenSet;
+
+	og::Screen::DispMemberChallenge2P* disp = static_cast<og::Screen::DispMemberChallenge2P*>(getDispMember());
+	if (disp->isID(OWNER_OGA, MEMBER_CHALLENGE_2P)) {
+		m_disp = disp;
+
+	} else if (disp->isID(OWNER_OGA, MEMBER_DUMMY)) {
+		m_disp = new og::Screen::DispMemberChallenge2P;
+
+	} else {
+		JUT_PANICLINE(151, "ERR! in ObjChallenge2P CreateŽ¸”sI\n");
+	}
+
+	m_pokoScreen = new P2DScreen::Mgr_tuning;
+	m_bloGroup   = new og::Screen::BloGroup(3);
+	m_bloGroup->addBlo("challenge_1P.blo", m_screenP1->m_screen, 0x1040000, arc);
+	m_bloGroup->addBlo("challenge_2P.blo", m_screenP2->m_screen, 0x1040000, arc);
+	m_bloGroup->addBlo("2P_challenge_poko.blo", m_pokoScreen, 0x1040000, arc);
+	m_screenP1->init(&m_disp->m_dataNavi1, arc, m_disp);
+	m_screenP2->init(&m_disp->m_dataNavi2, arc, m_disp);
+
+	og::Screen::CallBack_CounterRV* counter = og::Screen::setCallBack_CounterRV(m_pokoScreen, 'Ppoko1', &m_disp->m_pokos, 6, 1, 1, arc);
+	counter->m_scaleUpSoundID               = PSSE_SY_REGI_SUM_UP;
+
+	og::Screen::setCallBack_CounterRV(m_pokoScreen, 'PdeadP1', &m_disp->m_deadPiki, 6, 1, 1, arc);
+	m_timeLeftInt = m_disp->m_timeLimit;
+
+	counter = og::Screen::setCallBack_CounterRV(m_pokoScreen, 'Ptime1', &m_timeLeftInt, 6, 1, 1, arc);
+	counter->setCenteringMode(og::Screen::CallBack_CounterRV::ECM_Unknown1);
+
+	J2DPane* pane  = m_pokoScreen->search('Nmenu01');
+	msVal.m_menu01 = pane;
+	msVal._48      = pane->_0D4.x;
+	msVal._4C      = pane->_0D4.y;
+	msVal._50      = pane->m_scale.x;
+	msVal._54      = pane->m_scale.y;
+	msVal._58      = 0.0f;
+	msVal._5C      = 0.0f;
+	msVal._60      = 1.0f;
+	msVal._64      = 1.0f;
+	if (pane) {
+		pane->setOffset(msVal._48, 0.0f, msVal._4C, 0.0f);
+		msVal.m_menu01->updateScale(msVal._50 * msVal._60, msVal._54 * msVal._64);
+	}
+
+	J2DPane* pane2 = m_pokoScreen->search('Nmenu00');
+	msVal.m_menu00 = pane2;
+	msVal._24      = pane2->_0D4.x;
+	msVal._28      = pane2->_0D4.y;
+	msVal._2C      = pane2->m_scale.x;
+	msVal._30      = pane2->m_scale.y;
+	msVal._34      = 0.0f;
+	msVal._38      = 0.0f;
+	msVal._3C      = 1.0f;
+	msVal._40      = 1.0f;
+	if (pane2) {
+		pane2->setOffset(msVal._24, 0.0f, msVal._28, 0.0f);
+		msVal.m_menu00->updateScale(msVal._2C * msVal._3C, msVal._30 * msVal._40);
+	}
+
+	J2DPane* pane3 = m_pokoScreen->search('Nmenu02');
+	msVal.m_menu02 = pane3;
+	msVal._6C      = pane3->_0D4.x;
+	msVal._70      = pane3->_0D4.y;
+	msVal._74      = pane3->m_scale.x;
+	msVal._78      = pane3->m_scale.y;
+	msVal._7C      = 0.0f;
+	msVal._80      = 0.0f;
+	msVal._84      = 1.0f;
+	msVal._88      = 1.0f;
+	if (pane3) {
+		pane3->setOffset(msVal._6C, 0.0f, msVal._70, 0.0f);
+		msVal.m_menu02->updateScale(msVal._74 * msVal._84, msVal._78 * msVal._88);
+	}
+
+	setSubLevel(m_disp->m_dataGame.m_floorNum);
+	doCreateAfter(arc, counter);
 	/*
 	stwu     r1, -0x20(r1)
 	mflr     r0
@@ -684,8 +768,36 @@ lbl_8031F32C:
  * Address:	8031F378
  * Size:	0002BC
  */
-void ObjChallenge2P::ScreenSet::init(og::Screen::DataNavi*, JKRArchive*, og::Screen::DispMemberChallenge2P*)
+void ObjChallenge2P::ScreenSet::init(og::Screen::DataNavi* data, JKRArchive* arc, og::Screen::DispMemberChallenge2P* disp)
 {
+	og::Screen::CallBack_CatchPiki* callback = new og::Screen::CallBack_CatchPiki;
+	callback->init(m_screen, 'piki', &data->m_nextThrowPiki, arc);
+	m_screen->addCallBack('piki', callback);
+
+	og::Screen::setCallBack_CounterRV(m_screen, 'c_mr', 'c_ml', 'c_ml', &data->m_followPikis, 3, 2, 1, arc);
+	og::Screen::CallBack_CounterRV* counter
+	    = og::Screen::setCallBack_CounterRV(m_screen, 'c_lr', 'c_ll', 'c_ll', (u32*)&disp->m_dataGame.m_mapPikminCount, 3, 2, 1, arc);
+	counter->m_scaleUpSoundID   = PSSE_SY_PIKI_INCREMENT;
+	counter->m_scaleDownSoundID = PSSE_SY_PIKI_DECREMENT;
+
+	counter = og::Screen::setCallBack_CounterRV(m_screen, 'dr_r', 'dr_l', 'dr_l', &data->m_dope1Count, 3, 2, 1, arc);
+	counter->setCenteringMode(og::Screen::CallBack_CounterRV::ECM_Unknown1);
+	m_screen->search('dr_c')->hide();
+
+	counter = og::Screen::setCallBack_CounterRV(m_screen, 'dy_r', 'dy_l', 'dy_l', &data->m_dope0Count, 3, 2, 1, arc);
+	counter->setCenteringMode(og::Screen::CallBack_CounterRV::ECM_Unknown1);
+	m_screen->search('dy_c')->hide();
+
+	m_paneToyo01 = og::Screen::TagSearch(m_screen, 'toyo_01');
+	m_paneToyo00 = og::Screen::TagSearch(m_screen, 'toyo_00');
+
+	m_doping->init(m_paneToyo01, m_paneToyo00, m_scaleMgr1, m_scaleMgr2);
+	m_lifeGauge->init(m_screen, data, og::Screen::CallBack_LifeGauge::LIFEGAUGE_OLIMAR);
+	m_screen->addCallBack('back', m_lifeGauge);
+	m_lifeGauge->setOffset(msVal._08, msVal._0C); // uses the ObjVS msVal?
+
+	og::Screen::setCallBack_DrawAfter(m_screen, 'mete');
+
 	/*
 	.loc_0x0:
 	  stwu      r1, -0x40(r1)
@@ -873,9 +985,23 @@ void ObjChallenge2P::ScreenSet::init(og::Screen::DataNavi*, JKRArchive*, og::Scr
  * Address:	........
  * Size:	0000EC
  */
-void ObjChallenge2P::ScreenSet::update(og::Screen::DataNavi&)
+void ObjChallenge2P::ScreenSet::update(og::Screen::DataNavi& data)
 {
-	// UNUSED FUNCTION
+	f32 scale1 = m_scaleMgr1->calc();
+	f32 scale2 = m_scaleMgr2->calc();
+	if (m_paneToyo01)
+		m_paneToyo01->updateScale(scale1);
+	if (m_paneToyo00)
+		m_paneToyo00->updateScale(scale2);
+
+	og::Screen::DopingCheck* dope = m_doping;
+	dope->m_naviLife              = data.m_naviLifeRatio;
+	dope->m_followPiki            = data.m_followPikis;
+	dope->m_nextThrowPiki         = data.m_nextThrowPiki;
+	dope->m_sprays1               = data.m_dope1Count;
+	dope->m_sprays2               = data.m_dope0Count;
+	dope->m_activeNaviID          = data.m_activeNaviID;
+	dope->update();
 }
 
 /*
@@ -885,6 +1011,16 @@ void ObjChallenge2P::ScreenSet::update(og::Screen::DataNavi&)
  */
 void ObjChallenge2P::commonUpdate(void)
 {
+	m_screenP1->update(m_disp->m_dataNavi1);
+	m_screenP2->update(m_disp->m_dataNavi2);
+
+	f32 calc = (pikmin2_cosf(m_scale * PI) + 1.0f) / 2;
+	m_screenP1->m_screen->setXY(0.0f, calc * -300.0f);
+	m_screenP2->m_screen->setXY(0.0f, calc * 300.0f);
+	m_pokoScreen->setXY(calc * 300.0f, 0.0f);
+
+	updateTimer(m_disp->m_timeLimit, m_disp->_60);
+	m_bloGroup->update();
 	/*
 	stwu     r1, -0x40(r1)
 	mflr     r0
@@ -1058,6 +1194,8 @@ lbl_8031F7BC:
  */
 bool ObjChallenge2P::doUpdate(void)
 {
+	commonUpdate();
+	return false;
 	/*
 	stwu     r1, -0x10(r1)
 	mflr     r0
@@ -1078,6 +1216,32 @@ bool ObjChallenge2P::doUpdate(void)
  */
 void ObjChallenge2P::doDraw(Graphics& gfx)
 {
+	J2DPerspGraph* graf = &gfx.m_perspGraph;
+	graf->setPort();
+
+	u32 test = msVal._20 * m_scale;
+	JUtility::TColor color;
+	color.set(test);
+	graf->setColor(color);
+
+	JGeometry::TBox2f box;
+	box.i.x = msVal._08;
+	box.i.y = msVal._0C;
+	box.f.x = box.i.x + msVal._10;
+	box.f.y = box.i.y + msVal._14;
+
+	graf->fillBox(box);
+
+	JGeometry::TBox2f box2;
+	box2.i.x = msVal._18;
+	box2.i.y = msVal._0C;
+	box2.f.x = box2.i.x + msVal._1C;
+	box2.f.y = box2.i.y + msVal._14;
+
+	graf->fillBox(box2);
+
+	m_bloGroup->draw(graf);
+
 	/*
 	stwu     r1, -0xa0(r1)
 	mflr     r0
@@ -1221,14 +1385,7 @@ void ObjChallenge2P::doUpdateFadeinFinish(void) { }
  * Address:	8031FAB4
  * Size:	00000C
  */
-void ObjChallenge2P::doUpdateFinish(void)
-{
-	/*
-	lfs      f0, lbl_8051DC48@sda21(r2)
-	stfs     f0, 0x38(r3)
-	blr
-	*/
-}
+void ObjChallenge2P::doUpdateFinish(void) { m_fadeLevel = 0.0f; }
 
 /*
  * --INFO--
@@ -1244,6 +1401,16 @@ void ObjChallenge2P::doUpdateFadeoutFinish(void) { }
  */
 bool ObjChallenge2P::doUpdateFadein(void)
 {
+	bool check = false;
+	m_fadeLevel += sys->m_deltaTime;
+
+	if (m_fadeLevel > msVal._00) {
+		m_fadeLevel = msVal._00;
+		check       = true;
+	}
+	m_scale = m_fadeLevel / msVal._00;
+	commonUpdate();
+	return check;
 	/*
 	stwu     r1, -0x10(r1)
 	mflr     r0
@@ -1286,6 +1453,15 @@ lbl_8031FB08:
  */
 bool ObjChallenge2P::doUpdateFadeout(void)
 {
+	bool check = false;
+	m_fadeLevel += sys->m_deltaTime;
+	if (m_fadeLevel > msVal._04) {
+		m_fadeLevel = msVal._04;
+		check       = true;
+	}
+	m_scale = 1.0f - m_fadeLevel / msVal._04;
+	commonUpdate();
+	return check;
 	/*
 	stwu     r1, -0x10(r1)
 	mflr     r0
@@ -1328,8 +1504,15 @@ lbl_8031FB80:
  * Address:	8031FBB4
  * Size:	000074
  */
-bool ObjChallenge2P::doStart(::Screen::StartSceneArg const*)
+bool ObjChallenge2P::doStart(::Screen::StartSceneArg const* arg)
 {
+	ObjChallengeBase::doStart(arg);
+	if (arg && arg->getSceneType() == SCENE_CHALLENGE_2P) {
+		m_incTimeLeftDelay = arg->_04;
+	} else {
+		m_incTimeLeftDelay = 0.0f;
+	}
+	return true;
 	/*
 	stwu     r1, -0x10(r1)
 	mflr     r0

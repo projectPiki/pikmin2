@@ -4,15 +4,14 @@
 #include "Screen/screenObj.h"
 #include "og/Screen/ogScreen.h"
 #include "og/Screen/BloGroup.h"
+#include "og/Screen/ScaleMgr.h"
+#include "og/Screen/DopingScreen.h"
+#include "og/Screen/callbackNodes.h"
 
 namespace og {
 namespace Screen {
-struct DopingScreen;
 struct NaviLifeGauge;
 struct PikminCounterChallenge1P;
-struct CallBack_LifeGauge;
-struct DopingCheck;
-struct ScaleMgr;
 } // namespace Screen
 
 namespace newScreen {
@@ -195,15 +194,26 @@ struct ObjChallenge1P : public ObjChallengeBase {
 
 struct ObjChallenge2P : public ObjChallengeBase {
 	struct ScreenSet {
+		inline ScreenSet()
+		{
+			m_screen     = new P2DScreen::Mgr_tuning;
+			m_lifeGauge  = new og::Screen::CallBack_LifeGauge;
+			m_doping     = new og::Screen::DopingCheck;
+			m_scaleMgr1  = new og::Screen::ScaleMgr;
+			m_scaleMgr2  = new og::Screen::ScaleMgr;
+			m_paneToyo01 = nullptr;
+			m_paneToyo00 = nullptr;
+		}
+
 		void init(og::Screen::DataNavi*, JKRArchive*, og::Screen::DispMemberChallenge2P*);
-		void update(og::Screen::DataNavi&);
-		P2DScreen::Mgr_tuning* _00;          // _00
-		og::Screen::CallBack_LifeGauge* _04; // _04
-		og::Screen::DopingCheck* _08;        // _08
-		og::Screen::ScaleMgr* _0C;           // _0C
-		og::Screen::ScaleMgr* _10;           // _10
-		J2DPane* _14;                        // _14
-		J2DPane* _18;                        // _18
+		inline void update(og::Screen::DataNavi&);
+		P2DScreen::Mgr_tuning* m_screen;             // _00
+		og::Screen::CallBack_LifeGauge* m_lifeGauge; // _04
+		og::Screen::DopingCheck* m_doping;           // _08
+		og::Screen::ScaleMgr* m_scaleMgr1;           // _0C
+		og::Screen::ScaleMgr* m_scaleMgr2;           // _10
+		J2DPane* m_paneToyo01;                       // _14
+		J2DPane* m_paneToyo00;                       // _18
 	};
 
 	ObjChallenge2P(const char*);
@@ -224,11 +234,94 @@ struct ObjChallenge2P : public ObjChallengeBase {
 	// _00     = VTBL1
 	// _18     = VTBL2
 	// _00-_60 = ObjChallengeBase
-	og::Screen::DispMemberChallenge2P* m_challenge2P; // _60
-	og::Screen::BloGroup* m_bloGroup;                 // _64
-	ScreenSet* _68;                                   // _68
-	ScreenSet* _6C;                                   // _6C
-	P2DScreen::Mgr_tuning* _70;                       // _70
+	og::Screen::DispMemberChallenge2P* m_disp; // _60
+	og::Screen::BloGroup* m_bloGroup;          // _64
+	ScreenSet* m_screenP1;                     // _68
+	ScreenSet* m_screenP2;                     // _6C
+	P2DScreen::Mgr_tuning* m_pokoScreen;       // _70
+
+	static struct StaticValues {
+		inline StaticValues()
+		{
+			_00 = 0.6f;
+			_04 = 0.2f;
+			_08 = 0;
+			_0C = 223;
+			_10 = 640;
+			_14 = 3;
+			_18 = 640;
+			_1C = 0;
+			_20 = 200;
+
+			m_menu00 = nullptr;
+			_24      = 0.0f;
+			_28      = 0.0f;
+			_2C      = 1.0f;
+			_30      = 1.0f;
+			_34      = 0.0f;
+			_38      = 0.0f;
+			_3C      = 1.0f;
+			_40      = 1.0f;
+
+			m_menu01 = nullptr;
+			_48      = 0.0f;
+			_4C      = 0.0f;
+			_50      = 1.0f;
+			_54      = 1.0f;
+			_58      = 0.0f;
+			_5C      = 0.0f;
+			_60      = 1.0f;
+			_64      = 1.0f;
+
+			m_menu02 = nullptr;
+			_6C      = 0.0f;
+			_70      = 0.0f;
+			_74      = 1.0f;
+			_78      = 1.0f;
+			_7C      = 0.0f;
+			_80      = 0.0f;
+			_84      = 1.0f;
+			_88      = 1.0f;
+		}
+
+		f32 _00;
+		f32 _04;
+		u32 _08;
+		u32 _0C;
+		u32 _10;
+		u32 _14;
+		u32 _18;
+		u32 _1C;
+		u32 _20;
+
+		J2DPane* m_menu00; // _00
+		f32 _24;           // _04
+		f32 _28;           // _08
+		f32 _2C;           // _0C
+		f32 _30;           // _10
+		f32 _34;           // _14
+		f32 _38;           // _18
+		f32 _3C;           // _1C
+		f32 _40;           // _20
+		J2DPane* m_menu01; // _24
+		f32 _48;           // _2C
+		f32 _4C;           // _30
+		f32 _50;           // _34
+		f32 _54;           // _38
+		f32 _58;           // _58
+		f32 _5C;           // _5C
+		f32 _60;           // _60
+		f32 _64;           // _64
+		J2DPane* m_menu02; // _48
+		f32 _6C;           // _4C
+		f32 _70;           // _50
+		f32 _74;           // _54
+		f32 _78;           // _58
+		f32 _7C;           // _5C
+		f32 _80;           // _60
+		f32 _84;           // _64
+		f32 _88;           // _68
+	} msVal;
 };
 
 struct SArgChallengeBase : public ::Screen::StartSceneArg {

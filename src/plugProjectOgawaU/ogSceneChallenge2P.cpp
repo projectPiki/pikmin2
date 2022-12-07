@@ -52,7 +52,7 @@ void Challenge2P::doUpdateActive()
 {
 	if (Game::gameSystem) {
 		Screen::DispMemberChallenge2P* dispMember = static_cast<Screen::DispMemberChallenge2P*>(m_dispMember);
-		updateCountDown(dispMember->_5C, &dispMember->m_dayEndCount);
+		updateCountDown(dispMember->m_timeLimit, &dispMember->m_dayEndCount);
 	}
 }
 
