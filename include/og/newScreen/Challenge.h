@@ -7,6 +7,7 @@
 #include "og/Screen/ScaleMgr.h"
 #include "og/Screen/DopingScreen.h"
 #include "og/Screen/callbackNodes.h"
+#include "BitFlag.h"
 
 namespace og {
 namespace Screen {
@@ -231,6 +232,8 @@ struct ObjChallenge2P : public ObjChallengeBase {
 
 	void commonUpdate();
 
+	inline f32 getStatic1() { return msVal._08; }
+
 	// _00     = VTBL1
 	// _18     = VTBL2
 	// _00-_60 = ObjChallengeBase
@@ -243,16 +246,6 @@ struct ObjChallenge2P : public ObjChallengeBase {
 	static struct StaticValues {
 		inline StaticValues()
 		{
-			_00 = 0.6f;
-			_04 = 0.2f;
-			_08 = 0;
-			_0C = 223;
-			_10 = 640;
-			_14 = 3;
-			_18 = 640;
-			_1C = 0;
-			_20 = 200;
-
 			m_menu00 = nullptr;
 			_24      = 0.0f;
 			_28      = 0.0f;
@@ -282,17 +275,30 @@ struct ObjChallenge2P : public ObjChallengeBase {
 			_80      = 0.0f;
 			_84      = 1.0f;
 			_88      = 1.0f;
+
+			_00   = 0.6f;
+			_04   = 0.2f;
+			_08   = 0;
+			_0C   = 223;
+			_10   = 640;
+			_14   = 3;
+			_18   = 640;
+			_1C   = 0;
+			_20.r = 0;
+			_20.g = 0;
+			_20.b = 0;
+			_20.a = 200;
 		}
 
 		f32 _00;
 		f32 _04;
-		u32 _08;
-		u32 _0C;
-		u32 _10;
-		u32 _14;
-		u32 _18;
-		u32 _1C;
-		u32 _20;
+		int _08;
+		int _0C;
+		int _10;
+		int _14;
+		int _18;
+		int _1C;
+		JUtility::TColor _20;
 
 		J2DPane* m_menu00; // _00
 		f32 _24;           // _04

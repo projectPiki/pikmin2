@@ -90,6 +90,13 @@ struct ObjVs : public ::Screen::ObjBase {
 	f32 _11C;                      // _11C
 	u8 _120[0x8];                  // _120 - unknown
 	u8 _129;                       // _129 - unknown
+
+	static struct StaticValues {
+		u32 _00; // _00, unknown
+		u32 _04; // _04, unknown
+		f32 _08; // _08
+		f32 _0C; // _0C
+	} msVal;
 };
 } // namespace newScreen
 } // namespace og

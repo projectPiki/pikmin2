@@ -97,7 +97,7 @@ struct ObjContena : public ::Screen::ObjBase {
 	int m_dispState;                          // _E8
 	og::Screen::CallBack_Furiko* m_furiko;    // _EC
 	f32 m_menuMoveAngle;                      // _F0
-	f32 m_yAnalog;							  // _F4
+	f32 m_yAnalog;                            // _F4
 	J2DPane* m_paneSpot;                      // _F8
 	f32 m_spotX;                              // _FC
 	f32 m_spotY;                              // _100
