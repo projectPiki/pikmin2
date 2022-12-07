@@ -264,7 +264,7 @@ struct DispMemberContena : public DispMemberBase {
 	u32 m_onMapMinusWild;   // _20
 	int m_maxPikiMinusWild; // _24
 	u32 _28;                // _28
-	u8 _2C;                 // _2C
+	bool _2C;               // _2C
 	int _30;                // _30
 	s16 m_result;           // _34
 };
