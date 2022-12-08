@@ -479,13 +479,13 @@ bool InteractSuckDone::actOnyon(Onyon* item)
 			}
 		}
 
-		if (pellet->_32C == 6) {
+		if (pellet->m_pelletFlag == FLAG_VS_BEDAMA_YELLOW) {
 			GameMessageVsGetOtakara mesg(1 - item->m_onyonType);
 			gameSystem->m_section->sendMessage(mesg);
 			return true;
 		}
 
-		if (pellet->_32C == 3) {
+		if (pellet->m_pelletFlag == FLAG_VS_CHERRY) {
 			GameMessageVsGotCard mesg(1 - item->m_onyonType);
 			gameSystem->m_section->sendMessage(mesg);
 			return true;
@@ -1854,7 +1854,7 @@ Vector3f Onyon::getOutStart_UFO()
 	if (m_pikiOutJoint) {
 		return getJointPosition(m_pikiOutJoint);
 	} else {
-		JUT_PANICLINE(2569, "���߂ł�");
+		JUT_PANICLINE(2569, "¾ßÅ·");
 		return Vector3f::zero;
 	}
 }
