@@ -83,7 +83,7 @@ struct PelletMgr : public NodeObjectMgr<GenericObjectMgr> {
 	virtual void doDirectDraw(Graphics& gfx);   // _78 (weak)
 	virtual char* getMgrName()                  // _80 (weak)
 	{
-		return "Æ’yÆ’Å’Æ’bÆ’gÆ’}Æ’lÂ[Æ’WÆ’Æ’"; // pellet manager
+		return "ƒyƒŒƒbƒgƒ}ƒl[ƒWƒƒ"; // pellet manager
 	}
 	virtual char* getCaveName(int);       // _84
 	virtual u8 getCaveID(char*);          // _88
@@ -190,6 +190,17 @@ struct PelletKillArg : public CreatureKillArg {
  */
 struct Pellet : public DynCreature, public SysShape::MotionListener, public CarryInfoOwner {
 	Pellet();
+
+
+	enum PelletFlag {
+		FLAG_LOOZY            = 0,
+		FLAG_NAVI_NAPSACK     = 1,
+		FLAG_NONE             = 2,
+		FLAG_VS_CHERRY        = 3,
+		FLAG_VS_BEDAMA_RED    = 4,
+		FLAG_VS_BEDAMA_BLUE   = 5,
+		FLAG_VS_BEDAMA_YELLOW = 6
+	};
 
 	////////////// VTABLE 1 (DYNCREATURE)
 	virtual Vector3f getPosition() // _08 (weak)
@@ -392,11 +403,11 @@ struct Pellet : public DynCreature, public SysShape::MotionListener, public Carr
 		}
 		if ((gameSystem->m_mode == GSM_VERSUS_MODE) && (m_captureMatrix == nullptr) && (_3C4 == 0)) {
 			u8 test = m_pelletFlag;
-			if (test == 4) {
+			if (test == FLAG_VS_BEDAMA_RED) {
 				check = false;
-			} else if (test == 5) {
+			} else if (test == FLAG_VS_BEDAMA_BLUE) {
 				check = false;
-			} else if (test == 6 && getStateID() != 5) {
+			} else if (test == FLAG_VS_BEDAMA_YELLOW && getStateID() != 5) {
 				check = true;
 			}
 		}
@@ -404,17 +415,7 @@ struct Pellet : public DynCreature, public SysShape::MotionListener, public Carr
 	}
 
 	inline int getPokoValue() { return m_config->m_params.m_money.m_data; }
-	
-	enum PelletFlag {
-		FLAG_LOOZY            = 0,
-		FLAG_NAVI_NAPSACK     = 1,
-		FLAG_NONE             = 2,
-		FLAG_VS_CHERRY        = 3,
-		FLAG_VS_BEDAMA_RED    = 4,
-		FLAG_VS_BEDAMA_BLUE   = 5,
-		FLAG_VS_BEDAMA_YELLOW = 6
-	};
-	
+
 	// _00		= VTABLE 1
 	// _04-_314	= DYNCREATURE
 	// _318 	= VTABLE 2? 3?
