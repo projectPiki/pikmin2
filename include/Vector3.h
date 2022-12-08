@@ -224,10 +224,7 @@ inline f32 Vector3f::length() const
 	f32 y2 = y * y;
 	f32 z2 = z * z;
 
-	if (x2 + y2 + z2 > 0.0f) {
-		return sqrtf(vec.x * vec.x + y * y + z * z);
-	}
-	return 0.0f;
+	return (x2 + y2 + z2 > 0.0f) ? sqrtf(vec.x * vec.x + y * y + z * z) : 0.0f;
 }
 
 template <>

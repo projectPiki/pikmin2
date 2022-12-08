@@ -18,14 +18,7 @@ inline f32 sqrtf(f32 __sqrtf_g)
 	return __sqrtf_g;
 }
 
-inline f32 _sqrtf(f32 x)
-{
-	if (x > 0.0f) {
-		return sqrtf(x);
-	} else {
-		return 0.0f;
-	}
-}
+inline f32 _sqrtf(f32 x) { return (x > 0.0f) ? sqrtf(x) : 0.0f; }
 
 // used in pelplant's Obj::getShadowParam(ShadowParam&)
 inline void __sqrtf(register float x, float* val)
