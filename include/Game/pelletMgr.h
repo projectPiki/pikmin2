@@ -191,7 +191,6 @@ struct PelletKillArg : public CreatureKillArg {
 struct Pellet : public DynCreature, public SysShape::MotionListener, public CarryInfoOwner {
 	Pellet();
 
-
 	enum PelletFlag {
 		FLAG_LOOZY            = 0,
 		FLAG_NAVI_NAPSACK     = 1,

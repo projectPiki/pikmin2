@@ -2739,6 +2739,8 @@ void EnemyBase::lifeRecover()
 	}
 }
 
+inline float scaledSin(float theta) { return pikmin2_sinf(TAU * theta); }
+
 /*
  * --INFO--
  * Address:	801053C0
@@ -2755,7 +2757,7 @@ void EnemyBase::scaleDamageAnim()
 		} else {
 			f32 horizontalModifier = 0.0f;
 			f32 scaleDuration      = static_cast<EnemyParmsBase*>(m_parms)->m_general.m_damageScaleDuration.m_value;
-			f32 factor;
+			f32 factor; // must be declared after horizontalModifier
 
 			if (isEvent(0, EB_20)) {
 				factor = 2.5f;
@@ -2777,16 +2779,17 @@ void EnemyBase::scaleDamageAnim()
 					horizontalModifier = 1.0f - getDamageAnimFrac(scaleDuration);
 				}
 				// possible the setting of m_damageAnimRotation is an inline? -Epoch
-				f32 sin1        = pikmin2_sinf(TAU * horizontalModifier);
-				f32 otherFactor = (TAU / 180.0f) * factor; // reordered?
-				sin1 *= otherFactor;
-				m_damageAnimRotation.x = horizontalModifier * sin1;
+				f32 sin1 = scaledSin(horizontalModifier);
+				sin1 *= (TAU / 180.0f) * factor;
+				// sin1 *= (TAU / 180.0f) * sin1; // use this instead of the above line to witness shenanigans
+				m_damageAnimRotation.x = horizontalModifier * sin1; // THIS IS WHERE THE REGSWAP LIVES
+				// proof: change horizontalModifier to factor. line above that one also is pertinent
 
 				m_damageAnimRotation.y = 0.0f;
 
-				f32 sin2          = pikmin2_sinf(TAU * (2.0f * horizontalModifier)); // regswap
+				f32 sin2          = scaledSin(2.0f * horizontalModifier); // regswap
 				f32 anotherFactor = (TAU / 144.0f) * factor;
-				anotherFactor *= sin2;
+				anotherFactor *= sin2; // reeks of inline
 				m_damageAnimRotation.z = horizontalModifier * anotherFactor;
 
 				// alternative possibility?
@@ -2818,8 +2821,8 @@ void EnemyBase::scaleDamageAnim()
 			if (m_damageAnimTimer > scaleDuration) {
 				finishScaleDamageAnim();
 			} else {
-				horizontalModifier = pikmin2_sinf(TAU * getDamageAnimFrac(scaleDuration))
-				                   * (1.0f - getDamageAnimFrac(scaleDuration)); // swap of fmuls floats
+				horizontalModifier
+				    = scaledSin(getDamageAnimFrac(scaleDuration)) * (1.0f - getDamageAnimFrac(scaleDuration)); // swap of fmuls floats
 			}
 
 			if (isEvent(0, EB_15)) {
