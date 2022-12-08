@@ -1875,12 +1875,7 @@ void EnemyBase::collisionMapAndPlat(f32 accelRate)
 		sphere.m_position = pos;
 		sphere.m_radius   = yOffsetFromMap;
 
-		f32 z;
-		if (checkSecondary()) {
-			z = 0.0f;
-		} else {
-			z = static_cast<CreatureProperty*>(m_parms)->m_props.m_wallReflection.m_value;
-		}
+		f32 z = checkSecondary() ? 0.0f : static_cast<CreatureProperty*>(m_parms)->m_props.m_wallReflection.m_value;
 
 		m_triangleNormal.y = 0.0f;
 
