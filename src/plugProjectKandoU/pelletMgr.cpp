@@ -1125,7 +1125,7 @@ void Pellet::onKill(CreatureKillArg* killArg)
 	m_mgr->kill(this);
 
 	if (((killArg != nullptr) && (static_cast<PelletKillArg*>(killArg)->_08 != 0))
-	    || ((gameSystem->m_mode == GSM_VERSUS_MODE) && (_32C == 3))) {
+	    || ((gameSystem->m_mode == GSM_VERSUS_MODE) && (m_pelletFlag == FLAG_VS_CHERRY))) {
 		m_mgr->setRevival(this);
 	}
 
@@ -1236,21 +1236,21 @@ void Pellet::onInit(CreatureInitArg* initArg)
 	m_pelletColor = static_cast<PelletInitArg*>(initArg)->_0C;
 
 	if (strcmp(m_config->m_params.m_name.m_data, "loozy") == 0) {
-		_32C = 0;
+		m_pelletFlag = FLAG_LOOZY;
 	} else if (strcmp(m_config->m_params.m_name.m_data, "orima") == 0) {
-		_32C = 1;
+		m_pelletFlag = FLAG_NAVI_NAPSACK;
 	} else {
-		_32C = 2;
+		m_pelletFlag = FLAG_NONE;
 	}
 
 	if (strcmp(m_config->m_params.m_name.m_data, VsOtakaraName::cBedamaYellow) == 0) {
-		_32C = 6;
+		m_pelletFlag = FLAG_VS_BEDAMA_YELLOW;
 	} else if (strcmp(m_config->m_params.m_name.m_data, VsOtakaraName::cBedamaRed) == 0) {
-		_32C = 4;
+		m_pelletFlag = FLAG_VS_BEDAMA_RED;
 	} else if (strcmp(m_config->m_params.m_name.m_data, VsOtakaraName::cBedamaBlue) == 0) {
-		_32C = 5;
+		m_pelletFlag = FLAG_VS_BEDAMA_BLUE;
 	} else if (strcmp(m_config->m_params.m_name.m_data, VsOtakaraName::cCoin) == 0) {
-		_32C = 3;
+		m_pelletFlag = FLAG_VS_CHERRY;
 	}
 
 	if (static_cast<PelletInitArg*>(initArg)->_1C == 0) {
@@ -1271,7 +1271,7 @@ void Pellet::onInit(CreatureInitArg* initArg)
 		stop_carrymotion();
 		init_pmotions();
 		start_pmotions();
-		if ((gameSystem->m_mode == GSM_PIKLOPEDIA) && (_32C == 0)) {
+		if ((gameSystem->m_mode == GSM_PIKLOPEDIA) && (m_pelletFlag == FLAG_LOOZY)) {
 			_438 = 30.0f;
 		}
 	}
@@ -2106,7 +2106,7 @@ void Pellet::onSetPosition()
 	m_rigid._00 = 1.0f;
 
 	m_mass = 0.0f;
-	if (_32C == 1) {
+	if (m_pelletFlag == FLAG_NAVI_NAPSACK) {
 		m_mass = 0.01f;
 	}
 
@@ -5171,7 +5171,7 @@ void Pellet::onUpdateCapture(Matrixf& matrix)
 		m_collTree->update();
 	}
 
-	if (!_32C) {
+	if (!m_pelletFlag) {
 		m_discoverDisable = 90;
 	}
 }
@@ -5951,7 +5951,7 @@ void PelletIterator::setFirst()
  */
 PelletMgr::PelletMgr()
 {
-	m_name              = "ƒyƒŒƒbƒgƒ}ƒl[ƒWƒƒ"; // pellet manager
+	m_name              = "ÂƒyÂƒÂŒÂƒbÂƒgÂƒ}ÂƒlÂ[ÂƒWÂƒÂƒ"; // pellet manager
 	m_movieDrawDisabled = false;
 }
 
@@ -6417,7 +6417,7 @@ void PelletMgr::OtakaraItemCode::write(Stream& stream)
 {
 	stream.textWriteTab(stream.m_tabCount);
 	stream.writeShort(m_value);
-	stream.textWriteText("# ?¿½?¿½?¿½?¿½A?¿½C?¿½e?¿½?¿½?¿½R?¿½[?¿½h\r\n");
+	stream.textWriteText("# ?Â¿Â½?Â¿Â½?Â¿Â½?Â¿Â½A?Â¿Â½C?Â¿Â½e?Â¿Â½?Â¿Â½?Â¿Â½R?Â¿Â½[?Â¿Â½h\r\n");
 }
 
 /*
