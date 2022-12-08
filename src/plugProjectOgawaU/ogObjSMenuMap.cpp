@@ -1504,8 +1504,7 @@ void ObjSMenuMap::transMap()
 	if (buttons & JUTGamePad::PRESS_DPAD_RIGHT) {
 		inputx = 1.0f;
 	}
-	f32 diff;
-	_sqrtf(inputx * inputx + inputz * inputz, &diff);
+	f32 diff = _sqrtf(inputx * inputx + inputz * inputz);
 	if (diff > 1.0f)
 		diff = 1.0f;
 	diff *= msVal.m_mapMoveInputReduction;

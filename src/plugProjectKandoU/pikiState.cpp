@@ -2283,7 +2283,7 @@ void PikiGoHangState::exec(Piki* piki)
 	Vector3f naviPos = piki->m_navi->m_position2;
 	f32 factor       = static_cast<NaviParms*>(piki->m_navi->m_parms)->m_naviParms.m_p060.m_value * scale;
 	f32 dist         = naviPos.x * naviPos.x + naviPos.y * naviPos.y + naviPos.z * naviPos.z;
-	_sqrtf(dist, &dist);
+	__sqrtf(dist, &dist);
 	piki->m_velocity = diff * (factor + dist);
 
 	if (piki->m_navi->getStateID() != 6) {

@@ -440,7 +440,6 @@ struct Pellet : public DynCreature, public SysShape::MotionListener, public Carr
 	PelletFSM* m_pelletSM;        // _3C8
 	PelletState* m_pelletState;   // _3CC
 	u8 _3D0;                      // _3D0
-	u8 _3D1[0x3];                 // _3D1 - unknown
 	int m_carryColor;             // _3D4
 	int _3D8;                     // _3D8, to do with pikmin number
 	int _3DC;                     // _3DC
