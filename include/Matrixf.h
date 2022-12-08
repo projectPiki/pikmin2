@@ -152,4 +152,17 @@ inline Matrixf concatMatrixf(Matrixf& mat1, Matrixf& mat2)
 	PSMTXConcat(mat1.m_matrix.mtxView, mat2.m_matrix.mtxView, concatMtx.m_matrix.mtxView);
 	return concatMtx;
 }
+
+inline void scaleMatrix(Matrixf* mtx, f32 scale)
+{
+	mtx->m_matrix.structView.xx *= scale;
+	mtx->m_matrix.structView.yx *= scale;
+	mtx->m_matrix.structView.zx *= scale;
+	mtx->m_matrix.structView.xy *= scale;
+	mtx->m_matrix.structView.yy *= scale;
+	mtx->m_matrix.structView.zy *= scale;
+	mtx->m_matrix.structView.xz *= scale;
+	mtx->m_matrix.structView.yz *= scale;
+	mtx->m_matrix.structView.zz *= scale;
+}
 #endif

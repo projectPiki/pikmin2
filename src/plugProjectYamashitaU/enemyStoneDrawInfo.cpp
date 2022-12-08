@@ -1,8 +1,14 @@
 #include "Game/EnemyStone.h"
+#include "Game/EnemyBase.h"
+#include "PSSystem/PSGame.h"
+#include "efx/TSekika.h"
+#include "System.h"
 #include "types.h"
 
 namespace Game {
 namespace EnemyStone {
+
+EnemyBase* DrawInfo::sOwnerEnemy;
 
 /*
  * --INFO--
@@ -28,26 +34,11 @@ void StateMachine::init(DrawInfo* drawInfo)
  * Address:	80128554
  * Size:	000038
  */
-void StateMachine::makeMatrix(DrawInfo* drawInfo, Matrixf*)
+void StateMachine::makeMatrix(DrawInfo* drawInfo, Matrixf* mtx)
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	lwz      r3, 0x34(r4)
-	cmplwi   r3, 0
-	beq      lbl_8012857C
-	lwz      r12, 0(r3)
-	lwz      r12, 0x20(r12)
-	mtctr    r12
-	bctrl
-
-lbl_8012857C:
-	lwz      r0, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	if (drawInfo->m_currentState) {
+		drawInfo->m_currentState->makeMatrix(drawInfo, mtx);
+	}
 }
 
 /*
@@ -55,36 +46,17 @@ lbl_8012857C:
  * Address:	8012858C
  * Size:	000024
  */
-void FSMState::makeMatrix(DrawInfo* drawInfo, Matrixf*)
-{
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	mr       r3, r5
-	stw      r0, 0x14(r1)
-	bl       PSMTXIdentity
-	lwz      r0, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
-}
+void FSMState::makeMatrix(DrawInfo* drawInfo, Matrixf* mtx) { PSMTXIdentity(mtx->m_matrix.mtxView); }
 
 /*
  * --INFO--
  * Address:	801285B0
  * Size:	000014
  */
-void FSMStateExpansion::init(DrawInfo* drawInfo, Game::StateArg*)
+void FSMStateExpansion::init(DrawInfo* drawInfo, StateArg* stateArg)
 {
-	/*
-	.loc_0x0:
-	  lfs       f0, -0x639C(r2)
-	  li        r0, 0
-	  stfs      f0, 0x3C(r4)
-	  stb       r0, 0x10(r3)
-	  blr
-	*/
+	drawInfo->_3C = 0.1f;
+	_10           = 0;
 }
 
 /*
@@ -94,154 +66,35 @@ void FSMStateExpansion::init(DrawInfo* drawInfo, Game::StateArg*)
  */
 void FSMStateExpansion::exec(DrawInfo* drawInfo)
 {
-	/*
-	stwu     r1, -0x60(r1)
-	mflr     r0
-	stw      r0, 0x64(r1)
-	stw      r31, 0x5c(r1)
-	mr       r31, r4
-	stw      r30, 0x58(r1)
-	mr       r30, r3
-	lwz      r5, sys@sda21(r13)
-	lfs      f1, 0x38(r4)
-	lfs      f0, 0x54(r5)
-	fadds    f0, f1, f0
-	stfs     f0, 0x38(r4)
-	lbz      r0, 0x10(r3)
-	cmplwi   r0, 0
-	bne      lbl_80128734
-	lfs      f1, 0x38(r31)
-	lfs      f0, lbl_80517FC8@sda21(r2)
-	fcmpo    cr0, f1, f0
-	ble      lbl_80128734
-	li       r0, 1
-	mr       r3, r31
-	stb      r0, 0x10(r30)
-	addi     r4, r1, 0x30
-	addi     r5, r1, 8
-	bl       "getPosAndScale__Q34Game10EnemyStone8DrawInfoFP10Vector3<f>Pf"
-	clrlwi.  r0, r3, 0x18
-	beq      lbl_80128734
-	lwz      r8, sOwnerEnemy__Q34Game10EnemyStone8DrawInfo@sda21(r13)
-	lis      r4, __vt__Q23efx3Arg@ha
-	lwz      r7, 0x30(r1)
-	lis      r3, __vt__Q23efx8ArgScale@ha
-	lwz      r6, 0x34(r1)
-	addi     r4, r4, __vt__Q23efx3Arg@l
-	lwz      r5, 0x38(r1)
-	addi     r0, r3, __vt__Q23efx8ArgScale@l
-	lfs      f0, 0x1f8(r8)
-	lfs      f1, 8(r1)
-	stw      r7, 0xc(r1)
-	fmuls    f3, f1, f0
-	stw      r6, 0x10(r1)
-	lfs      f2, 0xc(r1)
-	stw      r5, 0x14(r1)
-	lfs      f1, 0x10(r1)
-	stw      r4, 0x3c(r1)
-	lfs      f0, 0x14(r1)
-	stfs     f3, 8(r1)
-	stfs     f2, 0x40(r1)
-	stfs     f1, 0x44(r1)
-	stfs     f0, 0x48(r1)
-	stw      r0, 0x3c(r1)
-	stfs     f3, 0x4c(r1)
-	lwz      r3, 0x40(r31)
-	lwz      r0, 4(r3)
-	cmpwi    r0, 1
-	beq      lbl_801286F4
-	bge      lbl_80128734
-	cmpwi    r0, 0
-	bge      lbl_801286B0
-	b        lbl_80128734
+	drawInfo->_38 += sys->m_deltaTime;
 
-lbl_801286B0:
-	lis      r3, __vt__Q23efx5TBase@ha
-	lis      r4, __vt__Q23efx8TSimple1@ha
-	addi     r0, r3, __vt__Q23efx5TBase@l
-	lis      r3, __vt__Q23efx10TSekikaLOn@ha
-	stw      r0, 0x24(r1)
-	addi     r0, r4, __vt__Q23efx8TSimple1@l
-	li       r6, 0x1ac
-	li       r5, 0
-	stw      r0, 0x24(r1)
-	addi     r0, r3, __vt__Q23efx10TSekikaLOn@l
-	addi     r3, r1, 0x24
-	addi     r4, r1, 0x3c
-	sth      r6, 0x28(r1)
-	stw      r5, 0x2c(r1)
-	stw      r0, 0x24(r1)
-	bl       create__Q23efx10TSekikaLOnFPQ23efx3Arg
-	b        lbl_80128734
+	if (!_10 && drawInfo->_38 > 0.0f) {
+		_10 = 1;
+		Vector3f pos;
+		f32 scale;
+		if (drawInfo->getPosAndScale(&pos, &scale)) {
+			scale *= DrawInfo::sOwnerEnemy->m_scaleModifier;
+			efx::ArgScale argScale(pos, scale);
 
-lbl_801286F4:
-	lis      r3, __vt__Q23efx5TBase@ha
-	lis      r4, __vt__Q23efx8TSimple1@ha
-	addi     r0, r3, __vt__Q23efx5TBase@l
-	lis      r3, __vt__Q23efx10TSekikaSOn@ha
-	stw      r0, 0x18(r1)
-	addi     r0, r4, __vt__Q23efx8TSimple1@l
-	li       r6, 0x1ae
-	li       r5, 0
-	stw      r0, 0x18(r1)
-	addi     r0, r3, __vt__Q23efx10TSekikaSOn@l
-	addi     r3, r1, 0x18
-	addi     r4, r1, 0x3c
-	sth      r6, 0x1c(r1)
-	stw      r5, 0x20(r1)
-	stw      r0, 0x18(r1)
-	bl       create__Q23efx10TSekikaSOnFPQ23efx3Arg
+			switch (drawInfo->m_objInfo->_04) {
+			case 0:
+				efx::TSekikaLOn stoneFXL;
+				stoneFXL.create(&argScale);
+				break;
+			case 1:
+				efx::TSekikaSOn stoneFXS;
+				stoneFXS.create(&argScale);
+				break;
+			}
+		}
+	}
 
-lbl_80128734:
-	lfs      f0, 0x38(r31)
-	lfs      f1, 0x3c(r31)
-	fcmpo    cr0, f0, f1
-	ble      lbl_80128768
-	stfs     f1, 0x38(r31)
-	mr       r3, r30
-	mr       r4, r31
-	li       r5, 2
-	lwz      r12, 0(r30)
-	li       r6, 0
-	lwz      r12, 0x1c(r12)
-	mtctr    r12
-	bctrl
-
-lbl_80128768:
-	lwz      r0, 0x64(r1)
-	lwz      r31, 0x5c(r1)
-	lwz      r30, 0x58(r1)
-	mtlr     r0
-	addi     r1, r1, 0x60
-	blr
-	*/
-}
-} // namespace EnemyStone
-/*
- * --INFO--
- * Address:	80128780
- * Size:	000030
- */
-void FSMState<Game::EnemyStone::DrawInfo>::transit(EnemyStone::DrawInfo* drawInfo, int, Game::StateArg*)
-{
-	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  stw       r0, 0x14(r1)
-	  lwz       r3, 0x8(r3)
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0x14(r12)
-	  mtctr     r12
-	  bctrl
-	  lwz       r0, 0x14(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
-	*/
+	if (drawInfo->_38 > drawInfo->_3C) {
+		drawInfo->_38 = drawInfo->_3C;
+		transit(drawInfo, STONESTATE_ExpansionFull, nullptr);
+	}
 }
 
-namespace EnemyStone {
 /*
  * --INFO--
  * Address:	801287B0
@@ -249,104 +102,38 @@ namespace EnemyStone {
  */
 void FSMStateExpansion::cleanup(DrawInfo* drawInfo) { }
 
+// these are necessary to make the floats line up in makeMatrix smh
+void boundAngle(f32& angle)
+{
+	if (angle < 0.0f) {
+		angle = 0.0f;
+	} else if (angle > 1.0f) {
+		angle = 1.0f;
+	}
+}
+
+f32 pikmin2_sinf(f32 x)
+{
+	if (x < 0.0f) {
+		return -JMath::sincosTable_.m_table[((int)(x *= -325.9493f) & 0x7ffU)].first;
+	}
+	return JMath::sincosTable_.m_table[((int)(x *= 325.9493f) & 0x7ffU)].first;
+}
+
 /*
  * --INFO--
  * Address:	801287B4
  * Size:	000140
  */
-void FSMStateExpansion::makeMatrix(DrawInfo* drawInfo, Matrixf*)
+void FSMStateExpansion::makeMatrix(DrawInfo* drawInfo, Matrixf* mtx)
 {
-	/*
-	.loc_0x0:
-	  stwu      r1, -0x30(r1)
-	  mflr      r0
-	  stw       r0, 0x34(r1)
-	  stfd      f31, 0x20(r1)
-	  psq_st    f31,0x28(r1),0,0
-	  stw       r31, 0x1C(r1)
-	  lfs       f2, 0x38(r4)
-	  mr        r31, r5
-	  lfs       f1, 0x3C(r4)
-	  lfs       f0, -0x6398(r2)
-	  fdivs     f2, f2, f1
-	  fcmpo     cr0, f2, f0
-	  bge-      .loc_0x3C
-	  fmr       f2, f0
-	  b         .loc_0x4C
+	f32 theta = drawInfo->_38 / drawInfo->_3C;
+	boundAngle(theta);
 
-	.loc_0x3C:
-	  lfs       f0, -0x6394(r2)
-	  fcmpo     cr0, f2, f0
-	  ble-      .loc_0x4C
-	  fmr       f2, f0
+	f32 sinTheta = pikmin2_sinf(theta * HALF_PI);
 
-	.loc_0x4C:
-	  lfs       f1, -0x6388(r2)
-	  lfs       f0, -0x6398(r2)
-	  fmuls     f1, f1, f2
-	  fcmpo     cr0, f1, f0
-	  bge-      .loc_0x8C
-	  lfs       f0, -0x6390(r2)
-	  lis       r3, 0x8050
-	  addi      r3, r3, 0x71A0
-	  fmuls     f0, f1, f0
-	  fctiwz    f0, f0
-	  stfd      f0, 0x8(r1)
-	  lwz       r0, 0xC(r1)
-	  rlwinm    r0,r0,3,18,28
-	  lfsx      f0, r3, r0
-	  fneg      f31, f0
-	  b         .loc_0xB0
-
-	.loc_0x8C:
-	  lfs       f0, -0x638C(r2)
-	  lis       r3, 0x8050
-	  addi      r3, r3, 0x71A0
-	  fmuls     f0, f1, f0
-	  fctiwz    f0, f0
-	  stfd      f0, 0x10(r1)
-	  lwz       r0, 0x14(r1)
-	  rlwinm    r0,r0,3,18,28
-	  lfsx      f31, r3, r0
-
-	.loc_0xB0:
-	  mr        r3, r31
-	  bl        -0x3E5C8
-	  lfs       f0, 0x0(r31)
-	  fmuls     f0, f0, f31
-	  stfs      f0, 0x0(r31)
-	  lfs       f0, 0x4(r31)
-	  fmuls     f0, f0, f31
-	  stfs      f0, 0x4(r31)
-	  lfs       f0, 0x8(r31)
-	  fmuls     f0, f0, f31
-	  stfs      f0, 0x8(r31)
-	  lfs       f0, 0x10(r31)
-	  fmuls     f0, f0, f31
-	  stfs      f0, 0x10(r31)
-	  lfs       f0, 0x14(r31)
-	  fmuls     f0, f0, f31
-	  stfs      f0, 0x14(r31)
-	  lfs       f0, 0x18(r31)
-	  fmuls     f0, f0, f31
-	  stfs      f0, 0x18(r31)
-	  lfs       f0, 0x20(r31)
-	  fmuls     f0, f0, f31
-	  stfs      f0, 0x20(r31)
-	  lfs       f0, 0x24(r31)
-	  fmuls     f0, f0, f31
-	  stfs      f0, 0x24(r31)
-	  lfs       f0, 0x28(r31)
-	  fmuls     f0, f0, f31
-	  stfs      f0, 0x28(r31)
-	  psq_l     f31,0x28(r1),0,0
-	  lwz       r0, 0x34(r1)
-	  lfd       f31, 0x20(r1)
-	  lwz       r31, 0x1C(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x30
-	  blr
-	*/
+	PSMTXIdentity(mtx->m_matrix.mtxView);
+	scaleMatrix(mtx, sinTheta);
 }
 
 /*
@@ -354,51 +141,10 @@ void FSMStateExpansion::makeMatrix(DrawInfo* drawInfo, Matrixf*)
  * Address:	801288F4
  * Size:	0000A0
  */
-void FSMStateExpansionFull::makeMatrix(DrawInfo* drawInfo, Matrixf*)
+void FSMStateExpansionFull::makeMatrix(DrawInfo* drawInfo, Matrixf* mtx)
 {
-	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  stw       r0, 0x14(r1)
-	  stw       r31, 0xC(r1)
-	  mr        r31, r5
-	  mr        r3, r31
-	  bl        -0x3E66C
-	  lfs       f0, 0x0(r31)
-	  lfs       f1, -0x6394(r2)
-	  fmuls     f0, f0, f1
-	  stfs      f0, 0x0(r31)
-	  lfs       f0, 0x4(r31)
-	  fmuls     f0, f0, f1
-	  stfs      f0, 0x4(r31)
-	  lfs       f0, 0x8(r31)
-	  fmuls     f0, f0, f1
-	  stfs      f0, 0x8(r31)
-	  lfs       f0, 0x10(r31)
-	  fmuls     f0, f0, f1
-	  stfs      f0, 0x10(r31)
-	  lfs       f0, 0x14(r31)
-	  fmuls     f0, f0, f1
-	  stfs      f0, 0x14(r31)
-	  lfs       f0, 0x18(r31)
-	  fmuls     f0, f0, f1
-	  stfs      f0, 0x18(r31)
-	  lfs       f0, 0x20(r31)
-	  fmuls     f0, f0, f1
-	  stfs      f0, 0x20(r31)
-	  lfs       f0, 0x24(r31)
-	  fmuls     f0, f0, f1
-	  stfs      f0, 0x24(r31)
-	  lfs       f0, 0x28(r31)
-	  fmuls     f0, f0, f1
-	  stfs      f0, 0x28(r31)
-	  lwz       r31, 0xC(r1)
-	  lwz       r0, 0x14(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
-	*/
+	PSMTXIdentity(mtx->m_matrix.mtxView);
+	scaleMatrix(mtx, 1.0f);
 }
 
 /*
@@ -406,15 +152,10 @@ void FSMStateExpansionFull::makeMatrix(DrawInfo* drawInfo, Matrixf*)
  * Address:	80128994
  * Size:	000014
  */
-void FSMStateFit::init(DrawInfo* drawInfo, Game::StateArg*)
+void FSMStateFit::init(DrawInfo* drawInfo, StateArg* stateArg)
 {
-	/*
-	lfs      f1, lbl_80517FC8@sda21(r2)
-	lfs      f0, lbl_80517FDC@sda21(r2)
-	stfs     f1, 0x38(r4)
-	stfs     f0, 0x3c(r4)
-	blr
-	*/
+	drawInfo->_38 = 0.0f;
+	drawInfo->_3C = 1.0f / 30.0f;
 }
 
 /*
@@ -424,33 +165,11 @@ void FSMStateFit::init(DrawInfo* drawInfo, Game::StateArg*)
  */
 void FSMStateFit::exec(DrawInfo* drawInfo)
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	lwz      r5, sys@sda21(r13)
-	lfs      f1, 0x38(r4)
-	lfs      f0, 0x54(r5)
-	fadds    f0, f1, f0
-	stfs     f0, 0x38(r4)
-	lfs      f0, 0x38(r4)
-	lfs      f1, 0x3c(r4)
-	fcmpo    cr0, f0, f1
-	ble      lbl_801289F4
-	stfs     f1, 0x38(r4)
-	li       r5, 4
-	li       r6, 0
-	lwz      r12, 0(r3)
-	lwz      r12, 0x1c(r12)
-	mtctr    r12
-	bctrl
-
-lbl_801289F4:
-	lwz      r0, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	drawInfo->_38 += sys->m_deltaTime;
+	if (drawInfo->_38 > drawInfo->_3C) {
+		drawInfo->_38 = drawInfo->_3C;
+		transit(drawInfo, STONESTATE_BaseState4, nullptr);
+	}
 }
 
 /*
@@ -465,69 +184,15 @@ void FSMStateFit::cleanup(DrawInfo* drawInfo) { }
  * Address:	80128A08
  * Size:	0000DC
  */
-void FSMStateFit::makeMatrix(DrawInfo* drawInfo, Matrixf*)
+void FSMStateFit::makeMatrix(DrawInfo* drawInfo, Matrixf* mtx)
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	lfs      f0, lbl_80517FC8@sda21(r2)
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	mr       r31, r5
-	lfs      f2, 0x38(r4)
-	lfs      f1, 0x3c(r4)
-	fdivs    f1, f2, f1
-	fcmpo    cr0, f1, f0
-	bge      lbl_80128A3C
-	fmr      f1, f0
-	b        lbl_80128A4C
+	f32 theta = drawInfo->_38 / drawInfo->_3C;
+	boundAngle(theta);
 
-lbl_80128A3C:
-	lfs      f0, lbl_80517FCC@sda21(r2)
-	fcmpo    cr0, f1, f0
-	ble      lbl_80128A4C
-	fmr      f1, f0
+	f32 cosTheta = cos(theta * HALF_PI); // ????? THIS DOESN'T EVEN GET USED, WTF YAMASHITA
 
-lbl_80128A4C:
-	lfs      f0, lbl_80517FD8@sda21(r2)
-	fmuls    f1, f0, f1
-	bl       cos
-	mr       r3, r31
-	bl       PSMTXIdentity
-	lfs      f0, 0(r31)
-	lfs      f1, lbl_80517FCC@sda21(r2)
-	fmuls    f0, f0, f1
-	stfs     f0, 0(r31)
-	lfs      f0, 4(r31)
-	fmuls    f0, f0, f1
-	stfs     f0, 4(r31)
-	lfs      f0, 8(r31)
-	fmuls    f0, f0, f1
-	stfs     f0, 8(r31)
-	lfs      f0, 0x10(r31)
-	fmuls    f0, f0, f1
-	stfs     f0, 0x10(r31)
-	lfs      f0, 0x14(r31)
-	fmuls    f0, f0, f1
-	stfs     f0, 0x14(r31)
-	lfs      f0, 0x18(r31)
-	fmuls    f0, f0, f1
-	stfs     f0, 0x18(r31)
-	lfs      f0, 0x20(r31)
-	fmuls    f0, f0, f1
-	stfs     f0, 0x20(r31)
-	lfs      f0, 0x24(r31)
-	fmuls    f0, f0, f1
-	stfs     f0, 0x24(r31)
-	lfs      f0, 0x28(r31)
-	fmuls    f0, f0, f1
-	stfs     f0, 0x28(r31)
-	lwz      r31, 0xc(r1)
-	lwz      r0, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	PSMTXIdentity(mtx->m_matrix.mtxView);
+	scaleMatrix(mtx, 1.0f);
 }
 
 /*
@@ -535,20 +200,11 @@ lbl_80128A4C:
  * Address:	80128AE4
  * Size:	000024
  */
-void FSMStateShake::init(DrawInfo* drawInfo, Game::StateArg*)
+void FSMStateShake::init(DrawInfo* drawInfo, StateArg* stateArg)
 {
-	/*
-	.loc_0x0:
-	  lfs       f0, -0x6380(r2)
-	  li        r0, 0
-	  lfs       f1, -0x637C(r2)
-	  stfs      f0, 0x14(r3)
-	  lfs       f0, 0x14(r3)
-	  fmuls     f0, f1, f0
-	  stfs      f0, 0x3C(r4)
-	  stw       r0, 0x10(r3)
-	  blr
-	*/
+	_14           = 7.0f;
+	drawInfo->_3C = 0.07f * _14;
+	_10           = 0;
 }
 
 /*
@@ -558,181 +214,57 @@ void FSMStateShake::init(DrawInfo* drawInfo, Game::StateArg*)
  */
 void FSMStateShake::exec(DrawInfo* drawInfo)
 {
-	/*
-	stwu     r1, -0x20(r1)
-	mflr     r0
-	stw      r0, 0x24(r1)
-	stw      r31, 0x1c(r1)
-	mr       r31, r4
-	stw      r30, 0x18(r1)
-	mr       r30, r3
-	lwz      r5, sys@sda21(r13)
-	lfs      f1, 0x38(r4)
-	lfs      f0, 0x54(r5)
-	fadds    f0, f1, f0
-	stfs     f0, 0x38(r4)
-	lfs      f0, 0x38(r4)
-	lfs      f1, 0x3c(r4)
-	fcmpo    cr0, f0, f1
-	ble      lbl_80128C24
-	stfs     f1, 0x38(r31)
-	lwz      r0, 0x10(r30)
-	cmpwi    r0, 2
-	beq      lbl_80128BC4
-	bge      lbl_80128B6C
-	cmpwi    r0, 0
-	beq      lbl_80128B7C
-	bge      lbl_80128BA0
-	b        lbl_80128C24
+	drawInfo->_38 += sys->m_deltaTime;
+	if (drawInfo->_38 > drawInfo->_3C) {
+		drawInfo->_38 = drawInfo->_3C;
+		switch (_10) {
+		case 0:
+			drawInfo->_38 = 0.0f;
+			drawInfo->_3C = 0.14f * _14;
+			_10           = 1;
+			break;
+		case 1:
+			drawInfo->_38 = 0.0f;
+			drawInfo->_3C = 0.14f * _14;
+			_10           = 2;
+			break;
+		case 2:
+			drawInfo->_38 = 0.0f;
+			drawInfo->_3C = 0.35f * _14;
+			_10           = 3;
+			break;
+		case 3:
+			drawInfo->_38 = 0.0f;
+			drawInfo->_3C = 0.3f * _14;
+			_10           = 4;
+			break;
+		case 4:
+			transit(drawInfo, STONESTATE_Breakable, nullptr);
+			break;
+		}
+	}
 
-lbl_80128B6C:
-	cmpwi    r0, 4
-	beq      lbl_80128C0C
-	bge      lbl_80128C24
-	b        lbl_80128BE8
+	f32 ratio = drawInfo->_38 / drawInfo->_3C;
 
-lbl_80128B7C:
-	lfs      f0, lbl_80517FC8@sda21(r2)
-	li       r0, 1
-	lfs      f1, lbl_80517FE8@sda21(r2)
-	stfs     f0, 0x38(r31)
-	lfs      f0, 0x14(r30)
-	fmuls    f0, f1, f0
-	stfs     f0, 0x3c(r31)
-	stw      r0, 0x10(r30)
-	b        lbl_80128C24
+	switch (_10) {
+	case 0:
+	case 2:
+		int intRatio = (int)(ratio * 10.0f);
+		if (intRatio % 4) {
+			return;
+		}
 
-lbl_80128BA0:
-	lfs      f0, lbl_80517FC8@sda21(r2)
-	li       r0, 2
-	lfs      f1, lbl_80517FE8@sda21(r2)
-	stfs     f0, 0x38(r31)
-	lfs      f0, 0x14(r30)
-	fmuls    f0, f1, f0
-	stfs     f0, 0x3c(r31)
-	stw      r0, 0x10(r30)
-	b        lbl_80128C24
+		PSSystem::getSeMgrInstance()->_04[3]->startSound(DrawInfo::sOwnerEnemy->m_soundObj, PSSE_EN_DOPING_ROCK_FLICK, 0);
+		break;
+	case 4:
+		intRatio = (int)(ratio * 100.0f);
+		if (intRatio % 10) {
+			return;
+		}
 
-lbl_80128BC4:
-	lfs      f0, lbl_80517FC8@sda21(r2)
-	li       r0, 3
-	lfs      f1, lbl_80517FEC@sda21(r2)
-	stfs     f0, 0x38(r31)
-	lfs      f0, 0x14(r30)
-	fmuls    f0, f1, f0
-	stfs     f0, 0x3c(r31)
-	stw      r0, 0x10(r30)
-	b        lbl_80128C24
-
-lbl_80128BE8:
-	lfs      f0, lbl_80517FC8@sda21(r2)
-	li       r0, 4
-	lfs      f1, lbl_80517FF0@sda21(r2)
-	stfs     f0, 0x38(r31)
-	lfs      f0, 0x14(r30)
-	fmuls    f0, f1, f0
-	stfs     f0, 0x3c(r31)
-	stw      r0, 0x10(r30)
-	b        lbl_80128C24
-
-lbl_80128C0C:
-	lwz      r12, 0(r3)
-	li       r5, 6
-	li       r6, 0
-	lwz      r12, 0x1c(r12)
-	mtctr    r12
-	bctrl
-
-lbl_80128C24:
-	lfs      f1, 0x38(r31)
-	lfs      f0, 0x3c(r31)
-	lwz      r0, 0x10(r30)
-	fdivs    f1, f1, f0
-	cmpwi    r0, 2
-	beq      lbl_80128C58
-	bge      lbl_80128C4C
-	cmpwi    r0, 0
-	beq      lbl_80128C58
-	b        lbl_80128D68
-
-lbl_80128C4C:
-	cmpwi    r0, 4
-	beq      lbl_80128CDC
-	b        lbl_80128D68
-
-lbl_80128C58:
-	lfs      f0, lbl_80517FC0@sda21(r2)
-	fmuls    f0, f0, f1
-	fctiwz   f0, f0
-	stfd     f0, 8(r1)
-	lwz      r3, 0xc(r1)
-	slwi     r0, r3, 0x1e
-	srwi     r3, r3, 0x1f
-	subf     r0, r3, r0
-	rotlwi   r0, r0, 2
-	add.     r0, r0, r3
-	bne      lbl_80128D68
-	lwz      r3, sOwnerEnemy__Q34Game10EnemyStone8DrawInfo@sda21(r13)
-	lwz      r31, 0x28c(r3)
-	cmplwi   r31, 0
-	beq      lbl_80128C98
-	addi     r31, r31, 0x30
-
-lbl_80128C98:
-	lwz      r0,
-"sInstance__Q28PSSystem30SingletonBase<Q26PSGame5SeMgr>"@sda21(r13) cmplwi   r0,
-0 bne      lbl_80128CC0 lis      r3, lbl_8047BF00@ha lis      r5,
-lbl_8047BF0C@ha addi     r3, r3, lbl_8047BF00@l li       r4, 0x237 addi     r5,
-r5, lbl_8047BF0C@l crclr    6 bl       panic_f__12JUTExceptionFPCciPCce
-
-lbl_80128CC0:
-	lwz      r3,
-"sInstance__Q28PSSystem30SingletonBase<Q26PSGame5SeMgr>"@sda21(r13) mr       r4,
-r31 li       r5, 0x58b1 li       r6, 0 lwz      r3, 0x10(r3) bl
-startSound__Q26PSGame5SetSeFPQ27JAInter6ObjectUlUl b        lbl_80128D68
-
-lbl_80128CDC:
-	lfs      f0, lbl_80517FF4@sda21(r2)
-	lis      r3, 0x66666667@ha
-	addi     r0, r3, 0x66666667@l
-	fmuls    f0, f0, f1
-	fctiwz   f0, f0
-	stfd     f0, 8(r1)
-	lwz      r4, 0xc(r1)
-	mulhw    r0, r0, r4
-	srawi    r0, r0, 2
-	srwi     r3, r0, 0x1f
-	add      r0, r0, r3
-	mulli    r0, r0, 0xa
-	subf.    r0, r0, r4
-	bne      lbl_80128D68
-	lwz      r3, sOwnerEnemy__Q34Game10EnemyStone8DrawInfo@sda21(r13)
-	lwz      r31, 0x28c(r3)
-	cmplwi   r31, 0
-	beq      lbl_80128D28
-	addi     r31, r31, 0x30
-
-lbl_80128D28:
-	lwz      r0,
-"sInstance__Q28PSSystem30SingletonBase<Q26PSGame5SeMgr>"@sda21(r13) cmplwi   r0,
-0 bne      lbl_80128D50 lis      r3, lbl_8047BF00@ha lis      r5,
-lbl_8047BF0C@ha addi     r3, r3, lbl_8047BF00@l li       r4, 0x237 addi     r5,
-r5, lbl_8047BF0C@l crclr    6 bl       panic_f__12JUTExceptionFPCciPCce
-
-lbl_80128D50:
-	lwz      r3,
-"sInstance__Q28PSSystem30SingletonBase<Q26PSGame5SeMgr>"@sda21(r13) mr       r4,
-r31 li       r5, 0x58b2 li       r6, 0 lwz      r3, 0x10(r3) bl
-startSound__Q26PSGame5SetSeFPQ27JAInter6ObjectUlUl
-
-lbl_80128D68:
-	lwz      r0, 0x24(r1)
-	lwz      r31, 0x1c(r1)
-	lwz      r30, 0x18(r1)
-	mtlr     r0
-	addi     r1, r1, 0x20
-	blr
-	*/
+		PSSystem::getSeMgrInstance()->_04[3]->startSound(DrawInfo::sOwnerEnemy->m_soundObj, PSSE_EN_DOPING_FLICK_LAST, 0);
+		break;
+	}
 }
 
 /*
@@ -747,8 +279,42 @@ void FSMStateShake::cleanup(DrawInfo* drawInfo) { }
  * Address:	80128D84
  * Size:	0002E4
  */
-void FSMStateShake::makeMatrix(DrawInfo* drawInfo, Matrixf*)
+void FSMStateShake::makeMatrix(DrawInfo* drawInfo, Matrixf* mtx)
 {
+	f32 theta = drawInfo->_38 / drawInfo->_3C;
+	boundAngle(theta);
+
+	f32 p1;
+	f32 p2;
+	f32 p3;
+	switch (_10) {
+	case 0:
+		p1 = (1.0f - pikmin2_cosf(theta * TAU)) * 0.1f;
+		p2 = 62.83185577392578f;
+		p3 = p1 * 30.0f;
+		break;
+	case 2:
+		p1 = pikmin2_sinf(theta * TAU * 1.5f) * 0.1f;
+		p2 = 125.6637115478516f;
+		p3 = p1 * 30.0f;
+		break;
+	case 1:
+	case 3:
+		p1 = 0.0f;
+		p2 = 0.0f;
+		p3 = 0.0f;
+		break;
+	case 4:
+		p1 = (1.0f - pikmin2_cosf(theta * PI * 2.5f)) * 0.15f;
+		p2 = 201.0619354248047f;
+		p3 = theta * 4.0f;
+		break;
+	}
+
+	Vector3f translation(p1 * pikmin2_sinf(p2 * theta), 0.0f, p1 * pikmin2_cosf(p2 * theta));
+	theta = (f32)sin(p2 * theta);
+	Vector3f rotation(p3 * theta * DEG2RAD * PI, 0.0f, 0.0f);
+	mtx->makeTR(translation, rotation);
 	/*
 	.loc_0x0:
 	  stwu      r1, -0x50(r1)
@@ -1065,7 +631,7 @@ void FSMStateBreakable::makeMatrix(DrawInfo* drawInfo, Matrixf*)
  * Address:	80129184
  * Size:	00000C
  */
-void FSMStateBreakable::init(DrawInfo* drawInfo, Game::StateArg*)
+void FSMStateBreakable::init(DrawInfo* drawInfo, StateArg* stateArg)
 {
 	/*
 	.loc_0x0:
@@ -1097,7 +663,7 @@ void FSMStateBreakable::exec(DrawInfo* drawInfo)
  * Address:	801291A8
  * Size:	000144
  */
-void FSMStateDisappear::init(DrawInfo* drawInfo, Game::StateArg*)
+void FSMStateDisappear::init(DrawInfo* drawInfo, StateArg* stateArg)
 {
 	/*
 	.loc_0x0:
@@ -1231,7 +797,7 @@ void FSMStateDisappear::makeMatrix(DrawInfo* drawInfo, Matrixf*)
  * Address:	80129318
  * Size:	000144
  */
-void FSMStateDead::init(DrawInfo* drawInfo, Game::StateArg*)
+void FSMStateDead::init(DrawInfo* drawInfo, StateArg* stateArg)
 {
 	/*
 	.loc_0x0:
@@ -1447,7 +1013,7 @@ void DrawInfo::reset()
  * Address:	801295A0
  * Size:	000034
  */
-void StateMachine<EnemyStone::DrawInfo>::start(EnemyStone::DrawInfo* drawInfo, int, Game::StateArg*)
+void StateMachine<EnemyStone::DrawInfo>::start(EnemyStone::DrawInfo* drawInfo, int, StateArg* stateArg)
 {
 	/*
 	.loc_0x0:
@@ -1810,7 +1376,7 @@ void DrawInfo::dead(Game::EnemyBase*)
  * Address:	8012995C
  * Size:	000004
  */
-void FSMState<EnemyStone::DrawInfo>::init(EnemyStone::DrawInfo* drawInfo, Game::StateArg*) { }
+void FSMState<EnemyStone::DrawInfo>::init(EnemyStone::DrawInfo* drawInfo, StateArg* stateArg) { }
 
 /*
  * --INFO--
@@ -1915,7 +1481,7 @@ void StateMachine<EnemyStone::DrawInfo>::create(int)
  * Address:	80129A10
  * Size:	00009C
  */
-void StateMachine<EnemyStone::DrawInfo>::transit(EnemyStone::DrawInfo* drawInfo, int, Game::StateArg*)
+void StateMachine<EnemyStone::DrawInfo>::transit(EnemyStone::DrawInfo* drawInfo, int, StateArg* stateArg)
 {
 	/*
 	.loc_0x0:

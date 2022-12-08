@@ -55,6 +55,8 @@ struct DrawInfo : public CNode {
 	void disappear(EnemyBase*);
 	void dead(EnemyBase*);
 
+	static EnemyBase* sOwnerEnemy;
+
 	u8 _18[0x1C];             // _18
 	FSMState* m_currentState; // _34
 	f32 _38;                  // _38

@@ -5,12 +5,18 @@
 
 struct JAISound;
 
+namespace JAInter {
+struct Object;
+} // namespace JAInter
+
 namespace PSGame {
 struct Randid {
 	f32 m_id; // _00, notUsingMasterIDRatio according to ghidra
 };
 
 struct SetSe {
+	void startSound(JAInter::Object*, u32, u32);
+
 	s16 _00;     // _00
 	s16 _02;     // _02
 	s16 _04;     // _04
