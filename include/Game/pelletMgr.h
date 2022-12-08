@@ -83,7 +83,7 @@ struct PelletMgr : public NodeObjectMgr<GenericObjectMgr> {
 	virtual void doDirectDraw(Graphics& gfx);   // _78 (weak)
 	virtual char* getMgrName()                  // _80 (weak)
 	{
-		return "ƒyƒŒƒbƒgƒ}ƒl[ƒWƒƒ"; // pellet manager
+		return "Æ’yÆ’Å’Æ’bÆ’gÆ’}Æ’lÂ[Æ’WÆ’Æ’"; // pellet manager
 	}
 	virtual char* getCaveName(int);       // _84
 	virtual u8 getCaveID(char*);          // _88
@@ -391,7 +391,7 @@ struct Pellet : public DynCreature, public SysShape::MotionListener, public Carr
 			check = true;
 		}
 		if ((gameSystem->m_mode == GSM_VERSUS_MODE) && (m_captureMatrix == nullptr) && (_3C4 == 0)) {
-			u8 test = _32C;
+			u8 test = m_pelletFlag;
 			if (test == 4) {
 				check = false;
 			} else if (test == 5) {
@@ -404,7 +404,17 @@ struct Pellet : public DynCreature, public SysShape::MotionListener, public Carr
 	}
 
 	inline int getPokoValue() { return m_config->m_params.m_money.m_data; }
-
+	
+	enum PelletFlag {
+		FLAG_LOOZY            = 0,
+		FLAG_NAVI_NAPSACK     = 1,
+		FLAG_NONE             = 2,
+		FLAG_VS_CHERRY        = 3,
+		FLAG_VS_BEDAMA_RED    = 4,
+		FLAG_VS_BEDAMA_BLUE   = 5,
+		FLAG_VS_BEDAMA_YELLOW = 6
+	};
+	
 	// _00		= VTABLE 1
 	// _04-_314	= DYNCREATURE
 	// _318 	= VTABLE 2? 3?
@@ -414,7 +424,7 @@ struct Pellet : public DynCreature, public SysShape::MotionListener, public Carr
 	bool m_isInWater;             // _325
 	u8 _326[0x2];                 // _326 - could be padding
 	TexCaster::Caster* m_caster;  // _328
-	u8 _32C;                      // _32C - unknown
+	u8 m_pelletFlag;              // _32C
 	u8 m_discoverDisable;         // _32D
 	u8 _32E[0x2];                 //  _32E - could be padding
 	PSM::EventBase* m_soundMgr;   // _330
