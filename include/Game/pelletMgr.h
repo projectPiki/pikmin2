@@ -191,6 +191,17 @@ struct PelletKillArg : public CreatureKillArg {
 struct Pellet : public DynCreature, public SysShape::MotionListener, public CarryInfoOwner {
 	Pellet();
 
+
+	enum PelletFlag {
+		FLAG_LOOZY            = 0,
+		FLAG_NAVI_NAPSACK     = 1,
+		FLAG_NONE             = 2,
+		FLAG_VS_CHERRY        = 3,
+		FLAG_VS_BEDAMA_RED    = 4,
+		FLAG_VS_BEDAMA_BLUE   = 5,
+		FLAG_VS_BEDAMA_YELLOW = 6
+	};
+
 	////////////// VTABLE 1 (DYNCREATURE)
 	virtual Vector3f getPosition() // _08 (weak)
 	{
@@ -391,12 +402,12 @@ struct Pellet : public DynCreature, public SysShape::MotionListener, public Carr
 			check = true;
 		}
 		if ((gameSystem->m_mode == GSM_VERSUS_MODE) && (m_captureMatrix == nullptr) && (_3C4 == 0)) {
-			u8 test = _32C;
-			if (test == 4) {
+			u8 test = m_pelletFlag;
+			if (test == FLAG_VS_BEDAMA_RED) {
 				check = false;
-			} else if (test == 5) {
+			} else if (test == FLAG_VS_BEDAMA_BLUE) {
 				check = false;
-			} else if (test == 6 && getStateID() != 5) {
+			} else if (test == FLAG_VS_BEDAMA_YELLOW && getStateID() != 5) {
 				check = true;
 			}
 		}
@@ -414,7 +425,7 @@ struct Pellet : public DynCreature, public SysShape::MotionListener, public Carr
 	bool m_isInWater;             // _325
 	u8 _326[0x2];                 // _326 - could be padding
 	TexCaster::Caster* m_caster;  // _328
-	u8 _32C;                      // _32C - unknown
+	u8 m_pelletFlag;              // _32C
 	u8 m_discoverDisable;         // _32D
 	u8 _32E[0x2];                 //  _32E - could be padding
 	PSM::EventBase* m_soundMgr;   // _330
