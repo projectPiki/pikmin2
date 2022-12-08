@@ -893,7 +893,7 @@ bool GameMessageVsAddEnemy::actVs(VsGameSection* section)
  */
 bool GameMessagePelletBorn::actVs(VsGameSection* section)
 {
-	if (m_pellet->_32C == 6) { // is yellow bedama
+	if (m_pellet->m_pelletFlag == Pellet::FLAG_VS_BEDAMA_YELLOW) { // is yellow bedama
 		for (int i = 0; i < 7; i++) {
 			if (section->m_marbleYellow[i] == m_pellet) {
 				return false;
@@ -917,7 +917,7 @@ bool GameMessagePelletBorn::actVs(VsGameSection* section)
  */
 bool GameMessagePelletDead::actVs(VsGameSection* section)
 {
-	if (m_pellet->_32C == 6) { // is yellow bedama
+	if (m_pellet->m_pelletFlag == Pellet::FLAG_VS_BEDAMA_YELLOW) { // is yellow bedama
 		for (int i = 0; i < 7; i++) {
 			if (section->m_marbleYellow[i] == m_pellet) {
 				section->m_marbleYellow[i] = nullptr;
