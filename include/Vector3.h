@@ -220,9 +220,9 @@ template <>
 inline f32 Vector3f::length() const
 {
 	Vector3f vec(x, y, z);
-	f32 z2 = z * z;
-	f32 y2 = y * y;
 	f32 x2 = x * x;
+	f32 y2 = y * y;
+	f32 z2 = z * z;
 
 	if (x2 + y2 + z2 > 0.0f) {
 		return sqrtf(vec.x * vec.x + y * y + z * z);
