@@ -5951,7 +5951,7 @@ void PelletIterator::setFirst()
  */
 PelletMgr::PelletMgr()
 {
-	m_name              = "ÂƒyÂƒÂŒÂƒbÂƒgÂƒ}ÂƒlÂ[ÂƒWÂƒÂƒ"; // pellet manager
+	m_name              = "ƒyƒŒƒbƒgƒ}ƒl[ƒWƒƒ"; // pellet manager
 	m_movieDrawDisabled = false;
 }
 
@@ -6417,7 +6417,7 @@ void PelletMgr::OtakaraItemCode::write(Stream& stream)
 {
 	stream.textWriteTab(stream.m_tabCount);
 	stream.writeShort(m_value);
-	stream.textWriteText("# ?Â¿Â½?Â¿Â½?Â¿Â½?Â¿Â½A?Â¿Â½C?Â¿Â½e?Â¿Â½?Â¿Â½?Â¿Â½R?Â¿Â½[?Â¿Â½h\r\n");
+	stream.textWriteText("# ?¿½?¿½?¿½?¿½A?¿½C?¿½e?¿½?¿½?¿½R?¿½[?¿½h\r\n");
 }
 
 /*
