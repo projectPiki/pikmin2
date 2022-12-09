@@ -60,7 +60,7 @@ struct NaviWhistle {
 	void updatePosition();
 	void start();
 	void stop();
-	void timeout();
+	bool timeout();
 	void setFaceDir(f32);
 	void updateWhistle();
 	void update(Vector3f&, bool);
@@ -71,7 +71,7 @@ struct NaviWhistle {
 	f32 _24;      // _24
 	u16 _28;      // _28
 	f32 _2C;      // _2C
-	u32 _30;      // _30
+	bool _30;     // _30
 	Navi* m_navi; // _34
 	Color4 _38;   // _38
 };

@@ -328,25 +328,21 @@ lbl_801653C8:
  * Address:	801653EC
  * Size:	000034
  */
-void NaviWhistle::stop(void)
-{
-	/*
-	lhz      r0, 0x28(r3)
-	cmpwi    r0, 1
-	beq      lbl_80165404
-	bgelr
-	blr
-	blr
 
-lbl_80165404:
-	li       r0, 2
-	lfs      f0, lbl_805188E4@sda21(r2)
-	sth      r0, 0x28(r3)
-	li       r0, 1
-	stfs     f0, 0x2c(r3)
-	stb      r0, 0x30(r3)
-	blr
-	*/
+void NaviWhistle::stop()
+{
+	switch (_28) {
+
+	case 1:
+		_28 = 2;
+		_2C = 0.0f;
+		_30 = true;
+		return;
+	case 0:
+	case 2:
+	default:
+		return;
+	}
 }
 
 /*
@@ -354,15 +350,7 @@ lbl_80165404:
  * Address:	80165420
  * Size:	000010
  */
-void NaviWhistle::timeout(void)
-{
-	/*
-	lhz      r0, 0x28(r3)
-	cntlzw   r0, r0
-	srwi     r3, r0, 5
-	blr
-	*/
-}
+bool NaviWhistle::timeout() { return _28 == 0; }
 
 /*
  * --INFO--
