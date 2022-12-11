@@ -13,7 +13,7 @@
 namespace ebi {
 struct E2DCallBack_Base : public P2DScreen::CallBackNode {
 	inline E2DCallBack_Base()
-	    : _1C(1)
+	    : m_isEnabled(1)
 	{
 	}
 	virtual ~E2DCallBack_Base();                      // _08 (weak)
@@ -22,7 +22,7 @@ struct E2DCallBack_Base : public P2DScreen::CallBackNode {
 	virtual void do_update();                         // _1C (weak)
 	virtual void do_draw(Graphics&, J2DGrafContext&); // _20 (weak)
 
-	u8 _1C; // _1C
+	bool m_isEnabled; // _1C
 };
 
 // Size: 0x3C
@@ -43,8 +43,8 @@ struct E2DCallBack_AnmBase : public E2DCallBack_Base {
 	bool isFinish();
 
 	J3DFrameCtrl m_frameCtrl; // _20
-	J2DAnmBase* m_anm;        // _34
-	bool m_isFinish;          // _38
+	J2DAnmBase* m_anim;       // _34
+	bool m_isFinished;        // _38
 };
 
 struct E2DCallBack_BlinkAlpha : public E2DCallBack_Base {

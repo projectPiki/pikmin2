@@ -2807,7 +2807,7 @@ lbl_803D042C:
  */
 void E2DCallBack_Base::update(void)
 {
-	if (_1C) {
+	if (m_isEnabled) {
 		do_update();
 	}
 	/*
@@ -2844,7 +2844,7 @@ void E2DCallBack_Base::do_update(void) { }
  */
 void E2DCallBack_Base::draw(Graphics& gfx, J2DGrafContext& context)
 {
-	if (_1C) {
+	if (m_isEnabled) {
 		do_draw(gfx, context);
 	}
 	/*

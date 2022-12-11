@@ -1938,7 +1938,7 @@ E2DCallBack_BlinkFontColor::E2DCallBack_BlinkFontColor()
     , _48(1)
     , _49(0)
 {
-	_1C = 0;
+	m_isEnabled = 0;
 	/*
 stwu     r1, -0x10(r1)
 mflr     r0

@@ -790,7 +790,7 @@ int RandItemUnit::getItemSlotNum(MapNode* mapNode)
  */
 bool RandItemUnit::isItemSetHard()
 {
-	switch (m_mapUnitGenerator->_04) {
+	switch (m_mapUnitGenerator->m_randItemType) {
 	case 0:
 	case 1:
 		return false;

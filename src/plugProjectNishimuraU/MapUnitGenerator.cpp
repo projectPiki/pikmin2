@@ -39,9 +39,9 @@ MapUnitGenerator::MapUnitGenerator(MapUnitInterface* interface, int p1, FloorInf
 	}
 
 	if ((gameSystem) && (gameSystem->m_mode == GSM_VERSUS_MODE)) {
-		m_versusMode = true;
+		m_isVersusMode = true;
 	} else {
-		m_versusMode = false;
+		m_isVersusMode = false;
 	}
 
 	createEditMapInfo(editInfo);
@@ -62,13 +62,13 @@ MapUnitGenerator::MapUnitGenerator(MapUnitInterface* interface, int p1, FloorInf
  */
 void MapUnitGenerator::createEditMapInfo(EditMapUnit* editInfo)
 {
-	m_editMapUnit = 0;
+	m_editMapUnit = nullptr;
 
-	if (m_versusMode && editInfo) {
+	if (m_isVersusMode && editInfo) {
 		if (editInfo->_1C < -1) {
 			float randcomp = 1.0f;
 			randcomp       = randWeightFloat(randcomp);
-			if (randcomp < editInfo->_00) {
+			if (randcomp < editInfo->m_chanceOfUse) {
 				m_editMapUnit = editInfo;
 			}
 		} else if (editInfo->_1C >= 0) {
@@ -116,10 +116,10 @@ void MapUnitGenerator::createMemList(MapUnitInterface* interface, int interfaceC
 				for (int k = 0; k < linkCount; k++) {
 					DoorLink* link = currDoor->getLink(k);
 
-					Adjust* currAdjust = new Adjust();
-					currAdjust->_00    = link->m_doorID;
-					currAdjust->_04    = (s32)(link->m_dist / 10.0f);
-					currAdjust->_08    = (s32)link->m_tekiFlag;
+					Adjust* currAdjust      = new Adjust();
+					currAdjust->m_doorID    = link->m_doorID;
+					currAdjust->m_distance  = link->m_distance / 10.0f;
+					currAdjust->m_tekiFlags = link->m_tekiFlags;
 
 					AdjustNode* currAdjustNode = new AdjustNode(currAdjust);
 
@@ -146,7 +146,7 @@ void MapUnitGenerator::createMemList(MapUnitInterface* interface, int interfaceC
  */
 bool Cave::MapUnitGenerator::isCreateList(Game::MapUnitInterface* interface)
 {
-	if (!m_versusMode) {
+	if (!m_isVersusMode) {
 		return true;
 	}
 
@@ -330,9 +330,9 @@ void MapUnitGenerator::createItemList()
  */
 void MapUnitGenerator::createCaveLevel()
 {
-	_04 = 0;
+	m_randItemType = 0;
 	if (gameSystem && gameSystem->m_mode == GSM_STORY_MODE) {
-		_04 = 4;
+		m_randItemType = 4;
 	}
 }
 

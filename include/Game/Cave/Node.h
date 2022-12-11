@@ -18,9 +18,9 @@ enum NodeType { Item = 1, Gate };
 struct Adjust {
 	Adjust();
 
-	s32 _00; // _00
-	s32 _04; // _04
-	s32 _08; // _08
+	s32 m_doorID;    // _00
+	s32 m_distance;  // _04
+	s32 m_tekiFlags; // _08
 };
 
 /**

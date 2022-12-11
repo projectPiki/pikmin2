@@ -425,11 +425,11 @@ void E2DCallBack_AnmBase::loadAnm(char* path, JKRArchive* archive, long p3, long
 {
 	void* resource = JKRFileLoader::getGlbResource(path, archive);
 	P2ASSERTLINE(74, (resource != nullptr));
-	m_anm           = J2DAnmLoaderDataBase::load(resource);
+	m_anim          = J2DAnmLoaderDataBase::load(resource);
 	m_frameCtrl._06 = p3;
 	m_frameCtrl._10 = p3;
 	m_frameCtrl._0A = p3;
-	m_frameCtrl._08 = ((m_anm->m_maxFrame < p4) ? m_anm->m_maxFrame : p4);
+	m_frameCtrl._08 = ((m_anim->m_maxFrame < p4) ? m_anim->m_maxFrame : p4);
 
 	/*
 	stwu     r1, -0x20(r1)
@@ -665,8 +665,8 @@ lbl_803D0D80:
  */
 void E2DCallBack_AnmBase::stop(void)
 {
-	_1C        = 0;
-	m_isFinish = true;
+	m_isEnabled  = 0;
+	m_isFinished = true;
 }
 
 /*
@@ -686,8 +686,8 @@ void E2DCallBack_AnmBase::disconnect(void)
  */
 void E2DCallBack_AnmBase::setStartFrame(void)
 {
-	m_frameCtrl._10       = m_frameCtrl._06;
-	m_anm->m_currentFrame = m_frameCtrl._10;
+	m_frameCtrl._10        = m_frameCtrl._06;
+	m_anim->m_currentFrame = m_frameCtrl._10;
 }
 
 /*
@@ -697,8 +697,8 @@ void E2DCallBack_AnmBase::setStartFrame(void)
  */
 void E2DCallBack_AnmBase::setEndFrame(void)
 {
-	m_frameCtrl._10       = m_frameCtrl._08;
-	m_anm->m_currentFrame = m_frameCtrl._10;
+	m_frameCtrl._10        = m_frameCtrl._08;
+	m_anim->m_currentFrame = m_frameCtrl._10;
 }
 
 /*
@@ -802,10 +802,10 @@ void E2DCallBack_AnmBase::do_update(void)
 {
 	if (_18) {
 		m_frameCtrl.update();
-		m_anm->m_currentFrame = m_frameCtrl._10;
+		m_anim->m_currentFrame = m_frameCtrl._10;
 	}
 	if (m_frameCtrl.m_attr & 1) {
-		m_isFinish = true;
+		m_isFinished = true;
 	}
 	/*
 	stwu     r1, -0x10(r1)
@@ -845,7 +845,7 @@ lbl_803D0F9C:
  */
 bool E2DCallBack_AnmBase::isFinish(void)
 {
-	return m_isFinish;
+	return m_isFinished;
 	/*
 	lbz      r3, 0x38(r3)
 	blr

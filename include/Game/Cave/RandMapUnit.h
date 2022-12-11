@@ -10,14 +10,14 @@
 namespace Game {
 namespace Cave {
 struct EditMapUnit {
-	float _00; // _00
-	u32 _04;   // _04
-	u32 _08;   // _08
-	u32 _0C;   // _0C
-	u32 _10;   // _10
-	u32 _14;   // _14
-	u32 _18;   // _18
-	int _1C;   // _1C
+	float m_chanceOfUse; // _00
+	u32 _04;             // _04
+	u32 _08;             // _08
+	u32 _0C;             // _0C
+	u32 _10;             // _10
+	u32 _14;             // _14
+	u32 _18;             // _18
+	int _1C;             // _1C
 };
 
 struct EnemyNode;
@@ -51,9 +51,8 @@ struct MapUnitGenerator {
 
 	bool m_isFinalFloor;        // _00
 	bool m_hasEscapeFountain;   // _01
-	bool m_versusMode;          // _02
-	u8 _03;                     // _03
-	u32 _04;                    // _04
+	bool m_isVersusMode;        // _02
+	u32 m_randItemType;         // _04
 	FloorInfo* m_floorInfo;     // _08
 	MapNode* m_mapNode;         // _0C
 	MapNode* m_mapNodeArr;      // _10
@@ -128,7 +127,7 @@ struct RandMapUnit {
 	void setUnitKindOrder(MapNode*, int*);
 	void setRandomDoorIndex(int*, int);
 
-	int m_doorCountMaybe;                 // _00
+	int m_doorCount;                      // _00
 	int m_roomCount;                      // _04
 	f32 m_routeRatio;                     // _08
 	bool m_mapHasDiameter36;              // _0C

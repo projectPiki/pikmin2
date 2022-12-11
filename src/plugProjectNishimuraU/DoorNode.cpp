@@ -9,9 +9,9 @@ namespace Cave {
  */
 Adjust::Adjust()
 {
-	_00 = -1;
-	_04 = -1;
-	_08 = -1;
+	m_doorID    = -1;
+	m_distance  = -1;
+	m_tekiFlags = -1;
 }
 
 /*

@@ -43,8 +43,8 @@ struct EditMapUnit;
 struct DoorLink : public CNode {
 	DoorLink()
 	{
-		m_dist     = 0.0f;
-		m_tekiFlag = 1;
+		m_distance  = 0.0f;
+		m_tekiFlags = 1;
 	}
 
 	virtual ~DoorLink(); // _08 (weak)
@@ -52,9 +52,9 @@ struct DoorLink : public CNode {
 	void read(Stream&);
 	void write(Stream&);
 
-	f32 m_dist;    // _18
-	u32 m_doorID;  // _1C
-	u8 m_tekiFlag; // _20
+	f32 m_distance; // _18
+	u32 m_doorID;   // _1C
+	u8 m_tekiFlags; // _20
 };
 
 // Size: 0x50

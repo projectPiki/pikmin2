@@ -770,10 +770,10 @@ void Door::read(Stream& stream)
 	m_linkCount = stream.readInt();
 	for (int i = 0; i < m_linkCount; i++) {
 		// inlined constructor
-		DoorLink* link = new Game::DoorLink();
-		link->m_dist   = stream.readFloat();
-		link->m_doorID = stream.readInt();
-		int v0         = stream.readInt();
+		DoorLink* link   = new Game::DoorLink();
+		link->m_distance = stream.readFloat();
+		link->m_doorID   = stream.readInt();
+		int v0           = stream.readInt();
 
 		// TODO: WTF does this evaluate to?
 		// neg       r0, r3 <-- -stream.readInt()
@@ -782,7 +782,7 @@ void Door::read(Stream& stream)
 		// addi      r3, r28, 0x20 # ' '
 		// srwi      r0, r0, 31 <-- conversion to byte
 		// stb       r0, 0x20(r31)
-		link->m_tekiFlag = (-v0 | v0); // < 0?
+		link->m_tekiFlags = (-v0 | v0); // < 0?
 		// _20 = CNode
 		m_rootLink.add(link);
 	}
