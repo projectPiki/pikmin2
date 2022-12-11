@@ -231,12 +231,24 @@ struct GenPellet : public GenObject {
 };
 
 struct GenObjectPiki : public GenObject {
+	GenObjectPiki()
+	    : GenObject('piki', "object type", "PIKMIN をセット")
+	    , m_colourParm(this, 'p000', "色", 0, 0, PikiColorCount)
+	    , m_amountParm(this, 'p001', "数", 1, 1, 100)
+	    , m_isWildPikminParm(this, 'p002', "自活(1=yes)", 0, 0, 1)
+	{
+	}
+
 	virtual void ramSaveParameters(Stream&); // _0C
 	virtual void ramLoadParameters(Stream&); // _10
 	virtual Creature* generate(Generator*);  // _30
 	virtual Creature* birth(GenArg*);        // _34
 
 	static void initialise();
+
+	Parm<int> m_colourParm;       // _24
+	Parm<int> m_amountParm;       // _4C
+	Parm<int> m_isWildPikminParm; // _74, assumed name
 };
 
 struct GenObjectEnemy : public GenObject {

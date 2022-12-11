@@ -60,7 +60,7 @@ typedef enum EPikiHappa {
 
 	Bud_Red    = 3,
 	Flower_Red = 4,
-} EPikiHappa;
+} EPikiHappa; // Aka headtype
 
 typedef enum EMovieUserCommands {
 	ForceOnionPikis = 100, // Calls enterAllPikis and forceEnterPikis based on moviePlayer flags

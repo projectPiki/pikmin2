@@ -80,7 +80,7 @@ void GenObjectEnemy::ramLoadParameters(Stream&) { }
  * Address:	80124918
  * Size:	0006B4
  */
-Creature* GenObjectEnemy::generate(Game::Generator*)
+Creature* GenObjectEnemy::generate(Game::Generator* generator)
 {
 	return nullptr; // placeholder
 	                /*
