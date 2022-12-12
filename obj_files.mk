@@ -908,7 +908,7 @@ OGAWA:=\
 	$(BUILD_DIR)/src/plugProjectOgawaU/ogSceneUfo.o\
 	$(BUILD_DIR)/src/plugProjectOgawaU/ogObjSave.o\
 	$(BUILD_DIR)/src/plugProjectOgawaU/ogSceneSave.o\
-	$(BUILD_DIR)/asm/plugProjectOgawaU/ogObjFinalMsg.o\
+	$(BUILD_DIR)/src/plugProjectOgawaU/ogObjFinalMsg.o\
 	$(BUILD_DIR)/src/plugProjectOgawaU/ogSceneFinalMsg.o\
 	$(BUILD_DIR)/asm/plugProjectOgawaU/ogObjVs.o\
 	$(BUILD_DIR)/src/plugProjectOgawaU/ogSceneVs.o\
