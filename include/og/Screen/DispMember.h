@@ -303,6 +303,8 @@ struct DispMemberDummy : public DispMemberBase {
 // size 0xC
 struct DispMemberFinalMessage : public DispMemberBase {
 
+	inline DispMemberFinalMessage() { m_finalState = 0; }
+
 	virtual u32 getSize() { return sizeof(DispMemberFinalMessage); } // _08 (weak)
 	virtual u32 getOwnerID() { return OWNER_OGA; }                   // _0C (weak)
 	virtual u64 getMemberID() { return MEMBER_FINAL_MSG; }           // _10 (weak)
