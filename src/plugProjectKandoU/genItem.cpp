@@ -1,5 +1,5 @@
 #include "Game/gameGenerator.h"
-#include "Game/genItem.h"
+// #include "Game/genItem.h"
 #include "Game/itemMgr.h"
 #include "types.h"
 
@@ -94,52 +94,7 @@
  * Address:	801ACD20
  * Size:	00009C
  */
-void makeItem()
-{
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	li       r3, 0x40
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	bl       __nw__FUl
-	or.      r31, r3, r3
-	beq      lbl_801ACDA4
-	addi     r0, r31, 0x3c
-	lis      r5, lbl_8047F810@ha
-	lis      r4, lbl_8047F81C@ha
-	lis      r8, 0x6974656D@ha
-	addi     r6, r5, lbl_8047F810@l
-	stw      r0, 0(r31)
-	addi     r7, r4, lbl_8047F81C@l
-	addi     r5, r8, 0x6974656D@l
-	li       r4, 0
-	bl       __ct__Q24Game7GenBaseFUlPcPc
-	lis      r3, __vt__Q24Game9GenObject@ha
-	lis      r4, __vt__Q24Game7GenItem@ha
-	addi     r0, r3, __vt__Q24Game9GenObject@l
-	li       r3, -1
-	stw      r0, 0xc(r31)
-	addi     r4, r4, __vt__Q24Game7GenItem@l
-	lfs      f0, lbl_805192B8@sda21(r2)
-	li       r0, 0
-	stw      r4, 0xc(r31)
-	stw      r3, 0x24(r31)
-	stfs     f0, 0x30(r31)
-	stfs     f0, 0x2c(r31)
-	stfs     f0, 0x28(r31)
-	stw      r0, 0x34(r31)
-	stw      r0, 0x38(r31)
-
-lbl_801ACDA4:
-	lwz      r0, 0x14(r1)
-	mr       r3, r31
-	lwz      r31, 0xc(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
-}
+Game::GenItem* makeItem() { return new Game::GenItem; }
 
 namespace Game {
 
@@ -148,7 +103,7 @@ namespace Game {
  * Address:	801ACDBC
  * Size:	00008C
  */
-void GenItem::initialise(void)
+void GenItem::initialise()
 {
 	/*
 	lwz      r8, factory__Q24Game16GenObjectFactory@sda21(r13)
@@ -432,27 +387,6 @@ lbl_801AD0DC:
 
 /*
  * --INFO--
- * Address:	801AD0F8
- * Size:	000004
- */
-void BaseItemMgr::generatorWrite(Stream&, Game::GenItemParm*) { }
-
-/*
- * --INFO--
- * Address:	801AD0FC
- * Size:	00000C
- */
-u32 BaseItemMgr::generatorLocalVersion(void)
-{
-	/*
-	lis      r3, 0x30303030@ha
-	addi     r3, r3, 0x30303030@l
-	blr
-	*/
-}
-
-/*
- * --INFO--
  * Address:	801AD108
  * Size:	000148
  */
@@ -551,13 +485,6 @@ lbl_801AD21C:
 	blr
 	*/
 }
-
-/*
- * --INFO--
- * Address:	801AD250
- * Size:	000004
- */
-void BaseItemMgr::generatorRead(Stream&, Game::GenItemParm*, unsigned long) { }
 
 /*
  * --INFO--
@@ -682,73 +609,73 @@ void makeObjectItem()
 
 namespace Game {
 
-/*
- * --INFO--
- * Address:	........
- * Size:	00008C
- */
-void GenObjectItem::initialise(void)
-{
-	// UNUSED FUNCTION
-}
+// /*
+//  * --INFO--
+//  * Address:	........
+//  * Size:	00008C
+//  */
+// void GenObjectItem::initialise(void)
+// {
+// 	// UNUSED FUNCTION
+// }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	00004C
- */
-void GenObjectItem::doWrite(Stream&)
-{
-	// UNUSED FUNCTION
-}
+// /*
+//  * --INFO--
+//  * Address:	........
+//  * Size:	00004C
+//  */
+// void GenObjectItem::doWrite(Stream&)
+// {
+// 	// UNUSED FUNCTION
+// }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	00004C
- */
-void GenObjectItem::doRead(Stream&)
-{
-	// UNUSED FUNCTION
-}
+// /*
+//  * --INFO--
+//  * Address:	........
+//  * Size:	00004C
+//  */
+// void GenObjectItem::doRead(Stream&)
+// {
+// 	// UNUSED FUNCTION
+// }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	000004
- */
-void GenObjectItem::ramSaveParameters(Stream&)
-{
-	// UNUSED FUNCTION
-}
+// /*
+//  * --INFO--
+//  * Address:	........
+//  * Size:	000004
+//  */
+// void GenObjectItem::ramSaveParameters(Stream&)
+// {
+// 	// UNUSED FUNCTION
+// }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	000004
- */
-void GenObjectItem::ramLoadParameters(Stream&)
-{
-	// UNUSED FUNCTION
-}
+// /*
+//  * --INFO--
+//  * Address:	........
+//  * Size:	000004
+//  */
+// void GenObjectItem::ramLoadParameters(Stream&)
+// {
+// 	// UNUSED FUNCTION
+// }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	000078
- */
-void GenObjectItem::generate(Game::Generator*)
-{
-	// UNUSED FUNCTION
-}
+// /*
+//  * --INFO--
+//  * Address:	........
+//  * Size:	000078
+//  */
+// void GenObjectItem::generate(Game::Generator*)
+// {
+// 	// UNUSED FUNCTION
+// }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	000074
- */
-void GenObjectItem::birth(Game::GenArg*)
-{
-	// UNUSED FUNCTION
-}
+// /*
+//  * --INFO--
+//  * Address:	........
+//  * Size:	000074
+//  */
+// void GenObjectItem::birth(Game::GenArg*)
+// {
+// 	// UNUSED FUNCTION
+// }
 } // namespace Game

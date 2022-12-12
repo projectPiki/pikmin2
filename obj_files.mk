@@ -516,7 +516,7 @@ KANDO:=\
 	$(BUILD_DIR)/asm/plugProjectKandoU/pelletState.o\
 	$(BUILD_DIR)/asm/plugProjectKandoU/dynCreature.o\
 	$(BUILD_DIR)/asm/plugProjectKandoU/gameGenerator.o\
-	$(BUILD_DIR)/asm/plugProjectKandoU/genPiki.o\
+	$(BUILD_DIR)/src/plugProjectKandoU/genPiki.o\
 	$(BUILD_DIR)/src/plugProjectKandoU/genNavi.o\
 	$(BUILD_DIR)/asm/plugProjectKandoU/genItem.o\
 	$(BUILD_DIR)/src/plugProjectKandoU/gameStages.o\

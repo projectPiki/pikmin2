@@ -182,6 +182,9 @@ struct GenObject : public GenBase {
 	virtual Creature* birth(GenArg*) = 0;                  // _34
 	virtual void generatorMakeMatrix(Matrixf&, Vector3f&); // _38 (weak)
 	virtual void getDebugInfo(char*);                      // _3C (weak)
+
+	// _0C     = VTBL
+	// _00-_24 = GenBase
 };
 
 struct BaseItemMgr;
@@ -195,6 +198,17 @@ struct GenItemParm {
  * @size{0x40}
  */
 struct GenItem : public GenObject {
+	inline GenItem()
+	    : GenObject('item', "object type", "ITEM ‚ðƒZƒbƒg")
+	{
+		m_mgrIndex   = -1;
+		m_rotation.z = 0.0f;
+		m_rotation.y = 0.0f;
+		m_rotation.x = 0.0f;
+		m_itemMgr    = nullptr;
+		m_parm       = nullptr;
+	}
+
 	virtual void doWrite(Stream&);                         // _08
 	virtual void ramSaveParameters(Stream&);               // _0C
 	virtual void ramLoadParameters(Stream&);               // _10
@@ -208,6 +222,8 @@ struct GenItem : public GenObject {
 
 	static void initialise();
 
+	// _0C     = VTBL
+	// _00-_24 = GenObject
 	int m_mgrIndex;         // _24
 	Vector3f m_rotation;    // _28
 	BaseItemMgr* m_itemMgr; // _34
