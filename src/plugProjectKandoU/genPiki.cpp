@@ -18,13 +18,13 @@ namespace Game {
  * Address:	801AC4E8
  * Size:	00008C
  */
-void GenObjectPiki::initialise(void)
+void GenObjectPiki::initialise()
 {
 	GenObjectFactoryFactory* factory = GenObjectFactory::factory;
 	if (factory->m_count < factory->m_limit) {
 		factory->m_factories[factory->m_count].m_typeID       = 'piki';
 		factory->m_factories[factory->m_count].m_makeFunction = makeObjectPiki;
-		factory->m_factories[factory->m_count].m_name         = "ピクミンを発生"; // generate navi(gation)
+		factory->m_factories[factory->m_count].m_name         = "ピクミンを発生"; // generate Pikmin
 		factory->m_factories[factory->m_count].m_version      = '0001';
 		factory->m_count++;
 	}
@@ -48,9 +48,8 @@ void GenObjectPiki::ramLoadParameters(Stream& stream) { m_colourParm.m_value = s
  * --INFO--
  * Address:	801AC5D8
  * Size:	000258
- * TODO: Finish function!! nonmatching
  */
-Creature* GenObjectPiki::generate(Game::Generator* gen)
+Creature* GenObjectPiki::generate(Generator* gen)
 {
 
 	Vector3f pos = gen->m_position + gen->m_offset;
@@ -79,7 +78,7 @@ static const char unusedGenPikiArray[] = { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 };
  * Address:	801AC830
  * Size:	0001B0
  */
-Creature* GenObjectPiki::birth(Game::GenArg* arg)
+Creature* GenObjectPiki::birth(GenArg* arg)
 {
 	if (m_isWildPikminParm.m_value == 1) {
 		int color = m_colourParm.m_value;
@@ -115,7 +114,7 @@ Creature* GenObjectPiki::birth(Game::GenArg* arg)
 		newPiki->setPosition(arg->m_position, false);
 		newPiki->changeShape(color);
 		newPiki->changeHappa(Leaf);
-		JUT_ASSERTLINE(184, !newPiki->isZikatu(), "dame\n");
+		JUT_ASSERTLINE(184, !newPiki->isZikatu(), "dame\n"); // 'not good' lol
 	}
 
 	return newPiki;
