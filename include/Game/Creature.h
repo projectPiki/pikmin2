@@ -327,6 +327,7 @@ struct Creature : public CellObject {
 	void updateStick(Vector3f&);
 
 	static bool usePacketCulling;
+	static Creature* currOp;
 
 	Matrixf* m_captureMatrix;      // _0B8
 	BitFlag<u32> m_flags;          // _0BC

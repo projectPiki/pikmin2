@@ -18,6 +18,10 @@
 #include "nans.h"
 
 namespace Game {
+
+Creature* Creature::currOp;
+bool Creature::usePacketCulling = true;
+
 /*
  * --INFO--
  * Address:	8013AE84
@@ -25,40 +29,31 @@ namespace Game {
  */
 Creature::Creature()
 {
-	m_collTree  = 0;
-	m_model     = 0;
+	m_collTree  = nullptr;
+	m_model     = nullptr;
 	m_mass      = 100.0f;
-	m_generator = 0;
-	m_scale     = 0;
+	m_generator = nullptr;
+
+	m_scale = Vector3f(1.0f);
+
 	PSMTXIdentity(m_mainMatrix.m_matrix.mtxView);
-	m_objectTypeID = -2;
+
+	m_objectTypeID = OBJTYPE_INVALID_START;
+
 	for (int i = 0; i < 4; i++) {
 		m_flags.byteView[i] = 0;
 	}
-	m_flags.typeView = m_flags.typeView | 0x7;
+
+	m_flags.typeView |= (CF_IS_ATARI | CF_IS_ALIVE | CF_IS_COLLISION_FLICK);
 	clearStick();
 }
-
-/*
- * --INFO--
- * Address:	8013AFB0
- * Size:	000018
- */
-// WEAK - in header
-// CellLeg::CellLeg()
-// {
-// 	m_prev   = nullptr;
-// 	m_next   = nullptr;
-// 	m_object = nullptr;
-// 	m_cell   = nullptr;
-// }
 
 /*
  * --INFO--
  * Address:	8013AFC8
  * Size:	000120
  */
-void Creature::init(Game::CreatureInitArg* arg)
+void Creature::init(CreatureInitArg* arg)
 {
 	m_cellLayerIndex    = 0;
 	m_cellRect.p1.x     = 0;
@@ -69,14 +64,17 @@ void Creature::init(Game::CreatureInitArg* arg)
 	m_flags.byteView[1] = 0;
 	m_flags.byteView[2] = 0;
 	m_flags.byteView[3] = 0;
-	m_flags.typeView |= 7;
+	m_flags.typeView |= (CF_IS_ATARI | CF_IS_ALIVE | CF_IS_COLLISION_FLICK);
 	clearStick();
+
 	m_updateContext.init(Game::collisionUpdateMgr);
 	m_triangleNormal = Vector3f(0.0f);
 	clearCapture();
+
 	m_curTriangle       = nullptr;
 	m_collisionPosition = Vector3f(0.0f, 1.0f, 0.0f);
 	clearCapture();
+
 	if (getMabiki()) {
 		u32* mabiki = getMabiki();
 		mabiki[1]   = 0;
@@ -85,22 +83,6 @@ void Creature::init(Game::CreatureInitArg* arg)
 	onInit(arg);
 	onInitPost(arg);
 }
-
-/*
- * --INFO--
- * Address:	8013B0E8
- * Size:	000004
- */
-// WEAK - in header
-// void Creature::onInitPost(Game::CreatureInitArg*) { }
-
-/*
- * --INFO--
- * Address:	8013B0EC
- * Size:	000004
- */
-// WEAK - in header
-// void Creature::onInit(Game::CreatureInitArg*) { }
 
 /*
  * --INFO--
@@ -126,14 +108,6 @@ void Creature::kill(CreatureKillArg* arg)
 
 /*
  * --INFO--
- * Address:	8013B1A4
- * Size:	000004
- */
-// WEAK - in header
-// void Creature::onKill(Game::CreatureKillArg* arg) { }
-
-/*
- * --INFO--
  * Address:	8013B1A8
  * Size:	0000C8
  */
@@ -152,14 +126,6 @@ void Creature::setPosition(Vector3f& position, bool skipProcessing)
 		onSetPositionPost(position);
 	}
 }
-
-/*
- * --INFO--
- * Address:	8013B270
- * Size:	000004
- */
-// WEAK - in header
-// void Creature::onSetPositionPost(Vector3f&) { }
 
 /*
  * --INFO--
@@ -186,85 +152,12 @@ void Creature::initPosition(Vector3f& position)
  * Address:	8013B340
  * Size:	0000A0
  */
-// WIP: https://decomp.me/scratch/bTbNT
-// NB: currently uses a sqLen inline that needs to go in a header
 void Creature::getYVector(Vector3f& outVector)
 {
 	outVector.x = m_mainMatrix.m_matrix.structView.yx;
 	outVector.y = m_mainMatrix.m_matrix.structView.yy;
 	outVector.z = m_mainMatrix.m_matrix.structView.yz;
-	float sqlen = _lenVec(outVector);
-
-	register float norm;
-	if (sqlen > 0.0f) {
-		float Y       = SQUARE(outVector.y);
-		float complen = Y + SQUARE(outVector.x);
-		float Z       = SQUARE(outVector.z);
-		norm          = Z + complen;
-		if (norm > 0.0f) {
-			register float reg2 = 0.0f;
-
-			asm {
-                  frsqrte reg2, norm
-                  fmuls norm, reg2, norm
-			}
-		}
-	} else {
-		norm = 0.0f;
-	}
-
-	if (norm > 0) {
-		float factor = 1.0f / norm;
-		outVector.x *= factor;
-		outVector.y *= factor;
-		outVector.z *= factor;
-	}
-	/*
-	lfs      f0, 0x13c(r3)
-	lfs      f1, lbl_80518288@sda21(r2)
-	stfs     f0, 0(r4)
-	lfs      f0, 0x14c(r3)
-	stfs     f0, 4(r4)
-	lfs      f0, 0x15c(r3)
-	stfs     f0, 8(r4)
-	lfs      f3, 0(r4)
-	lfs      f2, 4(r4)
-	fmuls    f0, f3, f3
-	lfs      f4, 8(r4)
-	fmuls    f2, f2, f2
-	fmuls    f4, f4, f4
-	fadds    f0, f0, f2
-	fadds    f0, f4, f0
-	fcmpo    cr0, f0, f1
-	ble      lbl_8013B3A0
-	fmadds   f0, f3, f3, f2
-	fadds    f2, f4, f0
-	fcmpo    cr0, f2, f1
-	ble      lbl_8013B3A4
-	frsqrte  f0, f2
-	fmuls    f2, f0, f2
-	b        lbl_8013B3A4
-
-lbl_8013B3A0:
-	fmr      f2, f1
-
-lbl_8013B3A4:
-	lfs      f0, lbl_80518288@sda21(r2)
-	fcmpo    cr0, f2, f0
-	blelr
-	lfs      f1, lbl_80518284@sda21(r2)
-	lfs      f0, 0(r4)
-	fdivs    f1, f1, f2
-	fmuls    f0, f0, f1
-	stfs     f0, 0(r4)
-	lfs      f0, 4(r4)
-	fmuls    f0, f0, f1
-	stfs     f0, 4(r4)
-	lfs      f0, 8(r4)
-	fmuls    f0, f0, f1
-	stfs     f0, 8(r4)
-	blr
-	*/
+	outVector.normalise();
 }
 
 /*
@@ -272,7 +165,7 @@ lbl_8013B3A4:
  * Address:	8013B3E0
  * Size:	000034
  */
-float Creature::getBodyRadius()
+f32 Creature::getBodyRadius()
 {
 	Sys::Sphere boundingSphere;
 	getBoundingSphere(boundingSphere);
@@ -284,7 +177,7 @@ float Creature::getBodyRadius()
  * Address:	8013B414
  * Size:	000034
  */
-float Creature::getCellRadius()
+f32 Creature::getCellRadius()
 {
 	Sys::Sphere boundingSphere;
 	getBoundingSphere(boundingSphere);
@@ -307,11 +200,9 @@ void Creature::getShadowParam(Game::ShadowParam& param)
 {
 	param.m_position = getPosition();
 	param.m_position.y += 0.5f;
-	param.m_boundingSphere.m_radius     = 10.0f;
-	param.m_size                        = 4.0f;
-	param.m_boundingSphere.m_position.x = 0.0f;
-	param.m_boundingSphere.m_position.y = 1.0f;
-	param.m_boundingSphere.m_position.z = 0.0f;
+	param.m_boundingSphere.m_radius   = 10.0f;
+	param.m_size                      = 4.0f;
+	param.m_boundingSphere.m_position = Vector3f(0.0f, 1.0f, 0.0f);
 }
 
 /*
@@ -369,14 +260,16 @@ void Creature::load(Stream& input, u8 flags)
  * Size:	0000BC
  */
 // WIP: https://decomp.me/scratch/2o7Wb
-// NB: currently uses an inline pikmin2_sqrtf that needs to go in a header
-float Creature::calcSphereDistance(Game::Creature* them)
+f32 Creature::calcSphereDistance(Creature* them)
 {
-	Sys::Sphere myBounds;
 	Sys::Sphere theirBounds;
+	Sys::Sphere myBounds;
+
 	them->getBoundingSphere(theirBounds);
 	getBoundingSphere(myBounds);
-	return myBounds.m_position.distance(theirBounds.m_position) - (myBounds.m_radius + theirBounds.m_radius);
+	Vector3f sepVec = myBounds.m_position - theirBounds.m_position;
+	f32 dist        = _lenVec(sepVec); // regswaps
+	return dist - (myBounds.m_radius + theirBounds.m_radius);
 	/*
 	stwu     r1, -0x30(r1)
 	mflr     r0
@@ -437,7 +330,7 @@ lbl_8013B780:
  * Address:	8013B7A4
  * Size:	0000CC
  */
-void Creature::applyAirDrag(float a, float b, float c)
+void Creature::applyAirDrag(f32 a, f32 b, f32 c)
 {
 	Vector3f vel = getVelocity();
 
@@ -612,30 +505,14 @@ returnbox:
 
 /*
  * --INFO--
- * Address:	8013BC1C
- * Size:	000004
- */
-// WEAK - in header
-// void Creature::inWaterCallback(Game::WaterBox*) { }
-
-/*
- * --INFO--
- * Address:	8013BC20
- * Size:	000004
- */
-// WEAK - in header
-// void Creature::outWaterCallback() { }
-
-/*
- * --INFO--
  * Address:	8013BC24
  * Size:	000144
  */
 int Creature::checkHell(Creature::CheckHellArg& hellArg)
 {
 	Vector3f pos;
-	pos        = getPosition();
-	float yval = pos.y;
+	pos      = getPosition();
+	f32 yval = pos.y;
 	if (yval < -500.0f) {
 		if (isPiki() && static_cast<FakePiki*>(this)->isPikmin()) {
 			deathMgr->inc(0);
@@ -652,7 +529,7 @@ int Creature::checkHell(Creature::CheckHellArg& hellArg)
 			onKill(0);
 			if (m_generator) {
 				m_generator->informDeath(this);
-				m_generator = 0;
+				m_generator = nullptr;
 			}
 		}
 		return 2;
@@ -699,14 +576,6 @@ void Game::Creature::updateCell()
 
 /*
  * --INFO--
- * Address:	8013BEE0
- * Size:	000008
- */
-// WEAK - in header
-// s32 Creature::getCreatureID() { return -1; }
-
-/*
- * --INFO--
  * Address:	8013BEE8
  * Size:	000044
  */
@@ -723,64 +592,14 @@ int Creature::getCellPikiCount()
  * Address:	8013BF2C
  * Size:	0000B0
  */
-// WIP: https://decomp.me/scratch/fXQI3
 void Creature::applyImpulse(Vector3f& unused, Vector3f& impulse)
 {
 	Vector3f newVelocity;
-	Vector3f oldVelocity = getVelocity();
-	// TODO: Check if vector3 had helper functions for multiplying and addition.
-	// Those might've been used here, which would explain seperate operations in
-	// sets of 3. i.e. 3 stfs, 3 lfs, 3 fmuls, 3 fadds, 3 stfs
-	newVelocity.x = oldVelocity.x + impulse.x * m_mass;
-	newVelocity.y = oldVelocity.y + impulse.y * m_mass;
-	newVelocity.z = oldVelocity.z + impulse.z * m_mass;
+	Vector3f oldVelocity   = getVelocity();
+	newVelocity            = oldVelocity;
+	Vector3f scaledImpulse = impulse * m_mass;
+	newVelocity            = newVelocity + scaledImpulse;
 	setVelocity(newVelocity);
-	/*
-	stwu     r1, -0x30(r1)
-	mflr     r0
-	stw      r0, 0x34(r1)
-	stw      r31, 0x2c(r1)
-	mr       r31, r5
-	stw      r30, 0x28(r1)
-	mr       r30, r3
-	mr       r4, r30
-	addi     r3, r1, 8
-	lwz      r12, 0(r30)
-	lwz      r12, 0x6c(r12)
-	mtctr    r12
-	bctrl
-	lfs      f5, 8(r1)
-	mr       r3, r30
-	lfs      f4, 0xc(r1)
-	addi     r4, r1, 0x14
-	lfs      f3, 0x10(r1)
-	stfs     f5, 0x14(r1)
-	stfs     f4, 0x18(r1)
-	stfs     f3, 0x1c(r1)
-	lfs      f6, 0x118(r30)
-	lfs      f2, 8(r31)
-	lfs      f1, 4(r31)
-	lfs      f0, 0(r31)
-	fmuls    f2, f2, f6
-	fmuls    f1, f1, f6
-	fmuls    f0, f0, f6
-	fadds    f2, f3, f2
-	fadds    f1, f4, f1
-	fadds    f0, f5, f0
-	stfs     f2, 0x1c(r1)
-	stfs     f0, 0x14(r1)
-	stfs     f1, 0x18(r1)
-	lwz      r12, 0(r30)
-	lwz      r12, 0x68(r12)
-	mtctr    r12
-	bctrl
-	lwz      r0, 0x34(r1)
-	lwz      r31, 0x2c(r1)
-	lwz      r30, 0x28(r1)
-	mtlr     r0
-	addi     r1, r1, 0x30
-	blr
-	*/
 }
 
 /*
@@ -820,7 +639,7 @@ void Creature::checkCollision(Game::CellObject* cellObj)
 	currOp = static_cast<Creature*>(cellObj);
 
 	if (isDebugCollision()) {
-		CollTree::mDebug = 1;
+		CollTree::mDebug = true;
 	}
 
 	bool creatureCheck = true;
@@ -833,15 +652,15 @@ void Creature::checkCollision(Game::CellObject* cellObj)
 		objCheck = false;
 	}
 
-	if (((creatureCheck != 0) && (objCheck != 0)) || ((creatureCheck == 0) && (objCheck == 0))) {
+	if ((creatureCheck && objCheck) || (!creatureCheck && !objCheck)) {
 		if (m_collTree->checkCollision(((Creature*)cellObj)->m_collTree, &collPart1, &collPart2, vec)) {
 			delegate.invoke(collPart1, collPart2, vec);
 		}
 	} else {
-		m_collTree->checkCollisionMulti(((Creature*)cellObj)->m_collTree, (IDelegate3<CollPart*, CollPart*, Vector3<float>&>*)&delegate);
+		m_collTree->checkCollisionMulti(((Creature*)cellObj)->m_collTree, (IDelegate3<CollPart*, CollPart*, Vector3<f32>&>*)&delegate);
 	}
 
-	CollTree::mDebug = 0;
+	CollTree::mDebug = false;
 	currOp           = nullptr;
 }
 
@@ -850,9 +669,159 @@ void Creature::checkCollision(Game::CellObject* cellObj)
  * Address:	8013C2C0
  * Size:	0008CC
  */
-// WIP: https://decomp.me/scratch/03fuZ
-void Creature::resolveOneColl(CollPart*, CollPart*, Vector3f&)
+// WIP: https://decomp.me/scratch/HObeX
+void Creature::resolveOneColl(CollPart* part1, CollPart* part2, Vector3f& inputVec)
 {
+	Creature* op = currOp;
+	if (currOp) {
+
+		if (isDebugCollision()) {
+			getCreatureName();
+			op->getCreatureName();
+		}
+
+		bool flickCheck = false;
+		if (!isCollisionFlick() || !op->isCollisionFlick()) {
+			flickCheck = true;
+		}
+
+		Vector3f vec(-inputVec.x, -inputVec.y, -inputVec.z);
+
+		f32 vecLen = vec.normalise();
+
+		if (vecLen == 0.0f) {
+			vec.x = 0.0f;
+			vec.y = 0.0f;
+			vec.z = 1.0f;
+		}
+
+		Vector3f vel1;
+		Vector3f vel2;
+		Vector3f disp1 = part1->m_position + (vec * part1->m_radius); // sp74
+		Vector3f disp2 = part2->m_position - (vec * part2->m_radius); // sp68
+
+		getVelocityAt(disp1, vel1);
+		op->getVelocityAt(disp2, vel2);
+
+		f32 recip;
+		f32 comp;
+		f32 sum = m_mass + op->m_mass;
+		if (sum > 0.0f) {
+			recip = m_mass / sum;
+			comp  = 1.0f - recip;
+		} else {
+			comp  = 0.5f;
+			recip = comp;
+		}
+
+		f32 fps = 1.0f / sys->m_deltaTime;
+		if ((isNavi()) && (!op->isNavi())) {
+			if (!op->isPiki()) {
+				f32 temp_zero = 0.0f;
+				f32 factor1   = recip * (0.5f * fps);
+				m_triangleNormal.x += inputVec.x * factor1;
+				m_triangleNormal.z += inputVec.z * factor1;
+				m_triangleNormal.y += inputVec.y * (recip * temp_zero * fps);
+			}
+		} else {
+			f32 temp_zero      = 0.0f;
+			f32 factor2        = recip * (0.5f * fps);
+			m_triangleNormal.x = inputVec.x * factor2;
+			m_triangleNormal.z = inputVec.z * factor2;
+			m_triangleNormal.y = inputVec.y * (recip * temp_zero * fps);
+		}
+		if ((op->isNavi()) && (!isNavi())) {
+			if (isPiki() == 0) {
+				f32 temp_zero          = 0.0f;
+				f32 factor3            = comp * (0.5f * fps);
+				op->m_triangleNormal.x = -inputVec.x * factor3;
+				op->m_triangleNormal.z = -inputVec.z * factor3;
+				op->m_triangleNormal.y = -inputVec.y * (comp * temp_zero * fps);
+			}
+		} else {
+			f32 temp_zero          = 0.0f;
+			f32 factor4            = comp * (0.5f * fps);
+			op->m_triangleNormal.x = -inputVec.x * factor4;
+			op->m_triangleNormal.z = -inputVec.z * factor4;
+			op->m_triangleNormal.y = -inputVec.y * (comp * temp_zero * fps);
+		}
+
+		f32 triLen = m_triangleNormal.length();
+		if (triLen > 200.0f) {
+			f32 triNorm = 200.0f * (1.0f / triLen);
+			m_triangleNormal.x *= triNorm;
+			m_triangleNormal.y *= triNorm;
+			m_triangleNormal.z *= triNorm;
+		}
+
+		f32 opLen = op->m_triangleNormal.length();
+		if (opLen > 200.0f) {
+			f32 opNorm = 200.0f * (1.0f / opLen);
+			op->m_triangleNormal.x *= opNorm;
+			op->m_triangleNormal.y *= opNorm;
+			op->m_triangleNormal.z *= opNorm;
+		}
+
+		if (flickCheck != 0) {
+			m_triangleNormal     = Vector3f(0.0f);
+			op->m_triangleNormal = Vector3f(0.0f);
+		}
+
+		CollEvent collEvent1(op, part2, part1);
+
+		Vector3f sep = vel1 - vel2;
+		f32 sepDot   = sep.x * vec.x + sep.y * vec.y + sep.z * vec.z;
+		collisionCallback(collEvent1);
+
+		CollEvent collEvent2(this, part1, part2);
+
+		op->collisionCallback(collEvent2);
+		if (sepDot <= 0.0f) {
+			if (isDebugCollision()) {
+				getCreatureName();
+				op->getCreatureName();
+			}
+		} else {
+			isDebugCollision();
+			if (flickCheck != 0) {
+				isDebugCollision();
+				return;
+			}
+
+			f32 naviFactor = 0.1f;
+			if (isNavi() || op->isNavi()) {
+				naviFactor = 0.0f;
+			}
+
+			bool checkSum2 = false;
+			f32 factor5    = -(1.0f + naviFactor) * sepDot;
+			f32 sum2       = m_mass + op->m_mass;
+			if (sum2 == 0.0f) {
+				sum2      = 2.0f;
+				checkSum2 = true;
+			}
+
+			sum2 += getAngularEffect(disp1, vec);
+			sum2 += op->getAngularEffect(disp2, vec);
+			f32 posFac           = factor5 / (sum2); // 68, 98
+			Vector3f updatedVec1 = vec * posFac;
+			Vector3f updatedVec2 = vec * -posFac;
+
+			if (!checkSum2) {
+				applyImpulse(disp1, updatedVec1);
+				op->applyImpulse(disp2, updatedVec2);
+				return;
+			}
+
+			Vector3f updatedVel1 = getVelocity();
+			updatedVel1          = Vector3f(updatedVel1.x + updatedVec1.x, updatedVel1.y + updatedVec1.y, updatedVel1.z + updatedVec1.z);
+			setVelocity(updatedVel1);
+
+			Vector3f updatedVel2 = op->getVelocity();
+			updatedVel2          = Vector3f(updatedVel2.x + updatedVec2.x, updatedVel2.y + updatedVec2.y, updatedVel2.z + updatedVec2.z);
+			op->setVelocity(updatedVel2);
+		}
+	}
 	/*
 	stwu     r1, -0xf0(r1)
 	mflr     r0
@@ -1476,156 +1445,4 @@ lbl_8013CB60:
 	*/
 }
 
-/*
- * --INFO--
- * Address:	8013CB8C
- * Size:	000004
- */
-// WEAK - in header
-// void Creature::collisionCallback(Game::CollEvent&) { }
-
-/*
- * --INFO--
- * Address:	8013CB90
- * Size:	000030
- */
-// WEAK - in header
-// template <> void Delegate3<Game::Creature, CollPart*, CollPart*, Vector3f&>::invoke(CollPart* a, CollPart* b, Vector3f& c)
-// {
-//     (m_object->*m_function)(a, b, c);
-// }
-
-/*
- * --INFO--
- * Address:	8013CBC0
- * Size:	000004
- */
-// WEAK - in header
-// void Creature::constructor() { }
-
-/*
- * --INFO--
- * Address:	8013CBC4
- * Size:	000004
- */
-// WEAK - in header
-// void Creature::doSimulation(float) { }
-
-/*
- * --INFO--
- * Address:	8013CBC8
- * Size:	000008
- */
-// WEAK - in header
-// bool Creature::inWater() { return false; }
-
-/*
- * --INFO--
- * Address:	8013CBD0
- * Size:	000008
- */
-// WEAK - in header
-// bool Creature::isFlying() { return false; }
-
-/*
- * --INFO--
- * Address:	8013CBD8
- * Size:	000008
- */
-// WEAK - in header
-// PSM::Creature* Creature::getPSCreature() { return nullptr; }
-
-/*
- * --INFO--
- * Address:	8013CBE0
- * Size:	000008
- */
-// WEAK - in header
-// Vector3f* Creature::getSound_PosPtr() { return nullptr; }
-
-/*
- * --INFO--
- * Address:	8013CBE8
- * Size:	000008
- */
-// WEAK - in header
-// float Creature::getSound_CurrAnimFrame() { return 0.0f; }
-
-/*
- * --INFO--
- * Address:	8013CBF0
- * Size:	000008
- */
-// WEAK - in header
-// float Creature::getSound_CurrAnimSpeed() { return 0.0f; }
-
-/*
- * --INFO--
- * Address:	8013CBF8
- * Size:	00002C
- */
-// WEAK - in header
-// void Creature::getLODSphere(Sys::Sphere& sphere) { return getBoundingSphere(sphere); }
-
-/*
- * --INFO--
- * Address:	8013CC24
- * Size:	000004
- */
-// WEAK - in header
-// void Creature::onStickStart(Game::Creature*) { }
-
-/*
- * --INFO--
- * Address:	8013CC28
- * Size:	000004
- */
-// WEAK - in header
-// void Creature::onStickEnd(Game::Creature*) { }
-
-/*
- * --INFO--
- * Address:	8013CC2C
- * Size:	000004
- */
-// WEAK - in header
-// void CellObject::checkCollision(Game::CellObject*) { }
-
-/*
- * --INFO--
- * Address:	8013CC30
- * Size:	000008
- */
-// WEAK - in header
-// bool CellObject::isPiki() { return false; }
-
-/*
- * --INFO--
- * Address:	8013CC38
- * Size:	000008
- */
-// WEAK - in header
-// bool CellObject::isNavi() { return false; }
-
 } // namespace Game
-
-/*
- * --INFO--
- * Address:	8013CC40
- * Size:	000028
- */
-void __sinit_creature_cpp(void)
-{
-	/*
-	lis      r4, __float_nan@ha
-	li       r0, -1
-	lfs      f0, __float_nan@l(r4)
-	lis      r3, lbl_804B0098@ha
-	stw      r0, lbl_805158F0@sda21(r13)
-	stfsu    f0, lbl_804B0098@l(r3)
-	stfs     f0, lbl_805158F4@sda21(r13)
-	stfs     f0, 4(r3)
-	stfs     f0, 8(r3)
-	blr
-	*/
-}
