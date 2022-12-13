@@ -17,7 +17,7 @@ struct EnemyBase : public CreatureAnime, public BattleLink, public KehaiLink {
 	EnemyBase(Game::EnemyBase*, u8);
 
 	// vtable 2 (CreatureAnime, _28)
-	virtual ~EnemyBase() { }               // _14 (weak)
+	// virtual ~EnemyBase() { }               // _14 (weak)
 	virtual CreatureCastType getCastType() // _1C (weak)
 	{
 		return CCT_Enemy;
@@ -57,7 +57,7 @@ struct EnemyNotAggressive : public EnemyBase {
 	EnemyNotAggressive(Game::EnemyBase*, u8);
 
 	// vtable 2 (CreatureAnime, _28)
-	virtual ~EnemyNotAggressive();          // _14 (weak)
+	// virtual ~EnemyNotAggressive();          // _14 (weak)
 	virtual CreatureCastType getCastType(); // _1C (weak)
 	// vtable 3 (CreatureAnime)
 	// vtable 4 (BattleLink)
@@ -78,7 +78,7 @@ struct EnemyBig : public EnemyBase {
 	{
 	}
 
-	virtual ~EnemyBig() { }                 // _14 (weak)
+	// virtual ~EnemyBig() { }                 // _14 (weak)
 	virtual CreatureCastType getCastType(); // _1C (weak)
 	virtual bool judgeNearWithPlayer(const Vec&, const Vec&, float,
 	                                 float); // _34
@@ -93,7 +93,7 @@ struct EnemyHekoi : public EnemyBase {
 	{
 	}
 
-	virtual ~EnemyHekoi() { }              // _04
+	// virtual ~EnemyHekoi() { }              // _04
 	virtual CreatureCastType getCastType() // _0C
 	{
 		return CCT_EnemyHekoi;
@@ -109,7 +109,7 @@ struct Enemy_SpecialChappy : public EnemyBig {
 	{
 	}
 
-	virtual ~Enemy_SpecialChappy();           // _14 (weak)
+	// virtual ~Enemy_SpecialChappy();           // _14 (weak)
 	virtual void onPlayingSe(u32, JAISound*); // _38
 };
 

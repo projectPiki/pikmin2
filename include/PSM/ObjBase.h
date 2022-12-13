@@ -32,7 +32,7 @@ enum CreatureCastType {
 struct ObjBase : public JSUPtrLink, public JKRDisposer {
 	// VTBL 1 (JKRDisposer, dtor-only)
 	// VTBL 2 (self)
-	virtual ~ObjBase();                         // _14 (weak)
+	virtual ~ObjBase();                         // _14
 	virtual void frameEnd_onPlaySe()       = 0; // _18
 	virtual CreatureCastType getCastType() = 0; // _1C
 

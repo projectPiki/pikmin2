@@ -127,27 +127,7 @@ struct EnemyBase : public Creature, public SysShape::MotionListener, virtual pub
 	virtual void doSetView(int viewportNumber);         // _44
 	virtual void doViewCalc();                          // _48
 	virtual void doSimulation(f32 simSpeed);            // _4C
-	virtual f32 getBodyRadius()                         // _54 (weak)
-	{
-		return static_cast<EnemyParmsBase*>(m_parms)->m_general.m_pikminDamageRadius();
-	}
-	virtual f32 getCellRadius() // _58 (weak)
-	{
-		return static_cast<EnemyParmsBase*>(m_parms)->m_general.m_cellRadius();
-	}
-	virtual f32 getFaceDir() // _64 (weak)
-	{
-		return m_faceDir;
-	}
-	virtual void setVelocity(Vector3f& velocity) // _68 (weak)
-	{
-		m_impVelocity = velocity;
-	}
-	virtual Vector3f getVelocity() // _6C (weak)
-	{
-		return m_impVelocity;
-	}
-	virtual void onSetPosition(Vector3f& position) // _70 (weak)
+	virtual void onSetPosition(Vector3f& position)      // _70 (weak)
 	{
 		m_position = position;
 	}
@@ -155,61 +135,22 @@ struct EnemyBase : public Creature, public SysShape::MotionListener, virtual pub
 	{
 		updateSpheres();
 	}
-	virtual void updateTrMatrix(); // _78
-	virtual bool isTeki()          // _7C (weak)
-	{
-		return true;
-	}
+	virtual void updateTrMatrix();                      // _78
 	virtual void inWaterCallback(WaterBox* wbInsideOf); // _84
 	virtual void outWaterCallback();                    // _88
-	virtual bool inWater()                              // _8C (weak)
-	{
-		return (m_waterBox != nullptr);
-	}
-	virtual bool isFlying() // _CC (weak)
+	virtual bool isFlying()                             // _CC (weak)
 	{
 		return (m_events.m_flags[0].typeView >> 2) & 1;
 	}
-	virtual void collisionCallback(CollEvent& coll); // _EC
-	virtual JAInter::Object* getJAIObject();         // _F4
-	virtual PSM::Creature* getPSCreature();          // _F8
-	virtual Vector3f* getSound_PosPtr()              // _100 (weak)
-	{
-		return &m_position;
-	}
-	virtual bool sound_culling() // _104 (weak)
-	{
-		bool culling = false;
-		if (m_events.m_flags[0].typeView & 0x2000) {
-			if (!(m_lod.m_flags & AILOD_FLAG_NEED_SHADOW) && !(m_lod.m_flags & AILOD_FLAG_UNKNOWN4)) {
-				culling = true;
-			}
-		}
-		return culling;
-	}
-	virtual f32 getSound_CurrAnimFrame() // _108 (weak)
-	{
-		return m_animator->getAnimator().m_timer;
-	}
-	virtual f32 getSound_CurrAnimSpeed() // _10C (weak)
-	{
-		return m_animator->m_animSpeed;
-	}
+	virtual void collisionCallback(CollEvent& coll);          // _EC
+	virtual JAInter::Object* getJAIObject();                  // _F4
+	virtual PSM::Creature* getPSCreature();                   // _F8
 	virtual bool needShadow();                                // _138
 	virtual void getLifeGaugeParam(LifeGaugeParam& settings); // _13C
-	virtual void getLODSphere(Sys::Sphere& lodSphere)         // _140 (weak)
-	{
-		lodSphere = m_curLodSphere;
-	}
-	virtual void onStickStart(Creature* sticker);                   // _158
-	virtual void onStickEnd(Creature* sticker);                     // _15C
-	virtual void getVelocityAt(Vector3f& velSrc, Vector3f& velDest) // _184 (weak)
-	{
-		velSrc  = m_impVelocity;
-		velDest = m_impVelocity;
-	}
-	virtual bool stimulate(Interaction& interaction); // _1A4
-	virtual char* getCreatureName()                   // _1A8 (weak)
+	virtual void onStickStart(Creature* sticker);             // _158
+	virtual void onStickEnd(Creature* sticker);               // _15C
+	virtual bool stimulate(Interaction& interaction);         // _1A4
+	virtual char* getCreatureName()                           // _1A8 (weak)
 	{
 		return EnemyInfoFunc::getEnemyName(getEnemyTypeID(), 0xFFFF);
 	}
@@ -239,19 +180,56 @@ struct EnemyBase : public Creature, public SysShape::MotionListener, virtual pub
 	virtual void changeMaterial();                                       // _200
 	virtual void getCommonEffectPos(Vector3f& effectPos);                // _204
 	virtual Vector3f* getFitEffectPos();                                 // _208
-	virtual SysShape::Model* viewGetShape();                             // _20C (weak)
-	virtual void view_start_carrymotion();                               // _210 (weak)
-	virtual void view_finish_carrymotion();                              // _214 (weak)
-	virtual void viewStartPreCarryMotion();                              // _218 (weak)
-	virtual void viewStartCarryMotion();                                 // _21C (weak)
-	virtual void viewOnPelletKilled();                                   // _220 (weak)
-	virtual Vector3f getOffsetForMapCollision()                          // _224 (weak)
+	virtual SysShape::Model* viewGetShape();                             // _20C
+	virtual void view_start_carrymotion();                               // _210
+	virtual void view_finish_carrymotion();                              // _214
+	virtual void viewStartPreCarryMotion();                              // _218
+	virtual void viewStartCarryMotion();                                 // _21C
+	virtual void viewOnPelletKilled();                                   // _220
+	virtual f32 getCellRadius()                                          // _58 (weak)
+	{
+		return static_cast<EnemyParmsBase*>(m_parms)->m_general.m_cellRadius();
+	}
+	virtual f32 getBodyRadius() // _54 (weak)
+	{
+		return static_cast<EnemyParmsBase*>(m_parms)->m_general.m_pikminDamageRadius();
+	}
+	virtual f32 getFaceDir() // _64 (weak)
+	{
+		return m_faceDir;
+	}
+	virtual void setVelocity(Vector3f& velocity) // _68 (weak)
+	{
+		m_impVelocity = velocity;
+	}
+	virtual Vector3f getVelocity() // _6C (weak)
+	{
+		return m_impVelocity;
+	}
+	virtual void getVelocityAt(Vector3f& velSrc, Vector3f& velDest) // _184 (weak)
+	{
+		velSrc  = m_impVelocity;
+		velDest = m_impVelocity;
+	}
+	virtual bool isTeki() // _7C (weak)
+	{
+		return true;
+	}
+	virtual Vector3f* getSound_PosPtr() // _100 (weak)
+	{
+		return &m_position;
+	}
+	virtual Vector3f getOffsetForMapCollision() // _224 (weak)
 	{
 		return Vector3f(0.0f);
 	}
-	virtual void setParameters();                         // _228
-	virtual void initMouthSlots() { }                     // _22C (weak)
-	virtual void initWalkSmokeEffect() { }                // _230 (weak)
+	virtual void setParameters();          // _228
+	virtual void initMouthSlots() { }      // _22C (weak)
+	virtual void initWalkSmokeEffect() { } // _230 (weak)
+	virtual bool inWater()                 // _8C (weak)
+	{
+		return (m_waterBox != nullptr);
+	}
 	virtual WalkSmokeEffect::Mgr* getWalkSmokeEffectMgr() // _234 (weak)
 	{
 		return nullptr;
@@ -281,6 +259,10 @@ struct EnemyBase : public Creature, public SysShape::MotionListener, virtual pub
 	{
 		m_curLodSphere = sphere;
 	}
+	virtual void getLODSphere(Sys::Sphere& lodSphere) // _140 (weak)
+	{
+		lodSphere = m_curLodSphere;
+	}
 	virtual bool damageCallBack(Creature* source, f32 damage, CollPart* part);       // _278
 	virtual bool pressCallBack(Creature* source, f32 damage, CollPart* part);        // _27C
 	virtual bool flyCollisionCallBack(Creature* source, f32 damage, CollPart* part); // _280
@@ -297,6 +279,24 @@ struct EnemyBase : public Creature, public SysShape::MotionListener, virtual pub
 	virtual f32 getDamageCoeStoneState()                                             // _2AC (weak)
 	{
 		return 1.5f;
+	}
+	virtual f32 getSound_CurrAnimFrame() // _108 (weak)
+	{
+		return m_animator->getAnimator().m_timer;
+	}
+	virtual f32 getSound_CurrAnimSpeed() // _10C (weak)
+	{
+		return m_animator->m_animSpeed;
+	}
+	virtual bool sound_culling() // _104 (weak)
+	{
+		bool culling = false;
+		if (m_events.m_flags[0].typeView & 0x2000) {
+			if (!(m_lod.m_flags & AILOD_FLAG_NEED_SHADOW) && !(m_lod.m_flags & AILOD_FLAG_UNKNOWN4)) {
+				culling = true;
+			}
+		}
+		return culling;
 	}
 	virtual void doStartEarthquakeState(f32 yVelocityScale); // _2B0
 	virtual void doFinishEarthquakeState();                  // _2B4
@@ -368,6 +368,7 @@ struct EnemyBase : public Creature, public SysShape::MotionListener, virtual pub
 	virtual f32 getDownSmokeScale();                    // _2EC
 	virtual void doStartMovie() { }                     // _2F0 (weak)
 	virtual void doEndMovie() { }                       // _2F4 (weak)
+
 	// vtable 3 (PelletView)
 
 	void addDamage(f32 damageAmt, f32 flickSpeed);

@@ -18,7 +18,7 @@ struct StartSoundArg;
 struct Creature : public ObjBase {
 	// VTBL 1 (JKRDisposer, dtor-only)
 	// VTBL 2 (ObjBase + self)
-	virtual ~Creature() { }                                             // _14 (weak)
+	// virtual ~Creature() { }                                             // _14 (weak)
 	virtual void frameEnd_onPlaySe()       = 0;                         // _18
 	virtual CreatureCastType getCastType() = 0;                         // _1C
 	virtual void exec();                                                // _20

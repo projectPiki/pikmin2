@@ -106,17 +106,12 @@ struct Creature : public CellObject {
 
 	Creature();
 
-	virtual Vector3f getPosition() = 0;                           // _08
-	virtual void checkCollision(CellObject* other);               // _0C
-	virtual void getBoundingSphere(Sys::Sphere& boundSphere) = 0; // _10
-	virtual bool collisionUpdatable()                             // _14 (weak)
-	{
-		return m_updateContext.updatable();
-	}
+	virtual Vector3f getPosition() = 0;                               // _08
+	virtual void checkCollision(CellObject* other);                   // _0C
+	virtual void getBoundingSphere(Sys::Sphere& boundSphere) = 0;     // _10
 	virtual bool isPiki();                                            // _18
 	virtual bool isNavi();                                            // _1C
 	virtual char* getTypeName();                                      // _24
-	virtual u16 getObjType() { return m_objectTypeID; }               // _28 (weak)
 	virtual void constructor() { }                                    // _2C (weak)
 	virtual void onInit(CreatureInitArg* settings) { }                // _30 (weak)
 	virtual void onKill(CreatureKillArg* settings) { }                // _34 (weak)
@@ -271,11 +266,16 @@ struct Creature : public CellObject {
 	{
 		return getPosition();
 	}
-	virtual bool isSuckReady() { return true; }       // _19C (weak)
-	virtual BOOL isSuckArriveWait() { return FALSE; } // _1A0 (weak)
-	virtual bool stimulate(Interaction& data);        // _1A4 (weak)
-	virtual char* getCreatureName();                  // _1A8 (weak)
-	virtual s32 getCreatureID() { return -1; }        // _1AC (weak)
+	virtual bool isSuckReady() { return true; }         // _19C (weak)
+	virtual BOOL isSuckArriveWait() { return FALSE; }   // _1A0 (weak)
+	virtual bool stimulate(Interaction& data);          // _1A4 (weak)
+	virtual char* getCreatureName();                    // _1A8 (weak)
+	virtual s32 getCreatureID() { return -1; }          // _1AC (weak)
+	virtual u16 getObjType() { return m_objectTypeID; } // _28 (weak)
+	virtual bool collisionUpdatable()                   // _14 (weak)
+	{
+		return m_updateContext.updatable();
+	}
 
 	inline void getDistanceTo(Creature* creature, Vector2f& distanceResult)
 	{
