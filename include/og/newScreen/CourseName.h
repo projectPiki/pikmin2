@@ -1,7 +1,7 @@
 #ifndef _OG_NEWSCREEN_COURSENAME_H
 #define _OG_NEWSCREEN_COURSENAME_H
 
-#include "Screen/Bases.h"
+#include "Screen/screenObj.h"
 #include "JSystem/J2D/J2DPane.h"
 
 namespace P2DScreen {
@@ -47,21 +47,32 @@ struct ObjCourseName : public ::Screen::ObjBase {
 	virtual void doUpdateFadeoutFinish();                 // _64
 	virtual void doDraw(Graphics& gfx);                   // _68
 
-	void drawBG(Graphics&);
+	inline void drawBG(Graphics&);
+
+	// unused/inline
+	void commonUpdate();
 
 	// _00     = VTBL1
 	// _18     = VTBL2
 	// _00-_38 = Screen::ObjBase
-	og::Screen::DispMemberCourseName* m_courseName; // _38
-	P2DScreen::Mgr_tuning* _3C;                     // _3C
-	og::Screen::AnimGroup* m_animGroup;             // _40
-	f32 _44;                                        // _44, timer?
-	f32 _48;                                        // _48
-	f32 _4C;                                        // _4C, timer?
-	u8 _50;                                         // _50
-	JUtility::TColor m_color;                       // _54
-	u8 _58;                                         // _58
-	f32 _5C;                                        // _5C
+	og::Screen::DispMemberCourseName* m_disp; // _38
+	P2DScreen::Mgr_tuning* m_screen;          // _3C
+	og::Screen::AnimGroup* m_anims;           // _40
+	f32 m_fadeLevel;                          // _44
+	f32 m_alpha;                              // _48
+	f32 m_timer;                              // _4C, timer?
+	u8 m_state;                               // _50
+	u8 _51[3];                                // padding? it breaks if i dont have this?
+	JUtility::TColor m_color;                 // _54
+	u8 m_doEnd;                               // _58
+	f32 m_BackgroundAlpha;                    // _5C
+
+	static struct StaticValues {
+		f32 _00;
+		f32 _04; // _04
+		f32 _08; // _08
+		f32 _0C; // _0C
+	} msVal;
 };
 } // namespace newScreen
 } // namespace og

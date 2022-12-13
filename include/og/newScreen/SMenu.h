@@ -1,7 +1,7 @@
 #ifndef _OG_NEWSCREEN_SMENU_H
 #define _OG_NEWSCREEN_SMENU_H
 
-#include "Screen/Bases.h"
+#include "Screen/screenObj.h"
 #include "Screen/Enums.h"
 #include "JSystem/J2D/J2DPane.h"
 #include "P2DScreen.h"

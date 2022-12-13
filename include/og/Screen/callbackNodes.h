@@ -79,7 +79,7 @@ struct CallBack_CounterRV : public P2DScreen::CallBackNode {
 	u32* _20;                          // _20
 	u32 _24;                           // _24
 	u32 _28;                           // _28
-	u16 _2C;                           // _2C
+	u16 m_currCounters;                // _2C
 	u16 m_counterLimit;                // _2E /* allocated slot count of _7C */
 	u16 _30;                           // _30
 	f32 _34;                           // _34
@@ -156,18 +156,18 @@ struct CallBack_CounterSlot : public CallBack_CounterRV {
 
 	// _00     = VTBL
 	// _00-_A8 = CallBack_CounterRV
-	u8 _A8;      // _A8
-	u8 _A9;      // _A9
-	u8 _AA;      // _AA
-	u8 _AB;      // _AB
-	u8 _AC;      // _AC
-	u32 _B0;     // _B0
-	f32 _B4;     // _B4
-	f32 _B8;     // _B8
-	f32 _BC;     // _BC
-	f32 _C0;     // _C0
-	f32 _C4;     // _C4
-	SoundID _C8; // _C8
+	u8 _A8;               // _A8
+	u8 _A9;               // _A9
+	u8 _AA;               // _AA
+	u8 _AB;               // _AB
+	u8 _AC;               // _AC
+	u32 _B0;              // _B0
+	f32 m_timer;          // _B4
+	f32 m_updateInterval; // _B8
+	f32 m_puyoParm1;      // _BC
+	f32 m_puyoParm2;      // _C0
+	f32 m_puyoParm3;      // _C4
+	SoundID _C8;          // _C8
 };
 
 // Size: 0x28
@@ -182,14 +182,14 @@ struct CallBack_DrawAfter : public P2DScreen::CallBackNode {
 	// _00-_1C = P2DScreen::CallBackNode
 	J2DPictureEx* _1C; // _1C
 	J2DPictureEx* _20; // _20
-	bool _24;          // _24
+	bool m_isVisible;  // _24
 };
 
 // Size: 0x4C
 struct CallBack_Furiko : public P2DScreen::CallBackNode {
-	CallBack_Furiko();
+	inline CallBack_Furiko();
 
-	virtual ~CallBack_Furiko();                    // _08 (weak)
+	virtual ~CallBack_Furiko() { }                 // _08 (weak)
 	virtual void update();                         // _10
 	virtual void draw(Graphics&, J2DGrafContext&); // _14
 
@@ -199,27 +199,24 @@ struct CallBack_Furiko : public P2DScreen::CallBackNode {
 
 	// _00     = VTBL
 	// _00-_1C = P2DScreen::CallBackNode
-	J2DPane* _1C; // _1C
-	u8 _20;       // _20
-	u8 _21;       // _21
-	f32 _24;      // _24
-	f32 _28;      // _28
-	f32 _2C;      // _2C
-	f32 _30;      // _30
-	f32 _34;      // _34
-	f32 _38;      // _38
-	f32 _3C;      // _3C
-	f32 _40;      // _40
-	f32 _44;      // _44
-	f32 _48;      // _48
+	J2DPane* m_pane;           // _1C
+	bool m_canUpdate;          // _20
+	bool m_doResetPane;        // _21
+	Vector2f m_currPosition;   // _24
+	f32 m_offset;              // _2C
+	f32 m_param2;              // _30
+	f32 m_growth;              // _34
+	Vector2f m_goalPosition;   // _38
+	Vector2f m_changeModifier; // _40
+	f32 m_currPaneAngle;       // _48
 };
 
 struct CallBack_LifeGauge : public P2DScreen::CallBackNode {
-	// what goes here?
+
 	enum LifeGaugeType {
-		LIFEGAUGE_UNK0 = 0,
-		LIFEGAUGE_UNK1 = 1,
-		LIFEGAUGE_UNK2 = 2,
+		LIFEGAUGE_OLIMAR    = 0,
+		LIFEGAUGE_LOUIE     = 1,
+		LIFEGAUGE_PRESIDENT = 2,
 	};
 
 	CallBack_LifeGauge();
@@ -238,7 +235,7 @@ struct CallBack_LifeGauge : public P2DScreen::CallBackNode {
 	// _00     = VTBL
 	// _00-_1C = P2DScreen::CallBackNode
 	DataNavi* m_data;              // _1C
-	f32 m_naviLifeRatioMaybe;      // _20
+	f32 m_naviLifeRatio;           // _20
 	f32 m_widthOrRadiusMaybe;      // _24
 	f32 m_offsetX;                 // _28
 	f32 m_offsetY;                 // _2C
@@ -250,9 +247,9 @@ struct CallBack_LifeGauge : public P2DScreen::CallBackNode {
 	f32 m_li_i_d4;                 // _44
 	f32 m_li_i_d8;                 // _48
 	LifeGauge* m_lifeGauge;        // _4C
-	u8 _50;                        // _50
-	u8 _51;                        // _51
-	f32 _54;                       // _54
+	u8 m_isActiveNavi;             // _50
+	u8 m_isActiveNaviOld;          // _51
+	f32 m_lowLifeSoundTimer;       // _54
 	f32 _58;                       // _58
 	P2DScreen::Mgr* _5C;           // _5C
 	J2DPane* m_pin1;               // _60
@@ -268,8 +265,8 @@ struct CallBack_LifeGauge : public P2DScreen::CallBackNode {
 	AngleMgr* m_angleMgr;          // _88
 	ScaleMgr* m_scaleMgr;          // _8C
 	LifeGaugeType m_lifeGaugeType; // _90
-	u8 _94;                        // _94
-	f32 _98;                       // _98
+	u8 m_canNaviChange;            // _94
+	f32 m_moveTimer;               // _98
 
 	static struct StaticValues {
 		inline StaticValues()
@@ -291,8 +288,8 @@ struct CallBack_LifeGauge : public P2DScreen::CallBackNode {
 struct CallBack_Message : public P2DScreen::CallBackNode {
 	CallBack_Message();
 
-	virtual ~CallBack_Message();                   // _08 (weak)
-	virtual void update();                         // _10 (weak)
+	virtual ~CallBack_Message() { }                // _08 (weak)
+	virtual void update() { }                      // _10 (weak)
 	virtual void draw(Graphics&, J2DGrafContext&); // _14
 
 	// Unused/inlined:
@@ -305,10 +302,10 @@ struct CallBack_Message : public P2DScreen::CallBackNode {
 	u32 m_messageIDAs2UL[2];         // _28
 	f32 _30;                         // _30
 	f32 _34;                         // _34
-	f32 _38;                         // _38
-	f32 _3C;                         // _3C
-	f32 _40;                         // _40
-	f32 _44;                         // _44
+	f32 m_minX;                      // _38, yes this is floats not a TBox2f or TVec2f
+	f32 m_minY;                      // _3C, yes i know it's dumb.
+	f32 m_maxX;                      // _40, unfortunately the CallBack_Message ctor is thrown up by a recursion
+	f32 m_maxY;                      // _44, and it cannot have a ctor for these elements
 };
 
 /**
@@ -341,15 +338,15 @@ struct CallBack_Screen : public P2DScreen::CallBackNode {
 	// _00-_1C = P2DScreen::CallBackNode
 	P2DScreen::Mgr* m_partsScreen; // _1C
 	J2DPane* m_pane;               // _20
-	J2DTextBox* m_textBox;         // _24
-	f32 _28;                       // _28
-	f32 _2C;                       // _2C
-	f32 _30;                       // _30
+	J2DPane* m_textBox;            // _24
+	f32 m_scale;                   // _28
+	f32 m_xOffs;                   // _2C
+	f32 m_yOffs;                   // _30
 };
 
 // Size: 0x38
 struct CallBack_Picture : public CallBack_Screen {
-	CallBack_Picture(P2DScreen::Mgr*, u64); // Unused/inlined
+	CallBack_Picture(P2DScreen::Mgr*, u64);
 
 	virtual ~CallBack_Picture();                   // _08
 	virtual void update();                         // _10

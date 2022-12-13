@@ -25,7 +25,7 @@ struct PikminCounter : public P2DScreen::Mgr_tuning {
 	DataNavi m_dataNavi;                     // _164
 	CallBack_CatchPiki* m_callBackCatchPiki; // _17C
 	u8 _180[0xC];                            // _180, unknown
-	u8 _18C;                                 // _18C
+	u8 m_isTotalPokoActive;                  // _18C
 	void* _190;                              // _190, unknown ptr
 	ScaleMgr* m_scaleMgr;                    // _194
 	f32 _198;                                // _198

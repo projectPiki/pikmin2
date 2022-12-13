@@ -8,7 +8,7 @@
 #include "og/Screen/DispMember.h"
 #include "og/Screen/ogScreen.h"
 #include "og/newScreen/ogUtil.h"
-#include "Screen/Bases.h"
+#include "Screen/screenObj.h"
 #include "Screen/screenMgr.h"
 #include "System.h"
 #include "types.h"

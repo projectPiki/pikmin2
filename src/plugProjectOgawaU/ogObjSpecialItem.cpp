@@ -204,7 +204,5 @@ bool ObjSpecialItem::doUpdateFadeout()
 	m_fadeTimer2 = 1.0f - (m_fadeTimer1 / 0.2f);
 	return check;
 }
-
-static const char linkObjSpecialItemStr[] = "screenObj.h";
 } // namespace newScreen
 } // namespace og

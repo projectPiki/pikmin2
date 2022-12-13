@@ -1,5 +1,8 @@
 #include "og/Screen/callbackNodes.h"
 #include "types.h"
+#include "og/Screen/StickAnimMgr.h"
+#include "og/Screen/anime.h"
+#include "og/Screen/ogScreen.h"
 
 /*
     Generated from dpostproc
@@ -77,7 +80,8 @@ namespace Screen {
  * Address:	........
  * Size:	000044
  */
-CallBack_Picture::CallBack_Picture(P2DScreen::Mgr*, unsigned long long)
+CallBack_Picture::CallBack_Picture(P2DScreen::Mgr* mgr, u64 tag)
+    : CallBack_Screen(mgr, tag)
 {
 	// UNUSED FUNCTION
 }
@@ -89,6 +93,13 @@ CallBack_Picture::CallBack_Picture(P2DScreen::Mgr*, unsigned long long)
  */
 void CallBack_Picture::update(void)
 {
+	if (m_partsScreen) {
+		if (m_animGroup) {
+			m_animGroup->update();
+		}
+		m_partsScreen->animation();
+		m_partsScreen->update();
+	}
 	/*
 stwu     r1, -0x10(r1)
 mflr     r0
@@ -126,8 +137,33 @@ blr
  * Address:	8032CE78
  * Size:	0002BC
  */
-void CallBack_Picture::draw(Graphics&, J2DGrafContext&)
+void CallBack_Picture::draw(Graphics& gfx, J2DGrafContext& graf)
 {
+	if (m_partsScreen) {
+		J2DPane* pane = m_textBox;
+		m_pane->resize(pane->_020.f.x - pane->_020.i.x, pane->_020.f.y - pane->_020.i.y);
+		f32 scaleMod = m_scale;
+		Matrixf mtx  = m_textBox->_080;
+		Matrixf scale;
+		PSMTXScale(scale.m_matrix.mtxView, scaleMod, scaleMod, 0.0f);
+		PSMTXConcat(mtx.m_matrix.mtxView, scale.m_matrix.mtxView, scale.m_matrix.mtxView);
+		Matrixf trans;
+		PSMTXTrans(trans.m_matrix.mtxView, m_xOffs, m_yOffs, 0.0f);
+		PSMTXConcat(scale.m_matrix.mtxView, trans.m_matrix.mtxView, mtx.m_matrix.mtxView);
+		PSMTXCopy(mtx.m_matrix.mtxView, m_textBox->_050);
+
+		J2DPictureEx* pane1    = static_cast<J2DPictureEx*>(m_pane);
+		J2DPictureEx* pane2    = static_cast<J2DPictureEx*>(m_textBox);
+		JUtility::TColor color = pane1->getWhite();
+		pane2->setWhite(color);
+		color = pane1->getBlack();
+		pane2->setBlack(color);
+		pane2->_150[0] = pane1->_150[0];
+		pane2->_150[1] = pane1->_150[1];
+		pane2->_150[2] = pane1->_150[2];
+		pane2->_150[3] = pane1->_150[3];
+		m_partsScreen->draw(gfx, graf);
+	}
 	/*
 stwu     r1, -0xd0(r1)
 mflr     r0
@@ -314,7 +350,7 @@ blr
  * Address:	........
  * Size:	0000D4
  */
-void setCallBack_Picture(JKRArchive*, char*, unsigned long long, P2DScreen::Mgr*, unsigned long long)
+CallBack_Picture* setCallBack_Picture(JKRArchive*, char*, unsigned long long, P2DScreen::Mgr*, u64)
 {
 	// UNUSED FUNCTION
 }
@@ -324,8 +360,22 @@ void setCallBack_Picture(JKRArchive*, char*, unsigned long long, P2DScreen::Mgr*
  * Address:	8032D134
  * Size:	00011C
  */
-void setCallBack_3DStick(JKRArchive*, P2DScreen::Mgr*, unsigned long long)
+CallBack_Picture* setCallBack_3DStick(JKRArchive* arc, P2DScreen::Mgr* screen, u64 tag)
 {
+	P2DScreen::Mgr* mgr = new P2DScreen::Mgr;
+	mgr->set("tga_3d_anim_otah.blo", 0x40000, arc);
+	CallBack_Picture* pic = new CallBack_Picture(mgr, 'ota3dl');
+
+	J2DPane* pane     = TagSearch(screen, tag);
+	pane->m_isVisible = false;
+	pic->m_textBox    = pane;
+
+	screen->addCallBack(tag, pic);
+	J2DScreen* scrn = pic->getPartsScreen();
+	AnimGroup* anim = new AnimGroup(1);
+	registAnimGroupScreen(anim, arc, scrn, "tga_3d_anim_otah.btp", 0.25);
+	pic->m_animGroup = anim;
+	return pic;
 	/*
 stwu     r1, -0x20(r1)
 mflr     r0
@@ -412,9 +462,24 @@ blr
  * --INFO--
  * Address:	8032D250
  * Size:	00011C
+ * This function is identical to setCallBack_3DStick but with a different .blo name
  */
-void setCallBack_3DStickSmall(JKRArchive*, P2DScreen::Mgr*, unsigned long long)
+CallBack_Picture* setCallBack_3DStickSmall(JKRArchive* arc, P2DScreen::Mgr* screen, u64 tag)
 {
+	P2DScreen::Mgr* mgr = new P2DScreen::Mgr;
+	mgr->set("tga_3d_anim_otah_32.blo", 0x40000, arc);
+	CallBack_Picture* pic = new CallBack_Picture(mgr, 'ota3dl');
+
+	J2DPane* pane     = TagSearch(screen, tag);
+	pane->m_isVisible = false;
+	pic->m_textBox    = pane;
+
+	screen->addCallBack(tag, pic);
+	J2DScreen* scrn = pic->getPartsScreen();
+	AnimGroup* anim = new AnimGroup(1);
+	registAnimGroupScreen(anim, arc, scrn, "tga_3d_anim_otah.btp", 0.25f);
+	pic->m_animGroup = anim;
+	return pic;
 	/*
 	.loc_0x0:
 	  stwu      r1, -0x20(r1)
@@ -502,7 +567,7 @@ void setCallBack_3DStickSmall(JKRArchive*, P2DScreen::Mgr*, unsigned long long)
  * Address:	........
  * Size:	00011C
  */
-void setCallBack_CStick(JKRArchive*, P2DScreen::Mgr*, unsigned long long)
+void setCallBack_CStick(JKRArchive*, P2DScreen::Mgr*, u64)
 {
 	// UNUSED FUNCTION
 }
@@ -512,7 +577,7 @@ void setCallBack_CStick(JKRArchive*, P2DScreen::Mgr*, unsigned long long)
  * Address:	........
  * Size:	00011C
  */
-void setCallBack_CStickSmall(JKRArchive*, P2DScreen::Mgr*, unsigned long long)
+void setCallBack_CStickSmall(JKRArchive*, P2DScreen::Mgr*, u64)
 {
 	// UNUSED FUNCTION
 }
@@ -552,8 +617,11 @@ void startCB_StickAnimDown(og::Screen::CallBack_Picture*)
  * Address:	8032D36C
  * Size:	000010
  */
-StickAnimMgr::StickAnimMgr(og::Screen::CallBack_Picture*)
+StickAnimMgr::StickAnimMgr(og::Screen::CallBack_Picture* pic)
 {
+	m_callBackPicture = pic;
+	m_state           = STICKANIM_Disabled;
+
 	/*
 stw      r4, 0(r3)
 li       r0, 0
@@ -579,6 +647,27 @@ void StickAnimMgr::stickStop(void)
  */
 void StickAnimMgr::stickUp(void)
 {
+	if ((int)m_state != STICKANIM_Up) {
+		AnimGroup* anim = m_callBackPicture->m_animGroup;
+		f32 frame       = anim->getFrame();
+		switch (m_state) {
+		case STICKANIM_UpDown:
+			if (frame >= 21.0f) {
+				anim->reservAnim(40.0f, 21.0f, 40.0f);
+			} else {
+				anim->reservAnim(20.0f, 21.0f, 40.0f);
+			}
+			break;
+		case STICKANIM_Down:
+			anim->reservAnim(40.0f, 21.0f, 40.0f);
+			break;
+		case STICKANIM_Disabled:
+			anim->setArea(21.0f, 40.0f);
+			anim->start();
+			break;
+		}
+		m_state = STICKANIM_Up;
+	}
 	/*
 stwu     r1, -0x10(r1)
 mflr     r0
@@ -655,6 +744,27 @@ blr
  */
 void StickAnimMgr::stickDown(void)
 {
+	if ((int)m_state != STICKANIM_Down) {
+		AnimGroup* anim = m_callBackPicture->m_animGroup;
+		f32 frame       = anim->getFrame();
+		switch (m_state) {
+		case STICKANIM_UpDown:
+			if (frame >= 21.0f) {
+				anim->reservAnim(40.0f, 0.0f, 20.0f);
+			} else {
+				anim->reservAnim(20.0f, 0.0f, 20.0f);
+			}
+			break;
+		case STICKANIM_Up:
+			anim->reservAnim(40.0f, 0.0f, 40.0f);
+			break;
+		case STICKANIM_Disabled:
+			anim->setArea(0.0f, 40.0f);
+			anim->start();
+			break;
+		}
+		m_state = STICKANIM_Down;
+	}
 	/*
 stwu     r1, -0x10(r1)
 mflr     r0
@@ -738,6 +848,24 @@ blr
  */
 void StickAnimMgr::stickUpDown(void)
 {
+	if ((int)m_state != STICKANIM_UpDown) {
+		AnimGroup* anim = m_callBackPicture->m_animGroup;
+		anim->getFrame();
+		f32 frame = m_callBackPicture->m_animGroup->getLastFrame();
+		switch (m_state) {
+		case STICKANIM_Down:
+			anim->reservAnim(40.0f, 0.0f, frame);
+			break;
+		case STICKANIM_Up:
+			anim->reservAnim(40.0f, 0.0f, frame);
+			break;
+		case STICKANIM_Disabled:
+			anim->setAllArea();
+			anim->start();
+			break;
+		}
+		m_state = STICKANIM_UpDown;
+	}
 	/*
 stwu     r1, -0x10(r1)
 mflr     r0

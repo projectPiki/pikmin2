@@ -9,6 +9,12 @@
 namespace og {
 namespace Screen {
 struct NaviLifeGauge : public P2DScreen::Mgr_tuning {
+	inline NaviLifeGauge()
+	{
+		m_callBackLifeGauge = nullptr;
+		m_callBackDrawAfter = nullptr;
+		m_dataNavi          = nullptr;
+	}
 	virtual ~NaviLifeGauge() { } // _08 (weak)
 	virtual void update();       // _30
 

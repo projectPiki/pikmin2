@@ -1,7 +1,7 @@
 #ifndef _OG_NEWSCREEN_KANTEIDEMO_H
 #define _OG_NEWSCREEN_KANTEIDEMO_H
 
-#include "Screen/Bases.h"
+#include "Screen/screenObj.h"
 #include "JSystem/J2D/J2DPane.h"
 #include "P2JME/Movie.h"
 #include "efx2d/T2DOtakantei.h"

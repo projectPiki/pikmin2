@@ -51,17 +51,16 @@ struct DispMemberBase {
 // size 0x24
 struct DispMemberAnaDemo : public DispMemberBase {
 	inline DispMemberAnaDemo()
-	    : _20(0)
-	    , m_caveOtakaraNum(24)
-	    , m_caveOtakaraMax(69)
-	    , _10(1)
-	    , DispMemberBase()
 	{
-		_1F      = 1;
-		_14      = 1;
-		m_caveID = 't_01';
-		_1C      = 0;
-		_1D      = 0;
+		_20              = 0;
+		m_caveOtakaraNum = 24;
+		m_caveOtakaraMax = 69;
+		_1F              = 1;
+		m_pikis          = 1;
+		m_pikisField     = 1;
+		m_caveID         = 't_01';
+		_1C              = 0;
+		m_payedDebt      = 0;
 	}
 
 	virtual u32 getSize() { return sizeof(DispMemberAnaDemo); } // _08 (weak)
@@ -72,18 +71,23 @@ struct DispMemberAnaDemo : public DispMemberBase {
 	// _00-_08 = DispMemberBase
 	u32 m_caveOtakaraNum; // _08
 	u32 m_caveOtakaraMax; // _0C
-	u32 _10;              // _10
-	u32 _14;              // _14
+	u32 m_pikis;          // _10
+	u32 m_pikisField;     // _14
 	u32 m_caveID;         // _18
 	u8 _1C;               // _1C
-	u8 _1D;               // _1D
-	u8 _1E;               // _1E
+	u8 m_payedDebt;       // _1D
+	u8 m_selected;        // _1E
 	u8 _1F;               // _1F
-	u32 _20;              // _20, unknown
+	u32 _20;              // _20
 };
 
 // size 0x10
 struct DispMemberDayEndCount : public DispMemberBase {
+	inline DispMemberDayEndCount()
+	{
+		_0C = 0.9f;
+		_08 = 0.9f;
+	}
 
 	virtual u32 getSize() { return sizeof(DispMemberDayEndCount); } // _08 (weak)
 	virtual u32 getOwnerID() { return OWNER_OGA; }                  // _0C (weak)
@@ -110,6 +114,20 @@ struct DispMemberHurryUp : public DispMemberBase {
 
 // size 0x64
 struct DispMemberCave : public DispMemberBase {
+	inline DispMemberCave()
+	{
+		m_dataGame._14      = true;
+		m_payDebt           = false;
+		m_isFinalFloor      = false;
+		m_treasureDist      = 900.0f;
+		m_drawSensor        = false;
+		m_radarState        = 1;
+		_5F                 = false;
+		m_isBitterUnlocked  = false;
+		m_isSpicyUnlocked   = false;
+		m_radarEnabled      = false;
+		m_allTreasureGotten = false;
+	}
 
 	virtual u32 getSize() { return sizeof(DispMemberCave); } // _08 (weak)
 	virtual u32 getOwnerID() { return OWNER_OGA; }           // _0C (weak)
@@ -117,30 +135,31 @@ struct DispMemberCave : public DispMemberBase {
 
 	// _00     = VTBL
 	// _00-_08 = DispMemberBase
-	DataGame m_dataGame;     // _08
-	DataNavi m_dataNavi[2];  // _24
-	f32 _54;                 // _54
-	int _58;                 // _58
-	u8 _5C;                  // _5C
-	u8 _5D;                  // _5D
-	u8 _5E;                  // _5E
-	u8 _5F;                  // _5F
-	u8 _60;                  // _60
-	u8 _61;                  // _61
-	bool m_isBitterUnlocked; // _62, have made first bitter spray from berries
-	bool m_isSpicyUnlocked;  // _63, have made first spicy spray from berries
+	DataGame m_dataGame;      // _08
+	DataNavi m_dataNavi1;     // _24
+	DataNavi m_dataNavi2;     // _24
+	f32 m_treasureDist;       // _54
+	int m_radarState;         // _58
+	u8 m_drawSensor;          // _5C
+	u8 m_payDebt;             // _5D
+	u8 m_isFinalFloor;        // _5E
+	u8 _5F;                   // _5F
+	bool m_radarEnabled;      // _60
+	bool m_allTreasureGotten; // _61
+	bool m_isBitterUnlocked;  // _62, have made first bitter spray from berries
+	bool m_isSpicyUnlocked;   // _63, have made first spicy spray from berries
 };
 
 // size 0x28
 struct DispMemberCaveMore : public DispMemberAnaDemo {
 	inline DispMemberCaveMore()
 	{
-		_24              = 0;
-		_25              = 0;
+		m_pikiInDanger   = 0;
+		m_cantProceed    = 0;
 		_20              = 0;
 		m_caveOtakaraNum = 4;
 		m_caveOtakaraMax = 4;
-		_10              = 10;
+		m_pikis          = 10;
 		m_caveID         = '2p_c';
 	}
 
@@ -150,12 +169,21 @@ struct DispMemberCaveMore : public DispMemberAnaDemo {
 
 	// _00     = VTBL
 	// _00-_24 = DispMemberAnaDemo
-	u8 _24; // _24
-	u8 _25; // _25
+	u8 m_pikiInDanger; // _24
+	u8 m_cantProceed;  // _25
 };
 
 // size 0x78
 struct DispMemberChallenge1P : public DispMemberBase {
+
+	inline DispMemberChallenge1P()
+	{
+		m_pokos    = 2540;
+		_58        = false;
+		_5C        = 2469.0f;
+		m_deadPiki = 4242;
+		_60        = 0.0f;
+	}
 
 	virtual u32 getSize() { return sizeof(DispMemberChallenge1P); } // _08 (weak)
 	virtual u32 getOwnerID() { return OWNER_OGA; }                  // _0C (weak)
@@ -164,17 +192,27 @@ struct DispMemberChallenge1P : public DispMemberBase {
 	// _00     = VTBL
 	// _00-_08 = DispMemberBase
 	DataGame m_dataGame;                 // _08
-	DataNavi m_dataNavi[2];              // _24
-	u32 _54;                             // _54
+	DataNavi m_dataNavi1;                // _24
+	DataNavi m_dataNavi2;                // _3C
+	u32 m_pokos;                         // _54
 	u8 _58;                              // _58
 	f32 _5C;                             // _5C
 	f32 _60;                             // _60
-	u32 _64;                             // _64
+	u32 m_deadPiki;                      // _64
 	DispMemberDayEndCount m_dayEndCount; // _68
 };
 
 // size 0x78
 struct DispMemberChallenge2P : public DispMemberBase {
+
+	inline DispMemberChallenge2P()
+	{
+		m_pokos     = 2540;
+		_58         = false;
+		m_timeLimit = 2469.0f;
+		m_deadPiki  = 4242;
+		_60         = 0.0f;
+	}
 
 	virtual u32 getSize() { return sizeof(DispMemberChallenge2P); } // _08 (weak)
 	virtual u32 getOwnerID() { return OWNER_OGA; }                  // _0C (weak)
@@ -182,13 +220,14 @@ struct DispMemberChallenge2P : public DispMemberBase {
 
 	// _00     = VTBL
 	// _00-_08 = DispMemberBase
-	DataGame m_dataGame;                 // _08
-	DataNavi m_dataNavi[2];              // _24
-	u32 _54;                             // _54
+	DataGame m_dataGame;  // _08
+	DataNavi m_dataNavi1; // _24
+	DataNavi m_dataNavi2;
+	u32 m_pokos;                         // _54
 	u8 _58;                              // _58
-	f32 _5C;                             // _5C
+	f32 m_timeLimit;                     // _5C
 	f32 _60;                             // _60
-	u32 _64;                             // _64
+	u32 m_deadPiki;                      // _64
 	DispMemberDayEndCount m_dayEndCount; // _68
 };
 
@@ -225,7 +264,7 @@ struct DispMemberContena : public DispMemberBase {
 	u32 m_onMapMinusWild;   // _20
 	int m_maxPikiMinusWild; // _24
 	u32 _28;                // _28
-	u8 _2C;                 // _2C
+	bool _2C;               // _2C
 	int _30;                // _30
 	s16 m_result;           // _34
 };
@@ -263,6 +302,8 @@ struct DispMemberDummy : public DispMemberBase {
 
 // size 0xC
 struct DispMemberFinalMessage : public DispMemberBase {
+
+	inline DispMemberFinalMessage() { m_finalState = 0; }
 
 	virtual u32 getSize() { return sizeof(DispMemberFinalMessage); } // _08 (weak)
 	virtual u32 getOwnerID() { return OWNER_OGA; }                   // _0C (weak)
@@ -327,13 +368,13 @@ struct DispMemberGround : public DispMemberBase {
 struct DispMemberKanketuMenu : public DispMemberAnaDemo {
 	inline DispMemberKanketuMenu()
 	{
-		_24              = 0;
-		_25              = 0;
-		_26              = 0;
+		m_pikiInDanger   = 0;
+		m_cantProceed    = 0;
+		m_isChallenge    = 0;
 		_20              = 0;
 		m_caveOtakaraNum = 4;
 		m_caveOtakaraMax = 4;
-		_10              = 10;
+		m_pikis          = 10;
 	}
 
 	virtual u32 getSize() { return sizeof(DispMemberKanketuMenu); } // _08 (weak)
@@ -342,9 +383,9 @@ struct DispMemberKanketuMenu : public DispMemberAnaDemo {
 
 	// _00     = VTBL
 	// _00-_24 = DispMemberAnaDemo
-	u8 _24; // _24
-	u8 _25; // _25
-	u8 _26; // _26
+	u8 m_pikiInDanger; // _24
+	u8 m_cantProceed;  // _25
+	u8 m_isChallenge;  // _26
 };
 
 // size 0x40
@@ -399,7 +440,7 @@ struct DispMemberSave : public DispMemberBase {
 
 	// _00     = VTBL
 	// _00-_08 = DispMemberBase
-	u8 _08; // _08
+	u8 m_doSound; // _08
 };
 
 // size 0x8

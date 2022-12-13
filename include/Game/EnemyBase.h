@@ -56,22 +56,22 @@ enum EnemyEvent {
 	EB_Flying           = 0x8,  // is ignored by pikmin
 	EB_Collision        = 0x10, // is colliding
 	EB_DropMassSet      = 0x20,
-	EB_Cullable         = 0x40, // can be culled/deloaded
-	EB_LeaveCarcass     = 0x80, // leaves carcass upon death
-	EB_9                = 0x100,
+	EB_Cullable         = 0x40,  // can be culled/deloaded
+	EB_LeaveCarcass     = 0x80,  // leaves carcass upon death
+	EB_9                = 0x100, // make death bomb effect on kill
 	EB_Bittered         = 0x200, // currently bittered
 	EB_Constraint       = 0x400,
 	EB_LifegaugeVisible = 0x800, // has visible lifegauge
 	EB_13               = 0x1000,
 	EB_SoundCullable    = 0x2000, // sounds can be culled/deloaded
-	EB_15               = 0x4000,
-	EB_16               = 0x8000,
+	EB_15               = 0x4000, // has eaten white pikmin? set off at finishDamageScaleAnim
+	EB_16               = 0x8000, // set off at finishDamageScaleAnim
 	EB_17               = 0x10000,
 	EB_18               = 0x20000,
-	EB_HardConstraint   = 0x40000,
-	EB_20               = 0x80000,
-	EB_21               = 0x100000,
-	EB_22               = 0x200000,
+	EB_HardConstraint   = 0x40000,  // is HardConstraint on
+	EB_20               = 0x80000,  // set on at finishDropping, and HipDropCallback
+	EB_21               = 0x100000, // this and the one below seem to impact if a bitter works
+	EB_22               = 0x200000, // immune to being stunned?
 	EB_BitterImmune     = 0x400000, // immune to being bittered
 	EB_24               = 0x800000,
 	EB_PS1              = 0x1000000,  // sound-related
@@ -79,8 +79,8 @@ enum EnemyEvent {
 	EB_PS3              = 0x4000000,  // sound-related
 	EB_PS4              = 0x8000000,  // sound-related
 	EB_Alive            = 0x10000000, // is alive/can be killed
-	EB_30               = 0x20000000,
-	EB_31               = 0x40000000,
+	EB_30               = 0x20000000, // do run CollisionMapAndPlat
+	EB_31               = 0x40000000, // force hide model?
 	EB_32               = 0x80000000
 };
 

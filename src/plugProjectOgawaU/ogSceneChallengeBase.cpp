@@ -25,8 +25,8 @@ ChallengeBase::~ChallengeBase() { }
  */
 void ChallengeBase::updateCountDown(f32 value, Screen::DispMemberDayEndCount* count)
 {
-	f32 temp    = ObjChallengeBase::msBaseVal._10 + 1;
-	f32 temp_f1 = (ObjChallengeBase::msBaseVal._10 + 1 - value) / temp;
+	f32 temp    = ObjChallengeBase::msBaseVal.m_timerLimitLow + 1;
+	f32 temp_f1 = (ObjChallengeBase::msBaseVal.m_timerLimitLow + 1 - value) / temp;
 	if (temp_f1 >= 0.0f) {
 		count->_08 = temp_f1;
 		count->_0C = 0.0f;

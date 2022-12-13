@@ -8,7 +8,7 @@
 #include "efx2d/T2DCavecomp.h"
 #include "og/Screen/DispMember.h"
 #include "og/Screen/callbackNodes.h"
-#include "Screen/Bases.h"
+#include "Screen/screenObj.h"
 #include "P2DScreen.h"
 
 namespace og {

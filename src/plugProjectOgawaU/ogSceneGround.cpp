@@ -1,6 +1,6 @@
 #include "Morimura/DayEndCount.h"
 #include "Morimura/HurryUp.h"
-#include "Screen/Bases.h"
+#include "Screen/screenObj.h"
 #include "Screen/Enums.h"
 #include "og/newScreen/Ground.h"
 #include "types.h"

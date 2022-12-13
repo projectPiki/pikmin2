@@ -6,6 +6,9 @@
 namespace og {
 namespace Screen {
 struct StickAnimMgr {
+
+	enum state { STICKANIM_Disabled, STICKANIM_Up, STICKANIM_Down, STICKANIM_UpDown };
+
 	StickAnimMgr(CallBack_Picture*);
 
 	void stickUp();
@@ -16,7 +19,7 @@ struct StickAnimMgr {
 	void stickStop();
 
 	CallBack_Picture* m_callBackPicture; // _00
-	u32 _04;                             // _04, unknown
+	int m_state;                         // _04, unknown
 };
 } // namespace Screen
 } // namespace og

@@ -1,7 +1,7 @@
 #ifndef _OG_NEWSCREEN_FINALMSG_H
 #define _OG_NEWSCREEN_FINALMSG_H
 
-#include "Screen/Bases.h"
+#include "Screen/screenObj.h"
 #include "JSystem/J2D/J2DPane.h"
 
 namespace P2DScreen {
@@ -47,22 +47,25 @@ struct ObjFinalMsg : public ::Screen::ObjBase {
 	virtual void doUpdateFadeoutFinish();                 // _64
 	virtual void doDraw(Graphics& gfx);                   // _68
 
-	void blink_Menu(int);
-	void menu();
+	inline void blink_Menu(int);
+	bool menu();
 	void wait();
+
+	// unused/inline
+	inline void commonUpdate();
 
 	// _00     = VTBL1
 	// _18     = VTBL2
 	// _00-_38 = Screen::ObjBase
-	og::Screen::DispMemberFinalMessage* m_finalMessage; // _38
-	u8 _3C[0x4];                                        // _3C, unknown
-	P2DScreen::Mgr_tuning* _40;                         // _40
-	og::Screen::MenuMgr* m_menuMgr;                     // _44
-	og::Screen::AnimText_Screen* _48;                   // _48
-	og::Screen::AnimText_Screen* _4C;                   // _4C
-	og::Screen::AnimText_Screen* _50;                   // _50
-	f32 _54;                                            // _54
-	f32 _58;                                            // _58
+	og::Screen::DispMemberFinalMessage* m_disp; // _38
+	int m_currSel;                              // _3C, unknown
+	P2DScreen::Mgr_tuning* m_screen;            // _40
+	og::Screen::MenuMgr* m_menuMgr;             // _44
+	og::Screen::AnimText_Screen* m_animTextQ;   // _48
+	og::Screen::AnimText_Screen* m_animTextY;   // _4C
+	og::Screen::AnimText_Screen* m_animTextN;   // _50
+	f32 m_movePos;                              // _54
+	f32 m_fadeLevel;                            // _58
 };
 } // namespace newScreen
 } // namespace og

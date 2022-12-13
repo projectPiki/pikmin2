@@ -14,15 +14,15 @@ struct T2DCvnameChal;
 
 namespace og {
 namespace newScreen {
-struct CaveTitleMsg {
+struct CaveTitleMsgEntry {
 	u32 id;        // _00
-	u32 unk;       // _04
+	u32 _04;       // _04
 	u64 bmg_tag;   // _08
 	bool is_fire;  // _10
 	bool is_elec;  // _11
 	bool is_water; // _12
 	bool is_toxic; // _13
-	u32 unk2;      // _14
+	u32 _14;       // _14
 };
 
 struct TitleMessageAnalyzer : public P2JME::Analyzer {

@@ -1,7 +1,7 @@
 #ifndef _OG_SCREEN_ANIME_H
 #define _OG_SCREEN_ANIME_H
 
-#include "Screen/Bases.h"
+#include "Screen/screenObj.h"
 #include "types.h"
 
 struct J2DAnmBase;

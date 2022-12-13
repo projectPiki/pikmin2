@@ -854,7 +854,7 @@ NISHIMURA:=\
 
 OGAWA:=\
 	$(BUILD_DIR)/src/plugProjectOgawaU/ogScreen.o\
-	$(BUILD_DIR)/asm/plugProjectOgawaU/ogDopingScreen.o\
+	$(BUILD_DIR)/src/plugProjectOgawaU/ogDopingScreen.o\
 	$(BUILD_DIR)/asm/plugProjectOgawaU/ogPikminCounter.o\
 	$(BUILD_DIR)/asm/plugProjectOgawaU/ogAnime.o\
 	$(BUILD_DIR)/src/plugProjectOgawaU/ogCounter.o\
@@ -864,14 +864,14 @@ OGAWA:=\
 	$(BUILD_DIR)/src/plugProjectOgawaU/ogContenaCounter.o\
 	$(BUILD_DIR)/src/plugProjectOgawaU/ogMapCounter.o\
 	$(BUILD_DIR)/src/plugProjectOgawaU/ogAnimTextScreen.o\
-	$(BUILD_DIR)/asm/plugProjectOgawaU/ogCallBackMessage.o\
+	$(BUILD_DIR)/src/plugProjectOgawaU/ogCallBackMessage.o\
 	$(BUILD_DIR)/asm/plugProjectOgawaU/ogMenuMgr.o\
 	$(BUILD_DIR)/src/plugProjectOgawaU/ogCallBackScreen.o\
 	$(BUILD_DIR)/asm/plugProjectOgawaU/ogCounterRV.o\
 	$(BUILD_DIR)/src/plugProjectOgawaU/ogSE.o\
 	$(BUILD_DIR)/src/plugProjectOgawaU/ogCounterDay.o\
 	$(BUILD_DIR)/src/plugProjectOgawaU/testScene.o\
-	$(BUILD_DIR)/asm/plugProjectOgawaU/testObj.o\
+	$(BUILD_DIR)/src/plugProjectOgawaU/testObj.o\
 	$(BUILD_DIR)/asm/plugProjectOgawaU/ogSceneGround.o\
 	$(BUILD_DIR)/asm/plugProjectOgawaU/ogObjGround.o\
 	$(BUILD_DIR)/asm/plugProjectOgawaU/ogCopyPane.o\
@@ -894,9 +894,9 @@ OGAWA:=\
 	$(BUILD_DIR)/src/plugProjectOgawaU/ogSceneSpecialItem.o\
 	$(BUILD_DIR)/asm/plugProjectOgawaU/ogObjFloor.o\
 	$(BUILD_DIR)/src/plugProjectOgawaU/ogSceneFloor.o\
-	$(BUILD_DIR)/asm/plugProjectOgawaU/ogObjCave.o\
+	$(BUILD_DIR)/src/plugProjectOgawaU/ogObjCave.o\
 	$(BUILD_DIR)/src/plugProjectOgawaU/ogSceneCave.o\
-	$(BUILD_DIR)/asm/plugProjectOgawaU/ogObjAnaDemo.o\
+	$(BUILD_DIR)/src/plugProjectOgawaU/ogObjAnaDemo.o\
 	$(BUILD_DIR)/src/plugProjectOgawaU/ogSceneAnaDemo.o\
 	$(BUILD_DIR)/asm/plugProjectOgawaU/ogObjChallenge2P.o\
 	$(BUILD_DIR)/src/plugProjectOgawaU/ogSceneChallenge2P.o\
@@ -906,13 +906,13 @@ OGAWA:=\
 	$(BUILD_DIR)/src/plugProjectOgawaU/ogSceneSMenuPauseDoukutu.o\
 	$(BUILD_DIR)/src/plugProjectOgawaU/ogObjUfo.o\
 	$(BUILD_DIR)/src/plugProjectOgawaU/ogSceneUfo.o\
-	$(BUILD_DIR)/asm/plugProjectOgawaU/ogObjSave.o\
+	$(BUILD_DIR)/src/plugProjectOgawaU/ogObjSave.o\
 	$(BUILD_DIR)/src/plugProjectOgawaU/ogSceneSave.o\
-	$(BUILD_DIR)/asm/plugProjectOgawaU/ogObjFinalMsg.o\
+	$(BUILD_DIR)/src/plugProjectOgawaU/ogObjFinalMsg.o\
 	$(BUILD_DIR)/src/plugProjectOgawaU/ogSceneFinalMsg.o\
 	$(BUILD_DIR)/asm/plugProjectOgawaU/ogObjVs.o\
 	$(BUILD_DIR)/src/plugProjectOgawaU/ogSceneVs.o\
-	$(BUILD_DIR)/asm/plugProjectOgawaU/ogObjChallenge1P.o\
+	$(BUILD_DIR)/src/plugProjectOgawaU/ogObjChallenge1P.o\
 	$(BUILD_DIR)/src/plugProjectOgawaU/ogSceneChallenge1P.o\
 	$(BUILD_DIR)/src/plugProjectOgawaU/ogScaleMgr.o\
 	$(BUILD_DIR)/asm/plugProjectOgawaU/ogObjSMenuPauseVs.o\

@@ -9,6 +9,8 @@
 
 /////////////////////////////////////////
 // 2D EFFECTS
+#define PID_2DCursor (0x00)
+
 #define PID_RocketA (0x01)
 
 #define PID_BattleDive_1 (0x02)

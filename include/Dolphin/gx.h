@@ -1090,6 +1090,7 @@ float GXGetYScaleFactor(u16, u16);
 
 void GXSetViewport(float, float, float, float, float, float);
 void GXSetTevKColor(GXTevKColorID, GXColor);
+void GXSetClipMode(u32); // needs a proper type
 
 // added GXPosition and GXFifo from smb-decomp/GXVert.h, thanks to encounter for doing this!
 // need to confirm these are the same for Pikmin 2 - currently used by plugProjectNishimuraU/MapUnit.cpp in UnitInfo::draw()

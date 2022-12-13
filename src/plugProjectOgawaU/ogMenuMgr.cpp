@@ -1,28 +1,13 @@
 #include "og/Screen/MenuMgr.h"
+#include "og/Screen/ScaleMgr.h"
+#include "og/Screen/ogScreen.h"
+#include "og/Sound.h"
+
 #include "types.h"
 #include "Vector2.h"
-
-/*
-    Generated from dpostproc
-
-    .section .sdata2, "a"     # 0x80516360 - 0x80520E40
-    .global lbl_8051D680
-    lbl_8051D680:
-        .4byte 0x00000000
-    .global lbl_8051D684
-    lbl_8051D684:
-        .float 1.0
-    .global lbl_8051D688
-    lbl_8051D688:
-        .4byte 0x3E4CCCCD
-    .global lbl_8051D68C
-    lbl_8051D68C:
-        .4byte 0x42480000
-    .global lbl_8051D690
-    lbl_8051D690:
-        .float 0.5
-        .4byte 0x00000000
-*/
+#include "Vector3.h"
+#include "efx2d/T2DCursor.h"
+#include "System.h"
 
 namespace og {
 namespace Screen {
@@ -34,222 +19,40 @@ namespace Screen {
  */
 MenuMgr::MenuMgr()
 {
-	/*
-stwu     r1, -0x10(r1)
-mflr     r0
-lfs      f1, lbl_8051D680@sda21(r2)
-stw      r0, 0x14(r1)
-li       r0, 0
-lfs      f0, lbl_8051D684@sda21(r2)
-stw      r31, 0xc(r1)
-mr       r31, r3
-sth      r0, 8(r3)
-li       r3, 0x1c
-sth      r0, 0xa(r31)
-stfs     f1, 0xc(r31)
-stfs     f0, 0x10(r31)
-stw      r0, 0x14(r31)
-stw      r0, 0x18(r31)
-stw      r0, 0x1c(r31)
-stw      r0, 0x20(r31)
-stw      r0, 0x24(r31)
-stw      r0, 0x28(r31)
-stw      r0, 0x40(r31)
-stw      r0, 0x44(r31)
-stb      r0, 0x2c(r31)
-stb      r0, 0x2d(r31)
-stb      r0, 0x2e(r31)
-stw      r0, 0(r31)
-stfs     f1, 4(r31)
-stfs     f1, 0x30(r31)
-stfs     f1, 0x34(r31)
-stfs     f1, 0x38(r31)
-stfs     f1, 0x3c(r31)
-stb      r0, 0x48(r31)
-stfs     f1, 0x4c(r31)
-stfs     f1, 0x50(r31)
-stfs     f1, 0x54(r31)
-stfs     f1, 0x58(r31)
-stfs     f1, 0x5c(r31)
-stfs     f1, 0x60(r31)
-stfs     f1, 0x64(r31)
-stfs     f1, 0x68(r31)
-stfs     f1, 0x6c(r31)
-sth      r0, 0x70(r31)
-bl       __nw__FUl
-cmplwi   r3, 0
-beq      lbl_80309F5C
-lis      r5, __vt__Q25efx2d7TBaseIF@ha
-lis      r4, __vt__Q25efx2d5TBase@ha
-addi     r0, r5, __vt__Q25efx2d7TBaseIF@l
-lis      r6, __vt__18JPAEmitterCallBack@ha
-stw      r0, 0(r3)
-addi     r0, r4, __vt__Q25efx2d5TBase@l
-lis      r5, __vt__Q25efx2d8TForever@ha
-lis      r4, __vt__Q25efx2d9TChasePos@ha
-stw      r0, 0(r3)
-li       r10, 0
-addi     r9, r5, __vt__Q25efx2d8TForever@l
-addi     r7, r4, __vt__Q25efx2d9TChasePos@l
-stb      r10, 4(r3)
-lis      r4, __vt__Q25efx2d9T2DCursor@ha
-addi     r4, r4, __vt__Q25efx2d9T2DCursor@l
-addi     r0, r6, __vt__18JPAEmitterCallBack@l
-stb      r10, 5(r3)
-addi     r8, r9, 0x18
-addi     r6, r7, 0x18
-addi     r5, r31, 0x30
-stw      r0, 8(r3)
-addi     r0, r4, 0x18
-lfs      f0, lbl_8051D684@sda21(r2)
-stw      r9, 0(r3)
-stw      r8, 8(r3)
-sth      r10, 0xc(r3)
-stw      r10, 0x10(r3)
-stw      r7, 0(r3)
-stw      r6, 8(r3)
-stw      r5, 0x14(r3)
-stw      r4, 0(r3)
-stw      r0, 8(r3)
-stfs     f0, 0x18(r3)
-
-lbl_80309F5C:
-stw      r3, 0x40(r31)
-li       r3, 0x1c
-bl       __nw__FUl
-cmplwi   r3, 0
-beq      lbl_80309FF4
-lis      r5, __vt__Q25efx2d7TBaseIF@ha
-lis      r4, __vt__Q25efx2d5TBase@ha
-addi     r0, r5, __vt__Q25efx2d7TBaseIF@l
-lis      r6, __vt__18JPAEmitterCallBack@ha
-stw      r0, 0(r3)
-addi     r0, r4, __vt__Q25efx2d5TBase@l
-lis      r5, __vt__Q25efx2d8TForever@ha
-lis      r4, __vt__Q25efx2d9TChasePos@ha
-stw      r0, 0(r3)
-li       r10, 0
-addi     r9, r5, __vt__Q25efx2d8TForever@l
-addi     r7, r4, __vt__Q25efx2d9TChasePos@l
-stb      r10, 4(r3)
-lis      r4, __vt__Q25efx2d9T2DCursor@ha
-addi     r4, r4, __vt__Q25efx2d9T2DCursor@l
-addi     r0, r6, __vt__18JPAEmitterCallBack@l
-stb      r10, 5(r3)
-addi     r8, r9, 0x18
-addi     r6, r7, 0x18
-addi     r5, r31, 0x38
-stw      r0, 8(r3)
-addi     r0, r4, 0x18
-lfs      f0, lbl_8051D684@sda21(r2)
-stw      r9, 0(r3)
-stw      r8, 8(r3)
-sth      r10, 0xc(r3)
-stw      r10, 0x10(r3)
-stw      r7, 0(r3)
-stw      r6, 8(r3)
-stw      r5, 0x14(r3)
-stw      r4, 0(r3)
-stw      r0, 8(r3)
-stfs     f0, 0x18(r3)
-
-lbl_80309FF4:
-stw      r3, 0x44(r31)
-mr       r3, r31
-lwz      r0, 0x14(r1)
-lwz      r31, 0xc(r1)
-mtlr     r0
-addi     r1, r1, 0x10
-blr
-	*/
-}
-
-/*
- * --INFO--
- * Address:	8030A010
- * Size:	000084
- */
-efx2d::TChasePos::~TChasePos(void)
-{
-	/*
-stwu     r1, -0x10(r1)
-mflr     r0
-stw      r0, 0x14(r1)
-stw      r31, 0xc(r1)
-mr       r31, r4
-stw      r30, 8(r1)
-or.      r30, r3, r3
-beq      lbl_8030A078
-lis      r3, __vt__Q25efx2d9TChasePos@ha
-addi     r3, r3, __vt__Q25efx2d9TChasePos@l
-stw      r3, 0(r30)
-addi     r0, r3, 0x18
-stw      r0, 8(r30)
-beq      lbl_8030A068
-lis      r4, __vt__Q25efx2d8TForever@ha
-addi     r3, r30, 8
-addi     r5, r4, __vt__Q25efx2d8TForever@l
-li       r4, 0
-stw      r5, 0(r30)
-addi     r0, r5, 0x18
-stw      r0, 8(r30)
-bl       __dt__18JPAEmitterCallBackFv
-
-lbl_8030A068:
-extsh.   r0, r31
-ble      lbl_8030A078
-mr       r3, r30
-bl       __dl__FPv
-
-lbl_8030A078:
-lwz      r0, 0x14(r1)
-mr       r3, r30
-lwz      r31, 0xc(r1)
-lwz      r30, 8(r1)
-mtlr     r0
-addi     r1, r1, 0x10
-blr
-	*/
-}
-
-/*
- * --INFO--
- * Address:	8030A094
- * Size:	00006C
- */
-efx2d::TForever::~TForever(void)
-{
-	/*
-stwu     r1, -0x10(r1)
-mflr     r0
-stw      r0, 0x14(r1)
-stw      r31, 0xc(r1)
-mr       r31, r4
-stw      r30, 8(r1)
-or.      r30, r3, r3
-beq      lbl_8030A0E4
-lis      r4, __vt__Q25efx2d8TForever@ha
-addi     r3, r30, 8
-addi     r5, r4, __vt__Q25efx2d8TForever@l
-li       r4, 0
-stw      r5, 0(r30)
-addi     r0, r5, 0x18
-stw      r0, 8(r30)
-bl       __dt__18JPAEmitterCallBackFv
-extsh.   r0, r31
-ble      lbl_8030A0E4
-mr       r3, r30
-bl       __dl__FPv
-
-lbl_8030A0E4:
-lwz      r0, 0x14(r1)
-mr       r3, r30
-lwz      r31, 0xc(r1)
-lwz      r30, 8(r1)
-mtlr     r0
-addi     r1, r1, 0x10
-blr
-	*/
+	m_elementCount         = 0;
+	m_cSelectId            = 0;
+	m_timer                = 0.0f;
+	m_timerMax             = 1.0f;
+	m_paneList1            = nullptr;
+	m_paneList2            = nullptr;
+	m_paneList3            = nullptr;
+	m_scaleMgrs            = nullptr;
+	m_paneList4            = nullptr;
+	m_paneList5            = nullptr;
+	m_efxCursor1           = nullptr;
+	m_efxCursor2           = nullptr;
+	m_isCursorActive       = false;
+	_2D                    = false;
+	m_doScale              = false;
+	m_cursorState          = 0;
+	m_cursorDelayTimer     = 0.0f;
+	m_cursorPos1.x         = 0.0f;
+	m_cursorPos1.y         = 0.0f;
+	m_cursorPos2.x         = 0.0f;
+	m_cursorPos2.y         = 0.0f;
+	_48                    = false;
+	m_transitionPosLeft.x  = 0.0f;
+	m_transitionPosLeft.y  = 0.0f;
+	m_transitionPosRight.x = 0.0f;
+	m_transitionPosRight.y = 0.0f;
+	m_selPosLeft.x         = 0.0f;
+	m_selPosLeft.y         = 0.0f;
+	m_selPosRight.x        = 0.0f;
+	m_selPosRight.y        = 0.0f;
+	_6C                    = 0.0f;
+	m_prevSelected         = 0;
+	m_efxCursor1           = new efx2d::T2DCursor(&m_cursorPos1);
+	m_efxCursor2           = new efx2d::T2DCursor(&m_cursorPos2);
 }
 
 /*
@@ -257,53 +60,20 @@ blr
  * Address:	8030A100
  * Size:	000094
  */
-void MenuMgr::startCursor(float)
+void MenuMgr::startCursor(f32 time)
 {
-	/*
-stwu     r1, -0x10(r1)
-mflr     r0
-lfs      f0, lbl_8051D680@sda21(r2)
-stw      r0, 0x14(r1)
-li       r0, 1
-fcmpu    cr0, f0, f1
-stw      r31, 0xc(r1)
-mr       r31, r3
-stb      r0, 0x2c(r3)
-bne      lbl_8030A178
-li       r0, 2
-stw      r0, 0(r31)
-stfs     f0, 4(r31)
-lwz      r3, 0x40(r31)
-cmplwi   r3, 0
-beq      lbl_8030A154
-lwz      r12, 0(r3)
-li       r4, 0
-lwz      r12, 8(r12)
-mtctr    r12
-bctrl
-
-lbl_8030A154:
-lwz      r3, 0x44(r31)
-cmplwi   r3, 0
-beq      lbl_8030A180
-lwz      r12, 0(r3)
-li       r4, 0
-lwz      r12, 8(r12)
-mtctr    r12
-bctrl
-b        lbl_8030A180
-
-lbl_8030A178:
-stw      r0, 0(r31)
-stfs     f1, 4(r31)
-
-lbl_8030A180:
-lwz      r0, 0x14(r1)
-lwz      r31, 0xc(r1)
-mtlr     r0
-addi     r1, r1, 0x10
-blr
-	*/
+	m_isCursorActive = true;
+	if (time == 0.0f) {
+		m_cursorState      = 2;
+		m_cursorDelayTimer = 0.0f;
+		if (m_efxCursor1)
+			m_efxCursor1->create(nullptr);
+		if (m_efxCursor2)
+			m_efxCursor2->create(nullptr);
+	} else {
+		m_cursorState      = 1;
+		m_cursorDelayTimer = time;
+	}
 }
 
 /*
@@ -311,210 +81,80 @@ blr
  * Address:	8030A194
  * Size:	000070
  */
-void MenuMgr::killCursor(void)
+void MenuMgr::killCursor()
 {
-	/*
-stwu     r1, -0x10(r1)
-mflr     r0
-stw      r0, 0x14(r1)
-li       r0, 3
-stw      r31, 0xc(r1)
-mr       r31, r3
-stw      r0, 0(r3)
-li       r0, 0
-stb      r0, 0x2c(r3)
-lwz      r3, 0x40(r3)
-cmplwi   r3, 0
-beq      lbl_8030A1D4
-lwz      r12, 0(r3)
-lwz      r12, 0xc(r12)
-mtctr    r12
-bctrl
-
-lbl_8030A1D4:
-lwz      r3, 0x44(r31)
-cmplwi   r3, 0
-beq      lbl_8030A1F0
-lwz      r12, 0(r3)
-lwz      r12, 0xc(r12)
-mtctr    r12
-bctrl
-
-lbl_8030A1F0:
-lwz      r0, 0x14(r1)
-lwz      r31, 0xc(r1)
-mtlr     r0
-addi     r1, r1, 0x10
-blr
-	*/
+	m_cursorState    = 3;
+	m_isCursorActive = false;
+	if (m_efxCursor1) {
+		m_efxCursor1->kill();
+	}
+	if (m_efxCursor2) {
+		m_efxCursor2->kill();
+	}
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	00004C
- */
-void MenuMgr::initCommon(void)
-{
-	// UNUSED FUNCTION
-}
+// /*
+//  * --INFO--
+//  * Address:	........
+//  * Size:	00004C
+//  */
+// void MenuMgr::initCommon(void)
+// {
+// 	// UNUSED FUNCTION
+// }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	0002F4
- */
-void MenuMgr::initSub(J2DScreen*, unsigned short, unsigned long long, unsigned long long, unsigned long long)
-{
-	// UNUSED FUNCTION
-}
+// /*
+//  * --INFO--
+//  * Address:	........
+//  * Size:	0002F4
+//  */
+// void MenuMgr::initSub(J2DScreen*, unsigned short, u64, u64, u64)
+// {
+// 	// UNUSED FUNCTION
+// }
 
 /*
  * --INFO--
  * Address:	8030A204
  * Size:	00021C
+ * This function and the one below it (init2TakuTitle) are byte for byte identical
+ * bravo Ogawa
  */
-void MenuMgr::init2taku(J2DScreen*, unsigned long long, unsigned long long, unsigned long long, unsigned long long, unsigned long long,
-                        unsigned long long, unsigned long long, unsigned long long)
+void MenuMgr::init2taku(J2DScreen* screen, u64 tag1, u64 tag2, u64 tag3, u64 tag4, u64 tag5, u64 tag6, u64 tag7, u64 tag8)
 {
-	/*
-	.loc_0x0:
-	  stwu      r1, -0x50(r1)
-	  mflr      r0
-	  stw       r0, 0x54(r1)
-	  li        r0, 0x2
-	  stmw      r14, 0x8(r1)
-	  mr        r18, r3
-	  lwz       r27, 0x58(r1)
-	  mr        r19, r4
-	  lwz       r26, 0x5C(r1)
-	  mr        r21, r5
-	  lwz       r29, 0x60(r1)
-	  mr        r20, r6
-	  lwz       r28, 0x64(r1)
-	  mr        r23, r7
-	  lwz       r31, 0x68(r1)
-	  mr        r22, r8
-	  lwz       r30, 0x6C(r1)
-	  mr        r25, r9
-	  lwz       r15, 0x70(r1)
-	  mr        r24, r10
-	  lwz       r17, 0x74(r1)
-	  lwz       r14, 0x78(r1)
-	  lwz       r16, 0x7C(r1)
-	  sth       r0, 0x8(r3)
-	  li        r3, 0x8
-	  bl        -0x2E62BC
-	  stw       r3, 0x14(r18)
-	  li        r3, 0x8
-	  bl        -0x2E62C8
-	  stw       r3, 0x18(r18)
-	  li        r3, 0x8
-	  bl        -0x2E62D4
-	  stw       r3, 0x1C(r18)
-	  li        r3, 0x48
-	  bl        -0x2E62E0
-	  lis       r4, 0x8033
-	  lis       r5, 0x8030
-	  subi      r4, r4, 0x71FC
-	  li        r6, 0x1C
-	  addi      r5, r5, 0x78A0
-	  li        r7, 0x2
-	  bl        -0x2488B8
-	  stw       r3, 0x20(r18)
-	  mr        r3, r19
-	  mr        r6, r20
-	  mr        r5, r21
-	  bl        -0x7410
-	  lwz       r4, 0x14(r18)
-	  li        r0, 0
-	  mr        r6, r22
-	  mr        r5, r23
-	  stw       r3, 0x0(r4)
-	  mr        r3, r19
-	  lwz       r4, 0x18(r18)
-	  stw       r0, 0x0(r4)
-	  bl        -0x7434
-	  lwz       r4, 0x1C(r18)
-	  mr        r6, r28
-	  mr        r5, r29
-	  stw       r3, 0x0(r4)
-	  mr        r3, r19
-	  bl        -0x744C
-	  lwz       r4, 0x14(r18)
-	  li        r0, 0
-	  mr        r6, r30
-	  mr        r5, r31
-	  stw       r3, 0x4(r4)
-	  mr        r3, r19
-	  lwz       r4, 0x18(r18)
-	  stw       r0, 0x4(r4)
-	  bl        -0x7470
-	  lwz       r4, 0x1C(r18)
-	  li        r0, 0
-	  lfs       f1, -0xCE0(r2)
-	  stw       r3, 0x4(r4)
-	  mr        r3, r18
-	  lfs       f0, -0xCDC(r2)
-	  stfs      f1, 0xC(r18)
-	  stfs      f0, 0x10(r18)
-	  stw       r0, 0x24(r18)
-	  stw       r0, 0x28(r18)
-	  sth       r0, 0xA(r18)
-	  stw       r0, 0x0(r18)
-	  stfs      f1, 0x4(r18)
-	  lhz       r4, 0xA(r18)
-	  bl        0x778
-	  li        r3, 0x8
-	  bl        -0x2E63B4
-	  stw       r3, 0x24(r18)
-	  li        r3, 0x8
-	  bl        -0x2E63C0
-	  stw       r3, 0x28(r18)
-	  mr        r3, r19
-	  mr        r6, r24
-	  mr        r5, r25
-	  bl        -0x74D4
-	  lwz       r4, 0x24(r18)
-	  mr        r6, r26
-	  mr        r5, r27
-	  stw       r3, 0x0(r4)
-	  mr        r3, r19
-	  bl        -0x74EC
-	  lwz       r4, 0x28(r18)
-	  li        r0, 0
-	  mr        r6, r17
-	  mr        r5, r15
-	  stw       r3, 0x0(r4)
-	  mr        r3, r19
-	  lwz       r4, 0x24(r18)
-	  lwz       r4, 0x0(r4)
-	  stb       r0, 0xB0(r4)
-	  lwz       r4, 0x28(r18)
-	  lwz       r4, 0x0(r4)
-	  stb       r0, 0xB0(r4)
-	  bl        -0x7520
-	  lwz       r4, 0x24(r18)
-	  mr        r6, r16
-	  mr        r5, r14
-	  stw       r3, 0x4(r4)
-	  mr        r3, r19
-	  bl        -0x7538
-	  lwz       r4, 0x28(r18)
-	  li        r0, 0
-	  stw       r3, 0x4(r4)
-	  lwz       r3, 0x24(r18)
-	  lwz       r3, 0x4(r3)
-	  stb       r0, 0xB0(r3)
-	  lwz       r3, 0x28(r18)
-	  lwz       r3, 0x4(r3)
-	  stb       r0, 0xB0(r3)
-	  lmw       r14, 0x8(r1)
-	  lwz       r0, 0x54(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x50
-	  blr
-	*/
+	m_elementCount = 2;
+	m_paneList1    = new J2DPane*[2];
+	m_paneList2    = new J2DPane*[2];
+	m_paneList3    = new J2DPane*[2];
+	m_scaleMgrs    = new ScaleMgr[2];
+
+	m_paneList1[0]     = og::Screen::TagSearch(screen, tag1);
+	m_paneList2[0]     = nullptr;
+	m_paneList3[0]     = og::Screen::TagSearch(screen, tag2);
+	m_paneList1[1]     = og::Screen::TagSearch(screen, tag5);
+	m_paneList2[1]     = nullptr;
+	m_paneList3[1]     = og::Screen::TagSearch(screen, tag6);
+	m_timer            = 0.0f;
+	m_timerMax         = 1.0f;
+	m_paneList4        = nullptr;
+	m_paneList5        = nullptr;
+	m_cSelectId        = 0;
+	m_cursorState      = 0;
+	m_cursorDelayTimer = 0.0f;
+	selectSub(m_cSelectId);
+
+	m_paneList4 = new J2DPane*[2];
+	m_paneList5 = new J2DPane*[2];
+
+	m_paneList4[0]              = og::Screen::TagSearch(screen, tag3);
+	m_paneList5[0]              = og::Screen::TagSearch(screen, tag4);
+	m_paneList4[0]->m_isVisible = false;
+	m_paneList5[0]->m_isVisible = false;
+
+	m_paneList4[1]              = og::Screen::TagSearch(screen, tag7);
+	m_paneList5[1]              = og::Screen::TagSearch(screen, tag8);
+	m_paneList4[1]->m_isVisible = false;
+	m_paneList5[1]->m_isVisible = false;
 }
 
 /*
@@ -522,167 +162,110 @@ void MenuMgr::init2taku(J2DScreen*, unsigned long long, unsigned long long, unsi
  * Address:	8030A420
  * Size:	00021C
  */
-void MenuMgr::init2takuTitle(J2DScreen*, unsigned long long, unsigned long long, unsigned long long, unsigned long long, unsigned long long,
-                             unsigned long long, unsigned long long, unsigned long long)
+void MenuMgr::init2takuTitle(J2DScreen* screen, u64 tag1, u64 tag2, u64 tag3, u64 tag4, u64 tag5, u64 tag6, u64 tag7, u64 tag8)
 {
-	/*
-	.loc_0x0:
-	  stwu      r1, -0x50(r1)
-	  mflr      r0
-	  stw       r0, 0x54(r1)
-	  li        r0, 0x2
-	  stmw      r14, 0x8(r1)
-	  mr        r18, r3
-	  lwz       r27, 0x58(r1)
-	  mr        r19, r4
-	  lwz       r26, 0x5C(r1)
-	  mr        r21, r5
-	  lwz       r29, 0x60(r1)
-	  mr        r20, r6
-	  lwz       r28, 0x64(r1)
-	  mr        r23, r7
-	  lwz       r31, 0x68(r1)
-	  mr        r22, r8
-	  lwz       r30, 0x6C(r1)
-	  mr        r25, r9
-	  lwz       r15, 0x70(r1)
-	  mr        r24, r10
-	  lwz       r17, 0x74(r1)
-	  lwz       r14, 0x78(r1)
-	  lwz       r16, 0x7C(r1)
-	  sth       r0, 0x8(r3)
-	  li        r3, 0x8
-	  bl        -0x2E64D8
-	  stw       r3, 0x14(r18)
-	  li        r3, 0x8
-	  bl        -0x2E64E4
-	  stw       r3, 0x18(r18)
-	  li        r3, 0x8
-	  bl        -0x2E64F0
-	  stw       r3, 0x1C(r18)
-	  li        r3, 0x48
-	  bl        -0x2E64FC
-	  lis       r4, 0x8033
-	  lis       r5, 0x8030
-	  subi      r4, r4, 0x71FC
-	  li        r6, 0x1C
-	  addi      r5, r5, 0x78A0
-	  li        r7, 0x2
-	  bl        -0x248AD4
-	  stw       r3, 0x20(r18)
-	  mr        r3, r19
-	  mr        r6, r20
-	  mr        r5, r21
-	  bl        -0x762C
-	  lwz       r4, 0x14(r18)
-	  li        r0, 0
-	  mr        r6, r22
-	  mr        r5, r23
-	  stw       r3, 0x0(r4)
-	  mr        r3, r19
-	  lwz       r4, 0x18(r18)
-	  stw       r0, 0x0(r4)
-	  bl        -0x7650
-	  lwz       r4, 0x1C(r18)
-	  mr        r6, r28
-	  mr        r5, r29
-	  stw       r3, 0x0(r4)
-	  mr        r3, r19
-	  bl        -0x7668
-	  lwz       r4, 0x14(r18)
-	  li        r0, 0
-	  mr        r6, r30
-	  mr        r5, r31
-	  stw       r3, 0x4(r4)
-	  mr        r3, r19
-	  lwz       r4, 0x18(r18)
-	  stw       r0, 0x4(r4)
-	  bl        -0x768C
-	  lwz       r4, 0x1C(r18)
-	  li        r0, 0
-	  lfs       f1, -0xCE0(r2)
-	  stw       r3, 0x4(r4)
-	  mr        r3, r18
-	  lfs       f0, -0xCDC(r2)
-	  stfs      f1, 0xC(r18)
-	  stfs      f0, 0x10(r18)
-	  stw       r0, 0x24(r18)
-	  stw       r0, 0x28(r18)
-	  sth       r0, 0xA(r18)
-	  stw       r0, 0x0(r18)
-	  stfs      f1, 0x4(r18)
-	  lhz       r4, 0xA(r18)
-	  bl        0x55C
-	  li        r3, 0x8
-	  bl        -0x2E65D0
-	  stw       r3, 0x24(r18)
-	  li        r3, 0x8
-	  bl        -0x2E65DC
-	  stw       r3, 0x28(r18)
-	  mr        r3, r19
-	  mr        r6, r24
-	  mr        r5, r25
-	  bl        -0x76F0
-	  lwz       r4, 0x24(r18)
-	  mr        r6, r26
-	  mr        r5, r27
-	  stw       r3, 0x0(r4)
-	  mr        r3, r19
-	  bl        -0x7708
-	  lwz       r4, 0x28(r18)
-	  li        r0, 0
-	  mr        r6, r17
-	  mr        r5, r15
-	  stw       r3, 0x0(r4)
-	  mr        r3, r19
-	  lwz       r4, 0x24(r18)
-	  lwz       r4, 0x0(r4)
-	  stb       r0, 0xB0(r4)
-	  lwz       r4, 0x28(r18)
-	  lwz       r4, 0x0(r4)
-	  stb       r0, 0xB0(r4)
-	  bl        -0x773C
-	  lwz       r4, 0x24(r18)
-	  mr        r6, r16
-	  mr        r5, r14
-	  stw       r3, 0x4(r4)
-	  mr        r3, r19
-	  bl        -0x7754
-	  lwz       r4, 0x28(r18)
-	  li        r0, 0
-	  stw       r3, 0x4(r4)
-	  lwz       r3, 0x24(r18)
-	  lwz       r3, 0x4(r3)
-	  stb       r0, 0xB0(r3)
-	  lwz       r3, 0x28(r18)
-	  lwz       r3, 0x4(r3)
-	  stb       r0, 0xB0(r3)
-	  lmw       r14, 0x8(r1)
-	  lwz       r0, 0x54(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x50
-	  blr
-	*/
+	m_elementCount = 2;
+	m_paneList1    = new J2DPane*[2];
+	m_paneList2    = new J2DPane*[2];
+	m_paneList3    = new J2DPane*[2];
+	m_scaleMgrs    = new ScaleMgr[2];
+
+	m_paneList1[0]     = og::Screen::TagSearch(screen, tag1);
+	m_paneList2[0]     = nullptr;
+	m_paneList3[0]     = og::Screen::TagSearch(screen, tag2);
+	m_paneList1[1]     = og::Screen::TagSearch(screen, tag5);
+	m_paneList2[1]     = nullptr;
+	m_paneList3[1]     = og::Screen::TagSearch(screen, tag6);
+	m_timer            = 0.0f;
+	m_timerMax         = 1.0f;
+	m_paneList4        = nullptr;
+	m_paneList5        = nullptr;
+	m_cSelectId        = 0;
+	m_cursorState      = 0;
+	m_cursorDelayTimer = 0.0f;
+	selectSub(m_cSelectId);
+
+	m_paneList4 = new J2DPane*[2];
+	m_paneList5 = new J2DPane*[2];
+
+	m_paneList4[0]              = og::Screen::TagSearch(screen, tag3);
+	m_paneList5[0]              = og::Screen::TagSearch(screen, tag4);
+	m_paneList4[0]->m_isVisible = false;
+	m_paneList5[0]->m_isVisible = false;
+
+	m_paneList4[1]              = og::Screen::TagSearch(screen, tag7);
+	m_paneList5[1]              = og::Screen::TagSearch(screen, tag8);
+	m_paneList4[1]->m_isVisible = false;
+	m_paneList5[1]->m_isVisible = false;
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	0002F0
- */
-void MenuMgr::init(J2DScreen*, unsigned short, unsigned long long, unsigned long long, unsigned long long)
-{
-	// UNUSED FUNCTION
-}
+// /*
+//  * --INFO--
+//  * Address:	........
+//  * Size:	0002F0
+//  */
+// void MenuMgr::init(J2DScreen*, unsigned short, u64, u64, u64)
+// {
+// 	// UNUSED FUNCTION
+// }
 
 /*
  * --INFO--
  * Address:	8030A63C
  * Size:	000494
  */
-void MenuMgr::init(J2DScreen*, unsigned short, unsigned long long, unsigned long long, unsigned long long, unsigned long long,
-                   unsigned long long)
+void MenuMgr::init(J2DScreen* screen, u16 options, u64 tag1, u64 tag2, u64 tag3, u64 tag4, u64 tag5)
 {
+	m_elementCount = options;
+	m_paneList1    = new J2DPane*[options];
+	m_paneList2    = new J2DPane*[options];
+	m_paneList3    = new J2DPane*[options];
+	m_scaleMgrs    = new ScaleMgr[options];
+
+	u64 mesg0 = 0;
+	if (tag1)
+		mesg0 = MojiToNum(tag1, 2);
+
+	u64 mesg1 = MojiToNum(tag2, 2);
+	u64 mesg2 = MojiToNum(tag3, 2);
+
+	for (int i = 0; i < options; i++) {
+		u64 cMesg      = mesg0 + i;
+		m_paneList1[i] = screen->search(cMesg);
+
+		cMesg          = mesg1 + i;
+		m_paneList2[i] = screen->search(cMesg);
+
+		cMesg          = mesg2 + i;
+		m_paneList3[i] = screen->search(cMesg);
+	}
+
+	m_timer            = 0.0f;
+	m_timerMax         = 1.0f;
+	m_paneList4        = nullptr;
+	m_paneList5        = nullptr;
+	m_cSelectId        = 0;
+	m_cursorState      = 0;
+	m_cursorDelayTimer = 0.0f;
+	selectSub(m_cSelectId);
+
+	m_paneList4 = new J2DPane*[options];
+	m_paneList5 = new J2DPane*[options];
+
+	mesg1 = MojiToNum(tag2, 2);
+	mesg2 = MojiToNum(tag3, 2);
+
+	for (int i = 0; i < options; i++) {
+		u64 cMesg      = mesg1 + i;
+		m_paneList4[i] = og::Screen::TagSearch(screen, cMesg);
+
+		cMesg          = mesg2 + i;
+		m_paneList5[i] = og::Screen::TagSearch(screen, cMesg);
+
+		m_paneList4[i]->m_isVisible = false;
+		m_paneList5[i]->m_isVisible = false;
+	}
+
 	/*
 	.loc_0x0:
 	  stwu      r1, -0x60(r1)
@@ -998,103 +581,41 @@ void MenuMgr::init(J2DScreen*, unsigned short, unsigned long long, unsigned long
  * Address:	8030AAD0
  * Size:	000090
  */
-void MenuMgr::selectSub(unsigned short)
+void MenuMgr::selectSub(u16 sel)
 {
-	/*
-stwu     r1, -0x10(r1)
-mflr     r0
-clrlwi   r5, r4, 0x10
-stw      r0, 0x14(r1)
-stw      r31, 0xc(r1)
-mr       r31, r3
-lhz      r0, 8(r3)
-cmplw    r5, r0
-bge      lbl_8030AB4C
-lhz      r5, 0xa(r31)
-li       r0, 1
-lfs      f0, lbl_8051D680@sda21(r2)
-sth      r5, 0x70(r31)
-sth      r4, 0xa(r31)
-stb      r0, 0x48(r31)
-stfs     f0, 0x6c(r31)
-lbz      r0, 0x2d(r31)
-cmplwi   r0, 0
-beq      lbl_8030AB20
-bl       MenuOnOff__Q32og6Screen7MenuMgrFv
-
-lbl_8030AB20:
-lhz      r0, 0xa(r31)
-lwz      r3, 0x20(r31)
-mulli    r0, r0, 0x1c
-lfs      f1, lbl_8051D688@sda21(r2)
-lfs      f2, lbl_8051D68C@sda21(r2)
-lfs      f3, lbl_8051D690@sda21(r2)
-lfs      f4, lbl_8051D680@sda21(r2)
-add      r3, r3, r0
-bl       up__Q32og6Screen8ScaleMgrFffff
-lfs      f0, lbl_8051D680@sda21(r2)
-stfs     f0, 0xc(r31)
-
-lbl_8030AB4C:
-lwz      r0, 0x14(r1)
-lwz      r31, 0xc(r1)
-mtlr     r0
-addi     r1, r1, 0x10
-blr
-	*/
+	if (sel < m_elementCount) {
+		m_prevSelected = m_cSelectId;
+		m_cSelectId    = sel;
+		_48            = true;
+		_6C            = 0.0f;
+		if (_2D) {
+			MenuOnOff();
+		}
+		m_scaleMgrs[m_cSelectId].up(0.2f, 50.0f, 0.5f, 0.0f);
+		m_timer = 0.0f;
+	}
 }
 
 /*
  * --INFO--
  * Address:	8030AB60
  * Size:	000098
+ * Identical to selectSub minus one extra sound effect, very cool Ogawa
  */
-void MenuMgr::select(unsigned short)
+void MenuMgr::select(u16 sel)
 {
-	/*
-stwu     r1, -0x10(r1)
-mflr     r0
-clrlwi   r5, r4, 0x10
-stw      r0, 0x14(r1)
-stw      r31, 0xc(r1)
-mr       r31, r3
-lhz      r0, 8(r3)
-cmplw    r5, r0
-bge      lbl_8030ABDC
-lhz      r5, 0xa(r31)
-li       r0, 1
-lfs      f0, lbl_8051D680@sda21(r2)
-sth      r5, 0x70(r31)
-sth      r4, 0xa(r31)
-stb      r0, 0x48(r31)
-stfs     f0, 0x6c(r31)
-lbz      r0, 0x2d(r31)
-cmplwi   r0, 0
-beq      lbl_8030ABB0
-bl       MenuOnOff__Q32og6Screen7MenuMgrFv
-
-lbl_8030ABB0:
-lhz      r0, 0xa(r31)
-lwz      r3, 0x20(r31)
-mulli    r0, r0, 0x1c
-lfs      f1, lbl_8051D688@sda21(r2)
-lfs      f2, lbl_8051D68C@sda21(r2)
-lfs      f3, lbl_8051D690@sda21(r2)
-lfs      f4, lbl_8051D680@sda21(r2)
-add      r3, r3, r0
-bl       up__Q32og6Screen8ScaleMgrFffff
-lfs      f0, lbl_8051D680@sda21(r2)
-stfs     f0, 0xc(r31)
-
-lbl_8030ABDC:
-lwz      r3, ogSound__2og@sda21(r13)
-bl       setCursor__Q22og5SoundFv
-lwz      r0, 0x14(r1)
-lwz      r31, 0xc(r1)
-mtlr     r0
-addi     r1, r1, 0x10
-blr
-	*/
+	if (sel < m_elementCount) {
+		m_prevSelected = m_cSelectId;
+		m_cSelectId    = sel;
+		_48            = true;
+		_6C            = 0.0f;
+		if (_2D) {
+			MenuOnOff();
+		}
+		m_scaleMgrs[m_cSelectId].up(0.2f, 50.0f, 0.5f, 0.0f);
+		m_timer = 0.0f;
+	}
+	ogSound->setCursor();
 }
 
 /*
@@ -1102,15 +623,11 @@ blr
  * Address:	8030ABF8
  * Size:	000014
  */
-void MenuMgr::initSelNum(unsigned short)
+void MenuMgr::initSelNum(u16 sel)
 {
-	/*
-sth      r4, 0x70(r3)
-lfs      f0, lbl_8051D680@sda21(r2)
-sth      r4, 0xa(r3)
-stfs     f0, 0x6c(r3)
-blr
-	*/
+	m_prevSelected = sel;
+	m_cSelectId    = sel;
+	_6C            = 0.0f;
 }
 
 /*
@@ -1118,11 +635,12 @@ blr
  * Address:	........
  * Size:	0000AC
  */
-// TODO: Confirm this is correctly demangled.
-// void calcCenter__Q32og6Screen7MenuMgrFP7J2DPaneP10Vector2<float>(void)
-void MenuMgr::calcCenter(J2DPane*, Vector2f*)
+void MenuMgr::calcCenter(J2DPane* pane, Vector2f* pos)
 {
-	// UNUSED FUNCTION
+	Vector3f pos1 = pane->getGlbVtx(0);
+	Vector3f pos2 = pane->getGlbVtx(3);
+	pos->x        = (pos1.x + pos2.x) / 2;
+	pos->y        = (pos1.y + pos2.y) / 2;
 }
 
 /*
@@ -1130,12 +648,11 @@ void MenuMgr::calcCenter(J2DPane*, Vector2f*)
  * Address:	........
  * Size:	000034
  */
-// TODO: Confirm this is correctly demangled.
-// void calcPoint__Q32og6Screen7MenuMgrFR10Vector2<float> R10Vector2<float>
-// fP10Vector2<float>(void)
-void MenuMgr::calcPoint(Vector2f*, Vector2f*, float, Vector2f*)
+// regswaps in here
+void MenuMgr::calcPoint(Vector2f& vec1, Vector2f& vec2, f32 scale, Vector2f* outVec)
 {
-	// UNUSED FUNCTION
+	Vector2f compVec = Vector2f(vec2.x * (1.0f - scale), vec2.y * (1.0f - scale));
+	*outVec          = Vector2f(vec1.x * scale + compVec.x, vec1.y * scale + compVec.y);
 }
 
 /*
@@ -1143,8 +660,73 @@ void MenuMgr::calcPoint(Vector2f*, Vector2f*, float, Vector2f*)
  * Address:	8030AC0C
  * Size:	000580
  */
-void MenuMgr::update(void)
+void MenuMgr::update()
 {
+	switch (m_cursorState) {
+	case 0:
+		break; // nice one ogawa
+
+	case 1:
+		m_cursorDelayTimer -= sys->m_deltaTime;
+		if (m_cursorDelayTimer < 0.0f) {
+			m_isCursorActive   = true;
+			m_cursorState      = 2;
+			m_cursorDelayTimer = 0.0f;
+			if (m_efxCursor1) {
+				m_efxCursor1->create(nullptr);
+			}
+			if (m_efxCursor2) {
+				m_efxCursor2->create(nullptr);
+			}
+		}
+		break;
+
+	case 2:
+		if (m_paneList4) {
+			calcCenter(m_paneList4[m_cSelectId], &m_selPosLeft);
+		}
+		if (m_paneList5) {
+			calcCenter(m_paneList5[m_cSelectId], &m_selPosRight);
+		}
+		if (_48) {
+			_6C += sys->m_deltaTime;
+			if (_6C > 0.2f) {
+				m_cursorPos1 = m_selPosLeft;
+				m_cursorPos2 = m_selPosRight;
+				_48          = false;
+			} else {
+				f32 scale = _6C / 0.2f;
+				if (m_paneList4) {
+					calcCenter(m_paneList4[m_prevSelected], &m_transitionPosLeft);
+					calcPoint(m_selPosLeft, m_transitionPosLeft, scale, &m_cursorPos1);
+				}
+				if (m_paneList5) {
+					calcCenter(m_paneList5[m_prevSelected], &m_transitionPosRight);
+					calcPoint(m_selPosRight, m_transitionPosRight, scale, &m_cursorPos2);
+				}
+			}
+		} else {
+			if (m_paneList4) {
+				m_cursorPos1 = m_selPosLeft;
+			}
+			if (m_paneList5) {
+				m_cursorPos2 = m_selPosRight;
+			}
+		}
+		break;
+	case 3:
+		if (m_paneList4) {
+			calcCenter(m_paneList4[m_cSelectId], &m_selPosLeft);
+			m_cursorPos1.x = m_selPosLeft.x;
+			m_cursorPos1.y = m_selPosLeft.y;
+		}
+		if (m_paneList5) {
+			calcCenter(m_paneList5[m_cSelectId], &m_selPosRight);
+			m_cursorPos2.x = m_selPosRight.x;
+			m_cursorPos2.y = m_selPosRight.y;
+		}
+		break;
+	}
 	/*
 stwu     r1, -0x140(r1)
 mflr     r0
@@ -1532,79 +1114,23 @@ blr
  * Address:	8030B18C
  * Size:	0000EC
  */
-void MenuMgr::draw(J2DGrafContext*)
+void MenuMgr::draw(J2DGrafContext* graf)
 {
-	/*
-stwu     r1, -0x20(r1)
-mflr     r0
-stw      r0, 0x24(r1)
-stw      r31, 0x1c(r1)
-li       r31, 0
-stw      r30, 0x18(r1)
-mr       r30, r31
-stw      r29, 0x14(r1)
-li       r29, 0
-stw      r28, 0x10(r1)
-mr       r28, r3
-b        lbl_8030B214
+	for (int i = 0; i < m_elementCount; i++) {
+		if ((int)m_doScale) {
+			f32 scale = m_scaleMgrs[i].calc();
+			if (m_cSelectId == i) {
+				scale *= _74;
+			}
+			m_paneList1[i]->updateScale(scale);
+		}
+	}
 
-lbl_8030B1BC:
-lbz      r0, 0x2e(r28)
-cmplwi   r0, 0
-beq      lbl_8030B208
-lwz      r0, 0x20(r28)
-add      r3, r0, r31
-bl       calc__Q32og6Screen8ScaleMgrFv
-lhz      r0, 0xa(r28)
-cmpw     r0, r29
-bne      lbl_8030B1E8
-lfs      f0, 0x74(r28)
-fmuls    f1, f1, f0
-
-lbl_8030B1E8:
-lwz      r3, 0x14(r28)
-lwzx     r3, r3, r30
-stfs     f1, 0xcc(r3)
-stfs     f1, 0xd0(r3)
-lwz      r12, 0(r3)
-lwz      r12, 0x2c(r12)
-mtctr    r12
-bctrl
-
-lbl_8030B208:
-addi     r31, r31, 0x1c
-addi     r30, r30, 4
-addi     r29, r29, 1
-
-lbl_8030B214:
-lhz      r0, 8(r28)
-cmpw     r29, r0
-blt      lbl_8030B1BC
-lbz      r0, 0x2e(r28)
-cmplwi   r0, 0
-beq      lbl_8030B258
-lwz      r3, sys@sda21(r13)
-lfs      f1, 0xc(r28)
-lfs      f0, 0x54(r3)
-fadds    f0, f1, f0
-stfs     f0, 0xc(r28)
-lfs      f0, 0xc(r28)
-lfs      f1, 0x10(r28)
-fcmpo    cr0, f0, f1
-ble      lbl_8030B258
-fsubs    f0, f0, f1
-stfs     f0, 0xc(r28)
-
-lbl_8030B258:
-lwz      r0, 0x24(r1)
-lwz      r31, 0x1c(r1)
-lwz      r30, 0x18(r1)
-lwz      r29, 0x14(r1)
-lwz      r28, 0x10(r1)
-mtlr     r0
-addi     r1, r1, 0x20
-blr
-	*/
+	if ((int)m_doScale) {
+		m_timer += sys->m_deltaTime;
+		if (m_timer > m_timerMax)
+			m_timer -= m_timerMax;
+	}
 }
 
 /*
@@ -1612,84 +1138,25 @@ blr
  * Address:	8030B278
  * Size:	0000F8
  */
-void MenuMgr::MenuOnOff(void)
+void MenuMgr::MenuOnOff()
 {
-	/*
-stwu     r1, -0x20(r1)
-mflr     r0
-stw      r0, 0x24(r1)
-stw      r31, 0x1c(r1)
-li       r31, 0
-stw      r30, 0x18(r1)
-li       r30, 0
-stw      r29, 0x14(r1)
-mr       r29, r3
-b        lbl_8030B348
-
-lbl_8030B2A0:
-lhz      r0, 0xa(r29)
-cmpw     r30, r0
-bne      lbl_8030B2F8
-lwz      r3, 0x18(r29)
-lwzx     r3, r3, r31
-cmplwi   r3, 0
-beq      lbl_8030B2D0
-lwz      r12, 0(r3)
-li       r4, 0xff
-lwz      r12, 0x24(r12)
-mtctr    r12
-bctrl
-
-lbl_8030B2D0:
-lwz      r3, 0x1c(r29)
-lwzx     r3, r3, r31
-cmplwi   r3, 0
-beq      lbl_8030B340
-lwz      r12, 0(r3)
-li       r4, 0xff
-lwz      r12, 0x24(r12)
-mtctr    r12
-bctrl
-b        lbl_8030B340
-
-lbl_8030B2F8:
-lwz      r3, 0x18(r29)
-lwzx     r3, r3, r31
-cmplwi   r3, 0
-beq      lbl_8030B31C
-lwz      r12, 0(r3)
-li       r4, 0
-lwz      r12, 0x24(r12)
-mtctr    r12
-bctrl
-
-lbl_8030B31C:
-lwz      r3, 0x1c(r29)
-lwzx     r3, r3, r31
-cmplwi   r3, 0
-beq      lbl_8030B340
-lwz      r12, 0(r3)
-li       r4, 0xff
-lwz      r12, 0x24(r12)
-mtctr    r12
-bctrl
-
-lbl_8030B340:
-addi     r31, r31, 4
-addi     r30, r30, 1
-
-lbl_8030B348:
-lhz      r0, 8(r29)
-cmpw     r30, r0
-blt      lbl_8030B2A0
-lwz      r0, 0x24(r1)
-lwz      r31, 0x1c(r1)
-lwz      r30, 0x18(r1)
-lwz      r29, 0x14(r1)
-mtlr     r0
-addi     r1, r1, 0x20
-blr
-	*/
+	for (int i = 0; i < m_elementCount; i++) {
+		if (i == m_cSelectId) {
+			J2DPane* pane = m_paneList2[i];
+			if (pane)
+				pane->setAlpha(255);
+			pane = m_paneList3[i];
+			if (pane)
+				pane->setAlpha(255);
+		} else {
+			J2DPane* pane = m_paneList2[i];
+			if (pane)
+				pane->setAlpha(0);
+			pane = m_paneList3[i];
+			if (pane)
+				pane->setAlpha(255);
+		}
+	}
 }
 } // namespace Screen
 } // namespace og

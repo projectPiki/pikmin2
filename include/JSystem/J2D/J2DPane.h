@@ -226,6 +226,20 @@ struct J2DPane {
 		setAlpha((int)alpha);
 	}
 
+	inline void resetAngle()
+	{
+		m_angle = 0.0f;
+		calcMtx();
+	}
+
+	inline void setOffset(f32 x1, f32 x2, f32 y1, f32 y2)
+	{
+		_0D4 = JGeometry::TVec2f(x1 + x2, y1 + y2);
+		calcMtx();
+	}
+
+	inline void setMsgID(u64 msgID) { m_messageID = msgID; }
+
 	// /**
 	//  * @fabricated
 	//  */
@@ -413,7 +427,11 @@ struct J2DPicture : public J2DPane {
 
 	inline JUtility::TColor getColor(int i) { return _150[i]; }
 
-	inline void setColor(JUtility::TColor color, int i) { _150[i] = color; }
+	inline JUtility::TColor setColor(JUtility::TColor color, int i)
+	{
+		_150[i] = color;
+		return color;
+	}
 
 	// J2DPane _000
 	JUTTexture* m_textures[4];       // _100

@@ -21,8 +21,8 @@ struct TSimple1 : public TBase {
 	}
 
 	virtual bool create(Arg*); // _08
-	virtual void kill();       // _0C (weak)
-	virtual void fade();       // _10 (weak)
+	virtual void kill() { }    // _0C (weak)
+	virtual void fade() { }    // _10 (weak)
 
 	// _00     = VTBL
 	// _00-_08 = TBase
@@ -40,8 +40,8 @@ struct TSimple2 : public TBase {
 	}
 
 	virtual bool create(Arg*); // _08
-	virtual void kill();       // _0C (weak)
-	virtual void fade();       // _10 (weak)
+	virtual void kill() { }    // _0C (weak)
+	virtual void fade() { }    // _10 (weak)
 
 	// _00     = VTBL
 	// _00-_08 = TBase
