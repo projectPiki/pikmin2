@@ -53,4 +53,19 @@ inline f32 angXZ(f32 x, f32 z, Vector3f& vec)
 }
 
 inline f32 _angXZ(f32 x1, f32 z1, f32 x2, f32 z2) { return roundAng(JMath::atanTable_.atan2_(x1 - x2, z1 - z2)); }
+
+inline int GetTableIdxNeg(f32 x) { return x *= -325.9493f; }
+
+inline int GetTableIdxPos(f32 x) { return x *= 325.9493f; }
+
+inline f32 altSin(f32 x)
+{
+	if (x < 0.0f) {
+		return -JMath::sincosTable_.m_table[GetTableIdxNeg(x) & 0x7ffU].first;
+	}
+	return JMath::sincosTable_.m_table[GetTableIdxPos(x) & 0x7ffU].first;
+}
+
+inline f32 scaledSin(f32 theta) { return altSin(theta * TAU); }
+
 #endif

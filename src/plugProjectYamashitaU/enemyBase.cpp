@@ -46,8 +46,15 @@
 #include "PSM/CreatureAnime.h"
 #include "PSM/EnemyBase.h"
 #include "PSM/EnemyBoss.h"
+#include "PSM/BossBgmFader.h"
+#include "PSM/ObjCalc.h"
+#include "PSM/ObjMgr.h"
+#include "PSM/BgmTrackMap.h"
+#include "PSM/CreaturePrm.h"
 #include "PSGame/Global.h"
 #include "PSSystem/PSSystemIF.h"
+#include "PSSystem/SingletonBase.h"
+#include "PSSystem/PSStream.h"
 #include "Sys/Sphere.h"
 #include "SysShape/AnimInfo.h"
 #include "SysShape/AnimMgr.h"
@@ -61,6 +68,15 @@
 
 JKRArchive* Game::gParmArc;
 PSGame::BASARC* PSSystem::ArcMgr<PSGame::BASARC>::sInstance;
+PSM::BossBgmFader::Mgr* PSSystem::SingletonBase<PSM::BossBgmFader::Mgr>::sInstance;
+PSM::ObjCalcBase* PSSystem::SingletonBase<PSM::ObjCalcBase>::sInstance;
+PSM::CreaturePrm* PSSystem::SingletonBase<PSM::CreaturePrm>::sInstance;
+PSM::ObjMgr* PSSystem::SingletonBase<PSM::ObjMgr>::sInstance;
+PSM::BgmTrackMapFile* PSSystem::SingletonBase<PSM::BgmTrackMapFile>::sInstance;
+PSGame::SoundTable::CategoryMgr* PSSystem::SingletonBase<PSGame::SoundTable::CategoryMgr>::sInstance;
+PSGame::SeMgr* PSSystem::SingletonBase<PSGame::SeMgr>::sInstance;
+PSSystem::SeqDataList* PSSystem::SingletonBase<PSSystem::SeqDataList>::sInstance;
+PSSystem::StreamDataList* PSSystem::SingletonBase<PSSystem::StreamDataList>::sInstance;
 
 namespace Game {
 
@@ -520,9 +536,9 @@ void FitState::updateAlways(EnemyBase* enemy)
 		}
 		f32 theta = (TAU * enemy->m_stunAnimTimer) / 0.25f;
 
-		enemy->m_stunAnimRotation.x = sinStun * ((PI / 180.0f) * pikmin2_sinf(theta));
+		enemy->m_stunAnimRotation.x = sinStun * ((PI * DEG2RAD) * pikmin2_sinf(theta));
 		enemy->m_stunAnimRotation.y = 0.0f;
-		enemy->m_stunAnimRotation.z = sinStun * ((PI / 180.0f) * pikmin2_cosf(theta));
+		enemy->m_stunAnimRotation.z = sinStun * ((PI * DEG2RAD) * pikmin2_cosf(theta));
 	}
 	m_enemyPiyo.m_position = enemy->getFitEffectPos();
 }
@@ -1485,7 +1501,7 @@ void EnemyBase::doAnimationUpdateAnimator()
 
 	SysShape::Animator* animator = &m_animator->getAnimator();
 	SysShape::Model* model       = m_model;
-	J3DMtxCalc* calc             = animator->getCalc();
+	J3DMtxCalc* calc             = static_cast<SysShape::BaseAnimator*>(animator)->getCalc();
 
 	model->m_j3dModel->m_modelData->m_jointTree.m_joints[0]->m_mtxCalc = static_cast<J3DMtxCalcAnmBase*>(calc);
 }
@@ -1852,8 +1868,6 @@ void EnemyBase::bounceProcedure(Sys::Triangle* triangle)
  * Address:	80104340
  * Size:	0006D4
  */
-// WIP: https://decomp.me/scratch/YsXWy
-// LITERALLY MATCHES IF VECTOR3F::LENGTH AND NORMALISE MATCH SMH
 void EnemyBase::collisionMapAndPlat(f32 accelRate)
 {
 	if (!isStickTo()) {
@@ -1951,498 +1965,6 @@ void EnemyBase::collisionMapAndPlat(f32 accelRate)
 		updateSpheres();
 		updateCell();
 	}
-	/*
-	.loc_0x0:
-	    stwu      r1, -0x180(r1)
-	    mflr      r0
-	    stw       r0, 0x184(r1)
-	    stfd      f31, 0x170(r1)
-	    psq_st    f31,0x178(r1),0,0
-	    stfd      f30, 0x160(r1)
-	    psq_st    f30,0x168(r1),0,0
-	    stfd      f29, 0x150(r1)
-	    psq_st    f29,0x158(r1),0,0
-	    stfd      f28, 0x140(r1)
-	    psq_st    f28,0x148(r1),0,0
-	    stfd      f27, 0x130(r1)
-	    psq_st    f27,0x138(r1),0,0
-	    stw       r31, 0x12C(r1)
-	    mr        r31, r3
-	    fmr       f30, f1
-	    bl        0x9B1F4
-	    rlwinm.   r0,r3,0,24,31
-	    bne-      .loc_0x54C
-	    lwz       r0, 0x1E0(r31)
-	    rlwinm.   r0,r0,0,29,29
-	    bne-      .loc_0x74
-	    mr        r3, r31
-	    fmr       f1, f30
-	    lwz       r12, 0x0(r31)
-	    lwz       r12, 0x1F4(r12)
-	    mtctr     r12
-	    bctrl
-	    b         .loc_0x98
-
-	.loc_0x74:
-	    mr        r3, r31
-	    fmr       f1, f30
-	    lwz       r12, 0x0(r31)
-	    lwz       r12, 0x1F8(r12)
-	    mtctr     r12
-	    bctrl
-	    lwz       r0, 0x1E0(r31)
-	    rlwinm    r0,r0,0,3,1
-	    stw       r0, 0x1E0(r31)
-
-	.loc_0x98:
-	    mr        r4, r31
-	    lwz       r5, 0xC0(r31)
-	    lwz       r12, 0x0(r31)
-	    addi      r3, r1, 0x34
-	    lfs       f31, 0x1A4(r5)
-	    lwz       r12, 0x8(r12)
-	    mtctr     r12
-	    bctrl
-	    mr        r4, r31
-	    addi      r3, r1, 0x28
-	    lwz       r12, 0x0(r31)
-	    lfs       f29, 0x34(r1)
-	    lwz       r12, 0x224(r12)
-	    lfs       f28, 0x38(r1)
-	    lfs       f27, 0x3C(r1)
-	    mtctr     r12
-	    bctrl
-	    lfs       f0, 0x28(r1)
-	    li        r3, 0
-	    stfs      f0, 0x240(r31)
-	    lfs       f0, 0x2C(r1)
-	    stfs      f0, 0x244(r31)
-	    lfs       f0, 0x30(r1)
-	    stfs      f0, 0x248(r31)
-	    lfs       f0, 0x244(r31)
-	    lfs       f1, 0x240(r31)
-	    fadds     f28, f28, f0
-	    lfs       f0, 0x248(r31)
-	    fadds     f29, f29, f1
-	    fadds     f27, f27, f0
-	    stfs      f31, 0x64(r1)
-	    fadds     f28, f28, f31
-	    stfs      f29, 0x58(r1)
-	    stfs      f28, 0x5C(r1)
-	    stfs      f27, 0x60(r1)
-	    lwz       r4, 0x1E4(r31)
-	    rlwinm.   r0,r4,0,31,31
-	    bne-      .loc_0x138
-	    rlwinm.   r0,r4,0,27,27
-	    beq-      .loc_0x13C
-
-	.loc_0x138:
-	    li        r3, 0x1
-
-	.loc_0x13C:
-	    rlwinm.   r0,r3,0,24,31
-	    beq-      .loc_0x14C
-	    lfs       f8, -0x6BB0(r2)
-	    b         .loc_0x154
-
-	.loc_0x14C:
-	    lwz       r3, 0xC0(r31)
-	    lfs       f8, 0x4C(r3)
-
-	.loc_0x154:
-	    lfs       f6, -0x6BB0(r2)
-	    lis       r3, 0x8050
-	    addi      r3, r3, 0x71A0
-	    li        r5, 0
-	    stfs      f6, 0x120(r31)
-	    addi      r7, r1, 0x58
-	    lfs       f0, -0x6B34(r2)
-	    addi      r6, r1, 0x4C
-	    lfs       f4, 0x1D0(r31)
-	    li        r0, -0x1
-	    lfs       f3, 0x124(r31)
-	    fmr       f1, f30
-	    lfs       f5, 0x1CC(r31)
-	    addi      r4, r1, 0x68
-	    lfs       f2, 0x120(r31)
-	    fadds     f7, f4, f3
-	    lfs       f4, 0x1C8(r31)
-	    lfs       f3, 0x11C(r31)
-	    fadds     f5, f5, f2
-	    lfs       f2, 0x800(r3)
-	    fadds     f3, f4, f3
-	    stw       r5, 0x7C(r1)
-	    lwz       r3, -0x6CF8(r13)
-	    stfs      f5, 0x50(r1)
-	    stfs      f3, 0x4C(r1)
-	    stfs      f7, 0x54(r1)
-	    stw       r7, 0x68(r1)
-	    stw       r6, 0x6C(r1)
-	    stfs      f8, 0x70(r1)
-	    stfs      f6, 0x74(r1)
-	    stw       r5, 0x78(r1)
-	    stw       r5, 0xAC(r1)
-	    stb       r5, 0xDC(r1)
-	    stb       r5, 0x81(r1)
-	    stb       r5, 0x80(r1)
-	    stw       r5, 0xB0(r1)
-	    stb       r5, 0xF8(r1)
-	    stw       r5, 0xFC(r1)
-	    stfs      f2, 0x94(r1)
-	    stfs      f0, 0x98(r1)
-	    stw       r0, 0x100(r1)
-	    stw       r5, 0xB4(r1)
-	    stb       r5, 0x82(r1)
-	    stw       r31, 0x7C(r1)
-	    lwz       r12, 0x4(r3)
-	    lwz       r12, 0x24(r12)
-	    mtctr     r12
-	    bctrl
-	    lfs       f0, 0x4C(r1)
-	    lfs       f1, -0x6BB0(r2)
-	    stfs      f0, 0x1C8(r31)
-	    lfs       f0, 0x50(r1)
-	    stfs      f0, 0x1CC(r31)
-	    lfs       f0, 0x54(r1)
-	    stfs      f0, 0x1D0(r31)
-	    lfs       f3, 0x1C8(r31)
-	    lfs       f2, 0x1CC(r31)
-	    fmuls     f0, f3, f3
-	    lfs       f4, 0x1D0(r31)
-	    fmuls     f2, f2, f2
-	    fmuls     f4, f4, f4
-	    fadds     f0, f0, f2
-	    fadds     f0, f4, f0
-	    fcmpo     cr0, f0, f1
-	    ble-      .loc_0x274
-	    fmadds    f0, f3, f3, f2
-	    fadds     f4, f4, f0
-	    fcmpo     cr0, f4, f1
-	    ble-      .loc_0x278
-	    fsqrte    f0, f4
-	    fmuls     f4, f0, f4
-	    b         .loc_0x278
-
-	.loc_0x274:
-	    fmr       f4, f1
-
-	.loc_0x278:
-	    lfs       f0, -0x6BB0(r2)
-	    fcmpo     cr0, f4, f0
-	    ble-      .loc_0x2B4
-	    lfs       f1, -0x6B9C(r2)
-	    lfs       f0, 0x1C8(r31)
-	    fdivs     f1, f1, f4
-	    fmuls     f0, f0, f1
-	    stfs      f0, 0x1C8(r31)
-	    lfs       f0, 0x1CC(r31)
-	    fmuls     f0, f0, f1
-	    stfs      f0, 0x1CC(r31)
-	    lfs       f0, 0x1D0(r31)
-	    fmuls     f0, f0, f1
-	    stfs      f0, 0x1D0(r31)
-	    b         .loc_0x2B8
-
-	.loc_0x2B4:
-	    fmr       f4, f0
-
-	.loc_0x2B8:
-	    lfs       f2, 0x11C(r31)
-	    lfs       f1, 0x120(r31)
-	    fmuls     f0, f2, f2
-	    lfs       f3, 0x124(r31)
-	    fmuls     f5, f1, f1
-	    lfs       f1, -0x6BB0(r2)
-	    fmuls     f3, f3, f3
-	    fadds     f0, f0, f5
-	    fadds     f0, f3, f0
-	    fcmpo     cr0, f0, f1
-	    ble-      .loc_0x300
-	    fmadds    f0, f2, f2, f5
-	    fadds     f0, f3, f0
-	    fcmpo     cr0, f0, f1
-	    ble-      .loc_0x304
-	    fsqrte    f1, f0
-	    fmuls     f0, f1, f0
-	    b         .loc_0x304
-
-	.loc_0x300:
-	    fmr       f0, f1
-
-	.loc_0x304:
-	    fcmpo     cr0, f4, f0
-	    ble-      .loc_0x348
-	    fsubs     f4, f4, f0
-	    lfs       f0, 0x1C8(r31)
-	    lfs       f2, 0x1CC(r31)
-	    lfs       f3, 0x1D0(r31)
-	    fmuls     f1, f0, f4
-	    lfs       f0, -0x6BB0(r2)
-	    fmuls     f2, f2, f4
-	    fmuls     f3, f3, f4
-	    stfs      f1, 0x1C8(r31)
-	    stfs      f2, 0x1CC(r31)
-	    stfs      f3, 0x1D0(r31)
-	    stfs      f0, 0x11C(r31)
-	    stfs      f0, 0x120(r31)
-	    stfs      f0, 0x124(r31)
-	    b         .loc_0x37C
-
-	.loc_0x348:
-	    lfs       f0, 0x1C8(r31)
-	    lfs       f2, 0x1CC(r31)
-	    fmuls     f1, f0, f4
-	    lfs       f3, 0x1D0(r31)
-	    fmuls     f2, f2, f4
-	    lfs       f0, -0x6BB0(r2)
-	    fmuls     f3, f3, f4
-	    stfs      f1, 0x1C8(r31)
-	    stfs      f2, 0x1CC(r31)
-	    stfs      f3, 0x1D0(r31)
-	    stfs      f0, 0x11C(r31)
-	    stfs      f0, 0x120(r31)
-	    stfs      f0, 0x124(r31)
-
-	.loc_0x37C:
-	    lwz       r0, 0xC8(r31)
-	    cmplwi    r0, 0
-	    bne-      .loc_0x39C
-	    lwz       r4, 0xAC(r1)
-	    cmplwi    r4, 0
-	    beq-      .loc_0x39C
-	    mr        r3, r31
-	    bl        -0x450
-
-	.loc_0x39C:
-	    lwz       r0, 0xAC(r1)
-	    stw       r0, 0xC8(r31)
-	    lfs       f0, 0xB8(r1)
-	    stfs      f0, 0xCC(r31)
-	    lfs       f0, 0xBC(r1)
-	    stfs      f0, 0xD0(r31)
-	    lfs       f0, 0xC0(r1)
-	    stfs      f0, 0xD4(r31)
-	    lwz       r0, 0x288(r31)
-	    cmplwi    r0, 0
-	    bne-      .loc_0x3EC
-	    lwz       r0, 0xB0(r1)
-	    cmplwi    r0, 0
-	    beq-      .loc_0x3EC
-	    mr        r3, r31
-	    addi      r4, r1, 0x68
-	    lwz       r12, 0x0(r31)
-	    lwz       r12, 0x2E8(r12)
-	    mtctr     r12
-	    bctrl
-
-	.loc_0x3EC:
-	    lwz       r0, 0xB0(r1)
-	    stw       r0, 0x288(r31)
-	    lwz       r3, -0x6BE0(r13)
-	    cmplwi    r3, 0
-	    beq-      .loc_0x498
-	    lwz       r0, 0x1E0(r31)
-	    rlwinm.   r0,r0,0,19,19
-	    beq-      .loc_0x498
-	    addi      r0, r31, 0x1C8
-	    fmr       f1, f30
-	    stw       r0, 0x6C(r1)
-	    addi      r4, r1, 0x68
-	    bl        0xC145C
-	    lwz       r0, 0xC8(r31)
-	    cmplwi    r0, 0
-	    bne-      .loc_0x460
-	    lwz       r4, 0xAC(r1)
-	    cmplwi    r4, 0
-	    beq-      .loc_0x440
-	    mr        r3, r31
-	    bl        -0x4F4
-
-	.loc_0x440:
-	    lwz       r0, 0xAC(r1)
-	    stw       r0, 0xC8(r31)
-	    lfs       f0, 0xB8(r1)
-	    stfs      f0, 0xCC(r31)
-	    lfs       f0, 0xBC(r1)
-	    stfs      f0, 0xD0(r31)
-	    lfs       f0, 0xC0(r1)
-	    stfs      f0, 0xD4(r31)
-
-	.loc_0x460:
-	    lwz       r0, 0x288(r31)
-	    cmplwi    r0, 0
-	    bne-      .loc_0x490
-	    lwz       r0, 0xB0(r1)
-	    cmplwi    r0, 0
-	    beq-      .loc_0x490
-	    mr        r3, r31
-	    addi      r4, r1, 0x68
-	    lwz       r12, 0x0(r31)
-	    lwz       r12, 0x2E8(r12)
-	    mtctr     r12
-	    bctrl
-
-	.loc_0x490:
-	    lwz       r0, 0xB0(r1)
-	    stw       r0, 0x288(r31)
-
-	.loc_0x498:
-	    lwz       r3, -0x6CF8(r13)
-	    lwz       r12, 0x4(r3)
-	    lwz       r12, 0x8(r12)
-	    mtctr     r12
-	    bctrl
-	    rlwinm.   r0,r3,0,24,31
-	    beq-      .loc_0x4CC
-	    lwz       r3, -0x6CF8(r13)
-	    addi      r4, r1, 0x58
-	    lwz       r12, 0x4(r3)
-	    lwz       r12, 0xC(r12)
-	    mtctr     r12
-	    bctrl
-
-	.loc_0x4CC:
-	    lfs       f1, 0x58(r1)
-	    addi      r4, r1, 0x18
-	    lfs       f0, 0x240(r31)
-	    fsubs     f0, f1, f0
-	    stfs      f0, 0x18C(r31)
-	    lfs       f1, 0x5C(r1)
-	    lfs       f0, 0x244(r31)
-	    fsubs     f0, f1, f0
-	    fsubs     f0, f0, f31
-	    stfs      f0, 0x190(r31)
-	    lfs       f1, 0x60(r1)
-	    lfs       f0, 0x248(r31)
-	    fsubs     f0, f1, f0
-	    stfs      f0, 0x194(r31)
-	    lwz       r3, 0x114(r31)
-	    lwz       r3, 0x0(r3)
-	    bl        0x339B0
-	    lfs       f0, 0x18(r1)
-	    stfs      f0, 0x220(r31)
-	    lfs       f0, 0x1C(r1)
-	    stfs      f0, 0x224(r31)
-	    lfs       f0, 0x20(r1)
-	    stfs      f0, 0x228(r31)
-	    lfs       f0, 0x24(r1)
-	    stfs      f0, 0x22C(r31)
-	    lfs       f0, 0x220(r31)
-	    stfs      f0, 0x270(r31)
-	    lfs       f0, 0x224(r31)
-	    stfs      f0, 0x274(r31)
-	    lfs       f0, 0x228(r31)
-	    stfs      f0, 0x278(r31)
-	    b         .loc_0x698
-
-	.loc_0x54C:
-	    lfs       f0, -0x6BB0(r2)
-	    mr        r3, r31
-	    fmr       f1, f30
-	    stfs      f0, 0x11C(r31)
-	    stfs      f0, 0x120(r31)
-	    stfs      f0, 0x124(r31)
-	    lwz       r12, 0x0(r31)
-	    lwz       r12, 0x1FC(r12)
-	    mtctr     r12
-	    bctrl
-	    lfs       f2, 0x18C(r31)
-	    lfs       f1, 0x1C8(r31)
-	    lfs       f0, -0x6BB0(r2)
-	    fadds     f1, f2, f1
-	    stfs      f1, 0x18C(r31)
-	    lfs       f2, 0x190(r31)
-	    lfs       f1, 0x1CC(r31)
-	    fadds     f1, f2, f1
-	    stfs      f1, 0x190(r31)
-	    lfs       f2, 0x194(r31)
-	    lfs       f1, 0x1D0(r31)
-	    fadds     f1, f2, f1
-	    stfs      f1, 0x194(r31)
-	    lfs       f4, 0x1FC(r31)
-	    fmr       f1, f4
-	    fcmpo     cr0, f4, f0
-	    bge-      .loc_0x5BC
-	    fneg      f1, f4
-
-	.loc_0x5BC:
-	    lfs       f2, -0x6BB4(r2)
-	    lis       r3, 0x8050
-	    lfs       f0, -0x6BB0(r2)
-	    addi      r4, r3, 0x71A0
-	    fmuls     f1, f1, f2
-	    fcmpo     cr0, f4, f0
-	    fctiwz    f0, f1
-	    stfd      f0, 0x108(r1)
-	    lwz       r0, 0x10C(r1)
-	    rlwinm    r0,r0,3,18,28
-	    add       r3, r4, r0
-	    lfs       f3, 0x4(r3)
-	    bge-      .loc_0x614
-	    lfs       f0, -0x6BB8(r2)
-	    fmuls     f0, f4, f0
-	    fctiwz    f0, f0
-	    stfd      f0, 0x110(r1)
-	    lwz       r0, 0x114(r1)
-	    rlwinm    r0,r0,3,18,28
-	    lfsx      f0, r4, r0
-	    fneg      f1, f0
-	    b         .loc_0x62C
-
-	.loc_0x614:
-	    fmuls     f0, f4, f2
-	    fctiwz    f0, f0
-	    stfd      f0, 0x118(r1)
-	    lwz       r0, 0x11C(r1)
-	    rlwinm    r0,r0,3,18,28
-	    lfsx      f1, r4, r0
-
-	.loc_0x62C:
-	    lfs       f0, -0x6BB0(r2)
-	    mr        r3, r31
-	    stfs      f1, 0x40(r1)
-	    addi      r4, r1, 0x40
-	    stfs      f0, 0x44(r1)
-	    stfs      f3, 0x48(r1)
-	    bl        0x9AC64
-	    lwz       r3, 0x114(r31)
-	    addi      r4, r1, 0x8
-	    lwz       r3, 0x0(r3)
-	    bl        0x33868
-	    lfs       f0, 0x8(r1)
-	    mr        r3, r31
-	    stfs      f0, 0x220(r31)
-	    lfs       f0, 0xC(r1)
-	    stfs      f0, 0x224(r31)
-	    lfs       f0, 0x10(r1)
-	    stfs      f0, 0x228(r31)
-	    lfs       f0, 0x14(r1)
-	    stfs      f0, 0x22C(r31)
-	    lfs       f0, 0x220(r31)
-	    stfs      f0, 0x270(r31)
-	    lfs       f0, 0x224(r31)
-	    stfs      f0, 0x274(r31)
-	    lfs       f0, 0x228(r31)
-	    stfs      f0, 0x278(r31)
-	    bl        0x37394
-
-	.loc_0x698:
-	    psq_l     f31,0x178(r1),0,0
-	    lfd       f31, 0x170(r1)
-	    psq_l     f30,0x168(r1),0,0
-	    lfd       f30, 0x160(r1)
-	    psq_l     f29,0x158(r1),0,0
-	    lfd       f29, 0x150(r1)
-	    psq_l     f28,0x148(r1),0,0
-	    lfd       f28, 0x140(r1)
-	    psq_l     f27,0x138(r1),0,0
-	    lfd       f27, 0x130(r1)
-	    lwz       r0, 0x184(r1)
-	    lwz       r31, 0x12C(r1)
-	    mtlr      r0
-	    addi      r1, r1, 0x180
-	    blr
-	*/
 }
 
 /*
@@ -2510,9 +2032,9 @@ void EnemyBase::setAnimMgr(SysShape::AnimMgr* mgr) { m_animator->setAnimMgr(mgr)
 void EnemyBase::setPSEnemyBaseAnime()
 {
 	if (isEvent(0, EB_PS1)) {
-		int idx                      = getCurrAnimIndex();
-		SysShape::Animator anim      = m_animator->getAnimator(0);
-		SysShape::AnimInfo* info     = static_cast<SysShape::AnimInfo*>(anim.m_animMgr->m_animInfo.m_child)->getInfoByID(idx);
+		int idx = getCurrAnimIndex();
+		SysShape::AnimInfo* info
+		    = static_cast<SysShape::AnimInfo*>(m_animator->getAnimator(0).m_animMgr->m_animInfo.m_child)->getInfoByID(idx);
 		JAIAnimeFrameSoundData* file = info->m_basFile;
 
 		if (file) {
@@ -2565,9 +2087,9 @@ void EnemyBase::startBlend(int start, int end, SysShape::BlendFunction* blendFun
 	setEvent(0, EB_PS3);
 
 	if (isEvent(0, EB_PS1)) {
-		int idx                      = getCurrAnimIndex();
-		SysShape::Animator anim      = m_animator->getAnimator(0);
-		SysShape::AnimInfo* info     = static_cast<SysShape::AnimInfo*>(anim.m_animMgr->m_animInfo.m_child)->getInfoByID(idx);
+		int idx = getCurrAnimIndex();
+		SysShape::AnimInfo* info
+		    = static_cast<SysShape::AnimInfo*>(m_animator->getAnimator(0).m_animMgr->m_animInfo.m_child)->getInfoByID(idx);
 		JAIAnimeFrameSoundData* file = info->m_basFile;
 
 		if (file) {
@@ -2636,9 +2158,9 @@ void EnemyBase::startMotion(int p1, SysShape::MotionListener* inputListener)
 	setEvent(0, EB_PS1);
 
 	if (isEvent(0, EB_PS1)) {
-		int idx                      = getCurrAnimIndex();
-		SysShape::Animator anim      = m_animator->getAnimator(0);
-		SysShape::AnimInfo* info     = static_cast<SysShape::AnimInfo*>(anim.m_animMgr->m_animInfo.m_child)->getInfoByID(idx);
+		int idx = getCurrAnimIndex();
+		SysShape::AnimInfo* info
+		    = static_cast<SysShape::AnimInfo*>(m_animator->getAnimator(0).m_animMgr->m_animInfo.m_child)->getInfoByID(idx);
 		JAIAnimeFrameSoundData* file = info->m_basFile;
 
 		if (file) {
@@ -2734,8 +2256,6 @@ void EnemyBase::lifeRecover()
 	}
 }
 
-inline float scaledSin(float theta) { return pikmin2_sinf(TAU * theta); }
-
 /*
  * --INFO--
  * Address:	801053C0
@@ -2743,16 +2263,16 @@ inline float scaledSin(float theta) { return pikmin2_sinf(TAU * theta); }
  */
 void EnemyBase::scaleDamageAnim()
 {
-	if ((isEvent(0, EB_Flying)) || (0.0f != m_damageAnimTimer)) {
-		if (0.0f == m_damageAnimTimer) {
+	if (isEvent(0, EB_Flying) || m_damageAnimTimer != 0.0f) {
+		if (m_damageAnimTimer == 0.0f) {
 			if (isEvent(0, EB_Damage)) {
-				m_damageAnimTimer = m_damageAnimTimer + sys->m_deltaTime;
+				m_damageAnimTimer += sys->m_deltaTime;
 			}
 
 		} else {
 			f32 horizontalModifier = 0.0f;
 			f32 scaleDuration      = static_cast<EnemyParmsBase*>(m_parms)->m_general.m_damageScaleDuration.m_value;
-			f32 factor; // must be declared after horizontalModifier
+			f32 factor;
 
 			if (isEvent(0, EB_20)) {
 				factor = 2.5f;
@@ -2773,38 +2293,17 @@ void EnemyBase::scaleDamageAnim()
 				} else {
 					horizontalModifier = 1.0f - getDamageAnimFrac(scaleDuration);
 				}
-				// possible the setting of m_damageAnimRotation is an inline? -Epoch
-				f32 sin1 = scaledSin(horizontalModifier);
-				sin1 *= (TAU / 180.0f) * factor;
-				// sin1 *= (TAU / 180.0f) * sin1; // use this instead of the above line to witness shenanigans
-				m_damageAnimRotation.x = horizontalModifier * sin1; // THIS IS WHERE THE REGSWAP LIVES
-				// proof: change horizontalModifier to factor. line above that one also is pertinent
+				f32 sin1               = scaledSin(horizontalModifier);
+				sin1                   = (FULLDEG2RAD)*factor * sin1;
+				m_damageAnimRotation.x = horizontalModifier * sin1;
 
 				m_damageAnimRotation.y = 0.0f;
 
-				f32 sin2          = scaledSin(2.0f * horizontalModifier); // regswap
+				f32 t             = 2.0f * horizontalModifier * TAU;
+				f32 sin2          = altSin(t);
 				f32 anotherFactor = (TAU / 144.0f) * factor;
-				anotherFactor *= sin2; // reeks of inline
+				anotherFactor *= sin2;
 				m_damageAnimRotation.z = horizontalModifier * anotherFactor;
-
-				// alternative possibility?
-				// m_damageAnimRotation = Vector3f(horizontalModifier * sin1, 0.0f, horizontalModifier * anotherFactor);
-				// end of possible inline
-
-				/*
-				inline Vector3f test(f32 horizontalModifier, f32 factor)
-				{
-				    f32 sin1        = pikmin2_sinf(TAU * horizontalModifier);
-				    f32 otherFactor = (TAU / 180.0f) * factor;
-				    sin1 *= otherFactor;
-
-				    f32 sin2         = pikmin2_sinf(TAU * (2.0f * horizontalModifier));
-				    f32 anotherFactor = (TAU / 144.0f) * factor;
-				    sin2 *= anotherFactor;
-
-				    return Vector3f(horizontalModifier * sin1, 0.0f, horizontalModifier * sin2);
-				}
-				*/
 
 				f32 scaleVal = m_scaleModifier;
 				m_scale.z    = scaleVal;
@@ -2816,8 +2315,9 @@ void EnemyBase::scaleDamageAnim()
 			if (m_damageAnimTimer > scaleDuration) {
 				finishScaleDamageAnim();
 			} else {
-				horizontalModifier
-				    = scaledSin(getDamageAnimFrac(scaleDuration)) * (1.0f - getDamageAnimFrac(scaleDuration)); // swap of fmuls floats
+				f32 s              = scaledSin(getDamageAnimFrac(scaleDuration));
+				f32 t              = (1.0f - getDamageAnimFrac(scaleDuration));
+				horizontalModifier = t * s;
 			}
 
 			if (isEvent(0, EB_15)) {
@@ -2839,258 +2339,6 @@ void EnemyBase::scaleDamageAnim()
 			m_scale.z = m_scaleModifier - xzScale;
 		}
 	}
-	/*
-	.loc_0x0:
-	    stwu      r1, -0x50(r1)
-	    mflr      r0
-	    stw       r0, 0x54(r1)
-	    stfd      f31, 0x40(r1)
-	    psq_st    f31,0x48(r1),0,0
-	    stfd      f30, 0x30(r1)
-	    psq_st    f30,0x38(r1),0,0
-	    stw       r31, 0x2C(r1)
-	    lwz       r4, 0x1E0(r3)
-	    mr        r31, r3
-	    rlwinm.   r0,r4,0,28,28
-	    bne-      .loc_0x40
-	    lfs       f1, -0x6BB0(r2)
-	    lfs       f0, 0x210(r31)
-	    fcmpu     cr0, f1, f0
-	    beq-      .loc_0x318
-
-	.loc_0x40:
-	    lfs       f0, -0x6BB0(r2)
-	    lfs       f1, 0x210(r31)
-	    fcmpu     cr0, f0, f1
-	    bne-      .loc_0x6C
-	    rlwinm.   r0,r4,0,30,30
-	    beq-      .loc_0x318
-	    lwz       r3, -0x6514(r13)
-	    lfs       f0, 0x54(r3)
-	    fadds     f0, f1, f0
-	    stfs      f0, 0x210(r31)
-	    b         .loc_0x318
-
-	.loc_0x6C:
-	    lwz       r3, 0xC0(r31)
-	    rlwinm.   r0,r4,0,12,12
-	    fmr       f31, f0
-	    lfs       f3, 0x294(r3)
-	    beq-      .loc_0x88
-	    lfs       f30, -0x6B5C(r2)
-	    b         .loc_0x8C
-
-	.loc_0x88:
-	    lfs       f30, -0x6B9C(r2)
-
-	.loc_0x8C:
-	    rlwinm.   r0,r4,0,17,17
-	    beq-      .loc_0xB0
-	    lwz       r3, -0x6514(r13)
-	    lfs       f2, -0x6B4C(r2)
-	    lfs       f1, 0x54(r3)
-	    lfs       f0, 0x210(r31)
-	    fmadds    f0, f2, f1, f0
-	    stfs      f0, 0x210(r31)
-	    b         .loc_0xC4
-
-	.loc_0xB0:
-	    lwz       r3, -0x6514(r13)
-	    lfs       f1, 0x210(r31)
-	    lfs       f0, 0x54(r3)
-	    fadds     f0, f1, f0
-	    stfs      f0, 0x210(r31)
-
-	.loc_0xC4:
-	    lwz       r0, 0x1E0(r31)
-	    rlwinm.   r0,r0,0,22,22
-	    beq-      .loc_0x204
-	    lfs       f0, 0x210(r31)
-	    fcmpo     cr0, f0, f3
-	    ble-      .loc_0xE8
-	    mr        r3, r31
-	    bl        .loc_0x33C
-	    b         .loc_0xF4
-
-	.loc_0xE8:
-	    fdivs     f0, f0, f3
-	    lfs       f1, -0x6B9C(r2)
-	    fsubs     f31, f1, f0
-
-	.loc_0xF4:
-	    lfs       f1, -0x6BC0(r2)
-	    lfs       f0, -0x6BB0(r2)
-	    fmuls     f1, f1, f31
-	    fcmpo     cr0, f1, f0
-	    bge-      .loc_0x134
-	    lfs       f0, -0x6BB8(r2)
-	    lis       r3, 0x8050
-	    addi      r3, r3, 0x71A0
-	    fmuls     f0, f1, f0
-	    fctiwz    f0, f0
-	    stfd      f0, 0x8(r1)
-	    lwz       r0, 0xC(r1)
-	    rlwinm    r0,r0,3,18,28
-	    lfsx      f0, r3, r0
-	    fneg      f4, f0
-	    b         .loc_0x158
-
-	.loc_0x134:
-	    lfs       f0, -0x6BB4(r2)
-	    lis       r3, 0x8050
-	    addi      r3, r3, 0x71A0
-	    fmuls     f0, f1, f0
-	    fctiwz    f0, f0
-	    stfd      f0, 0x10(r1)
-	    lwz       r0, 0x14(r1)
-	    rlwinm    r0,r0,3,18,28
-	    lfsx      f4, r3, r0
-
-	.loc_0x158:
-	    lfs       f1, -0x6B30(r2)
-	    lfs       f0, -0x6BA0(r2)
-	    fmuls     f3, f1, f30
-	    lfs       f1, -0x6BC0(r2)
-	    fmuls     f0, f0, f31
-	    lfs       f2, -0x6BB0(r2)
-	    fmuls     f3, f3, f4
-	    fmuls     f1, f1, f0
-	    fmuls     f0, f31, f3
-	    fcmpo     cr0, f1, f2
-	    stfs      f0, 0x1B0(r31)
-	    stfs      f2, 0x1B4(r31)
-	    bge-      .loc_0x1B8
-	    lfs       f0, -0x6BB8(r2)
-	    lis       r3, 0x8050
-	    addi      r3, r3, 0x71A0
-	    fmuls     f0, f1, f0
-	    fctiwz    f0, f0
-	    stfd      f0, 0x18(r1)
-	    lwz       r0, 0x1C(r1)
-	    rlwinm    r0,r0,3,18,28
-	    lfsx      f0, r3, r0
-	    fneg      f1, f0
-	    b         .loc_0x1DC
-
-	.loc_0x1B8:
-	    lfs       f0, -0x6BB4(r2)
-	    lis       r3, 0x8050
-	    addi      r3, r3, 0x71A0
-	    fmuls     f0, f1, f0
-	    fctiwz    f0, f0
-	    stfd      f0, 0x20(r1)
-	    lwz       r0, 0x24(r1)
-	    rlwinm    r0,r0,3,18,28
-	    lfsx      f1, r3, r0
-
-	.loc_0x1DC:
-	    lfs       f0, -0x6B2C(r2)
-	    fmuls     f0, f0, f30
-	    fmuls     f0, f0, f1
-	    fmuls     f0, f31, f0
-	    stfs      f0, 0x1B8(r31)
-	    lfs       f0, 0x1F8(r31)
-	    stfs      f0, 0x170(r31)
-	    stfs      f0, 0x16C(r31)
-	    stfs      f0, 0x168(r31)
-	    b         .loc_0x318
-
-	.loc_0x204:
-	    lfs       f0, 0x210(r31)
-	    fcmpo     cr0, f0, f3
-	    ble-      .loc_0x21C
-	    mr        r3, r31
-	    bl        .loc_0x33C
-	    b         .loc_0x290
-
-	.loc_0x21C:
-	    fdivs     f2, f0, f3
-	    lfs       f1, -0x6BC0(r2)
-	    lfs       f0, -0x6BB0(r2)
-	    fmuls     f1, f1, f2
-	    fcmpo     cr0, f1, f0
-	    bge-      .loc_0x260
-	    lfs       f0, -0x6BB8(r2)
-	    lis       r3, 0x8050
-	    addi      r3, r3, 0x71A0
-	    fmuls     f0, f1, f0
-	    fctiwz    f0, f0
-	    stfd      f0, 0x20(r1)
-	    lwz       r0, 0x24(r1)
-	    rlwinm    r0,r0,3,18,28
-	    lfsx      f0, r3, r0
-	    fneg      f1, f0
-	    b         .loc_0x284
-
-	.loc_0x260:
-	    lfs       f0, -0x6BB4(r2)
-	    lis       r3, 0x8050
-	    addi      r3, r3, 0x71A0
-	    fmuls     f0, f1, f0
-	    fctiwz    f0, f0
-	    stfd      f0, 0x18(r1)
-	    lwz       r0, 0x1C(r1)
-	    rlwinm    r0,r0,3,18,28
-	    lfsx      f1, r3, r0
-
-	.loc_0x284:
-	    lfs       f0, -0x6B9C(r2)
-	    fsubs     f0, f0, f2
-	    fmuls     f31, f0, f1
-
-	.loc_0x290:
-	    lwz       r4, 0x1E0(r31)
-	    rlwinm.   r0,r4,0,17,17
-	    beq-      .loc_0x2A4
-	    lfs       f0, -0x6BA0(r2)
-	    fmuls     f31, f31, f0
-
-	.loc_0x2A4:
-	    lwz       r3, 0xC0(r31)
-	    rlwinm.   r0,r4,0,12,12
-	    lfs       f0, 0x244(r3)
-	    fmuls     f0, f30, f0
-	    fmuls     f2, f31, f0
-	    beq-      .loc_0x2EC
-	    lfs       f0, 0x1F8(r31)
-	    fadds     f0, f0, f2
-	    stfs      f0, 0x168(r31)
-	    lwz       r3, 0xC0(r31)
-	    lfs       f0, 0x1F8(r31)
-	    lfs       f1, 0x26C(r3)
-	    fnmsubs   f0, f31, f1, f0
-	    stfs      f0, 0x16C(r31)
-	    lfs       f0, 0x1F8(r31)
-	    fadds     f0, f0, f2
-	    stfs      f0, 0x170(r31)
-	    b         .loc_0x318
-
-	.loc_0x2EC:
-	    lfs       f0, 0x1F8(r31)
-	    fsubs     f0, f0, f2
-	    stfs      f0, 0x168(r31)
-	    lwz       r3, 0xC0(r31)
-	    lfs       f0, 0x1F8(r31)
-	    lfs       f1, 0x26C(r3)
-	    fmadds    f0, f31, f1, f0
-	    stfs      f0, 0x16C(r31)
-	    lfs       f0, 0x1F8(r31)
-	    fsubs     f0, f0, f2
-	    stfs      f0, 0x170(r31)
-
-	.loc_0x318:
-	    psq_l     f31,0x48(r1),0,0
-	    lfd       f31, 0x40(r1)
-	    psq_l     f30,0x38(r1),0,0
-	    lfd       f30, 0x30(r1)
-	    lwz       r0, 0x54(r1)
-	    lwz       r31, 0x2C(r1)
-	    mtlr      r0
-	    addi      r1, r1, 0x50
-	    blr
-
-	.loc_0x33C:
-	*/
 }
 
 /*
@@ -3762,8 +3010,7 @@ f32 EnemyBase::getMotionFrameMax() { return m_animator->getAnimator().m_animInfo
  */
 f32 EnemyBase::getFirstKeyFrame()
 {
-	SysShape::Animator animator = m_animator->getAnimator();
-	CNode* node                 = animator.m_animInfo->m_keyEvent.m_child;
+	CNode* node = m_animator->getAnimator().m_animInfo->m_keyEvent.m_child;
 	if (node) {
 		return (s32) static_cast<SysShape::KeyEvent*>(node)->m_frame;
 	}
@@ -3803,9 +3050,9 @@ bool EnemyBase::isStopMotion() { return m_animator->m_flags.typeView & 1; }
  */
 int EnemyBase::getCurrAnimIndex()
 {
-	SysShape::Animator animator = m_animator->getAnimator();
-	if (animator.m_animInfo) {
-		return animator.m_animInfo->m_id;
+	SysShape::AnimInfo* animInfo = m_animator->getAnimator().m_animInfo;
+	if (animInfo) {
+		return animInfo->m_id;
 	}
 	return -1;
 }

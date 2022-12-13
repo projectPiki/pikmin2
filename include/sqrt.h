@@ -8,7 +8,7 @@
 		*output = __frsqrte_v;                   \
 	}
 
-inline f32 sqrtf(f32 __sqrtf_g)
+inline f32 sqrtf(f32& __sqrtf_g)
 {
 	if ((__sqrtf_g > 0.0f)) {
 		f32 __sqrtf_h;

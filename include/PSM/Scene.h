@@ -5,7 +5,6 @@
 #include "PSGame/PikScene.h"
 #include "PSGame/CameraMgr.h"
 #include "PSM/ObjBase.h"
-#include "PSM/ObjMgr.h"
 #include "PSM/EnemyBoss.h"
 #include "PSM/BossBgmFader.h"
 #include "PSM/PikiHumming.h"
@@ -15,6 +14,7 @@
 
 namespace PSM {
 struct Scene_Game;
+struct ObjMgr;
 
 /**
  * @size{0x28}

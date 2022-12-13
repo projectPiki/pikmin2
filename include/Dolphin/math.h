@@ -32,7 +32,8 @@ extern "C" {
 
 #define SIN_2_5 0.43633234f
 
-#define DEG2RAD (1.0f / 180.0f)
+#define DEG2RAD     (1.0f / 180.0f)
+#define FULLDEG2RAD (0.03490659f)
 
 double cos(double);
 float cosf(float);
