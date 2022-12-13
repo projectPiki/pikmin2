@@ -29,7 +29,7 @@ struct JAIAnimeFrameSoundData;
 struct JAIAnimeSound : public JAInter::Object {
 	JAIAnimeSound(Vec*, JKRHeap*, unsigned char);
 
-	virtual ~JAIAnimeSound() { }                                                 // _08 (weak)
+	// virtual ~JAIAnimeSound() { }                                                 // _08 (weak)
 	virtual void handleStop(u8, u32);                                            // _34
 	virtual void playActorAnimSound(JAInter::Actor*, float, u8);                 // _3C
 	virtual void startAnimSound(u32, JAISound**, JAInter::Actor*, u8);           // _40

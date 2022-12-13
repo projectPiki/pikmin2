@@ -2968,15 +2968,16 @@ PSM::EnemyBase* EnemyBase::createPSEnemyBase()
 			base = new PSM::EnemyBig(this, 4);
 			break;
 		case BDT_Triple:
+		case BDT_MiniBoss:
 			JUT_PANICLINE(4392, "abolished type\n");
 			break;
-		case BDT_Empty:
+		case BDT_Boss:
 			base = new PSM::EnemyMidBoss(this);
 			break;
-		case BDT_Boss:
+		case BDT_FinalBoss:
 			base = new PSM::EnemyBigBoss(this);
 			break;
-		case BDT_FinalBoss:
+		case BDT_Empty:
 			base = new PSM::EnemyNotAggressive(this, 2);
 			break;
 		}

@@ -425,7 +425,7 @@ DOLPHIN:=\
 	$(BUILD_DIR)/asm/Dolphin/GBAXfer.o
 
 YAMASHITA:=\
-	$(BUILD_DIR)/asm/plugProjectYamashitaU/enemyBase.o\
+	$(BUILD_DIR)/src/plugProjectYamashitaU/enemyBase.o\
 	$(BUILD_DIR)/src/plugProjectYamashitaU/pelplant.o\
 	$(BUILD_DIR)/src/plugProjectYamashitaU/pelplantState.o\
 	$(BUILD_DIR)/src/plugProjectYamashitaU/enemyInteractBattle.o\
