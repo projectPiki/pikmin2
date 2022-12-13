@@ -13,10 +13,10 @@ struct ArrowAlphaBlink {
 	void setSpeed(float);
 	float calc();
 
-	float _00;     // _00
-	float m_speed; // _04
-	float _08;     // _08
-	float _0C;     // _0C
+	float m_timer;     // _00
+	float m_speed;     // _04
+	float m_magnitude; // _08
+	float _0C;         // _0C
 };
 } // namespace Screen
 } // namespace og

@@ -3,6 +3,7 @@
 
 #include "types.h"
 #include "sqrt.h"
+#include "JSystem/JGeometry.h"
 
 template <typename T>
 struct Vector2 {
@@ -18,6 +19,8 @@ struct Vector2 {
 		x = val;
 		y = val;
 	}
+
+	operator JGeometry::TVec2f() { return JGeometry::TVec2f(x, y); }
 
 	T x, y;
 };

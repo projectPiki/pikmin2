@@ -165,7 +165,7 @@ void ObjChallenge2P::ScreenSet::update(og::Screen::DataNavi& data)
 		m_paneToyo00->updateScale(scale2);
 
 	og::Screen::DopingCheck* dope = m_doping;
-	dope->m_naviLife              = data.m_naviLifeRatio;
+	dope->m_naviLifeRatio         = data.m_naviLifeRatio;
 	dope->m_followPiki            = data.m_followPikis;
 	dope->m_nextThrowPiki         = data.m_nextThrowPiki;
 	dope->m_sprays1               = data.m_dope1Count;

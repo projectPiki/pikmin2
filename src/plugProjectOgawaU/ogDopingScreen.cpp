@@ -90,7 +90,7 @@ void DopingScreen::setCallBack(JKRArchive* arc)
 void DopingScreen::setParam(DataNavi& data)
 {
 	DopingCheck* check     = m_dopingCheck;
-	check->m_naviLife      = data.m_naviLifeRatio;
+	check->m_naviLifeRatio = data.m_naviLifeRatio;
 	check->m_followPiki    = data.m_followPikis;
 	check->m_nextThrowPiki = data.m_nextThrowPiki;
 	check->m_sprays1       = data.m_dope1Count;
@@ -237,7 +237,7 @@ void DopingScreen::openDopingKey() { m_gottenJujiKey = true; }
  */
 DopingCheck::DopingCheck()
 {
-	m_naviLife      = 1.0f;
+	m_naviLifeRatio = 1.0f;
 	m_followPiki    = 1;
 	m_nextThrowPiki = 2;
 	m_sprays1       = 10;

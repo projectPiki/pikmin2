@@ -38,13 +38,15 @@ void ArrowAlphaBlink::setSpeed(float speed) { m_speed = speed; }
  */
 float ArrowAlphaBlink::calc()
 {
-	_00 += 30.0f * (m_speed * sys->m_deltaTime);
-	if (_00 > TAU) {
-		_00 = _00 - TAU;
+	m_timer += 30.0f * (m_speed * sys->m_deltaTime);
+	if (m_timer > TAU) {
+		m_timer = m_timer - TAU;
 	}
-	float factor = _08 * (1.0f + pikmin2_sinf(_00));
-	float result = (factor / 2) + _0C;
-	return result;
+
+	// Place the sine wave in a range of 0 - 2 * blinkMag (sin returns between -1 and 1)
+	float factor = m_magnitude * (1.0f + pikmin2_sinf(m_timer));
+
+	return (factor / 2) + _0C;
 }
 
 /*
@@ -148,10 +150,9 @@ void blendPictureTreeColor(PictureTreeColorCaptureInfo* captureInfo, JUtility::T
  * Address:	8030269C
  * Size:	0000C8
  */
-float calcSmooth0to1(float p1, float p2)
+float calcSmooth0to1(float start, float end)
 {
-	float ratio = p1 / p2;
-
+	float ratio = start / end;
 	if (ratio < 0.0f) {
 		ratio = 0.0f;
 	}
@@ -160,14 +161,12 @@ float calcSmooth0to1(float p1, float p2)
 	}
 
 	float limit = 0.8f;
-
 	if (ratio < limit) {
 		return ratio;
 	}
 
 	float theta = ((1.0 / (1.0 - (double)limit)) * (double)(HALF_PI * (ratio - limit)));
-	float sin   = pikmin2_sinf(theta);
-	return (0.19999999f * sin) + 0.8f;
+	return (0.19999999f * pikmin2_sinf(theta)) + 0.8f;
 }
 
 /*
@@ -191,9 +190,9 @@ void calcGlbCenter(J2DPane* pane, Vector2f* center)
 u64 maskTag2(u64 tag, u16 num)
 {
 	JUT_ASSERTLINE(450, num <= 0x63, "num is overflow!\n");
-	char name[0xC];           // between 0x9 and 0xC inclusive
-	char bottomHex[0x18];     // between 0x11 and 0x18 inclusive
-	char complementHex[0x14]; // between 0x11 and 0x14 inclusive
+	char name[0xC];
+	char bottomHex[0x18];
+	char complementHex[0x14];
 
 	u32 decimalMask = '00' + num % 10 + (((num / 10) % 10) * 0x100);
 	u64 complement  = (tag & 0xFFFFFFFFFFFF0000);
@@ -396,14 +395,14 @@ void AlphaMgr::setBlinkArea(f32 min, f32 max)
  * Address:	8030306C
  * Size:	000064
  */
-void AlphaMgr::in(f32 p1)
+void AlphaMgr::in(f32 end)
 {
-	if (1.0f == m_currAlpha) {
+	if (m_currAlpha == 1.0f) {
 		m_state = ALPHAMGR_Disabled;
 		return;
 	}
 
-	if (0.0f == p1) {
+	if (end == 0.0f) {
 		m_state     = ALPHAMGR_Disabled;
 		m_currAlpha = 1.0f;
 		return;
@@ -411,7 +410,7 @@ void AlphaMgr::in(f32 p1)
 
 	m_currAlpha = 0.0f;
 	m_state     = ALPHAMGR_Fadein;
-	m_growRate  = (1.0f - m_currAlpha) / (p1 / sys->m_deltaTime);
+	m_growRate  = (1.0f - m_currAlpha) / (end / sys->m_deltaTime);
 }
 
 /*
@@ -419,23 +418,23 @@ void AlphaMgr::in(f32 p1)
  * Address:	803030D0
  * Size:	000064
  */
-void AlphaMgr::out(float p1)
+void AlphaMgr::out(float end)
 {
 	m_currAlpha = 1.0f;
 
-	if (0.0f == m_currAlpha) {
+	if (m_currAlpha == 0.0f) {
 		m_state = ALPHAMGR_Disabled;
 		return;
 	}
 
-	if (0.0f == p1) {
+	if (end == 0.0f) {
 		m_state     = ALPHAMGR_Disabled;
 		m_currAlpha = 0.0f;
 		return;
 	}
 
 	m_state    = ALPHAMGR_Fadeout;
-	m_growRate = -m_currAlpha / (p1 / sys->m_deltaTime);
+	m_growRate = -m_currAlpha / (end / sys->m_deltaTime);
 }
 
 /*
@@ -443,16 +442,16 @@ void AlphaMgr::out(float p1)
  * Address:	80303134
  * Size:	000050
  */
-void AlphaMgr::blink(float p1)
+void AlphaMgr::blink(float end)
 {
 	if ((m_state == ALPHAMGR_Disabled) || (m_state == ALPHAMGR_Blinking)) {
 		m_state         = ALPHAMGR_Blinking;
 		float frametime = sys->m_deltaTime;
 		if (m_growRate > 0.0f) {
-			m_growRate = frametime / p1;
+			m_growRate = frametime / end;
 			return;
 		}
-		m_growRate = -(frametime / p1);
+		m_growRate = -(frametime / end);
 	}
 }
 
