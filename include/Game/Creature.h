@@ -56,10 +56,10 @@ struct ShadowParam;
 struct WaterBox;
 
 struct LifeGaugeParam {
-	Vector3f m_position;      // _00
-	float m_healthPercentage; // _0C
-	float _10;                // _10
-	bool _14;                 // _14
+	Vector3f m_position;    // _00
+	f32 m_healthPercentage; // _0C
+	f32 _10;                // _10
+	bool _14;               // _14
 };
 
 enum CreatureFlags {
@@ -120,13 +120,13 @@ struct Creature : public CellObject {
 	virtual void doEntry();                                           // _40
 	virtual void doSetView(int viewportNumber);                       // _44
 	virtual void doViewCalc();                                        // _48
-	virtual void doSimulation(float rate) { }                         // _4C (weak)
+	virtual void doSimulation(f32 rate) { }                           // _4C (weak)
 	virtual void doDirectDraw(Graphics& gfx) { }                      // _50 (weak)
-	virtual float getBodyRadius();                                    // _54
-	virtual float getCellRadius();                                    // _58
+	virtual f32 getBodyRadius();                                      // _54
+	virtual f32 getCellRadius();                                      // _58
 	virtual void initPosition(Vector3f& dest);                        // _5C
 	virtual void onInitPosition(Vector3f& dest) { }                   // _60 (weak)
-	virtual float getFaceDir()                 = 0;                   // _64
+	virtual f32 getFaceDir()                   = 0;                   // _64
 	virtual void setVelocity(Vector3f& vel)    = 0;                   // _68
 	virtual Vector3f getVelocity()             = 0;                   // _6C
 	virtual void onSetPosition(Vector3f& dest) = 0;                   // _70
@@ -217,15 +217,15 @@ struct Creature : public CellObject {
 	virtual AILOD* getSound_AILOD() { return &m_lod; }            // _FC (weak)
 	virtual Vector3f* getSound_PosPtr() { return nullptr; }       // _100 (weak)
 	virtual bool sound_culling();                                 // _104
-	virtual float getSound_CurrAnimFrame() { return 0.0f; }       // _108 (weak)
-	virtual float getSound_CurrAnimSpeed() { return 0.0f; }       // _10C (weak)
+	virtual f32 getSound_CurrAnimFrame() { return 0.0f; }         // _108 (weak)
+	virtual f32 getSound_CurrAnimSpeed() { return 0.0f; }         // _10C (weak)
 	virtual void on_movie_begin(bool) { }                         // _110 (weak)
 	virtual void on_movie_end(bool) { }                           // _114 (weak)
 	virtual void movieStartAnimation(u32) { }                     // _118 (weak)
 	virtual void movieStartDemoAnimation(SysShape::AnimInfo*) { } // _11C (weak)
 	virtual void movieSetAnimationLastFrame() { }                 // _120 (weak)
-	virtual void movieSetTranslation(Vector3f&, float) { }        // _124 (weak)
-	virtual void movieSetFaceDir(float) { }                       // _128 (weak)
+	virtual void movieSetTranslation(Vector3f&, f32) { }          // _124 (weak)
+	virtual void movieSetFaceDir(f32) { }                         // _128 (weak)
 	virtual bool movieGotoPosition(Vector3f&) { return true; }    // _12C (weak)
 	virtual void movieUserCommand(u32, MoviePlayer*) { }          // _130 (weak)
 	virtual void getShadowParam(ShadowParam& settings);           // _134
@@ -235,24 +235,24 @@ struct Creature : public CellObject {
 	{
 		return getBoundingSphere(sphere);
 	}
-	virtual void getLODCylinder(Sys::Cylinder&) { }              // _144 (weak)
-	virtual void startPick() { }                                 // _148 (weak)
-	virtual void endPick(bool) { }                               // _14C (weak)
-	virtual u32* getMabiki() { return nullptr; }                 // _150 (weak) - maybe shouldn't be u32*
-	virtual Footmarks* getFootmarks() { return nullptr; }        // _154 (weak)
-	virtual void onStickStart(Creature*) { }                     // _158 (weak)
-	virtual void onStickEnd(Creature*) { }                       // _15C (weak)
-	virtual void onStickStartSelf(Creature*) { }                 // _160 (weak)
-	virtual void onStickEndSelf(Creature*) { }                   // _164 (weak)
-	virtual bool isSlotFree(short) { return false; }             // _168 (weak)
-	virtual short getFreeStickSlot() { return -1; }              // _16C (weak)
-	virtual short getNearFreeStickSlot(Vector3f&) { return -1; } // _170 (weak)
-	virtual short getRandomFreeStickSlot() { return -1; }        // _174 (weak)
-	virtual void onSlotStickStart(Creature*, short) { }          // _178 (weak)
-	virtual void onSlotStickEnd(Creature*, short) { }            // _17C (weak)
-	virtual void calcStickSlotGlobal(short, Vector3f&) { }       // _180 (weak)
-	virtual void getVelocityAt(Vector3f&, Vector3f&) = 0;        // _184
-	virtual float getAngularEffect(Vector3f&, Vector3f&)         // _188 (weak)
+	virtual void getLODCylinder(Sys::Cylinder&) { }            // _144 (weak)
+	virtual void startPick() { }                               // _148 (weak)
+	virtual void endPick(bool) { }                             // _14C (weak)
+	virtual u32* getMabiki() { return nullptr; }               // _150 (weak) - maybe shouldn't be u32*
+	virtual Footmarks* getFootmarks() { return nullptr; }      // _154 (weak)
+	virtual void onStickStart(Creature*) { }                   // _158 (weak)
+	virtual void onStickEnd(Creature*) { }                     // _15C (weak)
+	virtual void onStickStartSelf(Creature*) { }               // _160 (weak)
+	virtual void onStickEndSelf(Creature*) { }                 // _164 (weak)
+	virtual bool isSlotFree(s16) { return false; }             // _168 (weak)
+	virtual s16 getFreeStickSlot() { return -1; }              // _16C (weak)
+	virtual s16 getNearFreeStickSlot(Vector3f&) { return -1; } // _170 (weak)
+	virtual s16 getRandomFreeStickSlot() { return -1; }        // _174 (weak)
+	virtual void onSlotStickStart(Creature*, s16) { }          // _178 (weak)
+	virtual void onSlotStickEnd(Creature*, s16) { }            // _17C (weak)
+	virtual void calcStickSlotGlobal(s16, Vector3f&) { }       // _180 (weak)
+	virtual void getVelocityAt(Vector3f&, Vector3f&) = 0;      // _184
+	virtual f32 getAngularEffect(Vector3f&, Vector3f&)         // _188 (weak)
 	{
 		return 0.0f;
 	}
@@ -295,8 +295,8 @@ struct Creature : public CellObject {
 		return false;
 	}
 
-	void applyAirDrag(float, float, float);
-	float calcSphereDistance(Creature*);
+	void applyAirDrag(f32, f32, f32);
+	f32 calcSphereDistance(Creature*);
 	int checkHell(Creature::CheckHellArg&);
 	WaterBox* checkWater(WaterBox*, Sys::Sphere&);
 	void clearCapture();
@@ -310,16 +310,16 @@ struct Creature : public CellObject {
 	bool isStickTo();
 	bool isStickToMouth();
 	void kill(CreatureKillArg*);
-	void load(Stream&, unsigned char);
+	void load(Stream&, u8);
 	void movie_begin(bool);
 	void movie_end(bool);
 	void releaseAllStickers();
 	void resolveOneColl(CollPart*, CollPart*, Vector3f&);
-	void save(Stream&, unsigned char);
+	void save(Stream&, u8);
 	void setPosition(Vector3f&, bool);
 	void startCapture(Matrixf*);
 	void startStick(Creature*, CollPart*);
-	void startStick(Creature*, short);
+	void startStick(Creature*, s16);
 	void startStickMouth(Creature*, CollPart*);
 	void updateCapture(Matrixf&);
 	void updateCell();
@@ -344,10 +344,10 @@ struct Creature : public CellObject {
 	Creature* m_captured;          // _0FC
 	Creature* m_capture;           // _100
 	Vector3f _104;                 // _104
-	short m_hasStick;              // _110
+	s16 m_hasStick;                // _110
 	CollTree* m_collTree;          // _114
-	float m_mass;                  // _118
-	Vector3f m_triangleNormal;     // _11C
+	f32 m_mass;                    // _118
+	Vector3f m_acceleration;       // _11C
 	u16 m_objectTypeID;            // _128
 	UpdateContext m_updateContext; // _12C
 	Matrixf m_mainMatrix;          // _138

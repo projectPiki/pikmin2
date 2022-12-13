@@ -700,12 +700,13 @@ void GeneralEnemyMgr::resetEnemyNum()
 void GeneralEnemyMgr::addEnemyNum(int enemyID, u8 max, GenObjectEnemy* genObj)
 {
 	if (enemyID != -1) {
-
-		u8 mem = max * EnemyInfoFunc::getEnemyMember(enemyID, 0xFFFF);
-		if (m_enemyNumList) {
-			for (int i = 0; i < gEnemyInfoNum; i++) {
-				if (enemyID == m_enemyNumList[i].m_enemyID) {
-					m_enemyNumList[i].m_count += mem;
+		int i;
+		u8 mem                    = max * EnemyInfoFunc::getEnemyMember(enemyID, 0xFFFF);
+		EnemyTypeID* enemyNumList = m_enemyNumList;
+		if (enemyNumList) {
+			for (i = 0; i < gEnemyInfoNum; i++) {
+				if (enemyID == enemyNumList[i].m_enemyID) {
+					enemyNumList[i].m_count += mem;
 					break;
 				}
 			}
@@ -719,7 +720,7 @@ void GeneralEnemyMgr::addEnemyNum(int enemyID, u8 max, GenObjectEnemy* genObj)
 			case EnemyTypeID::EnemyID_Magaret:
 				if (genObj) {
 					EnemyPelletInfo pelletInfo;
-					pelletInfo = genObj->m_pelletInfo; // need an override on equals operator maybe?
+					pelletInfo = genObj->m_pelletInfo;
 
 					if (pelletInfo.m_color == 0 && pelletInfo.m_size == 1) {
 						EnemyInfo* info = EnemyInfoFunc::getEnemyInfo(enemyID, 0xFFFF);
@@ -748,171 +749,6 @@ void GeneralEnemyMgr::addEnemyNum(int enemyID, u8 max, GenObjectEnemy* genObj)
 			}
 		}
 	}
-	/*
-	stwu     r1, -0x30(r1)
-	mflr     r0
-	stw      r0, 0x34(r1)
-	stmw     r27, 0x1c(r1)
-	mr       r28, r4
-	cmpwi    r28, -1
-	mr       r27, r3
-	mr       r30, r5
-	mr       r29, r6
-	beq      lbl_8010DA6C
-	lis      r4, 0x0000FFFF@ha
-	mr       r3, r28
-	addi     r4, r4, 0x0000FFFF@l
-	bl       getEnemyMember__Q24Game13EnemyInfoFuncFii
-	clrlwi   r31, r30, 0x18
-	lwz      r6, 0x48(r27)
-	mullw    r0, r31, r3
-	cmplwi   r6, 0
-	clrlwi   r5, r0, 0x18
-	beq      lbl_8010D8EC
-	lwz      r0, gEnemyInfoNum__4Game@sda21(r13)
-	mr       r3, r6
-	li       r4, 0
-	mtctr    r0
-	cmpwi    r0, 0
-	ble      lbl_8010D8EC
-
-lbl_8010D8BC:
-	lwz      r0, 0(r3)
-	cmpw     r28, r0
-	bne      lbl_8010D8E0
-	slwi     r0, r4, 3
-	add      r3, r6, r0
-	lbz      r0, 4(r3)
-	add      r0, r0, r5
-	stb      r0, 4(r3)
-	b        lbl_8010D8EC
-
-lbl_8010D8E0:
-	addi     r3, r3, 8
-	addi     r4, r4, 1
-	bdnz     lbl_8010D8BC
-
-lbl_8010D8EC:
-	li       r30, 0
-	b        lbl_8010DA64
-
-lbl_8010D8F4:
-	cmpwi    r28, 0x32
-	beq      lbl_8010D918
-	bge      lbl_8010D90C
-	cmpwi    r28, 0x2e
-	beq      lbl_8010D918
-	b        lbl_8010D990
-
-lbl_8010D90C:
-	cmpwi    r28, 0x57
-	beq      lbl_8010D918
-	b        lbl_8010D990
-
-lbl_8010D918:
-	cmplwi   r29, 0
-	beq      lbl_8010DA60
-	addi     r3, r1, 8
-	bl       __ct__Q24Game15EnemyPelletInfoFv
-	lbz      r0, 0x3c(r29)
-	lbz      r3, 0x3d(r29)
-	lbz      r4, 0x3e(r29)
-	cmplwi   r0, 0
-	lbz      r5, 0x3f(r29)
-	lfs      f0, 0x40(r29)
-	stb      r0, 8(r1)
-	stb      r3, 9(r1)
-	stb      r4, 0xa(r1)
-	stb      r5, 0xb(r1)
-	stfs     f0, 0xc(r1)
-	bne      lbl_8010DA60
-	cmplwi   r3, 1
-	bne      lbl_8010DA60
-	lis      r4, 0x0000FFFF@ha
-	mr       r3, r28
-	addi     r4, r4, 0x0000FFFF@l
-	bl       getEnemyInfo__Q24Game13EnemyInfoFuncFii
-	mr       r4, r3
-	mr       r3, r27
-	lwz      r0, 0x2c(r4)
-	li       r6, 0
-	lwz      r4, 0x28(r4)
-	clrlwi   r5, r0, 0x18
-	bl       addEnemyNum__Q24Game15GeneralEnemyMgrFiUcPQ24Game14GenObjectEnemy
-	b        lbl_8010DA60
-
-lbl_8010D990:
-	lis      r4, 0x0000FFFF@ha
-	mr       r3, r28
-	addi     r4, r4, 0x0000FFFF@l
-	bl       getEnemyInfo__Q24Game13EnemyInfoFuncFii
-	mr       r4, r3
-	mr       r3, r27
-	lwz      r0, 0x2c(r4)
-	li       r6, 0
-	lwz      r4, 0x28(r4)
-	clrlwi   r5, r0, 0x18
-	bl       addEnemyNum__Q24Game15GeneralEnemyMgrFiUcPQ24Game14GenObjectEnemy
-	cmpwi    r28, 0x5e
-	bne      lbl_8010DA28
-	mr       r3, r27
-	li       r4, 0x25
-	li       r5, 1
-	bl       getEnemyNum__Q24Game15GeneralEnemyMgrFib
-	clrlwi   r0, r3, 0x18
-	cmplwi   r0, 0xa
-	bge      lbl_8010D9F4
-	mr       r3, r27
-	li       r4, 0x25
-	li       r5, 0xa
-	li       r6, 0
-	bl       addEnemyNum__Q24Game15GeneralEnemyMgrFiUcPQ24Game14GenObjectEnemy
-
-lbl_8010D9F4:
-	mr       r3, r27
-	li       r4, 0x13
-	li       r5, 1
-	bl       getEnemyNum__Q24Game15GeneralEnemyMgrFib
-	clrlwi   r0, r3, 0x18
-	cmplwi   r0, 0x1e
-	bge      lbl_8010DA60
-	mr       r3, r27
-	li       r4, 0x13
-	li       r5, 0x1e
-	li       r6, 0
-	bl       addEnemyNum__Q24Game15GeneralEnemyMgrFiUcPQ24Game14GenObjectEnemy
-	b        lbl_8010DA60
-
-lbl_8010DA28:
-	cmpwi    r28, 0x1e
-	bne      lbl_8010DA60
-	mr       r3, r27
-	li       r4, 0x13
-	li       r5, 1
-	bl       getEnemyNum__Q24Game15GeneralEnemyMgrFib
-	clrlwi   r0, r3, 0x18
-	cmplwi   r0, 0xa
-	bge      lbl_8010DA60
-	mr       r3, r27
-	li       r4, 0x13
-	li       r5, 0xa
-	li       r6, 0
-	bl       addEnemyNum__Q24Game15GeneralEnemyMgrFiUcPQ24Game14GenObjectEnemy
-
-lbl_8010DA60:
-	addi     r30, r30, 1
-
-lbl_8010DA64:
-	cmpw     r30, r31
-	blt      lbl_8010D8F4
-
-lbl_8010DA6C:
-	lmw      r27, 0x1c(r1)
-	lwz      r0, 0x34(r1)
-	mtlr     r0
-	addi     r1, r1, 0x30
-	blr
-	*/
 }
 
 /*

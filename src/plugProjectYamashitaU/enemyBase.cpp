@@ -1891,9 +1891,9 @@ void EnemyBase::collisionMapAndPlat(f32 accelRate)
 
 		f32 z = checkSecondary() ? 0.0f : static_cast<CreatureProperty*>(m_parms)->m_props.m_wallReflection.m_value;
 
-		m_triangleNormal.y = 0.0f;
+		m_acceleration.y = 0.0f;
 
-		Vector3f velocityDest = m_impVelocity + m_triangleNormal;
+		Vector3f velocityDest = m_impVelocity + m_acceleration;
 		MoveInfo moveInfo(&sphere, &velocityDest, z);
 		moveInfo.m_infoOrigin = (BaseItem*)this;
 
@@ -1902,15 +1902,15 @@ void EnemyBase::collisionMapAndPlat(f32 accelRate)
 		m_impVelocity = velocityDest;
 
 		f32 velocityNorm  = m_impVelocity.normalise();
-		f32 collTriNormal = m_triangleNormal.length();
+		f32 collTriNormal = m_acceleration.length();
 
 		if ((velocityNorm > collTriNormal)) {
 			velocityNorm -= collTriNormal;
 			m_impVelocity *= velocityNorm;
-			m_triangleNormal = 0.0f;
+			m_acceleration = 0.0f;
 		} else {
 			m_impVelocity *= velocityNorm;
-			m_triangleNormal = 0.0f;
+			m_acceleration = 0.0f;
 		}
 
 		if (!m_curTriangle && moveInfo.m_curTriangle) {
@@ -1954,7 +1954,7 @@ void EnemyBase::collisionMapAndPlat(f32 accelRate)
 
 		updateSpheres();
 	} else {
-		m_triangleNormal = 0.0f;
+		m_acceleration = 0.0f;
 
 		doSimulationStick(accelRate);
 
@@ -1989,7 +1989,7 @@ void EnemyBase::doSimulation(f32 arg) { static_cast<EnemyBaseFSM::StateMachine*>
 void EnemyBase::doSimulationConstraint(f32 arg)
 {
 	if (!(isEvent(0, EB_HardConstraint))) {
-		if (m_triangleNormal.x != 0.0f || m_triangleNormal.z != 0.0f) {
+		if (m_acceleration.x != 0.0f || m_acceleration.z != 0.0f) {
 			setEvent(0, EB_30);
 		} else if (m_curTriangle) {
 			resetEvent(0, EB_30);
@@ -3198,10 +3198,10 @@ void EnemyBase::hardConstraintOn()
 void EnemyBase::hardConstraintOff()
 {
 	resetEvent(0, EB_HardConstraint);
-	m_mass             = m_friction;
-	m_triangleNormal.x = 0.0f;
-	m_triangleNormal.y = 0.0f;
-	m_triangleNormal.z = 0.0f;
+	m_mass           = m_friction;
+	m_acceleration.x = 0.0f;
+	m_acceleration.y = 0.0f;
+	m_acceleration.z = 0.0f;
 }
 
 /*

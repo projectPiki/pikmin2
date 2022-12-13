@@ -127,9 +127,9 @@ Obj::Obj()
 void Obj::doUpdate()
 {
 	if (_2C9) {
-		m_triangleNormal.x *= 0.9f;
-		m_triangleNormal.y *= 0.9f;
-		m_triangleNormal.z *= 0.9f;
+		m_acceleration.x *= 0.9f;
+		m_acceleration.y *= 0.9f;
+		m_acceleration.z *= 0.9f;
 		m_impVelocity.x *= 0.9f;
 		if (m_impVelocity.y > 0.0f) {
 			m_impVelocity.y *= 0.9f;
