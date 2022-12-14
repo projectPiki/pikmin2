@@ -104,39 +104,40 @@ struct ObjFloor : public ::Screen::ObjBase {
 		    : m_colors1()
 		    , m_colors2()
 		{
-			_00                              = 0.3f;
-			_04                              = 1.0f;
-			_08                              = 0.2f;
-			_0C                              = 3.0f;
-			_10                              = 0.0f;
-			_14                              = -15.0f;
-			_18                              = 1.0f;
-			_1C                              = 30.0f;
-			_20                              = 0.0f;
-			_24                              = -50.0f;
-			_28                              = 1.0f;
-			_2C                              = -15.0f;
-			_30                              = 0.0f;
-			_34                              = 1.5f;
-			_38                              = 0.0f;
-			_3C                              = 15.0f;
-			_40                              = 0.12f;
-			_44                              = 7.0f;
-			_48                              = 1.5f;
-			_4C                              = 0.06f;
+			_00 = 0.3f;
+			_04 = 1.0f;
+			_08 = 0.2f;
+			_0C = 3.0f;
+			_10 = 0.0f;
+			_14 = -15.0f;
+			_18 = 1.0f;
+			_1C = 30.0f;
+			_20 = 0.0f;
+			_24 = -50.0f;
+			_28 = 1.0f;
+			_2C = -15.0f;
+			_30 = 0.0f;
+			_34 = 1.5f;
+			_38 = 0.0f;
+			_3C = 15.0f;
+			_40 = 0.12f;
+			_44 = 7.0f;
+			_48 = 1.5f;
+			_4C = 0.06f;
+			m_colors1[0].set(255, 255, 200, 255);
+			m_colors2[0].set(0, 0, 50, 0);
+
+			m_colors1[1].set(255, 255, 255, 255);
+			m_colors2[1].set(100, 100, 0, 0);
+
+			m_colors1[2].set(255, 255, 156, 255);
+			m_colors2[2].set(255, 255, 0, 0);
+			_78                              = false;
 			_50                              = 10.0f;
 			_54                              = 0.00f;
 			_58                              = 3.00f;
 			m_ruleMsgIndex                   = false;
-			_78                              = false;
 			m_shouldNotRandomizeRuleMsgMaybe = false;
-			m_colors1[0].set(255, 255, 200, 255);
-			m_colors1[1].set(255, 255, 255, 255);
-			m_colors1[2].set(255, 255, 156, 255);
-
-			m_colors2[0].set(0, 0, 50, 0);
-			m_colors2[1].set(100, 100, 0, 0);
-			m_colors2[2].set(255, 255, 0, 0);
 		};
 
 		f32 _00;                               // _00
@@ -170,7 +171,7 @@ struct ObjFloor : public ::Screen::ObjBase {
 	} msVal;
 };
 
-extern const u64 vsRuleMsgId[6];
+extern u64 vsRuleMsgId[6];
 } // namespace newScreen
 } // namespace og
 

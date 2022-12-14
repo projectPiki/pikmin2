@@ -10,419 +10,10 @@
 #include "TParticle2dMgr.h"
 #include "Dolphin/rand.h"
 
-/*
-    Generated from dpostproc
-
-    .section .ctors, "wa"  # 0x80472F00 - 0x804732C0
-    .4byte __sinit_ogObjFloor_cpp
-
-    .section .rodata  # 0x804732E0 - 0x8049E220
-    .global lbl_8048EBA8
-    lbl_8048EBA8:
-        .4byte 0x6F674F62
-        .4byte 0x6A466C6F
-        .4byte 0x6F722E63
-        .4byte 0x70700000
-        .4byte 0x45525221
-        .4byte 0x20696E20
-        .4byte 0x4F626A46
-        .4byte 0x6C6F6F72
-        .4byte 0x20437265
-        .4byte 0x6174658E
-        .4byte 0xB8947381
-        .4byte 0x490A0000
-        .4byte 0x6E65775F
-        .4byte 0x666F6E74
-        .4byte 0x5F302E62
-        .4byte 0x6C6F0000
-        .4byte 0x6E65775F
-        .4byte 0x666F6E74
-        .4byte 0x5F305F65
-        .4byte 0x6E675F70
-        .4byte 0x616C2E62
-        .4byte 0x6C6F0000
-        .4byte 0x666F6E74
-        .4byte 0x5F6E616D
-        .4byte 0x652E626C
-        .4byte 0x6F000000
-        .4byte 0x76735F74
-        .4byte 0x69746C65
-        .4byte 0x5F72756C
-        .4byte 0x655F7769
-        .4byte 0x6E646F77
-        .4byte 0x2E626C6F
-        .4byte 0x00000000
-        .4byte 0x76735F74
-        .4byte 0x69746C65
-        .4byte 0x5F72756C
-        .4byte 0x655F7769
-        .4byte 0x6E646F77
-        .4byte 0x2E62746B
-        .4byte 0x00000000
-        .4byte 0x76735F74
-        .4byte 0x69746C65
-        .4byte 0x5F72756C
-        .4byte 0x655F7769
-        .4byte 0x6E646F77
-        .4byte 0x5F30322E
-        .4byte 0x62746B00
-        .4byte 0x73637265
-        .4byte 0x656E4F62
-        .4byte 0x6A2E6800
-        .asciz "P2Assert"
-        .skip 3
-
-    .section .data, "wa"  # 0x8049E220 - 0x804EFC20
-    .global vsRuleMsgId__Q22og9newScreen
-    vsRuleMsgId__Q22og9newScreen:
-        .4byte 0x00323032
-        .4byte 0x315F3030
-        .4byte 0x00323032
-        .4byte 0x325F3030
-        .4byte 0x00323032
-        .4byte 0x335F3030
-        .4byte 0x00323032
-        .4byte 0x345F3030
-        .4byte 0x00323032
-        .4byte 0x355F3030
-        .4byte 0x00323032
-        .4byte 0x365F3030
-    .global __vt__Q32og9newScreen8ObjFloor
-    __vt__Q32og9newScreen8ObjFloor:
-        .4byte 0
-        .4byte 0
-        .4byte __dt__Q32og9newScreen8ObjFloorFv
-        .4byte getChildCount__5CNodeFv
-        .4byte 0
-        .4byte 0
-        .4byte "@24@__dt__Q32og9newScreen8ObjFloorFv"
-        .4byte update__Q26Screen7ObjBaseFv
-        .4byte draw__Q26Screen7ObjBaseFR8Graphics
-        .4byte start__Q26Screen7ObjBaseFPCQ26Screen13StartSceneArg
-        .4byte end__Q26Screen7ObjBaseFPCQ26Screen11EndSceneArg
-        .4byte setOwner__Q26Screen7ObjBaseFPQ26Screen9SceneBase
-        .4byte getOwner__Q26Screen7ObjBaseCFv
-        .4byte create__Q26Screen7ObjBaseFP10JKRArchive
-        .4byte confirmSetScene__Q26Screen7ObjBaseFRQ26Screen11SetSceneArg
-        .4byte confirmStartScene__Q26Screen7ObjBaseFPQ26Screen13StartSceneArg
-        .4byte confirmEndScene__Q26Screen7ObjBaseFPQ26Screen11EndSceneArg
-        .4byte doStart__Q32og9newScreen8ObjFloorFPCQ26Screen13StartSceneArg
-        .4byte doEnd__Q32og9newScreen8ObjFloorFPCQ26Screen11EndSceneArg
-        .4byte doCreate__Q32og9newScreen8ObjFloorFP10JKRArchive
-        .4byte doUpdateFadein__Q32og9newScreen8ObjFloorFv
-        .4byte doUpdateFadeinFinish__Q32og9newScreen8ObjFloorFv
-        .4byte doUpdate__Q32og9newScreen8ObjFloorFv
-        .4byte doUpdateFinish__Q32og9newScreen8ObjFloorFv
-        .4byte doUpdateFadeout__Q32og9newScreen8ObjFloorFv
-        .4byte doUpdateFadeoutFinish__Q32og9newScreen8ObjFloorFv
-        .4byte doDraw__Q32og9newScreen8ObjFloorFR8Graphics
-        .4byte doConfirmSetScene__Q26Screen7ObjBaseFRQ26Screen11SetSceneArg
-        .4byte doConfirmStartScene__Q26Screen7ObjBaseFPQ26Screen13StartSceneArg
-        .4byte doConfirmEndScene__Q26Screen7ObjBaseFRPQ26Screen11EndSceneArg
-
-    .section .bss  # 0x804EFC20 - 0x8051467C
-    .global msVal__Q32og9newScreen8ObjFloor
-    msVal__Q32og9newScreen8ObjFloor:
-        .skip 0x7C
-
-    .section .sdata2, "a"     # 0x80516360 - 0x80520E40
-    .global lbl_8051D998
-    lbl_8051D998:
-        .4byte 0x00000000
-    .global lbl_8051D99C
-    lbl_8051D99C:
-        .float 1.0
-    .global lbl_8051D9A0
-    lbl_8051D9A0:
-        .4byte 0x00000000
-    .global lbl_8051D9A4
-    lbl_8051D9A4:
-        .4byte 0x38333935
-        .4byte 0x5F303000
-    .global lbl_8051D9AC
-    lbl_8051D9AC:
-        .4byte 0x38333939
-        .4byte 0x5F303000
-    .global lbl_8051D9B4
-    lbl_8051D9B4:
-        .4byte 0x38343030
-        .4byte 0x5F303000
-    .global lbl_8051D9BC
-    lbl_8051D9BC:
-        .4byte 0x38333936
-        .4byte 0x5F303000
-    .global lbl_8051D9C4
-    lbl_8051D9C4:
-        .4byte 0x38333938
-        .4byte 0x5F303000
-    .global lbl_8051D9CC
-    lbl_8051D9CC:
-        .4byte 0x38343031
-        .4byte 0x5F303000
-    .global lbl_8051D9D4
-    lbl_8051D9D4:
-        .4byte 0x38343130
-        .4byte 0x5F303000
-    .global lbl_8051D9DC
-    lbl_8051D9DC:
-        .4byte 0x38333937
-        .4byte 0x5F303000
-    .global lbl_8051D9E4
-    lbl_8051D9E4:
-        .4byte 0x38343032
-        .4byte 0x5F303000
-    .global lbl_8051D9EC
-    lbl_8051D9EC:
-        .4byte 0x38343033
-        .4byte 0x5F303000
-    .global lbl_8051D9F4
-    lbl_8051D9F4:
-        .4byte 0x38343131
-        .4byte 0x5F303000
-    .global lbl_8051D9FC
-    lbl_8051D9FC:
-        .4byte 0x38343132
-        .4byte 0x5F303000
-    .global lbl_8051DA04
-    lbl_8051DA04:
-        .4byte 0x38343133
-        .4byte 0x5F303000
-    .global lbl_8051DA0C
-    lbl_8051DA0C:
-        .4byte 0x38343134
-        .4byte 0x5F303000
-    .global lbl_8051DA14
-    lbl_8051DA14:
-        .4byte 0x34393030
-        .4byte 0x5F303000
-    .global lbl_8051DA1C
-    lbl_8051DA1C:
-        .4byte 0x34393031
-        .4byte 0x5F303000
-    .global lbl_8051DA24
-    lbl_8051DA24:
-        .4byte 0x34393032
-        .4byte 0x5F303000
-    .global lbl_8051DA2C
-    lbl_8051DA2C:
-        .4byte 0x34393033
-        .4byte 0x5F303000
-    .global lbl_8051DA34
-    lbl_8051DA34:
-        .4byte 0x34393034
-        .4byte 0x5F303000
-    .global lbl_8051DA3C
-    lbl_8051DA3C:
-        .4byte 0x34393035
-        .4byte 0x5F303000
-    .global lbl_8051DA44
-    lbl_8051DA44:
-        .4byte 0x34393036
-        .4byte 0x5F303000
-    .global lbl_8051DA4C
-    lbl_8051DA4C:
-        .4byte 0x34393037
-        .4byte 0x5F303000
-    .global lbl_8051DA54
-    lbl_8051DA54:
-        .4byte 0x34393038
-        .4byte 0x5F303000
-    .global lbl_8051DA5C
-    lbl_8051DA5C:
-        .4byte 0x34393039
-        .4byte 0x5F303000
-    .global lbl_8051DA64
-    lbl_8051DA64:
-        .4byte 0x34393130
-        .4byte 0x5F303000
-    .global lbl_8051DA6C
-    lbl_8051DA6C:
-        .4byte 0x34393131
-        .4byte 0x5F303000
-    .global lbl_8051DA74
-    lbl_8051DA74:
-        .4byte 0x34393132
-        .4byte 0x5F303000
-    .global lbl_8051DA7C
-    lbl_8051DA7C:
-        .4byte 0x34393133
-        .4byte 0x5F303000
-    .global lbl_8051DA84
-    lbl_8051DA84:
-        .4byte 0x34393134
-        .4byte 0x5F303000
-    .global lbl_8051DA8C
-    lbl_8051DA8C:
-        .4byte 0x34393135
-        .4byte 0x5F303000
-    .global lbl_8051DA94
-    lbl_8051DA94:
-        .4byte 0x34393136
-        .4byte 0x5F303000
-    .global lbl_8051DA9C
-    lbl_8051DA9C:
-        .4byte 0x34393137
-        .4byte 0x5F303000
-    .global lbl_8051DAA4
-    lbl_8051DAA4:
-        .4byte 0x34393138
-        .4byte 0x5F303000
-    .global lbl_8051DAAC
-    lbl_8051DAAC:
-        .4byte 0x34393139
-        .4byte 0x5F303000
-    .global lbl_8051DAB4
-    lbl_8051DAB4:
-        .4byte 0x34393230
-        .4byte 0x5F303000
-    .global lbl_8051DABC
-    lbl_8051DABC:
-        .4byte 0x34393231
-        .4byte 0x5F303000
-    .global lbl_8051DAC4
-    lbl_8051DAC4:
-        .4byte 0x34393232
-        .4byte 0x5F303000
-    .global lbl_8051DACC
-    lbl_8051DACC:
-        .4byte 0x34393233
-        .4byte 0x5F303000
-    .global lbl_8051DAD4
-    lbl_8051DAD4:
-        .4byte 0x34393234
-        .4byte 0x5F303000
-    .global lbl_8051DADC
-    lbl_8051DADC:
-        .4byte 0x34393235
-        .4byte 0x5F303000
-    .global lbl_8051DAE4
-    lbl_8051DAE4:
-        .4byte 0x34393236
-        .4byte 0x5F303000
-    .global lbl_8051DAEC
-    lbl_8051DAEC:
-        .4byte 0x34393237
-        .4byte 0x5F303000
-    .global lbl_8051DAF4
-    lbl_8051DAF4:
-        .4byte 0x34393238
-        .4byte 0x5F303000
-    .global lbl_8051DAFC
-    lbl_8051DAFC:
-        .4byte 0x34393239
-        .4byte 0x5F303000
-    .global lbl_8051DB04
-    lbl_8051DB04:
-        .4byte 0x34373730
-        .4byte 0x5F303000
-    .global lbl_8051DB0C
-    lbl_8051DB0C:
-        .4byte 0x34373731
-        .4byte 0x5F303000
-    .global lbl_8051DB14
-    lbl_8051DB14:
-        .4byte 0x34373732
-        .4byte 0x5F303000
-    .global lbl_8051DB1C
-    lbl_8051DB1C:
-        .4byte 0x34373733
-        .4byte 0x5F303000
-    .global lbl_8051DB24
-    lbl_8051DB24:
-        .4byte 0x34373734
-        .4byte 0x5F303000
-    .global lbl_8051DB2C
-    lbl_8051DB2C:
-        .4byte 0x34373735
-        .4byte 0x5F303000
-    .global lbl_8051DB34
-    lbl_8051DB34:
-        .4byte 0x34373736
-        .4byte 0x5F303000
-    .global lbl_8051DB3C
-    lbl_8051DB3C:
-        .4byte 0x34373737
-        .4byte 0x5F303000
-    .global lbl_8051DB44
-    lbl_8051DB44:
-        .4byte 0x34373738
-        .4byte 0x5F303000
-    .global lbl_8051DB4C
-    lbl_8051DB4C:
-        .4byte 0x34373739
-        .4byte 0x5F303000
-    .global lbl_8051DB54
-    lbl_8051DB54:
-        .4byte 0x39393936
-        .4byte 0x5F303000
-    .global lbl_8051DB5C
-    lbl_8051DB5C:
-        .4byte 0x25730000
-    .global lbl_8051DB60
-    lbl_8051DB60:
-        .4byte 0x47000000
-    .global lbl_8051DB64
-    lbl_8051DB64:
-        .4byte 0x40C00000
-    .global lbl_8051DB68
-    lbl_8051DB68:
-        .4byte 0x38333832
-        .4byte 0x5F303000
-    .global lbl_8051DB70
-    lbl_8051DB70:
-        .4byte 0x43300000
-        .4byte 0x80000000
-    .global lbl_8051DB78
-    lbl_8051DB78:
-        .float 0.5
-    .global lbl_8051DB7C
-    lbl_8051DB7C:
-        .4byte 0x437F0000
-    .global lbl_8051DB80
-    lbl_8051DB80:
-        .4byte 0x43300000
-        .4byte 0x00000000
-    .global lbl_8051DB88
-    lbl_8051DB88:
-        .float 0.3
-    .global lbl_8051DB8C
-    lbl_8051DB8C:
-        .4byte 0x3E4CCCCD
-    .global lbl_8051DB90
-    lbl_8051DB90:
-        .4byte 0x40400000
-    .global lbl_8051DB94
-    lbl_8051DB94:
-        .4byte 0xC1700000
-    .global lbl_8051DB98
-    lbl_8051DB98:
-        .4byte 0x41F00000
-    .global lbl_8051DB9C
-    lbl_8051DB9C:
-        .4byte 0xC2480000
-    .global lbl_8051DBA0
-    lbl_8051DBA0:
-        .4byte 0x3FC00000
-    .global lbl_8051DBA4
-    lbl_8051DBA4:
-        .4byte 0x41700000
-    .global lbl_8051DBA8
-    lbl_8051DBA8:
-        .4byte 0x3DF5C28F
-    .global lbl_8051DBAC
-    lbl_8051DBAC:
-        .4byte 0x40E00000
-    .global lbl_8051DBB0
-    lbl_8051DBB0:
-        .float 0.06
-    .global lbl_8051DBB4
-    lbl_8051DBB4:
-        .4byte 0x41200000
-*/
 namespace og {
 namespace newScreen {
 
-const u64 vsRuleMsgId[6] = {
+u64 vsRuleMsgId[6] = {
 	'2021_00', // "An advisory: You can't carry your own Gyro Block."
 	'2022_00', // "An advisory: Pikmin lost to opposing Pikmin will become seeds."
 	'2023_00', // "An advisory: Roulette creatures vanish when you defeat them."
@@ -437,11 +28,10 @@ const u64 vsRuleMsgId[6] = {
  * Address:	8031A3C8
  * Size:	0000E8
  */
-ObjFloor::ObjFloor(char const* name)
+ObjFloor::ObjFloor(const char* name)
+    : m_fadeLevel(0.0f)
+    , m_alpha(0.0f)
 {
-	m_fadeLevel = 0.0f;
-	m_alpha     = 0.0f;
-	m_color.set(-1);
 	m_name         = name;
 	m_disp         = nullptr;
 	m_screenName   = nullptr;
@@ -470,65 +60,15 @@ ObjFloor::ObjFloor(char const* name)
  * Address:	8031A4B0
  * Size:	0000AC
  */
-ObjFloor::~ObjFloor(void)
-{
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	mr       r31, r4
-	stw      r30, 8(r1)
-	or.      r30, r3, r3
-	beq      lbl_8031A540
-	lis      r4, __vt__Q32og9newScreen8ObjFloor@ha
-	addi     r4, r4, __vt__Q32og9newScreen8ObjFloor@l
-	stw      r4, 0(r30)
-	addi     r0, r4, 0x10
-	stw      r0, 0x18(r30)
-	beq      lbl_8031A530
-	lis      r4, __vt__Q26Screen7ObjBase@ha
-	addi     r4, r4, __vt__Q26Screen7ObjBase@l
-	stw      r4, 0(r30)
-	addi     r0, r4, 0x10
-	stw      r0, 0x18(r30)
-	beq      lbl_8031A530
-	lis      r4, __vt__Q26Screen8IObjBase@ha
-	addi     r4, r4, __vt__Q26Screen8IObjBase@l
-	stw      r4, 0(r30)
-	addi     r0, r4, 0x10
-	stw      r0, 0x18(r30)
-	bl       del__5CNodeFv
-	addi     r3, r30, 0x18
-	li       r4, 0
-	bl       __dt__11JKRDisposerFv
-	mr       r3, r30
-	li       r4, 0
-	bl       __dt__5CNodeFv
-
-lbl_8031A530:
-	extsh.   r0, r31
-	ble      lbl_8031A540
-	mr       r3, r30
-	bl       __dl__FPv
-
-lbl_8031A540:
-	lwz      r0, 0x14(r1)
-	mr       r3, r30
-	lwz      r31, 0xc(r1)
-	lwz      r30, 8(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
-}
+ObjFloor::~ObjFloor() { }
 
 /*
  * --INFO--
  * Address:	........
  * Size:	000090
+ * True if caveID is a story cave, false otherwise
  */
-bool newScreen::ObjFloor::isFLOOR(void)
+bool newScreen::ObjFloor::isFLOOR()
 {
 	bool ret = false;
 	if (m_disp->m_caveID < 't_04' && 't_01' <= m_disp->m_caveID || m_disp->m_caveID < 'f_05' && 'f_01' <= m_disp->m_caveID
@@ -536,15 +76,15 @@ bool newScreen::ObjFloor::isFLOOR(void)
 		ret = true;
 	}
 	return ret;
-	// UNUSED FUNCTION
 }
 
 /*
  * --INFO--
  * Address:	........
  * Size:	00007C
+ * True if caveID is a Challenge Mode level, false otherwise
  */
-bool newScreen::ObjFloor::isCHALLENGE(void)
+bool newScreen::ObjFloor::isCHALLENGE()
 {
 	bool ret = false;
 	if (m_disp->m_caveID < 'c_0:' && 'c_00' <= m_disp->m_caveID || m_disp->m_caveID < 'c_1:' && 'c_10' <= m_disp->m_caveID
@@ -558,8 +98,13 @@ bool newScreen::ObjFloor::isCHALLENGE(void)
  * --INFO--
  * Address:	........
  * Size:	000030
+ * True if caveID is a VS stage, false otherwise
  */
-inline bool newScreen::ObjFloor::isVS(void) { return (m_disp->m_caveID < 'vs0:' && 'vs00' <= m_disp->m_caveID); }
+inline bool newScreen::ObjFloor::isVS()
+{
+	bool ret = ((m_disp->m_caveID < (int)'vs0:') && (m_disp->m_caveID >= (int)'vs00'));
+	return ret;
+}
 
 /*
  * --INFO--
@@ -769,7 +314,7 @@ void ObjFloor::doCreate(JKRArchive* arc)
 	m_screenName = new P2DScreen::Mgr_tuning;
 	m_screenName->set("font_name.blo", 0x1040000, arc);
 
-	if (isVS()) {
+	if (isVS()) { // needs fixing
 		m_screenRules = new P2DScreen::Mgr_tuning;
 		m_screenRules->set("vs_title_rule_window.blo", 0x1040000, arc);
 		m_ruleMesgPane = og::Screen::TagSearch(m_screenRules, 'Trule_m5');
@@ -779,17 +324,20 @@ void ObjFloor::doCreate(JKRArchive* arc)
 		m_loadingPane->show();
 
 		for (int i = 0; i < 6; i++) {
-			u64 tag            = 'Nsub_i00' + i;
+			u64 tag            = 'Nsub_i00' + (i + i % 10); // not quite but closer
 			m_rulesPaneList[i] = og::Screen::TagSearch(m_screenRules, tag);
 			m_rulesPaneList[i]->hide();
 		}
-		int ruleMsgIndex = msVal.m_ruleMsgIndex;
+		int ruleMsgIndex;
 		if (msVal.m_shouldNotRandomizeRuleMsgMaybe) {
+			ruleMsgIndex = msVal.m_ruleMsgIndex;
+		} else {
 			ruleMsgIndex = randFloat() * 6.0f;
 		}
+
 		m_ruleMesgPane->setMsgID(vsRuleMsgId[ruleMsgIndex]);
-		m_rulesPaneList[ruleMsgIndex]->m_isVisible = true;
-		m_buttonAlpha                              = new og::Screen::AlphaMgr;
+		m_rulesPaneList[ruleMsgIndex]->show();
+		m_buttonAlpha = new og::Screen::AlphaMgr;
 	} else {
 		m_screenRules  = nullptr;
 		m_ruleMesgPane = nullptr;
@@ -801,9 +349,9 @@ void ObjFloor::doCreate(JKRArchive* arc)
 			fc_c->getParentPane()->removeChild(fc_c);
 		}
 		m_counterFloor = og::Screen::setCallBack_CounterRV(m_screenName, 'fc_r', 'fc_l', 'fc_l', &m_disp->m_sublevel, 3, 2, false, arc);
+		m_counterFloor->setCenteringMode(Screen::CallBack_CounterRV::ECM_UNKNOWN_2);
 	}
 
-	m_counterFloor->setCenteringMode(Screen::CallBack_CounterRV::ECM_UNKNOWN_2);
 	og::Screen::setAlphaScreen(m_screenName);
 
 	if (m_screenRules) {
@@ -827,11 +375,11 @@ void ObjFloor::doCreate(JKRArchive* arc)
 	int caveType = 0;
 	int caveID   = m_disp->m_caveID;
 
-	if (isFLOOR()) {
+	if (isFLOOR()) { // needs fixing
 		caveType = FLOOR_Story;
-	} else if (isCHALLENGE()) {
+	} else if (isCHALLENGE()) { // needs fixing
 		caveType = FLOOR_Challenge;
-	} else if (isVS()) {
+	} else if (isVS()) { // needs fixing
 		caveType = FLOOR_Versus;
 	}
 
@@ -839,32 +387,31 @@ void ObjFloor::doCreate(JKRArchive* arc)
 
 	switch (caveType) {
 	case FLOOR_Challenge:
-		J2DPane* pane      = m_screenName->search('title');
-		m_title            = new TitleMsgDrop(m_screenFont, pane, m_textTag);
+		m_title            = new TitleMsgDrop(m_screenFont, m_screenName->search('title'), m_textTag);
 		m_title->m_yOffset = msVal._50;
 		break;
+
 	case FLOOR_Story:
-		pane              = m_screenName->search('title');
-		TitleMsgWave* msg = new TitleMsgWave(m_screenFont, pane, m_textTag);
+		TitleMsgWave* msg = new TitleMsgWave(m_screenFont, m_screenName->search('title'), m_textTag);
 		msg->setParam(msVal._40, msVal._44, msVal._48, msVal._4C);
 		msg->m_yOffset = msVal._54;
 		m_title        = msg;
 		break;
+
 	case FLOOR_Versus:
-		pane               = m_screenName->search('title');
-		m_title            = new TitleMsgClash(m_screenFont, pane, m_textTag);
+		m_title            = new TitleMsgClash(m_screenFont, m_screenName->search('title'), m_textTag);
 		m_title->m_yOffset = msVal._58;
 		break;
+
 	default:
-		pane    = m_screenName->search('title');
-		m_title = new TitleMsg(m_screenFont, pane, m_textTag);
+		m_title = new TitleMsg(m_screenFont, m_screenName->search('title'), m_textTag);
 		break;
 	}
+
 	m_title->setCentering(TitleMsg::ECM_2);
 	m_title->init();
 
-	J2DPane* pane = m_screenName->search('title');
-	m_sublevelMsg = new TitleMsg(m_screenFont, pane, "8382_00"); // "Sublevel"
+	m_sublevelMsg = new TitleMsg(m_screenFont, m_screenName->search('chika'), "8382_00"); // "Sublevel"
 	m_sublevelMsg->setCentering(TitleMsg::ECM_1);
 
 	m_sublevelPane  = m_screenName->search('kaisuu');
@@ -1551,12 +1098,13 @@ void TitleMsg::init() { }
  * Address:	8031B280
  * Size:	000598
  */
-bool newScreen::ObjFloor::commonUpdate(void)
+bool newScreen::ObjFloor::commonUpdate()
 {
-	bool ret                          = false;
-	og::Screen::DispMemberFloor* disp = static_cast<og::Screen::DispMemberFloor*>(getDispMember());
-	if (disp->isID(OWNER_OGA, MEMBER_FLOOR)) {
-		m_disp = disp;
+	bool ret                             = false;
+	og::Screen::DispMemberFloor* disp    = nullptr;
+	og::Screen::DispMemberBase* baseDisp = getDispMember();
+	if (baseDisp->isID(OWNER_OGA, MEMBER_FLOOR)) {
+		disp = static_cast<og::Screen::DispMemberFloor*>(baseDisp);
 	}
 
 	bool vs = isVS();
@@ -1569,7 +1117,8 @@ bool newScreen::ObjFloor::commonUpdate(void)
 
 	if (m_screenRules) {
 		if (m_isButtonShown) {
-			m_buttonPane->setAlpha(m_buttonAlpha->calc());
+			u8 alphaCalc = m_buttonAlpha->calc();
+			m_buttonPane->setAlpha(alphaCalc);
 			if (m_buttonAlphaTimer > 0.0f) {
 				m_buttonAlphaTimer -= sys->m_deltaTime / 0.5f;
 				if (m_buttonAlphaTimer < 0.0f) {
@@ -1598,29 +1147,27 @@ bool newScreen::ObjFloor::commonUpdate(void)
 	int caveType = 0;
 	int caveID   = m_disp->m_caveID;
 
-	if (isFLOOR()) {
+	if (isFLOOR()) { // needs fixing
 		caveType = FLOOR_Story;
-	} else if (isCHALLENGE()) {
+	} else if (isCHALLENGE()) { // needs fixing
 		caveType = FLOOR_Challenge;
-	} else if (isVS()) {
+	} else if (isVS()) { // needs fixing
 		caveType = FLOOR_Versus;
 	}
 
 	m_title->setColor(msVal.m_colors1[caveType], msVal.m_colors2[caveType]);
 	m_sublevelMsg->setColor(msVal.m_colors1[caveType], msVal.m_colors2[caveType]);
 
-	J2DPictureEx* pic = static_cast<J2DPictureEx*>(m_counterFloor->m_pane);
+	J2DPictureEx* pic = m_counterFloor->_6C;
 	pic->setWhite(msVal.m_colors1[caveType]);
 	pic->setBlack(msVal.m_colors2[caveType]);
 
 	if (vs) {
 		m_screenName->setXY(msVal._20, msVal._24);
-		m_screenName->m_scale.x = msVal._28 * P2DScreen::Mgr_tuning::mstTuningScaleX;
-		m_screenName->m_scale.y = msVal._28 * P2DScreen::Mgr_tuning::mstTuningScaleY;
+		m_screenName->scaleScreen(msVal._28);
 	} else {
 		m_screenName->setXY(msVal._10, msVal._14);
-		m_screenName->m_scale.x = msVal._18 * P2DScreen::Mgr_tuning::mstTuningScaleX;
-		m_screenName->m_scale.y = msVal._18 * P2DScreen::Mgr_tuning::mstTuningScaleY;
+		m_screenName->scaleScreen(msVal._18);
 	}
 	m_screenName->update();
 	m_title->update();
@@ -2085,20 +1632,7 @@ void TitleMsg::update() { }
  * Address:	8031B820
  * Size:	000020
  */
-bool newScreen::ObjFloor::doUpdate()
-{
-	return commonUpdate();
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	bl       commonUpdate__Q32og9newScreen8ObjFloorFv
-	lwz      r0, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
-}
+bool newScreen::ObjFloor::doUpdate() { return commonUpdate(); }
 
 /*
  * --INFO--
@@ -2121,11 +1655,13 @@ void ObjFloor::doDraw(Graphics& gfx)
 	m_screenName->setAlpha(m_alpha * 255.0f);
 	m_screenName->draw(gfx, *graf);
 	graf->setPort();
-	if (!isVS()) {
+
+	if (!isVS()) { // needs fixing
 		m_sublevelPane->show();
 	} else {
 		m_sublevelPane->hide();
 	}
+
 	graf->setPort();
 	j3dSys.reinitGX();
 	/*
@@ -2281,7 +1817,7 @@ void ObjFloor::doUpdateFadeinFinish() { }
  * Address:	8031BA24
  * Size:	000030
  */
-void ObjFloor::doUpdateFinish(void)
+void ObjFloor::doUpdateFinish()
 {
 	m_fadeLevel = 0.0f;
 	particle2dMgr->killGroup(2);
@@ -2292,14 +1828,14 @@ void ObjFloor::doUpdateFinish(void)
  * Address:	8031BA54
  * Size:	000004
  */
-void ObjFloor::doUpdateFadeoutFinish(void) { }
+void ObjFloor::doUpdateFadeoutFinish() { }
 
 /*
  * --INFO--
  * Address:	8031BA58
  * Size:	000074
  */
-bool newScreen::ObjFloor::doUpdateFadein(void)
+bool newScreen::ObjFloor::doUpdateFadein()
 {
 	bool result = false;
 	m_fadeLevel += sys->m_deltaTime;
@@ -2310,39 +1846,6 @@ bool newScreen::ObjFloor::doUpdateFadein(void)
 	m_alpha = m_fadeLevel / msVal._04;
 	commonUpdate();
 	return result;
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	lis      r4, msVal__Q32og9newScreen8ObjFloor@ha
-	stw      r0, 0x14(r1)
-	addi     r4, r4, msVal__Q32og9newScreen8ObjFloor@l
-	stw      r31, 0xc(r1)
-	li       r31, 0
-	lwz      r5, sys@sda21(r13)
-	lfs      f1, 0x58(r3)
-	lfs      f0, 0x54(r5)
-	fadds    f0, f1, f0
-	stfs     f0, 0x58(r3)
-	lfs      f0, 0x58(r3)
-	lfs      f1, 4(r4)
-	fcmpo    cr0, f0, f1
-	ble      lbl_8031BAA0
-	stfs     f1, 0x58(r3)
-	li       r31, 1
-
-lbl_8031BAA0:
-	lfs      f1, 0x58(r3)
-	lfs      f0, 4(r4)
-	fdivs    f0, f1, f0
-	stfs     f0, 0x5c(r3)
-	bl       commonUpdate__Q32og9newScreen8ObjFloorFv
-	lwz      r0, 0x14(r1)
-	mr       r3, r31
-	lwz      r31, 0xc(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
 }
 
 /*
@@ -2364,44 +1867,6 @@ bool newScreen::ObjFloor::doUpdateFadeout()
 	m_alpha = 1.0f - m_fadeLevel / msVal._08;
 	commonUpdate();
 	return check;
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	lis      r4, msVal__Q32og9newScreen8ObjFloor@ha
-	stw      r0, 0x14(r1)
-	addi     r4, r4, msVal__Q32og9newScreen8ObjFloor@l
-	stw      r31, 0xc(r1)
-	li       r31, 0
-	lwz      r5, sys@sda21(r13)
-	lfs      f1, 0x58(r3)
-	lfs      f0, 0x54(r5)
-	fadds    f0, f1, f0
-	stfs     f0, 0x58(r3)
-	lfs      f0, 0x58(r3)
-	lfs      f1, 8(r4)
-	fcmpo    cr0, f0, f1
-	ble      lbl_8031BB20
-	stfs     f1, 0x58(r3)
-	lbz      r0, 0x6c(r3)
-	cmplwi   r0, 0
-	bne      lbl_8031BB20
-	li       r31, 1
-
-lbl_8031BB20:
-	lfs      f1, 0x58(r3)
-	lfs      f0, 8(r4)
-	lfs      f2, lbl_8051D99C@sda21(r2)
-	fdivs    f0, f1, f0
-	fsubs    f0, f2, f0
-	stfs     f0, 0x5c(r3)
-	bl       commonUpdate__Q32og9newScreen8ObjFloorFv
-	lwz      r0, 0x14(r1)
-	mr       r3, r31
-	lwz      r31, 0xc(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
 }
 
 /*
@@ -2425,232 +1890,18 @@ void ObjFloor::drawBG(Graphics& gfx)
 
 	if (m_color.a != 0) {
 		graf->setPort();
-		int w = sys->getRenderModeObj()->fbWidth;
-		int h = sys->getRenderModeObj()->efbHeight;
+		u16 w = System::getRenderModeObj()->fbWidth;
+		u16 h = System::getRenderModeObj()->efbHeight;
 		graf->setColor(m_color);
 		GXSetAlphaUpdate(GX_FALSE);
 
 		f32 offs = 0.0f;
-		JGeometry::TBox2f box(0.0f, w + offs, 0.0f, h + offs);
+		JGeometry::TBox2f box(0.0f, 0.0f, offs + w, offs + h);
 		graf->fillBox(box);
 	}
-	/*
-	stwu     r1, -0x50(r1)
-	mflr     r0
-	stw      r0, 0x54(r1)
-	stw      r31, 0x4c(r1)
-	addi     r31, r4, 0x190
-	stw      r30, 0x48(r1)
-	stw      r29, 0x44(r1)
-	stw      r28, 0x40(r1)
-	mr       r28, r3
-	lbz      r0, 0x6c(r3)
-	cmplwi   r0, 0
-	beq      lbl_8031BBE4
-	lwz      r4, sys@sda21(r13)
-	lis      r3, msVal__Q32og9newScreen8ObjFloor@ha
-	lfs      f1, 0x70(r28)
-	lfs      f0, 0x54(r4)
-	lfs      f3, lbl_8051D99C@sda21(r2)
-	fadds    f1, f1, f0
-	lfs      f0, lbl_8051D998@sda21(r2)
-	stfs     f1, 0x70(r28)
-	lfs      f2, 0x70(r28)
-	lfs      f1, msVal__Q32og9newScreen8ObjFloor@l(r3)
-	fdivs    f1, f2, f1
-	fsubs    f1, f3, f1
-	fcmpo    cr0, f1, f0
-	ble      lbl_8031BBD8
-	lfs      f0, lbl_8051DB7C@sda21(r2)
-	fmuls    f0, f0, f1
-	fctiwz   f0, f0
-	stfd     f0, 0x30(r1)
-	lwz      r0, 0x34(r1)
-	stb      r0, 0x6b(r28)
-	b        lbl_8031BBE4
-
-lbl_8031BBD8:
-	li       r0, 0
-	stb      r0, 0x6b(r28)
-	stb      r0, 0x6c(r28)
-
-lbl_8031BBE4:
-	lbz      r0, 0x6b(r28)
-	cmplwi   r0, 0
-	beq      lbl_8031BC9C
-	mr       r3, r31
-	lwz      r12, 0(r31)
-	lwz      r12, 0x14(r12)
-	mtctr    r12
-	bctrl
-	bl       getRenderModeObj__6SystemFv
-	lhz      r30, 4(r3)
-	bl       getRenderModeObj__6SystemFv
-	lhz      r29, 6(r3)
-	mr       r3, r31
-	lwz      r0, 0x68(r28)
-	addi     r4, r1, 8
-	addi     r5, r1, 0xc
-	addi     r6, r1, 0x10
-	stw      r0, 0x18(r1)
-	addi     r7, r1, 0x14
-	stw      r0, 0x14(r1)
-	stw      r0, 0x10(r1)
-	stw      r0, 0xc(r1)
-	stw      r0, 8(r1)
-	bl
-setColor__14J2DGrafContextFQ28JUtility6TColorQ28JUtility6TColorQ28JUtility6TColorQ28JUtility6TColor
-	li       r3, 0
-	bl       GXSetAlphaUpdate
-	lis      r0, 0x4330
-	lfs      f3, lbl_8051D998@sda21(r2)
-	stw      r30, 0x34(r1)
-	mr       r3, r31
-	lfd      f2, lbl_8051DB80@sda21(r2)
-	addi     r4, r1, 0x1c
-	stw      r0, 0x30(r1)
-	lfd      f0, 0x30(r1)
-	stw      r29, 0x3c(r1)
-	fsubs    f1, f0, f2
-	stw      r0, 0x38(r1)
-	lfd      f0, 0x38(r1)
-	fadds    f1, f3, f1
-	stfs     f3, 0x1c(r1)
-	fsubs    f0, f0, f2
-	stfs     f3, 0x20(r1)
-	fadds    f0, f3, f0
-	stfs     f1, 0x24(r1)
-	stfs     f0, 0x28(r1)
-	bl       "fillBox__14J2DGrafContextFRCQ29JGeometry8TBox2<f>"
-
-lbl_8031BC9C:
-	lwz      r0, 0x54(r1)
-	lwz      r31, 0x4c(r1)
-	lwz      r30, 0x48(r1)
-	lwz      r29, 0x44(r1)
-	lwz      r28, 0x40(r1)
-	mtlr     r0
-	addi     r1, r1, 0x50
-	blr
-	*/
 }
 
 ObjFloor::StaticValues ObjFloor::msVal;
 
 } // namespace newScreen
-
 } // namespace og
-
-/*
- * --INFO--
- * Address:	8031BCBC
- * Size:	00019C
- */
-void __sinit_ogObjFloor_cpp(void)
-{
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	lis      r4, msVal__Q32og9newScreen8ObjFloor@ha
-	lis      r3, __ct__Q28JUtility6TColorFv@ha
-	stw      r0, 0x14(r1)
-	addi     r4, r4, msVal__Q32og9newScreen8ObjFloor@l
-	li       r5, 0
-	li       r6, 4
-	stw      r31, 0xc(r1)
-	addi     r31, r4, 0x5c
-	addi     r4, r3, __ct__Q28JUtility6TColorFv@l
-	li       r7, 3
-	stw      r30, 8(r1)
-	mr       r3, r31
-	bl       __construct_array
-	lis      r4, msVal__Q32og9newScreen8ObjFloor@ha
-	lis      r3, __ct__Q28JUtility6TColorFv@ha
-	addi     r4, r4, msVal__Q32og9newScreen8ObjFloor@l
-	li       r5, 0
-	addi     r30, r4, 0x68
-	li       r6, 4
-	addi     r4, r3, __ct__Q28JUtility6TColorFv@l
-	li       r7, 3
-	mr       r3, r30
-	bl       __construct_array
-	lis      r3, msVal__Q32og9newScreen8ObjFloor@ha
-	lfs      f13, lbl_8051DB88@sda21(r2)
-	addi     r8, r3, msVal__Q32og9newScreen8ObjFloor@l
-	li       r7, 0xff
-	li       r5, 0
-	lfs      f9, lbl_8051D998@sda21(r2)
-	lfs      f12, lbl_8051D99C@sda21(r2)
-	li       r3, 0x64
-	lfs      f10, lbl_8051DB90@sda21(r2)
-	li       r6, 0xc8
-	lfs      f8, lbl_8051DB94@sda21(r2)
-	li       r4, 0x32
-	lfs      f5, lbl_8051DBA0@sda21(r2)
-	li       r0, 0x9c
-	lfs      f11, lbl_8051DB8C@sda21(r2)
-	lfs      f7, lbl_8051DB98@sda21(r2)
-	lfs      f6, lbl_8051DB9C@sda21(r2)
-	lfs      f4, lbl_8051DBA4@sda21(r2)
-	lfs      f3, lbl_8051DBA8@sda21(r2)
-	lfs      f2, lbl_8051DBAC@sda21(r2)
-	lfs      f1, lbl_8051DBB0@sda21(r2)
-	lfs      f0, lbl_8051DBB4@sda21(r2)
-	stfs     f13, 0(r8)
-	stfs     f12, 4(r8)
-	stfs     f11, 8(r8)
-	stfs     f10, 0xc(r8)
-	stfs     f9, 0x10(r8)
-	stfs     f8, 0x14(r8)
-	stfs     f12, 0x18(r8)
-	stfs     f7, 0x1c(r8)
-	stfs     f9, 0x20(r8)
-	stfs     f6, 0x24(r8)
-	stfs     f12, 0x28(r8)
-	stfs     f8, 0x2c(r8)
-	stfs     f9, 0x30(r8)
-	stfs     f5, 0x34(r8)
-	stfs     f9, 0x38(r8)
-	stfs     f4, 0x3c(r8)
-	stfs     f3, 0x40(r8)
-	stfs     f2, 0x44(r8)
-	stfs     f5, 0x48(r8)
-	stfs     f1, 0x4c(r8)
-	stb      r7, 0(r31)
-	stb      r7, 0x5d(r8)
-	stb      r6, 0x5e(r8)
-	stb      r7, 0x5f(r8)
-	stb      r5, 0(r30)
-	stb      r5, 0x69(r8)
-	stb      r4, 0x6a(r8)
-	stb      r5, 0x6b(r8)
-	stb      r7, 0x60(r8)
-	stb      r7, 0x61(r8)
-	stb      r7, 0x62(r8)
-	stb      r7, 0x63(r8)
-	stb      r3, 0x6c(r8)
-	stb      r3, 0x6d(r8)
-	stb      r5, 0x6e(r8)
-	stb      r5, 0x6f(r8)
-	stb      r7, 0x64(r8)
-	stb      r7, 0x65(r8)
-	stb      r0, 0x66(r8)
-	stb      r7, 0x67(r8)
-	stb      r7, 0x70(r8)
-	stb      r7, 0x71(r8)
-	stb      r5, 0x72(r8)
-	stb      r5, 0x73(r8)
-	stb      r5, 0x78(r8)
-	stfs     f0, 0x50(r8)
-	stfs     f9, 0x54(r8)
-	stfs     f10, 0x58(r8)
-	stw      r5, 0x74(r8)
-	stb      r5, 0x79(r8)
-	lwz      r31, 0xc(r1)
-	lwz      r30, 8(r1)
-	lwz      r0, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
-}
