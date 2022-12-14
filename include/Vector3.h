@@ -213,6 +213,14 @@ inline f32 stickMagnitude(Vector3f& vec)
 	return _sqrtf(a.x * a.x + a.y * a.y + a.z);
 }
 
+inline f32 anotherLength(Vector3f& vec)
+{
+	Vector3f a = vec;
+	a.x *= a.x;
+	a.z *= a.z;
+	return _sqrtf(a.x + a.y * a.y + a.z);
+}
+
 inline void _normalise(Vector3f& vec)
 {
 	Vector2f sqr(vec.z * vec.z, vec.x * vec.x + vec.y * vec.y);
