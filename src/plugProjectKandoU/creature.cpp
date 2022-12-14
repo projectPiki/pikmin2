@@ -262,8 +262,7 @@ void Creature::load(Stream& input, u8 flags)
 // WIP: https://decomp.me/scratch/2o7Wb
 f32 Creature::calcSphereDistance(Creature* them)
 {
-	Sys::Sphere theirBounds;
-	Sys::Sphere myBounds;
+	Sys::Sphere theirBounds, myBounds;
 	them->getBoundingSphere(theirBounds);
 	getBoundingSphere(myBounds);
 	Vector3f sepVec = myBounds.m_position - theirBounds.m_position;
