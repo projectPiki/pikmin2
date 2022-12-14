@@ -478,28 +478,26 @@ void Creature::movie_end(bool required)
 WaterBox* Creature::checkWater(WaterBox* waterBox, Sys::Sphere& sphere)
 {
 	if (waterBox) {
-		bool isInWater = waterBox->inWater(sphere);
-		if (isInWater) {
-			goto returnbox;
-		}
-		if (mapMgr) {
-			waterBox = mapMgr->findWater(sphere);
-		}
-		if (!waterBox) {
-			outWaterCallback();
-			waterBox = 0;
-		}
+        bool isInWater = waterBox->inWater(sphere);
+        if (!isInWater) {
+        	if (mapMgr) {
+			    waterBox = mapMgr->findWater(sphere);
+    		}
+    		if (!waterBox) {
+    			outWaterCallback();
+                waterBox = nullptr;
+    		}
+        }
 	} else {
-		WaterBox* wb = 0;
+        WaterBox* wb = nullptr;
 		if (mapMgr) {
-			wb = mapMgr->findWater(sphere);
-		}
-		waterBox = wb;
-		if (waterBox) {
-			inWaterCallback(waterBox);
-		}
-	}
-returnbox:
+            wb = mapMgr->findWater(sphere);
+        }
+        waterBox = wb;
+        if (waterBox) {
+            inWaterCallback(waterBox);
+        }
+    }
 	return waterBox;
 }
 
@@ -522,7 +520,7 @@ int Creature::checkHell(Creature::CheckHellArg& hellArg)
 			setAlive(false);
 			Cell::sCurrCellMgr = cellMgr;
 			exitCell();
-			Cell::sCurrCellMgr = 0;
+			Cell::sCurrCellMgr = nullptr;
 			m_updateContext.exit();
 			releaseAllStickers();
 			clearCapture();
@@ -607,7 +605,7 @@ void Creature::applyImpulse(Vector3f& unused, Vector3f& impulse)
  * Address:	8013BFDC
  * Size:	0002E4
  */
-void Creature::checkCollision(Game::CellObject* cellObj)
+void Creature::checkCollision(CellObject* cellObj)
 {
 	CollPart* collPart1;
 	CollPart* collPart2;
@@ -615,20 +613,20 @@ void Creature::checkCollision(Game::CellObject* cellObj)
 
 	if (isDebugCollision()) {
 		getCreatureName();
-		((Creature*)cellObj)->getCreatureName();
+		(static_cast<Creature*>(cellObj))->getCreatureName();
 	}
 
-	if (!((Creature*)cellObj)->isAtari() || !isAtari()) {
+	if (!(static_cast<Creature*>(cellObj))->isAtari() || !isAtari()) {
 		return;
 	}
 
-	if (!((!isStickTo() || (m_sticker != cellObj)) && (!((Creature*)cellObj)->isStickTo() || (((Creature*)cellObj)->m_sticker != this))
-	      && (!ignoreAtari((Creature*)cellObj)))
-	    || ((Creature*)cellObj)->ignoreAtari(this)) {
+	if (!((!isStickTo() || (m_sticker != cellObj)) && (!(static_cast<Creature*>(cellObj))->isStickTo() || ((static_cast<Creature*>(cellObj))->m_sticker != this))
+	      && (!ignoreAtari(static_cast<Creature*>(cellObj))))
+	    || (static_cast<Creature*>(cellObj))->ignoreAtari(this)) {
 		return;
 	}
 
-	if (!((Creature*)cellObj)->isAlive() || !isAlive()) {
+	if (!(static_cast<Creature*>(cellObj))->isAlive() || !isAlive()) {
 		return;
 	}
 
@@ -653,11 +651,11 @@ void Creature::checkCollision(Game::CellObject* cellObj)
 	}
 
 	if ((creatureCheck && objCheck) || (!creatureCheck && !objCheck)) {
-		if (m_collTree->checkCollision(((Creature*)cellObj)->m_collTree, &collPart1, &collPart2, vec)) {
+		if (m_collTree->checkCollision((static_cast<Creature*>(cellObj))->m_collTree, &collPart1, &collPart2, vec)) {
 			delegate.invoke(collPart1, collPart2, vec);
 		}
 	} else {
-		m_collTree->checkCollisionMulti(((Creature*)cellObj)->m_collTree, (IDelegate3<CollPart*, CollPart*, Vector3<f32>&>*)&delegate);
+		m_collTree->checkCollisionMulti((static_cast<Creature*>(cellObj))->m_collTree, (IDelegate3<CollPart*, CollPart*, Vector3<f32>&>*)&delegate);
 	}
 
 	CollTree::mDebug = false;
