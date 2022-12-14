@@ -259,67 +259,14 @@ void Creature::load(Stream& input, u8 flags)
  * Address:	8013B6E8
  * Size:	0000BC
  */
-// WIP: https://decomp.me/scratch/2o7Wb
 f32 Creature::calcSphereDistance(Creature* them)
 {
 	Sys::Sphere theirBounds, myBounds;
 	them->getBoundingSphere(theirBounds);
 	getBoundingSphere(myBounds);
-	Vector3f sepVec = myBounds.m_position - theirBounds.m_position;
+	Vector3f sepVec = Vector3f(myBounds.m_position.y - theirBounds.m_position.y, myBounds.m_position.x - theirBounds.m_position.x,
+	                           myBounds.m_position.z - theirBounds.m_position.z);
 	return anotherLength(sepVec) - (myBounds.m_radius + theirBounds.m_radius);
-	/*
-	stwu     r1, -0x30(r1)
-	mflr     r0
-	stw      r0, 0x34(r1)
-	stw      r31, 0x2c(r1)
-	mr       r31, r3
-	mr       r3, r4
-	addi     r4, r1, 0x18
-	lwz      r12, 0(r3)
-	lwz      r12, 0x10(r12)
-	mtctr    r12
-	bctrl
-	mr       r3, r31
-	addi     r4, r1, 8
-	lwz      r12, 0(r31)
-	lwz      r12, 0x10(r12)
-	mtctr    r12
-	bctrl
-	lfs      f1, 0xc(r1)
-	lfs      f0, 0x1c(r1)
-	lfs      f3, 0x10(r1)
-	fsubs    f4, f1, f0
-	lfs      f2, 0x20(r1)
-	lfs      f1, 8(r1)
-	lfs      f0, 0x18(r1)
-	fsubs    f2, f3, f2
-	fmuls    f3, f4, f4
-	fsubs    f1, f1, f0
-	lfs      f0, lbl_80518288@sda21(r2)
-	fmuls    f2, f2, f2
-	fmadds   f1, f1, f1, f3
-	fadds    f2, f2, f1
-	fcmpo    cr0, f2, f0
-	ble      lbl_8013B77C
-	ble      lbl_8013B780
-	frsqrte  f0, f2
-	fmuls    f2, f0, f2
-	b        lbl_8013B780
-
-lbl_8013B77C:
-	fmr      f2, f0
-
-lbl_8013B780:
-	lfs      f1, 0x14(r1)
-	lfs      f0, 0x24(r1)
-	fadds    f0, f1, f0
-	fsubs    f1, f2, f0
-	lwz      r31, 0x2c(r1)
-	lwz      r0, 0x34(r1)
-	mtlr     r0
-	addi     r1, r1, 0x30
-	blr
-	*/
 }
 
 /*
