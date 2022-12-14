@@ -102,6 +102,12 @@ struct DispMemberDayEndCount : public DispMemberBase {
 // size 0x10
 struct DispMemberHurryUp : public DispMemberBase {
 
+	inline DispMemberHurryUp()
+	{
+		_0C = 0.8f;
+		_08 = 0.8f;
+	}
+
 	virtual u32 getSize() { return sizeof(DispMemberHurryUp); } // _08 (weak)
 	virtual u32 getOwnerID() { return OWNER_OGA; }              // _0C (weak)
 	virtual u64 getMemberID() { return MEMBER_HURRY_UP; }       // _10 (weak)
@@ -341,25 +347,41 @@ struct DispMemberFloor : public DispMemberBase {
 // size 0x88
 struct DispMemberGround : public DispMemberBase {
 
+	inline DispMemberGround()
+	{
+		m_payDebt            = false;
+		m_treasureDist       = 900.0f;
+		m_hasRadar           = false;
+		m_isNotDay1          = true;
+		m_radarState         = 1;
+		m_unlockedSpicy      = false;
+		m_unlockedBitter     = false;
+		m_hasBitter          = false;
+		m_hasSpicy           = false;
+		m_radarEnabled       = false;
+		m_allTreasuresGotten = false;
+	}
+
 	virtual u32 getSize() { return sizeof(DispMemberGround); } // _08 (weak)
 	virtual u32 getOwnerID() { return OWNER_OGA; }             // _0C (weak)
 	virtual u64 getMemberID() { return MEMBER_GROUND; }        // _10 (weak)
 
 	// _00     = VTBL
 	// _00-_08 = DispMemberBase
-	DataGame m_dataGame;                 // _08
-	DataNavi m_dataNavi[2];              // _24
-	f32 _54;                             // _54
-	int _58;                             // _58
-	u8 _5C;                              // _5C
-	u8 _5D;                              // _5D
-	u8 _5E;                              // _5E
-	bool _5F;                            // _5F
-	bool _60;                            // _60
-	u8 _61;                              // _61
-	u8 _62;                              // _62
-	bool _63;                            // _63
-	bool _64;                            // _64
+	DataGame m_dataGame;  // _08
+	DataNavi m_dataNavi1; // _24
+	DataNavi m_dataNavi2;
+	f32 m_treasureDist;                  // _54
+	int m_radarState;                    // _58
+	bool m_hasRadar;                     // _5C
+	bool m_isNotDay1;                    // _5D
+	bool m_payDebt;                      // _5E
+	bool m_unlockedSpicy;                // _5F
+	bool m_unlockedBitter;               // _60
+	bool m_hasBitter;                    // _61
+	bool m_hasSpicy;                     // _62
+	bool m_radarEnabled;                 // _63
+	bool m_allTreasuresGotten;           // _64
 	DispMemberDayEndCount m_dayEndCount; // _68
 	DispMemberHurryUp m_hurryUp;         // _78
 };

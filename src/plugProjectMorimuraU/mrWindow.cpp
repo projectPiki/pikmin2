@@ -29,7 +29,7 @@ TConfirmEndWindow::TConfirmEndWindow(const char* p1)
  */
 bool TConfirmEndWindow::doStart(const Screen::StartSceneArg* arg)
 {
-	_44           = 0.0f;
+	m_fadeLevel   = 0.0f;
 	m_isOpenMaybe = false;
 	_D5           = 1;
 	_CC->_21      = 1;

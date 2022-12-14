@@ -10,7 +10,14 @@ namespace Screen {
  * @size{0x10}
  */
 struct ArrowAlphaBlink {
-	void setSpeed(float speed);
+	inline ArrowAlphaBlink()
+	{
+		m_timer     = 0.0f;
+		m_speed     = 0.1f;
+		m_magnitude = 0.7f;
+		_0C         = 0.3f;
+	}
+	void setSpeed(float);
 	float calc();
 
 	float m_timer;     // _00

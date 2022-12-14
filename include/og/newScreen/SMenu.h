@@ -180,36 +180,39 @@ struct ObjSMenuBase : public ::Screen::ObjBase {
 	void drawYaji(Graphics&);
 	bool start_LR(::Screen::StartSceneArg const*);
 
+	// unused/inlined
+	void registSMenuScreen(P2DScreen::Mgr*);
+	void jump_LR(::Screen::SetSceneArg&, bool);
+	void startYaji();
+
 	// _00     = VTBL1
 	// _18     = VTBL2
 	// _00-_38 = Screen::ObjBase
-	int _38;                                    // _38
-	int _3C;                                    // _3C
-	f32 _40;                                    // _40
-	f32 _44;                                    // _44
-	u8 _48;                                     // _48
-	f32 _4C;                                    // _4C
-	u8 _50;                                     // _50
-	J2DPictureEx* m_Peffect;                    // _54
-	u32 m_buttonStates[2];                      // _58
-	J2DScreen* m_LRScreen;                      // _60
-	J2DPane* m_Nyaji_l;                         // _64
-	J2DPane* m_Nyaji_r;                         // _68
-	J2DTextBoxEx* m_Tyaji_l;                    // _6C
-	J2DTextBoxEx* m_Tyaji_r;                    // _70
-	u8 _74[4];                                  // _74
-	f32 _78;                                    // _78
-	f32 _7C;                                    // _7C
-	f32 _80;                                    // _80
-	f32 _84;                                    // _84
-	f32 _88;                                    // _88
-	u8 _8C[4];                                  // _8C
-	Screen::ArrowAlphaBlink* m_arrowAlphaBlink; // _90
-	u32 _94;                                    // _94
-	J2DPictureEx* m_Peffect2;                   // _98
-	P2DScreen::Mgr* m_screenMgr;                // _9C
-	J2DPane* m_Nsize;                           // _A0
-	f32 _A4;                                    // _A4
+	int m_state;                           // _38
+	int m_cancelToState;                   // _3C
+	f32 m_movePos;                         // _40
+	f32 m_fadeLevel;                       // _44
+	bool m_exiting;                        // _48
+	f32 m_angle;                           // _4C
+	u8 _50;                                // _50
+	J2DPictureEx* m_panePeffect;           // _54
+	u32 m_buttonStates[2];                 // _58
+	P2DScreen::Mgr_tuning* m_LRScreen;     // _60
+	J2DPane* m_Nyaji_l;                    // _64
+	J2DPane* m_Nyaji_r;                    // _68
+	J2DTextBoxEx* m_Tyaji_l;               // _6C
+	J2DTextBoxEx* m_Tyaji_r;               // _70
+	bool m_enableYaji;                     // _74
+	Vector2f m_yajiLpos;                   // _78
+	Vector2f m_yajiRpos;                   // _80
+	f32 _88;                               // _88
+	u8 _8C;                                // _8C
+	Screen::ArrowAlphaBlink* m_arrowBlink; // _90
+	J2DPictureEx* m_panePeffect1;          // _94
+	J2DPictureEx* m_panePeffect2;          // _98
+	P2DScreen::Mgr* m_screen;              // _9C
+	J2DPane* m_paneNsize;                  // _A0
+	f32 _A4;                               // _A4
 
 	static struct StaticValues {
 		f32 _00;         // _00

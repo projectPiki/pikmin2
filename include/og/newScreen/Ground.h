@@ -68,23 +68,50 @@ struct ObjGround : public ::Screen::ObjBase {
 	virtual void doUpdateFadeoutFinish();                 // _64
 	virtual void doDraw(Graphics& gfx);                   // _68
 
+	void commonUpdate();
+
 	// _00     = VTBL1
 	// _18     = VTBL2
 	// _00-_38 = Screen::ObjBase
-	Screen::DispMemberBase* m_dispMember;       // _38
-	og::Screen::OtakaraSensor* m_otakaraSensor; // _3C
-	og::Screen::BloGroup* m_bloGroup;           // _40
-	og::Screen::SunMeter* m_sunMeter;           // _44
-	og::Screen::DopingScreen* m_dopingScreen;   // _48
-	og::Screen::NaviLifeGauge* _4C;             // _4C
-	og::Screen::NaviLifeGauge* _50;             // _50
-	og::Screen::PikminCounter* m_pikminCounter; // _54
-	P2DScreen::Mgr_tuning* _58;                 // _58
-	f32 _5C;                                    // _5C
-	f32 _60;                                    // _60
-	u8 _64;                                     // _64
-	u32 _68;                                    // _68
-	f32 _6C;                                    // _6C
+	Screen::DispMemberGround* m_disp;         // _38
+	og::Screen::OtakaraSensor* m_otakara;     // _3C
+	og::Screen::BloGroup* m_bloGroup;         // _40
+	og::Screen::SunMeter* m_sunMeter;         // _44
+	og::Screen::DopingScreen* m_doping;       // _48
+	og::Screen::NaviLifeGauge* m_lifeGauge1;  // _4C
+	og::Screen::NaviLifeGauge* m_lifeGauge2;  // _50
+	og::Screen::PikminCounter* m_pikiCounter; // _54
+	P2DScreen::Mgr_tuning* m_sensorScreen;    // _58
+	f32 m_fadeLevel;                          // _5C
+	f32 m_scale;                              // _60
+	u8 _64;                                   // _64
+	u32 m_pokos;                              // _68
+	f32 _6C;                                  // _6C
+
+	static struct StaticValues {
+		inline StaticValues()
+		{
+			_00           = 0.3f;
+			_04           = 0.1f;
+			_08           = -50.0f;
+			_0C           = 0.0f;
+			m_sensorX     = 10.0f;
+			m_sensorY     = -40.0f;
+			m_sensorScale = 0.9f;
+			m_dopingX     = 0.0f;
+			m_dopingY     = -30.0f;
+		}
+
+		f32 _00;           // _00
+		f32 _04;           // _04
+		f32 _08;           // _08
+		f32 _0C;           // _0C
+		f32 m_sensorX;     // _10
+		f32 m_sensorY;     // _14
+		f32 m_sensorScale; // _18
+		f32 m_dopingX;     // _1C
+		f32 m_dopingY;     // _20
+	} msVal;
 };
 
 } // namespace newScreen

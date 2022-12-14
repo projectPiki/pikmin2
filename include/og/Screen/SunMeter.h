@@ -6,6 +6,8 @@
 
 namespace og {
 namespace Screen {
+
+struct CallBack_SunMeter;
 struct SunMeter : public P2DScreen::Mgr_tuning {
 	SunMeter();
 

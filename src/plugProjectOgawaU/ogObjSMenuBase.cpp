@@ -1,4 +1,9 @@
 #include "types.h"
+#include "og/newScreen/SMenu.h"
+#include "og/Screen/ArrowAlphaBlink.h"
+#include "og/Screen/ogScreen.h"
+#include "og/Sound.h"
+#include "Controller.h"
 
 /*
     Generated from dpostproc
@@ -213,6 +218,33 @@ namespace newScreen {
  */
 ObjSMenuBase::ObjSMenuBase(void)
 {
+	m_movePos         = 0.0f;
+	m_fadeLevel       = 0.0f;
+	m_state           = 4;
+	m_exiting         = false;
+	m_angle           = 0.0f;
+	_50               = false;
+	m_cancelToState   = 0;
+	m_enableYaji      = false;
+	_8C               = false;
+	_88               = 0.0f;
+	m_buttonStates[1] = Controller::PRESS_R;
+	m_buttonStates[0] = Controller::PRESS_L;
+
+	m_panePeffect  = nullptr;
+	m_panePeffect1 = nullptr;
+	m_panePeffect2 = nullptr;
+	m_LRScreen     = nullptr;
+
+	m_Nyaji_l    = nullptr;
+	m_Nyaji_r    = nullptr;
+	m_Tyaji_l    = nullptr;
+	m_Tyaji_r    = nullptr;
+	m_screen     = nullptr;
+	_A4          = 1.0f;
+	m_paneNsize  = nullptr;
+	m_arrowBlink = new og::Screen::ArrowAlphaBlink;
+
 	/*
 	stwu     r1, -0x10(r1)
 	mflr     r0
@@ -283,8 +315,10 @@ lbl_803162E0:
  * Address:	803162FC
  * Size:	00003C
  */
-void ObjSMenuBase::setFinishState(long)
+void ObjSMenuBase::setFinishState(long id)
 {
+	SceneSMenuBase* scene = static_cast<SceneSMenuBase*>(getOwner());
+	scene->m_finishState  = id;
 	/*
 	stwu     r1, -0x10(r1)
 	mflr     r0
@@ -319,8 +353,10 @@ void ObjSMenuBase::registSMenuScreen(P2DScreen::Mgr*)
  * Address:	80316338
  * Size:	000040
  */
-void ObjSMenuBase::setSMenuScale(float, float)
+void ObjSMenuBase::setSMenuScale(float x, float y)
 {
+	if (m_paneNsize)
+		m_paneNsize->updateScale(x, y);
 	/*
 	stwu     r1, -0x10(r1)
 	mflr     r0
@@ -348,8 +384,31 @@ lbl_80316368:
  * Address:	80316378
  * Size:	0001C4
  */
-void ObjSMenuBase::doCreateAfter(JKRArchive*, P2DScreen::Mgr*)
+void ObjSMenuBase::doCreateAfter(JKRArchive* arc, P2DScreen::Mgr* scrn)
 {
+	m_screen       = scrn;
+	m_panePeffect1 = static_cast<J2DPictureEx*>(m_screen->search('Peffect1'));
+	m_panePeffect2 = static_cast<J2DPictureEx*>(m_screen->search('Peffect2'));
+	m_panePeffect  = static_cast<J2DPictureEx*>(og::Screen::TagSearch(m_screen, 'Peffect'));
+	og::Screen::setAlphaScreen(m_screen);
+	m_paneNsize = m_screen->search('Nsize');
+	og::Screen::setCallBackMessage(m_screen);
+	og::Screen::setFurikoScreen(m_screen);
+	m_LRScreen = new P2DScreen::Mgr_tuning;
+	m_LRScreen->set("s_menu_yajirushi_LR.blo", 0x1040000, arc);
+	og::Screen::setAlphaScreen(m_LRScreen);
+
+	m_Nyaji_l    = og::Screen::TagSearch(m_LRScreen, 'Nyaji_l');
+	m_yajiLpos.x = m_Nyaji_l->_0D4.x;
+	m_yajiLpos.y = m_Nyaji_l->_0D4.y;
+	m_Nyaji_r    = og::Screen::TagSearch(m_LRScreen, 'Nyaji_r');
+	m_yajiRpos.x = m_Nyaji_r->_0D4.x;
+	m_yajiRpos.y = m_Nyaji_r->_0D4.y;
+
+	m_Tyaji_l = static_cast<J2DTextBoxEx*>(og::Screen::TagSearch(m_LRScreen, 'Tyaji_l'));
+	m_Tyaji_r = static_cast<J2DTextBoxEx*>(og::Screen::TagSearch(m_LRScreen, 'Tyaji_r'));
+	og::Screen::setCallBackMessage(m_LRScreen);
+
 	/*
 	stwu     r1, -0x10(r1)
 	mflr     r0
@@ -476,6 +535,7 @@ lbl_80316458:
  */
 void ObjSMenuBase::commonUpdateBase(void)
 {
+	updateYaji();
 	/*
 	stwu     r1, -0x10(r1)
 	mflr     r0
@@ -493,8 +553,33 @@ void ObjSMenuBase::commonUpdateBase(void)
  * Address:	8031655C
  * Size:	00012C
  */
-void ObjSMenuBase::doUpdate(void)
+bool ObjSMenuBase::doUpdate(void)
 {
+	bool ret = false;
+	if (m_exiting) {
+		if (m_cancelToState == 3) {
+			ret = true;
+		} else if (m_cancelToState == 2) {
+			ret = true;
+		} else {
+			JUT_PANICLINE(301, "Cancel ERR!\n");
+		}
+	} else {
+		SceneSMenuBase* scene = static_cast<SceneSMenuBase*>(getOwner());
+		Controller* pad       = scene->getGamePad();
+		if (pad->m_padButton.m_buttonDown & m_buttonStates[1]) {
+			ret             = true;
+			m_cancelToState = 3;
+		} else if (pad->m_padButton.m_buttonDown & m_buttonStates[0]) {
+			ret             = true;
+			m_cancelToState = 2;
+		} else if (pad->m_padButton.m_buttonDown & (Controller::PRESS_START | Controller::PRESS_B)) {
+			m_cancelToState = 1;
+			doUpdateCancelAction();
+			ret = true;
+		}
+	}
+	return ret;
 	/*
 	stwu     r1, -0x20(r1)
 	mflr     r0
@@ -593,6 +678,24 @@ lbl_80316664:
  */
 void ObjSMenuBase::doUpdateFinish(void)
 {
+	stopYaji();
+	m_fadeLevel = 0.0f;
+	switch (m_cancelToState) {
+	case 1:
+		close_L();
+		return;
+	case 0:
+		out_L();
+		return;
+	case 2:
+		out_R();
+		return;
+	case 3:
+		out_L();
+		return;
+	default:
+		JUT_PANICLINE(348, "updateFinish ERR!\n");
+	}
 	/*
 	stwu     r1, -0x10(r1)
 	mflr     r0
@@ -670,6 +773,10 @@ lbl_80316744:
  */
 void ObjSMenuBase::startBackupScene(void)
 {
+	SceneSMenuBase* scene = static_cast<SceneSMenuBase*>(getOwner());
+	if (scene->setBackupScene() && !scene->startScene(nullptr)) {
+		JUT_PANICLINE(366, "‚¾‚ß‚Å‚·\n");
+	}
 	/*
 	stwu     r1, -0x10(r1)
 	mflr     r0
@@ -710,7 +817,7 @@ lbl_803167B8:
  * Address:	........
  * Size:	0000EC
  */
-void ObjSMenuBase::jump_LR(Screen::SetSceneArg&, bool)
+void ObjSMenuBase::jump_LR(::Screen::SetSceneArg&, bool)
 {
 	// UNUSED FUNCTION
 }
@@ -722,6 +829,8 @@ void ObjSMenuBase::jump_LR(Screen::SetSceneArg&, bool)
  */
 void ObjSMenuBase::close_L(void)
 {
+	m_state = 2;
+	ogSound->setClose();
 	/*
 	stwu     r1, -0x10(r1)
 	mflr     r0
@@ -742,8 +851,19 @@ void ObjSMenuBase::close_L(void)
  * Address:	803167F8
  * Size:	0000E4
  */
-void ObjSMenuBase::jump_L(Screen::SetSceneArg&)
+void ObjSMenuBase::jump_L(::Screen::SetSceneArg& arg)
 {
+	SceneSMenuBase* scene = static_cast<SceneSMenuBase*>(getOwner());
+	arg._09               = false;
+	if (scene->setScene(arg)) {
+		StartSceneArgSMenu sarg;
+		sarg.m_flag = true;
+		sarg._04    = arg.getSceneType();
+		sarg.m_flag = false;
+		if (!scene->startScene(&sarg)) {
+			JUT_PANICLINE(394, "‚¾‚ß‚Å‚·\n");
+		}
+	}
 	/*
 	stwu     r1, -0x20(r1)
 	mflr     r0
@@ -814,8 +934,19 @@ lbl_803168C4:
  * Address:	803168DC
  * Size:	0000E4
  */
-void ObjSMenuBase::jump_R(Screen::SetSceneArg&)
+void ObjSMenuBase::jump_R(::Screen::SetSceneArg& arg)
 {
+	SceneSMenuBase* scene = static_cast<SceneSMenuBase*>(getOwner());
+	arg._09               = false;
+	if (scene->setScene(arg)) {
+		StartSceneArgSMenu sarg;
+		sarg.m_flag = true;
+		sarg._04    = arg.getSceneType();
+		sarg.m_flag = true;
+		if (!scene->startScene(&sarg)) {
+			JUT_PANICLINE(394, "‚¾‚ß‚Å‚·\n");
+		}
+	}
 	/*
 	stwu     r1, -0x20(r1)
 	mflr     r0
@@ -886,8 +1017,16 @@ lbl_803169A8:
  * Address:	803169C0
  * Size:	000150
  */
-void ObjSMenuBase::start_LR(Screen::StartSceneArg const*)
+bool ObjSMenuBase::start_LR(::Screen::StartSceneArg const* arg)
 {
+	m_fadeLevel = 0.0f;
+	if (arg) {
+		if (arg->getSceneType() == SCENE_PAUSE_MENU_MAP || arg->getSceneType() == SCENE_PAUSE_MENU_ITEMS
+		    || arg->getSceneType() == SCENE_PAUSE_MENU_CONTROLS || arg->getSceneType() == SCENE_PAUSE_MENU
+		    || arg->getSceneType() == SCENE_PAUSE_MENU_DOUKUTU || arg->getSceneType() == SCENE_PAUSE_MENU_VS) {
+			// if (arg->_04)
+		}
+	}
 	/*
 	stwu     r1, -0x10(r1)
 	mflr     r0
@@ -1048,11 +1187,7 @@ void ObjSMenuBase::startYaji(void)
  * Address:	80316B7C
  * Size:	00000C
  */
-void ObjSMenuBase::stopYaji(void)
-{
-	// Generated from stb r0, 0x74(r3)
-	_74 = 0;
-}
+void ObjSMenuBase::stopYaji(void) { m_enableYaji = false; }
 
 /*
  * --INFO--
@@ -1283,7 +1418,7 @@ lbl_80316E08:
  * Address:	80316E8C
  * Size:	000034
  */
-void ObjSMenuBase::drawYaji(Graphics&)
+void ObjSMenuBase::drawYaji(Graphics& gfx)
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -1428,7 +1563,7 @@ lbl_80317014:
  * Address:	80317030
  * Size:	0000A8
  */
-void ObjSMenuBase::doUpdateFadein(void)
+bool ObjSMenuBase::doUpdateFadein(void)
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -1721,24 +1856,23 @@ lbl_80317378:
 }
 
 } // namespace newScreen
+} // namespace og
 
 namespace Screen {
-
-} // namespace Screen
 
 /*
  * --INFO--
  * Address:	80317394
  * Size:	000008
  */
-u32 ObjBase::doStart(Screen::StartSceneArg const*) { return 0x1; }
+bool ObjBase::doStart(::Screen::StartSceneArg const*) { return true; }
 
 /*
  * --INFO--
  * Address:	8031739C
  * Size:	000008
  */
-u32 ObjBase::doEnd(Screen::EndSceneArg const*) { return 0x1; }
+bool ObjBase::doEnd(::Screen::EndSceneArg const*) { return true; }
 
 /*
  * --INFO--
@@ -1752,12 +1886,11 @@ void ObjBase::doCreate(JKRArchive*) { }
  * Address:	803173A8
  * Size:	000008
  */
-u32 ObjBase::doUpdateFadeout(void) { return 0x1; }
+bool ObjBase::doUpdateFadeout(void) { return true; }
+
+} // namespace Screen
 
 namespace og {
-
-} // namespace og
-
 namespace newScreen {
 
 /*
@@ -1765,7 +1898,7 @@ namespace newScreen {
  * Address:	803173B0
  * Size:	000008
  */
-void StartSceneArgSMenu::getSceneType() const
+SceneType StartSceneArgSMenu::getSceneType() const
 {
 	/*
 	lwz      r3, 4(r3)
@@ -1780,7 +1913,7 @@ void StartSceneArgSMenu::getSceneType() const
  * Address:	803173B8
  * Size:	000008
  */
-u32 getClassSize__Q26Screen58StartSceneArgTemplate<og::newScreen::StartSceneArgSMenu> Fv(void) { return 0xC; }
+// u32 getClassSize__Q26Screen58StartSceneArgTemplate<og::newScreen::StartSceneArgSMenu> Fv(void) { return 0xC; }
 
 } // namespace og
 
@@ -1821,10 +1954,10 @@ void __sinit_ogObjSMenuBase_cpp(void)
  * Address:	80317414
  * Size:	000008
  */
-@24 @og::newScreen::ObjSMenuBase::~ObjSMenuBase(void)
-{
-	/*
-	addi     r3, r3, -24
-	b        __dt__Q32og9newScreen12ObjSMenuBaseFv
-	*/
-}
+//@24 @og::newScreen::ObjSMenuBase::~ObjSMenuBase(void)
+//{
+/*
+addi     r3, r3, -24
+b        __dt__Q32og9newScreen12ObjSMenuBaseFv
+*/
+//}
