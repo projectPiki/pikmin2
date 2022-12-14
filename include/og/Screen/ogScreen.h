@@ -32,13 +32,16 @@ struct CallBack_Furiko;
 struct CallBack_Picture;
 struct PictureTreeColorCaptureInfo;
 
-void blendColor(JUtility::TColor&, JUtility::TColor&, float, JUtility::TColor*);
-void blendPictureTreeColor(PictureTreeColorCaptureInfo*, JUtility::TColor&, JUtility::TColor&, float);
-void calcGlbCenter(J2DPane*, Vector2f*);
+// LERP for colors
+void blendColor(JUtility::TColor& c1, JUtility::TColor& c2, float t, JUtility::TColor* output);
+// LERP for picture trees
+void blendPictureTreeColor(PictureTreeColorCaptureInfo* capInfo, JUtility::TColor& c1, JUtility::TColor& c2, float t);
+// Calculates the global center of a pane
+void calcGlbCenter(J2DPane* pane, Vector2f* outputPos);
 u16 CalcKeta(u32);
-float calcSmooth0to1(float, float);
-PictureTreeColorCaptureInfo* capturePictureTreeColor(J2DPane*, int);
-void centeringPane(J2DPane*, bool, bool);
+// LERP for floats, but smooth at extents
+float calcSmooth0to1(float a, float b);
+PictureTreeColorCaptureInfo* capturePictureTreeColor(J2DPane* picture, int count);
 u64 CharCodeToTag(char*);
 bool checkVisibleGlb(J2DPane*);
 J2DPictureEx* CopyPicture(J2DPictureEx*, u64);
@@ -48,8 +51,10 @@ void dumpInfoResTIMG(ResTIMG const*);
 CallBack_Furiko* getFurikoPtr(P2DScreen::Mgr*, u64);
 void kakomiPane(J2DPane*);
 ResTIMG** makeSujiFontTable(char**, JKRArchive*);
-u64 maskTag(u64, u16, u16);
-u64 maskTag2(u64, u16);
+
+u64 maskTag(u64 tag, u16 x, u16 mask);
+u64 maskTag2(u64 tag, u16 x);
+
 u64 MojiToNum(u64, int);
 u64 NameToTag(char*);
 void registAnimGroupPane(AnimGroup*, JKRArchive*, J2DScreen*, u64, char*, float);

@@ -13,8 +13,8 @@ namespace Screen {
  */
 CallBack_CatchPiki::CallBack_CatchPiki()
 {
-	m_pikiTypePtr = nullptr;
-	m_pikiIcon    = nullptr;
+	m_pikiType = nullptr;
+	m_pikiIcon = nullptr;
 }
 
 /*
@@ -22,11 +22,11 @@ CallBack_CatchPiki::CallBack_CatchPiki()
  * Address:	803078DC
  * Size:	0000C0
  */
-void CallBack_CatchPiki::init(J2DScreen* screen, u64 tag, u32* pikiTypePtr, JKRArchive* archive)
+void CallBack_CatchPiki::init(J2DScreen* screen, u64 tag, u32* pikiType, JKRArchive* archive)
 {
 	m_pikiIcon     = static_cast<J2DPicture*>(screen->search(tag));
-	m_pikiTypePtr  = pikiTypePtr;
-	m_currPikiType = *pikiTypePtr;
+	m_pikiType     = pikiType;
+	m_currPikiType = *pikiType;
 
 	char** iconNames   = (char**)PikiIconTextureName;
 	ResTIMG** textures = PikiIconTextureResTIMG;
@@ -35,7 +35,7 @@ void CallBack_CatchPiki::init(J2DScreen* screen, u64 tag, u32* pikiTypePtr, JKRA
 		textures[i] = static_cast<ResTIMG*>(archive->getResource('TIMG', iconNames[i]));
 	}
 
-	setPikiIcon(*pikiTypePtr);
+	setPikiIcon(*pikiType);
 	update();
 }
 
@@ -46,8 +46,8 @@ void CallBack_CatchPiki::init(J2DScreen* screen, u64 tag, u32* pikiTypePtr, JKRA
  */
 void CallBack_CatchPiki::update()
 {
-	if (m_pikiTypePtr && m_pikiIcon) {
-		u32 pikiType = *m_pikiTypePtr;
+	if (m_pikiType && m_pikiIcon) {
+		u32 pikiType = *m_pikiType;
 		if (pikiType != m_currPikiType && pikiType < 19) {
 			setPikiIcon(pikiType);
 			m_scaleMgr.up(0.4f, 30.0f, 0.7f, 0.0f);

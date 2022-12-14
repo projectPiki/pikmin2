@@ -235,18 +235,18 @@ struct DispMemberChallenge2P : public DispMemberBase {
 struct DispMemberContena : public DispMemberBase {
 	inline DispMemberContena()
 	{
-		m_inOnion          = 100;
-		m_currInMap        = 1000;
-		m_inParty          = 0;
-		m_maxPikiField     = 20;
-		m_inParty2         = 50;
-		m_onMapMinusWild   = 60;
-		m_maxPikiMinusWild = 200;
-		m_onyonID          = -1;
-		_28                = 0;
-		_2C                = 0;
-		_30                = 0;
-		m_result           = 0;
+		m_inOnionCount   = 100;
+		m_currField      = 1000;
+		m_inSquadCount   = 0;
+		m_maxPikiOnField = 20;
+		m_inParty2       = 50;
+		m_onMapCount     = 60;
+		m_maxPikiCount   = 200;
+		m_onyonID        = -1;
+		_28              = 0;
+		_2C              = 0;
+		_30              = 0;
+		m_result         = 0;
 	}
 
 	virtual u32 getSize() { return sizeof(DispMemberContena); } // _08 (weak)
@@ -255,18 +255,18 @@ struct DispMemberContena : public DispMemberBase {
 
 	// _00     = VTBL
 	// _00-_08 = DispMemberBase
-	int m_onyonID;          // _08
-	u32 m_inOnion;          // _0C
-	int m_currInMap;        // _10
-	u32 m_inParty;          // _14
-	int m_maxPikiField;     // _18
-	int m_inParty2;         // _1C
-	u32 m_onMapMinusWild;   // _20
-	int m_maxPikiMinusWild; // _24
-	u32 _28;                // _28
-	bool _2C;               // _2C
-	int _30;                // _30
-	s16 m_result;           // _34
+	int m_onyonID;        // _08
+	u32 m_inOnionCount;   // _0C
+	int m_currField;      // _10
+	u32 m_inSquadCount;   // _14
+	int m_maxPikiOnField; // _18
+	int m_inParty2;       // _1C
+	u32 m_onMapCount;     // _20
+	int m_maxPikiCount;   // _24
+	u32 _28;              // _28
+	bool _2C;             // _2C
+	int _30;              // _30
+	s16 m_result;         // _34
 };
 
 // size 0x10

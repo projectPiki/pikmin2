@@ -488,7 +488,7 @@ void CallBack_CounterSlot::setValue(bool flag1, bool flag2)
 			}
 		}
 	}
-	f32 temp  = _40;
+	f32 width = _40;
 	f32 temp3 = 0.0f;
 	if (m_counterLimit <= counts) {
 		counts = m_counterLimit;
@@ -496,12 +496,12 @@ void CallBack_CounterSlot::setValue(bool flag1, bool flag2)
 	if (counts > 1) {
 		f32 temp2 = _34 * (f32)(counts - 1) + m_widthMaybe;
 		if (temp2 > _38) {
-			temp  = (temp * _38) / temp2;
-			temp3 = m_widthMaybe * 0.5f * (1.0f - temp);
+			width = (width * _38) / temp2;
+			temp3 = m_widthMaybe * 0.5f * (1.0f - width);
 		}
 	}
 	J2DPicture* pane = _6C;
-	pane->updateScale(temp, _44);
+	pane->updateScale(width, m_height);
 	pane->_0D4.x = _50 + temp3;
 	pane->_0D4.y = _54;
 	pane->calcMtx();
@@ -522,19 +522,19 @@ void CallBack_CounterSlot::setValue(bool flag1, bool flag2)
 		if (cPane) {
 			JGeometry::TBox2f cBox;
 			cBox.i.y = _5C;
-			cBox.i.x = (f32)i * (-_34 * temp);
+			cBox.i.x = (f32)i * (-_34 * width);
 			cBox.f.y = cBox.i.y + m_heightMaybe;
 			cBox.f.x = cBox.i.x + _58 + m_widthMaybe;
 			cBox.i.x += _58;
 			cPane->place(cBox);
 			if (!m_isPuyoAnim || _AC) {
 				cPane->setBasePosition((J2DBasePosition)m_basePosition);
-				cPane->updateScale(temp, _44);
+				cPane->updateScale(width, m_height);
 			} else {
 				cPane->setBasePosition(POS_CENTER);
 				CounterKeta* cKeta = m_counters[i];
-				cKeta->_0C         = temp;
-				cKeta->_10         = _44;
+				cKeta->m_width     = width;
+				cKeta->m_height    = m_height;
 			}
 			cPane->_0B8    = newx;
 			cPane->_0BC    = newy;

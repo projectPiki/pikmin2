@@ -35,12 +35,12 @@ struct CallBack_CatchPiki : public P2DScreen::CallBackNode {
 	virtual ~CallBack_CatchPiki() { } // _08
 	virtual void update();            // _10
 
-	void init(J2DScreen*, u64, u32*, JKRArchive*);
+	void init(J2DScreen* canvas, u64 tag, u32* pikiType, JKRArchive* arc);
 	void setPikiIcon(int);
 
 	// _00     = VTBL
 	// _00-_1C = P2DScreen::CallBackNode
-	u32* m_pikiTypePtr;     // _1C
+	u32* m_pikiType;        // _1C
 	J2DPicture* m_pikiIcon; // _20
 	u32 m_currPikiType;     // _24
 	ScaleMgr m_scaleMgr;    // _28
@@ -86,7 +86,7 @@ struct CallBack_CounterRV : public P2DScreen::CallBackNode {
 	f32 _38;                           // _38
 	f32 _3C;                           // _3C
 	f32 _40;                           // _40
-	f32 _44;                           // _44
+	f32 m_height;                      // _44
 	f32 m_widthMaybe;                  // _48
 	f32 m_heightMaybe;                 // _4C
 	f32 _50;                           // _50
@@ -363,13 +363,13 @@ struct CallBack_SunMeter : public P2DScreen::CallBackNode {
 	virtual ~CallBack_SunMeter() { } // _08 (weak)
 	virtual void update();           // _10
 
-	void init(J2DScreen*, f32*);
+	void init(J2DScreen* canvas, f32* time);
 	void startEffectChime();
 
 	// _00     = VTBL
 	// _00-_1C = P2DScreen::CallBackNode
-	f32 _1C;                 // _1C
-	f32* m_currentTimePtr;   // _20, ptr to current time, as fraction (0 = start of day, 1 = end of day)
+	f32 m_timer;             // _1C
+	f32* m_currentTime;      // _20, ptr to current time, as fraction (0 = start of day, 1 = end of day)
 	J2DPane* m_startPane;    // _24
 	J2DPane* m_endPane;      // _28
 	J2DPane* m_suniPane;     // _2C
@@ -401,7 +401,7 @@ struct AnimText_Screen : public CallBack_Screen {
 	// _00-_34 = CallBack_Screen
 	int m_colorType;            // _34
 	AnimScreen* m_anmScreen;    // _38
-	bool _3C;                   // _3C
+	bool m_isUpdateSuccess;     // _3C
 	J2DTextBox* m_msgBodyPane;  // _40
 	J2DTextBox* m_msgBackPane;  // _44 // just a guess
 	bool _48;                   // _48
@@ -434,14 +434,14 @@ struct AnimText_Screen : public CallBack_Screen {
 };
 
 struct CounterKeta {
-	void setSuji(ResTIMG**, u32);
+	void setSuji(ResTIMG** texList, u32 texIdx);
 	void calcScale();
 
 	J2DPicture* m_picture; // _00
 	u32 m_textureIndex;    // _04
 	ScaleMgr* m_scaleMgr;  // _08
-	f32 _0C;               // _0C
-	f32 _10;               // _10
+	f32 m_width;           // _0C
+	f32 m_height;          // _10
 };
 
 extern const char* SujiTex32[11];

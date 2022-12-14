@@ -13,20 +13,23 @@ struct AlphaMgr {
 		ALPHAMGR_Fadein,
 		ALPHAMGR_Fadeout,
 		ALPHAMGR_Blinking,
-		ALPHAMGR_Unused // nothing seems to ever set the state to 4?
+		ALPHAMGR_BlinkingCustom // nothing seems to ever set the state to 4?
 	};
 
 	AlphaMgr();
-	void setBlinkArea(float, float);
-	void in(float);
-	void out(float);
-	void blink(float);
+	void setBlinkArea(float min, float max);
+	void in(float end);
+	void out(float end);
+	void blink(float end);
+
+	/// @brief Calculates alpha based on the state
+	/// @return Alpha (0 - 255)
 	u8 calc();
 
 	int m_state;           // _00
 	float m_currAlpha;     // _04
 	float m_growRate;      // _08
-	float m_timerModifier; // _0C
+	float m_blinkEndAlpha; // _0C
 	float m_alphaMin;      // _10
 	float m_alphaMax;      // _14
 };

@@ -46,7 +46,7 @@ float ArrowAlphaBlink::calc()
 	// Place the sine wave in a range of 0 - 2 * blinkMag (sin returns between -1 and 1)
 	float factor = m_magnitude * (1.0f + pikmin2_sinf(m_timer));
 
-	return (factor / 2) + _0C;
+	return (factor / 2) + m_start;
 }
 
 /*
@@ -109,13 +109,13 @@ void blendColor(JUtility::TColor& color1, JUtility::TColor& color2, float blendF
 		t = 1.0f;
 	}
 
-	float tCompl = 1.0f - t;
-
+	// 1 - t is the inverse of t, e.g. t = 0.3, invT = 0.7, so 30% c2 and 70% c1
+	float invT = 1.0f - t;
 	JUtility::TColor store;
-	store.r = (color1.r * tCompl) + (color2.r * t);
-	store.g = (color1.g * tCompl) + (color2.g * t);
-	store.b = (color1.b * tCompl) + (color2.b * t);
-	store.a = (color1.a * tCompl) + (color2.a * t);
+	store.r = (color1.r * invT) + (color2.r * t);
+	store.g = (color1.g * invT) + (color2.g * t);
+	store.b = (color1.b * invT) + (color2.b * t);
+	store.a = (color1.a * invT) + (color2.a * t);
 	outColor->set(store.r, store.g, store.b, store.a);
 }
 
@@ -128,20 +128,19 @@ void blendPictureTreeColor(PictureTreeColorCaptureInfo* captureInfo, JUtility::T
 {
 	PictureTreeColorInfo* colorInfo = captureInfo->m_colorInfoArray;
 	for (int i = 0; i < captureInfo->m_count; i++) {
-
 		J2DPicture* picture = static_cast<J2DPicture*>(colorInfo[i].m_pane);
 		if (picture == nullptr) {
 			return;
-		} else {
-			JUtility::TColor white = colorInfo[i].m_white;
-			JUtility::TColor black = colorInfo[i].m_black;
-
-			blendColor(white, color1, blendFactor, &white);
-			blendColor(black, color2, blendFactor, &black);
-
-			picture->setWhite(white);
-			picture->setBlack(black);
 		}
+
+		JUtility::TColor white = colorInfo[i].m_white;
+		JUtility::TColor black = colorInfo[i].m_black;
+
+		blendColor(white, color1, blendFactor, &white);
+		blendColor(black, color2, blendFactor, &black);
+
+		picture->setWhite(white);
+		picture->setBlack(black);
 	}
 }
 
@@ -150,22 +149,22 @@ void blendPictureTreeColor(PictureTreeColorCaptureInfo* captureInfo, JUtility::T
  * Address:	8030269C
  * Size:	0000C8
  */
-float calcSmooth0to1(float start, float end)
+float calcSmooth0to1(float a, float b)
 {
-	float ratio = start / end;
-	if (ratio < 0.0f) {
-		ratio = 0.0f;
+	float t = a / b;
+	if (t < 0.0f) {
+		t = 0.0f;
 	}
-	if (ratio > 1.0f) {
-		ratio = 1.0f;
-	}
-
-	float limit = 0.8f;
-	if (ratio < limit) {
-		return ratio;
+	if (t > 1.0f) {
+		t = 1.0f;
 	}
 
-	float theta = ((1.0 / (1.0 - (double)limit)) * (double)(HALF_PI * (ratio - limit)));
+	float smoothingLimit = 0.8f;
+	if (t < smoothingLimit) {
+		return t;
+	}
+
+	float theta = ((1.0 / (1.0 - (double)smoothingLimit)) * (double)(HALF_PI * (t - smoothingLimit)));
 	return (0.19999999f * pikmin2_sinf(theta)) + 0.8f;
 }
 
@@ -240,11 +239,11 @@ const char* PikiIconTextureName[]
  * Address:	803029C0
  * Size:	0000B4
  */
-u16 CalcKeta(u32 p1)
+u16 CalcKeta(u32 x)
 {
 	u16 keta = 1;
 	for (int i = 1; i < 10; i++) {
-		if (p1 >= pow(10.0, (double)i)) {
+		if (x >= pow(10.0, (double)i)) {
 			keta = i + 1;
 		} else {
 			break;
@@ -374,7 +373,7 @@ AlphaMgr::AlphaMgr()
 	m_state         = ALPHAMGR_Disabled;
 	m_currAlpha     = 0.0f;
 	m_growRate      = 0.0f;
-	m_timerModifier = 1.0f;
+	m_blinkEndAlpha = 1.0f;
 	m_alphaMin      = 0.0f;
 	m_alphaMax      = 1.0f;
 }
@@ -472,21 +471,21 @@ u8 AlphaMgr::calc()
 			m_state     = ALPHAMGR_Disabled;
 		}
 		break;
-	case ALPHAMGR_Unused:
+	case ALPHAMGR_BlinkingCustom:
 		m_currAlpha += m_growRate;
 
 		if (m_currAlpha >= 1.0f) {
-			m_currAlpha = 1.0f;
-			f32 tempC   = m_timerModifier;
+			m_currAlpha  = 1.0f;
+			f32 endAlpha = m_blinkEndAlpha;
 
 			// looks like inlined AlphaMgr::blink
 			if ((m_state == ALPHAMGR_Disabled) || (m_state == ALPHAMGR_Blinking)) {
-				m_state       = ALPHAMGR_Blinking;
-				f32 frametime = sys->m_deltaTime;
+				m_state = ALPHAMGR_Blinking;
+				f32 dt  = sys->m_deltaTime;
 				if (m_growRate > 0.0f) {
-					m_growRate = frametime / tempC;
+					m_growRate = dt / endAlpha;
 				} else {
-					m_growRate = -(frametime / tempC);
+					m_growRate = -(dt / endAlpha);
 				}
 			}
 		}

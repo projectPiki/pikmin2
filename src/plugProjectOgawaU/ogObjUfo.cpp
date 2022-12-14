@@ -81,8 +81,8 @@ void ObjUfoMenu::doCreate(JKRArchive* arc)
 	m_paneN01         = og::Screen::TagSearch(m_ufoScreen, 'N01_c');
 
 	og::Screen::setCallBack_Furiko(m_ufoScreen, 'furiko00');
-	og::Screen::setCallBack_CounterRV(m_ufoScreen, 'Ppi00_1', &m_disp->m_contena1.m_inOnion, 10, 0, 1, arc);
-	og::Screen::setCallBack_CounterRV(m_ufoScreen, 'Ppi01_1', &m_disp->m_contena2.m_inOnion, 10, 0, 1, arc);
+	og::Screen::setCallBack_CounterRV(m_ufoScreen, 'Ppi00_1', &m_disp->m_contena1.m_inOnionCount, 10, 0, 1, arc);
+	og::Screen::setCallBack_CounterRV(m_ufoScreen, 'Ppi01_1', &m_disp->m_contena2.m_inOnionCount, 10, 0, 1, arc);
 	og::Screen::setCallBackMessage(m_ufoScreen);
 	m_selectIndex = 0;
 	setSelectPikmin(m_selectIndex);

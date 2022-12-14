@@ -12,15 +12,15 @@ namespace Screen {
  */
 ContenaCounter::ContenaCounter(DispMemberContena* contena)
 {
-	m_contena = contena;
-	_164      = &m_contena->m_inOnion;
-	_168      = &m_contena->_28;
-	_16C      = &m_contena->m_inParty;
-	_170      = &m_contena->m_onMapMinusWild;
-	_14C      = nullptr;
-	_150      = nullptr;
-	_154      = nullptr;
-	_158      = nullptr;
+	m_contena        = contena;
+	m_inOnionCount   = &m_contena->m_inOnionCount;
+	_168             = &m_contena->_28;
+	m_inSquadCount   = &m_contena->m_inSquadCount;
+	m_onMapCount     = &m_contena->m_onMapCount;
+	m_inOnionCounter = nullptr;
+	_150             = nullptr;
+	m_inSquadCounter = nullptr;
+	m_onMapCounter   = nullptr;
 }
 
 /*
@@ -36,10 +36,10 @@ void ContenaCounter::setblo(char* filename, JKRArchive* archive)
 	setAlphaScreen(this);
 	setAlpha(0xFF);
 
-	_14C = setCallBack_CounterRV(this, 'a_k1', _164, 5, true, true, archive);
-	_150 = setCallBack_CounterRV(this, 'b_k1', _168, 4, false, true, archive);
-	_154 = setCallBack_CounterRV(this, 'c_k1', _16C, 4, true, true, archive);
-	_158 = setCallBack_CounterRV(this, 'd_k1', _170, 4, true, true, archive);
+	m_inOnionCounter = setCallBack_CounterRV(this, 'a_k1', m_inOnionCount, 5, true, true, archive);
+	_150             = setCallBack_CounterRV(this, 'b_k1', _168, 4, false, true, archive);
+	m_inSquadCounter = setCallBack_CounterRV(this, 'c_k1', m_inSquadCount, 4, true, true, archive);
+	m_onMapCounter   = setCallBack_CounterRV(this, 'd_k1', m_onMapCount, 4, true, true, archive);
 }
 
 } // namespace Screen

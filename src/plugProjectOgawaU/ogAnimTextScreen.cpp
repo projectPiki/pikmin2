@@ -74,19 +74,19 @@ AnimText_Screen::AnimText_Screen(P2DScreen::Mgr* scrn, u64 tag)
 	if (!m_pane) {
 		TagToName(tag, buf);
 	}
-	m_anmScreen   = nullptr;
-	_3C           = false;
-	m_msgBodyPane = nullptr;
-	m_msgBackPane = nullptr;
-	_48           = false;
-	m_tag         = 0;
-	m_msgBodyPane = static_cast<J2DTextBox*>(og::Screen::TagSearch(scrn, 'msg_body'));
-	m_msgBackPane = static_cast<J2DTextBox*>(og::Screen::TagSearch(scrn, 'msg_back'));
-	m_blinkTimer  = 0.0f;
-	m_blinkFactor = 0.0f;
-	m_blinkLevel  = 1.0f;
-	m_isBlinking  = false;
-	_6C           = 1.0f;
+	m_anmScreen       = nullptr;
+	m_isUpdateSuccess = false;
+	m_msgBodyPane     = nullptr;
+	m_msgBackPane     = nullptr;
+	_48               = false;
+	m_tag             = 0;
+	m_msgBodyPane     = static_cast<J2DTextBox*>(og::Screen::TagSearch(scrn, 'msg_body'));
+	m_msgBackPane     = static_cast<J2DTextBox*>(og::Screen::TagSearch(scrn, 'msg_back'));
+	m_blinkTimer      = 0.0f;
+	m_blinkFactor     = 0.0f;
+	m_blinkLevel      = 1.0f;
+	m_isBlinking      = false;
+	_6C               = 1.0f;
 	og::newScreen::ObjSMenuPause::ObjHIOVal::getMenuColor(&m_color0, &m_color1, &m_color2, &m_color3, &m_color4, &m_color5, &m_color6,
 	                                                      &m_color7, &m_color8, &m_color9, &m_color13, &m_color14, &m_color15, &m_color16);
 	m_color10   = m_msgBackPane->getWhite();
@@ -104,16 +104,16 @@ void AnimText_Screen::update()
 {
 	og::Screen::CallBack_Screen::update();
 	if (m_anmScreen) {
-		_3C = m_anmScreen->update();
+		m_isUpdateSuccess = m_anmScreen->update();
 
 		if (_48) {
 			if (m_tag) {
-				if (!_3C) {
+				if (!m_isUpdateSuccess) {
 					setText(m_tag);
 					m_tag = 0;
 					open(0.0f);
 				}
-			} else if (!_3C) {
+			} else if (!m_isUpdateSuccess) {
 				_48 = false;
 			}
 		}
@@ -171,8 +171,8 @@ void AnimText_Screen::update()
 					}
 				}
 
-				f32 calc = (1.0f + pikmin2_sinf((m_blinkTimer * TAU) / m_blinkFactor)) / 2;
-				_64 += (calc - _64) / 3.0f;
+				f32 t = (1.0f + pikmin2_sinf((m_blinkTimer * TAU) / m_blinkFactor)) / 2;
+				_64 += (t - _64) / 3.0f;
 
 			} else if (m_blinkLevel < 1.0f) {
 				m_blinkLevel += 0.05f;
@@ -208,7 +208,7 @@ void AnimText_Screen::update()
 		m_msgBackPane->setAlpha(alpha);
 
 	} else {
-		_3C = false;
+		m_isUpdateSuccess = false;
 	}
 }
 

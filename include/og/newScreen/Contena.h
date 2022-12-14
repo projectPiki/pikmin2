@@ -83,13 +83,13 @@ struct ObjContena : public ::Screen::ObjBase {
 	f32 m_moveTime;                           // _B0
 	f32 m_timer0;                             // _B4
 	int m_onyonID;                            // _B8
-	int m_maxPiki2;                           // _BC
-	int m_pikiField;                          // _C0
-	int m_pikiInParty;                        // _C4
-	int m_pikiFieldMax;                       // _C8
-	int m_pikiInParty2;                       // _CC
-	int m_currPikis;                          // _D0
-	int m_maxPiki;                            // _D4
+	int m_inOnionCount;                       // _BC
+	int m_currField;                          // _C0
+	int m_inSquadCount;                       // _C4
+	int m_maxPikiOnField;                     // _C8
+	int m_inParty2;                           // _CC
+	int m_onMapCount;                         // _D0
+	int m_maxPikiCount;                       // _D4
 	int _D8;                                  // _D8
 	bool _DC;                                 // _DC
 	int _E0;                                  // _E0

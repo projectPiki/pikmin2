@@ -79,4 +79,7 @@ typedef u32 unknown;
 // number of bytes in a kilobyte
 #define KILOBYTE_BYTECOUNT 1024
 
+#define DOPE_TYPE_SPICY  (0)
+#define DOPE_TYPE_BITTER (1)
+
 #endif

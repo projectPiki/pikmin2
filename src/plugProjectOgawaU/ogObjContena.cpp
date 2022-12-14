@@ -277,22 +277,22 @@ void ObjContena::setStartPos()
  */
 ObjContena::ObjContena(char const* name)
 {
-	m_maxPiki2     = 100;
-	m_pikiField    = 1000;
-	m_pikiInParty  = 0;
-	m_pikiFieldMax = 20;
-	m_pikiInParty2 = 50;
-	m_currPikis    = 60;
-	m_maxPiki      = 200;
-	m_onyonID      = -1;
-	_D8            = 0;
-	_DC            = 0;
-	_E0            = 0;
-	_E4            = 0;
-	m_name         = name;
-	m_disp         = nullptr;
-	m_contena      = nullptr;
-	m_controller   = nullptr;
+	m_inOnionCount   = 100;
+	m_currField      = 1000;
+	m_inSquadCount   = 0;
+	m_maxPikiOnField = 20;
+	m_inParty2       = 50;
+	m_onMapCount     = 60;
+	m_maxPikiCount   = 200;
+	m_onyonID        = -1;
+	_D8              = 0;
+	_DC              = 0;
+	_E0              = 0;
+	_E4              = 0;
+	m_name           = name;
+	m_disp           = nullptr;
+	m_contena        = nullptr;
+	m_controller     = nullptr;
 
 	m_animList[0] = nullptr;
 	m_animList[1] = nullptr;
@@ -566,13 +566,13 @@ void ObjContena::doCreate(JKRArchive* arc)
 	}
 	og::Screen::DispMemberContena* disp2 = m_disp;
 	m_onyonID                            = disp2->m_onyonID;
-	m_maxPiki2                           = disp2->m_inOnion;
-	m_pikiField                          = disp2->m_currInMap;
-	m_pikiInParty                        = disp2->m_inParty;
-	m_pikiFieldMax                       = disp2->m_maxPikiField;
-	m_pikiInParty2                       = disp2->m_inParty2;
-	m_currPikis                          = disp2->m_onMapMinusWild;
-	m_maxPiki                            = disp2->m_maxPikiMinusWild;
+	m_inOnionCount                       = disp2->m_inOnionCount;
+	m_currField                          = disp2->m_currField;
+	m_inSquadCount                       = disp2->m_inSquadCount;
+	m_maxPikiOnField                     = disp2->m_maxPikiOnField;
+	m_inParty2                           = disp2->m_inParty2;
+	m_onMapCount                         = disp2->m_onMapCount;
+	m_maxPikiCount                       = disp2->m_maxPikiCount;
 	_D8                                  = disp2->_28;
 	_DC                                  = disp2->_2C;
 	_E0                                  = disp2->_30;
@@ -1429,8 +1429,8 @@ void ObjContena::setStickUpDown(void)
 void ObjContena::putinPiki(bool soundType)
 {
 	og::Screen::DispMemberContena* disp = m_disp;
-	if (disp->m_currInMap >= disp->m_inOnion) {
-		if (disp->m_inParty == 0) {
+	if (disp->m_currField >= disp->m_inOnionCount) {
+		if (disp->m_inSquadCount == 0) {
 			if (m_state == 4) {
 				if (!soundType) {
 					ogSound->setError();
@@ -1452,10 +1452,10 @@ void ObjContena::putinPiki(bool soundType)
 				m_state = 0;
 				m_alphaMgr[m_state]->in(0.3f);
 			}
-			disp->m_inOnion++;
-			disp->m_inParty--;
+			disp->m_inOnionCount++;
+			disp->m_inSquadCount--;
 			disp->m_inParty2--;
-			disp->m_onMapMinusWild--;
+			disp->m_onMapCount--;
 			disp->m_result++;
 			disp->_28 = fabs(disp->m_result); // should be just abs
 			m_alphaArrow1->in(0.3f);
@@ -1675,8 +1675,8 @@ lbl_80320D4C:
 void ObjContena::takeoutPiki(bool soundType)
 {
 	og::Screen::DispMemberContena* disp = m_disp;
-	if (disp->m_maxPikiField >= disp->m_inOnion) {
-		if (disp->m_inOnion == 0) {
+	if (disp->m_maxPikiOnField >= disp->m_inOnionCount) {
+		if (disp->m_inOnionCount == 0) {
 			if (m_state == 3) {
 				if (!soundType) {
 					ogSound->setError();
@@ -1692,16 +1692,16 @@ void ObjContena::takeoutPiki(bool soundType)
 				m_alphaArrow2->in(0.5f);
 				m_stickAnimMgr->stickUp();
 			}
-		} else if (disp->m_onMapMinusWild < disp->m_maxPikiMinusWild) {
+		} else if (disp->m_onMapCount < disp->m_maxPikiCount) {
 			if (m_state != 0) {
 				m_alphaMgr[m_state]->out(0.5f);
 				m_state = 0;
 				m_alphaMgr[m_state]->in(0.3f);
 			}
-			disp->m_inOnion--;
-			disp->m_inParty++;
+			disp->m_inOnionCount--;
+			disp->m_inSquadCount++;
 			disp->m_inParty2++;
-			disp->m_onMapMinusWild++;
+			disp->m_onMapCount++;
 			disp->m_result--;
 			disp->_28 = fabs(disp->m_result); // should be just abs
 			m_alphaArrow1->in(0.3f);
@@ -1996,23 +1996,23 @@ bool ObjContena::moveContena(void)
 		disp->_28 = 1;
 	} else {
 		if (m_controller->m_padButton.m_buttonDown & Controller::PRESS_B) {
-			disp                     = m_disp;
-			disp->m_onyonID          = m_onyonID;
-			disp->m_inOnion          = m_maxPiki2;
-			disp->m_currInMap        = m_pikiField;
-			disp->m_inParty          = m_pikiInParty;
-			disp->m_maxPikiField     = m_pikiFieldMax;
-			disp->m_inParty2         = m_pikiInParty2;
-			disp->m_onMapMinusWild   = m_currPikis;
-			disp->m_maxPikiMinusWild = m_maxPiki;
-			disp->_28                = _D8;
-			disp->_2C                = _DC;
-			disp->_30                = _E0;
-			disp->m_result           = _E4;
-			disp->_28                = 2;
-			m_dispState              = 3;
-			disp->m_result           = 0;
-			disp->_28                = 0;
+			disp                   = m_disp;
+			disp->m_onyonID        = m_onyonID;
+			disp->m_inOnionCount   = m_inOnionCount;
+			disp->m_currField      = m_currField;
+			disp->m_inSquadCount   = m_inSquadCount;
+			disp->m_maxPikiOnField = m_maxPikiOnField;
+			disp->m_inParty2       = m_inParty2;
+			disp->m_onMapCount     = m_onMapCount;
+			disp->m_maxPikiCount   = m_maxPikiCount;
+			disp->_28              = _D8;
+			disp->_2C              = _DC;
+			disp->_30              = _E0;
+			disp->m_result         = _E4;
+			disp->_28              = 2;
+			m_dispState            = 3;
+			disp->m_result         = 0;
+			disp->_28              = 0;
 			if ((*onyontype == 3 || *onyontype) && disp->_2C) {
 				ogSound->setCancel();
 			} else {
@@ -2392,7 +2392,7 @@ void ObjContena::commonUpdate(void)
 	}
 
 	for (int i = 0; i < m_pikiPaneNum; i++) {
-		if (i + 1 > m_disp->m_inParty) {
+		if (i + 1 > m_disp->m_inSquadCount) {
 			m_pikiPaneList[i]->hide();
 		} else {
 			m_pikiPaneList[i]->show();
