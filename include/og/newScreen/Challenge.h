@@ -332,7 +332,7 @@ struct ObjChallenge2P : public ObjChallengeBase {
 
 struct SArgChallengeBase : public ::Screen::StartSceneArg {
 	// _00     = VTBL
-	// _00-_04 = Screen::StartSceneArg
+	f32 _04; // _04
 };
 
 struct SArgChallenge1P : public SArgChallengeBase {
@@ -340,7 +340,7 @@ struct SArgChallenge1P : public SArgChallengeBase {
 	virtual int getClassSize();             // _0C (weak)
 
 	// _00     = VTBL
-	// _00-_04 = Screen::StartSceneArg
+	// _00-_04 = SArgChallengeBase
 };
 
 struct SArgChallenge2P : public SArgChallengeBase {
@@ -348,7 +348,7 @@ struct SArgChallenge2P : public SArgChallengeBase {
 	virtual int getClassSize();             // _0C (weak)
 
 	// _00     = VTBL
-	// _00-_04 = Screen::StartSceneArg
+	// _00-_04 = SArgChallengeBase
 };
 } // namespace newScreen
 } // namespace og

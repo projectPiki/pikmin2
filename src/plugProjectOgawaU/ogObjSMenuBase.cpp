@@ -6,209 +6,13 @@
 #include "Controller.h"
 
 /*
-    Generated from dpostproc
-
-    .section .ctors, "wa"  # 0x80472F00 - 0x804732C0
-    .4byte __sinit_ogObjSMenuBase_cpp
-
-    .section .rodata  # 0x804732E0 - 0x8049E220
-    .global lbl_8048E658
-    lbl_8048E658:
-        .4byte 0x6F674F62
-        .4byte 0x6A534D65
-        .4byte 0x6E754261
-        .4byte 0x73652E63
-        .4byte 0x70700000
-    .global lbl_8048E66C
-    lbl_8048E66C:
-        .4byte 0x735F6D65
-        .4byte 0x6E755F79
-        .4byte 0x616A6972
-        .4byte 0x75736869
-        .4byte 0x5F4C522E
-        .4byte 0x626C6F00
-    .global lbl_8048E684
-    lbl_8048E684:
-        .4byte 0x43616E63
-        .4byte 0x656C2045
-        .4byte 0x5252210A
-        .4byte 0x00000000
-    .global lbl_8048E694
-    lbl_8048E694:
-        .4byte 0x75706461
-        .4byte 0x74654669
-        .4byte 0x6E697368
-        .4byte 0x20455252
-        .4byte 0x210A0000
-    .global lbl_8048E6A8
-    lbl_8048E6A8:
-        .4byte 0x82BE82DF
-        .4byte 0x82C582B7
-        .4byte 0x0A000000
-    .global lbl_8048E6B4
-    lbl_8048E6B4:
-        .4byte 0x73657459
-        .4byte 0x616A694E
-        .4byte 0x616D6520
-        .4byte 0x45525221
-        .4byte 0x200A0000
-    .global lbl_8048E6C8
-    lbl_8048E6C8:
-        .4byte 0x46616465
-        .4byte 0x496E2045
-        .4byte 0x5252210A
-        .4byte 0x00000000
-    .global lbl_8048E6D8
-    lbl_8048E6D8:
-        .4byte 0x46616465
-        .4byte 0x4F757420
-        .4byte 0x45525221
-        .4byte 0x0A000000
-        .4byte 0x73637265
-        .4byte 0x656E4F62
-        .4byte 0x6A2E6800
-        .asciz "P2Assert"
-        .skip 3
-
-    .section .data, "wa"  # 0x8049E220 - 0x804EFC20
-    .global __vt__Q32og9newScreen12ObjSMenuBase
-    __vt__Q32og9newScreen12ObjSMenuBase:
-        .4byte 0
-        .4byte 0
-        .4byte __dt__Q32og9newScreen12ObjSMenuBaseFv
-        .4byte getChildCount__5CNodeFv
-        .4byte 0
-        .4byte 0
-        .4byte "@24@__dt__Q32og9newScreen12ObjSMenuBaseFv"
-        .4byte update__Q26Screen7ObjBaseFv
-        .4byte draw__Q26Screen7ObjBaseFR8Graphics
-        .4byte start__Q26Screen7ObjBaseFPCQ26Screen13StartSceneArg
-        .4byte end__Q26Screen7ObjBaseFPCQ26Screen11EndSceneArg
-        .4byte setOwner__Q26Screen7ObjBaseFPQ26Screen9SceneBase
-        .4byte getOwner__Q26Screen7ObjBaseCFv
-        .4byte create__Q26Screen7ObjBaseFP10JKRArchive
-        .4byte confirmSetScene__Q26Screen7ObjBaseFRQ26Screen11SetSceneArg
-        .4byte confirmStartScene__Q26Screen7ObjBaseFPQ26Screen13StartSceneArg
-        .4byte confirmEndScene__Q26Screen7ObjBaseFPQ26Screen11EndSceneArg
-        .4byte doStart__Q26Screen7ObjBaseFPCQ26Screen13StartSceneArg
-        .4byte doEnd__Q26Screen7ObjBaseFPCQ26Screen11EndSceneArg
-        .4byte doCreate__Q26Screen7ObjBaseFP10JKRArchive
-        .4byte doUpdateFadein__Q32og9newScreen12ObjSMenuBaseFv
-        .4byte doUpdateFadeinFinish__Q32og9newScreen12ObjSMenuBaseFv
-        .4byte doUpdate__Q32og9newScreen12ObjSMenuBaseFv
-        .4byte doUpdateFinish__Q32og9newScreen12ObjSMenuBaseFv
-        .4byte doUpdateFadeout__Q26Screen7ObjBaseFv
-        .4byte doUpdateFadeoutFinish__Q32og9newScreen12ObjSMenuBaseFv
-        .4byte doDraw__Q26Screen7ObjBaseFR8Graphics
-        .4byte doConfirmSetScene__Q26Screen7ObjBaseFRQ26Screen11SetSceneArg
-        .4byte doConfirmStartScene__Q26Screen7ObjBaseFPQ26Screen13StartSceneArg
-        .4byte doConfirmEndScene__Q26Screen7ObjBaseFRPQ26Screen11EndSceneArg
-        .4byte 0
-        .4byte 0
-        .4byte 0
-        .4byte 0
-        .4byte 0
-        .4byte loop__Q32og9newScreen12ObjSMenuBaseFv
-        .4byte 0
-        .4byte 0
-        .4byte 0
-        .4byte updateFadeIn__Q32og9newScreen12ObjSMenuBaseFv
-        .4byte updateFadeOut__Q32og9newScreen12ObjSMenuBaseFv
-        .4byte 0
-    .global __vt__Q32og9newScreen18StartSceneArgSMenu
-    __vt__Q32og9newScreen18StartSceneArgSMenu:
-        .4byte 0
-        .4byte 0
-        .4byte getSceneType__Q32og9newScreen18StartSceneArgSMenuCFv
-        .4byte
-   "getClassSize__Q26Screen58StartSceneArgTemplate<Q32og9newScreen18StartSceneArgSMenu>Fv"
-    .global
-   "__vt__Q26Screen58StartSceneArgTemplate<Q32og9newScreen18StartSceneArgSMenu>"
-    "__vt__Q26Screen58StartSceneArgTemplate<Q32og9newScreen18StartSceneArgSMenu>":
-        .4byte 0
-        .4byte 0
-        .4byte getSceneType__Q26Screen12SceneArgBaseCFv
-        .4byte
-   "getClassSize__Q26Screen58StartSceneArgTemplate<Q32og9newScreen18StartSceneArgSMenu>Fv"
-    .global __vt__Q26Screen13StartSceneArg
-    __vt__Q26Screen13StartSceneArg:
-        .4byte 0
-        .4byte 0
-        .4byte getSceneType__Q26Screen12SceneArgBaseCFv
-        .4byte 0
-
-    .section .bss  # 0x804EFC20 - 0x8051467C
-    .global msBaseVal__Q32og9newScreen12ObjSMenuBase
-    msBaseVal__Q32og9newScreen12ObjSMenuBase:
-        .skip 0x1C
-
-    .section .sbss # 0x80514D80 - 0x80516360
-    .global angle$3853
-    angle$3853:
-        .skip 0x4
-    .global init$3854
-    init$3854:
-        .skip 0x4
-
-    .section .sdata2, "a"     # 0x80516360 - 0x80520E40
-    .global lbl_8051D880
-    lbl_8051D880:
-        .4byte 0x00000000
-    .global lbl_8051D884
-    lbl_8051D884:
-        .float 1.0
-    .global lbl_8051D888
-    lbl_8051D888:
-        .float 0.1
-    .global lbl_8051D88C
-    lbl_8051D88C:
-        .float 0.7
-    .global lbl_8051D890
-    lbl_8051D890:
-        .float 0.3
-    .global lbl_8051D894
-    lbl_8051D894:
-        .4byte 0x44480000
-    .global lbl_8051D898
-    lbl_8051D898:
-        .4byte 0xC4480000
-    .global lbl_8051D89C
-    lbl_8051D89C:
-        .4byte 0x40C90FDB
-    .global lbl_8051D8A0
-    lbl_8051D8A0:
-        .4byte 0xC3A2F983
-    .global lbl_8051D8A4
-    lbl_8051D8A4:
-        .4byte 0x43A2F983
-    .global lbl_8051D8A8
-    lbl_8051D8A8:
-        .4byte 0x3FC90FDB
-    .global lbl_8051D8AC
-    lbl_8051D8AC:
-        .4byte 0x40490FDB
-    .global lbl_8051D8B0
-    lbl_8051D8B0:
-        .4byte 0x3F490FDB
-    .global lbl_8051D8B4
-    lbl_8051D8B4:
-        .4byte 0x4016CBE4
-    .global lbl_8051D8B8
-    lbl_8051D8B8:
-        .4byte 0x3F490FDC
-        .4byte 0x00000000
-    .global lbl_8051D8C0
-    lbl_8051D8C0:
-        .4byte 0x43300000
-        .4byte 0x00000000
-    .global lbl_8051D8C8
-    lbl_8051D8C8:
-        .4byte 0x41F00000
-        .4byte 0x00000000
-*/
+ * --INFO--
+ * Address:	........
+ * Size:	0000E4
+ */
+static void _Print(char* format, ...) { OSReport(format, __FILE__); }
 
 namespace og {
-
 namespace newScreen {
 
 /*
@@ -216,7 +20,7 @@ namespace newScreen {
  * Address:	80316210
  * Size:	0000EC
  */
-ObjSMenuBase::ObjSMenuBase(void)
+ObjSMenuBase::ObjSMenuBase()
 {
 	m_movePos         = 0.0f;
 	m_fadeLevel       = 0.0f;
@@ -244,70 +48,6 @@ ObjSMenuBase::ObjSMenuBase(void)
 	_A4          = 1.0f;
 	m_paneNsize  = nullptr;
 	m_arrowBlink = new og::Screen::ArrowAlphaBlink;
-
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	mr       r31, r3
-	bl       __ct__Q26Screen7ObjBaseFv
-	lis      r3, __vt__Q32og9newScreen12ObjSMenuBase@ha
-	lfs      f1, lbl_8051D880@sda21(r2)
-	addi     r3, r3, __vt__Q32og9newScreen12ObjSMenuBase@l
-	li       r6, 4
-	stw      r3, 0(r31)
-	addi     r0, r3, 0x10
-	li       r5, 0
-	li       r4, 0x20
-	stw      r0, 0x18(r31)
-	li       r0, 0x40
-	lfs      f0, lbl_8051D884@sda21(r2)
-	li       r3, 0x10
-	stfs     f1, 0x40(r31)
-	stfs     f1, 0x44(r31)
-	stw      r6, 0x38(r31)
-	stb      r5, 0x48(r31)
-	stfs     f1, 0x4c(r31)
-	stb      r5, 0x50(r31)
-	stw      r5, 0x3c(r31)
-	stb      r5, 0x74(r31)
-	stb      r5, 0x8c(r31)
-	stfs     f1, 0x88(r31)
-	stw      r4, 0x5c(r31)
-	stw      r0, 0x58(r31)
-	stw      r5, 0x54(r31)
-	stw      r5, 0x94(r31)
-	stw      r5, 0x98(r31)
-	stw      r5, 0x60(r31)
-	stw      r5, 0x64(r31)
-	stw      r5, 0x68(r31)
-	stw      r5, 0x6c(r31)
-	stw      r5, 0x70(r31)
-	stw      r5, 0x9c(r31)
-	stfs     f0, 0xa4(r31)
-	stw      r5, 0xa0(r31)
-	bl       __nw__FUl
-	cmplwi   r3, 0
-	beq      lbl_803162E0
-	lfs      f1, lbl_8051D880@sda21(r2)
-	lfs      f0, lbl_8051D888@sda21(r2)
-	stfs     f1, 0(r3)
-	lfs      f1, lbl_8051D88C@sda21(r2)
-	stfs     f0, 4(r3)
-	lfs      f0, lbl_8051D890@sda21(r2)
-	stfs     f1, 8(r3)
-	stfs     f0, 0xc(r3)
-
-lbl_803162E0:
-	stw      r3, 0x90(r31)
-	mr       r3, r31
-	lwz      r0, 0x14(r1)
-	lwz      r31, 0xc(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
 }
 
 /*
@@ -319,23 +59,6 @@ void ObjSMenuBase::setFinishState(long id)
 {
 	SceneSMenuBase* scene = static_cast<SceneSMenuBase*>(getOwner());
 	scene->m_finishState  = id;
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	mr       r31, r4
-	lwz      r12, 0(r3)
-	lwz      r12, 0x30(r12)
-	mtctr    r12
-	bctrl
-	stw      r31, 0x220(r3)
-	lwz      r0, 0x14(r1)
-	lwz      r31, 0xc(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
 }
 
 /*
@@ -353,30 +76,10 @@ void ObjSMenuBase::registSMenuScreen(P2DScreen::Mgr*)
  * Address:	80316338
  * Size:	000040
  */
-void ObjSMenuBase::setSMenuScale(float x, float y)
+void ObjSMenuBase::setSMenuScale(f32 x, f32 y)
 {
 	if (m_paneNsize)
 		m_paneNsize->updateScale(x, y);
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	lwz      r3, 0xa0(r3)
-	cmplwi   r3, 0
-	beq      lbl_80316368
-	stfs     f1, 0xcc(r3)
-	stfs     f2, 0xd0(r3)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x2c(r12)
-	mtctr    r12
-	bctrl
-
-lbl_80316368:
-	lwz      r0, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
 }
 
 /*
@@ -408,124 +111,6 @@ void ObjSMenuBase::doCreateAfter(JKRArchive* arc, P2DScreen::Mgr* scrn)
 	m_Tyaji_l = static_cast<J2DTextBoxEx*>(og::Screen::TagSearch(m_LRScreen, 'Tyaji_l'));
 	m_Tyaji_r = static_cast<J2DTextBoxEx*>(og::Screen::TagSearch(m_LRScreen, 'Tyaji_r'));
 	og::Screen::setCallBackMessage(m_LRScreen);
-
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	mr       r31, r3
-	lis      r3, 0x65637431@ha
-	stw      r30, 8(r1)
-	addi     r6, r3, 0x65637431@l
-	mr       r30, r4
-	stw      r5, 0x9c(r31)
-	lis      r5, 0x50656666@ha
-	addi     r5, r5, 0x50656666@l
-	lwz      r3, 0x9c(r31)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x3c(r12)
-	mtctr    r12
-	bctrl
-	stw      r3, 0x94(r31)
-	lis      r5, 0x65637432@ha
-	lis      r4, 0x50656666@ha
-	lwz      r3, 0x9c(r31)
-	addi     r6, r5, 0x65637432@l
-	addi     r5, r4, 0x50656666@l
-	lwz      r12, 0(r3)
-	lwz      r12, 0x3c(r12)
-	mtctr    r12
-	bctrl
-	stw      r3, 0x98(r31)
-	lis      r5, 0x66656374@ha
-	lis      r4, 0x00506566@ha
-	lwz      r3, 0x9c(r31)
-	addi     r6, r5, 0x66656374@l
-	addi     r5, r4, 0x00506566@l
-	bl       TagSearch__Q22og6ScreenFP9J2DScreenUx
-	stw      r3, 0x54(r31)
-	lwz      r3, 0x9c(r31)
-	bl       setAlphaScreen__Q22og6ScreenFP7J2DPane
-	lwz      r3, 0x9c(r31)
-	lis      r4, 0x73697A65@ha
-	addi     r6, r4, 0x73697A65@l
-	li       r5, 0x4e
-	lwz      r12, 0(r3)
-	lwz      r12, 0x3c(r12)
-	mtctr    r12
-	bctrl
-	stw      r3, 0xa0(r31)
-	lwz      r3, 0x9c(r31)
-	bl       setCallBackMessage__Q22og6ScreenFPQ29P2DScreen3Mgr
-	lwz      r3, 0x9c(r31)
-	bl       setFurikoScreen__Q22og6ScreenFPQ29P2DScreen3Mgr
-	li       r3, 0x148
-	bl       __nw__FUl
-	or.      r0, r3, r3
-	beq      lbl_80316458
-	bl       __ct__Q29P2DScreen10Mgr_tuningFv
-	mr       r0, r3
-
-lbl_80316458:
-	stw      r0, 0x60(r31)
-	lis      r3, lbl_8048E66C@ha
-	addi     r4, r3, lbl_8048E66C@l
-	mr       r6, r30
-	lwz      r3, 0x60(r31)
-	lis      r5, 0x104
-	bl       set__9J2DScreenFPCcUlP10JKRArchive
-	lwz      r3, 0x60(r31)
-	bl       setAlphaScreen__Q22og6ScreenFP7J2DPane
-	lis      r5, 0x6A695F6C@ha
-	lis      r4, 0x004E7961@ha
-	lwz      r3, 0x60(r31)
-	addi     r6, r5, 0x6A695F6C@l
-	addi     r5, r4, 0x004E7961@l
-	bl       TagSearch__Q22og6ScreenFP9J2DScreenUx
-	stw      r3, 0x64(r31)
-	lis      r4, 0x6A695F72@ha
-	lis      r3, 0x004E7961@ha
-	lwz      r7, 0x64(r31)
-	addi     r6, r4, 0x6A695F72@l
-	addi     r5, r3, 0x004E7961@l
-	lfs      f0, 0xd4(r7)
-	stfs     f0, 0x78(r31)
-	lwz      r3, 0x64(r31)
-	lfs      f0, 0xd8(r3)
-	stfs     f0, 0x7c(r31)
-	lwz      r3, 0x60(r31)
-	bl       TagSearch__Q22og6ScreenFP9J2DScreenUx
-	stw      r3, 0x68(r31)
-	lis      r4, 0x6A695F6C@ha
-	lis      r3, 0x00547961@ha
-	lwz      r7, 0x68(r31)
-	addi     r6, r4, 0x6A695F6C@l
-	addi     r5, r3, 0x00547961@l
-	lfs      f0, 0xd4(r7)
-	stfs     f0, 0x80(r31)
-	lwz      r3, 0x68(r31)
-	lfs      f0, 0xd8(r3)
-	stfs     f0, 0x84(r31)
-	lwz      r3, 0x60(r31)
-	bl       TagSearch__Q22og6ScreenFP9J2DScreenUx
-	stw      r3, 0x6c(r31)
-	lis      r5, 0x6A695F72@ha
-	lis      r4, 0x00547961@ha
-	lwz      r3, 0x60(r31)
-	addi     r6, r5, 0x6A695F72@l
-	addi     r5, r4, 0x00547961@l
-	bl       TagSearch__Q22og6ScreenFP9J2DScreenUx
-	stw      r3, 0x70(r31)
-	lwz      r3, 0x60(r31)
-	bl       setCallBackMessage__Q22og6ScreenFPQ29P2DScreen3Mgr
-	lwz      r0, 0x14(r1)
-	lwz      r31, 0xc(r1)
-	lwz      r30, 8(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
 }
 
 /*
@@ -533,27 +118,14 @@ lbl_80316458:
  * Address:	8031653C
  * Size:	000020
  */
-void ObjSMenuBase::commonUpdateBase(void)
-{
-	updateYaji();
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	bl       updateYaji__Q32og9newScreen12ObjSMenuBaseFv
-	lwz      r0, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
-}
+void ObjSMenuBase::commonUpdateBase() { updateYaji(); }
 
 /*
  * --INFO--
  * Address:	8031655C
  * Size:	00012C
  */
-bool ObjSMenuBase::doUpdate(void)
+bool ObjSMenuBase::doUpdate()
 {
 	bool ret = false;
 	if (m_exiting) {
@@ -564,111 +136,22 @@ bool ObjSMenuBase::doUpdate(void)
 		} else {
 			JUT_PANICLINE(301, "Cancel ERR!\n");
 		}
+
 	} else {
 		SceneSMenuBase* scene = static_cast<SceneSMenuBase*>(getOwner());
-		Controller* pad       = scene->getGamePad();
-		if (pad->m_padButton.m_buttonDown & m_buttonStates[1]) {
+		if (scene->getGamePad()->m_padButton.m_buttonDown & getButtonState(1)) {
 			ret             = true;
 			m_cancelToState = 3;
-		} else if (pad->m_padButton.m_buttonDown & m_buttonStates[0]) {
+		} else if (scene->getGamePad()->m_padButton.m_buttonDown & getButtonState(0)) {
 			ret             = true;
 			m_cancelToState = 2;
-		} else if (pad->m_padButton.m_buttonDown & (Controller::PRESS_START | Controller::PRESS_B)) {
+		} else if (scene->getGamePad()->m_padButton.m_buttonDown & (Controller::PRESS_START | Controller::PRESS_B)) {
 			m_cancelToState = 1;
 			doUpdateCancelAction();
 			ret = true;
 		}
 	}
 	return ret;
-	/*
-	stwu     r1, -0x20(r1)
-	mflr     r0
-	stw      r0, 0x24(r1)
-	stw      r31, 0x1c(r1)
-	stw      r30, 0x18(r1)
-	li       r30, 0
-	stw      r29, 0x14(r1)
-	stw      r28, 0x10(r1)
-	mr       r28, r3
-	lbz      r0, 0x48(r3)
-	cmplwi   r0, 0
-	beq      lbl_803165D0
-	lwz      r0, 0x3c(r28)
-	cmpwi    r0, 3
-	bne      lbl_803165A0
-	li       r30, 1
-	b        lbl_80316664
-
-lbl_803165A0:
-	cmpwi    r0, 2
-	bne      lbl_803165B0
-	li       r30, 1
-	b        lbl_80316664
-
-lbl_803165B0:
-	lis      r3, lbl_8048E658@ha
-	lis      r5, lbl_8048E684@ha
-	addi     r3, r3, lbl_8048E658@l
-	li       r4, 0x12d
-	addi     r5, r5, lbl_8048E684@l
-	crclr    6
-	bl       panic_f__12JUTExceptionFPCciPCce
-	b        lbl_80316664
-
-lbl_803165D0:
-	lwz      r12, 0(r3)
-	lwz      r12, 0x30(r12)
-	mtctr    r12
-	bctrl
-	lwz      r31, 0x5c(r28)
-	mr       r29, r3
-	bl       getGamePad__Q26Screen9SceneBaseCFv
-	lwz      r0, 0x1c(r3)
-	and.     r0, r0, r31
-	beq      lbl_80316608
-	li       r0, 3
-	li       r30, 1
-	stw      r0, 0x3c(r28)
-	b        lbl_80316664
-
-lbl_80316608:
-	lwz      r31, 0x58(r28)
-	mr       r3, r29
-	bl       getGamePad__Q26Screen9SceneBaseCFv
-	lwz      r0, 0x1c(r3)
-	and.     r0, r0, r31
-	beq      lbl_80316630
-	li       r0, 2
-	li       r30, 1
-	stw      r0, 0x3c(r28)
-	b        lbl_80316664
-
-lbl_80316630:
-	mr       r3, r29
-	bl       getGamePad__Q26Screen9SceneBaseCFv
-	lwz      r0, 0x1c(r3)
-	andi.    r0, r0, 0x1200
-	beq      lbl_80316664
-	li       r0, 1
-	mr       r3, r28
-	stw      r0, 0x3c(r28)
-	lwz      r12, 0(r28)
-	lwz      r12, 0x90(r12)
-	mtctr    r12
-	bctrl
-	li       r30, 1
-
-lbl_80316664:
-	lwz      r0, 0x24(r1)
-	mr       r3, r30
-	lwz      r31, 0x1c(r1)
-	lwz      r30, 0x18(r1)
-	lwz      r29, 0x14(r1)
-	lwz      r28, 0x10(r1)
-	mtlr     r0
-	addi     r1, r1, 0x20
-	blr
-	*/
 }
 
 /*
@@ -676,7 +159,7 @@ lbl_80316664:
  * Address:	80316688
  * Size:	0000D0
  */
-void ObjSMenuBase::doUpdateFinish(void)
+void ObjSMenuBase::doUpdateFinish()
 {
 	stopYaji();
 	m_fadeLevel = 0.0f;
@@ -684,86 +167,22 @@ void ObjSMenuBase::doUpdateFinish(void)
 	case 1:
 		close_L();
 		return;
-	case 0:
-		out_L();
-		return;
-	case 2:
-		out_R();
-		return;
+
 	case 3:
 		out_L();
 		return;
+
+	case 2:
+		out_R();
+		return;
+
+	case 0:
+		out_L();
+		return;
+
 	default:
 		JUT_PANICLINE(348, "updateFinish ERR!\n");
 	}
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	mr       r31, r3
-	bl       stopYaji__Q32og9newScreen12ObjSMenuBaseFv
-	lfs      f0, lbl_8051D880@sda21(r2)
-	stfs     f0, 0x44(r31)
-	lwz      r0, 0x3c(r31)
-	cmpwi    r0, 2
-	beq      lbl_803166F8
-	bge      lbl_803166C8
-	cmpwi    r0, 0
-	beq      lbl_80316710
-	bge      lbl_803166D4
-	b        lbl_80316728
-
-lbl_803166C8:
-	cmpwi    r0, 4
-	bge      lbl_80316728
-	b        lbl_803166E0
-
-lbl_803166D4:
-	mr       r3, r31
-	bl       close_L__Q32og9newScreen12ObjSMenuBaseFv
-	b        lbl_80316744
-
-lbl_803166E0:
-	mr       r3, r31
-	lwz      r12, 0(r31)
-	lwz      r12, 0x84(r12)
-	mtctr    r12
-	bctrl
-	b        lbl_80316744
-
-lbl_803166F8:
-	mr       r3, r31
-	lwz      r12, 0(r31)
-	lwz      r12, 0x88(r12)
-	mtctr    r12
-	bctrl
-	b        lbl_80316744
-
-lbl_80316710:
-	mr       r3, r31
-	lwz      r12, 0(r31)
-	lwz      r12, 0x84(r12)
-	mtctr    r12
-	bctrl
-	b        lbl_80316744
-
-lbl_80316728:
-	lis      r3, lbl_8048E658@ha
-	lis      r5, lbl_8048E694@ha
-	addi     r3, r3, lbl_8048E658@l
-	li       r4, 0x15c
-	addi     r5, r5, lbl_8048E694@l
-	crclr    6
-	bl       panic_f__12JUTExceptionFPCciPCce
-
-lbl_80316744:
-	lwz      r0, 0x14(r1)
-	lwz      r31, 0xc(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
 }
 
 /*
@@ -771,45 +190,12 @@ lbl_80316744:
  * Address:	80316758
  * Size:	000074
  */
-void ObjSMenuBase::startBackupScene(void)
+void ObjSMenuBase::startBackupScene()
 {
 	SceneSMenuBase* scene = static_cast<SceneSMenuBase*>(getOwner());
 	if (scene->setBackupScene() && !scene->startScene(nullptr)) {
 		JUT_PANICLINE(366, "‚¾‚ß‚Å‚·\n");
 	}
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x30(r12)
-	mtctr    r12
-	bctrl
-	mr       r31, r3
-	bl       setBackupScene__Q26Screen9SceneBaseFv
-	clrlwi.  r0, r3, 0x18
-	beq      lbl_803167B8
-	mr       r3, r31
-	li       r4, 0
-	bl       startScene__Q26Screen9SceneBaseFPQ26Screen13StartSceneArg
-	clrlwi.  r0, r3, 0x18
-	bne      lbl_803167B8
-	lis      r3, lbl_8048E658@ha
-	lis      r5, lbl_8048E6A8@ha
-	addi     r3, r3, lbl_8048E658@l
-	li       r4, 0x16e
-	addi     r5, r5, lbl_8048E6A8@l
-	crclr    6
-	bl       panic_f__12JUTExceptionFPCciPCce
-
-lbl_803167B8:
-	lwz      r0, 0x14(r1)
-	lwz      r31, 0xc(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
 }
 
 /*
@@ -817,9 +203,19 @@ lbl_803167B8:
  * Address:	........
  * Size:	0000EC
  */
-void ObjSMenuBase::jump_LR(::Screen::SetSceneArg&, bool)
+void ObjSMenuBase::jump_LR(::Screen::SetSceneArg& arg, bool flag)
 {
-	// UNUSED FUNCTION
+	SceneSMenuBase* scene = static_cast<SceneSMenuBase*>(getOwner());
+	arg._09               = false;
+	if (scene->setScene(arg)) {
+		StartSceneArgSMenu sarg;
+		sarg.m_flag      = true;
+		sarg.m_sceneType = arg.getSceneType();
+		sarg.m_flag      = flag;
+		if (!scene->startScene(&sarg)) {
+			JUT_PANICLINE(394, "‚¾‚ß‚Å‚·\n");
+		}
+	}
 }
 
 /*
@@ -827,23 +223,10 @@ void ObjSMenuBase::jump_LR(::Screen::SetSceneArg&, bool)
  * Address:	803167CC
  * Size:	00002C
  */
-void ObjSMenuBase::close_L(void)
+void ObjSMenuBase::close_L()
 {
 	m_state = 2;
 	ogSound->setClose();
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	li       r0, 2
-	stw      r0, 0x38(r3)
-	lwz      r3, ogSound__2og@sda21(r13)
-	bl       setClose__Q22og5SoundFv
-	lwz      r0, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
 }
 
 /*
@@ -851,166 +234,14 @@ void ObjSMenuBase::close_L(void)
  * Address:	803167F8
  * Size:	0000E4
  */
-void ObjSMenuBase::jump_L(::Screen::SetSceneArg& arg)
-{
-	SceneSMenuBase* scene = static_cast<SceneSMenuBase*>(getOwner());
-	arg._09               = false;
-	if (scene->setScene(arg)) {
-		StartSceneArgSMenu sarg;
-		sarg.m_flag = true;
-		sarg._04    = arg.getSceneType();
-		sarg.m_flag = false;
-		if (!scene->startScene(&sarg)) {
-			JUT_PANICLINE(394, "‚¾‚ß‚Å‚·\n");
-		}
-	}
-	/*
-	stwu     r1, -0x20(r1)
-	mflr     r0
-	stw      r0, 0x24(r1)
-	stw      r31, 0x1c(r1)
-	stw      r30, 0x18(r1)
-	mr       r30, r4
-	lwz      r12, 0(r3)
-	lwz      r12, 0x30(r12)
-	mtctr    r12
-	bctrl
-	li       r0, 0
-	mr       r31, r3
-	stb      r0, 9(r30)
-	mr       r4, r30
-	bl       setScene__Q26Screen9SceneBaseFRQ26Screen11SetSceneArg
-	clrlwi.  r0, r3, 0x18
-	beq      lbl_803168C4
-	lis      r4, __vt__Q26Screen12SceneArgBase@ha
-	lis      r3, __vt__Q26Screen13StartSceneArg@ha
-	addi     r0, r4, __vt__Q26Screen12SceneArgBase@l
-	lis      r4,
-"__vt__Q26Screen58StartSceneArgTemplate<Q32og9newScreen18StartSceneArgSMenu>"@ha
-	stw      r0, 8(r1)
-	addi     r5, r3, __vt__Q26Screen13StartSceneArg@l
-	lis      r3, __vt__Q32og9newScreen18StartSceneArgSMenu@ha
-	li       r0, 1
-	stw      r5, 8(r1)
-	addi     r5, r4,
-"__vt__Q26Screen58StartSceneArgTemplate<Q32og9newScreen18StartSceneArgSMenu>"@l
-	addi     r4, r3, __vt__Q32og9newScreen18StartSceneArgSMenu@l
-	mr       r3, r30
-	stw      r5, 8(r1)
-	stw      r4, 8(r1)
-	stb      r0, 0x10(r1)
-	lwz      r12, 0(r30)
-	lwz      r12, 8(r12)
-	mtctr    r12
-	bctrl
-	li       r0, 0
-	stw      r3, 0xc(r1)
-	mr       r3, r31
-	addi     r4, r1, 8
-	stb      r0, 0x10(r1)
-	bl       startScene__Q26Screen9SceneBaseFPQ26Screen13StartSceneArg
-	clrlwi.  r0, r3, 0x18
-	bne      lbl_803168C4
-	lis      r3, lbl_8048E658@ha
-	lis      r5, lbl_8048E6A8@ha
-	addi     r3, r3, lbl_8048E658@l
-	li       r4, 0x18a
-	addi     r5, r5, lbl_8048E6A8@l
-	crclr    6
-	bl       panic_f__12JUTExceptionFPCciPCce
-
-lbl_803168C4:
-	lwz      r0, 0x24(r1)
-	lwz      r31, 0x1c(r1)
-	lwz      r30, 0x18(r1)
-	mtlr     r0
-	addi     r1, r1, 0x20
-	blr
-	*/
-}
+void ObjSMenuBase::jump_L(::Screen::SetSceneArg& arg) { jump_LR(arg, false); }
 
 /*
  * --INFO--
  * Address:	803168DC
  * Size:	0000E4
  */
-void ObjSMenuBase::jump_R(::Screen::SetSceneArg& arg)
-{
-	SceneSMenuBase* scene = static_cast<SceneSMenuBase*>(getOwner());
-	arg._09               = false;
-	if (scene->setScene(arg)) {
-		StartSceneArgSMenu sarg;
-		sarg.m_flag = true;
-		sarg._04    = arg.getSceneType();
-		sarg.m_flag = true;
-		if (!scene->startScene(&sarg)) {
-			JUT_PANICLINE(394, "‚¾‚ß‚Å‚·\n");
-		}
-	}
-	/*
-	stwu     r1, -0x20(r1)
-	mflr     r0
-	stw      r0, 0x24(r1)
-	stw      r31, 0x1c(r1)
-	stw      r30, 0x18(r1)
-	mr       r30, r4
-	lwz      r12, 0(r3)
-	lwz      r12, 0x30(r12)
-	mtctr    r12
-	bctrl
-	li       r0, 0
-	mr       r31, r3
-	stb      r0, 9(r30)
-	mr       r4, r30
-	bl       setScene__Q26Screen9SceneBaseFRQ26Screen11SetSceneArg
-	clrlwi.  r0, r3, 0x18
-	beq      lbl_803169A8
-	lis      r4, __vt__Q26Screen12SceneArgBase@ha
-	lis      r3, __vt__Q26Screen13StartSceneArg@ha
-	addi     r0, r4, __vt__Q26Screen12SceneArgBase@l
-	lis      r4,
-"__vt__Q26Screen58StartSceneArgTemplate<Q32og9newScreen18StartSceneArgSMenu>"@ha
-	stw      r0, 8(r1)
-	addi     r5, r3, __vt__Q26Screen13StartSceneArg@l
-	lis      r3, __vt__Q32og9newScreen18StartSceneArgSMenu@ha
-	li       r0, 1
-	stw      r5, 8(r1)
-	addi     r5, r4,
-"__vt__Q26Screen58StartSceneArgTemplate<Q32og9newScreen18StartSceneArgSMenu>"@l
-	addi     r4, r3, __vt__Q32og9newScreen18StartSceneArgSMenu@l
-	mr       r3, r30
-	stw      r5, 8(r1)
-	stw      r4, 8(r1)
-	stb      r0, 0x10(r1)
-	lwz      r12, 0(r30)
-	lwz      r12, 8(r12)
-	mtctr    r12
-	bctrl
-	li       r0, 1
-	stw      r3, 0xc(r1)
-	mr       r3, r31
-	addi     r4, r1, 8
-	stb      r0, 0x10(r1)
-	bl       startScene__Q26Screen9SceneBaseFPQ26Screen13StartSceneArg
-	clrlwi.  r0, r3, 0x18
-	bne      lbl_803169A8
-	lis      r3, lbl_8048E658@ha
-	lis      r5, lbl_8048E6A8@ha
-	addi     r3, r3, lbl_8048E658@l
-	li       r4, 0x18a
-	addi     r5, r5, lbl_8048E6A8@l
-	crclr    6
-	bl       panic_f__12JUTExceptionFPCciPCce
-
-lbl_803169A8:
-	lwz      r0, 0x24(r1)
-	lwz      r31, 0x1c(r1)
-	lwz      r30, 0x18(r1)
-	mtlr     r0
-	addi     r1, r1, 0x20
-	blr
-	*/
-}
+void ObjSMenuBase::jump_R(::Screen::SetSceneArg& arg) { jump_LR(arg, true); }
 
 /*
  * --INFO--
@@ -1024,103 +255,24 @@ bool ObjSMenuBase::start_LR(::Screen::StartSceneArg const* arg)
 		if (arg->getSceneType() == SCENE_PAUSE_MENU_MAP || arg->getSceneType() == SCENE_PAUSE_MENU_ITEMS
 		    || arg->getSceneType() == SCENE_PAUSE_MENU_CONTROLS || arg->getSceneType() == SCENE_PAUSE_MENU
 		    || arg->getSceneType() == SCENE_PAUSE_MENU_DOUKUTU || arg->getSceneType() == SCENE_PAUSE_MENU_VS) {
-			// if (arg->_04)
+
+			StartSceneArgSMenu* menuArg = static_cast<StartSceneArgSMenu*>((::Screen::StartSceneArg*)(arg));
+			if (menuArg->m_flag) {
+				m_movePos = 800.0f;
+				in_L();
+
+			} else {
+				m_movePos = -800.0f;
+				in_R();
+			}
 		}
+
+	} else {
+		m_movePos = 800.0f;
+		in_L();
 	}
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	lfs      f0, lbl_8051D880@sda21(r2)
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	or.      r31, r4, r4
-	stw      r30, 8(r1)
-	mr       r30, r3
-	stfs     f0, 0x44(r3)
-	beq      lbl_80316ADC
-	mr       r3, r31
-	lwz      r12, 0(r31)
-	lwz      r12, 8(r12)
-	mtctr    r12
-	bctrl
-	cmpwi    r3, 0x271d
-	beq      lbl_80316A90
-	mr       r3, r31
-	lwz      r12, 0(r31)
-	lwz      r12, 8(r12)
-	mtctr    r12
-	bctrl
-	cmpwi    r3, 0x271c
-	beq      lbl_80316A90
-	mr       r3, r31
-	lwz      r12, 0(r31)
-	lwz      r12, 8(r12)
-	mtctr    r12
-	bctrl
-	cmpwi    r3, 0x272b
-	beq      lbl_80316A90
-	mr       r3, r31
-	lwz      r12, 0(r31)
-	lwz      r12, 8(r12)
-	mtctr    r12
-	bctrl
-	cmpwi    r3, 0x271a
-	beq      lbl_80316A90
-	mr       r3, r31
-	lwz      r12, 0(r31)
-	lwz      r12, 8(r12)
-	mtctr    r12
-	bctrl
-	cmpwi    r3, 0x271b
-	beq      lbl_80316A90
-	mr       r3, r31
-	lwz      r12, 0(r31)
-	lwz      r12, 8(r12)
-	mtctr    r12
-	bctrl
-	cmpwi    r3, 0x2728
-	bne      lbl_80316AF4
 
-lbl_80316A90:
-	lbz      r0, 8(r31)
-	cmplwi   r0, 0
-	beq      lbl_80316ABC
-	lfs      f0, lbl_8051D894@sda21(r2)
-	mr       r3, r30
-	stfs     f0, 0x40(r30)
-	lwz      r12, 0(r30)
-	lwz      r12, 0x78(r12)
-	mtctr    r12
-	bctrl
-	b        lbl_80316AF4
-
-lbl_80316ABC:
-	lfs      f0, lbl_8051D898@sda21(r2)
-	mr       r3, r30
-	stfs     f0, 0x40(r30)
-	lwz      r12, 0(r30)
-	lwz      r12, 0x7c(r12)
-	mtctr    r12
-	bctrl
-	b        lbl_80316AF4
-
-lbl_80316ADC:
-	lfs      f0, lbl_8051D894@sda21(r2)
-	stfs     f0, 0x40(r30)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x78(r12)
-	mtctr    r12
-	bctrl
-
-lbl_80316AF4:
-	lwz      r0, 0x14(r1)
-	li       r3, 1
-	lwz      r31, 0xc(r1)
-	lwz      r30, 8(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	return true;
 }
 
 /*
@@ -1128,7 +280,7 @@ lbl_80316AF4:
  * Address:	80316B10
  * Size:	000068
  */
-void ObjSMenuBase::setYajiName(unsigned long long, unsigned long long, unsigned long long)
+void ObjSMenuBase::setYajiName(u64, u64, u64)
 {
 	/*
 	.loc_0x0:
@@ -1170,31 +322,28 @@ void ObjSMenuBase::setYajiName(unsigned long long, unsigned long long, unsigned 
  * Address:	80316B78
  * Size:	000004
  */
-void ObjSMenuBase::loop(void) { }
+void ObjSMenuBase::loop() { }
 
 /*
  * --INFO--
  * Address:	........
  * Size:	00000C
  */
-void ObjSMenuBase::startYaji(void)
-{
-	// UNUSED FUNCTION
-}
+void ObjSMenuBase::startYaji() { m_enableYaji = true; }
 
 /*
  * --INFO--
  * Address:	80316B7C
  * Size:	00000C
  */
-void ObjSMenuBase::stopYaji(void) { m_enableYaji = false; }
+void ObjSMenuBase::stopYaji() { m_enableYaji = false; }
 
 /*
  * --INFO--
  * Address:	80316B88
  * Size:	000304
  */
-void ObjSMenuBase::updateYaji(void)
+void ObjSMenuBase::updateYaji()
 {
 	/*
 	stwu     r1, -0x40(r1)
@@ -1855,109 +1004,7 @@ lbl_80317378:
 	*/
 }
 
-} // namespace newScreen
-} // namespace og
-
-namespace Screen {
-
-/*
- * --INFO--
- * Address:	80317394
- * Size:	000008
- */
-bool ObjBase::doStart(::Screen::StartSceneArg const*) { return true; }
-
-/*
- * --INFO--
- * Address:	8031739C
- * Size:	000008
- */
-bool ObjBase::doEnd(::Screen::EndSceneArg const*) { return true; }
-
-/*
- * --INFO--
- * Address:	803173A4
- * Size:	000004
- */
-void ObjBase::doCreate(JKRArchive*) { }
-
-/*
- * --INFO--
- * Address:	803173A8
- * Size:	000008
- */
-bool ObjBase::doUpdateFadeout(void) { return true; }
-
-} // namespace Screen
-
-namespace og {
-namespace newScreen {
-
-/*
- * --INFO--
- * Address:	803173B0
- * Size:	000008
- */
-SceneType StartSceneArgSMenu::getSceneType() const
-{
-	/*
-	lwz      r3, 4(r3)
-	blr
-	*/
-}
+ObjSMenuBase::StaticValues ObjSMenuBase::msBaseVal;
 
 } // namespace newScreen
-
-/*
- * --INFO--
- * Address:	803173B8
- * Size:	000008
- */
-// u32 getClassSize__Q26Screen58StartSceneArgTemplate<og::newScreen::StartSceneArgSMenu> Fv(void) { return 0xC; }
-
 } // namespace og
-
-/*
- * --INFO--
- * Address:	803173C0
- * Size:	000054
- */
-void __sinit_ogObjSMenuBase_cpp(void)
-{
-	/*
-	lis      r3, msBaseVal__Q32og9newScreen12ObjSMenuBase@ha
-	lfs      f3, lbl_8051D884@sda21(r2)
-	addi     r5, r3, msBaseVal__Q32og9newScreen12ObjSMenuBase@l
-	li       r0, 0
-	li       r3, 0x40
-	lfs      f2, lbl_8051D890@sda21(r2)
-	lfs      f1, lbl_8051D8C8@sda21(r2)
-	li       r4, 0xff
-	lfs      f0, lbl_8051D888@sda21(r2)
-	stfs     f3, 0(r5)
-	stfs     f3, 4(r5)
-	stb      r4, 0x14(r5)
-	stfs     f2, 8(r5)
-	stfs     f1, 0xc(r5)
-	stfs     f0, 0x10(r5)
-	stb      r3, 0x15(r5)
-	stb      r3, 0x16(r5)
-	stb      r0, 0x17(r5)
-	stb      r0, 0x18(r5)
-	stb      r0, 0x19(r5)
-	blr
-	*/
-}
-
-/*
- * --INFO--
- * Address:	80317414
- * Size:	000008
- */
-//@24 @og::newScreen::ObjSMenuBase::~ObjSMenuBase(void)
-//{
-/*
-addi     r3, r3, -24
-b        __dt__Q32og9newScreen12ObjSMenuBaseFv
-*/
-//}

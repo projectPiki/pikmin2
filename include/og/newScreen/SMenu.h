@@ -185,6 +185,8 @@ struct ObjSMenuBase : public ::Screen::ObjBase {
 	void jump_LR(::Screen::SetSceneArg&, bool);
 	void startYaji();
 
+	inline u32 getButtonState(int i) { return m_buttonStates[i]; }
+
 	// _00     = VTBL1
 	// _18     = VTBL2
 	// _00-_38 = Screen::ObjBase
@@ -215,6 +217,21 @@ struct ObjSMenuBase : public ::Screen::ObjBase {
 	f32 _A4;                               // _A4
 
 	static struct StaticValues {
+		inline StaticValues()
+		{
+			_00         = 1.0f;
+			m_animSpeed = 1.0f;
+			_14         = 255;
+			_08         = 0.3f;
+			_0C         = 30.0f;
+			_10         = 0.1f;
+			_15         = 64;
+			_16         = 64;
+			_17         = 0;
+			_18         = 0;
+			_19         = 0;
+		}
+
 		f32 _00;         // _00
 		f32 m_animSpeed; // _04
 		f32 _08;         // _08
@@ -571,7 +588,10 @@ struct ObjSMenuPauseVS : public ObjSMenuBase {
 };
 
 struct StartSceneArgSMenu : public ::Screen::StartSceneArgTemplate<StartSceneArgSMenu> {
-	virtual SceneType getSceneType() const; // _08 (weak)
+	virtual SceneType getSceneType() const // _08 (weak)
+	{
+		return m_sceneType;
+	}
 
 	// _00     = VTBL
 	// _00-_08 = StartSceneArgTemplate

@@ -432,8 +432,9 @@ bool ObjChallenge2P::doUpdateFadeout()
 bool ObjChallenge2P::doStart(::Screen::StartSceneArg const* arg)
 {
 	ObjChallengeBase::doStart(arg);
-	if (arg && arg->getSceneType() == SCENE_CHALLENGE_2P) {
-		m_incTimeLeftDelay = arg->_04;
+	SArgChallenge2P* challArg = static_cast<SArgChallenge2P*>((::Screen::StartSceneArg*)(arg));
+	if (challArg && challArg->getSceneType() == SCENE_CHALLENGE_2P) {
+		m_incTimeLeftDelay = (challArg->_04);
 	} else {
 		m_incTimeLeftDelay = 0.0f;
 	}
