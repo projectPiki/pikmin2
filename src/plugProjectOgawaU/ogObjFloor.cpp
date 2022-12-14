@@ -71,8 +71,21 @@ ObjFloor::~ObjFloor() { }
 bool newScreen::ObjFloor::isFLOOR()
 {
 	bool ret = false;
-	if (m_disp->m_caveID < 't_04' && 't_01' <= m_disp->m_caveID || m_disp->m_caveID < 'f_05' && 'f_01' <= m_disp->m_caveID
-	    || m_disp->m_caveID < 'y_05' && 'y_01' <= m_disp->m_caveID || m_disp->m_caveID < 'l_04' && 'l_01' <= m_disp->m_caveID) {
+	switch (m_disp->m_caveID) {
+	case 't_01':
+	case 't_02':
+	case 't_03':
+	case 'f_01':
+	case 'f_02':
+	case 'f_03':
+	case 'f_04':
+	case 'y_01':
+	case 'y_02':
+	case 'y_03':
+	case 'y_04':
+	case 'l_01':
+	case 'l_02':
+	case 'l_03':
 		ret = true;
 	}
 	return ret;
@@ -87,8 +100,38 @@ bool newScreen::ObjFloor::isFLOOR()
 bool newScreen::ObjFloor::isCHALLENGE()
 {
 	bool ret = false;
-	if (m_disp->m_caveID < 'c_0:' && 'c_00' <= m_disp->m_caveID || m_disp->m_caveID < 'c_1:' && 'c_10' <= m_disp->m_caveID
-	    || m_disp->m_caveID < 'c_2:' && 'c_20' <= m_disp->m_caveID || m_disp->m_caveID == '_uni') {
+	switch (m_disp->m_caveID) {
+	case 'c_00':
+	case 'c_01':
+	case 'c_02':
+	case 'c_03':
+	case 'c_04':
+	case 'c_05':
+	case 'c_06':
+	case 'c_07':
+	case 'c_08':
+	case 'c_09':
+	case 'c_10':
+	case 'c_11':
+	case 'c_12':
+	case 'c_13':
+	case 'c_14':
+	case 'c_15':
+	case 'c_16':
+	case 'c_17':
+	case 'c_18':
+	case 'c_19':
+	case 'c_20':
+	case 'c_21':
+	case 'c_22':
+	case 'c_23':
+	case 'c_24':
+	case 'c_25':
+	case 'c_26':
+	case 'c_27':
+	case 'c_28':
+	case 'c_29':
+	case '_uni':
 		ret = true;
 	}
 	return ret;
@@ -102,7 +145,20 @@ bool newScreen::ObjFloor::isCHALLENGE()
  */
 inline bool newScreen::ObjFloor::isVS()
 {
-	bool ret = ((m_disp->m_caveID < (int)'vs0:') && (m_disp->m_caveID >= (int)'vs00'));
+	bool ret = false;
+	switch (m_disp->m_caveID) {
+	case 'vs00':
+	case 'vs01':
+	case 'vs02':
+	case 'vs03':
+	case 'vs04':
+	case 'vs05':
+	case 'vs06':
+	case 'vs07':
+	case 'vs08':
+	case 'vs09':
+		ret = true;
+	}
 	return ret;
 }
 
