@@ -2356,7 +2356,7 @@ isNavi__Q24Game10CellObjectFv:
 /* 8013CC38 00139B78  38 60 00 00 */	li r3, 0
 /* 8013CC3C 00139B7C  4E 80 00 20 */	blr 
 
-__sinit_creature_cpp:
+fn local __sinit_creature_cpp
 /* 8013CC40 00139B80  3C 80 80 51 */	lis r4, __float_nan@ha
 /* 8013CC44 00139B84  38 00 FF FF */	li r0, -1
 /* 8013CC48 00139B88  C0 04 48 B0 */	lfs f0, __float_nan@l(r4)
@@ -2367,3 +2367,4 @@ __sinit_creature_cpp:
 /* 8013CC5C 00139B9C  D0 03 00 04 */	stfs f0, 4(r3)
 /* 8013CC60 00139BA0  D0 03 00 08 */	stfs f0, 8(r3)
 /* 8013CC64 00139BA4  4E 80 00 20 */	blr 
+end __sinit_creature_cpp

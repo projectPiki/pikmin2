@@ -9579,8 +9579,7 @@ forceKill__Q23efx13TFueactCircleFv:
 "exec__Q24Game22FSMState<Q24Game4Navi>FPQ24Game4Navi":
 /* 8014765C 0014459C  4E 80 00 20 */	blr 
 
-.global __sinit_navi_cpp
-__sinit_navi_cpp:
+fn local __sinit_navi_cpp
 /* 80147660 001445A0  3C 80 80 51 */	lis r4, __float_nan@ha
 /* 80147664 001445A4  38 00 FF FF */	li r0, -1
 /* 80147668 001445A8  C0 04 48 B0 */	lfs f0, __float_nan@l(r4)
@@ -9591,6 +9590,7 @@ __sinit_navi_cpp:
 /* 8014767C 001445BC  D0 03 00 04 */	stfs f0, 4(r3)
 /* 80147680 001445C0  D0 03 00 08 */	stfs f0, 8(r3)
 /* 80147684 001445C4  4E 80 00 20 */	blr 
+end __sinit_navi_cpp
 
 .global "@4@__dt__Q23efx12TFueactBiri1Fv"
 "@4@__dt__Q23efx12TFueactBiri1Fv":

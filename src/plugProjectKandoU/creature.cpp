@@ -67,7 +67,7 @@ void Creature::init(CreatureInitArg* arg)
 	m_flags.typeView |= (CF_IS_ATARI | CF_IS_ALIVE | CF_IS_COLLISION_FLICK);
 	clearStick();
 
-	m_updateContext.init(Game::collisionUpdateMgr);
+	m_updateContext.init(collisionUpdateMgr);
 	m_acceleration = Vector3f(0.0f);
 	clearCapture();
 
@@ -196,7 +196,7 @@ char* Creature::getTypeName() { return ObjType::getName(m_objectTypeID); }
  * Address:	8013B46C
  * Size:	00008C
  */
-void Creature::getShadowParam(Game::ShadowParam& param)
+void Creature::getShadowParam(ShadowParam& param)
 {
 	param.m_position = getPosition();
 	param.m_position.y += 0.5f;
@@ -217,7 +217,7 @@ bool Creature::needShadow() { return m_lod.m_flags & AILOD_FLAG_NEED_SHADOW; }
  * Address:	8013B504
  * Size:	000070
  */
-void Creature::getLifeGaugeParam(Game::LifeGaugeParam& param)
+void Creature::getLifeGaugeParam(LifeGaugeParam& param)
 {
 	param.m_position         = getPosition();
 	param.m_healthPercentage = 1.0f;
@@ -478,26 +478,26 @@ void Creature::movie_end(bool required)
 WaterBox* Creature::checkWater(WaterBox* waterBox, Sys::Sphere& sphere)
 {
 	if (waterBox) {
-        bool isInWater = waterBox->inWater(sphere);
-        if (!isInWater) {
-        	if (mapMgr) {
-			    waterBox = mapMgr->findWater(sphere);
-    		}
-    		if (!waterBox) {
-    			outWaterCallback();
-                waterBox = nullptr;
-    		}
-        }
+		bool isInWater = waterBox->inWater(sphere);
+		if (!isInWater) {
+			if (mapMgr) {
+				waterBox = mapMgr->findWater(sphere);
+			}
+			if (!waterBox) {
+				outWaterCallback();
+				waterBox = nullptr;
+			}
+		}
 	} else {
-        WaterBox* wb = nullptr;
+		WaterBox* wb = nullptr;
 		if (mapMgr) {
-            wb = mapMgr->findWater(sphere);
-        }
-        waterBox = wb;
-        if (waterBox) {
-            inWaterCallback(waterBox);
-        }
-    }
+			wb = mapMgr->findWater(sphere);
+		}
+		waterBox = wb;
+		if (waterBox) {
+			inWaterCallback(waterBox);
+		}
+	}
 	return waterBox;
 }
 
@@ -542,7 +542,7 @@ int Creature::checkHell(Creature::CheckHellArg& hellArg)
  * Address:	8013BD68
  * Size:	000178
  */
-void Game::Creature::updateCell()
+void Creature::updateCell()
 {
 	if (!gameSystem || !(gameSystem->m_flags & 4)) {
 		m_passID = -1;
@@ -556,7 +556,7 @@ void Game::Creature::updateCell()
 		SweepPrune::Object::m_minZ.m_radius = ball.m_position.z - ball.m_radius;
 		SweepPrune::Object::m_maxZ.m_radius = ball.m_position.z + ball.m_radius;
 
-		SweepPrune::Object* sweepObj = (SweepPrune::Object*)this;
+		SweepPrune::Object* sweepObj = this;
 
 		CellPyramid* mgr;
 		sweepObj->m_minX.insertSort((mgr = cellMgr)->_00);
@@ -567,7 +567,7 @@ void Game::Creature::updateCell()
 		if (cellMgr) {
 			CellPyramid::sCellBugName = getCreatureName();
 			CellPyramid::sCellBugID   = getCreatureID();
-			cellMgr->entry((Game::CellObject*)this, ball, m_cellLayerIndex, m_cellRect);
+			cellMgr->entry(this, ball, m_cellLayerIndex, m_cellRect);
 		}
 	}
 }
@@ -613,20 +613,22 @@ void Creature::checkCollision(CellObject* cellObj)
 
 	if (isDebugCollision()) {
 		getCreatureName();
-		(static_cast<Creature*>(cellObj))->getCreatureName();
+		static_cast<Creature*>(cellObj)->getCreatureName();
 	}
 
 	if (!(static_cast<Creature*>(cellObj))->isAtari() || !isAtari()) {
 		return;
 	}
 
-	if (!((!isStickTo() || (m_sticker != cellObj)) && (!(static_cast<Creature*>(cellObj))->isStickTo() || ((static_cast<Creature*>(cellObj))->m_sticker != this))
-	      && (!ignoreAtari(static_cast<Creature*>(cellObj))))
-	    || (static_cast<Creature*>(cellObj))->ignoreAtari(this)) {
+	Creature* creatureObj = static_cast<Creature*>(cellObj);
+
+	if (!((!isStickTo() || (m_sticker != cellObj)) && (!creatureObj->isStickTo() || (creatureObj->m_sticker != this))
+	      && (!ignoreAtari(creatureObj)))
+	    || creatureObj->ignoreAtari(this)) {
 		return;
 	}
 
-	if (!(static_cast<Creature*>(cellObj))->isAlive() || !isAlive()) {
+	if (!creatureObj->isAlive() || !isAlive()) {
 		return;
 	}
 
@@ -634,7 +636,7 @@ void Creature::checkCollision(CellObject* cellObj)
 
 	Delegate3<Creature, CollPart*, CollPart*, Vector3f&> delegate
 	    = Delegate3<Creature, CollPart*, CollPart*, Vector3f&>(this, &resolveOneColl);
-	currOp = static_cast<Creature*>(cellObj);
+	currOp = creatureObj;
 
 	if (isDebugCollision()) {
 		CollTree::mDebug = true;
@@ -651,11 +653,11 @@ void Creature::checkCollision(CellObject* cellObj)
 	}
 
 	if ((creatureCheck && objCheck) || (!creatureCheck && !objCheck)) {
-		if (m_collTree->checkCollision((static_cast<Creature*>(cellObj))->m_collTree, &collPart1, &collPart2, vec)) {
+		if (m_collTree->checkCollision(creatureObj->m_collTree, &collPart1, &collPart2, vec)) {
 			delegate.invoke(collPart1, collPart2, vec);
 		}
 	} else {
-		m_collTree->checkCollisionMulti((static_cast<Creature*>(cellObj))->m_collTree, (IDelegate3<CollPart*, CollPart*, Vector3<f32>&>*)&delegate);
+		m_collTree->checkCollisionMulti(creatureObj->m_collTree, (IDelegate3<CollPart*, CollPart*, Vector3<f32>&>*)&delegate);
 	}
 
 	CollTree::mDebug = false;
@@ -667,7 +669,6 @@ void Creature::checkCollision(CellObject* cellObj)
  * Address:	8013C2C0
  * Size:	0008CC
  */
-// WIP: https://decomp.me/scratch/HObeX
 void Creature::resolveOneColl(CollPart* part1, CollPart* part2, Vector3f& inputVec)
 {
 	Creature* op = currOp;
@@ -695,8 +696,8 @@ void Creature::resolveOneColl(CollPart* part1, CollPart* part2, Vector3f& inputV
 
 		Vector3f vel1;
 		Vector3f vel2;
-		Vector3f disp1 = part1->m_position + (vec * part1->m_radius); // sp74
-		Vector3f disp2 = part2->m_position - (vec * part2->m_radius); // sp68
+		Vector3f disp1 = part1->m_position + (vec * part1->m_radius);
+		Vector3f disp2 = part2->m_position - (vec * part2->m_radius);
 
 		getVelocityAt(disp1, vel1);
 		op->getVelocityAt(disp2, vel2);
@@ -745,7 +746,7 @@ void Creature::resolveOneColl(CollPart* part1, CollPart* part2, Vector3f& inputV
 			op->m_acceleration.z *= opAccelNorm;
 		}
 
-		if (flickCheck != 0) {
+		if (flickCheck) {
 			m_acceleration     = Vector3f(0.0f);
 			op->m_acceleration = Vector3f(0.0f);
 		}
@@ -766,7 +767,7 @@ void Creature::resolveOneColl(CollPart* part1, CollPart* part2, Vector3f& inputV
 			}
 		} else {
 			isDebugCollision();
-			if (flickCheck != 0) {
+			if (flickCheck) {
 				isDebugCollision();
 				return;
 			}
@@ -786,7 +787,7 @@ void Creature::resolveOneColl(CollPart* part1, CollPart* part2, Vector3f& inputV
 
 			sum2 += getAngularEffect(disp1, vec);
 			sum2 += op->getAngularEffect(disp2, vec);
-			f32 posFac           = factor5 / (sum2); // 68, 98
+			f32 posFac           = factor5 / (sum2);
 			Vector3f updatedVec1 = vec * posFac;
 			Vector3f updatedVec2 = vec * -posFac;
 
