@@ -52,8 +52,6 @@
         .4byte 0x6C660000
 */
 
-#pragma text_encoding "SHIFT_JIS"
-
 CellMgrParms* CellMgrParms::mInstance;
 
 // struct temp : CellMgrParms {
@@ -68,10 +66,10 @@ CellMgrParms* CellMgrParms::mInstance;
 void _Print(char* name, ...) { OSReport("CellMgrParms"); }
 
 inline _CellParms::_CellParms(Parameters* p)
-    : m_p000(p, 0x70303030, "?ï¿½ï¿½o?ï¿½ï¿½b?ï¿½ï¿½t?ï¿½ï¿½@?ï¿½ï¿½?ï¿½ï¿½?ï¿½ï¿½g?ï¿½ï¿½?ï¿½ï¿½", false, false, true)
-    , m_p001(p, 0x70303031, "?ï¿½ï¿½}?ï¿½ï¿½W?ï¿½ï¿½b?ï¿½ï¿½N?ï¿½ï¿½i?ï¿½ï¿½?ï¿½ï¿½?ï¿½ï¿½o?ï¿½ï¿½[", true, false, true)
-    , m_p002(p, 0x70303032, "G-Half", false, false, true)
-    , m_p003(p, 0x70303033, "UpdateMgr", false, false, true)
+    : m_p000(p, 'p000', "ƒoƒbƒtƒ@‚ğg‚¤", false, false, true)
+    , m_p001(p, 'p001', "ƒ}ƒWƒbƒNƒiƒ“ƒo[", true, false, true)
+    , m_p002(p, 'p002', "G-Half", false, false, true)
+    , m_p003(p, 'p003', "UpdateMgr", false, false, true)
 {
 }
 
@@ -85,13 +83,13 @@ inline _CellParms::_CellParms(Parameters* p)
  * Size:	00015C
  */
 inline CellMgrParms::CellMgrParms()
-    : Parameters(&m_end, nullptr, "CellMgr")
+    : Parameters(nullptr, "CellMgr")
     , JKRDisposer()
     , _CellParms(this)
 // , _CellParms {
-// 	.m_p000 = Parm<bool>(this, 0x70303030, "?ï¿½ï¿½o?ï¿½ï¿½b?ï¿½ï¿½t?ï¿½ï¿½@?ï¿½ï¿½?ï¿½ï¿½?ï¿½ï¿½g?ï¿½ï¿½?ï¿½ï¿½",
+// 	.m_p000 = Parm<bool>(this, 0x70303030, "??¿½?¿½o??¿½?¿½b??¿½?¿½t??¿½?¿½@??¿½?¿½??¿½?¿½??¿½?¿½g??¿½?¿½??¿½?¿½",
 // false, false, true), 	.m_p001 = Parm<bool>(this, 0x70303031,
-// "?ï¿½ï¿½}?ï¿½ï¿½W?ï¿½ï¿½b?ï¿½ï¿½N?ï¿½ï¿½i?ï¿½ï¿½?ï¿½ï¿½?ï¿½ï¿½o?ï¿½ï¿½[", true, false, true), 	.m_p002 =
+// "??¿½?¿½}??¿½?¿½W??¿½?¿½b??¿½?¿½N??¿½?¿½i??¿½?¿½??¿½?¿½??¿½?¿½o??¿½?¿½[", true, false, true), 	.m_p002 =
 // Parm<bool>(this, 0x70303032, "G-Half", false, false, true), 	.m_p003 =
 // Parm<bool>(this, 0x70303033, "UpdateMgr", false, false, true)
 // }
@@ -104,9 +102,9 @@ inline CellMgrParms::CellMgrParms()
 //     &m_end, nullptr, "CellMgr"
 // 	}
 // 	, JKRDisposer()
-//     , Parm<bool>(this, 0x70303030, "?ï¿½ï¿½o?ï¿½ï¿½b?ï¿½ï¿½t?ï¿½ï¿½@?ï¿½ï¿½?ï¿½ï¿½?ï¿½ï¿½g?ï¿½ï¿½?ï¿½ï¿½", false,
+//     , Parm<bool>(this, 0x70303030, "??¿½?¿½o??¿½?¿½b??¿½?¿½t??¿½?¿½@??¿½?¿½??¿½?¿½??¿½?¿½g??¿½?¿½??¿½?¿½", false,
 //     false, true) , Parm<bool>(this, 0x70303031,
-//     "?ï¿½ï¿½}?ï¿½ï¿½W?ï¿½ï¿½b?ï¿½ï¿½N?ï¿½ï¿½i?ï¿½ï¿½?ï¿½ï¿½?ï¿½ï¿½o?ï¿½ï¿½[", true, false, true) ,
+//     "??¿½?¿½}??¿½?¿½W??¿½?¿½b??¿½?¿½N??¿½?¿½i??¿½?¿½??¿½?¿½??¿½?¿½o??¿½?¿½[", true, false, true) ,
 //     Parm<bool>(this, 0x70303032, "G-Half", false, false, true) ,
 //     Parm<bool>(this, 0x70303033, "UpdateMgr", false, false, true)
 // }
@@ -116,44 +114,7 @@ inline CellMgrParms::CellMgrParms()
  * Address:	8022E188
  * Size:	000074
  */
-CellMgrParms::~CellMgrParms()
-{
-	mInstance = nullptr;
-	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  stw       r0, 0x14(r1)
-	  stw       r31, 0xC(r1)
-	  mr        r31, r4
-	  stw       r30, 0x8(r1)
-	  mr.       r30, r3
-	  beq-      .loc_0x58
-	  lis       r3, 0x804C
-	  li        r0, 0
-	  addi      r4, r3, 0x1140
-	  addi      r3, r30, 0xC
-	  stw       r4, 0x94(r30)
-	  addi      r5, r4, 0x8
-	  li        r4, 0
-	  stw       r5, 0xC(r30)
-	  stw       r0, -0x69F8(r13)
-	  bl        -0x211198
-	  extsh.    r0, r31
-	  ble-      .loc_0x58
-	  mr        r3, r30
-	  bl        -0x20A128
-
-	.loc_0x58:
-	  lwz       r0, 0x14(r1)
-	  mr        r3, r30
-	  lwz       r31, 0xC(r1)
-	  lwz       r30, 0x8(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
-	*/
-}
+CellMgrParms::~CellMgrParms() { mInstance = nullptr; }
 
 /*
  * --INFO--
@@ -263,5 +224,3 @@ void CellMgrParms::globalInstance()
 	  blr
 	*/
 }
-
-#pragma text_encoding reset
