@@ -238,6 +238,12 @@ struct J2DPane {
 		calcMtx();
 	}
 
+	inline void setOffset(f32 x, f32 y)
+	{
+		_0D4 = JGeometry::TVec2f(x, y);
+		calcMtx();
+	}
+
 	inline void setMsgID(u64 msgID) { m_messageID = msgID; }
 
 	// /**

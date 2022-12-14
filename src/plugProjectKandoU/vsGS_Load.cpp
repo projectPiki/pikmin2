@@ -79,7 +79,7 @@ void LoadState::exec(VsGameSection* section)
 			sys->heapStatusDump(true);
 		}
 		og::Screen::DispMemberFloor floor;
-		floor._08 = section->getCurrFloor() + 1;
+		floor.m_sublevel = section->getCurrFloor() + 1;
 		ID32 id;
 		if (gameSystem->isChallengeMode()) {
 			sprintf(id.getStr(), "c_%02d", section->m_challengeStageData->m_stageIndex);

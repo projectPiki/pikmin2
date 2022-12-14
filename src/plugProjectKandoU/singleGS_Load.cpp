@@ -77,8 +77,8 @@ void LoadState::exec(SingleGameSection* gs)
 			gs->m_inCave = true;
 			og::Screen::DispMemberFloor dispFloor;
 
-			dispFloor._08      = gs->m_currentFloor + 1;
-			dispFloor.m_caveID = gs->_190;
+			dispFloor.m_sublevel = gs->m_currentFloor + 1;
+			dispFloor.m_caveID   = gs->_190;
 			Screen::gGame2DMgr->open_Floor(dispFloor);
 			gameSystem->m_inCave = true;
 

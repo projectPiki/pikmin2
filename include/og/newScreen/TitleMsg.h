@@ -36,8 +36,7 @@ struct TitleMessageAnalyzer : public P2JME::Analyzer {
 };
 
 struct TitleMsg {
-	struct EnumCentering {
-	};
+	enum EnumCentering { ECM_1 = 1, ECM_2 = 2 };
 
 	TitleMsg(J2DScreen*, J2DPane*, char*);
 
@@ -63,7 +62,7 @@ struct TitleMsg {
 	JUtility::TColor m_glyphPanes2Black; // _558
 	u8 _55C[128];                        // _55C
 	f32 _5DC[128];                       // _5DC
-	f32 _7DC;                            // _7DC
+	f32 m_yOffset;                       // _7DC
 	f32 _7E0;                            // _7E0
 };
 

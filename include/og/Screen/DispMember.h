@@ -318,11 +318,11 @@ struct DispMemberFinalMessage : public DispMemberBase {
 struct DispMemberFloor : public DispMemberBase {
 	inline DispMemberFloor()
 	{
-		_08      = 55;
-		_10      = 0;
-		_11      = 0;
-		m_caveID = 't_01';
-		_12      = 0;
+		m_sublevel     = 55;
+		m_doEnd        = false;
+		m_doForceEnd   = false;
+		m_caveID       = 't_01';
+		m_enableButton = false;
 	}
 
 	virtual u32 getSize() { return sizeof(DispMemberFloor); } // _08 (weak)
@@ -331,11 +331,11 @@ struct DispMemberFloor : public DispMemberBase {
 
 	// _00     = VTBL
 	// _00-_08 = DispMemberBase
-	int _08;      // _08
-	u32 m_caveID; // _0C
-	u8 _10;       // _10
-	u8 _11;       // _11
-	u8 _12;       // _12
+	u32 m_sublevel;      // _08
+	int m_caveID;        // _0C
+	bool m_doEnd;        // _10
+	bool m_doForceEnd;   // _11
+	bool m_enableButton; // _12
 };
 
 // size 0x88

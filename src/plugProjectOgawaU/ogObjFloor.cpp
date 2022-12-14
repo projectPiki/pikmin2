@@ -1,11 +1,4 @@
-#include "JSystem/JGeometry.h"
-#include "JSystem/JUT/TColor.h"
-#include "types.h"
 #include "og/newScreen/Floor.h"
-#include "Dolphin/string.h"
-#include "Dolphin/stl.h"
-#include "Graphics.h"
-#include "JSystem/JUT/JUTException.h"
 #include "JSystem/J3D/J3DSys.h"
 #include "og/newScreen/TitleMsg.h"
 #include "og/Screen/AlphaMgr.h"
@@ -15,6 +8,7 @@
 #include "P2DScreen.h"
 #include "System.h"
 #include "TParticle2dMgr.h"
+#include "Dolphin/rand.h"
 
 /*
     Generated from dpostproc
@@ -425,113 +419,49 @@
     lbl_8051DBB4:
         .4byte 0x41200000
 */
-
-const u64 og::newScreen::vsRuleMsgId[6] = { '2021_00', '2022_00', '2023_00', '2024_00', '2025_00', '2026_00' };
-
-inline og::newScreen::ObjFloor::StaticValues::StaticValues()
-    : _00(0.30f)
-    , _04(1.00f)
-    , _08(0.20f)
-    , _0C(3.00f)
-    , _10(0.00f)
-    , _14(-15.00f)
-    , _18(1.00f)
-    , _1C(30.00f)
-    , _20(0.00f)
-    , _24(-50.00f)
-    , _28(1.00f)
-    , _2C(-15.00f)
-    , _30(0.00f)
-    , _34(1.50f)
-    , _38(0.00f)
-    , _3C(15.00f)
-    , _40(0.12f)
-    , _44(7.00f)
-    , _48(1.50f)
-    , _4C(0.06f)
-    , _50(10.00f)
-    , _54(0.00f)
-    , _58(3.00f)
-    , _5C()
-    , _68()
-    // , _68 {
-    // 	JUtility::TColor(0x00, 0x00, 0x32, 0x00),
-    // 	JUtility::TColor(0x64, 0x64, 0x00, 0x00),
-    // 	JUtility::TColor(0xFF, 0xFF, 0x00, 0x00)
-    // }
-    , m_ruleMsgIndex(0)
-    , _78(0)
-    , m_shouldNotRandomizeRuleMsgMaybe(false)
-{
-	_5C[0] = JUtility::TColor(0xFF, 0xFF, 0xC8, 0xFF);
-	_5C[1] = JUtility::TColor(0xFF, 0xFF, 0xFF, 0xFF);
-	_5C[2] = JUtility::TColor(0xFF, 0xFF, 0x9C, 0xFF);
-};
-
-og::newScreen::ObjFloor::StaticValues og::newScreen::ObjFloor::msVal = og::newScreen::ObjFloor::StaticValues();
-
-// float _00 =   0.3f;                    // _00
-// float _04 =   1.0f;                    // _04
-// float _08 =   0.2f;                    // _08
-// float _0C =   3.0f;                    // _0C
-// float _10 =   0.0f;                    // _10
-// float _14 = -15.0f;                    // _14
-// float _18 =   1.0f;                    // _18
-// float _1C =  30.0f;                    // _1C
-// float _20 =   0.0f;                    // _20
-// float _24 = -50.0f;                    // _24
-// float _28 =   1.0f;                    // _28
-// float _2C = -15.0f;                    // _2C
-// float _30 =   0.0f;                    // _30
-// float _34 =   1.5f;                    // _34
-// float _38 =   0.0f;                    // _38
-// float _3C =  15.0f;                    // _3C
-// float _40 =   0.12f;                   // _40
-// float _44 =   7.0f;                    // _44
-// float _48 =   1.5f;                    // _48
-// float _4C =   0.06f;                   // _4C
-// float _50 =  10.0f;                    // _50
-// float _54 =   0.0f;                    // _54
-// float _58 =   3.0f;                    // _58
-
 namespace og {
-/*
 namespace newScreen {
 
+const u64 vsRuleMsgId[6] = {
+	'2021_00', // "An advisory: You can't carry your own Gyro Block."
+	'2022_00', // "An advisory: Pikmin lost to opposing Pikmin will become seeds."
+	'2023_00', // "An advisory: Roulette creatures vanish when you defeat them."
+	'2024_00', // "An advisory: Use your sprays wisely to turn the tide of battle!"
+	'2025_00', // "An advisory: You can't pluck, throw, or spray while engaging enemy Pikmin."
+	'2026_00'  // "An advisory: Get a clover for one roulette spin. You can store up to four."
+};
+
+/*
  * __ct
  * --INFO--
  * Address:	8031A3C8
  * Size:	0000E8
  */
 ObjFloor::ObjFloor(char const* name)
-    : ::Screen::ObjBase()
-    , _58(0.0f)
-    , _5C(0.0f)
-    , _68(0xFFFFFFFF)
 {
-	m_name         = const_cast<char*>(name);
-	m_dispMember   = nullptr;
-	_48            = nullptr;
-	_4C            = nullptr;
-	_7C            = nullptr;
-	_60            = msVal._0C;
-	_64            = 0;
-	_68.channels.r = 0;
-	_68.channels.g = 0;
-	_68.channels.b = 0;
-	_68.channels.a = 0xFF;
-	_6C            = 0;
-	_70            = 0.0f;
-	_80            = 0.0f;
-	_84            = 0.0f;
-	_54            = nullptr;
-	_88            = nullptr;
-	_50            = nullptr;
-	m_rulePane     = nullptr;
-	_A8            = 0;
-	m_buttonPane   = nullptr;
-	m_loadingPane  = nullptr;
-	_B8            = 1.0f;
+	m_fadeLevel = 0.0f;
+	m_alpha     = 0.0f;
+	m_color.set(-1);
+	m_name         = name;
+	m_disp         = nullptr;
+	m_screenName   = nullptr;
+	m_screenFont   = nullptr;
+	m_sublevelPane = nullptr;
+	m_timer        = msVal._0C;
+	m_doFadeout    = false;
+	m_color.set(0, 0, 0, 255);
+	m_doEnd            = 0;
+	m_BackgroundAlpha  = 0.0f;
+	m_sublevelXoffs    = 0.0f;
+	m_sublevelYoffs    = 0.0f;
+	m_counterFloor     = nullptr;
+	m_anims            = nullptr;
+	m_screenRules      = nullptr;
+	m_ruleMesgPane     = nullptr;
+	m_isButtonShown    = false;
+	m_buttonPane       = nullptr;
+	m_loadingPane      = nullptr;
+	m_buttonAlphaTimer = 1.0f;
 	sprintf(m_textTag, "");
 }
 
@@ -600,6 +530,12 @@ lbl_8031A540:
  */
 bool newScreen::ObjFloor::isFLOOR(void)
 {
+	bool ret = false;
+	if (m_disp->m_caveID < 't_04' && 't_01' <= m_disp->m_caveID || m_disp->m_caveID < 'f_05' && 'f_01' <= m_disp->m_caveID
+	    || m_disp->m_caveID < 'y_05' && 'y_01' <= m_disp->m_caveID || m_disp->m_caveID < 'l_04' && 'l_01' <= m_disp->m_caveID) {
+		ret = true;
+	}
+	return ret;
 	// UNUSED FUNCTION
 }
 
@@ -610,7 +546,12 @@ bool newScreen::ObjFloor::isFLOOR(void)
  */
 bool newScreen::ObjFloor::isCHALLENGE(void)
 {
-	// UNUSED FUNCTION
+	bool ret = false;
+	if (m_disp->m_caveID < 'c_0:' && 'c_00' <= m_disp->m_caveID || m_disp->m_caveID < 'c_1:' && 'c_10' <= m_disp->m_caveID
+	    || m_disp->m_caveID < 'c_2:' && 'c_20' <= m_disp->m_caveID || m_disp->m_caveID == '_uni') {
+		ret = true;
+	}
+	return ret;
 }
 
 /*
@@ -618,11 +559,7 @@ bool newScreen::ObjFloor::isCHALLENGE(void)
  * Address:	........
  * Size:	000030
  */
-inline bool newScreen::ObjFloor::isVS(void)
-{
-	// UNUSED FUNCTION
-	return (((Screen::DispMemberFloor*)m_dispMember)->m_caveID < 'vs0:' && 'vs0/' < ((Screen::DispMemberFloor*)m_dispMember)->m_caveID);
-}
+inline bool newScreen::ObjFloor::isVS(void) { return (m_disp->m_caveID < 'vs0:' && 'vs00' <= m_disp->m_caveID); }
 
 /*
  * --INFO--
@@ -633,173 +570,173 @@ void ObjFloor::setCaveMsgID(u32 caveid, char* buffer)
 {
 	char* cave_msg;
 	switch (caveid) {
-	case 't_01': // tutorial
-		cave_msg = "8395_00";
+	case 't_01':              // tutorial
+		cave_msg = "8395_00"; // "Emergence Cave"
 		break;
 	case 't_02':
-		cave_msg = "8399_00";
+		cave_msg = "8399_00"; // "Subterranean Complex"
 		break;
 	case 't_03':
-		cave_msg = "8400_00";
+		cave_msg = "8400_00"; // "Frontier Cavern"
 		break;
-	case 'f_01': // forest
-		cave_msg = "8396_00";
+	case 'f_01':              // forest
+		cave_msg = "8396_00"; // "Hole of Beasts"
 		break;
 	case 'f_02':
-		cave_msg = "8398_00";
+		cave_msg = "8398_00"; // "White Flower Garden"
 		break;
 	case 'f_03':
-		cave_msg = "8401_00";
+		cave_msg = "8401_00"; // "Bulblax Kingdom"
 		break;
 	case 'f_04':
-		cave_msg = "8410_00";
+		cave_msg = "8410_00"; // "Snagret Hole"
 		break;
-	case 'y_01': // yakushima
-		cave_msg = "8397_00";
+	case 'y_01':              // yakushima
+		cave_msg = "8397_00"; // "Citadel of Spiders"
 		break;
 	case 'y_02':
-		cave_msg = "8402_00";
+		cave_msg = "8402_00"; // "Glutton's Kitchen"
 		break;
 	case 'y_03':
-		cave_msg = "8403_00";
+		cave_msg = "8403_00"; // "Shower Room"
 		break;
 	case 'y_04':
-		cave_msg = "8411_00";
+		cave_msg = "8411_00"; // "Submerged Castle"
 		break;
-	case 'l_01': // last
-		cave_msg = "8412_00";
+	case 'l_01':              // last
+		cave_msg = "8412_00"; // "Cavern of Chaos"
 		break;
 	case 'l_02':
-		cave_msg = "8413_00";
+		cave_msg = "8413_00"; // "Hole of Heroes"
 		break;
 	case 'l_03':
-		cave_msg = "8414_00";
+		cave_msg = "8414_00"; // "Dream Den"
 		break;
-	case 'c_00': // challenge mode stages
-		cave_msg = "4900_00";
+	case 'c_00':              // challenge mode stages
+		cave_msg = "4900_00"; // "Explorer's Cave"
 		break;
 	case 'c_01':
-		cave_msg = "4901_00";
+		cave_msg = "4901_00"; // "Brawny Abyss"
 		break;
 	case 'c_02':
-		cave_msg = "4902_00";
+		cave_msg = "4902_00"; // "Concrete Maze"
 		break;
 	case 'c_03':
-		cave_msg = "4903_00";
+		cave_msg = "4903_00"; // "Creator's Garden"
 		break;
 	case 'c_04':
-		cave_msg = "4904_00";
+		cave_msg = "4904_00"; // "The Giant's Bath"
 		break;
 	case 'c_05':
-		cave_msg = "4905_00";
+		cave_msg = "4905_00"; // "Lost Toy Box"
 		break;
 	case 'c_06':
-		cave_msg = "4906_00";
+		cave_msg = "4906_00"; // "Twilight Garden"
 		break;
 	case 'c_07':
-		cave_msg = "4907_00";
+		cave_msg = "4907_00"; // "Cavernous Abyss"
 		break;
 	case 'c_08':
-		cave_msg = "4908_00";
+		cave_msg = "4908_00"; // "Secret Testing Range"
 		break;
 	case 'c_09':
-		cave_msg = "4909_00";
+		cave_msg = "4909_00"; // "Emperor's Realm"
 		break;
 	case 'c_10':
-		cave_msg = "4910_00";
+		cave_msg = "4910_00"; // "Cryptic Cavern"
 		break;
 	case 'c_11':
-		cave_msg = "4911_00";
+		cave_msg = "4911_00"; // "Red Chasm"
 		break;
 	case 'c_12':
-		cave_msg = "4912_00";
+		cave_msg = "4912_00"; // "Collector's Room"
 		break;
 	case 'c_13':
-		cave_msg = "4913_00";
+		cave_msg = "4913_00"; // "Hidden Garden"
 		break;
 	case 'c_14':
-		cave_msg = "4914_00";
+		cave_msg = "4914_00"; // "Trampled Garden"
 		break;
 	case 'c_15':
-		cave_msg = "4915_00";
+		cave_msg = "4915_00"; // "Hot House"
 		break;
 	case 'c_16':
-		cave_msg = "4916_00";
+		cave_msg = "4916_00"; // "Breeding Ground"
 		break;
 	case 'c_17':
-		cave_msg = "4917_00";
+		cave_msg = "4917_00"; // "Green Hole"
 		break;
 	case 'c_18':
-		cave_msg = "4918_00";
+		cave_msg = "4918_00"; // "Hazard Training"
 		break;
 	case 'c_19':
-		cave_msg = "4919_00";
+		cave_msg = "4919_00"; // "Three Color Training"
 		break;
 	case 'c_20':
-		cave_msg = "4920_00";
+		cave_msg = "4920_00"; // "Novice Training"
 		break;
 	case 'c_21':
-		cave_msg = "4921_00";
+		cave_msg = "4921_00"; // "Snack Pit"
 		break;
 	case 'c_22':
-		cave_msg = "4922_00";
+		cave_msg = "4922_00"; // "Sniper Room"
 		break;
 	case 'c_23':
-		cave_msg = "4923_00";
+		cave_msg = "4923_00"; // "Dweevil Nest"
 		break;
 	case 'c_24':
-		cave_msg = "4924_00";
+		cave_msg = "4924_00"; // "Cave of Snarls"
 		break;
 	case 'c_25':
-		cave_msg = "4925_00";
+		cave_msg = "4925_00"; // "Abduction Den"
 		break;
 	case 'c_26':
-		cave_msg = "4926_00";
+		cave_msg = "4926_00"; // "Bully Den"
 		break;
 	case 'c_27':
-		cave_msg = "4927_00";
+		cave_msg = "4927_00"; // "Subterranean Lair"
 		break;
 	case 'c_28':
-		cave_msg = "4928_00";
+		cave_msg = "4928_00"; // "Cave of Pain"
 		break;
 	case 'c_29':
-		cave_msg = "4929_00";
+		cave_msg = "4929_00"; // "Rumbling Grotto"
 		break;
-	case 'vs00': // 2pbattle stages begin here
-		cave_msg = "4770_00";
+	case 'vs00':              // versus stages
+		cave_msg = "4770_00"; // "Battle Field"
 		break;
 	case 'vs01':
-		cave_msg = "4771_00";
+		cave_msg = "4771_00"; // "Colosseum"
 		break;
 	case 'vs02':
-		cave_msg = "4772_00";
+		cave_msg = "4772_00"; // "Carpet Plain"
 		break;
 	case 'vs03':
-		cave_msg = "4773_00";
+		cave_msg = "4773_00"; // "Hostile Territory"
 		break;
 	case 'vs04':
-		cave_msg = "4774_00";
+		cave_msg = "4774_00"; // "War Path"
 		break;
 	case 'vs05':
-		cave_msg = "4775_00";
+		cave_msg = "4775_00"; // "Rusty Gulch"
 		break;
 	case 'vs06':
-		cave_msg = "4776_00";
+		cave_msg = "4776_00"; // "Brawl Yard"
 		break;
 	case 'vs07':
-		cave_msg = "4777_00";
+		cave_msg = "4777_00"; // "Angle Maze"
 		break;
 	case 'vs08':
-		cave_msg = "4778_00";
+		cave_msg = "4778_00"; // "Dim Labyrinth"
 		break;
 	case 'vs09':
-		cave_msg = "4779_00";
+		cave_msg = "4779_00"; // "Tile Lands"
 		break;
-	case '_uni': // vestigial test id
-		cave_msg = "9996_00";
+	case '_uni':              // test id
+		cave_msg = "9996_00"; // "Test Message 9996"
 		break;
 	default:
-		cave_msg = "8395_00";
+		cave_msg = "8395_00"; // "Emergence Cave"
 	}
 	sprintf(buffer, "%s", cave_msg);
 }
@@ -809,74 +746,130 @@ void ObjFloor::setCaveMsgID(u32 caveid, char* buffer)
  * Address:	8031A9BC
  * Size:	0008C0
  */
-void ObjFloor::doCreate(JKRArchive* archive)
+void ObjFloor::doCreate(JKRArchive* arc)
 {
-	Screen::DispMemberBase* disp = getDispMember();
-	if (disp->isID(OWNER_OGA, MEMBER_FLOOR) == false) {
-		if (disp->isID(OWNER_OGA, MEMBER_DUMMY) == false) {
-			JUT_PANICLINE(452, "ERR! in ObjFloor Create?¿½?¿½?¿½s?¿½I\n");
-		}
-		disp         = new Screen::DispMemberFloor();
-		m_dispMember = disp;
+	og::Screen::DispMemberFloor* disp = static_cast<og::Screen::DispMemberFloor*>(getDispMember());
+	if (disp->isID(OWNER_OGA, MEMBER_FLOOR)) {
+		m_disp = disp;
+
+	} else if (disp->isID(OWNER_OGA, MEMBER_DUMMY)) {
+		m_disp = new og::Screen::DispMemberFloor;
+
 	} else {
-		m_dispMember = disp;
+		JUT_PANICLINE(452, "ERR! in ObjFloor CreateŽ¸”sI\n");
 	}
-	_4C = new P2DScreen::Mgr_tuning();
+
+	m_screenFont = new P2DScreen::Mgr_tuning;
 	if (sys->m_region == System::LANG_JAPANESE) {
-		_4C->set("new_font_0.blo", 0x1040000, archive);
+		m_screenFont->set("new_font_0.blo", 0x1040000, arc);
 	} else {
-		_4C->set("new_font_0_eng_pal.blo", 0x1040000, archive);
+		m_screenFont->set("new_font_0_eng_pal.blo", 0x1040000, arc);
 	}
-	_48 = new P2DScreen::Mgr_tuning();
-	_48->set("font_name.blo", 0x1040000, archive);
+
+	m_screenName = new P2DScreen::Mgr_tuning;
+	m_screenName->set("font_name.blo", 0x1040000, arc);
+
 	if (isVS()) {
-		_50 = new P2DScreen::Mgr_tuning();
-		_50->set("vs_title_rule_window.blo", 0x1040000, archive);
-		m_rulePane                 = Screen::TagSearch(_50, 'Trule_m5');
-		m_buttonPane               = Screen::TagSearch(_50, 'Pabutton');
-		m_loadingPane              = Screen::TagSearch(_50, 'Tloading');
-		m_buttonPane->m_isVisible  = false;
-		m_loadingPane->m_isVisible = true;
+		m_screenRules = new P2DScreen::Mgr_tuning;
+		m_screenRules->set("vs_title_rule_window.blo", 0x1040000, arc);
+		m_ruleMesgPane = og::Screen::TagSearch(m_screenRules, 'Trule_m5');
+		m_buttonPane   = og::Screen::TagSearch(m_screenRules, 'Pabutton');
+		m_loadingPane  = og::Screen::TagSearch(m_screenRules, 'Tloading');
+		m_buttonPane->hide();
+		m_loadingPane->show();
+
 		for (int i = 0; i < 6; i++) {
-			// TODO: What even?
+			u64 tag            = 'Nsub_i00' + i;
+			m_rulesPaneList[i] = og::Screen::TagSearch(m_screenRules, tag);
+			m_rulesPaneList[i]->hide();
 		}
 		int ruleMsgIndex = msVal.m_ruleMsgIndex;
 		if (msVal.m_shouldNotRandomizeRuleMsgMaybe) {
-			// TODO: Rand macro when not lazy.
+			ruleMsgIndex = randFloat() * 6.0f;
 		}
-		m_rulePane->m_messageID        = vsRuleMsgId[ruleMsgIndex];
-		_90[ruleMsgIndex]->m_isVisible = true;
-		m_alphaMgr                     = new Screen::AlphaMgr();
+		m_ruleMesgPane->setMsgID(vsRuleMsgId[ruleMsgIndex]);
+		m_rulesPaneList[ruleMsgIndex]->m_isVisible = true;
+		m_buttonAlpha                              = new og::Screen::AlphaMgr;
 	} else {
-		_50        = nullptr;
-		m_rulePane = nullptr;
+		m_screenRules  = nullptr;
+		m_ruleMesgPane = nullptr;
 	}
-	if (_48) {
-		J2DPane* fc_c = _48->search('fc_c');
+
+	if (m_screenName) {
+		J2DPane* fc_c = m_screenName->search('fc_c');
 		if (fc_c->getParentPane()) {
 			fc_c->getParentPane()->removeChild(fc_c);
 		}
-		_54 = og::Screen::setCallBack_CounterRV(_48, 'fc_r', 'fc_l', 'fc_l', (u32*)&((Screen::DispMemberFloor*)m_dispMember)->_08, 3, 2,
-		                                        false, archive);
+		m_counterFloor = og::Screen::setCallBack_CounterRV(m_screenName, 'fc_r', 'fc_l', 'fc_l', &m_disp->m_sublevel, 3, 2, false, arc);
 	}
-	// TODO: Remove magic number
-	_54->setCenteringMode(Screen::CallBack_CounterRV::ECM_UNKNOWN_2);
-	Screen::setAlphaScreen(_48);
-	if (_50) {
-		Screen::setAlphaScreen(_50);
+
+	m_counterFloor->setCenteringMode(Screen::CallBack_CounterRV::ECM_UNKNOWN_2);
+	og::Screen::setAlphaScreen(m_screenName);
+
+	if (m_screenRules) {
+		og::Screen::setAlphaScreen(m_screenRules);
 	}
-	if (_50) {
-		Screen::setCallBackMessage(_50);
+
+	if (m_screenRules) {
+		og::Screen::setCallBackMessage(m_screenRules);
 	}
-	if (_50) {
-		_88 = new Screen::AnimGroup(2);
-		registAnimGroupScreen(_88, archive, _50, "vs_title_rule_window.btk", 1.0f);
-		registAnimGroupScreen(_88, archive, _50, "vs_title_rule_window_02.btk", 1.0f);
-		_88->setFrame(0.0f);
-		_88->setRepeat(true);
-		_88->setSpeed(1.0f);
-		_88->start();
+
+	if (m_screenRules) {
+		m_anims = new og::Screen::AnimGroup(2);
+		registAnimGroupScreen(m_anims, arc, m_screenRules, "vs_title_rule_window.btk", 1.0f);
+		registAnimGroupScreen(m_anims, arc, m_screenRules, "vs_title_rule_window_02.btk", 1.0f);
+		m_anims->setFrame(0.0f);
+		m_anims->setRepeat(true);
+		m_anims->setSpeed(1.0f);
+		m_anims->start();
 	}
+
+	int caveType = 0;
+	int caveID   = m_disp->m_caveID;
+
+	if (isFLOOR()) {
+		caveType = FLOOR_Story;
+	} else if (isCHALLENGE()) {
+		caveType = FLOOR_Challenge;
+	} else if (isVS()) {
+		caveType = FLOOR_Versus;
+	}
+
+	setCaveMsgID(caveID, m_textTag);
+
+	switch (caveType) {
+	case FLOOR_Challenge:
+		J2DPane* pane      = m_screenName->search('title');
+		m_title            = new TitleMsgDrop(m_screenFont, pane, m_textTag);
+		m_title->m_yOffset = msVal._50;
+		break;
+	case FLOOR_Story:
+		pane              = m_screenName->search('title');
+		TitleMsgWave* msg = new TitleMsgWave(m_screenFont, pane, m_textTag);
+		msg->setParam(msVal._40, msVal._44, msVal._48, msVal._4C);
+		msg->m_yOffset = msVal._54;
+		m_title        = msg;
+		break;
+	case FLOOR_Versus:
+		pane               = m_screenName->search('title');
+		m_title            = new TitleMsgClash(m_screenFont, pane, m_textTag);
+		m_title->m_yOffset = msVal._58;
+		break;
+	default:
+		pane    = m_screenName->search('title');
+		m_title = new TitleMsg(m_screenFont, pane, m_textTag);
+		break;
+	}
+	m_title->setCentering(TitleMsg::ECM_2);
+	m_title->init();
+
+	J2DPane* pane = m_screenName->search('title');
+	m_sublevelMsg = new TitleMsg(m_screenFont, pane, "8382_00"); // "Sublevel"
+	m_sublevelMsg->setCentering(TitleMsg::ECM_1);
+
+	m_sublevelPane  = m_screenName->search('kaisuu');
+	m_sublevelXoffs = m_sublevelPane->_0D4.x;
+	m_sublevelYoffs = m_sublevelPane->_0D4.y;
 
 	/*
 	stwu     r1, -0x50(r1)
@@ -1560,6 +1553,97 @@ void TitleMsg::init() { }
  */
 bool newScreen::ObjFloor::commonUpdate(void)
 {
+	bool ret                          = false;
+	og::Screen::DispMemberFloor* disp = static_cast<og::Screen::DispMemberFloor*>(getDispMember());
+	if (disp->isID(OWNER_OGA, MEMBER_FLOOR)) {
+		m_disp = disp;
+	}
+
+	bool vs = isVS();
+	if (vs && disp && !m_isButtonShown && disp->m_enableButton) {
+		m_isButtonShown = true;
+		m_buttonPane->show();
+		m_buttonAlpha->setBlinkArea(0.5f, 1.0f);
+		m_buttonAlpha->blink(1.0f);
+	}
+
+	if (m_screenRules) {
+		if (m_isButtonShown) {
+			m_buttonPane->setAlpha(m_buttonAlpha->calc());
+			if (m_buttonAlphaTimer > 0.0f) {
+				m_buttonAlphaTimer -= sys->m_deltaTime / 0.5f;
+				if (m_buttonAlphaTimer < 0.0f) {
+					m_buttonAlphaTimer = 0.0f;
+				}
+			}
+			m_loadingPane->setAlpha(m_buttonAlphaTimer * 255.0f);
+		}
+		m_anims->update();
+	}
+
+	if (!vs) {
+		f32 subX = m_sublevelXoffs + msVal._2C;
+		f32 subY = m_sublevelYoffs + msVal._30;
+		if (disp->m_sublevel < 10) {
+			subX += msVal._3C;
+		}
+		m_sublevelPane->setOffset(subX, subY);
+		m_sublevelPane->updateScale(msVal._34);
+	}
+
+	if (m_screenRules) {
+		m_screenRules->update();
+	}
+
+	int caveType = 0;
+	int caveID   = m_disp->m_caveID;
+
+	if (isFLOOR()) {
+		caveType = FLOOR_Story;
+	} else if (isCHALLENGE()) {
+		caveType = FLOOR_Challenge;
+	} else if (isVS()) {
+		caveType = FLOOR_Versus;
+	}
+
+	m_title->setColor(msVal.m_colors1[caveType], msVal.m_colors2[caveType]);
+	m_sublevelMsg->setColor(msVal.m_colors1[caveType], msVal.m_colors2[caveType]);
+
+	J2DPictureEx* pic = static_cast<J2DPictureEx*>(m_counterFloor->m_pane);
+	pic->setWhite(msVal.m_colors1[caveType]);
+	pic->setBlack(msVal.m_colors2[caveType]);
+
+	if (vs) {
+		m_screenName->setXY(msVal._20, msVal._24);
+		m_screenName->m_scale.x = msVal._28 * P2DScreen::Mgr_tuning::mstTuningScaleX;
+		m_screenName->m_scale.y = msVal._28 * P2DScreen::Mgr_tuning::mstTuningScaleY;
+	} else {
+		m_screenName->setXY(msVal._10, msVal._14);
+		m_screenName->m_scale.x = msVal._18 * P2DScreen::Mgr_tuning::mstTuningScaleX;
+		m_screenName->m_scale.y = msVal._18 * P2DScreen::Mgr_tuning::mstTuningScaleY;
+	}
+	m_screenName->update();
+	m_title->update();
+	m_sublevelMsg->update();
+
+	if (m_doFadeout) {
+		m_timer -= sys->m_deltaTime;
+		if (m_timer < 0.0f)
+			ret = true;
+	} else {
+		og::Screen::DispMemberFloor* disp2 = static_cast<og::Screen::DispMemberFloor*>(getDispMember());
+		if (disp2->isID(OWNER_OGA, MEMBER_FLOOR)) {
+			if (disp2->m_doEnd) {
+				m_doFadeout = true;
+				m_doEnd     = true;
+				m_title->end();
+			}
+			if (disp2->m_doForceEnd) {
+				m_doEnd = true;
+			}
+		}
+	}
+	return ret;
 	/*
 	stwu     r1, -0x30(r1)
 	mflr     r0
@@ -2021,25 +2105,28 @@ bool newScreen::ObjFloor::doUpdate()
  * Address:	8031B840
  * Size:	00019C
  */
-void ObjFloor::doDraw(Graphics& graphics)
+void ObjFloor::doDraw(Graphics& gfx)
 {
 	j3dSys.reinitGX();
-	drawBG(graphics);
-	if (_50) {
-		_50->setAlpha(_5C * 255.0f);
-		_50->draw(graphics, graphics.m_perspGraph);
+	drawBG(gfx);
+
+	J2DPerspGraph* graf = &gfx.m_perspGraph;
+
+	if (m_screenRules) {
+		m_screenRules->setAlpha(m_alpha * 255.0f);
+		m_screenRules->draw(gfx, *graf);
 	}
-	graphics.m_perspGraph.setPort();
+	gfx.m_perspGraph.setPort();
 	particle2dMgr->draw(2, 0);
-	_48->setAlpha(_5C * 255.0f);
-	_48->draw(graphics, graphics.m_perspGraph);
-	graphics.m_perspGraph.setPort();
-	if (isVS()) {
-		_7C->m_isVisible = false;
+	m_screenName->setAlpha(m_alpha * 255.0f);
+	m_screenName->draw(gfx, *graf);
+	graf->setPort();
+	if (!isVS()) {
+		m_sublevelPane->show();
 	} else {
-		_7C->m_isVisible = true;
+		m_sublevelPane->hide();
 	}
-	graphics.m_perspGraph.setPort();
+	graf->setPort();
 	j3dSys.reinitGX();
 	/*
 	stwu     r1, -0x20(r1)
@@ -2165,8 +2252,8 @@ lbl_8031B9A0:
  */
 bool newScreen::ObjFloor::doStart(::Screen::StartSceneArg const* arg)
 {
-	_58 = 0.0f;
-	_5C = 0.0f;
+	m_fadeLevel = 0.0f;
+	m_alpha     = 0.0f;
 	particle2dMgr->killAll();
 	return true;
 }
@@ -2178,7 +2265,7 @@ bool newScreen::ObjFloor::doStart(::Screen::StartSceneArg const* arg)
  */
 bool newScreen::ObjFloor::doEnd(::Screen::EndSceneArg const* arg)
 {
-	_58 = 0.0f;
+	m_fadeLevel = 0.0f;
 	return true;
 }
 
@@ -2196,7 +2283,7 @@ void ObjFloor::doUpdateFadeinFinish() { }
  */
 void ObjFloor::doUpdateFinish(void)
 {
-	_58 = 0.0f;
+	m_fadeLevel = 0.0f;
 	particle2dMgr->killGroup(2);
 }
 
@@ -2214,12 +2301,13 @@ void ObjFloor::doUpdateFadeoutFinish(void) { }
  */
 bool newScreen::ObjFloor::doUpdateFadein(void)
 {
-	_58 += sys->m_secondsPerFrame;
-	bool result = ObjFloor::msVal._04 < _58;
-	if (result) {
-		_58 = ObjFloor::msVal._04;
+	bool result = false;
+	m_fadeLevel += sys->m_deltaTime;
+	if (m_fadeLevel > msVal._04) {
+		m_fadeLevel = msVal._04;
+		result      = true;
 	}
-	_5C = _58 / ObjFloor::msVal._04;
+	m_alpha = m_fadeLevel / msVal._04;
 	commonUpdate();
 	return result;
 	/*
@@ -2264,17 +2352,18 @@ lbl_8031BAA0:
  */
 bool newScreen::ObjFloor::doUpdateFadeout()
 {
-	_58 += sys->m_secondsPerFrame;
-	bool result = ObjFloor::msVal._08 < _58;
-	if (result) {
-		_58 = ObjFloor::msVal._08;
-		if (_6C != 0) {
-			result = false;
+	bool check = false;
+	m_fadeLevel += sys->m_deltaTime;
+
+	if (m_fadeLevel > msVal._08) {
+		m_fadeLevel = msVal._08;
+		if (!m_doEnd) {
+			check = true;
 		}
 	}
-	_5C = 1.0f - _58 / ObjFloor::msVal._08;
+	m_alpha = 1.0f - m_fadeLevel / msVal._08;
 	commonUpdate();
-	return result;
+	return check;
 	/*
 	stwu     r1, -0x10(r1)
 	mflr     r0
@@ -2322,28 +2411,28 @@ lbl_8031BB20:
  */
 void ObjFloor::drawBG(Graphics& gfx)
 {
-	if (_6C != 0) {
-		_70 += sys->m_secondsPerFrame;
-		float flt = 1.0f - _70 / ObjFloor::msVal._00;
-		if (flt <= 0.0f) {
-			_68.channels.a = 0;
-			_6C            = 0;
+	J2DPerspGraph* graf = &gfx.m_perspGraph;
+	if (m_doEnd) {
+		m_BackgroundAlpha += sys->m_deltaTime;
+		f32 temp = 1.0f - m_BackgroundAlpha / msVal._00;
+		if (temp > 0.0f) {
+			m_color.a = temp * 255.0f;
 		} else {
-			_68.channels.a = (u8)(flt * 255.0f);
+			m_color.a = 0;
+			m_doEnd   = false;
 		}
 	}
-	if (_68.channels.a != 0) {
-		gfx.m_perspGraph.setPort();
-		u32 v1 = System::getRenderModeObj()->efbHeight;
-		u32 v2 = System::getRenderModeObj()->xfbHeight;
-		gfx.m_perspGraph.setColor(_68, _68, _68, _68);
+
+	if (m_color.a != 0) {
+		graf->setPort();
+		int w = sys->getRenderModeObj()->fbWidth;
+		int h = sys->getRenderModeObj()->efbHeight;
+		graf->setColor(m_color);
 		GXSetAlphaUpdate(GX_FALSE);
-		JGeometry::TBox2f box(0.0f, 0.0f, v1, v2);
-		// box.maxX = v1;
-		// box.minX = 0.0f;
-		// box.minY = 0.0f;
-		// box.maxY = v2;
-		gfx.m_perspGraph.fillBox(box);
+
+		f32 offs = 0.0f;
+		JGeometry::TBox2f box(0.0f, w + offs, 0.0f, h + offs);
+		graf->fillBox(box);
 	}
 	/*
 	stwu     r1, -0x50(r1)
@@ -2446,9 +2535,11 @@ lbl_8031BC9C:
 	*/
 }
 
-} // namespace og
+ObjFloor::StaticValues ObjFloor::msVal;
 
-} // newScreen
+} // namespace newScreen
+
+} // namespace og
 
 /*
  * --INFO--
