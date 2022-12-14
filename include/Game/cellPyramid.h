@@ -57,6 +57,17 @@ struct CellLeg {
 		m_cell   = nullptr;
 	}
 
+	inline bool findLeg(CellLeg* leg)
+	{
+		CellLeg* currLeg = this;
+		for (currLeg; currLeg; currLeg = currLeg->m_next) {
+			if (currLeg == leg) {
+				return true;
+			}
+		}
+		return false;
+	}
+
 	CellLeg* m_next;      // _00
 	CellLeg* m_prev;      // _04
 	Cell* m_cell;         // _08
@@ -187,7 +198,7 @@ struct CellPyramid : public SweepPrune::World {
 	u32 m_passID; // _44
 
 	static char* sCellBugName;
-	static s32 sCellBugID;
+	static int sCellBugID;
 	static u8 sOptResolveColl;
 	static u8 sSpeedUpResolveColl;
 	static bool disableAICulling;
@@ -235,6 +246,7 @@ struct CellIterator {
 
 extern CellPyramid* cellMgr;
 extern CellPyramid* platCellMgr;
+extern CellPyramid* mapRoomCellMgr;
 } // namespace Game
 
 #endif

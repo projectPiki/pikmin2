@@ -2654,7 +2654,7 @@ bool EnemyBase::flyCollisionCallBack(Creature*, f32, CollPart*) { return false; 
  */
 bool EnemyBase::hipdropCallBack(Creature* sourceCreature, f32 damage, CollPart* p3)
 {
-	f32 purpleDamage = static_cast<EnemyParmsBase*>(m_parms)->m_general.m_purplePikminHipDropDamage();
+	f32 purpleDamage = *static_cast<EnemyParmsBase*>(m_parms)->m_general.m_purplePikminHipDropDamage();
 
 	if (!(isEvent(0, EB_Vulnerable))) {
 		m_instantDamage += purpleDamage;

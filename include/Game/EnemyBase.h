@@ -188,11 +188,11 @@ struct EnemyBase : public Creature, public SysShape::MotionListener, virtual pub
 	virtual void viewOnPelletKilled();                                   // _220
 	virtual f32 getCellRadius()                                          // _58 (weak)
 	{
-		return static_cast<EnemyParmsBase*>(m_parms)->m_general.m_cellRadius();
+		return *static_cast<EnemyParmsBase*>(m_parms)->m_general.m_cellRadius();
 	}
 	virtual f32 getBodyRadius() // _54 (weak)
 	{
-		return static_cast<EnemyParmsBase*>(m_parms)->m_general.m_pikminDamageRadius();
+		return *static_cast<EnemyParmsBase*>(m_parms)->m_general.m_pikminDamageRadius();
 	}
 	virtual f32 getFaceDir() // _64 (weak)
 	{
