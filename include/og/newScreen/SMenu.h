@@ -145,6 +145,11 @@ struct SMenuPauseVS : public ::Screen::SceneBase {
 };
 
 struct ObjSMenuBase : public ::Screen::ObjBase {
+
+	enum MenuState { MENUSTATE_OpenL, MENUSTATE_OpenR, MENUSTATE_CloseL, MENUSTATE_CloseR, MENUSTATE_Default };
+
+	enum MenuExitState { MENUCLOSE_None, MENUCLOSE_Finish, MENUCLOSE_L, MENUCLOSE_R };
+
 	ObjSMenuBase();
 
 	virtual ~ObjSMenuBase() { }              // _08
@@ -162,15 +167,15 @@ struct ObjSMenuBase : public ::Screen::ObjBase {
 	virtual void doUpdateCancelAction() = 0; // _90
 	virtual void doUpdateRAction()      = 0; // _94
 	virtual void doUpdateLAction()      = 0; // _98
-	virtual void updateFadeIn();             // _9C
-	virtual void updateFadeOut();            // _A0
+	virtual bool updateFadeIn();             // _9C
+	virtual bool updateFadeOut();            // _A0
 	virtual void commonUpdate() = 0;         // _A4
 
-	void setFinishState(long);
+	inline void setFinishState(long);
 	void setSMenuScale(f32, f32);
 	void doCreateAfter(JKRArchive*, P2DScreen::Mgr*);
 	void commonUpdateBase();
-	void startBackupScene();
+	inline void startBackupScene();
 	void close_L();
 	void jump_L(::Screen::SetSceneArg&);
 	void jump_R(::Screen::SetSceneArg&);
@@ -199,7 +204,7 @@ struct ObjSMenuBase : public ::Screen::ObjBase {
 	u8 _50;                                // _50
 	J2DPictureEx* m_panePeffect;           // _54
 	u32 m_buttonStates[2];                 // _58
-	P2DScreen::Mgr_tuning* m_LRScreen;     // _60
+	P2DScreen::Mgr_tuning* m_screenLR;     // _60
 	J2DPane* m_Nyaji_l;                    // _64
 	J2DPane* m_Nyaji_r;                    // _68
 	J2DTextBoxEx* m_Tyaji_l;               // _6C
@@ -208,41 +213,41 @@ struct ObjSMenuBase : public ::Screen::ObjBase {
 	Vector2f m_yajiLpos;                   // _78
 	Vector2f m_yajiRpos;                   // _80
 	f32 _88;                               // _88
-	u8 _8C;                                // _8C
+	u8 m_alpha;                            // _8C
 	Screen::ArrowAlphaBlink* m_arrowBlink; // _90
 	J2DPictureEx* m_panePeffect1;          // _94
 	J2DPictureEx* m_panePeffect2;          // _98
-	P2DScreen::Mgr* m_screen;              // _9C
+	P2DScreen::Mgr* m_screenMain;          // _9C
 	J2DPane* m_paneNsize;                  // _A0
 	f32 _A4;                               // _A4
 
 	static struct StaticValues {
 		inline StaticValues()
 		{
-			_00         = 1.0f;
-			m_animSpeed = 1.0f;
-			_14         = 255;
-			_08         = 0.3f;
-			_0C         = 30.0f;
-			_10         = 0.1f;
-			_15         = 64;
-			_16         = 64;
-			_17         = 0;
-			_18         = 0;
-			_19         = 0;
+			_00          = 1.0f;
+			m_animSpeed  = 1.0f;
+			_14          = 255;
+			_08          = 0.3f;
+			_0C          = 30.0f;
+			_10          = 0.1f;
+			_15          = 64;
+			_16          = 64;
+			_17          = 0;
+			_18          = 0;
+			m_updateYaji = 0;
 		}
 
-		f32 _00;         // _00
-		f32 m_animSpeed; // _04
-		f32 _08;         // _08
-		f32 _0C;         // _0C
-		f32 _10;         // _10
-		u8 _14;          // _14
-		u8 _15;          // _15
-		u8 _16;          // _16
-		u8 _17;          // _17
-		u8 _18;          // _18
-		u8 _19;          // _19
+		f32 _00;           // _00
+		f32 m_animSpeed;   // _04
+		f32 _08;           // _08
+		f32 _0C;           // _0C
+		f32 _10;           // _10
+		u8 _14;            // _14
+		u8 _15;            // _15
+		u8 _16;            // _16
+		u8 _17;            // _17
+		u8 _18;            // _18
+		bool m_updateYaji; // _19
 	} msBaseVal;
 };
 

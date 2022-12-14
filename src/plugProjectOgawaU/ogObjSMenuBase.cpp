@@ -4,6 +4,9 @@
 #include "og/Screen/ogScreen.h"
 #include "og/Sound.h"
 #include "Controller.h"
+#include "System.h"
+#include "trig.h"
+#include "nans.h"
 
 /*
  * --INFO--
@@ -11,6 +14,9 @@
  * Size:	0000E4
  */
 static void _Print(char* format, ...) { OSReport(format, __FILE__); }
+
+bool resetYajiTimer;
+f32 YajiMoveTimer;
 
 namespace og {
 namespace newScreen {
@@ -24,13 +30,13 @@ ObjSMenuBase::ObjSMenuBase()
 {
 	m_movePos         = 0.0f;
 	m_fadeLevel       = 0.0f;
-	m_state           = 4;
+	m_state           = MENUSTATE_Default;
 	m_exiting         = false;
 	m_angle           = 0.0f;
 	_50               = false;
-	m_cancelToState   = 0;
+	m_cancelToState   = MENUCLOSE_None;
 	m_enableYaji      = false;
-	_8C               = false;
+	m_alpha           = 0;
 	_88               = 0.0f;
 	m_buttonStates[1] = Controller::PRESS_R;
 	m_buttonStates[0] = Controller::PRESS_L;
@@ -38,13 +44,13 @@ ObjSMenuBase::ObjSMenuBase()
 	m_panePeffect  = nullptr;
 	m_panePeffect1 = nullptr;
 	m_panePeffect2 = nullptr;
-	m_LRScreen     = nullptr;
+	m_screenLR     = nullptr;
 
 	m_Nyaji_l    = nullptr;
 	m_Nyaji_r    = nullptr;
 	m_Tyaji_l    = nullptr;
 	m_Tyaji_r    = nullptr;
-	m_screen     = nullptr;
+	m_screenMain = nullptr;
 	_A4          = 1.0f;
 	m_paneNsize  = nullptr;
 	m_arrowBlink = new og::Screen::ArrowAlphaBlink;
@@ -89,28 +95,28 @@ void ObjSMenuBase::setSMenuScale(f32 x, f32 y)
  */
 void ObjSMenuBase::doCreateAfter(JKRArchive* arc, P2DScreen::Mgr* scrn)
 {
-	m_screen       = scrn;
-	m_panePeffect1 = static_cast<J2DPictureEx*>(m_screen->search('Peffect1'));
-	m_panePeffect2 = static_cast<J2DPictureEx*>(m_screen->search('Peffect2'));
-	m_panePeffect  = static_cast<J2DPictureEx*>(og::Screen::TagSearch(m_screen, 'Peffect'));
-	og::Screen::setAlphaScreen(m_screen);
-	m_paneNsize = m_screen->search('Nsize');
-	og::Screen::setCallBackMessage(m_screen);
-	og::Screen::setFurikoScreen(m_screen);
-	m_LRScreen = new P2DScreen::Mgr_tuning;
-	m_LRScreen->set("s_menu_yajirushi_LR.blo", 0x1040000, arc);
-	og::Screen::setAlphaScreen(m_LRScreen);
+	m_screenMain   = scrn;
+	m_panePeffect1 = static_cast<J2DPictureEx*>(m_screenMain->search('Peffect1'));
+	m_panePeffect2 = static_cast<J2DPictureEx*>(m_screenMain->search('Peffect2'));
+	m_panePeffect  = static_cast<J2DPictureEx*>(og::Screen::TagSearch(m_screenMain, 'Peffect'));
+	og::Screen::setAlphaScreen(m_screenMain);
+	m_paneNsize = m_screenMain->search('Nsize');
+	og::Screen::setCallBackMessage(m_screenMain);
+	og::Screen::setFurikoScreen(m_screenMain);
+	m_screenLR = new P2DScreen::Mgr_tuning;
+	m_screenLR->set("s_menu_yajirushi_LR.blo", 0x1040000, arc);
+	og::Screen::setAlphaScreen(m_screenLR);
 
-	m_Nyaji_l    = og::Screen::TagSearch(m_LRScreen, 'Nyaji_l');
+	m_Nyaji_l    = og::Screen::TagSearch(m_screenLR, 'Nyaji_l');
 	m_yajiLpos.x = m_Nyaji_l->_0D4.x;
 	m_yajiLpos.y = m_Nyaji_l->_0D4.y;
-	m_Nyaji_r    = og::Screen::TagSearch(m_LRScreen, 'Nyaji_r');
+	m_Nyaji_r    = og::Screen::TagSearch(m_screenLR, 'Nyaji_r');
 	m_yajiRpos.x = m_Nyaji_r->_0D4.x;
 	m_yajiRpos.y = m_Nyaji_r->_0D4.y;
 
-	m_Tyaji_l = static_cast<J2DTextBoxEx*>(og::Screen::TagSearch(m_LRScreen, 'Tyaji_l'));
-	m_Tyaji_r = static_cast<J2DTextBoxEx*>(og::Screen::TagSearch(m_LRScreen, 'Tyaji_r'));
-	og::Screen::setCallBackMessage(m_LRScreen);
+	m_Tyaji_l = static_cast<J2DTextBoxEx*>(og::Screen::TagSearch(m_screenLR, 'Tyaji_l'));
+	m_Tyaji_r = static_cast<J2DTextBoxEx*>(og::Screen::TagSearch(m_screenLR, 'Tyaji_r'));
+	og::Screen::setCallBackMessage(m_screenLR);
 }
 
 /*
@@ -129,9 +135,9 @@ bool ObjSMenuBase::doUpdate()
 {
 	bool ret = false;
 	if (m_exiting) {
-		if (m_cancelToState == 3) {
+		if (m_cancelToState == MENUCLOSE_R) {
 			ret = true;
-		} else if (m_cancelToState == 2) {
+		} else if (m_cancelToState == MENUCLOSE_L) {
 			ret = true;
 		} else {
 			JUT_PANICLINE(301, "Cancel ERR!\n");
@@ -141,12 +147,12 @@ bool ObjSMenuBase::doUpdate()
 		SceneSMenuBase* scene = static_cast<SceneSMenuBase*>(getOwner());
 		if (scene->getGamePad()->m_padButton.m_buttonDown & getButtonState(1)) {
 			ret             = true;
-			m_cancelToState = 3;
+			m_cancelToState = MENUCLOSE_R;
 		} else if (scene->getGamePad()->m_padButton.m_buttonDown & getButtonState(0)) {
 			ret             = true;
-			m_cancelToState = 2;
+			m_cancelToState = MENUCLOSE_L;
 		} else if (scene->getGamePad()->m_padButton.m_buttonDown & (Controller::PRESS_START | Controller::PRESS_B)) {
-			m_cancelToState = 1;
+			m_cancelToState = MENUCLOSE_Finish;
 			doUpdateCancelAction();
 			ret = true;
 		}
@@ -164,19 +170,19 @@ void ObjSMenuBase::doUpdateFinish()
 	stopYaji();
 	m_fadeLevel = 0.0f;
 	switch (m_cancelToState) {
-	case 1:
+	case MENUCLOSE_Finish:
 		close_L();
 		return;
 
-	case 3:
+	case MENUCLOSE_R:
 		out_L();
 		return;
 
-	case 2:
+	case MENUCLOSE_L:
 		out_R();
 		return;
 
-	case 0:
+	case MENUCLOSE_None:
 		out_L();
 		return;
 
@@ -225,7 +231,7 @@ void ObjSMenuBase::jump_LR(::Screen::SetSceneArg& arg, bool flag)
  */
 void ObjSMenuBase::close_L()
 {
-	m_state = 2;
+	m_state = MENUSTATE_CloseL;
 	ogSound->setClose();
 }
 
@@ -280,8 +286,14 @@ bool ObjSMenuBase::start_LR(::Screen::StartSceneArg const* arg)
  * Address:	80316B10
  * Size:	000068
  */
-void ObjSMenuBase::setYajiName(u64, u64, u64)
+void ObjSMenuBase::setYajiName(u64 tag1, u64 tag2, u64 tag3)
 {
+	if (m_Tyaji_l && m_Tyaji_r) {
+		m_Tyaji_l->setMsgID(tag1);
+		m_Tyaji_r->setMsgID(tag2);
+	} else {
+		JUT_PANICLINE(481, "setYajiName ERR! \n");
+	}
 	/*
 	.loc_0x0:
 	  stwu      r1, -0x10(r1)
@@ -345,6 +357,63 @@ void ObjSMenuBase::stopYaji() { m_enableYaji = false; }
  */
 void ObjSMenuBase::updateYaji()
 {
+	f32 newalpha = 0.0f;
+	f32 newxpos  = 0.0f;
+
+	if (msBaseVal.m_updateYaji) {
+		if (!resetYajiTimer) {
+			YajiMoveTimer  = 0.0f;
+			resetYajiTimer = true;
+		}
+		YajiMoveTimer += msBaseVal._10;
+
+		if (YajiMoveTimer > TAU) {
+			YajiMoveTimer -= TAU;
+		}
+		newxpos = msBaseVal._0C * pikmin2_sinf(YajiMoveTimer);
+
+		f32 temp = YajiMoveTimer - HALF_PI;
+		if (temp > 0.0f && temp < PI) {
+			newalpha = 1.0f;
+			if (temp >= QUARTER_PI) {
+				if (temp < 2.356194f) { // 3/4 PI?
+					newalpha = (PI - temp) / QUARTER_PI;
+				}
+			} else {
+				newalpha = temp / QUARTER_PI;
+			}
+		}
+	}
+
+	m_Nyaji_l->setOffset(m_yajiLpos.x + newxpos, m_yajiLpos.y);
+	m_Nyaji_r->setOffset(m_yajiRpos.x - newxpos, m_yajiRpos.y);
+
+	if (m_enableYaji) {
+		u8 alpha = m_alpha;
+		if (alpha < 255) {
+			u8 alpha2 = 255 - alpha;
+			alpha2 /= 7;
+			m_alpha = alpha2 + alpha + 1;
+		}
+	} else {
+		u8 alpha = m_alpha;
+		if (alpha > 0) {
+			m_alpha = alpha - (alpha + 1);
+		}
+	}
+
+	if (msBaseVal.m_updateYaji) {
+		newalpha *= m_alpha;
+	} else {
+		m_arrowBlink->setSpeed(msBaseVal._10);
+		newalpha = m_arrowBlink->calc();
+		newalpha *= m_alpha;
+	}
+
+	m_Nyaji_l->setAlpha(newalpha);
+	m_Nyaji_r->setAlpha(newalpha);
+	m_screenLR->setAlpha(newalpha);
+	m_screenLR->update();
 	/*
 	stwu     r1, -0x40(r1)
 	mflr     r0
@@ -569,6 +638,7 @@ lbl_80316E08:
  */
 void ObjSMenuBase::drawYaji(Graphics& gfx)
 {
+	m_screenLR->draw(gfx, gfx.m_perspGraph);
 	/*
 	stwu     r1, -0x10(r1)
 	mflr     r0
@@ -591,8 +661,44 @@ void ObjSMenuBase::drawYaji(Graphics& gfx)
  * Address:	80316EC0
  * Size:	000170
  */
-void ObjSMenuBase::updateFadeIn(void)
+bool ObjSMenuBase::updateFadeIn(void)
 {
+	bool ret        = false;
+	Controller* pad = getGamePad();
+	switch (m_state) {
+	case MENUSTATE_OpenL:
+		m_fadeLevel += sys->m_deltaTime;
+		if (m_fadeLevel > msBaseVal._08) {
+			ret = true;
+		} else {
+			if (pad->m_padButton.m_buttonDown & m_buttonStates[1]) {
+				m_cancelToState = MENUCLOSE_R;
+				m_exiting       = true;
+			}
+		}
+		f32 calc2 = og::Screen::calcSmooth0to1(m_fadeLevel, msBaseVal._08);
+		m_movePos = 800.0f * (1.0f - calc2);
+		break;
+	case MENUSTATE_OpenR:
+		m_fadeLevel += sys->m_deltaTime;
+		if (m_fadeLevel > msBaseVal._08) {
+			ret = true;
+		} else {
+			if (pad->m_padButton.m_buttonDown & m_buttonStates[0]) {
+				m_cancelToState = MENUCLOSE_L;
+				m_exiting       = true;
+			}
+		}
+		f32 calc  = og::Screen::calcSmooth0to1(m_fadeLevel, msBaseVal._08);
+		m_movePos = -800.0f * (1.0f - calc);
+		break;
+	case MENUSTATE_Default:
+		break;
+
+	default:
+		JUT_PANICLINE(621, "FadeIn ERR!\n");
+	}
+	return ret;
 	/*
 	stwu     r1, -0x10(r1)
 	mflr     r0
@@ -714,6 +820,18 @@ lbl_80317014:
  */
 bool ObjSMenuBase::doUpdateFadein(void)
 {
+	commonUpdate();
+	bool ret = updateFadeIn();
+	if (!ret && m_exiting) {
+		if (m_state == MENUSTATE_OpenL) {
+			if (m_movePos <= 0.0f) {
+				return true;
+			}
+		} else if (m_state == MENUSTATE_OpenR && m_movePos >= 0.0f) {
+			return true;
+		}
+	}
+	return ret;
 	/*
 	stwu     r1, -0x10(r1)
 	mflr     r0
@@ -771,6 +889,11 @@ lbl_803170C4:
  */
 void ObjSMenuBase::doUpdateFadeinFinish(void)
 {
+	if (!m_exiting) {
+		m_enableYaji = true;
+		wait();
+	}
+	m_fadeLevel = 0.0f;
 	/*
 	stwu     r1, -0x10(r1)
 	mflr     r0
@@ -803,8 +926,33 @@ lbl_80317110:
  * Address:	8031712C
  * Size:	000104
  */
-void ObjSMenuBase::updateFadeOut(void)
+bool ObjSMenuBase::updateFadeOut(void)
 {
+	bool ret = false;
+	switch (m_state) {
+	case MENUSTATE_CloseL:
+		m_fadeLevel += sys->m_deltaTime;
+		if (m_fadeLevel > msBaseVal._08) {
+			ret = true;
+		}
+		f32 calc  = og::Screen::calcSmooth0to1(m_fadeLevel, msBaseVal._08);
+		m_movePos = -800.0f * calc;
+		break;
+	case MENUSTATE_CloseR:
+		m_fadeLevel += sys->m_deltaTime;
+		if (m_fadeLevel > msBaseVal._08) {
+			ret = true;
+		}
+		f32 calc2 = og::Screen::calcSmooth0to1(m_fadeLevel, msBaseVal._08);
+		m_movePos = 800.0f * calc2;
+		break;
+	case MENUSTATE_Default:
+		break;
+
+	default:
+		JUT_PANICLINE(691, "FadeOut ERR!\n");
+	}
+	return ret;
 	/*
 	stwu     r1, -0x10(r1)
 	mflr     r0
@@ -895,6 +1043,26 @@ lbl_80317214:
  */
 void ObjSMenuBase::doUpdateFadeoutFinish(void)
 {
+	switch (m_cancelToState) {
+	case MENUCLOSE_Finish:
+		startBackupScene();
+		setFinishState(2);
+		break;
+	case MENUCLOSE_L:
+		doUpdateLAction();
+		setFinishState(1);
+		break;
+	case MENUCLOSE_R:
+		doUpdateRAction();
+		setFinishState(1);
+		break;
+	case MENUCLOSE_None:
+		setFinishState(1);
+		break;
+
+	default:
+		JUT_PANICLINE(720, "‚¾‚ß‚Å‚·\n");
+	}
 	/*
 	stwu     r1, -0x20(r1)
 	mflr     r0
