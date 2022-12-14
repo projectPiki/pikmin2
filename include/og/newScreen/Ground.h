@@ -98,6 +98,7 @@ struct ObjGround : public ::Screen::ObjBase {
 			m_sensorX     = 10.0f;
 			m_sensorY     = -40.0f;
 			m_sensorScale = 0.9f;
+			_24           = 0;
 			m_dopingX     = 0.0f;
 			m_dopingY     = -30.0f;
 		}
@@ -111,6 +112,7 @@ struct ObjGround : public ::Screen::ObjBase {
 		f32 m_sensorScale; // _18
 		f32 m_dopingX;     // _1C
 		f32 m_dopingY;     // _20
+		u8 _24;            // _24
 	} msVal;
 };
 
