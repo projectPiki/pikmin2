@@ -290,11 +290,7 @@ inline f32 Vector3f::distance(Vector3f& them)
 {
 	Vector3f diff = *this - them;
 
-	f32 sum;
-	sumXY(diff, &sum);
-	sumZ(diff, &sum);
-
-	return _sqrtf(sum);
+	return anotherLength(diff);
 }
 
 inline void setAccel(Vector3f& outputVec, const Vector3f& inputVec, f32 massRatio, f32 fps, f32 groundFactor, f32 airFactor)

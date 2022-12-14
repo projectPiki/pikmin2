@@ -264,12 +264,10 @@ f32 Creature::calcSphereDistance(Creature* them)
 {
 	Sys::Sphere theirBounds;
 	Sys::Sphere myBounds;
-
 	them->getBoundingSphere(theirBounds);
 	getBoundingSphere(myBounds);
 	Vector3f sepVec = myBounds.m_position - theirBounds.m_position;
-	f32 dist        = anotherLength(sepVec); // regswaps
-	return dist - (myBounds.m_radius + theirBounds.m_radius);
+	return anotherLength(sepVec) - (myBounds.m_radius + theirBounds.m_radius);
 	/*
 	stwu     r1, -0x30(r1)
 	mflr     r0
