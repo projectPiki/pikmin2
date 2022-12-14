@@ -5,94 +5,36 @@
 #include "JSystem/JKR/JKRDisposer.h"
 #include "BaseParm.h"
 
-// I'll clean this up eventually. - sodium
-
-// struct _CellMgrParms : public Parameters , virtual JKRDisposer {
-// 	inline _CellMgrParms(void* end)
-// 		: Parameters(&end, nullptr, "CellMgr")
-//     	, JKRDisposer()
-//         , m_p000(this, 0x70303030, "?ｿｽ?ｽｿ?ｽｽo?ｿｽ?ｽｿ?ｽｽb?ｿｽ?ｽｿ?ｽｽt?ｿｽ?ｽｿ?ｽｽ@?ｿｽ?ｽｿ?ｽｽ?ｿｽ?ｽｿ?ｽｽ?ｿｽ?ｽｿ?ｽｽg?ｿｽ?ｽｿ?ｽｽ?ｿｽ?ｽｿ?ｽｽ", false,
-//         false, true) , m_p001(this, 0x70303031,
-//         "?ｿｽ?ｽｿ?ｽｽ}?ｿｽ?ｽｿ?ｽｽW?ｿｽ?ｽｿ?ｽｽb?ｿｽ?ｽｿ?ｽｽN?ｿｽ?ｽｿ?ｽｽi?ｿｽ?ｽｿ?ｽｽ?ｿｽ?ｽｿ?ｽｽ?ｿｽ?ｽｿ?ｽｽo?ｿｽ?ｽｿ?ｽｽ[", true, false, true) ,
-//         m_p002(this, 0x70303032, "G-Half", false, false, true) , m_p003(this,
-//         0x70303033, "UpdateMgr", false, false, true)
-// 	{}
-// 	// 00-0C: Parameters
-// 	// 0C-24: JKRDisposer
-// 	// JKRDisposer m_disposer;
-// 	Parm<bool> m_p000; // _24
-// 	Parm<bool> m_p001; // _40
-// 	Parm<bool> m_p002; // _5C  /* G-Half */
-// 	Parm<bool> m_p003; // _78  /* UpdateMgr */
-// };
-
-// struct CellMgrParms : public _CellMgrParms {
-// private:
-// 	CellMgrParms();
-
-// public:
-// 	virtual ~CellMgrParms();
-
-// 	static CellMgrParms* getInstance();
-// 	void globalInstance();
-
-// 	// __vt  // _94
-// 	void* m_end; // _98
-
-// 	static CellMgrParms* mInstance;
-// };
-
 struct _CellParms {
-	// inline _CellParms();
-	inline _CellParms(Parameters* parameters);
-	// 	: m_p000(parameters, 0x70303030, "?ｿｽ?ｽｿ?ｽｽo?ｿｽ?ｽｿ?ｽｽb?ｿｽ?ｽｿ?ｽｽt?ｿｽ?ｽｿ?ｽｽ@?ｿｽ?ｽｿ?ｽｽ?ｿｽ?ｽｿ?ｽｽ?ｿｽ?ｽｿ?ｽｽg?ｿｽ?ｽｿ?ｽｽ?ｿｽ?ｽｿ?ｽｽ",
-	// false, false, true) 	, m_p001(parameters, 0x70303031,
-	// "?ｿｽ?ｽｿ?ｽｽ}?ｿｽ?ｽｿ?ｽｽW?ｿｽ?ｽｿ?ｽｽb?ｿｽ?ｽｿ?ｽｽN?ｿｽ?ｽｿ?ｽｽi?ｿｽ?ｽｿ?ｽｽ?ｿｽ?ｽｿ?ｽｽ?ｿｽ?ｽｿ?ｽｽo?ｿｽ?ｽｿ?ｽｽ[", true, false, true) 	,
-	// m_p002(parameters, 0x70303032, "G-Half", false, false, true) 	,
-	// m_p003(parameters, 0x70303033, "UpdateMgr", false, false, true)
-	// {}
+	inline _CellParms(Parameters* parameters)
+	    : m_p000(parameters, 'p000', "バッファを使う", false, false, true)  // 'use a buffer'
+	    , m_p001(parameters, 'p001', "マジックナンバー", true, false, true) // 'magic number'
+	    , m_p002(parameters, 'p002', "G-Half", false, false, true)
+	    , m_p003(parameters, 'p003', "UpdateMgr", false, false, true)
+	{
+	}
 
-	Parm<bool> m_p000; // _24
-	Parm<bool> m_p001; // _40
-	Parm<bool> m_p002; // _5C  /* G-Half */
-	Parm<bool> m_p003; // _78  /* UpdateMgr */
+	Parm<bool> m_p000; // _24, use a buffer?
+	Parm<bool> m_p001; // _40, magic number?
+	Parm<bool> m_p002; // _5C, G-Half?
+	Parm<bool> m_p003; // _78, UpdateMgr?
 };
 
-struct CellMgrParms : public Parameters, JKRDisposer, _CellParms {
-private:
+struct CellMgrParms : public Parameters, public JKRDisposer {
 	CellMgrParms();
 
-public:
-	virtual ~CellMgrParms();
-
-	/**
-	 * @reifiedAddress{801577D4}
-	 * @reifiedFile{plugProjectKandoU/cellPyramid.cpp}
-	 */
-	inline static CellMgrParms* getInstance() { return mInstance; }
 	void globalInstance();
 
-	// 00-0C: Parameters
-	// 0C-24: JKRDisposer
-	// JKRDisposer m_disposer;
-	// struct Parms {
-	// 	inline Parms(Parameters* parameters)
-	// 		: m_p000(parameters, 0x70303030, "?ｿｽ?ｽｿ?ｽｽo?ｿｽ?ｽｿ?ｽｽb?ｿｽ?ｽｿ?ｽｽt?ｿｽ?ｽｿ?ｽｽ@?ｿｽ?ｽｿ?ｽｽ?ｿｽ?ｽｿ?ｽｽ?ｿｽ?ｽｿ?ｽｽg?ｿｽ?ｽｿ?ｽｽ?ｿｽ?ｽｿ?ｽｽ",
-	// false, false, true) 		, m_p001(parameters, 0x70303031,
-	// "?ｿｽ?ｽｿ?ｽｽ}?ｿｽ?ｽｿ?ｽｽW?ｿｽ?ｽｿ?ｽｽb?ｿｽ?ｽｿ?ｽｽN?ｿｽ?ｽｿ?ｽｽi?ｿｽ?ｽｿ?ｽｽ?ｿｽ?ｽｿ?ｽｽ?ｿｽ?ｽｿ?ｽｽo?ｿｽ?ｽｿ?ｽｽ[", true, false, true) 		,
-	// m_p002(parameters, 0x70303032, "G-Half", false, false, true) 		,
-	// m_p003(parameters, 0x70303033, "UpdateMgr", false, false, true)
-	// 	{}
-
-	// Parm<bool> m_p000; // _24
-	// Parm<bool> m_p001; // _40
-	// Parm<bool> m_p002; // _5C  /* G-Half */
-	// Parm<bool> m_p003; // _78  /* UpdateMgr */
-	// } parms;
-	// __vt  // _94
-	void* m_end; // _98
+	inline static CellMgrParms* getInstance() { return mInstance; }
 
 	static CellMgrParms* mInstance;
+
+	// _00-_0C = Parameters
+	// _0C-_24 = JKRDisposer
+	// _94     = VTBL
+	_CellParms m_cellParms; // _24
+
+	virtual ~CellMgrParms(); // _08
 };
 
 #endif

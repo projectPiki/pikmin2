@@ -587,7 +587,7 @@ KANDO:=\
 	$(BUILD_DIR)/src/plugProjectKandoU/vsGS_Result.o\
 	$(BUILD_DIR)/src/plugProjectKandoU/vsGS_Load.o\
 	$(BUILD_DIR)/asm/plugProjectKandoU/vsStageData.o\
-	$(BUILD_DIR)/asm/plugProjectKandoU/cellMgrParms.o\
+	$(BUILD_DIR)/src/plugProjectKandoU/cellMgrParms.o\
 	$(BUILD_DIR)/asm/plugProjectKandoU/cellIterator.o\
 	$(BUILD_DIR)/src/plugProjectKandoU/vsGS_VSGame.o\
 	$(BUILD_DIR)/src/plugProjectKandoU/gameSoundEvent.o\
