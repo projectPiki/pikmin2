@@ -267,7 +267,7 @@ float CellObject::calcCollisionDistance(CellObject* them)
 	getBoundingSphere(ourBounds);
 	them->getBoundingSphere(theirBounds);
 	Vector3f sepVec = ourBounds.m_position - theirBounds.m_position;
-	f32 dist        = _lenVec(sepVec); // regswaps
+	f32 dist        = _lenVec2D(sepVec); // regswaps
 	return dist - (ourBounds.m_radius + theirBounds.m_radius);
 }
 
@@ -276,69 +276,7 @@ float CellObject::calcCollisionDistance(CellObject* them)
  * Address:	80156D48
  * Size:	0000D0
  */
-void CellObject::updateCollisionBuffer(CellObject* them)
-{
-	m_collisionBuffer.insert(them, calcCollisionDistance(them));
-	/*
-	.loc_0x0:
-	  stwu      r1, -0x30(r1)
-	  mflr      r0
-	  stw       r0, 0x34(r1)
-	  stw       r31, 0x2C(r1)
-	  mr        r31, r4
-	  addi      r4, r1, 0x8
-	  stw       r30, 0x28(r1)
-	  mr        r30, r3
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0x10(r12)
-	  mtctr     r12
-	  bctrl
-	  mr        r3, r31
-	  addi      r4, r1, 0x18
-	  lwz       r12, 0x0(r31)
-	  lwz       r12, 0x10(r12)
-	  mtctr     r12
-	  bctrl
-	  lfs       f1, 0xC(r1)
-	  lfs       f0, 0x1C(r1)
-	  lfs       f3, 0x10(r1)
-	  fsubs     f4, f1, f0
-	  lfs       f2, 0x20(r1)
-	  lfs       f1, 0x8(r1)
-	  lfs       f0, 0x18(r1)
-	  fsubs     f2, f3, f2
-	  fmuls     f3, f4, f4
-	  fsubs     f1, f1, f0
-	  lfs       f0, -0x5D38(r2)
-	  fmuls     f2, f2, f2
-	  fmadds    f1, f1, f1, f3
-	  fadds     f2, f2, f1
-	  fcmpo     cr0, f2, f0
-	  ble-      .loc_0x98
-	  ble-      .loc_0x9C
-	  fsqrte    f0, f2
-	  fmuls     f2, f0, f2
-	  b         .loc_0x9C
-
-	.loc_0x98:
-	  fmr       f2, f0
-
-	.loc_0x9C:
-	  lfs       f1, 0x14(r1)
-	  mr        r4, r31
-	  lfs       f0, 0x24(r1)
-	  addi      r3, r30, 0xA8
-	  fadds     f0, f1, f0
-	  fsubs     f1, f2, f0
-	  bl        0xB4
-	  lwz       r0, 0x34(r1)
-	  lwz       r31, 0x2C(r1)
-	  lwz       r30, 0x28(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x30
-	  blr
-	*/
-}
+void CellObject::updateCollisionBuffer(CellObject* them) { m_collisionBuffer.insert(them, calcCollisionDistance(them)); }
 
 /*
  * --INFO--
@@ -2031,16 +1969,16 @@ void CellPyramid::create(BoundBox2d& box, float p2)
 	_40                = box._00;
 	_34                = p2;
 	_38                = 1.0f / p2;
-	u32 uVar13         = (uint)ceil((double)(FABS(box._08 - box._00) * _38));
-	u32 uVar12         = (uint)ceil(FABS(box._0C - box._04) * _38);
+	int uVar13         = (f32)ceil((FABS(box._08 - box._00) * _38));
+	int uVar12         = (f32)ceil(FABS(box._0C - box._04) * _38);
 	if ((200 < uVar13) || (200 < uVar12)) {
 		_34    = p2 * 1.5f;
 		_38    = 1.0f / (p2 * 1.5f);
-		uVar13 = (uint)ceil((double)(FABS(box._08 - box._00) * _38));
-		uVar12 = (uint)ceil((double)(FABS(box._0C - box._04) * _38));
+		uVar13 = (f32)ceil((FABS(box._08 - box._00) * _38));
+		uVar12 = (f32)ceil((FABS(box._0C - box._04) * _38));
 	}
-	u32 uVar14 = MAX(uVar12, uVar13);
-	u32 dVar18 = (uint)ceil(log10((double)uVar14) / log10(2.0));
+	int uVar14 = MAX(uVar12, uVar13);
+	int dVar18 = (f32)ceil((f32)log10((f32)uVar14) / (f32)log10(2.0f));
 	pow(2.0, (double)dVar18);
 	m_layerCount           = dVar18 + 1;
 	m_layers               = new CellLayer[m_layerCount];
@@ -2432,18 +2370,16 @@ void Cell::resolveCollision_1()
 void Cell::resolveCollision_3()
 {
 	for (CellLeg* legA = _1C; legA != nullptr; legA = legA->m_next) {
-		CellObject* legAObject = legA->m_object;
-		if (legAObject->collisionUpdatable() == false) {
+		if (legA->m_object->collisionUpdatable() == false) {
+			CellObject* legAObject = legA->m_object;
 			if (legAObject->m_passID != Game::cellMgr->m_passID) {
-				for (int i = 0; i < legAObject->m_collisionBuffer.m_usedNodeCount; i++) {
-					legAObject->checkCollision(legAObject->m_collisionBuffer.m_collNodes[i].m_cellObject);
-				}
+				legAObject->checkAllCollision();
 				legAObject->m_passID = Game::cellMgr->m_passID;
 			}
 		} else {
 			for (CellLeg* legB = legA->m_next; legB != nullptr; legB = legB->m_next) {
 				if (legA->m_object != legB->m_object) {
-					if (CellMgrParms::getInstance()->m_cellParms.m_p001()) {
+					if (*CellMgrParms::getInstance()->m_cellParms.m_p001()) {
 						if (legB->m_object != (CellObject*)legA->m_object->m_passID) {
 							legA->m_object->m_passID = (u32)legB->m_object;
 							legA->m_object->checkCollision(legB->m_object);
@@ -2454,13 +2390,12 @@ void Cell::resolveCollision_3()
 						legA->m_object->updateCollisionBuffer(legB->m_object);
 					}
 				}
-				// legA->m_object->checkCollision(legB->m_object);
 			}
 			for (Cell* cell = _10; cell != nullptr; cell = cell->_10) {
 				for (CellLeg* legB = cell->_1C; legB != nullptr; legB = legB->m_next) {
 					if (legA->m_object != legB->m_object) {
-						if (CellMgrParms::getInstance()->m_cellParms.m_p001()) {
-							if (legB->m_object != (CellObject*)legA->m_object->m_passID) {
+						if (*CellMgrParms::getInstance()->m_cellParms.m_p001()) {
+							if ((CellObject*)legA->m_object->m_passID != legB->m_object) {
 								legA->m_object->m_passID = (u32)legB->m_object;
 								legA->m_object->checkCollision(legB->m_object);
 								legA->m_object->updateCollisionBuffer(legB->m_object);

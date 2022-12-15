@@ -137,6 +137,13 @@ struct CellObject : public TPositionObject, public SweepPrune::Object {
 	void updateCollisionBuffer(CellObject*);
 	void resolveUsingBuffer();
 
+	inline void checkAllCollision()
+	{
+		for (int i = 0; i < m_collisionBuffer.m_usedNodeCount; i++) {
+			checkCollision(m_collisionBuffer.m_collNodes[i].m_cellObject);
+		}
+	}
+
 	// _00 		= VTABLE
 	// _04-_54 	= m_sweepPruneObject
 	CellLeg m_cellLegs[4];             // _54
