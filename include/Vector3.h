@@ -221,10 +221,24 @@ inline f32 _length(Vector3f& vec)
 	return _sqrtf(a.y + a.x * a.x + a.z);
 }
 
+inline f32 _length2(Vector3f& vec)
+{
+	Vector3f a = vec;
+	a.x *= a.x;
+	a.y *= a.y;
+	return _sqrtf(a.x + a.z * a.z + a.y);
+}
+
 inline f32 _distanceBetween(Vector3f& me, Vector3f& them)
 {
 	Vector3f sep = me - them;
 	return _length(sep);
+}
+
+inline f32 _distanceBetween2(Vector3f& me, Vector3f& them)
+{
+	Vector3f sep = Vector3f(me.y - them.y, me.z - them.z, me.x - them.x);
+	return _length2(sep);
 }
 
 inline void _normalise(Vector3f& vec)

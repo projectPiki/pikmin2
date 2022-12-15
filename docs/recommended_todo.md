@@ -117,8 +117,8 @@
 | File | Size (bytes) | File | Size (bytes) |
 | ---- | ---- | ---- | ---- |
 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectKandoU/gameTekiStat.cpp">gameTekiStat.cpp</a> | 3302 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectKandoU/mapMgrTraceMove.cpp">mapMgrTraceMove.cpp</a> | 10344 |
-| <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectKandoU/aiTeki.cpp">aiTeki.cpp</a> | 12221 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectKandoU/gameDeathCount.cpp">gameDeathCount.cpp</a> | 12487 |
-| <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectKandoU/gamePelletList.cpp">gamePelletList.cpp</a> | 12594 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectKandoU/baseHIOSection.cpp">baseHIOSection.cpp</a> | 13027 |
+| <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectKandoU/gameDeathCount.cpp">gameDeathCount.cpp</a> | 12487 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectKandoU/gamePelletList.cpp">gamePelletList.cpp</a> | 12594 |
+| <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectKandoU/aiTeki.cpp">aiTeki.cpp</a> | 12878 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectKandoU/baseHIOSection.cpp">baseHIOSection.cpp</a> | 13027 |
 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectKandoU/cellIterator.cpp">cellIterator.cpp</a> | 13172 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectKandoU/aiBreakGate.cpp">aiBreakGate.cpp</a> | 13908 |
 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectKandoU/flockMgr.cpp">flockMgr.cpp</a> | 13973 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectKandoU/genItem.cpp">genItem.cpp</a> | 14036 |
 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectKandoU/genPellet.cpp">genPellet.cpp</a> | 14546 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectKandoU/naviWhistle.cpp">naviWhistle.cpp</a> | 15862 |
