@@ -1,4 +1,8 @@
 #include "types.h"
+#include "og/newScreen/SMenu.h"
+#include "og/Screen/anime.h"
+#include "og/Screen/ogScreen.h"
+#include "og/Sound.h"
 
 /*
     Generated from dpostproc
@@ -159,8 +163,12 @@ namespace newScreen {
  * Address:	80330658
  * Size:	000064
  */
-ObjSMenuCont::ObjSMenuCont(char const*)
+ObjSMenuCont::ObjSMenuCont(char const* name)
 {
+	m_disp = nullptr;
+	m_screenCont = nullptr;
+	m_animGroup = nullptr;
+	m_name = name;
 	/*
 	stwu     r1, -0x10(r1)
 	mflr     r0
@@ -195,7 +203,7 @@ ObjSMenuCont::ObjSMenuCont(char const*)
  * Address:	803306BC
  * Size:	0000C4
  */
-ObjSMenuCont::~ObjSMenuCont(void)
+ObjSMenuCont::~ObjSMenuCont()
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -259,8 +267,23 @@ lbl_80330764:
  * Address:	80330780
  * Size:	00014C
  */
-void ObjSMenuCont::doCreate(JKRArchive*)
+void ObjSMenuCont::doCreate(JKRArchive* arc)
 {
+	og::Screen::DispMemberSMenuAll* dispfull = static_cast<og::Screen::DispMemberSMenuAll*>(getDispMember());
+	m_disp = static_cast<og::Screen::DispMemberSMenuCont*>(dispfull->getSubMember(OWNER_OGA, MEMBER_START_MENU_CONTROLS));
+	if (!m_disp) {
+		og::Screen::DispMemberSMenuAll* newdisp = new og::Screen::DispMemberSMenuAll;
+		m_disp = static_cast<og::Screen::DispMemberSMenuCont*>(newdisp->getSubMember(OWNER_OGA, MEMBER_START_MENU_CONTROLS));
+	}
+
+	m_screenCont = new P2DScreen::Mgr_tuning;
+	m_screenCont->set("s_menu_controller.blo", 0x1040000, arc);
+
+	m_animGroup = new og::Screen::AnimGroup(2);
+	og::Screen::registAnimGroupScreen(m_animGroup, arc, m_screenCont, "s_menu_controller.btk", msBaseVal._00);
+	og::Screen::registAnimGroupScreen(m_animGroup, arc, m_screenCont, "s_menu_controller_02.btk", msBaseVal._00);
+
+	doCreateAfter(arc, m_screenCont);
 	/*
 	stwu     r1, -0x20(r1)
 	mflr     r0
@@ -359,8 +382,16 @@ lwz r0, 0x24(r1) lwz      r31, 0x1c(r1) lwz      r30, 0x18(r1) lwz      r29,
  * Address:	803308CC
  * Size:	0000CC
  */
-void ObjSMenuCont::doUpdateLAction(void)
+void ObjSMenuCont::doUpdateLAction()
 {
+	og::Screen::DispMemberSMenuAll* disp = static_cast<og::Screen::DispMemberSMenuAll*>(getDispMember());
+	if (disp->m_sMenuMap.m_inCave) {
+		::Screen::SetSceneArg arg(SCENE_PAUSE_MENU_DOUKUTU, getDispMember(), false, true);
+		jump_L(arg);
+	} else {
+		::Screen::SetSceneArg arg(SCENE_PAUSE_MENU, getDispMember(), false, true);
+		jump_L(arg);
+	} 
 	/*
 	stwu     r1, -0x30(r1)
 	mflr     r0
@@ -425,8 +456,10 @@ lbl_80330984:
  * Address:	80330998
  * Size:	00006C
  */
-void ObjSMenuCont::doUpdateRAction(void)
+void ObjSMenuCont::doUpdateRAction()
 {
+		::Screen::SetSceneArg arg(SCENE_PAUSE_MENU_ITEMS, getDispMember(), false, true);
+		jump_R(arg);
 	/*
 	stwu     r1, -0x20(r1)
 	mflr     r0
@@ -463,8 +496,13 @@ void ObjSMenuCont::doUpdateRAction(void)
  * Address:	80330A04
  * Size:	000080
  */
-void ObjSMenuCont::commonUpdate(void)
+void ObjSMenuCont::commonUpdate()
 {
+	commonUpdateBase();
+	setSMenuScale(msVal.m_scaleX, msVal.m_scaleY);
+	m_animGroup->update();
+	m_screenCont->setXY(m_movePos, 0.0f);
+	m_screenCont->update();
 	/*
 	stwu     r1, -0x10(r1)
 	mflr     r0
@@ -506,8 +544,12 @@ void ObjSMenuCont::commonUpdate(void)
  * Address:	80330A84
  * Size:	000054
  */
-void ObjSMenuCont::doUpdate(void)
+bool ObjSMenuCont::doUpdate()
 {
+	commonUpdate();
+	bool ret = ObjSMenuBase::doUpdate();
+	m_screenCont->animation();
+	return ret;
 	/*
 	stwu     r1, -0x10(r1)
 	mflr     r0
@@ -540,6 +582,12 @@ void ObjSMenuCont::doUpdate(void)
  */
 void ObjSMenuCont::doDraw(Graphics& gfx)
 {
+	J2DPerspGraph* graf = &gfx.m_perspGraph;
+	graf->setPort();
+	if (m_screenCont) {
+		m_screenCont->draw(gfx, *graf);
+	}
+	drawYaji(gfx);
 	/*
 	stwu     r1, -0x20(r1)
 	mflr     r0
@@ -584,8 +632,10 @@ lbl_80330B34:
  * Address:	80330B5C
  * Size:	000014
  */
-void ObjSMenuCont::in_L(void)
+void ObjSMenuCont::in_L()
 {
+	m_state = MENUSTATE_OpenL;
+	m_angle = 15.0;
 	/*
 	li       r0, 0
 	lfs      f0, lbl_8051E094@sda21(r2)
@@ -600,8 +650,10 @@ void ObjSMenuCont::in_L(void)
  * Address:	80330B70
  * Size:	000014
  */
-void ObjSMenuCont::in_R(void)
+void ObjSMenuCont::in_R()
 {
+	m_state = MENUSTATE_OpenR;
+	m_angle = 15.0;
 	/*
 	li       r0, 1
 	lfs      f0, lbl_8051E094@sda21(r2)
@@ -616,10 +668,9 @@ void ObjSMenuCont::in_R(void)
  * Address:	80330B84
  * Size:	00000C
  */
-void ObjSMenuCont::wait(void)
+void ObjSMenuCont::wait()
 {
-	// Generated from stw r0, 0x38(r3)
-	_38 = 4;
+	m_state = MENUSTATE_Default;
 }
 
 /*
@@ -627,8 +678,10 @@ void ObjSMenuCont::wait(void)
  * Address:	80330B90
  * Size:	00002C
  */
-void ObjSMenuCont::out_L(void)
+void ObjSMenuCont::out_L()
 {
+	m_state = MENUSTATE_CloseL;
+	ogSound->setSMenuLR();
 	/*
 	stwu     r1, -0x10(r1)
 	mflr     r0
@@ -649,8 +702,10 @@ void ObjSMenuCont::out_L(void)
  * Address:	80330BBC
  * Size:	00002C
  */
-void ObjSMenuCont::out_R(void)
+void ObjSMenuCont::out_R()
 {
+	m_state = MENUSTATE_CloseR;
+	ogSound->setSMenuLR();
 	/*
 	stwu     r1, -0x10(r1)
 	mflr     r0
@@ -671,8 +726,15 @@ void ObjSMenuCont::out_R(void)
  * Address:	80330BE8
  * Size:	0000A4
  */
-void ObjSMenuCont::doStart(Screen::StartSceneArg const*)
+bool ObjSMenuCont::doStart(::Screen::StartSceneArg const* arg)
 {
+	m_animGroup->setFrame(0.0f);
+	m_animGroup->setRepeat(true);
+	m_animGroup->setSpeed(1.0f);
+	m_animGroup->start();
+	setYajiName('6052_00', '6050_00', '6051_00'); // "Menu" "Radar" "Items"
+	stopYaji();
+	return start_LR(arg);
 	/*
 	stwu     r1, -0x10(r1)
 	mflr     r0
@@ -723,15 +785,16 @@ void ObjSMenuCont::doStart(Screen::StartSceneArg const*)
  * Address:	80330C8C
  * Size:	000008
  */
-u32 ObjSMenuCont::doEnd(Screen::EndSceneArg const*) { return 0x1; }
+bool ObjSMenuCont::doEnd(::Screen::EndSceneArg const*) { return true; }
 
 /*
  * --INFO--
  * Address:	80330C94
  * Size:	000020
  */
-void ObjSMenuCont::doUpdateFinish(void)
+void ObjSMenuCont::doUpdateFinish()
 {
+	ObjSMenuBase::doUpdateFinish();
 	/*
 	stwu     r1, -0x10(r1)
 	mflr     r0
@@ -749,8 +812,10 @@ void ObjSMenuCont::doUpdateFinish(void)
  * Address:	80330CB4
  * Size:	00004C
  */
-void ObjSMenuCont::doUpdateFadeout(void)
+bool ObjSMenuCont::doUpdateFadeout()
 {
+	commonUpdate();
+	updateFadeOut();
 	/*
 	stwu     r1, -0x10(r1)
 	mflr     r0
@@ -779,7 +844,7 @@ void ObjSMenuCont::doUpdateFadeout(void)
  * Address:	80330D00
  * Size:	000004
  */
-void ObjSMenuCont::doUpdateCancelAction(void) { }
+void ObjSMenuCont::doUpdateCancelAction() { }
 
 } // namespace newScreen
 } // namespace og
@@ -789,7 +854,7 @@ void ObjSMenuCont::doUpdateCancelAction(void) { }
  * Address:	80330D04
  * Size:	000014
  */
-void __sinit_ogObjSMenuCont_cpp(void)
+void __sinit_ogObjSMenuCont_cpp()
 {
 	/*
 	lfs      f0, lbl_8051E098@sda21(r2)
@@ -805,10 +870,10 @@ void __sinit_ogObjSMenuCont_cpp(void)
  * Address:	80330D18
  * Size:	000008
  */
-@24 @og::newScreen::ObjSMenuCont::~ObjSMenuCont(void)
-{
+//@24 @og::newScreen::ObjSMenuCont::~ObjSMenuCont(void)
+//{
 	/*
 	addi     r3, r3, -24
 	b        __dt__Q32og9newScreen12ObjSMenuContFv
 	*/
-}
+//}
