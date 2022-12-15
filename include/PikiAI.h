@@ -126,6 +126,15 @@ struct Action {
 };
 
 struct ApproachPosActionArg : public ActionArg {
+	inline ApproachPosActionArg(Vector3f& pos, f32 a, f32 b, u8 c, u8 d)
+	    : m_position(pos)
+	    , _10(a)
+	    , _14(b)
+	    , _18(c)
+	    , _19(d)
+	{
+	}
+
 	virtual char* getName(); // _08 (weak)
 
 	// _00 = VTBL
@@ -154,7 +163,7 @@ struct ActApproachPos : public Action {
 };
 
 struct ActAttackArg : public ActionArg {
-	virtual char* getName(); // _08 (weak)
+	virtual char* getName() { return "ActAttackArg"; } // _08 (weak)
 
 	// _00 = VTBL
 	Game::Creature* m_creature; // _04
@@ -195,12 +204,16 @@ struct ActAttack : public Action, virtual SysShape::MotionListener {
 };
 
 struct ActBattleArg : public ActionArg {
-	virtual char* getName(); // _08 (weak)
+	virtual char* getName() { return "ActBattleArg"; } // _08 (weak)
 
 	// _00 = VTBL
 	Game::Piki* m_aggressor; // _04
-	bool m_startAttack;      // _08, guessed name
+	bool m_isAttackStart;    // _08
 };
+
+#define PIKIAI_ACTBATTLE_APPROACH (0)
+#define PIKIAI_ACTBATTLE_BATTLE   (1)
+#define PIKIAI_ACTBATTLE_DAMAGE   (2)
 
 // Pikmin hitting eachother, like in VS mode
 struct ActBattle : public Action, virtual SysShape::MotionListener {
@@ -214,16 +227,16 @@ struct ActBattle : public Action, virtual SysShape::MotionListener {
 	virtual void onKeyEvent(const SysShape::KeyEvent& event);              // _3C (weak)
 
 	void initApproach();
-	void execApproach();
+	int execApproach();
 	void initBattle();
-	void execBattle();
-	void execDamage();
+	int execBattle();
+	int execDamage();
 
 	// _00     = VTBL
 	// _00-_0C = Action
 	// _0C-_10 = MotionListener*
-	Game::Piki* m_otherPiki;       // _10, vs battle piki attack
-	s8 m_state;                    // _14
+	Game::Piki* m_other;           // _10, vs battle piki attack
+	u8 m_state;                    // _14
 	ActApproachPos* m_approachPos; // _18
 	s8 _1C;                        // _1C
 	s8 _1D;                        // _1D
