@@ -545,12 +545,11 @@ void ActTeki::setTimer()
 	Vector3f thisPos = m_parent->getPosition();
 	Vector3f themPos = m_followingTeki->getPosition();
 
-	// INLINE, REGSWAPS
 	f32 dist = _distanceBetween2(themPos, thisPos);
 
 	f32 weight;
 	if (dist < 100.0f) {
-		weight = 0.30000001f;
+		weight = 0.3f;
 	} else {
 		weight = 0.1f;
 	}
