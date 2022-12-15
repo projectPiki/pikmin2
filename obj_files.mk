@@ -884,7 +884,7 @@ OGAWA:=\
 	$(BUILD_DIR)/src/plugProjectOgawaU/ogSceneSMenuItem.o\
 	$(BUILD_DIR)/src/plugProjectOgawaU/ogSceneSMenuPause.o\
 	$(BUILD_DIR)/asm/plugProjectOgawaU/ogObjSMenuPause.o\
-	$(BUILD_DIR)/asm/plugProjectOgawaU/ogObjSMenuBase.o\
+	$(BUILD_DIR)/src/plugProjectOgawaU/ogObjSMenuBase.o\
 	$(BUILD_DIR)/asm/plugProjectOgawaU/ogObjCourseName.o\
 	$(BUILD_DIR)/src/plugProjectOgawaU/ogUtil.o\
 	$(BUILD_DIR)/asm/plugProjectOgawaU/ogSceneCourseName.o\

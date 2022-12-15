@@ -65,16 +65,6 @@ void ObjSMenuBase::setFinishState(long id)
 
 /*
  * --INFO--
- * Address:	........
- * Size:	0000D4
- */
-void ObjSMenuBase::registSMenuScreen(P2DScreen::Mgr*)
-{
-	// UNUSED FUNCTION
-}
-
-/*
- * --INFO--
  * Address:	80316338
  * Size:	000040
  */

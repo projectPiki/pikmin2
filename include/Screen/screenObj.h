@@ -53,7 +53,7 @@ struct StartSceneArg : public SceneArgBase {
 
 template <typename T>
 struct StartSceneArgTemplate : public StartSceneArg {
-	virtual int getClassSize(); // _08 (weak)
+	virtual int getClassSize() { return sizeof(StartSceneArgTemplate); } // _08 (weak)
 
 	// _00     = VTBL
 	// _00-_04 = StartSceneArg
