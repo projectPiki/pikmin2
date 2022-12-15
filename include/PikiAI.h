@@ -30,6 +30,8 @@ struct BaseItem;
 struct Navi;
 struct CPlate;
 struct BaseFlockMgr;
+struct EnemyBase;
+struct Footmark;
 
 namespace ItemRock {
 struct Item;
@@ -896,10 +898,10 @@ struct ActTeki : public Action, virtual SysShape::MotionListener {
 	virtual int exec();                                                    // _0C
 	virtual void cleanup();                                                // _10
 	virtual void emotion_success();                                        // _14
-	virtual u32 getNextAIType();                                           // _20 (weak)
+	virtual u32 getNextAIType() { return 1; }                              // _20 (weak)
 	virtual void collisionCallback(Game::Piki* p, Game::CollEvent& event); // _28
 	virtual void doDirectDraw(Graphics& gfx);                              // _30
-	virtual void onKeyEvent(const SysShape::KeyEvent& event);              // _3C (weak)
+	virtual void onKeyEvent(const SysShape::KeyEvent& event) { }           // _3C (weak)
 
 	void makeTarget();
 	void test_0();
@@ -908,12 +910,20 @@ struct ActTeki : public Action, virtual SysShape::MotionListener {
 	// _00     = VTBL
 	// _00-_0C = Action
 	// _0C-_10 = MotionListener*
-	u32 _10;       // _10, unknown
-	u8 _14;        // _14
-	u8 _15;        // _15
-	Vector3f* _18; // _18
-	u8 _1C[0x2C];  // _1C, unknown
-	               // _48 = MotionListener
+	Game::EnemyBase* m_attacking; // _10, unknown
+	bool m_toPanicFinish;         // _14
+	u8 _15;                       // _15
+	Game::Footmark* _18;          // _18
+	s32 _1C;                      // _1C
+	f32 _20;                      // _20
+	f32 _24;                      // _24
+	u32 _28;                      // _28
+	Vector3f _2C;                 // _2C
+	f32 _38;                      // _38
+	f32 _3C;                      // _3C
+	f32 _40;                      // _40
+	f32 _44;                      // _44
+	                              // _48 = MotionListener
 };
 
 struct ActTransportArg : public ActionArg {

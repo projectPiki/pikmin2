@@ -221,6 +221,12 @@ inline f32 _lenVec2D(Vector3f& vec)
 	return _sqrtf(a.y + a.x * a.x + a.z);
 }
 
+inline f32 _distVec2D(Vector3f& me, Vector3f& them)
+{
+	Vector3f sep = me - them;
+	return _lenVec2D(sep);
+}
+
 inline void _normalise(Vector3f& vec)
 {
 	Vector2f sqr(vec.z * vec.z, vec.x * vec.x + vec.y * vec.y);
