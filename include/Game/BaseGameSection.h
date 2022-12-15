@@ -239,7 +239,7 @@ struct BaseGameSection : public BaseHIOSection {
 	Sys::DrawBuffers* _130;                               // _130
 	int m_treasureGetState;                               // _134
 	Viewport* m_treasureGetViewport;                      // _138
-	Pellet* m_draw2DCreature;                             // _13C
+	Creature* m_draw2DCreature;                           // _13C
 	f32 m_draw2DCreatureScale;                            // _140
 	f32 _144;                                             // _144
 	Delegate1<BaseGameSection, Rectf&>* m_kanteiDelegate; // _148

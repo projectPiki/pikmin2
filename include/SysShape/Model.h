@@ -34,7 +34,7 @@ struct Model : public MtxObject {
 	void clearAnimatorAll();
 	void enableMaterialAnim(int);
 	f32 getRoughBoundingRadius();
-	void getRoughCenter();
+	Vector3f& getRoughCenter();
 	void initJoints();
 	void initJointsRec(int, Joint*);
 	void getJointIndex(char*);
