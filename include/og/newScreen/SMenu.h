@@ -224,30 +224,30 @@ struct ObjSMenuBase : public ::Screen::ObjBase {
 	static struct StaticValues {
 		inline StaticValues()
 		{
-			_00          = 1.0f;
-			m_animSpeed  = 1.0f;
-			_14          = 255;
-			_08          = 0.3f;
-			_0C          = 30.0f;
-			_10          = 0.1f;
-			_15          = 64;
-			_16          = 64;
-			_17          = 0;
-			_18          = 0;
-			m_updateYaji = 0;
+			_00             = 1.0f;
+			m_animSpeed     = 1.0f;
+			_14             = 255;
+			_08             = 0.3f;
+			_0C             = 30.0f;
+			_10             = 0.1f;
+			_15             = 64;
+			_16             = 64;
+			_17             = 0;
+			m_useController = false;
+			m_updateYaji    = 0;
 		}
 
-		f32 _00;           // _00
-		f32 m_animSpeed;   // _04
-		f32 _08;           // _08
-		f32 _0C;           // _0C
-		f32 _10;           // _10
-		u8 _14;            // _14
-		u8 _15;            // _15
-		u8 _16;            // _16
-		u8 _17;            // _17
-		u8 _18;            // _18
-		bool m_updateYaji; // _19
+		f32 _00;              // _00
+		f32 m_animSpeed;      // _04
+		f32 _08;              // _08
+		f32 _0C;              // _0C
+		f32 _10;              // _10
+		u8 _14;               // _14
+		u8 _15;               // _15
+		u8 _16;               // _16
+		u8 _17;               // _17
+		bool m_useController; // _18
+		bool m_updateYaji;    // _19
 	} msBaseVal;
 };
 
@@ -318,15 +318,28 @@ struct ObjSMenuItem : public ObjSMenuBase {
 	// _18     = VTBL2
 	// _00-_A8 = ObjSMenuBase
 	og::Screen::DispMemberSMenuItem* m_disp; // _A8
-	P2DScreen::Mgr_tuning* _AC;              // _AC
-	P2DScreen::Mgr* _B0;                     // _B0
-	og::Screen::AnimGroup* _B4;              // _B4
-	og::Screen::AnimGroup* _B8;              // _B8
-	J2DPane* _BC;                            // _BC
-	J2DPane* _C0;                            // _C0
-	J2DPane* _C4;                            // _C4
-	J2DPane* _C8;                            // _C8
+	P2DScreen::Mgr_tuning* m_screenItems;    // _AC
+	P2DScreen::Mgr* m_screenSprays;          // _B0
+	og::Screen::AnimGroup* m_anims1;         // _B4
+	og::Screen::AnimGroup* m_anims2;         // _B8
+	J2DPane* m_paneSpray0;                   // _BC
+	J2DPane* m_paneSpray1;                   // _C0
+	J2DPane* m_paneSpraySub0;                // _C4
+	J2DPane* m_paneSpraySub1;                // _C8
 	u8 _CC[0x8];                             // _CC, unknown
+
+	static struct StaticValues {
+		inline StaticValues() { }
+
+		f32 _00; // _00
+		f32 _04; // _04
+		f32 _08;
+		f32 _0C;
+		f32 _10;
+		f32 _14;
+		f32 _18;
+		f32 _1C;
+	} msVal;
 };
 
 struct ObjSMenuMap : public ObjSMenuBase {

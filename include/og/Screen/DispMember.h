@@ -485,10 +485,10 @@ struct DispMemberSMenuItem : public DispMemberBase {
 
 	// _00     = VTBL
 	// _00-_08 = DispMemberBase
-	int m_spicySprayCount;              // _08
-	int m_spicyBerryCount;              // _0C
-	int m_bitterSprayCount;             // _10
-	int m_bitterBerryCount;             // _14
+	u32 m_spicySprayCount;              // _08
+	u32 m_spicyBerryCount;              // _0C
+	u32 m_bitterSprayCount;             // _10
+	u32 m_bitterBerryCount;             // _14
 	bool m_explorationKitInventory[12]; // _18
 	bool m_isBitterUnlocked;            // _24, have made first bitter spray from berries
 	bool m_isSpicyUnlocked;             // _25, have made first spicy spray from berries

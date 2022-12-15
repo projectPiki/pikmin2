@@ -212,7 +212,7 @@ void ObjSMenuCont::doUpdateFinish() { ObjSMenuBase::doUpdateFinish(); }
 bool ObjSMenuCont::doUpdateFadeout()
 {
 	commonUpdate();
-	updateFadeOut();
+	return updateFadeOut();
 }
 
 /*

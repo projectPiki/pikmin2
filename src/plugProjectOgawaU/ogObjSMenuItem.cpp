@@ -1,4 +1,26 @@
 #include "types.h"
+#include "og/newScreen/SMenu.h"
+#include "og/Screen/ogScreen.h"
+#include "og/Screen/anime.h"
+#include "og/Screen/callbackNodes.h"
+#include "og/Sound.h"
+
+u64 ItemMsgID_List[12] = {
+	'6122_00', // "Mega Tweeter"
+	'6119_00', // "Pluckaphone"
+	'6126_00', // "Solar System"
+	'6116_00', // "Metal Suit Z"
+	'6117_00', // "Scorch Guard"
+	'6129_00', // "Anti-Electrifier"
+	'6120_00', // "Rush Boots"
+	'6118_00', // "Rocket Fist"
+	'6121_00', // "Treasure Gauge"
+	'6127_00', // "Sphere Chart"
+	'6128_00', // "Survey Chart"
+	'6123_00'  // "Napsack"
+};
+
+int EquipItemList[12] = { 2, 3, 4, 5, 6, 1, 7, 0, 8, 10, 11, 9 };
 
 /*
     Generated from dpostproc
@@ -208,8 +230,20 @@ namespace newScreen {
  * Address:	80312EF8
  * Size:	00007C
  */
-ObjSMenuItem::ObjSMenuItem(char const*)
+ObjSMenuItem::ObjSMenuItem(char const* name)
 {
+	m_disp         = nullptr;
+	m_screenItems  = nullptr;
+	m_anims1       = nullptr;
+	m_anims2       = nullptr;
+	m_screenSprays = nullptr;
+
+	m_paneSpray0    = nullptr;
+	m_paneSpray1    = nullptr;
+	m_paneSpraySub0 = nullptr;
+	m_paneSpraySub1 = nullptr;
+	m_name          = name;
+
 	/*
 	stwu     r1, -0x10(r1)
 	mflr     r0
@@ -314,8 +348,78 @@ lbl_8031301C:
  * Address:	80313038
  * Size:	000924
  */
-void ObjSMenuItem::doCreate(JKRArchive*)
+void ObjSMenuItem::doCreate(JKRArchive* arc)
 {
+	og::Screen::DispMemberSMenuAll* dispfull = static_cast<og::Screen::DispMemberSMenuAll*>(getDispMember());
+	m_disp = static_cast<og::Screen::DispMemberSMenuItem*>(dispfull->getSubMember(OWNER_OGA, MEMBER_START_MENU_ITEM));
+	if (!m_disp) {
+		og::Screen::DispMemberSMenuAll* newdisp = new og::Screen::DispMemberSMenuAll;
+		m_disp = static_cast<og::Screen::DispMemberSMenuItem*>(newdisp->getSubMember(OWNER_OGA, MEMBER_START_MENU_ITEM));
+	}
+
+	m_screenItems = new P2DScreen::Mgr_tuning;
+	m_screenItems->set("s_menu_item_l.blo", 0x1040000, arc);
+
+	J2DScreen* tempscreen = new J2DScreen;
+	tempscreen->set("s_menu_powerup_icon.blo", 0x1040000, arc);
+
+	for (int i = 0; i < 12; i++) {
+		u64 tag  = 'Nitem00' + (i + i % 10);
+		u64 tag2 = 'Picon00' + (i + i % 10);
+		u64 tag3 = 'Pitemb00' + (i + i % 10);
+
+		J2DPane* pane1 = og::Screen::TagSearch(m_screenItems, tag);
+		J2DPane* pane2 = og::Screen::TagSearch(tempscreen, tag2);
+		J2DPane* pane3 = og::Screen::TagSearch(m_screenMain, tag3);
+
+		pane2->setBasePosition((J2DBasePosition)pane3->m_basePosition);
+		pane1->appendChild(pane2);
+		JGeometry::TBox2f* box = pane3->getBounds();
+		pane2->place(*box);
+	}
+
+	m_screenSprays = new P2DScreen::Mgr;
+	m_screenSprays->set("s_menu_item_spray.blo", 0x1040000, arc);
+
+	m_paneSpray0    = og::Screen::TagSearch(m_screenItems, 'Nspray00');
+	m_paneSpray1    = og::Screen::TagSearch(m_screenItems, 'Nspray01');
+	m_paneSpraySub0 = og::Screen::TagSearch(m_screenSprays, 'Nspray00');
+	m_paneSpraySub1 = og::Screen::TagSearch(m_screenSprays, 'Nspray01');
+
+	m_paneSpray0->add(msVal._08, msVal._0C);
+	m_paneSpray1->add(msVal._10, msVal._14);
+
+	og::Screen::DispMemberSMenuItem* disp = m_disp;
+	if (!disp->m_isBitterUnlocked && !disp->m_isSpicyUnlocked) {
+		og::Screen::TagSearch(m_screenItems, 'Nwin0')->hide();
+		og::Screen::TagSearch(m_screenItems, 'Nwin1')->hide();
+		og::Screen::TagSearch(m_screenItems, 'NULL_002')->resize(-100.0f, 0.0f);
+		m_paneSpraySub0->hide();
+		m_paneSpraySub1->hide();
+	} else if (!disp->m_isBitterUnlocked) {
+		og::Screen::TagSearch(m_screenItems, 'Nwin0')->hide();
+		og::Screen::TagSearch(m_screenItems, 'Nwin1')->resize(0.0f, -100.0f);
+		m_paneSpraySub0->hide();
+	} else if (!disp->m_isSpicyUnlocked) {
+		og::Screen::TagSearch(m_screenItems, 'Nwin0')->resize(0.0f, 80.0f);
+		og::Screen::TagSearch(m_screenItems, 'Nwin1')->hide();
+		m_paneSpraySub1->hide();
+	}
+
+	m_anims1 = new og::Screen::AnimGroup(5);
+	og::Screen::registAnimGroupScreen(m_anims1, arc, m_screenItems, "s_menu_item_l.btk", msBaseVal._00);
+	og::Screen::registAnimGroupScreen(m_anims1, arc, m_screenItems, "s_menu_item_l_02.btk", msBaseVal._00);
+	og::Screen::registAnimGroupScreen(m_anims1, arc, m_screenItems, "s_menu_item_l_03.btk", msBaseVal._00);
+	og::Screen::registAnimGroupScreen(m_anims1, arc, m_screenItems, "s_menu_item_l_04.btk", msBaseVal._00);
+	og::Screen::registAnimGroupScreen(m_anims1, arc, m_screenItems, "s_menu_item_l_05.btk", msBaseVal._00);
+
+	m_anims2 = new og::Screen::AnimGroup(1);
+	og::Screen::registAnimGroupScreen(m_anims2, arc, m_screenSprays, "s_menu_item_spray.btk", 1.0f);
+
+	og::Screen::setCallBack_CounterRV(m_screenItems, 'Pup_1', 'Pup_2', 'Pup_2', &m_disp->m_spicySprayCount, 3, 3, 0, arc);
+	og::Screen::setCallBack_CounterRV(m_screenItems, 'PupS_1', 'PupS_2', 'PupS_2', &m_disp->m_spicyBerryCount, 2, 2, 0, arc);
+	og::Screen::setCallBack_CounterRV(m_screenItems, 'Pdown_1', 'Pdown_2', 'Pdown_2', &m_disp->m_bitterSprayCount, 3, 3, 0, arc);
+	og::Screen::setCallBack_CounterRV(m_screenItems, 'PdownS_1', 'PdownS_2', 'PdownS_2', &m_disp->m_bitterBerryCount, 2, 2, 0, arc);
 	/*
 	stwu     r1, -0xd0(r1)
 	mflr     r0
@@ -952,6 +1056,20 @@ blr
  */
 void ObjSMenuItem::doUpdateLAction(void)
 {
+	if (msBaseVal.m_useController) {
+		::Screen::SetSceneArg arg(SCENE_PAUSE_MENU_CONTROLS, getDispMember(), false, true);
+		jump_L(arg);
+		return;
+	}
+
+	og::Screen::DispMemberSMenuAll* disp = static_cast<og::Screen::DispMemberSMenuAll*>(getDispMember());
+	if (disp->m_sMenuMap.m_inCave) {
+		::Screen::SetSceneArg arg(SCENE_PAUSE_MENU_DOUKUTU, getDispMember(), false, true);
+		jump_L(arg);
+	} else {
+		::Screen::SetSceneArg arg(SCENE_PAUSE_MENU, getDispMember(), false, true);
+		jump_L(arg);
+	}
 	/*
 	stwu     r1, -0x40(r1)
 	mflr     r0
@@ -1043,6 +1161,8 @@ lbl_80313A70:
  */
 void ObjSMenuItem::doUpdateRAction(void)
 {
+	::Screen::SetSceneArg arg(SCENE_PAUSE_MENU_MAP, getDispMember(), false, true);
+	jump_L(arg);
 	/*
 	stwu     r1, -0x20(r1)
 	mflr     r0
@@ -1081,6 +1201,15 @@ void ObjSMenuItem::doUpdateRAction(void)
  */
 void ObjSMenuItem::commonUpdate(void)
 {
+	commonUpdateBase();
+	setSMenuScale(msVal._18, msVal._1C);
+	m_paneSpray0->move(msVal._08, msVal._0C);
+	m_paneSpray1->move(msVal._10, msVal._14);
+	m_anims1->update();
+	m_anims2->update();
+	m_screenItems->setXY(m_movePos, 0.0f);
+	m_screenItems->update();
+	m_screenSprays->update();
 	/*
 	stwu     r1, -0x10(r1)
 	mflr     r0
@@ -1148,8 +1277,12 @@ void ObjSMenuItem::commonUpdate(void)
  * Address:	80313BD8
  * Size:	000054
  */
-void ObjSMenuItem::doUpdate(void)
+bool ObjSMenuItem::doUpdate()
 {
+	commonUpdate();
+	bool ret = ObjSMenuBase::doUpdate();
+	m_screenItems->animation();
+	return ret;
 	/*
 	stwu     r1, -0x10(r1)
 	mflr     r0
@@ -1182,6 +1315,17 @@ void ObjSMenuItem::doUpdate(void)
  */
 void ObjSMenuItem::doDraw(Graphics& gfx)
 {
+	J2DPerspGraph* graf = &gfx.m_perspGraph;
+	graf->setPort();
+	if (m_screenItems) {
+		m_screenItems->draw(gfx, *graf);
+	}
+	if (m_screenSprays) {
+		PSMTXCopy(m_paneSpray0->_080, m_paneSpraySub0->_050);
+		PSMTXCopy(m_paneSpray1->_080, m_paneSpraySub1->_050);
+		m_screenSprays->draw(gfx, *graf);
+	}
+	drawYaji(gfx);
 	/*
 	stwu     r1, -0x20(r1)
 	mflr     r0
@@ -1250,6 +1394,8 @@ lbl_80313CD8:
  */
 void ObjSMenuItem::in_L(void)
 {
+	m_state = MENUSTATE_OpenL;
+	m_angle = 45.0f;
 	/*
 	li       r0, 0
 	lfs      f0, lbl_8051D844@sda21(r2)
@@ -1266,6 +1412,8 @@ void ObjSMenuItem::in_L(void)
  */
 void ObjSMenuItem::in_R(void)
 {
+	m_state = MENUSTATE_OpenR;
+	m_angle = 45.0f;
 	/*
 	li       r0, 1
 	lfs      f0, lbl_8051D844@sda21(r2)
@@ -1280,11 +1428,7 @@ void ObjSMenuItem::in_R(void)
  * Address:	80313D28
  * Size:	00000C
  */
-void ObjSMenuItem::wait(void)
-{
-	// Generated from stw r0, 0x38(r3)
-	_38 = 4;
-}
+void ObjSMenuItem::wait(void) { m_state = MENUSTATE_Default; }
 
 /*
  * --INFO--
@@ -1293,6 +1437,8 @@ void ObjSMenuItem::wait(void)
  */
 void ObjSMenuItem::out_L(void)
 {
+	m_state = MENUSTATE_CloseL;
+	ogSound->setSMenuLR();
 	/*
 	stwu     r1, -0x10(r1)
 	mflr     r0
@@ -1315,6 +1461,8 @@ void ObjSMenuItem::out_L(void)
  */
 void ObjSMenuItem::out_R(void)
 {
+	m_state = MENUSTATE_CloseR;
+	ogSound->setSMenuLR();
 	/*
 	stwu     r1, -0x10(r1)
 	mflr     r0
@@ -1335,8 +1483,21 @@ void ObjSMenuItem::out_R(void)
  * Address:	80313D8C
  * Size:	0000D0
  */
-void ObjSMenuItem::doStart(Screen::StartSceneArg const*)
+bool ObjSMenuItem::doStart(::Screen::StartSceneArg const* arg)
 {
+	m_anims1->setFrame(0.0f);
+	m_anims1->setRepeat(true);
+	m_anims1->setSpeed(1.0f);
+	m_anims1->start();
+
+	m_anims2->setFrame(0.0f);
+	m_anims2->setRepeat(true);
+	m_anims2->setSpeed(1.0f);
+	m_anims2->start();
+
+	setYajiName('6052_00', '6050_00', '6051_00'); // "Menu" "Radar" "Items"
+	stopYaji();
+	return start_LR(arg);
 	/*
 	stwu     r1, -0x10(r1)
 	mflr     r0
@@ -1398,7 +1559,7 @@ void ObjSMenuItem::doStart(Screen::StartSceneArg const*)
  * Address:	80313E5C
  * Size:	000008
  */
-u32 ObjSMenuItem::doEnd(Screen::EndSceneArg const*) { return 0x1; }
+bool ObjSMenuItem::doEnd(::Screen::EndSceneArg const*) { return true; }
 
 /*
  * --INFO--
@@ -1407,6 +1568,7 @@ u32 ObjSMenuItem::doEnd(Screen::EndSceneArg const*) { return 0x1; }
  */
 void ObjSMenuItem::doUpdateFinish(void)
 {
+	ObjSMenuBase::doUpdateFinish();
 	/*
 	stwu     r1, -0x10(r1)
 	mflr     r0
@@ -1424,8 +1586,10 @@ void ObjSMenuItem::doUpdateFinish(void)
  * Address:	80313E84
  * Size:	00004C
  */
-void ObjSMenuItem::doUpdateFadeout(void)
+bool ObjSMenuItem::doUpdateFadeout()
 {
+	commonUpdate();
+	return updateFadeOut();
 	/*
 	stwu     r1, -0x10(r1)
 	mflr     r0
@@ -1454,7 +1618,7 @@ void ObjSMenuItem::doUpdateFadeout(void)
  * Address:	80313ED0
  * Size:	000004
  */
-void ObjSMenuItem::doUpdateCancelAction(void) { }
+void ObjSMenuItem::doUpdateCancelAction() { }
 
 } // namespace newScreen
 } // namespace og
@@ -1464,7 +1628,7 @@ void ObjSMenuItem::doUpdateCancelAction(void) { }
  * Address:	80313ED4
  * Size:	000070
  */
-void __sinit_ogObjSMenuItem_cpp(void)
+void __sinit_ogObjSMenuItem_cpp()
 {
 	/*
 	lis      r3, msVal__Q32og9newScreen12ObjSMenuItem@ha
@@ -1503,10 +1667,10 @@ void __sinit_ogObjSMenuItem_cpp(void)
  * Address:	80313F44
  * Size:	000008
  */
-@24 @og::newScreen::ObjSMenuItem::~ObjSMenuItem(void)
-{
-	/*
-	addi     r3, r3, -24
-	b        __dt__Q32og9newScreen12ObjSMenuItemFv
-	*/
-}
+//@24 @og::newScreen::ObjSMenuItem::~ObjSMenuItem()
+//{
+/*
+addi     r3, r3, -24
+b        __dt__Q32og9newScreen12ObjSMenuItemFv
+*/
+//}
