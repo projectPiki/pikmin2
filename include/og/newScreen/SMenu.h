@@ -171,11 +171,11 @@ struct ObjSMenuBase : public ::Screen::ObjBase {
 	virtual bool updateFadeOut();            // _A0
 	virtual void commonUpdate() = 0;         // _A4
 
-	inline void setFinishState(long);
+	void setFinishState(long);
 	void setSMenuScale(f32, f32);
 	void doCreateAfter(JKRArchive*, P2DScreen::Mgr*);
 	void commonUpdateBase();
-	inline void startBackupScene();
+	void startBackupScene();
 	void close_L();
 	void jump_L(::Screen::SetSceneArg&);
 	void jump_R(::Screen::SetSceneArg&);
