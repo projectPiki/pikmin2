@@ -22,6 +22,24 @@ namespace Game {
 Creature* Creature::currOp;
 bool Creature::usePacketCulling = true;
 
+inline void Creature::killInline(Game::CreatureKillArg* arg)
+{
+	endStick();
+	setAlive(false);
+	Cell::sCurrCellMgr = cellMgr;
+	exitCell();
+	Cell::sCurrCellMgr = nullptr;
+	m_updateContext.exit();
+	releaseAllStickers();
+	clearCapture();
+	onKill(arg);
+
+	if (m_generator) {
+		m_generator->informDeath(this);
+		m_generator = nullptr;
+	}
+}
+
 /*
  * --INFO--
  * Address:	8013AE84
@@ -89,42 +107,32 @@ void Creature::init(CreatureInitArg* arg)
  * Address:	8013B0F0
  * Size:	0000B4
  */
-void Creature::kill(CreatureKillArg* arg)
-{
-	endStick();
-	setAlive(false);
-	Cell::sCurrCellMgr = cellMgr;
-	exitCell();
-	Cell::sCurrCellMgr = nullptr;
-	m_updateContext.exit();
-	releaseAllStickers();
-	clearCapture();
-	onKill(arg);
-	if (m_generator) {
-		m_generator->informDeath(this);
-		m_generator = nullptr;
-	}
-}
+void Creature::kill(CreatureKillArg* arg) { killInline(arg); }
 
 /*
  * --INFO--
  * Address:	8013B1A8
  * Size:	0000C8
  */
-void Creature::setPosition(Vector3f& position, bool skipProcessing)
+void Creature::setPosition(Vector3f& position, bool skipPostProc)
 {
 	onSetPosition(position);
-	if (!skipProcessing) {
-		updateTrMatrix();
-		if (m_model) {
-			PSMTXCopy(m_mainMatrix.m_matrix.mtxView, m_model->m_j3dModel->_24);
-			m_model->m_j3dModel->calc();
-			if (m_collTree) {
-				m_collTree->update();
-			}
-		}
-		onSetPositionPost(position);
+
+	if (skipPostProc) {
+		return;
 	}
+
+	updateTrMatrix();
+
+	if (m_model) {
+		PSMTXCopy(m_mainMatrix.m_matrix.mtxView, m_model->m_j3dModel->m_posMtx);
+		m_model->m_j3dModel->calc();
+		if (m_collTree) {
+			m_collTree->update();
+		}
+	}
+
+	onSetPositionPost(position);
 }
 
 /*
@@ -136,13 +144,15 @@ void Creature::initPosition(Vector3f& position)
 {
 	onSetPosition(position);
 	updateTrMatrix();
+
 	if (m_model) {
-		PSMTXCopy(m_mainMatrix.m_matrix.mtxView, m_model->m_j3dModel->_24);
+		PSMTXCopy(m_mainMatrix.m_matrix.mtxView, m_model->m_j3dModel->m_posMtx);
 		m_model->m_j3dModel->calc();
 		if (m_collTree) {
 			m_collTree->update();
 		}
 	}
+
 	onSetPositionPost(position);
 	onInitPosition(position);
 }
@@ -236,6 +246,7 @@ void Creature::save(Stream& output, u8 flags)
 		Vector3f position = getPosition();
 		position.write(output);
 	}
+
 	doSave(output);
 }
 
@@ -251,6 +262,7 @@ void Creature::load(Stream& input, u8 flags)
 		position.read(input);
 		setPosition(position, false);
 	}
+
 	doLoad(input);
 }
 
@@ -259,13 +271,16 @@ void Creature::load(Stream& input, u8 flags)
  * Address:	8013B6E8
  * Size:	0000BC
  */
-f32 Creature::calcSphereDistance(Creature* them)
+f32 Creature::calcSphereDistance(Creature* other)
 {
-	Sys::Sphere theirBounds, myBounds;
-	them->getBoundingSphere(theirBounds);
-	getBoundingSphere(myBounds);
-	Vector3f sepVec = myBounds.m_position - theirBounds.m_position;
-	return anotherLength(sepVec) - (myBounds.m_radius + theirBounds.m_radius);
+	Sys::Sphere otherBoundSphere;
+	other->getBoundingSphere(otherBoundSphere);
+
+	Sys::Sphere srcBoundSphere;
+	getBoundingSphere(srcBoundSphere);
+
+	Vector3f seperation = srcBoundSphere.m_position - otherBoundSphere.m_position;
+	return _lenVec2D(seperation) - (srcBoundSphere.m_radius + otherBoundSphere.m_radius);
 }
 
 /*
@@ -310,6 +325,7 @@ void Creature::doEntry() { }
  */
 void Creature::doSetView(int viewportNo)
 {
+	// 2 viewports maximum (2 player modes)
 	P2ASSERTBOUNDSLINE(558, 0, viewportNo, 2);
 
 	if (!m_model) {
@@ -323,13 +339,13 @@ void Creature::doSetView(int viewportNo)
 		if (m_lod.m_flags & (16 << viewportNo)) {
 			m_model->showPackets();
 			return;
-		} else {
-			m_model->hidePackets();
-			return;
 		}
+
+		m_model->hidePackets();
+		return;
 	}
+
 	m_model->showPackets();
-	return;
 }
 
 /*
@@ -386,15 +402,13 @@ bool Creature::sound_culling() { return !((m_lod.m_flags & AILOD_FLAG_UNKNOWN4) 
  */
 void Creature::movie_begin(bool required)
 {
-	// m_flags.m_isMovieActor = TRUE;
-	m_flags.typeView |= CF_IS_MOVIE_ACTOR;
-	if (required == false) {
-		// 	m_flags.m_isMovieExtra = TRUE;
-		m_flags.typeView |= CF_IS_MOVIE_EXTRA;
+	SET_FLAG(m_flags.typeView, CF_IS_MOVIE_ACTOR);
+
+	if (!required) {
+		SET_FLAG(m_flags.typeView, CF_IS_MOVIE_EXTRA);
 		isPiki();
 	} else {
-		// 	m_flags.m_isMovieExtra = FALSE;
-		m_flags.typeView &= ~CF_IS_MOVIE_EXTRA;
+		RESET_FLAG(m_flags.typeView, CF_IS_MOVIE_EXTRA);
 		isPiki();
 	}
 	on_movie_begin(required);
@@ -409,8 +423,8 @@ void Creature::movie_begin(bool required)
 void Creature::movie_end(bool required)
 {
 	on_movie_end(required);
-	m_flags.typeView &= ~CF_IS_MOVIE_ACTOR;
-	m_flags.typeView &= ~CF_IS_MOVIE_EXTRA;
+	RESET_FLAG(m_flags.typeView, CF_IS_MOVIE_ACTOR);
+	RESET_FLAG(m_flags.typeView, CF_IS_MOVIE_EXTRA);
 }
 
 /*
@@ -418,14 +432,14 @@ void Creature::movie_end(bool required)
  * Address:	8013BB3C
  * Size:	0000E0
  */
-WaterBox* Creature::checkWater(WaterBox* waterBox, Sys::Sphere& sphere)
+WaterBox* Creature::checkWater(WaterBox* waterBox, Sys::Sphere& boundSphere)
 {
 	if (waterBox) {
-		bool isInWater = waterBox->inWater(sphere);
-		if (!isInWater) {
+		if (!waterBox->inWater(boundSphere)) {
 			if (mapMgr) {
-				waterBox = mapMgr->findWater(sphere);
+				waterBox = mapMgr->findWater(boundSphere);
 			}
+
 			if (!waterBox) {
 				outWaterCallback();
 				waterBox = nullptr;
@@ -434,13 +448,15 @@ WaterBox* Creature::checkWater(WaterBox* waterBox, Sys::Sphere& sphere)
 	} else {
 		WaterBox* wb = nullptr;
 		if (mapMgr) {
-			wb = mapMgr->findWater(sphere);
+			wb = mapMgr->findWater(boundSphere);
 		}
+
 		waterBox = wb;
 		if (waterBox) {
 			inWaterCallback(waterBox);
 		}
 	}
+
 	return waterBox;
 }
 
@@ -451,33 +467,21 @@ WaterBox* Creature::checkWater(WaterBox* waterBox, Sys::Sphere& sphere)
  */
 int Creature::checkHell(Creature::CheckHellArg& hellArg)
 {
-	Vector3f pos;
-	pos      = getPosition();
-	f32 yval = pos.y;
-	if (yval < -500.0f) {
+	Vector3f pos = getPosition();
+
+	if (pos.y < -500.0f) {
 		if (isPiki() && static_cast<FakePiki*>(this)->isPikmin()) {
 			deathMgr->inc(0);
 		}
-		if (hellArg._00) {
-			endStick();
-			setAlive(false);
-			Cell::sCurrCellMgr = cellMgr;
-			exitCell();
-			Cell::sCurrCellMgr = nullptr;
-			m_updateContext.exit();
-			releaseAllStickers();
-			clearCapture();
-			onKill(0);
-			if (m_generator) {
-				m_generator->informDeath(this);
-				m_generator = nullptr;
-			}
+
+		if (hellArg.m_isKillPiki) {
+			killInline(nullptr);
 		}
+
 		return 2;
-	} else {
-		return (yval < -300.0f);
 	}
-	return 0;
+
+	return pos.y < -300.0f;
 }
 
 /*
@@ -487,31 +491,32 @@ int Creature::checkHell(Creature::CheckHellArg& hellArg)
  */
 void Creature::updateCell()
 {
-	if (!gameSystem || !(gameSystem->m_flags & 4)) {
-		m_passID = -1;
+	if (gameSystem && gameSystem->m_flags & 4) {
+		return;
+	}
 
-		Sys::Sphere ball;
-		ball.m_position = getPosition();
-		ball.m_radius   = getCellRadius();
+	m_passID = -1;
 
-		SweepPrune::Object::m_minX.m_radius = ball.m_position.x - ball.m_radius;
-		SweepPrune::Object::m_maxX.m_radius = ball.m_position.x + ball.m_radius;
-		SweepPrune::Object::m_minZ.m_radius = ball.m_position.z - ball.m_radius;
-		SweepPrune::Object::m_maxZ.m_radius = ball.m_position.z + ball.m_radius;
+	Sys::Sphere ball(getPosition());
+	ball.m_radius = getCellRadius();
 
-		SweepPrune::Object* sweepObj = this;
+	SweepPrune::Object::m_minX.m_radius = ball.m_position.x - ball.m_radius;
+	SweepPrune::Object::m_maxX.m_radius = ball.m_position.x + ball.m_radius;
+	SweepPrune::Object::m_minZ.m_radius = ball.m_position.z - ball.m_radius;
+	SweepPrune::Object::m_maxZ.m_radius = ball.m_position.z + ball.m_radius;
 
-		CellPyramid* mgr;
-		sweepObj->m_minX.insertSort((mgr = cellMgr)->_00);
-		sweepObj->m_maxX.insertSort(mgr->_00);
-		sweepObj->m_minZ.insertSort(mgr->_14);
-		sweepObj->m_maxZ.insertSort(mgr->_14);
+	SweepPrune::Object* sweepObj = this;
 
-		if (cellMgr) {
-			CellPyramid::sCellBugName = getCreatureName();
-			CellPyramid::sCellBugID   = getCreatureID();
-			cellMgr->entry(this, ball, m_cellLayerIndex, m_cellRect);
-		}
+	CellPyramid* mgr;
+	sweepObj->m_minX.insertSort((mgr = cellMgr)->m_xNode);
+	sweepObj->m_maxX.insertSort(mgr->m_xNode);
+	sweepObj->m_minZ.insertSort(mgr->m_zNode);
+	sweepObj->m_maxZ.insertSort(mgr->m_zNode);
+
+	if (cellMgr) {
+		CellPyramid::sCellBugName = getCreatureName();
+		CellPyramid::sCellBugID   = getCreatureID();
+		cellMgr->entry(this, ball, m_cellLayerIndex, m_cellRect);
 	}
 }
 
@@ -525,6 +530,7 @@ int Creature::getCellPikiCount()
 	if (cellMgr) {
 		return cellMgr->getPikiCount(m_cellLayerIndex, m_cellRect);
 	}
+
 	return 0;
 }
 
@@ -535,11 +541,10 @@ int Creature::getCellPikiCount()
  */
 void Creature::applyImpulse(Vector3f& unused, Vector3f& impulse)
 {
-	Vector3f newVelocity;
-	Vector3f oldVelocity   = getVelocity();
-	newVelocity            = oldVelocity;
-	Vector3f scaledImpulse = impulse * m_mass;
-	newVelocity            = newVelocity + scaledImpulse;
+	Vector3f oldVelocity = getVelocity();
+	Vector3f newVelocity = oldVelocity;
+
+	newVelocity = newVelocity + (impulse * m_mass);
 	setVelocity(newVelocity);
 }
 
@@ -550,23 +555,22 @@ void Creature::applyImpulse(Vector3f& unused, Vector3f& impulse)
  */
 void Creature::checkCollision(CellObject* cellObj)
 {
-	CollPart* collPart1;
-	CollPart* collPart2;
-	Vector3f vec;
+	Creature* cellCreature = static_cast<Creature*>(cellObj);
 
 	if (isDebugCollision()) {
 		getCreatureName();
-		static_cast<Creature*>(cellObj)->getCreatureName();
+		cellCreature->getCreatureName();
 	}
 
-	if (!(static_cast<Creature*>(cellObj))->isAtari() || !isAtari()) {
+	if (!cellCreature->isAtari() || !isAtari()) {
 		return;
 	}
 
-	Creature* creatureObj = static_cast<Creature*>(cellObj);
+	Creature* creatureObj = cellCreature;
 
-	if (!((!isStickTo() || (m_sticker != cellObj)) && (!creatureObj->isStickTo() || (creatureObj->m_sticker != this))
-	      && (!ignoreAtari(creatureObj)))
+	// TODO: This is cancer, fix
+	if (!((!isStickTo() || m_sticker != cellCreature) && (!creatureObj->isStickTo() || creatureObj->m_sticker != this)
+	      && !ignoreAtari(creatureObj))
 	    || creatureObj->ignoreAtari(this)) {
 		return;
 	}
@@ -591,9 +595,13 @@ void Creature::checkCollision(CellObject* cellObj)
 	}
 
 	bool objCheck = true;
-	if (!static_cast<Creature*>(cellObj)->isPiki() && !static_cast<Creature*>(cellObj)->isNavi()) {
+	if (!cellCreature->isPiki() && !cellCreature->isNavi()) {
 		objCheck = false;
 	}
+
+	CollPart* collPart1;
+	CollPart* collPart2;
+	Vector3f vec;
 
 	if ((creatureCheck && objCheck) || (!creatureCheck && !objCheck)) {
 		if (m_collTree->checkCollision(creatureObj->m_collTree, &collPart1, &collPart2, vec)) {
@@ -615,139 +623,137 @@ void Creature::checkCollision(CellObject* cellObj)
 void Creature::resolveOneColl(CollPart* part1, CollPart* part2, Vector3f& inputVec)
 {
 	Creature* op = currOp;
-	if (currOp) {
+	if (!currOp) {
+		return;
+	}
 
+	if (isDebugCollision()) {
+		getCreatureName();
+		op->getCreatureName();
+	}
+
+	bool flickCheck = false;
+	if (!isCollisionFlick() || !op->isCollisionFlick()) {
+		flickCheck = true;
+	}
+
+	Vector3f vec(-inputVec.x, -inputVec.y, -inputVec.z);
+	if (vec.normalise() == 0.0f) {
+		vec.x = 0.0f;
+		vec.y = 0.0f;
+		vec.z = 1.0f;
+	}
+
+	Vector3f vel1;
+	Vector3f vel2;
+	Vector3f disp1 = part1->m_position + (vec * part1->m_radius);
+	Vector3f disp2 = part2->m_position - (vec * part2->m_radius);
+
+	getVelocityAt(disp1, vel1);
+	op->getVelocityAt(disp2, vel2);
+
+	f32 massRatio;
+	f32 massRatioOp;
+
+	f32 sum = m_mass + op->m_mass;
+	if (sum > 0.0f) {
+		massRatio   = m_mass / sum;
+		massRatioOp = 1.0f - massRatio;
+	} else {
+		massRatio = massRatioOp = 0.5f;
+	}
+
+	f32 fps = 1.0f / sys->m_deltaTime;
+	if (isNavi() && !op->isNavi()) {
+		if (!op->isPiki()) {
+			addAccel(m_acceleration, inputVec, massRatio, fps, 0.5f, 0.0f);
+		}
+	} else {
+		setAccel(m_acceleration, inputVec, massRatio, fps, 0.5f, 0.0f);
+	}
+
+	if (op->isNavi() && !isNavi()) {
+		if (!isPiki()) {
+			setOpAccel(op->m_acceleration, inputVec, massRatioOp, fps, 0.5f, 0.0f);
+		}
+	} else {
+		setOpAccel(op->m_acceleration, inputVec, massRatioOp, fps, 0.5f, 0.0f);
+	}
+
+	f32 accelMag = m_acceleration.length();
+	if (accelMag > 200.0f) {
+		f32 accelNorm = 200.0f * (1.0f / accelMag);
+		m_acceleration.x *= accelNorm;
+		m_acceleration.y *= accelNorm;
+		m_acceleration.z *= accelNorm;
+	}
+
+	f32 opAccelMag = op->m_acceleration.length();
+	if (opAccelMag > 200.0f) {
+		f32 opAccelNorm = 200.0f * (1.0f / opAccelMag);
+		op->m_acceleration.x *= opAccelNorm;
+		op->m_acceleration.y *= opAccelNorm;
+		op->m_acceleration.z *= opAccelNorm;
+	}
+
+	if (flickCheck) {
+		m_acceleration     = Vector3f(0.0f);
+		op->m_acceleration = Vector3f(0.0f);
+	}
+
+	CollEvent collEvent1(op, part2, part1);
+
+	Vector3f sep = vel1 - vel2;
+	f32 sepDot   = sep.x * vec.x + sep.y * vec.y + sep.z * vec.z;
+	collisionCallback(collEvent1);
+
+	CollEvent collEvent2(this, part1, part2);
+
+	op->collisionCallback(collEvent2);
+	if (sepDot <= 0.0f) {
 		if (isDebugCollision()) {
 			getCreatureName();
 			op->getCreatureName();
 		}
-
-		bool flickCheck = false;
-		if (!isCollisionFlick() || !op->isCollisionFlick()) {
-			flickCheck = true;
-		}
-
-		Vector3f vec(-inputVec.x, -inputVec.y, -inputVec.z);
-
-		f32 vecLen = vec.normalise();
-
-		if (vecLen == 0.0f) {
-			vec.x = 0.0f;
-			vec.y = 0.0f;
-			vec.z = 1.0f;
-		}
-
-		Vector3f vel1;
-		Vector3f vel2;
-		Vector3f disp1 = part1->m_position + (vec * part1->m_radius);
-		Vector3f disp2 = part2->m_position - (vec * part2->m_radius);
-
-		getVelocityAt(disp1, vel1);
-		op->getVelocityAt(disp2, vel2);
-
-		f32 massRatio;
-		f32 massRatioOp;
-
-		f32 sum = m_mass + op->m_mass;
-		if (sum > 0.0f) {
-			massRatio   = m_mass / sum;
-			massRatioOp = 1.0f - massRatio;
-		} else {
-			massRatio = massRatioOp = 0.5f;
-		}
-
-		f32 fps = 1.0f / sys->m_deltaTime;
-		if (isNavi() && !op->isNavi()) {
-			if (!op->isPiki()) {
-				addAccel(m_acceleration, inputVec, massRatio, fps, 0.5f, 0.0f);
-			}
-		} else {
-			setAccel(m_acceleration, inputVec, massRatio, fps, 0.5f, 0.0f);
-		}
-
-		if (op->isNavi() && !isNavi()) {
-			if (!isPiki()) {
-				setOpAccel(op->m_acceleration, inputVec, massRatioOp, fps, 0.5f, 0.0f);
-			}
-		} else {
-			setOpAccel(op->m_acceleration, inputVec, massRatioOp, fps, 0.5f, 0.0f);
-		}
-
-		f32 accelMag = m_acceleration.length();
-		if (accelMag > 200.0f) {
-			f32 accelNorm = 200.0f * (1.0f / accelMag);
-			m_acceleration.x *= accelNorm;
-			m_acceleration.y *= accelNorm;
-			m_acceleration.z *= accelNorm;
-		}
-
-		f32 opAccelMag = op->m_acceleration.length();
-		if (opAccelMag > 200.0f) {
-			f32 opAccelNorm = 200.0f * (1.0f / opAccelMag);
-			op->m_acceleration.x *= opAccelNorm;
-			op->m_acceleration.y *= opAccelNorm;
-			op->m_acceleration.z *= opAccelNorm;
-		}
-
+	} else {
+		isDebugCollision();
 		if (flickCheck) {
-			m_acceleration     = Vector3f(0.0f);
-			op->m_acceleration = Vector3f(0.0f);
-		}
-
-		CollEvent collEvent1(op, part2, part1);
-
-		Vector3f sep = vel1 - vel2;
-		f32 sepDot   = sep.x * vec.x + sep.y * vec.y + sep.z * vec.z;
-		collisionCallback(collEvent1);
-
-		CollEvent collEvent2(this, part1, part2);
-
-		op->collisionCallback(collEvent2);
-		if (sepDot <= 0.0f) {
-			if (isDebugCollision()) {
-				getCreatureName();
-				op->getCreatureName();
-			}
-		} else {
 			isDebugCollision();
-			if (flickCheck) {
-				isDebugCollision();
-				return;
-			}
-
-			f32 naviFactor = 0.1f;
-			if (isNavi() || op->isNavi()) {
-				naviFactor = 0.0f;
-			}
-
-			bool checkSum2 = false;
-			f32 factor5    = -(1.0f + naviFactor) * sepDot;
-			f32 sum2       = m_mass + op->m_mass;
-			if (sum2 == 0.0f) {
-				sum2      = 2.0f;
-				checkSum2 = true;
-			}
-
-			sum2 += getAngularEffect(disp1, vec);
-			sum2 += op->getAngularEffect(disp2, vec);
-			f32 posFac           = factor5 / (sum2);
-			Vector3f updatedVec1 = vec * posFac;
-			Vector3f updatedVec2 = vec * -posFac;
-
-			if (!checkSum2) {
-				applyImpulse(disp1, updatedVec1);
-				op->applyImpulse(disp2, updatedVec2);
-				return;
-			}
-
-			Vector3f updatedVel1 = getVelocity();
-			updatedVel1          = Vector3f(updatedVel1.x + updatedVec1.x, updatedVel1.y + updatedVec1.y, updatedVel1.z + updatedVec1.z);
-			setVelocity(updatedVel1);
-
-			Vector3f updatedVel2 = op->getVelocity();
-			updatedVel2          = Vector3f(updatedVel2.x + updatedVec2.x, updatedVel2.y + updatedVec2.y, updatedVel2.z + updatedVec2.z);
-			op->setVelocity(updatedVel2);
+			return;
 		}
+
+		f32 naviFactor = 0.1f;
+		if (isNavi() || op->isNavi()) {
+			naviFactor = 0.0f;
+		}
+
+		bool checkSum2 = false;
+		f32 factor5    = -(1.0f + naviFactor) * sepDot;
+		f32 sum2       = m_mass + op->m_mass;
+		if (sum2 == 0.0f) {
+			sum2      = 2.0f;
+			checkSum2 = true;
+		}
+
+		sum2 += getAngularEffect(disp1, vec);
+		sum2 += op->getAngularEffect(disp2, vec);
+		f32 posFac           = factor5 / (sum2);
+		Vector3f updatedVec1 = vec * posFac;
+		Vector3f updatedVec2 = vec * -posFac;
+
+		if (!checkSum2) {
+			applyImpulse(disp1, updatedVec1);
+			op->applyImpulse(disp2, updatedVec2);
+			return;
+		}
+
+		Vector3f updatedVel1 = getVelocity();
+		updatedVel1          = Vector3f(updatedVel1.x + updatedVec1.x, updatedVel1.y + updatedVec1.y, updatedVel1.z + updatedVec1.z);
+		setVelocity(updatedVel1);
+
+		Vector3f updatedVel2 = op->getVelocity();
+		updatedVel2          = Vector3f(updatedVel2.x + updatedVec2.x, updatedVel2.y + updatedVec2.y, updatedVel2.z + updatedVec2.z);
+		op->setVelocity(updatedVel2);
 	}
 }
 

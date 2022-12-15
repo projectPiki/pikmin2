@@ -1114,7 +1114,7 @@ void Pellet::onKill(CreatureKillArg* killArg)
 		m_lodSphere.m_position = Vector3f(0.0f);
 		m_lodSphere.m_radius   = 128000.0f;
 		m_scale                = Vector3f(1.0f);
-		PSMTXCopy(m_mainMatrix.m_matrix.mtxView, m_model->m_j3dModel->_24);
+		PSMTXCopy(m_mainMatrix.m_matrix.mtxView, m_model->m_j3dModel->m_posMtx);
 		m_scale.setTVec(m_model->m_j3dModel->m_modelScale);
 		m_model->clearAnimatorAll();
 		m_model->m_j3dModel->calc();
@@ -3886,7 +3886,7 @@ void PelletMgr::setMovieDraw(bool check) { m_movieDrawDisabled = !check; }
 void Pellet::doSimulation(float constraint)
 {
 	Creature::CheckHellArg hellArg;
-	hellArg._00 = false;
+	hellArg.m_isKillPiki = false;
 	if (checkHell(hellArg) == 2) {
 		Vector3f position   = getPosition();
 		Vector3f wpPosition = position;
@@ -4067,7 +4067,7 @@ void Pellet::entryShape()
 {
 	if (m_pelletView == nullptr) {
 		if (m_model) {
-			PSMTXCopy(m_mainMatrix.m_matrix.mtxView, m_model->m_j3dModel->_24);
+			PSMTXCopy(m_mainMatrix.m_matrix.mtxView, m_model->m_j3dModel->m_posMtx);
 			m_scale.setTVec(m_model->m_j3dModel->m_modelScale);
 			m_model->m_j3dModel->calc();
 			m_collTree->update();
@@ -5118,7 +5118,7 @@ void Pellet::onStartCapture()
 
 	if (m_model) {
 		m_mainMatrix.makeT(m_pelletPosition);
-		PSMTXCopy(m_mainMatrix.m_matrix.mtxView, m_model->m_j3dModel->_24);
+		PSMTXCopy(m_mainMatrix.m_matrix.mtxView, m_model->m_j3dModel->m_posMtx);
 
 		m_scale.setTVec(m_model->m_j3dModel->m_modelScale);
 		m_model->m_j3dModel->calc();
@@ -5161,7 +5161,7 @@ void Pellet::onUpdateCapture(Matrixf& matrix)
 
 	if (m_pelletView == nullptr) {
 		if (m_model) {
-			PSMTXCopy(m_mainMatrix.m_matrix.mtxView, m_model->m_j3dModel->_24);
+			PSMTXCopy(m_mainMatrix.m_matrix.mtxView, m_model->m_j3dModel->m_posMtx);
 			J3DModel* j3dModel = m_model->m_j3dModel;
 			m_scale.setTVec(m_model->m_j3dModel->m_modelScale);
 			m_model->m_j3dModel->calc();

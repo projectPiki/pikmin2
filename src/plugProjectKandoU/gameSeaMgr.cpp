@@ -421,7 +421,7 @@ void AABBWaterBox::calcMatrix(void)
 		Vector3f v1(_3C, 1.0f, _40);
 		Matrixf mtx;
 		mtx.makeSRT(v1, Vector3f::zero, _44);
-		PSMTXCopy(mtx.m_matrix.mtxView, m_model->m_j3dModel->_24);
+		PSMTXCopy(mtx.m_matrix.mtxView, m_model->m_j3dModel->m_posMtx);
 		m_model->m_j3dModel->calc();
 	}
 }

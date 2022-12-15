@@ -51,7 +51,8 @@ struct J3DUMtxCacheRef : public J3DUMtxCacheBase {
 		} else {
 			J3DUMtxAnmCacheTable* table = getTable();
 			for (int i = 0; i < jointCount; i++) {
-				PSMTXConcat(model->_24, table->m_matrices[i + table->_00 * table->m_jointCount], model->m_mtxBuffer->m_worldMatrices[i]);
+				PSMTXConcat(model->m_posMtx, table->m_matrices[i + table->_00 * table->m_jointCount],
+				            model->m_mtxBuffer->m_worldMatrices[i]);
 			}
 		}
 	}

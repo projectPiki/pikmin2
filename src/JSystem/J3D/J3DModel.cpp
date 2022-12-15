@@ -53,7 +53,7 @@ void J3DModel::initialize()
 	m_modelScale.x    = 1.0f;
 	m_modelScale.y    = 1.0f;
 	m_modelScale.z    = 1.0f;
-	PSMTXIdentity(_24);
+	PSMTXIdentity(m_posMtx);
 	PSMTXIdentity(_54);
 	m_mtxBuffer    = nullptr;
 	m_matPackets   = nullptr;
@@ -739,7 +739,7 @@ void J3DModel::calc()
 	} else {
 		J3DJointTree* jointTree = &m_modelData->m_jointTree;
 		j3dSys._38              = this;
-		jointTree->calc(m_mtxBuffer, m_modelScale, _24);
+		jointTree->calc(m_mtxBuffer, m_modelScale, m_posMtx);
 	}
 	if (m_modelData->m_jointTree.m_envelopeCnt != 0 && (_08 & 0x10) == 0 && (m_modelData->m_modelLoaderFlags & J3DMLF_09) == 0) {
 		m_mtxBuffer->calcWeightEnvelopeMtx();

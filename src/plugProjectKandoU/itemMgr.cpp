@@ -748,7 +748,7 @@ void BaseItem::doAnimation()
 		makeTrMatrix();
 	}
 	if (m_model) {
-		PSMTXCopy(m_mainMatrix.m_matrix.mtxView, m_model->m_j3dModel->_24);
+		PSMTXCopy(m_mainMatrix.m_matrix.mtxView, m_model->m_j3dModel->m_posMtx);
 		m_model->m_j3dModel->calc();
 	}
 	update();

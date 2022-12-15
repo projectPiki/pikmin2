@@ -178,14 +178,14 @@ SweepPrune::Object::Object()
  */
 SweepPrune::World::World()
 {
-	_00.m_radius = 0.0f;
-	_00.m_object = nullptr;
-	_00.m_next   = nullptr;
-	_00.m_prev   = nullptr;
-	_14.m_radius = 0.0f;
-	_14.m_object = nullptr;
-	_14.m_next   = nullptr;
-	_14.m_prev   = nullptr;
+	m_xNode.m_radius = 0.0f;
+	m_xNode.m_object = nullptr;
+	m_xNode.m_next   = nullptr;
+	m_xNode.m_prev   = nullptr;
+	m_zNode.m_radius = 0.0f;
+	m_zNode.m_object = nullptr;
+	m_zNode.m_next   = nullptr;
+	m_zNode.m_prev   = nullptr;
 }
 
 /*
@@ -209,7 +209,7 @@ void SweepPrune::World::resolve(SweepPrune::World::ResolveArg& arg)
 	arg._04 = 0;
 
 	Object* o1;
-	Node* n1 = _00.m_prev;
+	Node* n1 = m_xNode.m_prev;
 	Node* prev;
 
 	while (n1) {

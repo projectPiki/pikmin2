@@ -43,8 +43,8 @@ struct World {
 	~World();
 	void resolve(ResolveArg&);
 
-	Node _00;
-	Node _14;
+	Node m_xNode;
+	Node m_zNode;
 };
 } // namespace SweepPrune
 

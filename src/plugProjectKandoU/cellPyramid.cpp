@@ -1368,11 +1368,11 @@ void CellPyramid::clear()
 	for (int i = 0; i < m_layerCount; i++) {
 		m_layers[i].clear();
 	}
-	m_passID   = 0;
-	_00.m_next = 0;
-	_00.m_prev = 0;
-	_14.m_next = 0;
-	_14.m_prev = 0;
+	m_passID       = 0;
+	m_xNode.m_next = 0;
+	m_xNode.m_prev = 0;
+	m_zNode.m_next = 0;
+	m_zNode.m_prev = 0;
 }
 
 /*

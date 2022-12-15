@@ -93,7 +93,7 @@ void Obj::onInit(CreatureInitArg* initArg)
 
 	m_mainMatrix.makeSRT(m_scale, m_rotation, m_position);
 
-	PSMTXCopy(m_mainMatrix.m_matrix.mtxView, m_model->m_j3dModel->_24);
+	PSMTXCopy(m_mainMatrix.m_matrix.mtxView, m_model->m_j3dModel->m_posMtx);
 	m_model->m_j3dModel->calc();
 
 	m_efxLight->m_mtx = m_model->getJoint("core1")->getWorldMatrix();
@@ -199,7 +199,7 @@ void Obj::doAnimationCullingOff()
 	}
 
 	if (check || !isStopMotion()) {
-		PSMTXCopy(m_mainMatrix.m_matrix.mtxView, m_model->m_j3dModel->_24);
+		PSMTXCopy(m_mainMatrix.m_matrix.mtxView, m_model->m_j3dModel->m_posMtx);
 		m_model->m_j3dModel->calc();
 		m_collTree->update();
 	}

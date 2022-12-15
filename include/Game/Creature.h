@@ -97,11 +97,11 @@ struct CreatureKillArg {
 struct Creature : public CellObject {
 	struct CheckHellArg {
 		inline CheckHellArg()
-		    : _00(true)
+		    : m_isKillPiki(true)
 		{
 		}
 
-		bool _00; // _00
+		bool m_isKillPiki; // _00
 	};
 
 	Creature();
@@ -294,6 +294,8 @@ struct Creature : public CellObject {
 
 		return false;
 	}
+
+	inline void killInline(Game::CreatureKillArg* arg);
 
 	void applyAirDrag(f32, f32, f32);
 	f32 calcSphereDistance(Creature*);

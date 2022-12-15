@@ -378,7 +378,7 @@ void EnemyBaseFSM::LivingState::simulation(EnemyBase* enemy, f32 constraint)
 	}
 
 	Creature::CheckHellArg hellArg;
-	hellArg._00 = false;
+	hellArg.m_isKillPiki = false;
 	if (enemy->checkHell(hellArg) == 2) {
 		enemy->getCreatureName();
 		enemy->getCreatureID();
@@ -1538,7 +1538,7 @@ void EnemyBase::doAnimationCullingOff()
 	}
 
 	sys->m_timers->_start("e-calc", true);
-	PSMTXCopy(m_mainMatrix.m_matrix.mtxView, m_model->m_j3dModel->_24);
+	PSMTXCopy(m_mainMatrix.m_matrix.mtxView, m_model->m_j3dModel->m_posMtx);
 	m_model->m_j3dModel->calc();
 	sys->m_timers->_stop("e-calc");
 	m_collTree->update();

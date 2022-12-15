@@ -45,7 +45,7 @@ void PartsView::doDirectDraw(Graphics&) { }
 void PartsView::doAnimation()
 {
 	if (m_model) {
-		PSMTXCopy(_20, m_model->m_j3dModel->_24);
+		PSMTXCopy(_20, m_model->m_j3dModel->m_posMtx);
 		m_model->m_j3dModel->calc();
 		m_model->m_j3dModel->entry();
 	}

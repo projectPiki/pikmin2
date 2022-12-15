@@ -60,7 +60,7 @@ void Plants::Obj::onInit(CreatureInitArg* initArg)
 	SysShape::Animator* animator                                       = &m_animator->getAnimator();
 	SysShape::Model* model                                             = m_model;
 	model->m_j3dModel->m_modelData->m_jointTree.m_joints[0]->m_mtxCalc = static_cast<J3DMtxCalcAnmBase*>(animator->getCalc());
-	PSMTXCopy(m_mainMatrix.m_matrix.mtxView, m_model->m_j3dModel->_24);
+	PSMTXCopy(m_mainMatrix.m_matrix.mtxView, m_model->m_j3dModel->m_posMtx);
 	m_model->m_j3dModel->calc();
 
 	setCollisionFlick(false);
@@ -121,7 +121,7 @@ void Plants::Obj::doAnimationCullingOff()
 		doAnimationUpdateAnimator();
 		if (m_lod.m_flags & AILOD_FLAG_NEED_SHADOW) {
 			m_mainMatrix.makeSRT(m_scale, m_rotation, m_position);
-			PSMTXCopy(m_mainMatrix.m_matrix.mtxView, m_model->m_j3dModel->_24);
+			PSMTXCopy(m_mainMatrix.m_matrix.mtxView, m_model->m_j3dModel->m_posMtx);
 			m_model->m_j3dModel->calc();
 		}
 	}

@@ -1204,7 +1204,7 @@ void ItemHole::Item::onSetPosition()
 	m_boundingSphere.m_radius   = 50.0f;
 	_1E0                        = new efx::WarpZone();
 	makeTrMatrix();
-	PSMTXCopy(m_mainMatrix.m_matrix.mtxView, m_model->m_j3dModel->_24);
+	PSMTXCopy(m_mainMatrix.m_matrix.mtxView, m_model->m_j3dModel->m_posMtx);
 	m_model->m_j3dModel->calc();
 	Matrixf* worldMatrix = m_model->m_joints[0]->getWorldMatrix();
 
