@@ -514,7 +514,7 @@ struct FollowVectorFieldActionArg : public ActionArg {
 	{
 	}
 
-	virtual char* getName(); // _08 (weak)
+	virtual char* getName(); // _08 (weak) uncomment this when linking aiBreakGate.cpp
 	// {
 	// 	return "FollowVectorFieldActionArg";
 	// }

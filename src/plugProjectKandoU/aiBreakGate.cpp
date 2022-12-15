@@ -62,7 +62,7 @@ void ActBreakGate::initFollow()
 
 static const char stickAttackArgName[] = "StickAttackActionArg";
 static const char gotoPosArgName[]     = "GotoPosActionArg";
-static const char followFieldArgName[] = "FollowVectorFieldActionArg";
+static const char followFieldArgName[] = "FollowVectorFieldActionArg"; // delete this when linking aiBreakGate.cpp
 
 /*
  * --INFO--
