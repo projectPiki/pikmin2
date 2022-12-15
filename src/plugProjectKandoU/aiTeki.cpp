@@ -127,7 +127,7 @@ void ActTeki::init(PikiAI::ActionArg* arg)
 	_28 = 1;
 	_1C = -1;
 
-	_24 = 0.0f;
+	m_moveSpeed = 0.0f;
 
 	m_toPanicFinish = false;
 	if (m_followingTeki->isTeki() && m_followingTeki->getEnemyTypeID() == Game::EnemyTypeID::EnemyID_LeafChappy) {
@@ -207,7 +207,7 @@ void ActTeki::makeTarget()
 	Vector3f sourcePos = m_parent->getPosition();
 	Vector3f destPos   = m_followingTeki->getPosition();
 
-	f32 distance = _distanceBetween(sourcePos, destPos);
+	f32 distance = _distanceBetween(destPos, sourcePos);
 	if (distance <= 0.0f) {
 		distance = 0.0f;
 	}
@@ -217,17 +217,18 @@ void ActTeki::makeTarget()
 		return;
 	}
 
-	float dist = 12800.0f;
-	if (m_followMark) {
-		dist = _distanceBetween(sourcePos, destPos);
+	Game::Footmark* currentFm = m_followMark;
+	float dist                = 12800.0f;
+	if (currentFm) {
+		dist = _distanceBetween(destPos, currentFm->m_position);
 	}
 
 	m_followMark = fm->get(0);
 	for (int i = m_followMark->m_flags; i >= 0; i--) {
 		Game::Footmark* curMark = fm->get(i);
 
-		f32 curDist = _distanceBetween(sourcePos, curMark->m_position);
-		if (curDist <= 0.0f) {
+		f32 curDist = _distanceBetween(destPos, curMark->m_position);
+		if (curDist < 0.0f) {
 			curDist = 0.0f;
 		}
 
@@ -237,14 +238,16 @@ void ActTeki::makeTarget()
 		}
 	}
 
-	if (m_followMark) {
-		_28 = 0;
+	if (!m_followMark) {
+		return;
+	}
 
-		if (distance > 100.0f) {
-			_24 = 1.0f;
-		} else {
-			_24 = 0.5 * randFloat() + 0.5f;
-		}
+	_28 = 0;
+
+	if (distance > 100.0f) {
+		m_moveSpeed = 1.0f;
+	} else {
+		m_moveSpeed = (0.5f * randFloat()) + 0.5f;
 	}
 }
 
@@ -252,6 +255,7 @@ void ActTeki::makeTarget()
  * --INFO--
  * Address:	80212FD4
  * Size:	000344
+ * TODO
  */
 void ActTeki::test_0()
 {
@@ -260,16 +264,51 @@ void ActTeki::test_0()
 		Vector3f sourcePos = m_parent->getPosition();
 		Vector3f destPos   = m_followingTeki->getPosition();
 
-		f32 distance = (sourcePos - destPos).length();
+		f32 distance = _distanceBetween2(sourcePos, destPos);
 
 		_20 -= sys->m_deltaTime;
 
 		Game::Piki* piki = m_parent;
 		piki->m_velocity = Vector3f(0, 0, 0);
 
+		if (_20 <= 0.0f || distance > 100.0f) {
+			makeTarget();
+		}
+
 		break;
 	}
-	case 0:
+	case 0: {
+		Vector3f sourcePos = m_parent->getPosition();
+		Vector3f destPos   = m_followMark->m_position;
+
+		Vector3f dir = destPos - sourcePos;
+		f32 dist     = dir.normalise();
+
+		if (dist > 100.0f) {
+			makeTarget();
+		} else if (dist < 50.0f) {
+			Game::Piki* piki = m_parent;
+			piki->m_velocity = Vector3f(0, 0, 0);
+			_28              = 1;
+			setTimer();
+			return;
+		}
+
+		if (dist < 50.0f) {
+			Vector3f velDir = m_followingTeki->getVelocity();
+
+			_normalise(velDir);
+
+			dir *= 0.5f;
+			dir += velDir * 0.5f;
+
+			m_parent->setSpeed(m_moveSpeed, dir);
+			return;
+		}
+
+		m_parent->setSpeed(m_moveSpeed, dir);
+		break;
+	}
 	default:
 		break;
 	}
