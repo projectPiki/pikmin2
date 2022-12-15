@@ -329,16 +329,32 @@ struct ObjSMenuItem : public ObjSMenuBase {
 	u8 _CC[0x8];                             // _CC, unknown
 
 	static struct StaticValues {
-		inline StaticValues() { }
+		inline StaticValues()
+		{
+			_00.r = 0;
+			_00.g = 110;
+			_00.b = 176;
+			_00.a = 255;
+			_04.r = 0;
+			_04.g = 0;
+			_04.b = 100;
+			_04.a = 255;
+			_08   = -27.0f;
+			_0C   = -27.0f;
+			_10   = -27.0f;
+			_14   = -27.0f;
+			_18   = 0.95f;
+			_1C   = 0.9f;
+		}
 
-		f32 _00; // _00
-		f32 _04; // _04
-		f32 _08;
-		f32 _0C;
-		f32 _10;
-		f32 _14;
-		f32 _18;
-		f32 _1C;
+		JUtility::TColor _00; // _00
+		JUtility::TColor _04; // _04
+		f32 _08;              // _08
+		f32 _0C;              // _0C
+		f32 _10;              // _10
+		f32 _14;              // _14
+		f32 _18;              // _18
+		f32 _1C;              // _1C
 	} msVal;
 };
 
