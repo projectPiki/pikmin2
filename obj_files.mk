@@ -932,7 +932,7 @@ OGAWA:=\
 	$(BUILD_DIR)/asm/plugProjectOgawaU/ogTitleMsg.o\
 	$(BUILD_DIR)/src/plugProjectOgawaU/ogAngleMgr.o\
 	$(BUILD_DIR)/src/plugProjectOgawaU/ogSceneSMenuCont.o\
-	$(BUILD_DIR)/asm/plugProjectOgawaU/ogObjSMenuCont.o\
+	$(BUILD_DIR)/src/plugProjectOgawaU/ogObjSMenuCont.o\
 
 HIKINO:=\
 	$(BUILD_DIR)/asm/plugProjectHikinoU/PSSeq.o\

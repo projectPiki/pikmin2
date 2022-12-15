@@ -277,18 +277,19 @@ struct ObjSMenuCont : public ObjSMenuBase {
 	// _18     = VTBL2
 	// _00-_A8 = ObjSMenuBase
 	og::Screen::DispMemberSMenuCont* m_disp; // _A8
-	P2DScreen::Mgr_tuning* m_screenCont;              // _AC
+	P2DScreen::Mgr_tuning* m_screenCont;     // _AC
 	og::Screen::AnimGroup* m_animGroup;      // _B0
 	u8 _B4[0x8];                             // _B4, unknown
 
 	static struct StaticValues {
-		inline StaticValues() {
+		inline StaticValues()
+		{
 			m_scaleX = 1.0f;
 			m_scaleY = 1.0f;
 		}
 
-		f32 m_scaleX;                                 // _00
-		f32 m_scaleY;                         // _04
+		f32 m_scaleX; // _00
+		f32 m_scaleY; // _04
 	} msVal;
 };
 
