@@ -910,20 +910,20 @@ struct ActTeki : public Action, virtual SysShape::MotionListener {
 	// _00     = VTBL
 	// _00-_0C = Action
 	// _0C-_10 = MotionListener*
-	Game::EnemyBase* m_attacking; // _10, unknown
-	bool m_toPanicFinish;         // _14
-	u8 _15;                       // _15
-	Game::Footmark* _18;          // _18
-	s32 _1C;                      // _1C
-	f32 _20;                      // _20
-	f32 _24;                      // _24
-	u32 _28;                      // _28
-	Vector3f _2C;                 // _2C
-	f32 _38;                      // _38
-	f32 _3C;                      // _3C
-	f32 _40;                      // _40
-	f32 _44;                      // _44
-	                              // _48 = MotionListener
+	Game::EnemyBase* m_followingTeki; // _10, unknown
+	bool m_toPanicFinish;             // _14
+	bool m_toEmote;                   // _15
+	Game::Footmark* m_followMark;     // _18
+	s32 _1C;                          // _1C
+	f32 _20;                          // _20
+	f32 _24;                          // _24
+	u32 _28;                          // _28
+	Vector3f _2C;                     // _2C
+	f32 _38;                          // _38
+	f32 _3C;                          // _3C
+	f32 _40;                          // _40
+	f32 _44;                          // _44
+	                                  // _48 = MotionListener
 };
 
 struct ActTransportArg : public ActionArg {

@@ -97,9 +97,9 @@ namespace PikiAI {
 ActTeki::ActTeki(Game::Piki* p)
     : Action(p)
 {
-	m_name      = "Teki";
-	m_attacking = 0;
-	_18         = nullptr;
+	m_name          = "Teki";
+	m_followingTeki = 0;
+	m_followMark    = nullptr;
 }
 
 /*
@@ -112,7 +112,7 @@ void ActTeki::init(PikiAI::ActionArg* arg)
 	CreatureActionArg* cArg = static_cast<CreatureActionArg*>(arg);
 	P2ASSERTLINE(91, cArg);
 
-	m_attacking = static_cast<Game::EnemyBase*>(cArg->m_creature);
+	m_followingTeki = static_cast<Game::EnemyBase*>(cArg->m_creature);
 
 	_2C = Vector3f(0.0f, 0.0f, 0.0f);
 
@@ -120,9 +120,9 @@ void ActTeki::init(PikiAI::ActionArg* arg)
 	_3C = 0.0f;
 	_40 = 0.0f;
 
-	_44 = 0.0f;
-	_18 = 0;
-	_20 = 0.0f;
+	_44          = 0.0f;
+	m_followMark = 0;
+	_20          = 0.0f;
 
 	_28 = 1;
 	_1C = -1;
@@ -130,11 +130,11 @@ void ActTeki::init(PikiAI::ActionArg* arg)
 	_24 = 0.0f;
 
 	m_toPanicFinish = false;
-	if (m_attacking->isTeki() && m_attacking->getEnemyTypeID() == Game::EnemyTypeID::EnemyID_LeafChappy) {
+	if (m_followingTeki->isTeki() && m_followingTeki->getEnemyTypeID() == Game::EnemyTypeID::EnemyID_LeafChappy) {
 		m_toPanicFinish = true;
 	}
 
-	_15 = 0;
+	m_toEmote = false;
 	m_parent->startMotion(30, 30, nullptr, nullptr);
 }
 
@@ -145,7 +145,8 @@ void ActTeki::init(PikiAI::ActionArg* arg)
  */
 int ActTeki::exec()
 {
-	if (!m_attacking->isAlive()) {
+	// Panic after parent death
+	if (!m_followingTeki->isAlive()) {
 		if (m_toPanicFinish) {
 			m_toPanicFinish = false;
 
@@ -154,7 +155,6 @@ int ActTeki::exec()
 			}
 		}
 
-		// Bulbmin will panic after enemy death
 		if (m_parent->getStateID() != Game::PIKISTATE_Panic) {
 			Game::PanicStateArg arg;
 			arg.m_panicType = PIKIPANIC_Panic;
@@ -164,18 +164,21 @@ int ActTeki::exec()
 		return 1;
 	}
 
-	if (m_attacking->isFlying()) {
-		_15 = 1;
+	// If the beetle is flying, we will just wait around until he comes back
+	if (m_followingTeki->isFlying()) {
+		m_toEmote = true;
 		return 0;
-	} else if (m_attacking->isTeki() && m_attacking->m_events.m_flags[0].typeView & Game::EB_Bittered
-	           && m_attacking->getEnemyTypeID() == Game::EnemyTypeID::EnemyID_Fuefuki) {
-		_15 = 1;
+	}
+	// If the beetle is bittered, just wait until he comes back
+	else if (m_followingTeki->isTeki() && m_followingTeki->m_events.m_flags[0].typeView & Game::EB_Bittered
+	         && m_followingTeki->getEnemyTypeID() == Game::EnemyTypeID::EnemyID_Fuefuki) {
+		m_toEmote = true;
 		return 0;
 	}
 
 	// Reset the timer
 	Game::InteractFuefukiTimerReset timerReset(m_parent);
-	m_attacking->stimulate(timerReset);
+	m_followingTeki->stimulate(timerReset);
 	test_0();
 	return 1;
 }
@@ -187,7 +190,7 @@ int ActTeki::exec()
  */
 void ActTeki::emotion_success()
 {
-	if (_15) {
+	if (m_toEmote) {
 		Game::EmotionStateArg arg(EMOTE_Excitement);
 		m_parent->m_fsm->transit(m_parent, Game::PIKISTATE_Emotion, &arg);
 	}
@@ -202,25 +205,25 @@ void ActTeki::emotion_success()
 void ActTeki::makeTarget()
 {
 	Vector3f sourcePos = m_parent->getPosition();
-	Vector3f destPos   = m_attacking->getPosition();
+	Vector3f destPos   = m_followingTeki->getPosition();
 
 	f32 distance = _distanceBetween(sourcePos, destPos);
 	if (distance <= 0.0f) {
 		distance = 0.0f;
 	}
 
-	Game::Footmarks* fm = m_attacking->getFootmarks();
+	Game::Footmarks* fm = m_followingTeki->getFootmarks();
 	if (fm == nullptr) {
 		return;
 	}
 
 	float dist = 12800.0f;
-	if (_18) {
+	if (m_followMark) {
 		dist = _distanceBetween(sourcePos, destPos);
 	}
 
-	_18 = fm->get(0);
-	for (int i = _18->m_flags; i >= 0; i--) {
+	m_followMark = fm->get(0);
+	for (int i = m_followMark->m_flags; i >= 0; i--) {
 		Game::Footmark* curMark = fm->get(i);
 
 		f32 curDist = _distanceBetween(sourcePos, curMark->m_position);
@@ -229,12 +232,12 @@ void ActTeki::makeTarget()
 		}
 
 		if (dist > curDist && curDist < 100.0f) {
-			_18 = curMark;
+			m_followMark = curMark;
 			break;
 		}
 	}
 
-	if (_18) {
+	if (m_followMark) {
 		_28 = 0;
 
 		if (distance > 100.0f) {
@@ -252,6 +255,25 @@ void ActTeki::makeTarget()
  */
 void ActTeki::test_0()
 {
+	switch (_28) {
+	case 1: {
+		Vector3f sourcePos = m_parent->getPosition();
+		Vector3f destPos   = m_followingTeki->getPosition();
+
+		f32 distance = (sourcePos - destPos).length();
+
+		_20 -= sys->m_deltaTime;
+
+		Game::Piki* piki = m_parent;
+		piki->m_velocity = Vector3f(0, 0, 0);
+
+		break;
+	}
+	case 0:
+	default:
+		break;
+	}
+
 	/*
 	stwu     r1, -0x80(r1)
 	mflr     r0
@@ -504,12 +526,12 @@ lbl_802132EC:
  */
 void ActTeki::doDirectDraw(Graphics& gfx)
 {
-	if (_18) {
+	if (m_followMark) {
 		gfx._084 = -1;
 		gfx._085 = 100;
 		gfx._086 = 10;
 		gfx._087 = -1;
-		gfx.drawSphere(_18->m_position, 10.0f);
+		gfx.drawSphere(m_followMark->m_position, 10.0f);
 	}
 }
 
@@ -521,7 +543,7 @@ void ActTeki::doDirectDraw(Graphics& gfx)
 void ActTeki::setTimer()
 {
 	Vector3f thisPos = m_parent->getPosition();
-	Vector3f themPos = m_attacking->getPosition();
+	Vector3f themPos = m_followingTeki->getPosition();
 
 	// INLINE, REGSWAPS
 	f32 dist = _distanceBetween(thisPos, themPos);
@@ -551,7 +573,7 @@ void ActTeki::cleanup() { }
 void ActTeki::collisionCallback(Game::Piki* piki, Game::CollEvent& event)
 {
 	Vector3f thisPos = m_parent->getPosition();
-	Vector3f themPos = m_attacking->getPosition();
+	Vector3f themPos = m_followingTeki->getPosition();
 
 	// INLINE, REGSWAPS
 	// wtf?
