@@ -216,9 +216,9 @@ inline f32 stickMagnitude(Vector3f& vec)
 inline f32 anotherLength(Vector3f& vec)
 {
 	Vector3f a = vec;
-	a.x *= a.x;
+	a.y *= a.y;
 	a.z *= a.z;
-	return _sqrtf(a.x + a.y * a.y + a.z);
+	return _sqrtf(a.y + a.x * a.x + a.z);
 }
 
 inline void _normalise(Vector3f& vec)

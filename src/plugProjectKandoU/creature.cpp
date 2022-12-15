@@ -264,8 +264,7 @@ f32 Creature::calcSphereDistance(Creature* them)
 	Sys::Sphere theirBounds, myBounds;
 	them->getBoundingSphere(theirBounds);
 	getBoundingSphere(myBounds);
-	Vector3f sepVec = Vector3f(myBounds.m_position.y - theirBounds.m_position.y, myBounds.m_position.x - theirBounds.m_position.x,
-	                           myBounds.m_position.z - theirBounds.m_position.z);
+	Vector3f sepVec = myBounds.m_position - theirBounds.m_position;
 	return anotherLength(sepVec) - (myBounds.m_radius + theirBounds.m_radius);
 }
 
@@ -592,7 +591,7 @@ void Creature::checkCollision(CellObject* cellObj)
 	}
 
 	bool objCheck = true;
-	if (!cellObj->isPiki() && !cellObj->isNavi()) {
+	if (!static_cast<Creature*>(cellObj)->isPiki() && !static_cast<Creature*>(cellObj)->isNavi()) {
 		objCheck = false;
 	}
 

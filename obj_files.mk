@@ -482,7 +482,7 @@ KANDO:=\
 	$(BUILD_DIR)/src/plugProjectKandoU/pikiAnimator.o\
 	$(BUILD_DIR)/asm/plugProjectKandoU/collinfo.o\
 	$(BUILD_DIR)/asm/plugProjectKandoU/gameDynamics.o\
-	$(BUILD_DIR)/asm/plugProjectKandoU/creature.o\
+	$(BUILD_DIR)/src/plugProjectKandoU/creature.o\
 	$(BUILD_DIR)/asm/plugProjectKandoU/fakePiki.o\
 	$(BUILD_DIR)/asm/plugProjectKandoU/navi.o\
 	$(BUILD_DIR)/asm/plugProjectKandoU/piki.o\
