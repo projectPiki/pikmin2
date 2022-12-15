@@ -267,7 +267,7 @@ float CellObject::calcCollisionDistance(CellObject* them)
 	getBoundingSphere(ourBounds);
 	them->getBoundingSphere(theirBounds);
 	Vector3f sepVec = ourBounds.m_position - theirBounds.m_position;
-	f32 dist        = _lenVec2D(sepVec); // regswaps
+	f32 dist        = _length(sepVec); // regswaps
 	return dist - (ourBounds.m_radius + theirBounds.m_radius);
 }
 

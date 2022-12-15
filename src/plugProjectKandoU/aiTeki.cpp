@@ -204,7 +204,7 @@ void ActTeki::makeTarget()
 	Vector3f sourcePos = m_parent->getPosition();
 	Vector3f destPos   = m_attacking->getPosition();
 
-	f32 distance = _distVec2D(sourcePos, destPos);
+	f32 distance = _distanceBetween(sourcePos, destPos);
 	if (distance <= 0.0f) {
 		distance = 0.0f;
 	}
@@ -216,14 +216,14 @@ void ActTeki::makeTarget()
 
 	float dist = 12800.0f;
 	if (_18) {
-		dist = _distVec2D(sourcePos, destPos);
+		dist = _distanceBetween(sourcePos, destPos);
 	}
 
 	_18 = fm->get(0);
 	for (int i = _18->m_flags; i >= 0; i--) {
 		Game::Footmark* curMark = fm->get(i);
 
-		f32 curDist = _distVec2D(sourcePos, curMark->m_position);
+		f32 curDist = _distanceBetween(sourcePos, curMark->m_position);
 		if (curDist <= 0.0f) {
 			curDist = 0.0f;
 		}
@@ -524,7 +524,7 @@ void ActTeki::setTimer()
 	Vector3f themPos = m_attacking->getPosition();
 
 	// INLINE, REGSWAPS
-	f32 dist = _distVec2D(thisPos, themPos);
+	f32 dist = _distanceBetween(thisPos, themPos);
 
 	f32 weight;
 	if (dist < 100.0f) {

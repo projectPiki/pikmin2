@@ -213,7 +213,7 @@ inline f32 stickMagnitude(Vector3f& vec)
 	return _sqrtf(a.x * a.x + a.y * a.y + a.z);
 }
 
-inline f32 _lenVec2D(Vector3f& vec)
+inline f32 _length(Vector3f& vec)
 {
 	Vector3f a = vec;
 	a.y *= a.y;
@@ -221,10 +221,10 @@ inline f32 _lenVec2D(Vector3f& vec)
 	return _sqrtf(a.y + a.x * a.x + a.z);
 }
 
-inline f32 _distVec2D(Vector3f& me, Vector3f& them)
+inline f32 _distanceBetween(Vector3f& me, Vector3f& them)
 {
 	Vector3f sep = me - them;
-	return _lenVec2D(sep);
+	return _length(sep);
 }
 
 inline void _normalise(Vector3f& vec)
