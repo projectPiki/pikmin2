@@ -20,14 +20,14 @@ struct TRenderingProcessorBase : public JMessage::TRenderingProcessor {
 	virtual ~TRenderingProcessorBase();              // _08 (weak)
 	virtual void do_character(int);                  // _10 (weak)
 	virtual bool do_tag(u32, const void*, u32);      // _14
-	virtual void tagColor(const void*, u32);         // _48 (weak)
-	virtual void tagSize(const void*, u32);          // _4C (weak)
-	virtual void tagRuby(const void*, u32);          // _50 (weak)
-	virtual void tagFont(const void*, u32);          // _54 (weak)
-	virtual void tagImage(u16, const void*, u32);    // _58 (weak)
-	virtual void tagColorEX(u16, const void*, u32);  // _5C (weak)
-	virtual void tagControl(u16, const void*, u32);  // _60 (weak)
-	virtual void tagPosition(u16, const void*, u32); // _64 (weak)
+	virtual bool tagColor(const void*, u32);         // _48 (weak)
+	virtual bool tagSize(const void*, u32);          // _4C (weak)
+	virtual bool tagRuby(const void*, u32);          // _50 (weak)
+	virtual bool tagFont(const void*, u32);          // _54 (weak)
+	virtual bool tagImage(u16, const void*, u32);    // _58 (weak)
+	virtual bool tagColorEX(u16, const void*, u32);  // _5C (weak)
+	virtual bool tagControl(u16, const void*, u32);  // _60 (weak)
+	virtual bool tagPosition(u16, const void*, u32); // _64 (weak)
 
 	// _00     = VTBL
 	// _00-_38 = JMessage::TRenderingProcessor

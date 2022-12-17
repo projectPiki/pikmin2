@@ -25,6 +25,12 @@ struct OtakaraSensor {
 	void adjScale(f32);
 	void draw(J2DGrafContext&);
 	void hide();
+	void calcLevel(f32);
+	void calcGrayColor();
+	void calcAppear();
+	void startGraySensor();
+	void calcAngle();
+	void calcReaction();
 
 	inline void setSensorVec1(f32 x, f32 y) { _4C = Vector2f(x, y); }
 

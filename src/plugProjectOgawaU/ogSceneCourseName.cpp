@@ -1,4 +1,5 @@
 #include "types.h"
+#include "og/newScreen/CourseName.h"
 
 /*
     Generated from dpostproc
@@ -229,7 +230,7 @@ CourseName::~CourseName(void)
  * Address:	........
  * Size:	000098
  */
-void CourseName::getCourseNum(void)
+int CourseName::getCourseNum(void)
 {
 	// UNUSED FUNCTION
 }
@@ -374,7 +375,7 @@ lbl_803181F4:
  * Address:	80318218
  * Size:	000008
  */
-void CourseName::getResName() const
+const char* CourseName::getResName() const
 {
 	/*
 	addi     r3, r2, lbl_8051D930@sda21
@@ -387,14 +388,14 @@ void CourseName::getResName() const
  * Address:	80318220
  * Size:	000008
  */
-u32 CourseName::getSceneType(void) { return 0x271E; }
+SceneType CourseName::getSceneType(void) { return SCENE_COURSE_NAME; }
 
 /*
  * --INFO--
  * Address:	80318228
  * Size:	00000C
  */
-void CourseName::getOwnerID(void)
+ScreenOwnerID CourseName::getOwnerID(void)
 {
 	/*
 	lis      r3, 0x004F4741@ha
@@ -408,7 +409,7 @@ void CourseName::getOwnerID(void)
  * Address:	80318234
  * Size:	000010
  */
-void CourseName::getMemberID(void)
+ScreenMemberID CourseName::getMemberID(void)
 {
 	/*
 	lis      r4, 0x55525345@ha

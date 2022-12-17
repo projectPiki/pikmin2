@@ -1,4 +1,5 @@
 #include "types.h"
+#include "og/Screen/PikminCounter.h"
 
 /*
     Generated from dpostproc

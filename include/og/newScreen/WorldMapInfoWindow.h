@@ -57,8 +57,8 @@ struct ObjWorldMapInfoWindow0 : public ObjSMenuPauseVS {
 	// _00     = VTBL1
 	// _18     = VTBL2
 	// _00-_CC = ObjSMenuPauseVS
-	Screen::DispMemberWorldMapInfoWin0* _CC; // _CC
-	u32 _D0;                                 // _D0, probably AnimText_Screen* based on 1?
+	Screen::DispMemberWorldMapInfoWin0* m_dispWmap; // _CC
+	u32 _D0;                                        // _D0, probably AnimText_Screen* based on 1?
 };
 
 struct ObjWorldMapInfoWindow1 : public ObjSMenuPauseVS {

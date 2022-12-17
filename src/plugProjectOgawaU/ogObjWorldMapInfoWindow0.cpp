@@ -1,18 +1,12 @@
-#include "JSystem/J2D/J2DPane.h"
-#include "JSystem/JUT/JUTException.h"
 #include "Morimura/Challenge.h"
 #include "Morimura/VsSelect.h"
 #include "Morimura/Zukan.h"
-#include "Screen/Enums.h"
-#include "og/Screen/DispMember.h"
 #include "og/Screen/MenuMgr.h"
 #include "og/Screen/ogScreen.h"
 #include "og/Screen/callbackNodes.h"
 #include "og/Sound.h"
 #include "og/newScreen/WorldMapInfoWindow.h"
-#include "P2DScreen.h"
 #include "System.h"
-#include "types.h"
 
 /*
     Generated from dpostproc
@@ -101,7 +95,7 @@
 // clang-format on
 // static void _Print(char*, ...) { OSReport(__FILE__); }
 
-static const char[] fakeMatchFileName = __FILE__;
+static const char fakeMatchFileName[] = __FILE__;
 namespace og {
 namespace newScreen {
 
@@ -113,14 +107,14 @@ namespace newScreen {
 ObjWorldMapInfoWindow0::ObjWorldMapInfoWindow0(char const* text)
     : ObjSMenuPauseVS("SMenuPauseVS screen")
 {
-	_CC       = nullptr;
-	m_name    = text;
-	_B0       = nullptr;
-	m_menuMgr = nullptr;
-	_B8       = nullptr;
-	_BC       = nullptr;
-	_D0       = 0;
-	_AC       = _D0;
+	m_dispWmap    = nullptr;
+	m_name        = text;
+	m_screenPause = nullptr;
+	m_menuMgr     = nullptr;
+	m_animText1   = nullptr;
+	m_animText2   = nullptr;
+	_D0           = 0;
+	m_currMenuSel = _D0;
 }
 
 /*
@@ -133,41 +127,41 @@ void ObjWorldMapInfoWindow0::doCreate(JKRArchive* archive)
 	Screen::DispMemberBase* disp = getDispMember();
 	// clang-format off
 	if (disp->isID(OWNER_OGA, MEMBER_WORLD_MAP_INFO_WINDOW_0)) {
-		_CC = reinterpret_cast<Screen::DispMemberWorldMapInfoWin0*>(disp);
+		m_dispWmap = reinterpret_cast<Screen::DispMemberWorldMapInfoWin0*>(disp);
 	} else {
 		if (disp->isID(OWNER_MRMR, MEMBER_VS_SELECT)) {
-			_CC = reinterpret_cast<Morimura::DispMemberVsSelect*>(disp)->m_dispWorldMapInfoWin0;
+			m_dispWmap = reinterpret_cast<Morimura::DispMemberVsSelect*>(disp)->m_dispWorldMapInfoWin0;
 		} else {
 			if (disp->isID(OWNER_MRMR, MEMBER_CHALLENGE_SELECT)) {
-				_CC = reinterpret_cast<Morimura::DispMemberChallengeSelect*>(disp)->m_dispWorldMapInfoWin0;
+				m_dispWmap = reinterpret_cast<Morimura::DispMemberChallengeSelect*>(disp)->m_dispWorldMapInfoWin0;
 			} else {
 				if (disp->isID(OWNER_MRMR, MEMBER_ZUKAN_ENEMY)) {
-					_CC = reinterpret_cast<Morimura::DispMemberZukanEnemy*>(disp)->m_dispWorldMapInfoWin0;
-					P2ASSERTLINE(125, _CC != nullptr);
+					m_dispWmap = reinterpret_cast<Morimura::DispMemberZukanEnemy*>(disp)->m_dispWorldMapInfoWin0;
+					P2ASSERTLINE(125, m_dispWmap != nullptr);
 				} else {
-					P2ASSERTLINE(129, (!disp->isID(OWNER_MRMR, MEMBER_ZUKAN_ITEM) || (_CC = reinterpret_cast<Morimura::DispMemberZukanItem*>(disp)->m_dispWorldMapInfoWin0, _CC != nullptr)));
+					P2ASSERTLINE(129, (!disp->isID(OWNER_MRMR, MEMBER_ZUKAN_ITEM) || (m_dispWmap = reinterpret_cast<Morimura::DispMemberZukanItem*>(disp)->m_dispWorldMapInfoWin0, m_dispWmap != nullptr)));
 				}
 			}
 		}
 	}
 	// clang-format on
-	if (_CC == nullptr) {
-		_CC = new Screen::DispMemberWorldMapInfoWin0();
+	if (m_dispWmap == nullptr) {
+		m_dispWmap = new Screen::DispMemberWorldMapInfoWin0;
 	}
-	_B0 = new P2DScreen::Mgr_tuning();
-	_B0->set("info_window.blo", 0x1100000, archive);
-	Screen::TagSearch(_B0, 'Nmenu00')->hide();
-	Screen::TagSearch(_B0, 'Nmenu02')->hide();
-	Screen::setFurikoScreen(_B0);
-	m_menuMgr = new Screen::MenuMgr();
-	m_menuMgr->init2taku(_B0, 'Nm01y', 'Tm01y', 'Pm01y_il', 'Pm01y_ir', 'Nm01n', 'Tm01n', 'Pm01n_il', 'Pm01n_ir');
-	_B0->search('Tm01y')->m_messageID = _CC->_10;
-	_B0->search('Tm01n')->m_messageID = _CC->_18;
-	Screen::setCallBackMessage(_B0);
-	_B8 = Screen::setMenuScreen(archive, _B0, 'Tm01y');
-	_BC = Screen::setMenuScreen(archive, _B0, 'Tm01n');
-	_B8->open(0.5f);
-	_BC->open(0.6f);
+	m_screenPause = new P2DScreen::Mgr_tuning();
+	m_screenPause->set("info_window.blo", 0x1100000, archive);
+	Screen::TagSearch(m_screenPause, 'Nmenu00')->hide();
+	Screen::TagSearch(m_screenPause, 'Nmenu02')->hide();
+	Screen::setFurikoScreen(m_screenPause);
+	m_menuMgr = new Screen::MenuMgr;
+	m_menuMgr->init2taku(m_screenPause, 'Nm01y', 'Tm01y', 'Pm01y_il', 'Pm01y_ir', 'Nm01n', 'Tm01n', 'Pm01n_il', 'Pm01n_ir');
+	m_screenPause->search('Tm01y')->m_messageID = m_dispWmap->_10;
+	m_screenPause->search('Tm01n')->m_messageID = m_dispWmap->_18;
+	Screen::setCallBackMessage(m_screenPause);
+	m_animText1 = Screen::setMenuScreen(archive, m_screenPause, 'Tm01y');
+	m_animText2 = Screen::setMenuScreen(archive, m_screenPause, 'Tm01n');
+	m_animText1->open(0.5f);
+	m_animText2->open(0.6f);
 }
 
 /*
@@ -177,13 +171,13 @@ void ObjWorldMapInfoWindow0::doCreate(JKRArchive* archive)
  */
 bool ObjWorldMapInfoWindow0::doStart(::Screen::StartSceneArg const*)
 {
-	_D0 = _CC->_21;
+	_D0 = m_dispWmap->_21;
 	m_menuMgr->initSelNum(_D0);
-	_AC = _D0;
-	blink_Menu(_AC);
-	ogSound.setOpenWMapMenu();
+	m_currMenuSel = _D0;
+	blink_Menu(m_currMenuSel);
+	ogSound->setOpenWMapMenu();
 
-	Screen::getFurikoPtr(_B0, 'furiko00')->stop();
+	Screen::getFurikoPtr(m_screenPause, 'furiko00')->stop();
 	start_LR(nullptr);
 	return true;
 }
@@ -196,12 +190,12 @@ bool ObjWorldMapInfoWindow0::doStart(::Screen::StartSceneArg const*)
 bool ObjWorldMapInfoWindow0::doUpdateFadein()
 {
 	commonUpdate();
-	_44 += sys->m_deltaTime;
+	m_fadeLevel += sys->m_deltaTime;
 	bool result = false;
-	if (_44 > msBaseVal._08) {
+	if (m_fadeLevel > msBaseVal._08) {
 		result = true;
 	}
-	_40 = (1.0f - Screen::calcSmooth0to1(_44, msBaseVal._08)) * 800.0f;
+	m_movePos = (1.0f - Screen::calcSmooth0to1(m_fadeLevel, msBaseVal._08)) * 800.0f;
 	return result;
 }
 
@@ -219,7 +213,7 @@ void ObjWorldMapInfoWindow0::commonUpdate() { ObjSMenuPauseVS::commonUpdate(); }
  */
 void ObjWorldMapInfoWindow0::out_cancel()
 {
-	_CC->_08 = 0;
+	m_dispWmap->_08 = 0;
 	out_L();
 }
 
@@ -230,7 +224,7 @@ void ObjWorldMapInfoWindow0::out_cancel()
  */
 void ObjWorldMapInfoWindow0::out_menu_0()
 {
-	_CC->_08 = 0;
+	m_dispWmap->_08 = 0;
 	out_L();
 }
 
@@ -241,7 +235,7 @@ void ObjWorldMapInfoWindow0::out_menu_0()
  */
 void ObjWorldMapInfoWindow0::out_menu_1()
 {
-	_CC->_08 = 1;
+	m_dispWmap->_08 = 1;
 	out_L();
 }
 
@@ -250,11 +244,7 @@ void ObjWorldMapInfoWindow0::out_menu_1()
  * Address:	8032B96C
  * Size:	00000C
  */
-void ObjWorldMapInfoWindow0::out_L()
-{
-	// Generated from stw r0, 0x38(r3)
-	_38 = 2;
-}
+void ObjWorldMapInfoWindow0::out_L() { m_state = 2; }
 
 /*
  * --INFO--
@@ -274,7 +264,7 @@ void ObjWorldMapInfoWindow0::doUpdateFadeoutFinish()
  * Address:	8032BA00
  * Size:	00000C
  */
-int ObjWorldMapInfoWindow0::getResult() { return _CC->_08; }
+int ObjWorldMapInfoWindow0::getResult() { return m_dispWmap->_08; }
 
 // /*
 //  * __dt

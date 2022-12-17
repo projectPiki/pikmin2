@@ -1,5 +1,7 @@
 #include "og/newScreen/TitleMsg.h"
 #include "types.h"
+#include "P2JME/Analyzer.h"
+#include "efx2d/T2DCvname.h"
 
 /*
     Generated from dpostproc
@@ -216,19 +218,17 @@ namespace newScreen {
  * Address:	........
  * Size:	000108
  */
-TitleMessageAnalyzer::TitleMessageAnalyzer(void)
+TitleMessageAnalyzer::TitleMessageAnalyzer()
 {
 	// UNUSED FUNCTION
 }
-
-namespace P2JME {
 
 /*
  * --INFO--
  * Address:	8032EA58
  * Size:	000070
  */
-Analyzer::~Analyzer(void)
+::P2JME::Analyzer::~Analyzer(void)
 {
 	/*
 stwu     r1, -0x10(r1)
@@ -265,8 +265,6 @@ addi     r1, r1, 0x10
 blr
 	*/
 }
-
-} // namespace P2JME
 
 /*
  * --INFO--
@@ -2206,76 +2204,72 @@ lbl_80330228:
 
 } // namespace newScreen
 
-namespace P2JME {
-
-} // namespace P2JME
-
 /*
  * --INFO--
  * Address:	80330244
  * Size:	000008
  */
-u32 Analyzer::tagColor(void const*, unsigned long) { return 0x1; }
+bool ::P2JME::Analyzer::tagColor(void const*, u32) { return true; }
 
 /*
  * --INFO--
  * Address:	8033024C
  * Size:	000008
  */
-u32 Analyzer::tagSize(void const*, unsigned long) { return 0x1; }
+bool ::P2JME::Analyzer::tagSize(void const*, u32) { return true; }
 
 /*
  * --INFO--
  * Address:	80330254
  * Size:	000008
  */
-u32 Analyzer::tagRuby(void const*, unsigned long) { return 0x1; }
+bool ::P2JME::Analyzer::tagRuby(void const*, u32) { return true; }
 
 /*
  * --INFO--
  * Address:	8033025C
  * Size:	000008
  */
-u32 Analyzer::tagFont(void const*, unsigned long) { return 0x1; }
+bool ::P2JME::Analyzer::tagFont(void const*, u32) { return true; }
 
 /*
  * --INFO--
  * Address:	80330264
  * Size:	000008
  */
-u32 Analyzer::tagImage(unsigned short, void const*, unsigned long) { return 0x1; }
+bool ::P2JME::Analyzer::tagImage(u16, const void*, u32) { return true; }
 
 /*
  * --INFO--
  * Address:	8033026C
  * Size:	000008
  */
-u32 Analyzer::tagColorEX(unsigned short, void const*, unsigned long) { return 0x1; }
+bool ::P2JME::Analyzer::tagColorEX(u16, const void*, u32) { return true; }
 
 /*
  * --INFO--
  * Address:	80330274
  * Size:	000008
  */
-u32 Analyzer::tagControl(unsigned short, void const*, unsigned long) { return 0x1; }
+bool ::P2JME::Analyzer::tagControl(u16, const void*, u32) { return true; }
 
 /*
  * --INFO--
  * Address:	8033027C
  * Size:	000008
  */
-u32 Analyzer::tagPosition(unsigned short, void const*, unsigned long) { return 0x1; }
+bool ::P2JME::Analyzer::tagPosition(u16, const void*, u32) { return true; }
 
 /*
  * --INFO--
  * Address:	80330284
  * Size:	000008
  */
-@8 @efx2d::T2DCvnameChal::~T2DCvnameChal(void)
-{
-	/*
-	addi     r3, r3, -8
-	b        __dt__Q25efx2d13T2DCvnameChalFv
-	*/
-}
+//@8 @efx2d::T2DCvnameChal::~T2DCvnameChal(void)
+//{
+/*
+addi     r3, r3, -8
+b        __dt__Q25efx2d13T2DCvnameChalFv
+*/
+//}
 } // namespace og

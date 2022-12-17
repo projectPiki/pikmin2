@@ -25,9 +25,13 @@ struct CaveTitleMsgEntry {
 	u32 _14;       // _14
 };
 
-struct TitleMessageAnalyzer : public P2JME::Analyzer {
+struct TitleMessageAnalyzer : public ::P2JME::Analyzer {
+	TitleMessageAnalyzer();
 	virtual ~TitleMessageAnalyzer(); // _08 (weak)
 	virtual void do_character(int);  // _10
+
+	// unused/inline
+	void set2ByteString(char*, int);
 
 	// _00     = VTBL
 	// _00-_38 = P2JME::Analyzer
@@ -38,6 +42,7 @@ struct TitleMessageAnalyzer : public P2JME::Analyzer {
 struct TitleMsg {
 	enum EnumCentering { ECM_1 = 1, ECM_2 = 2 };
 
+	TitleMsg();
 	TitleMsg(J2DScreen*, J2DPane*, char*);
 
 	virtual void init();   // _08 (weak)
@@ -48,6 +53,9 @@ struct TitleMsg {
 	void setFontPane(J2DPictureEx*, int);
 	void setCentering(EnumCentering);
 	void setColor(JUtility::TColor&, JUtility::TColor&);
+
+	// unused/inline
+	void drawMsgArea(J2DGrafContext&);
 
 	// _00 = VTBL
 	TitleMessageAnalyzer m_analyzer;     // _04

@@ -27,6 +27,9 @@ struct CourseName : public ::Screen::SceneBase {
 
 	void doCreateObjUserCallBackFunc(JKRArchive*);
 
+	// unused/inline
+	int getCourseNum();
+
 	// _00      = VTBL
 	// _00-_220 = Screen::SceneBase
 	int m_courseIndex; // _220

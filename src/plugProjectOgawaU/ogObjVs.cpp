@@ -1,5 +1,6 @@
 #include "types.h"
-
+#include "og/newScreen/Vs.h"
+#include "efx2d/Arg.h"
 /*
     Generated from dpostproc
 
@@ -306,7 +307,7 @@ ObjVs::ObjVs(char const*)
  * Address:	80325B9C
  * Size:	0000AC
  */
-ObjVs::~ObjVs(void)
+ObjVs::~ObjVs()
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -2474,7 +2475,7 @@ lbl_8032788C:
  * Address:	80327940
  * Size:	000044
  */
-void ObjVs::doUpdate(void)
+bool ObjVs::doUpdate(void)
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -2592,7 +2593,7 @@ void ObjVs::doDraw(Graphics& gfx)
  * Address:	80327AB4
  * Size:	000014
  */
-void ObjVs::doStart(Screen::StartSceneArg const*)
+bool ObjVs::doStart(::Screen::StartSceneArg const*)
 {
 	/*
 	lfs      f0, lbl_8051DD98@sda21(r2)
@@ -2608,7 +2609,7 @@ void ObjVs::doStart(Screen::StartSceneArg const*)
  * Address:	80327AC8
  * Size:	000010
  */
-void ObjVs::doEnd(Screen::EndSceneArg const*)
+bool ObjVs::doEnd(::Screen::EndSceneArg const*)
 {
 	/*
 	lfs      f0, lbl_8051DD98@sda21(r2)
@@ -2623,14 +2624,14 @@ void ObjVs::doEnd(Screen::EndSceneArg const*)
  * Address:	80327AD8
  * Size:	000004
  */
-void ObjVs::doUpdateFadeinFinish(void) { }
+void ObjVs::doUpdateFadeinFinish() { }
 
 /*
  * --INFO--
  * Address:	80327ADC
  * Size:	00000C
  */
-void ObjVs::doUpdateFinish(void)
+void ObjVs::doUpdateFinish()
 {
 	/*
 	lfs      f0, lbl_8051DD98@sda21(r2)
@@ -2644,14 +2645,14 @@ void ObjVs::doUpdateFinish(void)
  * Address:	80327AE8
  * Size:	000004
  */
-void ObjVs::doUpdateFadeoutFinish(void) { }
+void ObjVs::doUpdateFadeoutFinish() { }
 
 /*
  * --INFO--
  * Address:	80327AEC
  * Size:	000074
  */
-void ObjVs::doUpdateFadein(void)
+bool ObjVs::doUpdateFadein()
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -2693,7 +2694,7 @@ lbl_80327B30:
  * Address:	80327B60
  * Size:	00007C
  */
-void ObjVs::doUpdateFadeout(void)
+bool ObjVs::doUpdateFadeout()
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -2740,7 +2741,8 @@ lbl_80327BA8:
  * Address:	80327BDC
  * Size:	00000C
  */
-void efx2d::ArgScale::getName(void)
+
+const char* efx2d::ArgScale::getName()
 {
 	/*
 	lis      r3, lbl_8048F3D4@ha
@@ -2754,7 +2756,7 @@ void efx2d::ArgScale::getName(void)
  * Address:	80327BE8
  * Size:	00006C
  */
-void __sinit_ogObjVs_cpp(void)
+void __sinit_ogObjVs_cpp()
 {
 	/*
 	lfs      f11, lbl_8051DDB8@sda21(r2)
@@ -2792,10 +2794,10 @@ void __sinit_ogObjVs_cpp(void)
  * Address:	80327C54
  * Size:	000008
  */
-@24 @og::newScreen::ObjVs::~ObjVs(void)
-{
-	/*
-	addi     r3, r3, -24
-	b        __dt__Q32og9newScreen5ObjVsFv
-	*/
-}
+//@24 @og::newScreen::ObjVs::~ObjVs(void)
+//{
+/*
+addi     r3, r3, -24
+b        __dt__Q32og9newScreen5ObjVsFv
+*/
+//}

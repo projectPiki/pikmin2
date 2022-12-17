@@ -19,6 +19,9 @@ struct PikminCounter : public P2DScreen::Mgr_tuning {
 
 	void setParam(DataGame&, DataNavi&);
 
+	// unused/inline
+	void setCallBackCommon(JKRArchive*, bool);
+
 	// _00      = VTBL
 	// _00-_148 = P2DScreen::Mgr_tuning
 	DataGame m_dataGame;                     // _148

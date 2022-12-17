@@ -35,13 +35,16 @@ struct Vs : public ::Screen::SceneBase {
 
 struct ObjVs : public ::Screen::ObjBase {
 	struct ScreenSet {
-		P2DScreen::Mgr_tuning* _00;          // _00
-		og::Screen::CallBack_LifeGauge* _04; // _04
-		og::Screen::DopingCheck* _08;        // _08
-		og::Screen::ScaleMgr* _0C;           // _0C
-		og::Screen::ScaleMgr* _10;           // _10
-		J2DPane* _14;                        // _14
-		J2DPane* _18;                        // _18
+		void init(og::Screen::DataNavi*, JKRArchive*, u32*);
+		void update(og::Screen::DataNavi&);
+
+		P2DScreen::Mgr_tuning* m_screen;             // _00
+		og::Screen::CallBack_LifeGauge* m_lifeGauge; // _04
+		og::Screen::DopingCheck* m_doping;           // _08
+		og::Screen::ScaleMgr* m_scalemgr1;           // _0C
+		og::Screen::ScaleMgr* m_scalemgr2;           // _10
+		J2DPane* m_pane1;                            // _14
+		J2DPane* m_pane2;                            // _18
 	};
 
 	ObjVs(const char*);
@@ -61,6 +64,13 @@ struct ObjVs : public ::Screen::ObjBase {
 	void setOnOffBdama(bool);
 	void checkObake();
 	void doUpdateCommon();
+
+	// unused/inline
+	void isCompBdama(int);
+	void startGetBdama(J2DPane*);
+	void startBdamaComp(J2DPane*);
+	void startBdamaWinRed(J2DPane*);
+	void startBdamaWinBlue(J2DPane*);
 
 	og::Screen::DispMemberVs* _38; // _38
 	og::Screen::BloGroup* _3C;     // _3C

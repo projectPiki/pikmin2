@@ -1,4 +1,6 @@
 #include "types.h"
+#include "og/newScreen/WorldMapInfoWindow.h"
+#include "og/Screen/DispMember.h"
 
 /*
     Generated from dpostproc
@@ -83,6 +85,7 @@ namespace newScreen {
  * Size:	000080
  */
 ObjWorldMapInfoWindow1::ObjWorldMapInfoWindow1(char const*)
+    : ObjSMenuPauseVS("SMenuPauseVS screen")
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -338,7 +341,7 @@ lbl_8032BDF8:
  * Address:	8032BFC8
  * Size:	00005C
  */
-void ObjWorldMapInfoWindow1::doStart(Screen::StartSceneArg const*)
+bool ObjWorldMapInfoWindow1::doStart(::Screen::StartSceneArg const*)
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -466,11 +469,7 @@ void ObjWorldMapInfoWindow1::out_menu_1(void)
  * Address:	8032C0EC
  * Size:	00000C
  */
-void ObjWorldMapInfoWindow1::out_L(void)
-{
-	// Generated from stw r0, 0x38(r3)
-	_38 = 2;
-}
+void ObjWorldMapInfoWindow1::out_L(void) { m_state = ObjSMenuBase::MENUSTATE_CloseL; }
 
 /*
  * --INFO--
@@ -563,58 +562,55 @@ lbl_8032C1BC:
 	*/
 }
 
-namespace Screen {
-
-} // namespace Screen
-
 /*
  * --INFO--
  * Address:	8032C1D8
  * Size:	000008
  */
-u32 DispMemberWorldMapInfoWin1::getSize(void) { return 0x10; }
+// u32 og::Screen::DispMemberWorldMapInfoWin1::getSize(void) { return 0x10; }
 
 /*
  * --INFO--
  * Address:	8032C1E0
  * Size:	00000C
  */
-void DispMemberWorldMapInfoWin1::getOwnerID(void)
-{
-	/*
+// void og::Screen::DispMemberWorldMapInfoWin1::getOwnerID(void)
+//{
+/*
 lis      r3, 0x004F4741@ha
 addi     r3, r3, 0x004F4741@l
 blr
-	*/
-}
+*/
+//}
 
 /*
  * --INFO--
  * Address:	8032C1EC
  * Size:	000014
  */
-void DispMemberWorldMapInfoWin1::getMemberID(void)
-{
-	/*
-	lis      r4, 0x57696E31@ha
-	lis      r3, 0x574D6170@ha
-	addi     r4, r4, 0x57696E31@l
-	addi     r3, r3, 0x574D6170@l
-	blr
-	*/
-}
+// void og::Screen::DispMemberWorldMapInfoWin1::getMemberID(void)
+//{
+/*
+lis      r4, 0x57696E31@ha
+lis      r3, 0x574D6170@ha
+addi     r4, r4, 0x57696E31@l
+addi     r3, r3, 0x574D6170@l
+blr
+*/
+//}
 
 /*
  * --INFO--
  * Address:	8032C200
  * Size:	000008
  */
-@24 @og::newScreen::ObjWorldMapInfoWindow1::~ObjWorldMapInfoWindow1(void)
-{
-	/*
-	addi     r3, r3, -24
-	b        __dt__Q32og9newScreen22ObjWorldMapInfoWindow1Fv
-	*/
-}
+//@24 @og::newScreen::ObjWorldMapInfoWindow1::~ObjWorldMapInfoWindow1(void)
+//{
+/*
+addi     r3, r3, -24
+b        __dt__Q32og9newScreen22ObjWorldMapInfoWindow1Fv
+*/
+//}
+
 } // namespace newScreen
 } // namespace og

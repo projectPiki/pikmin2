@@ -1,4 +1,6 @@
 #include "types.h"
+#include "og/Screen/OtakaraSensor.h"
+#include "efx2d/TSimple.h"
 
 /*
     Generated from dpostproc
@@ -464,7 +466,7 @@ blr
  * Address:	8032DC20
  * Size:	00005C
  */
-void OtakaraSensor::calcLevel(float)
+void OtakaraSensor::calcLevel(f32)
 {
 	/*
 lwz      r0, 0x80(r3)
@@ -794,7 +796,7 @@ blr
  * Address:	8032DF78
  * Size:	000370
  */
-void OtakaraSensor::calcGrayColor(void)
+void OtakaraSensor::calcGrayColor()
 {
 	/*
 stwu     r1, -0x30(r1)
@@ -1060,7 +1062,7 @@ blr
  * Address:	8032E2E8
  * Size:	0001FC
  */
-void OtakaraSensor::calcAppear(void)
+void OtakaraSensor::calcAppear()
 {
 	/*
 stwu     r1, -0x80(r1)
@@ -1202,7 +1204,7 @@ blr
  * Address:	8032E4E4
  * Size:	000138
  */
-void OtakaraSensor::startGraySensor(void)
+void OtakaraSensor::startGraySensor()
 {
 	/*
 stwu     r1, -0x70(r1)
@@ -1291,7 +1293,7 @@ blr
  * Address:	8032E61C
  * Size:	00022C
  */
-void OtakaraSensor::calcAngle(void)
+void OtakaraSensor::calcAngle()
 {
 	/*
 stwu     r1, -0x40(r1)
@@ -1467,7 +1469,7 @@ blr
  * Address:	8032E848
  * Size:	000204
  */
-void OtakaraSensor::calcReaction(void)
+void OtakaraSensor::calcReaction()
 {
 	/*
 stwu     r1, -0x70(r1)
