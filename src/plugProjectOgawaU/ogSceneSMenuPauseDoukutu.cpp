@@ -39,7 +39,7 @@ int SMenuPauseDoukutu::doGetFinishState()
 			Screen::DispMemberSMenuPauseDoukutu* subMember
 			    = static_cast<Screen::DispMemberSMenuPauseDoukutu*>(dispMember->getSubMember(OWNER_OGA, MEMBER_START_MENU_PAUSE_DOUKUTU));
 			if (subMember) {
-				finishState = subMember->_14;
+				finishState = subMember->m_exitStatus;
 			}
 		}
 	}

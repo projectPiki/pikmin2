@@ -1,4 +1,12 @@
 #include "types.h"
+#include "og/newScreen/SMenu.h"
+#include "og/Screen/MenuMgr.h"
+#include "og/Screen/ogScreen.h"
+#include "og/Screen/callbackNodes.h"
+#include "og/Screen/anime.h"
+#include "og/Sound.h"
+#include "System.h"
+#include "Controller.h"
 
 /*
     Generated from dpostproc
@@ -155,8 +163,33 @@ namespace newScreen {
  * Address:	8032208C
  * Size:	0000B0
  */
-ObjSMenuPauseDoukutu::ObjSMenuPauseDoukutu(char const*)
+ObjSMenuPauseDoukutu::ObjSMenuPauseDoukutu(char const* name)
 {
+	m_disp          = nullptr;
+	m_name          = name;
+	m_currPauseSel  = 0;
+	m_currGiveupSel = 0;
+	m_menuState     = 1;
+	_B8             = 0;
+
+	m_screenPause = nullptr;
+	m_menuPause   = nullptr;
+	m_menuGiveup  = nullptr;
+	m_menuPane    = 0;
+
+	m_textContinue = nullptr;
+	m_textDoGiveup = nullptr;
+	m_textGiveupQ  = nullptr;
+	m_textGiveupY  = nullptr;
+	m_textGiveupN  = nullptr;
+
+	m_anims = nullptr;
+
+	m_pauseOpened     = false;
+	m_menuPauseTimer  = 0.0f;
+	m_giveupOpened    = false;
+	m_menuGiveupTimer = 0.0f;
+	m_warningTimer    = 0.0f;
 	/*
 	stwu     r1, -0x10(r1)
 	mflr     r0
@@ -274,8 +307,64 @@ lbl_803221E4:
  * Address:	80322200
  * Size:	000574
  */
-void ObjSMenuPauseDoukutu::doCreate(JKRArchive*)
+void ObjSMenuPauseDoukutu::doCreate(JKRArchive* arc)
 {
+	og::Screen::DispMemberSMenuAll* dispfull = static_cast<og::Screen::DispMemberSMenuAll*>(getDispMember());
+	m_disp = static_cast<og::Screen::DispMemberSMenuPauseDoukutu*>(dispfull->getSubMember(OWNER_OGA, MEMBER_START_MENU_PAUSE_DOUKUTU));
+	if (!m_disp) {
+		og::Screen::DispMemberSMenuPauseDoukutu* newdisp = new og::Screen::DispMemberSMenuPauseDoukutu;
+		m_disp = static_cast<og::Screen::DispMemberSMenuPauseDoukutu*>(newdisp->getSubMember(OWNER_OGA, MEMBER_START_MENU_PAUSE_DOUKUTU));
+	}
+	m_isDay1 = dispfull->m_isDay1;
+
+	m_screenPause = new P2DScreen::Mgr_tuning;
+	m_screenPause->set("s_menu_pause_l.blo", 0x1040000, arc);
+
+	if (m_disp->m_pikisInDanger) {
+		m_screenPause->search('h_03')->setMsgID('8610_00'); // "Pikmin sprouts remain. Do you still want to return to the surface?"
+		m_screenPause->search('h_04')->setMsgID('8611_00'); // "Return to the Surface"
+		m_screenPause->search('h_05')->setMsgID('8612_00'); // "Don't return to the Surface"
+	}
+
+	m_menuPause  = new og::Screen::MenuMgr;
+	m_menuGiveup = new og::Screen::MenuMgr;
+	m_menuState  = 1;
+	m_menuPause->init(m_screenPause, 2, 'nu_00', 'h_00', 's_00', 'il00', 'ir00');
+	m_currPauseSel = 0;
+	m_menuGiveup->init(m_screenPause, 2, 'nu_04', 'h_04', 's_04', 'il04', 'ir04');
+	m_currGiveupSel = 1;
+
+	m_menuPane = m_screenPause->search('Nmenu1');
+
+	m_textContinue = og::Screen::setMenuScreen(arc, m_screenPause, 'h_00');
+	m_textDoGiveup = og::Screen::setMenuScreen(arc, m_screenPause, 'h_01');
+	m_textGiveupQ  = og::Screen::setMenuScreen(arc, m_screenPause, 'h_03');
+	m_textGiveupY  = og::Screen::setMenuScreen(arc, m_screenPause, 'h_04');
+	m_textGiveupN  = og::Screen::setMenuScreen(arc, m_screenPause, 'h_05');
+
+	set_Blink_Normal();
+	m_textContinue->open(0.5f);
+	m_textDoGiveup->open(0.6f);
+	og::Screen::setCallBack_CounterRV(m_screenPause, 'Pana01', &m_disp->m_cavePokos, 10, false, true, arc);
+	m_pokos = m_disp->m_preCavePokos + m_disp->m_cavePokos;
+	og::Screen::setCallBack_CounterRV(m_screenPause, 'Pfin01', &m_pokos, 10, false, true, arc);
+	og::Screen::setCallBack_CounterRV(m_screenPause, 'Pcomp01', &m_pokos, 10, false, true, arc);
+
+	if (m_disp->m_payDebt) {
+		og::Screen::TagSearch(m_screenPause, 'Nfin')->show();
+		og::Screen::TagSearch(m_screenPause, 'Ncomp')->hide();
+	} else {
+		og::Screen::TagSearch(m_screenPause, 'Ncomp')->show();
+		og::Screen::TagSearch(m_screenPause, 'Nfin')->hide();
+	}
+
+	m_anims = new og::Screen::AnimGroup(4);
+	og::Screen::registAnimGroupScreen(m_anims, arc, m_screenPause, "s_menu_pause_doukutu_l.btk", msBaseVal._00);
+	og::Screen::registAnimGroupScreen(m_anims, arc, m_screenPause, "s_menu_pause_doukutu_l_02.btk", msBaseVal._00);
+	og::Screen::registAnimGroupScreen(m_anims, arc, m_screenPause, "s_menu_pause_doukutu_l_03.btk", msBaseVal._00);
+	og::Screen::registAnimGroupScreen(m_anims, arc, m_screenPause, "s_menu_pause_doukutu_l_04.btk", msBaseVal._00);
+	doCreateAfter(arc, m_screenPause);
+
 	/*
 	stwu     r1, -0x30(r1)
 	mflr     r0
@@ -605,6 +694,12 @@ lwz r0, 0x34(r1) lwz      r31, 0x2c(r1) lwz      r30, 0x28(r1) lwz      r29,
  */
 void ObjSMenuPauseDoukutu::commonUpdate(void)
 {
+	commonUpdateBase();
+	setSMenuScale(msVal._00, msVal._04);
+	m_pokos = m_disp->m_preCavePokos + m_disp->m_cavePokos;
+	m_anims->update();
+	m_screenPause->setXY(m_movePos, 0.0f);
+	m_screenPause->update();
 	/*
 	stwu     r1, -0x10(r1)
 	mflr     r0
@@ -651,8 +746,25 @@ void ObjSMenuPauseDoukutu::commonUpdate(void)
  * Address:	80322808
  * Size:	0000B0
  */
-void ObjSMenuPauseDoukutu::doUpdate(void)
+bool ObjSMenuPauseDoukutu::doUpdate(void)
 {
+	bool ret = false;
+	commonUpdate();
+	if (m_exiting) {
+		ret = true;
+	} else {
+		if (m_state == MENUSTATE_Default) {
+			if (m_menuState == 1 && !m_menuPause->m_isCursorActive) {
+				m_menuPause->startCursor(0.2f);
+			}
+			ret = menu();
+		} else {
+			if (m_menuPause->m_isCursorActive) {
+				m_menuPause->killCursor();
+			}
+		}
+	}
+	return ret;
 	/*
 	stwu     r1, -0x10(r1)
 	mflr     r0
@@ -716,6 +828,13 @@ lbl_8032289C:
  */
 void ObjSMenuPauseDoukutu::doDraw(Graphics& gfx)
 {
+	if (m_screenPause) {
+		J2DPerspGraph* graf = &gfx.m_perspGraph;
+		m_menuPause->draw(graf);
+		m_menuGiveup->draw(graf);
+		m_screenPause->draw(gfx, *graf);
+	}
+	drawYaji(gfx);
 	/*
 	stwu     r1, -0x20(r1)
 	mflr     r0
@@ -762,8 +881,16 @@ lbl_8032291C:
  * Address:	80322944
  * Size:	0000A4
  */
-void ObjSMenuPauseDoukutu::doStart(Screen::StartSceneArg const*)
+bool ObjSMenuPauseDoukutu::doStart(::Screen::StartSceneArg const* arg)
 {
+	m_anims->setFrame(0.0f);
+	m_anims->setRepeat(true);
+	m_anims->setSpeed(1.0f);
+	m_anims->start();
+
+	setYajiName('6050_00', '6051_00', '6052_00'); // "Radar" "Items" "Menu"
+	stopYaji();
+	start_LR(arg);
 	/*
 	stwu     r1, -0x10(r1)
 	mflr     r0
@@ -814,7 +941,7 @@ void ObjSMenuPauseDoukutu::doStart(Screen::StartSceneArg const*)
  * Address:	803229E8
  * Size:	000008
  */
-u32 ObjSMenuPauseDoukutu::doEnd(Screen::EndSceneArg const*) { return 0x1; }
+bool ObjSMenuPauseDoukutu::doEnd(::Screen::EndSceneArg const*) { return true; }
 
 /*
  * --INFO--
@@ -823,6 +950,9 @@ u32 ObjSMenuPauseDoukutu::doEnd(Screen::EndSceneArg const*) { return 0x1; }
  */
 void ObjSMenuPauseDoukutu::doUpdateFinish(void)
 {
+	ObjSMenuBase::doUpdateFinish();
+	m_menuPause->killCursor();
+	m_menuGiveup->killCursor();
 	/*
 	stwu     r1, -0x10(r1)
 	mflr     r0
@@ -847,8 +977,10 @@ void ObjSMenuPauseDoukutu::doUpdateFinish(void)
  * Address:	80322A2C
  * Size:	00004C
  */
-void ObjSMenuPauseDoukutu::doUpdateFadeout(void)
+bool ObjSMenuPauseDoukutu::doUpdateFadeout()
 {
+	commonUpdate();
+	return updateFadeOut();
 	/*
 	stwu     r1, -0x10(r1)
 	mflr     r0
@@ -879,6 +1011,42 @@ void ObjSMenuPauseDoukutu::doUpdateFadeout(void)
  */
 void ObjSMenuPauseDoukutu::doUpdateFadeoutFinish(void)
 {
+	switch (m_cancelToState) {
+	case MENUCLOSE_Finish:
+		startBackupScene();
+		setFinishState(2);
+		break;
+
+	case MENUCLOSE_R:
+		doUpdateRAction();
+		setFinishState(1);
+		break;
+
+	case MENUCLOSE_L:
+		doUpdateLAction();
+		setFinishState(1);
+		break;
+
+	case MENUCLOSE_None:
+		SceneSMenuBase* scene = static_cast<SceneSMenuBase*>(getOwner());
+		switch (m_disp->m_exitStatus) {
+		case 5:
+			scene->setBackupScene();
+			scene->startScene(nullptr);
+			finishPause();
+			break;
+		case 6:
+			scene->endScene(nullptr);
+			finishPause();
+			scene->setColorBG(0, 0, 0, 0);
+			break;
+		}
+		setFinishState(m_disp->m_exitStatus);
+		break;
+
+	default:
+		JUT_PANICLINE(456, "updateFinish ERR!\n");
+	}
 	/*
 	stwu     r1, -0x10(r1)
 	mflr     r0
@@ -994,8 +1162,54 @@ lbl_80322BB8:
  * Address:	80322BD0
  * Size:	0001D8
  */
-void ObjSMenuPauseDoukutu::menu_pause(void)
+bool ObjSMenuPauseDoukutu::menu_pause(void)
 {
+	bool ret = false;
+	if (!m_pauseOpened) {
+		m_menuPauseTimer += sys->m_deltaTime;
+		if (m_menuPauseTimer >= 1.0f) {
+			m_pauseOpened = true;
+		}
+	}
+	Controller* pad = getGamePad();
+	m_menuPause->update();
+
+	u32 input = pad->m_padButton.m_buttonDown;
+	if (input & Controller::PRESS_DPAD_UP | Controller::UNKNOWN_32) {
+		if (m_currPauseSel > 0) {
+			m_currPauseSel--;
+			m_menuPause->select(m_currPauseSel);
+			set_Blink_Normal();
+		}
+	} else if (input & Controller::PRESS_DPAD_DOWN | Controller::UNKNOWN_31) {
+		if (m_currPauseSel < 1) {
+			m_currPauseSel++;
+			m_menuPause->select(m_currPauseSel);
+			set_Blink_Normal();
+		}
+	} else if (input & Controller::PRESS_A && m_pauseOpened) {
+		if (m_currPauseSel == 1) {
+			if (m_isDay1) {
+				ogSound->setError();
+			} else {
+				m_menuPause->killCursor();
+				m_currGiveupSel = 1;
+				m_menuGiveup->initSelNum(m_currGiveupSel);
+				m_menuGiveup->startCursor(0.5f);
+				set_Menu_YesNo();
+				ogSound->setDecide();
+			}
+		} else if (m_currPauseSel == 0) {
+			m_menuPause->killCursor();
+			m_disp->m_exitStatus = 5;
+			out_L();
+			ret = 1;
+			ogSound->setDecide();
+		}
+	} else {
+		ret = ObjSMenuBase::doUpdate();
+	}
+	return ret;
 	/*
 	stwu     r1, -0x20(r1)
 	mflr     r0
@@ -1137,8 +1351,9 @@ lbl_80322D88:
  * Address:	80322DA8
  * Size:	000010
  */
-void ObjSMenuPauseDoukutu::doUpdateCancelAction(void)
+void ObjSMenuPauseDoukutu::doUpdateCancelAction()
 {
+	m_disp->m_exitStatus = 5;
 	/*
 	lwz      r3, 0xa8(r3)
 	li       r0, 5
@@ -1152,8 +1367,10 @@ void ObjSMenuPauseDoukutu::doUpdateCancelAction(void)
  * Address:	80322DB8
  * Size:	00006C
  */
-void ObjSMenuPauseDoukutu::doUpdateLAction(void)
+void ObjSMenuPauseDoukutu::doUpdateLAction()
 {
+	::Screen::SetSceneArg arg(SCENE_PAUSE_MENU_MAP, getDispMember(), 0, true);
+	jump_L(arg);
 	/*
 	stwu     r1, -0x20(r1)
 	mflr     r0
@@ -1190,8 +1407,15 @@ void ObjSMenuPauseDoukutu::doUpdateLAction(void)
  * Address:	80322E24
  * Size:	0000C8
  */
-void ObjSMenuPauseDoukutu::doUpdateRAction(void)
+void ObjSMenuPauseDoukutu::doUpdateRAction()
 {
+	if (msBaseVal.m_useController) {
+		::Screen::SetSceneArg arg(SCENE_PAUSE_MENU_CONTROLS, getDispMember(), 0, true);
+		jump_R(arg);
+	} else {
+		::Screen::SetSceneArg arg(SCENE_PAUSE_MENU_ITEMS, getDispMember(), 0, true);
+		jump_R(arg);
+	}
 	/*
 	stwu     r1, -0x30(r1)
 	mflr     r0
@@ -1255,8 +1479,53 @@ lbl_80322ED8:
  * Address:	80322EEC
  * Size:	0001E8
  */
-void ObjSMenuPauseDoukutu::menu_giveup(void)
+bool ObjSMenuPauseDoukutu::menu_giveup()
 {
+	bool ret = false;
+	if (!m_giveupOpened) {
+		m_menuGiveupTimer += sys->m_deltaTime;
+		if (m_menuGiveupTimer >= 1.0f) {
+			m_giveupOpened = true;
+		}
+	}
+	Controller* pad = getGamePad();
+	m_menuGiveup->update();
+
+	u32 input = pad->m_padButton.m_buttonDown;
+	if (input & Controller::PRESS_DPAD_UP | Controller::UNKNOWN_32) {
+		if (m_currGiveupSel > 0) {
+			m_currGiveupSel--;
+			m_menuGiveup->select(m_currGiveupSel);
+			set_Blink_Normal();
+		}
+	} else if (input & Controller::PRESS_DPAD_DOWN | Controller::UNKNOWN_31) {
+		if (m_currGiveupSel < 1) {
+			m_currGiveupSel++;
+			m_menuGiveup->select(m_currGiveupSel);
+			set_Blink_Normal();
+		}
+	} else if (input & Controller::PRESS_B && m_giveupOpened) {
+		set_Menu_Normal();
+		m_menuPause->initSelNum(m_currPauseSel);
+		m_menuPause->startCursor(0.5f);
+		m_menuGiveup->killCursor();
+		ogSound->setCancel();
+	} else if (input & Controller::PRESS_A && m_giveupOpened) {
+		if (m_currGiveupSel == 0) {
+			m_disp->m_exitStatus = 6;
+			out_L();
+			ret = true;
+		} else {
+			set_Menu_Normal();
+			m_menuPause->initSelNum(m_currPauseSel);
+			m_menuPause->startCursor(0.5f);
+			m_menuGiveup->killCursor();
+		}
+		ogSound->setDecide();
+	} else {
+		ret = ObjSMenuBase::doUpdate();
+	}
+	return ret;
 	/*
 	stwu     r1, -0x20(r1)
 	mflr     r0
@@ -1406,6 +1675,8 @@ lbl_803230B4:
  */
 void ObjSMenuPauseDoukutu::finishPause(void)
 {
+	m_menuPause->killCursor();
+	m_menuGiveup->killCursor();
 	/*
 	stwu     r1, -0x10(r1)
 	mflr     r0
@@ -1429,8 +1700,24 @@ void ObjSMenuPauseDoukutu::finishPause(void)
  * Address:	8032310C
  * Size:	0000A8
  */
-void ObjSMenuPauseDoukutu::menu(void)
+bool ObjSMenuPauseDoukutu::menu(void)
 {
+	bool ret = false;
+	switch (m_menuState) {
+	case 6:
+		if (m_disp->m_pikisInDanger && m_warningTimer > 0.0f) {
+			m_warningTimer -= sys->m_deltaTime;
+			if (m_warningTimer < 0.0f) {
+				ogSound->setWarning();
+			}
+		}
+		ret = menu_giveup();
+		break;
+	case 1:
+		ret = menu_pause();
+		break;
+	}
+	return ret;
 	/*
 	stwu     r1, -0x10(r1)
 	mflr     r0
@@ -1490,15 +1777,10 @@ lbl_8032319C:
  * Address:	803231B4
  * Size:	000014
  */
-void ObjSMenuPauseDoukutu::in_L(void)
+void ObjSMenuPauseDoukutu::in_L()
 {
-	/*
-	li       r0, 0
-	lfs      f0, lbl_8051DD18@sda21(r2)
-	stw      r0, 0x38(r3)
-	stfs     f0, 0x4c(r3)
-	blr
-	*/
+	m_state = MENUSTATE_OpenL;
+	m_angle = 15.0f;
 }
 
 /*
@@ -1506,15 +1788,10 @@ void ObjSMenuPauseDoukutu::in_L(void)
  * Address:	803231C8
  * Size:	000014
  */
-void ObjSMenuPauseDoukutu::in_R(void)
+void ObjSMenuPauseDoukutu::in_R()
 {
-	/*
-	li       r0, 1
-	lfs      f0, lbl_8051DD18@sda21(r2)
-	stw      r0, 0x38(r3)
-	stfs     f0, 0x4c(r3)
-	blr
-	*/
+	m_state = MENUSTATE_OpenR;
+	m_angle = 15.0f;
 }
 
 /*
@@ -1522,32 +1799,17 @@ void ObjSMenuPauseDoukutu::in_R(void)
  * Address:	803231DC
  * Size:	00000C
  */
-void ObjSMenuPauseDoukutu::wait(void)
-{
-	// Generated from stw r0, 0x38(r3)
-	_38 = 4;
-}
+void ObjSMenuPauseDoukutu::wait() { m_state = MENUSTATE_Default; }
 
 /*
  * --INFO--
  * Address:	803231E8
  * Size:	00002C
  */
-void ObjSMenuPauseDoukutu::out_L(void)
+void ObjSMenuPauseDoukutu::out_L()
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	li       r0, 2
-	stw      r0, 0x38(r3)
-	lwz      r3, ogSound__2og@sda21(r13)
-	bl       setSMenuLR__Q22og5SoundFv
-	lwz      r0, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	m_state = MENUSTATE_CloseL;
+	ogSound->setSMenuLR();
 }
 
 /*
@@ -1555,21 +1817,10 @@ void ObjSMenuPauseDoukutu::out_L(void)
  * Address:	80323214
  * Size:	00002C
  */
-void ObjSMenuPauseDoukutu::out_R(void)
+void ObjSMenuPauseDoukutu::out_R()
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	li       r0, 3
-	stw      r0, 0x38(r3)
-	lwz      r3, ogSound__2og@sda21(r13)
-	bl       setSMenuLR__Q22og5SoundFv
-	lwz      r0, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	m_state = MENUSTATE_CloseR;
+	ogSound->setSMenuLR();
 }
 
 /*
@@ -1577,8 +1828,24 @@ void ObjSMenuPauseDoukutu::out_R(void)
  * Address:	80323240
  * Size:	0000C4
  */
-void ObjSMenuPauseDoukutu::set_Blink_Normal(void)
+void ObjSMenuPauseDoukutu::set_Blink_Normal()
 {
+	if (m_isDay1) {
+		if (m_currPauseSel == 0) {
+			m_textContinue->blink(0.6f, 0.0f);
+		} else {
+			m_textContinue->blink(0.0f, 0.0f);
+		}
+		m_textDoGiveup->m_colorType = 2;
+	} else {
+		if (m_currPauseSel == 0) {
+			m_textContinue->blink(0.6f, 0.0f);
+			m_textDoGiveup->blink(0.0f, 0.0f);
+		} else {
+			m_textContinue->blink(0.0f, 0.0f);
+			m_textDoGiveup->blink(0.6f, 0.0f);
+		}
+	}
 	/*
 	stwu     r1, -0x10(r1)
 	mflr     r0
@@ -1647,8 +1914,15 @@ lbl_803232F0:
  * Address:	80323304
  * Size:	000078
  */
-void ObjSMenuPauseDoukutu::set_Blink_YesNo(void)
+void ObjSMenuPauseDoukutu::set_Blink_YesNo()
 {
+	if (m_currGiveupSel == 0) {
+		m_textGiveupY->blink(0.6f, 0.0f);
+		m_textGiveupN->blink(0.0f, 0.0f);
+	} else {
+		m_textGiveupY->blink(0.0f, 0.0f);
+		m_textGiveupN->blink(0.6f, 0.0f);
+	}
 	/*
 	stwu     r1, -0x10(r1)
 	mflr     r0
@@ -1694,6 +1968,15 @@ lbl_80323368:
  */
 void ObjSMenuPauseDoukutu::set_Menu_Normal(void)
 {
+	m_menuState = 1;
+	m_textContinue->open(0.6f);
+	m_textDoGiveup->open(0.7f);
+	m_textGiveupQ->close();
+	m_textGiveupY->close();
+	m_textGiveupN->close();
+	set_Blink_Normal();
+	m_pauseOpened    = false;
+	m_menuPauseTimer = 0.0f;
 	/*
 	stwu     r1, -0x10(r1)
 	mflr     r0
@@ -1782,6 +2065,16 @@ lbl_80323464:
  */
 void ObjSMenuPauseDoukutu::set_Menu_YesNo(void)
 {
+	m_menuState = 6;
+	m_textContinue->close();
+	m_textDoGiveup->close();
+	m_textGiveupQ->open(0.6f);
+	m_textGiveupY->open(0.7f);
+	m_textGiveupN->open(0.8f);
+	set_Blink_YesNo();
+	m_giveupOpened    = false;
+	m_menuGiveupTimer = 0.0f;
+	m_warningTimer    = msVal._08;
 	/*
 	stwu     r1, -0x10(r1)
 	mflr     r0
@@ -1870,10 +2163,10 @@ void __sinit_ogObjSMenuPauseDoukutu_cpp(void)
  * Address:	8032357C
  * Size:	000008
  */
-@24 @og::newScreen::ObjSMenuPauseDoukutu::~ObjSMenuPauseDoukutu(void)
-{
-	/*
-	addi     r3, r3, -24
-	b        __dt__Q32og9newScreen20ObjSMenuPauseDoukutuFv
-	*/
-}
+//@24 @og::newScreen::ObjSMenuPauseDoukutu::~ObjSMenuPauseDoukutu(void)
+//{
+/*
+addi     r3, r3, -24
+b        __dt__Q32og9newScreen20ObjSMenuPauseDoukutuFv
+*/
+//}

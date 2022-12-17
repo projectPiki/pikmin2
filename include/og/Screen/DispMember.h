@@ -526,11 +526,20 @@ struct DispMemberSMenuPause : public DispMemberBase {
 	// _00-_08 = DispMemberBase
 	uint m_debtRemaining; // _08
 	uint m_pokoCount;     // _0C
-	int _10;              // _10
+	int m_exitStatus;     // _10
 };
 
 // size 0x18
 struct DispMemberSMenuPauseDoukutu : public DispMemberBase {
+
+	inline DispMemberSMenuPauseDoukutu()
+	{
+		m_exitStatus    = 1;
+		m_cavePokos     = 86;
+		m_preCavePokos  = 2469;
+		m_payDebt       = false;
+		m_pikisInDanger = true;
+	}
 
 	virtual u32 getSize() { return sizeof(DispMemberSMenuPauseDoukutu); } // _08 (weak)
 	virtual u32 getOwnerID() { return OWNER_OGA; }                        // _0C (weak)
@@ -538,15 +547,17 @@ struct DispMemberSMenuPauseDoukutu : public DispMemberBase {
 
 	// _00     = VTBL
 	// _00-_08 = DispMemberBase
-	u32 _08;          // _08
-	uint m_pokoCount; // _0C
-	u8 _10;           // _10
-	u8 _11;           // _11
-	int _14;          // _14
+	u32 m_cavePokos;    // _08
+	u32 m_preCavePokos; // _0C
+	u8 m_payDebt;       // _10
+	u8 m_pikisInDanger; // _11
+	int m_exitStatus;   // _14
 };
 
 // size 0xC
 struct DispMemberSMenuPauseVS : public DispMemberBase {
+
+	inline DispMemberSMenuPauseVS() { m_state = 1; }
 
 	virtual u32 getSize() { return sizeof(DispMemberSMenuPauseVS); } // _08 (weak)
 	virtual u32 getOwnerID() { return OWNER_OGA; }                   // _0C (weak)
@@ -554,7 +565,7 @@ struct DispMemberSMenuPauseVS : public DispMemberBase {
 
 	// _00     = VTBL
 	// _00-_08 = DispMemberBase
-	int _08; // _08, state maybe
+	int m_state; // _08
 };
 
 // size 0xC4
@@ -573,7 +584,7 @@ struct DispMemberSMenuAll : public DispMemberBase {
 	DispMemberSMenuMap m_sMenuMap;                   // _5C
 	DispMemberSMenuPauseVS m_sMenuVS;                // _A8
 	DispMemberSMenuCont m_sMenuCont;                 // _B4
-	int _BC;                                         // _BC
+	int m_pauseVSType;                               // _BC
 	bool m_isDay1;                                   // _C0
 };
 

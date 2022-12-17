@@ -108,15 +108,15 @@ void ObjSMenuItem::doCreate(JKRArchive* arc)
 	if (!disp->m_isBitterUnlocked && !disp->m_isSpicyUnlocked) {
 		og::Screen::TagSearch(m_screenItems, 'Nwin0')->hide();
 		og::Screen::TagSearch(m_screenItems, 'Nwin1')->hide();
-		og::Screen::TagSearch(m_screenItems, 'NULL_002')->resize(-100.0f, 0.0f);
+		og::Screen::TagSearch(m_screenItems, 'NULL_002')->add(-100.0f, 0.0f);
 		m_paneSpraySub0->hide();
 		m_paneSpraySub1->hide();
 	} else if (!disp->m_isBitterUnlocked) {
 		og::Screen::TagSearch(m_screenItems, 'Nwin0')->hide();
-		og::Screen::TagSearch(m_screenItems, 'Nwin1')->resize(0.0f, -100.0f);
+		og::Screen::TagSearch(m_screenItems, 'Nwin1')->add(0.0f, -100.0f);
 		m_paneSpraySub0->hide();
 	} else if (!disp->m_isSpicyUnlocked) {
-		og::Screen::TagSearch(m_screenItems, 'Nwin0')->resize(0.0f, 80.0f);
+		og::Screen::TagSearch(m_screenItems, 'Nwin0')->add(0.0f, 80.0f);
 		og::Screen::TagSearch(m_screenItems, 'Nwin1')->hide();
 		m_paneSpraySub1->hide();
 	}
@@ -135,6 +135,48 @@ void ObjSMenuItem::doCreate(JKRArchive* arc)
 	og::Screen::setCallBack_CounterRV(m_screenItems, 'PupS_1', 'PupS_2', 'PupS_2', &m_disp->m_spicyBerryCount, 2, 2, 0, arc);
 	og::Screen::setCallBack_CounterRV(m_screenItems, 'Pdown_1', 'Pdown_2', 'Pdown_2', &m_disp->m_bitterSprayCount, 3, 3, 0, arc);
 	og::Screen::setCallBack_CounterRV(m_screenItems, 'PdownS_1', 'PdownS_2', 'PdownS_2', &m_disp->m_bitterBerryCount, 2, 2, 0, arc);
+
+	J2DPane* panelist[12];
+	for (int i = 0; i < 12; i++) {
+		u64 tag  = 'Pitemb00' + (i + i % 10);
+		u64 tag2 = 'Titem000' + (i + i % 10);
+		u64 tag3 = 'Picon00' + (i + i % 10);
+
+		J2DPictureEx* pane1 = static_cast<J2DPictureEx*>(og::Screen::TagSearch(m_screenItems, tag));
+		J2DPane* pane2      = og::Screen::TagSearch(m_screenItems, tag2);
+		pane2->setMsgID(ItemMsgID_List[i]);
+
+		panelist[i] = og::Screen::TagSearch(m_screenItems, tag3);
+		if (panelist[i]) {
+			int id = Game::Equip::EquipItemList[i];
+
+			pane1->setWhite(msVal._00);
+			pane1->setBlack(msVal._04);
+
+			if (m_disp->m_explorationKitInventory[i]) {
+				panelist[i]->show();
+				if (pane2)
+					pane2->show();
+			} else {
+				panelist[i]->show();
+				pane1->setBlack(0xffffffa0);
+				pane1->setWhite(0);
+				if (pane2) {
+					pane2->show();
+					pane2->setMsgID('6130_00'); // "Incomplete"
+					pane2->setAlpha(128);
+				} else {
+					char buf[12];
+					og::Screen::TagToName(tag3, buf);
+				}
+			}
+
+		} else {
+			JUT_PANICLINE(386, "icon tag not found !!\n");
+		}
+	}
+
+	doCreateAfter(arc, m_screenItems);
 	/*
 	stwu     r1, -0xd0(r1)
 	mflr     r0

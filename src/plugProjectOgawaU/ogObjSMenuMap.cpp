@@ -10,10 +10,6 @@
 #include "Game/Cave/RandMapMgr.h"
 #include "Radar.h"
 
-bool resetArrowAlphaTimer; // these are used in updateMap
-float arrowAlphaTimer;
-float maxZoom, minZoom;
-
 namespace og {
 
 namespace newScreen {
@@ -124,7 +120,6 @@ ObjSMenuMap::~ObjSMenuMap() { }
 // 	// UNUSED FUNCTION
 // }
 
-#pragma dont_inline on
 /*
  * --INFO--
  * Address:	8030F974
@@ -134,7 +129,7 @@ void ObjSMenuMap::setMapTexture()
 {
 	m_mapTexPane = og::Screen::CopyPictureToPane(m_pane_map, m_rootPane, 0.0f, 0.0f, 'new_map');
 	m_mapTexPane->setAlpha(255);
-	m_pane_map->m_isVisible = false;
+	m_pane_map->hide();
 
 	if (m_disp->m_inCave && m_disp->m_activeNavi) {
 		if (Game::Cave::randMapMgr) {
@@ -170,7 +165,6 @@ void ObjSMenuMap::setMapTexture()
 	m_mapBounds.y            = m_mapTexPane->_020.f.y - m_mapTexPane->_020.i.y;
 	m_mapTexPane->resize(m_mapTextureDimensions.x, m_mapTextureDimensions.y);
 }
-#pragma dont_inline reset
 
 // /*
 //  * --INFO--
@@ -1889,81 +1883,82 @@ void ObjSMenuMap::doCreate(JKRArchive* arc)
 	J2DPane* pane_free    = m_mapCounter->search('Npk11');
 
 	if (!m_disp->m_unlockedReds) {
-		pane_red->m_isVisible  = false;
-		pane_red2->m_isVisible = false;
+		pane_red->hide();
+		pane_red2->hide();
 		m_mapCounter->dispRed(false);
 	}
 	if (!m_disp->m_unlockedYellows) {
-		pane_yellow->m_isVisible  = false;
-		pane_yellow2->m_isVisible = false;
+		pane_yellow->hide();
+		pane_yellow2->hide();
 		m_mapCounter->dispYellow(false);
 	}
 	if (!m_disp->m_unlockedBlues) {
-		pane_blue->m_isVisible  = false;
-		pane_blue2->m_isVisible = false;
+		pane_blue->hide();
+		pane_blue2->hide();
 		m_mapCounter->dispBlue(false);
 	}
 	if (!m_disp->m_unlockedWhites) {
-		pane_white->m_isVisible  = false;
-		pane_white2->m_isVisible = false;
+		pane_white->hide();
+		pane_white2->hide();
 		m_mapCounter->dispWhite(false);
 	}
 	if (!m_disp->m_unlockedPurples) {
-		pane_purple->m_isVisible  = false;
-		pane_purple2->m_isVisible = false;
+		pane_purple->hide();
+		pane_purple2->hide();
 		m_mapCounter->dispBlack(false);
 	}
 	if (!m_disp->m_unlockedReds && !m_disp->m_unlockedYellows && !m_disp->m_unlockedBlues && !m_disp->m_unlockedWhites
 	    && !m_disp->m_unlockedPurples) {
-		pane_free->m_isVisible = false;
+		pane_free->hide();
 		m_mapCounter->dispFree(false);
 	}
 
 	J2DPane* pane_rocket = m_mapCounter->search('Nrocket');
 	if (!m_disp->m_unlockedWhites && !m_disp->m_unlockedPurples) {
-		pane_rocket->m_isVisible = false;
-		pane_rocket              = m_mapCounter->search('Ntairetu');
+		pane_rocket->hide();
+		pane_rocket = m_mapCounter->search('Ntairetu');
 		pane_rocket->add(0.0f, 0.0f);
 	} else {
-		pane_rocket->m_isVisible              = true;
-		J2DPane* pane_rock1                   = m_mapCounter->search('Nrock_1');
-		J2DPane* pane_rock2                   = m_mapCounter->search('Nrock_2');
-		pane_rock1->m_isVisible               = false;
-		pane_rock2->m_isVisible               = false;
-		og::Screen::DispMemberSMenuMap* disp2 = static_cast<og::Screen::DispMemberSMenuMap*>(dispfull->getSubMember('SM', '_MAP'));
+		pane_rocket->show();
+		J2DPane* pane_rock1 = m_mapCounter->search('Nrock_1');
+		J2DPane* pane_rock2 = m_mapCounter->search('Nrock_2');
+		pane_rock1->hide();
+		pane_rock2->hide();
+		og::Screen::DispMemberSMenuMap* disp2
+		    = static_cast<og::Screen::DispMemberSMenuMap*>(dispfull->getSubMember(OWNER_OGA, MEMBER_START_MENU_MAP));
 		if (disp2->m_dataMap.m_pokos < 10000) {
-			pane_rock1->m_isVisible = true;
+			pane_rock1->show();
 		} else {
-			pane_rock2->m_isVisible = true;
+			pane_rock2->show();
 		}
 	}
-	J2DPane* pane_onyn1     = m_mapCounter->search('Nonyn_1');
-	J2DPane* pane_onyn2     = m_mapCounter->search('Nonyn_2');
-	J2DPane* pane_onyn3     = m_mapCounter->search('Nonyn_3');
-	J2DPane* pane_onyn4     = m_mapCounter->search('Nonyn_4');
-	pane_onyn1->m_isVisible = false;
-	pane_onyn2->m_isVisible = false;
-	pane_onyn3->m_isVisible = false;
-	pane_onyn4->m_isVisible = false;
+	J2DPane* pane_onyn1 = m_mapCounter->search('Nonyn_1');
+	J2DPane* pane_onyn2 = m_mapCounter->search('Nonyn_2');
+	J2DPane* pane_onyn3 = m_mapCounter->search('Nonyn_3');
+	J2DPane* pane_onyn4 = m_mapCounter->search('Nonyn_4');
+	pane_onyn1->hide();
+	pane_onyn2->hide();
+	pane_onyn3->hide();
+	pane_onyn4->hide();
 	if (m_disp->m_unlockedReds && m_disp->m_unlockedYellows && m_disp->m_unlockedBlues) {
-		pane_onyn4->m_isVisible = true;
+		pane_onyn4->show();
 	} else if (m_disp->m_unlockedReds && m_disp->m_unlockedBlues) {
-		pane_onyn3->m_isVisible = true;
+		pane_onyn3->show();
 	} else if (m_disp->m_unlockedReds && m_disp->m_unlockedYellows) {
-		pane_onyn2->m_isVisible = true;
+		pane_onyn2->show();
 	} else if (m_disp->m_unlockedReds) {
-		pane_onyn1->m_isVisible = true;
+		pane_onyn1->show();
 	}
 
-	J2DPane* pane_ntai1     = m_mapCounter->search('Ntai_1');
-	J2DPane* pane_ntai2     = m_mapCounter->search('Ntai_2');
-	pane_ntai1->m_isVisible = false;
-	pane_ntai2->m_isVisible = false;
+	J2DPane* pane_ntai1 = m_mapCounter->search('Ntai_1');
+	J2DPane* pane_ntai2 = m_mapCounter->search('Ntai_2');
+	pane_ntai1->hide();
+	pane_ntai2->hide();
 	if (m_disp->m_unlockedBlues) {
-		pane_ntai1->m_isVisible = true;
+		pane_ntai1->show();
 	}
 	if (m_disp->m_unlockedYellows) {
-		pane_ntai2->m_isVisible = true;
+		pane_ntai2->show();
 	}
 	doCreateAfter(arc, m_mapCounter);
 
@@ -2644,6 +2639,9 @@ void ObjSMenuMap::updateMap()
 	::Screen::SceneBase* scene = getOwner();
 	m_controller               = scene->m_controller;
 
+	static bool resetArrowAlphaTimer;
+	static f32 arrowAlphaTimer;
+
 	if (!resetArrowAlphaTimer) {
 		resetArrowAlphaTimer = true;
 		arrowAlphaTimer      = 0.0f;
@@ -2663,7 +2661,7 @@ void ObjSMenuMap::updateMap()
 	u8 olimarArrowAlpha = ((angleCos + 1.0f) * 0.5f * 0.6f + 0.4f) * 255.0f;
 
 	if (m_currentZoom < defaultZoom) {
-		alpha = (u8)(1.0f - (defaultZoom - m_currentZoom) / (defaultZoom - maxZoom)) * 255.0f;
+		alpha = (u8)(1.0f - (defaultZoom - m_currentZoom) / (defaultZoom - msVal._00)) * 255.0f;
 	}
 	m_zoomCaveTextAlpha = alpha;
 	for (int i = 0; i < m_caveLabelCount; i++) {
@@ -3145,9 +3143,7 @@ void ObjSMenuMap::commonUpdate()
 	m_animGroup->update();
 	updateMap();
 
-	P2DScreen::Mgr_tuning* screen = m_mapCounter;
-	screen->m_someX               = _40 + -15.2f;
-	screen->m_someY               = -15.2f;
+	m_mapCounter->setXY(m_movePos, 0.0f);
 
 	m_mapCounter->animation();
 	m_mapCounter->update();
@@ -3240,13 +3236,13 @@ bool ObjSMenuMap::doUpdate()
 
 	if (cstick > 0.4f) {
 		m_currentZoom = -(m_currentZoom * 0.03f - m_currentZoom);
-		if (m_currentZoom < maxZoom)
-			m_currentZoom = maxZoom;
+		if (m_currentZoom < msVal._00)
+			m_currentZoom = msVal._00;
 		ogSound->setZoomOut();
 	} else if (cstick < -0.4f) {
 		m_currentZoom += m_currentZoom * 0.03f;
-		if (m_currentZoom > minZoom)
-			m_currentZoom = minZoom;
+		if (m_currentZoom > msVal.m_animSpeed)
+			m_currentZoom = msVal.m_animSpeed;
 		ogSound->setZoomIn();
 	}
 	commonUpdate();
@@ -3913,7 +3909,7 @@ bool ObjSMenuMap::doStart(::Screen::StartSceneArg const* arg)
 	m_animGroup->setRepeat(true);
 	m_animGroup->setSpeed(1.0f);
 	m_animGroup->start();
-	setYajiName('6051_00', '6052_00', '6050_00');
+	setYajiName('6051_00', '6052_00', '6050_00'); // "Items" "Menu" "Radar"
 	stopYaji();
 	start_LR(arg);
 }
@@ -3950,8 +3946,8 @@ bool ObjSMenuMap::doUpdateFadeout()
  */
 void ObjSMenuMap::in_L()
 {
-	_38 = 0;
-	_4C = 15.0f;
+	m_state = MENUSTATE_OpenL;
+	m_angle = 15.0f;
 }
 
 /*
@@ -3961,8 +3957,8 @@ void ObjSMenuMap::in_L()
  */
 void ObjSMenuMap::in_R()
 {
-	_38 = 1;
-	_4C = 15.0f;
+	m_state = MENUSTATE_OpenR;
+	m_angle = 15.0f;
 }
 
 /*
@@ -3970,7 +3966,7 @@ void ObjSMenuMap::in_R()
  * Address:	80312A4C
  * Size:	00000C
  */
-void ObjSMenuMap::wait() { _38 = 4; }
+void ObjSMenuMap::wait() { m_state = MENUSTATE_Default; }
 
 /*
  * --INFO--
@@ -3979,7 +3975,7 @@ void ObjSMenuMap::wait() { _38 = 4; }
  */
 void ObjSMenuMap::out_L()
 {
-	_38 = 2;
+	m_state = MENUSTATE_CloseL;
 	ogSound->setSMenuLR();
 }
 
@@ -3990,7 +3986,7 @@ void ObjSMenuMap::out_L()
  */
 void ObjSMenuMap::out_R()
 {
-	_38 = 3;
+	m_state = MENUSTATE_CloseR;
 	ogSound->setSMenuLR();
 }
 
@@ -4012,14 +4008,7 @@ int SetSceneArg::getClassSize(void) { return 0x10; }
  * Address:	80312AB8
  * Size:	000008
  */
-SceneType SetSceneArg::getSceneType() const
-{
-	return m_sceneType;
-	/*
-	lwz      r3, 4(r3)
-	blr
-	*/
-}
+SceneType SetSceneArg::getSceneType() const { return m_sceneType; }
 
 /*
  * --INFO--

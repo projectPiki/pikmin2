@@ -29,7 +29,7 @@ ObjSMenuBase::ObjSMenuBase()
 	m_state           = MENUSTATE_Default;
 	m_exiting         = false;
 	m_angle           = 0.0f;
-	_50               = false;
+	m_isDay1          = false;
 	m_cancelToState   = MENUCLOSE_None;
 	m_enableYaji      = false;
 	m_alpha           = 0;
