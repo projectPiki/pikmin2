@@ -6,14 +6,6 @@
 #include "JSystem/J2D/J2DMaterial.h"
 #include "System.h"
 
-const char* bloFile_Course[4] = { "course_name00.blo", "course_name01.blo", "course_name02.blo", "course_name03.blo" };
-char* animFile_Course00[3]    = { "course_name00.bck", "course_name00.btk", "course_name00.bpk" };
-char* animFile_Course01[3]    = { "course_name01.bck", "course_name01.btk", "course_name01.bpk" };
-char* animFile_Course02[3]    = { "course_name02.bck", "course_name02.btk", "course_name02.bpk" };
-char* animFile_Course03[3]    = { "course_name03.bck", "course_name03.btk", "course_name03.bpk" };
-
-char** animFileTableCourse[4] = { animFile_Course00, animFile_Course01, animFile_Course02, animFile_Course03 };
-
 /*
     Generated from dpostproc
 

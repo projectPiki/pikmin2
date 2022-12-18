@@ -47,10 +47,10 @@ struct DataGame {
 	}
 
 	f32 m_sunGaugeRatio;    // _00
-	int m_dayNum;           // _04
-	int m_totalPikminCount; // _08
-	int m_floorNum;         // _0C
-	int m_mapPikminCount;   // _10
+	u32 m_dayNum;           // _04
+	u32 m_totalPikminCount; // _08
+	u32 m_floorNum;         // _0C
+	u32 m_mapPikminCount;   // _10
 	u8 _14;                 // _14
 	uint m_pokoCount;       // _18
 };

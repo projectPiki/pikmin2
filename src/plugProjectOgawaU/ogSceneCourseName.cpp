@@ -1,5 +1,7 @@
 #include "types.h"
 #include "og/newScreen/CourseName.h"
+#include "og/newScreen/ogUtil.h"
+#include "LoadResource.h"
 
 /*
     Generated from dpostproc
@@ -194,33 +196,14 @@ namespace newScreen {
  * Address:	80318050
  * Size:	00003C
  */
-CourseName::CourseName(void)
-{
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	mr       r31, r3
-	bl       __ct__Q26Screen9SceneBaseFv
-	lis      r4, __vt__Q32og9newScreen10CourseName@ha
-	mr       r3, r31
-	addi     r0, r4, __vt__Q32og9newScreen10CourseName@l
-	stw      r0, 0(r31)
-	lwz      r31, 0xc(r1)
-	lwz      r0, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
-}
+CourseName::CourseName() { }
 
 /*
  * --INFO--
  * Address:	........
  * Size:	000074
  */
-CourseName::~CourseName(void)
+CourseName::~CourseName()
 {
 	// UNUSED FUNCTION
 }
@@ -242,6 +225,29 @@ int CourseName::getCourseNum(void)
  */
 void CourseName::doUserCallBackFunc(Resource::MgrCommand*)
 {
+	og::Screen::DispMemberCourseName* disp = static_cast<og::Screen::DispMemberCourseName*>(m_dispMember);
+	if (disp->isID(OWNER_OGA, MEMBER_COURSE_NAME)) {
+		m_courseIndex = disp->m_courseIndex;
+	} else {
+		JUT_PANICLINE(58, "DispMember ERR!\n", 0);
+	}
+
+	if (m_courseIndex > 3)
+		m_courseIndex = 0;
+
+	og::newScreen::makeLanguageResName(m_name, szsFile_Course[m_courseIndex]);
+	LoadResource::Arg arg(m_name);
+	LoadResource::Node* node = gLoadResourceMgr->mountArchive(arg);
+	JKRArchive* arc          = nullptr;
+	if (node) {
+		arc = node->m_archive;
+		if (!arc) {
+			JUT_PANICLINE(98, "arc is NULL!!\n");
+		}
+	} else {
+		JUT_PANICLINE(103, "node is NULL!!\n");
+	}
+	doCreateObjUserCallBackFunc(arc);
 	/*
 	stwu     r1, -0x50(r1)
 	mflr     r0
@@ -338,36 +344,10 @@ void CourseName::doCreateObj(JKRArchive*) { }
  * Address:	803181B8
  * Size:	000060
  */
-void CourseName::doCreateObjUserCallBackFunc(JKRArchive*)
+void CourseName::doCreateObjUserCallBackFunc(JKRArchive* arc)
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	mr       r31, r4
-	stw      r30, 8(r1)
-	mr       r30, r3
-	li       r3, 0x60
-	bl       __nw__FUl
-	or.      r4, r3, r3
-	beq      lbl_803181F4
-	lis      r4, lbl_8048E7DC@ha
-	addi     r4, r4, lbl_8048E7DC@l
-	bl       __ct__Q32og9newScreen13ObjCourseNameFPCc
-	mr       r4, r3
-
-lbl_803181F4:
-	mr       r3, r30
-	mr       r5, r31
-	bl       registObj__Q26Screen9SceneBaseFPQ26Screen7ObjBaseP10JKRArchive
-	lwz      r0, 0x14(r1)
-	lwz      r31, 0xc(r1)
-	lwz      r30, 8(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	ObjCourseName* obj = new ObjCourseName("course name screen");
+	registObj(obj, arc);
 }
 
 /*
@@ -375,48 +355,27 @@ lbl_803181F4:
  * Address:	80318218
  * Size:	000008
  */
-const char* CourseName::getResName() const
-{
-	/*
-	addi     r3, r2, lbl_8051D930@sda21
-	blr
-	*/
-}
+const char* CourseName::getResName() const { return ""; }
 
 /*
  * --INFO--
  * Address:	80318220
  * Size:	000008
  */
-SceneType CourseName::getSceneType(void) { return SCENE_COURSE_NAME; }
+SceneType CourseName::getSceneType() { return SCENE_COURSE_NAME; }
 
 /*
  * --INFO--
  * Address:	80318228
  * Size:	00000C
  */
-ScreenOwnerID CourseName::getOwnerID(void)
-{
-	/*
-	lis      r3, 0x004F4741@ha
-	addi     r3, r3, 0x004F4741@l
-	blr
-	*/
-}
+ScreenOwnerID CourseName::getOwnerID() { return OWNER_OGA; }
 
 /*
  * --INFO--
  * Address:	80318234
  * Size:	000010
  */
-ScreenMemberID CourseName::getMemberID(void)
-{
-	/*
-	lis      r4, 0x55525345@ha
-	li       r3, 0x434f
-	addi     r4, r4, 0x55525345@l
-	blr
-	*/
-}
+ScreenMemberID CourseName::getMemberID() { return MEMBER_COURSE_NAME; }
 } // namespace newScreen
 } // namespace og
