@@ -145,7 +145,7 @@ void ObjChallenge2P::ScreenSet::init(og::Screen::DataNavi* data, JKRArchive* arc
 	m_doping->init(m_paneToyo01, m_paneToyo00, m_scaleMgr1, m_scaleMgr2);
 	m_lifeGauge->init(m_screen, data, og::Screen::CallBack_LifeGauge::LIFEGAUGE_OLIMAR);
 	m_screen->addCallBack('back', m_lifeGauge);
-	m_lifeGauge->setOffset(ObjVs::msVal._08, ObjVs::msVal._0C);
+	m_lifeGauge->setOffset(ObjVs::msVal.m_lifeGaugeXOffs, ObjVs::msVal.m_lifeGaugeYOffs);
 
 	og::Screen::setCallBack_DrawAfter(m_screen, 'mete');
 }

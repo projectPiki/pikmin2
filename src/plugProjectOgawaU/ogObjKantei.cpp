@@ -1,4 +1,3 @@
-#include "types.h"
 #include "og\newScreen\KanteiDemo.h"
 #include "P2DScreen.h"
 #include "og/Screen/ogScreen.h"
@@ -357,7 +356,7 @@ ObjKantei::ObjKantei(char const* name)
  * Address:	80318364
  * Size:	0000AC
  */
-ObjKantei::~ObjKantei(void)
+ObjKantei::~ObjKantei()
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -415,7 +414,7 @@ lbl_803183F4:
  * Address:	........
  * Size:	000050
  */
-void ObjKantei::startItemName(unsigned long long)
+void ObjKantei::startItemName(u64)
 {
 	// UNUSED FUNCTION
 }
@@ -432,7 +431,7 @@ void ObjKantei::doCreate(JKRArchive* arc)
 		m_disp = disp;
 	} else {
 		if (disp->isID(OWNER_OGA, MEMBER_DUMMY)) {
-			m_disp = new og::Screen::DispMemberKantei();
+			m_disp = new og::Screen::DispMemberKantei;
 		} else {
 			JUT_PANICLINE(258, "ERR! in ObjKantei CreateŽ¸”sI\n");
 		}
@@ -470,10 +469,10 @@ void ObjKantei::doCreate(JKRArchive* arc)
 
 	if (m_disp->m_inCave) {
 		J2DPane* pane     = m_screenOkWindow->search('Tzukan');
-		pane->m_messageID = '8551_00';
+		pane->m_messageID = '8551_00'; // "You can't log this treasure until you reach the surface."
 	} else {
 		J2DPane* pane     = m_screenOkWindow->search('Tzukan');
-		pane->m_messageID = '8550_00';
+		pane->m_messageID = '8550_00'; // "It's been added to your Treasure Log!"
 	}
 
 	int offs                     = m_disp->m_pelletOffset;
@@ -484,44 +483,53 @@ void ObjKantei::doCreate(JKRArchive* arc)
 	m_paneName = m_screenName->search('ItemName');
 	m_paneName->add(msVal.m_namePaneAdd.x, msVal.m_namePaneAdd.y);
 	m_paneName->setBasePosition(POS_CENTER);
-	m_paneName->m_messageID = '8557_00';
+	m_paneName->m_messageID = '8557_00'; // "Name"
 	m_nameScale             = 0.0f;
 	m_paneName->m_scale.x   = m_nameScale;
 	m_paneName->m_scale.y   = m_nameScale;
 	m_paneName->calcMtx();
-	m_scaleMgr        = new og::Screen::ScaleMgr;
+
+	m_scaleMgr = new og::Screen::ScaleMgr;
+
 	m_pokoCounterCurr = og::Screen::setCallBack_CounterSlot(m_screenOkWindow, 'PSota1', &m_disp->m_pelletValue, 4, true, true, arc);
 	m_pokoCounterCurr->hide();
 	m_pokoCounterCurr->setPuyoParam(msVal.m_pokoPuyo1, msVal.m_pokoPuyo2, msVal.m_pokoPuyo3);
 	m_pokoCounterCurr->m_scaleUpSoundID = PSSE_SY_COIN_COUNT;
-	m_screenBG                          = new P2DScreen::Mgr_tuning;
+
+	m_screenBG = new P2DScreen::Mgr_tuning;
 	m_screenBG->set("ok_bg_normal.blo", 0x1040000, arc);
+
 	og::Screen::setAlphaScreen(m_screenOkWindow);
 	og::Screen::setAlphaScreen(m_screenBG);
 	og::Screen::setAlphaScreen(m_screenName);
 	og::Screen::setAlphaScreen(m_screenButton);
+
 	m_paneOk1              = m_screenOkWindow->search('NMsha');
 	m_paneOk2              = m_screenOkWindow->search('NMzukan');
 	m_paneOk2->m_isVisible = false;
 	J2DPane* pane          = m_screenBG->search('item');
 	if (pane)
-		pane->m_isVisible = false;
+		pane->hide();
 	m_paneSetP = m_screenBG->search('Notsetp');
+
 	og::Screen::setCallBackMessage(m_screenOkWindow);
 	og::Screen::setCallBackMessage(m_screenName);
 	og::Screen::setCallBackMessage(m_screenButton);
+
 	m_tControl = new P2JME::Movie::TControl;
 	m_tControl->init();
 	m_tControl->m_flags &= 0xfffffffe;
-	m_inTextBox                       = false;
+	m_inTextBox = false;
+
 	og::Screen::CallBack_Picture* pic = og::Screen::setCallBack_3DStick(arc, m_screenButton, 'ota3dl');
 	m_stickAnim                       = new og::Screen::StickAnimMgr(pic);
 	m_stickAnim->stickUpDown();
-	pane              = m_screenButton->search('Ncstick');
-	pane->m_isVisible = false;
-	m_efx             = nullptr;
+	pane = m_screenButton->search('Ncstick');
+	pane->hide();
+
+	m_efx = nullptr;
 	if (m_disp->m_pelletMessageID) {
-		efx2d::T2DOtakantei* efx = new efx2d::T2DOtakantei();
+		efx2d::T2DOtakantei* efx = new efx2d::T2DOtakantei;
 		m_efx                    = efx;
 		efx2d::Arg arg(304.0f, 194.0f);
 		m_efx->setGroup(2);
@@ -1085,7 +1093,7 @@ void ObjKantei::startKanteiVoice(int)
  * Address:	........
  * Size:	0000F4
  */
-void ObjKantei::updateKanteiVoice(void)
+void ObjKantei::updateKanteiVoice()
 {
 	// UNUSED FUNCTION
 }
@@ -1095,12 +1103,10 @@ void ObjKantei::updateKanteiVoice(void)
  * Address:	80318BDC
  * Size:	000258
  */
-void ObjKantei::scaleAnimItemName(void)
+void ObjKantei::scaleAnimItemName()
 {
-	f32 calcscale         = m_scaleMgr->calc();
-	m_paneName->m_scale.x = calcscale * m_nameScale;
-	m_paneName->m_scale.y = calcscale * m_nameScale;
-	m_paneName->calcMtx();
+	f32 calcscale = m_scaleMgr->calc();
+	m_paneName->updateScale(calcscale * m_nameScale);
 
 	if (m_doScaleName) {
 		switch (m_nameState) {
@@ -1148,9 +1154,7 @@ void ObjKantei::scaleAnimItemName(void)
 						m_nameWaitTimer           = msVal.m_waitTimerReset;
 						m_paneName->m_messageID   = m_treasureNameMesgID;
 						m_nameScale               = 0.0f;
-						m_paneName->m_scale.x     = calcscale * m_nameScale;
-						m_paneName->m_scale.y     = calcscale * m_nameScale;
-						m_paneName->calcMtx();
+						m_paneName->updateScale(calcscale * m_nameScale);
 						m_nameState = KanteiName_Growing; // reset to growing state but now with the treasures name
 					}
 				}
@@ -1330,7 +1334,7 @@ lbl_80318E20:
  * Address:	80318E34
  * Size:	000154
  */
-void ObjKantei::commonUpdate(void)
+void ObjKantei::commonUpdate()
 {
 	scaleAnimItemName();
 	if (m_doShipSpeech) {
@@ -1444,7 +1448,7 @@ lbl_80318F24:
  * Address:	80318F88
  * Size:	00040C
  */
-bool ObjKantei::doUpdate(void)
+bool ObjKantei::doUpdate()
 {
 	Controller* pad = getGamePad();
 	switch (m_state) {
@@ -1489,7 +1493,8 @@ bool ObjKantei::doUpdate(void)
 		if (m_idleStateTimer > 0.0f) {
 			m_idleStateTimer -= sys->m_deltaTime;
 		} else {
-			if (pad->m_padButton.m_mask & Controller::PRESS_A || m_disp->m_secondaryController->m_padButton.m_mask & Controller::PRESS_A) {
+			if (pad->m_padButton.m_buttonDown & Controller::PRESS_A
+			    || m_disp->m_secondaryController->m_padButton.m_buttonDown & Controller::PRESS_A) {
 				m_shipMessageBoxID = m_disp->m_pelletMessageID;
 				// if the tagID exists, open ship message box, unless in E3 mode
 				if (m_shipMessageBoxID || Game::gGameConfig.m_parms.m_E3version.m_data) {
@@ -1511,29 +1516,7 @@ bool ObjKantei::doUpdate(void)
 	default:
 		break;
 	}
-	// is commonUpdate inlined???
-	scaleAnimItemName();
-	if (m_doShipSpeech) {
-		if (m_commonTimer > 0.0f) {
-			m_commonTimer -= sys->m_deltaTime;
-			if (m_commonTimer <= 0.0f) {
-				m_commonTimer = 0.1f;
-				m_shipSpeechTimer--;
-				if (m_shipSpeechTimer < 1) {
-					m_doShipSpeech = false;
-					// P2ASSERTLINE(567, PSGame::seMgr); there should be a global mgr pointer
-					// PSGame::seMgr->playMessageVoice(PSSE_MP_VOX_FOOT_A_UP, false);
-				} else {
-					// P2ASSERTLINE(567, PSGame::seMgr); there should be a global mgr pointer
-					// PSGame::seMgr->playMessageVoice(PSSE_MP_VOX_BODY_MN, false);
-				}
-			}
-		}
-	}
-	m_screenBG->update();
-	m_screenOkWindow->update();
-	m_screenName->update();
-	m_screenButton->update();
+	commonUpdate();
 	return false;
 	/*
 	stwu     r1, -0x20(r1)
@@ -1885,9 +1868,8 @@ void ObjKantei::doDraw(Graphics& gfx)
 		alpha = m_fadeLevel * 255.0f;
 		m_screenOkWindow->setAlpha(alpha);
 		m_screenOkWindow->draw(gfx2, graf);
-		m_screenButton->m_someX = -15.2f;
-		m_screenButton->m_someY = msVal.m_screenMoveStart + -15.2f;
-		alpha                   = m_fadeLevel * 255.0f;
+		m_screenButton->setXY(0.0f, msVal.m_screenMoveStart);
+		alpha = m_fadeLevel * 255.0f;
 		m_screenButton->setAlpha(alpha);
 		m_screenButton->draw(gfx2, graf);
 	}
@@ -2234,14 +2216,14 @@ bool ObjKantei::doEnd(::Screen::EndSceneArg const*)
  * Address:	803197BC
  * Size:	000004
  */
-void ObjKantei::doUpdateFadeinFinish(void) { }
+void ObjKantei::doUpdateFadeinFinish() { }
 
 /*
  * --INFO--
  * Address:	803197C0
  * Size:	000040
  */
-void ObjKantei::doUpdateFinish(void)
+void ObjKantei::doUpdateFinish()
 {
 	m_fadeLevel = 0.0f;
 	if (m_efx) {
@@ -2274,14 +2256,14 @@ lbl_803197F0:
  * Address:	80319800
  * Size:	000004
  */
-void ObjKantei::doUpdateFadeoutFinish(void) { }
+void ObjKantei::doUpdateFadeoutFinish() { }
 
 /*
  * --INFO--
  * Address:	80319804
  * Size:	0001A4
  */
-bool ObjKantei::doUpdateFadein(void)
+bool ObjKantei::doUpdateFadein()
 {
 	m_fadeLevel += sys->m_deltaTime;
 	bool calc = m_fadeLevel > 0.3f;
@@ -2289,28 +2271,7 @@ bool ObjKantei::doUpdateFadein(void)
 		m_fadeLevel = 0.3f;
 
 	m_fadeLevel /= 0.3f;
-	scaleAnimItemName();
-	if (m_doShipSpeech) {
-		if (m_commonTimer > 0.0f) {
-			m_commonTimer -= sys->m_deltaTime;
-			if (m_commonTimer <= 0.0f) {
-				m_commonTimer = 0.1f;
-				m_shipSpeechTimer--;
-				if (m_shipSpeechTimer < 1) {
-					m_doShipSpeech = false;
-					// P2ASSERTLINE(567, PSGame::seMgr); there should be a global mgr pointer
-					// PSGame::seMgr->playMessageVoice(PSSE_MP_VOX_FOOT_A_UP, false);
-				} else {
-					// P2ASSERTLINE(567, PSGame::seMgr); there should be a global mgr pointer
-					// PSGame::seMgr->playMessageVoice(PSSE_MP_VOX_BODY_MN, false);
-				}
-			}
-		}
-	}
-	m_screenBG->update();
-	m_screenOkWindow->update();
-	m_screenName->update();
-	m_screenButton->update();
+	commonUpdate();
 	return calc;
 	/*
 	stwu     r1, -0x10(r1)
@@ -2424,7 +2385,7 @@ lbl_8031993C:
  * Address:	803199A8
  * Size:	0001AC
  */
-bool ObjKantei::doUpdateFadeout(void)
+bool ObjKantei::doUpdateFadeout()
 {
 	m_fadeLevel += sys->m_deltaTime;
 	bool calc = m_fadeLevel > 0.2f;
@@ -2432,28 +2393,7 @@ bool ObjKantei::doUpdateFadeout(void)
 		m_fadeLevel = 0.2f;
 
 	m_fadeLevel = 1.0f - (m_fadeLevel / 0.2f);
-	scaleAnimItemName();
-	if (m_doShipSpeech) {
-		if (m_commonTimer > 0.0f) {
-			m_commonTimer -= sys->m_deltaTime;
-			if (m_commonTimer <= 0.0f) {
-				m_commonTimer = 0.1f;
-				m_shipSpeechTimer--;
-				if (m_shipSpeechTimer < 1) {
-					m_doShipSpeech = false;
-					// P2ASSERTLINE(567, PSGame::seMgr); there should be a global mgr pointer
-					// PSGame::seMgr->playMessageVoice(PSSE_MP_VOX_FOOT_A_UP, false);
-				} else {
-					// P2ASSERTLINE(567, PSGame::seMgr); there should be a global mgr pointer
-					// PSGame::seMgr->playMessageVoice(PSSE_MP_VOX_BODY_MN, false);
-				}
-			}
-		}
-	}
-	m_screenBG->update();
-	m_screenOkWindow->update();
-	m_screenName->update();
-	m_screenButton->update();
+	commonUpdate();
 	return calc;
 	/*
 	stwu     r1, -0x10(r1)
@@ -2572,7 +2512,7 @@ lbl_80319AE8:
  * Address:	80319B54
  * Size:	000080
  */
-void __sinit_ogObjKantei_cpp(void)
+void __sinit_ogObjKantei_cpp()
 {
 	/*
 	lfs      f13, lbl_8051D958@sda21(r2)
