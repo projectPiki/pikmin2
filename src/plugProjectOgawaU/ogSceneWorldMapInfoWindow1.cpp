@@ -43,7 +43,7 @@ int WorldMapInfoWindow1::doGetFinishState()
 	Screen::DispMemberWorldMapInfoWin1* disp = static_cast<Screen::DispMemberWorldMapInfoWin1*>(m_dispMember);
 	int state                                = 0;
 	if (disp->isID(OWNER_OGA, MEMBER_WORLD_MAP_INFO_WINDOW_1)) {
-		state = disp->_08;
+		state = disp->m_result;
 	}
 	return state;
 }

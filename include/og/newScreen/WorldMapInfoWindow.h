@@ -52,19 +52,19 @@ struct ObjWorldMapInfoWindow0 : public ObjSMenuPauseVS {
 	virtual void out_cancel();                            // _A8
 	virtual void out_menu_0();                            // _AC
 	virtual void out_menu_1();                            // _B0
-	virtual void getResult();                             // _B4 (weak)
+	virtual int getResult();                              // _B4 (weak)
 
 	// _00     = VTBL1
 	// _18     = VTBL2
 	// _00-_CC = ObjSMenuPauseVS
 	Screen::DispMemberWorldMapInfoWin0* m_dispWmap; // _CC
-	u32 _D0;                                        // _D0, probably AnimText_Screen* based on 1?
+	u32 m_prevSel;                                  // _D0
 };
 
 struct ObjWorldMapInfoWindow1 : public ObjSMenuPauseVS {
 	ObjWorldMapInfoWindow1(const char*);
 
-	virtual ~ObjWorldMapInfoWindow1() { }                 // _08 (weak)
+	virtual ~ObjWorldMapInfoWindow1();                    // _08 (weak)
 	virtual bool doStart(const ::Screen::StartSceneArg*); // _44
 	virtual void doCreate(JKRArchive*);                   // _4C
 	virtual void doUpdateFadeoutFinish();                 // _64
@@ -73,13 +73,13 @@ struct ObjWorldMapInfoWindow1 : public ObjSMenuPauseVS {
 	virtual void out_cancel();                            // _A8
 	virtual void out_menu_0();                            // _AC
 	virtual void out_menu_1();                            // _B0
-	virtual void getResult();                             // _B4 (weak)
+	virtual int getResult();                              // _B4 (weak)
 
 	// _00     = VTBL1
 	// _18     = VTBL2
 	// _00-_CC = ObjSMenuPauseVS
-	Screen::DispMemberWorldMapInfoWin0* _CC; // _CC
-	Screen::AnimText_Screen* _D0;            // _D0
+	Screen::DispMemberWorldMapInfoWin1* m_dispWmap; // _CC
+	Screen::AnimText_Screen* m_animTextTitle;       // _D0
 };
 } // namespace newScreen
 } // namespace og

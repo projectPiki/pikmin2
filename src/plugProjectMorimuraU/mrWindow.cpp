@@ -29,10 +29,10 @@ TConfirmEndWindow::TConfirmEndWindow(const char* p1)
  */
 bool TConfirmEndWindow::doStart(const Screen::StartSceneArg* arg)
 {
-	m_fadeLevel     = 0.0f;
-	m_hasDrawn      = false;
-	m_isActive      = true;
-	m_dispWmap->_21 = 1;
+	m_fadeLevel                  = 0.0f;
+	m_hasDrawn                   = false;
+	m_isActive                   = true;
+	m_dispWmap->m_startSelection = 1;
 	return og::newScreen::ObjWorldMapInfoWindow0::doStart(arg);
 }
 

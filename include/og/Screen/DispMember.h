@@ -699,11 +699,11 @@ struct DispMemberVs : public DispMemberBase {
 struct DispMemberWorldMapInfoWin0 : public DispMemberBase {
 	inline DispMemberWorldMapInfoWin0()
 	{
-		_08 = 0;
-		_10 = '4710_00';
-		_18 = '4711_00';
-		_20 = 0xB4;
-		_21 = 0;
+		m_result         = 0;
+		m_msgIDYes       = '4710_00'; // "Continue"
+		m_msgIDNo        = '4711_00'; // "Return to Title Screen"
+		_20              = 180;
+		m_startSelection = 0;
 	}
 
 	virtual u32 getSize() { return sizeof(DispMemberWorldMapInfoWin0); } // _08 (weak)
@@ -712,18 +712,23 @@ struct DispMemberWorldMapInfoWin0 : public DispMemberBase {
 
 	// _00     = VTBL
 	// _00-_08 = DispMemberBase
-	int _08;     // _08, state or result
-	u8 _0C[0x4]; // _0C, unknown
-	u64 _10;     // _10
-	u64 _18;     // _18
-	u8 _20;      // _20
-	u8 _21;      // _21
-	u8 _22[0x2]; // _22, possibly padding
-	u8 _24[0x4]; // _24, unknown
+	int m_result;        // _08
+	u8 _0C[0x4];         // _0C, unknown
+	u64 m_msgIDYes;      // _10
+	u64 m_msgIDNo;       // _18
+	u8 _20;              // _20
+	u8 m_startSelection; // _21
+	u8 _22[0x2];         // _22, possibly padding
+	u8 _24[0x4];         // _24, unknown
 };
 
 // size 0x10
 struct DispMemberWorldMapInfoWin1 : public DispMemberBase {
+	inline DispMemberWorldMapInfoWin1()
+	{
+		m_result = 0;
+		_0C      = 180;
+	}
 
 	virtual u32 getSize() { return sizeof(DispMemberWorldMapInfoWin1); } // _08 (weak)
 	virtual u32 getOwnerID() { return OWNER_OGA; }                       // _0C (weak)
@@ -731,8 +736,8 @@ struct DispMemberWorldMapInfoWin1 : public DispMemberBase {
 
 	// _00     = VTBL
 	// _00-_08 = DispMemberBase
-	int _08; // _08, state or result
-	u8 _0C;  // _0C
+	int m_result; // _08, state or result
+	u8 _0C;       // _0C
 };
 
 } // namespace Screen

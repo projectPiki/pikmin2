@@ -636,7 +636,7 @@ struct ObjSMenuPauseVS : public ObjSMenuBase {
 	virtual void out_cancel();                            // _A8
 	virtual void out_menu_0();                            // _AC
 	virtual void out_menu_1();                            // _B0
-	virtual void getResult();                             // _B4 SHOULD RETURN INT BUT BREAKS MATCHING WHEN IT DOES
+	virtual int getResult();                              // _B4
 
 	void blink_Menu(int);
 	bool menu();
