@@ -76,29 +76,25 @@ struct CallBack_CounterRV : public P2DScreen::CallBackNode {
 	// _00     = VTBL
 	// _00-_1C = P2DScreen::CallBackNode
 	char** m_characterTexturePaths;    // _1C
-	u32* _20;                          // _20
-	u32 _24;                           // _24
-	u32 _28;                           // _28
+	u32* m_countPtr;                   // _20
+	u32 m_initialDisplayValue;         // _24
+	u32 m_currDisplayValue;            // _28
 	u16 m_currCounters;                // _2C
 	u16 m_counterLimit;                // _2E /* allocated slot count of _7C */
 	u16 _30;                           // _30
-	f32 _34;                           // _34
-	f32 _38;                           // _38
+	f32 m_pane12DistX;                 // _34
+	f32 m_pane13DistX;                 // _38
 	f32 _3C;                           // _3C
-	f32 _40;                           // _40
-	f32 m_height;                      // _44
-	f32 m_widthMaybe;                  // _48
-	f32 m_heightMaybe;                 // _4C
-	f32 _50;                           // _50
-	f32 _54;                           // _54
-	f32 _58;                           // _58
-	f32 _5C;                           // _5C
+	Vector2f m_paneScale;              // _40
+	Vector2f m_paneSize;               // _48
+	Vector2f m_panePosition;           // _50
+	Vector2f m_paneBounds;             // _58
 	u32 m_basePosition;                // _60 /* Use J2DBasePosition constants. */
-	u8 _64;                            // _64
+	u8 m_paneAlpha;                    // _64
 	u8 _65[7];                         // _65 /* Hopefully this doesn't mess with size. */
-	J2DPictureEx* _6C;                 // _6C
-	J2DPane* _70;                      // _70
-	J2DPane* _74;                      // _74
+	J2DPictureEx* m_pic1;              // _6C
+	J2DPane* m_pic2;                   // _70
+	J2DPane* m_pic3;                   // _74
 	J2DPane* m_motherPane;             // _78
 	CounterKeta** m_counters;          // _7C
 	ResTIMG** m_imgResources;          // _80
@@ -106,7 +102,7 @@ struct CallBack_CounterRV : public P2DScreen::CallBackNode {
 	bool m_isPuyoAnimZero;             // _85
 	bool m_isBlind;                    // _86
 	bool m_isHidden;                   // _87
-	bool _88;                          // _88
+	bool m_isMother;                   // _88
 	u8 _89;                            // _89
 	EnumCenteringMode m_centeringMode; // _8C
 	u8 m_zeroAlpha;                    // _90
@@ -434,7 +430,15 @@ struct AnimText_Screen : public CallBack_Screen {
 };
 
 struct CounterKeta {
-	void setSuji(ResTIMG** texList, u32 texIdx);
+	inline CounterKeta(J2DPicture* pic)
+	{
+		m_picture      = pic;
+		m_textureIndex = 0;
+		m_scaleMgr     = new ScaleMgr;
+		_0C            = 1.0f;
+		_10            = 1.0f;
+	}
+	void setSuji(ResTIMG**, u32);
 	void calcScale();
 
 	J2DPicture* m_picture; // _00

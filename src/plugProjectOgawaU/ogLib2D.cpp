@@ -13,7 +13,7 @@ namespace og {
 inline Lib2D::Lib2D()
 {
 	m_message = nullptr;
-	m_message = new P2JME::SimpleMessage();
+	m_message = new P2JME::SimpleMessage;
 	m_message->init();
 }
 
@@ -22,7 +22,7 @@ inline Lib2D::Lib2D()
  * Address:	8030F600
  * Size:	000068
  */
-Lib2D::~Lib2D() { og::gLib2D = nullptr; }
+Lib2D::~Lib2D() { gLib2D = nullptr; }
 
 /*
  * --INFO--
@@ -31,8 +31,8 @@ Lib2D::~Lib2D() { og::gLib2D = nullptr; }
  */
 void Lib2D::create()
 {
-	if (!og::gLib2D) {
-		gLib2D = new og::Lib2D();
+	if (!gLib2D) {
+		gLib2D = new Lib2D;
 	}
 }
 } // namespace og

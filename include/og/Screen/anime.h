@@ -24,17 +24,16 @@ struct AnimBaseBase {
 	bool updateSub();
 
 	// _00 = VTBL
-	/* set to 1 by AnimScreen(), 2 by AnimPane() */
-	int _04;              // _04
+	int m_type;           // _04 1 =AnimScreen, 2 = AninPane
 	bool _08;             // _08
 	f32 _0C;              // _0C
 	u8 _10;               // _10
-	u8 _11;               // _11 /* alpha of pane/screen? */
-	u8 _12;               // _12
+	u8 m_alpha;           // _11
+	bool m_doSetAlpha;    // _12
 	J2DAnmBase* m_anm;    // _14
 	f32 m_frame;          // _18
 	f32 m_lastFrame;      // _1C
-	f32 _20;              // _20 /* speed */
+	f32 m_speed;          // _20
 	f32 _24;              // _24
 	f32 _28;              // _28
 	f32 _2C;              // _2C

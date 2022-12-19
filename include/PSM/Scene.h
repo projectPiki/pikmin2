@@ -160,9 +160,11 @@ struct Scene_Game : public Scene_Objects {
  * @size{0x60}
  */
 struct Scene_Ground : public Scene_Game {
-	struct Time {
-		u32 _00; // _00, unknown
-	};
+
+	static int cEvenning_fadeOuTime;
+	static int cEvenning_fadeInTime;
+
+	enum Time { GroundTime_On, GroundTime_Off };
 
 	Scene_Ground(u8, PSGame::SceneInfo*);
 

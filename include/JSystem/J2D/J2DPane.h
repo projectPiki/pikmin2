@@ -284,7 +284,7 @@ struct J2DPane {
 	u8 m_cullMode;                   // _0B1
 	u8 m_alpha;                      // _0B2
 	u8 _0B3;                         // _0B3
-	bool _0B4;                       // _0B4
+	bool m_isInfluencedAlpha;        // _0B4
 	u8 _0B5;                         // _0B5
 	u8 m_rotationAxisMaybe;          // _0B6
 	u8 m_basePosition;               // _0B7

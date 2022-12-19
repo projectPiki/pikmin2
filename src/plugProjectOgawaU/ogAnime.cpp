@@ -70,10 +70,10 @@ namespace Screen {
 inline AnimBaseBase::AnimBaseBase()
 {
 	// UNUSED FUNCTION
-	_04         = 0;
+	m_type     = 0;
 	m_frame     = 0.0f;
 	m_lastFrame = 1.0f;
-	_20         = 1.0f;
+	m_speed     = 1.0f;
 	_24         = 1.0f;
 	_38         = true;
 	_39         = false;
@@ -87,8 +87,8 @@ inline AnimBaseBase::AnimBaseBase()
 	_08            = false;
 	_0C            = 0.0f;
 	_10            = 1;
-	_11            = 0xFF;
-	_12            = 0;
+	m_alpha        = 255;
+	m_doSetAlpha   = 0;
 }
 
 /*
@@ -96,7 +96,7 @@ inline AnimBaseBase::AnimBaseBase()
  * Address:	........
  * Size:	000020
  */
-void AnimBaseBase::setArea(float frame, float p2)
+void AnimBaseBase::setArea(f32 frame, f32 p2)
 {
 	// UNUSED FUNCTION
 	_2C     = frame;
@@ -120,7 +120,7 @@ void AnimBaseBase::init(JKRArchive* archive, char* resourcePath)
 	// IDK. UNUSED FUNCTION
 	m_resourcePath = resourcePath;
 	void* resource = JKRFileLoader::getGlbResource(resourcePath, archive);
-	JUT_ASSERTLINE(87, (resource != nullptr), "no name resource (%s) \n", resourcePath);
+	JUT_ASSERTLINE(87, resource, "no name resource (%s) \n", resourcePath);
 	m_anm       = J2DAnmLoaderDataBase::load(resource);
 	m_lastFrame = m_anm->m_maxFrame;
 	_2C         = 0.0f;
@@ -147,7 +147,7 @@ void AnimBaseBase::start(float p1)
  * Address:	........
  * Size:	000024
  */
-void AnimBaseBase::setAllArea(void)
+void AnimBaseBase::setAllArea()
 {
 	// UNUSED FUNCTION
 }
@@ -164,7 +164,7 @@ bool AnimBaseBase::updateSub()
 	if (_10 != 0) {
 		_10 = 0;
 	} else {
-		m_frame += _20 * _28 * _24;
+		m_frame += m_speed * _28 * _24;
 		if (m_frame > _30) {
 			if (_38) {
 				float temp = m_frame - _30;
@@ -208,7 +208,7 @@ bool AnimBaseBase::updateSub()
  * Address:	80304E10
  * Size:	000078
  */
-bool AnimBaseBase::update(void)
+bool AnimBaseBase::update()
 {
 	if (_08) {
 		_0C -= sys->m_deltaTime;
@@ -232,7 +232,7 @@ bool AnimBaseBase::update(void)
 AnimScreen::AnimScreen()
 {
 	m_screen = nullptr;
-	_04      = 1;
+	m_type  = 1;
 }
 
 /*
@@ -370,8 +370,8 @@ void AnimScreen::moveAnim()
 {
 	m_anm->m_currentFrame = m_frame;
 	m_screen->animation();
-	if (_12 != 0) {
-		m_screen->setAlpha(_11);
+	if (m_doSetAlpha != 0) {
+		m_screen->setAlpha(m_alpha);
 	}
 }
 
@@ -382,10 +382,10 @@ void AnimScreen::moveAnim()
  * Address:	80305178
  * Size:	0000A0
  */
-AnimPane::AnimPane(void)
+AnimPane::AnimPane()
 {
-	m_pane = nullptr;
-	_04    = 2;
+	m_pane  = nullptr;
+	m_type = 2;
 }
 
 /*
@@ -519,8 +519,8 @@ void AnimPane::moveAnim()
 {
 	m_anm->m_currentFrame = m_frame;
 	m_pane->animationTransform();
-	if (_12 != 0) {
-		m_pane->setAlpha(_11);
+	if (m_doSetAlpha != 0) {
+		m_pane->setAlpha(m_alpha);
 	}
 }
 
@@ -571,7 +571,7 @@ bool AnimGroup::update()
 	for (int i = 0; i < m_paneLimit; i++) {
 		if (m_animPanes[i]) {
 			bool updateResult = true;
-			switch (m_animPanes[i]->_04) {
+			switch (m_animPanes[i]->m_type) {
 			case 1:
 				updateResult = m_animPanes[i]->update();
 				break;
@@ -744,12 +744,12 @@ void AnimGroup::setSpeed(float speed)
 {
 	for (int i = 0; i < m_paneLimit; i++) {
 		if (m_animPanes[i]) {
-			switch (m_animPanes[i]->_04) {
+			switch (m_animPanes[i]->m_type) {
 			case 1:
-				m_animPanes[i]->_20 = speed;
+				m_animPanes[i]->m_speed = speed;
 				break;
 			case 2:
-				m_animPanes[i]->_20 = speed;
+				m_animPanes[i]->m_speed = speed;
 				break;
 			default:
 				break;
@@ -767,7 +767,7 @@ void AnimGroup::setRepeat(bool repeat)
 {
 	for (int i = 0; i < m_paneLimit; i++) {
 		if (m_animPanes[i]) {
-			switch (m_animPanes[i]->_04) {
+			switch (m_animPanes[i]->m_type) {
 			case 1:
 				m_animPanes[i]->_38 = repeat;
 				break;
@@ -790,7 +790,7 @@ void AnimGroup::setFrame(float frame)
 {
 	for (int i = 0; i < m_paneLimit; i++) {
 		if (m_animPanes[i]) {
-			switch (m_animPanes[i]->_04) {
+			switch (m_animPanes[i]->m_type) {
 			case 1:
 				m_animPanes[i]->m_frame = frame;
 				break;
@@ -815,7 +815,7 @@ void AnimGroup::setAlpha(u8 alpha)
 	// TODO: Confirm size.
 	for (int i = 0; i < m_paneLimit; i++) {
 		if (m_animPanes[i]) {
-			m_animPanes[i]->_11 = alpha;
+			m_animPanes[i]->m_alpha = alpha;
 		}
 	}
 }
@@ -875,7 +875,7 @@ void AnimGroup::setArea(float frame, float p2)
 {
 	for (int i = 0; i < m_paneLimit; i++) {
 		if (m_animPanes[i]) {
-			switch (m_animPanes[i]->_04) {
+			switch (m_animPanes[i]->m_type) {
 			case 1:
 				m_animPanes[i]->setArea(frame, p2);
 				break;
@@ -896,11 +896,11 @@ void AnimGroup::setArea(float frame, float p2)
  * Address:	803058B8
  * Size:	0000A8
  */
-void AnimGroup::start(void)
+void AnimGroup::start()
 {
 	for (int i = 0; i < m_paneLimit; i++) {
 		if (m_animPanes[i]) {
-			switch (m_animPanes[i]->_04) {
+			switch (m_animPanes[i]->m_type) {
 			case 1:
 				m_animPanes[i]->start();
 				break;

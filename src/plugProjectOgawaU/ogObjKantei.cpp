@@ -468,11 +468,11 @@ void ObjKantei::doCreate(JKRArchive* arc)
 	}
 
 	if (m_disp->m_inCave) {
-		J2DPane* pane     = m_screenOkWindow->search('Tzukan');
-		pane->m_messageID = '8551_00'; // "You can't log this treasure until you reach the surface."
+		J2DPane* pane = m_screenOkWindow->search('Tzukan');
+		pane->setMsgID('8551_00'); // "You can't log this treasure until you reach the surface."
 	} else {
-		J2DPane* pane     = m_screenOkWindow->search('Tzukan');
-		pane->m_messageID = '8550_00'; // "It's been added to your Treasure Log!"
+		J2DPane* pane = m_screenOkWindow->search('Tzukan');
+		pane->setMsgID('8550_00'); // "It's been added to your Treasure Log!"
 	}
 
 	int offs                     = m_disp->m_pelletOffset;
@@ -483,11 +483,9 @@ void ObjKantei::doCreate(JKRArchive* arc)
 	m_paneName = m_screenName->search('ItemName');
 	m_paneName->add(msVal.m_namePaneAdd.x, msVal.m_namePaneAdd.y);
 	m_paneName->setBasePosition(POS_CENTER);
-	m_paneName->m_messageID = '8557_00'; // "Name"
-	m_nameScale             = 0.0f;
-	m_paneName->m_scale.x   = m_nameScale;
-	m_paneName->m_scale.y   = m_nameScale;
-	m_paneName->calcMtx();
+	m_paneName->setMsgID('8557_00'); // "Name"
+	m_nameScale = 0.0f;
+	m_paneName->updateScale(m_nameScale);
 
 	m_scaleMgr = new og::Screen::ScaleMgr;
 
@@ -504,10 +502,10 @@ void ObjKantei::doCreate(JKRArchive* arc)
 	og::Screen::setAlphaScreen(m_screenName);
 	og::Screen::setAlphaScreen(m_screenButton);
 
-	m_paneOk1              = m_screenOkWindow->search('NMsha');
-	m_paneOk2              = m_screenOkWindow->search('NMzukan');
-	m_paneOk2->m_isVisible = false;
-	J2DPane* pane          = m_screenBG->search('item');
+	m_paneOk1 = m_screenOkWindow->search('NMsha');
+	m_paneOk2 = m_screenOkWindow->search('NMzukan');
+	m_paneOk2->hide();
+	J2DPane* pane = m_screenBG->search('item');
 	if (pane)
 		pane->hide();
 	m_paneSetP = m_screenBG->search('Notsetp');

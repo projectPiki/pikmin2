@@ -439,10 +439,10 @@ void CallBack_CounterSlot::startSlot(f32 calc)
 void CallBack_CounterSlot::setValue(bool flag1, bool flag2)
 {
 	if (m_isBlind) {
-		_24 = 0;
-		_28 = 0;
+		m_initialDisplayValue = 0;
+		m_currDisplayValue    = 0;
 	}
-	m_currCounters = CalcKeta(_24);
+	m_currCounters = CalcKeta(m_initialDisplayValue);
 
 	int counts = m_currCounters;
 	if (m_currCounters > _30) {
@@ -450,14 +450,14 @@ void CallBack_CounterSlot::setValue(bool flag1, bool flag2)
 	}
 
 	for (int i = 0; i < m_counterLimit; i++) {
-		int power = pow(10.0f, (f32)i); // I cant find pow in the math files - it's in Dolphin/math.h for future reference!
+		int power = pow(10.0f, (f32)i);
 		if (m_isBlind) {
 			m_counters[i]->setSuji(m_imgResources, 10);
 		} else {
 			if (_89) {
 				m_counters[i]->setSuji(m_imgResources, (int)(randFloat() * 9.0f));
 			} else {
-				m_counters[i]->setSuji(m_imgResources, (_24 / power) % 10);
+				m_counters[i]->setSuji(m_imgResources, (m_initialDisplayValue / power) % 10);
 			}
 		}
 		J2DPicture* keta = m_counters[i]->m_picture;
@@ -479,62 +479,62 @@ void CallBack_CounterSlot::setValue(bool flag1, bool flag2)
 						if (flag2)
 							smgr->down();
 					} else {
-						smgr->up(); // should have some msVal stuff
+						smgr->up(msVal._00, msVal._04, msVal._08, 0.025f * i);
 					}
 				}
 				m_counters[i]->calcScale();
 			} else {
-				keta->m_isVisible = false;
+				keta->hide();
 			}
 		}
 	}
-	f32 width = _40;
+	f32 temp  = m_paneScale.x;
 	f32 temp3 = 0.0f;
 	if (m_counterLimit <= counts) {
 		counts = m_counterLimit;
 	}
 	if (counts > 1) {
-		f32 temp2 = _34 * (f32)(counts - 1) + m_widthMaybe;
-		if (temp2 > _38) {
-			width = (width * _38) / temp2;
-			temp3 = m_widthMaybe * 0.5f * (1.0f - width);
+		f32 temp2 = m_pane12DistX * (f32)(counts - 1) + m_paneSize.x;
+		if (temp2 > m_pane13DistX) {
+			temp  = (temp * m_pane13DistX) / temp2;
+			temp3 = m_paneSize.x * 0.5f * (1.0f - temp);
 		}
 	}
-	J2DPicture* pane = _6C;
-	pane->updateScale(width, m_height);
-	pane->_0D4.x = _50 + temp3;
-	pane->_0D4.y = _54;
+	J2DPicture* pane = m_pic1;
+	pane->updateScale(temp, m_paneScale.y);
+	pane->_0D4.x = m_panePosition.x + temp3;
+	pane->_0D4.y = m_panePosition.y;
 	pane->calcMtx();
 
-	_6C->calcMtx();
-	pane                   = _6C;
+	m_pic1->calcMtx();
+	pane                   = m_pic1;
 	f32 ang                = pane->m_angle;
 	f32 newx               = pane->_0B8;
 	f32 newy               = pane->_0BC;
 	JUtility::TColor white = pane->getWhite();
 	JUtility::TColor black = pane->getBlack();
-	pane                   = _6C;
+	pane                   = m_pic1;
 	JGeometry::TBox2f* box = pane->getBounds();
-	_58                    = box->i.x;
-	_5C                    = box->i.y;
+	m_paneBounds.x         = box->i.x;
+	m_paneBounds.y         = box->i.y;
 	for (int i = 0; i < m_counterLimit; i++) {
 		J2DPicture* cPane = m_counters[i]->m_picture;
 		if (cPane) {
 			JGeometry::TBox2f cBox;
-			cBox.i.y = _5C;
-			cBox.i.x = (f32)i * (-_34 * width);
-			cBox.f.y = cBox.i.y + m_heightMaybe;
-			cBox.f.x = cBox.i.x + _58 + m_widthMaybe;
-			cBox.i.x += _58;
+			cBox.i.y = m_paneBounds.y;
+			cBox.i.x = (f32)i * (-m_pane12DistX * temp);
+			cBox.f.y = cBox.i.y + m_paneSize.y;
+			cBox.f.x = cBox.i.x + m_paneBounds.x + m_paneSize.x;
+			cBox.i.x += m_paneBounds.x;
 			cPane->place(cBox);
 			if (!m_isPuyoAnim || _AC) {
 				cPane->setBasePosition((J2DBasePosition)m_basePosition);
-				cPane->updateScale(width, m_height);
+				cPane->updateScale(temp, m_paneScale.y);
 			} else {
 				cPane->setBasePosition(POS_CENTER);
 				CounterKeta* cKeta = m_counters[i];
-				cKeta->m_width     = width;
-				cKeta->m_height    = m_height;
+				cKeta->_0C         = temp;
+				cKeta->_10         = m_paneScale.y;
 			}
 			cPane->_0B8    = newx;
 			cPane->_0BC    = newy;

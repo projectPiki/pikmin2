@@ -45,7 +45,7 @@ struct TScaleUpCounter : public og::Screen::CallBack_CounterRV {
 	virtual void init(J2DScreen* screen, u64 tag1, u64 tag2, u64 tag3, u32* ptr, bool check) // _1C (weak)
 	{
 		og::Screen::CallBack_CounterRV::init(screen, tag1, tag2, tag3, ptr, check);
-		_AC = _34;
+		_AC = m_pane12DistX;
 	}
 	virtual void setValue(bool, bool); // _28
 

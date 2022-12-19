@@ -46,11 +46,11 @@ struct Ground : public ::Screen::SceneBase {
 
 	// _00      = VTBL
 	// _00-_220 = Screen::SceneBase
-	u8 _220; // _220
-	u8 _221; // _221
-	u8 _222; // _222
-	u8 _223; // _223
-	u8 _224; // _224
+	bool m_doStartCountdown;        // _220
+	bool m_doStartSunsetBgm;        // _221
+	bool m_doStartFadeInSunsetBgm;  // _222
+	bool m_doStartFadeOutMainBgm;   // _223
+	bool m_doStartFadeOutSunsetBgm; // _224
 };
 
 struct ObjGround : public ::Screen::ObjBase {

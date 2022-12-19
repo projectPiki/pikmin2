@@ -237,7 +237,7 @@ void AnimText_Screen::setText(u64 tag)
  */
 void AnimText_Screen::stop()
 {
-	m_anmScreen->_20     = 0.0f;
+	m_anmScreen->m_speed = 0.0f;
 	m_anmScreen->m_frame = 0.0f;
 }
 
@@ -248,7 +248,7 @@ void AnimText_Screen::stop()
  */
 void AnimText_Screen::open(f32 a1)
 {
-	m_anmScreen->_20     = 1.0f;
+	m_anmScreen->m_speed = 1.0f;
 	m_anmScreen->m_frame = 0.0f;
 	m_anmScreen->AnimBaseBase::start(a1);
 }
@@ -260,7 +260,7 @@ void AnimText_Screen::open(f32 a1)
  */
 void AnimText_Screen::close()
 {
-	m_anmScreen->_20     = -1.0f;
+	m_anmScreen->m_speed = -1.0f;
 	m_anmScreen->m_frame = m_anmScreen->m_lastFrame;
 	m_anmScreen->start();
 }

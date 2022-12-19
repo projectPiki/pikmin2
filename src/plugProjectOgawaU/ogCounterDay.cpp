@@ -36,12 +36,12 @@ void CallBack_CounterDay::init(J2DScreen* mgr, u64 tag1, u64 tag2, u64 pictureTa
 	setCenteringMode(ECM_Unknown1);
 	setValue();
 
-	if (_74) {
-		_74->hide();
+	if (m_pic3) {
+		m_pic3->hide();
 	}
 
-	_6C->hide();
-	_70->hide();
+	m_pic1->hide();
+	m_pic2->hide();
 }
 
 /*
@@ -54,9 +54,9 @@ void CallBack_CounterDay::setValue()
 	if (m_isPuyoAnim) {
 		bool v1 = false;
 		bool v2 = false;
-		if (_24 > _28) {
+		if (m_initialDisplayValue > m_currDisplayValue) {
 			v1 = true;
-		} else if (_24 < _28) {
+		} else if (m_initialDisplayValue < m_currDisplayValue) {
 			v2 = true;
 		}
 		CallBack_CounterRV::setValue(v1, v2);
@@ -72,7 +72,7 @@ void CallBack_CounterDay::setValue()
 		_A8->hide();
 		picture->hide();
 
-	} else if (_24 >= 10) {
+	} else if (m_initialDisplayValue >= 10) {
 		_A8->hide();
 		picture->show();
 
@@ -120,8 +120,8 @@ void CallBack_CounterDay::hide()
  */
 void CallBack_CounterDay::update()
 {
-	_28 = _24;
-	_24 = *_20;
+	m_currDisplayValue    = m_initialDisplayValue;
+	m_initialDisplayValue = *m_countPtr;
 	setValue();
 }
 

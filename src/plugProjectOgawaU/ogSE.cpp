@@ -23,14 +23,14 @@ void Sound::setSE(u32 soundID) { PSSystem::spSysIF->playSystemSe(soundID, 0); }
  * Address:	8030C9D8
  * Size:	00002C
  */
-void Sound::setLifeDanger(void) { PSSystem::spSysIF->playSystemSe(PSSE_SY_LIFE_DANGER, 0); }
+void Sound::setLifeDanger() { PSSystem::spSysIF->playSystemSe(PSSE_SY_LIFE_DANGER, 0); }
 
 /*
  * --INFO--
  * Address:	8030CA04
  * Size:	0000F4
  */
-void Sound::setChimeNoon(void)
+void Sound::setChimeNoon()
 {
 	PSSystem::spSysIF->playSystemSe(PSSE_SY_TIME_SIGNAL_NOON, 0);
 
@@ -46,49 +46,49 @@ void Sound::setChimeNoon(void)
  * Address:	8030CAF8
  * Size:	00002C
  */
-void Sound::setChime(void) { PSSystem::spSysIF->playSystemSe(PSSE_SY_TIME_SIGNAL_SMALL, 0); }
+void Sound::setChime() { PSSystem::spSysIF->playSystemSe(PSSE_SY_TIME_SIGNAL_SMALL, 0); }
 
 /*
  * --INFO--
  * Address:	8030CB24
  * Size:	00002C
  */
-void Sound::setDecide(void) { PSSystem::spSysIF->playSystemSe(PSSE_SY_MENU_DECIDE, 0); }
+void Sound::setDecide() { PSSystem::spSysIF->playSystemSe(PSSE_SY_MENU_DECIDE, 0); }
 
 /*
  * --INFO--
  * Address:	8030CB50
  * Size:	00002C
  */
-void Sound::setCancel(void) { PSSystem::spSysIF->playSystemSe(PSSE_SY_MENU_CANCEL, 0); }
+void Sound::setCancel() { PSSystem::spSysIF->playSystemSe(PSSE_SY_MENU_CANCEL, 0); }
 
 /*
  * --INFO--
  * Address:	8030CB7C
  * Size:	00002C
  */
-void Sound::setCursor(void) { PSSystem::spSysIF->playSystemSe(PSSE_SY_MENU_CURSOR, 0); }
+void Sound::setCursor() { PSSystem::spSysIF->playSystemSe(PSSE_SY_MENU_CURSOR, 0); }
 
 /*
  * --INFO--
  * Address:	8030CBA8
  * Size:	00002C
  */
-void Sound::setOpen(void) { PSSystem::spSysIF->playSystemSe(PSSE_SY_MENU_OPEN, 0); }
+void Sound::setOpen() { PSSystem::spSysIF->playSystemSe(PSSE_SY_MENU_OPEN, 0); }
 
 /*
  * --INFO--
  * Address:	8030CBD4
  * Size:	00002C
  */
-void Sound::setClose(void) { PSSystem::spSysIF->playSystemSe(PSSE_SY_MENU_CLOSE, 0); }
+void Sound::setClose() { PSSystem::spSysIF->playSystemSe(PSSE_SY_MENU_CLOSE, 0); }
 
 /*
  * --INFO--
  * Address:	........
  * Size:	00002C
  */
-void Sound::setPause(void)
+void Sound::setPause()
 {
 	// UNUSED FUNCTION
 }
@@ -112,105 +112,105 @@ void Sound::setPlusMinus(bool isRepeat)
  * Address:	8030CC48
  * Size:	00002C
  */
-void Sound::setSMenuLR(void) { PSSystem::spSysIF->playSystemSe(PSSE_SY_MENU_PLUS_MINUS, 0); }
+void Sound::setSMenuLR() { PSSystem::spSysIF->playSystemSe(PSSE_SY_MENU_PLUS_MINUS, 0); }
 
 /*
  * --INFO--
  * Address:	8030CC74
  * Size:	00002C
  */
-void Sound::setError(void) { PSSystem::spSysIF->playSystemSe(PSSE_SY_MENU_ERROR, 0); }
+void Sound::setError() { PSSystem::spSysIF->playSystemSe(PSSE_SY_MENU_ERROR, 0); }
 
 /*
  * --INFO--
  * Address:	8030CCA0
  * Size:	00002C
  */
-void Sound::setZoomIn(void) { PSSystem::spSysIF->playSystemSe(PSSE_SY_MENU_ZOOMIN, 0); }
+void Sound::setZoomIn() { PSSystem::spSysIF->playSystemSe(PSSE_SY_MENU_ZOOMIN, 0); }
 
 /*
  * --INFO--
  * Address:	8030CCCC
  * Size:	00002C
  */
-void Sound::setZoomOut(void) { PSSystem::spSysIF->playSystemSe(PSSE_SY_MENU_ZOOMOUT, 0); }
+void Sound::setZoomOut() { PSSystem::spSysIF->playSystemSe(PSSE_SY_MENU_ZOOMOUT, 0); }
 
 /*
  * --INFO--
  * Address:	8030CCF8
  * Size:	00002C
  */
-void Sound::setScroll(void) { PSSystem::spSysIF->playSystemSe(PSSE_SY_MENU_SCROLL, 0); }
+void Sound::setScroll() { PSSystem::spSysIF->playSystemSe(PSSE_SY_MENU_SCROLL, 0); }
 
 /*
  * --INFO--
  * Address:	8030CD24
  * Size:	00002C
  */
-void Sound::setOpenDoukutu(void) { PSSystem::spSysIF->playSystemSe(PSSE_SY_MESSAGE_EXIT, 0); }
+void Sound::setOpenDoukutu() { PSSystem::spSysIF->playSystemSe(PSSE_SY_MESSAGE_EXIT, 0); }
 
 /*
  * --INFO--
  * Address:	8030CD50
  * Size:	00002C
  */
-void Sound::setSaveCave(void) { PSSystem::spSysIF->playSystemSe(PSSE_SAVESELECTPAD, 0); }
+void Sound::setSaveCave() { PSSystem::spSysIF->playSystemSe(PSSE_SAVESELECTPAD, 0); }
 
 /*
  * --INFO--
  * Address:	8030CD7C
  * Size:	00002C
  */
-void Sound::setOpenWMapMenu(void) { PSSystem::spSysIF->playSystemSe(PSSE_SY_MESSAGE_EXIT, 0); }
+void Sound::setOpenWMapMenu() { PSSystem::spSysIF->playSystemSe(PSSE_SY_MESSAGE_EXIT, 0); }
 
 /*
  * --INFO--
  * Address:	8030CDA8
  * Size:	00002C
  */
-void Sound::setOpenTotalPoko(void) { PSSystem::spSysIF->playSystemSe(PSSE_SY_REGI_DRAWER_OPEN, 0); }
+void Sound::setOpenTotalPoko() { PSSystem::spSysIF->playSystemSe(PSSE_SY_REGI_DRAWER_OPEN, 0); }
 
 /*
  * --INFO--
  * Address:	8030CDD4
  * Size:	00002C
  */
-void Sound::setCloseTotalPoko(void) { PSSystem::spSysIF->playSystemSe(PSSE_SY_REGI_RECEIPT, 0); }
+void Sound::setCloseTotalPoko() { PSSystem::spSysIF->playSystemSe(PSSE_SY_REGI_RECEIPT, 0); }
 
 /*
  * --INFO--
  * Address:	8030CE00
  * Size:	00002C
  */
-void Sound::setPlusTotalPoko(void) { PSSystem::spSysIF->playSystemSe(PSSE_SY_REGI_SUM_UP, 0); }
+void Sound::setPlusTotalPoko() { PSSystem::spSysIF->playSystemSe(PSSE_SY_REGI_SUM_UP, 0); }
 
 /*
  * --INFO--
  * Address:	8030CE2C
  * Size:	00002C
  */
-void Sound::setOpenFinalMsg(void) { PSSystem::spSysIF->playSystemSe(PSSE_SY_MESSAGE_EXIT, 0); }
+void Sound::setOpenFinalMsg() { PSSystem::spSysIF->playSystemSe(PSSE_SY_MESSAGE_EXIT, 0); }
 
 /*
  * --INFO--
  * Address:	8030CE58
  * Size:	00002C
  */
-void Sound::setSprayAdd(void) { PSSystem::spSysIF->playSystemSe(PSSE_SY_STORED_SPRAY, 0); }
+void Sound::setSprayAdd() { PSSystem::spSysIF->playSystemSe(PSSE_SY_STORED_SPRAY, 0); }
 
 /*
  * --INFO--
  * Address:	8030CE84
  * Size:	00002C
  */
-void Sound::setTimeCarry(void) { PSSystem::spSysIF->playSystemSe(PSSE_SY_PIKI_INCRE_SUM, 0); }
+void Sound::setTimeCarry() { PSSystem::spSysIF->playSystemSe(PSSE_SY_PIKI_INCRE_SUM, 0); }
 
 /*
  * --INFO--
  * Address:	........
  * Size:	00002C
  */
-void Sound::setSensorSE(void)
+void Sound::setSensorSE()
 {
 	// UNUSED FUNCTION
 }
@@ -220,35 +220,35 @@ void Sound::setSensorSE(void)
  * Address:	8030CEB0
  * Size:	00002C
  */
-void Sound::setGetSensor(void) { PSSystem::spSysIF->playSystemSe(PSSE_SY_EQUIP_LADER, 0); }
+void Sound::setGetSensor() { PSSystem::spSysIF->playSystemSe(PSSE_SY_EQUIP_LADER, 0); }
 
 /*
  * --INFO--
  * Address:	8030CEDC
  * Size:	00002C
  */
-void Sound::setFloorComplete(void) { PSSystem::spSysIF->playSystemSe(PSSE_SY_FLOOR_COMPLETE, 0); }
+void Sound::setFloorComplete() { PSSystem::spSysIF->playSystemSe(PSSE_SY_FLOOR_COMPLETE, 0); }
 
 /*
  * --INFO--
  * Address:	8030CF08
  * Size:	00002C
  */
-void Sound::setGraySensor(void) { PSSystem::spSysIF->playSystemSe(PSSE_SY_LADER_TURN_GRAY, 0); }
+void Sound::setGraySensor() { PSSystem::spSysIF->playSystemSe(PSSE_SY_LADER_TURN_GRAY, 0); }
 
 /*
  * --INFO--
  * Address:	8030CF34
  * Size:	00002C
  */
-void Sound::setGetSpray(void) { PSSystem::spSysIF->playSystemSe(PSSE_SY_EQUIP_SPLAY, 0); }
+void Sound::setGetSpray() { PSSystem::spSysIF->playSystemSe(PSSE_SY_EQUIP_SPLAY, 0); }
 
 /*
  * --INFO--
  * Address:	........
  * Size:	00002C
  */
-void Sound::setItemName(void)
+void Sound::setItemName()
 {
 	// UNUSED FUNCTION
 }
@@ -258,28 +258,28 @@ void Sound::setItemName(void)
  * Address:	8030CF60
  * Size:	00002C
  */
-void Sound::setKanteiExit(void) { PSSystem::spSysIF->playSystemSe(PSSE_SY_KANTEI_OUT, 0); }
+void Sound::setKanteiExit() { PSSystem::spSysIF->playSystemSe(PSSE_SY_KANTEI_OUT, 0); }
 
 /*
  * --INFO--
  * Address:	8030CF8C
  * Size:	000004
  */
-void Sound::setFloorTitle(void) { }
+void Sound::setFloorTitle() { }
 
 /*
  * --INFO--
  * Address:	8030CF90
  * Size:	00002C
  */
-void Sound::setVsTitle(void) { PSSystem::spSysIF->playSystemSe(PSSE_SY_2P_RULE_WAIT, 0); }
+void Sound::setVsTitle() { PSSystem::spSysIF->playSystemSe(PSSE_SY_2P_RULE_WAIT, 0); }
 
 /*
  * --INFO--
  * Address:	8030CFBC
  * Size:	00002C
  */
-void Sound::setBdamaGet(void) { PSSystem::spSysIF->playSystemSe(PSSE_SY_2P_MARBLE_COUNT, 0); }
+void Sound::setBdamaGet() { PSSystem::spSysIF->playSystemSe(PSSE_SY_2P_MARBLE_COUNT, 0); }
 
 /*
  * --INFO--
@@ -293,7 +293,7 @@ void Sound::setNaviChange(int) { }
  * Address:	........
  * Size:	00002C
  */
-void Sound::setVsTitleAbutton(void)
+void Sound::setVsTitleAbutton()
 {
 	// UNUSED FUNCTION
 }
@@ -303,7 +303,7 @@ void Sound::setVsTitleAbutton(void)
  * Address:	........
  * Size:	0000D4
  */
-void Sound::stopSound(void)
+void Sound::stopSound()
 {
 	// UNUSED FUNCTION
 }
@@ -313,7 +313,7 @@ void Sound::stopSound(void)
  * Address:	8030CFEC
  * Size:	0000E0
  */
-void Sound::setVsWin1P(void)
+void Sound::setVsWin1P()
 {
 	PSStart2DStream(0xc0011043);
 
@@ -329,7 +329,7 @@ void Sound::setVsWin1P(void)
  * Address:	8030D0CC
  * Size:	0000E0
  */
-void Sound::setVsWin2P(void)
+void Sound::setVsWin2P()
 {
 	PSStart2DStream(0xc0011044);
 
@@ -345,7 +345,7 @@ void Sound::setVsWin2P(void)
  * Address:	8030D1AC
  * Size:	0000E0
  */
-void Sound::setVsDraw(void)
+void Sound::setVsDraw()
 {
 	PSStart2DStream(0xc0011045);
 
@@ -361,5 +361,5 @@ void Sound::setVsDraw(void)
  * Address:	8030D28C
  * Size:	00002C
  */
-void Sound::setWarning(void) { PSSystem::spSysIF->playSystemSe(PSSE_SY_MESSAGE_WARNING, 0); }
+void Sound::setWarning() { PSSystem::spSysIF->playSystemSe(PSSE_SY_MESSAGE_WARNING, 0); }
 } // namespace og
