@@ -1,5 +1,18 @@
+#include "og/newScreen/Cave.h"
+#include "og/newScreen/ogUtil.h"
 #include "og/Screen/OtakaraSensor.h"
-#include "efx2d/TSimple.h"
+#include "og/Screen/ogScreen.h"
+#include "og/Screen/ScaleMgr.h"
+#include "og/Screen/AngleMgr.h"
+#include "efx2d/T2DSensor.h"
+#include "og/Sound.h"
+#include "Dolphin/rand.h"
+#include "trig.h"
+#include "System.h"
+#include "utilityU.h"
+#include "PSSystem/PSGame.h"
+#include "PSM/Scene.h"
+#include "PSSystem/PSMainSide_Scene.h"
 
 /*
     Generated from dpostproc
@@ -206,92 +219,44 @@ namespace Screen {
  */
 OtakaraSensor::OtakaraSensor()
 {
-	/*
-stwu     r1, -0x10(r1)
-mflr     r0
-lfs      f1, lbl_8051DF78@sda21(r2)
-stw      r0, 0x14(r1)
-li       r0, 0
-lfs      f0, lbl_8051DF7C@sda21(r2)
-stw      r31, 0xc(r1)
-mr       r31, r3
-stw      r0, 8(r3)
-li       r3, 0x1c
-stw      r0, 0xc(r31)
-stfs     f1, 0(r31)
-stfs     f1, 4(r31)
-stfs     f1, 0x10(r31)
-stfs     f1, 0x14(r31)
-stfs     f1, 0x18(r31)
-stfs     f1, 0x1c(r31)
-stb      r0, 0x2c(r31)
-stfs     f0, 0x20(r31)
-bl       __nw__FUl
-or.      r0, r3, r3
-beq      lbl_8032D948
-bl       __ct__Q32og6Screen8ScaleMgrFv
-mr       r0, r3
-
-lbl_8032D948:
-stw      r0, 0x24(r31)
-li       r0, 0
-lfs      f0, lbl_8051DF80@sda21(r2)
-li       r3, 0x18
-stfs     f0, 0x28(r31)
-stb      r0, 0x2d(r31)
-bl       __nw__FUl
-or.      r0, r3, r3
-beq      lbl_8032D974
-bl       __ct__Q32og6Screen8AngleMgrFv
-mr       r0, r3
-
-lbl_8032D974:
-lfs      f1, lbl_8051DF78@sda21(r2)
-stw      r0, 0x30(r31)
-fmr      f3, f1
-lfs      f2, lbl_8051DF84@sda21(r2)
-lwz      r3, 0x30(r31)
-bl       init__Q32og6Screen8AngleMgrFfff
-lfs      f3, lbl_8051DF78@sda21(r2)
-li       r4, 0
-lfs      f0, lbl_8051DF84@sda21(r2)
-li       r0, 1
-stfs     f3, 0x34(r31)
-mr       r3, r31
-lfs      f2, lbl_8051DF88@sda21(r2)
-stfs     f3, 0x38(r31)
-lfs      f1, lbl_8051DF8C@sda21(r2)
-stfs     f0, 0x3c(r31)
-lfs      f0, lbl_8051DF90@sda21(r2)
-stb      r4, 0x40(r31)
-stw      r0, 0x80(r31)
-stfs     f3, 0x48(r31)
-stfs     f2, 0x4c(r31)
-stfs     f1, 0x50(r31)
-stb      r4, 0x54(r31)
-stfs     f3, 0x58(r31)
-stfs     f3, 0x5c(r31)
-stfs     f3, 0x60(r31)
-stfs     f3, 0x64(r31)
-stfs     f3, 0x68(r31)
-stb      r4, 0x84(r31)
-stb      r0, 0x85(r31)
-stb      r4, 0x6c(r31)
-stb      r4, 0x6d(r31)
-stw      r4, 0x70(r31)
-stfs     f3, 0x74(r31)
-stb      r4, 0x86(r31)
-stfs     f0, 0x88(r31)
-stfs     f3, 0x8c(r31)
-stb      r4, 0x90(r31)
-stb      r4, 0x78(r31)
-stfs     f3, 0x7c(r31)
-lwz      r31, 0xc(r1)
-lwz      r0, 0x14(r1)
-mtlr     r0
-addi     r1, r1, 0x10
-blr
-	*/
+	m_pane1             = nullptr;
+	m_pane2             = nullptr;
+	m_currReactionLevel = 0.0f;
+	m_angle             = 0.0f;
+	m_currAngle         = 0.0f;
+	m_reactTimer        = 0.0f;
+	m_panePos           = 0.0f;
+	m_doAngleOffset     = false;
+	m_scale             = 1.0f;
+	m_scaleMgr          = new ScaleMgr;
+	m_angleOffsetMod    = 3.0f;
+	m_efxActive         = false;
+	m_angleMgr          = new AngleMgr;
+	m_angleMgr->init(0.0f, 0.3f, 0.0f);
+	m_timer             = 0.0f;
+	m_angleOffs         = 0.0f;
+	m_angleOffsetMod2   = 0.3f;
+	m_doStartAppear     = false;
+	m_state             = 1;
+	m_sensorGetTimer    = 0.0f;
+	_4C.x               = 0.2f;
+	_4C.y               = 0.25f;
+	m_isFuefukid        = false;
+	m_randAngle         = 0.0f;
+	m_completeEfxOffset = 0.0f;
+	m_appearEfxOffset   = 0.0f;
+	m_enabled           = false;
+	m_notreasures       = true;
+	m_doIncNoise        = false;
+	m_isInit            = false;
+	m_treeColor         = nullptr;
+	m_noiseLevel        = 0.0f;
+	m_isPoweringOff     = false;
+	m_powerOffTimer     = 3.2f;
+	m_noiseTimer        = 0.0f;
+	m_canIncNoise       = false;
+	m_isPoweredOff      = false;
+	m_setGrayTimer      = 0.0f;
 }
 
 /*
@@ -299,8 +264,22 @@ blr
  * Address:	8032DA28
  * Size:	0000A8
  */
-void OtakaraSensor::init(J2DPane*, J2DPane*, int)
+void OtakaraSensor::init(J2DPane* pane1, J2DPane* pane2, int state)
 {
+	if (pane1 && pane2) {
+		m_pane1             = pane1;
+		m_pane2             = pane2;
+		m_currReactionLevel = 0.0f;
+		m_angle             = 0.0f;
+		m_panePos.x         = m_pane2->_0D4.x;
+		m_panePos.y         = m_pane2->_0D4.y;
+		m_state             = state;
+		m_isInit            = false;
+		m_treeColor         = og::Screen::capturePictureTreeColor(pane2, 30);
+	} else {
+		JUT_PANICLINE(237, "NULL pane.\n");
+	}
+	m_notreasures = true;
 	/*
 stwu     r1, -0x10(r1)
 mflr     r0
@@ -356,108 +335,44 @@ blr
  * Address:	8032DAD0
  * Size:	000150
  */
-void OtakaraSensor::setParam(float, int, bool, bool)
+void OtakaraSensor::setParam(f32 dist, int state, bool enabled, bool complete)
 {
-	/*
-stwu     r1, -0x40(r1)
-mflr     r0
-stw      r0, 0x44(r1)
-stfd     f31, 0x30(r1)
-psq_st   f31, 56(r1), 0, qr0
-stfd     f30, 0x20(r1)
-psq_st   f30, 40(r1), 0, qr0
-stw      r31, 0x1c(r1)
-stw      r30, 0x18(r1)
-mr       r30, r3
-li       r0, 0
-stb      r0, 0x54(r3)
-fmr      f30, f1
-lfs      f0, lbl_8051DF84@sda21(r2)
-li       r31, 1
-stb      r5, 0x84(r3)
-lfs      f31, lbl_8051DF94@sda21(r2)
-stb      r6, 0x85(r3)
-stfs     f0, 0x3c(r3)
-lwz      r3, 0x80(r3)
-stw      r4, 0x80(r30)
-lwz      r0, 0x80(r30)
-cmpwi    r0, 2
-beq      lbl_8032DB6C
-bge      lbl_8032DB44
-cmpwi    r0, 0
-beq      lbl_8032DB54
-bge      lbl_8032DB60
-b        lbl_8032DBE0
+	bool flag         = true;
+	m_isFuefukid      = false;
+	m_enabled         = enabled;
+	f32 temp          = 12.0f;
+	m_notreasures     = complete;
+	m_angleOffsetMod2 = 0.3f;
+	int old           = m_state;
+	m_state           = state;
 
-lbl_8032DB44:
-cmpwi    r0, 4
-beq      lbl_8032DB88
-bge      lbl_8032DBE0
-b        lbl_8032DB78
-
-lbl_8032DB54:
-lfs      f31, lbl_8051DF78@sda21(r2)
-li       r31, 0
-b        lbl_8032DBE0
-
-lbl_8032DB60:
-lfs      f0, lbl_8051DF7C@sda21(r2)
-stfs     f0, 0x3c(r30)
-b        lbl_8032DBE0
-
-lbl_8032DB6C:
-lfs      f0, lbl_8051DF7C@sda21(r2)
-stfs     f0, 0x3c(r30)
-b        lbl_8032DBE0
-
-lbl_8032DB78:
-lfs      f0, lbl_8051DF9C@sda21(r2)
-lfs      f31, lbl_8051DF98@sda21(r2)
-stfs     f0, 0x3c(r30)
-b        lbl_8032DBE0
-
-lbl_8032DB88:
-lfs      f0, lbl_8051DF9C@sda21(r2)
-li       r0, 1
-lfs      f31, lbl_8051DF98@sda21(r2)
-stfs     f0, 0x3c(r30)
-stb      r0, 0x54(r30)
-lwz      r0, 0x80(r30)
-cmpw     r0, r3
-beq      lbl_8032DBE0
-bl       rand
-xoris    r3, r3, 0x8000
-lis      r0, 0x4330
-stw      r3, 0xc(r1)
-lfd      f3, lbl_8051DFB0@sda21(r2)
-stw      r0, 8(r1)
-lfs      f2, lbl_8051DFA0@sda21(r2)
-lfd      f0, 8(r1)
-lfs      f1, lbl_8051DFA4@sda21(r2)
-fsubs    f3, f0, f3
-lfs      f0, lbl_8051DFA8@sda21(r2)
-fdivs    f2, f3, f2
-fmsubs   f0, f1, f2, f0
-stfs     f0, 0x58(r30)
-
-lbl_8032DBE0:
-fmr      f1, f30
-mr       r3, r30
-bl       calcLevel__Q32og6Screen13OtakaraSensorFf
-stfs     f1, 0(r30)
-stb      r31, 0x2c(r30)
-stfs     f31, 0x28(r30)
-psq_l    f31, 56(r1), 0, qr0
-lfd      f31, 0x30(r1)
-psq_l    f30, 40(r1), 0, qr0
-lfd      f30, 0x20(r1)
-lwz      r31, 0x1c(r1)
-lwz      r0, 0x44(r1)
-lwz      r30, 0x18(r1)
-mtlr     r0
-addi     r1, r1, 0x40
-blr
-	*/
+	switch (m_state) {
+	case 0:
+		temp = 0.0f;
+		flag = false;
+		break;
+	case 1:
+		m_angleOffsetMod2 = 1.0f;
+		break;
+	case 2:
+		m_angleOffsetMod2 = 1.0f;
+		break;
+	case 3:
+		temp              = 100.0f;
+		m_angleOffsetMod2 = 0.4f;
+		break;
+	case 4:
+		temp              = 100.0f;
+		m_angleOffsetMod2 = 0.4f;
+		m_isFuefukid      = true;
+		if (m_state != old) {
+			m_randAngle = randFloat() * 180.0f - 90.0f;
+		}
+		break;
+	}
+	m_currReactionLevel = calcLevel(dist);
+	m_doAngleOffset     = flag;
+	m_angleOffsetMod    = temp;
 }
 
 /*
@@ -465,8 +380,22 @@ blr
  * Address:	8032DC20
  * Size:	00005C
  */
-void OtakaraSensor::calcLevel(f32)
+f32 OtakaraSensor::calcLevel(f32 distance)
 {
+	f32 level = 0.0f;
+	if (m_state != 0) {
+		f32 temp = 1.0f - (distance / 900.0f);
+		if (0.0f < temp) {
+			level = temp;
+			if (temp > 1.0f) {
+				level = 1.0f;
+			}
+		}
+		level *= level;
+		level *= 0.95f;
+		level += 0.05f;
+	}
+	return level;
 	/*
 lwz      r0, 0x80(r3)
 lfs      f3, lbl_8051DF78@sda21(r2)
@@ -505,30 +434,14 @@ blr
  * Address:	8032DC7C
  * Size:	000010
  */
-void OtakaraSensor::show()
-{
-	/*
-lwz      r3, 0xc(r3)
-li       r0, 1
-stb      r0, 0xb0(r3)
-blr
-	*/
-}
+void OtakaraSensor::show() { m_pane2->show(); }
 
 /*
  * --INFO--
  * Address:	8032DC8C
  * Size:	000010
  */
-void OtakaraSensor::hide()
-{
-	/*
-lwz      r3, 0xc(r3)
-li       r0, 0
-stb      r0, 0xb0(r3)
-blr
-	*/
-}
+void OtakaraSensor::hide() { m_pane2->hide(); }
 
 /*
  * --INFO--
@@ -537,13 +450,8 @@ blr
  */
 void OtakaraSensor::startSensorEff()
 {
-	/*
-li       r0, 1
-lfs      f0, lbl_8051DF84@sda21(r2)
-stb      r0, 0x2d(r3)
-stfs     f0, 0x34(r3)
-blr
-	*/
+	m_efxActive = true;
+	m_timer     = 0.3f;
 }
 
 /*
@@ -551,68 +459,14 @@ blr
  * Address:	8032DCB0
  * Size:	0000D8
  */
-void OtakaraSensor::adjPos(f32, f32)
+void OtakaraSensor::adjPos(f32 x, f32 y)
 {
-	/*
-stwu     r1, -0x40(r1)
-mflr     r0
-stw      r0, 0x44(r1)
-stfd     f31, 0x30(r1)
-psq_st   f31, 56(r1), 0, qr0
-stfd     f30, 0x20(r1)
-psq_st   f30, 40(r1), 0, qr0
-stw      r31, 0x1c(r1)
-mr       r31, r3
-fmr      f30, f1
-lbz      r0, 0x2d(r3)
-fmr      f31, f2
-lfs      f2, lbl_8051DF78@sda21(r2)
-cmplwi   r0, 0
-beq      lbl_8032DD34
-lwz      r3, 0x30(r31)
-bl       calc__Q32og6Screen8AngleMgrFv
-lfs      f0, lbl_8051DF78@sda21(r2)
-fcmpo    cr0, f1, f0
-bge      lbl_8032DD04
-fneg     f1, f1
-
-lbl_8032DD04:
-lfs      f0, lbl_8051DFC4@sda21(r2)
-lis      r3, sincosTable___5JMath@ha
-addi     r3, r3, sincosTable___5JMath@l
-lfs      f2, lbl_8051DF98@sda21(r2)
-fmuls    f0, f1, f0
-fctiwz   f0, f0
-stfd     f0, 8(r1)
-lwz      r0, 0xc(r1)
-rlwinm   r0, r0, 3, 0x12, 0x1c
-add      r3, r3, r0
-lfs      f0, 4(r3)
-fmuls    f2, f2, f0
-
-lbl_8032DD34:
-lfs      f1, 0x1c(r31)
-lfs      f0, 0x18(r31)
-fadds    f1, f1, f31
-lwz      r3, 0xc(r31)
-fadds    f0, f0, f30
-fadds    f1, f2, f1
-stfs     f0, 0xd4(r3)
-stfs     f1, 0xd8(r3)
-lwz      r12, 0(r3)
-lwz      r12, 0x2c(r12)
-mtctr    r12
-bctrl
-psq_l    f31, 56(r1), 0, qr0
-lfd      f31, 0x30(r1)
-psq_l    f30, 40(r1), 0, qr0
-lfd      f30, 0x20(r1)
-lwz      r0, 0x44(r1)
-lwz      r31, 0x1c(r1)
-mtlr     r0
-addi     r1, r1, 0x40
-blr
-	*/
+	f32 offs = 0.0f;
+	if (m_efxActive) {
+		f32 temp = m_angleMgr->calc();
+		offs     = pikmin2_cosf(temp) * 100.0f;
+	}
+	m_pane2->setOffset(m_panePos.x + x, m_panePos.y + y + offs);
 }
 
 /*
@@ -620,13 +474,7 @@ blr
  * Address:	8032DD88
  * Size:	000008
  */
-void OtakaraSensor::adjScale(f32)
-{
-	/*
-stfs     f1, 0x20(r3)
-blr
-	*/
-}
+void OtakaraSensor::adjScale(f32 scale) { m_scale = scale; }
 
 /*
  * --INFO--
@@ -635,6 +483,17 @@ blr
  */
 void OtakaraSensor::update()
 {
+	if (m_appearTimer > 0.0f) {
+		m_appearTimer -= sys->m_deltaTime;
+	}
+
+	calcAppear();
+	calcGrayColor();
+	if (m_state != 5) {
+		calcAngle();
+	}
+	calcReaction();
+	PSStartTreasureLaderNoiseSE(m_state, m_noiseLevel, m_currReactionLevel);
 	/*
 stwu     r1, -0x10(r1)
 mflr     r0
@@ -684,6 +543,25 @@ blr
  */
 void OtakaraSensor::updateInit()
 {
+	if (!m_isInit) {
+		m_isInit = true;
+		if (m_enabled && m_state == 0) {
+			m_doIncNoise = true;
+			if (m_notreasures) {
+				m_noiseLevel            = 0.0f;
+				m_isPoweringOff         = true;
+				PSSystem::SceneMgr* mgr = PSSystem::getSceneMgr();
+				PSSystem::checkSceneMgr(mgr);
+				PSM::Scene_Cave* scene = static_cast<PSM::Scene_Cave*>(mgr->getChildScene());
+				PSSystem::checkGameScene(scene);
+				if (scene->isCave()) {
+					scene->startPollutUpSe();
+				}
+			} else {
+				m_noiseLevel = 1.0f;
+			}
+		}
+	}
 	/*
 stwu     r1, -0x10(r1)
 mflr     r0
@@ -797,6 +675,76 @@ blr
  */
 void OtakaraSensor::calcGrayColor()
 {
+	if (m_state != 5) {
+		if (m_isPoweringOff) {
+			if (m_powerOffTimer > 0.0f) {
+				m_powerOffTimer -= sys->m_deltaTime;
+			} else {
+				m_isPoweringOff = false;
+				m_doIncNoise    = true;
+				ogSound->setFloorComplete();
+				m_isPoweredOff = true;
+				m_setGrayTimer = 1.5f;
+			}
+		} else {
+			if (m_doIncNoise) {
+				m_noiseLevel += 0.05f;
+				if (m_noiseLevel > 1.0f) {
+					m_noiseLevel = 1.0f;
+				}
+				if (m_state != 0) {
+					m_doIncNoise = false;
+				}
+			} else {
+				m_noiseLevel -= 0.05f;
+				if (m_noiseLevel < 0.0f) {
+					m_noiseLevel = 0.0f;
+				}
+			}
+		}
+
+		if (m_isPoweredOff && m_setGrayTimer > 0.0f) {
+			m_setGrayTimer -= sys->m_deltaTime;
+			if (m_setGrayTimer < 1.0f) {
+				ogSound->setGraySensor();
+				startGraySensor();
+			}
+			JUtility::TColor col1;
+			JUtility::TColor col2;
+			col1.g = 255;
+			col2.b = 255;
+			col2.set(0, 0, 0, 0);
+			switch (m_state) {
+			case 3:
+				col1.g = 0;
+				col2.b = 200;
+				m_noiseTimer += sys->m_deltaTime * TAU * 2.5f;
+				if (m_noiseTimer > TAU)
+					m_noiseTimer -= TAU;
+				m_noiseLevel  = (pikmin2_sinf(m_noiseTimer) + 1.0f) * 0.3f * 0.5f;
+				m_canIncNoise = true;
+				break;
+			case 4:
+				col1.g = 0;
+				col2.b = 200;
+				m_noiseTimer += sys->m_deltaTime * TAU * newScreen::ObjCave::msVal._44;
+				if (m_noiseTimer > TAU)
+					m_noiseTimer -= TAU;
+				m_noiseLevel  = (pikmin2_sinf(m_noiseTimer) + 1.0f) * newScreen::ObjCave::msVal._48 * 0.5f;
+				m_canIncNoise = true;
+				break;
+			case 0:
+				if (m_canIncNoise) {
+					m_canIncNoise = false;
+					m_doIncNoise  = true;
+				}
+				break;
+			}
+			col1.a = 255;
+			col1.r = 255;
+			og::Screen::blendPictureTreeColor(m_treeColor, col1, col2, m_noiseLevel);
+		}
+	}
 	/*
 stwu     r1, -0x30(r1)
 mflr     r0
@@ -1063,6 +1011,32 @@ blr
  */
 void OtakaraSensor::calcAppear()
 {
+	if (m_efxActive) {
+		if (m_timer > 0.0f) {
+			m_timer -= sys->m_deltaTime;
+			if (m_timer < 0.0f) {
+				m_angleMgr->chase(HALF_PI, _4C.x);
+				m_doStartAppear  = true;
+				m_sensorGetTimer = _4C.y;
+			}
+		}
+	}
+
+	if (m_doStartAppear) {
+		if (m_sensorGetTimer > 0.0f) {
+			m_sensorGetTimer -= sys->m_deltaTime;
+			if (m_sensorGetTimer <= 0.0f) {
+				m_scaleMgr->up(0.7f, 40.0f, 0.5f, 0.0f);
+				m_appearTimer = 3.0f;
+				efx2d::T2DSensorGet efx;
+				Vector3f pos1 = m_pane1->getGlbVtx(0);
+				Vector3f pos2 = m_pane1->getGlbVtx(3);
+				efx2d::Arg arg(pos1.x + pos2.x * 0.5f + m_appearEfxOffset.x, pos1.y + pos2.y * 0.5f + m_appearEfxOffset.y);
+				efx.create(&arg);
+				ogSound->setGetSensor();
+			}
+		}
+	}
 	/*
 stwu     r1, -0x80(r1)
 mflr     r0
@@ -1205,6 +1179,11 @@ blr
  */
 void OtakaraSensor::startGraySensor()
 {
+	efx2d::T2DSensorComp efx;
+	Vector3f pos1 = m_pane1->getGlbVtx(0);
+	Vector3f pos2 = m_pane1->getGlbVtx(3);
+	efx2d::Arg arg(pos1.x + pos2.x * 0.5f + m_completeEfxOffset.x, pos1.y + pos2.y * 0.5f + m_completeEfxOffset.y);
+	efx.create(&arg);
 	/*
 stwu     r1, -0x70(r1)
 mflr     r0
@@ -1294,6 +1273,61 @@ blr
  */
 void OtakaraSensor::calcAngle()
 {
+	m_angle += (m_currReactionLevel - m_angle) / 10.0f;
+	if (m_pane1) {
+		f32 angle = -(m_angle * 180.0f - 90.0f);
+		if (m_isFuefukid) {
+			angle = m_currAngle;
+		}
+		f32 offs = 0.0f;
+		if (m_doAngleOffset) {
+			f32 angle2 = m_angleOffsetMod * 0.5f;
+			f32 temp   = angle - angle2;
+			if (temp >= -90.0f) {
+				temp = angle + angle2;
+				if (temp > 90.0f) {
+					offs = 90.0f - temp;
+				}
+			} else {
+				offs = -90.0f - temp;
+			}
+			offs += (m_angleOffsetMod * 0.5f) * randFloat() * 2.0f - 1.0f;
+		}
+		m_angleOffs += m_angleOffsetMod2 * (offs - m_angleOffs);
+
+		if (m_isFuefukid) {
+			f32 temp = m_randAngle - m_currAngle;
+			if (FABS(temp) < 15.0f) {
+				m_randAngle = randFloat() * 180.0f - 90.0f;
+				temp        = m_randAngle - m_currAngle;
+			}
+			f32 newangle = temp * 0.5f;
+			if (newangle < -30.0f) {
+				newangle = -30.0f;
+			}
+			if (newangle > 30.0f) {
+				newangle = 30.0f;
+			}
+			m_currAngle += newangle;
+			angle = m_currAngle;
+		}
+
+		m_currAngle = angle;
+		if (!m_doIncNoise) {
+			angle += m_angleOffs;
+		}
+
+		if (angle < -90.0f) {
+			angle = -90.0f;
+		}
+		if (angle > 90.0f) {
+			angle = 90.0f;
+		}
+		m_pane1->rotate(angle);
+
+	} else {
+		m_currAngle = 0.0f;
+	}
 	/*
 stwu     r1, -0x40(r1)
 mflr     r0
@@ -1470,6 +1504,28 @@ blr
  */
 void OtakaraSensor::calcReaction()
 {
+	if (m_reactTimer > 0.0f) {
+		m_reactTimer -= sys->m_deltaTime;
+		if (m_reactTimer < 0.0f) {
+			m_reactTimer = 0.0f;
+			if (!og::newScreen::checkMovieActive()) {
+				PSStartTreasureLaderSE(m_currReactionLevel);
+				if (m_appearTimer <= 0.0f) {
+					m_scaleMgr->up(m_currReactionLevel * 0.1f, 30.0f, 0.8f, 0.0f);
+					efx2d::T2DSensorAct efx;
+					Vector3f pos1 = m_pane1->getGlbVtx(0);
+					Vector3f pos2 = m_pane1->getGlbVtx(3);
+					efx2d::Arg arg(pos1.x + pos2.x * 0.5f + m_completeEfxOffset.x, pos1.y + pos2.y * 0.5f + m_completeEfxOffset.y);
+					efx.create(&arg);
+				}
+			}
+		}
+	} else {
+		if (m_currReactionLevel > 0.3f) {
+			m_reactTimer = (1.0f - m_currReactionLevel) * 2.0f + 0.4f;
+		}
+	}
+	m_pane2->updateScale(m_scale * m_scaleMgr->calc());
 	/*
 stwu     r1, -0x70(r1)
 mflr     r0

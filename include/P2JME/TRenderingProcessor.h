@@ -44,14 +44,14 @@ struct TRenderingProcessor : public TRenderingProcessorBase {
 	virtual void do_select_end();                              // _20
 	virtual void do_select_separate();                         // _24
 	virtual void do_begin(const void*, const char*);           // _40
-	virtual void tagColor(const void*, u32);                   // _48
-	virtual void tagSize(const void*, u32);                    // _4C
-	virtual void tagRuby(const void*, u32);                    // _50
-	virtual void tagFont(const void*, u32);                    // _54
-	virtual void tagImage(u16, const void*, u32);              // _58
-	virtual void tagColorEX(u16, const void*, u32);            // _5C
-	virtual void tagControl(u16, const void*, u32);            // _60
-	virtual void tagPosition(u16, const void*, u32);           // _64
+	virtual bool tagColor(const void*, u32);                   // _48
+	virtual bool tagSize(const void*, u32);                    // _4C
+	virtual bool tagRuby(const void*, u32);                    // _50
+	virtual bool tagFont(const void*, u32);                    // _54
+	virtual bool tagImage(u16, const void*, u32);              // _58
+	virtual bool tagColorEX(u16, const void*, u32);            // _5C
+	virtual bool tagControl(u16, const void*, u32);            // _60
+	virtual bool tagPosition(u16, const void*, u32);           // _64
 	virtual void update();                                     // _68 (weak)
 	virtual void reset();                                      // _6C
 	virtual void newParagraph();                               // _70

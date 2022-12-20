@@ -1,6 +1,12 @@
 #include "og/newScreen/TitleMsg.h"
+#include "og/Screen/ogScreen.h"
 #include "P2JME/Analyzer.h"
 #include "efx2d/T2DCvname.h"
+#include "Dolphin/string.h"
+#include "Dolphin/rand.h"
+#include "og/ogLib2D.h"
+#include "og/Sound.h"
+#include "System.h"
 
 /*
     Generated from dpostproc
@@ -217,7 +223,8 @@ namespace newScreen {
  * Address:	........
  * Size:	000108
  */
-TitleMessageAnalyzer::TitleMessageAnalyzer()
+TitleMessageAnalyzer::TitleMessageAnalyzer(const JMessage::TReference* ref)
+    : Analyzer(ref)
 {
 	// UNUSED FUNCTION
 }
@@ -227,9 +234,9 @@ TitleMessageAnalyzer::TitleMessageAnalyzer()
  * Address:	8032EA58
  * Size:	000070
  */
-::P2JME::Analyzer::~Analyzer()
-{
-	/*
+//::P2JME::Analyzer::~Analyzer()
+//{
+/*
 stwu     r1, -0x10(r1)
 mflr     r0
 stw      r0, 0x14(r1)
@@ -262,8 +269,8 @@ lwz      r30, 8(r1)
 mtlr     r0
 addi     r1, r1, 0x10
 blr
-	*/
-}
+*/
+//}
 
 /*
  * --INFO--
@@ -280,8 +287,52 @@ void TitleMessageAnalyzer::set2ByteString(char*, int)
  * Address:	8032EAC8
  * Size:	000228
  */
-void TitleMessageAnalyzer::do_character(int)
+void TitleMessageAnalyzer::do_character(int data)
 {
+	char c = data;
+	short cChar;
+	bool valid = false;
+	if (data == 0) {
+		m_charBuffer[m_currCharIndex] = 0;
+	} else if ((short)data != 0) {
+		valid = true;
+		cChar = data;
+	} else if (c > 'A' && c < 'Z') {
+		cChar = c + 0x812f;
+		valid = true;
+	} else if (c > 'a' && c < 'z') {
+		cChar = c + 0x8220;
+		valid = true;
+	} else if (c > 191 && c < 255) {
+		cChar = c - 0x1bf;
+	} else if (c == ' ') {
+		valid = true;
+		cChar = 0x8140;
+	} else if (c == '!') {
+		valid = true;
+		cChar = 0x8149;
+	} else if (c == '?') {
+		valid = true;
+		cChar = 0x8148;
+	} else if (c == '&' || c == '-') {
+		cChar = c - 0x100;
+		valid = true;
+	}
+
+	if (valid) {
+		m_charBuffer[m_currCharIndex] = cChar;
+		m_currCharIndex++;
+		if (m_currCharIndex >= 254) {
+			m_currCharIndex = 254;
+		}
+
+		m_charBuffer[m_currCharIndex] = cChar;
+		m_currCharIndex++;
+		if (m_currCharIndex >= 254) {
+			m_currCharIndex = 254;
+		}
+		m_charBuffer[m_currCharIndex] = 0;
+	}
 	/*
 	stwu     r1, -0x10(r1)
 	cmpwi    r4, 0
@@ -455,8 +506,50 @@ lbl_8032ECE8:
  * Address:	8032ECF0
  * Size:	00028C
  */
-TitleMsg::TitleMsg(J2DScreen*, J2DPane*, char*)
+TitleMsg::TitleMsg(J2DScreen* screen, J2DPane* root, char* str)
+    : m_analyzer(og::gLib2D->m_message->m_processor->_04)
 {
+	m_analyzer.m_currCharIndex = 0;
+
+	for (int i = 0; i < 256; i++) {
+		m_analyzer.m_charBuffer[i] = 0;
+	}
+
+	m_panes1White.set(-1);
+	m_panes2White.set(-1);
+	m_panes2Black.set(-1);
+
+	m_analyzer.exec(str);
+	char* string   = m_analyzer.m_charBuffer;
+	m_rootPane     = root;
+	m_stringLength = strlen(string) - 1;
+	m_currXpos     = 0.0f;
+	m_panes1White.set(0, 0, 0, 255);
+	m_panes2White.set(255, 255, 0, 255);
+	m_panes2Black.set(255, 0, 0, 0);
+
+	for (int i = 0; i < m_stringLength; i++) {
+		u64 tag = og::Screen::CharCodeToTag(string);
+		char buf[16];
+		og::Screen::TagToName(tag, buf);
+		J2DPictureEx* pane = static_cast<J2DPictureEx*>(screen->search(tag));
+		if (pane) {
+			setFontPane(pane, i);
+		} else {
+			pane = static_cast<J2DPictureEx*>(screen->search('err'));
+			if (pane)
+				setFontPane(pane, i);
+		}
+	}
+
+	setCentering(ECM_0);
+
+	for (int i = 0; i < m_stringLength; i++) {
+		m_dropFlags[i] = false;
+		m_timers[i]    = 0.0f;
+	}
+	m_yOffset  = 0.0f;
+	m_currXpos = 0.0f;
 	/*
 	stwu     r1, -0x30(r1)
 	mflr     r0
@@ -644,7 +737,7 @@ lbl_8032EF48:
  * Address:	8032EF7C
  * Size:	000080
  */
-TitleMessageAnalyzer::~TitleMessageAnalyzer(void)
+TitleMessageAnalyzer::~TitleMessageAnalyzer()
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -691,8 +784,19 @@ lbl_8032EFE0:
  * Address:	8032EFFC
  * Size:	000154
  */
-void TitleMsg::setFontPane(J2DPictureEx*, int)
+void TitleMsg::setFontPane(J2DPictureEx* pic, int id)
 {
+	m_panes1[id] = og::Screen::CopyPictureToPane(pic, m_rootPane, m_currXpos, -10.0f, 'tFont000' + id);
+	m_panes1[id]->setBasePosition(POS_BOTTOM_CENTER);
+	m_panes1[id]->setWhite(m_panes1White);
+
+	m_panes2[id] = og::Screen::CopyPictureToPane(pic, m_panes1[id], (pic->_020.f.x - pic->_020.i.x) * 0.5f - 3.0f,
+	                                             (pic->_020.f.y - pic->_020.i.y) * 0.5f - 3.0f, 'tBody000' + id);
+	m_panes2[id]->setBasePosition(POS_BOTTOM_CENTER);
+	m_panes2[id]->setWhite(m_panes2White);
+	m_panes2[id]->setBlack(m_panes2Black);
+
+	m_currXpos += (m_panes1[id]->_020.f.x - m_panes1[id]->_020.i.x);
 	/*
 	stwu     r1, -0x30(r1)
 	mflr     r0
@@ -787,8 +891,42 @@ void TitleMsg::setFontPane(J2DPictureEx*, int)
  * Address:	8032F150
  * Size:	000164
  */
-void TitleMsg::setCentering(og::newScreen::TitleMsg::EnumCentering)
+void TitleMsg::setCentering(og::newScreen::TitleMsg::EnumCentering center)
 {
+	f32 temp    = 1.0f;
+	m_centering = center;
+
+	f32 cx   = m_currXpos;
+	f32 size = m_rootPane->_020.f.x - m_rootPane->_020.i.x;
+	if (cx > size) {
+		temp = size / cx;
+	}
+	f32 scaleX = temp;
+
+	switch (m_centering) {
+	case ECM_0:
+		size = 0.0f;
+		break;
+	case ECM_1:
+		size = -(m_currXpos * scaleX - size);
+		break;
+	case ECM_2:
+		size = -(m_currXpos * scaleX - size) * 0.5f;
+		break;
+	default:
+		size = 0.0f;
+	}
+
+	f32 scaleY = 1.0f;
+	f32 currX  = 0.0f;
+	for (int i = 0; i < m_stringLength; i++) {
+		J2DPane* pane = m_panes1[i];
+		pane->move(size + currX, 0.0f);
+
+		m_panes1[i]->updateScale(scaleX, scaleY);
+		currX += m_panes1[i]->_020.f.x - m_panes1[i]->_020.i.x;
+	}
+	m_xScale = scaleX;
 	/*
 	stwu     r1, -0x60(r1)
 	mflr     r0
@@ -915,66 +1053,14 @@ void TitleMsg::drawMsgArea(J2DGrafContext&)
  * Address:	8032F2B4
  * Size:	0000D0
  */
-void TitleMsg::setColor(JUtility::TColor&, JUtility::TColor&)
+void TitleMsg::setColor(JUtility::TColor& col1, JUtility::TColor& col2)
 {
-	/*
-	stwu     r1, -0x30(r1)
-	mflr     r0
-	stw      r0, 0x34(r1)
-	stmw     r27, 0x1c(r1)
-	mr       r27, r3
-	mr       r28, r4
-	mr       r29, r5
-	mr       r31, r27
-	li       r30, 0
-	lbz      r0, 0(r4)
-	stb      r0, 0x554(r3)
-	lbz      r0, 1(r4)
-	stb      r0, 0x555(r3)
-	lbz      r0, 2(r4)
-	stb      r0, 0x556(r3)
-	lbz      r0, 3(r4)
-	stb      r0, 0x557(r3)
-	lbz      r0, 0(r5)
-	stb      r0, 0x558(r3)
-	lbz      r0, 1(r5)
-	stb      r0, 0x559(r3)
-	lbz      r0, 2(r5)
-	stb      r0, 0x55a(r3)
-	lbz      r0, 3(r5)
-	stb      r0, 0x55b(r3)
-	b        lbl_8032F364
-
-lbl_8032F31C:
-	lwz      r0, 0(r28)
-	addi     r4, r1, 0xc
-	stw      r0, 0xc(r1)
-	lwz      r3, 0x340(r31)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x12c(r12)
-	mtctr    r12
-	bctrl
-	lwz      r0, 0(r29)
-	addi     r4, r1, 8
-	stw      r0, 8(r1)
-	lwz      r3, 0x340(r31)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x128(r12)
-	mtctr    r12
-	bctrl
-	addi     r31, r31, 4
-	addi     r30, r30, 1
-
-lbl_8032F364:
-	lwz      r0, 0x540(r27)
-	cmplw    r30, r0
-	blt      lbl_8032F31C
-	lmw      r27, 0x1c(r1)
-	lwz      r0, 0x34(r1)
-	mtlr     r0
-	addi     r1, r1, 0x30
-	blr
-	*/
+	m_panes2White.setRGBA(col1);
+	m_panes2Black.setRGBA(col2);
+	for (int i = 0; i < m_stringLength; i++) {
+		m_panes2[i]->setWhite(col1);
+		m_panes2[i]->setBlack(col2);
+	}
 }
 
 /*
@@ -982,8 +1068,12 @@ lbl_8032F364:
  * Address:	8032F384
  * Size:	0000F0
  */
-TitleMsgDrop::TitleMsgDrop(J2DScreen*, J2DPane*, char*)
+TitleMsgDrop::TitleMsgDrop(J2DScreen* screen, J2DPane* pane, char* str)
+    : TitleMsg(screen, pane, str)
 {
+	for (int i = 0; i < m_stringLength; i++) {
+		m_effects[i] = new efx2d::T2DCvnameCave;
+	}
 	/*
 	stwu     r1, -0x20(r1)
 	mflr     r0
@@ -1059,45 +1149,19 @@ lbl_8032F444:
  * Address:	8032F474
  * Size:	00003C
  */
-TitleMsgDrop::Motion::~Motion(void)
-{
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	or.      r31, r3, r3
-	beq      lbl_8032F498
-	extsh.   r0, r4
-	ble      lbl_8032F498
-	bl       __dl__FPv
-
-lbl_8032F498:
-	lwz      r0, 0x14(r1)
-	mr       r3, r31
-	lwz      r31, 0xc(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
-}
+TitleMsgDrop::Motion::~Motion() { }
 
 /*
  * --INFO--
  * Address:	8032F4B0
  * Size:	00001C
  */
-TitleMsgDrop::Motion::Motion(void)
+TitleMsgDrop::Motion::Motion()
 {
-	/*
-	lfs      f1, lbl_8051E01C@sda21(r2)
-	lfs      f0, lbl_8051E008@sda21(r2)
-	stfs     f1, 0(r3)
-	stfs     f0, 4(r3)
-	stfs     f0, 0xc(r3)
-	stfs     f0, 0x10(r3)
-	blr
-	*/
+	m_yOffset  = 100.0f;
+	m_randTime = 0.0f;
+	m_pos.y    = 0.0f;
+	m_timer    = 0.0f;
 }
 
 /*
@@ -1105,18 +1169,29 @@ TitleMsgDrop::Motion::Motion(void)
  * Address:	........
  * Size:	0000A0
  */
-TitleMsg::~TitleMsg(void)
-{
-	// UNUSED FUNCTION
-}
+// TitleMsg::~TitleMsg()
+//{
+// UNUSED FUNCTION
+//}
 
 /*
  * --INFO--
  * Address:	8032F4CC
  * Size:	000128
  */
-void TitleMsgDrop::init(void)
+void TitleMsgDrop::init()
 {
+	f32 mod   = 5.0f;
+	f32 yoffs = 200.0f;
+	for (u32 i = 0; i < m_stringLength; i++) {
+		Motion* motion = &m_motions[i];
+
+		motion->m_randTime = randWeightFloat(mod);
+		motion->m_yOffset  = yoffs;
+		motion->m_pos.x    = m_panes1[i]->_0D4.x;
+		motion->m_pos.y    = m_panes1[i]->_0D4.y;
+		motion->m_timer    = (f32)i / (f32)m_stringLength;
+	}
 	/*
 	stwu     r1, -0x90(r1)
 	mflr     r0
@@ -1204,8 +1279,41 @@ lbl_8032F5AC:
  * Address:	8032F5F4
  * Size:	000230
  */
-void TitleMsgDrop::update(void)
+void TitleMsgDrop::update()
 {
+	for (u32 i = 0; i < m_stringLength; i++) {
+		J2DPane* pane  = m_panes1[i];
+		Motion* motion = &m_motions[i];
+		if (motion->m_timer > 0.0f) {
+			motion->m_timer -= sys->m_deltaTime;
+		} else {
+			motion->m_randTime -= 1.0f;
+			motion->m_yOffset += motion->m_randTime;
+			if (motion->m_yOffset < 0.0f) {
+				motion->m_randTime *= -0.3f;
+				motion->m_yOffset = motion->m_randTime;
+				if (!m_dropFlags[i]) {
+					m_dropFlags[i] = true;
+					m_timers[i]    = 1.0f;
+
+					Vector3f pos1 = pane->getGlbVtx(0);
+					Vector3f pos2 = pane->getGlbVtx(3);
+					efx2d::Arg arg(pos1.x + pos2.x * 0.5f, pos1.y + pos2.y * 0.5f + m_yOffset);
+					m_effects[i]->setGroup(2);
+					m_effects[i]->create(&arg);
+
+					ogSound->setFloorTitle();
+				}
+			}
+		}
+		if (m_dropFlags[i]) {
+			m_timers[i] -= sys->m_deltaTime;
+			if (m_timers[i] < 0.0f) {
+				m_timers[i] = 0.0f;
+			}
+			pane->setOffset(motion->m_pos.x, motion->m_pos.y - motion->m_yOffset);
+		}
+	}
 	/*
 	stwu     r1, -0x80(r1)
 	mflr     r0
@@ -1365,41 +1473,11 @@ lbl_8032F7FC:
  * Address:	8032F824
  * Size:	00006C
  */
-void TitleMsgDrop::end(void)
+void TitleMsgDrop::end()
 {
-	/*
-	stwu     r1, -0x20(r1)
-	mflr     r0
-	stw      r0, 0x24(r1)
-	stw      r31, 0x1c(r1)
-	stw      r30, 0x18(r1)
-	li       r30, 0
-	stw      r29, 0x14(r1)
-	mr       r29, r3
-	mr       r31, r29
-	b        lbl_8032F868
-
-lbl_8032F84C:
-	lwz      r3, 0x11e4(r31)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x10(r12)
-	mtctr    r12
-	bctrl
-	addi     r31, r31, 4
-	addi     r30, r30, 1
-
-lbl_8032F868:
-	lwz      r0, 0x540(r29)
-	cmplw    r30, r0
-	blt      lbl_8032F84C
-	lwz      r0, 0x24(r1)
-	lwz      r31, 0x1c(r1)
-	lwz      r30, 0x18(r1)
-	lwz      r29, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x20
-	blr
-	*/
+	for (u32 i = 0; i < m_stringLength; i++) {
+		m_effects[i]->fade();
+	}
 }
 
 /*
@@ -1407,8 +1485,28 @@ lbl_8032F868:
  * Address:	8032F890
  * Size:	00018C
  */
-TitleMsgWave::TitleMsgWave(J2DScreen*, J2DPane*, char*)
+TitleMsgWave::TitleMsgWave(J2DScreen* screen, J2DPane* pane, char* str)
+    : TitleMsg(screen, pane, str)
 {
+	m_delayTimer = 1.0f;
+	m_scaleup1   = 0.12f;
+	m_scaleup2   = 7.0f;
+	m_scaleup3   = 1.5f;
+	m_scaleup4   = 0.07f;
+
+	for (int i = 0; i < 128; i++) {
+		if ((u32)i < m_stringLength) {
+			m_scaleMgrs[i] = new og::Screen::ScaleMgr;
+		} else {
+			m_scaleMgrs[i] = nullptr;
+		}
+	}
+
+	for (u32 i = 0; i < m_stringLength; i++) {
+		m_effects[i]   = new efx2d::T2DCvnameChal;
+		m_dropFlags[i] = false;
+		m_timers[i]    = 0.0f;
+	}
 	/*
 	stwu     r1, -0x30(r1)
 	mflr     r0
@@ -1531,15 +1629,19 @@ lbl_8032F9F0:
  * Address:	8032FA1C
  * Size:	000004
  */
-void TitleMsgWave::init(void) { }
+void TitleMsgWave::init() { }
 
 /*
  * --INFO--
  * Address:	8032FA20
  * Size:	0000B0
  */
-void TitleMsgWave::start(void)
+void TitleMsgWave::start()
 {
+	for (u32 i = 0; i < m_stringLength; i++) {
+		m_scaleMgrs[i]->up(m_scaleup1, m_scaleup2, m_scaleup3, (f32)i * m_scaleup4);
+	}
+	m_delayTimer = 3.0f;
 	/*
 	stwu     r1, -0x30(r1)
 	mflr     r0
@@ -1597,8 +1699,46 @@ lbl_8032FA94:
  * Address:	8032FAD0
  * Size:	0002E0
  */
-void TitleMsgWave::update(void)
+void TitleMsgWave::update()
 {
+	static bool init;
+	static f32 sFrame;
+
+	if (!init) {
+		init   = true;
+		sFrame = 0.0f;
+	}
+
+	for (u32 i = 0; i < m_stringLength; i++) {
+		f32 calc = m_scaleMgrs[i]->calc();
+		f32 mod  = 0.2f * m_stringLength * sFrame;
+		if (mod >= TAU) {
+			mod -= TAU;
+		}
+		mod = sin(mod);
+		mod += 1.0f;
+		mod *= 0.125f;
+		m_panes1[i]->updateScale((m_xScale * mod * 0.25f + 1.0f) * calc, (1.0f + mod) * calc);
+
+		if (!m_dropFlags[i]) {
+			m_timers[i] += sys->m_deltaTime;
+			if (m_timers[i] > 0.1f) {
+				m_dropFlags[i] = true;
+				Vector3f pos1  = m_panes1[i]->getGlbVtx(0);
+				Vector3f pos2  = m_panes1[i]->getGlbVtx(3);
+				efx2d::Arg arg(pos1.x + pos2.x * 0.5f, pos1.y + pos2.y * 0.5f + m_yOffset);
+				m_effects[i]->setGroup(2);
+				m_effects[i]->create(&arg);
+				m_effects[i]->setGlobalAlpha(100);
+			}
+		}
+	}
+
+	m_delayTimer -= sys->m_deltaTime;
+	if (m_delayTimer < 0.0f) {
+		start();
+	}
+	sFrame += 0.1f;
 	/*
 	stwu     r1, -0xf0(r1)
 	mflr     r0
@@ -1804,41 +1944,11 @@ lbl_8032FD54:
  * Address:	8032FDB0
  * Size:	00006C
  */
-void TitleMsgWave::end(void)
+void TitleMsgWave::end()
 {
-	/*
-	stwu     r1, -0x20(r1)
-	mflr     r0
-	stw      r0, 0x24(r1)
-	stw      r31, 0x1c(r1)
-	stw      r30, 0x18(r1)
-	li       r30, 0
-	stw      r29, 0x14(r1)
-	mr       r29, r3
-	mr       r31, r29
-	b        lbl_8032FDF4
-
-lbl_8032FDD8:
-	lwz      r3, 0x9f8(r31)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x10(r12)
-	mtctr    r12
-	bctrl
-	addi     r31, r31, 4
-	addi     r30, r30, 1
-
-lbl_8032FDF4:
-	lwz      r0, 0x540(r29)
-	cmplw    r30, r0
-	blt      lbl_8032FDD8
-	lwz      r0, 0x24(r1)
-	lwz      r31, 0x1c(r1)
-	lwz      r30, 0x18(r1)
-	lwz      r29, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x20
-	blr
-	*/
+	for (u32 i = 0; i < m_stringLength; i++) {
+		m_effects[i]->fade();
+	}
 }
 
 /*
@@ -1846,15 +1956,12 @@ lbl_8032FDF4:
  * Address:	8032FE1C
  * Size:	000014
  */
-void TitleMsgWave::setParam(float, float, float, float)
+void TitleMsgWave::setParam(f32 s1, f32 s2, f32 s3, f32 s4)
 {
-	/*
-	stfs     f1, 0x9e8(r3)
-	stfs     f2, 0x9ec(r3)
-	stfs     f3, 0x9f0(r3)
-	stfs     f4, 0x9f4(r3)
-	blr
-	*/
+	m_scaleup1 = s1;
+	m_scaleup2 = s2;
+	m_scaleup3 = s3;
+	m_scaleup4 = s4;
 }
 
 /*
@@ -1862,8 +1969,18 @@ void TitleMsgWave::setParam(float, float, float, float)
  * Address:	8032FE30
  * Size:	0000F8
  */
-TitleMsgClash::TitleMsgClash(J2DScreen*, J2DPane*, char*)
+TitleMsgClash::TitleMsgClash(J2DScreen* screen, J2DPane* pane, char* str)
+    : TitleMsg(screen, pane, str)
 {
+	f32 time    = 0.0f;
+	m_scaleMod  = 0.0f;
+	m_currScale = 0.0f;
+
+	for (u32 i = 0; i < m_stringLength; i++) {
+		m_effects[i]   = new efx2d::T2DCvnameVs;
+		m_dropFlags[i] = false;
+		m_timers[i]    = time;
+	}
 	/*
 	stwu     r1, -0x30(r1)
 	mflr     r0
@@ -1941,8 +2058,10 @@ lbl_8032FEF0:
  * Address:	8032FF28
  * Size:	000014
  */
-void TitleMsgClash::init(void)
+void TitleMsgClash::init()
 {
+	m_scaleMod  = 0.0f;
+	m_currScale = 50.0f;
 	/*
 	lfs      f1, lbl_8051E008@sda21(r2)
 	lfs      f0, lbl_8051E068@sda21(r2)
@@ -1957,8 +2076,31 @@ void TitleMsgClash::init(void)
  * Address:	8032FF3C
  * Size:	000214
  */
-void TitleMsgClash::update(void)
+void TitleMsgClash::update()
 {
+	m_scaleMod -= 0.5f;
+	m_currScale += m_scaleMod;
+	if (m_currScale < 1.0f) {
+		m_currScale = 1.0f;
+		m_scaleMod  = -m_scaleMod * 0.4f;
+	}
+	ogSound->setVsTitle();
+
+	for (u32 i = 0; i < m_stringLength; i++) {
+		m_panes1[i]->updateScale(m_currScale * m_xScale, 1.0f);
+		if (!m_dropFlags[i]) {
+			m_timers[i] += sys->m_deltaTime;
+			if (m_timers[i] > 1.0f) {
+				m_dropFlags[i] = true;
+				Vector3f pos1  = m_panes1[i]->getGlbVtx(0);
+				Vector3f pos2  = m_panes1[i]->getGlbVtx(3);
+				efx2d::Arg arg(pos1.x + pos2.x * 0.5f, pos1.y + pos2.y * 0.5f + m_yOffset);
+				m_effects[i]->setGroup(2);
+				m_effects[i]->create(&arg);
+				m_effects[i]->setGlobalAlpha(130);
+			}
+		}
+	}
 	/*
 	stwu     r1, -0x80(r1)
 	mflr     r0
@@ -2109,41 +2251,11 @@ lbl_8033011C:
  * Address:	80330150
  * Size:	00006C
  */
-void TitleMsgClash::end(void)
+void TitleMsgClash::end()
 {
-	/*
-	stwu     r1, -0x20(r1)
-	mflr     r0
-	stw      r0, 0x24(r1)
-	stw      r31, 0x1c(r1)
-	stw      r30, 0x18(r1)
-	li       r30, 0
-	stw      r29, 0x14(r1)
-	mr       r29, r3
-	mr       r31, r29
-	b        lbl_80330194
-
-lbl_80330178:
-	lwz      r3, 0x7ec(r31)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x10(r12)
-	mtctr    r12
-	bctrl
-	addi     r31, r31, 4
-	addi     r30, r30, 1
-
-lbl_80330194:
-	lwz      r0, 0x540(r29)
-	cmplw    r30, r0
-	blt      lbl_80330178
-	lwz      r0, 0x24(r1)
-	lwz      r31, 0x1c(r1)
-	lwz      r30, 0x18(r1)
-	lwz      r29, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x20
-	blr
-	*/
+	for (u32 i = 0; i < m_stringLength; i++) {
+		m_effects[i]->fade();
+	}
 }
 
 /*
@@ -2151,14 +2263,14 @@ lbl_80330194:
  * Address:	803301BC
  * Size:	000004
  */
-void TitleMsg::start(void) { }
+void TitleMsg::start() { }
 
 /*
  * --INFO--
  * Address:	803301C0
  * Size:	000084
  */
-efx2d::T2DCvnameChal::~T2DCvnameChal(void)
+efx2d::T2DCvnameChal::~T2DCvnameChal()
 {
 	/*
 	stwu     r1, -0x10(r1)

@@ -7,7 +7,7 @@
 namespace P2JME {
 
 struct Analyzer : public TRenderingProcessorBase {
-	Analyzer();
+	// Analyzer();
 	Analyzer(const JMessage::TReference*);
 
 	virtual ~Analyzer() { }                          // _08 (weak)
