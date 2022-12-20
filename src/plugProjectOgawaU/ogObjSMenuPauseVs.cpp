@@ -1,4 +1,3 @@
-#include "types.h"
 #include "og/newScreen/SMenu.h"
 #include "og/Screen/ogScreen.h"
 #include "og/Screen/MenuMgr.h"
@@ -149,7 +148,7 @@ ObjSMenuPauseVS::ObjSMenuPauseVS(char const* name)
  * Address:	80329210
  * Size:	0000C4
  */
-ObjSMenuPauseVS::~ObjSMenuPauseVS(void)
+ObjSMenuPauseVS::~ObjSMenuPauseVS()
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -902,7 +901,7 @@ void ObjSMenuPauseVS::out_menu_1()
  * Address:	80329A1C
  * Size:	000010
  */
-void ObjSMenuPauseVS::doUpdateCancelAction(void)
+void ObjSMenuPauseVS::doUpdateCancelAction()
 {
 	m_disp->m_state = 2;
 	/*
@@ -994,7 +993,7 @@ bool ObjSMenuPauseVS::doEnd(::Screen::EndSceneArg const*) { return true; }
  * Address:	80329AD8
  * Size:	00004C
  */
-bool ObjSMenuPauseVS::doUpdateFadein(void)
+bool ObjSMenuPauseVS::doUpdateFadein()
 {
 	commonUpdate();
 	return updateFadeIn();
@@ -1026,7 +1025,7 @@ bool ObjSMenuPauseVS::doUpdateFadein(void)
  * Address:	80329B24
  * Size:	000048
  */
-void ObjSMenuPauseVS::doUpdateFadeinFinish(void)
+void ObjSMenuPauseVS::doUpdateFadeinFinish()
 {
 	m_menuMgr->startCursor(0.5f);
 	wait();
@@ -1057,7 +1056,7 @@ void ObjSMenuPauseVS::doUpdateFadeinFinish(void)
  * Address:	80329B6C
  * Size:	000048
  */
-void ObjSMenuPauseVS::doUpdateFinish(void)
+void ObjSMenuPauseVS::doUpdateFinish()
 {
 	m_fadeLevel = 0.0f;
 	out_L();
@@ -1089,7 +1088,7 @@ void ObjSMenuPauseVS::doUpdateFinish(void)
  * Address:	80329BB4
  * Size:	00004C
  */
-bool ObjSMenuPauseVS::doUpdateFadeout(void)
+bool ObjSMenuPauseVS::doUpdateFadeout()
 {
 	commonUpdate();
 	return updateFadeOut();
@@ -1121,7 +1120,7 @@ bool ObjSMenuPauseVS::doUpdateFadeout(void)
  * Address:	80329C00
  * Size:	0000AC
  */
-void ObjSMenuPauseVS::doUpdateFadeoutFinish(void)
+void ObjSMenuPauseVS::doUpdateFadeoutFinish()
 {
 	SceneSMenuBase* scene = static_cast<SceneSMenuBase*>(getOwner());
 	switch (getResult()) {
@@ -1191,14 +1190,14 @@ lbl_80329C74:
  * Address:	80329CAC
  * Size:	00000C
  */
-int ObjSMenuPauseVS::getResult(void) { return m_disp->m_state; }
+int ObjSMenuPauseVS::getResult() { return m_disp->m_state; }
 
 /*
  * --INFO--
  * Address:	80329CB8
  * Size:	000014
  */
-void ObjSMenuPauseVS::in_L(void)
+void ObjSMenuPauseVS::in_L()
 {
 	m_state = MENUSTATE_OpenL;
 	m_angle = 15.0f;
@@ -1216,42 +1215,42 @@ void ObjSMenuPauseVS::in_L(void)
  * Address:	80329CCC
  * Size:	00000C
  */
-void ObjSMenuPauseVS::wait(void) { m_state = MENUSTATE_Default; }
+void ObjSMenuPauseVS::wait() { m_state = MENUSTATE_Default; }
 
 /*
  * --INFO--
  * Address:	80329CD8
  * Size:	00000C
  */
-void ObjSMenuPauseVS::out_L(void) { m_state = MENUSTATE_CloseL; }
+void ObjSMenuPauseVS::out_L() { m_state = MENUSTATE_CloseL; }
 
 /*
  * --INFO--
  * Address:	80329CE4
  * Size:	000004
  */
-void ObjSMenuPauseVS::doUpdateRAction(void) { }
+void ObjSMenuPauseVS::doUpdateRAction() { }
 
 /*
  * --INFO--
  * Address:	80329CE8
  * Size:	000004
  */
-void ObjSMenuPauseVS::doUpdateLAction(void) { }
+void ObjSMenuPauseVS::doUpdateLAction() { }
 
 /*
  * --INFO--
  * Address:	80329CEC
  * Size:	000004
  */
-void ObjSMenuPauseVS::in_R(void) { }
+void ObjSMenuPauseVS::in_R() { }
 
 /*
  * --INFO--
  * Address:	80329CF0
  * Size:	000004
  */
-void ObjSMenuPauseVS::out_R(void) { }
+void ObjSMenuPauseVS::out_R() { }
 
 /*
  * --INFO--

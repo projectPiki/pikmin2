@@ -1,9 +1,5 @@
-#include "types.h"
-#include "Dolphin/stl.h"
 #include "Game/MoviePlayer.h"
-#include "Graphics.h"
 #include "og/newScreen/ogUtil.h"
-#include "System.h"
 #include "nans.h"
 
 namespace og {

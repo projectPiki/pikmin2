@@ -1,6 +1,4 @@
-#include "types.h"
 #include "og/newScreen/Challenge.h"
-#include "og/Screen/DopingScreen.h"
 #include "og/Screen/NaviLifeGauge.h"
 #include "og/Screen/PikminCounter.h"
 #include "trig.h"

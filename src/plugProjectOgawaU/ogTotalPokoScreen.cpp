@@ -3,7 +3,6 @@
 #include "og/Screen/ogScreen.h"
 #include "og/Screen/TotalPokoScreen.h"
 #include "og/Sound.h"
-#include "P2DScreen.h"
 #include "System.h"
 
 namespace og {

@@ -1,4 +1,3 @@
-#include "types.h"
 #include "og/Screen/OtakaraSensor.h"
 #include "efx2d/TSimple.h"
 
@@ -205,7 +204,7 @@ namespace Screen {
  * Address:	8032D8E8
  * Size:	000140
  */
-OtakaraSensor::OtakaraSensor(void)
+OtakaraSensor::OtakaraSensor()
 {
 	/*
 stwu     r1, -0x10(r1)
@@ -506,7 +505,7 @@ blr
  * Address:	8032DC7C
  * Size:	000010
  */
-void OtakaraSensor::show(void)
+void OtakaraSensor::show()
 {
 	/*
 lwz      r3, 0xc(r3)
@@ -521,7 +520,7 @@ blr
  * Address:	8032DC8C
  * Size:	000010
  */
-void OtakaraSensor::hide(void)
+void OtakaraSensor::hide()
 {
 	/*
 lwz      r3, 0xc(r3)
@@ -536,7 +535,7 @@ blr
  * Address:	8032DC9C
  * Size:	000014
  */
-void OtakaraSensor::startSensorEff(void)
+void OtakaraSensor::startSensorEff()
 {
 	/*
 li       r0, 1
@@ -552,7 +551,7 @@ blr
  * Address:	8032DCB0
  * Size:	0000D8
  */
-void OtakaraSensor::adjPos(float, float)
+void OtakaraSensor::adjPos(f32, f32)
 {
 	/*
 stwu     r1, -0x40(r1)
@@ -621,7 +620,7 @@ blr
  * Address:	8032DD88
  * Size:	000008
  */
-void OtakaraSensor::adjScale(float)
+void OtakaraSensor::adjScale(f32)
 {
 	/*
 stfs     f1, 0x20(r3)
@@ -634,7 +633,7 @@ blr
  * Address:	8032DD90
  * Size:	000088
  */
-void OtakaraSensor::update(void)
+void OtakaraSensor::update()
 {
 	/*
 stwu     r1, -0x10(r1)
@@ -683,7 +682,7 @@ blr
  * Address:	8032DE18
  * Size:	000160
  */
-void OtakaraSensor::updateInit(void)
+void OtakaraSensor::updateInit()
 {
 	/*
 stwu     r1, -0x10(r1)
@@ -1623,11 +1622,11 @@ void OtakaraSensor::draw(J2DGrafContext&) { }
  * Address:	8032EA50
  * Size:	000004
  */
-void efx2d::TSimple3::kill(void) { }
+void efx2d::TSimple3::kill() { }
 
 /*
  * --INFO--
  * Address:	8032EA54
  * Size:	000004
  */
-void efx2d::TSimple3::fade(void) { }
+void efx2d::TSimple3::fade() { }

@@ -1,4 +1,3 @@
-#include "types.h"
 #include "og/newScreen/Contena.h"
 #include "og/Screen/ContenaCounter.h"
 #include "og/Screen/ogScreen.h"
@@ -9,7 +8,6 @@
 #include "System.h"
 #include "Controller.h"
 #include "trig.h"
-#include "Dolphin/gx.h"
 
 bool contenaAngleFlag;
 f32 contenaAngle;
@@ -479,7 +477,7 @@ ObjContena::ObjContena(char const* name)
  * Address:	80320104
  * Size:	0000AC
  */
-ObjContena::~ObjContena(void)
+ObjContena::~ObjContena()
 {
 	/*
 	stwu     r1, -0x10(r1)

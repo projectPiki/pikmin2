@@ -1,4 +1,3 @@
-#include "types.h"
 #include "og/Screen/ogScreen.h"
 #include "JSystem/JUT/JUTTexture.h"
 

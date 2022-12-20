@@ -1,5 +1,4 @@
 #include "og/newScreen/TitleMsg.h"
-#include "types.h"
 #include "P2JME/Analyzer.h"
 #include "efx2d/T2DCvname.h"
 
@@ -228,7 +227,7 @@ TitleMessageAnalyzer::TitleMessageAnalyzer()
  * Address:	8032EA58
  * Size:	000070
  */
-::P2JME::Analyzer::~Analyzer(void)
+::P2JME::Analyzer::~Analyzer()
 {
 	/*
 stwu     r1, -0x10(r1)

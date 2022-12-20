@@ -1,4 +1,3 @@
-#include "types.h"
 #include "og/newScreen/WorldMapInfoWindow.h"
 #include "og/Screen/DispMember.h"
 #include "og/Screen/MenuMgr.h"

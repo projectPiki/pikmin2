@@ -1,4 +1,3 @@
-#include "types.h"
 #include "og/newScreen/Cave.h"
 #include "og/Screen/DopingScreen.h"
 #include "og/Screen/NaviLifeGauge.h"
@@ -6,7 +5,6 @@
 #include "og/Screen/TotalPokoScreen.h"
 #include "og/Screen/BloGroup.h"
 #include "og/Screen/ogScreen.h"
-#include "og/Screen/OtakaraSensor.h"
 #include "trig.h"
 #include "System.h"
 #include "nans.h"

@@ -1,5 +1,3 @@
-#include "types.h"
-
 #include "og/ogLib2D.h"
 
 og::Lib2D* og::gLib2D;

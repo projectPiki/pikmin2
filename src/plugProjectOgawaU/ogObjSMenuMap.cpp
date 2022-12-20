@@ -1,4 +1,3 @@
-#include "types.h"
 #include "og/newScreen/SMenu.h"
 #include "og/newScreen/ogUtil.h"
 #include "og/Screen/MapCounter.h"

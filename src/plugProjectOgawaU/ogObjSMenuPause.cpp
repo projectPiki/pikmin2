@@ -1,4 +1,3 @@
-#include "types.h"
 #include "og/newScreen/SMenu.h"
 #include "og/Screen/MenuMgr.h"
 #include "og/Screen/ogScreen.h"

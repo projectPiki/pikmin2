@@ -1,5 +1,4 @@
 #include "og/Screen/callbackNodes.h"
-#include "types.h"
 #include "og/Screen/StickAnimMgr.h"
 #include "og/Screen/anime.h"
 #include "og/Screen/ogScreen.h"

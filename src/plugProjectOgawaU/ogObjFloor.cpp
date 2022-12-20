@@ -4,8 +4,6 @@
 #include "og/Screen/AlphaMgr.h"
 #include "og/Screen/anime.h"
 #include "og/Screen/callbackNodes.h"
-#include "og/Screen/ogScreen.h"
-#include "P2DScreen.h"
 #include "System.h"
 #include "TParticle2dMgr.h"
 #include "Dolphin/rand.h"
@@ -1214,7 +1212,7 @@ bool newScreen::ObjFloor::commonUpdate()
 	m_title->setColor(msVal.m_colors1[caveType], msVal.m_colors2[caveType]);
 	m_sublevelMsg->setColor(msVal.m_colors1[caveType], msVal.m_colors2[caveType]);
 
-	J2DPictureEx* pic = m_counterFloor->_6C;
+	J2DPictureEx* pic = m_counterFloor->m_pic1;
 	pic->setWhite(msVal.m_colors1[caveType]);
 	pic->setBlack(msVal.m_colors2[caveType]);
 

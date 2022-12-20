@@ -1,7 +1,5 @@
 #include "og/Screen/callbackNodes.h"
-#include "types.h"
 #include "System.h"
-#include "sysMath.h"
 #include "Vector3.h"
 #include "og/Screen/ogScreen.h"
 

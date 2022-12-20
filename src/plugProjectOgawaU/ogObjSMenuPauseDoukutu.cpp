@@ -1,4 +1,3 @@
-#include "types.h"
 #include "og/newScreen/SMenu.h"
 #include "og/Screen/MenuMgr.h"
 #include "og/Screen/ogScreen.h"
@@ -243,7 +242,7 @@ ObjSMenuPauseDoukutu::ObjSMenuPauseDoukutu(char const* name)
  * Address:	8032213C
  * Size:	0000C4
  */
-ObjSMenuPauseDoukutu::~ObjSMenuPauseDoukutu(void)
+ObjSMenuPauseDoukutu::~ObjSMenuPauseDoukutu()
 {
 	/*
 	stwu     r1, -0x10(r1)

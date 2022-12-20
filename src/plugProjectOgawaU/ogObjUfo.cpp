@@ -1,6 +1,4 @@
-#include "types.h"
 #include "og/newScreen/UfoMenu.h"
-#include "P2DScreen.h"
 #include "og/Screen/ogScreen.h"
 #include "og/Screen/callbackNodes.h"
 #include "og/Screen/MenuMgr.h"

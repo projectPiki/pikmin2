@@ -1,4 +1,3 @@
-#include "types.h"
 #include "og/newScreen/Challenge.h"
 #include "og/Screen/callbackNodes.h"
 #include "System.h"
@@ -86,7 +85,7 @@ namespace newScreen {
  * Address:	8032C8A0
  * Size:	000098
  */
-ObjChallengeBase::ObjChallengeBase(void)
+ObjChallengeBase::ObjChallengeBase()
 {
 	m_fadeLevel = 0.0f;
 	m_scale     = 0.0f;
@@ -147,7 +146,7 @@ ObjChallengeBase::ObjChallengeBase(void)
  * Address:	8032C938
  * Size:	0000AC
  */
-ObjChallengeBase::~ObjChallengeBase(void)
+ObjChallengeBase::~ObjChallengeBase()
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -207,7 +206,7 @@ lbl_8032C9C8:
  */
 void ObjChallengeBase::doCreateAfter(JKRArchive* arc, og::Screen::CallBack_CounterRV* timer)
 {
-	m_paneTime = timer->_6C;
+	m_paneTime = timer->m_pic1;
 	m_white    = m_paneTime->getWhite();
 	m_black    = m_paneTime->getBlack();
 	/*
@@ -523,7 +522,7 @@ namespace Screen {
  * Address:	8032CC9C
  * Size:	00008C
  */
-void __sinit_ogObjChallengeBase_cpp(void)
+void __sinit_ogObjChallengeBase_cpp()
 {
 	/*
 	lis      r3, msBaseVal__Q32og9newScreen16ObjChallengeBase@ha

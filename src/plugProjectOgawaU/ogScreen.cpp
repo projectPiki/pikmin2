@@ -1,6 +1,3 @@
-#include "types.h"
-#include "Dolphin/os.h"
-#include "JSystem/JSupport/JSUList.h"
 #include "og/Screen/AlphaMgr.h"
 #include "og/Screen/ogScreen.h"
 #include "og/Screen/ArrowAlphaBlink.h"

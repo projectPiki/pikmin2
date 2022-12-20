@@ -24,7 +24,7 @@ struct AnimBaseBase {
 	bool updateSub();
 
 	// _00 = VTBL
-	int m_type;           // _04 1 =AnimScreen, 2 = AninPane
+	int m_type;           // _04 1 =AnimScreen, 2 = AnimPane
 	bool _08;             // _08
 	f32 _0C;              // _0C
 	u8 _10;               // _10

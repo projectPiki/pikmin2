@@ -1,8 +1,6 @@
-#include "JSystem/J2D/J2DPane.h"
 #include "JSystem/JUT/JUTTexture.h"
 #include "og/Screen/callbackNodes.h"
 #include "og/Screen/ogScreen.h"
-#include "types.h"
 
 namespace og {
 namespace Screen {

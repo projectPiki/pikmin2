@@ -1,8 +1,5 @@
-#include "types.h"
 #include "og/Sound.h"
 #include "PSSystem/PSSystemIF.h"
-#include "SoundID.h"
-#include "PSSystem/PSScene.h"
 #include "PSSystem/PSGame.h"
 #include "PSM/Scene.h"
 #include "utilityU.h"

@@ -1,7 +1,5 @@
-#include "Screen/Enums.h"
 #include "og/Screen/DispMember.h"
 #include "og/newScreen/SMenu.h"
-#include "types.h"
 #include "nans.h"
 
 namespace og {

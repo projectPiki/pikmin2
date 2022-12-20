@@ -1,4 +1,3 @@
-#include "types.h"
 #include "og/newScreen/Challenge.h"
 #include "og/newScreen/Vs.h"
 #include "trig.h"

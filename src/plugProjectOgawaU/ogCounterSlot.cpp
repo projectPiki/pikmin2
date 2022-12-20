@@ -1,7 +1,5 @@
 #include "og/Screen/callbackNodes.h"
-#include "types.h"
 #include "System.h"
-#include "JSystem/JUT/JUTException.h"
 #include "og/Sound.h"
 #include "og/Screen/ogScreen.h"
 #include "Dolphin/rand.h"
@@ -173,9 +171,9 @@ void CallBack_CounterSlot::update()
 		for (int i = 0; i < goal; i++) {
 			J2DPane* pane = m_counters[i]->m_picture;
 			if (i <= (int)_B0 && _A9) {
-				pane->m_isVisible = false;
+				pane->hide();
 			} else {
-				pane->m_isVisible = true;
+				pane->show();
 			}
 		}
 		m_timer += sys->m_deltaTime;
@@ -197,7 +195,7 @@ void CallBack_CounterSlot::update()
 		CallBack_CounterRV::update();
 		if (!_A9) {
 			for (int i = 0; i < goal; i++) {
-				m_counters[i]->m_picture->m_isVisible = false;
+				m_counters[i]->m_picture->hide();
 			}
 		}
 	}
@@ -502,9 +500,7 @@ void CallBack_CounterSlot::setValue(bool flag1, bool flag2)
 	}
 	J2DPicture* pane = m_pic1;
 	pane->updateScale(temp, m_paneScale.y);
-	pane->_0D4.x = m_panePosition.x + temp3;
-	pane->_0D4.y = m_panePosition.y;
-	pane->calcMtx();
+	pane->setOffset(m_panePosition.x + temp3, m_panePosition.y);
 
 	m_pic1->calcMtx();
 	pane                   = m_pic1;
@@ -951,8 +947,8 @@ CallBack_CounterSlot* setCallBack_CounterSlot(P2DScreen::Mgr* mgr, u64 tag, u32*
 			a = i - 1;
 			break;
 		}
-		tag3              = tag4;
-		pane->m_isVisible = false;
+		tag3 = tag4;
+		pane->hide();
 	}
 
 	CallBack_CounterSlot* slot = new CallBack_CounterSlot(const_cast<char**>(SujiTex32), digit, a, arc);

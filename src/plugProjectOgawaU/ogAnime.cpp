@@ -70,7 +70,7 @@ namespace Screen {
 inline AnimBaseBase::AnimBaseBase()
 {
 	// UNUSED FUNCTION
-	m_type     = 0;
+	m_type      = 0;
 	m_frame     = 0.0f;
 	m_lastFrame = 1.0f;
 	m_speed     = 1.0f;
@@ -136,7 +136,7 @@ void AnimBaseBase::init(JKRArchive* archive, char* resourcePath)
  * Address:	80304CB0
  * Size:	000010
  */
-void AnimBaseBase::start(float p1)
+void AnimBaseBase::start(f32 p1)
 {
 	_08 = true;
 	_0C = p1;
@@ -167,7 +167,7 @@ bool AnimBaseBase::updateSub()
 		m_frame += m_speed * _28 * _24;
 		if (m_frame > _30) {
 			if (_38) {
-				float temp = m_frame - _30;
+				f32 temp = m_frame - _30;
 				if (temp >= _34) {
 					temp = 0.0f;
 				}
@@ -181,7 +181,7 @@ bool AnimBaseBase::updateSub()
 		} else {
 			if (m_frame < _2C) {
 				if (_38) {
-					float temp = _2C - m_frame;
+					f32 temp = _2C - m_frame;
 					if (temp >= _34) {
 						temp = 0.0f;
 					}
@@ -232,7 +232,7 @@ bool AnimBaseBase::update()
 AnimScreen::AnimScreen()
 {
 	m_screen = nullptr;
-	m_type  = 1;
+	m_type   = 1;
 }
 
 /*
@@ -384,7 +384,7 @@ void AnimScreen::moveAnim()
  */
 AnimPane::AnimPane()
 {
-	m_pane  = nullptr;
+	m_pane = nullptr;
 	m_type = 2;
 }
 
@@ -740,7 +740,7 @@ blr
  * Address:	803056A8
  * Size:	00005C
  */
-void AnimGroup::setSpeed(float speed)
+void AnimGroup::setSpeed(f32 speed)
 {
 	for (int i = 0; i < m_paneLimit; i++) {
 		if (m_animPanes[i]) {
@@ -786,7 +786,7 @@ void AnimGroup::setRepeat(bool repeat)
  * Address:	80305760
  * Size:	00005C
  */
-void AnimGroup::setFrame(float frame)
+void AnimGroup::setFrame(f32 frame)
 {
 	for (int i = 0; i < m_paneLimit; i++) {
 		if (m_animPanes[i]) {
@@ -844,14 +844,14 @@ void AnimGroup::setAllArea()
  * Address:	80305810
  * Size:	000020
  */
-float AnimGroup::getFrame()
+f32 AnimGroup::getFrame()
 {
 	// if (0 >= m_paneCount) {
 	// 	return 0.0f;
 	// } else {
 	// 	return m_animPanes[0]->m_frame;
 	// }
-	float result = 0.0f;
+	f32 result = 0.0f;
 	if (m_paneCount > 0) {
 		result = m_animPanes[0]->m_frame;
 	}
@@ -871,7 +871,7 @@ float AnimGroup::getFrame()
  * Address:	80305830
  * Size:	000088
  */
-void AnimGroup::setArea(float frame, float p2)
+void AnimGroup::setArea(f32 frame, f32 p2)
 {
 	for (int i = 0; i < m_paneLimit; i++) {
 		if (m_animPanes[i]) {
@@ -919,7 +919,7 @@ void AnimGroup::start()
  * Address:	80305960
  * Size:	000018
  */
-void AnimGroup::reservAnim(float p1, float p2, float p3)
+void AnimGroup::reservAnim(f32 p1, f32 p2, f32 p3)
 {
 	_0C = 1;
 	_10 = p1;
@@ -932,9 +932,9 @@ void AnimGroup::reservAnim(float p1, float p2, float p3)
  * Address:	80305978
  * Size:	000020
  */
-float AnimGroup::getLastFrame()
+f32 AnimGroup::getLastFrame()
 {
-	float result = 0.0f;
+	f32 result = 0.0f;
 	if (m_paneCount > 0) {
 		result = m_animPanes[0]->m_lastFrame;
 	}
@@ -946,7 +946,7 @@ float AnimGroup::getLastFrame()
  * Address:	80305998
  * Size:	000254
  */
-void registAnimGroupScreen(AnimGroup* group, JKRArchive* archive, J2DScreen* screen, char* resourcePath, float p5)
+void registAnimGroupScreen(AnimGroup* group, JKRArchive* archive, J2DScreen* screen, char* resourcePath, f32 p5)
 {
 	AnimScreen* newGroupPane = new AnimScreen();
 	newGroupPane->init(archive, screen, resourcePath);
@@ -1119,7 +1119,7 @@ void registAnimGroupScreen(AnimGroup* group, JKRArchive* archive, J2DScreen* scr
  * Address:	80305BEC
  * Size:	00025C
  */
-void registAnimGroupPane(AnimGroup* group, JKRArchive* archive, J2DScreen* parentScreen, u64 tag, char* resourcePath, float p6)
+void registAnimGroupPane(AnimGroup* group, JKRArchive* archive, J2DScreen* parentScreen, u64 tag, char* resourcePath, f32 p6)
 {
 	AnimPane* newGroupPane = new AnimPane();
 	newGroupPane->init(archive, parentScreen, tag, resourcePath);
@@ -1327,7 +1327,7 @@ void AnimList::start()
  * Address:	........
  * Size:	000084
  */
-void AnimList::nextAnim(float)
+void AnimList::nextAnim(f32)
 {
 	// UNUSED FUNCTION
 }

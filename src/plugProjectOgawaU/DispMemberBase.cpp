@@ -88,7 +88,7 @@ DispMemberBase* DispMemberBase::getSubMember(u32 ownerID, u64 memberID)
  * Address:	8030F5CC
  * Size:	000034
  */
-void DispMemberBase::setSubMemberAll(void)
+void DispMemberBase::setSubMemberAll()
 {
 	m_subMember = nullptr;
 	doSetSubMemberAll();

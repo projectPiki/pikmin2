@@ -1,4 +1,3 @@
-#include "types.h"
 #include "og/newScreen/CourseName.h"
 #include "og/newScreen/ogUtil.h"
 #include "LoadResource.h"

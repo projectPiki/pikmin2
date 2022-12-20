@@ -25,7 +25,7 @@ AngleMgr::AngleMgr()
  * Address:	803302B8
  * Size:	000010
  */
-void AngleMgr::init(float curAngle, float interpRate, float scale)
+void AngleMgr::init(f32 curAngle, f32 interpRate, f32 scale)
 {
 	m_currentAngle = curAngle;
 	m_interpRate   = interpRate;
@@ -37,7 +37,7 @@ void AngleMgr::init(float curAngle, float interpRate, float scale)
  * Address:	803302C8
  * Size:	000080
  */
-void AngleMgr::chase(float target, float step)
+void AngleMgr::chase(f32 target, f32 step)
 {
 	// Wrap to (0, TAU)
 	m_targetAngle = target;
@@ -66,7 +66,7 @@ void AngleMgr::chase(float target, float step)
  * Address:	80330348
  * Size:	0001A8
  */
-float AngleMgr::calc()
+f32 AngleMgr::calc()
 {
 	if (m_state == AGM_Chase) {
 		m_currentAngle += m_angleStep;

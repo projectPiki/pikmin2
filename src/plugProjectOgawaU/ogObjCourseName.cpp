@@ -1,4 +1,3 @@
-#include "types.h"
 #include "og/newScreen/CourseName.h"
 #include "P2DScreen.h"
 #include "og/Screen/anime.h"
@@ -187,7 +186,7 @@ ObjCourseName::ObjCourseName(char const* name)
  * Address:	803174C4
  * Size:	0000AC
  */
-ObjCourseName::~ObjCourseName(void)
+ObjCourseName::~ObjCourseName()
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -533,7 +532,7 @@ lbl_80317890:
  * Address:	........
  * Size:	0000F0
  */
-void ObjCourseName::commonUpdate(void)
+void ObjCourseName::commonUpdate()
 {
 	m_anims->update();
 	m_screen->animation();
@@ -559,7 +558,7 @@ void ObjCourseName::commonUpdate(void)
  * Address:	803178A4
  * Size:	0000F0
  */
-bool ObjCourseName::doUpdate(void)
+bool ObjCourseName::doUpdate()
 {
 	bool check = 0;
 	commonUpdate();
@@ -798,14 +797,14 @@ bool ObjCourseName::doEnd(::Screen::EndSceneArg const*)
  * Address:	80317B28
  * Size:	000004
  */
-void ObjCourseName::doUpdateFadeinFinish(void) { }
+void ObjCourseName::doUpdateFadeinFinish() { }
 
 /*
  * --INFO--
  * Address:	80317B2C
  * Size:	00000C
  */
-void ObjCourseName::doUpdateFinish(void)
+void ObjCourseName::doUpdateFinish()
 {
 	m_fadeLevel = 0.0f;
 	/*
@@ -820,14 +819,14 @@ void ObjCourseName::doUpdateFinish(void)
  * Address:	80317B38
  * Size:	000004
  */
-void ObjCourseName::doUpdateFadeoutFinish(void) { }
+void ObjCourseName::doUpdateFadeoutFinish() { }
 
 /*
  * --INFO--
  * Address:	80317B3C
  * Size:	000120
  */
-bool ObjCourseName::doUpdateFadein(void)
+bool ObjCourseName::doUpdateFadein()
 {
 	bool check = false;
 	m_fadeLevel += sys->m_deltaTime;
@@ -927,7 +926,7 @@ lbl_80317C3C:
  * Address:	80317C5C
  * Size:	000134
  */
-bool ObjCourseName::doUpdateFadeout(void)
+bool ObjCourseName::doUpdateFadeout()
 {
 	bool check = false;
 	m_fadeLevel += sys->m_deltaTime;
@@ -1165,7 +1164,7 @@ lbl_80317ED8:
  * Address:	80317EF8
  * Size:	000028
  */
-void __sinit_ogObjCourseName_cpp(void)
+void __sinit_ogObjCourseName_cpp()
 {
 	/*
 	lfs      f3, lbl_8051D8E8@sda21(r2)

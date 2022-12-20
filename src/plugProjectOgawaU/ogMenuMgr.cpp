@@ -2,9 +2,6 @@
 #include "og/Screen/ScaleMgr.h"
 #include "og/Screen/ogScreen.h"
 #include "og/Sound.h"
-
-#include "types.h"
-#include "Vector2.h"
 #include "Vector3.h"
 #include "efx2d/T2DCursor.h"
 #include "System.h"
@@ -146,15 +143,15 @@ void MenuMgr::init2taku(J2DScreen* screen, u64 tag1, u64 tag2, u64 tag3, u64 tag
 	m_paneList4 = new J2DPane*[2];
 	m_paneList5 = new J2DPane*[2];
 
-	m_paneList4[0]              = og::Screen::TagSearch(screen, tag3);
-	m_paneList5[0]              = og::Screen::TagSearch(screen, tag4);
-	m_paneList4[0]->m_isVisible = false;
-	m_paneList5[0]->m_isVisible = false;
+	m_paneList4[0] = og::Screen::TagSearch(screen, tag3);
+	m_paneList5[0] = og::Screen::TagSearch(screen, tag4);
+	m_paneList4[0]->hide();
+	m_paneList5[0]->hide();
 
-	m_paneList4[1]              = og::Screen::TagSearch(screen, tag7);
-	m_paneList5[1]              = og::Screen::TagSearch(screen, tag8);
-	m_paneList4[1]->m_isVisible = false;
-	m_paneList5[1]->m_isVisible = false;
+	m_paneList4[1] = og::Screen::TagSearch(screen, tag7);
+	m_paneList5[1] = og::Screen::TagSearch(screen, tag8);
+	m_paneList4[1]->hide();
+	m_paneList5[1]->hide();
 }
 
 /*
@@ -188,15 +185,15 @@ void MenuMgr::init2takuTitle(J2DScreen* screen, u64 tag1, u64 tag2, u64 tag3, u6
 	m_paneList4 = new J2DPane*[2];
 	m_paneList5 = new J2DPane*[2];
 
-	m_paneList4[0]              = og::Screen::TagSearch(screen, tag3);
-	m_paneList5[0]              = og::Screen::TagSearch(screen, tag4);
-	m_paneList4[0]->m_isVisible = false;
-	m_paneList5[0]->m_isVisible = false;
+	m_paneList4[0] = og::Screen::TagSearch(screen, tag3);
+	m_paneList5[0] = og::Screen::TagSearch(screen, tag4);
+	m_paneList4[0]->hide();
+	m_paneList5[0]->hide();
 
-	m_paneList4[1]              = og::Screen::TagSearch(screen, tag7);
-	m_paneList5[1]              = og::Screen::TagSearch(screen, tag8);
-	m_paneList4[1]->m_isVisible = false;
-	m_paneList5[1]->m_isVisible = false;
+	m_paneList4[1] = og::Screen::TagSearch(screen, tag7);
+	m_paneList5[1] = og::Screen::TagSearch(screen, tag8);
+	m_paneList4[1]->hide();
+	m_paneList5[1]->hide();
 }
 
 // /*
@@ -262,8 +259,8 @@ void MenuMgr::init(J2DScreen* screen, u16 options, u64 tag1, u64 tag2, u64 tag3,
 		cMesg          = mesg2 + i;
 		m_paneList5[i] = og::Screen::TagSearch(screen, cMesg);
 
-		m_paneList4[i]->m_isVisible = false;
-		m_paneList5[i]->m_isVisible = false;
+		m_paneList4[i]->hide();
+		m_paneList5[i]->hide();
 	}
 
 	/*
