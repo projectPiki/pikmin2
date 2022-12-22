@@ -36,6 +36,7 @@ struct PikiNaviCounter {
 
 int getMapPikmins(int);
 int getAllPikmins(int);
+int getMapPikmins_exclude_Me(int);
 
 inline void checkNaviIndex(int index)
 {

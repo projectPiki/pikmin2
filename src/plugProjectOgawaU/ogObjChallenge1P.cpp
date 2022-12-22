@@ -68,8 +68,8 @@ void ObjChallenge1P::doCreate(JKRArchive* arc)
 	m_bloGroup->addBlo("2P_challenge_poko.blo", m_pokoScreen, 0x1040000, arc);
 
 	m_doping->setCallBack(arc);
-	m_lifeGauge1->setCallBack(&m_disp->m_dataNavi1, og::Screen::CallBack_LifeGauge::LIFEGAUGE_OLIMAR);
-	m_lifeGauge2->setCallBack(&m_disp->m_dataNavi2, og::Screen::CallBack_LifeGauge::LIFEGAUGE_LOUIE);
+	m_lifeGauge1->setCallBack(&m_disp->m_olimarData, og::Screen::CallBack_LifeGauge::LIFEGAUGE_OLIMAR);
+	m_lifeGauge2->setCallBack(&m_disp->m_louieData, og::Screen::CallBack_LifeGauge::LIFEGAUGE_LOUIE);
 	m_pikiCounter->setCallBack(arc);
 
 	m_doping->setDopingEnable(true, true);
@@ -139,12 +139,12 @@ void ObjChallenge1P::commonUpdate()
 	og::Screen::DispMemberChallenge1P* disp = m_disp;
 	if (disp) {
 		updateTimer(disp->_5C, disp->_60);
-		m_doping->setParam(m_disp->m_dataNavi1);
+		m_doping->setParam(m_disp->m_olimarData);
 		disp = m_disp;
-		if (disp->m_dataNavi1.m_activeNaviID) {
-			m_pikiCounter->setParam(disp->m_dataGame, disp->m_dataNavi1);
+		if (disp->m_olimarData.m_activeNaviID) {
+			m_pikiCounter->setParam(disp->m_dataGame, disp->m_olimarData);
 		} else {
-			m_pikiCounter->setParam(disp->m_dataGame, disp->m_dataNavi2);
+			m_pikiCounter->setParam(disp->m_dataGame, disp->m_louieData);
 		}
 	}
 

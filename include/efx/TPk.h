@@ -18,6 +18,7 @@ void createSimpleChinka(Vector3f&);
 void createSimpleWaterOff(Vector3f&);
 void createSimpleGedoku(Vector3f&);
 void createSimpleBlackDrop(Vector3f&);
+void createSimpleDive(Vector3f&);
 
 struct TPkAp : public TSimple2 {
 	inline TPkAp()

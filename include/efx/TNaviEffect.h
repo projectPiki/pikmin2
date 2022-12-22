@@ -7,6 +7,14 @@
 #include "efx/Toe.h"
 
 namespace efx {
+enum NaviEffectFlags {
+	NAVIFX_Unk1  = 0x1,
+	NAVIFX_Unk2  = 0x2,
+	NAVIFX_Unk3  = 0x4,
+	NAVIFX_Unk4  = 0x8,
+	NAVIFX_Unk32 = 0x80000000,
+};
+
 struct TNaviEffect {
 	TNaviEffect();
 
@@ -14,10 +22,17 @@ struct TNaviEffect {
 
 	void setNaviType(enumNaviType);
 	void createLight_(Mtx);
+	void updateHamon_();
+
+	inline void setFlag(u32 flag) { m_flags |= flag; }
+
+	inline void resetFlag(u32 flag) { m_flags &= ~flag; }
+
+	inline bool isFlag(u32 flag) { return m_flags & flag; }
 
 	void createLight()
 	{
-		m_flags |= 2;
+		setFlag(NAVIFX_Unk2);
 		createLight_(m_beaconMtx->m_matrix.mtxView);
 	}
 

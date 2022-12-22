@@ -6,6 +6,7 @@
 #include "Game/StateMachine.h"
 #include "Game/GameSystem.h"
 #include "Game/gamePlayData.h"
+#include "Game/gameStat.h"
 #include "efx/TNaviEffect.h"
 #include "Dolphin/mtx.h"
 #include "JSystem/J2D/J2DGrafContext.h"
@@ -137,7 +138,7 @@ struct Navi : public FakePiki, virtual public PelletView {
 	void callPikis();
 	void checkBigFountain();
 	void checkCave();
-	void checkDemoNaviAndPiki(Sys::Sphere&);
+	u32 checkDemoNaviAndPiki(Sys::Sphere&); // might return a pointer
 	void checkHole();
 	void checkOnyon();
 	void clearKaisanDisable();
@@ -152,7 +153,7 @@ struct Navi : public FakePiki, virtual public PelletView {
 	bool formationable();
 	void fountainonAllPikis(Vector3f&);
 	int getDopeCount(int);
-	void getLifeRatio();
+	f32 getLifeRatio();
 	OlimarData* getOlimarData();
 	int getStateID();
 	bool hasDope(int);
@@ -162,7 +163,7 @@ struct Navi : public FakePiki, virtual public PelletView {
 	bool isCStickNetural();
 	void makeCStick(bool);
 	void makeVelocity();
-	void ogGetNextThrowPiki();
+	u32 ogGetNextThrowPiki();
 	void procActionButton();
 	void releasePikis();
 	void reviseController(Vector3f&);
@@ -304,5 +305,19 @@ struct NaviMgr : public MonoObjectMgr<Navi>, public JKRDisposer {
 
 extern NaviMgr* naviMgr;
 } // namespace Game
+
+namespace og {
+namespace Screen {
+void DataNavi::update(int naviIdx)
+{
+	Game::Navi* navi = Game::naviMgr->getAt(naviIdx);
+	m_followPikis    = Game::GameStat::formationPikis.m_counter[naviIdx];
+	m_nextThrowPiki  = navi->ogGetNextThrowPiki();
+	m_dope1Count     = navi->getDopeCount(1);
+	m_dope0Count     = navi->getDopeCount(0);
+	m_naviLifeRatio  = navi->getLifeRatio();
+}
+} // namespace Screen
+} // namespace og
 
 #endif

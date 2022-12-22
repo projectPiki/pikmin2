@@ -49,7 +49,7 @@ void ResultState::init(VsGameSection* section, StateArg* stateArg)
 
 	P2ASSERTLINE(48, stateArg);
 	ResultArg* resultArg = static_cast<ResultArg*>(stateArg);
-	m_endFlags.typeView  = resultArg->m_isNormalEnd;
+	m_endFlags.typeView  = resultArg->m_endFlag.typeView;
 
 	m_heap        = nullptr;
 	m_expHeap     = nullptr;

@@ -11,9 +11,9 @@ namespace kh {
 namespace Screen {
 struct DispWinLose : public og::Screen::DispMemberBase {
 
-	virtual u32 getSize();     // _08 (weak)
-	virtual u32 getOwnerID();  // _0C (weak)
-	virtual u64 getMemberID(); // _10 (weak)
+	virtual u32 getSize() { return sizeof(DispWinLose); } // _08 (weak)
+	virtual u32 getOwnerID() { return OWNER_KH; }         // _0C (weak)
+	virtual u64 getMemberID() { return MEMBER_WIN_LOSE; } // _10 (weak)
 
 	// _00     = VTBL
 	// _00-_08 = DispMemberBase
@@ -23,9 +23,9 @@ struct DispWinLose : public og::Screen::DispMemberBase {
 
 struct DispWinLoseReason : public og::Screen::DispMemberBase {
 
-	virtual u32 getSize();     // _08 (weak)
-	virtual u32 getOwnerID();  // _0C (weak)
-	virtual u64 getMemberID(); // _10 (weak)
+	virtual u32 getSize() { return sizeof(DispWinLoseReason); }  // _08 (weak)
+	virtual u32 getOwnerID() { return OWNER_KH; }                // _0C (weak)
+	virtual u64 getMemberID() { return MEMBER_WIN_LOSE_REASON; } // _10 (weak)
 
 	// _00     = VTBL
 	// _00-_08 = DispMemberBase

@@ -27,6 +27,8 @@ struct BitFlag {
 		}
 	}
 
+	inline bool getBit(int bit) { return typeView & bit; }
+
 	union {
 		u8 byteView[sizeof(T)];
 		T typeView;

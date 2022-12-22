@@ -136,8 +136,8 @@ struct DispMemberCave : public DispMemberBase {
 	// _00     = VTBL
 	// _00-_08 = DispMemberBase
 	DataGame m_dataGame;      // _08
-	DataNavi m_dataNavi1;     // _24
-	DataNavi m_dataNavi2;     // _24
+	DataNavi m_olimarData;    // _24
+	DataNavi m_louieData;     // _24
 	f32 m_treasureDist;       // _54
 	int m_radarState;         // _58
 	u8 m_drawSensor;          // _5C
@@ -192,8 +192,8 @@ struct DispMemberChallenge1P : public DispMemberBase {
 	// _00     = VTBL
 	// _00-_08 = DispMemberBase
 	DataGame m_dataGame;                 // _08
-	DataNavi m_dataNavi1;                // _24
-	DataNavi m_dataNavi2;                // _3C
+	DataNavi m_olimarData;               // _24
+	DataNavi m_louieData;                // _3C
 	u32 m_pokos;                         // _54
 	u8 _58;                              // _58
 	f32 _5C;                             // _5C
@@ -220,9 +220,9 @@ struct DispMemberChallenge2P : public DispMemberBase {
 
 	// _00     = VTBL
 	// _00-_08 = DispMemberBase
-	DataGame m_dataGame;  // _08
-	DataNavi m_dataNavi1; // _24
-	DataNavi m_dataNavi2;
+	DataGame m_dataGame;                 // _08
+	DataNavi m_olimarData;               // _24
+	DataNavi m_louieData;                // _3C
 	u32 m_pokos;                         // _54
 	u8 _58;                              // _58
 	f32 m_timeLimit;                     // _5C
@@ -619,22 +619,43 @@ struct DispMemberUfoGroup : public DispMemberBase {
 
 // size 0x74
 struct DispMemberVs : public DispMemberBase {
+	inline DispMemberVs()
+	    : DispMemberBase()
+	{
+		m_redPikminCount  = 111;
+		m_bluePikminCount = 222;
+		m_mode            = 0;
+		_64               = 0;
+		_08               = 0;
+		_68[0]            = 0;
+		_68[1]            = 0;
+		_6A               = false;
+		_6B               = false;
+		_6C               = 99999.0f;
+		_70               = 99999.0f;
+	}
 
 	virtual u32 getSize() { return sizeof(DispMemberVs); } // _08 (weak)
 	virtual u32 getOwnerID() { return OWNER_OGA; }         // _0C (weak)
 	virtual u64 getMemberID() { return MEMBER_VS; }        // _10 (weak)
 
+	inline void setMarbleConditions(bool red, bool blue)
+	{
+		_68[0] = red;
+		_68[1] = blue;
+	}
+
 	// _00     = VTBL
 	// _00-_08 = DispMemberBase
-	DataGame m_dataGame;    // _08
-	u32 _24;                // _24, unknown
-	DataNavi m_dataNavi[2]; // _28
+	u32 _08;                // _08, unknown
+	DataGame m_dataGame;    // _0C
+	DataNavi m_olimarData;  // _28
+	DataNavi m_louieData;   // _28
 	uint m_redPikminCount;  // _58
 	uint m_bluePikminCount; // _5C
 	int m_mode;             // _60
-	u32 _64;                // _64, unknown
-	u8 _68;                 // _68
-	u8 _69;                 // _69
+	u32 _64;                // _64
+	u8 _68[2];              // _68
 	u8 _6A;                 // _6A
 	u8 _6B;                 // _6B
 	f32 _6C;                // _6C

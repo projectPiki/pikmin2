@@ -57,26 +57,26 @@ struct Mgr : public MgrBase {
 
 	// _00     = VTBL
 	// _00-_18 = MgrBase
-	u8 _18;                        // _18
-	u8 _19;                        // _19
-	u8 _1A;                        // _1A
-	u8 _1B;                        // _1B
-	SceneBase* m_backupScene;      // _1C
-	Controller* m_controller;      // _20
-	u8 _24[8];                     // _24
-	CNode _2C;                     // _2C
-	CNode _44;                     // _44
-	JKRSolidHeap* _5C;             // _5C
-	CNode _60;                     // _60
-	SceneInfoList m_sceneInfoList; // _78
-	u8 _90;                        // _90
-	u8 _91;                        // _91
-	u8 _92;                        // _92
-	u32 _94;                       // _94
-	u32 _98;                       // _98
-	JUtility::TColor m_bgColor;    // _9C
-	JUtility::TColor _A0;          // _A0
-	int m_bgMode;                  // _A4
+	u8 _18;                     // _18
+	u8 _19;                     // _19
+	u8 _1A;                     // _1A
+	u8 _1B;                     // _1B
+	SceneBase* m_backupScene;   // _1C
+	Controller* m_controller;   // _20
+	u8 _24[8];                  // _24
+	CNode _2C;                  // _2C
+	CNode _44;                  // _44
+	JKRSolidHeap* _5C;          // _5C
+	CNode _60;                  // _60
+	CNode m_sceneInfoList;      // _78, treat as SceneInfoList
+	u8 _90;                     // _90
+	u8 _91;                     // _91
+	u8 _92;                     // _92
+	u32 _94;                    // _94
+	u32 _98;                    // _98
+	JUtility::TColor m_bgColor; // _9C
+	JUtility::TColor _A0;       // _A0
+	int m_bgMode;               // _A4
 };
 
 } // namespace Screen

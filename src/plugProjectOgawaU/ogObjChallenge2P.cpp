@@ -53,8 +53,8 @@ void ObjChallenge2P::doCreate(JKRArchive* arc)
 	m_bloGroup->addBlo("challenge_1P.blo", m_screenP1->m_screen, 0x1040000, arc);
 	m_bloGroup->addBlo("challenge_2P.blo", m_screenP2->m_screen, 0x1040000, arc);
 	m_bloGroup->addBlo("2P_challenge_poko.blo", m_pokoScreen, 0x1040000, arc);
-	m_screenP1->init(&m_disp->m_dataNavi1, arc, m_disp);
-	m_screenP2->init(&m_disp->m_dataNavi2, arc, m_disp);
+	m_screenP1->init(&m_disp->m_olimarData, arc, m_disp);
+	m_screenP2->init(&m_disp->m_louieData, arc, m_disp);
 
 	og::Screen::CallBack_CounterRV* counter = og::Screen::setCallBack_CounterRV(m_pokoScreen, 'Ppoko1', &m_disp->m_pokos, 6, 1, 1, arc);
 	counter->m_scaleUpSoundID               = PSSE_SY_REGI_SUM_UP;
@@ -181,8 +181,8 @@ void ObjChallenge2P::ScreenSet::update(og::Screen::DataNavi& data)
  */
 void ObjChallenge2P::commonUpdate()
 {
-	m_screenP1->update(m_disp->m_dataNavi1);
-	m_screenP2->update(m_disp->m_dataNavi2);
+	m_screenP1->update(m_disp->m_olimarData);
+	m_screenP2->update(m_disp->m_louieData);
 
 	f32 calc = (pikmin2_cosf(m_scale * PI) + 1.0f) / 2;
 	m_screenP1->m_screen->setXY(0.0f, calc * -300.0f);

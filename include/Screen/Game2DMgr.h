@@ -63,7 +63,13 @@ struct SceneBase;
  * @size{0x1C}
  */
 struct Game2DMgr : public JKRDisposer {
-	enum GameOverTitle {};
+	enum GameOverTitle {
+		GOTITLE_Unk0       = 0,
+		GOTITLE_Unk1       = 1,
+		GOTITLE_Unk2       = 2,
+		GOTITLE_Unk3       = 3,
+		GOTITLE_PikminZero = 4,
+	};
 
 	virtual ~Game2DMgr(); // _08
 
@@ -81,12 +87,12 @@ struct Game2DMgr : public JKRDisposer {
 	void open_GameCave(og::Screen::DispMemberCave&, int);
 	void is_GameCave();
 	void open_GameVs(og::Screen::DispMemberVs&, int);
-	void check_VsStatus();
+	int check_VsStatus();
 	void open_GameChallenge2P(og::Screen::DispMemberChallenge2P&, int);
 	void open_GameChallenge1P(og::Screen::DispMemberChallenge1P&, int);
-	void open_SMenu(og::Screen::DispMemberSMenuAll&);
-	void open_SMenu_Sub(og::Screen::DispMemberSMenuAll&);
-	void check_SMenu();
+	bool open_SMenu(og::Screen::DispMemberSMenuAll&);
+	bool open_SMenu_Sub(og::Screen::DispMemberSMenuAll&);
+	int check_SMenu();
 	void open_WorldMapInfoWin0(og::Screen::DispMemberWorldMapInfoWin0&);
 	void check_WorldMapInfoWin0() const;
 	void open_WorldMapInfoWin1(og::Screen::DispMemberWorldMapInfoWin1&);
@@ -129,7 +135,7 @@ struct Game2DMgr : public JKRDisposer {
 	void stopFinalFloorSound();
 	void restartFinalFloorSound();
 	int check_ReadyGo() const;
-	void open_WinLoseReason(kh::Screen::DispWinLoseReason&);
+	bool open_WinLoseReason(kh::Screen::DispWinLoseReason&);
 	int check_WinLoseReason() const;
 	void open_WinLose(kh::Screen::DispWinLose&);
 	int check_WinLose() const;

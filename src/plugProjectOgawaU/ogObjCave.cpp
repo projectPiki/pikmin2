@@ -83,12 +83,12 @@ void ObjCave::doCreate(JKRArchive* arc)
 	m_bloGroup->addBlo("sensor.blo", m_sensorScreen, 0x1040000, arc);
 
 	m_doping->setCallBack(arc);
-	m_lifeGauge1->setCallBack(&m_disp->m_dataNavi1, og::Screen::CallBack_LifeGauge::LIFEGAUGE_OLIMAR);
+	m_lifeGauge1->setCallBack(&m_disp->m_olimarData, og::Screen::CallBack_LifeGauge::LIFEGAUGE_OLIMAR);
 	disp = m_disp;
 	if (disp->m_payDebt) {
-		m_lifeGauge2->setCallBack(&m_disp->m_dataNavi2, og::Screen::CallBack_LifeGauge::LIFEGAUGE_PRESIDENT);
+		m_lifeGauge2->setCallBack(&m_disp->m_louieData, og::Screen::CallBack_LifeGauge::LIFEGAUGE_PRESIDENT);
 	} else {
-		m_lifeGauge2->setCallBack(&m_disp->m_dataNavi2, og::Screen::CallBack_LifeGauge::LIFEGAUGE_LOUIE);
+		m_lifeGauge2->setCallBack(&m_disp->m_louieData, og::Screen::CallBack_LifeGauge::LIFEGAUGE_LOUIE);
 	}
 
 	m_pikiCounter->setCallBack(arc);
@@ -137,13 +137,13 @@ void ObjCave::commonUpdate()
 			m_paneFinalf->hide();
 		}
 
-		m_doping->setParam(m_disp->m_dataNavi1);
+		m_doping->setParam(m_disp->m_olimarData);
 
 		og::Screen::DispMemberCave* disp = m_disp;
-		if (disp->m_dataNavi1.m_activeNaviID) {
-			m_pikiCounter->setParam(disp->m_dataGame, disp->m_dataNavi1);
+		if (disp->m_olimarData.m_activeNaviID) {
+			m_pikiCounter->setParam(disp->m_dataGame, disp->m_olimarData);
 		} else {
-			m_pikiCounter->setParam(disp->m_dataGame, disp->m_dataNavi2);
+			m_pikiCounter->setParam(disp->m_dataGame, disp->m_louieData);
 		}
 
 		if (m_totalPokoActive) {

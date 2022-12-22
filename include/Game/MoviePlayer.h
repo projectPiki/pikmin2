@@ -11,6 +11,7 @@
 #include "IDelegate.h"
 #include "Vector3.h"
 #include "TagParm.h"
+#include "Game/Creature.h"
 
 struct JPAResourceManager;
 struct Viewport;
@@ -66,7 +67,7 @@ struct MovieConfig : public CNode {
 	void dump();
 	void isSkippable();
 	void isNeverSkippable();
-	void is(char*);
+	bool is(char*);
 	void read(Stream&);
 
 	// _00     = VTBL
@@ -90,6 +91,12 @@ struct MoviePlayArg {
 		m_streamID      = 0;
 		_14             = 0;
 		m_soundPosition = nullptr;
+	}
+
+	inline void setTarget(Creature* creature)
+	{
+		m_origin = creature->getPosition();
+		m_angle  = creature->getFaceDir();
 	}
 
 	char* m_movieName;                         // _00

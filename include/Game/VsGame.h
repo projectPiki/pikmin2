@@ -10,6 +10,11 @@
 #include "Game/VsGameSection.h"
 #include "Game/EnemyBase.h"
 #include "Game/gameChallenge2D.h"
+#include "Game/Navi.h"
+#include "Game/PikiMgr.h"
+#include "Game/MoviePlayer.h"
+#include "efx/TNaviEffect.h"
+#include "efx/TPk.h"
 
 struct JUTTexture;
 struct LightObj;
@@ -37,6 +42,18 @@ enum VsCaveInfoType {
 	VSCAVEINFO_Metal    = 1,
 	VSCAVEINFO_Concrete = 2,
 	VSCAVEINFO_Tsuchi   = 3,
+};
+
+enum LoseReasonFlags {
+	VSLOSE_Unk1       = 0x1,
+	VSLOSE_Extinction = 0x2,
+	VSLOSE_Unk3       = 0x4,
+	VSLOSE_Marble     = 0x80,
+};
+
+enum VSPlayerColor {
+	VSPLAYER_Red  = 0,
+	VSPLAYER_Blue = 1,
 };
 
 struct TekiNode : public CNode {
@@ -162,6 +179,25 @@ struct StageList : public CNode {
 
 /////////////////////////////////////////////////////////////////
 // STATE MACHINE DEFINITIONS
+enum GameStateFlags {
+	VSGS_Unk1  = 0x1,
+	VSGS_Unk2  = 0x2,
+	VSGS_Unk3  = 0x4,
+	VSGS_Unk4  = 0x8,
+	VSGS_Unk5  = 0x10,
+	VSGS_Unk6  = 0x20,
+	VSGS_Unk7  = 0x40,
+	VSGS_Unk8  = 0x80,
+	VSGS_Unk9  = 0x100,
+	VSGS_Unk10 = 0x200,
+	VSGS_Unk11 = 0x400,
+	VSGS_Unk12 = 0x800,
+	VSGS_Unk13 = 0x1000,
+	VSGS_Unk14 = 0x2000,
+	VSGS_Unk15 = 0x4000,
+	VSGS_Unk16 = 0x8000,
+};
+
 struct FSM : public StateMachine<VsGameSection> {
 	virtual void init(VsGameSection*);                    // _08
 	virtual void transit(VsGameSection*, int, StateArg*); // _14
@@ -218,9 +254,83 @@ struct GameState : public State {
 	void open_GameChallenge(VsGameSection*, int);
 	void update_GameChallenge(VsGameSection*);
 
+	inline void updateNavi(VsGameSection* section, int naviIndex)
+	{
+		if (section->_1F0[naviIndex] > 0.0f) {
+			section->_1F0[naviIndex] -= sys->m_deltaTime;
+
+			Navi* navi = naviMgr->getAt(naviIndex);
+			if (navi && section->_1F0[naviIndex] <= 0.0f) {
+				efx::TNaviEffect* naviEffect = navi->m_effectsObj;
+
+				if (naviEffect->isFlag(efx::NAVIFX_Unk32)) {
+					naviEffect->m_flags = naviEffect->_04;
+					naviEffect->resetFlag(efx::NAVIFX_Unk32);
+				}
+
+				bool inWater = naviEffect->isFlag(efx::NAVIFX_Unk1);
+				if (naviEffect->isFlag(efx::NAVIFX_Unk1)) { // in water?
+					naviEffect->setFlag(efx::NAVIFX_Unk1);
+					naviEffect->updateHamon_();
+
+					if (!(inWater)) { // what is bro doing
+						efx::createSimpleDive(naviEffect->m_hamonPosition);
+					}
+				}
+
+				if (naviEffect->isFlag(efx::NAVIFX_Unk2)) {
+					naviEffect->createLight();
+				}
+			}
+
+			pikiMgr->setVsXlu(1 - naviIndex, false);
+
+		} else {
+			pikiMgr->setVsXlu(1 - naviIndex, true);
+		}
+	}
+
+	inline void setFlag(u32 flag) { m_flags.typeView |= flag; }
+
+	inline void resetFlag(u32 flag) { m_flags.typeView &= ~flag; }
+
+	inline bool isFlag(u32 flag) { return m_flags.typeView & flag; }
+
+	inline void setLoseCause(int player, u32 flag) { m_loseCauses[player].typeView |= flag; }
+
+	inline bool isLoseCause(int player, u32 flag) { return m_loseCauses[player].typeView & flag; }
+
+	inline u8 getLoseCauses(int player) { return m_loseCauses[player].typeView; }
+
+	inline void setLoseCause(BitFlag<u8>& player, u32 flag) { player.typeView |= flag; }
+
+	inline bool isLoseMarble(bool& redMarble, bool& blueMarble)
+	{
+		bool moviePlayerActive = moviePlayer->m_flags & MoviePlayer::IS_ACTIVE;
+
+		redMarble  = false;
+		blueMarble = false;
+
+		if (!moviePlayerActive && isLoseCause(VSPLAYER_Blue, VSLOSE_Marble)) {
+			redMarble = true;
+		}
+
+		if (!moviePlayerActive && isLoseCause(VSPLAYER_Red, VSLOSE_Marble)) {
+			blueMarble = true;
+		}
+	}
+
 	// _00     = VTBL
 	// _00-_0C = State
-	u8 _0C[0x1C]; // _0C, unknown
+	u32 _0C;                     // _0C
+	Controller* m_controller;    // _10
+	BitFlag<u16> m_flags;        // _14
+	u8 _16;                      // _16
+	f32 m_timer;                 // _18
+	f32 m_floorExtendTimer;      // _1C
+	f32 m_displayTime;           // _20
+	bool m_hasKeyDemoPlayed;     // _24
+	BitFlag<u8> m_loseCauses[2]; // _25
 };
 
 struct VSState : public GameState {
@@ -233,6 +343,13 @@ struct VSState : public GameState {
 };
 
 struct LoadArg : public StateArg {
+	inline LoadArg()
+	    : _00(0)
+	    , _04(0)
+	    , _08(false)
+	{
+	}
+
 	inline LoadArg(u32 a, int b, bool c)
 	    : _00(a)
 	    , _04(b)
@@ -272,7 +389,7 @@ struct LoadState : public State {
 };
 
 struct ResultArg : public StateArg {
-	bool m_isNormalEnd; // _00, false if extinction/captain down/give up, true if normal end
+	BitFlag<u8> m_endFlag; // _00, 0 if extinction/captain down/give up, 1 if normal end
 };
 
 struct ResultState : public State {

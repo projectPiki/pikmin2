@@ -24,6 +24,8 @@ struct DataNavi {
 		m_activeNaviID  = 1;
 	}
 
+	inline void update(int naviIdx); // defined in Game/Navi.h to avoid include loops
+
 	f32 m_naviLifeRatio; // _00
 	u32 m_followPikis;   // _04
 	u32 m_nextThrowPiki; // _08

@@ -15,6 +15,17 @@ namespace Game {
 
 enum GameSystemMode { GSM_STORY_MODE = 0, GSM_VERSUS_MODE, GSM_ONE_PLAYER_CHALLENGE, GSM_TWO_PLAYER_CHALLENGE, GSM_PIKLOPEDIA };
 
+enum GameSystemFlags {
+	GAMESYS_Unk1 = 0x1,
+	GAMESYS_Unk2 = 0x2,
+	GAMESYS_Unk3 = 0x4,
+	GAMESYS_Unk4 = 0x8,
+	GAMESYS_Unk5 = 0x10,
+	GAMESYS_Unk6 = 0x20,
+	GAMESYS_Unk7 = 0x40,
+	GAMESYS_Unk8 = 0x80,
+};
+
 struct GameSystem : public NodeObjectMgr<GenericObjectMgr> {
 	GameSystem(Game::BaseGameSection*);
 	// vtable 1
@@ -53,11 +64,15 @@ struct GameSystem : public NodeObjectMgr<GenericObjectMgr> {
 	void setPause(bool, char*, int);
 	void startPause(bool, int, char*);
 
-	/**
-	 * @fabricated
-	 */
+	inline bool isVersusMode() { return m_mode == GSM_VERSUS_MODE; }
 	inline bool isMultiplayerMode() { return (m_mode == GSM_VERSUS_MODE || m_mode == GSM_TWO_PLAYER_CHALLENGE); }
 	inline bool isChallengeMode() { return (m_mode == GSM_ONE_PLAYER_CHALLENGE || m_mode == GSM_TWO_PLAYER_CHALLENGE); }
+
+	inline void setFlag(u32 flag) { m_flags |= flag; }
+
+	inline void resetFlag(u32 flag) { m_flags &= ~flag; }
+
+	inline bool isFlag(u32 flag) { return m_flags & flag; }
 
 	u8 m_flags;                 // _3C /* bitfield */
 	TimeMgr* m_timeMgr;         // _40
