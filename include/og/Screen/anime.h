@@ -2,6 +2,7 @@
 #define _OG_SCREEN_ANIME_H
 
 #include "Screen/screenObj.h"
+#include "og/Screen/ogScreen.h"
 #include "types.h"
 
 struct J2DAnmBase;
@@ -52,6 +53,13 @@ struct AnimScreen : public AnimBaseBase {
 
 	void init(JKRArchive*, J2DScreen*, char*);
 
+	inline void updateScreen(J2DScreen* screen, J2DAnmBase* anm)
+	{
+		m_screen = screen;
+		m_screen->setAnimation(anm);
+		anm->searchUpdateMaterialID(screen);
+	}
+
 	// _00     = VTBL
 	// _00-_40 = AnimBaseBase
 	J2DScreen* m_screen; // _40
@@ -64,6 +72,13 @@ struct AnimPane : public AnimBaseBase {
 	virtual void moveAnim(); // _0C
 
 	void init(JKRArchive*, J2DScreen*, u64, char*);
+
+	inline void updatePane(J2DScreen* screen, u64 tag, J2DAnmBase* anm)
+	{
+		m_pane = TagSearch(screen, tag);
+		m_pane->setAnimation(anm);
+		anm->searchUpdateMaterialID(screen);
+	}
 
 	// _00     = VTBL
 	// _00-_40 = AnimBaseBase
@@ -85,6 +100,8 @@ struct AnimGroup {
 	void setSpeed(f32);
 	void start();
 	bool update();
+
+	inline f32 getVal() { return _10; }
 
 	AnimBaseBase** m_animPanes; // _00
 	int m_paneCount;            // _04
