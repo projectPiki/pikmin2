@@ -13,7 +13,7 @@ struct ScaleMgr;
 struct PikminCounter : public P2DScreen::Mgr_tuning {
 	PikminCounter();
 
-	virtual ~PikminCounter();              // _08 (weak)
+	virtual ~PikminCounter() { }           // _08 (weak)
 	virtual void update();                 // _30
 	virtual void setCallBack(JKRArchive*); // _A0
 
@@ -38,7 +38,7 @@ struct PikminCounter : public P2DScreen::Mgr_tuning {
 };
 
 struct PikminCounterCave : public PikminCounter {
-	virtual ~PikminCounterCave();          // _08 (weak)
+	virtual ~PikminCounterCave() { }       // _08 (weak)
 	virtual void setCallBack(JKRArchive*); // _A0
 
 	// _00      = VTBL
@@ -46,8 +46,8 @@ struct PikminCounterCave : public PikminCounter {
 };
 
 struct PikminCounterChallenge1P : public PikminCounter {
-	virtual ~PikminCounterChallenge1P();   // _08 (weak)
-	virtual void setCallBack(JKRArchive*); // _A0
+	virtual ~PikminCounterChallenge1P() { } // _08 (weak)
+	virtual void setCallBack(JKRArchive*);  // _A0
 
 	// _00      = VTBL
 	// _00-_1A8 = PikminCounter

@@ -246,13 +246,12 @@ struct J2DPane {
 
 	inline void setMsgID(u64 msgID) { m_messageID = msgID; }
 
-	// /**
-	//  * @fabricated
-	//  */
-	// void setScale(float width, float height) {
-	// 	m_scale.x = width;
-	// 	m_scale.y = height;
-	// }
+	inline void removeFromParent()
+	{
+		if (getParentPane()) {
+			getParentPane()->removeChild(this);
+		}
+	}
 
 	u32 appendChild(J2DPane*);
 	u32 prependChild(J2DPane*);

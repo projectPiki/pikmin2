@@ -855,7 +855,7 @@ NISHIMURA:=\
 OGAWA:=\
 	$(BUILD_DIR)/src/plugProjectOgawaU/ogScreen.o\
 	$(BUILD_DIR)/src/plugProjectOgawaU/ogDopingScreen.o\
-	$(BUILD_DIR)/asm/plugProjectOgawaU/ogPikminCounter.o\
+	$(BUILD_DIR)/src/plugProjectOgawaU/ogPikminCounter.o\
 	$(BUILD_DIR)/asm/plugProjectOgawaU/ogAnime.o\
 	$(BUILD_DIR)/src/plugProjectOgawaU/ogCounter.o\
 	$(BUILD_DIR)/asm/plugProjectOgawaU/ogLifeGauge.o\
