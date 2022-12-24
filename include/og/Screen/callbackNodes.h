@@ -435,8 +435,8 @@ struct CounterKeta {
 		m_picture      = pic;
 		m_textureIndex = 0;
 		m_scaleMgr     = new ScaleMgr;
-		_0C            = 1.0f;
-		_10            = 1.0f;
+		m_width        = 1.0f;
+		m_height       = 1.0f;
 	}
 	void setSuji(ResTIMG**, u32);
 	void calcScale();

@@ -109,10 +109,10 @@ void blendColor(JUtility::TColor& color1, JUtility::TColor& color2, f32 blendFac
 	f32 tCompl = 1.0f - t;
 
 	JUtility::TColor store;
-	store.r = (color1.r * invT) + (color2.r * t);
-	store.g = (color1.g * invT) + (color2.g * t);
-	store.b = (color1.b * invT) + (color2.b * t);
-	store.a = (color1.a * invT) + (color2.a * t);
+	store.r = (color1.r * tCompl) + (color2.r * t);
+	store.g = (color1.g * tCompl) + (color2.g * t);
+	store.b = (color1.b * tCompl) + (color2.b * t);
+	store.a = (color1.a * tCompl) + (color2.a * t);
 	outColor->set(store.r, store.g, store.b, store.a);
 }
 
@@ -152,8 +152,8 @@ f32 calcSmooth0to1(f32 start, f32 end)
 	if (ratio < 0.0f) {
 		ratio = 0.0f;
 	}
-	if (t > 1.0f) {
-		t = 1.0f;
+	if (ratio > 1.0f) {
+		ratio = 1.0f;
 	}
 
 	f32 limit = 0.8f;
@@ -240,7 +240,7 @@ u16 CalcKeta(u32 x)
 {
 	u16 keta = 1;
 	for (int i = 1; i < 10; i++) {
-		if (p1 >= pow(10.0, (f64)i)) {
+		if (x >= pow(10.0, (f64)i)) {
 			keta = i + 1;
 		} else {
 			break;

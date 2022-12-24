@@ -81,12 +81,12 @@ void ObjGround::doCreate(JKRArchive* arc)
 
 	m_sunMeter->setCallBack();
 	m_doping->setCallBack(arc);
-	m_lifeGauge1->setCallBack(&m_disp->m_dataNavi1, og::Screen::CallBack_LifeGauge::LIFEGAUGE_OLIMAR);
+	m_lifeGauge1->setCallBack(&m_disp->m_olimarData, og::Screen::CallBack_LifeGauge::LIFEGAUGE_OLIMAR);
 	disp = m_disp;
 	if (disp->m_payDebt) {
-		m_lifeGauge2->setCallBack(&m_disp->m_dataNavi2, og::Screen::CallBack_LifeGauge::LIFEGAUGE_PRESIDENT);
+		m_lifeGauge2->setCallBack(&m_disp->m_louieData, og::Screen::CallBack_LifeGauge::LIFEGAUGE_PRESIDENT);
 	} else {
-		m_lifeGauge2->setCallBack(&m_disp->m_dataNavi2, og::Screen::CallBack_LifeGauge::LIFEGAUGE_LOUIE);
+		m_lifeGauge2->setCallBack(&m_disp->m_louieData, og::Screen::CallBack_LifeGauge::LIFEGAUGE_LOUIE);
 	}
 	m_pikiCounter->setCallBack(arc);
 	m_pokos = m_disp->m_dataGame.m_pokoCount;
@@ -108,12 +108,12 @@ void ObjGround::commonUpdate()
 		m_sunMeter->m_currentTime = m_disp->m_dataGame.m_sunGaugeRatio;
 
 		og::Screen::DispMemberGround* disp = m_disp;
-		if (disp->m_dataNavi1.m_activeNaviID) {
-			m_doping->setParam(disp->m_dataNavi1);
-			m_pikiCounter->setParam(m_disp->m_dataGame, m_disp->m_dataNavi1);
+		if (disp->m_olimarData.m_activeNaviID) {
+			m_doping->setParam(disp->m_olimarData);
+			m_pikiCounter->setParam(m_disp->m_dataGame, m_disp->m_olimarData);
 		} else {
-			m_doping->setParam(disp->m_dataNavi2);
-			m_pikiCounter->setParam(m_disp->m_dataGame, m_disp->m_dataNavi2);
+			m_doping->setParam(disp->m_louieData);
+			m_pikiCounter->setParam(m_disp->m_dataGame, m_disp->m_louieData);
 		}
 
 		if (m_disp->m_payDebt) {

@@ -458,8 +458,8 @@ void ObjVs::doCreate(JKRArchive* arc)
 	m_bloGroup = new og::Screen::BloGroup(2);
 	m_bloGroup->addBlo("challenge_1P.blo", m_screenP1->m_screen, 0x1040000, arc);
 	m_bloGroup->addBlo("challenge_2P.blo", m_screenP2->m_screen, 0x1040000, arc);
-	m_screenP1->init(&m_disp->m_dataNavi1, arc, &m_disp->m_redPikminCount);
-	m_screenP2->init(&m_disp->m_dataNavi2, arc, &m_disp->m_bluePikminCount);
+	m_screenP1->init(&m_disp->m_olimarData, arc, &m_disp->m_redPikminCount);
+	m_screenP2->init(&m_disp->m_louieData, arc, &m_disp->m_bluePikminCount);
 
 	P2DScreen::Mgr_tuning* bdamaScreen = new P2DScreen::Mgr_tuning;
 	bdamaScreen->set("b_dama.blo", 0x1040000, arc);
@@ -2728,8 +2728,8 @@ void ObjVs::doUpdateCommon()
 			m_finishTimer -= sys->m_deltaTime;
 	}
 	m_disp->m_doneState = m_doneState;
-	m_screenP1->update(m_disp->m_dataNavi1);
-	m_screenP2->update(m_disp->m_dataNavi2);
+	m_screenP1->update(m_disp->m_olimarData);
+	m_screenP2->update(m_disp->m_louieData);
 
 	m_screenP1->m_screen->setXY(0.0f, scale * -300.0f);
 	m_screenP2->m_screen->setXY(0.0f, scale * 300.0f);

@@ -368,9 +368,9 @@ struct DispMemberGround : public DispMemberBase {
 
 	// _00     = VTBL
 	// _00-_08 = DispMemberBase
-	DataGame m_dataGame;  // _08
-	DataNavi m_dataNavi1; // _24
-	DataNavi m_dataNavi2;
+	DataGame m_dataGame;                 // _08
+	DataNavi m_olimarData;               // _24
+	DataNavi m_louieData;                // _3C
 	f32 m_treasureDist;                  // _54
 	int m_radarState;                    // _58
 	bool m_hasRadar;                     // _5C
@@ -674,16 +674,16 @@ struct DispMemberVs : public DispMemberBase {
 
 	inline void setMarbleConditions(bool red, bool blue)
 	{
-		_68[0] = red;
-		_68[1] = blue;
+		m_flags[0] = red;
+		m_flags[1] = blue;
 	}
 
 	// _00     = VTBL
 	// _00-_08 = DispMemberBase
-	u32 m_doneState;      // _08, unknown
-	DataGame m_dataGame;  // _0C
-	DataNavi m_dataNavi1; // _28
-	DataNavi m_dataNavi2;
+	u32 m_doneState;       // _08, unknown
+	DataGame m_dataGame;   // _0C
+	DataNavi m_olimarData; // _28
+	DataNavi m_louieData;  // _40
 	u32 m_redPikminCount;  // _58
 	u32 m_bluePikminCount; // _5C
 	int m_P1Bedamas;       // _60

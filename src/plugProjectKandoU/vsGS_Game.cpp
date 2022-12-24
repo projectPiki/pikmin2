@@ -475,7 +475,7 @@ void GameState::checkSMenu(VsGameSection* section)
 			if (gameSystem->isVersusMode()) {
 				versus = 1;
 			}
-			sMenu._BC = versus;
+			sMenu.m_pauseVSType = versus;
 			Screen::gGame2DMgr->setGamePad(section->_10C);
 			if (Screen::gGame2DMgr->open_SMenu(sMenu)) {
 				gameSystem->setPause(true, "open-sm", 3);
@@ -489,7 +489,7 @@ void GameState::checkSMenu(VsGameSection* section)
 				if (gameSystem->isVersusMode()) {
 					versus = 1;
 				}
-				sMenu._BC = versus;
+				sMenu.m_pauseVSType = versus;
 				Screen::gGame2DMgr->setGamePad(section->_110);
 				if (Screen::gGame2DMgr->open_SMenu(sMenu)) {
 					gameSystem->setPause(true, "open-sm", 3);
@@ -1012,11 +1012,11 @@ void GameState::update_GameChallenge(VsGameSection* section)
 		disp.m_redPikminCount  = GameStat::getMapPikmins(1);
 		disp.m_bluePikminCount = GameStat::getMapPikmins(0);
 
-		disp._6A = section->_1F0[0] > 0.0f;
-		disp._6B = section->_1F0[1] > 0.0f;
+		disp.m_flags[2] = section->_1F0[0] > 0.0f;
+		disp.m_flags[3] = section->_1F0[1] > 0.0f;
 
-		disp._6C = section->_1F0[0];
-		disp._70 = section->_1F0[1];
+		disp.m_obakeTimerP1 = section->_1F0[0];
+		disp.m_obakeTimerP2 = section->_1F0[1];
 
 		int yellowsVal0 = section->_3D4;
 		int yellowsVal1 = section->_3D8;
@@ -1029,8 +1029,8 @@ void GameState::update_GameChallenge(VsGameSection* section)
 			yellowsVal1 = section->_3D8 - 1;
 		}
 
-		disp.m_mode = yellowsVal0;
-		disp._64    = yellowsVal1;
+		disp.m_P1Bedamas = yellowsVal0;
+		disp.m_P2Bedamas = yellowsVal1;
 
 		bool moviePlayerActive = moviePlayer->m_flags & MoviePlayer::IS_ACTIVE;
 
