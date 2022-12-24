@@ -548,6 +548,11 @@ struct ObjSMenuPause : public ObjSMenuBase {
 };
 
 struct ObjSMenuPauseDoukutu : public ObjSMenuBase {
+	enum DoukutuMenuState {
+		DOUKUTU_MenuNormal = 1,
+		DOUKUTU_MenuYesNo  = 6,
+	};
+
 	ObjSMenuPauseDoukutu(const char*);
 
 	virtual ~ObjSMenuPauseDoukutu();                      // _08 (weak)
@@ -604,6 +609,13 @@ struct ObjSMenuPauseDoukutu : public ObjSMenuBase {
 	f32 m_warningTimer;                              // _F8
 
 	static struct StaticValues {
+		inline StaticValues()
+		{
+			_00 = 1.0f;
+			_04 = 0.91f;
+			_08 = 0.5f;
+		}
+
 		f32 _00; // _00
 		f32 _04; // _04
 		f32 _08;

@@ -537,8 +537,8 @@ struct DispMemberSMenuPauseDoukutu : public DispMemberBase {
 		m_exitStatus    = 1;
 		m_cavePokos     = 86;
 		m_preCavePokos  = 2469;
-		m_payDebt       = false;
-		m_pikisInDanger = true;
+		m_payDebt       = true;
+		m_pikisInDanger = false;
 	}
 
 	virtual u32 getSize() { return sizeof(DispMemberSMenuPauseDoukutu); } // _08 (weak)
