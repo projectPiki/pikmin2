@@ -234,6 +234,26 @@ struct ObjChallenge2P : public ObjChallengeBase {
 
 	inline f32 getStatic1() { return msVal._08; }
 
+	inline JGeometry::TBox2f getBox1()
+	{
+		JGeometry::TBox2f box;
+		box.i = JGeometry::TVec2f(msVal._08, msVal._0C);
+		box.f = box.i;
+		box.f.x += msVal._10;
+		box.f.y += msVal._14;
+		return box;
+	}
+
+	inline JGeometry::TBox2f getBox2()
+	{
+		JGeometry::TBox2f box;
+		box.i = JGeometry::TVec2f(msVal._18, msVal._0C);
+		box.f = box.i;
+		box.f.x += msVal._1C;
+		box.f.y += msVal._14;
+		return box;
+	}
+
 	// _00     = VTBL1
 	// _18     = VTBL2
 	// _00-_60 = ObjChallengeBase
