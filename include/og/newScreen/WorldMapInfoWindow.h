@@ -64,7 +64,7 @@ struct ObjWorldMapInfoWindow0 : public ObjSMenuPauseVS {
 struct ObjWorldMapInfoWindow1 : public ObjSMenuPauseVS {
 	ObjWorldMapInfoWindow1(const char*);
 
-	virtual ~ObjWorldMapInfoWindow1();                    // _08 (weak)
+	virtual ~ObjWorldMapInfoWindow1() { }                 // _08 (weak)
 	virtual bool doStart(const ::Screen::StartSceneArg*); // _44
 	virtual void doCreate(JKRArchive*);                   // _4C
 	virtual void doUpdateFadeoutFinish();                 // _64
