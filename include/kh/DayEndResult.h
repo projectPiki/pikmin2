@@ -167,7 +167,8 @@ struct SArgDayEndResultBase : public ::Screen::StartSceneArg {
 	virtual int getClassSize() { return sizeof(SArgDayEndResultBase); } // _0C (weak)
 
 	// _00 = VTBL
-	// _00-_08 = Screen::StartSceneArg
+	// _00-_04 = Screen::StartSceneArg
+	int _04; // _04
 };
 
 struct SArgDayEndResultIncP : public SArgDayEndResultBase {

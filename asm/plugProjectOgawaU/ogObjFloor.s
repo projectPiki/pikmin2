@@ -2131,6 +2131,7 @@ drawBG__Q32og9newScreen8ObjFloorFR8Graphics:
 /* 8031BCB4 00318BF4  38 21 00 50 */	addi r1, r1, 0x50
 /* 8031BCB8 00318BF8  4E 80 00 20 */	blr 
 
+.global __sinit_ogObjFloor_cpp
 __sinit_ogObjFloor_cpp: #local func
 /* 8031BCBC 00318BFC  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8031BCC0 00318C00  7C 08 02 A6 */	mflr r0

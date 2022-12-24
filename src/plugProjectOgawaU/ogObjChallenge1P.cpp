@@ -1,6 +1,4 @@
-#include "types.h"
 #include "og/newScreen/Challenge.h"
-#include "og/Screen/DopingScreen.h"
 #include "og/Screen/NaviLifeGauge.h"
 #include "og/Screen/PikminCounter.h"
 #include "trig.h"
@@ -250,8 +248,9 @@ void ObjChallenge1P::doUpdateFadeoutFinish() { }
 bool ObjChallenge1P::doStart(::Screen::StartSceneArg const* arg)
 {
 	ObjChallengeBase::doStart(arg);
-	if (arg && arg->getSceneType() == SCENE_CHALLENGE_1P) {
-		m_incTimeLeftDelay = arg->_04;
+	SArgChallenge1P* challArg = static_cast<SArgChallenge1P*>((::Screen::StartSceneArg*)(arg));
+	if (challArg && challArg->getSceneType() == SCENE_CHALLENGE_1P) {
+		m_incTimeLeftDelay = (challArg->_04);
 	} else {
 		m_incTimeLeftDelay = 0.0f;
 	}

@@ -2,7 +2,6 @@
 #include "og/Screen/callbackNodes.h"
 #include "og/ogLib2D.h"
 #include "og/Screen/ogScreen.h"
-#include "types.h"
 
 inline u64 J2DPane::getTagName() const { return m_tag; }
 
@@ -36,7 +35,7 @@ CallBack_Message::CallBack_Message()
 void CallBack_Message::draw(Graphics& gfx, J2DGrafContext& graf)
 {
 	Matrixf mtx;
-	if (og::Screen::checkVisibleGlb(m_pane)) {
+	if (checkVisibleGlb(m_pane)) {
 		u64 tag = m_pane->m_messageID;
 		if (tag != m_messageIDAsULL) {
 			m_messageIDAsULL = tag;
@@ -114,7 +113,7 @@ void setCallBackMessageSub(P2DScreen::Mgr* mgr, J2DPane* pane)
 	if ((u16)pane->getTypeID() == 0x13) {
 		if (pane->getUserInfo()) {
 			u64 tag = pane->getTagName();
-			mgr->addCallBack(tag, new og::Screen::CallBack_Message);
+			mgr->addCallBack(tag, new CallBack_Message);
 			static_cast<J2DTextBox*>(pane)->setString("");
 		}
 	}

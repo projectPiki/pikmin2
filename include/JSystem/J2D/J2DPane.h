@@ -238,15 +238,20 @@ struct J2DPane {
 		calcMtx();
 	}
 
+	inline void setOffset(f32 x, f32 y)
+	{
+		_0D4 = JGeometry::TVec2f(x, y);
+		calcMtx();
+	}
+
 	inline void setMsgID(u64 msgID) { m_messageID = msgID; }
 
-	// /**
-	//  * @fabricated
-	//  */
-	// void setScale(float width, float height) {
-	// 	m_scale.x = width;
-	// 	m_scale.y = height;
-	// }
+	inline void removeFromParent()
+	{
+		if (getParentPane()) {
+			getParentPane()->removeChild(this);
+		}
+	}
 
 	u32 appendChild(J2DPane*);
 	u32 prependChild(J2DPane*);
@@ -278,7 +283,7 @@ struct J2DPane {
 	u8 m_cullMode;                   // _0B1
 	u8 m_alpha;                      // _0B2
 	u8 _0B3;                         // _0B3
-	bool _0B4;                       // _0B4
+	bool m_isInfluencedAlpha;        // _0B4
 	u8 _0B5;                         // _0B5
 	u8 m_rotationAxisMaybe;          // _0B6
 	u8 m_basePosition;               // _0B7

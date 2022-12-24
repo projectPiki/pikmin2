@@ -2,6 +2,7 @@
 #define _OG_SCREEN_ANIME_H
 
 #include "Screen/screenObj.h"
+#include "og/Screen/ogScreen.h"
 #include "types.h"
 
 struct J2DAnmBase;
@@ -24,17 +25,16 @@ struct AnimBaseBase {
 	bool updateSub();
 
 	// _00 = VTBL
-	/* set to 1 by AnimScreen(), 2 by AnimPane() */
-	int _04;              // _04
+	int m_type;           // _04 1 =AnimScreen, 2 = AnimPane
 	bool _08;             // _08
 	f32 _0C;              // _0C
 	u8 _10;               // _10
-	u8 _11;               // _11 /* alpha of pane/screen? */
-	u8 _12;               // _12
+	u8 m_alpha;           // _11
+	bool m_doSetAlpha;    // _12
 	J2DAnmBase* m_anm;    // _14
 	f32 m_frame;          // _18
 	f32 m_lastFrame;      // _1C
-	f32 _20;              // _20 /* speed */
+	f32 m_speed;          // _20
 	f32 _24;              // _24
 	f32 _28;              // _28
 	f32 _2C;              // _2C
@@ -53,6 +53,13 @@ struct AnimScreen : public AnimBaseBase {
 
 	void init(JKRArchive*, J2DScreen*, char*);
 
+	inline void updateScreen(J2DScreen* screen, J2DAnmBase* anm)
+	{
+		m_screen = screen;
+		m_screen->setAnimation(anm);
+		anm->searchUpdateMaterialID(screen);
+	}
+
 	// _00     = VTBL
 	// _00-_40 = AnimBaseBase
 	J2DScreen* m_screen; // _40
@@ -65,6 +72,13 @@ struct AnimPane : public AnimBaseBase {
 	virtual void moveAnim(); // _0C
 
 	void init(JKRArchive*, J2DScreen*, u64, char*);
+
+	inline void updatePane(J2DScreen* screen, u64 tag, J2DAnmBase* anm)
+	{
+		m_pane = TagSearch(screen, tag);
+		m_pane->setAnimation(anm);
+		anm->searchUpdateMaterialID(screen);
+	}
 
 	// _00     = VTBL
 	// _00-_40 = AnimBaseBase
@@ -86,6 +100,8 @@ struct AnimGroup {
 	void setSpeed(f32);
 	void start();
 	bool update();
+
+	inline f32 getVal() { return _10; }
 
 	AnimBaseBase** m_animPanes; // _00
 	int m_paneCount;            // _04

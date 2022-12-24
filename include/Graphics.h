@@ -139,7 +139,7 @@ struct Graphics : public _GraphicsParent {
 
 	// _GraphicsParent _000
 	// VTBL _26C
-	u8 _270[0x40 - 0xC]; // _270
+	u8 _270[0x38 - 0xC]; // _270
 };
 
 #endif

@@ -26,18 +26,18 @@ struct TimeMgrParms {
 		{
 		} // WEAK - from timeMgr.cpp
 
-		Parm<f32> m_dayStartTime;        // _00C
-		Parm<f32> m_dayEndTime;          // _034
-		Parm<f32> m_dayLengthSeconds;    // _05C
-		Parm<f32> m_morningStartTime;    // _084
-		Parm<f32> m_midMorningTime;      // _0AC
-		Parm<f32> m_morningEndTime;      // _0D4
-		Parm<f32> m_eveningStartTime;    // _0FC
-		Parm<f32> m_midEveningStartTime; // _124
-		Parm<f32> m_midEveningEndTime;   // _14C
-		Parm<f32> m_eveningEndTime;      // _174
-		Parm<f32> m_sundownAlertTime;    // _19C
-		Parm<f32> m_countdownTime;       // _1C4
+		Parm<f32> m_dayStartTime;        // _00C, "fp00"
+		Parm<f32> m_dayEndTime;          // _034, "fp01"
+		Parm<f32> m_dayLengthSeconds;    // _05C, "fp02"
+		Parm<f32> m_morningStartTime;    // _084, "fp03"
+		Parm<f32> m_midMorningTime;      // _0AC, "fp04"
+		Parm<f32> m_morningEndTime;      // _0D4, "fp05"
+		Parm<f32> m_eveningStartTime;    // _0FC, "fp06"
+		Parm<f32> m_midEveningStartTime; // _124, "fp07"
+		Parm<f32> m_midEveningEndTime;   // _14C, "fp11"
+		Parm<f32> m_eveningEndTime;      // _174, "fp08"
+		Parm<f32> m_sundownAlertTime;    // _19C, "fp09"
+		Parm<f32> m_countdownTime;       // _1C4, "fp10"
 	};
 
 	TimeMgrParms() { } // WEAK - from timeMgr.cpp

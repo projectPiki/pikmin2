@@ -40,12 +40,27 @@
 #define PID_GoChal_1 (0x10)
 #define PID_GoChal_2 (0x11)
 
+#define PID_2DCvnameCave_1 (0x12)
+#define PID_2DCvnameCave_2 (0x13)
+#define PID_2DCvnameCave_3 (0x14)
+
+#define PID_2DCvnameChal (0x15)
+
+#define PID_2DCvnameVs_1 (0x16)
+#define PID_2DCvnameVs_2 (0x17)
+
 #define PID_SensorAct_1 (0x18)
 #define PID_SensorAct_2 (0x19)
 
 #define PID_SensorGet_1 (0x1A)
 #define PID_SensorGet_2 (0x1B)
 #define PID_SensorGet_3 (0x1C)
+
+#define PID_OtaKantei_1 (0x1D)
+#define PID_OtaKantei_2 (0x1E)
+#define PID_OtaKantei_3 (0x1F)
+#define PID_OtaKantei_4 (0x20)
+#define PID_OtaKantei_5 (0x21)
 
 #define PID_SpraySet_1 (0x22)
 #define PID_SpraySet_2 (0x23)

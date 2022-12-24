@@ -21,8 +21,8 @@ struct TConfirmEndWindow : public og::newScreen::ObjWorldMapInfoWindow0 {
 	// _00     = VTBL1
 	// _18     = VTBL2
 	// _00-_D4 = og::newScreen::ObjWorldMapInfoWindow0
-	bool m_isOpenMaybe; // _D4
-	u8 _D5;             // _D5
+	bool m_hasDrawn; // _D4
+	u8 m_isActive;   // _D5
 };
 
 struct TSelectExplanationWindow : public TScreenBase {

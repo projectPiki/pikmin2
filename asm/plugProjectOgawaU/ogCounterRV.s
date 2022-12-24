@@ -1498,6 +1498,7 @@ __dt__Q32og6Screen18CallBack_CounterRVFv:
 /* 8030C988 003098C8  38 21 00 10 */	addi r1, r1, 0x10
 /* 8030C98C 003098CC  4E 80 00 20 */	blr 
 
+.global __sinit_ogCounterRV_cpp
 __sinit_ogCounterRV_cpp: # static initializer
 /* 8030C990 003098D0  C0 42 F3 68 */	lfs f2, lbl_8051D6C8@sda21(r2)
 /* 8030C994 003098D4  3C 60 80 51 */	lis r3, msVal__Q32og6Screen18CallBack_CounterRV@ha

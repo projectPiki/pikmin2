@@ -1,248 +1,53 @@
-#include "types.h"
+#include "og/newScreen/SMenu.h"
+#include "og/Screen/ogScreen.h"
+#include "og/Screen/anime.h"
+#include "og/Screen/callbackNodes.h"
+#include "og/Sound.h"
 
-/*
-    Generated from dpostproc
+static void _Print(char* format, ...) { OSReport(format, __FILE__); }
 
-    .section .ctors, "wa"  # 0x80472F00 - 0x804732C0
-    .4byte __sinit_ogObjSMenuItem_cpp
-
-    .section .rodata  # 0x804732E0 - 0x8049E220
-    .global lbl_8048E438
-    lbl_8048E438:
-        .4byte 0x6F674F62
-        .4byte 0x6A534D65
-        .4byte 0x6E754974
-        .4byte 0x656D2E63
-        .4byte 0x70700000
-        .4byte 0x735F6D65
-        .4byte 0x6E755F69
-        .4byte 0x74656D5F
-        .4byte 0x6C2E626C
-        .4byte 0x6F000000
-        .4byte 0x735F6D65
-        .4byte 0x6E755F70
-        .4byte 0x6F776572
-        .4byte 0x75705F69
-        .4byte 0x636F6E2E
-        .4byte 0x626C6F00
-        .4byte 0x735F6D65
-        .4byte 0x6E755F69
-        .4byte 0x74656D5F
-        .4byte 0x73707261
-        .4byte 0x792E626C
-        .4byte 0x6F000000
-        .4byte 0x735F6D65
-        .4byte 0x6E755F69
-        .4byte 0x74656D5F
-        .4byte 0x6C2E6274
-        .4byte 0x6B000000
-        .4byte 0x735F6D65
-        .4byte 0x6E755F69
-        .4byte 0x74656D5F
-        .4byte 0x6C5F3032
-        .4byte 0x2E62746B
-        .4byte 0x00000000
-        .4byte 0x735F6D65
-        .4byte 0x6E755F69
-        .4byte 0x74656D5F
-        .4byte 0x6C5F3033
-        .4byte 0x2E62746B
-        .4byte 0x00000000
-        .4byte 0x735F6D65
-        .4byte 0x6E755F69
-        .4byte 0x74656D5F
-        .4byte 0x6C5F3034
-        .4byte 0x2E62746B
-        .4byte 0x00000000
-        .4byte 0x735F6D65
-        .4byte 0x6E755F69
-        .4byte 0x74656D5F
-        .4byte 0x6C5F3035
-        .4byte 0x2E62746B
-        .4byte 0x00000000
-        .4byte 0x735F6D65
-        .4byte 0x6E755F69
-        .4byte 0x74656D5F
-        .4byte 0x73707261
-        .4byte 0x792E6274
-        .4byte 0x6B000000
-        .4byte 0x69636F6E
-        .4byte 0x20746167
-        .4byte 0x206E6F74
-        .4byte 0x20666F75
-        .4byte 0x6E642021
-        .4byte 0x210A0000
-        .4byte 0x73637265
-        .4byte 0x656E4F62
-        .4byte 0x6A2E6800
-        .asciz "P2Assert"
-        .skip 3
-
-    .section .data, "wa"  # 0x8049E220 - 0x804EFC20
-    .global EquipItemList__Q24Game5Equip
-    EquipItemList__Q24Game5Equip:
-        .4byte 0x00000002
-        .4byte 0x00000003
-        .4byte 0x00000004
-        .4byte 0x00000005
-        .4byte 0x00000006
-        .4byte 0x00000001
-        .4byte 0x00000007
-        .4byte 0x00000000
-        .4byte 0x00000008
-        .4byte 0x0000000A
-        .4byte 0x0000000B
-        .4byte 0x00000009
-    .global ItemMsgID_List__Q22og9newScreen
-    ItemMsgID_List__Q22og9newScreen:
-        .4byte 0x00363132
-        .4byte 0x325F3030
-        .4byte 0x00363131
-        .4byte 0x395F3030
-        .4byte 0x00363132
-        .4byte 0x365F3030
-        .4byte 0x00363131
-        .4byte 0x365F3030
-        .4byte 0x00363131
-        .4byte 0x375F3030
-        .4byte 0x00363132
-        .4byte 0x395F3030
-        .4byte 0x00363132
-        .4byte 0x305F3030
-        .4byte 0x00363131
-        .4byte 0x385F3030
-        .4byte 0x00363132
-        .4byte 0x315F3030
-        .4byte 0x00363132
-        .4byte 0x375F3030
-        .4byte 0x00363132
-        .4byte 0x385F3030
-        .4byte 0x00363132
-        .4byte 0x335F3030
-    .global __vt__Q32og9newScreen12ObjSMenuItem
-    __vt__Q32og9newScreen12ObjSMenuItem:
-        .4byte 0
-        .4byte 0
-        .4byte __dt__Q32og9newScreen12ObjSMenuItemFv
-        .4byte getChildCount__5CNodeFv
-        .4byte 0
-        .4byte 0
-        .4byte "@24@__dt__Q32og9newScreen12ObjSMenuItemFv"
-        .4byte update__Q26Screen7ObjBaseFv
-        .4byte draw__Q26Screen7ObjBaseFR8Graphics
-        .4byte start__Q26Screen7ObjBaseFPCQ26Screen13StartSceneArg
-        .4byte end__Q26Screen7ObjBaseFPCQ26Screen11EndSceneArg
-        .4byte setOwner__Q26Screen7ObjBaseFPQ26Screen9SceneBase
-        .4byte getOwner__Q26Screen7ObjBaseCFv
-        .4byte create__Q26Screen7ObjBaseFP10JKRArchive
-        .4byte confirmSetScene__Q26Screen7ObjBaseFRQ26Screen11SetSceneArg
-        .4byte confirmStartScene__Q26Screen7ObjBaseFPQ26Screen13StartSceneArg
-        .4byte confirmEndScene__Q26Screen7ObjBaseFPQ26Screen11EndSceneArg
-        .4byte doStart__Q32og9newScreen12ObjSMenuItemFPCQ26Screen13StartSceneArg
-        .4byte doEnd__Q32og9newScreen12ObjSMenuItemFPCQ26Screen11EndSceneArg
-        .4byte doCreate__Q32og9newScreen12ObjSMenuItemFP10JKRArchive
-        .4byte doUpdateFadein__Q32og9newScreen12ObjSMenuBaseFv
-        .4byte doUpdateFadeinFinish__Q32og9newScreen12ObjSMenuBaseFv
-        .4byte doUpdate__Q32og9newScreen12ObjSMenuItemFv
-        .4byte doUpdateFinish__Q32og9newScreen12ObjSMenuItemFv
-        .4byte doUpdateFadeout__Q32og9newScreen12ObjSMenuItemFv
-        .4byte doUpdateFadeoutFinish__Q32og9newScreen12ObjSMenuBaseFv
-        .4byte doDraw__Q32og9newScreen12ObjSMenuItemFR8Graphics
-        .4byte doConfirmSetScene__Q26Screen7ObjBaseFRQ26Screen11SetSceneArg
-        .4byte doConfirmStartScene__Q26Screen7ObjBaseFPQ26Screen13StartSceneArg
-        .4byte doConfirmEndScene__Q26Screen7ObjBaseFRPQ26Screen11EndSceneArg
-        .4byte in_L__Q32og9newScreen12ObjSMenuItemFv
-        .4byte in_R__Q32og9newScreen12ObjSMenuItemFv
-        .4byte wait__Q32og9newScreen12ObjSMenuItemFv
-        .4byte out_L__Q32og9newScreen12ObjSMenuItemFv
-        .4byte out_R__Q32og9newScreen12ObjSMenuItemFv
-        .4byte loop__Q32og9newScreen12ObjSMenuBaseFv
-        .4byte doUpdateCancelAction__Q32og9newScreen12ObjSMenuItemFv
-        .4byte doUpdateRAction__Q32og9newScreen12ObjSMenuItemFv
-        .4byte doUpdateLAction__Q32og9newScreen12ObjSMenuItemFv
-        .4byte updateFadeIn__Q32og9newScreen12ObjSMenuBaseFv
-        .4byte updateFadeOut__Q32og9newScreen12ObjSMenuBaseFv
-        .4byte commonUpdate__Q32og9newScreen12ObjSMenuItemFv
-
-    .section .bss  # 0x804EFC20 - 0x8051467C
-    .global msVal__Q32og9newScreen12ObjSMenuItem
-    msVal__Q32og9newScreen12ObjSMenuItem:
-        .skip 0x20
-
-    .section .sdata2, "a"     # 0x80516360 - 0x80520E40
-    .global lbl_8051D830
-    lbl_8051D830:
-        .4byte 0xC2C00000
-    .global lbl_8051D834
-    lbl_8051D834:
-        .4byte 0x00000000
-    .global lbl_8051D838
-    lbl_8051D838:
-        .4byte 0xC2C80000
-    .global lbl_8051D83C
-    lbl_8051D83C:
-        .4byte 0x42A00000
-    .global lbl_8051D840
-    lbl_8051D840:
-        .float 1.0
-    .global lbl_8051D844
-    lbl_8051D844:
-        .4byte 0x41700000
-    .global lbl_8051D848
-    lbl_8051D848:
-        .4byte 0xC1D80000
-    .global lbl_8051D84C
-    lbl_8051D84C:
-        .4byte 0x3F733333
-    .global lbl_8051D850
-    lbl_8051D850:
-        .4byte 0x3F666666
-        .4byte 0x00000000
-*/
+namespace Game {
+namespace Equip {
+int EquipItemList[12] = { 2, 3, 4, 5, 6, 1, 7, 0, 8, 10, 11, 9 };
+} // namespace Equip
+} // namespace Game
 
 namespace og {
 namespace newScreen {
+
+u64 ItemMsgID_List[12] = {
+	'6122_00', // "Mega Tweeter"
+	'6119_00', // "Pluckaphone"
+	'6126_00', // "Solar System"
+	'6116_00', // "Metal Suit Z"
+	'6117_00', // "Scorch Guard"
+	'6129_00', // "Anti-Electrifier"
+	'6120_00', // "Rush Boots"
+	'6118_00', // "Rocket Fist"
+	'6121_00', // "Treasure Gauge"
+	'6127_00', // "Sphere Chart"
+	'6128_00', // "Survey Chart"
+	'6123_00'  // "Napsack"
+};
 
 /*
  * --INFO--
  * Address:	80312EF8
  * Size:	00007C
  */
-ObjSMenuItem::ObjSMenuItem(char const*)
+ObjSMenuItem::ObjSMenuItem(char const* name)
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	mr       r31, r4
-	stw      r30, 8(r1)
-	mr       r30, r3
-	bl       __ct__Q32og9newScreen12ObjSMenuBaseFv
-	lis      r3, __vt__Q32og9newScreen12ObjSMenuItem@ha
-	li       r0, 0
-	addi     r4, r3, __vt__Q32og9newScreen12ObjSMenuItem@l
-	mr       r3, r30
-	stw      r4, 0(r30)
-	addi     r4, r4, 0x10
-	stw      r4, 0x18(r30)
-	stw      r0, 0xa8(r30)
-	stw      r0, 0xac(r30)
-	stw      r0, 0xb4(r30)
-	stw      r0, 0xb8(r30)
-	stw      r0, 0xb0(r30)
-	stw      r0, 0xbc(r30)
-	stw      r0, 0xc0(r30)
-	stw      r0, 0xc4(r30)
-	stw      r0, 0xc8(r30)
-	stw      r31, 0x14(r30)
-	lwz      r31, 0xc(r1)
-	lwz      r30, 8(r1)
-	lwz      r0, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	m_disp         = nullptr;
+	m_screenItems  = nullptr;
+	m_anims1       = nullptr;
+	m_anims2       = nullptr;
+	m_screenSprays = nullptr;
+
+	m_paneSpray0    = nullptr;
+	m_paneSpray1    = nullptr;
+	m_paneSpraySub0 = nullptr;
+	m_paneSpraySub1 = nullptr;
+	m_name          = name;
 }
 
 /*
@@ -250,72 +55,126 @@ ObjSMenuItem::ObjSMenuItem(char const*)
  * Address:	80312F74
  * Size:	0000C4
  */
-ObjSMenuItem::~ObjSMenuItem(void)
-{
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	mr       r31, r4
-	stw      r30, 8(r1)
-	or.      r30, r3, r3
-	beq      lbl_8031301C
-	lis      r4, __vt__Q32og9newScreen12ObjSMenuItem@ha
-	addi     r4, r4, __vt__Q32og9newScreen12ObjSMenuItem@l
-	stw      r4, 0(r30)
-	addi     r0, r4, 0x10
-	stw      r0, 0x18(r30)
-	beq      lbl_8031300C
-	lis      r4, __vt__Q32og9newScreen12ObjSMenuBase@ha
-	addi     r4, r4, __vt__Q32og9newScreen12ObjSMenuBase@l
-	stw      r4, 0(r30)
-	addi     r0, r4, 0x10
-	stw      r0, 0x18(r30)
-	beq      lbl_8031300C
-	lis      r4, __vt__Q26Screen7ObjBase@ha
-	addi     r4, r4, __vt__Q26Screen7ObjBase@l
-	stw      r4, 0(r30)
-	addi     r0, r4, 0x10
-	stw      r0, 0x18(r30)
-	beq      lbl_8031300C
-	lis      r4, __vt__Q26Screen8IObjBase@ha
-	addi     r4, r4, __vt__Q26Screen8IObjBase@l
-	stw      r4, 0(r30)
-	addi     r0, r4, 0x10
-	stw      r0, 0x18(r30)
-	bl       del__5CNodeFv
-	addi     r3, r30, 0x18
-	li       r4, 0
-	bl       __dt__11JKRDisposerFv
-	mr       r3, r30
-	li       r4, 0
-	bl       __dt__5CNodeFv
-
-lbl_8031300C:
-	extsh.   r0, r31
-	ble      lbl_8031301C
-	mr       r3, r30
-	bl       __dl__FPv
-
-lbl_8031301C:
-	lwz      r0, 0x14(r1)
-	mr       r3, r30
-	lwz      r31, 0xc(r1)
-	lwz      r30, 8(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
-}
+ObjSMenuItem::~ObjSMenuItem() { }
 
 /*
  * --INFO--
  * Address:	80313038
  * Size:	000924
  */
-void ObjSMenuItem::doCreate(JKRArchive*)
+void ObjSMenuItem::doCreate(JKRArchive* arc)
 {
+	m_disp = static_cast<og::Screen::DispMemberSMenuItem*>(getDispMember()->getSubMember(OWNER_OGA, MEMBER_START_MENU_ITEM));
+	if (!m_disp) {
+		og::Screen::DispMemberSMenuAll* newdisp = new og::Screen::DispMemberSMenuAll;
+		m_disp = static_cast<og::Screen::DispMemberSMenuItem*>(newdisp->getSubMember(OWNER_OGA, MEMBER_START_MENU_ITEM));
+	}
+
+	m_screenItems = new P2DScreen::Mgr_tuning;
+	m_screenItems->set("s_menu_item_l.blo", 0x1040000, arc);
+
+	J2DScreen* tempscreen = new J2DScreen;
+	tempscreen->set("s_menu_powerup_icon.blo", 0x1040000, arc);
+
+	for (int i = 0; i < 12; i++) {
+		u64 tag  = 'Nitem00' + (i + i % 10);
+		u64 tag2 = 'Picon00' + (i + i % 10);
+		u64 tag3 = 'Pitemb00' + (i + i % 10);
+
+		J2DPane* pane1 = og::Screen::TagSearch(m_screenItems, tag);
+		J2DPane* pane2 = og::Screen::TagSearch(tempscreen, tag2);
+		J2DPane* pane3 = og::Screen::TagSearch(m_screenMain, tag3);
+
+		pane2->setBasePosition((J2DBasePosition)pane3->m_basePosition);
+		pane1->appendChild(pane2);
+		JGeometry::TBox2f* box = pane3->getBounds();
+		pane2->place(*box);
+	}
+
+	m_screenSprays = new P2DScreen::Mgr;
+	m_screenSprays->set("s_menu_item_spray.blo", 0x1040000, arc);
+
+	m_paneSpray0    = og::Screen::TagSearch(m_screenItems, 'Nspray00');
+	m_paneSpray1    = og::Screen::TagSearch(m_screenItems, 'Nspray01');
+	m_paneSpraySub0 = og::Screen::TagSearch(m_screenSprays, 'Nspray00');
+	m_paneSpraySub1 = og::Screen::TagSearch(m_screenSprays, 'Nspray01');
+
+	m_paneSpray0->add(msVal._08, msVal._0C);
+	m_paneSpray1->add(msVal._10, msVal._14);
+
+	og::Screen::DispMemberSMenuItem* disp = m_disp;
+	if (!disp->m_isBitterUnlocked && !disp->m_isSpicyUnlocked) {
+		og::Screen::TagSearch(m_screenItems, 'Nwin0')->hide();
+		og::Screen::TagSearch(m_screenItems, 'Nwin1')->hide();
+		og::Screen::TagSearch(m_screenItems, 'NULL_002')->add(-100.0f, 0.0f);
+		m_paneSpraySub0->hide();
+		m_paneSpraySub1->hide();
+	} else if (!disp->m_isBitterUnlocked) {
+		og::Screen::TagSearch(m_screenItems, 'Nwin0')->hide();
+		og::Screen::TagSearch(m_screenItems, 'Nwin1')->add(0.0f, -100.0f);
+		m_paneSpraySub0->hide();
+	} else if (!disp->m_isSpicyUnlocked) {
+		og::Screen::TagSearch(m_screenItems, 'Nwin0')->add(0.0f, 80.0f);
+		og::Screen::TagSearch(m_screenItems, 'Nwin1')->hide();
+		m_paneSpraySub1->hide();
+	}
+
+	m_anims1 = new og::Screen::AnimGroup(5);
+	og::Screen::registAnimGroupScreen(m_anims1, arc, m_screenItems, "s_menu_item_l.btk", msBaseVal._00);
+	og::Screen::registAnimGroupScreen(m_anims1, arc, m_screenItems, "s_menu_item_l_02.btk", msBaseVal._00);
+	og::Screen::registAnimGroupScreen(m_anims1, arc, m_screenItems, "s_menu_item_l_03.btk", msBaseVal._00);
+	og::Screen::registAnimGroupScreen(m_anims1, arc, m_screenItems, "s_menu_item_l_04.btk", msBaseVal._00);
+	og::Screen::registAnimGroupScreen(m_anims1, arc, m_screenItems, "s_menu_item_l_05.btk", msBaseVal._00);
+
+	m_anims2 = new og::Screen::AnimGroup(1);
+	og::Screen::registAnimGroupScreen(m_anims2, arc, m_screenSprays, "s_menu_item_spray.btk", 1.0f);
+
+	og::Screen::setCallBack_CounterRV(m_screenItems, 'Pup_1', 'Pup_2', 'Pup_2', &m_disp->m_spicySprayCount, 3, 3, 0, arc);
+	og::Screen::setCallBack_CounterRV(m_screenItems, 'PupS_1', 'PupS_2', 'PupS_2', &m_disp->m_spicyBerryCount, 2, 2, 0, arc);
+	og::Screen::setCallBack_CounterRV(m_screenItems, 'Pdown_1', 'Pdown_2', 'Pdown_2', &m_disp->m_bitterSprayCount, 3, 3, 0, arc);
+	og::Screen::setCallBack_CounterRV(m_screenItems, 'PdownS_1', 'PdownS_2', 'PdownS_2', &m_disp->m_bitterBerryCount, 2, 2, 0, arc);
+
+	J2DPane* panelist[12];
+	for (int i = 0; i < 12; i++) {
+		u64 tag  = 'Pitemb00' + (i + i % 10);
+		u64 tag2 = 'Titem000' + (i + i % 10);
+		u64 tag3 = 'Picon00' + (i + i % 10);
+
+		J2DPictureEx* pane1 = static_cast<J2DPictureEx*>(og::Screen::TagSearch(m_screenItems, tag));
+		J2DPane* pane2      = og::Screen::TagSearch(m_screenItems, tag2);
+		pane2->setMsgID(ItemMsgID_List[i]);
+
+		panelist[i] = og::Screen::TagSearch(m_screenItems, tag3);
+		if (panelist[i]) {
+			int id = Game::Equip::EquipItemList[i];
+
+			pane1->setWhite(msVal._00);
+			pane1->setBlack(msVal._04);
+
+			if (m_disp->m_explorationKitInventory[i]) {
+				panelist[i]->show();
+				if (pane2)
+					pane2->show();
+			} else {
+				panelist[i]->show();
+				pane1->setBlack(0xffffffa0);
+				pane1->setWhite(0);
+				if (pane2) {
+					pane2->show();
+					pane2->setMsgID('6130_00'); // "Incomplete"
+					pane2->setAlpha(128);
+				} else {
+					char buf[12];
+					og::Screen::TagToName(tag3, buf);
+				}
+			}
+
+		} else {
+			JUT_PANICLINE(386, "icon tag not found !!\n");
+		}
+	}
+
+	doCreateAfter(arc, m_screenItems);
 	/*
 	stwu     r1, -0xd0(r1)
 	mflr     r0
@@ -950,90 +809,22 @@ blr
  * Address:	8031395C
  * Size:	000128
  */
-void ObjSMenuItem::doUpdateLAction(void)
+void ObjSMenuItem::doUpdateLAction()
 {
-	/*
-	stwu     r1, -0x40(r1)
-	mflr     r0
-	lis      r4, msBaseVal__Q32og9newScreen12ObjSMenuBase@ha
-	stw      r0, 0x44(r1)
-	addi     r4, r4, msBaseVal__Q32og9newScreen12ObjSMenuBase@l
-	stw      r31, 0x3c(r1)
-	mr       r31, r3
-	lbz      r0, 0x18(r4)
-	cmplwi   r0, 0
-	beq      lbl_803139CC
-	bl       getDispMember__Q26Screen7ObjBaseFv
-	lis      r5, __vt__Q26Screen12SceneArgBase@ha
-	lis      r4, __vt__Q26Screen11SetSceneArg@ha
-	addi     r0, r5, __vt__Q26Screen12SceneArgBase@l
-	li       r6, 0x272b
-	stw      r0, 0x28(r1)
-	addi     r7, r4, __vt__Q26Screen11SetSceneArg@l
-	li       r5, 0
-	li       r0, 1
-	stw      r3, 0x34(r1)
-	mr       r3, r31
-	addi     r4, r1, 0x28
-	stw      r7, 0x28(r1)
-	stw      r6, 0x2c(r1)
-	stb      r5, 0x30(r1)
-	stb      r0, 0x31(r1)
-	bl       jump_L__Q32og9newScreen12ObjSMenuBaseFRQ26Screen11SetSceneArg
-	b        lbl_80313A70
+	if (msBaseVal.m_useController) {
+		::Screen::SetSceneArg arg(SCENE_PAUSE_MENU_CONTROLS, getDispMember(), false, true);
+		jump_L(arg);
+		return;
+	}
 
-lbl_803139CC:
-	bl       getDispMember__Q26Screen7ObjBaseFv
-	lbz      r0, 0xa5(r3)
-	cmplwi   r0, 0
-	beq      lbl_80313A28
-	mr       r3, r31
-	bl       getDispMember__Q26Screen7ObjBaseFv
-	lis      r5, __vt__Q26Screen12SceneArgBase@ha
-	lis      r4, __vt__Q26Screen11SetSceneArg@ha
-	addi     r0, r5, __vt__Q26Screen12SceneArgBase@l
-	li       r6, 0x271b
-	stw      r0, 0x18(r1)
-	addi     r7, r4, __vt__Q26Screen11SetSceneArg@l
-	li       r5, 0
-	li       r0, 1
-	stw      r3, 0x24(r1)
-	mr       r3, r31
-	addi     r4, r1, 0x18
-	stw      r7, 0x18(r1)
-	stw      r6, 0x1c(r1)
-	stb      r5, 0x20(r1)
-	stb      r0, 0x21(r1)
-	bl       jump_L__Q32og9newScreen12ObjSMenuBaseFRQ26Screen11SetSceneArg
-	b        lbl_80313A70
-
-lbl_80313A28:
-	mr       r3, r31
-	bl       getDispMember__Q26Screen7ObjBaseFv
-	lis      r5, __vt__Q26Screen12SceneArgBase@ha
-	lis      r4, __vt__Q26Screen11SetSceneArg@ha
-	addi     r0, r5, __vt__Q26Screen12SceneArgBase@l
-	li       r6, 0x271a
-	stw      r0, 8(r1)
-	addi     r7, r4, __vt__Q26Screen11SetSceneArg@l
-	li       r5, 0
-	li       r0, 1
-	stw      r3, 0x14(r1)
-	mr       r3, r31
-	addi     r4, r1, 8
-	stw      r7, 8(r1)
-	stw      r6, 0xc(r1)
-	stb      r5, 0x10(r1)
-	stb      r0, 0x11(r1)
-	bl       jump_L__Q32og9newScreen12ObjSMenuBaseFRQ26Screen11SetSceneArg
-
-lbl_80313A70:
-	lwz      r0, 0x44(r1)
-	lwz      r31, 0x3c(r1)
-	mtlr     r0
-	addi     r1, r1, 0x40
-	blr
-	*/
+	og::Screen::DispMemberSMenuAll* disp = static_cast<og::Screen::DispMemberSMenuAll*>(getDispMember());
+	if (disp->m_sMenuMap.m_inCave) {
+		::Screen::SetSceneArg arg(SCENE_PAUSE_MENU_DOUKUTU, getDispMember(), false, true);
+		jump_L(arg);
+	} else {
+		::Screen::SetSceneArg arg(SCENE_PAUSE_MENU, getDispMember(), false, true);
+		jump_L(arg);
+	}
 }
 
 /*
@@ -1041,37 +832,10 @@ lbl_80313A70:
  * Address:	80313A84
  * Size:	00006C
  */
-void ObjSMenuItem::doUpdateRAction(void)
+void ObjSMenuItem::doUpdateRAction()
 {
-	/*
-	stwu     r1, -0x20(r1)
-	mflr     r0
-	stw      r0, 0x24(r1)
-	stw      r31, 0x1c(r1)
-	mr       r31, r3
-	bl       getDispMember__Q26Screen7ObjBaseFv
-	lis      r5, __vt__Q26Screen12SceneArgBase@ha
-	lis      r4, __vt__Q26Screen11SetSceneArg@ha
-	addi     r0, r5, __vt__Q26Screen12SceneArgBase@l
-	li       r6, 0x271d
-	stw      r0, 8(r1)
-	addi     r7, r4, __vt__Q26Screen11SetSceneArg@l
-	li       r5, 0
-	li       r0, 1
-	stw      r3, 0x14(r1)
-	mr       r3, r31
-	addi     r4, r1, 8
-	stw      r7, 8(r1)
-	stw      r6, 0xc(r1)
-	stb      r5, 0x10(r1)
-	stb      r0, 0x11(r1)
-	bl       jump_R__Q32og9newScreen12ObjSMenuBaseFRQ26Screen11SetSceneArg
-	lwz      r0, 0x24(r1)
-	lwz      r31, 0x1c(r1)
-	mtlr     r0
-	addi     r1, r1, 0x20
-	blr
-	*/
+	::Screen::SetSceneArg arg(SCENE_PAUSE_MENU_MAP, getDispMember(), false, true);
+	jump_R(arg);
 }
 
 /*
@@ -1079,68 +843,17 @@ void ObjSMenuItem::doUpdateRAction(void)
  * Address:	80313AF0
  * Size:	0000E8
  */
-void ObjSMenuItem::commonUpdate(void)
+void ObjSMenuItem::commonUpdate()
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	mr       r31, r3
-	bl       commonUpdateBase__Q32og9newScreen12ObjSMenuBaseFv
-	lis      r4, msVal__Q32og9newScreen12ObjSMenuItem@ha
-	mr       r3, r31
-	addi     r4, r4, msVal__Q32og9newScreen12ObjSMenuItem@l
-	lfs      f1, 0x18(r4)
-	lfs      f2, 0x1c(r4)
-	bl       setSMenuScale__Q32og9newScreen12ObjSMenuBaseFff
-	lwz      r3, 0xbc(r31)
-	lis      r4, msVal__Q32og9newScreen12ObjSMenuItem@ha
-	addi     r4, r4, msVal__Q32og9newScreen12ObjSMenuItem@l
-	lwz      r12, 0(r3)
-	lfs      f1, 8(r4)
-	lwz      r12, 0x10(r12)
-	lfs      f2, 0xc(r4)
-	mtctr    r12
-	bctrl
-	lwz      r3, 0xc0(r31)
-	lis      r4, msVal__Q32og9newScreen12ObjSMenuItem@ha
-	addi     r4, r4, msVal__Q32og9newScreen12ObjSMenuItem@l
-	lwz      r12, 0(r3)
-	lfs      f1, 0x10(r4)
-	lwz      r12, 0x10(r12)
-	lfs      f2, 0x14(r4)
-	mtctr    r12
-	bctrl
-	lwz      r3, 0xb4(r31)
-	bl       update__Q32og6Screen9AnimGroupFv
-	lwz      r3, 0xb8(r31)
-	bl       update__Q32og6Screen9AnimGroupFv
-	lfs      f3, 0x40(r31)
-	lfs      f2, mstTuningTransX__Q29P2DScreen10Mgr_tuning@sda21(r2)
-	lfs      f1, lbl_8051D834@sda21(r2)
-	lfs      f0, mstTuningTransY__Q29P2DScreen10Mgr_tuning@sda21(r2)
-	fadds    f2, f3, f2
-	lwz      r3, 0xac(r31)
-	fadds    f0, f1, f0
-	stfs     f2, 0x140(r3)
-	stfs     f0, 0x144(r3)
-	lwz      r3, 0xac(r31)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x30(r12)
-	mtctr    r12
-	bctrl
-	lwz      r3, 0xb0(r31)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x30(r12)
-	mtctr    r12
-	bctrl
-	lwz      r0, 0x14(r1)
-	lwz      r31, 0xc(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	commonUpdateBase();
+	setSMenuScale(msVal._18, msVal._1C);
+	m_paneSpray0->move(msVal._08, msVal._0C);
+	m_paneSpray1->move(msVal._10, msVal._14);
+	m_anims1->update();
+	m_anims2->update();
+	m_screenItems->setXY(m_movePos, 0.0f);
+	m_screenItems->update();
+	m_screenSprays->update();
 }
 
 /*
@@ -1148,31 +861,12 @@ void ObjSMenuItem::commonUpdate(void)
  * Address:	80313BD8
  * Size:	000054
  */
-void ObjSMenuItem::doUpdate(void)
+bool ObjSMenuItem::doUpdate()
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	mr       r31, r3
-	lwz      r12, 0(r3)
-	lwz      r12, 0xa4(r12)
-	mtctr    r12
-	bctrl
-	mr       r3, r31
-	bl       doUpdate__Q32og9newScreen12ObjSMenuBaseFv
-	mr       r0, r3
-	lwz      r3, 0xac(r31)
-	mr       r31, r0
-	bl       animation__9J2DScreenFv
-	lwz      r0, 0x14(r1)
-	mr       r3, r31
-	lwz      r31, 0xc(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	commonUpdate();
+	bool ret = ObjSMenuBase::doUpdate();
+	m_screenItems->animation();
+	return ret;
 }
 
 /*
@@ -1182,65 +876,17 @@ void ObjSMenuItem::doUpdate(void)
  */
 void ObjSMenuItem::doDraw(Graphics& gfx)
 {
-	/*
-	stwu     r1, -0x20(r1)
-	mflr     r0
-	stw      r0, 0x24(r1)
-	stw      r31, 0x1c(r1)
-	stw      r30, 0x18(r1)
-	mr       r30, r4
-	addi     r31, r30, 0x190
-	stw      r29, 0x14(r1)
-	mr       r29, r3
-	mr       r3, r31
-	lwz      r12, 0(r31)
-	lwz      r12, 0x14(r12)
-	mtctr    r12
-	bctrl
-	lwz      r3, 0xac(r29)
-	cmplwi   r3, 0
-	beq      lbl_80313C88
-	lwz      r12, 0(r3)
-	mr       r4, r30
-	mr       r5, r31
-	lwz      r12, 0x9c(r12)
-	mtctr    r12
-	bctrl
-
-lbl_80313C88:
-	lwz      r0, 0xb0(r29)
-	cmplwi   r0, 0
-	beq      lbl_80313CD8
-	lwz      r3, 0xbc(r29)
-	lwz      r4, 0xc4(r29)
-	addi     r3, r3, 0x80
-	addi     r4, r4, 0x50
-	bl       PSMTXCopy
-	lwz      r3, 0xc0(r29)
-	lwz      r4, 0xc8(r29)
-	addi     r3, r3, 0x80
-	addi     r4, r4, 0x50
-	bl       PSMTXCopy
-	lwz      r3, 0xb0(r29)
-	mr       r4, r30
-	mr       r5, r31
-	lwz      r12, 0(r3)
-	lwz      r12, 0x9c(r12)
-	mtctr    r12
-	bctrl
-
-lbl_80313CD8:
-	mr       r3, r29
-	mr       r4, r30
-	bl       drawYaji__Q32og9newScreen12ObjSMenuBaseFR8Graphics
-	lwz      r0, 0x24(r1)
-	lwz      r31, 0x1c(r1)
-	lwz      r30, 0x18(r1)
-	lwz      r29, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x20
-	blr
-	*/
+	J2DPerspGraph* graf = &gfx.m_perspGraph;
+	graf->setPort();
+	if (m_screenItems) {
+		m_screenItems->draw(gfx, *graf);
+	}
+	if (m_screenSprays) {
+		PSMTXCopy(m_paneSpray0->_080, m_paneSpraySub0->_050);
+		PSMTXCopy(m_paneSpray1->_080, m_paneSpraySub1->_050);
+		m_screenSprays->draw(gfx, *graf);
+	}
+	drawYaji(gfx);
 }
 
 /*
@@ -1248,15 +894,10 @@ lbl_80313CD8:
  * Address:	80313D00
  * Size:	000014
  */
-void ObjSMenuItem::in_L(void)
+void ObjSMenuItem::in_L()
 {
-	/*
-	li       r0, 0
-	lfs      f0, lbl_8051D844@sda21(r2)
-	stw      r0, 0x38(r3)
-	stfs     f0, 0x4c(r3)
-	blr
-	*/
+	m_state = MENUSTATE_OpenL;
+	m_angle = 45.0f;
 }
 
 /*
@@ -1264,15 +905,10 @@ void ObjSMenuItem::in_L(void)
  * Address:	80313D14
  * Size:	000014
  */
-void ObjSMenuItem::in_R(void)
+void ObjSMenuItem::in_R()
 {
-	/*
-	li       r0, 1
-	lfs      f0, lbl_8051D844@sda21(r2)
-	stw      r0, 0x38(r3)
-	stfs     f0, 0x4c(r3)
-	blr
-	*/
+	m_state = MENUSTATE_OpenR;
+	m_angle = 45.0f;
 }
 
 /*
@@ -1280,32 +916,17 @@ void ObjSMenuItem::in_R(void)
  * Address:	80313D28
  * Size:	00000C
  */
-void ObjSMenuItem::wait(void)
-{
-	// Generated from stw r0, 0x38(r3)
-	_38 = 4;
-}
+void ObjSMenuItem::wait() { m_state = MENUSTATE_Default; }
 
 /*
  * --INFO--
  * Address:	80313D34
  * Size:	00002C
  */
-void ObjSMenuItem::out_L(void)
+void ObjSMenuItem::out_L()
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	li       r0, 2
-	stw      r0, 0x38(r3)
-	lwz      r3, ogSound__2og@sda21(r13)
-	bl       setSMenuLR__Q22og5SoundFv
-	lwz      r0, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	m_state = MENUSTATE_CloseL;
+	ogSound->setSMenuLR();
 }
 
 /*
@@ -1313,21 +934,10 @@ void ObjSMenuItem::out_L(void)
  * Address:	80313D60
  * Size:	00002C
  */
-void ObjSMenuItem::out_R(void)
+void ObjSMenuItem::out_R()
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	li       r0, 3
-	stw      r0, 0x38(r3)
-	lwz      r3, ogSound__2og@sda21(r13)
-	bl       setSMenuLR__Q22og5SoundFv
-	lwz      r0, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	m_state = MENUSTATE_CloseR;
+	ogSound->setSMenuLR();
 }
 
 /*
@@ -1335,62 +945,21 @@ void ObjSMenuItem::out_R(void)
  * Address:	80313D8C
  * Size:	0000D0
  */
-void ObjSMenuItem::doStart(Screen::StartSceneArg const*)
+bool ObjSMenuItem::doStart(::Screen::StartSceneArg const* arg)
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	lfs      f1, lbl_8051D834@sda21(r2)
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	mr       r31, r4
-	stw      r30, 8(r1)
-	mr       r30, r3
-	lwz      r3, 0xb4(r3)
-	bl       setFrame__Q32og6Screen9AnimGroupFf
-	lwz      r3, 0xb4(r30)
-	li       r4, 1
-	bl       setRepeat__Q32og6Screen9AnimGroupFb
-	lwz      r3, 0xb4(r30)
-	lfs      f1, lbl_8051D840@sda21(r2)
-	bl       setSpeed__Q32og6Screen9AnimGroupFf
-	lwz      r3, 0xb4(r30)
-	bl       start__Q32og6Screen9AnimGroupFv
-	lwz      r3, 0xb8(r30)
-	lfs      f1, lbl_8051D834@sda21(r2)
-	bl       setFrame__Q32og6Screen9AnimGroupFf
-	lwz      r3, 0xb8(r30)
-	li       r4, 1
-	bl       setRepeat__Q32og6Screen9AnimGroupFb
-	lwz      r3, 0xb8(r30)
-	lfs      f1, lbl_8051D840@sda21(r2)
-	bl       setSpeed__Q32og6Screen9AnimGroupFf
-	lwz      r3, 0xb8(r30)
-	bl       start__Q32og6Screen9AnimGroupFv
-	lis      r3, 0x00363035@ha
-	lis      r6, 0x325F3030@ha
-	addi     r5, r3, 0x00363035@l
-	lis      r8, 0x305F3030@ha
-	lis      r4, 0x315F3030@ha
-	mr       r3, r30
-	mr       r7, r5
-	mr       r9, r5
-	addi     r6, r6, 0x325F3030@l
-	addi     r8, r8, 0x305F3030@l
-	addi     r10, r4, 0x315F3030@l
-	bl       setYajiName__Q32og9newScreen12ObjSMenuBaseFUxUxUx
-	mr       r3, r30
-	bl       stopYaji__Q32og9newScreen12ObjSMenuBaseFv
-	mr       r3, r30
-	mr       r4, r31
-	bl start_LR__Q32og9newScreen12ObjSMenuBaseFPCQ26Screen13StartSceneArg
-	lwz      r0, 0x14(r1)
-	lwz      r31, 0xc(r1)
-	lwz      r30, 8(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	m_anims1->setFrame(0.0f);
+	m_anims1->setRepeat(true);
+	m_anims1->setSpeed(1.0f);
+	m_anims1->start();
+
+	m_anims2->setFrame(0.0f);
+	m_anims2->setRepeat(true);
+	m_anims2->setSpeed(1.0f);
+	m_anims2->start();
+
+	setYajiName('6052_00', '6050_00', '6051_00'); // "Menu" "Radar" "Items"
+	stopYaji();
+	return start_LR(arg);
 }
 
 /*
@@ -1398,55 +967,24 @@ void ObjSMenuItem::doStart(Screen::StartSceneArg const*)
  * Address:	80313E5C
  * Size:	000008
  */
-u32 ObjSMenuItem::doEnd(Screen::EndSceneArg const*) { return 0x1; }
+bool ObjSMenuItem::doEnd(::Screen::EndSceneArg const*) { return true; }
 
 /*
  * --INFO--
  * Address:	80313E64
  * Size:	000020
  */
-void ObjSMenuItem::doUpdateFinish(void)
-{
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	bl       doUpdateFinish__Q32og9newScreen12ObjSMenuBaseFv
-	lwz      r0, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
-}
+void ObjSMenuItem::doUpdateFinish() { ObjSMenuBase::doUpdateFinish(); }
 
 /*
  * --INFO--
  * Address:	80313E84
  * Size:	00004C
  */
-void ObjSMenuItem::doUpdateFadeout(void)
+bool ObjSMenuItem::doUpdateFadeout()
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	mr       r31, r3
-	lwz      r12, 0(r3)
-	lwz      r12, 0xa4(r12)
-	mtctr    r12
-	bctrl
-	mr       r3, r31
-	lwz      r12, 0(r31)
-	lwz      r12, 0xa0(r12)
-	mtctr    r12
-	bctrl
-	lwz      r0, 0x14(r1)
-	lwz      r31, 0xc(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	commonUpdate();
+	return updateFadeOut();
 }
 
 /*
@@ -1454,59 +992,9 @@ void ObjSMenuItem::doUpdateFadeout(void)
  * Address:	80313ED0
  * Size:	000004
  */
-void ObjSMenuItem::doUpdateCancelAction(void) { }
+void ObjSMenuItem::doUpdateCancelAction() { }
+
+ObjSMenuItem::StaticValues ObjSMenuItem::msVal;
 
 } // namespace newScreen
 } // namespace og
-
-/*
- * --INFO--
- * Address:	80313ED4
- * Size:	000070
- */
-void __sinit_ogObjSMenuItem_cpp(void)
-{
-	/*
-	lis      r3, msVal__Q32og9newScreen12ObjSMenuItem@ha
-	li       r4, -1
-	addi     r7, r3, msVal__Q32og9newScreen12ObjSMenuItem@l
-	lfs      f2, lbl_8051D848@sda21(r2)
-	lfs      f1, lbl_8051D84C@sda21(r2)
-	li       r6, 0
-	stw      r4, 4(r7)
-	li       r3, 0xff
-	lfs      f0, lbl_8051D850@sda21(r2)
-	li       r0, 0x64
-	stw      r4, 0(r7)
-	li       r5, 0x6e
-	li       r4, 0xb0
-	stb      r6, 0(r7)
-	stb      r5, 1(r7)
-	stb      r4, 2(r7)
-	stb      r3, 3(r7)
-	stb      r6, 4(r7)
-	stb      r6, 5(r7)
-	stb      r0, 6(r7)
-	stb      r3, 7(r7)
-	stfs     f2, 8(r7)
-	stfs     f2, 0xc(r7)
-	stfs     f2, 0x10(r7)
-	stfs     f2, 0x14(r7)
-	stfs     f1, 0x18(r7)
-	stfs     f0, 0x1c(r7)
-	blr
-	*/
-}
-
-/*
- * --INFO--
- * Address:	80313F44
- * Size:	000008
- */
-@24 @og::newScreen::ObjSMenuItem::~ObjSMenuItem(void)
-{
-	/*
-	addi     r3, r3, -24
-	b        __dt__Q32og9newScreen12ObjSMenuItemFv
-	*/
-}

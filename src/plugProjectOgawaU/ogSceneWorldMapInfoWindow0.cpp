@@ -1,6 +1,5 @@
 #include "og/Screen/DispMember.h"
 #include "og/newScreen/WorldMapInfoWindow.h"
-#include "types.h"
 #include "nans.h"
 
 namespace og {
@@ -48,7 +47,7 @@ int WorldMapInfoWindow0::doGetFinishState()
 	Screen::DispMemberWorldMapInfoWin0* disp = static_cast<Screen::DispMemberWorldMapInfoWin0*>(m_dispMember);
 	int state                                = 0;
 	if (disp->isID(OWNER_OGA, MEMBER_WORLD_MAP_INFO_WINDOW_0)) {
-		state = disp->_08;
+		state = disp->m_result;
 	}
 	return state;
 }

@@ -1,4 +1,3 @@
-#include "types.h"
 #include "og/newScreen/Challenge.h"
 
 namespace og {
@@ -28,8 +27,8 @@ void ChallengeBase::updateCountDown(f32 value, Screen::DispMemberDayEndCount* co
 	f32 temp    = ObjChallengeBase::msBaseVal.m_timerLimitLow + 1;
 	f32 temp_f1 = (ObjChallengeBase::msBaseVal.m_timerLimitLow + 1 - value) / temp;
 	if (temp_f1 >= 0.0f) {
-		count->_08 = temp_f1;
-		count->_0C = 0.0f;
+		count->m_currSunRatio = temp_f1;
+		count->m_duration     = 0.0f;
 		if (!isCountingDown) {
 			isCountingDown = true;
 			startCountDown();

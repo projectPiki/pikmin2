@@ -1,4 +1,3 @@
-#include "types.h"
 #include "og/Screen/MapCounter.h"
 #include "og/Screen/callbackNodes.h"
 
@@ -48,12 +47,12 @@ MapCounter::MapCounter(DataMap* data)
 void MapCounter::dispRed(bool makeVisible)
 {
 	if (makeVisible) {
-		m_paneRPikiOnyon->m_isVisible  = true;
-		m_paneRPikiLeader->m_isVisible = true;
+		m_paneRPikiOnyon->show();
+		m_paneRPikiLeader->show();
 		return;
 	}
-	m_paneRPikiOnyon->m_isVisible  = false;
-	m_paneRPikiLeader->m_isVisible = false;
+	m_paneRPikiOnyon->hide();
+	m_paneRPikiLeader->hide();
 }
 
 /*
@@ -64,12 +63,12 @@ void MapCounter::dispRed(bool makeVisible)
 void MapCounter::dispYellow(bool makeVisible)
 {
 	if (makeVisible) {
-		m_paneYPikiOnyon->m_isVisible  = true;
-		m_paneYPikiLeader->m_isVisible = true;
+		m_paneYPikiOnyon->show();
+		m_paneYPikiLeader->show();
 		return;
 	}
-	m_paneYPikiOnyon->m_isVisible  = false;
-	m_paneYPikiLeader->m_isVisible = false;
+	m_paneYPikiOnyon->hide();
+	m_paneYPikiLeader->hide();
 }
 
 /*
@@ -80,12 +79,12 @@ void MapCounter::dispYellow(bool makeVisible)
 void MapCounter::dispBlue(bool makeVisible)
 {
 	if (makeVisible) {
-		m_paneBPikiOnyon->m_isVisible  = true;
-		m_paneBPikiLeader->m_isVisible = true;
+		m_paneBPikiOnyon->show();
+		m_paneBPikiLeader->show();
 		return;
 	}
-	m_paneBPikiOnyon->m_isVisible  = false;
-	m_paneBPikiLeader->m_isVisible = false;
+	m_paneBPikiOnyon->hide();
+	m_paneBPikiLeader->hide();
 }
 
 /*
@@ -96,12 +95,12 @@ void MapCounter::dispBlue(bool makeVisible)
 void MapCounter::dispWhite(bool makeVisible)
 {
 	if (makeVisible) {
-		m_paneWPikiShip->m_isVisible   = true;
-		m_paneWPikiLeader->m_isVisible = true;
+		m_paneWPikiShip->show();
+		m_paneWPikiLeader->show();
 		return;
 	}
-	m_paneWPikiShip->m_isVisible   = false;
-	m_paneWPikiLeader->m_isVisible = false;
+	m_paneWPikiShip->hide();
+	m_paneWPikiLeader->hide();
 }
 
 /*
@@ -112,12 +111,12 @@ void MapCounter::dispWhite(bool makeVisible)
 void MapCounter::dispBlack(bool makeVisible)
 {
 	if (makeVisible) {
-		m_panePPikiShip->m_isVisible   = true;
-		m_panePPikiLeader->m_isVisible = true;
+		m_panePPikiShip->show();
+		m_panePPikiLeader->show();
 		return;
 	}
-	m_panePPikiShip->m_isVisible   = false;
-	m_panePPikiLeader->m_isVisible = false;
+	m_panePPikiShip->hide();
+	m_panePPikiLeader->hide();
 }
 
 /*
@@ -128,10 +127,10 @@ void MapCounter::dispBlack(bool makeVisible)
 void MapCounter::dispFree(bool makeVisible)
 {
 	if (makeVisible) {
-		m_paneFreePiki->m_isVisible = true;
+		m_paneFreePiki->show();
 		return;
 	}
-	m_paneFreePiki->m_isVisible = false;
+	m_paneFreePiki->hide();
 }
 
 /*

@@ -23,6 +23,13 @@ struct MenuMgr;
 } // namespace Screen
 
 namespace newScreen {
+enum PauseMenuState {
+	PAUSEMENU_Normal  = 1,
+	PAUSEMENU_Yuugata = 3, // 'sunset'
+	PAUSEMENU_Zenkai  = 4, // 'main'
+	PAUSEMENU_YesNo   = 6,
+};
+
 struct SceneSMenuBase : public ::Screen::SceneBase {
 	inline SceneSMenuBase()
 	    : m_finishState(1)
@@ -145,6 +152,11 @@ struct SMenuPauseVS : public ::Screen::SceneBase {
 };
 
 struct ObjSMenuBase : public ::Screen::ObjBase {
+
+	enum MenuState { MENUSTATE_OpenL, MENUSTATE_OpenR, MENUSTATE_CloseL, MENUSTATE_CloseR, MENUSTATE_Default };
+
+	enum MenuExitState { MENUCLOSE_None, MENUCLOSE_Finish, MENUCLOSE_L, MENUCLOSE_R };
+
 	ObjSMenuBase();
 
 	virtual ~ObjSMenuBase() { }              // _08
@@ -162,8 +174,8 @@ struct ObjSMenuBase : public ::Screen::ObjBase {
 	virtual void doUpdateCancelAction() = 0; // _90
 	virtual void doUpdateRAction()      = 0; // _94
 	virtual void doUpdateLAction()      = 0; // _98
-	virtual void updateFadeIn();             // _9C
-	virtual void updateFadeOut();            // _A0
+	virtual bool updateFadeIn();             // _9C
+	virtual bool updateFadeOut();            // _A0
 	virtual void commonUpdate() = 0;         // _A4
 
 	void setFinishState(long);
@@ -180,49 +192,69 @@ struct ObjSMenuBase : public ::Screen::ObjBase {
 	void drawYaji(Graphics&);
 	bool start_LR(::Screen::StartSceneArg const*);
 
+	// unused/inlined
+	void registSMenuScreen(P2DScreen::Mgr*);
+	void jump_LR(::Screen::SetSceneArg&, bool);
+	void startYaji();
+
+	inline u32 getButtonState(int i) { return m_buttonStates[i]; }
+
 	// _00     = VTBL1
 	// _18     = VTBL2
 	// _00-_38 = Screen::ObjBase
-	int _38;                                    // _38
-	int _3C;                                    // _3C
-	f32 _40;                                    // _40
-	f32 _44;                                    // _44
-	u8 _48;                                     // _48
-	f32 _4C;                                    // _4C
-	u8 _50;                                     // _50
-	J2DPictureEx* m_Peffect;                    // _54
-	u32 m_buttonStates[2];                      // _58
-	J2DScreen* m_LRScreen;                      // _60
-	J2DPane* m_Nyaji_l;                         // _64
-	J2DPane* m_Nyaji_r;                         // _68
-	J2DTextBoxEx* m_Tyaji_l;                    // _6C
-	J2DTextBoxEx* m_Tyaji_r;                    // _70
-	u8 _74[4];                                  // _74
-	f32 _78;                                    // _78
-	f32 _7C;                                    // _7C
-	f32 _80;                                    // _80
-	f32 _84;                                    // _84
-	f32 _88;                                    // _88
-	u8 _8C[4];                                  // _8C
-	Screen::ArrowAlphaBlink* m_arrowAlphaBlink; // _90
-	u32 _94;                                    // _94
-	J2DPictureEx* m_Peffect2;                   // _98
-	P2DScreen::Mgr* m_screenMgr;                // _9C
-	J2DPane* m_Nsize;                           // _A0
-	f32 _A4;                                    // _A4
+	int m_state;                           // _38
+	int m_cancelToState;                   // _3C
+	f32 m_movePos;                         // _40
+	f32 m_fadeLevel;                       // _44
+	bool m_exiting;                        // _48
+	f32 m_angle;                           // _4C
+	u8 m_isDay1;                           // _50
+	J2DPictureEx* m_panePeffect;           // _54
+	u32 m_buttonStates[2];                 // _58
+	P2DScreen::Mgr_tuning* m_screenLR;     // _60
+	J2DPane* m_Nyaji_l;                    // _64
+	J2DPane* m_Nyaji_r;                    // _68
+	J2DTextBoxEx* m_Tyaji_l;               // _6C
+	J2DTextBoxEx* m_Tyaji_r;               // _70
+	bool m_enableYaji;                     // _74
+	Vector2f m_yajiLpos;                   // _78
+	Vector2f m_yajiRpos;                   // _80
+	f32 _88;                               // _88
+	u8 m_alpha;                            // _8C
+	Screen::ArrowAlphaBlink* m_arrowBlink; // _90
+	J2DPictureEx* m_panePeffect1;          // _94
+	J2DPictureEx* m_panePeffect2;          // _98
+	P2DScreen::Mgr* m_screenMain;          // _9C
+	J2DPane* m_paneNsize;                  // _A0
+	f32 _A4;                               // _A4
 
 	static struct StaticValues {
-		f32 _00;         // _00
-		f32 m_animSpeed; // _04
-		f32 _08;         // _08
-		f32 _0C;         // _0C
-		f32 _10;         // _10
-		u8 _14;          // _14
-		u8 _15;          // _15
-		u8 _16;          // _16
-		u8 _17;          // _17
-		u8 _18;          // _18
-		u8 _19;          // _19
+		inline StaticValues()
+		{
+			_00             = 1.0f;
+			m_animSpeed     = 1.0f;
+			_14             = 255;
+			_08             = 0.3f;
+			_0C             = 30.0f;
+			_10             = 0.1f;
+			_15             = 64;
+			_16             = 64;
+			_17             = 0;
+			m_useController = false;
+			m_updateYaji    = 0;
+		}
+
+		f32 _00;              // _00
+		f32 m_animSpeed;      // _04
+		f32 _08;              // _08
+		f32 _0C;              // _0C
+		f32 _10;              // _10
+		u8 _14;               // _14
+		u8 _15;               // _15
+		u8 _16;               // _16
+		u8 _17;               // _17
+		bool m_useController; // _18
+		bool m_updateYaji;    // _19
 	} msBaseVal;
 };
 
@@ -252,9 +284,20 @@ struct ObjSMenuCont : public ObjSMenuBase {
 	// _18     = VTBL2
 	// _00-_A8 = ObjSMenuBase
 	og::Screen::DispMemberSMenuCont* m_disp; // _A8
-	P2DScreen::Mgr_tuning* _AC;              // _AC
+	P2DScreen::Mgr_tuning* m_screenCont;     // _AC
 	og::Screen::AnimGroup* m_animGroup;      // _B0
 	u8 _B4[0x8];                             // _B4, unknown
+
+	static struct StaticValues {
+		inline StaticValues()
+		{
+			m_scaleX = 1.0f;
+			m_scaleY = 1.0f;
+		}
+
+		f32 m_scaleX; // _00
+		f32 m_scaleY; // _04
+	} msVal;
 };
 
 struct ObjSMenuItem : public ObjSMenuBase {
@@ -282,15 +325,44 @@ struct ObjSMenuItem : public ObjSMenuBase {
 	// _18     = VTBL2
 	// _00-_A8 = ObjSMenuBase
 	og::Screen::DispMemberSMenuItem* m_disp; // _A8
-	P2DScreen::Mgr_tuning* _AC;              // _AC
-	P2DScreen::Mgr* _B0;                     // _B0
-	og::Screen::AnimGroup* _B4;              // _B4
-	og::Screen::AnimGroup* _B8;              // _B8
-	J2DPane* _BC;                            // _BC
-	J2DPane* _C0;                            // _C0
-	J2DPane* _C4;                            // _C4
-	J2DPane* _C8;                            // _C8
+	P2DScreen::Mgr_tuning* m_screenItems;    // _AC
+	P2DScreen::Mgr* m_screenSprays;          // _B0
+	og::Screen::AnimGroup* m_anims1;         // _B4
+	og::Screen::AnimGroup* m_anims2;         // _B8
+	J2DPane* m_paneSpray0;                   // _BC
+	J2DPane* m_paneSpray1;                   // _C0
+	J2DPane* m_paneSpraySub0;                // _C4
+	J2DPane* m_paneSpraySub1;                // _C8
 	u8 _CC[0x8];                             // _CC, unknown
+
+	static struct StaticValues {
+		inline StaticValues()
+		{
+			_00.r = 0;
+			_00.g = 110;
+			_00.b = 176;
+			_00.a = 255;
+			_04.r = 0;
+			_04.g = 0;
+			_04.b = 100;
+			_04.a = 255;
+			_08   = -27.0f;
+			_0C   = -27.0f;
+			_10   = -27.0f;
+			_14   = -27.0f;
+			_18   = 0.95f;
+			_1C   = 0.9f;
+		}
+
+		JUtility::TColor _00; // _00
+		JUtility::TColor _04; // _04
+		f32 _08;              // _08
+		f32 _0C;              // _0C
+		f32 _10;              // _10
+		f32 _14;              // _14
+		f32 _18;              // _18
+		f32 _1C;              // _1C
+	} msVal;
 };
 
 struct ObjSMenuMap : public ObjSMenuBase {
@@ -398,11 +470,56 @@ struct ObjSMenuMap : public ObjSMenuBase {
 };
 
 struct ObjSMenuPause : public ObjSMenuBase {
-	struct ObjHIOVal {
+	static struct ObjHIOVal {
+		ObjHIOVal()
+		{
+			_00 = 0.3f;
+
+			m_color1.set(253, 145, 21, 39);  // orange
+			m_color2.set(255, 107, 0, 255);  // orange
+			m_color3.set(255, 255, 255, 49); // white
+
+			m_color6.set(253, 255, 255, 0); // white
+			m_color7.set(0, 73, 128, 200);  // dark blue
+			m_color8.set(175, 175, 255, 0); // white (light purple)
+
+			m_color11.set(0, 0, 255, 255);     // blue
+			m_color12.set(255, 255, 255, 0);   // white
+			m_color13.set(255, 255, 255, 255); // white
+			m_color14.set(0, 255, 255, 0);     // white (teal)
+
+			m_color4.set(0, 0, 255, 64);    // blue
+			m_color5.set(255, 255, 187, 0); // white (yellow)
+
+			m_color9.set(76, 74, 0, 255);    // khaki
+			m_color10.set(255, 255, 255, 0); // white
+
+			_3C = 1.0f;
+			_40 = 1.0f;
+		}
+
 		static void getMenuColor(JUtility::TColor*, JUtility::TColor*, JUtility::TColor*, JUtility::TColor*, JUtility::TColor*,
 		                         JUtility::TColor*, JUtility::TColor*, JUtility::TColor*, JUtility::TColor*, JUtility::TColor*,
 		                         JUtility::TColor*, JUtility::TColor*, JUtility::TColor*, JUtility::TColor*);
-	};
+
+		f32 _00;                    // _00
+		JUtility::TColor m_color1;  // _04
+		JUtility::TColor m_color2;  // _08
+		JUtility::TColor m_color3;  // _0C
+		JUtility::TColor m_color4;  // _10
+		JUtility::TColor m_color5;  // _14
+		JUtility::TColor m_color6;  // _18
+		JUtility::TColor m_color7;  // _1C
+		JUtility::TColor m_color8;  // _20
+		JUtility::TColor m_color9;  // _24
+		JUtility::TColor m_color10; // _28
+		JUtility::TColor m_color11; // _2C
+		JUtility::TColor m_color12; // _30
+		JUtility::TColor m_color13; // _34
+		JUtility::TColor m_color14; // _38
+		f32 _3C;                    // _3C
+		f32 _40;                    // _40
+	} msVal;
 
 	ObjSMenuPause(const char*);
 
@@ -426,43 +543,53 @@ struct ObjSMenuPause : public ObjSMenuBase {
 	virtual void commonUpdate();                          // _A4
 
 	void blink_TopMenu(int);
-	void menu_pause();
-	void menu_yuugata();
-	void menu_zenkai();
+	bool menu_pause();
+	bool menu_yuugata();
+	bool menu_zenkai();
 	void killCursorAll();
-	void menu();
+	bool menu();
+
+	// unused/inline
+	void open_TopMenu();
+	void close_TopMenu();
+	void open_Yuugata();
+	void close_Yuugata();
+	void blink_Yuugata(int);
+	void open_Zenkai();
+	void close_Zenkai();
+	void blink_Zenkai(int);
 
 	// _00     = VTBL1
 	// _18     = VTBL2
 	// _00-_A8 = ObjSMenuBase
-	og::Screen::DispMemberSMenuPause* m_disp; // _A8
-	int _AC;                                  // _AC
-	int _B0;                                  // _B0
-	int _B4;                                  // _B4
-	int _B8;                                  // _B8
-	s16 _BC;                                  // _BC
-	P2DScreen::Mgr_tuning* _C0;               // _C0
-	og::Screen::MenuMgr* _C4;                 // _C4
-	og::Screen::MenuMgr* _C8;                 // _C8
-	og::Screen::MenuMgr* _CC;                 // _CC
-	u32 _D0;                                  // _D0, unknown
-	u32 _D4;                                  // _D4, unknown
-	og::Screen::AnimText_Screen* _D8;         // _D8, h_00?
-	og::Screen::AnimText_Screen* _DC;         // _DC, h_01?
-	og::Screen::AnimText_Screen* _E0;         // _E0, h_02?
-	og::Screen::AnimText_Screen* _E4;         // _E4, h_03?
-	og::Screen::AnimText_Screen* _E8;         // _E8, h_04?
-	og::Screen::AnimText_Screen* _EC;         // _EC, h_05?
-	og::Screen::AnimText_Screen* _F0;         // _F0, h_06?
-	og::Screen::AnimText_Screen* _F4;         // _F4, h_07?
-	og::Screen::AnimText_Screen* _F8;         // _F8, h_08?
-	og::Screen::AnimGroup* _FC;               // _FC
-	u8 _100;                                  // _100
-	f32 _104;                                 // _104, timer?
-	u8 _108;                                  // _108
-	f32 _10C;                                 // _10C
-	u8 _110;                                  // _110
-	f32 _114;                                 // _114
+	og::Screen::DispMemberSMenuPause* m_disp;    // _A8
+	int m_currSelPause;                          // _AC
+	int m_currSelSunset;                         // _B0
+	int m_currSelReturn;                         // _B4
+	int m_menuState;                             // _B8
+	s16 _BC;                                     // _BC
+	P2DScreen::Mgr_tuning* m_screenPause;        // _C0
+	og::Screen::MenuMgr* m_menuPause;            // _C4
+	og::Screen::MenuMgr* m_menuSunset;           // _C8
+	og::Screen::MenuMgr* m_menuReturn;           // _CC
+	u32 _D0;                                     // _D0, unknown
+	u32 _D4;                                     // _D4, unknown
+	og::Screen::AnimText_Screen* m_textContinue; // _D8, h_00?
+	og::Screen::AnimText_Screen* m_textGoSunset; // _DC, h_01?
+	og::Screen::AnimText_Screen* m_textReturn;   // _E0, h_02?
+	og::Screen::AnimText_Screen* m_textSunsetQ;  // _E4, h_03?
+	og::Screen::AnimText_Screen* m_textSunsetY;  // _E8, h_04?
+	og::Screen::AnimText_Screen* m_textSunsetN;  // _EC, h_05?
+	og::Screen::AnimText_Screen* m_textReturnQ;  // _F0, h_06?
+	og::Screen::AnimText_Screen* m_textReturnY;  // _F4, h_07?
+	og::Screen::AnimText_Screen* m_textReturnN;  // _F8, h_08?
+	og::Screen::AnimGroup* m_anims;              // _FC
+	u8 m_pauseOpened;                            // _100
+	f32 m_menuPauseTimer;                        // _104, timer?
+	u8 m_sunsetOpened;                           // _108
+	f32 m_menuSunsetTimer;                       // _10C
+	u8 m_returnOpened;                           // _110
+	f32 m_menuReturnTimer;                       // _114
 };
 
 struct ObjSMenuPauseDoukutu : public ObjSMenuBase {
@@ -487,10 +614,10 @@ struct ObjSMenuPauseDoukutu : public ObjSMenuBase {
 	virtual void doUpdateLAction();                       // _98
 	virtual void commonUpdate();                          // _A4
 
-	void menu_pause();
-	void menu_giveup();
+	bool menu_pause();
+	bool menu_giveup();
 	void finishPause();
-	void menu();
+	bool menu();
 	void set_Blink_Normal();
 	void set_Blink_YesNo();
 	void set_Menu_Normal();
@@ -500,26 +627,39 @@ struct ObjSMenuPauseDoukutu : public ObjSMenuBase {
 	// _18     = VTBL2
 	// _00-_A8 = ObjSMenuBase
 	og::Screen::DispMemberSMenuPauseDoukutu* m_disp; // _A8
-	int _AC;                                         // _AC
-	u32 _B0;                                         // _B0
-	int _B4;                                         // _B4
-	u8 _B8[0x4];                                     // _B8, unknown
-	P2DScreen::Mgr_tuning* _BC;                      // _BC
-	og::Screen::MenuMgr* _C0;                        // _C0
-	og::Screen::MenuMgr* _C4;                        // _C4
-	J2DPane* _C8;                                    // _C8
-	og::Screen::AnimText_Screen* _CC;                // _CC
-	og::Screen::AnimText_Screen* _D0;                // _D0
-	og::Screen::AnimText_Screen* _D4;                // _D4
-	og::Screen::AnimText_Screen* _D8;                // _D8
-	og::Screen::AnimText_Screen* _DC;                // _DC
-	og::Screen::AnimGroup* _E0;                      // _E0
-	u32 _E4;                                         // _E4
-	u8 _E8;                                          // _E8
-	f32 _EC;                                         // _EC
-	u8 _F0;                                          // _F0
-	f32 _F4;                                         // _F4
-	f32 _F8;                                         // _F8
+	int m_menuState;                                 // _AC
+	int m_currPauseSel;                              // _B0
+	int m_currGiveupSel;                             // _B4
+	u16 _B8;                                         // _B8, unknown
+	P2DScreen::Mgr_tuning* m_screenPause;            // _BC
+	og::Screen::MenuMgr* m_menuPause;                // _C0
+	og::Screen::MenuMgr* m_menuGiveup;               // _C4
+	J2DPane* m_menuPane;                             // _C8
+	og::Screen::AnimText_Screen* m_textContinue;     // _CC
+	og::Screen::AnimText_Screen* m_textDoGiveup;     // _D0
+	og::Screen::AnimText_Screen* m_textGiveupQ;      // _D4
+	og::Screen::AnimText_Screen* m_textGiveupY;      // _D8
+	og::Screen::AnimText_Screen* m_textGiveupN;      // _DC
+	og::Screen::AnimGroup* m_anims;                  // _E0
+	u32 m_pokos;                                     // _E4
+	bool m_pauseOpened;                              // _E8
+	f32 m_menuPauseTimer;                            // _EC
+	bool m_giveupOpened;                             // _F0
+	f32 m_menuGiveupTimer;                           // _F4
+	f32 m_warningTimer;                              // _F8
+
+	static struct StaticValues {
+		inline StaticValues()
+		{
+			_00 = 1.0f;
+			_04 = 0.91f;
+			_08 = 0.5f;
+		}
+
+		f32 _00; // _00
+		f32 _04; // _04
+		f32 _08;
+	} msVal;
 };
 
 struct ObjSMenuPauseVS : public ObjSMenuBase {
@@ -548,27 +688,30 @@ struct ObjSMenuPauseVS : public ObjSMenuBase {
 	virtual void out_cancel();                            // _A8
 	virtual void out_menu_0();                            // _AC
 	virtual void out_menu_1();                            // _B0
-	virtual void getResult();                             // _B4 (weak)
+	virtual int getResult();                              // _B4
 
 	void blink_Menu(int);
-	void menu();
+	bool menu();
 
 	// _00     = VTBL1
 	// _18     = VTBL2
 	// _00-_A8 = ObjSMenuBase
 	Screen::DispMemberSMenuPauseVS* m_disp; // _A8
-	int _AC;                                // _AC
-	P2DScreen::Mgr* _B0;                    // _B0
+	int m_currMenuSel;                      // _AC
+	P2DScreen::Mgr_tuning* m_screenPause;   // _B0
 	Screen::MenuMgr* m_menuMgr;             // _B4
 	Screen::AnimText_Screen* m_animText1;   // _B8
 	Screen::AnimText_Screen* m_animText2;   // _BC
-	u8 _C0;                                 // _C0
-	f32 _C4;                                // _C4
-	u8 _C8;                                 // _C8
+	bool m_menuOpen;                        // _C0
+	f32 m_menuTimer;                        // _C4
+	u8 m_type;                              // _C8
 };
 
 struct StartSceneArgSMenu : public ::Screen::StartSceneArgTemplate<StartSceneArgSMenu> {
-	virtual SceneType getSceneType() const; // _08 (weak)
+	virtual SceneType getSceneType() const // _08 (weak)
+	{
+		return m_sceneType;
+	}
 
 	// _00     = VTBL
 	// _00-_08 = StartSceneArgTemplate

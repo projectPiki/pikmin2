@@ -39,6 +39,12 @@ struct ArgColor : public Arg {
 
 struct ArgScale : public Arg {
 
+	ArgScale(Vector2f* pos, f32 scale)
+	    : Arg(pos->x, pos->y)
+	{
+		m_scale = scale;
+	}
+
 	virtual const char* getName() // _08 (weak)
 	{
 		return "ArgScale";
@@ -51,6 +57,14 @@ struct ArgScale : public Arg {
 
 struct ArgScaleColorColor : public Arg {
 
+	inline ArgScaleColorColor(Vector2f* pos, f32 scale, JUtility::TColor col1, JUtility::TColor col2)
+	    : Arg(pos->x, pos->y)
+	{
+		m_scale = scale;
+		m_color1.set(col1);
+		m_color2.set(col2);
+	}
+
 	virtual const char* getName() // _08 (weak)
 	{
 		return "ArgScaleColorColor";
@@ -58,9 +72,9 @@ struct ArgScaleColorColor : public Arg {
 
 	// _00-_08	= Vector2f
 	// _08 		= VTBL
-	float m_scale;        // _0C
-	JUtility::TColor _10; // _10
-	JUtility::TColor _14; // _14
+	float m_scale;             // _0C
+	JUtility::TColor m_color1; // _10
+	JUtility::TColor m_color2; // _14
 };
 } // namespace efx2d
 

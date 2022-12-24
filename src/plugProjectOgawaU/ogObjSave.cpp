@@ -1,6 +1,4 @@
-#include "types.h"
 #include "og/newScreen/Save.h"
-#include "og/Screen/ogScreen.h"
 #include "og/Sound.h"
 #include "ebi/Save.h"
 #include "System.h"

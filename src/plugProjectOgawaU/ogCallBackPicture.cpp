@@ -1,5 +1,4 @@
 #include "og/Screen/callbackNodes.h"
-#include "types.h"
 #include "og/Screen/StickAnimMgr.h"
 #include "og/Screen/anime.h"
 #include "og/Screen/ogScreen.h"
@@ -91,7 +90,7 @@ CallBack_Picture::CallBack_Picture(P2DScreen::Mgr* mgr, u64 tag)
  * Address:	8032CE18
  * Size:	000060
  */
-void CallBack_Picture::update(void)
+void CallBack_Picture::update()
 {
 	if (m_partsScreen) {
 		if (m_animGroup) {
@@ -350,7 +349,7 @@ blr
  * Address:	........
  * Size:	0000D4
  */
-CallBack_Picture* setCallBack_Picture(JKRArchive*, char*, unsigned long long, P2DScreen::Mgr*, u64)
+CallBack_Picture* setCallBack_Picture(JKRArchive*, char*, u64, P2DScreen::Mgr*, u64)
 {
 	// UNUSED FUNCTION
 }
@@ -470,9 +469,9 @@ CallBack_Picture* setCallBack_3DStickSmall(JKRArchive* arc, P2DScreen::Mgr* scre
 	mgr->set("tga_3d_anim_otah_32.blo", 0x40000, arc);
 	CallBack_Picture* pic = new CallBack_Picture(mgr, 'ota3dl');
 
-	J2DPane* pane     = TagSearch(screen, tag);
-	pane->m_isVisible = false;
-	pic->m_textBox    = pane;
+	J2DPane* pane = TagSearch(screen, tag);
+	pane->hide();
+	pic->m_textBox = pane;
 
 	screen->addCallBack(tag, pic);
 	J2DScreen* scrn = pic->getPartsScreen();
@@ -635,7 +634,7 @@ blr
  * Address:	........
  * Size:	00005C
  */
-void StickAnimMgr::stickStop(void)
+void StickAnimMgr::stickStop()
 {
 	// UNUSED FUNCTION
 }
@@ -645,7 +644,7 @@ void StickAnimMgr::stickStop(void)
  * Address:	8032D37C
  * Size:	0000D4
  */
-void StickAnimMgr::stickUp(void)
+void StickAnimMgr::stickUp()
 {
 	if ((int)m_state != STICKANIM_Up) {
 		AnimGroup* anim = m_callBackPicture->m_animGroup;
@@ -742,7 +741,7 @@ blr
  * Address:	8032D450
  * Size:	0000E8
  */
-void StickAnimMgr::stickDown(void)
+void StickAnimMgr::stickDown()
 {
 	if ((int)m_state != STICKANIM_Down) {
 		AnimGroup* anim = m_callBackPicture->m_animGroup;
@@ -846,7 +845,7 @@ blr
  * Address:	8032D538
  * Size:	0000BC
  */
-void StickAnimMgr::stickUpDown(void)
+void StickAnimMgr::stickUpDown()
 {
 	if ((int)m_state != STICKANIM_UpDown) {
 		AnimGroup* anim = m_callBackPicture->m_animGroup;
@@ -932,7 +931,7 @@ blr
  * Address:	8032D5F4
  * Size:	000090
  */
-CallBack_Picture::~CallBack_Picture(void)
+CallBack_Picture::~CallBack_Picture()
 {
 	/*
 stwu     r1, -0x10(r1)

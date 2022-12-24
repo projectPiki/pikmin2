@@ -1,4 +1,3 @@
-#include "types.h"
 #include "og/newScreen/Challenge.h"
 #include "og/newScreen/Vs.h"
 #include "trig.h"
@@ -145,7 +144,7 @@ void ObjChallenge2P::ScreenSet::init(og::Screen::DataNavi* data, JKRArchive* arc
 	m_doping->init(m_paneToyo01, m_paneToyo00, m_scaleMgr1, m_scaleMgr2);
 	m_lifeGauge->init(m_screen, data, og::Screen::CallBack_LifeGauge::LIFEGAUGE_OLIMAR);
 	m_screen->addCallBack('back', m_lifeGauge);
-	m_lifeGauge->setOffset(ObjVs::msVal._08, ObjVs::msVal._0C);
+	m_lifeGauge->setOffset(ObjVs::msVal.m_lifeGaugeXOffs, ObjVs::msVal.m_lifeGaugeYOffs);
 
 	og::Screen::setCallBack_DrawAfter(m_screen, 'mete');
 }
@@ -219,151 +218,13 @@ void ObjChallenge2P::doDraw(Graphics& gfx)
 	color1.a                = test;
 	graf->setColor(color1);
 
-	JGeometry::TBox2f box;
-	box.i   = JGeometry::TVec2f(msVal._08, msVal._0C);
-	box.f.x = box.i.x + msVal._10;
-	box.f.y = box.i.y + msVal._14;
-
+	JGeometry::TBox2f box = getBox1();
 	graf->fillBox(box);
 
-	JGeometry::TBox2f box2;
-	box2.i   = JGeometry::TVec2f(msVal._18, msVal._0C);
-	box2.f.x = box2.i.x + msVal._1C;
-	box2.f.y = box2.i.y + msVal._14;
-
+	JGeometry::TBox2f box2 = getBox2();
 	graf->fillBox(box2);
 
 	m_bloGroup->draw(graf);
-
-	/*
-	stwu     r1, -0xa0(r1)
-	mflr     r0
-	stw      r0, 0xa4(r1)
-	stw      r31, 0x9c(r1)
-	stw      r30, 0x98(r1)
-	addi     r30, r4, 0x190
-	stw      r29, 0x94(r1)
-	mr       r29, r3
-	mr       r3, r30
-	lwz      r12, 0(r30)
-	lwz      r12, 0x14(r12)
-	mtctr    r12
-	bctrl
-	lis      r3, msVal__Q32og9newScreen14ObjChallenge2P@ha
-	lis      r0, 0x4330
-	addi     r3, r3, msVal__Q32og9newScreen14ObjChallenge2P@l
-	stw      r0, 0x40(r1)
-	lwz      r0, 0x20(r3)
-	mr       r3, r30
-	lfd      f2, lbl_8051DC70@sda21(r2)
-	addi     r4, r1, 0xc
-	stw      r0, 0x1c(r1)
-	addi     r5, r1, 0x10
-	lfs      f0, 0x3c(r29)
-	addi     r6, r1, 0x14
-	lbz      r0, 0x1f(r1)
-	addi     r7, r1, 0x18
-	stw      r0, 0x44(r1)
-	lfd      f1, 0x40(r1)
-	fsubs    f1, f1, f2
-	fmuls    f0, f1, f0
-	fctiwz   f0, f0
-	stfd     f0, 0x48(r1)
-	lwz      r0, 0x4c(r1)
-	stb      r0, 0x1f(r1)
-	lwz      r0, 0x1c(r1)
-	stw      r0, 8(r1)
-	stw      r0, 0x18(r1)
-	stw      r0, 0x14(r1)
-	stw      r0, 0x10(r1)
-	stw      r0, 0xc(r1)
-	bl
-	setColor__14J2DGrafContextFQ28JUtility6TColorQ28JUtility6TColorQ28JUtility6TColorQ28JUtility6TColor
-	lis      r3, msVal__Q32og9newScreen14ObjChallenge2P@ha
-	lis      r7, 0x4330
-	addi     r31, r3, msVal__Q32og9newScreen14ObjChallenge2P@l
-	stw      r7, 0x50(r1)
-	lwz      r0, 0xc(r31)
-	mr       r3, r30
-	lwz      r6, 8(r31)
-	addi     r4, r1, 0x30
-	lwz      r5, 0x10(r31)
-	xoris    r8, r0, 0x8000
-	lwz      r0, 0x14(r31)
-	xoris    r6, r6, 0x8000
-	xoris    r5, r5, 0x8000
-	stw      r8, 0x54(r1)
-	xoris    r0, r0, 0x8000
-	lfd      f2, lbl_8051DC78@sda21(r2)
-	lfd      f0, 0x50(r1)
-	stw      r6, 0x5c(r1)
-	fsubs    f4, f0, f2
-	stw      r7, 0x58(r1)
-	lfd      f0, 0x58(r1)
-	stw      r5, 0x64(r1)
-	fsubs    f3, f0, f2
-	stw      r7, 0x60(r1)
-	lfd      f0, 0x60(r1)
-	stw      r0, 0x6c(r1)
-	fsubs    f1, f0, f2
-	stw      r7, 0x68(r1)
-	lfd      f0, 0x68(r1)
-	fadds    f1, f3, f1
-	stfs     f3, 0x30(r1)
-	fsubs    f0, f0, f2
-	stfs     f4, 0x34(r1)
-	fadds    f0, f4, f0
-	stfs     f1, 0x38(r1)
-	stfs     f0, 0x3c(r1)
-	bl       "fillBox__14J2DGrafContextFRCQ29JGeometry8TBox2<f>"
-	lis      r3, msVal__Q32og9newScreen14ObjChallenge2P@ha
-	lis      r7, 0x4330
-	addi     r4, r3, msVal__Q32og9newScreen14ObjChallenge2P@l
-	lwz      r0, 0xc(r31)
-	lwz      r5, 0x18(r4)
-	mr       r3, r30
-	lwz      r4, 0x1c(r4)
-	xoris    r8, r0, 0x8000
-	lwz      r0, 0x14(r31)
-	xoris    r6, r5, 0x8000
-	xoris    r5, r4, 0x8000
-	stw      r8, 0x74(r1)
-	xoris    r0, r0, 0x8000
-	lfd      f2, lbl_8051DC78@sda21(r2)
-	stw      r7, 0x70(r1)
-	addi     r4, r1, 0x20
-	lfd      f0, 0x70(r1)
-	stw      r6, 0x7c(r1)
-	fsubs    f4, f0, f2
-	stw      r7, 0x78(r1)
-	lfd      f0, 0x78(r1)
-	stw      r5, 0x84(r1)
-	fsubs    f3, f0, f2
-	stw      r7, 0x80(r1)
-	lfd      f0, 0x80(r1)
-	stw      r0, 0x8c(r1)
-	fsubs    f1, f0, f2
-	stw      r7, 0x88(r1)
-	lfd      f0, 0x88(r1)
-	fadds    f1, f3, f1
-	stfs     f3, 0x20(r1)
-	fsubs    f0, f0, f2
-	stfs     f4, 0x24(r1)
-	fadds    f0, f4, f0
-	stfs     f1, 0x28(r1)
-	stfs     f0, 0x2c(r1)
-	bl       "fillBox__14J2DGrafContextFRCQ29JGeometry8TBox2<f>"
-	lwz      r3, 0x64(r29)
-	mr       r4, r30
-	bl       draw__Q32og6Screen8BloGroupFP13J2DPerspGraph
-	lwz      r0, 0xa4(r1)
-	lwz      r31, 0x9c(r1)
-	lwz      r30, 0x98(r1)
-	lwz      r29, 0x94(r1)
-	mtlr     r0
-	addi     r1, r1, 0xa0
-	blr
-	*/
 }
 
 /*
@@ -432,8 +293,9 @@ bool ObjChallenge2P::doUpdateFadeout()
 bool ObjChallenge2P::doStart(::Screen::StartSceneArg const* arg)
 {
 	ObjChallengeBase::doStart(arg);
-	if (arg && arg->getSceneType() == SCENE_CHALLENGE_2P) {
-		m_incTimeLeftDelay = arg->_04;
+	SArgChallenge2P* challArg = static_cast<SArgChallenge2P*>((::Screen::StartSceneArg*)(arg));
+	if (challArg && challArg->getSceneType() == SCENE_CHALLENGE_2P) {
+		m_incTimeLeftDelay = (challArg->_04);
 	} else {
 		m_incTimeLeftDelay = 0.0f;
 	}

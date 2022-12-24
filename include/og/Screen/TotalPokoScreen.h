@@ -25,23 +25,15 @@ struct TotalPokoScreen : public P2DScreen::Mgr_tuning {
 	// _00-_148 = P2DScreen::Mgr_tuning
 	u32 m_currentPokoCount;                  // _148
 	u32 m_previousPokoCount;                 // _14C
-	u32 _150;                                // _150
+	u32 m_displayPokoCount;                  // _150
 	bool m_isOpen;                           // _154
-	u8 _155;                                 // _155
-	u8 _156;                                 // _156
-	u8 _157;                                 // _157
 	CallBack_CounterRV* m_callBackCounterRV; // _158
 	J2DPane* m_pane;                         // _15C
-	f32 _160;                                // _160
-	f32 _164;                                // _164
-	f32 _168;                                // _168
-	f32 _16C;                                // _16C
-	f32 _170;                                // _170
-	f32 _174;                                // _174
-	u8 _178;                                 // _178
-	u8 _179;                                 // _179
-	u8 _17A;                                 // _17A
-	u8 _17B;                                 // _17B
+	f32 _160;                                // _160, unused?
+	Vector2f m_standardPos;                  // _164
+	Vector2f m_currPos;                      // _16C
+	f32 m_timer;                             // _174
+	bool m_needAdd;                          // _178
 	ScaleMgr* m_scaleMgr;                    // _17C
 };
 } // namespace Screen

@@ -17,9 +17,9 @@ namespace Morimura {
  */
 TConfirmEndWindow::TConfirmEndWindow(const char* p1)
     : og::newScreen::ObjWorldMapInfoWindow0(p1)
-    , m_isOpenMaybe(false)
-    , _D5(0)
 {
+	m_hasDrawn = false;
+	m_isActive = false;
 }
 
 /*
@@ -29,10 +29,10 @@ TConfirmEndWindow::TConfirmEndWindow(const char* p1)
  */
 bool TConfirmEndWindow::doStart(const Screen::StartSceneArg* arg)
 {
-	_44           = 0.0f;
-	m_isOpenMaybe = false;
-	_D5           = 1;
-	_CC->_21      = 1;
+	m_fadeLevel                  = 0.0f;
+	m_hasDrawn                   = false;
+	m_isActive                   = true;
+	m_dispWmap->m_startSelection = 1;
 	return og::newScreen::ObjWorldMapInfoWindow0::doStart(arg);
 }
 
@@ -45,7 +45,7 @@ void TConfirmEndWindow::doUpdateFadeinFinish()
 {
 	m_animText1->open(0.05f);
 	m_animText2->open(0.1f);
-	blink_Menu(_AC);
+	blink_Menu(m_currMenuSel);
 	og::newScreen::ObjSMenuPauseVS::doUpdateFadeinFinish();
 }
 
@@ -63,7 +63,7 @@ bool TConfirmEndWindow::doUpdateFadein() { return og::newScreen::ObjWorldMapInfo
  */
 void TConfirmEndWindow::doUpdateFadeoutFinish()
 {
-	m_isOpenMaybe = false;
+	m_hasDrawn = false;
 	m_animText1->stop();
 	m_animText2->stop();
 }
@@ -75,7 +75,7 @@ void TConfirmEndWindow::doUpdateFadeoutFinish()
  */
 bool TConfirmEndWindow::doUpdateFadeout()
 {
-	_D5 = 0;
+	m_isActive = 0;
 	return og::newScreen::ObjSMenuPauseVS::doUpdateFadeout();
 }
 
@@ -86,10 +86,10 @@ bool TConfirmEndWindow::doUpdateFadeout()
  */
 void TConfirmEndWindow::doDraw(Graphics& gfx)
 {
-	if (m_isOpenMaybe) {
+	if (m_hasDrawn) {
 		ObjSMenuPauseVS::doDraw(gfx);
 	} else {
-		m_isOpenMaybe = true;
+		m_hasDrawn = true;
 	}
 }
 

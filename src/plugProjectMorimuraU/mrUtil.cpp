@@ -134,7 +134,7 @@ void TScreenBase::addAnim(char* name)
 	m_animScreens[m_currEntries] = new TTestAnimScreen;
 
 	m_animScreens[m_currEntries]->init(m_archive, m_screenObj, name);
-	m_animScreens[m_currEntries]->_20 = 0.5f;
+	m_animScreens[m_currEntries]->m_speed = 0.5f;
 	m_currEntries++;
 }
 
@@ -334,11 +334,11 @@ void TScaleUpCounter::forceScaleUp(bool flag)
  */
 void TScaleUpCounter::setScale(f32 scale, f32 scalesub)
 {
-	_34 = _AC * scale;
+	m_pane12DistX = _AC * scale;
 	for (int i = 0; i < m_currCounters; i++) {
 		og::Screen::CounterKeta* keta = m_counters[i];
-		keta->m_width                 = scale;
-		keta->m_height                = scalesub;
+		keta->m_size.x                = scale;
+		keta->m_size.y                = scalesub;
 	}
 }
 

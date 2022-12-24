@@ -93,11 +93,24 @@ struct ObjChallengeBase : public ::Screen::ObjBase {
 	u32 m_subLevel;           // _5C
 
 	static struct StaticValues {
-		f32 _00;
-		f32 _04;
-		JUtility::TColor m_timerLowWhite;
-		JUtility::TColor m_timerLowBlack;
-		u32 m_timerLimitLow;
+		inline StaticValues()
+		{
+			_00 = 0.3f;
+			_04 = 0.1f;
+			m_timerLowWhite.set(255, 0, 0, 255);
+			m_timerLowBlack.set(64, 0, 0, 0);
+			m_timerLimitLow = 10;
+			_14             = 30;
+			_18             = 10;
+		}
+
+		f32 _00;                          // _00
+		f32 _04;                          // _04
+		JUtility::TColor m_timerLowWhite; // _08
+		JUtility::TColor m_timerLowBlack; // _0C
+		u32 m_timerLimitLow;              // _10
+		u32 _14;                          // _14
+		u32 _18;                          // _18
 	} msBaseVal;
 };
 
@@ -234,6 +247,26 @@ struct ObjChallenge2P : public ObjChallengeBase {
 
 	inline f32 getStatic1() { return msVal._08; }
 
+	inline JGeometry::TBox2f getBox1()
+	{
+		JGeometry::TBox2f box;
+		box.i = JGeometry::TVec2f(msVal._08, msVal._0C);
+		box.f = box.i;
+		box.f.x += msVal._10;
+		box.f.y += msVal._14;
+		return box;
+	}
+
+	inline JGeometry::TBox2f getBox2()
+	{
+		JGeometry::TBox2f box;
+		box.i = JGeometry::TVec2f(msVal._18, msVal._0C);
+		box.f = box.i;
+		box.f.x += msVal._1C;
+		box.f.y += msVal._14;
+		return box;
+	}
+
 	// _00     = VTBL1
 	// _18     = VTBL2
 	// _00-_60 = ObjChallengeBase
@@ -332,7 +365,7 @@ struct ObjChallenge2P : public ObjChallengeBase {
 
 struct SArgChallengeBase : public ::Screen::StartSceneArg {
 	// _00     = VTBL
-	// _00-_04 = Screen::StartSceneArg
+	f32 _04; // _04
 };
 
 struct SArgChallenge1P : public SArgChallengeBase {
@@ -340,7 +373,7 @@ struct SArgChallenge1P : public SArgChallengeBase {
 	virtual int getClassSize();             // _0C (weak)
 
 	// _00     = VTBL
-	// _00-_04 = Screen::StartSceneArg
+	// _00-_04 = SArgChallengeBase
 };
 
 struct SArgChallenge2P : public SArgChallengeBase {
@@ -348,7 +381,7 @@ struct SArgChallenge2P : public SArgChallengeBase {
 	virtual int getClassSize();             // _0C (weak)
 
 	// _00     = VTBL
-	// _00-_04 = Screen::StartSceneArg
+	// _00-_04 = SArgChallengeBase
 };
 } // namespace newScreen
 } // namespace og

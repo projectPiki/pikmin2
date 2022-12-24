@@ -13,29 +13,32 @@ struct ScaleMgr;
 struct PikminCounter : public P2DScreen::Mgr_tuning {
 	PikminCounter();
 
-	virtual ~PikminCounter();              // _08 (weak)
+	virtual ~PikminCounter() { }           // _08 (weak)
 	virtual void update();                 // _30
 	virtual void setCallBack(JKRArchive*); // _A0
 
 	void setParam(DataGame&, DataNavi&);
 
+	// unused/inline
+	void setCallBackCommon(JKRArchive*, bool);
+
 	// _00      = VTBL
 	// _00-_148 = P2DScreen::Mgr_tuning
-	DataGame m_dataGame;                     // _148
-	DataNavi m_dataNavi;                     // _164
-	CallBack_CatchPiki* m_callBackCatchPiki; // _17C
-	u8 _180[0xC];                            // _180, unknown
-	u8 m_isTotalPokoActive;                  // _18C
-	void* _190;                              // _190, unknown ptr
-	ScaleMgr* m_scaleMgr;                    // _194
-	f32 _198;                                // _198
-	f32 _19C;                                // _19C
-	f32 _1A0;                                // _1A0
-	f32 _1A4;                                // _1A4
+	DataGame m_dataGame;             // _148
+	DataNavi m_dataNavi;             // _164
+	CallBack_CatchPiki* m_catchPiki; // _17C
+	u32 _180;                        // _180
+	u32 _184;                        // _184
+	u32 _188;                        // _188
+	bool m_isTotalPokoActive;        // _18C
+	J2DPane* m_paneSublevel;         // _190
+	ScaleMgr* m_scaleMgr;            // _194
+	Vector2f m_standardPos;          // _198
+	Vector2f m_currPos;              // _1A0
 };
 
 struct PikminCounterCave : public PikminCounter {
-	virtual ~PikminCounterCave();          // _08 (weak)
+	virtual ~PikminCounterCave() { }       // _08 (weak)
 	virtual void setCallBack(JKRArchive*); // _A0
 
 	// _00      = VTBL
@@ -43,8 +46,8 @@ struct PikminCounterCave : public PikminCounter {
 };
 
 struct PikminCounterChallenge1P : public PikminCounter {
-	virtual ~PikminCounterChallenge1P();   // _08 (weak)
-	virtual void setCallBack(JKRArchive*); // _A0
+	virtual ~PikminCounterChallenge1P() { } // _08 (weak)
+	virtual void setCallBack(JKRArchive*);  // _A0
 
 	// _00      = VTBL
 	// _00-_1A8 = PikminCounter

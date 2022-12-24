@@ -1,7 +1,4 @@
-#include "types.h"
 #include "og/Screen/DopingScreen.h"
-#include "efx2d/TSimple.h"
-#include "og/Screen/ScaleMgr.h"
 #include "og/Screen/ogScreen.h"
 #include "og/Screen/callbackNodes.h"
 #include "og/Sound.h"

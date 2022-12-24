@@ -46,18 +46,19 @@ struct SceneArgBase {
 	// _00 = VTBL
 };
 
+// this has nothing in it aside from a vtable - if you need members, cast to the appropriate downstream type.
 struct StartSceneArg : public SceneArgBase {
 	// _00 = VTBL
-	f32 _04; // _04
 };
 
 template <typename T>
 struct StartSceneArgTemplate : public StartSceneArg {
-	virtual int getClassSize(); // _08 (weak)
+	virtual int getClassSize() { return sizeof(StartSceneArgTemplate); } // _08 (weak)
 
 	// _00     = VTBL
 	// _00-_04 = StartSceneArg
-	u8 _08[0x4]; // _08, unknown
+	SceneType m_sceneType; // _04
+	bool m_flag;           // _08, unknown
 };
 
 struct SetSceneArg : public SceneArgBase {
@@ -208,15 +209,15 @@ struct ObjBase : public IObjBase {
 	virtual bool confirmSetScene(SetSceneArg&);                       // _38
 	virtual bool confirmStartScene(StartSceneArg*);                   // _3C
 	virtual bool confirmEndScene(EndSceneArg*);                       // _40
-	virtual bool doStart(const StartSceneArg*);                       // _44 (weak)
-	virtual bool doEnd(const EndSceneArg*);                           // _48 (weak)
-	virtual void doCreate(JKRArchive*);                               // _4C (weak)
-	virtual bool doUpdateFadein();                                    // _50 (weak)
-	virtual void doUpdateFadeinFinish();                              // _54 (weak)
-	virtual bool doUpdate();                                          // _58 (weak)
-	virtual void doUpdateFinish();                                    // _5C (weak)
-	virtual bool doUpdateFadeout();                                   // _60 (weak)
-	virtual void doUpdateFadeoutFinish();                             // _64 (weak)
+	virtual bool doStart(const StartSceneArg*) { return true; }       // _44 (weak)
+	virtual bool doEnd(const EndSceneArg*) { return true; }           // _48 (weak)
+	virtual void doCreate(JKRArchive*) { }                            // _4C (weak)
+	virtual bool doUpdateFadein() { return true; }                    // _50 (weak)
+	virtual void doUpdateFadeinFinish() { }                           // _54 (weak)
+	virtual bool doUpdate() { return false; }                         // _58 (weak)
+	virtual void doUpdateFinish() { }                                 // _5C (weak)
+	virtual bool doUpdateFadeout() { return true; }                   // _60 (weak)
+	virtual void doUpdateFadeoutFinish() { }                          // _64 (weak)
 	virtual void doDraw(Graphics& gfx);                               // _68
 	virtual bool doConfirmSetScene(SetSceneArg&) { return true; }     // _6C (weak)
 	virtual bool doConfirmStartScene(StartSceneArg*) { return true; } // _70 (weak)

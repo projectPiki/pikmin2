@@ -1,4 +1,3 @@
-#include "types.h"
 #include "og/newScreen/Contena.h"
 #include "og/Screen/ContenaCounter.h"
 #include "og/Screen/ogScreen.h"
@@ -9,7 +8,6 @@
 #include "System.h"
 #include "Controller.h"
 #include "trig.h"
-#include "Dolphin/gx.h"
 
 bool contenaAngleFlag;
 f32 contenaAngle;
@@ -479,7 +477,7 @@ ObjContena::ObjContena(char const* name)
  * Address:	80320104
  * Size:	0000AC
  */
-ObjContena::~ObjContena(void)
+ObjContena::~ObjContena()
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -566,18 +564,18 @@ void ObjContena::doCreate(JKRArchive* arc)
 	}
 	og::Screen::DispMemberContena* disp2 = m_disp;
 	m_onyonID                            = disp2->m_onyonID;
-	m_inOnionCount                       = disp2->m_inOnionCount;
-	m_currField                          = disp2->m_currField;
-	m_inSquadCount                       = disp2->m_inSquadCount;
-	m_maxPikiOnField                     = disp2->m_maxPikiOnField;
+	m_inOnionCount                       = disp2->m_inOnion;
+	m_currField                          = disp2->m_currInMap;
+	m_inSquadCount                       = disp2->m_newInPartyNum;
+	m_maxPikiOnField                     = disp2->m_maxPikiField;
 	m_inParty2                           = disp2->m_inParty2;
-	m_onMapCount                         = disp2->m_onMapCount;
-	m_maxPikiCount                       = disp2->m_maxPikiCount;
-	_D8                                  = disp2->_28;
+	m_onMapCount                         = disp2->m_onMapMinusWild;
+	m_maxPikiCount                       = disp2->m_maxPikiMinusWild;
+	_D8                                  = disp2->m_inTransfer;
 	_DC                                  = disp2->_2C;
-	_E0                                  = disp2->_30;
+	_E0                                  = disp2->m_state;
 	_E4                                  = disp2->m_result;
-	m_disp->_30                          = 0;
+	m_disp->m_state                      = 0;
 	m_contena                            = new og::Screen::ContenaCounter(m_disp);
 
 	switch (m_disp->m_onyonID) {
@@ -1366,7 +1364,7 @@ lbl_80320AD0:
  * Address:	........
  * Size:	00005C
  */
-void ObjContena::tairetuOnOff(void)
+void ObjContena::tairetuOnOff()
 {
 	// UNUSED FUNCTION
 }
@@ -1396,7 +1394,7 @@ void ObjContena::isMessage(int)
  * Address:	........
  * Size:	000048
  */
-void ObjContena::setStickUp(void)
+void ObjContena::setStickUp()
 {
 	// UNUSED FUNCTION
 }
@@ -1406,7 +1404,7 @@ void ObjContena::setStickUp(void)
  * Address:	........
  * Size:	000048
  */
-void ObjContena::setStickDown(void)
+void ObjContena::setStickDown()
 {
 	// UNUSED FUNCTION
 }
@@ -1416,7 +1414,7 @@ void ObjContena::setStickDown(void)
  * Address:	........
  * Size:	000048
  */
-void ObjContena::setStickUpDown(void)
+void ObjContena::setStickUpDown()
 {
 	// UNUSED FUNCTION
 }
@@ -1429,8 +1427,8 @@ void ObjContena::setStickUpDown(void)
 void ObjContena::putinPiki(bool soundType)
 {
 	og::Screen::DispMemberContena* disp = m_disp;
-	if (disp->m_currField >= disp->m_inOnionCount) {
-		if (disp->m_inSquadCount == 0) {
+	if (disp->m_currInMap >= disp->m_inOnion) {
+		if (disp->m_newInPartyNum == 0) {
 			if (m_state == 4) {
 				if (!soundType) {
 					ogSound->setError();
@@ -1452,12 +1450,12 @@ void ObjContena::putinPiki(bool soundType)
 				m_state = 0;
 				m_alphaMgr[m_state]->in(0.3f);
 			}
-			disp->m_inOnionCount++;
-			disp->m_inSquadCount--;
+			disp->m_inOnion++;
+			disp->m_newInPartyNum--;
 			disp->m_inParty2--;
-			disp->m_onMapCount--;
+			disp->m_onMapMinusWild--;
 			disp->m_result++;
-			disp->_28 = fabs(disp->m_result); // should be just abs
+			disp->m_inTransfer = fabs(disp->m_result); // should be just abs
 			m_alphaArrow1->in(0.3f);
 			m_alphaArrow2->in(0.3f);
 			m_stickAnimMgr->stickUpDown();
@@ -1675,8 +1673,8 @@ lbl_80320D4C:
 void ObjContena::takeoutPiki(bool soundType)
 {
 	og::Screen::DispMemberContena* disp = m_disp;
-	if (disp->m_maxPikiOnField >= disp->m_inOnionCount) {
-		if (disp->m_inOnionCount == 0) {
+	if (disp->m_maxPikiField >= disp->m_inOnion) {
+		if (disp->m_inOnion == 0) {
 			if (m_state == 3) {
 				if (!soundType) {
 					ogSound->setError();
@@ -1692,18 +1690,18 @@ void ObjContena::takeoutPiki(bool soundType)
 				m_alphaArrow2->in(0.5f);
 				m_stickAnimMgr->stickUp();
 			}
-		} else if (disp->m_onMapCount < disp->m_maxPikiCount) {
+		} else if (disp->m_onMapMinusWild < disp->m_maxPikiField) {
 			if (m_state != 0) {
 				m_alphaMgr[m_state]->out(0.5f);
 				m_state = 0;
 				m_alphaMgr[m_state]->in(0.3f);
 			}
-			disp->m_inOnionCount--;
-			disp->m_inSquadCount++;
+			disp->m_inOnion--;
+			disp->m_newInPartyNum++;
 			disp->m_inParty2++;
-			disp->m_onMapCount++;
+			disp->m_onMapMinusWild++;
 			disp->m_result--;
-			disp->_28 = fabs(disp->m_result); // should be just abs
+			disp->m_inTransfer = fabs(disp->m_result); // should be just abs
 			m_alphaArrow1->in(0.3f);
 			m_alphaArrow2->in(0.3f);
 			m_stickAnimMgr->stickUpDown();
@@ -1977,7 +1975,7 @@ lbl_8032106C:
  * Address:	80321088
  * Size:	00033C
  */
-bool ObjContena::moveContena(void)
+bool ObjContena::moveContena()
 {
 	bool ret                            = false;
 	og::Screen::DispMemberContena* disp = m_disp;
@@ -1992,27 +1990,27 @@ bool ObjContena::moveContena(void)
 		m_timer2 -= sys->m_deltaTime;
 	}
 
-	if (!disp->_28) {
-		disp->_28 = 1;
+	if (!disp->m_state) {
+		disp->m_state = 1;
 	} else {
 		if (m_controller->m_padButton.m_buttonDown & Controller::PRESS_B) {
-			disp                   = m_disp;
-			disp->m_onyonID        = m_onyonID;
-			disp->m_inOnionCount   = m_inOnionCount;
-			disp->m_currField      = m_currField;
-			disp->m_inSquadCount   = m_inSquadCount;
-			disp->m_maxPikiOnField = m_maxPikiOnField;
-			disp->m_inParty2       = m_inParty2;
-			disp->m_onMapCount     = m_onMapCount;
-			disp->m_maxPikiCount   = m_maxPikiCount;
-			disp->_28              = _D8;
-			disp->_2C              = _DC;
-			disp->_30              = _E0;
-			disp->m_result         = _E4;
-			disp->_28              = 2;
-			m_dispState            = 3;
-			disp->m_result         = 0;
-			disp->_28              = 0;
+			disp                     = m_disp;
+			disp->m_onyonID          = m_onyonID;
+			disp->m_inOnion          = m_inOnionCount;
+			disp->m_currInMap        = m_currField;
+			disp->m_newInPartyNum    = m_inSquadCount;
+			disp->m_maxPikiField     = m_maxPikiOnField;
+			disp->m_inParty2         = m_inParty2;
+			disp->m_onMapMinusWild   = m_onMapCount;
+			disp->m_maxPikiMinusWild = m_maxPikiCount;
+			disp->m_inTransfer       = _D8;
+			disp->_2C                = _DC;
+			disp->m_inTransfer       = _E0;
+			disp->m_result           = _E4;
+			disp->m_state            = 2;
+			m_dispState              = 3;
+			disp->m_result           = 0;
+			disp->m_inTransfer       = 0;
 			if ((*onyontype == 3 || *onyontype) && disp->_2C) {
 				ogSound->setCancel();
 			} else {
@@ -2020,14 +2018,14 @@ bool ObjContena::moveContena(void)
 			}
 			ret = true;
 		} else if (m_controller->m_padButton.m_buttonDown & Controller::PRESS_A) {
-			disp->_28   = 2;
-			m_dispState = 4;
+			disp->m_state = 2;
+			m_dispState   = 4;
 			ogSound->setDecide();
 			ret = true;
 		}
 	}
 
-	if (disp->_28 == 1) {
+	if (disp->m_state == 1) {
 		if (m_controller->m_padButton.m_buttonDown & (Controller::PRESS_DPAD_UP | Controller::UNKNOWN_32)) {
 			switch (m_screenState) {
 			case 0:
@@ -2329,7 +2327,7 @@ lbl_803213A0:
  * Address:	803213C4
  * Size:	0005FC
  */
-void ObjContena::commonUpdate(void)
+void ObjContena::commonUpdate()
 {
 	if (m_contena) {
 		for (int i = 0; i < 10; i++) {
@@ -2392,7 +2390,7 @@ void ObjContena::commonUpdate(void)
 	}
 
 	for (int i = 0; i < m_pikiPaneNum; i++) {
-		if (i + 1 > m_disp->m_inSquadCount) {
+		if (i + 1 > m_disp->m_newInPartyNum) {
 			m_pikiPaneList[i]->hide();
 		} else {
 			m_pikiPaneList[i]->show();
@@ -2845,7 +2843,7 @@ lbl_803218D8:
  * Address:	803219C0
  * Size:	000040
  */
-bool ObjContena::doUpdate(void)
+bool ObjContena::doUpdate()
 {
 	bool ret = moveContena();
 	commonUpdate();
@@ -3038,14 +3036,14 @@ bool ObjContena::doEnd(::Screen::EndSceneArg const*) { return true; }
  * Address:	80321BC0
  * Size:	000004
  */
-void ObjContena::doUpdateFadeinFinish(void) { }
+void ObjContena::doUpdateFadeinFinish() { }
 
 /*
  * --INFO--
  * Address:	80321BC4
  * Size:	00000C
  */
-void ObjContena::doUpdateFinish(void)
+void ObjContena::doUpdateFinish()
 {
 	m_fadeLevel = 0.0f;
 	/*
@@ -3060,14 +3058,14 @@ void ObjContena::doUpdateFinish(void)
  * Address:	80321BD0
  * Size:	000004
  */
-void ObjContena::doUpdateFadeoutFinish(void) { }
+void ObjContena::doUpdateFadeoutFinish() { }
 
 /*
  * --INFO--
  * Address:	80321BD4
  * Size:	0000A8
  */
-bool ObjContena::doUpdateFadein(void)
+bool ObjContena::doUpdateFadein()
 {
 	bool check = false;
 	commonUpdate();
@@ -3132,7 +3130,7 @@ lbl_80321C5C:
  * Address:	80321C7C
  * Size:	0001DC
  */
-bool ObjContena::doUpdateFadeout(void)
+bool ObjContena::doUpdateFadeout()
 {
 	bool check = false;
 	commonUpdate();
@@ -3144,8 +3142,8 @@ bool ObjContena::doUpdateFadeout(void)
 		check                               = true;
 		::Screen::SceneBase* scene          = getOwner();
 		og::Screen::DispMemberContena* disp = m_disp;
-		disp->_30                           = m_dispState;
-		if (disp->_30 == 3 && disp->_2C) {
+		disp->m_state                       = m_dispState;
+		if (disp->m_state == 3 && disp->_2C) {
 			if (disp->m_onyonID == 4 || disp->m_onyonID == 3) {
 				::Screen::SetSceneArg arg(SCENE_UFO_MENU, getDispMember(), false, false);
 				if (scene->setScene(arg) && !scene->startScene(nullptr)) {
@@ -3300,7 +3298,7 @@ lbl_80321E2C:
  * Address:	80321E58
  * Size:	0000A8
  */
-void __sinit_ogObjContena_cpp(void)
+void __sinit_ogObjContena_cpp()
 {
 	/*
 	stwu     r1, -0x20(r1)

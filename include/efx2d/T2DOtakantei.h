@@ -5,16 +5,12 @@
 #include "efx2d/TForever.h"
 
 namespace efx2d {
-struct T2DOtakantei : public TForeverN {
+struct T2DOtakantei : public TForever5 {
 	inline T2DOtakantei()
-	    : TForeverN(5)
+	    : TForever5(PID_OtaKantei_1, PID_OtaKantei_2, PID_OtaKantei_3, PID_OtaKantei_4, PID_OtaKantei_5)
 	{
-		m_forevers[0].m_efxID = 0x1d;
-		m_forevers[1].m_efxID = 0x1e;
-		m_forevers[2].m_efxID = 0x1f;
-		m_forevers[3].m_efxID = 0x20;
-		m_forevers[4].m_efxID = 0x21;
 	}
+
 	// _00     = VTBL
 	// _00-_0C = TForeverN
 };

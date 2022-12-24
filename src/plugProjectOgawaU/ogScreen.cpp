@@ -1,6 +1,3 @@
-#include "types.h"
-#include "Dolphin/os.h"
-#include "JSystem/JSupport/JSUList.h"
 #include "og/Screen/AlphaMgr.h"
 #include "og/Screen/ogScreen.h"
 #include "og/Screen/ArrowAlphaBlink.h"
@@ -29,14 +26,14 @@ void _Print(char* format, ...)
  * Address:	80301EB8
  * Size:	000008
  */
-void ArrowAlphaBlink::setSpeed(float speed) { m_speed = speed; }
+void ArrowAlphaBlink::setSpeed(f32 speed) { m_speed = speed; }
 
 /*
  * --INFO--
  * Address:	80301EC0
  * Size:	0000C0
  */
-float ArrowAlphaBlink::calc()
+f32 ArrowAlphaBlink::calc()
 {
 	m_timer += 30.0f * (m_speed * sys->m_deltaTime);
 	if (m_timer > TAU) {
@@ -44,7 +41,7 @@ float ArrowAlphaBlink::calc()
 	}
 
 	// Place the sine wave in a range of 0 - 2 * blinkMag (sin returns between -1 and 1)
-	float factor = m_magnitude * (1.0f + pikmin2_sinf(m_timer));
+	f32 factor = m_magnitude * (1.0f + pikmin2_sinf(m_timer));
 
 	return (factor / 2) + m_start;
 }
@@ -99,9 +96,9 @@ PictureTreeColorCaptureInfo* capturePictureTreeColor(J2DPane* picture, int count
  * Address:	803021D8
  * Size:	000154
  */
-void blendColor(JUtility::TColor& color1, JUtility::TColor& color2, float blendFactor, JUtility::TColor* outColor)
+void blendColor(JUtility::TColor& color1, JUtility::TColor& color2, f32 blendFactor, JUtility::TColor* outColor)
 {
-	float t = blendFactor;
+	f32 t = blendFactor;
 	if (t < 0.0f) {
 		t = 0.0f;
 	}
@@ -109,13 +106,13 @@ void blendColor(JUtility::TColor& color1, JUtility::TColor& color2, float blendF
 		t = 1.0f;
 	}
 
-	// 1 - t is the inverse of t, e.g. t = 0.3, invT = 0.7, so 30% c2 and 70% c1
-	float invT = 1.0f - t;
+	f32 tCompl = 1.0f - t;
+
 	JUtility::TColor store;
-	store.r = (color1.r * invT) + (color2.r * t);
-	store.g = (color1.g * invT) + (color2.g * t);
-	store.b = (color1.b * invT) + (color2.b * t);
-	store.a = (color1.a * invT) + (color2.a * t);
+	store.r = (color1.r * tCompl) + (color2.r * t);
+	store.g = (color1.g * tCompl) + (color2.g * t);
+	store.b = (color1.b * tCompl) + (color2.b * t);
+	store.a = (color1.a * tCompl) + (color2.a * t);
 	outColor->set(store.r, store.g, store.b, store.a);
 }
 
@@ -124,7 +121,7 @@ void blendColor(JUtility::TColor& color1, JUtility::TColor& color2, float blendF
  * Address:	8030232C
  * Size:	000370
  */
-void blendPictureTreeColor(PictureTreeColorCaptureInfo* captureInfo, JUtility::TColor& color1, JUtility::TColor& color2, float blendFactor)
+void blendPictureTreeColor(PictureTreeColorCaptureInfo* captureInfo, JUtility::TColor& color1, JUtility::TColor& color2, f32 blendFactor)
 {
 	PictureTreeColorInfo* colorInfo = captureInfo->m_colorInfoArray;
 	for (int i = 0; i < captureInfo->m_count; i++) {
@@ -149,22 +146,22 @@ void blendPictureTreeColor(PictureTreeColorCaptureInfo* captureInfo, JUtility::T
  * Address:	8030269C
  * Size:	0000C8
  */
-float calcSmooth0to1(float a, float b)
+f32 calcSmooth0to1(f32 start, f32 end)
 {
-	float t = a / b;
-	if (t < 0.0f) {
-		t = 0.0f;
+	f32 ratio = start / end;
+	if (ratio < 0.0f) {
+		ratio = 0.0f;
 	}
-	if (t > 1.0f) {
-		t = 1.0f;
-	}
-
-	float smoothingLimit = 0.8f;
-	if (t < smoothingLimit) {
-		return t;
+	if (ratio > 1.0f) {
+		ratio = 1.0f;
 	}
 
-	float theta = ((1.0 / (1.0 - (double)smoothingLimit)) * (double)(HALF_PI * (t - smoothingLimit)));
+	f32 limit = 0.8f;
+	if (ratio < limit) {
+		return ratio;
+	}
+
+	f32 theta = ((1.0 / (1.0 - (f64)limit)) * (f64)(HALF_PI * (ratio - limit)));
 	return (0.19999999f * pikmin2_sinf(theta)) + 0.8f;
 }
 
@@ -243,7 +240,7 @@ u16 CalcKeta(u32 x)
 {
 	u16 keta = 1;
 	for (int i = 1; i < 10; i++) {
-		if (x >= pow(10.0, (double)i)) {
+		if (x >= pow(10.0, (f64)i)) {
 			keta = i + 1;
 		} else {
 			break;
@@ -277,8 +274,8 @@ u64 MojiToNum(u64 moji, int length)
 			JUT_PANICLINE(576, "MojiToNum ERR! [%s]\n", name2);
 		}
 
-		double power = pow(10.0, (double)i);
-		num          = shift * power + num;
+		f64 power = pow(10.0, (f64)i);
+		num       = shift * power + num;
 	}
 
 	return num;
@@ -417,7 +414,7 @@ void AlphaMgr::in(f32 end)
  * Address:	803030D0
  * Size:	000064
  */
-void AlphaMgr::out(float end)
+void AlphaMgr::out(f32 end)
 {
 	m_currAlpha = 1.0f;
 
@@ -441,11 +438,11 @@ void AlphaMgr::out(float end)
  * Address:	80303134
  * Size:	000050
  */
-void AlphaMgr::blink(float end)
+void AlphaMgr::blink(f32 end)
 {
 	if ((m_state == ALPHAMGR_Disabled) || (m_state == ALPHAMGR_Blinking)) {
-		m_state         = ALPHAMGR_Blinking;
-		float frametime = sys->m_deltaTime;
+		m_state       = ALPHAMGR_Blinking;
+		f32 frametime = sys->m_deltaTime;
 		if (m_growRate > 0.0f) {
 			m_growRate = frametime / end;
 			return;

@@ -1,12 +1,9 @@
 #include "og/Screen/callbackNodes.h"
 #include "og/Screen/NaviLifeGauge.h"
 #include "og/Screen/AngleMgr.h"
-#include "og/Screen/ScaleMgr.h"
 #include "og/Screen/ogScreen.h"
 #include "og/newScreen/ogUtil.h"
-#include "JSystem/J2D/J2DGrafContext.h"
 #include "LifeGaugeMgr.h"
-#include "types.h"
 #include "JSystem/JUT/JUTTexture.h"
 #include "System.h"
 #include "og/Sound.h"
@@ -83,18 +80,18 @@ void CallBack_LifeGauge::init(P2DScreen::Mgr* mgr, DataNavi* data, LifeGaugeType
 		m_li_i_d4 = m_li_i->_0D4.x;
 		m_li_i_d8 = m_li_i->_0D4.y;
 
-		m_pin1->m_isVisible = false;
-		m_pin2->m_isVisible = false;
-		_70                 = static_cast<J2DPicture*>(mgr->search('navi_i'));
-		_74                 = static_cast<J2DPicture*>(mgr->search('navi2_i'));
-		_78                 = static_cast<J2DPicture*>(mgr->search('navi3_i'));
-		_7C                 = static_cast<J2DPicture*>(mgr->search('navi'));
-		_80                 = static_cast<J2DPicture*>(mgr->search('navi2'));
-		_84                 = static_cast<J2DPicture*>(mgr->search('navi3'));
+		m_pin1->hide();
+		m_pin2->hide();
+		_70 = static_cast<J2DPicture*>(mgr->search('navi_i'));
+		_74 = static_cast<J2DPicture*>(mgr->search('navi2_i'));
+		_78 = static_cast<J2DPicture*>(mgr->search('navi3_i'));
+		_7C = static_cast<J2DPicture*>(mgr->search('navi'));
+		_80 = static_cast<J2DPicture*>(mgr->search('navi2'));
+		_84 = static_cast<J2DPicture*>(mgr->search('navi3'));
 
 		if (_80 && _84) {
-			_80->m_isVisible = false;
-			_84->m_isVisible = false;
+			_80->hide();
+			_84->hide();
 			setType(lifeGaugeType);
 		}
 
@@ -747,8 +744,8 @@ void CallBack_LifeGauge::update()
 		m_naviLifeRatio = m_data->m_naviLifeRatio;
 		m_lifeGauge->update(m_naviLifeRatio);
 		if (m_naviLifeRatio < 0.5f) {
-			m_pin1->m_isVisible = true;
-			m_pin2->m_isVisible = true;
+			m_pin1->show();
+			m_pin2->show();
 			m_lowLifeSoundTimer += _58 * sys->m_deltaTime;
 			if (m_lowLifeSoundTimer > 1.0f) {
 				m_lowLifeSoundTimer = 0.0f;
@@ -773,15 +770,15 @@ void CallBack_LifeGauge::update()
 			pane->updateScale(scale);
 			m_pin2->setAlpha(-(scale * 255.0f - 255.0f));
 			if (m_naviLifeRatio > 0.0f) {
-				m_na_i->m_isVisible = false;
-				m_li_i->m_isVisible = false;
+				m_na_i->hide();
+				m_li_i->hide();
 			} else {
-				m_na_i->m_isVisible = true;
-				m_li_i->m_isVisible = true;
+				m_na_i->show();
+				m_li_i->show();
 			}
 		} else {
-			m_pin1->m_isVisible = false;
-			m_pin2->m_isVisible = false;
+			m_pin1->hide();
+			m_pin2->hide();
 		}
 	}
 	/*
@@ -1118,7 +1115,7 @@ void NaviLifeGauge::update()
  * Address:	80307270
  * Size:	000024
  */
-void __sinit_ogLifeGauge_cpp(void)
+void __sinit_ogLifeGauge_cpp()
 {
 	/*
 	lfs      f2, lbl_8051D5C8@sda21(r2)

@@ -18,14 +18,19 @@ namespace newScreen {
 struct CourseName : public ::Screen::SceneBase {
 	CourseName();
 
-	virtual SceneType getSceneType();                       // _08 (weak)
-	virtual ScreenOwnerID getOwnerID();                     // _0C (weak)
-	virtual ScreenMemberID getMemberID();                   // _10 (weak)
-	virtual const char* getResName() const;                 // _1C (weak)
+	virtual const char* getResName() const { return ""; }               // _1C (weak)
+	virtual SceneType getSceneType() { return SCENE_COURSE_NAME; }      // _08 (weak)
+	virtual ScreenOwnerID getOwnerID() { return OWNER_OGA; }            // _0C (weak)
+	virtual ScreenMemberID getMemberID() { return MEMBER_COURSE_NAME; } // _10 (weak)
+
 	virtual void doCreateObj(JKRArchive*);                  // _20
 	virtual void doUserCallBackFunc(Resource::MgrCommand*); // _24
 
 	void doCreateObjUserCallBackFunc(JKRArchive*);
+
+	// unused/inline
+	int getCourseNum();
+	~CourseName();
 
 	// _00      = VTBL
 	// _00-_220 = Screen::SceneBase
@@ -50,7 +55,7 @@ struct ObjCourseName : public ::Screen::ObjBase {
 	inline void drawBG(Graphics&);
 
 	// unused/inline
-	void commonUpdate();
+	bool commonUpdate();
 
 	// _00     = VTBL1
 	// _18     = VTBL2
@@ -68,12 +73,29 @@ struct ObjCourseName : public ::Screen::ObjBase {
 	f32 m_BackgroundAlpha;                    // _5C
 
 	static struct StaticValues {
-		f32 _00;
+		inline StaticValues()
+		{
+			_00 = 0.3f;
+			_04 = 1.0f;
+			_08 = 0.2f;
+			_0C = 3.0f;
+		}
+
+		f32 _00; // _00
 		f32 _04; // _04
 		f32 _08; // _08
 		f32 _0C; // _0C
 	} msVal;
 };
+
+extern const char* CourseNumToSZS[];
+extern const char* bloFileNameCourse[];
+extern char* animFile_Course00[];
+extern char* animFile_Course01[];
+extern char* animFile_Course02[];
+extern char* animFile_Course03[];
+extern char** animFileTableCourse[];
+
 } // namespace newScreen
 } // namespace og
 

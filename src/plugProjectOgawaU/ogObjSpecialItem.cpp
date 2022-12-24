@@ -1,8 +1,6 @@
-#include "types.h"
 #include "og/newScreen/SpecialItem.h"
 #include "P2DScreen.h"
 #include "og/Screen/ogScreen.h"
-#include "PSSystem/PSScene.h"
 #include "PSSystem/PSGame.h"
 #include "PSM/Scene.h"
 #include "System.h"
