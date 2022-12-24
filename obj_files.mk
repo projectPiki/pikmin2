@@ -915,7 +915,7 @@ OGAWA:=\
 	$(BUILD_DIR)/src/plugProjectOgawaU/ogObjChallenge1P.o\
 	$(BUILD_DIR)/src/plugProjectOgawaU/ogSceneChallenge1P.o\
 	$(BUILD_DIR)/src/plugProjectOgawaU/ogScaleMgr.o\
-	$(BUILD_DIR)/asm/plugProjectOgawaU/ogObjSMenuPauseVs.o\
+	$(BUILD_DIR)/src/plugProjectOgawaU/ogObjSMenuPauseVs.o\
 	$(BUILD_DIR)/src/plugProjectOgawaU/ogSceneSMenuPauseVs.o\
 	$(BUILD_DIR)/asm/plugProjectOgawaU/ogFuriko.o\
 	$(BUILD_DIR)/asm/plugProjectOgawaU/ogCounterSlot.o\
