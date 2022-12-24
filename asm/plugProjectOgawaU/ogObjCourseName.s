@@ -853,6 +853,7 @@ drawBG__Q32og9newScreen13ObjCourseNameFR8Graphics:
 /* 80317EF0 00314E30  38 21 00 50 */	addi r1, r1, 0x50
 /* 80317EF4 00314E34  4E 80 00 20 */	blr 
 
+.global __sinit_ogObjCourseName_cpp
 __sinit_ogObjCourseName_cpp: # static initializer
 /* 80317EF8 00314E38  C0 62 F5 88 */	lfs f3, lbl_8051D8E8@sda21(r2)
 /* 80317EFC 00314E3C  3C 60 80 51 */	lis r3, msVal__Q32og9newScreen13ObjCourseName@ha

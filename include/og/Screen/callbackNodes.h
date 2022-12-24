@@ -23,8 +23,25 @@ namespace Screen {
 struct AngleMgr;
 struct AnimGroup;
 struct AnimScreen;
-struct CounterKeta;
 struct DataNavi;
+
+struct CounterKeta {
+	inline CounterKeta(J2DPicture* pic)
+	{
+		m_picture      = pic;
+		m_textureIndex = 0;
+		m_scaleMgr     = new ScaleMgr;
+		m_size         = Vector2f(1.0f);
+	}
+
+	void setSuji(ResTIMG**, u32);
+	void calcScale();
+
+	J2DPicture* m_picture; // _00
+	u32 m_textureIndex;    // _04
+	ScaleMgr* m_scaleMgr;  // _08
+	Vector2f m_size;       // _0C
+};
 
 /**
  * @size{0x44}
@@ -112,10 +129,17 @@ struct CallBack_CounterRV : public P2DScreen::CallBackNode {
 	f32 _A0;                           // _A0
 	f32 _A4;                           // _A4
 
-	static struct {
-		f32 _00;
-		f32 _04;
-		f32 _08;
+	static struct StaticValues {
+		inline StaticValues()
+		{
+			_00 = 0.5f;
+			_04 = 30.0f;
+			_08 = 0.8f;
+		}
+
+		f32 _00; // _00
+		f32 _04; // _04
+		f32 _08; // _08
 	} msVal;
 };
 
@@ -149,6 +173,12 @@ struct CallBack_CounterSlot : public CallBack_CounterRV {
 	void setPuyoParam(f32, f32, f32);
 	void slot_up(int);
 	void startSlot(f32);
+
+	inline void hidePicture(int i)
+	{
+		J2DPicture* pic = m_counters[i]->m_picture;
+		pic->hide();
+	}
 
 	// _00     = VTBL
 	// _00-_A8 = CallBack_CounterRV
@@ -427,25 +457,6 @@ struct AnimText_Screen : public CallBack_Screen {
 	JUtility::TColor m_color15; // _AC
 	JUtility::TColor m_color16; // _B0
 	u8 _B4[4];                  // _B4
-};
-
-struct CounterKeta {
-	inline CounterKeta(J2DPicture* pic)
-	{
-		m_picture      = pic;
-		m_textureIndex = 0;
-		m_scaleMgr     = new ScaleMgr;
-		m_width        = 1.0f;
-		m_height       = 1.0f;
-	}
-	void setSuji(ResTIMG**, u32);
-	void calcScale();
-
-	J2DPicture* m_picture; // _00
-	u32 m_textureIndex;    // _04
-	ScaleMgr* m_scaleMgr;  // _08
-	f32 m_width;           // _0C
-	f32 m_height;          // _10
 };
 
 extern const char* SujiTex32[11];

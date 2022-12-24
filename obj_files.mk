@@ -888,7 +888,7 @@ OGAWA:=\
 	$(BUILD_DIR)/asm/plugProjectOgawaU/ogObjCourseName.o\
 	$(BUILD_DIR)/src/plugProjectOgawaU/ogUtil.o\
 	$(BUILD_DIR)/src/plugProjectOgawaU/ogSceneCourseName.o\
-	$(BUILD_DIR)/asm/plugProjectOgawaU/ogObjKantei.o\
+	$(BUILD_DIR)/src/plugProjectOgawaU/ogObjKantei.o\
 	$(BUILD_DIR)/src/plugProjectOgawaU/ogSceneKantei.o\
 	$(BUILD_DIR)/src/plugProjectOgawaU/ogObjSpecialItem.o\
 	$(BUILD_DIR)/src/plugProjectOgawaU/ogSceneSpecialItem.o\
@@ -924,11 +924,11 @@ OGAWA:=\
 	$(BUILD_DIR)/src/plugProjectOgawaU/ogObjWorldMapInfoWindow1.o\
 	$(BUILD_DIR)/src/plugProjectOgawaU/ogSceneWorldMapInfoWindow1.o\
 	$(BUILD_DIR)/src/plugProjectOgawaU/ogTotalPokoScreen.o\
-	$(BUILD_DIR)/asm/plugProjectOgawaU/ogObjChallengeBase.o\
+	$(BUILD_DIR)/src/plugProjectOgawaU/ogObjChallengeBase.o\
 	$(BUILD_DIR)/src/plugProjectOgawaU/ogSceneChallengeBase.o\
 	$(BUILD_DIR)/asm/plugProjectOgawaU/ogCallBackPicture.o\
 	$(BUILD_DIR)/src/plugProjectOgawaU/ogDrawAfter.o\
-	$(BUILD_DIR)/asm/plugProjectOgawaU/ogOtakaraSensor.o\
+	$(BUILD_DIR)/src/plugProjectOgawaU/ogOtakaraSensor.o\
 	$(BUILD_DIR)/asm/plugProjectOgawaU/ogTitleMsg.o\
 	$(BUILD_DIR)/src/plugProjectOgawaU/ogAngleMgr.o\
 	$(BUILD_DIR)/src/plugProjectOgawaU/ogSceneSMenuCont.o\

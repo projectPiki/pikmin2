@@ -55,7 +55,7 @@ struct ObjCourseName : public ::Screen::ObjBase {
 	inline void drawBG(Graphics&);
 
 	// unused/inline
-	void commonUpdate();
+	bool commonUpdate();
 
 	// _00     = VTBL1
 	// _18     = VTBL2
@@ -73,7 +73,15 @@ struct ObjCourseName : public ::Screen::ObjBase {
 	f32 m_BackgroundAlpha;                    // _5C
 
 	static struct StaticValues {
-		f32 _00;
+		inline StaticValues()
+		{
+			_00 = 0.3f;
+			_04 = 1.0f;
+			_08 = 0.2f;
+			_0C = 3.0f;
+		}
+
+		f32 _00; // _00
 		f32 _04; // _04
 		f32 _08; // _08
 		f32 _0C; // _0C

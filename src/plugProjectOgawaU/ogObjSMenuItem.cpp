@@ -64,8 +64,7 @@ ObjSMenuItem::~ObjSMenuItem() { }
  */
 void ObjSMenuItem::doCreate(JKRArchive* arc)
 {
-	og::Screen::DispMemberSMenuAll* dispfull = static_cast<og::Screen::DispMemberSMenuAll*>(getDispMember());
-	m_disp = static_cast<og::Screen::DispMemberSMenuItem*>(dispfull->getSubMember(OWNER_OGA, MEMBER_START_MENU_ITEM));
+	m_disp = static_cast<og::Screen::DispMemberSMenuItem*>(getDispMember()->getSubMember(OWNER_OGA, MEMBER_START_MENU_ITEM));
 	if (!m_disp) {
 		og::Screen::DispMemberSMenuAll* newdisp = new og::Screen::DispMemberSMenuAll;
 		m_disp = static_cast<og::Screen::DispMemberSMenuItem*>(newdisp->getSubMember(OWNER_OGA, MEMBER_START_MENU_ITEM));

@@ -419,6 +419,7 @@ struct DispMemberKantei : public DispMemberBase {
 		m_totalPokos          = 5000;
 		m_kanteiType          = 0;
 		m_delegate            = nullptr;
+		m_pelletMessageID     = 0;
 		m_pelletOffset        = 0;
 		m_totalPokosCave      = 5555;
 		_28                   = 0;

@@ -52,7 +52,7 @@ struct KanteiDemo : public ::Screen::SceneBase {
 	::Screen::ObjBase* m_objBase; // _220
 };
 
-struct ObjKantei : ::Screen::ObjBase {
+struct ObjKantei : public ::Screen::ObjBase {
 	ObjKantei(const char*);
 
 	virtual ~ObjKantei();                                 // _08 (weak)
@@ -76,6 +76,14 @@ struct ObjKantei : ::Screen::ObjBase {
 	void startItemName(u64);
 	void startKanteiVoice(int);
 	void updateKanteiVoice(void);
+
+	inline void setRect(JGeometry::TBox2f& box)
+	{
+		Vector2f i(box.i.x, box.i.y);
+		Vector2f f(box.f.x, box.f.y);
+		m_drawBox.p1 = i;
+		m_drawBox.p2 = f;
+	}
 
 	// _00     = VTBL1
 	// _18     = VTBL2
@@ -124,6 +132,25 @@ struct ObjKantei : ::Screen::ObjBase {
 	u8 m_playExitSE;                                     // _F0
 
 	static struct StaticValues {
+		inline StaticValues()
+		{
+			m_nameAppearDelay       = 0.6666667f;
+			m_priceAppearDelay      = 1.0f;
+			m_pokoSlotFactor        = 0.3f;
+			m_pokoPuyo1             = 2.8f;
+			m_pokoPuyo2             = 27.0f;
+			m_pokoPuyo3             = 0.5f;
+			m_namePaneAdd           = Vector2f(10.0f, -40.0f);
+			m_screenMoveStart       = 0.0f;
+			m_nameTimerDefault      = 0.8f;
+			m_counterGrow1          = 0.1f;
+			m_counterGrow2          = 30.0f;
+			m_counterGrow3          = 0.5f;
+			m_nameScaleGrowFactor   = 0.3f;
+			m_waitTimerReset        = 0.7f;
+			m_idleStateTimerDefault = 3.0f;
+		}
+
 		f32 m_nameAppearDelay;       // _00
 		f32 m_priceAppearDelay;      // _04
 		f32 m_pokoSlotFactor;        // _08

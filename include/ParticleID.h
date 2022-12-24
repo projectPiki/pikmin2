@@ -56,6 +56,12 @@
 #define PID_SensorGet_2 (0x1B)
 #define PID_SensorGet_3 (0x1C)
 
+#define PID_OtaKantei_1 (0x1D)
+#define PID_OtaKantei_2 (0x1E)
+#define PID_OtaKantei_3 (0x1F)
+#define PID_OtaKantei_4 (0x20)
+#define PID_OtaKantei_5 (0x21)
+
 #define PID_SpraySet_1 (0x22)
 #define PID_SpraySet_2 (0x23)
 

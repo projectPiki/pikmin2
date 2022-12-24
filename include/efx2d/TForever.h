@@ -64,6 +64,16 @@ struct TForever3 : public TForeverN {
 };
 
 struct TForever5 : public TForeverN {
+	inline TForever5(u16 effectID1, u16 effectID2, u16 effectID3, u16 effectID4, u16 effectID5)
+	    : TForeverN(5)
+	{
+		m_forevers[0].m_efxID = effectID1;
+		m_forevers[1].m_efxID = effectID2;
+		m_forevers[2].m_efxID = effectID3;
+		m_forevers[3].m_efxID = effectID4;
+		m_forevers[4].m_efxID = effectID5;
+	}
+
 	// _00		= VTBL
 	// _00-_0C	= TForeverN
 };

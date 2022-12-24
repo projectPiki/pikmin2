@@ -93,11 +93,24 @@ struct ObjChallengeBase : public ::Screen::ObjBase {
 	u32 m_subLevel;           // _5C
 
 	static struct StaticValues {
-		f32 _00;
-		f32 _04;
-		JUtility::TColor m_timerLowWhite;
-		JUtility::TColor m_timerLowBlack;
-		u32 m_timerLimitLow;
+		inline StaticValues()
+		{
+			_00 = 0.3f;
+			_04 = 0.1f;
+			m_timerLowWhite.set(255, 0, 0, 255);
+			m_timerLowBlack.set(64, 0, 0, 0);
+			m_timerLimitLow = 10;
+			_14             = 30;
+			_18             = 10;
+		}
+
+		f32 _00;                          // _00
+		f32 _04;                          // _04
+		JUtility::TColor m_timerLowWhite; // _08
+		JUtility::TColor m_timerLowBlack; // _0C
+		u32 m_timerLimitLow;              // _10
+		u32 _14;                          // _14
+		u32 _18;                          // _18
 	} msBaseVal;
 };
 

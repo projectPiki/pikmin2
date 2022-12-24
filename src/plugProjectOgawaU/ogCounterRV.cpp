@@ -4,71 +4,6 @@
 #include "Dolphin/math.h"
 #include "Dolphin/rand.h"
 
-/*
-    Generated from dpostproc
-
-    .section .ctors, "wa"  # 0x80472F00 - 0x804732C0
-    .4byte __sinit_ogCounterRV_cpp
-
-    .section .data, "wa"  # 0x8049E220 - 0x804EFC20
-    .global __vt__Q32og6Screen18CallBack_CounterRV
-    __vt__Q32og6Screen18CallBack_CounterRV:
-        .4byte 0
-        .4byte 0
-        .4byte __dt__Q32og6Screen18CallBack_CounterRVFv
-        .4byte getChildCount__5CNodeFv
-        .4byte update__Q32og6Screen18CallBack_CounterRVFv
-        .4byte
-   draw__Q32og6Screen18CallBack_CounterRVFR8GraphicsR14J2DGrafContext .4byte
-   doInit__Q29P2DScreen4NodeFv .4byte
-   init__Q32og6Screen18CallBack_CounterRVFP9J2DScreenUxUxUxPUlb .4byte
-   show__Q32og6Screen18CallBack_CounterRVFv .4byte
-   hide__Q32og6Screen18CallBack_CounterRVFv .4byte
-   setValue__Q32og6Screen18CallBack_CounterRVFbb .4byte
-   setValue__Q32og6Screen18CallBack_CounterRVFv
-
-    .section .bss  # 0x804EFC20 - 0x8051467C
-    .global msVal__Q32og6Screen18CallBack_CounterRV
-    msVal__Q32og6Screen18CallBack_CounterRV:
-        .skip 0xC
-
-    .section .sdata2, "a"     # 0x80516360 - 0x80520E40
-    .global lbl_8051D6A0
-    lbl_8051D6A0:
-        .4byte 0x00000000
-    .global lbl_8051D6A4
-    lbl_8051D6A4:
-        .4byte 0x3CCCCCCD
-    .global lbl_8051D6A8
-    lbl_8051D6A8:
-        .4byte 0x43300000
-        .4byte 0x80000000
-    .global lbl_8051D6B0
-    lbl_8051D6B0:
-        .float 1.0
-        .4byte 0x00000000
-    .global lbl_8051D6B8
-    lbl_8051D6B8:
-        .4byte 0x40240000
-        .4byte 0x00000000
-    .global lbl_8051D6C0
-    lbl_8051D6C0:
-        .4byte 0x47000000
-    .global lbl_8051D6C4
-    lbl_8051D6C4:
-        .4byte 0x41100000
-    .global lbl_8051D6C8
-    lbl_8051D6C8:
-        .float 0.5
-    .global lbl_8051D6CC
-    lbl_8051D6CC:
-        .4byte 0x41F00000
-    .global lbl_8051D6D0
-    lbl_8051D6D0:
-        .4byte 0x3F4CCCCD
-        .4byte 0x00000000
-*/
-
 namespace og {
 namespace Screen {
 
@@ -163,14 +98,6 @@ J2DPane* CallBack_CounterRV::getMotherPane()
 		return ret;
 	}
 	return nullptr;
-	/*
-lbz      r0, 0x88(r3)
-lwz      r3, 0x78(r3)
-cmplwi   r0, 0
-bnelr
-li       r3, 0
-blr
-	*/
 }
 
 /*
@@ -1068,8 +995,8 @@ void CallBack_CounterRV::setValue(bool flag1, bool flag2)
 				if (m_isPuyoAnimZero) {
 					pane->setBasePosition(POS_CENTER);
 					CounterKeta* keta = m_counters[i];
-					keta->_0C         = _3C;
-					keta->_10         = m_paneScale.y;
+					keta->m_size.x    = _3C;
+					keta->m_size.y    = m_paneScale.y;
 				} else {
 					pane->setBasePosition((J2DBasePosition)m_basePosition);
 					pane->updateScale(_3C, m_paneScale.y);
@@ -1397,60 +1324,6 @@ void CallBack_CounterRV::update()
 		}
 	}
 	setValue(isInc, isDec);
-	/*
-stwu     r1, -0x10(r1)
-mflr     r0
-li       r4, 0
-li       r5, 0
-stw      r0, 0x14(r1)
-lbz      r0, 0x9c(r3)
-cmplwi   r0, 0
-beq      lbl_8030C4BC
-li       r0, 0
-stb      r0, 0x9c(r3)
-lwz      r6, 0x20(r3)
-lwz      r0, 0(r6)
-stw      r0, 0x24(r3)
-lwz      r0, 0x24(r3)
-stw      r0, 0x28(r3)
-b        lbl_8030C50C
-
-lbl_8030C4BC:
-lbz      r0, 0x86(r3)
-cmplwi   r0, 0
-beq      lbl_8030C4D8
-li       r0, 0
-stw      r0, 0x24(r3)
-stw      r0, 0x28(r3)
-b        lbl_8030C50C
-
-lbl_8030C4D8:
-lwz      r0, 0x24(r3)
-stw      r0, 0x28(r3)
-lwz      r6, 0x20(r3)
-lwz      r0, 0(r6)
-stw      r0, 0x24(r3)
-lwz      r6, 0x24(r3)
-lwz      r0, 0x28(r3)
-cmplw    r6, r0
-ble      lbl_8030C504
-li       r4, 1
-b        lbl_8030C50C
-
-lbl_8030C504:
-bge      lbl_8030C50C
-li       r5, 1
-
-lbl_8030C50C:
-lwz      r12, 0(r3)
-lwz      r12, 0x28(r12)
-mtctr    r12
-bctrl
-lwz      r0, 0x14(r1)
-mtlr     r0
-addi     r1, r1, 0x10
-blr
-	*/
 }
 
 /*
@@ -1473,65 +1346,6 @@ CallBack_CounterRV* setCallBack_CounterRV(P2DScreen::Mgr* screen, u64 tag1, u64 
 	counter->m_isPuyoAnim = isPuyo;
 	screen->addCallBack(tag1, counter);
 	return counter;
-	/*
-	.loc_0x0:
-	  stwu      r1, -0x50(r1)
-	  mflr      r0
-	  stw       r0, 0x54(r1)
-	  stmw      r19, 0x1C(r1)
-	  mr        r24, r3
-	  lwz       r31, 0x58(r1)
-	  mr        r26, r5
-	  lhz       r19, 0x5E(r1)
-	  mr        r25, r6
-	  lhz       r20, 0x62(r1)
-	  mr        r28, r7
-	  lbz       r21, 0x67(r1)
-	  mr        r27, r8
-	  lwz       r22, 0x68(r1)
-	  mr        r30, r9
-	  mr        r29, r10
-	  li        r3, 0xA8
-	  bl        -0x2E86D0
-	  mr.       r23, r3
-	  beq-      .loc_0x6C
-	  lis       r4, 0x804D
-	  mr        r5, r19
-	  addi      r4, r4, 0x7E18
-	  mr        r6, r20
-	  mr        r7, r22
-	  bl        -0x1070
-	  mr        r23, r3
-
-	.loc_0x6C:
-	  stw       r31, 0x8(r1)
-	  li        r0, 0x1
-	  mr        r3, r23
-	  mr        r4, r24
-	  stw       r0, 0xC(r1)
-	  mr        r6, r25
-	  mr        r5, r26
-	  mr        r8, r27
-	  lwz       r12, 0x0(r23)
-	  mr        r7, r28
-	  mr        r10, r29
-	  mr        r9, r30
-	  lwz       r12, 0x1C(r12)
-	  mtctr     r12
-	  bctrl
-	  stb       r21, 0x84(r23)
-	  mr        r3, r24
-	  mr        r6, r25
-	  mr        r5, r26
-	  mr        r7, r23
-	  bl        0x128538
-	  mr        r3, r23
-	  lmw       r19, 0x1C(r1)
-	  lwz       r0, 0x54(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x50
-	  blr
-	*/
 }
 
 /*
@@ -1824,71 +1638,7 @@ CallBack_CounterRV* setCallBack_CounterRV(P2DScreen::Mgr* mgr, u64 tag, u32 data
 	*/
 }
 
-/*
- * --INFO--
- * Address:	8030C910
- * Size:	000080
- */
-// CallBack_CounterRV::~CallBack_CounterRV()
-//{
-/*
-stwu     r1, -0x10(r1)
-mflr     r0
-stw      r0, 0x14(r1)
-stw      r31, 0xc(r1)
-mr       r31, r4
-stw      r30, 8(r1)
-or.      r30, r3, r3
-beq      lbl_8030C974
-lis      r4, __vt__Q32og6Screen18CallBack_CounterRV@ha
-addi     r0, r4, __vt__Q32og6Screen18CallBack_CounterRV@l
-stw      r0, 0(r30)
-beq      lbl_8030C964
-lis      r4, __vt__Q29P2DScreen12CallBackNode@ha
-addi     r0, r4, __vt__Q29P2DScreen12CallBackNode@l
-stw      r0, 0(r30)
-beq      lbl_8030C964
-lis      r5, __vt__Q29P2DScreen4Node@ha
-li       r4, 0
-addi     r0, r5, __vt__Q29P2DScreen4Node@l
-stw      r0, 0(r30)
-bl       __dt__5CNodeFv
-
-lbl_8030C964:
-extsh.   r0, r31
-ble      lbl_8030C974
-mr       r3, r30
-bl       __dl__FPv
-
-lbl_8030C974:
-lwz      r0, 0x14(r1)
-mr       r3, r30
-lwz      r31, 0xc(r1)
-lwz      r30, 8(r1)
-mtlr     r0
-addi     r1, r1, 0x10
-blr
-*/
-//}
+CallBack_CounterRV::StaticValues CallBack_CounterRV::msVal;
 
 } // namespace Screen
 } // namespace og
-
-/*
- * --INFO--
- * Address:	8030C990
- * Size:	000020
- */
-void __sinit_ogCounterRV_cpp()
-{
-	/*
-	lfs      f2, lbl_8051D6C8@sda21(r2)
-	lis      r3, msVal__Q32og6Screen18CallBack_CounterRV@ha
-	lfs      f1, lbl_8051D6CC@sda21(r2)
-	stfsu    f2, msVal__Q32og6Screen18CallBack_CounterRV@l(r3)
-	lfs      f0, lbl_8051D6D0@sda21(r2)
-	stfs     f1, 4(r3)
-	stfs     f0, 8(r3)
-	blr
-	*/
-}

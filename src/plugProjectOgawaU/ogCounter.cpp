@@ -55,9 +55,9 @@ void CounterKeta::setSuji(ResTIMG** texList, u32 texIdx)
  */
 void CounterKeta::calcScale()
 {
-	float scale  = m_scaleMgr->calc();
-	float width  = m_width * scale;
-	float height = m_height * scale;
+	f32 scale  = m_scaleMgr->calc();
+	f32 width  = m_size.x * scale;
+	f32 height = m_size.y * scale;
 	m_picture->setBasePosition(POS_CENTER);
 	J2DPane* picture   = m_picture;
 	picture->m_scale.x = width;
