@@ -583,7 +583,7 @@ KANDO:=\
 	$(BUILD_DIR)/asm/plugProjectKandoU/gameResultTexMgr.o\
 	$(BUILD_DIR)/asm/plugProjectKandoU/gamePelletList.o\
 	$(BUILD_DIR)/src/plugProjectKandoU/vsGS_Title.o\
-	$(BUILD_DIR)/asm/plugProjectKandoU/vsGS_Game.o\
+	$(BUILD_DIR)/src/plugProjectKandoU/vsGS_Game.o\
 	$(BUILD_DIR)/src/plugProjectKandoU/vsGS_Result.o\
 	$(BUILD_DIR)/src/plugProjectKandoU/vsGS_Load.o\
 	$(BUILD_DIR)/asm/plugProjectKandoU/vsStageData.o\

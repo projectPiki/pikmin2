@@ -239,13 +239,16 @@ struct GameState : public State {
 	virtual void onMovieStart(VsGameSection*, MovieConfig*, u32, u32); // _2C
 	virtual void onMovieDone(VsGameSection*, MovieConfig*, u32, u32);  // _30
 	virtual void onNextFloor(VsGameSection*, ItemHole::Item*);         // _34
-	virtual void on_section_fadeout(VsGameSection*);                   // _38 (weak)
-	virtual bool goingToCave(VsGameSection*);                          // _3C
-	virtual void onBattleFinished(VsGameSection*, int, bool);          // _40
-	virtual void onRedOrBlueSuckStart(VsGameSection*, int, bool);      // _44
-	virtual bool isCardUsable(VsGameSection*);                         // _48
-	virtual void drawStatus(Graphics&, VsGameSection*);                // _4C
-	virtual void do_init(VsGameSection*);                              // _50
+	virtual void on_section_fadeout(VsGameSection*)                    // _38 (weak)
+	{
+		setFlag(VSGS_Unk16);
+	}
+	virtual bool goingToCave(VsGameSection*);                     // _3C
+	virtual void onBattleFinished(VsGameSection*, int, bool);     // _40
+	virtual void onRedOrBlueSuckStart(VsGameSection*, int, bool); // _44
+	virtual bool isCardUsable(VsGameSection*);                    // _48
+	virtual void drawStatus(Graphics&, VsGameSection*);           // _4C
+	virtual void do_init(VsGameSection*);                         // _50
 
 	void clearLoseCauses();
 	void checkFindKeyDemo(VsGameSection*);
@@ -290,11 +293,11 @@ struct GameState : public State {
 		}
 	}
 
-	inline void setFlag(u32 flag) { m_flags.typeView |= flag; }
+	inline void setFlag(u16 flag) { m_flags.typeView |= flag; }
 
-	inline void resetFlag(u32 flag) { m_flags.typeView &= ~flag; }
+	inline void resetFlag(u16 flag) { m_flags.typeView &= ~flag; }
 
-	inline bool isFlag(u32 flag) { return m_flags.typeView & flag; }
+	inline bool isFlag(u16 flag) { return m_flags.typeView & flag; }
 
 	inline void setLoseCause(int player, u32 flag) { m_loseCauses[player].typeView |= flag; }
 

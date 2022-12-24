@@ -52,8 +52,8 @@ void GameState::init(VsGameSection* section, StateArg* stateArg)
 	do_init(section);
 	section->setFixNearFar(true, 1.0f, 12800.0f);
 	DeathMgr::clear();
-	gameSystem->m_flags &= ~0x2;
-	gameSystem->m_flags |= 0x20;
+	gameSystem->resetFlag(GAMESYS_Unk2);
+	gameSystem->setFlag(GAMESYS_Unk6);
 	section->clearCaveMenus();
 	if (!gameSystem->isMultiplayerMode()) {
 		section->setPlayerMode(0);
@@ -140,6 +140,13 @@ void GameState::do_init(VsGameSection* section)
  * Size:	00000C
  */
 bool GameState::goingToCave(VsGameSection* section) { return isFlag(VSGS_Unk1); }
+
+/*
+ * This fake function is here to generate the vtables in the correct order
+ * - I cannot see a way for them to generate correctly without something here to
+ * spawn DispMemberChallenge2P 'before' (after) DispWinLose, so this will have to suffice. - HP
+ */
+static void fakeFuncVsGsGame() { og::Screen::DispMemberChallenge2P disp; }
 
 /*
  * --INFO--
@@ -433,14 +440,14 @@ void GameState::checkSMenu(VsGameSection* section)
 		gameSystem->setMoviePause(false, "sm-quit");
 		if (gameSystem->isVersusMode()) {
 			section->m_vsWinner = -1;
-			gameSystem->m_flags &= ~0x20;
+			gameSystem->resetFlag(GAMESYS_Unk6);
 			TitleArg titleArg;
 			titleArg._00 = 1;
 			transit(section, VGS_Title, &titleArg);
 			return;
 		}
 		if (moviePlayer->m_demoState == 0 && !isFlag(VSGS_Unk2)) {
-			gameSystem->m_flags &= ~0x20;
+			gameSystem->resetFlag(GAMESYS_Unk6);
 			MoviePlayArg movieArgs("s12_cv_giveup", 0x0, section->_C8, 0);
 			movieArgs._10 = section->_CC;
 			Onyon* onyon  = ItemOnyon::mgr->m_pod;
@@ -621,112 +628,6 @@ void GameState::checkPikminZero(VsGameSection* section)
 
 		Screen::gGame2DMgr->open_GameOver(Screen::Game2DMgr::GOTITLE_PikminZero);
 	}
-	/*
-	stwu     r1, -0x60(r1)
-	mflr     r0
-	stw      r0, 0x64(r1)
-	stw      r31, 0x5c(r1)
-	mr       r31, r4
-	stw      r30, 0x58(r1)
-	mr       r30, r3
-	stw      r29, 0x54(r1)
-	lwz      r5, gameSystem__4Game@sda21(r13)
-	lwz      r0, 0x44(r5)
-	cmpwi    r0, 1
-	beq      lbl_8022AB20
-	lhz      r0, 0x14(r30)
-	rlwinm.  r0, r0, 0, 0x1e, 0x1e
-	bne      lbl_8022AB20
-	li       r3, -1
-	bl       getAllPikmins__Q24Game8GameStatFi
-	cmpwi    r3, 0
-	bne      lbl_8022AB20
-	lwz      r3, gameSystem__4Game@sda21(r13)
-	bl       paused_soft__Q24Game10GameSystemFv
-	clrlwi.  r0, r3, 0x18
-	bne      lbl_8022AB20
-	lwz      r3, gameSystem__4Game@sda21(r13)
-	lbz      r0, 0x3c(r3)
-	rlwinm.  r0, r0, 0, 0x1a, 0x1a
-	beq      lbl_8022AB20
-	lwz      r3, naviMgr__4Game@sda21(r13)
-	bl       getActiveNavi__Q24Game7NaviMgrFv
-	or.      r29, r3, r3
-	bne      lbl_8022AA64
-	lwz      r3, gameSystem__4Game@sda21(r13)
-	li       r4, 1
-	lwz      r3, 0x58(r3)
-	lwz      r0, 0xe4(r3)
-	cmpwi    r0, 0
-	bne      lbl_8022AA4C
-	li       r4, 0
-
-lbl_8022AA4C:
-	lwz      r3, naviMgr__4Game@sda21(r13)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x24(r12)
-	mtctr    r12
-	bctrl
-	mr       r29, r3
-
-lbl_8022AA64:
-	lhz      r0, 0x14(r30)
-	lis      r3, lbl_8048363C@ha
-	lfs      f0, lbl_8051A274@sda21(r2)
-	addi     r5, r3, lbl_8048363C@l
-	ori      r3, r0, 2
-	li       r0, 0
-	sth      r3, 0x14(r30)
-	mr       r4, r29
-	addi     r3, r1, 8
-	lwz      r6, 0xc8(r31)
-	stw      r5, 0x14(r1)
-	stw      r0, 0x18(r1)
-	stw      r6, 0x20(r1)
-	stfs     f0, 0x2c(r1)
-	stfs     f0, 0x30(r1)
-	stfs     f0, 0x34(r1)
-	stfs     f0, 0x38(r1)
-	stw      r0, 0x3c(r1)
-	stw      r0, 0x24(r1)
-	stw      r0, 0x1c(r1)
-	stw      r0, 0x40(r1)
-	stw      r0, 0x28(r1)
-	stw      r0, 0x44(r1)
-	lwz      r0, 0xcc(r31)
-	stw      r0, 0x24(r1)
-	lwz      r12, 0(r29)
-	lwz      r12, 8(r12)
-	mtctr    r12
-	bctrl
-	lfs      f2, 8(r1)
-	mr       r3, r29
-	lfs      f1, 0xc(r1)
-	lfs      f0, 0x10(r1)
-	stfs     f2, 0x2c(r1)
-	stfs     f1, 0x30(r1)
-	stfs     f0, 0x34(r1)
-	lwz      r12, 0(r29)
-	lwz      r12, 0x64(r12)
-	mtctr    r12
-	bctrl
-	stfs     f1, 0x38(r1)
-	addi     r4, r1, 0x14
-	lwz      r3, moviePlayer__4Game@sda21(r13)
-	bl       play__Q24Game11MoviePlayerFRQ24Game12MoviePlayArg
-	lwz      r3, gGame2DMgr__6Screen@sda21(r13)
-	li       r4, 4
-	bl open_GameOver__Q26Screen9Game2DMgrFQ36Screen9Game2DMgr13GameOverTitle
-
-lbl_8022AB20:
-	lwz      r0, 0x64(r1)
-	lwz      r31, 0x5c(r1)
-	lwz      r30, 0x58(r1)
-	lwz      r29, 0x54(r1)
-	mtlr     r0
-	addi     r1, r1, 0x60
-	blr
-	*/
 }
 
 /*
@@ -1015,239 +916,16 @@ void GameState::open_GameChallenge(VsGameSection* section, int in)
 		disp._60                   = m_floorExtendTimer;
 		Screen::gGame2DMgr->open_GameChallenge1P(disp, in);
 
+	} else if (gameSystem->isVersusMode()) {
+		og::Screen::DispMemberVs disp;
+		Screen::gGame2DMgr->open_GameVs(disp, in);
+
 	} else {
-		if (gameSystem->isVersusMode()) {
-			og::Screen::DispMemberVs disp;
-			Screen::gGame2DMgr->open_GameVs(disp, in);
-
-		} else {
-			og::Screen::DispMemberChallenge2P disp;
-			disp.m_dataGame.m_floorNum = section->getCurrFloor();
-			disp._60                   = m_floorExtendTimer;
-			Screen::gGame2DMgr->open_GameChallenge2P(disp, in);
-		}
+		og::Screen::DispMemberChallenge2P disp;
+		disp.m_dataGame.m_floorNum = section->getCurrFloor();
+		disp._60                   = m_floorExtendTimer;
+		Screen::gGame2DMgr->open_GameChallenge2P(disp, in);
 	}
-	/*
-	stwu     r1, -0x180(r1)
-	mflr     r0
-	stw      r0, 0x184(r1)
-	li       r0, 0
-	stw      r31, 0x17c(r1)
-	mr       r31, r5
-	stw      r30, 0x178(r1)
-	mr       r30, r3
-	stw      r29, 0x174(r1)
-	stw      r28, 0x170(r1)
-	lwz      r6, gameSystem__4Game@sda21(r13)
-	lwz      r3, 0x44(r6)
-	cmpwi    r3, 1
-	beq      lbl_8022BC40
-	cmpwi    r3, 3
-	bne      lbl_8022BC44
-
-lbl_8022BC40:
-	li       r0, 1
-
-lbl_8022BC44:
-	clrlwi.  r0, r0, 0x18
-	bne      lbl_8022BD48
-	lis      r3, __vt__Q32og6Screen14DispMemberBase@ha
-	li       r28, 0
-	addi     r29, r3, __vt__Q32og6Screen14DispMemberBase@l
-	li       r9, 1
-	lfs      f3, lbl_8051A274@sda21(r2)
-	lis      r6, __vt__Q32og6Screen21DispMemberChallenge1P@ha
-	li       r7, 0xa
-	lfs      f2, lbl_8051A268@sda21(r2)
-	lfs      f1, lbl_8051A2B0@sda21(r2)
-	li       r8, 2
-	lfs      f0, lbl_8051A2B4@sda21(r2)
-	lis      r3, __vt__Q32og6Screen21DispMemberDayEndCount@ha
-	li       r11, 0x4d2
-	li       r10, 0x32
-	li       r5, 0x9ec
-	li       r0, 0x1092
-	stw      r29, 0xf4(r1)
-	addi     r12, r6, __vt__Q32og6Screen21DispMemberChallenge1P@l
-	addi     r6, r3, __vt__Q32og6Screen21DispMemberDayEndCount@l
-	mr       r3, r4
-	stw      r29, 0x15c(r1)
-	stw      r28, 0xf8(r1)
-	stw      r12, 0xf4(r1)
-	stfs     f3, 0xfc(r1)
-	stw      r28, 0x100(r1)
-	stw      r28, 0x108(r1)
-	stw      r11, 0x104(r1)
-	stw      r10, 0x10c(r1)
-	stb      r28, 0x110(r1)
-	stw      r28, 0x114(r1)
-	stfs     f2, 0x118(r1)
-	stw      r9, 0x11c(r1)
-	stw      r8, 0x120(r1)
-	stw      r7, 0x124(r1)
-	stw      r7, 0x128(r1)
-	stb      r9, 0x12c(r1)
-	stfs     f2, 0x130(r1)
-	stw      r9, 0x134(r1)
-	stw      r8, 0x138(r1)
-	stw      r7, 0x13c(r1)
-	stw      r7, 0x140(r1)
-	stb      r9, 0x144(r1)
-	stw      r28, 0x160(r1)
-	stw      r6, 0x15c(r1)
-	stfs     f1, 0x168(r1)
-	stfs     f1, 0x164(r1)
-	stw      r5, 0x148(r1)
-	stb      r28, 0x14c(r1)
-	stfs     f0, 0x150(r1)
-	stw      r0, 0x158(r1)
-	stfs     f3, 0x154(r1)
-	lwz      r12, 0(r4)
-	lwz      r12, 0x58(r12)
-	mtctr    r12
-	bctrl
-	stw      r3, 0x108(r1)
-	mr       r5, r31
-	lwz      r3, gGame2DMgr__6Screen@sda21(r13)
-	addi     r4, r1, 0xf4
-	lfs      f0, 0x1c(r30)
-	stfs     f0, 0x154(r1)
-	bl
-open_GameChallenge1P__Q26Screen9Game2DMgrFRQ32og6Screen21DispMemberChallenge1Pi
-	b        lbl_8022BF1C
-
-lbl_8022BD48:
-	cmpwi    r3, 1
-	bne      lbl_8022BE24
-	lis      r3, __vt__Q32og6Screen14DispMemberBase@ha
-	li       r28, 0
-	addi     r4, r3, __vt__Q32og6Screen14DispMemberBase@l
-	li       r9, 1
-	lfs      f1, lbl_8051A268@sda21(r2)
-	lis      r3, __vt__Q32og6Screen12DispMemberVs@ha
-	li       r7, 0xa
-	lfs      f0, lbl_8051A2B8@sda21(r2)
-	li       r8, 2
-	lfs      f2, lbl_8051A274@sda21(r2)
-	li       r11, 0x4d2
-	li       r10, 0x32
-	li       r6, 0x6f
-	li       r0, 0xde
-	stw      r4, 0x80(r1)
-	addi     r12, r3, __vt__Q32og6Screen12DispMemberVs@l
-	lwz      r3, gGame2DMgr__6Screen@sda21(r13)
-	mr       r5, r31
-	stw      r28, 0x84(r1)
-	addi     r4, r1, 0x80
-	stw      r12, 0x80(r1)
-	stfs     f2, 0x8c(r1)
-	stw      r28, 0x90(r1)
-	stw      r28, 0x98(r1)
-	stw      r11, 0x94(r1)
-	stw      r10, 0x9c(r1)
-	stb      r28, 0xa0(r1)
-	stw      r28, 0xa4(r1)
-	stfs     f1, 0xa8(r1)
-	stw      r9, 0xac(r1)
-	stw      r8, 0xb0(r1)
-	stw      r7, 0xb4(r1)
-	stw      r7, 0xb8(r1)
-	stb      r9, 0xbc(r1)
-	stfs     f1, 0xc0(r1)
-	stw      r9, 0xc4(r1)
-	stw      r8, 0xc8(r1)
-	stw      r7, 0xcc(r1)
-	stw      r7, 0xd0(r1)
-	stb      r9, 0xd4(r1)
-	stw      r6, 0xd8(r1)
-	stw      r0, 0xdc(r1)
-	stw      r28, 0xe0(r1)
-	stw      r28, 0xe4(r1)
-	stw      r28, 0x88(r1)
-	stb      r28, 0xe8(r1)
-	stb      r28, 0xe9(r1)
-	stb      r28, 0xea(r1)
-	stb      r28, 0xeb(r1)
-	stfs     f0, 0xec(r1)
-	stfs     f0, 0xf0(r1)
-	bl       open_GameVs__Q26Screen9Game2DMgrFRQ32og6Screen12DispMemberVsi
-	b        lbl_8022BF1C
-
-lbl_8022BE24:
-	lis      r3, __vt__Q32og6Screen14DispMemberBase@ha
-	li       r29, 0
-	addi     r28, r3, __vt__Q32og6Screen14DispMemberBase@l
-	li       r9, 1
-	lfs      f3, lbl_8051A274@sda21(r2)
-	lis      r6, __vt__Q32og6Screen21DispMemberChallenge2P@ha
-	li       r7, 0xa
-	lfs      f2, lbl_8051A268@sda21(r2)
-	lfs      f1, lbl_8051A2B0@sda21(r2)
-	li       r8, 2
-	lfs      f0, lbl_8051A2B4@sda21(r2)
-	lis      r3, __vt__Q32og6Screen21DispMemberDayEndCount@ha
-	li       r11, 0x4d2
-	li       r10, 0x32
-	li       r5, 0x9ec
-	li       r0, 0x1092
-	stw      r28, 8(r1)
-	addi     r12, r6, __vt__Q32og6Screen21DispMemberChallenge2P@l
-	addi     r6, r3, __vt__Q32og6Screen21DispMemberDayEndCount@l
-	mr       r3, r4
-	stw      r28, 0x70(r1)
-	stw      r29, 0xc(r1)
-	stw      r12, 8(r1)
-	stfs     f3, 0x10(r1)
-	stw      r29, 0x14(r1)
-	stw      r29, 0x1c(r1)
-	stw      r11, 0x18(r1)
-	stw      r10, 0x20(r1)
-	stb      r29, 0x24(r1)
-	stw      r29, 0x28(r1)
-	stfs     f2, 0x2c(r1)
-	stw      r9, 0x30(r1)
-	stw      r8, 0x34(r1)
-	stw      r7, 0x38(r1)
-	stw      r7, 0x3c(r1)
-	stb      r9, 0x40(r1)
-	stfs     f2, 0x44(r1)
-	stw      r9, 0x48(r1)
-	stw      r8, 0x4c(r1)
-	stw      r7, 0x50(r1)
-	stw      r7, 0x54(r1)
-	stb      r9, 0x58(r1)
-	stw      r29, 0x74(r1)
-	stw      r6, 0x70(r1)
-	stfs     f1, 0x7c(r1)
-	stfs     f1, 0x78(r1)
-	stw      r5, 0x5c(r1)
-	stb      r29, 0x60(r1)
-	stfs     f0, 0x64(r1)
-	stw      r0, 0x6c(r1)
-	stfs     f3, 0x68(r1)
-	lwz      r12, 0(r4)
-	lwz      r12, 0x58(r12)
-	mtctr    r12
-	bctrl
-	stw      r3, 0x1c(r1)
-	mr       r5, r31
-	lwz      r3, gGame2DMgr__6Screen@sda21(r13)
-	addi     r4, r1, 8
-	lfs      f0, 0x1c(r30)
-	stfs     f0, 0x68(r1)
-	bl
-open_GameChallenge2P__Q26Screen9Game2DMgrFRQ32og6Screen21DispMemberChallenge2Pi
-
-lbl_8022BF1C:
-	lwz      r0, 0x184(r1)
-	lwz      r31, 0x17c(r1)
-	lwz      r30, 0x178(r1)
-	lwz      r29, 0x174(r1)
-	lwz      r28, 0x170(r1)
-	mtlr     r0
-	addi     r1, r1, 0x180
-	blr
-	*/
 }
 
 /*
@@ -1399,225 +1077,3 @@ void GameState::drawStatus(Graphics&, VsGameSection* section) { }
 
 } // namespace VsGame
 } // namespace Game
-
-// namespace og {
-
-// namespace Screen {
-
-// /*
-//  * --INFO--
-//  * Address:	8022C710
-//  * Size:	000008
-//  */
-// u32 DispMemberVs::getSize(void) { return 0x74; }
-
-// /*
-//  * --INFO--
-//  * Address:	8022C718
-//  * Size:	00000C
-//  */
-// void DispMemberVs::getOwnerID(void)
-// {
-// 	/*
-// lis      r3, 0x004F4741@ha
-// addi     r3, r3, 0x004F4741@l
-// blr
-// 	*/
-// }
-
-// /*
-//  * --INFO--
-//  * Address:	8022C724
-//  * Size:	00000C
-//  */
-// void DispMemberVs::getMemberID(void)
-// {
-// 	/*
-// li       r4, 0x5653
-// li       r3, 0
-// blr
-// 	*/
-// }
-
-// /*
-//  * --INFO--
-//  * Address:	8022C730
-//  * Size:	000008
-//  */
-// u32 DispMemberChallenge1P::getSize(void) { return 0x78; }
-
-// /*
-//  * --INFO--
-//  * Address:	8022C738
-//  * Size:	00000C
-//  */
-// void DispMemberChallenge1P::getOwnerID(void)
-// {
-// 	/*
-// lis      r3, 0x004F4741@ha
-// addi     r3, r3, 0x004F4741@l
-// blr
-// 	*/
-// }
-
-// /*
-//  * --INFO--
-//  * Address:	8022C744
-//  * Size:	000010
-//  */
-// void DispMemberChallenge1P::getMemberID(void)
-// {
-// 	/*
-// lis      r4, 0x414C3150@ha
-// li       r3, 0x4348
-// addi     r4, r4, 0x414C3150@l
-// blr
-// 	*/
-// }
-
-// namespace kh {
-
-// } // namespace kh
-
-// /*
-//  * --INFO--
-//  * Address:	8022C754
-//  * Size:	000008
-//  */
-// u32 DispWinLoseReason::getSize(void) { return 0x10; }
-
-// /*
-//  * --INFO--
-//  * Address:	8022C75C
-//  * Size:	000008
-//  */
-// u32 DispWinLoseReason::getOwnerID(void) { return 0x4B48; }
-
-// /*
-//  * --INFO--
-//  * Address:	8022C764
-//  * Size:	000010
-//  */
-// void DispWinLoseReason::getMemberID(void)
-// {
-// 	/*
-// lis      r4, 0x5F52534E@ha
-// li       r3, 0x574c
-// addi     r4, r4, 0x5F52534E@l
-// blr
-// 	*/
-// }
-
-// /*
-//  * --INFO--
-//  * Address:	8022C774
-//  * Size:	000008
-//  */
-// u32 DispWinLose::getSize(void) { return 0x10; }
-
-// /*
-//  * --INFO--
-//  * Address:	8022C77C
-//  * Size:	000008
-//  */
-// u32 DispWinLose::getOwnerID(void) { return 0x4B48; }
-
-// /*
-//  * --INFO--
-//  * Address:	8022C784
-//  * Size:	000014
-//  */
-// void DispWinLose::getMemberID(void)
-// {
-// 	/*
-// lis      r4, 0x4C4F5345@ha
-// lis      r3, 0x57494E5F@ha
-// addi     r4, r4, 0x4C4F5345@l
-// addi     r3, r3, 0x57494E5F@l
-// blr
-// 	*/
-// }
-
-// } // namespace Screen
-
-// namespace og {
-
-// /*
-//  * --INFO--
-//  * Address:	8022C798
-//  * Size:	000008
-//  */
-// u32 DispMemberChallenge2P::getSize(void) { return 0x78; }
-
-// /*
-//  * --INFO--
-//  * Address:	8022C7A0
-//  * Size:	00000C
-//  */
-// void DispMemberChallenge2P::getOwnerID(void)
-// {
-// 	/*
-// lis      r3, 0x004F4741@ha
-// addi     r3, r3, 0x004F4741@l
-// blr
-// 	*/
-// }
-
-// /*
-//  * --INFO--
-//  * Address:	8022C7AC
-//  * Size:	000010
-//  */
-// void DispMemberChallenge2P::getMemberID(void)
-// {
-// 	/*
-// lis      r4, 0x414C3250@ha
-// li       r3, 0x4348
-// addi     r4, r4, 0x414C3250@l
-// blr
-// 	*/
-// }
-
-// namespace Game {
-
-// } // namespace Game
-
-// } // namespace og
-
-// /*
-//  * --INFO--
-//  * Address:	8022C7BC
-//  * Size:	000010
-//  */
-// void GameState::on_section_fadeout(VsGameSection* section)
-// {
-// 	/*
-// 	lhz      r0, 0x14(r3)
-// 	ori      r0, r0, 0x8000
-// 	sth      r0, 0x14(r3)
-// 	blr
-// 	*/
-// }
-
-// } // namespace og
-
-// /*
-//  * --INFO--
-//  * Address:	8022C7CC
-//  * Size:	000028
-//  */
-// void __sinit_vsGS_Game_cpp(void)
-// {
-// 	/*
-// 	lis      r4, __float_nan@ha
-// 	li       r0, -1
-// 	lfs      f0, __float_nan@l(r4)
-// 	lis      r3, lbl_804C0F08@ha
-// 	stw      r0, lbl_80515C68@sda21(r13)
-// 	stfsu    f0, lbl_804C0F08@l(r3)
-// 	stfs     f0, lbl_80515C6C@sda21(r13)
-// 	stfs     f0, 4(r3)
-// 	stfs     f0, 8(r3)
-// 	blr
-// 	*/
-// }
