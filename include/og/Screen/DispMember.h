@@ -524,9 +524,9 @@ struct DispMemberSMenuPause : public DispMemberBase {
 
 	// _00     = VTBL
 	// _00-_08 = DispMemberBase
-	uint m_debtRemaining; // _08
-	uint m_pokoCount;     // _0C
-	int m_exitStatus;     // _10
+	u32 m_debtRemaining; // _08
+	u32 m_pokoCount;     // _0C
+	int m_exitStatus;    // _10
 };
 
 // size 0x18

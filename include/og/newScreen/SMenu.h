@@ -23,6 +23,13 @@ struct MenuMgr;
 } // namespace Screen
 
 namespace newScreen {
+enum PauseMenuState {
+	PAUSEMENU_Normal  = 1,
+	PAUSEMENU_Yuugata = 3, // 'sunset'
+	PAUSEMENU_Zenkai  = 4, // 'main'
+	PAUSEMENU_YesNo   = 6,
+};
+
 struct SceneSMenuBase : public ::Screen::SceneBase {
 	inline SceneSMenuBase()
 	    : m_finishState(1)
@@ -464,17 +471,55 @@ struct ObjSMenuMap : public ObjSMenuBase {
 
 struct ObjSMenuPause : public ObjSMenuBase {
 	static struct ObjHIOVal {
-		ObjHIOVal();
+		ObjHIOVal()
+		{
+			_00 = 0.3f;
 
-		f32 _00;
-		JUtility::TColor m_colors[14];
-		f32 _3C;
-		f32 _40;
+			m_color1.set(253, 145, 21, 39);  // orange
+			m_color2.set(255, 107, 0, 255);  // orange
+			m_color3.set(255, 255, 255, 49); // white
+
+			m_color6.set(253, 255, 255, 0); // white
+			m_color7.set(0, 73, 128, 200);  // dark blue
+			m_color8.set(175, 175, 255, 0); // white (light purple)
+
+			m_color11.set(0, 0, 255, 255);     // blue
+			m_color12.set(255, 255, 255, 0);   // white
+			m_color13.set(255, 255, 255, 255); // white
+			m_color14.set(0, 255, 255, 0);     // white (teal)
+
+			m_color4.set(0, 0, 255, 64);    // blue
+			m_color5.set(255, 255, 187, 0); // white (yellow)
+
+			m_color9.set(76, 74, 0, 255);    // khaki
+			m_color10.set(255, 255, 255, 0); // white
+
+			_3C = 1.0f;
+			_40 = 1.0f;
+		}
 
 		static void getMenuColor(JUtility::TColor*, JUtility::TColor*, JUtility::TColor*, JUtility::TColor*, JUtility::TColor*,
 		                         JUtility::TColor*, JUtility::TColor*, JUtility::TColor*, JUtility::TColor*, JUtility::TColor*,
 		                         JUtility::TColor*, JUtility::TColor*, JUtility::TColor*, JUtility::TColor*);
-	} HIOVal;
+
+		f32 _00;                    // _00
+		JUtility::TColor m_color1;  // _04
+		JUtility::TColor m_color2;  // _08
+		JUtility::TColor m_color3;  // _0C
+		JUtility::TColor m_color4;  // _10
+		JUtility::TColor m_color5;  // _14
+		JUtility::TColor m_color6;  // _18
+		JUtility::TColor m_color7;  // _1C
+		JUtility::TColor m_color8;  // _20
+		JUtility::TColor m_color9;  // _24
+		JUtility::TColor m_color10; // _28
+		JUtility::TColor m_color11; // _2C
+		JUtility::TColor m_color12; // _30
+		JUtility::TColor m_color13; // _34
+		JUtility::TColor m_color14; // _38
+		f32 _3C;                    // _3C
+		f32 _40;                    // _40
+	} msVal;
 
 	ObjSMenuPause(const char*);
 
@@ -505,11 +550,11 @@ struct ObjSMenuPause : public ObjSMenuBase {
 	bool menu();
 
 	// unused/inline
-	inline void open_TopMenu();
-	inline void close_TopMenu();
-	inline void open_Yuugata();
+	void open_TopMenu();
+	void close_TopMenu();
+	void open_Yuugata();
 	void close_Yuugata();
-	inline void blink_Yuugata(int);
+	void blink_Yuugata(int);
 	void open_Zenkai();
 	void close_Zenkai();
 	void blink_Zenkai(int);
@@ -548,11 +593,6 @@ struct ObjSMenuPause : public ObjSMenuBase {
 };
 
 struct ObjSMenuPauseDoukutu : public ObjSMenuBase {
-	enum DoukutuMenuState {
-		DOUKUTU_MenuNormal = 1,
-		DOUKUTU_MenuYesNo  = 6,
-	};
-
 	ObjSMenuPauseDoukutu(const char*);
 
 	virtual ~ObjSMenuPauseDoukutu();                      // _08 (weak)

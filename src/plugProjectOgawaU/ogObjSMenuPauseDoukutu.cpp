@@ -28,7 +28,7 @@ ObjSMenuPauseDoukutu::ObjSMenuPauseDoukutu(char const* name)
 	m_name          = name;
 	m_currPauseSel  = 0;
 	m_currGiveupSel = 0;
-	m_menuState     = DOUKUTU_MenuNormal;
+	m_menuState     = PAUSEMENU_Normal;
 	_B8             = 0;
 
 	m_screenPause = nullptr;
@@ -85,7 +85,7 @@ void ObjSMenuPauseDoukutu::doCreate(JKRArchive* arc)
 
 	m_menuPause  = new og::Screen::MenuMgr;
 	m_menuGiveup = new og::Screen::MenuMgr;
-	m_menuState  = DOUKUTU_MenuNormal;
+	m_menuState  = PAUSEMENU_Normal;
 	m_menuPause->init(m_screenPause, 2, 'nu_00', 'h_00', 's_00', 'il00', 'ir00');
 	m_currPauseSel = 0;
 	m_menuGiveup->init(m_screenPause, 2, 'nu_04', 'h_04', 's_04', 'il04', 'ir04');
@@ -151,7 +151,7 @@ bool ObjSMenuPauseDoukutu::doUpdate()
 		ret = true;
 	} else {
 		if (m_state == MENUSTATE_Default) {
-			if (m_menuState == DOUKUTU_MenuNormal && !m_menuPause->m_isCursorActive) {
+			if (m_menuState == PAUSEMENU_Normal && !m_menuPause->m_isCursorActive) {
 				m_menuPause->startCursor(0.0f);
 			}
 			ret = menu();
@@ -449,11 +449,11 @@ bool ObjSMenuPauseDoukutu::menu()
 	bool ret = false;
 
 	switch (m_menuState) {
-	case DOUKUTU_MenuNormal:
+	case PAUSEMENU_Normal:
 		ret = menu_pause();
 		break;
 
-	case DOUKUTU_MenuYesNo:
+	case PAUSEMENU_YesNo:
 		if (m_disp->m_pikisInDanger && m_warningTimer > 0.0f) {
 			m_warningTimer -= sys->m_deltaTime;
 			if (m_warningTimer < 0.0f) {
@@ -566,7 +566,7 @@ void ObjSMenuPauseDoukutu::set_Blink_YesNo()
  */
 void ObjSMenuPauseDoukutu::set_Menu_Normal()
 {
-	m_menuState = DOUKUTU_MenuNormal;
+	m_menuState = PAUSEMENU_Normal;
 	m_textContinue->open(0.6f);
 	m_textDoGiveup->open(0.7f);
 	m_textGiveupQ->close();
@@ -584,7 +584,7 @@ void ObjSMenuPauseDoukutu::set_Menu_Normal()
  */
 void ObjSMenuPauseDoukutu::set_Menu_YesNo()
 {
-	m_menuState = DOUKUTU_MenuYesNo;
+	m_menuState = PAUSEMENU_YesNo;
 	m_textContinue->close();
 	m_textDoGiveup->close();
 	m_textGiveupQ->open(0.6f);
