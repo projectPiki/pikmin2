@@ -27,7 +27,7 @@ struct Code {
 	};
 #pragma enumsalwaysint reset
 
-	u8 getAttribute();
+	int getAttribute();
 	char* getAttributeName();
 	u8 getSlipCode();
 	char* getSlipCodeName();

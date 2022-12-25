@@ -281,7 +281,7 @@ struct GameState : public State {
 					}
 				}
 
-				if (naviEffect->isFlag(efx::NAVIFX_Unk2)) {
+				if (naviEffect->isFlag(efx::NAVIFX_LightOn)) {
 					naviEffect->createLight();
 				}
 			}

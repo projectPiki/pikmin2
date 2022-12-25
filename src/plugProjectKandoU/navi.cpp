@@ -4,6 +4,7 @@
 #include "Game/StateMachine.h"
 #include "Game/CPlate.h"
 #include "Game/Footmark.h"
+#include "Game/MoviePlayer.h"
 #include "JSystem/J3D/J3DJoint.h"
 #include "JSystem/JUT/JUTException.h"
 #include "PSM/Navi.h"
@@ -11,6 +12,7 @@
 #include "CollInfo.h"
 #include "Iterator.h"
 #include "PikiAI.h"
+#include "Radar.h"
 #include "nans.h"
 
 static const u32 fillerbytes[3] = { 0, 0, 0 };
@@ -81,554 +83,10 @@ Navi::Navi()
 	m_soundObj = new PSM::Navi(this);
 }
 
-} // namespace Game
-
-namespace efx {
-
-/*
- * --INFO--
- * Address:	8013F950
- * Size:	0002B0
- */
-TNaviEffect::TNaviEffect()
-{
-	/*
-	stwu     r1, -0x40(r1)
-	mflr     r0
-	lis      r4, __ct__Q23efx15ContextChasePosFv@ha
-	lis      r5, __dt__Q23efx15ContextChasePosFv@ha
-	stw      r0, 0x44(r1)
-	li       r0, 0
-	addi     r4, r4, __ct__Q23efx15ContextChasePosFv@l
-	addi     r5, r5, __dt__Q23efx15ContextChasePosFv@l
-	stmw     r21, 0x14(r1)
-	mr       r31, r3
-	li       r6, 0x1c
-	li       r7, 1
-	stb      r0, 0(r3)
-	addi     r3, r31, 0x28
-	stb      r0, 1(r31)
-	stb      r0, 2(r31)
-	stb      r0, 3(r31)
-	stb      r0, 4(r31)
-	stb      r0, 5(r31)
-	stb      r0, 6(r31)
-	stb      r0, 7(r31)
-	stw      r0, 8(r31)
-	stw      r0, 0xc(r31)
-	stw      r0, 0x10(r31)
-	stw      r0, 0x14(r31)
-	stw      r0, 0x18(r31)
-	bl       __construct_array
-	lis      r3, __ct__Q23efx15ContextChasePosFv@ha
-	lis      r5, __dt__Q23efx15ContextChasePosFv@ha
-	addi     r4, r3, __ct__Q23efx15ContextChasePosFv@l
-	li       r6, 0x1c
-	addi     r3, r31, 0x44
-	addi     r5, r5, __dt__Q23efx15ContextChasePosFv@l
-	li       r7, 1
-	bl       __construct_array
-	lis      r4, __vt__Q23efx5TBase@ha
-	lis      r3, __vt__Q23efx7TFueact@ha
-	addi     r4, r4, __vt__Q23efx5TBase@l
-	lis      r6, __vt__19JPAParticleCallBack@ha
-	stw      r4, 0x60(r31)
-	addi     r0, r3, __vt__Q23efx7TFueact@l
-	lis      r3, __vt__Q23efx13TFueactCircle@ha
-	lis      r5, __vt__Q23efx5TSync@ha
-	stw      r0, 0x60(r31)
-	addi     r25, r5, __vt__Q23efx5TSync@l
-	lis      r8, __vt__18JPAEmitterCallBack@ha
-	addi     r7, r3, __vt__Q23efx13TFueactCircle@l
-	stw      r4, 0x64(r31)
-	addi     r0, r8, __vt__18JPAEmitterCallBack@l
-	lis      r3, __vt__Q23efx15TFueactBiriBase@ha
-	lis      r5, __vt__Q23efx12TFueactBiri1@ha
-	stw      r0, 0x68(r31)
-	addi     r27, r3, __vt__Q23efx15TFueactBiriBase@l
-	addi     r6, r6, __vt__19JPAParticleCallBack@l
-	addi     r28, r5, __vt__Q23efx12TFueactBiri1@l
-	stw      r6, 0x6c(r31)
-	lis      r3, __vt__Q23efx12TFueactBiri2@ha
-	addi     r10, r3, __vt__Q23efx12TFueactBiri2@l
-	lis      r5, __vt__Q23efx7TCursor@ha
-	stw      r7, 0x64(r31)
-	addi     r6, r7, 0x14
-	addi     r8, r5, __vt__Q23efx7TCursor@l
-	addi     r29, r31, 0xac
-	stw      r6, 0x68(r31)
-	addi     r6, r7, 0x30
-	lis      r3, __vt__Q23efx11TOneEmitter@ha
-	li       r24, 0
-	stw      r6, 0x6c(r31)
-	addi     r7, r3, __vt__Q23efx11TOneEmitter@l
-	addi     r30, r29, 0x14
-	addi     r23, r25, 0x14
-	stw      r24, 0x78(r31)
-	li       r26, 0x67
-	addi     r22, r27, 0x14
-	addi     r12, r28, 0x14
-	stw      r4, 0x7c(r31)
-	li       r11, 0x68
-	addi     r9, r10, 0x14
-	addi     r6, r7, 0x14
-	stw      r0, 0x80(r31)
-	li       r5, 0x19
-	mr       r3, r30
-	stw      r25, 0x7c(r31)
-	stw      r23, 0x80(r31)
-	stw      r24, 0x84(r31)
-	sth      r26, 0x88(r31)
-	stb      r24, 0x8a(r31)
-	stw      r27, 0x7c(r31)
-	stw      r22, 0x80(r31)
-	stw      r28, 0x7c(r31)
-	stw      r12, 0x80(r31)
-	stw      r4, 0x94(r31)
-	stw      r0, 0x98(r31)
-	stw      r25, 0x94(r31)
-	stw      r23, 0x98(r31)
-	stw      r24, 0x9c(r31)
-	sth      r11, 0xa0(r31)
-	stb      r24, 0xa2(r31)
-	stw      r27, 0x94(r31)
-	stw      r22, 0x98(r31)
-	stw      r10, 0x94(r31)
-	stw      r9, 0x98(r31)
-	stw      r4, 0xac(r31)
-	stw      r8, 0xac(r31)
-	stw      r4, 0xb0(r31)
-	stw      r0, 0xb4(r31)
-	stw      r7, 0xb0(r31)
-	stw      r6, 0xb4(r31)
-	stw      r24, 0xb8(r31)
-	sth      r5, 0xbc(r31)
-	bl       __ct__5CNodeFv
-	lis      r3, __vt__Q23efx7Context@ha
-	lis      r4, __ct__Q23efx7ContextFv@ha
-	addi     r0, r3, __vt__Q23efx7Context@l
-	li       r6, 0x24
-	stw      r0, 0(r30)
-	li       r0, 0
-	lis      r3, __dt__Q23efx7ContextFv@ha
-	addi     r4, r4, __ct__Q23efx7ContextFv@l
-	stw      r0, 0x10(r30)
-	addi     r5, r3, __dt__Q23efx7ContextFv@l
-	addi     r3, r29, 0x3c
-	li       r7, 0x10
-	stw      r0, 0xc(r30)
-	stw      r0, 8(r30)
-	stw      r0, 4(r30)
-	stw      r0, 0x24(r29)
-	stw      r0, 0x20(r29)
-	stw      r0, 0x1c(r29)
-	stw      r0, 0x18(r29)
-	bl       __construct_array
-	mr       r3, r29
-	li       r4, 0
-	li       r5, 0x10
-	bl       init__Q23efx7TCursorFll
-	addi     r21, r31, 0x33c
-	li       r4, 0
-	mr       r3, r21
-	li       r5, 0x123
-	li       r6, 0x123
-	bl       __ct__Q23efx10TChaseMtx2FPA4_fUsUs
-	lis      r3, __vt__Q23efx11TOrimaLight@ha
-	addi     r22, r31, 0x36c
-	addi     r3, r3, __vt__Q23efx11TOrimaLight@l
-	li       r0, 0
-	stw      r3, 0(r21)
-	mr       r3, r22
-	li       r4, 0
-	li       r5, 0x124
-	stw      r0, 0x2c(r21)
-	li       r6, 0x125
-	bl       __ct__Q23efx10TChaseMtx2FPA4_fUsUs
-	lis      r3, __vt__Q23efx14TOrimaLightAct@ha
-	addi     r21, r31, 0x39c
-	addi     r3, r3, __vt__Q23efx14TOrimaLightAct@l
-	li       r0, 0
-	stw      r3, 0(r22)
-	mr       r3, r21
-	li       r4, 0
-	li       r5, 0x121
-	stw      r0, 0x2c(r22)
-	li       r6, 0x122
-	bl       __ct__Q23efx11TChaseMtxT2FPA4_fUsUs
-	lis      r4, __vt__Q23efx12TOrimadamage@ha
-	mr       r3, r31
-	addi     r0, r4, __vt__Q23efx12TOrimadamage@l
-	stw      r0, 0(r21)
-	lmw      r21, 0x14(r1)
-	lwz      r0, 0x44(r1)
-	mtlr     r0
-	addi     r1, r1, 0x40
-	blr
-	*/
-}
-
-/*
- * --INFO--
- * Address:	8013FC84
- * Size:	000050
- */
-Context::Context()
-{
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	mr       r31, r3
-	bl       __ct__5CNodeFv
-	lis      r3, __vt__Q23efx7Context@ha
-	li       r0, 0
-	addi     r4, r3, __vt__Q23efx7Context@l
-	mr       r3, r31
-	stw      r4, 0(r31)
-	stw      r0, 0x10(r31)
-	stw      r0, 0xc(r31)
-	stw      r0, 8(r31)
-	stw      r0, 4(r31)
-	lwz      r31, 0xc(r1)
-	lwz      r0, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
-}
-
-/*
- * --INFO--
- * Address:	8013FCD4
- * Size:	00008C
- */
-TOneEmitter::~TOneEmitter()
-{
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	mr       r31, r4
-	stw      r30, 8(r1)
-	or.      r30, r3, r3
-	beq      lbl_8013FD44
-	lis      r3, __vt__Q23efx11TOneEmitter@ha
-	addic.   r0, r30, 0x10
-	addi     r3, r3, __vt__Q23efx11TOneEmitter@l
-	stw      r3, 0(r30)
-	addi     r0, r3, 0x14
-	stw      r0, 4(r30)
-	beq      lbl_8013FD28
-	lis      r4, __vt__Q23efx7Context@ha
-	addi     r3, r30, 0x10
-	addi     r0, r4, __vt__Q23efx7Context@l
-	li       r4, 0
-	stw      r0, 0x10(r30)
-	bl       __dt__5CNodeFv
-
-lbl_8013FD28:
-	addi     r3, r30, 4
-	li       r4, 0
-	bl       __dt__18JPAEmitterCallBackFv
-	extsh.   r0, r31
-	ble      lbl_8013FD44
-	mr       r3, r30
-	bl       __dl__FPv
-
-lbl_8013FD44:
-	lwz      r0, 0x14(r1)
-	mr       r3, r30
-	lwz      r31, 0xc(r1)
-	lwz      r30, 8(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
-}
-
-/*
- * --INFO--
- * Address:	8013FD60
- * Size:	000060
- */
-Context::~Context()
-{
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	mr       r31, r4
-	stw      r30, 8(r1)
-	or.      r30, r3, r3
-	beq      lbl_8013FDA4
-	lis      r5, __vt__Q23efx7Context@ha
-	li       r4, 0
-	addi     r0, r5, __vt__Q23efx7Context@l
-	stw      r0, 0(r30)
-	bl       __dt__5CNodeFv
-	extsh.   r0, r31
-	ble      lbl_8013FDA4
-	mr       r3, r30
-	bl       __dl__FPv
-
-lbl_8013FDA4:
-	lwz      r0, 0x14(r1)
-	mr       r3, r30
-	lwz      r31, 0xc(r1)
-	lwz      r30, 8(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
-}
-
-/*
- * --INFO--
- * Address:	8013FDC0
- * Size:	00009C
- */
-TFueactBiri2::~TFueactBiri2()
-{
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	mr       r31, r4
-	stw      r30, 8(r1)
-	or.      r30, r3, r3
-	beq      lbl_8013FE40
-	lis      r3, __vt__Q23efx12TFueactBiri2@ha
-	addi     r3, r3, __vt__Q23efx12TFueactBiri2@l
-	stw      r3, 0(r30)
-	addi     r0, r3, 0x14
-	stw      r0, 4(r30)
-	beq      lbl_8013FE30
-	lis      r3, __vt__Q23efx15TFueactBiriBase@ha
-	addi     r3, r3, __vt__Q23efx15TFueactBiriBase@l
-	stw      r3, 0(r30)
-	addi     r0, r3, 0x14
-	stw      r0, 4(r30)
-	beq      lbl_8013FE30
-	lis      r4, __vt__Q23efx5TSync@ha
-	addi     r3, r30, 4
-	addi     r5, r4, __vt__Q23efx5TSync@l
-	li       r4, 0
-	stw      r5, 0(r30)
-	addi     r0, r5, 0x14
-	stw      r0, 4(r30)
-	bl       __dt__18JPAEmitterCallBackFv
-
-lbl_8013FE30:
-	extsh.   r0, r31
-	ble      lbl_8013FE40
-	mr       r3, r30
-	bl       __dl__FPv
-
-lbl_8013FE40:
-	lwz      r0, 0x14(r1)
-	mr       r3, r30
-	lwz      r31, 0xc(r1)
-	lwz      r30, 8(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
-}
-
-/*
- * --INFO--
- * Address:	8013FE5C
- * Size:	00009C
- */
-TFueactBiri1::~TFueactBiri1()
-{
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	mr       r31, r4
-	stw      r30, 8(r1)
-	or.      r30, r3, r3
-	beq      lbl_8013FEDC
-	lis      r3, __vt__Q23efx12TFueactBiri1@ha
-	addi     r3, r3, __vt__Q23efx12TFueactBiri1@l
-	stw      r3, 0(r30)
-	addi     r0, r3, 0x14
-	stw      r0, 4(r30)
-	beq      lbl_8013FECC
-	lis      r3, __vt__Q23efx15TFueactBiriBase@ha
-	addi     r3, r3, __vt__Q23efx15TFueactBiriBase@l
-	stw      r3, 0(r30)
-	addi     r0, r3, 0x14
-	stw      r0, 4(r30)
-	beq      lbl_8013FECC
-	lis      r4, __vt__Q23efx5TSync@ha
-	addi     r3, r30, 4
-	addi     r5, r4, __vt__Q23efx5TSync@l
-	li       r4, 0
-	stw      r5, 0(r30)
-	addi     r0, r5, 0x14
-	stw      r0, 4(r30)
-	bl       __dt__18JPAEmitterCallBackFv
-
-lbl_8013FECC:
-	extsh.   r0, r31
-	ble      lbl_8013FEDC
-	mr       r3, r30
-	bl       __dl__FPv
-
-lbl_8013FEDC:
-	lwz      r0, 0x14(r1)
-	mr       r3, r30
-	lwz      r31, 0xc(r1)
-	lwz      r30, 8(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
-}
-
-/*
- * --INFO--
- * Address:	8013FEF8
- * Size:	000084
- */
-TFueactBiriBase::~TFueactBiriBase()
-{
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	mr       r31, r4
-	stw      r30, 8(r1)
-	or.      r30, r3, r3
-	beq      lbl_8013FF60
-	lis      r3, __vt__Q23efx15TFueactBiriBase@ha
-	addi     r3, r3, __vt__Q23efx15TFueactBiriBase@l
-	stw      r3, 0(r30)
-	addi     r0, r3, 0x14
-	stw      r0, 4(r30)
-	beq      lbl_8013FF50
-	lis      r4, __vt__Q23efx5TSync@ha
-	addi     r3, r30, 4
-	addi     r5, r4, __vt__Q23efx5TSync@l
-	li       r4, 0
-	stw      r5, 0(r30)
-	addi     r0, r5, 0x14
-	stw      r0, 4(r30)
-	bl       __dt__18JPAEmitterCallBackFv
-
-lbl_8013FF50:
-	extsh.   r0, r31
-	ble      lbl_8013FF60
-	mr       r3, r30
-	bl       __dl__FPv
-
-lbl_8013FF60:
-	lwz      r0, 0x14(r1)
-	mr       r3, r30
-	lwz      r31, 0xc(r1)
-	lwz      r30, 8(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
-}
-
-/*
- * --INFO--
- * Address:	8013FF7C
- * Size:	000080
- */
-TFueactCircle::~TFueactCircle()
-{
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	mr       r31, r4
-	stw      r30, 8(r1)
-	or.      r30, r3, r3
-	beq      lbl_8013FFE0
-	lis      r4, __vt__Q23efx13TFueactCircle@ha
-	addi     r3, r30, 8
-	addi     r6, r4, __vt__Q23efx13TFueactCircle@l
-	li       r4, 0
-	stw      r6, 0(r30)
-	addi     r5, r6, 0x14
-	addi     r0, r6, 0x30
-	stw      r5, 4(r30)
-	stw      r0, 8(r30)
-	bl       __dt__19JPAParticleCallBackFv
-	addi     r3, r30, 4
-	li       r4, 0
-	bl       __dt__18JPAEmitterCallBackFv
-	extsh.   r0, r31
-	ble      lbl_8013FFE0
-	mr       r3, r30
-	bl       __dl__FPv
-
-lbl_8013FFE0:
-	lwz      r0, 0x14(r1)
-	mr       r3, r30
-	lwz      r31, 0xc(r1)
-	lwz      r30, 8(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
-}
-
-/*
- * --INFO--
- * Address:	8014005C
- * Size:	000054
- */
-ContextChasePos::ContextChasePos()
-{
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	mr       r31, r3
-	bl       __ct__5CNodeFv
-	lis      r3, __vt__Q23efx15ContextChasePos@ha
-	li       r0, 0
-	addi     r4, r3, __vt__Q23efx15ContextChasePos@l
-	mr       r3, r31
-	stw      r4, 0(r31)
-	stw      r0, 0x10(r31)
-	stw      r0, 0xc(r31)
-	stw      r0, 8(r31)
-	stw      r0, 4(r31)
-	stw      r0, 0x18(r31)
-	lwz      r31, 0xc(r1)
-	lwz      r0, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
-}
-
-} // namespace efx
-
-namespace Game {
-
 /*
  * --INFO--
  * Address:	801400B0
  * Size:	000290
- * Majority matches except for var offsets and end of func
- * Believe it's fixed -EpochFlame
  */
 void Navi::onInit(Game::CreatureInitArg* arg)
 {
@@ -666,11 +124,11 @@ void Navi::onInit(Game::CreatureInitArg* arg)
 	m_holdPikiTimer = 0.0f;
 	_2AC            = 0;
 
-	m_collTree->createFromFactory(m_model, naviMgr->_CC, 0);
-	JUT_ASSERTLINE(838, ((s32)m_collTree->m_part) >= 0x80000000, "ザンーー（・д・）??ネン\n");
+	m_collTree->createFromFactory(m_model, naviMgr->_CC, nullptr);
+	JUT_ASSERTLINE(838, ((int)m_collTree->m_part) >= 0x80000000, "ザンーー（・д・）??ネン\n"); // 'disappointttttt D: ?? ment' (lol)
 	m_collTree->attachModel(m_model);
 
-	m_fsm->start(this, 0, nullptr);
+	m_fsm->start(this, NSID_Walk, nullptr);
 
 	getCreatureID();
 
@@ -690,13 +148,10 @@ void Navi::onInit(Game::CreatureInitArg* arg)
 	_26A = 0;
 	_269 = 0;
 	Vector3f navi_scale; // navi model scale
-	navi_scale.x = 1.3f;
-	navi_scale.y = 1.3f;
-	navi_scale.z = 1.3f;
+	navi_scale = Vector3f(1.3f);
+
 	if (m_naviIndex == 1) { // case for Louie/President scale
-		navi_scale.x = 1.5f;
-		navi_scale.y = 1.5f;
-		navi_scale.z = 1.5f;
+		navi_scale = Vector3f(1.5f);
 	}
 
 	m_scale = navi_scale;
@@ -710,37 +165,17 @@ void Navi::onInit(Game::CreatureInitArg* arg)
  * Address:	80140340
  * Size:	000008
  */
-s32 Navi::getCreatureID()
-{
-	return m_naviIndex;
-	/*
-	lhz      r3, 0x2dc(r3)
-	blr
-	*/
-}
+s32 Navi::getCreatureID() { return m_naviIndex; }
 
 /*
  * --INFO--
  * Address:	80140348
  * Size:	000034
  */
-void StateMachine<Game::Navi>::start(Game::Navi*, int, Game::StateArg*)
+void StateMachine<Game::Navi>::start(Navi* navi, int stateID, StateArg* stateArg)
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	li       r0, 0
-	stw      r0, 0x274(r4)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x14(r12)
-	mtctr    r12
-	bctrl
-	lwz      r0, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	navi->m_currentState = nullptr;
+	transit(navi, stateID, stateArg);
 }
 
 /*
@@ -748,48 +183,19 @@ void StateMachine<Game::Navi>::start(Game::Navi*, int, Game::StateArg*)
  * Address:	8014037C
  * Size:	000088
  */
-void Navi::onSetPosition(Vector3f&)
+void Navi::onSetPosition(Vector3f& position)
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	mr       r31, r3
-	lfs      f0, 0(r4)
-	stfs     f0, 0x20c(r3)
-	lfs      f0, 4(r4)
-	stfs     f0, 0x210(r3)
-	lfs      f0, 8(r4)
-	stfs     f0, 0x214(r3)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x218(r12)
-	mtctr    r12
-	bctrl
-	lhz      r0, 0x2dc(r31)
-	cmplwi   r0, 0
-	bne      lbl_801403D8
-	mr       r3, r31
-	li       r4, 0xe
-	li       r5, 0
-	bl       entry__Q25Radar3MgrFPQ24Game15TPositionObjectQ25Radar10cRadarTypeUl
-	b        lbl_801403E8
+	m_shadowParam.m_position = position;
+	static_cast<FakePiki*>(this)->onSetPosition(); // dumb.
 
-lbl_801403D8:
-	mr       r3, r31
-	li       r4, 0xd
-	li       r5, 0
-	bl       entry__Q25Radar3MgrFPQ24Game15TPositionObjectQ25Radar10cRadarTypeUl
+	if (m_naviIndex == 0) { // olimar
+		Radar::Mgr::entry(this, Radar::MAP_OLIMAR, 0);
 
-lbl_801403E8:
-	lwz      r3, 0x28c(r31)
-	bl       init__Q24Game11NaviWhistleFv
-	lwz      r0, 0x14(r1)
-	lwz      r31, 0xc(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	} else { // louie/president
+		Radar::Mgr::entry(this, Radar::MAP_LOUIE_PRESIDENT, 0);
+	}
+
+	m_cursor->init();
 }
 
 /*
@@ -797,26 +203,10 @@ lbl_801403E8:
  * Address:	80140404
  * Size:	000040
  */
-void Navi::onKill(Game::CreatureKillArg*)
+void Navi::onKill(CreatureKillArg* killArg)
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	mr       r31, r3
-	bl       killFakePiki__Q24Game8FakePikiFv
-	lwz      r3, 0x2d0(r31)
-	lwz      r0, 0(r3)
-	rlwinm   r0, r0, 0, 0x1f, 0x1d
-	stw      r0, 0(r3)
-	bl       killLight___Q23efx11TNaviEffectFv
-	lwz      r0, 0x14(r1)
-	lwz      r31, 0xc(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	killFakePiki();
+	m_effectsObj->killLight();
 }
 
 /*
@@ -824,79 +214,26 @@ void Navi::onKill(Game::CreatureKillArg*)
  * Address:	80140444
  * Size:	0000D4
  */
-void Navi::onKeyEvent(const SysShape::KeyEvent&)
+void Navi::onKeyEvent(const SysShape::KeyEvent& event)
 {
-	/*
-	stwu     r1, -0x20(r1)
-	mflr     r0
-	stw      r0, 0x24(r1)
-	stw      r31, 0x1c(r1)
-	stw      r30, 0x18(r1)
-	mr       r30, r4
-	stw      r29, 0x14(r1)
-	mr       r29, r3
-	lwz      r3, 0x274(r3)
-	cmplwi   r3, 0
-	beq      lbl_80140488
-	lwz      r12, 0(r3)
-	mr       r4, r29
-	mr       r5, r30
-	lwz      r12, 0x24(r12)
-	mtctr    r12
-	bctrl
+	if (m_currentState) {
+		m_currentState->onKeyEvent(this, event);
+	}
 
-lbl_80140488:
-	lwz      r3, 0x248(r29)
-	cmplwi   r3, 0
-	beq      lbl_801404FC
-	addi     r3, r3, 0x5c
-	bl       getAttribute__Q27MapCode4CodeFv
-	mr       r0, r3
-	mr       r3, r29
-	lwz      r12, 0(r29)
-	mr       r31, r0
-	lwz      r12, 0x8c(r12)
-	mtctr    r12
-	bctrl
-	clrlwi.  r0, r3, 0x18
-	beq      lbl_801404C4
-	li       r31, 4
+	if (_248) {
+		int walkSound = _248->m_code.getAttribute();
+		if (inWater()) {
+			walkSound = 4;
+		}
 
-lbl_801404C4:
-	lwz      r0, 0x1c(r30)
-	cmplwi   r0, 0xc8
-	bne      lbl_801404E4
-	lwz      r3, 0x26c(r29)
-	mr       r5, r31
-	li       r4, 0x840
-	bl       playWalkSound__Q23PSM4NaviFQ33PSM4Navi8FootTypei
-	b        lbl_801404FC
+		if ((u32)event.m_type == KEYEVENT_200) {
+			m_soundObj->playWalkSound(PSM::Navi::NAVIFOOT_840, walkSound);
 
-lbl_801404E4:
-	cmplwi   r0, 0xc9
-	bne      lbl_801404FC
-	lwz      r3, 0x26c(r29)
-	mr       r5, r31
-	li       r4, 0x820
-	bl       playWalkSound__Q23PSM4NaviFQ33PSM4Navi8FootTypei
-
-lbl_801404FC:
-	lwz      r0, 0x24(r1)
-	lwz      r31, 0x1c(r1)
-	lwz      r30, 0x18(r1)
-	lwz      r29, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x20
-	blr
-	*/
+		} else if ((u32)event.m_type == KEYEVENT_201) {
+			m_soundObj->playWalkSound(PSM::Navi::NAVIFOOT_820, walkSound);
+		}
+	}
 }
-
-/*
- * --INFO--
- * Address:	80140518
- * Size:	000004
- */
-void NaviState::onKeyEvent(Game::Navi*, const SysShape::KeyEvent&) { }
 
 /*
  * --INFO--
@@ -905,44 +242,15 @@ void NaviState::onKeyEvent(Game::Navi*, const SysShape::KeyEvent&) { }
  */
 Vector3f Navi::getPosition()
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	mr       r31, r3
-	lwz      r5, moviePlayer__4Game@sda21(r13)
-	cmplwi   r5, 0
-	beq      lbl_80140570
-	lwz      r0, 0x1f0(r5)
-	clrlwi.  r0, r0, 0x1f
-	beq      lbl_80140570
-	lwz      r3, 0x174(r4)
-	lwz      r3, 0x10(r3)
-	bl       getWorldMatrix__Q28SysShape5JointFv
-	lfs      f1, 0x1c(r3)
-	lfs      f2, 0x2c(r3)
-	lfs      f0, 0xc(r3)
-	stfs     f0, 0(r31)
-	stfs     f1, 4(r31)
-	stfs     f2, 8(r31)
-	b        lbl_80140588
+	if (moviePlayer && moviePlayer->m_flags & MoviePlayer::IS_ACTIVE) {
+		Matrixf* mat = m_model->m_joints->getWorldMatrix();
+		Vector3f position;
+		mat->getTranslation(position);
+		return position;
 
-lbl_80140570:
-	lfs      f0, 0x20c(r4)
-	stfs     f0, 0(r31)
-	lfs      f0, 0x210(r4)
-	stfs     f0, 4(r31)
-	lfs      f0, 0x214(r4)
-	stfs     f0, 8(r31)
-
-lbl_80140588:
-	lwz      r0, 0x14(r1)
-	lwz      r31, 0xc(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	} else {
+		return m_shadowParam.m_position;
+	}
 }
 
 /*
@@ -950,32 +258,11 @@ lbl_80140588:
  * Address:	8014059C
  * Size:	000050
  */
-void Navi::onStickStart(Game::Creature*)
+void Navi::onStickStart(Creature* creature)
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	mr       r31, r3
-	mr       r3, r4
-	lwz      r12, 0(r4)
-	lwz      r12, 0x18(r12)
-	mtctr    r12
-	bctrl
-	clrlwi.  r0, r3, 0x18
-	beq      lbl_801405D8
-	lbz      r3, 0x259(r31)
-	addi     r0, r3, 1
-	stb      r0, 0x259(r31)
-
-lbl_801405D8:
-	lwz      r0, 0x14(r1)
-	lwz      r31, 0xc(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	if (creature->isPiki()) {
+		m_stick++;
+	}
 }
 
 /*
@@ -983,34 +270,11 @@ lbl_801405D8:
  * Address:	801405EC
  * Size:	000058
  */
-void Navi::onStickEnd(Game::Creature*)
+void Navi::onStickEnd(Creature* creature)
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	mr       r31, r3
-	mr       r3, r4
-	lwz      r12, 0(r4)
-	lwz      r12, 0x18(r12)
-	mtctr    r12
-	bctrl
-	clrlwi.  r0, r3, 0x18
-	beq      lbl_80140630
-	lbz      r3, 0x259(r31)
-	cmplwi   r3, 0
-	beq      lbl_80140630
-	addi     r0, r3, -1
-	stb      r0, 0x259(r31)
-
-lbl_80140630:
-	lwz      r0, 0x14(r1)
-	lwz      r31, 0xc(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	if (creature->isPiki() && m_stick) {
+		m_stick--;
+	}
 }
 
 /*

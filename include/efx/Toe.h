@@ -36,7 +36,7 @@ struct ToeHamonA {
 	void create(Vector3f*);
 	void kill();
 
-	ContextChasePos _00;
+	ContextChasePos _00[1]; // yes this is a size 1 array. take it up with the devs.
 };
 
 struct ToeHamonB {
@@ -44,7 +44,7 @@ struct ToeHamonB {
 	void create(Vector3f*);
 	void kill();
 
-	ContextChasePos _00;
+	ContextChasePos _00[1]; // yes this is a size 1 array. take it up with the devs.
 };
 
 struct ToeKourin {

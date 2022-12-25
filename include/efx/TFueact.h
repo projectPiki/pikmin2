@@ -5,8 +5,13 @@
 
 namespace efx {
 struct TFueactBiriBase : public TSync {
+	inline TFueactBiriBase(u16 effectID)
+	    : TSync(effectID)
+	{
+	}
+
 	virtual void doExecuteEmitterOperation(JPABaseEmitter*); // _38
-	virtual ~TFueactBiriBase();                              // _48 (weak)
+	virtual ~TFueactBiriBase() { }                           // _48 (weak)
 
 	// _00      = VTBL
 	// _00-_10  = TSync
@@ -15,27 +20,42 @@ struct TFueactBiriBase : public TSync {
 };
 
 struct TFueactBiri1 : public TFueactBiriBase {
-	virtual ~TFueactBiri1(); // _48 (weak)
+	inline TFueactBiri1()
+	    : TFueactBiriBase(PID_FueActBiri_1)
+	{
+	}
+
+	virtual ~TFueactBiri1() { } // _48 (weak)
 
 	// _00      = VTBL
 	// _00-_18  = TFueactBiriBase
 };
 
 struct TFueactBiri2 : public TFueactBiriBase {
-	virtual ~TFueactBiri2(); // _48 (weak)
+	inline TFueactBiri2()
+	    : TFueactBiriBase(PID_FueActBiri_2)
+	{
+	}
+
+	virtual ~TFueactBiri2() { } // _48 (weak)
 
 	// _00      = VTBL
 	// _00-_18  = TFueactBiriBase
 };
 
 struct TFueactCircle : public TBase, public JPAEmitterCallBack, public JPAParticleCallBack {
+	inline TFueactCircle()
+	    : _14(nullptr)
+	{
+	}
+
 	virtual bool create(Arg*);                               // _08
 	virtual void forceKill();                                // _0C (weak)
 	virtual void fade();                                     // _10 (weak)
 	virtual void execute(JPABaseEmitter*);                   // _44 (weak)
 	virtual void execute(JPABaseEmitter*, JPABaseParticle*); // _48 (weak)
 	virtual void executeAfter(JPABaseEmitter*);              // _4C (weak)
-	virtual ~TFueactCircle();                                // _50 (weak)
+	virtual ~TFueactCircle() { }                             // _50 (weak)
 
 	// _00 VTBL
 	// _04 = JPAEmitterCallBack

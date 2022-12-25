@@ -5,6 +5,12 @@
 
 namespace efx {
 struct TCursor : public TBase {
+	inline TCursor()
+	    : m_oneEmitter(PID_Cursor_1)
+	{
+		init(0, 16);
+	}
+
 	virtual bool create(Arg*); // _08
 	virtual void forceKill();  // _0C (weak)
 	virtual void fade();       // _10 (weak)

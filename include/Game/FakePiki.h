@@ -131,7 +131,7 @@ struct FakePiki : public Creature, public SysShape::MotionListener {
 	virtual void onKeyEvent(const SysShape::KeyEvent& event); // _20C (weak)
 	virtual void updateLookCreature();                        // _210
 	virtual void do_updateLookCreature();                     // _214
-	virtual void onSetPosition();                             // _218 (weak)
+	virtual void onSetPosition() { }                          // _218 (weak)
 	virtual bool isWalking();                                 // _21C (weak)
 
 	bool assertMotion(int);

@@ -8,6 +8,15 @@
 
 namespace efx {
 struct TOneEmitter : public TBase, public JPAEmitterCallBack {
+	inline TOneEmitter() { }
+
+	inline TOneEmitter(u16 effectID)
+	    : m_emitter(nullptr)
+	    , m_effectID(effectID)
+	{
+		m_context.clearRelations();
+	}
+
 	// vtable 1 (TBase)
 	virtual bool create(Arg*); // _08
 	virtual void forceKill();  // _0C
@@ -16,7 +25,7 @@ struct TOneEmitter : public TBase, public JPAEmitterCallBack {
 	virtual void executeAfter(JPABaseEmitter*); // _30 (weak)
 	virtual void startDemoDrawOff();            // _34 (weak)
 	virtual void endDemoDrawOn();               // _38 (weak)
-	virtual ~TOneEmitter();                     // _3C (weak)
+	virtual ~TOneEmitter() { }                  // _3C (weak)
 
 	void add(Context*);
 

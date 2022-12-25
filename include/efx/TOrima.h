@@ -9,8 +9,8 @@ namespace efx {
 
 struct TOrimaLight : public TChaseMtx2 {
 	inline TOrimaLight()
-	    : TChaseMtx2(nullptr, PID_OrimaLight_Orima_1,
-	                 PID_OrimaLight_Orima_2) // probably needs a ctor that takes two u16s but will do for now
+	    : TChaseMtx2(nullptr, PID_OrimaLight_Orima_1, PID_OrimaLight_Orima_1)
+	    , _2C(0)
 	{
 	}
 
@@ -23,8 +23,8 @@ struct TOrimaLight : public TChaseMtx2 {
 
 struct TOrimaLightAct : public TChaseMtx2 {
 	inline TOrimaLightAct()
-	    : TChaseMtx2(nullptr, PID_OrimaLightAct_Orima_1,
-	                 PID_OrimaLightAct_Orima_2) // probably needs a ctor that takes two u16s but will do for now
+	    : TChaseMtx2(nullptr, PID_OrimaLightAct_Orima_1, PID_OrimaLightAct_Orima_2)
+	    , _2C(0)
 	{
 	}
 
@@ -35,9 +35,9 @@ struct TOrimaLightAct : public TChaseMtx2 {
 	u32 _2C; // _2C, unknown
 };
 
-struct TOrimadamage : public TChaseMtx2 {
+struct TOrimadamage : public TChaseMtxT2 {
 	inline TOrimadamage()
-	    : TChaseMtx2(nullptr, PID_OrimaDamage_1, PID_OrimaDamage_2)
+	    : TChaseMtxT2(nullptr, PID_OrimaDamage_1, PID_OrimaDamage_2)
 	{
 	}
 

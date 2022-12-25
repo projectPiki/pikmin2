@@ -11,7 +11,8 @@ struct Navi;
 namespace PSM {
 struct Navi : public CreatureObj {
 	enum FootType {
-
+		NAVIFOOT_820 = 0x820,
+		NAVIFOOT_840 = 0x840,
 	};
 
 	Navi(Game::Navi*);

@@ -68,17 +68,17 @@ struct NaviState : public FSMState<Navi> {
 	{
 	}
 
-	virtual bool invincible();                                 // _20 (weak)
-	virtual void onKeyEvent(Navi*, const SysShape::KeyEvent&); // _24 (weak)
-	virtual void collisionCallback(Navi*, CollEvent&);         // _28 (weak)
-	virtual void wallCallback(Navi*, Vector3f&);               // _2C (weak)
-	virtual void bounceCallback(Navi*, Sys::Triangle*);        // _30 (weak)
-	virtual bool pressable();                                  // _34 (weak)
-	virtual bool callable();                                   // _38 (weak)
-	virtual bool ignoreAtari(Creature* toIgnore);              // _3C (weak)
-	virtual bool needYChangeMotion();                          // _40 (weak)
-	virtual bool vsUsableY();                                  // _44 (weak)
-	virtual void draw2d(J2DGrafContext&, int&);                // _48
+	virtual bool invincible();                                    // _20 (weak)
+	virtual void onKeyEvent(Navi*, const SysShape::KeyEvent&) { } // _24 (weak)
+	virtual void collisionCallback(Navi*, CollEvent&);            // _28 (weak)
+	virtual void wallCallback(Navi*, Vector3f&);                  // _2C (weak)
+	virtual void bounceCallback(Navi*, Sys::Triangle*);           // _30 (weak)
+	virtual bool pressable();                                     // _34 (weak)
+	virtual bool callable();                                      // _38 (weak)
+	virtual bool ignoreAtari(Creature* toIgnore);                 // _3C (weak)
+	virtual bool needYChangeMotion();                             // _40 (weak)
+	virtual bool vsUsableY();                                     // _44 (weak)
+	virtual void draw2d(J2DGrafContext&, int&);                   // _48
 };
 
 struct NaviAbsorbState : public NaviState {

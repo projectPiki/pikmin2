@@ -6,15 +6,19 @@
 
 namespace efx {
 struct Context : public CNode {
-	Context();
+	Context() { clearRelations(); }
 
-	virtual ~Context(); // _08 (weak)
+	virtual ~Context() { } // _08 (weak)
 
 	Vector3f _18; // _18
 };
 
 struct ContextChasePos : public CNode {
-	ContextChasePos();
+	ContextChasePos()
+	{
+		clearRelations();
+		m_position = nullptr;
+	}
 
 	virtual ~ContextChasePos() { } // _08 (weak)
 
