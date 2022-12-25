@@ -9,6 +9,12 @@ namespace ebi {
 struct TYesNoCursor : public efx2d::T2DCursor {
 	void update();
 
+	inline void setPanes(J2DPane* pane1, J2DPane* pane2)
+	{
+		m_pane1 = pane1;
+		m_pane2 = pane2;
+	}
+
 	// _00     = VTBL
 	// _00-_1C = T2DCursor
 	f32 m_posX; // _1C
