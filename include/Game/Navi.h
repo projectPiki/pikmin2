@@ -192,7 +192,7 @@ struct Navi : public FakePiki, virtual public PelletView {
 	// _000      = VTBL
 	// _000-_250 = FakePiki
 	// _250      = ptr to PelletView
-	u32 _250;                                // probably shouldn't be here?
+	// u32 _250;                                // probably shouldn't be here?
 	CPlate* m_cPlateMgr;                     // _254
 	u8 _258;                                 // _258
 	u8 m_stick;                              // _259
@@ -233,7 +233,7 @@ struct Navi : public FakePiki, virtual public PelletView {
 	efx::TNaviEffect* m_effectsObj; // _2D0
 	u8 m_disbandTimer;              // _2D4
 	Footmarks* m_footmarks;         // _2D8
-	BitFlag<u16> m_naviIndex;       // _2DC
+	u16 m_naviIndex;                // _2DC
 	u8 _2DE;                        // _2DE
 	Vector3f m_cStickTargetVector;  // _2E0
 	Vector3f m_cStickPosition;      // _2EC

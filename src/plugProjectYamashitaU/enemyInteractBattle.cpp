@@ -57,7 +57,7 @@ bool InteractAttack::actEnemy(Game::EnemyBase* enemy)
 	if (!enemy->isEvent(0, EB_Vulnerable)) {
 		bool flag = false;
 		if (m_creature->isNavi()) {
-			if (static_cast<Navi*>(m_creature)->m_naviIndex.typeView == 0) {
+			if (static_cast<Navi*>(m_creature)->m_naviIndex == 0) {
 				if (!enemy->isEvent(0, EB_17)) {
 					flag = true;
 					enemy->setEvent(0, EB_17);

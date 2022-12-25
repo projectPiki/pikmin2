@@ -225,7 +225,6 @@ struct Piki : public FakePiki {
 
 	// _000			 = VTBL
 	// _000-_24C = FakePiki
-	u32 _24C;                          // _24C
 	PSM::Piki* m_soundObj;             // _250
 	f32 m_targetLookAngle;             // _254
 	efx::TPkEffect* m_effectsObj;      // _258

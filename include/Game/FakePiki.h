@@ -191,6 +191,7 @@ struct FakePiki : public Creature, public SysShape::MotionListener {
 	Vector3f _238;                      // _238
 	f32 m_faceDirOffset;                // _244
 	Sys::Triangle* _248;                // _248
+	u32 _24C;                           // _24C, unknown
 };
 
 struct FakePikiParms : public CreatureParms {

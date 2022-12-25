@@ -31,7 +31,7 @@ Game::Navi* getNaviPtr(int index)
 	CI_LOOP(iter)
 	{
 		navi = (*iter);
-		if (navi->isAlive() && (int)navi->m_naviIndex.typeView == index) {
+		if (navi->isAlive() && (int)navi->m_naviIndex == index) {
 			return navi;
 		}
 	}
@@ -194,7 +194,7 @@ void ObjSMenuMap::tuningIcon()
 {
 	if (m_disp->m_activeNavi) {
 		Game::Navi* navi = Game::naviMgr->getActiveNavi();
-		if ((int)navi->m_naviIndex.typeView == 0) {
+		if ((int)navi->m_naviIndex == 0) {
 			if (m_louieArrow)
 				m_mapTexPane->appendChild(m_louieArrow);
 			if (m_olimarArrow)
@@ -1827,7 +1827,7 @@ void ObjSMenuMap::doCreate(JKRArchive* arc)
 	m_mapAngle    = 0.0f;
 	if (m_disp->m_activeNavi) {
 		Game::Navi* navi = Game::naviMgr->getActiveNavi();
-		Vector3f vec     = Game::cameraMgr->_24[navi->m_naviIndex.typeView]->getViewVector();
+		Vector3f vec     = Game::cameraMgr->_24[navi->m_naviIndex]->getViewVector();
 		m_mapAngle       = pikmin2_atan2f(vec.x, vec.z);
 	}
 	initMapIcon(arc);

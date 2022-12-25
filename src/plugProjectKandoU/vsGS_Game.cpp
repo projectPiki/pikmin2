@@ -961,7 +961,7 @@ void GameState::update_GameChallenge(VsGameSection* section)
 		Navi* activeNavi = naviMgr->getActiveNavi();
 		int check        = 2;
 		if (activeNavi) {
-			check = activeNavi->m_naviIndex.typeView;
+			check = activeNavi->m_naviIndex;
 		}
 
 		if (check == 0) {

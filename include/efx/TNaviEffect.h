@@ -18,11 +18,14 @@ enum NaviEffectFlags {
 struct TNaviEffect {
 	TNaviEffect();
 
-	enum enumNaviType { _00 = 0 };
+	enum enumNaviType {
+		NAVITYPE_Unk0 = 0,
+	};
 
 	void setNaviType(enumNaviType);
 	void createLight_(Mtx);
 	void updateHamon_();
+	void init(Vector3f*, Mtx, Vector3f*, enumNaviType);
 
 	inline void setFlag(u32 flag) { m_flags |= flag; }
 

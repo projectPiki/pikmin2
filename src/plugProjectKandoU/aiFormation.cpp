@@ -164,7 +164,7 @@ void ActFormation::setFormed()
 	Game::Navi* navi = m_parent->m_navi;
 	int index        = 0;
 	if (navi) {
-		index = navi->m_naviIndex.typeView;
+		index = navi->m_naviIndex;
 	}
 
 	/* do more checks if:

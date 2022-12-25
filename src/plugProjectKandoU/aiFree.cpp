@@ -175,7 +175,7 @@ void ActFree::collisionCallback(Game::Piki* p, Game::CollEvent& event)
 	}
 
 	// Assuming the Navi touched us, rumble and call to squad (eventually)
-	Game::rumbleMgr->startRumble(2, navi->m_naviIndex.typeView);
+	Game::rumbleMgr->startRumble(2, navi->m_naviIndex);
 	Game::InteractFue fue(event.m_collidingCreature, 0, 1);
 	p->stimulate(fue);
 }

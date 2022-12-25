@@ -1347,7 +1347,7 @@ void PikiNukareState::onKeyEvent(Piki* piki, SysShape::KeyEvent const& keyEvent)
 {
 	switch (keyEvent.m_type) {
 	case KEYEVENT_2:
-		rumbleMgr->startRumble(0, (int)m_navi->m_naviIndex.typeView);
+		rumbleMgr->startRumble(0, (int)m_navi->m_naviIndex);
 
 		Vector3f position = piki->getPosition();
 		piki->_17C |= 0x10;
