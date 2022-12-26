@@ -165,7 +165,7 @@ void ActFree::collisionCallback(Game::Piki* p, Game::CollEvent& event)
 	}
 
 	// If the Navi who touched us isn't being used right now (by controller)
-	if (!navi->m_padinput) {
+	if (!navi->m_controller1) {
 		return;
 	}
 

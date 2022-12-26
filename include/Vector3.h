@@ -125,7 +125,10 @@ struct Vector3 {
 		this->z -= other.z;
 	}
 
+	// Squared magnitude
 	inline float sqrMagnitude() { return x * x + y * y + z * z; }
+	// Quick length
+	inline float qLength() { return pikmin2_sqrtf(sqrMagnitude()); }
 
 	float length() const;
 	float distance(Vector3&);

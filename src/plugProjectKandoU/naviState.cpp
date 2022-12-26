@@ -5088,7 +5088,7 @@ void NaviFollowState::messageAttack(Game::Creature*)
 void NaviFollowState::exec(Navi* navi)
 {
 	if (!MoviePlayer || !MoviePlayer->m_demostate) {
-		if (!navi->m_padinput) {
+		if (!navi->m_controller1) {
 			if (!finish) {
 				if (!navi->assertMotion(IPikiAnims::WAIT)) {
 					finish = true;

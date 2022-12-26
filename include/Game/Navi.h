@@ -77,6 +77,8 @@ struct NaviWhistle {
 	Color4 _38;   // _38
 };
 
+#define NAVI_THROWTIMER_LENGTH (10)
+
 struct Navi : public FakePiki, virtual public PelletView {
 	Navi();
 
@@ -176,7 +178,7 @@ struct Navi : public FakePiki, virtual public PelletView {
 	void setupNukuAdjustArg(ItemPikihead::Item*, NaviNukuAdjustStateArg&);
 	void startDamage(f32);
 	void startThrowDisable();
-	void throwable();
+	bool throwable();
 	void throwPiki(Piki*, Vector3f&);
 	void updateCursor();
 	void updateKaisanDisable();
@@ -206,8 +208,8 @@ struct Navi : public FakePiki, virtual public PelletView {
 	PSM::Navi* m_soundObj;                   // _26C
 	NaviFSM* m_fsm;                          // _270
 	NaviState* m_currentState;               // _274
-	Controller* m_padinput;                  // _278
-	Controller* m_padinput2;                 // _27C
+	Controller* m_controller1;               // _278
+	Controller* m_controller2;               // _27C
 	PlayCamera* m_camera;                    // _280
 	PlayCamera* m_camera2;                   // _284
 	BitFlag<u16> _288;                       // _288
@@ -220,16 +222,14 @@ struct Navi : public FakePiki, virtual public PelletView {
 	Sys::MatLoopAnimator* m_arrowMatAnim; // _29C
 	// TODO: If this is the same sort of thing as m_health elsewhere, rename to
 	// that.
-	f32 m_currentLife;     // _2A0
-	u8 m_invincibleTimer;  // _2A4
-	Piki* m_nextThrowPiki; // _2A8
-	u8 _2AC;               // _2AC
-	f32 m_holdPikiTimer;   // _2B0
-	f32 _2B4;              // _2B4
-	f32 _2B8;              // _2B8
-	// TODO: PikDecomp calls this "throwable". I think it's disabled when true
-	// though?
-	bool m_isThrowDisabled;         // _2BC
+	f32 m_currentLife;              // _2A0
+	u8 m_invincibleTimer;           // _2A4
+	Piki* m_nextThrowPiki;          // _2A8
+	u8 _2AC;                        // _2AC
+	f32 m_holdPikiTimer;            // _2B0
+	f32 _2B4;                       // _2B4
+	f32 _2B8;                       // _2B8
+	u8 m_throwTimer;                // _2BC, use NAVI_THROWSTATE enum
 	SysShape::Joint* m_beaconJoint; // _2C0
 	Vector3f m_beaconPosition;      // _2C4
 	efx::TNaviEffect* m_effectsObj; // _2D0

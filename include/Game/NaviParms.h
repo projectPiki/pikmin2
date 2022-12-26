@@ -55,7 +55,7 @@ struct NaviParms : public FakePikiParms {
 		Parm<f32> m_p045;                // _940
 		Parm<f32> m_p046;                // _968
 		Parm<f32> m_p047;                // _990
-		Parm<f32> m_p050;                // _9B8
+		Parm<f32> m_maxHealth;           // _9B8
 		Parm<f32> m_p051;                // _9E0
 		Parm<f32> m_p052;                // _A08
 		Parm<int> m_p055;                // _A30

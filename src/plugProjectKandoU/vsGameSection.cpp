@@ -355,8 +355,8 @@ void VsGameSection::initPlayData()
 {
 	playData->reset();
 	playData->setDevelopSetting(true, true);
-	playData->m_naviLifeMax[0] = naviMgr->m_naviParms->m_naviParms.m_p050.m_value;
-	playData->m_naviLifeMax[1] = naviMgr->m_naviParms->m_naviParms.m_p050.m_value;
+	playData->m_naviLifeMax[0] = naviMgr->m_naviParms->m_naviParms.m_maxHealth.m_value;
+	playData->m_naviLifeMax[1] = naviMgr->m_naviParms->m_naviParms.m_maxHealth.m_value;
 }
 
 /*
