@@ -280,129 +280,8 @@ void TMemoryCard::setArchive(JKRArchive* arc)
  */
 void E2DCallBack_BlinkFontColor::set(J2DTextBox* pane1, J2DTextBox* pane2)
 {
-	m_fonts[0].m_col1  = pane1->m_color1;
-	m_fonts[0].m_col2  = pane1->m_color2;
-	m_fonts[0].m_white = pane1->getWhite();
-	m_fonts[0].m_black = pane1->getBlack();
-
-	m_fonts[1].m_col1  = pane2->m_color1;
-	m_fonts[1].m_col2  = pane2->m_color2;
-	m_fonts[1].m_white = pane2->getWhite();
-	m_fonts[1].m_black = pane2->getBlack();
-
-	/*
-	stwu     r1, -0x40(r1)
-	mflr     r0
-	stw      r0, 0x44(r1)
-	stw      r31, 0x3c(r1)
-	mr       r31, r5
-	stw      r30, 0x38(r1)
-	mr       r30, r3
-	addi     r3, r1, 0x20
-	stw      r29, 0x34(r1)
-	mr       r29, r4
-	lwz      r0, 0x104(r4)
-	stw      r0, 0x18(r1)
-	lbz      r5, 0x18(r1)
-	lbz      r0, 0x19(r1)
-	stb      r5, 0x20(r30)
-	lbz      r5, 0x1a(r1)
-	stb      r0, 0x21(r30)
-	lbz      r0, 0x1b(r1)
-	stb      r5, 0x22(r30)
-	stb      r0, 0x23(r30)
-	lwz      r0, 0x108(r4)
-	stw      r0, 0x1c(r1)
-	lbz      r5, 0x1c(r1)
-	lbz      r0, 0x1d(r1)
-	stb      r5, 0x24(r30)
-	lbz      r5, 0x1e(r1)
-	stb      r0, 0x25(r30)
-	lbz      r0, 0x1f(r1)
-	stb      r5, 0x26(r30)
-	stb      r0, 0x27(r30)
-	lwz      r12, 0(r4)
-	lwz      r12, 0xb4(r12)
-	mtctr    r12
-	bctrl
-	lbz      r0, 0x20(r1)
-	mr       r4, r29
-	addi     r3, r1, 0x24
-	stb      r0, 0x28(r30)
-	lbz      r0, 0x21(r1)
-	stb      r0, 0x29(r30)
-	lbz      r0, 0x22(r1)
-	stb      r0, 0x2a(r30)
-	lbz      r0, 0x23(r1)
-	stb      r0, 0x2b(r30)
-	lwz      r12, 0(r29)
-	lwz      r12, 0xb0(r12)
-	mtctr    r12
-	bctrl
-	lbz      r0, 0x24(r1)
-	mr       r4, r31
-	addi     r3, r1, 0x10
-	stb      r0, 0x2c(r30)
-	lbz      r0, 0x25(r1)
-	stb      r0, 0x2d(r30)
-	lbz      r0, 0x26(r1)
-	stb      r0, 0x2e(r30)
-	lbz      r0, 0x27(r1)
-	stb      r0, 0x2f(r30)
-	lwz      r0, 0x104(r31)
-	stw      r0, 8(r1)
-	lbz      r5, 8(r1)
-	lbz      r0, 9(r1)
-	stb      r5, 0x30(r30)
-	lbz      r5, 0xa(r1)
-	stb      r0, 0x31(r30)
-	lbz      r0, 0xb(r1)
-	stb      r5, 0x32(r30)
-	stb      r0, 0x33(r30)
-	lwz      r0, 0x108(r31)
-	stw      r0, 0xc(r1)
-	lbz      r5, 0xc(r1)
-	lbz      r0, 0xd(r1)
-	stb      r5, 0x34(r30)
-	lbz      r5, 0xe(r1)
-	stb      r0, 0x35(r30)
-	lbz      r0, 0xf(r1)
-	stb      r5, 0x36(r30)
-	stb      r0, 0x37(r30)
-	lwz      r12, 0(r31)
-	lwz      r12, 0xb4(r12)
-	mtctr    r12
-	bctrl
-	lbz      r0, 0x10(r1)
-	mr       r4, r31
-	addi     r3, r1, 0x14
-	stb      r0, 0x38(r30)
-	lbz      r0, 0x11(r1)
-	stb      r0, 0x39(r30)
-	lbz      r0, 0x12(r1)
-	stb      r0, 0x3a(r30)
-	lbz      r0, 0x13(r1)
-	stb      r0, 0x3b(r30)
-	lwz      r12, 0(r31)
-	lwz      r12, 0xb0(r12)
-	mtctr    r12
-	bctrl
-	lbz      r0, 0x14(r1)
-	stb      r0, 0x3c(r30)
-	lbz      r0, 0x15(r1)
-	stb      r0, 0x3d(r30)
-	lbz      r0, 0x16(r1)
-	stb      r0, 0x3e(r30)
-	lbz      r0, 0x17(r1)
-	stb      r0, 0x3f(r30)
-	lwz      r31, 0x3c(r1)
-	lwz      r30, 0x38(r1)
-	lwz      r29, 0x34(r1)
-	lwz      r0, 0x44(r1)
-	mtlr     r0
-	addi     r1, r1, 0x40
-	blr
-	*/
+	setColors(0, pane1);
+	setColors(1, pane2);
 }
 
 namespace Screen {
@@ -881,49 +760,10 @@ void TMemoryCard::setSelect_(bool sel)
 	m_currSel = sel;
 
 	if (m_currSel) {
-		m_blinkFont[0].m_isEnabled = false;
-		J2DTextBox* pane           = static_cast<J2DTextBox*>(m_blinkFont[0].m_pane);
-		if (pane) {
-			pane->m_color1 = m_blinkFont[0].m_fonts[0].m_col1;
-			pane->m_color2 = m_blinkFont[0].m_fonts[0].m_col2;
-			pane->setWhite(m_blinkFont[0].m_fonts[0].m_white);
-			pane->setBlack(m_blinkFont[0].m_fonts[0].m_black);
-		}
+		doSetSelect(1.0f, true); // needs tweaking
 
-		m_blinkFont[1].m_isEnabled = false;
-		pane                       = static_cast<J2DTextBox*>(m_blinkFont[1].m_pane);
-		if (pane) {
-			pane->m_color1 = m_blinkFont[1].m_fonts[0].m_col1;
-			pane->m_color2 = m_blinkFont[1].m_fonts[0].m_col2;
-			pane->setWhite(m_blinkFont[1].m_fonts[0].m_white);
-			pane->setBlack(m_blinkFont[1].m_fonts[0].m_black);
-		}
-		m_cursor1.m_timer    = 1.0f;
-		m_cursor1.m_selected = true;
-		m_cursor2.m_timer    = 1.0f;
-		m_cursor2.m_selected = true;
 	} else {
-		m_blinkFont[0].m_isEnabled = false;
-		J2DTextBox* pane           = static_cast<J2DTextBox*>(m_blinkFont[0].m_pane);
-		if (pane) {
-			pane->m_color1 = m_blinkFont[0].m_fonts[0].m_col1;
-			pane->m_color2 = m_blinkFont[0].m_fonts[0].m_col2;
-			pane->setWhite(m_blinkFont[0].m_fonts[0].m_white);
-			pane->setBlack(m_blinkFont[0].m_fonts[0].m_black);
-		}
-
-		m_blinkFont[1].m_isEnabled = false;
-		pane                       = static_cast<J2DTextBox*>(m_blinkFont[1].m_pane);
-		if (pane) {
-			pane->m_color1 = m_blinkFont[1].m_fonts[0].m_col1;
-			pane->m_color2 = m_blinkFont[1].m_fonts[0].m_col2;
-			pane->setWhite(m_blinkFont[1].m_fonts[0].m_white);
-			pane->setBlack(m_blinkFont[1].m_fonts[0].m_black);
-		}
-		m_cursor1.m_timer    = 0.0f;
-		m_cursor1.m_selected = false;
-		m_cursor2.m_timer    = 0.0f;
-		m_cursor2.m_selected = false;
+		doSetSelect(0.0f, false); // needs tweaking
 	}
 	m_cursor1.update();
 	m_cursor2.update();
@@ -1150,6 +990,7 @@ blr
 
 } // namespace Screen
 
+#pragma dont_inline on
 /*
  * --INFO--
  * Address:	803C3E88
@@ -1258,6 +1099,7 @@ lbl_803C3F9C:
 	blr
 	*/
 }
+#pragma dont_inline reset
 
 namespace Screen {
 
@@ -1307,33 +1149,21 @@ void TMemoryCard::startState(enumState state)
 		m_paneMsg1->setAlpha(255);
 		m_paneMsg2->show();
 		m_paneMsg2->setAlpha(255);
-		if (m_currSel) {
+		if (m_currSel == 1) {
 			m_blinkFont[0].m_isEnabled = true;
 			m_blinkFont[0].m_speed     = sys->m_deltaTime * 3.333333f;
 			m_blinkFont[0]._40         = 0.0f;
 			m_blinkFont[0]._48         = true;
 			m_blinkFont[0]._49         = false;
-			m_blinkFont[1].m_isEnabled = false;
-			J2DTextBox* pane           = static_cast<J2DTextBox*>(m_blinkFont[1].m_pane);
-			if (pane) {
-				pane->m_color1 = m_blinkFont[1].m_fonts[0].m_col1;
-				pane->m_color2 = m_blinkFont[1].m_fonts[0].m_col2;
-				pane->setWhite(m_blinkFont[1].m_fonts[0].m_white);
-				pane->setBlack(m_blinkFont[1].m_fonts[0].m_black);
-			}
+
+			m_blinkFont[1].setPaneColors();
 			m_cursor1.m_timer    = 1.0f;
 			m_cursor1.m_selected = true;
 			m_cursor2.m_timer    = 1.0f;
 			m_cursor2.m_selected = true;
 		} else {
-			m_blinkFont[0].m_isEnabled = false;
-			J2DTextBox* pane           = static_cast<J2DTextBox*>(m_blinkFont[0].m_pane);
-			if (pane) {
-				pane->m_color1 = m_blinkFont[0].m_fonts[0].m_col1;
-				pane->m_color2 = m_blinkFont[0].m_fonts[0].m_col2;
-				pane->setWhite(m_blinkFont[0].m_fonts[0].m_white);
-				pane->setBlack(m_blinkFont[0].m_fonts[0].m_black);
-			}
+			m_blinkFont[0].setPaneColors();
+
 			m_blinkFont[1].m_isEnabled = true;
 			m_blinkFont[1].m_speed     = sys->m_deltaTime * 3.333333f;
 			m_blinkFont[1]._40         = 0.0f;
@@ -1355,13 +1185,14 @@ void TMemoryCard::startState(enumState state)
 		m_anims[4].play(sys->m_deltaTime * 60.0f, (J3DAnmAttr)0, true);
 		m_screenMain->animation();
 		break;
+
 	case MEMCARD_Message:
 		m_cursor1.kill();
 		m_cursor2.kill();
+		m_paneMsg4->hide();
 		m_paneMsg1->hide();
 		m_paneMsg2->hide();
-		m_paneMsg3->hide();
-		m_paneMsg4->hide();
+		m_paneMsg3->show();
 		m_paneMsg3->setAlpha(255);
 		m_inputDelay = 20;
 		_0C          = 20;
@@ -1723,27 +1554,6 @@ blr
 void TMemoryCard::update()
 {
 	switch (m_state) {
-	case MEMCARD_Message:
-		if (m_inputDelay) {
-			m_inputDelay--;
-		}
-		if (!m_inputDelay) {
-			bool end  = false;
-			u32 input = m_controller->m_padButton.m_buttonDown;
-			if ((input & Controller::PRESS_A) || (input & Controller::PRESS_B) || (input & Controller::PRESS_X)
-			    || (input & Controller::PRESS_Y) || (input & Controller::PRESS_START)) {
-				end = true;
-			}
-			if (end && m_canExit) {
-				startState(MEMCARD_Finish);
-				return;
-			}
-		}
-		m_screenMain->update();
-		if (m_isPlaySavingSE) {
-			PSSystem::spSysIF->playSystemSe(PSSE_SY_MEMORYCARD_ACCESS, 0);
-		}
-		break;
 	case MEMCARD_Selection:
 		if (m_inputDelay) {
 			m_inputDelay--;
@@ -1859,6 +1669,30 @@ void TMemoryCard::update()
 			m_cursor2.update();
 			m_screenMain->update();
 		}
+		break;
+
+	case MEMCARD_Message:
+		if (m_inputDelay) {
+			m_inputDelay--;
+		}
+		if (!m_inputDelay) {
+			bool end  = false;
+			u32 input = m_controller->m_padButton.m_buttonDown;
+			if ((input & Controller::PRESS_A) || (input & Controller::PRESS_B) || (input & Controller::PRESS_X)
+			    || (input & Controller::PRESS_Y) || (input & Controller::PRESS_START)) {
+				end = true;
+			}
+			if (end && m_canExit) {
+				startState(MEMCARD_Finish);
+				return;
+			}
+		}
+		m_screenMain->update();
+		if (m_isPlaySavingSE) {
+			PSSystem::spSysIF->playSystemSe(PSSE_SY_MEMORYCARD_ACCESS, 0);
+		}
+		break;
+
 	case MEMCARD_Finish:
 		if (m_msgAlpha) {
 			m_msgAlpha--;
@@ -1890,6 +1724,7 @@ void TMemoryCard::update()
 			m_paneMsg4->setAlpha(alpha);
 		}
 		m_screenMain->update();
+		break;
 	}
 	/*
 stwu     r1, -0xc0(r1)
