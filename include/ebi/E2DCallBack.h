@@ -72,11 +72,11 @@ struct E2DCallBack_BlinkFontColor : public E2DCallBack_Base {
 	void set(J2DTextBox*, J2DTextBox*);
 	void set(ebi::E2DFullFontColor&, ebi::E2DFullFontColor&);
 
-	E2DFullFontColor _20[2]; // _20
-	float _40;               // _40
-	float _44;               // _44
-	u8 _48;                  // _48
-	u8 _49;                  // _49
+	E2DFullFontColor m_fonts[2]; // _20
+	f32 _40;                     // _40
+	f32 m_speed;                 // _44
+	u8 _48;                      // _48
+	u8 _49;                      // _49
 };
 
 struct E2DCallBack_CalcAnimation : public E2DCallBack_Base {

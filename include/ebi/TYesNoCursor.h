@@ -17,13 +17,12 @@ struct TYesNoCursor : public efx2d::T2DCursor {
 
 	// _00     = VTBL
 	// _00-_1C = T2DCursor
-	f32 m_posX; // _1C
-	f32 m_posY; // _20
-	f32 _24;
-	f32 m_timer;        // _28
-	bool m_leftOrRight; // _2C
-	J2DPane* m_pane1;   // _30
-	J2DPane* m_pane2;   // _34
+	Vector2f m_pos;   // _1C
+	f32 m_speed;      // _24
+	f32 m_timer;      // _28
+	bool m_selected;  // _2C
+	J2DPane* m_pane1; // _30
+	J2DPane* m_pane2; // _34
 };
 } // namespace ebi
 

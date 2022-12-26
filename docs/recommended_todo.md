@@ -103,7 +103,7 @@
 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectEbisawaU/ebiP2TitleUnit.cpp">ebiP2TitleUnit.cpp</a> | 28490 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectEbisawaU/ebiScreenProgre.cpp">ebiScreenProgre.cpp</a> | 31730 |
 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectEbisawaU/efx2dEffect.cpp">efx2dEffect.cpp</a> | 33329 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectEbisawaU/ebiMainTitleMgr.cpp">ebiMainTitleMgr.cpp</a> | 35109 |
 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectEbisawaU/ebiScreenSaveMenu.cpp">ebiScreenSaveMenu.cpp</a> | 35378 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectEbisawaU/ebiP2TitleKogane.cpp">ebiP2TitleKogane.cpp</a> | 39617 |
-| <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectEbisawaU/ebiScreenTitleMenu.cpp">ebiScreenTitleMenu.cpp</a> | 40248 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectEbisawaU/ebiScreenOmake.cpp">ebiScreenOmake.cpp</a> | 45779 |
+| <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectEbisawaU/ebiScreenTitleMenu.cpp">ebiScreenTitleMenu.cpp</a> | 40248 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectEbisawaU/ebiP2TitleChappy.cpp">ebiP2TitleChappy.cpp</a> | 48946 |
 
 ### <section id="plugProjectHikinoU">plugProjectHikinoU</section>
 | File | Size (bytes) | File | Size (bytes) |

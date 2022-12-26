@@ -16,7 +16,7 @@ struct Mgr_tuning;
 namespace ebi {
 namespace Screen {
 struct TMemoryCard {
-	enum enumState { UNKNOWN };
+	enum enumState { MEMCARD_Disabled, MEMCARD_Selection, MEMCARD_Message, MEMCARD_Finish };
 
 	TMemoryCard();
 
@@ -28,7 +28,7 @@ struct TMemoryCard {
 	void open(long);
 	void close();
 	void killScreen();
-	void setSelect(bool);
+	void setSelect_(bool);
 	bool isFinish();
 	void startState(enumState);
 	void update();
@@ -36,16 +36,15 @@ struct TMemoryCard {
 
 	// unused/inlined:
 	bool isDecide();
-	void setSelect_(bool);
 
 	int m_state;                               // _00, unknown
 	Controller* m_controller;                  // _04
-	uint _08;                                  // _08
+	uint m_inputDelay;                         // _08
 	uint _0C;                                  // _0C
-	u32 _10;                                   // _10
-	int _14;                                   // _14
-	u8 _18;                                    // _18
-	u8 _19;                                    // _19
+	u32 m_msgAlpha;                            // _10
+	int m_alphaMod;                            // _14
+	u8 m_currSel;                              // _18
+	u8 m_canExit;                              // _19
 	P2DScreen::Mgr_tuning* m_screenMain;       // _1C
 	J2DTextBox* m_paneMsg1;                    // _20
 	J2DTextBox* m_paneMsg2;                    // _24
@@ -60,7 +59,7 @@ struct TMemoryCard {
 	E2DCallBack_CalcAnimation m_calcAnim;      // _204
 	TYesNoCursor m_cursor1;                    // _224
 	TYesNoCursor m_cursor2;                    // _25C
-	u8 _294;                                   // _294
+	bool m_isPlaySavingSE;                     // _294
 };
 } // namespace Screen
 } // namespace ebi

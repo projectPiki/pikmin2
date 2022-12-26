@@ -1,6 +1,7 @@
 #include "ebi/Omake.h"
 #include "ebi/E2DCallBack.h"
-#include "types.h"
+#include "ebi/E2DGraph.h"
+#include "System.h"
 
 /*
     Generated from dpostproc
@@ -112,8 +113,32 @@ namespace Screen {
  * Address:	803ED2A8
  * Size:	000274
  */
-TOmake::TOmake(void)
+TOmake::TOmake()
 {
+	m_controller = nullptr;
+	m_color1.set(0, 0, 0, 255);
+	m_alpha      = 255;
+	m_state      = 0;
+	m_counter    = 0;
+	_54          = 0;
+	m_screenMain = nullptr;
+	_194         = true;
+	_1B8         = 0;
+	_1BC         = 0;
+	_1DC         = 0.0f;
+	_1E0         = nullptr;
+	m_colors[0].set(0xffffffff);
+	m_colors[1].set(0xffffffff);
+	m_colors[2].set(0xffffffff);
+	m_colors[3].set(0xffffffff);
+	m_colors[4].set(0xffffffff);
+	m_colors[5].set(0xffffffff);
+	m_colors[6].set(0xffffffff);
+	m_colors[7].set(0xffffffff);
+	m_colors[8].set(0xffffffff);
+	m_colors[9].set(0xffffffff);
+	m_colors[10].set(0xffffffff);
+	m_colors[11].set(0xffffffff);
 	/*
 stwu     r1, -0x20(r1)
 mflr     r0
@@ -280,8 +305,77 @@ blr
  * Address:	803ED51C
  * Size:	0005F0
  */
-void TOmake::doSetArchive(JKRArchive*)
+void TOmake::doSetArchive(JKRArchive* arc)
 {
+	sys->heapStatusStart("Screen_newScreen_of_TOmake", nullptr);
+	m_screenMain = new P2DScreen::Mgr_tuning;
+	m_screenMain->set("memory_card.blo", 0x1100000, arc);
+	sys->heapStatusEnd("Screen_newScreen_of_TOmake");
+
+	m_paneWindow  = E2DScreen_searchAssert(m_screenMain, 'Nwin0');
+	m_paneTitle   = E2DScreen_searchAssert(m_screenMain, 'Ntitl0');
+	m_paneAButton = E2DScreen_searchAssert(m_screenMain, 'Nabtn');
+	m_paneBButton = E2DScreen_searchAssert(m_screenMain, 'Nbbtn');
+
+	E2DPane_setTreeInfluencedAlpha(m_paneTitle, true);
+	E2DPane_setTreeInfluencedAlpha(m_paneAButton, true);
+	E2DPane_setTreeInfluencedAlpha(m_paneBButton, true);
+
+	for (int i = 0; i < 7; i++) {
+		m_paneList1[i] = E2DScreen_searchAssert(m_screenMain, i + 'Nn00');
+		m_paneList2[i] = E2DScreen_searchAssert(m_screenMain, i + 'Ww00');
+		m_paneList3[i] = E2DScreen_searchAssert(m_screenMain, i + 'Tt00');
+		m_paneList4[i] = E2DScreen_searchAssert(m_screenMain, i + 'ts00');
+	}
+	m_paneSelect = E2DScreen_searchAssert(m_screenMain, 'Wselctw');
+
+	m_mesgTags[0] = m_paneList3[0]->m_messageID;
+	m_mesgTags[1] = m_paneList3[1]->m_messageID;
+	m_mesgTags[2] = m_paneList3[2]->m_messageID;
+	m_mesgTags[3] = m_paneList3[3]->m_messageID;
+	m_mesgTags[4] = m_paneList3[4]->m_messageID;
+	m_mesgTags[5] = m_paneList3[5]->m_messageID;
+	m_mesgTags[6] = m_paneList3[6]->m_messageID;
+
+	E2DScreen_searchAssert(m_screenMain, 'DATA')->hide();
+
+	sys->heapStatusStart("Screen_setCallBackMessage_of_TOmake", nullptr);
+	E2DPane_setTreeCallBackMessage(m_screenMain, m_screenMain);
+	sys->heapStatusEnd("Screen_setCallBackMessage_of_TOmake");
+
+	m_screenMain->addCallBackPane(m_screenMain, &m_anims[0]);
+	m_screenMain->addCallBackPane(m_screenMain, &m_anims[1]);
+	m_screenMain->addCallBackPane(m_screenMain, &m_anims[2]);
+
+	m_anims[0].loadAnm("omake.bck", arc, 21, 40);
+	m_anims[1].loadAnm("omake.bck", arc, 0, 20);
+	m_screenMain->addCallBack('Wselctw', &m_anims[2]);
+
+	for (int i = 0; i < 7; i++) {
+		J2DTextBox* pane1 = static_cast<J2DTextBox*>(E2DScreen_searchAssert(m_screenMain, 'Tscolor'));
+		J2DTextBox* pane2 = static_cast<J2DTextBox*>(E2DScreen_searchAssert(m_screenMain, 'Tt00'));
+		m_fonts[i].set(pane1, pane2);
+		m_screenMain->addCallBackPane(m_paneList3[i], &m_fonts[i]);
+	}
+
+	J2DTextBox* cPane = static_cast<J2DTextBox*>(E2DScreen_searchAssert(m_screenMain, 'Tscolor'));
+	m_colors[0]       = cPane->m_color1;
+	m_colors[1]       = cPane->m_color2;
+	m_colors[2]       = cPane->getWhite();
+	m_colors[3]       = cPane->getBlack();
+
+	cPane       = static_cast<J2DTextBox*>(E2DScreen_searchAssert(m_screenMain, 'Tt00'));
+	m_colors[4] = cPane->m_color1;
+	m_colors[5] = cPane->m_color2;
+	m_colors[6] = cPane->getWhite();
+	m_colors[7] = cPane->getBlack();
+
+	cPane        = static_cast<J2DTextBox*>(E2DScreen_searchAssert(m_screenMain, 'Thscolor'));
+	m_colors[8]  = cPane->m_color1;
+	m_colors[9]  = cPane->m_color2;
+	m_colors[10] = cPane->getWhite();
+	m_colors[11] = cPane->getBlack();
+
 	/*
 stwu     r1, -0x60(r1)
 mflr     r0
@@ -677,7 +771,7 @@ blr
  * Address:	803EDB0C
  * Size:	0005F0
  */
-void TOmake::doOpenScreen(ebi::Screen::ArgOpen*)
+void TOmake::doOpenScreen(ebi::Screen::ArgOpen* arg)
 {
 	/*
 stwu     r1, -0xc0(r1)
@@ -1084,7 +1178,7 @@ blr
  * Address:	803EE0FC
  * Size:	00004C
  */
-void TOmake::doCloseScreen(ebi::Screen::ArgClose*)
+void TOmake::doCloseScreen(ebi::Screen::ArgClose* arg)
 {
 	/*
 stwu     r1, -0x10(r1)
@@ -1114,8 +1208,15 @@ blr
  * Address:	803EE148
  * Size:	000048
  */
-void TOmake::doInitWaitState(void)
+void TOmake::doInitWaitState()
 {
+	E2DCallBack_BlinkFontColor* font = &m_fonts[m_currSel];
+	font->m_isEnabled                = true;
+	font->m_speed                    = sys->m_deltaTime * 3.333333f;
+	font->_40                        = 0.0f;
+	font->_48                        = true;
+	font->_49                        = false;
+	m_state2                         = 0;
 	/*
 lwz      r4, 0x3c(r3)
 li       r5, 1
@@ -1145,47 +1246,18 @@ blr
  */
 bool TOmake::doUpdateStateOpen()
 {
-	/*
-stwu     r1, -0x10(r1)
-mflr     r0
-stw      r0, 0x14(r1)
-stw      r31, 0xc(r1)
-mr       r31, r3
-lwz      r3, 0x58(r3)
-lwz      r12, 0(r3)
-lwz      r12, 0x30(r12)
-mtctr    r12
-bctrl
-lwz      r0, 0x4c(r31)
-cmpwi    r0, 0
-beq      lbl_803EE1D8
-lwz      r3, 0x50(r31)
-cmplwi   r3, 0
-beq      lbl_803EE1D8
-addi     r0, r3, -1
-stw      r0, 0x50(r31)
+	m_screenMain->update();
+	if (m_state) {
+		if (m_counter) {
+			m_counter--;
+		}
+	}
 
-lbl_803EE1D8:
-addi     r3, r31, 0xe0
-bl       isFinish__Q23ebi19E2DCallBack_AnmBaseFv
-clrlwi.  r0, r3, 0x18
-beq      lbl_803EE1FC
-lwz      r0, 0x50(r31)
-cmplwi   r0, 0
-bne      lbl_803EE1FC
-li       r3, 1
-b        lbl_803EE200
-
-lbl_803EE1FC:
-li       r3, 0
-
-lbl_803EE200:
-lwz      r0, 0x14(r1)
-lwz      r31, 0xc(r1)
-mtlr     r0
-addi     r1, r1, 0x10
-blr
-	*/
+	if (m_anims[0].isFinish() && !m_counter) {
+		return true;
+	} else {
+		return false;
+	}
 }
 
 /*
@@ -1539,6 +1611,12 @@ blr
  */
 bool TOmake::doUpdateStateClose()
 {
+	m_screenMain->update();
+	if (m_state != 0 && m_counter) {
+		m_counter--;
+	}
+
+	return m_counter == 0;
 	/*
 stwu     r1, -0x10(r1)
 mflr     r0
@@ -1583,7 +1661,7 @@ blr
  * Address:	803EE70C
  * Size:	000244
  */
-void TOmake::doDraw(void)
+void TOmake::doDraw()
 {
 	/*
 stwu     r1, -0x60(r1)
@@ -1756,8 +1834,10 @@ blr
  * Address:	803EE950
  * Size:	000044
  */
-void TOmake::setController(Controller*)
+void TOmake::setController(Controller* in)
 {
+	m_controller = in;
+	m_input.init(in, 0, 6, (long*)&m_currSel, EUTPadInterface_countNum::MODE_UNKNOWN_3, 0.66f, 0.15f);
 	/*
 stwu     r1, -0x10(r1)
 mflr     r0
@@ -1931,14 +2011,12 @@ blr
  * Size:	0000BC
  */
 E2DCallBack_BlinkFontColor::E2DCallBack_BlinkFontColor()
-    : E2DCallBack_Base()
-    , _20()
-    , _40(0.0f)
-    , _44(0.03333f)
-    , _48(1)
-    , _49(0)
 {
-	m_isEnabled = 0;
+	_40         = 0.0f;
+	m_speed     = 0.03333;
+	_48         = true;
+	_49         = false;
+	m_isEnabled = false;
 	/*
 stwu     r1, -0x10(r1)
 mflr     r0
