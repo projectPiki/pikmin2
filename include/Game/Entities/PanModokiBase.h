@@ -7,6 +7,7 @@
 #include "Game/EnemyMgrBase.h"
 #include "Game/EnemyBase.h"
 #include "Game/WalkSmokeEffect.h"
+#include "efx/TPan.h"
 #include "SysShape/Joint.h"
 #include "Collinfo.h"
 
@@ -17,11 +18,6 @@
  * PanModoki	= Breadbug
  */
 
-namespace efx {
-struct TPanHide;
-struct TPanSmoke;
-} // namespace efx
-
 namespace Game {
 namespace Nest {
 struct Obj;
@@ -30,6 +26,22 @@ struct Obj;
 struct Pellet;
 
 namespace PanModokiBase {
+enum StateID {
+	PANMODOKI_NULL     = -1,
+	PANMODOKI_Dead     = 0,
+	PANMODOKI_Walk     = 1,
+	PANMODOKI_Back     = 2,
+	PANMODOKI_Pulled   = 3,
+	PANMODOKI_Appear   = 4,
+	PANMODOKI_Hide     = 5,
+	PANMODOKI_Damage   = 6,
+	PANMODOKI_Wait     = 7,
+	PANMODOKI_Stick    = 8,
+	PANMODOKI_Sucked   = 9,
+	PANMODOKI_CarryEnd = 10,
+	PANMODOKI_StateCount,
+};
+
 struct FSM : public EnemyStateMachine {
 	virtual void init(EnemyBase*); // _08
 
@@ -105,7 +117,7 @@ struct Obj : public EnemyBase {
 	void isReachToGoal(f32);
 	void canBack();
 	void findNearestPellet();
-	void getCarryTarget();
+	Pellet* getCarryTarget();
 	void releaseCarryTarget();
 	void checkNearHomeGraphIndex();
 	void carryTarget(f32);
@@ -159,7 +171,7 @@ struct Obj : public EnemyBase {
 	f32 _338;                            // _338
 	f32 _33C;                            // _33C
 	f32 _340;                            // _340
-	int _344;                            // _344
+	StateID m_nextState;                 // _344
 	Matrixf _348;                        // _348, capture matrix?
 	Nest::Obj* m_nest;                   // _378
 	f32 _37C;                            // _37C
@@ -237,7 +249,10 @@ struct ProperAnimator : public EnemyAnimatorBase {
 /////////////////////////////////////////////////////////////////
 // STATE MACHINE DEFINITIONS
 struct State : public EnemyFSMState {
-	inline State(int); // likely
+	inline State(int stateID)
+	    : EnemyFSMState(stateID)
+	{
+	}
 
 	// _00		= VTBL
 	// _00-_10 	= EnemyFSMState
@@ -261,6 +276,7 @@ struct StateBack : public State {
 
 	// _00		= VTBL
 	// _00-_10 	= EnemyFSMState
+	u32 _10; // _10, unknown
 };
 
 struct StateCarryEnd : public State {
@@ -271,6 +287,9 @@ struct StateCarryEnd : public State {
 
 	// _00		= VTBL
 	// _00-_10 	= EnemyFSMState
+	u32 _10; // _10, unknown
+	u32 _14; // _14, unknown
+	u32 _18; // _18, unknown
 };
 
 struct StateDamage : public State {
@@ -301,6 +320,7 @@ struct StateHide : public State {
 
 	// _00		= VTBL
 	// _00-_10 	= EnemyFSMState
+	u32 _10; // _10, unknown
 };
 
 struct StatePulled : public State {
@@ -322,6 +342,7 @@ struct StateStick : public State {
 
 	// _00		= VTBL
 	// _00-_10 	= EnemyFSMState
+	u32 _10; // _10, unknown
 };
 
 struct StateSucked : public State {
@@ -342,6 +363,7 @@ struct StateWait : public State {
 
 	// _00		= VTBL
 	// _00-_10 	= EnemyFSMState
+	u32 _10; // _10, unknown
 };
 
 struct StateWalk : public State {

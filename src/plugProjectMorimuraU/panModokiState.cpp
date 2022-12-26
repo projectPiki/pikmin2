@@ -1,415 +1,28 @@
-#include "types.h"
-
-/*
-    Generated from dpostproc
-
-    .section .rodata  # 0x804732E0 - 0x8049E220
-    .global lbl_80490B38
-    lbl_80490B38:
-        .4byte 0x63617272
-        .4byte 0x79656E64
-        .4byte 0x00000000
-
-    .section .data, "wa"  # 0x8049E220 - 0x804EFC20
-    .global __vt__Q34Game13PanModokiBase13StateCarryEnd
-    __vt__Q34Game13PanModokiBase13StateCarryEnd:
-        .4byte 0
-        .4byte 0
-        .4byte
-   init__Q34Game13PanModokiBase13StateCarryEndFPQ24Game9EnemyBasePQ24Game8StateArg
-        .4byte exec__Q34Game13PanModokiBase13StateCarryEndFPQ24Game9EnemyBase
-        .4byte cleanup__Q24Game13EnemyFSMStateFPQ24Game9EnemyBase
-        .4byte resume__Q24Game13EnemyFSMStateFPQ24Game9EnemyBase
-        .4byte restart__Q24Game13EnemyFSMStateFPQ24Game9EnemyBase
-        .4byte
-   transit__Q24Game13EnemyFSMStateFPQ24Game9EnemyBaseiPQ24Game8StateArg .4byte
-   doDirectDraw__Q24Game13EnemyFSMStateFPQ24Game9EnemyBaseR8Graphics .global
-   __vt__Q34Game13PanModokiBase11StateSucked
-    __vt__Q34Game13PanModokiBase11StateSucked:
-        .4byte 0
-        .4byte 0
-        .4byte
-   init__Q34Game13PanModokiBase11StateSuckedFPQ24Game9EnemyBasePQ24Game8StateArg
-        .4byte exec__Q34Game13PanModokiBase11StateSuckedFPQ24Game9EnemyBase
-        .4byte cleanup__Q24Game13EnemyFSMStateFPQ24Game9EnemyBase
-        .4byte resume__Q24Game13EnemyFSMStateFPQ24Game9EnemyBase
-        .4byte restart__Q24Game13EnemyFSMStateFPQ24Game9EnemyBase
-        .4byte
-   transit__Q24Game13EnemyFSMStateFPQ24Game9EnemyBaseiPQ24Game8StateArg .4byte
-   doDirectDraw__Q24Game13EnemyFSMStateFPQ24Game9EnemyBaseR8Graphics .global
-   __vt__Q34Game13PanModokiBase10StateStick
-    __vt__Q34Game13PanModokiBase10StateStick:
-        .4byte 0
-        .4byte 0
-        .4byte
-   init__Q34Game13PanModokiBase10StateStickFPQ24Game9EnemyBasePQ24Game8StateArg
-        .4byte exec__Q34Game13PanModokiBase10StateStickFPQ24Game9EnemyBase
-        .4byte cleanup__Q24Game13EnemyFSMStateFPQ24Game9EnemyBase
-        .4byte resume__Q24Game13EnemyFSMStateFPQ24Game9EnemyBase
-        .4byte restart__Q24Game13EnemyFSMStateFPQ24Game9EnemyBase
-        .4byte
-   transit__Q24Game13EnemyFSMStateFPQ24Game9EnemyBaseiPQ24Game8StateArg .4byte
-   doDirectDraw__Q24Game13EnemyFSMStateFPQ24Game9EnemyBaseR8Graphics .global
-   __vt__Q34Game13PanModokiBase9StateWait
-    __vt__Q34Game13PanModokiBase9StateWait:
-        .4byte 0
-        .4byte 0
-        .4byte
-   init__Q34Game13PanModokiBase9StateWaitFPQ24Game9EnemyBasePQ24Game8StateArg
-        .4byte exec__Q34Game13PanModokiBase9StateWaitFPQ24Game9EnemyBase
-        .4byte cleanup__Q24Game13EnemyFSMStateFPQ24Game9EnemyBase
-        .4byte resume__Q24Game13EnemyFSMStateFPQ24Game9EnemyBase
-        .4byte restart__Q24Game13EnemyFSMStateFPQ24Game9EnemyBase
-        .4byte
-   transit__Q24Game13EnemyFSMStateFPQ24Game9EnemyBaseiPQ24Game8StateArg .4byte
-   doDirectDraw__Q24Game13EnemyFSMStateFPQ24Game9EnemyBaseR8Graphics .global
-   __vt__Q34Game13PanModokiBase11StateDamage
-    __vt__Q34Game13PanModokiBase11StateDamage:
-        .4byte 0
-        .4byte 0
-        .4byte
-   init__Q34Game13PanModokiBase11StateDamageFPQ24Game9EnemyBasePQ24Game8StateArg
-        .4byte exec__Q34Game13PanModokiBase11StateDamageFPQ24Game9EnemyBase
-        .4byte cleanup__Q24Game13EnemyFSMStateFPQ24Game9EnemyBase
-        .4byte resume__Q24Game13EnemyFSMStateFPQ24Game9EnemyBase
-        .4byte restart__Q24Game13EnemyFSMStateFPQ24Game9EnemyBase
-        .4byte
-   transit__Q24Game13EnemyFSMStateFPQ24Game9EnemyBaseiPQ24Game8StateArg .4byte
-   doDirectDraw__Q24Game13EnemyFSMStateFPQ24Game9EnemyBaseR8Graphics .global
-   __vt__Q34Game13PanModokiBase9StateHide
-    __vt__Q34Game13PanModokiBase9StateHide:
-        .4byte 0
-        .4byte 0
-        .4byte
-   init__Q34Game13PanModokiBase9StateHideFPQ24Game9EnemyBasePQ24Game8StateArg
-        .4byte exec__Q34Game13PanModokiBase9StateHideFPQ24Game9EnemyBase
-        .4byte cleanup__Q24Game13EnemyFSMStateFPQ24Game9EnemyBase
-        .4byte resume__Q24Game13EnemyFSMStateFPQ24Game9EnemyBase
-        .4byte restart__Q24Game13EnemyFSMStateFPQ24Game9EnemyBase
-        .4byte
-   transit__Q24Game13EnemyFSMStateFPQ24Game9EnemyBaseiPQ24Game8StateArg .4byte
-   doDirectDraw__Q24Game13EnemyFSMStateFPQ24Game9EnemyBaseR8Graphics .global
-   __vt__Q34Game13PanModokiBase11StateAppear
-    __vt__Q34Game13PanModokiBase11StateAppear:
-        .4byte 0
-        .4byte 0
-        .4byte
-   init__Q34Game13PanModokiBase11StateAppearFPQ24Game9EnemyBasePQ24Game8StateArg
-        .4byte exec__Q34Game13PanModokiBase11StateAppearFPQ24Game9EnemyBase
-        .4byte cleanup__Q24Game13EnemyFSMStateFPQ24Game9EnemyBase
-        .4byte resume__Q24Game13EnemyFSMStateFPQ24Game9EnemyBase
-        .4byte restart__Q24Game13EnemyFSMStateFPQ24Game9EnemyBase
-        .4byte
-   transit__Q24Game13EnemyFSMStateFPQ24Game9EnemyBaseiPQ24Game8StateArg .4byte
-   doDirectDraw__Q24Game13EnemyFSMStateFPQ24Game9EnemyBaseR8Graphics .global
-   __vt__Q34Game13PanModokiBase11StatePulled
-    __vt__Q34Game13PanModokiBase11StatePulled:
-        .4byte 0
-        .4byte 0
-        .4byte
-   init__Q34Game13PanModokiBase11StatePulledFPQ24Game9EnemyBasePQ24Game8StateArg
-        .4byte exec__Q34Game13PanModokiBase11StatePulledFPQ24Game9EnemyBase
-        .4byte cleanup__Q34Game13PanModokiBase11StatePulledFPQ24Game9EnemyBase
-        .4byte resume__Q24Game13EnemyFSMStateFPQ24Game9EnemyBase
-        .4byte restart__Q24Game13EnemyFSMStateFPQ24Game9EnemyBase
-        .4byte
-   transit__Q24Game13EnemyFSMStateFPQ24Game9EnemyBaseiPQ24Game8StateArg .4byte
-   doDirectDraw__Q24Game13EnemyFSMStateFPQ24Game9EnemyBaseR8Graphics .global
-   __vt__Q34Game13PanModokiBase9StateBack
-    __vt__Q34Game13PanModokiBase9StateBack:
-        .4byte 0
-        .4byte 0
-        .4byte
-   init__Q34Game13PanModokiBase9StateBackFPQ24Game9EnemyBasePQ24Game8StateArg
-        .4byte exec__Q34Game13PanModokiBase9StateBackFPQ24Game9EnemyBase
-        .4byte cleanup__Q24Game13EnemyFSMStateFPQ24Game9EnemyBase
-        .4byte resume__Q24Game13EnemyFSMStateFPQ24Game9EnemyBase
-        .4byte restart__Q24Game13EnemyFSMStateFPQ24Game9EnemyBase
-        .4byte
-   transit__Q24Game13EnemyFSMStateFPQ24Game9EnemyBaseiPQ24Game8StateArg .4byte
-   doDirectDraw__Q24Game13EnemyFSMStateFPQ24Game9EnemyBaseR8Graphics .global
-   __vt__Q34Game13PanModokiBase9StateWalk
-    __vt__Q34Game13PanModokiBase9StateWalk:
-        .4byte 0
-        .4byte 0
-        .4byte
-   init__Q34Game13PanModokiBase9StateWalkFPQ24Game9EnemyBasePQ24Game8StateArg
-        .4byte exec__Q34Game13PanModokiBase9StateWalkFPQ24Game9EnemyBase
-        .4byte cleanup__Q24Game13EnemyFSMStateFPQ24Game9EnemyBase
-        .4byte resume__Q24Game13EnemyFSMStateFPQ24Game9EnemyBase
-        .4byte restart__Q24Game13EnemyFSMStateFPQ24Game9EnemyBase
-        .4byte
-   transit__Q24Game13EnemyFSMStateFPQ24Game9EnemyBaseiPQ24Game8StateArg .4byte
-   doDirectDraw__Q24Game13EnemyFSMStateFPQ24Game9EnemyBaseR8Graphics .global
-   __vt__Q34Game13PanModokiBase9StateDead
-    __vt__Q34Game13PanModokiBase9StateDead:
-        .4byte 0
-        .4byte 0
-        .4byte
-   init__Q34Game13PanModokiBase9StateDeadFPQ24Game9EnemyBasePQ24Game8StateArg
-        .4byte exec__Q34Game13PanModokiBase9StateDeadFPQ24Game9EnemyBase
-        .4byte cleanup__Q24Game13EnemyFSMStateFPQ24Game9EnemyBase
-        .4byte resume__Q24Game13EnemyFSMStateFPQ24Game9EnemyBase
-        .4byte restart__Q24Game13EnemyFSMStateFPQ24Game9EnemyBase
-        .4byte
-   transit__Q24Game13EnemyFSMStateFPQ24Game9EnemyBaseiPQ24Game8StateArg .4byte
-   doDirectDraw__Q24Game13EnemyFSMStateFPQ24Game9EnemyBaseR8Graphics .global
-   __vt__Q34Game13PanModokiBase5State
-    __vt__Q34Game13PanModokiBase5State:
-        .4byte 0
-        .4byte 0
-        .4byte init__Q24Game13EnemyFSMStateFPQ24Game9EnemyBasePQ24Game8StateArg
-        .4byte exec__Q24Game13EnemyFSMStateFPQ24Game9EnemyBase
-        .4byte cleanup__Q24Game13EnemyFSMStateFPQ24Game9EnemyBase
-        .4byte resume__Q24Game13EnemyFSMStateFPQ24Game9EnemyBase
-        .4byte restart__Q24Game13EnemyFSMStateFPQ24Game9EnemyBase
-        .4byte
-   transit__Q24Game13EnemyFSMStateFPQ24Game9EnemyBaseiPQ24Game8StateArg .4byte
-   doDirectDraw__Q24Game13EnemyFSMStateFPQ24Game9EnemyBaseR8Graphics .global
-   __vt__Q34Game13PanModokiBase3FSM
-    __vt__Q34Game13PanModokiBase3FSM:
-        .4byte 0
-        .4byte 0
-        .4byte init__Q34Game13PanModokiBase3FSMFPQ24Game9EnemyBase
-        .4byte
-   start__Q24Game17EnemyStateMachineFPQ24Game9EnemyBaseiPQ24Game8StateArg .4byte
-   exec__Q24Game17EnemyStateMachineFPQ24Game9EnemyBase .4byte
-   transit__Q24Game17EnemyStateMachineFPQ24Game9EnemyBaseiPQ24Game8StateArg
-        .4byte
-   doDirectDraw__Q24Game17EnemyStateMachineFPQ24Game9EnemyBaseR8Graphics .4byte
-   getCurrState__Q24Game17EnemyStateMachineFPQ24Game9EnemyBase .4byte
-   setCurrState__Q24Game17EnemyStateMachineFPQ24Game9EnemyBasePQ24Game13EnemyFSMState
-        .4byte 0
-
-    .section .sdata2, "a"     # 0x80516360 - 0x80520E40
-    .global lbl_8051E3D0
-    lbl_8051E3D0:
-        .4byte 0x64656164
-        .4byte 0x00000000
-    .global lbl_8051E3D8
-    lbl_8051E3D8:
-        .4byte 0x00000000
-    .global lbl_8051E3DC
-    lbl_8051E3DC:
-        .4byte 0x77616C6B
-    .global lbl_8051E3E0
-    lbl_8051E3E0:
-        .4byte 0x00000000
-    .global lbl_8051E3E4
-    lbl_8051E3E4:
-        .4byte 0x6261636B
-    .global lbl_8051E3E8
-    lbl_8051E3E8:
-        .4byte 0x00000000
-    .global lbl_8051E3EC
-    lbl_8051E3EC:
-        .float 1.0
-    .global lbl_8051E3F0
-    lbl_8051E3F0:
-        .4byte 0x42480000
-    .global lbl_8051E3F4
-    lbl_8051E3F4:
-        .4byte 0x70756C6C
-        .4byte 0x65640000
-    .global lbl_8051E3FC
-    lbl_8051E3FC:
-        .4byte 0x61707065
-    .global lbl_8051E400
-    lbl_8051E400:
-        .4byte 0x61720000
-    .global lbl_8051E404
-    lbl_8051E404:
-        .4byte 0x68696465
-        .4byte 0x00000000
-        .4byte 0x00000000
-    .global lbl_8051E410
-    lbl_8051E410:
-        .4byte 0x43300000
-        .4byte 0x80000000
-    .global lbl_8051E418
-    lbl_8051E418:
-        .4byte 0x64616D61
-        .4byte 0x67650000
-    .global lbl_8051E420
-    lbl_8051E420:
-        .4byte 0x77616974
-        .4byte 0x00000000
-    .global lbl_8051E428
-    lbl_8051E428:
-        .4byte 0x73746963
-        .4byte 0x6B000000
-    .global lbl_8051E430
-    lbl_8051E430:
-        .4byte 0x3F99999A
-    .global lbl_8051E434
-    lbl_8051E434:
-        .float 0.5
-    .global lbl_8051E438
-    lbl_8051E438:
-        .4byte 0x40490FDB
-    .global lbl_8051E43C
-    lbl_8051E43C:
-        .4byte 0x3BB60B61
-    .global lbl_8051E440
-    lbl_8051E440:
-        .4byte 0x40200000
-    .global lbl_8051E444
-    lbl_8051E444:
-        .4byte 0x7375636B
-        .4byte 0x65640000
-    .global lbl_8051E44C
-    lbl_8051E44C:
-        .4byte 0x40000000
-    .global lbl_8051E450
-    lbl_8051E450:
-        .float 0.05
-        .4byte 0x00000000
-*/
+#include "Game/Entities/PanModokiBase.h"
+#include "Game/EnemyAnimKeyEvent.h"
 
 namespace Game {
+namespace PanModokiBase {
 
 /*
  * --INFO--
  * Address:	8034C93C
  * Size:	0001BC
  */
-void PanModokiBase::FSM::init(Game::EnemyBase*)
+void FSM::init(EnemyBase* enemy)
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	li       r4, 0xb
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	mr       r31, r3
-	bl       create__Q24Game17EnemyStateMachineFi
-	li       r3, 0x10
-	bl       __nw__FUl
-	or.      r4, r3, r3
-	beq      lbl_8034C974
-	li       r4, 0
-	bl       __ct__Q34Game13PanModokiBase9StateDeadFi
-	mr       r4, r3
-
-lbl_8034C974:
-	mr       r3, r31
-	bl       registerState__Q24Game17EnemyStateMachineFPQ24Game13EnemyFSMState
-	li       r3, 0x10
-	bl       __nw__FUl
-	or.      r4, r3, r3
-	beq      lbl_8034C998
-	li       r4, 1
-	bl       __ct__Q34Game13PanModokiBase9StateWalkFi
-	mr       r4, r3
-
-lbl_8034C998:
-	mr       r3, r31
-	bl       registerState__Q24Game17EnemyStateMachineFPQ24Game13EnemyFSMState
-	li       r3, 0x14
-	bl       __nw__FUl
-	or.      r4, r3, r3
-	beq      lbl_8034C9BC
-	li       r4, 2
-	bl       __ct__Q34Game13PanModokiBase9StateBackFi
-	mr       r4, r3
-
-lbl_8034C9BC:
-	mr       r3, r31
-	bl       registerState__Q24Game17EnemyStateMachineFPQ24Game13EnemyFSMState
-	li       r3, 0x10
-	bl       __nw__FUl
-	or.      r4, r3, r3
-	beq      lbl_8034C9E0
-	li       r4, 3
-	bl       __ct__Q34Game13PanModokiBase11StatePulledFi
-	mr       r4, r3
-
-lbl_8034C9E0:
-	mr       r3, r31
-	bl       registerState__Q24Game17EnemyStateMachineFPQ24Game13EnemyFSMState
-	li       r3, 0x10
-	bl       __nw__FUl
-	or.      r4, r3, r3
-	beq      lbl_8034CA04
-	li       r4, 4
-	bl       __ct__Q34Game13PanModokiBase11StateAppearFi
-	mr       r4, r3
-
-lbl_8034CA04:
-	mr       r3, r31
-	bl       registerState__Q24Game17EnemyStateMachineFPQ24Game13EnemyFSMState
-	li       r3, 0x14
-	bl       __nw__FUl
-	or.      r4, r3, r3
-	beq      lbl_8034CA28
-	li       r4, 5
-	bl       __ct__Q34Game13PanModokiBase9StateHideFi
-	mr       r4, r3
-
-lbl_8034CA28:
-	mr       r3, r31
-	bl       registerState__Q24Game17EnemyStateMachineFPQ24Game13EnemyFSMState
-	li       r3, 0x10
-	bl       __nw__FUl
-	or.      r4, r3, r3
-	beq      lbl_8034CA4C
-	li       r4, 6
-	bl       __ct__Q34Game13PanModokiBase11StateDamageFi
-	mr       r4, r3
-
-lbl_8034CA4C:
-	mr       r3, r31
-	bl       registerState__Q24Game17EnemyStateMachineFPQ24Game13EnemyFSMState
-	li       r3, 0x14
-	bl       __nw__FUl
-	or.      r4, r3, r3
-	beq      lbl_8034CA70
-	li       r4, 7
-	bl       __ct__Q34Game13PanModokiBase9StateWaitFi
-	mr       r4, r3
-
-lbl_8034CA70:
-	mr       r3, r31
-	bl       registerState__Q24Game17EnemyStateMachineFPQ24Game13EnemyFSMState
-	li       r3, 0x14
-	bl       __nw__FUl
-	or.      r4, r3, r3
-	beq      lbl_8034CA94
-	li       r4, 8
-	bl       __ct__Q34Game13PanModokiBase10StateStickFi
-	mr       r4, r3
-
-lbl_8034CA94:
-	mr       r3, r31
-	bl       registerState__Q24Game17EnemyStateMachineFPQ24Game13EnemyFSMState
-	li       r3, 0x10
-	bl       __nw__FUl
-	or.      r4, r3, r3
-	beq      lbl_8034CAB8
-	li       r4, 9
-	bl       __ct__Q34Game13PanModokiBase11StateSuckedFi
-	mr       r4, r3
-
-lbl_8034CAB8:
-	mr       r3, r31
-	bl       registerState__Q24Game17EnemyStateMachineFPQ24Game13EnemyFSMState
-	li       r3, 0x1c
-	bl       __nw__FUl
-	or.      r4, r3, r3
-	beq      lbl_8034CADC
-	li       r4, 0xa
-	bl       __ct__Q34Game13PanModokiBase13StateCarryEndFi
-	mr       r4, r3
-
-lbl_8034CADC:
-	mr       r3, r31
-	bl       registerState__Q24Game17EnemyStateMachineFPQ24Game13EnemyFSMState
-	lwz      r0, 0x14(r1)
-	lwz      r31, 0xc(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	create(PANMODOKI_StateCount);
+	registerState(new StateDead(PANMODOKI_Dead));
+	registerState(new StateWalk(PANMODOKI_Walk));
+	registerState(new StateBack(PANMODOKI_Back));
+	registerState(new StatePulled(PANMODOKI_Pulled));
+	registerState(new StateAppear(PANMODOKI_Appear));
+	registerState(new StateHide(PANMODOKI_Hide));
+	registerState(new StateDamage(PANMODOKI_Damage));
+	registerState(new StateWait(PANMODOKI_Wait));
+	registerState(new StateStick(PANMODOKI_Stick));
+	registerState(new StateSucked(PANMODOKI_Sucked));
+	registerState(new StateCarryEnd(PANMODOKI_CarryEnd));
 }
 
 /*
@@ -417,25 +30,10 @@ lbl_8034CADC:
  * Address:	8034CAF8
  * Size:	00003C
  */
-PanModokiBase::StateDead::StateDead(int)
+StateDead::StateDead(int stateID)
+    : State(stateID)
 {
-	/*
-	lis      r5, __vt__Q24Game13EnemyFSMState@ha
-	lis      r6, __vt__Q34Game13PanModokiBase5State@ha
-	addi     r0, r5, __vt__Q24Game13EnemyFSMState@l
-	lis      r5, __vt__Q34Game13PanModokiBase9StateDead@ha
-	stw      r0, 0(r3)
-	li       r7, 0
-	addi     r6, r6, __vt__Q34Game13PanModokiBase5State@l
-	addi     r5, r5, __vt__Q34Game13PanModokiBase9StateDead@l
-	stw      r4, 4(r3)
-	addi     r0, r2, lbl_8051E3D0@sda21
-	stw      r7, 8(r3)
-	stw      r6, 0(r3)
-	stw      r5, 0(r3)
-	stw      r0, 0xc(r3)
-	blr
-	*/
+	m_name = "dead";
 }
 
 /*
@@ -443,48 +41,20 @@ PanModokiBase::StateDead::StateDead(int)
  * Address:	8034CB34
  * Size:	000090
  */
-void PanModokiBase::StateDead::init(Game::EnemyBase*, Game::StateArg*)
+void StateDead::init(EnemyBase* enemy, StateArg* stateArg)
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	mr       r31, r4
-	mr       r3, r31
-	bl       getCarryTarget__Q34Game13PanModokiBase3ObjFv
-	cmplwi   r3, 0
-	beq      lbl_8034CB68
-	mr       r3, r31
-	bl       endStick__Q24Game8CreatureFv
-	li       r0, 0
-	stw      r0, 0x230(r31)
+	Obj* panModoki = static_cast<Obj*>(enemy);
+	if (panModoki->getCarryTarget()) {
+		panModoki->endStick();
+		panModoki->m_targetCreature = nullptr;
+	}
 
-lbl_8034CB68:
-	mr       r3, r31
-	li       r4, 0
-	li       r5, 0
-	bl       startMotion__Q24Game9EnemyBaseFiPQ28SysShape14MotionListener
-	lfs      f1, defaultAnimSpeed__Q24Game17EnemyAnimatorBase@sda21(r2)
-	mr       r3, r31
-	bl       setAnimSpeed__Q24Game9EnemyBaseFf
-	mr       r3, r31
-	bl       deathProcedure__Q24Game9EnemyBaseFv
-	lfs      f0, lbl_8051E3D8@sda21(r2)
-	mr       r3, r31
-	stfs     f0, 0x1c8(r31)
-	stfs     f0, 0x1cc(r31)
-	stfs     f0, 0x1d0(r31)
-	stfs     f0, 0x1d4(r31)
-	stfs     f0, 0x1d8(r31)
-	stfs     f0, 0x1dc(r31)
-	bl       killNest__Q34Game13PanModokiBase3ObjFv
-	lwz      r0, 0x14(r1)
-	lwz      r31, 0xc(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	panModoki->startMotion(0, nullptr);
+	panModoki->setAnimSpeed(EnemyAnimatorBase::defaultAnimSpeed);
+	panModoki->deathProcedure();
+	panModoki->m_impVelocity = Vector3f(0.0f);
+	panModoki->m_simVelocity = Vector3f(0.0f);
+	panModoki->killNest();
 }
 
 /*
@@ -492,36 +62,16 @@ lbl_8034CB68:
  * Address:	8034CBC4
  * Size:	000058
  */
-void PanModokiBase::StateDead::exec(Game::EnemyBase*)
+void StateDead::exec(EnemyBase* enemy)
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	lwz      r3, 0x188(r4)
-	lbz      r0, 0x24(r3)
-	cmplwi   r0, 0
-	beq      lbl_8034CC0C
-	lwz      r0, 0x1c(r3)
-	cmplwi   r0, 2
-	bne      lbl_8034CBF8
-	mr       r3, r4
-	bl       boundEffect__Q34Game13PanModokiBase3ObjFv
-	b        lbl_8034CC0C
+	if (enemy->m_curAnim->m_isRunning) {
+		if ((u32)enemy->m_curAnim->m_type == KEYEVENT_2) {
+			static_cast<Obj*>(enemy)->boundEffect();
 
-lbl_8034CBF8:
-	cmplwi   r0, 0x3e8
-	bne      lbl_8034CC0C
-	mr       r3, r4
-	li       r4, 0
-	bl       kill__Q24Game8CreatureFPQ24Game15CreatureKillArg
-
-lbl_8034CC0C:
-	lwz      r0, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+		} else if ((u32)enemy->m_curAnim->m_type == KEYEVENT_END) {
+			enemy->kill(nullptr);
+		}
+	}
 }
 
 /*
@@ -529,25 +79,10 @@ lbl_8034CC0C:
  * Address:	8034CC1C
  * Size:	00003C
  */
-PanModokiBase::StateWalk::StateWalk(int)
+StateWalk::StateWalk(int stateID)
+    : State(stateID)
 {
-	/*
-	lis      r5, __vt__Q24Game13EnemyFSMState@ha
-	lis      r6, __vt__Q34Game13PanModokiBase5State@ha
-	addi     r0, r5, __vt__Q24Game13EnemyFSMState@l
-	lis      r5, __vt__Q34Game13PanModokiBase9StateWalk@ha
-	stw      r0, 0(r3)
-	li       r7, 0
-	addi     r6, r6, __vt__Q34Game13PanModokiBase5State@l
-	addi     r5, r5, __vt__Q34Game13PanModokiBase9StateWalk@l
-	stw      r4, 4(r3)
-	addi     r0, r2, lbl_8051E3DC@sda21
-	stw      r7, 8(r3)
-	stw      r6, 0(r3)
-	stw      r5, 0(r3)
-	stw      r0, 0xc(r3)
-	blr
-	*/
+	m_name = "walk";
 }
 
 /*
@@ -555,40 +90,15 @@ PanModokiBase::StateWalk::StateWalk(int)
  * Address:	8034CC58
  * Size:	000070
  */
-void PanModokiBase::StateWalk::init(Game::EnemyBase*, Game::StateArg*)
+void StateWalk::init(EnemyBase* enemy, StateArg* stateArg)
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	mr       r31, r4
-	mr       r3, r31
-	bl       getCurrAnimIndex__Q24Game9EnemyBaseFv
-	cmpwi    r3, 1
-	beq      lbl_8034CCA4
-	mr       r3, r31
-	li       r4, 1
-	li       r5, 0
-	bl       startMotion__Q24Game9EnemyBaseFiPQ28SysShape14MotionListener
-	lwz      r4, 0xc0(r31)
-	mr       r3, r31
-	lfs      f1, defaultAnimSpeed__Q24Game17EnemyAnimatorBase@sda21(r2)
-	lfs      f0, 0x844(r4)
-	fmuls    f1, f1, f0
-	bl       setAnimSpeed__Q24Game9EnemyBaseFf
+	if (enemy->getCurrAnimIndex() != 1) {
+		enemy->startMotion(1, nullptr);
+		enemy->setAnimSpeed(EnemyAnimatorBase::defaultAnimSpeed * CG_PROPERPARMS(enemy).m_fp16.m_value);
+	}
 
-lbl_8034CCA4:
-	li       r3, -1
-	li       r0, 0
-	stw      r3, 0x344(r31)
-	stw      r0, 0x230(r31)
-	lwz      r31, 0xc(r1)
-	lwz      r0, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	static_cast<Obj*>(enemy)->m_nextState = PANMODOKI_NULL;
+	enemy->m_targetCreature               = nullptr;
 }
 
 /*
@@ -596,7 +106,7 @@ lbl_8034CCA4:
  * Address:	8034CCC8
  * Size:	00010C
  */
-void PanModokiBase::StateWalk::exec(Game::EnemyBase*)
+void StateWalk::exec(EnemyBase* enemy)
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -684,25 +194,10 @@ lbl_8034CDBC:
  * Address:	8034CDD4
  * Size:	00003C
  */
-PanModokiBase::StateBack::StateBack(int)
+StateBack::StateBack(int stateID)
+    : State(stateID)
 {
-	/*
-	lis      r5, __vt__Q24Game13EnemyFSMState@ha
-	lis      r6, __vt__Q34Game13PanModokiBase5State@ha
-	addi     r0, r5, __vt__Q24Game13EnemyFSMState@l
-	lis      r5, __vt__Q34Game13PanModokiBase9StateBack@ha
-	stw      r0, 0(r3)
-	li       r7, 0
-	addi     r6, r6, __vt__Q34Game13PanModokiBase5State@l
-	addi     r5, r5, __vt__Q34Game13PanModokiBase9StateBack@l
-	stw      r4, 4(r3)
-	addi     r0, r2, lbl_8051E3E4@sda21
-	stw      r7, 8(r3)
-	stw      r6, 0(r3)
-	stw      r5, 0(r3)
-	stw      r0, 0xc(r3)
-	blr
-	*/
+	m_name = "back";
 }
 
 /*
@@ -710,7 +205,7 @@ PanModokiBase::StateBack::StateBack(int)
  * Address:	8034CE10
  * Size:	000104
  */
-void PanModokiBase::StateBack::init(Game::EnemyBase*, Game::StateArg*)
+void StateBack::init(EnemyBase* enemy, StateArg* stateArg)
 {
 	/*
 	stwu     r1, -0x30(r1)
@@ -792,7 +287,7 @@ lbl_8034CED4:
  * Address:	8034CF14
  * Size:	0004D0
  */
-void PanModokiBase::StateBack::exec(Game::EnemyBase*)
+void StateBack::exec(EnemyBase* enemy)
 {
 	/*
 	stwu     r1, -0x70(r1)
@@ -1155,25 +650,10 @@ lbl_8034D3BC:
  * Address:	8034D3E4
  * Size:	00003C
  */
-PanModokiBase::StatePulled::StatePulled(int)
+StatePulled::StatePulled(int stateID)
+    : State(stateID)
 {
-	/*
-	lis      r5, __vt__Q24Game13EnemyFSMState@ha
-	lis      r6, __vt__Q34Game13PanModokiBase5State@ha
-	addi     r0, r5, __vt__Q24Game13EnemyFSMState@l
-	lis      r5, __vt__Q34Game13PanModokiBase11StatePulled@ha
-	stw      r0, 0(r3)
-	li       r7, 0
-	addi     r6, r6, __vt__Q34Game13PanModokiBase5State@l
-	addi     r5, r5, __vt__Q34Game13PanModokiBase11StatePulled@l
-	stw      r4, 4(r3)
-	addi     r0, r2, lbl_8051E3F4@sda21
-	stw      r7, 8(r3)
-	stw      r6, 0(r3)
-	stw      r5, 0(r3)
-	stw      r0, 0xc(r3)
-	blr
-	*/
+	m_name = "pulled";
 }
 
 /*
@@ -1181,7 +661,7 @@ PanModokiBase::StatePulled::StatePulled(int)
  * Address:	8034D420
  * Size:	0000B0
  */
-void PanModokiBase::StatePulled::init(Game::EnemyBase*, Game::StateArg*)
+void StatePulled::init(EnemyBase* enemy, StateArg* stateArg)
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -1238,7 +718,7 @@ lbl_8034D484:
  * Address:	8034D4D0
  * Size:	0004CC
  */
-void PanModokiBase::StatePulled::exec(Game::EnemyBase*)
+void StatePulled::exec(EnemyBase* enemy)
 {
 	/*
 	stwu     r1, -0x70(r1)
@@ -1598,45 +1078,17 @@ lbl_8034D974:
  * Address:	8034D99C
  * Size:	000024
  */
-void PanModokiBase::StatePulled::cleanup(Game::EnemyBase*)
-{
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	mr       r3, r4
-	stw      r0, 0x14(r1)
-	bl       fadePulledSmokeEffect__Q34Game13PanModokiBase3ObjFv
-	lwz      r0, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
-}
+void StatePulled::cleanup(EnemyBase* enemy) { static_cast<Obj*>(enemy)->fadePulledSmokeEffect(); }
 
 /*
  * --INFO--
  * Address:	8034D9C0
  * Size:	00003C
  */
-PanModokiBase::StateAppear::StateAppear(int)
+StateAppear::StateAppear(int stateID)
+    : State(stateID)
 {
-	/*
-	lis      r5, __vt__Q24Game13EnemyFSMState@ha
-	lis      r6, __vt__Q34Game13PanModokiBase5State@ha
-	addi     r0, r5, __vt__Q24Game13EnemyFSMState@l
-	lis      r5, __vt__Q34Game13PanModokiBase11StateAppear@ha
-	stw      r0, 0(r3)
-	li       r7, 0
-	addi     r6, r6, __vt__Q34Game13PanModokiBase5State@l
-	addi     r5, r5, __vt__Q34Game13PanModokiBase11StateAppear@l
-	stw      r4, 4(r3)
-	addi     r0, r2, lbl_8051E3FC@sda21
-	stw      r7, 8(r3)
-	stw      r6, 0(r3)
-	stw      r5, 0(r3)
-	stw      r0, 0xc(r3)
-	blr
-	*/
+	m_name = "appear";
 }
 
 /*
@@ -1644,7 +1096,7 @@ PanModokiBase::StateAppear::StateAppear(int)
  * Address:	8034D9FC
  * Size:	000070
  */
-void PanModokiBase::StateAppear::init(Game::EnemyBase*, Game::StateArg*)
+void StateAppear::init(EnemyBase* enemy, StateArg* stateArg)
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -1683,14 +1135,14 @@ void PanModokiBase::StateAppear::init(Game::EnemyBase*, Game::StateArg*)
  * Address:	8034DA6C
  * Size:	000004
  */
-void PanModokiBase::Obj::appearRumble(void) { }
+void Obj::appearRumble() { }
 
 /*
  * --INFO--
  * Address:	8034DA70
  * Size:	000064
  */
-void PanModokiBase::StateAppear::exec(Game::EnemyBase*)
+void StateAppear::exec(EnemyBase* enemy)
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -1728,25 +1180,10 @@ lbl_8034DAC0:
  * Address:	8034DAD4
  * Size:	00003C
  */
-PanModokiBase::StateHide::StateHide(int)
+StateHide::StateHide(int stateID)
+    : State(stateID)
 {
-	/*
-	lis      r5, __vt__Q24Game13EnemyFSMState@ha
-	lis      r6, __vt__Q34Game13PanModokiBase5State@ha
-	addi     r0, r5, __vt__Q24Game13EnemyFSMState@l
-	lis      r5, __vt__Q34Game13PanModokiBase9StateHide@ha
-	stw      r0, 0(r3)
-	li       r7, 0
-	addi     r6, r6, __vt__Q34Game13PanModokiBase5State@l
-	addi     r5, r5, __vt__Q34Game13PanModokiBase9StateHide@l
-	stw      r4, 4(r3)
-	addi     r0, r2, lbl_8051E404@sda21
-	stw      r7, 8(r3)
-	stw      r6, 0(r3)
-	stw      r5, 0(r3)
-	stw      r0, 0xc(r3)
-	blr
-	*/
+	m_name = "hide";
 }
 
 /*
@@ -1754,7 +1191,7 @@ PanModokiBase::StateHide::StateHide(int)
  * Address:	8034DB10
  * Size:	000068
  */
-void PanModokiBase::StateHide::init(Game::EnemyBase*, Game::StateArg*)
+void StateHide::init(EnemyBase* enemy, StateArg* stateArg)
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -1791,7 +1228,7 @@ void PanModokiBase::StateHide::init(Game::EnemyBase*, Game::StateArg*)
  * Address:	8034DB78
  * Size:	000118
  */
-void PanModokiBase::StateHide::exec(Game::EnemyBase*)
+void StateHide::exec(EnemyBase* enemy)
 {
 	/*
 	stwu     r1, -0x20(r1)
@@ -1878,32 +1315,17 @@ lbl_8034DC78:
  * Address:	8034DC90
  * Size:	000004
  */
-void PanModokiBase::Obj::hideRumble(void) { }
+void Obj::hideRumble() { }
 
 /*
  * --INFO--
  * Address:	8034DC94
  * Size:	00003C
  */
-PanModokiBase::StateDamage::StateDamage(int)
+StateDamage::StateDamage(int stateID)
+    : State(stateID)
 {
-	/*
-	lis      r5, __vt__Q24Game13EnemyFSMState@ha
-	lis      r6, __vt__Q34Game13PanModokiBase5State@ha
-	addi     r0, r5, __vt__Q24Game13EnemyFSMState@l
-	lis      r5, __vt__Q34Game13PanModokiBase11StateDamage@ha
-	stw      r0, 0(r3)
-	li       r7, 0
-	addi     r6, r6, __vt__Q34Game13PanModokiBase5State@l
-	addi     r5, r5, __vt__Q34Game13PanModokiBase11StateDamage@l
-	stw      r4, 4(r3)
-	addi     r0, r2, lbl_8051E418@sda21
-	stw      r7, 8(r3)
-	stw      r6, 0(r3)
-	stw      r5, 0(r3)
-	stw      r0, 0xc(r3)
-	blr
-	*/
+	m_name = "damage";
 }
 
 /*
@@ -1911,7 +1333,7 @@ PanModokiBase::StateDamage::StateDamage(int)
  * Address:	8034DCD0
  * Size:	00010C
  */
-void PanModokiBase::StateDamage::init(Game::EnemyBase*, Game::StateArg*)
+void StateDamage::init(EnemyBase* enemy, StateArg* stateArg)
 {
 	/*
 	stwu     r1, -0x20(r1)
@@ -1993,7 +1415,7 @@ lbl_8034DDA8:
  * Address:	8034DDDC
  * Size:	000080
  */
-void PanModokiBase::StateDamage::exec(Game::EnemyBase*)
+void StateDamage::exec(EnemyBase* enemy)
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -2040,25 +1462,10 @@ lbl_8034DE4C:
  * Address:	8034DE5C
  * Size:	00003C
  */
-PanModokiBase::StateWait::StateWait(int)
+StateWait::StateWait(int stateID)
+    : State(stateID)
 {
-	/*
-	lis      r5, __vt__Q24Game13EnemyFSMState@ha
-	lis      r6, __vt__Q34Game13PanModokiBase5State@ha
-	addi     r0, r5, __vt__Q24Game13EnemyFSMState@l
-	lis      r5, __vt__Q34Game13PanModokiBase9StateWait@ha
-	stw      r0, 0(r3)
-	li       r7, 0
-	addi     r6, r6, __vt__Q34Game13PanModokiBase5State@l
-	addi     r5, r5, __vt__Q34Game13PanModokiBase9StateWait@l
-	stw      r4, 4(r3)
-	addi     r0, r2, lbl_8051E420@sda21
-	stw      r7, 8(r3)
-	stw      r6, 0(r3)
-	stw      r5, 0(r3)
-	stw      r0, 0xc(r3)
-	blr
-	*/
+	m_name = "wait";
 }
 
 /*
@@ -2066,7 +1473,7 @@ PanModokiBase::StateWait::StateWait(int)
  * Address:	8034DE98
  * Size:	000070
  */
-void PanModokiBase::StateWait::init(Game::EnemyBase*, Game::StateArg*)
+void StateWait::init(EnemyBase* enemy, StateArg* stateArg)
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -2105,7 +1512,7 @@ void PanModokiBase::StateWait::init(Game::EnemyBase*, Game::StateArg*)
  * Address:	8034DF08
  * Size:	0000F4
  */
-void PanModokiBase::StateWait::exec(Game::EnemyBase*)
+void StateWait::exec(EnemyBase* enemy)
 {
 	/*
 	stwu     r1, -0x20(r1)
@@ -2183,25 +1590,10 @@ lbl_8034DFE4:
  * Address:	8034DFFC
  * Size:	00003C
  */
-PanModokiBase::StateStick::StateStick(int)
+StateStick::StateStick(int stateID)
+    : State(stateID)
 {
-	/*
-	lis      r5, __vt__Q24Game13EnemyFSMState@ha
-	lis      r6, __vt__Q34Game13PanModokiBase5State@ha
-	addi     r0, r5, __vt__Q24Game13EnemyFSMState@l
-	lis      r5, __vt__Q34Game13PanModokiBase10StateStick@ha
-	stw      r0, 0(r3)
-	li       r7, 0
-	addi     r6, r6, __vt__Q34Game13PanModokiBase5State@l
-	addi     r5, r5, __vt__Q34Game13PanModokiBase10StateStick@l
-	stw      r4, 4(r3)
-	addi     r0, r2, lbl_8051E428@sda21
-	stw      r7, 8(r3)
-	stw      r6, 0(r3)
-	stw      r5, 0(r3)
-	stw      r0, 0xc(r3)
-	blr
-	*/
+	m_name = "stick";
 }
 
 /*
@@ -2209,7 +1601,7 @@ PanModokiBase::StateStick::StateStick(int)
  * Address:	8034E038
  * Size:	000108
  */
-void PanModokiBase::StateStick::init(Game::EnemyBase*, Game::StateArg*)
+void StateStick::init(EnemyBase* enemy, StateArg* stateArg)
 {
 	/*
 	stwu     r1, -0x20(r1)
@@ -2294,7 +1686,7 @@ lbl_8034E124:
  * Address:	8034E140
  * Size:	0003BC
  */
-void PanModokiBase::StateStick::exec(Game::EnemyBase*)
+void StateStick::exec(EnemyBase* enemy)
 {
 	/*
 	stwu     r1, -0xa0(r1)
@@ -2553,25 +1945,10 @@ lbl_8034E4C0:
  * Address:	8034E4FC
  * Size:	00003C
  */
-PanModokiBase::StateSucked::StateSucked(int)
+StateSucked::StateSucked(int stateID)
+    : State(stateID)
 {
-	/*
-	lis      r5, __vt__Q24Game13EnemyFSMState@ha
-	lis      r6, __vt__Q34Game13PanModokiBase5State@ha
-	addi     r0, r5, __vt__Q24Game13EnemyFSMState@l
-	lis      r5, __vt__Q34Game13PanModokiBase11StateSucked@ha
-	stw      r0, 0(r3)
-	li       r7, 0
-	addi     r6, r6, __vt__Q34Game13PanModokiBase5State@l
-	addi     r5, r5, __vt__Q34Game13PanModokiBase11StateSucked@l
-	stw      r4, 4(r3)
-	addi     r0, r2, lbl_8051E444@sda21
-	stw      r7, 8(r3)
-	stw      r6, 0(r3)
-	stw      r5, 0(r3)
-	stw      r0, 0xc(r3)
-	blr
-	*/
+	m_name = "sucked";
 }
 
 /*
@@ -2579,39 +1956,17 @@ PanModokiBase::StateSucked::StateSucked(int)
  * Address:	8034E538
  * Size:	00006C
  */
-void PanModokiBase::StateSucked::init(Game::EnemyBase*, Game::StateArg*)
+void StateSucked::init(EnemyBase* enemy, StateArg* stateArg)
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	li       r5, 0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	mr       r31, r4
-	li       r4, 8
-	mr       r3, r31
-	bl       startMotion__Q24Game9EnemyBaseFiPQ28SysShape14MotionListener
-	lfs      f1, defaultAnimSpeed__Q24Game17EnemyAnimatorBase@sda21(r2)
-	mr       r3, r31
-	bl       setAnimSpeed__Q24Game9EnemyBaseFf
-	mr       r3, r31
-	bl       getCarryTarget__Q34Game13PanModokiBase3ObjFv
-	cmplwi   r3, 0
-	beq      lbl_8034E588
-	mr       r3, r31
-	bl       endStick__Q24Game8CreatureFv
-	li       r0, 0
-	stw      r0, 0x230(r31)
+	enemy->startMotion(8, nullptr);
+	enemy->setAnimSpeed(EnemyAnimatorBase::defaultAnimSpeed);
 
-lbl_8034E588:
-	li       r0, 1
-	stb      r0, 0x2f1(r31)
-	lwz      r0, 0x14(r1)
-	lwz      r31, 0xc(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	if (static_cast<Obj*>(enemy)->getCarryTarget()) {
+		enemy->endStick();
+		enemy->m_targetCreature = nullptr;
+	}
+
+	static_cast<Obj*>(enemy)->_2F1 = 1;
 }
 
 /*
@@ -2619,40 +1974,17 @@ lbl_8034E588:
  * Address:	8034E5A4
  * Size:	00000C
  */
-void PanModokiBase::StateSucked::exec(Game::EnemyBase*)
-{
-	/*
-	li       r0, 1
-	stb      r0, 0x2f1(r4)
-	blr
-	*/
-}
+void StateSucked::exec(EnemyBase* enemy) { static_cast<Obj*>(enemy)->_2F1 = 1; }
 
 /*
  * --INFO--
  * Address:	8034E5B0
  * Size:	000040
  */
-PanModokiBase::StateCarryEnd::StateCarryEnd(int)
+StateCarryEnd::StateCarryEnd(int stateID)
+    : State(stateID)
 {
-	/*
-	lis      r5, __vt__Q24Game13EnemyFSMState@ha
-	lis      r7, __vt__Q34Game13PanModokiBase5State@ha
-	addi     r0, r5, __vt__Q24Game13EnemyFSMState@l
-	lis      r6, __vt__Q34Game13PanModokiBase13StateCarryEnd@ha
-	stw      r0, 0(r3)
-	lis      r5, lbl_80490B38@ha
-	li       r8, 0
-	addi     r7, r7, __vt__Q34Game13PanModokiBase5State@l
-	stw      r4, 4(r3)
-	addi     r4, r6, __vt__Q34Game13PanModokiBase13StateCarryEnd@l
-	addi     r0, r5, lbl_80490B38@l
-	stw      r8, 8(r3)
-	stw      r7, 0(r3)
-	stw      r4, 0(r3)
-	stw      r0, 0xc(r3)
-	blr
-	*/
+	m_name = "carryend";
 }
 
 /*
@@ -2660,7 +1992,7 @@ PanModokiBase::StateCarryEnd::StateCarryEnd(int)
  * Address:	8034E5F0
  * Size:	00006C
  */
-void PanModokiBase::StateCarryEnd::init(Game::EnemyBase*, Game::StateArg*)
+void StateCarryEnd::init(EnemyBase* enemy, StateArg* stateArg)
 {
 	/*
 	stwu     r1, -0x20(r1)
@@ -2698,7 +2030,7 @@ void PanModokiBase::StateCarryEnd::init(Game::EnemyBase*, Game::StateArg*)
  * Address:	8034E65C
  * Size:	0002F0
  */
-void PanModokiBase::StateCarryEnd::exec(Game::EnemyBase*)
+void StateCarryEnd::exec(EnemyBase* enemy)
 {
 	/*
 	stwu     r1, -0x90(r1)
@@ -2903,4 +2235,5 @@ lbl_8034E91C:
 	blr
 	*/
 }
+} // namespace PanModokiBase
 } // namespace Game
