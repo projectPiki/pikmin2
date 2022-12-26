@@ -827,7 +827,7 @@ void VsGameSection::sendMessage(GameMessage& message)
  */
 bool GameMessageVsGetDoping::actVs(VsGameSection* section)
 {
-	section->getGetDopeCount(_04, _08)++;
+	section->getGetDopeCount(m_naviIndex, m_sprayType)++;
 	return true;
 }
 

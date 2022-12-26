@@ -158,7 +158,9 @@ struct Navi : public FakePiki, virtual public PelletView {
 	int getStateID();
 	bool hasDope(int);
 	void holeinAllPikis(Vector3f&);
-	void incDopeCount(int);
+
+	// Increase the amount of sprays in sprayType (use enum SPRAY_TYPE)
+	void incDopeCount(int sprayType);
 	bool invincible();
 	bool isCStickNetural();
 	void makeCStick(bool);

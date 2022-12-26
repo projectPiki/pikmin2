@@ -125,6 +125,8 @@ struct Vector3 {
 		this->z -= other.z;
 	}
 
+	inline float sqrMagnitude() { return x * x + y * y + z * z; }
+
 	float length() const;
 	float distance(Vector3&);
 	float normalise();

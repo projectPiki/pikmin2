@@ -876,8 +876,16 @@ namespace Game {
  * Address:	80140CF4
  * Size:	000138
  */
-void Navi::setupNukuAdjustArg(Game::ItemPikihead::Item*, Game::NaviNukuAdjustStateArg&)
+void Navi::setupNukuAdjustArg(Game::ItemPikihead::Item* item, Game::NaviNukuAdjustStateArg& arg)
 {
+	Vector3f direction = getPosition() - item->getPosition();
+	arg._00            = angDist(roundAng(pikmin2_atan2f(direction.x, direction.z)), m_faceDir) / 10.0f;
+
+	f32 length     = pikmin2_sqrtf(direction.sqrMagnitude());
+	arg._04        = direction * (3.0f * (length - 15.0f) * (1.0f / length));
+	arg._10        = 2;
+	arg.m_pikihead = item;
+
 	/*
 	.loc_0x0:
 	  stwu      r1, -0x60(r1)
@@ -965,8 +973,6 @@ void Navi::setupNukuAdjustArg(Game::ItemPikihead::Item*, Game::NaviNukuAdjustSta
  * --INFO--
  * Address:	80140E2C
  * Size:	000050
- * Matches
- * https://decomp.me/scratch/6AZ0H
  */
 bool Navi::hasDope(int sprayType)
 {
@@ -981,8 +987,6 @@ bool Navi::hasDope(int sprayType)
  * --INFO--
  * Address:	80140E7C
  * Size:	000044
- * Matches
- * https://decomp.me/scratch/1gQV1
  */
 int Navi::getDopeCount(int sprayType)
 {
@@ -997,8 +1001,6 @@ int Navi::getDopeCount(int sprayType)
  * --INFO--
  * Address:	80140EC0
  * Size:	00004C
- * Matches
- * https://decomp.me/scratch/Z907P
  */
 void Navi::useDope(int sprayType)
 {
@@ -1014,54 +1016,16 @@ void Navi::useDope(int sprayType)
  * Address:	80140F0C
  * Size:	0000A0
  */
-void Navi::incDopeCount(int)
+void Navi::incDopeCount(int sprayType)
 {
-	/*
-	stwu     r1, -0x20(r1)
-	mflr     r0
-	stw      r0, 0x24(r1)
-	stw      r31, 0x1c(r1)
-	mr       r31, r4
-	stw      r30, 0x18(r1)
-	mr       r30, r3
-	lwz      r6, gameSystem__4Game@sda21(r13)
-	lwz      r0, 0x44(r6)
-	cmpwi    r0, 1
-	bne      lbl_80140F8C
-	lhz      r5, 0x2dc(r30)
-	lis      r3, __vt__Q24Game11GameMessage@ha
-	addi     r0, r3, __vt__Q24Game11GameMessage@l
-	lis      r3, __vt__Q24Game22GameMessageVsGetDoping@ha
-	stw      r0, 8(r1)
-	addi     r0, r3, __vt__Q24Game22GameMessageVsGetDoping@l
-	addi     r4, r1, 8
-	stw      r0, 8(r1)
-	stw      r5, 0xc(r1)
-	stw      r31, 0x10(r1)
-	lwz      r3, 0x58(r6)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x50(r12)
-	mtctr    r12
-	bctrl
-	slwi     r0, r31, 2
-	add      r4, r30, r0
-	lwz      r3, 0x25c(r4)
-	addi     r0, r3, 1
-	stw      r0, 0x25c(r4)
-	b        lbl_80140F94
+	if (gameSystem->isVersusMode()) {
+		GameMessageVsGetDoping dopeMessage(m_naviIndex, sprayType);
+		gameSystem->m_section->sendMessage(dopeMessage);
+		m_sprayCounts[sprayType]++;
+		return;
+	}
 
-lbl_80140F8C:
-	lwz      r3, playData__4Game@sda21(r13)
-	bl       incDopeCount__Q24Game8PlayDataFi
-
-lbl_80140F94:
-	lwz      r0, 0x24(r1)
-	lwz      r31, 0x1c(r1)
-	lwz      r30, 0x18(r1)
-	mtlr     r0
-	addi     r1, r1, 0x20
-	blr
-	*/
+	playData->incDopeCount(sprayType);
 }
 
 /*
@@ -1069,22 +1033,44 @@ lbl_80140F94:
  * Address:	80140FAC
  * Size:	000008
  */
-void BaseGameSection::sendMessage(Game::GameMessage&)
-{
-	/*
-	.loc_0x0:
-	  li        r3, 0
-	  blr
-	*/
-}
+// void BaseGameSection::sendMessage(Game::GameMessage&)
+// {
+// 	/*
+// 	.loc_0x0:
+// 	  li        r3, 0
+// 	  blr
+// 	*/
+// }
 
 /*
  * --INFO--
  * Address:	80140FB4
  * Size:	0002E0
+ * 87%
  */
-void Navi::applyDopes(int, Vector3f&)
+void Navi::applyDopes(int sprayType, Vector3f& sprayOrigin)
 {
+	if (sprayType == SPRAY_TYPE_BITTER) {
+		Sys::Sphere searchCirc(sprayOrigin, 140.0f);
+		Delegate1<Game::Navi, Game::CellObject*> funcCallback(this, applyDopeSmoke);
+
+		cellMgr->mapSearch(searchCirc, &funcCallback);
+		return;
+	}
+
+	Iterator<Creature> cellIt(m_cPlateMgr);
+	CI_LOOP(cellIt)
+	{
+		Piki* got = (Piki*)*cellIt;
+		if (got->isPiki()) {
+			InteractDope dope(this, sprayType);
+			if (!got->stimulate(dope) || got == nullptr) {
+				// wtf going on here?
+				return;
+			}
+		}
+	}
+
 	/*
 	.loc_0x0:
 	  stwu      r1, -0x60(r1)
@@ -4781,6 +4767,25 @@ void Navi::disableController()
  */
 void Navi::control()
 {
+	if ((moviePlayer->m_flags & MoviePlayer::IS_ACTIVE) == FALSE) {
+		makeVelocity();
+	}
+
+	makeCStick(false);
+
+	if (isMovieActor()) {
+		return;
+	}
+
+	if (gameSystem->m_mode != GSM_STORY_MODE) {
+	} else {
+		Navi* active = naviMgr->getActiveNavi();
+		if (active != this) {
+			return;
+		}
+	}
+
+	// PSGame::Rappa::playRappa();
 	/*
 	.loc_0x0:
 	  stwu      r1, -0x10(r1)
@@ -8103,6 +8108,20 @@ bool Navi::isCStickNetural()
  */
 void Navi::findNextThrowPiki()
 {
+
+	Iterator<ItemPikihead::Item> iter(ItemPikihead::mgr);
+	ItemPikihead::Item* targetSprout = nullptr;
+
+	// find (closest) pluckable sprout within range
+	CI_LOOP(iter)
+	{
+		ItemPikihead::Item* sprout = *iter;
+		Vector3f sproutPos         = sprout->getPosition();
+		Vector3f naviPos           = getPosition();
+		f32 heightDiff             = FABS(sproutPos.y - naviPos.y);
+		f32 sqrXZ                  = sqrDistanceXZ(sproutPos, naviPos);
+	}
+
 	/*
 	.loc_0x0:
 	  stwu      r1, -0x70(r1)
@@ -8299,6 +8318,12 @@ void Navi::findNextThrowPiki()
  */
 u32 Navi::ogGetNextThrowPiki()
 {
+	Piki* nextPiki = m_nextThrowPiki;
+	if (nextPiki) {
+		return 0;
+	}
+
+	return 3 * nextPiki->m_pikiKind + nextPiki->m_happaKind + 1;
 	/*
 	.loc_0x0:
 	  lwz       r3, 0x2A8(r3)
@@ -8321,8 +8346,25 @@ u32 Navi::ogGetNextThrowPiki()
  * Address:	80146A54
  * Size:	0002C0
  */
-void Navi::throwPiki(Piki*, Vector3f&)
+void Navi::throwPiki(Piki* piki, Vector3f& destination)
 {
+	// wtf?
+	// m_soundObj->_28.x = 0; _28 is wrong type
+
+	Vector3f pos = getPosition();
+	pos.z += -15.0f * cos(m_faceDir);
+	pos.x += -15.0f * sin(m_faceDir);
+	pos.y += 10.0f;
+	piki->setPosition(pos, false);
+
+	Vector3f pikiPos = piki->getPosition();
+	// some bullshit
+
+	Vector3f vec(pikiPos.x, 0.0f, pikiPos.z);
+	f32 length = vec.normalise();
+
+	m_position2 += vec * length;
+	m_velocity = m_position2;
 	/*
 	.loc_0x0:
 	  stwu      r1, -0x80(r1)
@@ -8514,14 +8556,7 @@ void Navi::throwPiki(Piki*, Vector3f&)
  * Address:	80146D14
  * Size:	000008
  */
-bool Navi::commandOn()
-{
-	/*
-	.loc_0x0:
-	  lbz       r3, 0x30D(r3)
-	  blr
-	*/
-}
+bool Navi::commandOn() { return m_commandOn2; }
 } // namespace Game
 
 /*
@@ -8938,38 +8973,38 @@ bool GameMessage::actVs(VsGameSection*)
 	*/
 }
 
-/*
- * --INFO--
- * Address:	8014734C
- * Size:	00001C
- */
-void Navi::setVelocity(Vector3f&)
-{
-	/*
-	.loc_0x0:
-	  lfs       f0, 0x0(r4)
-	  stfs      f0, 0x1E4(r3)
-	  lfs       f0, 0x4(r4)
-	  stfs      f0, 0x1E8(r3)
-	  lfs       f0, 0x8(r4)
-	  stfs      f0, 0x1EC(r3)
-	  blr
-	*/
-}
+// /*
+//  * --INFO--
+//  * Address:	8014734C
+//  * Size:	00001C
+//  */
+// void Navi::setVelocity(Vector3f& vel)
+// {
+// 	/*
+// 	.loc_0x0:
+// 	  lfs       f0, 0x0(r4)
+// 	  stfs      f0, 0x1E4(r3)
+// 	  lfs       f0, 0x4(r4)
+// 	  stfs      f0, 0x1E8(r3)
+// 	  lfs       f0, 0x8(r4)
+// 	  stfs      f0, 0x1EC(r3)
+// 	  blr
+// 	*/
+// }
 
 /*
  * --INFO--
  * Address:	80147368
  * Size:	000008
  */
-char* Navi::getCreatureName()
-{
-	/*
-	.loc_0x0:
-	  subi      r3, r2, 0x5F58
-	  blr
-	*/
-}
+// char* Navi::getCreatureName()
+// {
+// 	/*
+// 	.loc_0x0:
+// 	  subi      r3, r2, 0x5F58
+// 	  blr
+// 	*/
+// }
 
 } // namespace Game
 

@@ -68,11 +68,17 @@ struct GameMessageVsBirthTekiTreasure : public GameMessage {
 };
 
 struct GameMessageVsGetDoping : public GameMessage {
+	GameMessageVsGetDoping(int naviIndex, int sprayType)
+	    : m_naviIndex(naviIndex)
+	    , m_sprayType(sprayType)
+	{
+	}
+
 	virtual bool actVs(VsGameSection*); // _10
 
 	// _00 = VTBL
-	int _04; // _04, player ID?
-	int _08; // _08, spray type? 0 = bitter, 1 = spicy, maybe an enum?
+	int m_naviIndex; // _04
+	int m_sprayType; // _08
 };
 
 struct GameMessageVsGetOtakara : public GameMessage {
