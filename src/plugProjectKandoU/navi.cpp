@@ -1,10 +1,12 @@
 #include "Game/Navi.h"
 #include "Game/NaviState.h"
+#include "Game/NaviParms.h"
 #include "Game/PikiState.h"
 #include "Game/StateMachine.h"
 #include "Game/CPlate.h"
 #include "Game/Footmark.h"
 #include "Game/MoviePlayer.h"
+#include "Game/Entities/ItemPikihead.h"
 #include "JSystem/J3D/J3DJoint.h"
 #include "JSystem/JUT/JUTException.h"
 #include "PSM/Navi.h"
@@ -282,8 +284,85 @@ void Navi::onStickEnd(Creature* creature)
  * Address:	80140644
  * Size:	000654
  */
-void Navi::procActionButton()
+bool Navi::procActionButton()
 {
+	f32 minDist;
+	if (_26A) {
+		minDist = naviMgr->m_naviParms->m_naviParms.m_p060.m_value; // 'continuous extraction distance' - autoplucking range?
+	} else {
+		minDist = naviMgr->m_naviParms->m_naviParms.m_p000.m_value; // 'action radius' - first pluck range
+	}
+
+	Iterator<ItemPikihead::Item> iter(ItemPikihead::mgr);
+	minDist *= minDist;
+	ItemPikihead::Item* targetSprout = nullptr;
+
+	// find (closest) pluckable sprout within range
+	CI_LOOP(iter)
+	{
+		ItemPikihead::Item* sprout = *iter;
+		Vector3f sproutPos         = sprout->getPosition();
+		Vector3f naviPos           = getPosition();
+		f32 heightDiff             = FABS(sproutPos.y - naviPos.y);
+		f32 sqrXZ                  = sqrDistanceXZ(sproutPos, naviPos);
+
+		// sprout has to be pluckable, closer than current/within range, not at massive height difference
+		// AND either we're not in VS mode OR sprout color matches captain color
+		if (sprout->canPullout() && sqrXZ < minDist && heightDiff < 25.0f
+		    && (!gameSystem->isVersusMode() || sprout->m_color == (1 - m_naviIndex))) {
+			minDist      = sqrXZ;
+			targetSprout = sprout;
+		}
+	}
+
+	// if sprout found, pluck it.
+	if (targetSprout) {
+		NaviNukuAdjustStateArg nukuAdjustArg;
+		setupNukuAdjustArg(targetSprout, nukuAdjustArg);
+		m_fsm->transit(this, NSID_NukuAdjust, &nukuAdjustArg);
+
+		// if there's a captain following us, put them to work.
+		Navi* otherNavi = naviMgr->getAt(1 - m_naviIndex);
+		if (otherNavi && otherNavi->isAlive() && otherNavi->getStateID() == NSID_Follow) {
+			f32 actionRadius = naviMgr->m_naviParms->m_naviParms.m_p060.m_value; // following captain uses autopluck range
+
+			ItemPikihead::Item* otherTargetSprout = nullptr;
+			minDist                               = actionRadius * actionRadius;
+
+			// find (closest) pluckable sprout within range that -isn't- the same as main captain's target
+			CI_LOOP(iter)
+			{
+				ItemPikihead::Item* sprout = *iter;
+				if (sprout != targetSprout) {
+					Vector3f sproutPos = sprout->getPosition();
+					Vector3f naviPos   = getPosition();
+					f32 heightDiff     = FABS(sproutPos.y - naviPos.y);
+					f32 sqrXZ          = sqrDistanceXZ(sproutPos, naviPos);
+
+					// sprout has to be pluckable, closer than current/within range, not at massive height difference
+					// (we don't care about VS mode now bc can't have a following captain)
+					if (sprout->canPullout() && sqrXZ < minDist && heightDiff < 25.0f) {
+						minDist           = sqrXZ;
+						otherTargetSprout = sprout;
+					}
+				}
+			}
+
+			// if sprout found, pluck it.
+			if (otherTargetSprout) {
+				NaviNukuAdjustStateArg nukuAdjustArg2;
+				setupNukuAdjustArg(otherTargetSprout, nukuAdjustArg2);
+				nukuAdjustArg2._18 = 1;
+				otherNavi->m_fsm->transit(this, NSID_NukuAdjust, &nukuAdjustArg2);
+			}
+		}
+
+		// we plucked something.
+		return true;
+	}
+
+	// we did not pluck something.
+	return false;
 	/*
 	stwu     r1, -0xe0(r1)
 	mflr     r0
@@ -8855,176 +8934,6 @@ bool GameMessage::actVs(VsGameSection*)
 	/*
 	.loc_0x0:
 	  li        r3, 0x1
-	  blr
-	*/
-}
-
-/*
- * --INFO--
- * Address:	80147154
- * Size:	000038
- */
-Game::ItemPikihead::Item* Iterator<Game::ItemPikihead::Item>::operator*()
-{
-	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  mr        r4, r3
-	  stw       r0, 0x14(r1)
-	  lwz       r3, 0x8(r3)
-	  lwz       r4, 0x4(r4)
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0x20(r12)
-	  mtctr     r12
-	  bctrl
-	  lwz       r0, 0x14(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
-	*/
-}
-
-/*
- * --INFO--
- * Address:	8014718C
- * Size:	0000E4
- */
-void Iterator<Game::ItemPikihead::Item>::next()
-{
-	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  stw       r0, 0x14(r1)
-	  stw       r31, 0xC(r1)
-	  mr        r31, r3
-	  lwz       r0, 0xC(r3)
-	  cmplwi    r0, 0
-	  bne-      .loc_0x40
-	  lwz       r3, 0x8(r31)
-	  lwz       r4, 0x4(r31)
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0x14(r12)
-	  mtctr     r12
-	  bctrl
-	  stw       r3, 0x4(r31)
-	  b         .loc_0xD0
-	.loc_0x40:
-	  lwz       r3, 0x8(r31)
-	  lwz       r4, 0x4(r31)
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0x14(r12)
-	  mtctr     r12
-	  bctrl
-	  stw       r3, 0x4(r31)
-	  b         .loc_0xB4
-	.loc_0x60:
-	  lwz       r3, 0x8(r31)
-	  lwz       r4, 0x4(r31)
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0x20(r12)
-	  mtctr     r12
-	  bctrl
-	  mr        r4, r3
-	  lwz       r3, 0xC(r31)
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0x8(r12)
-	  mtctr     r12
-	  bctrl
-	  rlwinm.   r0,r3,0,24,31
-	  bne-      .loc_0xD0
-	  lwz       r3, 0x8(r31)
-	  lwz       r4, 0x4(r31)
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0x14(r12)
-	  mtctr     r12
-	  bctrl
-	  stw       r3, 0x4(r31)
-	.loc_0xB4:
-	  mr        r3, r31
-	  lwz       r12, 0x0(r31)
-	  lwz       r12, 0x10(r12)
-	  mtctr     r12
-	  bctrl
-	  rlwinm.   r0,r3,0,24,31
-	  beq+      .loc_0x60
-	.loc_0xD0:
-	  lwz       r0, 0x14(r1)
-	  lwz       r31, 0xC(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
-	*/
-}
-
-/*
- * --INFO--
- * Address:	80147270
- * Size:	0000DC
- */
-void Iterator<Game::ItemPikihead::Item>::first()
-{
-	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  stw       r0, 0x14(r1)
-	  stw       r31, 0xC(r1)
-	  mr        r31, r3
-	  lwz       r0, 0xC(r3)
-	  cmplwi    r0, 0
-	  bne-      .loc_0x3C
-	  lwz       r3, 0x8(r31)
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0x18(r12)
-	  mtctr     r12
-	  bctrl
-	  stw       r3, 0x4(r31)
-	  b         .loc_0xC8
-	.loc_0x3C:
-	  lwz       r3, 0x8(r31)
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0x18(r12)
-	  mtctr     r12
-	  bctrl
-	  stw       r3, 0x4(r31)
-	  b         .loc_0xAC
-	.loc_0x58:
-	  lwz       r3, 0x8(r31)
-	  lwz       r4, 0x4(r31)
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0x20(r12)
-	  mtctr     r12
-	  bctrl
-	  mr        r4, r3
-	  lwz       r3, 0xC(r31)
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0x8(r12)
-	  mtctr     r12
-	  bctrl
-	  rlwinm.   r0,r3,0,24,31
-	  bne-      .loc_0xC8
-	  lwz       r3, 0x8(r31)
-	  lwz       r4, 0x4(r31)
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0x14(r12)
-	  mtctr     r12
-	  bctrl
-	  stw       r3, 0x4(r31)
-	.loc_0xAC:
-	  mr        r3, r31
-	  lwz       r12, 0x0(r31)
-	  lwz       r12, 0x10(r12)
-	  mtctr     r12
-	  bctrl
-	  rlwinm.   r0,r3,0,24,31
-	  beq+      .loc_0x58
-	.loc_0xC8:
-	  lwz       r0, 0x14(r1)
-	  lwz       r31, 0xC(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
 	  blr
 	*/
 }

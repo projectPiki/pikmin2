@@ -312,6 +312,19 @@ struct NaviKokeDamageState : public NaviState {
 	u8 _20;               // _20
 };
 
+struct NaviNukuAdjustStateArg : public StateArg {
+	inline NaviNukuAdjustStateArg()
+	    : _18(0)
+	{
+	}
+
+	f32 _00;                        // _00
+	Vector3f _04;                   // _04
+	int _10;                        // _10
+	ItemPikihead::Item* m_pikihead; // _14
+	u8 _18;                         // _18
+};
+
 struct NaviNukuAdjustState : public NaviState {
 	inline NaviNukuAdjustState(); // likely
 
