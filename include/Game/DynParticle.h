@@ -15,7 +15,8 @@ struct _DynParticleParent {
 	Vector3f _0C;               // _0C
 	f32 _18;                    // _18
 	_DynParticleParent* m_next; // _1C
-	u8 _20[0x10];               // _18
+	Vector3f _20;               // _20
+	u8 _2C;                     // _2C
 };
 
 /**
@@ -48,7 +49,12 @@ struct DynParticleMgr : public MonoObjectMgr<DynParticle> {
 	virtual ~DynParticleMgr(); // _08 (weak)
 	// vtable 2
 	virtual void resetMgr(); // _80 (weak)
+
+	// _00     = VTBL
+	// _00-_30 = MonoObjectMgr
 };
+
+extern DynParticleMgr* dynParticleMgr;
 } // namespace Game
 
 #endif

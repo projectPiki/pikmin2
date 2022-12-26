@@ -7,9 +7,10 @@
 // TODO: this needs fixing, sigh
 template <typename T>
 struct MonoObjectMgr : public ObjectMgr<T> {
+	MonoObjectMgr();
 
 	////////////////// VTABLE
-	virtual ~MonoObjectMgr();     // _08 (weak)
+	virtual ~MonoObjectMgr() { }  // _08 (weak)
 	virtual void* getNext(void*); // _14 (weak)
 	virtual void* getStart();     // _18 (weak)
 	virtual void* getEnd();       // _1C (weak)
@@ -95,16 +96,16 @@ struct MonoObjectMgr : public ObjectMgr<T> {
 	////////////////// VTABLE END
 
 	// TODO: Check if this matches
-	void kill(T* item)
-	{
-		for (int i = 0; i < m_max; i++) {
-			if (&m_array[i] == item) {
-				m_openIds[i] = true;
-				m_activeCount--;
-				return;
-			}
-		}
-	}
+	void kill(T* item);
+	// {
+	// 	for (int i = 0; i < m_max; i++) {
+	// 		if (&m_array[i] == item) {
+	// 			m_openIds[i] = true;
+	// 			m_activeCount--;
+	// 			return;
+	// 		}
+	// 	}
+	// }
 
 	int getEmptyIndex()
 	{
@@ -115,6 +116,8 @@ struct MonoObjectMgr : public ObjectMgr<T> {
 		}
 		return -1;
 	}
+
+	void alloc(int);
 
 	int m_activeCount; // _20
 	int m_max;         // _24

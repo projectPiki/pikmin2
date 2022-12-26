@@ -28,7 +28,7 @@ struct DynCreature : public Creature {
 	virtual void applyImpulse(Vector3f&, Vector3f&);      // _18C
 	virtual void onSetPosition();                         // _1B0 (weak)
 
-	void createParticles(int);
+	bool createParticles(int);
 	void releaseParticles();
 	void updateParticlePositions();
 	void computeForces(float);
