@@ -9,8 +9,8 @@ struct PikiAnimator {
 
 	void setAnimMgr(SysShape::AnimMgr* mgr);
 
-	SysShape::Animator m_animator1; // _00
-	SysShape::Animator m_animator2; // _1C
+	SysShape::Animator m_selfAnimator;  // _00, for piki or navi itself
+	SysShape::Animator m_boundAnimator; // _1C, if piki: for navi carrying; if navi: for piki being carried
 };
 
 #endif

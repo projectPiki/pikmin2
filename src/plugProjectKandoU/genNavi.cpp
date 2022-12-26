@@ -73,8 +73,8 @@ Creature* GenObjectNavi::birth(GenArg* arg)
 	if (newNavi) {
 		newNavi->init(nullptr);
 
-		newNavi->m_animator.m_animator1.getCalc();
-		newNavi->m_animator.m_animator2.getCalc();
+		newNavi->m_animator.m_selfAnimator.getCalc();
+		newNavi->m_animator.m_boundAnimator.getCalc();
 
 		// fabricated inline that has a futile loop in it?
 		newNavi->setCalcs();

@@ -219,8 +219,8 @@ void ActFormation::onKeyEvent(SysShape::KeyEvent const& keyEvent)
 		if (_54) {
 			_4C--;
 			if (_4C <= 0) {
-				m_parent->m_animator.m_animator1.m_flags |= 0x2;
-				m_parent->m_animator.m_animator2.m_flags |= 0x2;
+				m_parent->m_animator.m_selfAnimator.m_flags |= 0x2;
+				m_parent->m_animator.m_boundAnimator.m_flags |= 0x2;
 			}
 		}
 		break;

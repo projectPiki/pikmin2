@@ -186,7 +186,7 @@ struct Navi : public FakePiki, virtual public PelletView {
 		SysShape::Model* model = m_model;
 		model->loopTimer();
 		model->m_j3dModel->m_modelData->m_jointTree.m_joints[0]->m_mtxCalc
-		    = static_cast<J3DMtxCalcAnmBase*>(m_animator.m_animator2.getCalc());
+		    = static_cast<J3DMtxCalcAnmBase*>(m_animator.m_boundAnimator.getCalc());
 	}
 
 	// _000      = VTBL
@@ -285,6 +285,8 @@ struct NaviMgr : public MonoObjectMgr<Navi>, public JKRDisposer {
 	unknown init();
 	Navi* getSurviveNavi();
 	unknown draw2d(J2DGrafContext&);
+
+	static SysShape::AnimMgr* animMgr;
 
 	// VT 3 pointer is at _30
 	unknown _48;                    // _48

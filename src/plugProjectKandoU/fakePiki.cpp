@@ -1,335 +1,15 @@
 #include "Game/FakePiki.h"
-#include "types.h"
-
-/*
-    Generated from dpostproc
-
-    .section .ctors, "wa"  # 0x80472F00 - 0x804732C0
-    .4byte __sinit_fakePiki_cpp
-
-    .section .rodata  # 0x804732E0 - 0x8049E220
-    .global lbl_8047C708
-    lbl_8047C708:
-        .4byte 0x00000000
-        .4byte 0x00000000
-        .4byte 0x00000000
-        .4byte 0x66616B65
-        .4byte 0x50696B69
-        .4byte 0x00000000
-    .global lbl_8047C720
-    lbl_8047C720:
-        .4byte 0x66616B65
-        .4byte 0x50696B69
-        .4byte 0x2E637070
-        .4byte 0x00000000
-    .global lbl_8047C730
-    lbl_8047C730:
-        .asciz "P2Assert"
-        .skip 3
-    .global lbl_8047C73C
-    lbl_8047C73C:
-        .4byte 0x64616D65
-        .4byte 0x6461796F
-        .4byte 0x210A0000
-        .4byte 0x7A616D61
-        .4byte 0x2D2D2D2D
-        .4byte 0x2D2D2D2D
-        .4byte 0x6E0A0000
-        .4byte 0x63616C63
-        .4byte 0x2D636F6C
-        .4byte 0x6C000000
-    .global lbl_8047C764
-    lbl_8047C764:
-        .4byte 0x6E6F2072
-        .4byte 0x65636F76
-        .4byte 0x6572206F
-        .4byte 0x6E796F6E
-        .4byte 0x0A000000
-        .4byte 0x43726561
-        .4byte 0x74757265
-        .4byte 0x00000000
-        .4byte 0x00000000
-
-    .section .data, "wa"  # 0x8049E220 - 0x804EFC20
-    .global lbl_804B02B0
-    lbl_804B02B0:
-        .4byte 0x00000000
-        .4byte 0x00000000
-        .4byte 0x00000000
-    .global __vt__Q24Game8FakePiki
-    __vt__Q24Game8FakePiki:
-        .4byte 0
-        .4byte 0
-        .4byte getPosition__Q24Game8FakePikiFv
-        .4byte checkCollision__Q24Game8CreatureFPQ24Game10CellObject
-        .4byte getBoundingSphere__Q24Game8FakePikiFRQ23Sys6Sphere
-        .4byte collisionUpdatable__Q24Game8CreatureFv
-        .4byte isPiki__Q24Game8CreatureFv
-        .4byte isNavi__Q24Game8CreatureFv
-        .4byte deferPikiCollision__Q24Game10CellObjectFv
-        .4byte getTypeName__Q24Game8CreatureFv
-        .4byte getObjType__Q24Game8CreatureFv
-        .4byte constructor__Q24Game8CreatureFv
-        .4byte onInit__Q24Game8CreatureFPQ24Game15CreatureInitArg
-        .4byte onKill__Q24Game8CreatureFPQ24Game15CreatureKillArg
-        .4byte onInitPost__Q24Game8CreatureFPQ24Game15CreatureInitArg
-        .4byte doAnimation__Q24Game8FakePikiFv
-        .4byte doEntry__Q24Game8FakePikiFv
-        .4byte doSetView__Q24Game8CreatureFi
-        .4byte doViewCalc__Q24Game8CreatureFv
-        .4byte doSimulation__Q24Game8FakePikiFf
-        .4byte doDirectDraw__Q24Game8CreatureFR8Graphics
-        .4byte getBodyRadius__Q24Game8CreatureFv
-        .4byte getCellRadius__Q24Game8CreatureFv
-        .4byte "initPosition__Q24Game8CreatureFR10Vector3<f>"
-        .4byte "onInitPosition__Q24Game8CreatureFR10Vector3<f>"
-        .4byte getFaceDir__Q24Game8FakePikiFv
-        .4byte "setVelocity__Q24Game8FakePikiFR10Vector3<f>"
-        .4byte getVelocity__Q24Game8FakePikiFv
-        .4byte "onSetPosition__Q24Game8FakePikiFR10Vector3<f>"
-        .4byte "onSetPositionPost__Q24Game8CreatureFR10Vector3<f>"
-        .4byte updateTrMatrix__Q24Game8FakePikiFv
-        .4byte isTeki__Q24Game8CreatureFv
-        .4byte isPellet__Q24Game8CreatureFv
-        .4byte inWaterCallback__Q24Game8FakePikiFPQ24Game8WaterBox
-        .4byte outWaterCallback__Q24Game8FakePikiFv
-        .4byte inWater__Q24Game8FakePikiFv
-        .4byte getFlockMgr__Q24Game8CreatureFv
-        .4byte onStartCapture__Q24Game8CreatureFv
-        .4byte onUpdateCapture__Q24Game8CreatureFR7Matrixf
-        .4byte onEndCapture__Q24Game8CreatureFv
-        .4byte isAtari__Q24Game8CreatureFv
-        .4byte setAtari__Q24Game8CreatureFb
-        .4byte isAlive__Q24Game8CreatureFv
-        .4byte setAlive__Q24Game8CreatureFb
-        .4byte isCollisionFlick__Q24Game8CreatureFv
-        .4byte setCollisionFlick__Q24Game8CreatureFb
-        .4byte isMovieActor__Q24Game8CreatureFv
-        .4byte isMovieExtra__Q24Game8CreatureFv
-        .4byte isMovieMotion__Q24Game8CreatureFv
-        .4byte setMovieMotion__Q24Game8CreatureFb
-        .4byte isBuried__Q24Game8CreatureFv
-        .4byte isFlying__Q24Game8CreatureFv
-        .4byte isUnderground__Q24Game8CreatureFv
-        .4byte isLivingThing__Q24Game8CreatureFv
-        .4byte isDebugCollision__Q24Game8CreatureFv
-        .4byte setDebugCollision__Q24Game8CreatureFb
-        .4byte doSave__Q24Game8CreatureFR6Stream
-        .4byte doLoad__Q24Game8CreatureFR6Stream
-        .4byte bounceCallback__Q24Game8CreatureFPQ23Sys8Triangle
-        .4byte collisionCallback__Q24Game8CreatureFRQ24Game9CollEvent
-        .4byte platCallback__Q24Game8CreatureFRQ24Game9PlatEvent
-        .4byte getJAIObject__Q24Game8CreatureFv
-        .4byte getPSCreature__Q24Game8CreatureFv
-        .4byte getSound_AILOD__Q24Game8CreatureFv
-        .4byte getSound_PosPtr__Q24Game8FakePikiFv
-        .4byte sound_culling__Q24Game8CreatureFv
-        .4byte getSound_CurrAnimFrame__Q24Game8CreatureFv
-        .4byte getSound_CurrAnimSpeed__Q24Game8CreatureFv
-        .4byte on_movie_begin__Q24Game8CreatureFb
-        .4byte on_movie_end__Q24Game8CreatureFb
-        .4byte movieStartAnimation__Q24Game8CreatureFUl
-        .4byte movieStartDemoAnimation__Q24Game8CreatureFPQ28SysShape8AnimInfo
-        .4byte movieSetAnimationLastFrame__Q24Game8CreatureFv
-        .4byte "movieSetTranslation__Q24Game8CreatureFR10Vector3<f>f"
-        .4byte movieSetFaceDir__Q24Game8FakePikiFf
-        .4byte "movieGotoPosition__Q24Game8CreatureFR10Vector3<f>"
-        .4byte movieUserCommand__Q24Game8CreatureFUlPQ24Game11MoviePlayer
-        .4byte getShadowParam__Q24Game8CreatureFRQ24Game11ShadowParam
-        .4byte needShadow__Q24Game8CreatureFv
-        .4byte getLifeGaugeParam__Q24Game8CreatureFRQ24Game14LifeGaugeParam
-        .4byte getLODSphere__Q24Game8CreatureFRQ23Sys6Sphere
-        .4byte getLODCylinder__Q24Game8CreatureFRQ23Sys8Cylinder
-        .4byte startPick__Q24Game8CreatureFv
-        .4byte endPick__Q24Game8CreatureFb
-        .4byte getMabiki__Q24Game8CreatureFv
-        .4byte getFootmarks__Q24Game8CreatureFv
-        .4byte onStickStart__Q24Game8CreatureFPQ24Game8Creature
-        .4byte onStickEnd__Q24Game8CreatureFPQ24Game8Creature
-        .4byte onStickStartSelf__Q24Game8CreatureFPQ24Game8Creature
-        .4byte onStickEndSelf__Q24Game8CreatureFPQ24Game8Creature
-        .4byte isSlotFree__Q24Game8CreatureFs
-        .4byte getFreeStickSlot__Q24Game8CreatureFv
-        .4byte "getNearFreeStickSlot__Q24Game8CreatureFR10Vector3<f>"
-        .4byte getRandomFreeStickSlot__Q24Game8CreatureFv
-        .4byte onSlotStickStart__Q24Game8CreatureFPQ24Game8Creatures
-        .4byte onSlotStickEnd__Q24Game8CreatureFPQ24Game8Creatures
-        .4byte "calcStickSlotGlobal__Q24Game8CreatureFsR10Vector3<f>"
-        .4byte "getVelocityAt__Q24Game8FakePikiFR10Vector3<f>R10Vector3<f>"
-        .4byte "getAngularEffect__Q24Game8CreatureFR10Vector3<f>R10Vector3<f>"
-        .4byte "applyImpulse__Q24Game8CreatureFR10Vector3<f>R10Vector3<f>"
-        .4byte ignoreAtari__Q24Game8CreatureFPQ24Game8Creature
-        .4byte getSuckPos__Q24Game8CreatureFv
-        .4byte getGoalPos__Q24Game8CreatureFv
-        .4byte isSuckReady__Q24Game8CreatureFv
-        .4byte isSuckArriveWait__Q24Game8CreatureFv
-        .4byte stimulate__Q24Game8CreatureFRQ24Game11Interaction
-        .4byte getCreatureName__Q24Game8CreatureFv
-        .4byte getCreatureID__Q24Game8CreatureFv
-        .4byte 0
-        .4byte 0
-        .4byte "@376@onKeyEvent__Q24Game8FakePikiFRCQ28SysShape8KeyEvent"
-        .4byte getDownfloorMass__Q24Game8FakePikiFv
-        .4byte isPikmin__Q24Game8FakePikiFv
-        .4byte doColorChange__Q24Game8FakePikiFv
-        .4byte doDebugDL__Q24Game8FakePikiFv
-        .4byte update__Q24Game8FakePikiFv
-        .4byte move__Q24Game8FakePikiFf
-        .4byte useMoveRotation__Q24Game8FakePikiFv
-        .4byte setMoveRotation__Q24Game8FakePikiFb
-        .4byte useUpdateTrMatrix__Q24Game8FakePikiFv
-        .4byte setUpdateTrMatrix__Q24Game8FakePikiFb
-        .4byte useMoveVelocity__Q24Game8FakePikiFv
-        .4byte setMoveVelocity__Q24Game8FakePikiFb
-        .4byte useMapCollision__Q24Game8FakePikiFv
-        .4byte setMapCollision__Q24Game8FakePikiFb
-        .4byte isZikatu__Q24Game8FakePikiFv
-        .4byte setZikatu__Q24Game8FakePikiFb
-        .4byte wasZikatu__Q24Game8FakePikiFv
-        .4byte getMapCollisionRadius__Q24Game8FakePikiFv
-        .4byte "wallCallback__Q24Game8FakePikiFR10Vector3<f>"
-        .4byte
-   startMotion__Q24Game8FakePikiFiiPQ28SysShape14MotionListenerPQ28SysShape14MotionListener
-        .4byte onKeyEvent__Q24Game8FakePikiFRCQ28SysShape8KeyEvent
-        .4byte updateLookCreature__Q24Game8FakePikiFv
-        .4byte do_updateLookCreature__Q24Game8FakePikiFv
-        .4byte onSetPosition__Q24Game8FakePikiFv
-        .4byte isWalking__Q24Game8FakePikiFv
-        .4byte 0
-
-    .section .sdata, "wa"  # 0x80514680 - 0x80514D80
-    .global kAngleSpeed__Q23efx7TCursor
-    kAngleSpeed__Q23efx7TCursor:
-        .float 0.05235988
-
-    .section .sbss # 0x80514D80 - 0x80516360
-    .global lbl_80515900
-    lbl_80515900:
-        .skip 0x4
-    .global lbl_80515904
-    lbl_80515904:
-        .skip 0x4
-    .global sCurrNeckTheta__Q24Game8FakePiki
-    sCurrNeckTheta__Q24Game8FakePiki:
-        .skip 0x4
-    .global sCurrNeckPhi__Q24Game8FakePiki
-    sCurrNeckPhi__Q24Game8FakePiki:
-        .skip 0x4
-
-    .section .sdata2, "a"     # 0x80516360 - 0x80520E40
-    .global lbl_805182B0
-    lbl_805182B0:
-        .4byte 0x41080000
-    .global lbl_805182B4
-    lbl_805182B4:
-        .4byte 0x00000000
-    .global lbl_805182B8
-    lbl_805182B8:
-        .4byte 0x41F00000
-    .global lbl_805182BC
-    lbl_805182BC:
-        .4byte 0x41200000
-    .global lbl_805182C0
-    lbl_805182C0:
-        .4byte 0x3C23D70A
-    .global lbl_805182C4
-    lbl_805182C4:
-        .4byte 0x42700000
-    .global lbl_805182C8
-    lbl_805182C8:
-        .4byte 0xC3A2F983
-    .global lbl_805182CC
-    lbl_805182CC:
-        .4byte 0x43A2F983
-    .global lbl_805182D0
-    lbl_805182D0:
-        .4byte 0x3E4CCCCD
-    .global lbl_805182D4
-    lbl_805182D4:
-        .float 0.1
-    .global lbl_805182D8
-    lbl_805182D8:
-        .4byte 0x40490FDB
-    .global lbl_805182DC
-    lbl_805182DC:
-        .4byte 0x40C90FDB
-    .global lbl_805182E0
-    lbl_805182E0:
-        .float -1.0
-    .global lbl_805182E4
-    lbl_805182E4:
-        .4byte 0x3E20D97C
-    .global lbl_805182E8
-    lbl_805182E8:
-        .float 0.05
-    .global lbl_805182EC
-    lbl_805182EC:
-        .4byte 0x3EA0D97C
-    .global lbl_805182F0
-    lbl_805182F0:
-        .4byte 0xBEA0D97C
-    .global lbl_805182F4
-    lbl_805182F4:
-        .4byte 0x40060A92
-    .global lbl_805182F8
-    lbl_805182F8:
-        .4byte 0x40860A92
-    .global lbl_805182FC
-    lbl_805182FC:
-        .4byte 0x3F860A92
-    .global lbl_80518300
-    lbl_80518300:
-        .4byte 0x40A78D36
-    .global lbl_80518304
-    lbl_80518304:
-        .float 1.0
-    .global lbl_80518308
-    lbl_80518308:
-        .4byte 0x40200000
-    .global lbl_8051830C
-    lbl_8051830C:
-        .4byte 0x40800000
-    .global lbl_80518310
-    lbl_80518310:
-        .4byte 0x3F4CCCCD
-    .global lbl_80518314
-    lbl_80518314:
-        .4byte 0x3F19999A
-    .global lbl_80518318
-    lbl_80518318:
-        .4byte 0x3D088889
-    .global lbl_8051831C
-    lbl_8051831C:
-        .4byte 0xBCCCCCCE
-    .global lbl_80518320
-    lbl_80518320:
-        .4byte 0x42C80000
-    .global lbl_80518324
-    lbl_80518324:
-        .4byte 0x47000000
-    .global lbl_80518328
-    lbl_80518328:
-        .4byte 0x43300000
-        .4byte 0x80000000
-    .global lbl_80518330
-    lbl_80518330:
-        .4byte 0x646F6131
-        .4byte 0x00000000
-    .global lbl_80518338
-    lbl_80518338:
-        .4byte 0x3C1374BC
-    .global lbl_8051833C
-    lbl_8051833C:
-        .4byte 0x40000000
-    .global lbl_80518340
-    lbl_80518340:
-        .4byte 0x43160000
-    .global lbl_80518344
-    lbl_80518344:
-        .4byte 0x3F8CCCCD
-*/
+#include "Game/BaseItem.h"
+#include "Game/gameStat.h"
+#include "Game/Navi.h"
+#include "CollInfo.h"
+#include "trig.h"
+#include "nans.h"
 
 namespace Game {
+
+static const u32 fakePikiUnusedArray[] = { 0, 0, 0 };
+static const char fakePikiName[]       = "fakePiki";
 
 /*
  * --INFO--
@@ -338,87 +18,27 @@ namespace Game {
  */
 FakePiki::FakePiki()
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	mr       r31, r3
-	bl       __ct__Q24Game8CreatureFv
-	lis      r4, __vt__Q28SysShape14MotionListener@ha
-	lis      r3, __vt__Q24Game8FakePiki@ha
-	addi     r4, r4, __vt__Q28SysShape14MotionListener@l
-	li       r0, 0
-	stw      r4, 0x178(r31)
-	addi     r5, r3, __vt__Q24Game8FakePiki@l
-	addi     r4, r5, 0x1b0
-	addi     r3, r31, 0x1ac
-	stw      r5, 0(r31)
-	stw      r4, 0x178(r31)
-	stb      r0, 0x17c(r31)
-	stb      r0, 0x17d(r31)
-	stb      r0, 0x17e(r31)
-	stb      r0, 0x17f(r31)
-	bl       __ct__12PikiAnimatorFv
-	li       r0, 0
-	stw      r0, 0x188(r31)
-	lwz      r3, shadowMgr__4Game@sda21(r13)
-	cmplwi   r3, 0
-	beq      lbl_8013CCD8
-	mr       r4, r31
-	bl       createShadow__Q24Game9ShadowMgrFPQ24Game8Creature
+	m_doAnimCallback = nullptr;
+	if (shadowMgr) {
+		shadowMgr->createShadow(this);
+	}
 
-lbl_8013CCD8:
-	li       r0, 0
-	lfs      f0, lbl_805182B0@sda21(r2)
-	stw      r0, 0x174(r31)
-	li       r0, -1
-	lfs      f1, lbl_805182B4@sda21(r2)
-	li       r3, 8
-	stfs     f0, 0x224(r31)
-	lfs      f0, lbl_805182B8@sda21(r2)
-	stfs     f1, 0x1fc(r31)
-	stfs     f1, 0x20c(r31)
-	stfs     f1, 0x210(r31)
-	stfs     f1, 0x214(r31)
-	stfs     f1, 0x200(r31)
-	stfs     f1, 0x204(r31)
-	stfs     f1, 0x208(r31)
-	stfs     f1, 0x1e4(r31)
-	stfs     f1, 0x1e8(r31)
-	stfs     f1, 0x1ec(r31)
-	stfs     f1, 0x1f0(r31)
-	stfs     f1, 0x1f4(r31)
-	stfs     f1, 0x1f8(r31)
-	stw      r0, 0x228(r31)
-	stfs     f0, 0x234(r31)
-	bl       __nw__FUl
-	or.      r0, r3, r3
-	beq      lbl_8013CD48
-	bl       __ct__8CollTreeFv
-	mr       r0, r3
-
-lbl_8013CD48:
-	stw      r0, 0x114(r31)
-	li       r0, 0
-	mr       r4, r31
-	addi     r3, r31, 0xa8
-	stw      r0, 0x190(r31)
-	li       r5, 8
-	bl       alloc__Q24Game15CollisionBufferFPQ24Game10CellObjecti
-	li       r0, 0
-	lfs      f0, lbl_805182B4@sda21(r2)
-	stw      r0, 0x1a0(r31)
-	mr       r3, r31
-	stw      r0, 0x1a8(r31)
-	stfs     f0, 0x19c(r31)
-	stfs     f0, 0x198(r31)
-	lwz      r31, 0xc(r1)
-	lwz      r0, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	m_model                   = nullptr;
+	m_boundingSphere.m_radius = 8.5f;
+	m_faceDir                 = 0.0f;
+	m_position3               = Vector3f(0.0f);
+	m_position2               = Vector3f(0.0f);
+	m_velocity                = Vector3f(0.0f);
+	_1F0                      = Vector3f(0.0f);
+	m_boundAnimIdx            = IPikiAnims::NULLANIM;
+	m_animSpeed               = 30.0f;
+	m_collTree                = new CollTree;
+	m_waterBox                = nullptr;
+	m_collisionBuffer.alloc(this, 8);
+	m_lookAtPosition       = nullptr;
+	m_lookAtTargetCreature = nullptr;
+	m_neckPhi              = 0.0f;
+	m_neckTheta            = 0.0f;
 }
 
 /*
@@ -428,56 +48,24 @@ lbl_8013CD48:
  */
 void FakePiki::initFakePiki()
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	lfs      f0, lbl_805182B4@sda21(r2)
-	stw      r0, 0x14(r1)
-	li       r0, 0
-	stw      r31, 0xc(r1)
-	mr       r31, r3
-	stw      r0, 0x188(r3)
-	stw      r0, 0x190(r3)
-	stfs     f0, 0x1fc(r3)
-	stfs     f0, 0x20c(r3)
-	stfs     f0, 0x210(r3)
-	stfs     f0, 0x214(r3)
-	stfs     f0, 0x1e4(r3)
-	stfs     f0, 0x1e8(r3)
-	stfs     f0, 0x1ec(r3)
-	stfs     f0, 0x1f0(r3)
-	stfs     f0, 0x1f4(r3)
-	stfs     f0, 0x1f8(r3)
-	stfs     f0, 0x200(r3)
-	stfs     f0, 0x204(r3)
-	stfs     f0, 0x208(r3)
-	stw      r0, 0x248(r3)
-	lwz      r3, shadowMgr__4Game@sda21(r13)
-	cmplwi   r3, 0
-	beq      lbl_8013CE04
-	mr       r4, r31
-	bl       addShadow__Q24Game9ShadowMgrFPQ24Game8Creature
+	m_doAnimCallback = nullptr;
+	m_waterBox       = nullptr;
+	m_faceDir        = 0.0f;
+	m_position3      = Vector3f(0.0f);
+	m_velocity       = Vector3f(0.0f);
+	_1F0             = Vector3f(0.0f);
+	m_position2      = Vector3f(0.0f);
+	_248             = nullptr;
 
-lbl_8013CE04:
-	li       r0, 0
-	mr       r3, r31
-	stb      r0, 0x17c(r31)
-	stb      r0, 0x17d(r31)
-	stb      r0, 0x17e(r31)
-	stb      r0, 0x17f(r31)
-	bl       initCaptureStomach__Q24Game8FakePikiFv
-	lfs      f0, lbl_805182B4@sda21(r2)
-	li       r3, -1
-	li       r0, 0
-	stfs     f0, 0x180(r31)
-	sth      r3, 0x18c(r31)
-	stw      r0, 0x184(r31)
-	lwz      r31, 0xc(r1)
-	lwz      r0, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	if (shadowMgr) {
+		shadowMgr->addShadow(this);
+	}
+
+	m_fakePikiFlags.clear();
+	initCaptureStomach();
+	_180        = 0.0f;
+	m_roomIndex = -1;
+	_184        = 0;
 }
 
 /*
@@ -485,21 +73,7 @@ lbl_8013CE04:
  * Address:	8013CE4C
  * Size:	000028
  */
-void FakePiki::killFakePiki()
-{
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	mr       r4, r3
-	stw      r0, 0x14(r1)
-	lwz      r3, shadowMgr__4Game@sda21(r13)
-	bl       delShadow__Q24Game9ShadowMgrFPQ24Game8Creature
-	lwz      r0, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
-}
+void FakePiki::killFakePiki() { shadowMgr->delShadow(this); }
 
 /*
  * --INFO--
@@ -508,58 +82,11 @@ void FakePiki::killFakePiki()
  */
 void FakePiki::initAnimator()
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	mr       r31, r3
-	addi     r3, r31, 0x1ac
-	lwz      r4, animMgr__Q24Game7NaviMgr@sda21(r13)
-	bl       setAnimMgr__12PikiAnimatorFPQ28SysShape7AnimMgr
-	mr       r3, r31
-	li       r4, 0x1f
-	lwz      r12, 0(r31)
-	li       r5, 0x1f
-	li       r6, 0
-	li       r7, 0
-	lwz      r12, 0x208(r12)
-	mtctr    r12
-	bctrl
-	lwz      r4, 0x174(r31)
-	addi     r3, r31, 0x1ac
-	bl       assertValid__Q28SysShape8AnimatorFPQ28SysShape5Model
-	clrlwi.  r0, r3, 0x18
-	bne      lbl_8013CEE8
-	lis      r3, lbl_8047C720@ha
-	lis      r5, lbl_8047C730@ha
-	addi     r3, r3, lbl_8047C720@l
-	li       r4, 0x1ca
-	addi     r5, r5, lbl_8047C730@l
-	crclr    6
-	bl       panic_f__12JUTExceptionFPCciPCce
+	m_animator.setAnimMgr(NaviMgr::animMgr);
+	startMotion(IPikiAnims::WAIT, IPikiAnims::WAIT, nullptr, nullptr);
 
-lbl_8013CEE8:
-	lwz      r4, 0x174(r31)
-	addi     r3, r31, 0x1c8
-	bl       assertValid__Q28SysShape8AnimatorFPQ28SysShape5Model
-	clrlwi.  r0, r3, 0x18
-	bne      lbl_8013CF18
-	lis      r3, lbl_8047C720@ha
-	lis      r5, lbl_8047C730@ha
-	addi     r3, r3, lbl_8047C720@l
-	li       r4, 0x1cb
-	addi     r5, r5, lbl_8047C730@l
-	crclr    6
-	bl       panic_f__12JUTExceptionFPCciPCce
-
-lbl_8013CF18:
-	lwz      r0, 0x14(r1)
-	lwz      r31, 0xc(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	P2ASSERTLINE(458, m_animator.m_selfAnimator.assertValid(m_model));
+	P2ASSERTLINE(459, m_animator.m_boundAnimator.assertValid(m_model));
 }
 
 /*
@@ -569,24 +96,16 @@ lbl_8013CF18:
  * Returns whether the pikmin or captains current animation matches the given
  * animation ID
  */
-bool FakePiki::assertMotion(int)
+bool FakePiki::assertMotion(int animIdx)
 {
-	/*
-	lwz      r3, 0x1b8(r3)
-	cmplwi   r3, 0
-	beq      lbl_8013CF40
-	lha      r0, 0x20(r3)
-	b        lbl_8013CF44
+	int currIdx;
+	if (m_animator.m_selfAnimator.m_animInfo) {
+		currIdx = m_animator.m_selfAnimator.m_animInfo->m_id;
+	} else {
+		currIdx = IPikiAnims::NULLANIM;
+	}
 
-lbl_8013CF40:
-	li       r0, -1
-
-lbl_8013CF44:
-	subf     r0, r0, r4
-	cntlzw   r0, r0
-	srwi     r3, r0, 5
-	blr
-	*/
+	return (currIdx == animIdx);
 }
 
 /*
@@ -596,41 +115,17 @@ lbl_8013CF44:
  */
 void FakePiki::enableMotionBlend()
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	mr       r31, r3
-	lwz      r3, 0x1d4(r3)
-	cmplwi   r3, 0
-	beq      lbl_8013CF7C
-	lha      r0, 0x20(r3)
-	b        lbl_8013CF80
+	int currIdx;
+	if (m_animator.m_boundAnimator.m_animInfo) {
+		currIdx = m_animator.m_boundAnimator.m_animInfo->m_id;
+	} else {
+		currIdx = IPikiAnims::NULLANIM;
+	}
 
-lbl_8013CF7C:
-	li       r0, -1
+	m_boundAnimIdx = currIdx;
 
-lbl_8013CF80:
-	cmplwi   r31, 0
-	stw      r0, 0x228(r31)
-	mr       r5, r31
-	beq      lbl_8013CF94
-	addi     r5, r31, 0x178
-
-lbl_8013CF94:
-	addi     r3, r31, 0x1c8
-	li       r4, 0x1c
-	bl       startAnim__Q28SysShape8AnimatorFiPQ28SysShape14MotionListener
-	lfs      f1, lbl_805182BC@sda21(r2)
-	addi     r3, r31, 0x1c8
-	bl       setCurrFrame__Q28SysShape8AnimatorFf
-	lwz      r0, 0x14(r1)
-	lwz      r31, 0xc(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	m_animator.m_boundAnimator.startAnim(IPikiAnims::NIGERU, this);
+	m_animator.m_boundAnimator.setCurrFrame(10.0f);
 }
 
 /*
@@ -639,85 +134,29 @@ lbl_8013CF94:
  * Size:	000100
  * This function is used to make a pikmin or captain start an animation
  */
-void FakePiki::startMotion(int, int, SysShape::MotionListener*, SysShape::MotionListener*)
+void FakePiki::startMotion(int selfAnimIdx, int boundAnimIdx, SysShape::MotionListener* selfListener,
+                           SysShape::MotionListener* boundListener)
 {
-	/*
-	.loc_0x0:
-	  stwu      r1, -0x20(r1)
-	  mflr      r0
-	  stw       r0, 0x24(r1)
-	  stw       r31, 0x1C(r1)
-	  mr        r31, r7
-	  stw       r30, 0x18(r1)
-	  mr        r30, r5
-	  mr        r5, r6
-	  stw       r29, 0x14(r1)
-	  mr        r29, r4
-	  stw       r28, 0x10(r1)
-	  mr        r28, r3
-	  addi      r3, r28, 0x1AC
-	  bl        0x2EBC94
-	  mr        r4, r30
-	  mr        r5, r31
-	  addi      r3, r28, 0x1C8
-	  bl        0x2EBC84
-	  lwz       r4, 0x174(r28)
-	  addi      r3, r28, 0x1AC
-	  bl        0x2EBDA8
-	  rlwinm.   r0,r3,0,24,31
-	  bne-      .loc_0x78
-	  lis       r3, 0x8048
-	  lis       r5, 0x8048
-	  subi      r3, r3, 0x38E0
-	  li        r4, 0x1E1
-	  subi      r5, r5, 0x38D0
-	  crclr     6, 0x6
-	  bl        -0x1129F4
+	m_animator.m_selfAnimator.startAnim(selfAnimIdx, selfListener);
+	m_animator.m_boundAnimator.startAnim(boundAnimIdx, boundListener);
 
-	.loc_0x78:
-	  lwz       r4, 0x174(r28)
-	  addi      r3, r28, 0x1C8
-	  bl        0x2EBD78
-	  rlwinm.   r0,r3,0,24,31
-	  bne-      .loc_0xA8
-	  lis       r3, 0x8048
-	  lis       r5, 0x8048
-	  subi      r3, r3, 0x38E0
-	  li        r4, 0x1E2
-	  subi      r5, r5, 0x38D0
-	  crclr     6, 0x6
-	  bl        -0x112A24
+	P2ASSERTLINE(481, m_animator.m_selfAnimator.assertValid(m_model));
+	P2ASSERTLINE(482, m_animator.m_boundAnimator.assertValid(m_model));
 
-	.loc_0xA8:
-	  li        r0, -0x1
-	  cmpwi     r29, 0x20
-	  stw       r0, 0x228(r28)
-	  bge-      .loc_0xD0
-	  cmpwi     r29, 0x15
-	  beq-      .loc_0xE0
-	  blt-      .loc_0xD8
-	  cmpwi     r29, 0x1C
-	  bge-      .loc_0xE0
-	  b         .loc_0xD8
+	m_boundAnimIdx = IPikiAnims::NULLANIM;
 
-	.loc_0xD0:
-	  cmpwi     r29, 0x38
-	  beq-      .loc_0xE0
+	switch (selfAnimIdx) {
+	case IPikiAnims::IRAIRA:
+	case IPikiAnims::NIGERU:
+	case IPikiAnims::RUN2:
+	case IPikiAnims::WALK:
+	case IPikiAnims::WAIT:
+	case IPikiAnims::SUWARU:
+		break;
 
-	.loc_0xD8:
-	  mr        r3, r28
-	  bl        0x788
-
-	.loc_0xE0:
-	  lwz       r0, 0x24(r1)
-	  lwz       r31, 0x1C(r1)
-	  lwz       r30, 0x18(r1)
-	  lwz       r29, 0x14(r1)
-	  lwz       r28, 0x10(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x20
-	  blr
-	*/
+	default:
+		finishLook();
+	}
 }
 
 /*
@@ -727,15 +166,8 @@ void FakePiki::startMotion(int, int, SysShape::MotionListener*, SysShape::Motion
  */
 void FakePiki::finishMotion()
 {
-	/*
-	lbz      r0, 0x1c4(r3)
-	ori      r0, r0, 2
-	stb      r0, 0x1c4(r3)
-	lbz      r0, 0x1e0(r3)
-	ori      r0, r0, 2
-	stb      r0, 0x1e0(r3)
-	blr
-	*/
+	m_animator.m_selfAnimator.m_flags |= 0x2;
+	m_animator.m_boundAnimator.m_flags |= 0x2;
 }
 
 /*
@@ -743,35 +175,21 @@ void FakePiki::finishMotion()
  * Address:	8013D0DC
  * Size:	000008
  */
-void FakePiki::movieSetFaceDir(float)
-{
-	/*
-	stfs     f1, 0x1fc(r3)
-	blr
-	*/
-}
+void FakePiki::movieSetFaceDir(f32 faceDir) { m_faceDir = faceDir; }
 
 /*
  * --INFO--
  * Address:	8013D0E4
  * Size:	000008
  */
-void FakePiki::setDoAnimCallback(IDelegate* callback)
-{
-	// Generated from stw r4, 0x188(r3)
-	m_doAnimCallback = callback;
-}
+void FakePiki::setDoAnimCallback(IDelegate* callback) { m_doAnimCallback = callback; }
 
 /*
  * --INFO--
  * Address:	8013D0EC
  * Size:	00000C
  */
-void FakePiki::clearDoAnimCallback()
-{
-	// Generated from stw r0, 0x188(r3)
-	m_doAnimCallback = nullptr;
-}
+void FakePiki::clearDoAnimCallback() { m_doAnimCallback = nullptr; }
 
 /*
  * --INFO--
@@ -1254,72 +672,39 @@ lbl_8013D6D8:
  * Address:	8013D6F0
  * Size:	0000C0
  */
-void FakePiki::startLookCreature(Creature*)
+void FakePiki::startLookCreature(Creature* creature)
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	mr       r31, r4
-	stw      r30, 8(r1)
-	mr       r30, r3
-	lwz      r3, 0x1b8(r3)
-	cmplwi   r3, 0
-	beq      lbl_8013D720
-	lha      r0, 0x20(r3)
-	b        lbl_8013D724
+	int currAnimIdx;
+	if (m_animator.m_selfAnimator.m_animInfo) {
+		currAnimIdx = m_animator.m_selfAnimator.m_animInfo->m_id;
+	} else {
+		currAnimIdx = IPikiAnims::NULLANIM;
+	}
 
-lbl_8013D720:
-	li       r0, -1
+	switch (currAnimIdx) {
+	default:
+		finishLook();
+		break;
 
-lbl_8013D724:
-	cmpwi    r0, 0x20
-	bge      lbl_8013D744
-	cmpwi    r0, 0x15
-	beq      lbl_8013D758
-	blt      lbl_8013D74C
-	cmpwi    r0, 0x1c
-	bge      lbl_8013D758
-	b        lbl_8013D74C
+	case IPikiAnims::IRAIRA:
+	case IPikiAnims::NIGERU:
+	case IPikiAnims::RUN2:
+	case IPikiAnims::WALK:
+	case IPikiAnims::WAIT:
+	case IPikiAnims::SUWARU:
+		if (creature->m_collTree) {
+			CollPart* randPart = creature->m_collTree->getRandomCollPart();
+			if (randPart) {
+				m_lookAtTargetCreature = creature;
+				m_lookAtPosition       = &randPart->m_position;
+				_1A4                   = 0;
+				return;
+			}
+		}
 
-lbl_8013D744:
-	cmpwi    r0, 0x38
-	beq      lbl_8013D758
-
-lbl_8013D74C:
-	mr       r3, r30
-	bl       finishLook__Q24Game8FakePikiFv
-	b        lbl_8013D798
-
-lbl_8013D758:
-	lwz      r3, 0x114(r31)
-	cmplwi   r3, 0
-	beq      lbl_8013D788
-	bl       getRandomCollPart__8CollTreeFv
-	cmplwi   r3, 0
-	beq      lbl_8013D788
-	stw      r31, 0x1a8(r30)
-	addi     r3, r3, 0x4c
-	li       r0, 0
-	stw      r3, 0x1a0(r30)
-	stb      r0, 0x1a4(r30)
-	b        lbl_8013D798
-
-lbl_8013D788:
-	li       r0, 0
-	mr       r3, r30
-	stw      r0, 0x1a8(r30)
-	bl       finishLook__Q24Game8FakePikiFv
-
-lbl_8013D798:
-	lwz      r0, 0x14(r1)
-	lwz      r31, 0xc(r1)
-	lwz      r30, 8(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+		m_lookAtTargetCreature = nullptr;
+		finishLook();
+	}
 }
 
 /*
@@ -1329,38 +714,13 @@ lbl_8013D798:
  */
 void FakePiki::updateLookCreature()
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	mr       r31, r3
-	lwz      r3, 0x1a8(r3)
-	cmplwi   r3, 0
-	beq      lbl_8013D7F8
-	lwz      r12, 0(r3)
-	lwz      r12, 0xa8(r12)
-	mtctr    r12
-	bctrl
-	clrlwi.  r0, r3, 0x18
-	bne      lbl_8013D7F8
-	li       r0, 0
-	mr       r3, r31
-	stw      r0, 0x1a8(r31)
-	bl       finishLook__Q24Game8FakePikiFv
+	// one should not observe the dead.
+	if (m_lookAtTargetCreature && !m_lookAtTargetCreature->isAlive()) {
+		m_lookAtTargetCreature = nullptr;
+		finishLook();
+	}
 
-lbl_8013D7F8:
-	mr       r3, r31
-	lwz      r12, 0(r31)
-	lwz      r12, 0x214(r12)
-	mtctr    r12
-	bctrl
-	lwz      r0, 0x14(r1)
-	lwz      r31, 0xc(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	do_updateLookCreature();
 }
 
 /*
@@ -1377,14 +737,9 @@ void FakePiki::do_updateLookCreature() { }
  */
 void FakePiki::finishLook()
 {
-	/*
-	li       r4, 0
-	li       r0, 0xa
-	stw      r4, 0x1a0(r3)
-	stb      r0, 0x1a4(r3)
-	stw      r4, 0x1a8(r3)
-	blr
-	*/
+	m_lookAtPosition       = nullptr;
+	_1A4                   = 10;
+	m_lookAtTargetCreature = nullptr;
 }
 
 /*
@@ -1671,36 +1026,12 @@ lbl_8013DBA8:
  * Address:	8013DBD4
  * Size:	000060
  */
-void FakePiki::turnTo(Vector3f&)
+void FakePiki::turnTo(Vector3f& targetPos)
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	mr       r31, r3
-	lfs      f1, 8(r4)
-	lfs      f0, 0x214(r3)
-	lfs      f3, 0(r4)
-	fsubs    f2, f1, f0
-	lfs      f1, 0x20c(r3)
-	lfs      f0, lbl_805182B4@sda21(r2)
-	fsubs    f1, f3, f1
-	fcmpu    cr0, f0, f2
-	beq      lbl_8013DC20
-	lis      r3, atanTable___5JMath@ha
-	addi     r3, r3, atanTable___5JMath@l
-	bl       "atan2___Q25JMath18TAtanTable<1024,f>CFff"
-	bl       roundAng__Ff
-	stfs     f1, 0x1fc(r31)
-
-lbl_8013DC20:
-	lwz      r0, 0x14(r1)
-	lwz      r31, 0xc(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	Vector3f diff = targetPos - m_position3;
+	if (diff.z != 0.0f) {
+		m_faceDir = roundAng(JMath::atanTable_.atan2_(diff.x, diff.z));
+	}
 }
 
 /*
@@ -2038,23 +1369,14 @@ lbl_8013E080:
  * Address:	8013E09C
  * Size:	000014
  */
-bool FakePiki::useMoveRotation()
-{
-	/*
-	lwz      r0, 0x17c(r3)
-	clrlwi   r0, r0, 0x1f
-	cntlzw   r0, r0
-	srwi     r3, r0, 5
-	blr
-	*/
-}
+bool FakePiki::useMoveRotation() { return !isFPFlag(FPFLAGS_MoveRotationDisabled); }
 
 /*
  * --INFO--
  * Address:	8013E0B0
  * Size:	0006A4
  */
-void FakePiki::move(float)
+void FakePiki::move(f32)
 {
 	/*
 	stwu     r1, -0x130(r1)
@@ -2534,25 +1856,13 @@ lbl_8013E714:
  * Address:	8013E754
  * Size:	00003C
  */
-void GameStat::PikiCounter::__opi()
+GameStat::PikiCounter::operator int()
 {
-	/*
-	lwz      r5, 4(r3)
-	lwz      r4, 8(r3)
-	lwz      r0, 0xc(r3)
-	add      r5, r5, r4
-	lwz      r4, 0x10(r3)
-	add      r5, r5, r0
-	lwz      r0, 0x14(r3)
-	add      r5, r5, r4
-	lwz      r4, 0x18(r3)
-	add      r5, r5, r0
-	lwz      r0, 0x1c(r3)
-	add      r5, r5, r4
-	add      r5, r5, r0
-	mr       r3, r5
-	blr
-	*/
+	int count = m_pikiCounts[0];
+	for (int i = 1; i < PikiColorCount; i++) {
+		count += m_pikiCounts[i];
+	}
+	return count;
 }
 
 /*
@@ -2560,16 +1870,7 @@ void GameStat::PikiCounter::__opi()
  * Address:	8013E790
  * Size:	000014
  */
-bool FakePiki::inWater()
-{
-	/*
-	lwz      r3, 0x190(r3)
-	neg      r0, r3
-	or       r0, r0, r3
-	srwi     r3, r0, 0x1f
-	blr
-	*/
-}
+bool FakePiki::inWater() { return (m_waterBox != nullptr); }
 
 /*
  * --INFO--
@@ -2583,29 +1884,14 @@ void FakePiki::wallCallback(Vector3f&) { }
  * Address:	8013E7A8
  * Size:	000014
  */
-void FakePiki::useMapCollision()
-{
-	/*
-	lwz      r0, 0x17c(r3)
-	rlwinm   r0, r0, 0, 0x1c, 0x1c
-	cntlzw   r0, r0
-	srwi     r3, r0, 5
-	blr
-	*/
-}
+bool FakePiki::useMapCollision() { return !isFPFlag(FPFLAGS_MapCollisionDisabled); }
 
 /*
  * --INFO--
  * Address:	8013E7BC
  * Size:	000008
  */
-float FakePiki::getMapCollisionRadius()
-{
-	/*
-	lfs      f1, lbl_805182B0@sda21(r2)
-	blr
-	*/
-}
+f32 FakePiki::getMapCollisionRadius() { return 8.5f; }
 
 /*
  * --INFO--
@@ -2614,67 +1900,20 @@ float FakePiki::getMapCollisionRadius()
  */
 void FakePiki::doEntry()
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	mr       r31, r3
-	lwz      r12, 0(r3)
-	lwz      r12, 0x1c4(r12)
-	mtctr    r12
-	bctrl
-	lbz      r0, 0xd8(r31)
-	rlwinm.  r0, r0, 0, 0x1d, 0x1d
-	beq      lbl_8013E80C
-	lwz      r3, 0x174(r31)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x1c(r12)
-	mtctr    r12
-	bctrl
-	b        lbl_8013E854
+	doColorChange();
 
-lbl_8013E80C:
-	lbz      r0, sEntryOpt__Q24Game12BaseHIOParms@sda21(r13)
-	cmplwi   r0, 0
-	beq      lbl_8013E840
-	lwz      r4, gameSystem__4Game@sda21(r13)
-	li       r3, 0
-	lwz      r0, 0x44(r4)
-	cmpwi    r0, 1
-	beq      lbl_8013E834
-	cmpwi    r0, 3
-	bne      lbl_8013E838
+	if (m_lod.m_flags & AILOD_FLAG_NEED_SHADOW) {
+		m_model->show();
 
-lbl_8013E834:
-	li       r3, 1
+	} else {
+		if (BaseHIOParms::sEntryOpt && !gameSystem->isMultiplayerMode()) {
+			return;
+		}
 
-lbl_8013E838:
-	clrlwi.  r0, r3, 0x18
-	beq      lbl_8013E86C
+		m_model->hide();
+	}
 
-lbl_8013E840:
-	lwz      r3, 0x174(r31)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x18(r12)
-	mtctr    r12
-	bctrl
-
-lbl_8013E854:
-	lwz      r3, 0x174(r31)
-	lwz      r3, 8(r3)
-	lwz      r12, 0(r3)
-	lwz      r12, 0xc(r12)
-	mtctr    r12
-	bctrl
-
-lbl_8013E86C:
-	lwz      r0, 0x14(r1)
-	lwz      r31, 0xc(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	m_model->m_j3dModel->entry();
 }
 
 /*
@@ -3019,19 +2258,10 @@ lbl_8013ECEC:
  * Address:	8013ED18
  * Size:	000024
  */
-void FakePiki::getBoundingSphere(Sys::Sphere&)
+void FakePiki::getBoundingSphere(Sys::Sphere& sphere)
 {
-	/*
-	lfs      f0, 0x218(r3)
-	stfs     f0, 0(r4)
-	lfs      f0, 0x21c(r3)
-	stfs     f0, 4(r4)
-	lfs      f0, 0x220(r3)
-	stfs     f0, 8(r4)
-	lfs      f0, 0x224(r3)
-	stfs     f0, 0xc(r4)
-	blr
-	*/
+	sphere.m_position = m_boundingSphere.m_position;
+	sphere.m_radius   = m_boundingSphere.m_radius;
 }
 
 /*
@@ -3039,16 +2269,7 @@ void FakePiki::getBoundingSphere(Sys::Sphere&)
  * Address:	8013ED3C
  * Size:	000014
  */
-void FakePiki::useMoveVelocity()
-{
-	/*
-	lwz      r0, 0x17c(r3)
-	rlwinm   r0, r0, 0, 0x1d, 0x1d
-	cntlzw   r0, r0
-	srwi     r3, r0, 5
-	blr
-	*/
-}
+bool FakePiki::useMoveVelocity() { return !isFPFlag(FPFLAGS_MoveVelocityDisabled); }
 
 /*
  * --INFO--
@@ -3057,56 +2278,10 @@ void FakePiki::useMoveVelocity()
  */
 void FakePiki::updateTrMatrix()
 {
-	/*
-	stwu     r1, -0x20(r1)
-	mflr     r0
-	stw      r0, 0x24(r1)
-	stw      r31, 0x1c(r1)
-	mr       r31, r3
-	lwz      r12, 0(r3)
-	lwz      r12, 0x1dc(r12)
-	mtctr    r12
-	bctrl
-	clrlwi.  r0, r3, 0x18
-	beq      lbl_8013EDB4
-	mr       r3, r31
-	bl       isStickTo__Q24Game8CreatureFv
-	clrlwi.  r0, r3, 0x18
-	bne      lbl_8013EDB4
-	lfs      f1, 0x1fc(r31)
-	addi     r3, r31, 0x138
-	lfs      f0, lbl_805182B4@sda21(r2)
-	addi     r4, r31, 0x168
-	stfs     f1, 0xc(r1)
-	addi     r5, r1, 8
-	addi     r6, r31, 0x20c
-	stfs     f0, 8(r1)
-	stfs     f0, 0x10(r1)
-	bl       "makeSRT__7MatrixfFR10Vector3<f>R10Vector3<f>R10Vector3<f>"
-
-lbl_8013EDB4:
-	lwz      r0, 0x24(r1)
-	lwz      r31, 0x1c(r1)
-	mtlr     r0
-	addi     r1, r1, 0x20
-	blr
-	*/
-}
-
-/*
- * --INFO--
- * Address:	8013EDC8
- * Size:	000014
- */
-void FakePiki::useUpdateTrMatrix()
-{
-	/*
-	lwz      r0, 0x17c(r3)
-	rlwinm   r0, r0, 0, 0x1e, 0x1e
-	cntlzw   r0, r0
-	srwi     r3, r0, 5
-	blr
-	*/
+	if (useUpdateTrMatrix() && !isStickTo()) {
+		Vector3f rotation(0.0f, m_faceDir, 0.0f);
+		m_mainMatrix.makeSRT(m_scale, rotation, m_position3);
+	}
 }
 
 /*
@@ -3114,7 +2289,7 @@ void FakePiki::useUpdateTrMatrix()
  * Address:	8013EDDC
  * Size:	000560
  */
-void FakePiki::doSimulation(float)
+void FakePiki::doSimulation(f32)
 {
 	/*
 	stwu     r1, -0x60(r1)
@@ -3515,51 +2690,28 @@ lbl_8013F31C:
  * Address:	8013F33C
  * Size:	00001C
  */
-Vector3f BaseItem::getPosition()
-{
-	/*
-	lfs      f0, 0x19c(r4)
-	stfs     f0, 0(r3)
-	lfs      f0, 0x1a0(r4)
-	stfs     f0, 4(r3)
-	lfs      f0, 0x1a4(r4)
-	stfs     f0, 8(r3)
-	blr
-	*/
-}
+Vector3f BaseItem::getPosition() { return m_position; }
 
 /*
  * --INFO--
  * Address:	8013F358
  * Size:	00000C
  */
-void FakePiki::initCaptureStomach()
-{
-	// Generated from stw r0, 0x194(r3)
-	m_stomachCaptureCollPart = nullptr;
-}
+void FakePiki::initCaptureStomach() { m_stomachCaptureCollPart = nullptr; }
 
 /*
  * --INFO--
  * Address:	8013F364
  * Size:	000008
  */
-void FakePiki::startCaptureStomach(CollPart* collPart)
-{
-	// Generated from stw r4, 0x194(r3)
-	m_stomachCaptureCollPart = collPart;
-}
+void FakePiki::startCaptureStomach(CollPart* collPart) { m_stomachCaptureCollPart = collPart; }
 
 /*
  * --INFO--
  * Address:	8013F36C
  * Size:	00000C
  */
-void FakePiki::endCaptureStomach()
-{
-	// Generated from stw r0, 0x194(r3)
-	m_stomachCaptureCollPart = nullptr;
-}
+void FakePiki::endCaptureStomach() { m_stomachCaptureCollPart = nullptr; }
 
 /*
  * --INFO--
@@ -3706,22 +2858,13 @@ void FakePiki::update() { }
  * Address:	8013F4F0
  * Size:	000028
  */
-void FakePiki::setMoveRotation(bool)
+void FakePiki::setMoveRotation(bool useMoveRotation)
 {
-	/*
-	clrlwi.  r0, r4, 0x18
-	bne      lbl_8013F508
-	lwz      r0, 0x17c(r3)
-	ori      r0, r0, 1
-	stw      r0, 0x17c(r3)
-	blr
-
-lbl_8013F508:
-	lwz      r0, 0x17c(r3)
-	rlwinm   r0, r0, 0, 0, 0x1e
-	stw      r0, 0x17c(r3)
-	blr
-	*/
+	if (!useMoveRotation) {
+		setFPFlag(FPFLAGS_MoveRotationDisabled);
+	} else {
+		resetFPFlag(FPFLAGS_MoveRotationDisabled);
+	}
 }
 
 /*
@@ -3729,22 +2872,13 @@ lbl_8013F508:
  * Address:	8013F518
  * Size:	000028
  */
-void FakePiki::setUpdateTrMatrix(bool)
+void FakePiki::setUpdateTrMatrix(bool useUpdateTrMatrix)
 {
-	/*
-	clrlwi.  r0, r4, 0x18
-	bne      lbl_8013F530
-	lwz      r0, 0x17c(r3)
-	ori      r0, r0, 2
-	stw      r0, 0x17c(r3)
-	blr
-
-lbl_8013F530:
-	lwz      r0, 0x17c(r3)
-	rlwinm   r0, r0, 0, 0x1f, 0x1d
-	stw      r0, 0x17c(r3)
-	blr
-	*/
+	if (!useUpdateTrMatrix) {
+		setFPFlag(FPFLAGS_UpdateTrMatrixDisabled);
+	} else {
+		resetFPFlag(FPFLAGS_UpdateTrMatrixDisabled);
+	}
 }
 
 /*
@@ -3752,22 +2886,13 @@ lbl_8013F530:
  * Address:	8013F540
  * Size:	000028
  */
-void FakePiki::setMoveVelocity(bool)
+void FakePiki::setMoveVelocity(bool useMoveVelocity)
 {
-	/*
-	clrlwi.  r0, r4, 0x18
-	bne      lbl_8013F558
-	lwz      r0, 0x17c(r3)
-	ori      r0, r0, 4
-	stw      r0, 0x17c(r3)
-	blr
-
-lbl_8013F558:
-	lwz      r0, 0x17c(r3)
-	rlwinm   r0, r0, 0, 0x1e, 0x1c
-	stw      r0, 0x17c(r3)
-	blr
-	*/
+	if (!useMoveVelocity) {
+		setFPFlag(FPFLAGS_MoveVelocityDisabled);
+	} else {
+		resetFPFlag(FPFLAGS_MoveVelocityDisabled);
+	}
 }
 
 /*
@@ -3775,22 +2900,13 @@ lbl_8013F558:
  * Address:	8013F568
  * Size:	000028
  */
-void FakePiki::setMapCollision(bool)
+void FakePiki::setMapCollision(bool useMapCollision)
 {
-	/*
-	clrlwi.  r0, r4, 0x18
-	bne      lbl_8013F580
-	lwz      r0, 0x17c(r3)
-	ori      r0, r0, 8
-	stw      r0, 0x17c(r3)
-	blr
-
-lbl_8013F580:
-	lwz      r0, 0x17c(r3)
-	rlwinm   r0, r0, 0, 0x1d, 0x1b
-	stw      r0, 0x17c(r3)
-	blr
-	*/
+	if (!useMapCollision) {
+		setFPFlag(FPFLAGS_MapCollisionDisabled);
+	} else {
+		resetFPFlag(FPFLAGS_MapCollisionDisabled);
+	}
 }
 
 /*
@@ -3798,43 +2914,24 @@ lbl_8013F580:
  * Address:	8013F590
  * Size:	00000C
  */
-bool FakePiki::isZikatu()
-{
-	/*
-	lwz      r0, 0x17c(r3)
-	rlwinm   r3, r0, 0x1b, 0x1f, 0x1f
-	blr
-	*/
-}
+bool FakePiki::isZikatu() { return isFPFlag(FPFLAGS_Zikatu); }
 
 /*
  * --INFO--
  * Address:	8013F59C
  * Size:	00003C
  */
-void FakePiki::setZikatu(bool)
+void FakePiki::setZikatu(bool makeZikatu)
 {
-	/*
-	clrlwi.  r0, r4, 0x18
-	beq      lbl_8013F5B4
-	lwz      r0, 0x17c(r3)
-	ori      r0, r0, 0x20
-	stw      r0, 0x17c(r3)
-	b        lbl_8013F5C0
+	if (makeZikatu) {
+		setFPFlag(FPFLAGS_Zikatu);
+	} else {
+		resetFPFlag(FPFLAGS_Zikatu);
+	}
 
-lbl_8013F5B4:
-	lwz      r0, 0x17c(r3)
-	rlwinm   r0, r0, 0, 0x1b, 0x19
-	stw      r0, 0x17c(r3)
-
-lbl_8013F5C0:
-	clrlwi.  r0, r4, 0x18
-	beqlr
-	lwz      r0, 0x17c(r3)
-	ori      r0, r0, 0x80
-	stw      r0, 0x17c(r3)
-	blr
-	*/
+	if (makeZikatu) {
+		setFPFlag(FPFLAGS_WasZikatu);
+	}
 }
 
 /*
@@ -3842,21 +2939,14 @@ lbl_8013F5C0:
  * Address:	8013F5D8
  * Size:	00000C
  */
-bool FakePiki::wasZikatu()
-{
-	/*
-	lwz      r0, 0x17c(r3)
-	rlwinm   r3, r0, 0x19, 0x1f, 0x1f
-	blr
-	*/
-}
+bool FakePiki::wasZikatu() { return isFPFlag(FPFLAGS_WasZikatu); }
 
 /*
  * --INFO--
  * Address:	8013F5E4
  * Size:	000004
  */
-void FakePiki::inWaterCallback(Game::WaterBox*) { }
+void FakePiki::inWaterCallback(WaterBox*) { }
 
 /*
  * --INFO--
@@ -3867,37 +2957,13 @@ void FakePiki::outWaterCallback() { }
 
 /*
  * --INFO--
- * Address:	8013F5EC
- * Size:	000004
- */
-void FakePiki::onSetPosition() { }
-
-/*
- * --INFO--
  * Address:	8013F5F0
  * Size:	000044
  */
-void FakePiki::onSetPosition(Vector3f&)
+void FakePiki::onSetPosition(Vector3f& position)
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	lfs      f0, 0(r4)
-	stfs     f0, 0x20c(r3)
-	lfs      f0, 4(r4)
-	stfs     f0, 0x210(r3)
-	lfs      f0, 8(r4)
-	stfs     f0, 0x214(r3)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x218(r12)
-	mtctr    r12
-	bctrl
-	lwz      r0, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	m_position3 = position;
+	onSetPosition();
 }
 
 /*
@@ -3905,80 +2971,35 @@ void FakePiki::onSetPosition(Vector3f&)
  * Address:	8013F634
  * Size:	000008
  */
-float FakePiki::getFaceDir()
-{
-	/*
-	lfs      f1, 0x1fc(r3)
-	blr
-	*/
-}
+f32 FakePiki::getFaceDir() { return m_faceDir; }
 
 /*
  * --INFO--
  * Address:	8013F63C
  * Size:	00001C
  */
-Vector3f FakePiki::getVelocity()
-{
-	/*
-	lfs      f0, 0x200(r4)
-	stfs     f0, 0(r3)
-	lfs      f0, 0x204(r4)
-	stfs     f0, 4(r3)
-	lfs      f0, 0x208(r4)
-	stfs     f0, 8(r3)
-	blr
-	*/
-}
+Vector3f FakePiki::getVelocity() { return m_position2; }
 
 /*
  * --INFO--
  * Address:	8013F658
  * Size:	00001C
  */
-void FakePiki::setVelocity(Vector3f&)
-{
-	/*
-	lfs      f0, 0(r4)
-	stfs     f0, 0x200(r3)
-	lfs      f0, 4(r4)
-	stfs     f0, 0x204(r3)
-	lfs      f0, 8(r4)
-	stfs     f0, 0x208(r3)
-	blr
-	*/
-}
+void FakePiki::setVelocity(Vector3f& velocity) { m_position2 = velocity; }
 
 /*
  * --INFO--
  * Address:	8013F674
  * Size:	00001C
  */
-void FakePiki::getVelocityAt(Vector3f&, Vector3f&)
-{
-	/*
-	lfs      f0, 0x200(r3)
-	stfs     f0, 0(r5)
-	lfs      f0, 0x204(r3)
-	stfs     f0, 4(r5)
-	lfs      f0, 0x208(r3)
-	stfs     f0, 8(r5)
-	blr
-	*/
-}
+void FakePiki::getVelocityAt(Vector3f& vec, Vector3f& velocity) { velocity = m_position2; }
 
 /*
  * --INFO--
  * Address:	8013F690
  * Size:	000008
  */
-Vector3f* FakePiki::getSound_PosPtr()
-{
-	/*
-	addi     r3, r3, 0x20c
-	blr
-	*/
-}
+Vector3f* FakePiki::getSound_PosPtr() { return &m_position3; }
 
 /*
  * --INFO--
@@ -3995,40 +3016,3 @@ bool FakePiki::isWalking() { return false; }
 void FakePiki::onKeyEvent(const SysShape::KeyEvent&) { }
 
 } // namespace Game
-
-/*
- * --INFO--
- * Address:	8013F6A4
- * Size:	000028
- */
-void __sinit_fakePiki_cpp(void)
-{
-	/*
-	lis      r4, __float_nan@ha
-	li       r0, -1
-	lfs      f0, __float_nan@l(r4)
-	lis      r3, lbl_804B02B0@ha
-	stw      r0, lbl_80515900@sda21(r13)
-	stfsu    f0, lbl_804B02B0@l(r3)
-	stfs     f0, lbl_80515904@sda21(r13)
-	stfs     f0, 4(r3)
-	stfs     f0, 8(r3)
-	blr
-	*/
-}
-
-// namespace Game {
-
-// /*
-//  * --INFO--
-//  * Address:	8013F6CC
-//  * Size:	000008
-//  */
-// void FakePiki::@376 @onKeyEvent(const SysShape::KeyEvent&)
-// {
-// 	/*
-// 	addi     r3, r3, -376
-// 	b        onKeyEvent__Q24Game8FakePikiFRCQ28SysShape8KeyEvent
-// 	*/
-// }
-// } // namespace Game

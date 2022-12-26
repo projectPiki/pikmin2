@@ -28,7 +28,7 @@ namespace Game {
  */
 void Navi::getShadowParam(ShadowParam& param)
 {
-	param.m_position = m_shadowParam.m_position;
+	param.m_position = m_position3;
 	param.m_position.y += 0.5f;
 
 	param.m_boundingSphere.m_radius = 10.0f;
@@ -45,7 +45,7 @@ void Navi::getShadowParam(ShadowParam& param)
 void Navi::getLODSphere(Sys::Sphere& sphere)
 {
 	sphere.m_radius   = 24.0f;
-	sphere.m_position = m_shadowParam.m_boundingSphere.m_position;
+	sphere.m_position = m_boundingSphere.m_position;
 }
 
 /*
@@ -66,7 +66,7 @@ Navi::Navi()
 
 	m_effectsObj = new efx::TNaviEffect;
 	m_effectsObj->init(nullptr, nullptr, nullptr, efx::TNaviEffect::NAVITYPE_Unk0);
-	m_effectsObj->_08 = &m_shadowParam.m_position;
+	m_effectsObj->_08 = &m_position3;
 
 	m_fsm = new NaviFSM;
 	m_fsm->init(this);
@@ -187,7 +187,7 @@ void StateMachine<Game::Navi>::start(Navi* navi, int stateID, StateArg* stateArg
  */
 void Navi::onSetPosition(Vector3f& position)
 {
-	m_shadowParam.m_position = position;
+	m_position3 = position;
 	static_cast<FakePiki*>(this)->onSetPosition(); // dumb.
 
 	if (m_naviIndex == 0) { // olimar
@@ -251,7 +251,7 @@ Vector3f Navi::getPosition()
 		return position;
 
 	} else {
-		return m_shadowParam.m_position;
+		return m_position3;
 	}
 }
 

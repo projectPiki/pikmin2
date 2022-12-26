@@ -85,8 +85,22 @@ struct IPikiAnims {
 	};
 };
 
+enum FakePikiDynamics {
+	FPFLAGS_MoveRotationDisabled   = 0x1,
+	FPFLAGS_UpdateTrMatrixDisabled = 0x2,
+	FPFLAGS_MoveVelocityDisabled   = 0x4,
+	FPFLAGS_MapCollisionDisabled   = 0x8,
+	FPFLAGS_Zikatu                 = 0x20,
+	FPFLAGS_WasZikatu              = 0x80,
+};
+
 struct FakePiki : public Creature, public SysShape::MotionListener {
 	FakePiki();
+
+	// these are here so they can be used in vtable methods
+	inline void setFPFlag(u32 flag) { m_fakePikiFlags.typeView |= flag; }
+	inline void resetFPFlag(u32 flag) { m_fakePikiFlags.typeView &= ~flag; }
+	inline bool isFPFlag(u32 flag) { return m_fakePikiFlags.typeView & flag; }
 
 	// vtable 1 (Creature)
 	virtual Vector3f getPosition();                           // _08
@@ -107,20 +121,20 @@ struct FakePiki : public Creature, public SysShape::MotionListener {
 	virtual void getVelocityAt(Vector3f&, Vector3f&);         // _184 (weak)
 	// vtable 2 (MotionListener + self)
 	// virtual void onKeyEvent(const SysShape::KeyEvent& event); // _1B8 thunk
-	virtual int getDownfloorMass();           // _1BC (weak)
-	virtual bool isPikmin();                  // _1C0 (weak)
-	virtual void doColorChange();             // _1C4 (weak)
-	virtual void doDebugDL();                 // _1C8 (weak)
-	virtual void update();                    // _1CC (weak)
-	virtual void move(f32);                   // _1D0
-	virtual bool useMoveRotation();           // _1D4 (weak)
-	virtual void setMoveRotation(bool);       // _1D8 (weak)
-	virtual void useUpdateTrMatrix();         // _1DC (weak)
-	virtual void setUpdateTrMatrix(bool);     // _1E0 (weak)
-	virtual void useMoveVelocity();           // _1E4 (weak)
-	virtual void setMoveVelocity(bool);       // _1E8 (weak)
-	virtual void useMapCollision();           // _1EC (weak)
-	virtual void setMapCollision(bool);       // _1F0 (weak)
+	virtual int getDownfloorMass();                                                        // _1BC (weak)
+	virtual bool isPikmin();                                                               // _1C0 (weak)
+	virtual void doColorChange();                                                          // _1C4 (weak)
+	virtual void doDebugDL();                                                              // _1C8 (weak)
+	virtual void update();                                                                 // _1CC (weak)
+	virtual void move(f32);                                                                // _1D0
+	virtual bool useMoveRotation();                                                        // _1D4 (weak)
+	virtual void setMoveRotation(bool);                                                    // _1D8 (weak)
+	virtual bool useUpdateTrMatrix() { return !isFPFlag(FPFLAGS_UpdateTrMatrixDisabled); } // _1DC (weak)
+	virtual void setUpdateTrMatrix(bool);                                                  // _1E0 (weak)
+	virtual bool useMoveVelocity();                                                        // _1E4 (weak)
+	virtual void setMoveVelocity(bool);                                                    // _1E8 (weak)
+	virtual bool useMapCollision();                                                        // _1EC (weak)
+	virtual void setMapCollision(bool);                                                    // _1F0 (weak)
 	virtual bool isZikatu();                  // _1F4 (weak), is this a Wild Piki? (before type discovery, useless Pikmin)
 	virtual void setZikatu(bool);             // _1F8 (weak)
 	virtual bool wasZikatu();                 // _1FC (weak)
@@ -168,16 +182,16 @@ struct FakePiki : public Creature, public SysShape::MotionListener {
 	// _000      = VTBL
 	// _000-_178 = Creature
 	// _178-_17C = MotionListener
-	u32 _17C;                           // _17C, possibly flags?
+	BitFlag<u32> m_fakePikiFlags;       // _17C
 	f32 _180;                           // _180
-	u8 _184[4];                         // _184
+	u32 _184;                           // _184
 	IDelegate* m_doAnimCallback;        // _188
 	short m_roomIndex;                  // _18C
 	WaterBox* m_waterBox;               // _190
 	CollPart* m_stomachCaptureCollPart; // _194
 	f32 m_neckTheta;                    // _198
 	f32 m_neckPhi;                      // _19C
-	u32 _1A0;                           // _1A0
+	Vector3f* m_lookAtPosition;         // _1A0
 	u8 _1A4;                            // _1A4
 	Creature* m_lookAtTargetCreature;   // _1A8
 	PikiAnimator m_animator;            // _1AC
@@ -185,7 +199,9 @@ struct FakePiki : public Creature, public SysShape::MotionListener {
 	Vector3f _1F0;                      // _1F0
 	f32 m_faceDir;                      // _1FC
 	Vector3f m_position2;               // _200
-	ShadowParam m_shadowParam;          // _20C
+	Vector3f m_position3;               // _20C, was m_shadowParam.m_position
+	Sys::Sphere m_boundingSphere;       // _218, was m_shadowParam.m_boundingSphere
+	u32 m_boundAnimIdx;                 // _228, current animIdx for held/bound object
 	u8 _22C[8];                         // _22C
 	f32 m_animSpeed;                    // _234
 	Vector3f _238;                      // _238
