@@ -27,10 +27,13 @@ struct Parm : public BaseParm {
 	{
 	}
 
+	inline operator T() { return m_value; }
+	inline void operator=(const T& rhs) { m_value = rhs; }
+	inline T* operator()() { return &m_value; }
+
 	virtual int size() { return sizeof(T); }
 	virtual void write(Stream&);
 	virtual void read(Stream&);
-	inline T* operator()() { return &m_value; }
 
 	T m_value; // _18
 	T _1C;     // _1C
@@ -53,6 +56,8 @@ struct ParmEnum : public BaseParm {
 	inline virtual int size() { return 4; }
 	virtual void write(Stream&);
 	virtual void read(Stream&);
+
+	operator u32() { return m_value; }
 
 	u32 m_value;         // _18
 	int m_enumElemSize;  // _1C

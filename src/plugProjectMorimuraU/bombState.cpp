@@ -165,7 +165,7 @@ void StateBomb::exec(EnemyBase* enemy)
 						if (creature->isTeki()) {
 
 							f32 weight = 1.0f;
-							f32 force  = weight * static_cast<Parms*>(enemy->m_parms)->m_properParms.m_fp01.m_value;
+							f32 force  = weight * CG_PROPERPARMS(enemy).m_explodeForce.m_value;
 							InteractBomb interBomb(enemy, force, &Vector3f::zero);
 
 							creature->stimulate(interBomb);

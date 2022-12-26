@@ -334,8 +334,8 @@ struct GenObjectFactoryFactory {
 
 struct GenObjectNavi : public GenObject {
 	GenObjectNavi()
-	    : GenObject('navi', "object type", "NAVI をセット")  // set the NAVI
-	    , m_rotParm(this, 'p000', "スタート向き", 0, 0, 360) // start direction
+	    : GenObject('navi', "object type", "NAVI をセット")   // set the NAVI
+	    , m_rotation(this, 'p000', "スタート向き", 0, 0, 360) // start direction
 	{
 	}
 
@@ -346,7 +346,7 @@ struct GenObjectNavi : public GenObject {
 
 	static void initialise();
 
-	Parm<float> m_rotParm; // _24
+	Parm<float> m_rotation; // _24
 };
 
 extern GeneratorMgr* generatorMgr;

@@ -86,7 +86,7 @@ Creature* GenObjectNavi::birth(GenArg* arg)
 		tempModel->loopTimer();
 
 		newNavi->setPosition(arg->m_position, false);
-		newNavi->m_faceDir = PI * (DEG2RAD * m_rotParm.m_value);
+		newNavi->m_faceDir = PI * (DEG2RAD * m_rotation.m_value);
 	}
 	return newNavi;
 }

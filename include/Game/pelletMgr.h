@@ -64,6 +64,8 @@ struct PelletMgr : public NodeObjectMgr<GenericObjectMgr> {
 		{
 		}
 
+		operator s16() { return m_value; }
+
 		bool isNull();
 		void read(Stream&);
 		void write(Stream&);
