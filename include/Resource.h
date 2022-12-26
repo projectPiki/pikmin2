@@ -90,11 +90,11 @@ struct Mgr {
 	void watchHeap();
 
 	// _00 = VTBL
-	JKRHeap* _04; // _04
-	u32 _08;      // _08
-	u32 _0C;      // _0C
-	CNode _10;    // _10
-	CNode _28;    // _28
+	JKRHeap* m_heap; // _04
+	u32 _08;         // _08
+	u32 _0C;         // _0C
+	CNode _10;       // _10
+	CNode _28;       // _28
 	union {
 		u8 bytesView[4];
 		u32 dwordView;

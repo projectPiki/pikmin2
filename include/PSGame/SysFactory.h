@@ -3,6 +3,10 @@
 
 #include "JSystem/JKR/JKRHeap.h"
 
+namespace PSM {
+struct SceneMgr;
+}
+
 namespace PSGame {
 struct SysFactory {
 	SysFactory();
@@ -11,12 +15,12 @@ struct SysFactory {
 	void preInitJAI();
 	void postInitJAI();
 
-	JKRHeap* _00; // _00
-	u32 _04;      // _04
-	u32 _08;      // _08, unknown
-	void* _0C;    // _0C, should be a ptr to makeJAISeCallback maybe?
+	JKRHeap* m_heap;                      // _00
+	u32 m_heapSize;                       // _04
+	void* m_aafFile;                      // _08
+	void (PSM::SeSound::*m_makeSeFunc)(); // _0C
 
-	virtual void someFunction() = 0; // _08, not sure what this is, possibly a dtor?
+	virtual PSM::SceneMgr* newSceneMgr() = 0; // _08
 
 	// _10 = VTBL??
 	u32 m_solidHeapSize;       // _14

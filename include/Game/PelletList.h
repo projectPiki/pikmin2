@@ -23,7 +23,7 @@ struct Mgr {
 	void getDictionaryNum();
 	void getConfigFromDictionaryNo(int);
 	void getOffsetFromDictionaryNo(int);
-	void globalInstance();
+	static void globalInstance();
 
 	static PelletConfigList* getConfigList(cKind);
 	static int getCount(cKind);

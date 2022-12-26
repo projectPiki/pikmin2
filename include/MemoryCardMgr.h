@@ -31,6 +31,9 @@ struct MemoryCardMgr {
 	virtual void doCheckCardStat(CARDStat*);               // _24
 	virtual bool isErrorOccured();                         // _28
 
+	void cardProc(void*);
+	void init();
+
 	u8 _04[0xD4]; // _04
 	u32 _D8;      // _D8
 	u32 _DC;      // _DC

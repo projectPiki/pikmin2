@@ -1,7 +1,6 @@
 #ifndef _SYSTEM_H
 #define _SYSTEM_H
 
-#include "types.h"
 #include "DvdThreadCommand.h"
 #include "Dolphin/gx.h"
 #include "SysTimers.h"
@@ -18,6 +17,12 @@ extern void preUserCallback(unsigned short, OSContext*, unsigned long, unsigned 
 
 typedef s32 ERenderMode;
 
+// const char* cMapFileName = "/pikmin2UP.map";
+
+//_GXRenderModeObj* renderMode;
+
+_GXRenderModeObj* sRenderModeTable[4];
+
 struct HeapInfo : public Node {
 	virtual ~HeapInfo(); // _20 (weak)
 
@@ -31,21 +36,30 @@ struct Mgr;
 } // namespace Game
 
 struct System {
+	static ERenderMode mRenderMode;
 	enum LanguageID { LANG_ENGLISH = 0, LANG_FRENCH, LANG_GERMAN, LANG_HOL_UNUSED, LANG_ITALIAN, LANG_JAPANESE, LANG_SPANISH };
 	struct FragmentationChecker {
 		FragmentationChecker(char*, bool);
 		~FragmentationChecker();
+
+		u32 m_size;   // _00
+		char* m_name; // _04
+	};
+
+	// unused struct?
+	struct GXVerifyArg {
+		GXVerifyArg();
 	};
 
 	System();
 	~System();
 
 	static _GXRenderModeObj* getRenderModeObj();
-	static void assert_fragmentation(char*);
-	static void createSoundSystem();
+	static int assert_fragmentation(char*);
 	static void loadSoundResource();
 	static void initialize();
 
+	void createSoundSystem();
 	void enableCPULockDetector(int);
 	int disableCPULockDetector();
 	void construct();
@@ -68,7 +82,7 @@ struct System {
 	void endFrame();
 	void beginRender();
 	void endRender();
-	ERenderMode setRenderMode(ERenderMode);
+	static ERenderMode setRenderMode(ERenderMode);
 	void changeRenderMode(ERenderMode);
 	// Possibilities: HeapStatus*, bool, ???
 	u32 heapStatusStart(char*, JKRHeap*);
@@ -92,11 +106,24 @@ struct System {
 	bool dvdLoadSyncNoBlock(struct DvdThreadCommand*);
 	int dvdLoadSyncAllNoBlock();
 
+	// unused/inline
+	void setGXVerifyLevel(System::GXVerifyArg&);
+	void clearGXVerifyLevel();
+	void checkOptionBlockSaveFlag();
+	void dvdLoadArchive(DvdThreadCommand*, char*, JKRHeap*);
+	void dvdLoadArchiveTemporary(DvdThreadCommand*, char*, JKRHeap*);
+	void dvdLoadFile(DvdThreadCommand*, char*, JKRHeap*);
+	void dvdLoadSync(DvdThreadCommand*, DvdThread::ESyncBlockFlag);
+	void dvdLoadSyncAll(DvdThread::ESyncBlockFlag);
+	void heapStatusDumpNode();
+	void resetOff();
+	void forceFinishSection();
+
 	f32 _00;                                      // _00
 	f32 _04;                                      // _04
 	f32 _08;                                      // _08
 	u8 _0C[0xC];                                  // _0C
-	JKRHeap* _18;                                 // _18
+	JKRHeap* m_backupHeap;                        // _18
 	u32 m_cpuRetraceCount;                        // _1C
 	u32 m_cpuLockCount;                           // _20
 	Graphics* m_gfx;                              // _24

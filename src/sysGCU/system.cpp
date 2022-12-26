@@ -1,9 +1,32 @@
 #include "Dolphin/os.h"
 #include "Dolphin/stl.h"
 #include "JSystem/JKR/JKRHeap.h"
+#include "JSystem/JKR/JKRFileCache.h"
+#include "JSystem/JFW/JFWSystem.h"
 #include "JSystem/JUT/JUTException.h"
+#include "JSystem/JUT/JUTConsole.h"
+#include "JSystem/JUT/JUTVideo.h"
+#include "PSM/Factory.h"
 #include "System.h"
-#include "types.h"
+#include "ResetManager.h"
+#include "Resource.h"
+#include "DvdStatus.h"
+#include "GameFlow.h"
+#include "Controller.h"
+#include "ARAM.h"
+#include "Pikmin2ARAM.h"
+#include "MemoryCardMgr.h"
+#include "Game/GameConfig.h"
+#include "P2JME/P2JME.h"
+#include "Game/PelletList.h"
+#include "Game/gameStages.h"
+//#include "Game/gamePlayData.h"
+#include "Game/MoviePlayer.h"
+#include "PSSystem/PSGame.h"
+#include "Dolphin/rand.h"
+#include "Game/Data.h"
+#include "JSystem/JFW/JFWDisplay.h"
+#include "PSSystem/PSSystemIF.h"
 
 /*
     Generated from dpostproc
@@ -250,13 +273,6 @@
         .4byte 0x80000000
 */
 
-extern char gStrSystem_CPP[11]; // system.cpp
-
-extern char gStrSystem_MemoryAllocError[70]; // Memory Alloc Error!\n%x (size %d)
-                                             // align(%d)\nRestTotal=%d\nRestFree =%d\n
-
-extern char gStrSystem_Abort[7]; // abort\n
-
 struct CallbackObject {
 	u32* funcPtr;
 	u8 filler[14 - 4];
@@ -269,15 +285,13 @@ extern CallbackObject exCallbackObject;
  * Address:	80421EC4
  * Size:	0000A0
  */
-void Pikmin2DefaultMemoryErrorRoutine(void* address, unsigned long size, int alignment)
+void Pikmin2DefaultMemoryErrorRoutine(void* address, u32 size, int alignment)
 {
-	JUTException::panic_f(gStrSystem_CPP, 99, gStrSystem_MemoryAllocError, address, size, alignment,
-	                      static_cast<JKRHeap*>(address)->getTotalFreeSize(), static_cast<JKRHeap*>(address)->getFreeSize());
+	JUT_PANICLINE(99, "Memory Alloc Error!\n%x (size %d) align(%d)\nRestTotal=%d\nRestFree =%d\n", address, size, alignment,
+	              static_cast<JKRHeap*>(address)->getTotalFreeSize(), static_cast<JKRHeap*>(address)->getFreeSize());
 
-	OSPanic(gStrSystem_CPP, 101, gStrSystem_Abort);
+	OSPanic("system.cpp", 101, "abort\n");
 }
-
-extern char gStrSystem_InOnLine[23]; // %s in \"%s\" on line %d\n
 
 /*
  * --INFO--
@@ -297,14 +311,14 @@ void kando_panic_f(bool r3, const char* r4, int line, const char* r6, ...)
 	}
 
 	char dest[4];
-	memcpy(dest, (void*)*(JFWSystem::mainThread + 0x2C), 0x2C8);
+	memcpy(dest, JFWSystem::mainThread->m_thread, 0x2C8);
 
-	int unknown;
-	*(JUTException::sErrorManager + 0xa0) = unknown;
-	exCallbackObject.funcPtr              = (u32*)preUserCallback;
+	void* unknown                               = 0;
+	JUTException::sErrorManager->m_stackPointer = unknown;
+	exCallbackObject.funcPtr                    = (u32*)preUserCallback;
 
 	if (!JUTException::sErrorManager) {
-		OSReport(gStrSystem_InOnLine, buffer, r4, line);
+		OSReport("%s in \"%s\" on line %d\n", buffer, r4, line);
 	}
 
 	OSSendMessage(&JUTException::sMessageQueue, (OSMessage*)&exCallbackObject, true);
@@ -429,6 +443,41 @@ void kando_panic_f(bool r3, const char* r4, int line, const char* r6, ...)
 */
 void preUserCallback(unsigned short, OSContext*, unsigned long, unsigned long)
 {
+	sys->disableCPULockDetector();
+
+	u32 track;
+	// the inputs needed to open the crash log
+	u16 inputs[11] = { Controller::PRESS_B,
+		               Controller::PRESS_A,
+		               Controller::PRESS_X,
+		               Controller::PRESS_R,
+		               Controller::PRESS_L,
+		               Controller::PRESS_DPAD_LEFT,
+		               Controller::PRESS_DPAD_DOWN,
+		               Controller::PRESS_DPAD_UP,
+		               Controller::PRESS_DPAD_RIGHT,
+		               Controller::PRESS_Z,
+		               0 };
+
+	int i = 0;
+	// wait until all required inputs are in before passing, disable this if you want instant crash log
+	while (inputs[i]) {
+		u32 input;
+		JUTException::waitTime(100);
+		JUTException::sErrorManager->readPad(&input, nullptr);
+		if (input) {
+			i += (input == inputs[i]);
+		}
+	}
+
+	if (!JUTException::sConsole) {
+		OSReport("ƒRƒ“ƒ\[ƒ‹‚ª‚ ‚è‚Ü‚¹‚ñ\n");
+	} else {
+		JUTException::sConsole->setVisible(true);
+		JUTException::sConsole->setOutput(3);
+		JUTException::sConsole->print("--- Game debug information ---\n");
+		JUTConsoleManager::sManager->drawDirect(true);
+	}
 	/*
 	    stwu     r1, -0x40(r1)
 	    mflr     r0
@@ -516,8 +565,9 @@ void preUserCallback(unsigned short, OSContext*, unsigned long, unsigned long)
  * Address:	80422204
  * Size:	00002C
  */
-void myTask(void*)
+void myTask(void* data)
 {
+	sys->m_cardMgr->cardProc(data);
 	/*
 	    stwu     r1, -0x10(r1)
 	    mflr     r0
@@ -538,31 +588,12 @@ void myTask(void*)
  * Address:	80422230
  * Size:	000054
  */
-System::FragmentationChecker::FragmentationChecker(char*, bool)
+System::FragmentationChecker::FragmentationChecker(char* name, bool)
 {
-	/*
-	    stwu     r1, -0x10(r1)
-	    mflr     r0
-	    stw      r0, 0x14(r1)
-	    stw      r31, 0xc(r1)
-	    stw      r30, 8(r1)
-	    mr       r30, r3
-	    stw      r4, 4(r3)
-	    lwz      r3, sCurrentHeap__7JKRHeap@sda21(r13)
-	    bl       getFreeSize__7JKRHeapFv
-	    mr       r31, r3
-	    lwz      r3, sCurrentHeap__7JKRHeap@sda21(r13)
-	    bl       getTotalFreeSize__7JKRHeapFv
-	    subf     r0, r31, r3
-	    mr       r3, r30
-	    stw      r0, 0(r30)
-	    lwz      r31, 0xc(r1)
-	    lwz      r30, 8(r1)
-	    lwz      r0, 0x14(r1)
-	    mtlr     r0
-	    addi     r1, r1, 0x10
-	    blr
-	*/
+	m_name    = name;
+	u32 free  = getCurrentHeap()->getFreeSize();
+	u32 total = getCurrentHeap()->getTotalFreeSize();
+	m_size    = total - free;
 }
 
 /*
@@ -570,35 +601,10 @@ System::FragmentationChecker::FragmentationChecker(char*, bool)
  * Address:	80422284
  * Size:	00005C
  */
-System::FragmentationChecker::~FragmentationChecker(void)
+System::FragmentationChecker::~FragmentationChecker()
 {
-	/*
-	    stwu     r1, -0x10(r1)
-	    mflr     r0
-	    stw      r0, 0x14(r1)
-	    stw      r31, 0xc(r1)
-	    mr       r31, r4
-	    stw      r30, 8(r1)
-	    or.      r30, r3, r3
-	    beq      lbl_804222C4
-	    lwz      r3, sCurrentHeap__7JKRHeap@sda21(r13)
-	    bl       getFreeSize__7JKRHeapFv
-	    lwz      r3, sCurrentHeap__7JKRHeap@sda21(r13)
-	    bl       getTotalFreeSize__7JKRHeapFv
-	    extsh.   r0, r31
-	    ble      lbl_804222C4
-	    mr       r3, r30
-	    bl       __dl__FPv
-
-	lbl_804222C4:
-	    lwz      r0, 0x14(r1)
-	    mr       r3, r30
-	    lwz      r31, 0xc(r1)
-	    lwz      r30, 8(r1)
-	    mtlr     r0
-	    addi     r1, r1, 0x10
-	    blr
-	*/
+	getCurrentHeap()->getFreeSize();
+	getCurrentHeap()->getTotalFreeSize();
 }
 
 /*
@@ -606,25 +612,28 @@ System::FragmentationChecker::~FragmentationChecker(void)
  * Address:	804222E0
  * Size:	00003C
  */
-void System::assert_fragmentation(char*)
+int System::assert_fragmentation(char*)
 {
-	/*
-	    stwu     r1, -0x10(r1)
-	    mflr     r0
-	    stw      r0, 0x14(r1)
-	    stw      r31, 0xc(r1)
-	    lwz      r3, sCurrentHeap__7JKRHeap@sda21(r13)
-	    bl       getFreeSize__7JKRHeapFv
-	    mr       r31, r3
-	    lwz      r3, sCurrentHeap__7JKRHeap@sda21(r13)
-	    bl       getTotalFreeSize__7JKRHeapFv
-	    cmplw    r31, r3
-	    lwz      r0, 0x14(r1)
-	    lwz      r31, 0xc(r1)
-	    mtlr     r0
-	    addi     r1, r1, 0x10
-	    blr
-	*/
+	int free  = getCurrentHeap()->getFreeSize();
+	int total = getCurrentHeap()->getTotalFreeSize();
+	return total - free; // not sure what the comparison actually is
+	                     /*
+	                         stwu     r1, -0x10(r1)
+	                         mflr     r0
+	                         stw      r0, 0x14(r1)
+	                         stw      r31, 0xc(r1)
+	                         lwz      r3, sCurrentHeap__7JKRHeap@sda21(r13)
+	                         bl       getFreeSize__7JKRHeapFv
+	                         mr       r31, r3
+	                         lwz      r3, sCurrentHeap__7JKRHeap@sda21(r13)
+	                         bl       getTotalFreeSize__7JKRHeapFv
+	                         cmplw    r31, r3
+	                         lwz      r0, 0x14(r1)
+	                         lwz      r31, 0xc(r1)
+	                         mtlr     r0
+	                         addi     r1, r1, 0x10
+	                         blr
+	                     */
 }
 
 /*
@@ -632,14 +641,10 @@ void System::assert_fragmentation(char*)
  * Address:	8042231C
  * Size:	000010
  */
-void System::enableCPULockDetector(int)
+void System::enableCPULockDetector(int locks)
 {
-	/*
-	    li       r0, 0
-	    stw      r0, 0x1c(r3)
-	    stw      r4, 0x20(r3)
-	    blr
-	*/
+	m_cpuRetraceCount = 0;
+	m_cpuLockCount    = locks;
 }
 
 /*
@@ -649,14 +654,10 @@ void System::enableCPULockDetector(int)
  */
 int System::disableCPULockDetector()
 {
-	/*
-	    lwz      r4, 0x20(r3)
-	    li       r0, 0
-	    stw      r0, 0x20(r3)
-	    stw      r0, 0x1c(r3)
-	    mr       r3, r4
-	    blr
-	*/
+	int locks         = m_cpuLockCount;
+	m_cpuLockCount    = 0;
+	m_cpuRetraceCount = 0;
+	return locks;
 }
 
 /*
@@ -666,6 +667,16 @@ int System::disableCPULockDetector()
  */
 void retraceCallback(unsigned long)
 {
+	sys->m_cpuRetraceCount++;
+	if (DVDGetDriveStatus() == 1) {
+		sys->m_cpuRetraceCount = 0;
+	}
+
+	if ((int)sys->m_cpuLockCount > 0 && (int)sys->m_cpuLockCount < (int)sys->m_cpuRetraceCount) {
+		// sUseAbxCommand = 0;
+		OSReport("cpuLockCount %d retraceCount %d\n", sys->m_cpuLockCount, sys->m_cpuRetraceCount);
+		kando_panic_f(1, "system/retrace", 0, "CPU LOCKED!");
+	}
 	/*
 	    stwu     r1, -0x10(r1)
 	    mflr     r0
@@ -722,6 +733,29 @@ void retraceCallback(unsigned long)
  */
 System::System()
 {
+	m_sysHeap   = nullptr;
+	m_gameFlow  = nullptr;
+	m_dvdStatus = nullptr;
+	m_display   = nullptr;
+	m_deltaTime = 0.166667f;
+	m_playData  = nullptr;
+	m_fpsFactor = 1.0f;
+	m_region    = System::LANG_ENGLISH;
+	m_flags     = 0;
+	// sUseAbxCommand = true;
+	sys = this;
+	initCurrentHeapMutex();
+	JKRHeap* heap = getCurrentHeap();
+	m_sysHeap     = JKRExpHeap::create(0x428000, nullptr, true);
+	m_sysHeap->becomeCurrentHeap();
+	// m_heapStatus = new HeapStatus;
+	construct();
+	heap->becomeCurrentHeap();
+	m_gfx = nullptr;
+	JUTVideo::sManager->setPostRetraceCallback(retraceCallback);
+	m_flags = 0;
+	m_sysHeap->getTotalFreeSize();
+	m_sysHeap->getTotalFreeSize();
 	/*
 	    stwu     r1, -0x10(r1)
 	    mflr     r0
@@ -816,6 +850,45 @@ System::~System()
  */
 void System::construct()
 {
+	heapStatusStart("construct", nullptr);
+	srand(OSGetTick());
+
+	_30 = 0;
+	_34 = 0;
+
+	heapStatusStart("DvdThread", nullptr);
+	m_dvdThread = new DvdThread(0x8000, 16, 29);
+	heapStatusEnd("DvdThread");
+
+	heapStatusStart("SysTimers", nullptr);
+	m_timers = new SysTimers;
+	heapStatusEnd("SysTimers");
+
+	heapStatusStart("ResetManager", nullptr);
+	m_resetMgr = new ResetManager(0.5f);
+	heapStatusEnd("ResetManager");
+
+	m_cardMgr = new MemoryCardMgr;
+	m_cardMgr->init();
+
+	m_task = JKRTask::create(1, 17, 0x4000, nullptr);
+	m_task->request(myTask, nullptr, nullptr);
+
+	heapStatusStart("ARAMMgr", nullptr);
+	ARAM::Mgr::init();
+	Pikmin2ARAM::Mgr::init();
+	heapStatusEnd("ARAMMgr");
+
+	heapStatusStart("ResourceMgr2D", nullptr);
+	Resource::Mgr2D::init(getCurrentHeap());
+	heapStatusEnd("ResourceMgr2D");
+
+	// m_playData = new Game::CommonSaveData::Mgr;
+	m_dvdStatus = new DvdStatus;
+	m_gameFlow  = new GameFlow;
+
+	heapStatusEnd("construct");
+
 	/*
 	    stwu     r1, -0x10(r1)
 	    mflr     r0
@@ -974,6 +1047,22 @@ void System::construct()
  */
 void System::constructWithDvdAccessFirst()
 {
+	P2ASSERTLINE(1013, getCurrentHeap()->getHeapType() == 'EXPH');
+
+	JKRHeap* old = getCurrentHeap();
+	m_sysHeap->becomeCurrentHeap();
+
+	heapStatusStart("constructWithDvdAccess1st", nullptr);
+	Game::gGameConfig.load("gameConfig.ini");
+	createSoundSystem();
+	heapStatusEnd("constructWithDvdAccess1st");
+
+	m_sysHeap->getTotalFreeSize();
+	m_sysHeap->getTotalFreeSize();
+	m_sysHeap->getFreeSize();
+	m_sysHeap->getFreeSize();
+	old->becomeCurrentHeap();
+	heapStatusDump(true);
 	/*
 	    stwu     r1, -0x20(r1)
 	    mflr     r0
@@ -1045,6 +1134,30 @@ void System::constructWithDvdAccessFirst()
  */
 void System::constructWithDvdAccessSecond()
 {
+	loadSoundResource();
+
+	P2ASSERTLINE(1064, getCurrentHeap()->getHeapType() == 'EXPH');
+
+	JKRExpHeap* old = static_cast<JKRExpHeap*>(getCurrentHeap());
+	m_sysHeap->becomeCurrentHeap();
+
+	heapStatusStart("constructWithDvdAccess2nd", nullptr);
+	heapStatusStart("P2JME::Mgr", nullptr);
+	P2JME::Mgr::create(old);
+	heapStatusEnd("P2JME::Mgr");
+	Game::PelletList::Mgr::globalInstance();
+	Game::stageList = new Game::Stages;
+	// Game::PlayData::construct();
+	Game::MovieList::construct();
+	heapStatusEnd("constructWithDvdAccess2nd");
+
+	m_sysHeap->getTotalFreeSize();
+	m_sysHeap->getTotalFreeSize();
+	m_sysHeap->getFreeSize();
+	m_sysHeap->getFreeSize();
+	old->becomeCurrentHeap();
+	heapStatusDump(true);
+
 	/*
 	    stwu     r1, -0x20(r1)
 	    mflr     r0
@@ -1130,34 +1243,7 @@ void System::constructWithDvdAccessSecond()
  * Address:	80422920
  * Size:	000054
  */
-void System::createRomFont(JKRHeap*)
-{
-	/*
-	    stwu     r1, -0x10(r1)
-	    mflr     r0
-	    stw      r0, 0x14(r1)
-	    stw      r31, 0xc(r1)
-	    mr       r31, r4
-	    stw      r30, 8(r1)
-	    mr       r30, r3
-	    li       r3, 0x1c
-	    bl       __nw__FUl
-	    or.      r0, r3, r3
-	    beq      lbl_80422958
-	    mr       r4, r31
-	    bl       __ct__10JUTRomFontFP7JKRHeap
-	    mr       r0, r3
-
-	lbl_80422958:
-	    stw      r0, 0xdc(r30)
-	    lwz      r0, 0x14(r1)
-	    lwz      r31, 0xc(r1)
-	    lwz      r30, 8(r1)
-	    mtlr     r0
-	    addi     r1, r1, 0x10
-	    blr
-	*/
-}
+void System::createRomFont(JKRHeap* heap) { m_romFont = new JUTRomFont(heap); }
 
 /*
  * --INFO--
@@ -1166,30 +1252,8 @@ void System::createRomFont(JKRHeap*)
  */
 void System::destroyRomFont()
 {
-	/*
-	    stwu     r1, -0x10(r1)
-	    mflr     r0
-	    stw      r0, 0x14(r1)
-	    stw      r31, 0xc(r1)
-	    mr       r31, r3
-	    lwz      r3, 0xdc(r3)
-	    cmplwi   r3, 0
-	    beq      lbl_804229A8
-	    lwz      r12, 0(r3)
-	    li       r4, 1
-	    lwz      r12, 8(r12)
-	    mtctr    r12
-	    bctrl
-
-	lbl_804229A8:
-	    li       r0, 0
-	    stw      r0, 0xdc(r31)
-	    lwz      r0, 0x14(r1)
-	    lwz      r31, 0xc(r1)
-	    mtlr     r0
-	    addi     r1, r1, 0x10
-	    blr
-	*/
+	delete m_romFont;
+	m_romFont = nullptr;
 }
 
 /*
@@ -1199,6 +1263,44 @@ void System::destroyRomFont()
  */
 void System::createSoundSystem()
 {
+	sys->heapStatusStart("SoundSystem", nullptr);
+	JKRHeap* old = getCurrentHeap();
+
+	P2ASSERTLINE(1158, getCurrentHeap());
+	P2ASSERTLINE(1161, gResMgr2D);
+
+	JKRHeap* resHeap    = gResMgr2D->m_heap;
+	u32 size            = resHeap->getFreeSize();
+	JKRExpHeap* newheap = JKRExpHeap::create(size, resHeap, true);
+
+	P2ASSERTLINE(1165, newheap);
+	newheap->becomeCurrentHeap();
+
+	JKRFileCache* arc = JKRFileCache::mount("/AudioRes", newheap, nullptr);
+	void* file        = JKRFileLoader::getGlbResource("PSound.aaf", arc);
+
+	P2ASSERTLINE(1173, file);
+
+	PSM::Factory* factory = new PSM::Factory;
+	// factory->m_makeSeFunc = PSM::SeSound::makeSeSound;
+	factory->m_heap     = old;
+	factory->m_heapSize = 0x900000;
+	factory->m_aafFile  = file;
+	factory->newSoundSystem();
+
+	JKRSolidHeap* newheap2 = JKRSolidHeap::create(old->getFreeSize(), old, true);
+	newheap2->becomeCurrentHeap();
+
+	PSGame::PikSceneMgr* mgr = static_cast<PSGame::PikSceneMgr*>(PSSystem::getSceneMgr());
+	mgr->newAndSetGlobalScene();
+	newheap2->adjustSize();
+
+	old->becomeCurrentHeap();
+	resHeap->destroy();
+
+	sys->heapStatusEnd("SoundSystem");
+	gResMgr2D->_0C = gResMgr2D->_08;
+
 	/*
 	    stwu     r1, -0x20(r1)
 	    mflr     r0
@@ -1332,6 +1434,19 @@ void System::createSoundSystem()
  */
 void System::loadSoundResource()
 {
+	JKRHeap* old = getCurrentHeap();
+
+	JKRSolidHeap* newheap = JKRSolidHeap::create(getCurrentHeap()->getFreeSize(), old, true);
+	newheap->becomeCurrentHeap();
+
+	PSSystem::SceneMgr* mgr = PSSystem::getSceneMgr();
+	PSSystem::checkSceneMgr(mgr);
+	PSM::Scene_Global* scene = static_cast<PSM::Scene_Global*>(mgr->m_scenes);
+	P2ASSERTLINE(1245, scene);
+
+	scene->scene1stLoadSync();
+	newheap->adjustSize();
+	old->becomeCurrentHeap();
 	/*
 	    stwu     r1, -0x20(r1)
 	    mflr     r0
@@ -1405,7 +1520,7 @@ void System::loadSoundResource()
  * Address:	........
  * Size:	000014
  */
-System::GXVerifyArg::GXVerifyArg(void)
+System::GXVerifyArg::GXVerifyArg()
 {
 	// UNUSED FUNCTION
 }
@@ -1437,6 +1552,25 @@ void System::clearGXVerifyLevel()
  */
 void System::initialize()
 {
+	System::setRenderMode(mRenderMode);
+	System::setRenderMode(0);
+
+	JFWSystem::CSetUpParam::maxStdHeaps      = 1;
+	JFWSystem::CSetUpParam::sysHeapSize      = 0xa0000;
+	JFWSystem::CSetUpParam::fifoBufSize      = 0x70800;
+	JFWSystem::CSetUpParam::aramAudioBufSize = 0x900000;
+	JFWSystem::CSetUpParam::aramGraphBufSize = 0xffffffff;
+
+	// renderMode = getRenderModeObj();
+	JFWSystem::init();
+	JUTException::sErrorManager->_84       = -1;
+	JUTException::sErrorManager->m_padPort = JUTGamePad::PORT_INVALID;
+	// JUTException::setPreUserCallback(preUserCallback);
+	JUTException::sErrorManager->_90 = 0;
+	JUTException::sErrorManager->_8C = 0;
+	JKRHeap::setErrorHandler(Pikmin2DefaultMemoryErrorRoutine);
+	JKRHeap::sRootHeap->becomeCurrentHeap();
+	// JUTException::appendMapFile(cMapFileName);
 	/*
 	    stwu     r1, -0x10(r1)
 	    mflr     r0
@@ -1514,6 +1648,9 @@ void System::initialize()
  */
 void System::loadResourceFirst()
 {
+	Delegate<System>* delegate = new (m_sysHeap, 0) Delegate<System>(this, &constructWithDvdAccessFirst);
+
+	dvdLoadUseCallBack(&m_threadCommand, delegate);
 	/*
 	    stwu     r1, -0x20(r1)
 	    mflr     r0
@@ -1564,6 +1701,9 @@ void System::loadResourceFirst()
  */
 void System::loadResourceSecond()
 {
+	Delegate<System>* delegate = new (m_sysHeap, 0) Delegate<System>(this, &constructWithDvdAccessSecond);
+
+	dvdLoadUseCallBack(&m_threadCommand, delegate);
 	/*
 	    stwu     r1, -0x20(r1)
 	    mflr     r0
@@ -1614,21 +1754,8 @@ void System::loadResourceSecond()
  */
 int System::run()
 {
-	/*
-	    stwu     r1, -0x10(r1)
-	    mflr     r0
-	    stw      r0, 0x14(r1)
-	    lwz      r3, 0x3c(r3)
-	    lwz      r12, 0(r3)
-	    lwz      r12, 8(r12)
-	    mtctr    r12
-	    bctrl
-	    lwz      r0, 0x14(r1)
-	    li       r3, 0
-	    mtlr     r0
-	    addi     r1, r1, 0x10
-	    blr
-	*/
+	m_gameFlow->run();
+	return EXIT_SUCCESS;
 }
 
 /*
@@ -1636,8 +1763,9 @@ int System::run()
  * Address:	80422EB8
  * Size:	000058
  */
-float System::getTime()
+f32 System::getTime()
 {
+	return (f32)OSGetTick();
 	/*
 	    stwu     r1, -0x10(r1)
 	    mflr     r0
@@ -1679,52 +1807,33 @@ void System::checkOptionBlockSaveFlag()
  * Address:	80422F10
  * Size:	000010
  */
-void System::clearOptionBlockSaveFlag()
-{
-	/*
-	    lwz      r3, 0x60(r3)
-	    li       r0, 0
-	    stb      r0, 0x42(r3)
-	    blr
-	*/
-}
+void System::clearOptionBlockSaveFlag() { m_playData->_42 = false; }
 
 /*
  * --INFO--
  * Address:	80422F20
  * Size:	000010
  */
-void System::setOptionBlockSaveFlag()
-{
-	/*
-	    lwz      r3, 0x60(r3)
-	    li       r0, 1
-	    stb      r0, 0x42(r3)
-	    blr
-	*/
-}
+void System::setOptionBlockSaveFlag() { m_playData->_42 = true; }
 
 /*
  * --INFO--
  * Address:	80422F30
  * Size:	000008
  */
-Game::CommonSaveData::Mgr* System::getPlayCommonData()
-{
-	return m_playData;
-	/*
-	    lwz      r3, 0x60(r3)
-	    blr
-	*/
-}
+Game::CommonSaveData::Mgr* System::getPlayCommonData() { return m_playData; }
 
 /*
  * --INFO--
  * Address:	80422F38
  * Size:	000058
  */
-void System::dvdLoadUseCallBack(DvdThreadCommand*, IDelegate*)
+void System::dvdLoadUseCallBack(DvdThreadCommand* command, IDelegate* delegate)
 {
+	if (m_dvdThread) {
+		// command->loadUseCallBack(delegate);
+		m_dvdThread->sendCommand(command);
+	}
 	/*
 	    stwu     r1, -0x10(r1)
 	    mflr     r0
@@ -1810,33 +1919,10 @@ void System::dvdLoadSyncAll(DvdThread::ESyncBlockFlag)
  */
 void System::deleteThreads()
 {
-	/*
-	    stwu     r1, -0x10(r1)
-	    mflr     r0
-	    stw      r0, 0x14(r1)
-	    stw      r31, 0xc(r1)
-	    mr       r31, r3
-	    lwz      r3, 0x40(r3)
-	    cmplwi   r3, 0
-	    beq      lbl_80422FD0
-	    beq      lbl_80422FC8
-	    lwz      r12, 0(r3)
-	    li       r4, 1
-	    lwz      r12, 8(r12)
-	    mtctr    r12
-	    bctrl
-
-	lbl_80422FC8:
-	    li       r0, 0
-	    stw      r0, 0x40(r31)
-
-	lbl_80422FD0:
-	    lwz      r0, 0x14(r1)
-	    lwz      r31, 0xc(r1)
-	    mtlr     r0
-	    addi     r1, r1, 0x10
-	    blr
-	*/
+	if (m_dvdThread) {
+		delete m_dvdThread;
+		m_dvdThread = nullptr;
+	}
 }
 
 /*
@@ -1896,14 +1982,11 @@ DvdThread::~DvdThread()
  * Address:	80423070
  * Size:	000010
  */
-void System::setCurrentDisplay(JFWDisplay*)
+JFWDisplay* System::setCurrentDisplay(JFWDisplay* display)
 {
-	/*
-	    lwz      r0, 0x4c(r3)
-	    stw      r4, 0x4c(r3)
-	    mr       r3, r0
-	    blr
-	*/
+	JFWDisplay* old = m_display;
+	m_display       = display;
+	return old;
 }
 
 /*
@@ -1911,19 +1994,12 @@ void System::setCurrentDisplay(JFWDisplay*)
  * Address:	80423080
  * Size:	00001C
  */
-void System::clearCurrentDisplay(JFWDisplay*)
+u32 System::clearCurrentDisplay(JFWDisplay* display)
 {
-	/*
-	    lwz      r0, 0x4c(r3)
-	    cmplw    r0, r4
-	    bne      lbl_80423094
-	    li       r0, 0
-	    stw      r0, 0x4c(r3)
-
-	lbl_80423094:
-	    li       r3, 0
-	    blr
-	*/
+	if (m_display == display) {
+		m_display = nullptr;
+	}
+	return 0;
 }
 
 /*
@@ -1931,25 +2007,11 @@ void System::clearCurrentDisplay(JFWDisplay*)
  * Address:	8042309C
  * Size:	00003C
  */
-void System::beginFrame()
+bool System::beginFrame()
 {
-	/*
-	    stwu     r1, -0x10(r1)
-	    mflr     r0
-	    stw      r0, 0x14(r1)
-	    li       r0, 0
-	    stw      r31, 0xc(r1)
-	    mr       r31, r3
-	    stw      r0, 0x1c(r3)
-	    bl       read__10JUTGamePadFv
-	    lwz      r3, 0x48(r31)
-	    bl       update__9DvdStatusFv
-	    lwz      r0, 0x14(r1)
-	    lwz      r31, 0xc(r1)
-	    mtlr     r0
-	    addi     r1, r1, 0x10
-	    blr
-	*/
+	m_cpuRetraceCount = 0;
+	JUTGamePad::read();
+	m_dvdStatus->update();
 }
 
 /*
@@ -1959,33 +2021,12 @@ void System::beginFrame()
  */
 void System::endFrame()
 {
-	/*
-	    stwu     r1, -0x10(r1)
-	    mflr     r0
-	    stw      r0, 0x14(r1)
-	    stw      r31, 0xc(r1)
-	    mr       r31, r3
-	    lwz      r3, 0x4c(r3)
-	    lwz      r12, 0(r3)
-	    lwz      r12, 0x10(r12)
-	    mtctr    r12
-	    bctrl
-	    mr       r3, r31
-	    bl       inactiveGP__6SystemFv
-	    lwz      r3, 0x44(r31)
-	    bl       update__12ResetManagerFv
-	    lwz      r3, sManager__15JKRThreadSwitch@sda21(r13)
-	    cmplwi   r3, 0
-	    beq      lbl_80423120
-	    bl       loopProc__15JKRThreadSwitchFv
-
-	lbl_80423120:
-	    lwz      r0, 0x14(r1)
-	    lwz      r31, 0xc(r1)
-	    mtlr     r0
-	    addi     r1, r1, 0x10
-	    blr
-	*/
+	m_display->endFrame();
+	inactiveGP();
+	m_resetMgr->update();
+	if (JKRThreadSwitch::sManager) {
+		JKRThreadSwitch::sManager->loopProc();
+	}
 }
 
 /*
@@ -1995,6 +2036,7 @@ void System::endFrame()
  */
 void System::beginRender()
 {
+	m_display->beginRender();
 	/*
 	    stwu     r1, -0x10(r1)
 	    mflr     r0
@@ -2024,6 +2066,15 @@ void System::beginRender()
  */
 void System::endRender()
 {
+	PSSystem::SysIF* sysif = PSSystem::spSysIF;
+	if (PSSystem::spSysIF) {
+		sys->m_timers->_start("sound", true);
+		sysif->mainLoop();
+		sys->m_timers->_stop("sound");
+	}
+	m_dvdStatus->draw();
+	m_resetMgr->draw();
+	m_display->endRender();
 	/*
 	    stwu     r1, -0x10(r1)
 	    mflr     r0
@@ -2073,8 +2124,9 @@ void System::endRender()
  * Address:	80423214
  * Size:	000010
  */
-void System::setRenderMode(System::ERenderMode)
+ERenderMode System::setRenderMode(ERenderMode mode)
 {
+	mRenderMode = mode;
 	/*
 	    lwz      r0, mRenderMode__6System@sda21(r13)
 	    stw      r3, mRenderMode__6System@sda21(r13)
@@ -2088,8 +2140,9 @@ void System::setRenderMode(System::ERenderMode)
  * Address:	80423224
  * Size:	000018
  */
-void System::getRenderModeObj()
+_GXRenderModeObj* System::getRenderModeObj()
 {
+	return sRenderModeTable[mRenderMode];
 	/*
 	    lwz      r0, mRenderMode__6System@sda21(r13)
 	    lis      r3, sRenderModeTable@ha
@@ -2105,7 +2158,7 @@ void System::getRenderModeObj()
  * Address:	8042323C
  * Size:	000120
  */
-void System::changeRenderMode(System::ERenderMode)
+void System::changeRenderMode(ERenderMode)
 {
 	/*
 	    stwu     r1, -0x20(r1)
@@ -2251,20 +2304,13 @@ void System::heapStatusDumpNode()
  * Address:	80423374
  * Size:	000028
  */
-void System::resetOn(bool)
+void System::resetOn(bool flag)
 {
-	/*
-	    lwz      r3, 0x44(r3)
-	    clrlwi.  r0, r4, 0x18
-	    lwz      r0, 0xc(r3)
-	    ori      r0, r0, 1
-	    stw      r0, 0xc(r3)
-	    beqlr
-	    lwz      r0, 0xc(r3)
-	    ori      r0, r0, 8
-	    stw      r0, 0xc(r3)
-	    blr
-	*/
+	ResetManager* mgr = m_resetMgr;
+	mgr->_0C |= 1;
+	if (flag) {
+		mgr->_0C |= 8;
+	}
 }
 
 /*
@@ -2282,85 +2328,35 @@ void System::resetOff()
  * Address:	8042339C
  * Size:	000014
  */
-void System::resetPermissionOn()
-{
-	/*
-	    lwz      r3, 0x44(r3)
-	    lwz      r0, 0xc(r3)
-	    oris     r0, r0, 0x1000
-	    stw      r0, 0xc(r3)
-	    blr
-	*/
-}
+void System::resetPermissionOn() { m_resetMgr->_0C |= 0x10000000; }
 
 /*
  * --INFO--
  * Address:	804233B0
  * Size:	000018
  */
-bool System::isResetActive()
-{
-	/*
-	    lwz      r3, 0x44(r3)
-	    lwz      r3, 4(r3)
-	    neg      r0, r3
-	    or       r0, r0, r3
-	    srwi     r3, r0, 0x1f
-	    blr
-	*/
-}
+bool System::isResetActive() { return m_resetMgr->_04; }
 
 /*
  * --INFO--
  * Address:	804233C8
  * Size:	000014
  */
-void System::activeGP()
-{
-	/*
-	    lwz      r3, 0x44(r3)
-	    lwz      r0, 0xc(r3)
-	    ori      r0, r0, 2
-	    stw      r0, 0xc(r3)
-	    blr
-	*/
-}
+void System::activeGP() { m_resetMgr->_0C |= 2; }
 
 /*
  * --INFO--
  * Address:	804233DC
  * Size:	000014
  */
-void System::inactiveGP()
-{
-	/*
-	    lwz      r3, 0x44(r3)
-	    lwz      r0, 0xc(r3)
-	    rlwinm   r0, r0, 0, 0x1f, 0x1d
-	    stw      r0, 0xc(r3)
-	    blr
-	*/
-}
+void System::inactiveGP() { m_resetMgr->_0C &= ~2; }
 
 /*
  * --INFO--
  * Address:	804233F0
  * Size:	000024
  */
-bool System::isDvdErrorOccured()
-{
-	/*
-	    stwu     r1, -0x10(r1)
-	    mflr     r0
-	    stw      r0, 0x14(r1)
-	    lwz      r3, 0x48(r3)
-	    bl       isErrorOccured__9DvdStatusFv
-	    lwz      r0, 0x14(r1)
-	    mtlr     r0
-	    addi     r1, r1, 0x10
-	    blr
-	*/
-}
+bool System::isDvdErrorOccured() { return m_dvdStatus->isErrorOccured(); }
 
 /*
  * --INFO--
@@ -2369,6 +2365,9 @@ bool System::isDvdErrorOccured()
  */
 void System::initCurrentHeapMutex()
 {
+	// OSInitMutex(); looks like system may inherit a mutex?
+	m_backupHeap = nullptr;
+
 	/*
 	    stwu     r1, -0x10(r1)
 	    mflr     r0
@@ -2391,8 +2390,12 @@ void System::initCurrentHeapMutex()
  * Address:	80423448
  * Size:	000070
  */
-void System::startChangeCurrentHeap(JKRHeap*)
+void System::startChangeCurrentHeap(JKRHeap* newheap)
 {
+	// OSLockMutex();
+	P2ASSERTLINE(2033, !m_backupHeap);
+	m_backupHeap = getCurrentHeap();
+	newheap->becomeCurrentHeap();
 	/*
 	    stwu     r1, -0x10(r1)
 	    mflr     r0
@@ -2434,6 +2437,10 @@ void System::startChangeCurrentHeap(JKRHeap*)
  */
 void System::endChangeCurrentHeap()
 {
+	P2ASSERTLINE(2041, m_backupHeap);
+	m_backupHeap->becomeCurrentHeap();
+	m_backupHeap = nullptr;
+	// OSUnlockMutex();
 	/*
 	    stwu     r1, -0x10(r1)
 	    mflr     r0
@@ -2492,8 +2499,14 @@ void System::refreshGenNode() { }
  * Address:	8042352C
  * Size:	0000A0
  */
-void System::setFrameRate(int)
+void System::setFrameRate(int newFactor)
 {
+	JFWDisplay* display = m_display;
+	JUT_ASSERTLINE(2343, display, "no display\n");
+	m_fpsFactor                   = (f32)newFactor;
+	m_deltaTime                   = m_fpsFactor / 60.0f;
+	display->m_secondsPer60Frames = newFactor;
+	display->_20                  = 0;
 	/*
 	    stwu     r1, -0x20(r1)
 	    mflr     r0
@@ -2555,15 +2568,28 @@ void System::forceFinishSection()
  * Address:	804235CC
  * Size:	000008
  */
-u32 ISectionMgr::getCurrentSection() { return 0x0; }
+// u32 ISectionMgr::getCurrentSection() { return 0x0; }
 
 /*
  * --INFO--
  * Address:	804235D4
  * Size:	000060
  */
-void System::dvdLoadSyncNoBlock(DvdThreadCommand*)
+bool System::dvdLoadSyncNoBlock(DvdThreadCommand* command)
 {
+	DvdThread* thread = m_dvdThread;
+
+	bool check;
+	if (thread) {
+		check = thread->sync(command, (DvdThread::ESyncBlockFlag)1);
+	} else {
+		check = true;
+	}
+
+	if (check) {
+		check = m_dvdStatus->isErrorOccured();
+	}
+	return check;
 	/*
 	    stwu     r1, -0x10(r1)
 	    mflr     r0
@@ -2603,39 +2629,17 @@ void System::dvdLoadSyncNoBlock(DvdThreadCommand*)
  * Address:	80423634
  * Size:	00005C
  */
-void System::dvdLoadSyncAllNoBlock()
+int System::dvdLoadSyncAllNoBlock()
 {
-	/*
-	    stwu     r1, -0x10(r1)
-	    mflr     r0
-	    stw      r0, 0x14(r1)
-	    stw      r31, 0xc(r1)
-	    mr       r31, r3
-	    lwz      r3, 0x48(r3)
-	    bl       isErrorOccured__9DvdStatusFv
-	    clrlwi.  r0, r3, 0x18
-	    beq      lbl_80423660
-	    li       r3, -1
-	    b        lbl_8042367C
-
-	lbl_80423660:
-	    lwz      r3, 0x40(r31)
-	    cmplwi   r3, 0
-	    beq      lbl_80423678
-	    li       r4, 1
-	    bl       syncAll__9DvdThreadFQ29DvdThread14ESyncBlockFlag
-	    b        lbl_8042367C
-
-	lbl_80423678:
-	    li       r3, 0
-
-	lbl_8042367C:
-	    lwz      r0, 0x14(r1)
-	    lwz      r31, 0xc(r1)
-	    mtlr     r0
-	    addi     r1, r1, 0x10
-	    blr
-	*/
+	if (m_dvdStatus->isErrorOccured()) {
+		return -1;
+	} else {
+		if (m_dvdThread) {
+			return m_dvdThread->syncAll((DvdThread::ESyncBlockFlag)1);
+		} else {
+			return 0;
+		}
+	}
 }
 
 /*
@@ -2682,7 +2686,7 @@ namespace PSM {
  * Address:	804236F0
  * Size:	000038
  */
-void Factory::newSceneMgr(void)
+PSM::SceneMgr* Factory::newSceneMgr()
 {
 	/*
 	    stwu     r1, -0x10(r1)
@@ -2734,7 +2738,7 @@ void Delegate<System>::invoke()
  * Address:	80423758
  * Size:	000018
  */
-void __sinit_system_cpp(void)
+void __sinit_system_cpp()
 {
 	/*
 	    li       r4, 1

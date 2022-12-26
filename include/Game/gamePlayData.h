@@ -266,7 +266,7 @@ struct PlayData : public CNode {
 	virtual ~PlayData(); // _08
 
 	bool isCompletePelletTrigger();
-	void construct();
+	static void construct();
 	void reset();
 	void setDevelopSetting(bool, bool);
 	int calcPlayMinutes();

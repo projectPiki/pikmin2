@@ -9,7 +9,7 @@ struct Mgr {
 
 	virtual ~Mgr(); // _08 (weak)
 
-	void init();
+	static void init();
 	void setLoadPermission(bool);
 	void load();
 	void dump();

@@ -134,7 +134,7 @@ struct MovieList : public CNode {
 
 	virtual ~MovieList(); // _08 (weak)
 
-	void construct();
+	static void construct();
 	void findConfig(char*, char*);
 	void read(Stream&);
 

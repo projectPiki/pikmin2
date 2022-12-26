@@ -11,6 +11,7 @@ struct JKRHeap;
 
 struct DvdThreadCommand {
 	DvdThreadCommand();
+	// void loadUseCallBack(IDelegate*);
 
 	~DvdThreadCommand() {};
 
@@ -30,8 +31,9 @@ struct DvdThreadCommand {
 };
 
 struct DvdThread : public AppThread {
-	struct ESyncBlockFlag {
-		// might be an enum? size 0x4?
+
+	enum ESyncBlockFlag {
+
 	};
 
 	DvdThread(u32, int, int);
@@ -42,8 +44,8 @@ struct DvdThread : public AppThread {
 	void loadArchive(DvdThreadCommand*);
 	void loadFile(DvdThreadCommand*);
 	void sendCommand(DvdThreadCommand*);
-	void sync(DvdThreadCommand*, ESyncBlockFlag);
-	void syncAll(ESyncBlockFlag);
+	bool sync(DvdThreadCommand*, ESyncBlockFlag);
+	int syncAll(ESyncBlockFlag);
 
 	// _00 		= VTBL
 	// _00-_7C 	= AppThread
