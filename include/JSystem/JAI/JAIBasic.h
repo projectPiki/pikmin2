@@ -48,7 +48,7 @@ struct JAIBasic {
 	void stopAllSe(u8);
 	u32 getSoundOffsetNumberFromID(u32);
 	void stopAudio(u32, bool);
-	int checkAudioStopStatus();
+	static u8 checkAudioStopStatus();
 	void stopCallBack(void*);
 
 	static u16 setParameterSeqSync(JASTrack*, u16);

@@ -2307,9 +2307,9 @@ void System::heapStatusDumpNode()
 void System::resetOn(bool flag)
 {
 	ResetManager* mgr = m_resetMgr;
-	mgr->_0C |= 1;
+	mgr->m_flags.dwordView |= 1;
 	if (flag) {
-		mgr->_0C |= 8;
+		mgr->m_flags.dwordView |= 8;
 	}
 }
 
@@ -2328,28 +2328,28 @@ void System::resetOff()
  * Address:	8042339C
  * Size:	000014
  */
-void System::resetPermissionOn() { m_resetMgr->_0C |= 0x10000000; }
+void System::resetPermissionOn() { m_resetMgr->m_flags.dwordView |= 0x10000000; }
 
 /*
  * --INFO--
  * Address:	804233B0
  * Size:	000018
  */
-bool System::isResetActive() { return m_resetMgr->_04; }
+bool System::isResetActive() { return m_resetMgr->m_state; }
 
 /*
  * --INFO--
  * Address:	804233C8
  * Size:	000014
  */
-void System::activeGP() { m_resetMgr->_0C |= 2; }
+void System::activeGP() { m_resetMgr->m_flags.dwordView |= 2; }
 
 /*
  * --INFO--
  * Address:	804233DC
  * Size:	000014
  */
-void System::inactiveGP() { m_resetMgr->_0C &= ~2; }
+void System::inactiveGP() { m_resetMgr->m_flags.dwordView &= ~2; }
 
 /*
  * --INFO--

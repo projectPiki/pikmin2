@@ -4,5 +4,7 @@
 #include "types.h"
 
 void THPGXRestore(void);
+void THPPlayerStop();
+void THPPlayerSetVolume(int, int);
 
 #endif

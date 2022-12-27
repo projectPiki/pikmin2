@@ -564,6 +564,7 @@ void OSEnableInterrupts();
 
 uint OSGetSoundMode();
 void OSSetSoundMode(uint);
+void OSSetSaveRegion(int, int);
 
 // void OSInitMessageQueue(OSMessageQueue* queue, void** msgSlots, int slotCount);
 // BOOL OSSendMessage(OSMessageQueue* queue, void* message, int flags);

@@ -1,4 +1,14 @@
-#include "types.h"
+#include "ResetManager.h"
+#include "System.h"
+#include "Controller.h"
+#include "Dolphin/dvd.h"
+#include "Dolphin/__start.h"
+#include "JSystem/JFW/JFWDisplay.h"
+#include "THP/THPDraw.h"
+#include "PSSystem/PSSystemIF.h"
+#include "JSystem/J2D/J2DGrafContext.h"
+#include "JSystem/JUT/JUTVideo.h"
+#include "MemoryCardMgr.h"
 
 /*
     Generated from dpostproc
@@ -81,8 +91,26 @@
  * Address:	80429DB0
  * Size:	0000C8
  */
-ResetManager::ResetManager(float)
+ResetManager::ResetManager(f32 thres)
 {
+	m_flags.bytesView[0]                  = 0;
+	m_flags.bytesView[1]                  = 0;
+	m_flags.bytesView[2]                  = 0;
+	m_flags.bytesView[3]                  = 0;
+	JUTGamePad::C3ButtonReset::sThreshold = *(f32*)BOOTINFO2_ADDR * thres; // something like this
+
+	m_flags.bytesView[0] = 0;
+	m_flags.bytesView[1] = 0;
+	m_flags.bytesView[2] = 0;
+	m_flags.bytesView[3] = 0;
+
+	m_flags.dwordView &= ~1;
+	m_flags.dwordView &= ~8;
+	m_flags.dwordView &= ~2;
+
+	m_state       = 0;
+	m_statusTimer = 0.0f;
+	m_counter     = 0;
 	/*
 	stwu     r1, -0x20(r1)
 	mflr     r0
@@ -144,6 +172,86 @@ ResetManager::ResetManager(float)
  */
 void ResetManager::update()
 {
+	if (DVDGetDriveStatus() == -1)
+		return;
+
+	bool check = true;
+	if (!(m_flags.dwordView & 0x10000000) && !(sys->isDvdErrorOccured())) {
+		check = false;
+	}
+
+	if ((int)m_state != 0) {
+		if (!isWritingMemoryCard() && isSoundSystemStopped() && !(m_flags.dwordView & 2) && check) {
+			switch (m_state) {
+			case 1:
+				if (updateStatusEffects()) {
+					m_state = 2;
+				}
+				break;
+			case 2:
+				JUTGamePad::clearForReset();
+				sys->deleteThreads();
+				JFWDisplay::setForOSResetSystem();
+				if (m_flags.dwordView & 8) {
+					OSResetSystem(true, 0, true);
+				} else {
+					// OSSetSaveRegion();
+					OSResetSystem(false, 0, false);
+				}
+				break;
+			}
+		} else {
+			if (isWritingMemoryCard()) {
+				OSReport("\tメモリーカード書き込み終了待ち\n"); // Waiting for memory card write completion
+			}
+
+			if (!isSoundSystemStopped()) {
+				int newcount = m_counter++;
+				if (newcount == 3) {
+					THPPlayerStop();
+				}
+				OSReport("\tオーディオ終了待ち\n"); // Waiting for Audio end
+			}
+
+			if (m_flags.dwordView & 2) {
+				OSReport("\tGP処理終了待ち\n"); // GP processing end waiting
+			}
+
+			if (OSGetResetSwitchState()) {
+				OSReport("\tリセットボタンが押されている\n"); // Reset button pressed
+			}
+
+			if (!check) {
+				OSReport("許可が出ていない\n"); // Permission Denied
+			}
+		}
+	} else {
+		int input;
+		if (1) { // no idea
+			input = JUTGamePad::C3ButtonReset::sResetOccurredPort;
+		}
+
+		if ((JUTGamePad::C3ButtonReset::sResetOccurred || m_flags.dwordView & 1) && !OSGetResetSwitchState()) {
+			bool check2 = true;
+			if (!(m_flags.dwordView & 1) && input != -1 && input > 1) {
+				check2 = false;
+			}
+
+			if (check && check2) {
+				if (PSSystem::spSysIF) {
+					PSSystem::SysIF::stopSoundSystem();
+				}
+				THPPlayerSetVolume(0, 120);
+				m_flags.dwordView |= 1;
+				m_state = 1;
+			} else {
+				m_flags.dwordView &= ~1;
+				m_flags.dwordView &= ~8;
+				JUTGamePad::C3ButtonReset::sResetOccurred = false;
+			}
+		}
+	}
+
 	/*
 	stwu     r1, -0x20(r1)
 	mflr     r0
@@ -360,8 +468,16 @@ lbl_8042A110:
  * Address:	8042A12C
  * Size:	000038
  */
-void ResetManager::updateStatusEffects()
+bool ResetManager::updateStatusEffects()
 {
+	bool check = false;
+	m_statusTimer += sys->m_deltaTime;
+	if (m_statusTimer > 0.25f) {
+		m_statusTimer = 0.25f;
+		check         = true;
+	}
+	return check;
+
 	/*
 	lwz      r4, sys@sda21(r13)
 	li       r0, 0
@@ -389,6 +505,24 @@ lbl_8042A15C:
  */
 void ResetManager::draw()
 {
+	if ((int)m_state != 0 && DVDGetDriveStatus() != -1) {
+
+		int w = JUTVideo::sManager->m_renderModeObj->fbWidth;
+		int h = JUTVideo::sManager->m_renderModeObj->efbHeight;
+		J2DOrthoGraph graf(0.0f, 0.0f, (f32)w, (f32)h, -1.0f, 1.0f);
+		graf.setPort();
+
+		f32 alpha = (m_statusTimer * 255.0f) / 0.25f;
+		if (alpha < 0.0f) {
+			alpha -= 0.5f;
+		} else {
+			alpha += 0.5f;
+		}
+
+		int w2 = JUTVideo::sManager->m_renderModeObj->fbWidth;
+		int h2 = JUTVideo::sManager->m_renderModeObj->efbHeight;
+		J2DFillBox(0.0f, 0.0f, (f32)w2, (f32)h2, (u8)alpha);
+	}
 	/*
 	stwu     r1, -0x120(r1)
 	mflr     r0
@@ -490,45 +624,18 @@ lbl_8042A2A8:
  * Address:	8042A2BC
  * Size:	000014
  */
-void ResetManager::isWritingMemoryCard()
-{
-	/*
-	lwz      r3, sys@sda21(r13)
-	lwz      r3, 0x5c(r3)
-	lwz      r0, 0xe4(r3)
-	clrlwi   r3, r0, 0x1f
-	blr
-	*/
-}
+bool ResetManager::isWritingMemoryCard() { return sys->m_cardMgr->_E4 & 1; }
 
 /*
  * --INFO--
  * Address:	8042A2D0
  * Size:	000044
  */
-void ResetManager::isSoundSystemStopped()
+bool ResetManager::isSoundSystemStopped()
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	lwz      r0, spSysIF__8PSSystem@sda21(r13)
-	cmplwi   r0, 0
-	beq      lbl_8042A300
-	bl       checkAudioStopStatus__8JAIBasicFv
-	clrlwi   r0, r3, 0x18
-	subfic   r0, r0, 2
-	cntlzw   r0, r0
-	srwi     r3, r0, 5
-	b        lbl_8042A304
-
-lbl_8042A300:
-	li       r3, 1
-
-lbl_8042A304:
-	lwz      r0, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	if (!PSSystem::spSysIF) {
+		return true;
+	} else {
+		return JAIBasic::checkAudioStopStatus() == 2;
+	}
 }

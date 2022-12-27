@@ -7,17 +7,20 @@ struct ResetManager {
 	ResetManager(f32);
 
 	virtual void draw();                // _08
-	virtual void updateStatusEffects(); // _0C
+	virtual bool updateStatusEffects(); // _0C
 
 	void update();
 	bool isWritingMemoryCard();
 	bool isSoundSystemStopped();
 
 	// _00 VTBL
-	u32 _04; // _04, unknown
-	f32 _08; // _08
-	u32 _0C; // _0C - bitfield?
-	u32 _10; // _10, unknown
+	u32 m_state;       // _04, unknown
+	f32 m_statusTimer; // _08
+	union {
+		u8 bytesView[4];
+		u32 dwordView;
+	} m_flags;     // _40
+	u32 m_counter; // _10, unknown
 };
 
 #endif
