@@ -12,6 +12,7 @@
 #include "Vector3.h"
 #include "TagParm.h"
 #include "Game/Creature.h"
+#include "id32.h"
 
 struct JPAResourceManager;
 struct Viewport;
@@ -57,23 +58,47 @@ struct ObjectSystem;
 
 struct MovieConfig : public CNode {
 	struct TParms : public TagParameters {
+		inline TParms()
+		    : TagParameters("MovieConfigTag")
+		    , m_demoName(this, "demo_name")
+		    , m_folderName(this, "folder")
+		{
+		}
 		virtual ~TParms(); // _08 (weak)
+
+		StringTagParm m_demoName;   // _1C
+		StringTagParm m_folderName; // _2C
 	};
 
-	MovieConfig() { }
+	MovieConfig();
 
 	virtual ~MovieConfig() { } // _08 (weak)
 
 	void dump();
-	void isSkippable();
-	void isNeverSkippable();
+	bool isSkippable();
+	bool isNeverSkippable();
 	bool is(char*);
 	void read(Stream&);
 
 	// _00     = VTBL
 	// _00-_18 = CNode
-	u8 _18[0xBE - 0x18]; // _18
-	u16 m_drawFlags;     // _BE
+	ID32 m_id;                   // _18
+	u8 m_positionFlag;           // _1C
+	char m_movieNameBuffer1[32]; // _25
+	char m_movieNameBuffer2[32]; // _45
+	TParms m_param;              // _68
+	Vector3f m_origin;           // _A4
+	f32 m_angle;                 // _B0
+	int m_courseIndex;           // _B4
+	char* m_mapName;             // _B8
+	u16 m_flags;                 // _BC
+	union {
+		u8 bytesView[2];
+		u16 shortView;
+	} m_drawFlags;     // _BE
+	s16 m_drawType;    // _C0
+	s16 m_fadeType;    // _C2
+	int m_msgPauseNum; // _C4
 };
 
 struct MoviePlayArg {
@@ -132,10 +157,13 @@ struct MovieContext : public CNode {
 struct MovieList : public CNode {
 	MovieList();
 
+	// unused/inline
+	void getConfig(int);
+
 	virtual ~MovieList(); // _08 (weak)
 
 	static void construct();
-	void findConfig(char*, char*);
+	MovieConfig* findConfig(char*, char*);
 	void read(Stream&);
 
 	// _00     = VTBL

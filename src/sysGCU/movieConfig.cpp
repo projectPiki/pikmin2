@@ -1,5 +1,6 @@
-#include "types.h"
-
+#include "Game/MoviePlayer.h"
+#include "Game/gameStages.h"
+#include "JSystem/JKR/JKRDvdRipper.h"
 /*
     Generated from dpostproc
 
@@ -96,15 +97,33 @@
 */
 
 namespace Game {
+MovieList* movieList;
 
 /*
  * --INFO--
  * Address:	........
  * Size:	000110
  */
-MovieConfig::MovieConfig(void)
+MovieConfig::MovieConfig()
 {
-	// UNUSED FUNCTION
+	m_drawFlags.bytesView[0] = 0;
+	m_drawFlags.bytesView[1] = 0;
+	m_positionFlag           = 2;
+	m_movieNameBuffer1[0]    = 0;
+	m_movieNameBuffer2[0]    = 0;
+	m_origin                 = Vector3f(0.0f);
+	m_angle                  = 0.0f;
+	m_drawFlags.bytesView[0] = 0;
+	m_drawFlags.bytesView[1] = 0;
+	m_flags                  = 1;
+	m_drawFlags.bytesView[0] = 0;
+	m_drawFlags.bytesView[1] = 0;
+	m_drawType               = 3;
+	m_name                   = m_movieNameBuffer1;
+	m_courseIndex            = -1;
+	m_mapName                = "nomap";
+	m_id.setID('v0.5');
+	m_msgPauseNum = 0;
 }
 
 /*
@@ -112,69 +131,26 @@ MovieConfig::MovieConfig(void)
  * Address:	80431830
  * Size:	000070
  */
-MovieConfig::TParms::~TParms(void)
-{
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	mr       r31, r4
-	stw      r30, 8(r1)
-	or.      r30, r3, r3
-	beq      lbl_80431884
-	lis      r4, __vt__Q34Game11MovieConfig6TParms@ha
-	addi     r0, r4, __vt__Q34Game11MovieConfig6TParms@l
-	stw      r0, 0(r30)
-	beq      lbl_80431874
-	lis      r5, __vt__13TagParameters@ha
-	li       r4, 0
-	addi     r0, r5, __vt__13TagParameters@l
-	stw      r0, 0(r30)
-	bl       __dt__5CNodeFv
-
-lbl_80431874:
-	extsh.   r0, r31
-	ble      lbl_80431884
-	mr       r3, r30
-	bl       __dl__FPv
-
-lbl_80431884:
-	lwz      r0, 0x14(r1)
-	mr       r3, r30
-	lwz      r31, 0xc(r1)
-	lwz      r30, 8(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
-}
+MovieConfig::TParms::~TParms() { }
 
 /*
  * --INFO--
  * Address:	804318A0
  * Size:	000004
  */
-void MovieConfig::dump(void) { }
+void MovieConfig::dump() { }
 
 /*
  * --INFO--
  * Address:	804318A4
  * Size:	00001C
  */
-void MovieConfig::isSkippable(void)
+bool MovieConfig::isSkippable()
 {
-	/*
-	lhz      r3, 0xbc(r3)
-	rlwinm.  r0, r3, 0, 0x1e, 0x1e
-	beq      lbl_804318B8
-	li       r3, 0
-	blr
-
-lbl_804318B8:
-	clrlwi   r3, r3, 0x1f
-	blr
-	*/
+	if (m_flags & 2) {
+		return false;
+	}
+	return m_flags & 1;
 }
 
 /*
@@ -182,54 +158,73 @@ lbl_804318B8:
  * Address:	804318C0
  * Size:	00000C
  */
-void MovieConfig::isNeverSkippable(void)
-{
-	/*
-	lhz      r0, 0xbc(r3)
-	rlwinm   r3, r0, 0x1f, 0x1f, 0x1f
-	blr
-	*/
-}
+bool MovieConfig::isNeverSkippable() { return m_flags >> 1 & 1; }
 
 /*
  * --INFO--
  * Address:	804318CC
  * Size:	000054
  */
-void MovieConfig::is(char*)
-{
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	mr       r31, r4
-	stw      r30, 8(r1)
-	mr       r30, r3
-	mr       r3, r31
-	bl       strlen
-	mr       r5, r3
-	mr       r4, r31
-	addi     r3, r30, 0x45
-	bl       strncmp
-	cntlzw   r0, r3
-	lwz      r31, 0xc(r1)
-	srwi     r3, r0, 5
-	lwz      r0, 0x14(r1)
-	lwz      r30, 8(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
-}
+bool MovieConfig::is(char* name) { return strncmp(m_movieNameBuffer2, name, strlen(name)) == 0; }
 
 /*
  * --INFO--
  * Address:	80431920
  * Size:	0002D4
  */
-void MovieConfig::read(Stream&)
+void MovieConfig::read(Stream& data)
 {
+	ID32 id;
+	id.read(data);
+
+	if (id.getID() >= 'v0.2') {
+		m_param.read(data);
+		for (int i = 0; i < 32; i++) {
+			m_movieNameBuffer1[i] = m_param.m_demoName.m_data[i];
+			m_movieNameBuffer2[i] = m_param.m_folderName.m_data[i];
+		}
+	} else {
+		for (int i = 0; i < 32; i++) {
+			m_movieNameBuffer1[i] = data.readByte();
+		}
+		for (int i = 0; i < 32; i++) {
+			m_movieNameBuffer2[i] = data.readByte();
+		}
+	}
+
+	m_positionFlag = data.readByte();
+	m_origin.read(data);
+	m_angle = data.readFloat();
+	m_flags = data.readShort();
+
+	if (id.getID() > 'v0.0') {
+		m_drawFlags.bytesView[0] = 0;
+		m_drawFlags.bytesView[1] = 0;
+		if (id.getID() < 'v0.4') {
+			data.readShort();
+			data.readShort();
+			m_drawFlags.bytesView[0] = 0;
+			m_drawFlags.bytesView[1] = 0;
+			if (id.getID() >= 'v0.3') {
+				m_drawType = data.readShort();
+			}
+		} else {
+			m_drawFlags.shortView |= data.readShort();
+			m_drawType = data.readShort();
+		}
+	}
+
+	if (id.getID() >= 'v0.5') {
+		m_msgPauseNum = data.readInt();
+	}
+
+	m_mapName = data.readString(nullptr, 0);
+
+	if (!strcmp(m_mapName, "nomap")) {
+		m_courseIndex = -1;
+	} else {
+		m_courseIndex = stageList->getCourseInfo(m_mapName)->m_courseIndex;
+	}
 	/*
 	stwu     r1, -0x30(r1)
 	mflr     r0
@@ -440,35 +435,30 @@ lbl_80431BD8:
  * Address:	80431BF4
  * Size:	000038
  */
-void MovieList::construct(void)
-{
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	li       r3, 0xe0
-	stw      r0, 0x14(r1)
-	bl       __nw__FUl
-	or.      r0, r3, r3
-	beq      lbl_80431C18
-	bl       __ct__Q24Game9MovieListFv
-	mr       r0, r3
-
-lbl_80431C18:
-	stw      r0, movieList__4Game@sda21(r13)
-	lwz      r0, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
-}
+void MovieList::construct() { movieList = new MovieList; }
 
 /*
  * --INFO--
  * Address:	80431C2C
  * Size:	0001BC
  */
-MovieList::MovieList(void)
+MovieList::MovieList()
 {
+	m_config.m_name   = "MovieList";
+	m_config.m_child  = nullptr;
+	m_config.m_parent = nullptr;
+	m_config.m_prev   = nullptr;
+	m_config.m_next   = nullptr;
+
+	void* file = JKRDvdRipper::loadToMainRAM("user/Mukki/movie/demos.txt", nullptr, Switch_0, 0, nullptr, JKRDvdRipper::ALLOC_DIR_BOTTOM, 0,
+	                                         nullptr, nullptr);
+	if (file) {
+		RamStream stream(file, -1);
+		stream.m_mode     = STREAM_MODE_TEXT;
+		stream.m_tabCount = 0;
+		read(stream);
+		delete file;
+	}
 	/*
 	stwu     r1, -0x440(r1)
 	mflr     r0
@@ -594,61 +584,35 @@ lbl_80431DC4:
  * Address:	80431DE8
  * Size:	000098
  */
-MovieConfig::~MovieConfig(void)
-{
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	mr       r31, r4
-	stw      r30, 8(r1)
-	or.      r30, r3, r3
-	beq      lbl_80431E64
-	lis      r3, __vt__Q24Game11MovieConfig@ha
-	addic.   r0, r30, 0x68
-	addi     r0, r3, __vt__Q24Game11MovieConfig@l
-	stw      r0, 0(r30)
-	beq      lbl_80431E48
-	lis      r3, __vt__Q34Game11MovieConfig6TParms@ha
-	addic.   r0, r30, 0x68
-	addi     r0, r3, __vt__Q34Game11MovieConfig6TParms@l
-	stw      r0, 0x68(r30)
-	beq      lbl_80431E48
-	lis      r4, __vt__13TagParameters@ha
-	addi     r3, r30, 0x68
-	addi     r0, r4, __vt__13TagParameters@l
-	li       r4, 0
-	stw      r0, 0x68(r30)
-	bl       __dt__5CNodeFv
-
-lbl_80431E48:
-	mr       r3, r30
-	li       r4, 0
-	bl       __dt__5CNodeFv
-	extsh.   r0, r31
-	ble      lbl_80431E64
-	mr       r3, r30
-	bl       __dl__FPv
-
-lbl_80431E64:
-	lwz      r0, 0x14(r1)
-	mr       r3, r30
-	lwz      r31, 0xc(r1)
-	lwz      r30, 8(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
-}
+// MovieConfig::~MovieConfig()
+//{
+//}
 
 /*
  * --INFO--
  * Address:	80431E80
  * Size:	0000B0
  */
-void MovieList::findConfig(char*, char*)
+MovieConfig* MovieList::findConfig(char* movieName, char* mapName)
 {
+	int movielen = strlen(movieName);
+	int maplen   = 0;
+	if (mapName) {
+		maplen = strlen(mapName);
+	}
+
+	FOREACH_NODE(MovieConfig, m_config.m_child, cNode)
+	{
+		if (!strncmp(movieName, cNode->m_movieNameBuffer2, movielen)) {
+			if (mapName == nullptr) {
+				return cNode;
+			}
+			if (!strncmp(mapName, cNode->m_mapName, maplen)) {
+				return cNode;
+			}
+		}
+	}
+	return nullptr;
 	/*
 	stwu     r1, -0x20(r1)
 	mflr     r0
@@ -724,8 +688,20 @@ void MovieList::getConfig(int)
  * Address:	80431F30
  * Size:	000164
  */
-void MovieList::read(Stream&)
+void MovieList::read(Stream& data)
 {
+	int nodes = data.readInt();
+
+	m_config.m_child  = nullptr;
+	m_config.m_parent = nullptr;
+	m_config.m_prev   = nullptr;
+	m_config.m_next   = nullptr;
+
+	for (int i = 0; i < nodes; i++) {
+		MovieConfig* config = new MovieConfig;
+		config->read(data);
+		m_config.add(config);
+	}
 	/*
 	stwu     r1, -0x20(r1)
 	mflr     r0
@@ -830,62 +806,7 @@ lbl_80432078:
  * Address:	80432094
  * Size:	0000B4
  */
-MovieList::~MovieList(void)
-{
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	mr       r31, r4
-	stw      r30, 8(r1)
-	or.      r30, r3, r3
-	beq      lbl_8043212C
-	lis      r3, __vt__Q24Game9MovieList@ha
-	addic.   r0, r30, 0x18
-	addi     r0, r3, __vt__Q24Game9MovieList@l
-	stw      r0, 0(r30)
-	beq      lbl_80432110
-	lis      r4, __vt__Q24Game11MovieConfig@ha
-	addic.   r3, r30, 0x80
-	addi     r0, r4, __vt__Q24Game11MovieConfig@l
-	stw      r0, 0x18(r30)
-	beq      lbl_80432104
-	lis      r4, __vt__Q34Game11MovieConfig6TParms@ha
-	cmplwi   r3, 0
-	addi     r0, r4, __vt__Q34Game11MovieConfig6TParms@l
-	stw      r0, 0x80(r30)
-	beq      lbl_80432104
-	lis      r4, __vt__13TagParameters@ha
-	addi     r0, r4, __vt__13TagParameters@l
-	stw      r0, 0x80(r30)
-	li       r4, 0
-	bl       __dt__5CNodeFv
-
-lbl_80432104:
-	addi     r3, r30, 0x18
-	li       r4, 0
-	bl       __dt__5CNodeFv
-
-lbl_80432110:
-	mr       r3, r30
-	li       r4, 0
-	bl       __dt__5CNodeFv
-	extsh.   r0, r31
-	ble      lbl_8043212C
-	mr       r3, r30
-	bl       __dl__FPv
-
-lbl_8043212C:
-	lwz      r0, 0x14(r1)
-	mr       r3, r30
-	lwz      r31, 0xc(r1)
-	lwz      r30, 8(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
-}
+MovieList::~MovieList() { }
 
 } // namespace Game
 
@@ -894,7 +815,7 @@ lbl_8043212C:
  * Address:	80432148
  * Size:	000028
  */
-void __sinit_movieConfig_cpp(void)
+void __sinit_movieConfig_cpp()
 {
 	/*
 	lis      r4, __float_nan@ha
