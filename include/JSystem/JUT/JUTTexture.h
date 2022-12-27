@@ -32,6 +32,13 @@ struct JUTTexture : public GXTexObj {
 		m_flags &= TEXFLAG_Unk2;
 	}
 
+	inline JUTTexture(ResTIMG* timg)
+	{
+		_28 = nullptr;
+		storeTIMG(timg, (u8)0);
+		m_flags &= TEXFLAG_Unk2;
+	}
+
 	~JUTTexture();
 
 	void attachPalette(JUTPalette*);

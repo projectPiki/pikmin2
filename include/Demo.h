@@ -42,9 +42,9 @@ struct Section : public Game::BaseHIOSection {
 	DvdThreadCommand m_threadCommand; // _048
 	CNode* m_genNode;                 // _0B4
 	Controller* m_controller;         // _0B8
-	float _BC;                        // _0BC
+	f32 m_timer;                      // _0BC
 	Game::THPPlayer m_moviePlayer;    // _0C0
-	JUTTexture* _1AC;                 // _1AC
+	JUTTexture* m_logoTexture;        // _1AC
 };
 } // namespace Demo
 

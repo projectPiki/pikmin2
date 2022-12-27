@@ -23,7 +23,7 @@ void MenuSection::run()
 {
 	_3C = false;
 	do {
-		m_isMainActive = true;
+		m_active = true;
 		MenuSection::runChildSection();
 	} while (!_3C);
 }
@@ -37,7 +37,7 @@ bool MenuSection::runChildSection()
 {
 	JKRHeap::sCurrentHeap->getFreeSize();
 
-	JKRExpHeap* expHeap  = JKRExpHeap::create(m_displayHeap->getFreeSize(), m_displayHeap, true);
+	JKRExpHeap* expHeap  = JKRExpHeap::create(_1C->getFreeSize(), _1C, true);
 	JKRHeap* currentHeap = expHeap->becomeCurrentHeap();
 
 	m_currentSection = (Section*)setChildSection(expHeap);
