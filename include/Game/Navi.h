@@ -213,16 +213,16 @@ struct Navi : public FakePiki, virtual public PelletView {
 	PlayCamera* m_camera;                    // _280
 	PlayCamera* m_camera2;                   // _284
 	BitFlag<u16> _288;                       // _288
-	NaviWhistle* m_cursor;                   // _28C
-	SysShape::Model* m_cursorModel;          // _290
-	SysShape::Model* m_markerModel;          // _294
+	NaviWhistle* m_whistle;                  // _28C
+	SysShape::Model* m_markerModel;          // _290
+	SysShape::Model* m_cursorModel;          // _294
 	Sys::MatRepeatAnimator* m_cursorMatAnim; // _298
 	// TODO: If this is the same as marker, standardize on one name or the
 	// other.
 	Sys::MatLoopAnimator* m_arrowMatAnim; // _29C
 	// TODO: If this is the same sort of thing as m_health elsewhere, rename to
 	// that.
-	f32 m_currentLife;              // _2A0
+	f32 m_health;                   // _2A0
 	u8 m_invincibleTimer;           // _2A4
 	Piki* m_nextThrowPiki;          // _2A8
 	u8 _2AC;                        // _2AC

@@ -6,6 +6,7 @@
 #include "Game/CPlate.h"
 #include "Game/Footmark.h"
 #include "Game/MoviePlayer.h"
+#include "Game/PikiMgr.h"
 #include "Game/Entities/ItemPikihead.h"
 #include "JSystem/J3D/J3DJoint.h"
 #include "JSystem/JUT/JUTException.h"
@@ -60,7 +61,7 @@ Navi::Navi()
 	m_controller2 = nullptr;
 	m_camera      = nullptr;
 	m_camera2     = nullptr;
-	m_cursor      = nullptr;
+	m_whistle     = nullptr;
 
 	m_objectTypeID = 1;
 
@@ -119,7 +120,7 @@ void Navi::onInit(Game::CreatureInitArg* arg)
 	m_isAlive = false;
 	_308      = 0.0f;
 
-	m_cursor = new NaviWhistle(this);
+	m_whistle = new NaviWhistle(this);
 
 	_2DE            = 0;
 	m_nextThrowPiki = nullptr;
@@ -137,7 +138,7 @@ void Navi::onInit(Game::CreatureInitArg* arg)
 	m_beaconJoint = m_model->getJoint("happajnt3");
 
 	m_effectsObj->m_beaconMtx = m_beaconJoint->getWorldMatrix();
-	m_effectsObj->_0C         = &m_cursor->_0C;
+	m_effectsObj->_0C         = &m_whistle->_0C;
 
 	SysShape::Joint* headJnt = m_model->getJoint("headjnt");
 	m_effectsObj->m_headMtx  = headJnt->getWorldMatrix();
@@ -197,7 +198,7 @@ void Navi::onSetPosition(Vector3f& position)
 		Radar::Mgr::entry(this, Radar::MAP_LOUIE_PRESIDENT, 0);
 	}
 
-	m_cursor->init();
+	m_whistle->init();
 }
 
 /*
@@ -1683,148 +1684,60 @@ f32 Navi::viewGetBaseScale() { return m_naviIndex == 0 ? 1.3f : 1.5f; }
  * --INFO--
  * Address:	80141760
  * Size:	0001F8
+ * ////////////////////////FIX//SOME//WEIRD//STUFF//GOING//ON//HERE////////////////////////
+ * 86%
  */
 void Navi::doEntry()
 {
-	/*
-	.loc_0x0:
-	  stwu      r1, -0x20(r1)
-	  mflr      r0
-	  stw       r0, 0x24(r1)
-	  stw       r31, 0x1C(r1)
-	  mr        r31, r3
-	  bl        -0x2FB0
-	  mr        r3, r31
-	  lwz       r12, 0x0(r31)
-	  lwz       r12, 0xA8(r12)
-	  mtctr     r12
-	  bctrl
-	  rlwinm.   r0,r3,0,24,31
-	  bne-      .loc_0x50
-	  lbz       r0, 0x268(r31)
-	  cmplwi    r0, 0
-	  beq-      .loc_0x50
-	  lbz       r3, 0xD8(r31)
-	  li        r0, -0x35
-	  and       r0, r3, r0
-	  stb       r0, 0xD8(r31)
-	.loc_0x50:
-	  lwz       r0, 0x278(r31)
-	  cmplwi    r0, 0
-	  beq-      .loc_0x1E4
-	  lwz       r3, 0x298(r31)
-	  lfs       f1, -0x6014(r2)
-	  bl        0x2F2D88
-	  lwz       r3, 0x29C(r31)
-	  lfs       f1, -0x600C(r2)
-	  bl        0x2F2D7C
-	  lhz       r0, 0x288(r31)
-	  rlwinm.   r0,r0,0,31,31
-	  bne-      .loc_0xD4
-	  lwz       r3, -0x64AC(r13)
-	  lwz       r0, 0x1F0(r3)
-	  rlwinm.   r0,r0,0,31,31
-	  beq-      .loc_0xA8
-	  lwz       r3, 0x290(r31)
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0x18(r12)
-	  mtctr     r12
-	  bctrl
-	  b         .loc_0xBC
-	.loc_0xA8:
-	  lwz       r3, 0x290(r31)
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0x1C(r12)
-	  mtctr     r12
-	  bctrl
-	.loc_0xBC:
-	  lwz       r3, 0x290(r31)
-	  lwz       r3, 0x8(r3)
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0xC(r12)
-	  mtctr     r12
-	  bctrl
-	.loc_0xD4:
-	  lwz       r3, 0x2A8(r31)
-	  cmplwi    r3, 0
-	  beq-      .loc_0x108
-	  lbz       r4, 0x2B8(r3)
-	  lis       r3, 0x8051
-	  addi      r0, r3, 0x22CC
-	  rlwinm    r3,r4,2,0,29
-	  add       r3, r0, r3
-	  lbz       r0, 0x0(r3)
-	  lbz       r6, 0x1(r3)
-	  lbz       r7, 0x2(r3)
-	  lbz       r8, 0x3(r3)
-	  b         .loc_0x118
-	.loc_0x108:
-	  li        r7, 0xFF
-	  li        r8, 0xFF
-	  mr        r6, r7
-	  mr        r0, r7
-	.loc_0x118:
-	  lwz       r3, 0x294(r31)
-	  lwz       r3, 0x8(r3)
-	  lwz       r3, 0x4(r3)
-	  lwz       r3, 0x60(r3)
-	  lwz       r3, 0x0(r3)
-	  cmplwi    r3, 0
-	  beq-      .loc_0x184
-	  sth       r0, 0x8(r1)
-	  addi      r5, r1, 0x8
-	  li        r4, 0
-	  sth       r6, 0xA(r1)
-	  sth       r7, 0xC(r1)
-	  sth       r8, 0xE(r1)
-	  lwz       r3, 0x2C(r3)
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0x64(r12)
-	  mtctr     r12
-	  bctrl
-	  lwz       r3, 0x294(r31)
-	  lwz       r3, 0x8(r3)
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0x14(r12)
-	  mtctr     r12
-	  bctrl
-	  lwz       r3, 0x294(r31)
-	  lwz       r3, 0x8(r3)
-	  bl        -0xDAC74
-	.loc_0x184:
-	  lhz       r0, 0x288(r31)
-	  rlwinm.   r0,r0,0,31,31
-	  bne-      .loc_0x1E4
-	  lwz       r3, -0x64AC(r13)
-	  lwz       r0, 0x1F0(r3)
-	  rlwinm.   r0,r0,0,31,31
-	  beq-      .loc_0x1B8
-	  lwz       r3, 0x294(r31)
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0x18(r12)
-	  mtctr     r12
-	  bctrl
-	  b         .loc_0x1CC
-	.loc_0x1B8:
-	  lwz       r3, 0x294(r31)
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0x1C(r12)
-	  mtctr     r12
-	  bctrl
-	.loc_0x1CC:
-	  lwz       r3, 0x294(r31)
-	  lwz       r3, 0x8(r3)
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0xC(r12)
-	  mtctr     r12
-	  bctrl
-	.loc_0x1E4:
-	  lwz       r0, 0x24(r1)
-	  lwz       r31, 0x1C(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x20
-	  blr
-	*/
+	FakePiki::doEntry();
+	if (!isAlive() && m_isAlive) {
+		RESET_FLAG(m_lod.m_flags, 0x34);
+	}
+
+	if (m_controller1 == nullptr) {
+		return;
+	}
+
+	m_cursorMatAnim->animate(10.0f);
+	m_arrowMatAnim->animate(0.0f);
+
+	if ((_288.typeView & 1) == FALSE) {
+		if (moviePlayer->m_flags & MoviePlayer::IS_ACTIVE) {
+			m_markerModel->hide();
+		} else {
+			m_markerModel->show();
+		}
+
+		m_markerModel->m_j3dModel->entry();
+	}
+
+	J3DGXColorS10 cursorCols;
+	if (m_nextThrowPiki) {
+		Color4& col  = Piki::pikiColorsCursor[m_nextThrowPiki->m_pikiKind];
+		cursorCols.r = col.r;
+		cursorCols.g = col.g;
+		cursorCols.b = col.b;
+		cursorCols.a = col.a;
+	} else {
+		cursorCols = J3DGXColorS10(0xFF, 0xFF, 0xFF, 0xFF);
+	}
+
+	J3DMaterial** materials = m_cursorModel->m_j3dModel->m_modelData->m_materialTable.m_materials1;
+	if (materials) {
+		materials[0]->m_tevBlock->setTevColor(0, cursorCols);
+		m_cursorModel->m_j3dModel->calcMaterial();
+		m_cursorModel->m_j3dModel->diff();
+	}
+
+	if ((_288.typeView & 1) == FALSE) {
+		if (moviePlayer->m_flags & MoviePlayer::IS_ACTIVE) {
+			m_cursorModel->hide();
+		} else {
+			m_cursorModel->show();
+		}
+
+		m_cursorModel->m_j3dModel->entry();
+	}
 }
 
 /*
@@ -2223,15 +2136,15 @@ void Navi::doSimulation(f32 timeStep)
 void Navi::doSetView(int vpNumber)
 {
 	Creature::doSetView(vpNumber);
-	m_cursorModel->setCurrentViewNo(vpNumber);
 	m_markerModel->setCurrentViewNo(vpNumber);
+	m_cursorModel->setCurrentViewNo(vpNumber);
 
 	if (m_lod.m_flags & (16 << vpNumber)) {
-		m_cursorModel->showPackets();
 		m_markerModel->showPackets();
+		m_cursorModel->showPackets();
 	} else {
-		m_cursorModel->hidePackets();
 		m_markerModel->hidePackets();
+		m_cursorModel->hidePackets();
 	}
 }
 
@@ -2243,8 +2156,8 @@ void Navi::doSetView(int vpNumber)
 void Navi::doViewCalc()
 {
 	Creature::doViewCalc();
-	m_cursorModel->viewCalc();
 	m_markerModel->viewCalc();
+	m_cursorModel->viewCalc();
 }
 
 /*
@@ -2252,36 +2165,14 @@ void Navi::doViewCalc()
  * Address:	80141FE8
  * Size:	000014
  */
-void Navi::setLifeMax()
-{
-	m_currentLife = naviMgr->m_naviParms->m_naviParms.m_maxHealth;
-	/*
-	.loc_0x0:
-	  lwz       r4, -0x6D20(r13)
-	  lwz       r4, 0xC8(r4)
-	  lfs       f0, 0x9D0(r4)
-	  stfs      f0, 0x2A0(r3)
-	  blr
-	*/
-}
+void Navi::setLifeMax() { m_health = naviMgr->m_naviParms->m_naviParms.m_maxHealth; }
 
 /*
  * --INFO--
  * Address:	80141FFC
  * Size:	000018
  */
-f32 Navi::getLifeRatio()
-{
-	/*
-	.loc_0x0:
-	  lwz       r4, -0x6D20(r13)
-	  lfs       f1, 0x2A0(r3)
-	  lwz       r3, 0xC8(r4)
-	  lfs       f0, 0x9D0(r3)
-	  fdivs     f1, f1, f0
-	  blr
-	*/
-}
+f32 Navi::getLifeRatio() { return m_health / naviMgr->m_naviParms->m_naviParms.m_maxHealth.m_value; }
 
 /*
  * --INFO--
@@ -2290,6 +2181,34 @@ f32 Navi::getLifeRatio()
  */
 int Navi::getDownfloorMass()
 {
+	NaviState* curState = m_currentState;
+
+	int id;
+	if (curState) {
+		id = curState->m_id;
+	} else {
+		id = -1;
+	}
+
+	if (id != 6) {
+		return naviMgr->m_naviParms->m_naviParms.m_q009;
+	}
+
+	// Requires casting to navi state 6, IDK what that is, so this function is impossible until then
+	int a = 1;
+	if (curState) {
+		// Piki::getStateID
+		if (curState->m_id == 4) {
+			a = 2;
+		} else {
+			a = 0;
+		}
+	} else {
+		a = 0;
+	}
+
+	return naviMgr->m_naviParms->m_naviParms.m_q009 + a;
+
 	/*
 	.loc_0x0:
 	  stwu      r1, -0x20(r1)
@@ -2539,117 +2458,56 @@ void Navi::update()
  * Address:	80142368
  * Size:	000008
  */
-bool NaviState::vsUsableY()
-{
-	/*
-	.loc_0x0:
-	  li        r3, 0x1
-	  blr
-	*/
-}
+bool NaviState::vsUsableY() { return true; }
 
 /*
  * --INFO--
  * Address:	80142370
  * Size:	000004
  */
-void BaseGameSection::openKanketuMenu(ItemBigFountain::Item*, Controller*)
-{
-	/*
-	.loc_0x0:
-	  blr
-	*/
-}
+void BaseGameSection::openKanketuMenu(ItemBigFountain::Item*, Controller*) { }
 
 /*
  * --INFO--
  * Address:	80142374
  * Size:	000004
  */
-void BaseGameSection::openCaveInMenu(ItemCave::Item*, int)
-{
-	/*
-	.loc_0x0:
-	  blr
-	*/
-}
+void BaseGameSection::openCaveInMenu(ItemCave::Item*, int) { }
 
 /*
  * --INFO--
  * Address:	80142378
  * Size:	000004
  */
-void BaseGameSection::openCaveMoreMenu(ItemHole::Item*, Controller*)
-{
-	/*
-	.loc_0x0:
-	  blr
-	*/
-}
+void BaseGameSection::openCaveMoreMenu(ItemHole::Item*, Controller*) { }
 
 /*
  * --INFO--
  * Address:	8014237C
  * Size:	000004
  */
-void Navi::do_updateLookCreature()
-{
-	/*
-	.loc_0x0:
-	  blr
-	*/
-}
+void Navi::do_updateLookCreature() { }
 
 /*
  * --INFO--
  * Address:	80142380
  * Size:	00009C
  */
-void Navi::inWaterCallback(WaterBox*)
+void Navi::inWaterCallback(WaterBox* wb)
 {
-	/*
-	.loc_0x0:
-	  stwu      r1, -0x20(r1)
-	  mflr      r0
-	  stw       r0, 0x24(r1)
-	  stw       r31, 0x1C(r1)
-	  stw       r30, 0x18(r1)
-	  stw       r29, 0x14(r1)
-	  mr        r29, r3
-	  mr        r3, r4
-	  lwz       r12, 0x0(r4)
-	  lwz       r12, 0x14(r12)
-	  mtctr     r12
-	  bctrl
-	  lwz       r4, 0x2D0(r29)
-	  stw       r3, 0x18(r4)
-	  lwz       r30, 0x2D0(r29)
-	  lwz       r4, 0x0(r30)
-	  mr        r3, r30
-	  ori       r0, r4, 0x1
-	  rlwinm    r31,r4,0,31,31
-	  stw       r0, 0x0(r30)
-	  bl        0x275B4C
-	  cmplwi    r31, 0
-	  bne-      .loc_0x64
-	  addi      r3, r30, 0x1C
-	  bl        0x2754B4
-	.loc_0x64:
-	  lwz       r3, 0x26C(r29)
-	  li        r4, 0x814
-	  li        r5, 0
-	  lwz       r12, 0x28(r3)
-	  lwz       r12, 0x7C(r12)
-	  mtctr     r12
-	  bctrl
-	  lwz       r0, 0x24(r1)
-	  lwz       r31, 0x1C(r1)
-	  lwz       r30, 0x18(r1)
-	  lwz       r29, 0x14(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x20
-	  blr
-	*/
+	m_effectsObj->m_height = wb->getSeaHeightPtr();
+
+	efx::TNaviEffect* fx = m_effectsObj;
+
+	bool isX = fx->m_flags.typeView & 1;
+	SET_FLAG(fx->m_flags.typeView, 1);
+
+	fx->updateHamon_();
+	if (!isX) {
+		efx::createSimpleDive(fx->m_hamonPosition);
+	}
+
+	m_soundObj->startSound(0x814, 0);
 }
 
 /*
@@ -2659,26 +2517,10 @@ void Navi::inWaterCallback(WaterBox*)
  */
 void Navi::outWaterCallback()
 {
-	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  stw       r0, 0x14(r1)
-	  stw       r31, 0xC(r1)
-	  lwz       r31, 0x2D0(r3)
-	  lwz       r0, 0x0(r31)
-	  mr        r3, r31
-	  rlwinm    r0,r0,0,0,30
-	  stw       r0, 0x0(r31)
-	  bl        0x275C14
-	  mr        r3, r31
-	  bl        0x275C90
-	  lwz       r0, 0x14(r1)
-	  lwz       r31, 0xC(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
-	*/
+	efx::TNaviEffect* fx = m_effectsObj;
+	fx->m_flags.typeView &= 0xFFFFFFFE;
+	fx->killHamonA_();
+	fx->killHamonB_();
 }
 
 /*
@@ -2686,58 +2528,17 @@ void Navi::outWaterCallback()
  * Address:	80142460
  * Size:	0000B0
  */
-bool Navi::ignoreAtari(Creature*)
+bool Navi::ignoreAtari(Creature* other)
 {
-	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  stw       r0, 0x14(r1)
-	  stw       r31, 0xC(r1)
-	  mr        r31, r4
-	  stw       r30, 0x8(r1)
-	  mr        r30, r3
-	  lwz       r5, -0x64AC(r13)
-	  lwz       r0, 0x1F0(r5)
-	  rlwinm.   r0,r0,0,31,31
-	  beq-      .loc_0x50
-	  mr        r3, r31
-	  lwz       r12, 0x0(r31)
-	  lwz       r12, 0x1C(r12)
-	  mtctr     r12
-	  bctrl
-	  rlwinm.   r0,r3,0,24,31
-	  beq-      .loc_0x50
-	  li        r3, 0x1
-	  b         .loc_0x98
-	.loc_0x50:
-	  mr        r3, r31
-	  lwz       r12, 0x0(r31)
-	  lwz       r12, 0x80(r12)
-	  mtctr     r12
-	  bctrl
-	  rlwinm.   r0,r3,0,24,31
-	  beq-      .loc_0x80
-	  lbz       r0, 0x32C(r31)
-	  cmplwi    r0, 0x1
-	  bne-      .loc_0x80
-	  li        r3, 0x1
-	  b         .loc_0x98
-	.loc_0x80:
-	  lwz       r3, 0x274(r30)
-	  mr        r4, r31
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0x3C(r12)
-	  mtctr     r12
-	  bctrl
-	.loc_0x98:
-	  lwz       r0, 0x14(r1)
-	  lwz       r31, 0xC(r1)
-	  lwz       r30, 0x8(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
-	*/
+	if (moviePlayer->m_flags & MoviePlayer::IS_ACTIVE && other->isNavi()) {
+		return true;
+	}
+
+	if (other->isPellet() && ((Pellet*)other)->m_pelletFlag == 1) {
+		return true;
+	}
+
+	return m_currentState->ignoreAtari(other);
 }
 
 /*
@@ -2745,14 +2546,7 @@ bool Navi::ignoreAtari(Creature*)
  * Address:	80142510
  * Size:	000008
  */
-bool NaviState::ignoreAtari(Creature*)
-{
-	/*
-	.loc_0x0:
-	  li        r3, 0
-	  blr
-	*/
-}
+bool NaviState::ignoreAtari(Creature*) { return false; }
 
 /*
  * --INFO--
@@ -2761,28 +2555,12 @@ bool NaviState::ignoreAtari(Creature*)
  */
 void Navi::on_movie_begin(bool)
 {
-	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  stw       r0, 0x14(r1)
-	  stw       r31, 0xC(r1)
-	  lhz       r0, 0x288(r3)
-	  ori       r0, r0, 0x1
-	  sth       r0, 0x288(r3)
-	  lwz       r31, 0x2D0(r3)
-	  mr        r3, r31
-	  bl        0x275D6C
-	  mr        r3, r31
-	  bl        0x275CD4
-	  mr        r3, r31
-	  bl        0x2760C0
-	  lwz       r0, 0x14(r1)
-	  lwz       r31, 0xC(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
-	*/
+	SET_FLAG(_288.typeView, 1);
+
+	efx::TNaviEffect* fx = m_effectsObj;
+	fx->killCursor_();
+	fx->killLightAct_();
+	fx->killFueact_();
 }
 
 /*
@@ -2792,27 +2570,8 @@ void Navi::on_movie_begin(bool)
  */
 void Navi::on_movie_end(bool)
 {
-	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  li        r4, 0x1F
-	  li        r5, 0x1F
-	  stw       r0, 0x14(r1)
-	  li        r6, 0
-	  li        r7, 0
-	  lhz       r0, 0x288(r3)
-	  rlwinm    r0,r0,0,16,30
-	  sth       r0, 0x288(r3)
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0x208(r12)
-	  mtctr     r12
-	  bctrl
-	  lwz       r0, 0x14(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
-	*/
+	_288.typeView &= 0xFFFE;
+	startMotion(IPikiAnims::WAIT, IPikiAnims::WAIT, nullptr, nullptr);
 }
 
 /*
@@ -2820,8 +2579,63 @@ void Navi::on_movie_end(bool)
  * Address:	801425AC
  * Size:	00027C
  */
-void Navi::movieUserCommand(u32, MoviePlayer*)
+void Navi::movieUserCommand(u32 command, MoviePlayer* player)
 {
+	switch (command) {
+	case 100: {
+		enterAllPikis();
+		if (player->m_flags & 2) {
+			pikiMgr->forceEnterPikmins(0);
+		}
+		break;
+	}
+	case 102: {
+		CollPart* holeTarget = m_targetCollObj;
+		JUT_ASSERTLINE(2134, holeTarget != nullptr, "no target!! HOLEIN\n");
+
+		Vector3f pos = holeTarget->getChild()->m_position;
+		holeinAllPikis(pos);
+		break;
+	}
+	case 103: {
+		CollPart* fountainTarget = m_targetCollObj;
+		JUT_ASSERTLINE(2148, fountainTarget != nullptr, "no target!! FOUNTAINON\n");
+
+		Vector3f pos = fountainTarget->getChild()->m_position;
+		fountainonAllPikis(pos);
+		break;
+	}
+	case 104: {
+		shadowMgr->delShadow(this);
+		break;
+	}
+	case 105: {
+		efx::TNaviEffect* fx = m_effectsObj;
+
+		if (fx->m_flags.typeView >= 0) {
+			fx->_04.typeView        = fx->m_flags.typeView;
+			fx->m_flags.typeView    = 0;
+			fx->m_flags.byteView[1] = 0;
+			fx->m_flags.byteView[2] = 0;
+			fx->m_flags.byteView[3] = 0;
+			fx->m_flags.typeView |= 0x80000000;
+		}
+
+		fx->m_light.forceKill();
+		fx->m_lightAct.forceKill();
+		fx->m_damage.forceKill();
+
+		fx->killHamonA_();
+		fx->killHamonB_();
+		fx->killLight_();
+		fx->killLightAct_();
+		fx->killCursor_();
+		fx->killFueact_();
+		break;
+	}
+	default:
+		break;
+	}
 	/*
 	.loc_0x0:
 	  stwu      r1, -0x50(r1)
@@ -2997,21 +2811,10 @@ void Navi::movieUserCommand(u32, MoviePlayer*)
  * Address:	80142828
  * Size:	000028
  */
-void Navi::movieSetFaceDir(f32)
+void Navi::movieSetFaceDir(f32 direction)
 {
-	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  stw       r0, 0x14(r1)
-	  stfs      f1, 0x1FC(r3)
-	  lwz       r3, 0x28C(r3)
-	  bl        0x22BF4
-	  lwz       r0, 0x14(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
-	*/
+	m_faceDir = direction;
+	m_whistle->setFaceDir(direction);
 }
 
 /*
@@ -3019,30 +2822,10 @@ void Navi::movieSetFaceDir(f32)
  * Address:	80142850
  * Size:	00004C
  */
-void Navi::movieStartAnimation(u32)
+void Navi::movieStartAnimation(u32 anim)
 {
-	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  mr        r5, r4
-	  li        r6, 0
-	  stw       r0, 0x14(r1)
-	  li        r7, 0
-	  stw       r31, 0xC(r1)
-	  mr        r31, r3
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0x208(r12)
-	  mtctr     r12
-	  bctrl
-	  lfs       f0, -0x5FC8(r2)
-	  stfs      f0, 0x234(r31)
-	  lwz       r0, 0x14(r1)
-	  lwz       r31, 0xC(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
-	*/
+	startMotion(anim, anim, nullptr, nullptr);
+	m_animSpeed = 30.0f;
 }
 
 /*
@@ -3050,68 +2833,18 @@ void Navi::movieStartAnimation(u32)
  * Address:	8014289C
  * Size:	0000DC
  */
-void Navi::movieStartDemoAnimation(SysShape::AnimInfo*)
+void Navi::movieStartDemoAnimation(SysShape::AnimInfo* info)
 {
-	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  stw       r0, 0x14(r1)
-	  stw       r31, 0xC(r1)
-	  mr        r31, r4
-	  stw       r30, 0x8(r1)
-	  mr        r30, r3
-	  addi      r3, r30, 0x1C8
-	  bl        0x2E6494
-	  mr        r4, r31
-	  addi      r3, r30, 0x1AC
-	  bl        0x2E6488
-	  lwz       r4, 0x174(r30)
-	  addi      r3, r30, 0x1AC
-	  bl        0x2E64E4
-	  rlwinm.   r0,r3,0,24,31
-	  bne-      .loc_0x60
-	  lis       r3, 0x8048
-	  lis       r5, 0x8048
-	  subi      r3, r3, 0x386C
-	  li        r4, 0x899
-	  subi      r5, r5, 0x380C
-	  crclr     6, 0x6
-	  bl        -0x1182B8
-	.loc_0x60:
-	  lwz       r4, 0x174(r30)
-	  addi      r3, r30, 0x1C8
-	  bl        0x2E64B4
-	  rlwinm.   r0,r3,0,24,31
-	  bne-      .loc_0x90
-	  lis       r3, 0x8048
-	  lis       r5, 0x8048
-	  subi      r3, r3, 0x386C
-	  li        r4, 0x89A
-	  subi      r5, r5, 0x380C
-	  crclr     6, 0x6
-	  bl        -0x1182E8
-	.loc_0x90:
-	  lwz       r3, 0x174(r30)
-	  bl        0x2E6320
-	  addi      r3, r30, 0x1C8
-	  lwz       r31, 0x174(r30)
-	  lwz       r12, 0x1C8(r30)
-	  lwz       r12, 0x8(r12)
-	  mtctr     r12
-	  bctrl
-	  lwz       r4, 0x8(r31)
-	  lwz       r4, 0x4(r4)
-	  lwz       r4, 0x28(r4)
-	  lwz       r4, 0x0(r4)
-	  stw       r3, 0x54(r4)
-	  lwz       r31, 0xC(r1)
-	  lwz       r30, 0x8(r1)
-	  lwz       r0, 0x14(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
-	*/
+	m_animator.m_boundAnimator.startExAnim(info);
+	m_animator.m_selfAnimator.startExAnim(info);
+
+	P2ASSERTLINE(2201, m_animator.m_selfAnimator.assertValid(m_model));
+	P2ASSERTLINE(2202, m_animator.m_boundAnimator.assertValid(m_model));
+
+	m_model->clearAnimatorAll();
+
+	SysShape::Model* model                                             = m_model;
+	model->m_j3dModel->m_modelData->m_jointTree.m_joints[0]->m_mtxCalc = (J3DMtxCalcAnmBase*)m_animator.m_boundAnimator.getCalc();
 }
 
 /*
@@ -4449,27 +4182,14 @@ bool Iterator<Game::Onyon>::isDone()
  * Address:	80143AEC
  * Size:	000008
  */
-f32 Navi::getMapCollisionRadius()
-{
-	/*
-	.loc_0x0:
-	  lfs       f1, -0x5FA8(r2)
-	  blr
-	*/
-}
+f32 Navi::getMapCollisionRadius() { return 8.5f; }
 
 /*
  * --INFO--
  * Address:	80143AF4
  * Size:	000004
  */
-void Navi::doDirectDraw(Graphics&)
-{
-	/*
-	.loc_0x0:
-	  blr
-	*/
-}
+void Navi::doDirectDraw(Graphics&) { }
 
 // /*
 //  * --INFO--
@@ -4506,15 +4226,7 @@ void Navi::doDirectDraw(Graphics&)
  * Address:	80143AF8
  * Size:	00000C
  */
-void Navi::disableController()
-{
-	/*
-	.loc_0x0:
-	  li        r0, 0
-	  stw       r0, 0x278(r3)
-	  blr
-	*/
-}
+void Navi::disableController() { m_controller1 = nullptr; }
 
 // /*
 //  * --INFO--
@@ -5237,28 +4949,14 @@ bool Navi::invincible()
  * Address:	801443F8
  * Size:	000008
  */
-bool NaviState::invincible()
-{
-	/*
-	.loc_0x0:
-	  li        r3, 0
-	  blr
-	*/
-}
+bool NaviState::invincible() { return false; }
 
 /*
  * --INFO--
  * Address:	80144400
  * Size:	000008
  */
-void Navi::setInvincibleTimer(u8)
-{
-	/*
-	.loc_0x0:
-	  stb       r4, 0x2A4(r3)
-	  blr
-	*/
-}
+void Navi::setInvincibleTimer(u8 timer) { m_invincibleTimer = timer; }
 
 /*
  * --INFO--
@@ -5838,15 +5536,7 @@ void Navi::updateKaisanDisable()
  * Address:	80144B44
  * Size:	00000C
  */
-void Navi::clearKaisanDisable()
-{
-	/*
-	.loc_0x0:
-	  li        r0, 0
-	  stb       r0, 0x2D4(r3)
-	  blr
-	*/
-}
+void Navi::clearKaisanDisable() { m_disbandTimer = 0; }
 
 /*
  * --INFO--

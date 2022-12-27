@@ -3983,7 +3983,7 @@ void PikiSuikomiState::execStomach(Piki* piki)
 			piki->kill(nullptr);
 		}
 
-	} else if (piki->m_stomachCaptureCollPart == nullptr) {
+	} else if (piki->m_targetCollObj == nullptr) {
 		Vector3f vec = Vector3f(0.0f, -900.0f, 0.0f);
 		BlowStateArg blowArg(vec, 0.0f, 0, 10, m_creature);
 		transit(piki, PIKISTATE_Blow, &blowArg);

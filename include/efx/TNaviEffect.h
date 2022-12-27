@@ -21,7 +21,7 @@ struct TNaviEffect {
 	    , _0C(nullptr)
 	    , m_beaconMtx(nullptr)
 	    , m_headMtx(nullptr)
-	    , _18(0)
+	    , m_height(0)
 	{
 	}
 
@@ -29,11 +29,19 @@ struct TNaviEffect {
 		NAVITYPE_Unk0 = 0,
 	};
 
-	void setNaviType(enumNaviType);
-	void createLight_(Mtx);
-	void killLight_();
-	void updateHamon_();
 	void init(Vector3f*, Mtx, Vector3f*, enumNaviType);
+
+	void updateHamon_();
+
+	void killHamonA_();
+	void killHamonB_();
+	void killLight_();
+	void killLightAct_();
+	void killCursor_();
+	void killFueact_();
+
+	void createLight_(Mtx);
+	void setNaviType(enumNaviType);
 
 	inline void setFlag(u32 flag) { m_flags.typeView |= flag; }
 
@@ -59,7 +67,7 @@ struct TNaviEffect {
 	Vector3f* _0C;             // _0C
 	Matrixf* m_beaconMtx;      // _10
 	Matrixf* m_headMtx;        // _14
-	u32 _18;                   // _18, unknown
+	f32* m_height;             // _18
 	Vector3f m_hamonPosition;  // _1C
 	ToeHamonA m_hamonA;        // _28
 	ToeHamonB m_hamonB;        // _44

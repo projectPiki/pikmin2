@@ -182,32 +182,32 @@ struct FakePiki : public Creature, public SysShape::MotionListener {
 	// _000      = VTBL
 	// _000-_178 = Creature
 	// _178-_17C = MotionListener
-	BitFlag<u32> m_fakePikiFlags;       // _17C
-	f32 _180;                           // _180
-	u32 _184;                           // _184
-	IDelegate* m_doAnimCallback;        // _188
-	short m_roomIndex;                  // _18C
-	WaterBox* m_waterBox;               // _190
-	CollPart* m_stomachCaptureCollPart; // _194
-	f32 m_neckTheta;                    // _198
-	f32 m_neckPhi;                      // _19C
-	Vector3f* m_lookAtPosition;         // _1A0
-	u8 _1A4;                            // _1A4
-	Creature* m_lookAtTargetCreature;   // _1A8
-	PikiAnimator m_animator;            // _1AC
-	Vector3f m_velocity;                // _1E4
-	Vector3f _1F0;                      // _1F0
-	f32 m_faceDir;                      // _1FC
-	Vector3f m_position2;               // _200
-	Vector3f m_position3;               // _20C, was m_shadowParam.m_position
-	Sys::Sphere m_boundingSphere;       // _218, was m_shadowParam.m_boundingSphere
-	u32 m_boundAnimIdx;                 // _228, current animIdx for held/bound object
-	u8 _22C[8];                         // _22C
-	f32 m_animSpeed;                    // _234
-	Vector3f _238;                      // _238
-	f32 m_faceDirOffset;                // _244
-	Sys::Triangle* _248;                // _248
-	u32 _24C;                           // _24C, unknown
+	BitFlag<u32> m_fakePikiFlags;     // _17C
+	f32 _180;                         // _180
+	u32 _184;                         // _184
+	IDelegate* m_doAnimCallback;      // _188
+	short m_roomIndex;                // _18C
+	WaterBox* m_waterBox;             // _190
+	CollPart* m_targetCollObj;        // _194
+	f32 m_neckTheta;                  // _198
+	f32 m_neckPhi;                    // _19C
+	Vector3f* m_lookAtPosition;       // _1A0
+	u8 _1A4;                          // _1A4
+	Creature* m_lookAtTargetCreature; // _1A8
+	PikiAnimator m_animator;          // _1AC
+	Vector3f m_velocity;              // _1E4
+	Vector3f _1F0;                    // _1F0
+	f32 m_faceDir;                    // _1FC
+	Vector3f m_position2;             // _200
+	Vector3f m_position3;             // _20C, was m_shadowParam.m_position
+	Sys::Sphere m_boundingSphere;     // _218, was m_shadowParam.m_boundingSphere
+	u32 m_boundAnimIdx;               // _228, current animIdx for held/bound object
+	u8 _22C[8];                       // _22C
+	f32 m_animSpeed;                  // _234
+	Vector3f _238;                    // _238
+	f32 m_faceDirOffset;              // _244
+	Sys::Triangle* _248;              // _248
+	u32 _24C;                         // _24C, unknown
 };
 
 struct FakePikiParms : public CreatureParms {

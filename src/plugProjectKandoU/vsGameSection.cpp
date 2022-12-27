@@ -598,8 +598,8 @@ bool VsGameSection::updateCaveMenus()
 			break;
 
 		case 1:
-			playData->m_naviLifeMax[0] = naviMgr->getAt(0)->m_currentLife;
-			playData->m_naviLifeMax[1] = naviMgr->getAt(1)->m_currentLife;
+			playData->m_naviLifeMax[0] = naviMgr->getAt(0)->m_health;
+			playData->m_naviLifeMax[1] = naviMgr->getAt(1)->m_health;
 			gameSystem->setPause(false, "more-yes", 3);
 			gameSystem->setMoviePause(false, "more-yes");
 			m_menuFlags &= ~2;

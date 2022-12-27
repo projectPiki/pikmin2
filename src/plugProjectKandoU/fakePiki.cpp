@@ -2697,21 +2697,21 @@ Vector3f BaseItem::getPosition() { return m_position; }
  * Address:	8013F358
  * Size:	00000C
  */
-void FakePiki::initCaptureStomach() { m_stomachCaptureCollPart = nullptr; }
+void FakePiki::initCaptureStomach() { m_targetCollObj = nullptr; }
 
 /*
  * --INFO--
  * Address:	8013F364
  * Size:	000008
  */
-void FakePiki::startCaptureStomach(CollPart* collPart) { m_stomachCaptureCollPart = collPart; }
+void FakePiki::startCaptureStomach(CollPart* collPart) { m_targetCollObj = collPart; }
 
 /*
  * --INFO--
  * Address:	8013F36C
  * Size:	00000C
  */
-void FakePiki::endCaptureStomach() { m_stomachCaptureCollPart = nullptr; }
+void FakePiki::endCaptureStomach() { m_targetCollObj = nullptr; }
 
 /*
  * --INFO--

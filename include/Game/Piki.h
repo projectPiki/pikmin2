@@ -127,6 +127,8 @@ struct Piki : public FakePiki {
 		u8 _01;
 	};
 
+	static Color4 pikiColorsCursor[PikiColorCount];
+
 	Piki();
 
 	// vtable 1 (Creature)
