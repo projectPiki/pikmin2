@@ -5,7 +5,7 @@
 #include "JSystem/JUT/JUTException.h"
 #include "System.h"
 #include "stream.h"
-#include "types.h"
+#include "PSSystem/PSSystemIF.h"
 
 /*
     Generated from dpostproc
@@ -52,10 +52,9 @@ namespace CommonSaveData {
  * Matches
  */
 Mgr::Mgr()
-    : PlayCommonData()
 {
-	_40 = 0;
-	_41 = 0;
+	m_flags.byteView[0] = 0;
+	m_flags.byteView[1] = 0;
 	setDefault();
 }
 
@@ -65,24 +64,23 @@ Mgr::Mgr()
  * Size:	000078
  * regalloc hates me
  */
-void Mgr::setDefault(void)
+void Mgr::setDefault()
 {
-	_40            = 0;
-	_41            = 0;
-	_34            = 0;
-	m_cardSerialNo = 0;
-	_28            = 0;
-	m_soundMode    = 0xFF;
-	_39            = 0xFF;
-	_3A            = -1;
-	_3B            = 1;
-	_3C            = 1;
-	m_deflicker    = true;
-	m_region       = sys->m_region;
-	_18            = 0;
-	_1C            = 0;
-	m_fileIndex    = -1;
-	_42            = false;
+	m_flags.byteView[0] = 0;
+	m_flags.byteView[1] = 0;
+	m_cardSerialNo      = 0;
+	_28                 = 0;
+	m_soundMode         = 0;
+	m_musicVol          = 0xFF;
+	m_seVol             = -1;
+	m_rumble            = true;
+	m_rubyFont          = true;
+	m_deflicker         = true;
+	m_region            = (u8)sys->m_region;
+	_18                 = 0;
+	m_time              = 0;
+	m_fileIndex         = -1;
+	m_challengeOpen     = false;
 	reset();
 }
 
@@ -91,16 +89,10 @@ void Mgr::setDefault(void)
  * Address:	80446D24
  * Size:	000018
  */
-void CommonSaveData::Mgr::setCardSerialNo(unsigned long long)
+void CommonSaveData::Mgr::setCardSerialNo(u64 tag)
 {
-	/*
-	stw      r6, 0x34(r3)
-	stw      r5, 0x30(r3)
-	lhz      r0, 0x40(r3)
-	ori      r0, r0, 1
-	sth      r0, 0x40(r3)
-	blr
-	*/
+	m_cardSerialNo = tag;
+	m_flags.shortView |= 1;
 }
 
 /*
@@ -108,8 +100,10 @@ void CommonSaveData::Mgr::setCardSerialNo(unsigned long long)
  * Address:	80446D3C
  * Size:	000020
  */
-void CommonSaveData::Mgr::resetCardSerialNo(void)
+void CommonSaveData::Mgr::resetCardSerialNo()
 {
+	m_cardSerialNo = 0xcdcdcdcdcdcdcdcd;
+	m_flags.shortView &= ~1;
 	/*
 	lis      r4, 0xCDCDCDCD@ha
 	addi     r0, r4, 0xCDCDCDCD@l
@@ -134,10 +128,10 @@ void CommonSaveData::Mgr::write(Stream& output)
 		output.m_tabCount = 0;
 	}
 	output.writeByte(m_soundMode);
-	output.writeByte(_39);
-	output.writeByte(_3A);
-	output.writeByte(_3B);
-	output.writeByte(_3C);
+	output.writeByte(m_musicVol);
+	output.writeByte(m_seVol);
+	output.writeByte(m_rumble);
+	output.writeByte(m_rubyFont);
 	output.writeByte(m_deflicker);
 	output.writeByte(m_region);
 	PlayCommonData::write(output);
@@ -155,10 +149,10 @@ void CommonSaveData::Mgr::read(Stream& input)
 		input.m_tabCount = 0;
 	}
 	m_soundMode = input.readByte();
-	_39         = input.readByte();
-	_3A         = input.readByte();
-	_3B         = input.readByte();
-	_3C         = input.readByte();
+	m_musicVol  = input.readByte();
+	m_seVol     = input.readByte();
+	m_rumble    = input.readByte();
+	m_rubyFont  = input.readByte();
 	m_deflicker = input.readByte();
 	m_region    = input.readByte();
 	PlayCommonData::read(input);
@@ -169,7 +163,7 @@ void CommonSaveData::Mgr::read(Stream& input)
  * Address:	80446EB4
  * Size:	000100
  */
-void CommonSaveData::Mgr::setup(void)
+void CommonSaveData::Mgr::setup()
 {
 	BOOL soundModeCheck = OSGetSoundMode();
 	switch (soundModeCheck) {
@@ -178,13 +172,12 @@ void CommonSaveData::Mgr::setup(void)
 		break;
 	case true:
 		switch (m_soundMode) {
-		case SM_SurroundSound:
-			setSoundModeSurround();
-			break;
 		case SM_Mono:
-			break;
 		case SM_Stereo:
 			setSoundModeStereo();
+			break;
+		case SM_SurroundSound:
+			setSoundModeSurround();
 			break;
 		default:
 			JUT_PANICLINE(268, "Unknown sound mode:%d \n", m_soundMode);
@@ -192,87 +185,9 @@ void CommonSaveData::Mgr::setup(void)
 		}
 		break;
 	}
-	setBgmVolume(_39 / 255.0f);
-	setSeVolume((u8)_3A / 255.0f);
+	setBgmVolume(m_musicVol / 255.0f);
+	setSeVolume(m_seVol / 255.0f);
 	setDeflicker();
-	/*
-	stwu     r1, -0x20(r1)
-	mflr     r0
-	stw      r0, 0x24(r1)
-	stw      r31, 0x1c(r1)
-	mr       r31, r3
-	bl       OSGetSoundMode
-	cmpwi    r3, 1
-	beq      lbl_80446EF0
-	bge      lbl_80446F40
-	cmpwi    r3, 0
-	bge      lbl_80446EE4
-	b        lbl_80446F40
-
-lbl_80446EE4:
-	mr       r3, r31
-	bl       setSoundModeMono__Q34Game14CommonSaveData3MgrFv
-	b        lbl_80446F40
-
-lbl_80446EF0:
-	lbz      r6, 0x38(r31)
-	cmpwi    r6, 2
-	beq      lbl_80446F18
-	bge      lbl_80446F24
-	cmpwi    r6, 0
-	bge      lbl_80446F0C
-	b        lbl_80446F24
-
-lbl_80446F0C:
-	mr       r3, r31
-	bl       setSoundModeStereo__Q34Game14CommonSaveData3MgrFv
-	b        lbl_80446F40
-
-lbl_80446F18:
-	mr       r3, r31
-	bl       setSoundModeSurround__Q34Game14CommonSaveData3MgrFv
-	b        lbl_80446F40
-
-lbl_80446F24:
-	lis      r3, lbl_8049AEC0@ha
-	lis      r4, lbl_8049AED4@ha
-	addi     r5, r4, lbl_8049AED4@l
-	addi     r3, r3, lbl_8049AEC0@l
-	li       r4, 0x10c
-	crclr    6
-	bl       panic_f__12JUTExceptionFPCciPCce
-
-lbl_80446F40:
-	lbz      r4, 0x39(r31)
-	lis      r0, 0x4330
-	stw      r0, 8(r1)
-	mr       r3, r31
-	lfd      f2, lbl_80520988@sda21(r2)
-	stw      r4, 0xc(r1)
-	lfs      f0, lbl_80520980@sda21(r2)
-	lfd      f1, 8(r1)
-	fsubs    f1, f1, f2
-	fdivs    f1, f1, f0
-	bl       setBgmVolume__Q34Game14CommonSaveData3MgrFf
-	lbz      r4, 0x3a(r31)
-	lis      r0, 0x4330
-	stw      r0, 0x10(r1)
-	mr       r3, r31
-	lfd      f2, lbl_80520988@sda21(r2)
-	stw      r4, 0x14(r1)
-	lfs      f0, lbl_80520980@sda21(r2)
-	lfd      f1, 0x10(r1)
-	fsubs    f1, f1, f2
-	fdivs    f1, f1, f0
-	bl       setSeVolume__Q34Game14CommonSaveData3MgrFf
-	mr       r3, r31
-	bl       setDeflicker__Q34Game14CommonSaveData3MgrFv
-	lwz      r0, 0x24(r1)
-	lwz      r31, 0x1c(r1)
-	mtlr     r0
-	addi     r1, r1, 0x20
-	blr
-	*/
 }
 
 /*
@@ -283,7 +198,7 @@ lbl_80446F40:
 void CommonSaveData::Mgr::resetPlayer(signed char fileIndex)
 {
 	m_fileIndex = fileIndex;
-	_1C         = 0;
+	m_time      = 0;
 	_18         = 0;
 }
 
@@ -303,66 +218,32 @@ void CommonSaveData::Mgr::setDeflicker(bool deflicker)
 {
 	_GXRenderModeObj* obj = System::getRenderModeObj();
 	m_deflicker           = deflicker;
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	mr       r31, r3
-	stw      r30, 8(r1)
-	mr       r30, r4
-	bl       getRenderModeObj__6SystemFv
-	stb      r30, 0x3d(r31)
-	mr       r31, r3
-	bl       OSGetProgressiveMode
-	cmplwi   r3, 1
-	bne      lbl_80447058
-	li       r4, 0
-	li       r3, 0x15
-	stb      r4, 0x32(r31)
-	li       r0, 0x16
-	stb      r4, 0x33(r31)
-	stb      r3, 0x34(r31)
-	stb      r0, 0x35(r31)
-	stb      r3, 0x36(r31)
-	stb      r4, 0x37(r31)
-	stb      r4, 0x38(r31)
-	b        lbl_804470B0
 
-lbl_80447058:
-	clrlwi.  r0, r30, 0x18
-	beq      lbl_80447088
-	li       r3, 7
-	li       r0, 0xc
-	stb      r3, 0x32(r31)
-	stb      r3, 0x33(r31)
-	stb      r0, 0x34(r31)
-	stb      r0, 0x35(r31)
-	stb      r0, 0x36(r31)
-	stb      r3, 0x37(r31)
-	stb      r3, 0x38(r31)
-	b        lbl_804470B0
-
-lbl_80447088:
-	li       r0, 0x10
-	li       r3, 0
-	stb      r0, 0x32(r31)
-	li       r0, 0x30
-	stb      r3, 0x33(r31)
-	stb      r3, 0x34(r31)
-	stb      r0, 0x35(r31)
-	stb      r3, 0x36(r31)
-	stb      r3, 0x37(r31)
-	stb      r3, 0x38(r31)
-
-lbl_804470B0:
-	lwz      r0, 0x14(r1)
-	lwz      r31, 0xc(r1)
-	lwz      r30, 8(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	if ((u32)OSGetProgressiveMode() == 1) {
+		obj->vfilter[0] = 0;
+		obj->vfilter[1] = 0;
+		obj->vfilter[2] = 21;
+		obj->vfilter[3] = 22;
+		obj->vfilter[4] = 21;
+		obj->vfilter[5] = 0;
+		obj->vfilter[6] = 0;
+	} else if (deflicker) {
+		obj->vfilter[0] = 7;
+		obj->vfilter[1] = 7;
+		obj->vfilter[2] = 12;
+		obj->vfilter[3] = 12;
+		obj->vfilter[4] = 12;
+		obj->vfilter[5] = 7;
+		obj->vfilter[6] = 7;
+	} else {
+		obj->vfilter[0] = 16;
+		obj->vfilter[1] = 0;
+		obj->vfilter[2] = 0;
+		obj->vfilter[3] = 48;
+		obj->vfilter[4] = 0;
+		obj->vfilter[5] = 0;
+		obj->vfilter[6] = 0;
+	}
 }
 
 /*
@@ -406,8 +287,26 @@ void CommonSaveData::Mgr::setSoundModeSurround(void)
  * Address:	80447164
  * Size:	00012C
  */
-void CommonSaveData::Mgr::setBgmVolume(float)
+void CommonSaveData::Mgr::setBgmVolume(f32 volume)
 {
+	s8 temp = OSDisableInterrupts();
+	OSDisableScheduler();
+
+	P2ASSERTBOUNDSINCLUSIVELINE(389, 0.0f, volume, 1.0f);
+
+	if (PSSystem::spSysIF) {
+		f32 calc = volume * 255.0f;
+		if (calc >= 0.0f) {
+			calc += 0.5f;
+		} else {
+			calc -= 0.5f;
+		}
+		m_musicVol = calc;
+		P2ASSERTLINE(395, PSSystem::spSysIF); // appears to be part of a SysIF inline
+		PSSystem::spSysIF->setConfigVol_Bgm(volume);
+	}
+	OSEnableScheduler();
+	OSRestoreInterrupts(temp);
 	/*
 	stwu     r1, -0x30(r1)
 	mflr     r0
@@ -504,8 +403,26 @@ lbl_80447260:
  * Address:	80447290
  * Size:	00012C
  */
-void CommonSaveData::Mgr::setSeVolume(float)
+void CommonSaveData::Mgr::setSeVolume(f32 volume)
 {
+	s8 temp = OSDisableInterrupts();
+	OSDisableScheduler();
+
+	P2ASSERTBOUNDSINCLUSIVELINE(407, 0.0f, volume, 1.0f);
+
+	if (PSSystem::spSysIF) {
+		f32 calc = volume * 255.0f;
+		if (calc >= 0.0f) {
+			calc += 0.5f;
+		} else {
+			calc -= 0.5f;
+		}
+		m_seVol = calc;
+		P2ASSERTLINE(395, PSSystem::spSysIF); // appears to be part of a SysIF inline
+		PSSystem::spSysIF->setConfigVol_Se(volume);
+	}
+	OSEnableScheduler();
+	OSRestoreInterrupts(temp);
 	/*
 	stwu     r1, -0x30(r1)
 	mflr     r0
