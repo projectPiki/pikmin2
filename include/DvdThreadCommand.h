@@ -38,8 +38,8 @@ struct DvdThread : public AppThread {
 
 	DvdThread(u32, int, int);
 
-	virtual ~DvdThread(); // _08 (weak)
-	virtual void* run();  // _0C
+	virtual ~DvdThread() { } // _08 (weak)
+	virtual void* run();     // _0C
 
 	void loadArchive(DvdThreadCommand*);
 	void loadFile(DvdThreadCommand*);
@@ -49,7 +49,7 @@ struct DvdThread : public AppThread {
 
 	// _00 		= VTBL
 	// _00-_7C 	= AppThread
-	JSUPtrList _7C; // _7C
+	JSUList<DvdThread> _7C; // _7C
 };
 
 #endif

@@ -72,7 +72,7 @@ struct SeSound : public JAISe {
 	virtual void setSeDistancePan(u8);                                                     // _DC
 	virtual void setSeDistanceDolby(u8);                                                   // _EC
 
-	void makeSeSound();
+	static void makeSeSound();
 	void specializePerspCalc(const PSGame::SoundTable::SePerspInfo&);
 	void calcVolumeSpecialized(float);
 	void calcVolume(float, unsigned char, unsigned char);

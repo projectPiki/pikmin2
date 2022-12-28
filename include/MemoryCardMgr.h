@@ -2,9 +2,8 @@
 #define MEMORYCARDMGR_H
 
 #include "JSystem/JKR/JKRHeap.h"
+#include "Dolphin/card.h"
 #include "types.h"
-
-struct CARDStat;
 
 struct MemoryCardMgrCommand {
 	virtual void getClassSize(); // _08 (weak)

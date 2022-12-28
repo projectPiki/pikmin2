@@ -6,16 +6,16 @@
 #include "SysTimers.h"
 #include "JSystem/JKR/JKRHeap.h"
 #include "node.h"
+#include "BitFlag.h"
 
 struct Graphics;
 struct OSContext;
 struct _GXRenderModeObj;
+struct HeapStatus;
 
 void Pikmin2DefaultMemoryErrorRoutine(void*, u32, s32);
 void kando_panic_f(bool, const char*, s32, const char*, ...);
 extern void preUserCallback(unsigned short, OSContext*, unsigned long, unsigned long);
-
-typedef s32 ERenderMode;
 
 // const char* cMapFileName = "/pikmin2UP.map";
 
@@ -23,10 +23,26 @@ typedef s32 ERenderMode;
 
 _GXRenderModeObj* sRenderModeTable[4];
 
-struct HeapInfo : public Node {
+struct HeapInfo : public Node, public JKRDisposer {
 	virtual ~HeapInfo(); // _20 (weak)
 
 	void search(HeapInfo*);
+
+	// _00-_24 = Node
+	// _20     = VTBL (Node)
+	// _24-_3C = JKRDisposer
+	u32 _3C;         // _3C, unknown
+	int _40;         // _40
+	u32 _44;         // _44, unknown
+	HeapStatus* _48; // _48
+	HeapStatus* _4C; // _4C
+};
+
+struct HeapStatus {
+	HeapStatus();
+
+	HeapInfo m_heapInfo; // _00
+	u8 _50;              // _50, unknown
 };
 
 namespace Game {
@@ -35,8 +51,11 @@ struct Mgr;
 };
 } // namespace Game
 
-struct System {
-	static ERenderMode mRenderMode;
+struct System : public OSMutexObject {
+	enum ERenderMode {
+		RENDERMODE_NULL = 0,
+	};
+
 	enum LanguageID { LANG_ENGLISH = 0, LANG_FRENCH, LANG_GERMAN, LANG_HOL_UNUSED, LANG_ITALIAN, LANG_JAPANESE, LANG_SPANISH };
 	struct FragmentationChecker {
 		FragmentationChecker(char*, bool);
@@ -49,6 +68,9 @@ struct System {
 	// unused struct?
 	struct GXVerifyArg {
 		GXVerifyArg();
+
+		u32 _00; // _00
+		u8 _04;  // _04
 	};
 
 	System();
@@ -119,10 +141,10 @@ struct System {
 	void resetOff();
 	void forceFinishSection();
 
-	f32 _00;                                      // _00
-	f32 _04;                                      // _04
-	f32 _08;                                      // _08
-	u8 _0C[0xC];                                  // _0C
+	static ERenderMode mRenderMode;
+	static GXVerifyArg sVerifyArg;
+
+	// _00-_18 = OSMutexObject
 	JKRHeap* m_backupHeap;                        // _18
 	u32 m_cpuRetraceCount;                        // _1C
 	u32 m_cpuLockCount;                           // _20
@@ -137,7 +159,7 @@ struct System {
 	struct ResetManager* m_resetMgr;              // _44
 	struct DvdStatus* m_dvdStatus;                // _48
 	struct JFWDisplay* m_display;                 // _4C
-	struct HeapStatus* m_heapStatus;              // _50
+	HeapStatus* m_heapStatus;                     // _50
 	float m_deltaTime;                            // _54
 	struct JKRTask* m_task;                       // _58
 	struct MemoryCardMgr* m_cardMgr;              // _5C
@@ -145,7 +167,7 @@ struct System {
 	float m_fpsFactor;                            // _64
 	DvdThreadCommand m_threadCommand;             // _68
 	LanguageID m_region;                          // _D4
-	u32 m_flags;                                  // _D8
+	BitFlag<u32> m_flags;                         // _D8
 	struct JUTRomFont* m_romFont;                 // _DC
 };
 

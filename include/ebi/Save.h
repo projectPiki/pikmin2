@@ -149,8 +149,6 @@ struct TMgr : public JKRDisposer {
 	virtual ~TMgr(); // _08
 
 	static TMgr* createInstance();
-	void onDvdErrorOccured();
-	void onDvdErrorRecovered();
 	void start();
 	void forceQuit();
 	bool isFinish();
@@ -158,6 +156,9 @@ struct TMgr : public JKRDisposer {
 	void update();
 	void draw();
 	void getStateID();
+
+	static void onDvdErrorOccured();
+	static void onDvdErrorRecovered();
 
 	inline void doLoadResource(JKRHeap* heap)
 	{
