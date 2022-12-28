@@ -9,10 +9,9 @@
 
 struct JASDSPChannel;
 
-struct JASChannel : JSUPtrLink, JASPoolAllocObject<JASChannel, NewFromRootHeap, SingleThreaded> {
+struct JASChannel : JSUPtrLink, JASPoolAllocObject<JASChannel, JASCreationPolicy::NewFromRootHeap, JASThreadingModel::SingleThreaded> {
 	typedef void Callback(u32, JASChannel*, JASDsp::TChannel*, void*);
-	struct EffectOscParam {
-	};
+	struct EffectOscParam { };
 	struct PanVector {
 		float x;
 		float y;
@@ -40,8 +39,8 @@ struct JASChannel : JSUPtrLink, JASPoolAllocObject<JASChannel, NewFromRootHeap, 
 	static long dspUpdateCallback(unsigned long, JASDsp::TChannel*, void*);
 	void initialUpdateDSPChannel(JASDsp::TChannel*);
 	long updateDSPChannel(JASDsp::TChannel*);
-	void calcEffect(const PanVector*, const PanVector*, unsigned char);
-	void calcPan(const PanVector*, const PanVector*, unsigned char);
+	float calcEffect(const PanVector*, const PanVector*, unsigned char);
+	float calcPan(const PanVector*, const PanVector*, unsigned char);
 	void updateAutoMixer(JASDsp::TChannel*, float, float, float, float);
 	void updateMixer(float, float, float, float, unsigned short*);
 	void sweepProc();
@@ -60,7 +59,7 @@ struct JASChannel : JSUPtrLink, JASPoolAllocObject<JASChannel, NewFromRootHeap, 
 	u32 _2C;                // _2C
 	JASOscillator _30[4];   // _30
 	u16 _B0[1];             // _B0
-	s16 _B2;                // _B2
+	u16 _B2;                // _B2
 	s16 _B4;                // _B4
 	s16 _B6;                // _B6
 	s16 _B8;                // _B8
@@ -90,6 +89,8 @@ struct JASChannel : JSUPtrLink, JASPoolAllocObject<JASChannel, NewFromRootHeap, 
 	f32 _10C;               // _10C
 	f32 _110;               // _110
 	f32 _114;               // _114
+
+	static const u8 calc_sw_table[27][3];
 };
 
 /**

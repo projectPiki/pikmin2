@@ -1,6 +1,7 @@
 #include "Dolphin/stl.h"
 #include "Dolphin/string.h"
 #include "JSystem/JAI/JAInter.h"
+#include "JSystem/JAI/JAInter/BankWave.h"
 #include "JSystem/JAI/JAInter/InitData.h"
 #include "JSystem/JAI/JAIGlobalParameter.h"
 #include "JSystem/JAS/JASHeap.h"
@@ -43,6 +44,10 @@
         .skip 1
 */
 
+u8* JAInter::InitData::aafPointer;
+JAInter::InitData::InitCallback JAInter::InitData::wsInitCallback  = initWsList;
+JAInter::InitData::InitCallback JAInter::InitData::bnkInitCallback = initBnkList;
+
 /*
  * --INFO--
  * Address:	800ADBA4
@@ -62,7 +67,7 @@ void JAInter::InitData::setBnkInitCallback(void (*callback)(unsigned long*)) { b
  * Address:	800ADBB4
  * Size:	0000E4
  */
-BOOL JAInter::InitData::checkInitDataFile(void)
+BOOL JAInter::InitData::checkInitDataFile()
 {
 	if (SystemInterface::checkFileExsistence(JAIGlobalParameter::getParamInitDataFileName()) == FALSE) {
 		char* buffer = (char*)JASDram->alloc(
@@ -353,8 +358,21 @@ lbl_800ADEC8:
  * Address:	800ADEFC
  * Size:	0000CC
  */
-void JAInter::InitData::initBnkList(unsigned long*)
+void JAInter::InitData::initBnkList(unsigned long* p1)
 {
+	// TODO: This is still very rough and not right.
+	u32 count  = 0;
+	int offset = *p1 * sizeof(int);
+	u8* start  = aafPointer + offset;
+	for (; reinterpret_cast<int*>(aafPointer + offset) != 0; offset += 0xC) {
+		count += 3;
+	}
+	BankWave::initOnCodeBnk = (BankWave::TCodeBnk*)transInitDataFile(start, (count / 3) * 0xC + 4);
+	while (reinterpret_cast<u32*>(aafPointer)[*p1] != 0) {
+		BankWave::initOnCodeBnk[*p1][0] = *reinterpret_cast<int*>(aafPointer) + BankWave::initOnCodeBnk[*p1][0];
+		*p1 += 3;
+	}
+	*p1 += 1;
 	/*
 	stwu     r1, -0x10(r1)
 	mflr     r0

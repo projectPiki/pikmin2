@@ -3,14 +3,8 @@
 
 #include "JSystem/JAI/JAInter.h"
 #include "JSystem/JAI/JAISound.h"
+#include "JSystem/JAI/JAInter/StreamMgr.h"
 #include "types.h"
-
-/** @fabricated */
-struct JAIStream_0x1B4 {
-	u8 _00[0x18]; // _00
-	u32 _18;      // _18
-	u32 _1C;      // _1C
-};
 
 struct JAIStream : public JAISound {
 	JAIStream();
@@ -76,26 +70,27 @@ struct JAIStream : public JAISound {
 	// _00-_10  = JSULink
 	// _10      = VTABLE
 	// _14-_48  = JAISound
-	u8 _48;                             // _48 - unknown
-	u8 _49[7];                          // _49 - unknown/padding
-	u32 _50;                            // _50
-	u32 _54;                            // _54
-	u32 _58;                            // _58
-	u32 _5C;                            // _5C
-	u32 _60;                            // _60
-	JAInter::MoveParaSet _64[20];       // _64 - volume param sets?
-	JAInter::MoveParaSet* _1A4;         // _1A4 - pitch param set?
-	JAInter::MoveParaSet* _1A8;         // _1A8 - pitch param sets?
-	JAInter::MoveParaSetInitZero* _1AC; // _1AC - FxMix param
-	JAInter::MoveParaSetInitZero* _1B0; // _1B0
-	JAIStream_0x1B4* _1B4;              // _1B4 - unknown pointer
-	uint _1B8;                          // _1B8
-	u32 _1BC;                           // _1BC
-	u8 _1C0[0x8];                       // _1C0 - unknown
-	JAInter::MoveParaSet* _1C8;         // _1C8
-	JAInter::MoveParaSet* _1CC;         // _1CC
-	JAInter::MoveParaSet* _1D0;         // _1D0
-	JAInter::MoveParaSet* _1D4;         // _1D4
+	u8 _48;                                 // _48 - unknown
+	u32 _4C;                                // _4C
+	u32 _50;                                // _50
+	u32 _54;                                // _54
+	u32 _58;                                // _58
+	u32 _5C;                                // _5C
+	u32 _60;                                // _60
+	JAInter::MoveParaSet _64[20];           // _64 - volume param sets?
+	JAInter::MoveParaSet* _1A4;             // _1A4 - pitch param set?
+	JAInter::MoveParaSet* _1A8;             // _1A8 - pitch param sets?
+	JAInter::MoveParaSetInitZero* _1AC;     // _1AC - FxMix param
+	JAInter::MoveParaSetInitZero* _1B0;     // _1B0
+	JAInter::StreamMgr::StreamUpdate* _1B4; // _1B4 - unknown pointer
+	uint _1B8;                              // _1B8
+	u32 _1BC;                               // _1BC
+	u32 _1C0;                               // _1C0
+	u32 _1C4;                               // _1C4
+	JAInter::MoveParaSet* _1C8;             // _1C8
+	JAInter::MoveParaSet* _1CC;             // _1CC
+	JAInter::MoveParaSet* _1D0;             // _1D0
+	JAInter::MoveParaSet* _1D4;             // _1D4
 };
 
 #endif

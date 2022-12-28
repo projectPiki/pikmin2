@@ -1,6 +1,7 @@
 #ifndef _JSYSTEM_JAS_JASTRACK_H
 #define _JSYSTEM_JAS_JASTRACK_H
 
+#include "JSystem/JAS/JASOscillator.h"
 #include "types.h"
 #include "JSystem/JSupport/JSUList.h"
 #include "JSystem/JAS/JASSeqCtrl.h"
@@ -212,13 +213,8 @@ struct JASTrack : JSUList<JASChannel> {
 	TimedParam_ m_timedParam;           // _148
 	JASRegisterParam m_registerParam;   // _268
 	u8 _298[0x10];                      // _298 - unknown
-	u32 _2A8;                           // _2A8
-	float _2AC;                         // _2AC
-	void* _2B0;                         // _2B0 - unknown pointer - table?
-	void* _2B4;                         // _2B4 - unknown pointer - reltable?
-	float _2B8;                         // _2B8
-	float _2BC;                         // _2BC
-	u32 _2C0;                           // _2C0
+	JASOscillator::Data _2A8;           // _2A8
+	u32 _2C0;                           // _2C0 - another oscillator data?
 	float _2C4;                         // _2C4
 	void* _2C8;                         // _2C8 - unknown pointer - table?
 	void* _2CC;                         // _2CC - unknown pointer - reltable?

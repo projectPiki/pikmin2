@@ -21,6 +21,13 @@ struct J3DAnmCluster : public J3DAnmBase {
 	f32* _0C; // _0C
 };
 
+struct J3DAnmClusterFullTable {
+	u16 _00[2]; // _00
+
+	// u16 _00; // _00
+	// u16 _02; // _02
+};
+
 /**
  * @size{0x14}
  */
@@ -35,13 +42,13 @@ struct J3DAnmClusterFull : public J3DAnmCluster {
 	virtual float getWeight(unsigned short) const;                        // _10
 
 	J3DAnmClusterFullTable* _10; // _10
+
+	inline J3DAnmClusterFullTable* getTable(int index) const { return _10 + index; }
 };
 
 struct J3DAnmClusterFullData : J3DAnmFullData {
 	void* _10; // _10
 	void* _14; // _14
-};
-struct J3DAnmClusterFullTable {
 };
 
 /**
@@ -67,7 +74,6 @@ struct J3DAnmClusterKeyData : J3DFileBlockBase {
 	void* _10; // _10
 	void* _14; // _14
 };
-struct J3DAnmClusterKeyTable : J3DAnmKeyTableBase {
-};
+struct J3DAnmClusterKeyTable : J3DAnmKeyTableBase { };
 
 #endif

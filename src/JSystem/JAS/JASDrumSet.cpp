@@ -43,18 +43,10 @@
         .4byte 0x00000000
 */
 
-// TODO: This file only has static data issues left.
-
-// __declspec(section ".data") JASOscillator::Data osc;
-// __declspec(section ".data") static JASOscillator::Data osc;
-static JASOscillator::Data osc;
-// JASOscillator::Data osc;
-
 /*
  * --INFO--
  * Address:	8009B0B8
  * Size:	0001FC
- * TODO: I think this is done? last diff is addi v. li sbss
  */
 bool JASDrumSet::getParam(int percIndex, int p2, JASInstParam* instParam) const
 {
@@ -69,7 +61,7 @@ bool JASDrumSet::getParam(int percIndex, int p2, JASInstParam* instParam) const
 	instParam->_18    = perc->_08;
 	instParam->_26    = perc->m_release;
 	// static const float osc[6] = { 0.0f, 1.0f, 0.0f, 0.0f, 1.0f, 0.0f };
-	// static JASOscillator::Data osc;
+	static JASOscillator::Data osc;
 	// osc                              = { 0, 1.0f, nullptr, nullptr, 1.0f, 0.0f };
 	osc._00                          = 0;
 	osc._04                          = 1.0f;
@@ -113,165 +105,6 @@ bool JASDrumSet::getParam(int percIndex, int p2, JASInstParam* instParam) const
 		}
 	}
 	return false;
-	/*
-	stwu     r1, -0x30(r1)
-	mflr     r0
-	stw      r0, 0x34(r1)
-	stmw     r25, 0x14(r1)
-	mr       r28, r4
-	cmplwi   r28, 0x80
-	mr       r29, r5
-	mr       r30, r6
-	blt      lbl_8009B0E4
-	li       r3, 0
-	b        lbl_8009B2A0
-
-lbl_8009B0E4:
-	slwi     r4, r28, 5
-	li       r5, 0
-	addi     r31, r4, 4
-	stb      r5, 0(r30)
-	add      r31, r3, r31
-	li       r4, 1
-	stb      r4, 0x24(r30)
-	lis      r3, osc$639@ha
-	lfs      f0, 0(r31)
-	lfs      f1, 4(r31)
-	stfs     f0, 0x10(r30)
-	lfs      f0, 8(r31)
-	stfs     f1, 0x14(r30)
-	lhz      r0, 0xc(r31)
-	stfs     f0, 0x18(r30)
-	lfs      f1, lbl_80516CD8@sda21(r2)
-	sth      r0, 0x26(r30)
-	lfs      f0, lbl_80516CDC@sda21(r2)
-	stwu     r5, osc$639@l(r3)
-	lbz      r0, init$641@sda21(r13)
-	stfs     f1, 4(r3)
-	extsb.   r0, r0
-	stw      r5, 8(r3)
-	stw      r5, 0xc(r3)
-	stfs     f1, 0x10(r3)
-	stfs     f0, 0x14(r3)
-	bne      lbl_8009B158
-	stw      r3, oscp$640@sda21(r13)
-	stb      r4, init$641@sda21(r13)
-
-lbl_8009B158:
-	addi     r3, r13, oscp$640@sda21
-	li       r0, 1
-	stw      r3, 8(r30)
-	li       r26, 0
-	li       r27, 0
-	stw      r0, 0xc(r30)
-	b        lbl_8009B230
-
-lbl_8009B174:
-	lwz      r3, 0x10(r31)
-	lwzx     r25, r3, r27
-	cmplwi   r25, 0
-	beq      lbl_8009B228
-	mr       r3, r25
-	mr       r4, r28
-	lwz      r12, 0(r25)
-	mr       r5, r29
-	lwz      r12, 8(r12)
-	mtctr    r12
-	bctrl
-	lbz      r0, 4(r25)
-	cmpwi    r0, 2
-	beq      lbl_8009B1F0
-	bge      lbl_8009B1C0
-	cmpwi    r0, 0
-	beq      lbl_8009B1D0
-	bge      lbl_8009B1E0
-	b        lbl_8009B228
-
-lbl_8009B1C0:
-	cmpwi    r0, 4
-	beq      lbl_8009B21C
-	bge      lbl_8009B228
-	b        lbl_8009B20C
-
-lbl_8009B1D0:
-	lfs      f0, 0x10(r30)
-	fmuls    f0, f0, f1
-	stfs     f0, 0x10(r30)
-	b        lbl_8009B228
-
-lbl_8009B1E0:
-	lfs      f0, 0x14(r30)
-	fmuls    f0, f0, f1
-	stfs     f0, 0x14(r30)
-	b        lbl_8009B228
-
-lbl_8009B1F0:
-	lfd      f0, lbl_80516CE0@sda21(r2)
-	lfs      f2, 0x18(r30)
-	fsub     f0, f1, f0
-	fadd     f0, f2, f0
-	frsp     f0, f0
-	stfs     f0, 0x18(r30)
-	b        lbl_8009B228
-
-lbl_8009B20C:
-	lfs      f0, 0x1c(r30)
-	fadds    f0, f0, f1
-	stfs     f0, 0x1c(r30)
-	b        lbl_8009B228
-
-lbl_8009B21C:
-	lfs      f0, 0x20(r30)
-	fadds    f0, f0, f1
-	stfs     f0, 0x20(r30)
-
-lbl_8009B228:
-	addi     r27, r27, 4
-	addi     r26, r26, 1
-
-lbl_8009B230:
-	lwz      r0, 0x14(r31)
-	cmplw    r26, r0
-	blt      lbl_8009B174
-	lwz      r0, 0x18(r31)
-	li       r3, 0
-	mtctr    r0
-	cmplwi   r0, 0
-	ble      lbl_8009B29C
-
-lbl_8009B250:
-	lwz      r0, 0x1c(r31)
-	add      r4, r0, r3
-	lwz      r0, 0(r4)
-	cmpw     r29, r0
-	bgt      lbl_8009B294
-	lfs      f1, 0x10(r30)
-	li       r3, 1
-	lfs      f0, 8(r4)
-	fmuls    f0, f1, f0
-	stfs     f0, 0x10(r30)
-	lfs      f1, 0x14(r30)
-	lfs      f0, 0xc(r4)
-	fmuls    f0, f1, f0
-	stfs     f0, 0x14(r30)
-	lwz      r0, 4(r4)
-	stw      r0, 4(r30)
-	b        lbl_8009B2A0
-
-lbl_8009B294:
-	addi     r3, r3, 0x10
-	bdnz     lbl_8009B250
-
-lbl_8009B29C:
-	li       r3, 0
-
-lbl_8009B2A0:
-	lmw      r25, 0x14(r1)
-	lwz      r0, 0x34(r1)
-	mtlr     r0
-	addi     r1, r1, 0x30
-	blr
-	*/
 }
 
 /*

@@ -96,7 +96,7 @@ struct JUTException : public JKRThread {
 	static OSErrorHandler sPostUserCallback;
 	static u32 msr;
 	static u32 fpscr;
-	static const char* const sCpuExpName[OS_ERROR_MAX + 1];
+	static const char* sCpuExpName[OS_ERROR_MAX + 1];
 	static JSUList<JUTExMapFile> sMapFileList;
 };
 

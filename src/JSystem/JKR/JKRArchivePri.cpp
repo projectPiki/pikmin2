@@ -107,7 +107,7 @@ bool JKRArchive::isSameName(JKRArchive::CArcName& archiveName, u32 nameTableOffs
 	if (arcHash != hash) {
 		return false;
 	}
-	const char* name    = _54 + nameTableOffset;
+	const char* name    = (const char*)_54 + nameTableOffset;
 	const char* arcName = archiveName.getString();
 	return strcmp(name, arcName) == 0;
 }
@@ -481,16 +481,18 @@ JKRArchive::SDIFileEntry* JKRArchive::findTypeResource(u32 p1, u32 p2) const
  * Size:	0000F4
  * findTypeResource__10JKRArchiveCFUlPCc
  */
-JKRArchive::SDIFileEntry* JKRArchive::findTypeResource(u32 p1, const char* p2) const
+JKRArchive::SDIFileEntry* JKRArchive::findTypeResource(u32 p1, const char* name) const
 {
 	if (p1 != 0) {
 		CArcName arcName;
-		arcName.store(p2);
+		arcName.store(name);
 		SDirEntry* dirEntry = findResType(p1);
-		if (dirEntry) {
+		if (dirEntry != nullptr) {
 			SDIFileEntry* fileEntry = m_fileEntries + dirEntry->_0C;
-			if (isSameName(arcName, fileEntry->_04 & 0xFFFFFF, fileEntry->m_hash)) {
-				return fileEntry;
+			for (int i = 0; i < dirEntry->_0A; i++) {
+				if (isSameName(arcName, fileEntry[i]._04 & 0xFFFFFF, fileEntry[i].m_hash)) {
+					return fileEntry + i;
+				}
 			}
 		}
 	}

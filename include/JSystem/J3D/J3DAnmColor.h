@@ -36,6 +36,19 @@ struct J3DAnmColor : public J3DAnmBase {
 	JUTNameTab m_nameTab; // _1C
 };
 
+struct J3DAnmColorFullTable {
+	const u16 m_data[4][2];
+
+	inline void getField(u32 fieldIndex, int p2, u8* result, u8* values)
+	{
+		if (p2 >= m_data[fieldIndex][0]) {
+			*result = values[m_data[fieldIndex][0] - 1 + m_data[fieldIndex][1]];
+		} else {
+			*result = values[m_data[fieldIndex][1] + p2];
+		}
+	}
+};
+
 /**
  * @size{0x40}
  */
@@ -74,9 +87,6 @@ struct J3DAnmColorFullData : J3DFileBlockBase {
 	void* _28; // _28
 	void* _2C; // _2C
 	void* _30; // _30
-};
-
-struct J3DAnmColorFullTable {
 };
 
 /**

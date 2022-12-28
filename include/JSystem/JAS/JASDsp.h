@@ -6,7 +6,26 @@
 struct JASWaveInfo;
 
 namespace JASDsp {
+// typedef s16 Fxline[0x10];
+/** @fabricated */
+struct Fxline {
+	u16 _00;    // _00
+	u16 _02;    // _02
+	s16* _04;   // _04
+	u16 _08;    // _08
+	u16 _0A;    // _0A
+	u16 _0C;    // _0C
+	u16 _0E;    // _0E
+	u16 _10[8]; // _10
 
+	// u16 _12;  // _12
+	// u16 _14;  // _14
+	// u16 _16;  // _16
+	// u16 _18;  // _18
+	// u16 _1A;  // _1A
+	// u16 _1C;  // _1C
+	// u16 _1E;  // _1E
+};
 struct TChannel {
 	/**
 	 * @fabricated
@@ -78,17 +97,19 @@ struct TChannel {
 	u16 _78[4];               // _78
 	u16 _80[0x14];            // _80
 	u16 _A8[4];               // _A8
-	u8 _B0[0x50];             // _B0
+	u16 _B0[0x10];            // _B0
+	u8 _D0[0x30];             // _D0
 	u16 _100;                 // _100
-	s16 _102;                 // _102
+	u16 _102;                 // _102
 	s16 _104;                 // _104
 	s16 _106;                 // _106
 	u16 m_filterMode;         // _108
 	u16 _10A;                 // _10A
 	u32 _10C;                 // _10C
-	u8 _110[0x8];             // _110
+	u32 _110;                 // _110
+	u32 _114;                 // _114
 	u32 _118;                 // _118
-	u8 _11C[4];               // _11C
+	u32 _11C;                 // _11C
 	s16 m_fir8FilterParam[8]; // _120
 	u8 _130[0x18];            // _130
 	s16 m_iirFilterParam[4];  // _148
@@ -96,6 +117,22 @@ struct TChannel {
 };
 
 struct FxlineConfig_ {
+	u8 _00;     // _00
+	s16 _02;    // _02
+	s16 _04;    // _04
+	s16 _06;    // _06
+	s16 _08;    // _08
+	s16 _0A;    // _0A
+	u32 _0C;    // _0C
+	s16 _10[8]; // _10
+
+	// s16 _12; // _12
+	// s16 _14; // _14
+	// s16 _16; // _16
+	// s16 _18; // _18
+	// s16 _1A; // _1A
+	// s16 _1C; // _1C
+	// s16 _1E; // _1E
 };
 
 void boot(void (*)(void*));
@@ -107,7 +144,7 @@ float getDSPMixerLevel();
 TChannel* getDSPHandle(int index);
 void invalChannelAll();
 void initBuffer();
-void setFXLine(u8, short*, JASDsp::FxlineConfig_*);
+bool setFXLine(u8, short*, JASDsp::FxlineConfig_*);
 
 // unused/inlined:
 void getDSPHandleNc(int);
@@ -115,13 +152,16 @@ void setFilterTable(short*, short*, u32);
 void flushBuffer();
 void flushChannelAll();
 void cacheChannelAll();
-void getFXHandle(u8);
+Fxline& getFXHandle(u8);
 void getFXHandleNc(u8);
 void changeFXLineParam(u8, u8, u32);
 
 extern u8* CH_BUF;
-extern u16* FX_BUF;
+extern Fxline* FX_BUF;
 extern float sDSPVolume;
+extern const s16 SEND_TABLE[12];
+extern const u16 DSPADPCM_FILTER[32];
+extern const u16 DSPRES_FILTER[640];
 
 } // namespace JASDsp
 

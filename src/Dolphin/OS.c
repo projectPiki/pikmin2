@@ -39,7 +39,7 @@ void DVDInit();
 void DVDInquiryAsync(void*, void*, void*);
 void EXIInit();
 void EnableMetroTRKInterrupts();
-void OSEnableInterrupts();
+int OSEnableInterrupts();
 void OSExceptionInit();
 void OSRegisterVersion(const char*);
 void PPCMtmmcr0(int);

@@ -87,7 +87,7 @@ struct JUTFont {
 	virtual void setGX() = 0;                                                // _0C
 	virtual void setGX(JUtility::TColor, JUtility::TColor) { setGX(); };     // _10
 	virtual float drawChar_scale(float, float, float, float, int, bool) = 0; // _14
-	virtual u16 getLeading() const                                      = 0; // _18
+	virtual int getLeading() const                                      = 0; // _18
 	virtual int getAscent() const                                       = 0; // _1C
 	virtual int getDescent() const                                      = 0; // _20
 	virtual int getHeight() const                                       = 0; // _24
@@ -145,7 +145,7 @@ struct JUTRomFont : public JUTFont {
 	virtual void setGX();                                                      // _0C
 	virtual float drawChar_scale(f32, f32, f32, f32, int, bool);               // _14
 	virtual int getWidth() const { return spFontHeader_->m_width; };           // _28
-	virtual u16 getLeading() const { return spFontHeader_->m_leading; };       // _18
+	virtual int getLeading() const { return spFontHeader_->m_leading; };       // _18
 	virtual int getAscent() const { return spFontHeader_->m_ascent; };         // _1C
 	virtual int getDescent() const { return spFontHeader_->m_descent; };       // _20
 	virtual int getHeight() const { return getAscent() + getDescent(); };      // _24
@@ -198,7 +198,7 @@ struct JUTResFont : public JUTFont {
 	virtual int getCellHeight() const;                                    // _34
 	virtual int getFontType() const { return m_infoBlock->m_encoding; };  // _38
 	virtual const ResFONT* getResFont() const { return m_resource; };     // _3C
-	virtual u16 getLeading() const { return m_infoBlock->m_leading; };    // _18
+	virtual int getLeading() const { return m_infoBlock->m_leading; };    // _18
 	virtual bool isLeadByte(int) const;                                   // _40
 	virtual void loadImage(int, _GXTexMapID);                             // _44
 	virtual void setBlock();                                              // _48
@@ -255,8 +255,7 @@ struct JUTCacheFont : public JUTResFont {
 		GXTexObj m_gxTexObj;     // _20
 	};
 
-	struct TCachePage {
-	};
+	struct TCachePage { };
 
 	JUTCacheFont();
 	JUTCacheFont(const ResFONT*, void*, u32, JKRHeap*);

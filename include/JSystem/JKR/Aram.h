@@ -60,9 +60,9 @@ struct JKRAram : public JKRThread {
 	virtual void* run(); // _0C
 
 	static JKRAram* create(u32, u32, long, long, long);
-	static JKRAramBlock* mainRamToAram(u8*, u32, u32, JKRExpandSwitch, u32, JKRHeap*, s32, u32*);
-	static u8* aramToMainRam(u32, u8*, u32, JKRExpandSwitch, u32, JKRHeap*, s32, u32*);
-	static u8* aramToMainRam(JKRAramBlock*, u8*, u32, u32, JKRExpandSwitch, u32, JKRHeap*, s32, u32*);
+	static JKRAramBlock* mainRamToAram(u8*, u32, u32, JKRExpandSwitch, u32, JKRHeap*, int, u32*);
+	static u8* aramToMainRam(u32, u8*, u32, JKRExpandSwitch, u32, JKRHeap*, int, u32*);
+	static u8* aramToMainRam(JKRAramBlock*, u8*, u32, u32, JKRExpandSwitch, u32, JKRHeap*, int, u32*);
 
 	u8 _7C[4];               // _7C
 	u32 _80;                 // _80
@@ -82,13 +82,13 @@ struct JKRAramArchive : public JKRArchive {
 	JKRAramArchive(long, EMountDirection);
 
 	virtual ~JKRAramArchive();                                    // _08
-	virtual u32 getExpandedResSize(const void*) const;            // _3C
+	virtual size_t getExpandedResSize(const void*) const;         // _3C
 	virtual void* fetchResource(SDIFileEntry*, u32*);             // _40
 	virtual void* fetchResource(void*, u32, SDIFileEntry*, u32*); // _44
 
 	bool open(long);
-	void fetchResource_subroutine(u32, u32, u8*, u32, s32);
-	void fetchResource_subroutine(u32, u32, JKRHeap*, s32, u8**);
+	u32 fetchResource_subroutine(u32, u32, u8*, u32, int);
+	u32 fetchResource_subroutine(u32, u32, JKRHeap*, int, u8**);
 
 	s32 _5C;               // _5C
 	s32 _60;               // _60

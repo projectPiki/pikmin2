@@ -1,4 +1,7 @@
 #include "JSystem/JKR/JKRArchive.h"
+#include "JSystem/JKR/JKRFile.h"
+#include "JSystem/JKR/JKRHeap.h"
+#include "types.h"
 
 /*
     Generated from dpostproc
@@ -69,12 +72,14 @@ JKRCompArchive::JKRCompArchive(long p1, JKRArchive::EMountDirection mountDirecti
     : JKRArchive(p1, EMM_Comp)
     , m_mountDirection(mountDirection)
 {
-	if (open(p1)) {
-		m_magicWord = 'RARC';
-		_28         = _54[*_48->_04];
-		sVolumeList.prepend(&_18);
-		_30 = 1;
+	if (!open(p1)) {
+		return;
 	}
+	m_magicWord = 'RARC';
+	_28         = _54 + _48->_04;
+	sVolumeList.prepend(&_18);
+	_30 = 1;
+
 	/*
 	stwu     r1, -0x20(r1)
 	mflr     r0
@@ -240,11 +245,74 @@ lbl_8001BD94:
 
 /*
  * --INFO--
+ * Address:	........
+ * Size:	000044
+ * fixedInit__14JKRCompArchiveFl
+ */
+void JKRCompArchive::fixedInit(long)
+{
+	// UNUSED FUNCTION
+}
+
+/*
+ * --INFO--
+ * Address:	........
+ * Size:	0000F4
+ * mountFixed__14JKRCompArchiveFl
+ */
+void JKRCompArchive::mountFixed(long)
+{
+	// UNUSED FUNCTION
+}
+
+/*
+ * --INFO--
+ * Address:	........
+ * Size:	0000F4
+ * mountFixed__14JKRCompArchiveFPCc
+ */
+void JKRCompArchive::mountFixed(const char*)
+{
+	// UNUSED FUNCTION
+}
+
+/*
+ * --INFO--
+ * Address:	........
+ * Size:	00011C
+ * unmountFixed__14JKRCompArchiveFv
+ */
+void JKRCompArchive::unmountFixed()
+{
+	// UNUSED FUNCTION
+}
+
+/*
+ * --INFO--
  * Address:	8001BDB8
  * Size:	00057C
  */
-bool JKRCompArchive::open(long)
+bool JKRCompArchive::open(long inode)
 {
+	// _44           = nullptr;
+	// _64           = 0;
+	// _68           = nullptr;
+	// _6C           = 0;
+	// _74           = 0;
+	// _78           = 0;
+	// _7C           = 0;
+	// _48           = nullptr;
+	// m_fileEntries = nullptr;
+	// _54           = 0;
+	// _70           = new (JKRHeap::sSystemHeap, 0) JKRDvdFile(inode);
+	// if (_70 == nullptr) {
+	// 	m_mountMode = EMM_Unk0;
+	// 	return false;
+	// }
+	// void* memory = JKRHeap::sSystemHeap->alloc(0x20, -0x20);
+	// if (memory == nullptr) {
+	// 	m_mountMode = EMM_Unk0;
+	// }
 	/*
 	stwu     r1, -0x30(r1)
 	mflr     r0
@@ -926,6 +994,17 @@ void* JKRCompArchive::fetchResource(void*, unsigned long, JKRArchive::SDIFileEnt
  */
 void JKRCompArchive::removeResourceAll()
 {
+	if (_44 != nullptr && m_mountMode != EMM_Mem) {
+		SDIFileEntry* entry = m_fileEntries;
+		for (u32 i = 0; i < _44->_08; i++) {
+			if (entry->_10 != nullptr) {
+				if (!entry->getFlag10()) {
+					JKRHeap::free(entry->_10, _38);
+				}
+				entry->_10 = nullptr;
+			}
+		}
+	}
 	/*
 	stwu     r1, -0x20(r1)
 	mflr     r0
@@ -986,45 +1065,17 @@ lbl_8001C6DC:
  * Address:	8001C6FC
  * Size:	000074
  */
-bool JKRCompArchive::removeResource(void*)
+bool JKRCompArchive::removeResource(void* p1)
 {
-	/*
-	stwu     r1, -0x20(r1)
-	mflr     r0
-	stw      r0, 0x24(r1)
-	stw      r31, 0x1c(r1)
-	stw      r30, 0x18(r1)
-	mr       r30, r4
-	stw      r29, 0x14(r1)
-	mr       r29, r3
-	bl       findPtrResource__10JKRArchiveCFPCv
-	or.      r31, r3, r3
-	bne      lbl_8001C730
-	li       r3, 0
-	b        lbl_8001C754
-
-lbl_8001C730:
-	lwz      r0, 4(r31)
-	rlwinm.  r0, r0, 8, 0x1b, 0x1b
-	bne      lbl_8001C748
-	lwz      r4, 0x38(r29)
-	mr       r3, r30
-	bl       free__7JKRHeapFPvP7JKRHeap
-
-lbl_8001C748:
-	li       r0, 0
-	li       r3, 1
-	stw      r0, 0x10(r31)
-
-lbl_8001C754:
-	lwz      r0, 0x24(r1)
-	lwz      r31, 0x1c(r1)
-	lwz      r30, 0x18(r1)
-	lwz      r29, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x20
-	blr
-	*/
+	SDIFileEntry* entry = findPtrResource(p1);
+	if (entry == nullptr) {
+		return false;
+	}
+	if (!entry->getFlag10()) {
+		JKRHeap::free(p1, _38);
+	}
+	entry->_10 = 0;
+	return true;
 }
 
 /*

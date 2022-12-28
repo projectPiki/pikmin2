@@ -20,4 +20,29 @@ void J3DScaleNrmMtx33(float (*)[3], const Vec&);
 void J3DMtxProjConcat(float (*)[4], float (*)[4], float (*)[4]);
 void J3DPSMtxArrayConcat(float (*)[4], float (*)[4], float (*)[4], unsigned long);
 
+// clang-format off
+/**
+ * @fabricated
+ */
+inline void J3DPSMtx33Copy
+(
+    const register Mtx33 src,
+    register Mtx33 dst
+)
+{
+	asm {
+		psq_l       fp4, 0(src),   0, 0
+		psq_l       fp3, 8(src),   0, 0
+		psq_l       fp2, 16(src),  0, 0
+		psq_l       fp1, 24(src),  0, 0
+		lfs         fp0, 32(src)
+		psq_st      fp4, 0(dst),   0, 0
+		psq_st      fp3, 8(dst),   0, 0
+		psq_st      fp2, 16(dst),  0, 0
+		psq_st      fp1, 24(dst),  0, 0
+		stfs        fp0, 32(dst)
+	}
+}
+// clang-format on
+
 #endif

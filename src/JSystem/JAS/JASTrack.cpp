@@ -423,13 +423,13 @@ void JASTrack::init()
 	initTimed();
 	m_registerParam.init();
 
-	_2D8 = 15;
-	_2A8 = 0;
-	_2AC = 1.0f;
-	_2B0 = nullptr;
-	// _2B4 = JASPlayer::sRelTable;
-	_2B8 = 1.0f;
-	_2BC = 0.0f;
+	_2D8     = 15;
+	_2A8._00 = 0;
+	_2A8._04 = 1.0f;
+	_2A8._08 = nullptr;
+	// _2A8._0C = JASPlayer::sRelTable;
+	_2A8._10 = 1.0f;
+	_2A8._14 = 0.0f;
 
 	_2DC = 15;
 	_2C0 = 0;
@@ -791,22 +791,7 @@ lbl_8009F628:
  * Address:	8009F648
  * Size:	000028
  */
-void JASTrack::setInterrupt(u16 interrupt)
-{
-	m_intrMgr.request(interrupt);
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	addi     r3, r3, 0x94
-	clrlwi   r4, r4, 0x10
-	stw      r0, 0x14(r1)
-	bl       request__10JASIntrMgrFUl
-	lwz      r0, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
-}
+void JASTrack::setInterrupt(u16 interrupt) { m_intrMgr.request(interrupt); }
 
 /*
  * --INFO--
@@ -1378,8 +1363,11 @@ lbl_8009FBBC:
  * Address:	8009FBD4
  * Size:	000070
  */
-void JASTrack::oscSetupSimpleEnv(unsigned char, unsigned long)
+void JASTrack::oscSetupSimpleEnv(unsigned char p1, unsigned long p2)
 {
+	// if (p1 == 1) {
+	// 	_2A8._0C = static_cast<short*>(m_seqCtrl._00 + p2);
+	// }
 	/*
 	clrlwi   r0, r4, 0x18
 	cmpwi    r0, 1

@@ -71,7 +71,10 @@ struct J3DAnmTransformFullData : J3DAnmFullData {
 	void* _20;   // _20
 };
 struct J3DAnmTransformFullTable {
-	u16 _00[3][6];
+	typedef u16 Row[2];
+	Row _00[3][3]; // _00
+
+	// u16 _00[3][6];
 };
 
 /**
@@ -109,7 +112,8 @@ struct J3DAnmTransformKeyData : public J3DAnmFullData {
 	void* _1C;   // _1C
 	void* _20;   // _20
 };
-struct J3DAnmTransformKeyTable : public J3DAnmKeyTableBase {
+struct J3DAnmTransformKeyTable {
+	J3DAnmKeyTableBase _00[3];
 };
 
 #endif

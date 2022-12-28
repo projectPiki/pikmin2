@@ -1,4 +1,5 @@
 #include "Dolphin/os.h"
+#include "JSystem/JUT/JUTConsole.h"
 #include "types.h"
 #include "JSystem/JKR/JKRHeap.h"
 
@@ -214,8 +215,8 @@ lbl_80024E6C:
 JKRSolidHeap::JKRSolidHeap(void* p1, unsigned long p2, JKRHeap* heap, bool p4)
     : JKRHeap(p1, p2, heap, p4)
     , m_freeSize(m_heapSize)
-    , _70(m_startAddress)
-    , _74(m_endAddress)
+    , _70((u32)m_startAddress)
+    , _74((u32)m_endAddress)
     , _78(0)
 {
 }
@@ -233,7 +234,7 @@ JKRSolidHeap::~JKRSolidHeap() { dispose(); }
  * Address:	80024F48
  * Size:	0000C4
  */
-void JKRSolidHeap::adjustSize()
+u32 JKRSolidHeap::adjustSize()
 {
 	/*
 	stwu     r1, -0x20(r1)
@@ -320,8 +321,22 @@ void* JKRSolidHeap::do_alloc(unsigned long p1, int p2)
  * Address:	800250BC
  * Size:	0000D8
  */
-void* JKRSolidHeap::allocFromHead(unsigned long, int)
+void* JKRSolidHeap::allocFromHead(unsigned long p1, int p2)
 {
+	u32 offset  = ALIGN_NEXT(p1, 4);
+	u32 next    = (u32)_70 + p2;
+	size_t size = next + (offset - (u32)_70);
+	if (m_freeSize >= size) {
+		_70 = _70 + size;
+		m_freeSize -= size;
+		return (u8*)next;
+	}
+	JUTWarningConsole_f("allocFromHead: cannot alloc memory (0x%x byte).\n", size);
+	if (_68 == true && mErrorHandler != nullptr) {
+		mErrorHandler(this, offset, p2);
+	}
+	return nullptr;
+
 	/*
 	stwu     r1, -0x20(r1)
 	mflr     r0
@@ -456,23 +471,7 @@ lbl_80025240:
  * Address:	80025264
  * Size:	00002C
  */
-void JKRSolidHeap::do_free(void*)
-{
-	// JUTWarningConsole_f("free: cannot free memory block (%08x)\n");
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	lis      r3, lbl_80473B10@ha
-	stw      r0, 0x14(r1)
-	addi     r3, r3, lbl_80473B10@l
-	crclr    6
-	bl       JUTWarningConsole_f
-	lwz      r0, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
-}
+void JKRSolidHeap::do_free(void* block) { JUTWarningConsole_f("free: cannot free memory block (%08x)\n", block); }
 
 /*
  * --INFO--
@@ -484,8 +483,8 @@ void JKRSolidHeap::do_freeAll()
 	OSLockMutex(&m_mutex);
 	JKRHeap::callAllDisposer();
 	m_freeSize = m_heapSize;
-	_70        = m_startAddress;
-	_74        = m_endAddress;
+	_70        = (u32)m_startAddress;
+	_74        = (u32)m_endAddress;
 	_78        = 0;
 	OSUnlockMutex(&m_mutex);
 }
@@ -554,22 +553,10 @@ void JKRSolidHeap::do_fillFreeArea() { }
  * Address:	80025380
  * Size:	000030
  */
-int JKRSolidHeap::do_resize(void*, unsigned long)
+int JKRSolidHeap::do_resize(void* p1, unsigned long p2)
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	lis      r3, lbl_80473B38@ha
-	stw      r0, 0x14(r1)
-	addi     r3, r3, lbl_80473B38@l
-	crclr    6
-	bl       JUTWarningConsole_f
-	lwz      r0, 0x14(r1)
-	li       r3, -1
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	JUTWarningConsole_f("resize: cannot resize memory block (%08x: %d)\n", p1, p2);
+	return -1;
 }
 
 /*
@@ -577,22 +564,10 @@ int JKRSolidHeap::do_resize(void*, unsigned long)
  * Address:	800253B0
  * Size:	000030
  */
-int JKRSolidHeap::do_getSize(void*)
+int JKRSolidHeap::do_getSize(void* p1)
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	lis      r3, lbl_80473B68@ha
-	stw      r0, 0x14(r1)
-	addi     r3, r3, lbl_80473B68@l
-	crclr    6
-	bl       JUTWarningConsole_f
-	lwz      r0, 0x14(r1)
-	li       r3, -1
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	JUTWarningConsole_f("getSize: cannot get memory block size (%08x)\n", p1);
+	return -1;
 }
 
 /*
@@ -602,6 +577,16 @@ int JKRSolidHeap::do_getSize(void*)
  */
 bool JKRSolidHeap::check()
 {
+	OSLockMutex(&m_mutex);
+	bool result = true;
+	// u32 freeSize  = m_freeSize;
+	u32 totalSize = (u32)_70 - (u32)m_startAddress - (u32)_74 + (u32)m_endAddress + m_freeSize;
+	if (totalSize != m_heapSize) {
+		result = false;
+		JUTWarningConsole_f("check: bad total memory block size (%08X, %08X)\n", m_heapSize, totalSize);
+	}
+	OSUnlockMutex(&m_mutex);
+	return result;
 	/*
 	stwu     r1, -0x10(r1)
 	mflr     r0
@@ -650,6 +635,16 @@ lbl_80025448:
  */
 bool JKRSolidHeap::dump()
 {
+	bool result = check();
+	OSLockMutex(&m_mutex);
+	u32 v1  = _70 - (u32)m_startAddress;
+	u32 v2  = v1 - _74;
+	long v3 = (u32)m_endAddress + v2;
+	JUTReportConsole_f("head %08x: %08x\n", m_startAddress, v1);
+	JUTReportConsole_f("tail %08x: %08x\n", _74, (u32)m_endAddress - _74);
+	JUTReportConsole_f("%d / %d bytes (%6.2f%%) used\n", v3, m_heapSize, ((float)v3 / (float)m_heapSize) * 100.0f);
+	OSUnlockMutex(&m_mutex);
+	return result;
 	/*
 	stwu     r1, -0x30(r1)
 	mflr     r0
@@ -726,6 +721,9 @@ bool JKRSolidHeap::dump()
  */
 void JKRSolidHeap::state_register(JKRHeap::TState* state, unsigned long id) const
 {
+	state->m_id = id;
+	state->_00  = m_heapSize - const_cast<JKRSolidHeap*>(this)->getTotalFreeSize();
+	state->_04  = _70 + _74 * 3;
 	/*
 	stwu     r1, -0x10(r1)
 	mflr     r0
@@ -758,25 +756,16 @@ void JKRSolidHeap::state_register(JKRHeap::TState* state, unsigned long id) cons
  * Address:	800255CC
  * Size:	000030
  */
-bool JKRSolidHeap::state_compare(const JKRHeap::TState&, const JKRHeap::TState&) const
+bool JKRSolidHeap::state_compare(const JKRHeap::TState& a, const JKRHeap::TState& b) const
 {
-	/*
-	.loc_0x0:
-	  lwz       r6, 0x4(r4)
-	  li        r3, 0x1
-	  lwz       r0, 0x4(r5)
-	  cmplw     r6, r0
-	  beq-      .loc_0x18
-	  li        r3, 0
-
-	.loc_0x18:
-	  lwz       r4, 0x0(r4)
-	  lwz       r0, 0x0(r5)
-	  cmplw     r4, r0
-	  beqlr-
-	  li        r3, 0
-	  blr
-	*/
+	bool result = true;
+	if (a._04 != b._04) {
+		result = false;
+	}
+	if (a._00 != b._00) {
+		result = false;
+	}
+	return result;
 }
 
 /*
@@ -784,56 +773,25 @@ bool JKRSolidHeap::state_compare(const JKRHeap::TState&, const JKRHeap::TState&)
  * Address:	800255FC
  * Size:	00000C
  */
-u32 JKRSolidHeap::getHeapType()
-{
-	/*
-	lis      r3, 0x534C4944@ha
-	addi     r3, r3, 0x534C4944@l
-	blr
-	*/
-}
+// u32 JKRSolidHeap::getHeapType() { return 'SLID'; }
 
 /*
  * --INFO--
  * Address:	80025608
  * Size:	000008
  */
-u32 JKRSolidHeap::do_getFreeSize()
-{
-	/*
-	lwz      r3, 0x6c(r3)
-	blr
-	*/
-}
+// u32 JKRSolidHeap::do_getFreeSize() { return m_freeSize; }
 
 /*
  * --INFO--
  * Address:	80025610
  * Size:	000008
  */
-void* JKRSolidHeap::do_getMaxFreeBlock()
-{
-	/*
-	lwz      r3, 0x70(r3)
-	blr
-	*/
-}
+// void* JKRSolidHeap::do_getMaxFreeBlock() { return (void*)_70; }
 
 /*
  * --INFO--
  * Address:	80025618
  * Size:	000020
  */
-u32 JKRSolidHeap::do_getTotalFreeSize()
-{
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	bl       getFreeSize__7JKRHeapFv
-	lwz      r0, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
-}
+// u32 JKRSolidHeap::do_getTotalFreeSize() { return getFreeSize(); }

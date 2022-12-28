@@ -655,19 +655,19 @@ lbl_800620E4:
  * Size:	000020
  * __ct__11J3DTevOrderFv
  */
-J3DTevOrder::J3DTevOrder()
-{
-	/*
-	lbz      r0, j3dDefaultTevOrderInfoNull@sda21(r2)
-	addi     r4, r2, j3dDefaultTevOrderInfoNull@sda21
-	stb      r0, 0(r3)
-	lbz      r0, 1(r4)
-	stb      r0, 1(r3)
-	lbz      r0, 2(r4)
-	stb      r0, 2(r3)
-	blr
-	*/
-}
+// J3DTevOrder::J3DTevOrder()
+// {
+// 	/*
+// 	lbz      r0, j3dDefaultTevOrderInfoNull@sda21(r2)
+// 	addi     r4, r2, j3dDefaultTevOrderInfoNull@sda21
+// 	stb      r0, 0(r3)
+// 	lbz      r0, 1(r4)
+// 	stb      r0, 1(r3)
+// 	lbz      r0, 2(r4)
+// 	stb      r0, 2(r3)
+// 	blr
+// 	*/
+// }
 
 /*
  * --INFO--
@@ -730,27 +730,16 @@ J3DIndTexCoordScale::J3DIndTexCoordScale()
  * Size:	000040
  * __ct__12J3DIndTexMtxFv
  */
-J3DIndTexMtx::J3DIndTexMtx()
-{
-	/*
-	lis      r4, j3dDefaultIndTexMtxInfo@ha
-	lfsu     f0, j3dDefaultIndTexMtxInfo@l(r4)
-	stfs     f0, 0(r3)
-	lfs      f0, 4(r4)
-	stfs     f0, 4(r3)
-	lfs      f0, 8(r4)
-	stfs     f0, 8(r3)
-	lfs      f0, 0xc(r4)
-	stfs     f0, 0xc(r3)
-	lfs      f0, 0x10(r4)
-	stfs     f0, 0x10(r3)
-	lfs      f0, 0x14(r4)
-	stfs     f0, 0x14(r3)
-	lbz      r0, 0x18(r4)
-	stb      r0, 0x18(r3)
-	blr
-	*/
-}
+// J3DIndTexMtx::J3DIndTexMtx()
+//     : _00(j3dDefaultIndTexMtxInfo._00)
+//     , _04(j3dDefaultIndTexMtxInfo._04)
+//     , _08(j3dDefaultIndTexMtxInfo._08)
+//     , _0C(j3dDefaultIndTexMtxInfo._0C)
+//     , _10(j3dDefaultIndTexMtxInfo._10)
+//     , _14(j3dDefaultIndTexMtxInfo._14)
+//     , _18(j3dDefaultIndTexMtxInfo._18)
+// {
+// }
 
 /*
  * --INFO--
@@ -758,17 +747,19 @@ J3DIndTexMtx::J3DIndTexMtx()
  * Size:	000018
  * __ct__14J3DIndTexOrderFv
  */
-J3DIndTexOrder::J3DIndTexOrder()
-{
-	/*
-	lbz      r0, j3dDefaultIndTexOrderNull@sda21(r2)
-	addi     r4, r2, j3dDefaultIndTexOrderNull@sda21
-	stb      r0, 0(r3)
-	lbz      r0, 1(r4)
-	stb      r0, 1(r3)
-	blr
-	*/
-}
+// J3DIndTexOrder::J3DIndTexOrder()
+//     : m_texCoordID(j3dDefaultIndTexOrderNull.m_texCoordID)
+//     , m_texMapID(j3dDefaultIndTexOrderNull.m_texMapID)
+// {
+// 	/*
+// 	lbz      r0, j3dDefaultIndTexOrderNull@sda21(r2)
+// 	addi     r4, r2, j3dDefaultIndTexOrderNull@sda21
+// 	stb      r0, 0(r3)
+// 	lbz      r0, 1(r4)
+// 	stb      r0, 1(r3)
+// 	blr
+// 	*/
+// }
 
 /*
  * --INFO--
@@ -1351,7 +1342,7 @@ void J3DColorBlock::patch() { }
  * Address:	80063010
  * Size:	000004
  */
-void J3DTevBlock::patch() { }
+// void J3DTevBlock::patch() { }
 
 /*
  * --INFO--

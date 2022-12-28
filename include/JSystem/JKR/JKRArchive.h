@@ -55,6 +55,10 @@ struct JKRArchive : public JKRFileLoader {
 		/**
 		 * @fabricated
 		 */
+		inline bool getFlag10() { return _04 >> 0x18 & 0x10; }
+		/**
+		 * @fabricated
+		 */
 		inline bool getFlag80() { return _04 >> 0x18 & 0x80; }
 		/**
 		 * @fabricated
@@ -86,15 +90,15 @@ struct JKRArchive : public JKRFileLoader {
 
 	virtual ~JKRArchive();                                                                                    // _08
 	virtual bool becomeCurrent(const char*);                                                                  // _10
-	virtual void* getResource(const char*);                                                                   // _14
-	virtual void* getResource(u32, const char*);                                                              // _18
-	virtual u32 readResource(void*, u32, const char*);                                                        // _1C
-	virtual u32 readResource(void*, u32, u32, const char*);                                                   // _20
+	virtual void* getResource(const char* path);                                                              // _14
+	virtual void* getResource(u32 type, const char* name);                                                    // _18
+	virtual size_t readResource(void* resourceBuffer, u32 bufferSize, const char* path);                      // _1C
+	virtual size_t readResource(void* resourceBuffer, u32 bufferSize, u32 type, const char* name);            // _20
 	virtual void removeResourceAll();                                                                         // _24
 	virtual bool removeResource(void*);                                                                       // _28
 	virtual bool detachResource(void*);                                                                       // _2C
 	virtual long getResSize(const void*) const;                                                               // _30
-	virtual u16 countFile(const char*) const;                                                                 // _34
+	virtual u32 countFile(const char*) const;                                                                 // _34
 	virtual JKRFileFinder* getFirstFile(const char*) const;                                                   // _38
 	virtual u32 getExpandedResSize(const void*) const;                                                        // _3C (weak)
 	virtual void* fetchResource(SDIFileEntry* entry, u32* outSize)                                       = 0; // _40
@@ -112,13 +116,13 @@ struct JKRArchive : public JKRFileLoader {
 	bool isSameName(CArcName&, u32, u16) const;
 
 	bool getDirEntry(SDirEntry*, u32) const;
-	void* getGlbResource(u32 type, const char* name, JKRArchive* archive);
-	void* getIdxResource(u32);
-	unknown readResource(void*, u32, unsigned short);
+	void* getIdxResource(u32 index);
+	size_t readResource(void* resourceBuffer, u32 bufferSize, u16 id);
 
 	static JKRArchive* mount(char const*, EMountMode, JKRHeap*, EMountDirection);
 	static JKRArchive* mount(void*, JKRHeap*, EMountDirection);
 	static JKRArchive* mount(long, EMountMode, JKRHeap*, EMountDirection);
+	static void* getGlbResource(u32 type, const char* name, JKRArchive* archive);
 
 	// Unused/inlined:
 	JKRArchive();
@@ -170,12 +174,12 @@ struct JKRMemArchive : public JKRArchive {
 	u32 fetchResource_subroutine(unsigned char*, u32, unsigned char*, u32, int);
 
 	// Unused/inlined:
-	unknown fixedInit(long);
-	unknown mountFixed(long, EMountDirection);
-	unknown mountFixed(const char*, EMountDirection);
-	unknown mountFixed(void*, JKRMemBreakFlag);
-	unknown unmountFixed(void);
-	unknown open(const char*, EMountDirection);
+	void fixedInit(long);
+	void mountFixed(long, EMountDirection);
+	void mountFixed(const char*, EMountDirection);
+	void mountFixed(void*, JKRMemBreakFlag);
+	void unmountFixed(void);
+	void open(const char*, EMountDirection);
 
 	int _5C;                          // _5C
 	EMountDirection m_mountDirection; // _60
@@ -196,9 +200,15 @@ struct JKRCompArchive : public JKRArchive {
 
 	bool open(long);
 
+	// Unused/inlined:
+	void fixedInit(long);
+	void mountFixed(long);
+	void mountFixed(const char*);
+	void unmountFixed(void);
+
 	int _5C;              // _5C
 	int m_mountDirection; // _60
-	u8 _64[4];            // _64
+	u32 _64;              // _64
 	void* _68;            // _68
 	unknown _6C;          // _6C
 	JKRDvdFile* _70;      // _70

@@ -29,6 +29,13 @@
         .skip 0x4
 */
 
+u8 JAInter::SoundTable::mVersion;
+u8 JAInter::SoundTable::mCategotyMax;
+u16* JAInter::SoundTable::mSoundMax;
+u32 JAInter::SoundTable::mDataSize;
+JAInter::SoundInfo** JAInter::SoundTable::mPointerCategory;
+u8* JAInter::SoundTable::mAddress;
+
 /*
  * --INFO--
  * Address:	800B744C

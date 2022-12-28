@@ -826,6 +826,22 @@ lbl_80061190:
 	*/
 }
 
+void GXWriteU8U8U32(u8 v1, u8 v2, u32 v3)
+{
+	GXWGFifo.u8  = v1;
+	GXWGFifo.u8  = v2;
+	GXWGFifo.u32 = v3;
+}
+
+void GXWriteU8U16U16U32U32(u8 p1, u16 p2, u16 p3, u32 p4, u32 p5)
+{
+	GXWGFifo.u8  = p1;
+	GXWGFifo.u16 = p2;
+	GXWGFifo.u16 = p3;
+	GXWGFifo.u32 = p4;
+	GXWGFifo.u32 = p5;
+}
+
 /*
  * --INFO--
  * Address:	80061210
@@ -980,21 +996,25 @@ void J3DShape::simpleDrawCache() const
 		sOldVcdVatCmd = _2C;
 	}
 	if (sEnvelopeFlag && _48 == 0) {
-		HW_REG(GXFIFO_ADDR, u8)  = 0x08;
-		HW_REG(GXFIFO_ADDR, u8)  = 0x30;
-		HW_REG(GXFIFO_ADDR, u32) = _40;
-		HW_REG(GXFIFO_ADDR, u8)  = 0x08;
-		HW_REG(GXFIFO_ADDR, u8)  = 0x40;
-		HW_REG(GXFIFO_ADDR, u32) = _44;
-		HW_REG(GXFIFO_ADDR, u8)  = 0x10;
-		HW_REG(GXFIFO_ADDR, u16) = 1;
-		HW_REG(GXFIFO_ADDR, u16) = 0x1018;
-		HW_REG(GXFIFO_ADDR, u32) = _40;
-		HW_REG(GXFIFO_ADDR, u32) = _44;
+		GXWriteU8U8U32(0x08, 0x30, _40);
+		GXWriteU8U8U32(0x08, 0x40, _44);
+		GXWriteU8U16U16U32U32(0x10, 0x0001, 0x1018, _40, _44);
+		// HW_REG(GXFIFO_ADDR, u8)  = 0x08;
+		// HW_REG(GXFIFO_ADDR, u8)  = 0x30;
+		// HW_REG(GXFIFO_ADDR, u32) = _40;
+		// HW_REG(GXFIFO_ADDR, u8)  = 0x08;
+		// HW_REG(GXFIFO_ADDR, u8)  = 0x40;
+		// HW_REG(GXFIFO_ADDR, u32) = _44;
+		// HW_REG(GXFIFO_ADDR, u8)  = 0x10;
+		// HW_REG(GXFIFO_ADDR, u16) = 1;
+		// HW_REG(GXFIFO_ADDR, u16) = 0x1018;
+		// HW_REG(GXFIFO_ADDR, u32) = _40;
+		// HW_REG(GXFIFO_ADDR, u32) = _44;
 	}
-	HW_REG(GXFIFO_ADDR, u8)  = 0x08;
-	HW_REG(GXFIFO_ADDR, u8)  = 0xA0;
-	HW_REG(GXFIFO_ADDR, u32) = j3dSys._10C & 0x7FFFFFFF;
+	GXWriteU8U8U32(0x08, 0xA0, j3dSys._10C & 0x7FFFFFFF);
+	// HW_REG(GXFIFO_ADDR, u8)  = 0x08;
+	// HW_REG(GXFIFO_ADDR, u8)  = 0xA0;
+	// HW_REG(GXFIFO_ADDR, u32) = j3dSys._10C & 0x7FFFFFFF;
 	if (m_mode == 0) {
 		HW_REG(GXFIFO_ADDR, u8)  = 0x08;
 		HW_REG(GXFIFO_ADDR, u8)  = 0xA1;
@@ -1004,7 +1024,7 @@ void J3DShape::simpleDrawCache() const
 	HW_REG(GXFIFO_ADDR, u8)  = 0xA2;
 	HW_REG(GXFIFO_ADDR, u32) = j3dSys._114 & 0x7FFFFFFF;
 	for (u16 i = 0; i < _0A; ++i) {
-		if (_3C[i]) {
+		if (_3C[i] != nullptr) {
 			_3C[i]->draw();
 		}
 	}

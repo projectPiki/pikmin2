@@ -319,7 +319,7 @@ lbl_80033214:
  */
 void JUTTexture::storeTIMG(const ResTIMG* img, JUTPalette* palette)
 {
-	storeTIMG(img, palette, palette == nullptr ? GX_TLUT0 : palette->m_tlutID);
+	storeTIMG(img, palette, palette == nullptr ? GX_TLUT0 : (_GXTlut)palette->m_tlutID);
 	/*
 	stwu     r1, -0x10(r1)
 	mflr     r0
@@ -453,7 +453,7 @@ void JUTTexture::attachPalette(JUTPalette* palette)
 	} else {
 		_2C = palette;
 	}
-	initTexObj(_2C->m_tlutID);
+	initTexObj((_GXTlut)_2C->m_tlutID);
 	/*
 	stwu     r1, -0x10(r1)
 	mflr     r0
@@ -497,7 +497,7 @@ void JUTTexture::init()
 		initTexObj();
 	} else if (_28 != nullptr) {
 		_2C = _28;
-		initTexObj(_2C->m_tlutID);
+		initTexObj((_GXTlut)_2C->m_tlutID);
 	}
 	/*
 	stwu     r1, -0x10(r1)

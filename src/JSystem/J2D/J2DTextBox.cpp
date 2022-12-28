@@ -1,6 +1,13 @@
+#include "Dolphin/gx.h"
+#include "Dolphin/mtx.h"
+#include "Dolphin/stl.h"
 #include "JSystem/J2D/J2DMaterial.h"
 #include "JSystem/J2D/J2DPane.h"
+#include "JSystem/J2D/J2DPrint.h"
 #include "JSystem/J2D/J2DTevBlock.h"
+#include "JSystem/J2D/J2DTypes.h"
+#include "JSystem/JSupport/JSUStream.h"
+#include "JSystem/JUT/JUTFont.h"
 #include "JSystem/JUT/TColor.h"
 #include "types.h"
 
@@ -86,98 +93,160 @@
  * Size:	000078
  */
 J2DTextBox::J2DTextBox()
+    : J2DPane()
+    , m_font(nullptr)
+    , _104(0xFFFFFFFF)
+    , _108(0xFFFFFFFF)
+    , _124(nullptr)
+    , m_white(0xFFFFFFFF)
+    , m_black(0xFFFFFFFF)
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	mr       r31, r3
-	bl       __ct__7J2DPaneFv
-	lis      r3, __vt__10J2DTextBox@ha
-	li       r9, 0
-	addi     r3, r3, __vt__10J2DTextBox@l
-	li       r0, -1
-	stw      r3, 0(r31)
-	mr       r3, r31
-	li       r4, 0
-	li       r5, 0
-	stw      r9, 0x100(r31)
-	li       r6, 0
-	li       r7, 2
-	li       r8, 2
-	stw      r0, 0x104(r31)
-	stw      r0, 0x108(r31)
-	stw      r9, 0x124(r31)
-	stw      r0, 0x128(r31)
-	stw      r0, 0x12c(r31)
-	bl
-	initiate__10J2DTextBoxFPC7ResFONTPCcs18J2DTextBoxHBinding18J2DTextBoxVBinding
-	lwz      r0, 0x14(r1)
-	mr       r3, r31
-	lwz      r31, 0xc(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	initiate(nullptr, nullptr, 0, TBHB_2, TBVB_2);
+}
+
+/*
+ * --INFO--
+ * Address:	........
+ * Size:	000078
+ */
+J2DTextBox::J2DTextBox(unsigned long long tag, const JGeometry::TBox2<float>& box)
+{
+	// UNUSED FUNCTION
+}
+
+/*
+ * --INFO--
+ * Address:	........
+ * Size:	00009C
+ */
+J2DTextBox::J2DTextBox(const ResFONT*, const char*, short)
+{
+	// UNUSED FUNCTION
+}
+
+/*
+ * --INFO--
+ * Address:	........
+ * Size:	0000A4
+ */
+J2DTextBox::J2DTextBox(const char*, const char*, short)
+{
+	// UNUSED FUNCTION
+}
+
+/*
+ * --INFO--
+ * Address:	........
+ * Size:	000088
+ */
+J2DTextBox::J2DTextBox(J2DPane* parent, JSURandomInputStream* input)
+{
+	// UNUSED FUNCTION
 }
 
 /*
  * --INFO--
  * Address:	80040FEC
  * Size:	000094
+ * __ct__10J2DTextBoxFP7J2DPaneP20JSURandomInputStreamP10JKRArchive
  */
-J2DTextBox::J2DTextBox(J2DPane*, JSURandomInputStream*, JKRArchive*)
+J2DTextBox::J2DTextBox(J2DPane* parent, JSURandomInputStream* input, JKRArchive* archive)
+    : J2DPane()
+    , m_font(nullptr)
+    , _104(0xFFFFFFFF)
+    , _108(0xFFFFFFFF)
+    , _124(nullptr)
+    , m_white(0xFFFFFFFF)
+    , m_black(0xFFFFFFFF)
 {
-	/*
-	stwu     r1, -0x20(r1)
-	mflr     r0
-	stw      r0, 0x24(r1)
-	stw      r31, 0x1c(r1)
-	mr       r31, r6
-	stw      r30, 0x18(r1)
-	mr       r30, r5
-	stw      r29, 0x14(r1)
-	mr       r29, r4
-	stw      r28, 0x10(r1)
-	mr       r28, r3
-	bl       __ct__7J2DPaneFv
-	lis      r3, __vt__10J2DTextBox@ha
-	li       r7, 0
-	addi     r3, r3, __vt__10J2DTextBox@l
-	li       r0, -1
-	stw      r3, 0(r28)
-	mr       r3, r28
-	mr       r4, r29
-	mr       r5, r30
-	stw      r7, 0x100(r28)
-	mr       r6, r31
-	stw      r0, 0x104(r28)
-	stw      r0, 0x108(r28)
-	stw      r7, 0x124(r28)
-	stw      r0, 0x128(r28)
-	stw      r0, 0x12c(r28)
-	bl
-	private_readStream__10J2DTextBoxFP7J2DPaneP20JSURandomInputStreamP10JKRArchive
-	lwz      r0, 0x24(r1)
-	mr       r3, r28
-	lwz      r31, 0x1c(r1)
-	lwz      r30, 0x18(r1)
-	lwz      r29, 0x14(r1)
-	lwz      r28, 0x10(r1)
-	mtlr     r0
-	addi     r1, r1, 0x20
-	blr
-	*/
+	private_readStream(parent, input, archive);
 }
 
 /*
  * --INFO--
  * Address:	80041080
  * Size:	000460
+ * __ct__10J2DTextBoxFP7J2DPaneP20JSURandomInputStreamUlP11J2DMaterial
  */
-J2DTextBox::J2DTextBox(J2DPane*, JSURandomInputStream*, unsigned long, J2DMaterial*)
+J2DTextBox::J2DTextBox(J2DPane* parent, JSURandomInputStream* input, unsigned long flags, J2DMaterial* materials)
+    : J2DPane()
+    , m_font(nullptr)
+    , _104(0xFFFFFFFF)
+    , _108(0xFFFFFFFF)
+    , _124(nullptr)
+    , m_white(0xFFFFFFFF)
+    , m_black(0xFFFFFFFF)
 {
+	int initialPosition = input->getPosition();
+	J2DScrnBlockHeader header;
+	input->read(&header, sizeof(header));
+	m_bloBlockType = 'TBX1';
+
+	int paneExHeaderPosition = input->getPosition();
+	J2DScrnBlockHeader paneExHeader;
+	input->peek(&paneExHeader, sizeof(paneExHeader));
+	makePaneExStream(parent, input);
+	input->seek(paneExHeaderPosition, SEEK_SET);
+
+	J2DTextBoxBlock data;
+	input->read(&data, sizeof(data));
+	J2DMaterial* material = nullptr;
+	if (data._04 != 0xFFFF) {
+		material = materials + data._04;
+		if (material != nullptr) {
+			if (material->m_tevBlock != nullptr) {
+				JUTResFont* font = static_cast<JUTResFont*>(material->m_tevBlock->getFont());
+				if (font != nullptr) {
+					m_font = font;
+					material->m_tevBlock->setFontUndeleteFlag();
+				}
+			}
+			m_alpha = material->m_colorBlock.m_colors[0].a;
+		}
+	}
+	_114 = data._06;
+	_118 = data._08;
+	_11C = data._0A;
+	_120 = data._0C;
+	_130 = data._0E << 2 | data._0F;
+	_104 = data._10;
+	_108 = data._14;
+	setConnectParent(data.m_doConnectParent);
+	u32 strLength = 0;
+	if ((flags & 0x2000000) == 0) {
+		// int v1    = data._1C;
+		strLength = data._1C;
+		if ((s16)(strLength) == -1) {
+			strLength = data._1E + 1 & 0xFFFF;
+		}
+	}
+	_132 = 0;
+	_124 = nullptr;
+	if (strLength != 0) {
+		_124 = new char[strLength];
+	}
+	if (_124 != nullptr) {
+		_132   = strLength;
+		u32 v1 = data._1E;
+		if (strLength - 1 < v1) {
+			v1 = strLength - 1 & 0xFFFF;
+		}
+		input->peek(_124, v1);
+		_124[v1] = '\0';
+	}
+	input->skip(data._1E);
+	input->seek(initialPosition + header.m_blockLength, SEEK_SET);
+	m_black = 0;
+	m_white = 0xFFFFFFFF;
+	if (material != nullptr && material->m_tevBlock != nullptr && material->m_tevBlock->getTevStageNum() != 1) {
+		J2DGXColorS10 black = *material->m_tevBlock->getTevColor(0);
+		J2DGXColorS10 white = *material->m_tevBlock->getTevColor(1);
+		m_black             = black;
+		m_white             = white;
+	}
+	_10C = 0.0f;
+	_110 = 0.0f;
+	_131 = 1;
 	/*
 	.loc_0x0:
 	  stwu      r1, -0x90(r1)
@@ -482,23 +551,31 @@ J2DTextBox::J2DTextBox(J2DPane*, JSURandomInputStream*, unsigned long, J2DMateri
  * Address:	800414E0
  * Size:	000004
  */
-void J2DTevBlock::setFontUndeleteFlag() { }
+// void J2DTevBlock::setFontUndeleteFlag() { }
 
 /*
  * --INFO--
  * Address:	800414E4
  * Size:	000008
  */
-JUTFont* J2DTevBlock::getFont() { return nullptr; }
+// JUTFont* J2DTevBlock::getFont() { return nullptr; }
 
 /*
  * --INFO--
  * Address:	800414EC
  * Size:	00008C
  */
-J2DTextBox::J2DTextBox(unsigned long long, const JGeometry::TBox2f&, const ResFONT*, const char*, short, J2DTextBoxHBinding,
-                       J2DTextBoxVBinding)
+J2DTextBox::J2DTextBox(unsigned long long tag, const JGeometry::TBox2f& box, const ResFONT* resFont, const char* p4, short p5,
+                       J2DTextBoxHBinding hb, J2DTextBoxVBinding vb)
+    : J2DPane(tag, box)
+    , m_font(nullptr)
+    , _104(0xFFFFFFFF)
+    , _108(0xFFFFFFFF)
+    , _124(nullptr)
+    , m_white(0xFFFFFFFF)
+    , m_black(0xFFFFFFFF)
 {
+	initiate(resFont, p4, p5, hb, vb);
 	/*
 	.loc_0x0:
 	  stwu      r1, -0x20(r1)
@@ -543,166 +620,49 @@ J2DTextBox::J2DTextBox(unsigned long long, const JGeometry::TBox2f&, const ResFO
 
 /*
  * --INFO--
+ * Address:	........
+ * Size:	000094
+ */
+J2DTextBox::J2DTextBox(unsigned long long, const JGeometry::TBox2<float>&, const char*, const char*, short, J2DTextBoxHBinding,
+                       J2DTextBoxVBinding)
+{
+	// UNUSED FUNCTION
+}
+
+/*
+ * --INFO--
  * Address:	80041578
  * Size:	000228
  */
-void J2DTextBox::initiate(const ResFONT*, const char*, short, J2DTextBoxHBinding, J2DTextBoxVBinding)
+void J2DTextBox::initiate(const ResFONT* resFont, const char* p2, short p3, J2DTextBoxHBinding hb, J2DTextBoxVBinding vb)
 {
-	/*
-	.loc_0x0:
-	  stwu      r1, -0x40(r1)
-	  mflr      r0
-	  stw       r0, 0x44(r1)
-	  stmw      r26, 0x28(r1)
-	  mr.       r26, r4
-	  mr        r29, r3
-	  mr        r30, r5
-	  mr        r31, r6
-	  mr        r27, r7
-	  mr        r28, r8
-	  beq-      .loc_0x50
-	  li        r3, 0x70
-	  bl        -0x1D704
-	  mr.       r0, r3
-	  beq-      .loc_0x4C
-	  mr        r4, r26
-	  li        r5, 0
-	  bl        -0x103F0
-	  mr        r0, r3
-
-	.loc_0x4C:
-	  stw       r0, 0x100(r29)
-
-	.loc_0x50:
-	  li        r7, -0x1
-	  li        r6, 0
-	  stw       r6, 0xC(r1)
-	  rlwinm    r0,r27,2,0,29
-	  or        r0, r0, r28
-	  cmplwi    r30, 0
-	  stw       r7, 0x104(r29)
-	  lbz       r4, 0xC(r1)
-	  stw       r7, 0x108(r29)
-	  lbz       r3, 0xD(r1)
-	  stb       r4, 0x12C(r29)
-	  lbz       r5, 0xE(r1)
-	  stb       r3, 0x12D(r29)
-	  lbz       r4, 0xF(r1)
-	  stw       r7, 0x8(r1)
-	  stb       r5, 0x12E(r29)
-	  lbz       r3, 0x8(r1)
-	  stb       r4, 0x12F(r29)
-	  lbz       r5, 0x9(r1)
-	  stb       r3, 0x128(r29)
-	  lbz       r4, 0xA(r1)
-	  stb       r5, 0x129(r29)
-	  lbz       r3, 0xB(r1)
-	  stb       r4, 0x12A(r29)
-	  stb       r3, 0x12B(r29)
-	  stb       r0, 0x130(r29)
-	  sth       r6, 0x132(r29)
-	  stw       r6, 0x124(r29)
-	  beq-      .loc_0x13C
-	  extsh.    r0, r31
-	  beq-      .loc_0x13C
-	  mr        r3, r30
-	  bl        0x892C8
-	  extsh     r0, r31
-	  rlwinm    r28,r31,0,16,31
-	  cmpwi     r0, -0x1
-	  bne-      .loc_0xFC
-	  cmplwi    r3, 0xFFFF
-	  blt-      .loc_0xF4
-	  lis       r3, 0x1
-	  subi      r3, r3, 0x2
-
-	.loc_0xF4:
-	  addi      r0, r3, 0x1
-	  rlwinm    r28,r0,0,16,31
-
-	.loc_0xFC:
-	  rlwinm    r3,r28,0,16,31
-	  bl        -0x1D6CC
-	  rlwinm.   r31,r28,0,16,31
-	  stw       r3, 0x124(r29)
-	  beq-      .loc_0x13C
-	  lwz       r3, 0x124(r29)
-	  cmplwi    r3, 0
-	  beq-      .loc_0x13C
-	  mr        r4, r30
-	  subi      r5, r31, 0x1
-	  bl        0x89178
-	  lwz       r0, 0x124(r29)
-	  li        r4, 0
-	  add       r3, r0, r31
-	  stb       r4, -0x1(r3)
-	  sth       r28, 0x132(r29)
-
-	.loc_0x13C:
-	  lfs       f0, -0x7B00(r2)
-	  stfs      f0, 0x10C(r29)
-	  stfs      f0, 0x110(r29)
-	  stfs      f0, 0x114(r29)
-	  lwz       r3, 0x100(r29)
-	  cmplwi    r3, 0
-	  bne-      .loc_0x168
-	  stfs      f0, 0x118(r29)
-	  stfs      f0, 0x11C(r29)
-	  stfs      f0, 0x120(r29)
-	  b         .loc_0x200
-
-	.loc_0x168:
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0x18(r12)
-	  mtctr     r12
-	  bctrl
-	  xoris     r3, r3, 0x8000
-	  lis       r0, 0x4330
-	  stw       r3, 0x14(r1)
-	  lfd       f1, -0x7AF8(r2)
-	  stw       r0, 0x10(r1)
-	  lfd       f0, 0x10(r1)
-	  fsubs     f0, f0, f1
-	  stfs      f0, 0x118(r29)
-	  lwz       r3, 0x100(r29)
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0x28(r12)
-	  mtctr     r12
-	  bctrl
-	  xoris     r3, r3, 0x8000
-	  lis       r0, 0x4330
-	  stw       r3, 0x1C(r1)
-	  lfd       f1, -0x7AF8(r2)
-	  stw       r0, 0x18(r1)
-	  lfd       f0, 0x18(r1)
-	  fsubs     f0, f0, f1
-	  stfs      f0, 0x11C(r29)
-	  lwz       r3, 0x100(r29)
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0x24(r12)
-	  mtctr     r12
-	  bctrl
-	  xoris     r3, r3, 0x8000
-	  lis       r0, 0x4330
-	  stw       r3, 0x24(r1)
-	  lfd       f1, -0x7AF8(r2)
-	  stw       r0, 0x20(r1)
-	  lfd       f0, 0x20(r1)
-	  fsubs     f0, f0, f1
-	  stfs      f0, 0x120(r29)
-
-	.loc_0x200:
-	  lis       r3, 0x5442
-	  li        r0, 0x1
-	  addi      r3, r3, 0x5831
-	  stw       r3, 0x8(r29)
-	  stb       r0, 0x131(r29)
-	  lmw       r26, 0x28(r1)
-	  lwz       r0, 0x44(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x40
-	  blr
-	*/
+	if (resFont != nullptr) {
+		m_font = new JUTResFont(resFont, nullptr);
+	}
+	_104.set(0xFFFFFFFF);
+	_108.set(0xFFFFFFFF);
+	m_black = 0;
+	m_white = 0xFFFFFFFF;
+	_130    = (hb << 2) | vb;
+	_132    = 0;
+	_124    = nullptr;
+	if (p2 != nullptr && p3 != 0) {
+		copyString(p2, p3);
+	}
+	_10C = 0.0f;
+	_110 = 0.0f;
+	_114 = 0.0f;
+	if (m_font == nullptr) {
+		_118 = 0.0f;
+		_11C = 0.0f;
+		_120 = 0.0f;
+	} else {
+		_118 = m_font->getLeading();
+		_11C = m_font->getWidth();
+		_120 = m_font->getHeight();
+	}
+	m_bloBlockType = 'TBX1';
+	_131           = 1;
 }
 
 /*
@@ -710,8 +670,61 @@ void J2DTextBox::initiate(const ResFONT*, const char*, short, J2DTextBoxHBinding
  * Address:	800417A0
  * Size:	000350
  */
-void J2DTextBox::private_readStream(J2DPane*, JSURandomInputStream*, JKRArchive*)
+void J2DTextBox::private_readStream(J2DPane* parent, JSURandomInputStream* input, JKRArchive* archive)
 {
+	int initialPosition = input->getPosition();
+	J2DScrnBlockHeader header;
+	input->read(&header, sizeof(header));
+	m_bloBlockType = header.m_bloBlockType;
+	makePaneStream(parent, input);
+	u8 bytesRemaining = input->readByte();
+	ResFONT* resFont  = (ResFONT*)getPointer(input, 'FONT', archive);
+	if (resFont != nullptr) {
+		m_font = new JUTResFont(resFont, nullptr);
+	}
+	// input->read(&_104, sizeof(JUtility::TColor));
+	// input->read(&_108, sizeof(JUtility::TColor));
+	_104.set(input->readU32());
+	_108.set(input->readU32());
+	_130             = input->readByte();
+	_114             = input->readS16ToFloat();
+	_118             = input->readS16ToFloat();
+	_11C             = input->readU16ToFloat();
+	_120             = input->readU16ToFloat();
+	s16 rawLength    = input->readU16();
+	size_t strLength = rawLength + 1;
+	_124             = new char[strLength];
+	if (_124 != nullptr) {
+		input->read(_124, strLength);
+		_124[rawLength] = '\0';
+		_132            = strLength;
+	} else {
+		input->skip(strLength);
+		_132 = 0;
+	}
+	bytesRemaining -= 10;
+	if (bytesRemaining != 0) {
+		if (input->readByte() != 0) {
+			setConnectParent(true);
+		}
+		bytesRemaining--;
+	}
+	m_black = 0;
+	m_white = 0xFFFFFFFF;
+	if (bytesRemaining != 0) {
+		u32 black = input->readU32();
+		bytesRemaining--;
+		m_black.set(black);
+	}
+	if (bytesRemaining != 0) {
+		u32 white = input->readU32();
+		bytesRemaining--;
+		m_white.set(white);
+	}
+	_10C = 0.0f;
+	_110 = 0.0f;
+	input->seek(initialPosition + header.m_blockLength, SEEK_SET);
+	_131 = 1;
 	/*
 	.loc_0x0:
 	  stwu      r1, -0x70(r1)
@@ -949,53 +962,24 @@ void J2DTextBox::private_readStream(J2DPane*, JSURandomInputStream*, JKRArchive*
  * --INFO--
  * Address:	80041AF0
  * Size:	000098
+ * __dt__10J2DTextBoxFv
  */
 J2DTextBox::~J2DTextBox()
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	mr       r31, r4
-	stw      r30, 8(r1)
-	or.      r30, r3, r3
-	beq      lbl_80041B6C
-	lis      r3, __vt__10J2DTextBox@ha
-	addi     r0, r3, __vt__10J2DTextBox@l
-	stw      r0, 0(r30)
-	lbz      r0, 0x131(r30)
-	cmplwi   r0, 0
-	beq      lbl_80041B48
-	lwz      r3, 0x100(r30)
-	cmplwi   r3, 0
-	beq      lbl_80041B48
-	lwz      r12, 0(r3)
-	li       r4, 1
-	lwz      r12, 8(r12)
-	mtctr    r12
-	bctrl
+	if (_131 != 0) {
+		delete m_font;
+	}
+	delete[] _124;
+}
 
-lbl_80041B48:
-	lwz      r3, 0x124(r30)
-	bl       __dla__FPv
-	mr       r3, r30
-	li       r4, 0
-	bl       __dt__7J2DPaneFv
-	extsh.   r0, r31
-	ble      lbl_80041B6C
-	mr       r3, r30
-	bl       __dl__FPv
-
-lbl_80041B6C:
-	lwz      r0, 0x14(r1)
-	mr       r3, r30
-	lwz      r31, 0xc(r1)
-	lwz      r30, 8(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+/*
+ * --INFO--
+ * Address:	........
+ * Size:	0000C8
+ */
+void J2DTextBox::setFontSize()
+{
+	// UNUSED FUNCTION
 }
 
 /*
@@ -1003,328 +987,118 @@ lbl_80041B6C:
  * Address:	80041B88
  * Size:	000008
  */
-JUTResFont* J2DTextBox::getFont() const
-{
-	/*
-	lwz      r3, 0x100(r3)
-	blr
-	*/
-}
+// JUTResFont* J2DTextBox::getFont() const { return m_font; }
 
 /*
  * --INFO--
  * Address:	80041B90
  * Size:	000070
+ * setFont__10J2DTextBoxFP7JUTFont
  */
-void J2DTextBox::setFont(JUTFont*)
+void J2DTextBox::setFont(JUTFont* font)
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	or.      r31, r4, r4
-	stw      r30, 8(r1)
-	mr       r30, r3
-	beq      lbl_80041BE8
-	lbz      r0, 0x131(r30)
-	cmplwi   r0, 0
-	beq      lbl_80041BDC
-	lwz      r3, 0x100(r30)
-	cmplwi   r3, 0
-	beq      lbl_80041BDC
-	lwz      r12, 0(r3)
-	li       r4, 1
-	lwz      r12, 8(r12)
-	mtctr    r12
-	bctrl
+	if (font == nullptr) {
+		return;
+	}
+	if (_131 != 0) {
+		delete m_font;
+	}
+	m_font = static_cast<JUTResFont*>(font);
+	_131   = 0;
+}
 
-lbl_80041BDC:
-	stw      r31, 0x100(r30)
-	li       r0, 0
-	stb      r0, 0x131(r30)
-
-lbl_80041BE8:
-	lwz      r0, 0x14(r1)
-	lwz      r31, 0xc(r1)
-	lwz      r30, 8(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+/*
+ * --INFO--
+ * Address:	........
+ * Size:	000084
+ */
+void J2DTextBox::setLineSpace()
+{
+	// UNUSED FUNCTION
 }
 
 /*
  * --INFO--
  * Address:	80041C00
  * Size:	0001A4
+ * draw__10J2DTextBoxFff
  */
-void J2DTextBox::draw(float, float)
+void J2DTextBox::draw(float p1, float p2)
 {
-	/*
-	stwu     r1, -0xd0(r1)
-	mflr     r0
-	stw      r0, 0xd4(r1)
-	stfd     f31, 0xc0(r1)
-	psq_st   f31, 200(r1), 0, qr0
-	stfd     f30, 0xb0(r1)
-	psq_st   f30, 184(r1), 0, qr0
-	stw      r31, 0xac(r1)
-	stw      r30, 0xa8(r1)
-	mr       r30, r3
-	fmr      f30, f1
-	lbz      r0, 0xb0(r3)
-	fmr      f31, f2
-	cmplwi   r0, 0
-	beq      lbl_80041D7C
-	lwz      r0, 0x128(r30)
-	addi     r3, r1, 0x48
-	addi     r5, r1, 0x14
-	addi     r6, r1, 0x10
-	stw      r0, 8(r1)
-	addi     r7, r1, 0xc
-	addi     r8, r1, 8
-	lwz      r0, 0x12c(r30)
-	stw      r0, 0xc(r1)
-	lwz      r0, 0x108(r30)
-	stw      r0, 0x10(r1)
-	lwz      r0, 0x104(r30)
-	stw      r0, 0x14(r1)
-	lwz      r4, 0x100(r30)
-	lfs      f1, 0x114(r30)
-	lfs      f2, 0x118(r30)
-	bl
-__ct__8J2DPrintFP7JUTFontffQ28JUtility6TColorQ28JUtility6TColorQ28JUtility6TColorQ28JUtility6TColor
-	lfs      f1, 0x11c(r30)
-	lfs      f0, lbl_80516860@sda21(r2)
-	lfs      f2, 0x120(r30)
-	fcmpo    cr0, f1, f0
-	ble      lbl_80041C98
-	b        lbl_80041C9C
-
-lbl_80041C98:
-	fmr      f1, f0
-
-lbl_80041C9C:
-	lfs      f0, lbl_80516860@sda21(r2)
-	stfs     f1, 0x98(r1)
-	fcmpo    cr0, f2, f0
-	ble      lbl_80041CB0
-	b        lbl_80041CB4
-
-lbl_80041CB0:
-	fmr      f2, f0
-
-lbl_80041CB4:
-	stfs     f2, 0x9c(r1)
-	mr       r3, r30
-	lfs      f3, lbl_80516860@sda21(r2)
-	fmr      f1, f30
-	lwz      r12, 0(r30)
-	fmr      f2, f31
-	fmr      f4, f3
-	lwz      r12, 0x48(r12)
-	mtctr    r12
-	bctrl
-	addi     r3, r30, 0x50
-	li       r4, 0
-	bl       GXLoadPosMtxImm
-	li       r3, 0
-	bl       GXSetCurrentMtx
-	li       r3, 0
-	bl       GXSetNumIndStages
-	li       r31, 0
-
-lbl_80041CFC:
-	mr       r3, r31
-	bl       GXSetTevDirect
-	addi     r31, r31, 1
-	cmpwi    r31, 0x10
-	blt      lbl_80041CFC
-	li       r3, 1
-	bl       GXSetNumTexGens
-	li       r3, 0
-	li       r4, 1
-	li       r5, 4
-	li       r6, 0x3c
-	li       r7, 0
-	li       r8, 0x7d
-	bl       GXSetTexCoordGen2
-	lwz      r6, 0x124(r30)
-	cmplwi   r6, 0
-	beq      lbl_80041D5C
-	lfs      f1, lbl_80516860@sda21(r2)
-	addi     r3, r1, 0x48
-	lbz      r4, 0xb2(r30)
-	addi     r5, r2, lbl_80516878@sda21
-	fmr      f2, f1
-	crset    6
-	bl       print__8J2DPrintFffUcPCce
-
-lbl_80041D5C:
-	addi     r3, r1, 0x18
-	bl       PSMTXIdentity
-	addi     r3, r1, 0x18
-	li       r4, 0
-	bl       GXLoadPosMtxImm
-	addi     r3, r1, 0x48
-	li       r4, -1
-	bl       __dt__8J2DPrintFv
-
-lbl_80041D7C:
-	psq_l    f31, 200(r1), 0, qr0
-	lfd      f31, 0xc0(r1)
-	psq_l    f30, 184(r1), 0, qr0
-	lfd      f30, 0xb0(r1)
-	lwz      r31, 0xac(r1)
-	lwz      r0, 0xd4(r1)
-	lwz      r30, 0xa8(r1)
-	mtlr     r0
-	addi     r1, r1, 0xd0
-	blr
-	*/
+	if (isVisible() == false) {
+		return;
+	}
+	J2DPrint printer(m_font, _114, _118, _104, _108, m_black, m_white);
+	printer.setFontSize(_11C, _120);
+	// printer.m_glyphWidth  = (_11C > 0.0f) ? _11C : 0.0f;
+	// printer.m_glyphHeight = (_120 > 0.0f) ? _120 : 0.0f;
+	makeMatrix(p1, p2, 0.0f, 0.0f);
+	GXLoadPosMtxImm(_050, 0);
+	GXSetCurrentMtx(0);
+	GXSetNumIndStages(0);
+	for (int i = 0; i < 0x10; i++) {
+		GXSetTevDirect((GXTevStageID)i);
+	}
+	GXSetNumTexGens(1);
+	GXSetTexCoordGen2(GX_TEXCOORD0, GX_TG_MTX3X4, GX_TG_TEX0, 60, GX_FALSE, 125);
+	if (_124 != nullptr) {
+		printer.print(0.0f, 0.0f, m_alpha, "%s", _124);
+	}
+	Mtx mtx;
+	PSMTXIdentity(mtx);
+	GXLoadPosMtxImm(mtx, 0);
 }
 
 /*
  * --INFO--
  * Address:	80041DA4
  * Size:	0001D0
+ * draw__10J2DTextBoxFfff18J2DTextBoxHBinding
  */
-void J2DTextBox::draw(float, float, float, J2DTextBoxHBinding)
+void J2DTextBox::draw(float p1, float p2, float p3, J2DTextBoxHBinding hb)
 {
-	/*
-	stwu     r1, -0xf0(r1)
-	mflr     r0
-	stw      r0, 0xf4(r1)
-	stfd     f31, 0xe0(r1)
-	psq_st   f31, 232(r1), 0, qr0
-	stfd     f30, 0xd0(r1)
-	psq_st   f30, 216(r1), 0, qr0
-	stfd     f29, 0xc0(r1)
-	psq_st   f29, 200(r1), 0, qr0
-	stw      r31, 0xbc(r1)
-	stw      r30, 0xb8(r1)
-	stw      r29, 0xb4(r1)
-	mr       r29, r3
-	fmr      f29, f1
-	lbz      r0, 0xb0(r3)
-	fmr      f30, f2
-	fmr      f31, f3
-	mr       r30, r4
-	cmplwi   r0, 0
-	beq      lbl_80041F40
-	lwz      r0, 0x128(r29)
-	addi     r3, r1, 0x48
-	addi     r5, r1, 0x14
-	addi     r6, r1, 0x10
-	stw      r0, 8(r1)
-	addi     r7, r1, 0xc
-	addi     r8, r1, 8
-	lwz      r0, 0x12c(r29)
-	stw      r0, 0xc(r1)
-	lwz      r0, 0x108(r29)
-	stw      r0, 0x10(r1)
-	lwz      r0, 0x104(r29)
-	stw      r0, 0x14(r1)
-	lwz      r4, 0x100(r29)
-	lfs      f1, 0x114(r29)
-	lfs      f2, 0x118(r29)
-	bl
-__ct__8J2DPrintFP7JUTFontffQ28JUtility6TColorQ28JUtility6TColorQ28JUtility6TColorQ28JUtility6TColor
-	lfs      f1, 0x11c(r29)
-	lfs      f0, lbl_80516860@sda21(r2)
-	lfs      f2, 0x120(r29)
-	fcmpo    cr0, f1, f0
-	ble      lbl_80041E50
-	b        lbl_80041E54
+	if (isVisible() == false) {
+		return;
+	}
+	J2DPrint printer(m_font, _114, _118, _104, _108, m_black, m_white);
+	printer.setFontSize(_11C, _120);
+	// printer.m_glyphWidth  = (_11C > 0.0f) ? _11C : 0.0f;
+	// printer.m_glyphHeight = (_120 > 0.0f) ? _120 : 0.0f;
+	makeMatrix(p1, p2, 0.0f, 0.0f);
+	GXLoadPosMtxImm(_050, 0);
+	GXSetCurrentMtx(0);
+	GXSetNumIndStages(0);
+	for (int i = 0; i < 0x10; i++) {
+		GXSetTevDirect((GXTevStageID)i);
+	}
+	GXSetNumTexGens(1);
+	GXSetTexCoordGen2(GX_TEXCOORD0, GX_TG_MTX3X4, GX_TG_TEX0, 60, GX_FALSE, 125);
+	if (_124 != nullptr) {
+		printer.printReturn(_124, p3, 0.0f, hb, TBVB_2, 0.0f, -_120, m_alpha);
+	}
+	Mtx mtx;
+	PSMTXIdentity(mtx);
+	GXLoadPosMtxImm(mtx, 0);
+}
 
-lbl_80041E50:
-	fmr      f1, f0
+/*
+ * --INFO--
+ * Address:	........
+ * Size:	00004C
+ */
+void J2DTextBox::getString(char*)
+{
+	// UNUSED FUNCTION
+}
 
-lbl_80041E54:
-	lfs      f0, lbl_80516860@sda21(r2)
-	stfs     f1, 0x98(r1)
-	fcmpo    cr0, f2, f0
-	ble      lbl_80041E68
-	b        lbl_80041E6C
-
-lbl_80041E68:
-	fmr      f2, f0
-
-lbl_80041E6C:
-	stfs     f2, 0x9c(r1)
-	mr       r3, r29
-	lfs      f3, lbl_80516860@sda21(r2)
-	fmr      f1, f29
-	lwz      r12, 0(r29)
-	fmr      f2, f30
-	fmr      f4, f3
-	lwz      r12, 0x48(r12)
-	mtctr    r12
-	bctrl
-	addi     r3, r29, 0x50
-	li       r4, 0
-	bl       GXLoadPosMtxImm
-	li       r3, 0
-	bl       GXSetCurrentMtx
-	li       r3, 0
-	bl       GXSetNumIndStages
-	li       r31, 0
-
-lbl_80041EB4:
-	mr       r3, r31
-	bl       GXSetTevDirect
-	addi     r31, r31, 1
-	cmpwi    r31, 0x10
-	blt      lbl_80041EB4
-	li       r3, 1
-	bl       GXSetNumTexGens
-	li       r3, 0
-	li       r4, 1
-	li       r5, 4
-	li       r6, 0x3c
-	li       r7, 0
-	li       r8, 0x7d
-	bl       GXSetTexCoordGen2
-	lwz      r4, 0x124(r29)
-	cmplwi   r4, 0
-	beq      lbl_80041F20
-	lfs      f2, lbl_80516860@sda21(r2)
-	fmr      f1, f31
-	lfs      f0, 0x120(r29)
-	mr       r5, r30
-	fmr      f3, f2
-	lbz      r7, 0xb2(r29)
-	fneg     f4, f0
-	addi     r3, r1, 0x48
-	li       r6, 2
-	bl printReturn__8J2DPrintFPCcff18J2DTextBoxHBinding18J2DTextBoxVBindingffUc
-
-lbl_80041F20:
-	addi     r3, r1, 0x18
-	bl       PSMTXIdentity
-	addi     r3, r1, 0x18
-	li       r4, 0
-	bl       GXLoadPosMtxImm
-	addi     r3, r1, 0x48
-	li       r4, -1
-	bl       __dt__8J2DPrintFv
-
-lbl_80041F40:
-	psq_l    f31, 232(r1), 0, qr0
-	lfd      f31, 0xe0(r1)
-	psq_l    f30, 216(r1), 0, qr0
-	lfd      f30, 0xd0(r1)
-	psq_l    f29, 200(r1), 0, qr0
-	lfd      f29, 0xc0(r1)
-	lwz      r31, 0xbc(r1)
-	lwz      r30, 0xb8(r1)
-	lwz      r0, 0xf4(r1)
-	lwz      r29, 0xb4(r1)
-	mtlr     r0
-	addi     r1, r1, 0xf0
-	blr
-	*/
+/*
+ * --INFO--
+ * Address:	........
+ * Size:	000008
+ */
+void J2DTextBox::getStringPtr() const
+{
+	// UNUSED FUNCTION
 }
 
 /*
@@ -1332,77 +1106,35 @@ lbl_80041F40:
  * Address:	80041F74
  * Size:	0000F4
  */
-void J2DTextBox::setString(const char*, ...)
+size_t J2DTextBox::setString(const char* format, ...)
 {
-	/*
-	stwu     r1, -0x90(r1)
-	mflr     r0
-	stw      r0, 0x94(r1)
-	stw      r31, 0x8c(r1)
-	stw      r30, 0x88(r1)
-	mr       r30, r4
-	stw      r29, 0x84(r1)
-	mr       r29, r3
-	bne      cr1, lbl_80041FB8
-	stfd     f1, 0x28(r1)
-	stfd     f2, 0x30(r1)
-	stfd     f3, 0x38(r1)
-	stfd     f4, 0x40(r1)
-	stfd     f5, 0x48(r1)
-	stfd     f6, 0x50(r1)
-	stfd     f7, 0x58(r1)
-	stfd     f8, 0x60(r1)
+	va_list args;
+	va_start(args, format);
 
-lbl_80041FB8:
-	stw      r3, 8(r1)
-	addi     r11, r1, 0x98
-	addi     r0, r1, 8
-	lis      r3, 0x200
-	stw      r4, 0xc(r1)
-	stw      r5, 0x10(r1)
-	stw      r6, 0x14(r1)
-	stw      r7, 0x18(r1)
-	stw      r8, 0x1c(r1)
-	stw      r9, 0x20(r1)
-	stw      r10, 0x24(r1)
-	stw      r3, 0x68(r1)
-	lwz      r3, 0x124(r29)
-	stw      r11, 0x6c(r1)
-	stw      r0, 0x70(r1)
-	bl       __dla__FPv
-	mr       r3, r30
-	bl       strlen
-	mr       r31, r3
-	cmplwi   r31, 0xffff
-	blt      lbl_80042014
-	lis      r3, 0x0000FFFE@ha
-	addi     r31, r3, 0x0000FFFE@l
+	delete[] _124;
+	size_t length = strlen(format);
+	if (length >= 0xFFFF) {
+		length = 0xFFFE;
+	}
+	_132 = 0;
+	_124 = new char[length + 1];
+	if (_124 != nullptr) {
+		_132 = length + 1;
+		strcpy(_124, format);
+	}
 
-lbl_80042014:
-	li       r0, 0
-	addi     r3, r31, 1
-	sth      r0, 0x132(r29)
-	bl       __nwa__FUl
-	stw      r3, 0x124(r29)
-	lwz      r0, 0x124(r29)
-	cmplwi   r0, 0
-	beq      lbl_80042048
-	addi     r0, r31, 1
-	mr       r4, r30
-	sth      r0, 0x132(r29)
-	lwz      r3, 0x124(r29)
-	bl       strcpy
+	va_end(args);
+	return length;
+}
 
-lbl_80042048:
-	lwz      r0, 0x94(r1)
-	mr       r3, r31
-	lwz      r31, 0x8c(r1)
-	lwz      r30, 0x88(r1)
-	lwz      r29, 0x84(r1)
-	mtlr     r0
-	addi     r1, r1, 0x90
-	blr
-	*/
+/*
+ * --INFO--
+ * Address:	........
+ * Size:	000084
+ */
+void J2DTextBox::setString(short, const char*, ...)
+{
+	// UNUSED FUNCTION
 }
 
 /*
@@ -1410,46 +1142,16 @@ lbl_80042048:
  * Address:	80042068
  * Size:	000078
  */
-bool J2DTextBox::setConnectParent(bool)
+bool J2DTextBox::setConnectParent(bool p1)
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	mr       r31, r4
-	stw      r30, 8(r1)
-	mr       r30, r3
-	lwz      r3, 0xec(r3)
-	cmplwi   r3, 0
-	bne      lbl_80042098
-	li       r3, 0
-	b        lbl_800420C8
-
-lbl_80042098:
-	lwz      r3, 0xc(r3)
-	lwz      r12, 0(r3)
-	lwz      r12, 0xc(r12)
-	mtctr    r12
-	bctrl
-	clrlwi   r0, r3, 0x10
-	cmplwi   r0, 0x11
-	beq      lbl_800420C0
-	li       r3, 0
-	b        lbl_800420C8
-
-lbl_800420C0:
-	stb      r31, 0xb5(r30)
-	mr       r3, r31
-
-lbl_800420C8:
-	lwz      r0, 0x14(r1)
-	lwz      r31, 0xc(r1)
-	lwz      r30, 8(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	if (getPaneTree()->getParent() == nullptr) {
+		return false;
+	}
+	if (getPaneTree()->getParent()->getObject()->getTypeID() != 0x11) {
+		return false;
+	}
+	_0B5 = p1;
+	return p1;
 }
 
 /*
@@ -1457,166 +1159,37 @@ lbl_800420C8:
  * Address:	800420E0
  * Size:	000068
  */
-void J2DTextBox::drawSelf(float, float)
+void J2DTextBox::drawSelf(float p1, float p2)
 {
-	/*
-	stwu     r1, -0x50(r1)
-	mflr     r0
-	stw      r0, 0x54(r1)
-	stfd     f31, 0x48(r1)
-	fmr      f31, f2
-	stfd     f30, 0x40(r1)
-	fmr      f30, f1
-	stw      r31, 0x3c(r1)
-	mr       r31, r3
-	addi     r3, r1, 8
-	bl       PSMTXIdentity
-	mr       r3, r31
-	fmr      f1, f30
-	lwz      r12, 0(r31)
-	fmr      f2, f31
-	addi     r4, r1, 8
-	lwz      r12, 0x38(r12)
-	mtctr    r12
-	bctrl
-	lwz      r0, 0x54(r1)
-	lfd      f31, 0x48(r1)
-	lfd      f30, 0x40(r1)
-	lwz      r31, 0x3c(r1)
-	mtlr     r0
-	addi     r1, r1, 0x50
-	blr
-	*/
+	Mtx mtx;
+	PSMTXIdentity(mtx);
+	drawSelf(p1, p2, &mtx);
 }
 
 /*
  * --INFO--
  * Address:	80042148
  * Size:	0001A8
+ * drawSelf__10J2DTextBoxFffPA3_A4_f
  */
-void J2DTextBox::drawSelf(float, float, float (*)[3][4])
+void J2DTextBox::drawSelf(float p1, float p2, float (*p3)[3][4])
 {
-	/*
-	stwu     r1, -0xd0(r1)
-	mflr     r0
-	stw      r0, 0xd4(r1)
-	stfd     f31, 0xc0(r1)
-	psq_st   f31, 200(r1), 0, qr0
-	stfd     f30, 0xb0(r1)
-	psq_st   f30, 184(r1), 0, qr0
-	stw      r31, 0xac(r1)
-	stw      r30, 0xa8(r1)
-	mr       r30, r3
-	fmr      f30, f1
-	lwz      r0, 0x128(r3)
-	fmr      f31, f2
-	mr       r31, r4
-	addi     r3, r1, 0x48
-	stw      r0, 8(r1)
-	addi     r5, r1, 0x14
-	addi     r6, r1, 0x10
-	lwz      r0, 0x12c(r30)
-	addi     r7, r1, 0xc
-	addi     r8, r1, 8
-	stw      r0, 0xc(r1)
-	lwz      r0, 0x108(r30)
-	stw      r0, 0x10(r1)
-	lwz      r0, 0x104(r30)
-	stw      r0, 0x14(r1)
-	lwz      r4, 0x100(r30)
-	lfs      f1, 0x114(r30)
-	lfs      f2, 0x118(r30)
-	bl
-__ct__8J2DPrintFP7JUTFontffQ28JUtility6TColorQ28JUtility6TColorQ28JUtility6TColorQ28JUtility6TColor
-	lfs      f1, 0x11c(r30)
-	lfs      f0, lbl_80516860@sda21(r2)
-	lfs      f2, 0x120(r30)
-	fcmpo    cr0, f1, f0
-	ble      lbl_800421D8
-	b        lbl_800421DC
-
-lbl_800421D8:
-	fmr      f1, f0
-
-lbl_800421DC:
-	lfs      f0, lbl_80516860@sda21(r2)
-	stfs     f1, 0x98(r1)
-	fcmpo    cr0, f2, f0
-	ble      lbl_800421F0
-	b        lbl_800421F4
-
-lbl_800421F0:
-	fmr      f2, f0
-
-lbl_800421F4:
-	stfs     f2, 0x9c(r1)
-	mr       r3, r31
-	addi     r4, r30, 0x80
-	addi     r5, r1, 0x18
-	bl       PSMTXConcat
-	addi     r3, r1, 0x18
-	li       r4, 0
-	bl       GXLoadPosMtxImm
-	li       r3, 0
-	bl       GXSetNumIndStages
-	li       r31, 0
-
-lbl_80042220:
-	mr       r3, r31
-	bl       GXSetTevDirect
-	addi     r31, r31, 1
-	cmpwi    r31, 0x10
-	blt      lbl_80042220
-	li       r3, 1
-	bl       GXSetNumTexGens
-	li       r3, 0
-	li       r4, 1
-	li       r5, 4
-	li       r6, 0x3c
-	li       r7, 0
-	li       r8, 0x7d
-	bl       GXSetTexCoordGen2
-	lfs      f1, 0x20(r30)
-	addi     r3, r1, 0x48
-	lfs      f0, 0x24(r30)
-	fadds    f1, f30, f1
-	fadds    f2, f31, f0
-	bl       locate__8J2DPrintFff
-	lwz      r4, 0x124(r30)
-	cmplwi   r4, 0
-	beq      lbl_800422BC
-	lfs      f1, 0x28(r30)
-	addi     r3, r1, 0x48
-	lfs      f0, 0x20(r30)
-	lbz      r0, 0x130(r30)
-	fsubs    f1, f1, f0
-	lfs      f3, lbl_8051687C@sda21(r2)
-	lfs      f2, 0x2c(r30)
-	rlwinm   r5, r0, 0x1e, 0x1e, 0x1f
-	lfs      f0, 0x24(r30)
-	clrlwi   r6, r0, 0x1e
-	fadds    f1, f3, f1
-	lfs      f3, 0x10c(r30)
-	fsubs    f2, f2, f0
-	lfs      f4, 0x110(r30)
-	lbz      r7, 0xb3(r30)
-	bl printReturn__8J2DPrintFPCcff18J2DTextBoxHBinding18J2DTextBoxVBindingffUc
-
-lbl_800422BC:
-	addi     r3, r1, 0x48
-	li       r4, -1
-	bl       __dt__8J2DPrintFv
-	psq_l    f31, 200(r1), 0, qr0
-	lfd      f31, 0xc0(r1)
-	psq_l    f30, 184(r1), 0, qr0
-	lfd      f30, 0xb0(r1)
-	lwz      r31, 0xac(r1)
-	lwz      r0, 0xd4(r1)
-	lwz      r30, 0xa8(r1)
-	mtlr     r0
-	addi     r1, r1, 0xd0
-	blr
-	*/
+	J2DPrint printer(m_font, _114, _118, _104, _108, m_black, m_white);
+	printer.setFontSize(_11C, _120);
+	Mtx v1;
+	PSMTXConcat(*p3, _080, v1);
+	GXLoadPosMtxImm(v1, 0);
+	GXSetNumIndStages(0);
+	for (int i = 0; i < 0x10; i++) {
+		GXSetTevDirect((GXTevStageID)i);
+	}
+	GXSetNumTexGens(1);
+	GXSetTexCoordGen2(GX_TEXCOORD0, GX_TG_MTX3X4, GX_TG_TEX0, 60, GX_FALSE, 125);
+	printer.locate(p1 + _020.i.x, p2 + _020.i.y);
+	if (_124 != nullptr) {
+		printer.printReturn(_124, _020.getWidth() + 0.0001f, _020.getHeight(), (J2DTextBoxHBinding)(_130 >> 2 & 3),
+		                    (J2DTextBoxVBinding)(_130 & 3), _10C, _110, _0B3);
+	}
 }
 
 /*
@@ -1624,8 +1197,22 @@ lbl_800422BC:
  * Address:	800422F0
  * Size:	000104
  */
-void J2DTextBox::resize(float, float)
+void J2DTextBox::resize(float width, float height)
 {
+	if (_0B5 != 0) {
+		JSUTree<J2DPane>* jsuSomething = getPaneTree()->getParent();
+		if (jsuSomething != nullptr) {
+			J2DPane* other = jsuSomething->getObject();
+			if (other->getTypeID() == 0x11) {
+				f32 deltaX = other->_020.getWidth() - _020.getWidth();
+				f32 deltaY = other->_020.getHeight() - _020.getHeight();
+				other->resize(deltaX + width, deltaY + height);
+				// other->resize(other->_020.getWidth() - _020.getWidth() + width, other->_020.getHeight() - _020.getHeight() + height);
+				return;
+			}
+		}
+	}
+	J2DPane::resize(width, height);
 	/*
 	stwu     r1, -0x30(r1)
 	mflr     r0
@@ -1704,41 +1291,12 @@ lbl_800423CC:
  * Address:	800423F4
  * Size:	00006C
  */
-bool J2DTextBox::isUsed(const ResFONT*)
+bool J2DTextBox::isUsed(const ResFONT* resFont)
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	mr       r31, r4
-	stw      r30, 8(r1)
-	mr       r30, r3
-	lwz      r3, 0x100(r3)
-	cmplwi   r3, 0
-	beq      lbl_8004243C
-	lwz      r12, 0(r3)
-	lwz      r12, 0x3c(r12)
-	mtctr    r12
-	bctrl
-	cmplw    r3, r31
-	bne      lbl_8004243C
-	li       r3, 1
-	b        lbl_80042448
-
-lbl_8004243C:
-	mr       r3, r30
-	mr       r4, r31
-	bl       isUsed__7J2DPaneFPC7ResFONT
-
-lbl_80042448:
-	lwz      r0, 0x14(r1)
-	lwz      r31, 0xc(r1)
-	lwz      r30, 8(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	if (m_font != nullptr && m_font->getResFont() == resFont) {
+		return true;
+	}
+	return J2DPane::isUsed(resFont);
 }
 
 /*
@@ -1746,136 +1304,74 @@ lbl_80042448:
  * Address:	80042460
  * Size:	000008
  */
-u32 J2DTextBox::getTypeID() const { return 0x13; }
+// u32 J2DTextBox::getTypeID() const { return 0x13; }
 
 /*
  * --INFO--
  * Address:	80042468
  * Size:	000028
  */
-void J2DTextBox::setBlack(JUtility::TColor)
-{
-	/*
-	lbz      r5, 0(r4)
-	lbz      r0, 1(r4)
-	stb      r5, 0x12c(r3)
-	lbz      r5, 2(r4)
-	stb      r0, 0x12d(r3)
-	lbz      r0, 3(r4)
-	stb      r5, 0x12e(r3)
-	stb      r0, 0x12f(r3)
-	li       r3, 1
-	blr
-	*/
-}
+// bool J2DTextBox::setBlack(JUtility::TColor black)
+// {
+// 	m_black = black;
+// 	return true;
+// }
 
 /*
  * --INFO--
  * Address:	80042490
  * Size:	000028
  */
-void J2DTextBox::setWhite(JUtility::TColor)
-{
-	/*
-	lbz      r5, 0(r4)
-	lbz      r0, 1(r4)
-	stb      r5, 0x128(r3)
-	lbz      r5, 2(r4)
-	stb      r0, 0x129(r3)
-	lbz      r0, 3(r4)
-	stb      r5, 0x12a(r3)
-	stb      r0, 0x12b(r3)
-	li       r3, 1
-	blr
-	*/
-}
+// bool J2DTextBox::setWhite(JUtility::TColor white)
+// {
+// 	m_white = white;
+// 	return true;
+// }
 
 /*
  * --INFO--
  * Address:	800424B8
  * Size:	000048
  */
-void J2DTextBox::setBlackWhite(JUtility::TColor, JUtility::TColor)
-{
-	/*
-	lbz      r6, 0(r4)
-	lbz      r0, 1(r4)
-	stb      r6, 0x12c(r3)
-	lbz      r6, 2(r4)
-	stb      r0, 0x12d(r3)
-	lbz      r0, 3(r4)
-	stb      r6, 0x12e(r3)
-	lbz      r4, 0(r5)
-	stb      r0, 0x12f(r3)
-	lbz      r0, 1(r5)
-	stb      r4, 0x128(r3)
-	lbz      r4, 2(r5)
-	stb      r0, 0x129(r3)
-	lbz      r0, 3(r5)
-	stb      r4, 0x12a(r3)
-	stb      r0, 0x12b(r3)
-	li       r3, 1
-	blr
-	*/
-}
+// bool J2DTextBox::setBlackWhite(JUtility::TColor black, JUtility::TColor white)
+// {
+// 	m_black = black;
+// 	m_white = white;
+// 	return true;
+// }
 
 /*
  * --INFO--
  * Address:	80042500
  * Size:	00000C
  */
-JUtility::TColor J2DTextBox::getBlack() const
-{
-	/*
-	lwz      r0, 0x12c(r4)
-	stw      r0, 0(r3)
-	blr
-	*/
-}
+// JUtility::TColor J2DTextBox::getBlack() const { return m_black; }
 
 /*
  * --INFO--
  * Address:	8004250C
  * Size:	00000C
  */
-JUtility::TColor J2DTextBox::getWhite() const
-{
-	/*
-	lwz      r0, 0x128(r4)
-	stw      r0, 0(r3)
-	blr
-	*/
-}
+// JUtility::TColor J2DTextBox::getWhite() const { return m_white; }
 
 /*
  * --INFO--
  * Address:	80042518
  * Size:	000008
  */
-J2DMaterial* J2DTextBox::getMaterial() const { return nullptr; }
+// J2DMaterial* J2DTextBox::getMaterial() const { return nullptr; }
 
 /*
  * --INFO--
  * Address:	80042520
  * Size:	000020
+ * isUsed__10J2DTextBoxFPC7ResTIMG
  */
-bool J2DTextBox::isUsed(const ResTIMG*)
-{
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	bl       isUsed__7J2DPaneFPC7ResTIMG
-	lwz      r0, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
-}
+// bool J2DTextBox::isUsed(const ResTIMG* resource) { return J2DPane::isUsed(resource); }
 
 /*
  * --INFO--
  * Address:	80042540
  * Size:	000004
  */
-void J2DTextBox::rewriteAlpha() { }
+// void J2DTextBox::rewriteAlpha() { }

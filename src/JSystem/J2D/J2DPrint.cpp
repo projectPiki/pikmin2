@@ -1,3 +1,4 @@
+#include "JSystem/J2D/J2DPrint.h"
 #include "types.h"
 
 /*
@@ -444,7 +445,7 @@ void J2DPrint::private_initiate(JUTFont*, float, float, JUtility::TColor, JUtili
  * Address:	8003DB94
  * Size:	000044
  */
-void J2DPrint::setFont(JUTFont*)
+JUTFont* J2DPrint::setFont(JUTFont* font)
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -585,7 +586,7 @@ void J2DPrint::locate(float, float)
  * Address:	8003DCF8
  * Size:	000114
  */
-void J2DPrint::print(float, float, const char*, ...)
+double J2DPrint::print(float, float, const char*, ...)
 {
 	/*
 	stwu     r1, -0x90(r1)

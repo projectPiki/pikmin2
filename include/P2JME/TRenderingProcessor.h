@@ -75,7 +75,7 @@ struct TRenderingProcessor : public TRenderingProcessorBase {
 	void preProcID(uint, uint);
 	void preProcCenteringCode(uint);
 	void preProcCenteringID(uint, uint);
-	void setFont(JUTFont*);
+	void setFont(JUTFont* font);
 	void setTextBoxInfo(J2DPane*);
 
 	// _00     = VTBL

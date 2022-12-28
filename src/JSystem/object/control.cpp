@@ -1,3 +1,6 @@
+#include "JStudio/TAdaptor.h"
+#include "JSystem/JMessage/TControl.h"
+#include "JSystem/JStudio_JMessage.h"
 #include "types.h"
 
 /*
@@ -23,13 +26,14 @@
         .4byte 0
 */
 
+namespace JStudio_JMessage {
+namespace {
 /*
  * --INFO--
  * Address:	80014DF8
  * Size:	0000BC
  */
-void createObject_MESSAGE_JMS___Q216JStudio_JMessage21 @unnamed @control_cpp
-    @FRCQ47JStudio3stb4data20TParse_TBlock_objectPQ28JMessage8TControl(void)
+JStudio::TObject* createObject_MESSAGE(const JStudio::stb::data::TParse_TBlock_object& data, JMessage::TControl* system)
 {
 	/*
 	.loc_0x0:
@@ -94,6 +98,7 @@ void createObject_MESSAGE_JMS___Q216JStudio_JMessage21 @unnamed @control_cpp
 	  blr
 	*/
 }
+} // namespace
 
 /*
  * --INFO--
@@ -110,7 +115,7 @@ JStudio_JMessage::TCreateObject_base::~TCreateObject_base(void)
  * Address:	80014EB4
  * Size:	0000AC
  */
-void JStudio_JMessage::TCreateObject_base::create((JStudio::TObject**, JStudio::stb::data::TParse_TBlock_object const&))
+bool JStudio_JMessage::TCreateObject_base::create(JStudio::TObject** newObject, JStudio::stb::data::TParse_TBlock_object const& data)
 {
 	/*
 	.loc_0x0:
@@ -218,7 +223,7 @@ lbl_80014FB4:
  * Address:	80014FD0
  * Size:	000008
  */
-void JStudio_JMessage::TCreateObject::find((JStudio::stb::data::TParse_TBlock_object const&))
+void JStudio_JMessage::TCreateObject::find(JStudio::stb::data::TParse_TBlock_object const&)
 {
 	/*
 	.loc_0x0:
@@ -226,3 +231,4 @@ void JStudio_JMessage::TCreateObject::find((JStudio::stb::data::TParse_TBlock_ob
 	  blr
 	*/
 }
+} // namespace JStudio_JMessage

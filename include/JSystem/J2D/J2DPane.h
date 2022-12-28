@@ -3,7 +3,9 @@
 
 #include "Dolphin/gx.h"
 #include "Dolphin/mtx.h"
+#include "Dolphin/string.h"
 #include "JSystem/J2D/J2DAnm.h"
+#include "JSystem/J2D/J2DManage.h"
 #include "JSystem/J2D/J2DTypes.h"
 #include "JSystem/JGeometry.h"
 #include "JSystem/JSupport/JSUList.h"
@@ -56,6 +58,26 @@ struct J2DScrnBlockHeader {
 	int m_blockLength;
 };
 
+/**
+ * @fabricated
+ * @size{0x20}
+ */
+struct J2DTextBoxBlock {
+	u32 _00;              // _00
+	u16 _04;              // _04
+	s16 _06;              // _06 - converted to float for _114
+	s16 _08;              // _08 - converted to float for _118
+	u16 _0A;              // _0A - converted to float for _11C
+	u16 _0C;              // _0C - converted to float for _120
+	u8 _0E;               // _0E - J2DTextBoxHBinding for _130
+	u8 _0F;               // _0F - J2DTextBoxVBinding for _130
+	u32 _10;              // _10 - color for _104
+	u32 _14;              // _14 - color for _108
+	u8 m_doConnectParent; // _18
+	u16 _1C;              // _1C
+	u16 _1E;              // _1E
+};
+
 /** @fabricated */
 struct J2DPaneExBlock : J2DScrnBlockHeader {
 	u8 _08[2];         // _08
@@ -92,48 +114,56 @@ struct J2DPictureBlockTrailer {
 	_GXColor _20[4];                // _20
 };
 
+struct J2DScreenInfoBlock : J2DScrnBlockHeader {
+	u16 m_width;  // _08
+	u16 m_height; // _0A
+	u32 m_color;  // _0C
+};
+
 // Size: 0x100
 struct J2DPane {
 	J2DPane();
-	J2DPane(J2DPane*, bool, u64, const JGeometry::TBox2f&);
-	J2DPane(u64, const JGeometry::TBox2f&);
-	J2DPane(J2DPane*, JSURandomInputStream*, u8);
+	J2DPane(J2DPane* parent, bool isVisible, u64 tag, const JGeometry::TBox2f& box);
+	// inline J2DPane(J2DPane* parent, bool isVisible, u64 tag, float x0, float y0, float x1, float y1)
+	//     : J2DPane(parent, isVisible, tag, JGeometry::TBox2f(x0, y0, x1, y1)) {};
+	J2DPane(u64 tag, const JGeometry::TBox2f& box);
+	J2DPane(J2DPane* parent, JSURandomInputStream* input, u8 version);
 
-	virtual ~J2DPane();                                                        // _08
-	virtual u32 getTypeID() const;                                             // _0C (weak)
-	virtual void move(float, float);                                           // _10
-	virtual void add(float, float);                                            // _14
-	virtual void resize(float, float);                                         // _18
-	virtual void setCullBack(bool);                                            // _1C (weak)
-	virtual void setCullBack(GXCullMode);                                      // _20
-	virtual void setAlpha(u8);                                                 // _24 (weak)
-	virtual bool setConnectParent(bool);                                       // _28 (weak)
-	virtual void calcMtx();                                                    // _2C (weak)
-	virtual void update();                                                     // _30 (weak)
-	virtual void drawSelf(float, float);                                       // _34 (weak)
-	virtual void drawSelf(float, float, float (*)[3][4]);                      // _38 (weak)
-	virtual J2DPane* search(u64);                                              // _3C
-	virtual J2DPane* searchUserInfo(u64);                                      // _40
-	virtual void makeMatrix(float, float);                                     // _44 (weak)
-	virtual void makeMatrix(float, float, float, float);                       // _48
-	virtual bool isUsed(const ResTIMG*);                                       // _4C
-	virtual bool isUsed(const ResFONT*);                                       // _50
-	virtual void clearAnmTransform();                                          // _54
-	virtual void rewriteAlpha();                                               // _58 (weak)
-	virtual void setAnimation(J2DAnmBase*);                                    // _5C
-	virtual void setAnimation(J2DAnmTransform*);                               // _60
-	virtual void setAnimation(J2DAnmColor*);                                   // _64 (weak)
-	virtual void setAnimation(J2DAnmTexPattern*);                              // _68 (weak)
-	virtual void setAnimation(J2DAnmTextureSRTKey*);                           // _6C (weak)
-	virtual void setAnimation(J2DAnmTevRegKey*);                               // _70 (weak)
-	virtual void setAnimation(J2DAnmVisibilityFull*);                          // _74 (weak)
-	virtual void setAnimation(J2DAnmVtxColor*);                                // _78 (weak)
-	virtual const J2DAnmTransform* animationTransform(const J2DAnmTransform*); // _7C
-	virtual void setVisibileAnimation(J2DAnmVisibilityFull*);                  // _80
-	virtual void setAnimationVF(J2DAnmVisibilityFull*);                        // _84 (weak)
-	virtual void setVtxColorAnimation(J2DAnmVtxColor*);                        // _88
-	virtual void setAnimationVC(J2DAnmVtxColor*);                              // _8C (weak)
-	virtual const J2DAnmTransform* animationPane(const J2DAnmTransform*);      // _90
+	virtual ~J2DPane();                                                                           // _08
+	virtual u16 getTypeID() const { return 0x10; }                                                // _0C (weak)
+	virtual void move(float x, float y);                                                          // _10
+	virtual void add(float x, float y);                                                           // _14
+	virtual void resize(float, float);                                                            // _18
+	virtual void setCullBack(bool shouldCullBack);                                                // _1C (weak)
+	virtual void setCullBack(GXCullMode cullMode);                                                // _20
+	virtual void setAlpha(u8 alpha) { m_alpha = alpha; }                                          // _24 (weak)
+	virtual bool setConnectParent(bool);                                                          // _28 (weak)
+	virtual void calcMtx();                                                                       // _2C (weak)
+	virtual void update() { }                                                                     // _30 (weak)
+	virtual void drawSelf(float, float) { }                                                       // _34 (weak)
+	virtual void drawSelf(float, float, float (*)[3][4]) { }                                      // _38 (weak)
+	virtual J2DPane* search(u64);                                                                 // _3C
+	virtual J2DPane* searchUserInfo(u64);                                                         // _40
+	virtual void makeMatrix(float, float);                                                        // _44 (weak)
+	virtual void makeMatrix(float, float, float, float);                                          // _48
+	virtual bool isUsed(const ResTIMG* resource);                                                 // _4C
+	virtual bool isUsed(const ResFONT* resource);                                                 // _50
+	virtual void clearAnmTransform();                                                             // _54
+	virtual void rewriteAlpha() { }                                                               // _58 (weak)
+	virtual void setAnimation(J2DAnmBase* animation);                                             // _5C
+	virtual void setAnimation(J2DAnmTransform* animation);                                        // _60
+	virtual void setAnimation(J2DAnmColor* animation) { }                                         // _64 (weak)
+	virtual void setAnimation(J2DAnmTexPattern* animation) { }                                    // _68 (weak)
+	virtual void setAnimation(J2DAnmTextureSRTKey* animation) { }                                 // _6C (weak)
+	virtual void setAnimation(J2DAnmTevRegKey* animation) { }                                     // _70 (weak)
+	virtual void setAnimation(J2DAnmVisibilityFull* animation) { }                                // _74 (weak)
+	virtual void setAnimation(J2DAnmVtxColor* animation) { }                                      // _78 (weak)
+	virtual const J2DAnmTransform* animationTransform(const J2DAnmTransform* animation);          // _7C
+	virtual void setVisibileAnimation(J2DAnmVisibilityFull* animation);                           // _80
+	virtual void setAnimationVF(J2DAnmVisibilityFull* animationVF) { setAnimation(animationVF); } // _84 (weak)
+	virtual void setVtxColorAnimation(J2DAnmVtxColor* animation);                                 // _88
+	virtual void setAnimationVC(J2DAnmVtxColor* animationVC) { setAnimation(animationVC); }       // _8C (weak)
+	virtual const J2DAnmTransform* animationPane(const J2DAnmTransform* animation);               // _90
 	// virtual void _8C() = 0;                                           // _94
 	// /* This is just (automatic?) padding. */
 
@@ -141,7 +171,7 @@ struct J2DPane {
 	void changeUseTrans(J2DPane*);
 	void clip(const JGeometry::TBox2f&);
 	void draw(float, float, const J2DGrafContext*, bool, bool);
-	void gather(J2DPane**, u64, u64, int, int&);
+	void gather(J2DPane** gatheredPanes, u64 minID, u64 maxID, int gatheredLimit, int& gatheredCount);
 
 	JGeometry::TBox2f* getBounds();
 	JGeometry::TVec3f getGlbVtx(u8) const;
@@ -162,10 +192,10 @@ struct J2DPane {
 	JSUTree<J2DPane>* getPaneTree() { return &m_tree; }
 
 	void initiate();
-	void initialize(J2DPane*, bool, u64, const JGeometry::TBox2f&);
+	void initialize(J2DPane* parent, bool isVisible, u64 tag, const JGeometry::TBox2f& box);
 	void initialize(u64, const JGeometry::TBox2f&);
-	void makePaneStream(J2DPane*, JSURandomInputStream*);
-	void makePaneExStream(J2DPane*, JSURandomInputStream*);
+	void makePaneStream(J2DPane* parent, JSURandomInputStream* input);
+	void makePaneExStream(J2DPane* parent, JSURandomInputStream* input);
 	void place(const JGeometry::TBox2f&);
 	void rotate(float, float, J2DRotateAxis, float);
 	void rotate(float);
@@ -253,14 +283,14 @@ struct J2DPane {
 		}
 	}
 
-	u32 appendChild(J2DPane*);
-	u32 prependChild(J2DPane*);
-	u32 removeChild(J2DPane*);
+	bool appendChild(J2DPane* child);
+	bool prependChild(J2DPane* child);
+	bool removeChild(J2DPane* child);
 
 	s16 J2DCast_F32_to_S16(f32, u8);
 
 	// Unused/inlined:
-	void insertChild(J2DPane*, J2DPane*);
+	bool insertChild(J2DPane* before, J2DPane* child);
 	float getRotate() const;
 	void gatherUserInfo(J2DPane**, u64, u64, int, int&);
 
@@ -303,27 +333,31 @@ struct J2DPane {
 struct J2DScreen : public J2DPane {
 	J2DScreen();
 
-	virtual ~J2DScreen();                                                                                      // _08
-	virtual u32 getTypeID() const;                                                                             // _0C (weak)
-	virtual void calcMtx();                                                                                    // _2C (weak)
-	virtual void drawSelf(float, float, float (*)[3][4]);                                                      // _38
-	virtual J2DPane* search(u64);                                                                              // _3C
-	virtual J2DPane* searchUserInfo(u64);                                                                      // _40
-	virtual bool isUsed(const ResTIMG*);                                                                       // _4C
-	virtual bool isUsed(const ResFONT*);                                                                       // _50
-	virtual void clearAnmTransform();                                                                          // _54 (weak)
-	virtual void setAnimation(J2DAnmBase*);                                                                    // _5C (weak)
-	virtual void setAnimation(J2DAnmTransform*);                                                               // _60 (weak)
-	virtual void setAnimation(J2DAnmColor*);                                                                   // _64
-	virtual void setAnimation(J2DAnmTexPattern*);                                                              // _68
-	virtual void setAnimation(J2DAnmTextureSRTKey*);                                                           // _6C
-	virtual void setAnimation(J2DAnmTevRegKey*);                                                               // _70
-	virtual void setAnimation(J2DAnmVisibilityFull*);                                                          // _74
-	virtual void setAnimation(J2DAnmVtxColor*);                                                                // _78
-	virtual void setAnimationVF(J2DAnmVisibilityFull*);                                                        // _84 (weak)
-	virtual void setAnimationVC(J2DAnmVtxColor*);                                                              // _8C (weak)
-	virtual J2DPane* createPane(const J2DScrnBlockHeader&, JSURandomInputStream*, J2DPane*, u32);              // _94 (weak)
-	virtual J2DPane* createPane(const J2DScrnBlockHeader&, JSURandomInputStream*, J2DPane*, u32, JKRArchive*); // _98
+	virtual ~J2DScreen();                                                                                                  // _08
+	virtual u16 getTypeID() const { return 0x8; }                                                                          // _0C (weak)
+	virtual void calcMtx() { makeMatrix(_0D4.x, _0D4.y); }                                                                 // _2C (weak)
+	virtual void drawSelf(float, float, float (*)[3][4]);                                                                  // _38
+	virtual J2DPane* search(u64);                                                                                          // _3C
+	virtual J2DPane* searchUserInfo(u64);                                                                                  // _40
+	virtual bool isUsed(const ResTIMG* resource);                                                                          // _4C
+	virtual bool isUsed(const ResFONT* resource);                                                                          // _50
+	virtual void clearAnmTransform() { J2DPane::clearAnmTransform(); }                                                     // _54 (weak)
+	virtual void setAnimation(J2DAnmBase* animation);                                                                      // _5C (weak)
+	virtual void setAnimation(J2DAnmTransform* animation);                                                                 // _60 (weak)
+	virtual void setAnimation(J2DAnmColor* animation);                                                                     // _64
+	virtual void setAnimation(J2DAnmTexPattern* animation);                                                                // _68
+	virtual void setAnimation(J2DAnmTextureSRTKey* animation);                                                             // _6C
+	virtual void setAnimation(J2DAnmTevRegKey* animation);                                                                 // _70
+	virtual void setAnimation(J2DAnmVisibilityFull* animation);                                                            // _74
+	virtual void setAnimation(J2DAnmVtxColor* animation);                                                                  // _78
+	virtual void setAnimationVF(J2DAnmVisibilityFull* animation) { }                                                       // _84 (weak)
+	virtual void setAnimationVC(J2DAnmVtxColor* animation) { }                                                             // _8C (weak)
+	virtual J2DPane* createPane(const J2DScrnBlockHeader& header, JSURandomInputStream* input, J2DPane* parent, u32 flags) // _94 (weak)
+	{
+		return createPane(header, input, parent, flags, nullptr);
+	}
+	virtual J2DPane* createPane(const J2DScrnBlockHeader& header, JSURandomInputStream* input, J2DPane* parent, u32 flags,
+	                            JKRArchive* archive); // _98
 
 	void animation();
 	bool checkSignature(JSURandomInputStream*);
@@ -331,13 +365,13 @@ struct J2DScreen : public J2DPane {
 	bool createMaterial(JSURandomInputStream*, u32, JKRArchive*);
 	void draw(float, float, const J2DGrafContext*);
 	u32 gather(J2DPane**, u64, u64, int);
-	J2DMaterial* getMaterial(u16);
-	void* getResReference(JSURandomInputStream*, u32);
-	bool getScreenInformation(JSURandomInputStream*);
+	J2DMaterial* getMaterial(u16 index);
+	u8* getResReference(JSURandomInputStream*, u32);
+	bool getScreenInformation(JSURandomInputStream* input);
 	u32 makeHierarchyPanes(J2DPane*, JSURandomInputStream*, u32, JKRArchive*);
 	bool set(const char*, u32, JKRArchive*);
 	bool set(JSURandomInputStream*, u32);
-	bool private_set(JSURandomInputStream*, u32, JKRArchive*);
+	bool private_set(JSURandomInputStream* stream, u32 flags, JKRArchive* archive);
 
 	static void* getNameResource(const char*);
 
@@ -348,28 +382,47 @@ struct J2DScreen : public J2DPane {
 	void* _108;               // _108
 	void* _10C;               // _10C
 	JUTNameTab* m_nameTab;    // _110
-	int _114;                 // _114
+	JUtility::TColor _114;    // _114
 
-	static void* mDataManage; // unknown type
+	static J2DDataManage* mDataManage;
 };
+
+// /** @fabricated */
+// struct J2DColorBox {
+// 	inline J2DColorBox& operator=(const J2DColorBox& other)
+// 	{
+// 		_00 = other._00;
+// 		_04 = other._04;
+// 		_08 = other._08;
+// 		_0C = other._0C;
+// 		return *this;
+// 	}
+// 	JUtility::TColor _00;
+// 	JUtility::TColor _04;
+// 	JUtility::TColor _08;
+// 	JUtility::TColor _0C;
+// };
+
+/** @fabricated */
+typedef JUtility::TColor J2DColorBox[4];
 
 // Size: 0x168
 struct J2DPicture : public J2DPane {
 	J2DPicture();
-	J2DPicture(J2DPane*, JSURandomInputStream*, JKRArchive*);
-	J2DPicture(J2DPane*, JSURandomInputStream*, J2DMaterial*);
+	J2DPicture(J2DPane* parent, JSURandomInputStream* input, JKRArchive* archive);
+	J2DPicture(J2DPane* parent, JSURandomInputStream* input, J2DMaterial* materials);
 	J2DPicture(const ResTIMG*);
 	J2DPicture(const char*);
 	J2DPicture(JUTTexture*);
 	J2DPicture(u64, const JGeometry::TBox2f&);
 
 	virtual ~J2DPicture();                                                                   // _08
-	virtual u32 getTypeID() const { return 0x12; };                                          // _0C (weak)
+	virtual u16 getTypeID() const { return 0x12; };                                          // _0C (weak)
 	virtual void drawSelf(float, float);                                                     // _34
 	virtual void drawSelf(float, float, float (*)[3][4]);                                    // _38
-	virtual bool isUsed(const ResTIMG*);                                                     // _4C
-	virtual bool isUsed(const ResFONT*);                                                     // _50 (weak)
-	virtual void rewriteAlpha();                                                             // _58 (weak)
+	virtual bool isUsed(const ResTIMG* resource);                                            // _4C
+	virtual bool isUsed(const ResFONT* resource) { return J2DPane::isUsed(resource); }       // _50 (weak)
+	virtual void rewriteAlpha() { }                                                          // _58 (weak)
 	virtual void initiate(const ResTIMG*, const ResTLUT*);                                   // _94
 	virtual void prepareTexture(u8);                                                         // _98
 	virtual bool append(const ResTIMG*, float);                                              // _9C (weak)
@@ -406,14 +459,28 @@ struct J2DPicture : public J2DPane {
 	virtual ResTIMG* changeTexture(const ResTIMG*, u8, JUTPalette*);                         // _118
 	virtual ResTIMG* changeTexture(const char*, u8, JUTPalette*);                            // _11C
 	virtual JUTTexture* getTexture(u8) const;                                                // _120 (weak)
-	virtual u8 getTextureCount() const;                                                      // _124 (weak)
-	virtual bool setBlack(JUtility::TColor);                                                 // _128 (weak)
-	virtual bool setWhite(JUtility::TColor);                                                 // _12C (weak)
-	virtual bool setBlackWhite(JUtility::TColor, JUtility::TColor);                          // _130 (weak)
-	virtual JUtility::TColor getBlack() const;                                               // _134 (weak)
-	virtual JUtility::TColor getWhite() const;                                               // _138 (weak)
-	virtual J2DMaterial* getMaterial() const;                                                // _13C (weak)
-	virtual void drawFullSet(float, float, float, float, float (*)[3][4]);                   // _140
+	virtual u8 getTextureCount() const { return m_textureCount; }                            // _124 (weak)
+
+	virtual bool setBlack(JUtility::TColor black) // _128 (weak)
+	{
+		m_black = black;
+		return true;
+	}
+	virtual bool setWhite(JUtility::TColor white) // _12C (weak)
+	{
+		m_white = white;
+		return true;
+	}
+	virtual bool setBlackWhite(JUtility::TColor black, JUtility::TColor white) // _130 (weak)
+	{
+		m_black = black;
+		m_white = white;
+		return true;
+	}
+	virtual JUtility::TColor getBlack() const { return m_black; }          // _134 (weak)
+	virtual JUtility::TColor getWhite() const { return m_white; }          // _138 (weak)
+	virtual J2DMaterial* getMaterial() const { return nullptr; }           // _13C (weak)
+	virtual void drawFullSet(float, float, float, float, float (*)[3][4]); // _140
 	virtual void drawTexCoord(float, float, float, float, short, short, short, short, short, short, short, short, float (*)[3][4]); // _144
 	virtual u8 getUsableTlut(u8);                                                                                                   // _148
 
@@ -432,11 +499,56 @@ struct J2DPicture : public J2DPane {
 
 	inline JUtility::TColor getColor(int i) { return _150[i]; }
 
-	inline JUtility::TColor setColor(JUtility::TColor color, int i)
+	inline void setColor(JUtility::TColor color, int i) { _150[i] = color; }
+
+	inline J2DColorBox& setColorBox(u32 color)
 	{
-		_150[i] = color;
-		return color;
+		for (int i = 0; i < 4; i++) {
+			_150[i].set(JUtility::TColor(color));
+		}
+		return _150;
 	}
+
+	// inline void setColorBox(u32 a, u32 b, u32 c, u32 d)
+	// {
+	// 	_150[0] = a;
+	// 	_150[1] = b;
+	// 	_150[2] = c;
+	// 	_150[3] = d;
+	// 	// return _150;
+	// }
+	// inline void setColorBox(u32 a, u32 b, u32 c, u32 d)
+	// {
+	// 	setColor(a, 0);
+	// 	setColor(b, 1);
+	// 	setColor(c, 2);
+	// 	setColor(d, 3);
+	// 	// return _150;
+	// }
+	// inline void setColorBox(u32 a, u32 b, u32 c, u32 d)
+	// {
+	// 	setColor(JUtility::TColor(a), 0);
+	// 	setColor(JUtility::TColor(b), 1);
+	// 	setColor(JUtility::TColor(c), 2);
+	// 	setColor(JUtility::TColor(d), 3);
+	// 	// return _150;
+	// }
+	inline void setColorBox(JUtility::TColor a, JUtility::TColor b, JUtility::TColor c, JUtility::TColor d)
+	{
+		_150[0] = a;
+		_150[1] = b;
+		_150[2] = c;
+		_150[3] = d;
+		// return _150;
+	}
+	// inline void setColorBox(u32 a, u32 b, u32 c, u32 d)
+	// {
+	// 	_150[0].set(JUtility::TColor(a));
+	// 	_150[1].set(JUtility::TColor(b));
+	// 	_150[2].set(JUtility::TColor(c));
+	// 	_150[3].set(JUtility::TColor(d));
+	// 	// return _150;
+	// }
 
 	// J2DPane _000
 	JUTTexture* m_textures[4];       // _100
@@ -449,9 +561,10 @@ struct J2DPicture : public J2DPane {
 	JUTPalette* m_palette;           // _144
 	JUtility::TColor m_white;        // _148
 	JUtility::TColor m_black;        // _14C
-	JUtility::TColor _150[4];        // _150
-	u32 _160;                        // _160
-	u32 _164;                        // _164
+	J2DColorBox _150;                // _150
+	// JUtility::TColor _150[4];        // _150
+	u32 _160; // _160
+	u32 _164; // _164
 };
 
 // Size: 0x1A8
@@ -460,27 +573,27 @@ struct J2DPictureEx : public J2DPicture {
 
 	J2DPictureEx();
 	J2DPictureEx(const ResTIMG*, u32);
-	J2DPictureEx(J2DPane*, JSURandomInputStream*, u32, J2DMaterial*);
+	J2DPictureEx(J2DPane* parent, JSURandomInputStream* input, u32 flags, J2DMaterial* materials);
 	J2DPictureEx(u64, const JGeometry::TBox2f&, const ResTIMG*, u32);
 	J2DPictureEx(u64, const JGeometry::TBox2f&, const char*, u32);
 
 	virtual ~J2DPictureEx();                                                                 // _08
-	virtual void setCullBack(bool);                                                          // _1C (weak)
-	virtual void setCullBack(GXCullMode);                                                    // _20
+	virtual void setCullBack(bool shouldCullBack);                                           // _1C (weak)
+	virtual void setCullBack(GXCullMode cullMode);                                           // _20
 	virtual void setAlpha(u8);                                                               // _24
 	virtual void drawSelf(float, float, float (*)[3][4]);                                    // _38
-	virtual bool isUsed(const ResTIMG*);                                                     // _4C
-	virtual bool isUsed(const ResFONT*);                                                     // _50 (weak)
+	virtual bool isUsed(const ResTIMG* resource);                                            // _4C
+	virtual bool isUsed(const ResFONT* resource);                                            // _50 (weak)
 	virtual void rewriteAlpha();                                                             // _58
-	virtual void setAnimation(J2DAnmBase*);                                                  // _5C (weak)
-	virtual void setAnimation(J2DAnmTransform*);                                             // _60 (weak)
-	virtual void setAnimation(J2DAnmColor*);                                                 // _64
-	virtual void setAnimation(J2DAnmTexPattern*);                                            // _68
-	virtual void setAnimation(J2DAnmTextureSRTKey*);                                         // _6C
-	virtual void setAnimation(J2DAnmTevRegKey*);                                             // _70
-	virtual void setAnimation(J2DAnmVisibilityFull*);                                        // _74
-	virtual void setAnimation(J2DAnmVtxColor*);                                              // _78
-	virtual const J2DAnmTransform* animationPane(const J2DAnmTransform*);                    // _90
+	virtual void setAnimation(J2DAnmBase* animation);                                        // _5C (weak)
+	virtual void setAnimation(J2DAnmTransform* animation);                                   // _60 (weak)
+	virtual void setAnimation(J2DAnmColor* animation);                                       // _64
+	virtual void setAnimation(J2DAnmTexPattern* animation);                                  // _68
+	virtual void setAnimation(J2DAnmTextureSRTKey* animation);                               // _6C
+	virtual void setAnimation(J2DAnmTevRegKey* animation);                                   // _70
+	virtual void setAnimation(J2DAnmVisibilityFull* animation);                              // _74
+	virtual void setAnimation(J2DAnmVtxColor* animation);                                    // _78
+	virtual const J2DAnmTransform* animationPane(const J2DAnmTransform* animation);          // _90
 	virtual void initiate(const ResTIMG*, const ResTLUT*);                                   // _94
 	virtual void prepareTexture(u8);                                                         // _98
 	virtual bool append(const ResTIMG*, float);                                              // _9C (weak)
@@ -517,9 +630,9 @@ struct J2DPictureEx : public J2DPicture {
 	virtual ResTIMG* changeTexture(const char*, u8, JUTPalette*);                            // _11C
 	virtual JUTTexture* getTexture(u8) const;                                                // _120
 	virtual u8 getTextureCount() const;                                                      // _124
-	virtual bool setBlack(JUtility::TColor);                                                 // _128
-	virtual bool setWhite(JUtility::TColor);                                                 // _12C
-	virtual bool setBlackWhite(JUtility::TColor, JUtility::TColor);                          // _130
+	virtual bool setBlack(JUtility::TColor black);                                           // _128
+	virtual bool setWhite(JUtility::TColor white);                                           // _12C
+	virtual bool setBlackWhite(JUtility::TColor black, JUtility::TColor white);              // _130
 	virtual JUtility::TColor getBlack() const;                                               // _134
 	virtual JUtility::TColor getWhite() const;                                               // _138
 	virtual J2DMaterial* getMaterial() const;                                                // _13C (weak)
@@ -574,39 +687,80 @@ struct J2DPictureEx : public J2DPicture {
 	u8 _1A4;                               // _1A4
 };
 
-typedef u32 J2DTextBoxHBinding;
-typedef u32 J2DTextBoxVBinding;
-
 // Size: 0x138
 struct J2DTextBox : public J2DPane {
 	J2DTextBox();
-	J2DTextBox(J2DPane*, JSURandomInputStream*, JKRArchive*);
-	J2DTextBox(J2DPane*, JSURandomInputStream*, unsigned long, J2DMaterial*);
-	J2DTextBox(u64, const JGeometry::TBox2<float>&, const ResFONT*, const char*, short, J2DTextBoxHBinding, J2DTextBoxVBinding);
+	J2DTextBox(J2DPane* parent, JSURandomInputStream* input, JKRArchive* archive);
+	J2DTextBox(J2DPane* parent, JSURandomInputStream* input, u32 flags, J2DMaterial* materials);
+	J2DTextBox(u64, const JGeometry::TBox2f&, const ResFONT*, const char*, s16, J2DTextBoxHBinding, J2DTextBoxVBinding);
+	J2DTextBox(u64 tag, const JGeometry::TBox2f& box);                                                                // unused/inlined
+	J2DTextBox(const ResFONT*, const char*, s16);                                                                     // unused/inlined
+	J2DTextBox(const char*, const char*, s16);                                                                        // unused/inlined
+	J2DTextBox(J2DPane* parent, JSURandomInputStream* input);                                                         // unused/inlined
+	J2DTextBox(u64, const JGeometry::TBox2f&, const char*, const char*, s16, J2DTextBoxHBinding, J2DTextBoxVBinding); // unused/inlined
 
-	virtual ~J2DTextBox();                                          // _08
-	virtual u32 getTypeID() const;                                  // _0C (weak)
-	virtual void resize(float, float);                              // _18
-	virtual bool setConnectParent(bool);                            // _28
-	virtual void drawSelf(float, float);                            // _34
-	virtual void drawSelf(float, float, float (*)[3][4]);           // _38
-	virtual bool isUsed(const ResTIMG*);                            // _4C (weak)
-	virtual bool isUsed(const ResFONT*);                            // _50
-	virtual void rewriteAlpha();                                    // _58 (weak)
-	virtual void draw(float, float);                                // _94
-	virtual void draw(float, float, float, J2DTextBoxHBinding);     // _98
-	virtual void setFont(JUTFont*);                                 // _9C
-	virtual JUTResFont* getFont() const;                            // _A0 (weak)
-	virtual void setBlack(JUtility::TColor);                        // _A4 (weak)
-	virtual void setWhite(JUtility::TColor);                        // _A8 (weak)
-	virtual void setBlackWhite(JUtility::TColor, JUtility::TColor); // _AC (weak)
-	virtual JUtility::TColor getBlack() const;                      // _B0 (weak)
-	virtual JUtility::TColor getWhite() const;                      // _B4 (weak)
-	virtual J2DMaterial* getMaterial() const;                       // _B8 (weak)
+	virtual ~J2DTextBox();                                                             // _08
+	virtual u16 getTypeID() const { return 0x13; }                                     // _0C (weak)
+	virtual void resize(float, float);                                                 // _18
+	virtual bool setConnectParent(bool);                                               // _28
+	virtual void drawSelf(float, float);                                               // _34
+	virtual void drawSelf(float, float, float (*)[3][4]);                              // _38
+	virtual bool isUsed(const ResTIMG* resource) { return J2DPane::isUsed(resource); } // _4C (weak)
+	virtual bool isUsed(const ResFONT* resource);                                      // _50
+	virtual void rewriteAlpha() { }                                                    // _58 (weak)
+	virtual void draw(float, float);                                                   // _94
+	virtual void draw(float, float, float, J2DTextBoxHBinding);                        // _98
+	virtual void setFont(JUTFont* font);                                               // _9C
+	virtual JUTResFont* getFont() const { return m_font; }                             // _A0 (weak)
+	virtual bool setBlack(JUtility::TColor black)                                      // _A4 (weak)
+	{
+		m_black = black;
+		return true;
+	}
+	virtual bool setWhite(JUtility::TColor white) // _A8 (weak)
+	{
+		m_white = white;
+		return true;
+	}
+	virtual bool setBlackWhite(JUtility::TColor black, JUtility::TColor white) // _AC (weak)
+	{
+		m_black = black;
+		m_white = white;
+		return true;
+	}
+	virtual JUtility::TColor getBlack() const { return m_black; } // _B0 (weak)
+	virtual JUtility::TColor getWhite() const { return m_white; } // _B4 (weak)
+	virtual J2DMaterial* getMaterial() const { return nullptr; }  // _B8 (weak)
 
-	void initiate(const ResFONT*, const char*, short, J2DTextBoxHBinding, J2DTextBoxVBinding);
-	void private_readStream(J2DPane*, JSURandomInputStream*, JKRArchive*);
-	void setString(const char*, ...);
+	void initiate(const ResFONT*, const char*, s16, J2DTextBoxHBinding, J2DTextBoxVBinding);
+	void private_readStream(J2DPane* parent, JSURandomInputStream* input, JKRArchive* archive);
+	size_t setString(const char*, ...);
+
+	// unused/inlined:
+	void setFontSize();
+	void setLineSpace();
+	void getString(char*);
+	void getStringPtr() const;
+	void setString(s16, const char*, ...);
+
+	/** @fabricated */
+	inline void copyString(const char* str, s16 maxLength)
+	{
+		size_t length   = strlen(str);
+		u16 finalLength = maxLength;
+		if (maxLength == -1) {
+			if (length >= 0xFFFF) {
+				length = 0xFFFE;
+			}
+			finalLength = length + 1;
+		}
+		_124 = new char[finalLength];
+		if (finalLength != 0 && _124 != nullptr) {
+			strncpy(_124, str, finalLength - 1);
+			_124[finalLength - 1] = '\0';
+			_132                  = finalLength;
+		}
+	}
 
 	// J2DPane _000
 	JUTResFont* m_font;        // _100
@@ -631,35 +785,35 @@ struct J2DTextBox : public J2DPane {
 struct J2DTextBoxEx : public J2DTextBox {
 	enum stage_enum {};
 
-	J2DTextBoxEx(J2DPane*, JSURandomInputStream*, unsigned long, J2DMaterial*);
+	J2DTextBoxEx(J2DPane* parent, JSURandomInputStream* input, u32 flags, J2DMaterial* materials);
 
-	virtual ~J2DTextBoxEx();                                              // _08
-	virtual void setCullBack(bool);                                       // _1C (weak)
-	virtual void setCullBack(_GXCullMode);                                // _20
-	virtual void setAlpha(unsigned char);                                 // _24
-	virtual void drawSelf(float, float, float (*)[3][4]);                 // _38
-	virtual bool isUsed(const ResTIMG*);                                  // _4C (weak)
-	virtual bool isUsed(const ResFONT*);                                  // _50
-	virtual void rewriteAlpha();                                          // _58
-	virtual void setAnimation(J2DAnmBase*);                               // _5C (weak)
-	virtual void setAnimation(J2DAnmTransform*);                          // _60 (weak)
-	virtual void setAnimation(J2DAnmColor*);                              // _64
-	virtual void setAnimation(J2DAnmTexPattern*);                         // _68
-	virtual void setAnimation(J2DAnmTextureSRTKey*);                      // _6C
-	virtual void setAnimation(J2DAnmTevRegKey*);                          // _70
-	virtual void setAnimation(J2DAnmVisibilityFull*);                     // _74
-	virtual void setAnimation(J2DAnmVtxColor*);                           // _78 (weak)
-	virtual const J2DAnmTransform* animationPane(const J2DAnmTransform*); // _90
-	virtual void draw(float, float);                                      // _94
-	virtual void draw(float, float, float, J2DTextBoxHBinding);           // _98
-	virtual void setFont(JUTFont*);                                       // _9C
-	virtual JUTResFont* getFont() const;                                  // _A0
-	virtual void setBlack(JUtility::TColor);                              // _A4
-	virtual void setWhite(JUtility::TColor);                              // _A8
-	virtual void setBlackWhite(JUtility::TColor, JUtility::TColor);       // _AC
-	virtual JUtility::TColor getBlack() const;                            // _B0
-	virtual JUtility::TColor getWhite() const;                            // _B4
-	virtual J2DMaterial* getMaterial() const;                             // _B8 (weak)
+	virtual ~J2DTextBoxEx();                                                        // _08
+	virtual void setCullBack(bool shouldCullBack);                                  // _1C (weak)
+	virtual void setCullBack(_GXCullMode cullMode);                                 // _20
+	virtual void setAlpha(u8 alpha);                                                // _24
+	virtual void drawSelf(float, float, float (*)[3][4]);                           // _38
+	virtual bool isUsed(const ResTIMG* resource);                                   // _4C (weak)
+	virtual bool isUsed(const ResFONT* resource);                                   // _50
+	virtual void rewriteAlpha();                                                    // _58
+	virtual void setAnimation(J2DAnmBase* animation);                               // _5C (weak)
+	virtual void setAnimation(J2DAnmTransform* animation);                          // _60 (weak)
+	virtual void setAnimation(J2DAnmColor* animation);                              // _64
+	virtual void setAnimation(J2DAnmTexPattern* animation);                         // _68
+	virtual void setAnimation(J2DAnmTextureSRTKey* animation);                      // _6C
+	virtual void setAnimation(J2DAnmTevRegKey* animation);                          // _70
+	virtual void setAnimation(J2DAnmVisibilityFull* animation);                     // _74
+	virtual void setAnimation(J2DAnmVtxColor* animation);                           // _78 (weak)
+	virtual const J2DAnmTransform* animationPane(const J2DAnmTransform* animation); // _90
+	virtual void draw(float, float);                                                // _94
+	virtual void draw(float, float, float, J2DTextBoxHBinding);                     // _98
+	virtual void setFont(JUTFont* font);                                            // _9C
+	virtual JUTResFont* getFont() const;                                            // _A0
+	virtual bool setBlack(JUtility::TColor black);                                  // _A4
+	virtual bool setWhite(JUtility::TColor white);                                  // _A8
+	virtual bool setBlackWhite(JUtility::TColor black, JUtility::TColor white);     // _AC
+	virtual JUtility::TColor getBlack() const;                                      // _B0
+	virtual JUtility::TColor getWhite() const;                                      // _B4
+	virtual J2DMaterial* getMaterial() const;                                       // _B8 (weak)
 
 	void setTevStage(bool);
 	void setStage(J2DTevStage*, stage_enum);
@@ -685,109 +839,133 @@ struct J2DWindow : public J2DPane {
 	};
 
 	J2DWindow();
-	J2DWindow(J2DPane*, JSURandomInputStream*, JKRArchive*);
-	J2DWindow(J2DPane*, JSURandomInputStream*, J2DMaterial*);
+	J2DWindow(J2DPane* parent, JSURandomInputStream* input, JKRArchive* archive);
+	J2DWindow(J2DPane* parent, JSURandomInputStream* input, J2DMaterial* materials);
 
 	virtual ~J2DWindow();                                                              // _08
-	virtual u32 getTypeID() const;                                                     // _0C (weak)
+	virtual u16 getTypeID() const { return 0x11; }                                     // _0C (weak)
 	virtual void resize(float, float);                                                 // _18
 	virtual void drawSelf(float, float);                                               // _34
 	virtual void drawSelf(float, float, float (*)[3][4]);                              // _38
-	virtual bool isUsed(const ResTIMG*);                                               // _4C
-	virtual bool isUsed(const ResFONT*);                                               // _50 (weak)
-	virtual void rewriteAlpha();                                                       // _58 (weak)
-	virtual void draw(const JGeometry::TBox2<float>&);                                 // _94
-	virtual void draw(const JGeometry::TBox2<float>&, const JGeometry::TBox2<float>&); // _98
+	virtual bool isUsed(const ResTIMG* resource);                                      // _4C
+	virtual bool isUsed(const ResFONT* resource) { return J2DPane::isUsed(resource); } // _50 (weak)
+	virtual void rewriteAlpha() { }                                                    // _58 (weak)
+	virtual void draw(const JGeometry::TBox2f&);                                       // _94
+	virtual void draw(const JGeometry::TBox2f&, const JGeometry::TBox2f&);             // _98
 	virtual void draw(float, float, float, float);                                     // _9C (weak)
-	virtual void setBlack(JUtility::TColor);                                           // _A0 (weak)
-	virtual void setWhite(JUtility::TColor);                                           // _A4 (weak)
-	virtual void setBlackWhite(JUtility::TColor, JUtility::TColor);                    // _A8 (weak)
-	virtual void getBlack() const;                                                     // _AC (weak)
-	virtual void getWhite() const;                                                     // _B0 (weak)
-	virtual void getFrameTexture(unsigned char, unsigned char) const;                  // _B4
-	virtual void getContentsTexture(unsigned char) const;                              // _B8 (weak)
-	virtual void getMaterial(TMaterial&) const;                                        // _BC (weak)
-	virtual void getFrameMaterial(unsigned char) const;                                // _C0 (weak)
-	virtual void getContentsMaterial() const;                                          // _C4 (weak)
-	virtual void drawContents(const JGeometry::TBox2<float>&);                         // _C8
+	virtual bool setBlack(JUtility::TColor black)                                      // _A0 (weak)
+	{
+		m_black = black;
+		return true;
+	}
+	virtual bool setWhite(JUtility::TColor white) // _A4 (weak)
+	{
+		m_white = white;
+		return true;
+	}
+	virtual bool setBlackWhite(JUtility::TColor black, JUtility::TColor white) // _A8 (weak)
+	{
+		m_black = black;
+		m_white = white;
+		return true;
+	}
+	virtual JUtility::TColor getBlack() const { return m_black; }                      // _AC (weak)
+	virtual JUtility::TColor getWhite() const { return m_white; }                      // _B0 (weak)
+	virtual JUTTexture* getFrameTexture(u8 frameMaterialIndex, u8 textureIndex) const; // _B4
+	virtual JUTTexture* getContentsTexture(u8 textureIndex) const                      // _B8 (weak)
+	{
+		return (textureIndex != 0) ? nullptr : m_contentsTexture;
+	}
+	virtual void getMaterial(TMaterial& material) const // _BC (weak)
+	{
+		material._00 = nullptr;
+		material._04 = nullptr;
+		material._08 = nullptr;
+		material._0C = nullptr;
+		material._10 = nullptr;
+	}
+	virtual J2DMaterial* getFrameMaterial(u8 index) const { return nullptr; } // _C0 (weak)
+	virtual J2DMaterial* getContentsMaterial() const { return nullptr; }      // _C4 (weak)
+	virtual void drawContents(const JGeometry::TBox2f&);                      // _C8
 
 	void private_readStream(J2DPane*, JSURandomInputStream*, JKRArchive*);
 	void initinfo2();
-	void draw_private(const JGeometry::TBox2<float>&, const JGeometry::TBox2<float>&);
+	void draw_private(const JGeometry::TBox2f&, const JGeometry::TBox2f&);
 	void setContentsColor(JUtility::TColor, JUtility::TColor, JUtility::TColor, JUtility::TColor);
-	void drawFrameTexture(JUTTexture*, float, float, float, float, unsigned short, unsigned short, unsigned short, unsigned short, bool);
+	void drawFrameTexture(JUTTexture*, float, float, float, float, u16, u16, u16, u16, bool);
 	void drawFrameTexture(JUTTexture*, float, float, bool, bool, bool);
 	void drawContentsTexture(float, float, float, float);
 	void setTevMode(JUTTexture*, JUtility::TColor, JUtility::TColor);
 
 	// J2DPane _000
-	JUTTexture* _100;              // _100
-	JUTTexture* _104;              // _104
-	JUTTexture* _108;              // _108
-	JUTTexture* _10C;              // _10C
-	JUTTexture* m_contentsTexture; // _110
-	JGeometry::TBox2f _114;        // _114
-	JUTPalette* m_palette;         // _124
-	u8 _128[0x10];                 // _128
-	JUtility::TColor m_white;      // _138
-	JUtility::TColor m_black;      // _13C
-	u16 _140;                      // _140
-	u16 _142;                      // _142
-	u8 _144;                       // _144
-	u8 _145;                       // _145
+	JUTTexture* _100;                  // _100
+	JUTTexture* _104;                  // _104
+	JUTTexture* _108;                  // _108
+	JUTTexture* _10C;                  // _10C
+	JUTTexture* m_contentsTexture;     // _110
+	JGeometry::TBox2f _114;            // _114
+	JUTPalette* m_palette;             // _124
+	JUtility::TColor m_contentsColorA; // _128
+	JUtility::TColor m_contentsColorB; // _12C
+	JUtility::TColor m_contentsColorC; // _130
+	JUtility::TColor m_contentsColorD; // _134
+	JUtility::TColor m_white;          // _138
+	JUtility::TColor m_black;          // _13C
+	u16 _140;                          // _140
+	u16 _142;                          // _142
+	u8 _144;                           // _144
+	u8 _145;                           // _145
 };
 
 // Size: 0x180
 struct J2DWindowEx : public J2DWindow {
 	enum stage_enum {};
 
-	J2DWindowEx(J2DPane*, JSURandomInputStream*, unsigned long, J2DMaterial*);
+	J2DWindowEx(J2DPane* parent, JSURandomInputStream* input, u32 flags, J2DMaterial* materials);
 
-	virtual ~J2DWindowEx();                                                            // _08
-	virtual void setCullBack(bool);                                                    // _1C (weak)
-	virtual void setCullBack(_GXCullMode);                                             // _20
-	virtual void setAlpha(unsigned char);                                              // _24
-	virtual void drawSelf(float, float, float (*)[3][4]);                              // _38
-	virtual bool isUsed(const ResTIMG*);                                               // _4C
-	virtual bool isUsed(const ResFONT*);                                               // _50 (weak)
-	virtual void rewriteAlpha();                                                       // _58
-	virtual void setAnimation(J2DAnmBase*);                                            // _5C (weak)
-	virtual void setAnimation(J2DAnmTransform*);                                       // _60 (weak)
-	virtual void setAnimation(J2DAnmColor*);                                           // _64
-	virtual void setAnimation(J2DAnmTexPattern*);                                      // _68
-	virtual void setAnimation(J2DAnmTextureSRTKey*);                                   // _6C
-	virtual void setAnimation(J2DAnmTevRegKey*);                                       // _70
-	virtual void setAnimation(J2DAnmVisibilityFull*);                                  // _74
-	virtual void setAnimation(J2DAnmVtxColor*);                                        // _78
-	virtual const J2DAnmTransform* animationPane(const J2DAnmTransform*);              // _90
-	virtual void draw(const JGeometry::TBox2<float>&);                                 // _94
-	virtual void draw(const JGeometry::TBox2<float>&, const JGeometry::TBox2<float>&); // _98
-	virtual void draw(float, float, float, float);                                     // _9C (weak)
-	virtual void setBlack(JUtility::TColor);                                           // _A0
-	virtual void setWhite(JUtility::TColor);                                           // _A4
-	virtual void setBlackWhite(JUtility::TColor, JUtility::TColor);                    // _A8
-	virtual void getBlack() const;                                                     // _AC
-	virtual void getWhite() const;                                                     // _B0
-	virtual void getFrameTexture(unsigned char, unsigned char) const;                  // _B4
-	virtual void getContentsTexture(unsigned char) const;                              // _B8
-	virtual void getMaterial(J2DWindow::TMaterial&) const;                             // _BC (weak)
-	virtual void getFrameMaterial(unsigned char) const;                                // _C0 (weak)
-	virtual void getContentsMaterial() const;                                          // _C4 (weak)
-	virtual void drawContents(const JGeometry::TBox2<float>&);                         // _C8
+	virtual ~J2DWindowEx();                                                                                            // _08
+	virtual void setCullBack(bool shouldCullBack);                                                                     // _1C (weak)
+	virtual void setCullBack(_GXCullMode cullMode);                                                                    // _20
+	virtual void setAlpha(unsigned char);                                                                              // _24
+	virtual void drawSelf(float, float, float (*)[3][4]);                                                              // _38
+	virtual bool isUsed(const ResTIMG* resource);                                                                      // _4C
+	virtual bool isUsed(const ResFONT* resource) { return J2DPane::isUsed(resource); }                                 // _50 (weak)
+	virtual void rewriteAlpha();                                                                                       // _58
+	virtual void setAnimation(J2DAnmBase* animation) { J2DPane::setAnimation(animation); }                             // _5C (weak)
+	virtual void setAnimation(J2DAnmTransform* animation) { J2DPane::setAnimation(animation); }                        // _60 (weak)
+	virtual void setAnimation(J2DAnmColor* animation);                                                                 // _64
+	virtual void setAnimation(J2DAnmTexPattern* animation);                                                            // _68
+	virtual void setAnimation(J2DAnmTextureSRTKey* animation);                                                         // _6C
+	virtual void setAnimation(J2DAnmTevRegKey* animation);                                                             // _70
+	virtual void setAnimation(J2DAnmVisibilityFull* animation);                                                        // _74
+	virtual void setAnimation(J2DAnmVtxColor* animation);                                                              // _78
+	virtual const J2DAnmTransform* animationPane(const J2DAnmTransform*);                                              // _90
+	virtual void draw(const JGeometry::TBox2f&);                                                                       // _94
+	virtual void draw(const JGeometry::TBox2f&, const JGeometry::TBox2f&);                                             // _98
+	virtual void draw(float, float, float, float);                                                                     // _9C (weak)
+	virtual bool setBlack(JUtility::TColor black);                                                                     // _A0
+	virtual bool setWhite(JUtility::TColor white);                                                                     // _A4
+	virtual bool setBlackWhite(JUtility::TColor black, JUtility::TColor white);                                        // _A8
+	virtual JUtility::TColor getBlack() const;                                                                         // _AC
+	virtual JUtility::TColor getWhite() const;                                                                         // _B0
+	virtual JUTTexture* getFrameTexture(u8 frameMaterialIndex, u8 textureIndex) const;                                 // _B4
+	virtual JUTTexture* getContentsTexture(u8 textureIndex) const;                                                     // _B8
+	virtual void getMaterial(J2DWindow::TMaterial& material) const;                                                    // _BC (weak)
+	virtual J2DMaterial* getFrameMaterial(u8 index) const { return (index >= 4) ? nullptr : m_frameMaterials[index]; } // _C0 (weak)
+	virtual J2DMaterial* getContentsMaterial() const { return m_contentsMaterial; }                                    // _C4 (weak)
+	virtual void drawContents(const JGeometry::TBox2f&);                                                               // _C8
 
 	void setMinSize();
-	void draw_private(const JGeometry::TBox2<float>&, const JGeometry::TBox2<float>&);
-	void drawFrameTexture(float, float, float, float, unsigned short, unsigned short, unsigned short, unsigned short, J2DMaterial*, bool);
+	void draw_private(const JGeometry::TBox2f&, const JGeometry::TBox2f&);
+	void drawFrameTexture(float, float, float, float, u16, u16, u16, u16, J2DMaterial*, bool);
 	void setTevStage(bool);
 	void setStage(J2DTevStage*, J2DWindowEx::stage_enum);
 	void getBlackWhite(JUtility::TColor*, JUtility::TColor*) const;
 	void isSetBlackWhite(JUtility::TColor, JUtility::TColor) const;
-	void isNeedSetAnm(unsigned char);
+	bool isNeedSetAnm(u8 frameMaterialIndex);
 
 	// J2DWindow _000
-	J2DMaterial* _148[2];                  // _148
-	J2DMaterial* _150;                     // _150
-	J2DMaterial* _154;                     // _154
+	J2DMaterial* m_frameMaterials[4];      // _148
 	u16 _158[2];                           // _158
 	u8 _15C[4];                            // _15C
 	J2DMaterial* m_contentsMaterial;       // _160

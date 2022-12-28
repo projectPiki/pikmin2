@@ -2,6 +2,7 @@
 #define _JSYSTEM_J3D_J3DSYS_H
 
 #include "Dolphin/mtx.h"
+#include "JSystem/J3D/J3DPacket.h"
 #include "JSystem/J3D/J3DTypes.h"
 #include "JSystem/JGeometry.h"
 #include "types.h"
@@ -43,15 +44,17 @@ struct J3DSys {
 	u8 _5C[4];                     // _05C
 	u32 _60;                       // _060
 	u8 _64[0xA0];                  // _064
-	Mtx44* _104;                   // _104
+	Mtx* _104;                     // _104
 	Mtx* _108;                     // _108
 	/*
-	 * These might be part of a J3DVertexBuffer.
+	 * These three might be part of a J3DVertexBuffer.
 	 * See setArray__15J3DVertexBufferCFv.
 	 */
 	u32 _10C; // _10C
 	u32 _110; // _110
 	u32 _114; // _114 /* bitfield */
+
+	Vec* _118;
 
 	static Mtx mCurrentMtx;
 	static JGeometry::TVec3f mCurrentS;

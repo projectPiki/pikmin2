@@ -1,5 +1,7 @@
 #include "JSystem/JAS/JASAudioThread.h"
+#include "Dolphin/dsp.h"
 #include "Dolphin/os.h"
+#include "JSystem/JAS/JASDsp.h"
 #include "JSystem/JAS/JASHeap.h"
 #include "JSystem/JAS/JASKernel.h"
 #include "JSystem/JKR/JKRThread.h"
@@ -48,6 +50,8 @@
         .4byte 0x44535000
 */
 
+JASAudioThread* JASAudioThread::sAudioThread;
+
 /*
  * --INFO--
  * Address:	........
@@ -68,39 +72,6 @@ void JASAudioThread::create(long threadPriority)
 {
 	sAudioThread = new (JASDram, 0) JASAudioThread(0x1000, 0x10, threadPriority);
 	OSResumeThread(sAudioThread->m_thread);
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	li       r5, 0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	stw      r30, 8(r1)
-	mr       r30, r3
-	li       r3, 0x7c
-	lwz      r4, JASDram@sda21(r13)
-	bl       __nw__FUlP7JKRHeapi
-	or.      r31, r3, r3
-	beq      lbl_800A5BD8
-	lwz      r4, JASDram@sda21(r13)
-	mr       r7, r30
-	li       r5, 0x1000
-	li       r6, 0x10
-	bl       __ct__9JKRThreadFP7JKRHeapUlii
-	lis      r3, __vt__14JASAudioThread@ha
-	addi     r0, r3, __vt__14JASAudioThread@l
-	stw      r0, 0(r31)
-
-lbl_800A5BD8:
-	stw      r31, sAudioThread__14JASAudioThread@sda21(r13)
-	lwz      r3, 0x2c(r31)
-	bl       OSResumeThread
-	lwz      r0, 0x14(r1)
-	lwz      r31, 0xc(r1)
-	lwz      r30, 8(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
 }
 
 /*
@@ -274,6 +245,15 @@ void JASAudioThread::DMACallback()
  */
 void JASAudioThread::DSPCallback(void*)
 {
+	while (DSPCheckMailFromDSP() == 0) { }
+	u32 v1 = DSPReadMailFromDSP();
+	if (v1 >> 0x10 == 0xF355) {
+		if ((v1 & 0xFF00) == 0xFF00) {
+			OSSendMessage(&sAudioThread->m_msgQueue, (void*)1, OS_MESSAGE_NON_BLOCKING);
+		} else {
+			JASDsp::finishWork(v1);
+		}
+	}
 	/*
 	stwu     r1, -0x10(r1)
 	mflr     r0
@@ -334,34 +314,4 @@ void JASAudioThread::getCurrentVCounter()
  * Address:	800A5E5C
  * Size:	000060
  */
-JASAudioThread::~JASAudioThread()
-{
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	mr       r31, r4
-	stw      r30, 8(r1)
-	or.      r30, r3, r3
-	beq      lbl_800A5EA0
-	lis      r5, __vt__14JASAudioThread@ha
-	li       r4, 0
-	addi     r0, r5, __vt__14JASAudioThread@l
-	stw      r0, 0(r30)
-	bl       __dt__9JKRThreadFv
-	extsh.   r0, r31
-	ble      lbl_800A5EA0
-	mr       r3, r30
-	bl       __dl__FPv
-
-lbl_800A5EA0:
-	lwz      r0, 0x14(r1)
-	mr       r3, r30
-	lwz      r31, 0xc(r1)
-	lwz      r30, 8(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
-}
+JASAudioThread::~JASAudioThread() { }

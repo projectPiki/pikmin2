@@ -215,7 +215,7 @@ void JAInter::SystemInterface::outerInit(JAInter::SeqUpdateData* updateData, JAS
 		portArgs->_1C = seq->m_seqParameter._270[p3]._04;
 		portArgs->_24 = 0;
 		portArgs->_08 = 0x7F;
-		seqP->muteTrack(seq->m_seqParameter._2BC[p3].value);
+		seqP->muteTrack(seq->m_seqParameter._2BC[p3]._0);
 	}
 	// PlayerParameter* playerParameter         = &updateData->_4C[p3];
 	// playerParameter->_00                     = seqP;

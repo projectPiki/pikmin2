@@ -46,6 +46,8 @@ struct J3DJoint {
 	 */
 	J3DJoint* getChild() { return m_child; }
 
+	inline void setCurrentMtxCalc(J3DMtxCalc* calc) { mCurrentMtxCalc = calc; }
+
 	u32 _00;                          // _00
 	J3DJointCallBack* m_function;     // _04
 	u32 _08;                          // _08

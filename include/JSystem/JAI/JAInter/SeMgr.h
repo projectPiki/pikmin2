@@ -1,7 +1,9 @@
 #ifndef _JSYSTEM_JAI_JAINTER_SEMGR_H
 #define _JSYSTEM_JAI_JAINTER_SEMGR_H
 
+#include "JSystem/JAI/JAInter.h"
 #include "types.h"
+
 struct JAISound;
 struct JAISe;
 struct JAISequence;
@@ -14,6 +16,16 @@ struct SeqUpdateData;
 struct SoundInfo;
 
 namespace SeMgr {
+/** @fabricatedName */
+struct TrackUpdate {
+	u8 _00;  // _00
+	f32 _04; // _04
+	f32 _08; // _08
+	f32 _0C; // _0C
+	f32 _10; // _10
+	f32 _14; // _14
+};
+
 typedef void (*StartCallback)();
 void init();
 void startSeSequence();
@@ -34,14 +46,18 @@ void setSeSequenceStartCallback(StartCallback);
 // unused/inlined:
 void clearSeqMuteFromSeStop(JAISound*);
 
-static StartCallback seStartCallback;
+extern StartCallback seStartCallback;
 
-static LinkSound* seRegist;
-static JAISequence* seHandle;
-static u8 seScene;
-static u32 seqMuteFlagFromSe;
-static float* seCategoryVolume;
-static u8* seEntryCancel;
+extern TrackUpdate* seTrackUpdate;
+// static SeParameter* categoryInfoTable;
+extern u16** categoryInfoTable;
+extern JAISound*** sePlaySound;
+extern LinkSound* seRegist;
+extern JAISequence* seHandle;
+extern u8 seScene;
+extern u32 seqMuteFlagFromSe;
+extern float* seCategoryVolume;
+extern u8* seEntryCancel;
 } // namespace SeMgr
 } // namespace JAInter
 

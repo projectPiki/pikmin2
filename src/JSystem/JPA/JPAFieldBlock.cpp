@@ -1,3 +1,7 @@
+#include "Dolphin/float.h"
+#include "Dolphin/math.h"
+#include "Dolphin/mtx.h"
+#include "JSystem/JGeometry.h"
 #include "JSystem/JPA/JPABlock.h"
 #include "JSystem/JPA/JPAEmitter.h"
 #include "JSystem/JPA/JPAField.h"
@@ -120,6 +124,52 @@
         .4byte 0x41200000
 */
 
+void doTheThing(Vec& vec)
+{
+	f32 v1 = SQUARE(vec.x) + SQUARE(vec.y) + SQUARE(vec.z);
+	if (v1 <= __float_epsilon * 32.0f) {
+		return;
+	}
+	if (v1 > 0.0f) {
+		f32 v2 = 1.0f / __frsqrte(v1);
+		v1     = v2 * 0.5f * -(v1 * v2 * v2 - 3.0f);
+	}
+	vec.x *= v1;
+	vec.y *= v1;
+	vec.z *= v1;
+}
+
+typedef float RawVec[3];
+
+void getContiguousVecFromMtx(const Mtx& mtx, RawVec& output, int p3)
+{
+	output[0] = mtx[p3][0];
+	output[1] = mtx[p3][1];
+	output[2] = mtx[p3][2];
+}
+
+void getDisjointedVecFromMtx(const Mtx& mtx, RawVec& output, int p3)
+{
+	output[0] = mtx[0][p3];
+	output[1] = mtx[1][p3];
+	output[2] = mtx[2][p3];
+}
+
+void setContiguousVecOfMtx33(Mtx33& mtx, const RawVec& vec, int p3)
+{
+	mtx[p3][0] = vec[0];
+	mtx[p3][1] = vec[1];
+	mtx[p3][2] = vec[2];
+	// *(Vec*)(mtx[p3]) = vec;
+}
+
+void setDisjointedVecOfMtx33(Mtx33& mtx, const RawVec& vec, int p3)
+{
+	mtx[0][p3] = vec[0];
+	mtx[1][p3] = vec[1];
+	mtx[2][p3] = vec[2];
+}
+
 /*
  * --INFO--
  * Address:	........
@@ -139,6 +189,7 @@ void JPAFieldBase::calcFadeAffect(JPAFieldBlock*, float) const
 {
 	// UNUSED FUNCTION
 	// TODO: I suspect this is the switch statement/vector addition at the end of most (all?) calc functions.
+	// TODO: Then again, where's the JPABaseParticle in that case...
 }
 
 /*
@@ -148,54 +199,18 @@ void JPAFieldBase::calcFadeAffect(JPAFieldBlock*, float) const
  */
 void JPAFieldGravity::prepare(JPAEmitterWorkData* workData, JPAFieldBlock* block)
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	mr       r31, r5
-	stw      r30, 8(r1)
-	mr       r30, r3
-	lwz      r3, 0(r5)
-	lwz      r0, 8(r3)
-	rlwinm.  r0, r0, 0x10, 0x1e, 0x1e
-	beq      lbl_800915F8
-	lfs      f1, 0x28(r31)
-	lfs      f0, 0x1c(r31)
-	fmuls    f0, f0, f1
-	stfs     f0, 4(r30)
-	lfs      f0, 0x20(r31)
-	fmuls    f0, f0, f1
-	stfs     f0, 8(r30)
-	lfs      f0, 0x24(r31)
-	fmuls    f0, f0, f1
-	stfs     f0, 0xc(r30)
-	b        lbl_80091630
-
-lbl_800915F8:
-	addi     r3, r4, 0x78
-	addi     r4, r31, 0x1c
-	addi     r5, r30, 4
-	bl       PSMTXMultVecSR
-	lfs      f1, 0x28(r31)
-	lfs      f0, 4(r30)
-	fmuls    f0, f0, f1
-	stfs     f0, 4(r30)
-	lfs      f0, 8(r30)
-	fmuls    f0, f0, f1
-	stfs     f0, 8(r30)
-	lfs      f0, 0xc(r30)
-	fmuls    f0, f0, f1
-	stfs     f0, 0xc(r30)
-
-lbl_80091630:
-	lwz      r0, 0x14(r1)
-	lwz      r31, 0xc(r1)
-	lwz      r30, 8(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	if ((*(u32*)(block->m_data + 8) >> 0x10 & 2) != 0) {
+		f32 multiplier = block->_28;
+		_04.x          = block->_1C.x * multiplier;
+		_04.y          = block->_1C.y * multiplier;
+		_04.z          = block->_1C.z * multiplier;
+	} else {
+		PSMTXMultVecSR(workData->_78, (Vec*)&block->_1C, (Vec*)&_04);
+		f32 multiplier = block->_28;
+		_04.x *= multiplier;
+		_04.y *= multiplier;
+		_04.z *= multiplier;
+	}
 }
 
 /*
@@ -348,7 +363,7 @@ void JPAFieldGravity::calc(JPAEmitterWorkData*, JPAFieldBlock*, JPABaseParticle*
  * Address:	80091804
  * Size:	000150
  */
-void JPAFieldAir::prepare(JPAEmitterWorkData*, JPAFieldBlock*)
+void JPAFieldAir::prepare(JPAEmitterWorkData* data, JPAFieldBlock* block)
 {
 	/*
 	stwu     r1, -0x20(r1)
@@ -645,34 +660,12 @@ lbl_80091BA8:
  * Address:	80091BB0
  * Size:	000060
  */
-void JPAFieldMagnet::prepare(JPAEmitterWorkData*, JPAFieldBlock*)
+void JPAFieldMagnet::prepare(JPAEmitterWorkData* data, JPAFieldBlock* block)
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	mr       r6, r3
-	addi     r3, r4, 0x78
-	stw      r0, 0x14(r1)
-	lfs      f1, 0x10(r5)
-	lfs      f0, 0x108(r4)
-	fsubs    f0, f1, f0
-	stfs     f0, 0x10(r6)
-	lfs      f1, 0x14(r5)
-	lfs      f0, 0x10c(r4)
-	fsubs    f0, f1, f0
-	stfs     f0, 0x14(r6)
-	lfs      f0, 0x110(r4)
-	addi     r4, r6, 0x10
-	lfs      f1, 0x18(r5)
-	mr       r5, r4
-	fsubs    f0, f1, f0
-	stfs     f0, 0x18(r6)
-	bl       PSMTXMultVecSR
-	lwz      r0, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	_10.x = block->_10.x - data->_108.x;
+	_10.y = block->_10.y - data->_108.y;
+	_10.z = block->_10.z - data->_108.z;
+	PSMTXMultVecSR(data->_78, (Vec*)&_10, (Vec*)&_10);
 }
 
 /*
@@ -881,43 +874,13 @@ lbl_80091E90:
  * Address:	80091E98
  * Size:	000084
  */
-void JPAFieldNewton::prepare(JPAEmitterWorkData*, JPAFieldBlock*)
+void JPAFieldNewton::prepare(JPAEmitterWorkData* data, JPAFieldBlock* block)
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	mr       r31, r5
-	stw      r30, 8(r1)
-	mr       r30, r3
-	addi     r3, r4, 0x78
-	lfs      f1, 0x10(r5)
-	lfs      f0, 0x108(r4)
-	fsubs    f0, f1, f0
-	stfs     f0, 0x10(r30)
-	lfs      f1, 0x14(r5)
-	lfs      f0, 0x10c(r4)
-	fsubs    f0, f1, f0
-	stfs     f0, 0x14(r30)
-	lfs      f0, 0x110(r4)
-	addi     r4, r30, 0x10
-	lfs      f1, 0x18(r5)
-	mr       r5, r4
-	fsubs    f0, f1, f0
-	stfs     f0, 0x18(r30)
-	bl       PSMTXMultVecSR
-	lwz      r3, 0(r31)
-	lfs      f0, 0x2c(r3)
-	fmuls    f0, f0, f0
-	stfs     f0, 0x1c(r30)
-	lwz      r31, 0xc(r1)
-	lwz      r30, 8(r1)
-	lwz      r0, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	_10.x = block->_10.x - data->_108.x;
+	_10.y = block->_10.y - data->_108.y;
+	_10.z = block->_10.z - data->_108.z;
+	PSMTXMultVecSR(data->_78, (Vec*)&_10, (Vec*)&_10);
+	_1C = SQUARE(*(f32*)(block->m_data + 0x2C));
 }
 
 /*
@@ -1173,7 +1136,7 @@ lbl_80092240:
  * Address:	80092248
  * Size:	0000F4
  */
-void JPAFieldVortex::prepare(JPAEmitterWorkData*, JPAFieldBlock*)
+void JPAFieldVortex::prepare(JPAEmitterWorkData* data, JPAFieldBlock* block)
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -1482,7 +1445,7 @@ lbl_80092624:
  * Address:	8009262C
  * Size:	00028C
  */
-void JPAFieldConvection::prepare(JPAEmitterWorkData*, JPAFieldBlock*)
+void JPAFieldConvection::prepare(JPAEmitterWorkData* data, JPAFieldBlock* block)
 {
 	/*
 	stwu     r1, -0x30(r1)
@@ -2237,8 +2200,30 @@ lbl_80092FC8:
  * Address:	80092FDC
  * Size:	000130
  */
-void JPAFieldSpin::prepare(JPAEmitterWorkData*, JPAFieldBlock*)
+void JPAFieldSpin::prepare(JPAEmitterWorkData* data, JPAFieldBlock* block)
 {
+	Vec v1;
+	PSMTXMultVecSR(data->_A8, (Vec*)&block->_1C, &v1);
+	doTheThing(v1);
+	Mtx v2;
+	PSMTXRotAxisRad(v2, &v1, block->_28);
+
+	RawVec v3;
+	getDisjointedVecFromMtx(v2, v3, 0);
+	setContiguousVecOfMtx33(_10, v3, 0);
+	getDisjointedVecFromMtx(v2, v3, 1);
+	setContiguousVecOfMtx33(_10, v3, 1);
+	getDisjointedVecFromMtx(v2, v3, 2);
+	setContiguousVecOfMtx33(_10, v3, 2);
+	// _10[0][2] = v2[2][0];
+	// _10[0][1] = v2[1][0];
+	// _10[0][0] = v2[0][0];
+	// _10[1][0] = v2[0][1];
+	// _10[1][1] = v2[1][1];
+	// _10[1][2] = v2[2][1];
+	// _10[2][0] = v2[0][2];
+	// _10[2][1] = v2[1][2];
+	// _10[2][2] = v2[2][2];
 	/*
 	stwu     r1, -0x50(r1)
 	mflr     r0
@@ -2525,24 +2510,10 @@ lbl_80093378:
  * Address:	80093394
  * Size:	000038
  */
-JPAFieldBlock::JPAFieldBlock(const unsigned char*, JKRHeap*)
+JPAFieldBlock::JPAFieldBlock(const unsigned char* data, JKRHeap* heap)
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	mr       r31, r3
-	stw      r4, 0(r3)
-	mr       r4, r5
-	bl       init__13JPAFieldBlockFP7JKRHeap
-	lwz      r0, 0x14(r1)
-	mr       r3, r31
-	lwz      r31, 0xc(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	m_data = data;
+	init(heap);
 }
 
 /*
@@ -2846,7 +2817,7 @@ lbl_800936E8:
  * Address:	80093700
  * Size:	000004
  */
-void JPAFieldBase::prepare(JPAEmitterWorkData*, JPAFieldBlock*) { }
+void JPAFieldBase::prepare(JPAEmitterWorkData* data, JPAFieldBlock* block) { }
 
 /*
  * --INFO--

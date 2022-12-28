@@ -440,7 +440,7 @@ u32 JAISound::checkSwBit(unsigned long p1) { return p1 & getSwBit(); }
  * Address:	800B3B64
  * Size:	00000C
  */
-u32 JAISound::getInfoPriority() { return m_soundInfo->count.v2[0]; }
+u8 JAISound::getInfoPriority() { return m_soundInfo->count.v2[0]; }
 
 /*
  * --INFO--
@@ -2613,15 +2613,15 @@ void JAISe::getSeInfoPointer()
  * Address:	800B5510
  * Size:	000088
  */
-bool JAISound::checkSoundHandle(unsigned long id, void* p2)
+u32 JAISound::checkSoundHandle(unsigned long id, void* p2)
 {
-	bool result = false;
+	u32 result = 0;
 	if ((m_soundID & JAISoundID_TypeMask) != (id & JAISoundID_TypeMask)) {
 		stop(0);
 	} else if (m_soundInfo->count.v2[0] <= static_cast<JAInter::SoundInfo*>(p2)->count.v2[0]) {
 		stop(0);
 	} else {
-		result = true;
+		result = 1;
 	}
 	return result;
 }

@@ -1,6 +1,8 @@
 #ifndef _JSYSTEM_J2D_J2DANM_H
 #define _JSYSTEM_J2D_J2DANM_H
 
+#include "JSystem/JUT/JUTPalette.h"
+#include "JSystem/ResTIMG.h"
 #include "types.h"
 #include "Dolphin/gx.h"
 #include "JSystem/JUT/JUTNameTab.h"
@@ -30,7 +32,7 @@ struct Vec;
 #define J2DANM_VERTEX_COLOR    (7)
 
 struct J2DAnmBase {
-	virtual ~J2DAnmBase();                           // _08 (weak)
+	virtual ~J2DAnmBase() { }                        // _08 (weak)
 	virtual void searchUpdateMaterialID(J2DScreen*); // _0C (weak)
 
 	// VTBL _00
@@ -41,7 +43,7 @@ struct J2DAnmBase {
 };
 
 struct J2DAnmColor : public J2DAnmBase {
-	virtual ~J2DAnmColor();                                 // _08 (weak)
+	virtual ~J2DAnmColor() { }                              // _08 (weak)
 	virtual void searchUpdateMaterialID(J2DScreen*);        // _0C
 	virtual void getColor(unsigned short, _GXColor*) const; // _10 (weak)
 
@@ -51,13 +53,13 @@ struct J2DAnmColor : public J2DAnmBase {
 	short _16;            // _16
 	u16 _18;              // _18
 	short _1A;            // _1A
-	void* _1C;            // _1C
+	u16* _1C;             // _1C
 	JUTNameTab m_nameTab; // _20
 };
 
 // Size: 0x44
 struct J2DAnmColorFull : public J2DAnmColor {
-	virtual ~J2DAnmColorFull();                             // _08 (weak)
+	virtual ~J2DAnmColorFull() { }                          // _08 (weak)
 	virtual void getColor(unsigned short, _GXColor*) const; // _10
 
 	u8* _30;                        // _30
@@ -69,7 +71,7 @@ struct J2DAnmColorFull : public J2DAnmColor {
 
 // Size: 0x44
 struct J2DAnmColorKey : public J2DAnmColor {
-	virtual ~J2DAnmColorKey();                              // _08 (weak)
+	virtual ~J2DAnmColorKey() { }                           // _08 (weak)
 	virtual void getColor(unsigned short, _GXColor*) const; // _10
 
 	short* _30;                    // _30
@@ -81,7 +83,7 @@ struct J2DAnmColorKey : public J2DAnmColor {
 
 // Size: 0x74
 struct J2DAnmTevRegKey : public J2DAnmBase {
-	virtual ~J2DAnmTevRegKey();                      // _08 (weak)
+	virtual ~J2DAnmTevRegKey() { }                   // _08 (weak)
 	virtual void searchUpdateMaterialID(J2DScreen*); // _0C
 
 	void getTevColorReg(unsigned short, _GXColorS10*) const;
@@ -111,9 +113,12 @@ struct J2DAnmTexPattern : public J2DAnmBase {
 	struct J2DAnmTexPatternTIMGPointer {
 		J2DAnmTexPatternTIMGPointer();
 		~J2DAnmTexPatternTIMGPointer();
+
+		ResTIMG* m_img;        // _00
+		JUTPalette* m_palette; // _04
 	};
 
-	virtual ~J2DAnmTexPattern();                     // _08 (weak)
+	virtual ~J2DAnmTexPattern() { delete[] _30; }    // _08 (weak)
 	virtual void searchUpdateMaterialID(J2DScreen*); // _0C
 
 	void getTexNo(unsigned short, unsigned short*) const;
@@ -132,7 +137,7 @@ struct J2DAnmTexPattern : public J2DAnmBase {
 // Size: 0x88
 // TODO: This might have two substructs, given near repetition...
 struct J2DAnmTextureSRTKey : public J2DAnmBase {
-	virtual ~J2DAnmTextureSRTKey();                  // _08 (weak)
+	virtual ~J2DAnmTextureSRTKey() { }               // _08 (weak)
 	virtual void searchUpdateMaterialID(J2DScreen*); // _0C
 
 	void calcTransform(float, unsigned short, J3DTextureSRTInfo*) const;
@@ -141,7 +146,7 @@ struct J2DAnmTextureSRTKey : public J2DAnmBase {
 	void calcPostTransform(float, unsigned short, J3DTextureSRTInfo*) const;
 
 	u32 _10;
-	short _14;
+	u16 _14;
 	J3DAnmTransformKeyTable* _18;
 	short _1C;
 	short _1E;
@@ -150,7 +155,7 @@ struct J2DAnmTextureSRTKey : public J2DAnmBase {
 	short* _28;
 	float* _2C;
 	u8* _30;
-	short* _34;
+	u16* _34;
 	JUTNameTab m_nameTab;
 	Vec* _48;
 	short _4C;
@@ -169,8 +174,8 @@ struct J2DAnmTextureSRTKey : public J2DAnmBase {
 };
 
 struct J2DAnmTransform : public J2DAnmBase {
-	virtual ~J2DAnmTransform();                                         // _08 (weak)
-	virtual void getTransform(unsigned short, J3DTransformInfo*) const; // _10 (weak)
+	virtual ~J2DAnmTransform() { }                                         // _08 (weak)
+	virtual void getTransform(unsigned short, J3DTransformInfo*) const { } // _10 (weak)
 
 	float* _10; // _10
 	short* _14; // _14
@@ -179,7 +184,7 @@ struct J2DAnmTransform : public J2DAnmBase {
 
 // Size: 0x28
 struct J2DAnmTransformFull : public J2DAnmTransform {
-	virtual ~J2DAnmTransformFull();                                     // _08 (weak)
+	virtual ~J2DAnmTransformFull() { }                                  // _08 (weak)
 	virtual void getTransform(unsigned short, J3DTransformInfo*) const; // _10
 
 	u8 _1C[8];                          // _1C
@@ -188,7 +193,7 @@ struct J2DAnmTransformFull : public J2DAnmTransform {
 
 // Size: 0x2C
 struct J2DAnmTransformKey : public J2DAnmTransform {
-	virtual ~J2DAnmTransformKey();                                              // _08 (weak)
+	virtual ~J2DAnmTransformKey() { }                                           // _08 (weak)
 	virtual void getTransform(unsigned short, J3DTransformInfo*) const;         // _10 (weak)
 	virtual void calcTransform(float, unsigned short, J3DTransformInfo*) const; // _14
 
@@ -199,7 +204,7 @@ struct J2DAnmTransformKey : public J2DAnmTransform {
 
 // Size: 0x1C
 struct J2DAnmVisibilityFull : public J2DAnmBase {
-	virtual ~J2DAnmVisibilityFull(); // _08 (weak)
+	virtual ~J2DAnmVisibilityFull() { } // _08 (weak)
 
 	void getVisibility(unsigned short, unsigned char*) const;
 
@@ -210,8 +215,8 @@ struct J2DAnmVisibilityFull : public J2DAnmBase {
 };
 
 struct J2DAnmVtxColor : public J2DAnmBase {
-	virtual ~J2DAnmVtxColor();                                             // _08 (weak)
-	virtual void getColor(unsigned char, unsigned short, _GXColor*) const; // _10 (weak)
+	virtual ~J2DAnmVtxColor() { }                                             // _08 (weak)
+	virtual void getColor(unsigned char, unsigned short, _GXColor*) const { } // _10 (weak)
 
 	u16 _10;                      // _10
 	short _12;                    // _12
@@ -221,7 +226,7 @@ struct J2DAnmVtxColor : public J2DAnmBase {
 };
 
 struct J2DAnmVtxColorFull : public J2DAnmVtxColor {
-	virtual ~J2DAnmVtxColorFull();                                         // _08 (weak)
+	virtual ~J2DAnmVtxColorFull() { }                                      // _08 (weak)
 	virtual void getColor(unsigned char, unsigned short, _GXColor*) const; // _10
 
 	u16* _20;                  // _20
@@ -235,7 +240,7 @@ struct J2DAnmVtxColorFull : public J2DAnmVtxColor {
 
 // Size: 0x3C
 struct J2DAnmVtxColorKey : public J2DAnmVtxColor {
-	virtual ~J2DAnmVtxColorKey();                                          // _08 (weak)
+	virtual ~J2DAnmVtxColorKey() { }                                       // _08 (weak)
 	virtual void getColor(unsigned char, unsigned short, _GXColor*) const; // _10
 
 	u16* _20;                 // _20

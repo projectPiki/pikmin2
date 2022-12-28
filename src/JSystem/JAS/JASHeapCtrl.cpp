@@ -98,7 +98,7 @@ void JASHeap::initRootHeap(void*, unsigned long)
  * Address:	800A6B10
  * Size:	0001D0
  */
-void* JASHeap::alloc(JASHeap*, unsigned long)
+bool JASHeap::alloc(JASHeap*, unsigned long)
 {
 	/*
 	stwu     r1, -0x30(r1)
@@ -247,7 +247,7 @@ lbl_800A6CCC:
  * Address:	800A6CE0
  * Size:	0000E8
  */
-void* JASHeap::allocTail(JASHeap*, unsigned long)
+bool JASHeap::allocTail(JASHeap*, unsigned long)
 {
 	/*
 	stwu     r1, -0x30(r1)
@@ -334,7 +334,7 @@ void* JASHeap::allocAll(JASHeap*)
  * Address:	800A6DC8
  * Size:	000124
  */
-void JASHeap::free()
+bool JASHeap::free()
 {
 	/*
 	stwu     r1, -0x20(r1)
@@ -560,10 +560,10 @@ void JASHeap::dump(int)
  * Address:	........
  * Size:	000038
  */
-JASMutexLock::JASMutexLock(OSMutex*)
-{
-	// UNUSED FUNCTION
-}
+// JASMutexLock::JASMutexLock(OSMutex*)
+// {
+// 	// UNUSED FUNCTION
+// }
 
 /*
  * --INFO--
@@ -1171,7 +1171,7 @@ JKRExpHeap* JASKernel::getSystemHeap()
  * Address:	800A73C4
  * Size:	000008
  */
-JASHeap* JASKernel::getCommandHeap()
+JASCmdHeap* JASKernel::getCommandHeap()
 {
 	return sCommandHeap;
 	/*

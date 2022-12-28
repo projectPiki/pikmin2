@@ -1,3 +1,6 @@
+#include "JSystem/JUT/JUTProcBar.h"
+#include "JSystem/JUT/JUTVideo.h"
+#include "JSystem/JUT/TColor.h"
 #include "types.h"
 
 /*
@@ -77,14 +80,52 @@
         .4byte 0x00000000
 */
 
+JUTProcBar* JUTProcBar::sManager;
+
 /*
  * --INFO--
  * Address:	........
  * Size:	000114
  */
 JUTProcBar::JUTProcBar()
+    : _04(0)
+    , _08(0)
+    , _0C(0)
+    , _18(0)
+    , _1C(0)
+    , _20(0)
+    , _2C(0)
+    , _30(0)
+    , _34(0)
+    , _40(0)
+    , _44(0)
+    , _48(0)
+    , _54(0)
+    , _58(0)
+    , _5C(0)
+    , _64()
+    , _10C(1)
+    , _130(1)
 {
 	// UNUSED FUNCTION
+	_108       = 0;
+	u16 height = JUTVideo::sManager->getEfbHeight();
+	if (height > 400) {
+		_114 = 2;
+		_118 = 0x27;
+		_11C = height - 0x28;
+		_120 = 0x232;
+		_124 = height - 0x46;
+	} else {
+		_114 = 1;
+		_118 = 0x27;
+		_11C = height - 0x14;
+		_120 = 0x232;
+		_124 = height - 0x23;
+	}
+	_110 = 1;
+	_128 = 0;
+	_12C = nullptr;
 }
 
 /*
@@ -92,15 +133,11 @@ JUTProcBar::JUTProcBar()
  * Address:	8002EFE0
  * Size:	000014
  */
-JUTProcBar::CTime::CTime(void)
+JUTProcBar::CTime::CTime()
+    : _04(0)
+    , _08(0)
+    , _0C(0)
 {
-	/*
-	li       r0, 0
-	stw      r0, 4(r3)
-	stw      r0, 8(r3)
-	stw      r0, 0xc(r3)
-	blr
-	*/
 }
 
 /*
@@ -111,6 +148,7 @@ JUTProcBar::CTime::CTime(void)
 JUTProcBar::~JUTProcBar()
 {
 	// UNUSED FUNCTION
+	sManager = nullptr;
 }
 
 /*
@@ -118,8 +156,12 @@ JUTProcBar::~JUTProcBar()
  * Address:	8002EFF4
  * Size:	000130
  */
-void JUTProcBar::create()
+JUTProcBar* JUTProcBar::create()
 {
+	if (sManager == nullptr) {
+		sManager = new JUTProcBar();
+	}
+	return sManager;
 	/*
 	stwu     r1, -0x10(r1)
 	mflr     r0
@@ -215,26 +257,10 @@ lbl_8002F10C:
  */
 void JUTProcBar::destroy()
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	lwz      r3, sManager__10JUTProcBar@sda21(r13)
-	cmplwi   r3, 0
-	beq      lbl_8002F14C
-	beq      lbl_8002F14C
-	li       r0, 0
-	stw      r0, sManager__10JUTProcBar@sda21(r13)
-	bl       __dl__FPv
-
-lbl_8002F14C:
-	li       r0, 0
-	stw      r0, sManager__10JUTProcBar@sda21(r13)
-	lwz      r0, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	if (sManager != nullptr) {
+		delete sManager;
+	}
+	sManager = nullptr;
 }
 
 /*
@@ -327,21 +353,8 @@ void JUTProcBar::adjustMeterLength(unsigned long, float*, float, float, int*)
  */
 void JUTProcBar::draw()
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	mr       r31, r3
-	bl       drawProcessBar__10JUTProcBarFv
-	mr       r3, r31
-	bl       drawHeapBar__10JUTProcBarFv
-	lwz      r0, 0x14(r1)
-	lwz      r31, 0xc(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	drawProcessBar();
+	drawHeapBar();
 }
 
 /*

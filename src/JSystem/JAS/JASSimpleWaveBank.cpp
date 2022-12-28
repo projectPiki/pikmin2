@@ -48,7 +48,7 @@ JASSimpleWaveBank::JASSimpleWaveBank()
  * Size:	0000D4
  * __dt__17JASSimpleWaveBankFv
  */
-JASSimpleWaveBank::~JASSimpleWaveBank() { }
+JASSimpleWaveBank::~JASSimpleWaveBank() { delete[] m_handles; }
 
 /*
  * --INFO--
@@ -66,43 +66,8 @@ JASSimpleWaveBank::TWaveHandle::~TWaveHandle(void) { }
 void JASSimpleWaveBank::setWaveTableSize(unsigned long tableSize)
 {
 	delete[] m_handles;
-	m_handles     = new (JASWaveBank::getCurrentHeap(), 0) TWaveHandle[tableSize];
+	m_handles     = new (getCurrentHeap(), 0) TWaveHandle[tableSize];
 	m_handleCount = tableSize;
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	mr       r31, r4
-	stw      r30, 8(r1)
-	mr       r30, r3
-	lis      r3, __dt__Q217JASSimpleWaveBank11TWaveHandleFv@ha
-	addi     r0, r3, __dt__Q217JASSimpleWaveBank11TWaveHandleFv@l
-	lwz      r3, 0x60(r30)
-	mr       r4, r0
-	bl       __destroy_new_array
-	bl       getCurrentHeap__11JASWaveBankFv
-	mulli    r6, r31, 0x30
-	mr       r4, r3
-	li       r5, 0
-	addi     r3, r6, 0x10
-	bl       __nwa__FUlP7JKRHeapi
-	lis      r4, __ct__Q217JASSimpleWaveBank11TWaveHandleFv@ha
-	lis      r5, __dt__Q217JASSimpleWaveBank11TWaveHandleFv@ha
-	addi     r4, r4, __ct__Q217JASSimpleWaveBank11TWaveHandleFv@l
-	mr       r7, r31
-	addi     r5, r5, __dt__Q217JASSimpleWaveBank11TWaveHandleFv@l
-	li       r6, 0x30
-	bl       __construct_new_array
-	stw      r3, 0x60(r30)
-	stw      r31, 0x64(r30)
-	lwz      r0, 0x14(r1)
-	lwz      r31, 0xc(r1)
-	lwz      r30, 8(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
 }
 
 /*

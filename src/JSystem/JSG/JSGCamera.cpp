@@ -1,3 +1,4 @@
+#include "JStage/TSystem.h"
 #include "types.h"
 #include "Dolphin/float.h"
 #include "Dolphin/vec.h"
@@ -18,7 +19,7 @@ TCamera::~TCamera(void) { }
  * Address:	80098854
  * Size:	000008
  */
-int TCamera::JSGFGetType() const { return 3; }
+int TCamera::JSGFGetType() const { return TEO_Camera; }
 
 /*
  * --INFO--

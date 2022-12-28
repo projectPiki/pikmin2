@@ -71,6 +71,16 @@ J3DJointTree::J3DJointTree()
 
 /*
  * --INFO--
+ * Address:	........
+ * Size:	000044
+ */
+void J3DJointTree::clear()
+{
+	// UNUSED FUNCTION
+}
+
+/*
+ * --INFO--
  * Address:	80088310
  * Size:	00015C
  */
@@ -384,6 +394,12 @@ lbl_800885CC:
  */
 void J3DJointTree::calc(J3DMtxBuffer* buffer, const Vec& vec, const float (&mtx)[3][4])
 {
+	// m_transformCalc->init(vec, mtx);
+	// J3DMtxCalc::setMtxBuffer(buffer);
+	// if (_10 != nullptr) {
+	// 	_10->doRecursiveCalc(m_transformCalc);
+	// }
+
 	m_transformCalc->init(vec, mtx);
 	J3DMtxCalc::setMtxBuffer(buffer);
 	if (_10 != nullptr) {
@@ -429,10 +445,4 @@ lbl_80088638:
  * Address:	80088650
  * Size:	000008
  */
-// void J3DMtxCalc::setMtxBuffer(J3DMtxBuffer*)
-// {
-// 	/*
-// 	stw      r3, mMtxBuffer__10J3DMtxCalc@sda21(r13)
-// 	blr
-// 	*/
-// }
+// void J3DMtxCalc::setMtxBuffer(J3DMtxBuffer*) { }

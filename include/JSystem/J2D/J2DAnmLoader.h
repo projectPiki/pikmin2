@@ -9,12 +9,15 @@
 #include "JSystem/J2D/J2DAnm.h"
 
 struct J2DAnmLoader {
-	virtual void _08() = 0;  // _08
-	virtual void _0C() = 0;  // _0C
-	virtual ~J2DAnmLoader(); // _10 (weak)
+	virtual void load(const void*)                     = 0; // _08
+	virtual void setResource(J2DAnmBase*, const void*) = 0; // _0C
+	virtual ~J2DAnmLoader();                                // _10 (weak)
+
+	// _00 VTBL
+	J2DAnmBase* m_animation; // _04
 };
 
-struct J2DAnmFullLoader_v15 {
+struct J2DAnmFullLoader_v15 : public J2DAnmLoader {
 	virtual void load(const void*);                     // _08
 	virtual void setResource(J2DAnmBase*, const void*); // _0C
 	virtual ~J2DAnmFullLoader_v15();                    // _10
@@ -32,7 +35,7 @@ struct J2DAnmFullLoader_v15 {
 	void setAnmVtxColor(J2DAnmVtxColorFull*, const J3DAnmVtxColorFullData*);
 };
 
-struct J2DAnmKeyLoader_v15 {
+struct J2DAnmKeyLoader_v15 : public J2DAnmLoader {
 	virtual void load(const void*);                     // _08
 	virtual void setResource(J2DAnmBase*, const void*); // _0C
 	virtual ~J2DAnmKeyLoader_v15();                     // _10

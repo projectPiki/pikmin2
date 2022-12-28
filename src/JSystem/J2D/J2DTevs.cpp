@@ -424,8 +424,9 @@ void J2DIndTexMtx::load(unsigned char p1)
  * Address:	80059648
  * Size:	000030
  */
-void J2DIndTexCoordScale::load(unsigned char)
+void J2DIndTexCoordScale::load(unsigned char p1)
 {
+	// GXSetIndTexCoordScale(p1, _00, _01);
 	/*
 	stwu     r1, -0x10(r1)
 	mflr     r0
@@ -447,8 +448,9 @@ void J2DIndTexCoordScale::load(unsigned char)
  * Address:	80059678
  * Size:	000030
  */
-void J2DIndTexOrder::load(unsigned char)
+void J2DIndTexOrder::load(unsigned char p1)
 {
+	// GXSetIndTexOrder(p1, _00, _01);
 	/*
 	stwu     r1, -0x10(r1)
 	mflr     r0

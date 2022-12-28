@@ -18,6 +18,11 @@ struct J2DTexMtxInfo {
  * @size{0x54}
  */
 struct J2DTexMtx {
+	/* @fabricated */
+	inline J2DTexMtx(J2DTexMtxInfo* info)
+	    : m_info(*info)
+	{
+	}
 	inline ~J2DTexMtx() { } // unused/inlined
 
 	void load(u32);

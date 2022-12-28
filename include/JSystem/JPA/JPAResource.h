@@ -40,7 +40,7 @@ struct JPAResource {
 	struct JPAChildShape* _24;    // _24
 	struct JPAExTexShape* _28;    // _28
 	struct JPADynamicsBlock* _2C; // _2C
-	void* _30;                    // _30
+	struct JPAFieldBlock** _30;   // _30
 	struct JPAKeyBlock** _34;     // _34
 	u16* _38;                     // _38
 	u16 _3C;                      // _3C
@@ -54,7 +54,6 @@ struct JPAResource {
 	u8 _45;                       // _45
 	u8 _46;                       // _46
 	u8 _47;                       // _47
-	u8 _48;                       // _48
 };
 
 /**
@@ -79,9 +78,9 @@ struct JPAResourceManager {
 	JKRHeap* m_heap;                // _00
 	JPAResource** m_resources;      // _04
 	struct JPATexture** m_textures; // _08
-	s16 _0C;                        // _0C
+	u16 m_resourceSlotCount;        // _0C
 	u16 m_resourceCount;            // _0E
-	s16 _10;                        // _10
+	u16 m_textureSlotCount;         // _10
 	u16 m_textureCount;             // _12
 };
 

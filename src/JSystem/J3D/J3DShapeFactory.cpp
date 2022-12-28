@@ -349,69 +349,69 @@ lbl_800721A8:
  * Address:	800721C0
  * Size:	00005C
  */
-J3DShapeMtxConcatView::~J3DShapeMtxConcatView()
-{
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	or.      r31, r3, r3
-	beq      lbl_80072204
-	lis      r3, __vt__21J3DShapeMtxConcatView@ha
-	addi     r0, r3, __vt__21J3DShapeMtxConcatView@l
-	stw      r0, 0(r31)
-	beq      lbl_800721F4
-	lis      r3, __vt__11J3DShapeMtx@ha
-	addi     r0, r3, __vt__11J3DShapeMtx@l
-	stw      r0, 0(r31)
+// J3DShapeMtxConcatView::~J3DShapeMtxConcatView()
+// {
+// 	/*
+// 	stwu     r1, -0x10(r1)
+// 	mflr     r0
+// 	stw      r0, 0x14(r1)
+// 	stw      r31, 0xc(r1)
+// 	or.      r31, r3, r3
+// 	beq      lbl_80072204
+// 	lis      r3, __vt__21J3DShapeMtxConcatView@ha
+// 	addi     r0, r3, __vt__21J3DShapeMtxConcatView@l
+// 	stw      r0, 0(r31)
+// 	beq      lbl_800721F4
+// 	lis      r3, __vt__11J3DShapeMtx@ha
+// 	addi     r0, r3, __vt__11J3DShapeMtx@l
+// 	stw      r0, 0(r31)
 
-lbl_800721F4:
-	extsh.   r0, r4
-	ble      lbl_80072204
-	mr       r3, r31
-	bl       __dl__FPv
+// lbl_800721F4:
+// 	extsh.   r0, r4
+// 	ble      lbl_80072204
+// 	mr       r3, r31
+// 	bl       __dl__FPv
 
-lbl_80072204:
-	lwz      r0, 0x14(r1)
-	mr       r3, r31
-	lwz      r31, 0xc(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
-}
+// lbl_80072204:
+// 	lwz      r0, 0x14(r1)
+// 	mr       r3, r31
+// 	lwz      r31, 0xc(r1)
+// 	mtlr     r0
+// 	addi     r1, r1, 0x10
+// 	blr
+// 	*/
+// }
 
 /*
  * --INFO--
  * Address:	8007221C
  * Size:	000048
  */
-J3DShapeMtx::~J3DShapeMtx()
-{
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	or.      r31, r3, r3
-	beq      lbl_8007224C
-	lis      r5, __vt__11J3DShapeMtx@ha
-	extsh.   r0, r4
-	addi     r0, r5, __vt__11J3DShapeMtx@l
-	stw      r0, 0(r31)
-	ble      lbl_8007224C
-	bl       __dl__FPv
+// J3DShapeMtx::~J3DShapeMtx()
+// {
+// 	/*
+// 	stwu     r1, -0x10(r1)
+// 	mflr     r0
+// 	stw      r0, 0x14(r1)
+// 	stw      r31, 0xc(r1)
+// 	or.      r31, r3, r3
+// 	beq      lbl_8007224C
+// 	lis      r5, __vt__11J3DShapeMtx@ha
+// 	extsh.   r0, r4
+// 	addi     r0, r5, __vt__11J3DShapeMtx@l
+// 	stw      r0, 0(r31)
+// 	ble      lbl_8007224C
+// 	bl       __dl__FPv
 
-lbl_8007224C:
-	lwz      r0, 0x14(r1)
-	mr       r3, r31
-	lwz      r31, 0xc(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
-}
+// lbl_8007224C:
+// 	lwz      r0, 0x14(r1)
+// 	mr       r3, r31
+// 	lwz      r31, 0xc(r1)
+// 	mtlr     r0
+// 	addi     r1, r1, 0x10
+// 	blr
+// 	*/
+// }
 
 /*
  * --INFO--

@@ -6,7 +6,11 @@
 #include "JSystem/JUT/JUTNameTab.h"
 #include "types.h"
 
-struct J3DAnmTexPatternFullTable;
+struct J3DAnmTexPatternFullTable {
+	typedef u16 Row[2];
+
+	Row m_data[2];
+};
 
 struct J3DAnmTexPattern : public J3DAnmBase {
 	inline J3DAnmTexPattern()
@@ -44,8 +48,6 @@ struct J3DAnmTexPatternFullData : J3DAnmFullData {
 	void* _14; // _14
 	void* _18; // _18
 	void* _1C; // _1C
-};
-struct J3DAnmTexPatternFullTable {
 };
 
 #endif

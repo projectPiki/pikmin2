@@ -1,6 +1,7 @@
 #ifndef _JSYSTEM_JAS_JASTHREAD_H
 #define _JSYSTEM_JAS_JASTHREAD_H
 
+#include "JSystem/JAS/JASKernel.h"
 #include "types.h"
 #include "JSystem/JKR/JKRThread.h"
 
@@ -17,26 +18,12 @@ struct JASTaskThread : public JKRThread {
 	int sendCmdMsg(void (*)(void*), void*);
 
 	// unused/inlined:
-	void allocCallStack(void (*)(void*), const void*, unsigned long);
-	void allocCallStack(void (*)(void*), void*);
+	JASCmdHeap::Header* allocCallStack(void (*)(void*), const void*, unsigned long);
+	void* allocCallStack(void (*)(void*), void*);
 	void pause(bool);
 
 	OSThreadQueue _7C; // _7C
 	u8 _84;            // _84
-};
-
-/**
- * @size = 0x88
- */
-struct JASAudioThread : public JKRThread {
-	virtual ~JASAudioThread(); // _08 (weak)
-	virtual void* run();       // _0C
-
-	void stop();
-	void DMACallback();
-	void DSPCallback(void*);
-
-	static void create(long);
 };
 
 #endif

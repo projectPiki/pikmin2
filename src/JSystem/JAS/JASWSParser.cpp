@@ -1,4 +1,5 @@
 #include "JSystem/JAS/JASWave.h"
+#include "JSystem/JSupport/JSU.h"
 #include "types.h"
 
 /*
@@ -15,20 +16,10 @@
  * Address:	80098A68
  * Size:	000028
  */
-u32 JASWSParser::getGroupCount(void*)
+u32 JASWSParser::getGroupCount(void* stream)
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	lwz      r4, 0x14(r3)
-	bl       "JSUConvertOffsetToPtr<Q211JASWSParser10TCtrlGroup>__FPCvUl"
-	lwz      r0, 0x14(r1)
-	lwz      r3, 8(r3)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	THeader* header = static_cast<THeader*>(stream);
+	return JSUConvertOffsetToPtr<TCtrlGroup>(header, header->m_ctrlGroupOffset)->m_ctrlGroupCount;
 }
 
 /*
@@ -36,8 +27,52 @@ u32 JASWSParser::getGroupCount(void*)
  * Address:	80098A90
  * Size:	000204
  */
-JASBasicWaveBank* JASWSParser::createBasicWaveBank(void*)
+JASBasicWaveBank* JASWSParser::createBasicWaveBank(void* stream)
 {
+	JKRHeap* heap          = JASWaveBank::getCurrentHeap();
+	u32 priorFreeSize      = heap->getFreeSize();
+	JASBasicWaveBank* bank = new (heap, 0) JASBasicWaveBank();
+	if (bank == nullptr) {
+		return nullptr;
+	}
+	THeader* header = static_cast<THeader*>(stream);
+	size_t maxSize  = 0;
+
+	TCtrlGroup* ctrlGroupRaw = JSUConvertOffsetToPtr<TCtrlGroup>(header, header->m_ctrlGroupOffset);
+	bank->setGroupCount(ctrlGroupRaw->m_ctrlGroupCount);
+	for (int groupIndex = 0; groupIndex < ctrlGroupRaw->m_ctrlGroupCount; groupIndex++) {
+		TCtrlScene* ctrlSceneRaw                = JSUConvertOffsetToPtr<TCtrlScene>(header, ctrlGroupRaw->m_ctrlSceneOffsets[groupIndex]);
+		TCtrl* ctrlRaw                          = JSUConvertOffsetToPtr<TCtrl>(header, ctrlSceneRaw->m_ctrlOffset);
+		JASBasicWaveBank::TWaveGroup* waveGroup = bank->getWaveGroup(groupIndex);
+		TWaveArchiveBank* archiveBankRaw        = JSUConvertOffsetToPtr<TWaveArchiveBank>(header, header->m_archiveBankOffset);
+		TWaveArchive* archiveRaw                = JSUConvertOffsetToPtr<TWaveArchive>(header, archiveBankRaw->m_archiveOffsets[groupIndex]);
+		waveGroup->setWaveCount(ctrlRaw->m_waveCount);
+		for (int waveIndex = 0; waveIndex < ctrlRaw->m_waveCount; waveIndex++) {
+			TWave* waveRaw = JSUConvertOffsetToPtr<TWave>(header, archiveRaw->m_waveOffsets[waveIndex]);
+			JASWaveInfo info;
+			info._00               = waveRaw->_01;
+			info._01               = waveRaw->_02;
+			info._04               = waveRaw->_04;
+			info._08               = waveRaw->_08;
+			info._0C               = waveRaw->_0C;
+			info._10               = waveRaw->_10;
+			info._14               = waveRaw->_14;
+			info._18               = waveRaw->_18;
+			info._1C               = waveRaw->_1C;
+			info._20               = waveRaw->_20;
+			info._22               = waveRaw->_22;
+			TCtrlWave* ctrlWaveRaw = JSUConvertOffsetToPtr<TCtrlWave>(header, ctrlRaw->m_ctrlWaveOffsets[waveIndex]);
+			size_t size            = ctrlWaveRaw->_00 & 0xFFFF;
+			waveGroup->setWaveInfo(waveIndex, size, info);
+			if (maxSize < size) {
+				maxSize = size;
+			}
+		}
+		waveGroup->setFileName(archiveRaw->m_fileName);
+	}
+	bank->setWaveTableSize(maxSize + 1);
+	sUsedHeapSize += priorFreeSize - heap->getFreeSize();
+	return bank;
 	/*
 	stwu     r1, -0x70(r1)
 	mflr     r0
@@ -192,8 +227,53 @@ lbl_80098C80:
  * Address:	80098C94
  * Size:	0001F8
  */
-JASSimpleWaveBank* JASWSParser::createSimpleWaveBank(void*)
+JASSimpleWaveBank* JASWSParser::createSimpleWaveBank(void* stream)
 {
+	JKRHeap* heap            = JASWaveBank::getCurrentHeap();
+	u32 priorFreeSize        = heap->getFreeSize();
+	THeader* header          = static_cast<THeader*>(stream);
+	TCtrlGroup* ctrlGroupRaw = JSUConvertOffsetToPtr<TCtrlGroup>(header, header->m_ctrlGroupOffset);
+	if (ctrlGroupRaw->m_ctrlGroupCount != 1) {
+		return nullptr;
+	}
+	JASSimpleWaveBank* bank = new (heap, 0) JASSimpleWaveBank();
+	if (bank == nullptr) {
+		return nullptr;
+	}
+	size_t maxSize = 0;
+
+	TCtrlScene* ctrlSceneRaw         = JSUConvertOffsetToPtr<TCtrlScene>(header, ctrlGroupRaw->m_ctrlSceneOffsets[0]);
+	TCtrl* ctrlRaw                   = JSUConvertOffsetToPtr<TCtrl>(header, ctrlSceneRaw->m_ctrlOffset);
+	TWaveArchiveBank* archiveBankRaw = JSUConvertOffsetToPtr<TWaveArchiveBank>(header, header->m_archiveBankOffset);
+	TWaveArchive* archiveRaw         = JSUConvertOffsetToPtr<TWaveArchive>(header, archiveBankRaw->m_archiveOffsets[0]);
+	for (int waveIndex = 0; waveIndex < ctrlRaw->m_waveCount; waveIndex++) {
+		TCtrlWave* ctrlWaveRaw = JSUConvertOffsetToPtr<TCtrlWave>(header, ctrlRaw->m_ctrlWaveOffsets[waveIndex]);
+		size_t size            = ctrlWaveRaw->_00 & 0xFFFF;
+		if (maxSize < size) {
+			maxSize = size;
+		}
+	}
+	bank->setWaveTableSize(maxSize + 1);
+	for (int waveIndex = 0; waveIndex < ctrlRaw->m_waveCount; waveIndex++) {
+		TWave* waveRaw = JSUConvertOffsetToPtr<TWave>(header, archiveRaw->m_waveOffsets[waveIndex]);
+		JASWaveInfo info;
+		info._00               = waveRaw->_01;
+		info._01               = waveRaw->_02;
+		info._04               = waveRaw->_04;
+		info._08               = waveRaw->_08;
+		info._0C               = waveRaw->_0C;
+		info._10               = waveRaw->_10;
+		info._14               = waveRaw->_14;
+		info._18               = waveRaw->_18;
+		info._1C               = waveRaw->_1C;
+		info._20               = waveRaw->_20;
+		info._22               = waveRaw->_22;
+		TCtrlWave* ctrlWaveRaw = JSUConvertOffsetToPtr<TCtrlWave>(header, ctrlRaw->m_ctrlWaveOffsets[waveIndex]);
+		bank->setWaveInfo(ctrlWaveRaw->_00 & 0xFFFF, info);
+	}
+	bank->setFileName(archiveRaw->m_fileName);
+	sUsedHeapSize += priorFreeSize - heap->getFreeSize();
+	return bank;
 	/*
 	stwu     r1, -0x60(r1)
 	mflr     r0
@@ -357,132 +437,46 @@ size_t JASWSParser::getUsedHeapSize()
  * Address:	80098E8C
  * Size:	000018
  */
-// void JSUConvertOffsetToPtr<JASWSParser::TCtrlWave>(const void*, unsigned long)
-// {
-// 	/*
-// 	cmplwi   r4, 0
-// 	bne      lbl_80098E9C
-// 	li       r3, 0
-// 	blr
-
-// lbl_80098E9C:
-// 	add      r3, r3, r4
-// 	blr
-// 	*/
-// }
+// void JSUConvertOffsetToPtr<JASWSParser::TCtrlWave>(const void*, unsigned long) { }
 
 /*
  * --INFO--
  * Address:	80098EA4
  * Size:	000018
  */
-// void JSUConvertOffsetToPtr<JASWSParser::TWave>(const void*, unsigned long)
-// {
-// 	/*
-// 	cmplwi   r4, 0
-// 	bne      lbl_80098EB4
-// 	li       r3, 0
-// 	blr
-
-// lbl_80098EB4:
-// 	add      r3, r3, r4
-// 	blr
-// 	*/
-// }
+// void JSUConvertOffsetToPtr<JASWSParser::TWave>(const void*, unsigned long) { }
 
 /*
  * --INFO--
  * Address:	80098EBC
  * Size:	000018
  */
-// void JSUConvertOffsetToPtr<JASWSParser::TWaveArchive>(const void*, unsigned long)
-// {
-// 	/*
-// 	.loc_0x0:
-// 	  cmplwi    r4, 0
-// 	  bne-      .loc_0x10
-// 	  li        r3, 0
-// 	  blr
-
-// 	.loc_0x10:
-// 	  add       r3, r3, r4
-// 	  blr
-// 	*/
-// }
+// void JSUConvertOffsetToPtr<JASWSParser::TWaveArchive>(const void*, unsigned long) { }
 
 /*
  * --INFO--
  * Address:	80098ED4
  * Size:	000018
  */
-// void JSUConvertOffsetToPtr<JASWSParser::TWaveArchiveBank>(const void*, unsigned long)
-// {
-// 	/*
-// 	.loc_0x0:
-// 	  cmplwi    r4, 0
-// 	  bne-      .loc_0x10
-// 	  li        r3, 0
-// 	  blr
-
-// 	.loc_0x10:
-// 	  add       r3, r3, r4
-// 	  blr
-// 	*/
-// }
+// void JSUConvertOffsetToPtr<JASWSParser::TWaveArchiveBank>(const void*, unsigned long) { }
 
 /*
  * --INFO--
  * Address:	80098EEC
  * Size:	000018
  */
-// void JSUConvertOffsetToPtr<JASWSParser::TCtrl>(const void*, unsigned long)
-// {
-// 	/*
-// 	cmplwi   r4, 0
-// 	bne      lbl_80098EFC
-// 	li       r3, 0
-// 	blr
-
-// lbl_80098EFC:
-// 	add      r3, r3, r4
-// 	blr
-// 	*/
-// }
+// void JSUConvertOffsetToPtr<JASWSParser::TCtrl>(const void*, unsigned long) { }
 
 /*
  * --INFO--
  * Address:	80098F04
  * Size:	000018
  */
-// void JSUConvertOffsetToPtr<JASWSParser::TCtrlScene>(const void*, unsigned long)
-// {
-// 	/*
-// 	cmplwi   r4, 0
-// 	bne      lbl_80098F14
-// 	li       r3, 0
-// 	blr
-
-// lbl_80098F14:
-// 	add      r3, r3, r4
-// 	blr
-// 	*/
-// }
+// void JSUConvertOffsetToPtr<JASWSParser::TCtrlScene>(const void*, unsigned long) { }
 
 /*
  * --INFO--
  * Address:	80098F1C
  * Size:	000018
  */
-// void JSUConvertOffsetToPtr<JASWSParser::TCtrlGroup>(const void*, unsigned long)
-// {
-// 	/*
-// 	cmplwi   r4, 0
-// 	bne      lbl_80098F2C
-// 	li       r3, 0
-// 	blr
-
-// lbl_80098F2C:
-// 	add      r3, r3, r4
-// 	blr
-// 	*/
-// }
+// void JSUConvertOffsetToPtr<JASWSParser::TCtrlGroup>(const void*, unsigned long) { }

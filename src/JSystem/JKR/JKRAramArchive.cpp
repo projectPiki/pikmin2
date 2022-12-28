@@ -1,5 +1,8 @@
+#include "Dolphin/os.h"
 #include "JSystem/JKR/Aram.h"
+#include "JSystem/JKR/JKRDvdRipper.h"
 #include "types.h"
+#include "std/limits.h"
 
 /*
     Generated from dpostproc
@@ -70,7 +73,7 @@ JKRAramArchive::JKRAramArchive(long p1, JKRArchive::EMountDirection mountDirecti
 {
 	if (open(p1)) {
 		m_magicWord = 'RARC';
-		_28         = _54[*_48->_04];
+		_28         = _54 + _48->_04;
 		sVolumeList.prepend(&_18);
 		_30 = 1;
 	}
@@ -244,37 +247,7 @@ lbl_80018B34:
  * Address:	80018B58
  * Size:	000060
  */
-JKRFile::~JKRFile()
-{
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	mr       r31, r4
-	stw      r30, 8(r1)
-	or.      r30, r3, r3
-	beq      lbl_80018B9C
-	lis      r5, __vt__7JKRFile@ha
-	li       r4, 0
-	addi     r0, r5, __vt__7JKRFile@l
-	stw      r0, 0(r30)
-	bl       __dt__11JKRDisposerFv
-	extsh.   r0, r31
-	ble      lbl_80018B9C
-	mr       r3, r30
-	bl       __dl__FPv
-
-lbl_80018B9C:
-	lwz      r0, 0x14(r1)
-	mr       r3, r30
-	lwz      r31, 0xc(r1)
-	lwz      r30, 8(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
-}
+JKRFile::~JKRFile() { }
 
 /*
  * --INFO--
@@ -537,8 +510,37 @@ lbl_80018ED8:
  * Address:	80018EEC
  * Size:	000124
  */
-void* JKRAramArchive::fetchResource(JKRArchive::SDIFileEntry*, unsigned long*)
+void* JKRAramArchive::fetchResource(JKRArchive::SDIFileEntry* entry, unsigned long* p2)
 {
+	u32 standInForP2;
+	if (p2 == nullptr) {
+		p2 = &standInForP2;
+	}
+	int sequence;
+	if (!entry->getFlag04()) {
+		sequence = 0;
+	} else if (entry->getFlag80()) {
+		sequence = 2;
+	} else {
+		sequence = 1;
+	}
+	if (entry->_10 == nullptr) {
+		u8* v2;
+		u32 v3 = fetchResource_subroutine(entry->_08 + ((int*)_64)[5], entry->getSize(), _38, sequence, &v2);
+		*p2    = v3;
+		if (v3 == 0) {
+			return nullptr;
+		}
+		entry->_10 = v2;
+		if (sequence == 2) {
+			setExpandSize(entry, *p2);
+		}
+	} else if (sequence == 2) {
+		*p2 = getExpandSize(entry);
+	} else {
+		*p2 = entry->getSize();
+	}
+	return entry->_10;
 	/*
 	stwu     r1, -0x20(r1)
 	mflr     r0
@@ -639,7 +641,7 @@ lbl_80018FF0:
  * Address:	80019010
  * Size:	0000F8
  */
-void* JKRAramArchive::fetchResource(void*, unsigned long, JKRArchive::SDIFileEntry*, unsigned long*)
+void* JKRAramArchive::fetchResource(void* p1, unsigned long p2, JKRArchive::SDIFileEntry* entry, unsigned long* p4)
 {
 	/*
 	.loc_0x0:
@@ -733,8 +735,25 @@ void* JKRAramArchive::fetchResource(void*, unsigned long, JKRArchive::SDIFileEnt
  * Address:	80019108
  * Size:	0000BC
  */
-void JKRAramArchive::fetchResource_subroutine(u32, u32, u8*, u32, s32)
+u32 JKRAramArchive::fetchResource_subroutine(u32 p1, u32 p2, u8* p3, u32 p4, int p5)
 {
+	u32 v1 = ALIGN_PREV(p4, 0x20);
+	u32 v2 = ALIGN_NEXT(p2, 0x20);
+	u32 v3;
+	switch (p5) {
+	case 0:
+		if (v2 > v1) {
+			v2 = v1;
+		}
+		JKRAram::aramToMainRam(p1, p3, v2, Switch_0, v1, nullptr, -1, &v3);
+		return v3;
+	case 1:
+	case 2:
+		JKRAram::aramToMainRam(p1, p3, v2, Switch_1, v1, nullptr, -1, &v3);
+		return v3;
+	}
+	OSErrorLine(655, ":::??? bad sequence\n");
+	return 0;
 	/*
 	.loc_0x0:
 	  stwu      r1, -0x10(r1)
@@ -802,8 +821,58 @@ void JKRAramArchive::fetchResource_subroutine(u32, u32, u8*, u32, s32)
  * Address:	800191C4
  * Size:	00014C
  */
-void JKRAramArchive::fetchResource_subroutine(u32, u32, JKRHeap*, s32, u8**)
+u32 JKRAramArchive::fetchResource_subroutine(u32 p1, u32 p2, JKRHeap* heap, int sequence, u8** p5)
 {
+	size_t byteCount = ALIGN_NEXT(p2, 0x20);
+	size_t byteCount2;
+	u8* memory;
+	struct Temp {
+		u32 _00;
+		u8 _04[0x8];
+		u8 _0C;
+		u8 _0D;
+		u8 _0E;
+		u8 _0F;
+		u8 _10[0x10];
+	} v1;
+	switch (sequence) {
+	case 0:
+		memory = (u8*)JKRHeap::alloc(byteCount, 0x20, heap);
+		JKRAram::aramToMainRam(p1, memory, byteCount, Switch_0, byteCount, nullptr, -1, nullptr);
+		*p5 = memory;
+		return p2;
+	case 1:
+	case 2:
+		JKRAram::aramToMainRam(p1, (u8*)&v1, 0x20, Switch_0, 0, nullptr, -1, nullptr);
+		byteCount2 = ALIGN_NEXT(v1._0C << 24 | v1._0D << 16 | v1._0E << 8 | v1._0F, 0x20);
+		memory     = (u8*)JKRHeap::alloc(byteCount2, 0x20, heap);
+		JKRAram::aramToMainRam(p1, memory, byteCount, Switch_1, byteCount2, heap, -1, &v1._00);
+		*p5 = memory;
+		return v1._00;
+	}
+	OSErrorLine(713, ":::??? bad sequence\n");
+	return 0;
+	// u8 v1[0x20];
+	// size_t byteCount = ALIGN_NEXT(p2, 0x20);
+	// size_t byteCount2;
+	// u8* memory;
+	// switch (sequence) {
+	// case 0:
+	// 	memory = (u8*)JKRHeap::alloc(byteCount, 0x20, heap);
+	// 	JKRAram::aramToMainRam(p1, memory, byteCount, Switch_0, byteCount, nullptr, -1, nullptr);
+	// 	*p5 = memory;
+	// 	return p2;
+	// case 1:
+	// case 2:
+	// 	JKRAram::aramToMainRam(p1, v1, 0x20, Switch_0, 0, nullptr, -1, nullptr);
+	// 	byteCount2 = ALIGN_NEXT(v1[12] << 24 | v1[13] << 16 | v1[14] << 8 | v1[15], 0x20);
+	// 	memory     = (u8*)JKRHeap::alloc(byteCount2, 0x20, heap);
+	// 	JKRAram::aramToMainRam(p1, memory, byteCount, Switch_1, byteCount2, heap, -1, (u32*)v1);
+	// 	*p5 = memory;
+	// 	return ((u32*)v1)[0];
+	// }
+	// OSErrorLine(713, ":::??? bad sequence\n");
+	// return 0;
 	/*
 	.loc_0x0:
 	  stwu      r1, -0x70(r1)
@@ -905,8 +974,28 @@ void JKRAramArchive::fetchResource_subroutine(u32, u32, JKRHeap*, s32, u8**)
  * Address:	80019310
  * Size:	000134
  */
-u32 JKRAramArchive::getExpandedResSize(const void*) const
+size_t JKRAramArchive::getExpandedResSize(const void* p1) const
 {
+	if (_50 == nullptr) {
+		return getResSize(p1);
+	}
+	SDIFileEntry* entry = findPtrResource(p1);
+	if (entry == nullptr) {
+		return std::numeric_limits<size_t>::max();
+	}
+	if (!entry->getFlag04()) {
+		return getResSize(p1);
+	}
+	size_t expandSize = getExpandSize(entry);
+	if (expandSize != 0) {
+		return expandSize;
+	}
+	u8 v1[0x20];
+	JKRAram::aramToMainRam(entry->_08 + ((int*)_64)[4], v1, sizeof(v1), Switch_0, 0, nullptr, -1, nullptr);
+	expandSize = v1[4] << 24 | v1[5] << 16 | v1[6] << 8 | v1[7];
+	// TODO: uhhhhh this is a const function. Why is it calling a non-const function???
+	// setExpandSize(entry, expandSize);
+	return expandSize;
 	/*
 	stwu     r1, -0x60(r1)
 	mflr     r0

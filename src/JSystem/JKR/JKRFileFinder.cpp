@@ -31,9 +31,9 @@ JKRArcFinder::JKRArcFinder(JKRArchive* archive, long p2, long p3)
     : JKRFileFinder()
     , m_archive(archive)
 {
-	_10 = (bool)p3;
+	_10 = p3 != 0;
 	_18 = p2;
-	_1C = p2 + p3 + -1;
+	_1C = p2 + p3 - 1;
 	_20 = _18;
 	findNextFile();
 	/*

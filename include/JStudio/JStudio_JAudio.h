@@ -60,8 +60,8 @@ struct TAdaptor_sound : public JStudio::TAdaptor {
 };
 
 struct TCreateObject : public JStudio::TCreateObject {
-	virtual ~TCreateObject();                                                                 // _08
-	virtual void create(JStudio::TObject**, const JStudio::stb::data::TParse_TBlock_object&); // _0C
+	virtual ~TCreateObject();                                                                                // _08
+	virtual bool create(JStudio::TObject** newObject, const JStudio::stb::data::TParse_TBlock_object& data); // _0C
 
 	// _00 = VTBL
 	u8 _04[0x8];               // _04, unknown

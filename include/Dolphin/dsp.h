@@ -36,6 +36,8 @@ extern DSPTask* __DSP_curr_task;
 void __DSP_debug_printf(char*, ...);
 
 void DSPInit();
+u32 DSPCheckMailFromDSP();
+u32 DSPReadMailFromDSP();
 
 #ifdef __cplusplus
 }

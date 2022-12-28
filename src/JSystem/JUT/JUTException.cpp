@@ -277,9 +277,12 @@
         .float 6.0
 */
 
+JUTException* JUTException::sErrorManager;
 OSErrorHandler JUTException::sPreUserCallback;
 OSErrorHandler JUTException::sPostUserCallback;
-JUTException* JUTException::sErrorManager;
+void* JUTException::sConsoleBuffer;
+size_t JUTException::sConsoleBufferSize;
+JUTConsole* JUTException::sConsole;
 u32 JUTException::msr;
 u32 JUTException::fpscr;
 OSMessageQueue JUTException::sMessageQueue;
@@ -288,7 +291,7 @@ JSUList<JUTException::JUTExMapFile> JUTException::sMapFileList(false);
 
 static JUTException::ExCallbackObject exCallbackObject;
 
-const char* const JUTException::sCpuExpName[OS_ERROR_MAX + 1]
+const char* JUTException::sCpuExpName[OS_ERROR_MAX + 1]
     = { "SYSTEM RESET",      "MACHINE CHECK", "DSI",           "ISI",   "EXTERNAL INTERRUPT",  "ALIGNMENT",   "PROGRAM",
 	    "FLOATING POINT",    "DECREMENTER",   "SYSTEM CALL",   "TRACE", "PERFORMANCE MONITOR", "BREAK POINT", "SYSTEM INTERRUPT",
 	    "THERMAL INTERRUPT", "PROTECTION",    "FLOATING POINT" };
@@ -345,7 +348,7 @@ void* JUTException::run()
 	OSInitMessageQueue(&sMessageQueue, sMessageBuffer, 1);
 	while (true) {
 		ExCallbackObject* msg;
-		OSReceiveMessage(&sMessageQueue, &msg, OS_MESSAGE_BLOCKING);
+		OSReceiveMessage(&sMessageQueue, (void**)&msg, OS_MESSAGE_BLOCKING);
 		VISetPreRetraceCallback(nullptr);
 		VISetPostRetraceCallback(nullptr);
 		OSError error          = msg->m_error;
@@ -360,15 +363,15 @@ void* JUTException::run()
 		if (m_frameBuffer == nullptr) {
 			sErrorManager->createFB();
 		}
-		sErrorManager->m_directPrint->changeFrameBuffer(m_frameBuffer, sErrorManager->m_directPrint->_04,
-		                                                sErrorManager->m_directPrint->_06);
+		sErrorManager->m_directPrint->changeFrameBuffer(m_frameBuffer, sErrorManager->m_directPrint->m_pixelWidth,
+		                                                sErrorManager->m_directPrint->m_pixelHeight);
 		if (handler != nullptr) {
 			handler(error, context, v1, v2);
 		}
 		OSDisableInterrupts();
 		m_frameBuffer = VIGetCurrentFrameBuffer();
-		sErrorManager->m_directPrint->changeFrameBuffer(m_frameBuffer, sErrorManager->m_directPrint->_04,
-		                                                sErrorManager->m_directPrint->_06);
+		sErrorManager->m_directPrint->changeFrameBuffer(m_frameBuffer, sErrorManager->m_directPrint->m_pixelWidth,
+		                                                sErrorManager->m_directPrint->m_pixelHeight);
 		sErrorManager->printContext(error, context, v1, v2);
 	}
 	/*

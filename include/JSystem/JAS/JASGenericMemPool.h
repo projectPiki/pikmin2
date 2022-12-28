@@ -21,25 +21,25 @@ struct JASGenericMemPool {
 	u32 _08; // _08
 };
 
-// TODO: each of these is probably a struct
-enum JASCreationPolicy {
-	NewFromRootHeap,
-	/** @fabricated */
-	NewFromSystemHeap
-};
+namespace JASCreationPolicy {
+struct NewFromRootHeap { };
 
-// TODO: each of these is probably a struct
-enum JASThreadingModel {
-	SingleThreaded,
-	/** @fabricated */
-	MultiThreaded
-};
+/** @fabricated */
+struct NewFromSystemHeap { };
+} // namespace JASCreationPolicy
 
-template <typename T, JASThreadingModel ThreadingModel>
+namespace JASThreadingModel {
+struct SingleThreaded { };
+
+/** @fabricated */
+struct MultiThreaded { };
+}; // namespace JASThreadingModel
+
+template <typename T, typename ThreadingModel>
 struct JASMemPool : public JASGenericMemPool {
 };
 
-template <typename T, JASCreationPolicy CreationPolicy>
+template <typename T, typename CreationPolicy>
 struct JASSingletonHolder {
 	static T* createInstance()
 	{
@@ -55,7 +55,7 @@ struct JASSingletonHolder {
 	static T* getInstance()
 	{
 		T* instance = sInstance;
-		if (!instance) {
+		if (instance == nullptr) {
 			// int interrupts = OSDisableInterrupts();
 			instance = createInstance();
 			// OSRestoreInterrupts(interrupts);
@@ -67,8 +67,8 @@ struct JASSingletonHolder {
 	static T* sInstance;
 };
 
-template <typename T, JASCreationPolicy CreationPolicy, JASThreadingModel ThreadingModel>
-struct JASPoolAllocObject {
+template <typename T, typename CreationPolicy, typename ThreadingModel>
+struct JASPoolAllocObject { //: public JASSingletonHolder<JASMemPool<T, ThreadingModel>, CreationPolicy> {
 	typedef JASMemPool<T, ThreadingModel> Pool;
 	typedef JASSingletonHolder<Pool, CreationPolicy> SingletonHolder;
 
@@ -80,7 +80,7 @@ struct JASPoolAllocObject {
 	// static inline T* alloc() { return ::new (SingletonHolder::getInstance()->alloc(sizeof(T))) T(); }
 	static inline void* alloc() { return (SingletonHolder::getInstance()->alloc(sizeof(T))); }
 
-	inline virtual ~JASPoolAllocObject<T, CreationPolicy, ThreadingModel>() // _08
+	virtual ~JASPoolAllocObject<T, CreationPolicy, ThreadingModel>() // _08
 	{
 		SingletonHolder::getInstance()->free(this, 4);
 	}

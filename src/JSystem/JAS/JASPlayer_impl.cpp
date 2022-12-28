@@ -1,3 +1,4 @@
+#include "JSystem/JAS/JASPlayer.h"
 #include "types.h"
 
 /*
@@ -437,8 +438,12 @@
  * Address:	8009C5B4
  * Size:	00001C
  */
-void JASPlayer::extend8to16(unsigned char)
+s16 JASPlayer::extend8to16(unsigned char value)
 {
+	if ((value & 0x80) != 0) {
+		return value - 0x100;
+	}
+	return value;
 	/*
 	rlwinm.  r0, r3, 0, 0x18, 0x18
 	clrlwi   r3, r3, 0x18
@@ -455,7 +460,7 @@ void JASPlayer::extend8to16(unsigned char)
  * Address:	8009C5D0
  * Size:	0000D4
  */
-void JASPlayer::pitchToCent(float, float)
+f32 JASPlayer::pitchToCent(float, float)
 {
 	/*
 	stwu     r1, -0x30(r1)
@@ -523,7 +528,7 @@ lbl_8009C658:
  * Address:	8009C6A4
  * Size:	000070
  */
-void JASPlayer::getRandomS32()
+s32 JASPlayer::getRandomS32()
 {
 	/*
 	lbz      r0, init$664@sda21(r13)

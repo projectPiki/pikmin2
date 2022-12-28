@@ -1,6 +1,7 @@
 #ifndef _JSYSTEM_J2D_J2DGXCOLORS10_H
 #define _JSYSTEM_J2D_J2DGXCOLORS10_H
 
+#include "JSystem/JUT/TColor.h"
 #include "types.h"
 #include "Dolphin/gx.h"
 
@@ -35,6 +36,12 @@ struct J2DGXColorS10 : public GXColorS10 {
 		b                      = otherBytes->b;
 		a                      = otherBytes->a;
 	}
+
+	inline operator u64() const { return toUInt64(); }
+	inline u32 toUInt64() const { return *(u64*)&r; }
+
+	inline operator JUtility::TColor() const { return toTColor(); }
+	inline JUtility::TColor toTColor() const { return JUtility::TColor(r, g, b, a); }
 };
 
 #endif

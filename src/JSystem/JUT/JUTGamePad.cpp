@@ -6,17 +6,37 @@
 #include "JSystem/JSystem.h"
 #include "types.h"
 
-const u32 JUTGamePad::CRumble::sChannelMask[PAD_MAX_CONTROLLERS] = { 0x80000000, 0x40000000, 0x20000000, 0x10000000 };
-const u32 channel_mask[PAD_MAX_CONTROLLERS]                      = { 0x80000000, 0x40000000, 0x20000000, 0x10000000 };
+u32 JUTGamePad::CRumble::sChannelMask[PAD_MAX_CONTROLLERS] = { 0x80000000, 0x40000000, 0x20000000, 0x10000000 };
+u32 channel_mask[PAD_MAX_CONTROLLERS]                      = { 0x80000000, 0x40000000, 0x20000000, 0x10000000 };
 
-// JSUPtrList JUTGamePad::mPadList(false);
-// PADStatus JUTGamePad::mPadStatus[PAD_MAX_CONTROLLERS];
-// JUTGamePad::CButton JUTGamePad::mPadButton[PAD_MAX_CONTROLLERS];
-// JUTGamePad::CStick JUTGamePad::mPadMStick[PAD_MAX_CONTROLLERS];
-// JUTGamePad::CStick JUTGamePad::mPadSStick[PAD_MAX_CONTROLLERS];
-// JSUPtrList JUTGamePadLongPress::sPatternList(false);
+JUTGamePad::EStickMode JUTGamePad::sStickMode    = MODE_1;
+int JUTGamePad::sClampMode                       = 1;
+float JUTGamePad::CStick::sPressPoint            = 0.5f;
+float JUTGamePad::CStick::sReleasePoint          = 0.25f;
+u32 JUTGamePad::C3ButtonReset::sResetPattern     = 0x1600;
+u32 JUTGamePad::C3ButtonReset::sResetMaskPattern = 0xFFFF;
 
+JSUList<JUTGamePad> JUTGamePad::mPadList(false);
+PADStatus JUTGamePad::mPadStatus[PAD_MAX_CONTROLLERS];
+JUTGamePad::CButton JUTGamePad::mPadButton[PAD_MAX_CONTROLLERS];
+JUTGamePad::CStick JUTGamePad::mPadMStick[PAD_MAX_CONTROLLERS];
+JUTGamePad::CStick JUTGamePad::mPadSStick[PAD_MAX_CONTROLLERS];
+JSUPtrList JUTGamePadLongPress::sPatternList(false);
+
+s8 JUTGamePad::mPadAssign[4];
+s32 JUTGamePad::sSuppressPadReset;
+// u8 JUTGamePad::sErrorReport;
+// u32 JUTGamePad::sSamplingRate;
+s32 JUTGamePad::sAnalogMode;
+u32 JUTGamePad::sRumbleSupported;
+u8 JUTGamePad::CRumble::mStatus[4];
+u32 JUTGamePad::CRumble::mEnabled;
+JUTGamePad::C3ButtonReset::Callback JUTGamePad::C3ButtonReset::sCallback;
+u32 JUTGamePad::C3ButtonReset::sCallbackArg;
 s64 JUTGamePad::C3ButtonReset::sThreshold = (OSGetTicksPerSecond() / 60 * 30);
+bool JUTGamePad::C3ButtonReset::sResetSwitchPushing;
+bool JUTGamePad::C3ButtonReset::sResetOccurred;
+JUTGamePad::EPadPort JUTGamePad::C3ButtonReset::sResetOccurredPort;
 
 /*
     Generated from dpostproc
@@ -269,9 +289,15 @@ lbl_8002D4E0:
  * --INFO--
  * Address:	8002D52C
  * Size:	0000AC
+ * __dt__10JUTGamePadFv
  */
 JUTGamePad::~JUTGamePad()
 {
+	if (0 <= m_portNum) {
+		mPadAssign[m_portNum]--;
+		m_portNum = -1;
+	}
+	mPadList.remove(&m_padListLink);
 	/*
 	stwu     r1, -0x10(r1)
 	mflr     r0
@@ -1114,8 +1140,46 @@ void JUTGamePad::CButton::clear(void)
  * Size:	000190
  * update__Q210JUTGamePad7CButtonFPC9PADStatusUl
  */
-void JUTGamePad::CButton::update(PADStatus const*, unsigned long)
+void JUTGamePad::CButton::update(PADStatus const* status, unsigned long p2)
 {
+	p2 |= ((status != nullptr) ? status->button : 0);
+	_18 = 0;
+	if (_28 != 0) {
+		if (_24 != 0) {
+			u32 v1 = p2 & _24;
+			_18    = 0;
+			if (v1 == 0) {
+				_20 = 0;
+				_1C = 0;
+			} else if (_20 == v1) {
+				_1C++;
+				if (_1C == _28 || (_1C > _28 && _1C - _28 == ((_1C - _28) / _2C) * _2C)) {
+					_18 = v1;
+				}
+			} else {
+				_18 = v1 & (_20 ^ 0xFFFFFFFF);
+				_20 = v1;
+				_1C = 0;
+			}
+		}
+	}
+	m_buttonDown = p2 & (p2 ^ m_mask);
+	m_buttonUp   = m_mask & (p2 ^ m_mask);
+	m_mask       = p2;
+	_18          = _18 | (_24 ^ 0xFFFFFFFF) & m_buttonDown;
+	if (status != nullptr) {
+		m_analogA      = status->analogA;
+		m_analogB      = status->analogB;
+		m_triggerLeft  = status->triggerLeft;
+		m_triggerRight = status->triggerRight;
+	} else {
+		m_analogA      = 0;
+		m_analogB      = 0;
+		m_triggerLeft  = 0;
+		m_triggerRight = 0;
+	}
+	m_analogL = (s32)m_triggerLeft / 150.0f;
+	m_analogR = (s32)m_triggerRight / 150.0f;
 	/*
 	cmplwi   r4, 0
 	stwu     r1, -0x20(r1)
@@ -1483,8 +1547,27 @@ u32 JUTGamePad::CStick::update(signed char, signed char, JUTGamePad::EStickMode,
  * Size:	0000B4
  * getButton__Q210JUTGamePad6CStickFUl
  */
-u32 JUTGamePad::CStick::getButton(u32)
+u32 JUTGamePad::CStick::getButton(u32 p1)
 {
+	p1 &= 0xF;
+
+	if (-sReleasePoint < m_xPos && m_xPos < sReleasePoint) {
+		p1 = p1 & 0xC;
+	} else if (m_xPos <= -sPressPoint) {
+		p1 = p1 & 0xD | 1;
+	} else if (m_xPos >= sPressPoint) {
+		p1 = p1 & 0xE | 2;
+	}
+
+	if (-sReleasePoint < m_yPos && m_yPos < sReleasePoint) {
+		p1 = p1 & ~0xC;
+	} else if (m_yPos <= -sPressPoint) {
+		p1 = p1 & ~8 | 4;
+	} else if (m_yPos >= sPressPoint) {
+		p1 = p1 & ~4 | 8;
+	}
+
+	return p1;
 	/*
 	lfs      f1, sReleasePoint__Q210JUTGamePad6CStick@sda21(r13)
 	clrlwi   r0, r4, 0x1c

@@ -13,10 +13,11 @@ struct JASSeqCtrl {
 	bool waitCountDown();
 	bool callIntr(void*);
 	bool retIntr();
-	u16 get16(u32) const;
+
+	u32 get16(u32) const;
 	u32 get24(u32) const;
 	u32 get32(u32) const;
-	u16 read16();
+	u32 read16();
 	u32 read24();
 
 	// unused/inlined

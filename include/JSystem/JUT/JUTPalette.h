@@ -10,6 +10,11 @@ enum JUTTransparency { Transparency_0 = 0, Transparency_1, Transparency_2 };
 
 // Size: 0x18
 struct JUTPalette {
+	/** @fabricated */
+	inline JUTPalette() { }
+	/** @fabricated */
+	inline JUTPalette(u32 id, ResTLUT* lut) { storeTLUT((_GXTlut)id, lut); }
+
 	bool load();
 	void storeTLUT(_GXTlut, _GXTlutFmt, JUTTransparency, u16, void*);
 	void storeTLUT(_GXTlut, ResTLUT*);
@@ -20,7 +25,7 @@ struct JUTPalette {
 	// }
 
 	GXTlutObj m_tlutObj;
-	_GXTlut m_tlutID;                // _0C
+	u8 m_tlutID;                     // _0C
 	_GXTlutFmt m_tlutFormat;         // _0D
 	u8* _10;                         // _10
 	u16 _14;                         // _14

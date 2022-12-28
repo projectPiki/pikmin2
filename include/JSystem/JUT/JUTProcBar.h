@@ -1,6 +1,7 @@
 #ifndef _JUTPROCBAR_H
 #define _JUTPROCBAR_H
 
+#include "JSystem/JUT/TColor.h"
 #include "types.h"
 
 class JUTProcBar {
@@ -8,13 +9,27 @@ public:
 	struct CTime {
 		CTime();
 
-		u8 _00[0x14];
+		u8 _00[4]; // _00 - unknown
+		u32 _04;   // _04
+		u32 _08;   // _08
+		u32 _0C;   // _0C
+		u8 _10[4]; // _10 - unknown
 	};
 
-	JUTProcBar() { }
+	JUTProcBar();
+	~JUTProcBar();
 
-	static void create();
+	static JUTProcBar* create();
 	static void clear();
+	static void destroy();
+	void draw();
+	void drawProcessBar();
+	void drawHeapBar();
+
+	// unused/inlined:
+	void bar_subroutine(int, int, int, int, int, int, int, JUtility::TColor, JUtility::TColor);
+	void adjustMeterLength(u32, float*, float, float, int*);
+	void getUnuseUserBar();
 
 	static JUTProcBar* sManager;
 

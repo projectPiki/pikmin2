@@ -35,8 +35,6 @@ void J3DGDSetTexImgAttr(_GXTexMapID, unsigned short, unsigned short, _GXTexFmt);
 void J3DGDSetTexImgPtr(_GXTexMapID, void*);
 void J3DGDSetTexImgPtrRaw(_GXTexMapID, unsigned long);
 void J3DGDSetTexTlut(_GXTexMapID, unsigned long, _GXTlutFmt);
-void J3DGDLoadTlut(void*, unsigned long, _GXTlutSize);
-void J3DGDSetIndTexMtx(_GXIndTexMtxID, float (*)[3], char);
 void J3DGDSetIndTexCoordScale(_GXIndTexStageID, _GXIndTexScale, _GXIndTexScale, _GXIndTexScale, _GXIndTexScale);
 void J3DGDSetIndTexOrder(unsigned long, _GXTexCoordID, _GXTexMapID, _GXTexCoordID, _GXTexMapID, _GXTexCoordID, _GXTexMapID, _GXTexCoordID,
                          _GXTexMapID);
@@ -46,8 +44,16 @@ void J3DGDSetTevColorS10(_GXTevRegID, _GXColorS10);
 void J3DGDSetFog(_GXFogType, float, float, float, float, _GXColor);
 void J3DGDSetFogRangeAdj(unsigned char, unsigned short, _GXFogAdjTable*);
 
+void J3DGDLoadTlut(void*, unsigned long, _GXTlutSize);
+void J3DGDLoadTexMtxImm(float (*)[4], u32, _GXTexMtxType);
+void J3DGDLoadPostTexMtxImm(float (*)[4], u32);
+
+void J3DGDSetIndTexMtx(_GXIndTexMtxID, float (*)[3], char);
 void J3DFifoLoadTexCached(_GXTexMapID, unsigned long, _GXTexCacheSize, unsigned long, _GXTexCacheSize);
 void J3DFifoLoadPosMtxImm(float (*)[4], u32);
 void J3DFifoLoadNrmMtxImm(float (*)[4], u32);
+void J3DFifoLoadNrmMtxImm3x3(float (*)[3], u32);
+void J3DFifoLoadNrmMtxToTexMtx(float (*)[4], u32);
+void J3DFifoLoadNrmMtxToTexMtx3x3(float (*)[3], u32);
 
 #endif

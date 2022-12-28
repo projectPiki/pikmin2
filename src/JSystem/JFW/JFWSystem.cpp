@@ -14,6 +14,7 @@
 #include "JSystem/JUT/JUTGamePad.h"
 #include "JSystem/JUT/JUTGraphFifo.h"
 #include "JSystem/JUT/JUTVideo.h"
+#include "types.h"
 
 /*
     Generated from dpostproc
@@ -94,17 +95,26 @@
 
 extern ResFONT JUTResFONT_Ascfont_fix12;
 
-const int JFWSystem::CSetUpParam::maxStdHeaps             = 2;
-const u32 JFWSystem::CSetUpParam::sysHeapSize             = 0x400000;
-const u32 JFWSystem::CSetUpParam::fifoBufSize             = 0x40000;
-const u32 JFWSystem::CSetUpParam::aramAudioBufSize        = 0x800000;
-const u32 JFWSystem::CSetUpParam::aramGraphBufSize        = 0x600000;
-const long JFWSystem::CSetUpParam::streamPriority         = 8;
-const long JFWSystem::CSetUpParam::decompPriority         = 7;
-const long JFWSystem::CSetUpParam::aPiecePriority         = 6;
-const ResFONT* JFWSystem::CSetUpParam::systemFontRes      = &JUTResFONT_Ascfont_fix12;
-const GXRenderModeObj* JFWSystem::CSetUpParam::renderMode = &GXNtsc480IntDf;
-const u32 JFWSystem::CSetUpParam::exConsoleBufferSize     = 0x24FC;
+JKRHeap* JFWSystem::rootHeap;
+JKRHeap* JFWSystem::systemHeap;
+JKRThread* JFWSystem::mainThread;
+JUTDbPrint* JFWSystem::debugPrint;
+JUTFont* JFWSystem::systemFont;
+JUTConsoleManager* JFWSystem::systemConsoleManager;
+JUTConsole* JFWSystem::systemConsole;
+u8 JFWSystem::sInitCalled;
+
+int JFWSystem::CSetUpParam::maxStdHeaps             = 2;
+u32 JFWSystem::CSetUpParam::sysHeapSize             = 0x400000;
+size_t JFWSystem::CSetUpParam::fifoBufSize          = 0x40000;
+u32 JFWSystem::CSetUpParam::aramAudioBufSize        = 0x800000;
+u32 JFWSystem::CSetUpParam::aramGraphBufSize        = 0x600000;
+long JFWSystem::CSetUpParam::streamPriority         = 8;
+long JFWSystem::CSetUpParam::decompPriority         = 7;
+long JFWSystem::CSetUpParam::aPiecePriority         = 6;
+ResFONT* JFWSystem::CSetUpParam::systemFontRes      = &JUTResFONT_Ascfont_fix12;
+GXRenderModeObj* JFWSystem::CSetUpParam::renderMode = &GXNtsc480IntDf;
+u32 JFWSystem::CSetUpParam::exConsoleBufferSize     = 0x24FC;
 
 /*
  * --INFO--
@@ -125,10 +135,11 @@ void JFWSystem::firstInit()
  * Address:	8008975C
  * Size:	000350
  * init__9JFWSystemFv
- * TODO: consts aren't cooperating?
+ * TODO: One (1) Regswap.
  */
 void JFWSystem::init()
 {
+	size_t fifoBufSize;
 	if (rootHeap == nullptr) {
 		firstInit();
 	}
@@ -137,7 +148,8 @@ void JFWSystem::init()
 	                CSetUpParam::aPiecePriority);
 	mainThread = new JKRThread(OSGetCurrentThread(), 4);
 	JUTVideo::createManager(CSetUpParam::renderMode);
-	JUTGraphFifo* graphFifo = new JUTGraphFifo(CSetUpParam::fifoBufSize);
+	fifoBufSize = CSetUpParam::fifoBufSize;
+	new JUTGraphFifo(fifoBufSize);
 	JUTGamePad::init();
 	JUTDirectPrint* directPrint = JUTDirectPrint::start();
 	JUTAssertion::create();

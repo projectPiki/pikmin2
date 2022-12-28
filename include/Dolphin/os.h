@@ -335,7 +335,7 @@ struct OSAlarmQueue {
 	OSAlarm* tail;
 };
 
-typedef void AlarmCallback(unknown p1, OSContext* context);
+typedef void AlarmCallback(OSAlarm* p1, OSContext* context);
 
 void OSInitAlarm();
 void OSCreateAlarm(OSAlarm* alarm);
@@ -517,7 +517,7 @@ typedef enum {
 enum OS_THREAD_STATE { OS_THREAD_STATE_READY = 1, OS_THREAD_STATE_RUNNING = 2, OS_THREAD_STATE_WAITING = 4, OS_THREAD_STATE_MORIBUND = 8 };
 
 // Thread priorities
-#define OS_PRIORITY_MIN  0 // highest
+#define OS_PRIORITY_MIN  0  // highest
 #define OS_PRIORITY_MAX  31 // lowest
 #define OS_PRIORITY_IDLE OS_PRIORITY_MAX
 
@@ -565,7 +565,7 @@ u8* __OSLockSramEx(void);
 void __OSUnmaskInterrupts(int);
 int OSDisableInterrupts(void);
 void OSRestoreInterrupts(int);
-void OSEnableInterrupts();
+int OSEnableInterrupts();
 
 uint OSGetSoundMode();
 void OSSetSoundMode(uint);

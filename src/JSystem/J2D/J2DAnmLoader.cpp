@@ -624,241 +624,158 @@ lbl_800480A0:
  * --INFO--
  * Address:	800480B8
  * Size:	00005C
+ * __dt__14J2DAnmVtxColorFv
  */
-J2DAnmVtxColor::~J2DAnmVtxColor()
-{
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	or.      r31, r3, r3
-	beq      lbl_800480FC
-	lis      r3, __vt__14J2DAnmVtxColor@ha
-	addi     r0, r3, __vt__14J2DAnmVtxColor@l
-	stw      r0, 0(r31)
-	beq      lbl_800480EC
-	lis      r3, __vt__10J2DAnmBase@ha
-	addi     r0, r3, __vt__10J2DAnmBase@l
-	stw      r0, 0(r31)
+// J2DAnmVtxColor::~J2DAnmVtxColor()
+// {
+// 	/*
+// 	stwu     r1, -0x10(r1)
+// 	mflr     r0
+// 	stw      r0, 0x14(r1)
+// 	stw      r31, 0xc(r1)
+// 	or.      r31, r3, r3
+// 	beq      lbl_800480FC
+// 	lis      r3, __vt__14J2DAnmVtxColor@ha
+// 	addi     r0, r3, __vt__14J2DAnmVtxColor@l
+// 	stw      r0, 0(r31)
+// 	beq      lbl_800480EC
+// 	lis      r3, __vt__10J2DAnmBase@ha
+// 	addi     r0, r3, __vt__10J2DAnmBase@l
+// 	stw      r0, 0(r31)
 
-lbl_800480EC:
-	extsh.   r0, r4
-	ble      lbl_800480FC
-	mr       r3, r31
-	bl       __dl__FPv
+// lbl_800480EC:
+// 	extsh.   r0, r4
+// 	ble      lbl_800480FC
+// 	mr       r3, r31
+// 	bl       __dl__FPv
 
-lbl_800480FC:
-	lwz      r0, 0x14(r1)
-	mr       r3, r31
-	lwz      r31, 0xc(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
-}
+// lbl_800480FC:
+// 	lwz      r0, 0x14(r1)
+// 	mr       r3, r31
+// 	lwz      r31, 0xc(r1)
+// 	mtlr     r0
+// 	addi     r1, r1, 0x10
+// 	blr
+// 	*/
+// }
 
 /*
  * --INFO--
  * Address:	80048114
  * Size:	000074
+ * __dt__11J2DAnmColorFv
  */
-J2DAnmColor::~J2DAnmColor()
-{
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	or.      r31, r3, r3
-	beq      lbl_80048170
-	lis      r3, __vt__11J2DAnmColor@ha
-	addic.   r0, r31, 0x20
-	addi     r0, r3, __vt__11J2DAnmColor@l
-	stw      r0, 0(r31)
-	beq      lbl_8004814C
-	lis      r3, __vt__10JUTNameTab@ha
-	addi     r0, r3, __vt__10JUTNameTab@l
-	stw      r0, 0x20(r31)
+// J2DAnmColor::~J2DAnmColor()
+// {
+// 	/*
+// 	stwu     r1, -0x10(r1)
+// 	mflr     r0
+// 	stw      r0, 0x14(r1)
+// 	stw      r31, 0xc(r1)
+// 	or.      r31, r3, r3
+// 	beq      lbl_80048170
+// 	lis      r3, __vt__11J2DAnmColor@ha
+// 	addic.   r0, r31, 0x20
+// 	addi     r0, r3, __vt__11J2DAnmColor@l
+// 	stw      r0, 0(r31)
+// 	beq      lbl_8004814C
+// 	lis      r3, __vt__10JUTNameTab@ha
+// 	addi     r0, r3, __vt__10JUTNameTab@l
+// 	stw      r0, 0x20(r31)
 
-lbl_8004814C:
-	cmplwi   r31, 0
-	beq      lbl_80048160
-	lis      r3, __vt__10J2DAnmBase@ha
-	addi     r0, r3, __vt__10J2DAnmBase@l
-	stw      r0, 0(r31)
+// lbl_8004814C:
+// 	cmplwi   r31, 0
+// 	beq      lbl_80048160
+// 	lis      r3, __vt__10J2DAnmBase@ha
+// 	addi     r0, r3, __vt__10J2DAnmBase@l
+// 	stw      r0, 0(r31)
 
-lbl_80048160:
-	extsh.   r0, r4
-	ble      lbl_80048170
-	mr       r3, r31
-	bl       __dl__FPv
+// lbl_80048160:
+// 	extsh.   r0, r4
+// 	ble      lbl_80048170
+// 	mr       r3, r31
+// 	bl       __dl__FPv
 
-lbl_80048170:
-	lwz      r0, 0x14(r1)
-	mr       r3, r31
-	lwz      r31, 0xc(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
-}
+// lbl_80048170:
+// 	lwz      r0, 0x14(r1)
+// 	mr       r3, r31
+// 	lwz      r31, 0xc(r1)
+// 	mtlr     r0
+// 	addi     r1, r1, 0x10
+// 	blr
+// 	*/
+// }
 
 /*
  * --INFO--
  * Address:	80048188
  * Size:	00005C
+ * __dt__15J2DAnmTransformFv
  */
-J2DAnmTransform::~J2DAnmTransform()
-{
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	or.      r31, r3, r3
-	beq      lbl_800481CC
-	lis      r3, __vt__15J2DAnmTransform@ha
-	addi     r0, r3, __vt__15J2DAnmTransform@l
-	stw      r0, 0(r31)
-	beq      lbl_800481BC
-	lis      r3, __vt__10J2DAnmBase@ha
-	addi     r0, r3, __vt__10J2DAnmBase@l
-	stw      r0, 0(r31)
+// J2DAnmTransform::~J2DAnmTransform()
+// {
+// 	/*
+// 	stwu     r1, -0x10(r1)
+// 	mflr     r0
+// 	stw      r0, 0x14(r1)
+// 	stw      r31, 0xc(r1)
+// 	or.      r31, r3, r3
+// 	beq      lbl_800481CC
+// 	lis      r3, __vt__15J2DAnmTransform@ha
+// 	addi     r0, r3, __vt__15J2DAnmTransform@l
+// 	stw      r0, 0(r31)
+// 	beq      lbl_800481BC
+// 	lis      r3, __vt__10J2DAnmBase@ha
+// 	addi     r0, r3, __vt__10J2DAnmBase@l
+// 	stw      r0, 0(r31)
 
-lbl_800481BC:
-	extsh.   r0, r4
-	ble      lbl_800481CC
-	mr       r3, r31
-	bl       __dl__FPv
+// lbl_800481BC:
+// 	extsh.   r0, r4
+// 	ble      lbl_800481CC
+// 	mr       r3, r31
+// 	bl       __dl__FPv
 
-lbl_800481CC:
-	lwz      r0, 0x14(r1)
-	mr       r3, r31
-	lwz      r31, 0xc(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
-}
+// lbl_800481CC:
+// 	lwz      r0, 0x14(r1)
+// 	mr       r3, r31
+// 	lwz      r31, 0xc(r1)
+// 	mtlr     r0
+// 	addi     r1, r1, 0x10
+// 	blr
+// 	*/
+// }
 
 /*
  * --INFO--
  * Address:	800481E4
  * Size:	000048
+ * __dt__10J2DAnmBaseFv
  */
-J2DAnmBase::~J2DAnmBase()
-{
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	or.      r31, r3, r3
-	beq      lbl_80048214
-	lis      r5, __vt__10J2DAnmBase@ha
-	extsh.   r0, r4
-	addi     r0, r5, __vt__10J2DAnmBase@l
-	stw      r0, 0(r31)
-	ble      lbl_80048214
-	bl       __dl__FPv
-
-lbl_80048214:
-	lwz      r0, 0x14(r1)
-	mr       r3, r31
-	lwz      r31, 0xc(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
-}
+// J2DAnmBase::~J2DAnmBase() { }
 
 /*
  * --INFO--
  * Address:	8004822C
  * Size:	00001C
+ * __ct__19J2DAnmKeyLoader_v15Fv
  */
-J2DAnmKeyLoader_v15::J2DAnmKeyLoader_v15()
-{
-	/*
-	lis      r5, __vt__12J2DAnmLoader@ha
-	lis      r4, __vt__19J2DAnmKeyLoader_v15@ha
-	addi     r5, r5, __vt__12J2DAnmLoader@l
-	stw      r5, 0(r3)
-	addi     r0, r4, __vt__19J2DAnmKeyLoader_v15@l
-	stw      r0, 0(r3)
-	blr
-	*/
-}
+J2DAnmKeyLoader_v15::J2DAnmKeyLoader_v15() { }
 
 /*
  * --INFO--
  * Address:	80048248
  * Size:	000048
+ * __dt__12J2DAnmLoaderFv
  */
-J2DAnmLoader::~J2DAnmLoader()
-{
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	or.      r31, r3, r3
-	beq      lbl_80048278
-	lis      r5, __vt__12J2DAnmLoader@ha
-	extsh.   r0, r4
-	addi     r0, r5, __vt__12J2DAnmLoader@l
-	stw      r0, 0(r31)
-	ble      lbl_80048278
-	bl       __dl__FPv
-
-lbl_80048278:
-	lwz      r0, 0x14(r1)
-	mr       r3, r31
-	lwz      r31, 0xc(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
-}
+J2DAnmLoader::~J2DAnmLoader() { }
 
 /*
  * --INFO--
  * Address:	80048290
  * Size:	00005C
+ * __dt__19J2DAnmKeyLoader_v15Fv
  */
-J2DAnmKeyLoader_v15::~J2DAnmKeyLoader_v15()
-{
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	or.      r31, r3, r3
-	beq      lbl_800482D4
-	lis      r3, __vt__19J2DAnmKeyLoader_v15@ha
-	addi     r0, r3, __vt__19J2DAnmKeyLoader_v15@l
-	stw      r0, 0(r31)
-	beq      lbl_800482C4
-	lis      r3, __vt__12J2DAnmLoader@ha
-	addi     r0, r3, __vt__12J2DAnmLoader@l
-	stw      r0, 0(r31)
-
-lbl_800482C4:
-	extsh.   r0, r4
-	ble      lbl_800482D4
-	mr       r3, r31
-	bl       __dl__FPv
-
-lbl_800482D4:
-	lwz      r0, 0x14(r1)
-	mr       r3, r31
-	lwz      r31, 0xc(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
-}
+J2DAnmKeyLoader_v15::~J2DAnmKeyLoader_v15() { }
 
 /*
  * --INFO--
@@ -1078,21 +995,9 @@ lbl_80048528:
  * Address:	80048544
  * Size:	000028
  */
-void J2DAnmKeyLoader_v15::readAnmTransform(const J3DAnmTransformKeyData*)
+void J2DAnmKeyLoader_v15::readAnmTransform(const J3DAnmTransformKeyData* data)
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	mr       r5, r4
-	stw      r0, 0x14(r1)
-	lwz      r4, 4(r3)
-	bl
-	setAnmTransform__19J2DAnmKeyLoader_v15FP18J2DAnmTransformKeyPC22J3DAnmTransformKeyData
-	lwz      r0, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	setAnmTransform(static_cast<J2DAnmTransformKey*>(m_animation), data);
 }
 
 /*
@@ -1151,21 +1056,9 @@ void J2DAnmKeyLoader_v15::setAnmTransform(J2DAnmTransformKey*, const J3DAnmTrans
  * Address:	80048608
  * Size:	000028
  */
-void J2DAnmKeyLoader_v15::readAnmTextureSRT(const J3DAnmTextureSRTKeyData*)
+void J2DAnmKeyLoader_v15::readAnmTextureSRT(const J3DAnmTextureSRTKeyData* data)
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	mr       r5, r4
-	stw      r0, 0x14(r1)
-	lwz      r4, 4(r3)
-	bl
-	setAnmTextureSRT__19J2DAnmKeyLoader_v15FP19J2DAnmTextureSRTKeyPC23J3DAnmTextureSRTKeyData
-	lwz      r0, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	setAnmTextureSRT(static_cast<J2DAnmTextureSRTKey*>(m_animation), data);
 }
 
 /*
@@ -1318,22 +1211,7 @@ void J2DAnmKeyLoader_v15::setAnmTextureSRT(J2DAnmTextureSRTKey*, const J3DAnmTex
  * Address:	8004881C
  * Size:	000028
  */
-void J2DAnmKeyLoader_v15::readAnmColor(const J3DAnmColorKeyData*)
-{
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	mr       r5, r4
-	stw      r0, 0x14(r1)
-	lwz      r4, 4(r3)
-	bl
-	setAnmColor__19J2DAnmKeyLoader_v15FP14J2DAnmColorKeyPC18J3DAnmColorKeyData
-	lwz      r0, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
-}
+void J2DAnmKeyLoader_v15::readAnmColor(const J3DAnmColorKeyData* data) { setAnmColor(static_cast<J2DAnmColorKey*>(m_animation), data); }
 
 /*
  * --INFO--
@@ -1411,21 +1289,9 @@ void J2DAnmKeyLoader_v15::setAnmColor(J2DAnmColorKey*, const J3DAnmColorKeyData*
  * Address:	80048930
  * Size:	000028
  */
-void J2DAnmKeyLoader_v15::readAnmVtxColor(const J3DAnmVtxColorKeyData*)
+void J2DAnmKeyLoader_v15::readAnmVtxColor(const J3DAnmVtxColorKeyData* data)
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	mr       r5, r4
-	stw      r0, 0x14(r1)
-	lwz      r4, 4(r3)
-	bl
-	setAnmVtxColor__19J2DAnmKeyLoader_v15FP17J2DAnmVtxColorKeyPC21J3DAnmVtxColorKeyData
-	lwz      r0, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	setAnmVtxColor(static_cast<J2DAnmVtxColorKey*>(m_animation), data);
 }
 
 /*
@@ -1720,84 +1586,34 @@ lbl_80048C90:
  * --INFO--
  * Address:	80048CAC
  * Size:	00001C
+ * __ct__20J2DAnmFullLoader_v15Fv
  */
-J2DAnmFullLoader_v15::J2DAnmFullLoader_v15()
-{
-	/*
-	lis      r5, __vt__12J2DAnmLoader@ha
-	lis      r4, __vt__20J2DAnmFullLoader_v15@ha
-	addi     r5, r5, __vt__12J2DAnmLoader@l
-	stw      r5, 0(r3)
-	addi     r0, r4, __vt__20J2DAnmFullLoader_v15@l
-	stw      r0, 0(r3)
-	blr
-	*/
-}
+J2DAnmFullLoader_v15::J2DAnmFullLoader_v15() { }
 
 /*
  * --INFO--
  * Address:	80048CC8
  * Size:	00005C
+ * __dt__20J2DAnmFullLoader_v15Fv
  */
-J2DAnmFullLoader_v15::~J2DAnmFullLoader_v15()
-{
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	or.      r31, r3, r3
-	beq      lbl_80048D0C
-	lis      r3, __vt__20J2DAnmFullLoader_v15@ha
-	addi     r0, r3, __vt__20J2DAnmFullLoader_v15@l
-	stw      r0, 0(r31)
-	beq      lbl_80048CFC
-	lis      r3, __vt__12J2DAnmLoader@ha
-	addi     r0, r3, __vt__12J2DAnmLoader@l
-	stw      r0, 0(r31)
-
-lbl_80048CFC:
-	extsh.   r0, r4
-	ble      lbl_80048D0C
-	mr       r3, r31
-	bl       __dl__FPv
-
-lbl_80048D0C:
-	lwz      r0, 0x14(r1)
-	mr       r3, r31
-	lwz      r31, 0xc(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
-}
+J2DAnmFullLoader_v15::~J2DAnmFullLoader_v15() { }
 
 /*
  * --INFO--
  * Address:	80048D24
  * Size:	000028
+ * readAnmTransform__20J2DAnmFullLoader_v15FPC23J3DAnmTransformFullData
  */
-void J2DAnmFullLoader_v15::readAnmTransform(const J3DAnmTransformFullData*)
+void J2DAnmFullLoader_v15::readAnmTransform(const J3DAnmTransformFullData* data)
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	mr       r5, r4
-	stw      r0, 0x14(r1)
-	lwz      r4, 4(r3)
-	bl
-	setAnmTransform__20J2DAnmFullLoader_v15FP19J2DAnmTransformFullPC23J3DAnmTransformFullData
-	lwz      r0, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	setAnmTransform(static_cast<J2DAnmTransformFull*>(m_animation), data);
 }
 
 /*
  * --INFO--
  * Address:	80048D4C
  * Size:	000094
+ * setAnmTransform__20J2DAnmFullLoader_v15FP19J2DAnmTransformFullPC23J3DAnmTransformFullData
  */
 void J2DAnmFullLoader_v15::setAnmTransform(J2DAnmTransformFull*, const J3DAnmTransformFullData*)
 {
@@ -1847,28 +1663,15 @@ void J2DAnmFullLoader_v15::setAnmTransform(J2DAnmTransformFull*, const J3DAnmTra
  * --INFO--
  * Address:	80048DE0
  * Size:	000028
+ * readAnmColor__20J2DAnmFullLoader_v15FPC19J3DAnmColorFullData
  */
-void J2DAnmFullLoader_v15::readAnmColor(const J3DAnmColorFullData*)
-{
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	mr       r5, r4
-	stw      r0, 0x14(r1)
-	lwz      r4, 4(r3)
-	bl
-	setAnmColor__20J2DAnmFullLoader_v15FP15J2DAnmColorFullPC19J3DAnmColorFullData
-	lwz      r0, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
-}
+void J2DAnmFullLoader_v15::readAnmColor(const J3DAnmColorFullData* data) { setAnmColor(static_cast<J2DAnmColorFull*>(m_animation), data); }
 
 /*
  * --INFO--
  * Address:	80048E08
  * Size:	0000CC
+ * setAnmColor__20J2DAnmFullLoader_v15FP15J2DAnmColorFullPC19J3DAnmColorFullData
  */
 void J2DAnmFullLoader_v15::setAnmColor(J2DAnmColorFull*, const J3DAnmColorFullData*)
 {
@@ -1933,21 +1736,9 @@ void J2DAnmFullLoader_v15::setAnmColor(J2DAnmColorFull*, const J3DAnmColorFullDa
  * Address:	80048ED4
  * Size:	000028
  */
-void J2DAnmFullLoader_v15::readAnmTexPattern(const J3DAnmTexPatternFullData*)
+void J2DAnmFullLoader_v15::readAnmTexPattern(const J3DAnmTexPatternFullData* data)
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	mr       r5, r4
-	stw      r0, 0x14(r1)
-	lwz      r4, 4(r3)
-	bl
-	setAnmTexPattern__20J2DAnmFullLoader_v15FP16J2DAnmTexPatternPC24J3DAnmTexPatternFullData
-	lwz      r0, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	setAnmTexPattern(static_cast<J2DAnmTexPattern*>(m_animation), data);
 }
 
 /*
@@ -2008,22 +1799,7 @@ void J2DAnmFullLoader_v15::setAnmTexPattern(J2DAnmTexPattern*, const J3DAnmTexPa
  * Address:	80048FA0
  * Size:	000028
  */
-void J2DAnmKeyLoader_v15::readAnmTevReg(const J3DAnmTevRegKeyData*)
-{
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	mr       r5, r4
-	stw      r0, 0x14(r1)
-	lwz      r4, 4(r3)
-	bl
-	setAnmTevReg__19J2DAnmKeyLoader_v15FP15J2DAnmTevRegKeyPC19J3DAnmTevRegKeyData
-	lwz      r0, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
-}
+void J2DAnmKeyLoader_v15::readAnmTevReg(const J3DAnmTevRegKeyData* data) { setAnmTevReg(static_cast<J2DAnmTevRegKey*>(m_animation), data); }
 
 /*
  * --INFO--
@@ -2141,21 +1917,9 @@ void J2DAnmKeyLoader_v15::setAnmTevReg(J2DAnmTevRegKey*, const J3DAnmTevRegKeyDa
  * Address:	80049154
  * Size:	000028
  */
-void J2DAnmFullLoader_v15::readAnmVisibility(const J3DAnmVisibilityFullData*)
+void J2DAnmFullLoader_v15::readAnmVisibility(const J3DAnmVisibilityFullData* data)
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	mr       r5, r4
-	stw      r0, 0x14(r1)
-	lwz      r4, 4(r3)
-	bl
-	setAnmVisibility__20J2DAnmFullLoader_v15FP20J2DAnmVisibilityFullPC24J3DAnmVisibilityFullData
-	lwz      r0, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	setAnmVisibility(static_cast<J2DAnmVisibilityFull*>(m_animation), data);
 }
 
 /*
@@ -2205,28 +1969,18 @@ void J2DAnmFullLoader_v15::setAnmVisibility(J2DAnmVisibilityFull*, const J3DAnmV
  * --INFO--
  * Address:	800491F8
  * Size:	000028
+ * readAnmVtxColor__20J2DAnmFullLoader_v15FPC22J3DAnmVtxColorFullData
  */
-void J2DAnmFullLoader_v15::readAnmVtxColor(const J3DAnmVtxColorFullData*)
+void J2DAnmFullLoader_v15::readAnmVtxColor(const J3DAnmVtxColorFullData* data)
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	mr       r5, r4
-	stw      r0, 0x14(r1)
-	lwz      r4, 4(r3)
-	bl
-	setAnmVtxColor__20J2DAnmFullLoader_v15FP18J2DAnmVtxColorFullPC22J3DAnmVtxColorFullData
-	lwz      r0, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	setAnmVtxColor(static_cast<J2DAnmVtxColorFull*>(m_animation), data);
 }
 
 /*
  * --INFO--
  * Address:	80049220
  * Size:	0000FC
+ * setAnmVtxColor__20J2DAnmFullLoader_v15FP18J2DAnmVtxColorFullPC22J3DAnmVtxColorFullData
  */
 void J2DAnmFullLoader_v15::setAnmVtxColor(J2DAnmVtxColorFull*, const J3DAnmVtxColorFullData*)
 {
@@ -2302,39 +2056,9 @@ void J2DAnmFullLoader_v15::setAnmVtxColor(J2DAnmVtxColorFull*, const J3DAnmVtxCo
  * --INFO--
  * Address:	8004931C
  * Size:	00005C
+ * __dt__20J2DAnmVisibilityFullFv
  */
-J2DAnmVisibilityFull::~J2DAnmVisibilityFull()
-{
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	or.      r31, r3, r3
-	beq      lbl_80049360
-	lis      r3, __vt__20J2DAnmVisibilityFull@ha
-	addi     r0, r3, __vt__20J2DAnmVisibilityFull@l
-	stw      r0, 0(r31)
-	beq      lbl_80049350
-	lis      r3, __vt__10J2DAnmBase@ha
-	addi     r0, r3, __vt__10J2DAnmBase@l
-	stw      r0, 0(r31)
-
-lbl_80049350:
-	extsh.   r0, r4
-	ble      lbl_80049360
-	mr       r3, r31
-	bl       __dl__FPv
-
-lbl_80049360:
-	lwz      r0, 0x14(r1)
-	mr       r3, r31
-	lwz      r31, 0xc(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
-}
+// J2DAnmVisibilityFull::~J2DAnmVisibilityFull() { }
 
 /*
  * --INFO--
@@ -2348,282 +2072,282 @@ void J2DAnmBase::searchUpdateMaterialID(J2DScreen*) { }
  * Address:	8004937C
  * Size:	000018
  */
-void JSUConvertOffsetToPtr<J3DAnmVisibilityFullTable>(const void*, const void*)
-{
-	/*
-	cmplwi   r4, 0
-	bne      lbl_8004938C
-	li       r3, 0
-	blr
+// void JSUConvertOffsetToPtr<J3DAnmVisibilityFullTable>(const void*, const void*)
+// {
+// 	/*
+// 	cmplwi   r4, 0
+// 	bne      lbl_8004938C
+// 	li       r3, 0
+// 	blr
 
-lbl_8004938C:
-	add      r3, r3, r4
-	blr
-	*/
-}
+// lbl_8004938C:
+// 	add      r3, r3, r4
+// 	blr
+// 	*/
+// }
 
 /*
  * --INFO--
  * Address:	80049394
  * Size:	000018
  */
-void JSUConvertOffsetToPtr<J3DAnmKRegKeyTable>(const void*, const void*)
-{
-	/*
-	cmplwi   r4, 0
-	bne      lbl_800493A4
-	li       r3, 0
-	blr
+// void JSUConvertOffsetToPtr<J3DAnmKRegKeyTable>(const void*, const void*)
+// {
+// 	/*
+// 	cmplwi   r4, 0
+// 	bne      lbl_800493A4
+// 	li       r3, 0
+// 	blr
 
-lbl_800493A4:
-	add      r3, r3, r4
-	blr
-	*/
-}
+// lbl_800493A4:
+// 	add      r3, r3, r4
+// 	blr
+// 	*/
+// }
 
 /*
  * --INFO--
  * Address:	800493AC
  * Size:	000018
  */
-void JSUConvertOffsetToPtr<J3DAnmCRegKeyTable>(const void*, const void*)
-{
-	/*
-	cmplwi   r4, 0
-	bne      lbl_800493BC
-	li       r3, 0
-	blr
+// void JSUConvertOffsetToPtr<J3DAnmCRegKeyTable>(const void*, const void*)
+// {
+// 	/*
+// 	cmplwi   r4, 0
+// 	bne      lbl_800493BC
+// 	li       r3, 0
+// 	blr
 
-lbl_800493BC:
-	add      r3, r3, r4
-	blr
-	*/
-}
+// lbl_800493BC:
+// 	add      r3, r3, r4
+// 	blr
+// 	*/
+// }
 
 /*
  * --INFO--
  * Address:	800493C4
  * Size:	000018
  */
-void JSUConvertOffsetToPtr<J3DAnmTexPatternFullTable>(const void*, const void*)
-{
-	/*
-	cmplwi   r4, 0
-	bne      lbl_800493D4
-	li       r3, 0
-	blr
+// void JSUConvertOffsetToPtr<J3DAnmTexPatternFullTable>(const void*, const void*)
+// {
+// 	/*
+// 	cmplwi   r4, 0
+// 	bne      lbl_800493D4
+// 	li       r3, 0
+// 	blr
 
-lbl_800493D4:
-	add      r3, r3, r4
-	blr
-	*/
-}
+// lbl_800493D4:
+// 	add      r3, r3, r4
+// 	blr
+// 	*/
+// }
 
 /*
  * --INFO--
  * Address:	800493DC
  * Size:	000018
  */
-void JSUConvertOffsetToPtr<J3DAnmColorFullTable>(const void*, const void*)
-{
-	/*
-	cmplwi   r4, 0
-	bne      lbl_800493EC
-	li       r3, 0
-	blr
+// void JSUConvertOffsetToPtr<J3DAnmColorFullTable>(const void*, const void*)
+// {
+// 	/*
+// 	cmplwi   r4, 0
+// 	bne      lbl_800493EC
+// 	li       r3, 0
+// 	blr
 
-lbl_800493EC:
-	add      r3, r3, r4
-	blr
-	*/
-}
+// lbl_800493EC:
+// 	add      r3, r3, r4
+// 	blr
+// 	*/
+// }
 
 /*
  * --INFO--
  * Address:	800493F4
  * Size:	000018
  */
-void JSUConvertOffsetToPtr<J3DAnmTransformFullTable>(const void*, const void*)
-{
-	/*
-	cmplwi   r4, 0
-	bne      lbl_80049404
-	li       r3, 0
-	blr
+// void JSUConvertOffsetToPtr<J3DAnmTransformFullTable>(const void*, const void*)
+// {
+// 	/*
+// 	cmplwi   r4, 0
+// 	bne      lbl_80049404
+// 	li       r3, 0
+// 	blr
 
-lbl_80049404:
-	add      r3, r3, r4
-	blr
-	*/
-}
+// lbl_80049404:
+// 	add      r3, r3, r4
+// 	blr
+// 	*/
+// }
 
 /*
  * --INFO--
  * Address:	8004940C
  * Size:	000018
  */
-void JSUConvertOffsetToPtr<J3DAnmVtxColorIndexData>(const void*, const void*)
-{
-	/*
-	cmplwi   r4, 0
-	bne      lbl_8004941C
-	li       r3, 0
-	blr
+// void JSUConvertOffsetToPtr<J3DAnmVtxColorIndexData>(const void*, const void*)
+// {
+// 	/*
+// 	cmplwi   r4, 0
+// 	bne      lbl_8004941C
+// 	li       r3, 0
+// 	blr
 
-lbl_8004941C:
-	add      r3, r3, r4
-	blr
-	*/
-}
+// lbl_8004941C:
+// 	add      r3, r3, r4
+// 	blr
+// 	*/
+// }
 
 /*
  * --INFO--
  * Address:	80049424
  * Size:	000018
  */
-void JSUConvertOffsetToPtr<J3DAnmColorKeyTable>(const void*, const void*)
-{
-	/*
-	cmplwi   r4, 0
-	bne      lbl_80049434
-	li       r3, 0
-	blr
+// void JSUConvertOffsetToPtr<J3DAnmColorKeyTable>(const void*, const void*)
+// {
+// 	/*
+// 	cmplwi   r4, 0
+// 	bne      lbl_80049434
+// 	li       r3, 0
+// 	blr
 
-lbl_80049434:
-	add      r3, r3, r4
-	blr
-	*/
-}
+// lbl_80049434:
+// 	add      r3, r3, r4
+// 	blr
+// 	*/
+// }
 
 /*
  * --INFO--
  * Address:	8004943C
  * Size:	000018
  */
-void JSUConvertOffsetToPtr<Vec>(const void*, const void*)
-{
-	/*
-	cmplwi   r4, 0
-	bne      lbl_8004944C
-	li       r3, 0
-	blr
+// void JSUConvertOffsetToPtr<Vec>(const void*, const void*)
+// {
+// 	/*
+// 	cmplwi   r4, 0
+// 	bne      lbl_8004944C
+// 	li       r3, 0
+// 	blr
 
-lbl_8004944C:
-	add      r3, r3, r4
-	blr
-	*/
-}
+// lbl_8004944C:
+// 	add      r3, r3, r4
+// 	blr
+// 	*/
+// }
 
 /*
  * --INFO--
  * Address:	80049454
  * Size:	000018
  */
-void JSUConvertOffsetToPtr<unsigned char>(const void*, const void*)
-{
-	/*
-	cmplwi   r4, 0
-	bne      lbl_80049464
-	li       r3, 0
-	blr
+// void JSUConvertOffsetToPtr<unsigned char>(const void*, const void*)
+// {
+// 	/*
+// 	cmplwi   r4, 0
+// 	bne      lbl_80049464
+// 	li       r3, 0
+// 	blr
 
-lbl_80049464:
-	add      r3, r3, r4
-	blr
-	*/
-}
+// lbl_80049464:
+// 	add      r3, r3, r4
+// 	blr
+// 	*/
+// }
 
 /*
  * --INFO--
  * Address:	8004946C
  * Size:	000018
  */
-void JSUConvertOffsetToPtr<ResNTAB>(const void*, const void*)
-{
-	/*
-	cmplwi   r4, 0
-	bne      lbl_8004947C
-	li       r3, 0
-	blr
+// void JSUConvertOffsetToPtr<ResNTAB>(const void*, const void*)
+// {
+// 	/*
+// 	cmplwi   r4, 0
+// 	bne      lbl_8004947C
+// 	li       r3, 0
+// 	blr
 
-lbl_8004947C:
-	add      r3, r3, r4
-	blr
-	*/
-}
+// lbl_8004947C:
+// 	add      r3, r3, r4
+// 	blr
+// 	*/
+// }
 
 /*
  * --INFO--
  * Address:	80049484
  * Size:	000018
  */
-void JSUConvertOffsetToPtr<unsigned short>(const void*, const void*)
-{
-	/*
-	cmplwi   r4, 0
-	bne      lbl_80049494
-	li       r3, 0
-	blr
+// void JSUConvertOffsetToPtr<unsigned short>(const void*, const void*)
+// {
+// 	/*
+// 	cmplwi   r4, 0
+// 	bne      lbl_80049494
+// 	li       r3, 0
+// 	blr
 
-lbl_80049494:
-	add      r3, r3, r4
-	blr
-	*/
-}
+// lbl_80049494:
+// 	add      r3, r3, r4
+// 	blr
+// 	*/
+// }
 
 /*
  * --INFO--
  * Address:	8004949C
  * Size:	000018
  */
-void JSUConvertOffsetToPtr<short>(const void*, const void*)
-{
-	/*
-	cmplwi   r4, 0
-	bne      lbl_800494AC
-	li       r3, 0
-	blr
+// void JSUConvertOffsetToPtr<short>(const void*, const void*)
+// {
+// 	/*
+// 	cmplwi   r4, 0
+// 	bne      lbl_800494AC
+// 	li       r3, 0
+// 	blr
 
-lbl_800494AC:
-	add      r3, r3, r4
-	blr
-	*/
-}
+// lbl_800494AC:
+// 	add      r3, r3, r4
+// 	blr
+// 	*/
+// }
 
 /*
  * --INFO--
  * Address:	800494B4
  * Size:	000018
  */
-void JSUConvertOffsetToPtr<float>(const void*, const void*)
-{
-	/*
-	cmplwi   r4, 0
-	bne      lbl_800494C4
-	li       r3, 0
-	blr
+// void JSUConvertOffsetToPtr<float>(const void*, const void*)
+// {
+// 	/*
+// 	cmplwi   r4, 0
+// 	bne      lbl_800494C4
+// 	li       r3, 0
+// 	blr
 
-lbl_800494C4:
-	add      r3, r3, r4
-	blr
-	*/
-}
+// lbl_800494C4:
+// 	add      r3, r3, r4
+// 	blr
+// 	*/
+// }
 
 /*
  * --INFO--
  * Address:	800494CC
  * Size:	000018
  */
-void JSUConvertOffsetToPtr<J3DAnmTransformKeyTable>(const void*, const void*)
-{
-	/*
-	cmplwi   r4, 0
-	bne      lbl_800494DC
-	li       r3, 0
-	blr
+// void JSUConvertOffsetToPtr<J3DAnmTransformKeyTable>(const void*, const void*)
+// {
+// 	/*
+// 	cmplwi   r4, 0
+// 	bne      lbl_800494DC
+// 	li       r3, 0
+// 	blr
 
-lbl_800494DC:
-	add      r3, r3, r4
-	blr
-	*/
-}
+// lbl_800494DC:
+// 	add      r3, r3, r4
+// 	blr
+// 	*/
+// }

@@ -40,7 +40,7 @@ JSYSTEM:=\
 	$(BUILD_DIR)/asm/JSystem/J3D/J3DUMtxCache.o\
 	$(BUILD_DIR)/asm/JSystem/JKR/JKRAram.o\
 	$(BUILD_DIR)/asm/JSystem/JKR/JKRAramArchive.o\
-	$(BUILD_DIR)/asm/JSystem/JKR/JKRAramBlock.o\
+	$(BUILD_DIR)/src/JSystem/JKR/JKRAramBlock.o\
 	$(BUILD_DIR)/asm/JSystem/JKR/JKRAramHeap.o\
 	$(BUILD_DIR)/asm/JSystem/JKR/JKRAramPiece.o\
 	$(BUILD_DIR)/src/JSystem/JKR/JKRAramStream.o\
@@ -116,7 +116,7 @@ JSYSTEM:=\
 	$(BUILD_DIR)/asm/JSystem/J2D/J2DTextBoxEx.o\
 	$(BUILD_DIR)/asm/JSystem/J2D/J2DAnimation.o\
 	$(BUILD_DIR)/asm/JSystem/J3D/J3DSys.o\
-	$(BUILD_DIR)/asm/JSystem/J3D/J3DVertex.o\
+	$(BUILD_DIR)/src/JSystem/J3D/J3DVertex.o\
 	$(BUILD_DIR)/asm/JSystem/J3D/J3DTransform.o\
 	$(BUILD_DIR)/asm/JSystem/J3D/J3DPacket.o\
 	$(BUILD_DIR)/asm/JSystem/J3D/J3DShape.o\
@@ -178,8 +178,8 @@ JSYSTEM:=\
 	$(BUILD_DIR)/src/JSystem/JAS/JASInstEffect.o\
 	$(BUILD_DIR)/asm/JSystem/JAS/JASInstRand.o\
 	$(BUILD_DIR)/asm/JSystem/JAS/JASInstSense.o\
-	$(BUILD_DIR)/asm/JSystem/JAS/JASSimpleWaveBank.o\
-	$(BUILD_DIR)/asm/JSystem/JAS/JASWaveArcLoader.o\
+	$(BUILD_DIR)/src/JSystem/JAS/JASSimpleWaveBank.o\
+	$(BUILD_DIR)/src/JSystem/JAS/JASWaveArcLoader.o\
 	$(BUILD_DIR)/src/JSystem/JAS/JASWaveBank.o\
 	$(BUILD_DIR)/src/JSystem/JAS/JASWaveBankMgr.o\
 	$(BUILD_DIR)/src/JSystem/JAS/JASBank.o\
@@ -198,7 +198,7 @@ JSYSTEM:=\
 	$(BUILD_DIR)/asm/JSystem/JAS/JASDSPInterface.o\
 	$(BUILD_DIR)/asm/JSystem/JAS/JASAudioThread.o\
 	$(BUILD_DIR)/asm/JSystem/JAS/JASCalc.o\
-	$(BUILD_DIR)/asm/JSystem/JAS/JASCallback.o\
+	$(BUILD_DIR)/src/JSystem/JAS/JASCallback.o\
 	$(BUILD_DIR)/asm/JSystem/JAS/JASCmdStack.o\
 	$(BUILD_DIR)/src/JSystem/JAS/JASDvdThread.o\
 	$(BUILD_DIR)/asm/JSystem/JAS/JASHeapCtrl.o\
@@ -216,10 +216,10 @@ JSYSTEM:=\
 	$(BUILD_DIR)/asm/JSystem/JAI/JAIAnimation.o\
 	$(BUILD_DIR)/asm/JSystem/JAI/JAIBankWave.o\
 	$(BUILD_DIR)/asm/JSystem/JAI/JAIBasic.o\
-	$(BUILD_DIR)/src/JSystem/JAI/JAIConst.o\
+	$(BUILD_DIR)/asm/JSystem/JAI/JAIConst.o\
 	$(BUILD_DIR)/asm/JSystem/JAI/JAIDummyObject.o\
 	$(BUILD_DIR)/asm/JSystem/JAI/JAIFx.o\
-	$(BUILD_DIR)/asm/JSystem/JAI/JAIGlobalParameter.o\
+	$(BUILD_DIR)/src/JSystem/JAI/JAIGlobalParameter.o\
 	$(BUILD_DIR)/asm/JSystem/JAI/JAIInitData.o\
 	$(BUILD_DIR)/asm/JSystem/JAI/JAISeMgr.o\
 	$(BUILD_DIR)/asm/JSystem/JAI/JAISequenceHeap.o\

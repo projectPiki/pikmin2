@@ -3,16 +3,20 @@
 
 #include "JSystem/JKR/JKRThread.h"
 
+/**
+ * @size = 0x88
+ */
 struct JASAudioThread : public JKRThread {
 	JASAudioThread(int, int, unsigned long); // unused/inlined
 
 	virtual ~JASAudioThread(); // _08 (weak)
 	virtual void* run();       // _0C
 
-	void create(long);
-	void stop();
 	void DMACallback();
 	void DSPCallback(void*);
+
+	static void create(long);
+	static void stop();
 
 	// unused/inlined:
 	void pause(bool);

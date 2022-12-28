@@ -46,11 +46,11 @@ struct JAIBasic {
 	void startSoundBasic(u32, JAIStream**, JAInter::Actor*, u32, u8, JAInter::SoundInfo*);
 	void stopSoundHandle(JAISound*, u32);
 	void stopAllSe(u8);
-	u32 getSoundOffsetNumberFromID(u32);
-	void stopAudio(u32, bool);
+	u16 getSoundOffsetNumberFromID(u32);
 	static u8 checkAudioStopStatus();
-	void stopCallBack(void*);
 
+	static void stopAudio(u32, bool);
+	static long stopCallBack(void*);
 	static u16 setParameterSeqSync(JASTrack*, u16);
 
 	// void startSoundActorReturnHandleT<JAISe>(JAISe**, u32, JAInter::Actor*, u32, u8);
@@ -113,11 +113,11 @@ struct JAIBasic {
 		bool _2 : 1;
 		bool _3 : 1;
 		bool _4 : 1;
-	} _0E;   // _0E
-	u32 _10; // _10
-	u32 _14; // _14
-	u32 _18; // _18
-	u32 _1C; // _1C
+	} _0E;     // _0E
+	u32 _10;   // _10
+	u32 _14;   // _14
+	u32 _18;   // _18
+	u16** _1C; // _1C
 
 	static JAIBasic* msBasic;
 	static JKRHeap* msCurrentHeap;
@@ -126,6 +126,7 @@ struct JAIBasic {
 	static float msDspLevel;
 	static float msAutoLevel;
 	static float msAutoDif;
+	static float msDspDif;
 
 	static u8 msStopStatus;
 };

@@ -1,6 +1,7 @@
 #ifndef _JSYSTEM_J3D_J3DIND_H
 #define _JSYSTEM_J3D_J3DIND_H
 
+#include "Dolphin/gx.h"
 #include "JSystem/J3D/J3DTypes.h"
 #include "types.h"
 
@@ -13,21 +14,101 @@ struct J3DIndTexCoordScale {
 	u8 _02[2]; // _02
 };
 
+struct J3DIndTexMtxInfo {
+	f32 _00;
+	f32 _04;
+	f32 _08;
+	f32 _0C;
+	f32 _10;
+	f32 _14;
+	u8 _18;
+};
+
+extern const J3DIndTexMtxInfo j3dDefaultIndTexMtxInfo;
+
 /**
  * @size{0x1C}
  */
 struct J3DIndTexMtx {
-	J3DIndTexMtx();
+	J3DIndTexMtx()
+	    : _00(j3dDefaultIndTexMtxInfo._00)
+	    , _04(j3dDefaultIndTexMtxInfo._04)
+	    , _08(j3dDefaultIndTexMtxInfo._08)
+	    , _0C(j3dDefaultIndTexMtxInfo._0C)
+	    , _10(j3dDefaultIndTexMtxInfo._10)
+	    , _14(j3dDefaultIndTexMtxInfo._14)
+	    , _18(j3dDefaultIndTexMtxInfo._18)
+	{
+	}
+
+	/** @fabricated */
+	J3DIndTexMtx(const J3DIndTexMtxInfo& info)
+	    : _00(info._00)
+	    , _04(info._04)
+	    , _08(info._08)
+	    , _0C(info._0C)
+	    , _10(info._10)
+	    , _14(info._14)
+	    , _18(info._18)
+	{
+	}
+
 	~J3DIndTexMtx() { }
 
-	u8 _00[0x1C]; // _00
+	f32 _00;
+	f32 _04;
+	f32 _08;
+	f32 _0C;
+	f32 _10;
+	f32 _14;
+	u8 _18;
 };
+
+/** @fabricated */
+struct J3DIndTexOrderInfo {
+	u8 m_texCoordID; // _00
+	u8 m_texMapID;   // _01
+	u8 _02;          // _02
+	u8 _03;          // _03
+};
+
+extern const J3DIndTexOrderInfo j3dDefaultIndTexOrderNull;
+// extern const struct J3DIndTexOrder j3dDefaultIndTexOrderNull;
 
 /**
  * @size{0x4}
  */
 struct J3DIndTexOrder {
-	J3DIndTexOrder();
+	J3DIndTexOrder()
+	    : m_texCoordID(j3dDefaultIndTexOrderNull.m_texCoordID)
+	    , m_texMapID(j3dDefaultIndTexOrderNull.m_texMapID)
+	{
+	}
+
+	/** @fabricated */
+	inline J3DIndTexOrder(const J3DIndTexOrderInfo& info)
+	    : m_texCoordID(info.m_texCoordID)
+	    , m_texMapID(info.m_texMapID)
+	    , _02(info._02)
+	    , _03(info._03)
+	{
+	}
+
+	// /** @fabricated */
+	// inline J3DIndTexOrder(_GXTexCoordID coordID, GXTexMapID mapID)
+	//     : m_texCoordID(coordID)
+	//     , m_texMapID(mapID)
+	// {
+	// }
+
+	// /** @fabricated */
+	// inline J3DIndTexOrder(u8 coordID, u8 mapID, u8 p3, u8 p4)
+	//     : m_texCoordID(coordID)
+	//     , m_texMapID(mapID)
+	//     , _02(p3)
+	//     , _03(p4)
+	// {
+	// }
 
 	u8 m_texCoordID; // _00
 	u8 m_texMapID;   // _01
@@ -78,11 +159,11 @@ struct J3DIndBlockFull : public J3DIndBlock {
 
 	void initialize();
 
-	u8 m_indTexStageNum;   // _04
-	J3DIndTexOrder _05[4]; // _05
+	u8 m_indTexStageNum;        // _04
+	J3DIndTexOrder m_orders[4]; // _05
 	u32 : 0;
-	J3DIndTexMtx _18[3];        // _18
-	J3DIndTexCoordScale _6C[4]; // _6C
+	J3DIndTexMtx m_texMtxs[3];            // _18
+	J3DIndTexCoordScale m_coordScales[4]; // _6C
 };
 
 struct J3DIndBlockNull : public J3DIndBlock {

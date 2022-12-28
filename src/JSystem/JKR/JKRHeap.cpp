@@ -93,6 +93,20 @@
 typedef void Destructor(void*, short);
 #define INVOKE_VIRT_DTOR(o, v) (((*(Destructor***)(o))[2])((o), (v)))
 
+JKRHeap* JKRHeap::sSystemHeap;
+JKRHeap* JKRHeap::sCurrentHeap;
+JKRHeap* JKRHeap::sRootHeap;
+JKRHeapErrorHandler* JKRHeap::mErrorHandler;
+u8 JKRHeap::sDefaultFillCheckFlag;
+u8* JKRHeap::mCodeStart;
+u8* JKRHeap::mCodeEnd;
+u8* JKRHeap::mUserRamStart;
+u8* JKRHeap::mUserRamEnd;
+u32 JKRHeap::mMemorySize;
+bool JKRHeap::TState::bVerbose;
+
+u8 JKRHeap::sDefaultFillFlag = 1;
+
 /*
  * --INFO--
  * Address:	800232B4
@@ -100,8 +114,7 @@ typedef void Destructor(void*, short);
  * __ct__7JKRHeapFPvUlP7JKRHeapb
  */
 JKRHeap::JKRHeap(void* startPtr, u32 size, JKRHeap* parentHeap, bool shouldSetErrorHandlerMaybe)
-    : _40()
-    , _4C(this)
+    : m_tree(this)
     , m_disposerList()
 {
 	OSInitMutex(&m_mutex);
@@ -109,115 +122,25 @@ JKRHeap::JKRHeap(void* startPtr, u32 size, JKRHeap* parentHeap, bool shouldSetEr
 	m_startAddress = startPtr;
 	m_endAddress   = (u8*)startPtr + size;
 
-	if (parentHeap) {
-		JSUPtrLink* pJVar1 = _40.m_head;
-		if (pJVar1) {
-			pJVar1 = &_4C;
-		}
-		parentHeap->_40.append(pJVar1);
+	if (parentHeap == nullptr) {
+		becomeSystemHeap();
+		becomeCurrentHeap();
+	} else {
+		parentHeap->m_tree.appendChild(&m_tree);
 		if (JKRHeap::sSystemHeap == JKRHeap::sRootHeap) {
 			becomeSystemHeap();
 		}
 		if (JKRHeap::sCurrentHeap == JKRHeap::sRootHeap) {
 			becomeCurrentHeap();
 		}
-	} else {
-		becomeSystemHeap();
-		becomeCurrentHeap();
 	}
 	_68 = shouldSetErrorHandlerMaybe;
-	if ((_68) && (JKRHeap::mErrorHandler == nullptr)) {
+	if ((_68 == true) && (JKRHeap::mErrorHandler == nullptr)) {
 		JKRHeap::mErrorHandler = JKRDefaultMemoryErrorRoutine;
 	}
 	m_fillFlag      = JKRHeap::sDefaultFillFlag;
 	m_fillCheckFlag = JKRHeap::sDefaultFillCheckFlag;
 	_69             = 0;
-	/*
-	.loc_0x0:
-	  stwu      r1, -0x20(r1)
-	  mflr      r0
-	  stw       r0, 0x24(r1)
-	  stmw      r26, 0x8(r1)
-	  mr        r31, r3
-	  mr        r27, r4
-	  mr        r28, r5
-	  mr        r29, r6
-	  mr        r30, r7
-	  bl        -0x630C
-	  lis       r3, 0x804A
-	  addi      r26, r31, 0x40
-	  subi      r0, r3, 0x100
-	  stw       r0, 0x0(r31)
-	  mr        r3, r26
-	  bl        0x35E0
-	  mr        r4, r31
-	  addi      r3, r26, 0xC
-	  bl        0x34BC
-	  addi      r3, r31, 0x5C
-	  bl        0x35CC
-	  addi      r3, r31, 0x18
-	  bl        0xCC824
-	  stw       r28, 0x38(r31)
-	  cmplwi    r29, 0
-	  add       r0, r27, r28
-	  stw       r27, 0x30(r31)
-	  stw       r0, 0x34(r31)
-	  bne-      .loc_0x88
-	  mr        r3, r31
-	  bl        0x268
-	  mr        r3, r31
-	  bl        0x270
-	  b         .loc_0xCC
-
-	.loc_0x88:
-	  addic.    r4, r31, 0x40
-	  beq-      .loc_0x94
-	  addi      r4, r4, 0xC
-
-	.loc_0x94:
-	  addi      r3, r29, 0x40
-	  bl        0x3598
-	  lwz       r3, -0x77D8(r13)
-	  lwz       r0, -0x77D0(r13)
-	  cmplw     r3, r0
-	  bne-      .loc_0xB4
-	  mr        r3, r31
-	  bl        0x230
-
-	.loc_0xB4:
-	  lwz       r3, -0x77D4(r13)
-	  lwz       r0, -0x77D0(r13)
-	  cmplw     r3, r0
-	  bne-      .loc_0xCC
-	  mr        r3, r31
-	  bl        0x228
-
-	.loc_0xCC:
-	  stb       r30, 0x68(r31)
-	  lbz       r0, 0x68(r31)
-	  cmplwi    r0, 0x1
-	  bne-      .loc_0xF4
-	  lwz       r0, -0x77CC(r13)
-	  cmplwi    r0, 0
-	  bne-      .loc_0xF4
-	  lis       r3, 0x8002
-	  addi      r0, r3, 0x3E50
-	  stw       r0, -0x77CC(r13)
-
-	.loc_0xF4:
-	  lbz       r4, -0x7FE0(r13)
-	  li        r0, 0
-	  mr        r3, r31
-	  stb       r4, 0x3C(r31)
-	  lbz       r4, -0x77C8(r13)
-	  stb       r4, 0x3D(r31)
-	  stb       r0, 0x69(r31)
-	  lmw       r26, 0x8(r1)
-	  lwz       r0, 0x24(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x20
-	  blr
-	*/
 }
 
 /*
@@ -227,6 +150,8 @@ JKRHeap::JKRHeap(void* startPtr, u32 size, JKRHeap* parentHeap, bool shouldSetEr
  */
 JKRHeap::~JKRHeap()
 {
+	m_tree.getParent()->removeChild(&m_tree);
+	//  TODO: The rest
 	/*
 	stwu     r1, -0x10(r1)
 	mflr     r0
@@ -331,26 +256,26 @@ lbl_800234D0:
  */
 bool JKRHeap::initArena(char** outUserRamStart, u32* outUserRamSize, int numHeaps)
 {
-	void* arenaLo    = OSGetArenaLo();
-	void* arenaHi    = OSGetArenaHi();
-	bool sanityCheck = (arenaLo != arenaHi);
-	if (sanityCheck) {
-		OSInitAlloc(arenaLo, arenaHi, numHeaps);
-		u8* userRamEnd   = (u8*)((u32)arenaHi & ~0x1f);
-		u8* userRamStart = (u8*)(((u32)arenaLo + 0x1f) & ~0x1f);
-		// TODO: Remove hardcoding of start of memory?
-		mCodeStart = (u8*)0x80000000;
-		// TODO: Remove hardcoding of what I've called OS::PhysicalMemorySize.
-		mMemorySize   = *(u32*)0x80000028;
-		mCodeEnd      = userRamStart;
-		mUserRamStart = userRamStart;
-		mUserRamEnd   = userRamEnd;
-		OSSetArenaLo(userRamEnd);
-		OSSetArenaHi(userRamEnd);
-		*outUserRamStart = (char*)userRamStart;
-		*outUserRamSize  = (u32)userRamEnd - (u32)userRamStart;
+	void* arenaLo = OSGetArenaLo();
+	void* arenaHi = OSGetArenaHi();
+	if (arenaLo == arenaHi) {
+		return false;
 	}
-	return sanityCheck;
+	OSInitAlloc(arenaLo, arenaHi, numHeaps);
+	u8* userRamEnd   = (u8*)((u32)arenaHi & ~0x1f);
+	u8* userRamStart = (u8*)(((u32)arenaLo + 0x1f) & ~0x1f);
+	// TODO: Remove hardcoding of start of memory?
+	mCodeStart    = (u8*)0x80000000;
+	mCodeEnd      = userRamStart;
+	mUserRamStart = userRamStart;
+	mUserRamEnd   = userRamEnd;
+	// TODO: Remove hardcoding of what I've called OS::PhysicalMemorySize.
+	mMemorySize = *(u32*)0x80000028;
+	OSSetArenaLo(userRamEnd);
+	OSSetArenaHi(userRamEnd);
+	*outUserRamStart = (char*)userRamStart;
+	*outUserRamSize  = (u32)userRamEnd - (u32)userRamStart;
+	return true;
 	/*
 	.loc_0x0:
 	  stwu      r1, -0x20(r1)
@@ -691,15 +616,18 @@ JKRHeap* JKRHeap::findFromRoot(void* memory)
  */
 JKRHeap* JKRHeap::find(void* memory) const
 {
-	if ((memory < m_startAddress) || (m_endAddress <= memory)) {
-		return nullptr;
-	}
-	if (_40.m_linkCount != 0) {
-		JSUPtrLink* pJVar12 = _40.m_head;
-		if (pJVar12) {
-			// pJVar12 = pJVar12
+	if ((m_startAddress <= memory) && (memory < m_endAddress)) {
+		if (m_tree.getNumChildren() != 0) {
+			for (JSUTreeIterator<JKRHeap> iterator(m_tree.getFirstChild()); iterator != m_tree.getEndChild(); ++iterator) {
+				JKRHeap* result = iterator->find(memory);
+				if (result != nullptr) {
+					return result;
+				}
+			}
 		}
+		return const_cast<JKRHeap*>(this);
 	}
+	return nullptr;
 	/*
 	.loc_0x0:
 	  stwu      r1, -0x40(r1)
@@ -951,101 +879,101 @@ JKRHeap* JKRHeap::find(void* memory) const
  * Address:	80023BB4
  * Size:	000018
  */
-template <>
-bool JSUTreeIterator<JKRHeap>::operator!=(const JSUTree<JKRHeap>*) const
-{
-	/*
-	.loc_0x0:
-	  lwz       r0, 0x0(r3)
-	  sub       r3, r4, r0
-	  sub       r0, r0, r4
-	  or        r0, r3, r0
-	  rlwinm    r3,r0,1,31,31
-	  blr
-	*/
-}
+// template <>
+// bool JSUTreeIterator<JKRHeap>::operator!=(const JSUTree<JKRHeap>*) const
+// {
+// 	/*
+// 	.loc_0x0:
+// 	  lwz       r0, 0x0(r3)
+// 	  sub       r3, r4, r0
+// 	  sub       r0, r0, r4
+// 	  or        r0, r3, r0
+// 	  rlwinm    r3,r0,1,31,31
+// 	  blr
+// 	*/
+// }
 
 /*
  * --INFO--
  * Address:	80023BCC
  * Size:	000008
  */
-template <>
-JSUTree<JKRHeap>* JSUTree<JKRHeap>::getEndChild() const
-{
-	return nullptr;
-}
+// template <>
+// JSUTree<JKRHeap>* JSUTree<JKRHeap>::getEndChild() const
+// {
+// 	return nullptr;
+// }
 
 /*
  * --INFO--
  * Address:	80023BD4
  * Size:	00001C
  */
-template <>
-JSUTreeIterator<JKRHeap>& JSUTreeIterator<JKRHeap>::operator++()
-{
-	/*
-	lwz      r4, 0(r3)
-	lwz      r4, 0x18(r4)
-	cmplwi   r4, 0
-	beq      lbl_80023BE8
-	addi     r4, r4, -12
+// template <>
+// JSUTreeIterator<JKRHeap>& JSUTreeIterator<JKRHeap>::operator++()
+// {
+// 	/*
+// 	lwz      r4, 0(r3)
+// 	lwz      r4, 0x18(r4)
+// 	cmplwi   r4, 0
+// 	beq      lbl_80023BE8
+// 	addi     r4, r4, -12
 
-lbl_80023BE8:
-	stw      r4, 0(r3)
-	blr
-	*/
-}
+// lbl_80023BE8:
+// 	stw      r4, 0(r3)
+// 	blr
+// 	*/
+// }
 
 /*
  * --INFO--
  * Address:	80023BF0
  * Size:	00000C
  */
-template <>
-JKRHeap* JSUTreeIterator<JKRHeap>::operator->() const
-{
-	return getObject();
-}
+// template <>
+// JKRHeap* JSUTreeIterator<JKRHeap>::operator->() const
+// {
+// 	return getObject();
+// }
 
 /*
  * --INFO--
  * Address:	80023BFC
  * Size:	000008
  */
-template <>
-JSUTreeIterator<JKRHeap>::JSUTreeIterator(JSUTree<JKRHeap>* tree)
-    : m_tree(tree)
-{
-}
+// template <>
+// JSUTreeIterator<JKRHeap>::JSUTreeIterator(JSUTree<JKRHeap>* tree)
+//     : m_tree(tree)
+// {
+// }
 
 /*
  * --INFO--
  * Address:	80023C04
  * Size:	000008
  */
-template <>
-int JSUTree<JKRHeap>::getNumChildren() const
-{
-	return getNumLinks();
-}
+// template <>
+// int JSUTree<JKRHeap>::getNumChildren() const
+// {
+// 	return getNumLinks();
+// }
 
 /*
  * --INFO--
  * Address:	80023C0C
  * Size:	000014
  */
-template <>
-JSUTree<JKRHeap>* JSUTree<JKRHeap>::getFirstChild() const
-{
-	/*
-	lwz      r3, 0(r3)
-	cmplwi   r3, 0
-	beqlr
-	addi     r3, r3, -12
-	blr
-	*/
-}
+// template <>
+// JSUTree<JKRHeap>* JSUTree<JKRHeap>::getFirstChild() const
+// {
+// 	/*
+// 	lwz      r3, 0(r3)
+// 	cmplwi   r3, 0
+// 	beqlr
+// 	addi     r3, r3, -12
+// 	blr
+// 	*/
+// }
 
 /*
  * --INFO--
@@ -1061,21 +989,20 @@ JSUTree<JKRHeap>* JSUTree<JKRHeap>::getFirstChild() const
  */
 u32 JKRHeap::dispose(void* memory, u32 p2)
 {
-	int returnValue   = 0;
-	JSUPtrLink* link1 = m_disposerList.m_head;
-	JSUPtrLink* link2;
-	JSUPtrLink* link3;
+	JSULink<JKRDisposer>* link1 = m_disposerList.getFirst();
+	JSULink<JKRDisposer>* link2;
+	JSULink<JKRDisposer>* link3;
 	while (link2 = link1, link2) {
-		void* value = link2->m_value;
-		if ((value < memory) || ((u8*)memory + p2) <= value) {
-			link1 = link2->m_next;
-			link3 = link2;
-		} else {
+		JKRDisposer* value = link2->getObject();
+		if ((memory <= value) && ((u8*)value < (u8*)memory + p2)) {
 			INVOKE_VIRT_DTOR(value, -1);
-			link1 = (link3) ? link3->m_next : m_disposerList.m_head;
+			link1 = (link3 == nullptr) ? m_disposerList.getFirst() : link3->getNext();
+		} else {
+			link1 = link2->getNext();
+			link3 = link2;
 		}
 	}
-	return returnValue;
+	return 0;
 	/*
 	.loc_0x0:
 	  stwu      r1, -0x20(r1)
@@ -1794,26 +1721,7 @@ lbl_800244F8:
  * Address:	80024510
  * Size:	000034
  */
-void JKRHeap::TState::dump() const
-{
-	m_heap->state_dump(this);
-	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  mr        r4, r3
-	  lwz       r3, 0x10(r3)
-	  stw       r0, 0x14(r1)
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0x5C(r12)
-	  mtctr     r12
-	  bctrl
-	  lwz       r0, 0x14(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
-	*/
-}
+void JKRHeap::TState::dump() const { m_heap->state_dump(this); }
 
 /*
  * --INFO--
@@ -1897,22 +1805,7 @@ void JKRHeap::state_register(JKRHeap::TState*, u32) const { }
  * Address:	8002461C
  * Size:	000018
  */
-bool JKRHeap::state_compare(const JKRHeap::TState& state1, const JKRHeap::TState& state2) const
-{
-	if (state1._00 == state2._00) {
-		return (state1._04 == state2._04);
-	}
-	return false;
-	/*
-	.loc_0x0:
-	  lwz       r3, 0x4(r4)
-	  lwz       r0, 0x4(r5)
-	  sub       r0, r0, r3
-	  cntlzw    r0, r0
-	  rlwinm    r3,r0,27,5,31
-	  blr
-	*/
-}
+bool JKRHeap::state_compare(const JKRHeap::TState& state1, const JKRHeap::TState& state2) const { return (state1._04 == state2._04); }
 
 /*
  * --INFO--

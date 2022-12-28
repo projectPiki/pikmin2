@@ -64,6 +64,14 @@ struct J3DGXColorS10 : public GXColorS10 {
 		a = other.a;
 	}
 
+	J3DGXColorS10(const GXColorS10& other)
+	{
+		r = other.r;
+		g = other.g;
+		b = other.b;
+		a = other.a;
+	}
+
 	J3DGXColorS10(const u64& other)
 	{
 		GXColorS10* otherBytes = (GXColorS10*)&other;

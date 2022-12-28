@@ -75,7 +75,9 @@ struct J3DShape {
 };
 
 struct J3DShapeMtx {
-	virtual ~J3DShapeMtx();                                                  // _08 (weak)
+	typedef void (J3DShapeMtx::*LoadMtxIndxFunction)(int, u16) const;
+
+	virtual ~J3DShapeMtx() { }                                               // _08 (weak)
 	virtual int getType() const;                                             // _0C (weak)
 	virtual int getUseMtxNum() const;                                        // _10 (weak)
 	virtual u16 getUseMtxIndex(u16) const;                                   // _14 (weak)
@@ -92,8 +94,14 @@ struct J3DShapeMtx {
 	// VTBL _00
 	u16 m_useMtxIndex; // _04
 
-	static u32 sCurrentPipeline;
 	static u16 sMtxLoadCache[10];
+	static LoadMtxIndxFunction sMtxLoadPipeline[4];
+
+	static u32 sCurrentPipeline;
+	static u8* sCurrentScaleFlag;
+	static u32 sTexMtxLoadType;
+	static bool sNBTFlag;
+	static bool sLODFlag;
 };
 
 struct J3DShapeDraw {
@@ -140,17 +148,22 @@ struct J3DShapeTable {
 };
 
 struct J3DShapeMtxMulti : public J3DShapeMtx {
-	virtual ~J3DShapeMtxMulti();                                             // _08 (weak)
-	virtual int getType() const;                                             // _0C (weak)
-	virtual int getUseMtxNum() const;                                        // _10 (weak)
-	virtual u16 getUseMtxIndex(unsigned short) const;                        // _14 (weak)
+	virtual ~J3DShapeMtxMulti() { }                                          // _08 (weak)
+	virtual int getType() const { return 'SMML'; }                           // _0C (weak)
+	virtual int getUseMtxNum() const { return m_useMtxNum; }                 // _10 (weak)
+	virtual u16 getUseMtxIndex(unsigned short p1) const { return _0C[p1]; }  // _14 (weak)
 	virtual void load() const;                                               // _18
 	virtual void calcNBTScale(const Vec&, float (*)[3][3], float (*)[3][3]); // _1C
+
+	u16 m_useMtxNum; // _08
+	u16* _0C;        // _0C
 };
 
 struct J3DShapeMtxConcatView : public J3DShapeMtx {
-	virtual ~J3DShapeMtxConcatView();                                 // _08 (weak)
-	virtual int getType() const;                                      // _0C (weak)
+	typedef void (J3DShapeMtxConcatView::*LoadMtxConcatViewFunction)(int, u16) const;
+
+	virtual ~J3DShapeMtxConcatView() { }                              // _08 (weak)
+	virtual int getType() const { return 'SMCV'; }                    // _0C (weak)
 	virtual void load() const;                                        // _18
 	virtual void loadNrmMtx(int, unsigned short) const;               // _20 (weak)
 	virtual void loadNrmMtx(int, unsigned short, float (*)[4]) const; // _24
@@ -160,28 +173,35 @@ struct J3DShapeMtxConcatView : public J3DShapeMtx {
 	void loadMtxConcatView_NCPU(int, unsigned short) const;
 	void loadMtxConcatView_PNCPU(int, unsigned short) const;
 	void loadMtxConcatView_PNGP_LOD(int, unsigned short) const;
+
+	static LoadMtxConcatViewFunction sMtxLoadPipeline[4];
+	static LoadMtxConcatViewFunction sMtxLoadLODPipeline[4];
+	static Mtx* sMtxPtrTbl[2];
 };
 
 struct J3DShapeMtxMultiConcatView : public J3DShapeMtxConcatView {
-	virtual ~J3DShapeMtxMultiConcatView();                            // _08 (weak)
-	virtual int getType() const;                                      // _0C (weak)
-	virtual int getUseMtxNum() const;                                 // _10 (weak)
-	virtual u16 getUseMtxIndex(unsigned short) const;                 // _14 (weak)
-	virtual void load() const;                                        // _18
-	virtual void loadNrmMtx(int, unsigned short) const;               // _20 (weak)
-	virtual void loadNrmMtx(int, unsigned short, float (*)[4]) const; // _24
+	virtual ~J3DShapeMtxMultiConcatView() { }                                     // _08 (weak)
+	virtual int getType() const { return 'SMMC'; }                                // _0C (weak)
+	virtual int getUseMtxNum() const { return m_useMtxNum; }                      // _10 (weak)
+	virtual u16 getUseMtxIndex(unsigned short index) const { return _0C[index]; } // _14 (weak)
+	virtual void load() const;                                                    // _18
+	virtual void loadNrmMtx(int, unsigned short) const;                           // _20 (weak)
+	virtual void loadNrmMtx(int, unsigned short, float (*)[4]) const;             // _24
+
+	u16 m_useMtxNum; // _08
+	u16* _0C;        // _0C
 };
 
 struct J3DShapeMtxBBoardConcatView : public J3DShapeMtxConcatView {
-	virtual ~J3DShapeMtxBBoardConcatView(); // _08 (weak)
-	virtual int getType() const;            // _0C (weak)
-	virtual void load() const;              // _18
+	virtual ~J3DShapeMtxBBoardConcatView() { }     // _08 (weak)
+	virtual int getType() const { return 'SMBB'; } // _0C (weak)
+	virtual void load() const;                     // _18
 };
 
 struct J3DShapeMtxYBBoardConcatView : public J3DShapeMtxConcatView {
-	virtual ~J3DShapeMtxYBBoardConcatView(); // _08 (weak)
-	virtual int getType() const;             // _0C (weak)
-	virtual void load() const;               // _18
+	virtual ~J3DShapeMtxYBBoardConcatView() { }    // _08 (weak)
+	virtual int getType() const { return 'SMYB'; } // _0C (weak)
+	virtual void load() const;                     // _18
 };
 
 #endif

@@ -1608,7 +1608,7 @@ lbl_800954E8:
  * Address:	80095500
  * Size:	000080
  */
-bool JPABaseParticle::canCreateChild(JPAEmitterWorkData*)
+bool JPABaseParticle::canCreateChild(JPAEmitterWorkData* workData)
 {
 	/*
 	stwu     r1, -0x20(r1)
@@ -1653,8 +1653,9 @@ lbl_80095574:
  * Address:	80095580
  * Size:	000024
  */
-float JPABaseParticle::getCalcCurrentPositionX(const JPABaseEmitter*) const
+float JPABaseParticle::getCalcCurrentPositionX(const JPABaseEmitter* emitter) const
 {
+	return emitter->m_manager->_20->_12C.x * (m_position.x + _24.x + _18.x);
 	/*
 	lwz      r4, 0xe4(r4)
 	lfs      f1, 0xc(r3)
@@ -1673,7 +1674,7 @@ float JPABaseParticle::getCalcCurrentPositionX(const JPABaseEmitter*) const
  * Address:	800955A4
  * Size:	000024
  */
-float JPABaseParticle::getCalcCurrentPositionY(const JPABaseEmitter*) const
+float JPABaseParticle::getCalcCurrentPositionY(const JPABaseEmitter* emitter) const
 {
 	/*
 	lwz      r4, 0xe4(r4)
@@ -1693,7 +1694,7 @@ float JPABaseParticle::getCalcCurrentPositionY(const JPABaseEmitter*) const
  * Address:	800955C8
  * Size:	000024
  */
-float JPABaseParticle::getCalcCurrentPositionZ(const JPABaseEmitter*) const
+float JPABaseParticle::getCalcCurrentPositionZ(const JPABaseEmitter* emitter) const
 {
 	/*
 	lwz      r4, 0xe4(r4)
@@ -1713,7 +1714,7 @@ float JPABaseParticle::getCalcCurrentPositionZ(const JPABaseEmitter*) const
  * Address:	........
  * Size:	000020
  */
-float JPABaseParticle::getWidth(const JPABaseEmitter*) const
+float JPABaseParticle::getWidth(const JPABaseEmitter* emitter) const
 {
 	// UNUSED FUNCTION
 }
@@ -1723,7 +1724,7 @@ float JPABaseParticle::getWidth(const JPABaseEmitter*) const
  * Address:	........
  * Size:	000020
  */
-float JPABaseParticle::getHeight(const JPABaseEmitter*) const
+float JPABaseParticle::getHeight(const JPABaseEmitter* emitter) const
 {
 	// UNUSED FUNCTION
 }

@@ -90,11 +90,11 @@ struct JAISound : public JSULink<JAISound> {
 	void initMultiMoveParameter(JAInter::MoveParaSet*, u8, u32, float, float, u32);
 	u32 getSwBit();
 	u32 checkSwBit(u32);
-	u32 getInfoPriority();
+	u8 getInfoPriority();
 	void clearMainSoundPPointer();
 	void setPauseMode(u8, u8);
 	u32 getTrackPortRoute(u8, u8);
-	bool checkSoundHandle(u32, void*);
+	u32 checkSoundHandle(u32, void*);
 
 	// unused/inlined:
 	void getPointer(u8, char);

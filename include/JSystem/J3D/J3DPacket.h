@@ -87,13 +87,13 @@ struct J3DMatPacket : public J3DDrawPacket {
 struct J3DShapePacket_0x24 {
 	inline J3DShapePacket_0x24(u16 num)
 	    : _00(new Mtx[num])
-	    , _04(new float[num][16])
+	    , _04(new Mtx44[num])
 	    , _08(num)
 	{
 	}
-	Mtx* _00;  // _00
-	void* _04; // _04
-	s16 _08;   // _08
+	Mtx* _00;   // _00
+	Mtx44* _04; // _04
+	s16 _08;    // _08
 };
 
 /**

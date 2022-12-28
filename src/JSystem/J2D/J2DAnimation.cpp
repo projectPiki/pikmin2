@@ -1,4 +1,6 @@
 #include "JSystem/J2D/J2DAnm.h"
+#include "JSystem/J2D/J2DPane.h"
+#include "JSystem/J3D/J3DAnmVisibilityFull.h"
 #include "types.h"
 
 /*
@@ -866,63 +868,18 @@ void J2DAnmTransformKey::calcTransform(float, unsigned short, J3DTransformInfo*)
  * Address:	8005B898
  * Size:	0000AC
  */
-void J2DAnmColor::searchUpdateMaterialID(J2DScreen*)
+void J2DAnmColor::searchUpdateMaterialID(J2DScreen* screen)
 {
-	/*
-	stwu     r1, -0x20(r1)
-	mflr     r0
-	stw      r0, 0x24(r1)
-	stw      r31, 0x1c(r1)
-	stw      r30, 0x18(r1)
-	or.      r30, r4, r4
-	stw      r29, 0x14(r1)
-	mr       r29, r3
-	beq      lbl_8005B928
-	lwz      r0, 0x110(r30)
-	cmplwi   r0, 0
-	beq      lbl_8005B928
-	li       r31, 0
-	b        lbl_8005B918
-
-lbl_8005B8D0:
-	mr       r4, r31
-	addi     r3, r29, 0x20
-	bl       getName__10JUTNameTabCFUs
-	mr       r4, r3
-	lwz      r3, 0x110(r30)
-	bl       getIndex__10JUTNameTabCFPCc
-	cmpwi    r3, -1
-	beq      lbl_8005B900
-	lwz      r4, 0x1c(r29)
-	rlwinm   r0, r31, 1, 0xf, 0x1e
-	sthx     r3, r4, r0
-	b        lbl_8005B914
-
-lbl_8005B900:
-	lis      r4, 0x0000FFFF@ha
-	lwz      r3, 0x1c(r29)
-	addi     r4, r4, 0x0000FFFF@l
-	rlwinm   r0, r31, 1, 0xf, 0x1e
-	sthx     r4, r3, r0
-
-lbl_8005B914:
-	addi     r31, r31, 1
-
-lbl_8005B918:
-	lhz      r0, 0x18(r29)
-	clrlwi   r3, r31, 0x10
-	cmplw    r3, r0
-	blt      lbl_8005B8D0
-
-lbl_8005B928:
-	lwz      r0, 0x24(r1)
-	lwz      r31, 0x1c(r1)
-	lwz      r30, 0x18(r1)
-	lwz      r29, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x20
-	blr
-	*/
+	if (screen != nullptr && screen->m_nameTab != nullptr) {
+		for (u16 i = 0; i < _18; i++) {
+			int index = screen->m_nameTab->getIndex(m_nameTab.getName(i));
+			if (index != -1) {
+				_1C[i] = index;
+			} else {
+				_1C[i] = 0xFFFF;
+			}
+		}
+	}
 }
 
 /*
@@ -1988,9 +1945,20 @@ void J2DAnmTextureSRTKey::calcPostTransform(float, unsigned short, J3DTextureSRT
  * --INFO--
  * Address:	8005C5E4
  * Size:	0000CC
+ * searchUpdateMaterialID__19J2DAnmTextureSRTKeyFP9J2DScreen
  */
-void J2DAnmTextureSRTKey::searchUpdateMaterialID(J2DScreen*)
+void J2DAnmTextureSRTKey::searchUpdateMaterialID(J2DScreen* screen)
 {
+	if (screen != nullptr && screen->m_nameTab != nullptr) {
+		for (u16 i = 0; i < _14 / 3; i++) {
+			int index = screen->m_nameTab->getIndex(m_nameTab.getName(i));
+			if (index != -1) {
+				_34[i] = index;
+			} else {
+				_34[i] = 0xFFFF;
+			}
+		}
+	}
 	/*
 	stwu     r1, -0x20(r1)
 	mflr     r0
@@ -2060,6 +2028,7 @@ lbl_8005C690:
  * --INFO--
  * Address:	8005C6B0
  * Size:	0001D4
+ * searchUpdateMaterialID__16J2DAnmTexPatternFP9J2DScreen
  */
 void J2DAnmTexPattern::searchUpdateMaterialID(J2DScreen*)
 {
@@ -2208,51 +2177,21 @@ lbl_8005C870:
  * --INFO--
  * Address:	8005C884
  * Size:	000010
+ * __ct__Q216J2DAnmTexPattern27J2DAnmTexPatternTIMGPointerFv
  */
-J2DAnmTexPattern::J2DAnmTexPatternTIMGPointer::J2DAnmTexPatternTIMGPointer(void)
+J2DAnmTexPattern::J2DAnmTexPatternTIMGPointer::J2DAnmTexPatternTIMGPointer()
+    : m_img(nullptr)
+    , m_palette(nullptr)
 {
-	/*
-	li       r0, 0
-	stw      r0, 0(r3)
-	stw      r0, 4(r3)
-	blr
-	*/
 }
 
 /*
  * --INFO--
  * Address:	8005C894
  * Size:	000054
+ * __dt__Q216J2DAnmTexPattern27J2DAnmTexPatternTIMGPointerFv
  */
-J2DAnmTexPattern::J2DAnmTexPatternTIMGPointer::~J2DAnmTexPatternTIMGPointer(void)
-{
-	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  stw       r0, 0x14(r1)
-	  stw       r31, 0xC(r1)
-	  mr        r31, r4
-	  stw       r30, 0x8(r1)
-	  mr.       r30, r3
-	  beq-      .loc_0x38
-	  lwz       r3, 0x4(r30)
-	  bl        -0x38804
-	  extsh.    r0, r31
-	  ble-      .loc_0x38
-	  mr        r3, r30
-	  bl        -0x38814
-
-	.loc_0x38:
-	  lwz       r0, 0x14(r1)
-	  mr        r3, r30
-	  lwz       r31, 0xC(r1)
-	  lwz       r30, 0x8(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
-	*/
-}
+J2DAnmTexPattern::J2DAnmTexPatternTIMGPointer::~J2DAnmTexPatternTIMGPointer() { delete m_palette; }
 
 /*
  * --INFO--
@@ -2462,8 +2401,15 @@ lbl_8005CB20:
  * Address:	8005CB28
  * Size:	0000A8
  */
-void J2DAnmVisibilityFull::getVisibility(unsigned short, unsigned char*) const
+void J2DAnmVisibilityFull::getVisibility(unsigned short p1, unsigned char* p2) const
 {
+	if (m_currentFrame < 0.0f) {
+		*p2 = _18[m_tables[p1]._00[1]];
+	} else if (m_currentFrame >= m_tables[p1]._00[0]) {
+		*p2 = _18[m_tables[p1]._00[1] + m_tables[p1]._00[0] - 1];
+	} else {
+		*p2 = _18[(int)m_currentFrame + m_tables[p1]._00[1]];
+	}
 	/*
 	lfs      f2, 8(r3)
 	rlwinm   r4, r4, 2, 0xe, 0x1d
@@ -2996,487 +2942,99 @@ lbl_8005D144:
  * --INFO--
  * Address:	8005D168
  * Size:	00010C
+ * searchUpdateMaterialID__15J2DAnmTevRegKeyFP9J2DScreen
  */
-void J2DAnmTevRegKey::searchUpdateMaterialID(J2DScreen*)
+void J2DAnmTevRegKey::searchUpdateMaterialID(J2DScreen* screen)
 {
-	/*
-	stwu     r1, -0x20(r1)
-	mflr     r0
-	stw      r0, 0x24(r1)
-	stw      r31, 0x1c(r1)
-	or.      r31, r4, r4
-	stw      r30, 0x18(r1)
-	mr       r30, r3
-	stw      r29, 0x14(r1)
-	beq      lbl_8005D258
-	lwz      r0, 0x110(r31)
-	cmplwi   r0, 0
-	beq      lbl_8005D258
-	li       r29, 0
-	b        lbl_8005D1E8
-
-lbl_8005D1A0:
-	mr       r4, r29
-	addi     r3, r30, 0x28
-	bl       getName__10JUTNameTabCFUs
-	mr       r4, r3
-	lwz      r3, 0x110(r31)
-	bl       getIndex__10JUTNameTabCFPCc
-	cmpwi    r3, -1
-	beq      lbl_8005D1D0
-	lwz      r4, 0x24(r30)
-	rlwinm   r0, r29, 1, 0xf, 0x1e
-	sthx     r3, r4, r0
-	b        lbl_8005D1E4
-
-lbl_8005D1D0:
-	lis      r4, 0x0000FFFF@ha
-	lwz      r3, 0x24(r30)
-	addi     r4, r4, 0x0000FFFF@l
-	rlwinm   r0, r29, 1, 0xf, 0x1e
-	sthx     r4, r3, r0
-
-lbl_8005D1E4:
-	addi     r29, r29, 1
-
-lbl_8005D1E8:
-	lhz      r0, 0x10(r30)
-	clrlwi   r3, r29, 0x10
-	cmplw    r3, r0
-	blt      lbl_8005D1A0
-	li       r29, 0
-	b        lbl_8005D248
-
-lbl_8005D200:
-	mr       r4, r29
-	addi     r3, r30, 0x3c
-	bl       getName__10JUTNameTabCFUs
-	mr       r4, r3
-	lwz      r3, 0x110(r31)
-	bl       getIndex__10JUTNameTabCFPCc
-	cmpwi    r3, -1
-	beq      lbl_8005D230
-	lwz      r4, 0x38(r30)
-	rlwinm   r0, r29, 1, 0xf, 0x1e
-	sthx     r3, r4, r0
-	b        lbl_8005D244
-
-lbl_8005D230:
-	lis      r4, 0x0000FFFF@ha
-	lwz      r3, 0x38(r30)
-	addi     r4, r4, 0x0000FFFF@l
-	rlwinm   r0, r29, 1, 0xf, 0x1e
-	sthx     r4, r3, r0
-
-lbl_8005D244:
-	addi     r29, r29, 1
-
-lbl_8005D248:
-	lhz      r0, 0x12(r30)
-	clrlwi   r3, r29, 0x10
-	cmplw    r3, r0
-	blt      lbl_8005D200
-
-lbl_8005D258:
-	lwz      r0, 0x24(r1)
-	lwz      r31, 0x1c(r1)
-	lwz      r30, 0x18(r1)
-	lwz      r29, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x20
-	blr
-	*/
+	if (screen != nullptr && screen->m_nameTab != nullptr) {
+		for (u16 i = 0; i < _10; i++) {
+			int index = screen->m_nameTab->getIndex(_28.getName(i));
+			if (index != -1) {
+				_24[i] = index;
+			} else {
+				_24[i] = 0xFFFF;
+			}
+		}
+		for (u16 i = 0; i < _12; i++) {
+			int index = screen->m_nameTab->getIndex(_3C.getName(i));
+			if (index != -1) {
+				_38[i] = index;
+			} else {
+				_38[i] = 0xFFFF;
+			}
+		}
+	}
 }
 
 /*
  * --INFO--
  * Address:	8005D274
  * Size:	000088
+ * __dt__15J2DAnmTevRegKeyFv
  */
-J2DAnmTevRegKey::~J2DAnmTevRegKey()
-{
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	or.      r31, r3, r3
-	beq      lbl_8005D2E4
-	lis      r3, __vt__15J2DAnmTevRegKey@ha
-	addic.   r0, r31, 0x3c
-	addi     r0, r3, __vt__15J2DAnmTevRegKey@l
-	stw      r0, 0(r31)
-	beq      lbl_8005D2AC
-	lis      r3, __vt__10JUTNameTab@ha
-	addi     r0, r3, __vt__10JUTNameTab@l
-	stw      r0, 0x3c(r31)
-
-lbl_8005D2AC:
-	addic.   r0, r31, 0x28
-	beq      lbl_8005D2C0
-	lis      r3, __vt__10JUTNameTab@ha
-	addi     r0, r3, __vt__10JUTNameTab@l
-	stw      r0, 0x28(r31)
-
-lbl_8005D2C0:
-	cmplwi   r31, 0
-	beq      lbl_8005D2D4
-	lis      r3, __vt__10J2DAnmBase@ha
-	addi     r0, r3, __vt__10J2DAnmBase@l
-	stw      r0, 0(r31)
-
-lbl_8005D2D4:
-	extsh.   r0, r4
-	ble      lbl_8005D2E4
-	mr       r3, r31
-	bl       __dl__FPv
-
-lbl_8005D2E4:
-	lwz      r0, 0x14(r1)
-	mr       r3, r31
-	lwz      r31, 0xc(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
-}
+// J2DAnmTevRegKey::~J2DAnmTevRegKey() { }
 
 /*
  * --INFO--
  * Address:	8005D2FC
  * Size:	000090
+ * __dt__16J2DAnmTexPatternFv
  */
-J2DAnmTexPattern::~J2DAnmTexPattern()
-{
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	mr       r31, r4
-	stw      r30, 8(r1)
-	or.      r30, r3, r3
-	beq      lbl_8005D370
-	lis      r4, __vt__16J2DAnmTexPattern@ha
-	lis      r3, __dt__Q216J2DAnmTexPattern27J2DAnmTexPatternTIMGPointerFv@ha
-	addi     r0, r4, __vt__16J2DAnmTexPattern@l
-	stw      r0, 0(r30)
-	addi     r4, r3, __dt__Q216J2DAnmTexPattern27J2DAnmTexPatternTIMGPointerFv@l
-	lwz      r3, 0x30(r30)
-	bl       __destroy_new_array
-	addic.   r0, r30, 0x20
-	beq      lbl_8005D34C
-	lis      r3, __vt__10JUTNameTab@ha
-	addi     r0, r3, __vt__10JUTNameTab@l
-	stw      r0, 0x20(r30)
-
-lbl_8005D34C:
-	cmplwi   r30, 0
-	beq      lbl_8005D360
-	lis      r3, __vt__10J2DAnmBase@ha
-	addi     r0, r3, __vt__10J2DAnmBase@l
-	stw      r0, 0(r30)
-
-lbl_8005D360:
-	extsh.   r0, r31
-	ble      lbl_8005D370
-	mr       r3, r30
-	bl       __dl__FPv
-
-lbl_8005D370:
-	lwz      r0, 0x14(r1)
-	mr       r3, r30
-	lwz      r31, 0xc(r1)
-	lwz      r30, 8(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
-}
+// J2DAnmTexPattern::~J2DAnmTexPattern() { delete[] _30; }
 
 /*
  * --INFO--
  * Address:	8005D38C
  * Size:	000088
+ * __dt__19J2DAnmTextureSRTKeyFv
  */
-J2DAnmTextureSRTKey::~J2DAnmTextureSRTKey()
-{
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	or.      r31, r3, r3
-	beq      lbl_8005D3FC
-	lis      r3, __vt__19J2DAnmTextureSRTKey@ha
-	addic.   r0, r31, 0x70
-	addi     r0, r3, __vt__19J2DAnmTextureSRTKey@l
-	stw      r0, 0(r31)
-	beq      lbl_8005D3C4
-	lis      r3, __vt__10JUTNameTab@ha
-	addi     r0, r3, __vt__10JUTNameTab@l
-	stw      r0, 0x70(r31)
-
-lbl_8005D3C4:
-	addic.   r0, r31, 0x38
-	beq      lbl_8005D3D8
-	lis      r3, __vt__10JUTNameTab@ha
-	addi     r0, r3, __vt__10JUTNameTab@l
-	stw      r0, 0x38(r31)
-
-lbl_8005D3D8:
-	cmplwi   r31, 0
-	beq      lbl_8005D3EC
-	lis      r3, __vt__10J2DAnmBase@ha
-	addi     r0, r3, __vt__10J2DAnmBase@l
-	stw      r0, 0(r31)
-
-lbl_8005D3EC:
-	extsh.   r0, r4
-	ble      lbl_8005D3FC
-	mr       r3, r31
-	bl       __dl__FPv
-
-lbl_8005D3FC:
-	lwz      r0, 0x14(r1)
-	mr       r3, r31
-	lwz      r31, 0xc(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
-}
+// J2DAnmTextureSRTKey::~J2DAnmTextureSRTKey() { }
 
 /*
  * --INFO--
  * Address:	8005D414
  * Size:	00006C
+ * __dt__17J2DAnmVtxColorKeyFv
  */
-J2DAnmVtxColorKey::~J2DAnmVtxColorKey()
-{
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	or.      r31, r3, r3
-	beq      lbl_8005D468
-	lis      r3, __vt__17J2DAnmVtxColorKey@ha
-	addi     r0, r3, __vt__17J2DAnmVtxColorKey@l
-	stw      r0, 0(r31)
-	beq      lbl_8005D458
-	lis      r3, __vt__14J2DAnmVtxColor@ha
-	addi     r0, r3, __vt__14J2DAnmVtxColor@l
-	stw      r0, 0(r31)
-	beq      lbl_8005D458
-	lis      r3, __vt__10J2DAnmBase@ha
-	addi     r0, r3, __vt__10J2DAnmBase@l
-	stw      r0, 0(r31)
-
-lbl_8005D458:
-	extsh.   r0, r4
-	ble      lbl_8005D468
-	mr       r3, r31
-	bl       __dl__FPv
-
-lbl_8005D468:
-	lwz      r0, 0x14(r1)
-	mr       r3, r31
-	lwz      r31, 0xc(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
-}
+// J2DAnmVtxColorKey::~J2DAnmVtxColorKey() { }
 
 /*
  * --INFO--
  * Address:	8005D480
  * Size:	00006C
+ * __dt__18J2DAnmVtxColorFullFv
  */
-J2DAnmVtxColorFull::~J2DAnmVtxColorFull()
-{
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	or.      r31, r3, r3
-	beq      lbl_8005D4D4
-	lis      r3, __vt__18J2DAnmVtxColorFull@ha
-	addi     r0, r3, __vt__18J2DAnmVtxColorFull@l
-	stw      r0, 0(r31)
-	beq      lbl_8005D4C4
-	lis      r3, __vt__14J2DAnmVtxColor@ha
-	addi     r0, r3, __vt__14J2DAnmVtxColor@l
-	stw      r0, 0(r31)
-	beq      lbl_8005D4C4
-	lis      r3, __vt__10J2DAnmBase@ha
-	addi     r0, r3, __vt__10J2DAnmBase@l
-	stw      r0, 0(r31)
-
-lbl_8005D4C4:
-	extsh.   r0, r4
-	ble      lbl_8005D4D4
-	mr       r3, r31
-	bl       __dl__FPv
-
-lbl_8005D4D4:
-	lwz      r0, 0x14(r1)
-	mr       r3, r31
-	lwz      r31, 0xc(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
-}
+// J2DAnmVtxColorFull::~J2DAnmVtxColorFull() { }
 
 /*
  * --INFO--
  * Address:	8005D4EC
  * Size:	000084
+ * __dt__14J2DAnmColorKeyFv
  */
-J2DAnmColorKey::~J2DAnmColorKey()
-{
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	or.      r31, r3, r3
-	beq      lbl_8005D558
-	lis      r3, __vt__14J2DAnmColorKey@ha
-	addi     r0, r3, __vt__14J2DAnmColorKey@l
-	stw      r0, 0(r31)
-	beq      lbl_8005D548
-	lis      r3, __vt__11J2DAnmColor@ha
-	addic.   r0, r31, 0x20
-	addi     r0, r3, __vt__11J2DAnmColor@l
-	stw      r0, 0(r31)
-	beq      lbl_8005D534
-	lis      r3, __vt__10JUTNameTab@ha
-	addi     r0, r3, __vt__10JUTNameTab@l
-	stw      r0, 0x20(r31)
-
-lbl_8005D534:
-	cmplwi   r31, 0
-	beq      lbl_8005D548
-	lis      r3, __vt__10J2DAnmBase@ha
-	addi     r0, r3, __vt__10J2DAnmBase@l
-	stw      r0, 0(r31)
-
-lbl_8005D548:
-	extsh.   r0, r4
-	ble      lbl_8005D558
-	mr       r3, r31
-	bl       __dl__FPv
-
-lbl_8005D558:
-	lwz      r0, 0x14(r1)
-	mr       r3, r31
-	lwz      r31, 0xc(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
-}
+// J2DAnmColorKey::~J2DAnmColorKey() { }
 
 /*
  * --INFO--
  * Address:	8005D570
  * Size:	000084
+ * __dt__15J2DAnmColorFullFv
  */
-J2DAnmColorFull::~J2DAnmColorFull()
-{
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	or.      r31, r3, r3
-	beq      lbl_8005D5DC
-	lis      r3, __vt__15J2DAnmColorFull@ha
-	addi     r0, r3, __vt__15J2DAnmColorFull@l
-	stw      r0, 0(r31)
-	beq      lbl_8005D5CC
-	lis      r3, __vt__11J2DAnmColor@ha
-	addic.   r0, r31, 0x20
-	addi     r0, r3, __vt__11J2DAnmColor@l
-	stw      r0, 0(r31)
-	beq      lbl_8005D5B8
-	lis      r3, __vt__10JUTNameTab@ha
-	addi     r0, r3, __vt__10JUTNameTab@l
-	stw      r0, 0x20(r31)
-
-lbl_8005D5B8:
-	cmplwi   r31, 0
-	beq      lbl_8005D5CC
-	lis      r3, __vt__10J2DAnmBase@ha
-	addi     r0, r3, __vt__10J2DAnmBase@l
-	stw      r0, 0(r31)
-
-lbl_8005D5CC:
-	extsh.   r0, r4
-	ble      lbl_8005D5DC
-	mr       r3, r31
-	bl       __dl__FPv
-
-lbl_8005D5DC:
-	lwz      r0, 0x14(r1)
-	mr       r3, r31
-	lwz      r31, 0xc(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
-}
+// J2DAnmColorFull::~J2DAnmColorFull() { }
 
 /*
  * --INFO--
  * Address:	8005D5F4
  * Size:	00006C
+ * __dt__18J2DAnmTransformKeyFv
  */
-J2DAnmTransformKey::~J2DAnmTransformKey()
-{
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	or.      r31, r3, r3
-	beq      lbl_8005D648
-	lis      r3, __vt__18J2DAnmTransformKey@ha
-	addi     r0, r3, __vt__18J2DAnmTransformKey@l
-	stw      r0, 0(r31)
-	beq      lbl_8005D638
-	lis      r3, __vt__15J2DAnmTransform@ha
-	addi     r0, r3, __vt__15J2DAnmTransform@l
-	stw      r0, 0(r31)
-	beq      lbl_8005D638
-	lis      r3, __vt__10J2DAnmBase@ha
-	addi     r0, r3, __vt__10J2DAnmBase@l
-	stw      r0, 0(r31)
-
-lbl_8005D638:
-	extsh.   r0, r4
-	ble      lbl_8005D648
-	mr       r3, r31
-	bl       __dl__FPv
-
-lbl_8005D648:
-	lwz      r0, 0x14(r1)
-	mr       r3, r31
-	lwz      r31, 0xc(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
-}
+// J2DAnmTransformKey::~J2DAnmTransformKey() { }
 
 /*
  * --INFO--
  * Address:	8005D660
  * Size:	000030
+ * getTransform__18J2DAnmTransformKeyCFUsP16J3DTransformInfo
  */
 void J2DAnmTransformKey::getTransform(unsigned short, J3DTransformInfo*) const
 {
@@ -3500,332 +3058,298 @@ void J2DAnmTransformKey::getTransform(unsigned short, J3DTransformInfo*) const
  * --INFO--
  * Address:	8005D690
  * Size:	00006C
+ * __dt__19J2DAnmTransformFullFv
  */
-J2DAnmTransformFull::~J2DAnmTransformFull()
-{
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	or.      r31, r3, r3
-	beq      lbl_8005D6E4
-	lis      r3, __vt__19J2DAnmTransformFull@ha
-	addi     r0, r3, __vt__19J2DAnmTransformFull@l
-	stw      r0, 0(r31)
-	beq      lbl_8005D6D4
-	lis      r3, __vt__15J2DAnmTransform@ha
-	addi     r0, r3, __vt__15J2DAnmTransform@l
-	stw      r0, 0(r31)
-	beq      lbl_8005D6D4
-	lis      r3, __vt__10J2DAnmBase@ha
-	addi     r0, r3, __vt__10J2DAnmBase@l
-	stw      r0, 0(r31)
-
-lbl_8005D6D4:
-	extsh.   r0, r4
-	ble      lbl_8005D6E4
-	mr       r3, r31
-	bl       __dl__FPv
-
-lbl_8005D6E4:
-	lwz      r0, 0x14(r1)
-	mr       r3, r31
-	lwz      r31, 0xc(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
-}
+// J2DAnmTransformFull::~J2DAnmTransformFull() { }
 
 /*
  * --INFO--
  * Address:	8005D6FC
  * Size:	000234
  */
-void J2DGetKeyFrameInterpolation<short>(float, J3DAnmKeyTableBase*, short*)
-{
-	/*
-	stwu     r1, -0x10(r1)
-	lis      r5, 0x4330
-	lfd      f2, lbl_80516980@sda21(r2)
-	lha      r0, 0(r4)
-	stw      r5, 8(r1)
-	xoris    r0, r0, 0x8000
-	stw      r0, 0xc(r1)
-	lfd      f0, 8(r1)
-	fsubs    f0, f0, f2
-	fcmpo    cr0, f1, f0
-	bge      lbl_8005D744
-	lha      r0, 2(r4)
-	stw      r5, 8(r1)
-	xoris    r0, r0, 0x8000
-	stw      r0, 0xc(r1)
-	lfd      f0, 8(r1)
-	fsubs    f1, f0, f2
-	b        lbl_8005D928
+// void J2DGetKeyFrameInterpolation<short>(float, J3DAnmKeyTableBase*, short*)
+// {
+// 	/*
+// 	stwu     r1, -0x10(r1)
+// 	lis      r5, 0x4330
+// 	lfd      f2, lbl_80516980@sda21(r2)
+// 	lha      r0, 0(r4)
+// 	stw      r5, 8(r1)
+// 	xoris    r0, r0, 0x8000
+// 	stw      r0, 0xc(r1)
+// 	lfd      f0, 8(r1)
+// 	fsubs    f0, f0, f2
+// 	fcmpo    cr0, f1, f0
+// 	bge      lbl_8005D744
+// 	lha      r0, 2(r4)
+// 	stw      r5, 8(r1)
+// 	xoris    r0, r0, 0x8000
+// 	stw      r0, 0xc(r1)
+// 	lfd      f0, 8(r1)
+// 	fsubs    f1, f0, f2
+// 	b        lbl_8005D928
 
-lbl_8005D744:
-	lhz      r0, 4(r3)
-	cmplwi   r0, 0
-	bne      lbl_8005D840
-	lhz      r6, 0(r3)
-	stw      r5, 8(r1)
-	addi     r0, r6, -1
-	mulli    r3, r0, 6
-	lhax     r0, r4, r3
-	xoris    r0, r0, 0x8000
-	stw      r0, 0xc(r1)
-	lfd      f0, 8(r1)
-	fsubs    f0, f0, f2
-	fcmpo    cr0, f0, f1
-	cror     2, 0, 2
-	bne      lbl_8005D7E4
-	add      r3, r4, r3
-	stw      r5, 8(r1)
-	lha      r0, 2(r3)
-	xoris    r0, r0, 0x8000
-	stw      r0, 0xc(r1)
-	lfd      f0, 8(r1)
-	fsubs    f1, f0, f2
-	b        lbl_8005D928
-	b        lbl_8005D7E4
+// lbl_8005D744:
+// 	lhz      r0, 4(r3)
+// 	cmplwi   r0, 0
+// 	bne      lbl_8005D840
+// 	lhz      r6, 0(r3)
+// 	stw      r5, 8(r1)
+// 	addi     r0, r6, -1
+// 	mulli    r3, r0, 6
+// 	lhax     r0, r4, r3
+// 	xoris    r0, r0, 0x8000
+// 	stw      r0, 0xc(r1)
+// 	lfd      f0, 8(r1)
+// 	fsubs    f0, f0, f2
+// 	fcmpo    cr0, f0, f1
+// 	cror     2, 0, 2
+// 	bne      lbl_8005D7E4
+// 	add      r3, r4, r3
+// 	stw      r5, 8(r1)
+// 	lha      r0, 2(r3)
+// 	xoris    r0, r0, 0x8000
+// 	stw      r0, 0xc(r1)
+// 	lfd      f0, 8(r1)
+// 	fsubs    f1, f0, f2
+// 	b        lbl_8005D928
+// 	b        lbl_8005D7E4
 
-lbl_8005D7A4:
-	srwi     r7, r6, 1
-	stw      r5, 8(r1)
-	mulli    r0, r7, 3
-	slwi     r3, r0, 1
-	lhax     r0, r4, r3
-	xoris    r0, r0, 0x8000
-	stw      r0, 0xc(r1)
-	lfd      f0, 8(r1)
-	fsubs    f0, f0, f2
-	fcmpo    cr0, f1, f0
-	cror     2, 1, 2
-	bne      lbl_8005D7E0
-	add      r4, r4, r3
-	subf     r6, r7, r6
-	b        lbl_8005D7E4
+// lbl_8005D7A4:
+// 	srwi     r7, r6, 1
+// 	stw      r5, 8(r1)
+// 	mulli    r0, r7, 3
+// 	slwi     r3, r0, 1
+// 	lhax     r0, r4, r3
+// 	xoris    r0, r0, 0x8000
+// 	stw      r0, 0xc(r1)
+// 	lfd      f0, 8(r1)
+// 	fsubs    f0, f0, f2
+// 	fcmpo    cr0, f1, f0
+// 	cror     2, 1, 2
+// 	bne      lbl_8005D7E0
+// 	add      r4, r4, r3
+// 	subf     r6, r7, r6
+// 	b        lbl_8005D7E4
 
-lbl_8005D7E0:
-	mr       r6, r7
+// lbl_8005D7E0:
+// 	mr       r6, r7
 
-lbl_8005D7E4:
-	cmplwi   r6, 1
-	bgt      lbl_8005D7A4
-	psq_l    f2, 0(r4), 1, qr5
-	psq_l    f0, 6(r4), 1, qr5
-	psq_l    f7, 2(r4), 1, qr5
-	fsubs    f5, f0, f2
-	psq_l    f6, 8(r4), 1, qr5
-	fsubs    f3, f1, f2
-	psq_l    f0, 10(r4), 1, qr5
-	fsubs    f4, f6, f7
-	fdivs    f3, f3, f5
-	psq_l    f1, 4(r4), 1, qr5
-	fmadds   f0, f0, f5, f7
-	fnmsubs  f4, f5, f1, f4
-	fmuls    f2, f3, f3
-	fsubs    f0, f0, f6
-	fsubs    f0, f0, f4
-	fmuls    f0, f2, f0
-	fmadds   f1, f5, f1, f0
-	fmadds   f1, f1, f3, f7
-	fmadds   f1, f4, f2, f1
-	fsubs    f1, f1, f0
-	b        lbl_8005D928
+// lbl_8005D7E4:
+// 	cmplwi   r6, 1
+// 	bgt      lbl_8005D7A4
+// 	psq_l    f2, 0(r4), 1, qr5
+// 	psq_l    f0, 6(r4), 1, qr5
+// 	psq_l    f7, 2(r4), 1, qr5
+// 	fsubs    f5, f0, f2
+// 	psq_l    f6, 8(r4), 1, qr5
+// 	fsubs    f3, f1, f2
+// 	psq_l    f0, 10(r4), 1, qr5
+// 	fsubs    f4, f6, f7
+// 	fdivs    f3, f3, f5
+// 	psq_l    f1, 4(r4), 1, qr5
+// 	fmadds   f0, f0, f5, f7
+// 	fnmsubs  f4, f5, f1, f4
+// 	fmuls    f2, f3, f3
+// 	fsubs    f0, f0, f6
+// 	fsubs    f0, f0, f4
+// 	fmuls    f0, f2, f0
+// 	fmadds   f1, f5, f1, f0
+// 	fmadds   f1, f1, f3, f7
+// 	fmadds   f1, f4, f2, f1
+// 	fsubs    f1, f1, f0
+// 	b        lbl_8005D928
 
-lbl_8005D840:
-	lhz      r6, 0(r3)
-	stw      r5, 8(r1)
-	addi     r0, r6, -1
-	slwi     r3, r0, 3
-	lhax     r0, r4, r3
-	xoris    r0, r0, 0x8000
-	stw      r0, 0xc(r1)
-	lfd      f0, 8(r1)
-	fsubs    f0, f0, f2
-	fcmpo    cr0, f0, f1
-	cror     2, 0, 2
-	bne      lbl_8005D8D0
-	add      r3, r4, r3
-	stw      r5, 8(r1)
-	lha      r0, 2(r3)
-	xoris    r0, r0, 0x8000
-	stw      r0, 0xc(r1)
-	lfd      f0, 8(r1)
-	fsubs    f1, f0, f2
-	b        lbl_8005D928
-	b        lbl_8005D8D0
+// lbl_8005D840:
+// 	lhz      r6, 0(r3)
+// 	stw      r5, 8(r1)
+// 	addi     r0, r6, -1
+// 	slwi     r3, r0, 3
+// 	lhax     r0, r4, r3
+// 	xoris    r0, r0, 0x8000
+// 	stw      r0, 0xc(r1)
+// 	lfd      f0, 8(r1)
+// 	fsubs    f0, f0, f2
+// 	fcmpo    cr0, f0, f1
+// 	cror     2, 0, 2
+// 	bne      lbl_8005D8D0
+// 	add      r3, r4, r3
+// 	stw      r5, 8(r1)
+// 	lha      r0, 2(r3)
+// 	xoris    r0, r0, 0x8000
+// 	stw      r0, 0xc(r1)
+// 	lfd      f0, 8(r1)
+// 	fsubs    f1, f0, f2
+// 	b        lbl_8005D928
+// 	b        lbl_8005D8D0
 
-lbl_8005D894:
-	rlwinm   r3, r6, 2, 0, 0x1c
-	stw      r5, 8(r1)
-	lhax     r0, r4, r3
-	srwi     r7, r6, 1
-	xoris    r0, r0, 0x8000
-	stw      r0, 0xc(r1)
-	lfd      f0, 8(r1)
-	fsubs    f0, f0, f2
-	fcmpo    cr0, f1, f0
-	cror     2, 1, 2
-	bne      lbl_8005D8CC
-	add      r4, r4, r3
-	subf     r6, r7, r6
-	b        lbl_8005D8D0
+// lbl_8005D894:
+// 	rlwinm   r3, r6, 2, 0, 0x1c
+// 	stw      r5, 8(r1)
+// 	lhax     r0, r4, r3
+// 	srwi     r7, r6, 1
+// 	xoris    r0, r0, 0x8000
+// 	stw      r0, 0xc(r1)
+// 	lfd      f0, 8(r1)
+// 	fsubs    f0, f0, f2
+// 	fcmpo    cr0, f1, f0
+// 	cror     2, 1, 2
+// 	bne      lbl_8005D8CC
+// 	add      r4, r4, r3
+// 	subf     r6, r7, r6
+// 	b        lbl_8005D8D0
 
-lbl_8005D8CC:
-	mr       r6, r7
+// lbl_8005D8CC:
+// 	mr       r6, r7
 
-lbl_8005D8D0:
-	cmplwi   r6, 1
-	bgt      lbl_8005D894
-	psq_l    f2, 0(r4), 1, qr5
-	psq_l    f0, 8(r4), 1, qr5
-	psq_l    f7, 2(r4), 1, qr5
-	fsubs    f5, f0, f2
-	psq_l    f6, 10(r4), 1, qr5
-	fsubs    f3, f1, f2
-	psq_l    f0, 12(r4), 1, qr5
-	fsubs    f4, f6, f7
-	fdivs    f3, f3, f5
-	psq_l    f1, 6(r4), 1, qr5
-	fmadds   f0, f0, f5, f7
-	fnmsubs  f4, f5, f1, f4
-	fmuls    f2, f3, f3
-	fsubs    f0, f0, f6
-	fsubs    f0, f0, f4
-	fmuls    f0, f2, f0
-	fmadds   f1, f5, f1, f0
-	fmadds   f1, f1, f3, f7
-	fmadds   f1, f4, f2, f1
-	fsubs    f1, f1, f0
+// lbl_8005D8D0:
+// 	cmplwi   r6, 1
+// 	bgt      lbl_8005D894
+// 	psq_l    f2, 0(r4), 1, qr5
+// 	psq_l    f0, 8(r4), 1, qr5
+// 	psq_l    f7, 2(r4), 1, qr5
+// 	fsubs    f5, f0, f2
+// 	psq_l    f6, 10(r4), 1, qr5
+// 	fsubs    f3, f1, f2
+// 	psq_l    f0, 12(r4), 1, qr5
+// 	fsubs    f4, f6, f7
+// 	fdivs    f3, f3, f5
+// 	psq_l    f1, 6(r4), 1, qr5
+// 	fmadds   f0, f0, f5, f7
+// 	fnmsubs  f4, f5, f1, f4
+// 	fmuls    f2, f3, f3
+// 	fsubs    f0, f0, f6
+// 	fsubs    f0, f0, f4
+// 	fmuls    f0, f2, f0
+// 	fmadds   f1, f5, f1, f0
+// 	fmadds   f1, f1, f3, f7
+// 	fmadds   f1, f4, f2, f1
+// 	fsubs    f1, f1, f0
 
-lbl_8005D928:
-	addi     r1, r1, 0x10
-	blr
-	*/
-}
+// lbl_8005D928:
+// 	addi     r1, r1, 0x10
+// 	blr
+// 	*/
+// }
 
 /*
  * --INFO--
  * Address:	8005D930
  * Size:	00017C
  */
-void J2DGetKeyFrameInterpolation<float>(float, J3DAnmKeyTableBase*, float*)
-{
-	/*
-	lfs      f0, 0(r4)
-	fcmpo    cr0, f1, f0
-	bge      lbl_8005D944
-	lfs      f1, 4(r4)
-	blr
+// void J2DGetKeyFrameInterpolation<float>(float, J3DAnmKeyTableBase*, float*)
+// {
+// 	/*
+// 	lfs      f0, 0(r4)
+// 	fcmpo    cr0, f1, f0
+// 	bge      lbl_8005D944
+// 	lfs      f1, 4(r4)
+// 	blr
 
-lbl_8005D944:
-	lhz      r0, 4(r3)
-	cmplwi   r0, 0
-	bne      lbl_8005DA00
-	lhz      r3, 0(r3)
-	addi     r0, r3, -1
-	mulli    r0, r0, 0xc
-	lfsx     f0, r4, r0
-	fcmpo    cr0, f0, f1
-	cror     2, 0, 2
-	bne      lbl_8005D9A8
-	add      r3, r4, r0
-	lfs      f1, 4(r3)
-	blr
-	b        lbl_8005D9A8
+// lbl_8005D944:
+// 	lhz      r0, 4(r3)
+// 	cmplwi   r0, 0
+// 	bne      lbl_8005DA00
+// 	lhz      r3, 0(r3)
+// 	addi     r0, r3, -1
+// 	mulli    r0, r0, 0xc
+// 	lfsx     f0, r4, r0
+// 	fcmpo    cr0, f0, f1
+// 	cror     2, 0, 2
+// 	bne      lbl_8005D9A8
+// 	add      r3, r4, r0
+// 	lfs      f1, 4(r3)
+// 	blr
+// 	b        lbl_8005D9A8
 
-lbl_8005D97C:
-	srwi     r5, r3, 1
-	mulli    r0, r5, 3
-	slwi     r0, r0, 2
-	lfsx     f0, r4, r0
-	fcmpo    cr0, f1, f0
-	cror     2, 1, 2
-	bne      lbl_8005D9A4
-	add      r4, r4, r0
-	subf     r3, r5, r3
-	b        lbl_8005D9A8
+// lbl_8005D97C:
+// 	srwi     r5, r3, 1
+// 	mulli    r0, r5, 3
+// 	slwi     r0, r0, 2
+// 	lfsx     f0, r4, r0
+// 	fcmpo    cr0, f1, f0
+// 	cror     2, 1, 2
+// 	bne      lbl_8005D9A4
+// 	add      r4, r4, r0
+// 	subf     r3, r5, r3
+// 	b        lbl_8005D9A8
 
-lbl_8005D9A4:
-	mr       r3, r5
+// lbl_8005D9A4:
+// 	mr       r3, r5
 
-lbl_8005D9A8:
-	cmplwi   r3, 1
-	bgt      lbl_8005D97C
-	lfs      f0, 0(r4)
-	lfs      f2, 0xc(r4)
-	fsubs    f5, f1, f0
-	lfs      f6, 4(r4)
-	fsubs    f4, f2, f0
-	lfs      f2, 0x10(r4)
-	lfs      f7, 8(r4)
-	lfs      f8, 0x14(r4)
-	fdivs    f3, f5, f4
-	fmuls    f0, f3, f3
-	fsubs    f4, f6, f2
-	fadds    f1, f3, f3
-	fsubs    f2, f0, f3
-	fmsubs   f0, f1, f2, f0
-	fmadds   f1, f7, f2, f7
-	fmadds   f0, f0, f4, f6
-	fmadds   f1, f8, f2, f1
-	fmsubs   f1, f3, f7, f1
-	fnmsubs  f1, f5, f1, f0
-	blr
+// lbl_8005D9A8:
+// 	cmplwi   r3, 1
+// 	bgt      lbl_8005D97C
+// 	lfs      f0, 0(r4)
+// 	lfs      f2, 0xc(r4)
+// 	fsubs    f5, f1, f0
+// 	lfs      f6, 4(r4)
+// 	fsubs    f4, f2, f0
+// 	lfs      f2, 0x10(r4)
+// 	lfs      f7, 8(r4)
+// 	lfs      f8, 0x14(r4)
+// 	fdivs    f3, f5, f4
+// 	fmuls    f0, f3, f3
+// 	fsubs    f4, f6, f2
+// 	fadds    f1, f3, f3
+// 	fsubs    f2, f0, f3
+// 	fmsubs   f0, f1, f2, f0
+// 	fmadds   f1, f7, f2, f7
+// 	fmadds   f0, f0, f4, f6
+// 	fmadds   f1, f8, f2, f1
+// 	fmsubs   f1, f3, f7, f1
+// 	fnmsubs  f1, f5, f1, f0
+// 	blr
 
-lbl_8005DA00:
-	lhz      r3, 0(r3)
-	addi     r0, r3, -1
-	slwi     r0, r0, 4
-	lfsx     f0, r4, r0
-	fcmpo    cr0, f0, f1
-	cror     2, 0, 2
-	bne      lbl_8005DA54
-	add      r3, r4, r0
-	lfs      f1, 4(r3)
-	blr
-	b        lbl_8005DA54
+// lbl_8005DA00:
+// 	lhz      r3, 0(r3)
+// 	addi     r0, r3, -1
+// 	slwi     r0, r0, 4
+// 	lfsx     f0, r4, r0
+// 	fcmpo    cr0, f0, f1
+// 	cror     2, 0, 2
+// 	bne      lbl_8005DA54
+// 	add      r3, r4, r0
+// 	lfs      f1, 4(r3)
+// 	blr
+// 	b        lbl_8005DA54
 
-lbl_8005DA2C:
-	rlwinm   r0, r3, 3, 0, 0x1b
-	srwi     r5, r3, 1
-	lfsx     f0, r4, r0
-	fcmpo    cr0, f1, f0
-	cror     2, 1, 2
-	bne      lbl_8005DA50
-	add      r4, r4, r0
-	subf     r3, r5, r3
-	b        lbl_8005DA54
+// lbl_8005DA2C:
+// 	rlwinm   r0, r3, 3, 0, 0x1b
+// 	srwi     r5, r3, 1
+// 	lfsx     f0, r4, r0
+// 	fcmpo    cr0, f1, f0
+// 	cror     2, 1, 2
+// 	bne      lbl_8005DA50
+// 	add      r4, r4, r0
+// 	subf     r3, r5, r3
+// 	b        lbl_8005DA54
 
-lbl_8005DA50:
-	mr       r3, r5
+// lbl_8005DA50:
+// 	mr       r3, r5
 
-lbl_8005DA54:
-	cmplwi   r3, 1
-	bgt      lbl_8005DA2C
-	lfs      f0, 0(r4)
-	lfs      f2, 0x10(r4)
-	fsubs    f5, f1, f0
-	lfs      f6, 4(r4)
-	fsubs    f4, f2, f0
-	lfs      f2, 0x14(r4)
-	lfs      f7, 0xc(r4)
-	lfs      f8, 0x18(r4)
-	fdivs    f3, f5, f4
-	fmuls    f0, f3, f3
-	fsubs    f4, f6, f2
-	fadds    f1, f3, f3
-	fsubs    f2, f0, f3
-	fmsubs   f0, f1, f2, f0
-	fmadds   f1, f7, f2, f7
-	fmadds   f0, f0, f4, f6
-	fmadds   f1, f8, f2, f1
-	fmsubs   f1, f3, f7, f1
-	fnmsubs  f1, f5, f1, f0
-	blr
-	*/
-}
+// lbl_8005DA54:
+// 	cmplwi   r3, 1
+// 	bgt      lbl_8005DA2C
+// 	lfs      f0, 0(r4)
+// 	lfs      f2, 0x10(r4)
+// 	fsubs    f5, f1, f0
+// 	lfs      f6, 4(r4)
+// 	fsubs    f4, f2, f0
+// 	lfs      f2, 0x14(r4)
+// 	lfs      f7, 0xc(r4)
+// 	lfs      f8, 0x18(r4)
+// 	fdivs    f3, f5, f4
+// 	fmuls    f0, f3, f3
+// 	fsubs    f4, f6, f2
+// 	fadds    f1, f3, f3
+// 	fsubs    f2, f0, f3
+// 	fmsubs   f0, f1, f2, f0
+// 	fmadds   f1, f7, f2, f7
+// 	fmadds   f0, f0, f4, f6
+// 	fmadds   f1, f8, f2, f1
+// 	fmsubs   f1, f3, f7, f1
+// 	fnmsubs  f1, f5, f1, f0
+// 	blr
+// 	*/
+// }

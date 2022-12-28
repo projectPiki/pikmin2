@@ -11,8 +11,9 @@ extern JKRSolidHeap* JASDram;
 namespace JAInter {
 namespace Const {
 Vec dummyZeroVec = { 0, 0, 0 };
-u32 sCInfos_0[8] = { 0x04020402, 0x04020402, 0x04020402, 0x04020402, 0x04020402, 0x04020402, 0x04020402, 0x04020402 };
-Camera nullCamera(camTrans, camPreTrans, camMtx);
+u16 sCInfos_0[16]
+    = { 0x0402, 0x0402, 0x0402, 0x0402, 0x0402, 0x0402, 0x0402, 0x0402, 0x0402, 0x0402, 0x0402, 0x0402, 0x0402, 0x0402, 0x0402, 0x0402 };
+Camera nullCamera(&camTrans, &camPreTrans, &camMtx);
 Actor nullActor(0, 0, 0, 0);
 Mtx camMtx;
 Vec camTrans;

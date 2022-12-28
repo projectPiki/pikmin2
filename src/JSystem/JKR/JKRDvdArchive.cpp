@@ -758,15 +758,16 @@ u32 JKRDvdArchive::fetchResource_subroutine(long p1, unsigned long p2, unsigned 
 	switch (p6) {
 	case 0:
 		switch (p5) {
-		case 0:
+		case 0: {
 			// u8* buffer = new(heap, alignedFileSize) u8[0x20];
 			u8* buffer = (u8*)JKRHeap::alloc(alignedFileSize, 0x20, heap);
 			JKRDvdRipper::loadToMainRAM(p1, buffer, Switch_0, alignedFileSize, nullptr, JKRDvdRipper::ALLOC_DIR_TOP, p2, nullptr, nullptr);
 			DCInvalidateRange(buffer, alignedFileSize);
 			*p7 = buffer;
 			return alignedFileSize;
+		}
 		case 1:
-		case 2:
+		case 2: {
 			// SZPHeader szpHeader;
 			// JKRDvdRipper::loadToMainRAM(p1, (u8*)&szpHeader, Switch_2, sizeof(SZPHeader), nullptr, JKRDvdRipper::ALLOC_DIR_TOP,
 			// ALIGN_NEXT(p2, 0x20), nullptr, nullptr); DCInvalidateRange(&szpHeader, sizeof(SZPHeader)); u32 headerValue1 =
@@ -779,16 +780,17 @@ u32 JKRDvdArchive::fetchResource_subroutine(long p1, unsigned long p2, unsigned 
 			DCInvalidateRange(&szpHeader, sizeof(SZPHeader));
 			u32 headerValue1 = szpHeader.getValue1();
 			// buffer = new(heap, headerValue1) u8[0x20];
-			buffer = (u8*)JKRHeap::alloc(headerValue1, 0x20, heap);
+			u8* buffer = (u8*)JKRHeap::alloc(headerValue1, 0x20, heap);
 			JKRDvdRipper::loadToMainRAM(p1, buffer, Switch_1, headerValue1, nullptr, JKRDvdRipper::ALLOC_DIR_TOP, p2, nullptr, nullptr);
 			DCInvalidateRange(buffer, headerValue1);
 			*p7 = buffer;
 			return headerValue1;
 			break;
+		}
 		default:
 			break;
 		}
-	case 2:
+	case 2: {
 		// u8* buffer = new(heap, alignedFileSize) u8[0x20];
 		u8* buffer = (u8*)JKRHeap::alloc(alignedFileSize, 0x20, heap);
 		JKRDvdRipper::loadToMainRAM(p1, buffer, Switch_1, fileSize, nullptr, JKRDvdRipper::ALLOC_DIR_TOP, p2, nullptr, nullptr);
@@ -796,6 +798,7 @@ u32 JKRDvdArchive::fetchResource_subroutine(long p1, unsigned long p2, unsigned 
 		*p7 = buffer;
 		return alignedFileSize;
 		break;
+	}
 	case 1:
 		OSErrorLine(756, "Sorry, not prepared for SZP archive.\n");
 		return 0;

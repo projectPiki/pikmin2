@@ -18,6 +18,10 @@
         .skip 0x8
 */
 
+JAInter::DummyObjectMgr::DummyObject* JAInter::DummyObjectMgr::deadObjectFreePointer;
+JAInter::DummyObjectMgr::DummyObject* JAInter::DummyObjectMgr::deadObjectUsedPointer;
+JAInter::DummyObjectMgr::DummyObject* JAInter::DummyObjectMgr::deadObjectObject;
+
 /*
  * --INFO--
  * Address:	800AD490
@@ -25,9 +29,11 @@
  */
 void JAInter::DummyObjectMgr::init()
 {
-	deadObjectFreePointer   = new (JAIBasic::msCurrentHeap, 0x20) DummyObject[JAIGlobalParameter::getParamDummyObjectMax()];
-	deadObjectUsedPointer   = nullptr;
-	deadObjectObject        = deadObjectFreePointer;
+	JKRHeap* heap         = JAIBasic::msCurrentHeap;
+	deadObjectFreePointer = deadObjectObject
+	    = (DummyObject*)new (heap, 0x20) u8[sizeof(DummyObject) * JAIGlobalParameter::getParamDummyObjectMax()];
+	deadObjectUsedPointer = nullptr;
+	// deadObjectObject        = deadObjectFreePointer;
 	deadObjectObject[0]._00 = nullptr;
 	deadObjectObject[0]._04 = deadObjectObject + 1;
 	u32 i;
@@ -107,26 +113,49 @@ lbl_800AD51C:
  */
 JAInter::DummyObjectMgr::DummyObject* JAInter::DummyObjectMgr::getPointer(u32 p1)
 {
-	DummyObject* ptr = deadObjectFreePointer;
+	DummyObject** r5 = &deadObjectFreePointer;
+	DummyObject** r6 = &deadObjectUsedPointer;
+	DummyObject* v1;
 	if (deadObjectFreePointer != nullptr) {
-		if (deadObjectUsedPointer != nullptr) {
-			DummyObject** v1      = &deadObjectFreePointer->_04;
-			deadObjectFreePointer = deadObjectFreePointer->_04;
-			*v1                   = nullptr;
+		v1              = (*r5)->_04;
+		DummyObject* r4 = *r6;
+		*r5             = v1;
+		if (r4 != nullptr) {
+			(*r5)->_04 = r4;
+			(*r6)->_00 = (*r5);
 		} else {
-			DummyObject** v1           = &deadObjectFreePointer->_04;
-			deadObjectFreePointer      = deadObjectFreePointer->_04;
-			*v1                        = nullptr;
-			deadObjectUsedPointer->_00 = ptr;
+			(*r5)->_04 = nullptr;
 		}
-		ptr->_00              = nullptr;
-		deadObjectUsedPointer = ptr;
-		ptr->_18              = p1;
-		ptr->m_sound          = nullptr;
+		(*r5)->_00  = v1;
+		*r6         = v1;
+		v1->_18     = p1;
+		v1->m_sound = nullptr;
 	} else {
-		ptr = nullptr;
+		v1 = nullptr;
 	}
-	return ptr;
+	return v1;
+	// DummyObject* r0  = deadObjectFreePointer;
+	// DummyObject** r5 = &deadObjectFreePointer;
+	// DummyObject** r6 = &deadObjectUsedPointer;
+	// if (r0 != nullptr) {
+	// 	r0              = (*r5)->_04;
+	// 	DummyObject* r4 = *r6;
+	// 	*r5             = r0;
+	// 	if (r4 != nullptr) {
+	// 		(*r5)->_04 = r4;
+	// 		(*r6)->_00 = (*r5);
+	// 	} else {
+	// 		r0         = nullptr;
+	// 		(*r5)->_04 = r0;
+	// 	}
+	// 	r0->_00     = nullptr;
+	// 	*r6         = r0;
+	// 	r0->_18     = p1;
+	// 	r0->m_sound = nullptr;
+	// } else {
+	// 	r0 = nullptr;
+	// }
+	// return r0;
 	/*
 	lwz      r0, deadObjectFreePointer__Q27JAInter14DummyObjectMgr@sda21(r13)
 	addi     r5, r13, deadObjectFreePointer__Q27JAInter14DummyObjectMgr@sda21

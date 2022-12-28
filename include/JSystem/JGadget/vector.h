@@ -33,25 +33,25 @@ struct TVector_pointer {
 	void end();
 };
 
-struct TVector_pointer_void : TVector<void*, TAllocator<void*>> {
-	TVector_pointer_void(const JGadget::TAllocator<void*>& allocator);
-	TVector_pointer_void(u32, void* const&, const JGadget::TAllocator<void*>& allocator); // unused/inlined
+// struct TVector_pointer_void : TVector<void*, TAllocator<void*>> {
+// 	TVector_pointer_void(const JGadget::TAllocator<void*>& allocator);
+// 	TVector_pointer_void(u32, void* const&, const JGadget::TAllocator<void*>& allocator); // unused/inlined
 
-	~TVector_pointer_void();
+// 	~TVector_pointer_void();
 
-	void insert(void**, void* const&);
-	void erase(void**, void**);
+// 	void insert(void**, void* const&);
+// 	void erase(void**, void**);
 
-	// unused/inlined:
-	void insert(void**, u32, void* const&);
-	void erase(void**);
-	void assign(u32, void* const&);
-	void resize(u32, void* const&);
-	void reserve(u32);
-	void operator=(const TVector_pointer_void& rhs);
-	void Insert_raw(void**, u32);
-	void Resize_raw(u32);
-};
+// 	// unused/inlined:
+// 	void insert(void**, u32, void* const&);
+// 	void erase(void**);
+// 	void assign(u32, void* const&);
+// 	void resize(u32, void* const&);
+// 	void reserve(u32);
+// 	void operator=(const TVector_pointer_void& rhs);
+// 	void Insert_raw(void**, u32);
+// 	void Resize_raw(u32);
+// };
 } // namespace JGadget
 
 #endif

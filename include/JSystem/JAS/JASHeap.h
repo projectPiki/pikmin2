@@ -11,8 +11,8 @@ struct JASHeap {
 	JASHeap(JASDisposer*);
 	~JASHeap() { }
 
-	void* alloc(JASHeap*, unsigned long);
-	void* allocTail(JASHeap*, unsigned long);
+	bool alloc(JASHeap*, unsigned long);
+	bool allocTail(JASHeap*, unsigned long);
 	bool free();
 	void insertChild(JASHeap*, JASHeap*, void*, unsigned long, bool);
 	void getTailHeap();

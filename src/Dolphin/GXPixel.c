@@ -1,11 +1,11 @@
-
+#include "Dolphin/gx.h"
 
 /*
  * --INFO--
  * Address:	800E8BE0
  * Size:	000224
  */
-void GXSetFog(void)
+void GXSetFog(GXFogType type, f32 startz, f32 endz, f32 nearz, f32 farz, GXColor color)
 {
 	/*
 	.loc_0x0:
@@ -178,7 +178,7 @@ void GXSetFog(void)
  * Address:	800E8E04
  * Size:	0001B0
  */
-void GXInitFogAdjTable(void)
+void GXInitFogAdjTable(GXFogAdjTable* table, u16 width, f32 projmtx[4][4])
 {
 	/*
 	.loc_0x0:
@@ -306,7 +306,7 @@ void GXInitFogAdjTable(void)
  * Address:	800E8FB4
  * Size:	000124
  */
-void GXSetFogRangeAdj(void)
+void GXSetFogRangeAdj(GXBool enable, u16 center, GXFogAdjTable* table)
 {
 	/*
 	.loc_0x0:
@@ -393,7 +393,7 @@ void GXSetFogRangeAdj(void)
  * Address:	800E90D8
  * Size:	000054
  */
-void GXSetBlendMode(void)
+void GXSetBlendMode(GXBlendMode type, GXBlendFactor src_factor, GXBlendFactor dst_factor, GXLogicOp op)
 {
 	/*
 	.loc_0x0:
@@ -426,8 +426,13 @@ void GXSetBlendMode(void)
  * Address:	800E912C
  * Size:	00002C
  */
-void GXSetColorUpdate(void)
+void GXSetColorUpdate(GXBool update_enable)
 {
+	u32 newValue      = (update_enable & GX_ENABLE) << 3 | __GXData->_1D0 & ~8;
+	GXWGFifo.u8       = 0x61;
+	GXWGFifo.u32      = newValue;
+	__GXData->_1D0    = newValue;
+	__GXData->_000[1] = 0;
 	/*
 	.loc_0x0:
 	  lwz       r5, -0x6D70(r2)
@@ -449,7 +454,7 @@ void GXSetColorUpdate(void)
  * Address:	800E9158
  * Size:	00002C
  */
-void GXSetAlphaUpdate(void)
+void GXSetAlphaUpdate(GXBool updateEnable)
 {
 	/*
 	.loc_0x0:
@@ -472,7 +477,7 @@ void GXSetAlphaUpdate(void)
  * Address:	800E9184
  * Size:	000034
  */
-void GXSetZMode(void)
+void GXSetZMode(GXBool compare_enable, GXCompare func, GXBool update_enable)
 {
 	/*
 	.loc_0x0:
@@ -497,7 +502,7 @@ void GXSetZMode(void)
  * Address:	800E91B8
  * Size:	000034
  */
-void GXSetZCompLoc(void)
+void GXSetZCompLoc(GXBool before_tex)
 {
 	/*
 	.loc_0x0:
@@ -522,7 +527,7 @@ void GXSetZCompLoc(void)
  * Address:	800E91EC
  * Size:	0000D4
  */
-void GXSetPixelFmt(void)
+void GXSetPixelFmt(GXPixelFmt pix_fmt, GXZFmt16 z_fmt)
 {
 	/*
 	.loc_0x0:
@@ -595,7 +600,7 @@ void GXSetPixelFmt(void)
  * Address:	800E92C0
  * Size:	00002C
  */
-void GXSetDither(void)
+void GXSetDither(GXBool dither)
 {
 	/*
 	.loc_0x0:
@@ -618,7 +623,7 @@ void GXSetDither(void)
  * Address:	800E92EC
  * Size:	00003C
  */
-void GXSetDstAlpha(void)
+void GXSetDstAlpha(GXBool enable, u8 alpha)
 {
 	/*
 	.loc_0x0:
@@ -645,7 +650,7 @@ void GXSetDstAlpha(void)
  * Address:	800E9328
  * Size:	000038
  */
-void GXSetFieldMask(void)
+void GXSetFieldMask(GXBool odd_mask, GXBool even_mask)
 {
 	/*
 	.loc_0x0:
@@ -671,7 +676,7 @@ void GXSetFieldMask(void)
  * Address:	800E9360
  * Size:	000078
  */
-void GXSetFieldMode(void)
+void GXSetFieldMode(GXBool field_mode, GXBool half_aspect_ratio)
 {
 	/*
 	.loc_0x0:

@@ -4,6 +4,7 @@
 #include "JSystem/J2D/J2DMaterial.h"
 #include "JSystem/J2D/J2DTevBlock.h"
 #include "JSystem/J2D/J2DTypes.h"
+#include "JSystem/J3D/J3DTypes.h"
 #include "JSystem/JKR/JKRHeap.h"
 #include "types.h"
 
@@ -63,7 +64,7 @@ J2DMaterial::J2DMaterial()
     , m_peBlock()
 {
 	m_pane     = nullptr;
-	_0C        = -1;
+	_0C        = 0xFFFF;
 	m_tevBlock = nullptr;
 	m_indBlock = nullptr;
 	_84        = nullptr;
@@ -152,16 +153,9 @@ J2DMaterial::J2DMaterial()
  */
 J2DTexCoord::J2DTexCoord()
 {
-	/*
-	lis      r4, j2dDefaultTexCoordInfo@ha
-	lbzu     r0, j2dDefaultTexCoordInfo@l(r4)
-	stb      r0, 0(r3)
-	lbz      r0, 1(r4)
-	stb      r0, 1(r3)
-	lbz      r0, 2(r4)
-	stb      r0, 2(r3)
-	blr
-	*/
+	_00 = j2dDefaultTexCoordInfo[0]._00;
+	_01 = j2dDefaultTexCoordInfo[0]._01;
+	_02 = j2dDefaultTexCoordInfo[0]._02;
 }
 
 /*
@@ -169,31 +163,7 @@ J2DTexCoord::J2DTexCoord()
  * Address:	80051FE4
  * Size:	000048
  */
-J2DColorBlock::~J2DColorBlock()
-{
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	or.      r31, r3, r3
-	beq      lbl_80052014
-	lis      r5, __vt__13J2DColorBlock@ha
-	extsh.   r0, r4
-	addi     r0, r5, __vt__13J2DColorBlock@l
-	stw      r0, 0x14(r31)
-	ble      lbl_80052014
-	bl       __dl__FPv
-
-lbl_80052014:
-	lwz      r0, 0x14(r1)
-	mr       r3, r31
-	lwz      r31, 0xc(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
-}
+// J2DColorBlock::~J2DColorBlock() { }
 
 /*
  * --INFO--
@@ -312,64 +282,9 @@ J2DMaterial::J2DMaterial(unsigned long)
  */
 J2DMaterial::~J2DMaterial()
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	mr       r31, r4
-	stw      r30, 8(r1)
-	or.      r30, r3, r3
-	beq      lbl_8005222C
-	lis      r3, __vt__11J2DMaterial@ha
-	addi     r0, r3, __vt__11J2DMaterial@l
-	stw      r0, 0(r30)
-	lwz      r3, 0x70(r30)
-	cmplwi   r3, 0
-	beq      lbl_800521D4
-	lwz      r12, 0(r3)
-	li       r4, 1
-	lwz      r12, 0xb8(r12)
-	mtctr    r12
-	bctrl
-
-lbl_800521D4:
-	lwz      r3, 0x74(r30)
-	cmplwi   r3, 0
-	beq      lbl_800521F4
-	lwz      r12, 0(r3)
-	li       r4, 1
-	lwz      r12, 0x34(r12)
-	mtctr    r12
-	bctrl
-
-lbl_800521F4:
-	lwz      r3, 0x84(r30)
-	bl       __dl__FPv
-	addi     r3, r30, 0x28
-	li       r4, -1
-	bl       __dt__14J2DTexGenBlockFv
-	addic.   r0, r30, 0x10
-	beq      lbl_8005221C
-	lis      r3, __vt__13J2DColorBlock@ha
-	addi     r0, r3, __vt__13J2DColorBlock@l
-	stw      r0, 0x24(r30)
-
-lbl_8005221C:
-	extsh.   r0, r31
-	ble      lbl_8005222C
-	mr       r3, r30
-	bl       __dl__FPv
-
-lbl_8005222C:
-	lwz      r0, 0x14(r1)
-	mr       r3, r30
-	lwz      r31, 0xc(r1)
-	lwz      r30, 8(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	delete m_tevBlock;
+	delete m_indBlock;
+	delete _84;
 }
 
 /*
@@ -1478,6 +1393,7 @@ void J2DIndBlockNull::setGX() { }
  */
 u32 J2DIndBlockNull::getType()
 {
+	return JBT_IndNull;
 	/*
 	lis      r3, 0x49424C4E@ha
 	addi     r3, r3, 0x49424C4E@l
