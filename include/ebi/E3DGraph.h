@@ -12,14 +12,16 @@
 
 namespace ebi {
 struct E3DAnimRes {
+	E3DAnimRes() { }
+
 	J3DAnmTransform* pAnmTransform_0x0;
 	J3DMtxCalcAnmBase* pMtxCalcAnm_0x4;
 	f32 float_0x8;
 	f32 float_0xC;
-	f32 float_0x10;
-	f32 float_0x14;
+	f32 m_loopStart;
+	f32 m_loopEnd;
 	f32 float_0x18;
-	int int_0x1C;
+	int m_mode;
 
 	void load(J3DModelData*, JKRArchive*, char*);
 };

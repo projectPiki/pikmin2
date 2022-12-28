@@ -17,10 +17,10 @@ void E3DAnimRes::load(J3DModelData* param_1, JKRArchive* param_2, char* param_3)
 	pMtxCalcAnm_0x4   = J3DNewMtxCalcAnm((param_1->m_jointTree).m_08 & 0xf, pAnmTransform_0x0);
 	float_0x8         = 0.0f;
 	float_0xC         = pAnmTransform_0x0->m_time - 2.0f;
-	float_0x10        = float_0x8;
-	float_0x14        = float_0xC;
+	m_loopStart       = float_0x8;
+	m_loopEnd         = float_0xC;
 	float_0x18        = sys->m_deltaTime * 60.0f * 0.5f;
-	int_0x1C          = 0;
+	m_mode            = 0;
 }
 
 /*
@@ -53,7 +53,7 @@ void E3DAnimCtrl::init(long param_1, float param_2)
  * Address:	........
  * Size:	000064
  */
-void E3DAnimCtrl::setStartFrame(void)
+void E3DAnimCtrl::setStartFrame()
 {
 	// UNUSED FUNCTION
 }
@@ -63,11 +63,11 @@ void E3DAnimCtrl::setStartFrame(void)
  * Address:	803C9F10
  * Size:	000080
  */
-void E3DAnimCtrl::play(void)
+void E3DAnimCtrl::play()
 {
 	P2ASSERTLINE(63, _0C);
 	if (_08 != 3)
-		_0C->int_0x1C == 1 ? _08 = 1 : _08 = 2;
+		_0C->m_mode == 1 ? _08 = 1 : _08 = 2;
 }
 
 /*
@@ -75,7 +75,7 @@ void E3DAnimCtrl::play(void)
  * Address:	803C9F90
  * Size:	000064
  */
-void E3DAnimCtrl::playStopEnd(void)
+void E3DAnimCtrl::playStopEnd()
 {
 	P2ASSERTLINE(76, _0C);
 	if (_08 != 3)
@@ -87,7 +87,7 @@ void E3DAnimCtrl::playStopEnd(void)
  * Address:	........
  * Size:	000064
  */
-void E3DAnimCtrl::stop(void)
+void E3DAnimCtrl::stop()
 {
 	// UNUSED FUNCTION
 }

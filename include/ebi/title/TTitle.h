@@ -140,7 +140,7 @@ struct TTitleMgr : public CNode {
 	void isInViewField(TObjBase*);
 	void isOutViewField(Vector2f&, f32);
 	void isOutViewField(TObjBase*);
-	void getPosOutOfViewField();
+	Vector2f getPosOutOfViewField();
 	void start();
 	void breakup();
 	void startKogane();

@@ -1,4 +1,10 @@
-#include "types.h"
+#include "ebi/title/Entities/TChappy.h"
+#include "ebi/title/TTitle.h"
+#include "JSystem/J3D/J3DModel.h"
+#include "JSystem/J3D/J3DModelLoader.h"
+#include "Dolphin/rand.h"
+#include "trig.h"
+#include "Controller.h"
 
 /*
     Generated from dpostproc
@@ -281,13 +287,18 @@
 namespace ebi {
 namespace title {
 
+TTitleMgr* titleMgr;
+
 /*
  * --INFO--
  * Address:	803E85D8
  * Size:	000150
  */
-Chappy::TMgr::TMgr(void)
+Chappy::TMgr::TMgr()
+    : CNode("ChappyMgr")
 {
+	m_animator = new TAnimator;
+	m_object   = new TUnit;
 	/*
 stwu     r1, -0x10(r1)
 mflr     r0
@@ -385,8 +396,10 @@ blr
  * Address:	803E8728
  * Size:	000050
  */
-void Chappy::TMgr::setArchive(JKRArchive*)
+void Chappy::TMgr::setArchive(JKRArchive* arc)
 {
+	m_params.loadSettingsFile(arc, "param/param_chappy.txt");
+	m_animator->setArchive(arc);
 	/*
 stwu     r1, -0x10(r1)
 mflr     r0
@@ -416,8 +429,9 @@ blr
  * Address:	803E8778
  * Size:	000028
  */
-void Chappy::TMgr::initUnit(void)
+void Chappy::TMgr::initUnit()
 {
+	m_object->init(this);
 	/*
 stwu     r1, -0x10(r1)
 mflr     r0
@@ -447,8 +461,9 @@ void Chappy::TAnimFolder::load(J3DModelData*, JKRArchive*)
  * Address:	803E87A0
  * Size:	000068
  */
-Chappy::TAnimator::TAnimator(void)
+Chappy::TAnimator::TAnimator()
 {
+	m_modelData = nullptr;
 	/*
 stwu     r1, -0x10(r1)
 mflr     r0
@@ -484,8 +499,29 @@ blr
  * Address:	803E8808
  * Size:	000128
  */
-void Chappy::TAnimator::setArchive(JKRArchive*)
+void Chappy::TAnimator::setArchive(JKRArchive* arc)
 {
+	void* file = arc->getResource("chappy/swallow_model.bmd");
+	P2ASSERTLINE(122, file);
+	m_modelData = J3DModelLoaderDataBase::load(file, 0x100000);
+	m_modelData->newSharedDisplayList(0x40000);
+	m_modelData->makeSharedDL();
+
+	J3DModelData* data = m_modelData;
+
+	m_anims[0].load(data, arc, "chappy/move1.bck");
+	m_anims[0].m_loopStart = 5.0f;
+	m_anims[0].m_loopEnd   = 34.0f;
+	m_anims[0].m_mode      = 1;
+
+	m_anims[1].load(data, arc, "chappy/waitact1.bck");
+	m_anims[1].m_loopStart = 8.0f;
+	m_anims[1].m_loopEnd   = 19.0f;
+	m_anims[1].m_mode      = 1;
+
+	m_anims[2].load(data, arc, "chappy/attack.bck");
+	m_anims[3].load(data, arc, "chappy/waitact2.bck");
+
 	/*
 stwu     r1, -0x20(r1)
 mflr     r0
@@ -571,7 +607,7 @@ blr
  * Address:	........
  * Size:	000078
  */
-void Chappy::TAnimator::newJ3DModel(void)
+void Chappy::TAnimator::newJ3DModel()
 {
 	// UNUSED FUNCTION
 }
@@ -581,19 +617,26 @@ void Chappy::TAnimator::newJ3DModel(void)
  * Address:	803E8930
  * Size:	000008
  */
-void Chappy::TUnit::setController(Controller* a1)
-{
-	// Generated from stw r4, 0x44(r3)
-	_44 = a1;
-}
+void Chappy::TUnit::setController(Controller* control) { m_control = control; }
 
 /*
  * --INFO--
  * Address:	803E8938
  * Size:	0000F4
  */
-void Chappy::TUnit::init(ebi::title::Chappy::TMgr*)
+void Chappy::TUnit::init(TMgr* mgr)
 {
+	m_manager = mgr;
+	m_model   = new J3DModel(m_manager->m_animator->m_modelData, 0x20000, 1);
+
+	m_anim.setAnimFolder(m_manager->m_animator);
+	m_pos      = titleMgr->getPosOutOfViewField();
+	m_parms[0] = m_manager->m_params.m_walkSpeed.m_value;
+	m_parms[1] = m_manager->m_params.m_scale.m_value;
+	m_parms[4] = m_manager->m_params.m_cullRadius.m_value;
+	m_parms[2] = m_manager->m_params.m_collRadius.m_value;
+	m_parms[3] = m_manager->m_params.m_pikiReactRadius.m_value;
+
 	/*
 stwu     r1, -0x20(r1)
 mflr     r0
@@ -666,32 +709,13 @@ blr
  * Address:	803E8A2C
  * Size:	000054
  */
-void startZigzagWalk__Q43ebi5title6Chappy5TUnitFR10Vector2<float> R10Vector2<float>(void)
+void Chappy::TUnit::startZigzagWalk(Vector2f& pos1, Vector2f& pos2)
 {
-	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  li        r6, -0x1
-	  stw       r0, 0x14(r1)
-	  li        r0, 0
-	  lfs       f0, 0x0(r4)
-	  stfs      f0, 0x4(r3)
-	  lfs       f0, 0x4(r4)
-	  li        r4, 0x5
-	  stfs      f0, 0x8(r3)
-	  lfs       f0, 0x0(r5)
-	  stfs      f0, 0x2C(r3)
-	  lfs       f0, 0x4(r5)
-	  stfs      f0, 0x30(r3)
-	  stw       r6, 0x6C(r3)
-	  stb       r0, 0x48(r3)
-	  bl        0x90
-	  lwz       r0, 0x14(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
-	*/
+	m_pos          = pos1;
+	m_targetPos[0] = pos2;
+	_6C            = -1;
+	_48            = 0;
+	startAIState_(CHAPPYAI_5);
 }
 
 /*
@@ -699,25 +723,11 @@ void startZigzagWalk__Q43ebi5title6Chappy5TUnitFR10Vector2<float> R10Vector2<flo
  * Address:	803E8A80
  * Size:	000030
  */
-void Chappy::TUnit::goHome(void)
+void Chappy::TUnit::goHome()
 {
-	/*
-stwu     r1, -0x10(r1)
-mflr     r0
-stw      r0, 0x14(r1)
-lwz      r0, 0x68(r3)
-cmpwi    r0, 0
-beq      lbl_803E8AA0
-li       r4, 6
-bl
-startAIState___Q43ebi5title6Chappy5TUnitFQ53ebi5title6Chappy5TUnit11enumAIState
-
-lbl_803E8AA0:
-lwz      r0, 0x14(r1)
-mtlr     r0
-addi     r1, r1, 0x10
-blr
-	*/
+	if (m_stateID != 0) {
+		startAIState_(CHAPPYAI_6);
+	}
 }
 
 /*
@@ -725,8 +735,9 @@ blr
  * Address:	803E8AB0
  * Size:	000024
  */
-void Chappy::TUnit::outOfCalc(void)
+void Chappy::TUnit::outOfCalc()
 {
+	startAIState_(CHAPPYAI_Inactive);
 	/*
 stwu     r1, -0x10(r1)
 mflr     r0
@@ -746,40 +757,70 @@ blr
  * Address:	803E8AD4
  * Size:	000014
  */
-void Chappy::TUnit::isCalc(void)
-{
-	/*
-lwz      r3, 0x68(r3)
-neg      r0, r3
-or       r0, r0, r3
-srwi     r3, r0, 0x1f
-blr
-	*/
-}
+bool Chappy::TUnit::isCalc() { return m_stateID != CHAPPYAI_Inactive; }
 
 /*
  * --INFO--
  * Address:	803E8AE8
  * Size:	000014
  */
-void Chappy::TUnit::isController(void)
-{
-	/*
-lwz      r0, 0x68(r3)
-subfic   r0, r0, 7
-cntlzw   r0, r0
-rlwinm   r3, r0, 0x1b, 0x18, 0x1f
-blr
-	*/
-}
+bool Chappy::TUnit::isController() { return (u8)(m_stateID == CHAPPYAI_Controlled); }
 
 /*
  * --INFO--
  * Address:	803E8AFC
  * Size:	000318
  */
-void Chappy::TUnit::startAIState_(ebi::title::Chappy::TUnit::enumAIState)
+void Chappy::TUnit::startAIState_(enumAIState state)
 {
+	if (m_stateID == state) {
+		if (m_stateID == CHAPPYAI_Controlled)
+			return;
+		int time   = m_manager->m_params.m_controlledTime.m_value / sys->m_deltaTime;
+		m_counter  = time;
+		m_counter2 = time;
+	}
+	m_stateID = state;
+
+	switch (m_stateID) {
+	case CHAPPYAI_Controlled:
+		int time   = m_manager->m_params.m_controlledTime.m_value / sys->m_deltaTime;
+		m_counter  = time;
+		m_counter2 = time;
+		break;
+	case CHAPPYAI_Inactive:
+		m_pos = title::titleMgr->getPosOutOfViewField();
+		break;
+	case CHAPPYAI_Wait:
+		f32 min    = m_manager->m_params.m_minWaitTime.m_value;
+		f32 max    = m_manager->m_params.m_maxWaitTime.m_value;
+		int time2  = ((max - min) * randFloat() + min) / sys->m_deltaTime;
+		m_counter  = time2;
+		m_counter2 = time2;
+		break;
+	case CHAPPYAI_Turn:
+		f32 angle        = m_manager->m_params.m_walkAngleRand.m_value;
+		f32 line         = pikmin2_atan2f(m_targetPos[0].x - m_pos.x, m_targetPos[0].y - m_pos.y);
+		f32 test         = angle * DEG2RAD * PI + (randFloat() * 2.0f + -1.0f) + line;
+		m_targetPos[1].x = pikmin2_cosf(test);
+		m_targetPos[1].y = pikmin2_sinf(test);
+		break;
+	case CHAPPYAI_Walk:
+		f32 min2   = m_manager->m_params.m_minWalkTime.m_value;
+		f32 max2   = m_manager->m_params.m_maxWalkTime.m_value;
+		int time3  = ((max2 - min2) * randFloat() + min2) / sys->m_deltaTime;
+		m_counter  = time3;
+		m_counter2 = time3;
+		break;
+	case CHAPPYAI_5:
+		f32 x     = -m_pos.x;
+		f32 y     = -m_pos.y;
+		x         = _sqrtf(x);
+		y         = _sqrtf(y);
+		m_angle.x = x;
+		m_angle.y = y;
+		break;
+	}
 	/*
 stwu     r1, -0x60(r1)
 mflr     r0
@@ -1022,7 +1063,7 @@ blr
  * Address:	........
  * Size:	000100
  */
-void Chappy::TUnit::startAction_(ebi::title::Chappy::TUnit::enumAction)
+void Chappy::TUnit::startAction_(Chappy::TUnit::enumAction)
 {
 	// UNUSED FUNCTION
 }
@@ -1032,8 +1073,41 @@ void Chappy::TUnit::startAction_(ebi::title::Chappy::TUnit::enumAction)
  * Address:	803E8E14
  * Size:	000A64
  */
-void Chappy::TUnit::update(void)
+void Chappy::TUnit::update()
 {
+	if (!isCalc())
+		return;
+
+	int id = m_stateID;
+	if (id != CHAPPYAI_Inactive && id != CHAPPYAI_6 && id != CHAPPYAI_5) {
+		Controller* control = m_control;
+		bool check          = false;
+		if (control) {
+			if (control->m_padSStick.m_stickMag > 0.7f || control->m_padButton.m_buttonDown & Controller::PRESS_Z) {
+				check = true;
+			}
+		}
+		if (check) {
+			startAIState_(CHAPPYAI_Controlled);
+		}
+	}
+
+	if (m_counter) {
+		m_counter--;
+	}
+
+	switch (m_stateID) {
+	case CHAPPYAI_Wait:
+		if (m_counter == 0) {
+			startAIState_(CHAPPYAI_Turn);
+		}
+		break;
+	case CHAPPYAI_Turn:
+		break;
+	}
+
+	m_model->calc();
+	m_model->entry();
 	/*
 stwu     r1, -0x80(r1)
 mflr     r0
@@ -1875,7 +1949,23 @@ blr
  * Address:	803E9878
  * Size:	0003A4
  */
-Chappy::TParam::TParam(void)
+Chappy::TParam::TParam()
+    : Parameters(nullptr, "Parms")
+    , m_scale(this, 'b000', "スケール", 2.0f, 0.0f, 10.0f)
+    , m_cullRadius(this, 'b001', "カリング半径", 2.0f, 0.0f, 10.0f)
+    , m_collRadius(this, 'b002', "コリジョン半径", 2.0f, 0.0f, 10.0f)
+    , m_pikiReactRadius(this, 'b003', "ピクミン反応半径", 2.0f, 0.0f, 10.0f)
+    , m_hitOffset(this, 'ch20', "当たりOffset", 2.0f, 0.0f, 10.0f)
+    , m_hitRadius(this, 'ch21', "当たり半径", 2.0f, 0.0f, 10.0f)
+    , m_walkAngleRand(this, 'ch00', "歩行ランダム角度", 2.0f, 0.0f, 10.0f)
+    , m_walkSpeed(this, 'ch01', "歩行速度", 2.0f, 0.0f, 10.0f)
+    , m_turnSpeed(this, 'ch23', "" /*"旋回性能"*/, 2.0f, 0.0f, 10.0f)
+    , // problem with this string
+    m_minWaitTime(this, 'ch10', "待ち時間最小(秒)", 2.0f, 0.0f, 10.0f)
+    , m_maxWaitTime(this, 'ch11', "待ち時間最大(秒)", 2.0f, 0.0f, 10.0f)
+    , m_minWalkTime(this, 'ch12', "移動時間最小(秒)", 2.0f, 0.0f, 10.0f)
+    , m_maxWalkTime(this, 'ch13', "移動時間最大(秒)", 2.0f, 0.0f, 10.0f)
+    , m_controlledTime(this, 'ch22', "コントローラ状態時間(秒)", 2.0f, 0.0f, 10.0f)
 {
 	/*
 stwu     r1, -0x10(r1)
@@ -2121,15 +2211,16 @@ blr
  * Address:	803E9C1C
  * Size:	000008
  */
-u32 Chappy::TUnit::getCreatureType(void) { return 0x6; }
+// u32 Chappy::TUnit::getCreatureType() { return 0x6; }
 
 /*
  * --INFO--
  * Address:	803E9C24
  * Size:	000014
  */
-void Chappy::TAnimFolder::getAnimRes(long)
+E3DAnimRes* Chappy::TAnimFolder::getAnimRes(long id)
 {
+	return &m_anims[id];
 	/*
 slwi     r4, r4, 5
 mr       r0, r3
@@ -2147,7 +2238,7 @@ blr
  * Address:	803E9C38
  * Size:	000028
  */
-void __sinit_ebiP2TitleChappy_cpp(void)
+void __sinit_ebiP2TitleChappy_cpp()
 {
 	/*
 	lis      r4, __float_nan@ha
