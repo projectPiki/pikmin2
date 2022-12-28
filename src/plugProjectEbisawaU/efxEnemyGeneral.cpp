@@ -1,4 +1,14 @@
-#include "types.h"
+#include "efx/TEnemyPiyo.h"
+#include "efx/TEnemyPoison.h"
+#include "efx/TSekika.h"
+#include "efx/TEnemyDead.h"
+#include "efx/TEnemyWalkSmoke.h"
+#include "efx/TEnemyDownSmoke.h"
+#include "efx/TEnemyDownWat.h"
+#include "efx/TEnemyDive.h"
+#include "efx/TEnemyBomb.h"
+#include "efx/TEnemyApsmoke.h"
+#include "efx/TEnemyHamon.h"
 
 /*
     Generated from dpostproc
@@ -1059,8 +1069,182 @@ namespace efx {
  * Address:	803C7834
  * Size:	000274
  */
-void TEnemyPiyo::create(efx::Arg*)
+bool TEnemyPiyo::create(efx::Arg* arg)
 {
+	efx::ArgEnemyType* argt = static_cast<efx::ArgEnemyType*>(arg);
+	P2ASSERTLINE(17, !(u8)(strcmp(argt->getName(), "ArgEnemyType")));
+
+	bool docreate;
+	f32 scale;
+	switch (argt->m_typeID) {
+	case Game::EnemyTypeID::EnemyID_Kochappy:
+	case Game::EnemyTypeID::EnemyID_BlueKochappy:
+	case Game::EnemyTypeID::EnemyID_YellowKochappy:
+	case Game::EnemyTypeID::EnemyID_KumaKochappy:
+		scale = 0.65f;
+		break;
+	case Game::EnemyTypeID::EnemyID_Chappy:
+	case Game::EnemyTypeID::EnemyID_BlueChappy:
+	case Game::EnemyTypeID::EnemyID_YellowChappy:
+	case Game::EnemyTypeID::EnemyID_KumaChappy:
+		scale = 1.75f;
+		break;
+	case Game::EnemyTypeID::EnemyID_UjiA:
+	case Game::EnemyTypeID::EnemyID_UjiB:
+	case Game::EnemyTypeID::EnemyID_Tobi:
+		scale = 0.45f;
+		break;
+	case Game::EnemyTypeID::EnemyID_Armor:
+		scale = 1.15f;
+		break;
+	case Game::EnemyTypeID::EnemyID_Qurione:
+		docreate = false;
+		return docreate;
+	case Game::EnemyTypeID::EnemyID_Frog:
+		scale = 1.00f;
+		break;
+	case Game::EnemyTypeID::EnemyID_MaroFrog:
+		scale = 0.93f;
+		break;
+	case Game::EnemyTypeID::EnemyID_Sarai:
+	case Game::EnemyTypeID::EnemyID_Demon:
+		scale = 0.78f;
+		break;
+	case Game::EnemyTypeID::EnemyID_Tank:
+	case Game::EnemyTypeID::EnemyID_Wtank:
+		scale = 0.88f;
+		break;
+	case Game::EnemyTypeID::EnemyID_Catfish:
+		scale = 1.1f;
+		break;
+	case Game::EnemyTypeID::EnemyID_Tadpole:
+		scale = 0.53f;
+		break;
+	case Game::EnemyTypeID::EnemyID_ElecBug:
+		docreate = false;
+		return docreate;
+	case Game::EnemyTypeID::EnemyID_Mar:
+		scale = 0.21f;
+		break;
+	case Game::EnemyTypeID::EnemyID_Baby:
+		scale = 0.6f;
+		break;
+	case Game::EnemyTypeID::EnemyID_FireChappy:
+		scale = 1.9f;
+		break;
+	case Game::EnemyTypeID::EnemyID_SnakeCrow:
+		docreate = false;
+		return docreate;
+	case Game::EnemyTypeID::EnemyID_Egg:
+		docreate = false;
+		return docreate;
+	case Game::EnemyTypeID::EnemyID_PanModoki:
+		scale = 0.8f;
+		break;
+	case Game::EnemyTypeID::EnemyID_OoPanModoki:
+		scale = 1.55f;
+		break;
+	case Game::EnemyTypeID::EnemyID_Fuefuki:
+		scale = 0.77f;
+		break;
+	case Game::EnemyTypeID::EnemyID_KingChappy:
+		scale = 2.15f;
+		break;
+	case Game::EnemyTypeID::EnemyID_Miulin:
+		scale = 1.25f;
+		break;
+	case Game::EnemyTypeID::EnemyID_Hanachirashi:
+		scale = 1.35f;
+		break;
+	case Game::EnemyTypeID::EnemyID_Kurage:
+		scale = 1.3f;
+		break;
+	case Game::EnemyTypeID::EnemyID_BombSarai:
+		scale = 0.75f;
+		break;
+	case Game::EnemyTypeID::EnemyID_FireOtakara:
+	case Game::EnemyTypeID::EnemyID_WaterOtakara:
+	case Game::EnemyTypeID::EnemyID_GasOtakara:
+	case Game::EnemyTypeID::EnemyID_ElecOtakara:
+		scale = 0.65f;
+		break;
+	case Game::EnemyTypeID::EnemyID_Jigumo:
+		scale = 0.75f;
+		break;
+	case Game::EnemyTypeID::EnemyID_Imomushi:
+		scale = 0.62f;
+		break;
+	case Game::EnemyTypeID::EnemyID_LeafChappy:
+		scale = 0.96f;
+		break;
+	case Game::EnemyTypeID::EnemyID_TamagoMushi:
+		docreate = false;
+		return docreate;
+	case Game::EnemyTypeID::EnemyID_SnakeWhole:
+		scale = 1.25f;
+		break;
+	case Game::EnemyTypeID::EnemyID_UmiMushi:
+		scale = 2.45f;
+		break;
+	case Game::EnemyTypeID::EnemyID_OniKurage:
+		scale = 1.9f;
+		break;
+	case Game::EnemyTypeID::EnemyID_Kabuto:
+	case Game::EnemyTypeID::EnemyID_Rkabuto:
+	case Game::EnemyTypeID::EnemyID_Fkabuto:
+		scale = 1.4f;
+		break;
+	case Game::EnemyTypeID::EnemyID_ShijimiChou:
+		scale = 0.65f;
+		break;
+	case Game::EnemyTypeID::EnemyID_MiniHoudai:
+	case Game::EnemyTypeID::EnemyID_FminiHoudai:
+		scale = 1.45f;
+		break;
+	case Game::EnemyTypeID::EnemyID_Sokkuri:
+		scale = 0.85f;
+		break;
+	case Game::EnemyTypeID::EnemyID_Hana:
+		scale = 1.45f;
+		break;
+	case Game::EnemyTypeID::EnemyID_BombOtakara:
+		scale = 0.65f;
+		break;
+	case Game::EnemyTypeID::EnemyID_BluePom:
+	case Game::EnemyTypeID::EnemyID_RedPom:
+	case Game::EnemyTypeID::EnemyID_YellowPom:
+	case Game::EnemyTypeID::EnemyID_BlackPom:
+	case Game::EnemyTypeID::EnemyID_WhitePom:
+	case Game::EnemyTypeID::EnemyID_RandPom:
+	case Game::EnemyTypeID::EnemyID_Hiba:
+	case Game::EnemyTypeID::EnemyID_GasHiba:
+	case Game::EnemyTypeID::EnemyID_ElecHiba:
+	case Game::EnemyTypeID::EnemyID_Bomb:
+	case Game::EnemyTypeID::EnemyID_DangoMushi:
+	case Game::EnemyTypeID::EnemyID_Tyre:
+	case Game::EnemyTypeID::EnemyID_BlackMan:
+		docreate = false;
+		return docreate;
+	case Game::EnemyTypeID::EnemyID_Kogane:
+	case Game::EnemyTypeID::EnemyID_Wealthy:
+	case Game::EnemyTypeID::EnemyID_Fart:
+		docreate = false;
+		return docreate;
+	default:
+		docreate = false;
+		return docreate;
+	}
+	scale *= argt->m_scale;
+
+	if (TSync::create(arg)) {
+		docreate = true;
+		m_emitter->setScaleOnly(scale);
+		f32 offs = (scale - 1.0f) * 0.5f + 1.0f;
+		m_emitter->setOffs(offs, offs);
+	} else {
+		docreate = false;
+	}
+	return docreate;
 	/*
 	stwu     r1, -0x40(r1)
 	mflr     r0
@@ -1361,8 +1545,21 @@ lbl_803C7A84:
  * Address:	803C7AA8
  * Size:	0000DC
  */
-void TEnemyPoisonL::create(efx::Arg*)
+bool TEnemyPoisonL::create(efx::Arg* arg)
 {
+	efx::ArgScale* args = static_cast<efx::ArgScale*>(arg);
+	P2ASSERTLINE(17, (u8)(strcmp(args->getName(), "ArgScale")) == 0);
+
+	f32 scale = args->m_scale;
+	bool docreate;
+
+	if (TSimple1::create(arg)) {
+		docreate = true;
+		m_emitters[0]->setScale(scale);
+	} else {
+		docreate = false;
+	}
+	return docreate;
 	/*
 	stwu     r1, -0x40(r1)
 	mflr     r0
@@ -1433,8 +1630,21 @@ lbl_803C7B60:
  * Address:	803C7B84
  * Size:	0000DC
  */
-void TEnemyPoisonS::create(efx::Arg*)
+bool TEnemyPoisonS::create(efx::Arg* arg)
 {
+	efx::ArgScale* args = static_cast<efx::ArgScale*>(arg);
+	P2ASSERTLINE(17, (u8)(strcmp(args->getName(), "ArgScale")) == 0);
+
+	f32 scale = args->m_scale;
+	bool docreate;
+
+	if (TSimple1::create(arg)) {
+		docreate = true;
+		m_emitters[0]->setScale(scale);
+	} else {
+		docreate = false;
+	}
+	return docreate;
 	/*
 	stwu     r1, -0x40(r1)
 	mflr     r0
@@ -1505,8 +1715,21 @@ lbl_803C7C3C:
  * Address:	803C7C60
  * Size:	0000DC
  */
-void TSekikaLOff::create(efx::Arg*)
+bool TSekikaLOff::create(efx::Arg* arg)
 {
+	efx::ArgScale* args = static_cast<efx::ArgScale*>(arg);
+	P2ASSERTLINE(17, (u8)(strcmp(args->getName(), "ArgScale")) == 0);
+
+	f32 scale = args->m_scale;
+	bool docreate;
+
+	if (TSimple1::create(arg)) {
+		docreate = true;
+		m_emitters[0]->setScale(scale);
+	} else {
+		docreate = false;
+	}
+	return docreate;
 	/*
 	stwu     r1, -0x40(r1)
 	mflr     r0
@@ -1577,8 +1800,21 @@ lbl_803C7D18:
  * Address:	803C7D3C
  * Size:	0000DC
  */
-void TSekikaLOn::create(efx::Arg*)
+bool TSekikaLOn::create(efx::Arg* arg)
 {
+	efx::ArgScale* args = static_cast<efx::ArgScale*>(arg);
+	P2ASSERTLINE(17, (u8)(strcmp(args->getName(), "ArgScale")) == 0);
+
+	f32 scale = args->m_scale;
+	bool docreate;
+
+	if (TSimple1::create(arg)) {
+		docreate = true;
+		m_emitters[0]->setScale(scale);
+	} else {
+		docreate = false;
+	}
+	return docreate;
 	/*
 	stwu     r1, -0x40(r1)
 	mflr     r0
@@ -1649,8 +1885,21 @@ lbl_803C7DF4:
  * Address:	803C7E18
  * Size:	0000DC
  */
-void TSekikaSOff::create(efx::Arg*)
+bool TSekikaSOff::create(efx::Arg* arg)
 {
+	efx::ArgScale* args = static_cast<efx::ArgScale*>(arg);
+	P2ASSERTLINE(17, (u8)(strcmp(args->getName(), "ArgScale")) == 0);
+
+	f32 scale = args->m_scale;
+	bool docreate;
+
+	if (TSimple1::create(arg)) {
+		docreate = true;
+		m_emitters[0]->setScale(scale);
+	} else {
+		docreate = false;
+	}
+	return docreate;
 	/*
 	stwu     r1, -0x40(r1)
 	mflr     r0
@@ -1721,8 +1970,21 @@ lbl_803C7ED0:
  * Address:	803C7EF4
  * Size:	0000DC
  */
-void TSekikaSOn::create(efx::Arg*)
+bool TSekikaSOn::create(efx::Arg* arg)
 {
+	efx::ArgScale* args = static_cast<efx::ArgScale*>(arg);
+	P2ASSERTLINE(17, (u8)(strcmp(args->getName(), "ArgScale")) == 0);
+
+	f32 scale = args->m_scale;
+	bool docreate;
+
+	if (TSimple1::create(arg)) {
+		docreate = true;
+		m_emitters[0]->setScale(scale);
+	} else {
+		docreate = false;
+	}
+	return docreate;
 	/*
 	stwu     r1, -0x40(r1)
 	mflr     r0
@@ -1793,8 +2055,21 @@ lbl_803C7FAC:
  * Address:	803C7FD0
  * Size:	0000DC
  */
-void TEnemyDead_ArgScale::create(efx::Arg*)
+bool TEnemyDead_ArgScale::create(efx::Arg* arg)
 {
+	efx::ArgScale* args = static_cast<efx::ArgScale*>(arg);
+	P2ASSERTLINE(17, (u8)(strcmp(args->getName(), "ArgScale")) == 0);
+
+	f32 scale = args->m_scale;
+	bool docreate;
+
+	if (TSimple1::create(arg)) {
+		docreate = true;
+		m_emitters[0]->setScale(scale);
+	} else {
+		docreate = false;
+	}
+	return docreate;
 	/*
 	stwu     r1, -0x40(r1)
 	mflr     r0
@@ -1865,8 +2140,167 @@ lbl_803C8088:
  * Address:	803C80AC
  * Size:	00024C
  */
-void TEnemyDead::create(efx::Arg*)
+bool TEnemyDead::create(efx::Arg* arg)
 {
+	bool docreate;
+	efx::ArgEnemyType* argt = static_cast<efx::ArgEnemyType*>(arg);
+	P2ASSERTLINE(17, (u8)(strcmp(argt->getName(), "ArgEnemyType")) == 0);
+
+	f32 scale;
+	switch (argt->m_typeID) {
+	case Game::EnemyTypeID::EnemyID_Kochappy:
+	case Game::EnemyTypeID::EnemyID_BlueKochappy:
+	case Game::EnemyTypeID::EnemyID_YellowKochappy:
+	case Game::EnemyTypeID::EnemyID_KumaKochappy:
+		scale = 0.85f;
+		break;
+	case Game::EnemyTypeID::EnemyID_Chappy:
+	case Game::EnemyTypeID::EnemyID_BlueChappy:
+	case Game::EnemyTypeID::EnemyID_YellowChappy:
+	case Game::EnemyTypeID::EnemyID_KumaChappy:
+		scale = 1.8f;
+		break;
+	case Game::EnemyTypeID::EnemyID_Kogane:
+	case Game::EnemyTypeID::EnemyID_Wealthy:
+	case Game::EnemyTypeID::EnemyID_Fart:
+		scale = 0.94f;
+		break;
+	case Game::EnemyTypeID::EnemyID_UjiA:
+	case Game::EnemyTypeID::EnemyID_UjiB:
+	case Game::EnemyTypeID::EnemyID_Tobi:
+		scale = 0.6f;
+		break;
+	case Game::EnemyTypeID::EnemyID_Armor:
+		scale = 1.45f;
+		break;
+	case Game::EnemyTypeID::EnemyID_Qurione:
+		scale = 0.6f;
+		break;
+	case Game::EnemyTypeID::EnemyID_Frog:
+		scale = 1.0f;
+		break;
+	case Game::EnemyTypeID::EnemyID_MaroFrog:
+		scale = 1.0f;
+		break;
+	case Game::EnemyTypeID::EnemyID_Sarai:
+	case Game::EnemyTypeID::EnemyID_Demon:
+		scale = 0.9f;
+		break;
+	case Game::EnemyTypeID::EnemyID_Tank:
+	case Game::EnemyTypeID::EnemyID_Wtank:
+		scale = 1.0f;
+		break;
+	case Game::EnemyTypeID::EnemyID_Catfish:
+		scale = 1.3f;
+		break;
+	case Game::EnemyTypeID::EnemyID_Tadpole:
+		scale = 0.75f;
+		break;
+	case Game::EnemyTypeID::EnemyID_ElecBug:
+		scale = 0.9f;
+		break;
+	case Game::EnemyTypeID::EnemyID_Mar:
+	case Game::EnemyTypeID::EnemyID_Hanachirashi:
+	case Game::EnemyTypeID::EnemyID_Kurage:
+	case Game::EnemyTypeID::EnemyID_OniKurage:
+		docreate = false;
+		return docreate;
+	case Game::EnemyTypeID::EnemyID_Baby:
+		scale = 0.8f;
+		break;
+	case Game::EnemyTypeID::EnemyID_FireChappy:
+		scale = 1.8f;
+		break;
+	case Game::EnemyTypeID::EnemyID_SnakeCrow:
+		scale = 1.5f;
+		break;
+	case Game::EnemyTypeID::EnemyID_Egg:
+		docreate = false;
+		return docreate;
+	case Game::EnemyTypeID::EnemyID_PanModoki:
+		scale = 0.95f;
+		break;
+	case Game::EnemyTypeID::EnemyID_OoPanModoki:
+		scale = 1.7f;
+		break;
+	case Game::EnemyTypeID::EnemyID_Fuefuki:
+		scale = 0.85f;
+		break;
+	case Game::EnemyTypeID::EnemyID_KingChappy:
+		scale = 2.0f;
+		break;
+	case Game::EnemyTypeID::EnemyID_Miulin:
+		scale = 1.5f;
+		break;
+	case Game::EnemyTypeID::EnemyID_BombSarai:
+		scale = 1.35f;
+		break;
+	case Game::EnemyTypeID::EnemyID_FireOtakara:
+	case Game::EnemyTypeID::EnemyID_WaterOtakara:
+	case Game::EnemyTypeID::EnemyID_GasOtakara:
+	case Game::EnemyTypeID::EnemyID_ElecOtakara:
+		scale = 0.7f;
+		break;
+	case Game::EnemyTypeID::EnemyID_Jigumo:
+		scale = 1.0f;
+		break;
+	case Game::EnemyTypeID::EnemyID_Imomushi:
+		docreate = false;
+		return docreate;
+	case Game::EnemyTypeID::EnemyID_LeafChappy:
+		scale = 0.9f;
+		break;
+	case Game::EnemyTypeID::EnemyID_TamagoMushi:
+		scale = 0.7f;
+		break;
+	case Game::EnemyTypeID::EnemyID_SnakeWhole:
+		scale = 1.5f;
+		break;
+	case Game::EnemyTypeID::EnemyID_UmiMushi:
+		docreate = false;
+		return docreate;
+	case Game::EnemyTypeID::EnemyID_Kabuto:
+	case Game::EnemyTypeID::EnemyID_Rkabuto:
+	case Game::EnemyTypeID::EnemyID_Fkabuto:
+		scale = 1.5f;
+		break;
+	case Game::EnemyTypeID::EnemyID_ShijimiChou:
+		scale = 0.55f;
+		break;
+	case Game::EnemyTypeID::EnemyID_MiniHoudai:
+	case Game::EnemyTypeID::EnemyID_FminiHoudai:
+		scale = 1.6f;
+		break;
+	case Game::EnemyTypeID::EnemyID_Sokkuri:
+		scale = 0.9f;
+		break;
+	case Game::EnemyTypeID::EnemyID_Hana:
+		scale = 1.45f;
+		break;
+	case Game::EnemyTypeID::EnemyID_BombOtakara:
+		scale = 0.7f;
+		break;
+	case Game::EnemyTypeID::EnemyID_DangoMushi:
+		scale = 2.5f;
+		break;
+	case Game::EnemyTypeID::EnemyID_Tyre:
+	case Game::EnemyTypeID::EnemyID_BlackMan:
+		docreate = false;
+		return docreate;
+	default:
+		docreate = false;
+		return docreate;
+	}
+
+	scale *= argt->m_scale;
+
+	if (TSimple1::create(arg)) {
+		docreate = true;
+		m_emitters[0]->setScale(scale);
+	} else {
+		docreate = false;
+	}
+	return docreate;
 	/*
 	stwu     r1, -0x40(r1)
 	mflr     r0
@@ -2154,8 +2588,166 @@ lbl_803C82D4:
  * Address:	803C82F8
  * Size:	000318
  */
-void TEnemyWalkSmoke::create(efx::Arg*)
+bool TEnemyWalkSmoke::create(efx::Arg* arg)
 {
+	efx::ArgEnemyType* argt = static_cast<efx::ArgEnemyType*>(arg);
+	P2ASSERTLINE(17, (u8)(strcmp(argt->getName(), "ArgEnemyType")) == 0);
+	Vector3f pos = arg->m_position;
+
+	bool isSmall;
+	f32 scale;
+	switch (argt->m_typeID) {
+	case Game::EnemyTypeID::EnemyID_Kochappy:
+	case Game::EnemyTypeID::EnemyID_BlueKochappy:
+	case Game::EnemyTypeID::EnemyID_YellowKochappy:
+	case Game::EnemyTypeID::EnemyID_KumaKochappy:
+		scale   = 1.0f;
+		isSmall = true;
+		break;
+	case Game::EnemyTypeID::EnemyID_Chappy:
+	case Game::EnemyTypeID::EnemyID_BlueChappy:
+	case Game::EnemyTypeID::EnemyID_YellowChappy:
+	case Game::EnemyTypeID::EnemyID_KumaChappy:
+		scale   = 1.4f;
+		isSmall = false;
+		break;
+	case Game::EnemyTypeID::EnemyID_BluePom:
+	case Game::EnemyTypeID::EnemyID_RedPom:
+	case Game::EnemyTypeID::EnemyID_YellowPom:
+	case Game::EnemyTypeID::EnemyID_BlackPom:
+	case Game::EnemyTypeID::EnemyID_WhitePom:
+	case Game::EnemyTypeID::EnemyID_RandPom:
+	case Game::EnemyTypeID::EnemyID_Hiba:
+	case Game::EnemyTypeID::EnemyID_GasHiba:
+	case Game::EnemyTypeID::EnemyID_ElecHiba:
+	case Game::EnemyTypeID::EnemyID_Bomb:
+		break;
+	case Game::EnemyTypeID::EnemyID_Kogane:
+	case Game::EnemyTypeID::EnemyID_Wealthy:
+	case Game::EnemyTypeID::EnemyID_Fart:
+		break;
+	case Game::EnemyTypeID::EnemyID_UjiA:
+	case Game::EnemyTypeID::EnemyID_UjiB:
+	case Game::EnemyTypeID::EnemyID_Tobi:
+		break;
+	case Game::EnemyTypeID::EnemyID_Armor:
+		break;
+	case Game::EnemyTypeID::EnemyID_Qurione:
+		break;
+	case Game::EnemyTypeID::EnemyID_Frog:
+		break;
+	case Game::EnemyTypeID::EnemyID_MaroFrog:
+		break;
+	case Game::EnemyTypeID::EnemyID_Sarai:
+	case Game::EnemyTypeID::EnemyID_Demon:
+		break;
+	case Game::EnemyTypeID::EnemyID_Tank:
+	case Game::EnemyTypeID::EnemyID_Wtank:
+		scale   = 1.0f;
+		isSmall = true;
+		break;
+	case Game::EnemyTypeID::EnemyID_Catfish:
+		scale = 1.3f;
+		break;
+	case Game::EnemyTypeID::EnemyID_Tadpole:
+		break;
+	case Game::EnemyTypeID::EnemyID_ElecBug:
+		break;
+	case Game::EnemyTypeID::EnemyID_Mar:
+	case Game::EnemyTypeID::EnemyID_Hanachirashi:
+	case Game::EnemyTypeID::EnemyID_Kurage:
+	case Game::EnemyTypeID::EnemyID_OniKurage:
+		break;
+	case Game::EnemyTypeID::EnemyID_Baby:
+		break;
+	case Game::EnemyTypeID::EnemyID_FireChappy:
+		scale   = 1.4f;
+		isSmall = false;
+		break;
+	case Game::EnemyTypeID::EnemyID_SnakeCrow:
+		scale = 1.5f;
+		break;
+	case Game::EnemyTypeID::EnemyID_Egg:
+		break;
+	case Game::EnemyTypeID::EnemyID_PanModoki:
+		scale   = 1.3f;
+		isSmall = true;
+		break;
+	case Game::EnemyTypeID::EnemyID_OoPanModoki:
+		scale   = 1.0f;
+		isSmall = false;
+		break;
+	case Game::EnemyTypeID::EnemyID_Fuefuki:
+		scale   = 1.5f;
+		isSmall = true;
+		break;
+	case Game::EnemyTypeID::EnemyID_KingChappy:
+		scale   = 1.25f;
+		isSmall = false;
+		break;
+	case Game::EnemyTypeID::EnemyID_Miulin:
+		scale   = 0.9f;
+		isSmall = false;
+		break;
+	case Game::EnemyTypeID::EnemyID_BombSarai:
+		break;
+	case Game::EnemyTypeID::EnemyID_FireOtakara:
+	case Game::EnemyTypeID::EnemyID_WaterOtakara:
+	case Game::EnemyTypeID::EnemyID_GasOtakara:
+	case Game::EnemyTypeID::EnemyID_ElecOtakara:
+		scale   = 1.3f;
+		isSmall = true;
+		break;
+	case Game::EnemyTypeID::EnemyID_Jigumo:
+		break;
+	case Game::EnemyTypeID::EnemyID_Imomushi:
+		break;
+	case Game::EnemyTypeID::EnemyID_LeafChappy:
+		scale   = 0.6f;
+		isSmall = false;
+		break;
+	case Game::EnemyTypeID::EnemyID_TamagoMushi:
+		break;
+	case Game::EnemyTypeID::EnemyID_Kabuto:
+	case Game::EnemyTypeID::EnemyID_Rkabuto:
+	case Game::EnemyTypeID::EnemyID_Fkabuto:
+		scale   = 1.6f;
+		isSmall = false;
+		break;
+	case Game::EnemyTypeID::EnemyID_MiniHoudai:
+	case Game::EnemyTypeID::EnemyID_FminiHoudai:
+		scale   = 1.0f;
+		isSmall = false;
+		break;
+	case Game::EnemyTypeID::EnemyID_Sokkuri:
+		break;
+	case Game::EnemyTypeID::EnemyID_Hana:
+		scale   = 1.6f;
+		isSmall = true;
+		break;
+	case Game::EnemyTypeID::EnemyID_BombOtakara:
+		scale   = 1.3f;
+		isSmall = true;
+		break;
+	case Game::EnemyTypeID::EnemyID_DangoMushi:
+		scale   = 1.35f;
+		isSmall = false;
+		break;
+	case Game::EnemyTypeID::EnemyID_Tyre:
+		break;
+	case Game::EnemyTypeID::EnemyID_BlackMan:
+		scale   = 1.0;
+		isSmall = false;
+	}
+
+	efx::ArgScale args(pos, scale * argt->m_scale);
+	if (!isSmall) {
+		efx::TEnemyWalkSmokeS effect(PID_EnemyWalkSmokeS);
+		return effect.create(&args);
+	} else if (isSmall) {
+		efx::TEnemyWalkSmokeM effect(PID_EnemyWalkSmokeM);
+		return effect.create(&args);
+	}
 	/*
 	stwu     r1, -0x60(r1)
 	mflr     r0
@@ -2487,8 +3079,21 @@ lbl_803C85F8:
  * Address:	803C8610
  * Size:	0000DC
  */
-void TEnemyWalkSmokeM::create(efx::Arg*)
+bool TEnemyWalkSmokeM::create(efx::Arg* arg)
 {
+	efx::ArgScale* args = static_cast<efx::ArgScale*>(arg);
+	P2ASSERTLINE(17, (u8)(strcmp(args->getName(), "ArgScale")) == 0);
+
+	f32 scale = args->m_scale;
+	bool docreate;
+
+	if (TSimple1::create(arg)) {
+		docreate = true;
+		m_emitters[0]->setScale(scale);
+	} else {
+		docreate = false;
+	}
+	return docreate;
 	/*
 	stwu     r1, -0x40(r1)
 	mflr     r0
@@ -2559,8 +3164,19 @@ lbl_803C86C8:
  * Address:	803C86EC
  * Size:	000078
  */
-void TEnemyWalkSmokeS::create(efx::Arg*)
+bool TEnemyWalkSmokeS::create(efx::Arg* arg)
 {
+	efx::ArgScale* args = static_cast<efx::ArgScale*>(arg);
+	f32 scale           = args->m_scale;
+	bool docreate;
+
+	if (TSimple1::create(arg)) {
+		docreate = true;
+		m_emitters[0]->setScale(scale);
+	} else {
+		docreate = false;
+	}
+	return docreate;
 	/*
 	stwu     r1, -0x30(r1)
 	mflr     r0
@@ -2604,8 +3220,17 @@ lbl_803C8748:
  * Address:	803C8764
  * Size:	000068
  */
-void TEnemyDownSmoke::create(efx::Arg*)
+bool TEnemyDownSmoke::create(efx::Arg* arg)
 {
+	efx::ArgScale* args = static_cast<efx::ArgScale*>(arg);
+	bool docreate;
+	if (TSimple1::create(arg)) {
+		docreate = true;
+		m_emitters[0]->setScale(args->m_scale);
+	} else {
+		docreate = false;
+	}
+	return docreate;
 	/*
 	stwu     r1, -0x20(r1)
 	mflr     r0
@@ -2645,8 +3270,23 @@ lbl_803C87B8:
  * Address:	803C87CC
  * Size:	00010C
  */
-void TEnemyDownWat::create(efx::Arg*)
+bool TEnemyDownWat::create(efx::Arg* arg)
 {
+	efx::ArgScale* args = static_cast<efx::ArgScale*>(arg);
+	P2ASSERTLINE(734, (u8)(strcmp(args->getName(), "ArgScale")) == 0);
+
+	f32 scale = args->m_scale;
+	bool docreate;
+
+	if (TSimple3::create(arg)) {
+		docreate = true;
+		m_emitters[0]->setScale(scale);
+		m_emitters[1]->setScale(scale);
+		m_emitters[2]->setScale(scale);
+	} else {
+		docreate = false;
+	}
+	return docreate;
 	/*
 	stwu     r1, -0x40(r1)
 	mflr     r0
@@ -2729,8 +3369,22 @@ lbl_803C88B4:
  * Address:	803C88D8
  * Size:	0000F4
  */
-void TEnemyDive::create(efx::Arg*)
+bool TEnemyDive::create(efx::Arg* arg)
 {
+	efx::ArgScale* args = static_cast<efx::ArgScale*>(arg);
+	P2ASSERTLINE(750, (u8)(strcmp(args->getName(), "ArgScale")) == 0);
+
+	f32 scale = args->m_scale;
+	bool docreate;
+
+	if (TSimple2::create(arg)) {
+		docreate = true;
+		m_emitters[0]->setScale(scale);
+		m_emitters[1]->setScale(scale);
+	} else {
+		docreate = false;
+	}
+	return docreate;
 	/*
 	stwu     r1, -0x40(r1)
 	mflr     r0
@@ -2807,8 +3461,216 @@ lbl_803C89A8:
  * Address:	803C89CC
  * Size:	0003B8
  */
-TEnemyBombScaleTable::TEnemyBombScaleTable(Game::EnemyTypeID::EEnemyTypeID)
+TEnemyBombScaleTable::TEnemyBombScaleTable(Game::EnemyTypeID::EEnemyTypeID id)
 {
+	switch (id) {
+	case Game::EnemyTypeID::EnemyID_Kochappy:
+	case Game::EnemyTypeID::EnemyID_BlueKochappy:
+	case Game::EnemyTypeID::EnemyID_YellowKochappy:
+	case Game::EnemyTypeID::EnemyID_KumaKochappy:
+		m_type  = 2;
+		m_scale = 1.4f;
+		break;
+	case Game::EnemyTypeID::EnemyID_Chappy:
+	case Game::EnemyTypeID::EnemyID_BlueChappy:
+	case Game::EnemyTypeID::EnemyID_YellowChappy:
+	case Game::EnemyTypeID::EnemyID_KumaChappy:
+		m_type  = 1;
+		m_scale = 0.92f;
+		break;
+	case Game::EnemyTypeID::EnemyID_BluePom:
+	case Game::EnemyTypeID::EnemyID_RedPom:
+	case Game::EnemyTypeID::EnemyID_YellowPom:
+	case Game::EnemyTypeID::EnemyID_BlackPom:
+	case Game::EnemyTypeID::EnemyID_WhitePom:
+	case Game::EnemyTypeID::EnemyID_RandPom:
+		m_type  = 1;
+		m_scale = 1.0f;
+		break;
+	case Game::EnemyTypeID::EnemyID_Kogane:
+	case Game::EnemyTypeID::EnemyID_Wealthy:
+	case Game::EnemyTypeID::EnemyID_Fart:
+		m_type  = 2;
+		m_scale = 1.25f;
+		break;
+	case Game::EnemyTypeID::EnemyID_UjiA:
+	case Game::EnemyTypeID::EnemyID_UjiB:
+	case Game::EnemyTypeID::EnemyID_Tobi:
+		m_type  = 2;
+		m_scale = 1.0f;
+		break;
+	case Game::EnemyTypeID::EnemyID_Armor:
+		m_type  = 1;
+		m_scale = 0.85f;
+		break;
+	case Game::EnemyTypeID::EnemyID_Qurione:
+		m_type  = 2;
+		m_scale = 1.1f;
+		break;
+	case Game::EnemyTypeID::EnemyID_Frog:
+		m_type  = 1;
+		m_scale = 0.7f;
+		break;
+	case Game::EnemyTypeID::EnemyID_MaroFrog:
+		m_type  = 1;
+		m_scale = 0.6f;
+		break;
+	case Game::EnemyTypeID::EnemyID_Hiba:
+	case Game::EnemyTypeID::EnemyID_GasHiba:
+	case Game::EnemyTypeID::EnemyID_ElecHiba:
+		m_type  = 2;
+		m_scale = 1.0f;
+		break;
+	case Game::EnemyTypeID::EnemyID_Sarai:
+	case Game::EnemyTypeID::EnemyID_Demon:
+		m_type  = 1;
+		m_scale = 0.65f;
+		break;
+	case Game::EnemyTypeID::EnemyID_Tank:
+	case Game::EnemyTypeID::EnemyID_Wtank:
+		m_type  = 1;
+		m_scale = 0.6f;
+		break;
+	case Game::EnemyTypeID::EnemyID_Catfish:
+		m_type  = 1;
+		m_scale = 0.75f;
+		break;
+	case Game::EnemyTypeID::EnemyID_Tadpole:
+		m_type  = 2;
+		m_scale = 1.2f;
+		break;
+	case Game::EnemyTypeID::EnemyID_ElecBug:
+		m_type  = 1;
+		m_scale = 0.65f;
+		break;
+	case Game::EnemyTypeID::EnemyID_Mar:
+		m_type  = 1;
+		m_scale = 1.2f;
+		break;
+	case Game::EnemyTypeID::EnemyID_Baby:
+		m_type  = 2;
+		m_scale = 1.0f;
+		break;
+	case Game::EnemyTypeID::EnemyID_FireChappy:
+		m_type  = 1;
+		m_scale = 0.92f;
+		break;
+	case Game::EnemyTypeID::EnemyID_SnakeCrow:
+	case Game::EnemyTypeID::EnemyID_SnakeWhole:
+		m_type  = 0;
+		m_scale = 0.0f;
+		break;
+	case Game::EnemyTypeID::EnemyID_Bomb:
+		m_type  = 1;
+		m_scale = 0.65f;
+		break;
+	case Game::EnemyTypeID::EnemyID_Egg:
+		m_type  = 2;
+		m_scale = 1.5f;
+		break;
+	case Game::EnemyTypeID::EnemyID_PanModoki:
+		m_type  = 2;
+		m_scale = 1.6f;
+		break;
+	case Game::EnemyTypeID::EnemyID_OoPanModoki:
+		m_type  = 1;
+		m_scale = 0.85f;
+		break;
+	case Game::EnemyTypeID::EnemyID_Fuefuki:
+		m_type  = 2;
+		m_scale = 1.4f;
+		break;
+	case Game::EnemyTypeID::EnemyID_KingChappy:
+		m_type  = 1;
+		m_scale = 1.25f;
+		break;
+	case Game::EnemyTypeID::EnemyID_Miulin:
+		m_type  = 1;
+		m_scale = 0.8f;
+		break;
+	case Game::EnemyTypeID::EnemyID_Hanachirashi:
+		m_type  = 1;
+		m_scale = 0.72f;
+		break;
+	case Game::EnemyTypeID::EnemyID_Kurage:
+		m_type  = 1;
+		m_scale = 0.7f;
+		break;
+	case Game::EnemyTypeID::EnemyID_BombSarai:
+		m_type  = 1;
+		m_scale = 0.8f;
+		break;
+	case Game::EnemyTypeID::EnemyID_FireOtakara:
+	case Game::EnemyTypeID::EnemyID_WaterOtakara:
+	case Game::EnemyTypeID::EnemyID_GasOtakara:
+	case Game::EnemyTypeID::EnemyID_ElecOtakara:
+		m_type  = 2;
+		m_scale = 1.3f;
+		break;
+	case Game::EnemyTypeID::EnemyID_Jigumo:
+		m_type  = 2;
+		m_scale = 1.5f;
+		break;
+	case Game::EnemyTypeID::EnemyID_Imomushi:
+		m_type  = 0;
+		m_scale = 0.0f;
+		break;
+	case Game::EnemyTypeID::EnemyID_LeafChappy:
+		m_type  = 2;
+		m_scale = 1.65f;
+		break;
+	case Game::EnemyTypeID::EnemyID_TamagoMushi:
+		m_type  = 2;
+		m_scale = 1.2f;
+		break;
+	case Game::EnemyTypeID::EnemyID_UmiMushi:
+		m_type  = 1;
+		m_scale = 1.2f;
+		break;
+	case Game::EnemyTypeID::EnemyID_OniKurage:
+		m_type  = 1;
+		m_scale = 0.9f;
+		break;
+	case Game::EnemyTypeID::EnemyID_Kabuto:
+	case Game::EnemyTypeID::EnemyID_Rkabuto:
+	case Game::EnemyTypeID::EnemyID_Fkabuto:
+		m_type  = 1;
+		m_scale = 0.8f;
+		break;
+	case Game::EnemyTypeID::EnemyID_ShijimiChou:
+		m_type  = 2;
+		m_scale = 0.9f;
+		break;
+	case Game::EnemyTypeID::EnemyID_MiniHoudai:
+	case Game::EnemyTypeID::EnemyID_FminiHoudai:
+		m_type  = 1;
+		m_scale = 0.85f;
+		break;
+	case Game::EnemyTypeID::EnemyID_Sokkuri:
+		m_type  = 2;
+		m_scale = 1.4f;
+		break;
+	case Game::EnemyTypeID::EnemyID_Hana:
+		m_type  = 1;
+		m_scale = 0.9f;
+		break;
+	case Game::EnemyTypeID::EnemyID_BombOtakara:
+		m_type  = 2;
+		m_scale = 1.3f;
+		break;
+	case Game::EnemyTypeID::EnemyID_DangoMushi:
+		m_type  = 1;
+		m_scale = 1.45f;
+		break;
+	case Game::EnemyTypeID::EnemyID_BlackMan:
+		m_type  = 1;
+		m_scale = 0.75f;
+		break;
+	default:
+		m_type  = 0;
+		m_scale = 0.0f;
+		break;
+	}
 	/*
 	cmplwi   r4, 0x63
 	bgt      lbl_803C8D70
@@ -3194,8 +4056,31 @@ lbl_803C8D70:
  * Address:	803C8D84
  * Size:	0001EC
  */
-void TEnemyBomb::create(efx::Arg*)
+bool TEnemyBomb::create(efx::Arg* arg)
 {
+	efx::ArgEnemyType* argt = static_cast<efx::ArgEnemyType*>(arg);
+	P2ASSERTLINE(750, (u8)(strcmp(argt->getName(), "ArgEnemyType")) == 0);
+	Vector3f pos = arg->m_position;
+	TEnemyBombScaleTable data(argt->m_typeID);
+	f32 scale = argt->m_scale * data.m_scale;
+
+	efx::ArgScale args(pos, scale);
+
+	if (data.m_type == 0) {
+		return false;
+	} else {
+		args.m_position = pos;
+		if (data.m_type == 1) {
+			efx::TEnemyBombM effect;
+			return effect.create(&args);
+		} else if (data.m_type == 2) {
+			efx::TEnemyBombS effect;
+			return effect.create(&args);
+		} else {
+			return false;
+		}
+	}
+
 	/*
 	stwu     r1, -0x80(r1)
 	mflr     r0
@@ -3320,8 +4205,24 @@ lbl_803C8F58:
  * Address:	803C8F70
  * Size:	000124
  */
-void TEnemyBombM::create(efx::Arg*)
+bool TEnemyBombM::create(efx::Arg* arg)
 {
+	efx::ArgScale* args = static_cast<efx::ArgScale*>(arg);
+	P2ASSERTLINE(750, (u8)(strcmp(args->getName(), "ArgScale")) == 0);
+
+	f32 scale = args->m_scale;
+	bool docreate;
+
+	if (TSimple4::create(arg)) {
+		docreate = true;
+		m_emitters[0]->setScale(scale);
+		m_emitters[1]->setScale(scale);
+		m_emitters[2]->setScale(scale);
+		m_emitters[3]->setScale(scale);
+	} else {
+		docreate = false;
+	}
+	return docreate;
 	/*
 	stwu     r1, -0x40(r1)
 	mflr     r0
@@ -3410,8 +4311,24 @@ lbl_803C9070:
  * Address:	803C9094
  * Size:	000124
  */
-void TEnemyBombS::create(efx::Arg*)
+bool TEnemyBombS::create(efx::Arg* arg)
 {
+	efx::ArgScale* args = static_cast<efx::ArgScale*>(arg);
+	P2ASSERTLINE(750, (u8)(strcmp(args->getName(), "ArgScale")) == 0);
+
+	f32 scale = args->m_scale;
+	bool docreate;
+
+	if (TSimple4::create(arg)) {
+		docreate = true;
+		m_emitters[0]->setScale(scale);
+		m_emitters[1]->setScale(scale);
+		m_emitters[2]->setScale(scale);
+		m_emitters[3]->setScale(scale);
+	} else {
+		docreate = false;
+	}
+	return docreate;
 	/*
 	stwu     r1, -0x40(r1)
 	mflr     r0
@@ -3500,8 +4417,30 @@ lbl_803C9194:
  * Address:	803C91B8
  * Size:	0001A4
  */
-void TEnemyApsmoke::create(efx::Arg*)
+bool TEnemyApsmoke::create(efx::Arg* arg)
 {
+	efx::ArgEnemyType* argt = static_cast<efx::ArgEnemyType*>(arg);
+	P2ASSERTLINE(750, (u8)(strcmp(argt->getName(), "ArgEnemyType")) == 0);
+	Vector3f pos = arg->m_position;
+	TEnemyBombScaleTable data(argt->m_typeID);
+	f32 scale = argt->m_scale * data.m_scale;
+
+	efx::ArgScale args(pos, scale);
+
+	if (data.m_type == 0) {
+		return false;
+	} else {
+		args.m_position = pos;
+		if (data.m_type == 1) {
+			efx::TEnemyApsmokeM effect;
+			return effect.create(&args);
+		} else if (data.m_type == 2) {
+			efx::TEnemyApsmokeS effect;
+			return effect.create(&args);
+		} else {
+			return false;
+		}
+	}
 	/*
 	stwu     r1, -0x60(r1)
 	mflr     r0
@@ -3608,8 +4547,21 @@ lbl_803C9344:
  * Address:	803C935C
  * Size:	0000DC
  */
-void TEnemyApsmokeM::create(efx::Arg*)
+bool TEnemyApsmokeM::create(efx::Arg* arg)
 {
+	efx::ArgScale* args = static_cast<efx::ArgScale*>(arg);
+	P2ASSERTLINE(750, (u8)(strcmp(args->getName(), "ArgScale")) == 0);
+
+	f32 scale = args->m_scale;
+	bool docreate;
+
+	if (TSimple1::create(arg)) {
+		docreate = true;
+		m_emitters[0]->setScale(scale);
+	} else {
+		docreate = false;
+	}
+	return docreate;
 	/*
 	stwu     r1, -0x40(r1)
 	mflr     r0
@@ -3680,8 +4632,21 @@ lbl_803C9414:
  * Address:	803C9438
  * Size:	0000DC
  */
-void TEnemyApsmokeS::create(efx::Arg*)
+bool TEnemyApsmokeS::create(efx::Arg* arg)
 {
+	efx::ArgScale* args = static_cast<efx::ArgScale*>(arg);
+	P2ASSERTLINE(750, (u8)(strcmp(args->getName(), "ArgScale")) == 0);
+
+	f32 scale = args->m_scale;
+	bool docreate;
+
+	if (TSimple1::create(arg)) {
+		docreate = true;
+		m_emitters[0]->setScale(scale);
+	} else {
+		docreate = false;
+	}
+	return docreate;
 	/*
 	stwu     r1, -0x40(r1)
 	mflr     r0
@@ -3752,8 +4717,21 @@ lbl_803C94F0:
  * Address:	803C9514
  * Size:	0000DC
  */
-void TEnemyHamonM::create(efx::Arg*)
+bool TEnemyHamonM::create(efx::Arg* arg)
 {
+	efx::ArgScale* args = static_cast<efx::ArgScale*>(arg);
+	P2ASSERTLINE(750, (u8)(strcmp(args->getName(), "ArgScale")) == 0);
+
+	f32 scale = args->m_scale;
+	bool docreate;
+
+	if (TSync::create(arg)) {
+		docreate = true;
+		m_emitter->setScale(scale);
+	} else {
+		docreate = false;
+	}
+	return docreate;
 	/*
 	stwu     r1, -0x40(r1)
 	mflr     r0
@@ -3824,8 +4802,21 @@ lbl_803C95CC:
  * Address:	803C95F0
  * Size:	0000DC
  */
-void TEnemyHamonMInd::create(efx::Arg*)
+bool TEnemyHamonMInd::create(efx::Arg* arg)
 {
+	efx::ArgScale* args = static_cast<efx::ArgScale*>(arg);
+	P2ASSERTLINE(750, (u8)(strcmp(args->getName(), "ArgScale")) == 0);
+
+	f32 scale = args->m_scale;
+	bool docreate;
+
+	if (TSync::create(arg)) {
+		docreate = true;
+		m_emitter->setScale(scale);
+	} else {
+		docreate = false;
+	}
+	return docreate;
 	/*
 	stwu     r1, -0x40(r1)
 	mflr     r0
@@ -3896,8 +4887,178 @@ lbl_803C96A8:
  * Address:	803C96CC
  * Size:	0002FC
  */
-void TEnemyHamonChasePos::create(efx::Arg*)
+bool TEnemyHamonChasePos::create(efx::Arg* arg)
 {
+	efx::ArgEnemyType* argt = static_cast<efx::ArgEnemyType*>(arg);
+	P2ASSERTLINE(750, (u8)(strcmp(argt->getName(), "ArgEnemyType")) == 0);
+	Vector3f pos = arg->m_position;
+
+	bool docreate;
+	f32 scale;
+	switch (argt->m_typeID) {
+	case Game::EnemyTypeID::EnemyID_Kochappy:
+	case Game::EnemyTypeID::EnemyID_BlueKochappy:
+	case Game::EnemyTypeID::EnemyID_YellowKochappy:
+	case Game::EnemyTypeID::EnemyID_KumaKochappy:
+		scale = 0.45f;
+		break;
+	case Game::EnemyTypeID::EnemyID_Chappy:
+	case Game::EnemyTypeID::EnemyID_BlueChappy:
+	case Game::EnemyTypeID::EnemyID_YellowChappy:
+	case Game::EnemyTypeID::EnemyID_KumaChappy:
+		scale = 1.3f;
+		break;
+	case Game::EnemyTypeID::EnemyID_Kogane:
+		scale = 0.75f;
+		break;
+	case Game::EnemyTypeID::EnemyID_Wealthy:
+	case Game::EnemyTypeID::EnemyID_Fart:
+		scale = 0.7f;
+		break;
+	case Game::EnemyTypeID::EnemyID_UjiA:
+	case Game::EnemyTypeID::EnemyID_UjiB:
+	case Game::EnemyTypeID::EnemyID_Tobi:
+		scale = 0.45f;
+		break;
+	case Game::EnemyTypeID::EnemyID_Armor:
+		scale = 1.4f;
+		break;
+	case Game::EnemyTypeID::EnemyID_Qurione:
+		docreate = false;
+		return docreate;
+	case Game::EnemyTypeID::EnemyID_Frog:
+		scale = 1.00f;
+		break;
+	case Game::EnemyTypeID::EnemyID_MaroFrog:
+		scale = 1.0f;
+		break;
+	case Game::EnemyTypeID::EnemyID_Sarai:
+	case Game::EnemyTypeID::EnemyID_Demon:
+		scale = 0.9f;
+		break;
+	case Game::EnemyTypeID::EnemyID_Tank:
+	case Game::EnemyTypeID::EnemyID_Wtank:
+		scale = 0.8f;
+		break;
+	case Game::EnemyTypeID::EnemyID_Catfish:
+		scale = 1.0f;
+		break;
+	case Game::EnemyTypeID::EnemyID_Tadpole:
+		scale = 0.55f;
+		break;
+	case Game::EnemyTypeID::EnemyID_ElecBug:
+		scale = 0.9f;
+		break;
+	case Game::EnemyTypeID::EnemyID_Mar:
+		scale = 2.0f;
+		break;
+	case Game::EnemyTypeID::EnemyID_Baby:
+		scale = 0.65f;
+		break;
+	case Game::EnemyTypeID::EnemyID_FireChappy:
+		scale = 1.3f;
+		break;
+	case Game::EnemyTypeID::EnemyID_SnakeCrow:
+		scale = 1.3f;
+		break;
+	case Game::EnemyTypeID::EnemyID_Egg:
+		scale = 0.65f;
+		break;
+	case Game::EnemyTypeID::EnemyID_PanModoki:
+		scale = 0.8f;
+		break;
+	case Game::EnemyTypeID::EnemyID_OoPanModoki:
+		scale = 1.35f;
+		break;
+	case Game::EnemyTypeID::EnemyID_Fuefuki:
+		scale = 1.0f;
+		break;
+	case Game::EnemyTypeID::EnemyID_KingChappy:
+		scale = 1.85f;
+		break;
+	case Game::EnemyTypeID::EnemyID_Miulin:
+		scale = 1.15f;
+		break;
+	case Game::EnemyTypeID::EnemyID_Hanachirashi:
+		scale = 1.5f;
+		break;
+	case Game::EnemyTypeID::EnemyID_Kurage:
+		scale = 1.35f;
+		break;
+	case Game::EnemyTypeID::EnemyID_BombSarai:
+		scale = 1.4f;
+		break;
+	case Game::EnemyTypeID::EnemyID_FireOtakara:
+	case Game::EnemyTypeID::EnemyID_WaterOtakara:
+	case Game::EnemyTypeID::EnemyID_GasOtakara:
+	case Game::EnemyTypeID::EnemyID_ElecOtakara:
+		scale = 1.1f;
+		break;
+	case Game::EnemyTypeID::EnemyID_Jigumo:
+		scale = 0.9f;
+		break;
+	case Game::EnemyTypeID::EnemyID_Imomushi:
+		scale = 0.6f;
+		break;
+	case Game::EnemyTypeID::EnemyID_LeafChappy:
+		scale = 0.75f;
+		break;
+	case Game::EnemyTypeID::EnemyID_TamagoMushi:
+		scale = 0.6f;
+		break;
+	case Game::EnemyTypeID::EnemyID_SnakeWhole:
+		scale = 1.3f;
+		break;
+	case Game::EnemyTypeID::EnemyID_UmiMushi:
+		docreate = false;
+		return docreate;
+	case Game::EnemyTypeID::EnemyID_OniKurage:
+		scale = 2.0f;
+		break;
+	case Game::EnemyTypeID::EnemyID_Kabuto:
+	case Game::EnemyTypeID::EnemyID_Rkabuto:
+	case Game::EnemyTypeID::EnemyID_Fkabuto:
+		scale = 1.3f;
+		break;
+	case Game::EnemyTypeID::EnemyID_ShijimiChou:
+		scale = 0.9f;
+		break;
+	case Game::EnemyTypeID::EnemyID_MiniHoudai:
+	case Game::EnemyTypeID::EnemyID_FminiHoudai:
+		scale = 1.35f;
+		break;
+	case Game::EnemyTypeID::EnemyID_Sokkuri:
+		scale = 1.0f;
+		break;
+	case Game::EnemyTypeID::EnemyID_Hana:
+		scale = 1.8f;
+		break;
+	case Game::EnemyTypeID::EnemyID_BombOtakara:
+		scale = 1.1f;
+		break;
+	case Game::EnemyTypeID::EnemyID_DangoMushi:
+		scale = 2.8f;
+		break;
+	case Game::EnemyTypeID::EnemyID_Tyre:
+		scale = 1.5f;
+		break;
+	case Game::EnemyTypeID::EnemyID_BlackMan:
+		scale = 1.5f;
+		break;
+	default:
+		docreate = false;
+		return docreate;
+	}
+
+	scale *= argt->m_scale;
+	ArgScale arg2(pos, scale);
+	if (!m_hamonM.create(&arg2)) {
+		return false;
+	} else if (scale < 0.75f || m_hamonMInd.create(&arg2)) {
+		return true;
+	} else {
+		return false;
+	}
 	/*
 	stwu     r1, -0x60(r1)
 	mflr     r0
@@ -4244,15 +5405,24 @@ lbl_803C99A4:
 	*/
 }
 
-} // namespace efx
-
 /*
  * --INFO--
  * Address:	803C99C8
  * Size:	000138
  */
-void update__Q23efx11TEnemyHamonFR10Vector3f(void)
+void TEnemyHamon::update(Vector3f& pos)
 {
+	if (m_seaHeightPtr && m_active) {
+		f32 y  = *m_seaHeightPtr - pos.y;
+		f32 y2 = getLimitDepth_();
+		if (y > 0.0f || m_scale * y2 <= y) {
+			fade();
+		} else {
+			m_position = pos;
+			efx::ArgEnemyType arg(Vector3f::zero, m_enemyID, m_scale);
+			create(&arg);
+		}
+	}
 	/*
 	stwu     r1, -0x50(r1)
 	mflr     r0
@@ -4339,15 +5509,20 @@ lbl_803C9AE0:
 	*/
 }
 
-namespace efx {
-
 /*
  * --INFO--
  * Address:	803C9B00
  * Size:	0000A0
  */
-void TEnemyHamon::create(efx::Arg*)
+bool TEnemyHamon::create(efx::Arg* arg)
 {
+	efx::ArgEnemyType* argt = static_cast<efx::ArgEnemyType*>(arg);
+	P2ASSERTLINE(750, (u8)(strcmp(argt->getName(), "ArgEnemyType")) == 0);
+
+	m_enemyID = argt->m_typeID;
+	m_scale   = argt->m_scale;
+	m_active  = true;
+	return true;
 	/*
 	stwu     r1, -0x20(r1)
 	mflr     r0
@@ -4399,8 +5574,94 @@ lbl_803C9B68:
  * Address:	803C9BA0
  * Size:	000140
  */
-void TEnemyHamon::getLimitDepth_(void)
+f32 TEnemyHamon::getLimitDepth_()
 {
+	switch (m_enemyID) {
+	case Game::EnemyTypeID::EnemyID_KumaKochappy:
+		return 27.0f;
+	case Game::EnemyTypeID::EnemyID_Chappy:
+	case Game::EnemyTypeID::EnemyID_KumaChappy:
+	case Game::EnemyTypeID::EnemyID_BlueChappy:
+	case Game::EnemyTypeID::EnemyID_YellowChappy:
+		return 80.0f;
+	case Game::EnemyTypeID::EnemyID_Kogane:
+		return 20.0f;
+	case Game::EnemyTypeID::EnemyID_Wealthy:
+		return 15.0f;
+	case Game::EnemyTypeID::EnemyID_Fart:
+		return 15.0f;
+	case Game::EnemyTypeID::EnemyID_UjiA:
+	case Game::EnemyTypeID::EnemyID_UjiB:
+	case Game::EnemyTypeID::EnemyID_Tobi:
+		return 12.0f;
+	case Game::EnemyTypeID::EnemyID_Armor:
+		return 40.0f;
+	case Game::EnemyTypeID::EnemyID_Frog:
+		return 40.0f;
+	case Game::EnemyTypeID::EnemyID_MaroFrog:
+		return 30.0f;
+	case Game::EnemyTypeID::EnemyID_Sarai:
+	case Game::EnemyTypeID::EnemyID_Demon:
+		return 40.0f;
+	case Game::EnemyTypeID::EnemyID_Tank:
+	case Game::EnemyTypeID::EnemyID_Wtank:
+		return 34.0f;
+	case Game::EnemyTypeID::EnemyID_Catfish:
+		return 30.0f;
+	case Game::EnemyTypeID::EnemyID_Tadpole:
+		return 17.0f;
+	case Game::EnemyTypeID::EnemyID_ElecBug:
+		return 27.0f;
+	case Game::EnemyTypeID::EnemyID_Mar:
+		return 80.0f;
+	case Game::EnemyTypeID::EnemyID_Baby:
+		return 20.0f;
+	case Game::EnemyTypeID::EnemyID_FireChappy:
+		return 80.0f;
+	case Game::EnemyTypeID::EnemyID_Egg:
+		return 26.0f;
+	case Game::EnemyTypeID::EnemyID_PanModoki:
+		return 35.0f;
+	case Game::EnemyTypeID::EnemyID_OoPanModoki:
+		return 80.0f;
+	case Game::EnemyTypeID::EnemyID_Fuefuki:
+		return 40.0f;
+	case Game::EnemyTypeID::EnemyID_Miulin:
+		return 60.0f;
+	case Game::EnemyTypeID::EnemyID_Hanachirashi:
+		return 50.0f;
+	case Game::EnemyTypeID::EnemyID_Kurage:
+		return 60.0f;
+	case Game::EnemyTypeID::EnemyID_BombSarai:
+		return 110.0f;
+	case Game::EnemyTypeID::EnemyID_FireOtakara:
+	case Game::EnemyTypeID::EnemyID_WaterOtakara:
+	case Game::EnemyTypeID::EnemyID_GasOtakara:
+	case Game::EnemyTypeID::EnemyID_ElecOtakara:
+		return 45.0f;
+	case Game::EnemyTypeID::EnemyID_Jigumo:
+		return 40.0f;
+	case Game::EnemyTypeID::EnemyID_Imomushi:
+		return 15.0f;
+	case Game::EnemyTypeID::EnemyID_LeafChappy:
+		return 20.0f;
+	case Game::EnemyTypeID::EnemyID_TamagoMushi:
+		return 20.0f;
+	case Game::EnemyTypeID::EnemyID_OniKurage:
+		return 100.0f;
+	case Game::EnemyTypeID::EnemyID_Kabuto:
+	case Game::EnemyTypeID::EnemyID_Fkabuto:
+	case Game::EnemyTypeID::EnemyID_Rkabuto:
+		return 55.0f;
+	case Game::EnemyTypeID::EnemyID_ShijimiChou:
+		return 20.0f;
+	case Game::EnemyTypeID::EnemyID_Sokkuri:
+		return 12.0f;
+	case Game::EnemyTypeID::EnemyID_BombOtakara:
+		return 45.0f;
+	default:
+		return 10000.0f;
+	}
 	/*
 	lwz      r0, 0x44(r3)
 	lfs      f1, lbl_8051F990@sda21(r2)
@@ -4598,79 +5859,79 @@ lbl_803C9CDC:
  * Address:	803C9CE0
  * Size:	000004
  */
-void TEnemyApsmoke::forceKill(void) { }
+void TEnemyApsmoke::forceKill() { }
 
 /*
  * --INFO--
  * Address:	803C9CE4
  * Size:	000004
  */
-void TEnemyApsmoke::fade(void) { }
+void TEnemyApsmoke::fade() { }
 
 /*
  * --INFO--
  * Address:	803C9CE8
  * Size:	000004
  */
-void TEnemyBomb::forceKill(void) { }
+void TEnemyBomb::forceKill() { }
 
 /*
  * --INFO--
  * Address:	803C9CEC
  * Size:	000004
  */
-void TEnemyBomb::fade(void) { }
+void TEnemyBomb::fade() { }
 
 /*
  * --INFO--
  * Address:	803C9CF0
  * Size:	000004
  */
-void TEnemyWalkSmoke::forceKill(void) { }
+void TEnemyWalkSmoke::forceKill() { }
 
 /*
  * --INFO--
  * Address:	803C9CF4
  * Size:	000004
  */
-void TEnemyWalkSmoke::fade(void) { }
+void TEnemyWalkSmoke::fade() { }
 
 /*
  * --INFO--
  * Address:	803C9CF8
  * Size:	000008
  */
-@4 @efx::TEnemyPiyo::~TEnemyPiyo(void)
-{
-	/*
-	addi     r3, r3, -4
-	b        __dt__Q23efx10TEnemyPiyoFv
-	*/
-}
+//@4 @efx::TEnemyPiyo::~TEnemyPiyo()
+//{
+/*
+addi     r3, r3, -4
+b        __dt__Q23efx10TEnemyPiyoFv
+*/
+//}
 
 /*
  * --INFO--
  * Address:	803C9D00
  * Size:	000008
  */
-@4 @efx::TEnemyHamonM::~TEnemyHamonM(void)
-{
-	/*
-	addi     r3, r3, -4
-	b        __dt__Q23efx12TEnemyHamonMFv
-	*/
-}
+//@4 @efx::TEnemyHamonM::~TEnemyHamonM()
+//{
+/*
+addi     r3, r3, -4
+b        __dt__Q23efx12TEnemyHamonMFv
+*/
+//}
 
 /*
  * --INFO--
  * Address:	803C9D08
  * Size:	000008
  */
-@4 @efx::TEnemyHamonMInd::~TEnemyHamonMInd(void)
-{
-	/*
-	addi     r3, r3, -4
-	b        __dt__Q23efx15TEnemyHamonMIndFv
-	*/
-}
+//@4 @efx::TEnemyHamonMInd::~TEnemyHamonMInd()
+//{
+/*
+addi     r3, r3, -4
+b        __dt__Q23efx15TEnemyHamonMIndFv
+*/
+//}
 } // namespace efx
