@@ -1,293 +1,18 @@
 #include "ebi/title/Entities/TChappy.h"
 #include "ebi/title/TTitle.h"
+#include "ebi/Geometry.h"
 #include "JSystem/J3D/J3DModel.h"
 #include "JSystem/J3D/J3DModelLoader.h"
 #include "Dolphin/rand.h"
 #include "trig.h"
 #include "Controller.h"
-
-/*
-    Generated from dpostproc
-
-    .section .ctors, "wa"  # 0x80472F00 - 0x804732C0
-        .4byte __sinit_ebiP2TitleChappy_cpp
-
-    .section .rodata  # 0x804732E0 - 0x8049E220
-    .global lbl_80497628
-    lbl_80497628:
-        .4byte 0x00000000
-        .4byte 0x00000000
-        .4byte 0x00000000
-        .4byte 0x65626950
-        .4byte 0x32546974
-        .4byte 0x6C654368
-        .4byte 0x61707079
-        .4byte 0x00000000
-    .global lbl_80497648
-    lbl_80497648:
-        .4byte 0x43686170
-        .4byte 0x70794D67
-        .4byte 0x72000000
-        .4byte 0x83588350
-        .4byte 0x815B838B
-        .4byte 0x00000000
-        .4byte 0x834A838A
-        .4byte 0x8393834F
-        .4byte 0x94BC8C61
-        .4byte 0x00000000
-        .4byte 0x8352838A
-        .4byte 0x83578387
-        .4byte 0x839394BC
-        .4byte 0x8C610000
-        .4byte 0x8373834E
-        .4byte 0x837E8393
-        .4byte 0x94BD899E
-        .4byte 0x94BC8C61
-        .4byte 0x00000000
-        .4byte 0x939682BD
-        .4byte 0x82E84F66
-        .4byte 0x66736574
-        .4byte 0x00000000
-        .4byte 0x939682BD
-        .4byte 0x82E894BC
-        .4byte 0x8C610000
-        .4byte 0x95E08D73
-        .4byte 0x83898393
-        .4byte 0x835F8380
-        .4byte 0x8A709378
-        .4byte 0x00000000
-        .4byte 0x95E08D73
-        .4byte 0x91AC9378
-        .4byte 0x00000000
-        .4byte 0x90F989F1
-        .4byte 0x90AB945C
-        .4byte 0x00000000
-        .4byte 0x91D282BF
-        .4byte 0x8E9E8AD4
-        .4byte 0x8DC58FAC
-        .4byte 0x28956229
-        .4byte 0x00000000
-        .4byte 0x91D282BF
-        .4byte 0x8E9E8AD4
-        .4byte 0x8DC591E5
-        .4byte 0x28956229
-        .4byte 0x00000000
-        .4byte 0x88DA93AE
-        .4byte 0x8E9E8AD4
-        .4byte 0x8DC58FAC
-        .4byte 0x28956229
-        .4byte 0x00000000
-        .4byte 0x88DA93AE
-        .4byte 0x8E9E8AD4
-        .4byte 0x8DC591E5
-        .4byte 0x28956229
-        .4byte 0x00000000
-        .4byte 0x83528393
-        .4byte 0x8367838D
-        .4byte 0x815B8389
-        .4byte 0x8FF391D4
-        .4byte 0x8E9E8AD4
-        .4byte 0x28956229
-        .4byte 0x00000000
-    .global lbl_80497748
-    lbl_80497748:
-        .4byte 0x70617261
-        .4byte 0x6D2F7061
-        .4byte 0x72616D5F
-        .4byte 0x63686170
-        .4byte 0x70792E74
-        .4byte 0x78740000
-        .4byte 0x63686170
-        .4byte 0x70792F6D
-        .4byte 0x6F766531
-        .4byte 0x2E62636B
-        .4byte 0x00000000
-        .4byte 0x63686170
-        .4byte 0x70792F77
-        .4byte 0x61697461
-        .4byte 0x6374312E
-        .4byte 0x62636B00
-        .4byte 0x63686170
-        .4byte 0x70792F61
-        .4byte 0x74746163
-        .4byte 0x6B2E6263
-        .4byte 0x6B000000
-        .4byte 0x63686170
-        .4byte 0x70792F77
-        .4byte 0x61697461
-        .4byte 0x6374322E
-        .4byte 0x62636B00
-        .4byte 0x63686170
-        .4byte 0x70792F73
-        .4byte 0x77616C6C
-        .4byte 0x6F775F6D
-        .4byte 0x6F64656C
-        .4byte 0x2E626D64
-        .4byte 0x00000000
-        .4byte 0x65626950
-        .4byte 0x32546974
-        .4byte 0x6C654368
-        .4byte 0x61707079
-        .4byte 0x2E637070
-        .4byte 0x00000000
-        .asciz "P2Assert"
-        .skip 3
-
-    .section .data, "wa"  # 0x8049E220 - 0x804EFC20
-    .global lbl_804E9E60
-    lbl_804E9E60:
-        .4byte 0x00000000
-        .4byte 0x00000000
-        .4byte 0x00000000
-    .global lbl_804E9E6C
-    lbl_804E9E6C:
-        .4byte lbl_803E8B88
-        .4byte lbl_803E8BC8
-        .4byte lbl_803E8C20
-        .4byte lbl_803E8D38
-        .4byte lbl_803E8DEC
-        .4byte lbl_803E8D90
-        .4byte lbl_803E8DEC
-        .4byte lbl_803E8BA4
-    .global lbl_804E9E8C
-    lbl_804E9E8C:
-        .4byte lbl_803E914C
-        .4byte lbl_803E8F48
-        .4byte lbl_803E8F70
-        .4byte lbl_803E9024
-        .4byte lbl_803E9108
-        .4byte lbl_803E9130
-        .4byte lbl_803E9140
-        .4byte lbl_803E8F10
-    .global __vt__Q43ebi5title6Chappy5TUnit
-    __vt__Q43ebi5title6Chappy5TUnit:
-        .4byte 0
-        .4byte 0
-        .4byte getCreatureType__Q43ebi5title6Chappy5TUnitFv
-        .4byte isCalc__Q43ebi5title6Chappy5TUnitFv
-    .global __vt__Q43ebi5title6Chappy11TAnimFolder
-    __vt__Q43ebi5title6Chappy11TAnimFolder:
-        .4byte 0
-        .4byte 0
-        .4byte getAnimRes__Q43ebi5title6Chappy11TAnimFolderFl
-
-    .section .sbss # 0x80514D80 - 0x80516360
-    .global lbl_80516100
-    lbl_80516100:
-        .skip 0x4
-    .global lbl_80516104
-    lbl_80516104:
-        .skip 0x4
-
-    .section .sdata2, "a"     # 0x80516360 - 0x80520E40
-    .global lbl_8051FD68
-    lbl_8051FD68:
-        .4byte 0x00000000
-    .global lbl_8051FD6C
-    lbl_8051FD6C:
-        .4byte 0xBF800000
-    .global lbl_8051FD70
-    lbl_8051FD70:
-        .float 1.0
-    .global lbl_8051FD74
-    lbl_8051FD74:
-        .4byte 0x5061726D
-        .4byte 0x73000000
-    .global lbl_8051FD7C
-    lbl_8051FD7C:
-        .4byte 0x40000000
-    .global lbl_8051FD80
-    lbl_8051FD80:
-        .4byte 0x41200000
-    .global lbl_8051FD84
-    lbl_8051FD84:
-        .4byte 0x42C80000
-    .global lbl_8051FD88
-    lbl_8051FD88:
-        .4byte 0x43FA0000
-    .global lbl_8051FD8C
-    lbl_8051FD8C:
-        .4byte 0x43160000
-    .global lbl_8051FD90
-    lbl_8051FD90:
-        .4byte 0x43960000
-    .global lbl_8051FD94
-    lbl_8051FD94:
-        .4byte 0x42A00000
-    .global lbl_8051FD98
-    lbl_8051FD98:
-        .4byte 0x41F00000
-    .global lbl_8051FD9C
-    lbl_8051FD9C:
-        .4byte 0x42B40000
-    .global lbl_8051FDA0
-    lbl_8051FDA0:
-        .4byte 0x41000000
-    .global lbl_8051FDA4
-    lbl_8051FDA4:
-        .float 0.05
-    .global lbl_8051FDA8
-    lbl_8051FDA8:
-        .float 0.3
-    .global lbl_8051FDAC
-    lbl_8051FDAC:
-        .float 0.5
-    .global lbl_8051FDB0
-    lbl_8051FDB0:
-        .4byte 0x3FC00000
-    .global lbl_8051FDB4
-    lbl_8051FDB4:
-        .4byte 0x40A00000
-    .global lbl_8051FDB8
-    lbl_8051FDB8:
-        .4byte 0x42700000
-    .global lbl_8051FDBC
-    lbl_8051FDBC:
-        .4byte 0x42080000
-    .global lbl_8051FDC0
-    lbl_8051FDC0:
-        .4byte 0x41980000
-    .global lbl_8051FDC4
-    lbl_8051FDC4:
-        .4byte 0x46FFFE00
-    .global lbl_8051FDC8
-    lbl_8051FDC8:
-        .4byte 0x40490FDB
-    .global lbl_8051FDCC
-    lbl_8051FDCC:
-        .4byte 0x3BB60B61
-    .global lbl_8051FDD0
-    lbl_8051FDD0:
-        .4byte 0xC3A2F983
-    .global lbl_8051FDD4
-    lbl_8051FDD4:
-        .4byte 0x43A2F983
-    .global lbl_8051FDD8
-    lbl_8051FDD8:
-        .4byte 0x43300000
-        .4byte 0x80000000
-    .global lbl_8051FDE0
-    lbl_8051FDE0:
-        .float 0.1
-    .global lbl_8051FDE4
-    lbl_8051FDE4:
-        .float 0.7
-    .global lbl_8051FDE8
-    lbl_8051FDE8:
-        .4byte 0x40C90FDB
-    .global lbl_8051FDEC
-    lbl_8051FDEC:
-        .4byte 0xC0490FDB
-    .global lbl_8051FDF0
-    lbl_8051FDF0:
-        .4byte 0x3DC90FDB
-        .4byte 0x00000000
-*/
+#include "nans.h"
 
 namespace ebi {
 namespace title {
 
-TTitleMgr* titleMgr;
+static const int unusedTitleChappyArray[] = { 0, 0, 0 };
+static const char ebiP2TitleChappyName[]  = "ebiP2TitleChappy";
 
 /*
  * --INFO--
@@ -299,96 +24,28 @@ Chappy::TMgr::TMgr()
 {
 	m_animator = new TAnimator;
 	m_object   = new TUnit;
-	/*
-stwu     r1, -0x10(r1)
-mflr     r0
-lis      r4, __vt__5CNode@ha
-li       r6, 0
-stw      r0, 0x14(r1)
-addi     r0, r4, __vt__5CNode@l
-lis      r4, lbl_80497648@ha
-stw      r31, 0xc(r1)
-addi     r5, r4, lbl_80497648@l
-mr       r31, r3
-li       r4, 1
-stw      r30, 8(r1)
-stw      r0, 0(r3)
-lis      r3, __vt__Q43ebi5title6Chappy4TMgr@ha
-addi     r0, r3, __vt__Q43ebi5title6Chappy4TMgr@l
-stw      r6, 0x10(r31)
-addi     r3, r31, 0x1c
-stw      r6, 0xc(r31)
-stw      r6, 8(r31)
-stw      r6, 4(r31)
-stw      r5, 0x14(r31)
-stw      r0, 0(r31)
-bl       __ct__Q43ebi5title6Chappy6TParamFv
-li       r3, 0x88
-bl       __nw__FUl
-or.      r0, r3, r3
-beq      lbl_803E864C
-bl       __ct__Q43ebi5title6Chappy9TAnimatorFv
-mr       r0, r3
+}
 
-lbl_803E864C:
-stw      r0, 0x18(r31)
-li       r3, 0x70
-bl       __nw__FUl
-or.      r30, r3, r3
-beq      lbl_803E8708
-lis      r4, __vt__Q33ebi5title8TObjBase@ha
-lis      r3, __vt__Q43ebi5title6Chappy5TUnit@ha
-addi     r0, r4, __vt__Q33ebi5title8TObjBase@l
-lfs      f2, lbl_8051FD68@sda21(r2)
-stw      r0, 0(r30)
-li       r4, 0
-lfs      f1, lbl_8051FD6C@sda21(r2)
-addi     r0, r3, __vt__Q43ebi5title6Chappy5TUnit@l
-stfs     f2, 4(r30)
-lfs      f0, lbl_8051FD70@sda21(r2)
-stfs     f2, 8(r30)
-stfs     f2, 0xc(r30)
-stfs     f1, 0x10(r30)
-stfs     f2, 0x14(r30)
-stfs     f0, 0x18(r30)
-stfs     f2, 0x1c(r30)
-stfs     f2, 0x20(r30)
-stfs     f2, 0x24(r30)
-stw      r4, 0x28(r30)
-stw      r0, 0(r30)
-stw      r4, 0x3c(r30)
-stw      r4, 0x40(r30)
-stw      r4, 0x5c(r30)
-stw      r4, 0x60(r30)
-stfs     f2, 0x2c(r30)
-stfs     f2, 0x30(r30)
-stfs     f0, 0x34(r30)
-stfs     f2, 0x38(r30)
-lwz      r3, sys@sda21(r13)
-lfs      f0, 0x54(r3)
-fdivs    f1, f2, f0
-bl       __cvt_fp2unsigned
-stw      r3, 0x3c(r30)
-li       r4, 0
-li       r0, -1
-stw      r3, 0x40(r30)
-stw      r4, 0x44(r30)
-stb      r4, 0x48(r30)
-stw      r4, 0x4c(r30)
-stw      r4, 0x68(r30)
-stw      r0, 0x6c(r30)
-stw      r4, 0x64(r30)
+// not sure why these are here - possibly structs declared in the file?????
+// it's just easier to declare this as a fake func.
+static const char* parmStr = "Parms";
 
-lbl_803E8708:
-stw      r30, 0x25c(r31)
-mr       r3, r31
-lwz      r0, 0x14(r1)
-lwz      r31, 0xc(r1)
-lwz      r30, 8(r1)
-mtlr     r0
-addi     r1, r1, 0x10
-blr
-	*/
+static void fakeEbiTitleChappyFunc(char* format)
+{
+	Parm<f32> m_scale(nullptr, 'b000', "スケール", 2.0f, 0.0f, 10.0f);
+	Parm<f32> m_cullRadius(nullptr, 'b001', "カリング半径", 100.0f, 0.0f, 500.0f);
+	Parm<f32> m_collRadius(nullptr, 'b002', "コリジョン半径", 150.0f, 0.0f, 500.0f);
+	Parm<f32> m_pikiReactRadius(nullptr, 'b003', "ピクミン反応半径", 300.0f, 0.0f, 500.0f);
+	Parm<f32> m_hitOffset(nullptr, 'ch20', "当たりOffset", 80.0f, 0.0f, 500.0f);
+	Parm<f32> m_hitRadius(nullptr, 'ch21', "当たり半径", 100.0f, 0.0f, 500.0f);
+	Parm<f32> m_walkAngleRand(nullptr, 'ch00', "歩行ランダム角度", 30.0f, 0.0f, 90.0f);
+	Parm<f32> m_walkSpeed(nullptr, 'ch01', "歩行速度", 8.0f, 0.0f, 100.0f);
+	Parm<f32> m_turnSpeed(nullptr, 'ch23', "旋回性能\ ", 0.05f, 0.0f, 1.0f);
+	Parm<f32> m_minWaitTime(nullptr, 'ch10', "待ち時間最小(秒)", 0.3f, 0.0f, 10.0f);
+	Parm<f32> m_maxWaitTime(nullptr, 'ch11', "待ち時間最大(秒)", 1.0f, 0.0f, 10.0f);
+	Parm<f32> m_minWalkTime(nullptr, 'ch12', "移動時間最小(秒)", 0.5f, 0.0f, 10.0f);
+	Parm<f32> m_maxWalkTime(nullptr, 'ch13', "移動時間最大(秒)", 1.5f, 0.0f, 10.0f);
+	Parm<f32> m_controlledTime(nullptr, 'ch22', "コントローラ状態時間(秒)", 5.0f, 0.0f, 60.0f);
 }
 
 /*
@@ -398,30 +55,8 @@ blr
  */
 void Chappy::TMgr::setArchive(JKRArchive* arc)
 {
-	m_params.loadSettingsFile(arc, "param/param_chappy.txt");
+	m_params.loadSettingFile(arc, "param/param_chappy.txt");
 	m_animator->setArchive(arc);
-	/*
-stwu     r1, -0x10(r1)
-mflr     r0
-lis      r5, lbl_80497748@ha
-stw      r0, 0x14(r1)
-addi     r5, r5, lbl_80497748@l
-stw      r31, 0xc(r1)
-mr       r31, r4
-stw      r30, 8(r1)
-mr       r30, r3
-addi     r3, r30, 0x1c
-bl       loadSettingFile__Q33ebi5title10TParamBaseFP10JKRArchivePc
-lwz      r3, 0x18(r30)
-mr       r4, r31
-bl       setArchive__Q43ebi5title6Chappy9TAnimatorFP10JKRArchive
-lwz      r0, 0x14(r1)
-lwz      r31, 0xc(r1)
-lwz      r30, 8(r1)
-mtlr     r0
-addi     r1, r1, 0x10
-blr
-	*/
 }
 
 /*
@@ -429,31 +64,27 @@ blr
  * Address:	803E8778
  * Size:	000028
  */
-void Chappy::TMgr::initUnit()
-{
-	m_object->init(this);
-	/*
-stwu     r1, -0x10(r1)
-mflr     r0
-mr       r4, r3
-stw      r0, 0x14(r1)
-lwz      r3, 0x25c(r3)
-bl       init__Q43ebi5title6Chappy5TUnitFPQ43ebi5title6Chappy4TMgr
-lwz      r0, 0x14(r1)
-mtlr     r0
-addi     r1, r1, 0x10
-blr
-	*/
-}
+void Chappy::TMgr::initUnit() { m_object->init(this); }
 
 /*
  * --INFO--
  * Address:	........
  * Size:	0000C8
  */
-void Chappy::TAnimFolder::load(J3DModelData*, JKRArchive*)
+void Chappy::TAnimFolder::load(J3DModelData* data, JKRArchive* arc)
 {
-	// UNUSED FUNCTION
+	m_anims[0].load(data, arc, "chappy/move1.bck");
+	m_anims[0].m_loopStart = 5.0f;
+	m_anims[0].m_loopEnd   = 34.0f;
+	m_anims[0].m_mode      = 1;
+
+	m_anims[1].load(data, arc, "chappy/waitact1.bck");
+	m_anims[1].m_loopStart = 8.0f;
+	m_anims[1].m_loopEnd   = 19.0f;
+	m_anims[1].m_mode      = 1;
+
+	m_anims[2].load(data, arc, "chappy/attack.bck");
+	m_anims[3].load(data, arc, "chappy/waitact2.bck");
 }
 
 /*
@@ -461,38 +92,7 @@ void Chappy::TAnimFolder::load(J3DModelData*, JKRArchive*)
  * Address:	803E87A0
  * Size:	000068
  */
-Chappy::TAnimator::TAnimator()
-{
-	m_modelData = nullptr;
-	/*
-stwu     r1, -0x10(r1)
-mflr     r0
-lis      r4, __vt__Q23ebi17E3DAnimFolderBase@ha
-li       r5, 0
-stw      r0, 0x14(r1)
-addi     r0, r4, __vt__Q23ebi17E3DAnimFolderBase@l
-lis      r4, __ct__Q23ebi10E3DAnimResFv@ha
-li       r6, 0x20
-stw      r31, 0xc(r1)
-mr       r31, r3
-lis      r3, __vt__Q43ebi5title6Chappy11TAnimFolder@ha
-addi     r4, r4, __ct__Q23ebi10E3DAnimResFv@l
-stw      r0, 0(r31)
-addi     r0, r3, __vt__Q43ebi5title6Chappy11TAnimFolder@l
-addi     r3, r31, 4
-li       r7, 4
-stw      r0, 0(r31)
-bl       __construct_array
-li       r0, 0
-mr       r3, r31
-stw      r0, 0x84(r31)
-lwz      r31, 0xc(r1)
-lwz      r0, 0x14(r1)
-mtlr     r0
-addi     r1, r1, 0x10
-blr
-	*/
-}
+Chappy::TAnimator::TAnimator() { m_modelData = nullptr; }
 
 /*
  * --INFO--
@@ -507,99 +107,7 @@ void Chappy::TAnimator::setArchive(JKRArchive* arc)
 	m_modelData->newSharedDisplayList(0x40000);
 	m_modelData->makeSharedDL();
 
-	J3DModelData* data = m_modelData;
-
-	m_anims[0].load(data, arc, "chappy/move1.bck");
-	m_anims[0].m_loopStart = 5.0f;
-	m_anims[0].m_loopEnd   = 34.0f;
-	m_anims[0].m_mode      = 1;
-
-	m_anims[1].load(data, arc, "chappy/waitact1.bck");
-	m_anims[1].m_loopStart = 8.0f;
-	m_anims[1].m_loopEnd   = 19.0f;
-	m_anims[1].m_mode      = 1;
-
-	m_anims[2].load(data, arc, "chappy/attack.bck");
-	m_anims[3].load(data, arc, "chappy/waitact2.bck");
-
-	/*
-stwu     r1, -0x20(r1)
-mflr     r0
-stw      r0, 0x24(r1)
-stw      r31, 0x1c(r1)
-stw      r30, 0x18(r1)
-stw      r29, 0x14(r1)
-mr       r29, r4
-lis      r4, lbl_80497628@ha
-stw      r28, 0x10(r1)
-addi     r31, r4, lbl_80497628@l
-mr       r28, r3
-mr       r3, r29
-lwz      r12, 0(r29)
-addi     r4, r31, 0x188
-lwz      r12, 0x14(r12)
-mtctr    r12
-bctrl
-or.      r30, r3, r3
-bne      lbl_803E8868
-addi     r3, r31, 0x1a4
-addi     r5, r31, 0x1bc
-li       r4, 0x7a
-crclr    6
-bl       panic_f__12JUTExceptionFPCciPCce
-
-lbl_803E8868:
-mr       r3, r30
-lis      r4, 0x10
-bl       load__22J3DModelLoaderDataBaseFPCvUl
-stw      r3, 0x84(r28)
-lis      r4, 4
-lwz      r3, 0x84(r28)
-bl       newSharedDisplayList__12J3DModelDataFUl
-lwz      r3, 0x84(r28)
-bl       makeSharedDL__12J3DModelDataFv
-lwz      r30, 0x84(r28)
-mr       r5, r29
-addi     r3, r28, 4
-addi     r6, r31, 0x138
-mr       r4, r30
-bl       load__Q23ebi10E3DAnimResFP12J3DModelDataP10JKRArchivePc
-lfs      f1, lbl_8051FDB4@sda21(r2)
-li       r0, 1
-lfs      f0, lbl_8051FDBC@sda21(r2)
-mr       r4, r30
-stfs     f1, 0x14(r28)
-mr       r5, r29
-addi     r3, r28, 0x24
-addi     r6, r31, 0x14c
-stfs     f0, 0x18(r28)
-stw      r0, 0x20(r28)
-bl       load__Q23ebi10E3DAnimResFP12J3DModelDataP10JKRArchivePc
-lfs      f1, lbl_8051FDA0@sda21(r2)
-li       r0, 1
-lfs      f0, lbl_8051FDC0@sda21(r2)
-mr       r4, r30
-stfs     f1, 0x34(r28)
-mr       r5, r29
-addi     r3, r28, 0x44
-addi     r6, r31, 0x160
-stfs     f0, 0x38(r28)
-stw      r0, 0x40(r28)
-bl       load__Q23ebi10E3DAnimResFP12J3DModelDataP10JKRArchivePc
-mr       r4, r30
-mr       r5, r29
-addi     r3, r28, 0x64
-addi     r6, r31, 0x174
-bl       load__Q23ebi10E3DAnimResFP12J3DModelDataP10JKRArchivePc
-lwz      r0, 0x24(r1)
-lwz      r31, 0x1c(r1)
-lwz      r30, 0x18(r1)
-lwz      r29, 0x14(r1)
-lwz      r28, 0x10(r1)
-mtlr     r0
-addi     r1, r1, 0x20
-blr
-	*/
+	m_animFolder.load(m_modelData, arc);
 }
 
 /*
@@ -607,10 +115,7 @@ blr
  * Address:	........
  * Size:	000078
  */
-void Chappy::TAnimator::newJ3DModel()
-{
-	// UNUSED FUNCTION
-}
+J3DModel* Chappy::TAnimator::newJ3DModel() { return new J3DModel(m_modelData, 0x20000, 1); }
 
 /*
  * --INFO--
@@ -627,81 +132,15 @@ void Chappy::TUnit::setController(Controller* control) { m_control = control; }
 void Chappy::TUnit::init(TMgr* mgr)
 {
 	m_manager = mgr;
-	m_model   = new J3DModel(m_manager->m_animator->m_modelData, 0x20000, 1);
+	m_model   = m_manager->m_animator->newJ3DModel();
+	m_anim.setAnimFolder(&m_manager->m_animator->m_animFolder);
 
-	m_anim.setAnimFolder(m_manager->m_animator);
 	m_pos      = titleMgr->getPosOutOfViewField();
 	m_parms[0] = m_manager->m_params.m_walkSpeed.m_value;
 	m_parms[1] = m_manager->m_params.m_scale.m_value;
 	m_parms[4] = m_manager->m_params.m_cullRadius.m_value;
 	m_parms[2] = m_manager->m_params.m_collRadius.m_value;
 	m_parms[3] = m_manager->m_params.m_pikiReactRadius.m_value;
-
-	/*
-stwu     r1, -0x20(r1)
-mflr     r0
-stw      r0, 0x24(r1)
-stw      r31, 0x1c(r1)
-stw      r30, 0x18(r1)
-stw      r29, 0x14(r1)
-mr       r29, r3
-li       r3, 0xdc
-stw      r4, 0x4c(r29)
-lwz      r4, 0x4c(r29)
-lwz      r31, 0x18(r4)
-bl       __nw__FUl
-or.      r30, r3, r3
-beq      lbl_803E89A4
-lis      r3, __vt__8J3DModel@ha
-lwz      r31, 0x84(r31)
-addi     r0, r3, __vt__8J3DModel@l
-stw      r0, 0(r30)
-addi     r3, r30, 0x88
-bl       init__15J3DVertexBufferFv
-mr       r3, r30
-bl       initialize__8J3DModelFv
-mr       r3, r30
-mr       r4, r31
-lis      r5, 2
-li       r6, 1
-bl       entryModelData__8J3DModelFP12J3DModelDataUlUl
-
-lbl_803E89A4:
-stw      r30, 0x28(r29)
-addi     r3, r29, 0x50
-lwz      r4, 0x4c(r29)
-lwz      r4, 0x18(r4)
-bl       setAnimFolder__Q23ebi11E3DAnimCtrlFPQ23ebi17E3DAnimFolderBase
-lwz      r4, titleMgr__Q23ebi5title@sda21(r13)
-addi     r3, r1, 8
-bl       getPosOutOfViewField__Q33ebi5title9TTitleMgrFv
-lfs      f0, 8(r1)
-stfs     f0, 4(r29)
-lfs      f0, 0xc(r1)
-stfs     f0, 8(r29)
-lwz      r3, 0x4c(r29)
-lfs      f0, 0x158(r3)
-stfs     f0, 0x14(r29)
-lwz      r3, 0x4c(r29)
-lfs      f0, 0x40(r3)
-stfs     f0, 0x18(r29)
-lwz      r3, 0x4c(r29)
-lfs      f0, 0x68(r3)
-stfs     f0, 0x24(r29)
-lwz      r3, 0x4c(r29)
-lfs      f0, 0x90(r3)
-stfs     f0, 0x1c(r29)
-lwz      r3, 0x4c(r29)
-lfs      f0, 0xb8(r3)
-stfs     f0, 0x20(r29)
-lwz      r31, 0x1c(r1)
-lwz      r30, 0x18(r1)
-lwz      r29, 0x14(r1)
-lwz      r0, 0x24(r1)
-mtlr     r0
-addi     r1, r1, 0x20
-blr
-	*/
 }
 
 /*
@@ -711,10 +150,10 @@ blr
  */
 void Chappy::TUnit::startZigzagWalk(Vector2f& pos1, Vector2f& pos2)
 {
-	m_pos          = pos1;
-	m_targetPos[0] = pos2;
-	_6C            = -1;
-	_48            = 0;
+	m_pos       = pos1;
+	m_targetPos = pos2;
+	m_actionID  = CHAPPYACT_NULL;
+	_48         = 0;
 	startAIState_(CHAPPYAI_5);
 }
 
@@ -735,22 +174,7 @@ void Chappy::TUnit::goHome()
  * Address:	803E8AB0
  * Size:	000024
  */
-void Chappy::TUnit::outOfCalc()
-{
-	startAIState_(CHAPPYAI_Inactive);
-	/*
-stwu     r1, -0x10(r1)
-mflr     r0
-li       r4, 0
-stw      r0, 0x14(r1)
-bl
-startAIState___Q43ebi5title6Chappy5TUnitFQ53ebi5title6Chappy5TUnit11enumAIState
-lwz      r0, 0x14(r1)
-mtlr     r0
-addi     r1, r1, 0x10
-blr
-	*/
-}
+void Chappy::TUnit::outOfCalc() { startAIState_(CHAPPYAI_Inactive); }
 
 /*
  * --INFO--
@@ -774,288 +198,64 @@ bool Chappy::TUnit::isController() { return (u8)(m_stateID == CHAPPYAI_Controlle
 void Chappy::TUnit::startAIState_(enumAIState state)
 {
 	if (m_stateID == state) {
-		if (m_stateID == CHAPPYAI_Controlled)
+		if (m_stateID == CHAPPYAI_Controlled) {
+			u32 time   = m_manager->m_params.m_controlledTime.m_value / sys->m_deltaTime;
+			m_counter  = time;
+			m_counter2 = time;
+		} else {
 			return;
-		int time   = m_manager->m_params.m_controlledTime.m_value / sys->m_deltaTime;
-		m_counter  = time;
-		m_counter2 = time;
+		}
 	}
+
 	m_stateID = state;
 
-	switch (m_stateID) {
+	switch (state) {
+	case CHAPPYAI_Inactive:
+		m_pos = title::titleMgr->getPosOutOfViewField();
+
 	case CHAPPYAI_Controlled:
-		int time   = m_manager->m_params.m_controlledTime.m_value / sys->m_deltaTime;
+		u32 time   = m_manager->m_params.m_controlledTime.m_value / sys->m_deltaTime;
 		m_counter  = time;
 		m_counter2 = time;
 		break;
-	case CHAPPYAI_Inactive:
-		m_pos = title::titleMgr->getPosOutOfViewField();
-		break;
+
 	case CHAPPYAI_Wait:
-		f32 min    = m_manager->m_params.m_minWaitTime.m_value;
-		f32 max    = m_manager->m_params.m_maxWaitTime.m_value;
-		int time2  = ((max - min) * randFloat() + min) / sys->m_deltaTime;
+		f32 max, min;
+		min        = m_manager->m_params.m_minWaitTime.m_value;
+		max        = m_manager->m_params.m_maxWaitTime.m_value;
+		u32 time2  = ((max - min) * randFloat() + min) / sys->m_deltaTime;
 		m_counter  = time2;
 		m_counter2 = time2;
 		break;
+
 	case CHAPPYAI_Turn:
-		f32 angle        = m_manager->m_params.m_walkAngleRand.m_value;
-		f32 line         = pikmin2_atan2f(m_targetPos[0].x - m_pos.x, m_targetPos[0].y - m_pos.y);
-		f32 test         = angle * DEG2RAD * PI + (randFloat() * 2.0f + -1.0f) + line;
-		m_targetPos[1].x = pikmin2_cosf(test);
-		m_targetPos[1].y = pikmin2_sinf(test);
+		f32 angle     = m_manager->m_params.m_walkAngleRand.m_value;
+		f32 line      = JMath::atanTable_.atan2_(m_targetPos.y - m_pos.y, m_targetPos.x - m_pos.x);
+		f32 test      = angle * DEG2RAD * PI * (randFloat() * 2.0f + -1.0f) + line;
+		m_targetAngle = Vector2f(pikmin2_cosf(test), pikmin2_sinf(test));
 		break;
+
 	case CHAPPYAI_Walk:
-		f32 min2   = m_manager->m_params.m_minWalkTime.m_value;
-		f32 max2   = m_manager->m_params.m_maxWalkTime.m_value;
-		int time3  = ((max2 - min2) * randFloat() + min2) / sys->m_deltaTime;
+		f32 max2, min2;
+		max2 = m_manager->m_params.m_maxWalkTime.m_value;
+		min2 = m_manager->m_params.m_minWalkTime.m_value;
+
+		u32 time3  = ((max2 - min2) * randFloat() + min2) / sys->m_deltaTime;
 		m_counter  = time3;
 		m_counter2 = time3;
 		break;
+
 	case CHAPPYAI_5:
-		f32 x     = -m_pos.x;
-		f32 y     = -m_pos.y;
-		x         = _sqrtf(x);
-		y         = _sqrtf(y);
-		m_angle.x = x;
-		m_angle.y = y;
+		Vector2f negPos(-m_pos.x, -m_pos.y);
+		f32 len = _sqrtf(negPos.x * negPos.x + negPos.y * negPos.y);
+		if (len != 0.0f) {
+			f32 norm = 1.0f / len;
+			negPos.x *= norm;
+			negPos.y *= norm;
+		}
+		m_angle = negPos;
 		break;
 	}
-	/*
-stwu     r1, -0x60(r1)
-mflr     r0
-stw      r0, 0x64(r1)
-stfd     f31, 0x50(r1)
-psq_st   f31, 88(r1), 0, qr0
-stfd     f30, 0x40(r1)
-psq_st   f30, 72(r1), 0, qr0
-stw      r31, 0x3c(r1)
-stw      r30, 0x38(r1)
-mr       r31, r3
-mr       r30, r4
-lwz      r0, 0x68(r3)
-cmpw     r0, r30
-bne      lbl_803E8B64
-cmpwi    r0, 7
-bne      lbl_803E8DEC
-lwz      r4, 0x4c(r31)
-lwz      r3, sys@sda21(r13)
-lfs      f1, 0x248(r4)
-lfs      f0, 0x54(r3)
-fdivs    f1, f1, f0
-bl       __cvt_fp2unsigned
-stw      r3, 0x3c(r31)
-stw      r3, 0x40(r31)
-b        lbl_803E8B64
-b        lbl_803E8DEC
-
-lbl_803E8B64:
-cmplwi   r30, 7
-stw      r30, 0x68(r31)
-bgt      lbl_803E8DEC
-lis      r3, lbl_804E9E6C@ha
-slwi     r0, r30, 2
-addi     r3, r3, lbl_804E9E6C@l
-lwzx     r0, r3, r0
-mtctr    r0
-bctr
-.global  lbl_803E8B88
-
-lbl_803E8B88:
-lwz      r4, titleMgr__Q23ebi5title@sda21(r13)
-addi     r3, r1, 8
-bl       getPosOutOfViewField__Q33ebi5title9TTitleMgrFv
-lfs      f0, 8(r1)
-stfs     f0, 4(r31)
-lfs      f0, 0xc(r1)
-stfs     f0, 8(r31)
-.global  lbl_803E8BA4
-
-lbl_803E8BA4:
-lwz      r4, 0x4c(r31)
-lwz      r3, sys@sda21(r13)
-lfs      f1, 0x248(r4)
-lfs      f0, 0x54(r3)
-fdivs    f1, f1, f0
-bl       __cvt_fp2unsigned
-stw      r3, 0x3c(r31)
-stw      r3, 0x40(r31)
-b        lbl_803E8DEC
-.global  lbl_803E8BC8
-
-lbl_803E8BC8:
-lwz      r3, 0x4c(r31)
-lfs      f30, 0x1a8(r3)
-lfs      f31, 0x1d0(r3)
-bl       rand
-xoris    r3, r3, 0x8000
-lis      r0, 0x4330
-stw      r3, 0x14(r1)
-fsubs    f1, f31, f30
-lwz      r3, sys@sda21(r13)
-stw      r0, 0x10(r1)
-lfd      f3, lbl_8051FDD8@sda21(r2)
-lfd      f0, 0x10(r1)
-lfs      f2, lbl_8051FDC4@sda21(r2)
-fsubs    f3, f0, f3
-lfs      f0, 0x54(r3)
-fdivs    f2, f3, f2
-fmadds   f1, f1, f2, f30
-fdivs    f1, f1, f0
-bl       __cvt_fp2unsigned
-stw      r3, 0x3c(r31)
-stw      r3, 0x40(r31)
-b        lbl_803E8DEC
-.global  lbl_803E8C20
-
-lbl_803E8C20:
-lfs      f1, 0x30(r31)
-lis      r3, atanTable___5JMath@ha
-lfs      f0, 8(r31)
-addi     r3, r3, atanTable___5JMath@l
-lfs      f2, 0x2c(r31)
-fsubs    f1, f1, f0
-lfs      f0, 4(r31)
-lwz      r4, 0x4c(r31)
-fsubs    f2, f2, f0
-lfs      f30, 0x130(r4)
-bl       "atan2___Q25JMath18TAtanTable<1024,f>CFff"
-fmr      f31, f1
-bl       rand
-xoris    r3, r3, 0x8000
-lis      r0, 0x4330
-stw      r3, 0x14(r1)
-lfs      f0, lbl_8051FDCC@sda21(r2)
-stw      r0, 0x10(r1)
-lfd      f2, lbl_8051FDD8@sda21(r2)
-fmuls    f0, f0, f30
-lfd      f1, 0x10(r1)
-lfs      f4, lbl_8051FDC4@sda21(r2)
-fsubs    f5, f1, f2
-lfs      f3, lbl_8051FDC8@sda21(r2)
-lfs      f2, lbl_8051FD7C@sda21(r2)
-lfs      f1, lbl_8051FD6C@sda21(r2)
-fmuls    f3, f3, f0
-fdivs    f4, f5, f4
-lfs      f0, lbl_8051FD68@sda21(r2)
-fmadds   f1, f2, f4, f1
-fmadds   f2, f3, f1, f31
-fcmpo    cr0, f2, f0
-bge      lbl_803E8CD0
-lfs      f0, lbl_8051FDD0@sda21(r2)
-lis      r3, sincosTable___5JMath@ha
-addi     r3, r3, sincosTable___5JMath@l
-fmuls    f0, f2, f0
-fctiwz   f0, f0
-stfd     f0, 0x18(r1)
-lwz      r0, 0x1c(r1)
-rlwinm   r0, r0, 3, 0x12, 0x1c
-lfsx     f0, r3, r0
-fneg     f1, f0
-b        lbl_803E8CF4
-
-lbl_803E8CD0:
-lfs      f0, lbl_8051FDD4@sda21(r2)
-lis      r3, sincosTable___5JMath@ha
-addi     r3, r3, sincosTable___5JMath@l
-fmuls    f0, f2, f0
-fctiwz   f0, f0
-stfd     f0, 0x20(r1)
-lwz      r0, 0x24(r1)
-rlwinm   r0, r0, 3, 0x12, 0x1c
-lfsx     f1, r3, r0
-
-lbl_803E8CF4:
-lfs      f0, lbl_8051FD68@sda21(r2)
-fcmpo    cr0, f2, f0
-bge      lbl_803E8D04
-fneg     f2, f2
-
-lbl_803E8D04:
-lfs      f0, lbl_8051FDD4@sda21(r2)
-lis      r3, sincosTable___5JMath@ha
-addi     r3, r3, sincosTable___5JMath@l
-fmuls    f0, f2, f0
-fctiwz   f0, f0
-stfd     f0, 0x28(r1)
-lwz      r0, 0x2c(r1)
-rlwinm   r0, r0, 3, 0x12, 0x1c
-add      r3, r3, r0
-lfs      f0, 4(r3)
-stfs     f0, 0x34(r31)
-stfs     f1, 0x38(r31)
-b        lbl_803E8DEC
-.global  lbl_803E8D38
-
-lbl_803E8D38:
-lwz      r3, 0x4c(r31)
-lfs      f30, 0x220(r3)
-lfs      f31, 0x1f8(r3)
-bl       rand
-xoris    r3, r3, 0x8000
-lis      r0, 0x4330
-stw      r3, 0x2c(r1)
-fsubs    f1, f30, f31
-lwz      r3, sys@sda21(r13)
-stw      r0, 0x28(r1)
-lfd      f3, lbl_8051FDD8@sda21(r2)
-lfd      f0, 0x28(r1)
-lfs      f2, lbl_8051FDC4@sda21(r2)
-fsubs    f3, f0, f3
-lfs      f0, 0x54(r3)
-fdivs    f2, f3, f2
-fmadds   f1, f1, f2, f31
-fdivs    f1, f1, f0
-bl       __cvt_fp2unsigned
-stw      r3, 0x3c(r31)
-stw      r3, 0x40(r31)
-b        lbl_803E8DEC
-.global  lbl_803E8D90
-
-lbl_803E8D90:
-lfs      f0, 8(r31)
-lfs      f1, 4(r31)
-fneg     f3, f0
-lfs      f0, lbl_8051FD68@sda21(r2)
-fneg     f2, f1
-fmuls    f1, f3, f3
-fmadds   f1, f2, f2, f1
-fcmpo    cr0, f1, f0
-ble      lbl_803E8DC4
-ble      lbl_803E8DC8
-frsqrte  f0, f1
-fmuls    f1, f0, f1
-b        lbl_803E8DC8
-
-lbl_803E8DC4:
-fmr      f1, f0
-
-lbl_803E8DC8:
-lfs      f0, lbl_8051FD68@sda21(r2)
-fcmpu    cr0, f0, f1
-beq      lbl_803E8DE4
-lfs      f0, lbl_8051FD70@sda21(r2)
-fdivs    f0, f0, f1
-fmuls    f2, f2, f0
-fmuls    f3, f3, f0
-
-lbl_803E8DE4:
-stfs     f2, 0xc(r31)
-stfs     f3, 0x10(r31)
-.global  lbl_803E8DEC
-
-lbl_803E8DEC:
-psq_l    f31, 88(r1), 0, qr0
-lfd      f31, 0x50(r1)
-psq_l    f30, 72(r1), 0, qr0
-lfd      f30, 0x40(r1)
-lwz      r31, 0x3c(r1)
-lwz      r0, 0x64(r1)
-lwz      r30, 0x38(r1)
-mtlr     r0
-addi     r1, r1, 0x60
-blr
-	*/
 }
 
 /*
@@ -1063,9 +263,37 @@ blr
  * Address:	........
  * Size:	000100
  */
-void Chappy::TUnit::startAction_(Chappy::TUnit::enumAction)
+void Chappy::TUnit::startAction_(Chappy::TUnit::enumAction actionID)
 {
-	// UNUSED FUNCTION
+	m_actionID = actionID;
+	switch (m_actionID) {
+	case CHAPPYACT_0:
+		m_anim.init(1, 1.0f);
+		m_anim._04 = 0.1f;
+		m_anim.play();
+		break;
+
+	case CHAPPYACT_1:
+		m_anim.init(1, 1.0f);
+		m_anim.play();
+		break;
+
+	case CHAPPYACT_4:
+		m_anim.init(0, 1.0f);
+		m_anim.play();
+		break;
+
+	case CHAPPYACT_2:
+		m_anim.init(2, 1.0f);
+		m_anim.play();
+		m_attacks = 0;
+		break;
+
+	case CHAPPYACT_3:
+		m_anim.init(3, 1.0f);
+		m_anim.play();
+		break;
+	}
 }
 
 /*
@@ -1083,7 +311,9 @@ void Chappy::TUnit::update()
 		Controller* control = m_control;
 		bool check          = false;
 		if (control) {
-			if (control->m_padSStick.m_stickMag > 0.7f || control->m_padButton.m_buttonDown & Controller::PRESS_Z) {
+			if (control->m_padSStick.m_stickMag > 0.7f) {
+				check = true;
+			} else if (control->m_padButton.m_buttonDown & Controller::PRESS_Z) {
 				check = true;
 			}
 		}
@@ -1092,19 +322,144 @@ void Chappy::TUnit::update()
 		}
 	}
 
+	bool buttonDown = false;
+	f32 stickX      = 0.0f;
+	f32 stickY      = stickX;
+
 	if (m_counter) {
 		m_counter--;
 	}
 
 	switch (m_stateID) {
-	case CHAPPYAI_Wait:
+	case CHAPPYAI_Wait: {
+		Controller* control = m_control;
+		if (control) {
+			stickX     = control->m_padSStick.m_xPos;
+			stickY     = control->m_padSStick.m_yPos;
+			buttonDown = control->m_padButton.m_buttonDown & Controller::PRESS_Z;
+		}
+		if (m_counter == 0) {
+			startAIState_(CHAPPYAI_6);
+		}
+		break;
+	}
+
+	case CHAPPYAI_Turn:
+		stickX     = 0.0f;
+		buttonDown = false;
+		stickY     = stickX;
 		if (m_counter == 0) {
 			startAIState_(CHAPPYAI_Turn);
 		}
 		break;
-	case CHAPPYAI_Turn:
+
+	case CHAPPYAI_Walk:
+		f32 initAngle = JMath::atanTable_.atan2_(m_angle.y, m_angle.x);
+		f32 angle     = initAngle - JMath::atanTable_.atan2_(m_targetAngle.y, m_targetAngle.x);
+		while (angle < -PI) {
+			angle += TAU;
+		}
+
+		while (angle >= PI) {
+			angle -= TAU;
+		}
+
+		if (FABS(angle) < 0.09817477f) {
+			startAIState_(CHAPPYAI_Walk);
+		} else if (angle > 0.0f) {
+			stickY     = 0.0f;
+			stickX     = 1.0f;
+			buttonDown = false;
+		} else {
+			stickY     = 0.0f;
+			stickX     = -1.0f;
+			buttonDown = false;
+		}
+		break;
+
+	case CHAPPYAI_4:
+		if (m_counter != 0) {
+			stickX     = 0.0f;
+			buttonDown = false;
+			stickY     = 1.0f;
+		} else {
+			stickX     = 0.0f;
+			stickY     = 0.0f;
+			buttonDown = 0;
+			if (m_anim._08 == 3) {
+				bool check = false;
+				for (int i = 0; i < 500; i++) {
+					EGECircle2f circle;
+					circle.m_radius = m_manager->m_params.m_hitRadius.m_value;
+					f32 factor      = m_manager->m_params.m_hitOffset.m_value;
+					circle.m_center = m_pos + (m_angle * factor);
+					Vector2f pos    = Vector2f(titleMgr->m_pikminMgr.getUnit(i)->m_pos);
+					if (!circle.isOut(pos)) {
+						check = true;
+						break;
+					}
+				}
+
+				if (check) {
+					startAIState_(CHAPPYAI_4);
+				} else {
+					startAIState_(CHAPPYAI_Turn);
+				}
+			}
+		}
+		break;
+
+	case CHAPPYAI_5:
+		stickX     = 0.0f;
+		stickY     = 0.0f;
+		buttonDown = true;
+		if (m_anim._08 == 3) {
+			startAIState_(CHAPPYAI_Turn);
+		}
+		break;
+
+	case CHAPPYAI_6:
+		stickX     = 0.0f;
+		buttonDown = false;
+		stickY     = 1.0f;
+		break;
+
+	case CHAPPYAI_Controlled:
+		stickX     = 0.0f;
+		buttonDown = false;
+		stickY     = 1.0f;
 		break;
 	}
+
+	enumAction actionID;
+	if (_48) {
+		actionID = CHAPPYACT_0;
+	} else {
+		actionID = CHAPPYACT_0;
+		if (FABS(stickX) > 0.7f) {
+			actionID = CHAPPYACT_1;
+		}
+		if (stickY > 0.7f) {
+			actionID = CHAPPYACT_4;
+		}
+		if (buttonDown == 1) {
+			actionID = CHAPPYACT_2;
+		}
+	}
+
+	if (m_actionID != actionID) {
+		if (m_actionID >= 1 && m_actionID < 5) {
+			m_anim.playStopEnd();
+			_48 = true;
+			if (m_anim._08 == 3) {
+				startAction_(CHAPPYACT_0);
+			}
+		} else if (actionID != m_actionID) {
+			startAction_(actionID);
+		}
+	}
+
+	// more stuff here still.
 
 	m_model->calc();
 	m_model->entry();
@@ -1950,260 +1305,21 @@ blr
  * Size:	0003A4
  */
 Chappy::TParam::TParam()
-    : Parameters(nullptr, "Parms")
-    , m_scale(this, 'b000', "スケール", 2.0f, 0.0f, 10.0f)
-    , m_cullRadius(this, 'b001', "カリング半径", 2.0f, 0.0f, 10.0f)
-    , m_collRadius(this, 'b002', "コリジョン半径", 2.0f, 0.0f, 10.0f)
-    , m_pikiReactRadius(this, 'b003', "ピクミン反応半径", 2.0f, 0.0f, 10.0f)
-    , m_hitOffset(this, 'ch20', "当たりOffset", 2.0f, 0.0f, 10.0f)
-    , m_hitRadius(this, 'ch21', "当たり半径", 2.0f, 0.0f, 10.0f)
-    , m_walkAngleRand(this, 'ch00', "歩行ランダム角度", 2.0f, 0.0f, 10.0f)
-    , m_walkSpeed(this, 'ch01', "歩行速度", 2.0f, 0.0f, 10.0f)
-    , m_turnSpeed(this, 'ch23', "" /*"旋回性能"*/, 2.0f, 0.0f, 10.0f)
-    , // problem with this string
-    m_minWaitTime(this, 'ch10', "待ち時間最小(秒)", 2.0f, 0.0f, 10.0f)
-    , m_maxWaitTime(this, 'ch11', "待ち時間最大(秒)", 2.0f, 0.0f, 10.0f)
-    , m_minWalkTime(this, 'ch12', "移動時間最小(秒)", 2.0f, 0.0f, 10.0f)
-    , m_maxWalkTime(this, 'ch13', "移動時間最大(秒)", 2.0f, 0.0f, 10.0f)
-    , m_controlledTime(this, 'ch22', "コントローラ状態時間(秒)", 2.0f, 0.0f, 10.0f)
+    : m_scale(this, 'b000', "スケール", 2.0f, 0.0f, 10.0f)
+    , m_cullRadius(this, 'b001', "カリング半径", 100.0f, 0.0f, 500.0f)
+    , m_collRadius(this, 'b002', "コリジョン半径", 150.0f, 0.0f, 500.0f)
+    , m_pikiReactRadius(this, 'b003', "ピクミン反応半径", 300.0f, 0.0f, 500.0f)
+    , m_hitOffset(this, 'ch20', "当たりOffset", 80.0f, 0.0f, 500.0f)
+    , m_hitRadius(this, 'ch21', "当たり半径", 100.0f, 0.0f, 500.0f)
+    , m_walkAngleRand(this, 'ch00', "歩行ランダム角度", 30.0f, 0.0f, 90.0f)
+    , m_walkSpeed(this, 'ch01', "歩行速度", 8.0f, 0.0f, 100.0f)
+    , m_turnSpeed(this, 'ch23', "旋回性能\ ", 0.05f, 0.0f, 1.0f)
+    , m_minWaitTime(this, 'ch10', "待ち時間最小(秒)", 0.3f, 0.0f, 10.0f)
+    , m_maxWaitTime(this, 'ch11', "待ち時間最大(秒)", 1.0f, 0.0f, 10.0f)
+    , m_minWalkTime(this, 'ch12', "移動時間最小(秒)", 0.5f, 0.0f, 10.0f)
+    , m_maxWalkTime(this, 'ch13', "移動時間最大(秒)", 1.5f, 0.0f, 10.0f)
+    , m_controlledTime(this, 'ch22', "コントローラ状態時間(秒)", 5.0f, 0.0f, 60.0f)
 {
-	/*
-stwu     r1, -0x10(r1)
-mflr     r0
-stw      r0, 0x14(r1)
-extsh.   r0, r4
-lis      r4, lbl_80497628@ha
-stw      r31, 0xc(r1)
-addi     r31, r4, lbl_80497628@l
-stw      r30, 8(r1)
-mr       r30, r3
-beq      lbl_803E98A8
-addi     r0, r30, 0x23c
-stw      r0, 0(r30)
-
-lbl_803E98A8:
-li       r0, 0
-lis      r5, 0x62303030@ha
-stw      r0, 4(r30)
-addi     r0, r2, lbl_8051FD74@sda21
-mr       r4, r30
-addi     r3, r30, 0xc
-stw      r0, 8(r30)
-addi     r5, r5, 0x62303030@l
-addi     r6, r31, 0x2c
-bl       __ct__8BaseParmFP10ParametersUlPc
-lis      r3, "__vt__7Parm<f>"@ha
-lis      r5, 0x62303031@ha
-addi     r0, r3, "__vt__7Parm<f>"@l
-lfs      f0, lbl_8051FD7C@sda21(r2)
-stw      r0, 0xc(r30)
-mr       r4, r30
-lfs      f1, lbl_8051FD68@sda21(r2)
-addi     r3, r30, 0x34
-stfs     f0, 0x24(r30)
-addi     r5, r5, 0x62303031@l
-lfs      f0, lbl_8051FD80@sda21(r2)
-addi     r6, r31, 0x38
-stfs     f1, 0x2c(r30)
-stfs     f0, 0x30(r30)
-bl       __ct__8BaseParmFP10ParametersUlPc
-lis      r3, "__vt__7Parm<f>"@ha
-lis      r5, 0x62303032@ha
-addi     r0, r3, "__vt__7Parm<f>"@l
-lfs      f0, lbl_8051FD84@sda21(r2)
-stw      r0, 0x34(r30)
-mr       r4, r30
-lfs      f1, lbl_8051FD68@sda21(r2)
-addi     r3, r30, 0x5c
-stfs     f0, 0x4c(r30)
-addi     r5, r5, 0x62303032@l
-lfs      f0, lbl_8051FD88@sda21(r2)
-addi     r6, r31, 0x48
-stfs     f1, 0x54(r30)
-stfs     f0, 0x58(r30)
-bl       __ct__8BaseParmFP10ParametersUlPc
-lis      r3, "__vt__7Parm<f>"@ha
-lis      r5, 0x62303033@ha
-addi     r0, r3, "__vt__7Parm<f>"@l
-lfs      f0, lbl_8051FD8C@sda21(r2)
-stw      r0, 0x5c(r30)
-mr       r4, r30
-lfs      f1, lbl_8051FD68@sda21(r2)
-addi     r3, r30, 0x84
-stfs     f0, 0x74(r30)
-addi     r5, r5, 0x62303033@l
-lfs      f0, lbl_8051FD88@sda21(r2)
-addi     r6, r31, 0x58
-stfs     f1, 0x7c(r30)
-stfs     f0, 0x80(r30)
-bl       __ct__8BaseParmFP10ParametersUlPc
-lis      r3, "__vt__7Parm<f>"@ha
-lis      r5, 0x63683230@ha
-addi     r0, r3, "__vt__7Parm<f>"@l
-lfs      f0, lbl_8051FD90@sda21(r2)
-stw      r0, 0x84(r30)
-mr       r4, r30
-lfs      f1, lbl_8051FD68@sda21(r2)
-addi     r3, r30, 0xac
-stfs     f0, 0x9c(r30)
-addi     r5, r5, 0x63683230@l
-lfs      f0, lbl_8051FD88@sda21(r2)
-addi     r6, r31, 0x6c
-stfs     f1, 0xa4(r30)
-stfs     f0, 0xa8(r30)
-bl       __ct__8BaseParmFP10ParametersUlPc
-lis      r3, "__vt__7Parm<f>"@ha
-lis      r5, 0x63683231@ha
-addi     r0, r3, "__vt__7Parm<f>"@l
-lfs      f0, lbl_8051FD94@sda21(r2)
-stw      r0, 0xac(r30)
-mr       r4, r30
-lfs      f1, lbl_8051FD68@sda21(r2)
-addi     r3, r30, 0xd4
-stfs     f0, 0xc4(r30)
-addi     r5, r5, 0x63683231@l
-lfs      f0, lbl_8051FD88@sda21(r2)
-addi     r6, r31, 0x7c
-stfs     f1, 0xcc(r30)
-stfs     f0, 0xd0(r30)
-bl       __ct__8BaseParmFP10ParametersUlPc
-lis      r3, "__vt__7Parm<f>"@ha
-lis      r5, 0x63683030@ha
-addi     r0, r3, "__vt__7Parm<f>"@l
-lfs      f0, lbl_8051FD84@sda21(r2)
-stw      r0, 0xd4(r30)
-mr       r4, r30
-lfs      f1, lbl_8051FD68@sda21(r2)
-addi     r3, r30, 0xfc
-stfs     f0, 0xec(r30)
-addi     r5, r5, 0x63683030@l
-lfs      f0, lbl_8051FD88@sda21(r2)
-addi     r6, r31, 0x88
-stfs     f1, 0xf4(r30)
-stfs     f0, 0xf8(r30)
-bl       __ct__8BaseParmFP10ParametersUlPc
-lis      r3, "__vt__7Parm<f>"@ha
-lis      r5, 0x63683031@ha
-addi     r0, r3, "__vt__7Parm<f>"@l
-lfs      f0, lbl_8051FD98@sda21(r2)
-stw      r0, 0xfc(r30)
-mr       r4, r30
-lfs      f1, lbl_8051FD68@sda21(r2)
-addi     r3, r30, 0x124
-stfs     f0, 0x114(r30)
-addi     r5, r5, 0x63683031@l
-lfs      f0, lbl_8051FD9C@sda21(r2)
-addi     r6, r31, 0x9c
-stfs     f1, 0x11c(r30)
-stfs     f0, 0x120(r30)
-bl       __ct__8BaseParmFP10ParametersUlPc
-lis      r3, "__vt__7Parm<f>"@ha
-lis      r5, 0x63683233@ha
-addi     r0, r3, "__vt__7Parm<f>"@l
-lfs      f0, lbl_8051FDA0@sda21(r2)
-stw      r0, 0x124(r30)
-mr       r4, r30
-lfs      f1, lbl_8051FD68@sda21(r2)
-addi     r3, r30, 0x14c
-stfs     f0, 0x13c(r30)
-addi     r5, r5, 0x63683233@l
-lfs      f0, lbl_8051FD84@sda21(r2)
-addi     r6, r31, 0xa8
-stfs     f1, 0x144(r30)
-stfs     f0, 0x148(r30)
-bl       __ct__8BaseParmFP10ParametersUlPc
-lis      r3, "__vt__7Parm<f>"@ha
-lis      r5, 0x63683130@ha
-addi     r0, r3, "__vt__7Parm<f>"@l
-lfs      f0, lbl_8051FDA4@sda21(r2)
-stw      r0, 0x14c(r30)
-mr       r4, r30
-lfs      f1, lbl_8051FD68@sda21(r2)
-addi     r3, r30, 0x174
-stfs     f0, 0x164(r30)
-addi     r5, r5, 0x63683130@l
-lfs      f0, lbl_8051FD70@sda21(r2)
-addi     r6, r31, 0xb4
-stfs     f1, 0x16c(r30)
-stfs     f0, 0x170(r30)
-bl       __ct__8BaseParmFP10ParametersUlPc
-lis      r3, "__vt__7Parm<f>"@ha
-lis      r5, 0x63683131@ha
-addi     r0, r3, "__vt__7Parm<f>"@l
-lfs      f0, lbl_8051FDA8@sda21(r2)
-stw      r0, 0x174(r30)
-mr       r4, r30
-lfs      f1, lbl_8051FD68@sda21(r2)
-addi     r3, r30, 0x19c
-stfs     f0, 0x18c(r30)
-addi     r5, r5, 0x63683131@l
-lfs      f0, lbl_8051FD80@sda21(r2)
-addi     r6, r31, 0xc8
-stfs     f1, 0x194(r30)
-stfs     f0, 0x198(r30)
-bl       __ct__8BaseParmFP10ParametersUlPc
-lis      r3, "__vt__7Parm<f>"@ha
-lis      r5, 0x63683132@ha
-addi     r0, r3, "__vt__7Parm<f>"@l
-lfs      f0, lbl_8051FD70@sda21(r2)
-stw      r0, 0x19c(r30)
-mr       r4, r30
-lfs      f1, lbl_8051FD68@sda21(r2)
-addi     r3, r30, 0x1c4
-stfs     f0, 0x1b4(r30)
-addi     r5, r5, 0x63683132@l
-lfs      f0, lbl_8051FD80@sda21(r2)
-addi     r6, r31, 0xdc
-stfs     f1, 0x1bc(r30)
-stfs     f0, 0x1c0(r30)
-bl       __ct__8BaseParmFP10ParametersUlPc
-lis      r3, "__vt__7Parm<f>"@ha
-lis      r5, 0x63683133@ha
-addi     r0, r3, "__vt__7Parm<f>"@l
-lfs      f0, lbl_8051FDAC@sda21(r2)
-stw      r0, 0x1c4(r30)
-mr       r4, r30
-lfs      f1, lbl_8051FD68@sda21(r2)
-addi     r3, r30, 0x1ec
-stfs     f0, 0x1dc(r30)
-addi     r5, r5, 0x63683133@l
-lfs      f0, lbl_8051FD80@sda21(r2)
-addi     r6, r31, 0xf0
-stfs     f1, 0x1e4(r30)
-stfs     f0, 0x1e8(r30)
-bl       __ct__8BaseParmFP10ParametersUlPc
-lis      r3, "__vt__7Parm<f>"@ha
-lis      r5, 0x63683232@ha
-addi     r0, r3, "__vt__7Parm<f>"@l
-lfs      f0, lbl_8051FDB0@sda21(r2)
-stw      r0, 0x1ec(r30)
-mr       r4, r30
-lfs      f1, lbl_8051FD68@sda21(r2)
-addi     r3, r30, 0x214
-stfs     f0, 0x204(r30)
-addi     r5, r5, 0x63683232@l
-lfs      f0, lbl_8051FD80@sda21(r2)
-addi     r6, r31, 0x104
-stfs     f1, 0x20c(r30)
-stfs     f0, 0x210(r30)
-bl       __ct__8BaseParmFP10ParametersUlPc
-lis      r3, "__vt__7Parm<f>"@ha
-lfs      f2, lbl_8051FDB4@sda21(r2)
-addi     r0, r3, "__vt__7Parm<f>"@l
-lfs      f1, lbl_8051FD68@sda21(r2)
-stw      r0, 0x214(r30)
-mr       r3, r30
-lfs      f0, lbl_8051FDB8@sda21(r2)
-stfs     f2, 0x22c(r30)
-stfs     f1, 0x234(r30)
-stfs     f0, 0x238(r30)
-lwz      r31, 0xc(r1)
-lwz      r30, 8(r1)
-lwz      r0, 0x14(r1)
-mtlr     r0
-addi     r1, r1, 0x10
-blr
-	*/
 }
 
 /*
@@ -2218,38 +1334,7 @@ blr
  * Address:	803E9C24
  * Size:	000014
  */
-E3DAnimRes* Chappy::TAnimFolder::getAnimRes(long id)
-{
-	return &m_anims[id];
-	/*
-slwi     r4, r4, 5
-mr       r0, r3
-addi     r3, r4, 4
-add      r3, r0, r3
-blr
-	*/
-}
+E3DAnimRes* Chappy::TAnimFolder::getAnimRes(long id) { return &m_anims[id]; }
 
 } // namespace title
 } // namespace ebi
-
-/*
- * --INFO--
- * Address:	803E9C38
- * Size:	000028
- */
-void __sinit_ebiP2TitleChappy_cpp()
-{
-	/*
-	lis      r4, __float_nan@ha
-	li       r0, -1
-	lfs      f0, __float_nan@l(r4)
-	lis      r3, lbl_804E9E60@ha
-	stw      r0, lbl_80516100@sda21(r13)
-	stfsu    f0, lbl_804E9E60@l(r3)
-	stfs     f0, lbl_80516104@sda21(r13)
-	stfs     f0, 4(r3)
-	stfs     f0, 8(r3)
-	blr
-	*/
-}
