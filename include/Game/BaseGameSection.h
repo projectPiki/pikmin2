@@ -90,7 +90,7 @@ struct BaseGameSection : public BaseHIOSection {
 	virtual bool forceFinish();                                        // _28 (weak)
 	virtual bool doUpdate();                                           // _3C
 	virtual void doDraw(Graphics& gfx);                                // _40
-	virtual void sendMessage(GameMessage&);                            // _50 (weak)
+	virtual bool sendMessage(GameMessage&) { return false; }           // _50 (weak)
 	virtual void pre2dDraw(Graphics& gfx);                             // _54 (weak)
 	virtual int getCurrFloor();                                        // _58 (weak)
 	virtual bool isDevelopSection();                                   // _5C (weak)

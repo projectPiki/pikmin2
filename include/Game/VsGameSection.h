@@ -43,7 +43,7 @@ struct VsGameSection : public BaseGameSection {
 	virtual ~VsGameSection();                                           // _08
 	virtual bool doUpdate();                                            // _3C
 	virtual void doDraw(Graphics& gfx);                                 // _40
-	virtual void sendMessage(GameMessage&);                             // _50
+	virtual bool sendMessage(GameMessage&);                             // _50
 	virtual void pre2dDraw(Graphics&);                                  // _54
 	virtual int getCurrFloor();                                         // _58
 	virtual void addChallengeScore(int);                                // _60

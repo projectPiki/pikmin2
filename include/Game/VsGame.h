@@ -266,14 +266,14 @@ struct GameState : public State {
 			if (navi && section->_1F0[naviIndex] <= 0.0f) {
 				efx::TNaviEffect* naviEffect = navi->m_effectsObj;
 
-				if (naviEffect->isFlag(efx::NAVIFX_Unk32)) {
-					naviEffect->m_flags = naviEffect->_04;
-					naviEffect->resetFlag(efx::NAVIFX_Unk32);
+				if (naviEffect->isFlag(efx::NAVIFX_IsSaved)) {
+					naviEffect->m_flags = naviEffect->m_savedFlags;
+					naviEffect->resetFlag(efx::NAVIFX_IsSaved);
 				}
 
-				bool inWater = naviEffect->isFlag(efx::NAVIFX_Unk1);
-				if (naviEffect->isFlag(efx::NAVIFX_Unk1)) { // in water?
-					naviEffect->setFlag(efx::NAVIFX_Unk1);
+				bool inWater = naviEffect->isFlag(efx::NAVIFX_InWater);
+				if (naviEffect->isFlag(efx::NAVIFX_InWater)) { // in water?
+					naviEffect->setFlag(efx::NAVIFX_InWater);
 					naviEffect->updateHamon_();
 
 					if (!(inWater)) { // what is bro doing
