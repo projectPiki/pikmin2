@@ -804,7 +804,7 @@ setupResources__Q34Game10PelletItem3MgrFv:
 /* 80203414 00200354  80 6D 9A EC */	lwz r3, sys@sda21(r13)
 /* 80203418 00200358  48 21 FF 45 */	bl heapStatusStart__6SystemFPcP7JKRHeap
 /* 8020341C 0020035C  7F E3 FB 78 */	mr r3, r31
-/* 80203420 00200360  38 80 00 0B */	li r4, 0xb
+/* 80203420 00200360  38 80 00 0B */	li r4, 0x1 
 /* 80203424 00200364  48 00 19 19 */	bl "alloc__Q24Game46FixedSizePelletMgr<Q34Game10PelletItem6Object>Fi"
 /* 80203428 00200368  3C 80 80 48 */	lis r4, lbl_80481C78@ha
 /* 8020342C 0020036C  7F E3 FB 78 */	mr r3, r31

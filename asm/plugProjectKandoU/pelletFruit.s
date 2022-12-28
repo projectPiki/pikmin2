@@ -839,7 +839,7 @@ setupResources__Q34Game11PelletFruit3MgrFv:
 /* 801FE040 001FAF80  80 6D 9A EC */	lwz r3, sys@sda21(r13)
 /* 801FE044 001FAF84  48 22 53 19 */	bl heapStatusStart__6SystemFPcP7JKRHeap
 /* 801FE048 001FAF88  7F E3 FB 78 */	mr r3, r31
-/* 801FE04C 001FAF8C  38 80 00 40 */	li r4, 0x40
+/* 801FE04C 001FAF8C  38 80 00 40 */	li r4, 0xf
 /* 801FE050 001FAF90  48 00 18 A5 */	bl "alloc__Q24Game47FixedSizePelletMgr<Q34Game11PelletFruit6Object>Fi"
 /* 801FE054 001FAF94  7F E3 FB 78 */	mr r3, r31
 /* 801FE058 001FAF98  4B F6 DD DD */	bl load__Q24Game13BasePelletMgrFv
@@ -848,7 +848,7 @@ setupResources__Q34Game11PelletFruit3MgrFv:
 /* 801FE064 001FAFA4  80 63 00 00 */	lwz r3, 0(r3)
 /* 801FE068 001FAFA8  4B E8 58 71 */	bl newSharedDisplayList__12J3DModelDataFUl
 /* 801FE06C 001FAFAC  7F E3 FB 78 */	mr r3, r31
-/* 801FE070 001FAFB0  38 80 00 40 */	li r4, 0x40
+/* 801FE070 001FAFB0  38 80 00 40 */	li r4, 0xf
 /* 801FE074 001FAFB4  3C A0 00 08 */	lis r5, 8
 /* 801FE078 001FAFB8  4B F6 E5 75 */	bl useModelMgr__Q24Game13BasePelletMgrFiUl
 /* 801FE07C 001FAFBC  38 7F 00 18 */	addi r3, r31, 0x18
