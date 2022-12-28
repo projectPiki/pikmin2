@@ -227,10 +227,10 @@ void PikiCarrotState::exec(Piki* piki)
 		Matrixf concatMtx;
 		Vector3f translation(0.0f, -10.0f, 0.0f);
 		natMatrix.setTranslation(translation);
-		piki->m_mainMatrix = concatMatrixf(natMatrix, matST);
+		piki->m_objMatrix = concatMatrixf(natMatrix, matST);
 
 		Vector3f newPos = piki->getPosition();
-		piki->m_mainMatrix.setTranslation(newPos);
+		piki->m_objMatrix.setTranslation(newPos);
 	}
 	/*
 	stwu     r1, -0x120(r1)
@@ -2015,7 +2015,7 @@ void PikiPressedState::init(Piki* piki, StateArg* stateArg)
 	Vector3f translation = piki->getPosition();
 	translation.y += 2.0f;
 
-	piki->m_mainMatrix.makeSRT(piki->m_scale, rotation, translation);
+	piki->m_objMatrix.makeSRT(piki->m_scale, rotation, translation);
 }
 
 /*
@@ -2029,7 +2029,7 @@ void PikiPressedState::exec(Piki* piki)
 	Vector3f translation = piki->getPosition();
 	translation.y += 2.0f;
 
-	piki->m_mainMatrix.makeSRT(piki->m_scale, rotation, translation);
+	piki->m_objMatrix.makeSRT(piki->m_scale, rotation, translation);
 
 	_10 -= sys->m_deltaTime;
 	if (_10 <= 0.0f) {
@@ -2960,7 +2960,7 @@ void PikiHipDropState::collisionCallback(Piki* piki, CollEvent& collEvent)
 		}
 
 		if (collEvent.m_collidingCreature->isTeki()) {
-			InteractHipdrop hipdrop(piki, piki->getParms()->m_pikiParms._1200.m_value, collEvent._04);
+			InteractHipdrop hipdrop(piki, piki->getParms()->m_pikiParms._1200.m_value, collEvent.m_collisionObj);
 			bool check        = false;
 			Vector3f velocity = piki->getVelocity();
 			if (velocity.y < 0.0f) {
@@ -2968,15 +2968,16 @@ void PikiHipDropState::collisionCallback(Piki* piki, CollEvent& collEvent)
 				earthquake(piki);
 			}
 
-			InteractPress press(piki, 10.0f, collEvent._04);
+			InteractPress press(piki, 10.0f, collEvent.m_collisionObj);
 			Vector3f velocity2 = piki->getVelocity();
 			if (velocity2.y < 0.0f) {
 				check = collEvent.m_collidingCreature->stimulate(press);
 			}
 
 			piki->startSound(PSSE_PK_SE_DOSUN_HIT, false);
-			if (!check && collEvent._04 != nullptr && collEvent._04->isStickable() && collEvent.m_collidingCreature->isLivingThing()) {
-				piki->startStick(collEvent.m_collidingCreature, collEvent._04);
+			if (!check && collEvent.m_collisionObj != nullptr && collEvent.m_collisionObj->isStickable()
+			    && collEvent.m_collidingCreature->isLivingThing()) {
+				piki->startStick(collEvent.m_collidingCreature, collEvent.m_collisionObj);
 				piki->startSound(collEvent.m_collidingCreature, PSSE_PK_SE_ATTACH, true);
 			}
 		}

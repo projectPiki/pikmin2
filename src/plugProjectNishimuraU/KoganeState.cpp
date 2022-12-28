@@ -32,10 +32,10 @@ void StateAppear::init(EnemyBase* enemy, StateArg* stateArg)
 	kogane->setAtari(false);
 	kogane->enableEvent(0, EB_IsImmuneBitter);
 	kogane->hardConstraintOn();
-	kogane->disableEvent(0, EB_ToAnimate);
+	kogane->disableEvent(0, EB_IsAnimating);
 	kogane->enableEvent(0, EB_IsModelHidden);
 
-	kogane->m_simVelocity = Vector3f(0.0f);
+	kogane->m_targetVelocity = Vector3f(0.0f);
 	kogane->startMotion(0, nullptr);
 	kogane->stopMotion();
 }
@@ -67,7 +67,7 @@ void StateAppear::cleanup(EnemyBase* enemy)
 	kogane->enableEvent(0, EB_IsEnemyNotBitter);
 	kogane->disableEvent(0, EB_IsCullable);
 	kogane->hardConstraintOff();
-	kogane->enableEvent(0, EB_ToAnimate);
+	kogane->enableEvent(0, EB_IsAnimating);
 	kogane->disableEvent(0, EB_IsModelHidden);
 
 	kogane->setEmotionExcitement();
@@ -165,7 +165,7 @@ void StateMove::exec(EnemyBase* enemy)
 	kogane->m_appearTimer += sys->m_deltaTime;
 	kogane->m_moveTimer += sys->m_deltaTime;
 
-	if (kogane->m_curAnim->m_isRunning && (u32)kogane->m_curAnim->m_type == KEYEVENT_END) {
+	if (kogane->m_curAnim->m_isPlaying && (u32)kogane->m_curAnim->m_type == KEYEVENT_END) {
 		if (kogane->m_appearTimer > static_cast<Parms*>(kogane->m_parms)->m_properParms.m_fp02.m_value) {
 			transit(kogane, KOGANE_Disappear, nullptr);
 		} else {
@@ -193,7 +193,7 @@ void StateWait::init(EnemyBase* enemy, StateArg* stateArg)
 	Parms* parms = static_cast<Parms*>(kogane->m_parms);
 	kogane->resetMoveTimer(parms->m_properParms.m_fp20.m_value, parms->m_properParms.m_fp21.m_value);
 
-	kogane->m_simVelocity = Vector3f(0.0f);
+	kogane->m_targetVelocity = Vector3f(0.0f);
 	kogane->startMotion(1, nullptr);
 }
 
@@ -214,7 +214,7 @@ void StateWait::exec(EnemyBase* enemy)
 	kogane->m_appearTimer += sys->m_deltaTime;
 	kogane->m_moveTimer += sys->m_deltaTime;
 
-	if (kogane->m_curAnim->m_isRunning && (u32)kogane->m_curAnim->m_type == KEYEVENT_END) {
+	if (kogane->m_curAnim->m_isPlaying && (u32)kogane->m_curAnim->m_type == KEYEVENT_END) {
 		transit(kogane, KOGANE_Move, nullptr);
 	}
 }
@@ -257,7 +257,7 @@ void StatePress::exec(EnemyBase* enemy)
 	kogane->koganeScaleUp();
 	kogane->m_appearTimer += sys->m_deltaTime;
 
-	if (kogane->m_curAnim->m_isRunning) {
+	if (kogane->m_curAnim->m_isPlaying) {
 		if ((u32)kogane->m_curAnim->m_type == KEYEVENT_2) {
 			kogane->enableEvent(0, EB_IsEnemyNotBitter);
 			kogane->createPressSESpecial();

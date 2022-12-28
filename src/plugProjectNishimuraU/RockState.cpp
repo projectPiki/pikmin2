@@ -35,10 +35,10 @@ void StateWait::init(EnemyBase* enemy, StateArg* stateArg)
 	rock->setAtari(false);
 	rock->enableEvent(0, EB_IsFlying);
 	rock->hardConstraintOn();
-	rock->disableEvent(0, EB_ToAnimate);
+	rock->disableEvent(0, EB_IsAnimating);
 	rock->enableEvent(0, EB_IsModelHidden);
 
-	rock->m_simVelocity = Vector3f(0.0f);
+	rock->m_targetVelocity = Vector3f(0.0f);
 	rock->startMotion(1, nullptr);
 	rock->stopMotion();
 }
@@ -51,7 +51,7 @@ void StateWait::init(EnemyBase* enemy, StateArg* stateArg)
 void StateWait::exec(EnemyBase* enemy)
 {
 	Obj* rock = static_cast<Obj*>(enemy);
-	if (rock->m_existenceLength != 0.0f) {
+	if (rock->m_existDuration != 0.0f) {
 		rock->m_timer += sys->m_deltaTime;
 		if (rock->m_timer > 1.5f) {
 			transit(rock, ROCK_Appear, nullptr);
@@ -82,7 +82,7 @@ void StateWait::cleanup(EnemyBase* enemy)
 {
 	Obj* rock = static_cast<Obj*>(enemy);
 	rock->hardConstraintOff();
-	rock->enableEvent(0, EB_ToAnimate);
+	rock->enableEvent(0, EB_IsAnimating);
 	rock->disableEvent(0, EB_IsModelHidden);
 }
 
@@ -102,7 +102,7 @@ void StateAppear::init(EnemyBase* enemy, StateArg* stateArg)
 	rock->disableEvent(0, EB_IsCullable);
 	rock->disableEvent(0, EB_14);
 
-	rock->m_simVelocity = Vector3f(0.0f);
+	rock->m_targetVelocity = Vector3f(0.0f);
 	rock->startMotion(1, nullptr);
 
 	shadowMgr->addShadow(rock);
@@ -190,7 +190,7 @@ void StateFall::init(EnemyBase* enemy, StateArg* stateArg)
  */
 void StateFall::exec(EnemyBase* enemy)
 {
-	if (enemy->m_curTriangle) {
+	if (enemy->m_bounceTriangle) {
 		transit(enemy, ROCK_Dead, nullptr);
 	} else if (enemy->isEvent(0, EB_HasCollisionOccurred)) {
 		transit(enemy, ROCK_Dead, nullptr);
@@ -274,8 +274,8 @@ void StateMove::cleanup(EnemyBase* enemy)
  */
 void StateDead::init(EnemyBase* enemy, StateArg* stateArg)
 {
-	Obj* rock           = static_cast<Obj*>(enemy);
-	rock->m_simVelocity = Vector3f(0.0f);
+	Obj* rock              = static_cast<Obj*>(enemy);
+	rock->m_targetVelocity = Vector3f(0.0f);
 	rock->startMotion(0, nullptr);
 	shadowMgr->delShadow(rock);
 	rock->createRockDeadEffect();
@@ -295,7 +295,7 @@ void StateDead::exec(EnemyBase* enemy)
 		rock->hardConstraintOn();
 	}
 
-	if (rock->m_curAnim->m_isRunning && (u32)rock->m_curAnim->m_type == KEYEVENT_END) {
+	if (rock->m_curAnim->m_isPlaying && (u32)rock->m_curAnim->m_type == KEYEVENT_END) {
 		rock->kill(nullptr);
 	}
 }

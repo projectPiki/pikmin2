@@ -54,7 +54,7 @@ Creature::Creature()
 
 	m_scale = Vector3f(1.0f);
 
-	PSMTXIdentity(m_mainMatrix.m_matrix.mtxView);
+	PSMTXIdentity(m_objMatrix.m_matrix.mtxView);
 
 	m_objectTypeID = OBJTYPE_INVALID_START;
 
@@ -89,7 +89,7 @@ void Creature::init(CreatureInitArg* arg)
 	m_acceleration = Vector3f(0.0f);
 	clearCapture();
 
-	m_curTriangle       = nullptr;
+	m_bounceTriangle    = nullptr;
 	m_collisionPosition = Vector3f(0.0f, 1.0f, 0.0f);
 	clearCapture();
 
@@ -125,7 +125,7 @@ void Creature::setPosition(Vector3f& position, bool skipPostProc)
 	updateTrMatrix();
 
 	if (m_model) {
-		PSMTXCopy(m_mainMatrix.m_matrix.mtxView, m_model->m_j3dModel->m_posMtx);
+		PSMTXCopy(m_objMatrix.m_matrix.mtxView, m_model->m_j3dModel->m_posMtx);
 		m_model->m_j3dModel->calc();
 		if (m_collTree) {
 			m_collTree->update();
@@ -146,7 +146,7 @@ void Creature::initPosition(Vector3f& position)
 	updateTrMatrix();
 
 	if (m_model) {
-		PSMTXCopy(m_mainMatrix.m_matrix.mtxView, m_model->m_j3dModel->m_posMtx);
+		PSMTXCopy(m_objMatrix.m_matrix.mtxView, m_model->m_j3dModel->m_posMtx);
 		m_model->m_j3dModel->calc();
 		if (m_collTree) {
 			m_collTree->update();
@@ -164,9 +164,9 @@ void Creature::initPosition(Vector3f& position)
  */
 void Creature::getYVector(Vector3f& outVector)
 {
-	outVector.x = m_mainMatrix.m_matrix.structView.yx;
-	outVector.y = m_mainMatrix.m_matrix.structView.yy;
-	outVector.z = m_mainMatrix.m_matrix.structView.yz;
+	outVector.x = m_objMatrix.m_matrix.structView.yx;
+	outVector.y = m_objMatrix.m_matrix.structView.yy;
+	outVector.z = m_objMatrix.m_matrix.structView.yz;
 	outVector.normalise();
 }
 
@@ -229,10 +229,10 @@ bool Creature::needShadow() { return m_lod.m_flags & AILOD_FLAG_NEED_SHADOW; }
  */
 void Creature::getLifeGaugeParam(LifeGaugeParam& param)
 {
-	param.m_position         = getPosition();
-	param.m_healthPercentage = 1.0f;
-	param._10                = 10.0f;
-	param._14                = 1;
+	param.m_position            = getPosition();
+	param.m_curHealthPercentage = 1.0f;
+	param.m_radius              = 10.0f;
+	param.m_isGaugeShown        = 1;
 }
 
 /*
@@ -478,7 +478,7 @@ int Creature::checkHell(Creature::CheckHellArg& hellArg)
 			killInline(nullptr);
 		}
 
-		return 2;
+		return CREATURE_HELL_DEATH;
 	}
 
 	return pos.y < -300.0f;

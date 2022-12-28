@@ -31,7 +31,7 @@ void StateDead::init(EnemyBase* enemy, StateArg* stateArg)
 	hiba->enableEvent(0, EB_IsFlying);
 	hiba->disableEvent(0, EB_LifegaugeVisible);
 	hiba->enableEvent(0, EB_IsVulnerable);
-	hiba->disableEvent(0, EB_4);
+	hiba->disableEvent(0, EB_IsDamageAnimAllowed);
 
 	hiba->m_isAlive = false;
 	hiba->generatorKill();
@@ -151,7 +151,7 @@ void StateAttack::exec(EnemyBase* enemy)
 
 	hiba->getJAIObject()->startSound(PSSE_EN_GAS_HIBA_VOMIT, 0);
 
-	if (hiba->m_curAnim->m_isRunning
+	if (hiba->m_curAnim->m_isPlaying
 	    && ((u32)hiba->m_curAnim->m_type == KEYEVENT_END) /* Epoch: wtf is this, needs cleanup. Surely an enum (+1 from INTNS)? */) {
 		if (hiba->m_health <= 0.0f) {
 			transit(hiba, GASHIBA_Dead, nullptr);

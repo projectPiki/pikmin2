@@ -21,21 +21,21 @@ struct MoveInfo {
 	    , m_velocity(vec)
 	    , _08(a)
 	{
-		_0C           = 0.0f;
-		_10           = nullptr;
-		m_curTriangle = nullptr;
-		_74           = 0;
-		_19           = 0;
-		_18           = 0;
-		m_curWallTri  = nullptr;
-		m_infoOrigin  = nullptr;
-		_90           = 0;
-		_94           = nullptr;
-		_2C           = JMath::sincosTable_.m_table[256].first; // pi/2
-		_30           = 0.6f;
-		_98           = -1;
-		_4C           = nullptr;
-		_1A           = 0;
+		_0C              = 0.0f;
+		_10              = nullptr;
+		m_bounceTriangle = nullptr;
+		_74              = 0;
+		_19              = 0;
+		_18              = 0;
+		m_wallTriangle   = nullptr;
+		m_infoOrigin     = nullptr;
+		_90              = 0;
+		_94              = nullptr;
+		_2C              = JMath::sincosTable_.m_table[256].first; // pi/2
+		_30              = 0.6f;
+		_98              = -1;
+		_4C              = nullptr;
+		_1A              = 0;
 	}
 
 	Sys::Sphere* _00;                                  // _00
@@ -52,8 +52,8 @@ struct MoveInfo {
 	float _2C;                                         // _2C
 	float _30;                                         // _30
 	u8 _34[16];                                        // _34
-	Sys::Triangle* m_curTriangle;                      // _44
-	Sys::Triangle* m_curWallTri;                       // _48
+	Sys::Triangle* m_bounceTriangle;                   // _44
+	Sys::Triangle* m_wallTriangle;                     // _48
 	Sys::Triangle* _4C;                                // _4C
 	Vector3f m_position;                               // _50
 	Vector3f _5C;                                      // _5C

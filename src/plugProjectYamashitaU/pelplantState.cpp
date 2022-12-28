@@ -69,7 +69,7 @@ void StateBlendAnim::init(EnemyBase* enemy, StateArg* stateArg)
  */
 void StateBlendAnim::exec(EnemyBase* enemy)
 {
-	if (enemy->m_curAnim->m_isRunning) {
+	if (enemy->m_curAnim->m_isPlaying) {
 		switch (enemy->m_curAnim->m_type) {
 		case KEYEVENT_END_BLEND:
 			enemy->endBlend();
@@ -118,7 +118,7 @@ void StateWither::init(EnemyBase* enemy, StateArg* stateArg)
  */
 void StateWither::exec(EnemyBase* enemy)
 {
-	if (enemy->m_curAnim->m_isRunning) {
+	if (enemy->m_curAnim->m_isPlaying) {
 		switch (enemy->m_curAnim->m_type) {
 		case KEYEVENT_END_BLEND:
 			enemy->endBlend();
@@ -205,7 +205,7 @@ void StateWait::exec(EnemyBase* enemy)
 		static_cast<Obj*>(enemy)->_2C0 += frameTime;
 	}
 
-	if (enemy->m_curAnim->m_isRunning) {
+	if (enemy->m_curAnim->m_isPlaying) {
 		switch (enemy->m_curAnim->m_type) {
 		case 1000:
 		case 1:
@@ -343,7 +343,7 @@ void StateGrow::init(EnemyBase* enemy, StateArg* stateArg)
  */
 void StateGrow::exec(EnemyBase* enemy)
 {
-	if (enemy->m_curAnim->m_isRunning != 0) {
+	if (enemy->m_curAnim->m_isPlaying != 0) {
 		switch (enemy->m_curAnim->m_type) {
 		case 1000:
 		case 1:
@@ -396,7 +396,7 @@ void StateDamage::init(EnemyBase* enemy, StateArg* stateArg)
  */
 void StateDamage::exec(Game::EnemyBase* enemy)
 {
-	if ((enemy->m_curAnim->m_isRunning != 0) && ((u32)enemy->m_curAnim->m_type == 0x3E8)) {
+	if ((enemy->m_curAnim->m_isPlaying != 0) && ((u32)enemy->m_curAnim->m_type == 0x3E8)) {
 		transit(enemy, m_stateMachine->m_previousID, 0);
 	}
 	static_cast<Obj*>(enemy)->changePelletColor();
@@ -453,7 +453,7 @@ void StateDead::init(EnemyBase* enemy, StateArg* stateArg)
  */
 void StateDead::exec(EnemyBase* enemy)
 {
-	if ((enemy->m_curAnim->m_isRunning) && ((u32)enemy->m_curAnim->m_type == 1000)) {
+	if ((enemy->m_curAnim->m_isPlaying) && ((u32)enemy->m_curAnim->m_type == 1000)) {
 		if (static_cast<Obj*>(enemy)->m_pellet) {
 			static_cast<Obj*>(enemy)->m_pellet->endCapture();
 			static_cast<Obj*>(enemy)->m_pellet = nullptr;

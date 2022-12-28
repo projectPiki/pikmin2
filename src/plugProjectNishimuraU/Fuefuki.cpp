@@ -148,7 +148,7 @@ void Obj::getShadowParam(ShadowParam& param)
 	param.m_position.y                = m_position.y + 5.0f;
 	param.m_position.z                = sphere.m_position.z;
 	param.m_boundingSphere.m_position = Vector3f(0.0f, 1.0f, 0.0f);
-	if (isEvent(1, EB2_IsEarthquakeActive)) {
+	if (isEvent(1, EB2_IsEarthquake)) {
 		param.m_boundingSphere.m_radius = 75.0f;
 	} else {
 		param.m_boundingSphere.m_radius = 50.0f;
@@ -955,7 +955,7 @@ lbl_8029D274:
  */
 bool Obj::isArriveTarget()
 {
-	if (m_curWallTri || sqrDistanceXZ(m_position, m_targetPosition) < 625.0f) {
+	if (m_wallTriangle || sqrDistanceXZ(m_position, m_targetPosition) < 625.0f) {
 		return true;
 	}
 

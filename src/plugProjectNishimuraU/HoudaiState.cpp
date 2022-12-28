@@ -36,7 +36,7 @@ void StateDead::init(EnemyBase* enemy, StateArg* stateArg)
 	Obj* houdai = static_cast<Obj*>(enemy);
 	houdai->forceFinishIKMotion();
 	houdai->deathProcedure();
-	houdai->m_simVelocity = Vector3f(0.0f);
+	houdai->m_targetVelocity = Vector3f(0.0f);
 	houdai->setEmotionCaution();
 	houdai->startMotion(0, nullptr);
 	houdai->createHoudaiDeadEffect();
@@ -55,7 +55,7 @@ void StateDead::init(EnemyBase* enemy, StateArg* stateArg)
 void StateDead::exec(EnemyBase* enemy)
 {
 	Obj* houdai = static_cast<Obj*>(enemy);
-	if (houdai->m_curAnim->m_isRunning && (u32)houdai->m_curAnim->m_type == KEYEVENT_END) {
+	if (houdai->m_curAnim->m_isPlaying && (u32)houdai->m_curAnim->m_type == KEYEVENT_END) {
 		houdai->throwupItem();
 		houdai->finishChimneyEffect();
 		houdai->createDeadBombEffect();
@@ -83,9 +83,9 @@ void StateStay::init(EnemyBase* enemy, StateArg* stateArg)
 	Obj* houdai         = static_cast<Obj*>(enemy);
 	houdai->m_nextState = HOUDAI_NULL;
 	houdai->enableEvent(0, EB_IsImmuneBitter);
-	houdai->disableEvent(0, EB_ToAnimate);
+	houdai->disableEvent(0, EB_IsAnimating);
 	houdai->m_targetCreature = nullptr;
-	houdai->m_simVelocity    = Vector3f(0.0f);
+	houdai->m_targetVelocity = Vector3f(0.0f);
 	houdai->startMotion(1, nullptr);
 	houdai->stopMotion();
 }
@@ -134,10 +134,10 @@ void StateLand::init(EnemyBase* enemy, StateArg* stateArg)
 	Obj* houdai         = static_cast<Obj*>(enemy);
 	houdai->m_nextState = HOUDAI_NULL;
 	houdai->enableEvent(0, EB_IsImmuneBitter);
-	houdai->enableEvent(0, EB_ToAnimate);
+	houdai->enableEvent(0, EB_IsAnimating);
 	houdai->setEmotionExcitement();
 	houdai->m_targetCreature = nullptr;
-	houdai->m_simVelocity    = Vector3f(0.0f);
+	houdai->m_targetVelocity = Vector3f(0.0f);
 
 	houdai->startMotion(1, nullptr);
 	houdai->createAppearEffect();
@@ -179,7 +179,7 @@ void StateLand::exec(EnemyBase* enemy)
 		}
 	}
 
-	if (houdai->m_curAnim->m_isRunning) {
+	if (houdai->m_curAnim->m_isPlaying) {
 		if ((u32)houdai->m_curAnim->m_type == KEYEVENT_2) {
 			EnemyFunc::flickStickPikmin(houdai, 1.0f, 100.0f, 0.0f, -1000.0f, nullptr);
 			houdai->startChimneyEffect();
@@ -243,7 +243,7 @@ void StateWait::init(EnemyBase* enemy, StateArg* stateArg)
 	houdai->m_stateTimer     = 0.0f;
 	houdai->m_stateDuration  = 1.5f + randWeightFloat(1.5f);
 	houdai->m_targetCreature = nullptr;
-	houdai->m_simVelocity    = Vector3f(0.0f);
+	houdai->m_targetVelocity = Vector3f(0.0f);
 	houdai->startMotion(2, nullptr);
 }
 
@@ -271,7 +271,7 @@ void StateWait::exec(EnemyBase* enemy)
 		houdai->finishMotion();
 	}
 
-	if (houdai->m_curAnim->m_isRunning && (u32)houdai->m_curAnim->m_type == KEYEVENT_END) {
+	if (houdai->m_curAnim->m_isPlaying && (u32)houdai->m_curAnim->m_type == KEYEVENT_END) {
 		transit(houdai, houdai->m_nextState, nullptr);
 	}
 }
@@ -294,7 +294,7 @@ void StateFlick::init(EnemyBase* enemy, StateArg* stateArg)
 	houdai->m_nextState      = HOUDAI_NULL;
 	houdai->m_stateTimer     = 0.0f;
 	houdai->m_targetCreature = nullptr;
-	houdai->m_simVelocity    = Vector3f(0.0f);
+	houdai->m_targetVelocity = Vector3f(0.0f);
 	houdai->startMotion(3, nullptr);
 	houdai->startBlendMotion();
 }
@@ -307,7 +307,7 @@ void StateFlick::init(EnemyBase* enemy, StateArg* stateArg)
 void StateFlick::exec(EnemyBase* enemy)
 {
 	Obj* houdai = static_cast<Obj*>(enemy);
-	if (houdai->m_curAnim->m_isRunning) {
+	if (houdai->m_curAnim->m_isPlaying) {
 		if ((u32)houdai->m_curAnim->m_type == KEYEVENT_2) {
 			houdai->startChimneyEffect();
 
@@ -355,7 +355,7 @@ void StateWalk::init(EnemyBase* enemy, StateArg* stateArg)
 	houdai->m_stateTimer     = 0.0f;
 	houdai->m_stateDuration  = 3.5f + randWeightFloat(3.5f);
 	houdai->m_targetCreature = nullptr;
-	houdai->m_simVelocity    = Vector3f(0.0f);
+	houdai->m_targetVelocity = Vector3f(0.0f);
 	houdai->startIKMotion();
 	houdai->getTargetPosition();
 }
@@ -407,7 +407,7 @@ void StateShot::init(EnemyBase* enemy, StateArg* stateArg)
 	houdai->_2ED             = 0;
 	houdai->_2CC             = 0.0f;
 	houdai->m_targetCreature = nullptr;
-	houdai->m_simVelocity    = Vector3f(0.0f);
+	houdai->m_targetVelocity = Vector3f(0.0f);
 	houdai->startMotion(4, nullptr);
 	houdai->startBlendMotion();
 	houdai->createShotGunOpenEffect();
@@ -458,7 +458,7 @@ void StateShot::exec(EnemyBase* enemy)
 
 	if (houdai->isShotGunRotation()) {
 		houdai->setShotGunTargetPosition();
-		if (houdai->m_stateTimer > static_cast<Parms*>(houdai->m_parms)->m_general.m_fp15.m_value) {
+		if (houdai->m_stateTimer > static_cast<Parms*>(houdai->m_parms)->m_general.m_searchAngle.m_value) {
 			houdai->m_stateTimer = 0.0f;
 			houdai->finishMotion();
 		}
@@ -475,7 +475,7 @@ void StateShot::exec(EnemyBase* enemy)
 		houdai->finishMotion();
 	}
 
-	if (houdai->m_curAnim->m_isRunning) {
+	if (houdai->m_curAnim->m_isPlaying) {
 		if ((u32)houdai->m_curAnim->m_type == KEYEVENT_2) {
 			houdai->m_stateTimer = 0.0f;
 			houdai->stopMotion();
@@ -493,7 +493,7 @@ void StateShot::exec(EnemyBase* enemy)
 		} else if ((u32)houdai->m_curAnim->m_type == KEYEVENT_4) {
 			if (!houdai->isFinishMotion()) {
 				Parms* parms2 = static_cast<Parms*>(houdai->m_parms);
-				if (parms2->m_general.m_fp15.m_value - houdai->m_stateTimer > parms2->m_properParms.m_fp12.m_value
+				if (parms2->m_general.m_searchAngle.m_value - houdai->m_stateTimer > parms2->m_properParms.m_fp12.m_value
 				    && houdai->_2CC > parms2->m_properParms.m_fp10.m_value) {
 					houdai->setShotGunEmitKeepTimerOff();
 					houdai->stopMotion();

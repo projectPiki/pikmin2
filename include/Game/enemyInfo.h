@@ -170,5 +170,13 @@ inline int getEnemyMgrID(int enemyID)
 	}
 	return idx;
 }
+
+#define IS_ENEMY_BOSS(id)                                                                                                        \
+	(id == EnemyTypeID::EnemyID_Queen || id == EnemyTypeID::EnemyID_SnakeCrow || id == EnemyTypeID::EnemyID_KingChappy           \
+	 || id == EnemyTypeID::EnemyID_Damagumo || id == EnemyTypeID::EnemyID_OoPanModoki || id == EnemyTypeID::EnemyID_Houdai       \
+	 || id == EnemyTypeID::EnemyID_UmiMushiBlind || id == EnemyTypeID::EnemyID_BlackMan || id == EnemyTypeID::EnemyID_DangoMushi \
+	 || id == EnemyTypeID::EnemyID_BigFoot || id == EnemyTypeID::EnemyID_SnakeWhole || id == EnemyTypeID::EnemyID_UmiMushi       \
+	 || id == EnemyTypeID::EnemyID_BigTreasure)
+
 } // namespace Game
 #endif

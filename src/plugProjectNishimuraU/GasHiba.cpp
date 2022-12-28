@@ -111,7 +111,7 @@ bool Obj::damageCallBack(Creature* creature, f32 damage, CollPart* collpart)
 		position.y -= m_position.y;
 
 		Parms* parms = C_PARMS;
-		if ((position.y < parms->m_general.m_fp20.m_value) && (position.y > -parms->m_general.m_fp21.m_value)) {
+		if ((position.y < parms->m_general.m_maxAttackRange.m_value) && (position.y > -parms->m_general.m_minAttackRange.m_value)) {
 			addDamage(damage, 1.0f);
 			return true;
 		}
@@ -160,12 +160,12 @@ bool Obj::bombCallBack(Creature* creature, Vector3f& vec, f32 damage)
 void Obj::interactGasAttack()
 {
 	Parms* parms = C_PARMS;
-	f32 max      = m_position.y + parms->m_general.m_fp20.m_value;
-	f32 min      = m_position.y - parms->m_general.m_fp21.m_value;
-	f32 radSqr   = SQUARE(parms->m_general.m_fp22.m_value);
+	f32 max      = m_position.y + parms->m_general.m_maxAttackRange.m_value;
+	f32 min      = m_position.y - parms->m_general.m_minAttackRange.m_value;
+	f32 radSqr   = SQUARE(parms->m_general.m_attackRadius.m_value);
 
 	Sys::Sphere sphere(m_position);
-	sphere.m_radius = parms->m_general.m_fp22.m_value;
+	sphere.m_radius = parms->m_general.m_attackRadius.m_value;
 
 	CellIteratorArg arg(sphere);
 	arg._1C = true;

@@ -38,7 +38,7 @@ void StateDead::init(EnemyBase* enemy, StateArg* stateArg)
 	damagumo->deathProcedure();
 	damagumo->disableEvent(0, EB_IsCullable);
 
-	damagumo->m_simVelocity = 0.0f;
+	damagumo->m_targetVelocity = 0.0f;
 	damagumo->setEmotionCaution();
 	damagumo->startMotion(0, nullptr);
 
@@ -55,7 +55,7 @@ void StateDead::init(EnemyBase* enemy, StateArg* stateArg)
 void StateDead::exec(EnemyBase* enemy)
 {
 	Obj* damagumo = static_cast<Obj*>(enemy);
-	if (damagumo->m_curAnim->m_isRunning) {
+	if (damagumo->m_curAnim->m_isPlaying) {
 		if ((u32)damagumo->m_curAnim->m_type == KEYEVENT_2) {
 			damagumo->throwupItem();
 			damagumo->createItemAndEnemy();
@@ -84,11 +84,11 @@ void StateStay::init(EnemyBase* enemy, StateArg* stateArg)
 	Obj* damagumo         = static_cast<Obj*>(enemy);
 	damagumo->m_nextState = DAMAGUMO_NULL;
 	damagumo->enableEvent(0, EB_IsImmuneBitter);
-	damagumo->disableEvent(0, EB_ToAnimate);
+	damagumo->disableEvent(0, EB_IsAnimating);
 	damagumo->enableEvent(0, EB_IsModelHidden);
 	damagumo->m_targetCreature = nullptr;
 
-	damagumo->m_simVelocity = Vector3f(0.0f);
+	damagumo->m_targetVelocity = Vector3f(0.0f);
 	damagumo->startMotion(1, nullptr);
 	damagumo->stopMotion();
 }
@@ -136,13 +136,13 @@ void StateLand::init(EnemyBase* enemy, StateArg* stateArg)
 
 	damagumo->enableEvent(0, EB_IsImmuneBitter);
 	damagumo->disableEvent(0, EB_IsCullable);
-	damagumo->enableEvent(0, EB_ToAnimate);
+	damagumo->enableEvent(0, EB_IsAnimating);
 	damagumo->disableEvent(0, EB_IsModelHidden);
 
 	damagumo->setEmotionExcitement();
 	damagumo->m_targetCreature = nullptr;
 
-	damagumo->m_simVelocity = Vector3f(0.0f);
+	damagumo->m_targetVelocity = Vector3f(0.0f);
 	damagumo->startMotion(1, nullptr);
 
 	shadowMgr->addJointShadow(damagumo);
@@ -159,7 +159,7 @@ void StateLand::exec(EnemyBase* enemy)
 	Obj* damagumo = static_cast<Obj*>(enemy);
 	damagumo->addShadowScale();
 
-	if (damagumo->m_curAnim->m_isRunning) {
+	if (damagumo->m_curAnim->m_isPlaying) {
 		if ((u32)damagumo->m_curAnim->m_type == KEYEVENT_2) {
 			damagumo->disableEvent(0, EB_IsImmuneBitter);
 
@@ -222,7 +222,7 @@ void StateWait::init(EnemyBase* enemy, StateArg* stateArg)
 	damagumo->m_stateTimer     = 0.0f;
 	damagumo->m_stateDuration  = 1.75f + randWeightFloat(1.75f);
 	damagumo->m_targetCreature = nullptr;
-	damagumo->m_simVelocity    = Vector3f(0.0f);
+	damagumo->m_targetVelocity = Vector3f(0.0f);
 	damagumo->startMotion(2, nullptr);
 }
 
@@ -247,7 +247,7 @@ void StateWait::exec(EnemyBase* enemy)
 		damagumo->finishMotion();
 	}
 
-	if (damagumo->m_curAnim->m_isRunning && (u32)damagumo->m_curAnim->m_type == KEYEVENT_END) {
+	if (damagumo->m_curAnim->m_isPlaying && (u32)damagumo->m_curAnim->m_type == KEYEVENT_END) {
 		transit(damagumo, damagumo->m_nextState, nullptr);
 	}
 }
@@ -270,7 +270,7 @@ void StateFlick::init(EnemyBase* enemy, StateArg* stateArg)
 	damagumo->m_nextState      = DAMAGUMO_NULL;
 	damagumo->m_stateTimer     = 0.0f;
 	damagumo->m_targetCreature = nullptr;
-	damagumo->m_simVelocity    = Vector3f(0.0f);
+	damagumo->m_targetVelocity = Vector3f(0.0f);
 
 	damagumo->startMotion(3, nullptr);
 	damagumo->startBlendMotion();
@@ -284,7 +284,7 @@ void StateFlick::init(EnemyBase* enemy, StateArg* stateArg)
 void StateFlick::exec(EnemyBase* enemy)
 {
 	Obj* damagumo = static_cast<Obj*>(enemy);
-	if (damagumo->m_curAnim->m_isRunning) {
+	if (damagumo->m_curAnim->m_isPlaying) {
 		if ((u32)damagumo->m_curAnim->m_type == KEYEVENT_2) {
 			Parms* parms = static_cast<Parms*>(damagumo->m_parms);
 			EnemyFunc::flickStickPikmin(damagumo, parms->m_general.m_shakeRateMaybe.m_value, parms->m_general.m_shakeKnockback.m_value,
@@ -324,7 +324,7 @@ void StateWalk::init(EnemyBase* enemy, StateArg* stateArg)
 	damagumo->m_stateTimer     = 0.0f;
 	damagumo->m_stateDuration  = 3.25f + randWeightFloat(3.25f);
 	damagumo->m_targetCreature = nullptr;
-	damagumo->m_simVelocity    = Vector3f(0.0f);
+	damagumo->m_targetVelocity = Vector3f(0.0f);
 	damagumo->startIKMotion();
 	damagumo->getTargetPosition();
 }

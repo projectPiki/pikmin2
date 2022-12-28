@@ -128,7 +128,8 @@ void Navi::onInit(Game::CreatureInitArg* arg)
 	_2AC            = 0;
 
 	m_collTree->createFromFactory(m_model, naviMgr->_CC, nullptr);
-	JUT_ASSERTLINE(838, ((int)m_collTree->m_part) >= 0x80000000, "ザンーー（・д・）??ネン\n"); // 'disappointttttt D: ?? ment' (lol)
+	JUT_ASSERTLINE(838, ((int)m_collTree->m_part) >= 0x80000000,
+	               "ザンーー（・д・）??ネン\n"); // 'disappointttttt D: ?? ment' (lol)
 	m_collTree->attachModel(m_model);
 
 	m_fsm->start(this, NSID_Walk, nullptr);

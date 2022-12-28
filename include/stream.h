@@ -105,7 +105,8 @@ struct RamStream : Stream {
 };
 
 /**
- * @brief A wrapper for loading and reading files using RamStream, which is commonly used and recognised in almost every config context.
+ * @brief A wrapper for loading and reading files using RamStream, which is commonly used and recognised in almost every
+ * config context.
  *
  * @tparam T				The class containing the read function
  * @param thisPtr		A pointer to the class containing the read function

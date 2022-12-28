@@ -44,7 +44,8 @@ struct BaseGen : public CNode {
  */
 struct TekiInfo : CNode {
 	// need to make this a define list eventually
-	// enum DropMode { NoDrop = 0, DropOnPikminOrLeader, DropOnPikmin, DropOnLeader, DropOnCarryingPikmin, DropFromPurpleEarthquake };
+	// enum DropMode { NoDrop = 0, DropOnPikminOrLeader, DropOnPikmin, DropOnLeader, DropOnCarryingPikmin,
+	// DropFromPurpleEarthquake };
 
 	virtual ~TekiInfo() { }     // _08 (weak)
 	virtual void read(Stream&); // _10

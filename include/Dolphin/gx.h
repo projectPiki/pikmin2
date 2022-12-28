@@ -1093,7 +1093,8 @@ void GXSetTevKColor(GXTevKColorID, GXColor);
 void GXSetClipMode(u32); // needs a proper type
 
 // added GXPosition and GXFifo from smb-decomp/GXVert.h, thanks to encounter for doing this!
-// need to confirm these are the same for Pikmin 2 - currently used by plugProjectNishimuraU/MapUnit.cpp in UnitInfo::draw()
+// need to confirm these are the same for Pikmin 2 - currently used by plugProjectNishimuraU/MapUnit.cpp in
+// UnitInfo::draw()
 
 #define GXFIFO_ADDR 0xCC008000
 

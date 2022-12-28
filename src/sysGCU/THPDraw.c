@@ -73,7 +73,8 @@ void THPGXYuv2RgbSetup(u16* param_1)
 	GXSetTevKColorSel(GX_TEVSTAGE0, GX_TEV_KCSEL_K0_B);
 	GXSetTevKAlphaSel(GX_TEVSTAGE0, 0x1c);
 	GXSetTevSwapMode(GX_TEVSTAGE0, GX_TEV_SWAP0, GX_TEV_SWAP0);
-	GXSetTevOrder(GX_TEVSTAGE1, GX_TEXCOORD1, GX_TEXMAP2, GX_COLOR_NULL); // Unsure as to what the proper form of the GXTexMapID should be
+	GXSetTevOrder(GX_TEVSTAGE1, GX_TEXCOORD1, GX_TEXMAP2,
+	              GX_COLOR_NULL); // Unsure as to what the proper form of the GXTexMapID should be
 	GXSetTevColorIn(GX_TEVSTAGE1, GX_CC_ZERO, GX_CC_TEXC, GX_CC_KONST, GX_CC_CPREV);
 	GXSetTevColorOp(GX_TEVSTAGE1, GX_TEV_ADD, GX_TB_ZERO, GX_CS_SCALE_2, GX_FALSE, GX_TEVPREV);
 	GXSetTevAlphaIn(GX_TEVSTAGE1, GX_ZERO, GX_CA_TEXA, GX_KONST, GX_CA_APREV);

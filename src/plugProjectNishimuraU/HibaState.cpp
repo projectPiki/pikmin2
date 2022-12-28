@@ -32,7 +32,7 @@ void StateDead::init(EnemyBase* enemy, StateArg* stateArg)
 	hiba->enableEvent(0, EB_IsFlying);
 	hiba->disableEvent(0, EB_LifegaugeVisible);
 	hiba->enableEvent(0, EB_IsVulnerable);
-	hiba->disableEvent(0, EB_4);
+	hiba->disableEvent(0, EB_IsDamageAnimAllowed);
 
 	hiba->m_isAlive = false;
 	hiba->generatorKill();
@@ -141,7 +141,7 @@ void StateAttack::exec(EnemyBase* enemy)
 	hiba->updateEfxLod();
 	hiba->interactFireAttack();
 
-	if (hiba->m_curAnim->m_isRunning
+	if (hiba->m_curAnim->m_isPlaying
 	    && ((u32)hiba->m_curAnim->m_type == 0x3E8) /* Epoch: wtf is this, needs cleanup. Surely an enum (+1 from INTNS)? */) {
 		if (hiba->m_health <= 0.0f) {
 			transit(hiba, HIBA_Dead, nullptr);

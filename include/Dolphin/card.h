@@ -99,8 +99,9 @@ typedef struct {
 	u16 fileLengthInBlocks;        // _38
 	s16 reserved_3A;               // _3A
 	/**
-	 * Each file has two 32 character strings which the IPL displays at the bottom of the memory card screen, next to the banner.
-	 * The two strings (64 bytes) must fit within one block (8192 bytes), they are not allowed to cross sector boundaries.
+	 * Each file has two 32 character strings which the IPL displays at the bottom of the memory card screen, next to
+	 * the banner. The two strings (64 bytes) must fit within one block (8192 bytes), they are not allowed to cross
+	 * sector boundaries.
 	 */
 	char* fileDataComments; // _3C
 } CARDDirectoryEntry;

@@ -173,7 +173,7 @@ void Obj::getShadowParam(ShadowParam& shadowParam)
 		shadowParam.m_boundingSphere.m_radius = 50.0f;
 	}
 
-	if (isEvent(1, EB2_IsEarthquakeActive)) {
+	if (isEvent(1, EB2_IsEarthquake)) {
 		shadowParam.m_boundingSphere.m_radius += 25.0f;
 	}
 
@@ -381,8 +381,8 @@ bool OtakaraBase::Obj::isMovePositionSet(bool ignoringTreasures)
 	} else {
 		ConditionNotStickClientAndItem condition(this, m_treasure);
 		Parms* parms = C_PARMS;
-		target = EnemyFunc::getNearestPikminOrNavi(this, parms->m_general.m_fov.m_value, parms->m_general.m_sightRadius.m_value, nullptr,
-		                                           nullptr, &condition);
+		target       = EnemyFunc::getNearestPikminOrNavi(this, parms->m_general.m_viewAngle.m_value, parms->m_general.m_sightRadius.m_value,
+                                                   nullptr, nullptr, &condition);
 		if (target) {
 			m_movePosition = getTargetPosition(target);
 		}
@@ -1296,7 +1296,8 @@ bool Obj::isTransitChaseState()
 	}
 
 	Parms* parms = C_PARMS;
-	Navi* navi = EnemyFunc::getNearestNavi(this, parms->m_general.m_fov.m_value, parms->m_general.m_sightRadius.m_value, nullptr, nullptr);
+	Navi* navi
+	    = EnemyFunc::getNearestNavi(this, parms->m_general.m_viewAngle.m_value, parms->m_general.m_sightRadius.m_value, nullptr, nullptr);
 	return (navi != nullptr);
 }
 
@@ -1324,8 +1325,8 @@ bool Obj::stimulateBomb()
 Creature* Obj::getChaseTargetCreature()
 {
 	Parms* parms = C_PARMS;
-	return EnemyFunc::getNearestPikminOrNavi(this, parms->m_general.m_fov.m_value, parms->m_general.m_sightRadius.m_value, nullptr, nullptr,
-	                                         nullptr);
+	return EnemyFunc::getNearestPikminOrNavi(this, parms->m_general.m_viewAngle.m_value, parms->m_general.m_sightRadius.m_value, nullptr,
+	                                         nullptr, nullptr);
 }
 } // namespace OtakaraBase
 } // namespace Game

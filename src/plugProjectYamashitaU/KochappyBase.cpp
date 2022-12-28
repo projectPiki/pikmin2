@@ -60,8 +60,8 @@ void Obj::doUpdate()
 	m_FSM->exec(this);
 
 	if (!playData->isDemoFlag(DEMO_Meet_Red_Pikmin)) {
-		m_simVelocity = Vector3f::zero;
-		m_impVelocity = m_simVelocity;
+		m_targetVelocity  = Vector3f::zero;
+		m_currentVelocity = m_targetVelocity;
 	}
 }
 

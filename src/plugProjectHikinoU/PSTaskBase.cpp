@@ -130,8 +130,10 @@ bool TaskEntryMgr::isUnderTask_byDirector(PSSystem::DirectorBase* director)
 void TaskEntryMgr::update()
 {
 	// TODO: Fix access to task->_18 once the type of it is determined.
-	// TODO: Given the "result" pattern, there's likely an inline here on TaskEntry, which returns bool. stackTask, perhaps?
-	// TODO: There's likely one or more inlines within that inline, that return int (or more accurately, some sort of Status)
+	// TODO: Given the "result" pattern, there's likely an inline here on TaskEntry, which returns bool. stackTask,
+	// perhaps?
+	// TODO: There's likely one or more inlines within that inline, that return int (or more accurately, some sort of
+	// Status)
 	P2ASSERTLINE(197, _24 != nullptr);
 	bool result;
 	OSLockMutex(&m_mutex);

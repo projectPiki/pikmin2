@@ -32,7 +32,7 @@ void StateDead::init(EnemyBase* enemy, StateArg* stateArg)
 	elecHiba->enableEvent(0, EB_IsFlying);
 	elecHiba->disableEvent(0, EB_LifegaugeVisible);
 	elecHiba->enableEvent(0, EB_IsVulnerable);
-	elecHiba->disableEvent(0, EB_4);
+	elecHiba->disableEvent(0, EB_IsDamageAnimAllowed);
 
 	elecHiba->_2C0 = 0;
 	elecHiba->generatorKill();
@@ -53,7 +53,7 @@ void StateDead::init(EnemyBase* enemy, StateArg* stateArg)
 		childHiba->enableEvent(0, EB_IsFlying);
 		childHiba->disableEvent(0, EB_LifegaugeVisible);
 		childHiba->enableEvent(0, EB_IsVulnerable);
-		childHiba->disableEvent(0, EB_4);
+		childHiba->disableEvent(0, EB_IsDamageAnimAllowed);
 
 		childHiba->_2C0 = 0;
 		childHiba->generatorKill();

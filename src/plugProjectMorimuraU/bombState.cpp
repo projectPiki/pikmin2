@@ -71,7 +71,7 @@ void Bomb::StateWait::exec(EnemyBase* enemy)
 		bomb->setEmotionExcitement();
 	}
 
-	if (bomb->m_curAnim->m_isRunning != 0) {
+	if (bomb->m_curAnim->m_isPlaying != 0) {
 		switch (bomb->m_curAnim->m_type) {
 		case 2:
 			bomb->disableEvent(0, EB_IsEnemyNotBitter);
@@ -151,7 +151,7 @@ void StateBomb::exec(EnemyBase* enemy)
 
 			Sys::Sphere sphere;
 			sphere.m_position = Vector3f(position);
-			sphere.m_radius   = parms->m_general.m_fp22.m_value;
+			sphere.m_radius   = parms->m_general.m_attackRadius.m_value;
 			CellIteratorArg iteratorArg(sphere);
 			iteratorArg._14 = 1;
 

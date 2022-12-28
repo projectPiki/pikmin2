@@ -382,10 +382,11 @@ struct InteractKill : public Interaction {
 	CreatureKillArg* m_killArg; // _08
 };
 
+// Wait timer for carriable objects after they've been dropped
 struct InteractMattuan : public Interaction {
-	inline InteractMattuan(Creature* parent, f32 p1)
+	inline InteractMattuan(Creature* parent, f32 timerLength)
 	    : Interaction(parent)
-	    , _08(p1)
+	    , m_waitTimer(timerLength)
 	{
 	}
 
@@ -393,7 +394,7 @@ struct InteractMattuan : public Interaction {
 
 	// _00 = VTBL
 	// _04 = Creature*
-	f32 _08; // _08
+	f32 m_waitTimer; // _08
 };
 
 struct InteractPress : public Interaction {

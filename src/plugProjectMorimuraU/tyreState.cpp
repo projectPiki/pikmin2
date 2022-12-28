@@ -64,7 +64,7 @@ void Tyre::StateMove::exec(EnemyBase* enemy)
 		tyre->_2C0 = p2;
 	} else {
 		p1 *= EnemyAnimatorBase::defaultAnimSpeed;
-		tyre->m_animator->m_animSpeed = p1;
+		tyre->m_animator->m_speed = p1;
 	}
 
 	if ((tyre->m_health <= 0.0f) && tyre->isEvent(0, EB_IsVulnerable)) {
@@ -109,7 +109,7 @@ void Tyre::StateLand::init(EnemyBase* enemy, StateArg* stateArg)
 void Tyre::StateLand::exec(EnemyBase* enemy)
 {
 	Obj* tyre = static_cast<Obj*>(enemy);
-	if (tyre->m_curTriangle) {
+	if (tyre->m_bounceTriangle) {
 		tyre->flick();
 		Vector3f position = tyre->getPosition();
 		tyre->landEffect(position);
@@ -138,9 +138,9 @@ void Tyre::StateFreeze::init(EnemyBase* enemy, StateArg* stateArg)
 {
 	Obj* tyre = static_cast<Obj*>(enemy);
 	tyre->stopMotion();
-	_10                 = 0;
-	tyre->m_impVelocity = Vector3f(0.0f);
-	tyre->m_simVelocity = Vector3f(0.0f);
+	_10                     = 0;
+	tyre->m_currentVelocity = Vector3f(0.0f);
+	tyre->m_targetVelocity  = Vector3f(0.0f);
 	tyre->enableEvent(0, EB_Constraint);
 	tyre->collisionStOn();
 }
@@ -152,9 +152,9 @@ void Tyre::StateFreeze::init(EnemyBase* enemy, StateArg* stateArg)
  */
 void Tyre::StateFreeze::exec(EnemyBase* enemy)
 {
-	Obj* tyre           = static_cast<Obj*>(enemy);
-	tyre->m_impVelocity = Vector3f(0.0f);
-	tyre->m_simVelocity = Vector3f(0.0f);
+	Obj* tyre               = static_cast<Obj*>(enemy);
+	tyre->m_currentVelocity = Vector3f(0.0f);
+	tyre->m_targetVelocity  = Vector3f(0.0f);
 	_10++;
 	if ((tyre->m_health <= 0.0f) && tyre->isEvent(0, EB_IsVulnerable)) {
 		transit(tyre, TYRE_Dead, nullptr);
@@ -162,7 +162,7 @@ void Tyre::StateFreeze::exec(EnemyBase* enemy)
 
 	EnemyBase* wraith = tyre->_2BC;
 	if (wraith) {
-		if (wraith->isEvent(1, EB2_IsEarthquakeActive)) {
+		if (wraith->isEvent(1, EB2_IsEarthquake)) {
 			tyre->constraintOff();
 		} else {
 			tyre->enableEvent(0, EB_Constraint);
@@ -201,7 +201,7 @@ void Tyre::StateDead::init(EnemyBase* enemy, StateArg* stateArg)
  */
 void Tyre::StateDead::exec(EnemyBase* enemy)
 {
-	if ((enemy->m_curAnim->m_isRunning != 0) && ((u32)enemy->m_curAnim->m_type == KEYEVENT_END)) {
+	if ((enemy->m_curAnim->m_isPlaying != 0) && ((u32)enemy->m_curAnim->m_type == KEYEVENT_END)) {
 		enemy->kill(nullptr);
 	}
 }

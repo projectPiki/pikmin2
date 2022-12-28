@@ -39,7 +39,7 @@ void Plants::Obj::onInit(CreatureInitArg* initArg)
 {
 	EnemyBase::onInit(initArg);
 	disableEvent(0, EB_ToLeaveCarcass);
-	disableEvent(0, EB_4);
+	disableEvent(0, EB_IsDamageAnimAllowed);
 	disableEvent(0, EB_IsDeathEffectEnabled);
 	enableEvent(0, EB_IsVulnerable);
 
@@ -51,7 +51,7 @@ void Plants::Obj::onInit(CreatureInitArg* initArg)
 	hardConstraintOn();
 	_2BC = 0;
 	_2BD = 0;
-	m_mainMatrix.makeSRT(m_scale, m_rotation, m_position);
+	m_objMatrix.makeSRT(m_scale, m_rotation, m_position);
 
 	P2ASSERTLINE(83, m_model);
 
@@ -60,7 +60,7 @@ void Plants::Obj::onInit(CreatureInitArg* initArg)
 	SysShape::Animator* animator                                       = &m_animator->getAnimator();
 	SysShape::Model* model                                             = m_model;
 	model->m_j3dModel->m_modelData->m_jointTree.m_joints[0]->m_mtxCalc = static_cast<J3DMtxCalcAnmBase*>(animator->getCalc());
-	PSMTXCopy(m_mainMatrix.m_matrix.mtxView, m_model->m_j3dModel->m_posMtx);
+	PSMTXCopy(m_objMatrix.m_matrix.mtxView, m_model->m_j3dModel->m_posMtx);
 	m_model->m_j3dModel->calc();
 
 	setCollisionFlick(false);
@@ -102,7 +102,7 @@ void Plants::Obj::update()
 void Plants::Obj::doAnimation()
 {
 	EnemyBase::doAnimation();
-	if (_2BC && m_curAnim->m_isRunning && (u32)m_curAnim->m_type == KEYEVENT_END) {
+	if (_2BC && m_curAnim->m_isPlaying && (u32)m_curAnim->m_type == KEYEVENT_END) {
 		_2BC = 0;
 		_2BD = 0;
 		setZukanVisible(false);
@@ -117,11 +117,11 @@ void Plants::Obj::doAnimation()
 void Plants::Obj::doAnimationCullingOff()
 {
 	if (_2BC) {
-		m_curAnim->m_isRunning = false;
+		m_curAnim->m_isPlaying = false;
 		doAnimationUpdateAnimator();
 		if (m_lod.m_flags & AILOD_FLAG_NEED_SHADOW) {
-			m_mainMatrix.makeSRT(m_scale, m_rotation, m_position);
-			PSMTXCopy(m_mainMatrix.m_matrix.mtxView, m_model->m_j3dModel->m_posMtx);
+			m_objMatrix.makeSRT(m_scale, m_rotation, m_position);
+			PSMTXCopy(m_objMatrix.m_matrix.mtxView, m_model->m_j3dModel->m_posMtx);
 			m_model->m_j3dModel->calc();
 		}
 	}

@@ -81,7 +81,7 @@ s32 Pellet::getCreatureID()
 void Pellet::getShadowParam(ShadowParam& shadow)
 {
 	Vector3f col;
-	m_mainMatrix.getBasis(1, col);
+	m_objMatrix.getBasis(1, col);
 
 	if (-(SQUARE(FABS(col.y)) - 1.0f) > 0.0f) {
 		col.y = col.y;
@@ -351,7 +351,7 @@ void PelletView::viewMakeMatrix(Matrixf& outMat)
 	Vector3f translation(0.0f, -0.5f * m_pellet->getCylinderHeight(), 0.0f);
 	Matrixf srtMatrix;
 	srtMatrix.makeSRT(m_pellet->m_scale, Vector3f::zero, translation);
-	PSMTXConcat(m_pellet->m_mainMatrix.m_matrix.mtxView, srtMatrix.m_matrix.mtxView, outMat.m_matrix.mtxView);
+	PSMTXConcat(m_pellet->m_objMatrix.m_matrix.mtxView, srtMatrix.m_matrix.mtxView, outMat.m_matrix.mtxView);
 }
 
 /*
@@ -829,7 +829,7 @@ bool Pellet::stimulate(Interaction& interaction)
 bool InteractMattuan::actPellet(Pellet* pellet)
 {
 	if (pellet->getKind() == PELTYPE_UPGRADE) {
-		pellet->startDiscoverDisable(_08 / sys->m_deltaTime);
+		pellet->startDiscoverDisable(m_waitTimer / sys->m_deltaTime);
 	} else {
 		pellet->clearDiscoverDisable();
 	}
@@ -1108,13 +1108,13 @@ void Pellet::onKill(CreatureKillArg* killArg)
 	Vector3f scale(1.0f);
 	Vector3f rotation(0.0f);
 	Vector3f translation(0.0f);
-	m_mainMatrix.makeSRT(scale, rotation, translation);
+	m_objMatrix.makeSRT(scale, rotation, translation);
 
 	if (m_model) {
 		m_lodSphere.m_position = Vector3f(0.0f);
 		m_lodSphere.m_radius   = 128000.0f;
 		m_scale                = Vector3f(1.0f);
-		PSMTXCopy(m_mainMatrix.m_matrix.mtxView, m_model->m_j3dModel->m_posMtx);
+		PSMTXCopy(m_objMatrix.m_matrix.mtxView, m_model->m_j3dModel->m_posMtx);
 		m_scale.setTVec(m_model->m_j3dModel->m_modelScale);
 		m_model->clearAnimatorAll();
 		m_model->m_j3dModel->calc();
@@ -1161,23 +1161,23 @@ void StateMachine<Pellet>::start(Pellet* pellet, int stateID, StateArg* arg)
  */
 void Pellet::onInit(CreatureInitArg* initArg)
 {
-	_3DC        = -1;
-	_3D8        = -1;
-	m_wallTimer = 0;
-	_324        = 0;
-	m_isInWater = false;
+	m_maxCarriers = -1;
+	m_minCarriers = -1;
+	m_wallTimer   = 0;
+	_324          = 0;
+	m_isInWater   = false;
 
 	clearDiscoverDisable();
 
-	m_claim        = 0;
-	_3E0           = 0.0f;
-	m_curTriangle  = nullptr;
-	_311           = 0;
-	m_faceDir      = 0.0f;
-	_438           = 0.0f;
-	_3C4           = 0;
-	_3D0           = 0;
-	m_carryInfoMgr = nullptr;
+	m_claim          = 0;
+	_3E0             = 0.0f;
+	m_bounceTriangle = nullptr;
+	_311             = 0;
+	m_faceDir        = 0.0f;
+	_438             = 0.0f;
+	_3C4             = 0;
+	_3D0             = 0;
+	m_carryInfoMgr   = nullptr;
 
 	clearCapture();
 
@@ -1185,7 +1185,7 @@ void Pellet::onInit(CreatureInitArg* initArg)
 
 	P2ASSERTLINE(1632, initArg != nullptr);
 
-	u16 stateType = static_cast<PelletInitArg*>(initArg)->_14;
+	u16 stateType = static_cast<PelletInitArg*>(initArg)->m_state;
 	if (stateType == 0) {
 		m_pelletSM->start(this, 0, nullptr);
 		m_scale = Vector3f(1.0f);
@@ -1215,20 +1215,20 @@ void Pellet::onInit(CreatureInitArg* initArg)
 		shadowOn();
 	}
 
-	if (static_cast<PelletInitArg*>(initArg)->_1D != 0) {
-		_3D8         = GameStat::getMapPikmins(-1);
-		int minPikis = m_config->m_params.m_min.m_data;
-		if (_3D8 > minPikis) {
-			_3D8 = minPikis;
+	if (static_cast<PelletInitArg*>(initArg)->m_adjustWeightForSquad) {
+		m_minCarriers = GameStat::getMapPikmins(-1);
+		int minPikis  = m_config->m_params.m_min.m_data;
+		if (m_minCarriers > minPikis) {
+			m_minCarriers = minPikis;
 		}
 	} else {
-		_3D8 = -1;
+		m_minCarriers = -1;
 	}
 
 	// temp_r3_6 = arg0->unk20;
 	if ((static_cast<PelletInitArg*>(initArg)->m_minCarriers != -1) && (static_cast<PelletInitArg*>(initArg)->m_maxCarriers != -1)) {
-		_3D8 = static_cast<PelletInitArg*>(initArg)->m_minCarriers;
-		_3DC = static_cast<PelletInitArg*>(initArg)->m_maxCarriers;
+		m_minCarriers = static_cast<PelletInitArg*>(initArg)->m_minCarriers;
+		m_maxCarriers = static_cast<PelletInitArg*>(initArg)->m_maxCarriers;
 	}
 
 	m_rigid._175 &= ~0x01;
@@ -1315,8 +1315,8 @@ void Pellet::onInit(CreatureInitArg* initArg)
 	}
 
 	if (m_config->m_params.m_min.m_data == 128) {
-		_3D8 = 1000;
-		_3DC = 1000;
+		m_minCarriers = 1000;
+		m_maxCarriers = 1000;
 	}
 
 	m_dynParticle = nullptr;
@@ -1360,8 +1360,8 @@ void Pellet::onInit(CreatureInitArg* initArg)
  */
 int Pellet::getPelletConfigMin()
 {
-	if (_3D8 > 0) {
-		return _3D8;
+	if (m_minCarriers > 0) {
+		return m_minCarriers;
 	}
 	return m_config->m_params.m_min.m_data;
 }
@@ -1373,8 +1373,8 @@ int Pellet::getPelletConfigMin()
  */
 int Pellet::getPelletConfigMax()
 {
-	if (_3DC > 0) {
-		return _3DC;
+	if (m_maxCarriers > 0) {
+		return m_maxCarriers;
 	}
 	return m_config->m_params.m_max.m_data;
 }
@@ -2100,7 +2100,7 @@ void Pellet::onSetPosition()
 	}
 
 	m_rigid.initPosition(m_pelletPosition, Vector3f::zero);
-	m_mainMatrix           = m_rigid._04;
+	m_objMatrix            = m_rigid._04;
 	m_lodSphere.m_position = m_pelletPosition;
 	updateParticlePositions();
 	m_rigid._00 = 1.0f;
@@ -2347,16 +2347,16 @@ void Pellet::setPanModokiRotation(float direction)
 	m_faceDir = direction;
 
 	Vector3f yVec;
-	m_mainMatrix.getBasis(1, yVec);
+	m_objMatrix.getBasis(1, yVec);
 	yVec.normalise();
 
 	Matrixf mat;
 	mat.makeNaturalPosture(yVec);
-	m_mainMatrix = mat;
-	m_rigid.m_configs[0]._48.fromMatrixf(m_mainMatrix);
+	m_objMatrix = mat;
+	m_rigid.m_configs[0]._48.fromMatrixf(m_objMatrix);
 	m_rigid.m_configs[0]._48.normalise();
-	m_mainMatrix.setTranslation(m_pelletPosition);
-	PSMTXCopy(m_mainMatrix.m_matrix.mtxView, m_rigid._04.m_matrix.mtxView);
+	m_objMatrix.setTranslation(m_pelletPosition);
+	PSMTXCopy(m_objMatrix.m_matrix.mtxView, m_rigid._04.m_matrix.mtxView);
 	/*
 	stwu     r1, -0x50(r1)
 	mflr     r0
@@ -2467,18 +2467,18 @@ void Pellet::setOrientation(Matrixf& mat)
 	quat.normalise();
 	m_rigid.m_configs[0]._48 = quat;
 
-	m_mainMatrix.makeQ(quat);
-	m_mainMatrix.setTranslation(m_pelletPosition);
-	PSMTXCopy(m_mainMatrix.m_matrix.mtxView, m_rigid._04.m_matrix.mtxView);
+	m_objMatrix.makeQ(quat);
+	m_objMatrix.setTranslation(m_pelletPosition);
+	PSMTXCopy(m_objMatrix.m_matrix.mtxView, m_rigid._04.m_matrix.mtxView);
 
 	float x;
 	float z;
-	if (m_mainMatrix(1, 1) > 0.0f) {
-		x = m_mainMatrix(0, 2);
-		z = m_mainMatrix(2, 2);
+	if (m_objMatrix(1, 1) > 0.0f) {
+		x = m_objMatrix(0, 2);
+		z = m_objMatrix(2, 2);
 	} else {
-		x = m_mainMatrix(0, 0);
-		z = m_mainMatrix(2, 0);
+		x = m_objMatrix(0, 0);
+		z = m_objMatrix(2, 0);
 	}
 
 	if (z < -1.0f) {
@@ -3887,7 +3887,7 @@ void Pellet::doSimulation(float constraint)
 {
 	Creature::CheckHellArg hellArg;
 	hellArg.m_isKillPiki = false;
-	if (checkHell(hellArg) == 2) {
+	if (checkHell(hellArg) == CREATURE_HELL_DEATH) {
 		Vector3f position   = getPosition();
 		Vector3f wpPosition = position;
 		wpPosition.y        = 0.0f;
@@ -3925,7 +3925,7 @@ void Pellet::updateTrMatrix()
 		PSMTXConcat(Q.m_matrix.mtxView, T.m_matrix.mtxView, mat.m_matrix.mtxView);
 
 		mat.setTranslation(m_pelletPosition);
-		m_mainMatrix = mat;
+		m_objMatrix = mat;
 	}
 }
 
@@ -3981,7 +3981,7 @@ void Pellet::doAnimation()
 			PSMTXConcat(matQ.m_matrix.mtxView, matT.m_matrix.mtxView, outMat.m_matrix.mtxView);
 			outMat.setTranslation(m_pelletPosition);
 
-			m_mainMatrix = outMat;
+			m_objMatrix = outMat;
 
 			updateParticlePositions();
 		} else {
@@ -4067,7 +4067,7 @@ void Pellet::entryShape()
 {
 	if (m_pelletView == nullptr) {
 		if (m_model) {
-			PSMTXCopy(m_mainMatrix.m_matrix.mtxView, m_model->m_j3dModel->m_posMtx);
+			PSMTXCopy(m_objMatrix.m_matrix.mtxView, m_model->m_j3dModel->m_posMtx);
 			m_scale.setTVec(m_model->m_j3dModel->m_modelScale);
 			m_model->m_j3dModel->calc();
 			m_collTree->update();
@@ -4564,7 +4564,7 @@ void Pellet::onSlotStickStart(Creature* creature, short slot)
 		_414++;
 	}
 
-	int max = _3DC > 0 ? _3DC : m_config->m_params.m_max.m_data;
+	int max = m_maxCarriers > 0 ? m_maxCarriers : m_config->m_params.m_max.m_data;
 	if (max != 1) {
 		m_carryColor   = 5;
 		m_carryInfoMgr = reinterpret_cast<CarryInfoMgr*>(carryInfoMgr->appear(this));
@@ -5117,8 +5117,8 @@ void Pellet::onStartCapture()
 	m_pelletPosition                = captureVec;
 
 	if (m_model) {
-		m_mainMatrix.makeT(m_pelletPosition);
-		PSMTXCopy(m_mainMatrix.m_matrix.mtxView, m_model->m_j3dModel->m_posMtx);
+		m_objMatrix.makeT(m_pelletPosition);
+		PSMTXCopy(m_objMatrix.m_matrix.mtxView, m_model->m_j3dModel->m_posMtx);
 
 		m_scale.setTVec(m_model->m_j3dModel->m_modelScale);
 		m_model->m_j3dModel->calc();
@@ -5161,7 +5161,7 @@ void Pellet::onUpdateCapture(Matrixf& matrix)
 
 	if (m_pelletView == nullptr) {
 		if (m_model) {
-			PSMTXCopy(m_mainMatrix.m_matrix.mtxView, m_model->m_j3dModel->m_posMtx);
+			PSMTXCopy(m_objMatrix.m_matrix.mtxView, m_model->m_j3dModel->m_posMtx);
 			J3DModel* j3dModel = m_model->m_j3dModel;
 			m_scale.setTVec(m_model->m_j3dModel->m_modelScale);
 			m_model->m_j3dModel->calc();
@@ -5184,7 +5184,7 @@ void Pellet::onUpdateCapture(Matrixf& matrix)
 void Pellet::onEndCapture()
 {
 	Matrixf mtx;
-	PSMTXCopy(m_mainMatrix.m_matrix.mtxView, mtx.m_matrix.mtxView);
+	PSMTXCopy(m_objMatrix.m_matrix.mtxView, mtx.m_matrix.mtxView);
 	_3C4 = 1;
 	shadowOn();
 	setPosition(m_rigid.m_configs[0]._00, false);
@@ -5940,7 +5940,8 @@ void PelletIterator::setFirst()
  * Size:	000008
  */
 // WEAK - in header
-// TObjectNode<GenericObjectMgr>* TObjectNode<GenericObjectMgr>::getNext() { return static_cast<TObjectNode<GenericObjectMgr>*>(m_next); }
+// TObjectNode<GenericObjectMgr>* TObjectNode<GenericObjectMgr>::getNext() { return
+// static_cast<TObjectNode<GenericObjectMgr>*>(m_next); }
 
 // namespace Game {
 
@@ -6166,7 +6167,7 @@ Pellet* PelletMgr::birth(PelletInitArg* arg)
 	}
 
 	Pellet* pellet;
-	if (arg->_1F != 0) {
+	if (arg->m_fromEnemy) {
 		config = mgr->m_configList->getPelletConfig(arg->m_textIdentifier);
 		pellet = mgr->birthFromTeki(config);
 		if (pellet) {

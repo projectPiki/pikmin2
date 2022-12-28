@@ -4,9 +4,9 @@
 #include "SysShape/Animator.h"
 #include "BitFlag.h"
 
-#define EANIM_FLAG_STOPPED (1 << 0) // 1
-#define EANIM_FLAG_REWIND  (1 << 1) // 2
-#define EANIM_FLAG_FORWARD (1 << 2) // 4
+#define EANIM_FLAG_STOPPED  (1 << 0) // 1
+#define EANIM_FLAG_FINISHED (1 << 1) // 2
+#define EANIM_FLAG_PLAYING  (1 << 2) // 4
 
 namespace Game {
 struct EnemyAnimatorBase {
@@ -18,14 +18,14 @@ struct EnemyAnimatorBase {
 	virtual SysShape::Animator& getAnimator(int animatorIndex) = 0; // _14
 
 	/**
-	 * @brief Runs the animate function of an inherited animator based on the frame count. The progress will reverse if it reaches the end
-	 * and will playback forwards if it reaches the start.
+	 * @brief Runs the animate function of an inherited animator based on the frame count. The progress will reverse if
+	 * it reaches the end and will playback forwards if it reaches the start.
 	 */
 	virtual void animate(f32 speed);                    // _18
 	virtual void animate(int animatorIndex, f32 speed); // _1C (weak)
 
-	virtual void resetAnimSpeed() { m_animSpeed = defaultAnimSpeed; } // _20 (weak)
-	virtual u32 getTypeID() { return 'base'; }                        // _24 (weak)
+	virtual void resetAnimSpeed() { m_speed = defaultAnimSpeed; } // _20 (weak)
+	virtual u32 getTypeID() { return 'base'; }                    // _24 (weak)
 
 	inline void reset()
 	{
@@ -38,8 +38,8 @@ struct EnemyAnimatorBase {
 	static const f32 defaultAnimSpeed;
 
 	// _00, VTBL
-	f32 m_animSpeed;      // _04
-	f32 m_progress;       // _08, from 0 to 1 (multiplied by frame count)
+	f32 m_speed;          // _04
+	f32 m_normalizedTime; // _08, from 0 (start) to 1 (end, multiplied by frame count)
 	BitFlag<u32> m_flags; // _0C
 };
 

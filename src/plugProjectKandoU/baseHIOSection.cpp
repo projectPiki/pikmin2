@@ -301,9 +301,8 @@ void BaseHIOSection::setDisplay(JFWDisplay* display, int secondsPer60Frames)
 	// }
 	// P2ASSERTLINE(333, check);
 	// m_display = display;
-	// m_fader = new JUTFader(0, 0, JUTVideo::sManager->m_renderModeObj->fbWidth, JUTVideo::sManager->m_renderModeObj->efbHeight, 0);
-	// m_display->m_fader = m_fader;
-	// _35 = 1;
+	// m_fader = new JUTFader(0, 0, JUTVideo::sManager->m_renderModeObj->fbWidth,
+	// JUTVideo::sManager->m_renderModeObj->efbHeight, 0); m_display->m_fader = m_fader; _35 = 1;
 	// sys->setCurrentDisplay(m_display);
 	// sys->setFrameRate(secondsPer60Frames);
 	// DCInvalidateRange(JFWDisplay::sManager->m_Xfb->m_buffers[0], JUTXfb::accumeXfbSize());

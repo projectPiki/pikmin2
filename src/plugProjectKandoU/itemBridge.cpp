@@ -4741,7 +4741,8 @@ void Item::update()
 //  * Address:	801F0F0C
 //  * Size:	000004
 //  */
-// void onKeyEvent__Q24Game35ItemState<Game::ItemBridge::Item> FPQ34Game10ItemBridge4ItemRCQ28SysShape8KeyEvent(void) { }
+// void onKeyEvent__Q24Game35ItemState<Game::ItemBridge::Item> FPQ34Game10ItemBridge4ItemRCQ28SysShape8KeyEvent(void) {
+// }
 
 // /*
 //  * --INFO--
@@ -4755,7 +4756,8 @@ void Item::update()
 //  * Address:	801F0F14
 //  * Size:	000004
 //  */
-// void onPlatCollision__Q24Game35ItemState<Game::ItemBridge::Item> FPQ34Game10ItemBridge4ItemRQ24Game9PlatEvent(void) { }
+// void onPlatCollision__Q24Game35ItemState<Game::ItemBridge::Item> FPQ34Game10ItemBridge4ItemRQ24Game9PlatEvent(void) {
+// }
 
 // /*
 //  * --INFO--
@@ -5009,7 +5011,8 @@ void Item::update()
 //  * Address:	801F1120
 //  * Size:	000044
 //  */
-// void onKeyEvent__Q24Game83FSMItem<Game::ItemBridge::Item, Game::ItemBridge::FSM, Game::ItemBridge::State> FRCQ28SysShape8KeyEvent(void)
+// void onKeyEvent__Q24Game83FSMItem<Game::ItemBridge::Item, Game::ItemBridge::FSM, Game::ItemBridge::State>
+// FRCQ28SysShape8KeyEvent(void)
 // {
 // 	/*
 // 	.loc_0x0:
@@ -5040,7 +5043,8 @@ void Item::update()
 //  * Address:	801F1164
 //  * Size:	000044
 //  */
-// void platCallback__Q24Game83FSMItem<Game::ItemBridge::Item, Game::ItemBridge::FSM, Game::ItemBridge::State> FRQ24Game9PlatEvent(void)
+// void platCallback__Q24Game83FSMItem<Game::ItemBridge::Item, Game::ItemBridge::FSM, Game::ItemBridge::State>
+// FRQ24Game9PlatEvent(void)
 // {
 // 	/*
 // 	.loc_0x0:
@@ -5103,7 +5107,8 @@ void Item::update()
 //  * Address:	801F11EC
 //  * Size:	000044
 //  */
-// void bounceCallback__Q24Game83FSMItem<Game::ItemBridge::Item, Game::ItemBridge::FSM, Game::ItemBridge::State> FPQ23Sys8Triangle(void)
+// void bounceCallback__Q24Game83FSMItem<Game::ItemBridge::Item, Game::ItemBridge::FSM, Game::ItemBridge::State>
+// FPQ23Sys8Triangle(void)
 // {
 // 	/*
 // 	.loc_0x0:

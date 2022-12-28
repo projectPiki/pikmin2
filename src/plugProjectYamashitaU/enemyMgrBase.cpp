@@ -41,8 +41,8 @@ EnemyMgrBase::EnemyMgrBase(int objLimit, u8 modelType)
 	m_objCount            = 0;
 	m_parms               = nullptr;
 	m_generator           = nullptr;
-	m_stoneInfo.m_infoCnt = 0;
-	m_stoneInfo.m_infoArr = nullptr;
+	m_stoneInfo.m_length  = 0;
+	m_stoneInfo.m_objList = nullptr;
 }
 
 /*
@@ -225,7 +225,7 @@ EnemyBase* EnemyMgrBase::birth(Game::EnemyBirthArg& arg)
 		int objs = m_objCount;
 		m_objCount++;
 		enemy->birth(arg.m_position, arg.m_faceDir);
-		enemy->m_existenceLength = arg.m_existenceLength;
+		enemy->m_existDuration = arg.m_existenceLength;
 		enemy->setOtakaraCode(arg.m_otakaraItemCode);
 
 		enemy->m_pelletInfo.m_color       = arg.m_pelletInfo.m_color;

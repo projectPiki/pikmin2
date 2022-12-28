@@ -85,12 +85,12 @@ void Obj::interactFartGasAttack()
 	if (m_fartTimer < 2.5f) {
 		m_fartTimer += sys->m_deltaTime;
 		Kogane::Parms* parms = static_cast<Kogane::Parms*>(m_parms);
-		f32 max              = m_fartPosition.y + parms->m_general.m_fp22.m_value;
-		f32 min              = m_fartPosition.y - parms->m_general.m_fp22.m_value;
-		f32 radSqr           = SQUARE(parms->m_general.m_fp22.m_value);
+		f32 max              = m_fartPosition.y + parms->m_general.m_attackRadius.m_value;
+		f32 min              = m_fartPosition.y - parms->m_general.m_attackRadius.m_value;
+		f32 radSqr           = SQUARE(parms->m_general.m_attackRadius.m_value);
 
 		Sys::Sphere sphere(m_fartPosition);
-		sphere.m_radius = parms->m_general.m_fp22.m_value;
+		sphere.m_radius = parms->m_general.m_attackRadius.m_value;
 
 		CellIteratorArg arg(sphere);
 		arg._1C = true;
@@ -229,7 +229,7 @@ void Obj::createFartEffect()
 	m_fartTimer = 0.0f;
 
 	Kogane::Parms* parms = static_cast<Kogane::Parms*>(m_parms);
-	f32 scale            = (parms->m_properParms.m_fp40.m_value * parms->m_general.m_fp20.m_value);
+	f32 scale            = (parms->m_properParms.m_fp40.m_value * parms->m_general.m_maxAttackRange.m_value);
 
 	Vector3f temp_vec(scale * pikmin2_sinf(m_faceDir), 0.0f, scale * pikmin2_cosf(m_faceDir));
 

@@ -37,7 +37,7 @@ void StateDead::init(EnemyBase* enemy, StateArg* stateArg)
 	Obj* sokkuri = static_cast<Obj*>(enemy);
 	sokkuri->deathProcedure();
 	sokkuri->disableEvent(0, EB_IsCullable);
-	sokkuri->m_simVelocity = Vector3f(0.0f);
+	sokkuri->m_targetVelocity = Vector3f(0.0f);
 	sokkuri->setEmotionCaution();
 	sokkuri->startMotion(4, nullptr);
 }
@@ -50,7 +50,7 @@ void StateDead::init(EnemyBase* enemy, StateArg* stateArg)
 void StateDead::exec(EnemyBase* enemy)
 {
 	Obj* sokkuri = static_cast<Obj*>(enemy);
-	if (sokkuri->m_curAnim->m_isRunning) {
+	if (sokkuri->m_curAnim->m_isPlaying) {
 		if ((u32)sokkuri->m_curAnim->m_type == KEYEVENT_2) {
 			sokkuri->createDownEffect(0.5f, 0.55f);
 
@@ -77,7 +77,7 @@ void StatePress::init(EnemyBase* enemy, StateArg* stateArg)
 	Obj* sokkuri      = static_cast<Obj*>(enemy);
 	sokkuri->m_health = 0.0f;
 	sokkuri->deathProcedure();
-	sokkuri->m_simVelocity = Vector3f(0.0f);
+	sokkuri->m_targetVelocity = Vector3f(0.0f);
 	sokkuri->setEmotionCaution();
 	sokkuri->startMotion(5, nullptr);
 	sokkuri->createDownEffect(0.75f, 0.0f);
@@ -91,7 +91,7 @@ void StatePress::init(EnemyBase* enemy, StateArg* stateArg)
 void StatePress::exec(EnemyBase* enemy)
 {
 	Obj* sokkuri = static_cast<Obj*>(enemy);
-	if (sokkuri->m_curAnim->m_isRunning) {
+	if (sokkuri->m_curAnim->m_isPlaying) {
 		if ((u32)sokkuri->m_curAnim->m_type == KEYEVENT_2) {
 			sokkuri->createDownEffect(0.0f, 0.55f);
 
@@ -125,9 +125,9 @@ void StateStay::init(EnemyBase* enemy, StateArg* stateArg)
 	sokkuri->_2C0 = true;
 	sokkuri->setEmotionNone();
 	sokkuri->hardConstraintOn();
-	sokkuri->disableEvent(0, EB_ToAnimate);
+	sokkuri->disableEvent(0, EB_IsAnimating);
 
-	sokkuri->m_simVelocity = Vector3f(0.0f);
+	sokkuri->m_targetVelocity = Vector3f(0.0f);
 	sokkuri->startMotion(1, nullptr);
 	sokkuri->stopMotion();
 
@@ -161,7 +161,7 @@ void StateStay::cleanup(EnemyBase* enemy)
 	sokkuri->disableEvent(0, EB_IsImmuneBitter);
 	sokkuri->_2C0 = false;
 	sokkuri->hardConstraintOff();
-	sokkuri->enableEvent(0, EB_ToAnimate);
+	sokkuri->enableEvent(0, EB_IsAnimating);
 
 	if (sokkuri->m_waterBox) {
 		sokkuri->createEfxHamon();
@@ -179,7 +179,7 @@ void StateAppear::init(EnemyBase* enemy, StateArg* stateArg)
 	sokkuri->m_timer     = 0.0f;
 	sokkuri->m_nextState = SOKKURI_NULL;
 	sokkuri->resetMoveVelocity();
-	sokkuri->m_simVelocity = Vector3f(0.0f);
+	sokkuri->m_targetVelocity = Vector3f(0.0f);
 	sokkuri->setEmotionExcitement();
 	sokkuri->startMotion(1, nullptr);
 	sokkuri->createDownEffect(0.35f, 0.0f);
@@ -200,7 +200,7 @@ void StateAppear::exec(EnemyBase* enemy)
 	} else if (EnemyFunc::isStartFlick(sokkuri, false)) {
 		transit(sokkuri, SOKKURI_Flick, nullptr);
 
-	} else if (sokkuri->m_curAnim->m_isRunning && (u32)sokkuri->m_curAnim->m_type == KEYEVENT_END) {
+	} else if (sokkuri->m_curAnim->m_isPlaying && (u32)sokkuri->m_curAnim->m_type == KEYEVENT_END) {
 		transit(sokkuri, SOKKURI_MoveGround, nullptr);
 	}
 }
@@ -223,7 +223,7 @@ void StateDisappear::init(EnemyBase* enemy, StateArg* stateArg)
 	sokkuri->m_timer     = 0.0f;
 	sokkuri->m_nextState = SOKKURI_NULL;
 	sokkuri->resetMoveVelocity();
-	sokkuri->m_simVelocity = Vector3f(0.0f);
+	sokkuri->m_targetVelocity = Vector3f(0.0f);
 	sokkuri->setEmotionCaution();
 	sokkuri->startMotion(3, nullptr);
 	sokkuri->createBubbleEffect();
@@ -240,7 +240,7 @@ void StateDisappear::exec(EnemyBase* enemy)
 	if (sokkuri->m_health <= 0.0f) {
 		transit(sokkuri, SOKKURI_Dead, nullptr);
 
-	} else if (sokkuri->m_curAnim->m_isRunning) {
+	} else if (sokkuri->m_curAnim->m_isPlaying) {
 		if ((u32)sokkuri->m_curAnim->m_type == KEYEVENT_2) {
 			sokkuri->createDownEffect(0.35f, 0.0f);
 
@@ -269,7 +269,7 @@ void StateWait::init(EnemyBase* enemy, StateArg* stateArg)
 	sokkuri->m_nextState = SOKKURI_NULL;
 	sokkuri->resetMoveVelocity();
 	sokkuri->setNextWaitInfo();
-	sokkuri->m_simVelocity = Vector3f(0.0f);
+	sokkuri->m_targetVelocity = Vector3f(0.0f);
 	sokkuri->startMotion(2, nullptr);
 }
 
@@ -305,7 +305,7 @@ void StateWait::exec(EnemyBase* enemy)
 
 		sokkuri->m_timer += sys->m_deltaTime;
 
-		if (sokkuri->m_curAnim->m_isRunning && (u32)sokkuri->m_curAnim->m_type == KEYEVENT_END) {
+		if (sokkuri->m_curAnim->m_isPlaying && (u32)sokkuri->m_curAnim->m_type == KEYEVENT_END) {
 			transit(sokkuri, sokkuri->m_nextState, nullptr);
 		}
 	}
@@ -366,8 +366,8 @@ void StateMoveGround::exec(EnemyBase* enemy)
 				sokkuri->finishMotion();
 
 			} else if (sokkuri->m_waterBox) {
-				sokkuri->m_simVelocity = Vector3f(0.0f);
-				sokkuri->m_nextState   = SOKKURI_MoveWater;
+				sokkuri->m_targetVelocity = Vector3f(0.0f);
+				sokkuri->m_nextState      = SOKKURI_MoveWater;
 				sokkuri->finishMotion();
 
 			} else {
@@ -376,8 +376,8 @@ void StateMoveGround::exec(EnemyBase* enemy)
 			}
 		}
 	} else if (sokkuri->m_waterBox) {
-		sokkuri->m_simVelocity = Vector3f(0.0f);
-		sokkuri->m_nextState   = SOKKURI_MoveWater;
+		sokkuri->m_targetVelocity = Vector3f(0.0f);
+		sokkuri->m_nextState      = SOKKURI_MoveWater;
 		sokkuri->finishMotion();
 
 	} else {
@@ -388,8 +388,9 @@ void StateMoveGround::exec(EnemyBase* enemy)
 
 	sokkuri->m_timer += sys->m_deltaTime;
 
-	if (sokkuri->m_curAnim->m_isRunning && (u32)sokkuri->m_curAnim->m_type == KEYEVENT_END) {
-		transit(enemy, sokkuri->m_nextState, nullptr); // no idea why this is enemy rather than sokkuri but it makes it match
+	if (sokkuri->m_curAnim->m_isPlaying && (u32)sokkuri->m_curAnim->m_type == KEYEVENT_END) {
+		transit(enemy, sokkuri->m_nextState,
+		        nullptr); // no idea why this is enemy rather than sokkuri but it makes it match
 	}
 }
 
@@ -445,14 +446,14 @@ void StateMoveWater::exec(EnemyBase* enemy)
 				sokkuri->setNextMoveInfo();
 
 			} else {
-				sokkuri->m_simVelocity = Vector3f(0.0f);
-				sokkuri->m_nextState   = SOKKURI_MoveGround;
+				sokkuri->m_targetVelocity = Vector3f(0.0f);
+				sokkuri->m_nextState      = SOKKURI_MoveGround;
 				sokkuri->finishMotion();
 			}
 
 		} else if (sokkuri->m_waterBox == nullptr) {
-			sokkuri->m_simVelocity = Vector3f(0.0f);
-			sokkuri->m_nextState   = SOKKURI_MoveGround;
+			sokkuri->m_targetVelocity = Vector3f(0.0f);
+			sokkuri->m_nextState      = SOKKURI_MoveGround;
 			sokkuri->finishMotion();
 
 		} else {
@@ -464,8 +465,9 @@ void StateMoveWater::exec(EnemyBase* enemy)
 
 	sokkuri->m_timer += sys->m_deltaTime;
 
-	if (sokkuri->m_curAnim->m_isRunning && (u32)sokkuri->m_curAnim->m_type == KEYEVENT_END) {
-		transit(enemy, sokkuri->m_nextState, nullptr); // no idea why this is enemy rather than sokkuri but it makes it match
+	if (sokkuri->m_curAnim->m_isPlaying && (u32)sokkuri->m_curAnim->m_type == KEYEVENT_END) {
+		transit(enemy, sokkuri->m_nextState,
+		        nullptr); // no idea why this is enemy rather than sokkuri but it makes it match
 	}
 }
 
@@ -488,7 +490,7 @@ void StateFlick::init(EnemyBase* enemy, StateArg* stateArg)
 	sokkuri->m_nextState = SOKKURI_NULL;
 	sokkuri->resetMoveVelocity();
 	sokkuri->disableEvent(0, EB_IsEnemyNotBitter);
-	sokkuri->m_simVelocity = Vector3f(0.0f);
+	sokkuri->m_targetVelocity = Vector3f(0.0f);
 	sokkuri->startMotion(7, nullptr);
 }
 
@@ -517,7 +519,7 @@ void StateFlick::exec(EnemyBase* enemy)
 
 	sokkuri->m_timer += sys->m_deltaTime;
 
-	if (sokkuri->m_curAnim->m_isRunning) {
+	if (sokkuri->m_curAnim->m_isPlaying) {
 		if ((u32)sokkuri->m_curAnim->m_type == KEYEVENT_2) {
 			sokkuri->enableEvent(0, EB_IsEnemyNotBitter);
 			sokkuri->createDownEffect(0.6f, 0.55f);

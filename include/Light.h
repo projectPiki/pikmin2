@@ -73,7 +73,8 @@ namespace TreasureLight {
 /**
  * @brief The Treasure Light Manager
  *
- * This class handles the construction and setup of the lights used during the "treasure collected / presentation" scenes.
+ * This class handles the construction and setup of the lights used during the "treasure collected / presentation"
+ * scenes.
  */
 struct Mgr : public LightMgr {
 	Mgr();
@@ -81,9 +82,9 @@ struct Mgr : public LightMgr {
 	/**
 	 * @brief Common procedure for the "Set" virtual functions
 	 *
-	 * Calculates the position and rotation of the main and specular lights by converting the rotation and elevation angles to spherical
-	 * coordinates. Whenever you update the manager by assigning it a new "Graphics" handle, or a new Matrix transform, this function is
-	 * called.
+	 * Calculates the position and rotation of the main and specular lights by converting the rotation and elevation
+	 * angles to spherical coordinates. Whenever you update the manager by assigning it a new "Graphics" handle, or a
+	 * new Matrix transform, this function is called.
 	 */
 	void setCommonProc();
 

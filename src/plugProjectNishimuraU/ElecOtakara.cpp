@@ -53,13 +53,13 @@ void Obj::interactCreature(Creature* creature)
 	_normalise(direction);
 
 	// Then scale the direction based on fp14's value
-	f32 scaling = static_cast<OtakaraBase::Parms*>(m_parms)->m_general.m_fp14.m_value;
+	f32 scaling = static_cast<OtakaraBase::Parms*>(m_parms)->m_general.m_searchDistance.m_value;
 	direction.x *= scaling;
 	direction.z *= scaling;
 
 	// If the creature is a Pikmin, change the up/down direction to fp26
 	if (creature->isPiki()) {
-		direction.y = static_cast<OtakaraBase::Parms*>(m_parms)->m_general.m_fp26.m_value;
+		direction.y = static_cast<OtakaraBase::Parms*>(m_parms)->m_general.m_searchHeight.m_value;
 	}
 
 	// Start the interaction

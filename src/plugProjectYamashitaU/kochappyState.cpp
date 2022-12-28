@@ -48,7 +48,7 @@ void StatePress::init(EnemyBase* enemy, StateArg* stateArg)
 	enemy->m_health = 0.0f;
 	enemy->startMotion(4, nullptr);
 	enemy->deathProcedure();
-	enemy->m_curAnim->m_isRunning = 0;
+	enemy->m_curAnim->m_isPlaying = 0;
 }
 
 /*
@@ -58,7 +58,7 @@ void StatePress::init(EnemyBase* enemy, StateArg* stateArg)
  */
 void StatePress::exec(EnemyBase* enemy)
 {
-	if (enemy->m_curAnim->m_isRunning && (u32)enemy->m_curAnim->m_type == KEYEVENT_END) {
+	if (enemy->m_curAnim->m_isPlaying && (u32)enemy->m_curAnim->m_type == KEYEVENT_END) {
 		transit(enemy, KOCHAPPY_Demo, nullptr);
 	}
 }
@@ -111,7 +111,7 @@ void StateWait::exec(EnemyBase* enemy)
 			enemy->finishMotion();
 		}
 
-		if (enemy->m_curAnim->m_isRunning) {
+		if (enemy->m_curAnim->m_isPlaying) {
 			switch (enemy->m_curAnim->m_type) {
 			case KEYEVENT_2:
 				enemy->getJAIObject()->startSound(PSSE_EN_KOCHAPPY_NOTICE, 0);
@@ -386,7 +386,7 @@ void StateDead::init(EnemyBase* enemy, StateArg* stateArg)
  */
 void StateDead::exec(EnemyBase* enemy)
 {
-	if (enemy->m_curAnim->m_isRunning && (u32)enemy->m_curAnim->m_type == KEYEVENT_END) {
+	if (enemy->m_curAnim->m_isPlaying && (u32)enemy->m_curAnim->m_type == KEYEVENT_END) {
 		transit(enemy, KOCHAPPY_Demo, nullptr);
 	}
 }
@@ -1473,7 +1473,7 @@ void StateWalk::cleanup(EnemyBase* enemy)
 {
 	enemy->setEmotionCaution();
 	enemy->resetAnimSpeed();
-	enemy->m_simVelocity = Vector3f(0.0f);
+	enemy->m_targetVelocity = Vector3f(0.0f);
 }
 
 /*
@@ -1822,7 +1822,7 @@ void StateFlick::init(EnemyBase* enemy, StateArg* stateArg)
 	}
 
 	enemy->startMotion(2, nullptr);
-	enemy->disableEvent(0, EB_6);
+	enemy->disableEvent(0, EB_IsFlickEnabled);
 	static_cast<Obj*>(enemy)->resetEnemyNonStone();
 }
 
@@ -1957,7 +1957,7 @@ void StateFlick::cleanup(EnemyBase* enemy)
 {
 	Obj* kochappy = static_cast<Obj*>(enemy);
 	kochappy->setEmotionCaution();
-	kochappy->enableEvent(0, EB_6);
+	kochappy->enableEvent(0, EB_IsFlickEnabled);
 	kochappy->resetEnemyNonStone();
 }
 
@@ -2712,7 +2712,7 @@ lbl_80112138:
 void StateGoHome::cleanup(EnemyBase* enemy)
 {
 	enemy->resetAnimSpeed();
-	enemy->m_simVelocity = Vector3f(0.0f);
+	enemy->m_targetVelocity = Vector3f(0.0f);
 }
 
 /*

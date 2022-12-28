@@ -52,8 +52,8 @@ void StateDead::init(EnemyBase* enemy, StateArg* stateArg)
 	panModoki->startMotion(0, nullptr);
 	panModoki->setAnimSpeed(EnemyAnimatorBase::defaultAnimSpeed);
 	panModoki->deathProcedure();
-	panModoki->m_impVelocity = Vector3f(0.0f);
-	panModoki->m_simVelocity = Vector3f(0.0f);
+	panModoki->m_currentVelocity = Vector3f(0.0f);
+	panModoki->m_targetVelocity  = Vector3f(0.0f);
 	panModoki->killNest();
 }
 
@@ -64,7 +64,7 @@ void StateDead::init(EnemyBase* enemy, StateArg* stateArg)
  */
 void StateDead::exec(EnemyBase* enemy)
 {
-	if (enemy->m_curAnim->m_isRunning) {
+	if (enemy->m_curAnim->m_isPlaying) {
 		if ((u32)enemy->m_curAnim->m_type == KEYEVENT_2) {
 			static_cast<Obj*>(enemy)->boundEffect();
 

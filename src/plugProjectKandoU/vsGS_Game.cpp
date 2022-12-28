@@ -401,7 +401,7 @@ void GameState::checkFindKeyDemo(VsGameSection* section)
 						arg._10      = section->_CC;
 						arg.m_origin = obj->getPosition();
 
-						arg.m_angle = JMath::atanTable_.atan2_(obj->m_mainMatrix(0, 2), obj->m_mainMatrix(2, 2));
+						arg.m_angle = JMath::atanTable_.atan2_(obj->m_objMatrix(0, 2), obj->m_objMatrix(2, 2));
 
 						moviePlayer->m_targetObject = obj;
 						moviePlayer->play(arg);
