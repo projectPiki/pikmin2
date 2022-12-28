@@ -35,7 +35,7 @@ void StateDead::init(EnemyBase* enemy, StateArg* stateArg)
 	bigfoot->forceFinishIKMotion();
 	bigfoot->startDeadEffect();
 	bigfoot->deathProcedure();
-	bigfoot->resetEvent(0, EB_Cullable);
+	bigfoot->disableEvent(0, EB_IsCullable);
 
 	bigfoot->m_simVelocity = 0.0f;
 	bigfoot->setEmotionCaution();
@@ -84,9 +84,9 @@ void StateStay::init(EnemyBase* enemy, StateArg* stateArg)
 {
 	Obj* bigfoot         = static_cast<Obj*>(enemy);
 	bigfoot->m_nextState = BIGFOOT_NULL;
-	bigfoot->setEvent(0, EB_BitterImmune);
-	bigfoot->resetEvent(0, EB_16);
-	bigfoot->setEvent(0, EB_31);
+	bigfoot->enableEvent(0, EB_IsImmuneBitter);
+	bigfoot->disableEvent(0, EB_ToAnimate);
+	bigfoot->enableEvent(0, EB_IsModelHidden);
 	bigfoot->m_targetCreature = nullptr;
 
 	bigfoot->m_simVelocity = Vector3f(0.0f);
@@ -135,10 +135,10 @@ void StateLand::init(EnemyBase* enemy, StateArg* stateArg)
 	bigfoot->m_nextState = BIGFOOT_NULL;
 	bigfoot->_2D4        = 0.001f;
 
-	bigfoot->setEvent(0, EB_BitterImmune);
-	bigfoot->resetEvent(0, EB_Cullable);
-	bigfoot->setEvent(0, EB_16);
-	bigfoot->resetEvent(0, EB_31);
+	bigfoot->enableEvent(0, EB_IsImmuneBitter);
+	bigfoot->disableEvent(0, EB_IsCullable);
+	bigfoot->enableEvent(0, EB_ToAnimate);
+	bigfoot->disableEvent(0, EB_IsModelHidden);
 
 	bigfoot->setEmotionExcitement();
 	bigfoot->m_targetCreature = nullptr;
@@ -162,7 +162,7 @@ void StateLand::exec(EnemyBase* enemy)
 
 	if (bigfoot->m_curAnim->m_isRunning) {
 		if ((u32)bigfoot->m_curAnim->m_type == KEYEVENT_2) {
-			bigfoot->resetEvent(0, EB_BitterImmune);
+			bigfoot->disableEvent(0, EB_IsImmuneBitter);
 
 			for (int i = 0; i < 4; i++) {
 				bigfoot->createOnGroundEffect(i, bigfoot->m_waterBox);
@@ -194,7 +194,7 @@ void StateLand::cleanup(EnemyBase* enemy)
 	Obj* bigfoot = static_cast<Obj*>(enemy);
 	bigfoot->startProgramedIK();
 	bigfoot->setBossAppearBGM();
-	bigfoot->setEvent(0, EB_Cullable);
+	bigfoot->enableEvent(0, EB_IsCullable);
 	bigfoot->_2D4 = 1.0f;
 	shadowMgr->setForceVisible(bigfoot, false);
 }

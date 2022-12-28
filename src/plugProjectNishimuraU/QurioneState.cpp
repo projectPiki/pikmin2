@@ -35,8 +35,8 @@ void StateStay::init(EnemyBase* enemy, StateArg* stateArg)
 	wisp->onSetPosition(position);
 
 	wisp->setAtari(false);
-	wisp->resetEvent(0, EB_16);
-	wisp->setEvent(0, EB_31);
+	wisp->disableEvent(0, EB_ToAnimate);
+	wisp->enableEvent(0, EB_IsModelHidden);
 
 	wisp->m_simVelocity = Vector3f(0.0f);
 	wisp->startMotion(3, nullptr);
@@ -67,8 +67,8 @@ void StateStay::cleanup(EnemyBase* enemy)
 {
 	Obj* wisp = static_cast<Obj*>(enemy);
 	wisp->setAtari(true);
-	wisp->setEvent(0, EB_16);
-	wisp->resetEvent(0, EB_31);
+	wisp->enableEvent(0, EB_ToAnimate);
+	wisp->disableEvent(0, EB_IsModelHidden);
 }
 
 /*
@@ -213,7 +213,7 @@ void StateMove::cleanup(EnemyBase* enemy) { }
 void StateDrop::init(EnemyBase* enemy, StateArg* stateArg)
 {
 	Obj* wisp = static_cast<Obj*>(enemy);
-	wisp->resetEvent(0, EB_Cullable);
+	wisp->disableEvent(0, EB_IsCullable);
 	wisp->createHitEffect();
 	wisp->m_simVelocity = Vector3f(0.0f);
 	wisp->startMotion(1, nullptr);
@@ -241,7 +241,7 @@ void StateDrop::exec(EnemyBase* enemy)
  * Address:	8025F968
  * Size:	000010
  */
-void StateDrop::cleanup(EnemyBase* enemy) { enemy->setEvent(0, EB_Cullable); }
+void StateDrop::cleanup(EnemyBase* enemy) { enemy->enableEvent(0, EB_IsCullable); }
 
 /*
  * --INFO--
@@ -252,7 +252,7 @@ void StateDead::init(EnemyBase* enemy, StateArg* stateArg)
 {
 	Obj* wisp = static_cast<Obj*>(enemy);
 	wisp->setAlive(false);
-	wisp->resetEvent(0, EB_Cullable);
+	wisp->disableEvent(0, EB_IsCullable);
 
 	Vector3f velocity(0.0f, static_cast<Parms*>(wisp->m_parms)->m_properParms.m_fp04.m_value, 0.0f);
 	wisp->setVelocity(velocity);

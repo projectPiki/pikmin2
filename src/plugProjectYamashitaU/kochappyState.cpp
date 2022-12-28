@@ -88,7 +88,7 @@ void StateWait::init(EnemyBase* enemy, StateArg* stateArg)
 	}
 
 	static_cast<Obj*>(enemy)->setAnimationSpeed(30.0f);
-	enemy->setEvent(0, EB_Constraint);
+	enemy->enableEvent(0, EB_Constraint);
 }
 
 /*
@@ -1822,7 +1822,7 @@ void StateFlick::init(EnemyBase* enemy, StateArg* stateArg)
 	}
 
 	enemy->startMotion(2, nullptr);
-	enemy->resetEvent(0, EB_DropMassSet);
+	enemy->disableEvent(0, EB_6);
 	static_cast<Obj*>(enemy)->resetEnemyNonStone();
 }
 
@@ -1957,7 +1957,7 @@ void StateFlick::cleanup(EnemyBase* enemy)
 {
 	Obj* kochappy = static_cast<Obj*>(enemy);
 	kochappy->setEmotionCaution();
-	kochappy->setEvent(0, EB_DropMassSet);
+	kochappy->enableEvent(0, EB_6);
 	kochappy->resetEnemyNonStone();
 }
 

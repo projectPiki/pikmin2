@@ -32,16 +32,16 @@ void Obj::birth(Vector3f& position, f32 p1) { EnemyBase::birth(position, p1); }
 void Obj::onInit(CreatureInitArg* initArg)
 {
 	EnemyBase::onInit(initArg);
-	resetEvent(0, EB_LeaveCarcass);
-	resetEvent(0, EB_Flying);
-	resetEvent(0, EB_9);
+	disableEvent(0, EB_ToLeaveCarcass);
+	disableEvent(0, EB_4);
+	disableEvent(0, EB_IsDeathEffectEnabled);
 	setEmotionNone();
-	setEvent(0, EB_BitterImmune);
+	enableEvent(0, EB_IsImmuneBitter);
 	m_isFalling = false;
 	m_FSM->start(this, 0, nullptr);
 
 	if (!isBirthTypeDropGroup()) {
-		setEvent(0, EB_Constraint);
+		enableEvent(0, EB_Constraint);
 		if (mapMgr) {
 			Vector3f position = m_position;
 			position.y += 20.0f;
@@ -163,7 +163,7 @@ bool Obj::pressCallBack(Creature*, f32, CollPart*) { return false; }
 void Obj::bounceCallback(Sys::Triangle* triangle)
 {
 	if (m_isFalling || isBirthTypeDropGroup()) {
-		setEvent(0, EB_LifegaugeVisible);
+		enableEvent(0, EB_LifegaugeVisible);
 		m_health = 0.0f;
 	}
 }
@@ -178,7 +178,7 @@ void Obj::collisionCallback(CollEvent& collEvent)
 	EnemyBase::collisionCallback(collEvent);
 	if (isBirthTypeDropGroup() && collEvent.m_collidingCreature != nullptr && !collEvent.m_collidingCreature->isTeki()
 	    && getStateID() == 0) {
-		setEvent(0, EB_LifegaugeVisible);
+		enableEvent(0, EB_LifegaugeVisible);
 		m_health = 0.0f;
 	}
 }
@@ -220,9 +220,9 @@ void Obj::onStartCapture()
 		onSetPosition(position);
 		m_impVelocity = Vector3f(0.0f);
 		m_simVelocity = Vector3f(0.0f);
-		setEvent(0, EB_Constraint);
-		setEvent(0, EB_Vulnerable);
-		resetEvent(0, EB_Cullable);
+		enableEvent(0, EB_Constraint);
+		enableEvent(0, EB_IsVulnerable);
+		disableEvent(0, EB_IsCullable);
 	}
 }
 
@@ -235,7 +235,7 @@ void Obj::onEndCapture()
 {
 	constraintOff();
 	m_isFalling = true;
-	setEvent(0, EB_Cullable);
+	enableEvent(0, EB_IsCullable);
 }
 
 /*

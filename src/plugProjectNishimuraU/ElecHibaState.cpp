@@ -29,10 +29,10 @@ void StateDead::init(EnemyBase* enemy, StateArg* stateArg)
 {
 	Obj* elecHiba = static_cast<Obj*>(enemy);
 
-	elecHiba->setEvent(0, EB_3);
-	elecHiba->resetEvent(0, EB_LifegaugeVisible);
-	elecHiba->setEvent(0, EB_Vulnerable);
-	elecHiba->resetEvent(0, EB_Flying);
+	elecHiba->enableEvent(0, EB_IsFlying);
+	elecHiba->disableEvent(0, EB_LifegaugeVisible);
+	elecHiba->enableEvent(0, EB_IsVulnerable);
+	elecHiba->disableEvent(0, EB_4);
 
 	elecHiba->_2C0 = 0;
 	elecHiba->generatorKill();
@@ -50,10 +50,10 @@ void StateDead::init(EnemyBase* enemy, StateArg* stateArg)
 
 	Obj* childHiba = elecHiba->getChildObjPtr();
 	if (childHiba) {
-		childHiba->setEvent(0, EB_3);
-		childHiba->resetEvent(0, EB_LifegaugeVisible);
-		childHiba->setEvent(0, EB_Vulnerable);
-		childHiba->resetEvent(0, EB_Flying);
+		childHiba->enableEvent(0, EB_IsFlying);
+		childHiba->disableEvent(0, EB_LifegaugeVisible);
+		childHiba->enableEvent(0, EB_IsVulnerable);
+		childHiba->disableEvent(0, EB_4);
 
 		childHiba->_2C0 = 0;
 		childHiba->generatorKill();
@@ -149,12 +149,12 @@ void StateSign::init(EnemyBase* enemy, StateArg* stateArg)
 	Obj* elecHiba = static_cast<Obj*>(enemy);
 
 	elecHiba->m_waitTimer = 0.0f;
-	elecHiba->resetEvent(0, EB_Cullable);
+	elecHiba->disableEvent(0, EB_IsCullable);
 	elecHiba->startMotion(0, nullptr);
 
 	Obj* childHiba = elecHiba->getChildObjPtr();
 	if (childHiba) {
-		childHiba->resetEvent(0, EB_Cullable);
+		childHiba->disableEvent(0, EB_IsCullable);
 		childHiba->startMotion(0, nullptr);
 		elecHiba->startChargeEffect(childHiba);
 	}
@@ -193,11 +193,11 @@ void StateSign::cleanup(EnemyBase* enemy)
 {
 	Obj* elecHiba = static_cast<Obj*>(enemy);
 
-	elecHiba->setEvent(0, EB_Cullable);
+	elecHiba->enableEvent(0, EB_IsCullable);
 
 	Obj* childHiba = elecHiba->getChildObjPtr();
 	if (childHiba) {
-		childHiba->setEvent(0, EB_Cullable);
+		childHiba->enableEvent(0, EB_IsCullable);
 	}
 }
 
@@ -211,13 +211,13 @@ void StateAttack::init(EnemyBase* enemy, StateArg* stateArg)
 	Obj* elecHiba = static_cast<Obj*>(enemy);
 
 	elecHiba->m_waitTimer = 0.0f;
-	elecHiba->resetEvent(0, EB_Cullable);
+	elecHiba->disableEvent(0, EB_IsCullable);
 	elecHiba->startMotion(0, nullptr);
 	elecHiba->setVersusHibaType();
 
 	Obj* childHiba = elecHiba->getChildObjPtr();
 	if (childHiba) {
-		childHiba->resetEvent(0, EB_Cullable);
+		childHiba->disableEvent(0, EB_IsCullable);
 		childHiba->startMotion(0, nullptr);
 		elecHiba->startDisChargeEffect();
 	}
@@ -263,11 +263,11 @@ void StateAttack::cleanup(EnemyBase* enemy)
 {
 	Obj* elecHiba = static_cast<Obj*>(enemy);
 
-	elecHiba->setEvent(0, EB_Cullable);
+	elecHiba->enableEvent(0, EB_IsCullable);
 
 	Obj* childHiba = elecHiba->getChildObjPtr();
 	if (childHiba) {
-		childHiba->setEvent(0, EB_Cullable);
+		childHiba->enableEvent(0, EB_IsCullable);
 		elecHiba->finishDisChargeEffect();
 	}
 

@@ -148,7 +148,7 @@ void StateAppear::init(EnemyBase* enemy, StateArg* stateArg)
 
 	enemy->startMotion(3, nullptr);
 	enemy->stopMotion();
-	enemy->setEvent(0, EB_BitterImmune);
+	enemy->enableEvent(0, EB_IsImmuneBitter);
 
 	Obj* mitite  = static_cast<Obj*>(enemy);
 	Parms* parms = static_cast<Parms*>(mitite->m_parms);
@@ -186,7 +186,7 @@ void StateAppear::exec(EnemyBase* enemy)
 		_14++;
 	}
 
-	if (!mitite->isEvent(0, EB_Bittered) && (_14 > _18)) {
+	if (!mitite->isEvent(0, EB_IsBittered) && (_14 > _18)) {
 		mitite->setEmotionExcitement();
 		if (mitite->isStopMotion()) {
 			mitite->createAppearEffect();
@@ -199,7 +199,7 @@ void StateAppear::exec(EnemyBase* enemy)
 			mitite->appearPanic();
 			mitite->setAtari(true);
 			mitite->setAlive(true);
-			mitite->resetEvent(0, EB_BitterImmune);
+			mitite->disableEvent(0, EB_IsImmuneBitter);
 		}
 		if ((u32)mitite->m_curAnim->m_type == KEYEVENT_END) {
 			transit(mitite, TAMAGOMUSHI_Walk, nullptr);
@@ -275,7 +275,7 @@ void StateDead::init(EnemyBase* enemy, StateArg* stateArg)
 	enemy->startMotion(0, nullptr);
 	enemy->m_simVelocity = Vector3f(0.0f);
 	enemy->m_impVelocity = Vector3f(0.0f);
-	enemy->setEvent(0, EB_LeaveCarcass);
+	enemy->enableEvent(0, EB_ToLeaveCarcass);
 	enemy->deathProcedure();
 	PSStartEnemyFatalHitSE(enemy, 0.0f);
 
@@ -330,7 +330,7 @@ void StateWait::init(EnemyBase* enemy, StateArg* stateArg)
 	enemy->startMotion(4, nullptr);
 	enemy->setEmotionExcitement();
 	enemy->hardConstraintOff();
-	enemy->resetEvent(0, EB_Cullable);
+	enemy->disableEvent(0, EB_IsCullable);
 	enemy->setAtari(false);
 
 	Obj* mitite  = static_cast<Obj*>(enemy);

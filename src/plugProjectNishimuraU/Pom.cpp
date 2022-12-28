@@ -40,20 +40,20 @@ void Obj::onInit(CreatureInitArg* initArg)
 {
 	EnemyBase::onInit(initArg);
 	if (isBirthTypeDropGroup()) {
-		resetEvent(0, EB_Vulnerable);
-		setEvent(0, EB_Flying);
+		disableEvent(0, EB_IsVulnerable);
+		enableEvent(0, EB_4);
 		hardConstraintOff();
 	} else {
-		setEvent(0, EB_Vulnerable);
-		resetEvent(0, EB_Flying);
+		enableEvent(0, EB_IsVulnerable);
+		disableEvent(0, EB_4);
 		hardConstraintOn();
 	}
 
-	resetEvent(0, EB_13);
-	resetEvent(0, EB_LeaveCarcass);
-	resetEvent(0, EB_9);
-	resetEvent(0, EB_LifegaugeVisible);
-	setEvent(0, EB_BitterImmune);
+	disableEvent(0, EB_IsPlatformCollsAllowed);
+	disableEvent(0, EB_ToLeaveCarcass);
+	disableEvent(0, EB_IsDeathEffectEnabled);
+	disableEvent(0, EB_LifegaugeVisible);
+	enableEvent(0, EB_IsImmuneBitter);
 	setEmotionNone();
 
 	shadowMgr->killShadow(this);
@@ -76,10 +76,10 @@ void Obj::doUpdate()
 {
 	m_FSM->exec(this);
 	m_mouthSlots.update();
-	if (isEvent(0, EB_Flying) && m_curTriangle) {
+	if (isEvent(0, EB_4) && m_curTriangle) {
 		if (isEvent(0, EB_HardConstraint)) {
-			setEvent(0, EB_Vulnerable);
-			resetEvent(0, EB_Flying);
+			enableEvent(0, EB_IsVulnerable);
+			disableEvent(0, EB_4);
 		} else {
 			hardConstraintOn();
 		}

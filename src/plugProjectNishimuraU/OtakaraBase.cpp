@@ -44,11 +44,13 @@ void Obj::onInit(CreatureInitArg* initArg)
 	setupEffect();
 
 	if (getEnemyTypeID() == EnemyTypeID::EnemyID_BombOtakara) {
-		resetEvent(0, EB_LifegaugeVisible);
-		resetEvent(0, EB_LeaveCarcass);
-		if (m_dropGroup == 0) {
+		disableEvent(0, EB_LifegaugeVisible);
+		disableEvent(0, EB_ToLeaveCarcass);
+
+		if (m_dropGroup == EDG_Normal) {
 			initBombOtakara();
 		}
+
 		m_FSM->start(this, 11, nullptr);
 		return;
 	}
@@ -120,7 +122,7 @@ void Obj::doAnimationCullingOff()
 		} else {
 			Matrixf mtx;
 			PSMTXIdentity(mtx.m_matrix.mtxView);
-			mtx.m_matrix.structView.ty = _2EC;
+			mtx.m_matrix.structView.ty = m_bodyHeightOffset;
 			m_treasure->updateCapture(mtx);
 		}
 	}
@@ -171,7 +173,7 @@ void Obj::getShadowParam(ShadowParam& shadowParam)
 		shadowParam.m_boundingSphere.m_radius = 50.0f;
 	}
 
-	if (isEvent(1, EB2_1)) {
+	if (isEvent(1, EB2_IsEarthquakeActive)) {
 		shadowParam.m_boundingSphere.m_radius += 25.0f;
 	}
 
@@ -681,10 +683,10 @@ lbl_802B7030:
  */
 void Obj::resetTreasure()
 {
-	m_treasure       = nullptr;
-	m_treasureHealth = 0.0f;
-	_2EC             = 0.0f;
-	m_cellRadius     = C_PARMS->m_general.m_cellRadius.m_value;
+	m_treasure         = nullptr;
+	m_treasureHealth   = 0.0f;
+	m_bodyHeightOffset = 0.0f;
+	m_cellRadius       = C_PARMS->m_general.m_cellRadius.m_value;
 
 	CollPart* collpart   = m_collTree->getCollPart(0x626F6479);
 	collpart->m_radius   = 10.0f;
@@ -1253,27 +1255,32 @@ void Obj::startEscapeSE()
  */
 void Obj::initBombOtakara()
 {
-	if (m_targetCreature == nullptr) {
-		Bomb::Mgr* mgr = static_cast<Bomb::Mgr*>(generalEnemyMgr->getEnemyMgr(EnemyTypeID::EnemyID_Bomb));
-		if (mgr) {
-			EnemyBirthArg birthArg;
-			birthArg.m_faceDir = m_faceDir;
-			m_targetCreature   = mgr->birth(birthArg);
-			if (m_targetCreature) {
-				m_targetCreature->init(nullptr);
-				m_targetCreature->startCapture(m_model->getJoint("otakara")->getWorldMatrix());
-				static_cast<Bomb::Obj*>(m_targetCreature)->m_otakara = this;
-				_2EC                                                 = 10.0f;
-				m_cellRadius                                         = 25.0f;
+	if (m_targetCreature != nullptr) {
+		return;
+	}
 
-				CollPart* collpart   = m_collTree->getCollPart(0x626F6479);
-				collpart->m_radius   = 15.0f;
-				collpart->m_offset.y = _2EC;
-				CollPart* basepart   = m_collTree->m_part;
-				basepart->m_radius   = 25.0f;
-				basepart->m_offset.y = _2EC;
-			}
-		}
+	Bomb::Mgr* mgr = static_cast<Bomb::Mgr*>(generalEnemyMgr->getEnemyMgr(EnemyTypeID::EnemyID_Bomb));
+	if (!mgr) {
+		return;
+	}
+
+	EnemyBirthArg birthArg;
+	birthArg.m_faceDir = m_faceDir;
+	m_targetCreature   = mgr->birth(birthArg);
+	if (m_targetCreature) {
+		m_targetCreature->init(nullptr);
+		m_targetCreature->startCapture(m_model->getJoint("otakara")->getWorldMatrix());
+		static_cast<Bomb::Obj*>(m_targetCreature)->m_otakara = this;
+		m_bodyHeightOffset                                   = 10.0f;
+		m_cellRadius                                         = 25.0f;
+
+		CollPart* collpart   = m_collTree->getCollPart('body');
+		collpart->m_radius   = 15.0f;
+		collpart->m_offset.y = m_bodyHeightOffset;
+
+		CollPart* basepart   = m_collTree->m_part;
+		basepart->m_radius   = 25.0f;
+		basepart->m_offset.y = m_bodyHeightOffset;
 	}
 }
 
@@ -1284,7 +1291,7 @@ void Obj::initBombOtakara()
  */
 bool Obj::isTransitChaseState()
 {
-	if (isEvent(0, EB_Collision) || isEvent(0, EB_Damage) || (m_stuckPikminCount != 0)) {
+	if (isEvent(0, EB_HasCollisionOccurred) || isEvent(0, EB_IsTakingDamage) || (m_stuckPikminCount != 0)) {
 		return true;
 	}
 
@@ -1302,11 +1309,11 @@ bool Obj::stimulateBomb()
 {
 	_2E8 += sys->m_deltaTime;
 	if ((_2E8 > 1.5f) && (m_targetCreature != nullptr) && (m_targetCreature->isAlive())) {
-		resetEvent(0, EB_Cullable);
+		disableEvent(0, EB_IsCullable);
 		static_cast<Bomb::Obj*>(m_targetCreature)->forceBomb();
 	}
 
-	return isEvent(0, EB_Cullable);
+	return isEvent(0, EB_IsCullable);
 }
 
 /*

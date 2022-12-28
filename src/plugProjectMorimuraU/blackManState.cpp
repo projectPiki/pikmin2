@@ -85,7 +85,7 @@ void StateWalk::exec(EnemyBase* enemy)
 	}
 
 	if (EnemyFunc::isStartFlick(wraith, false)) {
-		wraith->_2DC = 0;
+		wraith->m_postFlickState = 0;
 		transit(wraith, WRAITH_Flick, nullptr);
 		return;
 	}
@@ -223,14 +223,14 @@ void StateFreeze::init(EnemyBase* enemy, StateArg* stateArg)
 void StateFreeze::exec(EnemyBase* enemy)
 {
 	Obj* wraith = static_cast<Obj*>(enemy);
-	wraith->_2CC++;
+	wraith->m_freezeTimer++;
 	if (wraith->m_health <= 0.0f) {
 		transit(wraith, WRAITH_Dead, nullptr);
 		return;
 	}
 
 	if (EnemyFunc::isStartFlick(wraith, false)) {
-		wraith->_2DC = 2;
+		wraith->m_postFlickState = 2;
 		transit(wraith, WRAITH_Flick, nullptr);
 		return;
 	}
@@ -250,7 +250,7 @@ void StateFreeze::exec(EnemyBase* enemy)
 			transit(wraith, WRAITH_Walk, nullptr);
 			wraith->collisionStOff();
 		}
-	} else if (wraith->_2CC > wraith->getParms()->m_properParms.m_ip04.m_value) {
+	} else if (wraith->m_freezeTimer > wraith->getParms()->m_properParms.m_freezeTimerLength.m_value) {
 		wraith->finishMotion();
 	}
 }
@@ -318,7 +318,7 @@ void StateBend::exec(EnemyBase* enemy)
 	}
 
 	if (EnemyFunc::isStartFlick(wraith, false)) {
-		wraith->_2DC = 3;
+		wraith->m_postFlickState = 3;
 		transit(wraith, WRAITH_Flick, nullptr);
 		return;
 	}
@@ -340,8 +340,8 @@ void StateBend::exec(EnemyBase* enemy)
 			}
 		}
 	} else {
-		wraith->_2CC++;
-		if (wraith->_2CC > wraith->getParms()->m_properParms.m_ip03.m_value) {
+		wraith->m_freezeTimer++;
+		if (wraith->m_freezeTimer > wraith->getParms()->m_properParms.m_dosinStopTimerLength.m_value) {
 			wraith->finishMotion();
 		}
 	}
@@ -449,7 +449,7 @@ void StateFall::init(EnemyBase* enemy, StateArg* stateArg)
 {
 	enemy->startMotion(13, nullptr);
 	enemy->hardConstraintOn();
-	enemy->setEvent(0, EB_22);
+	enemy->enableEvent(0, EB_IsEnemyNotBitter);
 }
 
 /*
@@ -468,7 +468,7 @@ void StateFall::exec(EnemyBase* enemy)
 
 		} else if ((u32)enemy->m_curAnim->m_type == KEYEVENT_END) {
 			if (static_cast<Obj*>(enemy)->isFallEnd()) {
-				enemy->resetEvent(0, EB_22);
+				enemy->disableEvent(0, EB_IsEnemyNotBitter);
 				transit(enemy, WRAITH_Recover, nullptr);
 			}
 		}
@@ -627,7 +627,7 @@ void StateFlick::exec(EnemyBase* enemy)
 			static_cast<Obj*>(enemy)->flick();
 
 		} else if ((u32)enemy->m_curAnim->m_type == KEYEVENT_END) {
-			transit(enemy, static_cast<Obj*>(enemy)->_2DC, nullptr);
+			transit(enemy, static_cast<Obj*>(enemy)->m_postFlickState, nullptr);
 		}
 	}
 }
@@ -686,7 +686,7 @@ void StateTired::exec(EnemyBase* enemy)
 
 	_10++;
 	Obj* wraith = static_cast<Obj*>(enemy);
-	if (_10 > wraith->getParms()->m_properParms.m_ip06.m_value) {
+	if (_10 > wraith->getParms()->m_properParms.m_standStillTimerLength.m_value) {
 		enemy->finishMotion();
 	}
 }

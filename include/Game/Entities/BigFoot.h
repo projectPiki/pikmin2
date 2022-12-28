@@ -197,39 +197,39 @@ struct Parms : public EnemyParmsBase {
 	struct ProperParms : public Parameters {
 		inline ProperParms()
 		    : Parameters(nullptr, "EnemyParmsBase")
-		    , m_fp01(this, 'fp01', "ƒx[ƒXŒW”", 3.0f, 0.0f, 10.0f)           // 'base factor'
-		    , m_fp02(this, 'fp02', "ã‚°Œ¸‘¬ŒW”", -0.2f, -5.0f, 5.0f)        // 'raising deceleration factor'
-		    , m_fp03(this, 'fp03', "‰º‚°‰Á‘¬ŒW”", 0.5f, -5.0f, 5.0f)         // 'downward acceleration factor'
-		    , m_fp04(this, 'fp04', "Å’áŒ¸‰Á‘¬ŒW”", -2.5f, -10.0f, 10.0f)    // 'minimum deceleration acceleration factor'
-		    , m_fp05(this, 'fp05', "Å‚Œ¸‰Á‘¬ŒW”", 10.0f, -10.0f, 10.0f)    // 'maximum deceleration acceleration factor'
-		    , m_fp06(this, 'fp06', "‘«‚ÌU‚èã‚°", 120.0f, 0.0f, 200.0f)      // 'leg swing'
-		    , m_fp11(this, 'fp11', "ƒx[ƒXŒW”(s)", 3.0f, 0.0f, 10.0f)        // 'base factor(s)'
-		    , m_fp12(this, 'fp12', "ã‚°Œ¸‘¬ŒW”(s)", -0.2f, -5.0f, 5.0f)     // 'raising deceleration factor(s)'
-		    , m_fp13(this, 'fp13', "‰º‚°‰Á‘¬ŒW”(s)", 0.5f, -5.0f, 5.0f)      // 'downward acceleration factor(s)'
-		    , m_fp14(this, 'fp14', "Å’áŒ¸‰Á‘¬ŒW”(s)", -2.0f, -10.0f, 10.0f) // 'minimum deceleration acceleration factor(s)'
-		    , m_fp15(this, 'fp15', "Å‚Œ¸‰Á‘¬ŒW”(s)", 10.0f, -10.0f, 10.0f) // 'maximum deceleration acceleration factor(s)'
-		    , m_fp16(this, 'fp16', "‘«‚ÌU‚èã‚°(s)", 120.0f, 0.0f, 200.0f)   // 'leg swing(s)'
-		    , m_fp17(this, 'fp17', "ˆÚ“®ƒIƒtƒZƒbƒg(s)", 50.0f, 0.0f, 200.0f)  // 'movement offset(s)'
-		    , m_fp20(this, 'fp20', "’ÊíˆÚ“®ŠÔ", 10.0f, 0.0f, 100.0f)       // 'normal travel time'
-		    , m_fp21(this, 'fp21', "U•¥ŒãˆÚ“®ŠÔ", 3.0f, 0.0f, 100.0f)      // 'post-shakeoff travel time'
+		    , m_baseCoefficient(this, 'fp01', "ƒx[ƒXŒW”", 3.0f, 0.0f, 10.0f)          // 'base factor'
+		    , m_raiseSlowdownFactor(this, 'fp02', "ã‚°Œ¸‘¬ŒW”", -0.2f, -5.0f, 5.0f)   // 'raising deceleration factor'
+		    , m_downwardAccelFactor(this, 'fp03', "‰º‚°‰Á‘¬ŒW”", 0.5f, -5.0f, 5.0f)    // 'downward acceleration factor'
+		    , m_minDecelFactor(this, 'fp04', "Å’áŒ¸‰Á‘¬ŒW”", -2.5f, -10.0f, 10.0f)    // 'minimum deceleration acceleration factor'
+		    , m_maxDecelFactor(this, 'fp05', "Å‚Œ¸‰Á‘¬ŒW”", 10.0f, -10.0f, 10.0f)    // 'maximum deceleration acceleration factor'
+		    , m_legSwing(this, 'fp06', "‘«‚ÌU‚èã‚°", 120.0f, 0.0f, 200.0f)            // 'leg swing'
+		    , m_baseCoefficients(this, 'fp11', "ƒx[ƒXŒW”(s)", 3.0f, 0.0f, 10.0f)      // 'base factor(s)'
+		    , m_fp12(this, 'fp12', "ã‚°Œ¸‘¬ŒW”(s)", -0.2f, -5.0f, 5.0f)               // 'raising deceleration factor(s)'
+		    , m_fp13(this, 'fp13', "‰º‚°‰Á‘¬ŒW”(s)", 0.5f, -5.0f, 5.0f)                // 'downward acceleration factor(s)'
+		    , m_fp14(this, 'fp14', "Å’áŒ¸‰Á‘¬ŒW”(s)", -2.0f, -10.0f, 10.0f)           // 'minimum deceleration acceleration factor(s)'
+		    , m_fp15(this, 'fp15', "Å‚Œ¸‰Á‘¬ŒW”(s)", 10.0f, -10.0f, 10.0f)           // 'maximum deceleration acceleration factor(s)'
+		    , m_fp16(this, 'fp16', "‘«‚ÌU‚èã‚°(s)", 120.0f, 0.0f, 200.0f)             // 'leg swing(s)'
+		    , m_movementOffset(this, 'fp17', "ˆÚ“®ƒIƒtƒZƒbƒg(s)", 50.0f, 0.0f, 200.0f)  // 'movement offset(s)'
+		    , m_normalTravelTime(this, 'fp20', "’ÊíˆÚ“®ŠÔ", 10.0f, 0.0f, 100.0f)     // 'normal travel time'
+		    , m_postShakeTravelTime(this, 'fp21', "U•¥ŒãˆÚ“®ŠÔ", 3.0f, 0.0f, 100.0f) // 'post-shakeoff travel time'
 		{
 		}
 
-		Parm<f32> m_fp01; // _804
-		Parm<f32> m_fp02; // _82C
-		Parm<f32> m_fp03; // _854
-		Parm<f32> m_fp04; // _87C
-		Parm<f32> m_fp05; // _8A4
-		Parm<f32> m_fp06; // _8CC
-		Parm<f32> m_fp11; // _8F4
-		Parm<f32> m_fp12; // _91C
-		Parm<f32> m_fp13; // _944
-		Parm<f32> m_fp14; // _96C
-		Parm<f32> m_fp15; // _994
-		Parm<f32> m_fp16; // _9BC
-		Parm<f32> m_fp17; // _9E4
-		Parm<f32> m_fp20; // _A0C
-		Parm<f32> m_fp21; // _A34
+		Parm<f32> m_baseCoefficient;     // _804
+		Parm<f32> m_raiseSlowdownFactor; // _82C
+		Parm<f32> m_downwardAccelFactor; // _854
+		Parm<f32> m_minDecelFactor;      // _87C
+		Parm<f32> m_maxDecelFactor;      // _8A4
+		Parm<f32> m_legSwing;            // _8CC
+		Parm<f32> m_baseCoefficients;    // _8F4
+		Parm<f32> m_fp12;                // _91C
+		Parm<f32> m_fp13;                // _944
+		Parm<f32> m_fp14;                // _96C
+		Parm<f32> m_fp15;                // _994
+		Parm<f32> m_fp16;                // _9BC
+		Parm<f32> m_movementOffset;      // _9E4
+		Parm<f32> m_normalTravelTime;    // _A0C
+		Parm<f32> m_postShakeTravelTime; // _A34
 	};
 
 	Parms() { }

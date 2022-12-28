@@ -168,14 +168,14 @@ void StateStay::init(EnemyBase* enemy, StateArg* stateArg)
 {
 	Obj* imomushi = static_cast<Obj*>(enemy);
 	imomushi->setAtari(false);
-	imomushi->setEvent(0, EB_Vulnerable);
+	imomushi->enableEvent(0, EB_IsVulnerable);
 	imomushi->_2C0 = true;
-	imomushi->setEvent(0, EB_BitterImmune);
-	imomushi->setEvent(0, EB_SoundCullable);
-	imomushi->resetEvent(0, EB_LifegaugeVisible);
+	imomushi->enableEvent(0, EB_IsImmuneBitter);
+	imomushi->enableEvent(0, EB_14);
+	imomushi->disableEvent(0, EB_LifegaugeVisible);
 	imomushi->hardConstraintOn();
-	imomushi->resetEvent(0, EB_16);
-	imomushi->setEvent(0, EB_31);
+	imomushi->disableEvent(0, EB_ToAnimate);
+	imomushi->enableEvent(0, EB_IsModelHidden);
 	imomushi->m_simVelocity = Vector3f(0.0f);
 	imomushi->_2C8          = 0.0f;
 	imomushi->startMotion(1, nullptr);
@@ -208,13 +208,13 @@ void StateStay::cleanup(EnemyBase* enemy)
 {
 	Obj* imomushi = static_cast<Obj*>(enemy);
 	imomushi->setAtari(true);
-	imomushi->resetEvent(0, EB_Vulnerable);
+	imomushi->disableEvent(0, EB_IsVulnerable);
 	imomushi->_2C0 = false;
-	imomushi->resetEvent(0, EB_BitterImmune);
-	imomushi->resetEvent(0, EB_SoundCullable);
+	imomushi->disableEvent(0, EB_IsImmuneBitter);
+	imomushi->disableEvent(0, EB_14);
 	imomushi->hardConstraintOff();
-	imomushi->setEvent(0, EB_16);
-	imomushi->resetEvent(0, EB_31);
+	imomushi->enableEvent(0, EB_ToAnimate);
+	imomushi->disableEvent(0, EB_IsModelHidden);
 }
 
 /*
@@ -227,8 +227,8 @@ void StateAppear::init(EnemyBase* enemy, StateArg* stateArg)
 	Obj* imomushi = static_cast<Obj*>(enemy);
 	imomushi->lifeIncrement();
 	imomushi->hardConstraintOn();
-	imomushi->setEvent(0, EB_22);
-	imomushi->setEvent(0, EB_LifegaugeVisible);
+	imomushi->enableEvent(0, EB_IsEnemyNotBitter);
+	imomushi->enableEvent(0, EB_LifegaugeVisible);
 	imomushi->m_simVelocity = Vector3f(0.0f);
 	imomushi->setEmotionExcitement();
 	imomushi->startMotion(1, nullptr);
@@ -263,7 +263,7 @@ void StateAppear::cleanup(EnemyBase* enemy)
 {
 	Obj* imomushi = static_cast<Obj*>(enemy);
 	imomushi->hardConstraintOff();
-	imomushi->resetEvent(0, EB_22);
+	imomushi->disableEvent(0, EB_IsEnemyNotBitter);
 }
 
 /*
@@ -275,7 +275,7 @@ void StateDive::init(EnemyBase* enemy, StateArg* stateArg)
 {
 	Obj* imomushi = static_cast<Obj*>(enemy);
 	imomushi->hardConstraintOn();
-	imomushi->setEvent(0, EB_BitterImmune);
+	imomushi->enableEvent(0, EB_IsImmuneBitter);
 	imomushi->m_targetCreature = nullptr;
 	imomushi->m_simVelocity    = Vector3f(0.0f);
 	imomushi->setEmotionCaution();
@@ -305,7 +305,7 @@ void StateDive::cleanup(EnemyBase* enemy)
 {
 	Obj* imomushi = static_cast<Obj*>(enemy);
 	imomushi->hardConstraintOff();
-	imomushi->resetEvent(0, EB_BitterImmune);
+	imomushi->disableEvent(0, EB_IsImmuneBitter);
 }
 
 /*
@@ -769,7 +769,7 @@ void StateZukanStay::init(EnemyBase* enemy, StateArg* stateArg)
 {
 	Obj* imomushi = static_cast<Obj*>(enemy);
 	imomushi->resetZukanStateTimer();
-	imomushi->setEvent(0, EB_BitterImmune);
+	imomushi->enableEvent(0, EB_IsImmuneBitter);
 	imomushi->hardConstraintOn();
 	imomushi->m_simVelocity = Vector3f(0.0f);
 	imomushi->startMotion(1, nullptr);
@@ -798,7 +798,7 @@ void StateZukanStay::exec(EnemyBase* enemy)
 void StateZukanStay::cleanup(EnemyBase* enemy)
 {
 	Obj* imomushi = static_cast<Obj*>(enemy);
-	imomushi->resetEvent(0, EB_BitterImmune);
+	imomushi->disableEvent(0, EB_IsImmuneBitter);
 	imomushi->hardConstraintOff();
 }
 
@@ -810,7 +810,7 @@ void StateZukanStay::cleanup(EnemyBase* enemy)
 void StateZukanAppear::init(EnemyBase* enemy, StateArg* stateArg)
 {
 	Obj* imomushi = static_cast<Obj*>(enemy);
-	imomushi->setEvent(0, EB_22);
+	imomushi->enableEvent(0, EB_IsEnemyNotBitter);
 	imomushi->m_simVelocity = Vector3f(0.0f);
 	imomushi->startMotion(1, nullptr);
 	imomushi->createAppearEffect();
@@ -837,7 +837,7 @@ void StateZukanAppear::exec(EnemyBase* enemy)
 void StateZukanAppear::cleanup(EnemyBase* enemy)
 {
 	Obj* imomushi = static_cast<Obj*>(enemy);
-	imomushi->resetEvent(0, EB_22);
+	imomushi->disableEvent(0, EB_IsEnemyNotBitter);
 }
 
 /*

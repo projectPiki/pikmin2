@@ -61,7 +61,7 @@ void Obj::getShadowParam(ShadowParam& param)
 	}
 	param.m_boundingSphere.m_position = Vector3f(0.0f, 1.0f, 0.0f);
 
-	if (isEvent(1, EB2_1)) {
+	if (isEvent(1, EB2_IsEarthquakeActive)) {
 		param.m_boundingSphere.m_radius = 50.0f;
 	} else {
 		param.m_boundingSphere.m_radius = 30.0f;

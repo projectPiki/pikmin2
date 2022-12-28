@@ -3966,7 +3966,7 @@ void PikiSuikomiState::execStomach(Piki* piki)
 			JUT_PANICLINE(2680, "not teki (%s)!", m_creature->getCreatureName());
 		}
 		EnemyBase* enemy = static_cast<EnemyBase*>(m_creature);
-		if (!enemy->isEvent(0, EB_Bittered) && !(enemy->m_health <= 0.0f)) {
+		if (!enemy->isEvent(0, EB_IsBittered) && !(enemy->m_health <= 0.0f)) {
 			_20 -= sys->m_deltaTime;
 		}
 	}

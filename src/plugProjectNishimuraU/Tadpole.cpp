@@ -82,7 +82,7 @@ void Obj::getShadowParam(ShadowParam& param)
 	param.m_position = getPosition();
 	param.m_position.y += 2.5f;
 	param.m_boundingSphere.m_position = Vector3f(0.0f, 1.0f, 0.0f);
-	if (isEvent(1, EB2_1)) {
+	if (isEvent(1, EB2_IsEarthquakeActive)) {
 		param.m_boundingSphere.m_radius = 50.0f;
 	} else {
 		param.m_boundingSphere.m_radius = 7.5f;
@@ -97,7 +97,7 @@ void Obj::getShadowParam(ShadowParam& param)
  */
 bool Obj::hipdropCallBack(Creature* creature, f32 damage, CollPart* collpart)
 {
-	if (isAlive() && !isEvent(0, EB_Bittered)) {
+	if (isAlive() && !isEvent(0, EB_IsBittered)) {
 		addDamage(m_health, 1.0f);
 		return true;
 	}

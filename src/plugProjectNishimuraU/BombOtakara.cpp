@@ -50,7 +50,7 @@ void Obj::changeMaterial()
 bool Obj::damageCallBack(Creature* creature, f32 damage, CollPart* collpart)
 {
 	if (m_targetCreature != nullptr && m_targetCreature->isAlive()) {
-		if (isEvent(0, EB_Bittered)) {
+		if (isEvent(0, EB_IsBittered)) {
 			// If we're bittered, then register the damage
 			static_cast<Bomb::Obj*>(m_targetCreature)->damageCallBack(creature, damage, collpart);
 		} else {

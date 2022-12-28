@@ -63,7 +63,7 @@ EnemyBase* TekiMgr::birth(int idx, Vector3f& position, bool check)
 		birthArg.m_faceDir  = TAU * randFloat();
 		birthArg.m_position = position;
 		if (check) {
-			birthArg._2C = 50.0f;
+			birthArg.m_existenceLength = 50.0f;
 		}
 		EnemyBase* teki = generalEnemyMgr->birth(node->m_id, birthArg);
 		if (teki) {

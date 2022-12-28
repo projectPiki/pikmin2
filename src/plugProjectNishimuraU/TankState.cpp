@@ -28,7 +28,7 @@ void StateDead::init(EnemyBase* enemy, StateArg* Args)
 {
 	Obj* tank = static_cast<Obj*>(enemy);
 	tank->finishEffect();
-	tank->resetEvent(0, EB_Cullable);
+	tank->disableEvent(0, EB_IsCullable);
 	tank->m_simVelocity = Vector3f(0.0f);
 	tank->deathProcedure();
 	tank->startMotion(0, nullptr);
@@ -1142,7 +1142,7 @@ void StateAttack::init(EnemyBase* enemy, StateArg* stateArg)
 	tank->_304 = 0;
 	tank->_2E4 = 0.0f;
 	tank->_2EC = 0.0f;
-	tank->resetEvent(0, EB_Cullable);
+	tank->disableEvent(0, EB_IsCullable);
 	tank->m_targetCreature = nullptr;
 	tank->m_simVelocity    = Vector3f(0.0f);
 	tank->setEmotionExcitement();
@@ -1225,7 +1225,7 @@ void Obj::createDisChargeSE() { }
 void StateAttack::cleanup(EnemyBase* enemy)
 {
 	Obj* tank = static_cast<Obj*>(enemy);
-	tank->setEvent(0, EB_Cullable);
+	tank->enableEvent(0, EB_IsCullable);
 	tank->_304 = false;
 	tank->startYodare();
 	tank->setEmotionCaution();

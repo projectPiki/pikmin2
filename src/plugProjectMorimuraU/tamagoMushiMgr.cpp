@@ -68,7 +68,7 @@ int Mgr::getFreeNum()
 	int freeSlots = 0;
 	for (int i = freeSlots; i < getMaxObjects(); i++) {
 		EnemyBase* enemy = getEnemy(i);
-		if (!enemy->isEvent(0, EB_Alive)) {
+		if (!enemy->isEvent(0, EB_IsAlive)) {
 			freeSlots++;
 		}
 	}

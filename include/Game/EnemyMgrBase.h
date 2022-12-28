@@ -38,8 +38,8 @@ struct EnemyBirthArg {
 	PelletMgr::OtakaraItemCode m_otakaraItemCode; // _18
 	EnemyPelletInfo m_pelletInfo;                 // _1C
 	EnemyTypeID::EEnemyTypeID m_typeID;           // _28
-	f32 _2C;                                      // _2C
-	u8 _30;                                       // _30
+	f32 m_existenceLength;                        // _2C
+	bool m_isInPiklopedia;                        // _30
 };
 
 /**
@@ -154,7 +154,7 @@ struct EnemyMgrBase : public IEnemyMgrBase {
 		EnemyBase* enemy = nullptr;
 		for (int i = 0; i < m_objLimit; i++) {
 			EnemyBase* currEnemy = getEnemy(i);
-			if (id == currEnemy->getEnemyTypeID() && !(currEnemy->isEvent(0, EB_Alive))) {
+			if (id == currEnemy->getEnemyTypeID() && !(currEnemy->isEvent(0, EB_IsAlive))) {
 				enemy = currEnemy;
 				break;
 			}

@@ -127,17 +127,17 @@ struct Parms : public EnemyParmsBase {
 	struct ProperParms : public Parameters {
 		inline ProperParms()
 		    : Parameters(nullptr, "EnemyParmsBase")
-		    , m_explodeForce(this, 'fp01', "敵へのダメージ", 250.0f, 0.0f, 2000.0f) // 'damage to enemies'
-		    , m_fp02(this, 'fp02', "爆風範囲高さ+-", 50.0f, 0.0f, 50.0f)            // 'blast range height +-'
-		    , m_ip01(this, 'ip01', "ダメージリミット", 2, 1, 10)                    // 'damage limit'
-		    , m_ip02(this, 'ip02', "誘爆リミット", 50, 0, 100)                      // 'induction limit'
+		    , m_damageToEnemies(this, 'fp01', "敵へのダメージ", 250.0f, 0.0f, 2000.0f) // 'damage to enemies'
+		    , m_blastRangeHeight(this, 'fp02', "爆風範囲高さ+-", 50.0f, 0.0f, 50.0f)   // 'blast range height +-'
+		    , m_damageLimit(this, 'ip01', "ダメージリミット", 2, 1, 10)                // 'damage limit'
+		    , m_triggerLimit(this, 'ip02', "誘爆リミット", 50, 0, 100)                 // 'induction limit'
 		{
 		}
 
-		Parm<f32> m_explodeForce; // _804
-		Parm<f32> m_fp02;         // _82C
-		Parm<int> m_ip01;         // _854
-		Parm<int> m_ip02;         // _87C
+		Parm<f32> m_damageToEnemies;  // _804
+		Parm<f32> m_blastRangeHeight; // _82C
+		Parm<int> m_damageLimit;      // _854
+		Parm<int> m_triggerLimit;     // _87C
 	};
 	Parms() { }
 

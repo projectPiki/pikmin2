@@ -30,11 +30,11 @@ void Obj::onInit(Game::CreatureInitArg* arg)
 	_2EE           = 0xFF;
 	_2F0           = 0;
 	m_homePosition = m_position;
-	resetEvent(0, EB_LeaveCarcass);
-	resetEvent(0, EB_Flying);
-	resetEvent(0, EB_9);
-	resetEvent(0, EB_13);
-	setEvent(0, EB_BitterImmune);
+	disableEvent(0, EB_ToLeaveCarcass);
+	disableEvent(0, EB_4);
+	disableEvent(0, EB_IsDeathEffectEnabled);
+	disableEvent(0, EB_IsPlatformCollsAllowed);
+	enableEvent(0, EB_IsImmuneBitter);
 
 	setEmotionNone();
 	if (shadowMgr) {

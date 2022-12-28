@@ -119,7 +119,7 @@ struct Obj : public EnemyBase {
 	Creature* m_treasure;    // _2E0
 	f32 m_treasureHealth;    // _2E4
 	f32 _2E8;                // _2E8, timer?
-	f32 _2EC;                // _2EC
+	f32 m_bodyHeightOffset;  // _2EC
 	f32 m_cellRadius;        // _2F0
 	                         // _2F4 = PelletView
 };

@@ -57,7 +57,7 @@ void StateDead::init(EnemyBase* enemy, StateArg* stateArg)
 	pom->m_canTouchToClose = false;
 	pom->m_canSwallowPiki  = false;
 	pom->m_swingTimer      = 0.0f;
-	pom->resetEvent(0, EB_Cullable);
+	pom->disableEvent(0, EB_IsCullable);
 	pom->startMotion(1, nullptr);
 	pom->createPomDeadEffect();
 }
@@ -105,7 +105,7 @@ void StateOpen::exec(EnemyBase* enemy)
 	Obj* pom = static_cast<Obj*>(enemy);
 	pom->changePomColor();
 	if (pom->m_canTouchToClose) {
-		if (pom->isEvent(0, EB_Collision)) {
+		if (pom->isEvent(0, EB_HasCollisionOccurred)) {
 			transit(pom, POM_Swing, nullptr);
 		}
 	} else if (pom->m_curAnim->m_isRunning && (u32)pom->m_curAnim->m_type == KEYEVENT_2) {
@@ -169,7 +169,7 @@ void StateShot::init(EnemyBase* enemy, StateArg* stateArg)
 	pom->m_canTouchToClose = false;
 	pom->m_canSwallowPiki  = false;
 	pom->m_swingTimer      = 0.0f;
-	pom->resetEvent(0, EB_Cullable);
+	pom->disableEvent(0, EB_IsCullable);
 	pom->startMotion(4, nullptr);
 }
 
@@ -199,7 +199,7 @@ void StateShot::exec(EnemyBase* enemy)
  * Address:	8025627C
  * Size:	000010
  */
-void StateShot::cleanup(EnemyBase* enemy) { enemy->setEvent(0, EB_Cullable); }
+void StateShot::cleanup(EnemyBase* enemy) { enemy->enableEvent(0, EB_IsCullable); }
 
 /*
  * --INFO--
@@ -229,7 +229,7 @@ void StateSwing::exec(EnemyBase* enemy)
 		transit(pom, POM_Close, nullptr);
 
 	} else if (pom->m_canTouchToClose) {
-		if (pom->isEvent(0, EB_Collision)) {
+		if (pom->isEvent(0, EB_HasCollisionOccurred)) {
 			transit(pom, POM_Swing, nullptr);
 		}
 

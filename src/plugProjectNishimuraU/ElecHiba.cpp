@@ -57,11 +57,11 @@ void Obj::setInitialSetting(EnemyInitialParamBase* param)
 void Obj::onInit(CreatureInitArg* args)
 {
 	EnemyBase::onInit(args);
-	resetEvent(0, EB_13);
-	resetEvent(0, EB_LeaveCarcass);
-	resetEvent(0, EB_9);
+	disableEvent(0, EB_IsPlatformCollsAllowed);
+	disableEvent(0, EB_ToLeaveCarcass);
+	disableEvent(0, EB_IsDeathEffectEnabled);
 	hardConstraintOn();
-	setEvent(0, EB_BitterImmune);
+	enableEvent(0, EB_IsImmuneBitter);
 
 	setEmotionNone();
 	shadowMgr->killShadow(this);
@@ -231,14 +231,14 @@ void Obj::doGetLifeGaugeParam(LifeGaugeParam& param)
  */
 bool Obj::injure()
 {
-	if (!(isEvent(0, EB_Vulnerable))) {
+	if (!(isEvent(0, EB_IsVulnerable))) {
 		m_health -= m_instantDamage;
 		if (m_health < 0.0f) {
 			m_health = 0.0f;
 		}
 	}
 	m_instantDamage = 0.0f;
-	resetEvent(0, EB_Damage);
+	disableEvent(0, EB_IsTakingDamage);
 	return true;
 }
 
@@ -764,8 +764,8 @@ lbl_8026FFD4:
  */
 void Obj::addDamageMyself(float damage)
 {
-	if (!(isEvent(0, EB_Vulnerable))) {
-		setEvent(0, EB_Damage);
+	if (!(isEvent(0, EB_IsVulnerable))) {
+		enableEvent(0, EB_IsTakingDamage);
 		TeamList* listHead = static_cast<TeamList*>(m_teamList.m_parent);
 		if (listHead) {
 			listHead->m_childObjPtr->damageIncrement(damage);
@@ -783,7 +783,7 @@ void Obj::addDamageMyself(float damage)
 void Obj::damageIncrement(float damage)
 {
 	m_instantDamage += damage;
-	if (!isEvent(0, EB_DropMassSet)) {
+	if (!isEvent(0, EB_6)) {
 		return;
 	}
 	m_toFlick += 1.0f;
