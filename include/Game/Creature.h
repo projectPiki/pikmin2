@@ -97,6 +97,9 @@ struct CreatureKillArg {
 #define CREATURE_HELL_BELOWMAP (1)
 #define CREATURE_HELL_DEATH    (2)
 
+// Save position
+#define CREATURE_SAVE_FLAG_POSITION (1)
+
 /// @brief Basic Creature structure
 struct Creature : public CellObject {
 	struct CheckHellArg {
