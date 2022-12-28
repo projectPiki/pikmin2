@@ -148,7 +148,7 @@ void Obj::getShadowParam(ShadowParam& param)
 	param.m_position.y                = m_position.y + 5.0f;
 	param.m_position.z                = sphere.m_position.z;
 	param.m_boundingSphere.m_position = Vector3f(0.0f, 1.0f, 0.0f);
-	if (isEvent(1, EB2_1)) {
+	if (isEvent(1, EB2_IsEarthquakeActive)) {
 		param.m_boundingSphere.m_radius = 75.0f;
 	} else {
 		param.m_boundingSphere.m_radius = 50.0f;
@@ -164,7 +164,7 @@ void Obj::getShadowParam(ShadowParam& param)
  */
 bool Obj::pressCallBack(Creature* creature, f32 damage, CollPart* collpart)
 {
-	if (creature && _2C0 && !isEvent(0, EB_Bittered)) {
+	if (creature && _2C0 && !isEvent(0, EB_IsBittered)) {
 		m_FSM->transit(this, FUEFUKI_Struggle, nullptr);
 		return false;
 	}
@@ -179,7 +179,7 @@ bool Obj::pressCallBack(Creature* creature, f32 damage, CollPart* collpart)
  */
 bool Obj::hipdropCallBack(Creature* creature, f32 damage, CollPart* collpart)
 {
-	if (creature && _2C0 && !isEvent(0, EB_Bittered)) {
+	if (creature && _2C0 && !isEvent(0, EB_IsBittered)) {
 		m_FSM->transit(this, FUEFUKI_Struggle, nullptr);
 		return false;
 	}
@@ -357,7 +357,7 @@ bool Obj::isWhisleTimeMax()
  */
 void Obj::startWhisle()
 {
-	resetEvent(0, EB_Cullable);
+	disableEvent(0, EB_IsCullable);
 	m_whistleTimer = 0.0f;
 	_2D0           = 0.0f;
 	startWhisleEffect();
@@ -604,7 +604,7 @@ lbl_8029CDC0:
  */
 void Obj::finishWhisle()
 {
-	setEvent(0, EB_Cullable);
+	enableEvent(0, EB_IsCullable);
 	m_whistleTimer = 0.0f;
 	_2D0           = 0.0f;
 	finishWhisleEffect();

@@ -40,7 +40,7 @@ void Obj::doUpdateCommon()
 	EnemyBase::doUpdateCommon();
 	int alpha = m_globalAlpha;
 
-	if (isEvent(0, EB_Bittered)) {
+	if (isEvent(0, EB_IsBittered)) {
 		alpha += -10;
 
 	} else {

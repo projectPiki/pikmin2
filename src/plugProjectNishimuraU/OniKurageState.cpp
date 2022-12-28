@@ -41,8 +41,8 @@ void FSM::init(EnemyBase* enemy)
 void StateDead::init(EnemyBase* enemy, StateArg* stateArg)
 {
 	Obj* kurage = static_cast<Obj*>(enemy);
-	kurage->resetEvent(0, EB_Cullable);
-	kurage->resetEvent(0, EB_Flying);
+	kurage->disableEvent(0, EB_IsCullable);
+	kurage->disableEvent(0, EB_4);
 	kurage->m_simVelocity = Vector3f(0.0f);
 
 	if (kurage->isFlying()) {
@@ -51,7 +51,7 @@ void StateDead::init(EnemyBase* enemy, StateArg* stateArg)
 		kurage->startMotion(1, nullptr);
 	}
 
-	kurage->setEvent(0, EB_3);
+	kurage->enableEvent(0, EB_IsFlying);
 	kurage->createDeadBombEffect();
 	kurage->finishEyeBodyEffect();
 	PSStartEnemyFatalHitSE(kurage, 0.0f);
@@ -113,7 +113,7 @@ void StateWait::init(EnemyBase* enemy, StateArg* stateArg)
 	Obj* kurage          = static_cast<Obj*>(enemy);
 	kurage->m_nextState  = ONIKURAGE_NULL;
 	kurage->m_stateTimer = 0.0f;
-	kurage->setEvent(0, EB_3);
+	kurage->enableEvent(0, EB_IsFlying);
 	kurage->m_simVelocity = Vector3f(0.0f);
 	kurage->_2C8          = 3.5f;
 	kurage->startMotion(5, nullptr);
@@ -176,7 +176,7 @@ void StateMove::init(EnemyBase* enemy, StateArg* stateArg)
 	kurage->m_nextState  = ONIKURAGE_NULL;
 	kurage->m_stateTimer = 0.0f;
 	kurage->setRandTarget();
-	kurage->setEvent(0, EB_3);
+	kurage->enableEvent(0, EB_IsFlying);
 	kurage->m_simVelocity = Vector3f(0.0f);
 	kurage->_2C8          = 3.5f;
 	kurage->startMotion(5, nullptr);
@@ -249,7 +249,7 @@ void StateMove::cleanup(EnemyBase* enemy) { }
 void StateChase::init(EnemyBase* enemy, StateArg* stateArg)
 {
 	Obj* kurage = static_cast<Obj*>(enemy);
-	kurage->setEvent(0, EB_3);
+	kurage->enableEvent(0, EB_IsFlying);
 	kurage->m_nextState = ONIKURAGE_NULL;
 	kurage->setEmotionExcitement();
 	kurage->m_simVelocity = Vector3f(0.0f);
@@ -314,12 +314,12 @@ void StateChase::cleanup(EnemyBase* enemy) { enemy->setEmotionCaution(); }
 void StateAttack::init(EnemyBase* enemy, StateArg* stateArg)
 {
 	Obj* kurage = static_cast<Obj*>(enemy);
-	kurage->setEvent(0, EB_3);
+	kurage->enableEvent(0, EB_IsFlying);
 	kurage->m_nextState  = ONIKURAGE_NULL;
 	kurage->m_stateTimer = 0.0f;
 	kurage->_2E0         = 0;
 	kurage->m_isSucking  = false;
-	kurage->resetEvent(0, EB_Cullable);
+	kurage->disableEvent(0, EB_IsCullable);
 	kurage->m_simVelocity = Vector3f(0.0f);
 	kurage->setEmotionExcitement();
 	kurage->startMotion(9, nullptr);
@@ -365,13 +365,13 @@ void StateAttack::exec(EnemyBase* enemy)
 			suckPos.y -= val;
 			kurage->startSuckEffect(suckPos);
 			kurage->m_isSucking = true;
-			kurage->setEvent(0, EB_22);
+			kurage->enableEvent(0, EB_IsEnemyNotBitter);
 
 		} else if ((u32)kurage->m_curAnim->m_type == 1) {
 			if (kurage->isFinishMotion()) {
 				kurage->finishSuckEffect();
 				kurage->m_isSucking = false;
-				kurage->resetEvent(0, EB_22);
+				kurage->disableEvent(0, EB_IsEnemyNotBitter);
 			}
 
 		} else if ((u32)kurage->m_curAnim->m_type == KEYEVENT_END) {
@@ -408,8 +408,8 @@ void StateAttack::cleanup(EnemyBase* enemy)
 {
 	Obj* kurage         = static_cast<Obj*>(enemy);
 	kurage->m_isSucking = false;
-	kurage->resetEvent(0, EB_22);
-	kurage->setEvent(0, EB_Cullable);
+	kurage->disableEvent(0, EB_IsEnemyNotBitter);
+	kurage->enableEvent(0, EB_IsCullable);
 	kurage->setEmotionCaution();
 }
 
@@ -423,7 +423,7 @@ void StateFall::init(EnemyBase* enemy, StateArg* stateArg)
 	Obj* kurage          = static_cast<Obj*>(enemy);
 	kurage->m_nextState  = ONIKURAGE_NULL;
 	kurage->m_stateTimer = 0.0f;
-	kurage->setEvent(0, EB_3);
+	kurage->enableEvent(0, EB_IsFlying);
 	kurage->m_simVelocity = Vector3f(0.0f);
 	kurage->setEmotionExcitement();
 	kurage->startMotion(8, nullptr);
@@ -447,7 +447,7 @@ void StateFall::exec(EnemyBase* enemy)
 			Vector3f velocity = kurage->getVelocity();
 			velocity.y -= 100.0f;
 			kurage->setVelocity(velocity);
-			kurage->resetEvent(0, EB_3);
+			kurage->disableEvent(0, EB_IsFlying);
 			kurage->finishMotion();
 		}
 	}
@@ -480,7 +480,7 @@ void StateDrop::init(EnemyBase* enemy, StateArg* stateArg)
 	Obj* kurage          = static_cast<Obj*>(enemy);
 	kurage->m_nextState  = ONIKURAGE_NULL;
 	kurage->m_stateTimer = 0.0f;
-	kurage->resetEvent(0, EB_3);
+	kurage->disableEvent(0, EB_IsFlying);
 	kurage->m_simVelocity = Vector3f(0.0f);
 	kurage->setEmotionExcitement();
 	kurage->startMotion(8, nullptr);
@@ -529,7 +529,7 @@ void StateLand::init(EnemyBase* enemy, StateArg* stateArg)
 {
 	Obj* kurage          = static_cast<Obj*>(enemy);
 	kurage->m_stateTimer = 0.0f;
-	kurage->resetEvent(0, EB_3);
+	kurage->disableEvent(0, EB_IsFlying);
 	kurage->m_simVelocity = Vector3f(0.0f);
 	kurage->setEmotionExcitement();
 	kurage->startMotion(6, nullptr);
@@ -574,7 +574,7 @@ void StateTakeOff::init(EnemyBase* enemy, StateArg* stateArg)
 	Obj* kurage          = static_cast<Obj*>(enemy);
 	kurage->m_nextState  = ONIKURAGE_NULL;
 	kurage->m_stateTimer = 0.0f;
-	kurage->resetEvent(0, EB_3);
+	kurage->disableEvent(0, EB_IsFlying);
 	kurage->m_simVelocity = Vector3f(0.0f);
 	kurage->setEmotionExcitement();
 	kurage->startMotion(7, nullptr);
@@ -594,7 +594,7 @@ void StateTakeOff::exec(EnemyBase* enemy)
 
 	if (kurage->m_curAnim->m_isRunning) {
 		if ((u32)kurage->m_curAnim->m_type == KEYEVENT_2) {
-			kurage->setEvent(0, EB_3);
+			kurage->enableEvent(0, EB_IsFlying);
 
 		} else if ((u32)kurage->m_curAnim->m_type == KEYEVENT_END) {
 			if (kurage->m_health <= 0.0f) {
@@ -622,7 +622,7 @@ void StateGround::init(EnemyBase* enemy, StateArg* stateArg)
 {
 	Obj* kurage          = static_cast<Obj*>(enemy);
 	kurage->m_stateTimer = 0.0f;
-	kurage->resetEvent(0, EB_3);
+	kurage->disableEvent(0, EB_IsFlying);
 	kurage->m_simVelocity = Vector3f(0.0f);
 	kurage->setEmotionExcitement();
 	kurage->startMotion(4, nullptr);
@@ -669,7 +669,7 @@ void StateGround::cleanup(EnemyBase* enemy) { enemy->setEmotionCaution(); }
 void StateFlyFlick::init(EnemyBase* enemy, StateArg* stateArg)
 {
 	Obj* kurage = static_cast<Obj*>(enemy);
-	kurage->setEvent(0, EB_3);
+	kurage->enableEvent(0, EB_IsFlying);
 	kurage->m_nextState   = ONIKURAGE_NULL;
 	kurage->m_simVelocity = Vector3f(0.0f);
 	kurage->setEmotionExcitement();
@@ -730,7 +730,7 @@ void StateGroundFlick::init(EnemyBase* enemy, StateArg* stateArg)
 {
 	Obj* kurage          = static_cast<Obj*>(enemy);
 	kurage->m_stateTimer = 0.0f;
-	kurage->resetEvent(0, EB_3);
+	kurage->disableEvent(0, EB_IsFlying);
 	kurage->m_simVelocity = Vector3f(0.0f);
 	kurage->setEmotionExcitement();
 	kurage->startMotion(3, nullptr);

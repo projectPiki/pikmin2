@@ -41,7 +41,7 @@ void StateDead::init(EnemyBase* enemy, StateArg* stateArg)
 {
 	Obj* snagret = static_cast<Obj*>(enemy);
 	snagret->deathProcedure();
-	snagret->resetEvent(0, EB_Cullable);
+	snagret->disableEvent(0, EB_IsCullable);
 	snagret->m_simVelocity = Vector3f(0.0f);
 	snagret->setEmotionCaution();
 	snagret->startMotion(0, nullptr);
@@ -109,12 +109,12 @@ void StateStay::init(EnemyBase* enemy, StateArg* stateArg)
 	Vector3f position = snagret->getPosition();
 	snagret->onSetPosition(position);
 	snagret->setAtari(false);
-	snagret->setEvent(0, EB_Vulnerable);
+	snagret->enableEvent(0, EB_IsVulnerable);
 	snagret->m_isUnderground = true;
-	snagret->setEvent(0, EB_BitterImmune);
-	snagret->resetEvent(0, EB_16);
-	snagret->setEvent(0, EB_31);
-	snagret->resetEvent(0, EB_LifegaugeVisible);
+	snagret->enableEvent(0, EB_IsImmuneBitter);
+	snagret->disableEvent(0, EB_ToAnimate);
+	snagret->enableEvent(0, EB_IsModelHidden);
+	snagret->disableEvent(0, EB_LifegaugeVisible);
 
 	snagret->m_simVelocity = Vector3f(0.0f);
 	snagret->startMotion(1, nullptr);
@@ -659,12 +659,12 @@ void StateStay::cleanup(EnemyBase* enemy)
 {
 	Obj* snagret = static_cast<Obj*>(enemy);
 	snagret->setAtari(true);
-	snagret->resetEvent(0, EB_Vulnerable);
+	snagret->disableEvent(0, EB_IsVulnerable);
 	snagret->m_isUnderground = false;
-	snagret->resetEvent(0, EB_BitterImmune);
-	snagret->setEvent(0, EB_16);
-	snagret->resetEvent(0, EB_31);
-	snagret->setEvent(0, EB_LifegaugeVisible);
+	snagret->disableEvent(0, EB_IsImmuneBitter);
+	snagret->enableEvent(0, EB_ToAnimate);
+	snagret->disableEvent(0, EB_IsModelHidden);
+	snagret->enableEvent(0, EB_LifegaugeVisible);
 	snagret->lifeIncrement();
 }
 
@@ -676,8 +676,8 @@ void StateStay::cleanup(EnemyBase* enemy)
 void StateAppear1::init(EnemyBase* enemy, StateArg* stateArg)
 {
 	Obj* snagret = static_cast<Obj*>(enemy);
-	snagret->setEvent(0, EB_22);
-	snagret->resetEvent(0, EB_Cullable);
+	snagret->enableEvent(0, EB_IsEnemyNotBitter);
+	snagret->disableEvent(0, EB_IsCullable);
 	snagret->m_simVelocity = Vector3f(0.0f);
 	snagret->setEmotionExcitement();
 	snagret->startMotion(1, nullptr);
@@ -698,7 +698,7 @@ void StateAppear1::exec(EnemyBase* enemy)
 	Obj* snagret = static_cast<Obj*>(enemy);
 	if (snagret->m_curAnim->m_isRunning) {
 		if ((u32)snagret->m_curAnim->m_type == KEYEVENT_2) {
-			snagret->resetEvent(0, EB_22);
+			snagret->disableEvent(0, EB_IsEnemyNotBitter);
 			snagret->startBossAttackBGM();
 			snagret->startJointShadow();
 
@@ -730,8 +730,8 @@ void StateAppear1::exec(EnemyBase* enemy)
 void StateAppear1::cleanup(EnemyBase* enemy)
 {
 	Obj* snagret = static_cast<Obj*>(enemy);
-	snagret->resetEvent(0, EB_22);
-	snagret->setEvent(0, EB_Cullable);
+	snagret->disableEvent(0, EB_IsEnemyNotBitter);
+	snagret->enableEvent(0, EB_IsCullable);
 	snagret->startWaitEffect();
 
 	if (snagret->m_waterBox) {
@@ -747,8 +747,8 @@ void StateAppear1::cleanup(EnemyBase* enemy)
 void StateAppear2::init(EnemyBase* enemy, StateArg* stateArg)
 {
 	Obj* snagret = static_cast<Obj*>(enemy);
-	snagret->setEvent(0, EB_22);
-	snagret->resetEvent(0, EB_Cullable);
+	snagret->enableEvent(0, EB_IsEnemyNotBitter);
+	snagret->disableEvent(0, EB_IsCullable);
 	snagret->m_simVelocity = Vector3f(0.0f);
 	snagret->setEmotionExcitement();
 	snagret->startMotion(2, nullptr);
@@ -769,7 +769,7 @@ void StateAppear2::exec(EnemyBase* enemy)
 	Obj* snagret = static_cast<Obj*>(enemy);
 	if (snagret->m_curAnim->m_isRunning) {
 		if ((u32)snagret->m_curAnim->m_type == KEYEVENT_2) {
-			snagret->resetEvent(0, EB_22);
+			snagret->disableEvent(0, EB_IsEnemyNotBitter);
 			snagret->startJointShadow();
 
 		} else if ((u32)snagret->m_curAnim->m_type == KEYEVENT_3) {
@@ -814,8 +814,8 @@ void StateAppear2::exec(EnemyBase* enemy)
 void StateAppear2::cleanup(EnemyBase* enemy)
 {
 	Obj* snagret = static_cast<Obj*>(enemy);
-	snagret->resetEvent(0, EB_22);
-	snagret->setEvent(0, EB_Cullable);
+	snagret->disableEvent(0, EB_IsEnemyNotBitter);
+	snagret->enableEvent(0, EB_IsCullable);
 	snagret->startWaitEffect();
 
 	if (snagret->m_waterBox) {
@@ -836,7 +836,7 @@ void StateDisappear::init(EnemyBase* enemy, StateArg* stateArg)
 	efx::THebiAphd_dive diveFx;
 	diveFx.create(&fxArg);
 
-	enemy->resetEvent(0, EB_Cullable);
+	enemy->disableEvent(0, EB_IsCullable);
 	enemy->m_simVelocity = Vector3f(0.0f);
 	enemy->setEmotionCaution();
 	enemy->startMotion(3, nullptr);
@@ -870,7 +870,7 @@ void StateDisappear::exec(EnemyBase* enemy)
 
 		} else if ((u32)snagret->m_curAnim->m_type == KEYEVENT_3) {
 			snagret->m_isUnderground = true;
-			snagret->setEvent(0, EB_BitterImmune);
+			snagret->enableEvent(0, EB_IsImmuneBitter);
 			snagret->m_toFlick = 0.0f;
 			snagret->finishJointShadow();
 
@@ -890,8 +890,8 @@ void StateDisappear::cleanup(EnemyBase* enemy)
 	Obj* snagret = static_cast<Obj*>(enemy);
 	EnemyFunc::flickStickPikmin(snagret, 1.0f, 10.0f, 0.0f, -1000.0f, nullptr);
 	snagret->m_isUnderground = false;
-	snagret->resetEvent(0, EB_BitterImmune);
-	snagret->setEvent(0, EB_Cullable);
+	snagret->disableEvent(0, EB_IsImmuneBitter);
+	snagret->enableEvent(0, EB_IsCullable);
 }
 
 /*
@@ -1519,7 +1519,7 @@ void StateWait::cleanup(EnemyBase* enemy)
 void StateAttack::init(EnemyBase* enemy, StateArg* stateArg)
 {
 	Obj* snagret = static_cast<Obj*>(enemy);
-	snagret->resetEvent(0, EB_Cullable);
+	snagret->disableEvent(0, EB_IsCullable);
 	snagret->m_simVelocity = Vector3f(0.0f);
 	snagret->startMotion(snagret->_2D4 + 4, nullptr);
 }
@@ -1614,7 +1614,7 @@ void StateAttack::exec(EnemyBase* enemy)
  * Address:	8029279C
  * Size:	000010
  */
-void StateAttack::cleanup(EnemyBase* enemy) { enemy->setEvent(0, EB_Cullable); }
+void StateAttack::cleanup(EnemyBase* enemy) { enemy->enableEvent(0, EB_IsCullable); }
 
 /*
  * --INFO--

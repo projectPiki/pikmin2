@@ -1083,7 +1083,7 @@ void GeneralEnemyMgr::createDayendEnemies(Sys::Sphere& sphere)
 
 				if ((randomInfo->m_flags & 0x10) && (tekiInfo->m_state & 0x1)) {
 					EnemyBirthArg birthArg;
-					birthArg._30 = 0;
+					birthArg.m_isInPiklopedia = 0;
 
 					u16 infoFlags = randomInfo->m_flags;
 

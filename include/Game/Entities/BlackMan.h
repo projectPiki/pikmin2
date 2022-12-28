@@ -110,9 +110,9 @@ struct Obj : public EnemyBase {
 	// _00 		= VTBL
 	// _00-_2BC	= EnemyBase
 	u8 _2BC[0x10];                           // _2BC, unknown
-	int _2CC;                                // _2CC, timer?
+	int m_freezeTimer;                       // _2CC
 	Vector3f _2D0;                           // _2D0
-	int _2DC;                                // _2DC
+	int m_postFlickState;                    // _2DC
 	int _2E0;                                // _2E0
 	u32 _2E4;                                // _2E4, unknown
 	u32 _2E8;                                // _2E8, unknown
@@ -193,35 +193,39 @@ struct Parms : public EnemyParmsBase {
 	struct ProperParms : public Parameters {
 		ProperParms()
 		    : Parameters(nullptr, "EnemyParmsBase")
-		    , m_fp01(this, 'fp01', "ポッド移動速度", 10.0f, 0.0f, 100.0f)
-		    , m_fp02(this, 'fp02', "逃げ速度", 10.0f, 0.0f, 1000.0f)
-		    , m_fp03(this, 'fp03', "逃げ回転速度率", 0.1f, 0.0f, 1.0f)
-		    , m_fp04(this, 'fp04', "逃げ回転最大速度", 10.0f, 0.0f, 360.0f)
-		    , m_fp05(this, 'fp05', "2段階速度", 200.0f, 10.0f, 500.0f)
-		    , m_fp06(this, 'fp06', "2段階回転速度率", 0.1f, 0.0f, 1.0f)
-		    , m_fp07(this, 'fp07', "2段階回転最大速度", 10.0f, 0.0f, 360.0f)
-		    , m_fp11(this, 'fp11', "歩き速度", 10.0f, 0.0f, 100.0f)
-		    , m_ip01(this, 'ip01', "2段階へのタイマー", 300, 0, 3000)
-		    , m_ip03(this, 'ip03', "ドシン停止タイマー", 200, 0, 600)
-		    , m_ip04(this, 'ip04', "逃げ停止タイマー", 200, 0, 600)
-		    , m_ip05(this, 'ip05', "連続逃げタイマー", 200, 0, 600)
-		    , m_ip06(this, 'ip06', "つかれ停止タイマー", 200, 0, 600)
+		    // Pod?
+		    , m_podMoveSpeed(this, 'fp01', "ポッド移動速度", 10.0f, 0.0f, 100.0f)
+		    // Running away (escape)
+		    , m_escapeSpeed(this, 'fp02', "逃げ速度", 10.0f, 0.0f, 1000.0f)
+		    , m_escapeRotationSpeed(this, 'fp03', "逃げ回転速度率", 0.1f, 0.0f, 1.0f)
+		    , m_maxEscapeRotationStep(this, 'fp04', "逃げ回転最大速度", 10.0f, 0.0f, 360.0f)
+		    // Normal movement
+		    , m_travelSpeed(this, 'fp05', "2段階速度", 200.0f, 10.0f, 500.0f)
+		    , m_rotationSpeed(this, 'fp06', "2段階回転速度率", 0.1f, 0.0f, 1.0f)
+		    , m_maxRotationStep(this, 'fp07', "2段階回転最大速度", 10.0f, 0.0f, 360.0f)
+		    // Walking speed
+		    , m_walkingSpeed(this, 'fp11', "歩き速度", 10.0f, 0.0f, 100.0f)
+		    , m_timerToTwoStep(this, 'ip01', "2段階へのタイマー", 300, 0, 3000)
+		    , m_dosinStopTimerLength(this, 'ip03', "ドシン停止タイマー", 200, 0, 600)
+		    , m_freezeTimerLength(this, 'ip04', "逃げ停止タイマー", 200, 0, 600)
+		    , m_continuousEscapeTimerLength(this, 'ip05', "連続逃げタイマー", 200, 0, 600)
+		    , m_standStillTimerLength(this, 'ip06', "つかれ停止タイマー", 200, 0, 600)
 		{
 		}
 
-		Parm<f32> m_fp01; // _804
-		Parm<f32> m_fp02; // _82C
-		Parm<f32> m_fp03; // _854
-		Parm<f32> m_fp04; // _87C
-		Parm<f32> m_fp05; // _8A4
-		Parm<f32> m_fp06; // _8CC
-		Parm<f32> m_fp07; // _8F4
-		Parm<f32> m_fp11; // _91C
-		Parm<int> m_ip01; // _944
-		Parm<int> m_ip03; // _96C
-		Parm<int> m_ip04; // _994
-		Parm<int> m_ip05; // _9BC
-		Parm<int> m_ip06; // _9E4
+		Parm<f32> m_podMoveSpeed;                // _804
+		Parm<f32> m_escapeSpeed;                 // _82C
+		Parm<f32> m_escapeRotationSpeed;         // _854
+		Parm<f32> m_maxEscapeRotationStep;       // _87C
+		Parm<f32> m_travelSpeed;                 // _8A4
+		Parm<f32> m_rotationSpeed;               // _8CC
+		Parm<f32> m_maxRotationStep;             // _8F4
+		Parm<f32> m_walkingSpeed;                // _91C
+		Parm<int> m_timerToTwoStep;              // _944
+		Parm<int> m_dosinStopTimerLength;        // _96C
+		Parm<int> m_freezeTimerLength;           // _994
+		Parm<int> m_continuousEscapeTimerLength; // _9BC
+		Parm<int> m_standStillTimerLength;       // _9E4
 	};
 
 	Parms()

@@ -36,7 +36,7 @@ void StateDead::init(EnemyBase* enemy, StateArg* stateArg)
 {
 	Obj* sokkuri = static_cast<Obj*>(enemy);
 	sokkuri->deathProcedure();
-	sokkuri->resetEvent(0, EB_Cullable);
+	sokkuri->disableEvent(0, EB_IsCullable);
 	sokkuri->m_simVelocity = Vector3f(0.0f);
 	sokkuri->setEmotionCaution();
 	sokkuri->startMotion(4, nullptr);
@@ -120,12 +120,12 @@ void StateStay::init(EnemyBase* enemy, StateArg* stateArg)
 	sokkuri->m_nextState = SOKKURI_NULL;
 	sokkuri->resetMoveVelocity();
 
-	sokkuri->resetEvent(0, EB_LifegaugeVisible);
-	sokkuri->setEvent(0, EB_BitterImmune);
+	sokkuri->disableEvent(0, EB_LifegaugeVisible);
+	sokkuri->enableEvent(0, EB_IsImmuneBitter);
 	sokkuri->_2C0 = true;
 	sokkuri->setEmotionNone();
 	sokkuri->hardConstraintOn();
-	sokkuri->resetEvent(0, EB_16);
+	sokkuri->disableEvent(0, EB_ToAnimate);
 
 	sokkuri->m_simVelocity = Vector3f(0.0f);
 	sokkuri->startMotion(1, nullptr);
@@ -157,11 +157,11 @@ void StateStay::exec(EnemyBase* enemy)
 void StateStay::cleanup(EnemyBase* enemy)
 {
 	Obj* sokkuri = static_cast<Obj*>(enemy);
-	sokkuri->setEvent(0, EB_LifegaugeVisible);
-	sokkuri->resetEvent(0, EB_BitterImmune);
+	sokkuri->enableEvent(0, EB_LifegaugeVisible);
+	sokkuri->disableEvent(0, EB_IsImmuneBitter);
 	sokkuri->_2C0 = false;
 	sokkuri->hardConstraintOff();
-	sokkuri->setEvent(0, EB_16);
+	sokkuri->enableEvent(0, EB_ToAnimate);
 
 	if (sokkuri->m_waterBox) {
 		sokkuri->createEfxHamon();
@@ -487,7 +487,7 @@ void StateFlick::init(EnemyBase* enemy, StateArg* stateArg)
 	sokkuri->m_timer     = 0.0f;
 	sokkuri->m_nextState = SOKKURI_NULL;
 	sokkuri->resetMoveVelocity();
-	sokkuri->resetEvent(0, EB_22);
+	sokkuri->disableEvent(0, EB_IsEnemyNotBitter);
 	sokkuri->m_simVelocity = Vector3f(0.0f);
 	sokkuri->startMotion(7, nullptr);
 }
@@ -519,7 +519,7 @@ void StateFlick::exec(EnemyBase* enemy)
 
 	if (sokkuri->m_curAnim->m_isRunning) {
 		if ((u32)sokkuri->m_curAnim->m_type == KEYEVENT_2) {
-			sokkuri->setEvent(0, EB_22);
+			sokkuri->enableEvent(0, EB_IsEnemyNotBitter);
 			sokkuri->createDownEffect(0.6f, 0.55f);
 
 		} else if ((u32)sokkuri->m_curAnim->m_type == KEYEVENT_3) {
@@ -535,7 +535,7 @@ void StateFlick::exec(EnemyBase* enemy)
 			                            parms3->m_general.m_shakeDamage.m_value, -1000.0f, nullptr);
 			sokkuri->m_toFlick = 0.0f;
 		} else if ((u32)sokkuri->m_curAnim->m_type == KEYEVENT_4) {
-			sokkuri->resetEvent(0, EB_22);
+			sokkuri->disableEvent(0, EB_IsEnemyNotBitter);
 
 		} else if ((u32)sokkuri->m_curAnim->m_type == KEYEVENT_END) {
 			transit(sokkuri, sokkuri->m_nextState, nullptr);
@@ -548,7 +548,7 @@ void StateFlick::exec(EnemyBase* enemy)
  * Address:	802F0B80
  * Size:	000010
  */
-void StateFlick::cleanup(EnemyBase* enemy) { enemy->resetEvent(0, EB_22); }
+void StateFlick::cleanup(EnemyBase* enemy) { enemy->disableEvent(0, EB_IsEnemyNotBitter); }
 
 } // namespace Sokkuri
 } // namespace Game

@@ -33,10 +33,10 @@ void StateWait::init(EnemyBase* enemy, StateArg* stateArg)
 {
 	Obj* rock = static_cast<Obj*>(enemy);
 	rock->setAtari(false);
-	rock->setEvent(0, EB_3);
+	rock->enableEvent(0, EB_IsFlying);
 	rock->hardConstraintOn();
-	rock->resetEvent(0, EB_16);
-	rock->setEvent(0, EB_31);
+	rock->disableEvent(0, EB_ToAnimate);
+	rock->enableEvent(0, EB_IsModelHidden);
 
 	rock->m_simVelocity = Vector3f(0.0f);
 	rock->startMotion(1, nullptr);
@@ -51,7 +51,7 @@ void StateWait::init(EnemyBase* enemy, StateArg* stateArg)
 void StateWait::exec(EnemyBase* enemy)
 {
 	Obj* rock = static_cast<Obj*>(enemy);
-	if (rock->m_maxExistTime != 0.0f) {
+	if (rock->m_existenceLength != 0.0f) {
 		rock->m_timer += sys->m_deltaTime;
 		if (rock->m_timer > 1.5f) {
 			transit(rock, ROCK_Appear, nullptr);
@@ -82,8 +82,8 @@ void StateWait::cleanup(EnemyBase* enemy)
 {
 	Obj* rock = static_cast<Obj*>(enemy);
 	rock->hardConstraintOff();
-	rock->setEvent(0, EB_16);
-	rock->resetEvent(0, EB_31);
+	rock->enableEvent(0, EB_ToAnimate);
+	rock->disableEvent(0, EB_IsModelHidden);
 }
 
 /*
@@ -98,9 +98,9 @@ void StateAppear::init(EnemyBase* enemy, StateArg* stateArg)
 	position.y += rock->_2D0;
 	rock->onSetPosition(position);
 
-	rock->setEvent(0, EB_31);
-	rock->resetEvent(0, EB_Cullable);
-	rock->resetEvent(0, EB_SoundCullable);
+	rock->enableEvent(0, EB_IsModelHidden);
+	rock->disableEvent(0, EB_IsCullable);
+	rock->disableEvent(0, EB_14);
 
 	rock->m_simVelocity = Vector3f(0.0f);
 	rock->startMotion(1, nullptr);
@@ -133,8 +133,8 @@ void StateAppear::cleanup(EnemyBase* enemy)
 {
 	Obj* rock = static_cast<Obj*>(enemy);
 	rock->setAtari(true);
-	rock->resetEvent(0, EB_3);
-	rock->resetEvent(0, EB_31);
+	rock->disableEvent(0, EB_IsFlying);
+	rock->disableEvent(0, EB_IsModelHidden);
 }
 
 /*
@@ -163,8 +163,8 @@ void StateDropWait::exec(EnemyBase* enemy) { transit(enemy, ROCK_Fall, nullptr);
 void StateDropWait::cleanup(EnemyBase* enemy)
 {
 	Obj* rock = static_cast<Obj*>(enemy);
-	rock->resetEvent(0, EB_Cullable);
-	rock->resetEvent(0, EB_SoundCullable);
+	rock->disableEvent(0, EB_IsCullable);
+	rock->disableEvent(0, EB_14);
 
 	shadowMgr->addShadow(rock);
 	shadowMgr->setForceVisible(rock, true);
@@ -192,7 +192,7 @@ void StateFall::exec(EnemyBase* enemy)
 {
 	if (enemy->m_curTriangle) {
 		transit(enemy, ROCK_Dead, nullptr);
-	} else if (enemy->isEvent(0, EB_Collision)) {
+	} else if (enemy->isEvent(0, EB_HasCollisionOccurred)) {
 		transit(enemy, ROCK_Dead, nullptr);
 	}
 }
@@ -221,8 +221,8 @@ void StateFall::cleanup(EnemyBase* enemy)
 void StateMove::init(EnemyBase* enemy, StateArg* stateArg)
 {
 	Obj* rock = static_cast<Obj*>(enemy);
-	rock->resetEvent(0, EB_Cullable);
-	rock->resetEvent(0, EB_SoundCullable);
+	rock->disableEvent(0, EB_IsCullable);
+	rock->disableEvent(0, EB_14);
 	rock->startMotion(1, nullptr);
 	rock->m_timer = 0.0f;
 

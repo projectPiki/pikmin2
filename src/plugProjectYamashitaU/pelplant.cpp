@@ -512,7 +512,7 @@ bool Obj::farmCallBack(Creature* c, float power)
 		SET_FLAG(m_flags, PELPLANT_FLAGS_GROW);
 	}
 
-	resetEvent(0, EB_Cullable);
+	disableEvent(0, EB_IsCullable);
 	return true;
 }
 
@@ -653,10 +653,10 @@ void Obj::onInit(CreatureInitArg* arg)
 
 	m_fsm->start(this, stateID, nullptr);
 
-	resetEvent(0, EB_9);
-	resetEvent(0, EB_LeaveCarcass);
-	resetEvent(0, EB_13);
-	setEvent(0, EB_BitterImmune);
+	disableEvent(0, EB_IsDeathEffectEnabled);
+	disableEvent(0, EB_ToLeaveCarcass);
+	disableEvent(0, EB_IsPlatformCollsAllowed);
+	enableEvent(0, EB_IsImmuneBitter);
 	hardConstraintOn();
 }
 

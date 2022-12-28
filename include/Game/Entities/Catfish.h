@@ -27,10 +27,10 @@ struct Obj : public KochappyBase::Obj {
 	{
 		return EnemyTypeID::EnemyID_Catfish;
 	}
-	virtual bool pressCallBack(Creature*, float, CollPart*);   // _27C
-	virtual bool hipdropCallBack(Creature*, float, CollPart*); // _284
-	virtual void resetEnemyNonStone();                         // _300
-	virtual void setEnemyNonStone() { setEvent(0, EB_22); }    // _304 (weak)
+	virtual bool pressCallBack(Creature*, float, CollPart*);                 // _27C
+	virtual bool hipdropCallBack(Creature*, float, CollPart*);               // _284
+	virtual void resetEnemyNonStone();                                       // _300
+	virtual void setEnemyNonStone() { enableEvent(0, EB_IsEnemyNotBitter); } // _304 (weak)
 	//////////////// VTABLE END
 
 	void createDownEffect();

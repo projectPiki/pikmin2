@@ -53,33 +53,34 @@ bool InteractFlyCollision::actEnemy(Game::EnemyBase* enemy) { return enemy->flyC
  */
 bool InteractAttack::actEnemy(Game::EnemyBase* enemy)
 {
-	bool callback = false;
-	if (!enemy->isEvent(0, EB_Vulnerable)) {
+	bool isSuccess = false;
+
+	if (!enemy->isEvent(0, EB_IsVulnerable)) {
 		bool flag = false;
 		if (m_creature->isNavi()) {
 			if (static_cast<Navi*>(m_creature)->m_naviIndex == 0) {
-				if (!enemy->isEvent(0, EB_17)) {
+				if (!enemy->isEvent(0, EB_IsNavi0Attacked)) {
 					flag = true;
-					enemy->setEvent(0, EB_17);
+					enemy->enableEvent(0, EB_IsNavi0Attacked);
 				}
-			} else {
-				if (!enemy->isEvent(0, EB_18)) {
-					flag = true;
-					enemy->setEvent(0, EB_18);
-				}
+			} else if (!enemy->isEvent(0, EB_IsNavi1Attacked)) {
+				flag = true;
+				enemy->enableEvent(0, EB_IsNavi1Attacked);
 			}
 		} else {
 			flag = true;
 		}
 
 		if (flag) {
-			if (enemy->isEvent(0, EB_Bittered)) {
+			if (enemy->isEvent(0, EB_IsBittered)) {
 				m_damage *= enemy->getDamageCoeStoneState();
 			}
-			callback = enemy->damageCallBack(m_creature, m_damage, m_collPart);
+
+			isSuccess = enemy->damageCallBack(m_creature, m_damage, m_collPart);
 		}
 	}
-	return callback;
+
+	return isSuccess;
 }
 
 /*

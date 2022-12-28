@@ -36,7 +36,7 @@ void StateDead::init(EnemyBase* enemy, StateArg* stateArg)
 	damagumo->forceFinishIKMotion();
 	damagumo->startDeadEffect();
 	damagumo->deathProcedure();
-	damagumo->resetEvent(0, EB_Cullable);
+	damagumo->disableEvent(0, EB_IsCullable);
 
 	damagumo->m_simVelocity = 0.0f;
 	damagumo->setEmotionCaution();
@@ -83,9 +83,9 @@ void StateStay::init(EnemyBase* enemy, StateArg* stateArg)
 {
 	Obj* damagumo         = static_cast<Obj*>(enemy);
 	damagumo->m_nextState = DAMAGUMO_NULL;
-	damagumo->setEvent(0, EB_BitterImmune);
-	damagumo->resetEvent(0, EB_16);
-	damagumo->setEvent(0, EB_31);
+	damagumo->enableEvent(0, EB_IsImmuneBitter);
+	damagumo->disableEvent(0, EB_ToAnimate);
+	damagumo->enableEvent(0, EB_IsModelHidden);
 	damagumo->m_targetCreature = nullptr;
 
 	damagumo->m_simVelocity = Vector3f(0.0f);
@@ -134,10 +134,10 @@ void StateLand::init(EnemyBase* enemy, StateArg* stateArg)
 	damagumo->m_nextState = DAMAGUMO_NULL;
 	damagumo->_2D8        = 0.001f;
 
-	damagumo->setEvent(0, EB_BitterImmune);
-	damagumo->resetEvent(0, EB_Cullable);
-	damagumo->setEvent(0, EB_16);
-	damagumo->resetEvent(0, EB_31);
+	damagumo->enableEvent(0, EB_IsImmuneBitter);
+	damagumo->disableEvent(0, EB_IsCullable);
+	damagumo->enableEvent(0, EB_ToAnimate);
+	damagumo->disableEvent(0, EB_IsModelHidden);
 
 	damagumo->setEmotionExcitement();
 	damagumo->m_targetCreature = nullptr;
@@ -161,7 +161,7 @@ void StateLand::exec(EnemyBase* enemy)
 
 	if (damagumo->m_curAnim->m_isRunning) {
 		if ((u32)damagumo->m_curAnim->m_type == KEYEVENT_2) {
-			damagumo->resetEvent(0, EB_BitterImmune);
+			damagumo->disableEvent(0, EB_IsImmuneBitter);
 
 			for (int i = 0; i < 4; i++) {
 				damagumo->createOnGroundEffect(i, damagumo->m_waterBox);
@@ -205,7 +205,7 @@ void StateLand::cleanup(EnemyBase* enemy)
 	Obj* damagumo = static_cast<Obj*>(enemy);
 	damagumo->startProgramedIK();
 	damagumo->setBossAppearBGM();
-	damagumo->setEvent(0, EB_Cullable);
+	damagumo->enableEvent(0, EB_IsCullable);
 	damagumo->_2D8 = 1.0f;
 	shadowMgr->setForceVisible(damagumo, false);
 }

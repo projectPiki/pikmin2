@@ -44,7 +44,7 @@ void Obj::getShadowParam(Game::ShadowParam& param)
 	param.m_boundingSphere.m_position = Vector3f(0.0f, 1.0f, 0.0f);
 	param.m_boundingSphere.m_radius   = param.m_position.y - m_position.y;
 
-	if (isEvent(1, EB2_1)) {
+	if (isEvent(1, EB2_IsEarthquakeActive)) {
 		param.m_boundingSphere.m_radius += 50.0f;
 	} else {
 		param.m_boundingSphere.m_radius += 15.0f;
@@ -105,11 +105,11 @@ void Obj::initMouthSlots()
  */
 void Obj::resetEnemyNonStone()
 {
-	if (isEvent(0, EB_22)) {
+	if (isEvent(0, EB_IsEnemyNotBitter)) {
 		createDownEffect();
 	}
 
-	resetEvent(0, EB_22);
+	disableEvent(0, EB_IsEnemyNotBitter);
 }
 
 /*

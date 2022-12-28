@@ -73,13 +73,13 @@ struct EnemyFSMState {
 	{
 	}
 
-	virtual void init(EnemyBase*, StateArg*) { }         // _08 (weak)
-	virtual void exec(EnemyBase*) { }                    // _0C (weak)
-	virtual void cleanup(EnemyBase*) { }                 // _10 (weak)
-	virtual void resume(EnemyBase*) { }                  // _14 (weak)
-	virtual void restart(EnemyBase*) { }                 // _18 (weak)
-	virtual void transit(EnemyBase*, int, StateArg*);    // _1C
-	virtual void doDirectDraw(EnemyBase*, Graphics&) { } // _20 (weak)
+	virtual void init(EnemyBase* base, StateArg* arg) { }                  // _08 (weak)
+	virtual void exec(EnemyBase* base) { }                                 // _0C (weak)
+	virtual void cleanup(EnemyBase* base) { }                              // _10 (weak)
+	virtual void resume(EnemyBase* base) { }                               // _14 (weak)
+	virtual void restart(EnemyBase* base) { }                              // _18 (weak)
+	virtual void transit(EnemyBase* base, int nextStateID, StateArg* arg); // _1C
+	virtual void doDirectDraw(EnemyBase* base, Graphics& gfx) { }          // _20 (weak)
 
 	// _00 = VTBL
 	int m_stateID;                     // _04

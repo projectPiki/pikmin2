@@ -65,16 +65,16 @@ void Bomb::StateWait::exec(EnemyBase* enemy)
 		bomb->addDamage(sys->m_deltaTime, 1.0f);
 		bomb->m_soundObj->startSound(PSSE_EN_BOMB_LOOP, 0);
 	} else if (bomb->isAnimStart()) {
-		bomb->setEvent(0, EB_22);
+		bomb->enableEvent(0, EB_IsEnemyNotBitter);
 		bomb->startMotion();
-		bomb->resetEvent(0, EB_Cullable);
+		bomb->disableEvent(0, EB_IsCullable);
 		bomb->setEmotionExcitement();
 	}
 
 	if (bomb->m_curAnim->m_isRunning != 0) {
 		switch (bomb->m_curAnim->m_type) {
 		case 2:
-			bomb->resetEvent(0, EB_22);
+			bomb->disableEvent(0, EB_IsEnemyNotBitter);
 			break;
 		case 1000:
 			transit(bomb, BOMB_Bomb, nullptr);
@@ -101,7 +101,7 @@ StateBomb::StateBomb(int stateID)
  */
 void Bomb::StateBomb::init(EnemyBase* enemy, StateArg* stateArg)
 {
-	enemy->resetEvent(0, EB_Cullable);
+	enemy->disableEvent(0, EB_IsCullable);
 	enemy->startMotion(1, nullptr);
 	enemy->setEmotionExcitement();
 	_10 = 0;
@@ -145,7 +145,7 @@ void StateBomb::exec(EnemyBase* enemy)
 
 			Vector3f position = enemy->getPosition();
 			Parms* parms      = static_cast<Parms*>(enemy->m_parms);
-			f32 offset        = parms->m_properParms.m_fp02.m_value;
+			f32 offset        = parms->m_properParms.m_blastRangeHeight.m_value;
 			f32 max           = position.y + offset;
 			f32 min           = position.y - offset;
 
@@ -165,7 +165,7 @@ void StateBomb::exec(EnemyBase* enemy)
 						if (creature->isTeki()) {
 
 							f32 weight = 1.0f;
-							f32 force  = weight * CG_PROPERPARMS(enemy).m_explodeForce.m_value;
+							f32 force  = weight * CG_PROPERPARMS(enemy).m_damageToEnemies.m_value;
 							InteractBomb interBomb(enemy, force, &Vector3f::zero);
 
 							creature->stimulate(interBomb);

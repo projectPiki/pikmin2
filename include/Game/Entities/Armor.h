@@ -107,15 +107,15 @@ struct Parms : public EnemyParmsBase {
 	struct ProperParms : public Parameters {
 		inline ProperParms()
 		    : Parameters(nullptr, "EnemyParmsBase")
-		    , m_poisonDamage(this, 'fp01', "白ピクミン", 300.0f, 0.0f, 10000.0f) // 'white pikmin'
-		    , m_fp11(this, 'fp11', "攻撃ループ時間", 0.0f, 0.0f, 10.0f)          // 'attack loop time'
-		    , m_bridgeDamage(this, 'fp12', "橋食いパワー", 100.0f, 0.0f, 100.0f) // 'bridge eating power'
+		    , m_poisonDamage(this, 'fp01', "白ピクミン", 300.0f, 0.0f, 10000.0f)   // 'white pikmin'
+		    , m_attackLoopTimer(this, 'fp11', "攻撃ループ時間", 0.0f, 0.0f, 10.0f) // 'attack loop time'
+		    , m_bridgeDamage(this, 'fp12', "橋食いパワー", 100.0f, 0.0f, 100.0f)   // 'bridge eating power'
 		{
 		}
 
-		Parm<f32> m_poisonDamage; // _804, fp01
-		Parm<f32> m_fp11;         // _82C
-		Parm<f32> m_bridgeDamage; // _854, fp12
+		Parm<f32> m_poisonDamage;    // _804, fp01
+		Parm<f32> m_attackLoopTimer; // _82C
+		Parm<f32> m_bridgeDamage;    // _854, fp12
 	};
 
 	Parms() { }

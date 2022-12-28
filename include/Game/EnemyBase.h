@@ -50,41 +50,56 @@ struct LifeGaugeParam;
 struct Interaction;
 
 enum EnemyEvent {
-	EB_Vulnerable       = 0x1, // can take damage or not
-	EB_Damage           = 0x2, // currently taking damage
-	EB_3                = 0x4,
-	EB_Flying           = 0x8,  // is ignored by pikmin
-	EB_Collision        = 0x10, // is colliding
-	EB_DropMassSet      = 0x20,
-	EB_Cullable         = 0x40,  // can be culled/deloaded
-	EB_LeaveCarcass     = 0x80,  // leaves carcass upon death
-	EB_9                = 0x100, // make death bomb effect on kill
-	EB_Bittered         = 0x200, // currently bittered
-	EB_Constraint       = 0x400,
-	EB_LifegaugeVisible = 0x800, // has visible lifegauge
-	EB_13               = 0x1000,
-	EB_SoundCullable    = 0x2000, // sounds can be culled/deloaded
-	EB_15               = 0x4000, // has eaten white pikmin? set off at finishDamageScaleAnim
-	EB_16               = 0x8000, // set off at finishDamageScaleAnim
-	EB_17               = 0x10000,
-	EB_18               = 0x20000,
-	EB_HardConstraint   = 0x40000,  // is HardConstraint on
-	EB_20               = 0x80000,  // set on at finishDropping, and HipDropCallback
-	EB_21               = 0x100000, // this and the one below seem to impact if a bitter works
-	EB_22               = 0x200000, // immune to being stunned?
-	EB_BitterImmune     = 0x400000, // immune to being bittered
-	EB_24               = 0x800000,
-	EB_PS1              = 0x1000000,  // sound-related
-	EB_PS2              = 0x2000000,  // sound-related
-	EB_PS3              = 0x4000000,  // sound-related
-	EB_PS4              = 0x8000000,  // sound-related
-	EB_Alive            = 0x10000000, // is alive/can be killed
-	EB_30               = 0x20000000, // do run CollisionMapAndPlat
-	EB_31               = 0x40000000, // force hide model?
-	EB_32               = 0x80000000
+	EB_IsVulnerable           = 0x1,        // can take damage or not
+	EB_IsTakingDamage         = 0x2,        // currently taking damage
+	EB_IsFlying               = 0x4,        // is enemy flying (guessed name)
+	EB_4                      = 0x8,        //
+	EB_HasCollisionOccurred   = 0x10,       //
+	EB_6                      = 0x20,       //
+	EB_IsCullable             = 0x40,       // can be culled/deloaded
+	EB_ToLeaveCarcass         = 0x80,       // leave carcass upon death
+	EB_IsDeathEffectEnabled   = 0x100,      //
+	EB_IsBittered             = 0x200,      //
+	EB_Constraint             = 0x400,      //
+	EB_LifegaugeVisible       = 0x800,      //
+	EB_IsPlatformCollsAllowed = 0x1000,     //
+	EB_14                     = 0x2000,     //
+	EB_HasEatWhitePikmin      = 0x4000,     //
+	EB_ToAnimate              = 0x8000,     // should we animate?
+	EB_IsNavi0Attacked        = 0x10000,    // is attacking the player's main character?
+	EB_IsNavi1Attacked        = 0x20000,    // is attacking an ai player?
+	EB_HardConstraint         = 0x40000,    // what is hard constraint?
+	EB_20                     = 0x80000,    // set on at finishDropping, and HipDropCallback
+	EB_ToEnableBitter         = 0x100000,   //
+	EB_IsEnemyNotBitter       = 0x200000,   //
+	EB_IsImmuneBitter         = 0x400000,   //
+	EB_24                     = 0x800000,   //
+	EB_PS1                    = 0x1000000,  // sound-related
+	EB_PS2                    = 0x2000000,  // sound-related
+	EB_PS3                    = 0x4000000,  // sound-related
+	EB_PS4                    = 0x8000000,  // sound-related
+	EB_IsAlive                = 0x10000000, //
+	EB_ShouldCheckCollision   = 0x20000000, //
+	EB_IsModelHidden          = 0x40000000, //
+	EB_32                     = 0x80000000  //
 };
 
-enum EnemyEvent2 { EB2_1 = 0x1, EB2_2 = 0x2, EB2_3 = 0x4, EB2_4 = 0x8, EB2_5 = 0x10, EB2_DroppingMassZero = 0x20 };
+enum EnemyEvent2 {
+	EB2_IsEarthquakeActive  = 0x1,  //
+	EB2_IsFitActive         = 0x2,  //
+	EB2_3                   = 0x4,  //
+	EB2_4                   = 0x8,  //
+	EB2_IsDropBounceEnabled = 0x10, //
+	EB2_IsDroppingMassZero  = 0x20  //
+};
+
+enum DropGroup {
+	EDG_Normal         = 1, //
+	EDG_DropPikmin     = 2, // Is the dropping object a Pikmin?
+	EDG_DropNavi       = 3, // Is the dropping object a Player?
+	EDG_DropTreasure   = 4, // Is the dropping object a Treasure?
+	EDG_DropEarthquake = 5, // Is the dropping object a Earthquake(? wtf)?
+};
 
 // Interface for specific overrides (e.g. PelplantInitialParams)
 struct EnemyInitialParamBase {
@@ -312,8 +327,8 @@ struct EnemyBase : public Creature, public SysShape::MotionListener, virtual pub
 		animator->m_progress = 1.0f;
 		animator->getAnimator(0).startAnim(0, listener);
 
-		resetEvent(0, EB_PS1 + EB_PS2 + EB_PS3 + EB_PS4);
-		setEvent(0, EB_PS1);
+		disableEvent(0, EB_PS1 + EB_PS2 + EB_PS3 + EB_PS4);
+		enableEvent(0, EB_PS1);
 
 		if (isEvent(0, EB_PS1)) {
 			int idx = getCurrAnimIndex();
@@ -456,15 +471,15 @@ struct EnemyBase : public Creature, public SysShape::MotionListener, virtual pub
 
 	inline void setCreatureID(u8 idx) { m_creatureID = idx; }
 
-	inline void setEvent(int i, u32 flag) { m_events.m_flags[i].typeView |= flag; }
+	inline void enableEvent(int i, u32 flag) { m_events.m_flags[i].typeView |= flag; }
 
-	inline void resetEvent(int i, u32 flag) { m_events.m_flags[i].typeView &= ~flag; }
+	inline void disableEvent(int i, u32 flag) { m_events.m_flags[i].typeView &= ~flag; }
 
 	inline bool isEvent(int i, u32 flag) { return m_events.m_flags[i].typeView & flag; }
 
 	inline bool checkSecondary()
 	{ // needs a better name eventually, used in doSimulationGround
-		return (isEvent(1, EB2_1) || isEvent(1, EB2_5));
+		return (isEvent(1, EB2_IsEarthquakeActive) || isEvent(1, EB2_IsDropBounceEnabled));
 	}
 
 	inline f32 getAccelerationScale(f32 constraint)
@@ -621,7 +636,7 @@ struct EnemyBase : public Creature, public SysShape::MotionListener, virtual pub
 	PSM::EnemyBase* m_soundObj;                  // _28C
 	CNode m_effectNodeHamonRoot;                 // _290 - treat as EnemyEffectNodeBase with EnemyEffectNodeHamon nodes
 	f32 m_existTimer;                            // _2A8, how long cherry-spawned enemy has existed in 2P battle
-	f32 m_maxExistTime;                          // _2AC, how long cherry-spawned enemy should exist in 2P battle
+	f32 m_existenceLength;                       // _2AC, how long cherry-spawned enemy should exist in 2P battle
 	s8 m_dropGroup;                              // _2B0
 	EnemyFSMState* m_currentLifecycleState;      // _2B4
 	EnemyBaseFSM::StateMachine* m_lifecycleFSM;  // _2B8

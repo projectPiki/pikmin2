@@ -32,11 +32,11 @@ void Obj::setInitialSetting(EnemyInitialParamBase*) { }
 void Obj::onInit(CreatureInitArg* args)
 {
 	EnemyBase::onInit(args);
-	resetEvent(0, EB_13);
-	resetEvent(0, EB_LeaveCarcass);
-	resetEvent(0, EB_9);
+	disableEvent(0, EB_IsPlatformCollsAllowed);
+	disableEvent(0, EB_ToLeaveCarcass);
+	disableEvent(0, EB_IsDeathEffectEnabled);
 	hardConstraintOn();
-	setEvent(0, EB_BitterImmune);
+	enableEvent(0, EB_IsImmuneBitter);
 
 	setEmotionNone();
 	shadowMgr->killShadow(this);
