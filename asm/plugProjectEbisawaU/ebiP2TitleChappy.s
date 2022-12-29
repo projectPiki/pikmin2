@@ -1824,6 +1824,7 @@ getAnimRes__Q43ebi5title6Chappy11TAnimFolderFl:
 /* 803E9C30 003E6B70  7C 60 1A 14 */	add r3, r0, r3
 /* 803E9C34 003E6B74  4E 80 00 20 */	blr 
 
+.global __sinit_ebiP2TitleChappy_cpp
 __sinit_ebiP2TitleChappy_cpp: # static initializer
 /* 803E9C38 003E6B78  3C 80 80 51 */	lis r4, __float_nan@ha
 /* 803E9C3C 003E6B7C  38 00 FF FF */	li r0, -1

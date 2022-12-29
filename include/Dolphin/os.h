@@ -366,7 +366,10 @@ void OSFreeToHeap(OSHeapHandle heap, void* ptr);
 
 // OSMutex
 typedef struct OSMutexObject {
-	char filler[0x18];
+	f32 _00;     // _00
+	f32 _04;     // _04
+	f32 _08;     // _08
+	u8 _0C[0xC]; // _0C
 } OSMutexObject;
 
 // OSLink
@@ -564,6 +567,8 @@ void OSEnableInterrupts();
 
 uint OSGetSoundMode();
 void OSSetSoundMode(uint);
+void OSSetSaveRegion(int, int);
+int OSGetProgressiveMode();
 
 // void OSInitMessageQueue(OSMessageQueue* queue, void** msgSlots, int slotCount);
 // BOOL OSSendMessage(OSMessageQueue* queue, void* message, int flags);

@@ -112,8 +112,6 @@ struct TMgr {
 	virtual ~TMgr(); // _08
 
 	void createInstance();
-	void onDvdErrorOccured();
-	void onDvdErrorRecovered();
 	void start();
 	void forceQuit();
 	void update();
@@ -122,6 +120,9 @@ struct TMgr {
 	void isFinish();
 	void goEnd_(enumEnd);
 	void getStateID();
+
+	static void onDvdErrorOccured();
+	static void onDvdErrorRecovered();
 
 	// _00 = VTBL
 	// TODO: members

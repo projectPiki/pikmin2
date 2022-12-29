@@ -1,4 +1,10 @@
-#include "types.h"
+#include "Game/Entities/Baby.h"
+#include "Game/Entities/ItemHoney.h"
+#include "Game/GameSystem.h"
+#include "Dolphin/rand.h"
+#include "trig.h"
+#include "Game/EnemyFunc.h"
+#include "efx/TBaby.h"
 
 /*
     Generated from dpostproc
@@ -292,94 +298,10 @@ namespace Game {
  */
 Baby::Obj::Obj()
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	extsh.   r0, r4
-	stw      r31, 0xc(r1)
-	mr       r31, r3
-	stw      r30, 8(r1)
-	beq      lbl_8028D4B0
-	addi     r0, r31, 0x2d8
-	lis      r3, __vt__Q24Game10PelletView@ha
-	stw      r0, 0x17c(r31)
-	addi     r3, r3, __vt__Q24Game10PelletView@l
-	li       r0, 0
-	stw      r3, 0x2d8(r31)
-	stw      r0, 0x2dc(r31)
-	stw      r0, 0x2e0(r31)
+	m_animator = new ProperAnimator;
 
-lbl_8028D4B0:
-	mr       r3, r31
-	li       r4, 0
-	bl       __ct__Q24Game9EnemyBaseFv
-	lis      r3, __vt__Q34Game4Baby3Obj@ha
-	addi     r0, r31, 0x2d8
-	addi     r5, r3, __vt__Q34Game4Baby3Obj@l
-	addi     r3, r31, 0x2c0
-	stw      r5, 0(r31)
-	addi     r4, r5, 0x1b0
-	addi     r5, r5, 0x2fc
-	stw      r4, 0x178(r31)
-	lwz      r4, 0x17c(r31)
-	stw      r5, 0(r4)
-	lwz      r4, 0x17c(r31)
-	subf     r0, r4, r0
-	stw      r0, 0xc(r4)
-	bl       __ct__10MouthSlotsFv
-	li       r3, 0x2c
-	bl       __nw__FUl
-	or.      r30, r3, r3
-	beq      lbl_8028D544
-	bl       __ct__Q24Game17EnemyAnimatorBaseFv
-	lis      r3, __vt__Q34Game4Baby14ProperAnimator@ha
-	lis      r4, __vt__Q28SysShape12BaseAnimator@ha
-	addi     r0, r3, __vt__Q34Game4Baby14ProperAnimator@l
-	lis      r3, __vt__Q28SysShape8Animator@ha
-	stw      r0, 0(r30)
-	addi     r4, r4, __vt__Q28SysShape12BaseAnimator@l
-	addi     r3, r3, __vt__Q28SysShape8Animator@l
-	li       r0, 0
-	stw      r4, 0x10(r30)
-	stw      r3, 0x10(r30)
-	stb      r0, 0x28(r30)
-	stw      r0, 0x1c(r30)
-	stw      r0, 0x14(r30)
-	stb      r0, 0x28(r30)
-	stw      r0, 0x20(r30)
-
-lbl_8028D544:
-	stw      r30, 0x184(r31)
-	li       r3, 0x1c
-	bl       __nw__FUl
-	or.      r4, r3, r3
-	beq      lbl_8028D578
-	lis      r5, __vt__Q24Game17EnemyStateMachine@ha
-	lis      r3, __vt__Q34Game4Baby3FSM@ha
-	addi     r0, r5, __vt__Q24Game17EnemyStateMachine@l
-	li       r5, -1
-	stw      r0, 0(r4)
-	addi     r0, r3, __vt__Q34Game4Baby3FSM@l
-	stw      r5, 0x18(r4)
-	stw      r0, 0(r4)
-
-lbl_8028D578:
-	lwz      r12, 0(r31)
-	mr       r3, r31
-	lwz      r12, 0x2f8(r12)
-	mtctr    r12
-	bctrl
-	mr       r3, r31
-	bl       createEffect__Q34Game4Baby3ObjFv
-	lwz      r0, 0x14(r1)
-	mr       r3, r31
-	lwz      r31, 0xc(r1)
-	lwz      r30, 8(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	setFSM(new FSM);
+	createEffect();
 }
 
 /*
@@ -394,60 +316,20 @@ void Baby::Obj::setInitialSetting(Game::EnemyInitialParamBase*) { }
  * Address:	8028D5B4
  * Size:	0000B8
  */
-void Baby::Obj::onInit(Game::CreatureInitArg*)
+void Baby::Obj::onInit(Game::CreatureInitArg* arg)
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	mr       r31, r3
-	bl       onInit__Q24Game9EnemyBaseFPQ24Game15CreatureInitArg
-	lwz      r0, 0x1e0(r31)
-	mr       r3, r31
-	rlwinm   r0, r0, 0, 0x1a, 0x18
-	stw      r0, 0x1e0(r31)
-	lwz      r0, 0x1e0(r31)
-	rlwinm   r0, r0, 0, 0x19, 0x17
-	stw      r0, 0x1e0(r31)
-	bl       setupEffect__Q34Game4Baby3ObjFv
-	mr       r3, r31
-	bl       resetRandTargetPosition__Q34Game4Baby3ObjFv
-	lwz      r3, gameSystem__4Game@sda21(r13)
-	cmplwi   r3, 0
-	beq      lbl_8028D638
-	lwz      r0, 0x44(r3)
-	cmpwi    r0, 4
-	bne      lbl_8028D638
-	lwz      r3, 0x2bc(r31)
-	mr       r4, r31
-	li       r5, 3
-	li       r6, 0
-	lwz      r12, 0(r3)
-	lwz      r12, 0xc(r12)
-	mtctr    r12
-	bctrl
-	mr       r3, r31
-	bl       resetZukanAnimationFrame__Q34Game4Baby3ObjFv
-	b        lbl_8028D658
+	EnemyBase::onInit(arg);
+	resetEvent(0, EB_Cullable);
+	resetEvent(0, EB_LeaveCarcass);
+	setupEffect();
+	resetRandTargetPosition();
 
-lbl_8028D638:
-	lwz      r3, 0x2bc(r31)
-	mr       r4, r31
-	li       r5, 2
-	li       r6, 0
-	lwz      r12, 0(r3)
-	lwz      r12, 0xc(r12)
-	mtctr    r12
-	bctrl
-
-lbl_8028D658:
-	lwz      r0, 0x14(r1)
-	lwz      r31, 0xc(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	if (gameSystem && gameSystem->m_mode == GSM_PIKLOPEDIA) {
+		m_FSM->start(this, BABY_Move, nullptr);
+		resetZukanAnimationFrame();
+	} else {
+		m_FSM->start(this, BABY_Born, nullptr);
+	}
 }
 
 /*
@@ -457,26 +339,8 @@ lbl_8028D658:
  */
 void Baby::Obj::doUpdate()
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	mr       r31, r3
-	mr       r4, r31
-	lwz      r3, 0x2bc(r3)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x10(r12)
-	mtctr    r12
-	bctrl
-	addi     r3, r31, 0x2c0
-	bl       update__10MouthSlotsFv
-	lwz      r0, 0x14(r1)
-	lwz      r31, 0xc(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	m_FSM->exec(this);
+	m_mouthSlots.update();
 }
 
 /*
@@ -491,48 +355,18 @@ void Baby::Obj::doDirectDraw(Graphics&) { }
  * Address:	8028D6B8
  * Size:	000020
  */
-void Baby::Obj::doDebugDraw(Graphics&)
-{
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	bl       doDebugDraw__Q24Game9EnemyBaseFR8Graphics
-	lwz      r0, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
-}
+void Baby::Obj::doDebugDraw(Graphics& gfx) { EnemyBase::doDebugDraw(gfx); }
 
 /*
  * --INFO--
  * Address:	8028D6D8
  * Size:	00004C
  */
-void Baby::Obj::setFSM(Game::Baby::FSM*)
+void Baby::Obj::setFSM(Game::Baby::FSM* fsm)
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	mr       r31, r3
-	stw      r4, 0x2bc(r3)
-	mr       r4, r31
-	lwz      r3, 0x2bc(r3)
-	lwz      r12, 0(r3)
-	lwz      r12, 8(r12)
-	mtctr    r12
-	bctrl
-	li       r0, 0
-	stw      r0, 0x2b4(r31)
-	lwz      r0, 0x14(r1)
-	lwz      r31, 0xc(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	m_FSM = fsm;
+	m_FSM->init(this);
+	m_currentLifecycleState = nullptr;
 }
 
 /*
@@ -540,40 +374,19 @@ void Baby::Obj::setFSM(Game::Baby::FSM*)
  * Address:	8028D724
  * Size:	000068
  */
-void Baby::Obj::getShadowParam(Game::ShadowParam&)
+void Baby::Obj::getShadowParam(Game::ShadowParam& param)
 {
-	/*
-	lfs      f0, 0x18c(r3)
-	lfs      f2, lbl_8051B8E0@sda21(r2)
-	stfs     f0, 0(r4)
-	lfs      f1, lbl_8051B8E4@sda21(r2)
-	lfs      f3, 0x190(r3)
-	lfs      f0, lbl_8051B8E8@sda21(r2)
-	stfs     f3, 4(r4)
-	lfs      f3, 0x194(r3)
-	stfs     f3, 8(r4)
-	lfs      f3, 4(r4)
-	fadds    f2, f3, f2
-	stfs     f2, 4(r4)
-	stfs     f1, 0xc(r4)
-	stfs     f0, 0x10(r4)
-	stfs     f1, 0x14(r4)
-	lwz      r0, 0x1e4(r3)
-	clrlwi.  r0, r0, 0x1f
-	beq      lbl_8028D778
-	lfs      f0, lbl_8051B8EC@sda21(r2)
-	stfs     f0, 0x18(r4)
-	b        lbl_8028D780
+	param.m_position = m_position;
+	param.m_position.y += 2.5f;
 
-lbl_8028D778:
-	lfs      f0, lbl_8051B8F0@sda21(r2)
-	stfs     f0, 0x18(r4)
+	param.m_boundingSphere.m_position = Vector3f(0.0f, 1.0f, 0.0f);
 
-lbl_8028D780:
-	lfs      f0, lbl_8051B8F0@sda21(r2)
-	stfs     f0, 0x1c(r4)
-	blr
-	*/
+	if (isEvent(1, EB2_1)) {
+		param.m_boundingSphere.m_radius = 50.0f;
+	} else {
+		param.m_boundingSphere.m_radius = 10.0f;
+	}
+	param.m_size = 10.0f;
 }
 
 /*
@@ -581,43 +394,14 @@ lbl_8028D780:
  * Address:	8028D78C
  * Size:	000074
  */
-void Baby::Obj::pressCallBack(Game::Creature*, float, CollPart*)
+bool Baby::Obj::pressCallBack(Game::Creature* obj, float, CollPart* part)
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	cmplwi   r4, 0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	mr       r31, r3
-	beq      lbl_8028D7E8
-	lwz      r0, 0x1e0(r31)
-	rlwinm.  r0, r0, 0, 0x16, 0x16
-	bne      lbl_8028D7E8
-	bl       getStateID__Q24Game9EnemyBaseFv
-	cmpwi    r3, 2
-	ble      lbl_8028D7E8
-	lwz      r3, 0x2bc(r31)
-	mr       r4, r31
-	li       r5, 1
-	li       r6, 0
-	lwz      r12, 0(r3)
-	lwz      r12, 0x14(r12)
-	mtctr    r12
-	bctrl
-	li       r3, 1
-	b        lbl_8028D7EC
-
-lbl_8028D7E8:
-	li       r3, 0
-
-lbl_8028D7EC:
-	lwz      r0, 0x14(r1)
-	lwz      r31, 0xc(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	if (obj && !isEvent(0, EB_Bittered) && getStateID() > 2) {
+		m_FSM->transit(this, BABY_Press, nullptr);
+		return true;
+	} else {
+		return false;
+	}
 }
 
 /*
@@ -625,43 +409,15 @@ lbl_8028D7EC:
  * Address:	8028D800
  * Size:	000074
  */
-void Baby::Obj::hipdropCallBack(Game::Creature*, float, CollPart*)
+bool Baby::Obj::hipdropCallBack(Game::Creature* obj, float, CollPart* part)
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	cmplwi   r4, 0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	mr       r31, r3
-	beq      lbl_8028D85C
-	lwz      r0, 0x1e0(r31)
-	rlwinm.  r0, r0, 0, 0x16, 0x16
-	bne      lbl_8028D85C
-	bl       getStateID__Q24Game9EnemyBaseFv
-	cmpwi    r3, 2
-	ble      lbl_8028D85C
-	lwz      r3, 0x2bc(r31)
-	mr       r4, r31
-	li       r5, 1
-	li       r6, 0
-	lwz      r12, 0(r3)
-	lwz      r12, 0x14(r12)
-	mtctr    r12
-	bctrl
-	li       r3, 1
-	b        lbl_8028D860
 
-lbl_8028D85C:
-	li       r3, 0
-
-lbl_8028D860:
-	lwz      r0, 0x14(r1)
-	lwz      r31, 0xc(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	if (obj && !isEvent(0, EB_Bittered) && getStateID() > 2) {
+		m_FSM->transit(this, BABY_Press, nullptr);
+		return true;
+	} else {
+		return false;
+	}
 }
 
 /*
@@ -669,19 +425,7 @@ lbl_8028D860:
  * Address:	8028D874
  * Size:	000020
  */
-void Baby::Obj::doStartStoneState()
-{
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	bl       doStartStoneState__Q24Game9EnemyBaseFv
-	lwz      r0, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
-}
+void Baby::Obj::doStartStoneState() { EnemyBase::doStartStoneState(); }
 
 /*
  * --INFO--
@@ -690,33 +434,10 @@ void Baby::Obj::doStartStoneState()
  */
 void Baby::Obj::doFinishStoneState()
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	mr       r31, r3
-	bl       doFinishStoneState__Q24Game9EnemyBaseFv
-	mr       r3, r31
-	bl       getStateID__Q24Game9EnemyBaseFv
-	cmpwi    r3, 2
-	bne      lbl_8028D8DC
-	lwz      r3, 0x2bc(r31)
-	mr       r4, r31
-	li       r5, 3
-	li       r6, 0
-	lwz      r12, 0(r3)
-	lwz      r12, 0x14(r12)
-	mtctr    r12
-	bctrl
-
-lbl_8028D8DC:
-	lwz      r0, 0x14(r1)
-	lwz      r31, 0xc(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	EnemyBase::doFinishStoneState();
+	if (getStateID() == BABY_Born) {
+		m_FSM->transit(this, BABY_Move, nullptr);
+	}
 }
 
 /*
@@ -726,21 +447,8 @@ lbl_8028D8DC:
  */
 void Baby::Obj::doStartWaitingBirthTypeDrop()
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	mr       r31, r3
-	bl       doStartWaitingBirthTypeDrop__Q24Game9EnemyBaseFv
-	mr       r3, r31
-	bl       effectDrawOff__Q34Game4Baby3ObjFv
-	lwz      r0, 0x14(r1)
-	lwz      r31, 0xc(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	EnemyBase::doStartWaitingBirthTypeDrop();
+	effectDrawOff();
 }
 
 /*
@@ -750,21 +458,8 @@ void Baby::Obj::doStartWaitingBirthTypeDrop()
  */
 void Baby::Obj::doFinishWaitingBirthTypeDrop()
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	mr       r31, r3
-	bl       doFinishWaitingBirthTypeDrop__Q24Game9EnemyBaseFv
-	mr       r3, r31
-	bl       effectDrawOn__Q34Game4Baby3ObjFv
-	lwz      r0, 0x14(r1)
-	lwz      r31, 0xc(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	EnemyBase::doFinishWaitingBirthTypeDrop();
+	effectDrawOn();
 }
 
 /*
@@ -772,38 +467,14 @@ void Baby::Obj::doFinishWaitingBirthTypeDrop()
  * Address:	8028D958
  * Size:	000020
  */
-void Baby::Obj::doStartMovie()
-{
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	bl       effectDrawOff__Q34Game4Baby3ObjFv
-	lwz      r0, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
-}
+void Baby::Obj::doStartMovie() { effectDrawOff(); }
 
 /*
  * --INFO--
  * Address:	8028D978
  * Size:	000020
  */
-void Baby::Obj::doEndMovie()
-{
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	bl       effectDrawOn__Q34Game4Baby3ObjFv
-	lwz      r0, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
-}
+void Baby::Obj::doEndMovie() { effectDrawOn(); }
 
 /*
  * --INFO--
@@ -812,47 +483,12 @@ void Baby::Obj::doEndMovie()
  */
 void Baby::Obj::initMouthSlots()
 {
-	/*
-	stwu     r1, -0x20(r1)
-	mflr     r0
-	stw      r0, 0x24(r1)
-	stfd     f31, 0x10(r1)
-	psq_st   f31, 24(r1), 0, qr0
-	stw      r31, 0xc(r1)
-	stw      r30, 8(r1)
-	mr       r30, r3
-	li       r4, 1
-	addi     r3, r30, 0x2c0
-	bl       alloc__10MouthSlotsFi
-	lwz      r5, 0x174(r30)
-	addi     r3, r30, 0x2c0
-	li       r4, 0
-	addi     r6, r2, lbl_8051B8F4@sda21
-	bl       setup__10MouthSlotsFiPQ28SysShape5ModelPc
-	lfs      f31, lbl_8051B8FC@sda21(r2)
-	li       r31, 0
-	b        lbl_8028D9F8
-
-lbl_8028D9E4:
-	mr       r4, r31
-	addi     r3, r30, 0x2c0
-	bl       getSlot__10MouthSlotsFi
-	stfs     f31, 0x1c(r3)
-	addi     r31, r31, 1
-
-lbl_8028D9F8:
-	lwz      r0, 0x2c0(r30)
-	cmpw     r31, r0
-	blt      lbl_8028D9E4
-	psq_l    f31, 24(r1), 0, qr0
-	lwz      r0, 0x24(r1)
-	lfd      f31, 0x10(r1)
-	lwz      r31, 0xc(r1)
-	lwz      r30, 8(r1)
-	mtlr     r0
-	addi     r1, r1, 0x20
-	blr
-	*/
+	m_mouthSlots.alloc(1);
+	m_mouthSlots.setup(0, m_model, "kamu");
+	f32 size = 20.0f;
+	for (int i = 0; i < m_mouthSlots.m_max; i++) {
+		m_mouthSlots.getSlot(i)->m_radius = size;
+	}
 }
 
 /*
@@ -860,8 +496,17 @@ lbl_8028D9F8:
  * Address:	8028DA24
  * Size:	00008C
  */
-void Baby::Obj::getSlotPikiNum()
+int Baby::Obj::getSlotPikiNum()
 {
+	int slotnum       = 0;
+	MouthSlots* slots = getMouthSlots();
+	int max           = slots->m_max;
+	for (int i = 0; i < max; i++) {
+		if (slots->getSlot(i)->m_stuckCreature) {
+			slotnum++;
+		}
+	}
+	return slotnum;
 	/*
 	stwu     r1, -0x20(r1)
 	mflr     r0
@@ -912,31 +557,14 @@ lbl_8028DA84:
  * Address:	8028DAB0
  * Size:	000008
  */
-void Baby::Obj::getMouthSlots()
-{
-	/*
-	addi     r3, r3, 0x2c0
-	blr
-	*/
-}
+MouthSlots* Baby::Obj::getMouthSlots() { return &m_mouthSlots; }
 
 /*
  * --INFO--
  * Address:	8028DAB8
  * Size:	00001C
  */
-void Baby::Obj::resetRandTargetPosition()
-{
-	/*
-	lfs      f0, 0x18c(r3)
-	stfs     f0, 0x2c8(r3)
-	lfs      f0, 0x190(r3)
-	stfs     f0, 0x2cc(r3)
-	lfs      f0, 0x194(r3)
-	stfs     f0, 0x2d0(r3)
-	blr
-	*/
-}
+void Baby::Obj::resetRandTargetPosition() { m_targetPos = m_position; }
 
 /*
  * --INFO--
@@ -945,37 +573,8 @@ void Baby::Obj::resetRandTargetPosition()
  */
 void Baby::Obj::resetZukanAnimationFrame()
 {
-	/*
-	stwu     r1, -0x30(r1)
-	mflr     r0
-	stw      r0, 0x34(r1)
-	stfd     f31, 0x20(r1)
-	psq_st   f31, 40(r1), 0, qr0
-	stw      r31, 0x1c(r1)
-	mr       r31, r3
-	bl       getMotionFrameMax__Q24Game9EnemyBaseFv
-	fmr      f31, f1
-	bl       rand
-	xoris    r3, r3, 0x8000
-	lis      r0, 0x4330
-	stw      r3, 0xc(r1)
-	mr       r3, r31
-	lfd      f2, lbl_8051B908@sda21(r2)
-	stw      r0, 8(r1)
-	lfs      f0, lbl_8051B900@sda21(r2)
-	lfd      f1, 8(r1)
-	fsubs    f1, f1, f2
-	fmuls    f1, f31, f1
-	fdivs    f1, f1, f0
-	bl       setMotionFrame__Q24Game9EnemyBaseFf
-	psq_l    f31, 40(r1), 0, qr0
-	lwz      r0, 0x34(r1)
-	lfd      f31, 0x20(r1)
-	lwz      r31, 0x1c(r1)
-	mtlr     r0
-	addi     r1, r1, 0x30
-	blr
-	*/
+	f32 frame = getMotionFrameMax();
+	setMotionFrame(randWeightFloat(frame));
 }
 
 /*
@@ -985,6 +584,22 @@ void Baby::Obj::resetZukanAnimationFrame()
  */
 void Baby::Obj::moveNoTarget()
 {
+	if (gameSystem && gameSystem->m_mode == GSM_PIKLOPEDIA) {
+		if (sqrDistanceXZ(m_position, m_targetPos) < 500.0f) {
+			f32 f1  = randWeightFloat(100.0f) + 50.0f;
+			f32 ang = JMath::atanTable_.atan2_(m_position.x - m_homePosition.x, m_position.z - m_homePosition.z);
+			ang += randWeightFloat(PI) + HALF_PI;
+
+			m_targetPos.x = f1 * pikmin2_sinf(ang) + m_homePosition.x;
+			m_targetPos.y = m_homePosition.y;
+			m_targetPos.z = f1 * pikmin2_cosf(ang) + m_homePosition.z;
+		}
+		Parms* parms = static_cast<Parms*>(m_parms);
+		EnemyFunc::walkToTarget(this, m_targetPos, parms->m_general.m_moveSpeed.m_value, parms->m_general.m_rotationalAccel.m_value,
+		                        parms->m_general.m_rotationalSpeed.m_value);
+	} else {
+		m_simVelocity = 0.0f;
+	}
 	/*
 	stwu     r1, -0x60(r1)
 	mflr     r0
@@ -1139,71 +754,18 @@ lbl_8028DD30:
  */
 void Baby::Obj::createHoney()
 {
-	/*
-	stwu     r1, -0x30(r1)
-	mflr     r0
-	stw      r0, 0x34(r1)
-	stw      r31, 0x2c(r1)
-	stw      r30, 0x28(r1)
-	mr       r30, r3
-	lwz      r31, 0xc0(r3)
-	bl       rand
-	xoris    r3, r3, 0x8000
-	lis      r0, 0x4330
-	stw      r3, 0x24(r1)
-	lfd      f3, lbl_8051B908@sda21(r2)
-	stw      r0, 0x20(r1)
-	lfs      f2, lbl_8051B8E8@sda21(r2)
-	lfd      f0, 0x20(r1)
-	lfs      f1, lbl_8051B900@sda21(r2)
-	fsubs    f3, f0, f3
-	lfs      f0, 0x844(r31)
-	fmuls    f2, f2, f3
-	fdivs    f1, f2, f1
-	fcmpo    cr0, f1, f0
-	bge      lbl_8028DE30
-	lis      r3, __vt__Q24Game15CreatureInitArg@ha
-	li       r0, 0
-	addi     r4, r3, __vt__Q24Game15CreatureInitArg@l
-	lis      r3, __vt__Q34Game9ItemHoney7InitArg@ha
-	stw      r4, 8(r1)
-	addi     r4, r3, __vt__Q34Game9ItemHoney7InitArg@l
-	lwz      r3, mgr__Q24Game9ItemHoney@sda21(r13)
-	stw      r4, 8(r1)
-	stb      r0, 0xc(r1)
-	stb      r0, 0xd(r1)
-	lwz      r12, 0(r3)
-	lwz      r12, 0xa4(r12)
-	mtctr    r12
-	bctrl
-	or.      r31, r3, r3
-	beq      lbl_8028DE30
-	addi     r4, r1, 8
-	bl       init__Q24Game8CreatureFPQ24Game15CreatureInitArg
-	mr       r3, r31
-	addi     r4, r30, 0x18c
-	li       r5, 0
-	bl       "setPosition__Q24Game8CreatureFR10Vector3<f>b"
-	lfs      f1, lbl_8051B8E4@sda21(r2)
-	mr       r3, r31
-	lfs      f0, lbl_8051B928@sda21(r2)
-	addi     r4, r1, 0x10
-	stfs     f1, 0x10(r1)
-	stfs     f0, 0x14(r1)
-	stfs     f1, 0x18(r1)
-	lwz      r12, 0(r31)
-	lwz      r12, 0x68(r12)
-	mtctr    r12
-	bctrl
+	Parms* parms = static_cast<Parms*>(m_parms);
+	if (randWeightFloat(1.0f) < parms->m_properParms.m_nectarChance.m_value) {
+		ItemHoney::InitArg arg(false, false);
 
-lbl_8028DE30:
-	lwz      r0, 0x34(r1)
-	lwz      r31, 0x2c(r1)
-	lwz      r30, 0x28(r1)
-	mtlr     r0
-	addi     r1, r1, 0x30
-	blr
-	*/
+		ItemHoney::Item* item = static_cast<ItemHoney::Item*>(ItemHoney::mgr->birth());
+		if (item) {
+			item->init(&arg);
+			item->setPosition(m_position, false);
+			Vector3f velocity(0.0f, 250.0f, 0.0f);
+			item->setVelocity(velocity);
+		}
+	}
 }
 
 /*
@@ -1213,6 +775,7 @@ lbl_8028DE30:
  */
 void Baby::Obj::createEffect()
 {
+	m_efxBabyBorn = new efx::TBabyBorn(&m_position);
 	/*
 	stwu     r1, -0x10(r1)
 	mflr     r0
@@ -1276,132 +839,83 @@ void Baby::Obj::setupEffect() { }
  * Address:	8028DF00
  * Size:	000034
  */
-void Baby::Obj::createBornEffect()
-{
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	li       r4, 0
-	stw      r0, 0x14(r1)
-	lwz      r3, 0x2d4(r3)
-	lwz      r12, 0(r3)
-	lwz      r12, 8(r12)
-	mtctr    r12
-	bctrl
-	lwz      r0, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
-}
+void Baby::Obj::createBornEffect() { m_efxBabyBorn->create(nullptr); }
 
 /*
  * --INFO--
  * Address:	8028DF34
  * Size:	000030
  */
-void Baby::Obj::effectDrawOn()
-{
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	lwz      r3, 0x2d4(r3)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x44(r12)
-	mtctr    r12
-	bctrl
-	lwz      r0, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
-}
+void Baby::Obj::effectDrawOn() { m_efxBabyBorn->endDemoDrawOn(); }
 
 /*
  * --INFO--
  * Address:	8028DF64
  * Size:	000030
  */
-void Baby::Obj::effectDrawOff()
-{
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	lwz      r3, 0x2d4(r3)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x40(r12)
-	mtctr    r12
-	bctrl
-	lwz      r0, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
-}
+void Baby::Obj::effectDrawOff() { m_efxBabyBorn->startDemoDrawOff(); }
 
-} // namespace Game
+//} // namespace Game
 
-namespace efx {
+// namespace efx {
 
 /*
  * --INFO--
  * Address:	8028DF94
  * Size:	00009C
  */
-TBabyBorn::~TBabyBorn()
-{
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	mr       r31, r4
-	stw      r30, 8(r1)
-	or.      r30, r3, r3
-	beq      lbl_8028E014
-	lis      r3, __vt__Q23efx9TBabyBorn@ha
-	addi     r3, r3, __vt__Q23efx9TBabyBorn@l
-	stw      r3, 0(r30)
-	addi     r0, r3, 0x14
-	stw      r0, 4(r30)
-	beq      lbl_8028E004
-	lis      r3, __vt__Q23efx9TChasePos@ha
-	addi     r3, r3, __vt__Q23efx9TChasePos@l
-	stw      r3, 0(r30)
-	addi     r0, r3, 0x14
-	stw      r0, 4(r30)
-	beq      lbl_8028E004
-	lis      r4, __vt__Q23efx5TSync@ha
-	addi     r3, r30, 4
-	addi     r5, r4, __vt__Q23efx5TSync@l
-	li       r4, 0
-	stw      r5, 0(r30)
-	addi     r0, r5, 0x14
-	stw      r0, 4(r30)
-	bl       __dt__18JPAEmitterCallBackFv
+// TBabyBorn::~TBabyBorn()
+//{
+/*
+stwu     r1, -0x10(r1)
+mflr     r0
+stw      r0, 0x14(r1)
+stw      r31, 0xc(r1)
+mr       r31, r4
+stw      r30, 8(r1)
+or.      r30, r3, r3
+beq      lbl_8028E014
+lis      r3, __vt__Q23efx9TBabyBorn@ha
+addi     r3, r3, __vt__Q23efx9TBabyBorn@l
+stw      r3, 0(r30)
+addi     r0, r3, 0x14
+stw      r0, 4(r30)
+beq      lbl_8028E004
+lis      r3, __vt__Q23efx9TChasePos@ha
+addi     r3, r3, __vt__Q23efx9TChasePos@l
+stw      r3, 0(r30)
+addi     r0, r3, 0x14
+stw      r0, 4(r30)
+beq      lbl_8028E004
+lis      r4, __vt__Q23efx5TSync@ha
+addi     r3, r30, 4
+addi     r5, r4, __vt__Q23efx5TSync@l
+li       r4, 0
+stw      r5, 0(r30)
+addi     r0, r5, 0x14
+stw      r0, 4(r30)
+bl       __dt__18JPAEmitterCallBackFv
 
 lbl_8028E004:
-	extsh.   r0, r31
-	ble      lbl_8028E014
-	mr       r3, r30
-	bl       __dl__FPv
+extsh.   r0, r31
+ble      lbl_8028E014
+mr       r3, r30
+bl       __dl__FPv
 
 lbl_8028E014:
-	lwz      r0, 0x14(r1)
-	mr       r3, r30
-	lwz      r31, 0xc(r1)
-	lwz      r30, 8(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
-}
+lwz      r0, 0x14(r1)
+mr       r3, r30
+lwz      r31, 0xc(r1)
+lwz      r30, 8(r1)
+mtlr     r0
+addi     r1, r1, 0x10
+blr
+*/
+//}
 
-namespace Game {
+// namespace Game {
 
-} // namespace Game
+//} // namespace Game
 
 /*
  * --INFO--
@@ -1422,22 +936,22 @@ void Baby::Obj::outWaterCallback() { }
  * Address:	8028E038
  * Size:	000008
  */
-u32 Baby::Obj::getEnemyTypeID() { return 0x1F; }
+EnemyTypeID::EEnemyTypeID Baby::Obj::getEnemyTypeID() { return EnemyTypeID::EnemyID_Baby; }
 
-namespace efx {
+// namespace efx {
 
 /*
  * --INFO--
  * Address:	8028E040
  * Size:	000008
  */
-TBabyBorn::@4 @~TBabyBorn()
-{
-	/*
+// TBabyBorn::@4 @~TBabyBorn()
+//{
+/*
 addi     r3, r3, -4
 b        __dt__Q23efx9TBabyBornFv
-	*/
-}
-} // namespace efx
+*/
+//}
+//} // namespace efx
 
-} // namespace efx
+} // namespace Game

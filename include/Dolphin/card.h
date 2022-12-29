@@ -188,6 +188,7 @@ typedef struct {
 extern CARDBlock __CARDBlock[2];
 
 void CARDInit();
+int CARDProbe(int slotIndex);
 
 int __CARDReadStatus(int slotIndex, u8* buffer);
 int __CARDClearStatus(int slotIndex);

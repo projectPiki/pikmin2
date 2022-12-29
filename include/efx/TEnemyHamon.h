@@ -75,33 +75,34 @@ struct TEnemyHamonChasePos : public TBase {
  */
 struct TEnemyHamon : public TBase {
 	inline TEnemyHamon()
-	    : m_hamonChasePos(&_34)
+	    : m_hamonChasePos(&m_position)
 	{
 		m_seaHeightPtr = nullptr;
-		_40            = 0;
+		m_active       = 0;
 	}
 
 	virtual bool create(Arg*); // _08
 	virtual void forceKill()   // _0C (weak)
 	{
 		m_hamonChasePos.forceKill();
-		_40 = 0;
+		m_active = 0;
 	}
 	virtual void fade() // _10 (weak)
 	{
 		m_hamonChasePos.fade();
-		_40 = 0;
+		m_active = 0;
 	}
 
 	void update(Vector3f&);
-	void getLimitDepth_();
+	f32 getLimitDepth_();
 
 	// _00      = VTABLE
-	TEnemyHamonChasePos m_hamonChasePos; // _04
-	f32* m_seaHeightPtr;                 // _30
-	Vector3f _34;                        // _34
-	u8 _40;                              // _40
-	Game::EnemyTypeID m_enemyID;         // _44
+	TEnemyHamonChasePos m_hamonChasePos;       // _04
+	f32* m_seaHeightPtr;                       // _30
+	Vector3f m_position;                       // _34
+	u8 m_active;                               // _40
+	Game::EnemyTypeID::EEnemyTypeID m_enemyID; // _44
+	f32 m_scale;                               // _48
 };
 
 } // namespace efx

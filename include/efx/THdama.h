@@ -117,6 +117,10 @@ struct THdamaShoot : public TSimpleMtx3 {
 };
 
 struct THdamaShootA : public TSimple1 {
+	THdamaShootA()
+	    : TSimple1(PID_HDamaShootA)
+	{
+	}
 	// _00		= VTBL
 	// _00-_0C	= TSimple1
 };

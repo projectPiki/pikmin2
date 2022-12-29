@@ -36,6 +36,8 @@ struct JKRThreadSwitch {
 	void draw(JKRThreadName_*);
 	void draw(JKRThreadName_*, JUTConsole*);
 	void createConsole(JUTFont*, int, JKRHeap*);
+
+	static JKRThreadSwitch* sManager;
 };
 
 struct JKRThread : public JKRDisposer {

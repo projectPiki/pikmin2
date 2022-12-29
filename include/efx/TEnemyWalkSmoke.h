@@ -20,10 +20,19 @@ struct TEnemyWalkSmoke : public TBase {
 };
 
 struct TEnemyWalkSmokeS : public TSimple1 {
+	TEnemyWalkSmokeS(u16 id)
+	    : TSimple1(id)
+	{
+	}
 	virtual bool create(Arg*); // _08
 };
 
 struct TEnemyWalkSmokeM : public TSimple1 {
+	TEnemyWalkSmokeM(u16 id)
+	    : TSimple1(id)
+	{
+	}
+
 	virtual bool create(Arg*); // _08
 };
 

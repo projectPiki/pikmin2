@@ -12,6 +12,8 @@ namespace title {
 struct TObjBase;
 
 namespace Pikmin {
+struct TMgr;
+
 struct TBoidParamMgr : public CNode {
 	virtual ~TBoidParamMgr(); // _08 (weak)
 
@@ -19,28 +21,29 @@ struct TBoidParamMgr : public CNode {
 	// _00-_18 = CNode
 };
 
-struct TUnit {
+struct TUnit : public TObjBase {
 	enum enumState { UNKNOWN = 0 };
 
 	TUnit();
 
 	~TUnit();
 
-	virtual void getCreatureType(); // _08 (weak)
-	virtual void isCalc();          // _0C
+	virtual u32 getCreatureType(); // _08 (weak)
+	virtual bool isCalc();         // _0C
 
 	void init(TMgr*, long);
 	void goDestination();
 	void beAttacked();
 	void alive();
-	void isAssemble();
-	void isWalk();
+	bool isAssemble();
+	bool isWalk();
 	void startState(enumState);
 	void update();
 	void updateSmoothWalk_(Vector2f&);
 	void updateEnemyReaction_();
 
-	// _00 = VTBL
+	// _00     = VTBL
+	// _00-_2C = TObjBase
 };
 
 struct TMgr : public CNode {
@@ -64,7 +67,7 @@ struct TMgr : public CNode {
 	void enemyPushOut(TObjBase*);
 	void updateCalcBoid_();
 	void isAssemble();
-	void getUnit(long);
+	TUnit* getUnit(long);
 
 	// _00     = VTBL
 	// _00-_18 = CNode

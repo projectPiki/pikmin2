@@ -72,11 +72,34 @@ struct E2DCallBack_BlinkFontColor : public E2DCallBack_Base {
 	void set(J2DTextBox*, J2DTextBox*);
 	void set(ebi::E2DFullFontColor&, ebi::E2DFullFontColor&);
 
-	E2DFullFontColor _20[2]; // _20
-	float _40;               // _40
-	float _44;               // _44
-	u8 _48;                  // _48
-	u8 _49;                  // _49
+	inline void setColors(int i, J2DTextBox* pane)
+	{
+		m_fonts[i].m_col1.set(pane->m_color1);
+		m_fonts[i].m_col2.set(pane->m_color2);
+		m_fonts[i].m_white = pane->getWhite();
+		m_fonts[i].m_black = pane->getBlack();
+	}
+
+	// needs tweaking
+	inline void setPaneColors()
+	{
+		m_isEnabled      = false;
+		J2DTextBox* pane = static_cast<J2DTextBox*>(m_pane);
+		if (pane) {
+			pane->m_color1.set(m_fonts[0].m_col1);
+			pane->m_color2.set(m_fonts[0].m_col2);
+			JUtility::TColor white = m_fonts[0].m_white;
+			pane->setWhite(white);
+			JUtility::TColor black = m_fonts[0].m_black;
+			pane->setBlack(black);
+		}
+	}
+
+	E2DFullFontColor m_fonts[2]; // _20
+	f32 _40;                     // _40
+	f32 m_speed;                 // _44
+	u8 _48;                      // _48
+	u8 _49;                      // _49
 };
 
 struct E2DCallBack_CalcAnimation : public E2DCallBack_Base {

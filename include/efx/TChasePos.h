@@ -19,6 +19,13 @@ struct TChasePos : public TSync {
 		m_effectID = effectID;
 	}
 
+	inline TChasePos(Vector3f* position, u16 effectID)
+	    : TSync()
+	    , m_position(position)
+	{
+		m_effectID = effectID;
+	}
+
 	// vtable 1: TBase
 	// vtable 2: JPAEmitterCallBack + self
 	virtual void doExecuteEmitterOperation(JPABaseEmitter*); // _38

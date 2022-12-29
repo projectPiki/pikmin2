@@ -14,11 +14,11 @@ struct JUTFont;
 
 struct JFWSystem {
 	struct CSetUpParam {
-		static const int maxStdHeaps;
-		static const u32 sysHeapSize;
-		static const u32 fifoBufSize;
-		static const u32 aramAudioBufSize;
-		static const u32 aramGraphBufSize;
+		static int maxStdHeaps;
+		static u32 sysHeapSize;
+		static u32 fifoBufSize;
+		static u32 aramAudioBufSize;
+		static u32 aramGraphBufSize;
 		static const long streamPriority;
 		static const long decompPriority;
 		static const long aPiecePriority;
@@ -28,7 +28,7 @@ struct JFWSystem {
 	};
 
 	void firstInit();
-	void init();
+	static void init();
 
 	static JKRHeap* rootHeap;
 	static JKRHeap* systemHeap;

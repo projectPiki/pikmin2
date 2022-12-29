@@ -354,7 +354,7 @@ int Obj::getStickPikminNum() { return m_stuckPikminCount - getCatchTargetNum(); 
  * Address:	8027398C
  * Size:	0003D0
  */
-Piki* Obj::getAttackableTarget()
+FakePiki* Obj::getAttackableTarget()
 {
 	Parms* parms  = static_cast<Parms*>(m_parms);
 	Vector3f dist = m_position - m_homePosition;
@@ -662,7 +662,7 @@ lbl_80273D2C:
  * Address:	80273D5C
  * Size:	000024
  */
-void Obj::catchTarget() { EnemyFunc::eatPikmin(this, nullptr); }
+int Obj::catchTarget() { EnemyFunc::eatPikmin(this, nullptr); }
 
 /*
  * --INFO--

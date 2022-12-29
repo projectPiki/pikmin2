@@ -2,9 +2,10 @@
 #define _PSM_FACTORY_H
 
 #include "PSM/Scene.h"
+#include "PSGame/SysFactory.h"
 
 namespace PSM {
-struct Factory {
+struct Factory : PSGame::SysFactory {
 	virtual SceneMgr* newSceneMgr(); // _08 (weak)
 
 	// _00 = VTBL

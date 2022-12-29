@@ -8,6 +8,9 @@
 #include "JSystem/JFW/JFWDisplay.h"
 #include "JSystem/J2D/J2DPane.h"
 #include "JSystem/JUT/JUTProcBar.h"
+#include "JSystem/JUT/JUTTexture.h"
+
+const char* name = "demoSection";
 
 /*
     Generated from dpostproc
@@ -130,7 +133,9 @@
 
 namespace Demo {
 namespace {
-static u8 sMovieIndex[] = { 0xFF, 0x00, 0x00, 0x00 };
+static s8 sMovieIndex = -1;
+
+static u8 sMovieIndexTable[8] = { 5, 6, 7, 0, 8, 9, 10, 0 };
 
 struct LogoLocation {
 	u16 x;
@@ -150,8 +155,7 @@ static LogoLocation sLogoLocate[] = {
  */
 Section::Section(JKRHeap* heap)
     : Game::BaseHIOSection(heap)
-    , m_threadCommand()
-    , _BC(0.0f)
+    , m_timer(0.0f)
 {
 }
 
@@ -160,10 +164,7 @@ Section::Section(JKRHeap* heap)
  * Address:	8044CC0C
  * Size:	000088
  */
-Section::~Section()
-{
-	// TODO: Finish
-}
+Section::~Section() { }
 
 /*
  * --INFO--
@@ -172,31 +173,31 @@ Section::~Section()
  */
 void Section::init()
 {
-	// TODO: Finish
 	sys->heapStatusStart("TitleSection::init", nullptr);
 
 	sys->heapStatusStart("JMANewSinTable", nullptr);
 	sys->heapStatusEnd("JMANewSinTable");
 
-	HIORootNode* root = new HIORootNode();
+	HIORootNode* root = new HIORootNode;
 	initHIO(root);
 
 	sys->heapStatusStart("frameBuffer", nullptr);
-	setDisplay(JFWDisplay::createManager(nullptr, m_displayHeap, JUTXfb::DoubleBuffer, false), 1);
+	setDisplay(JFWDisplay::createManager(nullptr, _1C, JUTXfb::DoubleBuffer, false), 1);
 	sys->heapStatusEnd("frameBuffer");
 
 	m_controller = new Controller(JUTGamePad::PORT_0);
 
 	sys->setFrameRate(2);
-	m_moviePlayer.init(m_displayHeap);
+	m_moviePlayer.init(_1C);
 
 	addGenNode(m_genNode);
-	m_timeStep = 0.5f;
+	_30 = 0.5f;
 
+	// this struct appears messed up
 	JUTProcBar::sManager->_10C = 0;
 	JUTProcBar::sManager->_130 = 0;
-	if (sMovieIndex[0] == -1) {
-		sMovieIndex[3] = 8 * randFloat();
+	if (sMovieIndex == -1) {
+		sMovieIndex = 8 * randFloat();
 	}
 }
 
@@ -207,13 +208,12 @@ void Section::init()
  */
 void Section::doDraw(Graphics& gfx)
 {
-	// TODO: Finish
 	m_moviePlayer.draw(gfx);
-	gfx.doJ3DAnimation();
+	gfx.m_orthoGraph.setPort();
 
-	J2DPicture picture(_1AC);
-	LogoLocation& location = sLogoLocate[sMovieIndex[0]];
-	picture.draw(0, 0, 0, location.x, location.y, location.x - location.y, location.y - location.x);
+	J2DPicture pic(m_logoTexture);
+	LogoLocation& location = sLogoLocate[sMovieIndex];
+	pic.draw(location.x, location.y, pic._020.f.x - pic._020.i.x, pic._020.f.y - pic._020.i.y, false, false, false);
 	/*
 	stwu     r1, -0x190(r1)
 	mflr     r0
@@ -283,22 +283,22 @@ void Section::doDraw(Graphics& gfx)
  */
 bool Section::doUpdate()
 {
-	_BC += sys->m_deltaTime;
+	m_timer += sys->m_deltaTime;
 
 	BaseHIOSection::doUpdate();
 	if (m_moviePlayer.isFinishPlaying()) {
-		m_isMainActive = false;
+		m_active = 0;
 	}
 
-	// TODO: WTF is going on here? Match!
-	if ((m_controller->m_padButton.m_buttonDown & ~PAD_BUTTON_B) != 0 && m_isMainActive) {
+	// closer but still weird
+	if ((u8)(m_controller->m_padButton.m_buttonDown) && m_active) {
 		PSSystem::spSysIF->playSystemSe(PSSE_SY_MENU_CANCEL, 0);
-		m_isMainActive = false;
+		m_active = 0;
 	}
 
 	m_moviePlayer.play();
 	m_moviePlayer.update();
-	return m_isMainActive;
+	return m_active;
 }
 
 /*
@@ -310,10 +310,11 @@ void Section::doExit()
 {
 	PSSystem::SceneMgr* mgr = PSSystem::getSceneMgr();
 	PSSystem::checkSceneMgr(mgr);
-
 	mgr->deleteCurrentScene();
-	if (++sMovieIndex[0] + 1 >= 8) {
-		sMovieIndex[0] = 0;
+
+	// really dumb signed/unsigned jank here
+	if ((s8)(++sMovieIndex) >= 8) {
+		sMovieIndex = 0;
 	}
 
 	m_moviePlayer.stop();
@@ -378,48 +379,10 @@ lbl_8044D058:
  */
 void Section::doLoadingStart()
 {
-	/*
-	stwu     r1, -0x20(r1)
-	mflr     r0
-	addi     r4, r13,
-"sMovieIndexTable__Q24Demo25@unnamed@demoSection_cpp@"@sda21 stw      r0,
-0x24(r1) stw      r31, 0x1c(r1) mr       r31, r3 addi     r3, r31, 0xc0 lbz r0,
-"sMovieIndex__Q24Demo25@unnamed@demoSection_cpp@"@sda21(r13) extsb    r0, r0
-	lbzx     r4, r4, r0
-	bl       load__Q24Game9THPPlayerFQ34Game9THPPlayer11EMovieIndex
-	li       r3, 0x14
-	bl       __nw__FUl
-	or.      r5, r3, r3
-	beq      lbl_8044D0FC
-	lis      r3, lbl_804ED348@ha
-	lis      r4, __vt__9IDelegate@ha
-	addi     r8, r3, lbl_804ED348@l
-	lis      r3, "__vt__25Delegate<Q24Demo7Section>"@ha
-	lwz      r7, 0(r8)
-	addi     r4, r4, __vt__9IDelegate@l
-	lwz      r6, 4(r8)
-	addi     r0, r3, "__vt__25Delegate<Q24Demo7Section>"@l
-	lwz      r3, 8(r8)
-	stw      r7, 8(r1)
-	stw      r4, 0(r5)
-	stw      r0, 0(r5)
-	stw      r31, 4(r5)
-	stw      r7, 8(r5)
-	stw      r6, 0xc(r5)
-	stw      r6, 0xc(r1)
-	stw      r3, 0x10(r1)
-	stw      r3, 0x10(r5)
+	m_moviePlayer.load((Game::THPPlayer::EMovieIndex)sMovieIndexTable[sMovieIndex]);
 
-lbl_8044D0FC:
-	lwz      r3, sys@sda21(r13)
-	addi     r4, r31, 0x48
-	bl       dvdLoadUseCallBack__6SystemFP16DvdThreadCommandP9IDelegate
-	lwz      r0, 0x24(r1)
-	lwz      r31, 0x1c(r1)
-	mtlr     r0
-	addi     r1, r1, 0x20
-	blr
-	*/
+	Delegate<Section>* delegate = new Delegate<Section>(this, loadResource);
+	sys->dvdLoadUseCallBack(&m_threadCommand, delegate);
 }
 
 /*
@@ -427,26 +390,7 @@ lbl_8044D0FC:
  * Address:	8044D11C
  * Size:	000038
  */
-bool Section::doLoading()
-{
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	mr       r4, r3
-	stw      r0, 0x14(r1)
-	addi     r4, r4, 0x48
-	lwz      r3, sys@sda21(r13)
-	bl       dvdLoadSyncNoBlock__6SystemFP16DvdThreadCommand
-	clrlwi   r0, r3, 0x18
-	cntlzw   r0, r0
-	srwi     r3, r0, 5
-	lwz      r0, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
-	return true;
-}
+bool Section::doLoading() { return sys->dvdLoadSyncNoBlock(&m_threadCommand) == 0; }
 
 /*
  * --INFO--
@@ -455,6 +399,14 @@ bool Section::doLoading()
  */
 void Section::loadResource()
 {
+	JKRArchive* arc = JKRArchive::mount("/user/yamashita/arc/demoMovieLogo_us.szs", JKRArchive::EMM_Mem, nullptr, JKRArchive::EMD_Unk1);
+	P2ASSERTLINE(428, arc);
+
+	ResTIMG* timg = static_cast<ResTIMG*>(JKRFileLoader::getGlbResource("/data/timg/pikmin2_logo.bti"));
+	P2ASSERTLINE(433, timg);
+
+	m_logoTexture = new JUTTexture(timg);
+
 	/*
 	stwu     r1, -0x20(r1)
 	mflr     r0

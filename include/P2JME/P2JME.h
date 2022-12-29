@@ -20,7 +20,7 @@ struct Mgr : public JKRDisposer {
 
 	virtual ~Mgr(); // _08
 
-	void create(JKRExpHeap*);
+	static void create(JKRExpHeap*);
 	void setupMessage();
 	void setupTex();
 	void setupFont(const char*, JKRExpHeap*);

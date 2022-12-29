@@ -16,6 +16,8 @@ struct TKageBend1 : public TSimpleMtx2 {
 struct TKageDead1 : public TChaseMtx {
 	virtual ~TKageDead1(); // _48 (weak)
 
+	void setGlobalPrmColor(Color4&);
+
 	// _00      = VTBL
 	// _00-_14  = TChaseMtx
 };

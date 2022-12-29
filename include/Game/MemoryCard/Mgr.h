@@ -88,14 +88,7 @@ struct Mgr : public MemoryCardMgr {
 	void verifyCardSerialNo(unsigned long long*, MemoryCardMgr::ECardSlot);
 	void resetError();
 
-	u8 _04[0xD4]; // _04
-	u32 _D8;      // _D8
-	u32 _DC;      // _DC
-	u32 _E0;      // _E0
-	u8 _E4;       // _E4
-	u8 _E5;       // _E5
-	u8 _E6;       // _E6
-	u8 _E7;       // _E7
+	// _00-_E8 = MemoryCardMgr
 };
 
 struct MgrCommandCopyPlayer : public MemoryCardMgrCommand {

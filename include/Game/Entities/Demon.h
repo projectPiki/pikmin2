@@ -15,14 +15,14 @@ struct Obj : public Sarai::Obj {
 	virtual ~Obj() { }                                  // _1BC (weak)
 	virtual EnemyTypeID::EEnemyTypeID getEnemyTypeID(); // _258 (weak)
 	virtual int getStickPikminNum();                    // _2FC (weak)
-	virtual Piki* getAttackableTarget();                // _300
-	virtual void catchTarget();                         // _304
+	virtual FakePiki* getAttackableTarget();            // _300
+	virtual int catchTarget();                          // _304
 	virtual void resetAttackableTimer(f32);             // _308 (weak)
 
 	// _00 		= VTBL
 	// _00-_2D8	= Sarai::Obj
-	f32 _2D8; // _2D8, attackable timer?
-	          // _2DC = PelletView
+	f32 m_attackTimer; // _2D8
+	                   // _2DC = PelletView
 };
 
 struct Mgr : public EnemyMgrBase {

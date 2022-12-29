@@ -49,7 +49,7 @@ struct JUTException : public JKRThread {
 	void printDebugInfo(JUTException::EInfoPage, unsigned short, OSContext*, unsigned long, unsigned long);
 	void readPad(unsigned long*, unsigned long*);
 	void printContext(unsigned short, OSContext*, unsigned long, unsigned long);
-	void waitTime(long);
+	static void waitTime(long);
 	void createFB();
 	static OSErrorHandler setPreUserCallback(OSErrorHandler);
 	static void appendMapFile(const char*);

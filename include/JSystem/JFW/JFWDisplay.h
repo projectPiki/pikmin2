@@ -27,7 +27,7 @@ struct JFWDisplay {
 	void clearEfb(_GXColor);
 	void clearEfb(int, int, int, int, _GXColor);
 	void calcCombinationRatio();
-	void setForOSResetSystem();
+	static void setForOSResetSystem();
 
 	// Unused/inlined:
 	void ctor_subroutine(bool);

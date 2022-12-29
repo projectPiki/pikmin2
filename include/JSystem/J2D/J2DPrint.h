@@ -4,9 +4,7 @@
 #include "types.h"
 #include "JSystem/JUT/TColor.h"
 #include "JSystem/JUT/JUTFont.h"
-
-struct J2DTextBoxVBinding;
-struct J2DTextBoxHBinding;
+#include "JSystem/J2D/J2DPane.h"
 
 struct J2DPrint {
 	struct TSize;

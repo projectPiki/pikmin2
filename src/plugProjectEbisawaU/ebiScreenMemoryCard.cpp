@@ -1,4 +1,11 @@
-#include "types.h"
+#include "ebi/Screen/TMemoryCard.h"
+#include "ebi/Screen/TResourceObserver.h"
+#include "og/newScreen/ogUtil.h"
+#include "ebi/E2DGraph.h"
+#include "System.h"
+#include "PSSystem/PSSystemIF.h"
+#include "Controller.h"
+#include "SoundID.h"
 
 /*
     Generated from dpostproc
@@ -162,127 +169,43 @@
 */
 
 namespace ebi {
-
 namespace Screen {
+
+static const char ebiScreenMemoryCardName[] = "ebiScreenMemoryCard";
 
 /*
  * --INFO--
  * Address:	........
  * Size:	00004C
  */
-TResourceObserver::TResourceObserver(ebi::Screen::TMemoryCard*)
-{
-	// UNUSED FUNCTION
-}
+TResourceObserver::TResourceObserver(ebi::Screen::TMemoryCard* owner) { m_owner = owner; }
 
 /*
  * --INFO--
  * Address:	803C2244
  * Size:	00006C
  */
-TResourceObserver::~TResourceObserver(void)
-{
-	/*
-stwu     r1, -0x10(r1)
-mflr     r0
-stw      r0, 0x14(r1)
-stw      r31, 0xc(r1)
-mr       r31, r4
-stw      r30, 8(r1)
-or.      r30, r3, r3
-beq      lbl_803C2294
-lis      r3, __vt__Q33ebi6Screen17TResourceObserver@ha
-addi     r0, r3, __vt__Q33ebi6Screen17TResourceObserver@l
-stw      r0, 0(r30)
-lwz      r3, 0x18(r30)
-bl       destroyResource__Q33ebi6Screen11TMemoryCardFv
-mr       r3, r30
-li       r4, 0
-bl       __dt__11JKRDisposerFv
-extsh.   r0, r31
-ble      lbl_803C2294
-mr       r3, r30
-bl       __dl__FPv
-
-lbl_803C2294:
-lwz      r0, 0x14(r1)
-mr       r3, r30
-lwz      r31, 0xc(r1)
-lwz      r30, 8(r1)
-mtlr     r0
-addi     r1, r1, 0x10
-blr
-	*/
-}
+TResourceObserver::~TResourceObserver() { m_owner->destroyResource(); }
 
 /*
  * --INFO--
  * Address:	803C22B0
  * Size:	0000D8
  */
-void TMemoryCard::loadResource(JKRHeap*)
+void TMemoryCard::loadResource(JKRHeap* heap)
 {
-	/*
-stwu     r1, -0x120(r1)
-mflr     r0
-lis      r5, lbl_80496270@ha
-stw      r0, 0x124(r1)
-stw      r31, 0x11c(r1)
-stw      r30, 0x118(r1)
-addi     r30, r5, lbl_80496270@l
-li       r5, 0
-stw      r29, 0x114(r1)
-mr       r29, r4
-stw      r28, 0x110(r1)
-mr       r28, r3
-li       r3, 0x1c
-bl       __nw__FUlP7JKRHeapi
-or.      r31, r3, r3
-beq      lbl_803C2304
-bl       __ct__11JKRDisposerFv
-lis      r3, __vt__Q33ebi6Screen17TResourceObserver@ha
-addi     r0, r3, __vt__Q33ebi6Screen17TResourceObserver@l
-stw      r0, 0(r31)
-stw      r28, 0x18(r31)
+	TResourceObserver* resource = new (heap, 0) TResourceObserver(this);
+	sys->heapStatusStart("TScreenMemoryCard::loadResource", nullptr);
 
-lbl_803C2304:
-lwz      r3, sys@sda21(r13)
-addi     r4, r30, 0x14
-li       r5, 0
-bl       heapStatusStart__6SystemFPcP7JKRHeap
-addi     r3, r1, 8
-addi     r4, r30, 0x34
-bl       makeLanguageResName__Q22og9newScreenFPcPCc
-mr       r5, r29
-addi     r3, r1, 8
-li       r4, 1
-li       r6, 1
-bl
-mount__10JKRArchiveFPCcQ210JKRArchive10EMountModeP7JKRHeapQ210JKRArchive15EMountDirection
-or.      r31, r3, r3
-bne      lbl_803C2350
-addi     r3, r30, 0x44
-addi     r5, r30, 0x5c
-li       r4, 0x36
-crclr    6
-bl       panic_f__12JUTExceptionFPCciPCce
+	char buf[264];
+	og::newScreen::makeLanguageResName(buf, "memory_card.szs");
 
-lbl_803C2350:
-lwz      r3, sys@sda21(r13)
-addi     r4, r30, 0x14
-bl       heapStatusEnd__6SystemFPc
-mr       r3, r28
-mr       r4, r31
-bl       setArchive__Q33ebi6Screen11TMemoryCardFP10JKRArchive
-lwz      r0, 0x124(r1)
-lwz      r31, 0x11c(r1)
-lwz      r30, 0x118(r1)
-lwz      r29, 0x114(r1)
-lwz      r28, 0x110(r1)
-mtlr     r0
-addi     r1, r1, 0x120
-blr
-	*/
+	JKRArchive* arc = JKRArchive::mount(buf, JKRArchive::EMM_Mem, heap, JKRArchive::EMD_Unk1);
+
+	P2ASSERTLINE(54, arc);
+
+	sys->heapStatusEnd("TScreenMemoryCard::loadResource");
+	setArchive(arc);
 }
 
 /*
@@ -290,243 +213,62 @@ blr
  * Address:	803C2388
  * Size:	00039C
  */
-void TMemoryCard::setArchive(JKRArchive*)
+void TMemoryCard::setArchive(JKRArchive* arc)
 {
-	/*
-stwu     r1, -0x20(r1)
-mflr     r0
-lis      r5, lbl_80496270@ha
-stw      r0, 0x24(r1)
-stw      r31, 0x1c(r1)
-addi     r31, r5, lbl_80496270@l
-li       r5, 0
-stw      r30, 0x18(r1)
-stw      r29, 0x14(r1)
-mr       r29, r4
-addi     r4, r31, 0x68
-stw      r28, 0x10(r1)
-mr       r28, r3
-lwz      r3, sys@sda21(r13)
-bl       heapStatusStart__6SystemFPcP7JKRHeap
-li       r3, 0x148
-bl       __nw__FUl
-or.      r0, r3, r3
-beq      lbl_803C23DC
-bl       __ct__Q29P2DScreen10Mgr_tuningFv
-mr       r0, r3
+	sys->heapStatusStart("TScreenMemoryCard::setArchive", nullptr);
 
-lbl_803C23DC:
-stw      r0, 0x1c(r28)
-mr       r6, r29
-addi     r4, r31, 0x88
-lis      r5, 0x110
-lwz      r3, 0x1c(r28)
-bl       set__9J2DScreenFPCcUlP10JKRArchive
-lis      r4, 0x735F3030@ha
-lwz      r3, 0x1c(r28)
-addi     r6, r4, 0x735F3030@l
-li       r5, 0x7965
-bl       E2DScreen_searchAssert__3ebiFP9J2DScreenUx
-stw      r3, 0x20(r28)
-lis      r3, 0x6F5F3030@ha
-addi     r6, r3, 0x6F5F3030@l
-li       r5, 0x6e
-lwz      r3, 0x1c(r28)
-bl       E2DScreen_searchAssert__3ebiFP9J2DScreenUx
-stw      r3, 0x24(r28)
-lis      r5, 0x65726E31@ha
-lis      r4, 0x70617474@ha
-lwz      r3, 0x1c(r28)
-addi     r6, r5, 0x65726E31@l
-addi     r5, r4, 0x70617474@l
-bl       E2DScreen_searchAssert__3ebiFP9J2DScreenUx
-stw      r3, 0x28(r28)
-lis      r5, 0x65726E32@ha
-lis      r4, 0x70617474@ha
-lwz      r3, 0x1c(r28)
-addi     r6, r5, 0x65726E32@l
-addi     r5, r4, 0x70617474@l
-bl       E2DScreen_searchAssert__3ebiFP9J2DScreenUx
-stw      r3, 0x2c(r28)
-lis      r3, 0x6C5F3030@ha
-addi     r6, r3, 0x6C5F3030@l
-li       r5, 0x69
-lwz      r3, 0x1c(r28)
-bl       E2DScreen_searchAssert__3ebiFP9J2DScreenUx
-stw      r3, 0x30(r28)
-lis      r3, 0x725F3030@ha
-addi     r6, r3, 0x725F3030@l
-li       r5, 0x69
-lwz      r3, 0x1c(r28)
-bl       E2DScreen_searchAssert__3ebiFP9J2DScreenUx
-stw      r3, 0x38(r28)
-lis      r3, 0x6C5F3031@ha
-addi     r6, r3, 0x6C5F3031@l
-li       r5, 0x69
-lwz      r3, 0x1c(r28)
-bl       E2DScreen_searchAssert__3ebiFP9J2DScreenUx
-stw      r3, 0x34(r28)
-lis      r3, 0x725F3031@ha
-addi     r6, r3, 0x725F3031@l
-li       r5, 0x69
-lwz      r3, 0x1c(r28)
-bl       E2DScreen_searchAssert__3ebiFP9J2DScreenUx
-stw      r3, 0x3c(r28)
-lis      r5, 0x6F6C6F72@ha
-lis      r4, 0x00735F63@ha
-lwz      r3, 0x1c(r28)
-addi     r6, r5, 0x6F6C6F72@l
-addi     r5, r4, 0x00735F63@l
-bl       E2DScreen_searchAssert__3ebiFP9J2DScreenUx
-lwz      r4, 0x20(r28)
-li       r5, 0x31
-li       r0, 0
-mr       r30, r3
-stw      r5, 0x1c(r4)
-stw      r0, 0x18(r4)
-lwz      r3, 0x24(r28)
-stw      r5, 0x1c(r3)
-stw      r0, 0x18(r3)
-lwz      r3, 0x28(r28)
-stw      r5, 0x1c(r3)
-stw      r0, 0x18(r3)
-lwz      r3, 0x2c(r28)
-stw      r5, 0x1c(r3)
-stw      r0, 0x18(r3)
-lwz      r3, 0x1c(r28)
-mr       r4, r3
-bl       E2DPane_setTreeCallBackMessage__3ebiFPQ29P2DScreen3MgrP7J2DPane
-lwz      r3, 0x1c(r28)
-bl       E2DPane_setTreeShow__3ebiFP7J2DPane
-li       r0, 0
-li       r4, 0
-stb      r0, 0xb0(r30)
-lwz      r3, 0x30(r28)
-lwz      r12, 0(r3)
-lwz      r12, 0x24(r12)
-mtctr    r12
-bctrl
-lwz      r3, 0x38(r28)
-li       r4, 0
-lwz      r12, 0(r3)
-lwz      r12, 0x24(r12)
-mtctr    r12
-bctrl
-lwz      r3, 0x34(r28)
-li       r4, 0
-lwz      r12, 0(r3)
-lwz      r12, 0x24(r12)
-mtctr    r12
-bctrl
-lwz      r3, 0x3c(r28)
-li       r4, 0
-lwz      r12, 0(r3)
-lwz      r12, 0x24(r12)
-mtctr    r12
-bctrl
-lwz      r3, 0x1c(r28)
-addi     r5, r28, 0xd8
-mr       r4, r3
-bl       addCallBackPane__Q29P2DScreen3MgrFP7J2DPanePQ29P2DScreen4Node
-lwz      r3, 0x1c(r28)
-addi     r5, r28, 0x114
-lwz      r4, 0x28(r28)
-bl       addCallBackPane__Q29P2DScreen3MgrFP7J2DPanePQ29P2DScreen4Node
-lwz      r3, 0x1c(r28)
-addi     r5, r28, 0x150
-lwz      r4, 0x2c(r28)
-bl       addCallBackPane__Q29P2DScreen3MgrFP7J2DPanePQ29P2DScreen4Node
-lwz      r3, 0x1c(r28)
-addi     r5, r28, 0x18c
-lwz      r4, 0x20(r28)
-bl       addCallBackPane__Q29P2DScreen3MgrFP7J2DPanePQ29P2DScreen4Node
-lwz      r3, 0x1c(r28)
-addi     r5, r28, 0x1c8
-lwz      r4, 0x24(r28)
-bl       addCallBackPane__Q29P2DScreen3MgrFP7J2DPanePQ29P2DScreen4Node
-lwz      r3, 0x1c(r28)
-addi     r5, r28, 0x204
-mr       r4, r3
-bl       addCallBackPane__Q29P2DScreen3MgrFP7J2DPanePQ29P2DScreen4Node
-lis      r6, 0x0001869F@ha
-mr       r5, r29
-addi     r3, r28, 0xd8
-addi     r4, r31, 0x98
-addi     r7, r6, 0x0001869F@l
-li       r6, 0
-bl       loadAnm__Q23ebi19E2DCallBack_AnmBaseFPcP10JKRArchivell
-lis      r6, 0x0001869F@ha
-mr       r5, r29
-addi     r3, r28, 0x114
-addi     r4, r31, 0xa8
-addi     r7, r6, 0x0001869F@l
-li       r6, 0
-bl       loadAnm__Q23ebi19E2DCallBack_AnmBaseFPcP10JKRArchivell
-lis      r6, 0x0001869F@ha
-mr       r5, r29
-addi     r3, r28, 0x150
-addi     r4, r31, 0xc4
-addi     r7, r6, 0x0001869F@l
-li       r6, 0
-bl       loadAnm__Q23ebi19E2DCallBack_AnmBaseFPcP10JKRArchivell
-lis      r6, 0x0001869F@ha
-mr       r5, r29
-addi     r3, r28, 0x18c
-addi     r4, r31, 0xe0
-addi     r7, r6, 0x0001869F@l
-li       r6, 0
-bl       loadAnm__Q23ebi19E2DCallBack_AnmBaseFPcP10JKRArchivell
-lis      r6, 0x0001869F@ha
-mr       r5, r29
-addi     r3, r28, 0x1c8
-addi     r4, r31, 0xf4
-addi     r7, r6, 0x0001869F@l
-li       r6, 0
-bl       loadAnm__Q23ebi19E2DCallBack_AnmBaseFPcP10JKRArchivell
-lwz      r5, sys@sda21(r13)
-addi     r3, r28, 0xd8
-lfs      f1, lbl_8051F8A8@sda21(r2)
-li       r4, 2
-lfs      f0, 0x54(r5)
-li       r5, 1
-fmuls    f1, f1, f0
-bl       play__Q23ebi19E2DCallBack_AnmBaseFf10J3DAnmAttrb
-lwz      r4, 0x24(r28)
-mr       r5, r30
-addi     r3, r28, 0x40
-bl       set__Q23ebi26E2DCallBack_BlinkFontColorFP10J2DTextBoxP10J2DTextBox
-lwz      r4, 0x24(r28)
-mr       r5, r30
-addi     r3, r28, 0x8c
-bl       set__Q23ebi26E2DCallBack_BlinkFontColorFP10J2DTextBoxP10J2DTextBox
-lwz      r3, 0x1c(r28)
-addi     r5, r28, 0x40
-lwz      r4, 0x20(r28)
-bl       addCallBackPane__Q29P2DScreen3MgrFP7J2DPanePQ29P2DScreen4Node
-lwz      r3, 0x1c(r28)
-addi     r5, r28, 0x8c
-lwz      r4, 0x24(r28)
-bl       addCallBackPane__Q29P2DScreen3MgrFP7J2DPanePQ29P2DScreen4Node
-lwz      r3, 0x34(r28)
-addi     r4, r31, 0x68
-lwz      r0, 0x30(r28)
-stw      r0, 0x254(r28)
-stw      r3, 0x258(r28)
-lwz      r3, 0x3c(r28)
-lwz      r0, 0x38(r28)
-stw      r0, 0x28c(r28)
-stw      r3, 0x290(r28)
-lwz      r3, sys@sda21(r13)
-bl       heapStatusEnd__6SystemFPc
-lwz      r0, 0x24(r1)
-lwz      r31, 0x1c(r1)
-lwz      r30, 0x18(r1)
-lwz      r29, 0x14(r1)
-lwz      r28, 0x10(r1)
-mtlr     r0
-addi     r1, r1, 0x20
-blr
-	*/
+	m_screenMain = new P2DScreen::Mgr_tuning;
+	m_screenMain->set("memory_card.blo", 0x1100000, arc);
+
+	m_paneMsg1 = static_cast<J2DTextBox*>(E2DScreen_searchAssert(m_screenMain, 'yes_00'));
+	m_paneMsg2 = static_cast<J2DTextBox*>(E2DScreen_searchAssert(m_screenMain, 'no_00'));
+	m_paneMsg3 = static_cast<J2DTextBox*>(E2DScreen_searchAssert(m_screenMain, 'pattern1'));
+	m_paneMsg4 = static_cast<J2DTextBox*>(E2DScreen_searchAssert(m_screenMain, 'pattern2'));
+
+	m_pane_il00      = E2DScreen_searchAssert(m_screenMain, 'il_00');
+	m_pane_ir00      = E2DScreen_searchAssert(m_screenMain, 'ir_00');
+	m_pane_il01      = E2DScreen_searchAssert(m_screenMain, 'il_01');
+	m_pane_ir01      = E2DScreen_searchAssert(m_screenMain, 'ir_01');
+	J2DTextBox* temp = static_cast<J2DTextBox*>(E2DScreen_searchAssert(m_screenMain, 's_color'));
+
+	m_paneMsg1->setMsgID('1');
+	m_paneMsg2->setMsgID('1');
+	m_paneMsg3->setMsgID('1');
+	m_paneMsg4->setMsgID('1');
+
+	E2DPane_setTreeCallBackMessage(m_screenMain, m_screenMain);
+	E2DPane_setTreeShow(m_screenMain);
+	temp->hide();
+
+	m_pane_il00->setAlpha(0);
+	m_pane_ir00->setAlpha(0);
+	m_pane_il01->setAlpha(0);
+	m_pane_ir01->setAlpha(0);
+
+	m_screenMain->addCallBackPane(m_screenMain, &m_anims[0]);
+	m_screenMain->addCallBackPane(m_paneMsg3, &m_anims[1]);
+	m_screenMain->addCallBackPane(m_paneMsg4, &m_anims[2]);
+	m_screenMain->addCallBackPane(m_paneMsg1, &m_anims[3]);
+	m_screenMain->addCallBackPane(m_paneMsg2, &m_anims[4]);
+	m_screenMain->addCallBackPane(m_screenMain, &m_calcAnim);
+
+	m_anims[0].loadAnm("memory_card.bck", arc, 0, 99999);
+	m_anims[1].loadAnm("memory_card_pattern1.bck", arc, 0, 99999);
+	m_anims[2].loadAnm("memory_card_pattern2.bck", arc, 0, 99999);
+	m_anims[3].loadAnm("memory_card_yes.bck", arc, 0, 99999);
+	m_anims[4].loadAnm("memory_card_no.bck", arc, 0, 99999);
+	m_anims[0].play(sys->m_deltaTime * 60.0f, (J3DAnmAttr)2, true);
+
+	m_blinkFont[0].set(m_paneMsg2, temp);
+	m_blinkFont[1].set(m_paneMsg2, temp);
+
+	m_screenMain->addCallBackPane(m_paneMsg1, &m_blinkFont[0]);
+	m_screenMain->addCallBackPane(m_paneMsg2, &m_blinkFont[1]);
+
+	m_cursor1.setPanes(m_pane_il00, m_pane_il01);
+	m_cursor2.setPanes(m_pane_ir00, m_pane_ir01);
+
+	sys->heapStatusEnd("TScreenMemoryCard::setArchive");
 }
 
 } // namespace Screen
@@ -536,121 +278,10 @@ blr
  * Address:	803C2724
  * Size:	0001BC
  */
-void E2DCallBack_BlinkFontColor::set(J2DTextBox*, J2DTextBox*)
+void E2DCallBack_BlinkFontColor::set(J2DTextBox* pane1, J2DTextBox* pane2)
 {
-	/*
-	stwu     r1, -0x40(r1)
-	mflr     r0
-	stw      r0, 0x44(r1)
-	stw      r31, 0x3c(r1)
-	mr       r31, r5
-	stw      r30, 0x38(r1)
-	mr       r30, r3
-	addi     r3, r1, 0x20
-	stw      r29, 0x34(r1)
-	mr       r29, r4
-	lwz      r0, 0x104(r4)
-	stw      r0, 0x18(r1)
-	lbz      r5, 0x18(r1)
-	lbz      r0, 0x19(r1)
-	stb      r5, 0x20(r30)
-	lbz      r5, 0x1a(r1)
-	stb      r0, 0x21(r30)
-	lbz      r0, 0x1b(r1)
-	stb      r5, 0x22(r30)
-	stb      r0, 0x23(r30)
-	lwz      r0, 0x108(r4)
-	stw      r0, 0x1c(r1)
-	lbz      r5, 0x1c(r1)
-	lbz      r0, 0x1d(r1)
-	stb      r5, 0x24(r30)
-	lbz      r5, 0x1e(r1)
-	stb      r0, 0x25(r30)
-	lbz      r0, 0x1f(r1)
-	stb      r5, 0x26(r30)
-	stb      r0, 0x27(r30)
-	lwz      r12, 0(r4)
-	lwz      r12, 0xb4(r12)
-	mtctr    r12
-	bctrl
-	lbz      r0, 0x20(r1)
-	mr       r4, r29
-	addi     r3, r1, 0x24
-	stb      r0, 0x28(r30)
-	lbz      r0, 0x21(r1)
-	stb      r0, 0x29(r30)
-	lbz      r0, 0x22(r1)
-	stb      r0, 0x2a(r30)
-	lbz      r0, 0x23(r1)
-	stb      r0, 0x2b(r30)
-	lwz      r12, 0(r29)
-	lwz      r12, 0xb0(r12)
-	mtctr    r12
-	bctrl
-	lbz      r0, 0x24(r1)
-	mr       r4, r31
-	addi     r3, r1, 0x10
-	stb      r0, 0x2c(r30)
-	lbz      r0, 0x25(r1)
-	stb      r0, 0x2d(r30)
-	lbz      r0, 0x26(r1)
-	stb      r0, 0x2e(r30)
-	lbz      r0, 0x27(r1)
-	stb      r0, 0x2f(r30)
-	lwz      r0, 0x104(r31)
-	stw      r0, 8(r1)
-	lbz      r5, 8(r1)
-	lbz      r0, 9(r1)
-	stb      r5, 0x30(r30)
-	lbz      r5, 0xa(r1)
-	stb      r0, 0x31(r30)
-	lbz      r0, 0xb(r1)
-	stb      r5, 0x32(r30)
-	stb      r0, 0x33(r30)
-	lwz      r0, 0x108(r31)
-	stw      r0, 0xc(r1)
-	lbz      r5, 0xc(r1)
-	lbz      r0, 0xd(r1)
-	stb      r5, 0x34(r30)
-	lbz      r5, 0xe(r1)
-	stb      r0, 0x35(r30)
-	lbz      r0, 0xf(r1)
-	stb      r5, 0x36(r30)
-	stb      r0, 0x37(r30)
-	lwz      r12, 0(r31)
-	lwz      r12, 0xb4(r12)
-	mtctr    r12
-	bctrl
-	lbz      r0, 0x10(r1)
-	mr       r4, r31
-	addi     r3, r1, 0x14
-	stb      r0, 0x38(r30)
-	lbz      r0, 0x11(r1)
-	stb      r0, 0x39(r30)
-	lbz      r0, 0x12(r1)
-	stb      r0, 0x3a(r30)
-	lbz      r0, 0x13(r1)
-	stb      r0, 0x3b(r30)
-	lwz      r12, 0(r31)
-	lwz      r12, 0xb0(r12)
-	mtctr    r12
-	bctrl
-	lbz      r0, 0x14(r1)
-	stb      r0, 0x3c(r30)
-	lbz      r0, 0x15(r1)
-	stb      r0, 0x3d(r30)
-	lbz      r0, 0x16(r1)
-	stb      r0, 0x3e(r30)
-	lbz      r0, 0x17(r1)
-	stb      r0, 0x3f(r30)
-	lwz      r31, 0x3c(r1)
-	lwz      r30, 0x38(r1)
-	lwz      r29, 0x34(r1)
-	lwz      r0, 0x44(r1)
-	mtlr     r0
-	addi     r1, r1, 0x40
-	blr
-	*/
+	setColors(0, pane1);
+	setColors(1, pane2);
 }
 
 namespace Screen {
@@ -660,16 +291,12 @@ namespace Screen {
  * Address:	803C28E0
  * Size:	000018
  */
-void TMemoryCard::destroyResource(void)
+void TMemoryCard::destroyResource()
 {
-	/*
-li       r0, 0
-stw      r0, 0x20(r3)
-stw      r0, 0x24(r3)
-stw      r0, 0x28(r3)
-stw      r0, 0x2c(r3)
-blr
-	*/
+	m_paneMsg1 = nullptr;
+	m_paneMsg2 = nullptr;
+	m_paneMsg3 = nullptr;
+	m_paneMsg4 = nullptr;
 }
 
 /*
@@ -677,1301 +304,432 @@ blr
  * Address:	803C28F8
  * Size:	001208
  */
-void TMemoryCard::open(long)
+void TMemoryCard::open(long type)
 {
-	/*
-stwu     r1, -0x10(r1)
-mflr     r0
-stw      r0, 0x14(r1)
-li       r0, 0
-stw      r31, 0xc(r1)
-mr       r31, r3
-stw      r30, 8(r1)
-or.      r30, r4, r4
-blt      lbl_803C2928
-cmpwi    r30, 0x2c
-bge      lbl_803C2928
-li       r0, 1
+	P2ASSERTBOUNDSLINE(162, 0, type, 44);
+	m_isPlaySavingSE = false;
+	m_msgAlpha       = 30;
+	m_alphaMod       = 30;
 
-lbl_803C2928:
-clrlwi.  r0, r0, 0x18
-bne      lbl_803C294C
-lis      r3, lbl_804962B4@ha
-lis      r5, lbl_804962CC@ha
-addi     r3, r3, lbl_804962B4@l
-li       r4, 0xa2
-addi     r5, r5, lbl_804962CC@l
-crclr    6
-bl       panic_f__12JUTExceptionFPCciPCce
+	switch (type) {
+	case 0:
+		startState(MEMCARD_Finish);
+		m_msgAlpha = 0;
+		m_alphaMod = 0;
+		break;
 
-lbl_803C294C:
-li       r3, 0
-li       r0, 0x1e
-stb      r3, 0x294(r31)
-cmplwi   r30, 0x2b
-stw      r0, 0x10(r31)
-stw      r0, 0x14(r31)
-bgt      lbl_803C3AE8
-lis      r3, lbl_804E7A08@ha
-slwi     r0, r30, 2
-addi     r3, r3, lbl_804E7A08@l
-lwzx     r0, r3, r0
-mtctr    r0
-bctr
-.global  lbl_803C2980
+	case 1:
+		PSSystem::spSysIF->playSystemSe(PSSE_SY_MEMORYCARD_ERROR, 0);
+		m_paneMsg3->setMsgID(
+		    '5450_00'); // "No Memory Card found in Slot A. Please check to make sure you have inserted a Memory Card properly."
+		m_paneMsg4->setMsgID(
+		    '5450_00'); // "No Memory Card found in Slot A. Please check to make sure you have inserted a Memory Card properly."
+		m_paneMsg1->setMsgID(
+		    '5450_00'); // "No Memory Card found in Slot A. Please check to make sure you have inserted a Memory Card properly."
+		m_paneMsg2->setMsgID(
+		    '5450_00'); // "No Memory Card found in Slot A. Please check to make sure you have inserted a Memory Card properly."
+		startState(MEMCARD_Message);
+		break;
 
-lbl_803C2980:
-mr       r3, r31
-li       r4, 3
-bl
-startState__Q33ebi6Screen11TMemoryCardFQ43ebi6Screen11TMemoryCard9enumState li
-r0, 0 stw      r0, 0x10(r31) stw      r0, 0x14(r31) b        lbl_803C3AE8
-.global  lbl_803C299C
+	case 2:
+		PSSystem::spSysIF->playSystemSe(PSSE_SY_MEMORYCARD_ERROR, 0);
+		m_paneMsg3->setMsgID('5451_00'); // "The Memory Card in Slot A is damaged and cannot be used."
+		m_paneMsg4->setMsgID('5451_00'); // "The Memory Card in Slot A is damaged and cannot be used."
+		m_paneMsg1->setMsgID('5451_00'); // "The Memory Card in Slot A is damaged and cannot be used."
+		m_paneMsg2->setMsgID('5451_00'); // "The Memory Card in Slot A is damaged and cannot be used."
+		startState(MEMCARD_Message);
+		break;
 
-lbl_803C299C:
-lwz      r3, spSysIF__8PSSystem@sda21(r13)
-li       r4, 0x180d
-li       r5, 0
-bl       playSystemSe__Q28PSSystem5SysIFFUlUl
-lis      r3, 0x305F3030@ha
-lwz      r5, 0x28(r31)
-addi     r6, r3, 0x305F3030@l
-lis      r3, 0x00353435@ha
-stw      r6, 0x1c(r5)
-addi     r0, r3, 0x00353435@l
-mr       r3, r31
-li       r4, 2
-stw      r0, 0x18(r5)
-lwz      r5, 0x2c(r31)
-stw      r6, 0x1c(r5)
-stw      r0, 0x18(r5)
-lwz      r5, 0x20(r31)
-stw      r6, 0x1c(r5)
-stw      r0, 0x18(r5)
-lwz      r5, 0x24(r31)
-stw      r6, 0x1c(r5)
-stw      r0, 0x18(r5)
-bl
-startState__Q33ebi6Screen11TMemoryCardFQ43ebi6Screen11TMemoryCard9enumState b
-lbl_803C3AE8 .global  lbl_803C29FC
+	case 3:
+		PSSystem::spSysIF->playSystemSe(PSSE_SY_MEMORYCARD_ERROR, 0);
+		m_paneMsg3->setMsgID('5452_00'); // "The device inserted in Slot A is not a Memory Card."
+		m_paneMsg4->setMsgID('5452_00'); // "The device inserted in Slot A is not a Memory Card."
+		m_paneMsg1->setMsgID('5452_00'); // "The device inserted in Slot A is not a Memory Card."
+		m_paneMsg2->setMsgID('5452_00'); // "The device inserted in Slot A is not a Memory Card."
+		startState(MEMCARD_Message);
+		break;
 
-lbl_803C29FC:
-lwz      r3, spSysIF__8PSSystem@sda21(r13)
-li       r4, 0x180d
-li       r5, 0
-bl       playSystemSe__Q28PSSystem5SysIFFUlUl
-lis      r3, 0x315F3030@ha
-lwz      r5, 0x28(r31)
-addi     r6, r3, 0x315F3030@l
-lis      r3, 0x00353435@ha
-stw      r6, 0x1c(r5)
-addi     r0, r3, 0x00353435@l
-mr       r3, r31
-li       r4, 2
-stw      r0, 0x18(r5)
-lwz      r5, 0x2c(r31)
-stw      r6, 0x1c(r5)
-stw      r0, 0x18(r5)
-lwz      r5, 0x20(r31)
-stw      r6, 0x1c(r5)
-stw      r0, 0x18(r5)
-lwz      r5, 0x24(r31)
-stw      r6, 0x1c(r5)
-stw      r0, 0x18(r5)
-bl
-startState__Q33ebi6Screen11TMemoryCardFQ43ebi6Screen11TMemoryCard9enumState b
-lbl_803C3AE8 .global  lbl_803C2A5C
+	case 4:
+		PSSystem::spSysIF->playSystemSe(PSSE_SY_MEMORYCARD_ERROR, 0);
+		m_paneMsg3->setMsgID('5453_00'); // "The Memory Card in Slot A cannot be used."
+		m_paneMsg4->setMsgID('5453_00'); // "The Memory Card in Slot A cannot be used."
+		m_paneMsg1->setMsgID('5453_00'); // "The Memory Card in Slot A cannot be used."
+		m_paneMsg2->setMsgID('5453_00'); // "The Memory Card in Slot A cannot be used."
+		startState(MEMCARD_Message);
+		break;
 
-lbl_803C2A5C:
-lwz      r3, spSysIF__8PSSystem@sda21(r13)
-li       r4, 0x180d
-li       r5, 0
-bl       playSystemSe__Q28PSSystem5SysIFFUlUl
-lis      r3, 0x325F3030@ha
-lwz      r5, 0x28(r31)
-addi     r6, r3, 0x325F3030@l
-lis      r3, 0x00353435@ha
-stw      r6, 0x1c(r5)
-addi     r0, r3, 0x00353435@l
-mr       r3, r31
-li       r4, 2
-stw      r0, 0x18(r5)
-lwz      r5, 0x2c(r31)
-stw      r6, 0x1c(r5)
-stw      r0, 0x18(r5)
-lwz      r5, 0x20(r31)
-stw      r6, 0x1c(r5)
-stw      r0, 0x18(r5)
-lwz      r5, 0x24(r31)
-stw      r6, 0x1c(r5)
-stw      r0, 0x18(r5)
-bl
-startState__Q33ebi6Screen11TMemoryCardFQ43ebi6Screen11TMemoryCard9enumState b
-lbl_803C3AE8 .global  lbl_803C2ABC
+	case 5:
+		PSSystem::spSysIF->playSystemSe(PSSE_SY_MEMORYCARD_ERROR, 0);
+		m_paneMsg3->setMsgID('0000_00');
+		m_paneMsg4->setMsgID('5454_00'); // "The Memory Card in Slot A is corrupted and must be formatted. Format the Memory Card now?"
+		m_paneMsg1->setMsgID('5455_00'); // "Yes"
+		m_paneMsg2->setMsgID('5456_00'); // "No"
+		setSelect_(false);
+		startState(MEMCARD_Selection);
+		break;
 
-lbl_803C2ABC:
-lwz      r3, spSysIF__8PSSystem@sda21(r13)
-li       r4, 0x180d
-li       r5, 0
-bl       playSystemSe__Q28PSSystem5SysIFFUlUl
-lis      r3, 0x335F3030@ha
-lwz      r5, 0x28(r31)
-addi     r6, r3, 0x335F3030@l
-lis      r3, 0x00353435@ha
-stw      r6, 0x1c(r5)
-addi     r0, r3, 0x00353435@l
-mr       r3, r31
-li       r4, 2
-stw      r0, 0x18(r5)
-lwz      r5, 0x2c(r31)
-stw      r6, 0x1c(r5)
-stw      r0, 0x18(r5)
-lwz      r5, 0x20(r31)
-stw      r6, 0x1c(r5)
-stw      r0, 0x18(r5)
-lwz      r5, 0x24(r31)
-stw      r6, 0x1c(r5)
-stw      r0, 0x18(r5)
-bl
-startState__Q33ebi6Screen11TMemoryCardFQ43ebi6Screen11TMemoryCard9enumState b
-lbl_803C3AE8 .global  lbl_803C2B1C
+	case 6:
+		PSSystem::spSysIF->playSystemSe(PSSE_SY_MEMORYCARD_ERROR, 0);
+		m_paneMsg3->setMsgID(
+		    '5457_00'); // "The Memory Card in Slot A does not have enough free space. Pikmin 2 requires 1 File and 27 Blocks to save."
+		m_paneMsg4->setMsgID(
+		    '5457_00'); // "The Memory Card in Slot A does not have enough free space. Pikmin 2 requires 1 File and 27 Blocks to save."
+		m_paneMsg1->setMsgID(
+		    '5457_00'); // "The Memory Card in Slot A does not have enough free space. Pikmin 2 requires 1 File and 27 Blocks to save."
+		m_paneMsg2->setMsgID(
+		    '5457_00'); // "The Memory Card in Slot A does not have enough free space. Pikmin 2 requires 1 File and 27 Blocks to save."
+		startState(MEMCARD_Message);
+		break;
 
-lbl_803C2B1C:
-lwz      r3, spSysIF__8PSSystem@sda21(r13)
-li       r4, 0x180d
-li       r5, 0
-bl       playSystemSe__Q28PSSystem5SysIFFUlUl
-lis      r4, 0x305F3030@ha
-lwz      r3, 0x28(r31)
-addi     r0, r4, 0x305F3030@l
-lis      r4, 0x00303030@ha
-stw      r0, 0x1c(r3)
-addi     r0, r4, 0x00303030@l
-lis      r5, 0x345F3030@ha
-lis      r6, 0x00353435@ha
-stw      r0, 0x18(r3)
-lis      r4, 0x355F3030@ha
-lis      r3, 0x365F3030@ha
-addi     r8, r5, 0x345F3030@l
-lwz      r5, 0x2c(r31)
-addi     r7, r6, 0x00353435@l
-addi     r6, r4, 0x355F3030@l
-addi     r0, r3, 0x365F3030@l
-stw      r8, 0x1c(r5)
-mr       r3, r31
-li       r4, 0
-stw      r7, 0x18(r5)
-lwz      r5, 0x20(r31)
-stw      r6, 0x1c(r5)
-stw      r7, 0x18(r5)
-lwz      r5, 0x24(r31)
-stw      r0, 0x1c(r5)
-stw      r7, 0x18(r5)
-bl       setSelect___Q33ebi6Screen11TMemoryCardFb
-mr       r3, r31
-li       r4, 1
-bl
-startState__Q33ebi6Screen11TMemoryCardFQ43ebi6Screen11TMemoryCard9enumState b
-lbl_803C3AE8 .global  lbl_803C2BA8
+	case 7:
+		m_paneMsg3->setMsgID('5458_00'); // "Please manage the Memory Card on the Memory Card Screen."
+		m_paneMsg4->setMsgID('5458_00'); // "Please manage the Memory Card on the Memory Card Screen."
+		m_paneMsg1->setMsgID('5458_00'); // "Please manage the Memory Card on the Memory Card Screen."
+		m_paneMsg2->setMsgID('5458_00'); // "Please manage the Memory Card on the Memory Card Screen."
+		startState((enumState)2);
+		break;
 
-lbl_803C2BA8:
-lwz      r3, spSysIF__8PSSystem@sda21(r13)
-li       r4, 0x180d
-li       r5, 0
-bl       playSystemSe__Q28PSSystem5SysIFFUlUl
-lis      r3, 0x375F3030@ha
-lwz      r5, 0x28(r31)
-addi     r6, r3, 0x375F3030@l
-lis      r3, 0x00353435@ha
-stw      r6, 0x1c(r5)
-addi     r0, r3, 0x00353435@l
-mr       r3, r31
-li       r4, 2
-stw      r0, 0x18(r5)
-lwz      r5, 0x2c(r31)
-stw      r6, 0x1c(r5)
-stw      r0, 0x18(r5)
-lwz      r5, 0x20(r31)
-stw      r6, 0x1c(r5)
-stw      r0, 0x18(r5)
-lwz      r5, 0x24(r31)
-stw      r6, 0x1c(r5)
-stw      r0, 0x18(r5)
-bl
-startState__Q33ebi6Screen11TMemoryCardFQ43ebi6Screen11TMemoryCard9enumState b
-lbl_803C3AE8 .global  lbl_803C2C08
+	case 8:
+		PSSystem::spSysIF->playSystemSe(PSSE_SY_MEMORYCARD_ERROR, 0);
+		m_paneMsg3->setMsgID('5459_00'); // "The Memory Card could not be formatted."
+		m_paneMsg4->setMsgID('5459_00'); // "The Memory Card could not be formatted."
+		m_paneMsg1->setMsgID('5459_00'); // "The Memory Card could not be formatted."
+		m_paneMsg2->setMsgID('5459_00'); // "The Memory Card could not be formatted."
+		startState(MEMCARD_Message);
+		break;
 
-lbl_803C2C08:
-lis      r3, 0x385F3030@ha
-lwz      r5, 0x28(r31)
-addi     r6, r3, 0x385F3030@l
-lis      r3, 0x00353435@ha
-stw      r6, 0x1c(r5)
-addi     r0, r3, 0x00353435@l
-mr       r3, r31
-li       r4, 2
-stw      r0, 0x18(r5)
-lwz      r5, 0x2c(r31)
-stw      r6, 0x1c(r5)
-stw      r0, 0x18(r5)
-lwz      r5, 0x20(r31)
-stw      r6, 0x1c(r5)
-stw      r0, 0x18(r5)
-lwz      r5, 0x24(r31)
-stw      r6, 0x1c(r5)
-stw      r0, 0x18(r5)
-bl
-startState__Q33ebi6Screen11TMemoryCardFQ43ebi6Screen11TMemoryCard9enumState b
-lbl_803C3AE8 .global  lbl_803C2C58
+	case 9:
+		PSSystem::spSysIF->playSystemSe(PSSE_SY_MEMORYCARD_OK, 0);
+		m_paneMsg3->setMsgID('5460_00'); // "The Memory Card has been formatted."
+		m_paneMsg4->setMsgID('5460_00'); // "The Memory Card has been formatted."
+		m_paneMsg1->setMsgID('5460_00'); // "The Memory Card has been formatted."
+		m_paneMsg2->setMsgID('5460_00'); // "The Memory Card has been formatted."
+		startState(MEMCARD_Message);
+		break;
 
-lbl_803C2C58:
-lwz      r3, spSysIF__8PSSystem@sda21(r13)
-li       r4, 0x180d
-li       r5, 0
-bl       playSystemSe__Q28PSSystem5SysIFFUlUl
-lis      r3, 0x395F3030@ha
-lwz      r5, 0x28(r31)
-addi     r6, r3, 0x395F3030@l
-lis      r3, 0x00353435@ha
-stw      r6, 0x1c(r5)
-addi     r0, r3, 0x00353435@l
-mr       r3, r31
-li       r4, 2
-stw      r0, 0x18(r5)
-lwz      r5, 0x2c(r31)
-stw      r6, 0x1c(r5)
-stw      r0, 0x18(r5)
-lwz      r5, 0x20(r31)
-stw      r6, 0x1c(r5)
-stw      r0, 0x18(r5)
-lwz      r5, 0x24(r31)
-stw      r6, 0x1c(r5)
-stw      r0, 0x18(r5)
-bl
-startState__Q33ebi6Screen11TMemoryCardFQ43ebi6Screen11TMemoryCard9enumState b
-lbl_803C3AE8 .global  lbl_803C2CB8
+	case 10:
+		m_isPlaySavingSE = true;
+		m_paneMsg3->setMsgID('5461_00'); // "Formatting the Memory Card in Slot A. Do not touch the Memory Card or the POWER Button."
+		m_paneMsg4->setMsgID('5461_00'); // "Formatting the Memory Card in Slot A. Do not touch the Memory Card or the POWER Button."
+		m_paneMsg1->setMsgID('5461_00'); // "Formatting the Memory Card in Slot A. Do not touch the Memory Card or the POWER Button."
+		m_paneMsg2->setMsgID('5461_00'); // "Formatting the Memory Card in Slot A. Do not touch the Memory Card or the POWER Button."
+		startState(MEMCARD_Message);
+		break;
 
-lbl_803C2CB8:
-lwz      r3, spSysIF__8PSSystem@sda21(r13)
-li       r4, 0x180c
-li       r5, 0
-bl       playSystemSe__Q28PSSystem5SysIFFUlUl
-lis      r3, 0x305F3030@ha
-lwz      r5, 0x28(r31)
-addi     r6, r3, 0x305F3030@l
-lis      r3, 0x00353436@ha
-stw      r6, 0x1c(r5)
-addi     r0, r3, 0x00353436@l
-mr       r3, r31
-li       r4, 2
-stw      r0, 0x18(r5)
-lwz      r5, 0x2c(r31)
-stw      r6, 0x1c(r5)
-stw      r0, 0x18(r5)
-lwz      r5, 0x20(r31)
-stw      r6, 0x1c(r5)
-stw      r0, 0x18(r5)
-lwz      r5, 0x24(r31)
-stw      r6, 0x1c(r5)
-stw      r0, 0x18(r5)
-bl
-startState__Q33ebi6Screen11TMemoryCardFQ43ebi6Screen11TMemoryCard9enumState b
-lbl_803C3AE8 .global  lbl_803C2D18
+	case 11:
+		m_paneMsg3->setMsgID('0000_00');
+		m_paneMsg4->setMsgID('5462_00'); // "Formatting the Memory Card will erase all saved data on the Memory Card. Is this OK?"
+		m_paneMsg1->setMsgID('5463_00'); // "Yes"
+		m_paneMsg2->setMsgID('5464_00'); // "No"
+		setSelect_(false);
+		startState(MEMCARD_Selection);
+		break;
 
-lbl_803C2D18:
-li       r0, 1
-lis      r3, 0x315F3030@ha
-stb      r0, 0x294(r31)
-lis      r4, 0x00353436@ha
-addi     r6, r3, 0x315F3030@l
-mr       r3, r31
-lwz      r5, 0x28(r31)
-addi     r0, r4, 0x00353436@l
-li       r4, 2
-stw      r6, 0x1c(r5)
-stw      r0, 0x18(r5)
-lwz      r5, 0x2c(r31)
-stw      r6, 0x1c(r5)
-stw      r0, 0x18(r5)
-lwz      r5, 0x20(r31)
-stw      r6, 0x1c(r5)
-stw      r0, 0x18(r5)
-lwz      r5, 0x24(r31)
-stw      r6, 0x1c(r5)
-stw      r0, 0x18(r5)
-bl
-startState__Q33ebi6Screen11TMemoryCardFQ43ebi6Screen11TMemoryCard9enumState b
-lbl_803C3AE8 .global  lbl_803C2D70
+	case 12:
+		PSSystem::spSysIF->playSystemSe(PSSE_SY_MEMORYCARD_ERROR, 0);
+		m_paneMsg3->setMsgID('5465_00'); // "The Memory Card in Slot A cannot be used. "
+		m_paneMsg4->setMsgID('5465_00'); // "The Memory Card in Slot A cannot be used. "
+		m_paneMsg1->setMsgID('5465_00'); // "The Memory Card in Slot A cannot be used. "
+		m_paneMsg2->setMsgID('5465_00'); // "The Memory Card in Slot A cannot be used. "
+		startState(MEMCARD_Message);
+		break;
 
-lbl_803C2D70:
-lis      r4, 0x305F3030@ha
-lwz      r3, 0x28(r31)
-addi     r0, r4, 0x305F3030@l
-lis      r4, 0x00303030@ha
-stw      r0, 0x1c(r3)
-addi     r0, r4, 0x00303030@l
-lis      r5, 0x325F3030@ha
-lis      r6, 0x00353436@ha
-stw      r0, 0x18(r3)
-lis      r4, 0x335F3030@ha
-lis      r3, 0x345F3030@ha
-addi     r8, r5, 0x325F3030@l
-lwz      r5, 0x2c(r31)
-addi     r7, r6, 0x00353436@l
-addi     r6, r4, 0x335F3030@l
-addi     r0, r3, 0x345F3030@l
-stw      r8, 0x1c(r5)
-mr       r3, r31
-li       r4, 0
-stw      r7, 0x18(r5)
-lwz      r5, 0x20(r31)
-stw      r6, 0x1c(r5)
-stw      r7, 0x18(r5)
-lwz      r5, 0x24(r31)
-stw      r0, 0x1c(r5)
-stw      r7, 0x18(r5)
-bl       setSelect___Q33ebi6Screen11TMemoryCardFb
-mr       r3, r31
-li       r4, 1
-bl
-startState__Q33ebi6Screen11TMemoryCardFQ43ebi6Screen11TMemoryCard9enumState b
-lbl_803C3AE8 .global  lbl_803C2DEC
+	case 13:
+		m_paneMsg3->setMsgID('0000_00');
+		m_paneMsg4->setMsgID('5466_00'); // "Access the Memory Card Screen now?"
+		m_paneMsg1->setMsgID('5467_00'); // "Yes"
+		m_paneMsg2->setMsgID('5468_00'); // "No"
+		setSelect_(false);
+		startState(MEMCARD_Selection);
+		break;
 
-lbl_803C2DEC:
-lwz      r3, spSysIF__8PSSystem@sda21(r13)
-li       r4, 0x180d
-li       r5, 0
-bl       playSystemSe__Q28PSSystem5SysIFFUlUl
-lis      r3, 0x355F3030@ha
-lwz      r5, 0x28(r31)
-addi     r6, r3, 0x355F3030@l
-lis      r3, 0x00353436@ha
-stw      r6, 0x1c(r5)
-addi     r0, r3, 0x00353436@l
-mr       r3, r31
-li       r4, 2
-stw      r0, 0x18(r5)
-lwz      r5, 0x2c(r31)
-stw      r6, 0x1c(r5)
-stw      r0, 0x18(r5)
-lwz      r5, 0x20(r31)
-stw      r6, 0x1c(r5)
-stw      r0, 0x18(r5)
-lwz      r5, 0x24(r31)
-stw      r6, 0x1c(r5)
-stw      r0, 0x18(r5)
-bl
-startState__Q33ebi6Screen11TMemoryCardFQ43ebi6Screen11TMemoryCard9enumState b
-lbl_803C3AE8 .global  lbl_803C2E4C
+	case 14:
+		m_paneMsg3->setMsgID('0000_00');
+		m_paneMsg4->setMsgID('5469_00'); // "The game cannot be saved. Continue without saving?"
+		m_paneMsg1->setMsgID('5470_00'); // "Yes"
+		m_paneMsg2->setMsgID('5471_00'); // "No"
+		setSelect_(false);
+		startState(MEMCARD_Selection);
+		break;
 
-lbl_803C2E4C:
-lis      r4, 0x305F3030@ha
-lwz      r3, 0x28(r31)
-addi     r0, r4, 0x305F3030@l
-lis      r4, 0x00303030@ha
-stw      r0, 0x1c(r3)
-addi     r0, r4, 0x00303030@l
-lis      r5, 0x365F3030@ha
-lis      r6, 0x00353436@ha
-stw      r0, 0x18(r3)
-lis      r4, 0x375F3030@ha
-lis      r3, 0x385F3030@ha
-addi     r8, r5, 0x365F3030@l
-lwz      r5, 0x2c(r31)
-addi     r7, r6, 0x00353436@l
-addi     r6, r4, 0x375F3030@l
-addi     r0, r3, 0x385F3030@l
-stw      r8, 0x1c(r5)
-mr       r3, r31
-li       r4, 0
-stw      r7, 0x18(r5)
-lwz      r5, 0x20(r31)
-stw      r6, 0x1c(r5)
-stw      r7, 0x18(r5)
-lwz      r5, 0x24(r31)
-stw      r0, 0x1c(r5)
-stw      r7, 0x18(r5)
-bl       setSelect___Q33ebi6Screen11TMemoryCardFb
-mr       r3, r31
-li       r4, 1
-bl
-startState__Q33ebi6Screen11TMemoryCardFQ43ebi6Screen11TMemoryCard9enumState b
-lbl_803C3AE8 .global  lbl_803C2EC8
+	case 15:
+		m_paneMsg3->setMsgID('0000_00');
+		m_paneMsg4->setMsgID('5472_00'); // "Create a Pikmin 2 game file on the Memory Card in Slot A?"
+		m_paneMsg1->setMsgID('5473_00'); // "Yes"
+		m_paneMsg2->setMsgID('5474_00'); // "No"
+		setSelect_(false);
+		startState(MEMCARD_Selection);
+		break;
 
-lbl_803C2EC8:
-lis      r4, 0x305F3030@ha
-lwz      r3, 0x28(r31)
-addi     r9, r4, 0x305F3030@l
-lis      r4, 0x00353436@ha
-lis      r5, 0x00303030@ha
-stw      r9, 0x1c(r3)
-addi     r0, r5, 0x00303030@l
-lis      r5, 0x395F3030@ha
-stw      r0, 0x18(r3)
-lis      r3, 0x315F3030@ha
-addi     r8, r5, 0x395F3030@l
-addi     r7, r4, 0x00353436@l
-lwz      r5, 0x2c(r31)
-addi     r6, r4, 0x3437
-addi     r0, r3, 0x315F3030@l
-mr       r3, r31
-stw      r8, 0x1c(r5)
-li       r4, 0
-stw      r7, 0x18(r5)
-lwz      r5, 0x20(r31)
-stw      r9, 0x1c(r5)
-stw      r6, 0x18(r5)
-lwz      r5, 0x24(r31)
-stw      r0, 0x1c(r5)
-stw      r6, 0x18(r5)
-bl       setSelect___Q33ebi6Screen11TMemoryCardFb
-mr       r3, r31
-li       r4, 1
-bl
-startState__Q33ebi6Screen11TMemoryCardFQ43ebi6Screen11TMemoryCard9enumState b
-lbl_803C3AE8 .global  lbl_803C2F40
+	case 16:
+		PSSystem::spSysIF->playSystemSe(PSSE_SY_MEMORYCARD_ERROR, 0);
+		m_paneMsg3->setMsgID('5475_00'); // "There is no Pikmin 2 game file on the Memory Card in Slot A."
+		m_paneMsg4->setMsgID('5475_00'); // "There is no Pikmin 2 game file on the Memory Card in Slot A."
+		m_paneMsg1->setMsgID('5475_00'); // "There is no Pikmin 2 game file on the Memory Card in Slot A."
+		m_paneMsg2->setMsgID('5475_00'); // "There is no Pikmin 2 game file on the Memory Card in Slot A."
+		startState(MEMCARD_Message);
+		break;
 
-lbl_803C2F40:
-lis      r4, 0x305F3030@ha
-lwz      r3, 0x28(r31)
-addi     r0, r4, 0x305F3030@l
-lis      r4, 0x00303030@ha
-stw      r0, 0x1c(r3)
-addi     r0, r4, 0x00303030@l
-lis      r5, 0x325F3030@ha
-lis      r6, 0x00353437@ha
-stw      r0, 0x18(r3)
-lis      r4, 0x335F3030@ha
-lis      r3, 0x345F3030@ha
-addi     r8, r5, 0x325F3030@l
-lwz      r5, 0x2c(r31)
-addi     r7, r6, 0x00353437@l
-addi     r6, r4, 0x335F3030@l
-addi     r0, r3, 0x345F3030@l
-stw      r8, 0x1c(r5)
-mr       r3, r31
-li       r4, 0
-stw      r7, 0x18(r5)
-lwz      r5, 0x20(r31)
-stw      r6, 0x1c(r5)
-stw      r7, 0x18(r5)
-lwz      r5, 0x24(r31)
-stw      r0, 0x1c(r5)
-stw      r7, 0x18(r5)
-bl       setSelect___Q33ebi6Screen11TMemoryCardFb
-mr       r3, r31
-li       r4, 1
-bl
-startState__Q33ebi6Screen11TMemoryCardFQ43ebi6Screen11TMemoryCard9enumState b
-lbl_803C3AE8 .global  lbl_803C2FBC
+	case 17:
+		PSSystem::spSysIF->playSystemSe(PSSE_SY_MEMORYCARD_ERROR, 0);
+		m_paneMsg3->setMsgID('5476_00'); // "A game file could not be created."
+		m_paneMsg4->setMsgID('5476_00'); // "A game file could not be created."
+		m_paneMsg1->setMsgID('5476_00'); // "A game file could not be created."
+		m_paneMsg2->setMsgID('5476_00'); // "A game file could not be created."
+		startState(MEMCARD_Message);
+		break;
 
-lbl_803C2FBC:
-lwz      r3, spSysIF__8PSSystem@sda21(r13)
-li       r4, 0x180d
-li       r5, 0
-bl       playSystemSe__Q28PSSystem5SysIFFUlUl
-lis      r3, 0x355F3030@ha
-lwz      r5, 0x28(r31)
-addi     r6, r3, 0x355F3030@l
-lis      r3, 0x00353437@ha
-stw      r6, 0x1c(r5)
-addi     r0, r3, 0x00353437@l
-mr       r3, r31
-li       r4, 2
-stw      r0, 0x18(r5)
-lwz      r5, 0x2c(r31)
-stw      r6, 0x1c(r5)
-stw      r0, 0x18(r5)
-lwz      r5, 0x20(r31)
-stw      r6, 0x1c(r5)
-stw      r0, 0x18(r5)
-lwz      r5, 0x24(r31)
-stw      r6, 0x1c(r5)
-stw      r0, 0x18(r5)
-bl
-startState__Q33ebi6Screen11TMemoryCardFQ43ebi6Screen11TMemoryCard9enumState b
-lbl_803C3AE8 .global  lbl_803C301C
+	case 18:
+		m_isPlaySavingSE = true;
+		m_paneMsg3->setMsgID('5477_00'); // "Creating a game file... Do not touch the Memory Card in Slot A or the POWER Button."
+		m_paneMsg4->setMsgID('5477_00'); // "Creating a game file... Do not touch the Memory Card in Slot A or the POWER Button."
+		m_paneMsg1->setMsgID('5477_00'); // "Creating a game file... Do not touch the Memory Card in Slot A or the POWER Button."
+		m_paneMsg2->setMsgID('5477_00'); // "Creating a game file... Do not touch the Memory Card in Slot A or the POWER Button."
+		startState(MEMCARD_Message);
+		break;
 
-lbl_803C301C:
-lwz      r3, spSysIF__8PSSystem@sda21(r13)
-li       r4, 0x180d
-li       r5, 0
-bl       playSystemSe__Q28PSSystem5SysIFFUlUl
-lis      r3, 0x365F3030@ha
-lwz      r5, 0x28(r31)
-addi     r6, r3, 0x365F3030@l
-lis      r3, 0x00353437@ha
-stw      r6, 0x1c(r5)
-addi     r0, r3, 0x00353437@l
-mr       r3, r31
-li       r4, 2
-stw      r0, 0x18(r5)
-lwz      r5, 0x2c(r31)
-stw      r6, 0x1c(r5)
-stw      r0, 0x18(r5)
-lwz      r5, 0x20(r31)
-stw      r6, 0x1c(r5)
-stw      r0, 0x18(r5)
-lwz      r5, 0x24(r31)
-stw      r6, 0x1c(r5)
-stw      r0, 0x18(r5)
-bl
-startState__Q33ebi6Screen11TMemoryCardFQ43ebi6Screen11TMemoryCard9enumState b
-lbl_803C3AE8 .global  lbl_803C307C
+	case 19:
+		PSSystem::spSysIF->playSystemSe(PSSE_SY_MEMORYCARD_OK, 0);
+		m_paneMsg3->setMsgID('5478_00'); // "A file has been created."
+		m_paneMsg4->setMsgID('5478_00'); // "A file has been created."
+		m_paneMsg1->setMsgID('5478_00'); // "A file has been created."
+		m_paneMsg2->setMsgID('5478_00'); // "A file has been created."
+		startState(MEMCARD_Message);
+		break;
 
-lbl_803C307C:
-li       r0, 1
-lis      r3, 0x375F3030@ha
-stb      r0, 0x294(r31)
-lis      r4, 0x00353437@ha
-addi     r6, r3, 0x375F3030@l
-mr       r3, r31
-lwz      r5, 0x28(r31)
-addi     r0, r4, 0x00353437@l
-li       r4, 2
-stw      r6, 0x1c(r5)
-stw      r0, 0x18(r5)
-lwz      r5, 0x2c(r31)
-stw      r6, 0x1c(r5)
-stw      r0, 0x18(r5)
-lwz      r5, 0x20(r31)
-stw      r6, 0x1c(r5)
-stw      r0, 0x18(r5)
-lwz      r5, 0x24(r31)
-stw      r6, 0x1c(r5)
-stw      r0, 0x18(r5)
-bl
-startState__Q33ebi6Screen11TMemoryCardFQ43ebi6Screen11TMemoryCard9enumState b
-lbl_803C3AE8 .global  lbl_803C30D4
+	case 20:
+		PSSystem::spSysIF->playSystemSe(PSSE_SY_MEMORYCARD_ERROR, 0);
+		m_paneMsg3->setMsgID(
+		    '5551_00'); // "The game cannot be saved. There is no Memory Card in Slot A. Please insert a Memory Card into Slot A."
+		m_paneMsg4->setMsgID(
+		    '5551_00'); // "The game cannot be saved. There is no Memory Card in Slot A. Please insert a Memory Card into Slot A."
+		m_paneMsg1->setMsgID(
+		    '5551_00'); // "The game cannot be saved. There is no Memory Card in Slot A. Please insert a Memory Card into Slot A."
+		m_paneMsg2->setMsgID(
+		    '5551_00'); // "The game cannot be saved. There is no Memory Card in Slot A. Please insert a Memory Card into Slot A."
+		startState(MEMCARD_Message);
+		break;
 
-lbl_803C30D4:
-lwz      r3, spSysIF__8PSSystem@sda21(r13)
-li       r4, 0x180c
-li       r5, 0
-bl       playSystemSe__Q28PSSystem5SysIFFUlUl
-lis      r3, 0x385F3030@ha
-lwz      r5, 0x28(r31)
-addi     r6, r3, 0x385F3030@l
-lis      r3, 0x00353437@ha
-stw      r6, 0x1c(r5)
-addi     r0, r3, 0x00353437@l
-mr       r3, r31
-li       r4, 2
-stw      r0, 0x18(r5)
-lwz      r5, 0x2c(r31)
-stw      r6, 0x1c(r5)
-stw      r0, 0x18(r5)
-lwz      r5, 0x20(r31)
-stw      r6, 0x1c(r5)
-stw      r0, 0x18(r5)
-lwz      r5, 0x24(r31)
-stw      r6, 0x1c(r5)
-stw      r0, 0x18(r5)
-bl
-startState__Q33ebi6Screen11TMemoryCardFQ43ebi6Screen11TMemoryCard9enumState b
-lbl_803C3AE8 .global  lbl_803C3134
+	case 21:
+		PSSystem::spSysIF->playSystemSe(PSSE_SY_MEMORYCARD_ERROR, 0);
+		m_paneMsg3->setMsgID('5552_00'); // "The game cannot be saved. The Memory Card in Slot A is damaged and cannot be used."
+		m_paneMsg4->setMsgID('5552_00'); // "The game cannot be saved. The Memory Card in Slot A is damaged and cannot be used."
+		m_paneMsg1->setMsgID('5552_00'); // "The game cannot be saved. The Memory Card in Slot A is damaged and cannot be used."
+		m_paneMsg2->setMsgID('5552_00'); // "The game cannot be saved. The Memory Card in Slot A is damaged and cannot be used."
+		startState(MEMCARD_Message);
+		break;
 
-lbl_803C3134:
-lwz      r3, spSysIF__8PSSystem@sda21(r13)
-li       r4, 0x180d
-li       r5, 0
-bl       playSystemSe__Q28PSSystem5SysIFFUlUl
-lis      r3, 0x315F3030@ha
-lwz      r5, 0x28(r31)
-addi     r6, r3, 0x315F3030@l
-lis      r3, 0x00353535@ha
-stw      r6, 0x1c(r5)
-addi     r0, r3, 0x00353535@l
-mr       r3, r31
-li       r4, 2
-stw      r0, 0x18(r5)
-lwz      r5, 0x2c(r31)
-stw      r6, 0x1c(r5)
-stw      r0, 0x18(r5)
-lwz      r5, 0x20(r31)
-stw      r6, 0x1c(r5)
-stw      r0, 0x18(r5)
-lwz      r5, 0x24(r31)
-stw      r6, 0x1c(r5)
-stw      r0, 0x18(r5)
-bl
-startState__Q33ebi6Screen11TMemoryCardFQ43ebi6Screen11TMemoryCard9enumState b
-lbl_803C3AE8 .global  lbl_803C3194
+	case 22:
+		PSSystem::spSysIF->playSystemSe(PSSE_SY_MEMORYCARD_ERROR, 0);
+		m_paneMsg3->setMsgID('5553_00'); // "The game cannot be saved. An incorrect device is inserted in Slot A. Remove the device and
+		                                 // insert a Memory Card."
+		m_paneMsg4->setMsgID('5553_00'); // "The game cannot be saved. An incorrect device is inserted in Slot A. Remove the device and
+		                                 // insert a Memory Card."
+		m_paneMsg1->setMsgID('5553_00'); // "The game cannot be saved. An incorrect device is inserted in Slot A. Remove the device and
+		                                 // insert a Memory Card."
+		m_paneMsg2->setMsgID('5553_00'); // "The game cannot be saved. An incorrect device is inserted in Slot A. Remove the device and
+		                                 // insert a Memory Card."
+		startState(MEMCARD_Message);
+		break;
 
-lbl_803C3194:
-lwz      r3, spSysIF__8PSSystem@sda21(r13)
-li       r4, 0x180d
-li       r5, 0
-bl       playSystemSe__Q28PSSystem5SysIFFUlUl
-lis      r3, 0x325F3030@ha
-lwz      r5, 0x28(r31)
-addi     r6, r3, 0x325F3030@l
-lis      r3, 0x00353535@ha
-stw      r6, 0x1c(r5)
-addi     r0, r3, 0x00353535@l
-mr       r3, r31
-li       r4, 2
-stw      r0, 0x18(r5)
-lwz      r5, 0x2c(r31)
-stw      r6, 0x1c(r5)
-stw      r0, 0x18(r5)
-lwz      r5, 0x20(r31)
-stw      r6, 0x1c(r5)
-stw      r0, 0x18(r5)
-lwz      r5, 0x24(r31)
-stw      r6, 0x1c(r5)
-stw      r0, 0x18(r5)
-bl
-startState__Q33ebi6Screen11TMemoryCardFQ43ebi6Screen11TMemoryCard9enumState b
-lbl_803C3AE8 .global  lbl_803C31F4
+	case 23:
+		PSSystem::spSysIF->playSystemSe(PSSE_SY_MEMORYCARD_ERROR, 0);
+		m_paneMsg3->setMsgID('5554_00'); // "The game cannot be saved. The Memory Card in Slot A cannot be used."
+		m_paneMsg4->setMsgID('5554_00'); // "The game cannot be saved. The Memory Card in Slot A cannot be used."
+		m_paneMsg1->setMsgID('5554_00'); // "The game cannot be saved. The Memory Card in Slot A cannot be used."
+		m_paneMsg2->setMsgID('5554_00'); // "The game cannot be saved. The Memory Card in Slot A cannot be used."
+		startState(MEMCARD_Message);
+		break;
 
-lbl_803C31F4:
-lwz      r3, spSysIF__8PSSystem@sda21(r13)
-li       r4, 0x180d
-li       r5, 0
-bl       playSystemSe__Q28PSSystem5SysIFFUlUl
-lis      r3, 0x335F3030@ha
-lwz      r5, 0x28(r31)
-addi     r6, r3, 0x335F3030@l
-lis      r3, 0x00353535@ha
-stw      r6, 0x1c(r5)
-addi     r0, r3, 0x00353535@l
-mr       r3, r31
-li       r4, 2
-stw      r0, 0x18(r5)
-lwz      r5, 0x2c(r31)
-stw      r6, 0x1c(r5)
-stw      r0, 0x18(r5)
-lwz      r5, 0x20(r31)
-stw      r6, 0x1c(r5)
-stw      r0, 0x18(r5)
-lwz      r5, 0x24(r31)
-stw      r6, 0x1c(r5)
-stw      r0, 0x18(r5)
-bl
-startState__Q33ebi6Screen11TMemoryCardFQ43ebi6Screen11TMemoryCard9enumState b
-lbl_803C3AE8 .global  lbl_803C3254
+	case 24:
+		PSSystem::spSysIF->playSystemSe(PSSE_SY_MEMORYCARD_ERROR, 0);
+		m_paneMsg3->setMsgID('0000_00');
+		m_paneMsg4->setMsgID('5592_00'); // "The game cannot be saved. The Memory Card in Slot A is corrupted and must be formatted. Format
+		                                 // the Memory Card now?"
+		m_paneMsg1->setMsgID('5593_00'); // "Yes"
+		m_paneMsg2->setMsgID('5594_00'); // "No"
+		setSelect_(false);
+		startState(MEMCARD_Selection);
+		break;
 
-lbl_803C3254:
-lwz      r3, spSysIF__8PSSystem@sda21(r13)
-li       r4, 0x180d
-li       r5, 0
-bl       playSystemSe__Q28PSSystem5SysIFFUlUl
-lis      r3, 0x345F3030@ha
-lwz      r5, 0x28(r31)
-addi     r6, r3, 0x345F3030@l
-lis      r3, 0x00353535@ha
-stw      r6, 0x1c(r5)
-addi     r0, r3, 0x00353535@l
-mr       r3, r31
-li       r4, 2
-stw      r0, 0x18(r5)
-lwz      r5, 0x2c(r31)
-stw      r6, 0x1c(r5)
-stw      r0, 0x18(r5)
-lwz      r5, 0x20(r31)
-stw      r6, 0x1c(r5)
-stw      r0, 0x18(r5)
-lwz      r5, 0x24(r31)
-stw      r6, 0x1c(r5)
-stw      r0, 0x18(r5)
-bl
-startState__Q33ebi6Screen11TMemoryCardFQ43ebi6Screen11TMemoryCard9enumState b
-lbl_803C3AE8 .global  lbl_803C32B4
+	case 25:
+		PSSystem::spSysIF->playSystemSe(PSSE_SY_MEMORYCARD_ERROR, 0);
+		m_paneMsg3->setMsgID('5555_00'); // "The game cannot be saved. There is not enough available space on the Memory Card in Slot A.
+		                                 // Pikmin 2 requires 1 File and 27 Blocks to save."
+		m_paneMsg4->setMsgID('5555_00'); // "The game cannot be saved. There is not enough available space on the Memory Card in Slot A.
+		                                 // Pikmin 2 requires 1 File and 27 Blocks to save."
+		m_paneMsg1->setMsgID('5555_00'); // "The game cannot be saved. There is not enough available space on the Memory Card in Slot A.
+		                                 // Pikmin 2 requires 1 File and 27 Blocks to save."
+		m_paneMsg2->setMsgID('5555_00'); // "The game cannot be saved. There is not enough available space on the Memory Card in Slot A.
+		                                 // Pikmin 2 requires 1 File and 27 Blocks to save."
+		startState(MEMCARD_Message);
+		break;
 
-lbl_803C32B4:
-lwz      r3, spSysIF__8PSSystem@sda21(r13)
-li       r4, 0x180d
-li       r5, 0
-bl       playSystemSe__Q28PSSystem5SysIFFUlUl
-lis      r4, 0x305F3030@ha
-lwz      r3, 0x28(r31)
-addi     r0, r4, 0x305F3030@l
-lis      r4, 0x00303030@ha
-stw      r0, 0x1c(r3)
-addi     r0, r4, 0x00303030@l
-lis      r5, 0x325F3030@ha
-lis      r6, 0x00353539@ha
-stw      r0, 0x18(r3)
-lis      r4, 0x335F3030@ha
-lis      r3, 0x345F3030@ha
-addi     r8, r5, 0x325F3030@l
-lwz      r5, 0x2c(r31)
-addi     r7, r6, 0x00353539@l
-addi     r6, r4, 0x335F3030@l
-addi     r0, r3, 0x345F3030@l
-stw      r8, 0x1c(r5)
-mr       r3, r31
-li       r4, 0
-stw      r7, 0x18(r5)
-lwz      r5, 0x20(r31)
-stw      r6, 0x1c(r5)
-stw      r7, 0x18(r5)
-lwz      r5, 0x24(r31)
-stw      r0, 0x1c(r5)
-stw      r7, 0x18(r5)
-bl       setSelect___Q33ebi6Screen11TMemoryCardFb
-mr       r3, r31
-li       r4, 1
-bl
-startState__Q33ebi6Screen11TMemoryCardFQ43ebi6Screen11TMemoryCard9enumState b
-lbl_803C3AE8 .global  lbl_803C3340
+	case 26:
+		m_paneMsg3->setMsgID('5556_00'); // "Please manage Memory Card dataon the Memory Card Screen, or insert the original Memory Card."
+		m_paneMsg4->setMsgID('5556_00'); // "Please manage Memory Card dataon the Memory Card Screen, or insert the original Memory Card."
+		m_paneMsg1->setMsgID('5556_00'); // "Please manage Memory Card dataon the Memory Card Screen, or insert the original Memory Card."
+		m_paneMsg2->setMsgID('5556_00'); // "Please manage Memory Card dataon the Memory Card Screen, or insert the original Memory Card."
+		startState(MEMCARD_Message);
+		break;
 
-lbl_803C3340:
-lwz      r3, spSysIF__8PSSystem@sda21(r13)
-li       r4, 0x180d
-li       r5, 0
-bl       playSystemSe__Q28PSSystem5SysIFFUlUl
-lis      r3, 0x355F3030@ha
-lwz      r5, 0x28(r31)
-addi     r6, r3, 0x355F3030@l
-lis      r3, 0x00353535@ha
-stw      r6, 0x1c(r5)
-addi     r0, r3, 0x00353535@l
-mr       r3, r31
-li       r4, 2
-stw      r0, 0x18(r5)
-lwz      r5, 0x2c(r31)
-stw      r6, 0x1c(r5)
-stw      r0, 0x18(r5)
-lwz      r5, 0x20(r31)
-stw      r6, 0x1c(r5)
-stw      r0, 0x18(r5)
-lwz      r5, 0x24(r31)
-stw      r6, 0x1c(r5)
-stw      r0, 0x18(r5)
-bl
-startState__Q33ebi6Screen11TMemoryCardFQ43ebi6Screen11TMemoryCard9enumState b
-lbl_803C3AE8 .global  lbl_803C33A0
+	case 27:
+		PSSystem::spSysIF->playSystemSe(PSSE_SY_MEMORYCARD_ERROR, 0);
+		m_paneMsg3->setMsgID('5557_00'); // "The Memory Card could not be formatted."
+		m_paneMsg4->setMsgID('5557_00'); // "The Memory Card could not be formatted."
+		m_paneMsg1->setMsgID('5557_00'); // "The Memory Card could not be formatted."
+		m_paneMsg2->setMsgID('5557_00'); // "The Memory Card could not be formatted."
+		startState(MEMCARD_Message);
+		break;
 
-lbl_803C33A0:
-lis      r3, 0x365F3030@ha
-lwz      r5, 0x28(r31)
-addi     r6, r3, 0x365F3030@l
-lis      r3, 0x00353535@ha
-stw      r6, 0x1c(r5)
-addi     r0, r3, 0x00353535@l
-mr       r3, r31
-li       r4, 2
-stw      r0, 0x18(r5)
-lwz      r5, 0x2c(r31)
-stw      r6, 0x1c(r5)
-stw      r0, 0x18(r5)
-lwz      r5, 0x20(r31)
-stw      r6, 0x1c(r5)
-stw      r0, 0x18(r5)
-lwz      r5, 0x24(r31)
-stw      r6, 0x1c(r5)
-stw      r0, 0x18(r5)
-bl
-startState__Q33ebi6Screen11TMemoryCardFQ43ebi6Screen11TMemoryCard9enumState b
-lbl_803C3AE8 .global  lbl_803C33F0
+	case 28:
+		PSSystem::spSysIF->playSystemSe(PSSE_SY_MEMORYCARD_OK, 0);
+		m_paneMsg3->setMsgID('5558_00'); // "The Memory Card has been formatted."
+		m_paneMsg4->setMsgID('5558_00'); // "The Memory Card has been formatted."
+		m_paneMsg1->setMsgID('5558_00'); // "The Memory Card has been formatted."
+		m_paneMsg2->setMsgID('5558_00'); // "The Memory Card has been formatted."
+		startState(MEMCARD_Message);
+		break;
 
-lbl_803C33F0:
-lwz      r3, spSysIF__8PSSystem@sda21(r13)
-li       r4, 0x180d
-li       r5, 0
-bl       playSystemSe__Q28PSSystem5SysIFFUlUl
-lis      r3, 0x375F3030@ha
-lwz      r5, 0x28(r31)
-addi     r6, r3, 0x375F3030@l
-lis      r3, 0x00353535@ha
-stw      r6, 0x1c(r5)
-addi     r0, r3, 0x00353535@l
-mr       r3, r31
-li       r4, 2
-stw      r0, 0x18(r5)
-lwz      r5, 0x2c(r31)
-stw      r6, 0x1c(r5)
-stw      r0, 0x18(r5)
-lwz      r5, 0x20(r31)
-stw      r6, 0x1c(r5)
-stw      r0, 0x18(r5)
-lwz      r5, 0x24(r31)
-stw      r6, 0x1c(r5)
-stw      r0, 0x18(r5)
-bl
-startState__Q33ebi6Screen11TMemoryCardFQ43ebi6Screen11TMemoryCard9enumState b
-lbl_803C3AE8 .global  lbl_803C3450
+	case 29:
+		m_isPlaySavingSE = true;
+		m_paneMsg3->setMsgID('5559_00'); // "The Memory Card is being formatted. Do not touch the Memory Card or the POWER Button."
+		m_paneMsg4->setMsgID('5559_00'); // "The Memory Card is being formatted. Do not touch the Memory Card or the POWER Button."
+		m_paneMsg1->setMsgID('5559_00'); // "The Memory Card is being formatted. Do not touch the Memory Card or the POWER Button."
+		m_paneMsg2->setMsgID('5559_00'); // "The Memory Card is being formatted. Do not touch the Memory Card or the POWER Button."
+		startState(MEMCARD_Message);
+		break;
 
-lbl_803C3450:
-lwz      r3, spSysIF__8PSSystem@sda21(r13)
-li       r4, 0x180c
-li       r5, 0
-bl       playSystemSe__Q28PSSystem5SysIFFUlUl
-lis      r3, 0x385F3030@ha
-lwz      r5, 0x28(r31)
-addi     r6, r3, 0x385F3030@l
-lis      r3, 0x00353535@ha
-stw      r6, 0x1c(r5)
-addi     r0, r3, 0x00353535@l
-mr       r3, r31
-li       r4, 2
-stw      r0, 0x18(r5)
-lwz      r5, 0x2c(r31)
-stw      r6, 0x1c(r5)
-stw      r0, 0x18(r5)
-lwz      r5, 0x20(r31)
-stw      r6, 0x1c(r5)
-stw      r0, 0x18(r5)
-lwz      r5, 0x24(r31)
-stw      r6, 0x1c(r5)
-stw      r0, 0x18(r5)
-bl
-startState__Q33ebi6Screen11TMemoryCardFQ43ebi6Screen11TMemoryCard9enumState b
-lbl_803C3AE8 .global  lbl_803C34B0
+	case 30:
+		m_paneMsg3->setMsgID('0000_00');
+		m_paneMsg4->setMsgID('5560_00'); // "Formatting the Memory Card will erase all saved data. Is this OK?"
+		m_paneMsg1->setMsgID('5561_00'); // "Yes"
+		m_paneMsg2->setMsgID('5562_00'); // "No"
+		setSelect_(false);
+		startState(MEMCARD_Selection);
+		break;
 
-lbl_803C34B0:
-li       r0, 1
-lis      r3, 0x395F3030@ha
-stb      r0, 0x294(r31)
-lis      r4, 0x00353535@ha
-addi     r6, r3, 0x395F3030@l
-mr       r3, r31
-lwz      r5, 0x28(r31)
-addi     r0, r4, 0x00353535@l
-li       r4, 2
-stw      r6, 0x1c(r5)
-stw      r0, 0x18(r5)
-lwz      r5, 0x2c(r31)
-stw      r6, 0x1c(r5)
-stw      r0, 0x18(r5)
-lwz      r5, 0x20(r31)
-stw      r6, 0x1c(r5)
-stw      r0, 0x18(r5)
-lwz      r5, 0x24(r31)
-stw      r6, 0x1c(r5)
-stw      r0, 0x18(r5)
-bl
-startState__Q33ebi6Screen11TMemoryCardFQ43ebi6Screen11TMemoryCard9enumState b
-lbl_803C3AE8 .global  lbl_803C3508
+	case 31:
+		PSSystem::spSysIF->playSystemSe(PSSE_SY_MEMORYCARD_ERROR, 0);
+		m_paneMsg3->setMsgID('5563_00'); // "The game cannot be saved. The Memory Card in Slot A cannot be used."
+		m_paneMsg4->setMsgID('5563_00'); // "The game cannot be saved. The Memory Card in Slot A cannot be used."
+		m_paneMsg1->setMsgID('5563_00'); // "The game cannot be saved. The Memory Card in Slot A cannot be used."
+		m_paneMsg2->setMsgID('5563_00'); // "The game cannot be saved. The Memory Card in Slot A cannot be used."
+		startState(MEMCARD_Message);
+		break;
 
-lbl_803C3508:
-lis      r4, 0x305F3030@ha
-lwz      r3, 0x28(r31)
-addi     r8, r4, 0x305F3030@l
-lis      r4, 0x00303030@ha
-stw      r8, 0x1c(r3)
-addi     r0, r4, 0x00303030@l
-lis      r5, 0x00353536@ha
-lis      r4, 0x315F3030@ha
-stw      r0, 0x18(r3)
-lis      r3, 0x325F3030@ha
-addi     r7, r5, 0x00353536@l
-addi     r6, r4, 0x315F3030@l
-lwz      r5, 0x2c(r31)
-addi     r0, r3, 0x325F3030@l
-mr       r3, r31
-li       r4, 0
-stw      r8, 0x1c(r5)
-stw      r7, 0x18(r5)
-lwz      r5, 0x20(r31)
-stw      r6, 0x1c(r5)
-stw      r7, 0x18(r5)
-lwz      r5, 0x24(r31)
-stw      r0, 0x1c(r5)
-stw      r7, 0x18(r5)
-bl       setSelect___Q33ebi6Screen11TMemoryCardFb
-mr       r3, r31
-li       r4, 1
-bl
-startState__Q33ebi6Screen11TMemoryCardFQ43ebi6Screen11TMemoryCard9enumState b
-lbl_803C3AE8 .global  lbl_803C357C
+	case 32:
+		m_paneMsg3->setMsgID('0000_00');
+		m_paneMsg4->setMsgID(
+		    '5564_00'); // "Data cannot be saved, so current progress will be lost. Continue to the Memory Card Screen anyway?"
+		m_paneMsg1->setMsgID('5565_00'); // "Yes"
+		m_paneMsg2->setMsgID('5566_00'); // "No"
+		setSelect_(false);
+		startState(MEMCARD_Selection);
+		break;
 
-lbl_803C357C:
-lwz      r3, spSysIF__8PSSystem@sda21(r13)
-li       r4, 0x180d
-li       r5, 0
-bl       playSystemSe__Q28PSSystem5SysIFFUlUl
-lis      r3, 0x335F3030@ha
-lwz      r5, 0x28(r31)
-addi     r6, r3, 0x335F3030@l
-lis      r3, 0x00353536@ha
-stw      r6, 0x1c(r5)
-addi     r0, r3, 0x00353536@l
-mr       r3, r31
-li       r4, 2
-stw      r0, 0x18(r5)
-lwz      r5, 0x2c(r31)
-stw      r6, 0x1c(r5)
-stw      r0, 0x18(r5)
-lwz      r5, 0x20(r31)
-stw      r6, 0x1c(r5)
-stw      r0, 0x18(r5)
-lwz      r5, 0x24(r31)
-stw      r6, 0x1c(r5)
-stw      r0, 0x18(r5)
-bl
-startState__Q33ebi6Screen11TMemoryCardFQ43ebi6Screen11TMemoryCard9enumState b
-lbl_803C3AE8 .global  lbl_803C35DC
+	case 33:
+		m_paneMsg3->setMsgID('0000_00');
+		m_paneMsg4->setMsgID('5567_00'); // "Access the Memory Card Screen now?"
+		m_paneMsg1->setMsgID('5568_00'); // "Yes"
+		m_paneMsg2->setMsgID('5569_00'); // "No"
+		setSelect_(false);
+		startState(MEMCARD_Selection);
+		break;
 
-lbl_803C35DC:
-lis      r4, 0x305F3030@ha
-lwz      r3, 0x28(r31)
-addi     r0, r4, 0x305F3030@l
-lis      r4, 0x00303030@ha
-stw      r0, 0x1c(r3)
-addi     r0, r4, 0x00303030@l
-lis      r5, 0x345F3030@ha
-lis      r6, 0x00353536@ha
-stw      r0, 0x18(r3)
-lis      r4, 0x355F3030@ha
-lis      r3, 0x365F3030@ha
-addi     r8, r5, 0x345F3030@l
-lwz      r5, 0x2c(r31)
-addi     r7, r6, 0x00353536@l
-addi     r6, r4, 0x355F3030@l
-addi     r0, r3, 0x365F3030@l
-stw      r8, 0x1c(r5)
-mr       r3, r31
-li       r4, 0
-stw      r7, 0x18(r5)
-lwz      r5, 0x20(r31)
-stw      r6, 0x1c(r5)
-stw      r7, 0x18(r5)
-lwz      r5, 0x24(r31)
-stw      r0, 0x1c(r5)
-stw      r7, 0x18(r5)
-bl       setSelect___Q33ebi6Screen11TMemoryCardFb
-mr       r3, r31
-li       r4, 1
-bl
-startState__Q33ebi6Screen11TMemoryCardFQ43ebi6Screen11TMemoryCard9enumState b
-lbl_803C3AE8 .global  lbl_803C3658
+	case 34:
+		m_paneMsg3->setMsgID('0000_00');
+		m_paneMsg4->setMsgID('5570_00'); // "Create a Pikmin 2 game file on the Memory Card in Slot A?"
+		m_paneMsg1->setMsgID('5571_00'); // "Yes"
+		m_paneMsg2->setMsgID('5572_00'); // "No"
+		setSelect_(false);
+		startState(MEMCARD_Selection);
+		break;
 
-lbl_803C3658:
-lis      r4, 0x305F3030@ha
-lwz      r3, 0x28(r31)
-addi     r0, r4, 0x305F3030@l
-lis      r4, 0x00303030@ha
-stw      r0, 0x1c(r3)
-addi     r0, r4, 0x00303030@l
-lis      r5, 0x375F3030@ha
-lis      r6, 0x00353536@ha
-stw      r0, 0x18(r3)
-lis      r4, 0x385F3030@ha
-lis      r3, 0x395F3030@ha
-addi     r8, r5, 0x375F3030@l
-lwz      r5, 0x2c(r31)
-addi     r7, r6, 0x00353536@l
-addi     r6, r4, 0x385F3030@l
-addi     r0, r3, 0x395F3030@l
-stw      r8, 0x1c(r5)
-mr       r3, r31
-li       r4, 0
-stw      r7, 0x18(r5)
-lwz      r5, 0x20(r31)
-stw      r6, 0x1c(r5)
-stw      r7, 0x18(r5)
-lwz      r5, 0x24(r31)
-stw      r0, 0x1c(r5)
-stw      r7, 0x18(r5)
-bl       setSelect___Q33ebi6Screen11TMemoryCardFb
-mr       r3, r31
-li       r4, 1
-bl
-startState__Q33ebi6Screen11TMemoryCardFQ43ebi6Screen11TMemoryCard9enumState b
-lbl_803C3AE8 .global  lbl_803C36D4
+	case 35:
+		PSSystem::spSysIF->playSystemSe(PSSE_SY_MEMORYCARD_ERROR, 0);
+		m_paneMsg3->setMsgID('5573_00'); // "The game cannot be saved. The Memory Card in Slot A does not have a Pikmin 2 game file."
+		m_paneMsg4->setMsgID('5573_00'); // "The game cannot be saved. The Memory Card in Slot A does not have a Pikmin 2 game file."
+		m_paneMsg1->setMsgID('5573_00'); // "The game cannot be saved. The Memory Card in Slot A does not have a Pikmin 2 game file."
+		m_paneMsg2->setMsgID('5573_00'); // "The game cannot be saved. The Memory Card in Slot A does not have a Pikmin 2 game file."
+		startState(MEMCARD_Message);
+		break;
 
-lbl_803C36D4:
-lis      r4, 0x305F3030@ha
-lwz      r3, 0x28(r31)
-addi     r8, r4, 0x305F3030@l
-lis      r4, 0x00303030@ha
-stw      r8, 0x1c(r3)
-addi     r0, r4, 0x00303030@l
-lis      r5, 0x00353537@ha
-lis      r4, 0x315F3030@ha
-stw      r0, 0x18(r3)
-lis      r3, 0x325F3030@ha
-addi     r7, r5, 0x00353537@l
-addi     r6, r4, 0x315F3030@l
-lwz      r5, 0x2c(r31)
-addi     r0, r3, 0x325F3030@l
-mr       r3, r31
-li       r4, 0
-stw      r8, 0x1c(r5)
-stw      r7, 0x18(r5)
-lwz      r5, 0x20(r31)
-stw      r6, 0x1c(r5)
-stw      r7, 0x18(r5)
-lwz      r5, 0x24(r31)
-stw      r0, 0x1c(r5)
-stw      r7, 0x18(r5)
-bl       setSelect___Q33ebi6Screen11TMemoryCardFb
-mr       r3, r31
-li       r4, 1
-bl
-startState__Q33ebi6Screen11TMemoryCardFQ43ebi6Screen11TMemoryCard9enumState b
-lbl_803C3AE8 .global  lbl_803C3748
+	case 36:
+		m_isPlaySavingSE = true;
+		m_paneMsg3->setMsgID('5574_00'); // "Creating a game file... Do not touch the Memory Card in Slot A or the POWER Button."
+		m_paneMsg4->setMsgID('5574_00'); // "Creating a game file... Do not touch the Memory Card in Slot A or the POWER Button."
+		m_paneMsg1->setMsgID('5574_00'); // "Creating a game file... Do not touch the Memory Card in Slot A or the POWER Button."
+		m_paneMsg2->setMsgID('5574_00'); // "Creating a game file... Do not touch the Memory Card in Slot A or the POWER Button."
+		startState(MEMCARD_Message);
+		break;
 
-lbl_803C3748:
-lwz      r3, spSysIF__8PSSystem@sda21(r13)
-li       r4, 0x180d
-li       r5, 0
-bl       playSystemSe__Q28PSSystem5SysIFFUlUl
-lis      r3, 0x335F3030@ha
-lwz      r5, 0x28(r31)
-addi     r6, r3, 0x335F3030@l
-lis      r3, 0x00353537@ha
-stw      r6, 0x1c(r5)
-addi     r0, r3, 0x00353537@l
-mr       r3, r31
-li       r4, 2
-stw      r0, 0x18(r5)
-lwz      r5, 0x2c(r31)
-stw      r6, 0x1c(r5)
-stw      r0, 0x18(r5)
-lwz      r5, 0x20(r31)
-stw      r6, 0x1c(r5)
-stw      r0, 0x18(r5)
-lwz      r5, 0x24(r31)
-stw      r6, 0x1c(r5)
-stw      r0, 0x18(r5)
-bl
-startState__Q33ebi6Screen11TMemoryCardFQ43ebi6Screen11TMemoryCard9enumState b
-lbl_803C3AE8 .global  lbl_803C37A8
+	case 37:
+		PSSystem::spSysIF->playSystemSe(PSSE_SY_MEMORYCARD_ERROR, 0);
+		m_paneMsg3->setMsgID('5575_00'); // "A game file could not be created."
+		m_paneMsg4->setMsgID('5575_00'); // "A game file could not be created."
+		m_paneMsg1->setMsgID('5575_00'); // "A game file could not be created."
+		m_paneMsg2->setMsgID('5575_00'); // "A game file could not be created."
+		startState(MEMCARD_Message);
+		break;
 
-lbl_803C37A8:
-li       r0, 1
-lis      r3, 0x345F3030@ha
-stb      r0, 0x294(r31)
-lis      r4, 0x00353537@ha
-addi     r6, r3, 0x345F3030@l
-mr       r3, r31
-lwz      r5, 0x28(r31)
-addi     r0, r4, 0x00353537@l
-li       r4, 2
-stw      r6, 0x1c(r5)
-stw      r0, 0x18(r5)
-lwz      r5, 0x2c(r31)
-stw      r6, 0x1c(r5)
-stw      r0, 0x18(r5)
-lwz      r5, 0x20(r31)
-stw      r6, 0x1c(r5)
-stw      r0, 0x18(r5)
-lwz      r5, 0x24(r31)
-stw      r6, 0x1c(r5)
-stw      r0, 0x18(r5)
-bl
-startState__Q33ebi6Screen11TMemoryCardFQ43ebi6Screen11TMemoryCard9enumState b
-lbl_803C3AE8 .global  lbl_803C3800
+	case 38:
+		PSSystem::spSysIF->playSystemSe(PSSE_SY_MEMORYCARD_OK, 0);
+		m_paneMsg3->setMsgID('5576_00'); // "A game file has been created."
+		m_paneMsg4->setMsgID('5576_00'); // "A game file has been created."
+		m_paneMsg1->setMsgID('5576_00'); // "A game file has been created."
+		m_paneMsg2->setMsgID('5576_00'); // "A game file has been created."
+		startState(MEMCARD_Message);
+		break;
 
-lbl_803C3800:
-lwz      r3, spSysIF__8PSSystem@sda21(r13)
-li       r4, 0x180d
-li       r5, 0
-bl       playSystemSe__Q28PSSystem5SysIFFUlUl
-lis      r3, 0x355F3030@ha
-lwz      r5, 0x28(r31)
-addi     r6, r3, 0x355F3030@l
-lis      r3, 0x00353537@ha
-stw      r6, 0x1c(r5)
-addi     r0, r3, 0x00353537@l
-mr       r3, r31
-li       r4, 2
-stw      r0, 0x18(r5)
-lwz      r5, 0x2c(r31)
-stw      r6, 0x1c(r5)
-stw      r0, 0x18(r5)
-lwz      r5, 0x20(r31)
-stw      r6, 0x1c(r5)
-stw      r0, 0x18(r5)
-lwz      r5, 0x24(r31)
-stw      r6, 0x1c(r5)
-stw      r0, 0x18(r5)
-bl
-startState__Q33ebi6Screen11TMemoryCardFQ43ebi6Screen11TMemoryCard9enumState b
-lbl_803C3AE8 .global  lbl_803C3860
+	case 39:
+		PSSystem::spSysIF->playSystemSe(PSSE_SY_MEMORYCARD_ERROR, 0);
+		m_paneMsg3->setMsgID('5577_00'); // "The game cannot be saved. Please insert the original Memory Card into Slot A."
+		m_paneMsg4->setMsgID('5577_00'); // "The game cannot be saved. Please insert the original Memory Card into Slot A."
+		m_paneMsg1->setMsgID('5577_00'); // "The game cannot be saved. Please insert the original Memory Card into Slot A."
+		m_paneMsg2->setMsgID('5577_00'); // "The game cannot be saved. Please insert the original Memory Card into Slot A."
+		startState(MEMCARD_Message);
+		break;
 
-lbl_803C3860:
-lwz      r3, spSysIF__8PSSystem@sda21(r13)
-li       r4, 0x180c
-li       r5, 0
-bl       playSystemSe__Q28PSSystem5SysIFFUlUl
-lis      r3, 0x365F3030@ha
-lwz      r5, 0x28(r31)
-addi     r6, r3, 0x365F3030@l
-lis      r3, 0x00353537@ha
-stw      r6, 0x1c(r5)
-addi     r0, r3, 0x00353537@l
-mr       r3, r31
-li       r4, 2
-stw      r0, 0x18(r5)
-lwz      r5, 0x2c(r31)
-stw      r6, 0x1c(r5)
-stw      r0, 0x18(r5)
-lwz      r5, 0x20(r31)
-stw      r6, 0x1c(r5)
-stw      r0, 0x18(r5)
-lwz      r5, 0x24(r31)
-stw      r6, 0x1c(r5)
-stw      r0, 0x18(r5)
-bl
-startState__Q33ebi6Screen11TMemoryCardFQ43ebi6Screen11TMemoryCard9enumState b
-lbl_803C3AE8 .global  lbl_803C38C0
+	case 40:
+		PSSystem::spSysIF->playSystemSe(PSSE_SY_MEMORYCARD_ERROR, 0);
+		m_paneMsg3->setMsgID('0000_00');
+		m_paneMsg4->setMsgID(
+		    '5578_00'); // "The data in the file on the Memory Card in Slot A is corrupted. Is it OK to overwrite this file?"
+		m_paneMsg1->setMsgID('5579_00'); // "Yes"
+		m_paneMsg2->setMsgID('5580_00'); // "No"
+		setSelect_(false);
+		startState(MEMCARD_Selection);
+		break;
 
-lbl_803C38C0:
-lwz      r3, spSysIF__8PSSystem@sda21(r13)
-li       r4, 0x180d
-li       r5, 0
-bl       playSystemSe__Q28PSSystem5SysIFFUlUl
-lis      r3, 0x375F3030@ha
-lwz      r5, 0x28(r31)
-addi     r6, r3, 0x375F3030@l
-lis      r3, 0x00353537@ha
-stw      r6, 0x1c(r5)
-addi     r0, r3, 0x00353537@l
-mr       r3, r31
-li       r4, 2
-stw      r0, 0x18(r5)
-lwz      r5, 0x2c(r31)
-stw      r6, 0x1c(r5)
-stw      r0, 0x18(r5)
-lwz      r5, 0x20(r31)
-stw      r6, 0x1c(r5)
-stw      r0, 0x18(r5)
-lwz      r5, 0x24(r31)
-stw      r6, 0x1c(r5)
-stw      r0, 0x18(r5)
-bl
-startState__Q33ebi6Screen11TMemoryCardFQ43ebi6Screen11TMemoryCard9enumState b
-lbl_803C3AE8 .global  lbl_803C3920
+	case 41:
+		m_isPlaySavingSE = true;
+		m_paneMsg3->setMsgID('5581_00'); // "Saving... Do not touch the Memory Card in Slot A or the POWER Button."
+		m_paneMsg4->setMsgID('5581_00'); // "Saving... Do not touch the Memory Card in Slot A or the POWER Button."
+		m_paneMsg1->setMsgID('5581_00'); // "Saving... Do not touch the Memory Card in Slot A or the POWER Button."
+		m_paneMsg2->setMsgID('5581_00'); // "Saving... Do not touch the Memory Card in Slot A or the POWER Button."
+		startState(MEMCARD_Message);
+		break;
 
-lbl_803C3920:
-lwz      r3, spSysIF__8PSSystem@sda21(r13)
-li       r4, 0x180d
-li       r5, 0
-bl       playSystemSe__Q28PSSystem5SysIFFUlUl
-lis      r4, 0x305F3030@ha
-lwz      r3, 0x28(r31)
-addi     r9, r4, 0x305F3030@l
-lis      r4, 0x00353537@ha
-lis      r5, 0x00303030@ha
-stw      r9, 0x1c(r3)
-addi     r0, r5, 0x00303030@l
-lis      r5, 0x385F3030@ha
-stw      r0, 0x18(r3)
-lis      r3, 0x395F3030@ha
-addi     r8, r5, 0x385F3030@l
-addi     r7, r4, 0x00353537@l
-lwz      r5, 0x2c(r31)
-addi     r6, r3, 0x395F3030@l
-addi     r0, r4, 0x3538
-mr       r3, r31
-stw      r8, 0x1c(r5)
-li       r4, 0
-stw      r7, 0x18(r5)
-lwz      r5, 0x20(r31)
-stw      r6, 0x1c(r5)
-stw      r7, 0x18(r5)
-lwz      r5, 0x24(r31)
-stw      r9, 0x1c(r5)
-stw      r0, 0x18(r5)
-bl       setSelect___Q33ebi6Screen11TMemoryCardFb
-mr       r3, r31
-li       r4, 1
-bl
-startState__Q33ebi6Screen11TMemoryCardFQ43ebi6Screen11TMemoryCard9enumState b
-lbl_803C3AE8 .global  lbl_803C39A8
+	case 42:
+		PSSystem::spSysIF->playSystemSe(PSSE_SY_MEMORYCARD_OK, 0);
+		m_paneMsg3->setMsgID('0000_00');
+		m_paneMsg4->setMsgID('5582_00'); // "The game has been saved. Continue playing?"
+		m_paneMsg1->setMsgID('5583_00'); // "Yes"
+		m_paneMsg2->setMsgID('5584_00'); // "No"
+		setSelect_(false);
+		startState(MEMCARD_Selection);
+		break;
 
-lbl_803C39A8:
-li       r0, 1
-lis      r3, 0x315F3030@ha
-stb      r0, 0x294(r31)
-lis      r4, 0x00353538@ha
-addi     r6, r3, 0x315F3030@l
-mr       r3, r31
-lwz      r5, 0x28(r31)
-addi     r0, r4, 0x00353538@l
-li       r4, 2
-stw      r6, 0x1c(r5)
-stw      r0, 0x18(r5)
-lwz      r5, 0x2c(r31)
-stw      r6, 0x1c(r5)
-stw      r0, 0x18(r5)
-lwz      r5, 0x20(r31)
-stw      r6, 0x1c(r5)
-stw      r0, 0x18(r5)
-lwz      r5, 0x24(r31)
-stw      r6, 0x1c(r5)
-stw      r0, 0x18(r5)
-bl
-startState__Q33ebi6Screen11TMemoryCardFQ43ebi6Screen11TMemoryCard9enumState b
-lbl_803C3AE8 .global  lbl_803C3A00
-
-lbl_803C3A00:
-lwz      r3, spSysIF__8PSSystem@sda21(r13)
-li       r4, 0x180c
-li       r5, 0
-bl       playSystemSe__Q28PSSystem5SysIFFUlUl
-lis      r4, 0x305F3030@ha
-lwz      r3, 0x28(r31)
-addi     r0, r4, 0x305F3030@l
-lis      r4, 0x00303030@ha
-stw      r0, 0x1c(r3)
-addi     r0, r4, 0x00303030@l
-lis      r5, 0x325F3030@ha
-lis      r6, 0x00353538@ha
-stw      r0, 0x18(r3)
-lis      r4, 0x335F3030@ha
-lis      r3, 0x345F3030@ha
-addi     r8, r5, 0x325F3030@l
-lwz      r5, 0x2c(r31)
-addi     r7, r6, 0x00353538@l
-addi     r6, r4, 0x335F3030@l
-addi     r0, r3, 0x345F3030@l
-stw      r8, 0x1c(r5)
-mr       r3, r31
-li       r4, 0
-stw      r7, 0x18(r5)
-lwz      r5, 0x20(r31)
-stw      r6, 0x1c(r5)
-stw      r7, 0x18(r5)
-lwz      r5, 0x24(r31)
-stw      r0, 0x1c(r5)
-stw      r7, 0x18(r5)
-bl       setSelect___Q33ebi6Screen11TMemoryCardFb
-mr       r3, r31
-li       r4, 1
-bl
-startState__Q33ebi6Screen11TMemoryCardFQ43ebi6Screen11TMemoryCard9enumState b
-lbl_803C3AE8 .global  lbl_803C3A8C
-
-lbl_803C3A8C:
-lwz      r3, spSysIF__8PSSystem@sda21(r13)
-li       r4, 0x180d
-li       r5, 0
-bl       playSystemSe__Q28PSSystem5SysIFFUlUl
-lis      r3, 0x355F3030@ha
-lwz      r5, 0x28(r31)
-addi     r6, r3, 0x355F3030@l
-lis      r3, 0x00353538@ha
-stw      r6, 0x1c(r5)
-addi     r0, r3, 0x00353538@l
-mr       r3, r31
-li       r4, 2
-stw      r0, 0x18(r5)
-lwz      r5, 0x2c(r31)
-stw      r6, 0x1c(r5)
-stw      r0, 0x18(r5)
-lwz      r5, 0x20(r31)
-stw      r6, 0x1c(r5)
-stw      r0, 0x18(r5)
-lwz      r5, 0x24(r31)
-stw      r6, 0x1c(r5)
-stw      r0, 0x18(r5)
-bl
-startState__Q33ebi6Screen11TMemoryCardFQ43ebi6Screen11TMemoryCard9enumState
-
-lbl_803C3AE8:
-lwz      r0, 0x14(r1)
-lwz      r31, 0xc(r1)
-lwz      r30, 8(r1)
-mtlr     r0
-addi     r1, r1, 0x10
-blr
-	*/
+	case 43:
+		PSSystem::spSysIF->playSystemSe(PSSE_SY_MEMORYCARD_ERROR, 0);
+		m_paneMsg3->setMsgID('5585_00'); // "The game could not be saved."
+		m_paneMsg4->setMsgID('5585_00'); // "The game could not be saved."
+		m_paneMsg1->setMsgID('5585_00'); // "The game could not be saved."
+		m_paneMsg2->setMsgID('5585_00'); // "The game could not be saved."
+		startState(MEMCARD_Message);
+		break;
+	}
 }
 
 /*
@@ -1979,25 +737,10 @@ blr
  * Address:	803C3B00
  * Size:	000030
  */
-void TMemoryCard::close(void)
+void TMemoryCard::close()
 {
-	/*
-stwu     r1, -0x10(r1)
-mflr     r0
-stw      r0, 0x14(r1)
-lwz      r0, 0(r3)
-cmpwi    r0, 3
-beq      lbl_803C3B20
-li       r4, 3
-bl
-startState__Q33ebi6Screen11TMemoryCardFQ43ebi6Screen11TMemoryCard9enumState
-
-lbl_803C3B20:
-lwz      r0, 0x14(r1)
-mtlr     r0
-addi     r1, r1, 0x10
-blr
-	*/
+	if (m_state != MEMCARD_Finish)
+		startState(MEMCARD_Finish);
 }
 
 /*
@@ -2005,29 +748,25 @@ blr
  * Address:	803C3B30
  * Size:	000024
  */
-void TMemoryCard::killScreen(void)
-{
-	/*
-stwu     r1, -0x10(r1)
-mflr     r0
-li       r4, 0
-stw      r0, 0x14(r1)
-bl
-startState__Q33ebi6Screen11TMemoryCardFQ43ebi6Screen11TMemoryCard9enumState
-lwz      r0, 0x14(r1)
-mtlr     r0
-addi     r1, r1, 0x10
-blr
-	*/
-}
+void TMemoryCard::killScreen() { startState(MEMCARD_Disabled); }
 
 /*
  * --INFO--
  * Address:	803C3B54
  * Size:	000334
  */
-void TMemoryCard::setSelect_(bool)
+void TMemoryCard::setSelect_(bool sel)
 {
+	m_currSel = sel;
+
+	if (m_currSel) {
+		doSetSelect(1.0f, true); // needs tweaking
+
+	} else {
+		doSetSelect(0.0f, false); // needs tweaking
+	}
+	m_cursor1.update();
+	m_cursor2.update();
 	/*
 stwu     r1, -0x70(r1)
 mflr     r0
@@ -2251,13 +990,32 @@ blr
 
 } // namespace Screen
 
+#pragma dont_inline on
 /*
  * --INFO--
  * Address:	803C3E88
  * Size:	000128
  */
-void TYesNoCursor::update(void)
+void TYesNoCursor::update()
 {
+	if (m_pane1 && m_pane2) {
+		Vector2f pos1 = E2DPane_getGlbCenter(m_pane1);
+		Vector2f pos2 = E2DPane_getGlbCenter(m_pane2);
+
+		if (m_selected) {
+			m_timer += m_speed;
+			if (m_timer > 1.0f) {
+				m_timer = 1.0f;
+			}
+		} else {
+			m_timer -= m_speed;
+			if (m_timer < 0.0f) {
+				m_timer = 0.0f;
+			}
+		}
+		f32 time = m_timer;
+		m_pos    = (pos1 * time) + (pos2 * (1.0f - time));
+	}
 	/*
 	stwu     r1, -0x40(r1)
 	mflr     r0
@@ -2341,6 +1099,7 @@ lbl_803C3F9C:
 	blr
 	*/
 }
+#pragma dont_inline reset
 
 namespace Screen {
 
@@ -2349,22 +1108,12 @@ namespace Screen {
  * Address:	803C3FB0
  * Size:	000028
  */
-void TMemoryCard::isFinish(void)
+bool TMemoryCard::isFinish()
 {
-	/*
-lwz      r0, 0x10(r3)
-cmplwi   r0, 0
-bne      lbl_803C3FD0
-lwz      r0, 0(r3)
-cmpwi    r0, 3
-bne      lbl_803C3FD0
-li       r3, 1
-blr
-
-lbl_803C3FD0:
-li       r3, 0
-blr
-	*/
+	if (m_msgAlpha == 0 && m_state == MEMCARD_Finish) {
+		return true;
+	}
+	return false;
 }
 
 /*
@@ -2372,7 +1121,7 @@ blr
  * Address:	........
  * Size:	000014
  */
-void TMemoryCard::isDecide(void)
+bool TMemoryCard::isDecide()
 {
 	// UNUSED FUNCTION
 }
@@ -2382,8 +1131,82 @@ void TMemoryCard::isDecide(void)
  * Address:	803C3FD8
  * Size:	0004EC
  */
-void TMemoryCard::startState(ebi::Screen::TMemoryCard::enumState)
+void TMemoryCard::startState(enumState state)
 {
+	m_state = state;
+	switch (m_state) {
+	case MEMCARD_Disabled:
+		m_cursor1.kill();
+		m_cursor2.kill();
+		break;
+	case MEMCARD_Selection:
+		m_cursor1.kill();
+		m_cursor2.kill();
+		m_paneMsg3->hide();
+		m_paneMsg4->show();
+		m_paneMsg4->setAlpha(255);
+		m_paneMsg1->show();
+		m_paneMsg1->setAlpha(255);
+		m_paneMsg2->show();
+		m_paneMsg2->setAlpha(255);
+		if (m_currSel == 1) {
+			m_blinkFont[0].m_isEnabled = true;
+			m_blinkFont[0].m_speed     = sys->m_deltaTime * 3.333333f;
+			m_blinkFont[0]._40         = 0.0f;
+			m_blinkFont[0]._48         = true;
+			m_blinkFont[0]._49         = false;
+
+			m_blinkFont[1].setPaneColors();
+			m_cursor1.m_timer    = 1.0f;
+			m_cursor1.m_selected = true;
+			m_cursor2.m_timer    = 1.0f;
+			m_cursor2.m_selected = true;
+		} else {
+			m_blinkFont[0].setPaneColors();
+
+			m_blinkFont[1].m_isEnabled = true;
+			m_blinkFont[1].m_speed     = sys->m_deltaTime * 3.333333f;
+			m_blinkFont[1]._40         = 0.0f;
+			m_blinkFont[1]._48         = true;
+			m_blinkFont[1]._49         = false;
+
+			m_cursor1.m_timer    = 0.0f;
+			m_cursor1.m_selected = false;
+			m_cursor2.m_timer    = 0.0f;
+			m_cursor2.m_selected = false;
+		}
+		m_cursor1.create(nullptr);
+		m_cursor2.create(nullptr);
+		m_inputDelay = 20;
+		_0C          = 20;
+		m_anims[1].play(sys->m_deltaTime * 60.0f, (J3DAnmAttr)0, true);
+		m_anims[2].play(sys->m_deltaTime * 60.0f, (J3DAnmAttr)0, true);
+		m_anims[3].play(sys->m_deltaTime * 60.0f, (J3DAnmAttr)0, true);
+		m_anims[4].play(sys->m_deltaTime * 60.0f, (J3DAnmAttr)0, true);
+		m_screenMain->animation();
+		break;
+
+	case MEMCARD_Message:
+		m_cursor1.kill();
+		m_cursor2.kill();
+		m_paneMsg4->hide();
+		m_paneMsg1->hide();
+		m_paneMsg2->hide();
+		m_paneMsg3->show();
+		m_paneMsg3->setAlpha(255);
+		m_inputDelay = 20;
+		_0C          = 20;
+		m_anims[1].play(sys->m_deltaTime * 60.0f, (J3DAnmAttr)0, true);
+		m_anims[2].play(sys->m_deltaTime * 60.0f, (J3DAnmAttr)0, true);
+		m_anims[3].play(sys->m_deltaTime * 60.0f, (J3DAnmAttr)0, true);
+		m_anims[4].play(sys->m_deltaTime * 60.0f, (J3DAnmAttr)0, true);
+		m_screenMain->animation();
+		break;
+	case MEMCARD_Finish:
+		m_msgAlpha = 30;
+		m_alphaMod = 30;
+		break;
+	}
 	/*
 stwu     r1, -0x40(r1)
 mflr     r0
@@ -2728,8 +1551,181 @@ blr
  * Address:	803C44C4
  * Size:	0008C8
  */
-void TMemoryCard::update(void)
+void TMemoryCard::update()
 {
+	switch (m_state) {
+	case MEMCARD_Selection:
+		if (m_inputDelay) {
+			m_inputDelay--;
+		}
+		if (!m_inputDelay && m_canExit) {
+			if (m_controller->mPadButton->m_buttonDown & Controller::PRESS_DPAD_RIGHT || m_controller->m_padButton.m_analogL > 0.5f) {
+				if (m_currSel == 1) {
+					m_currSel                  = 0;
+					m_blinkFont[0]._48         = false;
+					m_blinkFont[0]._49         = true;
+					m_blinkFont[1].m_isEnabled = true;
+					m_blinkFont[1].m_speed     = sys->m_deltaTime * 3.333333f;
+					m_blinkFont[1]._40         = 0.0f;
+					m_blinkFont[1]._48         = true;
+					m_blinkFont[1]._49         = false;
+					m_cursor1.m_selected       = false;
+					m_cursor2.m_selected       = false;
+				}
+			} else if (m_controller->mPadButton->m_buttonDown & Controller::PRESS_DPAD_RIGHT
+			           || m_controller->m_padButton.m_analogL > 0.5f) {
+				if (m_currSel == 0) {
+					m_currSel                  = 1;
+					m_blinkFont[0].m_isEnabled = true;
+					m_blinkFont[0].m_speed     = sys->m_deltaTime * 3.333333f;
+					m_blinkFont[0]._40         = 0.0f;
+					m_blinkFont[0]._48         = true;
+					m_blinkFont[0]._49         = false;
+					m_blinkFont[1]._48         = false;
+					m_blinkFont[1]._49         = true;
+					m_cursor1.m_selected       = true;
+					m_cursor2.m_selected       = true;
+				}
+			} else if (m_controller->mPadButton->m_buttonDown & Controller::PRESS_A) {
+				if (m_currSel) {
+					m_blinkFont[0].m_isEnabled = false;
+					J2DTextBox* pane           = static_cast<J2DTextBox*>(m_blinkFont[0].m_pane);
+					if (pane) {
+						pane->m_color1 = m_blinkFont[0].m_fonts[0].m_col1;
+						pane->m_color2 = m_blinkFont[0].m_fonts[0].m_col2;
+						pane->setWhite(m_blinkFont[0].m_fonts[0].m_white);
+						pane->setBlack(m_blinkFont[0].m_fonts[0].m_black);
+					}
+
+					m_blinkFont[1].m_isEnabled = false;
+					pane                       = static_cast<J2DTextBox*>(m_blinkFont[1].m_pane);
+					if (pane) {
+						pane->m_color1 = m_blinkFont[1].m_fonts[0].m_col1;
+						pane->m_color2 = m_blinkFont[1].m_fonts[0].m_col2;
+						pane->setWhite(m_blinkFont[1].m_fonts[0].m_white);
+						pane->setBlack(m_blinkFont[1].m_fonts[0].m_black);
+					}
+					m_cursor1.m_timer    = 1.0f;
+					m_cursor1.m_selected = true;
+					m_cursor2.m_timer    = 1.0f;
+					m_cursor2.m_selected = true;
+				} else {
+					m_blinkFont[0].m_isEnabled = false;
+					J2DTextBox* pane           = static_cast<J2DTextBox*>(m_blinkFont[0].m_pane);
+					if (pane) {
+						pane->m_color1 = m_blinkFont[0].m_fonts[0].m_col1;
+						pane->m_color2 = m_blinkFont[0].m_fonts[0].m_col2;
+						pane->setWhite(m_blinkFont[0].m_fonts[0].m_white);
+						pane->setBlack(m_blinkFont[0].m_fonts[0].m_black);
+					}
+
+					m_blinkFont[1].m_isEnabled = false;
+					pane                       = static_cast<J2DTextBox*>(m_blinkFont[1].m_pane);
+					if (pane) {
+						pane->m_color1 = m_blinkFont[1].m_fonts[0].m_col1;
+						pane->m_color2 = m_blinkFont[1].m_fonts[0].m_col2;
+						pane->setWhite(m_blinkFont[1].m_fonts[0].m_white);
+						pane->setBlack(m_blinkFont[1].m_fonts[0].m_black);
+					}
+					m_cursor1.m_timer    = 0.0f;
+					m_cursor1.m_selected = false;
+					m_cursor2.m_timer    = 0.0f;
+					m_cursor2.m_selected = false;
+				}
+				m_cursor1.update();
+				m_cursor2.update();
+				startState(MEMCARD_Finish);
+				PSSystem::spSysIF->playSystemSe(PSSE_SY_MENU_DECIDE, 0);
+				return;
+			} else if (m_controller->mPadButton->m_buttonDown & Controller::PRESS_B) {
+				m_blinkFont[0].m_isEnabled = false;
+				J2DTextBox* pane           = static_cast<J2DTextBox*>(m_blinkFont[0].m_pane);
+				if (pane) {
+					pane->m_color1 = m_blinkFont[0].m_fonts[0].m_col1;
+					pane->m_color2 = m_blinkFont[0].m_fonts[0].m_col2;
+					pane->setWhite(m_blinkFont[0].m_fonts[0].m_white);
+					pane->setBlack(m_blinkFont[0].m_fonts[0].m_black);
+				}
+
+				m_blinkFont[1].m_isEnabled = false;
+				pane                       = static_cast<J2DTextBox*>(m_blinkFont[1].m_pane);
+				if (pane) {
+					pane->m_color1 = m_blinkFont[1].m_fonts[1].m_col1;
+					pane->m_color2 = m_blinkFont[1].m_fonts[1].m_col2;
+					pane->setWhite(m_blinkFont[1].m_fonts[1].m_white);
+					pane->setBlack(m_blinkFont[1].m_fonts[1].m_black);
+				}
+				m_cursor1.m_timer    = 0.0f;
+				m_cursor1.m_selected = false;
+				m_cursor2.m_timer    = 0.0f;
+				m_cursor2.m_selected = false;
+				m_cursor1.update();
+				m_cursor2.update();
+				PSSystem::spSysIF->playSystemSe(PSSE_SY_MENU_CANCEL, 0);
+				startState(MEMCARD_Finish);
+				return;
+			}
+			m_cursor1.update();
+			m_cursor2.update();
+			m_screenMain->update();
+		}
+		break;
+
+	case MEMCARD_Message:
+		if (m_inputDelay) {
+			m_inputDelay--;
+		}
+		if (!m_inputDelay) {
+			bool end  = false;
+			u32 input = m_controller->m_padButton.m_buttonDown;
+			if ((input & Controller::PRESS_A) || (input & Controller::PRESS_B) || (input & Controller::PRESS_X)
+			    || (input & Controller::PRESS_Y) || (input & Controller::PRESS_START)) {
+				end = true;
+			}
+			if (end && m_canExit) {
+				startState(MEMCARD_Finish);
+				return;
+			}
+		}
+		m_screenMain->update();
+		if (m_isPlaySavingSE) {
+			PSSystem::spSysIF->playSystemSe(PSSE_SY_MEMORYCARD_ACCESS, 0);
+		}
+		break;
+
+	case MEMCARD_Finish:
+		if (m_msgAlpha) {
+			m_msgAlpha--;
+		}
+
+		f32 mod; // this might be an inline
+		int temp = m_alphaMod;
+		if (!temp) {
+			mod = 0.0f;
+		} else {
+			mod = (f32)m_msgAlpha / (f32)temp;
+		}
+
+		if (mod < 0.7f) {
+			m_cursor1.fade();
+			m_cursor2.fade();
+
+			f32 mod;
+			int temp = m_alphaMod;
+			if (!temp) {
+				mod = 0.0f;
+			} else {
+				mod = (f32)m_msgAlpha / (f32)temp;
+			}
+			u8 alpha = (mod / 0.7f) * 255.0f;
+			m_paneMsg1->setAlpha(alpha);
+			m_paneMsg2->setAlpha(alpha);
+			m_paneMsg3->setAlpha(alpha);
+			m_paneMsg4->setAlpha(alpha);
+		}
+		m_screenMain->update();
+		break;
+	}
 	/*
 stwu     r1, -0xc0(r1)
 mflr     r0
@@ -3369,8 +2365,14 @@ blr
  * Address:	803C4D8C
  * Size:	000080
  */
-void TMemoryCard::draw(void)
+void TMemoryCard::draw()
 {
+	if (m_state != MEMCARD_Disabled) {
+		Graphics& gfx       = *sys->m_gfx;
+		J2DPerspGraph& graf = gfx.m_perspGraph;
+		graf.setPort();
+		m_screenMain->draw(gfx, graf);
+	}
 	/*
 stwu     r1, -0x20(r1)
 mflr     r0
