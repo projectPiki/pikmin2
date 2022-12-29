@@ -158,6 +158,8 @@ struct TMgr {
 	u8 _F20;                        // _F20
 	FSMStateMachine m_stateMachine; // _F24
 	u8 _F28;                        // _F28
+	u32 _F2C;                       // _F2C
+	u32 _F30;                       // _F30
 };
 } // namespace Option
 } // namespace ebi

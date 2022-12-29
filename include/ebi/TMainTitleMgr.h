@@ -6,7 +6,9 @@
 // TODO: Everything.
 namespace ebi {
 struct TMainTitleMgr {
-	u8 _00[0x1664]; // _00
+
+	// TODO: gameflow.cpp is gonna break! Section::title is broken
+	u8 _00[0x2f70 - 0x1cc8]; // _00
 };
 } // namespace ebi
 

@@ -240,24 +240,21 @@
 // TODO: Finish
 // NOTE: Fabricated name.
 namespace {
-static struct {
-	char* name;
-	u32 id;
-} sSectionInfo[] = { { "Root Menu", 0x00000000 },         { "Object Editor", 0x01010000 },
-	                 { "Single Game", 0x02010000 },       { "Challenge Game", 0x03010000 },
-	                 { "Test Challenge", 0x04010100 },    { "Teki Test", 0x05010000 },
-	                 { "Anim Editor", 0x06010000 },       { "Map Parts Editor", 0x07010000 },
-	                 { "Tex Viewer", 0x08010000 },        { "Ogawa", 0x09010000 },
-	                 { "Ogawa Screen Test", 0x1C010000 }, { "Hikino", 0x0A010000 },
-	                 { "Yamashita", 0x0B010000 },         { "Nishimura", 0x0C010000 },
-	                 { "Nishimura2", 0x0D010000 },        { "Morimura", 0x0E010000 },
-	                 { "2D Debug", 0x1A010100 },          { "Fujino", 0x1A010100 },
-	                 { "Cave Editor", 0x06010000 },       { "JStudio CameraEditor", 0x07010000 },
-	                 { "Movie Test", 0x06010000 },        { "JStudio Kando Test", 0x07010000 },
-	                 { "Pellet Test", 0x06010000 },       { "Main Title", 0x07010000 },
-	                 { "Message Previewer", 0x06010000 }, { "Ebi Main Title", 0x07010000 },
-	                 { "E3 Thanks Section", 0x06010000 }, { "Ebimun Effect", 0x07010000 },
-	                 { "2D Debug2", 0x07010000 } };
+static SectionInfo sSectionInfo[] = { { "Root Menu", 0x00000000 },         { "Object Editor", 0x01010000 },
+	                                  { "Single Game", 0x02010000 },       { "Challenge Game", 0x03010000 },
+	                                  { "Test Challenge", 0x04010100 },    { "Teki Test", 0x05010000 },
+	                                  { "Anim Editor", 0x06010000 },       { "Map Parts Editor", 0x07010000 },
+	                                  { "Tex Viewer", 0x08010000 },        { "Ogawa", 0x09010000 },
+	                                  { "Ogawa Screen Test", 0x1C010000 }, { "Hikino", 0x0A010000 },
+	                                  { "Yamashita", 0x0B010000 },         { "Nishimura", 0x0C010000 },
+	                                  { "Nishimura2", 0x0D010000 },        { "Morimura", 0x0E010000 },
+	                                  { "2D Debug", 0x1A010100 },          { "Fujino", 0x1A010100 },
+	                                  { "Cave Editor", 0x06010000 },       { "JStudio CameraEditor", 0x07010000 },
+	                                  { "Movie Test", 0x06010000 },        { "JStudio Kando Test", 0x07010000 },
+	                                  { "Pellet Test", 0x06010000 },       { "Main Title", 0x07010000 },
+	                                  { "Message Previewer", 0x06010000 }, { "Ebi Main Title", 0x07010000 },
+	                                  { "E3 Thanks Section", 0x06010000 }, { "Ebimun Effect", 0x07010000 },
+	                                  { "2D Debug2", 0x07010000 } };
 } // namespace
 u32 GameFlow::mActiveSectionFlag;
 
@@ -290,18 +287,22 @@ GameFlow::~GameFlow()
  */
 void GameFlow::run()
 {
-	do {
-		JKRHeap* parentHeap = JKRHeap::sCurrentHeap;
-		JKRHeap::TState state(nullptr, 0xffffffff, true);
+	while (true) {
+		JKRHeap* parentHeap = getCurrentHeap();
+
+		JKRHeap::TState state(parentHeap);
 		JKRHeap::sCurrentHeap->state_register(state._00, state._04);
-		JKRExpHeap* expHeap = JKRExpHeap::create(parentHeap->getFreeSize(), parentHeap, true);
+		JKRExpHeap* heap = JKRExpHeap::create(parentHeap->getFreeSize(), parentHeap, true);
+
 		setSection();
 		m_section->init();
 		m_section->run();
 		m_section->exit();
-		expHeap->destroy();
+
+		heap->destroy();
 		parentHeap->becomeCurrentHeap();
-	} while (true);
+	}
+
 	/*
 	stwu     r1, -0x40(r1)
 	mflr     r0
@@ -370,77 +371,21 @@ lbl_804241EC:
  */
 void GameFlow::setSection()
 {
-	u32 freeSize = JKRHeap::sCurrentHeap->getFreeSize();
-	if (mActiveSectionFlag == 0x15) {
+	JKRHeap::sCurrentHeap->getFreeSize();
+
+	switch (mActiveSectionFlag) {
+	case 0x15:
 		m_section          = new BootSection(JKRHeap::sCurrentHeap);
 		mActiveSectionFlag = 0;
-	} else {
-		JUT_ASSERTLINE(188, (0x14 >= mActiveSectionFlag || mActiveSectionFlag == 0), "Unknown SectionFlag. %d \n", mActiveSectionFlag);
+		break;
+	case 0x00:
 		m_section          = new RootMenuSection(JKRHeap::sCurrentHeap);
 		mActiveSectionFlag = 0x16;
+		break;
+	default:
+		JUT_PANICLINE(188, "Unknown SectionFlag. %d \n", mActiveSectionFlag);
+		break;
 	}
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	mr       r31, r3
-	lwz      r3, sCurrentHeap__7JKRHeap@sda21(r13)
-	bl       getFreeSize__7JKRHeapFv
-	lwz      r6, mActiveSectionFlag__8GameFlow@sda21(r13)
-	cmpwi    r6, 0x15
-	beq      lbl_804242E4
-	bge      lbl_8042433C
-	cmpwi    r6, 0
-	beq      lbl_80424310
-	b        lbl_8042433C
-
-lbl_804242E4:
-	li       r3, 0xe8
-	bl       __nw__FUl
-	or.      r0, r3, r3
-	beq      lbl_80424300
-	lwz      r4, sCurrentHeap__7JKRHeap@sda21(r13)
-	bl       __ct__11BootSectionFP7JKRHeap
-	mr       r0, r3
-
-lbl_80424300:
-	stw      r0, 4(r31)
-	li       r0, 0
-	stw      r0, mActiveSectionFlag__8GameFlow@sda21(r13)
-	b        lbl_80424358
-
-lbl_80424310:
-	li       r3, 0x44
-	bl       __nw__FUl
-	or.      r0, r3, r3
-	beq      lbl_8042432C
-	lwz      r4, sCurrentHeap__7JKRHeap@sda21(r13)
-	bl       __ct__15RootMenuSectionFP7JKRHeap
-	mr       r0, r3
-
-lbl_8042432C:
-	stw      r0, 4(r31)
-	li       r0, 0x16
-	stw      r0, mActiveSectionFlag__8GameFlow@sda21(r13)
-	b        lbl_80424358
-
-lbl_8042433C:
-	lis      r3, lbl_80499BC8@ha
-	lis      r4, lbl_80499BD8@ha
-	addi     r5, r4, lbl_80499BD8@l
-	addi     r3, r3, lbl_80499BC8@l
-	li       r4, 0xbc
-	crclr    6
-	bl       panic_f__12JUTExceptionFPCciPCce
-
-lbl_80424358:
-	lwz      r0, 0x14(r1)
-	lwz      r31, 0xc(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
 }
 
 /*
@@ -450,70 +395,18 @@ lbl_80424358:
  */
 void* GameFlow::getSectionInfo(int id)
 {
-	P2ASSERTLINE(201, (-1 < id && id < 0x23));
-	int i = 0x23;
-	do {
-		if (id == sSectionInfo[i].id) {
-			return &sSectionInfo[i];
+	void* sectionInfo = nullptr;
+
+	P2ASSERTBOUNDSLINE(201, 0, id, 0x23);
+
+	for (u32 i = 0; i < 0x23; i++) {
+		if (id == sSectionInfo[i].id.m_sectionId) {
+			sectionInfo = &sSectionInfo[i];
+			break;
 		}
-	} while (--i != 0);
-	return nullptr;
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	li       r0, 0
-	stw      r31, 0xc(r1)
-	li       r31, 0
-	stw      r30, 8(r1)
-	or.      r30, r3, r3
-	blt      lbl_8042439C
-	cmpwi    r30, 0x23
-	bge      lbl_8042439C
-	li       r0, 1
+	}
 
-lbl_8042439C:
-	clrlwi.  r0, r0, 0x18
-	bne      lbl_804243C0
-	lis      r3, lbl_80499BC8@ha
-	lis      r5, lbl_80499BF4@ha
-	addi     r3, r3, lbl_80499BC8@l
-	li       r4, 0xc9
-	addi     r5, r5, lbl_80499BF4@l
-	crclr    6
-	bl       panic_f__12JUTExceptionFPCciPCce
-
-lbl_804243C0:
-	lis      r3, "sSectionInfo__22@unnamed@gameflow_cpp@"@ha
-	li       r0, 0x23
-	addi     r3, r3, "sSectionInfo__22@unnamed@gameflow_cpp@"@l
-	li       r4, 0
-	mtctr    r0
-
-lbl_804243D4:
-	lbz      r0, 4(r3)
-	cmpw     r30, r0
-	bne      lbl_804243F4
-	lis      r3, "sSectionInfo__22@unnamed@gameflow_cpp@"@ha
-	slwi     r4, r4, 3
-	addi     r0, r3, "sSectionInfo__22@unnamed@gameflow_cpp@"@l
-	add      r31, r0, r4
-	b        lbl_80424400
-
-lbl_804243F4:
-	addi     r3, r3, 8
-	addi     r4, r4, 1
-	bdnz     lbl_804243D4
-
-lbl_80424400:
-	lwz      r0, 0x14(r1)
-	mr       r3, r31
-	lwz      r31, 0xc(r1)
-	lwz      r30, 8(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	return sectionInfo;
 }
 
 /*
@@ -525,137 +418,28 @@ ISection* GameFlow::createSection(JKRHeap* heap)
 {
 	ISection* section;
 	switch (mActiveSectionFlag) {
+	case 0x17:
+		section = new Demo::Section(heap);
+		break;
 	case 0x16:
 		section = new Title::Section(heap);
-		break;
-	case 0x3:
-		section = new Game::VsGameSection(heap, false);
 		break;
 	case 0x2:
 		section = new Game::SingleGameSection(heap);
 		break;
+	case 0x3:
+		section = new Game::VsGameSection(heap, false);
+		break;
 	case 0x1E:
 		section = new Game::VsGameSection(heap, true);
-		break;
-	case 0x17:
-		section = new Demo::Section(heap);
 		break;
 	default:
 		section = new Title::Section(heap);
 		break;
 	}
-	mActiveSectionFlag = 0x16;
+
+	mActiveSectionFlag = 22;
 	return section;
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	mr       r31, r3
-	lwz      r0, mActiveSectionFlag__8GameFlow@sda21(r13)
-	cmpwi    r0, 0x16
-	beq      lbl_80424490
-	bge      lbl_80424458
-	cmpwi    r0, 3
-	beq      lbl_804244D8
-	bge      lbl_80424528
-	cmpwi    r0, 2
-	bge      lbl_804244B4
-	b        lbl_80424528
-
-lbl_80424458:
-	cmpwi    r0, 0x1e
-	beq      lbl_80424500
-	bge      lbl_80424528
-	cmpwi    r0, 0x18
-	bge      lbl_80424528
-	li       r3, 0x1b0
-	bl       __nw__FUl
-	or.      r0, r3, r3
-	beq      lbl_80424488
-	mr       r4, r31
-	bl       __ct__Q24Demo7SectionFP7JKRHeap
-	mr       r0, r3
-
-lbl_80424488:
-	mr       r3, r0
-	b        lbl_80424548
-
-lbl_80424490:
-	li       r3, 0x2f70
-	bl       __nw__FUl
-	or.      r0, r3, r3
-	beq      lbl_804244AC
-	mr       r4, r31
-	bl       __ct__Q25Title7SectionFP7JKRHeap
-	mr       r0, r3
-
-lbl_804244AC:
-	mr       r3, r0
-	b        lbl_80424548
-
-lbl_804244B4:
-	li       r3, 0x278
-	bl       __nw__FUl
-	or.      r0, r3, r3
-	beq      lbl_804244D0
-	mr       r4, r31
-	bl       __ct__Q24Game17SingleGameSectionFP7JKRHeap
-	mr       r0, r3
-
-lbl_804244D0:
-	mr       r3, r0
-	b        lbl_80424548
-
-lbl_804244D8:
-	li       r3, 0x3e4
-	bl       __nw__FUl
-	or.      r0, r3, r3
-	beq      lbl_804244F8
-	mr       r4, r31
-	li       r5, 0
-	bl       __ct__Q24Game13VsGameSectionFP7JKRHeapb
-	mr       r0, r3
-
-lbl_804244F8:
-	mr       r3, r0
-	b        lbl_80424548
-
-lbl_80424500:
-	li       r3, 0x3e4
-	bl       __nw__FUl
-	or.      r0, r3, r3
-	beq      lbl_80424520
-	mr       r4, r31
-	li       r5, 1
-	bl       __ct__Q24Game13VsGameSectionFP7JKRHeapb
-	mr       r0, r3
-
-lbl_80424520:
-	mr       r3, r0
-	b        lbl_80424548
-
-lbl_80424528:
-	li       r3, 0x2f70
-	bl       __nw__FUl
-	or.      r0, r3, r3
-	beq      lbl_80424544
-	mr       r4, r31
-	bl       __ct__Q25Title7SectionFP7JKRHeap
-	mr       r0, r3
-
-lbl_80424544:
-	mr       r3, r0
-
-lbl_80424548:
-	li       r0, 0x16
-	stw      r0, mActiveSectionFlag__8GameFlow@sda21(r13)
-	lwz      r0, 0x14(r1)
-	lwz      r31, 0xc(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
 }
 
 /*

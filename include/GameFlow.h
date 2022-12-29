@@ -8,6 +8,15 @@ struct ISection;
 struct Section;
 struct JKRHeap;
 
+struct SectionInfo {
+	char* m_name;
+
+	union {
+		u8 m_sectionId, b, c, d;
+		u32 abcd;
+	} id;
+};
+
 struct GameFlow : public ISectionMgr {
 	GameFlow();
 	~GameFlow(); // unused and not virtual
@@ -16,8 +25,8 @@ struct GameFlow : public ISectionMgr {
 	virtual ISection* getCurrentSection(); // _0C (weak)
 
 	void setSection();
-	void* getSectionInfo(int);
 
+	static void* getSectionInfo(int);
 	static ISection* createSection(JKRHeap*);
 
 	static u32 mActiveSectionFlag;

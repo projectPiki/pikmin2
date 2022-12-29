@@ -27,6 +27,17 @@ struct JKRHeap : public JKRDisposer {
 		};
 
 		TState(const JKRHeap*, u32, bool);
+		TState(JKRHeap* heap)
+		    : _00(nullptr)
+		    , _04(0)
+		    , m_heap(heap)
+		{
+			m_id                    = 0xFFFFFFFF;
+			m_isCompareOnDestructed = true;
+			_1C                     = 0;
+			_20                     = -1;
+		}
+
 		~TState();
 		void dump() const;
 		static bool isVerbose();
