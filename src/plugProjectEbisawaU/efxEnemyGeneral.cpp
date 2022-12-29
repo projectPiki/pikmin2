@@ -241,7 +241,7 @@ bool TEnemyPiyo::create(efx::Arg* arg)
 		vec2.x = offs;
 		vec2.y = offs;
 		vec2.z = offs;
-		m_emitter->setOffs(offs, offs);
+		m_emitter->setGlobalScale(offs);
 
 	} else {
 		docreate = false;

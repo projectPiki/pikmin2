@@ -147,6 +147,10 @@ struct ArgDir : public Arg {
 	{
 		return "ArgDir";
 	}
+
+	// _00     = VTBL
+	// _00-_10 = Arg
+	Vector3f m_angle; // _10
 };
 
 struct ArgDopingSmoke : public Arg {
@@ -196,6 +200,7 @@ struct ArgKchYodare : public Arg {
 	{
 		return "ArgKchYodare";
 	}
+	f32 m_scale;
 };
 
 struct ArgKouhai : public Arg {
@@ -240,6 +245,8 @@ struct ArgPosPos : public Arg {
 	{
 		return "ArgPosPos";
 	}
+	Vector3f m_pos1;
+	Vector3f m_pos2;
 };
 
 struct ArgPrmColor : public Arg {
@@ -252,6 +259,7 @@ struct ArgPrmColor : public Arg {
 	{
 		return "ArgPrmColor";
 	}
+	Color4 m_color; // _10
 };
 
 struct ArgRotY : public Arg {
@@ -278,6 +286,8 @@ struct ArgRotYScale : public Arg {
 	{
 		return "ArgRotYScale";
 	}
+	f32 m_faceDir;
+	f32 m_scale;
 };
 
 struct ArgType : public Arg {

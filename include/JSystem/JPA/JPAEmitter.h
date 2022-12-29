@@ -10,6 +10,7 @@
 #include "JSystem/JSupport/JSUList.h"
 #include "JSystem/JUT/TColor.h"
 #include "types.h"
+#include "Color4.h"
 
 struct JPABaseEmitter;
 struct JPAEmitterWorkData;
@@ -113,10 +114,38 @@ struct JPABaseEmitter {
 
 	inline void setScaleOnly(f32 scale) { _98 = JGeometry::TVec3f(scale); }
 
-	inline void setOffs(f32 x, f32 y)
+	inline void setGlobalScale(f32 x, f32 y)
 	{
 		_B0 = x;
 		_B4 = y;
+	}
+
+	inline void setAngle(f32 x, f32 y, f32 z)
+	{
+		_18.x = x;
+		_18.y = y;
+		_18.z = z;
+	}
+
+	inline void setGlobalScale(f32 x)
+	{
+		_B0 = x;
+		_B4 = x;
+	}
+
+	inline void setColor(Color4& color)
+	{
+		m_color1.r = color.r;
+		m_color1.g = color.g;
+		m_color1.b = color.b;
+		m_color1.a = color.a;
+	}
+
+	inline void setColorRGB(Color4& color)
+	{
+		m_color1.r = color.r;
+		m_color1.g = color.g;
+		m_color1.b = color.b;
 	}
 
 	f32 _00;                    // _00
@@ -144,11 +173,8 @@ struct JPABaseEmitter {
 	JGeometry::TVec3f _A4;      // _A4
 	f32 _B0;                    // _B0
 	f32 _B4;                    // _B4
-	u8 _B8;                     // _B8
-	u8 _B9;                     // _B9
-	u8 _BA;                     // _BA
-	u8 _BB;                     // _BB
-	JUtility::TColor m_color;   // _BC
+	JUtility::TColor m_color1;  // _BC
+	JUtility::TColor m_color2;  // _BC
 	s32 : 0;                    // reset alignment to _C0
 	u8 _C0[4];                  // _C0
 	JMath::TRandom_fast_ m_rng; // _C4

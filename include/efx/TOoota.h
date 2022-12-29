@@ -181,6 +181,8 @@ struct TOootaParticle : public TChasePos {
 
 	virtual ~TOootaParticle(); // _48 (weak)
 
+	void setGlobalDynamicsScale(f32);
+
 	// _00     = VTBL
 	// _00-_14 = TChasePos
 };
