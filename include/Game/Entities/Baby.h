@@ -62,7 +62,7 @@ struct Obj : public EnemyBase {
 	// _00-_2BC	= EnemyBase
 	FSM* m_fsm;                    // _2BC
 	MouthSlots m_mouthSlots;       // _2C0
-	Vector3f _2C8;                 // _2C8, rand target position?
+	Vector3f m_targetPos;          // _2C8
 	efx::TBabyBorn* m_efxBabyBorn; // _2D4
 	                               // _2D8 = PelletView
 };

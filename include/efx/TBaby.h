@@ -16,6 +16,11 @@ struct TBabyBecha : public TSimple1 {
 };
 
 struct TBabyBorn : public TChasePos {
+	TBabyBorn(Vector3f* pos)
+	    : TChasePos(pos, PID_BabyBorn)
+	{
+	}
+
 	virtual ~TBabyBorn(); // _48 (weak)
 
 	// _00      = VTBL
