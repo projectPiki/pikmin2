@@ -1,4 +1,5 @@
-#include "types.h"
+#include "Game/Entities/Demon.h"
+#include "Game/Navi.h"
 
 /*
     Generated from dpostproc
@@ -289,8 +290,43 @@ lbl_8028E3D0:
  * Address:	8028E424
  * Size:	0003F0
  */
-Piki* Demon::Obj::getAttackableTarget()
+FakePiki* Demon::Obj::getAttackableTarget()
 {
+	m_attackTimer += sys->m_deltaTime;
+	if (m_attackTimer > 3.0f) {
+		Vector3f pos = getPosition();
+
+		Sarai::Parms* parms = static_cast<Sarai::Parms*>(m_parms);
+		f32 radius          = parms->m_general.m_territoryRadius.m_value;
+		if (sqrDistanceXZ(pos, m_homePosition) < radius * radius) {
+			f32 max = parms->m_general.m_sightRadius.m_value * parms->m_general.m_sightRadius.m_value;
+			f32 fov = parms->m_general.m_fov.m_value * DEG2RAD * PI;
+
+			Iterator<Game::Navi> iter(Game::naviMgr);
+			Game::Navi* navi;
+			CI_LOOP(iter)
+			{
+				navi = (*iter);
+				if (navi->isAlive() && !navi->isStickToMouth()) {
+
+					Vector3f Navipos         = navi->getPosition();
+					volatile f32 x           = Navipos.x;
+					volatile f32 z           = Navipos.z;
+					volatile Vector3f Objpos = getPosition();
+					f32 ang                  = JMath::atanTable_.atan2_(Objpos.x - x, Objpos.z - z);
+					ang                      = roundAng(ang);
+					ang                      = angDist(ang, getFaceDir());
+					if (FABS(ang) <= fov) {
+						Vector3f Navipos2 = navi->getPosition();
+						if (sqrDistanceXZ(pos, Navipos2) < max) {
+							return navi;
+						}
+					}
+				}
+			}
+		}
+	}
+	return nullptr;
 	/*
 	stwu     r1, -0xc0(r1)
 	mflr     r0
@@ -574,245 +610,34 @@ lbl_8028E7D4:
  * Address:	8028E814
  * Size:	00033C
  */
-void Demon::Obj::catchTarget()
+int Demon::Obj::catchTarget()
 {
-	/*
-	stwu     r1, -0x60(r1)
-	mflr     r0
-	li       r4, 0
-	lis      r5, "__vt__22Iterator<Q24Game4Navi>"@ha
-	stw      r0, 0x64(r1)
-	addi     r5, r5, "__vt__22Iterator<Q24Game4Navi>"@l
-	cmplwi   r4, 0
-	stmw     r27, 0x4c(r1)
-	mr       r30, r3
-	li       r31, 0
-	lwz      r0, naviMgr__4Game@sda21(r13)
-	stw      r4, 0x2c(r1)
-	stw      r5, 0x20(r1)
-	stw      r4, 0x24(r1)
-	stw      r0, 0x28(r1)
-	bne      lbl_8028E870
-	mr       r3, r0
-	lwz      r12, 0(r3)
-	lwz      r12, 0x18(r12)
-	mtctr    r12
-	bctrl
-	stw      r3, 0x24(r1)
-	b        lbl_8028EB18
+	int id = 0;
+	Iterator<Game::Navi> iter(Game::naviMgr);
+	Game::Navi* navi;
+	CI_LOOP(iter)
+	{
+		navi = (*iter);
+		if (navi->isAlive() && !navi->isStickToMouth()) {
+			for (int i = 0; i < m_mouthSlots.m_max; i++) {
+				MouthCollPart* slot = m_mouthSlots.getSlot(i);
+				if (!slot->m_stuckCreature) {
+					Vector3f slotpos;
+					slot->getPosition(slotpos);
+					Vector3f naviPos = navi->getPosition();
 
-lbl_8028E870:
-	mr       r3, r0
-	lwz      r12, 0(r3)
-	lwz      r12, 0x18(r12)
-	mtctr    r12
-	bctrl
-	stw      r3, 0x24(r1)
-	b        lbl_8028E8E0
-
-lbl_8028E88C:
-	lwz      r3, 0x28(r1)
-	lwz      r4, 0x24(r1)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x20(r12)
-	mtctr    r12
-	bctrl
-	mr       r4, r3
-	lwz      r3, 0x2c(r1)
-	lwz      r12, 0(r3)
-	lwz      r12, 8(r12)
-	mtctr    r12
-	bctrl
-	clrlwi.  r0, r3, 0x18
-	bne      lbl_8028EB18
-	lwz      r3, 0x28(r1)
-	lwz      r4, 0x24(r1)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x14(r12)
-	mtctr    r12
-	bctrl
-	stw      r3, 0x24(r1)
-
-lbl_8028E8E0:
-	lwz      r12, 0x20(r1)
-	addi     r3, r1, 0x20
-	lwz      r12, 0x10(r12)
-	mtctr    r12
-	bctrl
-	clrlwi.  r0, r3, 0x18
-	beq      lbl_8028E88C
-	b        lbl_8028EB18
-
-lbl_8028E900:
-	lwz      r3, 0x28(r1)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x20(r12)
-	mtctr    r12
-	bctrl
-	lwz      r12, 0(r3)
-	mr       r28, r3
-	lwz      r12, 0xa8(r12)
-	mtctr    r12
-	bctrl
-	clrlwi.  r0, r3, 0x18
-	beq      lbl_8028EA5C
-	mr       r3, r28
-	bl       isStickToMouth__Q24Game8CreatureFv
-	clrlwi.  r0, r3, 0x18
-	bne      lbl_8028EA5C
-	li       r27, 0
-	b        lbl_8028EA50
-
-lbl_8028E948:
-	mr       r4, r27
-	addi     r3, r30, 0x2c4
-	bl       getSlot__10MouthSlotsFi
-	mr       r29, r3
-	lwz      r0, 0x64(r3)
-	cmplwi   r0, 0
-	bne      lbl_8028EA4C
-	addi     r4, r1, 0x14
-	bl       "getPosition__13MouthCollPartFR10Vector3<f>"
-	mr       r4, r28
-	addi     r3, r1, 8
-	lwz      r12, 0(r28)
-	lwz      r12, 8(r12)
-	mtctr    r12
-	bctrl
-	lfs      f1, 0x18(r1)
-	lfs      f0, 0xc(r1)
-	lfs      f3, 0x14(r1)
-	fsubs    f4, f1, f0
-	lfs      f2, 8(r1)
-	lfs      f1, 0x1c(r1)
-	lfs      f0, 0x10(r1)
-	fsubs    f3, f3, f2
-	fmuls    f4, f4, f4
-	fsubs    f2, f1, f0
-	lfs      f0, lbl_8051B93C@sda21(r2)
-	fmadds   f1, f3, f3, f4
-	fmuls    f2, f2, f2
-	fadds    f1, f2, f1
-	fcmpo    cr0, f1, f0
-	ble      lbl_8028E9D4
-	ble      lbl_8028E9D8
-	frsqrte  f0, f1
-	fmuls    f1, f0, f1
-	b        lbl_8028E9D8
-
-lbl_8028E9D4:
-	fmr      f1, f0
-
-lbl_8028E9D8:
-	lfs      f0, 0x1c(r29)
-	fcmpo    cr0, f1, f0
-	bge      lbl_8028EA4C
-	lis      r4, __vt__Q24Game11Interaction@ha
-	lis      r3, __vt__Q24Game14InteractAttack@ha
-	addi     r0, r4, __vt__Q24Game11Interaction@l
-	lis      r4, __vt__Q24Game15InteractSwallow@ha
-	stw      r0, 0x30(r1)
-	addi     r0, r3, __vt__Q24Game14InteractAttack@l
-	lfs      f0, lbl_8051B940@sda21(r2)
-	lis      r3, __vt__Q24Game13InteractSarai@ha
-	stw      r0, 0x30(r1)
-	addi     r4, r4, __vt__Q24Game15InteractSwallow@l
-	li       r5, 0
-	addi     r0, r3, __vt__Q24Game13InteractSarai@l
-	stw      r4, 0x30(r1)
-	mr       r3, r28
-	addi     r4, r1, 0x30
-	stw      r30, 0x34(r1)
-	stfs     f0, 0x38(r1)
-	stw      r29, 0x3c(r1)
-	stw      r5, 0x40(r1)
-	stw      r0, 0x30(r1)
-	lwz      r12, 0(r28)
-	lwz      r12, 0x1a4(r12)
-	mtctr    r12
-	bctrl
-	addi     r31, r31, 1
-	b        lbl_8028EA5C
-
-lbl_8028EA4C:
-	addi     r27, r27, 1
-
-lbl_8028EA50:
-	lwz      r0, 0x2c4(r30)
-	cmpw     r27, r0
-	blt      lbl_8028E948
-
-lbl_8028EA5C:
-	lwz      r0, 0x2c(r1)
-	cmplwi   r0, 0
-	bne      lbl_8028EA88
-	lwz      r3, 0x28(r1)
-	lwz      r4, 0x24(r1)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x14(r12)
-	mtctr    r12
-	bctrl
-	stw      r3, 0x24(r1)
-	b        lbl_8028EB18
-
-lbl_8028EA88:
-	lwz      r3, 0x28(r1)
-	lwz      r4, 0x24(r1)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x14(r12)
-	mtctr    r12
-	bctrl
-	stw      r3, 0x24(r1)
-	b        lbl_8028EAFC
-
-lbl_8028EAA8:
-	lwz      r3, 0x28(r1)
-	lwz      r4, 0x24(r1)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x20(r12)
-	mtctr    r12
-	bctrl
-	mr       r4, r3
-	lwz      r3, 0x2c(r1)
-	lwz      r12, 0(r3)
-	lwz      r12, 8(r12)
-	mtctr    r12
-	bctrl
-	clrlwi.  r0, r3, 0x18
-	bne      lbl_8028EB18
-	lwz      r3, 0x28(r1)
-	lwz      r4, 0x24(r1)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x14(r12)
-	mtctr    r12
-	bctrl
-	stw      r3, 0x24(r1)
-
-lbl_8028EAFC:
-	lwz      r12, 0x20(r1)
-	addi     r3, r1, 0x20
-	lwz      r12, 0x10(r12)
-	mtctr    r12
-	bctrl
-	clrlwi.  r0, r3, 0x18
-	beq      lbl_8028EAA8
-
-lbl_8028EB18:
-	lwz      r3, 0x28(r1)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x1c(r12)
-	mtctr    r12
-	bctrl
-	lwz      r4, 0x24(r1)
-	cmplw    r4, r3
-	bne      lbl_8028E900
-	mr       r3, r31
-	lmw      r27, 0x4c(r1)
-	lwz      r0, 0x64(r1)
-	mtlr     r0
-	addi     r1, r1, 0x60
-	blr
-	*/
+					f32 dist = _distanceBetween2(slotpos, naviPos);
+					if (dist < slot->m_radius) {
+						InteractSarai act(this, 1.0f, slot, 0);
+						navi->stimulate(act);
+						id++;
+						break;
+					}
+				}
+			}
+		}
+	}
+	return id;
 }
 
 /*
@@ -820,31 +645,19 @@ lbl_8028EB18:
  * Address:	8028EB50
  * Size:	000008
  */
-u32 Demon::Obj::getEnemyTypeID() { return 0x20; }
+EnemyTypeID::EEnemyTypeID Demon::Obj::getEnemyTypeID() { return EnemyTypeID::EnemyID_Demon; }
 
 /*
  * --INFO--
  * Address:	8028EB58
  * Size:	000008
  */
-int Demon::Obj::getStickPikminNum()
-{
-	/*
-	lwz      r3, 0x1f4(r3)
-	blr
-	*/
-}
+int Demon::Obj::getStickPikminNum() { return m_stuckPikminCount; }
 
 /*
  * --INFO--
  * Address:	8028EB60
  * Size:	000008
  */
-void Demon::Obj::resetAttackableTimer(float)
-{
-	/*
-	stfs     f1, 0x2d8(r3)
-	blr
-	*/
-}
+void Demon::Obj::resetAttackableTimer(f32 time) { m_attackTimer = time; }
 } // namespace Game

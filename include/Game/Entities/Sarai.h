@@ -43,8 +43,8 @@ struct Obj : public EnemyBase {
 	virtual f32 getDownSmokeScale() { return 0.65f; }             // _2EC (weak)
 	virtual void setFSM(FSM*);                                    // _2F8
 	virtual int getStickPikminNum();                              // _2FC
-	virtual Piki* getAttackableTarget();                          // _300
-	virtual void catchTarget();                                   // _304
+	virtual FakePiki* getAttackableTarget();                      // _300
+	virtual int catchTarget();                                    // _304
 	virtual void resetAttackableTimer(f32);                       // _308 (weak)
 	//////////////// VTABLE END
 
