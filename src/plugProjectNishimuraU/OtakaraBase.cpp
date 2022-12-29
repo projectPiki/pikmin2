@@ -51,12 +51,12 @@ void Obj::onInit(CreatureInitArg* initArg)
 			initBombOtakara();
 		}
 
-		m_FSM->start(this, 11, nullptr);
+		m_fsm->start(this, 11, nullptr);
 		return;
 	}
 
 	_2E8 = 12800.0f;
-	m_FSM->start(this, 2, nullptr);
+	m_fsm->start(this, 2, nullptr);
 }
 
 /*
@@ -76,7 +76,7 @@ void Obj::onKill(CreatureKillArg* killArg)
  * Address:	802B64EC
  * Size:	000034
  */
-void Obj::doUpdate() { m_FSM->exec(this); }
+void Obj::doUpdate() { m_fsm->exec(this); }
 
 /*
  * --INFO--
@@ -149,8 +149,8 @@ void Obj::doDebugDraw(Graphics& gfx) { EnemyBase::doDebugDraw(gfx); }
  */
 void Obj::setFSM(FSM* fsm)
 {
-	m_FSM = fsm;
-	m_FSM->init(this);
+	m_fsm = fsm;
+	m_fsm->init(this);
 	m_currentLifecycleState = nullptr;
 }
 

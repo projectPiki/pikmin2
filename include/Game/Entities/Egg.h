@@ -61,8 +61,8 @@ struct Obj : public EnemyBase {
 	virtual f32 getDownSmokeScale() { return 0.4f; }       // _2EC (weak)
 	virtual void setFSM(FSM* fsm)                          // _2F8 (weak)
 	{
-		m_FSM = fsm;
-		m_FSM->init(this);
+		m_fsm = fsm;
+		m_fsm->init(this);
 		m_currentLifecycleState = nullptr;
 	}
 	//////////////// VTABLE END
@@ -72,7 +72,7 @@ struct Obj : public EnemyBase {
 	// _00 		= VTBL
 	// _00-_2BC	= EnemyBase
 	bool m_isFalling; // _2BC, set when released from capture
-	FSM* m_FSM;       // _2C0
+	FSM* m_fsm;       // _2C0
 	                  // _2C4 = PelletView
 };
 

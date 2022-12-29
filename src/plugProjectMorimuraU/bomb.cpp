@@ -21,7 +21,7 @@ void Obj::setParameters() { EnemyBase::setParameters(); }
  */
 void Obj::onStartCapture()
 {
-	m_FSM->start(this, BOMB_Wait, nullptr);
+	m_fsm->start(this, BOMB_Wait, nullptr);
 	if (m_captureMatrix) {
 		Vector3f position = m_captureMatrix->getBasis(3);
 		onSetPosition(position);
@@ -77,7 +77,7 @@ void Obj::onInit(CreatureInitArg* initArg)
 	_2C4      = 0;
 	m_otakara = nullptr;
 
-	m_FSM->start(this, BOMB_Wait, nullptr);
+	m_fsm->start(this, BOMB_Wait, nullptr);
 
 	if (!isBirthTypeDropGroup()) {
 		enableEvent(0, EB_Constraint);
@@ -112,7 +112,7 @@ Obj::Obj()
 	_2C4       = 0;
 	_2C8       = 0;
 	_2C9       = 0;
-	m_FSM      = nullptr;
+	m_fsm      = nullptr;
 	m_efxLight = nullptr;
 	m_animator = new ProperAnimator;
 	setFSM(new FSM);
@@ -143,7 +143,7 @@ void Obj::doUpdate()
 		m_targetVelocity = m_currentVelocity;
 	}
 
-	m_FSM->exec(this);
+	m_fsm->exec(this);
 }
 
 /*
@@ -577,7 +577,7 @@ void Obj::forceBomb()
 {
 	if (getStateID() == BOMB_Wait) {
 		disableEvent(0, EB_IsVulnerable);
-		m_FSM->transit(this, BOMB_Bomb, nullptr);
+		m_fsm->transit(this, BOMB_Bomb, nullptr);
 	}
 }
 

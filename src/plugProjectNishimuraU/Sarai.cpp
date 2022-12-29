@@ -42,7 +42,7 @@ void Obj::onInit(CreatureInitArg* initArg)
 	_2C0 = 0.0f;
 	resetAttackableTimer(12800.0f);
 
-	m_FSM->start(this, SARAI_Move, nullptr);
+	m_fsm->start(this, SARAI_Move, nullptr);
 }
 
 /*
@@ -52,7 +52,7 @@ void Obj::onInit(CreatureInitArg* initArg)
  */
 void Obj::doUpdate()
 {
-	m_FSM->exec(this);
+	m_fsm->exec(this);
 	m_mouthSlots.update();
 }
 
@@ -63,8 +63,8 @@ void Obj::doUpdate()
  */
 void Obj::setFSM(FSM* fsm)
 {
-	m_FSM = fsm;
-	m_FSM->init(this);
+	m_fsm = fsm;
+	m_fsm->init(this);
 	m_currentLifecycleState = nullptr;
 }
 
@@ -136,7 +136,7 @@ void Obj::doFinishStoneState()
 
 	s32 stateId = getStateID();
 	if (stateId >= SARAI_TakeOff) {
-		m_FSM->transit(this, SARAI_TakeOff, nullptr);
+		m_fsm->transit(this, SARAI_TakeOff, nullptr);
 	}
 }
 

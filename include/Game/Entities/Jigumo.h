@@ -114,7 +114,7 @@ struct Obj : public EnemyBase {
 	efx::TImoSmoke* m_efxSmoke;     // _380
 	u8 _384;                        // _384, unknown
 	u8 _385;                        // _385, unknown
-	FSM* m_FSM;                     // _388
+	FSM* m_fsm;                     // _388
 	                                // _38C = PelletView
 };
 

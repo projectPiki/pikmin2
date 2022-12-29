@@ -75,7 +75,7 @@ void Obj::onInit(CreatureInitArg* initArg)
 	_2D0 = 0.0f;
 
 	m_stateID = FUEFUKI_NULL;
-	m_FSM->start(this, FUEFUKI_Land, nullptr);
+	m_fsm->start(this, FUEFUKI_Land, nullptr);
 }
 
 /*
@@ -100,7 +100,7 @@ void Obj::onKill(CreatureKillArg* killArg)
  */
 void Obj::doUpdate()
 {
-	m_FSM->exec(this);
+	m_fsm->exec(this);
 	m_appearTimer += sys->m_deltaTime;
 	if (_2D4 > 0.0f) {
 		_2D4--;
@@ -130,8 +130,8 @@ void Obj::doDebugDraw(Graphics& gfx) { EnemyBase::doDebugDraw(gfx); }
  */
 void Obj::setFSM(FSM* fsm)
 {
-	m_FSM = fsm;
-	m_FSM->init(this);
+	m_fsm = fsm;
+	m_fsm->init(this);
 	m_currentLifecycleState = nullptr;
 }
 
@@ -165,7 +165,7 @@ void Obj::getShadowParam(ShadowParam& param)
 bool Obj::pressCallBack(Creature* creature, f32 damage, CollPart* collpart)
 {
 	if (creature && _2C0 && !isEvent(0, EB_IsBittered)) {
-		m_FSM->transit(this, FUEFUKI_Struggle, nullptr);
+		m_fsm->transit(this, FUEFUKI_Struggle, nullptr);
 		return false;
 	}
 
@@ -180,7 +180,7 @@ bool Obj::pressCallBack(Creature* creature, f32 damage, CollPart* collpart)
 bool Obj::hipdropCallBack(Creature* creature, f32 damage, CollPart* collpart)
 {
 	if (creature && _2C0 && !isEvent(0, EB_IsBittered)) {
-		m_FSM->transit(this, FUEFUKI_Struggle, nullptr);
+		m_fsm->transit(this, FUEFUKI_Struggle, nullptr);
 		return false;
 	}
 

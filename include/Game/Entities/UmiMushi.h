@@ -150,7 +150,7 @@ struct Obj : public EnemyBase {
 	efx::TUmiDeadawa* _384;                   // _384
 	Matrixf* _388;                            // _388
 	Vector3f _38C;                            // _38C
-	FSM* m_FSM;                               // _398
+	FSM* m_fsm;                               // _398
 	EnemyTypeID::EEnemyTypeID m_bloysterType; // _39C
 	u8 _3A0[0x4];                             // _3A0, unknown
 	                                          // _3A4 = PelletView

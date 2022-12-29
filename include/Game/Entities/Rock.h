@@ -64,7 +64,7 @@ struct Obj : public EnemyBase {
 
 	// _00 		= VTBL
 	// _00-_2BC	= EnemyBase
-	FSM* m_FSM;                      // _2BC
+	FSM* m_fsm;                      // _2BC
 	EnemyBase* m_sourceEnemy;        // _2C0
 	u8 _2C4;                         // _2C4, maybe isHoming?
 	f32 m_timer;                     // _2C8

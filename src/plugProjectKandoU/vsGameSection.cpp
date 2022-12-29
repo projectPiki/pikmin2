@@ -194,10 +194,10 @@ void VsGameSection::onInit()
 	loadChallengeStageList();
 	loadVsStageList();
 
-	m_FSM = new VsGame::FSM();
-	m_FSM->init(this);
+	m_fsm = new VsGame::FSM();
+	m_fsm->init(this);
 	initPlayData();
-	m_FSM->start(this, VsGame::VGS_Title, nullptr);
+	m_fsm->start(this, VsGame::VGS_Title, nullptr);
 
 	m_currentFloor          = 0;
 	m_redBlueYellowScore[1] = 0.0f;
@@ -250,7 +250,7 @@ bool VsGameSection::doUpdate()
 		return false;
 	}
 
-	m_FSM->exec(this);
+	m_fsm->exec(this);
 
 	if (gameSystem->m_mode == GSM_VERSUS_MODE) {
 		int redPikmins  = GameStat::getMapPikmins(1) - (m_olimarHandicap - 3);

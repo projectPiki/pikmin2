@@ -78,7 +78,7 @@ struct Obj : public EnemyBase {
 
 	// _00 		= VTBL
 	// _00-_2BC	= EnemyBase
-	FSM* m_FSM;                     // _2BC
+	FSM* m_fsm;                     // _2BC
 	f32 _2C0;                       // _2C0
 	f32 m_fallTimer;                // _2C4
 	f32 m_shadowOffset;             // _2C8

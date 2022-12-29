@@ -91,7 +91,7 @@ struct Obj : public EnemyBase {
 	Vector3f _2D4;                  // _2D4
 	u8 _2E0[0xC];                   // _2E0, unknown
 	Vector3f _2EC[2];               // _2EC
-	FSM* m_FSM;                     // _304
+	FSM* m_fsm;                     // _304
 	f32 m_shadowScale;              // _308
 	f32 _30C;                       // _30C
 	u8 _310[0x10];                  // _310, unknown

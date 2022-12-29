@@ -14,7 +14,7 @@ namespace ChappyBase {
  * Size:	00015C
  */
 Obj::Obj()
-    : m_FSM(nullptr)
+    : m_fsm(nullptr)
 {
 	m_animator = new ProperAnimator;
 	setFSM(new FSM);
@@ -56,7 +56,7 @@ void Obj::onInit(CreatureInitArg* initArg)
 	sleepArg._00 = true;
 
 	setupEffect();
-	m_FSM->start(this, CHAPPY_Sleep, &sleepArg);
+	m_fsm->start(this, CHAPPY_Sleep, &sleepArg);
 }
 
 /*
@@ -64,7 +64,7 @@ void Obj::onInit(CreatureInitArg* initArg)
  * Address:	8012AB74
  * Size:	000034
  */
-void Obj::doUpdate() { m_FSM->exec(this); }
+void Obj::doUpdate() { m_fsm->exec(this); }
 
 /*
  * --INFO--

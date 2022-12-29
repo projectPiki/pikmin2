@@ -139,7 +139,7 @@ struct Obj : public EnemyBase {
 
 	// _00 		= VTBL
 	// _00-_2BC	= EnemyBase
-	FSM* m_FSM;                       // _2BC
+	FSM* m_fsm;                       // _2BC
 	bool m_isUnderground;             // _2C0
 	bool _2C1;                        // _2C1, isOnGround? hasLanded?
 	u8 _2C2;                          // _2C2

@@ -68,7 +68,7 @@ struct Obj : public EnemyBase {
 	u8 _2E4;                             // _2E4
 	f32 _2E8;                            // _2E8, timer?
 	WalkSmokeEffect::Mgr m_walkSmokeMgr; // _2EC
-	FSM* m_FSM;                          // _2F4
+	FSM* m_fsm;                          // _2F4
 	                                     // _2F8 = PelletView
 };
 

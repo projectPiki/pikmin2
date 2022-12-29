@@ -103,7 +103,7 @@ struct Obj : public EnemyBase {
 	u8 _2C4[0x4];                        // _2C4, unknown
 	EnemyBase* m_spawningEnemy;          // _2C8
 	Vector3f _2CC;                       // _2CC
-	FSM* m_FSM;                          // _2D8
+	FSM* m_fsm;                          // _2D8
 	UpdateContext m_updateContext;       // _2DC
 	Obj* m_groupLeader;                  // _2E8
 	u8 _2EC[0x4];                        // _2EC, unknown

@@ -95,7 +95,7 @@ struct VsGameSection : public BaseGameSection {
 
 	bool m_isVersusMode;                            // _174
 	VSFifo* m_vsFifo;                               // _178
-	StateMachine<Game::VsGameSection>* m_FSM;       // _17C
+	StateMachine<Game::VsGameSection>* m_fsm;       // _17C
 	VsGame::State* m_state;                         // _180
 	DvdThreadCommand m_dvdThreadCommand;            // _184
 	f32 _1F0[2];                                    // _1F0

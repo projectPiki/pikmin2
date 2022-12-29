@@ -63,8 +63,8 @@ struct Obj : public EnemyBase {
 	virtual void startCarcassMotion();                      // _2C4
 	virtual void setFSM(FSM* fsm)                           // _2F8 (weak)
 	{
-		m_FSM = fsm;
-		m_FSM->init(this);
+		m_fsm = fsm;
+		m_fsm->init(this);
 		m_currentLifecycleState = nullptr;
 	}
 	virtual bool isWakeup();                  // _2FC
@@ -89,7 +89,7 @@ struct Obj : public EnemyBase {
 
 	// _00 		= VTBL
 	// _00-_2BC	= EnemyBase
-	FSM* m_FSM;                          // _2BC
+	FSM* m_fsm;                          // _2BC
 	MouthSlots m_mouthSlots;             // _2C0
 	SysShape::Joint* m_shadowJoint;      // _2C8
 	f32 _2CC;                            // _2CC

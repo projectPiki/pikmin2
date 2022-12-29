@@ -84,7 +84,7 @@ struct Obj : public EnemyBase {
 
 	// _00 		= VTBL
 	// _00-_2BC	= EnemyBase
-	FSM* m_FSM;                          // _2BC
+	FSM* m_fsm;                          // _2BC
 	SysShape::Joint* m_joint;            // _2C0
 	WalkSmokeEffect::Mgr m_walkSmokeMgr; // _2C4
 	Vector3f _2CC;                       // _2CC

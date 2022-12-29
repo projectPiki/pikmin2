@@ -64,7 +64,7 @@ void Obj::onInit(CreatureInitArg* initArg)
 	m_swingTimer      = 0.0f;
 	m_queenColorTimer = 0.0f;
 
-	m_FSM->start(this, 0, nullptr);
+	m_fsm->start(this, 0, nullptr);
 }
 
 /*
@@ -74,7 +74,7 @@ void Obj::onInit(CreatureInitArg* initArg)
  */
 void Obj::doUpdate()
 {
-	m_FSM->exec(this);
+	m_fsm->exec(this);
 	m_mouthSlots.update();
 	if (isEvent(0, EB_IsDamageAnimAllowed) && m_bounceTriangle) {
 		if (isEvent(0, EB_HardConstraint)) {
@@ -129,8 +129,8 @@ void Obj::doDebugDraw(Graphics& gfx) { EnemyBase::doDebugDraw(gfx); }
  */
 void Obj::setFSM(FSM* fsm)
 {
-	m_FSM = fsm;
-	m_FSM->init(this);
+	m_fsm = fsm;
+	m_fsm->init(this);
 	m_currentLifecycleState = nullptr;
 }
 

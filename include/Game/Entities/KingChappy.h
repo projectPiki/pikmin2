@@ -117,7 +117,7 @@ struct Obj : public EnemyBase {
 	u8 _33C[0x4];                        // _33C, unknown
 	void* _340;                          // _340, code? unknown
 	WalkSmokeEffect::Mgr m_walkSmokeMgr; // _344
-	FSM* m_FSM;                          // _34C
+	FSM* m_fsm;                          // _34C
 	efx::TKchYodare* m_efxYodare;        // _350
 	efx::TKchDiveSand* m_efxDiveSand;    // _354
 	efx::TKchDiveWat* m_efxDiveWater;    // _358

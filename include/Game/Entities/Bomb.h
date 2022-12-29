@@ -71,8 +71,8 @@ struct Obj : public EnemyBase {
 	virtual void doEndMovie();                              // _2F4
 	virtual void setFSM(FSM* fsm)                           // _2F8 (weak)
 	{
-		m_FSM = fsm;
-		m_FSM->init(this);
+		m_fsm = fsm;
+		m_fsm->init(this);
 		m_currentLifecycleState = nullptr;
 	}
 	//////////////// VTABLE END
@@ -92,7 +92,7 @@ struct Obj : public EnemyBase {
 	u8 _2C8;                         // _2C8
 	u8 _2C9;                         // _2C9
 	OtakaraBase::Obj* m_otakara;     // _2CC
-	FSM* m_FSM;                      // _2D0
+	FSM* m_fsm;                      // _2D0
 	efx::TBombrockLight* m_efxLight; // _2D4
 	                                 // _2D8 = PelletView
 };

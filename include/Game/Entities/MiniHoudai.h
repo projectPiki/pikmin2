@@ -110,7 +110,7 @@ struct Obj : public EnemyBase {
 
 	// _00 		= VTBL
 	// _00-_2B8	= EnemyBase
-	FSM* m_FSM;                           // _2BC
+	FSM* m_fsm;                           // _2BC
 	WalkSmokeEffect::Mgr m_walkSmokeMgr;  // _2C0
 	float _2C8;                           // _2C8, caution?
 	float _2CC;                           // _2CC

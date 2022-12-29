@@ -78,7 +78,7 @@ struct Obj : public EnemyBase {
 	u8 _300;                 // _300, unknown
 	u8 _301[0x3];            // _301, unknown/padding
 	u8 _304[0x4];            // _304, unknown
-	FSM* m_FSM;              // _308
+	FSM* m_fsm;              // _308
 	                         // _30C = PelletView
 };
 

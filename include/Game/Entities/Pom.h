@@ -57,7 +57,7 @@ struct Obj : public EnemyBase {
 
 	// _00 		= VTBL
 	// _00-_2BC	= EnemyBase
-	FSM* m_FSM;                        // _2BC
+	FSM* m_fsm;                        // _2BC
 	bool m_canTouchToClose;            // _2C0, will swing closed on navi/piki/teki touch
 	bool m_canSwallowPiki;             // _2C1, will eat piki when thrown in
 	int m_usedSlotCount;               // _2C4, conversion slots used up

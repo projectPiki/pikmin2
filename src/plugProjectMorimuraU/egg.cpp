@@ -38,7 +38,7 @@ void Obj::onInit(CreatureInitArg* initArg)
 	setEmotionNone();
 	enableEvent(0, EB_IsImmuneBitter);
 	m_isFalling = false;
-	m_FSM->start(this, 0, nullptr);
+	m_fsm->start(this, 0, nullptr);
 
 	if (!isBirthTypeDropGroup()) {
 		enableEvent(0, EB_Constraint);
@@ -65,7 +65,7 @@ void Obj::onInit(CreatureInitArg* initArg)
  */
 Obj::Obj()
 {
-	m_FSM      = nullptr;
+	m_fsm      = nullptr;
 	m_animator = new ProperAnimator;
 	setFSM(new FSM);
 }
@@ -83,7 +83,7 @@ void Obj::doUpdate()
 		m_targetVelocity = m_currentVelocity;
 	}
 
-	m_FSM->exec(this);
+	m_fsm->exec(this);
 }
 
 /*

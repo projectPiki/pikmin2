@@ -82,7 +82,7 @@ void Obj::onInit(CreatureInitArg* args)
 	f32 r = randWeightFloat(C_PROPERPARMS.m_waitTime.m_value);
 	WaitStateArg arg;
 	arg.m_waitTimer = r;
-	m_FSM->start(this, ELECHIBA_Wait, &arg);
+	m_fsm->start(this, ELECHIBA_Wait, &arg);
 }
 
 /*
@@ -93,7 +93,7 @@ void Obj::onInit(CreatureInitArg* args)
 void Obj::doUpdate()
 {
 	if (m_teamList.m_child) {
-		m_FSM->exec(this);
+		m_fsm->exec(this);
 	}
 }
 
@@ -118,8 +118,8 @@ void Obj::doDebugDraw(Graphics& gfx) { EnemyBase::doDebugDraw(gfx); }
  */
 void Obj::setFSM(FSM* fsm)
 {
-	m_FSM = fsm;
-	m_FSM->init(this);
+	m_fsm = fsm;
+	m_fsm->init(this);
 	m_currentLifecycleState = nullptr;
 }
 

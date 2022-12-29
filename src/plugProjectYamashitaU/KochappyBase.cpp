@@ -11,7 +11,7 @@ namespace KochappyBase {
  * Size:	000148
  */
 Obj::Obj()
-    : m_FSM(nullptr)
+    : m_fsm(nullptr)
 {
 	m_animator = new ProperAnimator;
 	setFSM(new FSM);
@@ -25,7 +25,7 @@ Obj::Obj()
 void Obj::birth(Vector3f& position, f32 p1)
 {
 	EnemyBase::birth(position, p1);
-	m_FSM->start(this, KOCHAPPY_Wait, (WaitArg*)'rand');
+	m_fsm->start(this, KOCHAPPY_Wait, (WaitArg*)'rand');
 	m_shadowJoint = m_model->getJoint("ago");
 	_2CC          = 0.0f;
 }
@@ -47,7 +47,7 @@ void Obj::onInit(CreatureInitArg* initArg)
 	EnemyBase::onInit(initArg);
 	m_shadowJoint = m_model->getJoint("ago");
 	_2CC          = 0.0f;
-	m_FSM->start(this, KOCHAPPY_Wait, (WaitArg*)'rand');
+	m_fsm->start(this, KOCHAPPY_Wait, (WaitArg*)'rand');
 }
 
 /*
@@ -57,7 +57,7 @@ void Obj::onInit(CreatureInitArg* initArg)
  */
 void Obj::doUpdate()
 {
-	m_FSM->exec(this);
+	m_fsm->exec(this);
 
 	if (!playData->isDemoFlag(DEMO_Meet_Red_Pikmin)) {
 		m_targetVelocity  = Vector3f::zero;
@@ -117,7 +117,7 @@ bool Obj::pressCallBack(Game::Creature* creature, float p1, CollPart* collpart)
 {
 	if (creature->isPiki() && isAlive()) {
 		if (!isEvent(0, EB_IsBittered)) {
-			m_FSM->transit(this, KOCHAPPY_Press, nullptr);
+			m_fsm->transit(this, KOCHAPPY_Press, nullptr);
 			return true;
 		}
 		return false;

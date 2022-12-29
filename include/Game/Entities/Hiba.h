@@ -58,7 +58,7 @@ struct Obj : public EnemyBase {
 
 	// _00 		= VTBL
 	// _00-_2BC	= EnemyBase
-	FSM* m_FSM;                // _2BC
+	FSM* m_fsm;                // _2BC
 	bool m_isAlive;            // _2C0
 	f32 m_timer;               // _2C4
 	efx::THibaFire* m_efxFire; // _2C8

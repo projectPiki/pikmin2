@@ -106,8 +106,8 @@ struct Obj : public EnemyBase {
 	}
 	virtual void setFSM(FSM* fsm) // _30C (weak)
 	{
-		m_FSM = fsm;
-		m_FSM->init(this);
+		m_fsm = fsm;
+		m_fsm->init(this);
 		m_currentLifecycleState = nullptr;
 	}
 
@@ -175,7 +175,7 @@ struct Obj : public EnemyBase {
 	Matrixf _348;                        // _348, capture matrix?
 	Nest::Obj* m_nest;                   // _378
 	f32 _37C;                            // _37C
-	FSM* m_FSM;                          // _380
+	FSM* m_fsm;                          // _380
 	u32 _384;                            // _384, unknown
 	int _388;                            // _388
 	Pellet* _38C[1];                     // _38C, size unknown, probably some (all?) of below

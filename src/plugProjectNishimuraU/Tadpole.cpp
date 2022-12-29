@@ -36,7 +36,7 @@ void Obj::onInit(CreatureInitArg* initArg)
 	_2C4 = 0.0f;
 	_2C8 = -1;
 	_2C0 = 1;
-	m_FSM->start(this, TADPOLE_Wait, nullptr);
+	m_fsm->start(this, TADPOLE_Wait, nullptr);
 }
 
 /*
@@ -44,7 +44,7 @@ void Obj::onInit(CreatureInitArg* initArg)
  * Address:	80278768
  * Size:	000034
  */
-void Obj::doUpdate() { m_FSM->exec(this); }
+void Obj::doUpdate() { m_fsm->exec(this); }
 
 /*
  * --INFO--
@@ -67,8 +67,8 @@ void Obj::doDebugDraw(Graphics& gfx) { EnemyBase::doDebugDraw(gfx); }
  */
 void Obj::setFSM(FSM* fsm)
 {
-	m_FSM = fsm;
-	m_FSM->init(this);
+	m_fsm = fsm;
+	m_fsm->init(this);
 	m_currentLifecycleState = nullptr;
 }
 

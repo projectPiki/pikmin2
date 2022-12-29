@@ -50,7 +50,7 @@ void Obj::onInit(CreatureInitArg* args)
 	f32 r = randWeightFloat(C_PROPERPARMS.m_waitTime.m_value);
 	WaitStateArg arg;
 	arg.m_waitTimer = r;
-	m_FSM->start(this, GASHIBA_Wait, &arg);
+	m_fsm->start(this, GASHIBA_Wait, &arg);
 }
 
 /*
@@ -58,7 +58,7 @@ void Obj::onInit(CreatureInitArg* args)
  * Address:	8026D388
  * Size:	000034
  */
-void Obj::doUpdate() { m_FSM->exec(this); }
+void Obj::doUpdate() { m_fsm->exec(this); }
 
 /*
  * --INFO--
@@ -81,8 +81,8 @@ void Obj::doDebugDraw(Graphics& gfx) { EnemyBase::doDebugDraw(gfx); }
  */
 void Obj::setFSM(FSM* fsm)
 {
-	m_FSM = fsm;
-	m_FSM->init(this);
+	m_fsm = fsm;
+	m_fsm->init(this);
 	m_currentLifecycleState = nullptr;
 }
 

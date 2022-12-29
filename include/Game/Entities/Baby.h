@@ -60,7 +60,7 @@ struct Obj : public EnemyBase {
 
 	// _00 		= VTBL
 	// _00-_2BC	= EnemyBase
-	FSM* m_FSM;                    // _2BC
+	FSM* m_fsm;                    // _2BC
 	MouthSlots m_mouthSlots;       // _2C0
 	Vector3f _2C8;                 // _2C8, rand target position?
 	efx::TBabyBorn* m_efxBabyBorn; // _2D4
