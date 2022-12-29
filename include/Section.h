@@ -52,24 +52,23 @@ struct Section : public ISection {
 	void endRender();
 	void exit();
 
-	// Unused/inlined:
-	void loading();
-	void fadeIn();
-	void main();
-	void fadeOut();
+	inline void loading();
+	inline void fadeIn();
+	inline void main();
+	inline void fadeOut();
 
-	WipeBase* _18;          // _18
-	JKRHeap* _1C;           // _1C
-	JKRHeap* _20;           // _20
-	JFWDisplay* m_display;  // _24
-	JUTFader* m_fader;      // _28
-	Graphics* m_graphics;   // _2C
-	float _30;              // _30
-	bool m_active;          // _34
-	u8 _35;                 // _35
-	u8 _36;                 // _36
-	bool m_isFinishedMaybe; // _37
-	u8 _38;                 // _38
+	WipeBase* m_displayWiper; // _18
+	JKRHeap* m_displayHeap;   // _1C
+	JKRHeap* m_oldHeap;       // _20
+	JFWDisplay* m_display;    // _24
+	JUTFader* m_fader;        // _28
+	Graphics* m_graphics;     // _2C
+	float m_timeStep;         // _30
+	bool m_isMainActive;      // _34
+	bool m_isDisplayNew;      // _35
+	u8 _36;                   // _36
+	bool m_isLoadingDVD;      // _37
+	u8 _38;                   // _38
 };
 
 #endif

@@ -181,7 +181,7 @@ void VsGameSection::onInit()
 	_11C                 = 0;
 	m_hole               = nullptr;
 	m_pokoCount          = 0;
-	m_menuRunning        = false;
+	m_isMenuRunning      = false;
 
 	sprintf(m_caveInfoFilename, "caveinfo.txt");
 	sprintf(m_editFilename, "random");
@@ -194,10 +194,10 @@ void VsGameSection::onInit()
 	loadChallengeStageList();
 	loadVsStageList();
 
-	m_FSM = new VsGame::FSM();
-	m_FSM->init(this);
+	m_fsm = new VsGame::FSM();
+	m_fsm->init(this);
 	initPlayData();
-	m_FSM->start(this, VsGame::VGS_Title, nullptr);
+	m_fsm->start(this, VsGame::VGS_Title, nullptr);
 
 	m_currentFloor          = 0;
 	m_redBlueYellowScore[1] = 0.0f;
@@ -245,12 +245,12 @@ int VsGameSection::getCurrFloor() { return m_currentFloor; }
  */
 bool VsGameSection::doUpdate()
 {
-	if (m_menuRunning) {
-		m_active = false;
+	if (m_isMenuRunning) {
+		m_isMainActive = false;
 		return false;
 	}
 
-	m_FSM->exec(this);
+	m_fsm->exec(this);
 
 	if (gameSystem->m_mode == GSM_VERSUS_MODE) {
 		int redPikmins  = GameStat::getMapPikmins(1) - (m_olimarHandicap - 3);
@@ -283,7 +283,7 @@ bool VsGameSection::doUpdate()
 		}
 	}
 
-	return m_active;
+	return m_isMainActive;
 }
 
 /*
@@ -305,7 +305,7 @@ void VsGameSection::pre2dDraw(Graphics& gfx)
  */
 void VsGameSection::doDraw(Graphics& gfx)
 {
-	if (!m_menuRunning && m_state) {
+	if (!m_isMenuRunning && m_state) {
 		m_state->draw(this, gfx);
 	}
 }
@@ -355,8 +355,8 @@ void VsGameSection::initPlayData()
 {
 	playData->reset();
 	playData->setDevelopSetting(true, true);
-	playData->m_naviLifeMax[0] = naviMgr->m_naviParms->m_naviParms.m_p050.m_value;
-	playData->m_naviLifeMax[1] = naviMgr->m_naviParms->m_naviParms.m_p050.m_value;
+	playData->m_naviLifeMax[0] = naviMgr->m_naviParms->m_naviParms.m_maxHealth.m_value;
+	playData->m_naviLifeMax[1] = naviMgr->m_naviParms->m_naviParms.m_maxHealth.m_value;
 }
 
 /*
@@ -598,8 +598,8 @@ bool VsGameSection::updateCaveMenus()
 			break;
 
 		case 1:
-			playData->m_naviLifeMax[0] = naviMgr->getAt(0)->m_currentLife;
-			playData->m_naviLifeMax[1] = naviMgr->getAt(1)->m_currentLife;
+			playData->m_naviLifeMax[0] = naviMgr->getAt(0)->m_health;
+			playData->m_naviLifeMax[1] = naviMgr->getAt(1)->m_health;
 			gameSystem->setPause(false, "more-yes", 3);
 			gameSystem->setMoviePause(false, "more-yes");
 			m_menuFlags &= ~2;
@@ -813,10 +813,10 @@ void VsGameSection::addChallengeScore(int score) { m_pokoCount += score; }
  * Address:	801C2DD0
  * Size:	00006C
  */
-void VsGameSection::sendMessage(GameMessage& message)
+bool VsGameSection::sendMessage(GameMessage& message)
 {
 	if (message.actCommon(this)) {
-		message.actVs(this);
+		return message.actVs(this);
 	}
 }
 
@@ -827,7 +827,7 @@ void VsGameSection::sendMessage(GameMessage& message)
  */
 bool GameMessageVsGetDoping::actVs(VsGameSection* section)
 {
-	section->getGetDopeCount(_04, _08)++;
+	section->getGetDopeCount(m_naviIndex, m_sprayType)++;
 	return true;
 }
 
