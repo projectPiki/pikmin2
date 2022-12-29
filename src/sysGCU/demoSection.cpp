@@ -191,7 +191,7 @@ void Section::init()
 	m_moviePlayer.init(_1C);
 
 	addGenNode(m_genNode);
-	_30 = 0.5f;
+	m_timeStep = 0.5f;
 
 	JUTProcBar::sManager->_10C = 0;
 	JUTProcBar::sManager->_130 = 0;

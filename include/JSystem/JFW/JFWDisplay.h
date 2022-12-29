@@ -20,7 +20,7 @@ struct JFWDisplay {
 	virtual ~JFWDisplay();      // _14
 
 	static JFWDisplay* createManager(const _GXRenderModeObj*, JKRHeap*, JUTXfb::EXfbNumber, bool);
-	void destroyManager();
+	static void destroyManager();
 	void waitBlanking(int);
 	void threadSleep(long long);
 	void clearEfb_init();

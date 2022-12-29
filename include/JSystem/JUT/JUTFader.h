@@ -3,6 +3,7 @@
 
 #include "JSystem/JGeometry.h"
 #include "JSystem/JUT/TColor.h"
+#include "JSystem/JUT/JUTVideo.h"
 #include "types.h"
 
 /*

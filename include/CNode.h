@@ -14,8 +14,8 @@ struct CNode {
 		m_name   = name;
 	};
 
-	virtual ~CNode();
-	virtual int getChildCount();
+	virtual ~CNode();            // _08
+	virtual int getChildCount(); // _0C
 
 	int calcNextCount();
 	CNode* getChildAt(int);
