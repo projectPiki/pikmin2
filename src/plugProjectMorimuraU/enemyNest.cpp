@@ -31,7 +31,7 @@ void Obj::onInit(Game::CreatureInitArg* arg)
 	_2F0           = 0;
 	m_homePosition = m_position;
 	disableEvent(0, EB_ToLeaveCarcass);
-	disableEvent(0, EB_4);
+	disableEvent(0, EB_IsDamageAnimAllowed);
 	disableEvent(0, EB_IsDeathEffectEnabled);
 	disableEvent(0, EB_IsPlatformCollsAllowed);
 	enableEvent(0, EB_IsImmuneBitter);
@@ -40,7 +40,7 @@ void Obj::onInit(Game::CreatureInitArg* arg)
 	if (shadowMgr) {
 		shadowMgr->killShadow(this);
 	}
-	_2BC                        = m_mainMatrix;
+	_2BC                        = m_objMatrix;
 	_2BC.m_matrix.structView.ty = m_position.y - 10.0f;
 }
 

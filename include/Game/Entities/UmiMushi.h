@@ -191,19 +191,20 @@ struct Parms : public EnemyParmsBase {
 	struct ProperParms : public Parameters {
 		ProperParms()
 		    : Parameters(nullptr, "EnemyParmsBase")
-		    , m_damageRate(this, 'fp01', "ダメージレート", 1.0f, 0.0f, 1.0f)                 // 'damage rate'
-		    , m_turnStartAngle(this, 'fp02', "旋回開始角度", 60.0f, 0.0f, 180.0f)            // 'turn start angle'
-		    , m_turnEndAngle(this, 'fp03', "旋回終了角度", 10.0f, 0.0f, 180.0f)              // 'turn end angle'
-		    , m_moveSpeed(this, 'fp04', "サーチ移動速度", 10.0f, 0.0f, 100.0f)               // 'search movement speed'
-		    , m_rotateSpeed(this, 'fp06', "サーチ回転速度率", 0.1f, 0.0f, 1.0f)              // 'search rotation speed rate'
-		    , m_rotateSpeedMax(this, 'fp07', "サーチ回転最大速度", 5.0f, 0.0f, 360.0f)       // 'search rotation max speed'
-		    , m_purpleDamageRate(this, 'fp09', "黒ピクミンダメージレート", 0.0f, 0.0f, 1.0f) // 'black pikmin damage rate'
-		    , m_caveTerritory(this, 'fp10', "地下テリトリー", 200.0f, 0.0f, 500.0f)          // 'underground territory'
-		    , m_whiteDamage(this, 'fp11', "白ピクミン", 300.0f, 0.0f, 1000.0f)               // 'white pikmin'
-		    , m_blindHealth(this, 'fp12', "めくらライフ", 1000.0f, 0.0f, 2000.0f)            // 'blind life'
-		    , m_blindWaitTime(this, 'fp13', "めくら待機間隔", 200.0f, 0.0f, 500.0f)          // 'blind wait interval'
-		    , m_blindMoveTime(this, 'fp14', "めくら移動間隔", 200.0f, 0.0f, 500.0f)          // 'blind movement interval'
-		    , m_waitTimeAfterAttack(this, 'ip01', "攻撃後待機期間", 100, 0, 300)             // 'waiting period after attack'
+		    , m_damageRate(this, 'fp01', "ダメージレート", 1.0f, 0.0f, 1.0f)           // 'damage rate'
+		    , m_turnStartAngle(this, 'fp02', "旋回開始角度", 60.0f, 0.0f, 180.0f)      // 'turn start angle'
+		    , m_turnEndAngle(this, 'fp03', "旋回終了角度", 10.0f, 0.0f, 180.0f)        // 'turn end angle'
+		    , m_moveSpeed(this, 'fp04', "サーチ移動速度", 10.0f, 0.0f, 100.0f)         // 'search movement speed'
+		    , m_rotateSpeed(this, 'fp06', "サーチ回転速度率", 0.1f, 0.0f, 1.0f)        // 'search rotation speed rate'
+		    , m_rotateSpeedMax(this, 'fp07', "サーチ回転最大速度", 5.0f, 0.0f, 360.0f) // 'search rotation max speed'
+		    , m_purpleDamageRate(this, 'fp09', "黒ピクミンダメージレート", 0.0f, 0.0f,
+		                         1.0f)                                              // 'black pikmin damage rate'
+		    , m_caveTerritory(this, 'fp10', "地下テリトリー", 200.0f, 0.0f, 500.0f) // 'underground territory'
+		    , m_whiteDamage(this, 'fp11', "白ピクミン", 300.0f, 0.0f, 1000.0f)      // 'white pikmin'
+		    , m_blindHealth(this, 'fp12', "めくらライフ", 1000.0f, 0.0f, 2000.0f)   // 'blind life'
+		    , m_blindWaitTime(this, 'fp13', "めくら待機間隔", 200.0f, 0.0f, 500.0f) // 'blind wait interval'
+		    , m_blindMoveTime(this, 'fp14', "めくら移動間隔", 200.0f, 0.0f, 500.0f) // 'blind movement interval'
+		    , m_waitTimeAfterAttack(this, 'ip01', "攻撃後待機期間", 100, 0, 300)    // 'waiting period after attack'
 		{
 		}
 

@@ -29,7 +29,7 @@ void StateDead::init(EnemyBase* enemy, StateArg* Args)
 	Obj* tank = static_cast<Obj*>(enemy);
 	tank->finishEffect();
 	tank->disableEvent(0, EB_IsCullable);
-	tank->m_simVelocity = Vector3f(0.0f);
+	tank->m_targetVelocity = Vector3f(0.0f);
 	tank->deathProcedure();
 	tank->startMotion(0, nullptr);
 }
@@ -41,7 +41,7 @@ void StateDead::init(EnemyBase* enemy, StateArg* Args)
  */
 void StateDead::exec(EnemyBase* enemy)
 {
-	if (enemy->m_curAnim->m_isRunning && (u32)enemy->m_curAnim->m_type == KEYEVENT_END) {
+	if (enemy->m_curAnim->m_isPlaying && (u32)enemy->m_curAnim->m_type == KEYEVENT_END) {
 		enemy->kill(nullptr);
 	}
 }
@@ -61,7 +61,7 @@ void StateDead::cleanup(EnemyBase*) { }
 void StateWait::init(EnemyBase* enemy, StateArg* stateArg)
 {
 	Obj* tank              = static_cast<Obj*>(enemy);
-	tank->m_simVelocity    = Vector3f(0.0f);
+	tank->m_targetVelocity = Vector3f(0.0f);
 	tank->m_targetCreature = nullptr;
 	tank->startMotion(5, nullptr);
 }
@@ -82,7 +82,7 @@ void StateWait::exec(EnemyBase* enemy)
 	if (EnemyFunc::isStartFlick(tank, false) || tank->isAttackable(false)) {
 		tank->setAnimSpeed(60.0f);
 	}
-	if (enemy->m_curAnim->m_isRunning && (u32)enemy->m_curAnim->m_type == KEYEVENT_END) {
+	if (enemy->m_curAnim->m_isPlaying && (u32)enemy->m_curAnim->m_type == KEYEVENT_END) {
 		if (tank->m_health <= 0.0f) {
 			transit(enemy, TANK_Dead, nullptr);
 			return;
@@ -641,7 +641,7 @@ void StateMoveTurn::exec(EnemyBase* enemy)
 			tank->finishMotion();
 		}
 	}
-	if (enemy->m_curAnim->m_isRunning && (u32)enemy->m_curAnim->m_type == KEYEVENT_END) {
+	if (enemy->m_curAnim->m_isPlaying && (u32)enemy->m_curAnim->m_type == KEYEVENT_END) {
 		if (tank->m_health <= 0.0f) {
 			transit(enemy, TANK_Dead, nullptr);
 			return;
@@ -684,8 +684,8 @@ void StateMoveTurn::cleanup(EnemyBase* enemy)
  */
 void StateChaseTurn::init(EnemyBase* enemy, StateArg* stateArg)
 {
-	Obj* tank           = static_cast<Obj*>(enemy);
-	tank->m_simVelocity = Vector3f(0.0f);
+	Obj* tank              = static_cast<Obj*>(enemy);
+	tank->m_targetVelocity = Vector3f(0.0f);
 	tank->setEmotionExcitement();
 	tank->startMotion(4, nullptr);
 }
@@ -1144,7 +1144,7 @@ void StateAttack::init(EnemyBase* enemy, StateArg* stateArg)
 	tank->_2EC = 0.0f;
 	tank->disableEvent(0, EB_IsCullable);
 	tank->m_targetCreature = nullptr;
-	tank->m_simVelocity    = Vector3f(0.0f);
+	tank->m_targetVelocity = Vector3f(0.0f);
 	tank->setEmotionExcitement();
 	tank->startMotion(3, nullptr);
 	tank->createChargeSE();
@@ -1174,7 +1174,7 @@ void StateAttack::exec(EnemyBase* enemy)
 		tank->isAttackable(true);
 		tank->createDisChargeSE();
 	}
-	if (!enemy->m_curAnim->m_isRunning)
+	if (!enemy->m_curAnim->m_isPlaying)
 		return;
 
 	if ((u32)enemy->m_curAnim->m_type == KEYEVENT_2) {
@@ -1247,7 +1247,7 @@ void StateFlick::init(EnemyBase* enemy, StateArg* stateArg)
 {
 	Obj* tank              = static_cast<Obj*>(enemy);
 	tank->m_targetCreature = nullptr;
-	tank->m_simVelocity    = Vector3f(0.0f);
+	tank->m_targetVelocity = Vector3f(0.0f);
 	tank->setEmotionExcitement();
 	tank->startMotion(2, nullptr);
 }
@@ -1264,7 +1264,7 @@ void StateFlick::exec(EnemyBase* enemy)
 		transit(enemy, TANK_Dead, nullptr);
 		return;
 	}
-	if (!enemy->m_curAnim->m_isRunning)
+	if (!enemy->m_curAnim->m_isPlaying)
 		return;
 
 	if ((u32)enemy->m_curAnim->m_type == KEYEVENT_2) {

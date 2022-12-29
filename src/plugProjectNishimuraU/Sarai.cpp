@@ -98,7 +98,7 @@ void Obj::getShadowParam(ShadowParam& shadowParam)
 		if (stateId == SARAI_Fall || stateId == SARAI_Damage || stateId == SARAI_TakeOff) {
 			shadowParam.m_position.y -= 5.0f;
 			shadowParam.m_boundingSphere.m_radius = 100.0f + static_cast<Parms*>(m_parms)->m_properParms.m_fp01.m_value;
-		} else if (m_curTriangle) {
+		} else if (m_bounceTriangle) {
 			shadowParam.m_position.y -= 5.0f;
 			shadowParam.m_boundingSphere.m_radius = 50.0f;
 		} else {
@@ -195,7 +195,7 @@ f32 Obj::setHeightVelocity()
 	                                       : static_cast<Parms*>(m_parms)->m_properParms.m_fp01.m_value; // Normal flight height
 
 	// Upward velocity is offset by map height
-	m_impVelocity.y = velFactor * ((mapPosY + flightHeight) - m_position.y);
+	m_currentVelocity.y = velFactor * ((mapPosY + flightHeight) - m_position.y);
 
 	return m_position.y - mapPosY;
 }
@@ -360,7 +360,7 @@ Piki* Obj::getAttackableTarget()
 	Vector3f dist = m_position - m_homePosition;
 
 	if (SQUARE(dist.x) + SQUARE(dist.z) < SQUARE(parms->m_general.m_territoryRadius.m_value)) {
-		f32 maxAngle = PI * (DEG2RAD * parms->m_general.m_fov.m_value);
+		f32 maxAngle = PI * (DEG2RAD * parms->m_general.m_viewAngle.m_value);
 		f32 maxDist  = SQUARE(parms->m_general.m_sightRadius.m_value);
 
 		Iterator<Piki> iterator(pikiMgr);
@@ -368,7 +368,7 @@ Piki* Obj::getAttackableTarget()
 		while (!iterator.isDone()) {
 			Piki* c = iterator.m_container->get(iterator.m_index);
 
-			if (c->isAlive() && c->isPikmin() && !c->isStickToMouth() && c->m_sticker != this && c->m_curTriangle) {
+			if (c->isAlive() && c->isPikmin() && !c->isStickToMouth() && c->m_sticker != this && c->m_bounceTriangle) {
 				// this angDist calc should probably be a bigger inline than just angXZ, but not sure.
 				Vector3f pikiPos = c->getPosition();
 				Vector3f thisPos = getPosition();

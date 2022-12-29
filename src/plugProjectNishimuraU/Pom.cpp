@@ -41,11 +41,11 @@ void Obj::onInit(CreatureInitArg* initArg)
 	EnemyBase::onInit(initArg);
 	if (isBirthTypeDropGroup()) {
 		disableEvent(0, EB_IsVulnerable);
-		enableEvent(0, EB_4);
+		enableEvent(0, EB_IsDamageAnimAllowed);
 		hardConstraintOff();
 	} else {
 		enableEvent(0, EB_IsVulnerable);
-		disableEvent(0, EB_4);
+		disableEvent(0, EB_IsDamageAnimAllowed);
 		hardConstraintOn();
 	}
 
@@ -76,10 +76,10 @@ void Obj::doUpdate()
 {
 	m_FSM->exec(this);
 	m_mouthSlots.update();
-	if (isEvent(0, EB_4) && m_curTriangle) {
+	if (isEvent(0, EB_IsDamageAnimAllowed) && m_bounceTriangle) {
 		if (isEvent(0, EB_HardConstraint)) {
 			enableEvent(0, EB_IsVulnerable);
-			disableEvent(0, EB_4);
+			disableEvent(0, EB_IsDamageAnimAllowed);
 		} else {
 			hardConstraintOn();
 		}
@@ -380,7 +380,7 @@ void Obj::createSwingSmokeEffect()
 		efx::Arg arg(m_position.x, m_position.y - 5.0f, m_position.z);
 		efx::TEnemyDownSmoke smokeFX;
 
-		smokeFX._0C = 0.7f;
+		smokeFX.m_scale = 0.7f;
 		smokeFX.create(&arg);
 	}
 }

@@ -9,8 +9,8 @@ const f32 EnemyAnimatorBase::defaultAnimSpeed = 30.0f;
  * Size:	000044
  */
 EnemyAnimatorBase::EnemyAnimatorBase()
-    : m_animSpeed(30.0f)
-    , m_progress(1.0f)
+    : m_speed(30.0f)
+    , m_normalizedTime(1.0f)
 {
 	reset();
 }
@@ -23,25 +23,25 @@ EnemyAnimatorBase::EnemyAnimatorBase()
 void EnemyAnimatorBase::animate(float speed)
 {
 	if (!(m_flags.typeView & EANIM_FLAG_STOPPED)) {
-		if (m_flags.typeView & EANIM_FLAG_REWIND) {
-			m_progress *= 0.9f;
-			if (m_progress < 0.1f) {
-				m_progress = 0.0f;
+		if (m_flags.typeView & EANIM_FLAG_FINISHED) {
+			m_normalizedTime *= 0.9f;
+			if (m_normalizedTime < 0.1f) {
+				m_normalizedTime = 0.0f;
 
-				m_flags.typeView &= ~EANIM_FLAG_FORWARD | EANIM_FLAG_STOPPED;
+				m_flags.typeView &= ~EANIM_FLAG_PLAYING | EANIM_FLAG_STOPPED;
 				m_flags.typeView |= EANIM_FLAG_STOPPED;
 			}
-		} else if (m_flags.typeView & EANIM_FLAG_FORWARD) {
-			m_progress *= 1.1f;
-			if (m_progress > 1.0f) {
-				m_progress = 1.0f;
+		} else if (m_flags.typeView & EANIM_FLAG_PLAYING) {
+			m_normalizedTime *= 1.1f;
+			if (m_normalizedTime > 1.0f) {
+				m_normalizedTime = 1.0f;
 
-				m_flags.typeView &= ~(EANIM_FLAG_REWIND | EANIM_FLAG_STOPPED);
-				m_progress = 1.0f;
+				m_flags.typeView &= ~(EANIM_FLAG_FINISHED | EANIM_FLAG_STOPPED);
+				m_normalizedTime = 1.0f;
 			}
 		}
 
-		getAnimator().animate(speed * m_progress);
+		getAnimator().animate(speed * m_normalizedTime);
 	} else {
 		getAnimator().animate(0.0f);
 	}
@@ -55,25 +55,25 @@ void EnemyAnimatorBase::animate(float speed)
 void EnemyAnimatorBase::animate(int animatorNum, float speed)
 {
 	if (!(m_flags.typeView & EANIM_FLAG_STOPPED)) {
-		if (m_flags.typeView & EANIM_FLAG_REWIND) {
-			m_progress *= 0.9f;
-			if (m_progress < 0.1f) {
-				m_progress = 0.0f;
+		if (m_flags.typeView & EANIM_FLAG_FINISHED) {
+			m_normalizedTime *= 0.9f;
+			if (m_normalizedTime < 0.1f) {
+				m_normalizedTime = 0.0f;
 
-				m_flags.typeView &= ~EANIM_FLAG_FORWARD | EANIM_FLAG_STOPPED;
+				m_flags.typeView &= ~EANIM_FLAG_PLAYING | EANIM_FLAG_STOPPED;
 				m_flags.typeView |= EANIM_FLAG_STOPPED;
 			}
-		} else if (m_flags.typeView & EANIM_FLAG_FORWARD) {
-			m_progress *= 1.1f;
-			if (m_progress > 1.0f) {
-				m_progress = 1.0f;
+		} else if (m_flags.typeView & EANIM_FLAG_PLAYING) {
+			m_normalizedTime *= 1.1f;
+			if (m_normalizedTime > 1.0f) {
+				m_normalizedTime = 1.0f;
 
-				m_flags.typeView &= ~(EANIM_FLAG_REWIND | EANIM_FLAG_STOPPED);
-				m_progress = 1.0f;
+				m_flags.typeView &= ~(EANIM_FLAG_FINISHED | EANIM_FLAG_STOPPED);
+				m_normalizedTime = 1.0f;
 			}
 		}
 
-		getAnimator(animatorNum).animate(speed * m_progress);
+		getAnimator(animatorNum).animate(speed * m_normalizedTime);
 	} else {
 		getAnimator().animate(0.0f);
 	}

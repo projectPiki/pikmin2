@@ -216,11 +216,11 @@ void Obj::doGetLifeGaugeParam(LifeGaugeParam& param)
 
 		param.m_position.y += C_PARMS->m_general.m_lifeMeterHeight.m_value;
 
-		param.m_healthPercentage = m_health / m_maxHealth;
+		param.m_curHealthPercentage = m_health / m_maxHealth;
 
-		param._10 = 10.0f;
+		param.m_radius = 10.0f;
 	} else {
-		param._14 = false;
+		param.m_isGaugeShown = false;
 	}
 }
 
@@ -294,9 +294,9 @@ void Obj::interactDenkiAttack(Vector3f& position)
 	spherePos.x     = (position.x - m_position.x) / 2;
 	spherePos.y     = (position.y - m_position.y) / 2;
 	spherePos.z     = (position.z - m_position.z) / 2;
-	f32 attackRange = C_PARMS->m_general.m_fp20.m_value;
+	f32 attackRange = C_PARMS->m_general.m_maxAttackRange.m_value;
 	f32 negRange    = -attackRange;
-	f32 totalRange  = distance + C_PARMS->m_general.m_fp20.m_value;
+	f32 totalRange  = distance + C_PARMS->m_general.m_maxAttackRange.m_value;
 	f32 radius      = (totalRange - negRange) / 2;
 	Sys::Sphere sphere(spherePos, radius);
 
@@ -320,7 +320,7 @@ void Obj::interactDenkiAttack(Vector3f& position)
 				dotProd = -dotProd;
 			}
 
-			if (dotProd < C_PARMS->m_general.m_fp23.m_value) {
+			if (dotProd < C_PARMS->m_general.m_attackHitAngle.m_value) {
 				if (m_versusHibaType == VHT_Neutral) {
 					// some math to determine attack direction
 					// Vector3f attackDirection = something
@@ -783,7 +783,7 @@ void Obj::addDamageMyself(float damage)
 void Obj::damageIncrement(float damage)
 {
 	m_instantDamage += damage;
-	if (!isEvent(0, EB_6)) {
+	if (!isEvent(0, EB_IsFlickEnabled)) {
 		return;
 	}
 	m_toFlick += 1.0f;

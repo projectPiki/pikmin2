@@ -247,27 +247,31 @@ void ObjAnaDemo::doCreate(JKRArchive* arc)
 			switch (m_anaType) {
 			case ANADEMO_KantekuChallenge:
 				if (m_anaTypeSub == ANADEMOSUB_PikiInDanger) {
-					setWindowMsg('8606_00', '8607_00', '8608_00'); // "If you go above ground all Pikmin sprouts will be left behind!"
-					                                               // "Return to the Surface" "Go Help Them"
+					setWindowMsg('8606_00', '8607_00',
+					             '8608_00'); // "If you go above ground all Pikmin sprouts will be left behind!"
+					                         // "Return to the Surface" "Go Help Them"
 				} else {
-					setWindowMsg('8383_00', '8384_00', '8385_00'); // "Exit this Challenge Level?" "Exit the Level" "Continue Exploring"
+					setWindowMsg('8383_00', '8384_00',
+					             '8385_00'); // "Exit this Challenge Level?" "Exit the Level" "Continue Exploring"
 				}
 				break;
 
 			case ANADEMO_Kanteku:
 				if (m_anaTypeSub == ANADEMOSUB_PikiInDanger) {
-					setWindowMsg('8606_00', '8607_00', '8608_00'); // "If you go above ground, all Pikmin sprouts will be left behind!"
-					                                               // "Return to the Surface" "Go Help Them"
+					setWindowMsg('8606_00', '8607_00',
+					             '8608_00'); // "If you go above ground, all Pikmin sprouts will be left behind!"
+					                         // "Return to the Surface" "Go Help Them"
 				} else {
-					setWindowMsg('8364_00', '8365_00', '8366_00'); // "Escape to the surface with your Pikmin?" "Yes" "No"
+					setWindowMsg('8364_00', '8365_00',
+					             '8366_00'); // "Escape to the surface with your Pikmin?" "Yes" "No"
 				}
 				break;
 
 			case ANADEMO_CaveMore:
 				if (m_anaTypeSub == ANADEMOSUB_PikiInDanger) {
-					setWindowMsg(
-					    '8601_00', '8602_00',
-					    '8603_00'); // "If you delve deeper, all of your Pikmin sprouts will be left behind!" "Delve Deeper" "Go Help Them"
+					setWindowMsg('8601_00', '8602_00',
+					             '8603_00'); // "If you delve deeper, all of your Pikmin sprouts will be left behind!"
+					                         // "Delve Deeper" "Go Help Them"
 				} else {
 					setWindowMsg('8367_00', '8368_00', '8369_00'); // "Delve deeper with your Pikmin?" "Yes" "No"
 				}

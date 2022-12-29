@@ -242,8 +242,8 @@ void Obj::getShadowParam(ShadowParam& param)
 	param.m_position = m_position;
 	param.m_position.y += 2.0f;
 
-	if (m_curTriangle) {
-		Plane* plane                        = &m_curTriangle->m_trianglePlane;
+	if (m_bounceTriangle) {
+		Plane* plane                        = &m_bounceTriangle->m_trianglePlane;
 		param.m_boundingSphere.m_position.x = plane->a;
 		param.m_boundingSphere.m_position.y = plane->b;
 		param.m_boundingSphere.m_position.z = plane->c;
@@ -669,8 +669,8 @@ void Obj::doGetLifeGaugeParam(LifeGaugeParam& param)
 {
 	m_rootJointMtx->getTranslation(param.m_position);
 	param.m_position.y += 60.0f;
-	param.m_healthPercentage = m_health / m_maxHealth;
-	param._10                = 10.0f;
+	param.m_curHealthPercentage = m_health / m_maxHealth;
+	param.m_radius              = 10.0f;
 }
 
 } // namespace Pelplant

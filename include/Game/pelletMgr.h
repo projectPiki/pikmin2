@@ -135,17 +135,17 @@ struct PelletIterator {
 struct PelletInitArg : public CreatureInitArg {
 	PelletInitArg()
 	{
-		_1C           = 0;
-		_14           = 0;
-		m_pelletType  = 0xFF;
-		_18           = nullptr;
-		_17           = 0;
-		_04           = true;
-		_1D           = 0;
-		m_maxCarriers = -1;
-		m_minCarriers = -1;
-		_1E           = 0;
-		_1F           = 0;
+		_1C                    = 0;
+		m_state                = 0;
+		m_pelletType           = 0xFF;
+		_18                    = nullptr;
+		_17                    = 0;
+		_04                    = true;
+		m_adjustWeightForSquad = 0;
+		m_maxCarriers          = -1;
+		m_minCarriers          = -1;
+		_1E                    = 0;
+		m_fromEnemy            = 0;
 	}
 
 	/**
@@ -157,20 +157,20 @@ struct PelletInitArg : public CreatureInitArg {
 		return "PelletInitArg";
 	}
 
-	bool _04;               // _04
-	char* m_textIdentifier; // _08
-	int _0C;                // _0C
-	int _10;                // _10
-	u16 _14;                // _14
-	u8 m_pelletType;        // _16
-	u8 _17;                 // _17
-	PelletView* _18;        // _18
-	u8 _1C;                 // _1C
-	u8 _1D;                 // _1D
-	u8 _1E;                 // _1E
-	u8 _1F;                 // _1F
-	int m_minCarriers;      // _20
-	int m_maxCarriers;      // _24
+	bool _04;                  // _04
+	char* m_textIdentifier;    // _08
+	int _0C;                   // _0C
+	int _10;                   // _10
+	u16 m_state;               // _14
+	u8 m_pelletType;           // _16
+	u8 _17;                    // _17
+	PelletView* _18;           // _18
+	u8 _1C;                    // _1C
+	u8 m_adjustWeightForSquad; // _1D, should Item decrease weight for piki squads that are less than minimum carry weight
+	u8 _1E;                    // _1E
+	u8 m_fromEnemy;            // _1F
+	int m_minCarriers;         // _20
+	int m_maxCarriers;         // _24
 };
 
 struct PelletIndexInitArg : public PelletInitArg {
@@ -291,8 +291,8 @@ struct Pellet : public DynCreature, public SysShape::MotionListener, public Carr
 		infoParam.m_value2     = getTotalCarryPikmins();
 
 		int minVal;
-		if (_3D8 > 0) {
-			minVal = _3D8;
+		if (m_minCarriers > 0) {
+			minVal = m_minCarriers;
 		} else {
 			minVal = m_config->m_params.m_min.m_data;
 		}
@@ -453,8 +453,8 @@ struct Pellet : public DynCreature, public SysShape::MotionListener, public Carr
 	PelletState* m_pelletState;   // _3CC
 	u8 _3D0;                      // _3D0
 	int m_carryColor;             // _3D4
-	int _3D8;                     // _3D8, to do with pikmin number
-	int _3DC;                     // _3DC
+	int m_minCarriers;            // _3D8, to do with pikmin number
+	int m_maxCarriers;            // _3DC
 	float _3E0;                   // _3E0
 	u8 m_slots[16];               // _3E4
 	short m_slotCount;            // _3F4

@@ -121,7 +121,8 @@ struct NodeObjectMgr : public ObjectMgr<T> {
 	// needs to not be inlined in ItemMgr::killAllExceptOnyonMgr();
 	/*
 	{
-	    // for (TObjectNode<T>* node = (TObjectNode<T>*)m_node.m_child; node != nullptr; node = (TObjectNode<T>*)node->m_next) {
+	    // for (TObjectNode<T>* node = (TObjectNode<T>*)m_node.m_child; node != nullptr; node =
+	(TObjectNode<T>*)node->m_next) {
 	    // 	if (node->m_contents == contents) {
 	    // 		node->del();
 	    // 		return;

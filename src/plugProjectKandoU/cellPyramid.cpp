@@ -396,7 +396,8 @@ void CollisionBuffer::pikiInsertPiki(CellObject* object, float distance)
 		// Find the index the object should be inserted at,
 		// and shift objects after that index along the way.
 		for (; (nodeIndex >= 0); nodeIndex--) {
-			// for (; nodeIndex >= 0 && m_collNodes[nodeIndex]._04 > distance && m_collNodes->m_cellObject->isPiki(); nodeIndex--) {
+			// for (; nodeIndex >= 0 && m_collNodes[nodeIndex]._04 > distance && m_collNodes->m_cellObject->isPiki();
+			// nodeIndex--) {
 			if (!(m_collNodes[nodeIndex]._04 > distance && m_collNodes[nodeIndex].m_cellObject->isPiki())) {
 				break;
 			}
@@ -428,7 +429,8 @@ void CollisionBuffer::pikiInsertOther(CellObject* object, float distance)
 		// Find the index the object should be inserted at,
 		// and shift objects after that index along the way.
 		for (; (nodeIndex >= 0); nodeIndex--) {
-			// for (; nodeIndex >= 0 && m_collNodes[nodeIndex]._04 > distance && m_collNodes->m_cellObject->isPiki(); nodeIndex--) {
+			// for (; nodeIndex >= 0 && m_collNodes[nodeIndex]._04 > distance && m_collNodes->m_cellObject->isPiki();
+			// nodeIndex--) {
 			if (!(m_collNodes[nodeIndex]._04 > distance || m_collNodes[nodeIndex].m_cellObject->isPiki())) {
 				break;
 			}

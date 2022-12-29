@@ -73,8 +73,8 @@ namespace efx {
 // map says these should be weak, but making them weak messes with Ftank and Wtank.
 // TODO: resolve once efxBase is decomp'd
 
-// it literally just runs the loop the number times in the struct name. can't they just use an inline func with the loop count as an arg
-// -EpochFlame
+// it literally just runs the loop the number times in the struct name. can't they just use an inline func with the loop
+// count as an arg -EpochFlame
 
 DEF_SYNC_GROUP(2);
 DEF_SYNC_GROUP(3);

@@ -39,6 +39,11 @@ namespace ItemPikihead {
 struct Item;
 }
 
+enum NaviControlFlags {
+	NAVICTRL_InMovie = 0x1,
+	NAVICTRL_InOnyon = 0x2,
+};
+
 struct NaviDamageArg {
 	virtual const char* getName(); // _08 (weak)
 
@@ -193,6 +198,12 @@ struct Navi : public FakePiki, virtual public PelletView {
 		    = static_cast<J3DMtxCalcAnmBase*>(m_animator.m_boundAnimator.getCalc());
 	}
 
+	inline NaviState* getCurrentState() { return m_currentState; }
+
+	inline void setControlFlag(u16 flag) { m_naviControlFlag.typeView |= flag; }
+	inline void resetControlFlag(u16 flag) { m_naviControlFlag.typeView &= ~flag; }
+	inline bool isControlFlag(u16 flag) { return m_naviControlFlag.typeView & flag; }
+
 	// _000      = VTBL
 	// _000-_250 = FakePiki
 	// _250      = ptr to PelletView
@@ -212,42 +223,38 @@ struct Navi : public FakePiki, virtual public PelletView {
 	Controller* m_controller2;               // _27C
 	PlayCamera* m_camera;                    // _280
 	PlayCamera* m_camera2;                   // _284
-	BitFlag<u16> _288;                       // _288
+	BitFlag<u16> m_naviControlFlag;          // _288
 	NaviWhistle* m_whistle;                  // _28C
 	SysShape::Model* m_markerModel;          // _290
 	SysShape::Model* m_cursorModel;          // _294
 	Sys::MatRepeatAnimator* m_cursorMatAnim; // _298
-	// TODO: If this is the same as marker, standardize on one name or the
-	// other.
-	Sys::MatLoopAnimator* m_arrowMatAnim; // _29C
-	// TODO: If this is the same sort of thing as m_health elsewhere, rename to
-	// that.
-	f32 m_health;                   // _2A0
-	u8 m_invincibleTimer;           // _2A4
-	Piki* m_nextThrowPiki;          // _2A8
-	u8 _2AC;                        // _2AC
-	f32 m_holdPikiTimer;            // _2B0
-	f32 _2B4;                       // _2B4
-	f32 _2B8;                       // _2B8
-	u8 m_throwTimer;                // _2BC, use NAVI_THROWSTATE enum
-	SysShape::Joint* m_beaconJoint; // _2C0
-	Vector3f m_beaconPosition;      // _2C4
-	efx::TNaviEffect* m_effectsObj; // _2D0
-	u8 m_disbandTimer;              // _2D4
-	Footmarks* m_footmarks;         // _2D8
-	u16 m_naviIndex;                // _2DC
-	u8 _2DE;                        // _2DE
-	Vector3f m_cStickTargetVector;  // _2E0
-	Vector3f m_cStickPosition;      // _2EC
-	f32 _2F8;                       // _2F8
-	u8 _2FC;                        // _2FC
-	u8 _2FD;                        // _2FD
-	int m_cStickState;              // _300
-	int m_cStickIncrement;          // _304
-	f32 _308;                       // _308
-	bool m_commandOn1;              // _30C
-	bool m_commandOn2;              // _30D
-	                                // PelletView: _310 - _320
+	Sys::MatLoopAnimator* m_arrowMatAnim;    // _29C
+	f32 m_health;                            // _2A0
+	u8 m_invincibleTimer;                    // _2A4
+	Piki* m_nextThrowPiki;                   // _2A8
+	u8 _2AC;                                 // _2AC
+	f32 m_holdPikiTimer;                     // _2B0
+	f32 _2B4;                                // _2B4
+	f32 _2B8;                                // _2B8
+	u8 m_throwTimer;                         // _2BC, use NAVI_THROWSTATE enum
+	SysShape::Joint* m_beaconJoint;          // _2C0
+	Vector3f m_beaconPosition;               // _2C4
+	efx::TNaviEffect* m_effectsObj;          // _2D0
+	u8 m_disbandTimer;                       // _2D4
+	Footmarks* m_footmarks;                  // _2D8
+	u16 m_naviIndex;                         // _2DC
+	u8 _2DE;                                 // _2DE
+	Vector3f m_cStickTargetVector;           // _2E0
+	Vector3f m_cStickPosition;               // _2EC
+	f32 _2F8;                                // _2F8
+	u8 _2FC;                                 // _2FC
+	u8 _2FD;                                 // _2FD
+	int m_cStickState;                       // _300
+	int m_cStickIncrement;                   // _304
+	f32 _308;                                // _308
+	bool m_commandOn1;                       // _30C
+	bool m_commandOn2;                       // _30D
+	                                         // PelletView: _310 - _320
 };
 
 struct NaviMgr : public MonoObjectMgr<Navi>, public JKRDisposer {

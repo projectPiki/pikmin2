@@ -207,8 +207,8 @@ Color4 sColorTableNumerator[7] = {
 
 Color4 sColorTableDenominator[7] = {
 	Color4(30, 30, 255, 255),   Color4(255, 0, 0, 255),     Color4(234, 234, 0, 255),   Color4(255, 255, 255, 255),
-	Color4(255, 255, 255, 255), Color4(102, 153, 153, 255), Color4(112, 216, 216, 255), // this is the only one where the denominator is
-	                                                                                    // different
+	Color4(255, 255, 255, 255), Color4(102, 153, 153, 255), Color4(112, 216, 216, 255), // this is the only one where
+	                                                                                    // the denominator is different
 };
 
 /*

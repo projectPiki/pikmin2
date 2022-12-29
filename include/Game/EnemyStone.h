@@ -24,19 +24,22 @@ enum StoneFlags {
 
 struct FSMState;
 
+#define ENEMYSTONE_FX_SIZE_LARGE (0)
+#define ENEMYSTONE_FX_SIZE_SMALL (1)
+
 struct ObjInfo {
 	ObjInfo();
 
 	char* m_name;          // _00
-	int _04;               // _04
+	int m_size;            // _04
 	Matrixf m_modelMatrix; // _08
 };
 
 struct Info {
 	void setup(Stream& stream);
 
-	u8 m_infoCnt;       // _00
-	ObjInfo* m_infoArr; // _04
+	u8 m_length;        // _00
+	ObjInfo* m_objList; // _04
 };
 
 struct DrawInfo : public CNode {
@@ -89,9 +92,9 @@ struct Obj : public CNode {
 
 	inline bool isFlag(u32 flag) { return m_flags & flag; }
 
-	inline ObjInfo* getObjInfo(int i) { return &m_info->m_infoArr[i]; }
+	inline ObjInfo* getObjInfo(int i) { return &m_info->m_objList[i]; }
 
-	inline u8 getInfoCount() { return m_info->m_infoCnt; }
+	inline u8 getInfoCount() { return m_info->m_length; }
 
 	inline DrawInfo* getDrawInfo(int i) { return static_cast<DrawInfo*>(m_nodeArray[i].m_child); }
 

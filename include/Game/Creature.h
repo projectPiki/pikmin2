@@ -56,10 +56,10 @@ struct ShadowParam;
 struct WaterBox;
 
 struct LifeGaugeParam {
-	Vector3f m_position;    // _00
-	f32 m_healthPercentage; // _0C
-	f32 _10;                // _10
-	bool _14;               // _14
+	Vector3f m_position;       // _00
+	f32 m_curHealthPercentage; // _0C
+	f32 m_radius;              // _10
+	bool m_isGaugeShown;       // _14
 };
 
 enum CreatureFlags {
@@ -92,6 +92,13 @@ struct CreatureKillArg {
 	// _00 VTBL
 	int _04; // _04
 };
+
+#define CREATURE_HELL_ALIVE    (0)
+#define CREATURE_HELL_BELOWMAP (1)
+#define CREATURE_HELL_DEATH    (2)
+
+// Save position
+#define CREATURE_SAVE_FLAG_POSITION (1)
 
 /// @brief Basic Creature structure
 struct Creature : public CellObject {
@@ -331,30 +338,30 @@ struct Creature : public CellObject {
 	static bool usePacketCulling;
 	static Creature* currOp;
 
-	Matrixf* m_captureMatrix;      // _0B8
-	BitFlag<u32> m_flags;          // _0BC
-	void* m_parms;                 // _0C0
-	Generator* m_generator;        // _0C4
-	Sys::Triangle* m_curTriangle;  // _0C8
-	Vector3f m_collisionPosition;  // _0CC
-	AILOD m_lod;                   // _0D8
-	int m_cellLayerIndex;          // _0DC
-	Recti m_cellRect;              // _0E0
-	Creature* m_sticked;           // _0F0
-	Creature* m_sticker;           // _0F4
-	CollPart* m_stuckCollPart;     // _0F8
-	Creature* m_captured;          // _0FC
-	Creature* m_capture;           // _100
-	Vector3f _104;                 // _104
-	s16 m_hasStick;                // _110
-	CollTree* m_collTree;          // _114
-	f32 m_mass;                    // _118
-	Vector3f m_acceleration;       // _11C
-	u16 m_objectTypeID;            // _128
-	UpdateContext m_updateContext; // _12C
-	Matrixf m_mainMatrix;          // _138
-	Vector3f m_scale;              // _168 /* Not sure if just model scale. */
-	SysShape::Model* m_model;      // _174
+	Matrixf* m_captureMatrix;        // _0B8
+	BitFlag<u32> m_flags;            // _0BC
+	void* m_parms;                   // _0C0
+	Generator* m_generator;          // _0C4
+	Sys::Triangle* m_bounceTriangle; // _0C8
+	Vector3f m_collisionPosition;    // _0CC
+	AILOD m_lod;                     // _0D8
+	int m_cellLayerIndex;            // _0DC
+	Recti m_cellRect;                // _0E0
+	Creature* m_sticked;             // _0F0
+	Creature* m_sticker;             // _0F4
+	CollPart* m_stuckCollPart;       // _0F8
+	Creature* m_captured;            // _0FC
+	Creature* m_capture;             // _100
+	Vector3f _104;                   // _104
+	s16 m_hasStick;                  // _110
+	CollTree* m_collTree;            // _114
+	f32 m_mass;                      // _118
+	Vector3f m_acceleration;         // _11C
+	u16 m_objectTypeID;              // _128
+	UpdateContext m_updateContext;   // _12C
+	Matrixf m_objMatrix;             // _138
+	Vector3f m_scale;                // _168 /* Not sure if just model scale. */
+	SysShape::Model* m_model;        // _174
 };
 
 extern Creature* currOp;

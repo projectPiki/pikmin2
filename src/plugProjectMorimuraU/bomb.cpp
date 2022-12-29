@@ -25,8 +25,8 @@ void Obj::onStartCapture()
 	if (m_captureMatrix) {
 		Vector3f position = m_captureMatrix->getBasis(3);
 		onSetPosition(position);
-		m_impVelocity = Vector3f(0.0f);
-		m_simVelocity = Vector3f(0.0f);
+		m_currentVelocity = Vector3f(0.0f);
+		m_targetVelocity  = Vector3f(0.0f);
 		enableEvent(0, EB_Constraint);
 		if (gameSystem && gameSystem->m_mode == GSM_VERSUS_MODE) {
 			disableEvent(0, EB_IsVulnerable);
@@ -67,7 +67,7 @@ void Obj::onInit(CreatureInitArg* initArg)
 {
 	EnemyBase::onInit(initArg);
 	disableEvent(0, EB_ToLeaveCarcass);
-	disableEvent(0, EB_4);
+	disableEvent(0, EB_IsDamageAnimAllowed);
 	disableEvent(0, EB_IsDeathEffectEnabled);
 
 	_2BC      = 0;
@@ -88,12 +88,12 @@ void Obj::onInit(CreatureInitArg* initArg)
 		}
 	}
 
-	m_curAnim->m_isRunning = false;
+	m_curAnim->m_isPlaying = false;
 	doAnimationUpdateAnimator();
 
-	m_mainMatrix.makeSRT(m_scale, m_rotation, m_position);
+	m_objMatrix.makeSRT(m_scale, m_rotation, m_position);
 
-	PSMTXCopy(m_mainMatrix.m_matrix.mtxView, m_model->m_j3dModel->m_posMtx);
+	PSMTXCopy(m_objMatrix.m_matrix.mtxView, m_model->m_j3dModel->m_posMtx);
 	m_model->m_j3dModel->calc();
 
 	m_efxLight->m_mtx = m_model->getJoint("core1")->getWorldMatrix();
@@ -130,17 +130,17 @@ void Obj::doUpdate()
 		m_acceleration.x *= 0.9f;
 		m_acceleration.y *= 0.9f;
 		m_acceleration.z *= 0.9f;
-		m_impVelocity.x *= 0.9f;
-		if (m_impVelocity.y > 0.0f) {
-			m_impVelocity.y *= 0.9f;
+		m_currentVelocity.x *= 0.9f;
+		if (m_currentVelocity.y > 0.0f) {
+			m_currentVelocity.y *= 0.9f;
 		}
-		m_impVelocity.z *= 0.9f;
+		m_currentVelocity.z *= 0.9f;
 	}
 
-	if (m_curTriangle) {
-		m_simVelocity = Vector3f(0.0f);
+	if (m_bounceTriangle) {
+		m_targetVelocity = Vector3f(0.0f);
 	} else {
-		m_simVelocity = m_impVelocity;
+		m_targetVelocity = m_currentVelocity;
 	}
 
 	m_FSM->exec(this);
@@ -179,27 +179,27 @@ void Obj::doEntry()
  */
 void Obj::doAnimationCullingOff()
 {
-	m_curAnim->m_isRunning = 0;
+	m_curAnim->m_isPlaying = 0;
 	doAnimationUpdateAnimator();
 	bool check;
-	Vector3f vec = m_mainMatrix.getBasis(3);
+	Vector3f vec = m_objMatrix.getBasis(3);
 	if (m_captureMatrix) {
 		check             = false;
 		Vector3f checkVec = m_captureMatrix->getBasis(3);
 		if (vec.x != checkVec.x || vec.y != checkVec.y || vec.z != checkVec.z) {
 			check = true;
-			PSMTXCopy(m_captureMatrix->m_matrix.mtxView, m_mainMatrix.m_matrix.mtxView);
+			PSMTXCopy(m_captureMatrix->m_matrix.mtxView, m_objMatrix.m_matrix.mtxView);
 		}
 	} else {
 		check = false;
 		if (m_position.x != vec.x || m_position.y != vec.y || m_position.z != vec.z) {
 			check = true;
-			m_mainMatrix.makeSRT(m_scale, m_rotation, m_position);
+			m_objMatrix.makeSRT(m_scale, m_rotation, m_position);
 		}
 	}
 
 	if (check || !isStopMotion()) {
-		PSMTXCopy(m_mainMatrix.m_matrix.mtxView, m_model->m_j3dModel->m_posMtx);
+		PSMTXCopy(m_objMatrix.m_matrix.mtxView, m_model->m_j3dModel->m_posMtx);
 		m_model->m_j3dModel->calc();
 		m_collTree->update();
 	}
@@ -355,7 +355,7 @@ void Obj::doFinishStoneState()
 	}
 
 	disableEvent(0, EB_IsVulnerable);
-	m_simVelocity = Vector3f(0.0f);
+	m_targetVelocity = Vector3f(0.0f);
 }
 
 /*
@@ -406,7 +406,7 @@ void Obj::doEndMovie() { m_efxLight->endDemoDrawOn(); }
  */
 bool Obj::damageCallBack(Creature* creature, f32 damage, CollPart* collpart)
 {
-	if (!_2BC || m_curTriangle) {
+	if (!_2BC || m_bounceTriangle) {
 		if (isEvent(0, EB_IsBittered)) {
 			_2C4++;
 			if (_2C4 > 4) {
@@ -621,7 +621,7 @@ bool Obj::isAnimStart()
 {
 	bool check = false;
 	if (isBirthTypeDropGroup() || !(m_toFlick >= C_PROPERPARMS.m_damageLimit.m_value)) {
-		if (!_2BC || m_curTriangle == nullptr) {
+		if (!_2BC || m_bounceTriangle == nullptr) {
 			if (!_2C0) {
 				check = false;
 			} else {

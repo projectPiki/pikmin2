@@ -41,7 +41,7 @@ void FSM::init(EnemyBase* enemy)
  */
 void StateDead::init(EnemyBase* enemy, StateArg* stateArg)
 {
-	enemy->m_simVelocity = Vector3f(0.0f);
+	enemy->m_targetVelocity = Vector3f(0.0f);
 	enemy->deathProcedure();
 	enemy->disableEvent(0, EB_IsCullable);
 	enemy->startMotion(10, nullptr);
@@ -54,7 +54,7 @@ void StateDead::init(EnemyBase* enemy, StateArg* stateArg)
  */
 void StateDead::exec(EnemyBase* enemy)
 {
-	if (enemy->m_curAnim->m_isRunning && (u32)enemy->m_curAnim->m_type == KEYEVENT_END) {
+	if (enemy->m_curAnim->m_isPlaying && (u32)enemy->m_curAnim->m_type == KEYEVENT_END) {
 		enemy->kill(nullptr);
 	}
 }
@@ -77,7 +77,7 @@ void StateFlick::init(EnemyBase* enemy, StateArg* stateArg)
 	ota->m_nextState      = OTA_Null;
 	ota->_2C4             = 0.0f;
 	ota->m_escapeSfxTimer = 0.0f;
-	ota->m_simVelocity    = Vector3f(0.0f);
+	ota->m_targetVelocity = Vector3f(0.0f);
 
 	ota->setEmotionExcitement();
 	ota->startMotion(3, nullptr);
@@ -103,7 +103,7 @@ void StateFlick::exec(EnemyBase* enemy)
 	}
 
 	EnemyAnimKeyEvent* event = ota->m_curAnim;
-	if (event->m_isRunning) {
+	if (event->m_isPlaying) {
 		if ((u32)event->m_type == 2) {
 			Parms* parms = static_cast<Parms*>(ota->m_parms);
 			EnemyFunc::flickStickPikmin(ota, parms->m_general.m_shakeRateMaybe.m_value, parms->m_general.m_shakeKnockback.m_value,
@@ -156,7 +156,7 @@ void StateWait::init(EnemyBase* enemy, StateArg* stateArg)
 	Obj* ota              = static_cast<Obj*>(enemy);
 	ota->m_nextState      = OTA_Null;
 	ota->m_escapeSfxTimer = 0.0f;
-	ota->m_simVelocity    = Vector3f(0.0f);
+	ota->m_targetVelocity = Vector3f(0.0f);
 	ota->m_targetCreature = nullptr;
 	ota->startMotion(0, nullptr);
 }
@@ -177,8 +177,8 @@ void StateWait::exec(EnemyBase* enemy)
 			ota->m_nextState = OTA_Move;
 			ota->finishMotion();
 			if (ota->isTakeTreasure()) {
-				ota->m_nextState   = OTA_Take;
-				ota->m_simVelocity = Vector3f(0.0f);
+				ota->m_nextState      = OTA_Take;
+				ota->m_targetVelocity = Vector3f(0.0f);
 				ota->finishMotion();
 			}
 		} else {
@@ -197,7 +197,7 @@ void StateWait::exec(EnemyBase* enemy)
 		ota->finishMotion();
 	}
 
-	if (ota->m_curAnim->m_isRunning && (u32)ota->m_curAnim->m_type == KEYEVENT_END) {
+	if (ota->m_curAnim->m_isPlaying && (u32)ota->m_curAnim->m_type == KEYEVENT_END) {
 		transit(ota, ota->m_nextState, nullptr);
 	}
 }
@@ -239,36 +239,36 @@ void StateMove::exec(EnemyBase* enemy)
 			EnemyFunc::walkToTarget(ota, movePos, parms->m_general.m_moveSpeed.m_value, parms->m_general.m_rotationalAccel.m_value,
 			                        parms->m_general.m_rotationalSpeed.m_value);
 			if (ota->isTakeTreasure()) {
-				ota->m_nextState   = OTA_Take;
-				ota->m_simVelocity = Vector3f(0.0f);
+				ota->m_nextState      = OTA_Take;
+				ota->m_targetVelocity = Vector3f(0.0f);
 				ota->finishMotion();
 			}
 		} else {
-			ota->m_nextState   = OTA_Turn;
-			ota->m_simVelocity = Vector3f(0.0f);
+			ota->m_nextState      = OTA_Turn;
+			ota->m_targetVelocity = Vector3f(0.0f);
 			ota->finishMotion();
 		}
 	} else {
-		ota->m_nextState   = OTA_Wait;
-		ota->m_simVelocity = Vector3f(0.0f);
+		ota->m_nextState      = OTA_Wait;
+		ota->m_targetVelocity = Vector3f(0.0f);
 		ota->finishMotion();
 	}
 
 	if (EnemyFunc::isStartFlick(ota, false)) {
-		ota->m_nextState   = OTA_Flick;
-		ota->m_simVelocity = Vector3f(0.0f);
+		ota->m_nextState      = OTA_Flick;
+		ota->m_targetVelocity = Vector3f(0.0f);
 		ota->finishMotion();
 	}
 
 	if (ota->m_health <= 0.0f) {
-		ota->m_nextState   = OTA_Dead;
-		ota->m_simVelocity = Vector3f(0.0f);
+		ota->m_nextState      = OTA_Dead;
+		ota->m_targetVelocity = Vector3f(0.0f);
 		ota->finishMotion();
 	}
 
 	ota->startEscapeSE();
 
-	if (ota->m_curAnim->m_isRunning && (u32)ota->m_curAnim->m_type == KEYEVENT_END) {
+	if (ota->m_curAnim->m_isPlaying && (u32)ota->m_curAnim->m_type == KEYEVENT_END) {
 		transit(ota, ota->m_nextState, nullptr);
 	}
 }
@@ -287,9 +287,9 @@ void StateMove::cleanup(EnemyBase* enemy) { enemy->setEmotionCaution(); }
  */
 void StateTurn::init(EnemyBase* enemy, StateArg* stateArg)
 {
-	Obj* ota           = static_cast<Obj*>(enemy);
-	ota->m_nextState   = OTA_Null;
-	ota->m_simVelocity = Vector3f(0.0f);
+	Obj* ota              = static_cast<Obj*>(enemy);
+	ota->m_nextState      = OTA_Null;
+	ota->m_targetVelocity = Vector3f(0.0f);
 	ota->setEmotionExcitement();
 	ota->startMotion(2, nullptr);
 }
@@ -313,8 +313,8 @@ void StateTurn::exec(EnemyBase* enemy)
 			ota->m_nextState = OTA_Move;
 			ota->finishMotion();
 			if (ota->isTakeTreasure()) {
-				ota->m_nextState   = OTA_Take;
-				ota->m_simVelocity = Vector3f(0.0f);
+				ota->m_nextState      = OTA_Take;
+				ota->m_targetVelocity = Vector3f(0.0f);
 				ota->finishMotion();
 			}
 		}
@@ -335,7 +335,7 @@ void StateTurn::exec(EnemyBase* enemy)
 
 	ota->startEscapeSE();
 
-	if (ota->m_curAnim->m_isRunning && (u32)ota->m_curAnim->m_type == KEYEVENT_END) {
+	if (ota->m_curAnim->m_isPlaying && (u32)ota->m_curAnim->m_type == KEYEVENT_END) {
 		transit(ota, ota->m_nextState, nullptr);
 	}
 }
@@ -374,7 +374,7 @@ void StateTake::exec(EnemyBase* enemy)
 	EnemyFunc::walkToTarget(ota, movePos, parms->m_general.m_moveSpeed.m_value, parms->m_general.m_rotationalAccel.m_value,
 	                        parms->m_general.m_rotationalSpeed.m_value);
 	EnemyAnimKeyEvent* event = ota->m_curAnim;
-	if (event->m_isRunning) {
+	if (event->m_isPlaying) {
 		if ((u32)event->m_type == 2) {
 			ota->takeTreasure();
 		} else if ((u32)event->m_type == 1000) {
@@ -410,7 +410,7 @@ void StateItemWait::init(EnemyBase* enemy, StateArg* stateArg)
 	Obj* ota              = static_cast<Obj*>(enemy);
 	ota->m_nextState      = OTA_Null;
 	ota->m_escapeSfxTimer = 0.0f;
-	ota->m_simVelocity    = Vector3f(0.0f);
+	ota->m_targetVelocity = Vector3f(0.0f);
 	ota->startMotion(5, nullptr);
 }
 
@@ -450,7 +450,7 @@ void StateItemWait::exec(EnemyBase* enemy)
 		}
 	}
 
-	if (ota->m_curAnim->m_isRunning && (u32)ota->m_curAnim->m_type == KEYEVENT_END) {
+	if (ota->m_curAnim->m_isPlaying && (u32)ota->m_curAnim->m_type == KEYEVENT_END) {
 		transit(ota, ota->m_nextState, nullptr);
 	}
 }
@@ -493,39 +493,39 @@ void StateItemMove::exec(EnemyBase* enemy)
 			EnemyFunc::walkToTarget(ota, movePos, parms->m_general.m_moveSpeed.m_value, parms->m_general.m_rotationalAccel.m_value,
 			                        parms->m_general.m_rotationalSpeed.m_value);
 		} else {
-			ota->m_nextState   = OTA_ItemTurn;
-			ota->m_simVelocity = Vector3f(0.0f);
+			ota->m_nextState      = OTA_ItemTurn;
+			ota->m_targetVelocity = Vector3f(0.0f);
 			ota->finishMotion();
 		}
 
 	} else {
-		ota->m_nextState   = OTA_ItemWait;
-		ota->m_simVelocity = Vector3f(0.0f);
+		ota->m_nextState      = OTA_ItemWait;
+		ota->m_targetVelocity = Vector3f(0.0f);
 		ota->finishMotion();
 	}
 
 	if (EnemyFunc::isStartFlick(ota, false)) {
-		ota->m_nextState   = OTA_ItemFlick;
-		ota->m_simVelocity = Vector3f(0.0f);
+		ota->m_nextState      = OTA_ItemFlick;
+		ota->m_targetVelocity = Vector3f(0.0f);
 		ota->finishMotion();
 	}
 
 	if (ota->isDropTreasure()) {
-		ota->m_nextState   = OTA_ItemDrop;
-		ota->m_simVelocity = Vector3f(0.0f);
+		ota->m_nextState      = OTA_ItemDrop;
+		ota->m_targetVelocity = Vector3f(0.0f);
 		ota->finishMotion();
 
 	} else if (gameSystem != nullptr && gameSystem->m_mode == GSM_VERSUS_MODE) {
 		if (ota->m_health <= 0.0f) {
-			ota->m_nextState   = OTA_ItemDrop;
-			ota->m_simVelocity = Vector3f(0.0f);
+			ota->m_nextState      = OTA_ItemDrop;
+			ota->m_targetVelocity = Vector3f(0.0f);
 			ota->finishMotion();
 		}
 	}
 
 	ota->startEscapeSE();
 
-	if (ota->m_curAnim->m_isRunning && (u32)ota->m_curAnim->m_type == KEYEVENT_END) {
+	if (ota->m_curAnim->m_isPlaying && (u32)ota->m_curAnim->m_type == KEYEVENT_END) {
 		transit(enemy, ota->m_nextState, nullptr); // dumb that this fixes regswaps, really should be ota
 	}
 }
@@ -544,9 +544,9 @@ void StateItemMove::cleanup(EnemyBase* enemy) { enemy->setEmotionCaution(); }
  */
 void StateItemTurn::init(EnemyBase* enemy, StateArg* stateArg)
 {
-	Obj* ota           = static_cast<Obj*>(enemy);
-	ota->m_nextState   = OTA_Null;
-	ota->m_simVelocity = Vector3f(0.0f);
+	Obj* ota              = static_cast<Obj*>(enemy);
+	ota->m_nextState      = OTA_Null;
+	ota->m_targetVelocity = Vector3f(0.0f);
 	ota->setEmotionExcitement();
 	ota->startMotion(7, nullptr);
 }
@@ -594,7 +594,7 @@ void StateItemTurn::exec(EnemyBase* enemy)
 
 	ota->startEscapeSE();
 
-	if (ota->m_curAnim->m_isRunning && (u32)ota->m_curAnim->m_type == KEYEVENT_END) {
+	if (ota->m_curAnim->m_isPlaying && (u32)ota->m_curAnim->m_type == KEYEVENT_END) {
 		transit(enemy, ota->m_nextState, nullptr); // dumb that this fixes regswaps, really should be ota
 	}
 }
@@ -617,7 +617,7 @@ void StateItemFlick::init(EnemyBase* enemy, StateArg* stateArg)
 	ota->m_nextState      = OTA_Null;
 	ota->_2C4             = 0.0f;
 	ota->m_escapeSfxTimer = 0.0f;
-	ota->m_simVelocity    = Vector3f(0.0f);
+	ota->m_targetVelocity = Vector3f(0.0f);
 	ota->setEmotionExcitement();
 	ota->startMotion(8, nullptr);
 	ota->_2D0 = 1;
@@ -638,7 +638,7 @@ void StateItemFlick::exec(EnemyBase* enemy)
 	ota->_2C4 += sys->m_deltaTime;
 
 	EnemyAnimKeyEvent* event = ota->m_curAnim;
-	if (event->m_isRunning) {
+	if (event->m_isPlaying) {
 		if ((u32)event->m_type == 2) {
 			Parms* parms = static_cast<Parms*>(ota->m_parms);
 			EnemyFunc::flickStickPikmin(ota, parms->m_general.m_shakeRateMaybe.m_value, parms->m_general.m_shakeKnockback.m_value,
@@ -691,7 +691,7 @@ void StateItemDrop::init(EnemyBase* enemy, StateArg* stateArg)
 	Obj* ota              = static_cast<Obj*>(enemy);
 	ota->m_nextState      = OTA_Null;
 	ota->m_escapeSfxTimer = 0.0f;
-	ota->m_simVelocity    = Vector3f(0.0f);
+	ota->m_targetVelocity = Vector3f(0.0f);
 	ota->setEmotionExcitement();
 	ota->startMotion(9, nullptr);
 }
@@ -706,7 +706,7 @@ void StateItemDrop::exec(EnemyBase* enemy)
 	Obj* ota = static_cast<Obj*>(enemy);
 
 	EnemyAnimKeyEvent* event = ota->m_curAnim;
-	if (event->m_isRunning) {
+	if (event->m_isPlaying) {
 		if ((u32)event->m_type == 2) {
 			ota->fallTreasure(true);
 
@@ -755,10 +755,10 @@ void StateItemDrop::cleanup(EnemyBase* enemy)
  */
 void StateBombWait::init(EnemyBase* enemy, StateArg* stateArg)
 {
-	Obj* ota           = static_cast<Obj*>(enemy);
-	ota->m_nextState   = OTA_Null;
-	ota->_2E8          = 0.0f;
-	ota->m_simVelocity = Vector3f(0.0f);
+	Obj* ota              = static_cast<Obj*>(enemy);
+	ota->m_nextState      = OTA_Null;
+	ota->_2E8             = 0.0f;
+	ota->m_targetVelocity = Vector3f(0.0f);
 	ota->startMotion(5, nullptr);
 }
 
@@ -781,7 +781,7 @@ void StateBombWait::exec(EnemyBase* enemy)
 	}
 
 	EnemyAnimKeyEvent* event = ota->m_curAnim;
-	if (event->m_isRunning && ((u32)event->m_type == 1000)) {
+	if (event->m_isPlaying && ((u32)event->m_type == 1000)) {
 		Creature* creature = ota->getChaseTargetCreature();
 		if (creature) {
 			Vector3f creaturePos = creature->getPosition();
@@ -844,19 +844,19 @@ void StateBombMove::exec(EnemyBase* enemy)
 			EnemyFunc::walkToTarget(ota, creaturePos, parms->m_general.m_moveSpeed.m_value, parms->m_general.m_rotationalAccel.m_value,
 			                        parms->m_general.m_rotationalSpeed.m_value);
 		} else {
-			ota->m_nextState   = OTA_BombTurn;
-			ota->m_simVelocity = Vector3f(0.0f);
+			ota->m_nextState      = OTA_BombTurn;
+			ota->m_targetVelocity = Vector3f(0.0f);
 			ota->finishMotion();
 		}
 	} else {
-		ota->m_nextState   = OTA_BombWait;
-		ota->m_simVelocity = Vector3f(0.0f);
+		ota->m_nextState      = OTA_BombWait;
+		ota->m_targetVelocity = Vector3f(0.0f);
 		ota->finishMotion();
 	}
 
 	ota->startEscapeSE();
 
-	if (ota->m_curAnim->m_isRunning && ((u32)ota->m_curAnim->m_type == KEYEVENT_END)) {
+	if (ota->m_curAnim->m_isPlaying && ((u32)ota->m_curAnim->m_type == KEYEVENT_END)) {
 		transit(ota, ota->m_nextState, nullptr);
 	}
 }
@@ -875,9 +875,9 @@ void StateBombMove::cleanup(EnemyBase* enemy) { enemy->setEmotionCaution(); }
  */
 void StateBombTurn::init(EnemyBase* enemy, StateArg* stateArg)
 {
-	Obj* ota           = static_cast<Obj*>(enemy);
-	ota->m_nextState   = OTA_Null;
-	ota->m_simVelocity = Vector3f(0.0f);
+	Obj* ota              = static_cast<Obj*>(enemy);
+	ota->m_nextState      = OTA_Null;
+	ota->m_targetVelocity = Vector3f(0.0f);
 	ota->setEmotionExcitement();
 	ota->startMotion(7, nullptr);
 }
@@ -918,7 +918,7 @@ void StateBombTurn::exec(EnemyBase* enemy)
 
 	ota->startEscapeSE();
 
-	if (ota->m_curAnim->m_isRunning && ((u32)ota->m_curAnim->m_type == KEYEVENT_END)) {
+	if (ota->m_curAnim->m_isPlaying && ((u32)ota->m_curAnim->m_type == KEYEVENT_END)) {
 		transit(ota, ota->m_nextState, nullptr);
 	}
 }

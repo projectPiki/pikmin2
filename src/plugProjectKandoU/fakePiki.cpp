@@ -2280,7 +2280,7 @@ void FakePiki::updateTrMatrix()
 {
 	if (useUpdateTrMatrix() && !isStickTo()) {
 		Vector3f rotation(0.0f, m_faceDir, 0.0f);
-		m_mainMatrix.makeSRT(m_scale, rotation, m_position3);
+		m_objMatrix.makeSRT(m_scale, rotation, m_position3);
 	}
 }
 

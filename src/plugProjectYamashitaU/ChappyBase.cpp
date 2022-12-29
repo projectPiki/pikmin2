@@ -330,7 +330,7 @@ void Obj::flickStatePikmin()
 void Obj::flickAttackBomb()
 {
 	Vector3f effectPos = m_position;
-	effectPos += m_commonEffectOffset;
+	effectPos += m_effectOffset;
 
 	if (m_waterBox) {
 		effectPos.y = *m_waterBox->getSeaHeightPtr();
@@ -340,7 +340,7 @@ void Obj::flickAttackBomb()
 	} else {
 		efx::Arg argLand(effectPos);
 		efx::TEnemyDownSmoke downSmokeEffect;
-		downSmokeEffect._0C = 0.75f;
+		downSmokeEffect.m_scale = 0.75f;
 		downSmokeEffect.create(&argLand);
 	}
 

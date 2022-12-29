@@ -47,7 +47,7 @@ void StateDead::init(EnemyBase* enemy, StateArg* stateArg)
 	titan->forceFinishIKMotion();
 	titan->checkJointScaleOn();
 	titan->deathProcedure();
-	titan->m_simVelocity = Vector3f(0.0f);
+	titan->m_targetVelocity = Vector3f(0.0f);
 	titan->setEmotionCaution();
 	titan->startBlendAnimation(27, true);
 	titan->createDeadBombFootEffect();
@@ -66,7 +66,7 @@ void StateDead::exec(EnemyBase* enemy)
 		titan->subShadowScale();
 	}
 
-	if (titan->m_curAnim->m_isRunning) {
+	if (titan->m_curAnim->m_isPlaying) {
 		if ((u32)titan->m_curAnim->m_type == KEYEVENT_END_BLEND) {
 			titan->endBlendAnimation();
 
@@ -139,7 +139,7 @@ void StateStay::init(EnemyBase* enemy, StateArg* stateArg)
 	titan->m_stateTimer = 0.0f;
 	titan->setAttackMaterialColor(false);
 	titan->enableEvent(0, EB_IsImmuneBitter);
-	titan->m_simVelocity    = Vector3f(0.0f);
+	titan->m_targetVelocity = Vector3f(0.0f);
 	titan->m_targetCreature = nullptr;
 	titan->startBlendAnimation(0, false);
 	titan->stopMotion();
@@ -196,7 +196,7 @@ void StateLand::init(EnemyBase* enemy, StateArg* stateArg)
 	Obj* titan         = static_cast<Obj*>(enemy);
 	titan->m_nextState = BIGTREASURE_NULL;
 	titan->setAttackMaterialColor(false);
-	titan->m_simVelocity    = Vector3f(0.0f);
+	titan->m_targetVelocity = Vector3f(0.0f);
 	titan->m_targetCreature = nullptr;
 	titan->setEmotionExcitement();
 	shadowMgr->addJointShadow(titan);
@@ -217,7 +217,7 @@ void StateLand::init(EnemyBase* enemy, StateArg* stateArg)
 void StateLand::exec(EnemyBase* enemy)
 {
 	Obj* titan = static_cast<Obj*>(enemy);
-	if (titan->m_curAnim->m_isRunning) {
+	if (titan->m_curAnim->m_isPlaying) {
 		if ((u32)titan->m_curAnim->m_type == KEYEVENT_2) {
 			titan->createOnGroundEffect(1, titan->m_waterBox);
 			Parms* parms = static_cast<Parms*>(titan->m_parms);
@@ -307,7 +307,7 @@ void StateWait::init(EnemyBase* enemy, StateArg* stateArg)
 	titan->setAttackMaterialColor(false);
 
 	titan->m_targetCreature = nullptr;
-	titan->m_simVelocity    = Vector3f(0.0f);
+	titan->m_targetVelocity = Vector3f(0.0f);
 
 	titan->startBlendAnimation(25, true);
 	titan->startBlendMotion();
@@ -334,7 +334,7 @@ void StateWait::exec(EnemyBase* enemy)
 		titan->finishMotion();
 	}
 
-	if (titan->m_curAnim->m_isRunning) {
+	if (titan->m_curAnim->m_isPlaying) {
 		if ((u32)titan->m_curAnim->m_type == KEYEVENT_END_BLEND) {
 			titan->endBlendAnimation();
 		} else if ((u32)titan->m_curAnim->m_type == 0) {
@@ -369,7 +369,7 @@ void StateItemWait::init(EnemyBase* enemy, StateArg* stateArg)
 	titan->setAttackMaterialColor(false);
 
 	titan->m_targetCreature = nullptr;
-	titan->m_simVelocity    = Vector3f(0.0f);
+	titan->m_targetVelocity = Vector3f(0.0f);
 
 	titan->startBlendAnimation(2, true);
 	titan->startBlendMotion();
@@ -399,7 +399,7 @@ void StateItemWait::exec(EnemyBase* enemy)
 
 	titan->m_stateTimer += sys->m_deltaTime;
 
-	if (titan->m_curAnim->m_isRunning) {
+	if (titan->m_curAnim->m_isPlaying) {
 		if ((u32)titan->m_curAnim->m_type == KEYEVENT_END_BLEND) {
 			titan->endBlendAnimation();
 		} else if ((u32)titan->m_curAnim->m_type == KEYEVENT_END) {
@@ -432,7 +432,7 @@ void StateFlick::init(EnemyBase* enemy, StateArg* stateArg)
 	titan->setAttackMaterialColor(false);
 
 	titan->m_targetCreature = nullptr;
-	titan->m_simVelocity    = Vector3f(0.0f);
+	titan->m_targetVelocity = Vector3f(0.0f);
 
 	titan->startBlendAnimation(26, true);
 	titan->startBlendMotion();
@@ -447,7 +447,7 @@ void StateFlick::exec(EnemyBase* enemy)
 {
 	Obj* titan = static_cast<Obj*>(enemy);
 
-	if (titan->m_curAnim->m_isRunning) {
+	if (titan->m_curAnim->m_isPlaying) {
 		if ((u32)titan->m_curAnim->m_type == KEYEVENT_END_BLEND) {
 			titan->endBlendAnimation();
 
@@ -494,7 +494,7 @@ void StatePreAttack::init(EnemyBase* enemy, StateArg* stateArg)
 	titan->setAttackMaterialColor(false);
 
 	titan->m_targetCreature = nullptr;
-	titan->m_simVelocity    = Vector3f(0.0f);
+	titan->m_targetVelocity = Vector3f(0.0f);
 
 	titan->setTreasureAttack();
 	int animIdx = titan->getPreAttackAnimIndex();
@@ -528,7 +528,7 @@ void StatePreAttack::exec(EnemyBase* enemy)
 
 	titan->m_stateTimer += sys->m_deltaTime;
 
-	if (titan->m_curAnim->m_isRunning) {
+	if (titan->m_curAnim->m_isPlaying) {
 		if ((u32)titan->m_curAnim->m_type == KEYEVENT_END_BLEND) {
 			titan->endBlendAnimation();
 
@@ -574,7 +574,7 @@ void StateAttack::init(EnemyBase* enemy, StateArg* stateArg)
 	titan->m_stateTimer = 0.0f;
 
 	titan->m_targetCreature = nullptr;
-	titan->m_simVelocity    = Vector3f(0.0f);
+	titan->m_targetVelocity = Vector3f(0.0f);
 
 	int animIdx = titan->getAttackAnimIndex();
 	titan->startBlendAnimation(animIdx, true);
@@ -607,7 +607,7 @@ void StateAttack::exec(EnemyBase* enemy)
 
 	titan->m_stateTimer += sys->m_deltaTime;
 
-	if (titan->m_curAnim->m_isRunning) {
+	if (titan->m_curAnim->m_isPlaying) {
 		if ((u32)titan->m_curAnim->m_type == KEYEVENT_END_BLEND) {
 			titan->endBlendAnimation();
 		}
@@ -647,7 +647,7 @@ void StatePutItem::init(EnemyBase* enemy, StateArg* stateArg)
 	titan->setAttackMaterialColor(false);
 
 	titan->m_targetCreature = nullptr;
-	titan->m_simVelocity    = Vector3f(0.0f);
+	titan->m_targetVelocity = Vector3f(0.0f);
 
 	int animIdx = titan->getPutItemAnimIndex();
 	titan->startBlendAnimation(animIdx, true);
@@ -672,7 +672,7 @@ void StatePutItem::exec(EnemyBase* enemy)
 		return;
 	}
 
-	if (titan->m_curAnim->m_isRunning) {
+	if (titan->m_curAnim->m_isPlaying) {
 		if ((u32)titan->m_curAnim->m_type == KEYEVENT_END_BLEND) {
 			titan->endBlendAnimation();
 		} else if ((u32)titan->m_curAnim->m_type == KEYEVENT_END) {
@@ -709,7 +709,7 @@ void StateDropItem::init(EnemyBase* enemy, StateArg* stateArg)
 	titan->setAttackMaterialColor(false);
 
 	titan->m_targetCreature = nullptr;
-	titan->m_simVelocity    = Vector3f(0.0f);
+	titan->m_targetVelocity = Vector3f(0.0f);
 	titan->startBlendAnimation(24, true);
 	titan->startBlendMotion();
 }
@@ -722,7 +722,7 @@ void StateDropItem::init(EnemyBase* enemy, StateArg* stateArg)
 void StateDropItem::exec(EnemyBase* enemy)
 {
 	Obj* titan = static_cast<Obj*>(enemy);
-	if (titan->m_curAnim->m_isRunning) {
+	if (titan->m_curAnim->m_isPlaying) {
 		if ((u32)titan->m_curAnim->m_type == KEYEVENT_END_BLEND) {
 			titan->endBlendAnimation();
 
@@ -762,7 +762,7 @@ void StateWalk::init(EnemyBase* enemy, StateArg* stateArg)
 	titan->setAttackMaterialColor(false);
 
 	titan->m_targetCreature = nullptr;
-	titan->m_simVelocity    = Vector3f(0.0f);
+	titan->m_targetVelocity = Vector3f(0.0f);
 
 	titan->startBlendAnimation(29, true);
 	titan->startIKMotion();
@@ -795,7 +795,7 @@ void StateWalk::exec(EnemyBase* enemy)
 
 	titan->m_stateTimer += sys->m_deltaTime;
 
-	if (titan->m_curAnim->m_isRunning) {
+	if (titan->m_curAnim->m_isPlaying) {
 		if ((u32)titan->m_curAnim->m_type == KEYEVENT_END_BLEND) {
 			titan->endBlendAnimation();
 
@@ -829,7 +829,7 @@ void StateItemWalk::init(EnemyBase* enemy, StateArg* stateArg)
 	titan->setAttackMaterialColor(false);
 
 	titan->m_targetCreature = nullptr;
-	titan->m_simVelocity    = Vector3f(0.0f);
+	titan->m_targetVelocity = Vector3f(0.0f);
 
 	titan->startBlendAnimation(28, true);
 	titan->startIKMotion();
@@ -881,7 +881,7 @@ void StateItemWalk::exec(EnemyBase* enemy)
 		transit(titan, titan->m_nextState, nullptr);
 	}
 
-	if (titan->m_curAnim->m_isRunning) {
+	if (titan->m_curAnim->m_isPlaying) {
 		if ((u32)titan->m_curAnim->m_type == KEYEVENT_END_BLEND) {
 			titan->endBlendAnimation();
 

@@ -5,14 +5,15 @@
 #include "efx/TCursor.h"
 #include "efx/TOrima.h"
 #include "efx/Toe.h"
+#include "efx/TPk.h"
 
 namespace efx {
 enum NaviEffectFlags {
-	NAVIFX_Unk1    = 0x1,
+	NAVIFX_InWater = 0x1,
 	NAVIFX_LightOn = 0x2,
 	NAVIFX_Unk3    = 0x4,
 	NAVIFX_Unk4    = 0x8,
-	NAVIFX_Unk32   = 0x80000000,
+	NAVIFX_IsSaved = 0x80000000,
 };
 
 struct TNaviEffect {
@@ -49,20 +50,43 @@ struct TNaviEffect {
 
 	inline bool isFlag(u32 flag) { return m_flags.typeView & flag; }
 
-	void createLight()
+	inline void createLight()
 	{
 		setFlag(NAVIFX_LightOn);
 		createLight_(m_beaconMtx->m_matrix.mtxView);
 	}
 
-	void killLight()
+	inline void killLight()
 	{
 		resetFlag(NAVIFX_LightOn);
 		killLight_();
 	}
 
+	inline void saveFlags()
+	{
+		m_savedFlags.typeView = m_flags.typeView;
+		m_flags.clear();
+		setFlag(NAVIFX_IsSaved);
+	}
+
+	inline void restoreFlags()
+	{
+		m_flags.typeView = m_savedFlags.typeView;
+		resetFlag(NAVIFX_IsSaved);
+	}
+
+	inline void enterWater(bool isInWater)
+	{
+		setFlag(efx::NAVIFX_InWater);
+		updateHamon_();
+
+		if (!isInWater) {
+			createSimpleDive(m_hamonPosition);
+		}
+	}
+
 	BitFlag<u32> m_flags;      // _00
-	BitFlag<u32> _04;          // _04
+	BitFlag<u32> m_savedFlags; // _04
 	Vector3f* _08;             // _08
 	Vector3f* _0C;             // _0C
 	Matrixf* m_beaconMtx;      // _10

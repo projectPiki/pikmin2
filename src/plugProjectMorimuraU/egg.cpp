@@ -33,7 +33,7 @@ void Obj::onInit(CreatureInitArg* initArg)
 {
 	EnemyBase::onInit(initArg);
 	disableEvent(0, EB_ToLeaveCarcass);
-	disableEvent(0, EB_4);
+	disableEvent(0, EB_IsDamageAnimAllowed);
 	disableEvent(0, EB_IsDeathEffectEnabled);
 	setEmotionNone();
 	enableEvent(0, EB_IsImmuneBitter);
@@ -48,12 +48,12 @@ void Obj::onInit(CreatureInitArg* initArg)
 			m_position.y = mapMgr->getMinY(position);
 		}
 
-		m_curAnim->m_isRunning = 0;
+		m_curAnim->m_isPlaying = 0;
 		doAnimationUpdateAnimator();
 
-		m_mainMatrix.makeSRT(m_scale, m_rotation, m_position);
+		m_objMatrix.makeSRT(m_scale, m_rotation, m_position);
 
-		PSMTXCopy(m_mainMatrix.m_matrix.mtxView, m_model->m_j3dModel->m_posMtx);
+		PSMTXCopy(m_objMatrix.m_matrix.mtxView, m_model->m_j3dModel->m_posMtx);
 		m_model->m_j3dModel->calc();
 	}
 }
@@ -77,10 +77,10 @@ Obj::Obj()
  */
 void Obj::doUpdate()
 {
-	if (m_curTriangle) {
-		m_simVelocity = Vector3f(0.0f);
+	if (m_bounceTriangle) {
+		m_targetVelocity = Vector3f(0.0f);
 	} else {
-		m_simVelocity = m_impVelocity;
+		m_targetVelocity = m_currentVelocity;
 	}
 
 	m_FSM->exec(this);
@@ -122,27 +122,27 @@ void Obj::doSimulation(f32 constraint)
  */
 void Obj::doAnimationCullingOff()
 {
-	m_curAnim->m_isRunning = 0;
+	m_curAnim->m_isPlaying = 0;
 	doAnimationUpdateAnimator();
 	bool check;
-	Vector3f vec = m_mainMatrix.getBasis(3);
+	Vector3f vec = m_objMatrix.getBasis(3);
 	if (m_captureMatrix) {
 		check             = false;
 		Vector3f checkVec = m_captureMatrix->getBasis(3);
 		if (vec.x != checkVec.x || vec.y != checkVec.y || vec.z != checkVec.z) {
 			check = true;
-			PSMTXCopy(m_captureMatrix->m_matrix.mtxView, m_mainMatrix.m_matrix.mtxView);
+			PSMTXCopy(m_captureMatrix->m_matrix.mtxView, m_objMatrix.m_matrix.mtxView);
 		}
 	} else {
 		check = false;
 		if (m_position.x != vec.x || m_position.y != vec.y || m_position.z != vec.z) {
 			check = true;
-			m_mainMatrix.makeSRT(m_scale, m_rotation, m_position);
+			m_objMatrix.makeSRT(m_scale, m_rotation, m_position);
 		}
 	}
 
 	if (check || !isStopMotion()) {
-		PSMTXCopy(m_mainMatrix.m_matrix.mtxView, m_model->m_j3dModel->m_posMtx);
+		PSMTXCopy(m_objMatrix.m_matrix.mtxView, m_model->m_j3dModel->m_posMtx);
 		m_model->m_j3dModel->calc();
 		m_collTree->update();
 	}
@@ -218,8 +218,8 @@ void Obj::onStartCapture()
 	if (m_captureMatrix) {
 		Vector3f position = m_captureMatrix->getBasis(3);
 		onSetPosition(position);
-		m_impVelocity = Vector3f(0.0f);
-		m_simVelocity = Vector3f(0.0f);
+		m_currentVelocity = Vector3f(0.0f);
+		m_targetVelocity  = Vector3f(0.0f);
 		enableEvent(0, EB_Constraint);
 		enableEvent(0, EB_IsVulnerable);
 		disableEvent(0, EB_IsCullable);

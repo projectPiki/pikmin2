@@ -98,7 +98,7 @@ bool Mgr::regist(Obj* obj)
 				info->m_matrix  = obj->m_enemy->m_model->getJoint(objInfo->m_name)->getWorldMatrix();
 				info->m_objInfo = objInfo;
 
-				obj->m_nodeArray[objInfo->_04].add(info);
+				obj->m_nodeArray[objInfo->m_size].add(info);
 			}
 
 			m_obj.add(obj);

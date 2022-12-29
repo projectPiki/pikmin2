@@ -1370,7 +1370,7 @@ CollPart* Onyon::getFootPart(int id)
 void Onyon::makeTrMatrix()
 {
 	Vector3f angle(0.0f, m_faceDir, 0.0f);
-	m_mainMatrix.makeTR(m_position, angle);
+	m_objMatrix.makeTR(m_position, angle);
 	updateCollTree();
 	if (gameSystem->paused() || moviePlayer->m_demoState != 0) {
 		return;
@@ -1518,7 +1518,7 @@ void Onyon::setSpotEffectActive(bool flag)
 void Onyon::efxSuikomi()
 {
 	if (m_onyonType <= ONYON_TYPE_YELLOW) {
-		efx::TOnyonEatC onyonFX(&m_mainMatrix);
+		efx::TOnyonEatC onyonFX(&m_objMatrix);
 		onyonFX.create(nullptr);
 		startSound(PSSE_EV_HOME_PELLET_BACUUM);
 

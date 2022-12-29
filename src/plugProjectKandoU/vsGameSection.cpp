@@ -813,10 +813,10 @@ void VsGameSection::addChallengeScore(int score) { m_pokoCount += score; }
  * Address:	801C2DD0
  * Size:	00006C
  */
-void VsGameSection::sendMessage(GameMessage& message)
+bool VsGameSection::sendMessage(GameMessage& message)
 {
 	if (message.actCommon(this)) {
-		message.actVs(this);
+		return message.actVs(this);
 	}
 }
 

@@ -95,7 +95,7 @@ void StateWalk::exec(EnemyBase* enemy)
 		return;
 	}
 
-	if (wraith->m_curAnim->m_isRunning) {
+	if (wraith->m_curAnim->m_isPlaying) {
 		switch (wraith->m_curAnim->m_type) {
 		case KEYEVENT_2:
 		case KEYEVENT_3:
@@ -143,8 +143,8 @@ StateDead::StateDead(int stateID)
  */
 void StateDead::init(EnemyBase* enemy, StateArg* stateArg)
 {
-	enemy->m_impVelocity = Vector3f(0.0f);
-	enemy->m_simVelocity = Vector3f(0.0f);
+	enemy->m_currentVelocity = Vector3f(0.0f);
+	enemy->m_targetVelocity  = Vector3f(0.0f);
 	enemy->startMotion(2, nullptr);
 
 	Obj* wraith = static_cast<Obj*>(enemy);
@@ -160,7 +160,7 @@ void StateDead::init(EnemyBase* enemy, StateArg* stateArg)
 void StateDead::exec(EnemyBase* enemy)
 {
 	Obj* wraith = static_cast<Obj*>(enemy);
-	if (wraith->m_curAnim->m_isRunning) {
+	if (wraith->m_curAnim->m_isPlaying) {
 		Vector3f position = wraith->getPosition();
 		switch (wraith->m_curAnim->m_type) {
 		case KEYEVENT_2:
@@ -211,8 +211,8 @@ void StateFreeze::init(EnemyBase* enemy, StateArg* stateArg)
 		enemy->setMotionFrame(3.0f);
 	}
 
-	enemy->m_impVelocity = Vector3f(0.0f);
-	enemy->m_simVelocity = Vector3f(0.0f);
+	enemy->m_currentVelocity = Vector3f(0.0f);
+	enemy->m_targetVelocity  = Vector3f(0.0f);
 }
 
 /*
@@ -235,7 +235,7 @@ void StateFreeze::exec(EnemyBase* enemy)
 		return;
 	}
 
-	if (wraith->m_curAnim->m_isRunning) {
+	if (wraith->m_curAnim->m_isPlaying) {
 		if ((u32)wraith->m_curAnim->m_type == KEYEVENT_2) {
 			Vector3f position = wraith->getPosition();
 			cameraMgr->startVibration(12, position, 2);
@@ -323,7 +323,7 @@ void StateBend::exec(EnemyBase* enemy)
 		return;
 	}
 
-	if (wraith->m_curAnim->m_isRunning) {
+	if (wraith->m_curAnim->m_isPlaying) {
 		if ((u32)wraith->m_curAnim->m_type == KEYEVENT_2) {
 			wraith->bendEffect();
 			Vector3f position = wraith->getPosition();
@@ -398,7 +398,7 @@ void StateEscape::exec(EnemyBase* enemy)
 {
 	Obj* wraith = static_cast<Obj*>(enemy);
 	Vector3f position;
-	if (wraith->m_curAnim->m_isRunning) {
+	if (wraith->m_curAnim->m_isPlaying) {
 		switch (wraith->m_curAnim->m_type) {
 		case KEYEVENT_2:
 			wraith->flick();
@@ -459,7 +459,7 @@ void StateFall::init(EnemyBase* enemy, StateArg* stateArg)
  */
 void StateFall::exec(EnemyBase* enemy)
 {
-	if (enemy->m_curAnim->m_isRunning) {
+	if (enemy->m_curAnim->m_isPlaying) {
 		if ((u32)enemy->m_curAnim->m_type == KEYEVENT_2) {
 			static_cast<Obj*>(enemy)->appearFanfare();
 			Vector3f position = enemy->getPosition();
@@ -534,7 +534,7 @@ void StateRecover::exec(EnemyBase* enemy)
 		return;
 	}
 
-	if (wraith->m_curAnim->m_isRunning) {
+	if (wraith->m_curAnim->m_isPlaying) {
 		switch (wraith->m_curAnim->m_type) {
 		case KEYEVENT_2:
 			wraith->flick();
@@ -622,7 +622,7 @@ void StateFlick::exec(EnemyBase* enemy)
 		return;
 	}
 
-	if (enemy->m_curAnim->m_isRunning) {
+	if (enemy->m_curAnim->m_isPlaying) {
 		if ((u32)enemy->m_curAnim->m_type == KEYEVENT_2) {
 			static_cast<Obj*>(enemy)->flick();
 
@@ -662,8 +662,8 @@ StateTired::StateTired(int stateID)
 void StateTired::init(EnemyBase* enemy, StateArg* stateArg)
 {
 	enemy->startMotion(10, nullptr);
-	enemy->m_simVelocity = Vector3f(0.0f);
-	_10                  = 0;
+	enemy->m_targetVelocity = Vector3f(0.0f);
+	_10                     = 0;
 }
 
 /*
@@ -673,10 +673,10 @@ void StateTired::init(EnemyBase* enemy, StateArg* stateArg)
  */
 void StateTired::exec(EnemyBase* enemy)
 {
-	enemy->m_simVelocity = Vector3f(0.0f);
-	enemy->m_impVelocity = Vector3f(0.0f);
+	enemy->m_targetVelocity  = Vector3f(0.0f);
+	enemy->m_currentVelocity = Vector3f(0.0f);
 
-	if (enemy->m_curAnim->m_isRunning) {
+	if (enemy->m_curAnim->m_isPlaying) {
 		if ((u32)enemy->m_curAnim->m_type == KEYEVENT_END) {
 			static_cast<Obj*>(enemy)->flick();
 			transit(enemy, WRAITH_Walk, nullptr);

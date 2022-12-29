@@ -76,7 +76,7 @@ void FSMStateExpansion::exec(DrawInfo* drawInfo)
 			scale *= DrawInfo::sOwnerEnemy->m_scaleModifier;
 			efx::ArgScale argScale(pos, scale);
 
-			switch (drawInfo->m_objInfo->_04) {
+			switch (drawInfo->m_objInfo->m_size) {
 			case 0:
 				efx::TSekikaLOn stoneFXL;
 				stoneFXL.create(&argScale);

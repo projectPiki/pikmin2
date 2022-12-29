@@ -15,9 +15,12 @@ struct MonoObjectMgr : public ObjectMgr<T> {
 	virtual void* getStart();     // _18 (weak)
 	virtual void* getEnd();       // _1C (weak)
 	virtual T* get(void*);        // _20 (weak)
-	virtual T* getAt(int);        // _24 (weak)
-	virtual int getTo();          // _28 (weak)
-	virtual void doAnimation()    // _64 (weak, thunk at _34)
+	virtual T* getAt(int index)   // _24 (weak)
+	{
+		return &m_array[index];
+	}
+	virtual int getTo();       // _28 (weak)
+	virtual void doAnimation() // _64 (weak, thunk at _34)
 	{
 		for (int i = 0; i < m_max; i++) {
 			if (m_openIds[i] == false) {

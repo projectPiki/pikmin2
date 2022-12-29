@@ -18,7 +18,7 @@ struct EnemyPelletInfo {
 		return *this;
 	}
 
-	u8 m_color;        // _00,	Pellet Color 0 - Blue, 1 - Red, 2 - Yellow
+	u8 m_color;        // _00,	Pellet Color, use PELCOLOR_BLUE define
 	u8 m_size;         // _01,	Size of Pellet 1,5,10,20
 	u8 m_minPellets;   // _02,	Minimum number of pellets
 	u8 m_maxPellets;   // _03,	Maximum number of pellets

@@ -748,7 +748,7 @@ void BaseItem::doAnimation()
 		makeTrMatrix();
 	}
 	if (m_model) {
-		PSMTXCopy(m_mainMatrix.m_matrix.mtxView, m_model->m_j3dModel->m_posMtx);
+		PSMTXCopy(m_objMatrix.m_matrix.mtxView, m_model->m_j3dModel->m_posMtx);
 		m_model->m_j3dModel->calc();
 	}
 	update();
@@ -902,7 +902,7 @@ void BaseItem::doSimulation(float) { }
  * Address:	801CC484
  * Size:	00002C
  */
-void BaseItem::makeTrMatrix() { m_mainMatrix.makeT(m_position); }
+void BaseItem::makeTrMatrix() { m_objMatrix.makeT(m_position); }
 
 /*
  * update__

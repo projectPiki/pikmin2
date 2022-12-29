@@ -460,7 +460,8 @@ void Matrix3f::calcEigenMatrix(Matrix3f& D, Matrix3f& P)
 						// to make sure we're not doing dumb complex number math
 
 						// float y = (*(J_r27 + col_col) - *(J_r25 + row_col)) / (2.0f * *(&J_r26[0]));
-						// float y = (J.m_matrix[col_OD][col_OD] - J.m_matrix[row_OD][row_OD]) / (2.0f * J.m_matrix[row_OD][col_OD]);
+						// float y = (J.m_matrix[col_OD][col_OD] - J.m_matrix[row_OD][row_OD]) / (2.0f *
+						// J.m_matrix[row_OD][col_OD]);
 						float y = J.calcJacobi(row_OD, col_OD);
 						f32 r, t, d;
 						t = (y > 0.0f) ? 1.0f / (y + pikmin2_sqrtf(y * y + 1.0f)) : (-1.0f / (-y + pikmin2_sqrtf(y * y + 1.0f)));

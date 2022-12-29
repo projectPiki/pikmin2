@@ -73,7 +73,7 @@ void StateWait::exec(EnemyBase* enemy)
 		enemy->m_toFlick = 0.0f;
 	}
 
-	if (enemy->m_curAnim->m_isRunning && (u32)enemy->m_curAnim->m_type == KEYEVENT_END) {
+	if (enemy->m_curAnim->m_isPlaying && (u32)enemy->m_curAnim->m_type == KEYEVENT_END) {
 		enemy->startMotion(0, nullptr);
 		enemy->stopMotion();
 	}

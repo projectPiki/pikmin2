@@ -132,34 +132,35 @@ struct Piki : public FakePiki {
 	Piki();
 
 	// vtable 1 (Creature)
-	virtual bool deferPikiCollision();                                  // _20 (weak)
-	virtual void onInit(CreatureInitArg* settings);                     // _30
-	virtual void onKill(CreatureKillArg* settings);                     // _34
-	virtual void doAnimation();                                         // _3C
-	virtual void doDirectDraw(Graphics& gfx);                           // _50
-	virtual void inWaterCallback(WaterBox* wb);                         // _84
-	virtual void outWaterCallback();                                    // _88
-	virtual bool isAlive();                                             // _A8
-	virtual void bounceCallback(Sys::Triangle* tri);                    // _E8
-	virtual void collisionCallback(CollEvent& event);                   // _EC
-	virtual void platCallback(PlatEvent& event);                        // _F0
-	virtual JAInter::Object* getJAIObject();                            // _F4
-	virtual PSM::Creature* getPSCreature();                             // _F8
-	virtual void on_movie_begin(bool shouldResetAnims);                 // _110
-	virtual void on_movie_end(bool shouldResetAnims);                   // _114
-	virtual void movieStartAnimation(u32 animIdx);                      // _118
-	virtual void movieStartDemoAnimation(SysShape::AnimInfo* info);     // _11C
-	virtual void movieSetTranslation(Vector3f& dest, f32 faceDir);      // _124
-	virtual bool movieGotoPosition(Vector3f& dest);                     // _12C
-	virtual void movieUserCommand(u32 command, MoviePlayer* curPlayer); // _130, check EMoviePlayerCommands enum for possible values
-	virtual void getShadowParam(ShadowParam& settings);                 // _134
-	virtual void getLODSphere(Sys::Sphere& lodSphere);                  // _140
-	virtual void onStickStartSelf(Creature* c);                         // _160
-	virtual void onStickEndSelf(Creature* c);                           // _164
-	virtual bool ignoreAtari(Creature* toIgnore);                       // _190
-	virtual bool stimulate(Interaction& data);                          // _1A4
-	virtual char* getCreatureName();                                    // _1A8 (weak)
-	virtual s32 getCreatureID();                                        // _1AC (weak)
+	virtual bool deferPikiCollision();                              // _20 (weak)
+	virtual void onInit(CreatureInitArg* settings);                 // _30
+	virtual void onKill(CreatureKillArg* settings);                 // _34
+	virtual void doAnimation();                                     // _3C
+	virtual void doDirectDraw(Graphics& gfx);                       // _50
+	virtual void inWaterCallback(WaterBox* wb);                     // _84
+	virtual void outWaterCallback();                                // _88
+	virtual bool isAlive();                                         // _A8
+	virtual void bounceCallback(Sys::Triangle* tri);                // _E8
+	virtual void collisionCallback(CollEvent& event);               // _EC
+	virtual void platCallback(PlatEvent& event);                    // _F0
+	virtual JAInter::Object* getJAIObject();                        // _F4
+	virtual PSM::Creature* getPSCreature();                         // _F8
+	virtual void on_movie_begin(bool shouldResetAnims);             // _110
+	virtual void on_movie_end(bool shouldResetAnims);               // _114
+	virtual void movieStartAnimation(u32 animIdx);                  // _118
+	virtual void movieStartDemoAnimation(SysShape::AnimInfo* info); // _11C
+	virtual void movieSetTranslation(Vector3f& dest, f32 faceDir);  // _124
+	virtual bool movieGotoPosition(Vector3f& dest);                 // _12C
+	virtual void movieUserCommand(u32 command,
+	                              MoviePlayer* curPlayer); // _130, check EMoviePlayerCommands enum for possible values
+	virtual void getShadowParam(ShadowParam& settings);    // _134
+	virtual void getLODSphere(Sys::Sphere& lodSphere);     // _140
+	virtual void onStickStartSelf(Creature* c);            // _160
+	virtual void onStickEndSelf(Creature* c);              // _164
+	virtual bool ignoreAtari(Creature* toIgnore);          // _190
+	virtual bool stimulate(Interaction& data);             // _1A4
+	virtual char* getCreatureName();                       // _1A8 (weak)
+	virtual s32 getCreatureID();                           // _1AC (weak)
 	// vtable 2 (MotionListener + FakePiki + self)
 	virtual int getDownfloorMass();           // _1BC
 	virtual bool isPikmin();                  // _1C0

@@ -476,6 +476,8 @@ struct NaviThrowWaitState : public NaviState {
 
 	// _00     = VTBL
 	// _00-_0C = NaviState
+	u8 _0C[0x8];  // _0C, unknown
+	Piki* m_piki; // _14, held piki to be thrown
 };
 
 struct NaviWalkState : public NaviState {

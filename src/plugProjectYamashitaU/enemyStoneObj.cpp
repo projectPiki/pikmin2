@@ -36,7 +36,7 @@ bool Obj::start()
 	if (generalEnemyMgr->m_stoneMgr.regist(this)) {
 		setFlag(STONE_Unk6);
 		f32 appearVal = 0.0f;
-		f32 normVal   = 1.0f / (f32)m_info->m_infoCnt;
+		f32 normVal   = 1.0f / (f32)m_info->m_length;
 
 		for (int i = 0; i < 2; i++) {
 			DrawInfo* currInfo = static_cast<DrawInfo*>(m_nodeArray[i].m_child);
@@ -64,8 +64,8 @@ void Obj::shake()
 	if (!isFlag(STONE_Shake)) {
 		setFlag(STONE_Shake);
 
-		f32 shakeVal = 0.0;                      // supplied to shake
-		f32 normVal  = 1.0f / m_info->m_infoCnt; // used to adjust shake for next DrawInfo node
+		f32 shakeVal = 0.0;                     // supplied to shake
+		f32 normVal  = 1.0f / m_info->m_length; // used to adjust shake for next DrawInfo node
 
 		for (int i = 0; i < 2; i++) {
 			DrawInfo* currInfo = (DrawInfo*)m_nodeArray[i].m_child;
