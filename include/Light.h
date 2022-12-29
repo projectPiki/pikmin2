@@ -51,6 +51,23 @@ struct LightObj : public CNode {
 	f32 _4C;              // _4C, kScale?
 	f32 m_sphereRadius;   // _50
 	u8 _54;               // _54
+
+	/* FUCKING BREAKS, WHY?
+	    GXLightID m_lightID;       // _18
+	    u8 m_typeFlag;             // _19
+	    Vector3f m_position;       // _1C
+	    Vector3f m_elevation;      // _28
+	    u_color m_color;           // _34
+	    f32 m_intensity;           // _38
+	    f32 m_refDistance;         // _3C
+	    f32 m_refBrightness;       // _40
+	    f32 m_cutoffAngle;         // _44
+	    GXDistAttnFn m_distAttnFn; // _48
+	    GXSpotFn m_spotFn;         // _49
+	    f32 _4C;                   // _4C, kScale?
+	    f32 m_sphereRadius;        // _50
+	    u8 _54;                    // _54
+	    */
 };
 
 struct LightMgr : public CNode {

@@ -436,6 +436,16 @@ typedef enum _GXDiffuseFn {
 	GX_DF_CLAMP,
 } GXDiffuseFn;
 
+typedef enum _GXSpotFn {
+	GX_SP_OFF,
+	GX_SP_FLAT,
+	GX_SP_COS,
+	GX_SP_COS2,
+	GX_SP_SHARP,
+	GX_SP_RING1,
+	GX_SP_RING2,
+} GXSpotFn;
+
 typedef enum _GXAttnFn {
 	GX_AF_SPEC,
 	GX_AF_SPOT,
@@ -897,14 +907,38 @@ typedef struct _PIReg {
 } PIReg;
 extern PIReg* __piReg;
 
+typedef struct __GXLightObj {
+	u32 reserved[3];
+	u32 Color;   // light color
+	f32 a[3];    // angle-attenuation coefficients
+	f32 k[3];    // distance-attenuation coefficients
+	f32 lpos[3]; // diffuse: position;  specular: direction
+	f32 ldir[3]; // diffuse: direction; specular: half-angle
+} GXLightObj;
+
+typedef enum _GXDistAttnFn {
+	GX_DA_OFF = 0,
+	GX_DA_GENTLE,
+	GX_DA_MEDIUM,
+	GX_DA_STEEP,
+} GXDistAttnFn;
+
 void __GXSetDirtyState();
 void __GXSendFlushPrim();
 
 void GXFlush();
 void GXSetNumTexGens(u8);
-void GXInitLightPos(struct GXLightObj* lt_obj, f32 x, f32 y, f32 z);
-void GXInitLightColor(struct GXLightObj* lt_obj, GXColor color);
-void GXLoadLightObjImm(struct GXLightObj* lt_obj, GXLightID light);
+void GXInitSpecularDir(GXLightObj* lt_obj, f32 nx, f32 ny, f32 nz);
+void GXInitSpecularDirHA(GXLightObj* lt_obj, f32 nx, f32 ny, f32 nz, f32 hx, f32 hy, f32 hz);
+void GXInitLightAttn(GXLightObj* lt_obj, f32 a0, f32 a1, f32 a2, f32 k0, f32 k1, f32 k2);
+void GXInitLightAttnA(GXLightObj* lt_obj, f32 a0, f32 a1, f32 a2);
+void GXInitLightAttnK(GXLightObj* lt_obj, f32 k0, f32 k1, f32 k2);
+void GXInitLightSpot(GXLightObj* lt_obj, f32 cutoff, GXSpotFn spot_func);
+void GXInitLightPos(GXLightObj* lt_obj, f32 x, f32 y, f32 z);
+void GXInitLightColor(GXLightObj* lt_obj, GXColor color);
+void GXInitLightDir(GXLightObj* lt_obj, f32 nx, f32 ny, f32 nz);
+void GXInitLightDistAttn(GXLightObj* lt_obj, f32 ref_distance, f32 ref_brightness, GXDistAttnFn dist_func);
+void GXLoadLightObjImm(GXLightObj* lt_obj, GXLightID light);
 void GXLoadLightObjIndx(u32 lt_obj_indx, GXLightID light);
 void GXSetChanAmbColor(GXChannelID chan, GXColor amb_color);
 void GXSetChanMatColor(GXChannelID chan, GXColor mat_color);
