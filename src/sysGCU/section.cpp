@@ -125,37 +125,37 @@ void Section::init() { }
  */
 Section::Section(JFWDisplay* display, JKRHeap* heap, bool b)
 {
-	m_isFinished = false;
-	_1C          = nullptr;
-	_20          = nullptr;
-	m_display    = nullptr;
-	m_fader      = nullptr;
-	_18          = nullptr;
-	m_timeStep   = 0.5f;
-	_34          = true;
-	_36          = 0;
-	_35          = false;
-	_38          = 0;
+	m_isLoadingDVD = false;
+	m_displayHeap  = nullptr;
+	m_oldHeap      = nullptr;
+	m_display      = nullptr;
+	m_fader        = nullptr;
+	m_displayWiper = nullptr;
+	m_timeStep     = 0.5f;
+	m_isMainActive = true;
+	_36            = 0;
+	m_isDisplayNew = false;
+	_38            = 0;
 
 	if (heap) {
-		_1C = JKRExpHeap::create(heap->getFreeSize(), heap, true);
-		_20 = _1C->becomeCurrentHeap();
+		m_displayHeap = JKRExpHeap::create(heap->getFreeSize(), heap, true);
+		m_oldHeap     = m_displayHeap->becomeCurrentHeap();
 	} else {
-		_1C = JKRExpHeap::create(JKRHeap::sRootHeap->getFreeSize(), nullptr, true);
-		_20 = _1C->becomeCurrentHeap();
+		m_displayHeap = JKRExpHeap::create(JKRHeap::sRootHeap->getFreeSize(), nullptr, true);
+		m_oldHeap     = m_displayHeap->becomeCurrentHeap();
 	}
 
 	if (b) {
 		if (display) {
-			m_display = display;
-			m_fader   = display->m_fader;
-			_35       = false;
+			m_display      = display;
+			m_fader        = display->m_fader;
+			m_isDisplayNew = false;
 		} else {
-			m_display = JFWDisplay::createManager(nullptr, _1C, JUTXfb::DoubleBuffer, false);
+			m_display = JFWDisplay::createManager(nullptr, m_displayHeap, JUTXfb::DoubleBuffer, false);
 			m_fader   = new JUTFader(0, 0, JUTVideo::sManager->m_renderModeObj->fbWidth, JUTVideo::sManager->m_renderModeObj->efbHeight,
                                    JUtility::TColor(0, 0, 0, 0)); // TODO: HELP
 			m_display->m_fader = m_fader;
-			_35                = true;
+			m_isDisplayNew     = true;
 
 			sys->setCurrentDisplay(m_display);
 			sys->setFrameRate(1);
@@ -180,7 +180,7 @@ ISection::~ISection() { }
  */
 Section::~Section()
 {
-	if (_35 && m_display) {
+	if (m_isDisplayNew && m_display) {
 		delete m_fader;
 		JUTXfb::sManager->clearIndex();
 		JFWDisplay::destroyManager();
@@ -188,14 +188,14 @@ Section::~Section()
 		m_display = nullptr;
 	}
 
-	if (_1C) {
-		_1C->freeAll();
-		JKRHeap* heap = _1C;
+	if (m_displayHeap) {
+		m_displayHeap->freeAll();
+		JKRHeap* heap = m_displayHeap;
 
-		void* address = (void*)_1C;
+		void* address = (void*)m_displayHeap;
 		u32 size      = heap->getFreeSize() + 4;
 
-		_1C->destroy();
+		m_displayHeap->destroy();
 		DCStoreRange(address, size);
 	}
 
@@ -289,7 +289,8 @@ void Section::main()
 		update();
 		sys->m_timers->_stop("update");
 		endFrame();
-	} while (!m_isFinished && _34);
+	} while (!m_isLoadingDVD && m_isMainActive);
+	// Don't draw or render while loading from DVD
 
 	s32 timer = getX(m_timeStep);
 
@@ -355,7 +356,7 @@ void Section::run()
 	main();
 	fadeOut();
 
-	if (m_isFinished) {
+	if (m_isLoadingDVD) {
 		do {
 			do {
 				beginFrame();
@@ -375,7 +376,7 @@ void Section::run()
 void Section::exit()
 {
 	doExit();
-	_20->becomeCurrentHeap();
+	m_oldHeap->becomeCurrentHeap();
 	sys->initGenNode();
 	sys->refreshGenNode();
 }
@@ -408,8 +409,8 @@ void Section::beginRender() { sys->beginRender(); }
  */
 void Section::endRender()
 {
-	if (_18) {
-		_18->update();
+	if (m_displayWiper) {
+		m_displayWiper->update();
 	}
 
 	sys->endRender();

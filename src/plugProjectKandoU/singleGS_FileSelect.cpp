@@ -179,8 +179,8 @@ lbl_8021C798:
 void SingleGame::FileState::init(Game::SingleGameSection* section, Game::StateArg* arg)
 {
 	moviePlayer->reset();
-	_24          = 1;
-	section->_18 = section->m_wipeInFader;
+	_24                     = 1;
+	section->m_displayWiper = section->m_wipeInFader;
 	section->m_wipeInFader->start(1.0f);
 	section->refreshHIO();
 	Screen::gGame2DMgr->m_screenMgr->reset();

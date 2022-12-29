@@ -321,9 +321,9 @@ void CaveResultState::exec(SingleGameSection* section)
 		if (_80.m_mode != 2) {
 			return;
 		}
-		_18          = 1.0f;
-		_12          = 2;
-		section->_18 = section->m_wipeInFader;
+		_18                     = 1.0f;
+		_12                     = 2;
+		section->m_displayWiper = section->m_wipeInFader;
 		section->m_wipeInFader->start(_18);
 		playData->clearCurrentCave();
 		PlayData* data = playData;

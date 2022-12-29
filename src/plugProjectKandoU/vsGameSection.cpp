@@ -181,7 +181,7 @@ void VsGameSection::onInit()
 	_11C                 = 0;
 	m_hole               = nullptr;
 	m_pokoCount          = 0;
-	m_menuRunning        = false;
+	m_isMenuRunning      = false;
 
 	sprintf(m_caveInfoFilename, "caveinfo.txt");
 	sprintf(m_editFilename, "random");
@@ -245,8 +245,8 @@ int VsGameSection::getCurrFloor() { return m_currentFloor; }
  */
 bool VsGameSection::doUpdate()
 {
-	if (m_menuRunning) {
-		_34 = false;
+	if (m_isMenuRunning) {
+		m_isMainActive = false;
 		return false;
 	}
 
@@ -283,7 +283,7 @@ bool VsGameSection::doUpdate()
 		}
 	}
 
-	return _34;
+	return m_isMainActive;
 }
 
 /*
@@ -305,7 +305,7 @@ void VsGameSection::pre2dDraw(Graphics& gfx)
  */
 void VsGameSection::doDraw(Graphics& gfx)
 {
-	if (!m_menuRunning && m_state) {
+	if (!m_isMenuRunning && m_state) {
 		m_state->draw(this, gfx);
 	}
 }

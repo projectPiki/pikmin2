@@ -218,7 +218,7 @@ void TitleState::execChallenge(VsGameSection* section)
 		int check = Screen::gGame2DMgr->check_ChallengeSelect(stageNumber, playType);
 		switch (check) {
 		case 2:
-			section->m_menuRunning = true;
+			section->m_isMenuRunning = true;
 			return;
 
 		case 3:
@@ -335,7 +335,7 @@ void TitleState::execVs(VsGameSection* section)
 		int check = Screen::gGame2DMgr->check_VsSelect(stageNumber, section->m_olimarHandicap, section->m_louieHandicap);
 		switch (check) {
 		case 2:
-			section->m_menuRunning = true;
+			section->m_isMenuRunning = true;
 			return;
 		case 3:
 			gameSystem->m_mode = GSM_VERSUS_MODE;

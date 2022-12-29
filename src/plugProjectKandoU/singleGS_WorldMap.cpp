@@ -356,7 +356,7 @@ void SingleGame::SelectState::initNext(Game::SingleGameSection* section)
 	arg.m_hasNewOtakaraEntries = playData->hasPelletZukanWhatsNew();
 	arg._16                    = section->_228;
 	_10->init(arg);
-	section->_18 = section->m_wipeInFader;
+	section->m_displayWiper = section->m_wipeInFader;
 	section->refreshHIO();
 	_20->setButtonRepeat(0x3000000, 0x1E, 1);
 	sys->dvdLoadUseCallBack(&section->_1B8, m_dvdLoadCallback);

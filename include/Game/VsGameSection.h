@@ -102,7 +102,7 @@ struct VsGameSection : public BaseGameSection {
 	u8 m_menuFlags;                                 // _1F8
 	struct ItemHole::Item* m_hole;                  // _1FC
 	struct ItemBigFountain::Item* m_fountain;       // _200
-	bool m_menuRunning;                             // _204
+	bool m_isMenuRunning;                           // _204
 	bool _205;                                      // _205
 	int _208;                                       // _208 - pikmin spawn queue
 	ChallengeGame::StageList* m_challengeStageList; // _20C

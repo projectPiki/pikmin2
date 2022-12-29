@@ -128,7 +128,7 @@ void MovieState::exec(SingleGameSection* gs)
 			break;
 		case true:
 			if ((_14->m_padButton.m_buttonDown & PAD_BUTTON_START) || _20->isFinishPlaying()) { // skip the movie with start
-				gs->_18 = gs->m_wipeInFader;
+				gs->m_displayWiper = gs->m_wipeInFader;
 				gs->m_wipeInFader->start(4.0f);
 				gs->m_currentCourseInfo = stageList->getCourseInfo(0);
 				LoadArg arg;

@@ -182,13 +182,13 @@ void Section::init()
 	initHIO(root);
 
 	sys->heapStatusStart("frameBuffer", nullptr);
-	setDisplay(JFWDisplay::createManager(nullptr, _1C, JUTXfb::DoubleBuffer, false), 1);
+	setDisplay(JFWDisplay::createManager(nullptr, m_displayHeap, JUTXfb::DoubleBuffer, false), 1);
 	sys->heapStatusEnd("frameBuffer");
 
 	m_controller = new Controller(JUTGamePad::PORT_0);
 
 	sys->setFrameRate(2);
-	m_moviePlayer.init(_1C);
+	m_moviePlayer.init(m_displayHeap);
 
 	addGenNode(m_genNode);
 	m_timeStep = 0.5f;
@@ -287,18 +287,18 @@ bool Section::doUpdate()
 
 	BaseHIOSection::doUpdate();
 	if (m_moviePlayer.isFinishPlaying()) {
-		_34 = 0;
+		m_isMainActive = false;
 	}
 
 	// TODO: WTF is going on here? Match!
-	if ((m_controller->m_padButton.m_buttonDown & ~PAD_BUTTON_B) != 0 && _34) {
+	if ((m_controller->m_padButton.m_buttonDown & ~PAD_BUTTON_B) != 0 && m_isMainActive) {
 		PSSystem::spSysIF->playSystemSe(PSSE_SY_MENU_CANCEL, 0);
-		_34 = 0;
+		m_isMainActive = false;
 	}
 
 	m_moviePlayer.play();
 	m_moviePlayer.update();
-	return _34;
+	return m_isMainActive;
 }
 
 /*

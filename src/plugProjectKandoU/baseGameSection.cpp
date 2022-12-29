@@ -903,7 +903,7 @@ BaseGameSection::BaseGameSection(JKRHeap* heap)
     , m_dvdThreadCommand()
 {
 	m_xfbFlags = 0;
-	setDisplay(JFWDisplay::createManager(nullptr, _1C, JUTXfb::DoubleBuffer, true), 1);
+	setDisplay(JFWDisplay::createManager(nullptr, m_displayHeap, JUTXfb::DoubleBuffer, true), 1);
 	m_playerMode         = 2;
 	m_draw2DCreature     = nullptr;
 	m_treasureZoomCamera = nullptr;
