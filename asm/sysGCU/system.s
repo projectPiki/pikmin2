@@ -448,7 +448,7 @@ preUserCallback__FUsP9OSContextUlUl: #local function
 /* 80422190 0041F0D0  57 80 08 3C */	slwi r0, r28, 1
 /* 80422194 0041F0D4  7F BF 02 2E */	lhzx r29, r31, r0
 /* 80422198 0041F0D8  28 1D 00 00 */	cmplwi r29, 0
-/* 8042219C 0041F0DC  40 82 FF B8 */	bne .L_80422154
+# /* 8042219C 0041F0DC  40 82 FF B8 */	bne .L_80422154  # exception handler auto
 /* 804221A0 0041F0E0  80 6D 88 A4 */	lwz r3, sConsole__12JUTException@sda21(r13)
 /* 804221A4 0041F0E4  38 00 00 01 */	li r0, 1
 /* 804221A8 0041F0E8  98 0D 86 70 */	stb r0, sUseABXCommand@sda21(r13)

@@ -832,7 +832,7 @@ setupResources__Q34Game12PelletNumber3MgrFv:
 /* 801F9688 001F65C8  80 6D 9A EC */	lwz r3, sys@sda21(r13)
 /* 801F968C 001F65CC  48 22 9C D1 */	bl heapStatusStart__6SystemFPcP7JKRHeap
 /* 801F9690 001F65D0  7F E3 FB 78 */	mr r3, r31
-/* 801F9694 001F65D4  38 80 00 30 */	li r4, 0x20 ; max pellets
+/* 801F9694 001F65D4  38 80 00 30 */	li r4, 0x20 # max pellets
 /* 801F9698 001F65D8  48 00 1C ED */	bl "alloc__Q24Game48FixedSizePelletMgr<Q34Game12PelletNumber6Object>Fi"
 /* 801F969C 001F65DC  7F E3 FB 78 */	mr r3, r31
 /* 801F96A0 001F65E0  38 80 00 00 */	li r4, 0
@@ -867,7 +867,7 @@ setupResources__Q34Game12PelletNumber3MgrFv:
 /* 801F9714 001F6654  80 63 00 0C */	lwz r3, 0xc(r3)
 /* 801F9718 001F6658  4B E8 A1 C1 */	bl newSharedDisplayList__12J3DModelDataFUl
 /* 801F971C 001F665C  7F E3 FB 78 */	mr r3, r31
-/* 801F9720 001F6660  38 80 00 40 */	li r4, 0x20 ; max pellet models?
+/* 801F9720 001F6660  38 80 00 40 */	li r4, 0x20 # max pellet models?
 /* 801F9724 001F6664  3C A0 00 08 */	lis r5, 8
 /* 801F9728 001F6668  4B F7 2E C5 */	bl useModelMgr__Q24Game13BasePelletMgrFiUl
 /* 801F972C 001F666C  38 7F 00 18 */	addi r3, r31, 0x18
