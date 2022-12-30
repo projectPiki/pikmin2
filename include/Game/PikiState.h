@@ -699,14 +699,6 @@ struct PikiPressedState : public PikiState {
 };
 
 struct SuikomiStateArg : public StateArg {
-
-	inline SuikomiStateArg(Creature* c, u32 p3, CollPart* p2)
-	{
-		m_creature = c;
-		_04        = p3;
-		_08        = p2;
-	}
-
 	Creature* m_creature; // _00
 	u32 _04;              // _04
 	CollPart* _08;        // _08
