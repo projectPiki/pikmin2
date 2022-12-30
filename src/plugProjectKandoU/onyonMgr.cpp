@@ -2039,7 +2039,7 @@ ItemOnyon::Mgr::Mgr()
 	m_onyons[ONYON_TYPE_BLUE]   = nullptr;
 	m_ufo                       = nullptr;
 	m_pod                       = nullptr;
-	BaseItemMgr::m_name         = "Onyon";
+	m_itemName                  = "Onyon";
 	m_modelData                 = new J3DModelData*[3];
 	m_animMgrFiles[0]           = nullptr;
 	m_animMgrFiles[1]           = nullptr;

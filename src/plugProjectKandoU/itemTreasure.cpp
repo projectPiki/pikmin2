@@ -14,7 +14,8 @@
 // the actual treasure in place until you kill, where the treasure becomes freed
 // Why they handled buried treasures this way is beyond me
 
-static const char name[] = "itemTreasure";
+static const char UNUSED_1[] = { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 };
+static const char name[]     = "itemTreasure";
 
 /*
     Generated from dpostproc
@@ -878,7 +879,7 @@ void ItemTreasure::NormalState::onDamage(Game::ItemTreasure::Item* item, f32 dam
 		f32 depth = item->m_pellet->getBuryDepth();
 		f32 max   = item->m_pellet->getBuryDepthMax();
 		// float == float? :rock eyebrow:
-		if (depth == max) {
+		if (max == depth) {
 			playData->setDemoFlag(DEMO_Whites_Digging);
 			MoviePlayArg arg("x14_white_dig", nullptr, nullptr, 0);
 			Iterator<Piki> itPiki(pikiMgr);
@@ -1200,11 +1201,11 @@ void ItemTreasure::Item::releasePellet()
 			caster->fadein(0.5f);
 		}
 
-		f32 scale                   = m_pellet->getPickRadius();
-		volatile Vector3f pelletpos = m_position;
+		f32 scale          = m_pellet->getPickRadius();
+		Vector3f pelletpos = m_position;
 
+		::efx::ArgScale arg(pelletpos, scale);
 		::efx::TOtakaraAp efx;
-		::efx::ArgScale arg(m_position, scale);
 		efx.create(&arg);
 
 		m_soundObj->startSound(PSSE_EV_TREASURE_JUMP_OUT, 0);
@@ -1215,7 +1216,7 @@ void ItemTreasure::Item::releasePellet()
 		velocity.z = (randFloat() - 0.5f) * 10.0f;
 		m_pellet->setVelocity(velocity);
 
-		if (gameSystem->m_mode == GSM_VERSUS_MODE) {
+		if (gameSystem->isVersusMode()) {
 			f32 test = randFloat() * 3.0f;
 			GameMessageVsBirthTekiTreasure mesg;
 			mesg.m_position = m_pellet->m_pelletPosition;
@@ -1225,8 +1226,10 @@ void ItemTreasure::Item::releasePellet()
 		}
 
 		m_soundEvent.finish();
+
 		P2ASSERTLINE(327, m_soundObj->getCastType() == 10);
-		m_soundObj->disable();
+		static_cast<PSM::WorkItem*>(m_soundObj)->eventFinish();
+
 		setAlive(false);
 		m_pellet = nullptr;
 	}
@@ -1489,8 +1492,8 @@ void ItemTreasure::Item::doAI()
 	part->m_radius = getWorkRadius();
 
 	if (m_pellet) {
-		f32 depth = (m_pellet->getBuryDepthMax() * 0.5f) - m_totalLife;
-
+		f32 depth = (m_pellet->getBuryDepthMax() * 0.5f);
+		depth -= m_totalLife;
 		Matrixf mtx;
 		PSMTXCopy(m_pellet->m_objMatrix.m_matrix.mtxView, mtx.m_matrix.mtxView);
 		mtx.m_matrix.structView.ty = depth;
@@ -1498,7 +1501,7 @@ void ItemTreasure::Item::doAI()
 		mtx.m_matrix.structView.tz = 0.0f;
 		m_pellet->updateCapture(mtx);
 
-		if (m_pellet->getBuryDepthMax() >= m_totalLife) {
+		if (m_totalLife >= m_pellet->getBuryDepthMax()) {
 			m_pellet->m_lod.m_flags &= -0x35;
 		}
 		m_pellet->m_depth = m_totalLife;
@@ -1509,7 +1512,7 @@ void ItemTreasure::Item::doAI()
 		switch (state) {
 		case 2:
 			P2ASSERTLINE(406, m_soundObj->getCastType() == 10);
-			m_soundObj->exec();
+			static_cast<PSM::WorkItem*>(m_soundObj)->eventStop();
 			break;
 		}
 	}
@@ -1642,7 +1645,7 @@ void ItemTreasure::Item::doDirectDraw(Graphics& gfx)
 bool ItemTreasure::Item::getVectorField(Sys::Sphere& bounds, Vector3f& pos)
 {
 	Vector3f diff = m_position - bounds.m_position;
-	f32 dist      = diff.normalise();
+	f32 dist      = _normaliseVec(diff);
 	if (dist > getWorkRadius() + 5.0f) {
 		pos = diff;
 	} else {
@@ -1909,11 +1912,11 @@ bool ItemTreasure::Item::interactAttack(Game::InteractAttack& act)
 		switch (id) {
 		case 1:
 			P2ASSERTLINE(555, m_soundObj->getCastType() == 10);
-			m_soundObj->exec();
+			static_cast<PSM::WorkItem*>(m_soundObj)->eventStart();
 			break;
 		case 3:
 			P2ASSERTLINE(561, m_soundObj->getCastType() == 10);
-			m_soundObj->exec();
+			static_cast<PSM::WorkItem*>(m_soundObj)->eventRestart();
 			break;
 		}
 	}
@@ -2033,16 +2036,11 @@ f32 ItemTreasure::Item::getWorkRadius()
  */
 bool ItemTreasure::Item::isVisible()
 {
-	// TODO: probably straight returns and NOT bool
-	bool visible;
-
 	if (!m_pellet) {
-		visible = false;
+		return false;
 	} else {
-		visible = (m_totalLife / m_pellet->getBuryDepthMax() > 0.85f);
+		return (m_totalLife / m_pellet->getBuryDepthMax() > 0.85f);
 	}
-
-	return visible;
 	/*
 	stwu     r1, -0x10(r1)
 	mflr     r0
@@ -2082,23 +2080,16 @@ lbl_801F40A4:
  */
 bool ItemTreasure::Item::ignoreAtari(Game::Creature* obj)
 {
-	// inline isVisible? <-- yep probably
-	bool visible;
-	if (!m_pellet) {
-		visible = false;
-	} else {
-		visible = (m_totalLife / m_pellet->getBuryDepthMax() > 0.85f);
-	}
-
-	if (visible) {
+	if (!isVisible()) {
 		Piki* piki = static_cast<Piki*>(obj);
 		if (piki->isPiki() || piki->m_pikiKind != White) {
 			return true;
+		} else {
+			return false;
 		}
-
+	} else {
 		return false;
 	}
-
 	return false;
 	/*
 	stwu     r1, -0x10(r1)
@@ -2167,101 +2158,21 @@ lbl_801F4150:
  */
 ItemTreasure::Mgr::Mgr()
 {
-	// m_name = "Treasure"; problem
+	m_itemName            = "Treasure";
 	m_objectPathComponent = "user/kando/objects/treasure";
 	m_parameters          = new TreasureParms;
 
-	loadAndRead(m_parameters, "user/Abe/item/treasureParms.txt");
-	// void* file = JKRDvdRipper::loadToMainRAM(, nullptr, (JKRExpandSwitch)0, 0, nullptr,
-	//                                          (JKRDvdRipper::EAllocDirection)2, 0, nullptr, nullptr);
+	// loadAndRead(m_parameters, "user/Abe/item/treasureParms.txt");
+	// this inline cant match with how it accesses the parameters object, maybe if you passed the manager itself instead of m_parameters?
 
-	// if (file) {
-	// 	RamStream stm(file, -1);
-	// 	stm.m_mode     = STREAM_MODE_TEXT;
-	// 	stm.m_tabCount = 0;
-	// 	m_parameters->read(stm);
-	// 	delete[] file;
-	// }
-	/*
-	stwu     r1, -0x440(r1)
-	mflr     r0
-	stw      r0, 0x444(r1)
-	extsh.   r0, r4
-	lis      r4, lbl_804816B8@ha
-	stw      r31, 0x43c(r1)
-	addi     r31, r4, lbl_804816B8@l
-	stw      r30, 0x438(r1)
-	mr       r30, r3
-	beq      lbl_801F4198
-	addi     r0, r30, 0x8c
-	stw      r0, 4(r30)
-
-lbl_801F4198:
-	mr       r3, r30
-	li       r4, 0
-	bl       __ct__Q24Game12TNodeItemMgrFv
-	lis      r3, __vt__Q34Game12ItemTreasure3Mgr@ha
-	addi     r4, r31, 0x4c
-	addi     r3, r3, __vt__Q34Game12ItemTreasure3Mgr@l
-	addi     r0, r31, 0x58
-	stw      r3, 0(r30)
-	addi     r5, r3, 0x74
-	li       r3, 0x18c
-	stw      r5, 0x30(r30)
-	stw      r4, 8(r30)
-	stw      r0, 0x28(r30)
-	bl       __nw__FUl
-	or.      r0, r3, r3
-	beq      lbl_801F41E0
-	bl       __ct__Q34Game12ItemTreasure13TreasureParmsFv
-	mr       r0, r3
-
-lbl_801F41E0:
-	stw      r0, 0x88(r30)
-	li       r0, 0
-	addi     r3, r31, 0x74
-	li       r4, 0
-	stw      r0, 8(r1)
-	li       r5, 0
-	li       r6, 0
-	li       r7, 0
-	li       r8, 2
-	li       r9, 0
-	li       r10, 0
-	bl
-loadToMainRAM__12JKRDvdRipperFPCcPUc15JKRExpandSwitchUlP7JKRHeapQ212JKRDvdRipper15EAllocDirectionUlPiPUl
-	or.      r31, r3, r3
-	beq      lbl_801F4260
-	mr       r4, r31
-	addi     r3, r1, 0x10
-	li       r5, -1
-	bl       __ct__9RamStreamFPvi
-	li       r0, 1
-	cmpwi    r0, 1
-	stw      r0, 0x1c(r1)
-	bne      lbl_801F4240
-	li       r0, 0
-	stw      r0, 0x424(r1)
-
-lbl_801F4240:
-	lwz      r3, 0x88(r30)
-	addi     r4, r1, 0x10
-	lwz      r12, 0xd8(r3)
-	lwz      r12, 8(r12)
-	mtctr    r12
-	bctrl
-	mr       r3, r31
-	bl       __dla__FPv
-
-lbl_801F4260:
-	lwz      r0, 0x444(r1)
-	mr       r3, r30
-	lwz      r31, 0x43c(r1)
-	lwz      r30, 0x438(r1)
-	mtlr     r0
-	addi     r1, r1, 0x440
-	blr
-	*/
+	void* file = JKRDvdRipper::loadToMainRAM("user/Abe/item/treasureParms.txt", nullptr, (JKRExpandSwitch)0, 0, nullptr,
+	                                         (JKRDvdRipper::EAllocDirection)2, 0, nullptr, nullptr);
+	if (file) {
+		RamStream stm(file, -1);
+		stm.resetPosition(true, 1);
+		m_parameters->read(stm);
+		delete[] file;
+	}
 }
 
 /*
@@ -2276,179 +2187,7 @@ void ItemTreasure::TreasureParms::read(Stream& stm) { m_parms.read(stm); }
  * Address:	801F42A0
  * Size:	0002A0
  */
-ItemTreasure::TreasureParms::TreasureParms()
-{
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	lis      r5, 0x73303030@ha
-	lis      r4, __vt__Q24Game13CreatureParms@ha
-	stw      r0, 0x14(r1)
-	addi     r0, r4, __vt__Q24Game13CreatureParms@l
-	addi     r5, r5, 0x73303030@l
-	stw      r31, 0xc(r1)
-	stw      r30, 8(r1)
-	mr       r30, r3
-	lis      r3, lbl_804816B8@ha
-	stw      r0, 0xd8(r30)
-	addi     r31, r3, lbl_804816B8@l
-	addi     r0, r30, 0xd4
-	li       r3, 0
-	stw      r0, 0(r30)
-	addi     r0, r31, 0x94
-	mr       r4, r30
-	addi     r6, r31, 0xa8
-	stw      r3, 4(r30)
-	addi     r3, r30, 0xc
-	stw      r0, 8(r30)
-	bl       __ct__8BaseParmFP10ParametersUlPc
-	lis      r3, "__vt__7Parm<f>"@ha
-	lis      r5, 0x73303031@ha
-	addi     r0, r3, "__vt__7Parm<f>"@l
-	lfs      f0, lbl_80519BD8@sda21(r2)
-	stw      r0, 0xc(r30)
-	mr       r4, r30
-	lfs      f1, lbl_80519BD0@sda21(r2)
-	addi     r3, r30, 0x34
-	stfs     f0, 0x24(r30)
-	addi     r5, r5, 0x73303031@l
-	lfs      f0, lbl_80519BF8@sda21(r2)
-	addi     r6, r31, 0xbc
-	stfs     f1, 0x2c(r30)
-	stfs     f0, 0x30(r30)
-	bl       __ct__8BaseParmFP10ParametersUlPc
-	lis      r3, "__vt__7Parm<f>"@ha
-	lis      r5, 0x73303032@ha
-	addi     r0, r3, "__vt__7Parm<f>"@l
-	lfs      f0, lbl_80519BD8@sda21(r2)
-	stw      r0, 0x34(r30)
-	mr       r4, r30
-	lfs      f1, lbl_80519BD0@sda21(r2)
-	addi     r3, r30, 0x5c
-	stfs     f0, 0x4c(r30)
-	addi     r5, r5, 0x73303032@l
-	lfs      f0, lbl_80519BF8@sda21(r2)
-	addi     r6, r31, 0xcc
-	stfs     f1, 0x54(r30)
-	stfs     f0, 0x58(r30)
-	bl       __ct__8BaseParmFP10ParametersUlPc
-	lis      r3, "__vt__7Parm<f>"@ha
-	lis      r5, 0x73303033@ha
-	addi     r0, r3, "__vt__7Parm<f>"@l
-	lfs      f0, lbl_80519BD4@sda21(r2)
-	stw      r0, 0x5c(r30)
-	mr       r4, r30
-	lfs      f1, lbl_80519BD0@sda21(r2)
-	addi     r3, r30, 0x84
-	stfs     f0, 0x74(r30)
-	addi     r5, r5, 0x73303033@l
-	lfs      f0, lbl_80519BF8@sda21(r2)
-	addi     r6, r2, lbl_80519C08@sda21
-	stfs     f1, 0x7c(r30)
-	stfs     f0, 0x80(r30)
-	bl       __ct__8BaseParmFP10ParametersUlPc
-	lis      r3, "__vt__7Parm<f>"@ha
-	lis      r5, 0x73303034@ha
-	addi     r0, r3, "__vt__7Parm<f>"@l
-	lfs      f0, lbl_80519C10@sda21(r2)
-	stw      r0, 0x84(r30)
-	mr       r4, r30
-	lfs      f1, lbl_80519C14@sda21(r2)
-	addi     r3, r30, 0xac
-	stfs     f0, 0x9c(r30)
-	addi     r5, r5, 0x73303034@l
-	lfs      f0, lbl_80519C18@sda21(r2)
-	addi     r6, r31, 0xdc
-	stfs     f1, 0xa4(r30)
-	stfs     f0, 0xa8(r30)
-	bl       __ct__8BaseParmFP10ParametersUlPc
-	lis      r4, "__vt__7Parm<f>"@ha
-	lis      r3, __vt__Q34Game12ItemTreasure13TreasureParms@ha
-	addi     r0, r4, "__vt__7Parm<f>"@l
-	lis      r5, 0x70303030@ha
-	stw      r0, 0xac(r30)
-	addi     r9, r3, __vt__Q34Game12ItemTreasure13TreasureParms@l
-	lfs      f0, lbl_80519C1C@sda21(r2)
-	addi     r8, r30, 0x188
-	lfs      f1, lbl_80519C14@sda21(r2)
-	li       r7, 0
-	stfs     f0, 0xc4(r30)
-	addi     r0, r31, 0xec
-	lfs      f0, lbl_80519C18@sda21(r2)
-	addi     r3, r30, 0xe8
-	stfs     f1, 0xcc(r30)
-	addi     r4, r30, 0xdc
-	addi     r5, r5, 0x70303030@l
-	addi     r6, r31, 0xfc
-	stfs     f0, 0xd0(r30)
-	stw      r9, 0xd8(r30)
-	stw      r8, 0xdc(r30)
-	stw      r7, 0xe0(r30)
-	stw      r0, 0xe4(r30)
-	bl       __ct__8BaseParmFP10ParametersUlPc
-	lis      r3, "__vt__7Parm<f>"@ha
-	lis      r5, 0x70303031@ha
-	addi     r0, r3, "__vt__7Parm<f>"@l
-	lfs      f0, lbl_80519C20@sda21(r2)
-	stw      r0, 0xe8(r30)
-	addi     r3, r30, 0x110
-	lfs      f1, lbl_80519BF8@sda21(r2)
-	addi     r4, r30, 0xdc
-	stfs     f0, 0x100(r30)
-	addi     r5, r5, 0x70303031@l
-	lfs      f0, lbl_80519C24@sda21(r2)
-	addi     r6, r31, 0x108
-	stfs     f1, 0x108(r30)
-	stfs     f0, 0x10c(r30)
-	bl       __ct__8BaseParmFP10ParametersUlPc
-	lis      r3, "__vt__7Parm<f>"@ha
-	lis      r5, 0x70303032@ha
-	addi     r0, r3, "__vt__7Parm<f>"@l
-	lfs      f0, lbl_80519C28@sda21(r2)
-	stw      r0, 0x110(r30)
-	addi     r3, r30, 0x138
-	lfs      f1, lbl_80519BF8@sda21(r2)
-	addi     r4, r30, 0xdc
-	stfs     f0, 0x128(r30)
-	addi     r5, r5, 0x70303032@l
-	lfs      f0, lbl_80519C24@sda21(r2)
-	addi     r6, r31, 0x114
-	stfs     f1, 0x130(r30)
-	stfs     f0, 0x134(r30)
-	bl       __ct__8BaseParmFP10ParametersUlPc
-	lis      r3, "__vt__7Parm<f>"@ha
-	lis      r5, 0x70303033@ha
-	addi     r0, r3, "__vt__7Parm<f>"@l
-	lfs      f0, lbl_80519C2C@sda21(r2)
-	stw      r0, 0x138(r30)
-	addi     r3, r30, 0x160
-	lfs      f1, lbl_80519BF8@sda21(r2)
-	addi     r4, r30, 0xdc
-	stfs     f0, 0x150(r30)
-	addi     r5, r5, 0x70303033@l
-	lfs      f0, lbl_80519C24@sda21(r2)
-	addi     r6, r31, 0x120
-	stfs     f1, 0x158(r30)
-	stfs     f0, 0x15c(r30)
-	bl       __ct__8BaseParmFP10ParametersUlPc
-	lis      r3, "__vt__7Parm<f>"@ha
-	lfs      f2, lbl_80519C30@sda21(r2)
-	addi     r0, r3, "__vt__7Parm<f>"@l
-	lfs      f1, lbl_80519BF8@sda21(r2)
-	stw      r0, 0x160(r30)
-	mr       r3, r30
-	lfs      f0, lbl_80519C24@sda21(r2)
-	stfs     f2, 0x178(r30)
-	stfs     f1, 0x180(r30)
-	stfs     f0, 0x184(r30)
-	lwz      r31, 0xc(r1)
-	lwz      r30, 8(r1)
-	lwz      r0, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
-}
+ItemTreasure::TreasureParms::TreasureParms() { }
 
 /*
  * --INFO--
@@ -2867,7 +2606,10 @@ void FSMState<Game::ItemTreasure::Item>::restart(ItemTreasure::Item*) { }
  * Address:	801F49A4
  * Size:	000030
  */
-void FSMState<Game::ItemTreasure::Item>::transit(ItemTreasure::Item* item, int id, StateArg* arg) { m_fsm->transit(item, id, arg); }
+void FSMState<Game::ItemTreasure::Item>::transit(ItemTreasure::Item* item, int id, StateArg* arg)
+{
+	m_stateMachine->transit(item, id, arg);
+}
 
 /*
  * --INFO--
@@ -2945,7 +2687,7 @@ void StateMachine<ItemTreasure::Item>::registerState(FSMState<Game::ItemTreasure
 	if (check == false) {
 		return;
 	}
-	newState->m_fsm                  = this;
+	newState->m_stateMachine         = this;
 	m_indexToIDArray[m_count]        = newState->m_id;
 	m_idToIndexArray[newState->m_id] = m_count;
 	m_count++;

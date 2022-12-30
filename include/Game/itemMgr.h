@@ -69,7 +69,7 @@ struct BaseItemMgr : public GenericObjectMgr, virtual public _BaseItemMgrParent2
 	void closeTextArc(JKRArchive*);
 
 	// end address _04
-	char* m_name;                       // _08
+	char* m_itemName;                   // _08
 	LoadResource::Node* m_resourceNode; // _0C
 	u32 _10;                            // _10
 	u32 _14;                            // _14
