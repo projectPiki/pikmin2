@@ -145,14 +145,14 @@ struct Navi : public FakePiki, virtual public PelletView {
 	void callPikis();
 	void checkBigFountain();
 	void checkCave();
-	u32 checkDemoNaviAndPiki(Sys::Sphere&); // might return a pointer
+	FakePiki* checkDemoNaviAndPiki(Sys::Sphere&);
 	void checkHole();
 	void checkOnyon();
 	void clearKaisanDisable();
 	void clearThrowDisable();
 	bool commandOn();
 	void control();
-	void demoCheck();
+	bool demoCheck();
 	void demowaitAllPikis();
 	void disableController();
 	void enterAllPikis();
