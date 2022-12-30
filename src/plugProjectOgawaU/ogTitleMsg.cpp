@@ -1188,8 +1188,8 @@ void TitleMsgDrop::init()
 
 		motion->m_randTime = randWeightFloat(mod);
 		motion->m_yOffset  = yoffs;
-		motion->m_pos.x    = m_panes1[i]->_0D4.x;
-		motion->m_pos.y    = m_panes1[i]->_0D4.y;
+		motion->m_pos.x    = m_panes1[i]->m_offset.x;
+		motion->m_pos.y    = m_panes1[i]->m_offset.y;
 		motion->m_timer    = (f32)i / (f32)m_stringLength;
 	}
 	/*

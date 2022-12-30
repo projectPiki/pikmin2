@@ -74,11 +74,11 @@ void CallBack_LifeGauge::init(P2DScreen::Mgr* mgr, DataNavi* data, LifeGaugeType
 		m_na_i = TagSearch(mgr, 'na_i');
 		m_li_i = TagSearch(mgr, 'li_i');
 
-		m_na_i_d4 = m_na_i->_0D4.x;
-		m_na_i_d8 = m_na_i->_0D4.y;
+		m_na_i_d4 = m_na_i->m_offset.x;
+		m_na_i_d8 = m_na_i->m_offset.y;
 
-		m_li_i_d4 = m_li_i->_0D4.x;
-		m_li_i_d8 = m_li_i->_0D4.y;
+		m_li_i_d4 = m_li_i->m_offset.x;
+		m_li_i_d8 = m_li_i->m_offset.y;
 
 		m_pin1->hide();
 		m_pin2->hide();

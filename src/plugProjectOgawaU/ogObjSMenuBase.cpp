@@ -93,11 +93,11 @@ void ObjSMenuBase::doCreateAfter(JKRArchive* arc, P2DScreen::Mgr* scrn)
 	og::Screen::setAlphaScreen(m_screenLR);
 
 	m_Nyaji_l    = og::Screen::TagSearch(m_screenLR, 'Nyaji_l');
-	m_yajiLpos.x = m_Nyaji_l->_0D4.x;
-	m_yajiLpos.y = m_Nyaji_l->_0D4.y;
+	m_yajiLpos.x = m_Nyaji_l->m_offset.x;
+	m_yajiLpos.y = m_Nyaji_l->m_offset.y;
 	m_Nyaji_r    = og::Screen::TagSearch(m_screenLR, 'Nyaji_r');
-	m_yajiRpos.x = m_Nyaji_r->_0D4.x;
-	m_yajiRpos.y = m_Nyaji_r->_0D4.y;
+	m_yajiRpos.x = m_Nyaji_r->m_offset.x;
+	m_yajiRpos.y = m_Nyaji_r->m_offset.y;
 
 	m_Tyaji_l = static_cast<J2DTextBoxEx*>(og::Screen::TagSearch(m_screenLR, 'Tyaji_l'));
 	m_Tyaji_r = static_cast<J2DTextBoxEx*>(og::Screen::TagSearch(m_screenLR, 'Tyaji_r'));

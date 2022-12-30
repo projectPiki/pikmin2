@@ -398,8 +398,8 @@ void P2DScreen::Mgr_tuning::draw(Graphics& gfx, J2DGrafContext& context)
 	m_scale.x = m_widthMaybe;
 	m_scale.y = m_heightMaybe;
 	calcMtx();
-	_0D4[0] = m_someX;
-	_0D4[1] = m_someY;
+	m_offset[0] = m_someX;
+	m_offset[1] = m_someY;
 	calcMtx();
 	Mgr::draw(gfx, context);
 

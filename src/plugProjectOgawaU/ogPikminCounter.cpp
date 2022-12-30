@@ -60,20 +60,21 @@ void PikminCounter::update()
 {
 	if (m_paneSublevel) {
 		if (m_isTotalPokoActive) {
-			if (m_currPos.x < 700.0f)
+			if (m_currPos.x < 700.0f) {
 				m_currPos.x += 20.0f;
-		} else {
-			if (m_currPos.x > m_standardPos.x) {
-				m_currPos.x -= 20.0f;
-				if (m_currPos.x <= m_standardPos.x) {
-					m_currPos.x = m_standardPos.x;
-					m_scaleMgr->up(0.2f, 20.0f, 0.5f, 0.0f);
-				}
+			}
+		} else if (m_currPos.x > m_standardPos.x) {
+			m_currPos.x -= 20.0f;
+			if (m_currPos.x <= m_standardPos.x) {
+				m_currPos.x = m_standardPos.x;
+				m_scaleMgr->up(0.2f, 20.0f, 0.5f, 0.0f);
 			}
 		}
+
 		m_paneSublevel->setOffset(m_currPos.x, m_currPos.y);
 		m_paneSublevel->updateScale(m_scaleMgr->calc());
 	}
+
 	P2DScreen::Mgr::update();
 }
 
@@ -108,8 +109,8 @@ void PikminCounterCave::setCallBack(JKRArchive* arc)
 	setCallBackCommon(arc, false);
 	m_paneSublevel = search('Ndayicon');
 	if (m_paneSublevel) {
-		m_standardPos.x = m_paneSublevel->_0D4.x;
-		m_standardPos.y = m_paneSublevel->_0D4.y;
+		m_standardPos.x = m_paneSublevel->m_offset.x;
+		m_standardPos.y = m_paneSublevel->m_offset.y;
 		m_currPos       = m_standardPos;
 		m_paneSublevel->setOffset(m_currPos.x, m_currPos.y);
 		m_scaleMgr = new ScaleMgr;
@@ -134,8 +135,8 @@ void PikminCounterChallenge1P::setCallBack(JKRArchive* arc)
 	setCallBackCommon(arc, false);
 	m_paneSublevel = search('Ndayicon');
 	if (m_paneSublevel) {
-		m_standardPos.x = m_paneSublevel->_0D4.x;
-		m_standardPos.y = m_paneSublevel->_0D4.y;
+		m_standardPos.x = m_paneSublevel->m_offset.x;
+		m_standardPos.y = m_paneSublevel->m_offset.y;
 		m_currPos       = m_standardPos;
 		m_paneSublevel->setOffset(m_currPos.x, m_currPos.y);
 		m_scaleMgr = new ScaleMgr;

@@ -234,13 +234,13 @@ struct J2DPane {
 
 	inline void setOffset(f32 x1, f32 x2, f32 y1, f32 y2)
 	{
-		_0D4 = JGeometry::TVec2f(x1 + x2, y1 + y2);
+		m_offset = JGeometry::TVec2f(x1 + x2, y1 + y2);
 		calcMtx();
 	}
 
 	inline void setOffset(f32 x, f32 y)
 	{
-		_0D4 = JGeometry::TVec2f(x, y);
+		m_offset = JGeometry::TVec2f(x, y);
 		calcMtx();
 	}
 
@@ -292,7 +292,7 @@ struct J2DPane {
 	float m_angle;                   // _0C0
 	JGeometry::TVec2f m_anchorPoint; // _0C4
 	JGeometry::TVec2f m_scale;       // _0CC
-	JGeometry::TVec2f _0D4;          // _0D4 /* offset X,Y? */
+	JGeometry::TVec2f m_offset;      // _0D4 /* offset X,Y? */
 	JSUTree<J2DPane> m_tree;         // _0DC
 	J2DAnmTransform* m_transform;    // _0F8
 	u8 _0FC[4];                      // _0FC

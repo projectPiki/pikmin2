@@ -66,8 +66,8 @@ void ObjChallenge2P::doCreate(JKRArchive* arc)
 
 	J2DPane* pane  = m_pokoScreen->search('Nmenu01');
 	msVal.m_menu01 = pane;
-	msVal._48      = pane->_0D4.x;
-	msVal._4C      = pane->_0D4.y;
+	msVal._48      = pane->m_offset.x;
+	msVal._4C      = pane->m_offset.y;
 	msVal._50      = pane->m_scale.x;
 	msVal._54      = pane->m_scale.y;
 	msVal._58      = 0.0f;
@@ -81,8 +81,8 @@ void ObjChallenge2P::doCreate(JKRArchive* arc)
 
 	J2DPane* pane2 = m_pokoScreen->search('Nmenu00');
 	msVal.m_menu00 = pane2;
-	msVal._24      = pane2->_0D4.x;
-	msVal._28      = pane2->_0D4.y;
+	msVal._24      = pane2->m_offset.x;
+	msVal._28      = pane2->m_offset.y;
 	msVal._2C      = pane2->m_scale.x;
 	msVal._30      = pane2->m_scale.y;
 	msVal._34      = 0.0f;
@@ -96,8 +96,8 @@ void ObjChallenge2P::doCreate(JKRArchive* arc)
 
 	J2DPane* pane3 = m_pokoScreen->search('Nmenu02');
 	msVal.m_menu02 = pane3;
-	msVal._6C      = pane3->_0D4.x;
-	msVal._70      = pane3->_0D4.y;
+	msVal._6C      = pane3->m_offset.x;
+	msVal._70      = pane3->m_offset.y;
 	msVal._74      = pane3->m_scale.x;
 	msVal._78      = pane3->m_scale.y;
 	msVal._7C      = 0.0f;

@@ -32,15 +32,15 @@ struct AnimBaseBase {
 	u8 m_alpha;           // _11
 	bool m_doSetAlpha;    // _12
 	J2DAnmBase* m_anm;    // _14
-	f32 m_frame;          // _18
+	f32 m_currentFrame;   // _18
 	f32 m_lastFrame;      // _1C
 	f32 m_speed;          // _20
 	f32 _24;              // _24
 	f32 _28;              // _28
 	f32 _2C;              // _2C
-	f32 _30;              // _30
+	f32 m_area;           // _30
 	f32 _34;              // _34
-	bool _38;             // _38
+	bool m_isRepeating;   // _38
 	bool _39;             // _39
 	char* m_resourcePath; // _3C
 };

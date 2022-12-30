@@ -469,8 +469,8 @@ void ObjFloor::doCreate(JKRArchive* arc)
 	m_sublevelMsg->setCentering(TitleMsg::ECM_1);
 
 	m_sublevelPane  = m_screenName->search('kaisuu');
-	m_sublevelXoffs = m_sublevelPane->_0D4.x;
-	m_sublevelYoffs = m_sublevelPane->_0D4.y;
+	m_sublevelXoffs = m_sublevelPane->m_offset.x;
+	m_sublevelYoffs = m_sublevelPane->m_offset.y;
 
 	/*
 	stwu     r1, -0x50(r1)

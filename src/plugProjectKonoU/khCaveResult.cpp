@@ -3006,7 +3006,7 @@ void LostItemMgr::draw(P2DScreen::Mgr_tuning* screen, u64 tag, const ResTIMG* ti
 		kh::Screen::setTex(screen, tag, timg);
 		J2DPane* pane = screen->search(tag);
 		for (int i = 0; i < (int)m_maxPanes; i++) {
-			pane->_0D4 = JGeometry::TVec2f(m_itemList[i].m_rect.p1.x, m_itemList[i].m_rect.p1.y);
+			pane->m_offset = JGeometry::TVec2f(m_itemList[i].m_rect.p1.x, m_itemList[i].m_rect.p1.y);
 			pane->calcMtx();
 
 			pane->setAlpha(m_itemList[i].m_alpha);

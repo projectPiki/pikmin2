@@ -202,8 +202,6 @@ Section::~Section()
 	sys->m_gfx = nullptr;
 }
 
-#define SINGLE_FRAME_LENGTH (1.0f / 60.0f)
-
 inline f32 getX(f32 x)
 {
 	// 0.5 / (1 / 60) == 30

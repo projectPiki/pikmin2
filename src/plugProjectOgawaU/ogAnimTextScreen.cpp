@@ -32,7 +32,7 @@ AnimText_Screen* setAnimTextScreen(JKRArchive* arc, P2DScreen::Mgr* parentScreen
 
 	parentScreen->addCallBack(tag, anm);
 	og::Screen::setCallBackMessage(scrn);
-	anmscrn->_38 = false;
+	anmscrn->m_isRepeating = false;
 
 	anm->stop();
 	return anm;
@@ -237,8 +237,8 @@ void AnimText_Screen::setText(u64 tag)
  */
 void AnimText_Screen::stop()
 {
-	m_anmScreen->m_speed = 0.0f;
-	m_anmScreen->m_frame = 0.0f;
+	m_anmScreen->m_speed        = 0.0f;
+	m_anmScreen->m_currentFrame = 0.0f;
 }
 
 /*
@@ -248,8 +248,8 @@ void AnimText_Screen::stop()
  */
 void AnimText_Screen::open(f32 a1)
 {
-	m_anmScreen->m_speed = 1.0f;
-	m_anmScreen->m_frame = 0.0f;
+	m_anmScreen->m_speed        = 1.0f;
+	m_anmScreen->m_currentFrame = 0.0f;
 	m_anmScreen->AnimBaseBase::start(a1);
 }
 
@@ -260,8 +260,8 @@ void AnimText_Screen::open(f32 a1)
  */
 void AnimText_Screen::close()
 {
-	m_anmScreen->m_speed = -1.0f;
-	m_anmScreen->m_frame = m_anmScreen->m_lastFrame;
+	m_anmScreen->m_speed        = -1.0f;
+	m_anmScreen->m_currentFrame = m_anmScreen->m_lastFrame;
 	m_anmScreen->start();
 }
 

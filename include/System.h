@@ -56,6 +56,7 @@ struct System : public OSMutexObject {
 		RENDERMODE_NULL = 0,
 	};
 
+#define SINGLE_FRAME_LENGTH (1.0f / 60.0f)
 	enum LanguageID { LANG_ENGLISH = 0, LANG_FRENCH, LANG_GERMAN, LANG_HOL_UNUSED, LANG_ITALIAN, LANG_JAPANESE, LANG_SPANISH };
 	struct FragmentationChecker {
 		FragmentationChecker(char*, bool);

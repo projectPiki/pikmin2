@@ -75,8 +75,8 @@ void DopingScreen::setCallBack(JKRArchive* arc)
 	m_paneSpicySpray->setBasePosition(POS_CENTER);
 	m_paneBitterSpray->setBasePosition(POS_CENTER);
 	m_paneCenterDpad->setBasePosition(POS_CENTER);
-	m_rootPosition.x = m_paneAll->_0D4.x;
-	m_rootPosition.y = m_paneAll->_0D4.y;
+	m_rootPosition.x = m_paneAll->m_offset.x;
+	m_rootPosition.y = m_paneAll->m_offset.y;
 }
 
 /*
@@ -123,10 +123,10 @@ void DopingScreen::update()
 	}
 	m_dopingCheck->update();
 
-	f32 yoffs     = m_rootPosition.y + m_offset.y;
-	J2DPane* pane = m_paneAll;
-	pane->_0D4.x  = m_rootPosition.x + m_offset.x;
-	pane->_0D4.y  = yoffs;
+	f32 yoffs        = m_rootPosition.y + m_offset.y;
+	J2DPane* pane    = m_paneAll;
+	pane->m_offset.x = m_rootPosition.x + m_offset.x;
+	pane->m_offset.y = yoffs;
 	pane->calcMtx();
 
 	// when spray 0 is first goten

@@ -605,8 +605,8 @@ void ObjContena::doCreate(JKRArchive* arc)
 	m_screenSpot->set("spot.blo", 0x1040000, arc);
 	m_paneSpot = m_screenSpot->search('pspot');
 	m_paneSpot->setBasePosition(POS_CENTER);
-	m_spotX = m_paneSpot->_0D4.x;
-	m_spotY = m_paneSpot->_0D4.y;
+	m_spotX = m_paneSpot->m_offset.x;
+	m_spotY = m_paneSpot->m_offset.y;
 	og::Screen::setCallBackMessage(m_contena);
 	m_animList[0] = nullptr;
 	m_animList[1] = nullptr;
@@ -643,12 +643,12 @@ void ObjContena::doCreate(JKRArchive* arc)
 	m_stickAnimMgr->stickUpDown();
 
 	m_paneArrowUp      = og::Screen::TagSearch(m_contena, 'Nya_u');
-	m_paneArrowUpPos.x = m_paneArrowUp->_0D4.x;
-	m_paneArrowUpPos.y = m_paneArrowUp->_0D4.y;
+	m_paneArrowUpPos.x = m_paneArrowUp->m_offset.x;
+	m_paneArrowUpPos.y = m_paneArrowUp->m_offset.y;
 	m_paneArrowUp->setBasePosition(POS_CENTER);
 	m_paneArrowDown      = og::Screen::TagSearch(m_contena, 'Nya_l');
-	m_paneArrowDownPos.x = m_paneArrowDown->_0D4.x;
-	m_paneArrowDownPos.y = m_paneArrowDown->_0D4.y;
+	m_paneArrowDownPos.x = m_paneArrowDown->m_offset.x;
+	m_paneArrowDownPos.y = m_paneArrowDown->m_offset.y;
 	m_paneArrowDown->setBasePosition(POS_CENTER);
 	m_alphaArrow1 = new og::Screen::AlphaMgr;
 	m_alphaArrow2 = new og::Screen::AlphaMgr;
@@ -2351,15 +2351,15 @@ void ObjContena::commonUpdate()
 		if (contenaAngle > TAU) {
 			contenaAngle -= TAU;
 		}
-		f32 angle     = pikmin2_cosf(contenaAngle) * msVal._28;
-		J2DPane* pane = m_paneArrowUp;
-		pane->_0D4.x  = m_paneArrowUpPos.x;
-		pane->_0D4.y  = -1.0f + m_paneArrowUpPos.y + angle;
+		f32 angle        = pikmin2_cosf(contenaAngle) * msVal._28;
+		J2DPane* pane    = m_paneArrowUp;
+		pane->m_offset.x = m_paneArrowUpPos.x;
+		pane->m_offset.y = -1.0f + m_paneArrowUpPos.y + angle;
 		pane->calcMtx();
 
-		pane         = m_paneArrowDown;
-		pane->_0D4.x = m_paneArrowDownPos.x;
-		pane->_0D4.y = 1.0f + m_paneArrowDownPos.y - angle;
+		pane             = m_paneArrowDown;
+		pane->m_offset.x = m_paneArrowDownPos.x;
+		pane->m_offset.y = 1.0f + m_paneArrowDownPos.y - angle;
 		pane->calcMtx();
 
 		u8 alpha = m_alphaArrow1->calc();
