@@ -367,3 +367,6 @@ inline void addAccel(Vector3f& outputVec, const Vector3f& inputVec, f32 massRati
 	outputVec.y += inputVec.y * (airFactor * fps * massRatio);
 }
 #endif
+
+// I saw this constant being used a lot, if you have a better name please replace it 
+#define FLOAT_DISTANCE_MAXIMUM 128000.0 

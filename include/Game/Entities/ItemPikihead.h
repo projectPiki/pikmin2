@@ -20,6 +20,15 @@ struct InitArg : public ItemInitArg {
 		_1C          = -1.0f;
 	}
 
+		inline InitArg(EPikiKind pikiKind, Vector3f& vec, u8 p3, int p4, f32 p5)
+	{
+		m_pikminType = pikiKind;
+		_08          = vec;
+		_14          = p3;
+		_18          = p4;
+		_1C          = -1.0f;
+	}
+
 	virtual const char* getName() { return "ItemPikiHead::InitArg"; } // _08 (weak)
 
 	// _00     = VTBL

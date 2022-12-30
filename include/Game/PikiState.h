@@ -131,20 +131,20 @@ struct PikiAutoNukiState : public PikiState {
 };
 
 struct BlowStateArg : public StateArg {
-	inline BlowStateArg(Vector3f& vec, f32 p1, u8 p2, u16 p3, Creature* creature)
+	inline BlowStateArg(Vector3f& vec, f32 p1, u8 lethal, u16 p3, Creature* creature)
 	{
-		_00 = vec;
-		_0C = p1;
-		_10 = p2;
-		_12 = p3;
-		_14 = creature;
+		_00        = vec;
+		_0C        = p1;
+		m_isLethal = lethal;
+		_12        = p3;
+		_14        = creature;
 	}
 
-	Vector3f _00;  // _00
-	f32 _0C;       // _0C
-	u8 _10;        // _10
-	u16 _12;       // _12
-	Creature* _14; // _14
+	Vector3f _00;    // _00
+	f32 _0C;         // _0C
+	bool m_isLethal; // _10
+	u16 _12;         // _12
+	Creature* _14;   // _14
 };
 
 struct PikiBlowState : public PikiState {
@@ -699,6 +699,13 @@ struct PikiPressedState : public PikiState {
 };
 
 struct SuikomiStateArg : public StateArg {
+
+	inline SuikomiStateArg(Creature* c, u32 p3, CollPart* p2) {
+		m_creature = c;
+		m_collpart = p3;
+		_08        = p2;
+	}
+
 	Creature* m_creature; // _00
 	CollPart* m_collpart; // _04
 	CollPart* _08;        // _08

@@ -79,6 +79,23 @@ struct ActTeki;
 struct ActTransport;
 struct ActWeed;
 
+enum PikiBrainAction {
+	ACT_FORMATION  = 0,
+	ACT_FREE 	   = 1,
+	ACT_ENTER      = 2,
+	ACT_EXIT       = 3,
+	ACT_TRANSPORT  = 4,
+	ACT_BORE       = 5,
+	ACT_BREAK_GATE = 6,
+	ACT_BREAK_ROCK = 7,
+	ACT_CROP       = 8,
+	ACT_WEED       = 9,
+	ACT_BRIDGE     = 10,
+	ACT_TEKI       = 11,
+	ACT_RESCUE     = 12,
+	ACT_BATTLE     = 13
+};
+
 struct ActionArg {
 	virtual char* getName() // _08 (weak)
 	{
@@ -205,6 +222,11 @@ struct ActAttack : public Action, virtual SysShape::MotionListener {
 
 struct ActBattleArg : public ActionArg {
 	virtual char* getName() { return "ActBattleArg"; } // _08 (weak)
+
+	inline ActBattleArg(Game::Piki* piki, bool start) {
+		m_aggressor     = piki;
+		m_isAttackStart = start;
+	}
 
 	// _00 = VTBL
 	Game::Piki* m_aggressor; // _04
