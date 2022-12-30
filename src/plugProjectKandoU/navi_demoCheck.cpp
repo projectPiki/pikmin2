@@ -18,7 +18,7 @@
 #include "Game/Entities/ItemHoney.h"
 #include "Radar.h"
 
-#define CandypopTriggerSize          350.0f
+#define FindCandypopTriggerSize      350.0f
 #define FindRedOnionTriggerSize      125.0f
 #define FindYellowOnionTriggerSize   1600.0f
 #define FindBlueOnionTriggerSize     750.0f
@@ -212,7 +212,7 @@ bool Navi::demoCheck()
 			if ((color == Purple || color == White) && (color != Purple || purpleflag) && (color != White || whiteflag)) {
 				Sys::Sphere bounds;
 				cPom->getBoundingSphere(bounds);
-				bounds.m_radius += CandypopTriggerSize;
+				bounds.m_radius += FindCandypopTriggerSize;
 				if (checkDemoNaviAndPiki(bounds)) {
 					if (color == White) {
 						MoviePlayArg arg("g38_find_whitepom", nullptr, nullptr, 0);

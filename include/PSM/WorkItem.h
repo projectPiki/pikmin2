@@ -4,8 +4,13 @@
 #include "PSM/EventBase.h"
 #include "PSM/ObjBase.h"
 
+namespace Game {
+struct BaseItem;
+} // namespace Game
+
 namespace PSM {
 struct WorkItem : public EventBase {
+	WorkItem(Game::BaseItem*);
 	// vtable 2
 	/**
 	 * @reifiedAddress{804637A0}
