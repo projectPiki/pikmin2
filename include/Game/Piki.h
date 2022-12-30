@@ -205,7 +205,7 @@ struct Piki : public FakePiki {
 	bool isMyPikmin(Creature*);
 	bool isTekiFollowAI();
 	bool isThrowable();
-	void might_bury();
+	bool might_bury();
 	void setActTransportArg(PikiAI::ActTransportArg&);
 	void setDopeEffect(bool);
 	void setFreeLightEffect(bool);
@@ -225,6 +225,8 @@ struct Piki : public FakePiki {
 	void updateColor();
 
 	inline PikiParms* getParms() { return static_cast<PikiParms*>(m_parms); }
+	inline u16 getKind() { return (u16)m_pikiKind; }
+	inline u16 getHappa() { return (u16)m_happaKind; }
 
 	// _000			 = VTBL
 	// _000-_24C = FakePiki
