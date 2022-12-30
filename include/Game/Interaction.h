@@ -235,7 +235,7 @@ struct InteractFlick : public Interaction {
 	inline InteractFlick(Creature* parent, f32 knockback, f32 damage, f32 angle)
 	    : Interaction(parent)
 	    , m_knockback(knockback)
-	    , m_damage(damage)
+	    , m_intensity(damage)
 	    , m_angle(angle)
 	{
 	}
@@ -247,7 +247,7 @@ struct InteractFlick : public Interaction {
 	// _00 = VTBL
 	// _04 = Creature*
 	f32 m_knockback; // _08
-	f32 m_damage;    // _0C
+	f32 m_intensity; // _0C
 	f32 m_angle;     // _10
 };
 
@@ -286,6 +286,7 @@ struct InteractFlyCollision : public Interaction {
 	CollPart* m_collPart; // _0C
 };
 
+// Whistle
 struct InteractFue : public Interaction {
 	inline InteractFue(Creature* parent, u8 a, u8 b)
 	    : Interaction(parent)
@@ -300,8 +301,8 @@ struct InteractFue : public Interaction {
 
 	// _00 = VTBL
 	// _04 = Creature*
-	u8 _08; // _08
-	u8 _09; // _09
+	bool _08; // _08
+	bool _09; // _09
 };
 
 struct InteractFueFuki : public Interaction {
