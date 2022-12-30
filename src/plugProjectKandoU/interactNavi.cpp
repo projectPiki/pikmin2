@@ -1,69 +1,10 @@
 #include "Game/Navi.h"
-#include "types.h"
-
-/*
-    Generated from dpostproc
-
-    .section .data, "wa"  # 0x8049E220 - 0x804EFC20
-    .global __vt__Q24Game14InteractKaisan
-    __vt__Q24Game14InteractKaisan:
-        .4byte 0
-        .4byte 0
-        .4byte actCommon__Q24Game11InteractionFPQ24Game8Creature
-        .4byte actPiki__Q24Game11InteractionFPQ24Game4Piki
-        .4byte actNavi__Q24Game14InteractKaisanFPQ24Game4Navi
-        .4byte actEnemy__Q24Game11InteractionFPQ24Game9EnemyBase
-        .4byte actPellet__Q24Game11InteractionFPQ24Game6Pellet
-        .4byte actOnyon__Q24Game11InteractionFPQ24Game5Onyon
-        .4byte actItem__Q24Game11InteractionFPQ24Game8BaseItem
-    .global __vt__Q24Game13InteractSarai
-    __vt__Q24Game13InteractSarai:
-        .4byte 0
-        .4byte 0
-        .4byte actCommon__Q24Game15InteractSwallowFPQ24Game8Creature
-        .4byte actPiki__Q24Game15InteractSwallowFPQ24Game4Piki
-        .4byte actNavi__Q24Game13InteractSaraiFPQ24Game4Navi
-        .4byte actEnemy__Q24Game14InteractAttackFPQ24Game9EnemyBase
-        .4byte actPellet__Q24Game11InteractionFPQ24Game6Pellet
-        .4byte actOnyon__Q24Game11InteractionFPQ24Game5Onyon
-        .4byte actItem__Q24Game14InteractAttackFPQ24Game8BaseItem
-
-    .section .sdata2, "a"     # 0x80516360 - 0x80520E40
-    .global lbl_80519788
-    lbl_80519788:
-        .4byte 0xC1200000
-    .global lbl_8051978C
-    lbl_8051978C:
-        .4byte 0x00000000
-    .global lbl_80519790
-    lbl_80519790:
-        .4byte 0x43A2F983
-    .global lbl_80519794
-    lbl_80519794:
-        .4byte 0xC3A2F983
-    .global lbl_80519798
-    lbl_80519798:
-        .4byte 0x47000000
-    .global lbl_8051979C
-    lbl_8051979C:
-        .float 0.1
-    .global lbl_805197A0
-    lbl_805197A0:
-        .4byte 0x42C80000
-    .global lbl_805197A4
-    lbl_805197A4:
-        .4byte 0x42480000
-    .global lbl_805197A8
-    lbl_805197A8:
-        .4byte 0x43300000
-        .4byte 0x80000000
-*/
-
-#include "Game/Navi.h"
 #include "Game/NaviState.h"
 #include "Game/Interaction.h"
 #include "Game/Entities/Sarai.h"
+
 #include "PSM/Navi.h"
+
 #include "Dolphin/rand.h"
 
 namespace Game {
@@ -89,7 +30,7 @@ bool Navi::stimulate(Game::Interaction& interaction)
  */
 bool InteractSarai::actNavi(Game::Navi* navi)
 {
-	if (!gameSystem || gameSystem->m_flags & 0x20) {
+	if (!gameSystem || gameSystem->m_flags & GAMESYS_Unk6) {
 		if (!navi->isStickTo()) {
 			navi->startStick(m_creature, m_collPart);
 			navi->transit(NSID_Sarai, nullptr);
@@ -106,7 +47,7 @@ bool InteractSarai::actNavi(Game::Navi* navi)
  */
 bool InteractBomb::actNavi(Game::Navi* navi)
 {
-	if ((gameSystem->m_flags & 0x20) == 0) {
+	if ((gameSystem->m_flags & GAMESYS_Unk6) == FALSE) {
 		return false;
 	}
 
