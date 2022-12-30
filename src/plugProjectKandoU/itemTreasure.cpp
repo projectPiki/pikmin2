@@ -1,4 +1,20 @@
-#include "types.h"
+#include "Game/Entities/ItemTreasure.h"
+#include "Game/GameSystem.h"
+#include "Game/gamePlayData.h"
+#include "Game/MoviePlayer.h"
+#include "Game/PikiMgr.h"
+#include "efx/TOtakara.h"
+#include "Dolphin/rand.h"
+#include "PSM/WorkItem.h"
+#include "VsOtakaraName.h"
+#include "JSystem/JKR/JKRDvdRipper.h"
+
+// Don't be fooled by this files name, it is NOT related to actual treasures, those are pellets/otakara
+// ItemTreasure is specifically for buried treasures, its an invisible object that effectively holds
+// the actual treasure in place until you kill, where the treasure becomes freed
+// Why they handled buried treasures this way is beyond me
+
+static const char name[] = "itemTreasure";
 
 /*
     Generated from dpostproc
@@ -826,44 +842,8 @@ namespace Game {
  */
 void ItemTreasure::FSM::init(Game::ItemTreasure::Item*)
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	li       r4, 1
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	mr       r31, r3
-	bl       "create__Q24Game40StateMachine<Q34Game12ItemTreasure4Item>Fi"
-	li       r3, 0x10
-	bl       __nw__FUl
-	or.      r4, r3, r3
-	beq      lbl_801F31D4
-	lis      r3, "__vt__Q24Game36FSMState<Q34Game12ItemTreasure4Item>"@ha
-	lis      r6, "__vt__Q24Game37ItemState<Q34Game12ItemTreasure4Item>"@ha
-	addi     r0, r3, "__vt__Q24Game36FSMState<Q34Game12ItemTreasure4Item>"@l
-	lis      r5, __vt__Q34Game12ItemTreasure5State@ha
-	stw      r0, 0(r4)
-	li       r7, 0
-	lis      r3, __vt__Q34Game12ItemTreasure11NormalState@ha
-	addi     r6, r6, "__vt__Q24Game37ItemState<Q34Game12ItemTreasure4Item>"@l
-	stw      r7, 4(r4)
-	addi     r5, r5, __vt__Q34Game12ItemTreasure5State@l
-	addi     r0, r3, __vt__Q34Game12ItemTreasure11NormalState@l
-	stw      r7, 8(r4)
-	stw      r6, 0(r4)
-	stw      r5, 0(r4)
-	stw      r0, 0(r4)
-
-lbl_801F31D4:
-	mr       r3, r31
-	bl
-"registerState__Q24Game40StateMachine<Q34Game12ItemTreasure4Item>FPQ24Game36FSMState<Q34Game12ItemTreasure4Item>"
-	lwz      r0, 0x14(r1)
-	lwz      r31, 0xc(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	create(1);
+	registerState(new NormalState);
 }
 
 /*
@@ -871,14 +851,7 @@ lbl_801F31D4:
  * Address:	801F31F0
  * Size:	00000C
  */
-void ItemTreasure::NormalState::init(Game::ItemTreasure::Item*, Game::StateArg*)
-{
-	/*
-	lfs      f0, lbl_80519BD0@sda21(r2)
-	stfs     f0, 0x1d4(r4)
-	blr
-	*/
-}
+void ItemTreasure::NormalState::init(Game::ItemTreasure::Item* item, Game::StateArg*) { item->m_animSpeed = 0.0f; }
 
 /*
  * --INFO--
@@ -899,8 +872,50 @@ void ItemTreasure::NormalState::cleanup(Game::ItemTreasure::Item*) { }
  * Address:	801F3204
  * Size:	0003C8
  */
-void ItemTreasure::NormalState::onDamage(Game::ItemTreasure::Item*, float)
+void ItemTreasure::NormalState::onDamage(Game::ItemTreasure::Item* item, f32 damage)
 {
+	if (gameSystem->m_flags & GAMESYS_Unk6 && gameSystem->m_mode == GSM_STORY_MODE && !playData->isDemoFlag(DEMO_Whites_Digging)) {
+		f32 depth = item->m_pellet->getBuryDepth();
+		f32 max   = item->m_pellet->getBuryDepthMax();
+		// float == float? :rock eyebrow:
+		if (depth == max) {
+			playData->setDemoFlag(DEMO_Whites_Digging);
+			MoviePlayArg arg("x14_white_dig", nullptr, nullptr, 0);
+			Iterator<Piki> itPiki(pikiMgr);
+			CI_LOOP(itPiki)
+			{
+				Piki* piki = *itPiki;
+				if ((int)piki->m_pikiKind == White) {
+					piki->movie_begin(false);
+				}
+			}
+			item->movie_begin(false);
+			arg.m_origin                = item->m_pellet->getPosition();
+			arg.m_angle                 = item->m_pellet->getFaceDir();
+			moviePlayer->m_targetObject = item->m_pellet;
+			moviePlayer->play(arg);
+		}
+	}
+
+	item->m_instantDamage += damage;
+	item->m_currStageLife -= item->m_instantDamage;
+	item->m_instantDamage = 0.0f;
+
+	f32 maxlife  = item->getCurrMaxLife();
+	f32 depthmax = item->m_pellet->getBuryDepthMax();
+
+	item->m_totalLife = -((depthmax * 0.25f) * (damage / maxlife) - item->m_totalLife);
+
+	if (item->m_currStageLife <= 0.0f) {
+		item->m_soundObj->startSound(PSSE_EV_TREASURE_RISE_UP, 0);
+		item->setLife();
+	}
+
+	if (item->m_totalLife <= 0.0f) {
+		item->m_totalLife = 0.0f;
+		item->releasePellet();
+	}
+
 	/*
 	stwu     r1, -0x80(r1)
 	mflr     r0
@@ -1176,8 +1191,45 @@ lbl_801F35A8:
  * Address:	801F35CC
  * Size:	000298
  */
-void ItemTreasure::Item::releasePellet(void)
+void ItemTreasure::Item::releasePellet()
 {
+	if (m_pellet) {
+		m_pellet->endCapture();
+		TexCaster::Caster* caster = m_pellet->m_caster;
+		if (caster) {
+			caster->fadein(0.5f);
+		}
+
+		f32 scale                   = m_pellet->getPickRadius();
+		volatile Vector3f pelletpos = m_position;
+
+		::efx::TOtakaraAp efx;
+		::efx::ArgScale arg(m_position, scale);
+		efx.create(&arg);
+
+		m_soundObj->startSound(PSSE_EV_TREASURE_JUMP_OUT, 0);
+
+		Vector3f velocity;
+		velocity.x = (randFloat() - 0.5f) * 10.0f;
+		velocity.y = 15.0;
+		velocity.z = (randFloat() - 0.5f) * 10.0f;
+		m_pellet->setVelocity(velocity);
+
+		if (gameSystem->m_mode == GSM_VERSUS_MODE) {
+			f32 test = randFloat() * 3.0f;
+			GameMessageVsBirthTekiTreasure mesg;
+			mesg.m_position = m_pellet->m_pelletPosition;
+			mesg._14        = false;
+			mesg._10        = (int)test + 1;
+			gameSystem->m_section->sendMessage(mesg);
+		}
+
+		m_soundEvent.finish();
+		P2ASSERTLINE(327, m_soundObj->getCastType() == 10);
+		m_soundObj->disable();
+		setAlive(false);
+		m_pellet = nullptr;
+	}
 	/*
 	stwu     r1, -0x70(r1)
 	mflr     r0
@@ -1361,9 +1413,12 @@ lbl_801F3850:
  * Address:	........
  * Size:	00010C
  */
-ItemTreasure::Item::Item(void)
+ItemTreasure::Item::Item()
+    : WorkItem(OBJTYPE_Treasure)
 {
-	// UNUSED FUNCTION
+	m_mass                = 0.0f;
+	m_dummyShape.m_matrix = &m_objMatrix;
+	m_pellet              = nullptr;
 }
 
 /*
@@ -1371,31 +1426,7 @@ ItemTreasure::Item::Item(void)
  * Address:	801F3864
  * Size:	000048
  */
-void ItemTreasure::Item::constructor(void)
-{
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	mr       r31, r3
-	li       r3, 0x84
-	bl       __nw__FUl
-	or.      r0, r3, r3
-	beq      lbl_801F3894
-	mr       r4, r31
-	bl       __ct__Q23PSM8WorkItemFPQ24Game8BaseItem
-	mr       r0, r3
-
-lbl_801F3894:
-	stw      r0, 0x17c(r31)
-	lwz      r0, 0x14(r1)
-	lwz      r31, 0xc(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
-}
+void ItemTreasure::Item::constructor() { m_soundObj = new PSM::WorkItem(this); }
 
 /*
  * --INFO--
@@ -1404,41 +1435,10 @@ lbl_801F3894:
  */
 void ItemTreasure::Item::onInit(Game::CreatureInitArg*)
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	li       r5, 0
-	li       r6, 0
-	stw      r0, 0x14(r1)
-	li       r0, 0
-	stw      r31, 0xc(r1)
-	mr       r31, r3
-	mr       r4, r31
-	stw      r0, 0x174(r3)
-	lwz      r3, 0x1d8(r3)
-	lwz      r12, 0(r3)
-	lwz      r12, 0xc(r12)
-	mtctr    r12
-	bctrl
-	mr       r3, r31
-	li       r4, 1
-	lwz      r12, 0(r31)
-	lwz      r12, 0xac(r12)
-	mtctr    r12
-	bctrl
-	lwz      r3, 0x114(r31)
-	addi     r4, r31, 0x1ec
-	addi     r6, r31, 0x1c4
-	li       r5, 0
-	li       r7, 0
-	bl
-	createSingleSphere__8CollTreeFPQ28SysShape9MtxObjectiRQ23Sys6SphereP11CollPartMgr
-	lwz      r0, 0x14(r1)
-	lwz      r31, 0xc(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	m_model = nullptr;
+	m_stateMachine->start(this, 0, nullptr);
+	setAlive(true);
+	m_collTree->createSingleSphere(&m_dummyShape, 0, m_boundingSphere, nullptr);
 }
 
 /*
@@ -1446,24 +1446,10 @@ void ItemTreasure::Item::onInit(Game::CreatureInitArg*)
  * Address:	801F392C
  * Size:	000034
  */
-void start__Q24Game40StateMachine<Game::ItemTreasure::Item> FPQ34Game12ItemTreasure4ItemiPQ24Game8StateArg(void)
+void StateMachine<Game::ItemTreasure::Item>::start(ItemTreasure::Item* item, int id, StateArg* arg)
 {
-	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  stw       r0, 0x14(r1)
-	  li        r0, 0
-	  stw       r0, 0x1DC(r4)
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0x14(r12)
-	  mtctr     r12
-	  bctrl
-	  lwz       r0, 0x14(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
-	*/
+	item->m_currentState = nullptr;
+	transit(item, id, arg);
 }
 
 /*
@@ -1471,27 +1457,10 @@ void start__Q24Game40StateMachine<Game::ItemTreasure::Item> FPQ34Game12ItemTreas
  * Address:	801F3960
  * Size:	000044
  */
-void ItemTreasure::Item::onSetPosition(void)
+void ItemTreasure::Item::onSetPosition()
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	mr       r31, r3
-	lwz      r12, 0(r3)
-	lwz      r12, 0x210(r12)
-	mtctr    r12
-	bctrl
-	addi     r3, r31, 0x138
-	addi     r4, r31, 0x19c
-	bl       "makeT__7MatrixfFR10Vector3<f>"
-	lwz      r0, 0x14(r1)
-	lwz      r31, 0xc(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	updateBoundSphere();
+	m_objMatrix.makeT(m_position);
 }
 
 /*
@@ -1499,28 +1468,11 @@ void ItemTreasure::Item::onSetPosition(void)
  * Address:	801F39A4
  * Size:	000048
  */
-void ItemTreasure::Item::updateBoundSphere(void)
+void ItemTreasure::Item::updateBoundSphere()
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	mr       r31, r3
-	bl       getWorkRadius__Q34Game12ItemTreasure4ItemFv
-	lfs      f0, 0x19c(r31)
-	stfs     f0, 0x1c4(r31)
-	lfs      f0, 0x1a0(r31)
-	stfs     f0, 0x1c8(r31)
-	lfs      f0, 0x1a4(r31)
-	stfs     f0, 0x1cc(r31)
-	stfs     f1, 0x1d0(r31)
-	lwz      r31, 0xc(r1)
-	lwz      r0, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	f32 rad                     = getWorkRadius();
+	m_boundingSphere.m_position = m_position;
+	m_boundingSphere.m_radius   = rad;
 }
 
 /*
@@ -1528,8 +1480,41 @@ void ItemTreasure::Item::updateBoundSphere(void)
  * Address:	801F39EC
  * Size:	000180
  */
-void ItemTreasure::Item::doAI(void)
+void ItemTreasure::Item::doAI()
 {
+	m_stateMachine->exec(this);
+	m_boundingSphere.m_radius = getWorkRadius();
+	updateCollTree();
+	CollPart* part = m_collTree->m_part;
+	part->m_radius = getWorkRadius();
+
+	if (m_pellet) {
+		f32 depth = m_pellet->getBuryDepthMax();
+		depth *= 0.5f;
+		depth -= m_totalLife;
+
+		Matrixf mtx;
+		PSMTXCopy(m_pellet->m_objMatrix.m_matrix.mtxView, mtx.m_matrix.mtxView);
+		mtx.m_matrix.structView.ty = depth;
+		mtx.m_matrix.structView.tx = 0.0f;
+		mtx.m_matrix.structView.tz = 0.0f;
+		m_pellet->updateCapture(mtx);
+
+		if (m_pellet->getBuryDepthMax() >= m_totalLife) {
+			m_pellet->m_lod.m_flags &= -0x35;
+		}
+		m_pellet->m_depth = m_totalLife;
+	}
+
+	if (isAlive()) {
+		int state = m_soundEvent.update();
+		switch (state) {
+		case 2:
+			P2ASSERTLINE(406, m_soundObj->getCastType() == 10);
+			m_soundObj->exec();
+			break;
+		}
+	}
 	/*
 	stwu     r1, -0x50(r1)
 	mflr     r0
@@ -1645,41 +1630,27 @@ lbl_801F3B4C:
  * Address:	801F3B6C
  * Size:	000050
  */
-void ItemTreasure::Item::doDirectDraw(Graphics&)
+void ItemTreasure::Item::doDirectDraw(Graphics& gfx)
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	mr       r31, r4
-	li       r4, 0
-	stw      r30, 8(r1)
-	mr       r30, r3
-	mr       r3, r31
-	bl       initPrimDraw__8GraphicsFP7Matrixf
-	lfs      f1, 0x1d0(r30)
-	mr       r3, r31
-	addi     r4, r30, 0x1c4
-	bl       "drawSphere__8GraphicsFR10Vector3<f>f"
-	lwz      r0, 0x14(r1)
-	lwz      r31, 0xc(r1)
-	lwz      r30, 8(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	gfx.initPrimDraw(nullptr);
+	gfx.drawSphere(m_boundingSphere.m_position, m_boundingSphere.m_radius);
 }
-
-} // namespace Game
 
 /*
  * --INFO--
  * Address:	801F3BBC
  * Size:	00011C
  */
-void getVectorField__Q34Game12ItemTreasure4ItemFRQ23Sys6SphereR10Vector3f(void)
+bool ItemTreasure::Item::getVectorField(Sys::Sphere& bounds, Vector3f& pos)
 {
+	Vector3f diff = m_position - bounds.m_position;
+	f32 dist      = diff.normalise();
+	if (dist > getWorkRadius() + 5.0f) {
+		pos = diff;
+	} else {
+		pos = Vector3f(0.0f);
+	}
+	return true;
 	/*
 	stwu     r1, -0x50(r1)
 	mflr     r0
@@ -1767,15 +1738,15 @@ lbl_801F3CA0:
 	*/
 }
 
-namespace Game {
-
 /*
  * --INFO--
  * Address:	801F3CD8
  * Size:	000088
  */
-void ItemTreasure::Item::getWorkDistance(Sys::Sphere&)
+f32 ItemTreasure::Item::getWorkDistance(Sys::Sphere& bounds)
 {
+	f32 dist = _distanceBetween2(m_position, bounds.m_position);
+	return dist - getWorkRadius();
 	/*
 	stwu     r1, -0x20(r1)
 	mflr     r0
@@ -1823,60 +1794,20 @@ lbl_801F3D40:
  * Address:	801F3D60
  * Size:	0000B8
  */
-void ItemTreasure::Item::setTreasure(Game::Pellet*)
+void ItemTreasure::Item::setTreasure(Game::Pellet* pelt)
 {
-	/*
-	stwu     r1, -0x20(r1)
-	mflr     r0
-	stw      r0, 0x24(r1)
-	stw      r31, 0x1c(r1)
-	mr       r31, r4
-	addi     r4, r1, 8
-	stw      r30, 0x18(r1)
-	mr       r30, r3
-	lfs      f0, 0x19c(r3)
-	addi     r3, r30, 0x200
-	stfs     f0, 8(r1)
-	lfs      f0, 0x1a0(r30)
-	stfs     f0, 0xc(r1)
-	lfs      f0, 0x1a4(r30)
-	stfs     f0, 0x10(r1)
-	bl       "makeT__7MatrixfFR10Vector3<f>"
-	stw      r31, 0x1fc(r30)
-	lwz      r3, 0x1fc(r30)
-	cmplwi   r3, 0
-	beq      lbl_801F3E00
-	addi     r4, r30, 0x200
-	bl       startCapture__Q24Game8CreatureFP7Matrixf
-	lwz      r3, 0x1fc(r30)
-	bl       getBuryDepth__Q24Game6PelletFv
-	stfs     f1, 0x1f8(r30)
-	lwz      r3, gameSystem__4Game@sda21(r13)
-	lwz      r0, 0x44(r3)
-	cmpwi    r0, 1
-	bne      lbl_801F3DEC
-	lwz      r3, 0x1fc(r30)
-	lbz      r0, 0x32c(r3)
-	cmplwi   r0, 6
-	bne      lbl_801F3DEC
-	lfs      f0, cBedamaYellowDepth__13VsOtakaraName@sda21(r13)
-	stfs     f0, 0x1f8(r30)
-
-lbl_801F3DEC:
-	lfs      f0, 0x1f8(r30)
-	mr       r3, r30
-	lwz      r4, 0x1fc(r30)
-	stfs     f0, 0x320(r4)
-	bl       setLife__Q34Game12ItemTreasure4ItemFv
-
-lbl_801F3E00:
-	lwz      r0, 0x24(r1)
-	lwz      r31, 0x1c(r1)
-	lwz      r30, 0x18(r1)
-	mtlr     r0
-	addi     r1, r1, 0x20
-	blr
-	*/
+	Vector3f pos = m_position;
+	m_matrix.makeT(pos);
+	m_pellet = pelt;
+	if (m_pellet) {
+		m_pellet->startCapture(&m_matrix);
+		m_totalLife = m_pellet->getBuryDepth();
+		if (gameSystem->m_mode == GSM_VERSUS_MODE && m_pellet->m_pelletFlag == Pellet::FLAG_VS_BEDAMA_YELLOW) {
+			m_totalLife = VsOtakaraName::cBedamaYellowDepth;
+		}
+		m_pellet->m_depth = m_totalLife;
+		setLife();
+	}
 }
 
 /*
@@ -1884,31 +1815,27 @@ lbl_801F3E00:
  * Address:	801F3E18
  * Size:	000030
  */
-void ItemTreasure::Item::setLife(void)
-{
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	mr       r31, r3
-	bl       getCurrMaxLife__Q34Game12ItemTreasure4ItemFv
-	stfs     f1, 0x1f4(r31)
-	lwz      r0, 0x14(r1)
-	lwz      r31, 0xc(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
-}
+void ItemTreasure::Item::setLife() { m_currStageLife = getCurrMaxLife(); }
 
 /*
  * --INFO--
  * Address:	801F3E48
  * Size:	000098
  */
-void ItemTreasure::Item::getCurrMaxLife(void)
+f32 ItemTreasure::Item::getCurrMaxLife()
 {
+	f32 depth = m_pellet->getBuryDepthMax();
+	f32 test  = m_totalLife / depth;
+
+	if (test < 0.25f) {
+		return mgr->m_parameters->m_parms.m_p003.m_value;
+	} else if (test < 0.5f) {
+		return mgr->m_parameters->m_parms.m_p002.m_value;
+	} else if (test < 0.75f) {
+		return mgr->m_parameters->m_parms.m_p001.m_value;
+	} else {
+		return mgr->m_parameters->m_parms.m_p000.m_value;
+	}
 	/*
 	stwu     r1, -0x10(r1)
 	mflr     r0
@@ -1964,7 +1891,7 @@ lbl_801F3ECC:
  * Address:	........
  * Size:	000144
  */
-void ItemTreasure::Item::createTreasure(void)
+void ItemTreasure::Item::createTreasure()
 {
 	// UNUSED FUNCTION
 }
@@ -1974,8 +1901,25 @@ void ItemTreasure::Item::createTreasure(void)
  * Address:	801F3EE0
  * Size:	00011C
  */
-void ItemTreasure::Item::interactAttack(Game::InteractAttack&)
+bool ItemTreasure::Item::interactAttack(Game::InteractAttack& act)
 {
+	State* cState = m_currentState;
+	if (cState) {
+		cState->onDamage(this, act.m_damage);
+
+		int id = m_soundEvent.event();
+		switch (id) {
+		case 1:
+			P2ASSERTLINE(555, m_soundObj->getCastType() == 10);
+			m_soundObj->exec();
+			break;
+		case 3:
+			P2ASSERTLINE(561, m_soundObj->getCastType() == 10);
+			m_soundObj->exec();
+			break;
+		}
+	}
+	return true;
 	/*
 	stwu     r1, -0x10(r1)
 	mflr     r0
@@ -2075,36 +2019,13 @@ void ItemTreasure::State::onDamage(Game::ItemTreasure::Item*, float) { }
  * Address:	801F4000
  * Size:	000058
  */
-void ItemTreasure::Item::getWorkRadius(void)
+f32 ItemTreasure::Item::getWorkRadius()
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	mr       r31, r3
-	lwz      r3, 0x1fc(r3)
-	cmplwi   r3, 0
-	beq      lbl_801F4040
-	bl       getBuryDepthMax__Q24Game6PelletFv
-	lfs      f2, 0x1f8(r31)
-	lfs      f0, lbl_80519BF8@sda21(r2)
-	fdivs    f1, f2, f1
-	lwz      r3, 0x1fc(r31)
-	fsubs    f1, f0, f1
-	bl       getBuryRadius__Q24Game6PelletFf
-	b        lbl_801F4044
-
-lbl_801F4040:
-	lfs      f1, lbl_80519BE0@sda21(r2)
-
-lbl_801F4044:
-	lwz      r0, 0x14(r1)
-	lwz      r31, 0xc(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	if (!m_pellet) {
+		return 10.0f;
+	} else {
+		return m_pellet->getBuryRadius(1.0f - m_totalLife / m_pellet->getBuryDepthMax());
+	}
 }
 
 /*
@@ -2112,8 +2033,15 @@ lbl_801F4044:
  * Address:	801F4058
  * Size:	000060
  */
-void ItemTreasure::Item::isVisible(void)
+bool ItemTreasure::Item::isVisible()
 {
+	bool ret;
+	if (!m_pellet) {
+		ret = false;
+	} else {
+		ret = (m_totalLife / m_pellet->getBuryDepthMax() > 0.85f);
+	}
+	return ret;
 	/*
 	stwu     r1, -0x10(r1)
 	mflr     r0
@@ -2151,8 +2079,25 @@ lbl_801F40A4:
  * Address:	801F40B8
  * Size:	0000B0
  */
-void ItemTreasure::Item::ignoreAtari(Game::Creature*)
+bool ItemTreasure::Item::ignoreAtari(Game::Creature* obj)
 {
+	// inline isVisible?
+	bool ret;
+	if (!m_pellet) {
+		ret = false;
+	} else {
+		ret = (m_totalLife / m_pellet->getBuryDepthMax() > 0.85f);
+	}
+
+	if (ret) {
+		Piki* piki = static_cast<Piki*>(obj);
+		if (piki->isPiki() || piki->m_pikiKind != White) {
+			return true;
+		} else {
+			return false;
+		}
+	}
+	return false;
 	/*
 	stwu     r1, -0x10(r1)
 	mflr     r0
@@ -2218,8 +2163,22 @@ lbl_801F4150:
  * Address:	801F4168
  * Size:	000114
  */
-ItemTreasure::Mgr::Mgr(void)
+ItemTreasure::Mgr::Mgr()
 {
+	// m_name = "Treasure"; problem
+	m_objectPathComponent = "user/kando/objects/treasure";
+	m_parameters          = new TreasureParms;
+
+	void* file = JKRDvdRipper::loadToMainRAM("user/Abe/item/treasureParms.txt", nullptr, (JKRExpandSwitch)0, 0, nullptr,
+	                                         (JKRDvdRipper::EAllocDirection)2, 0, nullptr, nullptr);
+
+	if (file) {
+		RamStream stm(file, -1);
+		stm.m_mode     = STREAM_MODE_TEXT;
+		stm.m_tabCount = 0;
+		m_parameters->read(stm);
+		delete[] file;
+	}
 	/*
 	stwu     r1, -0x440(r1)
 	mflr     r0
@@ -2307,27 +2266,14 @@ lbl_801F4260:
  * Address:	801F427C
  * Size:	000024
  */
-void ItemTreasure::TreasureParms::read(Stream&)
-{
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	addi     r3, r3, 0xdc
-	stw      r0, 0x14(r1)
-	bl       read__10ParametersFR6Stream
-	lwz      r0, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
-}
+void ItemTreasure::TreasureParms::read(Stream& stm) { m_parms.read(stm); }
 
 /*
  * --INFO--
  * Address:	801F42A0
  * Size:	0002A0
  */
-ItemTreasure::TreasureParms::TreasureParms(void)
+ItemTreasure::TreasureParms::TreasureParms()
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -2506,8 +2452,11 @@ ItemTreasure::TreasureParms::TreasureParms(void)
  * Address:	801F4540
  * Size:	000130
  */
-void ItemTreasure::Mgr::birth(void)
+BaseItem* ItemTreasure::Mgr::birth()
 {
+	Item* item = new Item;
+	entry(item);
+	return item;
 	/*
 	stwu     r1, -0x10(r1)
 	mflr     r0
@@ -2601,35 +2550,12 @@ lbl_801F4648:
  * Address:	801F4670
  * Size:	000060
  */
-void generatorBirth__Q34Game12ItemTreasure3MgrFR10Vector3f R10Vector3f PQ24Game11GenItemParm(void)
+BaseItem* ItemTreasure::Mgr::generatorBirth(Vector3f& pos, Vector3f&, GenItemParm*)
 {
-	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  stw       r0, 0x14(r1)
-	  stw       r31, 0xC(r1)
-	  stw       r30, 0x8(r1)
-	  mr        r30, r4
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0xBC(r12)
-	  mtctr     r12
-	  bctrl
-	  li        r4, 0
-	  mr        r31, r3
-	  bl        -0xB96D8
-	  mr        r3, r31
-	  mr        r4, r30
-	  li        r5, 0
-	  bl        -0xB9508
-	  lwz       r0, 0x14(r1)
-	  mr        r3, r31
-	  lwz       r31, 0xC(r1)
-	  lwz       r30, 0x8(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
-	*/
+	BaseItem* item = birth();
+	item->init(nullptr);
+	item->setPosition(pos, false);
+	return item;
 }
 
 /*
@@ -2637,14 +2563,14 @@ void generatorBirth__Q34Game12ItemTreasure3MgrFR10Vector3f R10Vector3f PQ24Game1
  * Address:	801F46D0
  * Size:	000004
  */
-void ItemTreasure::Mgr::onLoadResources(void) { }
+void ItemTreasure::Mgr::onLoadResources() { }
 
 /*
  * --INFO--
  * Address:	801F46D4
  * Size:	000134
  */
-ItemTreasure::Mgr::~Mgr(void)
+ItemTreasure::Mgr::~Mgr()
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -2740,8 +2666,9 @@ lbl_801F47EC:
  * Address:	801F4808
  * Size:	000118
  */
-void ItemTreasure::Mgr::doNew(void)
+BaseItem* ItemTreasure::Mgr::doNew()
 {
+	return new Item;
 	/*
 	stwu     r1, -0x10(r1)
 	mflr     r0
@@ -2829,76 +2756,37 @@ lbl_801F4908:
  * Address:	801F4920
  * Size:	00000C
  */
-void ItemTreasure::Mgr::generatorGetID(void)
-{
-	/*
-	lis      r3, 0x74727372@ha
-	addi     r3, r3, 0x74727372@l
-	blr
-	*/
-}
+u32 ItemTreasure::Mgr::generatorGetID() { return 'trsr'; }
 
 /*
  * --INFO--
  * Address:	801F492C
  * Size:	00000C
  */
-void ItemTreasure::Item::getCreatureName(void)
-{
-	/*
-	lis      r3, lbl_80481704@ha
-	addi     r3, r3, lbl_80481704@l
-	blr
-	*/
-}
+char* ItemTreasure::Item::getCreatureName() { return "Treasure"; }
 
 /*
  * --INFO--
  * Address:	801F4938
  * Size:	000008
  */
-void ItemTreasure::Item::DummyShape::getMatrix(int)
-{
-	/*
-	lwz      r3, 4(r3)
-	blr
-	*/
-}
-
-} // namespace Game
-
-namespace SysShape {
+Matrixf* ItemTreasure::Item::DummyShape::getMatrix(int) { return m_matrix; }
 
 /*
  * --INFO--
  * Address:	801F4940
  * Size:	000008
  */
-u32 MtxObject::isModel(void) { return 0x0; }
+// bool MtxObject::isModel() { return false; }
 
 /*
  * --INFO--
  * Address:	801F4948
  * Size:	000034
  */
-void doAI__Q24Game89FSMItem<Game::ItemTreasure::Item, Game::ItemTreasure::FSM, Game::ItemTreasure::State> Fv(void)
+void FSMItem<Game::ItemTreasure::Item, Game::ItemTreasure::FSM, Game::ItemTreasure::State>::doAI()
 {
-	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  mr        r4, r3
-	  stw       r0, 0x14(r1)
-	  lwz       r3, 0x1D8(r3)
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0x10(r12)
-	  mtctr     r12
-	  bctrl
-	  lwz       r0, 0x14(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
-	*/
+	m_currentState->exec((ItemTreasure::Item*)this);
 }
 
 /*
@@ -2906,93 +2794,79 @@ void doAI__Q24Game89FSMItem<Game::ItemTreasure::Item, Game::ItemTreasure::FSM, G
  * Address:	801F497C
  * Size:	000004
  */
-void onDamage__Q24Game37ItemState<Game::ItemTreasure::Item> FPQ34Game12ItemTreasure4Itemf(void) { }
+void ItemState<Game::ItemTreasure::Item>::onDamage(ItemTreasure::Item*, f32) { }
 
 /*
  * --INFO--
  * Address:	801F4980
  * Size:	000004
  */
-void onKeyEvent__Q24Game37ItemState<Game::ItemTreasure::Item> FPQ34Game12ItemTreasure4ItemRCQ28SysShape8KeyEvent(void) { }
+void ItemState<Game::ItemTreasure::Item>::onKeyEvent(ItemTreasure::Item* item, const SysShape::KeyEvent&) { }
 
 /*
  * --INFO--
  * Address:	801F4984
  * Size:	000004
  */
-void onBounce__Q24Game37ItemState<Game::ItemTreasure::Item> FPQ34Game12ItemTreasure4ItemPQ23Sys8Triangle(void) { }
+void ItemState<Game::ItemTreasure::Item>::onBounce(ItemTreasure::Item*, Sys::Triangle*) { }
 
 /*
  * --INFO--
  * Address:	801F4988
  * Size:	000004
  */
-void onPlatCollision__Q24Game37ItemState<Game::ItemTreasure::Item> FPQ34Game12ItemTreasure4ItemRQ24Game9PlatEvent(void) { }
+void ItemState<Game::ItemTreasure::Item>::onPlatCollision(ItemTreasure::Item*, PlatEvent&) { }
 
 /*
  * --INFO--
  * Address:	801F498C
  * Size:	000004
  */
-void onCollision__Q24Game37ItemState<Game::ItemTreasure::Item> FPQ34Game12ItemTreasure4ItemRQ24Game9CollEvent(void) { }
+void ItemState<Game::ItemTreasure::Item>::onCollision(ItemTreasure::Item*, CollEvent&) { }
 
 /*
  * --INFO--
  * Address:	801F4990
  * Size:	000004
  */
-void init__Q24Game36FSMState<Game::ItemTreasure::Item> FPQ34Game12ItemTreasure4ItemPQ24Game8StateArg(void) { }
+void FSMState<Game::ItemTreasure::Item>::init(ItemTreasure::Item*, StateArg*) { }
 
 /*
  * --INFO--
  * Address:	801F4994
  * Size:	000004
  */
-void exec__Q24Game36FSMState<Game::ItemTreasure::Item> FPQ34Game12ItemTreasure4Item(void) { }
+void FSMState<Game::ItemTreasure::Item>::exec(ItemTreasure::Item*) { }
 
 /*
  * --INFO--
  * Address:	801F4998
  * Size:	000004
  */
-void cleanup__Q24Game36FSMState<Game::ItemTreasure::Item> FPQ34Game12ItemTreasure4Item(void) { }
+void FSMState<Game::ItemTreasure::Item>::cleanup(ItemTreasure::Item*) { }
 
 /*
  * --INFO--
  * Address:	801F499C
  * Size:	000004
  */
-void resume__Q24Game36FSMState<Game::ItemTreasure::Item> FPQ34Game12ItemTreasure4Item(void) { }
+void FSMState<Game::ItemTreasure::Item>::resume(ItemTreasure::Item*) { }
 
 /*
  * --INFO--
  * Address:	801F49A0
  * Size:	000004
  */
-void restart__Q24Game36FSMState<Game::ItemTreasure::Item> FPQ34Game12ItemTreasure4Item(void) { }
+void FSMState<Game::ItemTreasure::Item>::restart(ItemTreasure::Item*) { }
 
 /*
  * --INFO--
  * Address:	801F49A4
  * Size:	000030
  */
-void transit__Q24Game36FSMState<Game::ItemTreasure::Item> FPQ34Game12ItemTreasure4ItemiPQ24Game8StateArg(void)
+void FSMState<Game::ItemTreasure::Item>::transit(ItemTreasure::Item* item, int id, StateArg* arg)
 {
-	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  stw       r0, 0x14(r1)
-	  lwz       r3, 0x8(r3)
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0x14(r12)
-	  mtctr     r12
-	  bctrl
-	  lwz       r0, 0x14(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
-	*/
+	m_stateMachine->transit(item, id, arg);
 }
 
 /*
@@ -3000,72 +2874,32 @@ void transit__Q24Game36FSMState<Game::ItemTreasure::Item> FPQ34Game12ItemTreasur
  * Address:	801F49D4
  * Size:	000004
  */
-void init__Q24Game40StateMachine<Game::ItemTreasure::Item> FPQ34Game12ItemTreasure4Item(void) { }
+void StateMachine<ItemTreasure::Item>::init(ItemTreasure::Item*) { }
 
 /*
  * --INFO--
  * Address:	801F49D8
  * Size:	000038
  */
-void exec__Q24Game40StateMachine<Game::ItemTreasure::Item> FPQ34Game12ItemTreasure4Item(void)
+void StateMachine<ItemTreasure::Item>::exec(ItemTreasure::Item* item)
 {
-	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  stw       r0, 0x14(r1)
-	  lwz       r3, 0x1DC(r4)
-	  cmplwi    r3, 0
-	  beq-      .loc_0x28
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0xC(r12)
-	  mtctr     r12
-	  bctrl
-
-	.loc_0x28:
-	  lwz       r0, 0x14(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
-	*/
+	if (item->m_currentState) {
+		item->m_currentState->exec(item);
+	}
 }
-
-} // namespace SysShape
 
 /*
  * --INFO--
  * Address:	801F4A10
  * Size:	000064
  */
-void create__Q24Game40StateMachine<Game::ItemTreasure::Item> Fi(void)
+void StateMachine<ItemTreasure::Item>::create(int count)
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	li       r0, 0
-	stw      r31, 0xc(r1)
-	mr       r31, r3
-	stw      r4, 0xc(r3)
-	stw      r0, 8(r3)
-	lwz      r0, 0xc(r3)
-	slwi     r3, r0, 2
-	bl       __nwa__FUl
-	stw      r3, 4(r31)
-	lwz      r0, 0xc(r31)
-	slwi     r3, r0, 2
-	bl       __nwa__FUl
-	stw      r3, 0x10(r31)
-	lwz      r0, 0xc(r31)
-	slwi     r3, r0, 2
-	bl       __nwa__FUl
-	stw      r3, 0x14(r31)
-	lwz      r0, 0x14(r1)
-	lwz      r31, 0xc(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	m_limit          = count;
+	m_count          = 0;
+	m_states         = new FSMState<ItemTreasure::Item>*[m_limit];
+	m_indexToIDArray = new int[m_limit];
+	m_idToIndexArray = new int[m_limit];
 }
 
 /*
@@ -3073,56 +2907,20 @@ void create__Q24Game40StateMachine<Game::ItemTreasure::Item> Fi(void)
  * Address:	801F4A74
  * Size:	00009C
  */
-void transit__Q24Game40StateMachine<Game::ItemTreasure::Item> FPQ34Game12ItemTreasure4ItemiPQ24Game8StateArg(void)
+void StateMachine<ItemTreasure::Item>::transit(ItemTreasure::Item* obj, int id, StateArg* arg)
 {
-	/*
-	.loc_0x0:
-	  stwu      r1, -0x20(r1)
-	  mflr      r0
-	  stw       r0, 0x24(r1)
-	  rlwinm    r0,r5,2,0,29
-	  stmw      r27, 0xC(r1)
-	  mr        r27, r3
-	  mr        r28, r4
-	  mr        r29, r6
-	  lwz       r30, 0x1DC(r4)
-	  lwz       r3, 0x14(r3)
-	  cmplwi    r30, 0
-	  lwzx      r31, r3, r0
-	  beq-      .loc_0x50
-	  mr        r3, r30
-	  lwz       r12, 0x0(r30)
-	  lwz       r12, 0x10(r12)
-	  mtctr     r12
-	  bctrl
-	  lwz       r0, 0x4(r30)
-	  stw       r0, 0x18(r27)
+	int index                  = m_idToIndexArray[id];
+	ItemTreasure::State* state = obj->m_currentState;
+	if (state) {
+		state->cleanup(obj);
+		m_currentID = state->m_id;
+	}
 
-	.loc_0x50:
-	  lwz       r0, 0xC(r27)
-	  cmpw      r31, r0
-	  blt-      .loc_0x60
+	ASSERT_HANG(index < m_limit);
 
-	.loc_0x5C:
-	  b         .loc_0x5C
-
-	.loc_0x60:
-	  lwz       r3, 0x4(r27)
-	  rlwinm    r0,r31,2,0,29
-	  mr        r4, r28
-	  mr        r5, r29
-	  lwzx      r3, r3, r0
-	  stw       r3, 0x1DC(r28)
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0x8(r12)
-	  mtctr     r12
-	  bctrl
-	  lmw       r27, 0xC(r1)
-	  lwz       r0, 0x24(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x20
-	  blr
-	*/
+	state               = static_cast<ItemTreasure::State*>(m_states[index]);
+	obj->m_currentState = state;
+	state->init(obj, arg);
 }
 
 /*
@@ -3130,50 +2928,27 @@ void transit__Q24Game40StateMachine<Game::ItemTreasure::Item> FPQ34Game12ItemTre
  * Address:	801F4B10
  * Size:	000084
  */
-void registerState__Q24Game40StateMachine<Game::ItemTreasure::Item> FPQ24Game36FSMState<Game::ItemTreasure::Item>(void)
+void StateMachine<ItemTreasure::Item>::registerState(FSMState<Game::ItemTreasure::Item>* newState)
 {
-	/*
-	.loc_0x0:
-	  lwz       r6, 0x8(r3)
-	  lwz       r0, 0xC(r3)
-	  cmpw      r6, r0
-	  bgelr-
-	  lwz       r5, 0x4(r3)
-	  rlwinm    r0,r6,2,0,29
-	  stwx      r4, r5, r0
-	  lwz       r5, 0x4(r4)
-	  cmpwi     r5, 0
-	  blt-      .loc_0x34
-	  lwz       r0, 0xC(r3)
-	  cmpw      r5, r0
-	  blt-      .loc_0x3C
-
-	.loc_0x34:
-	  li        r0, 0
-	  b         .loc_0x40
-
-	.loc_0x3C:
-	  li        r0, 0x1
-
-	.loc_0x40:
-	  rlwinm.   r0,r0,0,24,31
-	  beqlr-
-	  stw       r3, 0x8(r4)
-	  lwz       r0, 0x8(r3)
-	  lwz       r6, 0x4(r4)
-	  lwz       r5, 0x10(r3)
-	  rlwinm    r0,r0,2,0,29
-	  stwx      r6, r5, r0
-	  lwz       r0, 0x4(r4)
-	  lwz       r5, 0x8(r3)
-	  lwz       r4, 0x14(r3)
-	  rlwinm    r0,r0,2,0,29
-	  stwx      r5, r4, r0
-	  lwz       r4, 0x8(r3)
-	  addi      r0, r4, 0x1
-	  stw       r0, 0x8(r3)
-	  blr
-	*/
+	// copied all this from enemyFSM.cpp, do we actually need it here? no idea
+	bool check;
+	if (m_count >= m_limit) {
+		return;
+	}
+	m_states[m_count] = newState;
+	// TODO: This looks weird. How would they really have written it?
+	if (!(0 <= newState->m_id && newState->m_id < m_limit)) {
+		check = false;
+	} else {
+		check = true;
+	}
+	if (check == false) {
+		return;
+	}
+	newState->m_stateMachine         = this;
+	m_indexToIDArray[m_count]        = newState->m_id;
+	m_idToIndexArray[newState->m_id] = m_count;
+	m_count++;
 }
 
 /*
@@ -3181,31 +2956,12 @@ void registerState__Q24Game40StateMachine<Game::ItemTreasure::Item> FPQ24Game36F
  * Address:	801F4B94
  * Size:	000044
  */
-void onKeyEvent__Q24Game89FSMItem<Game::ItemTreasure::Item, Game::ItemTreasure::FSM, Game::ItemTreasure::State>
-FRCQ28SysShape8KeyEvent(void)
+void FSMItem<ItemTreasure::Item, ItemTreasure::FSM, ItemTreasure::State>::onKeyEvent(const SysShape::KeyEvent& event)
 {
-	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  mr        r6, r3
-	  mr        r5, r4
-	  stw       r0, 0x14(r1)
-	  lwz       r3, 0x1DC(r3)
-	  cmplwi    r3, 0
-	  beq-      .loc_0x34
-	  lwz       r12, 0x0(r3)
-	  mr        r4, r6
-	  lwz       r12, 0x24(r12)
-	  mtctr     r12
-	  bctrl
-
-	.loc_0x34:
-	  lwz       r0, 0x14(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
-	*/
+	ItemState<ItemTreasure::Item>* state = m_currentState;
+	if (state) {
+		state->onKeyEvent((ItemTreasure::Item*)this, event);
+	}
 }
 
 /*
@@ -3213,30 +2969,12 @@ FRCQ28SysShape8KeyEvent(void)
  * Address:	801F4BD8
  * Size:	000044
  */
-void platCallback__Q24Game89FSMItem<Game::ItemTreasure::Item, Game::ItemTreasure::FSM, Game::ItemTreasure::State> FRQ24Game9PlatEvent(void)
+void FSMItem<ItemTreasure::Item, ItemTreasure::FSM, ItemTreasure::State>::platCallback(PlatEvent& event)
 {
-	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  mr        r6, r3
-	  mr        r5, r4
-	  stw       r0, 0x14(r1)
-	  lwz       r3, 0x1DC(r3)
-	  cmplwi    r3, 0
-	  beq-      .loc_0x34
-	  lwz       r12, 0x0(r3)
-	  mr        r4, r6
-	  lwz       r12, 0x2C(r12)
-	  mtctr     r12
-	  bctrl
-
-	.loc_0x34:
-	  lwz       r0, 0x14(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
-	*/
+	ItemState<ItemTreasure::Item>* state = m_currentState;
+	if (state) {
+		state->onPlatCollision((ItemTreasure::Item*)this, event);
+	}
 }
 
 /*
@@ -3244,31 +2982,12 @@ void platCallback__Q24Game89FSMItem<Game::ItemTreasure::Item, Game::ItemTreasure
  * Address:	801F4C1C
  * Size:	000044
  */
-void collisionCallback__Q24Game89FSMItem<Game::ItemTreasure::Item, Game::ItemTreasure::FSM, Game::ItemTreasure::State>
-FRQ24Game9CollEvent(void)
+void FSMItem<ItemTreasure::Item, ItemTreasure::FSM, ItemTreasure::State>::collisionCallback(CollEvent& event)
 {
-	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  mr        r6, r3
-	  mr        r5, r4
-	  stw       r0, 0x14(r1)
-	  lwz       r3, 0x1DC(r3)
-	  cmplwi    r3, 0
-	  beq-      .loc_0x34
-	  lwz       r12, 0x0(r3)
-	  mr        r4, r6
-	  lwz       r12, 0x30(r12)
-	  mtctr     r12
-	  bctrl
-
-	.loc_0x34:
-	  lwz       r0, 0x14(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
-	*/
+	ItemState<ItemTreasure::Item>* state = m_currentState;
+	if (state) {
+		state->onCollision((ItemTreasure::Item*)this, event);
+	}
 }
 
 /*
@@ -3276,30 +2995,12 @@ FRQ24Game9CollEvent(void)
  * Address:	801F4C60
  * Size:	000044
  */
-void bounceCallback__Q24Game89FSMItem<Game::ItemTreasure::Item, Game::ItemTreasure::FSM, Game::ItemTreasure::State> FPQ23Sys8Triangle(void)
+void FSMItem<ItemTreasure::Item, ItemTreasure::FSM, ItemTreasure::State>::bounceCallback(Sys::Triangle* tri)
 {
-	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  mr        r6, r3
-	  mr        r5, r4
-	  stw       r0, 0x14(r1)
-	  lwz       r3, 0x1DC(r3)
-	  cmplwi    r3, 0
-	  beq-      .loc_0x34
-	  lwz       r12, 0x0(r3)
-	  mr        r4, r6
-	  lwz       r12, 0x28(r12)
-	  mtctr     r12
-	  bctrl
-
-	.loc_0x34:
-	  lwz       r0, 0x14(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
-	*/
+	ItemState<ItemTreasure::Item>* state = m_currentState;
+	if (state) {
+		state->onBounce((ItemTreasure::Item*)this, tri);
+	}
 }
 
 /*
@@ -3307,7 +3008,7 @@ void bounceCallback__Q24Game89FSMItem<Game::ItemTreasure::Item, Game::ItemTreasu
  * Address:	801F4CA4
  * Size:	000028
  */
-void __sinit_itemTreasure_cpp(void)
+void __sinit_itemTreasure_cpp()
 {
 	/*
 	lis      r4, __float_nan@ha
@@ -3323,30 +3024,32 @@ void __sinit_itemTreasure_cpp(void)
 	*/
 }
 
+} // namespace Game
+
 /*
  * --INFO--
  * Address:	801F4CCC
  * Size:	000008
  */
-void @376 @onKeyEvent__Q24Game89FSMItem<Game::ItemTreasure::Item, Game::ItemTreasure::FSM, Game::ItemTreasure::State>
-FRCQ28SysShape8KeyEvent(void)
-{
-	/*
-	.loc_0x0:
-	  subi      r3, r3, 0x178
-	  b         -0x13C
-	*/
-}
+// void @376 @onKeyEvent__Q24Game89FSMItem<Game::ItemTreasure::Item, Game::ItemTreasure::FSM, Game::ItemTreasure::State>
+// FRCQ28SysShape8KeyEvent(void)
+//{
+/*
+.loc_0x0:
+  subi      r3, r3, 0x178
+  b         -0x13C
+*/
+//}
 
 /*
  * --INFO--
  * Address:	801F4CD4
  * Size:	000008
  */
-@48 @Game::ItemTreasure::Mgr::~Mgr(void)
-{
-	/*
-	addi     r3, r3, -48
-	b        __dt__Q34Game12ItemTreasure3MgrFv
-	*/
-}
+//@48 @Game::ItemTreasure::Mgr::~Mgr(void)
+//{
+/*
+addi     r3, r3, -48
+b        __dt__Q34Game12ItemTreasure3MgrFv
+*/
+//}

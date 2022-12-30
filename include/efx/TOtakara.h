@@ -29,6 +29,10 @@ struct TOtakaraApS : public TSimple2 {
 };
 
 struct TOtakaraAp : public TBase {
+	TOtakaraAp()
+	    : TBase()
+	{
+	}
 	virtual bool create(Arg*); // _08
 	virtual void forceKill();  // _0C (weak)
 	virtual void fade();       // _10 (weak)
