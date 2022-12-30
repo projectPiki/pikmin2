@@ -317,7 +317,7 @@ void GeneralEnemyMgr::createEnemyMgr(u8 type, int enemyID, int limit)
 		mgr = new LeafChappy::Mgr(limit, type);
 		break;
 	case EnemyTypeID::EnemyID_TamagoMushi:
-		if ((gameSystem != nullptr) && (gameSystem->m_inCave == 0)) {
+		if ((gameSystem != nullptr) && (gameSystem->m_isInCave == 0)) {
 			limit = 10;
 		} else {
 			limit = 30;
@@ -352,7 +352,7 @@ void GeneralEnemyMgr::createEnemyMgr(u8 type, int enemyID, int limit)
 		mgr = new KumaKochappy::Mgr(limit, type);
 		break;
 	case EnemyTypeID::EnemyID_ShijimiChou:
-		if ((gameSystem != nullptr) && (gameSystem->m_inCave == 0)) {
+		if ((gameSystem != nullptr) && (gameSystem->m_isInCave == 0)) {
 			limit = 10;
 		} else {
 			limit = 25;
@@ -634,7 +634,7 @@ void GeneralEnemyMgr::allocateEnemys(u8 type, int heapSize)
 		if (gameSystem) {
 			if (gameSystem->isChallengeMode()) {
 				m_heapSize = 0x00177000;
-			} else if (gameSystem->m_mode == GSM_VERSUS_MODE) {
+			} else if (gameSystem->isVersusMode()) {
 				m_heapSize = 0x001C2000;
 			}
 		}

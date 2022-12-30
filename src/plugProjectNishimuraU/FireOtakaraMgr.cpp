@@ -53,7 +53,7 @@ void Mgr::loadTexData()
 	LoadResource::Arg loadArg(cOtakaraChangeTexName);
 	LoadResource::Node* resource = gLoadResourceMgr->load(loadArg);
 	if (resource) {
-		m_changeTexture = static_cast<ResTIMG*>(resource->_30);
+		m_changeTexture = static_cast<ResTIMG*>(resource->m_file);
 	}
 	P2ASSERTLINE(83, m_changeTexture);
 }

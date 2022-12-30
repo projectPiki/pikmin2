@@ -35,7 +35,7 @@ void BlueKochappy::Mgr::loadTexData()
 {
 	LoadResource::ArgAramOnly loadArg(cKochappyChangeTexName);
 	LoadResource::Node* resource = gLoadResourceMgr->load(loadArg);
-	m_changeTexture              = static_cast<ResTIMG*>(resource->_30);
+	m_changeTexture              = static_cast<ResTIMG*>(resource->m_file);
 }
 
 } // namespace BlueKochappy

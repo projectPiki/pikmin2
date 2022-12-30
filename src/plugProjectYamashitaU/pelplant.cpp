@@ -67,7 +67,7 @@ void Obj::birth(Vector3f& position, float faceDir)
 		Farm::farmMgr->addPlant(this);
 	}
 
-	if (gameSystem->m_mode == GSM_VERSUS_MODE) {
+	if (gameSystem->isVersusMode()) {
 		m_fsm->start(this, PELPLANT_Grow2, nullptr);
 	} else {
 		m_fsm->start(this, PELPLANT_WaitSmall, nullptr);

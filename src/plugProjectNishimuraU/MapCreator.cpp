@@ -18,7 +18,7 @@ void RoomMapMgr::nishimuraCreateRandomMap(MapUnitInterface* muiArray, int p2, Ca
                                           Cave::EditMapUnit* unit)
 {
 	bool isVersusHiba = false;
-	if (gameSystem && gameSystem->m_mode == GSM_VERSUS_MODE && gGameConfig.m_parms.m_vsHiba.m_data) {
+	if (gameSystem && gameSystem->isVersusMode() && gGameConfig.m_parms.m_vsHiba.m_data) {
 		isVersusHiba = true;
 	}
 

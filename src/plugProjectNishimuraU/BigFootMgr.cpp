@@ -72,7 +72,7 @@ void Mgr::loadTexData()
 	LoadResource::Arg loadArgBrk(cMatAnimBrkTexName);
 	LoadResource::Node* resourceBrk = gLoadResourceMgr->load(loadArgBrk);
 	if (resourceBrk) {
-		brkFile = resourceBrk->_30;
+		brkFile = resourceBrk->m_file;
 	}
 	P2ASSERTLINE(108, brkFile);
 

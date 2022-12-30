@@ -80,7 +80,7 @@ void LoadState::exec(SingleGameSection* gs)
 			dispFloor.m_sublevel = gs->m_currentFloor + 1;
 			dispFloor.m_caveID   = gs->_190;
 			Screen::gGame2DMgr->open_Floor(dispFloor);
-			gameSystem->m_inCave = true;
+			gameSystem->m_isInCave = true;
 
 		} else {
 			int courseIdx = gs->m_currentCourseInfo->m_courseIndex;
@@ -88,8 +88,8 @@ void LoadState::exec(SingleGameSection* gs)
 			dispCourseName.m_courseIndex = courseIdx;
 
 			Screen::gGame2DMgr->open_CourseName(dispCourseName);
-			gs->m_inCave         = false;
-			gameSystem->m_inCave = false;
+			gs->m_inCave           = false;
+			gameSystem->m_isInCave = false;
 		}
 
 		GameStat::clear();

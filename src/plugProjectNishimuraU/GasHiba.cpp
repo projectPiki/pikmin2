@@ -213,7 +213,7 @@ void Obj::setInitLivingThing()
 		m_bridge       = nullptr;
 		m_gate         = nullptr;
 
-		if (gameSystem != nullptr && !gameSystem->m_inCave && gameSystem->m_mode == GSM_STORY_MODE) {
+		if (gameSystem != nullptr && !gameSystem->m_isInCave && gameSystem->m_mode == GSM_STORY_MODE) {
 			if (ItemBridge::mgr != nullptr) {
 				Iterator<BaseItem> bridgeIter(ItemBridge::mgr);
 
@@ -335,7 +335,7 @@ void Obj::createEffect() { m_efxGas = new efx::TGasuHiba; }
 void Obj::startGasEffect()
 {
 	bool underground = false;
-	if ((gameSystem) && (!gameSystem->m_inCave)) {
+	if ((gameSystem) && (!gameSystem->m_isInCave)) {
 		underground = true;
 	}
 	efx::ArgGasuHiba arg(m_position);

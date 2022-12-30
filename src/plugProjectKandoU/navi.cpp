@@ -897,7 +897,7 @@ void Navi::setupNukuAdjustArg(Game::ItemPikihead::Item* item, Game::NaviNukuAdju
  */
 bool Navi::hasDope(int sprayType)
 {
-	if (gameSystem->m_mode == GSM_VERSUS_MODE) {
+	if (gameSystem->isVersusMode()) {
 		return (m_sprayCounts[sprayType] > 0); // signed to generate andc
 	} else {
 		return playData->hasDope(sprayType);
@@ -911,7 +911,7 @@ bool Navi::hasDope(int sprayType)
  */
 int Navi::getDopeCount(int sprayType)
 {
-	if (gameSystem->m_mode == GSM_VERSUS_MODE) {
+	if (gameSystem->isVersusMode()) {
 		return (m_sprayCounts[sprayType]);
 	} else {
 		return playData->getDopeCount(sprayType);
@@ -925,7 +925,7 @@ int Navi::getDopeCount(int sprayType)
  */
 void Navi::useDope(int sprayType)
 {
-	if (gameSystem->m_mode == GSM_VERSUS_MODE) {
+	if (gameSystem->isVersusMode()) {
 		(m_sprayCounts[sprayType]--);
 	} else {
 		playData->useDope(sprayType);

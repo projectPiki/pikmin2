@@ -451,7 +451,7 @@ bool InteractSuckDone::actOnyon(Onyon* item)
 		}
 	}
 
-	if (gameSystem->m_mode == GSM_VERSUS_MODE) {
+	if (gameSystem->isVersusMode()) {
 		const char* peltnames[2] = { VsOtakaraName::cBedamaRed, VsOtakaraName::cBedamaBlue };
 
 		for (int i = 0; i < 2; i++) {
@@ -495,7 +495,7 @@ bool InteractSuckDone::actOnyon(Onyon* item)
 	if (gameSystem->m_mode != GSM_VERSUS_MODE) {
 		int money = pellet->getPokoValue();
 
-		if (gameSystem->m_inCave) {
+		if (gameSystem->m_isInCave) {
 			playData->m_cavePokoCount += money;
 		} else {
 			gameSystem->m_section->_PADDING00 += money;
@@ -663,7 +663,7 @@ void Onyon::onSetPosition(void)
 		m_goalWayPoint = nullptr;
 	}
 
-	if (gameSystem->m_mode == GSM_VERSUS_MODE) {
+	if (gameSystem->isVersusMode()) {
 		setSpotEffect(true);
 	} else {
 		setSpotEffect(false);
@@ -1181,7 +1181,7 @@ void Onyon::onKeyEvent(const SysShape::KeyEvent& event)
  */
 void Onyon::vsChargePikmin()
 {
-	P2ASSERTLINE(1791, gameSystem->m_mode == GSM_VERSUS_MODE);
+	P2ASSERTLINE(1791, gameSystem->isVersusMode());
 	m_pikminType = m_onyonType;
 	m_toBirth++;
 	SysShape::AnimInfo* info = m_animator.m_animInfo;
@@ -1240,7 +1240,7 @@ void Onyon::onKeyEvent_Onyon(SysShape::KeyEvent const& event)
 					}
 
 					for (int i = 0; i < shootcount; i++) {
-						if (gameSystem && gameSystem->m_mode == GSM_VERSUS_MODE) {
+						if (gameSystem && gameSystem->isVersusMode()) {
 							// versus mode onion counts
 							int reds  = GameStat::getMapPikmins(Red);
 							int blues = GameStat::getMapPikmins(Blue);
@@ -1268,7 +1268,7 @@ void Onyon::onKeyEvent_Onyon(SysShape::KeyEvent const& event)
 
 								// if wild pikmin exist, play 95 pikmin CS, otherwise play 100 pikmin CS
 								char* movieName = (GameStat::zikatuPikis > 0) ? (char*)"g16_95_pikmin" : (char*)"g16_100_pikmin";
-								MoviePlayArg arg(movieName, nullptr, gameSystem->m_section->_C8, 0);
+								MoviePlayArg arg(movieName, nullptr, gameSystem->m_section->m_movieFinishCallback, 0);
 								arg.m_origin = getPosition();
 								arg.m_angle  = getFaceDir();
 								movie_begin(0);
@@ -1320,7 +1320,7 @@ void Onyon::doEmit(Creature* seed, bool isSetAngle)
 	}
 
 	f32 angle;
-	if (gameSystem->m_mode == GSM_VERSUS_MODE) {
+	if (gameSystem->isVersusMode()) {
 		angle = roundAng((HALF_PI * randFloat() - QUARTER_PI) + getFaceDir());
 
 	} else if (isSetAngle) {
@@ -2229,7 +2229,7 @@ void ItemOnyon::Mgr::load()
 	m_modelData[0] = J3DModelLoaderDataBase::load(file, 0x240000);
 
 	JKRArchive* podarc = nullptr;
-	if ((gameSystem->isChallengeMode() || gameSystem->m_inCave) && gameSystem->m_mode != GSM_VERSUS_MODE) {
+	if ((gameSystem->isChallengeMode() || gameSystem->m_isInCave) && gameSystem->m_mode != GSM_VERSUS_MODE) {
 		LoadResource::Arg loadpodarg(playData->isStoryFlag(STORY_DebtPaid) ? "user/Kando/pod_gold/arc.szs" : "user/Kando/pod/arc.szs");
 		loadpodarg.m_heap = getCurrentHeap();
 		node              = gLoadResourceMgr->mountArchive(loadpodarg);
@@ -2271,7 +2271,7 @@ void ItemOnyon::Mgr::load()
 	m_collFactories[ONYON_OBJECT_ONYON] = CollPartFactory::load(onyontextarc, "onyonColl.txt");
 	closeTextArc(onyontextarc);
 
-	if ((gameSystem->isChallengeMode() || gameSystem->m_inCave) && gameSystem->m_mode != GSM_VERSUS_MODE) {
+	if ((gameSystem->isChallengeMode() || gameSystem->m_isInCave) && gameSystem->m_mode != GSM_VERSUS_MODE) {
 		if (playData->m_storyFlags & STORY_DebtPaid) {
 			m_objectPathComponent = "user/Kando/pod_gold";
 		} else {

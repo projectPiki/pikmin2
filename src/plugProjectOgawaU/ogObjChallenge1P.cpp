@@ -71,9 +71,9 @@ void ObjChallenge1P::doCreate(JKRArchive* arc)
 	m_pikiCounter->setCallBack(arc);
 
 	m_doping->setDopingEnable(true, true);
-	og::Screen::CallBack_CounterRV* counter = og::Screen::setCallBack_CounterRV(m_pokoScreen, 'Ppoko1', &m_disp->m_pokos, 6, 1, 1, arc);
+	og::Screen::CallBack_CounterRV* counter = og::Screen::setCallBack_CounterRV(m_pokoScreen, 'Ppoko1', &m_disp->m_pokoCount, 6, 1, 1, arc);
 	counter->m_scaleUpSoundID               = PSSE_SY_REGI_SUM_UP;
-	og::Screen::setCallBack_CounterRV(m_pokoScreen, 'PdeadP1', &m_disp->m_deadPiki, 6, 1, 1, arc);
+	og::Screen::setCallBack_CounterRV(m_pokoScreen, 'PdeadP1', &m_disp->m_deadPikiCount, 6, 1, 1, arc);
 	m_timeLeftInt = m_timeLeft;
 	counter       = og::Screen::setCallBack_CounterRV(m_pokoScreen, 'Ptime1', &m_timeLeftInt, 6, 1, 1, arc);
 	counter->setCenteringMode(og::Screen::CallBack_CounterRV::ECM_Unknown1);
@@ -136,7 +136,7 @@ void ObjChallenge1P::commonUpdate()
 {
 	og::Screen::DispMemberChallenge1P* disp = m_disp;
 	if (disp) {
-		updateTimer(disp->_5C, disp->_60);
+		updateTimer(disp->m_timeLimit, disp->m_floorExtendTimer);
 		m_doping->setParam(m_disp->m_olimarData);
 		disp = m_disp;
 		if (disp->m_olimarData.m_activeNaviID) {

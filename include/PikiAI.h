@@ -568,6 +568,10 @@ struct ActFormationInitArg : public CreatureActionArg {
 	u8 _09;   // _09
 };
 
+#define FORMATION_SORT_NONE    (0)
+#define FORMATION_SORT_FORMED  (1)
+#define FORMATION_SORT_STARTED (2)
+
 struct ActFormation : public Action, virtual Game::SlotChangeListener, virtual SysShape::MotionListener {
 	ActFormation(Game::Piki* p);
 
@@ -592,13 +596,13 @@ struct ActFormation : public Action, virtual Game::SlotChangeListener, virtual S
 	Game::Navi* m_navi;            // _14
 	ActFormationInitArg m_initArg; // _18
 	int m_nextAIType;              // _24
-	u16 _28;                       // _28
+	u16 m_sortState;               // _28, use FORMATION_SORT_ enum
 	u16 _2A;                       // _2A
 	u16 _2C;                       // _2C
 	u16 _2E;                       // _2E
 	u8 _30;                        // _30
 	u8 _31;                        // _31
-	int m_formationSlotID;         // _34
+	int m_slotID;                  // _34
 	u8 _38;                        // _38
 	u32 _3C;                       // _3C, unknown
 	u8 _40;                        // _40
@@ -619,9 +623,9 @@ struct ActFreeArg : public ActionArg {
 	virtual char* getName(); // _08 (weak)
 
 	// _00 = VTBL
-	u8 _04;       // _04
-	Vector3f _08; // _08
-	f32 _14;      // _14
+	u8 m_toGather;          // _04
+	Vector3f m_destination; // _08
+	f32 _14;                // _14
 };
 
 #define PIKIAI_FREE_DEFAULT 0
@@ -651,17 +655,17 @@ struct ActFree : public Action, virtual SysShape::MotionListener {
 struct GatherActionArg : public ActionArg {
 	inline GatherActionArg(ActFreeArg* arg)
 	{
-		_04.x = arg->_08.x;
-		_04.y = arg->_08.y;
-		_04.z = arg->_08.z;
-		_10   = arg->_14;
+		m_destination.x = arg->m_destination.x;
+		m_destination.y = arg->m_destination.y;
+		m_destination.z = arg->m_destination.z;
+		_10             = arg->_14;
 	}
 
 	virtual char* getName(); // _08 (weak)
 
 	// _00 = VTBL
-	Vector3f _04; // _04
-	f32 _10;      // _10
+	Vector3f m_destination; // _04
+	f32 _10;                // _10
 };
 
 struct ActGather : public Action {

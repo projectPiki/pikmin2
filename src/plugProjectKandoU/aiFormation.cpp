@@ -25,10 +25,10 @@ ActFormation::ActFormation(Game::Piki* p)
     : Action(p)
     , m_initArg(nullptr, 0)
 {
-	m_name            = "Formation";
-	m_cPlate          = nullptr;
-	m_formationSlotID = -1;
-	m_navi            = nullptr;
+	m_name   = "Formation";
+	m_cPlate = nullptr;
+	m_slotID = -1;
+	m_navi   = nullptr;
 }
 
 /*
@@ -36,14 +36,14 @@ ActFormation::ActFormation(Game::Piki* p)
  * Address:	8019CE68
  * Size:	000008
  */
-void ActFormation::inform(int slotID) { m_formationSlotID = slotID; }
+void ActFormation::inform(int slotID) { m_slotID = slotID; }
 
 /*
  * --INFO--
  * Address:	8019CE70
  * Size:	00000C
  */
-void ActFormation::startSort() { _28 = 2; }
+void ActFormation::startSort() { m_sortState = 2; }
 
 /*
  * --INFO--
@@ -74,7 +74,7 @@ void ActFormation::init(ActionArg* initArg)
 	bool initCheck       = formationArg->_08;
 
 	if (!initNavi) {
-		m_formationSlotID = -1;
+		m_slotID = -1;
 		return;
 	}
 
@@ -84,21 +84,21 @@ void ActFormation::init(ActionArg* initArg)
 	_60 = false;
 	_61 = false;
 
-	m_cPlate          = initNavi->m_cPlateMgr;
-	m_formationSlotID = m_cPlate->getSlot(m_parent, this, initCheck);
-	if (m_formationSlotID == -1 && initCheck) {
+	m_cPlate = initNavi->m_cPlateMgr;
+	m_slotID = m_cPlate->getSlot(m_parent, this, initCheck);
+	if (m_slotID == -1 && initCheck) {
 		JUT_PANICLINE(330, "slot id is -1");
 	}
 
 	m_parent->startMotion(Game::IPikiAnims::RUN2, Game::IPikiAnims::RUN2, nullptr, nullptr);
 
-	_30 = 0;
-	_31 = 0;
-	_28 = 0;
-	_4C = 0;
-	_50 = 0.0f;
-	_54 = 0;
-	_3C = 0;
+	_30         = 0;
+	_31         = 0;
+	m_sortState = 0;
+	_4C         = 0;
+	_50         = 0.0f;
+	_54         = 0;
+	_3C         = 0;
 
 	m_parent->setPastel(false);
 	_40 = 0;
@@ -118,7 +118,7 @@ void ActFormation::wallCallback(Vector3f&)
 		_40++;
 	}
 
-	if (_40 > 8 && _28 != 1) {
+	if (_40 > 8 && m_sortState != 1) {
 		_40 = 0;
 	}
 
@@ -134,7 +134,7 @@ void ActFormation::wallCallback(Vector3f&)
  */
 void ActFormation::setFormed()
 {
-	_28 = 1;
+	m_sortState = 1;
 
 	// if Meet Red Pikmin cutscene hasn't played, play it.
 	if (!Game::playData->isDemoFlag(Game::DEMO_Meet_Red_Pikmin)) {
@@ -173,7 +173,7 @@ void ActFormation::setFormed()
 	    c) reds-purples cutscene hasn't played, and
 	    d) purples in ship cutscene HAS played
 	*/
-	if (!Game::gameSystem->m_inCave && Game::gameSystem->m_flags & 0x20 && !Game::playData->isDemoFlag(Game::DEMO_Reds_Purples_Tutorial)
+	if (!Game::gameSystem->m_isInCave && Game::gameSystem->m_flags & 0x20 && !Game::playData->isDemoFlag(Game::DEMO_Reds_Purples_Tutorial)
 	    && Game::playData->isDemoFlag(Game::DEMO_Purples_In_Ship)) {
 		Game::GameStat::checkNaviIndex(index); // check navi index is between 0 and 6 otherwise panic (?)
 		Game::GameStat::PikiCounter* counter = &Game::GameStat::formationPikis.m_counter[index]; // get squad numbers
@@ -219,8 +219,8 @@ void ActFormation::onKeyEvent(SysShape::KeyEvent const& keyEvent)
 		if (_54) {
 			_4C--;
 			if (_4C <= 0) {
-				m_parent->m_animator.m_selfAnimator.m_flags |= 0x2;
-				m_parent->m_animator.m_boundAnimator.m_flags |= 0x2;
+				m_parent->m_animator.m_selfAnimator.m_flags |= EANIM_FLAG_FINISHED;
+				m_parent->m_animator.m_boundAnimator.m_flags |= EANIM_FLAG_FINISHED;
 			}
 		}
 		break;
@@ -250,12 +250,12 @@ void ActFormation::cleanup()
 	Game::GameStat::formationPikis.dec(m_parent);
 	m_parent->m_navi = currNavi;
 
-	if (m_formationSlotID != -1) {
-		m_cPlate->releaseSlot(m_parent, m_formationSlotID);
+	if (m_slotID != -1) {
+		m_cPlate->releaseSlot(m_parent, m_slotID);
 	}
 
-	m_cPlate          = nullptr;
-	m_formationSlotID = -1;
+	m_cPlate = nullptr;
+	m_slotID = -1;
 }
 
 /*
@@ -1948,16 +1948,16 @@ lbl_8019ED1C:
  */
 void ActFormation::collisionCallback(Game::Piki* p, Game::CollEvent& collEvent)
 {
-	bool commandCheck = false;
-	Game::Navi* navi  = p->m_navi;
+	bool isBeingCommanded = false;
+	Game::Navi* navi      = p->m_navi;
 	if (navi) {
-		commandCheck = navi->commandOn();
+		isBeingCommanded = navi->commandOn();
 		if (_38) {
-			commandCheck = false;
+			isBeingCommanded = false;
 		}
 	}
 
-	p->invokeAI(&collEvent, commandCheck);
+	p->invokeAI(&collEvent, isBeingCommanded);
 }
 
 /*

@@ -961,7 +961,7 @@ bool ItemHole::Item::interactGotKey(Game::InteractGotKey& interaction)
 		arg.m_origin                = getPosition();
 		arg.m_angle                 = getFaceDir();
 		arg._10                     = gameSystem->m_section->_CC;
-		arg._0C                     = gameSystem->m_section->_C8;
+		arg._0C                     = gameSystem->m_section->m_movieFinishCallback;
 		moviePlayer->m_targetObject = this;
 		moviePlayer->play(arg);
 		return true;

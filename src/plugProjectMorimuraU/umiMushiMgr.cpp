@@ -59,7 +59,7 @@ void Mgr::loadTexData()
 	LoadResource::Arg loadArgBtk("/enemy/data/UmiMushi/umimusi_model1.btk");
 	LoadResource::Node* resourceBtk = gLoadResourceMgr->load(loadArgBtk);
 	if (resourceBtk) {
-		btkFile = resourceBtk->_30;
+		btkFile = resourceBtk->m_file;
 	}
 	P2ASSERTLINE(91, btkFile);
 

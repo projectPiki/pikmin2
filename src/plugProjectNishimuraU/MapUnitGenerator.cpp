@@ -38,7 +38,7 @@ MapUnitGenerator::MapUnitGenerator(MapUnitInterface* interface, int p1, FloorInf
 		m_hasEscapeFountain = false;
 	}
 
-	if ((gameSystem) && (gameSystem->m_mode == GSM_VERSUS_MODE)) {
+	if ((gameSystem) && (gameSystem->isVersusMode())) {
 		m_isVersusMode = true;
 	} else {
 		m_isVersusMode = false;

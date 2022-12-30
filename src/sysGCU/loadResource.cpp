@@ -155,7 +155,7 @@ void LoadResource::Node::dump()
  * Size:	000044
  */
 LoadResource::Arg::Arg(char const* p1)
-    : _00(p1)
+    : m_path(p1)
     , _04(nullptr)
     , _08(0)
     , _0C(0)
@@ -289,7 +289,7 @@ LoadResource::Node* LoadResource::Mgr::mountArchive(LoadResource::Arg& arg)
 	Node* node = load(arg);
 	if (node) {
 		JKRArchive::EMountDirection mountDirection = JKRArchive::EMD_Unk2;
-		void* v1                                   = node->_30;
+		void* v1                                   = node->m_file;
 		JKRHeap* heap                              = arg.m_heap;
 		if (arg._1C == 1) {
 			mountDirection = JKRArchive::EMD_Unk1;

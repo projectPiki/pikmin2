@@ -1134,7 +1134,7 @@ void ObjVs::setOnOffBdama(bool doEfx)
 		m_pane_windama1P[i]->updateScale(scale3);
 		m_pane_windama2P[i]->updateScale(scale4);
 
-		if (m_disp->m_flags[0] && m_disp->m_P1Bedamas == i && m_bedamaGetTimer > 0.0f) {
+		if (m_disp->m_flags[0] && m_disp->m_marbleCountP1 == i && m_bedamaGetTimer > 0.0f) {
 			m_bedamaGetTimer -= sys->m_deltaTime;
 			if (m_bedamaGetTimer <= 0.0f) {
 				m_pane_windama1P[i]->show();
@@ -1156,7 +1156,7 @@ void ObjVs::setOnOffBdama(bool doEfx)
 			}
 		}
 
-		if (m_disp->m_flags[1] && m_disp->m_P2Bedamas == i && m_bedamaGetTimer > 0.0f) {
+		if (m_disp->m_flags[1] && m_disp->m_marbleCountP2 == i && m_bedamaGetTimer > 0.0f) {
 			m_bedamaGetTimer -= sys->m_deltaTime;
 			if (m_bedamaGetTimer <= 0.0f) {
 				m_pane_windama2P[i]->show();
@@ -1179,7 +1179,7 @@ void ObjVs::setOnOffBdama(bool doEfx)
 		}
 
 		if (!m_firstBedamaGetP1 && !m_firstBedamaGetP2) {
-			if (m_disp->m_P1Bedamas > i) {
+			if (m_disp->m_marbleCountP1 > i) {
 				m_pane_nodama1P[i]->hide();
 				m_pane_bedama1P[i]->show();
 				m_pane_bedama1P[i]->updateScale(scale1);
@@ -1209,7 +1209,7 @@ void ObjVs::setOnOffBdama(bool doEfx)
 				m_bedamaGotFlagsP1[i] = false;
 			}
 
-			if (m_disp->m_P2Bedamas > i) {
+			if (m_disp->m_marbleCountP2 > i) {
 				m_pane_nodama2P[i]->hide();
 				m_pane_bedama2P[i]->show();
 				m_pane_bedama2P[i]->updateScale(scale1);
@@ -2233,7 +2233,7 @@ void ObjVs::checkObake()
 		if (m_alphaObakeP1 > 1.0f)
 			m_alphaObakeP1 = 1.0f;
 
-		if (m_disp->m_obakeTimerP1 <= 0.0f) {
+		if (m_disp->m_ghostIconTimerP1 <= 0.0f) {
 			m_obakeEnabledP1 = false;
 		}
 	} else {
@@ -2251,7 +2251,7 @@ void ObjVs::checkObake()
 		if (m_alphaObakeP2 > 1.0f)
 			m_alphaObakeP2 = 1.0f;
 
-		if (m_disp->m_obakeTimerP2 <= 0.0f) {
+		if (m_disp->m_ghostIconTimerP2 <= 0.0f) {
 			m_obakeEnabledP2 = false;
 		}
 	} else {
@@ -2273,7 +2273,7 @@ void ObjVs::checkObake()
 	if (!m_obakeEnabledP1) {
 		angle1 = 0.0f;
 	} else {
-		f32 temp = m_disp->m_obakeTimerP1;
+		f32 temp = m_disp->m_ghostIconTimerP1;
 		angle1   = 1.0f;
 		if (temp < 10.0f) {
 			angle1 = temp / 10.0f;
@@ -2284,7 +2284,7 @@ void ObjVs::checkObake()
 	if (!m_obakeEnabledP2) {
 		angle2 = 0.0f;
 	} else {
-		f32 temp = m_disp->m_obakeTimerP2;
+		f32 temp = m_disp->m_ghostIconTimerP2;
 		angle2   = 1.0f;
 		if (temp < 10.0f) {
 			angle2 = temp / 10.0f;

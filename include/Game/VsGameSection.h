@@ -98,13 +98,13 @@ struct VsGameSection : public BaseGameSection {
 	StateMachine<Game::VsGameSection>* m_fsm;       // _17C
 	VsGame::State* m_state;                         // _180
 	DvdThreadCommand m_dvdThreadCommand;            // _184
-	f32 _1F0[2];                                    // _1F0
+	f32 m_ghostIconTimers[2];                       // _1F0
 	u8 m_menuFlags;                                 // _1F8
 	struct ItemHole::Item* m_hole;                  // _1FC
 	struct ItemBigFountain::Item* m_fountain;       // _200
 	bool m_isMenuRunning;                           // _204
 	bool _205;                                      // _205
-	int _208;                                       // _208 - pikmin spawn queue
+	int m_deadPikiCount;                            // _208 - pikmin spawn queue
 	ChallengeGame::StageList* m_challengeStageList; // _20C
 	VsGame::StageList* m_VsStageList;               // _210
 	PikiContainer m_container1;                     // _214
@@ -140,8 +140,8 @@ struct VsGameSection : public BaseGameSection {
 	f32 m_spawnTimer;                               // _3C8
 	int m_maxCherries;                              // _3CC
 	Pellet** m_cherryArray;                         // _3D0
-	int _3D4;                                       // _3D4
-	int _3D8;                                       // _3D8
+	int m_marbleCountP1;                            // _3D4
+	int m_marbleCountP2;                            // _3D8
 	int m_yellowMarbleCounts[2];                    // _3DC
 };
 } // namespace Game

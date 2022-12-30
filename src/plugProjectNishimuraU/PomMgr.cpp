@@ -31,7 +31,7 @@ Mgr::Mgr(int objLimit, u8 modelType)
  */
 EnemyBase* Mgr::birth(EnemyBirthArg& birthArg)
 {
-	if (gameSystem && gameSystem->m_inCave && gameSystem->m_mode == GSM_STORY_MODE) {
+	if (gameSystem && gameSystem->m_isInCave && gameSystem->m_mode == GSM_STORY_MODE) {
 		GameSystem* gs = gameSystem;
 
 		if (birthArg.m_typeID == EnemyTypeID::EnemyID_BlackPom) { // PURPLE CANDYPOP

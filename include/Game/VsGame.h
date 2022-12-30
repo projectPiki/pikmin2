@@ -259,11 +259,11 @@ struct GameState : public State {
 
 	inline void updateNavi(VsGameSection* section, int naviIndex)
 	{
-		if (section->_1F0[naviIndex] > 0.0f) {
-			section->_1F0[naviIndex] -= sys->m_deltaTime;
+		if (section->m_ghostIconTimers[naviIndex] > 0.0f) {
+			section->m_ghostIconTimers[naviIndex] -= sys->m_deltaTime;
 
 			Navi* navi = naviMgr->getAt(naviIndex);
-			if (navi && section->_1F0[naviIndex] <= 0.0f) {
+			if (navi && section->m_ghostIconTimers[naviIndex] <= 0.0f) {
 				efx::TNaviEffect* naviEffect = navi->m_effectsObj;
 
 				if (naviEffect->isFlag(efx::NAVIFX_IsSaved)) {
@@ -307,19 +307,19 @@ struct GameState : public State {
 
 	inline void setLoseCause(BitFlag<u8>& player, u32 flag) { player.typeView |= flag; }
 
-	inline bool isLoseMarble(bool& redMarble, bool& blueMarble)
+	inline bool getMarbleLoss(bool& loseRed, bool& loseBlue)
 	{
 		bool moviePlayerActive = moviePlayer->m_flags & MoviePlayer::IS_ACTIVE;
 
-		redMarble  = false;
-		blueMarble = false;
+		loseRed  = false;
+		loseBlue = false;
 
 		if (!moviePlayerActive && isLoseCause(VSPLAYER_Blue, VSLOSE_Marble)) {
-			redMarble = true;
+			loseRed = true;
 		}
 
 		if (!moviePlayerActive && isLoseCause(VSPLAYER_Red, VSLOSE_Marble)) {
-			blueMarble = true;
+			loseBlue = true;
 		}
 	}
 

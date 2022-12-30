@@ -912,7 +912,7 @@ void Obj::generatorKill()
  */
 void Obj::setVersusHibaOnOff()
 {
-	if ((gameSystem && gameSystem->m_mode == GSM_VERSUS_MODE) && (Cave::randMapMgr && Cave::randMapMgr->isVersusHiba())) {
+	if ((gameSystem && gameSystem->isVersusMode()) && (Cave::randMapMgr && Cave::randMapMgr->isVersusHiba())) {
 		_2F4 = true;
 		return;
 	}

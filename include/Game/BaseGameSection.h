@@ -204,56 +204,56 @@ struct BaseGameSection : public BaseHIOSection {
 	// _00 		= VTBL
 	// _00-_48 	= BaseHIOSection
 	// should there not be another 0x4 here in USA (not demo)? ...
-	u32 _PADDING00;                                       // STRUCTURE SIZE IS WRONG BY 8 BYTES!
-	u32 _PADDING01;                                       // STRUCTURE SIZE IS WRONG BY 8 BYTES!
-	BlendCamera* m_blendCamera;                           // _50
-	f32 m_blendFactor;                                    // _54
-	bool m_isBlendCameraActive;                           // _58
-	DvdThreadCommand m_dvdThreadCommand;                  // _5C
-	IDelegate3<MovieConfig*, u32, u32>* _C8;              // _C8
-	IDelegate3<MovieConfig*, void*, u32>* _CC;            // _CC
-	BlackFader* m_blackFader;                             // _D0
-	WipeInFader* m_wipeInFader;                           // _D4
-	WipeOutFader* m_wipeOutFader;                         // _D8
-	WipeOutInFader* m_wipeOutInFader;                     // _DC
-	u32 _E0;                                              // _E0
-	int m_prevNaviIdx;                                    // _E4
-	f32 m_secondViewportHeight;                           // _E8
-	f32 m_split;                                          // _EC
-	u8 m_setSplit;                                        // _F0
-	JUTTexture* m_mizuTexture;                            // _F4
-	TreasureLight::Mgr* m_treasureLightMgr;               // _F8
-	JKRHeap* m_theExpHeap;                                // _FC
-	JKRHeap* _100;                                        // _100
-	PlayCamera* _104;                                     // _104
-	PlayCamera* _108;                                     // _108
-	Controller* _10C;                                     // _10C
-	Controller* _110;                                     // _110
-	int m_playerMode;                                     // _114
-	HorizonalSplitter* m_splitter;                        // _118
-	u8 _11C;                                              // _11C
-	int _120;                                             // _120
-	u32 _124;                                             // _124
-	GameLightMgr* m_lightMgr;                             // _128
-	Sys::DrawBuffers* _12C;                               // _12C
-	Sys::DrawBuffers* _130;                               // _130
-	int m_treasureGetState;                               // _134
-	Viewport* m_treasureGetViewport;                      // _138
-	Creature* m_draw2DCreature;                           // _13C
-	f32 m_draw2DCreatureScale;                            // _140
-	f32 _144;                                             // _144
-	Delegate1<BaseGameSection, Rectf&>* m_kanteiDelegate; // _148
-	ZoomCamera* m_treasureZoomCamera;                     // _14C
-	u32 _150;                                             // _150
-	JUTTexture* m_xfbImage;                               // _154
-	JUTTexture* m_fbTexture;                              // _158
-	int m_xfbTexture1;                                    // _15C
-	int m_xfbTexture2;                                    // _160
-	u8 m_xfbFlags;                                        // _164
-	JUTTexture* _168;                                     // _168
-	int m_texData1;                                       // _16C
-	int _170;                                             // _170
-	                                                      // u8 _174[0xA0];                                        // _174
+	u32 _PADDING00;                                            // STRUCTURE SIZE IS WRONG BY 8 BYTES!
+	u32 _PADDING01;                                            // STRUCTURE SIZE IS WRONG BY 8 BYTES!
+	BlendCamera* m_blendCamera;                                // _50
+	f32 m_blendFactor;                                         // _54
+	bool m_isBlendCameraActive;                                // _58
+	DvdThreadCommand m_dvdThreadCommand;                       // _5C
+	IDelegate3<MovieConfig*, u32, u32>* m_movieFinishCallback; // _C8
+	IDelegate3<MovieConfig*, void*, u32>* _CC;                 // _CC
+	BlackFader* m_blackFader;                                  // _D0
+	WipeInFader* m_wipeInFader;                                // _D4
+	WipeOutFader* m_wipeOutFader;                              // _D8
+	WipeOutInFader* m_wipeOutInFader;                          // _DC
+	u32 _E0;                                                   // _E0
+	int m_prevNaviIdx;                                         // _E4
+	f32 m_secondViewportHeight;                                // _E8
+	f32 m_split;                                               // _EC
+	u8 m_setSplit;                                             // _F0
+	JUTTexture* m_mizuTexture;                                 // _F4
+	TreasureLight::Mgr* m_treasureLightMgr;                    // _F8
+	JKRHeap* m_theExpHeap;                                     // _FC
+	JKRHeap* _100;                                             // _100
+	PlayCamera* m_olimarCamera;                                // _104
+	PlayCamera* m_louieCamera;                                 // _108
+	Controller* _10C;                                          // _10C
+	Controller* _110;                                          // _110
+	int m_playerMode;                                          // _114
+	HorizonalSplitter* m_splitter;                             // _118
+	u8 _11C;                                                   // _11C
+	int _120;                                                  // _120
+	u32 _124;                                                  // _124
+	GameLightMgr* m_lightMgr;                                  // _128
+	Sys::DrawBuffers* _12C;                                    // _12C
+	Sys::DrawBuffers* _130;                                    // _130
+	int m_treasureGetState;                                    // _134
+	Viewport* m_treasureGetViewport;                           // _138
+	Creature* m_draw2DCreature;                                // _13C
+	f32 m_draw2DCreatureScale;                                 // _140
+	f32 _144;                                                  // _144
+	Delegate1<BaseGameSection, Rectf&>* m_kanteiDelegate;      // _148
+	ZoomCamera* m_treasureZoomCamera;                          // _14C
+	u32 _150;                                                  // _150
+	JUTTexture* m_xfbImage;                                    // _154
+	JUTTexture* m_fbTexture;                                   // _158
+	int m_xfbTexture1;                                         // _15C
+	int m_xfbTexture2;                                         // _160
+	u8 m_xfbFlags;                                             // _164
+	JUTTexture* _168;                                          // _168
+	int m_texData1;                                            // _16C
+	int _170;                                                  // _170
+	                                                           // u8 _174[0xA0];                                        // _174
 // not sure where this goes, but it goes after m_texData1 and before m_container1 (VsGameSection).
 #if BUILDTARGET == USADEMO1
 	u8 _DemoPadding3[0x4];

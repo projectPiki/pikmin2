@@ -47,10 +47,10 @@ TitleState::TitleState()
 void TitleState::init(VsGameSection* section, StateArg* arg)
 {
 	naviMgr->clearDeadCount();
-	section->_1F0[1]     = 0.0f;
-	section->_1F0[0]     = 0.0f;
-	section->m_pokoCount = 0;
-	section->m_timeLimit = 0.0f;
+	section->m_ghostIconTimers[1] = 0.0f;
+	section->m_ghostIconTimers[0] = 0.0f;
+	section->m_pokoCount          = 0;
+	section->m_timeLimit          = 0.0f;
 	section->clearGetDopeCount();
 	section->clearGetCherryCount();
 	section->m_currentFloor = 0;
@@ -60,10 +60,10 @@ void TitleState::init(VsGameSection* section, StateArg* arg)
 		section->clearHeap();
 	}
 
-	section->_205 = true;
-	section->_208 = false;
-	m_heap        = nullptr;
-	m_expHeap     = nullptr;
+	section->_205            = true;
+	section->m_deadPikiCount = false;
+	m_heap                   = nullptr;
+	m_expHeap                = nullptr;
 
 	m_titleStage = VSTITLE_PrepareInfo;
 	_2C          = 0;
@@ -171,7 +171,7 @@ void TitleState::dvdload()
  */
 void TitleState::exec(VsGameSection* section)
 {
-	if (gameSystem->m_mode == GSM_VERSUS_MODE) {
+	if (gameSystem->isVersusMode()) {
 		execVs(section);
 	} else {
 		execChallenge(section);

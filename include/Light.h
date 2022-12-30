@@ -37,37 +37,20 @@ struct LightObj : public CNode {
 	virtual void drawPos(Graphics&, Camera&);  // _20
 
 	// _00 VTBL
-	u8 m_lightID;         // _18
+	u8 m_lightID;         // _18, GXLightID
 	u8 m_typeFlag;        // _19
-	Vector3f m_rotation;  // _1C
+	Vector3f m_position;  // _1C
 	Vector3f m_elevation; // _28
-	Color4 m_color;       // _34
-	f32 m_colorScale;     // _38
-	f32 _3C;              // _3C
-	f32 _40;              // _40
+	Color4 m_color;       // _34, u_color
+	f32 m_brightness;     // _38
+	f32 m_refDistance;    // _3C
+	f32 m_refBrightness;  // _40
 	f32 m_cutoffAngle;    // _44
-	u8 _48;               // _48, distance attenuation type?
-	u8 m_spotType;        // _49
+	u8 m_distAttnFn;      // _48, GXDistAttnFn
+	u8 m_spotFn;          // _49, GXSpotFn
 	f32 _4C;              // _4C, kScale?
 	f32 m_sphereRadius;   // _50
 	u8 _54;               // _54
-
-	/* FUCKING BREAKS, WHY?
-	    GXLightID m_lightID;       // _18
-	    u8 m_typeFlag;             // _19
-	    Vector3f m_position;       // _1C
-	    Vector3f m_elevation;      // _28
-	    u_color m_color;           // _34
-	    f32 m_intensity;           // _38
-	    f32 m_refDistance;         // _3C
-	    f32 m_refBrightness;       // _40
-	    f32 m_cutoffAngle;         // _44
-	    GXDistAttnFn m_distAttnFn; // _48
-	    GXSpotFn m_spotFn;         // _49
-	    f32 _4C;                   // _4C, kScale?
-	    f32 m_sphereRadius;        // _50
-	    u8 _54;                    // _54
-	    */
 };
 
 struct LightMgr : public CNode {

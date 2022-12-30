@@ -29,13 +29,13 @@ void Mgr::loadTexData()
 {
 	LoadResource::ArgAramOnly loadArg(cChappyChangeTexName0);
 
-	loadArg._00                   = cChappyChangeTexName0;
+	loadArg.m_path                = cChappyChangeTexName0;
 	LoadResource::Node* resource0 = gLoadResourceMgr->load(loadArg);
-	m_changeTexture0              = static_cast<ResTIMG*>(resource0->_30);
+	m_changeTexture0              = static_cast<ResTIMG*>(resource0->m_file);
 
-	loadArg._00                   = cChappyChangeTexName1;
+	loadArg.m_path                = cChappyChangeTexName1;
 	LoadResource::Node* resource1 = gLoadResourceMgr->load(loadArg);
-	m_changeTexture1              = static_cast<ResTIMG*>(resource1->_30);
+	m_changeTexture1              = static_cast<ResTIMG*>(resource1->m_file);
 }
 
 /*

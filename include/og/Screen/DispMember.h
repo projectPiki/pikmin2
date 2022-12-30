@@ -184,11 +184,11 @@ struct DispMemberChallenge1P : public DispMemberBase {
 
 	inline DispMemberChallenge1P()
 	{
-		m_pokos    = 2540;
-		_58        = false;
-		_5C        = 2469.0f;
-		m_deadPiki = 4242;
-		_60        = 0.0f;
+		m_pokoCount        = 2540;
+		_58                = false;
+		m_timeLimit        = 2469.0f;
+		m_deadPikiCount    = 4242;
+		m_floorExtendTimer = 0.0f;
 	}
 
 	virtual u32 getSize() { return sizeof(DispMemberChallenge1P); } // _08 (weak)
@@ -200,11 +200,11 @@ struct DispMemberChallenge1P : public DispMemberBase {
 	DataGame m_dataGame;                 // _08
 	DataNavi m_olimarData;               // _24
 	DataNavi m_louieData;                // _3C
-	u32 m_pokos;                         // _54
+	u32 m_pokoCount;                     // _54
 	u8 _58;                              // _58
-	f32 _5C;                             // _5C
-	f32 _60;                             // _60
-	u32 m_deadPiki;                      // _64
+	f32 m_timeLimit;                     // _5C
+	f32 m_floorExtendTimer;              // _60
+	u32 m_deadPikiCount;                 // _64
 	DispMemberDayEndCount m_dayEndCount; // _68
 };
 
@@ -213,11 +213,11 @@ struct DispMemberChallenge2P : public DispMemberBase {
 
 	inline DispMemberChallenge2P()
 	{
-		m_pokos     = 2540;
-		_58         = false;
-		m_timeLimit = 2469.0f;
-		m_deadPiki  = 4242;
-		_60         = 0.0f;
+		m_pokos            = 2540;
+		_58                = false;
+		m_timeLimit        = 2469.0f;
+		m_deadPiki         = 4242;
+		m_floorExtendTimer = 0.0f;
 	}
 
 	virtual u32 getSize() { return sizeof(DispMemberChallenge2P); } // _08 (weak)
@@ -232,7 +232,7 @@ struct DispMemberChallenge2P : public DispMemberBase {
 	u32 m_pokos;                         // _54
 	u8 _58;                              // _58
 	f32 m_timeLimit;                     // _5C
-	f32 _60;                             // _60
+	f32 m_floorExtendTimer;              // _60
 	u32 m_deadPiki;                      // _64
 	DispMemberDayEndCount m_dayEndCount; // _68
 };
@@ -656,17 +656,17 @@ struct DispMemberVs : public DispMemberBase {
 
 	inline DispMemberVs()
 	{
-		m_redPikminCount  = 111;
-		m_bluePikminCount = 222;
-		m_P1Bedamas       = 0;
-		m_P2Bedamas       = 0;
-		m_doneState       = 0;
-		m_flags[0]        = 0;
-		m_flags[1]        = 0;
-		m_flags[2]        = 0;
-		m_flags[3]        = 0;
-		m_obakeTimerP1    = 99999.0f;
-		m_obakeTimerP2    = 99999.0f;
+		m_redPikminCount   = 111;
+		m_bluePikminCount  = 222;
+		m_marbleCountP1    = 0;
+		m_marbleCountP2    = 0;
+		m_doneState        = 0;
+		m_flags[0]         = 0;
+		m_flags[1]         = 0;
+		m_flags[2]         = 0;
+		m_flags[3]         = 0;
+		m_ghostIconTimerP1 = 99999.0f;
+		m_ghostIconTimerP2 = 99999.0f;
 	}
 
 	virtual u32 getSize() { return sizeof(DispMemberVs); } // _08 (weak)
@@ -681,17 +681,17 @@ struct DispMemberVs : public DispMemberBase {
 
 	// _00     = VTBL
 	// _00-_08 = DispMemberBase
-	u32 m_doneState;       // _08, unknown
-	DataGame m_dataGame;   // _0C
-	DataNavi m_olimarData; // _28
-	DataNavi m_louieData;  // _40
-	u32 m_redPikminCount;  // _58
-	u32 m_bluePikminCount; // _5C
-	int m_P1Bedamas;       // _60
-	int m_P2Bedamas;       // _64, unknown
-	u8 m_flags[4];         // _68
-	f32 m_obakeTimerP1;    // _6C
-	f32 m_obakeTimerP2;    // _70
+	u32 m_doneState;        // _08, unknown
+	DataGame m_dataGame;    // _0C
+	DataNavi m_olimarData;  // _28
+	DataNavi m_louieData;   // _40
+	u32 m_redPikminCount;   // _58
+	u32 m_bluePikminCount;  // _5C
+	int m_marbleCountP1;    // _60
+	int m_marbleCountP2;    // _64
+	u8 m_flags[4];          // _68
+	f32 m_ghostIconTimerP1; // _6C
+	f32 m_ghostIconTimerP2; // _70
 };
 
 // size 0x28

@@ -70,7 +70,7 @@ void Mgr::loadTexData()
 	LoadResource::Arg loadArgBtk(cMatAnimBtkTexName);
 	LoadResource::Node* resourceBtk = gLoadResourceMgr->load(loadArgBtk);
 	if (resourceBtk) {
-		btkFile = resourceBtk->_30;
+		btkFile = resourceBtk->m_file;
 	}
 	P2ASSERTLINE(110, btkFile);
 
@@ -81,7 +81,7 @@ void Mgr::loadTexData()
 	LoadResource::Arg loadArgBrk(cMatAnimBrkTexName);
 	LoadResource::Node* resourceBrk = gLoadResourceMgr->load(loadArgBrk);
 	if (resourceBrk) {
-		brkFile = resourceBrk->_30;
+		brkFile = resourceBrk->m_file;
 	}
 	P2ASSERTLINE(118, brkFile);
 

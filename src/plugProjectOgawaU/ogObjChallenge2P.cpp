@@ -188,7 +188,7 @@ void ObjChallenge2P::commonUpdate()
 	m_screenP2->m_screen->setXY(0.0f, calc * 300.0f);
 	m_pokoScreen->setXY(calc * 300.0f, 0.0f);
 
-	updateTimer(m_disp->m_timeLimit, m_disp->_60);
+	updateTimer(m_disp->m_timeLimit, m_disp->m_floorExtendTimer);
 	m_bloGroup->update();
 }
 

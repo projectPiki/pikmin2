@@ -51,7 +51,7 @@ void Mgr::loadTexData()
 	LoadResource::Arg loadArg(cTankChangeTexName);
 	LoadResource::Node* resource = gLoadResourceMgr->load(loadArg);
 	if (resource) {
-		m_changeTexture = static_cast<ResTIMG*>(resource->_30);
+		m_changeTexture = static_cast<ResTIMG*>(resource->m_file);
 	}
 	P2ASSERTLINE(82, m_changeTexture);
 }

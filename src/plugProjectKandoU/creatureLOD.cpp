@@ -190,7 +190,7 @@ void Creature::updateLOD(Game::AILODParm& parm)
 		pi++;
 	}
 	// TODO: This smells of inlining.
-	bool isMultiplayer = (Game::gameSystem->m_mode == GSM_VERSUS_MODE || Game::gameSystem->m_mode == GSM_TWO_PLAYER_CHALLENGE);
+	bool isMultiplayer = gameSystem->isMultiplayerMode();
 	if (!(isMultiplayer && (2 <= viewportCount))) {
 		m_lod.m_sndVpId = 0;
 	} else {

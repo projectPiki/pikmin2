@@ -211,7 +211,7 @@ void Obj::setRandTarget()
 	f32 radius;
 	if (getCatchTargetNum()) {
 		radius = randWeightFloat(static_cast<Parms*>(m_parms)->m_general.m_homeRadius.m_value);
-	} else if (gameSystem && gameSystem->m_inCave) {
+	} else if (gameSystem && gameSystem->m_isInCave) {
 		radius = 50.0f + randWeightFloat(50.0f);
 	} else {
 		radius = static_cast<Parms*>(m_parms)->m_general.m_homeRadius.m_value

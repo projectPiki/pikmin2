@@ -555,7 +555,7 @@ Camera::Camera()
 	_138             = 1.0f;
 	_13C             = 1.0f;
 	m_soundPosition  = 0;
-	PSMTXIdentity(_34.m_matrix.mtxView);
+	PSMTXIdentity(m_curViewMatrix.m_matrix.mtxView);
 	m_isFixed = false;
 	m_far     = 0.0f;
 	m_near    = 0.0f;
@@ -844,7 +844,7 @@ void Camera::update()
 {
 	PSMTX44Copy(_B4, _F4);
 	Matrixf* viewMatrix = getViewMatrix(0);
-	PSMTXCopy(viewMatrix->m_matrix.mtxView, _34.m_matrix.mtxView);
+	PSMTXCopy(viewMatrix->m_matrix.mtxView, m_curViewMatrix.m_matrix.mtxView);
 	// temp_r3 = this->unk140;
 	if (isRunning()) {
 		m_jstObject->updateCamera();
@@ -874,8 +874,9 @@ void Camera::update()
 Matrixf* Camera::getViewMatrix(bool b)
 {
 	if (b) {
-		return &_34;
+		return &m_curViewMatrix;
 	}
+
 	return m_viewMatrix;
 }
 

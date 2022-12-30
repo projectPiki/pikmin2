@@ -1090,7 +1090,7 @@ bool Pellet::isPickable()
  */
 void Pellet::onKill(CreatureKillArg* killArg)
 {
-	if (gameSystem->m_mode == GSM_VERSUS_MODE) {
+	if (gameSystem->isVersusMode()) {
 		m_pelletSM->start(this, 0, nullptr);
 	}
 
@@ -1100,7 +1100,7 @@ void Pellet::onKill(CreatureKillArg* killArg)
 		shadowMgr->delShadow(this);
 	}
 
-	if (gameSystem->m_mode == GSM_VERSUS_MODE) {
+	if (gameSystem->isVersusMode()) {
 		GameMessagePelletDead msg(this);
 		gameSystem->m_section->sendMessage(msg);
 	}
@@ -1125,7 +1125,7 @@ void Pellet::onKill(CreatureKillArg* killArg)
 	m_mgr->kill(this);
 
 	if (((killArg != nullptr) && (static_cast<PelletKillArg*>(killArg)->_08 != 0))
-	    || ((gameSystem->m_mode == GSM_VERSUS_MODE) && (m_pelletFlag == FLAG_VS_CHERRY))) {
+	    || ((gameSystem->isVersusMode()) && (m_pelletFlag == FLAG_VS_CHERRY))) {
 		m_mgr->setRevival(this);
 	}
 
@@ -1331,7 +1331,7 @@ void Pellet::onInit(CreatureInitArg* initArg)
 
 	setAlive(true);
 
-	if (gameSystem->m_mode == GSM_VERSUS_MODE) {
+	if (gameSystem->isVersusMode()) {
 		GameMessagePelletBorn msg(this);
 		gameSystem->m_section->sendMessage(msg);
 	}
@@ -2017,7 +2017,7 @@ void Pellet::finishDisplayCarryInfo()
  */
 void Pellet::setCarryColor(int color)
 {
-	if ((gameSystem->m_mode == GSM_VERSUS_MODE) && (color != m_carryColor)) {
+	if ((gameSystem->isVersusMode()) && (color != m_carryColor)) {
 		m_carryColor = color;
 		sound_otakaraEventStart();
 	}
@@ -4452,7 +4452,7 @@ Onyon* Pellet::getPelletGoal()
 {
 	Onyon* goalOnyon;
 
-	if ((gameSystem->m_mode == GSM_VERSUS_MODE)
+	if ((gameSystem->isVersusMode())
 	    || ((getKind() != PELTYPE_TREASURE) && (getKind() != PELTYPE_BERRY) && (getKind() != PELTYPE_UPGRADE))) {
 		int maxCount = -1;
 		int counter  = 0;
@@ -6325,7 +6325,7 @@ bool PelletMgr::makePelletInitArg(PelletInitArg& arg, char* identifier)
  */
 void PelletMgr::makeVsCarryMinMax(PelletInitArg& arg, char* name)
 {
-	if (gameSystem != nullptr && gameSystem->m_mode == GSM_VERSUS_MODE) {
+	if (gameSystem != nullptr && gameSystem->isVersusMode()) {
 		if (strcmp(VsOtakaraName::cBedamaYellow, name) == 0) {
 			arg.m_minCarriers = 1;
 			arg.m_maxCarriers = 8;

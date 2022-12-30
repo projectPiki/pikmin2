@@ -1088,22 +1088,22 @@ lbl_802182BC:
 void SingleGame::CaveState::onOrimaDown(Game::SingleGameSection* section, int naviID)
 {
 	MoviePlayArg arg;
-	arg._0C             = section->_C8;
-	arg.m_courseName    = nullptr;
-	arg.m_movieName     = "s03_orimadown";
-	arg.m_origin        = Vector3f::zero;
-	arg.m_angle         = 0.0f;
-	arg._08             = nullptr;
-	arg.m_streamID      = 0;
-	arg._14             = 0;
-	arg.m_soundPosition = nullptr;
-	arg._10             = section->_CC;
-	arg.m_naviID        = naviID;
-	moviePlayer->_18C   = naviMgr->getAt(naviID);
+	arg._0C                   = section->m_movieFinishCallback;
+	arg.m_courseName          = nullptr;
+	arg.m_movieName           = "s03_orimadown";
+	arg.m_origin              = Vector3f::zero;
+	arg.m_angle               = 0.0f;
+	arg._08                   = nullptr;
+	arg.m_streamID            = 0;
+	arg._14                   = 0;
+	arg.m_soundPosition       = nullptr;
+	arg._10                   = section->_CC;
+	arg.m_naviID              = naviID;
+	moviePlayer->m_targetNavi = naviMgr->getAt(naviID);
 	if (naviID == 0) {
-		moviePlayer->_190 = section->_104;
+		moviePlayer->m_actingCamera = section->m_olimarCamera;
 	} else {
-		moviePlayer->_190 = section->_108;
+		moviePlayer->m_actingCamera = section->m_louieCamera;
 	}
 	moviePlayer->play(arg);
 	/*
@@ -1177,7 +1177,7 @@ void SingleGame::CaveState::onFountainReturn(Game::SingleGameSection* section, G
 	gameSystem->m_flags &= 0xDF;
 	section->loadMainMapSituation();
 	MoviePlayArg arg;
-	arg._0C                     = section->_C8;
+	arg._0C                     = section->m_movieFinishCallback;
 	arg.m_courseName            = nullptr;
 	arg.m_movieName             = "s0C_cv_escape";
 	arg.m_origin                = Vector3f::zero;
@@ -1282,7 +1282,7 @@ void SingleGame::CaveState::onNextFloor(Game::SingleGameSection* section, Game::
 	gameSystem->m_flags &= 0xDF;
 	section->loadMainMapSituation();
 	MoviePlayArg arg;
-	arg._0C                     = section->_C8;
+	arg._0C                     = section->m_movieFinishCallback;
 	arg.m_movieName             = "s09_holein";
 	arg.m_courseName            = nullptr;
 	arg.m_origin                = Vector3f::zero;

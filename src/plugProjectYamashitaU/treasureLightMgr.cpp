@@ -17,7 +17,7 @@ Mgr::Mgr()
 	m_elevationAngle = 330.0f;
 
 	m_mainLight              = new LightObj("ƒƒCƒ“ƒ‰ƒCƒg", GX_LIGHT0, TYPE_2, JUtility::TColor(0xFF, 0xFF, 0xFF, 0xFF));
-	m_mainLight->m_spotType  = 3;
+	m_mainLight->m_spotFn    = 3;
 	m_mainLight->m_elevation = Vector3f(0.0f, -1.0f, 0.0f);
 	registLightObj(m_mainLight);
 
@@ -104,11 +104,11 @@ void Mgr::setCommonProc()
 		elevation.z *= 1 / dist;
 	}
 
-	m_mainLight->m_rotation  = rotation;
-	m_mainLight->m_elevation = elevation;
-	m_mainLight->_40         = 0.85f;
+	m_mainLight->m_position      = rotation;
+	m_mainLight->m_elevation     = elevation;
+	m_mainLight->m_refBrightness = 0.85f;
 
-	m_specLight->m_rotation  = rotation;
+	m_specLight->m_position  = rotation;
 	m_specLight->m_elevation = elevation;
 }
 

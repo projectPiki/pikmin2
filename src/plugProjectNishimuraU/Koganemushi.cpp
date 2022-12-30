@@ -71,7 +71,7 @@ void Koganemushi::Obj::createItem()
 
 	switch (m_flipTally) {
 	case 0: // initial flip
-		if (gameSystem && gameSystem->m_inCave) {
+		if (gameSystem && gameSystem->m_isInCave) {
 			createPelletItem = false;
 			initArg          = HONEY_Y;
 			amount           = 1;

@@ -88,8 +88,8 @@ VsGameSection::VsGameSection(JKRHeap* heap, bool gameMode)
 	m_vsWinner              = -1;
 	m_louieHandicap         = 2;
 	m_olimarHandicap        = 2;
-	_3D8                    = 0;
-	_3D4                    = 0;
+	m_marbleCountP2         = 0;
+	m_marbleCountP1         = 0;
 	m_yellowMarbleCounts[1] = 0;
 	m_yellowMarbleCounts[0] = 0;
 	m_editNumber            = -2;
@@ -163,10 +163,10 @@ void VsGameSection::startMainBgm()
  */
 void VsGameSection::onInit()
 {
-	m_pikminRatio      = 0.0f;
-	m_pikminCountTimer = 0.5f;
-	_1F0[1]            = 0.0f;
-	_1F0[0]            = 0.0f;
+	m_pikminRatio        = 0.0f;
+	m_pikminCountTimer   = 0.5f;
+	m_ghostIconTimers[1] = 0.0f;
+	m_ghostIconTimers[0] = 0.0f;
 
 	clearGetDopeCount();
 	clearGetCherryCount();
@@ -177,11 +177,11 @@ void VsGameSection::onInit()
 		gameSystem->m_mode = GSM_ONE_PLAYER_CHALLENGE;
 	}
 
-	gameSystem->m_inCave = true;
-	_11C                 = 0;
-	m_hole               = nullptr;
-	m_pokoCount          = 0;
-	m_isMenuRunning      = false;
+	gameSystem->m_isInCave = true;
+	_11C                   = 0;
+	m_hole                 = nullptr;
+	m_pokoCount            = 0;
+	m_isMenuRunning        = false;
 
 	sprintf(m_caveInfoFilename, "caveinfo.txt");
 	sprintf(m_editFilename, "random");
@@ -252,7 +252,7 @@ bool VsGameSection::doUpdate()
 
 	m_fsm->exec(this);
 
-	if (gameSystem->m_mode == GSM_VERSUS_MODE) {
+	if (gameSystem->isVersusMode()) {
 		int redPikmins  = GameStat::getMapPikmins(1) - (m_olimarHandicap - 3);
 		int bluePikmins = GameStat::getMapPikmins(0) - (m_louieHandicap - 3);
 		if (redPikmins < 0) {
@@ -396,7 +396,7 @@ void VsGameSection::onSetupFloatMemory()
  */
 void VsGameSection::postSetupFloatMemory()
 {
-	if (gameSystem->m_mode == GSM_VERSUS_MODE) {
+	if (gameSystem->isVersusMode()) {
 		m_redBlueYellowScore[1] = 0.0f;
 		m_redBlueYellowScore[0] = 0.0f;
 		m_marbleRedBlue[1]      = nullptr;
@@ -422,7 +422,7 @@ void VsGameSection::postSetupFloatMemory()
  */
 void VsGameSection::onClearHeap()
 {
-	if (gameSystem->m_mode == GSM_VERSUS_MODE) {
+	if (gameSystem->isVersusMode()) {
 		m_cherryArray = nullptr;
 		m_maxCherries = 0;
 	}
@@ -626,7 +626,7 @@ bool VsGameSection::updateCaveMenus()
 			gameSystem->setPause(false, "kk-yes", 3);
 			gameSystem->setMoviePause(false, "kk-yes");
 			m_menuFlags &= ~4;
-			MoviePlayArg arg("s0C_cv_escape", nullptr, _C8, 0);
+			MoviePlayArg arg("s0C_cv_escape", nullptr, m_movieFinishCallback, 0);
 			arg.m_origin = m_fountain->getPosition();
 			arg.m_angle  = m_fountain->getFaceDir();
 			arg._10      = _CC;
@@ -1002,7 +1002,7 @@ bool GameMessageVsBirthTekiTreasure::actVs(VsGameSection* section)
 bool GameMessageVsPikminDead::actVs(VsGameSection* section)
 {
 	section->_205 = false;
-	section->_208++;
+	section->m_deadPikiCount++;
 	return true;
 }
 

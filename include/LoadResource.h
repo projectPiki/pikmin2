@@ -20,14 +20,14 @@ struct Node : public CNode, JKRDisposer {
 
 	// _00 - _18: CNode
 	// _18 - _30: JKRDisposer
-	void* _30;             // _30
+	void* m_file;          // _30
 	JKRArchive* m_archive; // _34
 };
 
 struct Arg {
 	Arg(char const*);
 
-	const char* _00;                // _00
+	const char* m_path;             // _00
 	u8* _04;                        // _04
 	u32 _08;                        // _08
 	u32 _0C;                        // _0C

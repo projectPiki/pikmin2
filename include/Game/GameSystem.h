@@ -13,17 +13,23 @@ struct LightMgr;
 struct Viewport;
 namespace Game {
 
-enum GameSystemMode { GSM_STORY_MODE = 0, GSM_VERSUS_MODE, GSM_ONE_PLAYER_CHALLENGE, GSM_TWO_PLAYER_CHALLENGE, GSM_PIKLOPEDIA };
+enum GameSystemMode {
+	GSM_STORY_MODE = 0,
+	GSM_VERSUS_MODE,
+	GSM_ONE_PLAYER_CHALLENGE,
+	GSM_TWO_PLAYER_CHALLENGE,
+	GSM_PIKLOPEDIA,
+};
 
 enum GameSystemFlags {
-	GAMESYS_Unk1 = 0x1,
-	GAMESYS_Unk2 = 0x2,
-	GAMESYS_Unk3 = 0x4,
-	GAMESYS_Unk4 = 0x8,
-	GAMESYS_Unk5 = 0x10,
-	GAMESYS_Unk6 = 0x20,
-	GAMESYS_Unk7 = 0x40,
-	GAMESYS_Unk8 = 0x80,
+	GAMESYS_Unk1      = 0x1,
+	GAMESYS_IsPlaying = 0x2,
+	GAMESYS_Unk3      = 0x4,
+	GAMESYS_Unk4      = 0x8,
+	GAMESYS_Unk5      = 0x10,
+	GAMESYS_Unk6      = 0x20,
+	GAMESYS_Unk7      = 0x40,
+	GAMESYS_Unk8      = 0x80,
 };
 
 struct GameSystem : public NodeObjectMgr<GenericObjectMgr> {
@@ -77,7 +83,7 @@ struct GameSystem : public NodeObjectMgr<GenericObjectMgr> {
 	u8 m_flags;                 // _3C /* bitfield */
 	TimeMgr* m_timeMgr;         // _40
 	GameSystemMode m_mode;      // _44
-	u8 m_inCave;                // _48
+	u8 m_isInCave;              // _48
 	u8 _49;                     // _49
 	bool m_isFrozen;            // _4A
 	bool m_isPaused;            // _4B

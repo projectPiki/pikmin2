@@ -98,7 +98,7 @@ void LoadState::exec(VsGameSection* section)
 			particle2dMgr->update();
 		}
 		Screen::gGame2DMgr->update();
-		if (gameSystem->m_mode == GSM_VERSUS_MODE && (_A0 > 0.0f)) {
+		if (gameSystem->isVersusMode() && (_A0 > 0.0f)) {
 			if (m_dvdThreadCommand.m_mode == 2) { // probably an enum
 				Screen::gGame2DMgr->set_FloorVS_LoadEnd();
 				if (m_controller->isButtonDown(JUTGamePad::PRESS_A | JUTGamePad::PRESS_START)) {
@@ -109,7 +109,7 @@ void LoadState::exec(VsGameSection* section)
 			_A0 -= sys->m_deltaTime;
 		}
 		if (!_9C && m_dvdThreadCommand.m_mode == 2) {
-			if (gameSystem->isChallengeMode() || (gameSystem->m_mode == GSM_VERSUS_MODE && _A0 <= 0.0f)) {
+			if (gameSystem->isChallengeMode() || (gameSystem->isVersusMode() && _A0 <= 0.0f)) {
 				section->postSetupFloatMemory();
 				_9C = true;
 				if (!_24) {

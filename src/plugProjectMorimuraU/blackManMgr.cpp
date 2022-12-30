@@ -61,7 +61,7 @@ void Mgr::loadTexData()
 	LoadResource::Arg loadArgBtk("/enemy/data/BlackMan/kagebozu_model.btk");
 	LoadResource::Node* resourceBtk = gLoadResourceMgr->load(loadArgBtk);
 	if (resourceBtk) {
-		btkFile = resourceBtk->_30;
+		btkFile = resourceBtk->m_file;
 	}
 	P2ASSERTLINE(83, btkFile);
 

@@ -108,7 +108,7 @@ struct Camera : public CullFrustum {
 	inline bool isRunning() { return (m_jstObject && m_jstObject->isRunning()); }
 
 	// CullFrustum _00 - _34
-	Matrixf _34;                            // _034
+	Matrixf m_curViewMatrix;                // _034
 	f32 m_near;                             // _064 - distance to 'near' plane
 	f32 m_far;                              // _068 - distance to 'far' plane
 	bool isFixed;                           // _06C

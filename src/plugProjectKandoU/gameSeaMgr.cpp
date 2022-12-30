@@ -1259,7 +1259,7 @@ SeaMgr::SeaMgr(void)
 	m_modelData = new J3DModelData*[_3C];
 
 	JKRArchive* archive;
-	// if (Game::gameSystem != nullptr && !(Game::gameSystem->m_mode == GSM_VERSUS_MODE || Game::gameSystem->m_mode ==
+	// if (Game::gameSystem != nullptr && !(Game::gameSystem->isVersusMode() || Game::gameSystem->m_mode ==
 	// GSM_TWO_PLAYER_CHALLENGE)) {
 	if (Game::gameSystem != nullptr && !Game::gameSystem->isMultiplayerMode()) {
 		archive = JKRArchive::mount("user/Kando/map/waterbox.szs", JKRArchive::EMM_Mem, nullptr, JKRArchive::EMD_Unk1);
@@ -1269,7 +1269,7 @@ SeaMgr::SeaMgr(void)
 	P2ASSERTLINE(527, archive != nullptr);
 
 	void* resourceData;
-	// if (Game::gameSystem != nullptr && !Game::gameSystem->m_mode == GSM_VERSUS_MODE || Game::gameSystem->m_mode ==
+	// if (Game::gameSystem != nullptr && !Game::gameSystem->isVersusMode() || Game::gameSystem->m_mode ==
 	// GSM_TWO_PLAYER_CHALLENGE)) {
 	if (Game::gameSystem != nullptr && !Game::gameSystem->isMultiplayerMode()) {
 		resourceData = archive->getResource("100x100/mizu100x100.bmd");
@@ -1278,7 +1278,7 @@ SeaMgr::SeaMgr(void)
 	}
 
 	u32 flags;
-	// if (Game::gameSystem == nullptr || !(Game::gameSystem->m_mode == GSM_VERSUS_MODE || Game::gameSystem->m_mode ==
+	// if (Game::gameSystem == nullptr || !(Game::gameSystem->isVersusMode() || Game::gameSystem->m_mode ==
 	// GSM_TWO_PLAYER_CHALLENGE)) {
 	if (!(Game::gameSystem == nullptr || !Game::gameSystem->isMultiplayerMode())) {
 		flags = 0x20240010;

@@ -443,7 +443,7 @@ void StateItemWait::exec(EnemyBase* enemy)
 		ota->m_nextState = OTA_ItemDrop;
 		ota->finishMotion();
 
-	} else if (gameSystem != nullptr && gameSystem->m_mode == GSM_VERSUS_MODE) {
+	} else if (gameSystem != nullptr && gameSystem->isVersusMode()) {
 		if (ota->m_health <= 0.0f) {
 			ota->m_nextState = OTA_ItemDrop;
 			ota->finishMotion();
@@ -515,7 +515,7 @@ void StateItemMove::exec(EnemyBase* enemy)
 		ota->m_targetVelocity = Vector3f(0.0f);
 		ota->finishMotion();
 
-	} else if (gameSystem != nullptr && gameSystem->m_mode == GSM_VERSUS_MODE) {
+	} else if (gameSystem != nullptr && gameSystem->isVersusMode()) {
 		if (ota->m_health <= 0.0f) {
 			ota->m_nextState      = OTA_ItemDrop;
 			ota->m_targetVelocity = Vector3f(0.0f);
@@ -585,7 +585,7 @@ void StateItemTurn::exec(EnemyBase* enemy)
 		ota->m_nextState = OTA_ItemDrop;
 		ota->finishMotion();
 
-	} else if (gameSystem != nullptr && gameSystem->m_mode == GSM_VERSUS_MODE) {
+	} else if (gameSystem != nullptr && gameSystem->isVersusMode()) {
 		if (ota->m_health <= 0.0f) {
 			ota->m_nextState = OTA_ItemDrop;
 			ota->finishMotion();

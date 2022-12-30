@@ -44,7 +44,7 @@ void ActFree::init(ActionArg* settings)
 		P2ASSERTLINE(119, isFreeArg);
 
 		freeArg = static_cast<ActFreeArg*>(settings);
-		if (freeArg->_04) {
+		if (freeArg->m_toGather) {
 			m_state = PIKIAI_FREE_GATHER;
 		}
 	}

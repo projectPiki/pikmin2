@@ -28,7 +28,7 @@ void Obj::onStartCapture()
 		m_currentVelocity = Vector3f(0.0f);
 		m_targetVelocity  = Vector3f(0.0f);
 		enableEvent(0, EB_Constraint);
-		if (gameSystem && gameSystem->m_mode == GSM_VERSUS_MODE) {
+		if (gameSystem && gameSystem->isVersusMode()) {
 			disableEvent(0, EB_IsVulnerable);
 		} else {
 			enableEvent(0, EB_IsVulnerable);
