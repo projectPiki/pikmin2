@@ -21,7 +21,7 @@ struct Radar {
 		MAP_BULBMIN,            // 0x8
 		MAP_BURIED_PIKMIN,      // 0x9
 		MAP_GEYSER,             // 0xA
-		MAP_UNENTERED_CAVE,     // 0xB
+		MAP_INCOMPLETE_CAVE,    // 0xB
 		MAP_CAVE_POD,           // 0xC
 		MAP_LOUIE_PRESIDENT,    // 0xD
 		MAP_OLIMAR,             // 0xE
@@ -29,7 +29,7 @@ struct Radar {
 		MAP_TREASURE,           // 0x10	- possibly already collected treasure
 		MAP_SWALLOWED_TREASURE, // 0x11 - possibly just regular treasure
 		MAP_UPGRADE,            // 0x12
-		MAP_INCOMPLETE_CAVE,    // 0x13
+		MAP_UNENTERED_CAVE,     // 0x13
 		MAP_COMPLETED_CAVE,     // 0x14
 		MAP_HOLE,               // 0x15
 		MAP_INVALID,            // 0x16
@@ -41,7 +41,7 @@ struct Radar {
 		{
 			m_objType = MAP_NULL_ICON;
 			m_object  = nullptr;
-			_20       = nullptr;
+			m_caveID  = nullptr;
 		}
 
 		virtual ~Point() { } // _08 (weak)
@@ -55,7 +55,7 @@ struct Radar {
 		// _00-_18 = CNode
 		cRadarType m_objType;            // _18
 		Game::TPositionObject* m_object; // _1c
-		u32 _20;                         // _20
+		u32 m_caveID;                    // _20
 	};
 
 	struct Mgr {

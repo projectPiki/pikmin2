@@ -62,7 +62,7 @@ void Radar::Mgr::clear()
 		pointList->clearRelations();
 		pointList->m_object  = nullptr;
 		pointList->m_objType = MAP_NULL_ICON;
-		pointList->_20       = nullptr;
+		pointList->m_caveID  = nullptr;
 
 		m_pointNode2.add(&m_pointList[i]);
 	}
@@ -155,7 +155,7 @@ void Radar::Mgr::attach(Game::TPositionObject* obj, Radar::cRadarType type, u32 
 		cPoint->del();
 		point->m_object  = obj;
 		point->m_objType = type;
-		point->_20       = flag;
+		point->m_caveID  = flag;
 		m_pointNode1.add(cPoint);
 	}
 }
@@ -178,7 +178,7 @@ bool Radar::Mgr::detach(Game::TPositionObject* obj)
 		point->clearRelations();
 		point->m_object  = nullptr;
 		point->m_objType = MAP_NULL_ICON;
-		point->_20       = nullptr;
+		point->m_caveID  = nullptr;
 
 		if (type == MAP_TREASURE || type == MAP_SWALLOWED_TREASURE || type == MAP_UPGRADE) {
 			mgr->m_otakaraNum--;

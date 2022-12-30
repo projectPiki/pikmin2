@@ -64,7 +64,7 @@ struct Item : public CFSMItem {
 	virtual CItemFSM* createFSM();                            // _220
 	virtual void onKeyEvent(const SysShape::KeyEvent& event); // _224 (weak)
 	virtual void absorbable();                                // _228
-	virtual void demoOK();                                    // _22C
+	virtual bool demoOK();                                    // _22C
 
 	bool isShrinking();
 

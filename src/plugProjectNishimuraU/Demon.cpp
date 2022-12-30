@@ -302,8 +302,8 @@ FakePiki* Demon::Obj::getAttackableTarget()
 			f32 max = parms->m_general.m_sightRadius.m_value * parms->m_general.m_sightRadius.m_value;
 			f32 fov = parms->m_general.m_fov.m_value * DEG2RAD * PI;
 
-			Iterator<Game::Navi> iter(Game::naviMgr);
-			Game::Navi* navi;
+			Iterator<Navi> iter(naviMgr);
+			Navi* navi;
 			CI_LOOP(iter)
 			{
 				navi = (*iter);
