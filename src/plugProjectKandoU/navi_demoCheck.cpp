@@ -249,7 +249,7 @@ bool Navi::demoCheck()
 				f32 dist          = onyonpos.distance(navipos);
 				if (dist < FindRedOnionTriggerSize) {
 					playData->setDemoFlag(DEMO_Louie_Finds_Red_Onion);
-					MoviePlayArg arg("x03_find_red_onyon", nullptr, gameSystem->m_section->_C8, 0);
+					MoviePlayArg arg("x03_find_red_onyon", nullptr, gameSystem->m_section->m_movieFinishCallback, 0);
 					arg.m_origin                = onyonpos;
 					arg.m_angle                 = onyon->getFaceDir();
 					moviePlayer->m_targetObject = onyon;
@@ -337,7 +337,7 @@ bool Navi::demoCheck()
 		CI_LOOP(pelIt)
 		{
 			Pellet* pelt = *pelIt;
-			if (pelt->getKind() == 3) {
+			if (pelt->getKind() == PELTYPE_TREASURE) {
 				Vector3f peltPos = pelt->getPosition();
 				Sys::Sphere bound(peltPos, pelt->getBottomRadius() + FindFirstTreasureTriggerSize);
 				if (checkDemoNaviAndPiki(bound)) {

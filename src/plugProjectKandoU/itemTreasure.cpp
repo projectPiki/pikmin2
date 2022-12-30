@@ -1436,7 +1436,7 @@ void ItemTreasure::Item::constructor() { m_soundObj = new PSM::WorkItem(this); }
 void ItemTreasure::Item::onInit(Game::CreatureInitArg*)
 {
 	m_model = nullptr;
-	m_stateMachine->start(this, 0, nullptr);
+	m_fsm->start(this, 0, nullptr);
 	setAlive(true);
 	m_collTree->createSingleSphere(&m_dummyShape, 0, m_boundingSphere, nullptr);
 }
@@ -1482,16 +1482,14 @@ void ItemTreasure::Item::updateBoundSphere()
  */
 void ItemTreasure::Item::doAI()
 {
-	m_stateMachine->exec(this);
+	m_fsm->exec(this);
 	m_boundingSphere.m_radius = getWorkRadius();
 	updateCollTree();
 	CollPart* part = m_collTree->m_part;
 	part->m_radius = getWorkRadius();
 
 	if (m_pellet) {
-		f32 depth = m_pellet->getBuryDepthMax();
-		depth *= 0.5f;
-		depth -= m_totalLife;
+		f32 depth = (m_pellet->getBuryDepthMax() * 0.5f) - m_totalLife;
 
 		Matrixf mtx;
 		PSMTXCopy(m_pellet->m_objMatrix.m_matrix.mtxView, mtx.m_matrix.mtxView);
@@ -2023,9 +2021,9 @@ f32 ItemTreasure::Item::getWorkRadius()
 {
 	if (!m_pellet) {
 		return 10.0f;
-	} else {
-		return m_pellet->getBuryRadius(1.0f - m_totalLife / m_pellet->getBuryDepthMax());
 	}
+
+	return m_pellet->getBuryRadius(1.0f - m_totalLife / m_pellet->getBuryDepthMax());
 }
 
 /*
@@ -2035,13 +2033,16 @@ f32 ItemTreasure::Item::getWorkRadius()
  */
 bool ItemTreasure::Item::isVisible()
 {
-	bool ret;
+	// TODO: probably straight returns and NOT bool
+	bool visible;
+
 	if (!m_pellet) {
-		ret = false;
+		visible = false;
 	} else {
-		ret = (m_totalLife / m_pellet->getBuryDepthMax() > 0.85f);
+		visible = (m_totalLife / m_pellet->getBuryDepthMax() > 0.85f);
 	}
-	return ret;
+
+	return visible;
 	/*
 	stwu     r1, -0x10(r1)
 	mflr     r0
@@ -2081,22 +2082,23 @@ lbl_801F40A4:
  */
 bool ItemTreasure::Item::ignoreAtari(Game::Creature* obj)
 {
-	// inline isVisible?
-	bool ret;
+	// inline isVisible? <-- yep probably
+	bool visible;
 	if (!m_pellet) {
-		ret = false;
+		visible = false;
 	} else {
-		ret = (m_totalLife / m_pellet->getBuryDepthMax() > 0.85f);
+		visible = (m_totalLife / m_pellet->getBuryDepthMax() > 0.85f);
 	}
 
-	if (ret) {
+	if (visible) {
 		Piki* piki = static_cast<Piki*>(obj);
 		if (piki->isPiki() || piki->m_pikiKind != White) {
 			return true;
-		} else {
-			return false;
 		}
+
+		return false;
 	}
+
 	return false;
 	/*
 	stwu     r1, -0x10(r1)
@@ -2169,16 +2171,17 @@ ItemTreasure::Mgr::Mgr()
 	m_objectPathComponent = "user/kando/objects/treasure";
 	m_parameters          = new TreasureParms;
 
-	void* file = JKRDvdRipper::loadToMainRAM("user/Abe/item/treasureParms.txt", nullptr, (JKRExpandSwitch)0, 0, nullptr,
-	                                         (JKRDvdRipper::EAllocDirection)2, 0, nullptr, nullptr);
+	loadAndRead(m_parameters, "user/Abe/item/treasureParms.txt");
+	// void* file = JKRDvdRipper::loadToMainRAM(, nullptr, (JKRExpandSwitch)0, 0, nullptr,
+	//                                          (JKRDvdRipper::EAllocDirection)2, 0, nullptr, nullptr);
 
-	if (file) {
-		RamStream stm(file, -1);
-		stm.m_mode     = STREAM_MODE_TEXT;
-		stm.m_tabCount = 0;
-		m_parameters->read(stm);
-		delete[] file;
-	}
+	// if (file) {
+	// 	RamStream stm(file, -1);
+	// 	stm.m_mode     = STREAM_MODE_TEXT;
+	// 	stm.m_tabCount = 0;
+	// 	m_parameters->read(stm);
+	// 	delete[] file;
+	// }
 	/*
 	stwu     r1, -0x440(r1)
 	mflr     r0
@@ -2864,10 +2867,7 @@ void FSMState<Game::ItemTreasure::Item>::restart(ItemTreasure::Item*) { }
  * Address:	801F49A4
  * Size:	000030
  */
-void FSMState<Game::ItemTreasure::Item>::transit(ItemTreasure::Item* item, int id, StateArg* arg)
-{
-	m_stateMachine->transit(item, id, arg);
-}
+void FSMState<Game::ItemTreasure::Item>::transit(ItemTreasure::Item* item, int id, StateArg* arg) { m_fsm->transit(item, id, arg); }
 
 /*
  * --INFO--
@@ -2945,7 +2945,7 @@ void StateMachine<ItemTreasure::Item>::registerState(FSMState<Game::ItemTreasure
 	if (check == false) {
 		return;
 	}
-	newState->m_stateMachine         = this;
+	newState->m_fsm                  = this;
 	m_indexToIDArray[m_count]        = newState->m_id;
 	m_idToIndexArray[newState->m_id] = m_count;
 	m_count++;

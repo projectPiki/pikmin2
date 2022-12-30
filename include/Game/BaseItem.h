@@ -187,11 +187,11 @@ template <typename ItemClass, typename FSMClass, typename StateClass>
 struct FSMItem : public BaseItem {
 	inline FSMItem(int objTypeID)
 	    : BaseItem(objTypeID)
-	    , m_stateMachine(nullptr)
+	    , m_fsm(nullptr)
 	    , m_currentState(nullptr)
 	{
-		m_stateMachine = new FSMClass();
-		m_stateMachine->init(static_cast<ItemClass*>(this));
+		m_fsm = new FSMClass();
+		m_fsm->init(static_cast<ItemClass*>(this));
 	}
 
 	// vtable 1
@@ -222,7 +222,7 @@ struct FSMItem : public BaseItem {
 	// vtable 2
 	virtual void doAI() // _10
 	{
-		static_cast<ItemFSM<ItemClass>*>(m_stateMachine)->exec((ItemClass*)this);
+		static_cast<ItemFSM<ItemClass>*>(m_fsm)->exec((ItemClass*)this);
 	}
 
 	virtual void onKeyEvent(const SysShape::KeyEvent& event) // _68 (thunked at _00)
@@ -233,7 +233,7 @@ struct FSMItem : public BaseItem {
 		}
 	}
 
-	FSMClass* m_stateMachine;   // _1D8
+	FSMClass* m_fsm;            // _1D8
 	StateClass* m_currentState; // _1DC
 };
 
