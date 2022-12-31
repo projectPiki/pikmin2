@@ -150,7 +150,11 @@ struct CardMgr {
 };
 
 struct StageData : public CNode {
+	inline StageData();
 	virtual ~StageData(); // _08 (weak)
+
+	void read(Stream&);
+	void write(Stream&);
 
 	// _00 		= VTBL
 	// _00-_18	= CNode
@@ -170,6 +174,7 @@ struct StageList : public CNode {
 	virtual ~StageList(); // _08 (weak)
 
 	void read(Stream&);
+	void write(Stream&);
 	StageData* getStageData(int);
 
 	// _00 		= VTBL
