@@ -14,6 +14,8 @@ extern "C" {
 #define OS_UNCACHED_REGION_PREFIX 0xC000
 #define OS_PHYSICAL_MASK          0x3FFF
 
+#define CONSOLE_BUS_SPEED 0x800000F8
+
 // __ppc_eabi_init
 extern void __OSPSInit();
 extern void __OSFPRInit();

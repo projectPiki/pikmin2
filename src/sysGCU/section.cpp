@@ -1,115 +1,23 @@
 #include "Section.h"
-
+#include "Dolphin/__start.h"
 #include "JSystem/JKR/JKRHeap.h"
 #include "JSystem/JUT/JUTException.h"
 #include "JSystem/JUT/JUTFader.h"
 #include "JSystem/JFW/JFWDisplay.h"
-
 #include "Game/MemoryCard/Mgr.h"
 #include "PSSystem/PSGame.h"
 #include "THP/THPRead.h"
-
 #include "System.h"
 #include "Graphics.h"
-
 #include "nans.h"
 
-/*
-    Generated from dpostproc
-
-    .section .ctors, "wa"  # 0x80472F00 - 0x804732C0
-        .4byte __sinit_section_cpp
-
-    .section .rodata  # 0x804732E0 - 0x8049E220
-    .global lbl_804999F0
-    lbl_804999F0:
-        .skip 0xC
-        .asciz "PSGame.h"
-        .skip 3
-        .asciz "P2Assert"
-        .skip 3
-        .asciz "PSScene.h"
-        .skip 2
-        .asciz "section.cpp"
-        .asciz "no Display manager.\n"
-        .skip 7
-
-    .section .data, "wa"  # 0x8049E220 - 0x804EFC20
-    .global lbl_804EBB80
-    lbl_804EBB80:
-        .4byte 0x00000000
-        .4byte 0x00000000
-        .4byte 0x00000000
-    .global __vt__7Section
-    __vt__7Section:
-        .4byte 0
-        .4byte 0
-        .4byte __dt__7SectionFv
-        .4byte run__7SectionFv
-        .4byte update__7SectionFv
-        .4byte draw__7SectionFR8Graphics
-        .4byte init__7SectionFv
-        .4byte drawInit__7SectionFR8Graphics
-        .4byte drawInit__7SectionFR8GraphicsQ27Section13EDrawInitMode
-        .4byte doExit__7SectionFv
-        .4byte forceFinish__7SectionFv
-        .4byte forceReset__7SectionFv
-        .4byte getCurrentSection__7SectionFv
-        .4byte doLoadingStart__7SectionFv
-        .4byte doLoading__7SectionFv
-        .4byte 0
-        .4byte 0
-        .4byte isFinishable__7SectionFv
-    .global __vt__8ISection
-    __vt__8ISection:
-        .4byte 0
-        .4byte 0
-        .4byte __dt__8ISectionFv
-        .4byte 0
-        .4byte 0
-        .4byte 0
-        .4byte 0
-
-    .section .sbss # 0x80514D80 - 0x80516360
-    .global lbl_80516178
-    lbl_80516178:
-        .skip 0x4
-    .global lbl_8051617C
-    lbl_8051617C:
-        .skip 0x4
-    .global sPlayTime
-    sPlayTime:
-        .skip 0x4
-    .global lbl_80516184
-    lbl_80516184:
-        .skip 0x4
-
-    .section .sdata2, "a"     # 0x80516360 - 0x80520E40
-    .global lbl_80520440
-    lbl_80520440:
-        .float 0.5
-    .global lbl_80520444
-    lbl_80520444:
-        .float 0.016666668
-    .global lbl_80520448
-    lbl_80520448:
-        .float 0.0
-    .global lbl_8052044C
-    lbl_8052044C:
-        .asciz "draw"
-        .skip 0x3
-    .global lbl_80520454
-    lbl_80520454:
-        .asciz "update"
-        .skip 0x1
-        .4byte 0x00000000
-*/
+static const f32 unusedSectionArray[] = { 0.0f, 0.0f, 0.0f };
 
 // TODO: move to header file
 extern bool gTHPReaderDvdAccess;
 
 // Some bullshit
-OSTime sPlayTime = 7000000000000ull;
+static OSTime sPlayTime = (*(u32*)CONSOLE_BUS_SPEED / 4) * 300;
 
 /*
  * --INFO--

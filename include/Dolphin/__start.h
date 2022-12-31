@@ -12,7 +12,6 @@ extern "C" {
 #define TRUE                    1
 #define EXCEPTIONMASK_ADDR      0x80000044
 #define BOOTINFO2_ADDR          0x800000F4
-#define CONSOLE_BUS_SPEED       0x800000F8
 #define OS_BI2_DEBUGFLAG_OFFSET 0xC
 #define ARENAHI_ADDR            0x80000034
 #define DEBUGFLAG_ADDR          0x800030E8

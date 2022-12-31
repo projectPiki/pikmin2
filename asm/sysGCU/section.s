@@ -1331,6 +1331,7 @@ draw__7SectionFR8Graphics:
 /* 80424148 00421088  38 21 00 10 */	addi r1, r1, 0x10
 /* 8042414C 0042108C  4E 80 00 20 */	blr 
 
+.global __sinit_section_cpp
 __sinit_section_cpp: #static initializer
 /* 80424150 00421090  3C 60 80 00 */	lis r3, 0x800000F8@ha
 /* 80424154 00421094  3C 80 80 51 */	lis r4, __float_nan@ha
