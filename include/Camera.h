@@ -93,7 +93,7 @@ struct Camera : public CullFrustum {
 	virtual void updateMatrix() { } // _74 (weak)
 	virtual void doUpdate();        // _78 (weak)
 
-	void calcProperDistance(f32, f32);
+	f32 calcProperDistance(f32, f32);
 	f32 calcScreenSize(Sys::Sphere&);
 	void copyFrom(Camera*);
 	f32 getFar();
