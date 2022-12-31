@@ -34,6 +34,8 @@ struct MapMgr : virtual public GenericObjectMgr {
 	struct BeamCollisionArg {
 	};
 
+	static bool traceMoveDebug;
+
 	MapMgr();
 
 	// vtable 1 (MapMgr)
