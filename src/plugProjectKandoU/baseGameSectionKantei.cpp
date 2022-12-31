@@ -153,9 +153,15 @@
 
 #include "JSystem/J3D/J3DSys.h"
 
+#include "trig.h"
 #include "nans.h"
 
 namespace Game {
+
+struct OtakaraArray {
+	int a;
+	f32 b;
+} asArrayOtakara[] = { { -1, 1.0f } };
 
 /*
  * --INFO--
@@ -203,7 +209,34 @@ void BaseGameSection::startZoomWindow()
 	f32 modelRadius        = model->getRoughBoundingRadius();
 	Vector3f& center       = model->getRoughCenter();
 
-	SweepPrune::Node minZ = m_draw2DCreature->m_minZ;
+	if (m_draw2DCreature->getObjType() == OBJTYPE_Honey) {
+		modelRadius *= 1.5F;
+	}
+
+	if (m_draw2DCreature->getObjType() == OBJTYPE_Pellet) {
+		modelRadius *= 1.5F;
+		Pellet* p = (Pellet*)m_draw2DCreature;
+		if (p->getKind() == PELTYPE_TREASURE) {
+			// WTF?
+			int configIdx = p->getConfigIndex();
+			int i         = 0;
+			for (OtakaraArray* c = &asArrayOtakara[i]; c->a != -1; c++) {
+				if (configIdx == c->a) {
+					modelRadius /= asArrayOtakara[i].b;
+					break;
+				}
+
+				i++;
+			}
+		} else {
+			p->getKind();
+		}
+	}
+
+	f32 properDist  = m_treasureZoomCamera->calcProperDistance(20.0f, modelRadius);
+	f32 l           = _lenVec(center);
+	Vector3f length = Vector3f(0.0f, l, 0.0f);
+	m_treasureZoomCamera->init(properDist, JMath::sincosTable_.m_table[256].second, length, nullptr);
 	/*
 	stwu     r1, -0x50(r1)
 	mflr     r0

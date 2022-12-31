@@ -40,98 +40,35 @@
         .4byte 0x00000000
 */
 
+#include "Game/MapMgr.h"
+
 namespace Game {
 
 /*
  * --INFO--
  * Address:	8020508C
  * Size:	000114
+ * TODO: 57%
  */
-void ShapeMapMgr::traceMove(Game::MoveInfo&, float)
+void ShapeMapMgr::traceMove(Game::MoveInfo& info, float stepLength)
 {
-	/*
-	stwu     r1, -0x30(r1)
-	mflr     r0
-	stw      r0, 0x34(r1)
-	stfd     f31, 0x20(r1)
-	psq_st   f31, 40(r1), 0, qr0
-	stw      r31, 0x1c(r1)
-	stw      r30, 0x18(r1)
-	stw      r29, 0x14(r1)
-	stw      r28, 0x10(r1)
-	lwz      r5, 0x14(r3)
-	fmr      f31, f1
-	lfs      f2, lbl_80519D60@sda21(r2)
-	mr       r29, r4
-	addi     r0, r5, 1
-	mr       r28, r3
-	stw      r0, 0x14(r3)
-	li       r31, 1
-	lwz      r5, 4(r4)
-	lwz      r4, 0(r4)
-	lfs      f3, 0(r5)
-	lfs      f1, 4(r5)
-	fmuls    f0, f3, f3
-	lfs      f4, 8(r5)
-	fmuls    f1, f1, f1
-	lfs      f5, 0xc(r4)
-	fmuls    f4, f4, f4
-	fadds    f0, f0, f1
-	fadds    f0, f4, f0
-	fcmpo    cr0, f0, f2
-	ble      lbl_80205120
-	fmadds   f0, f3, f3, f1
-	fadds    f3, f4, f0
-	fcmpo    cr0, f3, f2
-	ble      lbl_80205124
-	frsqrte  f0, f3
-	fmuls    f3, f0, f3
-	b        lbl_80205124
+	_14++;
 
-lbl_80205120:
-	fmr      f3, f2
+	s32 steps  = 1;
+	f32 length = _sqrtf(info.m_velocity->sqrMagnitude());
 
-lbl_80205124:
-	lfs      f0, lbl_80519D64@sda21(r2)
+	for (; steps <= 8;) {
+		if (stepLength * length > info._00->m_radius) {
+			steps *= 2;
+			stepLength *= 0.5f;
+		}
+	}
 
-lbl_80205128:
-	fmuls    f1, f31, f3
-	fcmpo    cr0, f1, f5
-	ble      lbl_80205144
-	slwi     r31, r31, 1
-	fmuls    f31, f31, f0
-	cmpwi    r31, 8
-	ble      lbl_80205128
+	for (int i = 0; i < steps; i++) {
+		MapMgr::traceMove(info.m_mapCollision, info, stepLength);
+	}
 
-lbl_80205144:
-	li       r30, 0
-	b        lbl_80205164
-
-lbl_8020514C:
-	fmr      f1, f31
-	mr       r3, r28
-	mr       r5, r29
-	addi     r4, r28, 0x38
-	bl       traceMove__Q24Game6MapMgrFR12MapCollisionRQ24Game8MoveInfof
-	addi     r30, r30, 1
-
-lbl_80205164:
-	cmpw     r30, r31
-	blt      lbl_8020514C
-	lwz      r0, 0x18(r28)
-	add      r0, r0, r31
-	stw      r0, 0x18(r28)
-	psq_l    f31, 40(r1), 0, qr0
-	lwz      r0, 0x34(r1)
-	lfd      f31, 0x20(r1)
-	lwz      r31, 0x1c(r1)
-	lwz      r30, 0x18(r1)
-	lwz      r29, 0x14(r1)
-	lwz      r28, 0x10(r1)
-	mtlr     r0
-	addi     r1, r1, 0x30
-	blr
-	*/
+	_18 += steps;
 }
 
 /*
@@ -139,38 +76,29 @@ lbl_80205164:
  * Address:	802051A0
  * Size:	000020
  */
-void MapMgr::traceMove(MapCollision&, Game::MoveInfo&, float)
-{
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	bl
-	traceMove_test1203_cylinder__Q24Game6MapMgrFR12MapCollisionRQ24Game8MoveInfof
-	lwz      r0, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
-}
+void MapMgr::traceMove(MapCollision& c, Game::MoveInfo& m, float sl) { traceMove_test1203_cylinder(c, m, sl); }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	00030C
- */
-void MapMgr::traceMove_test1030_1(MapCollision&, Game::MoveInfo&, float)
-{
-	// UNUSED FUNCTION
-}
+// /*
+//  * --INFO--
+//  * Address:	........
+//  * Size:	00030C
+//  */
+// void MapMgr::traceMove_test1030_1(MapCollision&, Game::MoveInfo&, float)
+// {
+// 	// UNUSED FUNCTION
+// }
 
 /*
  * --INFO--
  * Address:	802051C0
  * Size:	0003BC
  */
-void MapMgr::traceMove_test1203_cylinder(MapCollision&, Game::MoveInfo&, float)
+void MapMgr::traceMove_test1203_cylinder(MapCollision& a2, Game::MoveInfo& a3, float a4)
 {
+	if (MapMgr::traceMoveDebug) {
+		Vector3f v;
+		getMinY(v);
+	}
 	/*
 	stwu     r1, -0xe0(r1)
 	mflr     r0
@@ -447,45 +375,45 @@ lbl_8020553C:
 	*/
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	000464
- */
-void MapMgr::traceMove_test(MapCollision&, Game::MoveInfo&, float)
-{
-	// UNUSED FUNCTION
-}
+// /*
+//  * --INFO--
+//  * Address:	........
+//  * Size:	000464
+//  */
+// void MapMgr::traceMove_test(MapCollision&, Game::MoveInfo&, float)
+// {
+// 	// UNUSED FUNCTION
+// }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	000464
- */
-void MapMgr::traceMove_original(MapCollision&, Game::MoveInfo&, float)
-{
-	// UNUSED FUNCTION
-}
+// /*
+//  * --INFO--
+//  * Address:	........
+//  * Size:	000464
+//  */
+// void MapMgr::traceMove_original(MapCollision&, Game::MoveInfo&, float)
+// {
+// 	// UNUSED FUNCTION
+// }
 
 } // namespace Game
 
-/*
- * --INFO--
- * Address:	8020557C
- * Size:	000028
- */
-void __sinit_mapMgrTraceMove_cpp(void)
-{
-	/*
-	lis      r4, __float_nan@ha
-	li       r0, -1
-	lfs      f0, __float_nan@l(r4)
-	lis      r3, lbl_804BEF00@ha
-	stw      r0, lbl_80515BB0@sda21(r13)
-	stfsu    f0, lbl_804BEF00@l(r3)
-	stfs     f0, lbl_80515BB4@sda21(r13)
-	stfs     f0, 4(r3)
-	stfs     f0, 8(r3)
-	blr
-	*/
-}
+// /*
+//  * --INFO--
+//  * Address:	8020557C
+//  * Size:	000028
+//  */
+// void __sinit_mapMgrTraceMove_cpp(void)
+// {
+// 	/*
+// 	lis      r4, __float_nan@ha
+// 	li       r0, -1
+// 	lfs      f0, __float_nan@l(r4)
+// 	lis      r3, lbl_804BEF00@ha
+// 	stw      r0, lbl_80515BB0@sda21(r13)
+// 	stfsu    f0, lbl_804BEF00@l(r3)
+// 	stfs     f0, lbl_80515BB4@sda21(r13)
+// 	stfs     f0, 4(r3)
+// 	stfs     f0, 8(r3)
+// 	blr
+// 	*/
+// }

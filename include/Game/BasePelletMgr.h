@@ -77,12 +77,17 @@ struct BasePelletMgr : public GenericObjectMgr, virtual public _BasePelletMgrPar
 	CollPartMgr m_collPartMgr;      // _18
 	SysShape::ModelMgr* m_modelMgr; // _48
 	bool* _4C;                      // _4C
-	int _50;                        // _50
+	int m_entries;                  // _50
 	                                // _54 - virtual NotSure
 };
 
 template <typename T>
 struct FixedSizePelletMgr : public BasePelletMgr, public Container<T> {
+
+	FixedSizePelletMgr(PelletList::cKind type)
+	    : BasePelletMgr(type)
+	{
+	}
 
 	////////// VTABLE
 	virtual void doAnimation();                 // _08
@@ -108,7 +113,7 @@ struct FixedSizePelletMgr : public BasePelletMgr, public Container<T> {
 	virtual u8 getMgrID()      = 0;                 // _5C
 	virtual void setRevival(Pellet*);               // _60
 	virtual void setFromTeki(Pellet*);              // _64
-	virtual void getFlag(Pellet*);                  // _68
+	virtual u32 getFlag(Pellet*);                   // _68
 	virtual SysShape::Model* createShape(int, int); // _6C
 	virtual T* getObjectPtr(void*);                 // _88
 	virtual void* getNext(void*);                   // _8C

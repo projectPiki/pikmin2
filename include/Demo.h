@@ -13,27 +13,30 @@ enum EDrawInitMode {};
 
 namespace Demo {
 struct HIORootNode : public Game::HIORootNode {
-	HIORootNode()
-	    : Game::HIORootNode(nullptr)
+	HIORootNode(Section* section)
+	    : Game::HIORootNode(section)
 	{
-		m_name = "THPã‚»ã‚¯ã‚·ãƒ§ãƒ³";
+		m_name = "THPƒZƒNƒVƒ‡ƒ“";
 	}
 
 	virtual ~HIORootNode() { } // _08 (weak)
+
+	// _00     = VTBL
+	// _00-_1C = Game::HIORootNode
 };
 
 // Size: 0x1B0
 struct Section : public Game::BaseHIOSection {
 	Section(JKRHeap*);
 
-	virtual ~Section();                 // _08
-	virtual void init();                // _18
-	virtual void doExit();              // _24
-	virtual bool forceReset();          // _2C (weak)
-	virtual void doLoadingStart();      // _34
-	virtual bool doLoading();           // _38
-	virtual bool doUpdate();            // _3C
-	virtual void doDraw(Graphics& gfx); // _40
+	virtual ~Section();                         // _08
+	virtual void init();                        // _18
+	virtual void doExit();                      // _24
+	virtual bool forceReset() { return false; } // _2C (weak)
+	virtual void doLoadingStart();              // _34
+	virtual bool doLoading();                   // _38
+	virtual bool doUpdate();                    // _3C
+	virtual void doDraw(Graphics& gfx);         // _40
 
 	void loadResource();
 

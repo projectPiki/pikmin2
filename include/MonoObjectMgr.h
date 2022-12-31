@@ -125,7 +125,7 @@ struct MonoObjectMgr : public ObjectMgr<T> {
 	int m_activeCount; // _20
 	int m_max;         // _24
 	T* m_array;        // _28
-	s8* m_openIds;     // _2C
+	u8* m_openIds;     // _2C
 };
 
 #endif

@@ -11,7 +11,6 @@ namespace Game {
  */
 bool InteractFlick::actCommon(Creature* creature)
 {
-	// On flick, we unstick and get sent flying away. Weeeee.
 	if (creature->isStickTo()) {
 		creature->endStick();
 	}
@@ -26,7 +25,6 @@ bool InteractFlick::actCommon(Creature* creature)
  */
 bool InteractAttack::actCommon(Creature* creature)
 {
-	// If anything other than a teki tries to attack the navi, don't register
 	if (m_creature->isNavi() && !creature->isTeki()) {
 		return false;
 	}

@@ -1,4 +1,9 @@
-#include "types.h"
+#include "Game/pelletMgr.h"
+#include "Game/Entities/PelletCarcass.h"
+#include "Iterator.h"
+
+#define MAX_CARCASS_COUNT     64
+#define MAX_CARCASS_COLLPARTS 128
 
 /*
     Generated from dpostproc
@@ -415,305 +420,48 @@ namespace Game {
  * Address:	801FB8CC
  * Size:	0000B0
  */
-PelletCarcass::Mgr::Mgr(void)
+PelletCarcass::Mgr::Mgr()
+    : FixedSizePelletMgr<Game::PelletCarcass::Object>(PelletList::CARCASS)
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	extsh.   r0, r4
-	stw      r31, 0xc(r1)
-	stw      r30, 8(r1)
-	mr       r30, r3
-	beq      lbl_801FB8F4
-	addi     r0, r30, 0xa0
-	stw      r0, 4(r30)
-
-lbl_801FB8F4:
-	mr       r3, r30
-	li       r4, 0
-	li       r5, 1
-	bl       __ct__Q24Game13BasePelletMgrFQ34Game10PelletList5cKind
-	addi     r31, r30, 0x54
-	mr       r3, r31
-	bl       __ct__5CNodeFv
-	lis      r3, __vt__16GenericContainer@ha
-	lis      r4, "__vt__40Container<Q34Game13PelletCarcass6Object>"@ha
-	addi     r0, r3, __vt__16GenericContainer@l
-	lis      r3,
-"__vt__Q24Game49FixedSizePelletMgr<Q34Game13PelletCarcass6Object>"@ha stw r0,
-0(r31) addi     r0, r4, "__vt__40Container<Q34Game13PelletCarcass6Object>"@l
-	addi     r4, r3,
-"__vt__Q24Game49FixedSizePelletMgr<Q34Game13PelletCarcass6Object>"@l li r5, 0
-	stw      r0, 0(r31)
-	addi     r0, r4, 0x98
-	addi     r3, r30, 0x70
-	stb      r5, 0x18(r31)
-	stw      r4, 0(r30)
-	stw      r0, 0x54(r30)
-	bl       "__ct__44MonoObjectMgr<Q34Game13PelletCarcass6Object>Fv"
-	lis      r4, __vt__Q34Game13PelletCarcass3Mgr@ha
-	mr       r3, r30
-	addi     r4, r4, __vt__Q34Game13PelletCarcass3Mgr@l
-	stw      r4, 0(r30)
-	addi     r0, r4, 0x98
-	stw      r0, 0x54(r30)
-	lwz      r31, 0xc(r1)
-	lwz      r30, 8(r1)
-	lwz      r0, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
 }
-
-} // namespace Game
 
 /*
  * --INFO--
  * Address:	801FB97C
  * Size:	00019C
  */
-void __dt__Q24Game49FixedSizePelletMgr<Game::PelletCarcass::Object> Fv(void)
-{
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	mr       r31, r4
-	stw      r30, 8(r1)
-	or.      r30, r3, r3
-	beq      lbl_801FBAFC
-	lis      r3,
-"__vt__Q24Game49FixedSizePelletMgr<Q34Game13PelletCarcass6Object>"@ha addic. r0,
-r30, 0x70 addi     r3, r3,
-"__vt__Q24Game49FixedSizePelletMgr<Q34Game13PelletCarcass6Object>"@l stw r3,
-0(r30) addi     r0, r3, 0x98 stw      r0, 0x54(r30) beq      lbl_801FBA1C lis
-r3, "__vt__44MonoObjectMgr<Q34Game13PelletCarcass6Object>"@ha addic.   r0, r30,
-0x70 addi     r3, r3, "__vt__44MonoObjectMgr<Q34Game13PelletCarcass6Object>"@l
-	stw      r3, 0x70(r30)
-	addi     r0, r3, 0x2c
-	stw      r0, 0x8c(r30)
-	beq      lbl_801FBA1C
-	lis      r3, "__vt__40ObjectMgr<Q34Game13PelletCarcass6Object>"@ha
-	addic.   r0, r30, 0x70
-	addi     r3, r3, "__vt__40ObjectMgr<Q34Game13PelletCarcass6Object>"@l
-	stw      r3, 0x70(r30)
-	addi     r0, r3, 0x2c
-	stw      r0, 0x8c(r30)
-	beq      lbl_801FBA1C
-	lis      r3, "__vt__40Container<Q34Game13PelletCarcass6Object>"@ha
-	addic.   r0, r30, 0x70
-	addi     r0, r3, "__vt__40Container<Q34Game13PelletCarcass6Object>"@l
-	stw      r0, 0x70(r30)
-	beq      lbl_801FBA1C
-	lis      r4, __vt__16GenericContainer@ha
-	addi     r3, r30, 0x70
-	addi     r0, r4, __vt__16GenericContainer@l
-	li       r4, 0
-	stw      r0, 0x70(r30)
-	bl       __dt__5CNodeFv
-
-lbl_801FBA1C:
-	addic.   r0, r30, 0x54
-	beq      lbl_801FBA50
-	lis      r3, "__vt__40Container<Q34Game13PelletCarcass6Object>"@ha
-	addic.   r0, r30, 0x54
-	addi     r0, r3, "__vt__40Container<Q34Game13PelletCarcass6Object>"@l
-	stw      r0, 0x54(r30)
-	beq      lbl_801FBA50
-	lis      r4, __vt__16GenericContainer@ha
-	addi     r3, r30, 0x54
-	addi     r0, r4, __vt__16GenericContainer@l
-	li       r4, 0
-	stw      r0, 0x54(r30)
-	bl       __dt__5CNodeFv
-
-lbl_801FBA50:
-	cmplwi   r30, 0
-	beq      lbl_801FBAEC
-	lis      r3, __vt__Q24Game13BasePelletMgr@ha
-	addic.   r0, r30, 0x18
-	addi     r0, r3, __vt__Q24Game13BasePelletMgr@l
-	stw      r0, 0(r30)
-	beq      lbl_801FBAEC
-	lis      r3, __vt__11CollPartMgr@ha
-	addic.   r0, r30, 0x18
-	addi     r3, r3, __vt__11CollPartMgr@l
-	stw      r3, 0x18(r30)
-	addi     r0, r3, 0x2c
-	stw      r0, 0x34(r30)
-	beq      lbl_801FBAEC
-	lis      r3, "__vt__24MonoObjectMgr<8CollPart>"@ha
-	addic.   r0, r30, 0x18
-	addi     r3, r3, "__vt__24MonoObjectMgr<8CollPart>"@l
-	stw      r3, 0x18(r30)
-	addi     r0, r3, 0x2c
-	stw      r0, 0x34(r30)
-	beq      lbl_801FBAEC
-	lis      r3, "__vt__20ObjectMgr<8CollPart>"@ha
-	addic.   r0, r30, 0x18
-	addi     r3, r3, "__vt__20ObjectMgr<8CollPart>"@l
-	stw      r3, 0x18(r30)
-	addi     r0, r3, 0x2c
-	stw      r0, 0x34(r30)
-	beq      lbl_801FBAEC
-	lis      r3, "__vt__20Container<8CollPart>"@ha
-	addic.   r0, r30, 0x18
-	addi     r0, r3, "__vt__20Container<8CollPart>"@l
-	stw      r0, 0x18(r30)
-	beq      lbl_801FBAEC
-	lis      r4, __vt__16GenericContainer@ha
-	addi     r3, r30, 0x18
-	addi     r0, r4, __vt__16GenericContainer@l
-	li       r4, 0
-	stw      r0, 0x18(r30)
-	bl       __dt__5CNodeFv
-
-lbl_801FBAEC:
-	extsh.   r0, r31
-	ble      lbl_801FBAFC
-	mr       r3, r30
-	bl       __dl__FPv
-
-lbl_801FBAFC:
-	lwz      r0, 0x14(r1)
-	mr       r3, r30
-	lwz      r31, 0xc(r1)
-	lwz      r30, 8(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
-}
+FixedSizePelletMgr<Game::PelletCarcass::Object>::~FixedSizePelletMgr() { }
 
 /*
  * --INFO--
  * Address:	801FBB18
  * Size:	0000A0
  */
-void MonoObjectMgr<Game::PelletCarcass::Object>::~MonoObjectMgr()
-{
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	mr       r31, r4
-	stw      r30, 8(r1)
-	or.      r30, r3, r3
-	beq      lbl_801FBB9C
-	lis      r4, "__vt__44MonoObjectMgr<Q34Game13PelletCarcass6Object>"@ha
-	addi     r4, r4, "__vt__44MonoObjectMgr<Q34Game13PelletCarcass6Object>"@l
-	stw      r4, 0(r30)
-	addi     r0, r4, 0x2c
-	stw      r0, 0x1c(r30)
-	beq      lbl_801FBB8C
-	lis      r4, "__vt__40ObjectMgr<Q34Game13PelletCarcass6Object>"@ha
-	addi     r4, r4, "__vt__40ObjectMgr<Q34Game13PelletCarcass6Object>"@l
-	stw      r4, 0(r30)
-	addi     r0, r4, 0x2c
-	stw      r0, 0x1c(r30)
-	beq      lbl_801FBB8C
-	lis      r4, "__vt__40Container<Q34Game13PelletCarcass6Object>"@ha
-	addi     r0, r4, "__vt__40Container<Q34Game13PelletCarcass6Object>"@l
-	stw      r0, 0(r30)
-	beq      lbl_801FBB8C
-	lis      r5, __vt__16GenericContainer@ha
-	li       r4, 0
-	addi     r0, r5, __vt__16GenericContainer@l
-	stw      r0, 0(r30)
-	bl       __dt__5CNodeFv
-
-lbl_801FBB8C:
-	extsh.   r0, r31
-	ble      lbl_801FBB9C
-	mr       r3, r30
-	bl       __dl__FPv
-
-lbl_801FBB9C:
-	lwz      r0, 0x14(r1)
-	mr       r3, r30
-	lwz      r31, 0xc(r1)
-	lwz      r30, 8(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
-}
+// MonoObjectMgr<Game::PelletCarcass::Object>::~MonoObjectMgr()
+//{
+//}
 
 /*
  * --INFO--
  * Address:	801FBBB8
  * Size:	000070
  */
-void Container<Game::PelletCarcass::Object>::~Container()
-{
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	mr       r31, r4
-	stw      r30, 8(r1)
-	or.      r30, r3, r3
-	beq      lbl_801FBC0C
-	lis      r4, "__vt__40Container<Q34Game13PelletCarcass6Object>"@ha
-	addi     r0, r4, "__vt__40Container<Q34Game13PelletCarcass6Object>"@l
-	stw      r0, 0(r30)
-	beq      lbl_801FBBFC
-	lis      r5, __vt__16GenericContainer@ha
-	li       r4, 0
-	addi     r0, r5, __vt__16GenericContainer@l
-	stw      r0, 0(r30)
-	bl       __dt__5CNodeFv
-
-lbl_801FBBFC:
-	extsh.   r0, r31
-	ble      lbl_801FBC0C
-	mr       r3, r30
-	bl       __dl__FPv
-
-lbl_801FBC0C:
-	lwz      r0, 0x14(r1)
-	mr       r3, r30
-	lwz      r31, 0xc(r1)
-	lwz      r30, 8(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
-}
-
-namespace Game {
+// Container<Game::PelletCarcass::Object>::~Container()
+//{
+//}
 
 /*
  * --INFO--
  * Address:	801FBC28
  * Size:	000064
  */
-void PelletCarcass::Mgr::setupResources(void)
+void PelletCarcass::Mgr::setupResources()
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	addi     r4, r2, lbl_80519CF8@sda21
-	li       r5, 0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	mr       r31, r3
-	lwz      r3, sys@sda21(r13)
-	bl       heapStatusStart__6SystemFPcP7JKRHeap
-	mr       r3, r31
-	li       r4, 0x40
-	bl "alloc__Q24Game49FixedSizePelletMgr<Q34Game13PelletCarcass6Object>Fi" mr
-	r3, r31 bl       load__Q24Game13BasePelletMgrFv addi     r3, r31, 0x18 li
-	r4, 0x80 bl       "alloc__24MonoObjectMgr<8CollPart>Fi" lwz      r3,
-	sys@sda21(r13) addi     r4, r2, lbl_80519CF8@sda21 bl
-	heapStatusEnd__6SystemFPc lwz      r0, 0x14(r1) lwz      r31, 0xc(r1) mtlr
-	r0 addi     r1, r1, 0x10 blr
-	*/
+	sys->heapStatusStart("Carcass", nullptr);
+	alloc(MAX_CARCASS_COUNT);
+	load();
+	m_collPartMgr.alloc(MAX_CARCASS_COLLPARTS);
+	sys->heapStatusEnd("Carcass");
 }
 
 /*
@@ -721,259 +469,56 @@ void PelletCarcass::Mgr::setupResources(void)
  * Address:	801FBC8C
  * Size:	0001B4
  */
-PelletCarcass::Mgr::~Mgr(void)
-{
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	mr       r31, r4
-	stw      r30, 8(r1)
-	or.      r30, r3, r3
-	beq      lbl_801FBE24
-	lis      r3, __vt__Q34Game13PelletCarcass3Mgr@ha
-	addi     r3, r3, __vt__Q34Game13PelletCarcass3Mgr@l
-	stw      r3, 0(r30)
-	addi     r0, r3, 0x98
-	stw      r0, 0x54(r30)
-	beq      lbl_801FBE14
-	lis      r3,
-"__vt__Q24Game49FixedSizePelletMgr<Q34Game13PelletCarcass6Object>"@ha addic. r0,
-r30, 0x70 addi     r3, r3,
-"__vt__Q24Game49FixedSizePelletMgr<Q34Game13PelletCarcass6Object>"@l stw r3,
-0(r30) addi     r0, r3, 0x98 stw      r0, 0x54(r30) beq      lbl_801FBD44 lis
-r3, "__vt__44MonoObjectMgr<Q34Game13PelletCarcass6Object>"@ha addic.   r0, r30,
-0x70 addi     r3, r3, "__vt__44MonoObjectMgr<Q34Game13PelletCarcass6Object>"@l
-	stw      r3, 0x70(r30)
-	addi     r0, r3, 0x2c
-	stw      r0, 0x8c(r30)
-	beq      lbl_801FBD44
-	lis      r3, "__vt__40ObjectMgr<Q34Game13PelletCarcass6Object>"@ha
-	addic.   r0, r30, 0x70
-	addi     r3, r3, "__vt__40ObjectMgr<Q34Game13PelletCarcass6Object>"@l
-	stw      r3, 0x70(r30)
-	addi     r0, r3, 0x2c
-	stw      r0, 0x8c(r30)
-	beq      lbl_801FBD44
-	lis      r3, "__vt__40Container<Q34Game13PelletCarcass6Object>"@ha
-	addic.   r0, r30, 0x70
-	addi     r0, r3, "__vt__40Container<Q34Game13PelletCarcass6Object>"@l
-	stw      r0, 0x70(r30)
-	beq      lbl_801FBD44
-	lis      r4, __vt__16GenericContainer@ha
-	addi     r3, r30, 0x70
-	addi     r0, r4, __vt__16GenericContainer@l
-	li       r4, 0
-	stw      r0, 0x70(r30)
-	bl       __dt__5CNodeFv
-
-lbl_801FBD44:
-	addic.   r0, r30, 0x54
-	beq      lbl_801FBD78
-	lis      r3, "__vt__40Container<Q34Game13PelletCarcass6Object>"@ha
-	addic.   r0, r30, 0x54
-	addi     r0, r3, "__vt__40Container<Q34Game13PelletCarcass6Object>"@l
-	stw      r0, 0x54(r30)
-	beq      lbl_801FBD78
-	lis      r4, __vt__16GenericContainer@ha
-	addi     r3, r30, 0x54
-	addi     r0, r4, __vt__16GenericContainer@l
-	li       r4, 0
-	stw      r0, 0x54(r30)
-	bl       __dt__5CNodeFv
-
-lbl_801FBD78:
-	cmplwi   r30, 0
-	beq      lbl_801FBE14
-	lis      r3, __vt__Q24Game13BasePelletMgr@ha
-	addic.   r0, r30, 0x18
-	addi     r0, r3, __vt__Q24Game13BasePelletMgr@l
-	stw      r0, 0(r30)
-	beq      lbl_801FBE14
-	lis      r3, __vt__11CollPartMgr@ha
-	addic.   r0, r30, 0x18
-	addi     r3, r3, __vt__11CollPartMgr@l
-	stw      r3, 0x18(r30)
-	addi     r0, r3, 0x2c
-	stw      r0, 0x34(r30)
-	beq      lbl_801FBE14
-	lis      r3, "__vt__24MonoObjectMgr<8CollPart>"@ha
-	addic.   r0, r30, 0x18
-	addi     r3, r3, "__vt__24MonoObjectMgr<8CollPart>"@l
-	stw      r3, 0x18(r30)
-	addi     r0, r3, 0x2c
-	stw      r0, 0x34(r30)
-	beq      lbl_801FBE14
-	lis      r3, "__vt__20ObjectMgr<8CollPart>"@ha
-	addic.   r0, r30, 0x18
-	addi     r3, r3, "__vt__20ObjectMgr<8CollPart>"@l
-	stw      r3, 0x18(r30)
-	addi     r0, r3, 0x2c
-	stw      r0, 0x34(r30)
-	beq      lbl_801FBE14
-	lis      r3, "__vt__20Container<8CollPart>"@ha
-	addic.   r0, r30, 0x18
-	addi     r0, r3, "__vt__20Container<8CollPart>"@l
-	stw      r0, 0x18(r30)
-	beq      lbl_801FBE14
-	lis      r4, __vt__16GenericContainer@ha
-	addi     r3, r30, 0x18
-	addi     r0, r4, __vt__16GenericContainer@l
-	li       r4, 0
-	stw      r0, 0x18(r30)
-	bl       __dt__5CNodeFv
-
-lbl_801FBE14:
-	extsh.   r0, r31
-	ble      lbl_801FBE24
-	mr       r3, r30
-	bl       __dl__FPv
-
-lbl_801FBE24:
-	lwz      r0, 0x14(r1)
-	mr       r3, r30
-	lwz      r31, 0xc(r1)
-	lwz      r30, 8(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
-}
+PelletCarcass::Mgr::~Mgr() { }
 
 /*
  * --INFO--
  * Address:	801FBE40
  * Size:	000008
  */
-u32 PelletCarcass::Mgr::createShape(int, int) { return 0x0; }
+SysShape::Model* PelletCarcass::Mgr::createShape(int, int) { return nullptr; }
 
 /*
  * --INFO--
  * Address:	801FBE48
  * Size:	000008
  */
-void PelletCarcass::Mgr::getMgrName(void)
-{
-	/*
-	addi     r3, r2, lbl_80519D00@sda21
-	blr
-	*/
-}
+char* PelletCarcass::Mgr::getMgrName() { return "carcass"; }
 
 /*
  * --INFO--
  * Address:	801FBE50
  * Size:	000008
  */
-u32 PelletCarcass::Mgr::getMgrID(void) { return 0x1; }
-
-} // namespace Game
+u8 PelletCarcass::Mgr::getMgrID(void) { return 0x1; }
 
 /*
  * --INFO--
  * Address:	801FBE58
  * Size:	000088
  */
-void ObjectMgr<Game::PelletCarcass::Object>::~ObjectMgr()
-{
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	mr       r31, r4
-	stw      r30, 8(r1)
-	or.      r30, r3, r3
-	beq      lbl_801FBEC4
-	lis      r4, "__vt__40ObjectMgr<Q34Game13PelletCarcass6Object>"@ha
-	addi     r4, r4, "__vt__40ObjectMgr<Q34Game13PelletCarcass6Object>"@l
-	stw      r4, 0(r30)
-	addi     r0, r4, 0x2c
-	stw      r0, 0x1c(r30)
-	beq      lbl_801FBEB4
-	lis      r4, "__vt__40Container<Q34Game13PelletCarcass6Object>"@ha
-	addi     r0, r4, "__vt__40Container<Q34Game13PelletCarcass6Object>"@l
-	stw      r0, 0(r30)
-	beq      lbl_801FBEB4
-	lis      r5, __vt__16GenericContainer@ha
-	li       r4, 0
-	addi     r0, r5, __vt__16GenericContainer@l
-	stw      r0, 0(r30)
-	bl       __dt__5CNodeFv
-
-lbl_801FBEB4:
-	extsh.   r0, r31
-	ble      lbl_801FBEC4
-	mr       r3, r30
-	bl       __dl__FPv
-
-lbl_801FBEC4:
-	lwz      r0, 0x14(r1)
-	mr       r3, r30
-	lwz      r31, 0xc(r1)
-	lwz      r30, 8(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
-}
+// ObjectMgr<Game::PelletCarcass::Object>::~ObjectMgr()
+//{
+//}
 
 /*
  * --INFO--
  * Address:	801FBEE0
  * Size:	00009C
  */
-void resetMgrAndResources__Q24Game49FixedSizePelletMgr<Game::PelletCarcass::Object> Fv(void)
+void FixedSizePelletMgr<Game::PelletCarcass::Object>::resetMgrAndResources()
 {
-	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  stw       r0, 0x14(r1)
-	  stw       r31, 0xC(r1)
-	  mr        r31, r3
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0x28(r12)
-	  mtctr     r12
-	  bctrl
-	  li        r8, 0
-	  li        r9, 0
-	  mr        r7, r8
-	  mr        r6, r8
-	  mr        r5, r8
-	  mr        r4, r8
-	  b         .loc_0x68
+	resetMgr();
+	for (int i = 0; i < m_entries; i++) {
+		m_modelData[i] = nullptr;
+		m_animMgr[i]   = nullptr;
+		m_collParts[i] = nullptr;
+		_4C[i]         = false;
+	}
 
-	.loc_0x40:
-	  lwz       r3, 0xC(r31)
-	  stwx      r7, r3, r8
-	  lwz       r3, 0x10(r31)
-	  stwx      r6, r3, r8
-	  lwz       r3, 0x14(r31)
-	  stwx      r5, r3, r8
-	  addi      r8, r8, 0x4
-	  lwz       r3, 0x4C(r31)
-	  stbx      r4, r3, r9
-	  addi      r9, r9, 0x1
-
-	.loc_0x68:
-	  lwz       r0, 0x50(r31)
-	  cmpw      r9, r0
-	  blt+      .loc_0x40
-	  lwz       r0, 0x48(r31)
-	  cmplwi    r0, 0
-	  beq-      .loc_0x88
-	  li        r0, 0
-	  stw       r0, 0x48(r31)
-
-	.loc_0x88:
-	  lwz       r0, 0x14(r1)
-	  lwz       r31, 0xC(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
-	*/
+	if (m_modelMgr) {
+		m_modelMgr = nullptr;
+	}
 }
 
 /*
@@ -981,186 +526,65 @@ void resetMgrAndResources__Q24Game49FixedSizePelletMgr<Game::PelletCarcass::Obje
  * Address:	801FBF7C
  * Size:	000004
  */
-void onCreateModel__Q24Game49FixedSizePelletMgr<Game::PelletCarcass::Object> FPQ28SysShape5Model(void) { }
+void FixedSizePelletMgr<Game::PelletCarcass::Object>::onCreateModel(SysShape::Model*) { }
 
 /*
  * --INFO--
  * Address:	801FBF80
  * Size:	00002C
  */
-void birth__Q24Game49FixedSizePelletMgr<Game::PelletCarcass::Object> Fv(void)
-{
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	lwzu     r12, 0x70(r3)
-	lwz      r12, 0x7c(r12)
-	mtctr    r12
-	bctrl
-	lwz      r0, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
-}
+Pellet* FixedSizePelletMgr<Game::PelletCarcass::Object>::birth() { return m_monoObjectMgr.birth(); }
 
 /*
  * --INFO--
  * Address:	801FBFAC
  * Size:	00002C
  */
-void doAnimation__Q24Game49FixedSizePelletMgr<Game::PelletCarcass::Object> Fv(void)
-{
-	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  stw       r0, 0x14(r1)
-	  lwzu      r12, 0x70(r3)
-	  lwz       r12, 0x64(r12)
-	  mtctr     r12
-	  bctrl
-	  lwz       r0, 0x14(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
-	*/
-}
+void FixedSizePelletMgr<Game::PelletCarcass::Object>::doAnimation() { m_monoObjectMgr.doAnimation(); }
 
 /*
  * --INFO--
  * Address:	801FBFD8
  * Size:	00002C
  */
-void doEntry__Q24Game49FixedSizePelletMgr<Game::PelletCarcass::Object> Fv(void)
-{
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	lwzu     r12, 0x70(r3)
-	lwz      r12, 0x68(r12)
-	mtctr    r12
-	bctrl
-	lwz      r0, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
-}
+void FixedSizePelletMgr<Game::PelletCarcass::Object>::doEntry() { m_monoObjectMgr.doEntry(); }
 
 /*
  * --INFO--
  * Address:	801FC004
  * Size:	00002C
  */
-void doSetView__Q24Game49FixedSizePelletMgr<Game::PelletCarcass::Object> Fi(void)
-{
-	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  stw       r0, 0x14(r1)
-	  lwzu      r12, 0x70(r3)
-	  lwz       r12, 0x6C(r12)
-	  mtctr     r12
-	  bctrl
-	  lwz       r0, 0x14(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
-	*/
-}
+void FixedSizePelletMgr<Game::PelletCarcass::Object>::doSetView(int id) { m_monoObjectMgr.doSetView(id); }
 
 /*
  * --INFO--
  * Address:	801FC030
  * Size:	00002C
  */
-void doViewCalc__Q24Game49FixedSizePelletMgr<Game::PelletCarcass::Object> Fv(void)
-{
-	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  stw       r0, 0x14(r1)
-	  lwzu      r12, 0x70(r3)
-	  lwz       r12, 0x70(r12)
-	  mtctr     r12
-	  bctrl
-	  lwz       r0, 0x14(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
-	*/
-}
+void FixedSizePelletMgr<Game::PelletCarcass::Object>::doViewCalc() { m_monoObjectMgr.doViewCalc(); }
 
 /*
  * --INFO--
  * Address:	801FC05C
  * Size:	00002C
  */
-void doSimulation__Q24Game49FixedSizePelletMgr<Game::PelletCarcass::Object> Ff(void)
-{
-	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  stw       r0, 0x14(r1)
-	  lwzu      r12, 0x70(r3)
-	  lwz       r12, 0x74(r12)
-	  mtctr     r12
-	  bctrl
-	  lwz       r0, 0x14(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
-	*/
-}
+void FixedSizePelletMgr<Game::PelletCarcass::Object>::doSimulation(f32 rate) { m_monoObjectMgr.doSimulation(rate); }
 
 /*
  * --INFO--
  * Address:	801FC088
  * Size:	00002C
  */
-void doDirectDraw__Q24Game49FixedSizePelletMgr<Game::PelletCarcass::Object> FR8Graphics(void)
-{
-	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  stw       r0, 0x14(r1)
-	  lwzu      r12, 0x70(r3)
-	  lwz       r12, 0x78(r12)
-	  mtctr     r12
-	  bctrl
-	  lwz       r0, 0x14(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
-	*/
-}
+void FixedSizePelletMgr<Game::PelletCarcass::Object>::doDirectDraw(Graphics& gfx) { m_monoObjectMgr.doDirectDraw(gfx); }
 
 /*
  * --INFO--
  * Address:	801FC0B4
  * Size:	000024
  */
-void kill__Q24Game49FixedSizePelletMgr<Game::PelletCarcass::Object> FPQ24Game6Pellet(void)
+void FixedSizePelletMgr<Game::PelletCarcass::Object>::kill(Pellet* pelt)
 {
-	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  addi      r3, r3, 0x70
-	  stw       r0, 0x14(r1)
-	  bl        0xCC
-	  lwz       r0, 0x14(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
-	*/
+	m_monoObjectMgr.kill(static_cast<PelletCarcass::Object*>(pelt));
 }
 
 /*
@@ -1168,152 +592,48 @@ void kill__Q24Game49FixedSizePelletMgr<Game::PelletCarcass::Object> FPQ24Game6Pe
  * Address:	801FC0D8
  * Size:	00002C
  */
-void getNext__Q24Game49FixedSizePelletMgr<Game::PelletCarcass::Object> FPv(void)
-{
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	lwzu     r12, 0x70(r3)
-	lwz      r12, 0x14(r12)
-	mtctr    r12
-	bctrl
-	lwz      r0, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
-}
+void* FixedSizePelletMgr<Game::PelletCarcass::Object>::getNext(void* data) { return m_monoObjectMgr.getNext(data); }
 
 /*
  * --INFO--
  * Address:	801FC104
  * Size:	00002C
  */
-void getStart__Q24Game49FixedSizePelletMgr<Game::PelletCarcass::Object> Fv(void)
-{
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	lwzu     r12, 0x70(r3)
-	lwz      r12, 0x18(r12)
-	mtctr    r12
-	bctrl
-	lwz      r0, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
-}
+void* FixedSizePelletMgr<Game::PelletCarcass::Object>::getStart() { return m_monoObjectMgr.getStart(); }
 
 /*
  * --INFO--
  * Address:	801FC130
  * Size:	000060
  */
-void MonoObjectMgr<Game::PelletCarcass::Object>::birth()
-{
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	mr       r31, r3
-	bl       "getEmptyIndex__44MonoObjectMgr<Q34Game13PelletCarcass6Object>Fv"
-	cmpwi    r3, -1
-	beq      lbl_801FC178
-	lwz      r6, 0x28(r31)
-	li       r0, 0
-	lwz      r4, 0x2c(r31)
-	mulli    r5, r3, 0x458
-	stbx     r0, r4, r3
-	add      r3, r6, r5
-	lwz      r4, 0x20(r31)
-	addi     r0, r4, 1
-	stw      r0, 0x20(r31)
-	b        lbl_801FC17C
-
-lbl_801FC178:
-	li       r3, 0
-
-lbl_801FC17C:
-	lwz      r0, 0x14(r1)
-	lwz      r31, 0xc(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
-}
+// PelletCarcass::Object* MonoObjectMgr<Game::PelletCarcass::Object>::birth()
+//{
+//}
 
 /*
  * --INFO--
  * Address:	801FC190
  * Size:	000054
  */
-void MonoObjectMgr<Game::PelletCarcass::Object>::kill(Game::PelletCarcass::Object*)
-{
-	/*
-	.loc_0x0:
-	  lwz       r0, 0x24(r3)
-	  li        r6, 0
-	  li        r5, 0
-	  mtctr     r0
-	  cmpwi     r0, 0
-	  blelr-
-
-	.loc_0x18:
-	  lwz       r0, 0x28(r3)
-	  add       r0, r0, r5
-	  cmplw     r0, r4
-	  bne-      .loc_0x44
-	  lwz       r4, 0x2C(r3)
-	  li        r0, 0x1
-	  stbx      r0, r4, r6
-	  lwz       r4, 0x20(r3)
-	  subi      r0, r4, 0x1
-	  stw       r0, 0x20(r3)
-	  blr
-
-	.loc_0x44:
-	  addi      r5, r5, 0x458
-	  addi      r6, r6, 0x1
-	  bdnz+     .loc_0x18
-	  blr
-	*/
-}
+// void MonoObjectMgr<Game::PelletCarcass::Object>::kill(PelletCarcass::Object*)
+//{
+//}
 
 /*
  * --INFO--
  * Address:	801FC1E4
  * Size:	000040
  */
-void MonoObjectMgr<Game::PelletCarcass::Object>::getNext(void*)
+void* MonoObjectMgr<Game::PelletCarcass::Object>::getNext(void* id)
 {
-	/*
-	lwz      r5, 0x24(r3)
-	addi     r6, r4, 1
-	subf     r0, r6, r5
-	mtctr    r0
-	cmpw     r6, r5
-	bge      lbl_801FC21C
-
-lbl_801FC1FC:
-	lwz      r4, 0x2c(r3)
-	lbzx     r0, r4, r6
-	cmplwi   r0, 0
-	bne      lbl_801FC214
-	mr       r3, r6
-	blr
-
-lbl_801FC214:
-	addi     r6, r6, 1
-	bdnz     lbl_801FC1FC
-
-lbl_801FC21C:
-	mr       r3, r5
-	blr
-	*/
+	int ret = m_max;
+	for (int i = (int)id + 1; i < ret; i++) {
+		if (!m_openIds[i]) {
+			return (void*)i;
+		}
+	}
+	return (void*)ret;
+	// is the data type really void* ?
 }
 
 /*
@@ -1321,370 +641,82 @@ lbl_801FC21C:
  * Address:	801FC224
  * Size:	000030
  */
-void MonoObjectMgr<Game::PelletCarcass::Object>::getStart()
-{
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	li       r4, -1
-	stw      r0, 0x14(r1)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x14(r12)
-	mtctr    r12
-	bctrl
-	lwz      r0, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
-}
+void* MonoObjectMgr<Game::PelletCarcass::Object>::getStart() { return getNext((void*)-1); }
 
 /*
  * --INFO--
  * Address:	801FC254
  * Size:	000008
  */
-void MonoObjectMgr<Game::PelletCarcass::Object>::getEnd()
-{
-	/*
-	lwz      r3, 0x24(r3)
-	blr
-	*/
-}
+void* MonoObjectMgr<Game::PelletCarcass::Object>::getEnd() { return (void*)m_max; }
 
 /*
  * --INFO--
  * Address:	801FC25C
  * Size:	000010
  */
-void MonoObjectMgr<Game::PelletCarcass::Object>::getAt(int)
-{
-	/*
-	mulli    r0, r4, 0x458
-	lwz      r3, 0x28(r3)
-	add      r3, r3, r0
-	blr
-	*/
-}
+PelletCarcass::Object* MonoObjectMgr<Game::PelletCarcass::Object>::getAt(int id) { return &m_array[id]; }
 
 /*
  * --INFO--
  * Address:	801FC26C
  * Size:	000008
  */
-void MonoObjectMgr<Game::PelletCarcass::Object>::getTo()
-{
-	/*
-	lwz      r3, 0x24(r3)
-	blr
-	*/
-}
+int MonoObjectMgr<Game::PelletCarcass::Object>::getTo() { return m_max; }
 
 /*
  * --INFO--
  * Address:	801FC274
  * Size:	000080
  */
-void MonoObjectMgr<Game::PelletCarcass::Object>::doAnimation()
-{
-	/*
-	stwu     r1, -0x20(r1)
-	mflr     r0
-	stw      r0, 0x24(r1)
-	stw      r31, 0x1c(r1)
-	li       r31, 0
-	stw      r30, 0x18(r1)
-	li       r30, 0
-	stw      r29, 0x14(r1)
-	mr       r29, r3
-	b        lbl_801FC2CC
-
-lbl_801FC29C:
-	lwz      r3, 0x2c(r29)
-	lbzx     r0, r3, r30
-	cmplwi   r0, 0
-	bne      lbl_801FC2C4
-	lwz      r0, 0x28(r29)
-	add      r3, r0, r31
-	lwz      r12, 0(r3)
-	lwz      r12, 0x3c(r12)
-	mtctr    r12
-	bctrl
-
-lbl_801FC2C4:
-	addi     r31, r31, 0x458
-	addi     r30, r30, 1
-
-lbl_801FC2CC:
-	lwz      r0, 0x24(r29)
-	cmpw     r30, r0
-	blt      lbl_801FC29C
-	lwz      r0, 0x24(r1)
-	lwz      r31, 0x1c(r1)
-	lwz      r30, 0x18(r1)
-	lwz      r29, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x20
-	blr
-	*/
-}
+// void MonoObjectMgr<Game::PelletCarcass::Object>::doAnimation()
+//{
+//}
 
 /*
  * --INFO--
  * Address:	801FC2F4
  * Size:	000080
  */
-void MonoObjectMgr<Game::PelletCarcass::Object>::doEntry()
-{
-	/*
-	stwu     r1, -0x20(r1)
-	mflr     r0
-	stw      r0, 0x24(r1)
-	stw      r31, 0x1c(r1)
-	li       r31, 0
-	stw      r30, 0x18(r1)
-	li       r30, 0
-	stw      r29, 0x14(r1)
-	mr       r29, r3
-	b        lbl_801FC34C
-
-lbl_801FC31C:
-	lwz      r3, 0x2c(r29)
-	lbzx     r0, r3, r30
-	cmplwi   r0, 0
-	bne      lbl_801FC344
-	lwz      r0, 0x28(r29)
-	add      r3, r0, r31
-	lwz      r12, 0(r3)
-	lwz      r12, 0x40(r12)
-	mtctr    r12
-	bctrl
-
-lbl_801FC344:
-	addi     r31, r31, 0x458
-	addi     r30, r30, 1
-
-lbl_801FC34C:
-	lwz      r0, 0x24(r29)
-	cmpw     r30, r0
-	blt      lbl_801FC31C
-	lwz      r0, 0x24(r1)
-	lwz      r31, 0x1c(r1)
-	lwz      r30, 0x18(r1)
-	lwz      r29, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x20
-	blr
-	*/
-}
+// void MonoObjectMgr<Game::PelletCarcass::Object>::doEntry()
+//{
+//}
 
 /*
  * --INFO--
  * Address:	801FC374
  * Size:	000090
  */
-void MonoObjectMgr<Game::PelletCarcass::Object>::doSetView(int)
-{
-	/*
-	stwu     r1, -0x20(r1)
-	mflr     r0
-	stw      r0, 0x24(r1)
-	stw      r31, 0x1c(r1)
-	li       r31, 0
-	stw      r30, 0x18(r1)
-	li       r30, 0
-	stw      r29, 0x14(r1)
-	mr       r29, r4
-	stw      r28, 0x10(r1)
-	mr       r28, r3
-	b        lbl_801FC3D8
-
-lbl_801FC3A4:
-	lwz      r3, 0x2c(r28)
-	lbzx     r0, r3, r30
-	cmplwi   r0, 0
-	bne      lbl_801FC3D0
-	lwz      r0, 0x28(r28)
-	mr       r4, r29
-	add      r3, r0, r31
-	lwz      r12, 0(r3)
-	lwz      r12, 0x44(r12)
-	mtctr    r12
-	bctrl
-
-lbl_801FC3D0:
-	addi     r31, r31, 0x458
-	addi     r30, r30, 1
-
-lbl_801FC3D8:
-	lwz      r0, 0x24(r28)
-	cmpw     r30, r0
-	blt      lbl_801FC3A4
-	lwz      r0, 0x24(r1)
-	lwz      r31, 0x1c(r1)
-	lwz      r30, 0x18(r1)
-	lwz      r29, 0x14(r1)
-	lwz      r28, 0x10(r1)
-	mtlr     r0
-	addi     r1, r1, 0x20
-	blr
-	*/
-}
+// void MonoObjectMgr<Game::PelletCarcass::Object>::doSetView(int)
+//{
+//}
 
 /*
  * --INFO--
  * Address:	801FC404
  * Size:	000080
  */
-void MonoObjectMgr<Game::PelletCarcass::Object>::doViewCalc()
-{
-	/*
-	stwu     r1, -0x20(r1)
-	mflr     r0
-	stw      r0, 0x24(r1)
-	stw      r31, 0x1c(r1)
-	li       r31, 0
-	stw      r30, 0x18(r1)
-	li       r30, 0
-	stw      r29, 0x14(r1)
-	mr       r29, r3
-	b        lbl_801FC45C
-
-lbl_801FC42C:
-	lwz      r3, 0x2c(r29)
-	lbzx     r0, r3, r30
-	cmplwi   r0, 0
-	bne      lbl_801FC454
-	lwz      r0, 0x28(r29)
-	add      r3, r0, r31
-	lwz      r12, 0(r3)
-	lwz      r12, 0x48(r12)
-	mtctr    r12
-	bctrl
-
-lbl_801FC454:
-	addi     r31, r31, 0x458
-	addi     r30, r30, 1
-
-lbl_801FC45C:
-	lwz      r0, 0x24(r29)
-	cmpw     r30, r0
-	blt      lbl_801FC42C
-	lwz      r0, 0x24(r1)
-	lwz      r31, 0x1c(r1)
-	lwz      r30, 0x18(r1)
-	lwz      r29, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x20
-	blr
-	*/
-}
+// void MonoObjectMgr<Game::PelletCarcass::Object>::doViewCalc()
+//{
+//}
 
 /*
  * --INFO--
  * Address:	801FC484
  * Size:	000090
  */
-void MonoObjectMgr<Game::PelletCarcass::Object>::doSimulation(float)
-{
-	/*
-	stwu     r1, -0x20(r1)
-	mflr     r0
-	stw      r0, 0x24(r1)
-	stfd     f31, 0x18(r1)
-	fmr      f31, f1
-	stw      r31, 0x14(r1)
-	li       r31, 0
-	stw      r30, 0x10(r1)
-	li       r30, 0
-	stw      r29, 0xc(r1)
-	mr       r29, r3
-	b        lbl_801FC4E8
-
-lbl_801FC4B4:
-	lwz      r3, 0x2c(r29)
-	lbzx     r0, r3, r30
-	cmplwi   r0, 0
-	bne      lbl_801FC4E0
-	lwz      r0, 0x28(r29)
-	fmr      f1, f31
-	add      r3, r0, r31
-	lwz      r12, 0(r3)
-	lwz      r12, 0x4c(r12)
-	mtctr    r12
-	bctrl
-
-lbl_801FC4E0:
-	addi     r31, r31, 0x458
-	addi     r30, r30, 1
-
-lbl_801FC4E8:
-	lwz      r0, 0x24(r29)
-	cmpw     r30, r0
-	blt      lbl_801FC4B4
-	lwz      r0, 0x24(r1)
-	lfd      f31, 0x18(r1)
-	lwz      r31, 0x14(r1)
-	lwz      r30, 0x10(r1)
-	lwz      r29, 0xc(r1)
-	mtlr     r0
-	addi     r1, r1, 0x20
-	blr
-	*/
-}
+// void MonoObjectMgr<Game::PelletCarcass::Object>::doSimulation(float)
+//{
+//}
 
 /*
  * --INFO--
  * Address:	801FC514
  * Size:	000090
  */
-void MonoObjectMgr<Game::PelletCarcass::Object>::doDirectDraw(Graphics&)
-{
-	/*
-	stwu     r1, -0x20(r1)
-	mflr     r0
-	stw      r0, 0x24(r1)
-	stw      r31, 0x1c(r1)
-	li       r31, 0
-	stw      r30, 0x18(r1)
-	li       r30, 0
-	stw      r29, 0x14(r1)
-	mr       r29, r4
-	stw      r28, 0x10(r1)
-	mr       r28, r3
-	b        lbl_801FC578
-
-lbl_801FC544:
-	lwz      r3, 0x2c(r28)
-	lbzx     r0, r3, r30
-	cmplwi   r0, 0
-	bne      lbl_801FC570
-	lwz      r0, 0x28(r28)
-	mr       r4, r29
-	add      r3, r0, r31
-	lwz      r12, 0(r3)
-	lwz      r12, 0x50(r12)
-	mtctr    r12
-	bctrl
-
-lbl_801FC570:
-	addi     r31, r31, 0x458
-	addi     r30, r30, 1
-
-lbl_801FC578:
-	lwz      r0, 0x24(r28)
-	cmpw     r30, r0
-	blt      lbl_801FC544
-	lwz      r0, 0x24(r1)
-	lwz      r31, 0x1c(r1)
-	lwz      r30, 0x18(r1)
-	lwz      r29, 0x14(r1)
-	lwz      r28, 0x10(r1)
-	mtlr     r0
-	addi     r1, r1, 0x20
-	blr
-	*/
-}
+// void MonoObjectMgr<Game::PelletCarcass::Object>::doDirectDraw(Graphics&)
+//{
+//}
 
 /*
  * --INFO--
@@ -1693,24 +725,10 @@ lbl_801FC578:
  */
 void MonoObjectMgr<Game::PelletCarcass::Object>::clearMgr()
 {
-	/*
-	li       r0, 0
-	li       r6, 0
-	stw      r0, 0x20(r3)
-	li       r5, 1
-	b        lbl_801FC5C4
-
-lbl_801FC5B8:
-	lwz      r4, 0x2c(r3)
-	stbx     r5, r4, r6
-	addi     r6, r6, 1
-
-lbl_801FC5C4:
-	lwz      r0, 0x24(r3)
-	cmpw     r6, r0
-	blt      lbl_801FC5B8
-	blr
-	*/
+	m_activeCount = 0;
+	for (int i = 0; i < m_max; i++) {
+		m_openIds[i] = true;
+	}
 }
 
 /*
@@ -1725,91 +743,53 @@ void MonoObjectMgr<Game::PelletCarcass::Object>::onAlloc() { }
  * Address:	801FC5D8
  * Size:	00003C
  */
-void MonoObjectMgr<Game::PelletCarcass::Object>::getEmptyIndex()
-{
-	/*
-	lwz      r0, 0x24(r3)
-	li       r5, 0
-	mtctr    r0
-	cmpwi    r0, 0
-	ble      lbl_801FC60C
-
-lbl_801FC5EC:
-	lwz      r4, 0x2c(r3)
-	lbzx     r0, r4, r5
-	cmplwi   r0, 1
-	bne      lbl_801FC604
-	mr       r3, r5
-	blr
-
-lbl_801FC604:
-	addi     r5, r5, 1
-	bdnz     lbl_801FC5EC
-
-lbl_801FC60C:
-	li       r3, -1
-	blr
-	*/
-}
+// int MonoObjectMgr<Game::PelletCarcass::Object>::getEmptyIndex()
+//{
+//}
 
 /*
  * --INFO--
  * Address:	801FC614
  * Size:	000010
  */
-void MonoObjectMgr<Game::PelletCarcass::Object>::get(void*)
-{
-	/*
-	mulli    r0, r4, 0x458
-	lwz      r3, 0x28(r3)
-	add      r3, r3, r0
-	blr
-	*/
-}
+PelletCarcass::Object* MonoObjectMgr<Game::PelletCarcass::Object>::get(void* id) { return &m_array[(int)id]; }
 
 /*
  * --INFO--
  * Address:	801FC624
  * Size:	00002C
  */
-void Container<Game::PelletCarcass::Object>::getObject(void*)
-{
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x20(r12)
-	mtctr    r12
-	bctrl
-	lwz      r0, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
-}
+void* Container<Game::PelletCarcass::Object>::getObject(void* data) { return get(data); }
 
 /*
  * --INFO--
  * Address:	801FC650
  * Size:	000008
  */
-u32 Container<Game::PelletCarcass::Object>::getAt(int) { return 0x0; }
+PelletCarcass::Object* Container<Game::PelletCarcass::Object>::getAt(int) { return 0x0; }
 
 /*
  * --INFO--
  * Address:	801FC658
  * Size:	000008
  */
-u32 Container<Game::PelletCarcass::Object>::getTo() { return 0x0; }
+int Container<Game::PelletCarcass::Object>::getTo() { return 0; }
 
 /*
  * --INFO--
  * Address:	801FC660
  * Size:	0001F4
  */
-void ObjectMgr<Game::PelletCarcass::Object>::doDirectDraw(Graphics&)
+void ObjectMgr<Game::PelletCarcass::Object>::doDirectDraw(Graphics& gfx)
 {
+	Iterator<Game::PelletCarcass::Object> it(this);
+
+	it.first();
+	CI_LOOP(it)
+	{
+		Game::PelletCarcass::Object* obj = *it;
+		obj->doDirectDraw(gfx);
+	}
 	/*
 	stwu     r1, -0x20(r1)
 	mflr     r0
@@ -1960,38 +940,46 @@ lbl_801FC820:
  * Address:	801FC854
  * Size:	00004C
  */
-void Iterator<Game::PelletCarcass::Object>::isDone()
-{
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	mr       r31, r3
-	lwz      r3, 8(r3)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x1c(r12)
-	mtctr    r12
-	bctrl
-	lwz      r0, 4(r31)
-	subf     r0, r0, r3
-	cntlzw   r0, r0
-	srwi     r3, r0, 5
-	lwz      r31, 0xc(r1)
-	lwz      r0, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
-}
+// bool ::Iterator<Game::PelletCarcass::Object>::isDone()
+//{
+/*
+stwu     r1, -0x10(r1)
+mflr     r0
+stw      r0, 0x14(r1)
+stw      r31, 0xc(r1)
+mr       r31, r3
+lwz      r3, 8(r3)
+lwz      r12, 0(r3)
+lwz      r12, 0x1c(r12)
+mtctr    r12
+bctrl
+lwz      r0, 4(r31)
+subf     r0, r0, r3
+cntlzw   r0, r0
+srwi     r3, r0, 5
+lwz      r31, 0xc(r1)
+lwz      r0, 0x14(r1)
+mtlr     r0
+addi     r1, r1, 0x10
+blr
+*/
+//}
 
 /*
  * --INFO--
  * Address:	801FC8A0
  * Size:	0001F4
  */
-void ObjectMgr<Game::PelletCarcass::Object>::doSimulation(float)
+void ObjectMgr<Game::PelletCarcass::Object>::doSimulation(f32 rate)
 {
+	Iterator<Game::PelletCarcass::Object> it(this);
+
+	it.first();
+	CI_LOOP(it)
+	{
+		Game::PelletCarcass::Object* obj = *it;
+		obj->doSimulation(rate);
+	}
 	/*
 	stwu     r1, -0x20(r1)
 	mflr     r0
@@ -2144,6 +1132,14 @@ lbl_801FCA60:
  */
 void ObjectMgr<Game::PelletCarcass::Object>::doViewCalc()
 {
+	Iterator<Game::PelletCarcass::Object> it(this);
+
+	it.first();
+	CI_LOOP(it)
+	{
+		Game::PelletCarcass::Object* obj = *it;
+		obj->doViewCalc();
+	}
 	/*
 	stwu     r1, -0x20(r1)
 	mflr     r0
@@ -2290,8 +1286,16 @@ lbl_801FCC48:
  * Address:	801FCC78
  * Size:	0001F4
  */
-void ObjectMgr<Game::PelletCarcass::Object>::doSetView(int)
+void ObjectMgr<Game::PelletCarcass::Object>::doSetView(int id)
 {
+	Iterator<Game::PelletCarcass::Object> it(this);
+
+	it.first();
+	CI_LOOP(it)
+	{
+		Game::PelletCarcass::Object* obj = *it;
+		obj->doSetView(id);
+	}
 	/*
 	stwu     r1, -0x20(r1)
 	mflr     r0
@@ -2444,6 +1448,14 @@ lbl_801FCE38:
  */
 void ObjectMgr<Game::PelletCarcass::Object>::doEntry()
 {
+	Iterator<Game::PelletCarcass::Object> it(this);
+
+	it.first();
+	CI_LOOP(it)
+	{
+		Game::PelletCarcass::Object* obj = *it;
+		obj->doEntry();
+	}
 	/*
 	stwu     r1, -0x20(r1)
 	mflr     r0
@@ -2592,6 +1604,14 @@ lbl_801FD020:
  */
 void ObjectMgr<Game::PelletCarcass::Object>::doAnimation()
 {
+	Iterator<Game::PelletCarcass::Object> it(this);
+
+	it.first();
+	CI_LOOP(it)
+	{
+		Game::PelletCarcass::Object* obj = *it;
+		obj->doAnimation();
+	}
 	/*
 	stwu     r1, -0x20(r1)
 	mflr     r0
@@ -2738,49 +1758,13 @@ lbl_801FD204:
  * Address:	801FD234
  * Size:	00009C
  */
-void MonoObjectMgr<Game::PelletCarcass::Object>::MonoObjectMgr()
+MonoObjectMgr<Game::PelletCarcass::Object>::MonoObjectMgr()
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	mr       r31, r3
-	bl       __ct__5CNodeFv
-	lis      r4, __vt__16GenericContainer@ha
-	lis      r3, "__vt__40Container<Q34Game13PelletCarcass6Object>"@ha
-	addi     r0, r4, __vt__16GenericContainer@l
-	lis      r6, __vt__16GenericObjectMgr@ha
-	stw      r0, 0(r31)
-	addi     r0, r3, "__vt__40Container<Q34Game13PelletCarcass6Object>"@l
-	lis      r4, "__vt__40ObjectMgr<Q34Game13PelletCarcass6Object>"@ha
-	lis      r3, "__vt__44MonoObjectMgr<Q34Game13PelletCarcass6Object>"@ha
-	stw      r0, 0(r31)
-	li       r8, 0
-	addi     r7, r4, "__vt__40ObjectMgr<Q34Game13PelletCarcass6Object>"@l
-	addi     r5, r3, "__vt__44MonoObjectMgr<Q34Game13PelletCarcass6Object>"@l
-	stb      r8, 0x18(r31)
-	addi     r0, r6, __vt__16GenericObjectMgr@l
-	addi     r6, r7, 0x2c
-	addi     r4, r5, 0x2c
-	stw      r0, 0x1c(r31)
-	li       r0, 1
-	mr       r3, r31
-	stw      r7, 0(r31)
-	stw      r6, 0x1c(r31)
-	stw      r5, 0(r31)
-	stw      r4, 0x1c(r31)
-	stb      r0, 0x18(r31)
-	stw      r8, 0x24(r31)
-	stw      r8, 0x20(r31)
-	stw      r8, 0x28(r31)
-	stw      r8, 0x2c(r31)
-	lwz      r31, 0xc(r1)
-	lwz      r0, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	_18           = true;
+	m_max         = 0;
+	m_activeCount = 0;
+	m_array       = nullptr;
+	m_openIds     = nullptr;
 }
 
 /*
@@ -2788,21 +1772,12 @@ void MonoObjectMgr<Game::PelletCarcass::Object>::MonoObjectMgr()
  * Address:	801FD2D0
  * Size:	000020
  */
-void getFlag__Q24Game49FixedSizePelletMgr<Game::PelletCarcass::Object> FPQ24Game6Pellet(void)
+u32 FixedSizePelletMgr<Game::PelletCarcass::Object>::getFlag(Pellet* pelt)
 {
-	/*
-	.loc_0x0:
-	  cmplwi    r4, 0
-	  beq-      .loc_0x18
-	  lwz       r3, 0x9C(r3)
-	  lwz       r0, 0x440(r4)
-	  lbzx      r3, r3, r0
-	  blr
-
-	.loc_0x18:
-	  li        r3, -0x1
-	  blr
-	*/
+	if (pelt) {
+		return m_monoObjectMgr.m_openIds[pelt->m_slotIndex];
+	}
+	return -1;
 }
 
 /*
@@ -2810,18 +1785,11 @@ void getFlag__Q24Game49FixedSizePelletMgr<Game::PelletCarcass::Object> FPQ24Game
  * Address:	801FD2F0
  * Size:	00001C
  */
-void setFromTeki__Q24Game49FixedSizePelletMgr<Game::PelletCarcass::Object> FPQ24Game6Pellet(void)
+void FixedSizePelletMgr<Game::PelletCarcass::Object>::setFromTeki(Pellet* pelt)
 {
-	/*
-	.loc_0x0:
-	  cmplwi    r4, 0
-	  beqlr-
-	  lwz       r3, 0x9C(r3)
-	  li        r5, 0x65
-	  lwz       r0, 0x440(r4)
-	  stbx      r5, r3, r0
-	  blr
-	*/
+	if (pelt) {
+		m_monoObjectMgr.m_openIds[pelt->m_slotIndex] = 101;
+	}
 }
 
 /*
@@ -2829,18 +1797,11 @@ void setFromTeki__Q24Game49FixedSizePelletMgr<Game::PelletCarcass::Object> FPQ24
  * Address:	801FD30C
  * Size:	00001C
  */
-void setRevival__Q24Game49FixedSizePelletMgr<Game::PelletCarcass::Object> FPQ24Game6Pellet(void)
+void FixedSizePelletMgr<Game::PelletCarcass::Object>::setRevival(Pellet* pelt)
 {
-	/*
-	.loc_0x0:
-	  cmplwi    r4, 0
-	  beqlr-
-	  lwz       r3, 0x9C(r3)
-	  li        r5, 0x64
-	  lwz       r0, 0x440(r4)
-	  stbx      r5, r3, r0
-	  blr
-	*/
+	if (pelt) {
+		m_monoObjectMgr.m_openIds[pelt->m_slotIndex] = 100;
+	}
 }
 
 /*
@@ -2848,18 +1809,11 @@ void setRevival__Q24Game49FixedSizePelletMgr<Game::PelletCarcass::Object> FPQ24G
  * Address:	801FD328
  * Size:	00001C
  */
-void setComeAlive__Q24Game49FixedSizePelletMgr<Game::PelletCarcass::Object> FPQ24Game6Pellet(void)
+void FixedSizePelletMgr<Game::PelletCarcass::Object>::setComeAlive(Pellet* pelt)
 {
-	/*
-	.loc_0x0:
-	  cmplwi    r4, 0
-	  beqlr-
-	  lwz       r3, 0x9C(r3)
-	  li        r5, 0
-	  lwz       r0, 0x440(r4)
-	  stbx      r5, r3, r0
-	  blr
-	*/
+	if (pelt) {
+		m_monoObjectMgr.m_openIds[pelt->m_slotIndex] = 0;
+	}
 }
 
 /*
@@ -2867,68 +1821,30 @@ void setComeAlive__Q24Game49FixedSizePelletMgr<Game::PelletCarcass::Object> FPQ2
  * Address:	801FD344
  * Size:	000010
  */
-void setComeAlive__Q24Game49FixedSizePelletMgr<Game::PelletCarcass::Object> Fi(void)
-{
-	/*
-	.loc_0x0:
-	  lwz       r3, 0x9C(r3)
-	  li        r0, 0
-	  stbx      r0, r3, r4
-	  blr
-	*/
-}
+void FixedSizePelletMgr<Game::PelletCarcass::Object>::setComeAlive(int id) { m_monoObjectMgr.m_openIds[id] = 0; }
 
 /*
  * --INFO--
  * Address:	801FD354
  * Size:	00002C
  */
-void getEnd__Q24Game49FixedSizePelletMgr<Game::PelletCarcass::Object> Fv(void)
-{
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	lwzu     r12, 0x70(r3)
-	lwz      r12, 0x1c(r12)
-	mtctr    r12
-	bctrl
-	lwz      r0, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
-}
+void* FixedSizePelletMgr<Game::PelletCarcass::Object>::getEnd() { return m_monoObjectMgr.getEnd(); }
 
 /*
  * --INFO--
  * Address:	801FD380
  * Size:	00002C
  */
-void get__Q24Game49FixedSizePelletMgr<Game::PelletCarcass::Object> FPv(void)
-{
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	lwzu     r12, 0x70(r3)
-	lwz      r12, 0x20(r12)
-	mtctr    r12
-	bctrl
-	lwz      r0, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
-}
+PelletCarcass::Object* FixedSizePelletMgr<Game::PelletCarcass::Object>::get(void* data) { return m_monoObjectMgr.get(data); }
 
 /*
  * --INFO--
  * Address:	801FD3AC
  * Size:	00002C
  */
-void getObjectPtr__Q24Game49FixedSizePelletMgr<Game::PelletCarcass::Object> FPv(void)
+PelletCarcass::Object* FixedSizePelletMgr<Game::PelletCarcass::Object>::getObjectPtr(void* data)
 {
+	return get(data);
 	/*
 	.loc_0x0:
 	  stwu      r1, -0x10(r1)
@@ -2950,55 +1866,17 @@ void getObjectPtr__Q24Game49FixedSizePelletMgr<Game::PelletCarcass::Object> FPv(
  * Address:	801FD3D8
  * Size:	000090
  */
-void birthFromTeki__Q24Game49FixedSizePelletMgr<Game::PelletCarcass::Object> FPQ24Game12PelletConfig(void)
+Pellet* FixedSizePelletMgr<Game::PelletCarcass::Object>::birthFromTeki(PelletConfig* in)
 {
-	/*
-	.loc_0x0:
-	  stwu      r1, -0x20(r1)
-	  mflr      r0
-	  stw       r0, 0x24(r1)
-	  stw       r31, 0x1C(r1)
-	  li        r31, 0
-	  stw       r30, 0x18(r1)
-	  mr        r30, r4
-	  stw       r29, 0x14(r1)
-	  mr        r29, r3
-	  b         .loc_0x64
-
-	.loc_0x28:
-	  lwz       r3, 0x9C(r29)
-	  lbzx      r0, r3, r31
-	  cmplwi    r0, 0x65
-	  bne-      .loc_0x60
-	  addi      r3, r29, 0x70
-	  mr        r4, r31
-	  lwz       r12, 0x70(r29)
-	  lwz       r12, 0x24(r12)
-	  mtctr     r12
-	  bctrl
-	  lwz       r0, 0x35C(r3)
-	  cmplw     r0, r30
-	  bne-      .loc_0x60
-	  b         .loc_0x74
-
-	.loc_0x60:
-	  addi      r31, r31, 0x1
-
-	.loc_0x64:
-	  lwz       r0, 0x94(r29)
-	  cmpw      r31, r0
-	  blt+      .loc_0x28
-	  li        r3, 0
-
-	.loc_0x74:
-	  lwz       r0, 0x24(r1)
-	  lwz       r31, 0x1C(r1)
-	  lwz       r30, 0x18(r1)
-	  lwz       r29, 0x14(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x20
-	  blr
-	*/
+	for (int i = 0; i < m_monoObjectMgr.m_max; i++) {
+		if (m_monoObjectMgr.m_openIds[i] == 101) {
+			Pellet* pelt = m_monoObjectMgr.getAt(i);
+			if (pelt->m_config == in) {
+				return pelt;
+			}
+		}
+	}
+	return nullptr;
 }
 
 /*
@@ -3006,46 +1884,13 @@ void birthFromTeki__Q24Game49FixedSizePelletMgr<Game::PelletCarcass::Object> FPQ
  * Address:	801FD468
  * Size:	000080
  */
-void alloc__Q24Game49FixedSizePelletMgr<Game::PelletCarcass::Object> Fi(void)
+void FixedSizePelletMgr<Game::PelletCarcass::Object>::alloc(int count)
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	stw      r30, 8(r1)
-	mr       r30, r3
-	addi     r3, r30, 0x70
-	bl       "alloc__44MonoObjectMgr<Q34Game13PelletCarcass6Object>Fi"
-	mr       r3, r30
-	bl "onAlloc__Q24Game49FixedSizePelletMgr<Q34Game13PelletCarcass6Object>Fv"
-	li       r31, 0
-	b        lbl_801FD4C4
-
-lbl_801FD498:
-	addi     r3, r30, 0x70
-	mr       r4, r31
-	lwz      r12, 0x70(r30)
-	lwz      r12, 0x24(r12)
-	mtctr    r12
-	bctrl
-	lwz      r12, 0(r3)
-	lwz      r12, 0x2c(r12)
-	mtctr    r12
-	bctrl
-	addi     r31, r31, 1
-
-lbl_801FD4C4:
-	lwz      r0, 0x94(r30)
-	cmpw     r31, r0
-	blt      lbl_801FD498
-	lwz      r0, 0x14(r1)
-	lwz      r31, 0xc(r1)
-	lwz      r30, 8(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	m_monoObjectMgr.alloc(count);
+	onAlloc();
+	for (int i = 0; i < m_monoObjectMgr.m_max; i++) {
+		m_monoObjectMgr.getAt(i)->constructor();
+	}
 }
 
 /*
@@ -3053,214 +1898,38 @@ lbl_801FD4C4:
  * Address:	801FD4E8
  * Size:	000038
  */
-void Iterator<Game::PelletCarcass::Object>::operator*()
-{
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	mr       r4, r3
-	stw      r0, 0x14(r1)
-	lwz      r3, 8(r3)
-	lwz      r4, 4(r4)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x20(r12)
-	mtctr    r12
-	bctrl
-	lwz      r0, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
-}
+// PelletCarcass::Object* ::Iterator<Game::PelletCarcass::Object>::operator*()
+//{
+//}
 
 /*
  * --INFO--
  * Address:	801FD520
  * Size:	0000E4
  */
-void Iterator<Game::PelletCarcass::Object>::next()
-{
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	mr       r31, r3
-	lwz      r0, 0xc(r3)
-	cmplwi   r0, 0
-	bne      lbl_801FD560
-	lwz      r3, 8(r31)
-	lwz      r4, 4(r31)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x14(r12)
-	mtctr    r12
-	bctrl
-	stw      r3, 4(r31)
-	b        lbl_801FD5F0
-
-lbl_801FD560:
-	lwz      r3, 8(r31)
-	lwz      r4, 4(r31)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x14(r12)
-	mtctr    r12
-	bctrl
-	stw      r3, 4(r31)
-	b        lbl_801FD5D4
-
-lbl_801FD580:
-	lwz      r3, 8(r31)
-	lwz      r4, 4(r31)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x20(r12)
-	mtctr    r12
-	bctrl
-	mr       r4, r3
-	lwz      r3, 0xc(r31)
-	lwz      r12, 0(r3)
-	lwz      r12, 8(r12)
-	mtctr    r12
-	bctrl
-	clrlwi.  r0, r3, 0x18
-	bne      lbl_801FD5F0
-	lwz      r3, 8(r31)
-	lwz      r4, 4(r31)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x14(r12)
-	mtctr    r12
-	bctrl
-	stw      r3, 4(r31)
-
-lbl_801FD5D4:
-	mr       r3, r31
-	lwz      r12, 0(r31)
-	lwz      r12, 0x10(r12)
-	mtctr    r12
-	bctrl
-	clrlwi.  r0, r3, 0x18
-	beq      lbl_801FD580
-
-lbl_801FD5F0:
-	lwz      r0, 0x14(r1)
-	lwz      r31, 0xc(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
-}
+// void ::Iterator<Game::PelletCarcass::Object>::next()
+//{
+//}
 
 /*
  * --INFO--
  * Address:	801FD604
  * Size:	0000DC
  */
-void Iterator<Game::PelletCarcass::Object>::first()
-{
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	mr       r31, r3
-	lwz      r0, 0xc(r3)
-	cmplwi   r0, 0
-	bne      lbl_801FD640
-	lwz      r3, 8(r31)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x18(r12)
-	mtctr    r12
-	bctrl
-	stw      r3, 4(r31)
-	b        lbl_801FD6CC
-
-lbl_801FD640:
-	lwz      r3, 8(r31)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x18(r12)
-	mtctr    r12
-	bctrl
-	stw      r3, 4(r31)
-	b        lbl_801FD6B0
-
-lbl_801FD65C:
-	lwz      r3, 8(r31)
-	lwz      r4, 4(r31)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x20(r12)
-	mtctr    r12
-	bctrl
-	mr       r4, r3
-	lwz      r3, 0xc(r31)
-	lwz      r12, 0(r3)
-	lwz      r12, 8(r12)
-	mtctr    r12
-	bctrl
-	clrlwi.  r0, r3, 0x18
-	bne      lbl_801FD6CC
-	lwz      r3, 8(r31)
-	lwz      r4, 4(r31)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x14(r12)
-	mtctr    r12
-	bctrl
-	stw      r3, 4(r31)
-
-lbl_801FD6B0:
-	mr       r3, r31
-	lwz      r12, 0(r31)
-	lwz      r12, 0x10(r12)
-	mtctr    r12
-	bctrl
-	clrlwi.  r0, r3, 0x18
-	beq      lbl_801FD65C
-
-lbl_801FD6CC:
-	lwz      r0, 0x14(r1)
-	lwz      r31, 0xc(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
-}
+// void Iterator<Game::PelletCarcass::Object>::first()
+//{
+//}
 
 /*
  * --INFO--
  * Address:	801FD6E0
  * Size:	000064
  */
-void onAlloc__Q24Game49FixedSizePelletMgr<Game::PelletCarcass::Object> Fv(void)
+void FixedSizePelletMgr<Game::PelletCarcass::Object>::onAlloc()
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	li       r31, 0
-	stw      r30, 8(r1)
-	mr       r30, r3
-	b        lbl_801FD720
-
-lbl_801FD700:
-	addi     r3, r30, 0x70
-	mr       r4, r31
-	lwz      r12, 0x70(r30)
-	lwz      r12, 0x24(r12)
-	mtctr    r12
-	bctrl
-	stw      r31, 0x440(r3)
-	addi     r31, r31, 1
-
-lbl_801FD720:
-	lwz      r0, 0x94(r30)
-	cmpw     r31, r0
-	blt      lbl_801FD700
-	lwz      r0, 0x14(r1)
-	lwz      r31, 0xc(r1)
-	lwz      r30, 8(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	for (int i = 0; i < m_monoObjectMgr.m_max; i++) {
+		m_monoObjectMgr.getAt(i)->m_slotIndex = i;
+	}
 }
 
 /*
@@ -3268,411 +1937,291 @@ lbl_801FD720:
  * Address:	801FD744
  * Size:	000188
  */
-void MonoObjectMgr<Game::PelletCarcass::Object>::alloc(int)
+void MonoObjectMgr<Game::PelletCarcass::Object>::alloc(int count)
 {
-	/*
-	stwu     r1, -0x20(r1)
-	mflr     r0
-	stw      r0, 0x24(r1)
-	stw      r31, 0x1c(r1)
-	mr       r31, r4
-	stw      r30, 0x18(r1)
-	mr       r30, r3
-	stw      r29, 0x14(r1)
-	mr       r29, r31
-	mulli    r3, r29, 0x458
-	stw      r28, 0x10(r1)
-	addi     r3, r3, 0x10
-	bl       __nwa__FUl
-	lis      r4, __ct__Q34Game13PelletCarcass6ObjectFv@ha
-	mr       r7, r29
-	addi     r4, r4, __ct__Q34Game13PelletCarcass6ObjectFv@l
-	li       r5, 0
-	li       r6, 0x458
-	bl       __construct_new_array
-	stw      r3, 0x28(r30)
-	li       r0, 0
-	mr       r3, r29
-	stw      r31, 0x24(r30)
-	stw      r0, 0x20(r30)
-	bl       __nwa__FUl
-	cmpwi    r31, 0
-	stw      r3, 0x2c(r30)
-	li       r11, 0
-	ble      lbl_801FD864
-	cmpwi    r31, 8
-	addi     r3, r31, -8
-	ble      lbl_801FD840
-	addi     r0, r3, 7
-	srwi     r0, r0, 3
-	mtctr    r0
-	cmpwi    r3, 0
-	ble      lbl_801FD840
+	m_array       = new Game::PelletCarcass::Object[count];
+	m_max         = count;
+	m_activeCount = 0;
+	m_openIds     = new u8[count];
 
-lbl_801FD7D8:
-	lwz      r3, 0x2c(r30)
-	li       r10, 1
-	addi     r8, r11, 1
-	addi     r7, r11, 2
-	stbx     r10, r3, r11
-	addi     r6, r11, 3
-	addi     r5, r11, 4
-	addi     r4, r11, 5
-	lwz      r9, 0x2c(r30)
-	addi     r3, r11, 6
-	addi     r0, r11, 7
-	addi     r11, r11, 8
-	stbx     r10, r9, r8
-	lwz      r8, 0x2c(r30)
-	stbx     r10, r8, r7
-	lwz      r7, 0x2c(r30)
-	stbx     r10, r7, r6
-	lwz      r6, 0x2c(r30)
-	stbx     r10, r6, r5
-	lwz      r5, 0x2c(r30)
-	stbx     r10, r5, r4
-	lwz      r4, 0x2c(r30)
-	stbx     r10, r4, r3
-	lwz      r3, 0x2c(r30)
-	stbx     r10, r3, r0
-	bdnz     lbl_801FD7D8
+	for (int i = 0; i < count; i++) {
+		m_openIds[i] = true;
+	}
 
-lbl_801FD840:
-	subf     r0, r11, r31
-	li       r4, 1
-	mtctr    r0
-	cmpw     r11, r31
-	bge      lbl_801FD864
+	onAlloc();
 
-lbl_801FD854:
-	lwz      r3, 0x2c(r30)
-	stbx     r4, r3, r11
-	addi     r11, r11, 1
-	bdnz     lbl_801FD854
-
-lbl_801FD864:
-	mr       r3, r30
-	lwz      r12, 0(r30)
-	lwz      r12, 0x88(r12)
-	mtctr    r12
-	bctrl
-	li       r28, 0
-	li       r29, 0
-	b        lbl_801FD8A4
-
-lbl_801FD884:
-	lwz      r0, 0x28(r30)
-	add      r3, r0, r29
-	lwz      r12, 0(r3)
-	lwz      r12, 0x2c(r12)
-	mtctr    r12
-	bctrl
-	addi     r29, r29, 0x458
-	addi     r28, r28, 1
-
-lbl_801FD8A4:
-	cmpw     r28, r31
-	blt      lbl_801FD884
-	lwz      r0, 0x24(r1)
-	lwz      r31, 0x1c(r1)
-	lwz      r30, 0x18(r1)
-	lwz      r29, 0x14(r1)
-	lwz      r28, 0x10(r1)
-	mtlr     r0
-	addi     r1, r1, 0x20
-	blr
-	*/
+	for (int i = 0; i < count; i++) {
+		m_array[i].constructor();
+	}
 }
-
-namespace Game {
 
 /*
  * --INFO--
  * Address:	801FD8CC
  * Size:	00004C
  */
-PelletCarcass::Object::Object(void)
-{
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	mr       r31, r3
-	bl       __ct__Q24Game6PelletFv
-	lis      r4, __vt__Q34Game13PelletCarcass6Object@ha
-	mr       r3, r31
-	addi     r5, r4, __vt__Q34Game13PelletCarcass6Object@l
-	stw      r5, 0(r31)
-	addi     r4, r5, 0x1b4
-	addi     r0, r5, 0x1c0
-	stw      r4, 0x314(r31)
-	stw      r0, 0x318(r31)
-	lwz      r31, 0xc(r1)
-	lwz      r0, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
-}
+PelletCarcass::Object::Object() { }
 
 /*
  * --INFO--
  * Address:	801FD918
  * Size:	000008
  */
-u32 PelletCarcass::Object::getKind(void) { return 0x1; }
+u8 PelletCarcass::Object::getKind(void) { return PELTYPE_CARCASS; }
+
+} // namespace Game
 
 /*
  * --INFO--
  * Address:	801FD920
  * Size:	000008
  */
-void @84 @__dt__Q24Game49FixedSizePelletMgr<Game::PelletCarcass::Object> Fv(void)
-{
-	/*
-	.loc_0x0:
-	  subi      r3, r3, 0x54
-	  b         -0x1FA8
-	*/
-}
 
-} // namespace Game
+// void @84 @__dt__Q24Game49FixedSizePelletMgr<Game::PelletCarcass::Object> Fv(void)
+//{
+/*
+.loc_0x0:
+  subi      r3, r3, 0x54
+  b         -0x1FA8
+*/
+//}
+
+//} // namespace Game
 
 /*
  * --INFO--
  * Address:	801FD928
  * Size:	000008
  */
-void MonoObjectMgr<Game::PelletCarcass::Object>::@28 @resetMgr()
-{
-	/*
-	addi     r3, r3, -28
-	b        "resetMgr__44MonoObjectMgr<Q34Game13PelletCarcass6Object>Fv"
-	*/
-}
+// void MonoObjectMgr<Game::PelletCarcass::Object>::@28 @resetMgr()
+//{
+/*
+addi     r3, r3, -28
+b        "resetMgr__44MonoObjectMgr<Q34Game13PelletCarcass6Object>Fv"
+*/
+//}
 
 /*
  * --INFO--
  * Address:	801FD930
  * Size:	000008
  */
-void MonoObjectMgr<Game::PelletCarcass::Object>::@28 @doDirectDraw(Graphics&)
-{
-	/*
-	addi     r3, r3, -28
-	b "doDirectDraw__44MonoObjectMgr<Q34Game13PelletCarcass6Object>FR8Graphics"
-	*/
-}
+// void MonoObjectMgr<Game::PelletCarcass::Object>::@28 @doDirectDraw(Graphics&)
+//{
+/*
+addi     r3, r3, -28
+b "doDirectDraw__44MonoObjectMgr<Q34Game13PelletCarcass6Object>FR8Graphics"
+*/
+//}
 
 /*
  * --INFO--
  * Address:	801FD938
  * Size:	000008
  */
-void MonoObjectMgr<Game::PelletCarcass::Object>::@28 @doSimulation(float)
-{
-	/*
-	addi     r3, r3, -28
-	b        "doSimulation__44MonoObjectMgr<Q34Game13PelletCarcass6Object>Ff"
-	*/
-}
+// void MonoObjectMgr<Game::PelletCarcass::Object>::@28 @doSimulation(float)
+//{
+/*
+addi     r3, r3, -28
+b        "doSimulation__44MonoObjectMgr<Q34Game13PelletCarcass6Object>Ff"
+*/
+//}
 
 /*
  * --INFO--
  * Address:	801FD940
  * Size:	000008
  */
-void MonoObjectMgr<Game::PelletCarcass::Object>::@28 @doViewCalc()
-{
-	/*
-	addi     r3, r3, -28
-	b        "doViewCalc__44MonoObjectMgr<Q34Game13PelletCarcass6Object>Fv"
-	*/
-}
+// void MonoObjectMgr<Game::PelletCarcass::Object>::@28 @doViewCalc()
+//{
+/*
+addi     r3, r3, -28
+b        "doViewCalc__44MonoObjectMgr<Q34Game13PelletCarcass6Object>Fv"
+*/
+//}
 
 /*
  * --INFO--
  * Address:	801FD948
  * Size:	000008
  */
-void MonoObjectMgr<Game::PelletCarcass::Object>::@28 @doSetView(int)
-{
-	/*
-	addi     r3, r3, -28
-	b        "doSetView__44MonoObjectMgr<Q34Game13PelletCarcass6Object>Fi"
-	*/
-}
+// void MonoObjectMgr<Game::PelletCarcass::Object>::@28 @doSetView(int)
+//{
+/*
+addi     r3, r3, -28
+b        "doSetView__44MonoObjectMgr<Q34Game13PelletCarcass6Object>Fi"
+*/
+//}
 
 /*
  * --INFO--
  * Address:	801FD950
  * Size:	000008
  */
-void MonoObjectMgr<Game::PelletCarcass::Object>::@28 @doEntry()
-{
-	/*
-	addi     r3, r3, -28
-	b        "doEntry__44MonoObjectMgr<Q34Game13PelletCarcass6Object>Fv"
-	*/
-}
+// void MonoObjectMgr<Game::PelletCarcass::Object>::@28 @doEntry()
+//{
+/*
+addi     r3, r3, -28
+b        "doEntry__44MonoObjectMgr<Q34Game13PelletCarcass6Object>Fv"
+*/
+//}
 
 /*
  * --INFO--
  * Address:	801FD958
  * Size:	000008
  */
-void MonoObjectMgr<Game::PelletCarcass::Object>::@28 @doAnimation()
-{
-	/*
-	addi     r3, r3, -28
-	b        "doAnimation__44MonoObjectMgr<Q34Game13PelletCarcass6Object>Fv"
-	*/
-}
+// void MonoObjectMgr<Game::PelletCarcass::Object>::@28 @doAnimation()
+//{
+/*
+addi     r3, r3, -28
+b        "doAnimation__44MonoObjectMgr<Q34Game13PelletCarcass6Object>Fv"
+*/
+//}
 
 /*
  * --INFO--
  * Address:	801FD960
  * Size:	000008
  */
-void ObjectMgr<Game::PelletCarcass::Object>::@28 @doDirectDraw(Graphics&)
-{
-	/*
-	addi     r3, r3, -28
-	b "doDirectDraw__40ObjectMgr<Q34Game13PelletCarcass6Object>FR8Graphics"
-	*/
-}
+// void ObjectMgr<Game::PelletCarcass::Object>::@28 @doDirectDraw(Graphics&)
+//{
+/*
+addi     r3, r3, -28
+b "doDirectDraw__40ObjectMgr<Q34Game13PelletCarcass6Object>FR8Graphics"
+*/
+//}
 
 /*
  * --INFO--
  * Address:	801FD968
  * Size:	000008
  */
-void ObjectMgr<Game::PelletCarcass::Object>::@28 @doSimulation(float)
-{
-	/*
-	addi     r3, r3, -28
-	b        "doSimulation__40ObjectMgr<Q34Game13PelletCarcass6Object>Ff"
-	*/
-}
+// void ObjectMgr<Game::PelletCarcass::Object>::@28 @doSimulation(float)
+//{
+/*
+addi     r3, r3, -28
+b        "doSimulation__40ObjectMgr<Q34Game13PelletCarcass6Object>Ff"
+*/
+//}
 
 /*
  * --INFO--
  * Address:	801FD970
  * Size:	000008
  */
-void ObjectMgr<Game::PelletCarcass::Object>::@28 @doViewCalc()
-{
-	/*
-	addi     r3, r3, -28
-	b        "doViewCalc__40ObjectMgr<Q34Game13PelletCarcass6Object>Fv"
-	*/
-}
+// void ObjectMgr<Game::PelletCarcass::Object>::@28 @doViewCalc()
+//{
+/*
+addi     r3, r3, -28
+b        "doViewCalc__40ObjectMgr<Q34Game13PelletCarcass6Object>Fv"
+*/
+//}
 
 /*
  * --INFO--
  * Address:	801FD978
  * Size:	000008
  */
-void ObjectMgr<Game::PelletCarcass::Object>::@28 @doSetView(int)
-{
-	/*
-	addi     r3, r3, -28
-	b        "doSetView__40ObjectMgr<Q34Game13PelletCarcass6Object>Fi"
-	*/
-}
+// void ObjectMgr<Game::PelletCarcass::Object>::@28 @doSetView(int)
+//{
+/*
+addi     r3, r3, -28
+b        "doSetView__40ObjectMgr<Q34Game13PelletCarcass6Object>Fi"
+*/
+//}
 
 /*
  * --INFO--
  * Address:	801FD980
  * Size:	000008
  */
-void ObjectMgr<Game::PelletCarcass::Object>::@28 @doEntry()
-{
-	/*
-	addi     r3, r3, -28
-	b        "doEntry__40ObjectMgr<Q34Game13PelletCarcass6Object>Fv"
-	*/
-}
+// void ObjectMgr<Game::PelletCarcass::Object>::@28 @doEntry()
+//{
+/*
+addi     r3, r3, -28
+b        "doEntry__40ObjectMgr<Q34Game13PelletCarcass6Object>Fv"
+*/
+//}
 
 /*
  * --INFO--
  * Address:	801FD988
  * Size:	000008
  */
-void ObjectMgr<Game::PelletCarcass::Object>::@28 @doAnimation()
-{
-	/*
-	addi     r3, r3, -28
-	b        "doAnimation__40ObjectMgr<Q34Game13PelletCarcass6Object>Fv"
-	*/
-}
+// void ObjectMgr<Game::PelletCarcass::Object>::@28 @doAnimation()
+//{
+/*
+addi     r3, r3, -28
+b        "doAnimation__40ObjectMgr<Q34Game13PelletCarcass6Object>Fv"
+*/
+//}
 
 /*
  * --INFO--
  * Address:	801FD990
  * Size:	000008
  */
-void @84 @getEnd__Q24Game49FixedSizePelletMgr<Game::PelletCarcass::Object> Fv(void)
-{
-	/*
-	.loc_0x0:
-	  subi      r3, r3, 0x54
-	  b         -0x640
-	*/
-}
+// void @84 @getEnd__Q24Game49FixedSizePelletMgr<Game::PelletCarcass::Object> Fv(void)
+//{
+/*
+.loc_0x0:
+  subi      r3, r3, 0x54
+  b         -0x640
+*/
+//}
 
 /*
  * --INFO--
  * Address:	801FD998
  * Size:	000008
  */
-void @84 @getStart__Q24Game49FixedSizePelletMgr<Game::PelletCarcass::Object> Fv(void)
-{
-	/*
-	.loc_0x0:
-	  subi      r3, r3, 0x54
-	  b         -0x1898
-	*/
-}
+// void @84 @getStart__Q24Game49FixedSizePelletMgr<Game::PelletCarcass::Object> Fv(void)
+//{
+/*
+.loc_0x0:
+  subi      r3, r3, 0x54
+  b         -0x1898
+*/
+//}
 
 /*
  * --INFO--
  * Address:	801FD9A0
  * Size:	000008
  */
-void @84 @getNext__Q24Game49FixedSizePelletMgr<Game::PelletCarcass::Object> FPv(void)
-{
-	/*
-	.loc_0x0:
-	  subi      r3, r3, 0x54
-	  b         -0x18CC
-	*/
-}
+// void @84 @getNext__Q24Game49FixedSizePelletMgr<Game::PelletCarcass::Object> FPv(void)
+//{
+/*
+.loc_0x0:
+  subi      r3, r3, 0x54
+  b         -0x18CC
+*/
+//}
 
 /*
  * --INFO--
  * Address:	801FD9A8
  * Size:	000008
  */
-void @84 @get__Q24Game49FixedSizePelletMgr<Game::PelletCarcass::Object> FPv(void)
-{
-	/*
-	.loc_0x0:
-	  subi      r3, r3, 0x54
-	  b         -0x62C
-	*/
-}
+// void @84 @get__Q24Game49FixedSizePelletMgr<Game::PelletCarcass::Object> FPv(void)
+//{
+/*
+.loc_0x0:
+  subi      r3, r3, 0x54
+  b         -0x62C
+*/
+//}
 
 /*
  * --INFO--
  * Address:	801FD9B0
  * Size:	000008
  */
-@84 @Game::PelletCarcass::Mgr::~Mgr(void)
-{
-	/*
-	addi     r3, r3, -84
-	b        __dt__Q34Game13PelletCarcass3MgrFv
-	*/
-}
+//@84 @Game::PelletCarcass::Mgr::~Mgr(void)
+//{
+/*
+addi     r3, r3, -84
+b        __dt__Q34Game13PelletCarcass3MgrFv
+*/
+//}

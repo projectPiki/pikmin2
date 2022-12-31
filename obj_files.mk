@@ -1122,7 +1122,7 @@ GC:=\
 	$(BUILD_DIR)/asm/sysGCU/JSTObjectGameActor.o\
 	$(BUILD_DIR)/asm/sysGCU/JSTObjectSystem.o\
 	$(BUILD_DIR)/src/sysGCU/JSTFindCreature.o\
-	$(BUILD_DIR)/asm/sysGCU/movieConfig.o\
+	$(BUILD_DIR)/src/sysGCU/movieConfig.o\
 	$(BUILD_DIR)/src/sysGCU/gameConfig.o\
 	$(BUILD_DIR)/src/sysGCU/fogMgr.o\
 	$(BUILD_DIR)/asm/sysGCU/aramMgr.o\
@@ -1151,7 +1151,7 @@ GC:=\
 	$(BUILD_DIR)/asm/sysGCU/titleSection.o\
 	$(BUILD_DIR)/asm/sysGCU/loadResource.o\
 	$(BUILD_DIR)/src/sysGCU/rootMenuSection.o\
-	$(BUILD_DIR)/asm/sysGCU/demoSection.o\
+	$(BUILD_DIR)/src/sysGCU/demoSection.o\
 	$(BUILD_DIR)/asm/sysGCU/THPAudioDecode.o\
 	$(BUILD_DIR)/src/sysGCU/THPDraw.o\
 	$(BUILD_DIR)/asm/sysGCU/THPPlayer.o\

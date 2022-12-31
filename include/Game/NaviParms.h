@@ -12,10 +12,10 @@ struct NaviParms : public FakePikiParms {
 		Parm<f32> m_p000;                // _288
 		Parm<f32> m_p060;                // _2B0
 		Parm<f32> m_p062;                // _2D8
-		Parm<f32> m_p001;                // _300
-		Parm<f32> m_p053;                // _328
-		Parm<f32> m_p002;                // _350
-		Parm<f32> m_p003;                // _378
+		Parm<f32> m_p001;                // _300, max whistle radius (pre-upgrade)
+		Parm<f32> m_p053;                // _328, initial whistle radius
+		Parm<f32> m_p002;                // _350, whistle time limit
+		Parm<f32> m_p003;                // _378, whistle fadeout time
 		Parm<f32> m_p004;                // _3A0
 		Parm<f32> m_p056;                // _3C8
 		Parm<f32> m_p038;                // _3F0
@@ -68,7 +68,7 @@ struct NaviParms : public FakePikiParms {
 		Parm<int> m_q004;                // _B48
 		Parm<int> m_q005;                // _B70
 		Parm<f32> m_q006;                // _B98
-		Parm<f32> m_q007;                // _BC0
+		Parm<f32> m_q007;                // _BC0, max whistle radius (with upgrade)
 		Parm<f32> m_q008;                // _BE8
 		Parm<int> m_q009;                // _C10
 		Parm<f32> m_q010;                // _C38

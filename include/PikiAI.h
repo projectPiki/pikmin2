@@ -81,7 +81,7 @@ struct ActWeed;
 
 enum PikiBrainAction {
 	ACT_FORMATION  = 0,
-	ACT_FREE 	   = 1,
+	ACT_FREE       = 1,
 	ACT_ENTER      = 2,
 	ACT_EXIT       = 3,
 	ACT_TRANSPORT  = 4,
@@ -223,7 +223,8 @@ struct ActAttack : public Action, virtual SysShape::MotionListener {
 struct ActBattleArg : public ActionArg {
 	virtual char* getName() { return "ActBattleArg"; } // _08 (weak)
 
-	inline ActBattleArg(Game::Piki* piki, bool start) {
+	inline ActBattleArg(Game::Piki* piki, bool start)
+	{
 		m_aggressor     = piki;
 		m_isAttackStart = start;
 	}

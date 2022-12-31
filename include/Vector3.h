@@ -368,5 +368,6 @@ inline void addAccel(Vector3f& outputVec, const Vector3f& inputVec, f32 massRati
 }
 #endif
 
-// I saw this constant being used a lot, if you have a better name please replace it 
-#define FLOAT_DISTANCE_MAXIMUM 128000.0 
+// I saw this constant being used a lot, if you have a better name please replace it
+#define FLOAT_DIST_MAX 128000.0
+#define FLOAT_DIST_MIN -128000.0

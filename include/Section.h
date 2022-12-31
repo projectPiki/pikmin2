@@ -52,10 +52,10 @@ struct Section : public ISection {
 	void endRender();
 	void exit();
 
-	inline void loading();
-	inline void fadeIn();
-	inline void main();
-	inline void fadeOut();
+	void loading();
+	void fadeIn();
+	void main();
+	void fadeOut();
 
 	WipeBase* m_displayWiper; // _18
 	JKRHeap* m_displayHeap;   // _1C
