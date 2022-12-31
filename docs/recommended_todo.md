@@ -226,11 +226,11 @@
 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/sysGCU/captionMgr.cpp">captionMgr.cpp</a> | 10382 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/sysGCU/gameflow.cpp">gameflow.cpp</a> | 11288 |
 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/sysGCU/commonSaveData.cpp">commonSaveData.cpp</a> | 11360 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/sysGCU/loadResource.cpp">loadResource.cpp</a> | 11781 |
 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/sysGCU/heapStatus.cpp">heapStatus.cpp</a> | 12405 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/sysGCU/dvdThread.cpp">dvdThread.cpp</a> | 12535 |
-| <a href="https://github.com/projectPiki/pikmin2/tree/main/src/sysGCU/P2DScreen.cpp">P2DScreen.cpp</a> | 13017 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/sysGCU/demoSection.cpp">demoSection.cpp</a> | 13022 |
-| <a href="https://github.com/projectPiki/pikmin2/tree/main/src/sysGCU/modelEffect.cpp">modelEffect.cpp</a> | 13177 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/sysGCU/JSTObjectSpecialActor.cpp">JSTObjectSpecialActor.cpp</a> | 13400 |
-| <a href="https://github.com/projectPiki/pikmin2/tree/main/src/sysGCU/messageObj.cpp">messageObj.cpp</a> | 16076 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/sysGCU/light.cpp">light.cpp</a> | 17491 |
-| <a href="https://github.com/projectPiki/pikmin2/tree/main/src/sysGCU/wipe.cpp">wipe.cpp</a> | 17645 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/sysGCU/screenObj.cpp">screenObj.cpp</a> | 17826 |
-| <a href="https://github.com/projectPiki/pikmin2/tree/main/src/sysGCU/pikmin2AramMgr.cpp">pikmin2AramMgr.cpp</a> | 18340 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/sysGCU/JSTObjectCamera.cpp">JSTObjectCamera.cpp</a> | 18682 |
+| <a href="https://github.com/projectPiki/pikmin2/tree/main/src/sysGCU/P2DScreen.cpp">P2DScreen.cpp</a> | 13017 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/sysGCU/modelEffect.cpp">modelEffect.cpp</a> | 13177 |
+| <a href="https://github.com/projectPiki/pikmin2/tree/main/src/sysGCU/JSTObjectSpecialActor.cpp">JSTObjectSpecialActor.cpp</a> | 13400 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/sysGCU/messageObj.cpp">messageObj.cpp</a> | 16076 |
+| <a href="https://github.com/projectPiki/pikmin2/tree/main/src/sysGCU/light.cpp">light.cpp</a> | 17491 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/sysGCU/wipe.cpp">wipe.cpp</a> | 17645 |
+| <a href="https://github.com/projectPiki/pikmin2/tree/main/src/sysGCU/screenObj.cpp">screenObj.cpp</a> | 17826 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/sysGCU/pikmin2AramMgr.cpp">pikmin2AramMgr.cpp</a> | 18340 |
+| <a href="https://github.com/projectPiki/pikmin2/tree/main/src/sysGCU/JSTObjectCamera.cpp">JSTObjectCamera.cpp</a> | 18682 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/sysGCU/JSTObjectParticleActor.cpp">JSTObjectParticleActor.cpp</a> | 21679 |
 
 ### <section id="utilityU">utilityU</section>
 | File | Size (bytes) | File | Size (bytes) |
