@@ -22,6 +22,10 @@
 
 namespace Game {
 
+static const int unusedInteractPikiArray[] = { 0, 0, 0 };
+
+static const char interactPikiName[] = "interactPiki";
+
 /*
  * --INFO--
  * Address:	80192C84
@@ -63,7 +67,7 @@ inline bool vsFlute(Piki* p, Navi* n)
 bool InteractFue::actPiki(Game::Piki* piki)
 {
 	if (gameSystem->m_mode == GSM_STORY_MODE && gameSystem->m_timeMgr->m_dayCount == 0 && !playData->isDemoFlag(DEMO_Reunite_Captains)) {
-		// the check for if it is day 1 and the captains are seperated
+		// the check for if it is day 1 and the captains are separated
 		if (m_creature->isNavi()) {
 			Navi* navi = static_cast<Navi*>(m_creature);
 			if (navi->m_naviIndex == 0 && !piki->wasZikatu()) {
@@ -89,8 +93,7 @@ bool InteractFue::actPiki(Game::Piki* piki)
 				{
 					BaseItem* cave   = *iCave;
 					Vector3f cavePos = cave->getPosition();
-
-					f32 distance = _distanceBetween(cavePos, pikiPos);
+					f32 distance     = _distanceBetween(cavePos, pikiPos);
 					if (distance < closestHoleDist) {
 						closestHoleDist = distance;
 						closestCavePos  = cavePos;
@@ -107,7 +110,7 @@ bool InteractFue::actPiki(Game::Piki* piki)
 			GameStat::zikatuPikis.dec((int)piki->m_pikiKind);
 			if (!playData->isDemoFlag(DEMO_Meet_Red_Pikmin) && (int)piki->m_pikiKind == Red) {
 				if (gameSystem->m_section->getTimerType() != 4) {
-					gameSystem->m_section->enableTimer(4, 1.2f);
+					gameSystem->m_section->enableTimer(1.2f, 4);
 				}
 			}
 			if (!playData->hasBootContainer((u32)piki->m_pikiKind)) { // might be u32 param then
@@ -124,27 +127,31 @@ bool InteractFue::actPiki(Game::Piki* piki)
 						}
 					}
 				}
+
 				moviePlayer->m_targetObject = piki;
-				// just make an else statement??????
 				if ((int)piki->m_pikiKind != Red) {
 					moviePlayer->play(movieArg);
 					playData->setMeetPikmin(piki->m_pikiKind);
 				}
+
 				playData->setContainer(piki->m_pikiKind);
 				playData->setBootContainer(piki->m_pikiKind);
 			}
-		} else if ((int)pikiKind == 5) {
-			if (gameSystem->m_flags & 0x20 && !playData->isDemoFlag(DEMO_Discover_Bulbmin)) { // broken demo likely
+
+		} else if ((int)pikiKind == Bulbmin) {
+			if (gameSystem->isFlag(GAMESYS_Unk6) && !playData->isDemoFlag(DEMO_Discover_Bulbmin)) { // broken demo likely
 				playData->setDemoFlag(DEMO_Discover_Bulbmin);
 				MoviePlayArg bulbminArg("X13_exp_leafchappy", nullptr, nullptr, 0);
 				bulbminArg.setTarget(piki);
 				moviePlayer->m_targetObject = piki;
 				moviePlayer->play(bulbminArg);
 			}
+
 		} else {
 			return false;
 		}
 	} // end if Zikatu
+
 	if (piki->m_currentState->invincible(piki)) {
 		return false;
 	}
@@ -629,7 +636,7 @@ bool InteractFlick::actPiki(Game::Piki* piki)
 	float magnetude = m_knockback * 0.1f * randFloat() + m_knockback;
 
 	Vector3f knockbackDir = Vector3f(sinVal * magnetude, 50.0f * randFloat() + 100.0f, cosVal * magnetude);
-	BlowStateArg flickArg(knockbackDir, 176.0f, false, 1, m_creature);
+	BlowStateArg flickArg(knockbackDir, 0.1f, false, 1, m_creature);
 	piki->startSound(PSSE_PK_VC_SCATTERED, false);
 	piki->m_fsm->transit(piki, PIKISTATE_Blow, &flickArg);
 	return true;
@@ -712,15 +719,3 @@ bool InteractKill::actPiki(Game::Piki* piki)
 }
 
 } // namespace Game
-
-/*
- * --INFO--
- * Address:	80194FC0
- * Size:	00000C
- */
-
-/*
- * --INFO--
- * Address:	80194FCC
- * Size:	000028
- */
