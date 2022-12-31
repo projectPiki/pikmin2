@@ -148,73 +148,22 @@
         .4byte 0x00000000
 */
 
+#include "PikiAI.h"
+#include "Game/Piki.h"
+
+namespace PikiAI {
 /*
  * --INFO--
  * Address:	801A2720
  * Size:	0000D0
  */
-PikiAI::ActEnter::ActEnter(Game::Piki* p)
+ActEnter::ActEnter(Game::Piki* p)
+    : Action(p)
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	extsh.   r0, r4
-	stw      r31, 0xc(r1)
-	mr       r31, r3
-	stw      r30, 8(r1)
-	mr       r30, r5
-	beq      lbl_801A2758
-	addi     r0, r31, 0x60
-	lis      r3, __vt__Q28SysShape14MotionListener@ha
-	stw      r0, 0xc(r31)
-	addi     r0, r3, __vt__Q28SysShape14MotionListener@l
-	stw      r0, 0x60(r31)
+	m_gotoPos = new ActGotoPos(p);
+	m_climb   = new ActClimb(p);
 
-lbl_801A2758:
-	mr       r3, r31
-	mr       r4, r30
-	bl       __ct__Q26PikiAI6ActionFPQ24Game4Piki
-	lis      r3, __vt__Q26PikiAI8ActEnter@ha
-	addi     r0, r31, 0x60
-	addi     r4, r3, __vt__Q26PikiAI8ActEnter@l
-	li       r3, 0x1c
-	stw      r4, 0(r31)
-	addi     r5, r4, 0x40
-	lwz      r4, 0xc(r31)
-	stw      r5, 0(r4)
-	lwz      r4, 0xc(r31)
-	subf     r0, r4, r0
-	stw      r0, 4(r4)
-	bl       __nw__FUl
-	or.      r0, r3, r3
-	beq      lbl_801A27A8
-	mr       r4, r30
-	bl       __ct__Q26PikiAI10ActGotoPosFPQ24Game4Piki
-	mr       r0, r3
-
-lbl_801A27A8:
-	stw      r0, 0x14(r31)
-	li       r3, 0x24
-	bl       __nw__FUl
-	or.      r0, r3, r3
-	beq      lbl_801A27C8
-	mr       r4, r30
-	bl       __ct__Q26PikiAI8ActClimbFPQ24Game4Piki
-	mr       r0, r3
-
-lbl_801A27C8:
-	stw      r0, 0x18(r31)
-	addi     r0, r2, lbl_80519110@sda21
-	mr       r3, r31
-	stw      r0, 8(r31)
-	lwz      r31, 0xc(r1)
-	lwz      r30, 8(r1)
-	lwz      r0, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	m_name = "Enter";
 }
 
 /*
@@ -222,7 +171,7 @@ lbl_801A27C8:
  * Address:	801A27F0
  * Size:	000338
  */
-void PikiAI::ActEnter::init(PikiAI::ActionArg*)
+void ActEnter::init(ActionArg* a)
 {
 	/*
 	stwu     r1, -0xc0(r1)
@@ -450,894 +399,895 @@ lbl_801A2AEC:
 	*/
 }
 
-/*
- * --INFO--
- * Address:	801A2B28
- * Size:	000240
- */
-void PikiAI::ActEnter::exec(void)
-{
-	/*
-	stwu     r1, -0x50(r1)
-	mflr     r0
-	stw      r0, 0x54(r1)
-	stfd     f31, 0x40(r1)
-	psq_st   f31, 72(r1), 0, qr0
-	stw      r31, 0x3c(r1)
-	stw      r30, 0x38(r1)
-	mr       r30, r3
-	lhz      r0, 0x10(r3)
-	cmpwi    r0, 2
-	beq      lbl_801A2CF0
-	bge      lbl_801A2B68
-	cmpwi    r0, 0
-	beq      lbl_801A2B78
-	bge      lbl_801A2C64
-	b        lbl_801A2D44
+// /*
+//  * --INFO--
+//  * Address:	801A2B28
+//  * Size:	000240
+//  */
+// void PikiAI::ActEnter::exec(void)
+// {
+// 	/*
+// 	stwu     r1, -0x50(r1)
+// 	mflr     r0
+// 	stw      r0, 0x54(r1)
+// 	stfd     f31, 0x40(r1)
+// 	psq_st   f31, 72(r1), 0, qr0
+// 	stw      r31, 0x3c(r1)
+// 	stw      r30, 0x38(r1)
+// 	mr       r30, r3
+// 	lhz      r0, 0x10(r3)
+// 	cmpwi    r0, 2
+// 	beq      lbl_801A2CF0
+// 	bge      lbl_801A2B68
+// 	cmpwi    r0, 0
+// 	beq      lbl_801A2B78
+// 	bge      lbl_801A2C64
+// 	b        lbl_801A2D44
 
-lbl_801A2B68:
-	cmpwi    r0, 4
-	beq      lbl_801A2D20
-	bge      lbl_801A2D44
-	b        lbl_801A2D40
+// lbl_801A2B68:
+// 	cmpwi    r0, 4
+// 	beq      lbl_801A2D20
+// 	bge      lbl_801A2D44
+// 	b        lbl_801A2D40
 
-lbl_801A2B78:
-	lwz      r4, 0x20(r30)
-	cmplwi   r4, 0
-	beq      lbl_801A2BA0
-	lwz      r3, 0x14(r30)
-	lfs      f0, 0x4c(r4)
-	stfs     f0, 0x10(r3)
-	lfs      f0, 0x50(r4)
-	stfs     f0, 0x14(r3)
-	lfs      f0, 0x54(r4)
-	stfs     f0, 0x18(r3)
+// lbl_801A2B78:
+// 	lwz      r4, 0x20(r30)
+// 	cmplwi   r4, 0
+// 	beq      lbl_801A2BA0
+// 	lwz      r3, 0x14(r30)
+// 	lfs      f0, 0x4c(r4)
+// 	stfs     f0, 0x10(r3)
+// 	lfs      f0, 0x50(r4)
+// 	stfs     f0, 0x14(r3)
+// 	lfs      f0, 0x54(r4)
+// 	stfs     f0, 0x18(r3)
 
-lbl_801A2BA0:
-	lwz      r3, 0x14(r30)
-	lwz      r12, 0(r3)
-	lwz      r12, 0xc(r12)
-	mtctr    r12
-	bctrl
-	cmpwi    r3, 0
-	bne      lbl_801A2D44
-	lwz      r4, 0x1c(r30)
-	lis      r3, __vt__Q26PikiAI9ActionArg@ha
-	addi     r0, r3, __vt__Q26PikiAI9ActionArg@l
-	lfs      f0, lbl_80519148@sda21(r2)
-	lis      r3, __vt__Q26PikiAI14ClimbActionArg@ha
-	stw      r0, 0x20(r1)
-	addi     r3, r3, __vt__Q26PikiAI14ClimbActionArg@l
-	li       r0, 1
-	stw      r3, 0x20(r1)
-	addi     r3, r1, 0x14
-	stw      r4, 0x24(r1)
-	stfs     f0, 0x28(r1)
-	stb      r0, 0x2c(r1)
-	lwz      r4, 4(r30)
-	lwz      r12, 0(r4)
-	lwz      r12, 8(r12)
-	mtctr    r12
-	bctrl
-	lwz      r3, 4(r30)
-	lwz      r4, 0x24(r30)
-	lwz      r5, 0x1c(r30)
-	bl       startStick__Q24Game8CreatureFPQ24Game8CreatureP8CollPart
-	lwz      r4, 4(r30)
-	addi     r3, r1, 8
-	lwz      r12, 0(r4)
-	lwz      r12, 8(r12)
-	mtctr    r12
-	bctrl
-	lwz      r3, 0x18(r30)
-	addi     r4, r1, 0x20
-	lwz      r12, 0(r3)
-	lwz      r12, 8(r12)
-	mtctr    r12
-	bctrl
-	li       r0, 1
-	li       r5, 0x2815
-	sth      r0, 0x10(r30)
-	li       r6, 1
-	lwz      r3, 4(r30)
-	lwz      r4, 0x24(r30)
-	bl       startSound__Q24Game4PikiFPQ24Game8CreatureUlb
-	b        lbl_801A2D44
+// lbl_801A2BA0:
+// 	lwz      r3, 0x14(r30)
+// 	lwz      r12, 0(r3)
+// 	lwz      r12, 0xc(r12)
+// 	mtctr    r12
+// 	bctrl
+// 	cmpwi    r3, 0
+// 	bne      lbl_801A2D44
+// 	lwz      r4, 0x1c(r30)
+// 	lis      r3, __vt__Q26PikiAI9ActionArg@ha
+// 	addi     r0, r3, __vt__Q26PikiAI9ActionArg@l
+// 	lfs      f0, lbl_80519148@sda21(r2)
+// 	lis      r3, __vt__Q26PikiAI14ClimbActionArg@ha
+// 	stw      r0, 0x20(r1)
+// 	addi     r3, r3, __vt__Q26PikiAI14ClimbActionArg@l
+// 	li       r0, 1
+// 	stw      r3, 0x20(r1)
+// 	addi     r3, r1, 0x14
+// 	stw      r4, 0x24(r1)
+// 	stfs     f0, 0x28(r1)
+// 	stb      r0, 0x2c(r1)
+// 	lwz      r4, 4(r30)
+// 	lwz      r12, 0(r4)
+// 	lwz      r12, 8(r12)
+// 	mtctr    r12
+// 	bctrl
+// 	lwz      r3, 4(r30)
+// 	lwz      r4, 0x24(r30)
+// 	lwz      r5, 0x1c(r30)
+// 	bl       startStick__Q24Game8CreatureFPQ24Game8CreatureP8CollPart
+// 	lwz      r4, 4(r30)
+// 	addi     r3, r1, 8
+// 	lwz      r12, 0(r4)
+// 	lwz      r12, 8(r12)
+// 	mtctr    r12
+// 	bctrl
+// 	lwz      r3, 0x18(r30)
+// 	addi     r4, r1, 0x20
+// 	lwz      r12, 0(r3)
+// 	lwz      r12, 8(r12)
+// 	mtctr    r12
+// 	bctrl
+// 	li       r0, 1
+// 	li       r5, 0x2815
+// 	sth      r0, 0x10(r30)
+// 	li       r6, 1
+// 	lwz      r3, 4(r30)
+// 	lwz      r4, 0x24(r30)
+// 	bl       startSound__Q24Game4PikiFPQ24Game8CreatureUlb
+// 	b        lbl_801A2D44
 
-lbl_801A2C64:
-	lwz      r3, 0x18(r30)
-	lwz      r12, 0(r3)
-	lwz      r12, 0xc(r12)
-	mtctr    r12
-	bctrl
-	lwz      r4, 4(r30)
-	mr       r31, r3
-	lfs      f0, lbl_8051914C@sda21(r2)
-	lfs      f31, 0x108(r4)
-	fcmpo    cr0, f31, f0
-	bge      lbl_801A2CB8
-	fdivs    f31, f31, f0
-	mr       r3, r4
-	bl       getBaseScale__Q24Game4PikiFv
-	fmuls    f0, f31, f1
-	stfs     f0, 0x5c(r30)
-	lfs      f0, 0x5c(r30)
-	lwz      r3, 4(r30)
-	stfs     f0, 0x168(r3)
-	stfs     f0, 0x16c(r3)
-	stfs     f0, 0x170(r3)
+// lbl_801A2C64:
+// 	lwz      r3, 0x18(r30)
+// 	lwz      r12, 0(r3)
+// 	lwz      r12, 0xc(r12)
+// 	mtctr    r12
+// 	bctrl
+// 	lwz      r4, 4(r30)
+// 	mr       r31, r3
+// 	lfs      f0, lbl_8051914C@sda21(r2)
+// 	lfs      f31, 0x108(r4)
+// 	fcmpo    cr0, f31, f0
+// 	bge      lbl_801A2CB8
+// 	fdivs    f31, f31, f0
+// 	mr       r3, r4
+// 	bl       getBaseScale__Q24Game4PikiFv
+// 	fmuls    f0, f31, f1
+// 	stfs     f0, 0x5c(r30)
+// 	lfs      f0, 0x5c(r30)
+// 	lwz      r3, 4(r30)
+// 	stfs     f0, 0x168(r3)
+// 	stfs     f0, 0x16c(r3)
+// 	stfs     f0, 0x170(r3)
 
-lbl_801A2CB8:
-	cmpwi    r31, 0
-	bne      lbl_801A2D44
-	lwz      r3, 4(r30)
-	bl       endStick__Q24Game8CreatureFv
-	lwz      r3, 4(r30)
-	li       r5, 0x281d
-	lwz      r4, 0x24(r30)
-	li       r6, 1
-	bl       startSound__Q24Game4PikiFPQ24Game8CreatureUlb
-	lwz      r3, 0x24(r30)
-	lwz      r4, 4(r30)
-	bl       enterPiki__Q24Game5OnyonFPQ24Game4Piki
-	li       r3, 0
-	b        lbl_801A2D48
+// lbl_801A2CB8:
+// 	cmpwi    r31, 0
+// 	bne      lbl_801A2D44
+// 	lwz      r3, 4(r30)
+// 	bl       endStick__Q24Game8CreatureFv
+// 	lwz      r3, 4(r30)
+// 	li       r5, 0x281d
+// 	lwz      r4, 0x24(r30)
+// 	li       r6, 1
+// 	bl       startSound__Q24Game4PikiFPQ24Game8CreatureUlb
+// 	lwz      r3, 0x24(r30)
+// 	lwz      r4, 4(r30)
+// 	bl       enterPiki__Q24Game5OnyonFPQ24Game4Piki
+// 	li       r3, 0
+// 	b        lbl_801A2D48
 
-lbl_801A2CF0:
-	lwz      r3, 0x14(r30)
-	lwz      r12, 0(r3)
-	lwz      r12, 0xc(r12)
-	mtctr    r12
-	bctrl
-	cmpwi    r3, 0
-	bne      lbl_801A2D44
-	li       r0, 3
-	mr       r3, r30
-	sth      r0, 0x10(r30)
-	bl       initStay__Q26PikiAI8ActEnterFv
-	b        lbl_801A2D44
+// lbl_801A2CF0:
+// 	lwz      r3, 0x14(r30)
+// 	lwz      r12, 0(r3)
+// 	lwz      r12, 0xc(r12)
+// 	mtctr    r12
+// 	bctrl
+// 	cmpwi    r3, 0
+// 	bne      lbl_801A2D44
+// 	li       r0, 3
+// 	mr       r3, r30
+// 	sth      r0, 0x10(r30)
+// 	bl       initStay__Q26PikiAI8ActEnterFv
+// 	b        lbl_801A2D44
 
-lbl_801A2D20:
-	bl       execSuck__Q26PikiAI8ActEnterFv
-	cmpwi    r3, 0
-	bne      lbl_801A2D44
-	lwz      r3, 0x24(r30)
-	lwz      r4, 4(r30)
-	bl       enterPiki__Q24Game5OnyonFPQ24Game4Piki
-	li       r3, 0
-	b        lbl_801A2D48
+// lbl_801A2D20:
+// 	bl       execSuck__Q26PikiAI8ActEnterFv
+// 	cmpwi    r3, 0
+// 	bne      lbl_801A2D44
+// 	lwz      r3, 0x24(r30)
+// 	lwz      r4, 4(r30)
+// 	bl       enterPiki__Q24Game5OnyonFPQ24Game4Piki
+// 	li       r3, 0
+// 	b        lbl_801A2D48
 
-lbl_801A2D40:
-	bl       execStay__Q26PikiAI8ActEnterFv
+// lbl_801A2D40:
+// 	bl       execStay__Q26PikiAI8ActEnterFv
 
-lbl_801A2D44:
-	li       r3, 1
+// lbl_801A2D44:
+// 	li       r3, 1
 
-lbl_801A2D48:
-	psq_l    f31, 72(r1), 0, qr0
-	lwz      r0, 0x54(r1)
-	lfd      f31, 0x40(r1)
-	lwz      r31, 0x3c(r1)
-	lwz      r30, 0x38(r1)
-	mtlr     r0
-	addi     r1, r1, 0x50
-	blr
-	*/
-}
+// lbl_801A2D48:
+// 	psq_l    f31, 72(r1), 0, qr0
+// 	lwz      r0, 0x54(r1)
+// 	lfd      f31, 0x40(r1)
+// 	lwz      r31, 0x3c(r1)
+// 	lwz      r30, 0x38(r1)
+// 	mtlr     r0
+// 	addi     r1, r1, 0x50
+// 	blr
+// 	*/
+// }
 
-/*
- * --INFO--
- * Address:	801A2D68
- * Size:	000068
- */
-void PikiAI::ActEnter::cleanup(void)
-{
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	mr       r31, r3
-	lwz      r3, 4(r3)
-	bl       endStick__Q24Game8CreatureFv
-	lwz      r3, 4(r31)
-	li       r4, 1
-	lwz      r12, 0(r3)
-	lwz      r12, 0xa4(r12)
-	mtctr    r12
-	bctrl
-	lwz      r3, 4(r31)
-	bl       getBaseScale__Q24Game4PikiFv
-	stfs     f1, 0x5c(r31)
-	lfs      f0, 0x5c(r31)
-	lwz      r3, 4(r31)
-	stfs     f0, 0x168(r3)
-	stfs     f0, 0x16c(r3)
-	stfs     f0, 0x170(r3)
-	lwz      r31, 0xc(r1)
-	lwz      r0, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
-}
+// /*
+//  * --INFO--
+//  * Address:	801A2D68
+//  * Size:	000068
+//  */
+// void PikiAI::ActEnter::cleanup(void)
+// {
+// 	/*
+// 	stwu     r1, -0x10(r1)
+// 	mflr     r0
+// 	stw      r0, 0x14(r1)
+// 	stw      r31, 0xc(r1)
+// 	mr       r31, r3
+// 	lwz      r3, 4(r3)
+// 	bl       endStick__Q24Game8CreatureFv
+// 	lwz      r3, 4(r31)
+// 	li       r4, 1
+// 	lwz      r12, 0(r3)
+// 	lwz      r12, 0xa4(r12)
+// 	mtctr    r12
+// 	bctrl
+// 	lwz      r3, 4(r31)
+// 	bl       getBaseScale__Q24Game4PikiFv
+// 	stfs     f1, 0x5c(r31)
+// 	lfs      f0, 0x5c(r31)
+// 	lwz      r3, 4(r31)
+// 	stfs     f0, 0x168(r3)
+// 	stfs     f0, 0x16c(r3)
+// 	stfs     f0, 0x170(r3)
+// 	lwz      r31, 0xc(r1)
+// 	lwz      r0, 0x14(r1)
+// 	mtlr     r0
+// 	addi     r1, r1, 0x10
+// 	blr
+// 	*/
+// }
 
-/*
- * --INFO--
- * Address:	801A2DD0
- * Size:	000004
- */
-void PikiAI::ActEnter::onKeyEvent(SysShape::KeyEvent const&) { }
+// /*
+//  * --INFO--
+//  * Address:	801A2DD0
+//  * Size:	000004
+//  */
+// void PikiAI::ActEnter::onKeyEvent(SysShape::KeyEvent const&) { }
 
-/*
- * --INFO--
- * Address:	801A2DD4
- * Size:	000078
- */
-void PikiAI::ActEnter::initStay(void)
-{
-	/*
-	stwu     r1, -0x30(r1)
-	mflr     r0
-	lfs      f0, lbl_80519150@sda21(r2)
-	stw      r0, 0x34(r1)
-	stw      r31, 0x2c(r1)
-	mr       r31, r3
-	addi     r3, r1, 8
-	stfs     f0, 0x40(r31)
-	lwz      r4, 0x24(r31)
-	bl       getInEnd_UFO__Q24Game5OnyonFv
-	lfs      f2, 8(r1)
-	addi     r4, r1, 0x14
-	lfs      f1, 0xc(r1)
-	lfs      f0, 0x10(r1)
-	stfs     f2, 0x14(r1)
-	stfs     f1, 0x18(r1)
-	stfs     f0, 0x1c(r1)
-	lwz      r3, 4(r31)
-	bl       "turnTo__Q24Game8FakePikiFR10Vector3<f>"
-	lwz      r3, 4(r31)
-	li       r4, 0
-	lwz      r12, 0(r3)
-	lwz      r12, 0x1d8(r12)
-	mtctr    r12
-	bctrl
-	lwz      r0, 0x34(r1)
-	lwz      r31, 0x2c(r1)
-	mtlr     r0
-	addi     r1, r1, 0x30
-	blr
-	*/
-}
+// /*
+//  * --INFO--
+//  * Address:	801A2DD4
+//  * Size:	000078
+//  */
+// void PikiAI::ActEnter::initStay(void)
+// {
+// 	/*
+// 	stwu     r1, -0x30(r1)
+// 	mflr     r0
+// 	lfs      f0, lbl_80519150@sda21(r2)
+// 	stw      r0, 0x34(r1)
+// 	stw      r31, 0x2c(r1)
+// 	mr       r31, r3
+// 	addi     r3, r1, 8
+// 	stfs     f0, 0x40(r31)
+// 	lwz      r4, 0x24(r31)
+// 	bl       getInEnd_UFO__Q24Game5OnyonFv
+// 	lfs      f2, 8(r1)
+// 	addi     r4, r1, 0x14
+// 	lfs      f1, 0xc(r1)
+// 	lfs      f0, 0x10(r1)
+// 	stfs     f2, 0x14(r1)
+// 	stfs     f1, 0x18(r1)
+// 	stfs     f0, 0x1c(r1)
+// 	lwz      r3, 4(r31)
+// 	bl       "turnTo__Q24Game8FakePikiFR10Vector3<f>"
+// 	lwz      r3, 4(r31)
+// 	li       r4, 0
+// 	lwz      r12, 0(r3)
+// 	lwz      r12, 0x1d8(r12)
+// 	mtctr    r12
+// 	bctrl
+// 	lwz      r0, 0x34(r1)
+// 	lwz      r31, 0x2c(r1)
+// 	mtlr     r0
+// 	addi     r1, r1, 0x30
+// 	blr
+// 	*/
+// }
 
-/*
- * --INFO--
- * Address:	801A2E4C
- * Size:	000064
- */
-void PikiAI::ActEnter::execStay(void)
-{
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	lfs      f1, lbl_80519118@sda21(r2)
-	stw      r0, 0x14(r1)
-	lwz      r4, sys@sda21(r13)
-	lfs      f2, 0x40(r3)
-	lfs      f0, 0x54(r4)
-	fsubs    f0, f2, f0
-	stfs     f0, 0x40(r3)
-	lwz      r4, 4(r3)
-	stfs     f1, 0x1e4(r4)
-	stfs     f1, 0x1e8(r4)
-	stfs     f1, 0x1ec(r4)
-	lfs      f0, 0x40(r3)
-	fcmpo    cr0, f0, f1
-	cror     2, 0, 2
-	bne      lbl_801A2E9C
-	li       r0, 4
-	sth      r0, 0x10(r3)
-	bl       initSuck__Q26PikiAI8ActEnterFv
+// /*
+//  * --INFO--
+//  * Address:	801A2E4C
+//  * Size:	000064
+//  */
+// void PikiAI::ActEnter::execStay(void)
+// {
+// 	/*
+// 	stwu     r1, -0x10(r1)
+// 	mflr     r0
+// 	lfs      f1, lbl_80519118@sda21(r2)
+// 	stw      r0, 0x14(r1)
+// 	lwz      r4, sys@sda21(r13)
+// 	lfs      f2, 0x40(r3)
+// 	lfs      f0, 0x54(r4)
+// 	fsubs    f0, f2, f0
+// 	stfs     f0, 0x40(r3)
+// 	lwz      r4, 4(r3)
+// 	stfs     f1, 0x1e4(r4)
+// 	stfs     f1, 0x1e8(r4)
+// 	stfs     f1, 0x1ec(r4)
+// 	lfs      f0, 0x40(r3)
+// 	fcmpo    cr0, f0, f1
+// 	cror     2, 0, 2
+// 	bne      lbl_801A2E9C
+// 	li       r0, 4
+// 	sth      r0, 0x10(r3)
+// 	bl       initSuck__Q26PikiAI8ActEnterFv
 
-lbl_801A2E9C:
-	lwz      r0, 0x14(r1)
-	li       r3, 1
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
-}
+// lbl_801A2E9C:
+// 	lwz      r0, 0x14(r1)
+// 	li       r3, 1
+// 	mtlr     r0
+// 	addi     r1, r1, 0x10
+// 	blr
+// 	*/
+// }
 
-/*
- * --INFO--
- * Address:	801A2EB0
- * Size:	0001A0
- */
-void PikiAI::ActEnter::initSuck(void)
-{
-	/*
-	stwu     r1, -0x30(r1)
-	mflr     r0
-	stw      r0, 0x34(r1)
-	stw      r31, 0x2c(r1)
-	mr       r31, r3
-	addi     r3, r1, 0x14
-	lwz      r4, 0x24(r31)
-	bl       getInEnd_UFO__Q24Game5OnyonFv
-	lfs      f1, 0x14(r1)
-	addi     r3, r1, 8
-	lfs      f0, lbl_80519134@sda21(r2)
-	stfs     f1, 0x28(r31)
-	lfs      f1, 0x18(r1)
-	stfs     f1, 0x2c(r31)
-	lfs      f1, 0x1c(r1)
-	stfs     f1, 0x30(r31)
-	lfs      f1, 0x2c(r31)
-	fsubs    f0, f1, f0
-	stfs     f0, 0x2c(r31)
-	lwz      r4, 4(r31)
-	lwz      r12, 0(r4)
-	lwz      r12, 8(r12)
-	mtctr    r12
-	bctrl
-	lfs      f2, 0x28(r31)
-	lfs      f1, 8(r1)
-	lfs      f0, 0xc(r1)
-	lfs      f3, 0x2c(r31)
-	fsubs    f1, f2, f1
-	lfs      f5, 0x30(r31)
-	lfs      f4, 0x10(r1)
-	fsubs    f3, f3, f0
-	lfs      f2, lbl_80519118@sda21(r2)
-	stfs     f1, 0x34(r31)
-	fsubs    f1, f5, f4
-	stfs     f3, 0x38(r31)
-	stfs     f1, 0x3c(r31)
-	stfs     f2, 0x38(r31)
-	lfs      f4, 0x34(r31)
-	lfs      f3, 0x38(r31)
-	lfs      f5, 0x3c(r31)
-	fmuls    f1, f4, f4
-	fmuls    f3, f3, f3
-	fmuls    f5, f5, f5
-	fadds    f1, f1, f3
-	fadds    f1, f5, f1
-	fcmpo    cr0, f1, f2
-	ble      lbl_801A2F8C
-	fmadds   f1, f4, f4, f3
-	fadds    f3, f5, f1
-	fcmpo    cr0, f3, f2
-	ble      lbl_801A2F90
-	frsqrte  f1, f3
-	fmuls    f3, f1, f3
-	b        lbl_801A2F90
+// /*
+//  * --INFO--
+//  * Address:	801A2EB0
+//  * Size:	0001A0
+//  */
+// void PikiAI::ActEnter::initSuck(void)
+// {
+// 	/*
+// 	stwu     r1, -0x30(r1)
+// 	mflr     r0
+// 	stw      r0, 0x34(r1)
+// 	stw      r31, 0x2c(r1)
+// 	mr       r31, r3
+// 	addi     r3, r1, 0x14
+// 	lwz      r4, 0x24(r31)
+// 	bl       getInEnd_UFO__Q24Game5OnyonFv
+// 	lfs      f1, 0x14(r1)
+// 	addi     r3, r1, 8
+// 	lfs      f0, lbl_80519134@sda21(r2)
+// 	stfs     f1, 0x28(r31)
+// 	lfs      f1, 0x18(r1)
+// 	stfs     f1, 0x2c(r31)
+// 	lfs      f1, 0x1c(r1)
+// 	stfs     f1, 0x30(r31)
+// 	lfs      f1, 0x2c(r31)
+// 	fsubs    f0, f1, f0
+// 	stfs     f0, 0x2c(r31)
+// 	lwz      r4, 4(r31)
+// 	lwz      r12, 0(r4)
+// 	lwz      r12, 8(r12)
+// 	mtctr    r12
+// 	bctrl
+// 	lfs      f2, 0x28(r31)
+// 	lfs      f1, 8(r1)
+// 	lfs      f0, 0xc(r1)
+// 	lfs      f3, 0x2c(r31)
+// 	fsubs    f1, f2, f1
+// 	lfs      f5, 0x30(r31)
+// 	lfs      f4, 0x10(r1)
+// 	fsubs    f3, f3, f0
+// 	lfs      f2, lbl_80519118@sda21(r2)
+// 	stfs     f1, 0x34(r31)
+// 	fsubs    f1, f5, f4
+// 	stfs     f3, 0x38(r31)
+// 	stfs     f1, 0x3c(r31)
+// 	stfs     f2, 0x38(r31)
+// 	lfs      f4, 0x34(r31)
+// 	lfs      f3, 0x38(r31)
+// 	lfs      f5, 0x3c(r31)
+// 	fmuls    f1, f4, f4
+// 	fmuls    f3, f3, f3
+// 	fmuls    f5, f5, f5
+// 	fadds    f1, f1, f3
+// 	fadds    f1, f5, f1
+// 	fcmpo    cr0, f1, f2
+// 	ble      lbl_801A2F8C
+// 	fmadds   f1, f4, f4, f3
+// 	fadds    f3, f5, f1
+// 	fcmpo    cr0, f3, f2
+// 	ble      lbl_801A2F90
+// 	frsqrte  f1, f3
+// 	fmuls    f3, f1, f3
+// 	b        lbl_801A2F90
 
-lbl_801A2F8C:
-	fmr      f3, f2
+// lbl_801A2F8C:
+// 	fmr      f3, f2
 
-lbl_801A2F90:
-	lfs      f1, lbl_80519118@sda21(r2)
-	fcmpo    cr0, f3, f1
-	ble      lbl_801A2FCC
-	lfs      f2, lbl_80519154@sda21(r2)
-	lfs      f1, 0x34(r31)
-	fdivs    f2, f2, f3
-	fmuls    f1, f1, f2
-	stfs     f1, 0x34(r31)
-	lfs      f1, 0x38(r31)
-	fmuls    f1, f1, f2
-	stfs     f1, 0x38(r31)
-	lfs      f1, 0x3c(r31)
-	fmuls    f1, f1, f2
-	stfs     f1, 0x3c(r31)
-	b        lbl_801A2FD0
+// lbl_801A2F90:
+// 	lfs      f1, lbl_80519118@sda21(r2)
+// 	fcmpo    cr0, f3, f1
+// 	ble      lbl_801A2FCC
+// 	lfs      f2, lbl_80519154@sda21(r2)
+// 	lfs      f1, 0x34(r31)
+// 	fdivs    f2, f2, f3
+// 	fmuls    f1, f1, f2
+// 	stfs     f1, 0x34(r31)
+// 	lfs      f1, 0x38(r31)
+// 	fmuls    f1, f1, f2
+// 	stfs     f1, 0x38(r31)
+// 	lfs      f1, 0x3c(r31)
+// 	fmuls    f1, f1, f2
+// 	stfs     f1, 0x3c(r31)
+// 	b        lbl_801A2FD0
 
-lbl_801A2FCC:
-	fmr      f3, f1
+// lbl_801A2FCC:
+// 	fmr      f3, f1
 
-lbl_801A2FD0:
-	stfs     f3, 0x48(r31)
-	li       r0, 0
-	lfs      f1, lbl_80519154@sda21(r2)
-	li       r4, 0x281f
-	lfs      f2, 0x2c(r31)
-	li       r5, 1
-	fsubs    f2, f2, f0
-	fabs     f2, f2
-	frsp     f2, f2
-	stfs     f2, 0x44(r31)
-	stfs     f0, 0x2c(r31)
-	lfs      f0, 0x48(r31)
-	fneg     f0, f0
-	stfs     f0, 0x40(r31)
-	stb      r0, 0x4c(r31)
-	stfs     f1, 0x5c(r31)
-	lwz      r3, 4(r31)
-	bl       startSound__Q24Game4PikiFUlb
-	lwz      r3, 4(r31)
-	li       r4, 0x23
-	li       r5, 0x23
-	li       r6, 0
-	lwz      r12, 0(r3)
-	li       r7, 0
-	lwz      r12, 0x208(r12)
-	mtctr    r12
-	bctrl
-	lwz      r0, 0x34(r1)
-	lwz      r31, 0x2c(r1)
-	mtlr     r0
-	addi     r1, r1, 0x30
-	blr
-	*/
-}
+// lbl_801A2FD0:
+// 	stfs     f3, 0x48(r31)
+// 	li       r0, 0
+// 	lfs      f1, lbl_80519154@sda21(r2)
+// 	li       r4, 0x281f
+// 	lfs      f2, 0x2c(r31)
+// 	li       r5, 1
+// 	fsubs    f2, f2, f0
+// 	fabs     f2, f2
+// 	frsp     f2, f2
+// 	stfs     f2, 0x44(r31)
+// 	stfs     f0, 0x2c(r31)
+// 	lfs      f0, 0x48(r31)
+// 	fneg     f0, f0
+// 	stfs     f0, 0x40(r31)
+// 	stb      r0, 0x4c(r31)
+// 	stfs     f1, 0x5c(r31)
+// 	lwz      r3, 4(r31)
+// 	bl       startSound__Q24Game4PikiFUlb
+// 	lwz      r3, 4(r31)
+// 	li       r4, 0x23
+// 	li       r5, 0x23
+// 	li       r6, 0
+// 	lwz      r12, 0(r3)
+// 	li       r7, 0
+// 	lwz      r12, 0x208(r12)
+// 	mtctr    r12
+// 	bctrl
+// 	lwz      r0, 0x34(r1)
+// 	lwz      r31, 0x2c(r1)
+// 	mtlr     r0
+// 	addi     r1, r1, 0x30
+// 	blr
+// 	*/
+// }
 
-/*
- * --INFO--
- * Address:	801A3050
- * Size:	00018C
- */
-void PikiAI::ActEnter::execSuck(void)
-{
-	/*
-	stwu     r1, -0x20(r1)
-	mflr     r0
-	stw      r0, 0x24(r1)
-	stw      r31, 0x1c(r1)
-	mr       r31, r3
-	lbz      r0, 0x4c(r3)
-	cmplwi   r0, 0
-	beq      lbl_801A3088
-	lwz      r3, 4(r31)
-	addi     r4, r31, 0x50
-	li       r5, 0
-	bl       "setPosition__Q24Game8CreatureFR10Vector3<f>b"
-	li       r3, 0
-	b        lbl_801A31C8
+// /*
+//  * --INFO--
+//  * Address:	801A3050
+//  * Size:	00018C
+//  */
+// void PikiAI::ActEnter::execSuck(void)
+// {
+// 	/*
+// 	stwu     r1, -0x20(r1)
+// 	mflr     r0
+// 	stw      r0, 0x24(r1)
+// 	stw      r31, 0x1c(r1)
+// 	mr       r31, r3
+// 	lbz      r0, 0x4c(r3)
+// 	cmplwi   r0, 0
+// 	beq      lbl_801A3088
+// 	lwz      r3, 4(r31)
+// 	addi     r4, r31, 0x50
+// 	li       r5, 0
+// 	bl       "setPosition__Q24Game8CreatureFR10Vector3<f>b"
+// 	li       r3, 0
+// 	b        lbl_801A31C8
 
-lbl_801A3088:
-	lfs      f9, 0x44(r31)
-	addi     r4, r1, 8
-	lfs      f0, 0x48(r31)
-	li       r5, 0
-	fneg     f1, f9
-	lfs      f8, 0x40(r31)
-	fmuls    f0, f0, f0
-	lfs      f2, 0x38(r31)
-	lfs      f4, 0x3c(r31)
-	fmuls    f6, f8, f8
-	fdivs    f7, f1, f0
-	lfs      f0, 0x34(r31)
-	lfs      f3, 0x2c(r31)
-	lfs      f5, 0x30(r31)
-	lfs      f1, 0x28(r31)
-	fmuls    f2, f2, f8
-	fmuls    f4, f4, f8
-	fmuls    f0, f0, f8
-	fadds    f2, f3, f2
-	fmadds   f6, f7, f6, f9
-	fadds    f3, f5, f4
-	fadds    f1, f1, f0
-	stfs     f2, 0xc(r1)
-	fadds    f0, f2, f6
-	stfs     f3, 0x10(r1)
-	stfs     f1, 8(r1)
-	stfs     f0, 0xc(r1)
-	lwz      r3, 4(r31)
-	bl       "setPosition__Q24Game8CreatureFR10Vector3<f>b"
-	lfs      f0, 0x5c(r31)
-	lwz      r3, 4(r31)
-	lfs      f3, lbl_80519158@sda21(r2)
-	stfs     f0, 0x168(r3)
-	lfs      f2, lbl_80519118@sda21(r2)
-	stfs     f0, 0x16c(r3)
-	stfs     f0, 0x170(r3)
-	lwz      r3, sys@sda21(r13)
-	lfs      f0, 0x40(r31)
-	lfs      f1, 0x54(r3)
-	fmadds   f0, f3, f1, f0
-	stfs     f0, 0x40(r31)
-	lfs      f0, 0x40(r31)
-	fcmpo    cr0, f0, f2
-	cror     2, 1, 2
-	bne      lbl_801A3174
-	li       r0, 1
-	li       r4, 0x281d
-	stb      r0, 0x4c(r31)
-	li       r5, 1
-	lfs      f0, 8(r1)
-	stfs     f0, 0x50(r31)
-	lfs      f0, 0xc(r1)
-	stfs     f0, 0x54(r31)
-	lfs      f0, 0x10(r1)
-	stfs     f0, 0x58(r31)
-	lwz      r3, 4(r31)
-	bl       startSound__Q24Game4PikiFUlb
-	li       r3, 0
-	b        lbl_801A31C8
+// lbl_801A3088:
+// 	lfs      f9, 0x44(r31)
+// 	addi     r4, r1, 8
+// 	lfs      f0, 0x48(r31)
+// 	li       r5, 0
+// 	fneg     f1, f9
+// 	lfs      f8, 0x40(r31)
+// 	fmuls    f0, f0, f0
+// 	lfs      f2, 0x38(r31)
+// 	lfs      f4, 0x3c(r31)
+// 	fmuls    f6, f8, f8
+// 	fdivs    f7, f1, f0
+// 	lfs      f0, 0x34(r31)
+// 	lfs      f3, 0x2c(r31)
+// 	lfs      f5, 0x30(r31)
+// 	lfs      f1, 0x28(r31)
+// 	fmuls    f2, f2, f8
+// 	fmuls    f4, f4, f8
+// 	fmuls    f0, f0, f8
+// 	fadds    f2, f3, f2
+// 	fmadds   f6, f7, f6, f9
+// 	fadds    f3, f5, f4
+// 	fadds    f1, f1, f0
+// 	stfs     f2, 0xc(r1)
+// 	fadds    f0, f2, f6
+// 	stfs     f3, 0x10(r1)
+// 	stfs     f1, 8(r1)
+// 	stfs     f0, 0xc(r1)
+// 	lwz      r3, 4(r31)
+// 	bl       "setPosition__Q24Game8CreatureFR10Vector3<f>b"
+// 	lfs      f0, 0x5c(r31)
+// 	lwz      r3, 4(r31)
+// 	lfs      f3, lbl_80519158@sda21(r2)
+// 	stfs     f0, 0x168(r3)
+// 	lfs      f2, lbl_80519118@sda21(r2)
+// 	stfs     f0, 0x16c(r3)
+// 	stfs     f0, 0x170(r3)
+// 	lwz      r3, sys@sda21(r13)
+// 	lfs      f0, 0x40(r31)
+// 	lfs      f1, 0x54(r3)
+// 	fmadds   f0, f3, f1, f0
+// 	stfs     f0, 0x40(r31)
+// 	lfs      f0, 0x40(r31)
+// 	fcmpo    cr0, f0, f2
+// 	cror     2, 1, 2
+// 	bne      lbl_801A3174
+// 	li       r0, 1
+// 	li       r4, 0x281d
+// 	stb      r0, 0x4c(r31)
+// 	li       r5, 1
+// 	lfs      f0, 8(r1)
+// 	stfs     f0, 0x50(r31)
+// 	lfs      f0, 0xc(r1)
+// 	stfs     f0, 0x54(r31)
+// 	lfs      f0, 0x10(r1)
+// 	stfs     f0, 0x58(r31)
+// 	lwz      r3, 4(r31)
+// 	bl       startSound__Q24Game4PikiFUlb
+// 	li       r3, 0
+// 	b        lbl_801A31C8
 
-lbl_801A3174:
-	fneg     f1, f0
-	lfs      f0, 0x48(r31)
-	fdivs    f1, f1, f0
-	fcmpo    cr0, f1, f2
-	bge      lbl_801A318C
-	fmr      f1, f2
+// lbl_801A3174:
+// 	fneg     f1, f0
+// 	lfs      f0, 0x48(r31)
+// 	fdivs    f1, f1, f0
+// 	fcmpo    cr0, f1, f2
+// 	bge      lbl_801A318C
+// 	fmr      f1, f2
 
-lbl_801A318C:
-	lfs      f0, lbl_80519118@sda21(r2)
-	fcmpo    cr0, f1, f0
-	ble      lbl_801A31AC
-	ble      lbl_801A31A8
-	frsqrte  f0, f1
-	fmuls    f0, f0, f1
-	b        lbl_801A31AC
+// lbl_801A318C:
+// 	lfs      f0, lbl_80519118@sda21(r2)
+// 	fcmpo    cr0, f1, f0
+// 	ble      lbl_801A31AC
+// 	ble      lbl_801A31A8
+// 	frsqrte  f0, f1
+// 	fmuls    f0, f0, f1
+// 	b        lbl_801A31AC
 
-lbl_801A31A8:
-	fmr      f0, f1
+// lbl_801A31A8:
+// 	fmr      f0, f1
 
-lbl_801A31AC:
-	stfs     f0, 0x5c(r31)
-	lfs      f0, lbl_8051915C@sda21(r2)
-	lfs      f1, 0x5c(r31)
-	fcmpo    cr0, f1, f0
-	bge      lbl_801A31C4
-	stfs     f0, 0x5c(r31)
+// lbl_801A31AC:
+// 	stfs     f0, 0x5c(r31)
+// 	lfs      f0, lbl_8051915C@sda21(r2)
+// 	lfs      f1, 0x5c(r31)
+// 	fcmpo    cr0, f1, f0
+// 	bge      lbl_801A31C4
+// 	stfs     f0, 0x5c(r31)
 
-lbl_801A31C4:
-	li       r3, 1
+// lbl_801A31C4:
+// 	li       r3, 1
 
-lbl_801A31C8:
-	lwz      r0, 0x24(r1)
-	lwz      r31, 0x1c(r1)
-	mtlr     r0
-	addi     r1, r1, 0x20
-	blr
-	*/
-}
+// lbl_801A31C8:
+// 	lwz      r0, 0x24(r1)
+// 	lwz      r31, 0x1c(r1)
+// 	mtlr     r0
+// 	addi     r1, r1, 0x20
+// 	blr
+// 	*/
+// }
 
-/*
- * --INFO--
- * Address:	801A31DC
- * Size:	000070
- */
-PikiAI::ActExit::ActExit(Game::Piki* p)
-{
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	mr       r31, r4
-	stw      r30, 8(r1)
-	mr       r30, r3
-	bl       __ct__Q26PikiAI6ActionFPQ24Game4Piki
-	lis      r4, __vt__Q26PikiAI7ActExit@ha
-	li       r3, 0x24
-	addi     r0, r4, __vt__Q26PikiAI7ActExit@l
-	stw      r0, 0(r30)
-	bl       __nw__FUl
-	or.      r0, r3, r3
-	beq      lbl_801A3224
-	mr       r4, r31
-	bl       __ct__Q26PikiAI8ActClimbFPQ24Game4Piki
-	mr       r0, r3
+// /*
+//  * --INFO--
+//  * Address:	801A31DC
+//  * Size:	000070
+//  */
+// PikiAI::ActExit::ActExit(Game::Piki* p)
+// {
+// 	/*
+// 	stwu     r1, -0x10(r1)
+// 	mflr     r0
+// 	stw      r0, 0x14(r1)
+// 	stw      r31, 0xc(r1)
+// 	mr       r31, r4
+// 	stw      r30, 8(r1)
+// 	mr       r30, r3
+// 	bl       __ct__Q26PikiAI6ActionFPQ24Game4Piki
+// 	lis      r4, __vt__Q26PikiAI7ActExit@ha
+// 	li       r3, 0x24
+// 	addi     r0, r4, __vt__Q26PikiAI7ActExit@l
+// 	stw      r0, 0(r30)
+// 	bl       __nw__FUl
+// 	or.      r0, r3, r3
+// 	beq      lbl_801A3224
+// 	mr       r4, r31
+// 	bl       __ct__Q26PikiAI8ActClimbFPQ24Game4Piki
+// 	mr       r0, r3
 
-lbl_801A3224:
-	stw      r0, 0xc(r30)
-	addi     r0, r2, lbl_80519160@sda21
-	mr       r3, r30
-	stw      r0, 8(r30)
-	lwz      r31, 0xc(r1)
-	lwz      r30, 8(r1)
-	lwz      r0, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
-}
+// lbl_801A3224:
+// 	stw      r0, 0xc(r30)
+// 	addi     r0, r2, lbl_80519160@sda21
+// 	mr       r3, r30
+// 	stw      r0, 8(r30)
+// 	lwz      r31, 0xc(r1)
+// 	lwz      r30, 8(r1)
+// 	lwz      r0, 0x14(r1)
+// 	mtlr     r0
+// 	addi     r1, r1, 0x10
+// 	blr
+// 	*/
+// }
 
-/*
- * --INFO--
- * Address:	801A324C
- * Size:	000204
- */
-void PikiAI::ActExit::init(PikiAI::ActionArg*)
-{
-	/*
-	stwu     r1, -0x30(r1)
-	mflr     r0
-	stw      r0, 0x34(r1)
-	stw      r31, 0x2c(r1)
-	mr       r31, r4
-	stw      r30, 0x28(r1)
-	mr       r30, r3
-	lwz      r3, 4(r4)
-	lhz      r0, 0x128(r3)
-	cmplwi   r0, 0x402
-	beq      lbl_801A3294
-	lis      r3, lbl_8047F3C0@ha
-	lis      r5, lbl_8047F3CC@ha
-	addi     r3, r3, lbl_8047F3C0@l
-	li       r4, 0x205
-	addi     r5, r5, lbl_8047F3CC@l
-	crclr    6
-	bl       panic_f__12JUTExceptionFPCciPCce
+// /*
+//  * --INFO--
+//  * Address:	801A324C
+//  * Size:	000204
+//  */
+// void PikiAI::ActExit::init(PikiAI::ActionArg*)
+// {
+// 	/*
+// 	stwu     r1, -0x30(r1)
+// 	mflr     r0
+// 	stw      r0, 0x34(r1)
+// 	stw      r31, 0x2c(r1)
+// 	mr       r31, r4
+// 	stw      r30, 0x28(r1)
+// 	mr       r30, r3
+// 	lwz      r3, 4(r4)
+// 	lhz      r0, 0x128(r3)
+// 	cmplwi   r0, 0x402
+// 	beq      lbl_801A3294
+// 	lis      r3, lbl_8047F3C0@ha
+// 	lis      r5, lbl_8047F3CC@ha
+// 	addi     r3, r3, lbl_8047F3C0@l
+// 	li       r4, 0x205
+// 	addi     r5, r5, lbl_8047F3CC@l
+// 	crclr    6
+// 	bl       panic_f__12JUTExceptionFPCciPCce
 
-lbl_801A3294:
-	lwz      r3, 4(r30)
-	li       r4, 0x1e
-	li       r5, 0x1e
-	li       r6, 0
-	lwz      r12, 0(r3)
-	li       r7, 0
-	lwz      r12, 0x208(r12)
-	mtctr    r12
-	bctrl
-	lwz      r3, 4(r30)
-	lfs      f0, lbl_80519118@sda21(r2)
-	stfs     f0, 0x1e4(r3)
-	stfs     f0, 0x1e8(r3)
-	stfs     f0, 0x1ec(r3)
-	bl       rand
-	xoris    r0, r3, 0x8000
-	lis      r3, 0x4330
-	stw      r0, 0x1c(r1)
-	lwz      r0, 4(r31)
-	stw      r3, 0x18(r1)
-	lfd      f2, lbl_80519140@sda21(r2)
-	lfd      f0, 0x18(r1)
-	lfs      f1, lbl_8051911C@sda21(r2)
-	fsubs    f2, f0, f2
-	stw      r0, 0x14(r30)
-	lfs      f0, lbl_80519134@sda21(r2)
-	lwz      r3, 4(r31)
-	fdivs    f1, f2, f1
-	fmuls    f0, f0, f1
-	fctiwz   f0, f0
-	stfd     f0, 0x20(r1)
-	lwz      r4, 0x24(r1)
-	bl       getLegPart__Q24Game5OnyonFi
-	stw      r3, 0x10(r30)
-	lis      r4, __vt__Q26PikiAI9ActionArg@ha
-	lis      r3, __vt__Q26PikiAI14ClimbActionArg@ha
-	lfs      f0, lbl_80519168@sda21(r2)
-	lwz      r6, 0x10(r30)
-	addi     r4, r4, __vt__Q26PikiAI9ActionArg@l
-	li       r0, 0
-	addi     r3, r3, __vt__Q26PikiAI14ClimbActionArg@l
-	stw      r4, 8(r1)
-	addi     r4, r6, 0x4c
-	li       r5, 0
-	stw      r3, 8(r1)
-	stw      r6, 0xc(r1)
-	stfs     f0, 0x10(r1)
-	stb      r0, 0x14(r1)
-	lwz      r3, 4(r30)
-	bl       "setPosition__Q24Game8CreatureFR10Vector3<f>b"
-	lwz      r3, 4(r30)
-	lwz      r4, 0x14(r30)
-	lwz      r5, 0x10(r30)
-	bl       startStick__Q24Game8CreatureFPQ24Game8CreatureP8CollPart
-	lwz      r3, 0xc(r30)
-	addi     r4, r1, 8
-	lwz      r12, 0(r3)
-	lwz      r12, 8(r12)
-	mtctr    r12
-	bctrl
-	lwz      r3, 4(r30)
-	li       r5, 0x281e
-	lwz      r4, 4(r31)
-	li       r6, 1
-	bl       startSound__Q24Game4PikiFPQ24Game8CreatureUlb
-	lis      r3, "zero__10Vector3<f>"@ha
-	lwz      r4, 4(r30)
-	lfsu     f1, "zero__10Vector3<f>"@l(r3)
-	lfs      f0, lbl_80519118@sda21(r2)
-	stfs     f1, 0x168(r4)
-	lfs      f1, 4(r3)
-	stfs     f1, 0x16c(r4)
-	lfs      f1, 8(r3)
-	stfs     f1, 0x170(r4)
-	lwz      r3, 4(r30)
-	stfs     f0, 0x138(r3)
-	lwz      r3, 4(r30)
-	stfs     f0, 0x13c(r3)
-	lwz      r3, 4(r30)
-	stfs     f0, 0x140(r3)
-	lwz      r3, 4(r30)
-	stfs     f0, 0x148(r3)
-	lwz      r3, 4(r30)
-	stfs     f0, 0x14c(r3)
-	lwz      r3, 4(r30)
-	stfs     f0, 0x150(r3)
-	lwz      r3, 4(r30)
-	stfs     f0, 0x158(r3)
-	lwz      r3, 4(r30)
-	stfs     f0, 0x15c(r3)
-	lwz      r3, 4(r30)
-	stfs     f0, 0x160(r3)
-	lwz      r3, 4(r30)
-	lwz      r4, 0x174(r3)
-	addi     r3, r3, 0x138
-	lwz      r4, 8(r4)
-	addi     r4, r4, 0x24
-	bl       PSMTXCopy
-	lwz      r3, 4(r30)
-	lwz      r3, 0x174(r3)
-	lwz      r3, 8(r3)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x10(r12)
-	mtctr    r12
-	bctrl
-	lwz      r0, 0x34(r1)
-	lwz      r31, 0x2c(r1)
-	lwz      r30, 0x28(r1)
-	mtlr     r0
-	addi     r1, r1, 0x30
-	blr
-	*/
-}
+// lbl_801A3294:
+// 	lwz      r3, 4(r30)
+// 	li       r4, 0x1e
+// 	li       r5, 0x1e
+// 	li       r6, 0
+// 	lwz      r12, 0(r3)
+// 	li       r7, 0
+// 	lwz      r12, 0x208(r12)
+// 	mtctr    r12
+// 	bctrl
+// 	lwz      r3, 4(r30)
+// 	lfs      f0, lbl_80519118@sda21(r2)
+// 	stfs     f0, 0x1e4(r3)
+// 	stfs     f0, 0x1e8(r3)
+// 	stfs     f0, 0x1ec(r3)
+// 	bl       rand
+// 	xoris    r0, r3, 0x8000
+// 	lis      r3, 0x4330
+// 	stw      r0, 0x1c(r1)
+// 	lwz      r0, 4(r31)
+// 	stw      r3, 0x18(r1)
+// 	lfd      f2, lbl_80519140@sda21(r2)
+// 	lfd      f0, 0x18(r1)
+// 	lfs      f1, lbl_8051911C@sda21(r2)
+// 	fsubs    f2, f0, f2
+// 	stw      r0, 0x14(r30)
+// 	lfs      f0, lbl_80519134@sda21(r2)
+// 	lwz      r3, 4(r31)
+// 	fdivs    f1, f2, f1
+// 	fmuls    f0, f0, f1
+// 	fctiwz   f0, f0
+// 	stfd     f0, 0x20(r1)
+// 	lwz      r4, 0x24(r1)
+// 	bl       getLegPart__Q24Game5OnyonFi
+// 	stw      r3, 0x10(r30)
+// 	lis      r4, __vt__Q26PikiAI9ActionArg@ha
+// 	lis      r3, __vt__Q26PikiAI14ClimbActionArg@ha
+// 	lfs      f0, lbl_80519168@sda21(r2)
+// 	lwz      r6, 0x10(r30)
+// 	addi     r4, r4, __vt__Q26PikiAI9ActionArg@l
+// 	li       r0, 0
+// 	addi     r3, r3, __vt__Q26PikiAI14ClimbActionArg@l
+// 	stw      r4, 8(r1)
+// 	addi     r4, r6, 0x4c
+// 	li       r5, 0
+// 	stw      r3, 8(r1)
+// 	stw      r6, 0xc(r1)
+// 	stfs     f0, 0x10(r1)
+// 	stb      r0, 0x14(r1)
+// 	lwz      r3, 4(r30)
+// 	bl       "setPosition__Q24Game8CreatureFR10Vector3<f>b"
+// 	lwz      r3, 4(r30)
+// 	lwz      r4, 0x14(r30)
+// 	lwz      r5, 0x10(r30)
+// 	bl       startStick__Q24Game8CreatureFPQ24Game8CreatureP8CollPart
+// 	lwz      r3, 0xc(r30)
+// 	addi     r4, r1, 8
+// 	lwz      r12, 0(r3)
+// 	lwz      r12, 8(r12)
+// 	mtctr    r12
+// 	bctrl
+// 	lwz      r3, 4(r30)
+// 	li       r5, 0x281e
+// 	lwz      r4, 4(r31)
+// 	li       r6, 1
+// 	bl       startSound__Q24Game4PikiFPQ24Game8CreatureUlb
+// 	lis      r3, "zero__10Vector3<f>"@ha
+// 	lwz      r4, 4(r30)
+// 	lfsu     f1, "zero__10Vector3<f>"@l(r3)
+// 	lfs      f0, lbl_80519118@sda21(r2)
+// 	stfs     f1, 0x168(r4)
+// 	lfs      f1, 4(r3)
+// 	stfs     f1, 0x16c(r4)
+// 	lfs      f1, 8(r3)
+// 	stfs     f1, 0x170(r4)
+// 	lwz      r3, 4(r30)
+// 	stfs     f0, 0x138(r3)
+// 	lwz      r3, 4(r30)
+// 	stfs     f0, 0x13c(r3)
+// 	lwz      r3, 4(r30)
+// 	stfs     f0, 0x140(r3)
+// 	lwz      r3, 4(r30)
+// 	stfs     f0, 0x148(r3)
+// 	lwz      r3, 4(r30)
+// 	stfs     f0, 0x14c(r3)
+// 	lwz      r3, 4(r30)
+// 	stfs     f0, 0x150(r3)
+// 	lwz      r3, 4(r30)
+// 	stfs     f0, 0x158(r3)
+// 	lwz      r3, 4(r30)
+// 	stfs     f0, 0x15c(r3)
+// 	lwz      r3, 4(r30)
+// 	stfs     f0, 0x160(r3)
+// 	lwz      r3, 4(r30)
+// 	lwz      r4, 0x174(r3)
+// 	addi     r3, r3, 0x138
+// 	lwz      r4, 8(r4)
+// 	addi     r4, r4, 0x24
+// 	bl       PSMTXCopy
+// 	lwz      r3, 4(r30)
+// 	lwz      r3, 0x174(r3)
+// 	lwz      r3, 8(r3)
+// 	lwz      r12, 0(r3)
+// 	lwz      r12, 0x10(r12)
+// 	mtctr    r12
+// 	bctrl
+// 	lwz      r0, 0x34(r1)
+// 	lwz      r31, 0x2c(r1)
+// 	lwz      r30, 0x28(r1)
+// 	mtlr     r0
+// 	addi     r1, r1, 0x30
+// 	blr
+// 	*/
+// }
 
-/*
- * --INFO--
- * Address:	801A3450
- * Size:	0000A8
- */
-void PikiAI::ActExit::exec(void)
-{
-	/*
-	stwu     r1, -0x20(r1)
-	mflr     r0
-	stw      r0, 0x24(r1)
-	stfd     f31, 0x10(r1)
-	psq_st   f31, 24(r1), 0, qr0
-	stw      r31, 0xc(r1)
-	stw      r30, 8(r1)
-	mr       r30, r3
-	lwz      r3, 0xc(r3)
-	lwz      r12, 0(r3)
-	lwz      r12, 0xc(r12)
-	mtctr    r12
-	bctrl
-	lwz      r4, 4(r30)
-	mr       r31, r3
-	lfs      f0, lbl_8051914C@sda21(r2)
-	lfs      f31, 0x108(r4)
-	fcmpo    cr0, f31, f0
-	bge      lbl_801A34C4
-	fdivs    f31, f31, f0
-	mr       r3, r4
-	bl       getBaseScale__Q24Game4PikiFv
-	fmuls    f0, f31, f1
-	stfs     f0, 0x18(r30)
-	lfs      f0, 0x18(r30)
-	lwz      r3, 4(r30)
-	stfs     f0, 0x168(r3)
-	stfs     f0, 0x16c(r3)
-	stfs     f0, 0x170(r3)
+// /*
+//  * --INFO--
+//  * Address:	801A3450
+//  * Size:	0000A8
+//  */
+// void PikiAI::ActExit::exec(void)
+// {
+// 	/*
+// 	stwu     r1, -0x20(r1)
+// 	mflr     r0
+// 	stw      r0, 0x24(r1)
+// 	stfd     f31, 0x10(r1)
+// 	psq_st   f31, 24(r1), 0, qr0
+// 	stw      r31, 0xc(r1)
+// 	stw      r30, 8(r1)
+// 	mr       r30, r3
+// 	lwz      r3, 0xc(r3)
+// 	lwz      r12, 0(r3)
+// 	lwz      r12, 0xc(r12)
+// 	mtctr    r12
+// 	bctrl
+// 	lwz      r4, 4(r30)
+// 	mr       r31, r3
+// 	lfs      f0, lbl_8051914C@sda21(r2)
+// 	lfs      f31, 0x108(r4)
+// 	fcmpo    cr0, f31, f0
+// 	bge      lbl_801A34C4
+// 	fdivs    f31, f31, f0
+// 	mr       r3, r4
+// 	bl       getBaseScale__Q24Game4PikiFv
+// 	fmuls    f0, f31, f1
+// 	stfs     f0, 0x18(r30)
+// 	lfs      f0, 0x18(r30)
+// 	lwz      r3, 4(r30)
+// 	stfs     f0, 0x168(r3)
+// 	stfs     f0, 0x16c(r3)
+// 	stfs     f0, 0x170(r3)
 
-lbl_801A34C4:
-	cmpwi    r31, 0
-	bne      lbl_801A34D4
-	li       r3, 0
-	b        lbl_801A34D8
+// lbl_801A34C4:
+// 	cmpwi    r31, 0
+// 	bne      lbl_801A34D4
+// 	li       r3, 0
+// 	b        lbl_801A34D8
 
-lbl_801A34D4:
-	li       r3, 1
+// lbl_801A34D4:
+// 	li       r3, 1
 
-lbl_801A34D8:
-	psq_l    f31, 24(r1), 0, qr0
-	lwz      r0, 0x24(r1)
-	lfd      f31, 0x10(r1)
-	lwz      r31, 0xc(r1)
-	lwz      r30, 8(r1)
-	mtlr     r0
-	addi     r1, r1, 0x20
-	blr
-	*/
-}
+// lbl_801A34D8:
+// 	psq_l    f31, 24(r1), 0, qr0
+// 	lwz      r0, 0x24(r1)
+// 	lfd      f31, 0x10(r1)
+// 	lwz      r31, 0xc(r1)
+// 	lwz      r30, 8(r1)
+// 	mtlr     r0
+// 	addi     r1, r1, 0x20
+// 	blr
+// 	*/
+// }
 
-/*
- * --INFO--
- * Address:	801A34F8
- * Size:	0000C8
- */
-void PikiAI::ActExit::cleanup(void)
-{
-	/*
-	stwu     r1, -0x30(r1)
-	mflr     r0
-	stw      r0, 0x34(r1)
-	stfd     f31, 0x20(r1)
-	psq_st   f31, 40(r1), 0, qr0
-	stw      r31, 0x1c(r1)
-	mr       r31, r3
-	lwz      r3, 4(r3)
-	lfs      f31, 0x108(r3)
-	bl       getBaseScale__Q24Game4PikiFv
-	stfs     f1, 0x18(r31)
-	lfs      f0, 0x18(r31)
-	lwz      r3, 4(r31)
-	stfs     f0, 0x168(r3)
-	stfs     f0, 0x16c(r3)
-	stfs     f0, 0x170(r3)
-	lwz      r3, 4(r31)
-	bl       endStick__Q24Game8CreatureFv
-	lwz      r3, 4(r31)
-	li       r4, 1
-	lwz      r12, 0(r3)
-	lwz      r12, 0x1d8(r12)
-	mtctr    r12
-	bctrl
-	bl       rand
-	xoris    r3, r3, 0x8000
-	lis      r0, 0x4330
-	stw      r3, 0xc(r1)
-	lfd      f1, lbl_80519140@sda21(r2)
-	stw      r0, 8(r1)
-	lfs      f3, lbl_8051911C@sda21(r2)
-	lfd      f0, 8(r1)
-	lfs      f2, lbl_80519170@sda21(r2)
-	fsubs    f4, f0, f1
-	lfs      f1, lbl_8051916C@sda21(r2)
-	lwz      r3, 4(r31)
-	lfs      f0, lbl_80519118@sda21(r2)
-	fdivs    f3, f4, f3
-	stfs     f0, 0x200(r3)
-	fmadds   f1, f2, f3, f1
-	fmuls    f1, f1, f31
-	stfs     f1, 0x204(r3)
-	stfs     f0, 0x208(r3)
-	psq_l    f31, 40(r1), 0, qr0
-	lwz      r0, 0x34(r1)
-	lfd      f31, 0x20(r1)
-	lwz      r31, 0x1c(r1)
-	mtlr     r0
-	addi     r1, r1, 0x30
-	blr
-	*/
-}
+// /*
+//  * --INFO--
+//  * Address:	801A34F8
+//  * Size:	0000C8
+//  */
+// void PikiAI::ActExit::cleanup(void)
+// {
+// 	/*
+// 	stwu     r1, -0x30(r1)
+// 	mflr     r0
+// 	stw      r0, 0x34(r1)
+// 	stfd     f31, 0x20(r1)
+// 	psq_st   f31, 40(r1), 0, qr0
+// 	stw      r31, 0x1c(r1)
+// 	mr       r31, r3
+// 	lwz      r3, 4(r3)
+// 	lfs      f31, 0x108(r3)
+// 	bl       getBaseScale__Q24Game4PikiFv
+// 	stfs     f1, 0x18(r31)
+// 	lfs      f0, 0x18(r31)
+// 	lwz      r3, 4(r31)
+// 	stfs     f0, 0x168(r3)
+// 	stfs     f0, 0x16c(r3)
+// 	stfs     f0, 0x170(r3)
+// 	lwz      r3, 4(r31)
+// 	bl       endStick__Q24Game8CreatureFv
+// 	lwz      r3, 4(r31)
+// 	li       r4, 1
+// 	lwz      r12, 0(r3)
+// 	lwz      r12, 0x1d8(r12)
+// 	mtctr    r12
+// 	bctrl
+// 	bl       rand
+// 	xoris    r3, r3, 0x8000
+// 	lis      r0, 0x4330
+// 	stw      r3, 0xc(r1)
+// 	lfd      f1, lbl_80519140@sda21(r2)
+// 	stw      r0, 8(r1)
+// 	lfs      f3, lbl_8051911C@sda21(r2)
+// 	lfd      f0, 8(r1)
+// 	lfs      f2, lbl_80519170@sda21(r2)
+// 	fsubs    f4, f0, f1
+// 	lfs      f1, lbl_8051916C@sda21(r2)
+// 	lwz      r3, 4(r31)
+// 	lfs      f0, lbl_80519118@sda21(r2)
+// 	fdivs    f3, f4, f3
+// 	stfs     f0, 0x200(r3)
+// 	fmadds   f1, f2, f3, f1
+// 	fmuls    f1, f1, f31
+// 	stfs     f1, 0x204(r3)
+// 	stfs     f0, 0x208(r3)
+// 	psq_l    f31, 40(r1), 0, qr0
+// 	lwz      r0, 0x34(r1)
+// 	lfd      f31, 0x20(r1)
+// 	lwz      r31, 0x1c(r1)
+// 	mtlr     r0
+// 	addi     r1, r1, 0x30
+// 	blr
+// 	*/
+// }
 
-/*
- * --INFO--
- * Address:	801A35C0
- * Size:	00000C
- */
-void PikiAI::ClimbActionArg::getName(void)
-{
-	/*
-	lis      r3, lbl_8047F3D8@ha
-	addi     r3, r3, lbl_8047F3D8@l
-	blr
-	*/
-}
+// /*
+//  * --INFO--
+//  * Address:	801A35C0
+//  * Size:	00000C
+//  */
+// void PikiAI::ClimbActionArg::getName(void)
+// {
+// 	/*
+// 	lis      r3, lbl_8047F3D8@ha
+// 	addi     r3, r3, lbl_8047F3D8@l
+// 	blr
+// 	*/
+// }
 
-/*
- * --INFO--
- * Address:	801A35CC
- * Size:	00000C
- */
-void PikiAI::GotoPosActionArg::getName(void)
-{
-	/*
-	lis      r3, lbl_8047F3E8@ha
-	addi     r3, r3, lbl_8047F3E8@l
-	blr
-	*/
-}
+// /*
+//  * --INFO--
+//  * Address:	801A35CC
+//  * Size:	00000C
+//  */
+// void PikiAI::GotoPosActionArg::getName(void)
+// {
+// 	/*
+// 	lis      r3, lbl_8047F3E8@ha
+// 	addi     r3, r3, lbl_8047F3E8@l
+// 	blr
+// 	*/
+// }
+} // namespace PikiAI
 
-/*
- * --INFO--
- * Address:	801A35D8
- * Size:	000014
- */
-void @96 @4 @PikiAI::ActEnter::onKeyEvent(SysShape::KeyEvent const&)
-{
-	/*
-	li       r11, 4
-	lwzx     r11, r3, r11
-	add      r3, r3, r11
-	addi     r3, r3, -96
-	b        onKeyEvent__Q26PikiAI8ActEnterFRCQ28SysShape8KeyEvent
-	*/
-}
+// /*
+//  * --INFO--
+//  * Address:	801A35D8
+//  * Size:	000014
+//  */
+// void @96 @4 @PikiAI::ActEnter::onKeyEvent(SysShape::KeyEvent const&)
+// {
+// 	/*
+// 	li       r11, 4
+// 	lwzx     r11, r3, r11
+// 	add      r3, r3, r11
+// 	addi     r3, r3, -96
+// 	b        onKeyEvent__Q26PikiAI8ActEnterFRCQ28SysShape8KeyEvent
+// 	*/
+// }
