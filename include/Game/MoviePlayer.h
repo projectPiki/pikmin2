@@ -64,7 +64,7 @@ struct MovieConfig : public CNode {
 		    , m_folderName(this, "folder")
 		{
 		}
-		virtual ~TParms(); // _08 (weak)
+		virtual ~TParms() { } // _08 (weak)
 
 		StringTagParm m_demoName;   // _1C
 		StringTagParm m_folderName; // _2C
@@ -160,7 +160,7 @@ struct MovieList : public CNode {
 	// unused/inline
 	void getConfig(int);
 
-	virtual ~MovieList(); // _08 (weak)
+	virtual ~MovieList() { } // _08 (weak)
 
 	static void construct();
 	MovieConfig* findConfig(char*, char*);
