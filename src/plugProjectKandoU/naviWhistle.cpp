@@ -1,6 +1,10 @@
 #include "Game/Navi.h"
-#include "JSystem/JMath.h"
-#include "types.h"
+#include "Game/NaviParms.h"
+#include "Game/CurrTriInfo.h"
+#include "Game/MapMgr.h"
+#include "Game/gamePlayData.h"
+#include "Game/PlatInstance.h"
+#include "trig.h"
 
 /*
     Generated from dpostproc
@@ -66,16 +70,15 @@ NaviWhistle::NaviWhistle(Game::Navi* navi)
  */
 void NaviWhistle::init()
 {
-	_28                                           = 0;
-	_24                                           = 10.0f;
-	_2C                                           = 0.0f;
-	_38                                           = Color4(0xFF, 0x96, 0x00, 0x78);
-	float faceDir                                 = m_navi->getFaceDir();
-	float v1                                      = 0.5f /* * static_cast<NaviParms*>(m_navi->m_parms)->m_p046() */;
-	const JMath::TSinCosTable<2048, float>* table = JMath::getSinCosTable();
-	float cos                                     = table->cos(faceDir);
-	float sin                                     = table->sin(faceDir);
-	_00                                           = Vector3f(v1 * sin, 0.0f, v1 * cos);
+	m_state          = 0;
+	m_radius         = 10.0f;
+	m_activeTime     = 0.0f;
+	m_color          = Color4(255, 150, 0, 120);
+	f32 faceDir      = m_navi->getFaceDir();
+	NaviParms* parms = static_cast<NaviParms*>(m_navi->m_parms);
+	f32 v1           = parms->m_naviParms.m_p046.m_value * 0.5f;
+	m_naviAngleVec   = Vector3f(pikmin2_sinf(faceDir) * v1, 0.0f, pikmin2_cosf(faceDir) * v1);
+
 	updatePosition();
 	/*
 	stwu     r1, -0x30(r1)
@@ -166,8 +169,32 @@ lbl_801651B4:
  * Address:	801651E4
  * Size:	000190
  */
-void NaviWhistle::updatePosition(void)
+void NaviWhistle::updatePosition()
 {
+	m_position = m_navi->getPosition() + m_naviAngleVec;
+
+	CurrTriInfo info;
+	f32 y           = 0.0f;
+	info.m_position = m_position;
+	if (mapMgr) {
+		info._0C = false;
+		mapMgr->getCurrTri(info);
+		y        = info.m_minY;
+		m_normal = info.m_normalVec;
+	}
+
+	if (platMgr) {
+		info.m_maxY = FLOAT_DIST_MIN;
+		platMgr->getCurrTri(info);
+		if (info.m_minY > y) {
+			m_normal = info.m_normalVec;
+			y        = info.m_minY;
+		}
+	}
+
+	m_position.y = y;
+	m_position += info.m_normalVec;
+
 	/*
 	stwu     r1, -0x60(r1)
 	mflr     r0
@@ -281,46 +308,24 @@ lbl_80165324:
  * Address:	80165374
  * Size:	000078
  */
-void NaviWhistle::start(void)
+void NaviWhistle::start()
 {
-	/*
-	li       r0, 0
-	stb      r0, 0x30(r3)
-	lhz      r0, 0x28(r3)
-	cmpwi    r0, 1
-	beqlr
-	bge      lbl_80165398
-	cmpwi    r0, 0
-	bge      lbl_801653A4
-	blr
+	_30 = false;
 
-lbl_80165398:
-	cmpwi    r0, 3
-	bgelr
-	b        lbl_801653C8
-
-lbl_801653A4:
-	li       r0, 1
-	lfs      f0, lbl_805188E4@sda21(r2)
-	sth      r0, 0x28(r3)
-	stfs     f0, 0x2c(r3)
-	lwz      r4, 0x34(r3)
-	lwz      r4, 0xc0(r4)
-	lfs      f0, 0x340(r4)
-	stfs     f0, 0x24(r3)
-	blr
-
-lbl_801653C8:
-	li       r0, 1
-	lfs      f0, lbl_805188E4@sda21(r2)
-	sth      r0, 0x28(r3)
-	stfs     f0, 0x2c(r3)
-	lwz      r4, 0x34(r3)
-	lwz      r4, 0xc0(r4)
-	lfs      f0, 0x340(r4)
-	stfs     f0, 0x24(r3)
-	blr
-	*/
+	switch (m_state) {
+	case Whistle_Inactive:
+		m_state          = 1;
+		m_activeTime     = 0.0f;
+		NaviParms* parms = static_cast<NaviParms*>(m_navi->m_parms);
+		m_radius         = parms->m_naviParms.m_p053.m_value;
+		return;
+	case Whistle_Timeout:
+		m_state      = 1;
+		m_activeTime = 0.0f;
+		parms        = static_cast<NaviParms*>(m_navi->m_parms);
+		m_radius     = parms->m_naviParms.m_p053.m_value;
+		return;
+	}
 }
 
 /*
@@ -331,15 +336,15 @@ lbl_801653C8:
 
 void NaviWhistle::stop()
 {
-	switch (_28) {
+	switch (m_state) {
 
-	case 1:
-		_28 = 2;
-		_2C = 0.0f;
-		_30 = true;
+	case Whistle_Active:
+		m_state      = 2;
+		m_activeTime = 0.0f;
+		_30          = true;
 		return;
-	case 0:
-	case 2:
+	case Whistle_Inactive:
+	case Whistle_Timeout:
 	default:
 		return;
 	}
@@ -350,88 +355,18 @@ void NaviWhistle::stop()
  * Address:	80165420
  * Size:	000010
  */
-bool NaviWhistle::timeout() { return _28 == 0; }
+bool NaviWhistle::timeout() { return m_state == Whistle_Inactive; }
 
 /*
  * --INFO--
  * Address:	80165430
  * Size:	0000F4
  */
-void NaviWhistle::setFaceDir(float)
+void NaviWhistle::setFaceDir(f32 dir)
 {
-	/*
-	stwu     r1, -0x20(r1)
-	lfs      f3, 0(r3)
-	lfs      f2, 4(r3)
-	fmuls    f0, f3, f3
-	lfs      f4, 8(r3)
-	fmuls    f5, f2, f2
-	lfs      f2, lbl_805188E4@sda21(r2)
-	fmuls    f4, f4, f4
-	fadds    f0, f0, f5
-	fadds    f0, f4, f0
-	fcmpo    cr0, f0, f2
-	ble      lbl_8016547C
-	fmadds   f0, f3, f3, f5
-	fadds    f4, f4, f0
-	fcmpo    cr0, f4, f2
-	ble      lbl_80165480
-	frsqrte  f0, f4
-	fmuls    f4, f0, f4
-	b        lbl_80165480
+	f32 dist = m_naviAngleVec.length();
 
-lbl_8016547C:
-	fmr      f4, f2
-
-lbl_80165480:
-	lfs      f0, lbl_805188E4@sda21(r2)
-	fmr      f2, f1
-	fcmpo    cr0, f1, f0
-	bge      lbl_80165494
-	fneg     f2, f1
-
-lbl_80165494:
-	lfs      f3, lbl_805188EC@sda21(r2)
-	lis      r4, sincosTable___5JMath@ha
-	lfs      f0, lbl_805188E4@sda21(r2)
-	addi     r5, r4, sincosTable___5JMath@l
-	fmuls    f2, f2, f3
-	fcmpo    cr0, f1, f0
-	fctiwz   f0, f2
-	stfd     f0, 8(r1)
-	lwz      r0, 0xc(r1)
-	rlwinm   r0, r0, 3, 0x12, 0x1c
-	add      r4, r5, r0
-	lfs      f0, 4(r4)
-	fmuls    f2, f4, f0
-	bge      lbl_801654F0
-	lfs      f0, lbl_805188F0@sda21(r2)
-	fmuls    f0, f1, f0
-	fctiwz   f0, f0
-	stfd     f0, 0x10(r1)
-	lwz      r0, 0x14(r1)
-	rlwinm   r0, r0, 3, 0x12, 0x1c
-	lfsx     f0, r5, r0
-	fneg     f0, f0
-	b        lbl_80165508
-
-lbl_801654F0:
-	fmuls    f0, f1, f3
-	fctiwz   f0, f0
-	stfd     f0, 0x18(r1)
-	lwz      r0, 0x1c(r1)
-	rlwinm   r0, r0, 3, 0x12, 0x1c
-	lfsx     f0, r5, r0
-
-lbl_80165508:
-	fmuls    f1, f4, f0
-	lfs      f0, lbl_805188E4@sda21(r2)
-	stfs     f1, 0(r3)
-	stfs     f0, 4(r3)
-	stfs     f2, 8(r3)
-	addi     r1, r1, 0x20
-	blr
-	*/
+	m_naviAngleVec = Vector3f(dist * pikmin2_sinf(dir), 0.0f, dist * pikmin2_cosf(dir));
 }
 
 /*
@@ -439,8 +374,57 @@ lbl_80165508:
  * Address:	80165524
  * Size:	0001F4
  */
-void NaviWhistle::updateWhistle(void)
+void NaviWhistle::updateWhistle()
 {
+	switch (m_state) {
+	case Whistle_Inactive:
+		m_color.r = 255;
+		m_color.g = 120;
+		m_color.b = 0;
+		m_color.a = 120;
+		break;
+	case Whistle_Active:
+		NaviParms* parms = static_cast<NaviParms*>(m_navi->m_parms);
+		f32 growth       = m_activeTime / parms->m_naviParms.m_p002.m_value;
+		f32 zero         = 0.0f;
+		m_color.r        = (growth * -175.0f + 255.0f);
+		m_color.g        = (growth * -110.0f + 120.0f);
+		m_color.b        = (growth * 255.0f + zero);
+		m_color.a        = (growth * zero + 120.0f);
+		m_activeTime += sys->m_deltaTime;
+		Navi* navi = m_navi;
+		parms      = static_cast<NaviParms*>(m_navi->m_parms);
+		if (m_activeTime > parms->m_naviParms.m_p002.m_value) {
+			m_activeTime = 0.0f;
+			m_state      = Whistle_Timeout;
+		} else {
+			OlimarData* data = navi->getOlimarData();
+			f32 maxSize;
+			if (data->hasItem(OlimarData::ODII_AmplifiedAmplifier)) {
+				parms   = naviMgr->m_naviParms;
+				maxSize = parms->m_naviParms.m_q007.m_value;
+			} else {
+				parms   = naviMgr->m_naviParms;
+				maxSize = parms->m_naviParms.m_p001.m_value;
+			}
+			parms    = static_cast<NaviParms*>(m_navi->m_parms);
+			m_radius = (m_activeTime / parms->m_naviParms.m_p002.m_value) * (maxSize - parms->m_naviParms.m_p053.m_value)
+			         + parms->m_naviParms.m_p002.m_value;
+		}
+		break;
+	case Whistle_Timeout:
+		parms     = static_cast<NaviParms*>(m_navi->m_parms);
+		m_color.a = (1.0f - m_activeTime / parms->m_naviParms.m_p003.m_value) * 120.0f;
+		m_activeTime += sys->m_deltaTime;
+
+		parms = static_cast<NaviParms*>(m_navi->m_parms);
+		if (m_activeTime > parms->m_naviParms.m_p003.m_value) {
+			m_activeTime = 0.0f;
+			m_state      = Whistle_Inactive;
+			m_radius     = 10.0f;
+		}
+		break;
+	}
 	/*
 	stwu     r1, -0x30(r1)
 	mflr     r0
@@ -591,8 +575,29 @@ lbl_80165704:
  * Address:	80165718
  * Size:	0001D4
  */
-void NaviWhistle::update(Vector3f&, bool)
+void NaviWhistle::update(Vector3f& stick, bool active)
 {
+	Vector3f res;
+	if (active) {
+		res = 0.0f;
+	} else {
+		res              = stick;
+		f32 dist         = res.normalise();
+		NaviParms* parms = static_cast<NaviParms*>(m_navi->m_parms);
+		res *= parms->m_naviParms.m_p047.m_value;
+		f32 time = sys->m_deltaTime;
+		res *= time;
+		res += m_naviAngleVec;
+		dist = res.normalise();
+		res *= dist;
+		res *= time;
+		res += m_naviAngleVec;
+		// wtf is this
+	}
+	m_naviAngleVec = res;
+
+	updatePosition(); // why... wont... you... NOT INLINE
+	updateWhistle();
 	/*
 	stwu     r1, -0x20(r1)
 	mflr     r0

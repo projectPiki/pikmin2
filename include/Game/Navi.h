@@ -62,6 +62,8 @@ struct NaviFSM : public StateMachine<Navi> {
 struct NaviWhistle {
 	NaviWhistle(Navi*);
 
+	enum WhistleState { Whistle_Inactive, Whistle_Active, Whistle_Timeout };
+
 	void init();
 	void updatePosition();
 	void start();
@@ -71,15 +73,15 @@ struct NaviWhistle {
 	void updateWhistle();
 	void update(Vector3f&, bool);
 
-	Vector3f _00; // _00
-	Vector3f _0C; // _0C
-	Vector3f _18; // _18
-	f32 _24;      // _24
-	u16 _28;      // _28
-	f32 _2C;      // _2C
-	bool _30;     // _30
-	Navi* m_navi; // _34
-	Color4 _38;   // _38
+	Vector3f m_naviAngleVec; // _00
+	Vector3f m_position;     // _0C
+	Vector3f m_normal;       // _18
+	f32 m_radius;            // _24
+	u16 m_state;             // _28
+	f32 m_activeTime;        // _2C
+	bool _30;                // _30
+	Navi* m_navi;            // _34
+	Color4 m_color;          // _38
 };
 
 #define NAVI_THROWTIMER_LENGTH (10)

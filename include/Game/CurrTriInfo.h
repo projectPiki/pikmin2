@@ -14,13 +14,12 @@ struct CurrTriInfo {
 	{
 		m_triangle = nullptr;
 
-		_18.x   = FLOAT_DIST_MAX;
-		_18.y   = FLOAT_DIST_MIN;
-		m_table = nullptr;
-		_18.z   = 0.0f;
+		m_maxY = FLOAT_DIST_MAX;
+		m_minY = FLOAT_DIST_MIN;
 
-		_24 = 1.0f;
-		_28 = 0.0f;
+		m_table = nullptr;
+
+		m_normalVec = Vector3f(0.0f, 1.0f, 0.0f);
 
 		_0C = true;
 		_0D = false;
@@ -33,9 +32,9 @@ struct CurrTriInfo {
 	u8 _0F;                      // _0F
 	Sys::TriangleTable* m_table; // _10
 	Sys::Triangle* m_triangle;   // _14
-	Vector3f _18;                // _18
-	float _24;                   // _24
-	float _28;                   // _28
+	f32 m_maxY;                  // _18
+	f32 m_minY;                  // _1C
+	Vector3f m_normalVec;        // _20
 };
 } // namespace Game
 
