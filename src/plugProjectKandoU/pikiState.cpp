@@ -1397,7 +1397,7 @@ void PikiDopeState::init(Piki* piki, StateArg* stateArg)
 {
 	DopeStateArg* dopeArg = static_cast<DopeStateArg*>(stateArg);
 	P2ASSERTLINE(1270, dopeArg != nullptr);
-	_18              = dopeArg->_00;
+	_18              = dopeArg->m_dopeType;
 	_14              = 0.3f * randFloat();
 	_10              = false;
 	piki->m_velocity = Vector3f(0.0f);
@@ -3251,7 +3251,7 @@ void PikiFallMeckState::init(Piki* piki, StateArg* stateArg)
 	piki->startMotion(IPikiAnims::FALL, IPikiAnims::FALL, nullptr, nullptr);
 	piki->endStick();
 	if (fallArg) {
-		_10 = fallArg->_00;
+		_10 = fallArg->m_sprayType;
 	} else {
 		_10 = false;
 	}
