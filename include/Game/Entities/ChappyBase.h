@@ -173,7 +173,14 @@ enum StateID {
 };
 
 struct State : public EnemyFSMState {
-	inline State(int); // probably
+	inline State(int id)
+	    : EnemyFSMState(id)
+	{
+	}
+	inline State(int id, const char* name)
+	    : EnemyFSMState(id, name)
+	{
+	}
 
 	// _00		= VTBL
 	// _00-_10 	= EnemyFSMState
@@ -249,7 +256,7 @@ struct StateSleep : public State {
 
 	// _00		= VTBL
 	// _00-_10 	= EnemyFSMState
-	int _10; // _10, next state?
+	int m_nextState; // _10, next state?
 };
 
 struct StateTurnBase : public State {
