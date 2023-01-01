@@ -279,7 +279,7 @@ struct RoomMapMgr : public MapMgr {
 	SysShape::Model* _24;                 // _24, m_modelOrCaveVRBoxOrBothMaybe
 	Cave::CaveInfo* m_caveInfo;           // _28
 	Cave::FloorInfo* m_floorInfo;         // _2C
-	int _30;                              // _30
+	int m_sublevel;                       // _30
 	MapCollision* m_mapCollision;         // _34
 	u32 _38;                              // _38
 	void* _3C;                            // _3C

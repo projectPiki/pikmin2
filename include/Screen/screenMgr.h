@@ -70,7 +70,7 @@ struct Mgr : public MgrBase {
 	CNode _60;                  // _60
 	CNode m_sceneInfoList;      // _78, treat as SceneInfoList
 	u8 _90;                     // _90
-	u8 _91;                     // _91
+	bool m_inCave;              // _91
 	u8 _92;                     // _92
 	u32 _94;                    // _94
 	u32 _98;                    // _98

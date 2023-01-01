@@ -136,7 +136,7 @@ void GameState::do_init(VsGameSection* section)
 		section->createFallPikmins(section->m_container1, 0);
 	}
 
-	Screen::gGame2DMgr->m_screenMgr->_91 = 1;
+	Screen::gGame2DMgr->m_screenMgr->m_inCave = 1;
 }
 
 /*
@@ -474,28 +474,28 @@ void GameState::checkSMenu(VsGameSection* section)
 	}
 
 	if (moviePlayer->m_demoState == 0 && !gameSystem->paused_soft()) {
-		if (section->_10C->isButtonDown(JUTGamePad::PRESS_START)) {
+		if (section->m_controllerP1->isButtonDown(JUTGamePad::PRESS_START)) {
 			og::Screen::DispMemberSMenuAll sMenu;
 			int versus = 2;
 			if (gameSystem->isVersusMode()) {
 				versus = 1;
 			}
 			sMenu.m_pauseVSType = versus;
-			Screen::gGame2DMgr->setGamePad(section->_10C);
+			Screen::gGame2DMgr->setGamePad(section->m_controllerP1);
 			if (Screen::gGame2DMgr->open_SMenu(sMenu)) {
 				gameSystem->setPause(true, "open-sm", 3);
 				gameSystem->setMoviePause(true, "open-sm");
 			}
 
 		} else if (gameSystem->isMultiplayerMode()) {
-			if ((section->_110->isButtonDown(JUTGamePad::PRESS_START))) {
+			if ((section->m_controllerP2->isButtonDown(JUTGamePad::PRESS_START))) {
 				og::Screen::DispMemberSMenuAll sMenu;
 				int versus = 2;
 				if (gameSystem->isVersusMode()) {
 					versus = 1;
 				}
 				sMenu.m_pauseVSType = versus;
-				Screen::gGame2DMgr->setGamePad(section->_110);
+				Screen::gGame2DMgr->setGamePad(section->m_controllerP2);
 				if (Screen::gGame2DMgr->open_SMenu(sMenu)) {
 					gameSystem->setPause(true, "open-sm", 3);
 					gameSystem->setMoviePause(true, "open-sm");
@@ -654,12 +654,12 @@ void GameState::onMovieStart(VsGameSection* section, MovieConfig* config, u32 p1
 	if (config->is("s03_orimadown")) {
 		Screen::Game2DMgr::GameOverTitle gameOverTitle;
 		if (p2 == 0) {
-			gameOverTitle = Screen::Game2DMgr::GOTITLE_Unk1;
+			gameOverTitle = Screen::Game2DMgr::GOTITLE_OlimarDown;
 			if (!gameSystem->isMultiplayerMode()) {
 				section->setPlayerMode(0);
 			}
 		} else {
-			gameOverTitle = Screen::Game2DMgr::GOTITLE_Unk2;
+			gameOverTitle = Screen::Game2DMgr::GOTITLE_LouieDown;
 			if (!gameSystem->isMultiplayerMode()) {
 				section->setPlayerMode(1);
 			}
@@ -712,7 +712,7 @@ void GameState::onMovieDone(VsGameSection* section, MovieConfig* config, u32 p1,
 	}
 
 	RoomMapMgr* mgr   = static_cast<RoomMapMgr*>(mapMgr);
-	int currFloor     = mgr->_30;
+	int currFloor     = mgr->m_sublevel;
 	int floorMax      = mgr->m_caveInfo->getFloorMax();
 	bool isFinalFloor = (currFloor == floorMax - 1);
 

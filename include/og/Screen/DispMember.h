@@ -457,6 +457,8 @@ struct DispMemberKantei : public DispMemberBase {
 // size 0xC
 struct DispMemberSave : public DispMemberBase {
 
+	inline DispMemberSave() { m_doSound = false; }
+
 	virtual u32 getSize() { return sizeof(DispMemberSave); } // _08 (weak)
 	virtual u32 getOwnerID() { return OWNER_OGA; }           // _0C (weak)
 	virtual u64 getMemberID() { return MEMBER_SAVE; }        // _10 (weak)

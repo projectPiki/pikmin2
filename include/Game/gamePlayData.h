@@ -356,7 +356,7 @@ struct PlayData : public CNode {
 	bool _18;                                // _18
 	u8 _19;                                  // _19
 	u32 _1C;                                 // _1C
-	u8 _20;                                  // _20
+	u8 m_deadNaviID[2];                      // _20
 	f32 m_naviLifeMax[2];                    // _24
 	u8 m_hasContainerFlags;                  // _2C
 	u8 m_hasBootContainerFlags;              // _2D

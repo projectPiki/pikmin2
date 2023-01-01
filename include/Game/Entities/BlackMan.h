@@ -86,7 +86,7 @@ struct Obj : public EnemyBase {
 	void moveRestart();
 	void escape();
 	void setTimer(f32);
-	void getTimer();
+	f32 getTimer();
 	void collisionStOn();
 	void collisionStOff();
 	void flick();

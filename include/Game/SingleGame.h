@@ -103,7 +103,7 @@ struct CaveDayEndState : public State {
 };
 
 struct CaveResultArg : public StateArg {
-	u16 _00; // _00
+	u16 _00; // _00 make enum eventually, 1 = geyser, 2 = navis down, 3 = extinction, 4 = giveup
 };
 
 /**
@@ -167,13 +167,13 @@ struct CaveState : public State {
 	void check_SMenu(SingleGameSection*);
 
 	// Unused/inlined:
-	unknown gameStart(SingleGameSection*);
+	inline void gameStart(SingleGameSection*);
 
-	u8 _10; // _10
-	u8 _11; // _11
+	bool m_losePellets; // _10
+	bool m_fadeout;     // _11
 	u32 : 0;
-	u8 _14[4]; // _14
-	u8 _18;    // _18
+	u8 _14[4];       // _14
+	bool m_drawSave; // _18
 };
 
 /**
@@ -317,16 +317,16 @@ struct LoadArg : public StateArg {
 
 	inline LoadArg(u16 a, bool b, bool c, bool d)
 	    : _04(a)
-	    , _00(b)
+	    , m_inCave(b)
 	    , _01(c)
 	    , _02(d)
 	{
 	}
 
-	bool _00; // _00
-	bool _01; // _01
-	bool _02; // _02
-	u16 _04;  // _04
+	bool m_inCave; // _00
+	bool _01;      // _01
+	bool _02;      // _02
+	u16 _04;       // _04
 };
 
 /**

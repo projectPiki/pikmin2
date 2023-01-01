@@ -64,11 +64,11 @@ struct SceneBase;
  */
 struct Game2DMgr : public JKRDisposer {
 	enum GameOverTitle {
-		GOTITLE_Unk0       = 0,
-		GOTITLE_Unk1       = 1,
-		GOTITLE_Unk2       = 2,
-		GOTITLE_Unk3       = 3,
-		GOTITLE_PikminZero = 4,
+		GOTITLE_Default       = 0, // unused GAME OVER screen
+		GOTITLE_OlimarDown    = 1,
+		GOTITLE_LouieDown     = 2,
+		GOTITLE_PresidentDown = 3,
+		GOTITLE_PikminZero    = 4,
 	};
 
 	virtual ~Game2DMgr(); // _08

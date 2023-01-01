@@ -40,7 +40,7 @@ void LoadState::init(SingleGameSection* gs, StateArg* arg)
 	LoadArg* a = static_cast<LoadArg*>(arg);
 	_24        = a->_04;
 	_29        = a->_01;
-	_27        = a->_00;
+	_27        = a->m_inCave;
 	_28        = a->_02;
 
 	_26 = false;

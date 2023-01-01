@@ -72,14 +72,15 @@ struct SingleGameSection : public BaseGameSection {
 	void setDispMemberSMenu(og::Screen::DispMemberSMenuAll&);
 	void setupCaveGames();
 	void setupMainMapGames();
-	unknown updateCaveMenus();
+	bool updateCaveMenus();
 	void updateCaveScreen();
 	void updateMainMapScreen();
+	void drawCaveScreen();
 
 	float m_timer;                                  // _174
 	bool m_timerEnabled;                            // _178
 	u32 m_timerType;                                // _17C
-	u8 _180;                                        // _180
+	u8 m_openMenuFlags;                             // _180
 	struct Game::ItemCave::Item* m_currentCave;     // _184
 	struct Game::ItemHole::Item* m_hole;            // _188
 	struct Game::ItemBigFountain::Item* m_fountain; // _18C
@@ -95,7 +96,7 @@ struct SingleGameSection : public BaseGameSection {
 	ID32 m_caveID;                           // _230
 	bool m_inCave;                           // _23C
 	u8 _23D;
-	u8 _23E;
+	bool m_needTreasureCalc;
 	Delegate<Game::SingleGameSection>* _240;
 	efx::TChasePos* _244;
 	int m_currentFloor;          // _248
@@ -103,8 +104,8 @@ struct SingleGameSection : public BaseGameSection {
 	Game::SingleGame::GameState* m_currentState;
 	KindCounter _254;
 	KindCounter _25C;
-	KindCounter _264;
-	KindCounter _26C;
+	KindCounter m_otakaraCounter;
+	KindCounter m_itemCounter;
 	u8 _274;
 };
 } // namespace Game

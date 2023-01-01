@@ -132,10 +132,10 @@ void MovieState::exec(SingleGameSection* gs)
 				gs->m_wipeInFader->start(4.0f);
 				gs->m_currentCourseInfo = stageList->getCourseInfo(0);
 				LoadArg arg;
-				arg._00 = false;
-				arg._01 = true;
-				arg._02 = false;
-				arg._04 = 5;
+				arg.m_inCave = false;
+				arg._01      = true;
+				arg._02      = false;
+				arg._04      = 5;
 				transit(gs, SGS_Load, &arg);
 			}
 			break;
