@@ -1,6 +1,8 @@
 #include "Game/gameGenerator.h"
 // #include "Game/genItem.h"
 #include "Game/itemMgr.h"
+#include "Game/BaseItem.h"
+#include "Game/itemMgr.h"
 #include "types.h"
 
 /*
@@ -94,7 +96,9 @@
  * Address:	801ACD20
  * Size:	00009C
  */
-Game::GenItem* makeItem() { return new Game::GenItem; }
+
+
+Game::GenObject* makeItem() { return new Game::GenItem; }
 
 namespace Game {
 
@@ -105,68 +109,21 @@ namespace Game {
  */
 void GenItem::initialise()
 {
-	/*
-	lwz      r8, factory__Q24Game16GenObjectFactory@sda21(r13)
-	lwz      r5, 0(r8)
-	lwz      r0, 4(r8)
-	cmpw     r5, r0
-	bgelr
-	lis      r4, 0x6974656D@ha
-	lwz      r3, 8(r8)
-	addi     r4, r4, 0x6974656D@l
-	slwi     r0, r5, 4
-	stwx     r4, r3, r0
-	lis      r5, makeItem__Fv@ha
-	lis      r4, lbl_8047F82C@ha
-	lis      r3, 0x30303032@ha
-	lwz      r0, 0(r8)
-	addi     r7, r5, makeItem__Fv@l
-	lwz      r6, 8(r8)
-	addi     r5, r4, lbl_8047F82C@l
-	slwi     r0, r0, 4
-	addi     r4, r3, 0x30303032@l
-	add      r3, r6, r0
-	stw      r7, 4(r3)
-	lwz      r0, 0(r8)
-	lwz      r3, 8(r8)
-	slwi     r0, r0, 4
-	add      r3, r3, r0
-	stw      r5, 8(r3)
-	lwz      r0, 0(r8)
-	lwz      r3, 8(r8)
-	slwi     r0, r0, 4
-	add      r3, r3, r0
-	stw      r4, 0xc(r3)
-	lwz      r3, 0(r8)
-	addi     r0, r3, 1
-	stw      r0, 0(r8)
-	blr
-	*/
+	GenObjectFactoryFactory* factory = GenObjectFactory::factory;
+	if (GenObjectFactory::factory->m_count >= GenObjectFactory::factory->m_limit) {
+		return;
+	}
+	GenObjectFactory::factory->m_factories[GenObjectFactory::factory->m_count].m_typeID = 'item';
+	factory->m_factories[factory->m_count].m_makeFunction = makeItem;
+	factory->m_factories[factory->m_count].m_name = "ƒAƒCƒeƒ€‚ð”­¶"; // spawn item
+	factory->m_factories[factory->m_count].m_version = '0002';
+	
+	factory->m_count++;
+
 }
 
-/*
- * --INFO--
- * Address:	801ACE48
- * Size:	000038
- */
-void GenItem::updateUseList(Game::Generator*, int)
-{
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	mr       r31, r3
-	lwz      r3, itemMgr__4Game@sda21(r13)
-	lwz      r4, 0x24(r31)
-	bl       getMgrByIndex__Q24Game7ItemMgrFi
-	stw      r3, 0x34(r31)
-	lwz      r0, 0x14(r1)
-	lwz      r31, 0xc(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+void GenItem::updateUseList(Generator* gen, int i) {
+	m_itemMgr = itemMgr->getMgrByIndex(m_mgrIndex);
 }
 
 /*
@@ -174,41 +131,16 @@ void GenItem::updateUseList(Game::Generator*, int)
  * Address:	801ACE80
  * Size:	00006C
  */
-void GenItem::doEvent(unsigned long)
+void GenItem::doEvent(u32 idx)
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	mr       r31, r3
-	addi     r0, r31, 0x24
-	cmplw    r4, r0
-	bne      lbl_801ACED8
-	lwz      r3, 0x38(r31)
-	cmplwi   r3, 0
-	beq      lbl_801ACEB0
-	bl       __dl__FPv
+	if ((int*)idx == &m_mgrIndex) {
+		if (m_parm) {
+			delete m_parm;
+		}
+		m_itemMgr = itemMgr->getMgrByIndex(m_mgrIndex);
+		m_parm = m_itemMgr->generatorNewItemParm();
+	}
 
-lbl_801ACEB0:
-	lwz      r3, itemMgr__4Game@sda21(r13)
-	lwz      r4, 0x24(r31)
-	bl       getMgrByIndex__Q24Game7ItemMgrFi
-	stw      r3, 0x34(r31)
-	lwz      r3, 0x34(r31)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x70(r12)
-	mtctr    r12
-	bctrl
-	stw      r3, 0x38(r31)
-
-lbl_801ACED8:
-	lwz      r0, 0x14(r1)
-	lwz      r31, 0xc(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
 }
 
 } // namespace Game
@@ -218,36 +150,15 @@ lbl_801ACED8:
  * Address:	801ACEEC
  * Size:	000068
  */
-void generatorMakeMatrix__Q24Game7GenItemFR7MatrixfR10Vector3f(void)
+void Game::GenItem::generatorMakeMatrix(Matrixf& matrix, Vector3f& vec)
 {
-	/*
-	stwu     r1, -0x20(r1)
-	mflr     r0
-	lfs      f3, lbl_805192C0@sda21(r2)
-	stw      r0, 0x24(r1)
-	mr       r0, r4
-	mr       r4, r5
-	lfs      f4, lbl_805192BC@sda21(r2)
-	lfs      f2, 0x2c(r3)
-	addi     r5, r1, 8
-	lfs      f1, 0x30(r3)
-	lfs      f0, 0x28(r3)
-	fmuls    f2, f3, f2
-	fmuls    f1, f3, f1
-	mr       r3, r0
-	fmuls    f0, f3, f0
-	fmuls    f2, f4, f2
-	fmuls    f1, f4, f1
-	fmuls    f0, f4, f0
-	stfs     f2, 0xc(r1)
-	stfs     f0, 8(r1)
-	stfs     f1, 0x10(r1)
-	bl       "makeTR__7MatrixfFR10Vector3<f>R10Vector3<f>"
-	lwz      r0, 0x24(r1)
-	mtlr     r0
-	addi     r1, r1, 0x20
-	blr
-	*/
+	float x = m_rotation.x * DEG2RAD * PI;
+	float y = m_rotation.y * DEG2RAD * PI;
+	float z = m_rotation.z * DEG2RAD * PI;
+	Vector3f rotation = Vector3f(x, y, z);
+
+	matrix.makeTR(vec, rotation);
+
 }
 
 namespace Game {
@@ -259,32 +170,11 @@ namespace Game {
  */
 J3DModelData* GenItem::getShape(void)
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	lwz      r0, 0x34(r3)
-	cmplwi   r0, 0
-	beq      lbl_801ACF90
-	lwz      r4, 0x38(r3)
-	cmplwi   r4, 0
-	beq      lbl_801ACF90
-	mr       r3, r0
-	lwz      r12, 0(r3)
-	lwz      r12, 0x6c(r12)
-	mtctr    r12
-	bctrl
-	b        lbl_801ACF94
-
-lbl_801ACF90:
-	li       r3, 0
-
-lbl_801ACF94:
-	lwz      r0, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	BaseItemMgr* baseMgr = m_itemMgr;
+	if (baseMgr && m_parm) {
+		return baseMgr->generatorGetShape(m_parm);
+	}
+	return nullptr;
 }
 
 /*
@@ -292,97 +182,28 @@ lbl_801ACF94:
  * Address:	801ACFA4
  * Size:	000154
  */
-void GenItem::doWrite(Stream&)
+void GenItem::doWrite(Stream& stream)
 {
-	/*
-	stwu     r1, -0x30(r1)
-	mflr     r0
-	lis      r5, lbl_8047F810@ha
-	stw      r0, 0x34(r1)
-	stw      r31, 0x2c(r1)
-	addi     r31, r5, lbl_8047F810@l
-	stw      r30, 0x28(r1)
-	mr       r30, r4
-	stw      r29, 0x24(r1)
-	mr       r29, r3
-	lwz      r3, 0x34(r3)
-	cmplwi   r3, 0
-	beq      lbl_801AD0DC
-	lwz      r12, 0(r3)
-	lwz      r12, 0x58(r12)
-	mtctr    r12
-	bctrl
-	mr       r0, r3
-	addi     r3, r1, 0x14
-	mr       r4, r0
-	bl       __ct__4ID32FUl
-	mr       r3, r30
-	addi     r4, r1, 0x14
-	bl       textBeginGroup__6StreamFPc
-	lwz      r4, 0x414(r30)
-	mr       r3, r30
-	bl       textWriteTab__6StreamFi
-	mr       r4, r30
-	addi     r3, r1, 0x14
-	bl       write__4ID32FR6Stream
-	mr       r3, r30
-	addi     r4, r31, 0x2c
-	crclr    6
-	bl       textWriteText__6StreamFPce
-	lwz      r4, 0x414(r30)
-	mr       r3, r30
-	bl       textWriteTab__6StreamFi
-	lfs      f1, 0x28(r29)
-	mr       r3, r30
-	bl       writeFloat__6StreamFf
-	lfs      f1, 0x2c(r29)
-	mr       r3, r30
-	bl       writeFloat__6StreamFf
-	lfs      f1, 0x30(r29)
-	mr       r3, r30
-	bl       writeFloat__6StreamFf
-	mr       r3, r30
-	addi     r4, r31, 0x3c
-	crclr    6
-	bl       textWriteText__6StreamFPce
-	lwz      r3, 0x34(r29)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x68(r12)
-	mtctr    r12
-	bctrl
-	mr       r0, r3
-	addi     r3, r1, 8
-	mr       r4, r0
-	bl       __ct__4ID32FUl
-	lwz      r4, 0x414(r30)
-	mr       r3, r30
-	bl       textWriteTab__6StreamFi
-	mr       r4, r30
-	addi     r3, r1, 8
-	bl       write__4ID32FR6Stream
-	mr       r3, r30
-	addi     r4, r31, 0x4c
-	crclr    6
-	bl       textWriteText__6StreamFPce
-	lwz      r3, 0x34(r29)
-	mr       r4, r30
-	lwz      r5, 0x38(r29)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x60(r12)
-	mtctr    r12
-	bctrl
-	mr       r3, r30
-	bl       textEndGroup__6StreamFv
-
-lbl_801AD0DC:
-	lwz      r0, 0x34(r1)
-	lwz      r31, 0x2c(r1)
-	lwz      r30, 0x28(r1)
-	lwz      r29, 0x24(r1)
-	mtlr     r0
-	addi     r1, r1, 0x30
-	blr
-	*/
+	if (m_itemMgr) {
+		u32 id = m_itemMgr->generatorGetID();
+		ID32 id32 = id;
+		stream.textBeginGroup(id32.getStr());
+		stream.textWriteTab(stream.m_tabCount);
+		id32.write(stream);
+		stream.textWriteText("\t# item id\r\n");
+		stream.textWriteTab(stream.m_tabCount);
+		stream.writeFloat(m_rotation.x);
+		stream.writeFloat(m_rotation.y);
+		stream.writeFloat(m_rotation.z);
+		stream.textWriteText("\t # rotation\r\n");
+		u32 localVer = m_itemMgr->generatorLocalVersion();
+		ID32 localID = localVer;
+		stream.textWriteTab(stream.m_tabCount);
+		localID.write(stream);
+		stream.textWriteText("\t# item local version\r\n");
+		m_itemMgr->generatorWrite(stream, m_parm);
+		stream.textEndGroup();
+	}
 }
 
 /*
@@ -390,100 +211,31 @@ lbl_801AD0DC:
  * Address:	801AD108
  * Size:	000148
  */
-void GenItem::doRead(Stream&)
+void GenItem::doRead(Stream& stream)
 {
-	/*
-	stwu     r1, -0x30(r1)
-	mflr     r0
-	stw      r0, 0x34(r1)
-	stw      r31, 0x2c(r1)
-	mr       r31, r4
-	stw      r30, 0x28(r1)
-	mr       r30, r3
-	lwz      r3, 0x38(r3)
-	cmplwi   r3, 0
-	beq      lbl_801AD13C
-	bl       __dl__FPv
-	li       r0, 0
-	stw      r0, 0x38(r30)
+	if (m_parm) {
+		delete m_parm;
+		m_parm = nullptr;
+	}
+	m_itemMgr = nullptr;
+		ID32 id32;
+		id32.read(stream);
+		m_itemMgr = itemMgr->getMgrByID(id32);
+		m_mgrIndex = itemMgr->getIndexByMgr(m_itemMgr);
+		JUT_ASSERTLINE(175, m_itemMgr && m_mgrIndex != -1, "no baseItemMgr for %s\n", &id32); 
+		m_parm = m_itemMgr->generatorNewItemParm();
+		m_rotation.x = stream.readFloat();
+		m_rotation.y = stream.readFloat();
+		m_rotation.z = stream.readFloat();
+		u32 version = '0000';
+		if (m_rawID >= '0002') {
+			ID32 localID;
+			localID.read(stream);
+			version = localID.getID();
+		}
+		m_itemMgr->generatorRead(stream, m_parm, version);
 
-lbl_801AD13C:
-	li       r0, 0
-	addi     r3, r1, 0x14
-	stw      r0, 0x34(r30)
-	bl       __ct__4ID32Fv
-	mr       r4, r31
-	addi     r3, r1, 0x14
-	bl       read__4ID32FR6Stream
-	lwz      r3, itemMgr__4Game@sda21(r13)
-	addi     r4, r1, 0x14
-	bl       getMgrByID__Q24Game7ItemMgrFR4ID32
-	stw      r3, 0x34(r30)
-	lwz      r3, itemMgr__4Game@sda21(r13)
-	lwz      r4, 0x34(r30)
-	bl       getIndexByMgr__Q24Game7ItemMgrFPQ24Game11BaseItemMgr
-	stw      r3, 0x24(r30)
-	lwz      r0, 0x34(r30)
-	cmplwi   r0, 0
-	beq      lbl_801AD190
-	lwz      r0, 0x24(r30)
-	cmpwi    r0, -1
-	bne      lbl_801AD1B0
-
-lbl_801AD190:
-	lis      r3, lbl_8047F874@ha
-	lis      r4, lbl_8047F880@ha
-	addi     r5, r4, lbl_8047F880@l
-	addi     r6, r1, 0x14
-	addi     r3, r3, lbl_8047F874@l
-	li       r4, 0xaf
-	crclr    6
-	bl       panic_f__12JUTExceptionFPCciPCce
-
-lbl_801AD1B0:
-	lwz      r3, 0x34(r30)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x70(r12)
-	mtctr    r12
-	bctrl
-	stw      r3, 0x38(r30)
-	mr       r3, r31
-	bl       readFloat__6StreamFv
-	stfs     f1, 0x28(r30)
-	mr       r3, r31
-	bl       readFloat__6StreamFv
-	stfs     f1, 0x2c(r30)
-	mr       r3, r31
-	bl       readFloat__6StreamFv
-	stfs     f1, 0x30(r30)
-	lis      r4, 0x30303032@ha
-	addi     r0, r4, 0x30303032@l
-	lwz      r3, 0x14(r30)
-	addi     r6, r4, 0x3030
-	cmplw    r3, r0
-	blt      lbl_801AD21C
-	addi     r3, r1, 8
-	bl       __ct__4ID32Fv
-	mr       r4, r31
-	addi     r3, r1, 8
-	bl       read__4ID32FR6Stream
-	lwz      r6, 0x10(r1)
-
-lbl_801AD21C:
-	lwz      r3, 0x34(r30)
-	mr       r4, r31
-	lwz      r5, 0x38(r30)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x64(r12)
-	mtctr    r12
-	bctrl
-	lwz      r0, 0x34(r1)
-	lwz      r31, 0x2c(r1)
-	lwz      r30, 0x28(r1)
-	mtlr     r0
-	addi     r1, r1, 0x30
-	blr
-	*/
+		
 }
 
 /*
@@ -505,40 +257,12 @@ void GenItem::ramLoadParameters(Stream&) { }
  * Address:	801AD25C
  * Size:	000078
  */
-Creature* GenItem::generate(Game::Generator*)
+Creature* GenItem::generate(Game::Generator* generator)
 {
-	/*
-	stwu     r1, -0x20(r1)
-	mflr     r0
-	lis      r6, __vt__Q24Game15CreatureInitArg@ha
-	lis      r5, __vt__Q24Game6GenArg@ha
-	stw      r0, 0x24(r1)
-	addi     r6, r6, __vt__Q24Game15CreatureInitArg@l
-	addi     r0, r5, __vt__Q24Game6GenArg@l
-	lfs      f1, 0x9c(r4)
-	lfs      f0, 0xa8(r4)
-	lfs      f3, 0x98(r4)
-	fadds    f4, f1, f0
-	lfs      f2, 0xa4(r4)
-	lfs      f1, 0x94(r4)
-	lfs      f0, 0xa0(r4)
-	fadds    f2, f3, f2
-	addi     r4, r1, 8
-	fadds    f0, f1, f0
-	stw      r6, 8(r1)
-	stw      r0, 8(r1)
-	stfs     f0, 0xc(r1)
-	stfs     f2, 0x10(r1)
-	stfs     f4, 0x14(r1)
-	lwz      r12, 0xc(r3)
-	lwz      r12, 0x34(r12)
-	mtctr    r12
-	bctrl
-	lwz      r0, 0x24(r1)
-	mtlr     r0
-	addi     r1, r1, 0x20
-	blr
-	*/
+	Vector3f pos = generator->m_position + generator->m_offset;
+	GenArg arg;
+	arg.m_position = pos;
+	birth(&arg);
 }
 
 /*
@@ -546,53 +270,19 @@ Creature* GenItem::generate(Game::Generator*)
  * Address:	801AD2D4
  * Size:	0000A4
  */
-Creature* GenItem::birth(Game::GenArg*)
+Creature* GenItem::birth(Game::GenArg* arg)
 {
-	/*
-	stwu     r1, -0x20(r1)
-	mflr     r0
-	mr       r6, r3
-	stw      r0, 0x24(r1)
-	li       r0, 0
-	lwz      r3, 0x34(r3)
-	cmplwi   r3, 0
-	beq      lbl_801AD364
-	lfs      f0, 4(r4)
-	addi     r5, r1, 8
-	lfs      f3, lbl_805192C0@sda21(r2)
-	stfs     f0, 0x14(r1)
-	lfs      f4, lbl_805192BC@sda21(r2)
-	lfs      f0, 8(r4)
-	stfs     f0, 0x18(r1)
-	lfs      f0, 0xc(r4)
-	addi     r4, r1, 0x14
-	stfs     f0, 0x1c(r1)
-	lfs      f2, 0x30(r6)
-	lfs      f1, 0x2c(r6)
-	lfs      f0, 0x28(r6)
-	fmuls    f2, f3, f2
-	fmuls    f1, f3, f1
-	fmuls    f0, f3, f0
-	fmuls    f2, f4, f2
-	fmuls    f1, f4, f1
-	fmuls    f0, f4, f0
-	stfs     f2, 0x10(r1)
-	stfs     f0, 8(r1)
-	stfs     f1, 0xc(r1)
-	lwz      r12, 0(r3)
-	lwz      r6, 0x38(r6)
-	lwz      r12, 0x5c(r12)
-	mtctr    r12
-	bctrl
-	mr       r0, r3
-
-lbl_801AD364:
-	mr       r3, r0
-	lwz      r0, 0x24(r1)
-	mtlr     r0
-	addi     r1, r1, 0x20
-	blr
-	*/
+	BaseItem* baseItem = nullptr;
+	BaseItemMgr* baseItemMgr = m_itemMgr;
+	if (baseItemMgr) {
+		Vector3f pos = arg->m_position;
+		float z = m_rotation.z * DEG2RAD * PI;
+		float y = m_rotation.y * DEG2RAD * PI;
+		float x = m_rotation.x * DEG2RAD * PI;
+		Vector3f rotation = Vector3f(x, y, z);
+		baseItem = baseItemMgr->generatorBirth(pos, rotation,  m_parm);
+	}
+	return baseItem;
 }
 
 } // namespace Game

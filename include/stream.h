@@ -1,11 +1,13 @@
 #ifndef _STREAM_H
 #define _STREAM_H
 
+#include "Vector3.h"
 #include "types.h"
 #include "JSystem/JUT/JUTException.h"
 #include "Dolphin/string.h"
 #include "Dolphin/stl.h"
 #include "Dolphin/scanf.h"
+
 
 #define STREAM_MODE_BINARY 0
 #define STREAM_MODE_TEXT   1
