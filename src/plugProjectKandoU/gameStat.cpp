@@ -47,13 +47,19 @@
 */
 
 namespace Game {
+namespace GameStat {
+PikiNaviCounter formationPikis;
+PikiNaviCounter workPikis;
+PikiCounter alivePikis;
+PikiCounter mePikis;
+PikiCounter zikatuPikis; // Wild pikis, that you find & whistle to unlock the type
 
 /*
  * --INFO--
  * Address:	801D0DB8
  * Size:	000058
  */
-void GameStat::clear()
+void clear()
 {
 	formationPikis.clear();
 	mePikis.clear();
@@ -67,7 +73,7 @@ void GameStat::clear()
  * Address:	801D0E10
  * Size:	000050
  */
-int GameStat::getMapPikmins_exclude_Me(int id)
+int getMapPikmins_exclude_Me(int id)
 {
 	if (id == -1) {
 		return alivePikis;
@@ -81,7 +87,7 @@ int GameStat::getMapPikmins_exclude_Me(int id)
  * Address:	801D0E60
  * Size:	00008C
  */
-int GameStat::getMapPikmins(int id)
+int getMapPikmins(int id)
 {
 	if (id == -1) {
 		return alivePikis + mePikis;
@@ -95,7 +101,7 @@ int GameStat::getMapPikmins(int id)
  * Address:	801D0EEC
  * Size:	000050
  */
-int GameStat::getZikatuPikmins(int id)
+int getZikatuPikmins(int id)
 {
 	if (id == -1) {
 		return zikatuPikis;
@@ -109,7 +115,7 @@ int GameStat::getZikatuPikmins(int id)
  * Address:	801D0F3C
  * Size:	0000F8
  */
-int GameStat::getAllPikmins(int id)
+int getAllPikmins(int id)
 {
 	if (id == -1) {
 		int sum = alivePikis + mePikis;
@@ -124,14 +130,14 @@ int GameStat::getAllPikmins(int id)
  * Address:	801D1034
  * Size:	00003C
  */
-GameStat::PikiCounter::PikiCounter() { clear(); }
+PikiCounter::PikiCounter() { clear(); }
 
 /*
  * --INFO--
  * Address:	801D1070
  * Size:	000024
  */
-void GameStat::PikiCounter::clear()
+void PikiCounter::clear()
 {
 	m_pikiCounts[Blue]    = 0;
 	m_pikiCounts[Red]     = 0;
@@ -147,7 +153,7 @@ void GameStat::PikiCounter::clear()
  * Address:	801D1094
  * Size:	000084
  */
-void GameStat::PikiCounter::inc(Piki* piki)
+void PikiCounter::inc(Piki* piki)
 {
 	int id = piki->m_pikiKind;
 	P2ASSERTBOUNDSLINE(147, 0, id, PikiColorCount);
@@ -159,7 +165,7 @@ void GameStat::PikiCounter::inc(Piki* piki)
  * Address:	801D1118
  * Size:	000084
  */
-void GameStat::PikiCounter::dec(Piki* piki)
+void PikiCounter::dec(Piki* piki)
 {
 	int id = piki->m_pikiKind;
 	P2ASSERTBOUNDSLINE(156, 0, id, PikiColorCount);
@@ -171,7 +177,7 @@ void GameStat::PikiCounter::dec(Piki* piki)
  * Address:	801D119C
  * Size:	000080
  */
-void GameStat::PikiCounter::inc(int id)
+void PikiCounter::inc(int id)
 {
 	P2ASSERTBOUNDSLINE(164, 0, id, PikiColorCount);
 	m_pikiCounts[id]++;
@@ -182,7 +188,7 @@ void GameStat::PikiCounter::inc(int id)
  * Address:	801D121C
  * Size:	000080
  */
-void GameStat::PikiCounter::dec(int id)
+void PikiCounter::dec(int id)
 {
 	P2ASSERTBOUNDSLINE(170, 0, id, PikiColorCount);
 	m_pikiCounts[id]--;
@@ -193,7 +199,7 @@ void GameStat::PikiCounter::dec(int id)
  * Address:	801D129C
  * Size:	0000CC
  */
-void GameStat::PikiNaviCounter::clear()
+void PikiNaviCounter::clear()
 {
 	m_counter[Blue].clear();
 	m_counter[Red].clear();
@@ -209,7 +215,7 @@ void GameStat::PikiNaviCounter::clear()
  * Address:	801D1368
  * Size:	0000AC
  */
-void GameStat::PikiNaviCounter::inc(Piki* piki)
+void PikiNaviCounter::inc(Piki* piki)
 {
 	int id;
 	if (!piki->m_navi) {
@@ -229,7 +235,7 @@ void GameStat::PikiNaviCounter::inc(Piki* piki)
  * Address:	801D1414
  * Size:	0000AC
  */
-void GameStat::PikiNaviCounter::dec(Game::Piki* piki)
+void PikiNaviCounter::dec(Game::Piki* piki)
 {
 	int id;
 	if (!piki->m_navi) {
@@ -243,7 +249,7 @@ void GameStat::PikiNaviCounter::dec(Game::Piki* piki)
 	P2ASSERTBOUNDSLINE(156, 0, type, PikiColorCount);
 	m_counter[id].m_pikiCounts[type]--;
 }
-
+} // namespace GameStat
 } // namespace Game
 
 /*

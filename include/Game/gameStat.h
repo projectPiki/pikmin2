@@ -27,6 +27,8 @@ struct PikiCounter {
 };
 
 struct PikiNaviCounter {
+	PikiNaviCounter() { clear(); }
+
 	void clear();
 	void inc(Piki*);
 	void dec(Piki*);
