@@ -1,4 +1,6 @@
-#include "types.h"
+#include "Game/gameStat.h"
+#include "Game/gamePlayData.h"
+#include "Game/Navi.h"
 
 /*
     Generated from dpostproc
@@ -53,30 +55,11 @@ namespace Game {
  */
 void GameStat::clear()
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	lis      r3, formationPikis__Q24Game8GameStat@ha
-	stw      r0, 0x14(r1)
-	addi     r3, r3, formationPikis__Q24Game8GameStat@l
-	bl       clear__Q34Game8GameStat15PikiNaviCounterFv
-	lis      r3, mePikis__Q24Game8GameStat@ha
-	addi     r3, r3, mePikis__Q24Game8GameStat@l
-	bl       clear__Q34Game8GameStat11PikiCounterFv
-	lis      r3, workPikis__Q24Game8GameStat@ha
-	addi     r3, r3, workPikis__Q24Game8GameStat@l
-	bl       clear__Q34Game8GameStat15PikiNaviCounterFv
-	lis      r3, alivePikis__Q24Game8GameStat@ha
-	addi     r3, r3, alivePikis__Q24Game8GameStat@l
-	bl       clear__Q34Game8GameStat11PikiCounterFv
-	lis      r3, zikatuPikis__Q24Game8GameStat@ha
-	addi     r3, r3, zikatuPikis__Q24Game8GameStat@l
-	bl       clear__Q34Game8GameStat11PikiCounterFv
-	lwz      r0, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	formationPikis.clear();
+	mePikis.clear();
+	workPikis.clear();
+	alivePikis.clear();
+	zikatuPikis.clear();
 }
 
 /*
@@ -84,34 +67,13 @@ void GameStat::clear()
  * Address:	801D0E10
  * Size:	000050
  */
-void GameStat::getMapPikmins_exclude_Me(int)
+int GameStat::getMapPikmins_exclude_Me(int id)
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	cmpwi    r3, -1
-	stw      r0, 0x14(r1)
-	bne      lbl_801D0E3C
-	lis      r3, alivePikis__Q24Game8GameStat@ha
-	lwzu     r12, alivePikis__Q24Game8GameStat@l(r3)
-	lwz      r12, 8(r12)
-	mtctr    r12
-	bctrl
-	b        lbl_801D0E50
-
-lbl_801D0E3C:
-	lis      r4, alivePikis__Q24Game8GameStat@ha
-	slwi     r0, r3, 2
-	addi     r3, r4, alivePikis__Q24Game8GameStat@l
-	add      r3, r3, r0
-	lwz      r3, 4(r3)
-
-lbl_801D0E50:
-	lwz      r0, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	if (id == -1) {
+		return alivePikis;
+	} else {
+		return alivePikis.m_pikiCounts[id];
+	}
 }
 
 /*
@@ -119,49 +81,13 @@ lbl_801D0E50:
  * Address:	801D0E60
  * Size:	00008C
  */
-void GameStat::getMapPikmins(int)
+int GameStat::getMapPikmins(int id)
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	cmpwi    r3, -1
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	bne      lbl_801D0EB0
-	lis      r3, mePikis__Q24Game8GameStat@ha
-	lwzu     r12, mePikis__Q24Game8GameStat@l(r3)
-	lwz      r12, 8(r12)
-	mtctr    r12
-	bctrl
-	lis      r4, alivePikis__Q24Game8GameStat@ha
-	mr       r31, r3
-	addi     r3, r4, alivePikis__Q24Game8GameStat@l
-	lwz      r12, 0(r3)
-	lwz      r12, 8(r12)
-	mtctr    r12
-	bctrl
-	add      r3, r3, r31
-	b        lbl_801D0ED8
-
-lbl_801D0EB0:
-	lis      r5, alivePikis__Q24Game8GameStat@ha
-	lis      r4, mePikis__Q24Game8GameStat@ha
-	slwi     r6, r3, 2
-	addi     r3, r5, alivePikis__Q24Game8GameStat@l
-	addi     r0, r4, mePikis__Q24Game8GameStat@l
-	add      r4, r3, r6
-	add      r3, r0, r6
-	lwz      r4, 4(r4)
-	lwz      r0, 4(r3)
-	add      r3, r4, r0
-
-lbl_801D0ED8:
-	lwz      r0, 0x14(r1)
-	lwz      r31, 0xc(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	if (id == -1) {
+		return alivePikis + mePikis;
+	} else {
+		return alivePikis.m_pikiCounts[id] + mePikis.m_pikiCounts[id];
+	}
 }
 
 /*
@@ -169,34 +95,13 @@ lbl_801D0ED8:
  * Address:	801D0EEC
  * Size:	000050
  */
-void GameStat::getZikatuPikmins(int)
+int GameStat::getZikatuPikmins(int id)
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	cmpwi    r3, -1
-	stw      r0, 0x14(r1)
-	bne      lbl_801D0F18
-	lis      r3, zikatuPikis__Q24Game8GameStat@ha
-	lwzu     r12, zikatuPikis__Q24Game8GameStat@l(r3)
-	lwz      r12, 8(r12)
-	mtctr    r12
-	bctrl
-	b        lbl_801D0F2C
-
-lbl_801D0F18:
-	lis      r4, zikatuPikis__Q24Game8GameStat@ha
-	slwi     r0, r3, 2
-	addi     r3, r4, zikatuPikis__Q24Game8GameStat@l
-	add      r3, r3, r0
-	lwz      r3, 4(r3)
-
-lbl_801D0F2C:
-	lwz      r0, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	if (id == -1) {
+		return zikatuPikis;
+	} else {
+		return zikatuPikis.m_pikiCounts[id];
+	}
 }
 
 /*
@@ -204,80 +109,14 @@ lbl_801D0F2C:
  * Address:	801D0F3C
  * Size:	0000F8
  */
-void GameStat::getAllPikmins(int)
+int GameStat::getAllPikmins(int id)
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	stw      r30, 8(r1)
-	mr       r30, r3
-	cmpwi    r30, -1
-	bne      lbl_801D0FA4
-	lis      r3, mePikis__Q24Game8GameStat@ha
-	lwzu     r12, mePikis__Q24Game8GameStat@l(r3)
-	lwz      r12, 8(r12)
-	mtctr    r12
-	bctrl
-	lis      r4, alivePikis__Q24Game8GameStat@ha
-	mr       r31, r3
-	addi     r3, r4, alivePikis__Q24Game8GameStat@l
-	lwz      r12, 0(r3)
-	lwz      r12, 8(r12)
-	mtctr    r12
-	bctrl
-	lwz      r4, playData__4Game@sda21(r13)
-	add      r31, r3, r31
-	addi     r3, r4, 0xa8
-	bl       getTotalSum__Q24Game13PikiContainerFv
-	add      r3, r31, r3
-	b        lbl_801D101C
-
-lbl_801D0FA4:
-	bne      lbl_801D0FE0
-	lis      r3, mePikis__Q24Game8GameStat@ha
-	lwzu     r12, mePikis__Q24Game8GameStat@l(r3)
-	lwz      r12, 8(r12)
-	mtctr    r12
-	bctrl
-	lis      r4, alivePikis__Q24Game8GameStat@ha
-	mr       r31, r3
-	addi     r3, r4, alivePikis__Q24Game8GameStat@l
-	lwz      r12, 0(r3)
-	lwz      r12, 8(r12)
-	mtctr    r12
-	bctrl
-	add      r31, r3, r31
-	b        lbl_801D1008
-
-lbl_801D0FE0:
-	lis      r4, alivePikis__Q24Game8GameStat@ha
-	lis      r3, mePikis__Q24Game8GameStat@ha
-	slwi     r5, r30, 2
-	addi     r4, r4, alivePikis__Q24Game8GameStat@l
-	addi     r0, r3, mePikis__Q24Game8GameStat@l
-	add      r4, r4, r5
-	add      r3, r0, r5
-	lwz      r4, 4(r4)
-	lwz      r0, 4(r3)
-	add      r31, r4, r0
-
-lbl_801D1008:
-	lwz      r3, playData__4Game@sda21(r13)
-	mr       r4, r30
-	addi     r3, r3, 0xa8
-	bl       getColorSum__Q24Game13PikiContainerFi
-	add      r3, r31, r3
-
-lbl_801D101C:
-	lwz      r0, 0x14(r1)
-	lwz      r31, 0xc(r1)
-	lwz      r30, 8(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	if (id == -1) {
+		int sum = alivePikis + mePikis;
+		return playData->m_pikiContainer.getTotalSum() + sum;
+	} else {
+		return getMapPikmins(id) + playData->m_pikiContainer.getColorSum(id);
+	}
 }
 
 /*
@@ -285,26 +124,7 @@ lbl_801D101C:
  * Address:	801D1034
  * Size:	00003C
  */
-GameStat::PikiCounter::PikiCounter()
-{
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	lis      r4, __vt__Q34Game8GameStat11PikiCounter@ha
-	stw      r0, 0x14(r1)
-	addi     r0, r4, __vt__Q34Game8GameStat11PikiCounter@l
-	stw      r31, 0xc(r1)
-	mr       r31, r3
-	stw      r0, 0(r3)
-	bl       clear__Q34Game8GameStat11PikiCounterFv
-	lwz      r0, 0x14(r1)
-	mr       r3, r31
-	lwz      r31, 0xc(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
-}
+GameStat::PikiCounter::PikiCounter() { clear(); }
 
 /*
  * --INFO--
@@ -313,17 +133,13 @@ GameStat::PikiCounter::PikiCounter()
  */
 void GameStat::PikiCounter::clear()
 {
-	/*
-	li       r0, 0
-	stw      r0, 4(r3)
-	stw      r0, 8(r3)
-	stw      r0, 0xc(r3)
-	stw      r0, 0x10(r3)
-	stw      r0, 0x14(r3)
-	stw      r0, 0x18(r3)
-	stw      r0, 0x1c(r3)
-	blr
-	*/
+	m_pikiCounts[Blue]    = 0;
+	m_pikiCounts[Red]     = 0;
+	m_pikiCounts[Yellow]  = 0;
+	m_pikiCounts[Purple]  = 0;
+	m_pikiCounts[White]   = 0;
+	m_pikiCounts[Bulbmin] = 0;
+	m_pikiCounts[Carrot]  = 0;
 }
 
 /*
@@ -331,47 +147,11 @@ void GameStat::PikiCounter::clear()
  * Address:	801D1094
  * Size:	000084
  */
-void GameStat::PikiCounter::inc(Game::Piki* p)
+void GameStat::PikiCounter::inc(Piki* piki)
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	li       r0, 0
-	stw      r31, 0xc(r1)
-	stw      r30, 8(r1)
-	mr       r30, r3
-	lbz      r31, 0x2b8(r4)
-	cmpwi    r31, 0
-	blt      lbl_801D10C8
-	cmpwi    r31, 7
-	bge      lbl_801D10C8
-	li       r0, 1
-
-lbl_801D10C8:
-	clrlwi.  r0, r0, 0x18
-	bne      lbl_801D10EC
-	lis      r3, lbl_80480500@ha
-	lis      r5, lbl_80480510@ha
-	addi     r3, r3, lbl_80480500@l
-	li       r4, 0x93
-	addi     r5, r5, lbl_80480510@l
-	crclr    6
-	bl       panic_f__12JUTExceptionFPCciPCce
-
-lbl_801D10EC:
-	slwi     r0, r31, 2
-	add      r4, r30, r0
-	lwz      r3, 4(r4)
-	addi     r0, r3, 1
-	stw      r0, 4(r4)
-	lwz      r31, 0xc(r1)
-	lwz      r30, 8(r1)
-	lwz      r0, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	int id = piki->m_pikiKind;
+	P2ASSERTBOUNDSLINE(147, 0, id, PikiColorCount);
+	m_pikiCounts[id]++;
 }
 
 /*
@@ -379,47 +159,11 @@ lbl_801D10EC:
  * Address:	801D1118
  * Size:	000084
  */
-void GameStat::PikiCounter::dec(Game::Piki* p)
+void GameStat::PikiCounter::dec(Piki* piki)
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	li       r0, 0
-	stw      r31, 0xc(r1)
-	stw      r30, 8(r1)
-	mr       r30, r3
-	lbz      r31, 0x2b8(r4)
-	cmpwi    r31, 0
-	blt      lbl_801D114C
-	cmpwi    r31, 7
-	bge      lbl_801D114C
-	li       r0, 1
-
-lbl_801D114C:
-	clrlwi.  r0, r0, 0x18
-	bne      lbl_801D1170
-	lis      r3, lbl_80480500@ha
-	lis      r5, lbl_80480510@ha
-	addi     r3, r3, lbl_80480500@l
-	li       r4, 0x9c
-	addi     r5, r5, lbl_80480510@l
-	crclr    6
-	bl       panic_f__12JUTExceptionFPCciPCce
-
-lbl_801D1170:
-	slwi     r0, r31, 2
-	add      r4, r30, r0
-	lwz      r3, 4(r4)
-	addi     r0, r3, -1
-	stw      r0, 4(r4)
-	lwz      r31, 0xc(r1)
-	lwz      r30, 8(r1)
-	lwz      r0, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	int id = piki->m_pikiKind;
+	P2ASSERTBOUNDSLINE(156, 0, id, PikiColorCount);
+	m_pikiCounts[id]--;
 }
 
 /*
@@ -427,46 +171,10 @@ lbl_801D1170:
  * Address:	801D119C
  * Size:	000080
  */
-void GameStat::PikiCounter::inc(int)
+void GameStat::PikiCounter::inc(int id)
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	li       r0, 0
-	stw      r31, 0xc(r1)
-	or.      r31, r4, r4
-	stw      r30, 8(r1)
-	mr       r30, r3
-	blt      lbl_801D11CC
-	cmpwi    r31, 7
-	bge      lbl_801D11CC
-	li       r0, 1
-
-lbl_801D11CC:
-	clrlwi.  r0, r0, 0x18
-	bne      lbl_801D11F0
-	lis      r3, lbl_80480500@ha
-	lis      r5, lbl_80480510@ha
-	addi     r3, r3, lbl_80480500@l
-	li       r4, 0xa4
-	addi     r5, r5, lbl_80480510@l
-	crclr    6
-	bl       panic_f__12JUTExceptionFPCciPCce
-
-lbl_801D11F0:
-	slwi     r0, r31, 2
-	add      r4, r30, r0
-	lwz      r3, 4(r4)
-	addi     r0, r3, 1
-	stw      r0, 4(r4)
-	lwz      r31, 0xc(r1)
-	lwz      r30, 8(r1)
-	lwz      r0, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	P2ASSERTBOUNDSLINE(164, 0, id, PikiColorCount);
+	m_pikiCounts[id]++;
 }
 
 /*
@@ -474,46 +182,10 @@ lbl_801D11F0:
  * Address:	801D121C
  * Size:	000080
  */
-void GameStat::PikiCounter::dec(int)
+void GameStat::PikiCounter::dec(int id)
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	li       r0, 0
-	stw      r31, 0xc(r1)
-	or.      r31, r4, r4
-	stw      r30, 8(r1)
-	mr       r30, r3
-	blt      lbl_801D124C
-	cmpwi    r31, 7
-	bge      lbl_801D124C
-	li       r0, 1
-
-lbl_801D124C:
-	clrlwi.  r0, r0, 0x18
-	bne      lbl_801D1270
-	lis      r3, lbl_80480500@ha
-	lis      r5, lbl_80480510@ha
-	addi     r3, r3, lbl_80480500@l
-	li       r4, 0xaa
-	addi     r5, r5, lbl_80480510@l
-	crclr    6
-	bl       panic_f__12JUTExceptionFPCciPCce
-
-lbl_801D1270:
-	slwi     r0, r31, 2
-	add      r4, r30, r0
-	lwz      r3, 4(r4)
-	addi     r0, r3, -1
-	stw      r0, 4(r4)
-	lwz      r31, 0xc(r1)
-	lwz      r30, 8(r1)
-	lwz      r0, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	P2ASSERTBOUNDSLINE(170, 0, id, PikiColorCount);
+	m_pikiCounts[id]--;
 }
 
 /*
@@ -523,59 +195,13 @@ lbl_801D1270:
  */
 void GameStat::PikiNaviCounter::clear()
 {
-	/*
-	li       r0, 0
-	stw      r0, 4(r3)
-	stw      r0, 8(r3)
-	stw      r0, 0xc(r3)
-	stw      r0, 0x10(r3)
-	stw      r0, 0x14(r3)
-	stw      r0, 0x18(r3)
-	stw      r0, 0x1c(r3)
-	stw      r0, 0x24(r3)
-	stw      r0, 0x28(r3)
-	stw      r0, 0x2c(r3)
-	stw      r0, 0x30(r3)
-	stw      r0, 0x34(r3)
-	stw      r0, 0x38(r3)
-	stw      r0, 0x3c(r3)
-	stw      r0, 0x44(r3)
-	stw      r0, 0x48(r3)
-	stw      r0, 0x4c(r3)
-	stw      r0, 0x50(r3)
-	stw      r0, 0x54(r3)
-	stw      r0, 0x58(r3)
-	stw      r0, 0x5c(r3)
-	stw      r0, 0x64(r3)
-	stw      r0, 0x68(r3)
-	stw      r0, 0x6c(r3)
-	stw      r0, 0x70(r3)
-	stw      r0, 0x74(r3)
-	stw      r0, 0x78(r3)
-	stw      r0, 0x7c(r3)
-	stw      r0, 0x84(r3)
-	stw      r0, 0x88(r3)
-	stw      r0, 0x8c(r3)
-	stw      r0, 0x90(r3)
-	stw      r0, 0x94(r3)
-	stw      r0, 0x98(r3)
-	stw      r0, 0x9c(r3)
-	stw      r0, 0xa4(r3)
-	stw      r0, 0xa8(r3)
-	stw      r0, 0xac(r3)
-	stw      r0, 0xb0(r3)
-	stw      r0, 0xb4(r3)
-	stw      r0, 0xb8(r3)
-	stw      r0, 0xbc(r3)
-	stw      r0, 0xc4(r3)
-	stw      r0, 0xc8(r3)
-	stw      r0, 0xcc(r3)
-	stw      r0, 0xd0(r3)
-	stw      r0, 0xd4(r3)
-	stw      r0, 0xd8(r3)
-	stw      r0, 0xdc(r3)
-	blr
-	*/
+	m_counter[Blue].clear();
+	m_counter[Red].clear();
+	m_counter[Yellow].clear();
+	m_counter[Purple].clear();
+	m_counter[White].clear();
+	m_counter[Bulbmin].clear();
+	m_counter[Carrot].clear();
 }
 
 /*
@@ -583,61 +209,19 @@ void GameStat::PikiNaviCounter::clear()
  * Address:	801D1368
  * Size:	0000AC
  */
-void GameStat::PikiNaviCounter::inc(Game::Piki* p)
+void GameStat::PikiNaviCounter::inc(Piki* piki)
 {
-	/*
-	stwu     r1, -0x20(r1)
-	mflr     r0
-	stw      r0, 0x24(r1)
-	stw      r31, 0x1c(r1)
-	stw      r30, 0x18(r1)
-	stw      r29, 0x14(r1)
-	mr       r29, r3
-	lwz      r5, 0x2c4(r4)
-	cmplwi   r5, 0
-	beq      lbl_801D1398
-	lhz      r31, 0x2dc(r5)
-	b        lbl_801D139C
+	int id;
+	if (!piki->m_navi) {
+		id = 2;
+	} else {
+		id = piki->m_navi->m_naviIndex;
+	}
 
-lbl_801D1398:
-	li       r31, 2
-
-lbl_801D139C:
-	lbz      r30, 0x2b8(r4)
-	li       r0, 0
-	cmpwi    r30, 0
-	blt      lbl_801D13B8
-	cmpwi    r30, 7
-	bge      lbl_801D13B8
-	li       r0, 1
-
-lbl_801D13B8:
-	clrlwi.  r0, r0, 0x18
-	bne      lbl_801D13DC
-	lis      r3, lbl_80480500@ha
-	lis      r5, lbl_80480510@ha
-	addi     r3, r3, lbl_80480500@l
-	li       r4, 0x93
-	addi     r5, r5, lbl_80480510@l
-	crclr    6
-	bl       panic_f__12JUTExceptionFPCciPCce
-
-lbl_801D13DC:
-	slwi     r3, r31, 5
-	slwi     r0, r30, 2
-	add      r3, r29, r3
-	add      r4, r3, r0
-	lwz      r3, 4(r4)
-	addi     r0, r3, 1
-	stw      r0, 4(r4)
-	lwz      r31, 0x1c(r1)
-	lwz      r30, 0x18(r1)
-	lwz      r29, 0x14(r1)
-	lwz      r0, 0x24(r1)
-	mtlr     r0
-	addi     r1, r1, 0x20
-	blr
-	*/
+	// this should be a PikiCounter::inc inline judging from the error line, but it makes a regswap
+	int type = piki->m_pikiKind;
+	P2ASSERTBOUNDSLINE(147, 0, type, PikiColorCount);
+	m_counter[id].m_pikiCounts[type]++;
 }
 
 /*
@@ -645,61 +229,19 @@ lbl_801D13DC:
  * Address:	801D1414
  * Size:	0000AC
  */
-void GameStat::PikiNaviCounter::dec(Game::Piki* p)
+void GameStat::PikiNaviCounter::dec(Game::Piki* piki)
 {
-	/*
-	stwu     r1, -0x20(r1)
-	mflr     r0
-	stw      r0, 0x24(r1)
-	stw      r31, 0x1c(r1)
-	stw      r30, 0x18(r1)
-	stw      r29, 0x14(r1)
-	mr       r29, r3
-	lwz      r5, 0x2c4(r4)
-	cmplwi   r5, 0
-	beq      lbl_801D1444
-	lhz      r31, 0x2dc(r5)
-	b        lbl_801D1448
+	int id;
+	if (!piki->m_navi) {
+		id = 2;
+	} else {
+		id = piki->m_navi->m_naviIndex;
+	}
 
-lbl_801D1444:
-	li       r31, 2
-
-lbl_801D1448:
-	lbz      r30, 0x2b8(r4)
-	li       r0, 0
-	cmpwi    r30, 0
-	blt      lbl_801D1464
-	cmpwi    r30, 7
-	bge      lbl_801D1464
-	li       r0, 1
-
-lbl_801D1464:
-	clrlwi.  r0, r0, 0x18
-	bne      lbl_801D1488
-	lis      r3, lbl_80480500@ha
-	lis      r5, lbl_80480510@ha
-	addi     r3, r3, lbl_80480500@l
-	li       r4, 0x9c
-	addi     r5, r5, lbl_80480510@l
-	crclr    6
-	bl       panic_f__12JUTExceptionFPCciPCce
-
-lbl_801D1488:
-	slwi     r3, r31, 5
-	slwi     r0, r30, 2
-	add      r3, r29, r3
-	add      r4, r3, r0
-	lwz      r3, 4(r4)
-	addi     r0, r3, -1
-	stw      r0, 4(r4)
-	lwz      r31, 0x1c(r1)
-	lwz      r30, 0x18(r1)
-	lwz      r29, 0x14(r1)
-	lwz      r0, 0x24(r1)
-	mtlr     r0
-	addi     r1, r1, 0x20
-	blr
-	*/
+	// this should be a PikiCounter::dec inline judging from the error line, but it makes a regswap
+	int type = piki->m_pikiKind;
+	P2ASSERTBOUNDSLINE(156, 0, type, PikiColorCount);
+	m_counter[id].m_pikiCounts[type]--;
 }
 
 } // namespace Game
@@ -709,7 +251,7 @@ lbl_801D1488:
  * Address:	801D14C0
  * Size:	000278
  */
-void __sinit_gameStat_cpp(void)
+void __sinit_gameStat_cpp()
 {
 	/*
 	stwu     r1, -0x10(r1)

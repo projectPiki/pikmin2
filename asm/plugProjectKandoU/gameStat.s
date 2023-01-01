@@ -547,6 +547,7 @@ dec__Q34Game8GameStat15PikiNaviCounterFPQ24Game4Piki:
 /* 801D14B8 001CE3F8  38 21 00 20 */	addi r1, r1, 0x20
 /* 801D14BC 001CE3FC  4E 80 00 20 */	blr 
 
+.global __sinit_gameStat_cpp
 __sinit_gameStat_cpp: # static initializer
 /* 801D14C0 001CE400  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 801D14C4 001CE404  7C 08 02 A6 */	mflr r0
