@@ -558,7 +558,7 @@ KANDO:=\
 	$(BUILD_DIR)/asm/plugProjectKandoU/pelletCarcass.o\
 	$(BUILD_DIR)/asm/plugProjectKandoU/pelletFruit.o\
 	$(BUILD_DIR)/asm/plugProjectKandoU/pelletOtakara.o\
-	$(BUILD_DIR)/asm/plugProjectKandoU/genPellet.o\
+	$(BUILD_DIR)/src/plugProjectKandoU/genPellet.o\
 	$(BUILD_DIR)/asm/plugProjectKandoU/pelletItem.o\
 	$(BUILD_DIR)/asm/plugProjectKandoU/mapMgrTraceMove.o\
 	$(BUILD_DIR)/src/plugProjectKandoU/efxModelObjects.o\

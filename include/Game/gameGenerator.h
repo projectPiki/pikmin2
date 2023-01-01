@@ -194,6 +194,13 @@ struct GenItemParm {
 	// _00 VTBL
 };
 
+struct GenPelletParm {
+	// virtual int getShapeID() { return 0; } // _08 (weak)
+	int m_index;
+	int m_color;
+	int m_size;
+};
+
 /**
  * @size{0x40}
  */
@@ -231,6 +238,17 @@ struct GenItem : public GenObject {
 };
 
 struct GenPellet : public GenObject {
+	inline GenPellet()
+	    : GenObject('pelt', "object type", "PELLET ‚ðƒZƒbƒg")
+	{
+		m_pelType    = 255;
+		m_rotation.z = 0.0f;
+		m_rotation.y = 0.0f;
+		m_rotation.x = 0.0f;
+		m_manager    = nullptr;
+		m_genParm    = nullptr;
+	}
+
 	virtual void doWrite(Stream&);                         // _08
 	virtual void ramSaveParameters(Stream&);               // _0C
 	virtual void ramLoadParameters(Stream&);               // _10
@@ -239,11 +257,16 @@ struct GenPellet : public GenObject {
 	virtual J3DModelData* getShape();                      // _28
 	virtual void updateUseList(Generator*, int);           // _2C
 	virtual Creature* generate(Generator*);                // _30 (weak)
-	virtual Creature* birth(GenArg*) = 0;                  // _34
+	virtual Creature* birth(GenArg*);                      // _34
 	virtual void generatorMakeMatrix(Matrixf&, Vector3f&); // _38
 	virtual void getDebugInfo(char*);                      // _3C
 
 	static void initialise();
+
+	u8 m_pelType;             // _24
+	Vector3f m_rotation;      // _28
+	BasePelletMgr* m_manager; // _34
+	GenPelletParm* m_genParm; // _38
 };
 
 struct GenObjectPiki : public GenObject {
@@ -355,6 +378,8 @@ extern GeneratorMgr* limitGeneratorMgr;
 extern GeneratorMgr* plantsGeneratorMgr;
 extern GeneratorMgr* dayGeneratorMgr;
 } // namespace Game
+
+Game::GenPellet* makePellet();
 
 extern u32 GeneratorCurrentVersion;
 
