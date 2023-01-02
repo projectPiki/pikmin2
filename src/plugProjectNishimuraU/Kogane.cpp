@@ -1,4 +1,11 @@
-#include "types.h"
+#include "Game/Entities/Kogane.h"
+#include "Game/Cave/RandMapMgr.h"
+#include "Dolphin/rand.h"
+#include "trig.h"
+#include "Game/EnemyFunc.h"
+#include "Game/gamePlayData.h"
+#include "Radar.h"
+#include "Game/Entities/ItemHoney.h"
 
 /*
     Generated from dpostproc
@@ -303,90 +310,8 @@ namespace Game {
  */
 Kogane::Obj::Obj()
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	extsh.   r0, r4
-	stw      r31, 0xc(r1)
-	mr       r31, r3
-	stw      r30, 8(r1)
-	beq      lbl_8025DCCC
-	addi     r0, r31, 0x2dc
-	lis      r3, __vt__Q24Game10PelletView@ha
-	stw      r0, 0x17c(r31)
-	addi     r3, r3, __vt__Q24Game10PelletView@l
-	li       r0, 0
-	stw      r3, 0x2dc(r31)
-	stw      r0, 0x2e0(r31)
-	stw      r0, 0x2e4(r31)
-
-lbl_8025DCCC:
-	mr       r3, r31
-	li       r4, 0
-	bl       __ct__Q24Game9EnemyBaseFv
-	lis      r3, __vt__Q34Game6Kogane3Obj@ha
-	addi     r0, r31, 0x2dc
-	addi     r5, r3, __vt__Q34Game6Kogane3Obj@l
-	li       r3, 0x2c
-	stw      r5, 0(r31)
-	addi     r4, r5, 0x1b0
-	addi     r5, r5, 0x320
-	stw      r4, 0x178(r31)
-	lwz      r4, 0x17c(r31)
-	stw      r5, 0(r4)
-	lwz      r4, 0x17c(r31)
-	subf     r0, r4, r0
-	stw      r0, 0xc(r4)
-	bl       __nw__FUl
-	or.      r30, r3, r3
-	beq      lbl_8025DD58
-	bl       __ct__Q24Game17EnemyAnimatorBaseFv
-	lis      r3, __vt__Q34Game6Kogane14ProperAnimator@ha
-	lis      r4, __vt__Q28SysShape12BaseAnimator@ha
-	addi     r0, r3, __vt__Q34Game6Kogane14ProperAnimator@l
-	lis      r3, __vt__Q28SysShape8Animator@ha
-	stw      r0, 0(r30)
-	addi     r4, r4, __vt__Q28SysShape12BaseAnimator@l
-	addi     r3, r3, __vt__Q28SysShape8Animator@l
-	li       r0, 0
-	stw      r4, 0x10(r30)
-	stw      r3, 0x10(r30)
-	stb      r0, 0x28(r30)
-	stw      r0, 0x1c(r30)
-	stw      r0, 0x14(r30)
-	stb      r0, 0x28(r30)
-	stw      r0, 0x20(r30)
-
-lbl_8025DD58:
-	stw      r30, 0x184(r31)
-	li       r3, 0x1c
-	bl       __nw__FUl
-	or.      r4, r3, r3
-	beq      lbl_8025DD8C
-	lis      r5, __vt__Q24Game17EnemyStateMachine@ha
-	lis      r3, __vt__Q34Game6Kogane3FSM@ha
-	addi     r0, r5, __vt__Q24Game17EnemyStateMachine@l
-	li       r5, -1
-	stw      r0, 0(r4)
-	addi     r0, r3, __vt__Q34Game6Kogane3FSM@l
-	stw      r5, 0x18(r4)
-	stw      r0, 0(r4)
-
-lbl_8025DD8C:
-	lwz      r12, 0(r31)
-	mr       r3, r31
-	lwz      r12, 0x2f8(r12)
-	mtctr    r12
-	bctrl
-	lwz      r0, 0x14(r1)
-	mr       r3, r31
-	lwz      r31, 0xc(r1)
-	lwz      r30, 8(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	m_animator = new ProperAnimator;
+	setFSM(new FSM);
 }
 
 /*
@@ -401,90 +326,28 @@ void Kogane::Obj::setInitialSetting(Game::EnemyInitialParamBase*) { }
  * Address:	8025DDC0
  * Size:	000130
  */
-void Kogane::Obj::onInit(Game::CreatureInitArg*)
+void Kogane::Obj::onInit(Game::CreatureInitArg* arg)
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	mr       r31, r3
-	bl       onInit__Q24Game9EnemyBaseFPQ24Game15CreatureInitArg
-	lwz      r0, 0x1e0(r31)
-	mr       r3, r31
-	ori      r0, r0, 1
-	stw      r0, 0x1e0(r31)
-	lwz      r0, 0x1e0(r31)
-	rlwinm   r0, r0, 0, 0x19, 0x17
-	stw      r0, 0x1e0(r31)
-	lwz      r0, 0x1e0(r31)
-	rlwinm   r0, r0, 0, 0x18, 0x16
-	stw      r0, 0x1e0(r31)
-	bl       setEmotionNone__Q24Game9EnemyBaseFv
-	lfs      f0, lbl_8051AC28@sda21(r2)
-	stfs     f0, 0x1f8(r31)
-	stfs     f0, 0x168(r31)
-	stfs     f0, 0x16c(r31)
-	stfs     f0, 0x170(r31)
-	lwz      r3, 0x114(r31)
-	lfs      f1, 0x1f8(r31)
-	lwz      r3, 0(r3)
-	bl       setScale__8CollPartFf
-	li       r0, 0
-	mr       r3, r31
-	stw      r0, 0x2c0(r31)
-	bl       resetAppearTimer__Q34Game6Kogane3ObjFv
-	lfs      f1, lbl_8051AC2C@sda21(r2)
-	mr       r3, r31
-	fmr      f2, f1
-	bl       resetMoveTimer__Q34Game6Kogane3ObjFff
-	lfs      f0, lbl_8051AC28@sda21(r2)
-	mr       r3, r31
-	stfs     f0, 0x2cc(r31)
-	lwz      r12, 0(r31)
-	lwz      r12, 0x300(r12)
-	mtctr    r12
-	bctrl
-	lwz      r3, 0x2bc(r31)
-	mr       r4, r31
-	li       r5, 0
-	li       r6, 0
-	lwz      r12, 0(r3)
-	lwz      r12, 0xc(r12)
-	mtctr    r12
-	bctrl
-	lwz      r3, gameSystem__4Game@sda21(r13)
-	cmplwi   r3, 0
-	beq      lbl_8025DEC8
-	lwz      r0, 0x44(r3)
-	cmpwi    r0, 4
-	bne      lbl_8025DEC8
-	lfs      f0, lbl_8051AC30@sda21(r2)
-	mr       r4, r31
-	li       r5, 2
-	li       r6, 0
-	stfs     f0, 0x2c4(r31)
-	lwz      r3, 0x2bc(r31)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x14(r12)
-	mtctr    r12
-	bctrl
-	b        lbl_8025DEDC
-
-lbl_8025DEC8:
-	mr       r3, r31
-	lwz      r12, 0(r31)
-	lwz      r12, 0x1dc(r12)
-	mtctr    r12
-	bctrl
-
-lbl_8025DEDC:
-	lwz      r0, 0x14(r1)
-	lwz      r31, 0xc(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	EnemyBase::onInit(arg);
+	enableEvent(0, EB_IsVulnerable);
+	disableEvent(0, EB_ToLeaveCarcass);
+	disableEvent(0, EB_IsDeathEffectEnabled);
+	setEmotionNone();
+	m_scaleModifier = 0.0001f;
+	m_scale         = 0.0001f;
+	m_collTree->m_part->setScale(m_scaleModifier);
+	m_hitCount = 0;
+	resetAppearTimer();
+	resetMoveTimer(0.0f, 0.0f);
+	m_scaleTimer = 0.0001f;
+	resetFartTimer();
+	m_fsm->start(this, KOGANE_Appear, nullptr);
+	if (gameSystem && gameSystem->m_mode == GSM_PIKLOPEDIA) {
+		m_appearTimer = -12800.0f;
+		m_fsm->transit(this, KOGANE_Move, nullptr);
+	} else {
+		doAnimationCullingOff();
+	}
 }
 
 /*
@@ -499,30 +362,10 @@ void Kogane::Obj::resetFartTimer() { }
  * Address:	8025DEF4
  * Size:	000050
  */
-void Kogane::Obj::onKill(Game::CreatureKillArg*)
+void Kogane::Obj::onKill(Game::CreatureKillArg* arg)
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	mr       r31, r4
-	stw      r30, 8(r1)
-	mr       r30, r3
-	lwz      r12, 0(r3)
-	lwz      r12, 0x308(r12)
-	mtctr    r12
-	bctrl
-	mr       r3, r30
-	mr       r4, r31
-	bl       onKill__Q24Game9EnemyBaseFPQ24Game15CreatureKillArg
-	lwz      r0, 0x14(r1)
-	lwz      r31, 0xc(r1)
-	lwz      r30, 8(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	finishBodyEffect();
+	EnemyBase::onKill(arg);
 }
 
 /*
@@ -530,43 +373,14 @@ void Kogane::Obj::onKill(Game::CreatureKillArg*)
  * Address:	8025DF44
  * Size:	000034
  */
-void Kogane::Obj::doUpdate()
-{
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	mr       r4, r3
-	stw      r0, 0x14(r1)
-	lwz      r3, 0x2bc(r3)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x10(r12)
-	mtctr    r12
-	bctrl
-	lwz      r0, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
-}
+void Kogane::Obj::doUpdate() { m_fsm->exec(this); }
 
 /*
  * --INFO--
  * Address:	8025DF78
  * Size:	000020
  */
-void Kogane::Obj::doUpdateCommon()
-{
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	bl       doUpdateCommon__Q24Game9EnemyBaseFv
-	lwz      r0, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
-}
+void Kogane::Obj::doUpdateCommon() { EnemyBase::doUpdateCommon(); }
 
 /*
  * --INFO--
@@ -580,48 +394,18 @@ void Kogane::Obj::doDirectDraw(Graphics&) { }
  * Address:	8025DF9C
  * Size:	000020
  */
-void Kogane::Obj::doDebugDraw(Graphics&)
-{
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	bl       doDebugDraw__Q24Game9EnemyBaseFR8Graphics
-	lwz      r0, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
-}
+void Kogane::Obj::doDebugDraw(Graphics& gfx) { EnemyBase::doDebugDraw(gfx); }
 
 /*
  * --INFO--
  * Address:	8025DFBC
  * Size:	00004C
  */
-void Kogane::Obj::setFSM(Game::Kogane::FSM*)
+void Kogane::Obj::setFSM(FSM* fsm)
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	mr       r31, r3
-	stw      r4, 0x2bc(r3)
-	mr       r4, r31
-	lwz      r3, 0x2bc(r3)
-	lwz      r12, 0(r3)
-	lwz      r12, 8(r12)
-	mtctr    r12
-	bctrl
-	li       r0, 0
-	stw      r0, 0x2b4(r31)
-	lwz      r0, 0x14(r1)
-	lwz      r31, 0xc(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	m_fsm = fsm;
+	m_fsm->init(this);
+	m_currentLifecycleState = nullptr;
 }
 
 /*
@@ -629,50 +413,13 @@ void Kogane::Obj::setFSM(Game::Kogane::FSM*)
  * Address:	8025E008
  * Size:	0000A0
  */
-void Kogane::Obj::getShadowParam(Game::ShadowParam&)
+void Kogane::Obj::getShadowParam(ShadowParam& param)
 {
-	/*
-	stwu     r1, -0x20(r1)
-	mflr     r0
-	stw      r0, 0x24(r1)
-	stw      r31, 0x1c(r1)
-	mr       r31, r4
-	stw      r30, 0x18(r1)
-	mr       r30, r3
-	mr       r4, r30
-	addi     r3, r1, 8
-	bl       getBodyJointPos__Q34Game6Kogane3ObjFv
-	lfs      f0, 8(r1)
-	lfs      f3, lbl_8051AC34@sda21(r2)
-	stfs     f0, 0(r31)
-	lfs      f1, lbl_8051AC2C@sda21(r2)
-	lfs      f2, 0xc(r1)
-	lfs      f0, lbl_8051AC38@sda21(r2)
-	stfs     f2, 4(r31)
-	lfs      f2, lbl_8051AC3C@sda21(r2)
-	lfs      f4, 0x10(r1)
-	stfs     f4, 8(r31)
-	lfs      f4, 4(r31)
-	fsubs    f3, f4, f3
-	stfs     f3, 4(r31)
-	stfs     f1, 0xc(r31)
-	stfs     f0, 0x10(r31)
-	stfs     f1, 0x14(r31)
-	lfs      f1, 4(r31)
-	lfs      f0, 0x190(r30)
-	fsubs    f0, f1, f0
-	fadds    f0, f2, f0
-	stfs     f0, 0x18(r31)
-	lfs      f0, 0x2cc(r30)
-	fmuls    f0, f2, f0
-	stfs     f0, 0x1c(r31)
-	lwz      r31, 0x1c(r1)
-	lwz      r30, 0x18(r1)
-	lwz      r0, 0x24(r1)
-	mtlr     r0
-	addi     r1, r1, 0x20
-	blr
-	*/
+	param.m_position = getBodyJointPos();
+	param.m_position.y -= 5.0f;
+	param.m_boundingSphere.m_position = Vector3f(0.0f, 1.0f, 0.0f);
+	param.m_boundingSphere.m_radius   = param.m_position.y - m_position.y + 15.0f;
+	param.m_size                      = m_scaleTimer * 15.0f;
 }
 
 /*
@@ -680,41 +427,13 @@ void Kogane::Obj::getShadowParam(Game::ShadowParam&)
  * Address:	8025E0A8
  * Size:	00006C
  */
-void Kogane::Obj::pressCallBack(Game::Creature*, float, CollPart*)
+bool Kogane::Obj::pressCallBack(Creature* obj, f32 dmg, CollPart*)
 {
-	/*
-	stwu     r1, -0x20(r1)
-	mflr     r0
-	cmplwi   r4, 0
-	stw      r0, 0x24(r1)
-	stfd     f31, 0x18(r1)
-	fmr      f31, f1
-	stw      r31, 0x14(r1)
-	mr       r31, r3
-	beq      lbl_8025E0F8
-	mr       r3, r4
-	lwz      r12, 0(r4)
-	lwz      r12, 0x18(r12)
-	mtctr    r12
-	bctrl
-	clrlwi.  r0, r3, 0x18
-	beq      lbl_8025E0F8
-	fmr      f1, f31
-	mr       r3, r31
-	bl       transitDamageState__Q34Game6Kogane3ObjFf
-	b        lbl_8025E0FC
-
-lbl_8025E0F8:
-	li       r3, 0
-
-lbl_8025E0FC:
-	lwz      r0, 0x24(r1)
-	lfd      f31, 0x18(r1)
-	lwz      r31, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x20
-	blr
-	*/
+	if (obj && obj->isPiki()) {
+		return transitDamageState(dmg);
+	} else {
+		return false;
+	}
 }
 
 /*
@@ -722,25 +441,10 @@ lbl_8025E0FC:
  * Address:	8025E114
  * Size:	00003C
  */
-void Kogane::Obj::wallCallback(const Game::MoveInfo&)
+void Kogane::Obj::wallCallback(const MoveInfo& info)
 {
-	/*
-	stwu     r1, -0x20(r1)
-	mflr     r0
-	lfs      f2, 0x5c(r4)
-	stw      r0, 0x24(r1)
-	lfs      f1, 0x60(r4)
-	lfs      f0, 0x64(r4)
-	addi     r4, r1, 8
-	stfs     f2, 8(r1)
-	stfs     f1, 0xc(r1)
-	stfs     f0, 0x10(r1)
-	bl       "setTargetPosition__Q34Game6Kogane3ObjFP10Vector3<f>"
-	lwz      r0, 0x24(r1)
-	mtlr     r0
-	addi     r1, r1, 0x20
-	blr
-	*/
+	Vector3f pos = info.m_reflectPosition;
+	setTargetPosition(&pos);
 }
 
 /*
@@ -748,38 +452,13 @@ void Kogane::Obj::wallCallback(const Game::MoveInfo&)
  * Address:	8025E150
  * Size:	000060
  */
-void Kogane::Obj::earthquakeCallBack(Game::Creature*, float)
+bool Kogane::Obj::earthquakeCallBack(Creature* obj, f32)
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	cmplwi   r4, 0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	mr       r31, r3
-	beq      lbl_8025E198
-	mr       r3, r4
-	lwz      r12, 0(r4)
-	lwz      r12, 0x18(r12)
-	mtctr    r12
-	bctrl
-	clrlwi.  r0, r3, 0x18
-	beq      lbl_8025E198
-	lfs      f1, lbl_8051AC2C@sda21(r2)
-	mr       r3, r31
-	bl       transitDamageState__Q34Game6Kogane3ObjFf
-	b        lbl_8025E19C
-
-lbl_8025E198:
-	li       r3, 0
-
-lbl_8025E19C:
-	lwz      r0, 0x14(r1)
-	lwz      r31, 0xc(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	if (obj && obj->isPiki()) {
+		return transitDamageState(0.0f);
+	} else {
+		return false;
+	}
 }
 
 /*
@@ -787,41 +466,13 @@ lbl_8025E19C:
  * Address:	8025E1B0
  * Size:	00006C
  */
-void Kogane::Obj::hipdropCallBack(Game::Creature*, float, CollPart*)
+bool Kogane::Obj::hipdropCallBack(Creature* obj, f32 dmg, CollPart*)
 {
-	/*
-	stwu     r1, -0x20(r1)
-	mflr     r0
-	cmplwi   r4, 0
-	stw      r0, 0x24(r1)
-	stfd     f31, 0x18(r1)
-	fmr      f31, f1
-	stw      r31, 0x14(r1)
-	mr       r31, r3
-	beq      lbl_8025E200
-	mr       r3, r4
-	lwz      r12, 0(r4)
-	lwz      r12, 0x18(r12)
-	mtctr    r12
-	bctrl
-	clrlwi.  r0, r3, 0x18
-	beq      lbl_8025E200
-	fmr      f1, f31
-	mr       r3, r31
-	bl       transitDamageState__Q34Game6Kogane3ObjFf
-	b        lbl_8025E204
-
-lbl_8025E200:
-	li       r3, 0
-
-lbl_8025E204:
-	lwz      r0, 0x24(r1)
-	lfd      f31, 0x18(r1)
-	lwz      r31, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x20
-	blr
-	*/
+	if (obj && obj->isPiki()) {
+		return transitDamageState(dmg);
+	} else {
+		return false;
+	}
 }
 
 /*
@@ -831,28 +482,10 @@ lbl_8025E204:
  */
 void Kogane::Obj::doStartStoneState()
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	mr       r31, r3
-	bl       doStartStoneState__Q24Game9EnemyBaseFv
-	lwz      r0, 0x1e0(r31)
-	rlwinm   r0, r0, 0, 0, 0x1e
-	stw      r0, 0x1e0(r31)
-	lwz      r0, 0x1e0(r31)
-	ori      r0, r0, 0x100
-	stw      r0, 0x1e0(r31)
-	lwz      r0, 0x1e0(r31)
-	ori      r0, r0, 0x800
-	stw      r0, 0x1e0(r31)
-	lwz      r31, 0xc(r1)
-	lwz      r0, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	EnemyBase::doStartStoneState();
+	disableEvent(0, EB_IsVulnerable);
+	enableEvent(0, EB_IsDeathEffectEnabled);
+	enableEvent(0, EB_LifegaugeVisible);
 }
 
 /*
@@ -862,28 +495,10 @@ void Kogane::Obj::doStartStoneState()
  */
 void Kogane::Obj::doFinishStoneState()
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	mr       r31, r3
-	bl       doFinishStoneState__Q24Game9EnemyBaseFv
-	lwz      r0, 0x1e0(r31)
-	ori      r0, r0, 1
-	stw      r0, 0x1e0(r31)
-	lwz      r0, 0x1e0(r31)
-	rlwinm   r0, r0, 0, 0x18, 0x16
-	stw      r0, 0x1e0(r31)
-	lwz      r0, 0x1e0(r31)
-	rlwinm   r0, r0, 0, 0x15, 0x13
-	stw      r0, 0x1e0(r31)
-	lwz      r31, 0xc(r1)
-	lwz      r0, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	EnemyBase::doFinishStoneState();
+	enableEvent(0, EB_IsVulnerable);
+	disableEvent(0, EB_IsDeathEffectEnabled);
+	disableEvent(0, EB_LifegaugeVisible);
 }
 
 /*
@@ -893,6 +508,7 @@ void Kogane::Obj::doFinishStoneState()
  */
 void Kogane::Obj::doStartMovie()
 {
+	effectDrawOff();
 	/*
 	stwu     r1, -0x10(r1)
 	mflr     r0
@@ -922,6 +538,7 @@ void Kogane::Obj::effectDrawOff() { }
  */
 void Kogane::Obj::doEndMovie()
 {
+	effectDrawOn();
 	/*
 	stwu     r1, -0x10(r1)
 	mflr     r0
@@ -949,51 +566,20 @@ void Kogane::Obj::effectDrawOn() { }
  * Address:	8025E31C
  * Size:	000084
  */
-void Kogane::Obj::transitDamageState(float)
+bool Kogane::Obj::transitDamageState(f32 dmg)
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	mr       r31, r3
-	lwz      r0, 0x1e0(r3)
-	rlwinm.  r0, r0, 0, 0x16, 0x16
-	beq      lbl_8025E34C
-	lfs      f2, lbl_8051AC38@sda21(r2)
-	bl       addDamage__Q24Game9EnemyBaseFff
-	li       r3, 1
-	b        lbl_8025E38C
-
-lbl_8025E34C:
-	bl       getStateID__Q24Game9EnemyBaseFv
-	cmpwi    r3, 2
-	beq      lbl_8025E360
-	cmpwi    r3, 3
-	bne      lbl_8025E388
-
-lbl_8025E360:
-	lwz      r3, 0x2bc(r31)
-	mr       r4, r31
-	li       r5, 4
-	li       r6, 0
-	lwz      r12, 0(r3)
-	lwz      r12, 0x14(r12)
-	mtctr    r12
-	bctrl
-	li       r3, 1
-	b        lbl_8025E38C
-
-lbl_8025E388:
-	li       r3, 0
-
-lbl_8025E38C:
-	lwz      r0, 0x14(r1)
-	lwz      r31, 0xc(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	if (isEvent(0, EB_IsBittered)) {
+		addDamage(dmg, 1.0f);
+		return true;
+	} else {
+		int id = getStateID();
+		if (id == KOGANE_Move || id == KOGANE_Wait) {
+			m_fsm->transit(this, KOGANE_Press, nullptr);
+			return true;
+		} else {
+			return false;
+		}
+	}
 }
 
 /*
@@ -1001,81 +587,18 @@ lbl_8025E38C:
  * Address:	8025E3A0
  * Size:	000108
  */
-void Kogane::Obj::transitDisappear()
+bool Kogane::Obj::transitDisappear()
 {
-	/*
-	stwu     r1, -0x40(r1)
-	mflr     r0
-	stw      r0, 0x44(r1)
-	stw      r31, 0x3c(r1)
-	mr       r31, r3
-	lwz      r12, 0(r3)
-	lwz      r12, 0x308(r12)
-	mtctr    r12
-	bctrl
-	lwz      r0, 0x2c0(r31)
-	cmpwi    r0, 0
-	bne      lbl_8025E490
-	lwz      r3, gameSystem__4Game@sda21(r13)
-	cmplwi   r3, 0
-	beq      lbl_8025E490
-	lbz      r0, 0x48(r3)
-	cmplwi   r0, 0
-	beq      lbl_8025E490
-	lwz      r0, randMapMgr__Q24Game4Cave@sda21(r13)
-	cmplwi   r0, 0
-	beq      lbl_8025E490
-	lis      r3, __vt__Q24Game15CreatureInitArg@ha
-	li       r8, 0
-	addi     r4, r3, __vt__Q24Game15CreatureInitArg@l
-	li       r0, -1
-	lis      r3, __vt__Q24Game13PelletInitArg@ha
-	stw      r4, 8(r1)
-	addi     r3, r3, __vt__Q24Game13PelletInitArg@l
-	li       r7, 0xff
-	li       r6, 1
-	stw      r3, 8(r1)
-	lwz      r3, pelletMgr__4Game@sda21(r13)
-	addi     r4, r1, 8
-	stb      r8, 0x24(r1)
-	addi     r5, r31, 0x250
-	sth      r8, 0x1c(r1)
-	stb      r7, 0x1e(r1)
-	stw      r8, 0x20(r1)
-	stb      r8, 0x1f(r1)
-	stb      r6, 0xc(r1)
-	stb      r8, 0x25(r1)
-	stw      r0, 0x2c(r1)
-	stw      r0, 0x28(r1)
-	stb      r8, 0x26(r1)
-	stb      r8, 0x27(r1)
-	bl
-makePelletInitArg__Q24Game9PelletMgrFRQ24Game13PelletInitArgRQ34Game9PelletMgr15OtakaraItemCode
-	clrlwi.  r0, r3, 0x18
-	beq      lbl_8025E490
-	lwz      r3, randMapMgr__Q24Game4Cave@sda21(r13)
-	addi     r4, r31, 0x18c
-	addi     r5, r31, 0x1fc
-	bl       "getBaseGenData__Q34Game4Cave10RandMapMgrFP10Vector3<f>Pf"
-	lfs      f0, 0x18c(r31)
-	li       r3, 0
-	stfs     f0, 0x198(r31)
-	lfs      f0, 0x190(r31)
-	stfs     f0, 0x19c(r31)
-	lfs      f0, 0x194(r31)
-	stfs     f0, 0x1a0(r31)
-	b        lbl_8025E494
-
-lbl_8025E490:
-	li       r3, 1
-
-lbl_8025E494:
-	lwz      r0, 0x44(r1)
-	lwz      r31, 0x3c(r1)
-	mtlr     r0
-	addi     r1, r1, 0x40
-	blr
-	*/
+	finishBodyEffect();
+	if (m_hitCount == 0 && gameSystem && gameSystem->m_isInCave && Cave::randMapMgr) {
+		PelletInitArg arg;
+		if (pelletMgr->makePelletInitArg(arg, m_pelletDropCode)) {
+			Cave::randMapMgr->getBaseGenData(&m_position, &m_faceDir);
+			m_homePosition = m_position;
+			return false;
+		}
+	}
+	return true;
 }
 
 /*
@@ -1083,30 +606,10 @@ lbl_8025E494:
  * Address:	8025E4A8
  * Size:	000050
  */
-void Kogane::Obj::getBodyJointPos()
+Vector3f Kogane::Obj::getBodyJointPos()
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	mr       r31, r3
-	lwz      r3, 0x174(r4)
-	addi     r4, r2, lbl_8051AC40@sda21
-	bl       getJoint__Q28SysShape5ModelFPc
-	bl       getWorldMatrix__Q28SysShape5JointFv
-	lfs      f2, 0x2c(r3)
-	lfs      f1, 0x1c(r3)
-	lfs      f0, 0xc(r3)
-	stfs     f0, 0(r31)
-	stfs     f1, 4(r31)
-	stfs     f2, 8(r31)
-	lwz      r0, 0x14(r1)
-	lwz      r31, 0xc(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	Matrixf* mtx = m_model->getJoint("body")->getWorldMatrix();
+	return Vector3f(mtx->m_matrix.structView.tx, mtx->m_matrix.structView.ty, mtx->m_matrix.structView.tz);
 }
 
 /*
@@ -1114,8 +617,23 @@ void Kogane::Obj::getBodyJointPos()
  * Address:	8025E4F8
  * Size:	0000A4
  */
-void Kogane::Obj::koganeScaleUp()
+bool Kogane::Obj::koganeScaleUp()
 {
+	bool check = false;
+	if (m_scaleTimer < C_PARMS->m_properParms.m_fp40.m_value) {
+		m_scaleTimer += sys->m_deltaTime * 10.0f;
+
+		if (C_PARMS->m_properParms.m_fp40.m_value >= m_scaleTimer) {
+			check        = true;
+			m_scaleTimer = C_PARMS->m_properParms.m_fp40.m_value;
+			disableEvent(0, EB_IsEnemyNotBitter);
+		}
+		f32 scale       = m_scaleTimer;
+		m_scaleModifier = scale;
+		m_scale         = scale;
+		m_collTree->m_part->setScale(m_scaleTimer);
+	}
+	return check;
 	/*
 	stwu     r1, -0x10(r1)
 	mflr     r0
@@ -1170,49 +688,22 @@ lbl_8025E584:
  * Address:	8025E59C
  * Size:	00008C
  */
-void Kogane::Obj::koganeScaleDown()
+bool Kogane::Obj::koganeScaleDown()
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	lfs      f2, lbl_8051AC28@sda21(r2)
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	li       r31, 0
-	lfs      f3, 0x2cc(r3)
-	fcmpo    cr0, f3, f2
-	ble      lbl_8025E610
-	lwz      r4, sys@sda21(r13)
-	lfs      f1, lbl_8051AC48@sda21(r2)
-	lfs      f0, 0x54(r4)
-	fnmsubs  f0, f1, f0, f3
-	stfs     f0, 0x2cc(r3)
-	lfs      f0, 0x2cc(r3)
-	fcmpo    cr0, f0, f2
-	cror     2, 0, 2
-	bne      lbl_8025E5EC
-	stfs     f2, 0x2cc(r3)
-	li       r31, 1
+	bool check = false;
+	if (m_scaleTimer > 0.0001f) {
+		m_scaleTimer += -(sys->m_deltaTime * 10.0f);
 
-lbl_8025E5EC:
-	lfs      f0, 0x2cc(r3)
-	stfs     f0, 0x1f8(r3)
-	stfs     f0, 0x168(r3)
-	stfs     f0, 0x16c(r3)
-	stfs     f0, 0x170(r3)
-	lwz      r4, 0x114(r3)
-	lfs      f1, 0x2cc(r3)
-	lwz      r3, 0(r4)
-	bl       setScale__8CollPartFf
-
-lbl_8025E610:
-	lwz      r0, 0x14(r1)
-	mr       r3, r31
-	lwz      r31, 0xc(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+		if (m_scaleTimer <= 0.0001f) {
+			m_scaleTimer = 0.0001f;
+			check        = true;
+		}
+		f32 scale       = m_scaleTimer;
+		m_scaleModifier = scale;
+		m_scale         = scale;
+		m_collTree->m_part->setScale(m_scaleTimer);
+	}
+	return check;
 }
 
 /*
@@ -1220,8 +711,24 @@ lbl_8025E610:
  * Address:	8025E628
  * Size:	0001AC
  */
-void Kogane::Obj::setTargetPosition(Vector3f*)
+void Kogane::Obj::setTargetPosition(Vector3f* goal)
 {
+	if (goal) {
+		m_targetPosition.x = goal->x * 1000.0f + m_position.x;
+		m_targetPosition.y = m_position.y;
+		m_targetPosition.z = goal->z * 1000.0f + m_position.z;
+	} else {
+		f32 angle = 0.0f;
+		if (m_scaleTimer > 0.1f) {
+			angle = (C_PARMS->m_properParms.m_fp30.m_value * 2.0f);
+			angle *= randFloat();
+			angle -= C_PARMS->m_properParms.m_fp30.m_value;
+		}
+		angle *= DEG2RAD * PI + getFaceDir();
+		m_targetPosition.x = 1000.0f * pikmin2_sinf(angle) + m_position.x;
+		m_targetPosition.y = m_position.y;
+		m_targetPosition.z = 1000.0f * pikmin2_cosf(angle) + m_position.z;
+	}
 	/*
 	stwu     r1, -0x40(r1)
 	mflr     r0
@@ -1352,38 +859,8 @@ lbl_8025E7B8:
  */
 void Kogane::Obj::resetAppearTimer()
 {
-	/*
-	stwu     r1, -0x30(r1)
-	mflr     r0
-	stw      r0, 0x34(r1)
-	stfd     f31, 0x20(r1)
-	psq_st   f31, 40(r1), 0, qr0
-	stw      r31, 0x1c(r1)
-	mr       r31, r3
-	lwz      r3, 0xc0(r3)
-	lfs      f1, 0x844(r3)
-	lfs      f0, 0x81c(r3)
-	fsubs    f31, f1, f0
-	bl       rand
-	xoris    r3, r3, 0x8000
-	lis      r0, 0x4330
-	stw      r3, 0xc(r1)
-	lfd      f2, lbl_8051AC70@sda21(r2)
-	stw      r0, 8(r1)
-	lfs      f0, lbl_8051AC58@sda21(r2)
-	lfd      f1, 8(r1)
-	fsubs    f1, f1, f2
-	fmuls    f1, f31, f1
-	fdivs    f0, f1, f0
-	stfs     f0, 0x2c4(r31)
-	psq_l    f31, 40(r1), 0, qr0
-	lwz      r0, 0x34(r1)
-	lfd      f31, 0x20(r1)
-	lwz      r31, 0x1c(r1)
-	mtlr     r0
-	addi     r1, r1, 0x30
-	blr
-	*/
+	f32 time      = C_PARMS->m_properParms.m_fp02.m_value - C_PARMS->m_properParms.m_fp01.m_value;
+	m_appearTimer = randWeightFloat(time);
 }
 
 /*
@@ -1391,8 +868,15 @@ void Kogane::Obj::resetAppearTimer()
  * Address:	8025E84C
  * Size:	000080
  */
-void Kogane::Obj::isAppear()
+bool Kogane::Obj::isAppear()
 {
+	f32 rad = C_PARMS->m_general.m_sightRadius.m_value;
+
+	if (EnemyFunc::isThereOlimar(this, rad, nullptr) || EnemyFunc::isTherePikmin(this, rad, nullptr)) {
+		return true;
+	} else {
+		return false;
+	}
 	/*
 	stwu     r1, -0x20(r1)
 	mflr     r0
@@ -1442,43 +926,10 @@ lbl_8025E8B0:
  * Address:	8025E8CC
  * Size:	000084
  */
-void Kogane::Obj::resetMoveTimer(float, float)
+void Kogane::Obj::resetMoveTimer(f32 min, f32 max)
 {
-	/*
-	stwu     r1, -0x40(r1)
-	mflr     r0
-	stw      r0, 0x44(r1)
-	stfd     f31, 0x30(r1)
-	psq_st   f31, 56(r1), 0, qr0
-	stfd     f30, 0x20(r1)
-	psq_st   f30, 40(r1), 0, qr0
-	stw      r31, 0x1c(r1)
-	fmr      f30, f1
-	mr       r31, r3
-	fmr      f31, f2
-	bl       rand
-	xoris    r3, r3, 0x8000
-	lis      r0, 0x4330
-	stw      r3, 0xc(r1)
-	fsubs    f1, f31, f30
-	lfd      f3, lbl_8051AC70@sda21(r2)
-	stw      r0, 8(r1)
-	lfs      f0, lbl_8051AC58@sda21(r2)
-	lfd      f2, 8(r1)
-	fsubs    f2, f2, f3
-	fmuls    f1, f1, f2
-	fdivs    f0, f1, f0
-	stfs     f0, 0x2c8(r31)
-	psq_l    f31, 56(r1), 0, qr0
-	lfd      f31, 0x30(r1)
-	psq_l    f30, 40(r1), 0, qr0
-	lfd      f30, 0x20(r1)
-	lwz      r0, 0x44(r1)
-	lwz      r31, 0x1c(r1)
-	mtlr     r0
-	addi     r1, r1, 0x40
-	blr
-	*/
+	f32 time    = max - min;
+	m_moveTimer = randWeightFloat(time);
 }
 
 /*
@@ -1486,118 +937,34 @@ void Kogane::Obj::resetMoveTimer(float, float)
  * Address:	8025E950
  * Size:	000194
  */
-void Kogane::Obj::createTreasureItem()
+bool Kogane::Obj::createTreasureItem()
 {
-	/*
-	stwu     r1, -0x50(r1)
-	mflr     r0
-	stw      r0, 0x54(r1)
-	stw      r31, 0x4c(r1)
-	mr       r31, r3
-	lwz      r0, 0x2c0(r3)
-	cmpwi    r0, 0
-	bne      lbl_8025EACC
-	lis      r3, __vt__Q24Game15CreatureInitArg@ha
-	li       r8, 0
-	addi     r4, r3, __vt__Q24Game15CreatureInitArg@l
-	li       r0, -1
-	lis      r3, __vt__Q24Game13PelletInitArg@ha
-	stw      r4, 0x20(r1)
-	addi     r3, r3, __vt__Q24Game13PelletInitArg@l
-	li       r7, 0xff
-	li       r6, 1
-	stw      r3, 0x20(r1)
-	lwz      r3, pelletMgr__4Game@sda21(r13)
-	addi     r4, r1, 0x20
-	stb      r8, 0x3c(r1)
-	addi     r5, r31, 0x250
-	sth      r8, 0x34(r1)
-	stb      r7, 0x36(r1)
-	stw      r8, 0x38(r1)
-	stb      r8, 0x37(r1)
-	stb      r6, 0x24(r1)
-	stb      r8, 0x3d(r1)
-	stw      r0, 0x44(r1)
-	stw      r0, 0x40(r1)
-	stb      r8, 0x3e(r1)
-	stb      r8, 0x3f(r1)
-	bl
-makePelletInitArg__Q24Game9PelletMgrFRQ24Game13PelletInitArgRQ34Game9PelletMgr15OtakaraItemCode
-	clrlwi.  r0, r3, 0x18
-	beq      lbl_8025EACC
-	lbz      r0, sFromTekiEnable__Q24Game6Pellet@sda21(r13)
-	li       r3, 2
-	sth      r3, 0x34(r1)
-	cmplwi   r0, 0
-	beq      lbl_8025E9F8
-	li       r0, 1
-	stb      r0, 0x3f(r1)
+	if (m_hitCount == 0) {
+		PelletInitArg arg;
+		if (pelletMgr->makePelletInitArg(arg, m_pelletDropCode)) {
+			arg.m_state = 2;
+			if (Pellet::sFromTekiEnable)
+				arg.m_fromEnemy = true;
 
-lbl_8025E9F8:
-	lwz      r3, pelletMgr__4Game@sda21(r13)
-	addi     r4, r1, 0x20
-	bl       birth__Q24Game9PelletMgrFPQ24Game13PelletInitArg
-	stw      r3, 0x254(r31)
-	lwz      r0, 0x254(r31)
-	cmplwi   r0, 0
-	beq      lbl_8025EACC
-	lfs      f1, lbl_8051AC2C@sda21(r2)
-	addi     r4, r2, lbl_8051AC40@sda21
-	lfs      f0, lbl_8051AC78@sda21(r2)
-	stfs     f1, 0x14(r1)
-	stfs     f0, 0x18(r1)
-	stfs     f1, 0x1c(r1)
-	lwz      r3, 0x174(r31)
-	bl       getJoint__Q28SysShape5ModelFPc
-	bl       getWorldMatrix__Q28SysShape5JointFv
-	lfs      f2, 0x2c(r3)
-	addi     r4, r1, 8
-	lfs      f1, 0x1c(r3)
-	li       r5, 0
-	lfs      f0, 0xc(r3)
-	stfs     f0, 8(r1)
-	stfs     f1, 0xc(r1)
-	stfs     f2, 0x10(r1)
-	lwz      r3, 0x254(r31)
-	bl       "setPosition__Q24Game8CreatureFR10Vector3<f>b"
-	lwz      r3, 0x254(r31)
-	addi     r4, r1, 0x14
-	lwz      r12, 0(r3)
-	lwz      r12, 0x68(r12)
-	mtctr    r12
-	bctrl
-	lwz      r3, 0x254(r31)
-	addi     r4, r1, 8
-	lwz      r12, 0(r3)
-	lwz      r12, 0x1fc(r12)
-	mtctr    r12
-	bctrl
-	mr       r3, r31
-	bl       exit__Q25Radar3MgrFPQ24Game15TPositionObject
-	lwz      r3, 0x28c(r31)
-	li       r4, 0x5810
-	li       r5, 0
-	lwz      r12, 0x28(r3)
-	lwz      r12, 0x88(r12)
-	mtctr    r12
-	bctrl
-	lfs      f0, lbl_8051AC7C@sda21(r2)
-	li       r0, 0x3200
-	li       r3, 1
-	stfs     f0, 0x2c4(r31)
-	stw      r0, 0x2c0(r31)
-	b        lbl_8025EAD0
+			m_heldPellet = pelletMgr->birth(&arg);
+			if (m_heldPellet) {
+				Vector3f velocity(0.0f, 250.0f, 0.0f);
 
-lbl_8025EACC:
-	li       r3, 0
+				Matrixf* mtx = m_model->getJoint("body")->getWorldMatrix();
+				Vector3f offs(mtx->m_matrix.structView.tx, mtx->m_matrix.structView.ty, mtx->m_matrix.structView.tz);
+				m_heldPellet->setPosition(offs, false);
 
-lbl_8025EAD0:
-	lwz      r0, 0x54(r1)
-	lwz      r31, 0x4c(r1)
-	mtlr     r0
-	addi     r1, r1, 0x50
-	blr
-	*/
+				m_heldPellet->setVelocity(velocity);
+				m_heldPellet->createKiraEffect(offs);
+				Radar::mgr->exit(this);
+				m_soundObj->startSound(PSSE_EN_ENEMY_LOOSE_ITEM, 0);
+				m_appearTimer = 12800.0f;
+				m_hitCount    = 12800;
+				return true;
+			}
+		}
+	}
+	return false;
 }
 
 /*
@@ -1605,8 +972,39 @@ lbl_8025EAD0:
  * Address:	8025EAE4
  * Size:	000294
  */
-void Kogane::Obj::createPellet(int, int)
+void Kogane::Obj::createPellet(int type, int num)
 {
+	int colors       = 0;
+	int hasColors[3] = { 1, 1, 1 };
+	for (int i = 0; i < 3; i++) {
+		if (playData->hasMetPikmin(i)) {
+			hasColors[colors] = i;
+			colors++;
+		}
+	}
+
+	f32 angle = getFaceDir() + 2.094395f;
+	f32 offs  = 2.094395f / (f32)num;
+
+	Matrixf* mtx = m_model->getJoint("body")->getWorldMatrix();
+	Vector3f pos(mtx->m_matrix.structView.tx, mtx->m_matrix.structView.ty, mtx->m_matrix.structView.tz);
+
+	for (int i = 0; i < num; i++) {
+		int id = randWeightFloat(colors);
+		PelletNumberInitArg arg(type, hasColors[id]);
+		Pellet* pelt = pelletMgr->birth(&arg);
+		if (pelt) {
+			pelt->init(&arg);
+			pelt->onSetPosition(pos);
+
+			Vector3f vel;
+			f32 newangle = angle + offs;
+			vel.z        = 1000.0f * pikmin2_cosf(newangle) * 50.0f;
+			vel.x        = 1000.0f * pikmin2_sinf(newangle) * 50.0f;
+			vel.y        = 250.0f;
+			pelt->setVelocity(vel);
+		}
+	}
 	/*
 	stwu     r1, -0xd0(r1)
 	mflr     r0
@@ -1797,8 +1195,29 @@ lbl_8025ED3C:
  * Address:	8025ED78
  * Size:	0001DC
  */
-void Kogane::Obj::createDoping(unsigned char, int)
+void Kogane::Obj::createDoping(u8 type, int num)
 {
+	f32 angle = getFaceDir() + 2.094395f;
+	f32 offs  = 2.094395f / (f32)num;
+
+	Matrixf* mtx = m_model->getJoint("body")->getWorldMatrix();
+	Vector3f pos(mtx->m_matrix.structView.tx, mtx->m_matrix.structView.ty, mtx->m_matrix.structView.tz);
+
+	for (int i = 0; i < num; i++) {
+		ItemHoney::InitArg arg(type, 0);
+		BaseItem* honey = ItemHoney::mgr->birth();
+		if (honey) {
+			honey->init(&arg);
+			honey->setPosition(pos, false);
+
+			Vector3f vel;
+			f32 newangle = angle + offs;
+			vel.z        = 1000.0f * pikmin2_cosf(newangle) * 50.0f;
+			vel.x        = 1000.0f * pikmin2_sinf(newangle) * 50.0f;
+			vel.y        = 250.0f;
+			honey->setVelocity(vel);
+		}
+	}
 	/*
 	stwu     r1, -0x80(r1)
 	mflr     r0
@@ -1939,62 +1358,9 @@ lbl_8025EF28:
  * Address:	8025EF54
  * Size:	0000BC
  */
-Kogane::Obj::~Obj()
-{
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	or.      r31, r3, r3
-	stw      r30, 8(r1)
-	mr       r30, r4
-	beq      lbl_8025EFF4
-	lis      r3, __vt__Q34Game6Kogane3Obj@ha
-	addi     r0, r31, 0x2dc
-	addi     r4, r3, __vt__Q34Game6Kogane3Obj@l
-	stw      r4, 0(r31)
-	addi     r3, r4, 0x1b0
-	addi     r4, r4, 0x320
-	stw      r3, 0x178(r31)
-	lwz      r3, 0x17c(r31)
-	stw      r4, 0(r3)
-	lwz      r3, 0x17c(r31)
-	subf     r0, r3, r0
-	stw      r0, 0xc(r3)
-	beq      lbl_8025EFE4
-	lis      r3, __vt__Q24Game9EnemyBase@ha
-	addi     r0, r31, 0x2bc
-	addi     r4, r3, __vt__Q24Game9EnemyBase@l
-	addi     r3, r31, 0x290
-	stw      r4, 0(r31)
-	addi     r5, r4, 0x1b0
-	addi     r6, r4, 0x2f8
-	li       r4, -1
-	stw      r5, 0x178(r31)
-	lwz      r5, 0x17c(r31)
-	stw      r6, 0(r5)
-	lwz      r5, 0x17c(r31)
-	subf     r0, r5, r0
-	stw      r0, 0xc(r5)
-	bl       __dt__5CNodeFv
-
-lbl_8025EFE4:
-	extsh.   r0, r30
-	ble      lbl_8025EFF4
-	mr       r3, r31
-	bl       __dl__FPv
-
-lbl_8025EFF4:
-	lwz      r0, 0x14(r1)
-	mr       r3, r31
-	lwz      r31, 0xc(r1)
-	lwz      r30, 8(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
-}
+// Kogane::Obj::~Obj()
+//{
+//}
 
 /*
  * --INFO--
@@ -2015,5 +1381,5 @@ void Kogane::Obj::outWaterCallback() { }
  * Address:	8025F018
  * Size:	000008
  */
-u32 Kogane::Obj::getEnemyTypeID() { return 0x9; }
+EnemyTypeID::EEnemyTypeID Kogane::Obj::getEnemyTypeID() { return EnemyTypeID::EnemyID_Kogane; }
 } // namespace Game

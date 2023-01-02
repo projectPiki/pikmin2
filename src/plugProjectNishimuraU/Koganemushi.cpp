@@ -69,7 +69,7 @@ void Koganemushi::Obj::createItem()
 	u32 initArg           = 0;
 	u32 amount            = 0;
 
-	switch (m_flipTally) {
+	switch (m_hitCount) {
 	case 0: // initial flip
 		if (gameSystem && gameSystem->m_isInCave) {
 			createPelletItem = false;
@@ -109,7 +109,7 @@ void Koganemushi::Obj::createItem()
 		createDoping(initArg, amount);
 	}
 
-	m_flipTally++;
+	m_hitCount++;
 }
 
 /*

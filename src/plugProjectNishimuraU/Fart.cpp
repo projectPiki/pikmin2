@@ -131,7 +131,7 @@ void Obj::createItem()
 	u32 initArg           = 0;
 	u32 amount            = 0;
 
-	switch (m_flipTally) {
+	switch (m_hitCount) {
 	case 0: // initial flip
 		createPelletItem = false;
 		initArg          = HONEY_Y;
@@ -171,7 +171,7 @@ void Obj::createItem()
 		createDoping(initArg, amount);
 	}
 
-	m_flipTally++;
+	m_hitCount++;
 }
 
 /*

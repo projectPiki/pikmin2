@@ -56,7 +56,7 @@ struct MoveInfo {
 	Sys::Triangle* m_wallTriangle;                     // _48
 	Sys::Triangle* _4C;                                // _4C
 	Vector3f m_position;                               // _50
-	Vector3f _5C;                                      // _5C
+	Vector3f m_reflectPosition;                        // _5C
 	float _68;                                         // _60
 	float _6C;                                         // _64
 	float _70;                                         // _68

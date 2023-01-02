@@ -378,13 +378,8 @@ void Hana::Obj::getShadowParam(ShadowParam& param)
 		param.m_boundingSphere.m_radius   = 0.1f;
 		param.m_size                      = 0.1f;
 	} else {
-		Matrixf* mtx = m_shadowJoint->getWorldMatrix();
-		f32 y, z;
-		z                  = mtx->m_matrix.structView.tz;
-		y                  = mtx->m_matrix.structView.ty;
-		param.m_position.x = mtx->m_matrix.structView.tx;
-		param.m_position.y = y;
-		param.m_position.z = z;
+		Matrixf* mtx     = m_shadowJoint->getWorldMatrix();
+		param.m_position = Vector3f(mtx->m_matrix.structView.tx, mtx->m_matrix.structView.ty, mtx->m_matrix.structView.tz);
 
 		param.m_position.y                = m_position.y + 10.0f;
 		param.m_boundingSphere.m_position = Vector3f(0.0f, 1.0f, 0.0f);

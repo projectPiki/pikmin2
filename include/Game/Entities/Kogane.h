@@ -56,10 +56,10 @@ struct Obj : public EnemyBase {
 	virtual void createPressSESpecial() { }                  // _31C (weak)
 	//////////////// VTABLE END
 
-	void transitDamageState(f32);
+	bool transitDamageState(f32);
 	bool transitDisappear();
 	Vector3f getBodyJointPos();
-	void koganeScaleUp();
+	bool koganeScaleUp();
 	bool koganeScaleDown();
 	void setTargetPosition(Vector3f*);
 	void resetAppearTimer();
@@ -72,7 +72,7 @@ struct Obj : public EnemyBase {
 	// _00 		= VTBL
 	// _00-_2BC	= EnemyBase
 	FSM* m_fsm;                // _2BC
-	int m_flipTally;           // _2C0
+	int m_hitCount;            // _2C0
 	f32 m_appearTimer;         // _2C4
 	f32 m_moveTimer;           // _2C8
 	f32 m_scaleTimer;          // _2CC
