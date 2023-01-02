@@ -5,6 +5,10 @@
 
 namespace efx {
 struct THanaMiss : public TSimpleMtx2 {
+	THanaMiss(Matrixf* mtx)
+	    : TSimpleMtx2(mtx, PID_HanaMiss_1, PID_HanaMiss_2)
+	{
+	}
 	// _00      = VTBL
 	// _00-_14  = TSimpleMtx2
 };

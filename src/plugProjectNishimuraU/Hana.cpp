@@ -1,4 +1,10 @@
-#include "types.h"
+#include "Game/Entities/Hana.h"
+#include "Game/EnemyFunc.h"
+#include "efx/THanaMiss.h"
+#include "Game/CameraMgr.h"
+#include "Game/rumble.h"
+#include "Game/ConditionNotStick.h"
+#include "trig.h"
 
 /*
     Generated from dpostproc
@@ -323,96 +329,26 @@ namespace Game {
  * Address:	802F3138
  * Size:	0000A4
  */
-Hana::Obj::Obj(void)
-{
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	extsh.   r0, r4
-	stw      r31, 0xc(r1)
-	mr       r31, r3
-	beq      lbl_802F3174
-	addi     r0, r31, 0x2e8
-	lis      r3, __vt__Q24Game10PelletView@ha
-	stw      r0, 0x17c(r31)
-	addi     r3, r3, __vt__Q24Game10PelletView@l
-	li       r0, 0
-	stw      r3, 0x2e8(r31)
-	stw      r0, 0x2ec(r31)
-	stw      r0, 0x2f0(r31)
-
-lbl_802F3174:
-	mr       r3, r31
-	li       r4, 0
-	bl       __ct__Q34Game10ChappyBase3ObjFv
-	lis      r3, __vt__Q34Game4Hana3Obj@ha
-	addi     r0, r31, 0x2e8
-	addi     r5, r3, __vt__Q34Game4Hana3Obj@l
-	mr       r3, r31
-	stw      r5, 0(r31)
-	addi     r4, r5, 0x1b0
-	addi     r5, r5, 0x334
-	stw      r4, 0x178(r31)
-	lwz      r4, 0x17c(r31)
-	stw      r5, 0(r4)
-	lwz      r4, 0x17c(r31)
-	subf     r0, r4, r0
-	stw      r0, 0xc(r4)
-	lwz      r12, 0(r31)
-	lwz      r12, 0x31c(r12)
-	mtctr    r12
-	bctrl
-	lwz      r0, 0x14(r1)
-	mr       r3, r31
-	lwz      r31, 0xc(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
-}
+Hana::Obj::Obj() { createEffect(); }
 
 /*
  * --INFO--
  * Address:	802F31DC
  * Size:	000004
  */
-void Hana::Obj::createEffect(void) { }
+void Hana::Obj::createEffect() { }
 
 /*
  * --INFO--
  * Address:	802F31E0
  * Size:	000064
  */
-void Hana::Obj::onInit(Game::CreatureInitArg*)
+void Hana::Obj::onInit(CreatureInitArg* arg)
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	mr       r31, r3
-	bl       onInit__Q34Game10ChappyBase3ObjFPQ24Game15CreatureInitArg
-	lwz      r3, 0x174(r31)
-	addi     r4, r2, lbl_8051D1A0@sda21
-	bl       getJoint__Q28SysShape5ModelFPc
-	stw      r3, 0x2c8(r31)
-	mr       r3, r31
-	lwz      r12, 0(r31)
-	lwz      r12, 0x318(r12)
-	mtctr    r12
-	bctrl
-	mr       r3, r31
-	lwz      r12, 0(r31)
-	lwz      r12, 0x320(r12)
-	mtctr    r12
-	bctrl
-	lwz      r0, 0x14(r1)
-	lwz      r31, 0xc(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	ChappyBase::Obj::onInit(arg);
+	m_shadowJoint = m_model->getJoint("kosi");
+	setUnderGround();
+	setupEffect();
 }
 
 /*
@@ -420,7 +356,7 @@ void Hana::Obj::onInit(Game::CreatureInitArg*)
  * Address:	802F3244
  * Size:	000004
  */
-void Hana::Obj::setupEffect(void) { }
+void Hana::Obj::setupEffect() { }
 
 /*
  * --INFO--
@@ -434,76 +370,31 @@ void Hana::Obj::doDirectDraw(Graphics&) { }
  * Address:	802F324C
  * Size:	0000E8
  */
-void Hana::Obj::getShadowParam(Game::ShadowParam&)
+void Hana::Obj::getShadowParam(ShadowParam& param)
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	mr       r31, r4
-	stw      r30, 8(r1)
-	mr       r30, r3
-	bl       getStateID__Q24Game9EnemyBaseFv
-	cmpwi    r3, 7
-	bne      lbl_802F32B0
-	lfs      f0, 0x18c(r30)
-	lfs      f2, lbl_8051D1A8@sda21(r2)
-	stfs     f0, 0(r31)
-	lfs      f1, lbl_8051D1AC@sda21(r2)
-	lfs      f3, 0x190(r30)
-	lfs      f0, lbl_8051D1B0@sda21(r2)
-	stfs     f3, 4(r31)
-	lfs      f3, 0x194(r30)
-	stfs     f3, 8(r31)
-	stfs     f2, 0xc(r31)
-	stfs     f1, 0x10(r31)
-	stfs     f2, 0x14(r31)
-	stfs     f0, 0x18(r31)
-	stfs     f0, 0x1c(r31)
-	b        lbl_802F331C
+	if (getStateID() == ChappyBase::CHAPPY_Sleep) {
+		param.m_position                  = m_position;
+		param.m_boundingSphere.m_position = Vector3f(0.0f, 1.0f, 0.0f);
+		param.m_boundingSphere.m_radius   = 0.1f;
+		param.m_size                      = 0.1f;
+	} else {
+		Matrixf* mtx = m_shadowJoint->getWorldMatrix();
+		f32 y, z;
+		z                  = mtx->m_matrix.structView.tz;
+		y                  = mtx->m_matrix.structView.ty;
+		param.m_position.x = mtx->m_matrix.structView.tx;
+		param.m_position.y = y;
+		param.m_position.z = z;
 
-lbl_802F32B0:
-	lwz      r3, 0x2c8(r30)
-	bl       getWorldMatrix__Q28SysShape5JointFv
-	lfs      f4, 0x2c(r3)
-	lfs      f2, 0x1c(r3)
-	lfs      f0, 0xc(r3)
-	lfs      f3, lbl_8051D1B4@sda21(r2)
-	stfs     f0, 0(r31)
-	lfs      f1, lbl_8051D1A8@sda21(r2)
-	stfs     f2, 4(r31)
-	lfs      f0, lbl_8051D1AC@sda21(r2)
-	stfs     f4, 8(r31)
-	lfs      f2, 0x190(r30)
-	fadds    f2, f3, f2
-	stfs     f2, 4(r31)
-	stfs     f1, 0xc(r31)
-	stfs     f0, 0x10(r31)
-	stfs     f1, 0x14(r31)
-	lwz      r0, 0x1e4(r30)
-	clrlwi.  r0, r0, 0x1f
-	beq      lbl_802F330C
-	lfs      f0, lbl_8051D1B8@sda21(r2)
-	stfs     f0, 0x18(r31)
-	b        lbl_802F3314
-
-lbl_802F330C:
-	lfs      f0, lbl_8051D1BC@sda21(r2)
-	stfs     f0, 0x18(r31)
-
-lbl_802F3314:
-	lfs      f0, lbl_8051D1C0@sda21(r2)
-	stfs     f0, 0x1c(r31)
-
-lbl_802F331C:
-	lwz      r0, 0x14(r1)
-	lwz      r31, 0xc(r1)
-	lwz      r30, 8(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+		param.m_position.y                = m_position.y + 10.0f;
+		param.m_boundingSphere.m_position = Vector3f(0.0f, 1.0f, 0.0f);
+		if (isEvent(1, EB2_IsEarthquake)) {
+			param.m_boundingSphere.m_radius = 75.0f;
+		} else {
+			param.m_boundingSphere.m_radius = 50.0f;
+		}
+		param.m_size = 25.0f;
+	}
 }
 
 /*
@@ -511,59 +402,16 @@ lbl_802F331C:
  * Address:	802F3334
  * Size:	0000B4
  */
-void Hana::Obj::initMouthSlots(void)
+void Hana::Obj::initMouthSlots()
 {
-	/*
-	stwu     r1, -0x20(r1)
-	mflr     r0
-	stw      r0, 0x24(r1)
-	stfd     f31, 0x10(r1)
-	psq_st   f31, 24(r1), 0, qr0
-	stw      r31, 0xc(r1)
-	stw      r30, 8(r1)
-	mr       r30, r3
-	li       r4, 3
-	addi     r3, r30, 0x2c0
-	bl       alloc__10MouthSlotsFi
-	lwz      r5, 0x174(r30)
-	addi     r3, r30, 0x2c0
-	li       r4, 0
-	addi     r6, r2, lbl_8051D1C4@sda21
-	bl       setup__10MouthSlotsFiPQ28SysShape5ModelPc
-	lwz      r5, 0x174(r30)
-	addi     r3, r30, 0x2c0
-	li       r4, 1
-	addi     r6, r2, lbl_8051D1CC@sda21
-	bl       setup__10MouthSlotsFiPQ28SysShape5ModelPc
-	lwz      r5, 0x174(r30)
-	addi     r3, r30, 0x2c0
-	li       r4, 2
-	addi     r6, r2, lbl_8051D1D4@sda21
-	bl       setup__10MouthSlotsFiPQ28SysShape5ModelPc
-	lfs      f31, lbl_8051D1DC@sda21(r2)
-	li       r31, 0
-	b        lbl_802F33BC
-
-lbl_802F33A8:
-	mr       r4, r31
-	addi     r3, r30, 0x2c0
-	bl       getSlot__10MouthSlotsFi
-	stfs     f31, 0x1c(r3)
-	addi     r31, r31, 1
-
-lbl_802F33BC:
-	lwz      r0, 0x2c0(r30)
-	cmpw     r31, r0
-	blt      lbl_802F33A8
-	psq_l    f31, 24(r1), 0, qr0
-	lwz      r0, 0x24(r1)
-	lfd      f31, 0x10(r1)
-	lwz      r31, 0xc(r1)
-	lwz      r30, 8(r1)
-	mtlr     r0
-	addi     r1, r1, 0x20
-	blr
-	*/
+	m_mouthSlots.alloc(3);
+	m_mouthSlots.setup(0, m_model, "kamu1");
+	m_mouthSlots.setup(1, m_model, "kamu2");
+	m_mouthSlots.setup(2, m_model, "kamu3");
+	f32 size = 30.0f;
+	for (int i = 0; i < m_mouthSlots.m_max; i++) {
+		m_mouthSlots.getSlot(i)->m_radius = size;
+	}
 }
 
 /*
@@ -571,8 +419,17 @@ lbl_802F33BC:
  * Address:	802F33E8
  * Size:	000080
  */
-void Hana::Obj::isWakeup(void)
+bool Hana::Obj::isWakeup()
 {
+	ChappyBase::Parms* parms = static_cast<ChappyBase::Parms*>(m_parms);
+	f32 rad                  = parms->m_general.m_privateRadius.m_value;
+
+	if (EnemyFunc::isThereOlimar(this, rad, nullptr) || EnemyFunc::isTherePikmin(this, rad, nullptr)) {
+		return true;
+	} else {
+		return false;
+	}
+
 	/*
 	stwu     r1, -0x20(r1)
 	mflr     r0
@@ -622,46 +479,19 @@ lbl_802F344C:
  * Address:	802F3468
  * Size:	000084
  */
-void Hana::Obj::flickStatePikmin(void)
+void Hana::Obj::flickStatePikmin()
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	lfs      f4, lbl_8051D1E0@sda21(r2)
-	li       r4, 0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	mr       r31, r3
-	lwz      r5, 0xc0(r3)
-	lfs      f1, 0x53c(r5)
-	lfs      f2, 0x4c4(r5)
-	lfs      f3, 0x4ec(r5)
-	bl
-	"flickStickPikmin__Q24Game9EnemyFuncFPQ24Game8CreatureffffP23Condition<Q24Game4Piki>"
-	lwz      r5, 0xc0(r31)
-	mr       r3, r31
-	lfs      f4, lbl_8051D1E0@sda21(r2)
-	li       r4, 0
-	lfs      f1, 0x514(r5)
-	lfs      f2, 0x4c4(r5)
-	lfs      f3, 0x4ec(r5)
-	bl
-	"flickNearbyPikmin__Q24Game9EnemyFuncFPQ24Game8CreatureffffP23Condition<Q24Game4Piki>"
-	lwz      r5, 0xc0(r31)
-	mr       r3, r31
-	lfs      f4, lbl_8051D1E0@sda21(r2)
-	li       r4, 0
-	lfs      f1, 0x514(r5)
-	lfs      f2, 0x4c4(r5)
-	lfs      f3, 0x4ec(r5)
-	bl
-	"flickNearbyNavi__Q24Game9EnemyFuncFPQ24Game8CreatureffffP23Condition<Q24Game4Navi>"
-	lwz      r0, 0x14(r1)
-	lwz      r31, 0xc(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	ChappyBase::Parms* parms = static_cast<ChappyBase::Parms*>(m_parms);
+	EnemyFunc::flickStickPikmin(this, parms->m_general.m_shakeRateMaybe.m_value, parms->m_general.m_shakeKnockback.m_value,
+	                            parms->m_general.m_shakeDamage.m_value, -1000.0f, nullptr);
+
+	parms = static_cast<ChappyBase::Parms*>(m_parms);
+	EnemyFunc::flickNearbyPikmin(this, parms->m_general.m_shakeRange.m_value, parms->m_general.m_shakeKnockback.m_value,
+	                             parms->m_general.m_shakeDamage.m_value, -1000.0f, nullptr);
+
+	parms = static_cast<ChappyBase::Parms*>(m_parms);
+	EnemyFunc::flickNearbyNavi(this, parms->m_general.m_shakeRange.m_value, parms->m_general.m_shakeKnockback.m_value,
+	                           parms->m_general.m_shakeDamage.m_value, -1000.0f, nullptr);
 }
 
 /*
@@ -669,71 +499,17 @@ void Hana::Obj::flickStatePikmin(void)
  * Address:	802F34EC
  * Size:	0000F0
  */
-void Hana::Obj::flickAttackBomb(void)
+void Hana::Obj::flickAttackBomb()
 {
-	/*
-	stwu     r1, -0x30(r1)
-	mflr     r0
-	lfs      f4, lbl_8051D1E0@sda21(r2)
-	li       r4, 0
-	stw      r0, 0x34(r1)
-	stw      r31, 0x2c(r1)
-	mr       r31, r3
-	lwz      r5, 0xc0(r3)
-	lfs      f1, 0x53c(r5)
-	lfs      f2, 0x4c4(r5)
-	lfs      f3, 0x4ec(r5)
-	bl
-	"flickStickPikmin__Q24Game9EnemyFuncFPQ24Game8CreatureffffP23Condition<Q24Game4Piki>"
-	lwz      r3, 0x174(r31)
-	addi     r4, r2, lbl_8051D1E4@sda21
-	bl       getJoint__Q28SysShape5ModelFPc
-	bl       getWorldMatrix__Q28SysShape5JointFv
-	lis      r4, __vt__Q23efx5TBase@ha
-	li       r6, 0
-	addi     r0, r4, __vt__Q23efx5TBase@l
-	lis      r4, __vt__Q23efx8TSimple2@ha
-	stw      r0, 0x14(r1)
-	addi     r0, r4, __vt__Q23efx8TSimple2@l
-	lis      r5, __vt__Q23efx11TSimpleMtx2@ha
-	lis      r4, __vt__Q23efx9THanaMiss@ha
-	stw      r0, 0x14(r1)
-	addi     r0, r5, __vt__Q23efx11TSimpleMtx2@l
-	li       r7, 0x258
-	li       r5, 0x259
-	stw      r0, 0x14(r1)
-	addi     r0, r4, __vt__Q23efx9THanaMiss@l
-	li       r4, 0
-	stw      r3, 0x24(r1)
-	addi     r3, r1, 0x14
-	sth      r7, 0x18(r1)
-	sth      r5, 0x1a(r1)
-	stw      r6, 0x1c(r1)
-	stw      r6, 0x20(r1)
-	stw      r0, 0x14(r1)
-	bl       create__Q23efx11TSimpleMtx2FPQ23efx3Arg
-	lfs      f0, 0x18c(r31)
-	addi     r5, r1, 8
-	lwz      r3, cameraMgr__4Game@sda21(r13)
-	li       r4, 0x1c
-	stfs     f0, 8(r1)
-	li       r6, 2
-	lfs      f0, 0x190(r31)
-	stfs     f0, 0xc(r1)
-	lfs      f0, 0x194(r31)
-	stfs     f0, 0x10(r1)
-	bl       "startVibration__Q24Game9CameraMgrFiR10Vector3<f>i"
-	lwz      r3, rumbleMgr__4Game@sda21(r13)
-	addi     r5, r1, 8
-	li       r4, 0xb
-	li       r6, 2
-	bl       "startRumble__Q24Game9RumbleMgrFiR10Vector3<f>i"
-	lwz      r0, 0x34(r1)
-	lwz      r31, 0x2c(r1)
-	mtlr     r0
-	addi     r1, r1, 0x30
-	blr
-	*/
+	ChappyBase::Parms* parms = static_cast<ChappyBase::Parms*>(m_parms);
+	EnemyFunc::flickStickPikmin(this, parms->m_general.m_shakeRateMaybe.m_value, parms->m_general.m_shakeKnockback.m_value,
+	                            parms->m_general.m_shakeDamage.m_value, -1000.0f, nullptr);
+	efx::THanaMiss efx(m_model->getJoint("kuti2")->getWorldMatrix());
+	efx.create(nullptr);
+
+	Vector3f pos = m_position;
+	cameraMgr->startVibration(28, pos, 2);
+	rumbleMgr->startRumble(11, pos, 2);
 }
 
 /*
@@ -741,26 +517,10 @@ void Hana::Obj::flickAttackBomb(void)
  * Address:	802F35DC
  * Size:	00003C
  */
-void Hana::Obj::eatAttackPikmin(void)
+void Hana::Obj::eatAttackPikmin()
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	lis      r4, "__vt__23Condition<Q24Game4Piki>"@ha
-	lis      r5, __vt__Q24Game21ConditionNotStickSlot@ha
-	stw      r0, 0x14(r1)
-	addi     r0, r4, "__vt__23Condition<Q24Game4Piki>"@l
-	addi     r4, r1, 8
-	stw      r0, 8(r1)
-	addi     r0, r5, __vt__Q24Game21ConditionNotStickSlot@l
-	stw      r0, 8(r1)
-	bl
-	"eatPikmin__Q24Game9EnemyFuncFPQ24Game9EnemyBaseP23Condition<Q24Game4Piki>"
-	lwz      r0, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	ConditionNotStickSlot cond;
+	EnemyFunc::eatPikmin(this, &cond);
 }
 
 /*
@@ -768,38 +528,14 @@ void Hana::Obj::eatAttackPikmin(void)
  * Address:	802F3618
  * Size:	000070
  */
-void Hana::Obj::resetUnderGround(void)
+void Hana::Obj::resetUnderGround()
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	li       r0, 0
-	stw      r31, 0xc(r1)
-	mr       r31, r3
-	stb      r0, 0x2e4(r3)
-	lwz      r0, 0x1e0(r3)
-	rlwinm   r0, r0, 0, 0xa, 8
-	stw      r0, 0x1e0(r3)
-	lwz      r0, 0x1e0(r3)
-	rlwinm   r0, r0, 0, 0xb, 9
-	stw      r0, 0x1e0(r3)
-	bl       hardConstraintOff__Q24Game9EnemyBaseFv
-	lwz      r0, 0x1e0(r31)
-	mr       r3, r31
-	li       r4, 1
-	rlwinm   r0, r0, 0, 0, 0x1e
-	stw      r0, 0x1e0(r31)
-	lwz      r12, 0(r31)
-	lwz      r12, 0xa4(r12)
-	mtctr    r12
-	bctrl
-	lwz      r0, 0x14(r1)
-	lwz      r31, 0xc(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	m_buried = false;
+	disableEvent(0, EB_IsImmuneBitter);
+	disableEvent(0, EB_IsEnemyNotBitter);
+	hardConstraintOff();
+	disableEvent(0, EB_IsVulnerable);
+	setAtari(true);
 }
 
 /*
@@ -807,44 +543,17 @@ void Hana::Obj::resetUnderGround(void)
  * Address:	802F3688
  * Size:	000084
  */
-void Hana::Obj::setUnderGround(void)
+void Hana::Obj::setUnderGround()
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	lfs      f4, lbl_8051D1E0@sda21(r2)
-	li       r4, 0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	mr       r31, r3
-	lwz      r5, 0xc0(r3)
-	lfs      f1, 0x53c(r5)
-	lfs      f2, 0x4c4(r5)
-	lfs      f3, 0x4ec(r5)
-	bl
-	"flickStickPikmin__Q24Game9EnemyFuncFPQ24Game8CreatureffffP23Condition<Q24Game4Piki>"
-	li       r0, 1
-	mr       r3, r31
-	stb      r0, 0x2e4(r31)
-	lwz      r0, 0x1e0(r31)
-	oris     r0, r0, 0x40
-	stw      r0, 0x1e0(r31)
-	bl       hardConstraintOn__Q24Game9EnemyBaseFv
-	lwz      r0, 0x1e0(r31)
-	mr       r3, r31
-	li       r4, 0
-	ori      r0, r0, 1
-	stw      r0, 0x1e0(r31)
-	lwz      r12, 0(r31)
-	lwz      r12, 0xa4(r12)
-	mtctr    r12
-	bctrl
-	lwz      r0, 0x14(r1)
-	lwz      r31, 0xc(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	ChappyBase::Parms* parms = static_cast<ChappyBase::Parms*>(m_parms);
+	EnemyFunc::flickStickPikmin(this, parms->m_general.m_shakeRateMaybe.m_value, parms->m_general.m_shakeKnockback.m_value,
+	                            parms->m_general.m_shakeDamage.m_value, -1000.0f, nullptr);
+
+	m_buried = true;
+	enableEvent(0, EB_IsImmuneBitter);
+	hardConstraintOn();
+	enableEvent(0, EB_IsVulnerable);
+	setAtari(false);
 }
 
 /*
@@ -852,136 +561,30 @@ void Hana::Obj::setUnderGround(void)
  * Address:	802F370C
  * Size:	0001C0
  */
-void Hana::Obj::createSmokeEffect(void)
+void Hana::Obj::createSmokeEffect()
 {
-	/*
-	stwu     r1, -0x40(r1)
-	mflr     r0
-	stw      r0, 0x44(r1)
-	stw      r31, 0x3c(r1)
-	mr       r31, r3
-	lfs      f0, 0x18c(r3)
-	stfs     f0, 8(r1)
-	lfs      f0, 0x190(r3)
-	stfs     f0, 0xc(r1)
-	lfs      f0, 0x194(r3)
-	stfs     f0, 0x10(r1)
-	bl       getCurrAnimIndex__Q24Game9EnemyBaseFv
-	cmpwi    r3, 8
-	bne      lbl_802F382C
-	lfs      f6, 0x1fc(r31)
-	lfs      f0, lbl_8051D1A8@sda21(r2)
-	fmr      f1, f6
-	fcmpo    cr0, f6, f0
-	bge      lbl_802F375C
-	fneg     f1, f6
+	Vector3f pos = m_position;
+	int id       = getCurrAnimIndex();
+	if (id == 8) {
+		pos -= Vector3f(pikmin2_sinf(m_faceDir) * 60.0f, 0.9f, pikmin2_cosf(m_faceDir) * 60.0f);
 
-lbl_802F375C:
-	lfs      f2, lbl_8051D1F0@sda21(r2)
-	lis      r3, sincosTable___5JMath@ha
-	lfs      f0, lbl_8051D1A8@sda21(r2)
-	addi     r4, r3, sincosTable___5JMath@l
-	fmuls    f1, f1, f2
-	lfs      f3, lbl_8051D1EC@sda21(r2)
-	fcmpo    cr0, f6, f0
-	lfs      f4, 8(r1)
-	fctiwz   f0, f1
-	stfd     f0, 0x18(r1)
-	lwz      r0, 0x1c(r1)
-	rlwinm   r0, r0, 3, 0x12, 0x1c
-	add      r3, r4, r0
-	lfs      f0, 4(r3)
-	fmuls    f5, f3, f0
-	bge      lbl_802F37C0
-	lfs      f0, lbl_8051D1F4@sda21(r2)
-	fmuls    f0, f6, f0
-	fctiwz   f0, f0
-	stfd     f0, 0x20(r1)
-	lwz      r0, 0x24(r1)
-	rlwinm   r0, r0, 3, 0x12, 0x1c
-	lfsx     f0, r4, r0
-	fneg     f0, f0
-	b        lbl_802F37D8
+		cameraMgr->startVibration(3, pos, 2);
+		rumbleMgr->startRumble(11, pos, 2);
+	} else if (id == 4) {
+		setAtari(true);
 
-lbl_802F37C0:
-	fmuls    f0, f6, f2
-	fctiwz   f0, f0
-	stfd     f0, 0x28(r1)
-	lwz      r0, 0x2c(r1)
-	rlwinm   r0, r0, 3, 0x12, 0x1c
-	lfsx     f0, r4, r0
+		ChappyBase::Parms* parms = static_cast<ChappyBase::Parms*>(m_parms);
+		EnemyFunc::flickNearbyPikmin(this, parms->m_general.m_privateRadius.m_value, parms->m_general.m_shakeKnockback.m_value,
+		                             parms->m_general.m_shakeDamage.m_value, -1000.0f, nullptr);
 
-lbl_802F37D8:
-	fmuls    f3, f3, f0
-	lfs      f0, 0x10(r1)
-	lfs      f2, 0xc(r1)
-	addi     r5, r1, 8
-	lfs      f1, lbl_8051D1A8@sda21(r2)
-	fsubs    f0, f0, f5
-	fsubs    f3, f4, f3
-	lwz      r3, cameraMgr__4Game@sda21(r13)
-	fsubs    f1, f2, f1
-	stfs     f0, 0x10(r1)
-	li       r4, 3
-	li       r6, 2
-	stfs     f3, 8(r1)
-	stfs     f1, 0xc(r1)
-	bl       "startVibration__Q24Game9CameraMgrFiR10Vector3<f>i"
-	lwz      r3, rumbleMgr__4Game@sda21(r13)
-	addi     r5, r1, 8
-	li       r4, 0xb
-	li       r6, 2
-	bl       "startRumble__Q24Game9RumbleMgrFiR10Vector3<f>i"
-	b        lbl_802F38A8
-
-lbl_802F382C:
-	cmpwi    r3, 4
-	bne      lbl_802F38B8
-	mr       r3, r31
-	li       r4, 1
-	lwz      r12, 0(r31)
-	lwz      r12, 0xa4(r12)
-	mtctr    r12
-	bctrl
-	lwz      r5, 0xc0(r31)
-	mr       r3, r31
-	lfs      f4, lbl_8051D1E0@sda21(r2)
-	li       r4, 0
-	lfs      f1, 0x3ac(r5)
-	lfs      f2, 0x4c4(r5)
-	lfs      f3, 0x4ec(r5)
-	bl
-"flickNearbyPikmin__Q24Game9EnemyFuncFPQ24Game8CreatureffffP23Condition<Q24Game4Piki>"
-	lwz      r5, 0xc0(r31)
-	mr       r3, r31
-	lfs      f4, lbl_8051D1E0@sda21(r2)
-	li       r4, 0
-	lfs      f1, 0x3ac(r5)
-	lfs      f2, 0x4c4(r5)
-	lfs      f3, 0x4ec(r5)
-	bl
-"flickNearbyNavi__Q24Game9EnemyFuncFPQ24Game8CreatureffffP23Condition<Q24Game4Navi>"
-	lwz      r3, rumbleMgr__4Game@sda21(r13)
-	addi     r5, r1, 8
-	li       r4, 0xa
-	li       r6, 2
-	bl       "startRumble__Q24Game9RumbleMgrFiR10Vector3<f>i"
-	b        lbl_802F38A8
-	b        lbl_802F38B8
-
-lbl_802F38A8:
-	lfs      f1, lbl_8051D1AC@sda21(r2)
-	mr       r3, r31
-	addi     r4, r1, 8
-	bl       "createBounceEffect__Q24Game9EnemyBaseFRC10Vector3<f>f"
-
-lbl_802F38B8:
-	lwz      r0, 0x44(r1)
-	lwz      r31, 0x3c(r1)
-	mtlr     r0
-	addi     r1, r1, 0x40
-	blr
-	*/
+		parms = static_cast<ChappyBase::Parms*>(m_parms);
+		EnemyFunc::flickNearbyNavi(this, parms->m_general.m_privateRadius.m_value, parms->m_general.m_shakeKnockback.m_value,
+		                           parms->m_general.m_shakeDamage.m_value, -1000.0f, nullptr);
+		rumbleMgr->startRumble(10, pos, 2);
+	} else {
+		return;
+	}
+	createBounceEffect(pos, 1.0f);
 }
 
 /*
@@ -989,128 +592,79 @@ lbl_802F38B8:
  * Address:	802F38CC
  * Size:	00007C
  */
-void ConditionNotStickSlot::satisfy(Game::Piki* p)
-{
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	mr       r31, r4
-	mr       r3, r31
-	lwz      r12, 0(r31)
-	lwz      r12, 0xa8(r12)
-	mtctr    r12
-	bctrl
-	clrlwi.  r0, r3, 0x18
-	beq      lbl_802F3930
-	mr       r3, r31
-	lwz      r12, 0(r31)
-	lwz      r12, 0x1c0(r12)
-	mtctr    r12
-	bctrl
-	clrlwi.  r0, r3, 0x18
-	beq      lbl_802F3930
-	mr       r3, r31
-	bl       isStickToMouth__Q24Game8CreatureFv
-	clrlwi.  r0, r3, 0x18
-	bne      lbl_802F3930
-	li       r3, 1
-	b        lbl_802F3934
-
-lbl_802F3930:
-	li       r3, 0
-
-lbl_802F3934:
-	lwz      r0, 0x14(r1)
-	lwz      r31, 0xc(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
-}
+// void ConditionNotStickSlot::satisfy(Piki* p)
+//{
+//}
 
 /*
  * --INFO--
  * Address:	802F3948
  * Size:	000004
  */
-void Hana::Obj::changeMaterial(void) { }
+void Hana::Obj::changeMaterial() { }
 
 /*
  * --INFO--
  * Address:	802F394C
  * Size:	000008
  */
-void Hana::Obj::isUnderground(void)
-{
-	/*
-	lbz      r3, 0x2e4(r3)
-	blr
-	*/
-}
+bool Hana::Obj::isUnderground() { return m_buried; }
 
 /*
  * --INFO--
  * Address:	802F3954
  * Size:	000004
  */
-void Hana::Obj::initWalkSmokeEffect(void) { }
+void Hana::Obj::initWalkSmokeEffect() { }
 
 /*
  * --INFO--
  * Address:	802F3958
  * Size:	000008
  */
-u32 Hana::Obj::getWalkSmokeEffectMgr(void) { return 0x0; }
+WalkSmokeEffect::Mgr* Hana::Obj::getWalkSmokeEffectMgr() { return 0x0; }
 
 /*
  * --INFO--
  * Address:	802F3960
  * Size:	000008
  */
-void Hana::Obj::getDownSmokeScale(void)
-{
-	/*
-	lfs      f1, lbl_8051D1F8@sda21(r2)
-	blr
-	*/
-}
+f32 Hana::Obj::getDownSmokeScale() { return 1.2f; }
 
 /*
  * --INFO--
  * Address:	802F3968
  * Size:	000008
  */
-u32 Hana::Obj::getEnemyTypeID(void) { return 0x54; }
+EnemyTypeID::EEnemyTypeID Hana::Obj::getEnemyTypeID() { return EnemyTypeID::EnemyID_Hana; }
 
 /*
  * --INFO--
  * Address:	802F3970
  * Size:	000004
  */
-void Hana::Obj::setAnimationSpeed(float) { }
+void Hana::Obj::setAnimationSpeed(f32) { }
 
 /*
  * --INFO--
  * Address:	802F3974
  * Size:	000004
  */
-void Hana::Obj::flickAttackFail(void) { }
+void Hana::Obj::flickAttackFail() { }
 
 /*
  * --INFO--
  * Address:	802F3978
  * Size:	000004
  */
-void Hana::Obj::startSleepEffect(void) { }
+void Hana::Obj::startSleepEffect() { }
 
 /*
  * --INFO--
  * Address:	802F397C
  * Size:	000004
  */
-void Hana::Obj::finishSleepEffect(void) { }
+void Hana::Obj::finishSleepEffect() { }
 
 } // namespace Game
 
@@ -1119,7 +673,7 @@ void Hana::Obj::finishSleepEffect(void) { }
  * Address:	802F3980
  * Size:	000028
  */
-void __sinit_Hana_cpp(void)
+void __sinit_Hana_cpp()
 {
 	/*
 	lis      r4, __float_nan@ha

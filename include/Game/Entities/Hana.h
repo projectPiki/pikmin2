@@ -43,8 +43,8 @@ struct Obj : public ChappyBase::Obj {
 
 	// _00 		= VTBL
 	// _00-_2E4	= ChappyBase::Obj
-	u8 _2E4; // _2E4
-	         // _2E8 = PelletView
+	bool m_buried; // _2E4
+	               // _2E8 = PelletView
 };
 
 struct Mgr : public EnemyMgrBase {
