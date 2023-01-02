@@ -6,7 +6,10 @@
 namespace PSSystem {
 template <typename T>
 struct SingletonBase {
-	virtual ~SingletonBase(); // _00
+
+	SingletonBase(T* obj) { sInstance = obj; }
+
+	virtual ~SingletonBase() { sInstance = nullptr; }; // _00
 
 	// VTBL _00
 

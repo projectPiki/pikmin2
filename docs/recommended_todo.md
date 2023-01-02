@@ -117,7 +117,7 @@
 | File | Size (bytes) | File | Size (bytes) |
 | ---- | ---- | ---- | ---- |
 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectKandoU/gameTekiStat.cpp">gameTekiStat.cpp</a> | 3302 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectKandoU/aiTeki.cpp">aiTeki.cpp</a> | 5860 |
-| <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectKandoU/mapMgrTraceMove.cpp">mapMgrTraceMove.cpp</a> | 9037 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectKandoU/gameStat.cpp">gameStat.cpp</a> | 9264 |
+| <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectKandoU/mapMgrTraceMove.cpp">mapMgrTraceMove.cpp</a> | 9037 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectKandoU/gameStat.cpp">gameStat.cpp</a> | 9361 |
 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectKandoU/gameDeathCount.cpp">gameDeathCount.cpp</a> | 12493 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectKandoU/gamePelletList.cpp">gamePelletList.cpp</a> | 12594 |
 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectKandoU/baseHIOSection.cpp">baseHIOSection.cpp</a> | 13022 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectKandoU/cellIterator.cpp">cellIterator.cpp</a> | 13172 |
 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectKandoU/aiBreakGate.cpp">aiBreakGate.cpp</a> | 13952 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectKandoU/flockMgr.cpp">flockMgr.cpp</a> | 13973 |
@@ -236,7 +236,7 @@
 ### <section id="utilityU">utilityU</section>
 | File | Size (bytes) | File | Size (bytes) |
 | ---- | ---- | ---- | ---- |
-| <a href="https://github.com/projectPiki/pikmin2/tree/main/src/utilityU/PSMainSide_ObjCalc.cpp">PSMainSide_ObjCalc.cpp</a> | 13188 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/utilityU/PSMainSide_CreaturePrm.cpp">PSMainSide_CreaturePrm.cpp</a> | 14250 |
+| <a href="https://github.com/projectPiki/pikmin2/tree/main/src/utilityU/PSMainSide_ObjCalc.cpp">PSMainSide_ObjCalc.cpp</a> | 9768 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/utilityU/PSMainSide_CreaturePrm.cpp">PSMainSide_CreaturePrm.cpp</a> | 14250 |
 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/utilityU/menu.cpp">menu.cpp</a> | 17991 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/utilityU/PSMainSide_BossMgr.cpp">PSMainSide_BossMgr.cpp</a> | 19836 |
 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/utilityU/PSMainSide_TrackMap.cpp">PSMainSide_TrackMap.cpp</a> | 21251 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/utilityU/PSMainSide_Sound.cpp">PSMainSide_Sound.cpp</a> | 27285 |
 

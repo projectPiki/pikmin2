@@ -1,4 +1,6 @@
-#include "types.h"
+#include "PSM/ObjCalc.h"
+#include "Iterator.h"
+#include "Game/Navi.h"
 
 /*
     Generated from dpostproc
@@ -64,104 +66,76 @@ namespace PSM {
  * Address:	804728A4
  * Size:	000060
  */
-void ObjCalc_SingleGame::newInstance_SingleGame()
-{
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	li       r3, 0xc
-	stw      r0, 0x14(r1)
-	bl       __nw__FUl
-	cmplwi   r3, 0
-	beq      lbl_804728F4
-	lis      r4, "__vt__Q28PSSystem34SingletonBase<Q23PSM11ObjCalcBase>"@ha
-	lis      r5, __vt__Q23PSM11ObjCalcBase@ha
-	addi     r0, r4, "__vt__Q28PSSystem34SingletonBase<Q23PSM11ObjCalcBase>"@l
-	lis      r4, __vt__Q23PSM18ObjCalc_SingleGame@ha
-	stw      r0, 0(r3)
-	addi     r6, r5, __vt__Q23PSM11ObjCalcBase@l
-	li       r5, 0
-	addi     r0, r4, __vt__Q23PSM18ObjCalc_SingleGame@l
-	stw      r3,
-"sInstance__Q28PSSystem34SingletonBase<Q23PSM11ObjCalcBase>"@sda21(r13) stw r6,
-0(r3) stw      r5, 4(r3) stw      r0, 0(r3) stb      r5, 8(r3)
-
-lbl_804728F4:
-	lwz      r0, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
-}
+void ObjCalc_SingleGame::newInstance_SingleGame() { new ObjCalc_SingleGame; }
 
 /*
  * --INFO--
  * Address:	80472904
  * Size:	000008
  */
-void ObjCalc_SingleGame::getPlayerNo(PSM::Creature*)
-{
-	/*
-	lbz      r3, 8(r3)
-	blr
-	*/
-}
+u8 ObjCalc_SingleGame::getPlayerNo(PSM::Creature*) { return m_playerNum; }
 
 /*
  * --INFO--
  * Address:	8047290C
  * Size:	000008
  */
-void ObjCalc_SingleGame::getPlayerNo(Vec&)
-{
-	/*
-	lbz      r3, 8(r3)
-	blr
-	*/
-}
+u8 ObjCalc_SingleGame::getPlayerNo(Vec&) { return m_playerNum; }
 
 /*
  * --INFO--
  * Address:	80472914
  * Size:	00005C
  */
-void ObjCalc_2PGame::newInstance_2PGame()
-{
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	li       r3, 8
-	stw      r0, 0x14(r1)
-	bl       __nw__FUl
-	cmplwi   r3, 0
-	beq      lbl_80472960
-	lis      r4, "__vt__Q28PSSystem34SingletonBase<Q23PSM11ObjCalcBase>"@ha
-	lis      r5, __vt__Q23PSM11ObjCalcBase@ha
-	addi     r0, r4, "__vt__Q28PSSystem34SingletonBase<Q23PSM11ObjCalcBase>"@l
-	lis      r4, __vt__Q23PSM14ObjCalc_2PGame@ha
-	stw      r0, 0(r3)
-	addi     r6, r5, __vt__Q23PSM11ObjCalcBase@l
-	li       r5, 0
-	addi     r0, r4, __vt__Q23PSM14ObjCalc_2PGame@l
-	stw      r3,
-"sInstance__Q28PSSystem34SingletonBase<Q23PSM11ObjCalcBase>"@sda21(r13) stw r6,
-0(r3) stw      r5, 4(r3) stw      r0, 0(r3)
-
-lbl_80472960:
-	lwz      r0, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
-}
+void ObjCalc_2PGame::newInstance_2PGame() { new ObjCalc_2PGame; }
 
 /*
  * --INFO--
  * Address:	80472970
  * Size:	0003BC
  */
-void ObjCalc_2PGame::getPlayerNo(Vec&)
+u8 ObjCalc_2PGame::getPlayerNo(Vec& pos)
 {
+	switch (m_mode) {
+	case OBJCALC_2:
+		return 0;
+
+	case OBJCALC_1:
+		f32 dists[2] = { 100000.0f, 1000000.0f };
+		Iterator<Game::Navi> it(Game::naviMgr);
+		int i = 0;
+		CI_LOOP(it)
+		{
+			Game::Navi* navi = *it;
+			Vector3f pos     = navi->getPosition();
+			f32 x, y, z;
+			z = pos.z;
+			y = pos.y;
+			x = pos.x;
+			P2ASSERTLINE(65, navi);
+			P2ASSERTLINE(66, i < 2);
+
+			// this makes the stack line up, but uhhhhh
+			volatile Vector3f v1 = pos;
+			volatile Vector3f v2 = pos;
+			volatile Vector3f v3 = pos;
+			volatile Vector3f v4 = pos;
+			volatile Vector3f v5 = pos;
+			volatile Vector3f v6 = pos;
+			i++;
+
+			Vector3f dist;
+			dist.x   = pos.x - x;
+			dist.y   = pos.y - y;
+			dist.z   = pos.z - z;
+			dists[i] = dist.sqrMagnitude();
+		}
+		u8 ret = (dists[0] < dists[1]);
+		return ret;
+	default:
+		JUT_PANICLINE(77, "P2Assert");
+		return 0;
+	}
 	/*
 	stwu     r1, -0x90(r1)
 	mflr     r0
@@ -440,70 +414,19 @@ lbl_80472D10:
  * Address:	80472D2C
  * Size:	0000C8
  */
-void ObjCalc_2PGame::getPlayerNo(PSM::Creature*)
+u8 ObjCalc_2PGame::getPlayerNo(PSM::Creature* obj)
 {
-	/*
-	stwu     r1, -0x20(r1)
-	mflr     r0
-	stw      r0, 0x24(r1)
-	stw      r31, 0x1c(r1)
-	stw      r30, 0x18(r1)
-	or.      r30, r4, r4
-	lis      r4, lbl_8049E1C8@ha
-	stw      r29, 0x14(r1)
-	mr       r29, r3
-	addi     r31, r4, lbl_8049E1C8@l
-	bne      lbl_80472D6C
-	addi     r3, r31, 0
-	addi     r5, r31, 0x18
-	li       r4, 0x57
-	crclr    6
-	bl       panic_f__12JUTExceptionFPCciPCce
-
-lbl_80472D6C:
-	lwz      r0, 4(r29)
-	cmpwi    r0, 1
-	beq      lbl_80472D88
-	bge      lbl_80472DAC
-	cmpwi    r0, 0
-	bge      lbl_80472D90
-	b        lbl_80472DAC
-
-lbl_80472D88:
-	li       r3, 0
-	b        lbl_80472DD8
-
-lbl_80472D90:
-	lwz      r3, 0x2c(r30)
-	lwz      r12, 0(r3)
-	lwz      r12, 0xfc(r12)
-	mtctr    r12
-	bctrl
-	lbz      r3, 1(r3)
-	b        lbl_80472DD8
-
-lbl_80472DAC:
-	addi     r3, r31, 0
-	addi     r5, r31, 0x24
-	li       r4, 0x7d
-	crclr    6
-	bl       panic_f__12JUTExceptionFPCciPCce
-	addi     r3, r31, 0
-	addi     r5, r31, 0x38
-	li       r4, 0x80
-	crclr    6
-	bl       panic_f__12JUTExceptionFPCciPCce
-	li       r3, 0
-
-lbl_80472DD8:
-	lwz      r0, 0x24(r1)
-	lwz      r31, 0x1c(r1)
-	lwz      r30, 0x18(r1)
-	lwz      r29, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x20
-	blr
-	*/
+	P2ASSERTLINE(87, obj);
+	switch (m_mode) {
+	case OBJCALC_2:
+		return 0;
+	case OBJCALC_1:
+		return obj->m_gameObj->getSound_AILOD()->m_sndVpId;
+	default:
+		JUT_PANICLINE(125, "ありえないケース1");
+		JUT_PANICLINE(128, "ありえないケース2");
+		return 0;
+	}
 }
 
 /*
@@ -511,95 +434,19 @@ lbl_80472DD8:
  * Address:	80472DF4
  * Size:	000074
  */
-ObjCalc_SingleGame::~ObjCalc_SingleGame()
-{
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	or.      r31, r3, r3
-	beq      lbl_80472E50
-	lis      r3, __vt__Q23PSM18ObjCalc_SingleGame@ha
-	addi     r0, r3, __vt__Q23PSM18ObjCalc_SingleGame@l
-	stw      r0, 0(r31)
-	beq      lbl_80472E40
-	lis      r3, __vt__Q23PSM11ObjCalcBase@ha
-	addi     r0, r3, __vt__Q23PSM11ObjCalcBase@l
-	stw      r0, 0(r31)
-	beq      lbl_80472E40
-	lis      r3, "__vt__Q28PSSystem34SingletonBase<Q23PSM11ObjCalcBase>"@ha
-	li       r0, 0
-	addi     r3, r3, "__vt__Q28PSSystem34SingletonBase<Q23PSM11ObjCalcBase>"@l
-	stw      r3, 0(r31)
-	stw      r0,
-"sInstance__Q28PSSystem34SingletonBase<Q23PSM11ObjCalcBase>"@sda21(r13)
-
-lbl_80472E40:
-	extsh.   r0, r4
-	ble      lbl_80472E50
-	mr       r3, r31
-	bl       __dl__FPv
-
-lbl_80472E50:
-	lwz      r0, 0x14(r1)
-	mr       r3, r31
-	lwz      r31, 0xc(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
-}
+ObjCalc_SingleGame::~ObjCalc_SingleGame() { }
 
 /*
  * --INFO--
  * Address:	80472E68
  * Size:	000074
  */
-ObjCalc_2PGame::~ObjCalc_2PGame()
-{
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	or.      r31, r3, r3
-	beq      lbl_80472EC4
-	lis      r3, __vt__Q23PSM14ObjCalc_2PGame@ha
-	addi     r0, r3, __vt__Q23PSM14ObjCalc_2PGame@l
-	stw      r0, 0(r31)
-	beq      lbl_80472EB4
-	lis      r3, __vt__Q23PSM11ObjCalcBase@ha
-	addi     r0, r3, __vt__Q23PSM11ObjCalcBase@l
-	stw      r0, 0(r31)
-	beq      lbl_80472EB4
-	lis      r3, "__vt__Q28PSSystem34SingletonBase<Q23PSM11ObjCalcBase>"@ha
-	li       r0, 0
-	addi     r3, r3, "__vt__Q28PSSystem34SingletonBase<Q23PSM11ObjCalcBase>"@l
-	stw      r3, 0(r31)
-	stw      r0,
-"sInstance__Q28PSSystem34SingletonBase<Q23PSM11ObjCalcBase>"@sda21(r13)
-
-lbl_80472EB4:
-	extsh.   r0, r4
-	ble      lbl_80472EC4
-	mr       r3, r31
-	bl       __dl__FPv
-
-lbl_80472EC4:
-	lwz      r0, 0x14(r1)
-	mr       r3, r31
-	lwz      r31, 0xc(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
-}
+ObjCalc_2PGame::~ObjCalc_2PGame() { }
 
 /*
  * --INFO--
  * Address:	80472EDC
  * Size:	000008
  */
-u32 ObjCalc_2PGame::is1PGame() { return 0x0; }
+bool ObjCalc_2PGame::is1PGame() { return false; }
 } // namespace PSM
