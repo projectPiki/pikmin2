@@ -1,4 +1,25 @@
-#include "types.h"
+#include "Game/pelletMgr.h"
+#include "Game/MoviePlayer.h"
+#include "Game/gamePlayData.h"
+#include "Game/Entities/ItemOnyon.h"
+#include "Game/PikiMgr.h"
+#include "Game/generalEnemyMgr.h"
+#include "System.h"
+#include "Game/Data.h"
+#include "Game/AIConstants.h"
+#include "Game/Entities/ItemHoney.h"
+#include "trig.h"
+#include "Game/Stickers.h"
+#include "Radar.h"
+#include "PSSystem/PSGame.h"
+#include "PSSystem/PSScene.h"
+#include "PSSystem/PSMainSide_Scene.h"
+#include "PSM/EventBase.h"
+#include "Dolphin/rand.h"
+#include "Game/pathfinder.h"
+#include "efx/TTsuyuGrow.h"
+#include "Game/MapMgr.h"
+#include "efx/TEnemyDownSmoke.h"
 
 /*
     Generated from dpostproc
@@ -440,208 +461,18 @@ namespace Game {
  * Address:	801A4310
  * Size:	0002AC
  */
-void PelletFSM::init(Game::Pellet*)
+void PelletFSM::init(Pellet* obj)
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	li       r4, 9
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	mr       r31, r3
-	bl       "create__Q24Game28StateMachine<Q24Game6Pellet>Fi"
-	li       r3, 0x10
-	bl       __nw__FUl
-	or.      r4, r3, r3
-	beq      lbl_801A436C
-	lis      r3, "__vt__Q24Game24FSMState<Q24Game6Pellet>"@ha
-	lis      r5, __vt__Q24Game11PelletState@ha
-	addi     r0, r3, "__vt__Q24Game24FSMState<Q24Game6Pellet>"@l
-	lis      r3, __vt__Q24Game17PelletNormalState@ha
-	stw      r0, 0(r4)
-	li       r6, 0
-	addi     r5, r5, __vt__Q24Game11PelletState@l
-	addi     r0, r3, __vt__Q24Game17PelletNormalState@l
-	stw      r6, 4(r4)
-	stw      r6, 8(r4)
-	stw      r5, 0(r4)
-	stw      r0, 0(r4)
-
-lbl_801A436C:
-	mr       r3, r31
-	bl
-"registerState__Q24Game28StateMachine<Q24Game6Pellet>FPQ24Game24FSMState<Q24Game6Pellet>"
-	li       r3, 0x40
-	bl       __nw__FUl
-	or.      r4, r3, r3
-	beq      lbl_801A43B8
-	lis      r3, "__vt__Q24Game24FSMState<Q24Game6Pellet>"@ha
-	lis      r5, __vt__Q24Game11PelletState@ha
-	addi     r0, r3, "__vt__Q24Game24FSMState<Q24Game6Pellet>"@l
-	lis      r3, __vt__Q24Game15PelletGoalState@ha
-	stw      r0, 0(r4)
-	li       r0, 1
-	li       r6, 0
-	addi     r5, r5, __vt__Q24Game11PelletState@l
-	stw      r0, 4(r4)
-	addi     r0, r3, __vt__Q24Game15PelletGoalState@l
-	stw      r6, 8(r4)
-	stw      r5, 0(r4)
-	stw      r0, 0(r4)
-
-lbl_801A43B8:
-	mr       r3, r31
-	bl
-"registerState__Q24Game28StateMachine<Q24Game6Pellet>FPQ24Game24FSMState<Q24Game6Pellet>"
-	li       r3, 0x10
-	bl       __nw__FUl
-	or.      r4, r3, r3
-	beq      lbl_801A4404
-	lis      r3, "__vt__Q24Game24FSMState<Q24Game6Pellet>"@ha
-	lis      r5, __vt__Q24Game11PelletState@ha
-	addi     r0, r3, "__vt__Q24Game24FSMState<Q24Game6Pellet>"@l
-	lis      r3, __vt__Q24Game15PelletBuryState@ha
-	stw      r0, 0(r4)
-	li       r0, 2
-	li       r6, 0
-	addi     r5, r5, __vt__Q24Game11PelletState@l
-	stw      r0, 4(r4)
-	addi     r0, r3, __vt__Q24Game15PelletBuryState@l
-	stw      r6, 8(r4)
-	stw      r5, 0(r4)
-	stw      r0, 0(r4)
-
-lbl_801A4404:
-	mr       r3, r31
-	bl
-"registerState__Q24Game28StateMachine<Q24Game6Pellet>FPQ24Game24FSMState<Q24Game6Pellet>"
-	li       r3, 0x10
-	bl       __nw__FUl
-	or.      r4, r3, r3
-	beq      lbl_801A4450
-	lis      r3, "__vt__Q24Game24FSMState<Q24Game6Pellet>"@ha
-	lis      r5, __vt__Q24Game11PelletState@ha
-	addi     r0, r3, "__vt__Q24Game24FSMState<Q24Game6Pellet>"@l
-	lis      r3, __vt__Q24Game13PelletUpState@ha
-	stw      r0, 0(r4)
-	li       r0, 3
-	li       r6, 0
-	addi     r5, r5, __vt__Q24Game11PelletState@l
-	stw      r0, 4(r4)
-	addi     r0, r3, __vt__Q24Game13PelletUpState@l
-	stw      r6, 8(r4)
-	stw      r5, 0(r4)
-	stw      r0, 0(r4)
-
-lbl_801A4450:
-	mr       r3, r31
-	bl
-"registerState__Q24Game28StateMachine<Q24Game6Pellet>FPQ24Game24FSMState<Q24Game6Pellet>"
-	li       r3, 0x30
-	bl       __nw__FUl
-	or.      r4, r3, r3
-	beq      lbl_801A449C
-	lis      r3, "__vt__Q24Game24FSMState<Q24Game6Pellet>"@ha
-	lis      r5, __vt__Q24Game11PelletState@ha
-	addi     r0, r3, "__vt__Q24Game24FSMState<Q24Game6Pellet>"@l
-	lis      r3, __vt__Q24Game17PelletAppearState@ha
-	stw      r0, 0(r4)
-	li       r0, 4
-	li       r6, 0
-	addi     r5, r5, __vt__Q24Game11PelletState@l
-	stw      r0, 4(r4)
-	addi     r0, r3, __vt__Q24Game17PelletAppearState@l
-	stw      r6, 8(r4)
-	stw      r5, 0(r4)
-	stw      r0, 0(r4)
-
-lbl_801A449C:
-	mr       r3, r31
-	bl
-"registerState__Q24Game28StateMachine<Q24Game6Pellet>FPQ24Game24FSMState<Q24Game6Pellet>"
-	li       r3, 0x30
-	bl       __nw__FUl
-	or.      r4, r3, r3
-	beq      lbl_801A44E8
-	lis      r3, "__vt__Q24Game24FSMState<Q24Game6Pellet>"@ha
-	lis      r5, __vt__Q24Game11PelletState@ha
-	addi     r0, r3, "__vt__Q24Game24FSMState<Q24Game6Pellet>"@l
-	lis      r3, __vt__Q24Game22PelletScaleAppearState@ha
-	stw      r0, 0(r4)
-	li       r0, 5
-	li       r6, 0
-	addi     r5, r5, __vt__Q24Game11PelletState@l
-	stw      r0, 4(r4)
-	addi     r0, r3, __vt__Q24Game22PelletScaleAppearState@l
-	stw      r6, 8(r4)
-	stw      r5, 0(r4)
-	stw      r0, 0(r4)
-
-lbl_801A44E8:
-	mr       r3, r31
-	bl
-"registerState__Q24Game28StateMachine<Q24Game6Pellet>FPQ24Game24FSMState<Q24Game6Pellet>"
-	li       r3, 0x14
-	bl       __nw__FUl
-	or.      r4, r3, r3
-	beq      lbl_801A4534
-	lis      r3, "__vt__Q24Game24FSMState<Q24Game6Pellet>"@ha
-	lis      r5, __vt__Q24Game11PelletState@ha
-	addi     r0, r3, "__vt__Q24Game24FSMState<Q24Game6Pellet>"@l
-	lis      r3, __vt__Q24Game16PelletZukanState@ha
-	stw      r0, 0(r4)
-	li       r0, 6
-	li       r6, 0
-	addi     r5, r5, __vt__Q24Game11PelletState@l
-	stw      r0, 4(r4)
-	addi     r0, r3, __vt__Q24Game16PelletZukanState@l
-	stw      r6, 8(r4)
-	stw      r5, 0(r4)
-	stw      r0, 0(r4)
-
-lbl_801A4534:
-	mr       r3, r31
-	bl
-"registerState__Q24Game28StateMachine<Q24Game6Pellet>FPQ24Game24FSMState<Q24Game6Pellet>"
-	li       r3, 0x14
-	bl       __nw__FUl
-	or.      r4, r3, r3
-	beq      lbl_801A4580
-	lis      r3, "__vt__Q24Game24FSMState<Q24Game6Pellet>"@ha
-	lis      r5, __vt__Q24Game11PelletState@ha
-	addi     r0, r3, "__vt__Q24Game24FSMState<Q24Game6Pellet>"@l
-	lis      r3, __vt__Q24Game19PelletGoalWaitState@ha
-	stw      r0, 0(r4)
-	li       r0, 7
-	li       r6, 0
-	addi     r5, r5, __vt__Q24Game11PelletState@l
-	stw      r0, 4(r4)
-	addi     r0, r3, __vt__Q24Game19PelletGoalWaitState@l
-	stw      r6, 8(r4)
-	stw      r5, 0(r4)
-	stw      r0, 0(r4)
-
-lbl_801A4580:
-	mr       r3, r31
-	bl
-"registerState__Q24Game28StateMachine<Q24Game6Pellet>FPQ24Game24FSMState<Q24Game6Pellet>"
-	li       r3, 0x40
-	bl       __nw__FUl
-	or.      r4, r3, r3
-	beq      lbl_801A45A0
-	bl       __ct__Q24Game17PelletReturnStateFv
-	mr       r4, r3
-
-lbl_801A45A0:
-	mr       r3, r31
-	bl
-"registerState__Q24Game28StateMachine<Q24Game6Pellet>FPQ24Game24FSMState<Q24Game6Pellet>"
-	lwz      r0, 0x14(r1)
-	lwz      r31, 0xc(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	create(PELLET_STATE_COUNT);
+	registerState(new PelletNormalState);
+	registerState(new PelletGoalState);
+	registerState(new PelletBuryState);
+	registerState(new PelletUpState);
+	registerState(new PelletAppearState);
+	registerState(new PelletScaleAppearState);
+	registerState(new PelletZukanState);
+	registerState(new PelletGoalWaitState);
+	registerState(new PelletReturnState);
 }
 
 /*
@@ -649,101 +480,50 @@ lbl_801A45A0:
  * Address:	801A45BC
  * Size:	000004
  */
-void PelletNormalState::init(Game::Pellet*, Game::StateArg*) { }
+void PelletNormalState::init(Pellet*, StateArg*) { }
 
 /*
  * --INFO--
  * Address:	801A45C0
  * Size:	000004
  */
-void PelletNormalState::exec(Game::Pellet*) { }
+void PelletNormalState::exec(Pellet*) { }
 
 /*
  * --INFO--
  * Address:	801A45C4
  * Size:	000004
  */
-void PelletNormalState::cleanup(Game::Pellet*) { }
+void PelletNormalState::cleanup(Pellet*) { }
 
 /*
  * --INFO--
  * Address:	801A45C8
  * Size:	00007C
  */
-void PelletGoalWaitState::init(Game::Pellet*, Game::StateArg*)
+void PelletGoalWaitState::init(Pellet* pelt, StateArg* arg)
 {
-	/*
-	stwu     r1, -0x20(r1)
-	mflr     r0
-	stw      r0, 0x24(r1)
-	stw      r31, 0x1c(r1)
-	or.      r31, r5, r5
-	stw      r30, 0x18(r1)
-	mr       r30, r4
-	stw      r29, 0x14(r1)
-	mr       r29, r3
-	bne      lbl_801A460C
-	lis      r3, lbl_8047F4A8@ha
-	lis      r5, lbl_8047F4B8@ha
-	addi     r3, r3, lbl_8047F4A8@l
-	li       r4, 0x1b0
-	addi     r5, r5, lbl_8047F4B8@l
-	crclr    6
-	bl       panic_f__12JUTExceptionFPCciPCce
+	PelletGoalStateArg* sarg = static_cast<PelletGoalStateArg*>(arg);
 
-lbl_801A460C:
-	lwz      r0, 0(r31)
-	mr       r3, r30
-	stw      r0, 0x10(r29)
-	lwz      r12, 0(r30)
-	lwz      r12, 0x1a8(r12)
-	mtctr    r12
-	bctrl
-	lwz      r0, 0x24(r1)
-	lwz      r31, 0x1c(r1)
-	lwz      r30, 0x18(r1)
-	lwz      r29, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x20
-	blr
-	*/
+	P2ASSERTLINE(432, arg);
+	m_obj = sarg->m_creature;
+
+	pelt->getCreatureName();
 }
 
 /*
  * --INFO--
  * Address:	801A4644
  * Size:	000060
+ * This whole state exists solely to delay pellets being sucked into the ship
+ * until after a cutscene isnt playing
  */
-void PelletGoalWaitState::exec(Game::Pellet*)
+void PelletGoalWaitState::exec(Pellet* pelt)
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	lwz      r5, moviePlayer__4Game@sda21(r13)
-	cmplwi   r5, 0
-	beq      lbl_801A4694
-	lwz      r0, 0x18(r5)
-	cmpwi    r0, 0
-	bne      lbl_801A4694
-	lwz      r7, 0x10(r3)
-	lis      r5, __vt__Q24Game18PelletGoalStateArg@ha
-	addi     r0, r5, __vt__Q24Game18PelletGoalStateArg@l
-	addi     r6, r1, 8
-	stw      r0, 0xc(r1)
-	li       r5, 1
-	stw      r7, 8(r1)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x1c(r12)
-	mtctr    r12
-	bctrl
-
-lbl_801A4694:
-	lwz      r0, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	if (moviePlayer && moviePlayer->m_demoState == 0) {
+		PelletGoalStateArg arg(m_obj);
+		transit(pelt, PELSTATE_Goal, &arg);
+	}
 }
 
 /*
@@ -751,39 +531,122 @@ lbl_801A4694:
  * Address:	801A46A4
  * Size:	000030
  */
-void transit__Q24Game24FSMState<Game::Pellet> FPQ24Game6PelletiPQ24Game8StateArg(void)
-{
-	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  stw       r0, 0x14(r1)
-	  lwz       r3, 0x8(r3)
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0x14(r12)
-	  mtctr     r12
-	  bctrl
-	  lwz       r0, 0x14(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
-	*/
-}
+// void FSMState<Game::Pellet>::transit(Pellet*, int, StateArg*)
+//{
+//}
 
 /*
  * --INFO--
  * Address:	801A46D4
  * Size:	000004
  */
-void PelletGoalWaitState::cleanup(Game::Pellet*) { }
+void PelletGoalWaitState::cleanup(Pellet*) { }
 
 /*
  * --INFO--
  * Address:	801A46D8
  * Size:	000680
  */
-void PelletGoalState::init(Game::Pellet*, Game::StateArg*)
+void PelletGoalState::init(Pellet* pelt, StateArg* arg)
 {
+	pelt->clearClaim();
+
+	// check if a new upgrade is acquired
+	if (pelt->getKind() == PELTYPE_UPGRADE && gameSystem->m_mode == GSM_STORY_MODE) {
+		int id = pelt->getConfigIndex();
+		if (id >= 0 && id < 12) {
+			playData->m_olimarData->getItem(id);
+		}
+	}
+	pelt->setAlive(false);
+	bool flag                = false;
+	PelletGoalStateArg* sarg = static_cast<PelletGoalStateArg*>(arg);
+	m_onyon                  = sarg->m_creature;
+	switch (gameSystem->m_mode) {
+	case GSM_STORY_MODE:
+		flag = checkMovie(pelt);
+		break;
+
+	case GSM_ONE_PLAYER_CHALLENGE:
+	case GSM_TWO_PLAYER_CHALLENGE:
+		break;
+
+	case GSM_VERSUS_MODE:
+		int type = pelt->m_pelletFlag;
+		if ((u32)type == Pellet::FLAG_VS_BEDAMA_RED) {
+			pelt->movie_begin(false);
+			m_onyon->movie_begin(false);
+			GameMessageVsRedOrSuckStart mesg(1);
+			mesg.m_isYellow = false;
+			gameSystem->m_section->sendMessage(mesg);
+		} else if ((u32)type == Pellet::FLAG_VS_BEDAMA_BLUE) {
+			pelt->movie_begin(false);
+			m_onyon->movie_begin(false);
+			GameMessageVsRedOrSuckStart mesg2(0);
+			mesg2.m_isYellow = false;
+			gameSystem->m_section->sendMessage(mesg2);
+		} else if ((u32)type == Pellet::FLAG_VS_BEDAMA_YELLOW) {
+			if ((int)m_onyon->m_objectTypeID == OBJTYPE_Onyon) {
+				pelt->movie_begin(false);
+				m_onyon->movie_begin(false);
+				GameMessageVsRedOrSuckStart mesg3(1 - static_cast<Onyon*>(m_onyon)->m_onyonType);
+				mesg3.m_isYellow = true;
+				gameSystem->m_section->sendMessage(mesg3);
+			} else {
+				JUT_PANICLINE(512, "not onyon %d\n", m_onyon->m_objectTypeID);
+			}
+		}
+	}
+
+	if (flag) {
+		m_onyon->movie_begin(false);
+		pelt->movie_begin(false);
+	}
+
+	Vector3f peltPos = pelt->getPosition();
+	Vector3f suckPos = m_onyon->getSuckPos();
+	m_distance       = _distanceBetween2(peltPos, suckPos);
+	_14              = 0.0f;
+	m_suckDelay      = 1.5f;
+
+	Vector3f vel = pelt->getVelocity();
+	vel          = Vector3f(vel.x, 0.0f, vel.z);
+	pelt->setVelocity(vel);
+	m_scale = 1.0f;
+
+	if (pelt->m_pelletView) {
+		m_scale = pelt->m_pelletView->viewGetBaseScale();
+	}
+
+	if (((int)m_onyon->m_objectTypeID == OBJTYPE_Onyon || (int)m_onyon->m_objectTypeID == OBJTYPE_Ufo) && !flag) {
+		static_cast<Onyon*>(m_onyon)->efxSuikomi();
+	}
+	m_inDemo     = flag;
+	m_didSuikomi = false;
+	if (!m_inDemo) {
+		Iterator<Piki> it(pikiMgr);
+		CI_LOOP(it)
+		{
+			Piki* piki = *it;
+			piki->movie_end(false);
+		}
+
+		GeneralMgrIterator<EnemyBase> it2(generalEnemyMgr);
+		for (it2.first(); it2.m_index != nullptr; it2.next()) {
+			EnemyBase* enemy = it2.getObject();
+			enemy->movie_end(false);
+		}
+	}
+
+	pelt->sound_otakaraEventFinish();
+	if (!(u8)m_onyon->isSuckArriveWait()) {
+		InteractSuckArrive act(pelt);
+		m_onyon->stimulate(act);
+		m_isWaiting = 0;
+	} else {
+		m_isWaiting = 1;
+	}
+
 	/*
 	stwu     r1, -0xa0(r1)
 	mflr     r0
@@ -1267,8 +1130,228 @@ lbl_801A4D3C:
  * Address:	801A4D58
  * Size:	000D6C
  */
-void PelletGoalState::checkMovie(Game::Pellet*)
+bool PelletGoalState::checkMovie(Pellet* pelt)
 {
+	bool isGot = false;
+	// For treasure, upgrades, and corpses, only check for a cutscene if the pellet was collected for the first time. (only berries and
+	// number pellets dont check) This leads to a bug where the first corpse cutscene wont play for enemies youve already collected at an
+	// onion above ground
+	if (gameSystem->m_mode == GSM_STORY_MODE) {
+		isGot = playData->firstCarryPellet(pelt);
+	}
+	if (pelt->getKind() == PELTYPE_BERRY) {
+		isGot = true;
+	}
+	if (pelt->getKind() == PELTYPE_NUMBER) {
+		isGot = true;
+	}
+
+	if (!strcmp(pelt->m_config->m_params.m_name.m_data, "key")) {
+		if (!gameSystem->isChallengeMode()) {
+			sys->getPlayCommonData()->enableChallengeGame();
+			sys->m_playData->m_challengeOpen = true;
+		}
+	} else {
+		if (gameSystem->isChallengeMode()) {
+			return false;
+		}
+	}
+
+	if (!strcmp(pelt->m_config->m_params.m_name.m_data, "loozy")) {
+		sys->getPlayCommonData()->enableLouieRescue();
+		sys->m_playData->m_challengeOpen = true;
+		playData->m_storyFlags |= STORY_LouieRescued;
+	}
+	bool draw2d = false;
+	bool doPlay = false;
+	if (isGot) {
+		Onyon* onyon = nullptr;
+		if ((m_onyon->m_objectTypeID == OBJTYPE_Ufo || m_onyon->m_objectTypeID == OBJTYPE_Onyon)) {
+			onyon = static_cast<Onyon*>(m_onyon);
+		}
+
+		// The pellet was carried to the ship, if not in a cave, play a cutscene based on pellet type
+		if (onyon && onyon->m_onyonType == ONYON_TYPE_SHIP) {
+			if (gameSystem->m_section->getCurrentCourseInfo()) {
+				// for berries, check if a kind was collected for the first time, or 10 of the berry have been collected
+				if (pelt->getKind() == PELTYPE_BERRY) {
+					int type = pelt->m_pelletColor;
+					if (!type) {
+						playData->getDopeFruitCount(type);
+						playData->isDemoFlag(DEMO_First_Spicy_Berry);
+						playData->isDemoFlag(DEMO_First_Spicy_Spray_Made);
+						int dope0 = playData->getDopeFruitCount(type);
+						playData->addDopeFruit(type);
+						playData->getDopeFruitCount(0);
+						playData->getDopeFruitCount(1);
+						if (!playData->isDemoFlag(DEMO_First_Spicy_Berry)) {
+							playData->setDemoFlag(DEMO_First_Spicy_Berry);
+							gameSystem->m_section->setDraw2DCreature(pelt);
+							char* name = const_cast<char*>(gameSystem->m_section->getCurrentCourseInfo()->m_name);
+							MoviePlayArg arg("s11_dope_first_r", name, gameSystem->m_section->m_movieFinishCallback, 0);
+							moviePlayer->play(arg);
+							doPlay = true;
+						} else {
+							if (!playData->isDemoFlag(DEMO_First_Spicy_Spray_Made)) {
+								playData->getDopeFruitCount(type);
+								if (dope0 + 1 >= _aiConstants->m_dopeCount.m_data) {
+									playData->setDemoFlag(DEMO_First_Spicy_Spray_Made);
+									BaseItem* item = ItemHoney::mgr->birth();
+									ItemHoney::InitArg arg(1, 1);
+									item->init(&arg);
+									Vector3f pos(0.0f, FLOAT_DIST_MAX, 0.0f);
+									item->setPosition(pos, false);
+									item->movie_begin(false);
+									draw2d = true;
+									gameSystem->m_section->setDraw2DCreature(item);
+
+									char* name = const_cast<char*>(gameSystem->m_section->getCurrentCourseInfo()->m_name);
+									MoviePlayArg moviearg("s11_dopebin_first_r", name, gameSystem->m_section->m_movieFinishCallback, 0);
+									moviePlayer->play(moviearg);
+									doPlay = true;
+								}
+							}
+						}
+					} else {
+						playData->getDopeFruitCount(type);
+						playData->isDemoFlag(DEMO_First_Bitter_Berry);
+						playData->isDemoFlag(DEMO_First_Bitter_Spray_Made);
+						int dope0 = playData->getDopeFruitCount(type);
+						playData->addDopeFruit(type);
+						playData->getDopeFruitCount(0);
+						playData->getDopeFruitCount(1);
+						if (!playData->isDemoFlag(DEMO_First_Bitter_Berry)) {
+							playData->setDemoFlag(DEMO_First_Bitter_Berry);
+							gameSystem->m_section->setDraw2DCreature(pelt);
+							char* name = const_cast<char*>(gameSystem->m_section->getCurrentCourseInfo()->m_name);
+							MoviePlayArg arg("s11_dope_first_b", name, gameSystem->m_section->m_movieFinishCallback, 0);
+							moviePlayer->play(arg);
+							doPlay = true;
+						} else {
+							if (!playData->isDemoFlag(DEMO_First_Bitter_Spray_Made)) {
+								playData->getDopeFruitCount(type);
+								if (dope0 + 1 >= _aiConstants->m_dopeCount.m_data) {
+									playData->setDemoFlag(DEMO_First_Bitter_Spray_Made);
+									BaseItem* item = ItemHoney::mgr->birth();
+									ItemHoney::InitArg arg(2, 1);
+									item->init(&arg);
+									Vector3f pos(0.0f, FLOAT_DIST_MAX, 0.0f);
+									item->setPosition(pos, false);
+									item->movie_begin(false);
+									draw2d = true;
+									gameSystem->m_section->setDraw2DCreature(item);
+
+									char* name = const_cast<char*>(gameSystem->m_section->getCurrentCourseInfo()->m_name);
+									MoviePlayArg moviearg("s11_dopebin_first_b", name, gameSystem->m_section->m_movieFinishCallback, 0);
+									moviePlayer->play(moviearg);
+									doPlay = true;
+								}
+							}
+						}
+					}
+				} else if (pelt->getKind() == PELTYPE_TREASURE) {
+					// Treasure carried to the ship (assume above ground)
+					gameSystem->m_section->setDraw2DCreature(pelt);
+					char* name = const_cast<char*>(gameSystem->m_section->getCurrentCourseInfo()->m_name);
+					MoviePlayArg moviearg("s10_suck_treasure", name, gameSystem->m_section->m_movieFinishCallback, 0);
+					moviearg.m_pelletName = pelt->m_config->m_params.m_name.m_data;
+					moviePlayer->play(moviearg);
+					doPlay = true;
+
+				} else if (pelt->getKind() == PELTYPE_UPGRADE) {
+					// Upgrade carried to the ship (this only appears with the globe in AW normally)
+					// strangely, upgrades with an ID of 8 or more use a different theme
+					gameSystem->m_section->setDraw2DCreature(pelt);
+					char* name = const_cast<char*>(gameSystem->m_section->getCurrentCourseInfo()->m_name);
+					MoviePlayArg moviearg("s17_suck_equipment", name, gameSystem->m_section->m_movieFinishCallback, 0);
+					moviearg.m_pelletName = pelt->m_config->m_params.m_name.m_data;
+					moviearg.m_streamID   = 0xc001100b;
+					if (pelt->m_config->m_params.m_index >= 8) {
+						moviearg.m_streamID = 0xc001100a;
+					}
+					moviePlayer->play(moviearg);
+					doPlay = true;
+				} else {
+					// A completely unused cutscene, in theory this would play if you carried a corpse or number pellet to the ship
+					// but even if you did, this cutscene doesnt exist in the files, so nothing happens
+					char* name = const_cast<char*>(gameSystem->m_section->getCurrentCourseInfo()->m_name);
+					MoviePlayArg moviearg("suck_ufo", name, gameSystem->m_section->m_movieFinishCallback, 0);
+					moviePlayer->play(moviearg);
+					doPlay = true;
+				}
+			}
+		} else if (onyon && onyon->m_onyonType == ONYON_TYPE_POD) {
+			if (pelt->getKind() == PELTYPE_TREASURE) {
+				// Treasure carried to the cave pod
+				gameSystem->m_section->setDraw2DCreature(pelt);
+				MoviePlayArg moviearg("s22_cv_suck_treasure", nullptr, gameSystem->m_section->m_movieFinishCallback, 0);
+				moviearg.m_origin        = m_onyon->getPosition();
+				moviearg.m_angle         = m_onyon->getFaceDir();
+				moviearg.m_delegateStart = gameSystem->m_section->m_movieStartCallback;
+				moviearg.m_delegateEnd   = gameSystem->m_section->m_movieFinishCallback;
+				moviearg.m_pelletName    = pelt->m_config->m_params.m_name.m_data;
+				moviePlayer->play(moviearg);
+				doPlay = true;
+			} else if (pelt->getKind() == PELTYPE_UPGRADE) {
+				// Upgrade carried to the cave pod
+				gameSystem->m_section->setDraw2DCreature(pelt);
+				MoviePlayArg moviearg("s22_cv_suck_equipment", nullptr, gameSystem->m_section->m_movieFinishCallback, 0);
+				moviearg.m_pelletName    = pelt->m_config->m_params.m_name.m_data;
+				moviearg.m_delegateStart = gameSystem->m_section->m_movieStartCallback;
+				moviearg.m_origin        = m_onyon->getPosition();
+				moviearg.m_angle         = m_onyon->getFaceDir();
+				moviearg.m_streamID      = 0xc001100b;
+				if (pelt->m_config->m_params.m_index >= 8) {
+					moviearg.m_streamID = 0xc001100a;
+				}
+				moviePlayer->play(moviearg);
+				doPlay = true;
+			} else if (pelt->getKind() == PELTYPE_CARCASS && pelt->m_pelletFlag != Pellet::FLAG_NAVI_NAPSACK
+			           && !playData->isDemoFlag(DEMO_First_Corpse_In_Cave)) {
+				// first corpse collected in cave
+				playData->setDemoFlag(DEMO_First_Corpse_In_Cave);
+				MoviePlayArg moviearg("x08_cv_suck_carcass", nullptr, gameSystem->m_section->m_movieFinishCallback, 0);
+				moviearg.m_pelletName    = pelt->m_config->m_params.m_name.m_data;
+				moviearg.m_delegateStart = gameSystem->m_section->m_movieStartCallback;
+				moviearg.m_origin        = m_onyon->getPosition();
+				moviearg.m_angle         = m_onyon->getFaceDir();
+				moviePlayer->play(moviearg);
+				doPlay = true;
+			}
+		} else if (onyon && onyon->m_onyonType <= ONYON_TYPE_YELLOW) {
+			if (pelt->getKind() == PELTYPE_NUMBER && !playData->isDemoFlag(DEMO_First_Number_Pellet)) {
+				playData->setDemoFlag(DEMO_First_Number_Pellet);
+				MoviePlayArg moviearg("x18_exp_pellet", nullptr, gameSystem->m_section->m_movieFinishCallback, 0);
+				moviearg.m_pelletName    = pelt->m_config->m_params.m_name.m_data;
+				moviearg.m_delegateStart = gameSystem->m_section->m_movieStartCallback;
+				moviearg.m_origin        = m_onyon->getPosition();
+				moviearg.m_angle         = m_onyon->getFaceDir();
+				moviePlayer->play(moviearg);
+				doPlay = true;
+			}
+		}
+	}
+
+	if (doPlay) {
+		Pellet* pelt2 = nullptr;
+		if (pelt->getKind() == PELTYPE_CARCASS) {
+			pelt->m_pelletView->m_creature->movie_begin(false);
+		} else if (pelt->getKind() == PELTYPE_NUMBER) {
+			pelt->movie_begin(false);
+		} else {
+			pelt2 = pelt;
+			pelt->getCreatureName();
+			pelt->getCreatureID();
+			if (pelt->m_pelletView) {
+				pelt->m_pelletView->viewGetShape();
+			}
+		}
+		if (!draw2d) {
+			gameSystem->m_section->setDraw2DCreature(pelt2);
+		}
+		pelt->movie_begin(false);
+	}
+	return doPlay;
 	/*
 	stwu     r1, -0x2c0(r1)
 	mflr     r0
@@ -2199,8 +2282,133 @@ lbl_801A5AB0:
  * Address:	801A5AC4
  * Size:	000B34
  */
-void PelletGoalState::exec(Game::Pellet*)
+void PelletGoalState::exec(Pellet* pelt)
 {
+	if (pelt->m_pelletView) {
+		Creature* obj = pelt->m_pelletView->m_creature;
+		if (obj && obj->isTeki()) {
+			static_cast<EnemyBase*>(pelt->m_pelletView->m_creature)->setAnimSpeed(90.0f);
+		}
+	} else {
+		pelt->m_animSpeed = sys->m_deltaTime * 60.0f;
+	}
+
+	if (m_inDemo && !m_didSuikomi && moviePlayer && moviePlayer->m_demoState == 5) {
+		if (((int)m_onyon->m_objectTypeID == OBJTYPE_Onyon || (int)m_onyon->m_objectTypeID == OBJTYPE_Ufo)) {
+			static_cast<Onyon*>(m_onyon)->efxSuikomi();
+			m_didSuikomi = true;
+		}
+	}
+
+	if (m_startSuck) {
+		m_currPos   = pelt->getPosition();
+		m_suckTime  = 0.0f;
+		m_startSuck = false;
+
+		Vector3f suckPos = m_onyon->getSuckPos();
+		m_distance       = _distanceBetween2(suckPos, m_currPos);
+		m_timer          = 0.0f;
+	}
+
+	Vector3f test(m_currPos + (m_onyon->getGoalPos() - m_currPos) * m_suckTime);
+	if (m_isWaiting) {
+		if (m_onyon->isSuckArriveWait())
+			return;
+		InteractSuckArrive act(pelt);
+		m_onyon->stimulate(act);
+		m_isWaiting = false;
+	}
+
+	if (m_suckDelay > 0.0f || !m_onyon->isSuckReady()) {
+		Vector3f velocity(0.0f, pelt->getVelocity().y, 0.0f);
+		pelt->setVelocity(velocity);
+		m_suckDelay -= sys->m_deltaTime;
+		m_startSuck = true;
+	} else {
+		pelt->m_pelletPosition    = test;
+		pelt->m_collisionPosition = test;
+		f32 scale                 = 1.0f - m_suckTime;
+		f32 angle                 = scale * TAU;
+		angle *= 8.0f;
+		scale *= m_scale * pikmin2_sinf(angle) * 0.03f;
+		pelt->m_scale = scale;
+		m_suckTime += (m_timer * sys->m_deltaTime) / m_distance;
+		m_timer += sys->m_deltaTime * 720.0f;
+		if (m_suckTime >= 1.0f) {
+			Stickers stick(pelt);
+			Iterator<Creature> it(&stick);
+			InteractSuckFinish act(pelt);
+			CI_LOOP(it)
+			{
+				Creature* obj = *it;
+				obj->stimulate(act);
+			}
+		}
+		InteractSuckFinish act(pelt);
+		m_onyon->stimulate(act);
+
+		if (Radar::mgr) {
+			Radar::Mgr::getNumOtakaraItems();
+			Radar::Mgr::getNumOtakaraItems();
+			bool check = pelt->getKind() == PELTYPE_TREASURE;
+			if (!check) {
+				pelt->getKind();
+			}
+		}
+
+		if (!gameSystem->isVersusMode() && (pelt->getKind() == PELTYPE_TREASURE || pelt->getKind() == PELTYPE_UPGRADE)
+		    && Radar::Mgr::getNumOtakaraItems() <= 1) {
+			if (gameSystem->m_isInCave) {
+				PSSystem::SceneMgr* mgr = PSSystem::getSceneMgr();
+				PSSystem::checkSceneMgr(mgr);
+				PSM::Scene_Cave* scene = static_cast<PSM::Scene_Cave*>(mgr->getChildScene());
+				PSSystem::checkGameScene(scene);
+				scene->stopPollutionSe();
+				if (gameSystem->isChallengeMode()) {
+					if (strcmp(pelt->m_config->m_params.m_name.m_data, "key")) {
+						PSSystem::SceneMgr* mgr = PSSystem::getSceneMgr();
+						PSSystem::checkSceneMgr(mgr);
+						PSM::Scene_Cave* scene = static_cast<PSM::Scene_Cave*>(mgr->getChildScene());
+						PSSystem::checkGameScene(scene);
+						if (scene->isGameScene()) {
+							scene->startPollutUpSe();
+						}
+					}
+				}
+			} else {
+				PSSystem::SceneMgr* mgr = PSSystem::getSceneMgr();
+				PSSystem::checkSceneMgr(mgr);
+				PSM::Scene_Ground* scene = static_cast<PSM::Scene_Ground*>(mgr->getChildScene());
+				PSSystem::checkGameScene(scene);
+				scene->setPollutUp();
+			}
+		}
+
+		if (gameSystem->isVersusMode()) {
+			// delete stickers??
+			return;
+		} else {
+			if (!m_inDemo) {
+				if (!strcmp("orima", pelt->m_config->m_params.m_name.m_data)) {
+					pelt->m_soundMgr->startSound(PSSE_EV_ONYON_BOUND_PLAYER, 0);
+				}
+				pelt->kill(nullptr);
+			} else {
+				if (pelt->getKind() == PELTYPE_CARCASS || pelt->getKind() == PELTYPE_NUMBER) {
+					pelt->kill(nullptr);
+				} else {
+					if (pelt->getKind() == PELTYPE_UPGRADE || pelt->getKind() == PELTYPE_TREASURE) {
+						pelt->m_animSpeed = sys->m_deltaTime * 30.0f;
+						pelt->m_carryAnim.setFrameByKeyType(0);
+					}
+				}
+			}
+			if (shadowMgr) {
+				shadowMgr->delShadow(pelt);
+			}
+			transit(pelt, PELSTATE_Normal, nullptr);
+		}
+	}
 	/*
 	stwu     r1, -0xe0(r1)
 	mflr     r0
@@ -3027,15 +3235,27 @@ lbl_801A65C0:
  * Address:	801A65F8
  * Size:	000004
  */
-void PelletGoalState::cleanup(Game::Pellet*) { }
+void PelletGoalState::cleanup(Pellet*) { }
 
 /*
  * --INFO--
  * Address:	801A65FC
  * Size:	000144
  */
-void PelletAppearState::init(Game::Pellet*, Game::StateArg*)
+void PelletAppearState::init(Pellet* pelt, StateArg*)
 {
+	pelt->clearClaim();
+	pelt->m_scale = 0.01f;
+	m_goalScale   = 1.0f;
+	m_time        = 0.0f;
+	m_angle       = 0.0f;
+
+	_28       = randWeightFloat(0.6283185f) + TAU;
+	_20       = randWeightFloat(0.4f) + 0.3f;
+	_24       = randWeightFloat(0.8f) + 1.8f;
+	_1C       = randWeightFloat(0.7f);
+	m_efxMade = false;
+
 	/*
 	stwu     r1, -0x30(r1)
 	mflr     r0
@@ -3126,8 +3346,41 @@ void PelletAppearState::init(Game::Pellet*, Game::StateArg*)
  * Address:	801A6740
  * Size:	000240
  */
-void PelletAppearState::exec(Game::Pellet*)
+void PelletAppearState::exec(Pellet* pelt)
 {
+	f32 min   = m_time;
+	f32 max   = _1C;
+	f32 scale = 0.0f;
+	if (max <= min) {
+		if (max + _20 <= min) {
+			min   = (min - max) / _20;
+			scale = min * min;
+		} else {
+			if (!m_efxMade) {
+				::efx::Arg arg(Vector3f(pelt->m_objMatrix.m_matrix.structView.tx, pelt->m_objMatrix.m_matrix.structView.ty,
+				                        pelt->m_objMatrix.m_matrix.structView.tz));
+				::efx::TTsuyuGrowOn efx;
+				efx.create(&arg);
+				pelt->m_soundMgr->startSound(PSSE_EV_TSUYUKUSA_FRUIT, 0);
+				m_efxMade = true;
+			}
+			m_angle += roundAng(_28 * sys->m_deltaTime);
+
+			f32 temp    = pikmin2_sinf(m_angle);
+			f32 idk     = (m_time - (_1C + _20)) / _24;
+			m_goalScale = -(idk * idk - 1.0f);
+			scale       = m_goalScale * 0.2f * temp + 1.0f;
+			if (m_time >= _24 + _1C + _20) {
+				transit(pelt, PELSTATE_Normal, nullptr);
+				scale = 1.0f;
+			}
+		}
+	}
+	m_time += sys->m_deltaTime;
+	if (scale == 0.0f) {
+		scale = 0.001f;
+	}
+	pelt->m_scale = scale;
 	/*
 	stwu     r1, -0x60(r1)
 	mflr     r0
@@ -3293,15 +3546,27 @@ lbl_801A694C:
  * Address:	801A6980
  * Size:	000004
  */
-void PelletAppearState::cleanup(Game::Pellet*) { }
+void PelletAppearState::cleanup(Pellet*) { }
 
 /*
  * --INFO--
  * Address:	801A6984
  * Size:	000130
  */
-void PelletScaleAppearState::init(Game::Pellet*, Game::StateArg*)
+void PelletScaleAppearState::init(Pellet* pelt, StateArg*)
 {
+	pelt->clearClaim();
+	pelt->m_scale = 0.01f;
+	m_goalScale   = 1.0f;
+	m_time        = 0.0f;
+	m_angle       = 0.0f;
+
+	_28       = randWeightFloat(0.6283185f) + 18.84956f;
+	_20       = randWeightFloat(0.05f) + 0.1f;
+	_24       = randWeightFloat(0.2f) + 0.6f;
+	_1C       = 0.0f;
+	m_efxMade = false;
+	pelt->setCollisionFlick(false);
 	/*
 	stwu     r1, -0x30(r1)
 	mflr     r0
@@ -3386,9 +3651,38 @@ void PelletScaleAppearState::init(Game::Pellet*, Game::StateArg*)
  * --INFO--
  * Address:	801A6AB4
  * Size:	0001BC
+ * This state is mostly identical to PelletAppearState but without the particle/sound
  */
-void PelletScaleAppearState::exec(Game::Pellet*)
+void PelletScaleAppearState::exec(Pellet* pelt)
 {
+	f32 min   = m_time;
+	f32 max   = _1C;
+	f32 scale = 0.0f;
+	if (max <= min) {
+		if (max + _20 <= min) {
+			min   = (min - max) / _20;
+			scale = min * min;
+		} else {
+			if (!m_efxMade) {
+				m_efxMade = true;
+			}
+			m_angle += roundAng(_28 * sys->m_deltaTime);
+
+			f32 temp    = pikmin2_sinf(m_angle);
+			f32 idk     = (m_time - (_1C + _20)) / _24;
+			m_goalScale = -(idk * idk - 1.0f);
+			scale       = m_goalScale * 0.2f * temp + 1.0f;
+			if (m_time >= _24 + _1C + _20) {
+				transit(pelt, PELSTATE_Normal, nullptr);
+				scale = 1.0f;
+			}
+		}
+	}
+	m_time += sys->m_deltaTime;
+	if (scale == 0.0f) {
+		scale = 0.001f;
+	}
+	pelt->m_scale = scale;
 	/*
 	stwu     r1, -0x40(r1)
 	mflr     r0
@@ -3521,82 +3815,38 @@ lbl_801A6C3C:
  * Address:	801A6C70
  * Size:	000034
  */
-void PelletScaleAppearState::cleanup(Game::Pellet*)
-{
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	mr       r3, r4
-	li       r4, 1
-	stw      r0, 0x14(r1)
-	lwz      r12, 0(r3)
-	lwz      r12, 0xb4(r12)
-	mtctr    r12
-	bctrl
-	lwz      r0, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
-}
+void PelletScaleAppearState::cleanup(Pellet* pelt) { pelt->setCollisionFlick(true); }
 
 /*
  * --INFO--
  * Address:	801A6CA4
  * Size:	000024
  */
-void PelletBuryState::init(Game::Pellet*, Game::StateArg*)
-{
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	mr       r3, r4
-	stw      r0, 0x14(r1)
-	bl       clearClaim__Q24Game6PelletFv
-	lwz      r0, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
-}
+void PelletBuryState::init(Pellet* pelt, StateArg*) { pelt->clearClaim(); }
 
 /*
  * --INFO--
  * Address:	801A6CC8
  * Size:	000004
  */
-void PelletBuryState::exec(Game::Pellet*) { }
+void PelletBuryState::exec(Pellet*) { }
 
 /*
  * --INFO--
  * Address:	801A6CCC
  * Size:	000004
  */
-void PelletBuryState::cleanup(Game::Pellet*) { }
+void PelletBuryState::cleanup(Pellet*) { }
 
 /*
  * --INFO--
  * Address:	801A6CD0
  * Size:	000038
  */
-void PelletZukanState::init(Game::Pellet*, Game::StateArg*)
+void PelletZukanState::init(Pellet* pelt, StateArg*)
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	mr       r31, r3
-	mr       r3, r4
-	bl       clearClaim__Q24Game6PelletFv
-	lfs      f0, lbl_80519188@sda21(r2)
-	stfs     f0, 0x10(r31)
-	lwz      r0, 0x14(r1)
-	lwz      r31, 0xc(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	pelt->clearClaim();
+	m_timer = 0.0f;
 }
 
 /*
@@ -3604,49 +3854,14 @@ void PelletZukanState::init(Game::Pellet*, Game::StateArg*)
  * Address:	801A6D08
  * Size:	000094
  */
-void PelletZukanState::exec(Game::Pellet*)
+void PelletZukanState::exec(Pellet* pelt)
 {
-	/*
-	stwu     r1, -0x30(r1)
-	mflr     r0
-	lfs      f3, lbl_8051920C@sda21(r2)
-	stw      r0, 0x34(r1)
-	lfs      f0, lbl_805191B8@sda21(r2)
-	stw      r31, 0x2c(r1)
-	mr       r31, r4
-	lwz      r5, sys@sda21(r13)
-	lfs      f1, 0x10(r3)
-	lfs      f2, 0x54(r5)
-	fmadds   f1, f3, f2, f1
-	stfs     f1, 0x10(r3)
-	lfs      f1, 0x10(r3)
-	fcmpo    cr0, f1, f0
-	ble      lbl_801A6D4C
-	lfs      f0, lbl_80519188@sda21(r2)
-	stfs     f0, 0x10(r3)
-
-lbl_801A6D4C:
-	mr       r4, r31
-	addi     r3, r1, 8
-	lwz      r12, 0(r31)
-	lwz      r12, 8(r12)
-	mtctr    r12
-	bctrl
-	lfs      f2, 8(r1)
-	addi     r3, r31, 0x138
-	lfs      f1, 0xc(r1)
-	addi     r4, r1, 0x14
-	lfs      f0, 0x10(r1)
-	stfs     f2, 0x14(r1)
-	stfs     f1, 0x18(r1)
-	stfs     f0, 0x1c(r1)
-	bl       "makeT__7MatrixfFR10Vector3<f>"
-	lwz      r0, 0x34(r1)
-	lwz      r31, 0x2c(r1)
-	mtlr     r0
-	addi     r1, r1, 0x30
-	blr
-	*/
+	m_timer += sys->m_deltaTime * PI;
+	if (m_timer > TAU) {
+		m_timer = 0.0f;
+	}
+	Vector3f pos = pelt->getPosition();
+	pelt->m_objMatrix.makeT(pos);
 }
 
 /*
@@ -3654,117 +3869,43 @@ lbl_801A6D4C:
  * Address:	801A6D9C
  * Size:	000004
  */
-void PelletZukanState::cleanup(Game::Pellet*) { }
+void PelletZukanState::cleanup(Pellet*) { }
 
 /*
  * --INFO--
  * Address:	801A6DA0
  * Size:	000024
  */
-void PelletUpState::init(Game::Pellet*, Game::StateArg*)
-{
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	mr       r3, r4
-	stw      r0, 0x14(r1)
-	bl       clearClaim__Q24Game6PelletFv
-	lwz      r0, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
-}
+void PelletUpState::init(Pellet* pelt, StateArg*) { pelt->clearClaim(); }
 
 /*
  * --INFO--
  * Address:	801A6DC4
  * Size:	000004
  */
-void PelletUpState::exec(Game::Pellet*) { }
+void PelletUpState::exec(Pellet*) { }
 
 /*
  * --INFO--
  * Address:	801A6DC8
  * Size:	000004
  */
-void PelletUpState::cleanup(Game::Pellet*) { }
+void PelletUpState::cleanup(Pellet*) { }
 
 /*
  * --INFO--
  * Address:	801A6DCC
  * Size:	0000F0
  */
-PelletReturnState::PelletReturnState(void)
+PelletReturnState::PelletReturnState()
+    : PelletState(PELSTATE_Return)
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	lis      r4, __vt__Q24Game11PelletState@ha
-	lis      r5, "__vt__Q24Game24FSMState<Q24Game6Pellet>"@ha
-	stw      r0, 0x14(r1)
-	addi     r0, r5, "__vt__Q24Game24FSMState<Q24Game6Pellet>"@l
-	li       r6, 8
-	li       r5, 0
-	stw      r31, 0xc(r1)
-	mr       r31, r3
-	addi     r4, r4, __vt__Q24Game11PelletState@l
-	lis      r3, __vt__Q24Game17PelletReturnState@ha
-	stw      r30, 8(r1)
-	stw      r0, 0(r31)
-	addi     r0, r3, __vt__Q24Game17PelletReturnState@l
-	stw      r6, 4(r31)
-	stw      r5, 8(r31)
-	stw      r4, 0(r31)
-	stw      r0, 0(r31)
-	stw      r5, 0x38(r31)
-	stw      r5, 0x3c(r31)
-	lwz      r3, gameSystem__4Game@sda21(r13)
-	lwz      r0, 0x44(r3)
-	cmpwi    r0, 1
-	bne      lbl_801A6EA0
-	li       r3, 0x30
-	bl       __nw__FUl
-	or.      r30, r3, r3
-	beq      lbl_801A6E64
-	li       r4, 0
-	li       r5, 0x123
-	li       r6, 0x123
-	bl       __ct__Q23efx10TChaseMtx2FPA4_fUsUs
-	lis      r3, __vt__Q23efx11TOrimaLight@ha
-	li       r0, 0
-	addi     r3, r3, __vt__Q23efx11TOrimaLight@l
-	stw      r3, 0(r30)
-	stw      r0, 0x2c(r30)
-
-lbl_801A6E64:
-	stw      r30, 0x38(r31)
-	li       r3, 0x30
-	bl       __nw__FUl
-	or.      r30, r3, r3
-	beq      lbl_801A6E9C
-	li       r4, 0
-	li       r5, 0x124
-	li       r6, 0x125
-	bl       __ct__Q23efx10TChaseMtx2FPA4_fUsUs
-	lis      r3, __vt__Q23efx14TOrimaLightAct@ha
-	li       r0, 0
-	addi     r3, r3, __vt__Q23efx14TOrimaLightAct@l
-	stw      r3, 0(r30)
-	stw      r0, 0x2c(r30)
-
-lbl_801A6E9C:
-	stw      r30, 0x3c(r31)
-
-lbl_801A6EA0:
-	lwz      r0, 0x14(r1)
-	mr       r3, r31
-	lwz      r31, 0xc(r1)
-	lwz      r30, 8(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	m_efx    = nullptr;
+	m_efxAct = nullptr;
+	if (gameSystem->isVersusMode()) {
+		m_efx    = new ::efx::TOrimaLight;
+		m_efxAct = new ::efx::TOrimaLightAct;
+	}
 }
 
 /*
@@ -3772,230 +3913,45 @@ lbl_801A6EA0:
  * Address:	801A6EBC
  * Size:	000318
  */
-void PelletReturnState::init(Game::Pellet*, Game::StateArg*)
+void PelletReturnState::init(Pellet* pelt, StateArg* arg)
 {
-	/*
-	stwu     r1, -0x50(r1)
-	mflr     r0
-	cmplwi   r5, 0
-	stw      r0, 0x54(r1)
-	li       r0, 0
-	stw      r31, 0x4c(r1)
-	li       r31, 0
-	stw      r30, 0x48(r1)
-	mr       r30, r4
-	stw      r29, 0x44(r1)
-	mr       r29, r3
-	stw      r0, 0x1c(r3)
-	beq      lbl_801A6F18
-	lfs      f0, 0(r5)
-	stfs     f0, 0x20(r29)
-	lfs      f0, 4(r5)
-	stfs     f0, 0x24(r29)
-	lfs      f0, 8(r5)
-	stfs     f0, 0x28(r29)
-	bl       initPathfinding__Q24Game17PelletReturnStateFPQ24Game6Pellet
-	cmpwi    r3, 1
-	bne      lbl_801A6F18
-	li       r31, 1
+	bool flag                  = false;
+	m_pathCheckID              = 0;
+	PelletReturnStateArg* sarg = static_cast<PelletReturnStateArg*>(arg);
+	if (arg) {
+		m_goalPos = sarg->m_position;
+		if (initPathfinding(pelt) == 1) {
+			flag = true;
+		}
+	}
 
-lbl_801A6F18:
-	clrlwi.  r0, r31, 0x18
-	bne      lbl_801A6F44
-	mr       r3, r29
-	mr       r4, r30
-	lwz      r12, 0(r29)
-	li       r5, 0
-	li       r6, 0
-	lwz      r12, 0x1c(r12)
-	mtctr    r12
-	bctrl
-	b        lbl_801A6FB4
+	if (!flag) {
+		transit(pelt, PELSTATE_Normal, nullptr);
+	} else {
+		if (m_efx && m_efxAct) {
+			m_efx->_2C    = 0;
+			m_efxAct->_2C = 0;
+			m_efx->setMtxptr(pelt->m_objMatrix.m_matrix.mtxView);
+			m_efxAct->setMtxptr(pelt->m_objMatrix.m_matrix.mtxView);
+			m_efx->create(nullptr);
+			m_efxAct->create(nullptr);
+		}
+	}
 
-lbl_801A6F44:
-	lwz      r3, 0x38(r29)
-	cmplwi   r3, 0
-	beq      lbl_801A6FB4
-	lwz      r0, 0x3c(r29)
-	cmplwi   r0, 0
-	beq      lbl_801A6FB4
-	li       r0, 0
-	addi     r4, r30, 0x138
-	stw      r0, 0x2c(r3)
-	lwz      r3, 0x3c(r29)
-	stw      r0, 0x2c(r3)
-	lwz      r3, 0x38(r29)
-	bl       setMtxptr__Q23efx10TChaseMtx2FPA4_f
-	lwz      r3, 0x3c(r29)
-	addi     r4, r30, 0x138
-	bl       setMtxptr__Q23efx10TChaseMtx2FPA4_f
-	lwz      r3, 0x38(r29)
-	li       r4, 0
-	lwz      r12, 0(r3)
-	lwz      r12, 8(r12)
-	mtctr    r12
-	bctrl
-	lwz      r3, 0x3c(r29)
-	li       r4, 0
-	lwz      r12, 0(r3)
-	lwz      r12, 8(r12)
-	mtctr    r12
-	bctrl
+	m_timer      = 0.0f;
+	m_peltYScale = 1.0f;
+	m_doEfx      = false;
+	m_doFlick    = false;
+	pelt->endCapture();
+	pelt->endStick();
 
-lbl_801A6FB4:
-	lfs      f1, lbl_80519188@sda21(r2)
-	li       r0, 0
-	lfs      f0, lbl_80519190@sda21(r2)
-	mr       r3, r30
-	stfs     f1, 0x10(r29)
-	stfs     f0, 0x14(r29)
-	stb      r0, 0x18(r29)
-	stb      r0, 0x19(r29)
-	bl       endCapture__Q24Game8CreatureFv
-	mr       r3, r30
-	bl       endStick__Q24Game8CreatureFv
-	mr       r4, r30
-	addi     r3, r1, 0x18
-	bl       __ct__Q24Game8StickersFPQ24Game8Creature
-	li       r0, 0
-	lis      r3, "__vt__26Iterator<Q24Game8Creature>"@ha
-	addi     r4, r3, "__vt__26Iterator<Q24Game8Creature>"@l
-	addi     r3, r1, 0x18
-	cmplwi   r0, 0
-	stw      r4, 8(r1)
-	stw      r0, 0x14(r1)
-	stw      r0, 0xc(r1)
-	stw      r3, 0x10(r1)
-	bne      lbl_801A702C
-	lwz      r12, 0(r3)
-	lwz      r12, 0x18(r12)
-	mtctr    r12
-	bctrl
-	stw      r3, 0xc(r1)
-	b        lbl_801A718C
-
-lbl_801A702C:
-	lwz      r12, 0(r3)
-	lwz      r12, 0x18(r12)
-	mtctr    r12
-	bctrl
-	stw      r3, 0xc(r1)
-	b        lbl_801A7098
-
-lbl_801A7044:
-	lwz      r3, 0x10(r1)
-	lwz      r4, 0xc(r1)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x20(r12)
-	mtctr    r12
-	bctrl
-	mr       r4, r3
-	lwz      r3, 0x14(r1)
-	lwz      r12, 0(r3)
-	lwz      r12, 8(r12)
-	mtctr    r12
-	bctrl
-	clrlwi.  r0, r3, 0x18
-	bne      lbl_801A718C
-	lwz      r3, 0x10(r1)
-	lwz      r4, 0xc(r1)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x14(r12)
-	mtctr    r12
-	bctrl
-	stw      r3, 0xc(r1)
-
-lbl_801A7098:
-	lwz      r12, 8(r1)
-	addi     r3, r1, 8
-	lwz      r12, 0x10(r12)
-	mtctr    r12
-	bctrl
-	clrlwi.  r0, r3, 0x18
-	beq      lbl_801A7044
-	b        lbl_801A718C
-
-lbl_801A70B8:
-	lwz      r3, 0x10(r1)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x20(r12)
-	mtctr    r12
-	bctrl
-	bl       endStick__Q24Game8CreatureFv
-	lwz      r0, 0x14(r1)
-	cmplwi   r0, 0
-	bne      lbl_801A70FC
-	lwz      r3, 0x10(r1)
-	lwz      r4, 0xc(r1)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x14(r12)
-	mtctr    r12
-	bctrl
-	stw      r3, 0xc(r1)
-	b        lbl_801A718C
-
-lbl_801A70FC:
-	lwz      r3, 0x10(r1)
-	lwz      r4, 0xc(r1)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x14(r12)
-	mtctr    r12
-	bctrl
-	stw      r3, 0xc(r1)
-	b        lbl_801A7170
-
-lbl_801A711C:
-	lwz      r3, 0x10(r1)
-	lwz      r4, 0xc(r1)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x20(r12)
-	mtctr    r12
-	bctrl
-	mr       r4, r3
-	lwz      r3, 0x14(r1)
-	lwz      r12, 0(r3)
-	lwz      r12, 8(r12)
-	mtctr    r12
-	bctrl
-	clrlwi.  r0, r3, 0x18
-	bne      lbl_801A718C
-	lwz      r3, 0x10(r1)
-	lwz      r4, 0xc(r1)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x14(r12)
-	mtctr    r12
-	bctrl
-	stw      r3, 0xc(r1)
-
-lbl_801A7170:
-	lwz      r12, 8(r1)
-	addi     r3, r1, 8
-	lwz      r12, 0x10(r12)
-	mtctr    r12
-	bctrl
-	clrlwi.  r0, r3, 0x18
-	beq      lbl_801A711C
-
-lbl_801A718C:
-	lwz      r3, 0x10(r1)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x1c(r12)
-	mtctr    r12
-	bctrl
-	lwz      r4, 0xc(r1)
-	cmplw    r4, r3
-	bne      lbl_801A70B8
-	addi     r3, r1, 0x18
-	li       r4, -1
-	bl       __dt__Q24Game8StickersFv
-	lwz      r0, 0x54(r1)
-	lwz      r31, 0x4c(r1)
-	lwz      r30, 0x48(r1)
-	lwz      r29, 0x44(r1)
-	mtlr     r0
-	addi     r1, r1, 0x50
-	blr
-	*/
+	Stickers stick(pelt);
+	Iterator<Creature> it(&stick);
+	CI_LOOP(it)
+	{
+		Creature* obj = *it;
+		obj->endStick();
+	}
 }
 
 /*
@@ -4003,7 +3959,7 @@ lbl_801A718C:
  * Address:	........
  * Size:	000280
  */
-void PelletReturnState::flick(Game::Pellet*)
+void PelletReturnState::flick(Pellet*)
 {
 	// UNUSED FUNCTION
 }
@@ -4013,78 +3969,35 @@ void PelletReturnState::flick(Game::Pellet*)
  * Address:	801A71D4
  * Size:	0000D8
  */
-void PelletReturnState::exec(Game::Pellet*)
+void PelletReturnState::exec(Pellet* pelt)
 {
-	/*
-	stwu     r1, -0x20(r1)
-	mflr     r0
-	stw      r0, 0x24(r1)
-	stw      r31, 0x1c(r1)
-	li       r31, 0
-	stw      r30, 0x18(r1)
-	mr       r30, r4
-	stw      r29, 0x14(r1)
-	mr       r29, r3
-	lhz      r0, 0x1a(r3)
-	cmpwi    r0, 1
-	beq      lbl_801A7234
-	bge      lbl_801A7214
-	cmpwi    r0, 0
-	bge      lbl_801A7220
-	b        lbl_801A7268
+	bool end = false;
+	switch (m_state) {
+	case 0:
+		int check = execPathfinding(pelt);
+		if (check == 2) {
+			end = true;
+		}
+		break;
+	case 1:
+		check = execMove(pelt);
+		if (check == 2) {
+			end = true;
+		} else if (check == 1) {
+			end = true;
+		}
+		break;
+	case 2:
+		check = execMoveGoal(pelt);
+		if (check == 2) {
+			end = true;
+		}
+		break;
+	}
 
-lbl_801A7214:
-	cmpwi    r0, 3
-	bge      lbl_801A7268
-	b        lbl_801A7258
-
-lbl_801A7220:
-	bl       execPathfinding__Q24Game17PelletReturnStateFPQ24Game6Pellet
-	cmpwi    r3, 2
-	bne      lbl_801A7268
-	li       r31, 1
-	b        lbl_801A7268
-
-lbl_801A7234:
-	bl       execMove__Q24Game17PelletReturnStateFPQ24Game6Pellet
-	cmpwi    r3, 2
-	bne      lbl_801A7248
-	li       r31, 1
-	b        lbl_801A7268
-
-lbl_801A7248:
-	cmpwi    r3, 1
-	bne      lbl_801A7268
-	li       r31, 1
-	b        lbl_801A7268
-
-lbl_801A7258:
-	bl       execMoveGoal__Q24Game17PelletReturnStateFPQ24Game6Pellet
-	cmpwi    r3, 2
-	bne      lbl_801A7268
-	li       r31, 1
-
-lbl_801A7268:
-	clrlwi.  r0, r31, 0x18
-	beq      lbl_801A7290
-	mr       r3, r29
-	mr       r4, r30
-	lwz      r12, 0(r29)
-	li       r5, 0
-	li       r6, 0
-	lwz      r12, 0x1c(r12)
-	mtctr    r12
-	bctrl
-
-lbl_801A7290:
-	lwz      r0, 0x24(r1)
-	lwz      r31, 0x1c(r1)
-	lwz      r30, 0x18(r1)
-	lwz      r29, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x20
-	blr
-	*/
+	if (end) {
+		transit(pelt, PELSTATE_Normal, nullptr);
+	}
 }
 
 /*
@@ -4092,53 +4005,17 @@ lbl_801A7290:
  * Address:	801A72AC
  * Size:	00009C
  */
-void PelletReturnState::cleanup(Game::Pellet*)
+void PelletReturnState::cleanup(Pellet* pelt)
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	mr       r31, r4
-	stw      r30, 8(r1)
-	mr       r30, r3
-	lwz      r3, 0x38(r3)
-	cmplwi   r3, 0
-	beq      lbl_801A7304
-	lwz      r0, 0x3c(r30)
-	cmplwi   r0, 0
-	beq      lbl_801A7304
-	lwz      r12, 0(r3)
-	lwz      r12, 0x10(r12)
-	mtctr    r12
-	bctrl
-	lwz      r3, 0x3c(r30)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x10(r12)
-	mtctr    r12
-	bctrl
-
-lbl_801A7304:
-	lfs      f0, lbl_80519190@sda21(r2)
-	stfs     f0, 0x168(r31)
-	stfs     f0, 0x16c(r31)
-	stfs     f0, 0x170(r31)
-	lwz      r4, 0x1c(r30)
-	cmplwi   r4, 0
-	beq      lbl_801A7330
-	lwz      r3, testPathfinder__4Game@sda21(r13)
-	bl       release__Q24Game10PathfinderFUl
-	li       r0, 0
-	stw      r0, 0x1c(r30)
-
-lbl_801A7330:
-	lwz      r0, 0x14(r1)
-	lwz      r31, 0xc(r1)
-	lwz      r30, 8(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	if (m_efx && m_efxAct) {
+		m_efx->fade();
+		m_efxAct->fade();
+	}
+	pelt->m_scale = 1.0f;
+	if (m_pathCheckID) {
+		testPathfinder->release(m_pathCheckID);
+		m_pathCheckID = 0;
+	}
 }
 
 /*
@@ -4146,8 +4023,45 @@ lbl_801A7330:
  * Address:	801A7348
  * Size:	0001B4
  */
-void PelletReturnState::initPathfinding(Game::Pellet*)
+int PelletReturnState::initPathfinding(Pellet* pelt)
 {
+	Vector3f pelletPos = pelt->getPosition();
+	WPEdgeSearchArg arg(pelletPos);
+	if (pelt->inWater()) {
+		arg.m_inWater = true;
+	}
+
+	WayPoint* start;
+	if (mapMgr->m_routeMgr->getNearestEdge(arg)) {
+		start = arg.m_wp2;
+		if (!(arg.m_wp1->m_flags & WPF_Closed)) {
+			start = arg.m_wp1;
+		}
+	} else if (mapMgr->m_routeMgr->getNearestEdge(arg)) {
+		start = arg.m_wp1;
+		if (arg.m_wp1->m_flags & WPF_Closed) {
+			start = arg.m_wp2;
+		}
+	} else {
+		return 2; // exit state
+	}
+
+	if (m_pathCheckID) {
+		testPathfinder->release(m_pathCheckID);
+		m_pathCheckID = 0;
+	}
+
+	WPSearchArg arg2(m_goalPos, nullptr, false, 10.0f);
+	WayPoint* end = mapMgr->m_routeMgr->getNearestWayPoint(arg2);
+	if (!end) {
+		return 2; // exit state
+
+	} else {
+		PathfindRequest req(start->m_index, end->m_index, 1);
+		m_pathCheckID = testPathfinder->start(req);
+		m_state       = 0;
+		return 1;
+	}
 	/*
 	stwu     r1, -0x60(r1)
 	mflr     r0
@@ -4284,56 +4198,23 @@ lbl_801A74E4:
  * Address:	801A74FC
  * Size:	000090
  */
-void PelletReturnState::execPathfinding(Game::Pellet*)
+u32 PelletReturnState::execPathfinding(Pellet* pelt)
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	mr       r31, r3
-	lwz      r4, 0x1c(r3)
-	cmplwi   r4, 0
-	bne      lbl_801A7524
-	li       r3, 2
-	b        lbl_801A7578
+	if (m_pathCheckID == 0) {
+		return 2;
+	}
 
-lbl_801A7524:
-	lwz      r3, testPathfinder__4Game@sda21(r13)
-	bl       check__Q24Game10PathfinderFUl
-	cmpwi    r3, 1
-	beq      lbl_801A756C
-	bge      lbl_801A7574
-	cmpwi    r3, 0
-	bge      lbl_801A7544
-	b        lbl_801A7574
-
-lbl_801A7544:
-	lwz      r3, testPathfinder__4Game@sda21(r13)
-	addi     r5, r31, 0x2c
-	lwz      r4, 0x1c(r31)
-	bl       makepath__Q24Game10PathfinderFUlPPQ24Game8PathNode
-	stw      r3, 0x34(r31)
-	li       r0, 1
-	lwz      r3, 0x2c(r31)
-	stw      r3, 0x30(r31)
-	sth      r0, 0x1a(r31)
-	b        lbl_801A7574
-
-lbl_801A756C:
-	li       r3, 2
-	b        lbl_801A7578
-
-lbl_801A7574:
-	li       r3, 0
-
-lbl_801A7578:
-	lwz      r0, 0x14(r1)
-	lwz      r31, 0xc(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	int state = testPathfinder->check(m_pathCheckID);
+	switch (state) {
+	case 0:
+		m_pathNodes    = testPathfinder->makepath(m_pathCheckID, &m_pathNode);
+		m_pathNodePrev = m_pathNode;
+		m_state        = 1;
+		break;
+	case 1:
+		return 2;
+	}
+	return 0;
 }
 
 /*
@@ -4341,8 +4222,82 @@ lbl_801A7578:
  * Address:	801A758C
  * Size:	000858
  */
-void PelletReturnState::execMove(Game::Pellet*)
+u32 PelletReturnState::execMove(Pellet* pelt)
 {
+	WayPoint* currWP = mapMgr->m_routeMgr->getWayPoint(m_pathNode->m_wpIndex);
+	f32 x            = currWP->m_position.x;
+	f32 z            = currWP->m_position.z;
+	Vector3f peltPos = pelt->getPosition();
+	z -= peltPos.z;
+	x -= peltPos.x;
+	f32 zero = 0.0f;
+	f32 dist = (z * z) + (x * x + zero);
+	Vector3f vec(x, dist, z);
+	f32 n = vec.normalise();
+	if (n > 15.0f) {
+		transit(pelt, PELSTATE_Normal, nullptr);
+		return 1;
+	} else {
+		m_pathNode = m_pathNode->m_next;
+		if (m_pathNode) {
+			f32 yoffs;
+			f32 time = m_timer;
+			if (time < 0.1f) {
+				yoffs        = 0.0f;
+				f32 scale    = (time / 0.1f) * PI * 0.5f;
+				m_peltYScale = -(pikmin2_sinf(scale) * 0.3f - 1.0f);
+			} else if (time < 0.9f) {
+				if (!m_doEfx && !pelt->inWater()) {
+					pelt->m_soundMgr->startSound(PSSE_EN_FROG_LAND, 0);
+					Vector3f pos = pelt->getPosition();
+					::efx::Arg arg(pos);
+					arg.m_position.y = -(pelt->getCylinderHeight() * 0.5f - arg.m_position.y);
+					::efx::TEnemyDownSmoke efx;
+					efx.m_scale = 0.5f;
+					efx.create(&arg);
+				}
+				m_doEfx      = true;
+				f32 scale    = (m_timer - 0.9f) / 0.1f * PI * 0.5f;
+				m_peltYScale = pikmin2_sinf(scale) * 0.3f + 0.7f;
+			} else {
+				if (!m_doFlick) {
+					pelt->m_soundMgr->startSound(PSSE_EN_FROG_JUMP, 0);
+					m_doFlick = true;
+					Stickers stick(pelt);
+					Iterator<Creature> it(&stick);
+					f32 dmg   = 100.0f;
+					f32 ang   = -1000.0f;
+					f32 intes = 0.0f;
+					CI_LOOP(it)
+					{
+						Creature* obj = *it;
+						InteractFlick flick(pelt, intes, dmg, ang);
+						obj->stimulate(flick);
+					}
+				}
+			}
+
+			m_timer += sys->m_deltaTime;
+			if (m_timer > 1.0f) {
+				m_timer      = 0.0f;
+				m_peltYScale = 1.0f;
+				m_doEfx      = 0;
+				m_doFlick    = 0;
+			}
+			Vector3f velocity  = vec * 200.0f;
+			Vector3f velocity2 = pelt->getVelocity();
+			velocity           = velocity2 + (velocity - velocity2) * 0.2f;
+
+			Vector3f pos = pelt->getPosition();
+			f32 y        = pelt->getCylinderHeight() * 0.5f;
+			pos.y        = yoffs + mapMgr->getMinY(pos) + y;
+			pelt->setPosition(pos, false);
+			pelt->m_scale = Vector3f(1.0f, m_peltYScale, 1.0f);
+			pelt->setVelocity(velocity);
+			return 0;
+		}
+	}
+
 	/*
 	stwu     r1, -0x150(r1)
 	mflr     r0
@@ -4944,7 +4899,7 @@ lbl_801A7D8C:
  * Address:	801A7DE4
  * Size:	000008
  */
-u32 PelletReturnState::execMoveGoal(Game::Pellet*) { return 0x0; }
+u32 PelletReturnState::execMoveGoal(Pellet*) { return 0; }
 
 /*
  * --INFO--
@@ -4961,100 +4916,76 @@ void PelletReturnState::getWayPont(int)
  * Address:	801A7DEC
  * Size:	000008
  */
-u32 PelletState::isBuried(void) { return 0x0; }
+bool PelletState::isBuried() { return false; }
 
 /*
  * --INFO--
  * Address:	801A7DF4
  * Size:	000008
  */
-u32 PelletState::appeared(void) { return 0x1; }
+bool PelletState::appeared() { return true; }
 
 /*
  * --INFO--
  * Address:	801A7DFC
  * Size:	000008
  */
-u32 PelletUpState::isBuried(void) { return 0x1; }
+bool PelletUpState::isBuried() { return true; }
 
 /*
  * --INFO--
  * Address:	801A7E04
  * Size:	000008
  */
-u32 PelletBuryState::isBuried(void) { return 0x1; }
+bool PelletBuryState::isBuried() { return true; }
 
 /*
  * --INFO--
  * Address:	801A7E0C
  * Size:	000008
  */
-u32 PelletScaleAppearState::appeared(void) { return 0x0; }
+bool PelletScaleAppearState::appeared() { return false; }
 
 /*
  * --INFO--
  * Address:	801A7E14
  * Size:	000008
  */
-u32 PelletAppearState::appeared(void) { return 0x0; }
+bool PelletAppearState::appeared() { return false; }
 
 /*
  * --INFO--
  * Address:	801A7E1C
  * Size:	000008
  */
-u32 PelletNormalState::isPickable(void) { return 0x1; }
-
-} // namespace Game
+bool PelletNormalState::isPickable() { return true; }
 
 /*
  * --INFO--
  * Address:	801A7E24
  * Size:	000004
  */
-void resume__Q24Game24FSMState<Game::Pellet> FPQ24Game6Pellet(void) { }
+void FSMState<Game::Pellet>::resume(Pellet*) { }
 
 /*
  * --INFO--
  * Address:	801A7E28
  * Size:	000004
  */
-void restart__Q24Game24FSMState<Game::Pellet> FPQ24Game6Pellet(void) { }
+void FSMState<Game::Pellet>::restart(Pellet*) { }
 
 /*
  * --INFO--
  * Address:	801A7E2C
  * Size:	000064
  */
-void create__Q24Game28StateMachine<Game::Pellet> Fi(void)
+void StateMachine<Game::Pellet>::create(int count)
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	li       r0, 0
-	stw      r31, 0xc(r1)
-	mr       r31, r3
-	stw      r4, 0xc(r3)
-	stw      r0, 8(r3)
-	lwz      r0, 0xc(r3)
-	slwi     r3, r0, 2
-	bl       __nwa__FUl
-	stw      r3, 4(r31)
-	lwz      r0, 0xc(r31)
-	slwi     r3, r0, 2
-	bl       __nwa__FUl
-	stw      r3, 0x10(r31)
-	lwz      r0, 0xc(r31)
-	slwi     r3, r0, 2
-	bl       __nwa__FUl
-	stw      r3, 0x14(r31)
-	lwz      r0, 0x14(r1)
-	lwz      r31, 0xc(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	m_limit          = count;
+	m_count          = 0;
+	m_states         = new FSMState<Game::Pellet>*[m_limit];
+	m_indexToIDArray = new int[m_limit];
+	m_idToIndexArray = new int[m_limit];
 }
 
 /*
@@ -5062,58 +4993,37 @@ void create__Q24Game28StateMachine<Game::Pellet> Fi(void)
  * Address:	801A7E90
  * Size:	000084
  */
-void registerState__Q24Game28StateMachine<Game::Pellet> FPQ24Game24FSMState<Game::Pellet>(void)
+void StateMachine<Game::Pellet>::registerState(FSMState<Game::Pellet>* newState)
 {
-	/*
-	.loc_0x0:
-	  lwz       r6, 0x8(r3)
-	  lwz       r0, 0xC(r3)
-	  cmpw      r6, r0
-	  bgelr-
-	  lwz       r5, 0x4(r3)
-	  rlwinm    r0,r6,2,0,29
-	  stwx      r4, r5, r0
-	  lwz       r5, 0x4(r4)
-	  cmpwi     r5, 0
-	  blt-      .loc_0x34
-	  lwz       r0, 0xC(r3)
-	  cmpw      r5, r0
-	  blt-      .loc_0x3C
-
-	.loc_0x34:
-	  li        r0, 0
-	  b         .loc_0x40
-
-	.loc_0x3C:
-	  li        r0, 0x1
-
-	.loc_0x40:
-	  rlwinm.   r0,r0,0,24,31
-	  beqlr-
-	  stw       r3, 0x8(r4)
-	  lwz       r0, 0x8(r3)
-	  lwz       r6, 0x4(r4)
-	  lwz       r5, 0x10(r3)
-	  rlwinm    r0,r0,2,0,29
-	  stwx      r6, r5, r0
-	  lwz       r0, 0x4(r4)
-	  lwz       r5, 0x8(r3)
-	  lwz       r4, 0x14(r3)
-	  rlwinm    r0,r0,2,0,29
-	  stwx      r5, r4, r0
-	  lwz       r4, 0x8(r3)
-	  addi      r0, r4, 0x1
-	  stw       r0, 0x8(r3)
-	  blr
-	*/
+	// copied all this from enemyFSM.cpp, do we actually need it here? no idea
+	bool check;
+	if (m_count >= m_limit) {
+		return;
+	}
+	m_states[m_count] = newState;
+	// TODO: This looks weird. How would they really have written it?
+	if (!(0 <= newState->m_id && newState->m_id < m_limit)) {
+		check = false;
+	} else {
+		check = true;
+	}
+	if (check == false) {
+		return;
+	}
+	newState->m_stateMachine         = this;
+	m_indexToIDArray[m_count]        = newState->m_id;
+	m_idToIndexArray[newState->m_id] = m_count;
+	m_count++;
 }
+
+} // namespace Game
 
 /*
  * --INFO--
  * Address:	801A7F14
  * Size:	000028
  */
-void __sinit_pelletState_cpp(void)
+void __sinit_pelletState_cpp()
 {
 	/*
 	lis      r4, __float_nan@ha

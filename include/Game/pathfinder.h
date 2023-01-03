@@ -13,6 +13,16 @@ namespace PathfindContext {
 extern Game::RouteMgr* routeMgr;
 } // namespace PathfindContext
 struct PathfindRequest {
+	PathfindRequest(s16 s, s16 e, u8 f)
+	{
+		m_startWpID = s;
+		m_endWpID   = e;
+		m_flag      = f;
+	}
+
+	u16 m_startWpID;
+	u16 m_endWpID;
+	u8 m_flag;
 };
 
 struct PathNode {
@@ -23,14 +33,14 @@ struct PathNode {
 	void pop();
 	void countLinks(PathNode**);
 
-	float _00;       // _00
-	float _04;       // _04
-	PathNode* _08;   // _08
-	PathNode* _0C;   // _0C
-	PathNode* _10;   // _10
-	PathNode* _14;   // _14
-	u8 _18[8];       // _18
-	short m_wpIndex; // _20
+	float _00;        // _00
+	float _04;        // _04
+	PathNode* _08;    // _08
+	PathNode* m_next; // _0C
+	PathNode* _10;    // _10
+	PathNode* _14;    // _14
+	u8 _18[8];        // _18
+	short m_wpIndex;  // _20
 };
 
 struct AStarContext {
@@ -73,7 +83,7 @@ struct Pathfinder {
 	int makepath(u32, PathNode**);
 	int makepath(u32, short*, int);
 	void release(u32);
-	u8 check(u32);
+	int check(u32);
 	void getFreeContext();
 	void getContext(u32);
 
@@ -83,6 +93,9 @@ struct Pathfinder {
 	AStarContext* m_aStarContexts;      // _0C
 	AStarPathfinder* m_aStarPathfinder; // _10
 };
+
+static Pathfinder* testPathfinder;
+
 } // namespace Game
 
 #endif

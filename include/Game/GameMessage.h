@@ -112,11 +112,12 @@ struct GameMessageVsPikminDead : public GameMessage {
 };
 
 struct GameMessageVsRedOrSuckStart : public GameMessage {
+	GameMessageVsRedOrSuckStart(int type) { m_color = type; }
 	virtual bool actVs(VsGameSection*); // _10
 
 	// _00 = VTBL
-	int _04;  // _04
-	bool _08; // _08 - unknown
+	int m_color;     // _04 0 = blue 1 = red
+	bool m_isYellow; // _08 - unknown
 };
 
 struct GameMessageVsUseCard : public GameMessage {

@@ -266,8 +266,8 @@ void SingleGame::CaveState::init(SingleGameSection* game, StateArg* arg)
 	}
 
 	MoviePlayArg moviearg("s0B_cv_coursein", nullptr, game->m_movieFinishCallback, 0);
-	moviearg._10  = game->_CC;
-	Vector3f& pos = moviearg.m_origin;
+	moviearg.m_delegateStart = game->m_movieStartCallback;
+	Vector3f& pos            = moviearg.m_origin;
 
 	mapMgr->getStartPosition(pos, false);
 
@@ -587,9 +587,9 @@ void SingleGame::CaveState::exec(SingleGameSection* game)
 					}
 					navi = naviMgr->getAt(id);
 				}
-				moviearg._10      = game->_CC;
-				moviearg.m_origin = navi->getPosition();
-				moviearg.m_angle  = navi->getFaceDir();
+				moviearg.m_delegateStart = game->m_movieStartCallback;
+				moviearg.m_origin        = navi->getPosition();
+				moviearg.m_angle         = navi->getFaceDir();
 				moviePlayer->play(moviearg);
 
 				// check muting parts of music when lots of pikmin die (does this actually happen in caves?)
@@ -846,8 +846,8 @@ void SingleGame::CaveState::check_SMenu(SingleGameSection* game)
 		if (moviePlayer->m_demoState != 0)
 			return;
 		MoviePlayArg arg("s12_cave_giveup", nullptr, game->m_movieFinishCallback, 0);
-		arg._10      = game->_CC;
-		Onyon* onyon = ItemOnyon::mgr->m_pod;
+		arg.m_delegateStart = game->m_movieStartCallback;
+		Onyon* onyon        = ItemOnyon::mgr->m_pod;
 		JUT_ASSERTLINE(792, onyon, "no pod demo 12");
 		arg.m_origin = onyon->getPosition();
 		arg.m_angle  = onyon->getFaceDir();
@@ -1271,7 +1271,7 @@ lbl_802182BC:
 void SingleGame::CaveState::onOrimaDown(SingleGameSection* game, int naviID)
 {
 	MoviePlayArg arg("s03_orima_down", nullptr, game->m_movieFinishCallback, naviID);
-	arg._10 = game->_CC;
+	arg.m_delegateStart = game->m_movieStartCallback;
 
 	moviePlayer->m_targetNavi = naviMgr->getAt(naviID);
 	if (naviID == 0) {
@@ -1352,9 +1352,9 @@ void SingleGame::CaveState::onFountainReturn(SingleGameSection* game, ItemBigFou
 	game->loadMainMapSituation();
 
 	MoviePlayArg arg("s0C_cave_escape", nullptr, game->m_movieFinishCallback, 0);
-	arg.m_origin = fountain->getPosition();
-	arg.m_angle  = fountain->getFaceDir();
-	arg._10      = game->_CC;
+	arg.m_origin        = fountain->getPosition();
+	arg.m_angle         = fountain->getFaceDir();
+	arg.m_delegateStart = game->m_movieStartCallback;
 
 	moviePlayer->m_targetObject = fountain;
 	fountain->movie_begin(false);
@@ -1450,7 +1450,7 @@ void SingleGame::CaveState::onNextFloor(SingleGameSection* game, ItemHole::Item*
 
 	arg.m_origin                = hole->getPosition();
 	arg.m_angle                 = hole->getFaceDir();
-	arg._10                     = game->_CC;
+	arg.m_delegateStart         = game->m_movieStartCallback;
 	moviePlayer->m_targetObject = hole;
 	moviePlayer->play(arg);
 	/*

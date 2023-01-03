@@ -115,14 +115,22 @@ struct WPSearchArg {
 };
 
 struct WPEdgeSearchArg {
-	Vector3f _00;  // _00
-	u8 _0C;        // _0C
-	u8 _0D[0x3];   // _0D, unknown/padding
-	void* _10;     // _10, ActPathMove ptr of some description
-	s16 _14;       // _14
-	u8 _16[0x2];   // _16, padding probably
-	WayPoint* _18; // _18
-	WayPoint* _1C; // _1C
+	WPEdgeSearchArg(Vector3f& startPos)
+	{
+		m_wp2           = nullptr;
+		m_wp1           = nullptr;
+		m_inWater       = 0;
+		m_roomID        = -1;
+		m_handles       = nullptr;
+		m_startPosition = startPos;
+	}
+
+	Vector3f m_startPosition; // _00
+	bool m_inWater;           // _0C
+	short* m_handles;         // _10
+	s16 m_roomID;             // _14
+	WayPoint* m_wp1;          // _18
+	WayPoint* m_wp2;          // _1C
 };
 
 struct RouteMgr : public Container<WayPoint> {
@@ -140,7 +148,7 @@ struct RouteMgr : public Container<WayPoint> {
 	bool linkable(WayPoint*, WayPoint*);
 	void refreshWater();
 	WayPoint* getNearestWayPoint(WPSearchArg&);
-	void getNearestEdge(WPEdgeSearchArg&);
+	bool getNearestEdge(WPEdgeSearchArg&);
 	void setCloseAll();
 	void openRoom(s16);
 	void directDraw(Graphics&, WayPoint*, WayPoint*);

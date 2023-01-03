@@ -107,7 +107,7 @@ void GameState::do_init(VsGameSection* section)
 
 	if (!gameSystem->isVersusMode()) {
 		MoviePlayArg arg("s0B_cv_coursein", nullptr, section->m_movieFinishCallback, 0);
-		arg._10 = section->_CC;
+		arg.m_delegateStart = section->m_movieStartCallback;
 		mapMgr->getStartPosition(arg.m_origin, 0);
 		arg.m_origin.y = mapMgr->getMinY(arg.m_origin);
 
@@ -403,8 +403,8 @@ void GameState::checkFindKeyDemo(VsGameSection* section)
 
 					if (navi->checkDemoNaviAndPiki(sphere) && sys->getPlayCommonData()->challenge_is_virgin()) {
 						MoviePlayArg arg("s16_find_key", nullptr, section->m_movieFinishCallback, 0);
-						arg._10      = section->_CC;
-						arg.m_origin = obj->getPosition();
+						arg.m_delegateStart = section->m_movieStartCallback;
+						arg.m_origin        = obj->getPosition();
 
 						arg.m_angle = JMath::atanTable_.atan2_(obj->m_objMatrix(0, 2), obj->m_objMatrix(2, 2));
 
@@ -454,8 +454,8 @@ void GameState::checkSMenu(VsGameSection* section)
 		if (moviePlayer->m_demoState == 0 && !isFlag(VSGS_Unk2)) {
 			gameSystem->resetFlag(GAMESYS_Unk6);
 			MoviePlayArg movieArgs("s12_cv_giveup", 0x0, section->m_movieFinishCallback, 0);
-			movieArgs._10 = section->_CC;
-			Onyon* onyon  = ItemOnyon::mgr->m_pod;
+			movieArgs.m_delegateStart = section->m_movieStartCallback;
+			Onyon* onyon              = ItemOnyon::mgr->m_pod;
 			JUT_ASSERTLINE(652, onyon, "no pod demo 12");
 			movieArgs.m_origin = onyon->getPosition();
 			movieArgs.m_angle  = onyon->getFaceDir();
@@ -598,8 +598,8 @@ void GameState::onRedOrBlueSuckStart(VsGameSection* section, int player, bool is
 	BaseGameSection* baseSection = gameSystem->m_section;
 
 	MoviePlayArg movieArgs("x19_vs_bedama", nullptr, baseSection->m_movieFinishCallback, 0);
-	movieArgs._08 = const_cast<char*>(VsOtakaraName::cBedamaRed);
-	movieArgs._10 = baseSection->_CC;
+	movieArgs.m_pelletName    = const_cast<char*>(VsOtakaraName::cBedamaRed);
+	movieArgs.m_delegateStart = baseSection->m_movieStartCallback;
 	movieArgs.setTarget(onyon);
 
 	moviePlayer->play(movieArgs);
@@ -627,7 +627,7 @@ void GameState::checkPikminZero(VsGameSection* section)
 		setFlag(VSGS_Unk2);
 
 		MoviePlayArg movieArg("s05_pikminzero", nullptr, section->m_movieFinishCallback, 0);
-		movieArg._10 = section->_CC;
+		movieArg.m_delegateStart = section->m_movieStartCallback;
 		movieArg.setTarget(activeNavi);
 		moviePlayer->play(movieArg);
 
@@ -775,7 +775,7 @@ void GameState::onMovieDone(VsGameSection* section, MovieConfig* config, u32 p1,
 						section->setPlayerMode(0);
 					}
 					section->setCamController();
-					movieArg._10 = section->_CC;
+					movieArg.m_delegateStart = section->m_movieStartCallback;
 					if (ItemOnyon::mgr->m_pod) {
 						Onyon* pod        = ItemOnyon::mgr->m_pod;
 						movieArg.m_angle  = pod->getFaceDir();
@@ -870,8 +870,9 @@ void GameState::onNextFloor(VsGameSection* section, ItemHole::Item* hole)
 	MoviePlayArg movieArg("s09_holein", nullptr, section->m_movieFinishCallback, 0);
 
 	movieArg.setTarget(hole);
-	movieArg._10                = section->_CC;
-	movieArg._10                = section->_CC;
+	movieArg.m_delegateStart = section->m_movieStartCallback;
+	movieArg.m_delegateStart = section->m_movieStartCallback;
+
 	moviePlayer->m_targetObject = hole;
 
 	moviePlayer->play(movieArg);
@@ -894,7 +895,7 @@ void GameState::onOrimaDown(VsGameSection* section, int naviIdx)
 	}
 
 	MoviePlayArg movieArg("s03_orimadown", nullptr, section->m_movieFinishCallback, naviIdx);
-	movieArg._10 = section->_CC;
+	movieArg.m_delegateStart = section->m_movieStartCallback;
 
 	Navi* deadNavi = naviMgr->getAt(naviIdx);
 	movieArg.setTarget(deadNavi);

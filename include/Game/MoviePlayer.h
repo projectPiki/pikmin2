@@ -107,12 +107,12 @@ struct MoviePlayArg {
 	{
 		m_movieName     = movieName;
 		m_courseName    = courseName;
-		_0C             = p3;
+		m_delegateEnd   = p3;
 		m_origin        = Vector3f(0.0f);
 		m_angle         = 0.0f;
 		m_naviID        = naviID;
-		_10             = nullptr;
-		_08             = nullptr;
+		m_delegateStart = nullptr;
+		m_pelletName    = nullptr;
 		m_streamID      = 0;
 		_14             = 0;
 		m_soundPosition = nullptr;
@@ -124,17 +124,17 @@ struct MoviePlayArg {
 		m_angle  = creature->getFaceDir();
 	}
 
-	char* m_movieName;                         // _00
-	char* m_courseName;                        // _04
-	char* _08;                                 // _08
-	IDelegate3<MovieConfig*, u32, u32>* _0C;   // _0C
-	IDelegate3<MovieConfig*, void*, u32>* _10; // _10 /* Second type is unknown. */
-	u32 _14;                                   // _14
-	Vector3f m_origin;                         // _18 /* previously called m_itemPosition */
-	float m_angle;                             // _24 /* previously called m_itemFaceDirection */
-	u32 m_naviID;                              // _28
-	u32 m_streamID;                            // _2C
-	Vector3f* m_soundPosition;                 // _30
+	char* m_movieName;                                     // _00
+	char* m_courseName;                                    // _04
+	char* m_pelletName;                                    // _08
+	IDelegate3<MovieConfig*, u32, u32>* m_delegateEnd;     // _0C
+	IDelegate3<MovieConfig*, void*, u32>* m_delegateStart; // _10 /* Second type is unknown. */
+	u32 _14;                                               // _14
+	Vector3f m_origin;                                     // _18 /* previously called m_itemPosition */
+	float m_angle;                                         // _24 /* previously called m_itemFaceDirection */
+	u32 m_naviID;                                          // _28
+	u32 m_streamID;                                        // _2C
+	Vector3f* m_soundPosition;                             // _30
 };
 
 // Size: 0x5C

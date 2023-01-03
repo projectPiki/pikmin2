@@ -269,13 +269,13 @@ struct Pellet : public DynCreature, public SysShape::MotionListener, public Carr
 	virtual void do_update() { }                                // _1EC (weak)
 	virtual void onKeyEvent(const SysShape::KeyEvent& keyEvent) // _1F0 (weak, thunk at _1BC)
 	{
-		if ((keyEvent.m_type == 1000U) && (_41C.m_flags & 2)) {
-			_41C.startAnim(0, this);
+		if ((keyEvent.m_type == 1000U) && (m_carryAnim.m_flags & 2)) {
+			m_carryAnim.startAnim(0, this);
 			if (_3D0 & 1) {
-				_438 = 30.0f * sys->m_deltaTime;
+				m_animSpeed = 30.0f * sys->m_deltaTime;
 				return;
 			}
-			_438 = 0.0f;
+			m_animSpeed = 0.0f;
 		}
 	}
 	virtual u8 getKind() = 0;                                 // _1F4
@@ -420,56 +420,56 @@ struct Pellet : public DynCreature, public SysShape::MotionListener, public Carr
 	// _00		= VTABLE 1
 	// _04-_314	= DYNCREATURE
 	// _318 	= VTABLE 2? 3?
-	float m_radius;               // _31C
-	float m_depth;                // _320
-	u8 _324;                      // _324 - unknown
-	bool m_isInWater;             // _325
-	u8 _326[0x2];                 // _326 - could be padding
-	TexCaster::Caster* m_caster;  // _328
-	u8 m_pelletFlag;              // _32C
-	u8 m_discoverDisable;         // _32D
-	u8 _32E[0x2];                 //  _32E - could be padding
-	PSM::EventBase* m_soundMgr;   // _330
-	PelletCarry* m_pelletCarry;   // _334
-	u8 m_numPMotions;             // _338
-	u8 _339[0x3];                 // _339, unknown/padding
-	SysShape::Animator _33C;      // _33C
-	PelletView* m_pelletView;     // _358
-	PelletConfig* m_config;       // _35C
-	int _360;                     // _360
-	u8 _364;                      // _364
-	u8 _365[0x33];                // _365 - unknown
-	CarryInfoMgr* m_carryInfoMgr; // _398
-	u8 _39C;                      // _39C - unknown
-	u8 _39D[0xF];                 // _39D - unknown
-	Vector3f m_pelletPosition;    // _3AC
-	float m_faceDir;              // _3B8
-	u8 m_wallTimer;               // _3BC
-	u8 _3BD[0x3];                 // _3BD - possibly padding
-	u32 m_claim;                  // _3C0
-	bool _3C4;                    // _3C4
-	u8 _3C5[0x3];                 // _3C5 - unknown
-	PelletFSM* m_pelletSM;        // _3C8
-	PelletState* m_pelletState;   // _3CC
-	u8 _3D0;                      // _3D0
-	int m_carryColor;             // _3D4
-	int m_minCarriers;            // _3D8, to do with pikmin number
-	int m_maxCarriers;            // _3DC
-	float _3E0;                   // _3E0
-	u8 m_slots[16];               // _3E4
-	short m_slotCount;            // _3F4
-	u8 _3F6;                      // _3F6
-	u8 _3F7;                      // _3F7 - unknown, maybe padding
-	u32 m_pikminCount[7];         // _3F8, TODO: likely [PikiColorCount]
-	u32 _414;                     // _414 - unknown
-	float m_carryPower;           // _418
-	SysShape::Animator _41C;      // _41C
-	float _438;                   // _438
-	u16 _43C;                     // _43C
-	u16 m_pelletColor;            // _43E
-	int m_slotIndex;              // _440
-	Sys::Sphere m_lodSphere;      // _444
-	BasePelletMgr* m_mgr;         // _454
+	float m_radius;                 // _31C
+	float m_depth;                  // _320
+	u8 _324;                        // _324 - unknown
+	bool m_isInWater;               // _325
+	u8 _326[0x2];                   // _326 - could be padding
+	TexCaster::Caster* m_caster;    // _328
+	u8 m_pelletFlag;                // _32C
+	u8 m_discoverDisable;           // _32D
+	u8 _32E[0x2];                   //  _32E - could be padding
+	PSM::EventBase* m_soundMgr;     // _330
+	PelletCarry* m_pelletCarry;     // _334
+	u8 m_numPMotions;               // _338
+	u8 _339[0x3];                   // _339, unknown/padding
+	SysShape::Animator _33C;        // _33C
+	PelletView* m_pelletView;       // _358
+	PelletConfig* m_config;         // _35C
+	int _360;                       // _360
+	u8 _364;                        // _364
+	u8 _365[0x33];                  // _365 - unknown
+	CarryInfoMgr* m_carryInfoMgr;   // _398
+	u8 _39C;                        // _39C - unknown
+	u8 _39D[0xF];                   // _39D - unknown
+	Vector3f m_pelletPosition;      // _3AC
+	float m_faceDir;                // _3B8
+	u8 m_wallTimer;                 // _3BC
+	u8 _3BD[0x3];                   // _3BD - possibly padding
+	u32 m_claim;                    // _3C0
+	bool _3C4;                      // _3C4
+	u8 _3C5[0x3];                   // _3C5 - unknown
+	PelletFSM* m_pelletSM;          // _3C8
+	PelletState* m_pelletState;     // _3CC
+	u8 _3D0;                        // _3D0
+	int m_carryColor;               // _3D4
+	int m_minCarriers;              // _3D8, to do with pikmin number
+	int m_maxCarriers;              // _3DC
+	float _3E0;                     // _3E0
+	u8 m_slots[16];                 // _3E4
+	short m_slotCount;              // _3F4
+	u8 _3F6;                        // _3F6
+	u8 _3F7;                        // _3F7 - unknown, maybe padding
+	u32 m_pikminCount[7];           // _3F8, TODO: likely [PikiColorCount]
+	u32 _414;                       // _414 - unknown
+	float m_carryPower;             // _418
+	SysShape::Animator m_carryAnim; // _41C
+	f32 m_animSpeed;                // _438
+	u16 _43C;                       // _43C
+	u16 m_pelletColor;              // _43E, this reflects pellet color for Number pellets, and the color of berries
+	int m_slotIndex;                // _440
+	Sys::Sphere m_lodSphere;        // _444
+	BasePelletMgr* m_mgr;           // _454
 
 	static bool sFromTekiEnable;
 };
@@ -481,6 +481,19 @@ struct PelletFSM : public StateMachine<Pellet> {
 	// _04-_1C 	= StateMachine<Pellet>
 };
 
+enum StateID {
+	PELSTATE_Normal,
+	PELSTATE_Goal,
+	PELSTATE_Bury,
+	PELSTATE_Up,
+	PELSTATE_Appear,
+	PELSTATE_ScaleAppear,
+	PELSTATE_Zukan,
+	PELSTATE_GoalWait,
+	PELSTATE_Return,
+	PELLET_STATE_COUNT
+};
+
 struct PelletGoalStateArg : public StateArg {
 	inline PelletGoalStateArg(Creature* creature) { m_creature = creature; }
 
@@ -490,7 +503,18 @@ struct PelletGoalStateArg : public StateArg {
 	virtual char* getName() { return "PelletGoalStateArg"; } // _08 (weak)
 };
 
+struct PelletReturnStateArg : public StateArg {
+	inline PelletReturnStateArg(Vector3f& pos) { m_position = pos; }
+
+	Vector3f m_position; // _00
+};
+
 struct PelletState : public FSMState<Pellet> {
+	PelletState(int id)
+	    : FSMState<Pellet>(id)
+	{
+	}
+
 	virtual bool isBuried();                    // _20 (weak)
 	virtual bool appeared();                    // _24 (weak)
 	virtual bool isPickable() { return false; } // _28 (weak)
@@ -499,23 +523,32 @@ struct PelletState : public FSMState<Pellet> {
 };
 
 struct PelletAppearState : public PelletState {
+	PelletAppearState()
+	    : PelletState(PELSTATE_Appear)
+	{
+	}
+
 	virtual void init(Pellet*, StateArg*); // _08
 	virtual void exec(Pellet*);            // _0C
 	virtual void cleanup(Pellet*);         // _10
 	virtual bool appeared();               // _24 (weak)
 
-	float _10;   // _10
-	float _14;   // _14
-	float _18;   // _18
-	float _1C;   // _1C
-	float _20;   // _20
-	float _24;   // _24
-	float _28;   // _28
-	u8 _2C;      // _29
-	u8 _2D[0x3]; // _2A, unknown/maybe padding
+	f32 m_time;      // _10
+	f32 m_angle;     // _14
+	f32 m_goalScale; // _18
+	float _1C;       // _1C
+	float _20;       // _20
+	float _24;       // _24
+	f32 _28;         // _28
+	bool m_efxMade;  // _29
 };
 
 struct PelletBuryState : public PelletState {
+	PelletBuryState()
+	    : PelletState(PELSTATE_Bury)
+	{
+	}
+
 	virtual void init(Pellet*, StateArg*); // _08
 	virtual void exec(Pellet*);            // _0C
 	virtual void cleanup(Pellet*);         // _10
@@ -523,32 +556,50 @@ struct PelletBuryState : public PelletState {
 };
 
 struct PelletGoalState : public PelletState {
+	PelletGoalState()
+	    : PelletState(PELSTATE_Goal)
+	{
+	}
+
 	virtual void init(Pellet*, StateArg*); // _08
 	virtual void exec(Pellet*);            // _0C
 	virtual void cleanup(Pellet*);         // _10
 
-	void checkMovie(Pellet*);
+	bool checkMovie(Pellet*);
 
-	Creature* m_creature; // _10
-	float _14;            // _14
-	float _18;            // _18
-	float _1C;            // _1C
-	float _20;            // _20
-	u8 _24[0x18];         // _24, unknown
-	u8 _3C;               // _3C, unknown
-	u8 _3D;               // _3D
-	u8 _3E[0x2];          // _3E, unknown/maybe padding
+	Creature* m_onyon; // _10
+	f32 _14;           // _14
+	f32 m_distance;    // _18
+	f32 m_suckDelay;   // _1C
+	f32 m_scale;       // _20
+	f32 m_suckTime;
+	Vector3f m_currPos;
+	bool m_startSuck;
+	f32 m_timer;
+	u8 m_inDemo;     // _3C, unknown
+	u8 m_isWaiting;  // _3D
+	u8 m_didSuikomi; // _3E
 };
 
 struct PelletGoalWaitState : public PelletState {
+	PelletGoalWaitState()
+	    : PelletState(PELSTATE_GoalWait)
+	{
+	}
+
 	virtual void init(Pellet*, StateArg*); // _08
 	virtual void exec(Pellet*);            // _0C
 	virtual void cleanup(Pellet*);         // _10
 
-	u8 _10[0x4]; // _10, unknown
+	Creature* m_obj; // _10
 };
 
 struct PelletNormalState : public PelletState {
+	PelletNormalState()
+	    : PelletState(PELSTATE_Normal)
+	{
+	}
+
 	virtual void init(Pellet*, StateArg*); // _08
 	virtual void exec(Pellet*);            // _0C
 	virtual void cleanup(Pellet*);         // _10
@@ -562,43 +613,56 @@ struct PelletReturnState : public PelletState {
 	virtual void exec(Pellet*);            // _0C
 	virtual void cleanup(Pellet*);         // _10
 
-	void initPathfinding(Pellet*);
-	void execPathfinding(Pellet*);
-	void execMove(Pellet*);
-	void execMoveGoal(Pellet*);
+	int initPathfinding(Pellet*);
+	u32 execPathfinding(Pellet*);
+	u32 execMove(Pellet*);
+	u32 execMoveGoal(Pellet*);
 
-	float _10;                  // _10
-	float _14;                  // _14
-	u8 _18[0x2];                // _18
-	u16 _1A;                    // _1A
-	u32 _1C;                    // _1C
-	u8 _20[0xC];                // _20, unknown
-	PathNode* _24;              // _24
-	PathNode* _28;              // _28
-	int _2C;                    // _2C, maybe count of nodes traversed?
-	::efx::TOrimaLight* _30;    // _30
-	::efx::TOrimaLightAct* _34; // _34
+	void flick(Pellet*);
+	void getWayPont(int);
+
+	f32 m_timer;      // _10
+	f32 m_peltYScale; // _14
+	u8 m_doEfx;       // _18
+	u8 m_doFlick;
+	u16 m_state;                     // _1A
+	u32 m_pathCheckID;               // _1C
+	Vector3f m_goalPos;              // _20
+	PathNode* m_pathNode;            // _2C
+	PathNode* m_pathNodePrev;        // _30
+	int m_pathNodes;                 // _34
+	::efx::TOrimaLight* m_efx;       // _38
+	::efx::TOrimaLightAct* m_efxAct; // _3C
 };
 
 struct PelletScaleAppearState : public PelletState {
+	PelletScaleAppearState()
+	    : PelletState(PELSTATE_ScaleAppear)
+	{
+	}
+
 	// might inherit PelletAppearState or vice versa?
 	virtual void init(Pellet*, StateArg*); // _08
 	virtual void exec(Pellet*);            // _0C
 	virtual void cleanup(Pellet*);         // _10
 	virtual bool appeared();               // _24 (weak)
 
-	float _10;   // _10
-	float _14;   // _14
-	float _18;   // _18
-	float _1C;   // _1C
-	float _20;   // _20
-	float _24;   // _24
-	float _28;   // _28
-	u8 _2C;      // _2C
-	u8 _2D[0x3]; // _2D, unknown/maybe padding
+	f32 m_time;      // _10
+	f32 m_angle;     // _14
+	f32 m_goalScale; // _18
+	float _1C;       // _1C
+	float _20;       // _20
+	float _24;       // _24
+	float _28;       // _28
+	bool m_efxMade;  // _2C
 };
 
 struct PelletUpState : public PelletState {
+	PelletUpState()
+	    : PelletState(PELSTATE_Up)
+	{
+	}
+
 	virtual void init(Pellet*, StateArg*); // _08
 	virtual void exec(Pellet*);            // _0C
 	virtual void cleanup(Pellet*);         // _10
@@ -606,11 +670,16 @@ struct PelletUpState : public PelletState {
 };
 
 struct PelletZukanState : public PelletState {
+	PelletZukanState()
+	    : PelletState(PELSTATE_Zukan)
+	{
+	}
+
 	virtual void init(Pellet*, StateArg*); // _08
 	virtual void exec(Pellet*);            // _0C
 	virtual void cleanup(Pellet*);         // _10
 
-	float _10; // _10
+	f32 m_timer; // _10
 };
 
 extern PelletMgr* pelletMgr;

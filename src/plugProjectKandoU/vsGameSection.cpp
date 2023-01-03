@@ -627,9 +627,9 @@ bool VsGameSection::updateCaveMenus()
 			gameSystem->setMoviePause(false, "kk-yes");
 			m_menuFlags &= ~4;
 			MoviePlayArg arg("s0C_cv_escape", nullptr, m_movieFinishCallback, 0);
-			arg.m_origin = m_fountain->getPosition();
-			arg.m_angle  = m_fountain->getFaceDir();
-			arg._10      = _CC;
+			arg.m_origin        = m_fountain->getPosition();
+			arg.m_angle         = m_fountain->getFaceDir();
+			arg.m_delegateStart = m_movieStartCallback;
 			m_fountain->movie_begin(false);
 			moviePlayer->m_targetObject = m_fountain;
 			moviePlayer->play(arg);
@@ -852,7 +852,7 @@ bool GameMessageVsBattleFinished::actVs(VsGameSection* section)
 bool GameMessageVsRedOrSuckStart::actVs(VsGameSection* section)
 {
 	if (section->m_state) {
-		section->m_state->onRedOrBlueSuckStart(section, _04, _08);
+		section->m_state->onRedOrBlueSuckStart(section, m_color, m_isYellow);
 	}
 	return true;
 }
