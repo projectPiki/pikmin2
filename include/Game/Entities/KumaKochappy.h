@@ -6,7 +6,6 @@
 #include "Game/EnemyParmsBase.h"
 #include "Game/EnemyMgrBase.h"
 #include "Game/EnemyBase.h"
-#include "Game/ChappyRelation.h"
 #include "Game/WalkSmokeEffect.h"
 #include "Collinfo.h"
 
@@ -15,6 +14,7 @@
  */
 
 namespace Game {
+struct ChappyRelation;
 namespace KumaChappy {
 struct Obj;
 } // namespace KumaChappy

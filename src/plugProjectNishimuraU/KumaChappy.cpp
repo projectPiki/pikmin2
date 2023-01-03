@@ -1,4 +1,13 @@
-#include "types.h"
+#include "Game/Entities/KumaChappy.h"
+#include "LifeGaugeMgr.h"
+#include "Game/generalEnemyMgr.h"
+#include "Game/routeMgr.h"
+#include "Game/MapMgr.h"
+#include "Game/EnemyFunc.h"
+#include "Dolphin/rand.h"
+#include "trig.h"
+#include "Game/ChappyRelation.h"
+#include "Game/rumble.h"
 
 /*
     Generated from dpostproc
@@ -316,99 +325,9 @@ namespace Game {
  */
 KumaChappy::Obj::Obj()
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	extsh.   r0, r4
-	stw      r31, 0xc(r1)
-	mr       r31, r3
-	stw      r30, 8(r1)
-	beq      lbl_802996E0
-	addi     r0, r31, 0x2f8
-	lis      r3, __vt__Q24Game10PelletView@ha
-	stw      r0, 0x17c(r31)
-	addi     r3, r3, __vt__Q24Game10PelletView@l
-	li       r0, 0
-	stw      r3, 0x2f8(r31)
-	stw      r0, 0x2fc(r31)
-	stw      r0, 0x300(r31)
-
-lbl_802996E0:
-	mr       r3, r31
-	li       r4, 0
-	bl       __ct__Q24Game9EnemyBaseFv
-	lis      r3, __vt__Q34Game10KumaChappy3Obj@ha
-	addi     r0, r31, 0x2f8
-	addi     r5, r3, __vt__Q34Game10KumaChappy3Obj@l
-	addi     r3, r31, 0x2c0
-	stw      r5, 0(r31)
-	addi     r4, r5, 0x1b0
-	addi     r5, r5, 0x308
-	stw      r4, 0x178(r31)
-	lwz      r4, 0x17c(r31)
-	stw      r5, 0(r4)
-	lwz      r4, 0x17c(r31)
-	subf     r0, r4, r0
-	stw      r0, 0xc(r4)
-	bl       __ct__Q34Game15WalkSmokeEffect3MgrFv
-	addi     r3, r31, 0x2d8
-	bl       __ct__10MouthSlotsFv
-	li       r3, 0x2c
-	bl       __nw__FUl
-	or.      r30, r3, r3
-	beq      lbl_8029977C
-	bl       __ct__Q24Game17EnemyAnimatorBaseFv
-	lis      r3, __vt__Q34Game10KumaChappy14ProperAnimator@ha
-	lis      r4, __vt__Q28SysShape12BaseAnimator@ha
-	addi     r0, r3, __vt__Q34Game10KumaChappy14ProperAnimator@l
-	lis      r3, __vt__Q28SysShape8Animator@ha
-	stw      r0, 0(r30)
-	addi     r4, r4, __vt__Q28SysShape12BaseAnimator@l
-	addi     r3, r3, __vt__Q28SysShape8Animator@l
-	li       r0, 0
-	stw      r4, 0x10(r30)
-	stw      r3, 0x10(r30)
-	stb      r0, 0x28(r30)
-	stw      r0, 0x1c(r30)
-	stw      r0, 0x14(r30)
-	stb      r0, 0x28(r30)
-	stw      r0, 0x20(r30)
-
-lbl_8029977C:
-	stw      r30, 0x184(r31)
-	li       r3, 0x1c
-	bl       __nw__FUl
-	or.      r4, r3, r3
-	beq      lbl_802997B0
-	lis      r5, __vt__Q24Game17EnemyStateMachine@ha
-	lis      r3, __vt__Q34Game10KumaChappy3FSM@ha
-	addi     r0, r5, __vt__Q24Game17EnemyStateMachine@l
-	li       r5, -1
-	stw      r0, 0(r4)
-	addi     r0, r3, __vt__Q34Game10KumaChappy3FSM@l
-	stw      r5, 0x18(r4)
-	stw      r0, 0(r4)
-
-lbl_802997B0:
-	lwz      r12, 0(r31)
-	mr       r3, r31
-	lwz      r12, 0x2f8(r12)
-	mtctr    r12
-	bctrl
-	mr       r3, r31
-	lwz      r12, 0(r31)
-	lwz      r12, 0x2fc(r12)
-	mtctr    r12
-	bctrl
-	lwz      r0, 0x14(r1)
-	mr       r3, r31
-	lwz      r31, 0xc(r1)
-	lwz      r30, 8(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	m_animator = new ProperAnimator;
+	setFSM(new FSM);
+	createChappyRelation();
 }
 
 /*
@@ -423,41 +342,16 @@ void KumaChappy::Obj::setInitialSetting(Game::EnemyInitialParamBase*) { }
  * Address:	802997F8
  * Size:	00007C
  */
-void KumaChappy::Obj::onInit(Game::CreatureInitArg*)
+void KumaChappy::Obj::onInit(Game::CreatureInitArg* arg)
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	mr       r31, r3
-	bl       onInit__Q24Game9EnemyBaseFPQ24Game15CreatureInitArg
-	lwz      r4, 0x1e0(r31)
-	li       r0, -1
-	lfs      f0, lbl_8051BB68@sda21(r2)
-	mr       r3, r31
-	rlwinm   r4, r4, 0, 0x1a, 0x18
-	stw      r4, 0x1e0(r31)
-	stfs     f0, 0x2c8(r31)
-	stfs     f0, 0x2d0(r31)
-	stw      r0, 0x2d4(r31)
-	bl       resetWayPoint__Q34Game10KumaChappy3ObjFv
-	mr       r3, r31
-	bl       setNearestWayPoint__Q34Game10KumaChappy3ObjFv
-	lwz      r3, 0x2bc(r31)
-	mr       r4, r31
-	li       r5, 6
-	li       r6, 0
-	lwz      r12, 0(r3)
-	lwz      r12, 0xc(r12)
-	mtctr    r12
-	bctrl
-	lwz      r0, 0x14(r1)
-	lwz      r31, 0xc(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	EnemyBase::onInit(arg);
+	disableEvent(0, EB_IsCullable);
+	m_reviveTimer = 0.0f;
+	m_timer       = 0.0f;
+	m_nextState   = -1;
+	resetWayPoint();
+	setNearestWayPoint();
+	m_fsm->start(this, KUMACHAPPY_TurnPath, nullptr);
 }
 
 /*
@@ -467,32 +361,10 @@ void KumaChappy::Obj::onInit(Game::CreatureInitArg*)
  */
 void KumaChappy::Obj::doUpdate()
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	mr       r31, r3
-	lwz      r4, sys@sda21(r13)
-	lfs      f1, 0x2c8(r3)
-	lfs      f0, 0x54(r4)
-	fadds    f0, f1, f0
-	stfs     f0, 0x2c8(r3)
-	bl       updateTargetDistance__Q34Game10KumaChappy3ObjFv
-	lwz      r3, 0x2bc(r31)
-	mr       r4, r31
-	lwz      r12, 0(r3)
-	lwz      r12, 0x10(r12)
-	mtctr    r12
-	bctrl
-	addi     r3, r31, 0x2d8
-	bl       update__10MouthSlotsFv
-	lwz      r0, 0x14(r1)
-	lwz      r31, 0xc(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	m_reviveTimer += sys->m_deltaTime;
+	updateTargetDistance();
+	m_fsm->exec(this);
+	m_mouthSlots.update();
 }
 
 /*
@@ -507,48 +379,18 @@ void KumaChappy::Obj::doDirectDraw(Graphics&) { }
  * Address:	802998D8
  * Size:	000020
  */
-void KumaChappy::Obj::doDebugDraw(Graphics&)
-{
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	bl       doDebugDraw__Q24Game9EnemyBaseFR8Graphics
-	lwz      r0, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
-}
+void KumaChappy::Obj::doDebugDraw(Graphics& gfx) { EnemyBase::doDebugDraw(gfx); }
 
 /*
  * --INFO--
  * Address:	802998F8
  * Size:	00004C
  */
-void KumaChappy::Obj::setFSM(Game::KumaChappy::FSM*)
+void KumaChappy::Obj::setFSM(Game::KumaChappy::FSM* fsm)
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	mr       r31, r3
-	stw      r4, 0x2bc(r3)
-	mr       r4, r31
-	lwz      r3, 0x2bc(r3)
-	lwz      r12, 0(r3)
-	lwz      r12, 8(r12)
-	mtctr    r12
-	bctrl
-	li       r0, 0
-	stw      r0, 0x2b4(r31)
-	lwz      r0, 0x14(r1)
-	lwz      r31, 0xc(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	m_fsm = fsm;
+	m_fsm->init(this);
+	m_currentLifecycleState = nullptr;
 }
 
 /*
@@ -556,65 +398,24 @@ void KumaChappy::Obj::setFSM(Game::KumaChappy::FSM*)
  * Address:	80299944
  * Size:	0000C4
  */
-void KumaChappy::Obj::getShadowParam(Game::ShadowParam&)
+void KumaChappy::Obj::getShadowParam(Game::ShadowParam& param)
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	mr       r31, r4
-	addi     r4, r2, lbl_8051BB6C@sda21
-	stw      r30, 8(r1)
-	mr       r30, r3
-	lwz      r3, 0x174(r3)
-	bl       getJoint__Q28SysShape5ModelFPc
-	bl       getWorldMatrix__Q28SysShape5JointFv
-	lfs      f4, 0x2c(r3)
-	lfs      f3, 0x1c(r3)
-	lfs      f1, 0xc(r3)
-	lfs      f0, lbl_8051BB70@sda21(r2)
-	stfs     f1, 0(r31)
-	lfs      f2, lbl_8051BB74@sda21(r2)
-	stfs     f3, 4(r31)
-	stfs     f4, 8(r31)
-	lfs      f1, 4(r31)
-	fsubs    f0, f1, f0
-	stfs     f0, 4(r31)
-	lfs      f1, 0x190(r30)
-	lfs      f0, 4(r31)
-	fadds    f1, f2, f1
-	fcmpo    cr0, f0, f1
-	bge      lbl_802999B4
-	stfs     f1, 4(r31)
+	Matrixf* mtx     = m_model->getJoint("ago")->getWorldMatrix();
+	param.m_position = Vector3f(mtx->m_matrix.structView.tx, mtx->m_matrix.structView.ty, mtx->m_matrix.structView.tz);
+	param.m_position.y -= 17.5f;
 
-lbl_802999B4:
-	lfs      f1, lbl_8051BB68@sda21(r2)
-	lfs      f0, lbl_8051BB78@sda21(r2)
-	stfs     f1, 0xc(r31)
-	stfs     f0, 0x10(r31)
-	stfs     f1, 0x14(r31)
-	lwz      r0, 0x1e4(r30)
-	clrlwi.  r0, r0, 0x1f
-	beq      lbl_802999E0
-	lfs      f0, lbl_8051BB7C@sda21(r2)
-	stfs     f0, 0x18(r31)
-	b        lbl_802999E8
+	f32 temp = m_position.y + 5.0f;
+	if (param.m_position.y < temp) {
+		param.m_position.y = temp;
+	}
 
-lbl_802999E0:
-	lfs      f0, lbl_8051BB80@sda21(r2)
-	stfs     f0, 0x18(r31)
-
-lbl_802999E8:
-	lfs      f0, lbl_8051BB84@sda21(r2)
-	stfs     f0, 0x1c(r31)
-	lwz      r0, 0x14(r1)
-	lwz      r31, 0xc(r1)
-	lwz      r30, 8(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	param.m_boundingSphere.m_position = Vector3f(0.0f, 1.0f, 0.0f);
+	if (isEvent(1, EB2_IsEarthquake)) {
+		param.m_boundingSphere.m_radius = 100.0f;
+	} else {
+		param.m_boundingSphere.m_radius = 75.0f;
+	}
+	param.m_size = 30.0f;
 }
 
 /*
@@ -622,26 +423,13 @@ lbl_802999E8:
  * Address:	80299A08
  * Size:	000038
  */
-void KumaChappy::Obj::damageCallBack(Game::Creature*, float, CollPart*)
+bool KumaChappy::Obj::damageCallBack(Game::Creature*, f32 dmg, CollPart* part)
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	cmplwi   r5, 0
-	stw      r0, 0x14(r1)
-	bne      lbl_80299A24
-	lfs      f0, lbl_8051BB88@sda21(r2)
-	fmuls    f1, f1, f0
-
-lbl_80299A24:
-	lfs      f2, lbl_8051BB78@sda21(r2)
-	bl       addDamage__Q24Game9EnemyBaseFff
-	lwz      r0, 0x14(r1)
-	li       r3, 1
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	if (!part) {
+		dmg *= 0.1f;
+	}
+	EnemyBase::addDamage(dmg, 1.0f);
+	return true;
 }
 
 /*
@@ -649,29 +437,21 @@ lbl_80299A24:
  * Address:	80299A40
  * Size:	000028
  */
-void KumaChappy::Obj::startCarcassMotion()
-{
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	li       r4, 4
-	li       r5, 0
-	stw      r0, 0x14(r1)
-	bl       startMotion__Q24Game9EnemyBaseFiPQ28SysShape14MotionListener
-	lwz      r0, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
-}
+void KumaChappy::Obj::startCarcassMotion() { startMotion(4, nullptr); }
 
 /*
  * --INFO--
  * Address:	80299A68
  * Size:	0000A8
  */
-void KumaChappy::Obj::getOffsetForMapCollision()
+Vector3f KumaChappy::Obj::getOffsetForMapCollision()
 {
+	if (isAlive()) {
+		return Vector3f(Vector3f::zero);
+	} else {
+		Matrixf* mtx = m_model->getJoint("ago")->getWorldMatrix();
+		return Vector3f(mtx->m_matrix.structView.tx - m_position.x, 0.0f, mtx->m_matrix.structView.tz - m_position.z);
+	}
 	/*
 	stwu     r1, -0x10(r1)
 	mflr     r0
@@ -729,67 +509,16 @@ lbl_80299AF8:
  */
 void KumaChappy::Obj::initMouthSlots()
 {
-	/*
-	stwu     r1, -0x20(r1)
-	mflr     r0
-	stw      r0, 0x24(r1)
-	stfd     f31, 0x10(r1)
-	psq_st   f31, 24(r1), 0, qr0
-	stw      r31, 0xc(r1)
-	stw      r30, 8(r1)
-	mr       r30, r3
-	li       r4, 5
-	addi     r3, r30, 0x2d8
-	bl       alloc__10MouthSlotsFi
-	lwz      r5, 0x174(r30)
-	addi     r3, r30, 0x2d8
-	li       r4, 0
-	addi     r6, r2, lbl_8051BB8C@sda21
-	bl       setup__10MouthSlotsFiPQ28SysShape5ModelPc
-	lwz      r5, 0x174(r30)
-	addi     r3, r30, 0x2d8
-	li       r4, 1
-	addi     r6, r2, lbl_8051BB94@sda21
-	bl       setup__10MouthSlotsFiPQ28SysShape5ModelPc
-	lwz      r5, 0x174(r30)
-	addi     r3, r30, 0x2d8
-	li       r4, 2
-	addi     r6, r2, lbl_8051BB9C@sda21
-	bl       setup__10MouthSlotsFiPQ28SysShape5ModelPc
-	lwz      r5, 0x174(r30)
-	addi     r3, r30, 0x2d8
-	li       r4, 3
-	addi     r6, r2, lbl_8051BBA4@sda21
-	bl       setup__10MouthSlotsFiPQ28SysShape5ModelPc
-	lwz      r5, 0x174(r30)
-	addi     r3, r30, 0x2d8
-	li       r4, 4
-	addi     r6, r2, lbl_8051BBAC@sda21
-	bl       setup__10MouthSlotsFiPQ28SysShape5ModelPc
-	lfs      f31, lbl_8051BBB4@sda21(r2)
-	li       r31, 0
-	b        lbl_80299BC0
-
-lbl_80299BAC:
-	mr       r4, r31
-	addi     r3, r30, 0x2d8
-	bl       getSlot__10MouthSlotsFi
-	stfs     f31, 0x1c(r3)
-	addi     r31, r31, 1
-
-lbl_80299BC0:
-	lwz      r0, 0x2d8(r30)
-	cmpw     r31, r0
-	blt      lbl_80299BAC
-	psq_l    f31, 24(r1), 0, qr0
-	lwz      r0, 0x24(r1)
-	lfd      f31, 0x10(r1)
-	lwz      r31, 0xc(r1)
-	lwz      r30, 8(r1)
-	mtlr     r0
-	addi     r1, r1, 0x20
-	blr
-	*/
+	m_mouthSlots.alloc(5);
+	m_mouthSlots.setup(0, m_model, "kamu1");
+	m_mouthSlots.setup(1, m_model, "kamu2");
+	m_mouthSlots.setup(2, m_model, "kamu3");
+	m_mouthSlots.setup(3, m_model, "kamu4");
+	m_mouthSlots.setup(4, m_model, "kamu5");
+	f32 size = 35.0f;
+	for (int i = 0; i < m_mouthSlots.m_max; i++) {
+		m_mouthSlots.getSlot(i)->m_radius = size;
+	}
 }
 
 /*
@@ -799,33 +528,9 @@ lbl_80299BC0:
  */
 void KumaChappy::Obj::initWalkSmokeEffect()
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	li       r4, 2
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	mr       r31, r3
-	addi     r3, r31, 0x2c0
-	bl       alloc__Q34Game15WalkSmokeEffect3MgrFi
-	lwz      r5, 0x174(r31)
-	addi     r3, r31, 0x2c0
-	lfs      f1, lbl_8051BBC0@sda21(r2)
-	li       r4, 0
-	addi     r6, r2, lbl_8051BBB8@sda21
-	bl       setup__Q34Game15WalkSmokeEffect3MgrFiPQ28SysShape5ModelPcf
-	lwz      r5, 0x174(r31)
-	addi     r3, r31, 0x2c0
-	lfs      f1, lbl_8051BBC0@sda21(r2)
-	li       r4, 1
-	addi     r6, r2, lbl_8051BBC4@sda21
-	bl       setup__Q34Game15WalkSmokeEffect3MgrFiPQ28SysShape5ModelPcf
-	lwz      r0, 0x14(r1)
-	lwz      r31, 0xc(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	m_walkSmokeMgr.alloc(2);
+	m_walkSmokeMgr.setup(0, m_model, "asiL", 10.0f);
+	m_walkSmokeMgr.setup(1, m_model, "asiR", 10.0f);
 }
 
 /*
@@ -833,28 +538,18 @@ void KumaChappy::Obj::initWalkSmokeEffect()
  * Address:	80299C50
  * Size:	000008
  */
-void KumaChappy::Obj::getWalkSmokeEffectMgr()
-{
-	/*
-	addi     r3, r3, 0x2c0
-	blr
-	*/
-}
+WalkSmokeEffect::Mgr* KumaChappy::Obj::getWalkSmokeEffectMgr() { return &m_walkSmokeMgr; }
 
 /*
  * --INFO--
  * Address:	80299C58
  * Size:	000014
  */
-void KumaChappy::Obj::doBecomeCarcass()
+bool KumaChappy::Obj::doBecomeCarcass()
 {
-	/*
-	lfs      f0, lbl_8051BB68@sda21(r2)
-	stfs     f0, 0x2c8(r3)
-	stfs     f0, 0x200(r3)
-	li       r3, 1
-	blr
-	*/
+	m_reviveTimer = 0.0f;
+	m_health      = 0.0f;
+	return true;
 }
 
 /*
@@ -864,6 +559,39 @@ void KumaChappy::Obj::doBecomeCarcass()
  */
 void KumaChappy::Obj::doUpdateCarcass()
 {
+	if (m_pellet->isAlive()) {
+		if (m_reviveTimer < C_PARMS->m_properParms.m_fp11) {
+			m_reviveTimer += sys->m_deltaTime;
+			if (lifeGaugeMgr && m_reviveTimer >= C_PARMS->m_properParms.m_fp11) {
+				lifeGaugeMgr->activeLifeGauge(this, 0.0f);
+			}
+		} else {
+			if (m_health < m_maxHealth) {
+				m_health += (m_maxHealth / C_PARMS->m_properParms.m_fp12.m_value) * sys->m_deltaTime;
+				if (m_health >= m_maxHealth) {
+					m_pellet->kill(nullptr);
+					f32 x = m_objMatrix.m_matrix.structView.zx;
+					f32 z = m_objMatrix.m_matrix.structView.zz;
+					EnemyBirthArg arg;
+					arg.m_position        = m_position;
+					arg.m_faceDir         = JMath::atanTable_.atan2_(x, z);
+					arg.m_existenceLength = m_existDuration;
+					arg.m_isInPiklopedia  = (u8)m_inPiklopedia;
+					EnemyBase* obj        = generalEnemyMgr->birth(getEnemyTypeID(), arg);
+					if (obj) {
+						obj->init(nullptr);
+						m_fsm->transit(this, KUMACHAPPY_Dead, nullptr);
+					}
+				}
+			}
+		}
+	} else {
+		if (lifeGaugeMgr && m_reviveTimer >= C_PARMS->m_properParms.m_fp11) {
+			m_reviveTimer = 0.0f;
+			m_health      = 0.0f;
+			lifeGaugeMgr->inactiveLifeGauge(this);
+		}
+	}
 	/*
 	stwu     r1, -0x70(r1)
 	mflr     r0
@@ -1006,39 +734,17 @@ lbl_80299E44:
  * Address:	80299E68
  * Size:	000064
  */
-void KumaChappy::Obj::doGetLifeGaugeParam(Game::LifeGaugeParam&)
+void KumaChappy::Obj::doGetLifeGaugeParam(Game::LifeGaugeParam& param)
 {
-	/*
-	lfs      f0, 0x18c(r3)
-	stfs     f0, 0(r4)
-	lwz      r5, 0x17c(r3)
-	lwz      r0, 4(r5)
-	cmplwi   r0, 0
-	beq      lbl_80299E94
-	lfs      f1, lbl_8051BBCC@sda21(r2)
-	lfs      f0, 0x190(r3)
-	fadds    f0, f1, f0
-	stfs     f0, 4(r4)
-	b        lbl_80299EA8
-
-lbl_80299E94:
-	lwz      r5, 0xc0(r3)
-	lfs      f1, 0x190(r3)
-	lfs      f0, 0x12c(r5)
-	fadds    f0, f1, f0
-	stfs     f0, 4(r4)
-
-lbl_80299EA8:
-	lfs      f1, 0x194(r3)
-	lfs      f0, lbl_8051BBC0@sda21(r2)
-	stfs     f1, 8(r4)
-	lfs      f2, 0x200(r3)
-	lfs      f1, 0x204(r3)
-	fdivs    f1, f2, f1
-	stfs     f1, 0xc(r4)
-	stfs     f0, 0x10(r4)
-	blr
-	*/
+	param.m_position.x = m_position.x;
+	if (m_pellet) {
+		param.m_position.y = m_position.y + 50.0f;
+	} else {
+		param.m_position.y = m_position.y + C_PARMS->m_general.m_lifeMeterHeight.m_value;
+	}
+	param.m_position.z          = m_position.z;
+	param.m_curHealthPercentage = m_health / m_maxHealth;
+	param.m_radius              = 10.0f;
 }
 
 /*
@@ -1046,21 +752,13 @@ lbl_80299EA8:
  * Address:	80299ECC
  * Size:	000024
  */
-void KumaChappy::Obj::getViewAngle()
+f32 KumaChappy::Obj::getViewAngle()
 {
-	/*
-	lwz      r4, 0xc0(r3)
-	lfs      f1, 0x2c8(r3)
-	lfs      f0, 0x62c(r4)
-	fcmpo    cr0, f1, f0
-	bge      lbl_80299EE8
-	lfs      f1, lbl_8051BBD0@sda21(r2)
-	blr
-
-lbl_80299EE8:
-	lfs      f1, 0x424(r4)
-	blr
-	*/
+	Parms* parms = C_PARMS;
+	if (m_reviveTimer < parms->m_general.m_alertDuration) {
+		return 180.0f;
+	}
+	return parms->m_general.m_viewAngle;
 }
 
 /*
@@ -1070,6 +768,8 @@ lbl_80299EE8:
  */
 void KumaChappy::Obj::resetWayPoint()
 {
+	m_currWP = nullptr;
+	m_prevWP = nullptr;
 	/*
 	li       r0, 0
 	stw      r0, 0x2ec(r3)
@@ -1085,56 +785,17 @@ void KumaChappy::Obj::resetWayPoint()
  */
 void KumaChappy::Obj::setNearestWayPoint()
 {
-	/*
-	stwu     r1, -0x30(r1)
-	mflr     r0
-	lfs      f0, lbl_8051BBC0@sda21(r2)
-	stw      r0, 0x34(r1)
-	li       r0, 0
-	addi     r4, r1, 8
-	stw      r31, 0x2c(r1)
-	mr       r31, r3
-	lwz      r3, 0x2ec(r3)
-	stw      r3, 0x2f0(r31)
-	lfs      f1, 0x18c(r31)
-	lwz      r3, mapMgr__4Game@sda21(r13)
-	stfs     f1, 8(r1)
-	lfs      f1, 0x190(r31)
-	stfs     f1, 0xc(r1)
-	lfs      f1, 0x194(r31)
-	stfs     f1, 0x10(r1)
-	stw      r0, 0x14(r1)
-	stb      r0, 0x18(r1)
-	stfs     f0, 0x1c(r1)
-	lwz      r3, 8(r3)
-	bl       getNearestWayPoint__Q24Game8RouteMgrFRQ24Game11WPSearchArg
-	stw      r3, 0x2ec(r31)
-	lwz      r3, 0x2ec(r31)
-	cmplwi   r3, 0
-	beq      lbl_80299F84
-	lfs      f1, 0x50(r3)
-	lfs      f2, 0x54(r3)
-	lfs      f0, 0x4c(r3)
-	stfs     f0, 0x2e0(r31)
-	stfs     f1, 0x2e4(r31)
-	stfs     f2, 0x2e8(r31)
-	b        lbl_80299F9C
+	m_prevWP = m_currWP;
+	WPSearchArg arg(m_position, nullptr, false, 10.0f);
 
-lbl_80299F84:
-	lfs      f0, 0x198(r31)
-	stfs     f0, 0x2e0(r31)
-	lfs      f0, 0x19c(r31)
-	stfs     f0, 0x2e4(r31)
-	lfs      f0, 0x1a0(r31)
-	stfs     f0, 0x2e8(r31)
+	m_currWP = mapMgr->m_routeMgr->getNearestWayPoint(arg);
 
-lbl_80299F9C:
-	lwz      r0, 0x34(r1)
-	lwz      r31, 0x2c(r1)
-	mtlr     r0
-	addi     r1, r1, 0x30
-	blr
-	*/
+	WayPoint* wp = m_currWP;
+	if (wp) {
+		m_targetPos = Vector3f(wp->m_position);
+	} else {
+		m_targetPos = m_homePosition;
+	}
 }
 
 /*
@@ -1144,6 +805,50 @@ lbl_80299F9C:
  */
 void KumaChappy::Obj::setLinkWayPoint()
 {
+	if (m_currWP) {
+		int wpNum = 0;
+		int wpID  = -1;
+		if (m_prevWP) {
+			wpID = m_prevWP->m_index;
+		}
+		// create collection of all children of the current WP
+		WayPoint* wpList[9];
+		WayPointIterator it(m_currWP, true);
+		CI_LOOP(it)
+		{
+			int id = *it;
+			if (id != wpID) {
+				WayPoint* wp = mapMgr->m_routeMgr->getWayPoint(id);
+				if (wp && !(wp->m_flags & WPF_Closed)) {
+					wpList[wpNum] = wp;
+					wpNum++;
+				}
+			}
+		}
+
+		// children of the current waypoint were found
+		if (wpNum) {
+			m_prevWP    = m_currWP;
+			int id      = randWeightFloat(wpNum);
+			m_currWP    = wpList[id];
+			m_targetPos = Vector3f(m_currWP->m_position);
+			return;
+		}
+
+		// no children at current waypoint, backtrack to previous point
+		if (wpID >= 0) {
+			WayPoint* wp = mapMgr->m_routeMgr->getWayPoint(wpID);
+			if (wp && !(wp->m_flags & WPF_Closed)) {
+				m_prevWP    = m_currWP;
+				m_currWP    = wp;
+				m_targetPos = Vector3f(m_currWP->m_position);
+				return;
+			}
+		}
+	}
+	// no waypoints found, default to searching for nearest
+	setNearestWayPoint();
+
 	/*
 	stwu     r1, -0x80(r1)
 	mflr     r0
@@ -1323,42 +1028,12 @@ lbl_8029A1F0:
  */
 void KumaChappy::Obj::getSearchedTarget()
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	mr       r31, r3
-	lwz      r4, 0xc0(r3)
-	lfs      f1, 0x2c8(r3)
-	lfs      f0, 0x62c(r4)
-	fcmpo    cr0, f1, f0
-	bge      lbl_8029A240
-	lfs      f1, lbl_8051BBD0@sda21(r2)
-	b        lbl_8029A244
+	f32 angle = getViewAngle();
 
-lbl_8029A240:
-	lfs      f1, 0x424(r4)
-
-lbl_8029A244:
-	lfs      f2, 0x3d4(r4)
-	li       r4, 0
-	li       r5, 0
-	li       r6, 0
-	bl
-"getNearestPikminOrNavi__Q24Game9EnemyFuncFPQ24Game8CreatureffPfP23Condition<Q24Game4Navi>P23Condition<Q24Game4Piki>"
-	cmplwi   r3, 0
-	beq      lbl_8029A268
-	lfs      f0, lbl_8051BB68@sda21(r2)
-	stfs     f0, 0x2c8(r31)
-
-lbl_8029A268:
-	lwz      r0, 0x14(r1)
-	lwz      r31, 0xc(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	Creature* target = EnemyFunc::getNearestPikminOrNavi(this, angle, C_PARMS->m_general.m_sightRadius, nullptr, nullptr, nullptr);
+	if (target) {
+		m_reviveTimer = 0.0f;
+	}
 }
 
 /*
@@ -1368,94 +1043,23 @@ lbl_8029A268:
  */
 void KumaChappy::Obj::updateTargetDistance()
 {
-	/*
-	stwu     r1, -0x30(r1)
-	mflr     r0
-	stw      r0, 0x34(r1)
-	stw      r31, 0x2c(r1)
-	mr       r31, r3
-	lwz      r3, 0x2ec(r3)
-	cmplwi   r3, 0
-	beq      lbl_8029A2A4
-	lfs      f0, 0x58(r3)
-	b        lbl_8029A2AC
+	f32 radius;
+	if (m_currWP) {
+		radius = m_currWP->m_radius;
+	} else {
+		radius = C_PARMS->m_general.m_homeRadius;
+	}
 
-lbl_8029A2A4:
-	lwz      r3, 0xc0(r31)
-	lfs      f0, 0x384(r3)
+	if (sqrDistanceXZ(m_position, m_targetPos) < radius * radius) {
+		setLinkWayPoint();
+		m_timer = 0.0f;
+	}
 
-lbl_8029A2AC:
-	lfs      f2, 0x194(r31)
-	fmuls    f0, f0, f0
-	lfs      f1, 0x2e8(r31)
-	lfs      f3, 0x18c(r31)
-	fsubs    f2, f2, f1
-	lfs      f1, 0x2e0(r31)
-	fsubs    f3, f3, f1
-	fmuls    f1, f2, f2
-	fmadds   f1, f3, f3, f1
-	fcmpo    cr0, f1, f0
-	bge      lbl_8029A2E8
-	mr       r3, r31
-	bl       setLinkWayPoint__Q34Game10KumaChappy3ObjFv
-	lfs      f0, lbl_8051BB68@sda21(r2)
-	stfs     f0, 0x2d0(r31)
-
-lbl_8029A2E8:
-	lfs      f1, 0x2d0(r31)
-	lfs      f0, lbl_8051BB74@sda21(r2)
-	fcmpo    cr0, f1, f0
-	ble      lbl_8029A390
-	lfs      f1, lbl_8051BB68@sda21(r2)
-	li       r0, 0
-	lfs      f0, lbl_8051BBC0@sda21(r2)
-	addi     r4, r1, 8
-	stfs     f1, 0x2d0(r31)
-	lwz      r3, 0x2ec(r31)
-	stw      r3, 0x2f0(r31)
-	lfs      f1, 0x18c(r31)
-	lwz      r3, mapMgr__4Game@sda21(r13)
-	stfs     f1, 8(r1)
-	lfs      f1, 0x190(r31)
-	stfs     f1, 0xc(r1)
-	lfs      f1, 0x194(r31)
-	stfs     f1, 0x10(r1)
-	stw      r0, 0x14(r1)
-	stb      r0, 0x18(r1)
-	stfs     f0, 0x1c(r1)
-	lwz      r3, 8(r3)
-	bl       getNearestWayPoint__Q24Game8RouteMgrFRQ24Game11WPSearchArg
-	stw      r3, 0x2ec(r31)
-	lwz      r3, 0x2ec(r31)
-	cmplwi   r3, 0
-	beq      lbl_8029A370
-	lfs      f1, 0x50(r3)
-	lfs      f2, 0x54(r3)
-	lfs      f0, 0x4c(r3)
-	stfs     f0, 0x2e0(r31)
-	stfs     f1, 0x2e4(r31)
-	stfs     f2, 0x2e8(r31)
-	b        lbl_8029A388
-
-lbl_8029A370:
-	lfs      f0, 0x198(r31)
-	stfs     f0, 0x2e0(r31)
-	lfs      f0, 0x19c(r31)
-	stfs     f0, 0x2e4(r31)
-	lfs      f0, 0x1a0(r31)
-	stfs     f0, 0x2e8(r31)
-
-lbl_8029A388:
-	mr       r3, r31
-	bl       updateHomePosition__Q34Game10KumaChappy3ObjFv
-
-lbl_8029A390:
-	lwz      r0, 0x34(r1)
-	lwz      r31, 0x2c(r1)
-	mtlr     r0
-	addi     r1, r1, 0x30
-	blr
-	*/
+	if (m_timer > 5.0f) {
+		m_timer = 0.0f;
+		setNearestWayPoint();
+		updateHomePosition();
+	}
 }
 
 /*
@@ -1465,6 +1069,8 @@ lbl_8029A390:
  */
 void KumaChappy::Obj::updateHomePosition()
 {
+	m_homePosition = Vector3f(pikmin2_sinf(m_faceDir) * C_PARMS->m_general.m_homeRadius.m_value + m_position.x, m_position.y,
+	                          pikmin2_cosf(m_faceDir) * C_PARMS->m_general.m_homeRadius.m_value + m_position.z);
 	/*
 	stwu     r1, -0x20(r1)
 	lfs      f0, lbl_8051BB68@sda21(r2)
@@ -1529,38 +1135,8 @@ lbl_8029A444:
  */
 void KumaChappy::Obj::createChappyRelation()
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	stw      r30, 8(r1)
-	mr       r30, r3
-	li       r3, 0x1c
-	bl       __nw__FUl
-	or.      r31, r3, r3
-	beq      lbl_8029A49C
-	bl       __ct__5CNodeFv
-	lis      r3, __vt__Q24Game14ChappyRelation@ha
-	addi     r0, r3, __vt__Q24Game14ChappyRelation@l
-	stw      r0, 0(r31)
-	stw      r30, 0x18(r31)
-
-lbl_8029A49C:
-	stw      r31, 0x2f4(r30)
-	li       r0, 0
-	lwz      r3, 0x2f4(r30)
-	stw      r0, 0x10(r3)
-	stw      r0, 0xc(r3)
-	stw      r0, 8(r3)
-	stw      r0, 4(r3)
-	lwz      r31, 0xc(r1)
-	lwz      r30, 8(r1)
-	lwz      r0, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	m_chappyRelation = new ChappyRelation(this);
+	m_chappyRelation->clearRelations();
 }
 
 /*
@@ -1570,39 +1146,12 @@ lbl_8029A49C:
  */
 void KumaChappy::Obj::startEnemyRumble()
 {
-	/*
-	stwu     r1, -0x20(r1)
-	mflr     r0
-	addi     r4, r2, lbl_8051BB6C@sda21
-	stw      r0, 0x24(r1)
-	stw      r31, 0x1c(r1)
-	mr       r31, r3
-	lwz      r3, 0x174(r3)
-	bl       getJoint__Q28SysShape5ModelFPc
-	bl       getWorldMatrix__Q28SysShape5JointFv
-	lfs      f2, 0x2c(r3)
-	addi     r5, r1, 8
-	lfs      f1, 0x1c(r3)
-	li       r4, 0xb
-	lfs      f0, 0xc(r3)
-	li       r6, 2
-	lwz      r3, rumbleMgr__4Game@sda21(r13)
-	stfs     f0, 8(r1)
-	stfs     f1, 0xc(r1)
-	stfs     f2, 0x10(r1)
-	lfs      f0, 0x190(r31)
-	stfs     f0, 0xc(r1)
-	bl       "startRumble__Q24Game9RumbleMgrFiR10Vector3<f>i"
-	lfs      f1, lbl_8051BBE8@sda21(r2)
-	mr       r3, r31
-	addi     r4, r1, 8
-	bl       "createBounceEffect__Q24Game9EnemyBaseFRC10Vector3<f>f"
-	lwz      r0, 0x24(r1)
-	lwz      r31, 0x1c(r1)
-	mtlr     r0
-	addi     r1, r1, 0x20
-	blr
-	*/
+	Matrixf* mtx = m_model->getJoint("ago")->getWorldMatrix();
+	Vector3f vec(mtx->m_matrix.structView.tx, mtx->m_matrix.structView.ty, mtx->m_matrix.structView.tz);
+	vec.y = m_position.y;
+
+	rumbleMgr->startRumble(11, vec, 2);
+	createBounceEffect(vec, 0.75f);
 }
 
 /*
@@ -1610,170 +1159,124 @@ void KumaChappy::Obj::startEnemyRumble()
  * Address:	8029A54C
  * Size:	000060
  */
-ChappyRelation::~ChappyRelation()
-{
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	mr       r31, r4
-	stw      r30, 8(r1)
-	or.      r30, r3, r3
-	beq      lbl_8029A590
-	lis      r5, __vt__Q24Game14ChappyRelation@ha
-	li       r4, 0
-	addi     r0, r5, __vt__Q24Game14ChappyRelation@l
-	stw      r0, 0(r30)
-	bl       __dt__5CNodeFv
-	extsh.   r0, r31
-	ble      lbl_8029A590
-	mr       r3, r30
-	bl       __dl__FPv
-
-lbl_8029A590:
-	lwz      r0, 0x14(r1)
-	mr       r3, r30
-	lwz      r31, 0xc(r1)
-	lwz      r30, 8(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
-}
+// ChappyRelation::~ChappyRelation()
+//{
+//}
 
 /*
  * --INFO--
  * Address:	8029A5AC
  * Size:	000008
  */
-void KumaChappy::Obj::getMouthSlots()
-{
-	/*
-	addi     r3, r3, 0x2d8
-	blr
-	*/
-}
+MouthSlots* KumaChappy::Obj::getMouthSlots() { return &m_mouthSlots; }
 
 /*
  * --INFO--
  * Address:	8029A5B4
  * Size:	000008
  */
-void KumaChappy::Obj::getDownSmokeScale()
-{
-	/*
-	lfs      f1, lbl_8051BB78@sda21(r2)
-	blr
-	*/
-}
+f32 KumaChappy::Obj::getDownSmokeScale() { return 1.0f; }
 
 /*
  * --INFO--
  * Address:	8029A5BC
  * Size:	000008
  */
-void KumaChappy::Obj::getChappyRelation()
-{
-	/*
-	lwz      r3, 0x2f4(r3)
-	blr
-	*/
-}
+ChappyRelation* KumaChappy::Obj::getChappyRelation() { return m_chappyRelation; }
 
 /*
  * --INFO--
  * Address:	8029A5C4
  * Size:	000014
  */
-void EnemyBase::@760 @12 @viewOnPelletKilled()
-{
-	/*
-	li       r11, 0xc
-	lwzx     r11, r3, r11
-	add      r3, r3, r11
-	addi     r3, r3, -760
-	b        viewOnPelletKilled__Q24Game9EnemyBaseFv
-	*/
-}
+// void EnemyBase::@760 @12 @viewOnPelletKilled()
+//{
+/*
+li       r11, 0xc
+lwzx     r11, r3, r11
+add      r3, r3, r11
+addi     r3, r3, -760
+b        viewOnPelletKilled__Q24Game9EnemyBaseFv
+*/
+//}
 
 /*
  * --INFO--
  * Address:	8029A5D8
  * Size:	000014
  */
-void EnemyBase::@760 @12 @viewStartCarryMotion()
-{
-	/*
-	li       r11, 0xc
-	lwzx     r11, r3, r11
-	add      r3, r3, r11
-	addi     r3, r3, -760
-	b        viewStartCarryMotion__Q24Game9EnemyBaseFv
-	*/
-}
+// void EnemyBase::@760 @12 @viewStartCarryMotion()
+//{
+/*
+li       r11, 0xc
+lwzx     r11, r3, r11
+add      r3, r3, r11
+addi     r3, r3, -760
+b        viewStartCarryMotion__Q24Game9EnemyBaseFv
+*/
+//}
 
 /*
  * --INFO--
  * Address:	8029A5EC
  * Size:	000014
  */
-void EnemyBase::@760 @12 @viewStartPreCarryMotion()
-{
-	/*
-	li       r11, 0xc
-	lwzx     r11, r3, r11
-	add      r3, r3, r11
-	addi     r3, r3, -760
-	b        viewStartPreCarryMotion__Q24Game9EnemyBaseFv
-	*/
-}
+// void EnemyBase::@760 @12 @viewStartPreCarryMotion()
+//{
+/*
+li       r11, 0xc
+lwzx     r11, r3, r11
+add      r3, r3, r11
+addi     r3, r3, -760
+b        viewStartPreCarryMotion__Q24Game9EnemyBaseFv
+*/
+//}
 
 /*
  * --INFO--
  * Address:	8029A600
  * Size:	000014
  */
-void EnemyBase::@760 @12 @view_finish_carrymotion()
-{
-	/*
-	li       r11, 0xc
-	lwzx     r11, r3, r11
-	add      r3, r3, r11
-	addi     r3, r3, -760
-	b        view_finish_carrymotion__Q24Game9EnemyBaseFv
-	*/
-}
+// void EnemyBase::@760 @12 @view_finish_carrymotion()
+//{
+/*
+li       r11, 0xc
+lwzx     r11, r3, r11
+add      r3, r3, r11
+addi     r3, r3, -760
+b        view_finish_carrymotion__Q24Game9EnemyBaseFv
+*/
+//}
 
 /*
  * --INFO--
  * Address:	8029A614
  * Size:	000014
  */
-void EnemyBase::@760 @12 @view_start_carrymotion()
-{
-	/*
-	li       r11, 0xc
-	lwzx     r11, r3, r11
-	add      r3, r3, r11
-	addi     r3, r3, -760
-	b        view_start_carrymotion__Q24Game9EnemyBaseFv
-	*/
-}
+// void EnemyBase::@760 @12 @view_start_carrymotion()
+//{
+/*
+li       r11, 0xc
+lwzx     r11, r3, r11
+add      r3, r3, r11
+addi     r3, r3, -760
+b        view_start_carrymotion__Q24Game9EnemyBaseFv
+*/
+//}
 
 /*
  * --INFO--
  * Address:	8029A628
  * Size:	000014
  */
-void EnemyBase::@760 @12 @viewGetShape()
-{
-	/*
-	li       r11, 0xc
-	lwzx     r11, r3, r11
-	add      r3, r3, r11
-	addi     r3, r3, -760
-	b        viewGetShape__Q24Game9EnemyBaseFv
-	*/
-}
+// void EnemyBase::@760 @12 @viewGetShape()
+//{
+/*
+li       r11, 0xc
+lwzx     r11, r3, r11
+add      r3, r3, r11
+addi     r3, r3, -760
+b        viewGetShape__Q24Game9EnemyBaseFv
+*/
+//}
 } // namespace Game

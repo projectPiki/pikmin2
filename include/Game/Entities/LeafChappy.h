@@ -28,10 +28,10 @@ struct Obj : public KumaChappy::Obj {
 	{
 		return EnemyTypeID::EnemyID_LeafChappy;
 	}
-	virtual void createChappyRelation() { }                   // _2FC (weak)
-	virtual void resetChappyRelation() { }                    // _308 (weak)
-	virtual u32 getChappyRelation() { return 0; }             // _300 (weak)
-	virtual Footmarks* getFootmarks() { return m_footmarks; } // _154 (weak)
+	virtual void createChappyRelation() { }                         // _2FC (weak)
+	virtual void resetChappyRelation() { }                          // _308 (weak)
+	virtual ChappyRelation* getChappyRelation() { return nullptr; } // _300 (weak)
+	virtual Footmarks* getFootmarks() { return m_footmarks; }       // _154 (weak)
 	//////////////// VTABLE END
 
 	void birthChildren(EnemyBirthArg&);

@@ -17,6 +17,7 @@
 
 namespace Game {
 struct WayPoint;
+struct ChappyRelation;
 
 namespace KumaChappy {
 struct FSM;
@@ -46,11 +47,11 @@ struct Obj : public EnemyBase {
 	virtual f32 getDownSmokeScale();                          // _2EC (weak)
 	virtual void setFSM(FSM*);                                // _2F8
 	virtual void createChappyRelation();                      // _2FC
-	virtual u32 getChappyRelation();                          // _300 (weak)
+	virtual ChappyRelation* getChappyRelation();              // _300 (weak)
 	virtual void startEnemyRumble();                          // _304
 	////////// VTABLE END
 
-	void getViewAngle();
+	f32 getViewAngle();
 	void resetWayPoint();
 	void setNearestWayPoint();
 	void setLinkWayPoint();
@@ -62,14 +63,15 @@ struct Obj : public EnemyBase {
 	// _00-_2B8	= EnemyBase
 	FSM* m_fsm;                          // _2BC
 	WalkSmokeEffect::Mgr m_walkSmokeMgr; // _2C0
-	float _2C8;                          // _2C8
-	u8 _2CC[0x8];                        // _2CC, unknown
-	int _2D4;                            // _2D4
+	float m_reviveTimer;                 // _2C8
+	int _2CC;                            // _2CC
+	f32 m_timer;                         // _2D0
+	int m_nextState;                     // _2D4
 	MouthSlots m_mouthSlots;             // _2D8
-	Vector3f _2E0;                       // _2E0
-	WayPoint* _2EC;                      // _2EC
-	WayPoint* _2F0;                      // _2F0
-	u8 _2F4[0x4];                        // _2F4, unknown
+	Vector3f m_targetPos;                // _2E0
+	WayPoint* m_currWP;                  // _2EC
+	WayPoint* m_prevWP;                  // _2F0
+	ChappyRelation* m_chappyRelation;    // _2F4
 	                                     // _2F8 = PelletView
 };
 
@@ -94,9 +96,9 @@ struct Parms : public EnemyParmsBase {
 	struct ProperParms : public Parameters {
 		inline ProperParms()
 		    : Parameters(nullptr, "EnemyParmsBase")
-		    , m_fp01(this, 'fp01', "îíÉsÉNÉ~Éì", 300.0f, 0.0f, 10000.0f)      // 'white pikmin'
-		    , m_fp11(this, 'fp11', "éÄñS Å` ÉQÅ[ÉWèoåª", 30.0f, 1.0f, 500.0f) // 'death ~ appearance of gauge'
-		    , m_fp12(this, 'fp12', "ÉQÅ[ÉWèoåª Å` ïúäà", 10.0f, 1.0f, 500.0f) // 'appearance of gauge ~ resurrection'
+		    , m_fp01(this, 'fp01', "îíÉsÉNÉ~Éì", 300.0f, 0.0f, 10000.0f)      // eat white pikmin damage
+		    , m_fp11(this, 'fp11', "éÄñS Å` ÉQÅ[ÉWèoåª", 30.0f, 1.0f, 500.0f) // time to revive after death
+		    , m_fp12(this, 'fp12', "ÉQÅ[ÉWèoåª Å` ïúäà", 10.0f, 1.0f, 500.0f) // delay before hp starts replenishing after death
 		{
 		}
 
@@ -131,6 +133,18 @@ struct ProperAnimator : public EnemyAnimatorBase {
 
 /////////////////////////////////////////////////////////////////
 // STATE MACHINE DEFINITIONS
+enum StateID {
+	KUMACHAPPY_Attack,
+	KUMACHAPPY_Dead,
+	KUMACHAPPY_Flick,
+	KUMACHAPPY_Lost,
+	KUMACHAPPY_Rebirth,
+	KUMACHAPPY_Turn,
+	KUMACHAPPY_TurnPath,
+	KUMACHAPPY_Walk,
+	KUMACHAPPY_WalkPath
+};
+
 struct FSM : public EnemyStateMachine {
 	virtual void init(EnemyBase*); // _08
 
