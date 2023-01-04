@@ -11,9 +11,7 @@ enum TECameraView {};
 struct TCamera : public TObject {
 	typedef JStudio::TObject_camera StudioObject;
 
-	~TCamera();
-
-	// virtual ~TCamera() = 0;                                // _08
+	virtual ~TCamera() = 0;                                // _08
 	virtual int JSGFGetType() const;                       // _0C
 	virtual int JSGGetProjectionType() const;              // _3C
 	virtual void JSGSetProjectionType(TECameraProjection); // _40

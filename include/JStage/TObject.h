@@ -24,9 +24,8 @@
 
 namespace JStage {
 struct TObject {
-	~TObject();
 
-	// virtual ~TObject()              = 0;                            // _08
+	virtual ~TObject()              = 0;                            // _08
 	virtual int JSGFGetType() const = 0;                            // _0C
 	virtual char* JSGGetName() const;                               // _10
 	virtual void JSGUpdate();                                       // _14
