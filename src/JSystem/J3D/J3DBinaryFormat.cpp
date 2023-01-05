@@ -10,5 +10,5 @@
  */
 // int J3DShapeMtx::getType() const { return 'SMTX'; }
 
-// only the above func should generate in this file. 
+// only the above func should generate in this file.
 // the vtable should not generate in this file.

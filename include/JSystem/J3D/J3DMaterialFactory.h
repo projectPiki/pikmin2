@@ -55,7 +55,8 @@ struct J3DIndInitData {
 	u8 _6C[0xCC];                               // _6C - tbd
 };
 
-struct J3DLightInfo { };
+struct J3DLightInfo {
+};
 
 struct J3DPatchingInfo {
 	u16 _00;   // _00
@@ -80,7 +81,8 @@ struct J3DTevSwapModeTableInfo {
 	u8 _03; // _03
 };
 
-struct J3DTexCoord2Info { };
+struct J3DTexCoord2Info {
+};
 
 struct J3DTexMtxInfo {
 	u8 _00;    // _00

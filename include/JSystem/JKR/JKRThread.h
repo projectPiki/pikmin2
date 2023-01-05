@@ -10,7 +10,8 @@ struct JKRThread;
 struct JUTConsole;
 struct JUTFont;
 
-struct JKRThreadName_ { };
+struct JKRThreadName_ {
+};
 
 struct JKRThreadSwitch {
 	typedef void (*Callback)(OSThread*, OSThread*);

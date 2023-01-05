@@ -5,9 +5,12 @@
 #include "types.h"
 
 struct J2DBloSaver {
-	struct ResFONTName { };
-	struct ResTIMGName { };
-	struct MaterialName { };
+	struct ResFONTName {
+	};
+	struct ResTIMGName {
+	};
+	struct MaterialName {
+	};
 	struct CTextureNameConnect {
 		struct TNC {
 			TNC(const ResTIMG* img, const char* name);

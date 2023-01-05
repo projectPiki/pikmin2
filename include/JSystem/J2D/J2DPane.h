@@ -335,7 +335,7 @@ struct J2DScreen : public J2DPane {
 
 	virtual ~J2DScreen();                                                                                                  // _08
 	virtual u16 getTypeID() const { return 0x8; }                                                                          // _0C (weak)
-	virtual void calcMtx() { makeMatrix(_0D4.x, _0D4.y); }                                                                 // _2C (weak)
+	virtual void calcMtx() { makeMatrix(m_offset.x, m_offset.y); }                                                         // _2C (weak)
 	virtual void drawSelf(float, float, float (*)[3][4]);                                                                  // _38
 	virtual J2DPane* search(u64);                                                                                          // _3C
 	virtual J2DPane* searchUserInfo(u64);                                                                                  // _40

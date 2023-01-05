@@ -84,7 +84,8 @@ struct TFunctionValue {
 };
 
 struct TFunctionValue_composite : public TFunctionValue {
-	struct TData { };
+	struct TData {
+	};
 
 	TFunctionValue_composite();
 
@@ -122,7 +123,8 @@ struct TFunctionValue_constant : public TFunctionValue {
 };
 
 struct TFunctionValue_hermite : public TFunctionValue {
-	struct TIterator_data_ { };
+	struct TIterator_data_ {
+	};
 
 	TFunctionValue_hermite();
 
@@ -137,7 +139,8 @@ struct TFunctionValue_hermite : public TFunctionValue {
 };
 
 struct TFunctionValue_list_parameter : public TFunctionValue {
-	struct TIterator_data_ { };
+	struct TIterator_data_ {
+	};
 
 	TFunctionValue_list_parameter();
 
@@ -161,7 +164,8 @@ struct TFunctionValue_list_parameter : public TFunctionValue {
 };
 
 struct TFunctionValue_list : public TFunctionValue {
-	struct TIndexData_ { };
+	struct TIndexData_ {
+	};
 
 	TFunctionValue_list();
 

@@ -79,7 +79,7 @@ struct J3DShapeMtx {
 
 	virtual ~J3DShapeMtx() { }                                               // _08 (weak)
 	virtual int getType() const { return 'SMTX'; }                           // _0C (weak)
-	virtual int getUseMtxNum() const  { return 1; }                          // _10 (weak)
+	virtual int getUseMtxNum() const { return 1; }                           // _10 (weak)
 	virtual u16 getUseMtxIndex(u16) const { return m_useMtxIndex; }          // _14 (weak)
 	virtual void load() const;                                               // _18
 	virtual void calcNBTScale(const Vec&, float (*)[3][3], float (*)[3][3]); // _1C
