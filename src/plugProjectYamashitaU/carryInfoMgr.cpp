@@ -1,201 +1,14 @@
 #include "types.h"
-
-/*
-    Generated from dpostproc
-
-    .section .ctors, "wa"  # 0x80472F00 - 0x804732C0
-    .4byte __sinit_carryInfoMgr_cpp
-
-    .section .rodata  # 0x804732E0 - 0x8049E220
-    lbl_8047B268:
-        .asciz "carryInfoMgr.cpp"
-        .skip 3
-    lbl_8047B27C:
-        .asciz "Illegal useType %d\n"
-    lbl_8047B290:
-        .asciz "/user/Yamashita/arc/gameTex.szs"
-    lbl_8047B2B0:
-        .asciz "item_0_9.bti"
-        .skip 3
-
-    .section .data, "wa"  # 0x8049E220 - 0x804EFC20
-    .global lbl_804AC320
-    lbl_804AC320:
-        .4byte 0x00000000
-        .4byte 0x00000000
-        .4byte 0x00000000
-    .global "sColorTableNumerator__26@unnamed@carryInfoMgr_cpp@"
-    "sColorTableNumerator__26@unnamed@carryInfoMgr_cpp@":
-        .4byte 0x1E1EFFFF
-        .4byte 0xFF0000FF
-        .4byte 0xEAEA00FF
-        .4byte 0xFFFFFFFF
-        .4byte 0xFFFFFFFF
-        .4byte 0x669999FF
-        .4byte 0x66D3D3FF
-    .global "sColorTableDenominator__26@unnamed@carryInfoMgr_cpp@"
-    "sColorTableDenominator__26@unnamed@carryInfoMgr_cpp@":
-        .4byte 0x1E1EFFFF
-        .4byte 0xFF0000FF
-        .4byte 0xEAEA00FF
-        .4byte 0xFFFFFFFF
-        .4byte 0xFFFFFFFF
-        .4byte 0x669999FF
-        .4byte 0x70D8D8FF
-    .global __vt__12CarryInfoMgr
-    __vt__12CarryInfoMgr:
-        .4byte 0
-        .4byte 0
-        .4byte __dt__12CarryInfoMgrFv
-        .4byte loadResource__12CarryInfoMgrFv
-        .4byte update__12CarryInfoMgrFv
-        .4byte draw__12CarryInfoMgrFR8Graphics
-        .4byte regist__12CarryInfoMgrFP14CarryInfoOwner
-        .4byte scratch__12CarryInfoMgrFP14CarryInfoOwner
-    .global __vt__11InfoMgrBase
-    __vt__11InfoMgrBase:
-        .4byte 0
-        .4byte 0
-        .4byte __dt__11InfoMgrBaseFv
-        .4byte 0
-        .4byte 0
-        .4byte 0
-    .global "__vt__46InfoListBase<14CarryInfoOwner,13CarryInfoList>"
-    "__vt__46InfoListBase<14CarryInfoOwner,13CarryInfoList>":
-        .4byte 0
-        .4byte 0
-        .4byte "__dt__46InfoListBase<14CarryInfoOwner,13CarryInfoList>Fv"
-        .4byte "init__46InfoListBase<14CarryInfoOwner,13CarryInfoList>Fv"
-        .4byte "update__46InfoListBase<14CarryInfoOwner,13CarryInfoList>Fv"
-        .4byte
-   "draw__46InfoListBase<14CarryInfoOwner,13CarryInfoList>FR8Graphics" .4byte 0
-    .global "__vt__41InfoMgr<14CarryInfoOwner,13CarryInfoList>"
-    "__vt__41InfoMgr<14CarryInfoOwner,13CarryInfoList>":
-        .4byte 0
-        .4byte 0
-        .4byte "__dt__41InfoMgr<14CarryInfoOwner,13CarryInfoList>Fv"
-        .4byte 0
-        .4byte "update__41InfoMgr<14CarryInfoOwner,13CarryInfoList>Fv"
-        .4byte "draw__41InfoMgr<14CarryInfoOwner,13CarryInfoList>FR8Graphics"
-        .4byte
-   "regist__41InfoMgr<14CarryInfoOwner,13CarryInfoList>FP14CarryInfoOwner"
-        .4byte
-   "scratch__41InfoMgr<14CarryInfoOwner,13CarryInfoList>FP14CarryInfoOwner"
-    .global __vt__14CarryInfoOwner
-    __vt__14CarryInfoOwner:
-        .4byte 0
-        .4byte 0
-        .4byte 0
-    .global __vt__13PokoInfoOwner
-    __vt__13PokoInfoOwner:
-        .4byte 0
-        .4byte 0
-        .4byte getCarryInfoParam__13PokoInfoOwnerFR14CarryInfoParam
-        .4byte 0
-        .4byte 0
-        .4byte "@4@__dt__13PokoInfoOwnerFv"
-        .4byte getChildCount__5CNodeFv
-        .4byte __dt__13PokoInfoOwnerFv
-    .global __vt__13CarryInfoList
-    __vt__13CarryInfoList:
-        .4byte 0
-        .4byte 0
-        .4byte __dt__13CarryInfoListFv
-        .4byte init__13CarryInfoListFv
-        .4byte update__13CarryInfoListFv
-        .4byte draw__13CarryInfoListFR8Graphics
-        .4byte isFinish__13CarryInfoListFv
-
-    .section .sbss # 0x80514D80 - 0x80516360
-    .global lbl_80515890
-    lbl_80515890:
-        .skip 0x4
-    .global lbl_80515894
-    lbl_80515894:
-        .skip 0x4
-    .global carryInfoMgr
-    carryInfoMgr:
-        .skip 0x8
-
-    .section .sdata2, "a"     # 0x80516360 - 0x80520E40
-    lbl_80517B60:
-        .float 0.0
-    lbl_80517B64:
-        .float 0.04
-    lbl_80517B68:
-        .float 0.88
-    lbl_80517B6C:
-        .float 1.0
-    lbl_80517B70:
-        .float 255.0
-    lbl_80517B74:
-        .float 0.5
-    lbl_80517B78:
-        .float 0.9
-    lbl_80517B7C:
-        .float 0.75
-    lbl_80517B80:
-        .float 1.1
-    lbl_80517B84:
-        .float 7.7000003
-    lbl_80517B88:
-        .float -10.150001
-    lbl_80517B8C:
-        .float 10.150001
-    lbl_80517B90:
-        .float -7.7000003
-    lbl_80517B94:
-        .float 6.2831855
-    lbl_80517B98:
-        .float 0.03125
-    lbl_80517B9C:
-        .float -325.9493
-    lbl_80517BA0:
-        .float 325.9493
-    lbl_80517BA4:
-        .float 155.0
-    lbl_80517BA8:
-        .float 59.0
-    lbl_80517BAC:
-        .float 7.0
-    lbl_80517BB0:
-        .float 3.0
-        .skip 4
-    lbl_80517BB8:
-        .4byte 0x43300000
-        .4byte 0x80000000
-    lbl_80517BC0:
-        .4byte 0x43300000
-        .4byte 0x00000000
-    lbl_80517BC8:
-        .float 5.6
-    lbl_80517BCC:
-        .float 2.0
-    lbl_80517BD0:
-        .float 12.599999
-    lbl_80517BD4:
-        .float 6.0
-    lbl_80517BD8:
-        .float 0.083333336
-    lbl_80517BDC:
-        .float 25.0
-    lbl_80517BE0:
-        .float 1.5
-    lbl_80517BE4:
-        .asciz ""
-        .skip 3
-    lbl_80517BE8:
-        .float 50.0
-*/
-
 #include "CarryInfo.h"
 #include "Graphics.h"
 #include "Viewport.h"
 #include "JSystem/JKR/JKRArchive.h"
 #include "Game/MoviePlayer.h"
 #include "Dolphin/gx.h"
+#include "nans.h"
 
-Color4 sColorTableNumerator[7] = {
+namespace {
+const Color4 sColorTableNumerator[7] = {
 	Color4(30, 30, 255, 255),   // blue
 	Color4(255, 0, 0, 255),     // red
 	Color4(234, 234, 0, 255),   // yellow
@@ -205,11 +18,14 @@ Color4 sColorTableNumerator[7] = {
 	Color4(102, 211, 211, 255), // gray  (used in scale blocks?)
 };
 
-Color4 sColorTableDenominator[7] = {
+const Color4 sColorTableDenominator[7] = {
 	Color4(30, 30, 255, 255),   Color4(255, 0, 0, 255),     Color4(234, 234, 0, 255),   Color4(255, 255, 255, 255),
 	Color4(255, 255, 255, 255), Color4(102, 153, 153, 255), Color4(112, 216, 216, 255), // this is the only one where
 	                                                                                    // the denominator is different
 };
+} // namespace
+
+CarryInfoMgr* carryInfoMgr;
 
 /*
  * --INFO--
@@ -226,250 +42,93 @@ void CarryInfo::disappear() { m_hidden = true; }
 void CarryInfo::update(const CarryInfoParam& param)
 {
 	if (m_hidden != CINFO_Hidden) {
-		if (param.m_useType == 1) {
+		switch (param.m_useType) {
+		case 0: {
+			switch (m_hidden) {
+			case CINFO_Appear: {
+				f32 temp = 0.04f * (param.m_yOffsetMax - m_Yoffset);
+				m_growRate += temp;
+				m_Yoffset += m_growRate;
+				m_scale = m_Yoffset / param.m_yOffsetMax;
+				break;
+			}
+
+			case CINFO_1: {
+				f32 temp = 0.04f * -m_Yoffset;
+				m_growRate += temp;
+				m_Yoffset += m_growRate;
+
+				if (m_Yoffset < 0.0f) {
+					m_growRate = 0.0f;
+					m_Yoffset  = 0.0f;
+					m_scale    = 0.0f;
+					m_hidden   = CINFO_Hidden;
+
+				} else {
+					m_scale = m_Yoffset / param.m_yOffsetMax;
+				}
+				break;
+			}
+			}
+			f32 modifier = 1.0f;
+			m_growRate *= 0.88f;
+
+			modifier        = (m_scale > modifier) ? modifier : m_scale;
+			f32 scaledAlpha = 255.0f * modifier;
+			f32 alpha;
+			if (scaledAlpha >= 0.0f) {
+				alpha = 0.5f + scaledAlpha;
+			} else {
+				alpha = scaledAlpha - 0.5f;
+			}
+			m_alpha = (u8)alpha;
+			break;
+		}
+
+		case 1: {
 			m_counter++;
-			if (param.m_yOffsetMax > m_Yoffset) {
-				m_growRate += (param.m_yOffsetMax - m_Yoffset) * 0.04f;
+			if (m_Yoffset < param.m_yOffsetMax) {
+				f32 temp = (param.m_yOffsetMax - m_Yoffset) * 0.04f;
+				m_growRate += temp;
 			}
 			m_Yoffset += m_growRate;
 			m_growRate *= 0.9f;
 			m_scale = m_Yoffset / param.m_yOffsetMax;
-			if (m_scale > 1.0f)
+			if (m_scale > 1.0f) {
 				m_scale = 1.0f;
+			}
 
-			if (m_hidden == CINFO_1) {
-				if (m_alpha < 9) {
+			switch (m_hidden) {
+			case CINFO_Appear: {
+				f32 scaledAlpha = m_scale * 255.0f;
+				f32 alpha;
+				if (scaledAlpha >= 0.0f) {
+					alpha = 0.5f + scaledAlpha;
+				} else {
+					alpha = scaledAlpha - 0.5f;
+				}
+				m_alpha = (u8)alpha;
+				break;
+			}
+
+			case CINFO_1: {
+				if (m_alpha > 8) {
+					m_alpha -= 8;
+				} else {
 					m_alpha    = 0;
 					m_growRate = 0.0f;
 					m_Yoffset  = 0.0f;
 					m_scale    = 0.0f;
 					m_hidden   = CINFO_Hidden;
-				} else {
-					m_alpha -= 8;
 				}
-			} else if (m_hidden == CINFO_Appear) {
-				f32 alpha = m_scale * 255.0f;
-				if (alpha < 0.0f)
-					alpha -= 0.5f;
-				else
-					alpha += 0.5f;
-				m_alpha = (u8)alpha;
+				break;
 			}
-		} else if (param.m_useType == 0) {
-			if (m_hidden == CINFO_1) {
-				m_growRate += -m_Yoffset * 0.04f;
-				m_Yoffset += m_growRate;
-				if (m_Yoffset >= 0.0f) {
-					m_scale += m_Yoffset / param.m_yOffsetMax;
-				} else {
-					m_growRate += (param.m_yOffsetMax - m_Yoffset) * 0.04f;
-					m_Yoffset += m_growRate;
-					m_scale = m_Yoffset / param.m_yOffsetMax;
-				}
-				m_growRate *= 0.88f;
-				f32 alpha = m_scale;
-				if (alpha > 1.0f)
-					alpha = 1.0f;
-				m_scale *= 255.0f;
-				if (alpha < 0.0f)
-					alpha -= 0.5f;
-				else
-					alpha += 0.5f;
-				m_alpha = (u8)alpha;
 			}
+
+			break;
+		}
 		}
 	}
-	/*
-	stwu     r1, -0x10(r1)
-	lbz      r5, 0xc(r3)
-	cmplwi   r5, 2
-	beq      lbl_8011B238
-	lwz      r0, 0(r4)
-	cmpwi    r0, 1
-	beq      lbl_8011B128
-	bge      lbl_8011B238
-	cmpwi    r0, 0
-	bge      lbl_8011B008
-	b        lbl_8011B238
-
-lbl_8011B008:
-	cmpwi    r5, 1
-	beq      lbl_8011B060
-	bge      lbl_8011B0C0
-	cmpwi    r5, 0
-	bge      lbl_8011B020
-	b        lbl_8011B0C0
-
-lbl_8011B020:
-	lfs      f2, 0x10(r4)
-	lfs      f0, 4(r3)
-	lfs      f1, lbl_80517B64@sda21(r2)
-	fsubs    f0, f2, f0
-	lfs      f3, 0(r3)
-	fmuls    f0, f1, f0
-	fadds    f0, f3, f0
-	stfs     f0, 0(r3)
-	lfs      f1, 4(r3)
-	lfs      f0, 0(r3)
-	fadds    f0, f1, f0
-	stfs     f0, 4(r3)
-	lfs      f0, 4(r3)
-	fdivs    f0, f0, f2
-	stfs     f0, 8(r3)
-	b        lbl_8011B0C0
-
-lbl_8011B060:
-	lfs      f0, 4(r3)
-	lfs      f2, lbl_80517B64@sda21(r2)
-	fneg     f1, f0
-	lfs      f3, 0(r3)
-	lfs      f0, lbl_80517B60@sda21(r2)
-	fmuls    f1, f2, f1
-	fadds    f1, f3, f1
-	stfs     f1, 0(r3)
-	lfs      f2, 4(r3)
-	lfs      f1, 0(r3)
-	fadds    f1, f2, f1
-	stfs     f1, 4(r3)
-	lfs      f1, 4(r3)
-	fcmpo    cr0, f1, f0
-	bge      lbl_8011B0B4
-	stfs     f0, 0(r3)
-	li       r0, 2
-	stfs     f0, 4(r3)
-	stfs     f0, 8(r3)
-	stb      r0, 0xc(r3)
-	b        lbl_8011B0C0
-
-lbl_8011B0B4:
-	lfs      f0, 0x10(r4)
-	fdivs    f0, f1, f0
-	stfs     f0, 8(r3)
-
-lbl_8011B0C0:
-	lfs      f1, 0(r3)
-	lfs      f0, lbl_80517B68@sda21(r2)
-	lfs      f2, lbl_80517B6C@sda21(r2)
-	fmuls    f0, f1, f0
-	stfs     f0, 0(r3)
-	lfs      f0, 8(r3)
-	fcmpo    cr0, f0, f2
-	ble      lbl_8011B0E4
-	b        lbl_8011B0E8
-
-lbl_8011B0E4:
-	fmr      f2, f0
-
-lbl_8011B0E8:
-	lfs      f1, lbl_80517B70@sda21(r2)
-	lfs      f0, lbl_80517B60@sda21(r2)
-	fmuls    f1, f1, f2
-	fcmpo    cr0, f1, f0
-	cror     2, 1, 2
-	bne      lbl_8011B10C
-	lfs      f0, lbl_80517B74@sda21(r2)
-	fadds    f0, f0, f1
-	b        lbl_8011B114
-
-lbl_8011B10C:
-	lfs      f0, lbl_80517B74@sda21(r2)
-	fsubs    f0, f1, f0
-
-lbl_8011B114:
-	fctiwz   f0, f0
-	stfd     f0, 8(r1)
-	lwz      r0, 0xc(r1)
-	stb      r0, 0xd(r3)
-	b        lbl_8011B238
-
-lbl_8011B128:
-	lbz      r5, 0xe(r3)
-	lfs      f1, 0x10(r4)
-	addi     r0, r5, 1
-	stb      r0, 0xe(r3)
-	lfs      f0, 4(r3)
-	fcmpo    cr0, f0, f1
-	bge      lbl_8011B15C
-	fsubs    f0, f1, f0
-	lfs      f1, lbl_80517B64@sda21(r2)
-	lfs      f2, 0(r3)
-	fmuls    f0, f1, f0
-	fadds    f0, f2, f0
-	stfs     f0, 0(r3)
-
-lbl_8011B15C:
-	lfs      f1, 4(r3)
-	lfs      f0, 0(r3)
-	lfs      f2, lbl_80517B78@sda21(r2)
-	fadds    f3, f1, f0
-	lfs      f1, 0x10(r4)
-	lfs      f0, lbl_80517B6C@sda21(r2)
-	stfs     f3, 4(r3)
-	lfs      f3, 0(r3)
-	fmuls    f2, f3, f2
-	stfs     f2, 0(r3)
-	lfs      f2, 4(r3)
-	fdivs    f1, f2, f1
-	stfs     f1, 8(r3)
-	lfs      f1, 8(r3)
-	fcmpo    cr0, f1, f0
-	ble      lbl_8011B1A0
-	stfs     f0, 8(r3)
-
-lbl_8011B1A0:
-	lbz      r0, 0xc(r3)
-	cmpwi    r0, 1
-	beq      lbl_8011B200
-	bge      lbl_8011B238
-	cmpwi    r0, 0
-	bge      lbl_8011B1BC
-	b        lbl_8011B238
-
-lbl_8011B1BC:
-	lfs      f2, lbl_80517B70@sda21(r2)
-	lfs      f1, 8(r3)
-	lfs      f0, lbl_80517B60@sda21(r2)
-	fmuls    f1, f2, f1
-	fcmpo    cr0, f1, f0
-	cror     2, 1, 2
-	bne      lbl_8011B1E4
-	lfs      f0, lbl_80517B74@sda21(r2)
-	fadds    f0, f0, f1
-	b        lbl_8011B1EC
-
-lbl_8011B1E4:
-	lfs      f0, lbl_80517B74@sda21(r2)
-	fsubs    f0, f1, f0
-
-lbl_8011B1EC:
-	fctiwz   f0, f0
-	stfd     f0, 8(r1)
-	lwz      r0, 0xc(r1)
-	stb      r0, 0xd(r3)
-	b        lbl_8011B238
-
-lbl_8011B200:
-	lbz      r4, 0xd(r3)
-	cmplwi   r4, 8
-	ble      lbl_8011B218
-	addi     r0, r4, -8
-	stb      r0, 0xd(r3)
-	b        lbl_8011B238
-
-lbl_8011B218:
-	li       r0, 0
-	lfs      f0, lbl_80517B60@sda21(r2)
-	stb      r0, 0xd(r3)
-	li       r0, 2
-	stfs     f0, 0(r3)
-	stfs     f0, 4(r3)
-	stfs     f0, 8(r3)
-	stb      r0, 0xc(r3)
-
-lbl_8011B238:
-	addi     r1, r1, 0x10
-	blr
-	*/
 }
 
 /*
@@ -872,248 +531,42 @@ lbl_8011B6B8:
  * Address:	8011B6EC
  * Size:	000328
  */
-void CarryInfo::drawNumber(Graphics& gfx, float xpos, float ypos, int dispNum, Color4& color, float scale)
+f32 CarryInfo::drawNumber(Graphics& gfx, float xpos, float ypos, int dispNum, Color4& color, float scale)
 {
 	if (dispNum < 10) {
 		drawNumberPrim(gfx, xpos, ypos, dispNum, color, scale);
+
+		return 7.0f * scale;
+
 	} else if (dispNum < 100) {
-		int ones = dispNum % 10;
-		f32 offs = scale * 5.6f;
-		int tens = dispNum / 10;
-		drawNumberPrim(gfx, xpos - offs, ypos, tens, color, scale);
-		drawNumberPrim(gfx, xpos + offs, ypos, ones, color, scale);
+		f32 temp = 5.6f * scale;
+
+		drawNumberPrim(gfx, xpos - temp, ypos, dispNum / 10, color, scale);
+		drawNumberPrim(gfx, xpos + temp, ypos, dispNum % 10, color, scale);
+
+		return 2.0f * temp + 7.0f * scale;
+
 	} else if (dispNum < 1000) {
-		f32 offs = scale * 12.6f;
-		int ones = dispNum % 10;
-		int tens = dispNum / 100;
-		int hund = dispNum / 10;
-		drawNumberPrim(gfx, xpos - offs, ypos, tens, color, scale);
-		drawNumberPrim(gfx, xpos, ypos, ones, color, scale);
-		drawNumberPrim(gfx, xpos + offs, ypos, hund, color, scale);
+		f32 temp = 12.599999f * scale;
+
+		drawNumberPrim(gfx, xpos - temp, ypos, dispNum / 100, color, scale);
+		drawNumberPrim(gfx, xpos, ypos, (dispNum / 10) % 10, color, scale);
+		drawNumberPrim(gfx, xpos + temp, ypos, dispNum % 10, color, scale);
+
+		return 2.0f * temp + 7.0f * scale;
+
 	} else {
-		f32 offs1 = scale * 6.6f;
-		f32 offs2 = scale * 3.0f;
-		int ones  = dispNum % 10;
-		int tens  = dispNum / 1000;
-		int hund  = dispNum / 100;
-		int thou  = dispNum / 10;
-		drawNumberPrim(gfx, xpos - offs1, ypos, tens, color, scale);
-		drawNumberPrim(gfx, xpos - offs2, ypos, ones, color, scale);
-		drawNumberPrim(gfx, xpos + offs2, ypos, hund, color, scale);
-		drawNumberPrim(gfx, xpos + offs1, ypos, hund, color, scale);
+		f32 temp_2;
+		f32 temp_1 = 5.6f * scale;
+		temp_2     = 3.0f * temp_1;
+
+		drawNumberPrim(gfx, xpos - temp_2, ypos, dispNum / 1000, color, scale);
+		drawNumberPrim(gfx, xpos - temp_1, ypos, (dispNum / 100) % 10, color, scale);
+		drawNumberPrim(gfx, xpos + temp_1, ypos, (dispNum / 10) % 10, color, scale);
+		drawNumberPrim(gfx, xpos + temp_2, ypos, dispNum % 10, color, scale);
+
+		return 6.0f * temp_1 + 7.0f * scale;
 	}
-	/*
-	stwu     r1, -0x70(r1)
-	mflr     r0
-	stw      r0, 0x74(r1)
-	stfd     f31, 0x60(r1)
-	psq_st   f31, 104(r1), 0, qr0
-	stfd     f30, 0x50(r1)
-	psq_st   f30, 88(r1), 0, qr0
-	stfd     f29, 0x40(r1)
-	psq_st   f29, 72(r1), 0, qr0
-	stfd     f28, 0x30(r1)
-	psq_st   f28, 56(r1), 0, qr0
-	stfd     f27, 0x20(r1)
-	psq_st   f27, 40(r1), 0, qr0
-	stw      r31, 0x1c(r1)
-	stw      r30, 0x18(r1)
-	stw      r29, 0x14(r1)
-	stw      r28, 0x10(r1)
-	mr       r30, r5
-	fmr      f27, f1
-	fmr      f28, f2
-	cmpwi    r30, 0xa
-	fmr      f29, f3
-	mr       r28, r3
-	mr       r29, r4
-	mr       r31, r6
-	bge      lbl_8011B764
-	bl       drawNumberPrim__9CarryInfoFR8GraphicsffiR6Color4f
-	lfs      f0, lbl_80517BAC@sda21(r2)
-	fmuls    f1, f0, f29
-	b        lbl_8011B9CC
-
-lbl_8011B764:
-	cmpwi    r30, 0x64
-	bge      lbl_8011B7E4
-	lis      r5, 0x66666667@ha
-	lfs      f0, lbl_80517BC8@sda21(r2)
-	addi     r0, r5, 0x66666667@l
-	mulhw    r0, r0, r30
-	fmuls    f31, f0, f29
-	fsubs    f1, f27, f31
-	srawi    r0, r0, 2
-	srwi     r5, r0, 0x1f
-	add      r5, r0, r5
-	bl       drawNumberPrim__9CarryInfoFR8GraphicsffiR6Color4f
-	lis      r3, 0x66666667@ha
-	fmr      f2, f28
-	addi     r0, r3, 0x66666667@l
-	fmr      f3, f29
-	mulhw    r0, r0, r30
-	fadds    f1, f27, f31
-	mr       r3, r28
-	mr       r4, r29
-	mr       r6, r31
-	srawi    r0, r0, 2
-	srwi     r5, r0, 0x1f
-	add      r0, r0, r5
-	mulli    r0, r0, 0xa
-	subf     r5, r0, r30
-	bl       drawNumberPrim__9CarryInfoFR8GraphicsffiR6Color4f
-	lfs      f0, lbl_80517BAC@sda21(r2)
-	lfs      f1, lbl_80517BCC@sda21(r2)
-	fmuls    f0, f0, f29
-	fmadds   f1, f1, f31, f0
-	b        lbl_8011B9CC
-
-lbl_8011B7E4:
-	cmpwi    r30, 0x3e8
-	bge      lbl_8011B8B0
-	lis      r5, 0x51EB851F@ha
-	lfs      f0, lbl_80517BD0@sda21(r2)
-	addi     r0, r5, 0x51EB851F@l
-	mulhw    r0, r0, r30
-	fmuls    f31, f0, f29
-	fsubs    f1, f27, f31
-	srawi    r0, r0, 5
-	srwi     r5, r0, 0x1f
-	add      r5, r0, r5
-	bl       drawNumberPrim__9CarryInfoFR8GraphicsffiR6Color4f
-	lis      r3, 0x66666667@ha
-	fmr      f1, f27
-	addi     r8, r3, 0x66666667@l
-	fmr      f2, f28
-	mulhw    r0, r8, r30
-	fmr      f3, f29
-	mr       r3, r28
-	mr       r4, r29
-	mr       r6, r31
-	srawi    r0, r0, 2
-	srwi     r5, r0, 0x1f
-	add      r7, r0, r5
-	mulhw    r0, r8, r7
-	srawi    r0, r0, 2
-	srwi     r5, r0, 0x1f
-	add      r0, r0, r5
-	mulli    r0, r0, 0xa
-	subf     r5, r0, r7
-	bl       drawNumberPrim__9CarryInfoFR8GraphicsffiR6Color4f
-	lis      r3, 0x66666667@ha
-	fmr      f2, f28
-	addi     r0, r3, 0x66666667@l
-	fmr      f3, f29
-	mulhw    r0, r0, r30
-	fadds    f1, f27, f31
-	mr       r3, r28
-	mr       r4, r29
-	mr       r6, r31
-	srawi    r0, r0, 2
-	srwi     r5, r0, 0x1f
-	add      r0, r0, r5
-	mulli    r0, r0, 0xa
-	subf     r5, r0, r30
-	bl       drawNumberPrim__9CarryInfoFR8GraphicsffiR6Color4f
-	lfs      f0, lbl_80517BAC@sda21(r2)
-	lfs      f1, lbl_80517BCC@sda21(r2)
-	fmuls    f0, f0, f29
-	fmadds   f1, f1, f31, f0
-	b        lbl_8011B9CC
-
-lbl_8011B8B0:
-	lfs      f1, lbl_80517BC8@sda21(r2)
-	lis      r5, 0x10624DD3@ha
-	addi     r0, r5, 0x10624DD3@l
-	lfs      f0, lbl_80517BB0@sda21(r2)
-	fmuls    f30, f1, f29
-	mulhw    r0, r0, r30
-	fmuls    f31, f0, f30
-	srawi    r0, r0, 6
-	fsubs    f1, f27, f31
-	srwi     r5, r0, 0x1f
-	add      r5, r0, r5
-	bl       drawNumberPrim__9CarryInfoFR8GraphicsffiR6Color4f
-	lis      r4, 0x51EB851F@ha
-	lis      r3, 0x66666667@ha
-	addi     r0, r4, 0x51EB851F@l
-	fmr      f2, f28
-	mulhw    r5, r0, r30
-	addi     r0, r3, 0x66666667@l
-	fmr      f3, f29
-	mr       r3, r28
-	fsubs    f1, f27, f30
-	mr       r4, r29
-	srawi    r5, r5, 5
-	mr       r6, r31
-	srwi     r7, r5, 0x1f
-	add      r7, r5, r7
-	mulhw    r0, r0, r7
-	srawi    r0, r0, 2
-	srwi     r5, r0, 0x1f
-	add      r0, r0, r5
-	mulli    r0, r0, 0xa
-	subf     r5, r0, r7
-	bl       drawNumberPrim__9CarryInfoFR8GraphicsffiR6Color4f
-	lis      r3, 0x66666667@ha
-	fmr      f2, f28
-	addi     r8, r3, 0x66666667@l
-	fmr      f3, f29
-	mulhw    r0, r8, r30
-	fadds    f1, f27, f30
-	mr       r3, r28
-	mr       r4, r29
-	mr       r6, r31
-	srawi    r0, r0, 2
-	srwi     r5, r0, 0x1f
-	add      r7, r0, r5
-	mulhw    r0, r8, r7
-	srawi    r0, r0, 2
-	srwi     r5, r0, 0x1f
-	add      r0, r0, r5
-	mulli    r0, r0, 0xa
-	subf     r5, r0, r7
-	bl       drawNumberPrim__9CarryInfoFR8GraphicsffiR6Color4f
-	lis      r3, 0x66666667@ha
-	fmr      f2, f28
-	addi     r0, r3, 0x66666667@l
-	fmr      f3, f29
-	mulhw    r0, r0, r30
-	fadds    f1, f27, f31
-	mr       r3, r28
-	mr       r4, r29
-	mr       r6, r31
-	srawi    r0, r0, 2
-	srwi     r5, r0, 0x1f
-	add      r0, r0, r5
-	mulli    r0, r0, 0xa
-	subf     r5, r0, r30
-	bl       drawNumberPrim__9CarryInfoFR8GraphicsffiR6Color4f
-	lfs      f0, lbl_80517BAC@sda21(r2)
-	lfs      f1, lbl_80517BD4@sda21(r2)
-	fmuls    f0, f0, f29
-	fmadds   f1, f1, f30, f0
-
-lbl_8011B9CC:
-	psq_l    f31, 104(r1), 0, qr0
-	lfd      f31, 0x60(r1)
-	psq_l    f30, 88(r1), 0, qr0
-	lfd      f30, 0x50(r1)
-	psq_l    f29, 72(r1), 0, qr0
-	lfd      f29, 0x40(r1)
-	psq_l    f28, 56(r1), 0, qr0
-	lfd      f28, 0x30(r1)
-	psq_l    f27, 40(r1), 0, qr0
-	lfd      f27, 0x20(r1)
-	lwz      r31, 0x1c(r1)
-	lwz      r30, 0x18(r1)
-	lwz      r29, 0x14(r1)
-	lwz      r0, 0x74(r1)
-	lwz      r28, 0x10(r1)
-	mtlr     r0
-	addi     r1, r1, 0x70
-	blr
-	*/
 }
 
 /*
@@ -1121,120 +574,36 @@ lbl_8011B9CC:
  * Address:	8011BA14
  * Size:	0001B4
  */
-void CarryInfo::drawNumberPrim(Graphics&, float, float, int, Color4&, float)
+void CarryInfo::drawNumberPrim(Graphics& gfx, f32 arg1, f32 arg2, int arg3, Color4& color, f32 arg5)
 {
+	f32 temp_f5  = 7.0f * arg5;
+	f32 temp_f3  = 0.083333336f;
+	f32 temp_f31 = arg1 - temp_f5;
+	f32 temp_f30 = arg1 + temp_f5;
+	f32 temp_f29 = arg2 - temp_f5;
+	f32 temp_f28 = arg2 + temp_f5;
+	f32 temp_f27 = temp_f3 * arg3;
+	f32 temp_f26 = temp_f27 + temp_f3;
+	f32 temp_f1  = 0.0f;
+	f32 temp_f0  = 1.0f;
+
 	GXBegin(GX_TRIANGLESTRIP, GX_VTXFMT0, 4);
-	/*
-	stwu     r1, -0x80(r1)
-	mflr     r0
-	stw      r0, 0x84(r1)
-	stfd     f31, 0x70(r1)
-	psq_st   f31, 120(r1), 0, qr0
-	stfd     f30, 0x60(r1)
-	psq_st   f30, 104(r1), 0, qr0
-	stfd     f29, 0x50(r1)
-	psq_st   f29, 88(r1), 0, qr0
-	stfd     f28, 0x40(r1)
-	psq_st   f28, 72(r1), 0, qr0
-	stfd     f27, 0x30(r1)
-	psq_st   f27, 56(r1), 0, qr0
-	stfd     f26, 0x20(r1)
-	psq_st   f26, 40(r1), 0, qr0
-	stw      r31, 0x1c(r1)
-	xoris    r3, r5, 0x8000
-	lis      r0, 0x4330
-	stw      r3, 0xc(r1)
-	mr       r31, r6
-	lfs      f0, lbl_80517BAC@sda21(r2)
-	li       r3, 0x98
-	stw      r0, 8(r1)
-	li       r4, 0
-	lfd      f4, lbl_80517BB8@sda21(r2)
-	fmuls    f5, f0, f3
-	lfd      f0, 8(r1)
-	li       r5, 4
-	lfs      f3, lbl_80517BD8@sda21(r2)
-	fsubs    f0, f0, f4
-	fsubs    f31, f1, f5
-	fadds    f30, f1, f5
-	fmuls    f27, f3, f0
-	fsubs    f29, f2, f5
-	fadds    f28, f2, f5
-	fadds    f26, f27, f3
-	bl       GXBegin
-	lis      r6, 0xCC008000@ha
-	lfs      f1, lbl_80517B60@sda21(r2)
-	stfs     f31, 0xCC008000@l(r6)
-	lfs      f0, lbl_80517B6C@sda21(r2)
-	stfs     f29, -0x8000(r6)
-	stfs     f1, -0x8000(r6)
-	lbz      r5, 3(r31)
-	lbz      r4, 2(r31)
-	lbz      r3, 1(r31)
-	lbz      r0, 0(r31)
-	stb      r0, -0x8000(r6)
-	stb      r3, -0x8000(r6)
-	stb      r4, -0x8000(r6)
-	stb      r5, -0x8000(r6)
-	stfs     f27, -0x8000(r6)
-	stfs     f0, -0x8000(r6)
-	stfs     f30, -0x8000(r6)
-	stfs     f29, -0x8000(r6)
-	stfs     f1, -0x8000(r6)
-	lbz      r5, 3(r31)
-	lbz      r4, 2(r31)
-	lbz      r3, 1(r31)
-	lbz      r0, 0(r31)
-	stb      r0, -0x8000(r6)
-	stb      r3, -0x8000(r6)
-	stb      r4, -0x8000(r6)
-	stb      r5, -0x8000(r6)
-	stfs     f26, -0x8000(r6)
-	stfs     f0, -0x8000(r6)
-	stfs     f31, -0x8000(r6)
-	stfs     f28, -0x8000(r6)
-	stfs     f1, -0x8000(r6)
-	lbz      r5, 3(r31)
-	lbz      r4, 2(r31)
-	lbz      r3, 1(r31)
-	lbz      r0, 0(r31)
-	stb      r0, -0x8000(r6)
-	stb      r3, -0x8000(r6)
-	stb      r4, -0x8000(r6)
-	stb      r5, -0x8000(r6)
-	stfs     f27, -0x8000(r6)
-	stfs     f1, -0x8000(r6)
-	stfs     f30, -0x8000(r6)
-	stfs     f28, -0x8000(r6)
-	stfs     f1, -0x8000(r6)
-	lbz      r5, 3(r31)
-	lbz      r4, 2(r31)
-	lbz      r3, 1(r31)
-	lbz      r0, 0(r31)
-	stb      r0, -0x8000(r6)
-	stb      r3, -0x8000(r6)
-	stb      r4, -0x8000(r6)
-	stb      r5, -0x8000(r6)
-	stfs     f26, -0x8000(r6)
-	stfs     f1, -0x8000(r6)
-	psq_l    f31, 120(r1), 0, qr0
-	lfd      f31, 0x70(r1)
-	psq_l    f30, 104(r1), 0, qr0
-	lfd      f30, 0x60(r1)
-	psq_l    f29, 88(r1), 0, qr0
-	lfd      f29, 0x50(r1)
-	psq_l    f28, 72(r1), 0, qr0
-	lfd      f28, 0x40(r1)
-	psq_l    f27, 56(r1), 0, qr0
-	lfd      f27, 0x30(r1)
-	psq_l    f26, 40(r1), 0, qr0
-	lfd      f26, 0x20(r1)
-	lwz      r0, 0x84(r1)
-	lwz      r31, 0x1c(r1)
-	mtlr     r0
-	addi     r1, r1, 0x80
-	blr
-	*/
+
+	GXPosition3f32(temp_f31, temp_f29, temp_f1);
+	GXColor4u8(color.r, color.g, color.b, color.a);
+	GXPosition2f32(temp_f27, temp_f0);
+
+	GXPosition3f32(temp_f30, temp_f29, temp_f1);
+	GXColor4u8(color.r, color.g, color.b, color.a);
+	GXPosition2f32(temp_f26, temp_f0);
+
+	GXPosition3f32(temp_f31, temp_f28, temp_f1);
+	GXColor4u8(color.r, color.g, color.b, color.a);
+	GXPosition2f32(temp_f27, temp_f1);
+
+	GXPosition3f32(temp_f30, temp_f28, temp_f1);
+	GXColor4u8(color.r, color.g, color.b, color.a);
+	GXPosition2f32(temp_f26, temp_f1);
 }
 
 /*
@@ -1253,27 +622,6 @@ void CarryInfoList::update()
 {
 	m_owner->getCarryInfoParam(m_param);
 	m_param.m_carryInfo.update(m_param);
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	mr       r31, r3
-	addi     r4, r31, 0x24
-	lwz      r3, 0x20(r3)
-	lwz      r12, 0(r3)
-	lwz      r12, 8(r12)
-	mtctr    r12
-	bctrl
-	addi     r3, r31, 0x48
-	addi     r4, r31, 0x24
-	bl       update__9CarryInfoFRC14CarryInfoParam
-	lwz      r0, 0x14(r1)
-	lwz      r31, 0xc(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
 }
 
 /*
@@ -1281,23 +629,7 @@ void CarryInfoList::update()
  * Address:	8011BC18
  * Size:	00002C
  */
-void CarryInfoList::draw(Graphics& gfx)
-{
-	m_param.m_carryInfo.draw(gfx, m_param);
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	mr       r5, r3
-	stw      r0, 0x14(r1)
-	addi     r3, r5, 0x48
-	addi     r5, r5, 0x24
-	bl       draw__9CarryInfoFR8GraphicsR14CarryInfoParam
-	lwz      r0, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
-}
+void CarryInfoList::draw(Graphics& gfx) { m_param.m_carryInfo.draw(gfx, m_param); }
 
 /*
  * --INFO--
@@ -1310,24 +642,7 @@ void PokoInfoOwner::getCarryInfoParam(CarryInfoParam& param)
 	param.m_position   = m_position;
 	param.m_yOffsetMax = 25.0f;
 	param.m_color      = 4;
-	param.m_list       = m_list;
-	/*
-	li       r0, 1
-	lfs      f0, lbl_80517BDC@sda21(r2)
-	stw      r0, 0(r4)
-	li       r0, 4
-	lfs      f1, 0x24(r3)
-	stfs     f1, 4(r4)
-	lfs      f1, 0x28(r3)
-	stfs     f1, 8(r4)
-	lfs      f1, 0x2c(r3)
-	stfs     f1, 0xc(r4)
-	stfs     f0, 0x10(r4)
-	stb      r0, 0x15(r4)
-	lwz      r0, 0x30(r3)
-	stw      r0, 0x20(r4)
-	blr
-	*/
+	param.m_value      = m_value;
 }
 
 /*
@@ -1335,17 +650,7 @@ void PokoInfoOwner::getCarryInfoParam(CarryInfoParam& param)
  * Address:	8011BC80
  * Size:	000014
  */
-bool CarryInfoList::isFinish()
-{
-	return (m_param.m_carryInfo.m_hidden == 2);
-	/*
-	lbz      r0, 0x54(r3)
-	subfic   r0, r0, 2
-	cntlzw   r0, r0
-	srwi     r3, r0, 5
-	blr
-	*/
-}
+bool CarryInfoList::isFinish() { return (m_param.m_carryInfo.m_hidden == CINFO_Hidden); }
 
 /*
  * --INFO--
@@ -1355,80 +660,14 @@ bool CarryInfoList::isFinish()
 CarryInfoMgr::CarryInfoMgr(int a)
     : InfoMgr(a)
 {
-	m_node1.m_child  = 0;
-	m_node1.m_next   = 0;
-	m_node1.m_parent = 0;
-	m_node1.m_prev   = 0;
+	m_node1.clearRelations();
 
-	m_poko_node.m_child  = 0;
-	m_poko_node.m_next   = 0;
-	m_poko_node.m_parent = 0;
-	m_poko_node.m_prev   = 0;
+	m_poko_node.clearRelations();
 
 	PokoInfoOwner* pokolist = new PokoInfoOwner[MAX_POKOINFO];
-	for (int i = 0; i < MAX_POKOINFO; i++) {
+	for (u32 i = 0; i < MAX_POKOINFO; i++) {
 		m_poko_node.add(&pokolist[i]);
 	}
-
-	/*
-	stwu     r1, -0x20(r1)
-	mflr     r0
-	stw      r0, 0x24(r1)
-	stw      r31, 0x1c(r1)
-	stw      r30, 0x18(r1)
-	stw      r29, 0x14(r1)
-	mr       r29, r3
-	bl       "__ct__41InfoMgr<14CarryInfoOwner,13CarryInfoList>Fi"
-	lis      r4, __vt__12CarryInfoMgr@ha
-	addi     r3, r29, 0xbc
-	addi     r0, r4, __vt__12CarryInfoMgr@l
-	stw      r0, 0(r29)
-	bl       __ct__5CNodeFv
-	addi     r3, r29, 0xd4
-	bl       __ct__5CNodeFv
-	li       r0, 0
-	li       r3, 0x114
-	stw      r0, 0xcc(r29)
-	stw      r0, 0xc8(r29)
-	stw      r0, 0xc4(r29)
-	stw      r0, 0xc0(r29)
-	stw      r0, 0xe4(r29)
-	stw      r0, 0xe0(r29)
-	stw      r0, 0xdc(r29)
-	stw      r0, 0xd8(r29)
-	bl       __nwa__FUl
-	lis      r4, __ct__13PokoInfoOwnerFv@ha
-	lis      r5, __dt__13PokoInfoOwnerFv@ha
-	addi     r4, r4, __ct__13PokoInfoOwnerFv@l
-	li       r6, 0x34
-	addi     r5, r5, __dt__13PokoInfoOwnerFv@l
-	li       r7, 5
-	bl       __construct_new_array
-	li       r30, 0
-	mr       r31, r3
-
-lbl_8011BD20:
-	cmplwi   r31, 0
-	mr       r4, r31
-	beq      lbl_8011BD30
-	addi     r4, r31, 4
-
-lbl_8011BD30:
-	addi     r3, r29, 0xd4
-	bl       add__5CNodeFP5CNode
-	addi     r30, r30, 1
-	addi     r31, r31, 0x34
-	cmplwi   r30, 5
-	blt      lbl_8011BD20
-	lwz      r0, 0x24(r1)
-	mr       r3, r29
-	lwz      r31, 0x1c(r1)
-	lwz      r30, 0x18(r1)
-	lwz      r29, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x20
-	blr
-	*/
 }
 
 /*
@@ -1436,40 +675,7 @@ lbl_8011BD30:
  * Address:	8011BD68
  * Size:	00006C
  */
-PokoInfoOwner::~PokoInfoOwner()
-{
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	mr       r31, r4
-	stw      r30, 8(r1)
-	or.      r30, r3, r3
-	beq      lbl_8011BDB8
-	lis      r4, __vt__13PokoInfoOwner@ha
-	addi     r3, r30, 4
-	addi     r5, r4, __vt__13PokoInfoOwner@l
-	li       r4, 0
-	stw      r5, 0(r30)
-	addi     r0, r5, 0xc
-	stw      r0, 4(r30)
-	bl       __dt__5CNodeFv
-	extsh.   r0, r31
-	ble      lbl_8011BDB8
-	mr       r3, r30
-	bl       __dl__FPv
-
-lbl_8011BDB8:
-	lwz      r0, 0x14(r1)
-	mr       r3, r30
-	lwz      r31, 0xc(r1)
-	lwz      r30, 8(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
-}
+PokoInfoOwner::~PokoInfoOwner() { }
 
 /*
  * --INFO--
@@ -1477,44 +683,12 @@ lbl_8011BDB8:
  * Size:	000078
  */
 PokoInfoOwner::PokoInfoOwner()
-    : CNode()
+    : CNode("")
 {
 	m_timer    = 0.0f;
 	m_list     = nullptr;
 	m_position = Vector3f::zero;
 	m_value    = 0;
-	/*
-	lis      r4, __vt__14CarryInfoOwner@ha
-	lis      r5, __vt__13PokoInfoOwner@ha
-	addi     r0, r4, __vt__14CarryInfoOwner@l
-	lis      r6, __vt__5CNode@ha
-	stw      r0, 0(r3)
-	addi     r0, r6, __vt__5CNode@l
-	li       r7, 0
-	addi     r6, r2, lbl_80517BE4@sda21
-	stw      r0, 4(r3)
-	addi     r5, r5, __vt__13PokoInfoOwner@l
-	addi     r0, r5, 0xc
-	lfs      f0, lbl_80517B60@sda21(r2)
-	stw      r7, 0x14(r3)
-	lis      r4, "zero__10Vector3<f>"@ha
-	stw      r7, 0x10(r3)
-	stw      r7, 0xc(r3)
-	stw      r7, 8(r3)
-	stw      r6, 0x18(r3)
-	stw      r5, 0(r3)
-	stw      r0, 4(r3)
-	stfs     f0, 0x1c(r3)
-	stw      r7, 0x20(r3)
-	lfsu     f0, "zero__10Vector3<f>"@l(r4)
-	stfs     f0, 0x24(r3)
-	lfs      f0, 4(r4)
-	stfs     f0, 0x28(r3)
-	lfs      f0, 8(r4)
-	stfs     f0, 0x2c(r3)
-	stw      r7, 0x30(r3)
-	blr
-	*/
 }
 
 /*
@@ -1755,7 +929,7 @@ void CarryInfoMgr::appearPoko(const Vector3f& pos, int value)
 		CarryInfoList* newlist = regist(obj);
 		if (newlist) {
 			obj->del();
-			m_node1.add(obj);
+			m_node1.addHead(obj);
 			obj->m_list                            = newlist;
 			obj->m_position                        = pos;
 			obj->m_value                           = value;
@@ -1942,7 +1116,7 @@ lbl_8011C290:
  */
 void CarryInfoMgr::draw(Graphics& gfx)
 {
-	if (Game::moviePlayer && Game::moviePlayer->m_flags & 1) {
+	if (!Game::moviePlayer || !(Game::moviePlayer->m_flags & 1)) {
 		Graphics::clearInitGX();
 		GXSetNumChans(1);
 		GXSetTevDirect(GX_TEVSTAGE0);
@@ -2905,37 +2079,3 @@ lbl_8011CCA8:
 	blr
 	*/
 }
-
-/*
- * --INFO--
- * Address:	8011CCB0
- * Size:	000028
- */
-void __sinit_carryInfoMgr_cpp(void)
-{
-	/*
-	lis      r4, __float_nan@ha
-	li       r0, -1
-	lfs      f0, __float_nan@l(r4)
-	lis      r3, lbl_804AC320@ha
-	stw      r0, lbl_80515890@sda21(r13)
-	stfsu    f0, lbl_804AC320@l(r3)
-	stfs     f0, lbl_80515894@sda21(r13)
-	stfs     f0, 4(r3)
-	stfs     f0, 8(r3)
-	blr
-	*/
-}
-
-/*
- * --INFO--
- * Address:	8011CCD8
- * Size:	000008
- */
-// PokoInfoOwner::~PokoInfoOwner() this is a thunked function
-//{
-/*
-addi     r3, r3, -4
-b        __dt__13PokoInfoOwnerFv
-*/
-//}
