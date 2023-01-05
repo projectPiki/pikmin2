@@ -74,7 +74,7 @@ Pikmin_TCreateObject_JAudio::Pikmin_TCreateObject_JAudio(JAIBasic*, const JStage
  * Address:	80454D6C
  * Size:	000194
  */
-void Pikmin_TCreateObject_JAudio::create(JStudio::TObject**, const JStudio::stb::data::TParse_TBlock_object&)
+void Pikmin_TCreateObject_JAudio::create(JStudio::TObject** newObject, const JStudio::stb::data::TParse_TBlock_object& data)
 {
 	/*
 	.loc_0x0:

@@ -2,6 +2,7 @@
 #include "Dolphin/mtx.h"
 #include "JSystem/JPA/JPAEmitter.h"
 #include "JSystem/JPA/JPAMath.h"
+#include "JSystem/JPA/JPAShape.h"
 #include "types.h"
 
 /*
@@ -175,36 +176,32 @@
  */
 JPAResource::JPAResource()
 {
-	/*
-	li       r0, 0
-	stw      r0, 8(r3)
-	stw      r0, 4(r3)
-	stw      r0, 0(r3)
-	stw      r0, 0x18(r3)
-	stw      r0, 0x14(r3)
-	stw      r0, 0x10(r3)
-	stw      r0, 0xc(r3)
-	stw      r0, 0x1c(r3)
-	stw      r0, 0x20(r3)
-	stw      r0, 0x24(r3)
-	stw      r0, 0x28(r3)
-	stw      r0, 0x2c(r3)
-	stw      r0, 0x30(r3)
-	stw      r0, 0x34(r3)
-	stw      r0, 0x38(r3)
-	stb      r0, 0x47(r3)
-	stb      r0, 0x46(r3)
-	stb      r0, 0x45(r3)
-	stb      r0, 0x44(r3)
-	stb      r0, 0x43(r3)
-	stb      r0, 0x42(r3)
-	stb      r0, 0x41(r3)
-	stb      r0, 0x40(r3)
-	stb      r0, 0x3f(r3)
-	stb      r0, 0x3e(r3)
-	sth      r0, 0x3c(r3)
-	blr
-	*/
+	_08 = nullptr;
+	_04 = nullptr;
+	_00 = nullptr;
+	_18 = nullptr;
+	_14 = nullptr;
+	_10 = nullptr;
+	_0C = nullptr;
+	_1C = nullptr;
+	_20 = nullptr;
+	_24 = nullptr;
+	_28 = nullptr;
+	_2C = nullptr;
+	_30 = nullptr;
+	_34 = nullptr;
+	_38 = nullptr;
+	_47 = 0;
+	_46 = 0;
+	_45 = 0;
+	_44 = 0;
+	_43 = 0;
+	_42 = 0;
+	_41 = 0;
+	_40 = 0;
+	_3F = 0;
+	_3E = 0;
+	_3C = 0;
 }
 
 /*
@@ -2359,78 +2356,23 @@ lbl_800970E4:
  * Address:	800970F8
  * Size:	0000F0
  */
-void JPAResource::draw(JPAEmitterWorkData*, JPABaseEmitter*)
+void JPAResource::draw(JPAEmitterWorkData* workData, JPABaseEmitter* emitter)
 {
-	/*
-	stwu     r1, -0x20(r1)
-	mflr     r0
-	stw      r0, 0x24(r1)
-	li       r0, 0
-	stw      r31, 0x1c(r1)
-	stw      r30, 0x18(r1)
-	mr       r30, r5
-	stw      r29, 0x14(r1)
-	mr       r29, r4
-	stw      r28, 0x10(r1)
-	mr       r28, r3
-	stw      r30, 0(r4)
-	stw      r28, 4(r4)
-	stb      r0, 0x216(r4)
-	bl       calcWorkData_d__11JPAResourceFP18JPAEmitterWorkData
-	lwz      r3, 0x1c(r28)
-	mr       r4, r29
-	bl       setGX__12JPABaseShapeCFP18JPAEmitterWorkData
-	li       r31, 1
-	b        lbl_800971BC
-
-lbl_80097148:
-	lbz      r3, 0x216(r29)
-	addi     r0, r3, 1
-	stb      r0, 0x216(r29)
-	lwz      r3, 0x1c(r28)
-	lwz      r3, 0(r3)
-	lwz      r0, 8(r3)
-	rlwinm.  r0, r0, 0, 9, 9
-	beq      lbl_80097180
-	lwz      r0, 0x24(r28)
-	cmplwi   r0, 0
-	beq      lbl_80097180
-	mr       r3, r28
-	mr       r4, r29
-	bl       drawC__11JPAResourceFP18JPAEmitterWorkData
-
-lbl_80097180:
-	mr       r3, r28
-	mr       r4, r29
-	bl       drawP__11JPAResourceFP18JPAEmitterWorkData
-	lwz      r3, 0x1c(r28)
-	lwz      r3, 0(r3)
-	lwz      r0, 8(r3)
-	rlwinm.  r0, r0, 0, 9, 9
-	bne      lbl_800971B8
-	lwz      r0, 0x24(r28)
-	cmplwi   r0, 0
-	beq      lbl_800971B8
-	mr       r3, r28
-	mr       r4, r29
-	bl       drawC__11JPAResourceFP18JPAEmitterWorkData
-
-lbl_800971B8:
-	addi     r31, r31, 1
-
-lbl_800971BC:
-	lbz      r0, 0x110(r30)
-	cmpw     r31, r0
-	ble      lbl_80097148
-	lwz      r0, 0x24(r1)
-	lwz      r31, 0x1c(r1)
-	lwz      r30, 0x18(r1)
-	lwz      r29, 0x14(r1)
-	lwz      r28, 0x10(r1)
-	mtlr     r0
-	addi     r1, r1, 0x20
-	blr
-	*/
+	workData->m_emitter  = emitter;
+	workData->m_resource = this;
+	workData->_216       = 0;
+	calcWorkData_d(workData);
+	_1C->setGX(workData);
+	for (int i = 1; i <= emitter->_110; i++) {
+		workData->_216++;
+		if ((_1C->m_data->_08 & 0x400000) != 0 && _24 != nullptr) {
+			drawC(workData);
+		}
+		drawP(workData);
+		if ((_1C->m_data->_08 & 0x400000) == 0 && _24 != nullptr) {
+			drawC(workData);
+		}
+	}
 }
 
 /*

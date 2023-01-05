@@ -2,6 +2,7 @@
 #define _JSYSTEM_J3D_J3DMATERIALFACTORY_H
 
 #include "Dolphin/gx.h"
+#include "Dolphin/mtx.h"
 #include "JSystem/J3D/J3DFileBlock.h"
 #include "JSystem/J3D/J3DGXColor.h"
 #include "JSystem/J3D/J3DInd.h"
@@ -14,13 +15,6 @@
 
 struct J3DAlphaCompInfo {
 	u8 _00[0x5]; // _00
-};
-
-struct J3DBlendInfo {
-	u8 _00; // _00
-	u8 _01; // _01
-	u8 _02; // _02
-	u8 _03; // _03
 };
 
 struct J3DColorChanInfo {
@@ -52,7 +46,13 @@ struct J3DFogInfo {
 };
 
 struct J3DIndInitData {
-	u8 _00[0x88]; // _00
+	u8 _00;              // _00
+	u8 m_indTexStageNum; // _01
+	u32 : 0;
+	J3DIndTexOrder m_indTexOrders[4];           // _04
+	J3DIndTexMtx m_indTexMatrices[3];           // _14
+	J3DIndTexCoordScale m_indTexCoordScales[1]; // _68 - unknown length
+	u8 _6C[0xCC];                               // _6C - tbd
 };
 
 struct J3DLightInfo {
@@ -68,20 +68,17 @@ struct J3DPatchingInfo {
 	u8 _0C[4]; // _0C
 };
 
-struct J3DTevOrderInfo {
-	u8 m_texCoordID; // _00
-	u8 m_texMapID;   // _01
-	u8 m_channelID;  // _02
-};
-
 struct J3DTevStageInfo {
 	u8 _00[0x14]; // _00
 };
 
-// extern const J3DTevSwapModeInfo j3dDefaultTevSwapMode;
-extern J3DTevSwapModeInfo j3dDefaultTevSwapMode;
+extern const J3DTevSwapModeInfo j3dDefaultTevSwapMode;
 
 struct J3DTevSwapModeTableInfo {
+	u8 _00; // _00
+	u8 _01; // _01
+	u8 _02; // _02
+	u8 _03; // _03
 };
 
 struct J3DTexCoord2Info {
@@ -90,6 +87,8 @@ struct J3DTexCoord2Info {
 struct J3DTexMtxInfo {
 	u8 _00;    // _00
 	u8 _01;    // _01
+	u8 _02;    // _02
+	u8 _03;    // _03
 	float _04; // _04
 	float _08; // _08
 	float _0C; // _0C
@@ -98,28 +97,7 @@ struct J3DTexMtxInfo {
 	u16 _18;   // _18
 	float _1C; // _1C
 	float _20; // _20
-	float _24; // _24
-	float _28; // _28
-	float _2C; // _2C
-	float _30; // _30
-	float _34; // _34
-	float _38; // _38
-	float _3C; // _3C
-	float _40; // _40
-	float _44; // _44
-	float _48; // _48
-	float _4C; // _4C
-	float _50; // _50
-	float _54; // _54
-	float _58; // _58
-	float _5C; // _5C
-	float _60; // _60
-};
-
-struct J3DZModeInfo {
-	u8 _00; // _00
-	u8 _01; // _01
-	u8 _02; // _02
+	Mtx44 _24; // _24
 };
 
 /**
@@ -161,10 +139,10 @@ struct J3DMaterialFactory {
 	J3DMaterialFactory(const J3DMaterialBlock& block);
 	J3DMaterialFactory(const J3DMaterialDLBlock& block);
 
-	u32 calcSize(J3DMaterial*, MaterialType, int, u32) const;
-	u32 calcSizeNormalMaterial(J3DMaterial*, int, u32) const;
-	u32 calcSizePatchedMaterial(J3DMaterial*, int, u32) const;
-	u32 calcSizeLockedMaterial(J3DMaterial*, int, u32) const;
+	size_t calcSize(J3DMaterial*, MaterialType, int, u32) const;
+	size_t calcSizeNormalMaterial(J3DMaterial*, int, u32) const;
+	size_t calcSizePatchedMaterial(J3DMaterial*, int, u32) const;
+	size_t calcSizeLockedMaterial(J3DMaterial*, int, u32) const;
 	u32 countUniqueMaterials();
 	J3DMaterial* create(J3DMaterial*, MaterialType, int, u32) const;
 	J3DMaterial* createNormalMaterial(J3DMaterial*, int, u32) const;
@@ -202,6 +180,9 @@ struct J3DMaterialFactory {
 	/** @fabricated */
 	// inline s32 getMaterialInitDataIndex(s32 initDataIndexIndex) const { return _08[initDataIndexIndex]; }
 	inline J3DMaterialInitData& getMaterialInitData(s32 index) const { return _04[_08[index]]; }
+
+	/** @fabricated */
+	inline J3DIndInitData& getIndInitData(s32 index) const { return _0C[index]; }
 
 	// unused/inlined:
 	// inline J3DMaterialInitData& getMaterialInitData(u16 initDataIndexIndex) const { return _04[_08[initDataIndexIndex]]; }

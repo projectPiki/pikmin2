@@ -5,23 +5,32 @@
 #include "JSystem/JAS/JASHeap.h"
 
 struct JASWaveArc : public JASDisposer {
+	/** @fabricated */
+	struct LoadToAramCallbackArgs {
+		JASWaveArc* m_arc; // _00
+		long m_fileNumber; // _04
+		u8* _08;           // _08
+		u32 _0C;           // _0C
+	};
+
 	JASWaveArc();
 
 	virtual void onDispose();   // _08
 	virtual void onLoadDone();  // _0C (weak)
 	virtual void onEraseDone(); // _10 (weak)
 
-	void loadToAramCallback(void*);
 	bool load(JASHeap*);
 	bool loadTail(JASHeap*);
 	bool erase();
 	void setFileName(const char*);
 
+	static void loadToAramCallback(void*);
+
 	// unused/inlined:
 	~JASWaveArc() { }
-	void loadSetup(unsigned long);
-	void eraseSetup();
-	void sendLoadCmd();
+	bool loadSetup(unsigned long);
+	bool eraseSetup();
+	bool sendLoadCmd();
 	void execLoad();
 	bool loadBlock(JASHeap*);
 	bool loadBlockTail(JASHeap*);
@@ -59,11 +68,11 @@ struct JASWaveHandle {
 };
 
 struct JASWaveBank {
-	virtual ~JASWaveBank();                              // _08 (weak)
+	virtual ~JASWaveBank() { }                           // _08 (weak)
 	virtual JASWaveHandle* getWaveHandle(u32) const = 0; // _0C
 	virtual JASWaveArc* getWaveArc(int)             = 0; // _10
 
-	JKRHeap* getCurrentHeap();
+	static JKRHeap* getCurrentHeap();
 
 	// _00 VTBL
 
@@ -76,6 +85,8 @@ struct JASBasicWaveBank : public JASWaveBank {
 		inline TWaveHandle()
 		    : JASWaveHandle()
 		    , m_info()
+		    , m_heap(nullptr)
+		    , _30(0)
 		{
 		}
 
@@ -96,7 +107,7 @@ struct JASBasicWaveBank : public JASWaveBank {
 		~TWaveInfo() { }
 
 		TWaveHandle m_handle; // _00
-		u32 _34;              // _34
+		TWaveHandle* _34;     // _34
 		u32 _38;              // _38
 	};
 
@@ -200,19 +211,50 @@ extern JASWaveBank** sWaveBank;
 } // namespace JASWaveBankMgr
 
 namespace JASWSParser {
+/** @fabricated */
+struct THeader {
+	u8 _00[0x10];            // _00 - unknown/padding
+	u32 m_archiveBankOffset; // _10
+	u32 m_ctrlGroupOffset;   // _14
+};
 struct TCtrlWave {
+	u32 _00; // _00
 };
 struct TWave {
+	u8 _00;  // _00
+	u8 _01;  // _01
+	u8 _02;  // _02
+	f32 _04; // _04
+	u32 _08; // _08
+	u32 _0C; // _0C
+	u32 _10; // _10
+	u32 _14; // _14
+	u32 _18; // _18
+	u32 _1C; // _1C
+	s16 _20; // _20
+	s16 _22; // _22
 };
 struct TWaveArchive {
+	char m_fileName[0x74]; // _00 - unknown length
+	u32 m_waveOffsets[1];  // _74 - dynamic length
 };
 struct TWaveArchiveBank {
+	u8 _00[8];               // _00 - unknown/padding
+	u32 m_archiveOffsets[1]; // _08 - dynamic length
 };
 struct TCtrl {
+	u8 _00[4];                // _00 - unknown/padding
+	u32 m_waveCount;          // _04
+	u32 m_ctrlWaveOffsets[1]; // _08 - dynamic length
 };
 struct TCtrlScene {
+	u8 _00[12];       // _00 - unknown/padding
+	u32 m_ctrlOffset; // _0C
 };
 struct TCtrlGroup {
+	u8 _00[8];                 // _00 - unknown/padding
+	u32 m_ctrlGroupCount;      // _08
+	u32 m_ctrlSceneOffsets[1]; // _0C - dynamic length
 };
 
 u32 getGroupCount(void*);
@@ -221,6 +263,8 @@ JASSimpleWaveBank* createSimpleWaveBank(void*);
 
 // unused/inlined:
 size_t getUsedHeapSize();
+
+extern size_t sUsedHeapSize;
 } // namespace JASWSParser
 
 #endif

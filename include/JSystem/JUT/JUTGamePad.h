@@ -102,7 +102,7 @@ struct JUTGamePad : public JKRDisposer {
 
 		static u8 mStatus[4];
 		static u32 mEnabled;
-		static const u32 sChannelMask[4];
+		static u32 sChannelMask[4];
 	};
 
 	struct CStick {
@@ -123,14 +123,14 @@ struct JUTGamePad : public JKRDisposer {
 		u8 _0E;         // _0E
 		u8 _0F;         // _0F
 
-		static const float sPressPoint;
-		static const float sReleasePoint;
+		static float sPressPoint;
+		static float sReleasePoint;
 	};
 
 	struct C3ButtonReset {
 		typedef void (*Callback)(EPadPort, u32);
-		static const u32 sResetPattern;
-		static const u32 sResetMaskPattern;
+		static u32 sResetPattern;
+		static u32 sResetMaskPattern;
 		static Callback sCallback;
 		static u32 sCallbackArg;
 		static s64 sThreshold;
@@ -149,7 +149,7 @@ struct JUTGamePad : public JKRDisposer {
 		u8 _04;
 	};
 
-	static JSUPtrList mPadList;
+	static JSUList<JUTGamePad> mPadList;
 	static CButton mPadButton[PAD_MAX_CONTROLLERS];
 	static CStick mPadMStick[PAD_MAX_CONTROLLERS];
 	static CStick mPadSStick[PAD_MAX_CONTROLLERS];
@@ -165,8 +165,8 @@ struct JUTGamePad : public JKRDisposer {
 	static u32 sRumbleSupported;
 	static PADStatus mPadStatus[PAD_MAX_CONTROLLERS];
 
-	static const EStickMode sStickMode;
-	static const int sClampMode;
+	static EStickMode sStickMode;
+	static int sClampMode;
 
 	JUTGamePad(); // unused/inlined
 	JUTGamePad(EPadPort);

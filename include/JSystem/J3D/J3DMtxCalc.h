@@ -16,7 +16,7 @@ struct J3DMtxCalc {
 	virtual void setAnmTransform(J3DAnmTransform*);                // _0C
 	virtual J3DAnmTransform* getAnmTransform();                    // _10
 	virtual void setAnmTransform(unsigned char, J3DAnmTransform*); // _14
-	virtual void getAnmTransform(unsigned char);                   // _18
+	virtual J3DAnmTransform* getAnmTransform(unsigned char);       // _18
 	virtual void setWeight(unsigned char, float);                  // _1C
 	virtual void getWeight(unsigned char) const;                   // _20
 	virtual void init(const Vec&, const float (&)[3][4]) = 0;      // _24
@@ -31,7 +31,7 @@ struct J3DMtxCalc {
 	// _00 VTBL
 
 	static J3DMtxBuffer* mMtxBuffer;
-	static J3DJoint* mJoint;
+	static struct J3DJoint* mJoint;
 };
 
 struct J3DMtxCalcNoAnmBase : public J3DMtxCalc {
@@ -96,7 +96,7 @@ struct J3DMtxCalcBlendAnmBase : public J3DMtxCalcAnmBase {
 	virtual void setAnmTransform(J3DAnmTransform*);                // _0C (weak)
 	virtual J3DAnmTransform* getAnmTransform();                    // _10 (weak)
 	virtual void setAnmTransform(unsigned char, J3DAnmTransform*); // _14 (weak)
-	virtual void getAnmTransform(unsigned char);                   // _18 (weak)
+	virtual J3DAnmTransform* getAnmTransform(unsigned char);       // _18 (weak)
 	virtual void setWeight(unsigned char, float);                  // _1C (weak)
 	virtual void getWeight(unsigned char) const;                   // _20 (weak)
 

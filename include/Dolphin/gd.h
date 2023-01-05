@@ -25,6 +25,13 @@ void GDSetVtxDescv(struct _GXVtxDescList*);
 
 static inline void __GDWrite(u8 data) { *__GDCurrentDL->pDisplayListData++ = data; }
 
+static inline void __GDCheckOverflowed(size_t size)
+{
+	if (__GDCurrentDL->pDisplayListData + size > __GDCurrentDL->end) {
+		GDOverflowed();
+	}
+}
+
 static inline void __GDWriteU16(u16 data)
 {
 	*__GDCurrentDL->pDisplayListData++ = ((u8*)&data)[0];

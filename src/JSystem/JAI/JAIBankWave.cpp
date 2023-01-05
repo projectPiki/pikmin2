@@ -1,3 +1,8 @@
+#include "JSystem/JAI/JAIBasic.h"
+#include "JSystem/JAI/JAIGlobalParameter.h"
+#include "JSystem/JAS/JASBank.h"
+#include "JSystem/JAS/JASDvd.h"
+#include "JSystem/JAS/JASWave.h"
 #include "types.h"
 #include "JSystem/JAI/JAInter/BankWave.h"
 
@@ -39,14 +44,27 @@
         .skip 0x8
 */
 
+JAInter::BankWave::TCodeBnk* JAInter::BankWave::initOnCodeBnk;
+JAInter::BankWave::TCodeWS* JAInter::BankWave::initOnCodeWs;
+long* JAInter::BankWave::wsGroupNumber;
+long* JAInter::BankWave::wsLoadStatus;
+int JAInter::BankWave::wsMax;
+
+JAInter::BankWave::Flags JAInter::BankWave::flags                     = { 0 };
+int JAInter::BankWave::SceneSetFlag                                   = -1;
+JAInter::BankWave::InitCallback JAInter::BankWave::initCallback       = init;
+JAInter::BankWave::LoadCallback JAInter::BankWave::firstLoadCallback  = loadFirstStayWave;
+JAInter::BankWave::LoadCallback JAInter::BankWave::secondLoadCallback = loadSecondStayWave;
+
 /*
  * --INFO--
  * Address:	........
  * Size:	000010
  */
-void JAInter::BankWave::setWsGroupNumber(long, long)
+void JAInter::BankWave::setWsGroupNumber(long index, long groupNumber)
 {
 	// UNUSED FUNCTION
+	wsGroupNumber[index] = groupNumber;
 }
 
 /*
@@ -54,9 +72,10 @@ void JAInter::BankWave::setWsGroupNumber(long, long)
  * Address:	........
  * Size:	000010
  */
-void JAInter::BankWave::setWsLoadStatus(long, long)
+void JAInter::BankWave::setWsLoadStatus(long index, long status)
 {
 	// UNUSED FUNCTION
+	wsLoadStatus[index] = status;
 }
 
 /*
@@ -64,9 +83,10 @@ void JAInter::BankWave::setWsLoadStatus(long, long)
  * Address:	........
  * Size:	000010
  */
-long JAInter::BankWave::getWsGroupNumber(long)
+long JAInter::BankWave::getWsGroupNumber(long index)
 {
 	// UNUSED FUNCTION
+	return wsGroupNumber[index];
 }
 
 /*
@@ -74,9 +94,10 @@ long JAInter::BankWave::getWsGroupNumber(long)
  * Address:	........
  * Size:	000010
  */
-long JAInter::BankWave::getWsLoadStatus(long)
+long JAInter::BankWave::getWsLoadStatus(long index)
 {
 	// UNUSED FUNCTION
+	return wsLoadStatus[index];
 }
 
 /*
@@ -84,47 +105,64 @@ long JAInter::BankWave::getWsLoadStatus(long)
  * Address:	800ABE44
  * Size:	000008
  */
-void JAInter::BankWave::setInitCallback(JAInter::BankWave::InitCallback)
-{
-	/*
-	stw      r3, initCallback__Q27JAInter8BankWave@sda21(r13)
-	blr
-	*/
-}
+void JAInter::BankWave::setInitCallback(JAInter::BankWave::InitCallback callback) { initCallback = callback; }
 
 /*
  * --INFO--
  * Address:	800ABE4C
  * Size:	000008
  */
-void JAInter::BankWave::setFirstLoadCallback(JAInter::BankWave::LoadCallback)
-{
-	/*
-	stw      r3, firstLoadCallback__Q27JAInter8BankWave@sda21(r13)
-	blr
-	*/
-}
+void JAInter::BankWave::setFirstLoadCallback(JAInter::BankWave::LoadCallback callback) { firstLoadCallback = callback; }
 
 /*
  * --INFO--
  * Address:	800ABE54
  * Size:	000008
  */
-void JAInter::BankWave::setSecondLoadCallback(JAInter::BankWave::LoadCallback)
-{
-	/*
-	stw      r3, secondLoadCallback__Q27JAInter8BankWave@sda21(r13)
-	blr
-	*/
-}
+void JAInter::BankWave::setSecondLoadCallback(JAInter::BankWave::LoadCallback callback) { secondLoadCallback = callback; }
 
 /*
  * --INFO--
  * Address:	800ABE5C
  * Size:	000148
  */
-void JAInter::BankWave::init(void)
+void JAInter::BankWave::init()
 {
+	wsGroupNumber = new (JAIBasic::msCurrentHeap, 0x20) long[wsMax];
+	wsLoadStatus  = new (JAIBasic::msCurrentHeap, 0x20) long[wsMax];
+	JASWaveArcLoader::setCurrentDir(JAIGlobalParameter::getParamWavePath());
+	JASWaveBankMgr::init(0x100);
+	JASWaveArcLoader::init(nullptr);
+	if (initOnCodeWs != nullptr) {
+		for (long i = 0; *initOnCodeWs[i] != 0; i++) {
+			if (initOnCodeWs[i] != 0) {
+				JASWaveBankMgr::registWaveBankWS(i, initOnCodeWs[i]);
+				setWsGroupNumber(i, -1);
+				setWsLoadStatus(i, 0);
+			}
+		}
+	}
+	JASBankMgr::init(0x100);
+	if (initOnCodeBnk != nullptr) {
+		for (long i = 0; initOnCodeBnk[i][0] != 0; i++) {
+			if (initOnCodeBnk[i][0] != 0) {
+				JASBankMgr::registBankBNK(i, &initOnCodeBnk[i]);
+			}
+		}
+		for (long i = 0; initOnCodeBnk[i][0] != 0; i++) {
+			JASBankMgr::assignWaveBank(i, initOnCodeBnk[i][2]);
+		}
+	}
+	// if (initOnCodeBnk != nullptr) {
+	// 	for (int i = 0; initOnCodeBnk[i]._00 != nullptr; i++) {
+	// 		if (initOnCodeBnk[i]._00 != nullptr) {
+	// 			JASBankMgr::registBankBNK(i, initOnCodeBnk + i);
+	// 		}
+	// 	}
+	// 	for (int i = 0; initOnCodeBnk[i]._00 != nullptr; i++) {
+	// 		JASBankMgr::assignWaveBank(i, initOnCodeBnk[i]._08);
+	// 	}
+	// }
 	/*
 	stwu     r1, -0x20(r1)
 	mflr     r0
@@ -248,53 +286,14 @@ void JAInter::BankWave::readInitSoundData(void)
  */
 void JAInter::BankWave::loadFirstStayWave(void)
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	stw      r30, 8(r1)
-	lwz      r0, initOnCodeWs__Q27JAInter8BankWave@sda21(r13)
-	cmplwi   r0, 0
-	beq      lbl_800AC020
-	lbz      r0, flags__Q27JAInter8BankWave@sda21(r13)
-	rlwinm.  r0, r0, 0x19, 0x1f, 0x1f
-	bne      lbl_800AC020
-	li       r30, 0
-	li       r31, 0
-	b        lbl_800ABFFC
-
-lbl_800ABFDC:
-	lwz      r0, 8(r3)
-	cmplwi   r0, 0
-	bne      lbl_800ABFF4
-	mr       r3, r30
-	li       r4, 0
-	bl       loadGroupWave__Q27JAInter8BankWaveFll
-
-lbl_800ABFF4:
-	addi     r31, r31, 0xc
-	addi     r30, r30, 1
-
-lbl_800ABFFC:
-	lwz      r0, initOnCodeWs__Q27JAInter8BankWave@sda21(r13)
-	add      r3, r0, r31
-	lwz      r0, 0(r3)
-	cmplwi   r0, 0
-	bne      lbl_800ABFDC
-	lbz      r0, flags__Q27JAInter8BankWave@sda21(r13)
-	li       r3, 1
-	rlwimi   r0, r3, 7, 0x18, 0x18
-	stb      r0, flags__Q27JAInter8BankWave@sda21(r13)
-
-lbl_800AC020:
-	lwz      r0, 0x14(r1)
-	lwz      r31, 0xc(r1)
-	lwz      r30, 8(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	if (initOnCodeWs != nullptr && !flags.asStruct._7) {
+		for (int i = 0; initOnCodeWs[i][0] != nullptr; i++) {
+			if (initOnCodeWs[i][2] == 0) {
+				loadGroupWave(i, 0);
+			}
+		}
+		flags.asStruct._7 = true;
+	}
 }
 
 /*
@@ -304,53 +303,14 @@ lbl_800AC020:
  */
 void JAInter::BankWave::loadSecondStayWave(void)
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	stw      r30, 8(r1)
-	lbz      r0, flags__Q27JAInter8BankWave@sda21(r13)
-	rlwinm.  r0, r0, 0x1a, 0x1f, 0x1f
-	bne      lbl_800AC0B4
-	lwz      r0, initOnCodeWs__Q27JAInter8BankWave@sda21(r13)
-	cmplwi   r0, 0
-	beq      lbl_800AC0B4
-	li       r30, 0
-	li       r31, 0
-	b        lbl_800AC090
-
-lbl_800AC070:
-	lwz      r0, 8(r3)
-	cmplwi   r0, 1
-	bne      lbl_800AC088
-	mr       r3, r30
-	li       r4, 0
-	bl       loadGroupWave__Q27JAInter8BankWaveFll
-
-lbl_800AC088:
-	addi     r31, r31, 0xc
-	addi     r30, r30, 1
-
-lbl_800AC090:
-	lwz      r0, initOnCodeWs__Q27JAInter8BankWave@sda21(r13)
-	add      r3, r0, r31
-	lwz      r0, 0(r3)
-	cmplwi   r0, 0
-	bne      lbl_800AC070
-	lbz      r0, flags__Q27JAInter8BankWave@sda21(r13)
-	li       r3, 1
-	rlwimi   r0, r3, 6, 0x19, 0x19
-	stb      r0, flags__Q27JAInter8BankWave@sda21(r13)
-
-lbl_800AC0B4:
-	lwz      r0, 0x14(r1)
-	lwz      r31, 0xc(r1)
-	lwz      r30, 8(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	if (!flags.asStruct._6 && initOnCodeWs != nullptr) {
+		for (int i = 0; initOnCodeWs[i][0] != 0; i++) {
+			if (initOnCodeWs[i][2] == 1) {
+				loadGroupWave(i, 0);
+			}
+		}
+		flags.asStruct._6 = true;
+	}
 }
 
 /*
@@ -368,16 +328,10 @@ void JAInter::BankWave::setSceneSetFinishCallback(JAInter::BankWave::SceneSetFin
  * Address:	800AC0CC
  * Size:	000018
  */
-void JAInter::BankWave::finishSceneSet(unsigned long)
+void JAInter::BankWave::finishSceneSet(unsigned long flag)
 {
-	/*
-	stw      r3, SceneSetFlag__Q27JAInter8BankWave@sda21(r13)
-	rlwinm   r0, r3, 0x12, 0xe, 0x1d
-	lwz      r3, wsLoadStatus__Q27JAInter8BankWave@sda21(r13)
-	li       r4, 2
-	stwx     r4, r3, r0
-	blr
-	*/
+	SceneSetFlag               = flag;
+	wsLoadStatus[flag >> 0x10] = 2;
 }
 
 /*
@@ -405,8 +359,14 @@ void JAInter::BankWave::checkSceneWaveOnMemory(long, long)
  * Address:	800AC0E4
  * Size:	000074
  */
-void JAInter::BankWave::loadGroupWave(long, long)
+void JAInter::BankWave::loadGroupWave(long bankIndex, long arcIndex)
 {
+	JASWaveBankMgr::loadWave(bankIndex, arcIndex, nullptr);
+	SceneSetFlag            = -1;
+	wsLoadStatus[bankIndex] = 1;
+	long v1                 = bankIndex * 0x10000;
+	JASDvd::checkPassDvdT(v1 + arcIndex, nullptr, finishSceneSet);
+	wsGroupNumber[bankIndex] = arcIndex;
 	/*
 	stwu     r1, -0x10(r1)
 	mflr     r0

@@ -22,7 +22,7 @@ int OSDisableInterrupts(void)
  * Address:	800EEC4C
  * Size:	000014
  */
-void OSEnableInterrupts(void)
+int OSEnableInterrupts(void)
 {
 	/*
 	.loc_0x0:

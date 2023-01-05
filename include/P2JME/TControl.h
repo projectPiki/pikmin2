@@ -32,7 +32,7 @@ struct TControl : public JMessage::TControl {
 	virtual void createRenderingProcessor();       // _44 (weak)
 
 	void setController(Controller*, Controller*);
-	void setFont(JUTFont*);
+	void setFont(JUTFont* font);
 	void setRubyFont(JUTFont*);
 	void init();
 	void setLocate(int, int);

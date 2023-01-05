@@ -1,9 +1,14 @@
+#include "JSystem/JPA/JPABlock.h"
 #include "JSystem/JPA/JPAResource.h"
+#include "JSystem/JPA/JPAShape.h"
+#include "JSystem/JPA/JPATexture.h"
 #include "types.h"
 
 /*
     Generated from dpostproc
 */
+
+#define GetTypeFromByteStream(data, type, offset) (*(type*)((data) + (offset)))
 
 /*
  * --INFO--
@@ -20,28 +25,11 @@ JPAResourceLoader::JPAResourceLoader(const unsigned char*, JPAResourceManager*, 
  * Address:	800980D8
  * Size:	000040
  */
-JPAResourceLoader::JPAResourceLoader(const unsigned char*, JPAResourceManager*)
+JPAResourceLoader::JPAResourceLoader(const unsigned char* p1, JPAResourceManager* manager)
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	lwz      r6, 4(r4)
-	stw      r0, 0x14(r1)
-	addis    r0, r6, 0xcdd3
-	stw      r31, 0xc(r1)
-	cmplwi   r0, 0x3130
-	mr       r31, r3
-	bne      lbl_80098100
-	bl       load_jpc__17JPAResourceLoaderFPCUcP18JPAResourceManager
-
-lbl_80098100:
-	lwz      r0, 0x14(r1)
-	mr       r3, r31
-	lwz      r31, 0xc(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	if (*(int*)(p1 + 4) == '2-10') {
+		load_jpc(p1, manager);
+	}
 }
 
 /*
@@ -59,8 +47,68 @@ void JPAResourceLoader::load_jpa(const unsigned char*, JPAResourceManager*, unsi
  * Address:	80098118
  * Size:	0003B8
  */
-void JPAResourceLoader::load_jpc(const unsigned char*, JPAResourceManager*)
+void JPAResourceLoader::load_jpc(const unsigned char* p1, JPAResourceManager* manager)
 {
+	JKRHeap* heap                = manager->m_heap;
+	manager->m_resourceSlotCount = GetTypeFromByteStream(p1, u16, 0x08);
+	manager->m_textureSlotCount  = GetTypeFromByteStream(p1, u16, 0x0A);
+	manager->m_resources         = new (heap, 0) JPAResource*[manager->m_resourceSlotCount];
+	manager->m_textures          = new (heap, 0) JPATexture*[manager->m_textureSlotCount];
+	u16 resourceSlotCount        = GetTypeFromByteStream(p1, u16, 0x08);
+	int resourceOffset           = 0x10;
+	for (int i = 0; i < resourceSlotCount; i++) {
+		const u8* resourceData = (p1 + resourceOffset);
+		JPAResource* resource  = new (heap, 0) JPAResource;
+		resource->_3E          = resourceData[4];
+		resource->_30          = (resource->_3E != 0 ? new (heap, 0) JPAFieldBlock*[resource->_3E] : nullptr);
+		resource->_3F          = resourceData[5];
+		resource->_34          = (resource->_3F != 0 ? new (heap, 0) JPAKeyBlock*[resource->_3F] : nullptr);
+		int fieldBlockIndex    = 0;
+		int keyBlockIndex      = fieldBlockIndex;
+		resource->_40          = resourceData[6];
+		resource->_38          = nullptr;
+		resourceOffset += 8;
+		resource->_3C = *(u16*)resourceData;
+		for (int j = 0; j < GetTypeFromByteStream(resourceData, u16, 2); j++) {
+			const u8* blockData = (p1 + resourceOffset);
+			int blockLength     = GetTypeFromByteStream(blockData, int, 4);
+			switch (GetTypeFromByteStream(blockData, int, 0)) {
+			case 'FLD1':
+				resource->_30[fieldBlockIndex++] = new (heap, 0) JPAFieldBlock(blockData, heap);
+				break;
+			case 'KFA1':
+				resource->_34[keyBlockIndex++] = new (heap, 0) JPAKeyBlock(blockData);
+				break;
+			case 'BEM1':
+				resource->_2C = new (heap, 0) JPADynamicsBlock(blockData);
+				break;
+			case 'BSP1':
+				resource->_1C = new (heap, 0) JPABaseShape(blockData, heap);
+				break;
+			case 'ESP1':
+				resource->_20 = new (heap, 0) JPAExtraShape(blockData);
+				break;
+			case 'SSP1':
+				resource->_24 = new (heap, 0) JPAChildShape(blockData);
+				break;
+			case 'ETX1':
+				resource->_28 = new (heap, 0) JPAExTexShape(blockData);
+				break;
+			case 'TDB1':
+				resource->_38 = (u16*)(blockData + 8);
+				break;
+			}
+			resourceOffset += blockLength;
+		}
+		resource->init(heap);
+		manager->registRes(resource);
+	}
+	int texDataOffset = GetTypeFromByteStream(p1, int, 0xC);
+	for (int texDataLength, i = 0; i < GetTypeFromByteStream(p1, u16, 0xA); i++, texDataOffset += texDataLength) {
+		const u8* texData = p1 + texDataOffset;
+		texDataLength     = GetTypeFromByteStream(texData, int, 4);
+		manager->registTex(new (heap, 0) JPATexture(texData));
+	}
 	/*
 	stwu     r1, -0x40(r1)
 	mflr     r0

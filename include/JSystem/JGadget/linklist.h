@@ -102,7 +102,7 @@ struct TLinkList : public TNodeLinkList {
 		reference operator*() const { return *(const T*)(((u8*)&m_node) + I); }
 	};
 
-	TLinkListNode* Element_toNode(T* element) const { return &element->m_linkListNode; }
+	TLinkListNode* Element_toNode(T* element) const { return reinterpret_cast<TLinkListNode*>(reinterpret_cast<u8*>(element) + I); }
 
 	void Insert(TLinkList::iterator iter, T* element)
 	{

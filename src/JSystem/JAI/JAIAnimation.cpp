@@ -87,6 +87,11 @@ JAIAnimeSound::JAIAnimeSound(Vec* p1, JKRHeap* heap, u8 p3)
     , _6C(0)
     , m_soundData(nullptr)
 {
+	_40 = new (heap, 0) u8[p3];
+	_44 = new (heap, 0) void*[p3];
+	for (u32 i = 0; i < p3; i++) {
+		_44[i] = nullptr;
+	}
 	// if (_4C) {
 	// 	_58 = 1;
 	// } else {

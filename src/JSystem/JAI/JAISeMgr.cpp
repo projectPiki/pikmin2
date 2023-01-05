@@ -1,4 +1,7 @@
+#include "JSystem/JAI/JAIBasic.h"
+#include "JSystem/JAI/JAIConst.h"
 #include "JSystem/JAI/JAIGlobalParameter.h"
+#include "JSystem/JAI/JAISound.h"
 #include "JSystem/JAI/JAInter.h"
 #include "JSystem/JAI/JAInter/MoveParaSet.h"
 #include "JSystem/JAI/JAInter/SeMgr.h"
@@ -103,6 +106,58 @@
  */
 void JAInter::SeMgr::init(void)
 {
+	if (JAIBasic::msBasic->_1C != nullptr) {
+		JAIGlobalParameter::setParamSeTrackMax(0);
+		for (u32 soundScene = 0; soundScene < JAIGlobalParameter::getParamSoundSceneMax(); soundScene++) {
+			u32 sumOfCategories = 0;
+			for (u32 category = 0; category < JAIGlobalParameter::getParamSeCategoryMax(); category++) {
+				sumOfCategories += JAIBasic::msBasic->_1C[soundScene][category];
+			}
+			if (sumOfCategories > JAIGlobalParameter::getParamSeTrackMax()) {
+				JAIGlobalParameter::setParamSeTrackMax(sumOfCategories);
+			}
+		}
+	}
+	seRegist    = new (JAIBasic::msCurrentHeap, 0x20) LinkSound[JAIGlobalParameter::getParamSeCategoryMax()];
+	sePlaySound = new (JAIBasic::msCurrentHeap, 0x20) JAISound**[JAIGlobalParameter::getParamSeCategoryMax()];
+	for (u32 i = 0; i < JAIGlobalParameter::getParamSeCategoryMax(); i++) {
+		seRegist[i].init();
+		for (u32 j = 0; j < JAIGlobalParameter::getParamSeRegistMax(); j++) {
+			seRegist[i]._00->append(JAIBasic::msBasic->makeSe());
+		}
+		sePlaySound[i] = new (JAIBasic::msCurrentHeap, 0x20) JAISound*[0x10];
+		for (int j = 0; j < 0x10; j++) {
+			sePlaySound[i][j] = nullptr;
+		}
+	}
+	seTrackUpdate = new (JAIBasic::msCurrentHeap, 0x20) TrackUpdate[JAIGlobalParameter::getParamSeTrackMax()];
+	for (u32 i = 0; i < JAIGlobalParameter::getParamSeTrackMax(); i++) {
+		TrackUpdate* trackUpdate = seTrackUpdate + i;
+		trackUpdate->_04         = 1.0f;
+		trackUpdate->_08         = 1.0f;
+		trackUpdate->_0C         = 0.0f;
+		trackUpdate->_10         = 0.5f;
+		trackUpdate->_00         = 0xFF;
+		trackUpdate->_14         = 0.0f;
+	}
+	// TODO: ???
+	new (JAIBasic::msCurrentHeap, 0x20)
+	    SeParameter[JAIGlobalParameter::getParamSeCategoryMax() * JAIGlobalParameter::getParamSeRegistMax()];
+	u16** v1 = JAIBasic::msBasic->_1C;
+	if (JAIBasic::msBasic->_1C == nullptr) {
+		categoryInfoTable = new (JAIBasic::msCurrentHeap, 0x20) u16*[JAIGlobalParameter::getParamSoundSceneMax()];
+		v1                = categoryInfoTable;
+		for (u32 i = 0; i < JAIGlobalParameter::getParamSoundSceneMax(); i++) {
+			categoryInfoTable[i] = JAInter::Const::sCInfos_0;
+		}
+	}
+	categoryInfoTable = v1;
+	seEntryCancel     = new (JAIBasic::msCurrentHeap, 0x20) u8[JAIGlobalParameter::getParamSeCategoryMax()];
+	seCategoryVolume  = new (JAIBasic::msCurrentHeap, 0x20) float[JAIGlobalParameter::getParamSeCategoryMax()];
+	for (u32 i = 0; i < JAIGlobalParameter::getParamSeCategoryMax(); i++) {
+		seEntryCancel[i]    = 0;
+		seCategoryVolume[i] = 1.0f;
+	}
 	/*
 	stwu     r1, -0x50(r1)
 	mflr     r0
@@ -401,9 +456,7 @@ lbl_800AE40C:
  * Size:	000018
  * __ct__Q27JAInter19MoveParaSetInitZeroFv
  */
-// JAInter::MoveParaSetInitZero::MoveParaSetInitZero()
-// {
-// }
+// JAInter::MoveParaSetInitZero::MoveParaSetInitZero() { }
 
 /*
  * --INFO--
@@ -411,9 +464,7 @@ lbl_800AE40C:
  * Size:	000018
  * __ct__Q27JAInter19MoveParaSetInitHalfFv
  */
-// JAInter::MoveParaSetInitHalf::MoveParaSetInitHalf(void)
-// {
-// }
+// JAInter::MoveParaSetInitHalf::MoveParaSetInitHalf(void) { }
 
 /*
  * --INFO--
@@ -421,16 +472,14 @@ lbl_800AE40C:
  * Size:	000018
  * __defctor__Q27JAInter11MoveParaSetFv
  */
-// void JAInter::MoveParaSet::__defctor(void)
-// {
-// }
+// void JAInter::MoveParaSet::__defctor(void) { }
 
 /*
  * --INFO--
  * Address:	800AE57C
  * Size:	000050
  */
-void JAInter::SeMgr::startSeSequence(void)
+void JAInter::SeMgr::startSeSequence()
 {
 	seHandle = nullptr;
 	SequenceMgr::storeSeqBuffer(&seHandle, nullptr, 0x80000800, 1, 4, SoundTable::getInfoPointer(0x80000800));
@@ -1592,18 +1641,23 @@ void JAInter::SeMgr::clearSeqMuteFromSeStop(JAISound*)
  */
 void JAInter::SeMgr::checkSeMovePara(void)
 {
-	// if (seHandle == nullptr || seHandle->m_seqParameter._279 == 2) {
-	// 	return;
-	// }
-	// for (u8 i = 0; i < JAIGlobalParameter::getParamSeCategoryMax(); i++) {
-	// 	for (JSULink<JAISound>* link = seRegist[i]._04->getFirst(); link != nullptr; link = link->getNext()) {
-	// 		JAISound* sound = link->getObject();
-	// 		for (int j = 0; j < 8; j++) {
-	// 			JAISe* se = (JAISe*)sound->getObject()[j];
-
-	// 		}
-	// 	}
-	// }
+	if (seHandle == nullptr || seHandle->m_seqParameter._279 == 2) {
+		return;
+	}
+	for (u8 i = 0; i < JAIGlobalParameter::getParamSeCategoryMax(); i++) {
+		for (JSULink<JAISound>* link = seRegist[i]._04->getFirst(); link != nullptr; link = link->getNext()) {
+			JAISound* sound = link->getObject();
+			for (u8 j = 0; j < 8; j++) {
+				JAISe* se = static_cast<JAISe*>(sound);
+				se->m_seParam._124[i].move();
+				se->m_seParam._1A4[i].move();
+				se->m_seParam._2A4[i].move();
+				se->m_seParam._324[i].move();
+				se->m_seParam._3A4[i].move();
+				se->m_seParam._224[i].move();
+			}
+		}
+	}
 	/*
 	stwu     r1, -0x20(r1)
 	mflr     r0

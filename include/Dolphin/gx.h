@@ -485,7 +485,7 @@ typedef enum _GXCompType {
 } GXCompType;
 
 // Names are guessed
-typedef enum _SDK_GXFogType {
+typedef enum _GXFogType {
 	GX_FOG_NONE   = 0,     // No fog.
 	GX_FOG_LINEAR = 2,     // Use linear fog density function.
 	                       // For perspective projection mode.
@@ -498,6 +498,7 @@ typedef enum _SDK_GXFogType {
 	GX_FOG_REVERSEXP2 = 7  // Use the inverse exponential-squared fog density
 	                       // function. For perspective projection mode.
 } GXFogType;
+typedef GXFogType _SDK_GXFogType;
 
 typedef enum _GXProjectionType {
 	GX_PERSPECTIVE, // 0x0
@@ -509,19 +510,20 @@ typedef struct _GXColor {
 } GXColor;
 typedef GXColor _SDK_GXColor; // this might be a wrapper in Pikmin 2? IDK.
 
-typedef struct _SDK_GXColorS10 {
+typedef struct _GXColorS10 {
 	s16 r, g, b, a;
 } GXColorS10;
-typedef GXColorS10 _GXColorS10; // this might be a wrapper in Pikmin 2? IDK.
+typedef GXColorS10 _SDK_GXColorS10; // this might be a wrapper in Pikmin 2? IDK.
 
-typedef struct _SDK_GXFogAdjTable {
+typedef struct _GXFogAdjTable {
 	u16 _00[10];
 } GXFogAdjTable;
+typedef GXFogAdjTable _SDK_GXFogAdjTable;
 
 typedef enum _GXTexMtxType { GX_MTX3x4, GX_MTX2x4 } GXTexMtxType;
 
 // Compare types.
-typedef enum _SDK_GXCompare {
+typedef enum _GXCompare {
 	GX_NEVER,   // Always false.
 	GX_LESS,    //<
 	GX_EQUAL,   //=
@@ -531,20 +533,22 @@ typedef enum _SDK_GXCompare {
 	GX_GTEQUAL, //>=
 	GX_ALWAYS   // Always true.
 } GXCompare;
+typedef GXCompare _SDK_GXCompare;
 
 typedef enum _GXAlphaOp { GX_AOP_AND, GX_AOP_OR, GX_AOP_XOR, GX_AOP_XNOR, GX_MAX_ALPHAOP } GXAlphaOp;
 
 // Blending type.
-typedef enum _SDK_GXBlendMode {
+typedef enum _GXBlendMode {
 	GX_BM_NONE,     // No blending.
 	GX_BM_BLEND,    // Blending.
 	GX_BM_LOGIC,    // Logic operations.
 	GX_BM_SUBTRACT, // Subtractive blending.
 	GX_MAX_BLENDMODE
 } GXBlendMode;
+typedef GXBlendMode _SDK_GXBlendMode;
 
 // Blending controls.
-typedef enum _SDK_GXBlendFactor {
+typedef enum _GXBlendFactor {
 	GX_BL_ZERO, // 0.0
 	GX_BL_ONE,  // 1.0
 	GX_BL_SRCCOL,
@@ -556,10 +560,11 @@ typedef enum _SDK_GXBlendFactor {
 	GX_BL_DSTALPHA,                    // Frame buffer alpha
 	GX_BL_INVDSTALPHA,                 // 1.0 - (Frame buffer alpha)
 } GXBlendFactor;
+typedef GXBlendFactor _SDK_GXBlendFactor;
 
 // Logical operation types.
 // Source is the input coefficient and Destination is the output coefficient.
-typedef enum _SDK_GXLogicOp {
+typedef enum _GXLogicOp {
 	GX_LO_CLEAR,   // 0x00
 	GX_LO_AND,     // Source & Destination
 	GX_LO_REVAND,  // Source & ~Destination
@@ -577,9 +582,10 @@ typedef enum _SDK_GXLogicOp {
 	GX_LO_NAND,    //~(Source & Destination)
 	GX_LO_SET      // 0xff
 } GXLogicOp;
+typedef GXLogicOp _SDK_GXLogicOp;
 
 // Frame buffer pixel formats
-typedef enum _SDK_GXPixelFmt {
+typedef enum _GXPixelFmt {
 	GX_PF_RGB8_Z24,   // Non-antialiased (RGB 888).
 	GX_PF_RGBA6_Z24,  // Non-antialiased (RGBA 6666).
 	GX_PF_RGB565_Z16, // Anti-aliasing.
@@ -589,6 +595,7 @@ typedef enum _SDK_GXPixelFmt {
 	GX_PF_V8,
 	GX_PF_YUV420
 } GXPixelFmt;
+typedef GXPixelFmt _SDK_GXPixelFmt;
 
 typedef struct _GXRenderModeObj {
 	VITVMode viTVmode; // _00
@@ -665,12 +672,13 @@ typedef struct _GXVtxDescList {
 } GXTexDescList;
 
 // Compressed Z format
-typedef enum _SDK_GXZFmt16 {
+typedef enum _GXZFmt16 {
 	GX_ZC_LINEAR, // 16-bit linear.
 	GX_ZC_NEAR,   // Compressed format (14e2) for smaller far/near ratio.
 	GX_ZC_MID,    // Compressed format (13e3) for medium far/near ratio.
 	GX_ZC_FAR     // Compressed format (12e4) for large far/near ratio.
 } GXZFmt16;
+typedef GXZFmt16 _SDK_GXZFmt16;
 
 typedef union _ControlRegister {
 	u32 value;
@@ -774,7 +782,9 @@ typedef struct _GXData {
 	u32 _174;        // _174
 	u32 _178;        // _178
 	u32 _17C;        // _17C
-	u8 _180[0x84];   // _180
+	u8 _180[0x50];   // _180
+	u32 _1D0;        // _1D0
+	u8 _1D4[0x30];   // _1D4
 	u32 _204;        // _204
 	u8 _208[0x4C];   // _208
 	u32 _254;        // _254
@@ -1044,7 +1054,6 @@ void GXDrawDone();
 
 void GXCopyDisp(void*, GXBool); // TODO: Confirm types
 
-typedef u8 _GXTlut;
 typedef u8 _GXTlutFmt;
 
 /*
@@ -1053,7 +1062,7 @@ typedef u8 _GXTlutFmt;
  * entry. Each table GX_BIGTLUT0 through BIGTLUT3 contains 1024 entries, at 16
  * bits per entry. Used for setting texture memory in the GXInit function.
  */
-typedef enum GXTlut {
+typedef enum _GXTlut {
 	GX_TLUT0, // TLUT (256 16-bit entries) ID 0.
 	GX_TLUT1,
 	GX_TLUT2,
@@ -1074,7 +1083,7 @@ typedef enum GXTlut {
 	GX_BIGTLUT1,
 	GX_BIGTLUT2,
 	GX_BIGTLUT3
-} GXTlut;
+} _GXTlut;
 
 // Texture lookup table (TLUT) formats.
 typedef enum GXTlutFmt {
@@ -1126,6 +1135,8 @@ void GXSetViewport(float, float, float, float, float, float);
 void GXSetTevKColor(GXTevKColorID, GXColor);
 void GXSetClipMode(u32); // needs a proper type
 
+void GXSetArray(int, Mtx*, size_t); // TODO: Correct types.
+
 // added GXPosition and GXFifo from smb-decomp/GXVert.h, thanks to encounter for doing this!
 // need to confirm these are the same for Pikmin 2 - currently used by plugProjectNishimuraU/MapUnit.cpp in
 // UnitInfo::draw()
@@ -1148,7 +1159,7 @@ typedef union {
 #ifdef __MWERKS__
 PPCWGPipe GXWGFifo : GXFIFO_ADDR;
 #else
-PPCWGPipe GXWGFifo;
+extern PPCWGPipe GXWGFifo;
 #endif
 
 inline void GXSetWasteFlags()

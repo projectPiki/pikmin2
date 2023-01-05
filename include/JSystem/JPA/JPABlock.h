@@ -67,7 +67,7 @@ struct JPAFieldBlock {
 	// unused/inlined:
 	void init_jpa(const unsigned char*, JKRHeap*);
 
-	u8* m_data;            // _00
+	const u8* m_data;      // _00
 	JPAFieldBase* m_field; // _04
 	float _08;             // _08
 	float _0C;             // _0C

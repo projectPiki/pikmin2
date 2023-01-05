@@ -76,7 +76,7 @@ inline int Node::dvdToAram(char const* name, bool useNull)
 		if (useNull) {
 			m_status = 0;
 		} else {
-			m_status = JKRDvdAramRipper::loadToAram(m_name, 0, Switch_0, 0, 0, 0);
+			m_status = (JKRAramBlock*)JKRDvdAramRipper::loadToAram(m_name, 0, Switch_0, 0, 0, 0);
 		}
 	}
 

@@ -1,4 +1,5 @@
 #include "JSystem/JAS/JASCalc.h"
+#include "Dolphin/os.h"
 #include "types.h"
 
 /*
@@ -339,9 +340,50 @@ void JASCalc::bzerofast(void*, unsigned long)
  * --INFO--
  * Address:	800A6264
  * Size:	000274
+ * bzero__7JASCalcFPvUl
  */
-void JASCalc::bzero(void*, unsigned long)
+void JASCalc::bzero(void* addr, unsigned long nBytes)
 {
+	if (IS_ALIGNED(nBytes, 0x20) && IS_ALIGNED((u32)addr, 0x20)) {
+		DCZeroRange(addr, nBytes);
+		return;
+	}
+	u8 addrAlignmentToDWBoundary = (u32)addr & 0x3;
+	if (IS_ALIGNED(nBytes, sizeof(u32) * 4) && addrAlignmentToDWBoundary == 0) {
+		u32* dwords = (u32*)addr;
+		for (int i = 0; i < nBytes / sizeof(u32) * 4; i += 4) {
+			dwords[i]     = 0;
+			dwords[i + 1] = 0;
+			dwords[i + 2] = 0;
+			dwords[i + 3] = 0;
+		}
+		return;
+	}
+	if (nBytes < 0x10) {
+		u8* bytes = (u8*)addr;
+		for (int i = 0; i < nBytes; i++) {
+			bytes[i] = 0;
+		}
+		return;
+	}
+	if (addrAlignmentToDWBoundary != 0) {
+		u8* bytes = (u8*)addr;
+		for (int i = 4 - addrAlignmentToDWBoundary; i != 0; i--) {
+			*bytes = 0;
+			bytes++;
+			nBytes--;
+		}
+	}
+	u32* dwords = (u32*)addr;
+	for (; nBytes > 3; nBytes -= 4, dwords++) {
+		*dwords = 0;
+	}
+	if (nBytes != 0) {
+		u8* bytes = (u8*)addr;
+		for (; nBytes > 0; nBytes--, bytes++) {
+			*bytes = 0;
+		}
+	}
 	/*
 	stwu     r1, -0x10(r1)
 	mflr     r0

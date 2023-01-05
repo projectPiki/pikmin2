@@ -335,7 +335,7 @@ struct OSAlarmQueue {
 	OSAlarm* tail;
 };
 
-typedef void AlarmCallback(unknown p1, OSContext* context);
+typedef void AlarmCallback(OSAlarm* p1, OSContext* context);
 
 void OSInitAlarm();
 void OSCreateAlarm(OSAlarm* alarm);
@@ -565,7 +565,7 @@ u8* __OSLockSramEx(void);
 void __OSUnmaskInterrupts(int);
 int OSDisableInterrupts(void);
 void OSRestoreInterrupts(int);
-void OSEnableInterrupts();
+int OSEnableInterrupts();
 
 uint OSGetSoundMode();
 void OSSetSoundMode(uint);

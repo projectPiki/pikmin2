@@ -3,11 +3,14 @@
 
 #include "JStage/TObject.h"
 #include "Dolphin/vec.h"
+#include "JStudio/TObject.h"
 
 namespace JStage {
 enum TECameraProjection {};
 enum TECameraView {};
 struct TCamera : public TObject {
+	typedef JStudio::TObject_camera StudioObject;
+
 	virtual ~TCamera() = 0;                                // _08
 	virtual int JSGFGetType() const;                       // _0C
 	virtual int JSGGetProjectionType() const;              // _3C

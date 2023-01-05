@@ -326,7 +326,7 @@ lbl_80065CB4:
  * Address:	80065CD4
  * Size:	00000C
  */
-u16 J3DTevBlock::getTexNo(unsigned long p1) const { return 0xFFFF; }
+// u16 J3DTevBlock::getTexNo(unsigned long p1) const { return 0xFFFF; }
 
 /*
  * --INFO--

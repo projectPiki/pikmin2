@@ -1,6 +1,7 @@
 #ifndef _JSTAGE_TOBJECT_H
 #define _JSTAGE_TOBJECT_H
 #include "Dolphin/gx.h"
+#include "JStudio/TObject.h"
 #include "types.h"
 /*
     __vt__Q26JStage7TObject:
@@ -23,6 +24,7 @@
 
 namespace JStage {
 struct TObject {
+
 	virtual ~TObject()              = 0;                            // _08
 	virtual int JSGFGetType() const = 0;                            // _0C
 	virtual char* JSGGetName() const;                               // _10
@@ -51,12 +53,16 @@ struct TObject {
 // Unless... maybe it's just a POD type that just has a pointer to a JStage::TObject?
 // But then there still needs to be a subclass of that somewhere. And that doesn't look right at all.
 struct TAmbientLight : public TObject {
+	typedef JStudio::TObject_ambientLight StudioObject;
+
 	inline virtual GXColor JSGGetColor() const { return GXColor(); } // _3C
 	inline virtual void JSGSetColor(GXColor) const { }               // _40
 };
 
 //  None of these should generate bodies. The vtbl should never be generated. Ever.
 struct TFog : public TObject {
+	typedef JStudio::TObject_fog StudioObject;
+
 	inline virtual void virtual_3C() { }                                 // _3C
 	inline virtual void virtual_40() { }                                 // _40
 	inline virtual f32 virtual_44() const { return _04; }                // _44
@@ -71,6 +77,7 @@ struct TFog : public TObject {
 };
 
 struct TLight : public TObject {
+	typedef JStudio::TObject_light StudioObject;
 };
 } // namespace JStage
 

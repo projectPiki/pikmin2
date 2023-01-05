@@ -230,7 +230,9 @@ JASChannel* JASBankMgr::noteOn(int bankIndex, int instIndex, unsigned char p3, u
 	}
 	// JASMemPool<JASChannel, JASThreadingModel::SingleThreaded>* channelMemPool = JASSingletonHolder<JASMemPool<JASChannel,
 	// JASThreadingModel::SingleThreaded>, JASCreationPolicy::NewFromRootHeap>::getInstance(); channelMemPool->alloc(sizeof(JASChannel));
-	JASChannel* channel = new (JASPoolAllocObject<JASChannel, NewFromRootHeap, SingleThreaded>::alloc()) JASChannel(p6, p7);
+	JASChannel* channel
+	    = new (JASPoolAllocObject<JASChannel, JASCreationPolicy::NewFromRootHeap, JASThreadingModel::SingleThreaded>::alloc())
+	        JASChannel(p6, p7);
 	if (channel == nullptr) {
 		return nullptr;
 	}
@@ -541,7 +543,9 @@ JASChannel* JASBankMgr::noteOn(int bankIndex, int instIndex, unsigned char p3, u
 JASChannel* JASBankMgr::noteOnOsc(int p1, unsigned char p2, unsigned char p3, unsigned short p4,
                                   void (*p5)(unsigned long, JASChannel*, JASDsp::TChannel*, void*), void* p6)
 {
-	JASChannel* channel = new (JASPoolAllocObject<JASChannel, NewFromRootHeap, SingleThreaded>::alloc()) JASChannel(p5, p6);
+	JASChannel* channel
+	    = new (JASPoolAllocObject<JASChannel, JASCreationPolicy::NewFromRootHeap, JASThreadingModel::SingleThreaded>::alloc())
+	        JASChannel(p5, p6);
 	if (channel == nullptr) {
 		return nullptr;
 	}

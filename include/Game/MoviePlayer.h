@@ -39,8 +39,8 @@ struct Demo;
 struct Pikmin_TCreateObject_JAudio : public JStudio_JAudio::TCreateObject {
 	Pikmin_TCreateObject_JAudio(JAIBasic*, const JStage::TSystem*);
 
-	virtual ~Pikmin_TCreateObject_JAudio();                                                   // _08 (weak)
-	virtual void create(JStudio::TObject**, const JStudio::stb::data::TParse_TBlock_object&); // _0C
+	virtual ~Pikmin_TCreateObject_JAudio();                                                                  // _08 (weak)
+	virtual bool create(JStudio::TObject** newObject, const JStudio::stb::data::TParse_TBlock_object& data); // _0C
 
 	// _00     = VTBL
 	// _00-_14 = JStudio_JAudio::TCreateObject

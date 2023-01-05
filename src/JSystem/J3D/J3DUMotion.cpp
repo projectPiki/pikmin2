@@ -1,3 +1,5 @@
+#include "JSystem/J3D/J3DAnmTransform.h"
+#include "JSystem/J3D/J3DMtxCalc.h"
 #include "types.h"
 
 /*
@@ -623,31 +625,31 @@ lbl_800163CC:
  * Address:	800163E4
  * Size:	000048
  */
-J3DMtxCalc::~J3DMtxCalc()
-{
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	or.      r31, r3, r3
-	beq      lbl_80016414
-	lis      r5, __vt__10J3DMtxCalc@ha
-	extsh.   r0, r4
-	addi     r0, r5, __vt__10J3DMtxCalc@l
-	stw      r0, 0(r31)
-	ble      lbl_80016414
-	bl       __dl__FPv
+// J3DMtxCalc::~J3DMtxCalc()
+// {
+// 	/*
+// 	stwu     r1, -0x10(r1)
+// 	mflr     r0
+// 	stw      r0, 0x14(r1)
+// 	stw      r31, 0xc(r1)
+// 	or.      r31, r3, r3
+// 	beq      lbl_80016414
+// 	lis      r5, __vt__10J3DMtxCalc@ha
+// 	extsh.   r0, r4
+// 	addi     r0, r5, __vt__10J3DMtxCalc@l
+// 	stw      r0, 0(r31)
+// 	ble      lbl_80016414
+// 	bl       __dl__FPv
 
-lbl_80016414:
-	lwz      r0, 0x14(r1)
-	mr       r3, r31
-	lwz      r31, 0xc(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
-}
+// lbl_80016414:
+// 	lwz      r0, 0x14(r1)
+// 	mr       r3, r31
+// 	lwz      r31, 0xc(r1)
+// 	mtlr     r0
+// 	addi     r1, r1, 0x10
+// 	blr
+// 	*/
+// }
 
 /*
  * --INFO--
@@ -1289,7 +1291,7 @@ void J3DMtxCalcBlendAnmBase::setAnmTransform(J3DAnmTransform* a1)
  * Address:	80016CA4
  * Size:	000010
  */
-void J3DMtxCalcBlendAnmBase::getAnmTransform(unsigned char)
+J3DAnmTransform* J3DMtxCalcBlendAnmBase::getAnmTransform(unsigned char)
 {
 	/*
 	rlwinm   r0, r4, 2, 0x16, 0x1d
@@ -1304,7 +1306,7 @@ void J3DMtxCalcBlendAnmBase::getAnmTransform(unsigned char)
  * Address:	80016CB4
  * Size:	000008
  */
-void J3DMtxCalcBlendAnmBase::getAnmTransform()
+J3DAnmTransform* J3DMtxCalcBlendAnmBase::getAnmTransform()
 {
 	/*
 	lwz      r3, 4(r3)
@@ -1369,14 +1371,14 @@ void J3DMtxCalc::setAnmTransform(J3DAnmTransform*) { }
  * Address:	80016CF0
  * Size:	000008
  */
-u32 J3DMtxCalc::getAnmTransform(unsigned char) { return 0x0; }
+J3DAnmTransform* J3DMtxCalc::getAnmTransform(unsigned char) { return nullptr; }
 
 /*
  * --INFO--
  * Address:	80016CF8
  * Size:	000008
  */
-u32 J3DMtxCalc::getAnmTransform() { return 0x0; }
+J3DAnmTransform* J3DMtxCalc::getAnmTransform() { return nullptr; }
 
 /*
  * --INFO--

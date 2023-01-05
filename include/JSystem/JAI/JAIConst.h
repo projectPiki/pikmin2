@@ -8,7 +8,7 @@
 namespace JAInter {
 namespace Const {
 extern Vec dummyZeroVec;
-extern u32 sCInfos_0[8];
+extern u16 sCInfos_0[16];
 extern Vec camPreTrans;
 extern Vec camTrans;
 extern Mtx camMtx;

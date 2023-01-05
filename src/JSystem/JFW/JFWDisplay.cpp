@@ -1,7 +1,13 @@
 #include "JSystem/JFW/JFWDisplay.h"
+#include "Dolphin/gx.h"
+#include "Dolphin/mtx.h"
 #include "Dolphin/os.h"
 #include "JSystem/JFW/JFWAlarm.h"
 #include "JSystem/JSupport/JSUList.h"
+#include "JSystem/JUT/JUTProcBar.h"
+#include "JSystem/JUT/JUTVideo.h"
+#include "JSystem/JUT/JUTXfb.h"
+#include "JSystem/JUT/TColor.h"
 #include "types.h"
 
 /*
@@ -172,14 +178,42 @@
         .4byte 0x00000000
 */
 
+JSUList<OSAlarm> JFWAlarm::sList;
+
+JFWDisplay* JFWDisplay::sManager;
+static GXTexObj clear_z_tobj;
+
+static Mtx44 e_mtx = { { 1, 0, 0, 0 }, { 0, 1, 0, 0 }, { 0, 0, 1, 0 }, { 0, 0, 0, 0 } };
+static GXTexObj clear_z_TX[2]
+    = { { 0xFF00FF, 0xFF00FF, 0xFF00FF, 0xFF00FF, 0, 0xFF, 0, 0xFF, 0xFF00FF, 0xFF00FF, 0xFF, 0, -1 },
+	    { 0xFFFFFFFF, 0xFFFFFFFF, 0xFFFFFFFF, 0xFFFFFFFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFFFFFFFF, 0xFFFFFFFF, 0xFFFF, -1, -1 } };
+
 /*
  * --INFO--
  * Address:	........
  * Size:	0000A0
  */
-void JFWDisplay::ctor_subroutine(bool)
+void JFWDisplay::ctor_subroutine(bool p1)
 {
 	// UNUSED FUNCTION
+	_24                  = p1;
+	_26                  = 3;
+	_08                  = TCOLOR_BLACK;
+	_0C                  = 0xFFFFFF;
+	_14                  = 0;
+	m_fader              = nullptr;
+	m_secondsPer60Frames = 1;
+	_20                  = 0;
+	_28                  = 0.0f;
+	_30                  = 0;
+	_2C                  = OSGetTick();
+	_34                  = 0;
+	_38                  = 0;
+	_3A                  = 0;
+	_18                  = 0;
+	clearEfb_init();
+	JUTProcBar::create();
+	JUTProcBar::clear();
 }
 
 /*
@@ -187,9 +221,11 @@ void JFWDisplay::ctor_subroutine(bool)
  * Address:	........
  * Size:	0000E0
  */
-JFWDisplay::JFWDisplay(JKRHeap*, JUTXfb::EXfbNumber, bool)
+JFWDisplay::JFWDisplay(JKRHeap* heap, JUTXfb::EXfbNumber bufferCount, bool p3)
 {
 	// UNUSED FUNCTION
+	ctor_subroutine(p3);
+	m_Xfb = JUTXfb::createManager(heap, bufferCount);
 }
 
 /*
@@ -229,43 +265,12 @@ JFWDisplay::JFWDisplay(void*, void*, void*, bool)
  */
 JFWDisplay::~JFWDisplay()
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	mr       r31, r4
-	stw      r30, 8(r1)
-	or.      r30, r3, r3
-	beq      lbl_80089B0C
-	lis      r4, __vt__10JFWDisplay@ha
-	addi     r0, r4, __vt__10JFWDisplay@l
-	stw      r0, 0(r30)
-	lwz      r0, sManager__8JUTVideo@sda21(r13)
-	cmplwi   r0, 0
-	beq      lbl_80089AEC
-	li       r4, 2
-	bl       waitBlanking__10JFWDisplayFi
-
-lbl_80089AEC:
-	bl       destroy__10JUTProcBarFv
-	bl       destroyManager__6JUTXfbFv
-	li       r3, 0
-	extsh.   r0, r31
-	stw      r3, 0x10(r30)
-	ble      lbl_80089B0C
-	mr       r3, r30
-	bl       __dl__FPv
-
-lbl_80089B0C:
-	lwz      r0, 0x14(r1)
-	mr       r3, r30
-	lwz      r31, 0xc(r1)
-	lwz      r30, 8(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	if (JUTVideo::sManager != nullptr) {
+		waitBlanking(2);
+	}
+	JUTProcBar::destroy();
+	JUTXfb::destroyManager();
+	m_Xfb = nullptr;
 }
 
 /*
@@ -273,88 +278,15 @@ lbl_80089B0C:
  * Address:	80089B28
  * Size:	00011C
  */
-JFWDisplay* JFWDisplay::createManager(const _GXRenderModeObj*, JKRHeap*, JUTXfb::EXfbNumber, bool)
+JFWDisplay* JFWDisplay::createManager(const _GXRenderModeObj* renderModeObj, JKRHeap* heap, JUTXfb::EXfbNumber bufferCount, bool p4)
 {
-	/*
-	.loc_0x0:
-	  stwu      r1, -0x20(r1)
-	  mflr      r0
-	  stw       r0, 0x24(r1)
-	  mr.       r0, r3
-	  stw       r31, 0x1C(r1)
-	  stw       r30, 0x18(r1)
-	  mr        r30, r6
-	  stw       r29, 0x14(r1)
-	  mr        r29, r5
-	  stw       r28, 0x10(r1)
-	  mr        r28, r4
-	  beq-      .loc_0x3C
-	  lwz       r3, -0x76E0(r13)
-	  mr        r4, r0
-	  bl        -0x55EF0
-
-	.loc_0x3C:
-	  lwz       r0, -0x7618(r13)
-	  cmplwi    r0, 0
-	  bne-      .loc_0xF8
-	  li        r3, 0x3C
-	  bl        -0x65CD0
-	  mr.       r31, r3
-	  beq-      .loc_0xF4
-	  lis       r4, 0x804A
-	  lis       r3, 0x100
-	  addi      r4, r4, 0x3080
-	  li        r0, -0x1
-	  stw       r4, 0x0(r31)
-	  li        r5, 0x3
-	  li        r4, 0
-	  subi      r3, r3, 0x1
-	  stw       r0, 0x8(r31)
-	  li        r0, 0x1
-	  lfs       f0, -0x7850(r2)
-	  stb       r30, 0x24(r31)
-	  sth       r5, 0x26(r31)
-	  stb       r4, 0x8(r31)
-	  stb       r4, 0x9(r31)
-	  stb       r4, 0xA(r31)
-	  stb       r4, 0xB(r31)
-	  stw       r3, 0xC(r31)
-	  sth       r4, 0x14(r31)
-	  stw       r4, 0x4(r31)
-	  sth       r0, 0x1C(r31)
-	  stw       r4, 0x20(r31)
-	  stfs      f0, 0x28(r31)
-	  stw       r4, 0x30(r31)
-	  bl        0x68FC8
-	  stw       r3, 0x2C(r31)
-	  li        r0, 0
-	  mr        r3, r31
-	  stw       r0, 0x34(r31)
-	  sth       r0, 0x38(r31)
-	  stb       r0, 0x3A(r31)
-	  stw       r0, 0x18(r31)
-	  bl        0xC44
-	  bl        -0x5AC10
-	  bl        -0x5AAA4
-	  mr        r3, r28
-	  mr        r4, r29
-	  bl        -0x55F04
-	  stw       r3, 0x10(r31)
-
-	.loc_0xF4:
-	  stw       r31, -0x7618(r13)
-
-	.loc_0xF8:
-	  lwz       r0, 0x24(r1)
-	  lwz       r31, 0x1C(r1)
-	  lwz       r30, 0x18(r1)
-	  lwz       r29, 0x14(r1)
-	  lwz       r3, -0x7618(r13)
-	  lwz       r28, 0x10(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x20
-	  blr
-	*/
+	if (renderModeObj != nullptr) {
+		JUTVideo::sManager->setRenderMode(renderModeObj);
+	}
+	if (sManager == nullptr) {
+		sManager = new JFWDisplay(heap, bufferCount, p4);
+	}
+	return sManager;
 }
 
 /*
@@ -394,27 +326,8 @@ JFWDisplay* JFWDisplay::createManager(const _GXRenderModeObj*, void*, void*, voi
  */
 void JFWDisplay::destroyManager()
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	lwz      r3, sManager__10JFWDisplay@sda21(r13)
-	cmplwi   r3, 0
-	beq      lbl_80089C70
-	lwz      r12, 0(r3)
-	li       r4, 1
-	lwz      r12, 0x14(r12)
-	mtctr    r12
-	bctrl
-
-lbl_80089C70:
-	li       r0, 0
-	stw      r0, sManager__10JFWDisplay@sda21(r13)
-	lwz      r0, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	delete sManager;
+	sManager = nullptr;
 }
 
 /*
@@ -1388,8 +1301,17 @@ void JFWThreadAlarmHandler(OSAlarm*, OSContext*)
  * Address:	8008A788
  * Size:	0000BC
  */
-void JFWDisplay::threadSleep(long long)
+void JFWDisplay::threadSleep(long long p1)
 {
+	OSAlarm alarm;
+	JSULink<OSAlarm> link(&alarm);
+	OSCreateAlarm(&alarm);
+	OSThread* thread = OSGetCurrentThread();
+	int interrupts   = OSDisableInterrupts();
+	JFWAlarm::sList.append(&link);
+	OSSetAlarm(&alarm, reinterpret_cast<u32>(&link), p1 >> 0x20, p1, JFWThreadAlarmHandler);
+	OSSuspendThread(thread);
+	OSRestoreInterrupts(interrupts);
 	/*
 	stwu     r1, -0x60(r1)
 	mflr     r0
@@ -1530,37 +1452,8 @@ void JFWDisplay::addToDoubleXfb(JKRHeap*)
  */
 void JFWDisplay::clearEfb_init()
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	lis      r3, clear_z_tobj@ha
-	lis      r4, clear_z_TX@ha
-	stw      r0, 0x14(r1)
-	addi     r3, r3, clear_z_tobj@l
-	li       r5, 4
-	addi     r4, r4, clear_z_TX@l
-	li       r6, 4
-	li       r7, 0x16
-	li       r8, 1
-	li       r9, 1
-	li       r10, 0
-	bl       GXInitTexObj
-	lfs      f1, lbl_80516B10@sda21(r2)
-	lis      r3, clear_z_tobj@ha
-	addi     r3, r3, clear_z_tobj@l
-	li       r4, 0
-	fmr      f2, f1
-	li       r5, 0
-	fmr      f3, f1
-	li       r6, 0
-	li       r7, 0
-	li       r8, 0
-	bl       GXInitTexObjLOD
-	lwz      r0, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	GXInitTexObj(&clear_z_tobj, clear_z_TX, 4, 4, GX_CTF_Z8L, GX_REPEAT, GX_REPEAT, GX_FALSE);
+	GXInitTexObjLOD(&clear_z_tobj, GX_NEAR, GX_NEAR, 0.0f, 0.0f, 0.0f, GX_FALSE, GX_FALSE, GX_ANISO_1);
 }
 
 /*
@@ -1578,8 +1471,9 @@ void JFWDisplay::clearEfb()
  * Address:	8008A8B8
  * Size:	000044
  */
-void JFWDisplay::clearEfb(_GXColor)
+void JFWDisplay::clearEfb(_GXColor p1)
 {
+	clearEfb(0, 0, JUTVideo::sManager->getFbWidth(), JUTVideo::sManager->getEfbHeight(), p1);
 	/*
 	stwu     r1, -0x10(r1)
 	mflr     r0
@@ -1990,6 +1884,11 @@ lbl_8008ADD0:
  */
 void JFWGXAbortAlarmHandler(OSAlarm*, OSContext*)
 {
+	// diagnoseGpHang();
+	// GXAbortFrame();
+	// GXWGFifo.u8  = 0x61;
+	// GXWGFifo.u32 = 0x580000F;
+	// GXSetDrawDone();
 	/*
 	stwu     r1, -0x10(r1)
 	mflr     r0

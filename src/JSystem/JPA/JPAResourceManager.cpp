@@ -27,9 +27,9 @@ JPAResourceManager::JPAResourceManager(unsigned short, unsigned short, JKRHeap*)
 JPAResourceManager::JPAResourceManager(const void* p1, JKRHeap* heap)
     : m_resources(nullptr)
     , m_textures(nullptr)
-    , _0C(0)
+    , m_resourceSlotCount(0)
     , m_resourceCount(0)
-    , _10(0)
+    , m_textureSlotCount(0)
     , m_textureCount(0)
 {
 	m_heap = heap;

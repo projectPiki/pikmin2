@@ -292,21 +292,21 @@ lbl_8006A320:
  * Address:	8006A350
  * Size:	000008
  */
-// J3DGXColor* J3DTevBlock::getTevKColor(unsigned long) { return 0x0; }
+// J3DGXColor* J3DTevBlock::getTevKColor(unsigned long index) { return 0x0; }
 
 /*
  * --INFO--
  * Address:	8006A358
  * Size:	000008
  */
-// J3DGXColorS10* J3DTevBlock::getTevColor(unsigned long) { return 0x0; }
+// J3DGXColorS10* J3DTevBlock::getTevColor(unsigned long index) { return 0x0; }
 
 /*
  * --INFO--
  * Address:	8006A360
  * Size:	000004
  */
-// void J3DTevBlock::setTexNo(unsigned long, unsigned short) { }
+// void J3DTevBlock::setTexNo(unsigned long index, unsigned short texNo) { }
 
 /*
  * --INFO--

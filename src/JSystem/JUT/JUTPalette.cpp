@@ -64,7 +64,7 @@ bool JUTPalette::load()
 {
 	bool result = (_14 != 0);
 	if (result) {
-		GXLoadTlut(&m_tlutObj, m_tlutID);
+		GXLoadTlut(&m_tlutObj, (_GXTlut)m_tlutID);
 	}
 	return result;
 }

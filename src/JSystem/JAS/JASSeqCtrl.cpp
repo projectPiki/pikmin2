@@ -113,10 +113,32 @@ bool JASSeqCtrl::retIntr()
  * Address:	8009C9D4
  * Size:	000018
  */
-u16 JASSeqCtrl::get16(u32 p1) const
+u32 JASSeqCtrl::get16(u32 p1) const
 {
-	u32 high = _00[p1++];
-	return _00[p1] + (high << 0x8);
+
+	u32 high = _00[p1++] << 8;
+	return _00[p1] | high;
+	// p1       = _00[p1];
+	// return high | _00[p1];
+	// u32 high = _00[p1++];
+	// u32 low  = _00[p1];
+	// return low | (high << 0x8);
+	// return (_00[p1++] << 0x8) | _00[p1];
+
+	// u32 high = _00[p1++];
+	// return (high << 0x8) | _00[p1];
+	// return _00[p1] | (high << 0x8);
+
+	// u8* v1  = _00 + p1;
+	// u8 high = *(v1++);
+	// u8 low  = *v1;
+	// return low | (high << 0x8);
+
+	// u8 high = _00[p1++];
+	// u8 low  = _00[p1];
+	// // return (low & 0xFF) + ((high << 0x8) & 0xFF00);
+	// return ((static_cast<u16>(high) << 0x8) & 0xFF00) | (low & 0xFF);
+
 	// u32 high = ((u32)_00[p1++]) << 0x8;
 	// return _00[p1] + high;
 	// u32 high = _00[p1++] << 0x8;
@@ -145,8 +167,11 @@ u16 JASSeqCtrl::get16(u32 p1) const
  * Address:	8009C9EC
  * Size:	000028
  */
-u32 JASSeqCtrl::get24(unsigned long) const
+u32 JASSeqCtrl::get24(unsigned long p1) const
 {
+	return (_00[p1] << 0x10) | get16(p1 + 1);
+	// return (_00[p1] << 0x10) | (_00[p1 + 1] << 0x8) | _00[p1 + 2];
+
 	/*
 	lwz      r5, 0(r3)
 	addi     r6, r4, 1
@@ -191,7 +216,7 @@ u32 JASSeqCtrl::get32(unsigned long) const
  * Address:	8009CA4C
  * Size:	000028
  */
-u16 JASSeqCtrl::read16()
+u32 JASSeqCtrl::read16()
 {
 	/*
 	lwz      r5, 4(r3)

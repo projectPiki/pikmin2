@@ -2,9 +2,11 @@
 #define _JSTAGE_TACTOR_H
 #include "JStage/TObject.h"
 #include "Dolphin/vec.h"
+#include "JStudio/TObject.h"
 
 namespace JStage {
 struct TActor : public TObject {
+	typedef JStudio::TObject_actor StudioObject;
 
 	virtual ~TActor() = 0;                              // _08
 	virtual int JSGFGetType() const;                    // _0C

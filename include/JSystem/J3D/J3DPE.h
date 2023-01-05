@@ -96,7 +96,7 @@ struct J3DPEBlockFogOff : public J3DPEBlock {
 	virtual void setDither(const unsigned char*);   // _64 (weak)
 	virtual void setDither(unsigned char);          // _68 (weak)
 	virtual u8 getDither() const;                   // _6C (weak)
-	virtual ~J3DPEBlockFogOff();                    // _78 (weak)
+	virtual ~J3DPEBlockFogOff() { }                 // _78 (weak)
 
 	void initialize();
 
@@ -199,7 +199,7 @@ struct J3DPEBlockFull : public J3DPEBlock {
  * @size{0x4}
  */
 struct J3DPEBlockNull : public J3DPEBlock {
-	virtual void load(); // _0C (weak)
+	virtual void load() { } // _0C (weak)
 	/**
 	 * @reifiedAddress{8006F448}
 	 * @reifiedFile{JSystem/J3D/J3DMaterialFactory.cpp}
@@ -208,7 +208,7 @@ struct J3DPEBlockNull : public J3DPEBlock {
 	{
 		return JBT_PENull;
 	}
-	virtual ~J3DPEBlockNull(); // _78 (weak)
+	virtual ~J3DPEBlockNull() { } // _78 (weak)
 };
 
 /**
@@ -218,17 +218,17 @@ struct J3DPEBlockOpa : public J3DPEBlock {
 	virtual void load();          // _0C
 	virtual u32 countDLSize();    // _20
 	virtual JBlockType getType(); // _24 (weak)
-	virtual ~J3DPEBlockOpa();     // _78 (weak)
+	virtual ~J3DPEBlockOpa() { }  // _78 (weak)
 };
 
 /**
  * @size{0x4}
  */
 struct J3DPEBlockTexEdge : public J3DPEBlock {
-	virtual void load();          // _0C
-	virtual u32 countDLSize();    // _20
-	virtual JBlockType getType(); // _24 (weak)
-	virtual ~J3DPEBlockTexEdge(); // _78 (weak)
+	virtual void load();             // _0C
+	virtual u32 countDLSize();       // _20
+	virtual JBlockType getType();    // _24 (weak)
+	virtual ~J3DPEBlockTexEdge() { } // _78 (weak)
 };
 
 /**
@@ -238,7 +238,7 @@ struct J3DPEBlockXlu : public J3DPEBlock {
 	virtual void load();          // _0C
 	virtual u32 countDLSize();    // _20
 	virtual JBlockType getType(); // _24 (weak)
-	virtual ~J3DPEBlockXlu();     // _78 (weak)
+	virtual ~J3DPEBlockXlu() { }  // _78 (weak)
 };
 
 #endif

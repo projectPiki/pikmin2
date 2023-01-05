@@ -90,6 +90,9 @@ public:
 	void scrollToLastLine() { scroll(field_0x24); }
 	void scrollToFirstLine() { scroll(-field_0x24); }
 
+	// unused/inlined:
+	void dumpToConsole(JUTConsole*, unsigned int);
+
 private:
 	JGadget::TLinkListNode mListNode; // _18
 
@@ -121,6 +124,7 @@ private:
 class JUTConsoleManager {
 public:
 	JUTConsoleManager();
+	~JUTConsoleManager();
 	static JUTConsoleManager* createManager(JKRHeap*);
 	void appendConsole(JUTConsole*);
 	void removeConsole(JUTConsole*);
@@ -131,6 +135,10 @@ public:
 	static JUTConsoleManager* getManager() { return sManager; }
 
 	static JUTConsoleManager* sManager;
+
+	// unused/inlined:
+	static void destroyManager(JUTConsoleManager*);
+	void getConsoleNumber() const;
 
 private:
 	JGadget::TLinkList<JUTConsole, 4> mLinkList; // _00
@@ -145,6 +153,8 @@ JUTConsole* JUTGetWarningConsole();
 void JUTSetWarningConsole(JUTConsole*);
 void JUTReportConsole(char const*);
 void JUTReportConsole_f(char const*, ...);
+void JUTWarningConsole(char const*);
+void JUTWarningConsole_f(char const*, ...);
 }
 
 #endif

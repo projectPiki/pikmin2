@@ -7,6 +7,7 @@
 #include "types.h"
 
 struct _J2DColorBlockParent {
+	inline _J2DColorBlockParent() { }
 	JUtility::TColor m_colors[2]; // _00
 	u8 m_channelCount;            // _08
 	u8 _09;                       // _09 - padding?
@@ -15,7 +16,10 @@ struct _J2DColorBlockParent {
 };
 
 struct J2DColorBlock : _J2DColorBlockParent {
-	virtual ~J2DColorBlock(); // _08 (weak)
+	/** @fabricated */
+	inline J2DColorBlock() { initialize(); }
+
+	virtual ~J2DColorBlock() { } // _08 (weak)
 
 	void initialize();
 	void setGX();

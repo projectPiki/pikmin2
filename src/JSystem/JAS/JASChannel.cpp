@@ -1,6 +1,9 @@
 #include "JSystem/JAS/JASChannel.h"
+#include "JSystem/JAS/JASCalc.h"
+#include "JSystem/JAS/JASDriver.h"
 #include "JSystem/JAS/JASDsp.h"
 #include "JSystem/JAS/JASOscillator.h"
+#include "JSystem/JAS/JASWave.h"
 #include "JSystem/JSupport/JSUList.h"
 #include "types.h"
 
@@ -404,54 +407,22 @@ void JASChannel::overwriteOsc(int index, JASOscillator::Data* data) { _30[index]
  * Address:	800A360C
  * Size:	000088
  */
-void JASChannel::setKeySweepTarget(unsigned char, unsigned long)
+void JASChannel::setKeySweepTarget(unsigned char p1, unsigned long p2)
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	mr       r31, r5
-	stw      r30, 8(r1)
-	mr       r30, r3
-	lbz      r0, 0xe4(r3)
-	cmplwi   r0, 2
-	beq      lbl_800A3640
-	lwz      r5, 0xe8(r30)
-	cmplwi   r5, 0
-	bne      lbl_800A3648
-
-lbl_800A3640:
-	clrlwi   r3, r4, 0x18
-	b        lbl_800A3658
-
-lbl_800A3648:
-	clrlwi   r3, r4, 0x18
-	lbz      r4, 1(r5)
-	addi     r0, r3, 0x3c
-	subf     r3, r4, r0
-
-lbl_800A3658:
-	bl       key2pitch_c5__9JASDriverFi
-	lfs      f0, 0xf0(r30)
-	cmplwi   r31, 0
-	fmuls    f0, f1, f0
-	bne      lbl_800A3674
-	stfs     f0, 0xf8(r30)
-	b        lbl_800A3678
-
-lbl_800A3674:
-	stfs     f0, 0xc0(r30)
-
-lbl_800A3678:
-	stw      r31, 0xc4(r30)
-	lwz      r0, 0x14(r1)
-	lwz      r31, 0xc(r1)
-	lwz      r30, 8(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	u32 v1;
+	if (_E4 == 2 || _E8 == nullptr) {
+		v1 = p1;
+	} else {
+		v1 = p1 + 60 - _E8->_01;
+	}
+	float pitch = JASDriver::key2pitch_c5(v1);
+	pitch *= _F0;
+	if (p2 == 0) {
+		_F8 = pitch;
+	} else {
+		_C0 = pitch;
+	}
+	_C4 = p2;
 }
 
 /*
@@ -1212,8 +1183,50 @@ lbl_800A409C:
  * Address:	800A40BC
  * Size:	0000C0
  */
-void JASChannel::calcEffect(const JASChannel::PanVector*, const JASChannel::PanVector*, unsigned char)
+float JASChannel::calcEffect(const JASChannel::PanVector* vectorA, const JASChannel::PanVector* vectorB, unsigned char p3)
 {
+	float value   = 0.0f;
+	const u8* row = calc_sw_table[p3];
+	switch (row[0]) {
+	case 0:
+		break;
+	case 1:
+		value += vectorA->x;
+		break;
+	case 2:
+		value += vectorA->x * vectorB->x;
+		break;
+	}
+	switch (row[1]) {
+	case 0:
+		break;
+	case 1:
+		value += vectorA->y;
+		break;
+	case 2:
+		value += vectorA->y * vectorB->y;
+		break;
+	}
+	// if (row[2] == 0) {
+	// 	return value;
+	// }
+	// if (row[2] == 1) {
+	// 	return value + vectorA->z;
+	// }
+	// if (row[2] == 2) {
+	// 	return value + vectorA->z + vectorB->z;
+	// }
+	if (row[2] != 1) {
+		if (row[2] < 1) {
+			return value;
+		}
+		if (row[2] >= 3) {
+			return value;
+		}
+
+		return value + vectorA->z * vectorB->z;
+	}
+	return value + vectorA->z;
 	/*
 	.loc_0x0:
 	  rlwinm    r0,r5,0,24,31
@@ -1292,7 +1305,7 @@ void JASChannel::calcEffect(const JASChannel::PanVector*, const JASChannel::PanV
  * Address:	800A417C
  * Size:	0000FC
  */
-void JASChannel::calcPan(const JASChannel::PanVector*, const JASChannel::PanVector*, unsigned char)
+float JASChannel::calcPan(const JASChannel::PanVector*, const JASChannel::PanVector*, unsigned char)
 {
 	/*
 	.loc_0x0:
@@ -1391,9 +1404,18 @@ void JASChannel::calcPan(const JASChannel::PanVector*, const JASChannel::PanVect
  * Address:	800A4278
  * Size:	000120
  */
-void JASChannel::updateAutoMixer(JASDsp::TChannel*, float, float, float, float)
+void JASChannel::updateAutoMixer(JASDsp::TChannel* p1, float p2, float p3, float p4, float p5)
 {
-
+	// f32 v1;
+	// if (p2 <= 0.0f) {
+	// 	v1 = 0.0f;
+	// } else {
+	// 	v1 = p2;
+	// 	if (p2 >= 1.0f) {
+	// 		v1 = 1.0f;
+	// 	}
+	// }
+	p1->setAutoMixer(JASCalc::clamp_0_1(p2) * JASDriver::getAutoLevel(), p3 * 127.5f, p5 * 127.5f, p4 * 127.5f, _B2);
 	/*
 	stwu     r1, -0x80(r1)
 	mflr     r0

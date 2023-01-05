@@ -5,6 +5,11 @@
 #include "types.h"
 #include "Dolphin/gx.h"
 
+struct J3DAnmKeyTableBase;
+
+template <typename T>
+float J3DGetKeyFrameInterpolation(float, J3DAnmKeyTableBase*, T*);
+
 /**
  * @fabricated
  */
@@ -66,9 +71,33 @@ struct J3DAnmKeyTableBase {
 	u16 _00; // _00
 	u16 _02; // _02
 	s16 _04; // _04
-};
 
-template <typename T>
-float J3DGetKeyFrameInterpolation(float, J3DAnmKeyTableBase*, T*);
+	/**
+	 * @fabricated
+	 * TODO: This is wrong. It's not generating the paired instructions that I was hoping it'd generate.
+	 */
+	inline void getColorField(float fTime, s16* result, s16* values)
+	{
+		switch (_00) {
+		case 0:
+			*result = 0;
+			break;
+		case 1:
+			*result = values[_02];
+			break;
+		default: {
+			f32 interpolation = J3DGetKeyFrameInterpolation(fTime, this, values + _02);
+			if (-1024.0f > interpolation) {
+				*result = -1024;
+			} else if (interpolation > 1023.0f) {
+				*result = 1023;
+			} else {
+				*result = interpolation;
+			}
+			break;
+		}
+		}
+	}
+};
 
 #endif

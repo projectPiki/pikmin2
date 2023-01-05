@@ -28,6 +28,9 @@ public:
 	u16 calcKeyCode(const char* pName) const;
 	const ResNTAB* getResNameTable() const { return mpNameTable; }
 
+	/** @fabricated */
+	inline void clearResNameTable() { delete[] mpNameTable; }
+
 private:
 	// _00 VTBL
 	const ResNTAB* mpNameTable; // _04

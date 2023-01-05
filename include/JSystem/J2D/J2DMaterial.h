@@ -48,7 +48,7 @@ struct J2DMaterial {
 	// _00 VTBL
 	struct J2DPane* m_pane;       // _04
 	int _08;                      // _08
-	s16 _0C;                      // _0C
+	u16 _0C;                      // _0C
 	u8 _0E;                       // _0E
 	u8 _0F;                       // _0F
 	J2DColorBlock m_colorBlock;   // _10

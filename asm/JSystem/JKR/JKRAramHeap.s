@@ -279,7 +279,8 @@ getFreeSize__11JKRAramHeapFv:
 /* 80019A38 00016978  38 21 00 10 */	addi r1, r1, 0x10
 /* 80019A3C 0001697C  4E 80 00 20 */	blr 
 
-__sinit_JKRAramHeap_cpp: # static initializer
+# __sinit_JKRAramHeap_cpp: # static initializer
+fn local __sinit_JKRAramHeap_cpp
 /* 80019A40 00016980  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80019A44 00016984  7C 08 02 A6 */	mflr r0
 /* 80019A48 00016988  3C 60 80 50 */	lis r3, sAramList__11JKRAramHeap@ha
@@ -297,6 +298,7 @@ __sinit_JKRAramHeap_cpp: # static initializer
 /* 80019A78 000169B8  7C 08 03 A6 */	mtlr r0
 /* 80019A7C 000169BC  38 21 00 10 */	addi r1, r1, 0x10
 /* 80019A80 000169C0  4E 80 00 20 */	blr 
+end __sinit_JKRAramHeap_cpp
 
 .global "__dt__23JSUList<12JKRAramBlock>Fv"
 "__dt__23JSUList<12JKRAramBlock>Fv":

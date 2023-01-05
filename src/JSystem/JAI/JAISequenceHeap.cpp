@@ -1,3 +1,5 @@
+#include "JSystem/JAI/JAIBasic.h"
+#include "JSystem/JAI/JAInter.h"
 #include "JSystem/JAI/JAInter/HeapMgr.h"
 #include "types.h"
 
@@ -19,13 +21,34 @@
         .skip 0x4
 */
 
+JAInter::HeapBlock* JAInter::HeapMgr::sAutoHeap;
+JAInter::HeapBlock* JAInter::HeapMgr::sStayHeap;
+u32 JAInter::HeapMgr::sAutoHeapCount;
+u32 JAInter::HeapMgr::sStayHeapCount;
+
 /*
  * --INFO--
  * Address:	800B0340
  * Size:	000254
  */
-void JAInter::HeapMgr::init(unsigned char, unsigned long, unsigned char, unsigned long)
+void JAInter::HeapMgr::init(unsigned char p1, unsigned long p2, unsigned char p3, unsigned long p4)
 {
+	sAutoHeap = new (JAIBasic::msCurrentHeap, 0x20) HeapBlock[p3];
+	for (u32 i = 0; i < p3; i++) {
+		sAutoHeap[i]._00 = 0;
+		sAutoHeap[i]._0C = 0;
+		sAutoHeap[i]._08 = -1;
+		sAutoHeap[i]._10 = -1;
+		sAutoHeap[i]._04 = new (JAIBasic::msCurrentHeap, 0x20) u8[p4];
+	}
+	sStayHeap        = new (JAIBasic::msCurrentHeap, 0x20) HeapBlock[p1];
+	sStayHeap[0]._04 = new (JAIBasic::msCurrentHeap, 0x20) u8[p2];
+	for (u8 i = 0; i < p1; i++) {
+		sStayHeap[i]._00 = 0;
+		sStayHeap[i]._0C = 0;
+		sStayHeap[i]._08 = -1;
+		sStayHeap[i]._10 = -1;
+	}
 	/*
 	.loc_0x0:
 	  stwu      r1, -0x30(r1)
@@ -197,12 +220,17 @@ void JAInter::HeapMgr::init(unsigned char, unsigned long, unsigned char, unsigne
  * Address:	800B0594
  * Size:	000008
  */
-void JAInter::HeapMgr::getAutoHeapPointer(void)
+JAInter::HeapBlock* JAInter::HeapMgr::getAutoHeapPointer(void) { return sAutoHeap; }
+
+/*
+ * --INFO--
+ * Address:	........
+ * Size:	000008
+ */
+JAInter::HeapBlock* JAInter::HeapMgr::getStayHeapPointer()
 {
-	/*
-	lwz      r3, sAutoHeap__Q27JAInter7HeapMgr@sda21(r13)
-	blr
-	*/
+	// UNUSED FUNCTION
+	return sStayHeap;
 }
 
 /*
@@ -210,9 +238,10 @@ void JAInter::HeapMgr::getAutoHeapPointer(void)
  * Address:	........
  * Size:	000008
  */
-void JAInter::HeapMgr::getStayHeapPointer(void)
+u32 JAInter::HeapMgr::getAutoHeapCount()
 {
 	// UNUSED FUNCTION
+	return sAutoHeapCount;
 }
 
 /*
@@ -220,19 +249,10 @@ void JAInter::HeapMgr::getStayHeapPointer(void)
  * Address:	........
  * Size:	000008
  */
-void JAInter::HeapMgr::getAutoHeapCount(void)
+u32 JAInter::HeapMgr::getStayHeapCount()
 {
 	// UNUSED FUNCTION
-}
-
-/*
- * --INFO--
- * Address:	........
- * Size:	000008
- */
-void JAInter::HeapMgr::getStayHeapCount(void)
-{
-	// UNUSED FUNCTION
+	return sStayHeapCount;
 }
 
 /*
@@ -335,8 +355,12 @@ lbl_800B0680:
  * Address:	800B069C
  * Size:	000024
  */
-void JAInter::HeapMgr::releaseAutoHeapPointer(unsigned char)
+void JAInter::HeapMgr::releaseAutoHeapPointer(unsigned char index)
 {
+	if (index == 0xFF) {
+		return;
+	}
+	sAutoHeap[index]._10 = -1;
 	/*
 	clrlwi   r0, r3, 0x18
 	cmplwi   r0, 0xff
@@ -448,8 +472,14 @@ lbl_800B0784:
  * Address:	800B07A8
  * Size:	000048
  */
-void JAInter::HeapMgr::getFreeAutoHeapPointer(unsigned char, unsigned long)
+void* JAInter::HeapMgr::getFreeAutoHeapPointer(unsigned char index, unsigned long p2)
 {
+	sAutoHeap[index]._08 = p2;
+	void* ptr            = sAutoHeap[index]._04;
+	sAutoHeap[index]._10 = sAutoHeapCount;
+	sAutoHeap[index]._0C = sAutoHeapCount;
+	sAutoHeapCount++;
+	return ptr;
 	/*
 	clrlwi   r0, r3, 0x18
 	lwz      r3, sAutoHeap__Q27JAInter7HeapMgr@sda21(r13)
@@ -477,21 +507,14 @@ void JAInter::HeapMgr::getFreeAutoHeapPointer(unsigned char, unsigned long)
  * Address:	800B07F0
  * Size:	00000C
  */
-void JAInter::HeapMgr::checkUsefulStayHeapPosition(void)
-{
-	/*
-	lwz      r0, sStayHeapCount__Q27JAInter7HeapMgr@sda21(r13)
-	clrlwi   r3, r0, 0x18
-	blr
-	*/
-}
+u32 JAInter::HeapMgr::checkUsefulStayHeapPosition() { return sStayHeapCount & 0xFF; }
 
 /*
  * --INFO--
  * Address:	800B07FC
  * Size:	000108
  */
-void JAInter::HeapMgr::getFreeStayHeapPointer(unsigned long, unsigned long)
+void* JAInter::HeapMgr::getFreeStayHeapPointer(unsigned long, unsigned long)
 {
 	/*
 	stwu     r1, -0x20(r1)
@@ -618,32 +641,14 @@ void JAInter::HeapMgr::getAutoHeapPointer(unsigned long)
  * Address:	800B0904
  * Size:	000014
  */
-void JAInter::HeapMgr::setAutoHeapLoadedFlag(unsigned char, unsigned char)
-{
-	/*
-	clrlwi   r0, r3, 0x18
-	lwz      r3, sAutoHeap__Q27JAInter7HeapMgr@sda21(r13)
-	mulli    r0, r0, 0x14
-	stbx     r4, r3, r0
-	blr
-	*/
-}
+void JAInter::HeapMgr::setAutoHeapLoadedFlag(unsigned char index, unsigned char flag) { sAutoHeap[index]._00 = flag; }
 
 /*
  * --INFO--
  * Address:	800B0918
  * Size:	000014
  */
-void JAInter::HeapMgr::setStayHeapLoadedFlag(unsigned char, unsigned char)
-{
-	/*
-	clrlwi   r0, r3, 0x18
-	lwz      r3, sStayHeap__Q27JAInter7HeapMgr@sda21(r13)
-	mulli    r0, r0, 0x14
-	stbx     r4, r3, r0
-	blr
-	*/
-}
+void JAInter::HeapMgr::setStayHeapLoadedFlag(unsigned char index, unsigned char flag) { sStayHeap[index]._00 = flag; }
 
 /*
  * --INFO--
@@ -652,12 +657,7 @@ void JAInter::HeapMgr::setStayHeapLoadedFlag(unsigned char, unsigned char)
  */
 JAInter::HeapBlock::HeapBlock(void)
 {
-	/*
-	li       r4, 0
-	li       r0, -1
-	stw      r4, 0xc(r3)
-	stw      r0, 8(r3)
-	stw      r0, 0x10(r3)
-	blr
-	*/
+	_0C = 0;
+	_08 = -1;
+	_10 = -1;
 }

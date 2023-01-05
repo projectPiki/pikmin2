@@ -137,8 +137,23 @@
  * Address:	80074440
  * Size:	000170
  */
-void J3DGDSetGenMode(unsigned char, unsigned char, unsigned char, unsigned char, GXCullMode)
+void J3DGDSetGenMode(unsigned char p1, unsigned char p2, unsigned char p3, unsigned char p4, GXCullMode cullMode)
 {
+	__GDCheckOverflowed(10);
+	u32 v1 = (p3 - 1) * 0x400;
+	__GDWrite(0x61);
+	u32 v2 = p1 | (p2 << 4);
+	__GDWrite(0xFE);
+	__GDWrite(7);
+	__GDWrite(0xFC);
+	__GDWrite(0x3F);
+	static u8 cm2hw[4] = { 0, 2, 1, 3 };
+	__GDWrite(0x61);
+	u32 v3 = ((cm2hw[cullMode] << 0xE) | v1 | v2);
+	__GDWrite(v1 >> 0x18);
+	__GDWrite(p4 | (v3 >> 0x10));
+	__GDWrite(v3 >> 8);
+	__GDWrite(v2);
 	/*
 	.loc_0x0:
 	  stwu      r1, -0x20(r1)
@@ -237,6 +252,19 @@ void J3DGDSetGenMode(unsigned char, unsigned char, unsigned char, unsigned char,
 	  blr
 	*/
 }
+
+// static u8 cm2hw$576[4]; // unused... not to be confused with the used version, cm2hw$551
+static u8 J3DGDTexMode0Ids[8]  = { 0x80, 0x81, 0x82, 0x83, 0xA0, 0xA1, 0xA2, 0xA3 };
+static u8 J3DGDTexMode1Ids[8]  = { 0x84, 0x85, 0x86, 0x87, 0xA4, 0xA5, 0xA6, 0xA7 };
+static u8 J3DGDTexImage0Ids[8] = { 0x88, 0x89, 0x8A, 0x8B, 0xA8, 0xA9, 0xAA, 0xAB };
+// static u8 J3DGDTexImage1Ids[8]; // unused
+// static u8 J3DGDTexImage2Ids[8]; // unused
+static u8 J3DGDTexImage3Ids[8] = { 0x94, 0x95, 0x96, 0x97, 0xB4, 0xB5, 0xB6, 0xB7 };
+static u8 J3DGDTexTlutIds[8]   = { 0x98, 0x99, 0x9A, 0x9B, 0xB8, 0xB9, 0xBA, 0xBB };
+static u8 GX2HWFiltConv[6]     = { 0, 4, 1, 5, 2, 6 };
+// static u8 HW2GXFiltConv[8]; // unused
+static u8 J3DTexImage1Ids[8] = { 0x8C, 0x8D, 0x8E, 0x8F, 0xAC, 0xAD, 0xAE, 0xAF };
+static u8 J3DTexImage2Ids[8] = { 0x90, 0x91, 0x92, 0x93, 0xB0, 0xB1, 0xB2, 0xB3 };
 
 /*
  * --INFO--
@@ -2204,7 +2232,7 @@ void J3DGDLoadTlut(void*, unsigned long, _GXTlutSize)
  * Address:	80075F38
  * Size:	0002D8
  */
-void J3DGDSetIndTexMtx(_GXIndTexMtxID, float (*)[3], char)
+void J3DGDSetIndTexMtx(_GXIndTexMtxID, float (*)[3], signed char)
 {
 	/*
 	stwu     r1, -0x60(r1)

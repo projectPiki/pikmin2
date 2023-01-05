@@ -241,98 +241,13 @@ void J2DPane::initialize(J2DPane* parent, bool isVisible, u64 tag, const JGeomet
 	m_isVisible    = isVisible;
 	m_tag          = tag;
 	m_messageID    = 0;
-	_020           = box;
+	_020.set(box);
 	if (parent) {
-		// JSUPtrLink* link = m_tree.m_list.m_head;
-		JSUPtrLink* link = m_tree.getList()->getFirstLink();
-		if (link) {
-			// link = &m_tree.m_link; // Could this be getting m_value?
-			link = m_tree.getFirstLink(); // Could this be getting m_value?
-		}
-		parent->m_tree.m_list->append(link);
+		parent->m_tree.appendChild(&m_tree);
 	}
 	initiate();
 	changeUseTrans(parent);
 	calcMtx();
-	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  lis       r6, 0x5041
-	  lfs       f3, 0x0(r9)
-	  stw       r0, 0x14(r1)
-	  li        r0, 0
-	  lfs       f2, 0x4(r9)
-	  stw       r31, 0xC(r1)
-	  mr.       r31, r4
-	  lfs       f1, 0x8(r9)
-	  stw       r30, 0x8(r1)
-	  mr        r30, r3
-	  addi      r3, r6, 0x4E31
-	  lfs       f0, 0xC(r9)
-	  stw       r3, 0x8(r30)
-	  stb       r5, 0xB0(r30)
-	  stw       r8, 0x14(r30)
-	  stw       r7, 0x10(r30)
-	  stw       r0, 0x1C(r30)
-	  stw       r0, 0x18(r30)
-	  stfs      f3, 0x20(r30)
-	  stfs      f2, 0x24(r30)
-	  stfs      f1, 0x28(r30)
-	  stfs      f0, 0x2C(r30)
-	  beq-      .loc_0x78
-	  addic.    r4, r30, 0xDC
-	  beq-      .loc_0x70
-	  addi      r4, r4, 0xC
-
-	.loc_0x70:
-	  addi      r3, r31, 0xDC
-	  bl        -0x104CC
-
-	.loc_0x78:
-	  lis       r3, 0x1
-	  lfs       f1, -0x7BA0(r2)
-	  subi      r0, r3, 0x1
-	  li        r6, 0
-	  sth       r0, 0x4(r30)
-	  li        r5, 0x7A
-	  lfs       f0, -0x7B9C(r2)
-	  li        r4, 0xFF
-	  stfs      f1, 0xB8(r30)
-	  li        r0, 0x1
-	  mr        r3, r30
-	  stfs      f1, 0xBC(r30)
-	  stfs      f1, 0xC0(r30)
-	  stfs      f1, 0xC4(r30)
-	  stfs      f1, 0xC8(r30)
-	  stb       r6, 0xB7(r30)
-	  stb       r5, 0xB6(r30)
-	  stfs      f0, 0xCC(r30)
-	  stfs      f0, 0xD0(r30)
-	  stb       r6, 0xB1(r30)
-	  stb       r4, 0xB2(r30)
-	  stb       r0, 0xB4(r30)
-	  stb       r4, 0xB3(r30)
-	  stb       r6, 0xB5(r30)
-	  lwz       r12, 0x0(r30)
-	  lwz       r12, 0x2C(r12)
-	  mtctr     r12
-	  bctrl
-	  mr        r3, r30
-	  mr        r4, r31
-	  bl        0x5FC
-	  mr        r3, r30
-	  lwz       r12, 0x0(r30)
-	  lwz       r12, 0x2C(r12)
-	  mtctr     r12
-	  bctrl
-	  lwz       r0, 0x14(r1)
-	  lwz       r31, 0xC(r1)
-	  lwz       r30, 0x8(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
-	*/
 }
 
 /*
@@ -354,73 +269,7 @@ J2DPane::J2DPane(u64 tag, const JGeometry::TBox2f& box)
  * Size:	0000F4
  * initialize__7J2DPaneFUxRCQ29JGeometry8TBox2<f>
  */
-void J2DPane::initialize(u64 tag, const JGeometry::TBox2f& box)
-{
-	initialize(nullptr, true, tag, box);
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	lis      r8, 0x50414E31@ha
-	li       r10, 1
-	stw      r0, 0x14(r1)
-	addi     r0, r8, 0x50414E31@l
-	lis      r4, 0x0000FFFF@ha
-	li       r9, 0
-	stw      r31, 0xc(r1)
-	addi     r8, r4, 0x0000FFFF@l
-	lfs      f5, 0(r7)
-	li       r4, 0x7a
-	stw      r0, 8(r3)
-	li       r0, 0xff
-	lfs      f4, 4(r7)
-	mr       r31, r3
-	stb      r10, 0xb0(r3)
-	lfs      f3, 8(r7)
-	stw      r6, 0x14(r3)
-	lfs      f2, 0xc(r7)
-	stw      r5, 0x10(r3)
-	lfs      f1, lbl_805167C0@sda21(r2)
-	stw      r9, 0x1c(r3)
-	lfs      f0, lbl_805167C4@sda21(r2)
-	stw      r9, 0x18(r3)
-	stfs     f5, 0x20(r3)
-	stfs     f4, 0x24(r3)
-	stfs     f3, 0x28(r3)
-	stfs     f2, 0x2c(r3)
-	sth      r8, 4(r3)
-	stfs     f1, 0xb8(r3)
-	stfs     f1, 0xbc(r3)
-	stfs     f1, 0xc0(r3)
-	stfs     f1, 0xc4(r3)
-	stfs     f1, 0xc8(r3)
-	stb      r9, 0xb7(r3)
-	stb      r4, 0xb6(r3)
-	stfs     f0, 0xcc(r3)
-	stfs     f0, 0xd0(r3)
-	stb      r9, 0xb1(r3)
-	stb      r0, 0xb2(r3)
-	stb      r10, 0xb4(r3)
-	stb      r0, 0xb3(r3)
-	stb      r9, 0xb5(r3)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x2c(r12)
-	mtctr    r12
-	bctrl
-	mr       r3, r31
-	li       r4, 0
-	bl       changeUseTrans__7J2DPaneFP7J2DPane
-	mr       r3, r31
-	lwz      r12, 0(r31)
-	lwz      r12, 0x2c(r12)
-	mtctr    r12
-	bctrl
-	lwz      r0, 0x14(r1)
-	lwz      r31, 0xc(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
-}
+void J2DPane::initialize(u64 tag, const JGeometry::TBox2f& box) { initialize(nullptr, true, tag, box); }
 
 /*
  * __ct__7J2DPaneFP7J2DPaneP20JSURandomInputStreamUc
@@ -437,94 +286,18 @@ J2DPane::J2DPane(J2DPane* parent, JSURandomInputStream* input, u8 version)
 		int position = input->getPosition();
 		input->read(&header, sizeof(J2DScrnBlockHeader));
 		m_bloBlockType = header.m_bloBlockType;
+		position += header.m_blockLength;
 		makePaneStream(parent, input);
-		input->seek(position + header.m_blockLength, SEEK_SET);
+		input->seek(position, SEEK_SET);
 	} else {
 		J2DScrnBlockHeader header;
 		int position = input->getPosition();
 		input->peek(&header, sizeof(J2DScrnBlockHeader));
 		m_bloBlockType = header.m_bloBlockType;
+		position += header.m_blockLength;
 		makePaneExStream(parent, input);
-		input->seek(position + header.m_blockLength, SEEK_SET);
+		input->seek(position, SEEK_SET);
 	}
-	/*
-	stwu     r1, -0x30(r1)
-	mflr     r0
-	lis      r7, __vt__7J2DPane@ha
-	stw      r0, 0x34(r1)
-	addi     r0, r7, __vt__7J2DPane@l
-	stmw     r27, 0x1c(r1)
-	mr       r27, r3
-	addi     r28, r27, 0xdc
-	mr       r29, r4
-	mr       r30, r5
-	mr       r31, r6
-	stw      r0, 0(r3)
-	mr       r3, r28
-	bl       initiate__10JSUPtrListFv
-	mr       r4, r27
-	addi     r3, r28, 0xc
-	bl       __ct__10JSUPtrLinkFPv
-	li       r3, 0
-	clrlwi.  r0, r31, 0x18
-	stw      r3, 0xf8(r27)
-	bne      lbl_80037078
-	mr       r3, r30
-	lwz      r12, 0(r30)
-	lwz      r12, 0x1c(r12)
-	mtctr    r12
-	bctrl
-	mr       r31, r3
-	mr       r3, r30
-	addi     r4, r1, 0x10
-	li       r5, 8
-	bl       read__14JSUInputStreamFPvl
-	lwz      r0, 0x10(r1)
-	mr       r3, r27
-	mr       r4, r29
-	mr       r5, r30
-	stw      r0, 8(r27)
-	lwz      r0, 0x14(r1)
-	add      r31, r31, r0
-	bl       makePaneStream__7J2DPaneFP7J2DPaneP20JSURandomInputStream
-	mr       r3, r30
-	mr       r4, r31
-	li       r5, 0
-	bl       seek__20JSURandomInputStreamFl17JSUStreamSeekFrom
-	b        lbl_800370D0
-
-lbl_80037078:
-	mr       r3, r30
-	lwz      r12, 0(r30)
-	lwz      r12, 0x1c(r12)
-	mtctr    r12
-	bctrl
-	mr       r31, r3
-	mr       r3, r30
-	addi     r4, r1, 8
-	li       r5, 8
-	bl       peek__20JSURandomInputStreamFPvl
-	lwz      r0, 8(r1)
-	mr       r3, r27
-	mr       r4, r29
-	mr       r5, r30
-	stw      r0, 8(r27)
-	lwz      r0, 0xc(r1)
-	add      r31, r31, r0
-	bl       makePaneExStream__7J2DPaneFP7J2DPaneP20JSURandomInputStream
-	mr       r3, r30
-	mr       r4, r31
-	li       r5, 0
-	bl       seek__20JSURandomInputStreamFl17JSUStreamSeekFrom
-
-lbl_800370D0:
-	mr       r3, r27
-	lmw      r27, 0x1c(r1)
-	lwz      r0, 0x34(r1)
-	mtlr     r0
-	addi     r1, r1, 0x30
-	blr
-	*/
 }
 
 /*
@@ -541,34 +314,25 @@ void J2DPane::makePaneStream(J2DPane* parent, JSURandomInputStream* input)
 	u32 tag;
 	input->read(&tag, 4);
 	m_tag = tag;
-	// JGeometry::TBox2<short> box()
-	JGeometry::TVec2<s16> shortTopLeft;
-	JGeometry::TVec2<s16> shortSize;
+
 	JGeometry::TVec2f topLeft;
+	topLeft.x = input->readS16();
+	topLeft.y = input->readS16();
 	JGeometry::TVec2f bottomRight;
-	input->read(&shortTopLeft.x, 2);
-	topLeft.x = shortTopLeft.x;
-	input->read(&shortTopLeft.y, 2);
-	topLeft.y = shortTopLeft.y;
-	input->read(&shortSize.x, 2);
-	bottomRight.x = topLeft.x + shortSize.x;
-	input->read(&shortSize.y, 2);
-	bottomRight.y = topLeft.y + shortSize.y;
+	bottomRight.x = input->readS16() + topLeft.x;
+	bottomRight.y = input->readS16() + topLeft.y;
 	_020.set(topLeft, bottomRight);
 	valuesRemaining -= 6;
 	_0B8 = 0.0f;
 	_0BC = 0.0f;
 	_0C0 = 0.0f;
 	if (valuesRemaining != 0) {
-		u16 v1;
-		input->read(&v1, 2);
-		_0C0 = v1;
+		_0C0 = input->readU16();
 		valuesRemaining--;
 	}
 	if (valuesRemaining != 0) {
-		u8 basePosition;
-		input->read(&basePosition, 1);
-		m_basePosition = (J2DBasePosition)basePosition;
+		u8 basePosition = input->readByte();
+		m_basePosition  = (J2DBasePosition)basePosition;
 		valuesRemaining--;
 	} else {
 		m_basePosition = POS_TOP_LEFT;
@@ -576,25 +340,17 @@ void J2DPane::makePaneStream(J2DPane* parent, JSURandomInputStream* input)
 	m_rotationAxisMaybe = 0x7A;
 	m_alpha             = 0xFF;
 	if (valuesRemaining != 0) {
-		u8 alpha;
-		input->read(&alpha, 1);
-		m_alpha = alpha;
+		m_alpha = input->readByte();
 		valuesRemaining--;
 	}
 	_0B4 = true;
 	if (valuesRemaining != 0) {
-		u8 v2;
-		input->read(&v2, 1);
-		_0B4 = v2;
+		_0B4 = input->readByte();
 		valuesRemaining--;
 	}
 	input->align(4);
 	if (parent) {
-		JSULink<J2DPane>* link = m_tree.getList()->getFirst();
-		if (link) {
-			link = m_tree.getFirst();
-		}
-		parent->m_tree.getList()->append(link);
+		parent->m_tree.appendChild(&m_tree);
 	}
 	m_cullMode  = 0;
 	_0B3        = 0xFF;
@@ -605,230 +361,6 @@ void J2DPane::makePaneStream(J2DPane* parent, JSURandomInputStream* input)
 	m_messageID = 0;
 	changeUseTrans(parent);
 	calcMtx();
-	/*
-	stwu     r1, -0x80(r1)
-	mflr     r0
-	stw      r0, 0x84(r1)
-	stfd     f31, 0x70(r1)
-	psq_st   f31, 120(r1), 0, qr0
-	stfd     f30, 0x60(r1)
-	psq_st   f30, 104(r1), 0, qr0
-	stfd     f29, 0x50(r1)
-	psq_st   f29, 88(r1), 0, qr0
-	stw      r31, 0x4c(r1)
-	stw      r30, 0x48(r1)
-	stw      r29, 0x44(r1)
-	mr       r31, r5
-	mr       r29, r3
-	mr       r30, r4
-	addi     r4, r1, 0xb
-	mr       r3, r31
-	li       r5, 1
-	bl       read__14JSUInputStreamFPvl
-	mr       r3, r31
-	addi     r4, r29, 0xb0
-	li       r5, 1
-	bl       read__14JSUInputStreamFPvl
-	mr       r3, r31
-	li       r4, 2
-	lwz      r12, 0(r31)
-	lwz      r12, 0x10(r12)
-	mtctr    r12
-	bctrl
-	mr       r3, r31
-	addi     r4, r1, 0x18
-	li       r5, 4
-	bl       read__14JSUInputStreamFPvl
-	lwz      r5, 0x18(r1)
-	li       r0, 0
-	mr       r3, r31
-	addi     r4, r1, 0x14
-	stw      r5, 0x14(r29)
-	li       r5, 2
-	stw      r0, 0x10(r29)
-	bl       read__14JSUInputStreamFPvl
-	lha      r4, 0x14(r1)
-	lis      r0, 0x4330
-	stw      r0, 0x20(r1)
-	mr       r3, r31
-	xoris    r0, r4, 0x8000
-	lfd      f1, lbl_805167C8@sda21(r2)
-	stw      r0, 0x24(r1)
-	addi     r4, r1, 0x12
-	li       r5, 2
-	lfd      f0, 0x20(r1)
-	fsubs    f31, f0, f1
-	bl       read__14JSUInputStreamFPvl
-	lha      r4, 0x12(r1)
-	lis      r0, 0x4330
-	stw      r0, 0x28(r1)
-	mr       r3, r31
-	xoris    r0, r4, 0x8000
-	lfd      f1, lbl_805167C8@sda21(r2)
-	stw      r0, 0x2c(r1)
-	addi     r4, r1, 0x10
-	li       r5, 2
-	lfd      f0, 0x28(r1)
-	fsubs    f30, f0, f1
-	bl       read__14JSUInputStreamFPvl
-	lha      r4, 0x10(r1)
-	lis      r0, 0x4330
-	stw      r0, 0x30(r1)
-	mr       r3, r31
-	xoris    r0, r4, 0x8000
-	lfd      f1, lbl_805167C8@sda21(r2)
-	stw      r0, 0x34(r1)
-	addi     r4, r1, 0xe
-	li       r5, 2
-	lfd      f0, 0x30(r1)
-	fsubs    f0, f0, f1
-	fadds    f29, f31, f0
-	bl       read__14JSUInputStreamFPvl
-	lha      r3, 0xe(r1)
-	lis      r0, 0x4330
-	stw      r0, 0x38(r1)
-	xoris    r0, r3, 0x8000
-	lfd      f2, lbl_805167C8@sda21(r2)
-	stw      r0, 0x3c(r1)
-	lfs      f0, lbl_805167C0@sda21(r2)
-	lfd      f1, 0x38(r1)
-	stfs     f31, 0x20(r29)
-	fsubs    f1, f1, f2
-	stfs     f30, 0x24(r29)
-	fadds    f1, f30, f1
-	stfs     f29, 0x28(r29)
-	stfs     f1, 0x2c(r29)
-	lbz      r3, 0xb(r1)
-	addi     r0, r3, -6
-	stb      r0, 0xb(r1)
-	stfs     f0, 0xb8(r29)
-	stfs     f0, 0xbc(r29)
-	stfs     f0, 0xc0(r29)
-	lbz      r0, 0xb(r1)
-	cmplwi   r0, 0
-	beq      lbl_800372B8
-	mr       r3, r31
-	addi     r4, r1, 0xc
-	li       r5, 2
-	bl       read__14JSUInputStreamFPvl
-	lhz      r3, 0xc(r1)
-	lis      r0, 0x4330
-	stw      r0, 0x38(r1)
-	lfd      f1, lbl_805167D0@sda21(r2)
-	stw      r3, 0x3c(r1)
-	lfd      f0, 0x38(r1)
-	fsubs    f0, f0, f1
-	stfs     f0, 0xc0(r29)
-	lbz      r3, 0xb(r1)
-	addi     r0, r3, -1
-	stb      r0, 0xb(r1)
-
-lbl_800372B8:
-	lbz      r0, 0xb(r1)
-	cmplwi   r0, 0
-	beq      lbl_800372EC
-	mr       r3, r31
-	addi     r4, r1, 0xa
-	li       r5, 1
-	bl       read__14JSUInputStreamFPvl
-	lbz      r0, 0xa(r1)
-	stb      r0, 0xb7(r29)
-	lbz      r3, 0xb(r1)
-	addi     r0, r3, -1
-	stb      r0, 0xb(r1)
-	b        lbl_800372F4
-
-lbl_800372EC:
-	li       r0, 0
-	stb      r0, 0xb7(r29)
-
-lbl_800372F4:
-	li       r3, 0x7a
-	li       r0, 0xff
-	stb      r3, 0xb6(r29)
-	stb      r0, 0xb2(r29)
-	lbz      r0, 0xb(r1)
-	cmplwi   r0, 0
-	beq      lbl_80037334
-	mr       r3, r31
-	addi     r4, r1, 9
-	li       r5, 1
-	bl       read__14JSUInputStreamFPvl
-	lbz      r0, 9(r1)
-	stb      r0, 0xb2(r29)
-	lbz      r3, 0xb(r1)
-	addi     r0, r3, -1
-	stb      r0, 0xb(r1)
-
-lbl_80037334:
-	li       r0, 1
-	stb      r0, 0xb4(r29)
-	lbz      r0, 0xb(r1)
-	cmplwi   r0, 0
-	beq      lbl_80037378
-	mr       r3, r31
-	addi     r4, r1, 8
-	li       r5, 1
-	bl       read__14JSUInputStreamFPvl
-	lbz      r3, 8(r1)
-	neg      r0, r3
-	or       r0, r0, r3
-	srwi     r0, r0, 0x1f
-	stb      r0, 0xb4(r29)
-	lbz      r3, 0xb(r1)
-	addi     r0, r3, -1
-	stb      r0, 0xb(r1)
-
-lbl_80037378:
-	mr       r3, r31
-	li       r4, 4
-	bl       align__20JSURandomInputStreamFl
-	cmplwi   r30, 0
-	beq      lbl_800373A0
-	addic.   r4, r29, 0xdc
-	beq      lbl_80037398
-	addi     r4, r4, 0xc
-
-lbl_80037398:
-	addi     r3, r30, 0xdc
-	bl       append__10JSUPtrListFP10JSUPtrLink
-
-lbl_800373A0:
-	li       r5, 0
-	lis      r3, 0x0000FFFF@ha
-	stb      r5, 0xb1(r29)
-	li       r4, 0xff
-	addi     r0, r3, 0x0000FFFF@l
-	lfs      f0, lbl_805167C4@sda21(r2)
-	stb      r4, 0xb3(r29)
-	mr       r3, r29
-	mr       r4, r30
-	stb      r5, 0xb5(r29)
-	sth      r0, 4(r29)
-	stfs     f0, 0xcc(r29)
-	stfs     f0, 0xd0(r29)
-	stw      r5, 0x1c(r29)
-	stw      r5, 0x18(r29)
-	bl       changeUseTrans__7J2DPaneFP7J2DPane
-	mr       r3, r29
-	lwz      r12, 0(r29)
-	lwz      r12, 0x2c(r12)
-	mtctr    r12
-	bctrl
-	psq_l    f31, 120(r1), 0, qr0
-	lfd      f31, 0x70(r1)
-	psq_l    f30, 104(r1), 0, qr0
-	lfd      f30, 0x60(r1)
-	psq_l    f29, 88(r1), 0, qr0
-	lfd      f29, 0x50(r1)
-	lwz      r31, 0x4c(r1)
-	lwz      r30, 0x48(r1)
-	lwz      r0, 0x84(r1)
-	lwz      r29, 0x44(r1)
-	mtlr     r0
-	addi     r1, r1, 0x80
-	blr
-	*/
 }
 
 /*
@@ -1085,78 +617,18 @@ lbl_800376A4:
  * Address:	800376C4
  * Size:	0000B8
  */
-u32 J2DPane::appendChild(J2DPane* child)
+bool J2DPane::appendChild(J2DPane* child)
 {
 	if (child == nullptr) {
 		return 0;
 	}
 	J2DPane* oldParent = child->getParentPane();
-	// JSUPtrLink* link   = child->m_tree.m_list.m_head;
-	// if (link) {
-	// 	link = &child->m_tree.m_link;
-	// }
-	// bool appendResult = m_tree.m_list.append(link);
-	// if (appendResult && oldParent == nullptr) {
-	// 	child->add(_020.minX, _020.minY);
-	// 	calcMtx();
-	// }
-	// return appendResult;
-	/*
-	stwu     r1, -0x20(r1)
-	mflr     r0
-	stw      r0, 0x24(r1)
-	stw      r31, 0x1c(r1)
-	stw      r30, 0x18(r1)
-	stw      r29, 0x14(r1)
-	or.      r29, r4, r4
-	stw      r28, 0x10(r1)
-	mr       r28, r3
-	bne      lbl_800376F4
-	li       r3, 0
-	b        lbl_8003775C
-
-lbl_800376F4:
-	mr       r3, r29
-	bl       getParentPane__7J2DPaneFv
-	addic.   r4, r29, 0xdc
-	mr       r31, r3
-	beq      lbl_8003770C
-	addi     r4, r4, 0xc
-
-lbl_8003770C:
-	addi     r3, r28, 0xdc
-	bl       append__10JSUPtrListFP10JSUPtrLink
-	clrlwi.  r0, r3, 0x18
-	mr       r30, r3
-	beq      lbl_80037758
-	cmplwi   r31, 0
-	bne      lbl_80037758
-	mr       r3, r29
-	lfs      f1, 0x20(r28)
-	lwz      r12, 0(r29)
-	lfs      f2, 0x24(r28)
-	lwz      r12, 0x14(r12)
-	mtctr    r12
-	bctrl
-	mr       r3, r29
-	lwz      r12, 0(r29)
-	lwz      r12, 0x2c(r12)
-	mtctr    r12
-	bctrl
-
-lbl_80037758:
-	mr       r3, r30
-
-lbl_8003775C:
-	lwz      r0, 0x24(r1)
-	lwz      r31, 0x1c(r1)
-	lwz      r30, 0x18(r1)
-	lwz      r29, 0x14(r1)
-	lwz      r28, 0x10(r1)
-	mtlr     r0
-	addi     r1, r1, 0x20
-	blr
-	*/
+	bool appendResult  = m_tree.appendChild(&child->m_tree);
+	if ((appendResult) && oldParent == nullptr) {
+		child->add(_020.i.x, _020.i.y);
+		child->calcMtx();
+	}
+	return appendResult;
 }
 
 /*
@@ -1164,64 +636,18 @@ lbl_8003775C:
  * Address:	8003777C
  * Size:	0000B8
  */
-u32 J2DPane::prependChild(J2DPane*)
+bool J2DPane::prependChild(J2DPane* child)
 {
-	/*
-	stwu     r1, -0x20(r1)
-	mflr     r0
-	stw      r0, 0x24(r1)
-	stw      r31, 0x1c(r1)
-	stw      r30, 0x18(r1)
-	stw      r29, 0x14(r1)
-	or.      r29, r4, r4
-	stw      r28, 0x10(r1)
-	mr       r28, r3
-	bne      lbl_800377AC
-	li       r3, 0
-	b        lbl_80037814
-
-lbl_800377AC:
-	mr       r3, r29
-	bl       getParentPane__7J2DPaneFv
-	addic.   r4, r29, 0xdc
-	mr       r31, r3
-	beq      lbl_800377C4
-	addi     r4, r4, 0xc
-
-lbl_800377C4:
-	addi     r3, r28, 0xdc
-	bl       prepend__10JSUPtrListFP10JSUPtrLink
-	clrlwi.  r0, r3, 0x18
-	mr       r30, r3
-	beq      lbl_80037810
-	cmplwi   r31, 0
-	bne      lbl_80037810
-	mr       r3, r29
-	lfs      f1, 0x20(r28)
-	lwz      r12, 0(r29)
-	lfs      f2, 0x24(r28)
-	lwz      r12, 0x14(r12)
-	mtctr    r12
-	bctrl
-	mr       r3, r29
-	lwz      r12, 0(r29)
-	lwz      r12, 0x2c(r12)
-	mtctr    r12
-	bctrl
-
-lbl_80037810:
-	mr       r3, r30
-
-lbl_80037814:
-	lwz      r0, 0x24(r1)
-	lwz      r31, 0x1c(r1)
-	lwz      r30, 0x18(r1)
-	lwz      r29, 0x14(r1)
-	lwz      r28, 0x10(r1)
-	mtlr     r0
-	addi     r1, r1, 0x20
-	blr
-	*/
+	if (child == nullptr) {
+		return 0;
+	}
+	J2DPane* oldParent = child->getParentPane();
+	bool prependResult = m_tree.prependChild(&child->m_tree);
+	if ((prependResult) && oldParent == nullptr) {
+		child->add(_020.i.x, _020.i.y);
+		child->calcMtx();
+	}
+	return prependResult;
 }
 
 /*
@@ -1229,66 +655,38 @@ lbl_80037814:
  * Address:	........
  * Size:	0000DC
  */
-void J2DPane::insertChild(J2DPane*, J2DPane*) { }
+bool J2DPane::insertChild(J2DPane* before, J2DPane* child)
+{
+	// UNUSED FUNCTION
+	// NOT VERIFIED
+	if (before == nullptr || child == nullptr) {
+		return false;
+	}
+	J2DPane* oldParent = child->getParentPane();
+	bool removeResult  = m_tree.insertChild(&before->m_tree, &child->m_tree);
+	if ((removeResult) && oldParent == nullptr) {
+		child->add(_020.i.x, _020.i.y);
+		child->calcMtx();
+	}
+	return removeResult;
+}
 
 /*
  * --INFO--
  * Address:	80037834
  * Size:	0000A4
  */
-u32 J2DPane::removeChild(J2DPane*)
+bool J2DPane::removeChild(J2DPane* child)
 {
-	/*
-	stwu     r1, -0x20(r1)
-	mflr     r0
-	stw      r0, 0x24(r1)
-	stw      r31, 0x1c(r1)
-	stw      r30, 0x18(r1)
-	or.      r30, r4, r4
-	stw      r29, 0x14(r1)
-	mr       r29, r3
-	bne      lbl_80037860
-	li       r3, 0
-	b        lbl_800378BC
-
-lbl_80037860:
-	addic.   r4, r30, 0xdc
-	beq      lbl_8003786C
-	addi     r4, r4, 0xc
-
-lbl_8003786C:
-	addi     r3, r29, 0xdc
-	bl       remove__10JSUPtrListFP10JSUPtrLink
-	clrlwi.  r0, r3, 0x18
-	mr       r31, r3
-	beq      lbl_800378B8
-	mr       r3, r30
-	lfs      f1, 0x20(r29)
-	lwz      r12, 0(r30)
-	lfs      f0, 0x24(r29)
-	fneg     f1, f1
-	lwz      r12, 0x14(r12)
-	fneg     f2, f0
-	mtctr    r12
-	bctrl
-	mr       r3, r30
-	lwz      r12, 0(r30)
-	lwz      r12, 0x2c(r12)
-	mtctr    r12
-	bctrl
-
-lbl_800378B8:
-	mr       r3, r31
-
-lbl_800378BC:
-	lwz      r0, 0x24(r1)
-	lwz      r31, 0x1c(r1)
-	lwz      r30, 0x18(r1)
-	lwz      r29, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x20
-	blr
-	*/
+	if (child == nullptr) {
+		return false;
+	}
+	bool removeResult = m_tree.removeChild(&child->m_tree);
+	if (removeResult) {
+		child->add(-_020.i.x, -_020.i.y);
+		child->calcMtx();
+	}
+	return removeResult;
 }
 
 /*
@@ -1752,14 +1150,14 @@ lbl_80037F0C:
  * Address:	80037F30
  * Size:	000004
  */
-void J2DPane::drawSelf(float, float, float (*)[3][4]) { }
+// void J2DPane::drawSelf(float, float, float (*)[3][4]) { }
 
 /*
  * --INFO--
  * Address:	80037F34
  * Size:	000004
  */
-void J2DPane::rewriteAlpha() { }
+// void J2DPane::rewriteAlpha() { }
 
 /*
  * --INFO--
@@ -2164,46 +1562,17 @@ void J2DPane::rotate(float anchorX, float anchorY, J2DRotateAxis axis, float f4)
  */
 void J2DPane::rotate(float f1)
 {
-	if (m_rotationAxisMaybe == 0x78) {
+	s8 axis = m_rotationAxisMaybe;
+	if (axis == 0x78) {
 		_0B8 = f1;
 	} else {
-		if (m_rotationAxisMaybe == 0x79) {
+		if (axis == 0x79) {
 			_0BC = f1;
 		} else {
 			_0C0 = f1;
 		}
 	}
 	calcMtx();
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	lbz      r0, 0xb6(r3)
-	extsb    r0, r0
-	cmpwi    r0, 0x78
-	bne      lbl_80038454
-	stfs     f1, 0xb8(r3)
-	b        lbl_80038468
-
-lbl_80038454:
-	cmpwi    r0, 0x79
-	bne      lbl_80038464
-	stfs     f1, 0xbc(r3)
-	b        lbl_80038468
-
-lbl_80038464:
-	stfs     f1, 0xc0(r3)
-
-lbl_80038468:
-	lwz      r12, 0(r3)
-	lwz      r12, 0x2c(r12)
-	mtctr    r12
-	bctrl
-	lwz      r0, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
 }
 
 /*
@@ -2918,7 +2287,7 @@ lbl_80038F5C:
  * Address:	80038F90
  * Size:	000008
  */
-void J2DPane::setAlpha(u8 alpha) { m_alpha = alpha; }
+// void J2DPane::setAlpha(u8 alpha) { m_alpha = alpha; }
 
 /*
  * --INFO--
@@ -3037,7 +2406,7 @@ J2DPane* J2DPane::getParentPane() { return (m_tree.getParent() == nullptr) ? nul
  * Address:	800390FC
  * Size:	00020C
  */
-void J2DPane::makePaneExStream(J2DPane*, JSURandomInputStream*)
+void J2DPane::makePaneExStream(J2DPane* parent, JSURandomInputStream* input)
 {
 	/*
 	stwu     r1, -0x60(r1)
@@ -3404,42 +2773,42 @@ void J2DPane::setAnimation(J2DAnmBase* animation)
  * Address:	800395DC
  * Size:	000004
  */
-void J2DPane::setAnimation(J2DAnmTevRegKey*) { }
+// void J2DPane::setAnimation(J2DAnmTevRegKey*) { }
 
 /*
  * --INFO--
  * Address:	800395E0
  * Size:	000004
  */
-void J2DPane::setAnimation(J2DAnmVisibilityFull*) { }
+// void J2DPane::setAnimation(J2DAnmVisibilityFull*) { }
 
 /*
  * --INFO--
  * Address:	800395E4
  * Size:	000004
  */
-void J2DPane::setAnimation(J2DAnmTexPattern*) { }
+// void J2DPane::setAnimation(J2DAnmTexPattern*) { }
 
 /*
  * --INFO--
  * Address:	800395E8
  * Size:	000004
  */
-void J2DPane::setAnimation(J2DAnmTextureSRTKey*) { }
+// void J2DPane::setAnimation(J2DAnmTextureSRTKey*) { }
 
 /*
  * --INFO--
  * Address:	800395EC
  * Size:	000004
  */
-void J2DPane::setAnimation(J2DAnmVtxColor*) { }
+// void J2DPane::setAnimation(J2DAnmVtxColor*) { }
 
 /*
  * --INFO--
  * Address:	800395F0
  * Size:	000004
  */
-void J2DPane::setAnimation(J2DAnmColor*) { }
+// void J2DPane::setAnimation(J2DAnmColor*) { }
 
 /*
  * --INFO--
@@ -3509,7 +2878,7 @@ void J2DPane::setVisibileAnimation(J2DAnmVisibilityFull* animation)
  * Address:	800397D8
  * Size:	00002C
  */
-void J2DPane::setAnimationVF(J2DAnmVisibilityFull* animationVF) { setAnimation(animationVF); }
+// void J2DPane::setAnimationVF(J2DAnmVisibilityFull* animationVF) { setAnimation(animationVF); }
 
 /*
  * --INFO--
@@ -3529,7 +2898,7 @@ void J2DPane::setVtxColorAnimation(J2DAnmVtxColor* animation)
  * Address:	8003988C
  * Size:	00002C
  */
-void J2DPane::setAnimationVC(J2DAnmVtxColor* animationVC) { setAnimation(animationVC); }
+// void J2DPane::setAnimationVC(J2DAnmVtxColor* animationVC) { setAnimation(animationVC); }
 
 /*
  * --INFO--
@@ -3632,14 +3001,14 @@ lbl_80039A4C:
  * Address:	80039A60
  * Size:	000004
  */
-void J2DAnmTransform::getTransform(u16, J3DTransformInfo*) const { }
+// void J2DAnmTransform::getTransform(u16, J3DTransformInfo*) const { }
 
 /*
  * --INFO--
  * Address:	80039A64
  * Size:	000008
  */
-u32 J2DPane::getTypeID() const { return 0x10; }
+// u32 J2DPane::getTypeID() const { return 0x10; }
 
 /*
  * --INFO--
@@ -3647,28 +3016,13 @@ u32 J2DPane::getTypeID() const { return 0x10; }
  * Size:	00003C
  * setCullBack__7J2DPaneFb
  */
-void J2DPane::setCullBack(bool p1)
+void J2DPane::setCullBack(bool shouldCullBack)
 {
-	setCullBack((GXCullMode)(p1 ? 0 : 2));
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	clrlwi.  r0, r4, 0x18
-	li       r4, 0
-	beq      lbl_80039A88
-	li       r4, 2
-
-lbl_80039A88:
-	lwz      r12, 0(r3)
-	lwz      r12, 0x20(r12)
-	mtctr    r12
-	bctrl
-	lwz      r0, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	GXCullMode cullMode = GX_CULL_NONE;
+	if (shouldCullBack) {
+		cullMode = GX_CULL_BACK;
+	}
+	setCullBack(cullMode);
 }
 
 /*
@@ -3687,29 +3041,18 @@ bool J2DPane::setConnectParent(bool connectParent)
  * Address:	80039AB8
  * Size:	000004
  */
-void J2DPane::update() { }
+// void J2DPane::update() { }
 
 /*
  * --INFO--
  * Address:	80039ABC
  * Size:	000004
  */
-void J2DPane::drawSelf(float, float) { }
+// void J2DPane::drawSelf(float, float) { }
 
 /*
  * --INFO--
  * Address:	80039AC0
  * Size:	00001C
  */
-void __sinit_J2DPane_cpp(void)
-{
-	/*
-	lfs      f0, lbl_805167C0@sda21(r2)
-	lis      r3, static_mBounds__7J2DPane@ha
-	stfsu    f0, static_mBounds__7J2DPane@l(r3)
-	stfs     f0, 4(r3)
-	stfs     f0, 8(r3)
-	stfs     f0, 0xc(r3)
-	blr
-	*/
-}
+// void __sinit_J2DPane_cpp(void) { }

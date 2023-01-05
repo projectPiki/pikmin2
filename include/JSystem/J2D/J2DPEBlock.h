@@ -5,6 +5,18 @@
 #include "types.h"
 
 struct J2DPEBlock {
+	/** @fabricated */
+	inline J2DPEBlock()
+	    : m_alphaComp()
+	// , m_blendInfo(j2dDefaultBlendInfo[0], j2dDefaultBlendInfo[1], j2dDefaultBlendInfo[2])
+	// , _07(j2dDefaultBlendInfo[3])
+	{
+		m_blendInfo.m_type       = j2dDefaultBlendInfo[0];
+		m_blendInfo.m_srcFactor  = j2dDefaultBlendInfo[1];
+		m_blendInfo.m_destFactor = j2dDefaultBlendInfo[2];
+		_07                      = j2dDefaultBlendInfo[3];
+		initialize();
+	}
 	inline ~J2DPEBlock() { } // unused/inlined
 
 	void initialize();

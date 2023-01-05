@@ -10,9 +10,9 @@ struct TFunctionValue;
 
 namespace functionvalue {
 void extrapolateParameter_raw(f64, f64);
-void extrapolateParameter_repeat(f64, f64);
-void extrapolateParameter_clamp(f64, f64);
-void extrapolateParameter_turn(f64, f64);
+f64 extrapolateParameter_repeat(f64, f64);
+f64 extrapolateParameter_clamp(f64, f64);
+f64 extrapolateParameter_turn(f64, f64);
 
 // unused/inlined:
 void interpolateValue_hermite(f64, f64, f64, f64, f64, f64, f64);
@@ -33,6 +33,10 @@ struct TFunctionValueAttribute_range {
 	void range_initialize();
 	void range_prepare();
 	void range_getParameter(f64, f64, f64) const;
+
+	double m_start; // _00
+	double m_end;   // _08
+	double m_width; // _10
 };
 
 struct TFunctionValueAttribute_refer {
@@ -61,7 +65,7 @@ struct TFunctionValue {
 	virtual void getAttributeSet() = 0; // _10
 	virtual void initialize()      = 0; // _14
 	virtual void prepare()         = 0; // _18
-	virtual void getValue(f64)     = 0; // _1C
+	virtual f64 getValue(f64)      = 0; // _1C
 
 	void toFunction_outside(int);
 
@@ -90,7 +94,7 @@ struct TFunctionValue_composite : public TFunctionValue {
 	virtual void getAttributeSet();      // _10
 	virtual void initialize();           // _14
 	virtual void prepare();              // _18
-	virtual void getValue(f64);          // _1C
+	virtual f64 getValue(f64);           // _1C
 
 	void composite_raw(const JGadget::TVector_pointer<JStudio::TFunctionValue*>&, const JStudio::TFunctionValue_composite::TData&, f64);
 	void composite_index(const JGadget::TVector_pointer<JStudio::TFunctionValue*>&, const JStudio::TFunctionValue_composite::TData&, f64);
@@ -112,7 +116,10 @@ struct TFunctionValue_constant : public TFunctionValue {
 	virtual void getAttributeSet();     // _10
 	virtual void initialize();          // _14
 	virtual void prepare();             // _18
-	virtual void getValue(f64);         // _1C
+	virtual f64 getValue(f64);          // _1C
+
+	u32 _04; // _04
+	f64 _08; // _08
 };
 
 struct TFunctionValue_hermite : public TFunctionValue {
@@ -126,7 +133,7 @@ struct TFunctionValue_hermite : public TFunctionValue {
 	virtual void getAttributeSet();    // _10
 	virtual void initialize();         // _14
 	virtual void prepare();            // _18
-	virtual void getValue(f64);        // _1C
+	virtual f64 getValue(f64);         // _1C
 
 	void data_set(const f32*, u32, u32);
 };
@@ -142,7 +149,7 @@ struct TFunctionValue_list_parameter : public TFunctionValue {
 	virtual void getAttributeSet();           // _10
 	virtual void initialize();                // _14
 	virtual void prepare();                   // _18
-	virtual void getValue(f64);               // _1C
+	virtual f64 getValue(f64);                // _1C
 
 	void data_set(const f32*, u32);
 	void update_INTERPOLATE_NONE_(const JStudio::TFunctionValue_list_parameter&, f64);
@@ -167,7 +174,7 @@ struct TFunctionValue_list : public TFunctionValue {
 	virtual void getAttributeSet(); // _10
 	virtual void initialize();      // _14
 	virtual void prepare();         // _18
-	virtual void getValue(f64);     // _1C
+	virtual f64 getValue(f64);      // _1C
 
 	void update_INTERPOLATE_NONE_(const JStudio::TFunctionValue_list&, const JStudio::TFunctionValue_list::TIndexData_&);
 	void update_INTERPOLATE_LINEAR_(const JStudio::TFunctionValue_list&, const JStudio::TFunctionValue_list::TIndexData_&);
@@ -188,7 +195,21 @@ struct TFunctionValue_transition : public TFunctionValue {
 	virtual void getAttributeSet();       // _10
 	virtual void initialize();            // _14
 	virtual void prepare();               // _18
-	virtual void getValue(f64);           // _1C
+	virtual f64 getValue(f64);            // _1C
+
+	u32 _04; // _04
+	f64 _08; // _08
+	f64 _10; // _10
+	f64 _18; // _18
+	u8 _20;  // _20
+	u8 _21;  // _21
+	f64 _28; // _28
+	f64 _30; // _30
+	u32 _38; // _38
+	u32 _3C; // _3C
+	int _40; // _40
+	f64 _48; // _48
+	f64 _50; // _50
 };
 } // namespace JStudio
 

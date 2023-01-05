@@ -19,6 +19,15 @@ struct MoveParaSet {
 	int set(float, unsigned long);
 	BOOL move();
 
+	/** @fabricated */
+	inline MoveParaSet& operator=(const MoveParaSet& other)
+	{
+		_04 = other._04;
+		_00 = other._00;
+		_0C = other._0C;
+		return *this;
+	}
+
 	float _00; // _00
 	float _04; // _04
 	float _08; // _08 - unknown

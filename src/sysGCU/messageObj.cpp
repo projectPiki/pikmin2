@@ -131,7 +131,7 @@ lbl_80438AC4:
  * Address:	80438ACC
  * Size:	00006C
  */
-void TControl::setFont(JUTFont*)
+void TControl::setFont(JUTFont* font)
 {
 	/*
 	stwu     r1, -0x10(r1)

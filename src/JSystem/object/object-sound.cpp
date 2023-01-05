@@ -1,3 +1,5 @@
+#include "JStudio/JStudio_JAudio.h"
+#include "JSystem/JAI/JAIBasic.h"
 #include "types.h"
 
 /*
@@ -1045,204 +1047,204 @@ void JAIBasic::startSoundActorT<JAISound>(unsigned long, JAISound**, JAInter::Ac
  * Address:	80015934
  * Size:	000310
  */
-void __sinit_object - sound_cpp(void)
-{
-	/*
-	stwu     r1, -0x90(r1)
-	mflr     r0
-	lis      r4, __vt__Q37JStudio14TVariableValue7TOutput@ha
-	lis      r3, lbl_8049F910@ha
-	stw      r0, 0x94(r1)
-	addi     r5, r4, __vt__Q37JStudio14TVariableValue7TOutput@l
-	lis      r4, __dt__Q314JStudio_JAudio14TAdaptor_sound13TVVOSetValue_Fv@ha
-	lis      r9, aoData$1256@ha
-	stw      r31, 0x8c(r1)
-	addi     r31, r3, lbl_8049F910@l
-	lis      r3, saoVVOSetValue___Q214JStudio_JAudio14TAdaptor_sound@ha
-	li       r8, 5
-	stw      r30, 0x88(r1)
-	addi     r30, r9, aoData$1256@l
-	addi     r9, r31, 0x3c
-	addi     r4, r4, __dt__Q314JStudio_JAudio14TAdaptor_sound13TVVOSetValue_Fv@l
-	stwu     r5, saoVVOSetValue___Q214JStudio_JAudio14TAdaptor_sound@l(r3)
-	lwz      r7, 0(r31)
-	lwz      r6, 4(r31)
-	lwz      r0, 8(r31)
-	stw      r5, 0x6c(r1)
-	addi     r5, r30, 0x20
-	stw      r9, 0x6c(r1)
-	stw      r8, 0x70(r1)
-	stw      r7, 0x74(r1)
-	stw      r6, 0x78(r1)
-	stw      r0, 0x7c(r1)
-	stw      r9, 0(r3)
-	stw      r8, 4(r3)
-	stw      r7, 8(r3)
-	stw      r6, 0xc(r3)
-	stw      r0, 0x10(r3)
-	bl       __register_global_object
-	addi     r0, r31, 0x3c
-	addi     r3, r1, 0x6c
-	stw      r0, 0x6c(r1)
-	li       r4, 0
-	bl       __dt__Q37JStudio14TVariableValue7TOutputFv
-	lis      r4, __vt__Q37JStudio14TVariableValue7TOutput@ha
-	lis      r3, saoVVOSetValue___Q214JStudio_JAudio14TAdaptor_sound@ha
-	addi     r5, r4, __vt__Q37JStudio14TVariableValue7TOutput@l
-	lwz      r7, 0xc(r31)
-	addi     r3, r3, saoVVOSetValue___Q214JStudio_JAudio14TAdaptor_sound@l
-	lwz      r6, 0x10(r31)
-	stwu     r5, 0x14(r3)
-	li       r8, 6
-	lwz      r0, 0x14(r31)
-	addi     r9, r31, 0x3c
-	stw      r5, 0x58(r1)
-	lis      r4, __dt__Q314JStudio_JAudio14TAdaptor_sound13TVVOSetValue_Fv@ha
-	addi     r4, r4, __dt__Q314JStudio_JAudio14TAdaptor_sound13TVVOSetValue_Fv@l
-	addi     r5, r30, 0x2c
-	stw      r9, 0x58(r1)
-	stw      r8, 0x5c(r1)
-	stw      r7, 0x60(r1)
-	stw      r6, 0x64(r1)
-	stw      r0, 0x68(r1)
-	stw      r9, 0(r3)
-	stw      r8, 4(r3)
-	stw      r7, 8(r3)
-	stw      r6, 0xc(r3)
-	stw      r0, 0x10(r3)
-	bl       __register_global_object
-	addi     r0, r31, 0x3c
-	addi     r3, r1, 0x58
-	stw      r0, 0x58(r1)
-	li       r4, 0
-	bl       __dt__Q37JStudio14TVariableValue7TOutputFv
-	lis      r4, __vt__Q37JStudio14TVariableValue7TOutput@ha
-	lis      r3, saoVVOSetValue___Q214JStudio_JAudio14TAdaptor_sound@ha
-	addi     r5, r4, __vt__Q37JStudio14TVariableValue7TOutput@l
-	lwz      r7, 0x18(r31)
-	addi     r3, r3, saoVVOSetValue___Q214JStudio_JAudio14TAdaptor_sound@l
-	lwz      r6, 0x1c(r31)
-	stwu     r5, 0x28(r3)
-	li       r8, 7
-	lwz      r0, 0x20(r31)
-	addi     r9, r31, 0x3c
-	stw      r5, 0x44(r1)
-	lis      r4, __dt__Q314JStudio_JAudio14TAdaptor_sound13TVVOSetValue_Fv@ha
-	addi     r4, r4, __dt__Q314JStudio_JAudio14TAdaptor_sound13TVVOSetValue_Fv@l
-	addi     r5, r30, 0x38
-	stw      r9, 0x44(r1)
-	stw      r8, 0x48(r1)
-	stw      r7, 0x4c(r1)
-	stw      r6, 0x50(r1)
-	stw      r0, 0x54(r1)
-	stw      r9, 0(r3)
-	stw      r8, 4(r3)
-	stw      r7, 8(r3)
-	stw      r6, 0xc(r3)
-	stw      r0, 0x10(r3)
-	bl       __register_global_object
-	addi     r0, r31, 0x3c
-	addi     r3, r1, 0x44
-	stw      r0, 0x44(r1)
-	li       r4, 0
-	bl       __dt__Q37JStudio14TVariableValue7TOutputFv
-	lis      r4, __vt__Q37JStudio14TVariableValue7TOutput@ha
-	lis      r3, saoVVOSetValue___Q214JStudio_JAudio14TAdaptor_sound@ha
-	addi     r5, r4, __vt__Q37JStudio14TVariableValue7TOutput@l
-	lwz      r7, 0x24(r31)
-	addi     r3, r3, saoVVOSetValue___Q214JStudio_JAudio14TAdaptor_sound@l
-	lwz      r6, 0x28(r31)
-	stwu     r5, 0x3c(r3)
-	li       r8, 8
-	lwz      r0, 0x2c(r31)
-	addi     r9, r31, 0x3c
-	stw      r5, 0x30(r1)
-	lis      r4, __dt__Q314JStudio_JAudio14TAdaptor_sound13TVVOSetValue_Fv@ha
-	addi     r4, r4, __dt__Q314JStudio_JAudio14TAdaptor_sound13TVVOSetValue_Fv@l
-	addi     r5, r30, 0x44
-	stw      r9, 0x30(r1)
-	stw      r8, 0x34(r1)
-	stw      r7, 0x38(r1)
-	stw      r6, 0x3c(r1)
-	stw      r0, 0x40(r1)
-	stw      r9, 0(r3)
-	stw      r8, 4(r3)
-	stw      r7, 8(r3)
-	stw      r6, 0xc(r3)
-	stw      r0, 0x10(r3)
-	bl       __register_global_object
-	addi     r0, r31, 0x3c
-	addi     r3, r1, 0x30
-	stw      r0, 0x30(r1)
-	li       r4, 0
-	bl       __dt__Q37JStudio14TVariableValue7TOutputFv
-	lis      r4, __vt__Q37JStudio14TVariableValue7TOutput@ha
-	lis      r3, saoVVOSetValue___Q214JStudio_JAudio14TAdaptor_sound@ha
-	addi     r5, r4, __vt__Q37JStudio14TVariableValue7TOutput@l
-	lwz      r7, 0x30(r31)
-	addi     r3, r3, saoVVOSetValue___Q214JStudio_JAudio14TAdaptor_sound@l
-	lwz      r6, 0x34(r31)
-	stwu     r5, 0x50(r3)
-	li       r8, 9
-	lwz      r0, 0x38(r31)
-	addi     r9, r31, 0x3c
-	stw      r5, 0x1c(r1)
-	lis      r4, __dt__Q314JStudio_JAudio14TAdaptor_sound13TVVOSetValue_Fv@ha
-	addi     r4, r4, __dt__Q314JStudio_JAudio14TAdaptor_sound13TVVOSetValue_Fv@l
-	addi     r5, r30, 0x50
-	stw      r9, 0x1c(r1)
-	stw      r8, 0x20(r1)
-	stw      r7, 0x24(r1)
-	stw      r6, 0x28(r1)
-	stw      r0, 0x2c(r1)
-	stw      r9, 0(r3)
-	stw      r8, 4(r3)
-	stw      r7, 8(r3)
-	stw      r6, 0xc(r3)
-	stw      r0, 0x10(r3)
-	bl       __register_global_object
-	addi     r0, r31, 0x3c
-	addi     r3, r1, 0x1c
-	stw      r0, 0x1c(r1)
-	li       r4, 0
-	bl       __dt__Q37JStudio14TVariableValue7TOutputFv
-	lis      r3, __vt__Q37JStudio14TVariableValue7TOutput@ha
-	li       r9, -1
-	addi     r11, r3, __vt__Q37JStudio14TVariableValue7TOutput@l
-	lis      r4, __dt__Q314JStudio_JAudio14TAdaptor_sound13TVVOSetValue_Fv@ha
-	stw      r11, 8(r1)
-	addi     r10, r31, 0x3c
-	lis      r3, __ptmf_null@ha
-	addi     r4, r4, __dt__Q314JStudio_JAudio14TAdaptor_sound13TVVOSetValue_Fv@l
-	stw      r10, 8(r1)
-	addi     r8, r3, __ptmf_null@l
-	lis      r3, saoVVOSetValue___Q214JStudio_JAudio14TAdaptor_sound@ha
-	lwz      r7, 0(r8)
-	stw      r9, 0xc(r1)
-	addi     r3, r3, saoVVOSetValue___Q214JStudio_JAudio14TAdaptor_sound@l
-	addi     r5, r30, 0x5c
-	lwz      r6, 4(r8)
-	stw      r7, 0x10(r1)
-	stw      r6, 0x14(r1)
-	lwz      r0, 8(r8)
-	stwu     r11, 0x64(r3)
-	stw      r0, 0x18(r1)
-	stw      r10, 0(r3)
-	stw      r9, 4(r3)
-	stw      r7, 8(r3)
-	stw      r6, 0xc(r3)
-	stw      r0, 0x10(r3)
-	bl       __register_global_object
-	addi     r0, r31, 0x3c
-	addi     r3, r1, 8
-	stw      r0, 8(r1)
-	li       r4, 0
-	bl       __dt__Q37JStudio14TVariableValue7TOutputFv
-	lwz      r0, 0x94(r1)
-	lwz      r31, 0x8c(r1)
-	lwz      r30, 0x88(r1)
-	mtlr     r0
-	addi     r1, r1, 0x90
-	blr
-	*/
-}
+// void __sinit_object - sound_cpp(void)
+// {
+// 	/*
+// 	stwu     r1, -0x90(r1)
+// 	mflr     r0
+// 	lis      r4, __vt__Q37JStudio14TVariableValue7TOutput@ha
+// 	lis      r3, lbl_8049F910@ha
+// 	stw      r0, 0x94(r1)
+// 	addi     r5, r4, __vt__Q37JStudio14TVariableValue7TOutput@l
+// 	lis      r4, __dt__Q314JStudio_JAudio14TAdaptor_sound13TVVOSetValue_Fv@ha
+// 	lis      r9, aoData$1256@ha
+// 	stw      r31, 0x8c(r1)
+// 	addi     r31, r3, lbl_8049F910@l
+// 	lis      r3, saoVVOSetValue___Q214JStudio_JAudio14TAdaptor_sound@ha
+// 	li       r8, 5
+// 	stw      r30, 0x88(r1)
+// 	addi     r30, r9, aoData$1256@l
+// 	addi     r9, r31, 0x3c
+// 	addi     r4, r4, __dt__Q314JStudio_JAudio14TAdaptor_sound13TVVOSetValue_Fv@l
+// 	stwu     r5, saoVVOSetValue___Q214JStudio_JAudio14TAdaptor_sound@l(r3)
+// 	lwz      r7, 0(r31)
+// 	lwz      r6, 4(r31)
+// 	lwz      r0, 8(r31)
+// 	stw      r5, 0x6c(r1)
+// 	addi     r5, r30, 0x20
+// 	stw      r9, 0x6c(r1)
+// 	stw      r8, 0x70(r1)
+// 	stw      r7, 0x74(r1)
+// 	stw      r6, 0x78(r1)
+// 	stw      r0, 0x7c(r1)
+// 	stw      r9, 0(r3)
+// 	stw      r8, 4(r3)
+// 	stw      r7, 8(r3)
+// 	stw      r6, 0xc(r3)
+// 	stw      r0, 0x10(r3)
+// 	bl       __register_global_object
+// 	addi     r0, r31, 0x3c
+// 	addi     r3, r1, 0x6c
+// 	stw      r0, 0x6c(r1)
+// 	li       r4, 0
+// 	bl       __dt__Q37JStudio14TVariableValue7TOutputFv
+// 	lis      r4, __vt__Q37JStudio14TVariableValue7TOutput@ha
+// 	lis      r3, saoVVOSetValue___Q214JStudio_JAudio14TAdaptor_sound@ha
+// 	addi     r5, r4, __vt__Q37JStudio14TVariableValue7TOutput@l
+// 	lwz      r7, 0xc(r31)
+// 	addi     r3, r3, saoVVOSetValue___Q214JStudio_JAudio14TAdaptor_sound@l
+// 	lwz      r6, 0x10(r31)
+// 	stwu     r5, 0x14(r3)
+// 	li       r8, 6
+// 	lwz      r0, 0x14(r31)
+// 	addi     r9, r31, 0x3c
+// 	stw      r5, 0x58(r1)
+// 	lis      r4, __dt__Q314JStudio_JAudio14TAdaptor_sound13TVVOSetValue_Fv@ha
+// 	addi     r4, r4, __dt__Q314JStudio_JAudio14TAdaptor_sound13TVVOSetValue_Fv@l
+// 	addi     r5, r30, 0x2c
+// 	stw      r9, 0x58(r1)
+// 	stw      r8, 0x5c(r1)
+// 	stw      r7, 0x60(r1)
+// 	stw      r6, 0x64(r1)
+// 	stw      r0, 0x68(r1)
+// 	stw      r9, 0(r3)
+// 	stw      r8, 4(r3)
+// 	stw      r7, 8(r3)
+// 	stw      r6, 0xc(r3)
+// 	stw      r0, 0x10(r3)
+// 	bl       __register_global_object
+// 	addi     r0, r31, 0x3c
+// 	addi     r3, r1, 0x58
+// 	stw      r0, 0x58(r1)
+// 	li       r4, 0
+// 	bl       __dt__Q37JStudio14TVariableValue7TOutputFv
+// 	lis      r4, __vt__Q37JStudio14TVariableValue7TOutput@ha
+// 	lis      r3, saoVVOSetValue___Q214JStudio_JAudio14TAdaptor_sound@ha
+// 	addi     r5, r4, __vt__Q37JStudio14TVariableValue7TOutput@l
+// 	lwz      r7, 0x18(r31)
+// 	addi     r3, r3, saoVVOSetValue___Q214JStudio_JAudio14TAdaptor_sound@l
+// 	lwz      r6, 0x1c(r31)
+// 	stwu     r5, 0x28(r3)
+// 	li       r8, 7
+// 	lwz      r0, 0x20(r31)
+// 	addi     r9, r31, 0x3c
+// 	stw      r5, 0x44(r1)
+// 	lis      r4, __dt__Q314JStudio_JAudio14TAdaptor_sound13TVVOSetValue_Fv@ha
+// 	addi     r4, r4, __dt__Q314JStudio_JAudio14TAdaptor_sound13TVVOSetValue_Fv@l
+// 	addi     r5, r30, 0x38
+// 	stw      r9, 0x44(r1)
+// 	stw      r8, 0x48(r1)
+// 	stw      r7, 0x4c(r1)
+// 	stw      r6, 0x50(r1)
+// 	stw      r0, 0x54(r1)
+// 	stw      r9, 0(r3)
+// 	stw      r8, 4(r3)
+// 	stw      r7, 8(r3)
+// 	stw      r6, 0xc(r3)
+// 	stw      r0, 0x10(r3)
+// 	bl       __register_global_object
+// 	addi     r0, r31, 0x3c
+// 	addi     r3, r1, 0x44
+// 	stw      r0, 0x44(r1)
+// 	li       r4, 0
+// 	bl       __dt__Q37JStudio14TVariableValue7TOutputFv
+// 	lis      r4, __vt__Q37JStudio14TVariableValue7TOutput@ha
+// 	lis      r3, saoVVOSetValue___Q214JStudio_JAudio14TAdaptor_sound@ha
+// 	addi     r5, r4, __vt__Q37JStudio14TVariableValue7TOutput@l
+// 	lwz      r7, 0x24(r31)
+// 	addi     r3, r3, saoVVOSetValue___Q214JStudio_JAudio14TAdaptor_sound@l
+// 	lwz      r6, 0x28(r31)
+// 	stwu     r5, 0x3c(r3)
+// 	li       r8, 8
+// 	lwz      r0, 0x2c(r31)
+// 	addi     r9, r31, 0x3c
+// 	stw      r5, 0x30(r1)
+// 	lis      r4, __dt__Q314JStudio_JAudio14TAdaptor_sound13TVVOSetValue_Fv@ha
+// 	addi     r4, r4, __dt__Q314JStudio_JAudio14TAdaptor_sound13TVVOSetValue_Fv@l
+// 	addi     r5, r30, 0x44
+// 	stw      r9, 0x30(r1)
+// 	stw      r8, 0x34(r1)
+// 	stw      r7, 0x38(r1)
+// 	stw      r6, 0x3c(r1)
+// 	stw      r0, 0x40(r1)
+// 	stw      r9, 0(r3)
+// 	stw      r8, 4(r3)
+// 	stw      r7, 8(r3)
+// 	stw      r6, 0xc(r3)
+// 	stw      r0, 0x10(r3)
+// 	bl       __register_global_object
+// 	addi     r0, r31, 0x3c
+// 	addi     r3, r1, 0x30
+// 	stw      r0, 0x30(r1)
+// 	li       r4, 0
+// 	bl       __dt__Q37JStudio14TVariableValue7TOutputFv
+// 	lis      r4, __vt__Q37JStudio14TVariableValue7TOutput@ha
+// 	lis      r3, saoVVOSetValue___Q214JStudio_JAudio14TAdaptor_sound@ha
+// 	addi     r5, r4, __vt__Q37JStudio14TVariableValue7TOutput@l
+// 	lwz      r7, 0x30(r31)
+// 	addi     r3, r3, saoVVOSetValue___Q214JStudio_JAudio14TAdaptor_sound@l
+// 	lwz      r6, 0x34(r31)
+// 	stwu     r5, 0x50(r3)
+// 	li       r8, 9
+// 	lwz      r0, 0x38(r31)
+// 	addi     r9, r31, 0x3c
+// 	stw      r5, 0x1c(r1)
+// 	lis      r4, __dt__Q314JStudio_JAudio14TAdaptor_sound13TVVOSetValue_Fv@ha
+// 	addi     r4, r4, __dt__Q314JStudio_JAudio14TAdaptor_sound13TVVOSetValue_Fv@l
+// 	addi     r5, r30, 0x50
+// 	stw      r9, 0x1c(r1)
+// 	stw      r8, 0x20(r1)
+// 	stw      r7, 0x24(r1)
+// 	stw      r6, 0x28(r1)
+// 	stw      r0, 0x2c(r1)
+// 	stw      r9, 0(r3)
+// 	stw      r8, 4(r3)
+// 	stw      r7, 8(r3)
+// 	stw      r6, 0xc(r3)
+// 	stw      r0, 0x10(r3)
+// 	bl       __register_global_object
+// 	addi     r0, r31, 0x3c
+// 	addi     r3, r1, 0x1c
+// 	stw      r0, 0x1c(r1)
+// 	li       r4, 0
+// 	bl       __dt__Q37JStudio14TVariableValue7TOutputFv
+// 	lis      r3, __vt__Q37JStudio14TVariableValue7TOutput@ha
+// 	li       r9, -1
+// 	addi     r11, r3, __vt__Q37JStudio14TVariableValue7TOutput@l
+// 	lis      r4, __dt__Q314JStudio_JAudio14TAdaptor_sound13TVVOSetValue_Fv@ha
+// 	stw      r11, 8(r1)
+// 	addi     r10, r31, 0x3c
+// 	lis      r3, __ptmf_null@ha
+// 	addi     r4, r4, __dt__Q314JStudio_JAudio14TAdaptor_sound13TVVOSetValue_Fv@l
+// 	stw      r10, 8(r1)
+// 	addi     r8, r3, __ptmf_null@l
+// 	lis      r3, saoVVOSetValue___Q214JStudio_JAudio14TAdaptor_sound@ha
+// 	lwz      r7, 0(r8)
+// 	stw      r9, 0xc(r1)
+// 	addi     r3, r3, saoVVOSetValue___Q214JStudio_JAudio14TAdaptor_sound@l
+// 	addi     r5, r30, 0x5c
+// 	lwz      r6, 4(r8)
+// 	stw      r7, 0x10(r1)
+// 	stw      r6, 0x14(r1)
+// 	lwz      r0, 8(r8)
+// 	stwu     r11, 0x64(r3)
+// 	stw      r0, 0x18(r1)
+// 	stw      r10, 0(r3)
+// 	stw      r9, 4(r3)
+// 	stw      r7, 8(r3)
+// 	stw      r6, 0xc(r3)
+// 	stw      r0, 0x10(r3)
+// 	bl       __register_global_object
+// 	addi     r0, r31, 0x3c
+// 	addi     r3, r1, 8
+// 	stw      r0, 8(r1)
+// 	li       r4, 0
+// 	bl       __dt__Q37JStudio14TVariableValue7TOutputFv
+// 	lwz      r0, 0x94(r1)
+// 	lwz      r31, 0x8c(r1)
+// 	lwz      r30, 0x88(r1)
+// 	mtlr     r0
+// 	addi     r1, r1, 0x90
+// 	blr
+// 	*/
+// }

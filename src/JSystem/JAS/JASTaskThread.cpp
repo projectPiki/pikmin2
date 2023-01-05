@@ -1,5 +1,8 @@
 #include "Dolphin/os.h"
+#include "JSystem/JAS/JASCalc.h"
 #include "JSystem/JAS/JASHeap.h"
+#include "JSystem/JAS/JASKernel.h"
+#include "JSystem/JAS/JASMutexLock.h"
 #include "JSystem/JAS/JASThread.h"
 #include "JSystem/JKR/JKRThread.h"
 #include "types.h"
@@ -136,9 +139,18 @@ lbl_800A89B0:
  * Address:	........
  * Size:	000198
  */
-void JASTaskThread::allocCallStack(void (*)(void*), const void*, unsigned long)
+JASCmdHeap::Header* JASTaskThread::allocCallStack(void (*cmd)(void*), const void* msg, unsigned long msgLength)
 {
 	// UNUSED FUNCTION
+	// TODO: Wrong.
+	JASCmdHeap::Header* header = JASKernel::getCommandHeap()->alloc(msgLength);
+	if (header == nullptr) {
+		return nullptr;
+	}
+	header->m_msgLength = 1;
+	JASCalc::bcopy(msg, header + 1, msgLength);
+	header->m_command = cmd;
+	return header;
 }
 
 /*
@@ -146,7 +158,7 @@ void JASTaskThread::allocCallStack(void (*)(void*), const void*, unsigned long)
  * Address:	........
  * Size:	000184
  */
-void JASTaskThread::allocCallStack(void (*)(void*), void*)
+void* JASTaskThread::allocCallStack(void (*)(void*), void*)
 {
 	// UNUSED FUNCTION
 }
@@ -156,8 +168,17 @@ void JASTaskThread::allocCallStack(void (*)(void*), void*)
  * Address:	800A89C8
  * Size:	000260
  */
-int JASTaskThread::sendCmdMsg(void (*)(void*), const void*, unsigned long)
+int JASTaskThread::sendCmdMsg(void (*cmd)(void*), const void* msg, unsigned long msgLength)
 {
+	JASCmdHeap::Header* header = allocCallStack(cmd, msg, msgLength);
+	if (header == nullptr) {
+		return FALSE;
+	}
+	BOOL sendResult = OSSendMessage(&m_msgQueue, header, OS_MESSAGE_NON_BLOCKING);
+	if (!sendResult) {
+		JASKernel::getCommandHeap()->free(header);
+	}
+	return sendResult;
 	/*
 	stwu     r1, -0x30(r1)
 	mflr     r0

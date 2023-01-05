@@ -48,6 +48,16 @@
 
 /*
  * --INFO--
+ * Address:	........
+ * Size:	00003C
+ */
+JKRMemArchive::JKRMemArchive()
+{
+	// UNUSED FUNCTION
+}
+
+/*
+ * --INFO--
  * Address:	80024644
  * Size:	0000BC
  * __ct__13JKRMemArchiveFlQ210JKRArchive15EMountDirection
@@ -129,12 +139,13 @@ JKRMemArchive::JKRMemArchive(void* p1, unsigned long p2, JKRMemBreakFlag flag)
     : JKRArchive((long)p1, EMM_Mem)
 {
 	_30 = 0;
-	if (open(p1, p2, flag)) {
-		m_magicWord = 'RARC';
-		_28         = _54 + _48->_04;
-		sVolumeList.prepend(&_18);
-		_30 = 1;
+	if (!open(p1, p2, flag)) {
+		return;
 	}
+	m_magicWord = 'RARC';
+	_28         = _54 + _48->_04;
+	sVolumeList.prepend(&_18);
+	_30 = 1;
 	/*
 	stwu     r1, -0x20(r1)
 	mflr     r0
@@ -195,61 +206,87 @@ lbl_800247A8:
 
 /*
  * --INFO--
+ * Address:	........
+ * Size:	0000BC
+ * __ct__13JKRMemArchiveFPCcQ210JKRArchive15EMountDirection
+ */
+JKRMemArchive::JKRMemArchive(const char*, EMountDirection)
+{
+	// UNUSED FUNCTION
+}
+
+/*
+ * --INFO--
  * Address:	800247C8
  * Size:	0000A8
+ * __dt__13JKRMemArchiveFv
  */
 JKRMemArchive::~JKRMemArchive()
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	mr       r31, r4
-	stw      r30, 8(r1)
-	or.      r30, r3, r3
-	beq      lbl_80024854
-	lis      r3, __vt__13JKRMemArchive@ha
-	addi     r0, r3, __vt__13JKRMemArchive@l
-	stw      r0, 0(r30)
-	lbz      r0, 0x30(r30)
-	cmplwi   r0, 1
-	bne      lbl_80024838
-	lbz      r0, 0x6c(r30)
-	cmplwi   r0, 0
-	beq      lbl_80024820
-	lwz      r3, 0x64(r30)
-	cmplwi   r3, 0
-	beq      lbl_80024820
-	lwz      r4, 0x38(r30)
-	bl       free__7JKRHeapFPvP7JKRHeap
+	if (_30 == 1) {
+		if (_6C != 0) {
+			if (_64 != nullptr) {
+				JKRHeap::free(_64, _38);
+			}
+		}
+		sVolumeList.remove(&_18);
+		_30 = 0;
+	}
+}
 
-lbl_80024820:
-	lis      r3, sVolumeList__13JKRFileLoader@ha
-	addi     r4, r30, 0x18
-	addi     r3, r3, sVolumeList__13JKRFileLoader@l
-	bl       remove__10JSUPtrListFP10JSUPtrLink
-	li       r0, 0
-	stb      r0, 0x30(r30)
+/*
+ * --INFO--
+ * Address:	........
+ * Size:	000040
+ * fixedInit__13JKRMemArchiveFl
+ */
+void JKRMemArchive::fixedInit(long)
+{
+	// UNUSED FUNCTION
+}
 
-lbl_80024838:
-	mr       r3, r30
-	li       r4, 0
-	bl       __dt__10JKRArchiveFv
-	extsh.   r0, r31
-	ble      lbl_80024854
-	mr       r3, r30
-	bl       __dl__FPv
+/*
+ * --INFO--
+ * Address:	........
+ * Size:	000108
+ * mountFixed__13JKRMemArchiveFlQ210JKRArchive15EMountDirection
+ */
+void JKRMemArchive::mountFixed(long, EMountDirection)
+{
+	// UNUSED FUNCTION
+}
 
-lbl_80024854:
-	lwz      r0, 0x14(r1)
-	mr       r3, r30
-	lwz      r31, 0xc(r1)
-	lwz      r30, 8(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+/*
+ * --INFO--
+ * Address:	........
+ * Size:	00010C
+ * mountFixed__13JKRMemArchiveFPCcQ210JKRArchive15EMountDirection
+ */
+void JKRMemArchive::mountFixed(const char*, EMountDirection)
+{
+	// UNUSED FUNCTION
+}
+
+/*
+ * --INFO--
+ * Address:	........
+ * Size:	000108
+ * mountFixed__13JKRMemArchiveFPv15JKRMemBreakFlag
+ */
+void JKRMemArchive::mountFixed(void*, JKRMemBreakFlag)
+{
+	// UNUSED FUNCTION
+}
+
+/*
+ * --INFO--
+ * Address:	........
+ * Size:	000074
+ * unmountFixed__13JKRMemArchiveFv
+ */
+void JKRMemArchive::unmountFixed()
+{
+	// UNUSED FUNCTION
 }
 
 /*
@@ -466,6 +503,17 @@ bool JKRMemArchive::open(void* p1, unsigned long p2, JKRMemBreakFlag p3)
 	addi     r1, r1, 0x10
 	blr
 	*/
+}
+
+/*
+ * --INFO--
+ * Address:	........
+ * Size:	000050
+ * open__13JKRMemArchiveFPCcQ210JKRArchive15EMountDirection
+ */
+void JKRMemArchive::open(const char*, EMountDirection)
+{
+	// UNUSED FUNCTION
 }
 
 /*

@@ -1,4 +1,5 @@
 #include "JSystem/JUT/JUTDirectPrint.h"
+#include "JSystem/JUT/JUTException.h"
 #include "types.h"
 
 /*
@@ -247,6 +248,86 @@
         .4byte 0x43300000
         .4byte 0x80000000
 */
+// clang-format off
+u8 JUTDirectPrint::sAsciiTable[0x80] = {
+	0x7A, 0x7A, 0x7A, 0x7A,
+	0x7A, 0x7A, 0x7A, 0x7A,
+	0x7A, 0xFD, 0xFE, 0x7A,
+	0x7A, 0x7A, 0x7A, 0x7A,
+	0xFF, 0xFF, 0xFF, 0xFF,
+	0xFF, 0xFF, 0xFF, 0xFF,
+	0xFF, 0xFF, 0xFF, 0xFF,
+	0xFF, 0xFF, 0xFF, 0xFF,
+	0xFF, 0x29, 0x64, 0x65,
+	0x66, 0x2B, 0x67, 0x68,
+	0x25, 0x26, 0x69, 0x2A,
+	0x6A, 0x27, 0x2C, 0x6B,
+	 0x0,  0x1,  0x2,  0x3,
+	 0x4,  0x5,  0x6,  0x7,
+	 0x8,  0x9, 0x24, 0x6C,
+	0x6D, 0x6E, 0x6F, 0x28,
+	0x70,  0xA,  0xB,  0xC,
+	 0xD,  0xE,  0xF, 0x10,
+	0x11, 0x12, 0x13, 0x14,
+	0x15, 0x16, 0x17, 0x18,
+	0x19, 0x1A, 0x1B, 0x1C,
+	0x1D, 0x1E, 0x1F, 0x20,
+	0x21, 0x22, 0x23, 0x71,
+	0x72, 0x73, 0x74, 0x75,
+	0xFF, 0x7D, 0x7E, 0x7F,
+	0x80, 0x81, 0x82, 0x83,
+	0x84, 0x85, 0x86, 0x87,
+	0x88, 0x89, 0x8A, 0x8B,
+	0x8C, 0x8D, 0x8E, 0x8F,
+	0x90, 0x91, 0x92, 0x93,
+	0x94, 0x95, 0x96, 0x76,
+	0x77, 0x78, 0x79, 0x7A
+
+};
+
+u32 JUTDirectPrint::sFontData[0x40] = {
+	0x70871C30,    0x8988A250,    0x88808290,    0x88830C90,
+	0x888402F8,    0x88882210,    0x71CF9C10,    0xF9CF9C70,
+	0x8208A288,    0xF200A288,     0xBC11C78,     0xA222208,
+	0x8A222208,    0x71C21C70,    0x23C738F8,    0x5228A480,
+	0x8A282280,    0x8BC822F0,    0xFA282280,    0x8A28A480,
+	0x8BC738F8,    0xF9C89C08,    0x82288808,    0x82088808,
+	0xF2EF8808,    0x82288888,    0x82288888,    0x81C89C70,
+	0x8A08A270,    0x920DA288,    0xA20AB288,    0xC20AAA88,
+	0xA208A688,    0x9208A288,    0x8BE8A270,    0xF1CF1CF8,
+	0x8A28A220,    0x8A28A020,    0xF22F1C20,    0x82AA0220,
+	0x82492220,    0x81A89C20,    0x8A28A288,    0x8A28A288,
+	0x8A289488,    0x8A2A8850,    0x894A9420,    0x894AA220,
+	0x70852220,    0xF8011000,     0x8020800,    0x10840400,
+	0x20040470,    0x40840400,    0x80020800,    0xF8011000,
+	0x70800000,    0x88822200,     0x8820400,    0x108F8800,
+	0x20821000,       0x22200,    0x20800020,           0x0
+};
+u32 JUTDirectPrint::sFontData2[0x4D] = {
+	0x51421820,    0x53E7A420,     0x14A2C40,     0x1471000,
+	 0x142AA00,     0x3EAA400,     0x1471A78,           0x0,
+	0x50008010,    0x20010820,    0xF8020040,    0x20420820,
+	0x50441010,      0x880000,       0x70E00,     0x1088840,
+	0x78898820,      0x4A8810,    0x788A8810,     0x1098808,
+	   0x40E04,    0x70800620,    0x11400820,    0x12200820,
+	0x10001020,    0x10000820,    0x100F8820,    0x70000620,
+	0x60070000,    0x110F82A0,    0x12AA8AE0,     0x84F92A0,
+	0x100FBE1C,    0x10089008,    0x60070808,           0x0,
+	 0x2000200,    0x7A078270,    0x8BC81E88,    0x8A2822F8,
+	0x9A282280,    0x6BC79E78,    0x30000000,    0x48080810,
+	0x41E80000,    0x422F1830,    0xFBE88810,    0x40288890,
+	0x43C89C60,    0x81000000,    0x81000000,    0x990F3C70,
+	0xA10AA288,    0xE10AA288,    0xA10AA288,    0x98CAA270,
+	       0x0,          0x20,    0xF1EF1E20,    0x8A28A0F8,
+	0x8A281C20,    0xF1E80220,    0x80283C38,           0x0,
+	       0x0,    0x8A28B688,    0x8A2A8888,    0x8A2A8878,
+	0x894A8808,    0x788536F0,           0x0,           0x0,
+	0xF8000000,    0x10000000,    0x20000000,    0x40000000,
+	0xF8000000
+};
+// clang-format on
+
+JUTDirectPrint* JUTDirectPrint::sDirectPrint;
 
 /*
  * --INFO--
@@ -254,8 +335,11 @@
  * Size:	000058
  */
 JUTDirectPrint::JUTDirectPrint()
+    : _18(0xFFFFFFFF)
 {
 	// UNUSED FUNCTION
+	changeFrameBuffer(nullptr, 0, 0);
+	setCharColor(0xFF, 0xFF, 0xFF);
 }
 
 /*
@@ -265,50 +349,38 @@ JUTDirectPrint::JUTDirectPrint()
  */
 JUTDirectPrint* JUTDirectPrint::start()
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	lwz      r0, sDirectPrint__14JUTDirectPrint@sda21(r13)
-	cmplwi   r0, 0
-	bne      lbl_80029C28
-	li       r3, 0x2c
-	bl       __nw__FUl
-	or.      r31, r3, r3
-	beq      lbl_80029C24
-	li       r0, -1
-	li       r4, 0
-	stw      r0, 0x18(r31)
-	li       r5, 0
-	li       r6, 0
-	bl       changeFrameBuffer__14JUTDirectPrintFPvUsUs
-	mr       r3, r31
-	li       r4, 0xff
-	li       r5, 0xff
-	li       r6, 0xff
-	bl       setCharColor__14JUTDirectPrintFUcUcUc
-
-lbl_80029C24:
-	stw      r31, sDirectPrint__14JUTDirectPrint@sda21(r13)
-
-lbl_80029C28:
-	lwz      r0, 0x14(r1)
-	lwz      r3, sDirectPrint__14JUTDirectPrint@sda21(r13)
-	lwz      r31, 0xc(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	if (sDirectPrint == nullptr) {
+		sDirectPrint = new JUTDirectPrint();
+	}
+	return sDirectPrint;
 }
 
-/*
+/**
  * --INFO--
  * Address:	80029C40
  * Size:	0000F8
+ * Clears a rectangular region of the buffer.
  */
-void JUTDirectPrint::erase(int, int, int, int)
+void JUTDirectPrint::erase(int x, int y, int width, int height)
 {
+	if (_00 == nullptr) {
+		return;
+	}
+	if (400 < m_pixelWidth) {
+		x <<= 1;
+		width <<= 1;
+	}
+	if (300 < m_pixelHeight) {
+		y <<= 1;
+		height <<= 1;
+	}
+	u16* buffer = m_glyphBuffer + m_width * y + x;
+	for (int i = 0; i < height; i++) {
+		for (int j = 0; j < width; j++) {
+			buffer[j] = 0x1080;
+		}
+		buffer += m_width - width;
+	}
 	/*
 	lwz      r0, 0(r3)
 	cmplwi   r0, 0
@@ -396,8 +468,13 @@ lbl_80029D2C:
  * Address:	80029D38
  * Size:	000254
  */
-void JUTDirectPrint::drawChar(int, int, int)
+void JUTDirectPrint::drawChar(int p1, int p2, int p3)
 {
+	int v1 = p3;
+	if (99 < p3) {
+		v1 = p3 - 100;
+	}
+	u32* fontData2 = sFontData2;
 	/*
 	stwu     r1, -0x20(r1)
 	lis      r7, sAsciiTable__14JUTDirectPrint@ha
@@ -606,23 +683,14 @@ lbl_80029F60:
  * Address:	80029F8C
  * Size:	000034
  */
-void JUTDirectPrint::changeFrameBuffer(void*, unsigned short, unsigned short)
+void JUTDirectPrint::changeFrameBuffer(void* buffer, unsigned short pixelWidth, unsigned short pixelHeight)
 {
-	/*
-	stw      r4, 0(r3)
-	addi     r0, r5, 0xf
-	rlwinm   r0, r0, 0, 0x10, 0x1b
-	stw      r4, 0x14(r3)
-	sth      r5, 4(r3)
-	sth      r6, 6(r3)
-	sth      r0, 8(r3)
-	lhz      r4, 8(r3)
-	lhz      r0, 6(r3)
-	mullw    r0, r4, r0
-	slwi     r0, r0, 1
-	stw      r0, 0xc(r3)
-	blr
-	*/
+	_00           = buffer;
+	m_glyphBuffer = (u16*)buffer;
+	m_pixelWidth  = pixelWidth;
+	m_pixelHeight = pixelHeight;
+	m_width       = ALIGN_NEXT(pixelWidth, 0x10);
+	_0C           = m_width * m_pixelHeight * sizeof(u16);
 }
 
 /*
@@ -650,29 +718,14 @@ void JUTDirectPrint::changeFrameBuffer(void*, unsigned short, unsigned short)
  * Address:	80029FC0
  * Size:	00002C
  */
-void JUTDirectPrint::drawString(unsigned short, unsigned short, char*)
-{
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	mr       r7, r6
-	addi     r6, r2, lbl_805165B0@sda21
-	stw      r0, 0x14(r1)
-	crclr    6
-	bl       drawString_f__14JUTDirectPrintFUsUsPCce
-	lwz      r0, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
-}
+void JUTDirectPrint::drawString(unsigned short x, unsigned short y, char* str) { drawString_f(x, y, "%s", str); }
 
 /*
  * --INFO--
  * Address:	80029FEC
  * Size:	000174
  */
-void JUTDirectPrint::drawString_f(unsigned short, unsigned short, const char*, ...)
+void JUTDirectPrint::drawString_f(unsigned short x, unsigned short y, const char* format, ...)
 {
 	/*
 	.loc_0x0:
@@ -795,28 +848,13 @@ void JUTDirectPrint::drawString_f(unsigned short, unsigned short, const char*, .
  * Address:	8002A160
  * Size:	000030
  */
-void JUTDirectPrint::setCharColor(JUtility::TColor)
-{
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	mr       r6, r4
-	lbz      r4, 0(r4)
-	lbz      r5, 1(r6)
-	stw      r0, 0x14(r1)
-	lbz      r6, 2(r6)
-	bl       setCharColor__14JUTDirectPrintFUcUcUc
-	lwz      r0, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
-}
+void JUTDirectPrint::setCharColor(JUtility::TColor color) { setCharColor(color.r, color.g, color.b); }
 
 /*
  * --INFO--
  * Address:	8002A190
  * Size:	00017C
+ * UcUcUc
  */
 void JUTDirectPrint::setCharColor(unsigned char, unsigned char, unsigned char)
 {

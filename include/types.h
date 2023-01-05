@@ -56,6 +56,9 @@ typedef u32 unknown;
 // Align X to the next N bytes (N must be power of two)
 #define ALIGN_NEXT(X, N) ALIGN_PREV(((X) + (N)-1), N)
 
+// True if X is aligned to N bytes, else false
+#define IS_ALIGNED(X, N) ((X & ((N)-1)) == 0)
+
 // Align object to num bytes (num should be power of two)
 #define ATTRIBUTE_ALIGN(num) __attribute__((aligned(num)))
 

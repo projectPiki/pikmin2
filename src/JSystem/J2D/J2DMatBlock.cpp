@@ -5,7 +5,9 @@
 #include "JSystem/J2D/J2DPEBlock.h"
 #include "JSystem/J2D/J2DTevBlock.h"
 #include "JSystem/J2D/J2DTexGenBlock.h"
+#include "JSystem/J2D/J2DTexMtx.h"
 #include "JSystem/J2D/J2DTypes.h"
+#include "JSystem/J3D/J3DTypes.h"
 #include "JSystem/JUT/JUTFont.h"
 #include "JSystem/JUT/JUTPalette.h"
 #include "JSystem/JUT/JUTTexture.h"
@@ -365,12 +367,17 @@
  */
 void J2DColorBlock::initialize()
 {
-	JUtility::TColor colInfo  = j2dDefaultColInfo;
+	u32 colInfo               = j2dDefaultColInfo;
 	J2DColorChanInfo chanInfo = j2dDefaultColorChanInfo;
-	m_colors[0]               = colInfo;
-	m_colors[1]               = colInfo;
-	m_channelCount            = 2;
+	for (int i = 0; i < 2; i++) {
+		// m_colors[i] = j2dDefaultColInfo;
+		m_colors[i] = colInfo;
+	}
+	// m_colors[0]    = colInfo;
+	// m_colors[1]    = colInfo;
+	m_channelCount = 2;
 	for (int i = 0; i < 4; i++) {
+		// m_channels[i].m_data = j2dDefaultColorChanInfo._01;
 		m_channels[i].m_data = chanInfo._01;
 	}
 	m_cullMode = GX_CULL_NONE;
@@ -503,71 +510,19 @@ lbl_80049C88:
  * --INFO--
  * Address:	80049CC0
  * Size:	0000F0
+ * initialize__14J2DTexGenBlockFv
  */
 void J2DTexGenBlock::initialize()
 {
-	/*
-	li       r5, 0
-	lis      r4, j2dDefaultTexCoordInfo@ha
-	stw      r5, 0(r3)
-	lbzu     r0, j2dDefaultTexCoordInfo@l(r4)
-	stb      r0, 4(r3)
-	lbz      r0, 1(r4)
-	stb      r0, 5(r3)
-	lbz      r0, 2(r4)
-	stb      r0, 6(r3)
-	lbz      r0, 0(r4)
-	stb      r0, 8(r3)
-	lbz      r0, 1(r4)
-	stb      r0, 9(r3)
-	lbz      r0, 2(r4)
-	stb      r0, 0xa(r3)
-	lbz      r0, 0(r4)
-	stb      r0, 0xc(r3)
-	lbz      r0, 1(r4)
-	stb      r0, 0xd(r3)
-	lbz      r0, 2(r4)
-	stb      r0, 0xe(r3)
-	lbz      r0, 0(r4)
-	stb      r0, 0x10(r3)
-	lbz      r0, 1(r4)
-	stb      r0, 0x11(r3)
-	lbz      r0, 2(r4)
-	stb      r0, 0x12(r3)
-	lbz      r0, 0(r4)
-	stb      r0, 0x14(r3)
-	lbz      r0, 1(r4)
-	stb      r0, 0x15(r3)
-	lbz      r0, 2(r4)
-	stb      r0, 0x16(r3)
-	lbz      r0, 0(r4)
-	stb      r0, 0x18(r3)
-	lbz      r0, 1(r4)
-	stb      r0, 0x19(r3)
-	lbz      r0, 2(r4)
-	stb      r0, 0x1a(r3)
-	lbz      r0, 0(r4)
-	stb      r0, 0x1c(r3)
-	lbz      r0, 1(r4)
-	stb      r0, 0x1d(r3)
-	lbz      r0, 2(r4)
-	stb      r0, 0x1e(r3)
-	lbz      r0, 0(r4)
-	stb      r0, 0x20(r3)
-	lbz      r0, 1(r4)
-	stb      r0, 0x21(r3)
-	lbz      r0, 2(r4)
-	stb      r0, 0x22(r3)
-	stw      r5, 0x24(r3)
-	stw      r5, 0x28(r3)
-	stw      r5, 0x2c(r3)
-	stw      r5, 0x30(r3)
-	stw      r5, 0x34(r3)
-	stw      r5, 0x38(r3)
-	stw      r5, 0x3c(r3)
-	stw      r5, 0x40(r3)
-	blr
-	*/
+	m_texGenNum = 0;
+	for (int i = 0; i < 8; i++) {
+		m_texCoords[i]._00 = j2dDefaultTexCoordInfo[0]._00;
+		m_texCoords[i]._01 = j2dDefaultTexCoordInfo[0]._01;
+		m_texCoords[i]._02 = j2dDefaultTexCoordInfo[0]._02;
+	}
+	for (int i = 0; i < 8; i++) {
+		m_texMtxes[i] = nullptr;
+	}
 }
 
 /*
@@ -577,116 +532,29 @@ void J2DTexGenBlock::initialize()
  */
 void J2DTexGenBlock::setGX()
 {
-	/*
-	stwu     r1, -0x20(r1)
-	mflr     r0
-	stw      r0, 0x24(r1)
-	stw      r31, 0x1c(r1)
-	stw      r30, 0x18(r1)
-	stw      r29, 0x14(r1)
-	mr       r29, r3
-	lwz      r0, 0(r3)
-	clrlwi   r3, r0, 0x18
-	bl       GXSetNumTexGens
-	mr       r31, r29
-	li       r30, 0
-	b        lbl_80049E08
-
-lbl_80049DE4:
-	lbz      r4, 4(r31)
-	mr       r3, r30
-	lbz      r5, 5(r31)
-	li       r7, 0
-	lbz      r6, 6(r31)
-	li       r8, 0x7d
-	bl       GXSetTexCoordGen2
-	addi     r31, r31, 4
-	addi     r30, r30, 1
-
-lbl_80049E08:
-	lwz      r0, 0(r29)
-	cmplw    r30, r0
-	blt      lbl_80049DE4
-	li       r30, 0
-	b        lbl_80049E3C
-
-lbl_80049E1C:
-	rlwinm   r3, r30, 2, 0x16, 0x1d
-	clrlwi   r4, r30, 0x18
-	addi     r0, r3, 0x24
-	lwzx     r3, r29, r0
-	cmplwi   r3, 0
-	beq      lbl_80049E38
-	bl       load__9J2DTexMtxFUl
-
-lbl_80049E38:
-	addi     r30, r30, 1
-
-lbl_80049E3C:
-	clrlwi   r0, r30, 0x18
-	cmplwi   r0, 8
-	blt      lbl_80049E1C
-	lwz      r0, 0x24(r1)
-	lwz      r31, 0x1c(r1)
-	lwz      r30, 0x18(r1)
-	lwz      r29, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x20
-	blr
-	*/
+	GXSetNumTexGens(m_texGenNum);
+	for (int i = 0; i < m_texGenNum; i++) {
+		GXSetTexCoordGen2((GXTexCoordID)i, (GXTexGenType)m_texCoords[i]._00, (GXTexGenSrc)m_texCoords[i]._01, m_texCoords[i]._02, GX_FALSE,
+		                  0x7D);
+	}
+	for (u8 i = 0; i < 8; i++) {
+		if (m_texMtxes[i] != nullptr) {
+			m_texMtxes[i]->load(i);
+		}
+	}
 }
 
 /*
  * --INFO--
  * Address:	80049E64
  * Size:	000090
+ * __dt__14J2DTexGenBlockFv
  */
 J2DTexGenBlock::~J2DTexGenBlock()
 {
-	/*
-	stwu     r1, -0x20(r1)
-	mflr     r0
-	stw      r0, 0x24(r1)
-	stw      r31, 0x1c(r1)
-	stw      r30, 0x18(r1)
-	stw      r29, 0x14(r1)
-	mr       r29, r4
-	stw      r28, 0x10(r1)
-	or.      r28, r3, r3
-	beq      lbl_80049ED0
-	lis      r3, __vt__14J2DTexGenBlock@ha
-	mr       r31, r28
-	addi     r0, r3, __vt__14J2DTexGenBlock@l
-	li       r30, 0
-	stw      r0, 0x44(r28)
-
-lbl_80049EA0:
-	lwz      r3, 0x24(r31)
-	cmplwi   r3, 0
-	beq      lbl_80049EB0
-	bl       __dl__FPv
-
-lbl_80049EB0:
-	addi     r30, r30, 1
-	addi     r31, r31, 4
-	cmpwi    r30, 8
-	blt      lbl_80049EA0
-	extsh.   r0, r29
-	ble      lbl_80049ED0
-	mr       r3, r28
-	bl       __dl__FPv
-
-lbl_80049ED0:
-	lwz      r0, 0x24(r1)
-	mr       r3, r28
-	lwz      r31, 0x1c(r1)
-	lwz      r30, 0x18(r1)
-	lwz      r29, 0x14(r1)
-	lwz      r28, 0x10(r1)
-	mtlr     r0
-	addi     r1, r1, 0x20
-	blr
-	*/
+	for (int i = 0; i < 8; i++) {
+		delete m_texMtxes[i];
+	}
 }
 
 /*
@@ -694,8 +562,17 @@ lbl_80049ED0:
  * Address:	80049EF4
  * Size:	000158
  */
-void J2DTexGenBlock::setTexMtx(unsigned long, J2DTexMtx&)
+void J2DTexGenBlock::setTexMtx(unsigned long index, J2DTexMtx& mtx)
 {
+	if (m_texMtxes[index] == nullptr) {
+		m_texMtxes[index] = new J2DTexMtx(&mtx.m_info);
+		if (m_texMtxes[index] == nullptr) {
+			return;
+		}
+	} else {
+		m_texMtxes[index]->m_info = mtx.m_info;
+	}
+	m_texMtxes[index]->calc();
 	/*
 	stwu     r1, -0x40(r1)
 	mflr     r0
@@ -799,7 +676,7 @@ lbl_8004A034:
  * Address:	8004A04C
  * Size:	0000B8
  */
-void J2DTexGenBlock::getTexMtx(unsigned long, J2DTexMtx&)
+void J2DTexGenBlock::getTexMtx(unsigned long index, J2DTexMtx& texMtx)
 {
 	/*
 	slwi     r0, r4, 2
@@ -858,14 +735,14 @@ lbl_8004A0FC:
  * Address:	8004A104
  * Size:	000008
  */
-JUTTexture* J2DTevBlock::getTexture(unsigned long) { return 0x0; }
+JUTTexture* J2DTevBlock::getTexture(unsigned long index) { return 0x0; }
 
 /*
  * --INFO--
  * Address:	8004A10C
  * Size:	000008
  */
-JUTPalette* J2DTevBlock::getPalette(unsigned long) { return 0x0; }
+JUTPalette* J2DTevBlock::getPalette(unsigned long index) { return 0x0; }
 
 /*
  * --INFO--
@@ -891,6 +768,7 @@ J2DTevBlock1::J2DTevBlock1()
  * --INFO--
  * Address:	8004A220
  * Size:	000094
+ * __ct__14J2DIndTevStageFv
  */
 J2DIndTevStage::J2DIndTevStage()
 {
@@ -939,6 +817,7 @@ J2DIndTevStage::J2DIndTevStage()
  * --INFO--
  * Address:	8004A2B4
  * Size:	00000C
+ * __ct__19J2DTevSwapModeTableFv
  */
 J2DTevSwapModeTable::J2DTevSwapModeTable()
 {
@@ -953,6 +832,7 @@ J2DTevSwapModeTable::J2DTevSwapModeTable()
  * --INFO--
  * Address:	8004A2C0
  * Size:	000004
+ * __ct__13J2DGXColorS10Fv
  */
 // J2DGXColorS10::J2DGXColorS10() { }
 
@@ -960,124 +840,94 @@ J2DTevSwapModeTable::J2DTevSwapModeTable()
  * --INFO--
  * Address:	8004A2C4
  * Size:	000020
+ * __ct__11J2DTevOrderFv
  */
-J2DTevOrder::J2DTevOrder()
-{
-	/*
-	lbz      r0, j2dDefaultTevOrderInfoNull@sda21(r2)
-	addi     r4, r2, j2dDefaultTevOrderInfoNull@sda21
-	stb      r0, 0(r3)
-	lbz      r0, 1(r4)
-	stb      r0, 1(r3)
-	lbz      r0, 2(r4)
-	stb      r0, 2(r3)
-	blr
-	*/
-}
+// J2DTevOrder::J2DTevOrder()
+// {
+// 	_00 = j2dDefaultTevOrderInfoNull._00;
+// 	_01 = j2dDefaultTevOrderInfoNull._01;
+// 	_02 = j2dDefaultTevOrderInfoNull._02;
+// }
 
 /*
  * --INFO--
  * Address:	8004A2E4
  * Size:	000048
+ * __dt__11J2DTevBlockFv
  */
-J2DTevBlock::~J2DTevBlock()
-{
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	or.      r31, r3, r3
-	beq      lbl_8004A314
-	lis      r5, __vt__11J2DTevBlock@ha
-	extsh.   r0, r4
-	addi     r0, r5, __vt__11J2DTevBlock@l
-	stw      r0, 0(r31)
-	ble      lbl_8004A314
-	bl       __dl__FPv
-
-lbl_8004A314:
-	lwz      r0, 0x14(r1)
-	mr       r3, r31
-	lwz      r31, 0xc(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
-}
+// J2DTevBlock::~J2DTevBlock() { }
 
 /*
  * --INFO--
  * Address:	8004A32C
  * Size:	0000B8
+ * __dt__12J2DTevBlock1Fv
  */
 J2DTevBlock1::~J2DTevBlock1()
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	mr       r31, r4
-	stw      r30, 8(r1)
-	or.      r30, r3, r3
-	beq      lbl_8004A3C8
-	lis      r3, __vt__12J2DTevBlock1@ha
-	addi     r0, r3, __vt__12J2DTevBlock1@l
-	stw      r0, 0(r30)
-	lbz      r0, 0x5c(r30)
-	clrlwi.  r0, r0, 0x1f
-	beq      lbl_8004A370
-	lwz      r3, 0x50(r30)
-	li       r4, 1
-	bl       __dt__10JUTTextureFv
-
-lbl_8004A370:
-	lwz      r3, 0x54(r30)
-	bl       __dl__FPv
-	lbz      r0, 0x5c(r30)
-	rlwinm.  r0, r0, 0, 0x18, 0x18
-	beq      lbl_8004A3A4
-	lwz      r3, 0x58(r30)
-	cmplwi   r3, 0
-	beq      lbl_8004A3A4
-	lwz      r12, 0(r3)
-	li       r4, 1
-	lwz      r12, 8(r12)
-	mtctr    r12
-	bctrl
-
-lbl_8004A3A4:
-	cmplwi   r30, 0
-	beq      lbl_8004A3B8
-	lis      r3, __vt__11J2DTevBlock@ha
-	addi     r0, r3, __vt__11J2DTevBlock@l
-	stw      r0, 0(r30)
-
-lbl_8004A3B8:
-	extsh.   r0, r31
-	ble      lbl_8004A3C8
-	mr       r3, r30
-	bl       __dl__FPv
-
-lbl_8004A3C8:
-	lwz      r0, 0x14(r1)
-	mr       r3, r30
-	lwz      r31, 0xc(r1)
-	lwz      r30, 8(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	if ((_5C & 0x01) != 0) {
+		delete m_textures[0];
+	}
+	delete m_palettes[0];
+	if ((_5C & 0x80) != 0) {
+		delete m_font;
+	}
 }
 
 /*
  * --INFO--
  * Address:	8004A3E4
  * Size:	000278
+ * initialize__12J2DTevBlock1Fv
  */
 void J2DTevBlock1::initialize()
 {
+	J2DGXColorS10 tevColor     = j2dDefaultTevColor;
+	JUtility::TColor tevKColor = j2dDefaultTevKColor;
+	J2DTevOrderInfo* orderInfo = &j2dDefaultTevOrderInfoNull;
+	for (int i = 0; i < 1; i++) {
+		m_texIndices[i] = 0xFFFF;
+	}
+	m_fontNo = 0xFFFF;
+	for (int i = 0; i < 1; i++) {
+		m_orders[i] = *orderInfo;
+	}
+	for (int i = 0; i < 4; i++) {
+		m_colors[i] = tevColor;
+	}
+	for (int i = 0; i < 1; i++) {
+		m_stages[i]._00            = 0xC0 + i * 2;
+		m_stages[i]._04.asBytes[0] = 0xC1 + i * 2;
+	}
+	for (int i = 0; i < 4; i++) {
+		m_kColors[i] = tevColor;
+	}
+	for (int i = 0; i < 1; i++) {
+		m_kColorSels[i] = 0xFF;
+		m_kAlphaSels[i] = 0xFF;
+	}
+	for (int i = 0; i < 4; i++) {
+		// m_swapModeTables[i].m_data = j2dDefaultTevSwapModeTable[0] * 0x40 + j2dDefaultTevSwapModeTable[1] * 0x10
+		//                    + j2dDefaultTevSwapModeTable[2] * 0x04 + j2dDefaultTevSwapModeTable[3];
+
+		// m_swapModeTables[i]._0 = j2dDefaultTevSwapModeTable[3];
+		// m_swapModeTables[i]._2 = j2dDefaultTevSwapModeTable[2];
+		// m_swapModeTables[i]._4 = j2dDefaultTevSwapModeTable[1];
+		// m_swapModeTables[i]._6 = j2dDefaultTevSwapModeTable[0];
+		m_swapModeTables[i] = J2DTevSwapModeTable(j2dDefaultTevSwapModeTable[3], j2dDefaultTevSwapModeTable[2],
+		                                          j2dDefaultTevSwapModeTable[1], j2dDefaultTevSwapModeTable[0]);
+		// m_swapModeTables[i]._0[0]._00 = j2dDefaultTevSwapModeTable[0];
+		// m_swapModeTables[i]._0[1]._00 = j2dDefaultTevSwapModeTable[1];
+		// m_swapModeTables[i]._0[2]._00 = j2dDefaultTevSwapModeTable[2];
+		// m_swapModeTables[i]._0[3]._00 = j2dDefaultTevSwapModeTable[3];
+	}
+	for (int i = 0; i < 1; i++) {
+		m_textures[i] = nullptr;
+	}
+	for (int i = 0; i < 1; i++) {
+		m_palettes[i] = nullptr;
+	}
+	m_font = nullptr;
 	/*
 	stwu     r1, -0x30(r1)
 	addi     r6, r2, j2dDefaultTevColor@sda21
@@ -1247,73 +1097,26 @@ lbl_8004A48C:
  * Address:	8004A65C
  * Size:	0000BC
  */
-bool J2DTevBlock1::prepareTexture(unsigned char)
+bool J2DTevBlock1::prepareTexture(unsigned char count)
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	clrlwi.  r0, r4, 0x18
-	stw      r31, 0xc(r1)
-	mr       r31, r4
-	stw      r30, 8(r1)
-	mr       r30, r3
-	bne      lbl_8004A688
-	li       r3, 1
-	b        lbl_8004A700
-
-lbl_8004A688:
-	lwz      r0, 0x50(r30)
-	cmplwi   r0, 0
-	bne      lbl_8004A6E4
-	li       r3, 0x40
-	bl       __nw__FUl
-	cmplwi   r3, 0
-	beq      lbl_8004A6BC
-	lbz      r4, 0x3b(r3)
-	li       r0, 0
-	rlwinm   r4, r4, 0, 0x1e, 0x1e
-	stb      r4, 0x3b(r3)
-	stw      r0, 0x28(r3)
-	stw      r0, 0x20(r3)
-
-lbl_8004A6BC:
-	stw      r3, 0x50(r30)
-	lwz      r0, 0x50(r30)
-	cmplwi   r0, 0
-	bne      lbl_8004A6D4
-	li       r3, 0
-	b        lbl_8004A700
-
-lbl_8004A6D4:
-	lbz      r0, 0x5c(r30)
-	rlwinm   r0, r0, 0, 0x18, 0x18
-	ori      r0, r0, 1
-	stb      r0, 0x5c(r30)
-
-lbl_8004A6E4:
-	clrlwi   r4, r31, 0x18
-	li       r3, 1
-	subfic   r0, r4, 1
-	orc      r3, r3, r4
-	srwi     r0, r0, 1
-	subf     r0, r0, r3
-	srwi     r3, r0, 0x1f
-
-lbl_8004A700:
-	lwz      r0, 0x14(r1)
-	lwz      r31, 0xc(r1)
-	lwz      r30, 8(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	if (count == 0) {
+		return true;
+	}
+	if (m_textures[0] == nullptr) {
+		m_textures[0] = new JUTTexture();
+		if (m_textures[0] == nullptr) {
+			return false;
+		}
+		_5C = _5C & 0x80 | 1;
+	}
+	return count <= 1;
 }
 
 /*
  * --INFO--
  * Address:	8004A718
  * Size:	000134
+ * insertTexture__12J2DTevBlock1FUlPC7ResTIMGP10JUTPalette
  */
 bool J2DTevBlock1::insertTexture(unsigned long, const ResTIMG*, JUTPalette*)
 {
@@ -1420,6 +1223,7 @@ lbl_8004A82C:
  * --INFO--
  * Address:	8004A84C
  * Size:	0000A8
+ * insertTexture__12J2DTevBlock1FUlP10JUTTexture
  */
 bool J2DTevBlock1::insertTexture(unsigned long, JUTTexture*)
 {
@@ -1483,8 +1287,9 @@ lbl_8004A8DC:
  * --INFO--
  * Address:	8004A8F4
  * Size:	000198
+ * setTexture__12J2DTevBlock1FUlPC7ResTIMG
  */
-bool J2DTevBlock1::setTexture(unsigned long, const ResTIMG*)
+bool J2DTevBlock1::setTexture(unsigned long index, const ResTIMG* img)
 {
 	/*
 	stwu     r1, -0x20(r1)
@@ -1618,58 +1423,29 @@ lbl_8004AA70:
  * --INFO--
  * Address:	8004AA8C
  * Size:	00008C
+ * setTexture__12J2DTevBlock1FUlP10JUTTexture
  */
-bool J2DTevBlock1::setTexture(unsigned long, JUTTexture*)
+bool J2DTevBlock1::setTexture(unsigned long index, JUTTexture* texture)
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	cmplwi   r4, 0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	mr       r31, r5
-	stw      r30, 8(r1)
-	mr       r30, r3
-	beq      lbl_8004AAB8
-	li       r3, 0
-	b        lbl_8004AB00
-
-lbl_8004AAB8:
-	lbz      r0, 0x5c(r30)
-	clrlwi.  r0, r0, 0x1f
-	beq      lbl_8004AAD0
-	lwz      r3, 0x50(r30)
-	li       r4, 1
-	bl       __dt__10JUTTextureFv
-
-lbl_8004AAD0:
-	stw      r31, 0x50(r30)
-	lbz      r0, 0x5c(r30)
-	rlwinm   r0, r0, 0, 0x18, 0x18
-	stb      r0, 0x5c(r30)
-	lwz      r3, 0x54(r30)
-	bl       __dl__FPv
-	li       r0, 0
-	lis      r3, 0x0000FFFF@ha
-	stw      r0, 0x54(r30)
-	addi     r0, r3, 0x0000FFFF@l
-	li       r3, 1
-	sth      r0, 4(r30)
-
-lbl_8004AB00:
-	lwz      r0, 0x14(r1)
-	lwz      r31, 0xc(r1)
-	lwz      r30, 8(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	if (index != 0) {
+		return false;
+	}
+	if ((_5C & 1) != 0) {
+		delete m_textures[0];
+	}
+	m_textures[0] = texture;
+	_5C &= 0x80;
+	delete m_palettes[0];
+	m_palettes[0]   = nullptr;
+	m_texIndices[0] = 0xFFFF;
+	return true;
 }
 
 /*
  * --INFO--
  * Address:	8004AB18
  * Size:	00007C
+ * removeTexture__12J2DTevBlock1FUl
  */
 bool J2DTevBlock1::removeTexture(unsigned long)
 {
@@ -1718,213 +1494,87 @@ lbl_8004AB80:
  * --INFO--
  * Address:	8004AB94
  * Size:	0000BC
+ * setFont__12J2DTevBlock1FP7ResFONT
  */
-bool J2DTevBlock1::setFont(ResFONT*)
+bool J2DTevBlock1::setFont(ResFONT* font)
 {
-	/*
-	stwu     r1, -0x20(r1)
-	mflr     r0
-	stw      r0, 0x24(r1)
-	stw      r31, 0x1c(r1)
-	stw      r30, 0x18(r1)
-	or.      r30, r4, r4
-	stw      r29, 0x14(r1)
-	mr       r29, r3
-	bne      lbl_8004ABC0
-	li       r3, 0
-	b        lbl_8004AC34
-
-lbl_8004ABC0:
-	li       r3, 0x70
-	bl       __nw__FUl
-	or.      r31, r3, r3
-	beq      lbl_8004ABE0
-	mr       r4, r30
-	li       r5, 0
-	bl       __ct__10JUTResFontFPC7ResFONTP7JKRHeap
-	mr       r31, r3
-
-lbl_8004ABE0:
-	cmplwi   r31, 0
-	bne      lbl_8004ABF0
-	li       r3, 0
-	b        lbl_8004AC34
-
-lbl_8004ABF0:
-	lbz      r0, 0x5c(r29)
-	rlwinm.  r0, r0, 0, 0x18, 0x18
-	beq      lbl_8004AC1C
-	lwz      r3, 0x58(r29)
-	cmplwi   r3, 0
-	beq      lbl_8004AC1C
-	lwz      r12, 0(r3)
-	li       r4, 1
-	lwz      r12, 8(r12)
-	mtctr    r12
-	bctrl
-
-lbl_8004AC1C:
-	stw      r31, 0x58(r29)
-	li       r3, 1
-	lbz      r0, 0x5c(r29)
-	clrlwi   r0, r0, 0x19
-	ori      r0, r0, 0x80
-	stb      r0, 0x5c(r29)
-
-lbl_8004AC34:
-	lwz      r0, 0x24(r1)
-	lwz      r31, 0x1c(r1)
-	lwz      r30, 0x18(r1)
-	lwz      r29, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x20
-	blr
-	*/
+	if (font == nullptr) {
+		return false;
+	}
+	JUTResFont* jutFont = new JUTResFont(font, nullptr);
+	if (jutFont == nullptr) {
+		return false;
+	}
+	if ((_5C & 0x80) != 0) {
+		delete m_font;
+	}
+	m_font = jutFont;
+	_5C    = _5C & 0x7F | 0x80;
+	return true;
 }
 
 /*
  * --INFO--
  * Address:	8004AC50
  * Size:	000080
+ * setFont__12J2DTevBlock1FP7JUTFont
  */
-bool J2DTevBlock1::setFont(JUTFont*)
+bool J2DTevBlock1::setFont(JUTFont* font)
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	or.      r31, r4, r4
-	stw      r30, 8(r1)
-	mr       r30, r3
-	bne      lbl_8004AC78
-	li       r3, 0
-	b        lbl_8004ACB8
-
-lbl_8004AC78:
-	lbz      r0, 0x5c(r30)
-	rlwinm.  r0, r0, 0, 0x18, 0x18
-	beq      lbl_8004ACA4
-	lwz      r3, 0x58(r30)
-	cmplwi   r3, 0
-	beq      lbl_8004ACA4
-	lwz      r12, 0(r3)
-	li       r4, 1
-	lwz      r12, 8(r12)
-	mtctr    r12
-	bctrl
-
-lbl_8004ACA4:
-	stw      r31, 0x58(r30)
-	li       r3, 1
-	lbz      r0, 0x5c(r30)
-	clrlwi   r0, r0, 0x19
-	stb      r0, 0x5c(r30)
-
-lbl_8004ACB8:
-	lwz      r0, 0x14(r1)
-	lwz      r31, 0xc(r1)
-	lwz      r30, 8(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	if (font == nullptr) {
+		return false;
+	}
+	if ((_5C & 0x80) != 0) {
+		delete m_font;
+	}
+	m_font = static_cast<JUTResFont*>(font);
+	_5C &= 0x7F;
+	return true;
 }
 
 /*
  * --INFO--
  * Address:	8004ACD0
  * Size:	0000C8
+ * setPalette__12J2DTevBlock1FUlPC7ResTLUT
  */
-bool J2DTevBlock1::setPalette(unsigned long, const ResTLUT*)
+bool J2DTevBlock1::setPalette(unsigned long index, const ResTLUT* lut)
 {
-	/*
-	stwu     r1, -0x20(r1)
-	mflr     r0
-	cmplwi   r4, 0
-	stw      r0, 0x24(r1)
-	stw      r31, 0x1c(r1)
-	stw      r30, 0x18(r1)
-	mr       r30, r5
-	stw      r29, 0x14(r1)
-	mr       r29, r3
-	beq      lbl_8004AD00
-	li       r3, 0
-	b        lbl_8004AD7C
-
-lbl_8004AD00:
-	cmplwi   r30, 0
-	beq      lbl_8004AD68
-	lwz      r3, 0x54(r29)
-	cmplwi   r3, 0
-	bne      lbl_8004AD48
-	li       r3, 0x18
-	bl       __nw__FUl
-	or.      r31, r3, r3
-	beq      lbl_8004AD30
-	mr       r5, r30
-	li       r4, 0
-	bl       storeTLUT__10JUTPaletteF7_GXTlutP7ResTLUT
-
-lbl_8004AD30:
-	stw      r31, 0x54(r29)
-	lwz      r0, 0x54(r29)
-	cmplwi   r0, 0
-	bne      lbl_8004AD50
-	li       r3, 0
-	b        lbl_8004AD7C
-
-lbl_8004AD48:
-	li       r4, 0
-	bl       storeTLUT__10JUTPaletteF7_GXTlutP7ResTLUT
-
-lbl_8004AD50:
-	lwz      r3, 0x50(r29)
-	cmplwi   r3, 0
-	beq      lbl_8004AD78
-	lwz      r4, 0x54(r29)
-	bl       attachPalette__10JUTTextureFP10JUTPalette
-	b        lbl_8004AD78
-
-lbl_8004AD68:
-	lwz      r3, 0x54(r29)
-	bl       __dl__FPv
-	li       r0, 0
-	stw      r0, 0x54(r29)
-
-lbl_8004AD78:
-	li       r3, 1
-
-lbl_8004AD7C:
-	lwz      r0, 0x24(r1)
-	lwz      r31, 0x1c(r1)
-	lwz      r30, 0x18(r1)
-	lwz      r29, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x20
-	blr
-	*/
+	if (index != 0) {
+		return false;
+	}
+	if (lut != nullptr) {
+		if (m_palettes[0] == nullptr) {
+			m_palettes[0] = new JUTPalette(0, const_cast<ResTLUT*>(lut));
+			if (m_palettes[0] == nullptr) {
+				return false;
+			}
+		} else {
+			m_palettes[0]->storeTLUT(GX_TLUT0, const_cast<ResTLUT*>(lut));
+		}
+		if (m_textures[0] != nullptr) {
+			m_textures[0]->attachPalette(m_palettes[0]);
+		}
+	} else {
+		delete m_palettes[0];
+		m_palettes[0] = nullptr;
+	}
+	return true;
 }
 
 /*
  * --INFO--
  * Address:	8004AD98
  * Size:	000010
+ * shiftDeleteFlag__12J2DTevBlock1FUcb
  */
-void J2DTevBlock1::shiftDeleteFlag(unsigned char, bool)
-{
-	/*
-	lbz      r0, 0x5c(r3)
-	rlwinm   r0, r0, 0, 0x18, 0x18
-	stb      r0, 0x5c(r3)
-	blr
-	*/
-}
+void J2DTevBlock1::shiftDeleteFlag(unsigned char flag, bool direction) { _5C = _5C & 0x80; }
 
 /*
  * --INFO--
  * Address:	8004ADA8
  * Size:	00024C
+ * setGX__12J2DTevBlock1Fv
  */
 void J2DTevBlock1::setGX()
 {
@@ -2099,191 +1749,63 @@ lbl_8004AF9C:
  * --INFO--
  * Address:	8004AFF4
  * Size:	000048
+ * loadTexture__12J2DTevBlock1F11_GXTexMapIDUl
  */
-void J2DTevBlock1::loadTexture(_GXTexMapID, unsigned long)
+void J2DTevBlock1::loadTexture(_GXTexMapID id, unsigned long index)
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	cmplwi   r5, 0
-	stw      r0, 0x14(r1)
-	bne      lbl_8004B02C
-	slwi     r0, r5, 2
-	add      r3, r3, r0
-	lwz      r3, 0x50(r3)
-	cmplwi   r3, 0
-	beq      lbl_8004B02C
-	lwz      r0, 0x20(r3)
-	cmplwi   r0, 0
-	beq      lbl_8004B02C
-	bl       load__10JUTTextureF11_GXTexMapID
-
-lbl_8004B02C:
-	lwz      r0, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	if (index == 0 && m_textures[index] != nullptr && m_textures[index]->_20 != nullptr) {
+		m_textures[index]->load(id);
+	}
 }
 
 /*
  * --INFO--
  * Address:	8004B03C
  * Size:	000110
+ * __ct__12J2DTevBlock2Fv
  */
 J2DTevBlock2::J2DTevBlock2()
+    : J2DTevBlock()
+    , m_orders()
+    , m_colors()
+    , m_stages()
+    , m_kColors()
+    , m_swapModeTables()
+    , m_indStages()
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	lis      r4, __vt__11J2DTevBlock@ha
-	li       r5, 0
-	stw      r0, 0x14(r1)
-	addi     r0, r4, __vt__11J2DTevBlock@l
-	lis      r4, __ct__11J2DTevOrderFv@ha
-	li       r6, 4
-	stw      r31, 0xc(r1)
-	mr       r31, r3
-	lis      r3, __vt__12J2DTevBlock2@ha
-	addi     r4, r4, __ct__11J2DTevOrderFv@l
-	stw      r0, 0(r31)
-	addi     r0, r3, __vt__12J2DTevBlock2@l
-	addi     r3, r31, 0xa
-	li       r7, 2
-	stw      r0, 0(r31)
-	bl       __construct_array
-	lis      r4, __ct__13J2DGXColorS10Fv@ha
-	addi     r3, r31, 0x12
-	addi     r4, r4, __ct__13J2DGXColorS10Fv@l
-	li       r5, 0
-	li       r6, 8
-	li       r7, 4
-	bl       __construct_array
-	lis      r4, __ct__11J2DTevStageFv@ha
-	addi     r3, r31, 0x33
-	addi     r4, r4, __ct__11J2DTevStageFv@l
-	li       r5, 0
-	li       r6, 8
-	li       r7, 2
-	bl       __construct_array
-	lis      r4, __ct__Q28JUtility6TColorFv@ha
-	addi     r3, r31, 0x44
-	addi     r4, r4, __ct__Q28JUtility6TColorFv@l
-	li       r5, 0
-	li       r6, 4
-	li       r7, 4
-	bl       __construct_array
-	lis      r4, __ct__19J2DTevSwapModeTableFv@ha
-	addi     r3, r31, 0x58
-	addi     r4, r4, __ct__19J2DTevSwapModeTableFv@l
-	li       r5, 0
-	li       r6, 1
-	li       r7, 4
-	bl       __construct_array
-	lis      r4, __ct__14J2DIndTevStageFv@ha
-	addi     r3, r31, 0x5c
-	addi     r4, r4, __ct__14J2DIndTevStageFv@l
-	li       r5, 0
-	li       r6, 4
-	li       r7, 2
-	bl       __construct_array
-	li       r0, 0
-	mr       r3, r31
-	stw      r0, 0x64(r31)
-	stw      r0, 0x68(r31)
-	stb      r0, 0x78(r31)
-	lwz      r12, 0(r31)
-	lwz      r12, 8(r12)
-	mtctr    r12
-	bctrl
-	lwz      r0, 0x14(r1)
-	mr       r3, r31
-	lwz      r31, 0xc(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	for (int i = 0; i < 2; i++) {
+		m_textures[i] = nullptr;
+	}
+	_78 = 0;
+	initialize();
 }
 
 /*
  * --INFO--
  * Address:	8004B14C
  * Size:	0000D8
+ * __dt__12J2DTevBlock2Fv
  */
 J2DTevBlock2::~J2DTevBlock2()
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	mr       r31, r4
-	stw      r30, 8(r1)
-	or.      r30, r3, r3
-	beq      lbl_8004B208
-	lis      r3, __vt__12J2DTevBlock2@ha
-	addi     r0, r3, __vt__12J2DTevBlock2@l
-	stw      r0, 0(r30)
-	lbz      r0, 0x78(r30)
-	clrlwi.  r0, r0, 0x1f
-	beq      lbl_8004B190
-	lwz      r3, 0x64(r30)
-	li       r4, 1
-	bl       __dt__10JUTTextureFv
-
-lbl_8004B190:
-	lbz      r0, 0x78(r30)
-	rlwinm.  r0, r0, 0, 0x1e, 0x1e
-	beq      lbl_8004B1A8
-	lwz      r3, 0x68(r30)
-	li       r4, 1
-	bl       __dt__10JUTTextureFv
-
-lbl_8004B1A8:
-	lwz      r3, 0x6c(r30)
-	bl       __dl__FPv
-	lwz      r3, 0x70(r30)
-	bl       __dl__FPv
-	lbz      r0, 0x78(r30)
-	rlwinm.  r0, r0, 0, 0x18, 0x18
-	beq      lbl_8004B1E4
-	lwz      r3, 0x74(r30)
-	cmplwi   r3, 0
-	beq      lbl_8004B1E4
-	lwz      r12, 0(r3)
-	li       r4, 1
-	lwz      r12, 8(r12)
-	mtctr    r12
-	bctrl
-
-lbl_8004B1E4:
-	cmplwi   r30, 0
-	beq      lbl_8004B1F8
-	lis      r3, __vt__11J2DTevBlock@ha
-	addi     r0, r3, __vt__11J2DTevBlock@l
-	stw      r0, 0(r30)
-
-lbl_8004B1F8:
-	extsh.   r0, r31
-	ble      lbl_8004B208
-	mr       r3, r30
-	bl       __dl__FPv
-
-lbl_8004B208:
-	lwz      r0, 0x14(r1)
-	mr       r3, r30
-	lwz      r31, 0xc(r1)
-	lwz      r30, 8(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	if ((_78 & 1) != 0) {
+		delete m_textures[0];
+	}
+	if ((_78 & 2) != 0) {
+		delete m_textures[1];
+	}
+	delete m_palettes[0];
+	delete m_palettes[1];
+	if ((_78 & 0x80) != 0) {
+		delete m_font;
+	}
 }
 
 /*
  * --INFO--
  * Address:	8004B224
  * Size:	000350
+ * initialize__12J2DTevBlock2Fv
  */
 void J2DTevBlock2::initialize()
 {
@@ -2509,87 +2031,30 @@ lbl_8004B30C:
  * --INFO--
  * Address:	8004B574
  * Size:	0000E0
+ * prepareTexture__12J2DTevBlock2FUc
  */
-bool J2DTevBlock2::prepareTexture(unsigned char)
+bool J2DTevBlock2::prepareTexture(unsigned char count)
 {
-	/*
-	stwu     r1, -0x20(r1)
-	mflr     r0
-	stw      r0, 0x24(r1)
-	stw      r31, 0x1c(r1)
-	clrlwi   r31, r4, 0x18
-	stw      r30, 0x18(r1)
-	stw      r29, 0x14(r1)
-	li       r29, 0
-	stw      r28, 0x10(r1)
-	mr       r28, r3
-	b        lbl_8004B624
-
-lbl_8004B5A0:
-	clrlwi   r0, r29, 0x18
-	cmplwi   r0, 2
-	blt      lbl_8004B5B4
-	li       r3, 0
-	b        lbl_8004B634
-
-lbl_8004B5B4:
-	rlwinm   r3, r29, 2, 0x16, 0x1d
-	addi     r30, r3, 0x64
-	lwzx     r0, r28, r30
-	cmplwi   r0, 0
-	bne      lbl_8004B620
-	li       r3, 0x40
-	bl       __nw__FUl
-	cmplwi   r3, 0
-	beq      lbl_8004B5F0
-	lbz      r4, 0x3b(r3)
-	li       r0, 0
-	rlwinm   r4, r4, 0, 0x1e, 0x1e
-	stb      r4, 0x3b(r3)
-	stw      r0, 0x28(r3)
-	stw      r0, 0x20(r3)
-
-lbl_8004B5F0:
-	stwx     r3, r28, r30
-	lwzx     r0, r28, r30
-	cmplwi   r0, 0
-	bne      lbl_8004B608
-	li       r3, 0
-	b        lbl_8004B634
-
-lbl_8004B608:
-	clrlwi   r0, r29, 0x18
-	li       r3, 1
-	lbz      r4, 0x78(r28)
-	slw      r0, r3, r0
-	or       r0, r4, r0
-	stb      r0, 0x78(r28)
-
-lbl_8004B620:
-	addi     r29, r29, 1
-
-lbl_8004B624:
-	clrlwi   r0, r29, 0x18
-	cmplw    r0, r31
-	blt      lbl_8004B5A0
-	li       r3, 1
-
-lbl_8004B634:
-	lwz      r0, 0x24(r1)
-	lwz      r31, 0x1c(r1)
-	lwz      r30, 0x18(r1)
-	lwz      r29, 0x14(r1)
-	lwz      r28, 0x10(r1)
-	mtlr     r0
-	addi     r1, r1, 0x20
-	blr
-	*/
+	for (u8 i = 0; i < count; i++) {
+		if (i >= 2) {
+			return false;
+		}
+		if (m_textures[i] == nullptr) {
+			m_textures[i] = new JUTTexture();
+			if (m_textures[i] == nullptr) {
+				return false;
+			}
+			_78 |= (1 << i);
+		}
+	}
+	return true;
 }
 
 /*
  * --INFO--
  * Address:	8004B654
  * Size:	0002CC
+ * insertTexture__12J2DTevBlock2FUlPC7ResTIMGP10JUTPalette
  */
 bool J2DTevBlock2::insertTexture(unsigned long, const ResTIMG*, JUTPalette*)
 {
@@ -2824,6 +2289,7 @@ lbl_8004B90C:
  * --INFO--
  * Address:	8004B920
  * Size:	000168
+ * insertTexture__12J2DTevBlock2FUlP10JUTTexture
  */
 bool J2DTevBlock2::insertTexture(unsigned long, JUTTexture*)
 {
@@ -2947,8 +2413,9 @@ lbl_8004BA6C:
  * --INFO--
  * Address:	8004BA88
  * Size:	00021C
+ * setTexture__12J2DTevBlock2FUlPC7ResTIMG
  */
-bool J2DTevBlock2::setTexture(unsigned long, const ResTIMG*)
+bool J2DTevBlock2::setTexture(unsigned long index, const ResTIMG* img)
 {
 	/*
 	stwu     r1, -0x30(r1)
@@ -3119,65 +2586,29 @@ lbl_8004BC90:
  * --INFO--
  * Address:	8004BCA4
  * Size:	0000A8
+ * setTexture__12J2DTevBlock2FUlP10JUTTexture
  */
-bool J2DTevBlock2::setTexture(unsigned long, JUTTexture*)
+bool J2DTevBlock2::setTexture(unsigned long index, JUTTexture* texture)
 {
-	/*
-	stwu     r1, -0x20(r1)
-	mflr     r0
-	stw      r0, 0x24(r1)
-	stmw     r27, 0xc(r1)
-	mr       r28, r4
-	cmplwi   r28, 2
-	mr       r27, r3
-	mr       r29, r5
-	blt      lbl_8004BCD0
-	li       r3, 0
-	b        lbl_8004BD38
-
-lbl_8004BCD0:
-	li       r0, 1
-	lbz      r3, 0x78(r27)
-	slw      r30, r0, r28
-	and.     r0, r3, r30
-	beq      lbl_8004BCF8
-	slwi     r0, r28, 2
-	li       r4, 1
-	add      r3, r27, r0
-	lwz      r3, 0x64(r3)
-	bl       __dt__10JUTTextureFv
-
-lbl_8004BCF8:
-	slwi     r0, r28, 2
-	add      r31, r27, r0
-	stw      r29, 0x64(r31)
-	lbz      r0, 0x78(r27)
-	andc     r0, r0, r30
-	stb      r0, 0x78(r27)
-	lwz      r3, 0x6c(r31)
-	bl       __dl__FPv
-	li       r4, 0
-	slwi     r0, r28, 1
-	lis      r3, 0x0000FFFF@ha
-	stw      r4, 0x6c(r31)
-	addi     r4, r3, 0x0000FFFF@l
-	add      r3, r27, r0
-	sth      r4, 4(r3)
-	li       r3, 1
-
-lbl_8004BD38:
-	lmw      r27, 0xc(r1)
-	lwz      r0, 0x24(r1)
-	mtlr     r0
-	addi     r1, r1, 0x20
-	blr
-	*/
+	if (index >= 2) {
+		return false;
+	}
+	if ((_78 & 1 << index) != 0) {
+		delete m_textures[index];
+	}
+	m_textures[index] = texture;
+	_78 &= ~(1 << index);
+	delete m_palettes[index];
+	m_palettes[index]   = nullptr;
+	m_texIndices[index] = 0xFFFF;
+	return true;
 }
 
 /*
  * --INFO--
  * Address:	8004BD4C
  * Size:	0000D4
+ * removeTexture__12J2DTevBlock2FUl
  */
 bool J2DTevBlock2::removeTexture(unsigned long)
 {
@@ -3250,249 +2681,98 @@ lbl_8004BE08:
  * --INFO--
  * Address:	8004BE20
  * Size:	0000BC
+ * setFont__12J2DTevBlock2FP7ResFONT
  */
-bool J2DTevBlock2::setFont(ResFONT*)
+bool J2DTevBlock2::setFont(ResFONT* font)
 {
-	/*
-	stwu     r1, -0x20(r1)
-	mflr     r0
-	stw      r0, 0x24(r1)
-	stw      r31, 0x1c(r1)
-	stw      r30, 0x18(r1)
-	or.      r30, r4, r4
-	stw      r29, 0x14(r1)
-	mr       r29, r3
-	bne      lbl_8004BE4C
-	li       r3, 0
-	b        lbl_8004BEC0
-
-lbl_8004BE4C:
-	li       r3, 0x70
-	bl       __nw__FUl
-	or.      r31, r3, r3
-	beq      lbl_8004BE6C
-	mr       r4, r30
-	li       r5, 0
-	bl       __ct__10JUTResFontFPC7ResFONTP7JKRHeap
-	mr       r31, r3
-
-lbl_8004BE6C:
-	cmplwi   r31, 0
-	bne      lbl_8004BE7C
-	li       r3, 0
-	b        lbl_8004BEC0
-
-lbl_8004BE7C:
-	lbz      r0, 0x78(r29)
-	rlwinm.  r0, r0, 0, 0x18, 0x18
-	beq      lbl_8004BEA8
-	lwz      r3, 0x74(r29)
-	cmplwi   r3, 0
-	beq      lbl_8004BEA8
-	lwz      r12, 0(r3)
-	li       r4, 1
-	lwz      r12, 8(r12)
-	mtctr    r12
-	bctrl
-
-lbl_8004BEA8:
-	stw      r31, 0x74(r29)
-	li       r3, 1
-	lbz      r0, 0x78(r29)
-	clrlwi   r0, r0, 0x19
-	ori      r0, r0, 0x80
-	stb      r0, 0x78(r29)
-
-lbl_8004BEC0:
-	lwz      r0, 0x24(r1)
-	lwz      r31, 0x1c(r1)
-	lwz      r30, 0x18(r1)
-	lwz      r29, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x20
-	blr
-	*/
+	if (font == nullptr) {
+		return false;
+	}
+	JUTResFont* jutFont = new JUTResFont(font, nullptr);
+	if (jutFont == nullptr) {
+		return false;
+	}
+	if ((_78 & 0x80) != 0) {
+		delete m_font;
+	}
+	m_font = jutFont;
+	_78    = _78 & 0x7F | 0x80;
+	return true;
 }
 
 /*
  * --INFO--
  * Address:	8004BEDC
  * Size:	000080
+ * setFont__12J2DTevBlock2FP7JUTFont
  */
-bool J2DTevBlock2::setFont(JUTFont*)
+bool J2DTevBlock2::setFont(JUTFont* font)
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	or.      r31, r4, r4
-	stw      r30, 8(r1)
-	mr       r30, r3
-	bne      lbl_8004BF04
-	li       r3, 0
-	b        lbl_8004BF44
-
-lbl_8004BF04:
-	lbz      r0, 0x78(r30)
-	rlwinm.  r0, r0, 0, 0x18, 0x18
-	beq      lbl_8004BF30
-	lwz      r3, 0x74(r30)
-	cmplwi   r3, 0
-	beq      lbl_8004BF30
-	lwz      r12, 0(r3)
-	li       r4, 1
-	lwz      r12, 8(r12)
-	mtctr    r12
-	bctrl
-
-lbl_8004BF30:
-	stw      r31, 0x74(r30)
-	li       r3, 1
-	lbz      r0, 0x78(r30)
-	clrlwi   r0, r0, 0x19
-	stb      r0, 0x78(r30)
-
-lbl_8004BF44:
-	lwz      r0, 0x14(r1)
-	lwz      r31, 0xc(r1)
-	lwz      r30, 8(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	if (font == nullptr) {
+		return false;
+	}
+	if ((_78 & 0x80) != 0) {
+		delete m_font;
+	}
+	m_font = static_cast<JUTResFont*>(font);
+	_78 &= 0x7F;
+	return true;
 }
 
 /*
  * --INFO--
  * Address:	8004BF5C
  * Size:	0000D0
+ * setPalette__12J2DTevBlock2FUlPC7ResTLUT
  */
-bool J2DTevBlock2::setPalette(unsigned long, const ResTLUT*)
+bool J2DTevBlock2::setPalette(unsigned long index, const ResTLUT* lut)
 {
-	/*
-	stwu     r1, -0x20(r1)
-	mflr     r0
-	stw      r0, 0x24(r1)
-	stmw     r26, 8(r1)
-	mr       r27, r4
-	cmplwi   r27, 2
-	mr       r26, r3
-	mr       r28, r5
-	blt      lbl_8004BF88
-	li       r3, 0
-	b        lbl_8004C018
-
-lbl_8004BF88:
-	cmplwi   r28, 0
-	beq      lbl_8004BFFC
-	slwi     r29, r27, 2
-	add      r30, r26, r29
-	lwz      r3, 0x6c(r30)
-	cmplwi   r3, 0
-	bne      lbl_8004BFD8
-	li       r3, 0x18
-	bl       __nw__FUl
-	or.      r31, r3, r3
-	beq      lbl_8004BFC0
-	mr       r4, r27
-	mr       r5, r28
-	bl       storeTLUT__10JUTPaletteF7_GXTlutP7ResTLUT
-
-lbl_8004BFC0:
-	stw      r31, 0x6c(r30)
-	lwz      r0, 0x6c(r30)
-	cmplwi   r0, 0
-	bne      lbl_8004BFE0
-	li       r3, 0
-	b        lbl_8004C018
-
-lbl_8004BFD8:
-	li       r4, 0
-	bl       storeTLUT__10JUTPaletteF7_GXTlutP7ResTLUT
-
-lbl_8004BFE0:
-	add      r3, r26, r29
-	lwz      r3, 0x64(r3)
-	cmplwi   r3, 0
-	beq      lbl_8004C014
-	lwz      r4, 0x6c(r30)
-	bl       attachPalette__10JUTTextureFP10JUTPalette
-	b        lbl_8004C014
-
-lbl_8004BFFC:
-	slwi     r0, r27, 2
-	add      r29, r26, r0
-	lwz      r3, 0x6c(r29)
-	bl       __dl__FPv
-	li       r0, 0
-	stw      r0, 0x6c(r29)
-
-lbl_8004C014:
-	li       r3, 1
-
-lbl_8004C018:
-	lmw      r26, 8(r1)
-	lwz      r0, 0x24(r1)
-	mtlr     r0
-	addi     r1, r1, 0x20
-	blr
-	*/
+	if (index >= 2) {
+		return false;
+	}
+	if (lut != nullptr) {
+		if (m_palettes[index] == nullptr) {
+			m_palettes[index] = new JUTPalette(index, const_cast<ResTLUT*>(lut));
+			if (m_palettes[index] == nullptr) {
+				return false;
+			}
+		} else {
+			m_palettes[index]->storeTLUT(GX_TLUT0, const_cast<ResTLUT*>(lut));
+		}
+		if (m_textures[index] != nullptr) {
+			m_textures[index]->attachPalette(m_palettes[index]);
+		}
+	} else {
+		delete m_palettes[index];
+		m_palettes[index] = nullptr;
+	}
+	return true;
 }
 
 /*
  * --INFO--
  * Address:	8004C02C
  * Size:	000088
+ * shiftDeleteFlag__12J2DTevBlock2FUcb
  */
-void J2DTevBlock2::shiftDeleteFlag(unsigned char, bool)
+void J2DTevBlock2::shiftDeleteFlag(unsigned char p1, bool p2)
 {
-	/*
-	lbz      r6, 0x78(r3)
-	clrlwi.  r0, r5, 0x18
-	clrlwi   r0, r6, 0x19
-	rlwinm   r6, r6, 0, 0x18, 0x18
-	stb      r0, 0x78(r3)
-	beq      lbl_8004C070
-	clrlwi   r0, r4, 0x18
-	li       r4, 1
-	slw      r4, r4, r0
-	lbz      r5, 0x78(r3)
-	addi     r4, r4, -1
-	andc     r0, r5, r4
-	and      r4, r5, r4
-	slwi     r0, r0, 1
-	or       r0, r4, r0
-	stb      r0, 0x78(r3)
-	b        lbl_8004C0A4
-
-lbl_8004C070:
-	clrlwi   r7, r4, 0x18
-	li       r5, 1
-	addi     r0, r7, 1
-	lbz      r8, 0x78(r3)
-	slw      r4, r5, r0
-	slw      r5, r5, r7
-	addi     r0, r4, -1
-	addi     r4, r5, -1
-	andc     r0, r8, r0
-	and      r4, r8, r4
-	srawi    r0, r0, 1
-	or       r0, r4, r0
-	stb      r0, 0x78(r3)
-
-lbl_8004C0A4:
-	lbz      r0, 0x78(r3)
-	or       r0, r0, r6
-	stb      r0, 0x78(r3)
-	blr
-	*/
+	u8 fontFlag = _78 & 0x80;
+	_78 &= 0x7F;
+	if (p2) {
+		u32 v1 = ((1 << p1) - 1);
+		_78    = (_78 & v1) | ((_78 & ~v1) << 1);
+	} else {
+		_78 = (_78 & (1 << p1) - 1) | ((_78 & ~((1 << (p1 + 1)) - 1)) >> 1);
+	}
+	_78 = _78 | fontFlag;
 }
 
 /*
  * --INFO--
  * Address:	8004C0B4
  * Size:	0002E8
+ * setGX__12J2DTevBlock2Fv
  */
 void J2DTevBlock2::setGX()
 {
@@ -3724,31 +3004,13 @@ lbl_8004C36C:
  * --INFO--
  * Address:	8004C39C
  * Size:	000048
+ * loadTexture__12J2DTevBlock2F11_GXTexMapIDUl
  */
-void J2DTevBlock2::loadTexture(_GXTexMapID, unsigned long)
+void J2DTevBlock2::loadTexture(_GXTexMapID id, unsigned long index)
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	cmplwi   r5, 2
-	stw      r0, 0x14(r1)
-	bge      lbl_8004C3D4
-	slwi     r0, r5, 2
-	add      r3, r3, r0
-	lwz      r3, 0x64(r3)
-	cmplwi   r3, 0
-	beq      lbl_8004C3D4
-	lwz      r0, 0x20(r3)
-	cmplwi   r0, 0
-	beq      lbl_8004C3D4
-	bl       load__10JUTTextureF11_GXTexMapID
-
-lbl_8004C3D4:
-	lwz      r0, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	if (index < 2 && m_textures[index] != nullptr && m_textures[index]->_20 != nullptr) {
+		m_textures[index]->load(id);
+	}
 }
 
 /*
@@ -3757,79 +3019,19 @@ lbl_8004C3D4:
  * Size:	000118
  */
 J2DTevBlock4::J2DTevBlock4()
+    : J2DTevBlock()
+    , m_orders()
+    , m_colors()
+    , m_stages()
+    , m_kColors()
+    , m_swapModeTables()
+    , m_indStages()
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	lis      r4, __vt__11J2DTevBlock@ha
-	li       r5, 0
-	stw      r0, 0x14(r1)
-	addi     r0, r4, __vt__11J2DTevBlock@l
-	lis      r4, __ct__11J2DTevOrderFv@ha
-	li       r6, 4
-	stw      r31, 0xc(r1)
-	mr       r31, r3
-	lis      r3, __vt__12J2DTevBlock4@ha
-	addi     r4, r4, __ct__11J2DTevOrderFv@l
-	stw      r0, 0(r31)
-	addi     r0, r3, __vt__12J2DTevBlock4@l
-	addi     r3, r31, 0xe
-	li       r7, 4
-	stw      r0, 0(r31)
-	bl       __construct_array
-	lis      r4, __ct__13J2DGXColorS10Fv@ha
-	addi     r3, r31, 0x1e
-	addi     r4, r4, __ct__13J2DGXColorS10Fv@l
-	li       r5, 0
-	li       r6, 8
-	li       r7, 4
-	bl       __construct_array
-	lis      r4, __ct__11J2DTevStageFv@ha
-	addi     r3, r31, 0x3f
-	addi     r4, r4, __ct__11J2DTevStageFv@l
-	li       r5, 0
-	li       r6, 8
-	li       r7, 4
-	bl       __construct_array
-	lis      r4, __ct__Q28JUtility6TColorFv@ha
-	addi     r3, r31, 0x60
-	addi     r4, r4, __ct__Q28JUtility6TColorFv@l
-	li       r5, 0
-	li       r6, 4
-	li       r7, 4
-	bl       __construct_array
-	lis      r4, __ct__19J2DTevSwapModeTableFv@ha
-	addi     r3, r31, 0x78
-	addi     r4, r4, __ct__19J2DTevSwapModeTableFv@l
-	li       r5, 0
-	li       r6, 1
-	li       r7, 4
-	bl       __construct_array
-	lis      r4, __ct__14J2DIndTevStageFv@ha
-	addi     r3, r31, 0x7c
-	addi     r4, r4, __ct__14J2DIndTevStageFv@l
-	li       r5, 0
-	li       r6, 4
-	li       r7, 4
-	bl       __construct_array
-	li       r0, 0
-	mr       r3, r31
-	stw      r0, 0x8c(r31)
-	stw      r0, 0x90(r31)
-	stw      r0, 0x94(r31)
-	stw      r0, 0x98(r31)
-	stb      r0, 0xb0(r31)
-	lwz      r12, 0(r31)
-	lwz      r12, 8(r12)
-	mtctr    r12
-	bctrl
-	lwz      r0, 0x14(r1)
-	mr       r3, r31
-	lwz      r31, 0xc(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	for (int i = 0; i < 4; i++) {
+		m_textures[i] = nullptr;
+	}
+	_B0 = 0;
+	initialize();
 }
 
 /*
@@ -3839,70 +3041,15 @@ J2DTevBlock4::J2DTevBlock4()
  */
 J2DTevBlock4::~J2DTevBlock4()
 {
-	/*
-	stwu     r1, -0x20(r1)
-	mflr     r0
-	stw      r0, 0x24(r1)
-	stmw     r27, 0xc(r1)
-	or.      r27, r3, r3
-	mr       r28, r4
-	beq      lbl_8004C5B4
-	lis      r3, __vt__12J2DTevBlock4@ha
-	mr       r30, r27
-	addi     r0, r3, __vt__12J2DTevBlock4@l
-	li       r29, 0
-	stw      r0, 0(r27)
-	li       r31, 1
-
-lbl_8004C530:
-	lbz      r3, 0xb0(r27)
-	slw      r0, r31, r29
-	and.     r0, r3, r0
-	beq      lbl_8004C54C
-	lwz      r3, 0x8c(r30)
-	li       r4, 1
-	bl       __dt__10JUTTextureFv
-
-lbl_8004C54C:
-	lwz      r3, 0x9c(r30)
-	bl       __dl__FPv
-	addi     r29, r29, 1
-	addi     r30, r30, 4
-	cmpwi    r29, 4
-	blt      lbl_8004C530
-	lbz      r0, 0xb0(r27)
-	rlwinm.  r0, r0, 0, 0x18, 0x18
-	beq      lbl_8004C590
-	lwz      r3, 0xac(r27)
-	cmplwi   r3, 0
-	beq      lbl_8004C590
-	lwz      r12, 0(r3)
-	li       r4, 1
-	lwz      r12, 8(r12)
-	mtctr    r12
-	bctrl
-
-lbl_8004C590:
-	cmplwi   r27, 0
-	beq      lbl_8004C5A4
-	lis      r3, __vt__11J2DTevBlock@ha
-	addi     r0, r3, __vt__11J2DTevBlock@l
-	stw      r0, 0(r27)
-
-lbl_8004C5A4:
-	extsh.   r0, r28
-	ble      lbl_8004C5B4
-	mr       r3, r27
-	bl       __dl__FPv
-
-lbl_8004C5B4:
-	mr       r3, r27
-	lmw      r27, 0xc(r1)
-	lwz      r0, 0x24(r1)
-	mtlr     r0
-	addi     r1, r1, 0x20
-	blr
-	*/
+	for (int i = 0; i < 4; i++) {
+		if ((_B0 & 1 << i) != 0) {
+			delete m_textures[i];
+		}
+		delete m_palettes[i];
+	}
+	if ((_B0 & 0x80) != 0) {
+		delete m_font;
+	}
 }
 
 /*
@@ -3912,6 +3059,50 @@ lbl_8004C5B4:
  */
 void J2DTevBlock4::initialize()
 {
+	for (int i = 0; i < 4; i++) {
+		m_texIndices[i] = 0xFFFF;
+	}
+	m_fontNo = 0xFFFF;
+	for (int i = 0; i < 4; i++) {
+		m_orders[i] = j2dDefaultTevOrderInfoNull;
+	}
+	for (int i = 0; i < 4; i++) {
+		m_colors[i] = j2dDefaultTevColor;
+	}
+	m_stageNum = 1;
+	for (int i = 0; i < 4; i++) {
+		m_stages[i]._00            = 0xC0 + i * 2;
+		m_stages[i]._04.asBytes[0] = 0xC1 + i * 2;
+	}
+	for (int i = 0; i < 2; i++) {
+		m_kColors[0 + (2 * i)] = j2dDefaultTevKColor;
+		m_kColors[1 + (2 * i)] = j2dDefaultTevKColor;
+	}
+	for (int i = 0; i < 4; i++) {
+		m_kColorSels[i] = 0xFF;
+		m_kAlphaSels[i] = 0xFF;
+	}
+	for (int i = 0; i < 4; i++) {
+		// m_swapModeTables[i].m_data = j2dDefaultTevSwapModeTable[0] * 0x40 + j2dDefaultTevSwapModeTable[1] * 0x10
+		//                    + j2dDefaultTevSwapModeTable[2] * 0x04 + j2dDefaultTevSwapModeTable[3];
+
+		m_swapModeTables[i]._0 = j2dDefaultTevSwapModeTable[3];
+		m_swapModeTables[i]._2 = j2dDefaultTevSwapModeTable[2];
+		m_swapModeTables[i]._4 = j2dDefaultTevSwapModeTable[1];
+		m_swapModeTables[i]._6 = j2dDefaultTevSwapModeTable[0];
+		// m_swapModeTables[i]._0[0]._00 = j2dDefaultTevSwapModeTable[0];
+		// m_swapModeTables[i]._0[1]._00 = j2dDefaultTevSwapModeTable[1];
+		// m_swapModeTables[i]._0[2]._00 = j2dDefaultTevSwapModeTable[2];
+		// m_swapModeTables[i]._0[3]._00 = j2dDefaultTevSwapModeTable[3];
+	}
+	for (int i = 0; i < 2; i++) {
+		m_textures[0 + (2 * i)] = nullptr;
+		m_textures[1 + (2 * i)] = nullptr;
+	}
+	for (int i = 0; i < 4; i++) {
+		m_palettes[i] = nullptr;
+	}
+	m_font = nullptr;
 	/*
 	stwu     r1, -0x40(r1)
 	lis      r4, 0x0000FFFF@ha
@@ -4163,81 +3354,23 @@ lbl_8004C85C:
  * --INFO--
  * Address:	8004C988
  * Size:	0000E0
+ * prepareTexture__12J2DTevBlock4FUc
  */
-bool J2DTevBlock4::prepareTexture(unsigned char)
+bool J2DTevBlock4::prepareTexture(unsigned char count)
 {
-	/*
-	stwu     r1, -0x20(r1)
-	mflr     r0
-	stw      r0, 0x24(r1)
-	stw      r31, 0x1c(r1)
-	clrlwi   r31, r4, 0x18
-	stw      r30, 0x18(r1)
-	stw      r29, 0x14(r1)
-	li       r29, 0
-	stw      r28, 0x10(r1)
-	mr       r28, r3
-	b        lbl_8004CA38
-
-lbl_8004C9B4:
-	clrlwi   r0, r29, 0x18
-	cmplwi   r0, 4
-	blt      lbl_8004C9C8
-	li       r3, 0
-	b        lbl_8004CA48
-
-lbl_8004C9C8:
-	rlwinm   r3, r29, 2, 0x16, 0x1d
-	addi     r30, r3, 0x8c
-	lwzx     r0, r28, r30
-	cmplwi   r0, 0
-	bne      lbl_8004CA34
-	li       r3, 0x40
-	bl       __nw__FUl
-	cmplwi   r3, 0
-	beq      lbl_8004CA04
-	lbz      r4, 0x3b(r3)
-	li       r0, 0
-	rlwinm   r4, r4, 0, 0x1e, 0x1e
-	stb      r4, 0x3b(r3)
-	stw      r0, 0x28(r3)
-	stw      r0, 0x20(r3)
-
-lbl_8004CA04:
-	stwx     r3, r28, r30
-	lwzx     r0, r28, r30
-	cmplwi   r0, 0
-	bne      lbl_8004CA1C
-	li       r3, 0
-	b        lbl_8004CA48
-
-lbl_8004CA1C:
-	clrlwi   r0, r29, 0x18
-	li       r3, 1
-	lbz      r4, 0xb0(r28)
-	slw      r0, r3, r0
-	or       r0, r4, r0
-	stb      r0, 0xb0(r28)
-
-lbl_8004CA34:
-	addi     r29, r29, 1
-
-lbl_8004CA38:
-	clrlwi   r0, r29, 0x18
-	cmplw    r0, r31
-	blt      lbl_8004C9B4
-	li       r3, 1
-
-lbl_8004CA48:
-	lwz      r0, 0x24(r1)
-	lwz      r31, 0x1c(r1)
-	lwz      r30, 0x18(r1)
-	lwz      r29, 0x14(r1)
-	lwz      r28, 0x10(r1)
-	mtlr     r0
-	addi     r1, r1, 0x20
-	blr
-	*/
+	for (u8 i = 0; i < count; i++) {
+		if (i >= 4) {
+			return false;
+		}
+		if (m_textures[i] == nullptr) {
+			m_textures[i] = new JUTTexture();
+			if (m_textures[i] == nullptr) {
+				return false;
+			}
+			_B0 |= (1 << i);
+		}
+	}
+	return true;
 }
 
 /*
@@ -4685,8 +3818,9 @@ lbl_8004CF90:
  * --INFO--
  * Address:	8004CFAC
  * Size:	0002E4
+ * setTexture__12J2DTevBlock4FUlPC7ResTIMG
  */
-bool J2DTevBlock4::setTexture(unsigned long, const ResTIMG*)
+bool J2DTevBlock4::setTexture(unsigned long index, const ResTIMG* img)
 {
 	/*
 	stwu     r1, -0x30(r1)
@@ -4921,65 +4055,29 @@ lbl_8004D27C:
  * --INFO--
  * Address:	8004D290
  * Size:	0000A8
+ * setTexture__12J2DTevBlock4FUlP10JUTTexture
  */
-bool J2DTevBlock4::setTexture(unsigned long, JUTTexture*)
+bool J2DTevBlock4::setTexture(unsigned long index, JUTTexture* texture)
 {
-	/*
-	stwu     r1, -0x20(r1)
-	mflr     r0
-	stw      r0, 0x24(r1)
-	stmw     r27, 0xc(r1)
-	mr       r28, r4
-	cmplwi   r28, 4
-	mr       r27, r3
-	mr       r29, r5
-	blt      lbl_8004D2BC
-	li       r3, 0
-	b        lbl_8004D324
-
-lbl_8004D2BC:
-	li       r0, 1
-	lbz      r3, 0xb0(r27)
-	slw      r30, r0, r28
-	and.     r0, r3, r30
-	beq      lbl_8004D2E4
-	slwi     r0, r28, 2
-	li       r4, 1
-	add      r3, r27, r0
-	lwz      r3, 0x8c(r3)
-	bl       __dt__10JUTTextureFv
-
-lbl_8004D2E4:
-	slwi     r0, r28, 2
-	add      r31, r27, r0
-	stw      r29, 0x8c(r31)
-	lbz      r0, 0xb0(r27)
-	andc     r0, r0, r30
-	stb      r0, 0xb0(r27)
-	lwz      r3, 0x9c(r31)
-	bl       __dl__FPv
-	li       r4, 0
-	slwi     r0, r28, 1
-	lis      r3, 0x0000FFFF@ha
-	stw      r4, 0x9c(r31)
-	addi     r4, r3, 0x0000FFFF@l
-	add      r3, r27, r0
-	sth      r4, 4(r3)
-	li       r3, 1
-
-lbl_8004D324:
-	lmw      r27, 0xc(r1)
-	lwz      r0, 0x24(r1)
-	mtlr     r0
-	addi     r1, r1, 0x20
-	blr
-	*/
+	if (index >= 4) {
+		return false;
+	}
+	if ((_B0 & 1 << index) != 0) {
+		delete m_textures[index];
+	}
+	m_textures[index] = texture;
+	_B0 &= ~(1 << index);
+	delete m_palettes[index];
+	m_palettes[index]   = nullptr;
+	m_texIndices[index] = 0xFFFF;
+	return true;
 }
 
 /*
  * --INFO--
  * Address:	8004D338
  * Size:	000210
+ * removeTexture__12J2DTevBlock4FUl
  */
 bool J2DTevBlock4::removeTexture(unsigned long)
 {
@@ -5138,193 +4236,70 @@ lbl_8004D52C:
  * Address:	8004D548
  * Size:	0000BC
  */
-bool J2DTevBlock4::setFont(ResFONT*)
+bool J2DTevBlock4::setFont(ResFONT* font)
 {
-	/*
-	stwu     r1, -0x20(r1)
-	mflr     r0
-	stw      r0, 0x24(r1)
-	stw      r31, 0x1c(r1)
-	stw      r30, 0x18(r1)
-	or.      r30, r4, r4
-	stw      r29, 0x14(r1)
-	mr       r29, r3
-	bne      lbl_8004D574
-	li       r3, 0
-	b        lbl_8004D5E8
-
-lbl_8004D574:
-	li       r3, 0x70
-	bl       __nw__FUl
-	or.      r31, r3, r3
-	beq      lbl_8004D594
-	mr       r4, r30
-	li       r5, 0
-	bl       __ct__10JUTResFontFPC7ResFONTP7JKRHeap
-	mr       r31, r3
-
-lbl_8004D594:
-	cmplwi   r31, 0
-	bne      lbl_8004D5A4
-	li       r3, 0
-	b        lbl_8004D5E8
-
-lbl_8004D5A4:
-	lbz      r0, 0xb0(r29)
-	rlwinm.  r0, r0, 0, 0x18, 0x18
-	beq      lbl_8004D5D0
-	lwz      r3, 0xac(r29)
-	cmplwi   r3, 0
-	beq      lbl_8004D5D0
-	lwz      r12, 0(r3)
-	li       r4, 1
-	lwz      r12, 8(r12)
-	mtctr    r12
-	bctrl
-
-lbl_8004D5D0:
-	stw      r31, 0xac(r29)
-	li       r3, 1
-	lbz      r0, 0xb0(r29)
-	clrlwi   r0, r0, 0x19
-	ori      r0, r0, 0x80
-	stb      r0, 0xb0(r29)
-
-lbl_8004D5E8:
-	lwz      r0, 0x24(r1)
-	lwz      r31, 0x1c(r1)
-	lwz      r30, 0x18(r1)
-	lwz      r29, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x20
-	blr
-	*/
+	if (font == nullptr) {
+		return false;
+	}
+	JUTResFont* jutFont = new JUTResFont(font, nullptr);
+	if (jutFont == nullptr) {
+		return false;
+	}
+	if ((_B0 & 0x80) != 0) {
+		delete m_font;
+	}
+	m_font = jutFont;
+	_B0    = _B0 & 0x7F | 0x80;
+	return true;
 }
 
 /*
  * --INFO--
  * Address:	8004D604
  * Size:	000080
+ * setFont__12J2DTevBlock4FP7JUTFont
  */
-bool J2DTevBlock4::setFont(JUTFont*)
+bool J2DTevBlock4::setFont(JUTFont* font)
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	or.      r31, r4, r4
-	stw      r30, 8(r1)
-	mr       r30, r3
-	bne      lbl_8004D62C
-	li       r3, 0
-	b        lbl_8004D66C
-
-lbl_8004D62C:
-	lbz      r0, 0xb0(r30)
-	rlwinm.  r0, r0, 0, 0x18, 0x18
-	beq      lbl_8004D658
-	lwz      r3, 0xac(r30)
-	cmplwi   r3, 0
-	beq      lbl_8004D658
-	lwz      r12, 0(r3)
-	li       r4, 1
-	lwz      r12, 8(r12)
-	mtctr    r12
-	bctrl
-
-lbl_8004D658:
-	stw      r31, 0xac(r30)
-	li       r3, 1
-	lbz      r0, 0xb0(r30)
-	clrlwi   r0, r0, 0x19
-	stb      r0, 0xb0(r30)
-
-lbl_8004D66C:
-	lwz      r0, 0x14(r1)
-	lwz      r31, 0xc(r1)
-	lwz      r30, 8(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	if (font == nullptr) {
+		return false;
+	}
+	if ((_B0 & 0x80) != 0) {
+		delete m_font;
+	}
+	m_font = static_cast<JUTResFont*>(font);
+	_B0 &= 0x7F;
+	return true;
 }
 
 /*
  * --INFO--
  * Address:	8004D684
  * Size:	0000D0
+ * setPalette__12J2DTevBlock4FUlPC7ResTLUT
  */
-bool J2DTevBlock4::setPalette(unsigned long, const ResTLUT*)
+bool J2DTevBlock4::setPalette(unsigned long index, const ResTLUT* lut)
 {
-	/*
-	stwu     r1, -0x20(r1)
-	mflr     r0
-	stw      r0, 0x24(r1)
-	stmw     r26, 8(r1)
-	mr       r27, r4
-	cmplwi   r27, 4
-	mr       r26, r3
-	mr       r28, r5
-	blt      lbl_8004D6B0
-	li       r3, 0
-	b        lbl_8004D740
-
-lbl_8004D6B0:
-	cmplwi   r28, 0
-	beq      lbl_8004D724
-	slwi     r29, r27, 2
-	add      r30, r26, r29
-	lwz      r3, 0x9c(r30)
-	cmplwi   r3, 0
-	bne      lbl_8004D700
-	li       r3, 0x18
-	bl       __nw__FUl
-	or.      r31, r3, r3
-	beq      lbl_8004D6E8
-	mr       r4, r27
-	mr       r5, r28
-	bl       storeTLUT__10JUTPaletteF7_GXTlutP7ResTLUT
-
-lbl_8004D6E8:
-	stw      r31, 0x9c(r30)
-	lwz      r0, 0x9c(r30)
-	cmplwi   r0, 0
-	bne      lbl_8004D708
-	li       r3, 0
-	b        lbl_8004D740
-
-lbl_8004D700:
-	li       r4, 0
-	bl       storeTLUT__10JUTPaletteF7_GXTlutP7ResTLUT
-
-lbl_8004D708:
-	add      r3, r26, r29
-	lwz      r3, 0x8c(r3)
-	cmplwi   r3, 0
-	beq      lbl_8004D73C
-	lwz      r4, 0x9c(r30)
-	bl       attachPalette__10JUTTextureFP10JUTPalette
-	b        lbl_8004D73C
-
-lbl_8004D724:
-	slwi     r0, r27, 2
-	add      r29, r26, r0
-	lwz      r3, 0x9c(r29)
-	bl       __dl__FPv
-	li       r0, 0
-	stw      r0, 0x9c(r29)
-
-lbl_8004D73C:
-	li       r3, 1
-
-lbl_8004D740:
-	lmw      r26, 8(r1)
-	lwz      r0, 0x24(r1)
-	mtlr     r0
-	addi     r1, r1, 0x20
-	blr
-	*/
+	if (index >= 4) {
+		return false;
+	}
+	if (lut != nullptr) {
+		if (m_palettes[index] == nullptr) {
+			m_palettes[index] = new JUTPalette(index, const_cast<ResTLUT*>(lut));
+			if (m_palettes[index] == nullptr) {
+				return false;
+			}
+		} else {
+			m_palettes[index]->storeTLUT(GX_TLUT0, const_cast<ResTLUT*>(lut));
+		}
+		if (m_textures[index] != nullptr) {
+			m_textures[index]->attachPalette(m_palettes[index]);
+		}
+	} else {
+		delete m_palettes[index];
+		m_palettes[index] = nullptr;
+	}
+	return true;
 }
 
 /*
@@ -5332,8 +4307,17 @@ lbl_8004D740:
  * Address:	8004D754
  * Size:	000088
  */
-void J2DTevBlock4::shiftDeleteFlag(unsigned char, bool)
+void J2DTevBlock4::shiftDeleteFlag(unsigned char p1, bool p2)
 {
+	u8 fontFlag = _B0 & 0x80;
+	_B0 &= 0x7F;
+	if (p2) {
+		u32 v1 = ((1 << p1) - 1);
+		_B0    = (_B0 & v1) | ((_B0 & ~v1) << 1);
+	} else {
+		_B0 = (_B0 & (1 << p1) - 1) | ((_B0 & ~((1 << (p1 + 1)) - 1)) >> 1);
+	}
+	_B0 = _B0 | fontFlag;
 	/*
 	lbz      r6, 0xb0(r3)
 	clrlwi.  r0, r5, 0x18
@@ -5611,31 +4595,13 @@ lbl_8004DA94:
  * --INFO--
  * Address:	8004DAC4
  * Size:	000048
+ * loadTexture__12J2DTevBlock4F11_GXTexMapIDUl
  */
-void J2DTevBlock4::loadTexture(_GXTexMapID, unsigned long)
+void J2DTevBlock4::loadTexture(_GXTexMapID id, unsigned long index)
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	cmplwi   r5, 4
-	stw      r0, 0x14(r1)
-	bge      lbl_8004DAFC
-	slwi     r0, r5, 2
-	add      r3, r3, r0
-	lwz      r3, 0x8c(r3)
-	cmplwi   r3, 0
-	beq      lbl_8004DAFC
-	lwz      r0, 0x20(r3)
-	cmplwi   r0, 0
-	beq      lbl_8004DAFC
-	bl       load__10JUTTextureF11_GXTexMapID
-
-lbl_8004DAFC:
-	lwz      r0, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	if (index < 4 && m_textures[index] != nullptr && m_textures[index]->_20 != nullptr) {
+		m_textures[index]->load(id);
+	}
 }
 
 /*
@@ -5644,83 +4610,19 @@ lbl_8004DAFC:
  * Size:	000128
  */
 J2DTevBlock8::J2DTevBlock8()
+    : J2DTevBlock()
+    , m_orders()
+    , m_colors()
+    , m_stages()
+    , m_kColors()
+    , m_swapModeTables()
+    , m_indStages()
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	lis      r4, __vt__11J2DTevBlock@ha
-	li       r5, 0
-	stw      r0, 0x14(r1)
-	addi     r0, r4, __vt__11J2DTevBlock@l
-	lis      r4, __ct__11J2DTevOrderFv@ha
-	li       r6, 4
-	stw      r31, 0xc(r1)
-	mr       r31, r3
-	lis      r3, __vt__12J2DTevBlock8@ha
-	addi     r4, r4, __ct__11J2DTevOrderFv@l
-	stw      r0, 0(r31)
-	addi     r0, r3, __vt__12J2DTevBlock8@l
-	addi     r3, r31, 0x16
-	li       r7, 8
-	stw      r0, 0(r31)
-	bl       __construct_array
-	lis      r4, __ct__13J2DGXColorS10Fv@ha
-	addi     r3, r31, 0x36
-	addi     r4, r4, __ct__13J2DGXColorS10Fv@l
-	li       r5, 0
-	li       r6, 8
-	li       r7, 4
-	bl       __construct_array
-	lis      r4, __ct__11J2DTevStageFv@ha
-	addi     r3, r31, 0x57
-	addi     r4, r4, __ct__11J2DTevStageFv@l
-	li       r5, 0
-	li       r6, 8
-	li       r7, 8
-	bl       __construct_array
-	lis      r4, __ct__Q28JUtility6TColorFv@ha
-	addi     r3, r31, 0x98
-	addi     r4, r4, __ct__Q28JUtility6TColorFv@l
-	li       r5, 0
-	li       r6, 4
-	li       r7, 4
-	bl       __construct_array
-	lis      r4, __ct__19J2DTevSwapModeTableFv@ha
-	addi     r3, r31, 0xb8
-	addi     r4, r4, __ct__19J2DTevSwapModeTableFv@l
-	li       r5, 0
-	li       r6, 1
-	li       r7, 4
-	bl       __construct_array
-	lis      r4, __ct__14J2DIndTevStageFv@ha
-	addi     r3, r31, 0xbc
-	addi     r4, r4, __ct__14J2DIndTevStageFv@l
-	li       r5, 0
-	li       r6, 4
-	li       r7, 8
-	bl       __construct_array
-	li       r0, 0
-	mr       r3, r31
-	stw      r0, 0xdc(r31)
-	stw      r0, 0xe0(r31)
-	stw      r0, 0xe4(r31)
-	stw      r0, 0xe8(r31)
-	stw      r0, 0xec(r31)
-	stw      r0, 0xf0(r31)
-	stw      r0, 0xf4(r31)
-	stw      r0, 0xf8(r31)
-	stb      r0, 0x120(r31)
-	lwz      r12, 0(r31)
-	lwz      r12, 8(r12)
-	mtctr    r12
-	bctrl
-	lwz      r0, 0x14(r1)
-	mr       r3, r31
-	lwz      r31, 0xc(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	for (int i = 0; i < 8; i++) {
+		m_textures[i] = nullptr;
+	}
+	_120 = 0;
+	initialize();
 }
 
 /*
@@ -5730,70 +4632,15 @@ J2DTevBlock8::J2DTevBlock8()
  */
 J2DTevBlock8::~J2DTevBlock8()
 {
-	/*
-	stwu     r1, -0x20(r1)
-	mflr     r0
-	stw      r0, 0x24(r1)
-	stmw     r27, 0xc(r1)
-	or.      r27, r3, r3
-	mr       r28, r4
-	beq      lbl_8004DCEC
-	lis      r3, __vt__12J2DTevBlock8@ha
-	mr       r30, r27
-	addi     r0, r3, __vt__12J2DTevBlock8@l
-	li       r29, 0
-	stw      r0, 0(r27)
-	li       r31, 1
-
-lbl_8004DC68:
-	lbz      r3, 0x120(r27)
-	slw      r0, r31, r29
-	and.     r0, r3, r0
-	beq      lbl_8004DC84
-	lwz      r3, 0xdc(r30)
-	li       r4, 1
-	bl       __dt__10JUTTextureFv
-
-lbl_8004DC84:
-	lwz      r3, 0xfc(r30)
-	bl       __dl__FPv
-	addi     r29, r29, 1
-	addi     r30, r30, 4
-	cmpwi    r29, 8
-	blt      lbl_8004DC68
-	lbz      r0, 0x121(r27)
-	cmplwi   r0, 0
-	beq      lbl_8004DCC8
-	lwz      r3, 0x11c(r27)
-	cmplwi   r3, 0
-	beq      lbl_8004DCC8
-	lwz      r12, 0(r3)
-	li       r4, 1
-	lwz      r12, 8(r12)
-	mtctr    r12
-	bctrl
-
-lbl_8004DCC8:
-	cmplwi   r27, 0
-	beq      lbl_8004DCDC
-	lis      r3, __vt__11J2DTevBlock@ha
-	addi     r0, r3, __vt__11J2DTevBlock@l
-	stw      r0, 0(r27)
-
-lbl_8004DCDC:
-	extsh.   r0, r28
-	ble      lbl_8004DCEC
-	mr       r3, r27
-	bl       __dl__FPv
-
-lbl_8004DCEC:
-	mr       r3, r27
-	lmw      r27, 0xc(r1)
-	lwz      r0, 0x24(r1)
-	mtlr     r0
-	addi     r1, r1, 0x20
-	blr
-	*/
+	for (int i = 0; i < 8; i++) {
+		if ((_120 & 1 << i) != 0) {
+			delete m_textures[i];
+		}
+		delete m_palettes[i];
+	}
+	if (_121 != 0) {
+		delete m_font;
+	}
 }
 
 /*
@@ -6111,81 +4958,23 @@ lbl_8004E064:
  * --INFO--
  * Address:	8004E1A4
  * Size:	0000E0
+ * prepareTexture__12J2DTevBlock8FUc
  */
-bool J2DTevBlock8::prepareTexture(unsigned char)
+bool J2DTevBlock8::prepareTexture(unsigned char count)
 {
-	/*
-	stwu     r1, -0x20(r1)
-	mflr     r0
-	stw      r0, 0x24(r1)
-	stw      r31, 0x1c(r1)
-	clrlwi   r31, r4, 0x18
-	stw      r30, 0x18(r1)
-	stw      r29, 0x14(r1)
-	li       r29, 0
-	stw      r28, 0x10(r1)
-	mr       r28, r3
-	b        lbl_8004E254
-
-lbl_8004E1D0:
-	clrlwi   r0, r29, 0x18
-	cmplwi   r0, 8
-	blt      lbl_8004E1E4
-	li       r3, 0
-	b        lbl_8004E264
-
-lbl_8004E1E4:
-	rlwinm   r3, r29, 2, 0x16, 0x1d
-	addi     r30, r3, 0xdc
-	lwzx     r0, r28, r30
-	cmplwi   r0, 0
-	bne      lbl_8004E250
-	li       r3, 0x40
-	bl       __nw__FUl
-	cmplwi   r3, 0
-	beq      lbl_8004E220
-	lbz      r4, 0x3b(r3)
-	li       r0, 0
-	rlwinm   r4, r4, 0, 0x1e, 0x1e
-	stb      r4, 0x3b(r3)
-	stw      r0, 0x28(r3)
-	stw      r0, 0x20(r3)
-
-lbl_8004E220:
-	stwx     r3, r28, r30
-	lwzx     r0, r28, r30
-	cmplwi   r0, 0
-	bne      lbl_8004E238
-	li       r3, 0
-	b        lbl_8004E264
-
-lbl_8004E238:
-	clrlwi   r0, r29, 0x18
-	li       r3, 1
-	lbz      r4, 0x120(r28)
-	slw      r0, r3, r0
-	or       r0, r4, r0
-	stb      r0, 0x120(r28)
-
-lbl_8004E250:
-	addi     r29, r29, 1
-
-lbl_8004E254:
-	clrlwi   r0, r29, 0x18
-	cmplw    r0, r31
-	blt      lbl_8004E1D0
-	li       r3, 1
-
-lbl_8004E264:
-	lwz      r0, 0x24(r1)
-	lwz      r31, 0x1c(r1)
-	lwz      r30, 0x18(r1)
-	lwz      r29, 0x14(r1)
-	lwz      r28, 0x10(r1)
-	mtlr     r0
-	addi     r1, r1, 0x20
-	blr
-	*/
+	for (u8 i = 0; i < count; i++) {
+		if (i >= 8) {
+			return false;
+		}
+		if (m_textures[i] == nullptr) {
+			m_textures[i] = new JUTTexture();
+			if (m_textures[i] == nullptr) {
+				return false;
+			}
+			_120 |= (1 << i);
+		}
+	}
+	return true;
 }
 
 /*
@@ -6640,8 +5429,9 @@ lbl_8004E7C8:
  * --INFO--
  * Address:	8004E7E4
  * Size:	0002E4
+ * setTexture__12J2DTevBlock8FUlPC7ResTIMG
  */
-bool J2DTevBlock8::setTexture(unsigned long, const ResTIMG*)
+bool J2DTevBlock8::setTexture(unsigned long index, const ResTIMG* img)
 {
 	/*
 	stwu     r1, -0x30(r1)
@@ -6876,65 +5666,29 @@ lbl_8004EAB4:
  * --INFO--
  * Address:	8004EAC8
  * Size:	0000A8
+ * setTexture__12J2DTevBlock8FUlP10JUTTexture
  */
-bool J2DTevBlock8::setTexture(unsigned long, JUTTexture*)
+bool J2DTevBlock8::setTexture(unsigned long index, JUTTexture* texture)
 {
-	/*
-	stwu     r1, -0x20(r1)
-	mflr     r0
-	stw      r0, 0x24(r1)
-	stmw     r27, 0xc(r1)
-	mr       r28, r4
-	cmplwi   r28, 8
-	mr       r27, r3
-	mr       r29, r5
-	blt      lbl_8004EAF4
-	li       r3, 0
-	b        lbl_8004EB5C
-
-lbl_8004EAF4:
-	li       r0, 1
-	lbz      r3, 0x120(r27)
-	slw      r30, r0, r28
-	and.     r0, r3, r30
-	beq      lbl_8004EB1C
-	slwi     r0, r28, 2
-	li       r4, 1
-	add      r3, r27, r0
-	lwz      r3, 0xdc(r3)
-	bl       __dt__10JUTTextureFv
-
-lbl_8004EB1C:
-	slwi     r0, r28, 2
-	add      r31, r27, r0
-	stw      r29, 0xdc(r31)
-	lbz      r0, 0x120(r27)
-	andc     r0, r0, r30
-	stb      r0, 0x120(r27)
-	lwz      r3, 0xfc(r31)
-	bl       __dl__FPv
-	li       r4, 0
-	slwi     r0, r28, 1
-	lis      r3, 0x0000FFFF@ha
-	stw      r4, 0xfc(r31)
-	addi     r4, r3, 0x0000FFFF@l
-	add      r3, r27, r0
-	sth      r4, 4(r3)
-	li       r3, 1
-
-lbl_8004EB5C:
-	lmw      r27, 0xc(r1)
-	lwz      r0, 0x24(r1)
-	mtlr     r0
-	addi     r1, r1, 0x20
-	blr
-	*/
+	if (index >= 8) {
+		return false;
+	}
+	if ((_120 & 1 << index) != 0) {
+		delete m_textures[index];
+	}
+	m_textures[index] = texture;
+	_120 &= ~(1 << index);
+	delete m_palettes[index];
+	m_palettes[index]   = nullptr;
+	m_texIndices[index] = 0xFFFF;
+	return true;
 }
 
 /*
  * --INFO--
  * Address:	8004EB70
  * Size:	000210
+ * removeTexture__12J2DTevBlock8FUl
  */
 bool J2DTevBlock8::removeTexture(unsigned long)
 {
@@ -7093,190 +5847,70 @@ lbl_8004ED64:
  * Address:	8004ED80
  * Size:	0000B4
  */
-bool J2DTevBlock8::setFont(ResFONT*)
+bool J2DTevBlock8::setFont(ResFONT* font)
 {
-	/*
-	stwu     r1, -0x20(r1)
-	mflr     r0
-	stw      r0, 0x24(r1)
-	stw      r31, 0x1c(r1)
-	stw      r30, 0x18(r1)
-	or.      r30, r4, r4
-	stw      r29, 0x14(r1)
-	mr       r29, r3
-	bne      lbl_8004EDAC
-	li       r3, 0
-	b        lbl_8004EE18
-
-lbl_8004EDAC:
-	li       r3, 0x70
-	bl       __nw__FUl
-	or.      r31, r3, r3
-	beq      lbl_8004EDCC
-	mr       r4, r30
-	li       r5, 0
-	bl       __ct__10JUTResFontFPC7ResFONTP7JKRHeap
-	mr       r31, r3
-
-lbl_8004EDCC:
-	cmplwi   r31, 0
-	bne      lbl_8004EDDC
-	li       r3, 0
-	b        lbl_8004EE18
-
-lbl_8004EDDC:
-	lbz      r0, 0x121(r29)
-	cmplwi   r0, 0
-	beq      lbl_8004EE08
-	lwz      r3, 0x11c(r29)
-	cmplwi   r3, 0
-	beq      lbl_8004EE08
-	lwz      r12, 0(r3)
-	li       r4, 1
-	lwz      r12, 8(r12)
-	mtctr    r12
-	bctrl
-
-lbl_8004EE08:
-	stw      r31, 0x11c(r29)
-	li       r0, 1
-	li       r3, 1
-	stb      r0, 0x121(r29)
-
-lbl_8004EE18:
-	lwz      r0, 0x24(r1)
-	lwz      r31, 0x1c(r1)
-	lwz      r30, 0x18(r1)
-	lwz      r29, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x20
-	blr
-	*/
+	if (font == nullptr) {
+		return false;
+	}
+	JUTResFont* jutFont = new JUTResFont(font, nullptr);
+	if (jutFont == nullptr) {
+		return false;
+	}
+	if (_121 != 0) {
+		delete m_font;
+	}
+	m_font = jutFont;
+	_121   = 1;
+	return true;
 }
 
 /*
  * --INFO--
  * Address:	8004EE34
  * Size:	00007C
+ * setFont__12J2DTevBlock8FP7JUTFont
  */
-bool J2DTevBlock8::setFont(JUTFont*)
+bool J2DTevBlock8::setFont(JUTFont* font)
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	or.      r31, r4, r4
-	stw      r30, 8(r1)
-	mr       r30, r3
-	bne      lbl_8004EE5C
-	li       r3, 0
-	b        lbl_8004EE98
-
-lbl_8004EE5C:
-	lbz      r0, 0x121(r30)
-	cmplwi   r0, 0
-	beq      lbl_8004EE88
-	lwz      r3, 0x11c(r30)
-	cmplwi   r3, 0
-	beq      lbl_8004EE88
-	lwz      r12, 0(r3)
-	li       r4, 1
-	lwz      r12, 8(r12)
-	mtctr    r12
-	bctrl
-
-lbl_8004EE88:
-	stw      r31, 0x11c(r30)
-	li       r0, 0
-	li       r3, 1
-	stb      r0, 0x121(r30)
-
-lbl_8004EE98:
-	lwz      r0, 0x14(r1)
-	lwz      r31, 0xc(r1)
-	lwz      r30, 8(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	if (font == nullptr) {
+		return false;
+	}
+	if (_121 != 0) {
+		delete m_font;
+	}
+	m_font = static_cast<JUTResFont*>(font);
+	_121   = 0;
+	return true;
 }
 
 /*
  * --INFO--
  * Address:	8004EEB0
  * Size:	0000D0
+ * setPalette__12J2DTevBlock8FUlPC7ResTLUT
  */
-bool J2DTevBlock8::setPalette(unsigned long, const ResTLUT*)
+bool J2DTevBlock8::setPalette(unsigned long index, const ResTLUT* lut)
 {
-	/*
-	stwu     r1, -0x20(r1)
-	mflr     r0
-	stw      r0, 0x24(r1)
-	stmw     r26, 8(r1)
-	mr       r27, r4
-	cmplwi   r27, 8
-	mr       r26, r3
-	mr       r28, r5
-	blt      lbl_8004EEDC
-	li       r3, 0
-	b        lbl_8004EF6C
-
-lbl_8004EEDC:
-	cmplwi   r28, 0
-	beq      lbl_8004EF50
-	slwi     r29, r27, 2
-	add      r30, r26, r29
-	lwz      r3, 0xfc(r30)
-	cmplwi   r3, 0
-	bne      lbl_8004EF2C
-	li       r3, 0x18
-	bl       __nw__FUl
-	or.      r31, r3, r3
-	beq      lbl_8004EF14
-	mr       r4, r27
-	mr       r5, r28
-	bl       storeTLUT__10JUTPaletteF7_GXTlutP7ResTLUT
-
-lbl_8004EF14:
-	stw      r31, 0xfc(r30)
-	lwz      r0, 0xfc(r30)
-	cmplwi   r0, 0
-	bne      lbl_8004EF34
-	li       r3, 0
-	b        lbl_8004EF6C
-
-lbl_8004EF2C:
-	li       r4, 0
-	bl       storeTLUT__10JUTPaletteF7_GXTlutP7ResTLUT
-
-lbl_8004EF34:
-	add      r3, r26, r29
-	lwz      r3, 0xdc(r3)
-	cmplwi   r3, 0
-	beq      lbl_8004EF68
-	lwz      r4, 0xfc(r30)
-	bl       attachPalette__10JUTTextureFP10JUTPalette
-	b        lbl_8004EF68
-
-lbl_8004EF50:
-	slwi     r0, r27, 2
-	add      r29, r26, r0
-	lwz      r3, 0xfc(r29)
-	bl       __dl__FPv
-	li       r0, 0
-	stw      r0, 0xfc(r29)
-
-lbl_8004EF68:
-	li       r3, 1
-
-lbl_8004EF6C:
-	lmw      r26, 8(r1)
-	lwz      r0, 0x24(r1)
-	mtlr     r0
-	addi     r1, r1, 0x20
-	blr
-	*/
+	if (index >= 8) {
+		return false;
+	}
+	if (lut != nullptr) {
+		if (m_palettes[index] == nullptr) {
+			m_palettes[index] = new JUTPalette(index, const_cast<ResTLUT*>(lut));
+			if (m_palettes[index] == nullptr) {
+				return false;
+			}
+		} else {
+			m_palettes[index]->storeTLUT(GX_TLUT0, const_cast<ResTLUT*>(lut));
+		}
+		if (m_textures[index] != nullptr) {
+			m_textures[index]->attachPalette(m_palettes[index]);
+		}
+	} else {
+		delete m_palettes[index];
+		m_palettes[index] = nullptr;
+	}
+	return true;
 }
 
 /*
@@ -7284,39 +5918,14 @@ lbl_8004EF6C:
  * Address:	8004EF80
  * Size:	00006C
  */
-void J2DTevBlock8::shiftDeleteFlag(unsigned char, bool)
+void J2DTevBlock8::shiftDeleteFlag(unsigned char flag, bool direction)
 {
-	/*
-	clrlwi.  r0, r5, 0x18
-	beq      lbl_8004EFB4
-	clrlwi   r0, r4, 0x18
-	li       r4, 1
-	slw      r4, r4, r0
-	lbz      r5, 0x120(r3)
-	addi     r4, r4, -1
-	andc     r0, r5, r4
-	and      r4, r5, r4
-	slwi     r0, r0, 1
-	or       r0, r4, r0
-	stb      r0, 0x120(r3)
-	blr
-
-lbl_8004EFB4:
-	clrlwi   r6, r4, 0x18
-	li       r5, 1
-	addi     r0, r6, 1
-	lbz      r7, 0x120(r3)
-	slw      r4, r5, r0
-	slw      r5, r5, r6
-	addi     r0, r4, -1
-	addi     r4, r5, -1
-	andc     r0, r7, r0
-	and      r4, r7, r4
-	srawi    r0, r0, 1
-	or       r0, r4, r0
-	stb      r0, 0x120(r3)
-	blr
-	*/
+	if (direction) {
+		u32 v1 = ((1 << flag) - 1);
+		_120   = (_120 & v1) | ((_120 & ~v1) << 1);
+	} else {
+		_120 = (_120 & (1 << flag) - 1) | ((_120 & ~((1 << (flag + 1)) - 1)) >> 1);
+	}
 }
 
 /*
@@ -7554,31 +6163,13 @@ lbl_8004F2A4:
  * --INFO--
  * Address:	8004F2D4
  * Size:	000048
+ * loadTexture__12J2DTevBlock8F11_GXTexMapIDUl
  */
-void J2DTevBlock8::loadTexture(_GXTexMapID, unsigned long)
+void J2DTevBlock8::loadTexture(_GXTexMapID id, unsigned long index)
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	cmplwi   r5, 8
-	stw      r0, 0x14(r1)
-	bge      lbl_8004F30C
-	slwi     r0, r5, 2
-	add      r3, r3, r0
-	lwz      r3, 0xdc(r3)
-	cmplwi   r3, 0
-	beq      lbl_8004F30C
-	lwz      r0, 0x20(r3)
-	cmplwi   r0, 0
-	beq      lbl_8004F30C
-	bl       load__10JUTTextureF11_GXTexMapID
-
-lbl_8004F30C:
-	lwz      r0, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	if (index < 8 && m_textures[index] != nullptr && m_textures[index]->_20 != nullptr) {
+		m_textures[index]->load(id);
+	}
 }
 
 /*
@@ -7587,83 +6178,19 @@ lbl_8004F30C:
  * Size:	000128
  */
 J2DTevBlock16::J2DTevBlock16()
+    : J2DTevBlock()
+    , m_orders()
+    , m_colors()
+    , m_stages()
+    , m_kColors()
+    , m_swapModeTables()
+    , m_indStages()
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	lis      r4, __vt__11J2DTevBlock@ha
-	li       r5, 0
-	stw      r0, 0x14(r1)
-	addi     r0, r4, __vt__11J2DTevBlock@l
-	lis      r4, __ct__11J2DTevOrderFv@ha
-	li       r6, 4
-	stw      r31, 0xc(r1)
-	mr       r31, r3
-	lis      r3, __vt__13J2DTevBlock16@ha
-	addi     r4, r4, __ct__11J2DTevOrderFv@l
-	stw      r0, 0(r31)
-	addi     r0, r3, __vt__13J2DTevBlock16@l
-	addi     r3, r31, 0x16
-	li       r7, 0x10
-	stw      r0, 0(r31)
-	bl       __construct_array
-	lis      r4, __ct__13J2DGXColorS10Fv@ha
-	addi     r3, r31, 0x56
-	addi     r4, r4, __ct__13J2DGXColorS10Fv@l
-	li       r5, 0
-	li       r6, 8
-	li       r7, 4
-	bl       __construct_array
-	lis      r4, __ct__11J2DTevStageFv@ha
-	addi     r3, r31, 0x77
-	addi     r4, r4, __ct__11J2DTevStageFv@l
-	li       r5, 0
-	li       r6, 8
-	li       r7, 0x10
-	bl       __construct_array
-	lis      r4, __ct__Q28JUtility6TColorFv@ha
-	addi     r3, r31, 0xf8
-	addi     r4, r4, __ct__Q28JUtility6TColorFv@l
-	li       r5, 0
-	li       r6, 4
-	li       r7, 4
-	bl       __construct_array
-	lis      r4, __ct__19J2DTevSwapModeTableFv@ha
-	addi     r3, r31, 0x128
-	addi     r4, r4, __ct__19J2DTevSwapModeTableFv@l
-	li       r5, 0
-	li       r6, 1
-	li       r7, 4
-	bl       __construct_array
-	lis      r4, __ct__14J2DIndTevStageFv@ha
-	addi     r3, r31, 0x12c
-	addi     r4, r4, __ct__14J2DIndTevStageFv@l
-	li       r5, 0
-	li       r6, 4
-	li       r7, 0x10
-	bl       __construct_array
-	li       r0, 0
-	mr       r3, r31
-	stw      r0, 0x16c(r31)
-	stw      r0, 0x170(r31)
-	stw      r0, 0x174(r31)
-	stw      r0, 0x178(r31)
-	stw      r0, 0x17c(r31)
-	stw      r0, 0x180(r31)
-	stw      r0, 0x184(r31)
-	stw      r0, 0x188(r31)
-	stb      r0, 0x1b0(r31)
-	lwz      r12, 0(r31)
-	lwz      r12, 8(r12)
-	mtctr    r12
-	bctrl
-	lwz      r0, 0x14(r1)
-	mr       r3, r31
-	lwz      r31, 0xc(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	for (int i = 0; i < 8; i++) {
+		m_textures[i] = nullptr;
+	}
+	_1B0 = 0;
+	initialize();
 }
 
 /*
@@ -7673,70 +6200,15 @@ J2DTevBlock16::J2DTevBlock16()
  */
 J2DTevBlock16::~J2DTevBlock16()
 {
-	/*
-	stwu     r1, -0x20(r1)
-	mflr     r0
-	stw      r0, 0x24(r1)
-	stmw     r27, 0xc(r1)
-	or.      r27, r3, r3
-	mr       r28, r4
-	beq      lbl_8004F4FC
-	lis      r3, __vt__13J2DTevBlock16@ha
-	mr       r30, r27
-	addi     r0, r3, __vt__13J2DTevBlock16@l
-	li       r29, 0
-	stw      r0, 0(r27)
-	li       r31, 1
-
-lbl_8004F478:
-	lbz      r3, 0x1b0(r27)
-	slw      r0, r31, r29
-	and.     r0, r3, r0
-	beq      lbl_8004F494
-	lwz      r3, 0x16c(r30)
-	li       r4, 1
-	bl       __dt__10JUTTextureFv
-
-lbl_8004F494:
-	lwz      r3, 0x18c(r30)
-	bl       __dl__FPv
-	addi     r29, r29, 1
-	addi     r30, r30, 4
-	cmpwi    r29, 8
-	blt      lbl_8004F478
-	lbz      r0, 0x1b1(r27)
-	cmplwi   r0, 0
-	beq      lbl_8004F4D8
-	lwz      r3, 0x1ac(r27)
-	cmplwi   r3, 0
-	beq      lbl_8004F4D8
-	lwz      r12, 0(r3)
-	li       r4, 1
-	lwz      r12, 8(r12)
-	mtctr    r12
-	bctrl
-
-lbl_8004F4D8:
-	cmplwi   r27, 0
-	beq      lbl_8004F4EC
-	lis      r3, __vt__11J2DTevBlock@ha
-	addi     r0, r3, __vt__11J2DTevBlock@l
-	stw      r0, 0(r27)
-
-lbl_8004F4EC:
-	extsh.   r0, r28
-	ble      lbl_8004F4FC
-	mr       r3, r27
-	bl       __dl__FPv
-
-lbl_8004F4FC:
-	mr       r3, r27
-	lmw      r27, 0xc(r1)
-	lwz      r0, 0x24(r1)
-	mtlr     r0
-	addi     r1, r1, 0x20
-	blr
-	*/
+	for (int i = 0; i < 8; i++) {
+		if ((_1B0 & 1 << i) != 0) {
+			delete m_textures[i];
+		}
+		delete m_palettes[i];
+	}
+	if (_1B1 != 0) {
+		delete m_font;
+	}
 }
 
 /*
@@ -8102,81 +6574,23 @@ lbl_8004F924:
  * --INFO--
  * Address:	8004FA64
  * Size:	0000E0
+ * prepareTexture__13J2DTevBlock16FUc
  */
-bool J2DTevBlock16::prepareTexture(unsigned char)
+bool J2DTevBlock16::prepareTexture(unsigned char count)
 {
-	/*
-	stwu     r1, -0x20(r1)
-	mflr     r0
-	stw      r0, 0x24(r1)
-	stw      r31, 0x1c(r1)
-	clrlwi   r31, r4, 0x18
-	stw      r30, 0x18(r1)
-	stw      r29, 0x14(r1)
-	li       r29, 0
-	stw      r28, 0x10(r1)
-	mr       r28, r3
-	b        lbl_8004FB14
-
-lbl_8004FA90:
-	clrlwi   r0, r29, 0x18
-	cmplwi   r0, 8
-	blt      lbl_8004FAA4
-	li       r3, 0
-	b        lbl_8004FB24
-
-lbl_8004FAA4:
-	rlwinm   r3, r29, 2, 0x16, 0x1d
-	addi     r30, r3, 0x16c
-	lwzx     r0, r28, r30
-	cmplwi   r0, 0
-	bne      lbl_8004FB10
-	li       r3, 0x40
-	bl       __nw__FUl
-	cmplwi   r3, 0
-	beq      lbl_8004FAE0
-	lbz      r4, 0x3b(r3)
-	li       r0, 0
-	rlwinm   r4, r4, 0, 0x1e, 0x1e
-	stb      r4, 0x3b(r3)
-	stw      r0, 0x28(r3)
-	stw      r0, 0x20(r3)
-
-lbl_8004FAE0:
-	stwx     r3, r28, r30
-	lwzx     r0, r28, r30
-	cmplwi   r0, 0
-	bne      lbl_8004FAF8
-	li       r3, 0
-	b        lbl_8004FB24
-
-lbl_8004FAF8:
-	clrlwi   r0, r29, 0x18
-	li       r3, 1
-	lbz      r4, 0x1b0(r28)
-	slw      r0, r3, r0
-	or       r0, r4, r0
-	stb      r0, 0x1b0(r28)
-
-lbl_8004FB10:
-	addi     r29, r29, 1
-
-lbl_8004FB14:
-	clrlwi   r0, r29, 0x18
-	cmplw    r0, r31
-	blt      lbl_8004FA90
-	li       r3, 1
-
-lbl_8004FB24:
-	lwz      r0, 0x24(r1)
-	lwz      r31, 0x1c(r1)
-	lwz      r30, 0x18(r1)
-	lwz      r29, 0x14(r1)
-	lwz      r28, 0x10(r1)
-	mtlr     r0
-	addi     r1, r1, 0x20
-	blr
-	*/
+	for (u8 i = 0; i < count; i++) {
+		if (i >= 8) {
+			return false;
+		}
+		if (m_textures[i] == nullptr) {
+			m_textures[i] = new JUTTexture();
+			if (m_textures[i] == nullptr) {
+				return false;
+			}
+			_1B0 |= (1 << i);
+		}
+	}
+	return true;
 }
 
 /*
@@ -8631,8 +7045,9 @@ lbl_80050088:
  * --INFO--
  * Address:	800500A4
  * Size:	0002E4
+ * setTexture__13J2DTevBlock16FUlPC7ResTIMG
  */
-bool J2DTevBlock16::setTexture(unsigned long, const ResTIMG*)
+bool J2DTevBlock16::setTexture(unsigned long index, const ResTIMG* img)
 {
 	/*
 	stwu     r1, -0x30(r1)
@@ -8867,65 +7282,29 @@ lbl_80050374:
  * --INFO--
  * Address:	80050388
  * Size:	0000A8
+ * setTexture__13J2DTevBlock16FUlP10JUTTexture
  */
-bool J2DTevBlock16::setTexture(unsigned long, JUTTexture*)
+bool J2DTevBlock16::setTexture(unsigned long index, JUTTexture* texture)
 {
-	/*
-	stwu     r1, -0x20(r1)
-	mflr     r0
-	stw      r0, 0x24(r1)
-	stmw     r27, 0xc(r1)
-	mr       r28, r4
-	cmplwi   r28, 8
-	mr       r27, r3
-	mr       r29, r5
-	blt      lbl_800503B4
-	li       r3, 0
-	b        lbl_8005041C
-
-lbl_800503B4:
-	li       r0, 1
-	lbz      r3, 0x1b0(r27)
-	slw      r30, r0, r28
-	and.     r0, r3, r30
-	beq      lbl_800503DC
-	slwi     r0, r28, 2
-	li       r4, 1
-	add      r3, r27, r0
-	lwz      r3, 0x16c(r3)
-	bl       __dt__10JUTTextureFv
-
-lbl_800503DC:
-	slwi     r0, r28, 2
-	add      r31, r27, r0
-	stw      r29, 0x16c(r31)
-	lbz      r0, 0x1b0(r27)
-	andc     r0, r0, r30
-	stb      r0, 0x1b0(r27)
-	lwz      r3, 0x18c(r31)
-	bl       __dl__FPv
-	li       r4, 0
-	slwi     r0, r28, 1
-	lis      r3, 0x0000FFFF@ha
-	stw      r4, 0x18c(r31)
-	addi     r4, r3, 0x0000FFFF@l
-	add      r3, r27, r0
-	sth      r4, 4(r3)
-	li       r3, 1
-
-lbl_8005041C:
-	lmw      r27, 0xc(r1)
-	lwz      r0, 0x24(r1)
-	mtlr     r0
-	addi     r1, r1, 0x20
-	blr
-	*/
+	if (index >= 8) {
+		return false;
+	}
+	if ((_1B0 & 1 << index) != 0) {
+		delete m_textures[index];
+	}
+	m_textures[index] = texture;
+	_1B0 &= ~(1 << index);
+	delete m_palettes[index];
+	m_palettes[index]   = nullptr;
+	m_texIndices[index] = 0xFFFF;
+	return true;
 }
 
 /*
  * --INFO--
  * Address:	80050430
  * Size:	000210
+ * removeTexture__13J2DTevBlock16FUl
  */
 bool J2DTevBlock16::removeTexture(unsigned long)
 {
@@ -9084,190 +7463,70 @@ lbl_80050624:
  * Address:	80050640
  * Size:	0000B4
  */
-bool J2DTevBlock16::setFont(ResFONT*)
+bool J2DTevBlock16::setFont(ResFONT* font)
 {
-	/*
-	stwu     r1, -0x20(r1)
-	mflr     r0
-	stw      r0, 0x24(r1)
-	stw      r31, 0x1c(r1)
-	stw      r30, 0x18(r1)
-	or.      r30, r4, r4
-	stw      r29, 0x14(r1)
-	mr       r29, r3
-	bne      lbl_8005066C
-	li       r3, 0
-	b        lbl_800506D8
-
-lbl_8005066C:
-	li       r3, 0x70
-	bl       __nw__FUl
-	or.      r31, r3, r3
-	beq      lbl_8005068C
-	mr       r4, r30
-	li       r5, 0
-	bl       __ct__10JUTResFontFPC7ResFONTP7JKRHeap
-	mr       r31, r3
-
-lbl_8005068C:
-	cmplwi   r31, 0
-	bne      lbl_8005069C
-	li       r3, 0
-	b        lbl_800506D8
-
-lbl_8005069C:
-	lbz      r0, 0x1b1(r29)
-	cmplwi   r0, 0
-	beq      lbl_800506C8
-	lwz      r3, 0x1ac(r29)
-	cmplwi   r3, 0
-	beq      lbl_800506C8
-	lwz      r12, 0(r3)
-	li       r4, 1
-	lwz      r12, 8(r12)
-	mtctr    r12
-	bctrl
-
-lbl_800506C8:
-	stw      r31, 0x1ac(r29)
-	li       r0, 1
-	li       r3, 1
-	stb      r0, 0x1b1(r29)
-
-lbl_800506D8:
-	lwz      r0, 0x24(r1)
-	lwz      r31, 0x1c(r1)
-	lwz      r30, 0x18(r1)
-	lwz      r29, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x20
-	blr
-	*/
+	if (font == nullptr) {
+		return false;
+	}
+	JUTResFont* jutFont = new JUTResFont(font, nullptr);
+	if (jutFont == nullptr) {
+		return false;
+	}
+	if (_1B1 != 0) {
+		delete m_font;
+	}
+	m_font = jutFont;
+	_1B1   = 1;
+	return true;
 }
 
 /*
  * --INFO--
  * Address:	800506F4
  * Size:	00007C
+ * setFont__13J2DTevBlock16FP7JUTFont
  */
-bool J2DTevBlock16::setFont(JUTFont*)
+bool J2DTevBlock16::setFont(JUTFont* font)
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	or.      r31, r4, r4
-	stw      r30, 8(r1)
-	mr       r30, r3
-	bne      lbl_8005071C
-	li       r3, 0
-	b        lbl_80050758
-
-lbl_8005071C:
-	lbz      r0, 0x1b1(r30)
-	cmplwi   r0, 0
-	beq      lbl_80050748
-	lwz      r3, 0x1ac(r30)
-	cmplwi   r3, 0
-	beq      lbl_80050748
-	lwz      r12, 0(r3)
-	li       r4, 1
-	lwz      r12, 8(r12)
-	mtctr    r12
-	bctrl
-
-lbl_80050748:
-	stw      r31, 0x1ac(r30)
-	li       r0, 0
-	li       r3, 1
-	stb      r0, 0x1b1(r30)
-
-lbl_80050758:
-	lwz      r0, 0x14(r1)
-	lwz      r31, 0xc(r1)
-	lwz      r30, 8(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	if (font == nullptr) {
+		return false;
+	}
+	if (_1B1 != 0) {
+		delete m_font;
+	}
+	m_font = static_cast<JUTResFont*>(font);
+	_1B1   = 0;
+	return true;
 }
 
 /*
  * --INFO--
  * Address:	80050770
  * Size:	0000D0
+ * setPalette__13J2DTevBlock16FUlPC7ResTLUT
  */
-bool J2DTevBlock16::setPalette(unsigned long, const ResTLUT*)
+bool J2DTevBlock16::setPalette(unsigned long index, const ResTLUT* lut)
 {
-	/*
-	stwu     r1, -0x20(r1)
-	mflr     r0
-	stw      r0, 0x24(r1)
-	stmw     r26, 8(r1)
-	mr       r27, r4
-	cmplwi   r27, 8
-	mr       r26, r3
-	mr       r28, r5
-	blt      lbl_8005079C
-	li       r3, 0
-	b        lbl_8005082C
-
-lbl_8005079C:
-	cmplwi   r28, 0
-	beq      lbl_80050810
-	slwi     r29, r27, 2
-	add      r30, r26, r29
-	lwz      r3, 0x18c(r30)
-	cmplwi   r3, 0
-	bne      lbl_800507EC
-	li       r3, 0x18
-	bl       __nw__FUl
-	or.      r31, r3, r3
-	beq      lbl_800507D4
-	mr       r4, r27
-	mr       r5, r28
-	bl       storeTLUT__10JUTPaletteF7_GXTlutP7ResTLUT
-
-lbl_800507D4:
-	stw      r31, 0x18c(r30)
-	lwz      r0, 0x18c(r30)
-	cmplwi   r0, 0
-	bne      lbl_800507F4
-	li       r3, 0
-	b        lbl_8005082C
-
-lbl_800507EC:
-	li       r4, 0
-	bl       storeTLUT__10JUTPaletteF7_GXTlutP7ResTLUT
-
-lbl_800507F4:
-	add      r3, r26, r29
-	lwz      r3, 0x16c(r3)
-	cmplwi   r3, 0
-	beq      lbl_80050828
-	lwz      r4, 0x18c(r30)
-	bl       attachPalette__10JUTTextureFP10JUTPalette
-	b        lbl_80050828
-
-lbl_80050810:
-	slwi     r0, r27, 2
-	add      r29, r26, r0
-	lwz      r3, 0x18c(r29)
-	bl       __dl__FPv
-	li       r0, 0
-	stw      r0, 0x18c(r29)
-
-lbl_80050828:
-	li       r3, 1
-
-lbl_8005082C:
-	lmw      r26, 8(r1)
-	lwz      r0, 0x24(r1)
-	mtlr     r0
-	addi     r1, r1, 0x20
-	blr
-	*/
+	if (index >= 8) {
+		return false;
+	}
+	if (lut != nullptr) {
+		if (m_palettes[index] == nullptr) {
+			m_palettes[index] = new JUTPalette(index, const_cast<ResTLUT*>(lut));
+			if (m_palettes[index] == nullptr) {
+				return false;
+			}
+		} else {
+			m_palettes[index]->storeTLUT(GX_TLUT0, const_cast<ResTLUT*>(lut));
+		}
+		if (m_textures[index] != nullptr) {
+			m_textures[index]->attachPalette(m_palettes[index]);
+		}
+	} else {
+		delete m_palettes[index];
+		m_palettes[index] = nullptr;
+	}
+	return true;
 }
 
 /*
@@ -9275,39 +7534,14 @@ lbl_8005082C:
  * Address:	80050840
  * Size:	00006C
  */
-void J2DTevBlock16::shiftDeleteFlag(unsigned char, bool)
+void J2DTevBlock16::shiftDeleteFlag(unsigned char flag, bool direction)
 {
-	/*
-	clrlwi.  r0, r5, 0x18
-	beq      lbl_80050874
-	clrlwi   r0, r4, 0x18
-	li       r4, 1
-	slw      r4, r4, r0
-	lbz      r5, 0x1b0(r3)
-	addi     r4, r4, -1
-	andc     r0, r5, r4
-	and      r4, r5, r4
-	slwi     r0, r0, 1
-	or       r0, r4, r0
-	stb      r0, 0x1b0(r3)
-	blr
-
-lbl_80050874:
-	clrlwi   r6, r4, 0x18
-	li       r5, 1
-	addi     r0, r6, 1
-	lbz      r7, 0x1b0(r3)
-	slw      r4, r5, r0
-	slw      r5, r5, r6
-	addi     r0, r4, -1
-	addi     r4, r5, -1
-	andc     r0, r7, r0
-	and      r4, r7, r4
-	srawi    r0, r0, 1
-	or       r0, r4, r0
-	stb      r0, 0x1b0(r3)
-	blr
-	*/
+	if (direction) {
+		u32 v1 = ((1 << flag) - 1);
+		_1B0   = (_1B0 & v1) | ((_1B0 & ~v1) << 1);
+	} else {
+		_1B0 = (_1B0 & (1 << flag) - 1) | ((_1B0 & ~((1 << (flag + 1)) - 1)) >> 1);
+	}
 }
 
 /*
@@ -9545,40 +7779,39 @@ lbl_80050B64:
  * --INFO--
  * Address:	80050B94
  * Size:	000048
+ * loadTexture__13J2DTevBlock16F11_GXTexMapIDUl
  */
-void J2DTevBlock16::loadTexture(_GXTexMapID, unsigned long)
+void J2DTevBlock16::loadTexture(_GXTexMapID id, unsigned long index)
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	cmplwi   r5, 8
-	stw      r0, 0x14(r1)
-	bge      lbl_80050BCC
-	slwi     r0, r5, 2
-	add      r3, r3, r0
-	lwz      r3, 0x16c(r3)
-	cmplwi   r3, 0
-	beq      lbl_80050BCC
-	lwz      r0, 0x20(r3)
-	cmplwi   r0, 0
-	beq      lbl_80050BCC
-	bl       load__10JUTTextureF11_GXTexMapID
-
-lbl_80050BCC:
-	lwz      r0, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	if (index < 8 && m_textures[index] != nullptr && m_textures[index]->_20 != nullptr) {
+		m_textures[index]->load(id);
+	}
 }
 
 /*
  * --INFO--
  * Address:	80050BDC
  * Size:	000148
+ * initialize__15J2DIndBlockFullFv
  */
 void J2DIndBlockFull::initialize()
 {
+	m_texStageNum = 0;
+	for (int i = 0; i < 4; i++) {
+		m_texOrders[i] = j2dDefaultIndTexOrderNull;
+	}
+	for (int i = 0; i < 3; i++) {
+		m_texMtxes[i]._00 = j2dDefaultIndTexMtxInfo._00;
+		m_texMtxes[i]._04 = j2dDefaultIndTexMtxInfo._04;
+		m_texMtxes[i]._08 = j2dDefaultIndTexMtxInfo._08;
+		m_texMtxes[i]._0C = j2dDefaultIndTexMtxInfo._0C;
+		m_texMtxes[i]._10 = j2dDefaultIndTexMtxInfo._10;
+		m_texMtxes[i]._14 = j2dDefaultIndTexMtxInfo._14;
+		m_texMtxes[i]._18 = j2dDefaultIndTexMtxInfo._18;
+	}
+	for (int i = 0; i < 4; i++) {
+		m_texCoordScales[i] = j2dDefaultIndTexCoordScaleInfo;
+	}
 	/*
 	li       r0, 0
 	lis      r4, j2dDefaultIndTexMtxInfo@ha
@@ -9669,111 +7902,54 @@ void J2DIndBlockFull::initialize()
  * --INFO--
  * Address:	80050D24
  * Size:	0000CC
+ * setGX__15J2DIndBlockFullFv
  */
 void J2DIndBlockFull::setGX()
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	stw      r30, 8(r1)
-	mr       r30, r3
-	lbz      r3, 4(r3)
-	bl       GXSetNumIndStages
-	li       r31, 0
-	b        lbl_80050D68
-
-lbl_80050D4C:
-	clrlwi   r0, r31, 0x18
-	mr       r4, r31
-	mulli    r3, r0, 0x1c
-	addi     r3, r3, 0x10
-	add      r3, r30, r3
-	bl       load__12J2DIndTexMtxFUc
-	addi     r31, r31, 1
-
-lbl_80050D68:
-	lbz      r0, 4(r30)
-	clrlwi   r3, r31, 0x18
-	cmplw    r3, r0
-	blt      lbl_80050D4C
-	li       r31, 0
-	b        lbl_80050D98
-
-lbl_80050D80:
-	rlwinm   r3, r31, 1, 0x17, 0x1e
-	mr       r4, r31
-	addi     r3, r3, 0x64
-	add      r3, r30, r3
-	bl       load__19J2DIndTexCoordScaleFUc
-	addi     r31, r31, 1
-
-lbl_80050D98:
-	lbz      r0, 4(r30)
-	clrlwi   r3, r31, 0x18
-	cmplw    r3, r0
-	blt      lbl_80050D80
-	li       r31, 0
-	b        lbl_80050DC8
-
-lbl_80050DB0:
-	rlwinm   r3, r31, 1, 0x17, 0x1e
-	mr       r4, r31
-	addi     r3, r3, 5
-	add      r3, r30, r3
-	bl       load__14J2DIndTexOrderFUc
-	addi     r31, r31, 1
-
-lbl_80050DC8:
-	lbz      r0, 4(r30)
-	clrlwi   r3, r31, 0x18
-	cmplw    r3, r0
-	blt      lbl_80050DB0
-	lwz      r0, 0x14(r1)
-	lwz      r31, 0xc(r1)
-	lwz      r30, 8(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	GXSetNumIndStages(m_texStageNum);
+	for (u8 i = 0; i < m_texStageNum; i++) {
+		m_texMtxes[i].load(i);
+	}
+	for (u8 i = 0; i < m_texStageNum; i++) {
+		m_texCoordScales[i].load(i);
+	}
+	for (u8 i = 0; i < m_texStageNum; i++) {
+		m_texOrders[i].load(i);
+	}
 }
 
 /*
  * --INFO--
  * Address:	80050DF0
  * Size:	000044
+ * initialize__10J2DPEBlockFv
  */
 void J2DPEBlock::initialize()
 {
-	/*
-	lhz      r6, j2dDefaultAlphaCmp@sda21(r2)
-	li       r4, 0
-	addi     r5, r2, j2dDefaultBlendInfo@sda21
-	lbz      r0, j2dDefaultDither@sda21(r2)
-	sth      r6, 0(r3)
-	stb      r4, 2(r3)
-	stb      r4, 3(r3)
-	lbz      r4, j2dDefaultBlendInfo@sda21(r2)
-	stb      r4, 4(r3)
-	lbz      r4, 1(r5)
-	stb      r4, 5(r3)
-	lbz      r4, 2(r5)
-	stb      r4, 6(r3)
-	lbz      r4, 3(r5)
-	stb      r4, 7(r3)
-	stb      r0, 8(r3)
-	blr
-	*/
+	m_alphaComp._00          = j2dDefaultAlphaCmp;
+	m_alphaComp._02          = 0;
+	m_alphaComp._03          = 0;
+	m_blendInfo.m_type       = j2dDefaultBlendInfo[0];
+	m_blendInfo.m_srcFactor  = j2dDefaultBlendInfo[1];
+	m_blendInfo.m_destFactor = j2dDefaultBlendInfo[2];
+	_07                      = j2dDefaultBlendInfo[3];
+	m_dither                 = j2dDefaultDither;
 }
 
 /*
  * --INFO--
  * Address:	80050E34
  * Size:	000060
+ * setGX__10J2DPEBlockFv
+ * TODO: _03 might not be part of J2DAlphaComp
  */
 void J2DPEBlock::setGX()
 {
+	GXSetAlphaCompare(static_cast<GXCompare>(m_alphaComp._00 >> 5 & 7), m_alphaComp._02, static_cast<GXAlphaOp>(m_alphaComp._00 >> 3 & 3),
+	                  static_cast<GXCompare>(m_alphaComp._00 & 7), m_alphaComp._03);
+	GXSetBlendMode((GXBlendMode)m_blendInfo.m_type, (GXBlendFactor)m_blendInfo.m_srcFactor, (GXBlendFactor)m_blendInfo.m_destFactor,
+	               (GXLogicOp)_07);
+	GXSetDither(m_dither);
 	/*
 	stwu     r1, -0x10(r1)
 	mflr     r0
@@ -9806,81 +7982,44 @@ void J2DPEBlock::setGX()
  * --INFO--
  * Address:	80050E94
  * Size:	00000C
+ * getType__15J2DIndBlockFullFv
  */
-u32 J2DIndBlockFull::getType()
-{
-	/*
-	lis      r3, 0x49424C46@ha
-	addi     r3, r3, 0x49424C46@l
-	blr
-	*/
-}
+// u32 J2DIndBlockFull::getType() { return JBT_IndFull; }
 
 /*
  * --INFO--
  * Address:	80050EA0
  * Size:	000008
  */
-void J2DIndBlockFull::setIndTexStageNum(unsigned char a1)
-{
-	// Generated from stb r4, 0x4(r3)
-	m_texStageNum = a1;
-}
+// void J2DIndBlockFull::setIndTexStageNum(unsigned char texStageNum) { m_texStageNum = texStageNum; }
 
 /*
  * --INFO--
  * Address:	80050EA8
  * Size:	000008
  */
-u8 J2DIndBlockFull::getIndTexStageNum() const
-{
-	return m_texStageNum;
-	/*
-	lbz      r3, 4(r3)
-	blr
-	*/
-}
+// u8 J2DIndBlockFull::getIndTexStageNum() const { return m_texStageNum; }
 
 /*
  * --INFO--
  * Address:	80050EB0
  * Size:	00001C
  */
-void J2DIndBlockFull::setIndTexOrder(unsigned long, J2DIndTexOrder)
-{
-	/*
-	slwi     r0, r4, 1
-	lbz      r4, 0(r5)
-	add      r3, r3, r0
-	lbz      r0, 1(r5)
-	stb      r4, 5(r3)
-	stb      r0, 6(r3)
-	blr
-	*/
-}
+// void J2DIndBlockFull::setIndTexOrder(unsigned long index, J2DIndTexOrder order) { m_texOrders[index] = order; }
 
 /*
  * --INFO--
  * Address:	80050ECC
  * Size:	000014
  */
-J2DIndTexOrder* J2DIndBlockFull::getIndTexOrder(unsigned long)
-{
-	/*
-	slwi     r4, r4, 1
-	mr       r0, r3
-	addi     r3, r4, 5
-	add      r3, r0, r3
-	blr
-	*/
-}
+// J2DIndTexOrder* J2DIndBlockFull::getIndTexOrder(unsigned long index) { return m_texOrders + index; }
 
 /*
  * --INFO--
  * Address:	80050EE0
  * Size:	000044
  */
-void J2DIndBlockFull::setIndTexMtx(unsigned long, J2DIndTexMtx)
+void J2DIndBlockFull::setIndTexMtx(unsigned long index, J2DIndTexMtx texMtx)
 {
 	/*
 	mulli    r0, r4, 0x1c
@@ -9908,425 +8047,198 @@ void J2DIndBlockFull::setIndTexMtx(unsigned long, J2DIndTexMtx)
  * Address:	80050F24
  * Size:	000014
  */
-J2DIndTexMtx* J2DIndBlockFull::getIndTexMtx(unsigned long)
-{
-	/*
-	mulli    r4, r4, 0x1c
-	mr       r0, r3
-	addi     r3, r4, 0x10
-	add      r3, r0, r3
-	blr
-	*/
-}
+// J2DIndTexMtx* J2DIndBlockFull::getIndTexMtx(unsigned long index) { return m_texMtxes + index; }
 
 /*
  * --INFO--
  * Address:	80050F38
  * Size:	00001C
  */
-void J2DIndBlockFull::setIndTexCoordScale(unsigned long, J2DIndTexCoordScale)
-{
-	/*
-	slwi     r0, r4, 1
-	lbz      r4, 0(r5)
-	add      r3, r3, r0
-	lbz      r0, 1(r5)
-	stb      r4, 0x64(r3)
-	stb      r0, 0x65(r3)
-	blr
-	*/
-}
+// void J2DIndBlockFull::setIndTexCoordScale(unsigned long index, J2DIndTexCoordScale scale) { m_texCoordScales[index] = scale; }
 
 /*
  * --INFO--
  * Address:	80050F54
  * Size:	000014
  */
-J2DIndTexCoordScale* J2DIndBlockFull::getIndTexCoordScale(unsigned long)
-{
-	/*
-	slwi     r4, r4, 1
-	mr       r0, r3
-	addi     r3, r4, 0x64
-	add      r3, r0, r3
-	blr
-	*/
-}
+// J2DIndTexCoordScale* J2DIndBlockFull::getIndTexCoordScale(unsigned long index) { return m_texCoordScales + index; }
 
 /*
  * --INFO--
  * Address:	80050F68
  * Size:	00009C
+ * __dt__15J2DIndBlockFullFv
  */
-J2DIndBlockFull::~J2DIndBlockFull()
-{
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	mr       r31, r4
-	stw      r30, 8(r1)
-	or.      r30, r3, r3
-	beq      lbl_80050FE8
-	lis      r3, __vt__15J2DIndBlockFull@ha
-	lis      r4, __dt__19J2DIndTexCoordScaleFv@ha
-	addi     r0, r3, __vt__15J2DIndBlockFull@l
-	li       r5, 2
-	stw      r0, 0(r30)
-	addi     r3, r30, 0x64
-	addi     r4, r4, __dt__19J2DIndTexCoordScaleFv@l
-	li       r6, 4
-	bl       __destroy_arr
-	lis      r4, __dt__12J2DIndTexMtxFv@ha
-	addi     r3, r30, 0x10
-	addi     r4, r4, __dt__12J2DIndTexMtxFv@l
-	li       r5, 0x1c
-	li       r6, 3
-	bl       __destroy_arr
-	cmplwi   r30, 0
-	beq      lbl_80050FD8
-	lis      r3, __vt__11J2DIndBlock@ha
-	addi     r0, r3, __vt__11J2DIndBlock@l
-	stw      r0, 0(r30)
-
-lbl_80050FD8:
-	extsh.   r0, r31
-	ble      lbl_80050FE8
-	mr       r3, r30
-	bl       __dl__FPv
-
-lbl_80050FE8:
-	lwz      r0, 0x14(r1)
-	mr       r3, r30
-	lwz      r31, 0xc(r1)
-	lwz      r30, 8(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
-}
+// J2DIndBlockFull::~J2DIndBlockFull() { }
 
 /*
  * --INFO--
  * Address:	80051004
  * Size:	00003C
+ * __dt__12J2DIndTexMtxFv
  */
-J2DIndTexMtx::~J2DIndTexMtx()
-{
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	or.      r31, r3, r3
-	beq      lbl_80051028
-	extsh.   r0, r4
-	ble      lbl_80051028
-	bl       __dl__FPv
-
-lbl_80051028:
-	lwz      r0, 0x14(r1)
-	mr       r3, r31
-	lwz      r31, 0xc(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
-}
+// J2DIndTexMtx::~J2DIndTexMtx() { }
 
 /*
  * --INFO--
  * Address:	80051040
  * Size:	00003C
+ * __dt__19J2DIndTexCoordScaleFv
  */
-J2DIndTexCoordScale::~J2DIndTexCoordScale()
-{
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	or.      r31, r3, r3
-	beq      lbl_80051064
-	extsh.   r0, r4
-	ble      lbl_80051064
-	bl       __dl__FPv
-
-lbl_80051064:
-	lwz      r0, 0x14(r1)
-	mr       r3, r31
-	lwz      r31, 0xc(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
-}
+// J2DIndTexCoordScale::~J2DIndTexCoordScale() { }
 
 /*
  * --INFO--
  * Address:	8005107C
  * Size:	000004
  */
-void J2DIndBlock::initialize() { }
+// void J2DIndBlock::initialize() { }
 
 /*
  * --INFO--
  * Address:	80051080
  * Size:	000004
  */
-void J2DIndBlock::setGX() { }
+// void J2DIndBlock::setGX() { }
 
 /*
  * --INFO--
  * Address:	80051084
  * Size:	000004
  */
-void J2DIndBlock::setIndTexStageNum(unsigned char) { }
+// void J2DIndBlock::setIndTexStageNum(unsigned char texStageNum) { }
 
 /*
  * --INFO--
  * Address:	80051088
  * Size:	000004
  */
-void J2DIndBlock::setIndTexOrder(unsigned long, J2DIndTexOrder) { }
+// void J2DIndBlock::setIndTexOrder(unsigned long index, J2DIndTexOrder order) { }
 
 /*
  * --INFO--
  * Address:	8005108C
  * Size:	000008
  */
-J2DIndTexOrder* J2DIndBlock::getIndTexOrder(unsigned long) { return 0x0; }
+// J2DIndTexOrder* J2DIndBlock::getIndTexOrder(unsigned long index) { return nullptr; }
 
 /*
  * --INFO--
  * Address:	80051094
  * Size:	000004
  */
-void J2DIndBlock::setIndTexMtx(unsigned long, J2DIndTexMtx) { }
+// void J2DIndBlock::setIndTexMtx(unsigned long index, J2DIndTexMtx texMtx) { }
 
 /*
  * --INFO--
  * Address:	80051098
  * Size:	000008
  */
-J2DIndTexMtx* J2DIndBlock::getIndTexMtx(unsigned long) { return 0x0; }
+// J2DIndTexMtx* J2DIndBlock::getIndTexMtx(unsigned long index) { return nullptr; }
 
 /*
  * --INFO--
  * Address:	800510A0
  * Size:	000004
  */
-void J2DIndBlock::setIndTexCoordScale(unsigned long, J2DIndTexCoordScale) { }
+// void J2DIndBlock::setIndTexCoordScale(unsigned long, J2DIndTexCoordScale) { }
 
 /*
  * --INFO--
  * Address:	800510A4
  * Size:	000008
  */
-J2DIndTexCoordScale* J2DIndBlock::getIndTexCoordScale(unsigned long) { return 0x0; }
+// J2DIndTexCoordScale* J2DIndBlock::getIndTexCoordScale(unsigned long) { return nullptr; }
 
 /*
  * --INFO--
  * Address:	800510AC
  * Size:	000048
+ * __dt__11J2DIndBlockFv
  */
-J2DIndBlock::~J2DIndBlock()
-{
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	or.      r31, r3, r3
-	beq      lbl_800510DC
-	lis      r5, __vt__11J2DIndBlock@ha
-	extsh.   r0, r4
-	addi     r0, r5, __vt__11J2DIndBlock@l
-	stw      r0, 0(r31)
-	ble      lbl_800510DC
-	bl       __dl__FPv
-
-lbl_800510DC:
-	lwz      r0, 0x14(r1)
-	mr       r3, r31
-	lwz      r31, 0xc(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
-}
+// J2DIndBlock::~J2DIndBlock() { }
 
 /*
  * --INFO--
  * Address:	800510F4
  * Size:	00000C
  */
-u32 J2DTevBlock16::getType()
-{
-	/*
-	lis      r3, 0x54563136@ha
-	addi     r3, r3, 0x54563136@l
-	blr
-	*/
-}
+// u32 J2DTevBlock16::getType() { return JBT_Tev16; }
 
 /*
  * --INFO--
  * Address:	80051100
  * Size:	000008
  */
-u32 J2DTevBlock16::getMaxStage() { return 0x10; }
+// u32 J2DTevBlock16::getMaxStage() { return 0x10; }
 
 /*
  * --INFO--
  * Address:	80051108
  * Size:	000010
  */
-void J2DTevBlock16::setTexNo(unsigned long, unsigned short)
-{
-	/*
-	slwi     r0, r4, 1
-	add      r3, r3, r0
-	sth      r5, 4(r3)
-	blr
-	*/
-}
+// void J2DTevBlock16::setTexNo(unsigned long index, unsigned short texNo) { m_texIndices[index] = texNo; }
 
 /*
  * --INFO--
  * Address:	80051118
  * Size:	000010
  */
-u16 J2DTevBlock16::getTexNo(unsigned long) const
-{
-	/*
-	slwi     r0, r4, 1
-	add      r3, r3, r0
-	lhz      r3, 4(r3)
-	blr
-	*/
-}
+// u16 J2DTevBlock16::getTexNo(unsigned long index) const { return m_texIndices[index]; }
 
 /*
  * --INFO--
  * Address:	80051128
  * Size:	000008
  */
-void J2DTevBlock16::setFontNo(unsigned short a1)
-{
-	// Generated from sth r4, 0x14(r3)
-	m_fontNo = a1;
-}
+// void J2DTevBlock16::setFontNo(unsigned short fontNo) { m_fontNo = fontNo; }
 
 /*
  * --INFO--
  * Address:	80051130
  * Size:	000008
  */
-u16 J2DTevBlock16::getFontNo() const
-{
-	return m_fontNo;
-	/*
-	lhz      r3, 0x14(r3)
-	blr
-	*/
-}
+// u16 J2DTevBlock16::getFontNo() const { return m_fontNo; }
 
 /*
  * --INFO--
  * Address:	80051138
  * Size:	000024
  */
-void J2DTevBlock16::setTevOrder(unsigned long, J2DTevOrder)
-{
-	/*
-	slwi     r4, r4, 2
-	lbz      r0, 0(r5)
-	add      r4, r3, r4
-	lbz      r3, 1(r5)
-	stb      r0, 0x16(r4)
-	lbz      r0, 2(r5)
-	stb      r3, 0x17(r4)
-	stb      r0, 0x18(r4)
-	blr
-	*/
-}
+// void J2DTevBlock16::setTevOrder(unsigned long index, J2DTevOrder order) { m_orders[index] = order; }
 
 /*
  * --INFO--
  * Address:	8005115C
  * Size:	000014
  */
-J2DTevOrder* J2DTevBlock16::getTevOrder(unsigned long)
-{
-	/*
-	slwi     r4, r4, 2
-	mr       r0, r3
-	addi     r3, r4, 0x16
-	add      r3, r0, r3
-	blr
-	*/
-}
+// J2DTevOrder* J2DTevBlock16::getTevOrder(unsigned long index) { return m_orders + index; }
 
 /*
  * --INFO--
  * Address:	80051170
  * Size:	00002C
  */
-void J2DTevBlock16::setTevColor(unsigned long, J2DGXColorS10)
-{
-	/*
-	slwi     r0, r4, 3
-	lha      r6, 0(r5)
-	add      r4, r3, r0
-	lha      r0, 2(r5)
-	sth      r6, 0x56(r4)
-	lha      r3, 4(r5)
-	sth      r0, 0x58(r4)
-	lha      r0, 6(r5)
-	sth      r3, 0x5a(r4)
-	sth      r0, 0x5c(r4)
-	blr
-	*/
-}
+// void J2DTevBlock16::setTevColor(unsigned long index, J2DGXColorS10 color) { m_colors[index] = color; }
 
 /*
  * --INFO--
  * Address:	8005119C
  * Size:	000014
  */
-J2DGXColorS10* J2DTevBlock16::getTevColor(unsigned long)
-{
-	/*
-	slwi     r4, r4, 3
-	mr       r0, r3
-	addi     r3, r4, 0x56
-	add      r3, r0, r3
-	blr
-	*/
-}
+// J2DGXColorS10* J2DTevBlock16::getTevColor(unsigned long index) { return m_colors + index; }
 
 /*
  * --INFO--
  * Address:	800511B0
  * Size:	00002C
  */
-void J2DTevBlock16::setTevKColor(unsigned long, JUtility::TColor)
+void J2DTevBlock16::setTevKColor(unsigned long index, JUtility::TColor color)
 {
-	/*
-	slwi     r0, r4, 2
-	lbz      r6, 0(r5)
-	add      r4, r3, r0
-	lbz      r0, 1(r5)
-	stb      r6, 0xf8(r4)
-	lbz      r3, 2(r5)
-	stb      r0, 0xf9(r4)
-	lbz      r0, 3(r5)
-	stb      r3, 0xfa(r4)
-	stb      r0, 0xfb(r4)
-	blr
-	*/
+	m_kColors[index].r = color.r;
+	m_kColors[index].g = color.g;
+	m_kColors[index].b = color.b;
+	m_kColors[index].a = color.a;
 }
 
 /*
@@ -10334,146 +8246,72 @@ void J2DTevBlock16::setTevKColor(unsigned long, JUtility::TColor)
  * Address:	800511DC
  * Size:	000014
  */
-JUtility::TColor* J2DTevBlock16::getTevKColor(unsigned long)
-{
-	/*
-	slwi     r4, r4, 2
-	mr       r0, r3
-	addi     r3, r4, 0xf8
-	add      r3, r0, r3
-	blr
-	*/
-}
+// JUtility::TColor* J2DTevBlock16::getTevKColor(unsigned long index) { return m_kColors + index; }
 
 /*
  * --INFO--
  * Address:	800511F0
  * Size:	00000C
  */
-void J2DTevBlock16::setTevKColorSel(unsigned long, unsigned char)
-{
-	/*
-	add      r3, r3, r4
-	stb      r5, 0x108(r3)
-	blr
-	*/
-}
+// void J2DTevBlock16::setTevKColorSel(unsigned long index, unsigned char sel) { m_kColorSels[index] = sel; }
 
 /*
  * --INFO--
  * Address:	800511FC
  * Size:	00000C
  */
-u8 J2DTevBlock16::getTevKColorSel(unsigned long)
-{
-	/*
-	add      r3, r3, r4
-	lbz      r3, 0x108(r3)
-	blr
-	*/
-}
+// u8 J2DTevBlock16::getTevKColorSel(unsigned long index) { return m_kColorSels[index]; }
 
 /*
  * --INFO--
  * Address:	80051208
  * Size:	00000C
  */
-void J2DTevBlock16::setTevKAlphaSel(unsigned long, unsigned char)
-{
-	/*
-	add      r3, r3, r4
-	stb      r5, 0x118(r3)
-	blr
-	*/
-}
+// void J2DTevBlock16::setTevKAlphaSel(unsigned long index, unsigned char sel) { m_kAlphaSels[index] = sel; }
 
 /*
  * --INFO--
  * Address:	80051214
  * Size:	00000C
  */
-u8 J2DTevBlock16::getTevKAlphaSel(unsigned long)
-{
-	/*
-	add      r3, r3, r4
-	lbz      r3, 0x118(r3)
-	blr
-	*/
-}
+// u8 J2DTevBlock16::getTevKAlphaSel(unsigned long index) { return m_kAlphaSels[index]; }
 
 /*
  * --INFO--
  * Address:	80051220
  * Size:	000008
  */
-void J2DTevBlock16::setTevStageNum(unsigned char a1)
-{
-	// Generated from stb r4, 0x76(r3)
-	m_stageNum = a1;
-}
+// void J2DTevBlock16::setTevStageNum(unsigned char stageNum) { m_stageNum = stageNum; }
 
 /*
  * --INFO--
  * Address:	80051228
  * Size:	000008
  */
-u8 J2DTevBlock16::getTevStageNum() const
-{
-	return m_stageNum;
-	/*
-	lbz      r3, 0x76(r3)
-	blr
-	*/
-}
+// u8 J2DTevBlock16::getTevStageNum() const { return m_stageNum; }
 
 /*
  * --INFO--
  * Address:	80051230
  * Size:	00003C
+ * setTevStage__13J2DTevBlock16FUl11J2DTevStage
  */
-void J2DTevBlock16::setTevStage(unsigned long, J2DTevStage)
-{
-	/*
-	slwi     r0, r4, 3
-	lbz      r6, 1(r5)
-	add      r4, r3, r0
-	lbz      r0, 2(r5)
-	stb      r6, 0x78(r4)
-	lbz      r3, 3(r5)
-	stb      r0, 0x79(r4)
-	lbz      r0, 5(r5)
-	stb      r3, 0x7a(r4)
-	lbz      r3, 6(r5)
-	stb      r0, 0x7c(r4)
-	lbz      r0, 7(r5)
-	stb      r3, 0x7d(r4)
-	stb      r0, 0x7e(r4)
-	blr
-	*/
-}
+// void J2DTevBlock16::setTevStage(unsigned long index, J2DTevStage stage) { m_stages[index] = stage; }
 
 /*
  * --INFO--
  * Address:	8005126C
  * Size:	000014
+ * getTevStage__13J2DTevBlock16FUl
  */
-J2DTevStage* J2DTevBlock16::getTevStage(unsigned long)
-{
-	/*
-	slwi     r4, r4, 3
-	mr       r0, r3
-	addi     r3, r4, 0x77
-	add      r3, r0, r3
-	blr
-	*/
-}
+// J2DTevStage* J2DTevBlock16::getTevStage(unsigned long index) { return m_stages + index; }
 
 /*
  * --INFO--
  * Address:	80051280
  * Size:	000038
  */
-void J2DTevBlock16::setTevSwapModeInfo(unsigned long, J2DTevSwapModeInfo)
+void J2DTevBlock16::setTevSwapModeInfo(unsigned long index, J2DTevSwapModeInfo info)
 {
 	/*
 	slwi     r0, r4, 3
@@ -10498,337 +8336,158 @@ void J2DTevBlock16::setTevSwapModeInfo(unsigned long, J2DTevSwapModeInfo)
  * Address:	800512B8
  * Size:	000010
  */
-void J2DTevBlock16::setTevSwapModeTable(unsigned long, J2DTevSwapModeTable)
-{
-	/*
-	lbz      r0, 0(r5)
-	add      r3, r3, r4
-	stb      r0, 0x128(r3)
-	blr
-	*/
-}
+// void J2DTevBlock16::setTevSwapModeTable(unsigned long index, J2DTevSwapModeTable table) { m_swapModeTables[index] = table; }
 
 /*
  * --INFO--
  * Address:	800512C8
  * Size:	000010
  */
-J2DTevSwapModeTable* J2DTevBlock16::getTevSwapModeTable(unsigned long)
-{
-	/*
-	mr       r0, r3
-	addi     r3, r4, 0x128
-	add      r3, r0, r3
-	blr
-	*/
-}
+// J2DTevSwapModeTable* J2DTevBlock16::getTevSwapModeTable(unsigned long index) { return m_swapModeTables + index; }
 
 /*
  * --INFO--
  * Address:	800512D8
  * Size:	000014
  */
-void J2DTevBlock16::setIndTevStage(unsigned long, J2DIndTevStage)
-{
-	/*
-	slwi     r0, r4, 2
-	lwz      r4, 0(r5)
-	add      r3, r3, r0
-	stw      r4, 0x12c(r3)
-	blr
-	*/
-}
+// void J2DTevBlock16::setIndTevStage(unsigned long index, J2DIndTevStage stage) { m_indStages[index] = stage; }
 
 /*
  * --INFO--
  * Address:	800512EC
  * Size:	000014
  */
-J2DIndTevStage* J2DTevBlock16::getIndTevStage(unsigned long)
-{
-	/*
-	slwi     r4, r4, 2
-	mr       r0, r3
-	addi     r3, r4, 0x12c
-	add      r3, r0, r3
-	blr
-	*/
-}
+// J2DIndTevStage* J2DTevBlock16::getIndTevStage(unsigned long index) { return m_indStages + index; }
 
 /*
  * --INFO--
  * Address:	80051300
  * Size:	000030
  */
-bool J2DTevBlock16::insertTexture(unsigned long, const ResTIMG*)
-{
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	li       r6, 0
-	stw      r0, 0x14(r1)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x7c(r12)
-	mtctr    r12
-	bctrl
-	lwz      r0, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
-}
+// bool J2DTevBlock16::insertTexture(unsigned long index, const ResTIMG* img) { return insertTexture(index, img, nullptr); }
 
 /*
  * --INFO--
  * Address:	80051330
  * Size:	000020
  */
-JUTTexture* J2DTevBlock16::getTexture(unsigned long)
-{
-	/*
-	cmplwi   r4, 8
-	blt      lbl_80051340
-	li       r3, 0
-	blr
-
-lbl_80051340:
-	slwi     r0, r4, 2
-	add      r3, r3, r0
-	lwz      r3, 0x16c(r3)
-	blr
-	*/
-}
+// JUTTexture* J2DTevBlock16::getTexture(unsigned long index) { return (index >= 8) ? nullptr : m_textures[index]; }
 
 /*
  * --INFO--
  * Address:	80051350
  * Size:	000020
  */
-JUTPalette* J2DTevBlock16::getPalette(unsigned long)
-{
-	/*
-	cmplwi   r4, 8
-	blt      lbl_80051360
-	li       r3, 0
-	blr
-
-lbl_80051360:
-	slwi     r0, r4, 2
-	add      r3, r3, r0
-	lwz      r3, 0x18c(r3)
-	blr
-	*/
-}
+// JUTPalette* J2DTevBlock16::getPalette(unsigned long index)
+// {
+// 	if (index >= 8) {
+// 		return nullptr;
+// 	}
+// 	return m_palettes[index];
+// }
 
 /*
  * --INFO--
  * Address:	80051370
  * Size:	000008
  */
-JUTFont* J2DTevBlock16::getFont()
-{
-	/*
-	lwz      r3, 0x1ac(r3)
-	blr
-	*/
-}
+// JUTFont* J2DTevBlock16::getFont() { return m_font; }
 
 /*
  * --INFO--
  * Address:	80051378
  * Size:	000010
  */
-void J2DTevBlock16::setUndeleteFlag(unsigned char)
-{
-	/*
-	lbz      r0, 0x1b0(r3)
-	and      r0, r0, r4
-	stb      r0, 0x1b0(r3)
-	blr
-	*/
-}
+// void J2DTevBlock16::setUndeleteFlag(unsigned char flag) { _1B0 &= flag; }
 
 /*
  * --INFO--
  * Address:	80051388
  * Size:	00000C
  */
-void J2DTevBlock16::setFontUndeleteFlag()
-{
-	// Generated from stb r0, 0x1B1(r3)
-	_1B1 = 0;
-}
+// void J2DTevBlock16::setFontUndeleteFlag() { _1B1 = 0; }
 
 /*
  * --INFO--
  * Address:	80051394
  * Size:	00000C
  */
-u32 J2DTevBlock8::getType()
-{
-	/*
-	lis      r3, 0x54564238@ha
-	addi     r3, r3, 0x54564238@l
-	blr
-	*/
-}
+// u32 J2DTevBlock8::getType() { return JBT_Tev8; }
 
 /*
  * --INFO--
  * Address:	800513A0
  * Size:	000008
  */
-u32 J2DTevBlock8::getMaxStage() { return 0x8; }
+// u32 J2DTevBlock8::getMaxStage() { return 0x8; }
 
 /*
  * --INFO--
  * Address:	800513A8
  * Size:	000010
  */
-void J2DTevBlock8::setTexNo(unsigned long, unsigned short)
-{
-	/*
-	slwi     r0, r4, 1
-	add      r3, r3, r0
-	sth      r5, 4(r3)
-	blr
-	*/
-}
+// void J2DTevBlock8::setTexNo(unsigned long index, unsigned short texNo) { m_texIndices[index] = texNo; }
 
 /*
  * --INFO--
  * Address:	800513B8
  * Size:	000010
  */
-u16 J2DTevBlock8::getTexNo(unsigned long) const
-{
-	/*
-	slwi     r0, r4, 1
-	add      r3, r3, r0
-	lhz      r3, 4(r3)
-	blr
-	*/
-}
+// u16 J2DTevBlock8::getTexNo(unsigned long index) const { return m_texIndices[index]; }
 
 /*
  * --INFO--
  * Address:	800513C8
  * Size:	000008
  */
-void J2DTevBlock8::setFontNo(unsigned short a1)
-{
-	// Generated from sth r4, 0x14(r3)
-	m_fontNo = a1;
-}
+// void J2DTevBlock8::setFontNo(unsigned short fontNo) { m_fontNo = fontNo; }
 
 /*
  * --INFO--
  * Address:	800513D0
  * Size:	000008
  */
-u16 J2DTevBlock8::getFontNo() const
-{
-	return m_fontNo;
-	/*
-	lhz      r3, 0x14(r3)
-	blr
-	*/
-}
+// u16 J2DTevBlock8::getFontNo() const { return m_fontNo; }
 
 /*
  * --INFO--
  * Address:	800513D8
  * Size:	000024
  */
-void J2DTevBlock8::setTevOrder(unsigned long, J2DTevOrder)
-{
-	/*
-	slwi     r4, r4, 2
-	lbz      r0, 0(r5)
-	add      r4, r3, r4
-	lbz      r3, 1(r5)
-	stb      r0, 0x16(r4)
-	lbz      r0, 2(r5)
-	stb      r3, 0x17(r4)
-	stb      r0, 0x18(r4)
-	blr
-	*/
-}
+// void J2DTevBlock8::setTevOrder(unsigned long index, J2DTevOrder order) { m_orders[index] = order; }
 
 /*
  * --INFO--
  * Address:	800513FC
  * Size:	000014
  */
-J2DTevOrder* J2DTevBlock8::getTevOrder(unsigned long)
-{
-	/*
-	slwi     r4, r4, 2
-	mr       r0, r3
-	addi     r3, r4, 0x16
-	add      r3, r0, r3
-	blr
-	*/
-}
+// J2DTevOrder* J2DTevBlock8::getTevOrder(unsigned long index) { return m_orders + index; }
 
 /*
  * --INFO--
  * Address:	80051410
  * Size:	00002C
  */
-void J2DTevBlock8::setTevColor(unsigned long, J2DGXColorS10)
-{
-	/*
-	slwi     r0, r4, 3
-	lha      r6, 0(r5)
-	add      r4, r3, r0
-	lha      r0, 2(r5)
-	sth      r6, 0x36(r4)
-	lha      r3, 4(r5)
-	sth      r0, 0x38(r4)
-	lha      r0, 6(r5)
-	sth      r3, 0x3a(r4)
-	sth      r0, 0x3c(r4)
-	blr
-	*/
-}
+// void J2DTevBlock8::setTevColor(unsigned long index, J2DGXColorS10 color) { m_colors[index] = color; }
 
 /*
  * --INFO--
  * Address:	8005143C
  * Size:	000014
  */
-J2DGXColorS10* J2DTevBlock8::getTevColor(unsigned long)
-{
-	/*
-	slwi     r4, r4, 3
-	mr       r0, r3
-	addi     r3, r4, 0x36
-	add      r3, r0, r3
-	blr
-	*/
-}
+// J2DGXColorS10* J2DTevBlock8::getTevColor(unsigned long index) { return m_colors + index; }
 
 /*
  * --INFO--
  * Address:	80051450
  * Size:	00002C
  */
-void J2DTevBlock8::setTevKColor(unsigned long, JUtility::TColor)
+void J2DTevBlock8::setTevKColor(unsigned long index, JUtility::TColor color)
 {
-	/*
-	slwi     r0, r4, 2
-	lbz      r6, 0(r5)
-	add      r4, r3, r0
-	lbz      r0, 1(r5)
-	stb      r6, 0x98(r4)
-	lbz      r3, 2(r5)
-	stb      r0, 0x99(r4)
-	lbz      r0, 3(r5)
-	stb      r3, 0x9a(r4)
-	stb      r0, 0x9b(r4)
-	blr
-	*/
+	m_kColors[index].r = color.r;
+	m_kColors[index].g = color.g;
+	m_kColors[index].b = color.b;
+	m_kColors[index].a = color.a;
 }
 
 /*
@@ -10836,146 +8495,72 @@ void J2DTevBlock8::setTevKColor(unsigned long, JUtility::TColor)
  * Address:	8005147C
  * Size:	000014
  */
-JUtility::TColor* J2DTevBlock8::getTevKColor(unsigned long)
-{
-	/*
-	slwi     r4, r4, 2
-	mr       r0, r3
-	addi     r3, r4, 0x98
-	add      r3, r0, r3
-	blr
-	*/
-}
+// JUtility::TColor* J2DTevBlock8::getTevKColor(unsigned long index) { return m_kColors + index; }
 
 /*
  * --INFO--
  * Address:	80051490
  * Size:	00000C
  */
-void J2DTevBlock8::setTevKColorSel(unsigned long, unsigned char)
-{
-	/*
-	add      r3, r3, r4
-	stb      r5, 0xa8(r3)
-	blr
-	*/
-}
+// void J2DTevBlock8::setTevKColorSel(unsigned long index, unsigned char sel) { m_kColorSels[index] = sel; }
 
 /*
  * --INFO--
  * Address:	8005149C
  * Size:	00000C
  */
-u8 J2DTevBlock8::getTevKColorSel(unsigned long)
-{
-	/*
-	add      r3, r3, r4
-	lbz      r3, 0xa8(r3)
-	blr
-	*/
-}
+// u8 J2DTevBlock8::getTevKColorSel(unsigned long index) { return m_kColorSels[index]; }
 
 /*
  * --INFO--
  * Address:	800514A8
  * Size:	00000C
  */
-void J2DTevBlock8::setTevKAlphaSel(unsigned long, unsigned char)
-{
-	/*
-	add      r3, r3, r4
-	stb      r5, 0xb0(r3)
-	blr
-	*/
-}
+// void J2DTevBlock8::setTevKAlphaSel(unsigned long index, unsigned char sel) { m_kAlphaSels[index] = sel; }
 
 /*
  * --INFO--
  * Address:	800514B4
  * Size:	00000C
  */
-u8 J2DTevBlock8::getTevKAlphaSel(unsigned long)
-{
-	/*
-	add      r3, r3, r4
-	lbz      r3, 0xb0(r3)
-	blr
-	*/
-}
+// u8 J2DTevBlock8::getTevKAlphaSel(unsigned long index) { return m_kAlphaSels[index]; }
 
 /*
  * --INFO--
  * Address:	800514C0
  * Size:	000008
  */
-void J2DTevBlock8::setTevStageNum(unsigned char a1)
-{
-	// Generated from stb r4, 0x56(r3)
-	m_stageNum = a1;
-}
+// void J2DTevBlock8::setTevStageNum(unsigned char stageNum) { m_stageNum = stageNum; }
 
 /*
  * --INFO--
  * Address:	800514C8
  * Size:	000008
  */
-u8 J2DTevBlock8::getTevStageNum() const
-{
-	return m_stageNum;
-	/*
-	lbz      r3, 0x56(r3)
-	blr
-	*/
-}
+// u8 J2DTevBlock8::getTevStageNum() const { return m_stageNum; }
 
 /*
  * --INFO--
  * Address:	800514D0
  * Size:	00003C
+ * setTevStage__12J2DTevBlock8FUl11J2DTevStage
  */
-void J2DTevBlock8::setTevStage(unsigned long, J2DTevStage)
-{
-	/*
-	slwi     r0, r4, 3
-	lbz      r6, 1(r5)
-	add      r4, r3, r0
-	lbz      r0, 2(r5)
-	stb      r6, 0x58(r4)
-	lbz      r3, 3(r5)
-	stb      r0, 0x59(r4)
-	lbz      r0, 5(r5)
-	stb      r3, 0x5a(r4)
-	lbz      r3, 6(r5)
-	stb      r0, 0x5c(r4)
-	lbz      r0, 7(r5)
-	stb      r3, 0x5d(r4)
-	stb      r0, 0x5e(r4)
-	blr
-	*/
-}
+// void J2DTevBlock8::setTevStage(unsigned long index, J2DTevStage stage) { m_stages[index] = stage; }
 
 /*
  * --INFO--
  * Address:	8005150C
  * Size:	000014
+ * getTevStage__12J2DTevBlock8FUl
  */
-J2DTevStage* J2DTevBlock8::getTevStage(unsigned long)
-{
-	/*
-	slwi     r4, r4, 3
-	mr       r0, r3
-	addi     r3, r4, 0x57
-	add      r3, r0, r3
-	blr
-	*/
-}
+// J2DTevStage* J2DTevBlock8::getTevStage(unsigned long index) { return m_stages + index; }
 
 /*
  * --INFO--
  * Address:	80051520
  * Size:	000038
  */
-void J2DTevBlock8::setTevSwapModeInfo(unsigned long, J2DTevSwapModeInfo)
+void J2DTevBlock8::setTevSwapModeInfo(unsigned long index, J2DTevSwapModeInfo info)
 {
 	/*
 	slwi     r0, r4, 3
@@ -11000,337 +8585,158 @@ void J2DTevBlock8::setTevSwapModeInfo(unsigned long, J2DTevSwapModeInfo)
  * Address:	80051558
  * Size:	000010
  */
-void J2DTevBlock8::setTevSwapModeTable(unsigned long, J2DTevSwapModeTable)
-{
-	/*
-	lbz      r0, 0(r5)
-	add      r3, r3, r4
-	stb      r0, 0xb8(r3)
-	blr
-	*/
-}
+// void J2DTevBlock8::setTevSwapModeTable(unsigned long index, J2DTevSwapModeTable table) { m_swapModeTables[index] = table; }
 
 /*
  * --INFO--
  * Address:	80051568
  * Size:	000010
  */
-J2DTevSwapModeTable* J2DTevBlock8::getTevSwapModeTable(unsigned long)
-{
-	/*
-	mr       r0, r3
-	addi     r3, r4, 0xb8
-	add      r3, r0, r3
-	blr
-	*/
-}
+// J2DTevSwapModeTable* J2DTevBlock8::getTevSwapModeTable(unsigned long index) { return m_swapModeTables + index; }
 
 /*
  * --INFO--
  * Address:	80051578
  * Size:	000014
  */
-void J2DTevBlock8::setIndTevStage(unsigned long, J2DIndTevStage)
-{
-	/*
-	slwi     r0, r4, 2
-	lwz      r4, 0(r5)
-	add      r3, r3, r0
-	stw      r4, 0xbc(r3)
-	blr
-	*/
-}
+// void J2DTevBlock8::setIndTevStage(unsigned long index, J2DIndTevStage stage) { m_indStages[index] = stage; }
 
 /*
  * --INFO--
  * Address:	8005158C
  * Size:	000014
  */
-J2DIndTevStage* J2DTevBlock8::getIndTevStage(unsigned long)
-{
-	/*
-	slwi     r4, r4, 2
-	mr       r0, r3
-	addi     r3, r4, 0xbc
-	add      r3, r0, r3
-	blr
-	*/
-}
+// J2DIndTevStage* J2DTevBlock8::getIndTevStage(unsigned long index) { return m_indStages + index; }
 
 /*
  * --INFO--
  * Address:	800515A0
  * Size:	000030
  */
-bool J2DTevBlock8::insertTexture(unsigned long, const ResTIMG*)
-{
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	li       r6, 0
-	stw      r0, 0x14(r1)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x7c(r12)
-	mtctr    r12
-	bctrl
-	lwz      r0, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
-}
+// bool J2DTevBlock8::insertTexture(unsigned long index, const ResTIMG* img) { return insertTexture(index, img, nullptr); }
 
 /*
  * --INFO--
  * Address:	800515D0
  * Size:	000020
  */
-JUTTexture* J2DTevBlock8::getTexture(unsigned long)
-{
-	/*
-	cmplwi   r4, 8
-	blt      lbl_800515E0
-	li       r3, 0
-	blr
-
-lbl_800515E0:
-	slwi     r0, r4, 2
-	add      r3, r3, r0
-	lwz      r3, 0xdc(r3)
-	blr
-	*/
-}
+// JUTTexture* J2DTevBlock8::getTexture(unsigned long index) { return (index >= 8) ? nullptr : m_textures[index]; }
 
 /*
  * --INFO--
  * Address:	800515F0
  * Size:	000020
  */
-JUTPalette* J2DTevBlock8::getPalette(unsigned long)
-{
-	/*
-	cmplwi   r4, 8
-	blt      lbl_80051600
-	li       r3, 0
-	blr
-
-lbl_80051600:
-	slwi     r0, r4, 2
-	add      r3, r3, r0
-	lwz      r3, 0xfc(r3)
-	blr
-	*/
-}
+// JUTPalette* J2DTevBlock8::getPalette(unsigned long index)
+// {
+// 	if (index >= 8) {
+// 		return nullptr;
+// 	}
+// 	return m_palettes[index];
+// }
 
 /*
  * --INFO--
  * Address:	80051610
  * Size:	000008
  */
-JUTFont* J2DTevBlock8::getFont()
-{
-	/*
-	lwz      r3, 0x11c(r3)
-	blr
-	*/
-}
+// JUTFont* J2DTevBlock8::getFont() { return m_font; }
 
 /*
  * --INFO--
  * Address:	80051618
  * Size:	000010
  */
-void J2DTevBlock8::setUndeleteFlag(unsigned char)
-{
-	/*
-	lbz      r0, 0x120(r3)
-	and      r0, r0, r4
-	stb      r0, 0x120(r3)
-	blr
-	*/
-}
+// void J2DTevBlock8::setUndeleteFlag(unsigned char flag) { _120 &= flag; }
 
 /*
  * --INFO--
  * Address:	80051628
  * Size:	00000C
  */
-void J2DTevBlock8::setFontUndeleteFlag()
-{
-	// Generated from stb r0, 0x121(r3)
-	_121 = 0;
-}
+// void J2DTevBlock8::setFontUndeleteFlag() { _121 = 0; }
 
 /*
  * --INFO--
  * Address:	80051634
  * Size:	00000C
  */
-u32 J2DTevBlock4::getType()
-{
-	/*
-	lis      r3, 0x54564234@ha
-	addi     r3, r3, 0x54564234@l
-	blr
-	*/
-}
+// u32 J2DTevBlock4::getType() { return JBT_Tev4; }
 
 /*
  * --INFO--
  * Address:	80051640
  * Size:	000008
  */
-u32 J2DTevBlock4::getMaxStage() { return 0x4; }
+// u32 J2DTevBlock4::getMaxStage() { return 0x4; }
 
 /*
  * --INFO--
  * Address:	80051648
  * Size:	000010
  */
-void J2DTevBlock4::setTexNo(unsigned long, unsigned short)
-{
-	/*
-	slwi     r0, r4, 1
-	add      r3, r3, r0
-	sth      r5, 4(r3)
-	blr
-	*/
-}
+// void J2DTevBlock4::setTexNo(unsigned long index, unsigned short texNo) { m_texIndices[index] = texNo; }
 
 /*
  * --INFO--
  * Address:	80051658
  * Size:	000010
  */
-u16 J2DTevBlock4::getTexNo(unsigned long) const
-{
-	/*
-	slwi     r0, r4, 1
-	add      r3, r3, r0
-	lhz      r3, 4(r3)
-	blr
-	*/
-}
+// u16 J2DTevBlock4::getTexNo(unsigned long index) const { return m_texIndices[index]; }
 
 /*
  * --INFO--
  * Address:	80051668
  * Size:	000008
  */
-void J2DTevBlock4::setFontNo(unsigned short a1)
-{
-	// Generated from sth r4, 0xC(r3)
-	m_fontNo = a1;
-}
+// void J2DTevBlock4::setFontNo(unsigned short fontNo) { m_fontNo = fontNo; }
 
 /*
  * --INFO--
  * Address:	80051670
  * Size:	000008
  */
-u16 J2DTevBlock4::getFontNo() const
-{
-	return m_fontNo;
-	/*
-	lhz      r3, 0xc(r3)
-	blr
-	*/
-}
+// u16 J2DTevBlock4::getFontNo() const { return m_fontNo; }
 
 /*
  * --INFO--
  * Address:	80051678
  * Size:	000024
  */
-void J2DTevBlock4::setTevOrder(unsigned long, J2DTevOrder)
-{
-	/*
-	slwi     r4, r4, 2
-	lbz      r0, 0(r5)
-	add      r4, r3, r4
-	lbz      r3, 1(r5)
-	stb      r0, 0xe(r4)
-	lbz      r0, 2(r5)
-	stb      r3, 0xf(r4)
-	stb      r0, 0x10(r4)
-	blr
-	*/
-}
+// void J2DTevBlock4::setTevOrder(unsigned long index, J2DTevOrder order) { m_orders[index] = order; }
 
 /*
  * --INFO--
  * Address:	8005169C
  * Size:	000014
  */
-J2DTevOrder* J2DTevBlock4::getTevOrder(unsigned long)
-{
-	/*
-	slwi     r4, r4, 2
-	mr       r0, r3
-	addi     r3, r4, 0xe
-	add      r3, r0, r3
-	blr
-	*/
-}
+// J2DTevOrder* J2DTevBlock4::getTevOrder(unsigned long index) { return m_orders + index; }
 
 /*
  * --INFO--
  * Address:	800516B0
  * Size:	00002C
  */
-void J2DTevBlock4::setTevColor(unsigned long, J2DGXColorS10)
-{
-	/*
-	slwi     r0, r4, 3
-	lha      r6, 0(r5)
-	add      r4, r3, r0
-	lha      r0, 2(r5)
-	sth      r6, 0x1e(r4)
-	lha      r3, 4(r5)
-	sth      r0, 0x20(r4)
-	lha      r0, 6(r5)
-	sth      r3, 0x22(r4)
-	sth      r0, 0x24(r4)
-	blr
-	*/
-}
+// void J2DTevBlock4::setTevColor(unsigned long index, J2DGXColorS10 color) { m_colors[index] = color; }
 
 /*
  * --INFO--
  * Address:	800516DC
  * Size:	000014
  */
-J2DGXColorS10* J2DTevBlock4::getTevColor(unsigned long)
-{
-	/*
-	slwi     r4, r4, 3
-	mr       r0, r3
-	addi     r3, r4, 0x1e
-	add      r3, r0, r3
-	blr
-	*/
-}
+// J2DGXColorS10* J2DTevBlock4::getTevColor(unsigned long index) { return m_colors + index; }
 
 /*
  * --INFO--
  * Address:	800516F0
  * Size:	00002C
  */
-void J2DTevBlock4::setTevKColor(unsigned long, JUtility::TColor)
+void J2DTevBlock4::setTevKColor(unsigned long index, JUtility::TColor color)
 {
-	/*
-	slwi     r0, r4, 2
-	lbz      r6, 0(r5)
-	add      r4, r3, r0
-	lbz      r0, 1(r5)
-	stb      r6, 0x60(r4)
-	lbz      r3, 2(r5)
-	stb      r0, 0x61(r4)
-	lbz      r0, 3(r5)
-	stb      r3, 0x62(r4)
-	stb      r0, 0x63(r4)
-	blr
-	*/
+	m_kColors[index].r = color.r;
+	m_kColors[index].g = color.g;
+	m_kColors[index].b = color.b;
+	m_kColors[index].a = color.a;
 }
 
 /*
@@ -11338,146 +8744,72 @@ void J2DTevBlock4::setTevKColor(unsigned long, JUtility::TColor)
  * Address:	8005171C
  * Size:	000014
  */
-JUtility::TColor* J2DTevBlock4::getTevKColor(unsigned long)
-{
-	/*
-	slwi     r4, r4, 2
-	mr       r0, r3
-	addi     r3, r4, 0x60
-	add      r3, r0, r3
-	blr
-	*/
-}
+// JUtility::TColor* J2DTevBlock4::getTevKColor(unsigned long index) { return m_kColors + index; }
 
 /*
  * --INFO--
  * Address:	80051730
  * Size:	00000C
  */
-void J2DTevBlock4::setTevKColorSel(unsigned long, unsigned char)
-{
-	/*
-	add      r3, r3, r4
-	stb      r5, 0x70(r3)
-	blr
-	*/
-}
+// void J2DTevBlock4::setTevKColorSel(unsigned long index, unsigned char sel) { m_kColorSels[index] = sel; }
 
 /*
  * --INFO--
  * Address:	8005173C
  * Size:	00000C
  */
-u8 J2DTevBlock4::getTevKColorSel(unsigned long)
-{
-	/*
-	add      r3, r3, r4
-	lbz      r3, 0x70(r3)
-	blr
-	*/
-}
+// u8 J2DTevBlock4::getTevKColorSel(unsigned long index) { return m_kColorSels[index]; }
 
 /*
  * --INFO--
  * Address:	80051748
  * Size:	00000C
  */
-void J2DTevBlock4::setTevKAlphaSel(unsigned long, unsigned char)
-{
-	/*
-	add      r3, r3, r4
-	stb      r5, 0x74(r3)
-	blr
-	*/
-}
+// void J2DTevBlock4::setTevKAlphaSel(unsigned long index, unsigned char sel) { m_kAlphaSels[index] = sel; }
 
 /*
  * --INFO--
  * Address:	80051754
  * Size:	00000C
  */
-u8 J2DTevBlock4::getTevKAlphaSel(unsigned long)
-{
-	/*
-	add      r3, r3, r4
-	lbz      r3, 0x74(r3)
-	blr
-	*/
-}
+// u8 J2DTevBlock4::getTevKAlphaSel(unsigned long index) { return m_kAlphaSels[index]; }
 
 /*
  * --INFO--
  * Address:	80051760
  * Size:	000008
  */
-void J2DTevBlock4::setTevStageNum(unsigned char a1)
-{
-	// Generated from stb r4, 0x3E(r3)
-	m_stageNum = a1;
-}
+// void J2DTevBlock4::setTevStageNum(unsigned char stageNum) { m_stageNum = stageNum; }
 
 /*
  * --INFO--
  * Address:	80051768
  * Size:	000008
  */
-u8 J2DTevBlock4::getTevStageNum() const
-{
-	return m_stageNum;
-	/*
-	lbz      r3, 0x3e(r3)
-	blr
-	*/
-}
+// u8 J2DTevBlock4::getTevStageNum() const { return m_stageNum; }
 
 /*
  * --INFO--
  * Address:	80051770
  * Size:	00003C
+ * setTevStage__12J2DTevBlock4FUl11J2DTevStage
  */
-void J2DTevBlock4::setTevStage(unsigned long, J2DTevStage)
-{
-	/*
-	slwi     r0, r4, 3
-	lbz      r6, 1(r5)
-	add      r4, r3, r0
-	lbz      r0, 2(r5)
-	stb      r6, 0x40(r4)
-	lbz      r3, 3(r5)
-	stb      r0, 0x41(r4)
-	lbz      r0, 5(r5)
-	stb      r3, 0x42(r4)
-	lbz      r3, 6(r5)
-	stb      r0, 0x44(r4)
-	lbz      r0, 7(r5)
-	stb      r3, 0x45(r4)
-	stb      r0, 0x46(r4)
-	blr
-	*/
-}
+// void J2DTevBlock4::setTevStage(unsigned long index, J2DTevStage stage) { m_stages[index] = stage; }
 
 /*
  * --INFO--
  * Address:	800517AC
  * Size:	000014
+ * getTevStage__12J2DTevBlock4FUl
  */
-J2DTevStage* J2DTevBlock4::getTevStage(unsigned long)
-{
-	/*
-	slwi     r4, r4, 3
-	mr       r0, r3
-	addi     r3, r4, 0x3f
-	add      r3, r0, r3
-	blr
-	*/
-}
+// J2DTevStage* J2DTevBlock4::getTevStage(unsigned long index) { return m_stages + index; }
 
 /*
  * --INFO--
  * Address:	800517C0
  * Size:	000038
  */
-void J2DTevBlock4::setTevSwapModeInfo(unsigned long, J2DTevSwapModeInfo)
+void J2DTevBlock4::setTevSwapModeInfo(unsigned long index, J2DTevSwapModeInfo info)
 {
 	/*
 	slwi     r0, r4, 3
@@ -11502,341 +8834,158 @@ void J2DTevBlock4::setTevSwapModeInfo(unsigned long, J2DTevSwapModeInfo)
  * Address:	800517F8
  * Size:	000010
  */
-void J2DTevBlock4::setTevSwapModeTable(unsigned long, J2DTevSwapModeTable)
-{
-	/*
-	lbz      r0, 0(r5)
-	add      r3, r3, r4
-	stb      r0, 0x78(r3)
-	blr
-	*/
-}
+// void J2DTevBlock4::setTevSwapModeTable(unsigned long index, J2DTevSwapModeTable table) { m_swapModeTables[index] = table; }
 
 /*
  * --INFO--
  * Address:	80051808
  * Size:	000010
  */
-J2DTevSwapModeTable* J2DTevBlock4::getTevSwapModeTable(unsigned long)
-{
-	/*
-	mr       r0, r3
-	addi     r3, r4, 0x78
-	add      r3, r0, r3
-	blr
-	*/
-}
+// J2DTevSwapModeTable* J2DTevBlock4::getTevSwapModeTable(unsigned long index) { return m_swapModeTables + index; }
 
 /*
  * --INFO--
  * Address:	80051818
  * Size:	000014
  */
-void J2DTevBlock4::setIndTevStage(unsigned long, J2DIndTevStage)
-{
-	/*
-	slwi     r0, r4, 2
-	lwz      r4, 0(r5)
-	add      r3, r3, r0
-	stw      r4, 0x7c(r3)
-	blr
-	*/
-}
+// void J2DTevBlock4::setIndTevStage(unsigned long index, J2DIndTevStage stage) { m_indStages[index] = stage; }
 
 /*
  * --INFO--
  * Address:	8005182C
  * Size:	000014
  */
-J2DIndTevStage* J2DTevBlock4::getIndTevStage(unsigned long)
-{
-	/*
-	slwi     r4, r4, 2
-	mr       r0, r3
-	addi     r3, r4, 0x7c
-	add      r3, r0, r3
-	blr
-	*/
-}
+// J2DIndTevStage* J2DTevBlock4::getIndTevStage(unsigned long index) { return m_indStages + index; }
 
 /*
  * --INFO--
  * Address:	80051840
  * Size:	000030
  */
-bool J2DTevBlock4::insertTexture(unsigned long, const ResTIMG*)
-{
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	li       r6, 0
-	stw      r0, 0x14(r1)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x7c(r12)
-	mtctr    r12
-	bctrl
-	lwz      r0, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
-}
+// bool J2DTevBlock4::insertTexture(unsigned long index, const ResTIMG* img) { return insertTexture(index, img, nullptr); }
 
 /*
  * --INFO--
  * Address:	80051870
  * Size:	000020
  */
-JUTTexture* J2DTevBlock4::getTexture(unsigned long)
-{
-	/*
-	cmplwi   r4, 4
-	blt      lbl_80051880
-	li       r3, 0
-	blr
-
-lbl_80051880:
-	slwi     r0, r4, 2
-	add      r3, r3, r0
-	lwz      r3, 0x8c(r3)
-	blr
-	*/
-}
+// JUTTexture* J2DTevBlock4::getTexture(unsigned long index) { return (index >= 4) ? nullptr : m_textures[index]; }
 
 /*
  * --INFO--
  * Address:	80051890
  * Size:	000020
  */
-JUTPalette* J2DTevBlock4::getPalette(unsigned long)
-{
-	/*
-	cmplwi   r4, 4
-	blt      lbl_800518A0
-	li       r3, 0
-	blr
-
-lbl_800518A0:
-	slwi     r0, r4, 2
-	add      r3, r3, r0
-	lwz      r3, 0x9c(r3)
-	blr
-	*/
-}
+// JUTPalette* J2DTevBlock4::getPalette(unsigned long index)
+// {
+// 	if (index >= 4) {
+// 		return nullptr;
+// 	}
+// 	return m_palettes[index];
+// }
 
 /*
  * --INFO--
  * Address:	800518B0
  * Size:	000008
  */
-JUTFont* J2DTevBlock4::getFont()
-{
-	/*
-	lwz      r3, 0xac(r3)
-	blr
-	*/
-}
+// JUTFont* J2DTevBlock4::getFont() { return m_font; }
 
 /*
  * --INFO--
  * Address:	800518B8
  * Size:	000010
  */
-void J2DTevBlock4::setUndeleteFlag(unsigned char)
-{
-	/*
-	lbz      r0, 0xb0(r3)
-	and      r0, r0, r4
-	stb      r0, 0xb0(r3)
-	blr
-	*/
-}
+// void J2DTevBlock4::setUndeleteFlag(unsigned char flag) { _B0 &= flag; }
 
 /*
  * --INFO--
  * Address:	800518C8
  * Size:	000010
  */
-void J2DTevBlock4::setFontUndeleteFlag()
-{
-	/*
-	lbz      r0, 0xb0(r3)
-	clrlwi   r0, r0, 0x19
-	stb      r0, 0xb0(r3)
-	blr
-	*/
-}
+// void J2DTevBlock4::setFontUndeleteFlag() { _B0 &= 0x7F; }
 
 /*
  * --INFO--
  * Address:	800518D8
  * Size:	00000C
  */
-u32 J2DTevBlock2::getType()
-{
-	/*
-	lis      r3, 0x54564232@ha
-	addi     r3, r3, 0x54564232@l
-	blr
-	*/
-}
+// u32 J2DTevBlock2::getType() { return JBT_Tev2; }
 
 /*
  * --INFO--
  * Address:	800518E4
  * Size:	000008
  */
-u32 J2DTevBlock2::getMaxStage() { return 0x2; }
+// u32 J2DTevBlock2::getMaxStage() { return 0x2; }
 
 /*
  * --INFO--
  * Address:	800518EC
  * Size:	000010
  */
-void J2DTevBlock2::setTexNo(unsigned long, unsigned short)
-{
-	/*
-	slwi     r0, r4, 1
-	add      r3, r3, r0
-	sth      r5, 4(r3)
-	blr
-	*/
-}
+// void J2DTevBlock2::setTexNo(unsigned long index, unsigned short texNo) { m_texIndices[index] = texNo; }
 
 /*
  * --INFO--
  * Address:	800518FC
  * Size:	000010
  */
-u16 J2DTevBlock2::getTexNo(unsigned long) const
-{
-	/*
-	slwi     r0, r4, 1
-	add      r3, r3, r0
-	lhz      r3, 4(r3)
-	blr
-	*/
-}
+// u16 J2DTevBlock2::getTexNo(unsigned long index) const { return m_texIndices[index]; }
 
 /*
  * --INFO--
  * Address:	8005190C
  * Size:	000008
  */
-void J2DTevBlock2::setFontNo(unsigned short a1)
-{
-	// Generated from sth r4, 0x8(r3)
-	m_fontNo = a1;
-}
+// void J2DTevBlock2::setFontNo(unsigned short fontNo) { m_fontNo = fontNo; }
 
 /*
  * --INFO--
  * Address:	80051914
  * Size:	000008
  */
-u16 J2DTevBlock2::getFontNo() const
-{
-	return m_fontNo;
-	/*
-	lhz      r3, 8(r3)
-	blr
-	*/
-}
+// u16 J2DTevBlock2::getFontNo() const { return m_fontNo; }
 
 /*
  * --INFO--
  * Address:	8005191C
  * Size:	000024
  */
-void J2DTevBlock2::setTevOrder(unsigned long, J2DTevOrder)
-{
-	/*
-	slwi     r4, r4, 2
-	lbz      r0, 0(r5)
-	add      r4, r3, r4
-	lbz      r3, 1(r5)
-	stb      r0, 0xa(r4)
-	lbz      r0, 2(r5)
-	stb      r3, 0xb(r4)
-	stb      r0, 0xc(r4)
-	blr
-	*/
-}
+// void J2DTevBlock2::setTevOrder(unsigned long index, J2DTevOrder order) { m_orders[index] = order; }
 
 /*
  * --INFO--
  * Address:	80051940
  * Size:	000014
  */
-J2DTevOrder* J2DTevBlock2::getTevOrder(unsigned long)
-{
-	/*
-	slwi     r4, r4, 2
-	mr       r0, r3
-	addi     r3, r4, 0xa
-	add      r3, r0, r3
-	blr
-	*/
-}
+// J2DTevOrder* J2DTevBlock2::getTevOrder(unsigned long index) { return m_orders + index; }
 
 /*
  * --INFO--
  * Address:	80051954
  * Size:	00002C
  */
-void J2DTevBlock2::setTevColor(unsigned long, J2DGXColorS10)
-{
-	/*
-	slwi     r0, r4, 3
-	lha      r6, 0(r5)
-	add      r4, r3, r0
-	lha      r0, 2(r5)
-	sth      r6, 0x12(r4)
-	lha      r3, 4(r5)
-	sth      r0, 0x14(r4)
-	lha      r0, 6(r5)
-	sth      r3, 0x16(r4)
-	sth      r0, 0x18(r4)
-	blr
-	*/
-}
+// void J2DTevBlock2::setTevColor(unsigned long index, J2DGXColorS10 color) { m_colors[index] = color; }
 
 /*
  * --INFO--
  * Address:	80051980
  * Size:	000014
  */
-J2DGXColorS10* J2DTevBlock2::getTevColor(unsigned long)
-{
-	/*
-	slwi     r4, r4, 3
-	mr       r0, r3
-	addi     r3, r4, 0x12
-	add      r3, r0, r3
-	blr
-	*/
-}
+// J2DGXColorS10* J2DTevBlock2::getTevColor(unsigned long index) { return m_colors + index; }
 
 /*
  * --INFO--
  * Address:	80051994
  * Size:	00002C
  */
-void J2DTevBlock2::setTevKColor(unsigned long, JUtility::TColor)
+void J2DTevBlock2::setTevKColor(unsigned long index, JUtility::TColor color)
 {
-	/*
-	slwi     r0, r4, 2
-	lbz      r6, 0(r5)
-	add      r4, r3, r0
-	lbz      r0, 1(r5)
-	stb      r6, 0x44(r4)
-	lbz      r3, 2(r5)
-	stb      r0, 0x45(r4)
-	lbz      r0, 3(r5)
-	stb      r3, 0x46(r4)
-	stb      r0, 0x47(r4)
-	blr
-	*/
+	m_kColors[index].r = color.r;
+	m_kColors[index].g = color.g;
+	m_kColors[index].b = color.b;
+	m_kColors[index].a = color.a;
 }
 
 /*
@@ -11844,147 +8993,76 @@ void J2DTevBlock2::setTevKColor(unsigned long, JUtility::TColor)
  * Address:	800519C0
  * Size:	000014
  */
-JUtility::TColor* J2DTevBlock2::getTevKColor(unsigned long)
-{
-	/*
-	slwi     r4, r4, 2
-	mr       r0, r3
-	addi     r3, r4, 0x44
-	add      r3, r0, r3
-	blr
-	*/
-}
+// JUtility::TColor* J2DTevBlock2::getTevKColor(unsigned long index) { return m_kColors + index; }
 
 /*
  * --INFO--
  * Address:	800519D4
  * Size:	00000C
  */
-void J2DTevBlock2::setTevKColorSel(unsigned long, unsigned char)
-{
-	/*
-	add      r3, r3, r4
-	stb      r5, 0x54(r3)
-	blr
-	*/
-}
+// void J2DTevBlock2::setTevKColorSel(unsigned long index, unsigned char sel) { m_kColorSels[index] = sel; }
 
 /*
  * --INFO--
  * Address:	800519E0
  * Size:	00000C
  */
-u8 J2DTevBlock2::getTevKColorSel(unsigned long)
-{
-	/*
-	add      r3, r3, r4
-	lbz      r3, 0x54(r3)
-	blr
-	*/
-}
+// u8 J2DTevBlock2::getTevKColorSel(unsigned long index) { return m_kColorSels[index]; }
 
 /*
  * --INFO--
  * Address:	800519EC
  * Size:	00000C
  */
-void J2DTevBlock2::setTevKAlphaSel(unsigned long, unsigned char)
-{
-	/*
-	add      r3, r3, r4
-	stb      r5, 0x56(r3)
-	blr
-	*/
-}
+// void J2DTevBlock2::setTevKAlphaSel(unsigned long index, unsigned char sel) { m_kAlphaSels[index] = sel; }
 
 /*
  * --INFO--
  * Address:	800519F8
  * Size:	00000C
  */
-u8 J2DTevBlock2::getTevKAlphaSel(unsigned long)
-{
-	/*
-	add      r3, r3, r4
-	lbz      r3, 0x56(r3)
-	blr
-	*/
-}
+// u8 J2DTevBlock2::getTevKAlphaSel(unsigned long index) { return m_kAlphaSels[index]; }
 
 /*
  * --INFO--
  * Address:	80051A04
  * Size:	000008
  */
-void J2DTevBlock2::setTevStageNum(unsigned char a1)
-{
-	// Generated from stb r4, 0x32(r3)
-	m_stageNum = a1;
-}
+// void J2DTevBlock2::setTevStageNum(unsigned char stageNum) { m_stageNum = stageNum; }
 
 /*
  * --INFO--
  * Address:	80051A0C
  * Size:	000008
  */
-u8 J2DTevBlock2::getTevStageNum() const
-{
-	return m_stageNum;
-	/*
-	lbz      r3, 0x32(r3)
-	blr
-	*/
-}
+// u8 J2DTevBlock2::getTevStageNum() const { return m_stageNum; }
 
 /*
  * --INFO--
  * Address:	80051A14
  * Size:	00003C
+ * setTevStage__12J2DTevBlock2FUl11J2DTevStage
  */
-void J2DTevBlock2::setTevStage(unsigned long, J2DTevStage)
-{
-	/*
-	slwi     r0, r4, 3
-	lbz      r6, 1(r5)
-	add      r4, r3, r0
-	lbz      r0, 2(r5)
-	stb      r6, 0x34(r4)
-	lbz      r3, 3(r5)
-	stb      r0, 0x35(r4)
-	lbz      r0, 5(r5)
-	stb      r3, 0x36(r4)
-	lbz      r3, 6(r5)
-	stb      r0, 0x38(r4)
-	lbz      r0, 7(r5)
-	stb      r3, 0x39(r4)
-	stb      r0, 0x3a(r4)
-	blr
-	*/
-}
+// void J2DTevBlock2::setTevStage(unsigned long index, J2DTevStage stage) { m_stages[index] = stage; }
 
 /*
  * --INFO--
  * Address:	80051A50
  * Size:	000014
+ * getTevStage__12J2DTevBlock2FUl
  */
-J2DTevStage* J2DTevBlock2::getTevStage(unsigned long)
-{
-	/*
-	slwi     r4, r4, 3
-	mr       r0, r3
-	addi     r3, r4, 0x33
-	add      r3, r0, r3
-	blr
-	*/
-}
+// J2DTevStage* J2DTevBlock2::getTevStage(unsigned long index) { return m_stages + index; }
 
 /*
  * --INFO--
  * Address:	80051A64
  * Size:	000038
  */
-void J2DTevBlock2::setTevSwapModeInfo(unsigned long, J2DTevSwapModeInfo)
+void J2DTevBlock2::setTevSwapModeInfo(unsigned long index, J2DTevSwapModeInfo info)
 {
+	m_stages[index]._04.asStruct._1 = info._01 << 1;
+	m_stages[index]._04.asStruct._0 = info._00;
+	// m_stages[index]._06._0 = info._00;
 	/*
 	slwi     r0, r4, 3
 	lbz      r4, 1(r5)
@@ -12008,341 +9086,158 @@ void J2DTevBlock2::setTevSwapModeInfo(unsigned long, J2DTevSwapModeInfo)
  * Address:	80051A9C
  * Size:	000010
  */
-void J2DTevBlock2::setTevSwapModeTable(unsigned long, J2DTevSwapModeTable)
-{
-	/*
-	lbz      r0, 0(r5)
-	add      r3, r3, r4
-	stb      r0, 0x58(r3)
-	blr
-	*/
-}
+// void J2DTevBlock2::setTevSwapModeTable(unsigned long index, J2DTevSwapModeTable table) { m_swapModeTables[index] = table; }
 
 /*
  * --INFO--
  * Address:	80051AAC
  * Size:	000010
  */
-J2DTevSwapModeTable* J2DTevBlock2::getTevSwapModeTable(unsigned long)
-{
-	/*
-	mr       r0, r3
-	addi     r3, r4, 0x58
-	add      r3, r0, r3
-	blr
-	*/
-}
+// J2DTevSwapModeTable* J2DTevBlock2::getTevSwapModeTable(unsigned long index) { return m_swapModeTables + index; }
 
 /*
  * --INFO--
  * Address:	80051ABC
  * Size:	000014
  */
-void J2DTevBlock2::setIndTevStage(unsigned long, J2DIndTevStage)
-{
-	/*
-	slwi     r0, r4, 2
-	lwz      r4, 0(r5)
-	add      r3, r3, r0
-	stw      r4, 0x5c(r3)
-	blr
-	*/
-}
+// void J2DTevBlock2::setIndTevStage(unsigned long index, J2DIndTevStage stage) { m_indStages[index] = stage; }
 
 /*
  * --INFO--
  * Address:	80051AD0
  * Size:	000014
  */
-J2DIndTevStage* J2DTevBlock2::getIndTevStage(unsigned long)
-{
-	/*
-	slwi     r4, r4, 2
-	mr       r0, r3
-	addi     r3, r4, 0x5c
-	add      r3, r0, r3
-	blr
-	*/
-}
+// J2DIndTevStage* J2DTevBlock2::getIndTevStage(unsigned long index) { return m_indStages + index; }
 
 /*
  * --INFO--
  * Address:	80051AE4
  * Size:	000030
  */
-bool J2DTevBlock2::insertTexture(unsigned long, const ResTIMG*)
-{
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	li       r6, 0
-	stw      r0, 0x14(r1)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x7c(r12)
-	mtctr    r12
-	bctrl
-	lwz      r0, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
-}
+// bool J2DTevBlock2::insertTexture(unsigned long index, const ResTIMG* img) { return insertTexture(index, img, nullptr); }
 
 /*
  * --INFO--
  * Address:	80051B14
  * Size:	000020
  */
-JUTTexture* J2DTevBlock2::getTexture(unsigned long)
-{
-	/*
-	cmplwi   r4, 2
-	blt      lbl_80051B24
-	li       r3, 0
-	blr
-
-lbl_80051B24:
-	slwi     r0, r4, 2
-	add      r3, r3, r0
-	lwz      r3, 0x64(r3)
-	blr
-	*/
-}
+// JUTTexture* J2DTevBlock2::getTexture(unsigned long index) { return (index >= 2) ? nullptr : m_textures[index]; }
 
 /*
  * --INFO--
  * Address:	80051B34
  * Size:	000020
  */
-JUTPalette* J2DTevBlock2::getPalette(unsigned long)
-{
-	/*
-	cmplwi   r4, 2
-	blt      lbl_80051B44
-	li       r3, 0
-	blr
-
-lbl_80051B44:
-	slwi     r0, r4, 2
-	add      r3, r3, r0
-	lwz      r3, 0x6c(r3)
-	blr
-	*/
-}
+// JUTPalette* J2DTevBlock2::getPalette(unsigned long index)
+// {
+// 	if (index >= 2) {
+// 		return nullptr;
+// 	}
+// 	return m_palettes[index];
+// }
 
 /*
  * --INFO--
  * Address:	80051B54
  * Size:	000008
  */
-JUTFont* J2DTevBlock2::getFont()
-{
-	return m_font;
-	/*
-	lwz      r3, 0x74(r3)
-	blr
-	*/
-}
+// JUTFont* J2DTevBlock2::getFont() { return m_font; }
 
 /*
  * --INFO--
  * Address:	80051B5C
  * Size:	000010
  */
-void J2DTevBlock2::setUndeleteFlag(unsigned char)
-{
-	/*
-	lbz      r0, 0x78(r3)
-	and      r0, r0, r4
-	stb      r0, 0x78(r3)
-	blr
-	*/
-}
+// void J2DTevBlock2::setUndeleteFlag(unsigned char flag) { _78 &= flag; }
 
 /*
  * --INFO--
  * Address:	80051B6C
  * Size:	000010
  */
-void J2DTevBlock2::setFontUndeleteFlag()
-{
-	/*
-	lbz      r0, 0x78(r3)
-	clrlwi   r0, r0, 0x19
-	stb      r0, 0x78(r3)
-	blr
-	*/
-}
+// void J2DTevBlock2::setFontUndeleteFlag() { _78 &= 0x7F; }
 
 /*
  * --INFO--
  * Address:	80051B7C
  * Size:	00000C
  */
-u32 J2DTevBlock1::getType()
-{
-	/*
-	lis      r3, 0x54564231@ha
-	addi     r3, r3, 0x54564231@l
-	blr
-	*/
-}
+// u32 J2DTevBlock1::getType() { return JBT_Tev1; }
 
 /*
  * --INFO--
  * Address:	80051B88
  * Size:	000008
  */
-u32 J2DTevBlock1::getMaxStage() { return 0x1; }
+// u32 J2DTevBlock1::getMaxStage() { return 0x1; }
 
 /*
  * --INFO--
  * Address:	80051B90
  * Size:	000010
  */
-void J2DTevBlock1::setTexNo(unsigned long, unsigned short)
-{
-	/*
-	slwi     r0, r4, 1
-	add      r3, r3, r0
-	sth      r5, 4(r3)
-	blr
-	*/
-}
+// void J2DTevBlock1::setTexNo(unsigned long index, unsigned short texNo) { m_texIndices[index] = texNo; }
 
 /*
  * --INFO--
  * Address:	80051BA0
  * Size:	000010
  */
-u16 J2DTevBlock1::getTexNo(unsigned long) const
-{
-	/*
-	slwi     r0, r4, 1
-	add      r3, r3, r0
-	lhz      r3, 4(r3)
-	blr
-	*/
-}
+// u16 J2DTevBlock1::getTexNo(unsigned long index) const { return m_texIndices[index]; }
 
 /*
  * --INFO--
  * Address:	80051BB0
  * Size:	000008
  */
-void J2DTevBlock1::setFontNo(unsigned short a1)
-{
-	// Generated from sth r4, 0x6(r3)
-	m_fontNo = a1;
-}
+// void J2DTevBlock1::setFontNo(unsigned short fontNo) { m_fontNo = fontNo; }
 
 /*
  * --INFO--
  * Address:	80051BB8
  * Size:	000008
  */
-u16 J2DTevBlock1::getFontNo() const
-{
-	/*
-	lhz      r3, 6(r3)
-	blr
-	*/
-}
+// u16 J2DTevBlock1::getFontNo() const { return m_fontNo; }
 
 /*
  * --INFO--
  * Address:	80051BC0
  * Size:	000024
  */
-void J2DTevBlock1::setTevOrder(unsigned long, J2DTevOrder)
-{
-	/*
-	slwi     r4, r4, 2
-	lbz      r0, 0(r5)
-	add      r4, r3, r4
-	lbz      r3, 1(r5)
-	stb      r0, 8(r4)
-	lbz      r0, 2(r5)
-	stb      r3, 9(r4)
-	stb      r0, 0xa(r4)
-	blr
-	*/
-}
+// void J2DTevBlock1::setTevOrder(unsigned long index, J2DTevOrder order) { m_orders[index] = order; }
 
 /*
  * --INFO--
  * Address:	80051BE4
  * Size:	000014
  */
-J2DTevOrder* J2DTevBlock1::getTevOrder(unsigned long)
-{
-	/*
-	slwi     r4, r4, 2
-	mr       r0, r3
-	addi     r3, r4, 8
-	add      r3, r0, r3
-	blr
-	*/
-}
+// J2DTevOrder* J2DTevBlock1::getTevOrder(unsigned long index) { return m_orders + index; }
 
 /*
  * --INFO--
  * Address:	80051BF8
  * Size:	00002C
  */
-void J2DTevBlock1::setTevColor(unsigned long, J2DGXColorS10)
-{
-	/*
-	slwi     r0, r4, 3
-	lha      r6, 0(r5)
-	add      r4, r3, r0
-	lha      r0, 2(r5)
-	sth      r6, 0xc(r4)
-	lha      r3, 4(r5)
-	sth      r0, 0xe(r4)
-	lha      r0, 6(r5)
-	sth      r3, 0x10(r4)
-	sth      r0, 0x12(r4)
-	blr
-	*/
-}
+// void J2DTevBlock1::setTevColor(unsigned long index, J2DGXColorS10 color) { m_colors[index] = color; }
 
 /*
  * --INFO--
  * Address:	80051C24
  * Size:	000014
  */
-J2DGXColorS10* J2DTevBlock1::getTevColor(unsigned long)
-{
-	/*
-	slwi     r4, r4, 3
-	mr       r0, r3
-	addi     r3, r4, 0xc
-	add      r3, r0, r3
-	blr
-	*/
-}
+// J2DGXColorS10* J2DTevBlock1::getTevColor(unsigned long index) { return m_colors + index; }
 
 /*
  * --INFO--
  * Address:	80051C38
  * Size:	00002C
  */
-void J2DTevBlock1::setTevKColor(unsigned long, JUtility::TColor)
+void J2DTevBlock1::setTevKColor(unsigned long index, JUtility::TColor color)
 {
-	/*
-	slwi     r0, r4, 2
-	lbz      r6, 0(r5)
-	add      r4, r3, r0
-	lbz      r0, 1(r5)
-	stb      r6, 0x34(r4)
-	lbz      r3, 2(r5)
-	stb      r0, 0x35(r4)
-	lbz      r0, 3(r5)
-	stb      r3, 0x36(r4)
-	stb      r0, 0x37(r4)
-	blr
-	*/
+	m_kColors[index].r = color.r;
+	m_kColors[index].g = color.g;
+	m_kColors[index].b = color.b;
+	m_kColors[index].a = color.a;
 }
 
 /*
@@ -12350,135 +9245,72 @@ void J2DTevBlock1::setTevKColor(unsigned long, JUtility::TColor)
  * Address:	80051C64
  * Size:	000014
  */
-JUtility::TColor* J2DTevBlock1::getTevKColor(unsigned long)
-{
-	/*
-	slwi     r4, r4, 2
-	mr       r0, r3
-	addi     r3, r4, 0x34
-	add      r3, r0, r3
-	blr
-	*/
-}
+// JUtility::TColor* J2DTevBlock1::getTevKColor(unsigned long index) { return m_kColors + index; }
 
 /*
  * --INFO--
  * Address:	80051C78
  * Size:	00000C
  */
-void J2DTevBlock1::setTevKColorSel(unsigned long, unsigned char)
-{
-	/*
-	add      r3, r3, r4
-	stb      r5, 0x44(r3)
-	blr
-	*/
-}
+// void J2DTevBlock1::setTevKColorSel(unsigned long index, unsigned char sel) { m_kColorSels[index] = sel; }
 
 /*
  * --INFO--
  * Address:	80051C84
  * Size:	00000C
  */
-u8 J2DTevBlock1::getTevKColorSel(unsigned long)
-{
-	/*
-	add      r3, r3, r4
-	lbz      r3, 0x44(r3)
-	blr
-	*/
-}
+// u8 J2DTevBlock1::getTevKColorSel(unsigned long index) { return m_kColorSels[index]; }
 
 /*
  * --INFO--
  * Address:	80051C90
  * Size:	00000C
  */
-void J2DTevBlock1::setTevKAlphaSel(unsigned long, unsigned char)
-{
-	/*
-	add      r3, r3, r4
-	stb      r5, 0x45(r3)
-	blr
-	*/
-}
+// void J2DTevBlock1::setTevKAlphaSel(unsigned long index, unsigned char sel) { m_kAlphaSels[index] = sel; }
 
 /*
  * --INFO--
  * Address:	80051C9C
  * Size:	00000C
  */
-u8 J2DTevBlock1::getTevKAlphaSel(unsigned long)
-{
-	/*
-	add      r3, r3, r4
-	lbz      r3, 0x45(r3)
-	blr
-	*/
-}
+// u8 J2DTevBlock1::getTevKAlphaSel(unsigned long index) { return m_kAlphaSels[index]; }
 
 /*
  * --INFO--
  * Address:	80051CA8
  * Size:	000004
  */
-void J2DTevBlock1::setTevStageNum(unsigned char) { }
+// void J2DTevBlock1::setTevStageNum(unsigned char stageNum) { }
 
 /*
  * --INFO--
  * Address:	80051CAC
  * Size:	000008
  */
-u8 J2DTevBlock1::getTevStageNum() const { return 0x1; }
+// u8 J2DTevBlock1::getTevStageNum() const { return 0x1; }
 
 /*
  * --INFO--
  * Address:	80051CB4
  * Size:	00003C
+ * setTevStage__12J2DTevBlock1FUl11J2DTevStage
  */
-void J2DTevBlock1::setTevStage(unsigned long, J2DTevStage)
-{
-	/*
-	slwi     r0, r4, 3
-	lbz      r6, 1(r5)
-	add      r4, r3, r0
-	lbz      r0, 2(r5)
-	stb      r6, 0x2d(r4)
-	lbz      r3, 3(r5)
-	stb      r0, 0x2e(r4)
-	lbz      r0, 5(r5)
-	stb      r3, 0x2f(r4)
-	lbz      r3, 6(r5)
-	stb      r0, 0x31(r4)
-	lbz      r0, 7(r5)
-	stb      r3, 0x32(r4)
-	stb      r0, 0x33(r4)
-	blr
-	*/
-}
+// void J2DTevBlock1::setTevStage(unsigned long index, J2DTevStage stage) { m_stages[index] = stage; }
 
 /*
  * --INFO--
  * Address:	80051CF0
  * Size:	000014
+ * getTevStage__12J2DTevBlock1FUl
  */
-J2DTevStage* J2DTevBlock1::getTevStage(unsigned long)
-{
-	/*
-	slwi     r4, r4, 3
-	mr       r0, r3
-	addi     r3, r4, 0x2c
-	add      r3, r0, r3
-	blr
-	*/
-}
+// J2DTevStage* J2DTevBlock1::getTevStage(unsigned long index) { return m_stages + index; }
 
 /*
  * --INFO--
  * Address:	80051D04
  * Size:	000038
  */
-void J2DTevBlock1::setTevSwapModeInfo(unsigned long, J2DTevSwapModeInfo)
+void J2DTevBlock1::setTevSwapModeInfo(unsigned long index, J2DTevSwapModeInfo info)
 {
 	/*
 	slwi     r0, r4, 3
@@ -12503,321 +9335,234 @@ void J2DTevBlock1::setTevSwapModeInfo(unsigned long, J2DTevSwapModeInfo)
  * Address:	80051D3C
  * Size:	000010
  */
-void J2DTevBlock1::setTevSwapModeTable(unsigned long, J2DTevSwapModeTable)
-{
-	/*
-	lbz      r0, 0(r5)
-	add      r3, r3, r4
-	stb      r0, 0x46(r3)
-	blr
-	*/
-}
+// void J2DTevBlock1::setTevSwapModeTable(unsigned long index, J2DTevSwapModeTable table) { m_swapModeTables[index] = table; }
 
 /*
  * --INFO--
  * Address:	80051D4C
  * Size:	000010
  */
-J2DTevSwapModeTable* J2DTevBlock1::getTevSwapModeTable(unsigned long)
-{
-	/*
-	mr       r0, r3
-	addi     r3, r4, 0x46
-	add      r3, r0, r3
-	blr
-	*/
-}
+// J2DTevSwapModeTable* J2DTevBlock1::getTevSwapModeTable(unsigned long index) { return m_swapModeTables + index; }
 
 /*
  * --INFO--
  * Address:	80051D5C
  * Size:	000014
  */
-void J2DTevBlock1::setIndTevStage(unsigned long, J2DIndTevStage)
-{
-	/*
-	slwi     r0, r4, 2
-	lwz      r4, 0(r5)
-	add      r3, r3, r0
-	stw      r4, 0x4c(r3)
-	blr
-	*/
-}
+// void J2DTevBlock1::setIndTevStage(unsigned long index, J2DIndTevStage stage) { m_indStages[index] = stage; }
 
 /*
  * --INFO--
  * Address:	80051D70
  * Size:	000014
  */
-J2DIndTevStage* J2DTevBlock1::getIndTevStage(unsigned long)
-{
-	/*
-	slwi     r4, r4, 2
-	mr       r0, r3
-	addi     r3, r4, 0x4c
-	add      r3, r0, r3
-	blr
-	*/
-}
+// J2DIndTevStage* J2DTevBlock1::getIndTevStage(unsigned long index) { return m_indStages + index; }
 
 /*
  * --INFO--
  * Address:	80051D84
  * Size:	000030
  */
-bool J2DTevBlock1::insertTexture(unsigned long, const ResTIMG*)
-{
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	li       r6, 0
-	stw      r0, 0x14(r1)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x7c(r12)
-	mtctr    r12
-	bctrl
-	lwz      r0, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
-}
+// bool J2DTevBlock1::insertTexture(unsigned long index, const ResTIMG* img) { return insertTexture(index, img, nullptr); }
 
 /*
  * --INFO--
  * Address:	80051DB4
  * Size:	000020
  */
-JUTTexture* J2DTevBlock1::getTexture(unsigned long)
-{
-	/*
-	cmplwi   r4, 1
-	blt      lbl_80051DC4
-	li       r3, 0
-	blr
-
-lbl_80051DC4:
-	slwi     r0, r4, 2
-	add      r3, r3, r0
-	lwz      r3, 0x50(r3)
-	blr
-	*/
-}
+// JUTTexture* J2DTevBlock1::getTexture(unsigned long index) { return (index >= 1) ? nullptr : m_textures[index]; }
 
 /*
  * --INFO--
  * Address:	80051DD4
  * Size:	000020
  */
-JUTPalette* J2DTevBlock1::getPalette(unsigned long)
-{
-	/*
-	cmplwi   r4, 1
-	blt      lbl_80051DE4
-	li       r3, 0
-	blr
-
-lbl_80051DE4:
-	slwi     r0, r4, 2
-	add      r3, r3, r0
-	lwz      r3, 0x54(r3)
-	blr
-	*/
-}
+// JUTPalette* J2DTevBlock1::getPalette(unsigned long index)
+// {
+// 	if (index >= 1) {
+// 		return nullptr;
+// 	}
+// 	return m_palettes[index];
+// }
 
 /*
  * --INFO--
  * Address:	80051DF4
  * Size:	000008
  */
-JUTFont* J2DTevBlock1::getFont()
-{
-	/*
-	lwz      r3, 0x58(r3)
-	blr
-	*/
-}
+// JUTFont* J2DTevBlock1::getFont() { return m_font; }
 
 /*
  * --INFO--
  * Address:	80051DFC
  * Size:	000010
  */
-void J2DTevBlock1::setUndeleteFlag(unsigned char)
-{
-	/*
-	lbz      r0, 0x5c(r3)
-	and      r0, r0, r4
-	stb      r0, 0x5c(r3)
-	blr
-	*/
-}
+// void J2DTevBlock1::setUndeleteFlag(unsigned char flag) { _5C &= flag; }
 
 /*
  * --INFO--
  * Address:	80051E0C
  * Size:	000010
  */
-void J2DTevBlock1::setFontUndeleteFlag()
-{
-	/*
-	lbz      r0, 0x5c(r3)
-	clrlwi   r0, r0, 0x19
-	stb      r0, 0x5c(r3)
-	blr
-	*/
-}
+// void J2DTevBlock1::setFontUndeleteFlag() { _5C &= 0x7F; }
 
 /*
  * --INFO--
  * Address:	80051E1C
  * Size:	000004
  */
-void J2DTevBlock::initialize() { }
+// void J2DTevBlock::initialize() { }
 
 /*
  * --INFO--
  * Address:	80051E20
  * Size:	000004
  */
-void J2DTevBlock::setGX() { }
+// void J2DTevBlock::setGX() { }
 
 /*
  * --INFO--
  * Address:	80051E24
  * Size:	000004
+ * loadTexture__11J2DTevBlockF11_GXTexMapIDUl
  */
-void J2DTevBlock::loadTexture(_GXTexMapID, unsigned long) { }
+// void J2DTevBlock::loadTexture(_GXTexMapID id, unsigned long index) { }
 
 /*
  * --INFO--
  * Address:	80051E28
  * Size:	000004
  */
-void J2DTevBlock::setFontNo(unsigned short) { }
+// void J2DTevBlock::setFontNo(unsigned short) { }
 
 /*
  * --INFO--
  * Address:	80051E2C
  * Size:	000004
  */
-void J2DTevBlock::setTevKColor(unsigned long, JUtility::TColor) { }
+// void J2DTevBlock::setTevKColor(unsigned long index, JUtility::TColor color) { }
 
 /*
  * --INFO--
  * Address:	80051E30
  * Size:	000008
  */
-u8 J2DTevBlock::getTevKColorSel(unsigned long) { return 0x0; }
+// u8 J2DTevBlock::getTevKColorSel(unsigned long index) { return 0x0; }
 
 /*
  * --INFO--
  * Address:	80051E38
  * Size:	000008
  */
-u8 J2DTevBlock::getTevKAlphaSel(unsigned long) { return 0x0; }
+// u8 J2DTevBlock::getTevKAlphaSel(unsigned long index) { return 0x0; }
 
 /*
  * --INFO--
  * Address:	80051E40
  * Size:	000004
+ * setTevStage__11J2DTevBlockFUl11J2DTevStage
  */
-void J2DTevBlock::setTevStage(unsigned long, J2DTevStage) { }
+// void J2DTevBlock::setTevStage(unsigned long index, J2DTevStage stage) { }
 
 /*
  * --INFO--
  * Address:	80051E44
  * Size:	000004
  */
-void J2DTevBlock::setTevSwapModeInfo(unsigned long, J2DTevSwapModeInfo) { }
+// void J2DTevBlock::setTevSwapModeInfo(unsigned long index, J2DTevSwapModeInfo info) { }
 
 /*
  * --INFO--
  * Address:	80051E48
  * Size:	000004
  */
-void J2DTevBlock::setTevSwapModeTable(unsigned long, J2DTevSwapModeTable) { }
+// void J2DTevBlock::setTevSwapModeTable(unsigned long index, J2DTevSwapModeTable table) { }
 
 /*
  * --INFO--
  * Address:	80051E4C
  * Size:	000004
  */
-void J2DTevBlock::setIndTevStage(unsigned long, J2DIndTevStage) { }
+// void J2DTevBlock::setIndTevStage(unsigned long index, J2DIndTevStage stage) { }
 
 /*
  * --INFO--
  * Address:	80051E50
  * Size:	000008
  */
-J2DIndTevStage* J2DTevBlock::getIndTevStage(unsigned long) { return nullptr; }
+// J2DIndTevStage* J2DTevBlock::getIndTevStage(unsigned long index) { return nullptr; }
 
 /*
  * --INFO--
  * Address:	80051E58
  * Size:	000008
  */
-bool J2DTevBlock::insertTexture(unsigned long, JUTTexture*) { return false; }
+// bool J2DTevBlock::insertTexture(unsigned long, JUTTexture*) { return false; }
 
 /*
  * --INFO--
  * Address:	80051E60
  * Size:	000008
  */
-bool J2DTevBlock::insertTexture(unsigned long, const ResTIMG*, JUTPalette*) { return false; }
+// bool J2DTevBlock::insertTexture(unsigned long, const ResTIMG*, JUTPalette*) { return false; }
 
 /*
  * --INFO--
  * Address:	80051E68
  * Size:	000008
+ * setTexture__11J2DTevBlockFUlPC7ResTIMG
  */
-bool J2DTevBlock::setTexture(unsigned long, JUTTexture*) { return false; }
+// bool J2DTevBlock::setTexture(unsigned long index, JUTTexture* texture) { return false; }
 
 /*
  * --INFO--
  * Address:	80051E70
  * Size:	000008
+ * setTexture__11J2DTevBlockFUlP10JUTTexture
  */
-bool J2DTevBlock::setTexture(unsigned long, const ResTIMG*) { return false; }
+// bool J2DTevBlock::setTexture(unsigned long index, const ResTIMG* img) { return false; }
 
 /*
  * --INFO--
  * Address:	80051E78
  * Size:	000008
+ * removeTexture__11J2DTevBlockFUl
  */
-bool J2DTevBlock::removeTexture(unsigned long) { return false; }
+// bool J2DTevBlock::removeTexture(unsigned long) { return false; }
 
 /*
  * --INFO--
  * Address:	80051E80
  * Size:	000008
  */
-bool J2DTevBlock::setFont(JUTFont*) { return false; }
+// bool J2DTevBlock::setFont(JUTFont* font) { return false; }
 
 /*
  * --INFO--
  * Address:	80051E88
  * Size:	000008
  */
-bool J2DTevBlock::setFont(ResFONT*) { return false; }
+// bool J2DTevBlock::setFont(ResFONT* font) { return false; }
 
 /*
  * --INFO--
  * Address:	80051E90
  * Size:	000008
+ * setPalette__11J2DTevBlockFUlPC7ResTLUT
  */
-bool J2DTevBlock::setPalette(unsigned long, const ResTLUT*) { return false; }
+// bool J2DTevBlock::setPalette(unsigned long index, const ResTLUT* lut) { return false; }
 
 /*
  * --INFO--
  * Address:	80051E98
  * Size:	000008
+ * prepareTexture__11J2DTevBlockFUc
  */
-bool J2DTevBlock::prepareTexture(unsigned char) { return false; }
+// bool J2DTevBlock::prepareTexture(unsigned char count) { return false; }
 
 /*
  * --INFO--
  * Address:	80051EA0
  * Size:	000004
  */
-void J2DTevBlock::shiftDeleteFlag(unsigned char, bool) { }
+// void J2DTevBlock::shiftDeleteFlag(unsigned char, bool) { }

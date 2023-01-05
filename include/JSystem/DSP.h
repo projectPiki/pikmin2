@@ -3,9 +3,10 @@
 
 #include "types.h"
 
-#ifdef __cplusplus
-extern "C" {
-#endif // ifdef __cplusplus
+// These functions should NOT be declared extern C, because the symbol map has their names mangled.
+// #ifdef __cplusplus
+// extern "C" {
+// #endif // ifdef __cplusplus
 
 typedef struct _STRUCT_DSP_TASK {
 	s32 _00;                      // _00
@@ -43,8 +44,15 @@ void DspStartWork(unsigned long p1, void (*p2)(unsigned short));
 void DspFinishWork(unsigned short p1);
 
 // osdsp.c
-void DSPAddTask(void);
-void DSPAddPriorTask(STRUCT_DSP_TASK*);
+STRUCT_DSP_TASK* DSPAddTask(STRUCT_DSP_TASK* task);
+void DSPAddPriorTask(STRUCT_DSP_TASK* task);
+
+// osdsp_task.c
+// void __DSPHandler();
+void DsyncFrame2(unsigned long p1, unsigned long p2, unsigned long p3);
+void Dsp_Update_Request();
+BOOL Dsp_Running_Check();
+void DSP_Running_Start();
 
 // unused/inlined in dspproc.c:
 void DSPReleaseHalt3(u32 p1, u16 p2);
@@ -64,8 +72,11 @@ void DagbSec(unsigned long p1, void (*p2)(unsigned short));
 void dummy_callback(unsigned short p1);
 void DsetDolbyDelay(unsigned long p1, unsigned short p2);
 
-#ifdef __cplusplus
-}
-#endif // ifdef __cplusplus
+extern u8 DSP_prior_yield;
+extern STRUCT_DSP_TASK* DSP_prior_task;
+
+// #ifdef __cplusplus
+// }
+// #endif // ifdef __cplusplus
 
 #endif

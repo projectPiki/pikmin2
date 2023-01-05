@@ -16,15 +16,15 @@ struct JFWSystem {
 	struct CSetUpParam {
 		static int maxStdHeaps;
 		static u32 sysHeapSize;
-		static u32 fifoBufSize;
+		static size_t fifoBufSize;
 		static u32 aramAudioBufSize;
 		static u32 aramGraphBufSize;
-		static const long streamPriority;
-		static const long decompPriority;
-		static const long aPiecePriority;
-		static const ResFONT* systemFontRes;
-		static const GXRenderModeObj* renderMode;
-		static const u32 exConsoleBufferSize;
+		static long streamPriority;
+		static long decompPriority;
+		static long aPiecePriority;
+		static ResFONT* systemFontRes;
+		static GXRenderModeObj* renderMode;
+		static u32 exConsoleBufferSize;
 	};
 
 	void firstInit();

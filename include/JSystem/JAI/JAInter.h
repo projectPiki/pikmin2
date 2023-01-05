@@ -59,8 +59,8 @@ void checkPlayingSoundTrack(unsigned long);
 void loadArcSeqData(unsigned long, bool);
 void loadCustomArcSeqData(unsigned short, bool);
 
-extern JAISequence** FixSeqBufPointer;
 extern SeqUpdateData* seqTrackInfo;
+extern JAISequence** FixSeqBufPointer;
 extern JKRArchive* arcPointer;
 extern CustomHeapCallback customHeapCallback;
 } // namespace SequenceMgr
@@ -92,11 +92,11 @@ struct Actor {
 };
 
 struct Camera {
-	inline Camera(Vec& vec1, Vec& vec2, Mtx& mtx)
+	inline Camera(Vec* vec1 = nullptr, Vec* vec2 = nullptr, Mtx* mtx = nullptr)
 	{
-		m_vec1 = &vec1;
-		m_vec2 = &vec2;
-		m_mtx  = &mtx;
+		m_vec1 = vec1;
+		m_vec2 = vec2;
+		m_mtx  = mtx;
 	}
 
 	Vec* m_vec1; // _00
@@ -110,7 +110,6 @@ struct DummyObjectMgr {
 	 * @size{0x1C}
 	 */
 	struct DummyObject {
-		inline DummyObject() {};
 		DummyObject* _00;      // _00
 		DummyObject* _04;      // _04
 		JAISound* m_sound;     // _08
@@ -125,9 +124,9 @@ struct DummyObjectMgr {
 	// Unused/inlined:
 	void releasePointer(DummyVec*);
 
-	static DummyObject* deadObjectObject;
 	static DummyObject* deadObjectFreePointer;
 	static DummyObject* deadObjectUsedPointer;
+	static DummyObject* deadObjectObject;
 };
 
 struct DummyVec {
@@ -135,6 +134,12 @@ struct DummyVec {
 
 struct HeapBlock {
 	HeapBlock();
+
+	u8 _00;    // _00
+	void* _04; // _04
+	int _08;   // _08
+	u32 _0C;   // _0C
+	int _10;   // _10
 };
 
 struct LinkSound {
@@ -153,7 +158,9 @@ struct LinkSound {
 struct MuteBit {
 	MuteBit();
 
-	u8 value : 1;
+	bool _0 : 1;
+	bool _1 : 1;
+	bool _2 : 1;
 };
 
 struct PlayerParameter {
@@ -220,13 +227,14 @@ struct SeqUpdateData {
 	f32 _18;                 // _18
 	f32 _1C;                 // _1C
 	f32 _20;                 // _20
-	void* _24;               // _24 - unknown pointer
-	void* _28;               // _28 - unknown pointer
-	void* _2C;               // _2C - unknown pointer
-	void* _30;               // _30 - unknown pointer
-	void* _34;               // _34 - unknown pointer
-	u8 _38[0xC];             // _38 - unknown
-	void* _44;               // _44 - unknown pointer
+	f32* _24;                // _24
+	f32* _28;                // _28
+	f32* _2C;                // _2C
+	f32* _30;                // _30
+	f32* _34;                // _34
+	u8 _38[8];               // _38 - unknown
+	u8* _40;                 // _40
+	u32* _44;                // _44
 	JAISequence* m_sequence; // _48
 	PlayerParameter* _4C;    // _4C - pointer to array of 33 parameters
 };
@@ -255,13 +263,18 @@ struct SeqParameter : MoveParaSet {
 	u8 _279;                    // _279
 	short _27A;                 // _27A
 	u32 _27C;                   // _27C
-	u8 _280[0x4];               // _280
+	u32 _280;                   // _280 - from here to (and including) _2B0 might be an array...
 	u32 _284;                   // _284
 	u32 _288;                   // _288
 	u32 _28C;                   // _28C
-	u8 _290[0x14];              // _290
+	u32 _290;                   // _290
+	u32 _294;                   // _294
+	u32 _298;                   // _298
+	u32 _29C;                   // _29C
+	u32 _2A0;                   // _2A0
 	u32 _2A4;                   // _2A4
-	u8 _2A8[0x8];               // _2A8
+	u32 _2A8;                   // _2A8
+	u32 _2AC;                   // _2AC
 	u32 _2B0;                   // _2B0
 	u32* _2B4;                  // _2B4
 	u8* _2B8;                   // _2B8 - unknown pointer
@@ -277,11 +290,11 @@ struct SoundInfo {
 		unsigned long v1;
 		unsigned char v2[4];
 		unsigned short v3[2];
-	} count;             // _04
-	unsigned long pitch; // _08
+	} count;     // _04
+	float pitch; // _08
 	union volume_t {
 		unsigned long v1;
-		unsigned char v2;
+		unsigned char v2[4];
 	} volume; // _0C
 };
 

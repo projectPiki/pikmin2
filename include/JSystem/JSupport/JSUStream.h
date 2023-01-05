@@ -28,11 +28,59 @@ struct JSUInputStream : public JSUIosBase {
 	s32 read(void*, long);
 	char* read(char*);
 
+	/** @fabricated */
+	inline bool readBool()
+	{
+		bool temp;
+		read(&temp, 1);
+		return temp;
+	}
+
 	inline u8 readByte()
 	{
 		u8 byte;
 		read(&byte, 1);
 		return byte;
+	}
+
+	/** @fabricated */
+	inline s16 readS16()
+	{
+		s16 temp;
+		read(&temp, 2);
+		return temp;
+	}
+
+	/** @fabricated */
+	inline float readS16ToFloat()
+	{
+		s16 temp;
+		read(&temp, 2);
+		return temp;
+	}
+
+	/** @fabricated */
+	inline u16 readU16()
+	{
+		u16 temp;
+		read(&temp, 2);
+		return temp;
+	}
+
+	/** @fabricated */
+	inline float readU16ToFloat()
+	{
+		u16 temp;
+		read(&temp, 2);
+		return temp;
+	}
+
+	/** @fabricated */
+	inline u32 readU32()
+	{
+		u32 temp;
+		read(&temp, 4);
+		return temp;
 	}
 
 	// _00		= VTBL
@@ -76,6 +124,7 @@ struct JSUMemoryInputStream : public JSURandomInputStream {
 struct JSUFileInputStream : public JSURandomInputStream {
 	JSUFileInputStream(JKRFile*);
 
+	virtual ~JSUFileInputStream() { }                                             // _08 (weak)
 	virtual int readData(void*, long);                                            // _14
 	virtual int getLength() const { return ((JKRFile*)m_object)->getFileSize(); } // _18 (weak)
 	virtual int getPosition() const { return m_length; }                          // _1C (weak)

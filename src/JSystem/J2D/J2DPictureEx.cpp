@@ -241,7 +241,7 @@ void J2DPictureEx::initialize(unsigned long p1)
  * Size:	00029C
  * __ct__12J2DPictureExFP7J2DPaneP20JSURandomInputStreamUlP11J2DMaterial
  */
-J2DPictureEx::J2DPictureEx(J2DPane*, JSURandomInputStream*, unsigned long, J2DMaterial*)
+J2DPictureEx::J2DPictureEx(J2DPane* parent, JSURandomInputStream* input, unsigned long flags, J2DMaterial* materials)
 {
 	/*
 	.loc_0x0:
@@ -431,79 +431,6 @@ J2DPictureEx::J2DPictureEx(u64 id, const JGeometry::TBox2f& bounds, const ResTIM
 	m_bloBlockType = 'PIC2';
 	initialize(p4);
 	append(img, 1.0f);
-	/*
-	.loc_0x0:
-	  stwu      r1, -0x20(r1)
-	  mflr      r0
-	  stw       r0, 0x24(r1)
-	  stw       r31, 0x1C(r1)
-	  mr        r31, r9
-	  stw       r30, 0x18(r1)
-	  mr        r30, r8
-	  stw       r29, 0x14(r1)
-	  mr        r29, r3
-	  bl        -0x1AA28
-	  lis       r3, 0x804A
-	  lis       r4, 0x5049
-	  addi      r0, r3, 0x11B0
-	  li        r3, 0x88
-	  stw       r0, 0x0(r29)
-	  addi      r0, r4, 0x4332
-	  stw       r0, 0x8(r29)
-	  stw       r0, 0x8(r29)
-	  bl        -0x311D0
-	  mr.       r0, r3
-	  beq-      .loc_0x60
-	  mr        r4, r31
-	  bl        -0x3048
-	  mr        r0, r3
-
-	.loc_0x60:
-	  stw       r0, 0x168(r29)
-	  li        r0, 0x1
-	  lis       r3, 0x1
-	  lfs       f0, -0x7A80(r2)
-	  stb       r0, 0x198(r29)
-	  subi      r0, r3, 0x1
-	  mr        r3, r29
-	  li        r4, 0
-	  sth       r0, 0x16C(r29)
-	  li        r5, 0xF
-	  li        r6, 0
-	  li        r7, 0
-	  sth       r0, 0x16E(r29)
-	  sth       r0, 0x170(r29)
-	  sth       r0, 0x172(r29)
-	  sth       r0, 0x174(r29)
-	  sth       r0, 0x176(r29)
-	  stfs      f0, 0x178(r29)
-	  stfs      f0, 0x188(r29)
-	  stfs      f0, 0x17C(r29)
-	  stfs      f0, 0x18C(r29)
-	  stfs      f0, 0x180(r29)
-	  stfs      f0, 0x190(r29)
-	  stfs      f0, 0x184(r29)
-	  stfs      f0, 0x194(r29)
-	  bl        -0x18288
-	  li        r0, 0
-	  mr        r3, r29
-	  stw       r0, 0x19C(r29)
-	  mr        r4, r30
-	  lfs       f1, -0x7A80(r2)
-	  stw       r0, 0x1A0(r29)
-	  lwz       r12, 0x0(r29)
-	  lwz       r12, 0x9C(r12)
-	  mtctr     r12
-	  bctrl
-	  lwz       r0, 0x24(r1)
-	  mr        r3, r29
-	  lwz       r31, 0x1C(r1)
-	  lwz       r30, 0x18(r1)
-	  lwz       r29, 0x14(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x20
-	  blr
-	*/
 }
 
 /*
@@ -518,79 +445,6 @@ J2DPictureEx::J2DPictureEx(u64 id, const JGeometry::TBox2f& bounds, const char* 
 	m_bloBlockType = 'PIC2';
 	initialize(p4);
 	append(p3, 1.0f);
-	/*
-	.loc_0x0:
-	  stwu      r1, -0x20(r1)
-	  mflr      r0
-	  stw       r0, 0x24(r1)
-	  stw       r31, 0x1C(r1)
-	  mr        r31, r9
-	  stw       r30, 0x18(r1)
-	  mr        r30, r8
-	  stw       r29, 0x14(r1)
-	  mr        r29, r3
-	  bl        -0x1AB38
-	  lis       r3, 0x804A
-	  lis       r4, 0x5049
-	  addi      r0, r3, 0x11B0
-	  li        r3, 0x88
-	  stw       r0, 0x0(r29)
-	  addi      r0, r4, 0x4332
-	  stw       r0, 0x8(r29)
-	  stw       r0, 0x8(r29)
-	  bl        -0x312E0
-	  mr.       r0, r3
-	  beq-      .loc_0x60
-	  mr        r4, r31
-	  bl        -0x3158
-	  mr        r0, r3
-
-	.loc_0x60:
-	  stw       r0, 0x168(r29)
-	  li        r0, 0x1
-	  lis       r3, 0x1
-	  lfs       f0, -0x7A80(r2)
-	  stb       r0, 0x198(r29)
-	  subi      r0, r3, 0x1
-	  mr        r3, r29
-	  li        r4, 0
-	  sth       r0, 0x16C(r29)
-	  li        r5, 0xF
-	  li        r6, 0
-	  li        r7, 0
-	  sth       r0, 0x16E(r29)
-	  sth       r0, 0x170(r29)
-	  sth       r0, 0x172(r29)
-	  sth       r0, 0x174(r29)
-	  sth       r0, 0x176(r29)
-	  stfs      f0, 0x178(r29)
-	  stfs      f0, 0x188(r29)
-	  stfs      f0, 0x17C(r29)
-	  stfs      f0, 0x18C(r29)
-	  stfs      f0, 0x180(r29)
-	  stfs      f0, 0x190(r29)
-	  stfs      f0, 0x184(r29)
-	  stfs      f0, 0x194(r29)
-	  bl        -0x18398
-	  li        r0, 0
-	  mr        r3, r29
-	  stw       r0, 0x19C(r29)
-	  mr        r4, r30
-	  lfs       f1, -0x7A80(r2)
-	  stw       r0, 0x1A0(r29)
-	  lwz       r12, 0x0(r29)
-	  lwz       r12, 0xA4(r12)
-	  mtctr     r12
-	  bctrl
-	  lwz       r0, 0x24(r1)
-	  mr        r3, r29
-	  lwz       r31, 0x1C(r1)
-	  lwz       r30, 0x18(r1)
-	  lwz       r29, 0x14(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x20
-	  blr
-	*/
 }
 
 /*
@@ -3457,7 +3311,7 @@ lbl_80057CD4:
  */
 void J2DPictureEx::setBlendColorRatio(float p1, float p2, float p3, float p4, float p5, float p6, float p7, float p8)
 {
-	if (_168) {
+	if (_168 != nullptr) {
 		_124[0] = p1;
 		_124[1] = p2;
 		_124[2] = p3;
@@ -3832,13 +3686,13 @@ u8 J2DPictureEx::getTextureCount() const
  * Address:	80058170
  * Size:	000088
  */
-bool J2DPictureEx::setBlack(JUtility::TColor newBlack)
+bool J2DPictureEx::setBlack(JUtility::TColor black)
 {
-	JUtility::TColor black, white;
-	if (!getBlackWhite(&black, &white)) {
+	JUtility::TColor oldBlack, oldWhite;
+	if (!getBlackWhite(&oldBlack, &oldWhite)) {
 		return false;
 	}
-	return setBlackWhite(newBlack, white);
+	return setBlackWhite(black, oldWhite);
 }
 
 /*
@@ -3846,13 +3700,13 @@ bool J2DPictureEx::setBlack(JUtility::TColor newBlack)
  * Address:	800581F8
  * Size:	000088
  */
-bool J2DPictureEx::setWhite(JUtility::TColor newWhite)
+bool J2DPictureEx::setWhite(JUtility::TColor white)
 {
-	JUtility::TColor black, white;
-	if (!getBlackWhite(&black, &white)) {
+	JUtility::TColor oldBlack, oldWhite;
+	if (!getBlackWhite(&oldBlack, &oldWhite)) {
 		return false;
 	}
-	return setBlackWhite(black, newWhite);
+	return setBlackWhite(oldBlack, white);
 }
 
 /*
@@ -4575,17 +4429,17 @@ void J2DPictureEx::rewriteAlpha()
  * Address:	80058AA0
  * Size:	0000A8
  */
-bool J2DPictureEx::isUsed(const ResTIMG* img)
+bool J2DPictureEx::isUsed(const ResTIMG* resource)
 {
 	if (_168 != nullptr && _168->m_tevBlock != nullptr) {
 		for (u32 i = 0; i < 8; i++) {
 			JUTTexture* texture = _168->m_tevBlock->getTexture(i);
-			if (texture != nullptr && texture->_20 == img) {
+			if (texture != nullptr && texture->_20 == resource) {
 				return true;
 			}
 		}
 	}
-	return J2DPane::isUsed(img);
+	return J2DPane::isUsed(resource);
 }
 
 /*
@@ -4598,21 +4452,6 @@ void J2DPictureEx::setAnimation(J2DAnmColor* animation)
 	if (_168 != nullptr) {
 		_168->setAnimation(animation);
 	}
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	lwz      r3, 0x168(r3)
-	cmplwi   r3, 0
-	beq      lbl_80058B64
-	bl       setAnimation__11J2DMaterialFP11J2DAnmColor
-
-lbl_80058B64:
-	lwz      r0, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
 }
 
 /*
@@ -4625,21 +4464,6 @@ void J2DPictureEx::setAnimation(J2DAnmTextureSRTKey* animation)
 	if (_168 != nullptr) {
 		_168->setAnimation(animation);
 	}
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	lwz      r3, 0x168(r3)
-	cmplwi   r3, 0
-	beq      lbl_80058B90
-	bl       setAnimation__11J2DMaterialFP19J2DAnmTextureSRTKey
-
-lbl_80058B90:
-	lwz      r0, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
 }
 
 /*
@@ -4652,21 +4476,6 @@ void J2DPictureEx::setAnimation(J2DAnmTexPattern* animation)
 	if (_168 != nullptr) {
 		_168->setAnimation(animation);
 	}
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	lwz      r3, 0x168(r3)
-	cmplwi   r3, 0
-	beq      lbl_80058BBC
-	bl       setAnimation__11J2DMaterialFP16J2DAnmTexPattern
-
-lbl_80058BBC:
-	lwz      r0, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
 }
 
 /*
@@ -4679,21 +4488,6 @@ void J2DPictureEx::setAnimation(J2DAnmTevRegKey* animation)
 	if (_168 != nullptr) {
 		_168->setAnimation(animation);
 	}
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	lwz      r3, 0x168(r3)
-	cmplwi   r3, 0
-	beq      lbl_80058BE8
-	bl       setAnimation__11J2DMaterialFP15J2DAnmTevRegKey
-
-lbl_80058BE8:
-	lwz      r0, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
 }
 
 /*
@@ -4701,11 +4495,7 @@ lbl_80058BE8:
  * Address:	80058BF8
  * Size:	000008
  */
-void J2DPictureEx::setAnimation(J2DAnmVisibilityFull* animation)
-{
-	// Generated from stw r4, 0x19C(r3)
-	m_anmVisibility = animation;
-}
+void J2DPictureEx::setAnimation(J2DAnmVisibilityFull* animation) { m_anmVisibility = animation; }
 
 /*
  * --INFO--
@@ -4823,7 +4613,7 @@ lbl_80058CC8:
  * Address:	80058CE0
  * Size:	000164
  */
-const J2DAnmTransform* J2DPictureEx::animationPane(const J2DAnmTransform*)
+const J2DAnmTransform* J2DPictureEx::animationPane(const J2DAnmTransform* animation)
 {
 	/*
 	stwu     r1, -0x20(r1)
@@ -5037,14 +4827,7 @@ lbl_80058F34:
  * Address:	80058F48
  * Size:	000008
  */
-J2DMaterial* J2DPictureEx::getMaterial() const
-{
-	return _168;
-	/*
-	lwz      r3, 0x168(r3)
-	blr
-	*/
-}
+J2DMaterial* J2DPictureEx::getMaterial() const { return _168; }
 
 /*
  * --INFO--
@@ -5242,7 +5025,7 @@ void J2DPictureEx::load(unsigned char)
  * Address:	80059180
  * Size:	00003C
  */
-void J2DPictureEx::setCullBack(bool)
+void J2DPictureEx::setCullBack(bool shouldCullBack)
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -5270,7 +5053,7 @@ lbl_8005919C:
  * Address:	800591BC
  * Size:	000020
  */
-bool J2DPictureEx::isUsed(const ResFONT*)
+bool J2DPictureEx::isUsed(const ResFONT* resource)
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -5289,7 +5072,7 @@ bool J2DPictureEx::isUsed(const ResFONT*)
  * Address:	800591DC
  * Size:	000020
  */
-void J2DPictureEx::setAnimation(J2DAnmTransform*)
+void J2DPictureEx::setAnimation(J2DAnmTransform* animation)
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -5308,7 +5091,7 @@ void J2DPictureEx::setAnimation(J2DAnmTransform*)
  * Address:	800591FC
  * Size:	000020
  */
-void J2DPictureEx::setAnimation(J2DAnmBase*)
+void J2DPictureEx::setAnimation(J2DAnmBase* animation)
 {
 	/*
 	stwu     r1, -0x10(r1)

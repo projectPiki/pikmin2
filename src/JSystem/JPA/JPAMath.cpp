@@ -1,4 +1,5 @@
 #include "JSystem/JGeometry.h"
+#include "JSystem/JPA/JPAMath.h"
 #include "types.h"
 
 /*
@@ -211,21 +212,11 @@ void JPAGetXYZRotateMtx(short, short, short, float (*)[4])
  * Address:	80093CF4
  * Size:	000028
  */
-void JPASetRMtxfromMtx(const float (*)[4], float (*)[4])
+void JPASetRMtxfromMtx(const float (*p1)[4], float (*p2)[4])
 {
-	/*
-	stwu     r1, -0x20(r1)
-	mflr     r0
-	stw      r0, 0x24(r1)
-	addi     r5, r1, 0x14
-	addi     r6, r1, 8
-	bl
-	"JPASetRMtxSTVecfromMtx__FPA4_CfPA4_fPQ29JGeometry8TVec3<f>PQ29JGeometry8TVec3<f>"
-	lwz      r0, 0x24(r1)
-	mtlr     r0
-	addi     r1, r1, 0x20
-	blr
-	*/
+	JGeometry::TVec3f v1;
+	JGeometry::TVec3f v2;
+	JPASetRMtxSTVecfromMtx(p1, p2, &v1, &v2);
 }
 
 /*
@@ -233,23 +224,10 @@ void JPASetRMtxfromMtx(const float (*)[4], float (*)[4])
  * Address:	80093D1C
  * Size:	000028
  */
-void JPASetRMtxTVecfromMtx(const float (*)[4], float (*)[4], JGeometry::TVec3<float>*)
+void JPASetRMtxTVecfromMtx(const float (*p1)[4], float (*p2)[4], JGeometry::TVec3<float>* p3)
 {
-	/*
-	.loc_0x0:
-	  stwu      r1, -0x20(r1)
-	  mflr      r0
-	  mr        r6, r5
-	  stw       r0, 0x24(r1)
-	  addi      r5, r1, 0x8
-	  bl        .loc_0x28
-	  lwz       r0, 0x24(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x20
-	  blr
-
-	.loc_0x28:
-	*/
+	JGeometry::TVec3f v1;
+	JPASetRMtxSTVecfromMtx(p1, p2, &v1, p3);
 }
 
 /*

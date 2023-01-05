@@ -18,22 +18,22 @@ struct JKRFileCache : public JKRFileLoader {
 
 	JKRFileCache(const char*, const char*);
 
-	virtual ~JKRFileCache();                                                         // _08
-	virtual bool becomeCurrent(const char*);                                         // _10
-	virtual void* getResource(const char*);                                          // _14
-	virtual void* getResource(unsigned long, const char*);                           // _18
-	virtual u32 readResource(void*, unsigned long, const char*);                     // _1C
-	virtual u32 readResource(void*, unsigned long, unsigned long, const char*);      // _20
-	virtual void removeResourceAll();                                                // _24
-	virtual bool removeResource(void*);                                              // _28
-	virtual bool detachResource(void*);                                              // _2C
-	virtual long getResSize(const void*) const;                                      // _30
-	virtual u16 countFile(const char*) const;                                        // _34
-	virtual JKRFileFinder* getFirstFile(const char*) const;                          // _38
-	virtual void* getFsResource(const char*);                                        // _3C (weak)
-	virtual void* getNameResource(unsigned long, const char*);                       // _40 (weak)
-	virtual long readFsResource(void*, unsigned long, const char*);                  // _44 (weak)
-	virtual long readNameResource(void*, unsigned long, unsigned long, const char*); // _48 (weak)
+	virtual ~JKRFileCache();                                                                         // _08
+	virtual bool becomeCurrent(const char*);                                                         // _10
+	virtual void* getResource(const char*);                                                          // _14
+	virtual void* getResource(unsigned long, const char*);                                           // _18
+	virtual size_t readResource(void* resourceBuffer, u32 bufferSize, const char* path);             // _1C
+	virtual size_t readResource(void* resourceBuffer, u32 bufferSize, u32 type, const char* name);   // _20
+	virtual void removeResourceAll();                                                                // _24
+	virtual bool removeResource(void*);                                                              // _28
+	virtual bool detachResource(void*);                                                              // _2C
+	virtual long getResSize(const void*) const;                                                      // _30
+	virtual u32 countFile(const char*) const;                                                        // _34
+	virtual JKRFileFinder* getFirstFile(const char*) const;                                          // _38
+	virtual void* getFsResource(const char*);                                                        // _3C (weak)
+	virtual void* getNameResource(unsigned long, const char*);                                       // _40 (weak)
+	virtual long readFsResource(void* resourceBuffer, u32 bufferSize, const char* path);             // _44 (weak)
+	virtual long readNameResource(void* resourceBuffer, u32 bufferSize, u32 type, const char* name); // _48 (weak)
 
 	// +4 bytes vtable padding
 
@@ -44,6 +44,10 @@ struct JKRFileCache : public JKRFileLoader {
 	void convStrLower(char*) const;
 
 	static JKRFileCache* mount(char const*, JKRHeap*, const char*);
+
+	// unused/inlined:
+	void* getRelResource(const char*);
+	u32 readRelResource(void* p1, u32 p2, const char* p3);
 
 	JKRHeap* _38;                          // _38
 	JSUList<CCacheBlock> m_cacheBlockList; // _3C

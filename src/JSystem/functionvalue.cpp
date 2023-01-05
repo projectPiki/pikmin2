@@ -1,6 +1,8 @@
 #include "JStudio/functionvalue.h"
+#include "Dolphin/float.h"
 #include "JSystem/JGadget/linklist.h"
 #include "JSystem/JGadget/list.h"
+#include "fdlibm.h"
 #include "std/functional.h"
 #include "std/algorithm.h"
 #include "types.h"
@@ -144,34 +146,20 @@ namespace JStudio {
  * Address:	80008A80
  * Size:	000004
  */
-void functionvalue::extrapolateParameter_raw(double, double) { }
+void functionvalue::extrapolateParameter_raw(double p1, double p2) { }
 
 /*
  * --INFO--
  * Address:	80008A84
  * Size:	00003C
  */
-void functionvalue::extrapolateParameter_repeat(double, double)
+f64 functionvalue::extrapolateParameter_repeat(double p1, double p2)
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stfd     f31, 8(r1)
-	fmr      f31, f2
-	bl       fmod
-	lfd      f0, lbl_805163A0@sda21(r2)
-	fcmpo    cr0, f1, f0
-	bge      lbl_80008AAC
-	fadd     f1, f1, f31
-
-lbl_80008AAC:
-	lwz      r0, 0x14(r1)
-	lfd      f31, 8(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	p1 = fmod(p1, p2);
+	if (p1 < 0.0) {
+		p1 += p2;
+	}
+	return p1;
 }
 
 /*
@@ -179,23 +167,15 @@ lbl_80008AAC:
  * Address:	80008AC0
  * Size:	00002C
  */
-void functionvalue::extrapolateParameter_clamp(double, double)
+f64 functionvalue::extrapolateParameter_clamp(double p1, double p2)
 {
-	/*
-	lfd      f0, lbl_805163A0@sda21(r2)
-	fcmpo    cr0, f1, f0
-	cror     2, 0, 2
-	bne      lbl_80008AD8
-	fmr      f1, f0
-	blr
-
-lbl_80008AD8:
-	fcmpo    cr0, f2, f1
-	cror     2, 0, 2
-	bnelr
-	fmr      f1, f2
-	blr
-	*/
+	if (p1 <= 0.0) {
+		return 0.0;
+	}
+	if (p2 <= p1) {
+		return p2;
+	}
+	return p1;
 }
 
 /*
@@ -235,38 +215,14 @@ lbl_80008B2C:
  * Address:	80008B34
  * Size:	000048
  */
-TFunctionValue::~TFunctionValue()
-{
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	or.      r31, r3, r3
-	beq      lbl_80008B64
-	lis      r5, __vt__Q27JStudio14TFunctionValue@ha
-	extsh.   r0, r4
-	addi     r0, r5, __vt__Q27JStudio14TFunctionValue@l
-	stw      r0, 0(r31)
-	ble      lbl_80008B64
-	bl       __dl__FPv
-
-lbl_80008B64:
-	lwz      r0, 0x14(r1)
-	mr       r3, r31
-	lwz      r31, 0xc(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
-}
+TFunctionValue::~TFunctionValue() { }
 
 /*
  * --INFO--
  * Address:	80008B7C
  * Size:	000060
  */
-void functionvalue::extrapolateParameter_turn(double, double)
+f64 functionvalue::extrapolateParameter_turn(double p1, double p2)
 {
 	/*
 	stwu     r1, -0x20(r1)
@@ -305,15 +261,11 @@ lbl_80008BC4:
  * Address:	80008BDC
  * Size:	000014
  */
-void TFunctionValueAttribute_range::range_set(double, double)
+void TFunctionValueAttribute_range::range_set(double start, double end)
 {
-	/*
-	stfd     f1, 0(r3)
-	fsub     f0, f2, f1
-	stfd     f2, 8(r3)
-	stfd     f0, 0x10(r3)
-	blr
-	*/
+	m_start = start;
+	m_end   = end;
+	m_width = end - start;
 }
 
 /*
@@ -417,7 +369,7 @@ void TFunctionValue_composite::prepare() { }
  * Address:	80008CCC
  * Size:	000034
  */
-void TFunctionValue_composite::getValue(double)
+f64 TFunctionValue_composite::getValue(double)
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -925,6 +877,7 @@ void TFunctionValue_composite::composite_divide(const JGadget::TVector_pointer<J
  * Size:	000028
  */
 TFunctionValue_constant::TFunctionValue_constant()
+    : _08(__float_nan)
 {
 	/*
 	lis      r6, __vt__Q27JStudio14TFunctionValue@ha
@@ -990,13 +943,7 @@ void TFunctionValue_constant::prepare() { }
  * Address:	80009270
  * Size:	000008
  */
-void TFunctionValue_constant::getValue(double)
-{
-	/*
-	lfd      f1, 8(r3)
-	blr
-	*/
-}
+f64 TFunctionValue_constant::getValue(double) { return _08; }
 
 /*
  * --INFO--
@@ -1079,6 +1026,16 @@ lbl_80009310:
  */
 void TFunctionValue_transition::initialize()
 {
+	_08 = __float_nan;
+	_10 = _08;
+	_18 = _08;
+	_20 = 0;
+	_21 = 0;
+	_38 = 0;
+	_3C = 0;
+	_40 = 0;
+	_48 = __float_nan;
+	_50 = _48;
 	/*
 	lis      r4, __float_nan@ha
 	lfsu     f0, __float_nan@l(r4)
@@ -1171,7 +1128,7 @@ lbl_800093F0:
  * Address:	80009414
  * Size:	000250
  */
-void TFunctionValue_transition::getValue(double)
+f64 TFunctionValue_transition::getValue(double)
 {
 	/*
 	stwu     r1, -0x20(r1)
@@ -1590,7 +1547,7 @@ update_INTERPOLATE_LINEAR___Q27JStudio19TFunctionValue_listFRCQ27JStudio19TFunct
  * Address:	80009888
  * Size:	000530
  */
-void TFunctionValue_list::getValue(double)
+f64 TFunctionValue_list::getValue(double)
 {
 	/*
 	stwu     r1, -0x70(r1)
@@ -2394,7 +2351,7 @@ update_INTERPOLATE_LINEAR___Q27JStudio29TFunctionValue_list_parameterFRCQ27JStud
  * Address:	8000A198
  * Size:	000538
  */
-void TFunctionValue_list_parameter::getValue(double)
+f64 TFunctionValue_list_parameter::getValue(double)
 {
 	/*
 	stwu     r1, -0x70(r1)
@@ -2801,220 +2758,220 @@ lbl_8000A6AC:
  * Address:	8000A6D0
  * Size:	00005C
  */
-template <>
-void JGadget::findUpperBound_binary_current<JStudio::TFunctionValue_list_parameter::TIterator_data_, double>(
-    JStudio::TFunctionValue_list_parameter::TIterator_data_, JStudio::TFunctionValue_list_parameter::TIterator_data_,
-    JStudio::TFunctionValue_list_parameter::TIterator_data_, const double&)
-{
-	/*
-	.loc_0x0:
-	  stwu      r1, -0x30(r1)
-	  mflr      r0
-	  lwz       r8, 0x0(r6)
-	  stw       r0, 0x34(r1)
-	  addi      r6, r1, 0x10
-	  lwz       r9, 0x0(r5)
-	  addi      r5, r1, 0x14
-	  stw       r31, 0x2C(r1)
-	  mr        r31, r3
-	  lwz       r0, 0x0(r4)
-	  addi      r4, r1, 0x18
-	  lbz       r10, 0x8(r1)
-	  stw       r8, 0x10(r1)
-	  addi      r8, r1, 0xC
-	  stb       r10, 0xC(r1)
-	  stw       r9, 0x14(r1)
-	  stw       r0, 0x18(r1)
-	  bl        .loc_0x5C
-	  lwz       r0, 0x34(r1)
-	  lwz       r31, 0x2C(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x30
-	  blr
+// template <>
+// void JGadget::findUpperBound_binary_current<JStudio::TFunctionValue_list_parameter::TIterator_data_, double>(
+//     JStudio::TFunctionValue_list_parameter::TIterator_data_, JStudio::TFunctionValue_list_parameter::TIterator_data_,
+//     JStudio::TFunctionValue_list_parameter::TIterator_data_, const double&)
+// {
+// 	/*
+// 	.loc_0x0:
+// 	  stwu      r1, -0x30(r1)
+// 	  mflr      r0
+// 	  lwz       r8, 0x0(r6)
+// 	  stw       r0, 0x34(r1)
+// 	  addi      r6, r1, 0x10
+// 	  lwz       r9, 0x0(r5)
+// 	  addi      r5, r1, 0x14
+// 	  stw       r31, 0x2C(r1)
+// 	  mr        r31, r3
+// 	  lwz       r0, 0x0(r4)
+// 	  addi      r4, r1, 0x18
+// 	  lbz       r10, 0x8(r1)
+// 	  stw       r8, 0x10(r1)
+// 	  addi      r8, r1, 0xC
+// 	  stb       r10, 0xC(r1)
+// 	  stw       r9, 0x14(r1)
+// 	  stw       r0, 0x18(r1)
+// 	  bl        .loc_0x5C
+// 	  lwz       r0, 0x34(r1)
+// 	  lwz       r31, 0x2C(r1)
+// 	  mtlr      r0
+// 	  addi      r1, r1, 0x30
+// 	  blr
 
-	.loc_0x5C:
-	*/
-}
+// 	.loc_0x5C:
+// 	*/
+// }
 
 /*
  * --INFO--
  * Address:	8000A72C
  * Size:	00022C
  */
-template <>
-void JGadget::findUpperBound_binary_current<JStudio::TFunctionValue_list_parameter::TIterator_data_, double, std::less<double>>(
-    JStudio::TFunctionValue_list_parameter::TIterator_data_, JStudio::TFunctionValue_list_parameter::TIterator_data_,
-    JStudio::TFunctionValue_list_parameter::TIterator_data_, const double&, std::less<double>)
-{
-	/*
-	.loc_0x0:
-	  stwu      r1, -0x60(r1)
-	  mflr      r0
-	  lwz       r9, 0x0(r6)
-	  stw       r0, 0x64(r1)
-	  lwz       r0, 0x0(r5)
-	  stw       r31, 0x5C(r1)
-	  mr        r31, r3
-	  sub       r0, r0, r9
-	  cntlzw    r3, r0
-	  rlwinm.   r0,r3,27,24,31
-	  rlwinm    r0,r3,27,5,31
-	  bne-      .loc_0x44
-	  lfd       f1, 0x0(r7)
-	  lfs       f0, 0x0(r9)
-	  fcmpo     cr0, f1, f0
-	  mfcr      r0
-	  rlwinm    r0,r0,1,31,31
+// template <>
+// void JGadget::findUpperBound_binary_current<JStudio::TFunctionValue_list_parameter::TIterator_data_, double, std::less<double>>(
+//     JStudio::TFunctionValue_list_parameter::TIterator_data_, JStudio::TFunctionValue_list_parameter::TIterator_data_,
+//     JStudio::TFunctionValue_list_parameter::TIterator_data_, const double&, std::less<double>)
+// {
+// 	/*
+// 	.loc_0x0:
+// 	  stwu      r1, -0x60(r1)
+// 	  mflr      r0
+// 	  lwz       r9, 0x0(r6)
+// 	  stw       r0, 0x64(r1)
+// 	  lwz       r0, 0x0(r5)
+// 	  stw       r31, 0x5C(r1)
+// 	  mr        r31, r3
+// 	  sub       r0, r0, r9
+// 	  cntlzw    r3, r0
+// 	  rlwinm.   r0,r3,27,24,31
+// 	  rlwinm    r0,r3,27,5,31
+// 	  bne-      .loc_0x44
+// 	  lfd       f1, 0x0(r7)
+// 	  lfs       f0, 0x0(r9)
+// 	  fcmpo     cr0, f1, f0
+// 	  mfcr      r0
+// 	  rlwinm    r0,r0,1,31,31
 
-	.loc_0x44:
-	  rlwinm.   r0,r0,0,24,31
-	  beq-      .loc_0x13C
-	  lwz       r4, 0x0(r4)
-	  lwz       r3, 0x0(r6)
-	  lbz       r0, 0x0(r8)
-	  cmplw     r4, r3
-	  stw       r4, 0x50(r1)
-	  stw       r3, 0x54(r1)
-	  stb       r0, 0x14(r1)
-	  bne-      .loc_0x78
-	  stw       r3, 0x4C(r1)
-	  addi      r3, r1, 0x4C
-	  b         .loc_0x210
+// 	.loc_0x44:
+// 	  rlwinm.   r0,r0,0,24,31
+// 	  beq-      .loc_0x13C
+// 	  lwz       r4, 0x0(r4)
+// 	  lwz       r3, 0x0(r6)
+// 	  lbz       r0, 0x0(r8)
+// 	  cmplw     r4, r3
+// 	  stw       r4, 0x50(r1)
+// 	  stw       r3, 0x54(r1)
+// 	  stb       r0, 0x14(r1)
+// 	  bne-      .loc_0x78
+// 	  stw       r3, 0x4C(r1)
+// 	  addi      r3, r1, 0x4C
+// 	  b         .loc_0x210
 
-	.loc_0x78:
-	  subi      r3, r3, 0x8
-	  stw       r4, 0x30(r1)
-	  sub       r0, r3, r4
-	  lfd       f1, 0x0(r7)
-	  srawi     r0, r0, 0x2
-	  stw       r3, 0x54(r1)
-	  addze     r0, r0
-	  li        r4, 0x1
-	  stw       r3, 0x34(r1)
-	  rlwinm    r5,r0,31,1,31
-	  stw       r3, 0x3C(r1)
+// 	.loc_0x78:
+// 	  subi      r3, r3, 0x8
+// 	  stw       r4, 0x30(r1)
+// 	  sub       r0, r3, r4
+// 	  lfd       f1, 0x0(r7)
+// 	  srawi     r0, r0, 0x2
+// 	  stw       r3, 0x54(r1)
+// 	  addze     r0, r0
+// 	  li        r4, 0x1
+// 	  stw       r3, 0x34(r1)
+// 	  rlwinm    r5,r0,31,1,31
+// 	  stw       r3, 0x3C(r1)
 
-	.loc_0xA4:
-	  lwz       r3, 0x3C(r1)
-	  lfs       f0, 0x0(r3)
-	  fcmpo     cr0, f1, f0
-	  blt-      .loc_0xD0
-	  cmpwi     r4, 0x1
-	  bne-      .loc_0xFC
-	  addi      r0, r3, 0x8
-	  addi      r3, r1, 0x4C
-	  stw       r0, 0x3C(r1)
-	  stw       r0, 0x4C(r1)
-	  b         .loc_0x210
+// 	.loc_0xA4:
+// 	  lwz       r3, 0x3C(r1)
+// 	  lfs       f0, 0x0(r3)
+// 	  fcmpo     cr0, f1, f0
+// 	  blt-      .loc_0xD0
+// 	  cmpwi     r4, 0x1
+// 	  bne-      .loc_0xFC
+// 	  addi      r0, r3, 0x8
+// 	  addi      r3, r1, 0x4C
+// 	  stw       r0, 0x3C(r1)
+// 	  stw       r0, 0x4C(r1)
+// 	  b         .loc_0x210
 
-	.loc_0xD0:
-	  sub.      r5, r5, r4
-	  stw       r3, 0x54(r1)
-	  bgt-      .loc_0xE8
-	  lwz       r0, 0x50(r1)
-	  stw       r0, 0x3C(r1)
-	  b         .loc_0xFC
+// 	.loc_0xD0:
+// 	  sub.      r5, r5, r4
+// 	  stw       r3, 0x54(r1)
+// 	  bgt-      .loc_0xE8
+// 	  lwz       r0, 0x50(r1)
+// 	  stw       r0, 0x3C(r1)
+// 	  b         .loc_0xFC
 
-	.loc_0xE8:
-	  rlwinm    r0,r4,3,0,28
-	  rlwinm    r4,r4,3,0,28
-	  sub       r0, r3, r0
-	  stw       r0, 0x3C(r1)
-	  b         .loc_0xA4
+// 	.loc_0xE8:
+// 	  rlwinm    r0,r4,3,0,28
+// 	  rlwinm    r4,r4,3,0,28
+// 	  sub       r0, r3, r0
+// 	  stw       r0, 0x3C(r1)
+// 	  b         .loc_0xA4
 
-	.loc_0xFC:
-	  lwz       r4, 0x54(r1)
-	  mr        r6, r7
-	  lbz       r8, 0x14(r1)
-	  addi      r3, r1, 0x4C
-	  addi      r9, r4, 0x8
-	  lwz       r0, 0x3C(r1)
-	  stw       r9, 0x54(r1)
-	  addi      r4, r1, 0x28
-	  addi      r5, r1, 0x2C
-	  addi      r7, r1, 0xC
-	  stb       r8, 0xC(r1)
-	  stw       r9, 0x2C(r1)
-	  stw       r0, 0x28(r1)
-	  bl        0x11B4
-	  addi      r3, r1, 0x4C
-	  b         .loc_0x210
+// 	.loc_0xFC:
+// 	  lwz       r4, 0x54(r1)
+// 	  mr        r6, r7
+// 	  lbz       r8, 0x14(r1)
+// 	  addi      r3, r1, 0x4C
+// 	  addi      r9, r4, 0x8
+// 	  lwz       r0, 0x3C(r1)
+// 	  stw       r9, 0x54(r1)
+// 	  addi      r4, r1, 0x28
+// 	  addi      r5, r1, 0x2C
+// 	  addi      r7, r1, 0xC
+// 	  stb       r8, 0xC(r1)
+// 	  stw       r9, 0x2C(r1)
+// 	  stw       r0, 0x28(r1)
+// 	  bl        0x11B4
+// 	  addi      r3, r1, 0x4C
+// 	  b         .loc_0x210
 
-	.loc_0x13C:
-	  lwz       r4, 0x0(r6)
-	  lwz       r3, 0x0(r5)
-	  lbz       r0, 0x0(r8)
-	  cmplw     r4, r3
-	  stw       r4, 0x44(r1)
-	  stw       r3, 0x48(r1)
-	  stb       r0, 0x10(r1)
-	  bne-      .loc_0x168
-	  stw       r3, 0x40(r1)
-	  addi      r3, r1, 0x40
-	  b         .loc_0x210
+// 	.loc_0x13C:
+// 	  lwz       r4, 0x0(r6)
+// 	  lwz       r3, 0x0(r5)
+// 	  lbz       r0, 0x0(r8)
+// 	  cmplw     r4, r3
+// 	  stw       r4, 0x44(r1)
+// 	  stw       r3, 0x48(r1)
+// 	  stb       r0, 0x10(r1)
+// 	  bne-      .loc_0x168
+// 	  stw       r3, 0x40(r1)
+// 	  addi      r3, r1, 0x40
+// 	  b         .loc_0x210
 
-	.loc_0x168:
-	  sub       r0, r3, r4
-	  stw       r3, 0x24(r1)
-	  srawi     r0, r0, 0x2
-	  lfd       f1, 0x0(r7)
-	  addze     r0, r0
-	  stw       r4, 0x20(r1)
-	  rlwinm    r6,r0,31,1,31
-	  li        r5, 0x1
-	  stw       r4, 0x38(r1)
+// 	.loc_0x168:
+// 	  sub       r0, r3, r4
+// 	  stw       r3, 0x24(r1)
+// 	  srawi     r0, r0, 0x2
+// 	  lfd       f1, 0x0(r7)
+// 	  addze     r0, r0
+// 	  stw       r4, 0x20(r1)
+// 	  rlwinm    r6,r0,31,1,31
+// 	  li        r5, 0x1
+// 	  stw       r4, 0x38(r1)
 
-	.loc_0x18C:
-	  lwz       r3, 0x38(r1)
-	  lfs       f0, 0x0(r3)
-	  fcmpo     cr0, f1, f0
-	  bge-      .loc_0x1B0
-	  cmpwi     r5, 0x1
-	  bne-      .loc_0x1DC
-	  stw       r3, 0x40(r1)
-	  addi      r3, r1, 0x40
-	  b         .loc_0x210
+// 	.loc_0x18C:
+// 	  lwz       r3, 0x38(r1)
+// 	  lfs       f0, 0x0(r3)
+// 	  fcmpo     cr0, f1, f0
+// 	  bge-      .loc_0x1B0
+// 	  cmpwi     r5, 0x1
+// 	  bne-      .loc_0x1DC
+// 	  stw       r3, 0x40(r1)
+// 	  addi      r3, r1, 0x40
+// 	  b         .loc_0x210
 
-	.loc_0x1B0:
-	  sub.      r6, r6, r5
-	  stw       r3, 0x44(r1)
-	  bgt-      .loc_0x1C8
-	  lwz       r0, 0x48(r1)
-	  stw       r0, 0x38(r1)
-	  b         .loc_0x1DC
+// 	.loc_0x1B0:
+// 	  sub.      r6, r6, r5
+// 	  stw       r3, 0x44(r1)
+// 	  bgt-      .loc_0x1C8
+// 	  lwz       r0, 0x48(r1)
+// 	  stw       r0, 0x38(r1)
+// 	  b         .loc_0x1DC
 
-	.loc_0x1C8:
-	  rlwinm    r0,r5,3,0,28
-	  rlwinm    r5,r5,3,0,28
-	  add       r0, r3, r0
-	  stw       r0, 0x38(r1)
-	  b         .loc_0x18C
+// 	.loc_0x1C8:
+// 	  rlwinm    r0,r5,3,0,28
+// 	  rlwinm    r5,r5,3,0,28
+// 	  add       r0, r3, r0
+// 	  stw       r0, 0x38(r1)
+// 	  b         .loc_0x18C
 
-	.loc_0x1DC:
-	  lbz       r5, 0x10(r1)
-	  mr        r6, r7
-	  lwz       r8, 0x38(r1)
-	  addi      r3, r1, 0x40
-	  lwz       r0, 0x44(r1)
-	  addi      r4, r1, 0x18
-	  stb       r5, 0x8(r1)
-	  addi      r5, r1, 0x1C
-	  addi      r7, r1, 0x8
-	  stw       r8, 0x1C(r1)
-	  stw       r0, 0x18(r1)
-	  bl        0x10DC
-	  addi      r3, r1, 0x40
+// 	.loc_0x1DC:
+// 	  lbz       r5, 0x10(r1)
+// 	  mr        r6, r7
+// 	  lwz       r8, 0x38(r1)
+// 	  addi      r3, r1, 0x40
+// 	  lwz       r0, 0x44(r1)
+// 	  addi      r4, r1, 0x18
+// 	  stb       r5, 0x8(r1)
+// 	  addi      r5, r1, 0x1C
+// 	  addi      r7, r1, 0x8
+// 	  stw       r8, 0x1C(r1)
+// 	  stw       r0, 0x18(r1)
+// 	  bl        0x10DC
+// 	  addi      r3, r1, 0x40
 
-	.loc_0x210:
-	  lwz       r0, 0x0(r3)
-	  stw       r0, 0x0(r31)
-	  lwz       r0, 0x64(r1)
-	  lwz       r31, 0x5C(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x60
-	  blr
-	*/
-}
+// 	.loc_0x210:
+// 	  lwz       r0, 0x0(r3)
+// 	  stw       r0, 0x0(r31)
+// 	  lwz       r0, 0x64(r1)
+// 	  lwz       r31, 0x5C(r1)
+// 	  mtlr      r0
+// 	  addi      r1, r1, 0x60
+// 	  blr
+// 	*/
+// }
 
 /*
  * --INFO--
@@ -3507,7 +3464,7 @@ lbl_8000AE60:
  * Address:	8000AE84
  * Size:	0005D0
  */
-void JStudio::TFunctionValue_hermite::getValue(double)
+f64 JStudio::TFunctionValue_hermite::getValue(double)
 {
 	/*
 	stwu     r1, -0x80(r1)
@@ -3951,276 +3908,276 @@ lbl_8000B430:
  * Address:	8000B454
  * Size:	000084
  */
-template <>
-void JGadget::findUpperBound_binary_current<JStudio::TFunctionValue_hermite::TIterator_data_, double>(
-    JStudio::TFunctionValue_hermite::TIterator_data_, JStudio::TFunctionValue_hermite::TIterator_data_,
-    JStudio::TFunctionValue_hermite::TIterator_data_, const double&)
-{
-	/*
-	.loc_0x0:
-	  stwu      r1, -0x40(r1)
-	  mflr      r0
-	  lwz       r12, 0x4(r6)
-	  stw       r0, 0x44(r1)
-	  addi      r8, r1, 0xC
-	  lwz       r11, 0x0(r5)
-	  stw       r31, 0x3C(r1)
-	  lwz       r31, 0x0(r6)
-	  addi      r6, r1, 0x10
-	  stw       r30, 0x38(r1)
-	  lwz       r10, 0x4(r5)
-	  addi      r5, r1, 0x18
-	  stw       r29, 0x34(r1)
-	  mr        r29, r3
-	  lbz       r30, 0x8(r1)
-	  lwz       r9, 0x0(r4)
-	  lwz       r0, 0x4(r4)
-	  addi      r4, r1, 0x20
-	  stb       r30, 0xC(r1)
-	  stw       r31, 0x10(r1)
-	  stw       r12, 0x14(r1)
-	  stw       r11, 0x18(r1)
-	  stw       r10, 0x1C(r1)
-	  stw       r9, 0x20(r1)
-	  stw       r0, 0x24(r1)
-	  bl        .loc_0x84
-	  lwz       r0, 0x44(r1)
-	  lwz       r31, 0x3C(r1)
-	  lwz       r30, 0x38(r1)
-	  lwz       r29, 0x34(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x40
-	  blr
+// template <>
+// void JGadget::findUpperBound_binary_current<JStudio::TFunctionValue_hermite::TIterator_data_, double>(
+//     JStudio::TFunctionValue_hermite::TIterator_data_, JStudio::TFunctionValue_hermite::TIterator_data_,
+//     JStudio::TFunctionValue_hermite::TIterator_data_, const double&)
+// {
+// 	/*
+// 	.loc_0x0:
+// 	  stwu      r1, -0x40(r1)
+// 	  mflr      r0
+// 	  lwz       r12, 0x4(r6)
+// 	  stw       r0, 0x44(r1)
+// 	  addi      r8, r1, 0xC
+// 	  lwz       r11, 0x0(r5)
+// 	  stw       r31, 0x3C(r1)
+// 	  lwz       r31, 0x0(r6)
+// 	  addi      r6, r1, 0x10
+// 	  stw       r30, 0x38(r1)
+// 	  lwz       r10, 0x4(r5)
+// 	  addi      r5, r1, 0x18
+// 	  stw       r29, 0x34(r1)
+// 	  mr        r29, r3
+// 	  lbz       r30, 0x8(r1)
+// 	  lwz       r9, 0x0(r4)
+// 	  lwz       r0, 0x4(r4)
+// 	  addi      r4, r1, 0x20
+// 	  stb       r30, 0xC(r1)
+// 	  stw       r31, 0x10(r1)
+// 	  stw       r12, 0x14(r1)
+// 	  stw       r11, 0x18(r1)
+// 	  stw       r10, 0x1C(r1)
+// 	  stw       r9, 0x20(r1)
+// 	  stw       r0, 0x24(r1)
+// 	  bl        .loc_0x84
+// 	  lwz       r0, 0x44(r1)
+// 	  lwz       r31, 0x3C(r1)
+// 	  lwz       r30, 0x38(r1)
+// 	  lwz       r29, 0x34(r1)
+// 	  mtlr      r0
+// 	  addi      r1, r1, 0x40
+// 	  blr
 
-	.loc_0x84:
-	*/
-}
+// 	.loc_0x84:
+// 	*/
+// }
 
 /*
  * --INFO--
  * Address:	8000B4D8
  * Size:	0002E4
  */
-template <>
-void JGadget::findUpperBound_binary_current<JStudio::TFunctionValue_hermite::TIterator_data_, double, std::less<double>>(
-    JStudio::TFunctionValue_hermite::TIterator_data_, JStudio::TFunctionValue_hermite::TIterator_data_,
-    JStudio::TFunctionValue_hermite::TIterator_data_, const double&, std::less<double>)
-{
-	/*
-	.loc_0x0:
-	  stwu      r1, -0xA0(r1)
-	  mflr      r0
-	  lwz       r9, 0x0(r6)
-	  stw       r0, 0xA4(r1)
-	  lwz       r0, 0x0(r5)
-	  stw       r31, 0x9C(r1)
-	  mr        r31, r3
-	  sub       r0, r0, r9
-	  cntlzw    r3, r0
-	  rlwinm.   r0,r3,27,24,31
-	  rlwinm    r0,r3,27,5,31
-	  bne-      .loc_0x44
-	  lfd       f1, 0x0(r7)
-	  lfs       f0, 0x0(r9)
-	  fcmpo     cr0, f1, f0
-	  mfcr      r0
-	  rlwinm    r0,r0,1,31,31
+// template <>
+// void JGadget::findUpperBound_binary_current<JStudio::TFunctionValue_hermite::TIterator_data_, double, std::less<double>>(
+//     JStudio::TFunctionValue_hermite::TIterator_data_, JStudio::TFunctionValue_hermite::TIterator_data_,
+//     JStudio::TFunctionValue_hermite::TIterator_data_, const double&, std::less<double>)
+// {
+// 	/*
+// 	.loc_0x0:
+// 	  stwu      r1, -0xA0(r1)
+// 	  mflr      r0
+// 	  lwz       r9, 0x0(r6)
+// 	  stw       r0, 0xA4(r1)
+// 	  lwz       r0, 0x0(r5)
+// 	  stw       r31, 0x9C(r1)
+// 	  mr        r31, r3
+// 	  sub       r0, r0, r9
+// 	  cntlzw    r3, r0
+// 	  rlwinm.   r0,r3,27,24,31
+// 	  rlwinm    r0,r3,27,5,31
+// 	  bne-      .loc_0x44
+// 	  lfd       f1, 0x0(r7)
+// 	  lfs       f0, 0x0(r9)
+// 	  fcmpo     cr0, f1, f0
+// 	  mfcr      r0
+// 	  rlwinm    r0,r0,1,31,31
 
-	.loc_0x44:
-	  rlwinm.   r0,r0,0,24,31
-	  beq-      .loc_0x19C
-	  lwz       r9, 0x0(r4)
-	  lwz       r3, 0x0(r6)
-	  lwz       r5, 0x4(r4)
-	  lwz       r4, 0x4(r6)
-	  cmplw     r9, r3
-	  lbz       r0, 0x0(r8)
-	  stw       r9, 0x88(r1)
-	  stw       r5, 0x8C(r1)
-	  stw       r3, 0x90(r1)
-	  stw       r4, 0x94(r1)
-	  stb       r0, 0x14(r1)
-	  bne-      .loc_0x8C
-	  stw       r3, 0x80(r1)
-	  addi      r5, r1, 0x80
-	  stw       r4, 0x84(r1)
-	  b         .loc_0x2C0
+// 	.loc_0x44:
+// 	  rlwinm.   r0,r0,0,24,31
+// 	  beq-      .loc_0x19C
+// 	  lwz       r9, 0x0(r4)
+// 	  lwz       r3, 0x0(r6)
+// 	  lwz       r5, 0x4(r4)
+// 	  lwz       r4, 0x4(r6)
+// 	  cmplw     r9, r3
+// 	  lbz       r0, 0x0(r8)
+// 	  stw       r9, 0x88(r1)
+// 	  stw       r5, 0x8C(r1)
+// 	  stw       r3, 0x90(r1)
+// 	  stw       r4, 0x94(r1)
+// 	  stb       r0, 0x14(r1)
+// 	  bne-      .loc_0x8C
+// 	  stw       r3, 0x80(r1)
+// 	  addi      r5, r1, 0x80
+// 	  stw       r4, 0x84(r1)
+// 	  b         .loc_0x2C0
 
-	.loc_0x8C:
-	  rlwinm    r0,r4,2,0,29
-	  stw       r4, 0x54(r1)
-	  sub       r3, r3, r0
-	  lfd       f1, 0x0(r7)
-	  sub       r0, r3, r9
-	  stw       r3, 0x90(r1)
-	  srawi     r0, r0, 0x2
-	  li        r6, 0x1
-	  addze     r0, r0
-	  stw       r3, 0x50(r1)
-	  divwu     r8, r0, r4
-	  stw       r9, 0x48(r1)
-	  stw       r5, 0x4C(r1)
-	  stw       r3, 0x60(r1)
-	  stw       r4, 0x64(r1)
+// 	.loc_0x8C:
+// 	  rlwinm    r0,r4,2,0,29
+// 	  stw       r4, 0x54(r1)
+// 	  sub       r3, r3, r0
+// 	  lfd       f1, 0x0(r7)
+// 	  sub       r0, r3, r9
+// 	  stw       r3, 0x90(r1)
+// 	  srawi     r0, r0, 0x2
+// 	  li        r6, 0x1
+// 	  addze     r0, r0
+// 	  stw       r3, 0x50(r1)
+// 	  divwu     r8, r0, r4
+// 	  stw       r9, 0x48(r1)
+// 	  stw       r5, 0x4C(r1)
+// 	  stw       r3, 0x60(r1)
+// 	  stw       r4, 0x64(r1)
 
-	.loc_0xC8:
-	  lwz       r4, 0x60(r1)
-	  lfs       f0, 0x0(r4)
-	  fcmpo     cr0, f1, f0
-	  blt-      .loc_0x104
-	  cmpwi     r6, 0x1
-	  bne-      .loc_0x148
-	  lwz       r3, 0x64(r1)
-	  addi      r5, r1, 0x80
-	  lwz       r0, 0x64(r1)
-	  rlwinm    r3,r3,2,0,29
-	  add       r3, r4, r3
-	  stw       r0, 0x84(r1)
-	  stw       r3, 0x60(r1)
-	  stw       r3, 0x80(r1)
-	  b         .loc_0x2C0
+// 	.loc_0xC8:
+// 	  lwz       r4, 0x60(r1)
+// 	  lfs       f0, 0x0(r4)
+// 	  fcmpo     cr0, f1, f0
+// 	  blt-      .loc_0x104
+// 	  cmpwi     r6, 0x1
+// 	  bne-      .loc_0x148
+// 	  lwz       r3, 0x64(r1)
+// 	  addi      r5, r1, 0x80
+// 	  lwz       r0, 0x64(r1)
+// 	  rlwinm    r3,r3,2,0,29
+// 	  add       r3, r4, r3
+// 	  stw       r0, 0x84(r1)
+// 	  stw       r3, 0x60(r1)
+// 	  stw       r3, 0x80(r1)
+// 	  b         .loc_0x2C0
 
-	.loc_0x104:
-	  lwz       r0, 0x64(r1)
-	  sub.      r8, r8, r6
-	  stw       r4, 0x90(r1)
-	  stw       r0, 0x94(r1)
-	  bgt-      .loc_0x12C
-	  lwz       r3, 0x88(r1)
-	  lwz       r0, 0x8C(r1)
-	  stw       r3, 0x60(r1)
-	  stw       r0, 0x64(r1)
-	  b         .loc_0x148
+// 	.loc_0x104:
+// 	  lwz       r0, 0x64(r1)
+// 	  sub.      r8, r8, r6
+// 	  stw       r4, 0x90(r1)
+// 	  stw       r0, 0x94(r1)
+// 	  bgt-      .loc_0x12C
+// 	  lwz       r3, 0x88(r1)
+// 	  lwz       r0, 0x8C(r1)
+// 	  stw       r3, 0x60(r1)
+// 	  stw       r0, 0x64(r1)
+// 	  b         .loc_0x148
 
-	.loc_0x12C:
-	  lwz       r0, 0x64(r1)
-	  mullw     r0, r0, r6
-	  rlwinm    r6,r6,3,0,28
-	  rlwinm    r0,r0,2,0,29
-	  sub       r0, r4, r0
-	  stw       r0, 0x60(r1)
-	  b         .loc_0xC8
+// 	.loc_0x12C:
+// 	  lwz       r0, 0x64(r1)
+// 	  mullw     r0, r0, r6
+// 	  rlwinm    r6,r6,3,0,28
+// 	  rlwinm    r0,r0,2,0,29
+// 	  sub       r0, r4, r0
+// 	  stw       r0, 0x60(r1)
+// 	  b         .loc_0xC8
 
-	.loc_0x148:
-	  lwz       r11, 0x94(r1)
-	  mr        r6, r7
-	  lwz       r4, 0x90(r1)
-	  addi      r3, r1, 0x80
-	  rlwinm    r0,r11,2,0,29
-	  lbz       r9, 0x14(r1)
-	  add       r10, r4, r0
-	  lwz       r8, 0x60(r1)
-	  lwz       r0, 0x64(r1)
-	  addi      r4, r1, 0x38
-	  stw       r10, 0x90(r1)
-	  addi      r5, r1, 0x40
-	  addi      r7, r1, 0xC
-	  stb       r9, 0xC(r1)
-	  stw       r10, 0x40(r1)
-	  stw       r11, 0x44(r1)
-	  stw       r8, 0x38(r1)
-	  stw       r0, 0x3C(r1)
-	  bl        0x428
-	  addi      r5, r1, 0x80
-	  b         .loc_0x2C0
+// 	.loc_0x148:
+// 	  lwz       r11, 0x94(r1)
+// 	  mr        r6, r7
+// 	  lwz       r4, 0x90(r1)
+// 	  addi      r3, r1, 0x80
+// 	  rlwinm    r0,r11,2,0,29
+// 	  lbz       r9, 0x14(r1)
+// 	  add       r10, r4, r0
+// 	  lwz       r8, 0x60(r1)
+// 	  lwz       r0, 0x64(r1)
+// 	  addi      r4, r1, 0x38
+// 	  stw       r10, 0x90(r1)
+// 	  addi      r5, r1, 0x40
+// 	  addi      r7, r1, 0xC
+// 	  stb       r9, 0xC(r1)
+// 	  stw       r10, 0x40(r1)
+// 	  stw       r11, 0x44(r1)
+// 	  stw       r8, 0x38(r1)
+// 	  stw       r0, 0x3C(r1)
+// 	  bl        0x428
+// 	  addi      r5, r1, 0x80
+// 	  b         .loc_0x2C0
 
-	.loc_0x19C:
-	  lwz       r9, 0x0(r6)
-	  lwz       r4, 0x0(r5)
-	  lwz       r6, 0x4(r6)
-	  lwz       r3, 0x4(r5)
-	  cmplw     r9, r4
-	  lbz       r0, 0x0(r8)
-	  stw       r9, 0x70(r1)
-	  stw       r6, 0x74(r1)
-	  stw       r4, 0x78(r1)
-	  stw       r3, 0x7C(r1)
-	  stb       r0, 0x10(r1)
-	  bne-      .loc_0x1DC
-	  stw       r4, 0x68(r1)
-	  addi      r5, r1, 0x68
-	  stw       r3, 0x6C(r1)
-	  b         .loc_0x2C0
+// 	.loc_0x19C:
+// 	  lwz       r9, 0x0(r6)
+// 	  lwz       r4, 0x0(r5)
+// 	  lwz       r6, 0x4(r6)
+// 	  lwz       r3, 0x4(r5)
+// 	  cmplw     r9, r4
+// 	  lbz       r0, 0x0(r8)
+// 	  stw       r9, 0x70(r1)
+// 	  stw       r6, 0x74(r1)
+// 	  stw       r4, 0x78(r1)
+// 	  stw       r3, 0x7C(r1)
+// 	  stb       r0, 0x10(r1)
+// 	  bne-      .loc_0x1DC
+// 	  stw       r4, 0x68(r1)
+// 	  addi      r5, r1, 0x68
+// 	  stw       r3, 0x6C(r1)
+// 	  b         .loc_0x2C0
 
-	.loc_0x1DC:
-	  sub       r0, r4, r9
-	  stw       r4, 0x30(r1)
-	  srawi     r0, r0, 0x2
-	  lfd       f1, 0x0(r7)
-	  addze     r0, r0
-	  stw       r3, 0x34(r1)
-	  divwu     r4, r0, r3
-	  li        r3, 0x1
-	  stw       r9, 0x28(r1)
-	  stw       r6, 0x2C(r1)
-	  stw       r9, 0x58(r1)
-	  stw       r6, 0x5C(r1)
+// 	.loc_0x1DC:
+// 	  sub       r0, r4, r9
+// 	  stw       r4, 0x30(r1)
+// 	  srawi     r0, r0, 0x2
+// 	  lfd       f1, 0x0(r7)
+// 	  addze     r0, r0
+// 	  stw       r3, 0x34(r1)
+// 	  divwu     r4, r0, r3
+// 	  li        r3, 0x1
+// 	  stw       r9, 0x28(r1)
+// 	  stw       r6, 0x2C(r1)
+// 	  stw       r9, 0x58(r1)
+// 	  stw       r6, 0x5C(r1)
 
-	.loc_0x20C:
-	  lwz       r6, 0x58(r1)
-	  lfs       f0, 0x0(r6)
-	  fcmpo     cr0, f1, f0
-	  bge-      .loc_0x238
-	  cmpwi     r3, 0x1
-	  bne-      .loc_0x27C
-	  lwz       r0, 0x5C(r1)
-	  addi      r5, r1, 0x68
-	  stw       r6, 0x68(r1)
-	  stw       r0, 0x6C(r1)
-	  b         .loc_0x2C0
+// 	.loc_0x20C:
+// 	  lwz       r6, 0x58(r1)
+// 	  lfs       f0, 0x0(r6)
+// 	  fcmpo     cr0, f1, f0
+// 	  bge-      .loc_0x238
+// 	  cmpwi     r3, 0x1
+// 	  bne-      .loc_0x27C
+// 	  lwz       r0, 0x5C(r1)
+// 	  addi      r5, r1, 0x68
+// 	  stw       r6, 0x68(r1)
+// 	  stw       r0, 0x6C(r1)
+// 	  b         .loc_0x2C0
 
-	.loc_0x238:
-	  lwz       r0, 0x5C(r1)
-	  sub.      r4, r4, r3
-	  stw       r6, 0x70(r1)
-	  stw       r0, 0x74(r1)
-	  bgt-      .loc_0x260
-	  lwz       r3, 0x78(r1)
-	  lwz       r0, 0x7C(r1)
-	  stw       r3, 0x58(r1)
-	  stw       r0, 0x5C(r1)
-	  b         .loc_0x27C
+// 	.loc_0x238:
+// 	  lwz       r0, 0x5C(r1)
+// 	  sub.      r4, r4, r3
+// 	  stw       r6, 0x70(r1)
+// 	  stw       r0, 0x74(r1)
+// 	  bgt-      .loc_0x260
+// 	  lwz       r3, 0x78(r1)
+// 	  lwz       r0, 0x7C(r1)
+// 	  stw       r3, 0x58(r1)
+// 	  stw       r0, 0x5C(r1)
+// 	  b         .loc_0x27C
 
-	.loc_0x260:
-	  lwz       r0, 0x5C(r1)
-	  mullw     r0, r0, r3
-	  rlwinm    r3,r3,3,0,28
-	  rlwinm    r0,r0,2,0,29
-	  add       r0, r6, r0
-	  stw       r0, 0x58(r1)
-	  b         .loc_0x20C
+// 	.loc_0x260:
+// 	  lwz       r0, 0x5C(r1)
+// 	  mullw     r0, r0, r3
+// 	  rlwinm    r3,r3,3,0,28
+// 	  rlwinm    r0,r0,2,0,29
+// 	  add       r0, r6, r0
+// 	  stw       r0, 0x58(r1)
+// 	  b         .loc_0x20C
 
-	.loc_0x27C:
-	  lbz       r11, 0x10(r1)
-	  mr        r6, r7
-	  lwz       r10, 0x58(r1)
-	  addi      r3, r1, 0x68
-	  lwz       r9, 0x5C(r1)
-	  addi      r4, r1, 0x18
-	  lwz       r8, 0x70(r1)
-	  addi      r5, r1, 0x20
-	  lwz       r0, 0x74(r1)
-	  addi      r7, r1, 0x8
-	  stb       r11, 0x8(r1)
-	  stw       r10, 0x20(r1)
-	  stw       r9, 0x24(r1)
-	  stw       r8, 0x18(r1)
-	  stw       r0, 0x1C(r1)
-	  bl        0x300
-	  addi      r5, r1, 0x68
+// 	.loc_0x27C:
+// 	  lbz       r11, 0x10(r1)
+// 	  mr        r6, r7
+// 	  lwz       r10, 0x58(r1)
+// 	  addi      r3, r1, 0x68
+// 	  lwz       r9, 0x5C(r1)
+// 	  addi      r4, r1, 0x18
+// 	  lwz       r8, 0x70(r1)
+// 	  addi      r5, r1, 0x20
+// 	  lwz       r0, 0x74(r1)
+// 	  addi      r7, r1, 0x8
+// 	  stb       r11, 0x8(r1)
+// 	  stw       r10, 0x20(r1)
+// 	  stw       r9, 0x24(r1)
+// 	  stw       r8, 0x18(r1)
+// 	  stw       r0, 0x1C(r1)
+// 	  bl        0x300
+// 	  addi      r5, r1, 0x68
 
-	.loc_0x2C0:
-	  lwz       r0, 0x0(r5)
-	  stw       r0, 0x0(r31)
-	  lwz       r0, 0x4(r5)
-	  stw       r0, 0x4(r31)
-	  lwz       r31, 0x9C(r1)
-	  lwz       r0, 0xA4(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0xA0
-	  blr
-	*/
-}
+// 	.loc_0x2C0:
+// 	  lwz       r0, 0x0(r5)
+// 	  stw       r0, 0x0(r31)
+// 	  lwz       r0, 0x4(r5)
+// 	  stw       r0, 0x4(r31)
+// 	  lwz       r31, 0x9C(r1)
+// 	  lwz       r0, 0xA4(r1)
+// 	  mtlr      r0
+// 	  addi      r1, r1, 0xA0
+// 	  blr
+// 	*/
+// }
 
 /*
  * --INFO--
@@ -4468,118 +4425,118 @@ lbl_8000B9F4:
  * Address:	8000BA10
  * Size:	000080
  */
-template <>
-JStudio::TFunctionValue_list_parameter::TIterator_data_
-std::upper_bound<JStudio::TFunctionValue_list_parameter::TIterator_data_, double, std::less<double>>(
-    JStudio::TFunctionValue_list_parameter::TIterator_data_, JStudio::TFunctionValue_list_parameter::TIterator_data_, const double&,
-    std::less<double>)
-{
-	/*
-	.loc_0x0:
-	  lwz       r0, 0x0(r5)
-	  stwu      r1, -0x10(r1)
-	  lwz       r5, 0x0(r4)
-	  stw       r0, 0xC(r1)
-	  sub       r0, r0, r5
-	  lfd       f1, 0x0(r6)
-	  srawi     r0, r0, 0x2
-	  stw       r5, 0x8(r1)
-	  addze     r0, r0
-	  rlwinm    r6,r0,31,1,31
-	  b         .loc_0x68
+// template <>
+// JStudio::TFunctionValue_list_parameter::TIterator_data_
+// std::upper_bound<JStudio::TFunctionValue_list_parameter::TIterator_data_, double, std::less<double>>(
+//     JStudio::TFunctionValue_list_parameter::TIterator_data_, JStudio::TFunctionValue_list_parameter::TIterator_data_, const double&,
+//     std::less<double>)
+// {
+// 	/*
+// 	.loc_0x0:
+// 	  lwz       r0, 0x0(r5)
+// 	  stwu      r1, -0x10(r1)
+// 	  lwz       r5, 0x0(r4)
+// 	  stw       r0, 0xC(r1)
+// 	  sub       r0, r0, r5
+// 	  lfd       f1, 0x0(r6)
+// 	  srawi     r0, r0, 0x2
+// 	  stw       r5, 0x8(r1)
+// 	  addze     r0, r0
+// 	  rlwinm    r6,r0,31,1,31
+// 	  b         .loc_0x68
 
-	.loc_0x2C:
-	  rlwinm    r0,r6,1,31,31
-	  lwz       r5, 0x0(r4)
-	  add       r0, r0, r6
-	  srawi     r7, r0, 0x1
-	  rlwinm    r0,r7,3,0,28
-	  add       r5, r5, r0
-	  lfs       f0, 0x0(r5)
-	  fcmpo     cr0, f1, f0
-	  blt-      .loc_0x64
-	  addi      r5, r5, 0x8
-	  addi      r0, r7, 0x1
-	  stw       r5, 0x0(r4)
-	  sub       r6, r6, r0
-	  b         .loc_0x68
+// 	.loc_0x2C:
+// 	  rlwinm    r0,r6,1,31,31
+// 	  lwz       r5, 0x0(r4)
+// 	  add       r0, r0, r6
+// 	  srawi     r7, r0, 0x1
+// 	  rlwinm    r0,r7,3,0,28
+// 	  add       r5, r5, r0
+// 	  lfs       f0, 0x0(r5)
+// 	  fcmpo     cr0, f1, f0
+// 	  blt-      .loc_0x64
+// 	  addi      r5, r5, 0x8
+// 	  addi      r0, r7, 0x1
+// 	  stw       r5, 0x0(r4)
+// 	  sub       r6, r6, r0
+// 	  b         .loc_0x68
 
-	.loc_0x64:
-	  mr        r6, r7
+// 	.loc_0x64:
+// 	  mr        r6, r7
 
-	.loc_0x68:
-	  cmpwi     r6, 0
-	  bgt+      .loc_0x2C
-	  lwz       r0, 0x0(r4)
-	  stw       r0, 0x0(r3)
-	  addi      r1, r1, 0x10
-	  blr
-	*/
-}
+// 	.loc_0x68:
+// 	  cmpwi     r6, 0
+// 	  bgt+      .loc_0x2C
+// 	  lwz       r0, 0x0(r4)
+// 	  stw       r0, 0x0(r3)
+// 	  addi      r1, r1, 0x10
+// 	  blr
+// 	*/
+// }
 
 /*
  * --INFO--
  * Address:	8000BA90
  * Size:	0000B8
  */
-template <>
-JStudio::TFunctionValue_hermite::TIterator_data_
-std::upper_bound<JStudio::TFunctionValue_hermite::TIterator_data_, double, std::less<double>>(
-    JStudio::TFunctionValue_hermite::TIterator_data_, JStudio::TFunctionValue_hermite::TIterator_data_, const double&, std::less<double>)
-{
-	/*
-	.loc_0x0:
-	  lwz       r9, 0x0(r5)
-	  lwz       r7, 0x0(r4)
-	  stwu      r1, -0x20(r1)
-	  lwz       r8, 0x4(r5)
-	  sub       r0, r9, r7
-	  srawi     r0, r0, 0x2
-	  lwz       r5, 0x4(r4)
-	  addze     r0, r0
-	  stw       r9, 0x10(r1)
-	  divwu     r9, r0, r8
-	  lfd       f1, 0x0(r6)
-	  stw       r8, 0x14(r1)
-	  stw       r7, 0x8(r1)
-	  stw       r5, 0xC(r1)
-	  b         .loc_0x98
+// template <>
+// JStudio::TFunctionValue_hermite::TIterator_data_
+// std::upper_bound<JStudio::TFunctionValue_hermite::TIterator_data_, double, std::less<double>>(
+//     JStudio::TFunctionValue_hermite::TIterator_data_, JStudio::TFunctionValue_hermite::TIterator_data_, const double&, std::less<double>)
+// {
+// 	/*
+// 	.loc_0x0:
+// 	  lwz       r9, 0x0(r5)
+// 	  lwz       r7, 0x0(r4)
+// 	  stwu      r1, -0x20(r1)
+// 	  lwz       r8, 0x4(r5)
+// 	  sub       r0, r9, r7
+// 	  srawi     r0, r0, 0x2
+// 	  lwz       r5, 0x4(r4)
+// 	  addze     r0, r0
+// 	  stw       r9, 0x10(r1)
+// 	  divwu     r9, r0, r8
+// 	  lfd       f1, 0x0(r6)
+// 	  stw       r8, 0x14(r1)
+// 	  stw       r7, 0x8(r1)
+// 	  stw       r5, 0xC(r1)
+// 	  b         .loc_0x98
 
-	.loc_0x3C:
-	  rlwinm    r0,r9,1,31,31
-	  lwz       r7, 0x4(r4)
-	  add       r0, r0, r9
-	  lwz       r5, 0x0(r4)
-	  srawi     r8, r0, 0x1
-	  stw       r7, 0x1C(r1)
-	  mullw     r0, r7, r8
-	  stw       r5, 0x18(r1)
-	  rlwinm    r0,r0,2,0,29
-	  add       r6, r5, r0
-	  lfs       f0, 0x0(r6)
-	  stw       r6, 0x18(r1)
-	  fcmpo     cr0, f1, f0
-	  blt-      .loc_0x94
-	  rlwinm    r5,r7,2,0,29
-	  addi      r0, r8, 0x1
-	  add       r5, r6, r5
-	  stw       r7, 0x4(r4)
-	  sub       r9, r9, r0
-	  stw       r5, 0x18(r1)
-	  stw       r5, 0x0(r4)
-	  b         .loc_0x98
+// 	.loc_0x3C:
+// 	  rlwinm    r0,r9,1,31,31
+// 	  lwz       r7, 0x4(r4)
+// 	  add       r0, r0, r9
+// 	  lwz       r5, 0x0(r4)
+// 	  srawi     r8, r0, 0x1
+// 	  stw       r7, 0x1C(r1)
+// 	  mullw     r0, r7, r8
+// 	  stw       r5, 0x18(r1)
+// 	  rlwinm    r0,r0,2,0,29
+// 	  add       r6, r5, r0
+// 	  lfs       f0, 0x0(r6)
+// 	  stw       r6, 0x18(r1)
+// 	  fcmpo     cr0, f1, f0
+// 	  blt-      .loc_0x94
+// 	  rlwinm    r5,r7,2,0,29
+// 	  addi      r0, r8, 0x1
+// 	  add       r5, r6, r5
+// 	  stw       r7, 0x4(r4)
+// 	  sub       r9, r9, r0
+// 	  stw       r5, 0x18(r1)
+// 	  stw       r5, 0x0(r4)
+// 	  b         .loc_0x98
 
-	.loc_0x94:
-	  mr        r9, r8
+// 	.loc_0x94:
+// 	  mr        r9, r8
 
-	.loc_0x98:
-	  cmpwi     r9, 0
-	  bgt+      .loc_0x3C
-	  lwz       r5, 0x0(r4)
-	  lwz       r0, 0x4(r4)
-	  stw       r5, 0x0(r3)
-	  stw       r0, 0x4(r3)
-	  addi      r1, r1, 0x20
-	  blr
-	*/
-}
+// 	.loc_0x98:
+// 	  cmpwi     r9, 0
+// 	  bgt+      .loc_0x3C
+// 	  lwz       r5, 0x0(r4)
+// 	  lwz       r0, 0x4(r4)
+// 	  stw       r5, 0x0(r3)
+// 	  stw       r0, 0x4(r3)
+// 	  addi      r1, r1, 0x20
+// 	  blr
+// 	*/
+// }

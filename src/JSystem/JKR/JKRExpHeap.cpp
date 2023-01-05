@@ -1,6 +1,8 @@
 #include "Dolphin/os.h"
-#include "types.h"
+#include "JSystem/JUT/JUTConsole.h"
 #include "JSystem/JKR/JKRHeap.h"
+#include "std/limits.h"
+#include "types.h"
 
 /*
     Generated from dpostproc
@@ -142,18 +144,20 @@
  */
 JKRExpHeap* JKRExpHeap::createRoot(int p1, bool p2)
 {
-	// JKRExpHeap* v2 = nullptr;
-	// JKRHeap* v1 = sRootHeap;
-	// if (sRootHeap == nullptr) {
-	// 	JKRExpHeap* v3;
-	// 	u32 v4;
-	// 	initArena(reinterpret_cast<char**>(&v3), &v4, p1);
-	// 	v2 = v3;
-	// 	v1 = v3;
-	// 	if (v3 != nullptr) {
-	// 		v1 = v2 = new (v4, v3) JKRExpHeap(v3+1, v4-sizeof(JKRExpHeap), nullptr, p2);
-	// 	}
-	// }
+	JKRExpHeap* v2 = nullptr;
+	JKRHeap* v1    = sRootHeap;
+	if (sRootHeap == nullptr) {
+		JKRExpHeap* v3;
+		u32 v4;
+		initArena(reinterpret_cast<char**>(&v3), &v4, p1);
+		v2 = v3;
+		v1 = v3;
+		// if (v3 != nullptr) {
+		v1 = v2 = new (v3) JKRExpHeap(v3 + 1, v4 - sizeof(JKRExpHeap), nullptr, p2);
+		// }
+	}
+	sRootHeap = v1;
+	v2->_6E   = 1;
 	/*
 	stwu     r1, -0x20(r1)
 	mflr     r0
@@ -199,8 +203,30 @@ lbl_8001FEA8:
  * Address:	8001FEC8
  * Size:	0000E4
  */
-JKRExpHeap* JKRExpHeap::create(unsigned long, JKRHeap*, bool)
+JKRExpHeap* JKRExpHeap::create(unsigned long p1, JKRHeap* p2, bool p3)
 {
+	if (p2 == nullptr) {
+		p2 = sRootHeap;
+	}
+	if (p1 == std::numeric_limits<u32>::max()) {
+		p1 = p2->getMaxAllocatableSize(0x10);
+	}
+	p1 = ALIGN_PREV(p1, 0x10);
+	// TODO: sizeof
+	if (p1 < 0xA0) {
+		return nullptr;
+	}
+	void* memory = JKRHeap::alloc(p1, 0x10, p2);
+	if (memory == nullptr) {
+		return nullptr;
+	}
+	JKRExpHeap* newHeap = new (memory) JKRExpHeap(static_cast<u8*>(memory) + sizeof(JKRExpHeap), p1 - sizeof(JKRExpHeap), p2, p3);
+	if (newHeap == nullptr) {
+		JKRHeap::free(memory, nullptr);
+		return nullptr;
+	}
+	newHeap->_6E = 0;
+	return newHeap;
 	/*
 	stwu     r1, -0x20(r1)
 	mflr     r0
@@ -394,110 +420,27 @@ void* JKRExpHeap::do_alloc(unsigned long byteCount, int padding)
 		byteCount = 4;
 	}
 	void* mem;
-	if (padding < 0) {
-		if (-padding < 5) {
+	if (padding >= 0) {
+		if (padding <= 4) {
+			mem = (void*)allocFromHead(byteCount);
+		} else {
+			mem = (void*)allocFromHead(byteCount, padding);
+		}
+	} else {
+		if (-padding <= 4) {
 			mem = (void*)allocFromTail(byteCount);
 		} else {
 			mem = (void*)allocFromTail(byteCount, -padding);
 		}
-	} else if (padding < 5) {
-		mem = (void*)allocFromHead(byteCount);
-	} else {
-		mem = (void*)allocFromHead(byteCount, padding);
 	}
 	if (mem == nullptr) {
-		// JUTWarningConsole_f(":::cannot alloc memory (0x%x byte).\n", byteCount);
+		JUTWarningConsole_f(":::cannot alloc memory (0x%x byte).\n", byteCount);
 		if (_68 == true && mErrorHandler != nullptr) {
 			mErrorHandler(this, byteCount, padding);
 		}
 	}
 	OSUnlockMutex(&m_mutex);
 	return mem;
-	/*
-	stwu     r1, -0x20(r1)
-	mflr     r0
-	stw      r0, 0x24(r1)
-	stw      r31, 0x1c(r1)
-	stw      r30, 0x18(r1)
-	mr       r30, r5
-	stw      r29, 0x14(r1)
-	mr       r29, r4
-	stw      r28, 0x10(r1)
-	mr       r28, r3
-	addi     r3, r28, 0x18
-	bl       OSLockMutex
-	cmplwi   r29, 4
-	bge      lbl_8002016C
-	li       r29, 4
-
-lbl_8002016C:
-	cmpwi    r30, 0
-	blt      lbl_800201A8
-	cmpwi    r30, 4
-	bgt      lbl_80020190
-	mr       r3, r28
-	mr       r4, r29
-	bl       allocFromHead__10JKRExpHeapFUl
-	mr       r31, r3
-	b        lbl_800201D8
-
-lbl_80020190:
-	mr       r3, r28
-	mr       r4, r29
-	mr       r5, r30
-	bl       allocFromHead__10JKRExpHeapFUli
-	mr       r31, r3
-	b        lbl_800201D8
-
-lbl_800201A8:
-	neg      r5, r30
-	cmpwi    r5, 4
-	bgt      lbl_800201C8
-	mr       r3, r28
-	mr       r4, r29
-	bl       allocFromTail__10JKRExpHeapFUl
-	mr       r31, r3
-	b        lbl_800201D8
-
-lbl_800201C8:
-	mr       r3, r28
-	mr       r4, r29
-	bl       allocFromTail__10JKRExpHeapFUli
-	mr       r31, r3
-
-lbl_800201D8:
-	cmplwi   r31, 0
-	bne      lbl_80020220
-	lis      r3, lbl_804736E8@ha
-	mr       r4, r29
-	addi     r3, r3, lbl_804736E8@l
-	crclr    6
-	bl       JUTWarningConsole_f
-	lbz      r0, 0x68(r28)
-	cmplwi   r0, 1
-	bne      lbl_80020220
-	lwz      r12, mErrorHandler__7JKRHeap@sda21(r13)
-	cmplwi   r12, 0
-	beq      lbl_80020220
-	mr       r3, r28
-	mr       r4, r29
-	mr       r5, r30
-	mtctr    r12
-	bctrl
-
-lbl_80020220:
-	addi     r3, r28, 0x18
-	bl       OSUnlockMutex
-	lwz      r0, 0x24(r1)
-	mr       r3, r31
-	lwz      r31, 0x1c(r1)
-	lwz      r30, 0x18(r1)
-	lwz      r29, 0x14(r1)
-	lwz      r28, 0x10(r1)
-	mtlr     r0
-	addi     r1, r1, 0x20
-	blr
-	*/
 }
 
 /*
@@ -1004,8 +947,24 @@ void JKRExpHeap::do_free(void* p1)
  * Address:	80020830
  * Size:	000094
  */
-int JKRExpHeap::freeGroup(unsigned char)
+int JKRExpHeap::freeGroup(unsigned char groupID)
 {
+	OSLockMutex(&m_mutex);
+	int count        = 0;
+	CMemBlock* block = m_headUsedList;
+	while (block != nullptr) {
+		if (block->m_groupID == groupID) {
+			dispose(block + 1, block->m_allocatedSpace);
+			CMemBlock* temp = block->m_nextPtr;
+			block->free(this);
+			count++;
+			block = temp;
+		} else {
+			block = block->m_nextPtr;
+		}
+	}
+	OSUnlockMutex(&m_mutex);
+	return count;
 	/*
 	stwu     r1, -0x20(r1)
 	mflr     r0
@@ -1060,6 +1019,14 @@ lbl_8002089C:
  */
 void JKRExpHeap::do_freeAll()
 {
+	OSLockMutex(&m_mutex);
+	callAllDisposer();
+	m_head = (CMemBlock*)m_startAddress;
+	m_tail = m_head;
+	m_head->initiate(nullptr, nullptr, m_heapSize - sizeof(CMemBlock), 0, 0);
+	m_headUsedList = nullptr;
+	m_tailUsedList = nullptr;
+	OSUnlockMutex(&m_mutex);
 	/*
 	stwu     r1, -0x10(r1)
 	mflr     r0

@@ -92,6 +92,65 @@ struct JSULink : public JSUPtrLink {
 	inline JSUList<T>* getList() const { return (JSUList<T>*)JSUPtrLink::getList(); } // fabricated
 	inline JSULink<T>* getNext() const { return (JSULink<T>*)JSUPtrLink::getNext(); }
 	inline JSULink<T>* getPrev() const { return (JSULink<T>*)JSUPtrLink::getPrev(); }
+
+	// inline JSULink<T>* free() const
+	// {
+	// 	JSULink<T>* next = getNext();
+	// 	delete getObject();
+	// 	return next;
+	// }
+};
+
+/**
+ * @fabricated
+ * @size{0x4}
+ */
+template <typename T>
+struct JSULinkIterator {
+	inline JSULinkIterator()
+	    : m_link(nullptr)
+	{
+	}
+	inline JSULinkIterator(JSULink<T>* link)
+	    : m_link(link)
+	{
+	}
+
+	inline bool operator==(JSULink<T>* other) { return m_link == other; }
+	inline bool operator!=(const JSULink<T>* other) const { return m_link != other; };
+
+	inline JSULinkIterator<T> operator++(int)
+	{
+		JSULinkIterator<T> prev = *this;
+		m_link                  = m_link->getNext();
+		return prev;
+	}
+
+	inline JSULinkIterator<T>& operator++()
+	{
+		m_link = m_link->getNext();
+		return *this;
+	}
+
+	inline JSULinkIterator<T> operator--(int)
+	{
+		JSULinkIterator<T> next = *this;
+		m_link                  = m_link->getPrev();
+		return next;
+	}
+
+	inline JSULinkIterator<T>& operator--()
+	{
+		m_link = m_link->getPrev();
+		return *this;
+	}
+
+	inline T& operator*() { return *(getObject()); }
+	inline T* operator->() const { return m_link->getObject(); }
+
+	inline T* getObject() const { return m_link->getObject(); }
+
+	JSULink<T>* m_link; // _00
 };
 
 /**
@@ -104,6 +163,7 @@ struct JSUTree : public JSUList<T>, public JSULink<T> {
 	    , JSULink<T>(owner) {};
 
 	bool appendChild(JSUTree<T>* child) { return this->append(child); }
+	bool prependChild(JSUTree<T>* child) { return this->prepend(child); }
 	bool removeChild(JSUTree<T>* child) { return this->remove(child); }
 	bool insertChild(JSUTree<T>* before, JSUTree<T>* child) { return this->insert(before, child); }
 
@@ -113,7 +173,7 @@ struct JSUTree : public JSUList<T>, public JSULink<T> {
 	JSUTree<T>* getPrevChild() const { return (JSUTree<T>*)getPrev(); }
 	JSUTree<T>* getEndChild() const { return nullptr; }
 
-	int getNumChildren() const { return getNumLinks(); }
+	u32 getNumChildren() const { return m_linkCount; }
 	T* getObject() const { return (T*)m_value; }
 	JSUTree<T>* getParent() const { return (JSUTree<T>*)getList(); }
 

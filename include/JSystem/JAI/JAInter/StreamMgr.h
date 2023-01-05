@@ -9,6 +9,8 @@ struct JASAramStream;
 namespace JAInter {
 namespace StreamMgr {
 struct BufferInfo {
+	u8* m_start;  // _00
+	u32 m_length; // _04
 };
 
 /**
@@ -46,7 +48,7 @@ struct StreamUpdate {
 	JAIStream* _1C;
 };
 
-typedef void (*AllocCallback)(BufferInfo);
+typedef BufferInfo (*AllocCallback)(long);
 typedef void (*DeallocCallback)();
 typedef void (*ExternalAramBufferCallback)(JASHeap*);
 typedef void (*MgrCallback)();
@@ -94,21 +96,21 @@ extern u8 prepareFlag;
 extern u8 externalAram;
 extern u8 finishFlag;
 extern StreamUpdate* streamUpdate;
-extern void* streamList;
+extern u16* streamList;
 extern JAIStream* streamSound;
 extern void* initOnCodeStrm;
 extern JASAramStream* streamSystem;
 extern u32 systemStatus;
 extern u32 controlStatus;
 extern JASHeap* aramBufferHeap;
-extern void* aramParentHeap;
+extern JASHeap* aramParentHeap;
 extern AllocCallback allocCallback;
 extern DeallocCallback deallocCallback;
 /*
  * This isn't the same type as the param to setExternalAramBuffer.
  * It must return typeof(aramParentHeap).
  */
-extern void* (*externalAramCallback)(void);
+extern JASHeap* (*externalAramCallback)(void);
 extern int dataFileNumber;
 extern MgrCallback mgrCallback;
 

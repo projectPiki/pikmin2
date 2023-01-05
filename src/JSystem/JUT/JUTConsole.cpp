@@ -1,3 +1,6 @@
+#include "Dolphin/os.h"
+#include "Dolphin/vi.h"
+#include "JSystem/JGadget/linklist.h"
 #include "JSystem/JKR/JKRHeap.h"
 #include "types.h"
 #include "JSystem/JUT/JUTConsole.h"
@@ -56,6 +59,9 @@
     lbl_80516598:
         .asciz "%s"
 */
+
+static JUTConsole* sReportConsole;
+static JUTConsole* sWarningConsole;
 
 /*
  * --INFO--
@@ -652,10 +658,10 @@ JUTConsoleManager::JUTConsoleManager()
  * Address:	........
  * Size:	000054
  */
-void __dt__Q27JGadget27TLinkList<JUTConsole, -24> Fv(void)
-{
-	// UNUSED FUNCTION
-}
+// void __dt__Q27JGadget27TLinkList<JUTConsole, -24> Fv(void)
+// {
+// 	// UNUSED FUNCTION
+// }
 
 /*
  * --INFO--
@@ -697,8 +703,15 @@ void JUTConsoleManager::destroyManager(JUTConsoleManager*)
  * Address:	80028F00
  * Size:	000070
  */
-void JUTConsoleManager::appendConsole(JUTConsole*)
+void JUTConsoleManager::appendConsole(JUTConsole* console)
 {
+	JGadget::TLinkList<JUTConsole, 4> list;
+	list.m_linkListNode.m_prev = list.m_linkListNode.m_next = &mLinkList.m_linkListNode;
+	JGadget::TLinkList<JUTConsole, 4>::iterator iterator(list.m_linkListNode.m_prev);
+	list.Insert(iterator, console);
+	if (mActiveConsole == nullptr) {
+		mActiveConsole = console;
+	}
 	/*
 	stwu     r1, -0x30(r1)
 	mflr     r0
@@ -892,47 +905,19 @@ lbl_800290E8:
  * Address:	80029104
  * Size:	00007C
  */
-void JUTConsoleManager::drawDirect(bool) const
+void JUTConsoleManager::drawDirect(bool p1) const
 {
-	/*
-	stwu     r1, -0x20(r1)
-	mflr     r0
-	stw      r0, 0x24(r1)
-	lwz      r0, 0x10(r3)
-	stw      r31, 0x1c(r1)
-	cmplwi   r0, 0
-	stw      r30, 0x18(r1)
-	stw      r29, 0x14(r1)
-	mr       r29, r3
-	beq      lbl_80029164
-	clrlwi.  r0, r4, 0x18
-	beq      lbl_80029158
-	bl       OSEnableInterrupts
-	mr       r30, r3
-	bl       VIGetRetraceCount
-	mr       r31, r3
-
-lbl_80029144:
-	bl       VIGetRetraceCount
-	cmplw    r31, r3
-	beq      lbl_80029144
-	mr       r3, r30
-	bl       OSRestoreInterrupts
-
-lbl_80029158:
-	lwz      r3, 0x10(r29)
-	li       r4, 2
-	bl       doDraw__10JUTConsoleCFQ210JUTConsole12EConsoleType
-
-lbl_80029164:
-	lwz      r0, 0x24(r1)
-	lwz      r31, 0x1c(r1)
-	lwz      r30, 0x18(r1)
-	lwz      r29, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x20
-	blr
-	*/
+	if (mDirectConsole == nullptr) {
+		return;
+	}
+	if (p1 != false) {
+		int interrupts = OSEnableInterrupts();
+		u32 count      = VIGetRetraceCount();
+		do {
+		} while (count == VIGetRetraceCount());
+		OSRestoreInterrupts(interrupts);
+	}
+	mDirectConsole->doDraw(JUTConsole::UNK_TYPE2);
 }
 
 /*
@@ -940,7 +925,7 @@ lbl_80029164:
  * Address:	80029180
  * Size:	000124
  */
-void JUTConsoleManager::setDirectConsole(JUTConsole*)
+void JUTConsoleManager::setDirectConsole(JUTConsole* console)
 {
 	/*
 	stwu     r1, -0x40(r1)
@@ -1041,8 +1026,9 @@ lbl_80029284:
  * Address:	800292A4
  * Size:	000008
  */
-void JUTSetReportConsole(void)
+void JUTSetReportConsole(JUTConsole* console)
 {
+	sReportConsole = console;
 	/*
 	stw      r3, sReportConsole@sda21(r13)
 	blr
@@ -1054,8 +1040,9 @@ void JUTSetReportConsole(void)
  * Address:	800292AC
  * Size:	000008
  */
-void JUTGetReportConsole(void)
+JUTConsole* JUTGetReportConsole(void)
 {
+	return sReportConsole;
 	/*
 	lwz      r3, sReportConsole@sda21(r13)
 	blr
@@ -1067,8 +1054,9 @@ void JUTGetReportConsole(void)
  * Address:	800292B4
  * Size:	000008
  */
-void JUTSetWarningConsole(void)
+void JUTSetWarningConsole(JUTConsole* console)
 {
+	sWarningConsole = console;
 	/*
 	stw      r3, sWarningConsole@sda21(r13)
 	blr
@@ -1080,8 +1068,9 @@ void JUTSetWarningConsole(void)
  * Address:	800292BC
  * Size:	000008
  */
-void JUTGetWarningConsole(void)
+JUTConsole* JUTGetWarningConsole(void)
 {
+	return sWarningConsole;
 	/*
 	lwz      r3, sWarningConsole@sda21(r13)
 	blr
@@ -1093,18 +1082,30 @@ void JUTGetWarningConsole(void)
  * Address:	........
  * Size:	00006C
  */
-void JUTReportConsole_f_va(void)
-{
-	// UNUSED FUNCTION
-}
+// void JUTReportConsole_f_va(void)
+// {
+// 	// UNUSED FUNCTION
+// }
 
 /*
  * --INFO--
  * Address:	800292C4
  * Size:	0000DC
  */
-void JUTReportConsole_f(void)
+void JUTReportConsole_f(char const* fmt, ...)
 {
+	char buffer[0x100];
+	va_list args;
+	va_start(args, fmt);
+
+	if (sReportConsole == nullptr) {
+		vsnprintf(buffer, 0x100, fmt, args);
+		return;
+	}
+	if ((sReportConsole->getOutput() & (JUTConsole::OUTPUT_OSREPORT | JUTConsole::OUTPUT_CONSOLE)) != 0) {
+		vsnprintf(buffer, 0x100, fmt, args);
+		sReportConsole->print(buffer);
+	}
 	/*
 	stwu     r1, -0x180(r1)
 	mflr     r0
@@ -1175,8 +1176,9 @@ lbl_80029388:
  * Address:	800293A0
  * Size:	00002C
  */
-void JUTReportConsole(void)
+void JUTReportConsole(char const* str)
 {
+	JUTReportConsole_f("%s", str);
 	/*
 	stwu     r1, -0x10(r1)
 	mflr     r0
@@ -1202,13 +1204,26 @@ void JUTWarningConsole_f_va(void)
 	// UNUSED FUNCTION
 }
 
-/*
+/**
  * --INFO--
  * Address:	800293CC
  * Size:	0000DC
+ * @warning This does not actually use the warning console.
  */
-void JUTWarningConsole_f(void)
+void JUTWarningConsole_f(char const* fmt, ...)
 {
+	char buffer[0x100];
+	va_list args;
+	va_start(args, fmt);
+
+	if (sReportConsole == nullptr) {
+		vsnprintf(buffer, 0x100, fmt, args);
+		return;
+	}
+	if ((sReportConsole->getOutput() & (JUTConsole::OUTPUT_OSREPORT | JUTConsole::OUTPUT_CONSOLE)) != 0) {
+		vsnprintf(buffer, 0x100, fmt, args);
+		sReportConsole->print(buffer);
+	}
 	/*
 	stwu     r1, -0x180(r1)
 	mflr     r0
@@ -1274,13 +1289,15 @@ lbl_80029490:
 	*/
 }
 
-/*
+/**
  * --INFO--
  * Address:	800294A8
  * Size:	00002C
+ * @warning This does not actually use the warning console.
  */
-void JUTWarningConsole(void)
+void JUTWarningConsole(char const* str)
 {
+	JUTReportConsole_f("%s", str);
 	/*
 	stwu     r1, -0x10(r1)
 	mflr     r0

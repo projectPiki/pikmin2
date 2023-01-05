@@ -89,28 +89,30 @@ struct TObject_message : public TObject {
 	virtual void do_paragraph(unsigned long, const void*, unsigned long); // _14
 };
 
+// TODO: The vtable is only 20 bytes long. Why is there so much blank space afterwards???
 struct TObject_particle : public TObject {
 	TObject_particle(const JStudio::stb::data::TParse_TBlock_object&, JStudio::TAdaptor_particle*);
 	TObject_particle(void const*, unsigned long, JStudio::TAdaptor_particle*); // unused/inlined
 
 	virtual ~TObject_particle();                                          // _08 (weak)
 	virtual void do_paragraph(unsigned long, const void*, unsigned long); // _14
-	virtual void _20() = 0;                                               // _20
-	virtual void _24() = 0;                                               // _24
-	virtual void _28() = 0;                                               // _28
-	virtual void _2C() = 0;                                               // _2C
-	virtual void _30() = 0;                                               // _30
-	virtual void _34() = 0;                                               // _34
-	virtual void _38() = 0;                                               // _38
-	virtual void _3C() = 0;                                               // _3C
-	virtual void _40() = 0;                                               // _40
-	virtual void _44() = 0;                                               // _44
-	virtual void _48() = 0;                                               // _48
-	virtual void _4C() = 0;                                               // _4C
-	virtual void _50() = 0;                                               // _50
-	virtual void _54() = 0;                                               // _54
-	virtual void _58() = 0;                                               // _58
-	virtual void _5C() = 0;                                               // _5C
+
+	// virtual void _20() = 0;                                               // _20
+	// virtual void _24() = 0;                                               // _24
+	// virtual void _28() = 0;                                               // _28
+	// virtual void _2C() = 0;                                               // _2C
+	// virtual void _30() = 0;                                               // _30
+	// virtual void _34() = 0;                                               // _34
+	// virtual void _38() = 0;                                               // _38
+	// virtual void _3C() = 0;                                               // _3C
+	// virtual void _40() = 0;                                               // _40
+	// virtual void _44() = 0;                                               // _44
+	// virtual void _48() = 0;                                               // _48
+	// virtual void _4C() = 0;                                               // _4C
+	// virtual void _50() = 0;                                               // _50
+	// virtual void _54() = 0;                                               // _54
+	// virtual void _58() = 0;                                               // _58
+	// virtual void _5C() = 0;                                               // _5C
 };
 
 struct TObject_sound : public TObject {

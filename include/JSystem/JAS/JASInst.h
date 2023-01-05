@@ -42,8 +42,10 @@ struct JASInstRand : public JASInstEffect {
 struct JASInstSense : public JASInstEffect {
 	JASInstSense()
 	    : JASInstEffect()
-	    , _08(1.0f)
-	    , _0C(0.0f)
+	    , _08(0)
+	    , _09(60)
+	    , _0C(1.0f)
+	    , _10(1.0f)
 	{
 	}
 
@@ -113,7 +115,6 @@ struct JASInst {
 	virtual ~JASInst() {};                                    // _08 (weak)
 	virtual bool getParam(int, int, JASInstParam*) const = 0; // _0C
 	virtual u32 getType() const                          = 0; // _10
-	virtual int getKeymapIndex(int) const                = 0; // _14
 };
 
 struct JASBasicInst : public JASInst {

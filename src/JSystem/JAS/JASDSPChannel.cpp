@@ -263,6 +263,65 @@ JASDSPChannel* JASDSPChannel::getLowestActiveChannel()
  */
 void JASDSPChannel::updateProc()
 {
+	if (_18->isFinish()) {
+		_08 &= ~0x3;
+		if (_00 == 0) {
+			int v1;
+			if (_10 != nullptr) {
+				v1 = _10(2, nullptr, _14);
+			} else {
+				v1 = -1;
+			}
+			if (v1 < 0) {
+				_04 = -1;
+			}
+		}
+		_00 = 1;
+		_18->replyFinishRequest();
+		_18->flush();
+		return;
+	}
+	if ((_08 & 2) != 0) {
+		_08 &= ~0x3;
+		_18->forceStop();
+		_18->flush();
+		return;
+	}
+	if (_00 == 2) {
+		return;
+	}
+	if ((_08 & 1) != 0 && (_00 == 1)) {
+		_08 &= ~2;
+		_00 = 0;
+		_18->init();
+		if (_10 != nullptr) {
+			_10(1, _18, _14);
+		}
+		_18->playStart();
+		_18->flush();
+	}
+	if (_00 == 1) {
+		return;
+	}
+	int v1;
+	if (_10 != nullptr) {
+		v1 = _10(0, _18, _14);
+	} else {
+		v1 = 0;
+	}
+	if (v1 < 0) {
+		_00 = 1;
+		if ((_10 != nullptr ? _10(2, nullptr, _14) : -1) < 0) {
+			_04 = -1;
+		}
+		_18->playStop();
+		_18->flush();
+		return;
+	}
+	_0C++;
+	if (_10 != nullptr) {
+		_18->flush();
+	}
 	/*
 	stwu     r1, -0x10(r1)
 	mflr     r0

@@ -8,7 +8,10 @@ namespace JGeometry {
 template <typename T>
 struct TVec2 {
 	TVec2() { }
+	TVec2(T v) { set(v); }
 	TVec2(T x, T y) { set(x, y); }
+
+	void set(T v) { y = x = v; }
 
 	void set(T x, T y)
 	{
@@ -46,6 +49,16 @@ struct TVec2 {
 
 	/** @fabricated */
 	// TVec2<T> adding(const TVec2<T>& other) { return TVec2<T>(x + other.x, y + other.y); }
+
+	/** @fabricated */
+	TVec2<T> adding(T xDelta, T yDelta) { return TVec2<T>(x + xDelta, y + yDelta); }
+
+	/** @fabricated */
+	void add(T xDelta, T yDelta)
+	{
+		x += xDelta;
+		y += yDelta;
+	}
 
 	bool isAbove(const TVec2<T>& other) const { return (x >= other.x) && (y >= other.y) ? true : false; }
 
@@ -133,8 +146,8 @@ struct TBox {
 
 // clang-format off
 template<> struct TBox<TVec2<f32> > {
-    f32 getWidth() const { return f.x - i.x; }
-    f32 getHeight() const { return f.y - i.y; }
+    inline f32 getWidth() const { return f.x - i.x; }
+    inline f32 getHeight() const { return f.y - i.y; }
 
     bool isValid() const { return f.isAbove(i); }
 
@@ -159,7 +172,10 @@ template<> struct TBox<TVec2<f32> > {
 template <typename T>
 struct TBox2 : TBox<TVec2<T> > {
     TBox2() {}
-    TBox2(const TVec2<f32>& i, const TVec2<f32> f) { set(i, f); }
+	// TBox2(const TBox2& other) { set(other); }
+    TBox2(const TVec2<T>& i, const TVec2<T> f) { set(i, f); }
+	// TBox2(const TVec2<T>& i, T x1, T y1) { set(i, x1, y1); }
+	// TBox2(T x0, T y0, const TVec2<T>& f) { set(x0, y0, f); }
     TBox2(f32 x0, f32 y0, f32 x1, f32 y1) { set(x0, y0, x1, y1); }
 	TBox2(f32 x0, f32 y0, TVec2<f32>& f) { set(x0, y0, x0 + f.x, y0 + f.y);	}
 	TBox2(f32 val)
@@ -169,6 +185,12 @@ struct TBox2 : TBox<TVec2<T> > {
 		i.y = val;
 		i.x = val;
 	}
+
+	// inline TBox2& operator=(const TBox2& other)
+	// {
+	// 	set(other);
+	// 	return *this;
+	// }
 
     void absolute() {
         if (!this->isValid()) {
@@ -186,8 +208,13 @@ struct TBox2 : TBox<TVec2<T> > {
 	// }
 
     void set(const TBox2& other) { set(other.i, other.f); }
-    void set(const TVec2<f32>& i, const TVec2<f32>& f) { this->i.set(i), this->f.set(f); }
-    void set(f32 x0, f32 y0, f32 x1, f32 y1) { i.set(x0, y0); f.set(x1, y1); }
+    void set(const TVec2<T>& i, const TVec2<T>& f) { this->i.set(i), this->f.set(f); }
+    // void set(const TVec2<T>& i, T x1, T y1) { this->i.set(i), this->f.set(x1, y1); }
+    // void set(T x0, T y0, const TVec2<T>& f) { this->i.set(x0, y0), this->f.set(f); }
+    void set(T x0, T y0, T x1, T y1) { this->i.set(x0, y0); this->f.set(x1, y1); }
+
+	// void setOrigin(const TVec2<T>& other) { this->i.set(other); }
+	// void setSize(T width, T height) { this->f.x = this->i.x + width; this->f.y = this->i.y + height; }
 };
 
 // clang-format on

@@ -1,4 +1,12 @@
+#include "Dolphin/dvd.h"
+#include "Dolphin/os.h"
+#include "JSystem/JAS/JASDriver.h"
+#include "JSystem/JAS/JASDvd.h"
+#include "JSystem/JAS/JASHeap.h"
+#include "JSystem/JAS/JASMutexLock.h"
 #include "types.h"
+#include "JSystem/JAS/JASAramStream.h"
+#include "JSystem/JAS/JASThread.h"
 
 /*
     Generated from dpostproc
@@ -82,55 +90,31 @@
         .4byte 0x00000000
 */
 
+JASTaskThread* JASAramStream::sLoadThread;
+u8* JASAramStream::sReadBuffer;
+u32 JASAramStream::sBlockSize;
+u32 JASAramStream::sChannelMax;
+bool JASAramStream::sSystemPauseFlag;
+bool JASAramStream::sFatalErrorFlag;
+
 /*
  * --INFO--
  * Address:	800A8FA4
  * Size:	000090
  */
-void JASAramStream::initSystem(unsigned long, unsigned long)
+void JASAramStream::initSystem(unsigned long blockSize, unsigned long channelMax)
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	lis      r5, dvdErrorCheck__13JASAramStreamFPv@ha
-	stw      r0, 0x14(r1)
-	addi     r0, r5, dvdErrorCheck__13JASAramStreamFPv@l
-	stw      r31, 0xc(r1)
-	mr       r31, r4
-	li       r4, 0
-	stw      r30, 8(r1)
-	mr       r30, r3
-	mr       r3, r0
-	bl       registerSubFrameCallback__9JASDriverFPFPv_lPv
-	clrlwi.  r0, r3, 0x18
-	beq      lbl_800A901C
-	lwz      r0, sLoadThread__13JASAramStream@sda21(r13)
-	cmplwi   r0, 0
-	bne      lbl_800A8FF0
-	bl       getThreadPointer__6JASDvdFv
-	stw      r3, sLoadThread__13JASAramStream@sda21(r13)
-
-lbl_800A8FF0:
-	addi     r0, r30, 0x20
-	lwz      r4, JASDram@sda21(r13)
-	mullw    r3, r0, r31
-	li       r5, 0x20
-	bl       __nwa__FUlP7JKRHeapi
-	li       r0, 0
-	stw      r3, sReadBuffer__13JASAramStream@sda21(r13)
-	stw      r30, sBlockSize__13JASAramStream@sda21(r13)
-	stw      r31, sChannelMax__13JASAramStream@sda21(r13)
-	stb      r0, sSystemPauseFlag__13JASAramStream@sda21(r13)
-	stb      r0, sFatalErrorFlag__13JASAramStream@sda21(r13)
-
-lbl_800A901C:
-	lwz      r0, 0x14(r1)
-	lwz      r31, 0xc(r1)
-	lwz      r30, 8(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	if (JASDriver::registerSubFrameCallback(dvdErrorCheck, nullptr)) {
+		if (sLoadThread == nullptr) {
+			sLoadThread = JASDvd::getThreadPointer();
+		}
+		// TODO: replace 0x20 in [] with sizeof header object
+		sReadBuffer      = new (JASDram, 0x20) u8[(blockSize + 0x20) * channelMax];
+		sBlockSize       = blockSize;
+		sChannelMax      = channelMax;
+		sSystemPauseFlag = false;
+		sFatalErrorFlag  = false;
+	}
 }
 
 /*
@@ -149,7 +133,51 @@ void JASAramStream::setLoadThread(JASTaskThread*)
  * Size:	000158
  */
 JASAramStream::JASAramStream()
+    : _198(nullptr)
+    , _19C(0)
+    , _19D(0)
+    , _19E(0)
+    , _1A0(0)
+    , _1A4(0)
+    , _1A8(0)
+    , _1AC(0)
+    , _1B0(0)
+    , _1B4(0)
+    , _1B8(0.0f)
+    , _1F8(0)
+    , _1FC(0)
+    , _200(0)
+    , _204(0)
+    , _208(0)
+    , _21C(0)
+    , _238(0)
+    , _23C(0)
+    , m_callback(nullptr)
+    , _244(nullptr)
+    , _248(0)
+    , _24A(0)
+    , _24C(0)
+    , _250(0)
+    , _254(0)
+    , _258(0)
+    , _25C(0)
+    , _260(0)
+    , _264(1.0f)
+    , _268(1.0f)
+    , _2D8(0)
 {
+	for (int i = 0; i < 6; i++) {
+		_180[i]    = nullptr;
+		_220[0][i] = 0;
+		_220[1][i] = 0;
+		_26C[0][i] = 1.0f;
+		_26C[1][i] = 0.5f;
+		_26C[2][i] = 0.0f;
+		_26C[3][i] = 0.0f;
+	}
+	for (int i = 0; i < 6; i++) {
+		_2CC[i] = 0;
+	}
 	/*
 	li       r0, 0
 	lfs      f3, lbl_80516EB0@sda21(r2)
@@ -245,8 +273,30 @@ JASAramStream::JASAramStream()
  * Address:	800A918C
  * Size:	0000F8
  */
-void JASAramStream::init(unsigned long, unsigned long, void (*)(unsigned long, JASAramStream*, void*), void*)
+void JASAramStream::init(unsigned long p1, unsigned long p2, void (*callback)(unsigned long, JASAramStream*, void*), void* p4)
 {
+	_238 = p1;
+	_23C = p2;
+	_1B8 = 0.0f;
+	_19E = 0;
+	_19C = 0;
+	_19D = 0;
+	_204 = 0;
+	_24A = 0;
+	for (int i = 0; i < 6; i++) {
+		_26C[0][i] = 1.0f;
+		_26C[1][i] = 0.5f;
+		_26C[2][i] = 0.0f;
+		_26C[3][i] = 0.0f;
+	}
+	_264       = 1.0f;
+	_268       = 1.0f;
+	_2D8       = 0;
+	_2CC[0]    = -1;
+	m_callback = callback;
+	_244       = p4;
+	OSInitMessageQueue(&m_msgQueueA, m_msgSlotsA, ARRAY_SIZE(m_msgSlotsA));
+	OSInitMessageQueue(&m_msgQueueB, m_msgSlotsB, ARRAY_SIZE(m_msgSlotsB));
 	/*
 	.loc_0x0:
 	  stwu      r1, -0x10(r1)
@@ -339,64 +389,22 @@ void JASAramStream::prepare(const char*, int)
  * Address:	800A9284
  * Size:	0000B8
  */
-void JASAramStream::prepare(long, int)
+BOOL JASAramStream::prepare(long inode, int p2)
 {
-	/*
-	stwu     r1, -0x20(r1)
-	mflr     r0
-	stw      r0, 0x24(r1)
-	stw      r31, 0x1c(r1)
-	mr       r31, r5
-	stw      r30, 0x18(r1)
-	mr       r30, r3
-	mr       r3, r4
-	addi     r4, r30, 0x1bc
-	bl       DVDFastOpen
-	cmpwi    r3, 0
-	bne      lbl_800A92BC
-	li       r3, 0
-	b        lbl_800A9324
-
-lbl_800A92BC:
-	lis      r3, channelProcCallback__13JASAramStreamFPv@ha
-	mr       r4, r30
-	addi     r3, r3, channelProcCallback__13JASAramStreamFPv@l
-	bl       registerSubFrameCallback__9JASDriverFPFPv_lPv
-	clrlwi.  r0, r3, 0x18
-	bne      lbl_800A92DC
-	li       r3, 0
-	b        lbl_800A9324
-
-lbl_800A92DC:
-	lbz      r0, 0x204(r30)
-	cmplwi   r0, 0
-	beq      lbl_800A92F0
-	li       r3, 0
-	b        lbl_800A9324
-
-lbl_800A92F0:
-	stw      r30, 8(r1)
-	lis      r3, headerLoadTask__13JASAramStreamFPv@ha
-	addi     r4, r3, headerLoadTask__13JASAramStreamFPv@l
-	lwz      r3, sLoadThread__13JASAramStream@sda21(r13)
-	lwz      r0, 0x23c(r30)
-	addi     r5, r1, 8
-	li       r6, 0xc
-	stw      r0, 0xc(r1)
-	stw      r31, 0x10(r1)
-	bl       sendCmdMsg__13JASTaskThreadFPFPv_vPCvUl
-	neg      r0, r3
-	or       r0, r0, r3
-	srwi     r3, r0, 0x1f
-
-lbl_800A9324:
-	lwz      r0, 0x24(r1)
-	lwz      r31, 0x1c(r1)
-	lwz      r30, 0x18(r1)
-	mtlr     r0
-	addi     r1, r1, 0x20
-	blr
-	*/
+	if (!DVDFastOpen(inode, &_1BC)) {
+		return FALSE;
+	}
+	if (!JASDriver::registerSubFrameCallback(channelProcCallback, this)) {
+		return FALSE;
+	}
+	if (_204 != 0) {
+		return FALSE;
+	}
+	HeaderLoadTaskArgs args;
+	args.m_stream = this;
+	args._04      = _23C;
+	args._08      = p2;
+	return sLoadThread->sendCmdMsg(headerLoadTask, &args, sizeof(args)) != FALSE;
 }
 
 /*
@@ -404,48 +412,16 @@ lbl_800A9324:
  * Address:	800A933C
  * Size:	000034
  */
-void JASAramStream::start()
-{
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	li       r4, 0
-	li       r5, 0
-	stw      r0, 0x14(r1)
-	bl       OSSendMessage
-	neg      r0, r3
-	or       r0, r0, r3
-	srwi     r3, r0, 0x1f
-	lwz      r0, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
-}
+BOOL JASAramStream::start() { return OSSendMessage(&m_msgQueueA, nullptr, OS_MESSAGE_NON_BLOCKING) != FALSE; }
 
 /*
  * --INFO--
  * Address:	800A9370
  * Size:	000038
  */
-void JASAramStream::stop(unsigned short)
+int JASAramStream::stop(unsigned short p1)
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	li       r5, 0
-	stw      r0, 0x14(r1)
-	slwi     r0, r4, 0x10
-	ori      r4, r0, 1
-	bl       OSSendMessage
-	neg      r0, r3
-	or       r0, r0, r3
-	srwi     r3, r0, 0x1f
-	lwz      r0, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	return OSSendMessage(&m_msgQueueA, (void*)((u32)p1 << 0x10 | 1), OS_MESSAGE_NON_BLOCKING) != FALSE;
 }
 
 /*
@@ -453,34 +429,16 @@ void JASAramStream::stop(unsigned short)
  * Address:	800A93A8
  * Size:	000048
  */
-void JASAramStream::pause(bool)
+bool JASAramStream::pause(bool p1)
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	clrlwi.  r0, r4, 0x18
-	li       r4, 3
-	beq      lbl_800A93C4
-	li       r4, 2
-
-lbl_800A93C4:
-	li       r5, 0
-	bl       OSSendMessage
-	cmpwi    r3, 0
-	bne      lbl_800A93DC
-	li       r3, 0
-	b        lbl_800A93E0
-
-lbl_800A93DC:
-	li       r3, 1
-
-lbl_800A93E0:
-	lwz      r0, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	u32 msg = 3;
+	if (p1) {
+		msg = 2;
+	}
+	if (OSSendMessage(&m_msgQueueA, (void*)msg, OS_MESSAGE_NON_BLOCKING) == FALSE) {
+		return false;
+	}
+	return true;
 }
 
 /*
@@ -488,27 +446,10 @@ lbl_800A93E0:
  * Address:	800A93F0
  * Size:	000044
  */
-void JASAramStream::cancel()
+int JASAramStream::cancel()
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	lis      r4, finishTask__13JASAramStreamFPv@ha
-	mr       r5, r3
-	stw      r0, 0x14(r1)
-	li       r0, 1
-	addi     r4, r4, finishTask__13JASAramStreamFPv@l
-	stb      r0, 0x204(r3)
-	lwz      r3, sLoadThread__13JASAramStream@sda21(r13)
-	bl       sendCmdMsg__13JASTaskThreadFPFPv_vPv
-	neg      r0, r3
-	or       r0, r0, r3
-	srwi     r3, r0, 0x1f
-	lwz      r0, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	_204 = 1;
+	return sLoadThread->sendCmdMsg(finishTask, this) != FALSE;
 }
 
 /*
@@ -526,22 +467,10 @@ void JASAramStream::getBlockSamples() const
  * Address:	800A9434
  * Size:	000030
  */
-void JASAramStream::headerLoadTask(void*)
+void JASAramStream::headerLoadTask(void* args)
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	mr       r5, r3
-	stw      r0, 0x14(r1)
-	lwz      r4, 4(r5)
-	lwz      r3, 0(r3)
-	lwz      r5, 8(r5)
-	bl       headerLoad__13JASAramStreamFUli
-	lwz      r0, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	HeaderLoadTaskArgs* castedArgs = static_cast<HeaderLoadTaskArgs*>(args);
+	castedArgs->m_stream->headerLoad(castedArgs->_04, castedArgs->_08);
 }
 
 /*
@@ -549,71 +478,30 @@ void JASAramStream::headerLoadTask(void*)
  * Address:	800A9464
  * Size:	0000DC
  */
-void JASAramStream::firstLoadTask(void*)
+void JASAramStream::firstLoadTask(void* args)
 {
-	/*
-	stwu     r1, -0x20(r1)
-	mflr     r0
-	stw      r0, 0x24(r1)
-	stw      r31, 0x1c(r1)
-	mr       r31, r3
-	stw      r30, 0x18(r1)
-	lwz      r30, 0(r3)
-	mr       r3, r30
-	bl       load__13JASAramStreamFv
-	clrlwi.  r0, r3, 0x18
-	beq      lbl_800A9528
-	lwz      r3, 8(r31)
-	cmpwi    r3, 0
-	ble      lbl_800A94D4
-	addi     r0, r3, -1
-	stw      r0, 8(r31)
-	lwz      r0, 8(r31)
-	cmpwi    r0, 0
-	bne      lbl_800A94D4
-	lis      r4, prepareFinishTask__13JASAramStreamFPv@ha
-	lwz      r3, sLoadThread__13JASAramStream@sda21(r13)
-	addi     r4, r4, prepareFinishTask__13JASAramStreamFPv@l
-	mr       r5, r30
-	bl       sendCmdMsg__13JASTaskThreadFPFPv_vPv
-	cmpwi    r3, 0
-	bne      lbl_800A94D4
-	li       r0, 1
-	stb      r0, sFatalErrorFlag__13JASAramStream@sda21(r13)
-
-lbl_800A94D4:
-	lwz      r3, 4(r31)
-	cmplwi   r3, 0
-	beq      lbl_800A9528
-	addi     r0, r3, -1
-	lis      r3, firstLoadTask__13JASAramStreamFPv@ha
-	stw      r0, 4(r31)
-	addi     r4, r3, firstLoadTask__13JASAramStreamFPv@l
-	mr       r5, r31
-	li       r6, 0xc
-	lwz      r3, sLoadThread__13JASAramStream@sda21(r13)
-	bl       sendCmdMsg__13JASTaskThreadFPFPv_vPCvUl
-	cmpwi    r3, 0
-	bne      lbl_800A9510
-	li       r0, 1
-	stb      r0, sFatalErrorFlag__13JASAramStream@sda21(r13)
-
-lbl_800A9510:
-	bl       OSDisableInterrupts
-	lwz      r4, 0x208(r30)
-	stw      r3, 8(r1)
-	addi     r0, r4, 1
-	stw      r0, 0x208(r30)
-	bl       OSRestoreInterrupts
-
-lbl_800A9528:
-	lwz      r0, 0x24(r1)
-	lwz      r31, 0x1c(r1)
-	lwz      r30, 0x18(r1)
-	mtlr     r0
-	addi     r1, r1, 0x20
-	blr
-	*/
+	HeaderLoadTaskArgs* castedArgs = static_cast<HeaderLoadTaskArgs*>(args);
+	JASAramStream* stream          = castedArgs->m_stream;
+	if (!stream->load()) {
+		return;
+	}
+	if (castedArgs->_08 > 0) {
+		--castedArgs->_08;
+		if (castedArgs->_08 == 0) {
+			if (!sLoadThread->sendCmdMsg(prepareFinishTask, stream)) {
+				sFatalErrorFlag = true;
+			}
+		}
+	}
+	if (castedArgs->_04 == 0) {
+		return;
+	}
+	castedArgs->_04--;
+	if (!sLoadThread->sendCmdMsg(firstLoadTask, castedArgs, sizeof(*castedArgs))) {
+		sFatalErrorFlag = true;
+	}
+	JASCriticalSection criticalSection;
+	stream->_208++;
 }
 
 /*
@@ -621,55 +509,21 @@ lbl_800A9528:
  * Address:	800A9540
  * Size:	000020
  */
-void JASAramStream::loadToAramTask(void*)
-{
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	bl       load__13JASAramStreamFv
-	lwz      r0, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
-}
+bool JASAramStream::loadToAramTask(void* p1) { return static_cast<JASAramStream*>(p1)->load(); }
 
 /*
  * --INFO--
  * Address:	800A9560
  * Size:	000060
  */
-void JASAramStream::finishTask(void*)
+void JASAramStream::finishTask(void* args)
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	lis      r4, channelProcCallback__13JASAramStreamFPv@ha
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	mr       r31, r3
-	addi     r3, r4, channelProcCallback__13JASAramStreamFPv@l
-	mr       r4, r31
-	bl       rejectCallback__9JASDriverFPFPv_lPv
-	lwz      r12, 0x240(r31)
-	cmplwi   r12, 0
-	beq      lbl_800A95AC
-	mr       r4, r31
-	lwz      r5, 0x244(r31)
-	li       r3, 0
-	mtctr    r12
-	bctrl
-	li       r0, 0
-	stw      r0, 0x240(r31)
-
-lbl_800A95AC:
-	lwz      r0, 0x14(r1)
-	lwz      r31, 0xc(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	JASDriver::rejectCallback(channelProcCallback, args);
+	JASAramStream* stream = static_cast<JASAramStream*>(args);
+	if (stream->m_callback != nullptr) {
+		stream->m_callback(0, stream, stream->_244);
+		stream->m_callback = nullptr;
+	}
 }
 
 /*
@@ -677,34 +531,13 @@ lbl_800A95AC:
  * Address:	800A95C0
  * Size:	000058
  */
-void JASAramStream::prepareFinishTask(void*)
+void JASAramStream::prepareFinishTask(void* args)
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	li       r4, 4
-	li       r5, 1
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	mr       r31, r3
-	addi     r3, r31, 0x20
-	bl       OSSendMessage
-	lwz      r12, 0x240(r31)
-	cmplwi   r12, 0
-	beq      lbl_800A9604
-	mr       r4, r31
-	lwz      r5, 0x244(r31)
-	li       r3, 1
-	mtctr    r12
-	bctrl
-
-lbl_800A9604:
-	lwz      r0, 0x14(r1)
-	lwz      r31, 0xc(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	JASAramStream* stream = static_cast<JASAramStream*>(args);
+	OSSendMessage(&stream->m_msgQueueB, (void*)4, OS_MESSAGE_BLOCKING);
+	if (stream->m_callback != nullptr) {
+		stream->m_callback(1, stream, stream->_244);
+	}
 }
 
 /*
@@ -712,141 +545,50 @@ lbl_800A9604:
  * Address:	800A9618
  * Size:	0001CC
  */
-void JASAramStream::headerLoad(unsigned long, int)
+bool JASAramStream::headerLoad(unsigned long p1, int p2)
 {
-	/*
-	stwu     r1, -0x30(r1)
-	mflr     r0
-	stw      r0, 0x34(r1)
-	stw      r31, 0x2c(r1)
-	mr       r31, r5
-	stw      r30, 0x28(r1)
-	mr       r30, r4
-	stw      r29, 0x24(r1)
-	mr       r29, r3
-	lbz      r0, sFatalErrorFlag__13JASAramStream@sda21(r13)
-	cmplwi   r0, 0
-	beq      lbl_800A9650
-	li       r3, 0
-	b        lbl_800A97C8
-
-lbl_800A9650:
-	lbz      r0, 0x204(r29)
-	cmplwi   r0, 0
-	beq      lbl_800A9664
-	li       r3, 0
-	b        lbl_800A97C8
-
-lbl_800A9664:
-	lwz      r4, sReadBuffer__13JASAramStream@sda21(r13)
-	addi     r3, r29, 0x1bc
-	li       r5, 0x40
-	li       r6, 0
-	li       r7, 1
-	bl       DVDReadPrio
-	cmpwi    r3, 0
-	bge      lbl_800A9694
-	li       r0, 1
-	li       r3, 0
-	stb      r0, sFatalErrorFlag__13JASAramStream@sda21(r13)
-	b        lbl_800A97C8
-
-lbl_800A9694:
-	lwz      r5, sReadBuffer__13JASAramStream@sda21(r13)
-	lis      r0, 0x4330
-	stw      r0, 0x18(r1)
-	li       r0, 0
-	lbz      r3, 9(r5)
-	cmpwi    r31, 0
-	lfd      f2, lbl_80516EC0@sda21(r2)
-	sth      r3, 0x248(r29)
-	lfs      f0, lbl_80516EBC@sda21(r2)
-	lhz      r3, 0xc(r5)
-	sth      r3, 0x24a(r29)
-	lwz      r3, 0x10(r5)
-	stw      r3, 0x254(r29)
-	lhz      r4, 0xe(r5)
-	neg      r3, r4
-	or       r3, r3, r4
-	srwi     r3, r3, 0x1f
-	stb      r3, 0x258(r29)
-	lwz      r3, 0x18(r5)
-	stw      r3, 0x25c(r29)
-	lwz      r3, 0x1c(r5)
-	stw      r3, 0x260(r29)
-	lbz      r3, 0x28(r5)
-	stw      r3, 0x1c(r1)
-	lfd      f1, 0x18(r1)
-	fsubs    f1, f1, f2
-	fdivs    f0, f1, f0
-	stfs     f0, 0x264(r29)
-	stw      r0, 0x208(r29)
-	stw      r0, 0x200(r29)
-	stw      r0, 0x1fc(r29)
-	lwz      r3, sBlockSize__13JASAramStream@sda21(r13)
-	lhz      r0, 0xc(r5)
-	divwu    r3, r30, r3
-	divwu    r0, r3, r0
-	stw      r0, 0x250(r29)
-	lwz      r0, 0x250(r29)
-	stw      r0, 0x24c(r29)
-	lwz      r3, 0x24c(r29)
-	addi     r0, r3, -1
-	stw      r0, 0x24c(r29)
-	lwz      r0, 0x24c(r29)
-	stw      r0, 0x1f8(r29)
-	blt      lbl_800A9750
-	lwz      r0, 0x1f8(r29)
-	cmplw    r31, r0
-	ble      lbl_800A9754
-
-lbl_800A9750:
-	lwz      r31, 0x1f8(r29)
-
-lbl_800A9754:
-	lbz      r0, 0x204(r29)
-	cmplwi   r0, 0
-	beq      lbl_800A9768
-	li       r3, 0
-	b        lbl_800A97C8
-
-lbl_800A9768:
-	stw      r29, 0xc(r1)
-	lis      r3, firstLoadTask__13JASAramStreamFPv@ha
-	addi     r4, r3, firstLoadTask__13JASAramStreamFPv@l
-	lwz      r3, sLoadThread__13JASAramStream@sda21(r13)
-	lwz      r7, 0x1f8(r29)
-	addi     r5, r1, 0xc
-	li       r6, 0xc
-	addi     r0, r7, -1
-	stw      r31, 0x14(r1)
-	stw      r0, 0x10(r1)
-	bl       sendCmdMsg__13JASTaskThreadFPFPv_vPCvUl
-	cmpwi    r3, 0
-	bne      lbl_800A97AC
-	li       r0, 1
-	li       r3, 0
-	stb      r0, sFatalErrorFlag__13JASAramStream@sda21(r13)
-	b        lbl_800A97C8
-
-lbl_800A97AC:
-	bl       OSDisableInterrupts
-	lwz      r4, 0x208(r29)
-	stw      r3, 8(r1)
-	addi     r0, r4, 1
-	stw      r0, 0x208(r29)
-	bl       OSRestoreInterrupts
-	li       r3, 1
-
-lbl_800A97C8:
-	lwz      r0, 0x34(r1)
-	lwz      r31, 0x2c(r1)
-	lwz      r30, 0x28(r1)
-	lwz      r29, 0x24(r1)
-	mtlr     r0
-	addi     r1, r1, 0x30
-	blr
-	*/
+	if (sFatalErrorFlag) {
+		return false;
+	}
+	if (_204 != 0) {
+		return false;
+	}
+	if (DVDReadPrio(&_1BC, sReadBuffer, 0x40, 0, 1) < 0) {
+		sFatalErrorFlag = true;
+		return false;
+	}
+	u8* buffer = sReadBuffer;
+	_248       = buffer[9];
+	_24A       = *(u16*)(buffer + 0x0C);
+	_254       = *(u32*)(buffer + 0x10);
+	_258       = (*(u16*)(buffer + 0x0E) != FALSE);
+	_25C       = *(u32*)(buffer + 0x18);
+	_260       = *(u32*)(buffer + 0x1C);
+	_264       = buffer[0x28] / 127.0f;
+	_208       = 0;
+	_200       = 0;
+	_1FC       = 0;
+	_250       = p1 / sBlockSize / *(u16*)(buffer + 0x0C);
+	_24C       = _250;
+	_24C--;
+	_1F8 = _24C;
+	if (p2 < 0 || p2 > _1F8) {
+		p2 = _1F8;
+	}
+	if (_204 != 0) {
+		return false;
+	}
+	FirstLoadTaskArgs loadArgs;
+	loadArgs.m_stream = this;
+	loadArgs._04      = _1F8 - 1;
+	loadArgs._08      = p2;
+	if (!sLoadThread->sendCmdMsg(firstLoadTask, &loadArgs, sizeof(loadArgs))) {
+		sFatalErrorFlag = true;
+		return false;
+	}
+	JASCriticalSection criticalSection;
+	_208++;
+	return true;
 }
 
 /*
@@ -854,7 +596,7 @@ lbl_800A97C8:
  * Address:	800A97E4
  * Size:	0002B4
  */
-void JASAramStream::load()
+bool JASAramStream::load()
 {
 	/*
 	stwu     r1, -0x30(r1)
@@ -1084,27 +826,37 @@ lbl_800A9A84:
  * Address:	800A9A98
  * Size:	000020
  */
-void JASAramStream::channelProcCallback(void*)
-{
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	bl       channelProc__13JASAramStreamFv
-	lwz      r0, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
-}
+long JASAramStream::channelProcCallback(void* p1) { static_cast<JASAramStream*>(p1)->channelProc(); }
 
 /*
  * --INFO--
  * Address:	800A9AB8
  * Size:	00005C
  */
-void JASAramStream::dvdErrorCheck(void*)
+long JASAramStream::dvdErrorCheck(void*)
 {
+	long status = DVDGetDriveStatus();
+	switch (status) {
+	case 0:
+		sSystemPauseFlag = false;
+		break;
+	case 2:
+	case 3:
+	case 4:
+	case 5:
+	case 6:
+	case 7:
+	case 8:
+	case 9:
+	case 10:
+	case 11:
+	case -1:
+		sSystemPauseFlag = true;
+		break;
+	case 1:
+		break;
+	}
+	return 0;
 	/*
 	stwu     r1, -0x10(r1)
 	mflr     r0
@@ -1146,28 +898,9 @@ lbl_800A9B00:
  * Address:	800A9B14
  * Size:	00003C
  */
-void JASAramStream::channelCallback(unsigned long, JASChannel*, JASDsp::TChannel*, void*)
+void JASAramStream::channelCallback(unsigned long p1, JASChannel* p2, JASDsp::TChannel* p3, void* p4)
 {
-	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  mr        r8, r3
-	  mr        r7, r4
-	  stw       r0, 0x14(r1)
-	  mr        r0, r5
-	  mr        r3, r6
-	  mr        r4, r8
-	  mr        r5, r7
-	  mr        r6, r0
-	  bl        .loc_0x3C
-	  lwz       r0, 0x14(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
-
-	.loc_0x3C:
-	*/
+	static_cast<JASAramStream*>(p4)->updateChannel(p1, p2, p3);
 }
 
 /*
@@ -1746,7 +1479,7 @@ lbl_800AA294:
  * Address:	800AA2A8
  * Size:	0001E4
  */
-void JASAramStream::channelProc()
+int JASAramStream::channelProc()
 {
 	/*
 	stwu     r1, -0x20(r1)
@@ -1916,7 +1649,7 @@ lbl_800AA474:
  * Address:	800AA48C
  * Size:	000240
  */
-void JASAramStream::channelStart()
+char* JASAramStream::channelStart()
 {
 	/*
 	stwu     r1, -0x60(r1)
@@ -2099,8 +1832,13 @@ lbl_800AA69C:
  * Address:	800AA6CC
  * Size:	000078
  */
-void JASAramStream::channelStop(unsigned short)
+void JASAramStream::channelStop(unsigned short p1)
 {
+	for (int i = 0; i < _24A; i++) {
+		if (_180[i] != nullptr) {
+			_180[i]->release(p1);
+		}
+	}
 	/*
 	stwu     r1, -0x20(r1)
 	mflr     r0
@@ -2138,12 +1876,12 @@ lbl_800AA718:
 	mtlr     r0
 	addi     r1, r1, 0x20
 	blr
-	.4byte   0x00000000 /* unknown instruction */
-	.4byte 0x00000000     /* unknown instruction */
-	    .4byte 0x00000000 /* unknown instruction */
-	    .4byte 0x00000000 /* unknown instruction */
-	    .4byte 0x00000000 /* unknown instruction */
-	    .4byte 0x00000000 /* unknown instruction */
-	    .4byte 0x00000000 /* unknown instruction */
-	    * /
+	.4byte 0x00000000 // unknown instruction
+	.4byte 0x00000000 // unknown instruction
+	.4byte 0x00000000 // unknown instruction
+	.4byte 0x00000000 // unknown instruction
+	.4byte 0x00000000 // unknown instruction
+	.4byte 0x00000000 // unknown instruction
+	.4byte 0x00000000 // unknown instruction
+	*/
 }

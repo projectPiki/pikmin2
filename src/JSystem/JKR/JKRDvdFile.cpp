@@ -430,7 +430,7 @@ int JKRDvdFile::writeData(const void* p1, long p2, long p3) { return writeDataAs
  */
 long JKRDvdFile::sync()
 {
-	OSMessage buffer[1];
+	void* buffer[1];
 	OSLockMutex(&_1C);
 	OSReceiveMessage(&_C0, buffer, OS_MESSAGE_BLOCKING);
 	_F4 = nullptr;
@@ -443,24 +443,14 @@ long JKRDvdFile::sync()
  * Address:	8001D620
  * Size:	000030
  */
-BOOL JKRDvdFile::doneProcess(long p1, DVDFileInfo* info)
-{
-	return OSSendMessage(&(reinterpret_cast<JKRDvdFile*>(info->_3C))->_C0, (OSMessage)p1, 0);
-}
+BOOL JKRDvdFile::doneProcess(long p1, DVDFileInfo* info) { return OSSendMessage(&(reinterpret_cast<JKRDvdFile*>(info->_3C))->_C0, &p1, 0); }
 
 /*
  * --INFO--
  * Address:	8001D650
  * Size:	000008
  */
-int JKRDvdFile::getFileSize() const
-{
-	return m_dvdPlayer.m_fileSize;
-	/*
-	lwz      r3, 0x90(r3)
-	blr
-	*/
-}
+// int JKRDvdFile::getFileSize() const { return m_dvdPlayer.m_fileSize; }
 
 /*
  * --INFO--

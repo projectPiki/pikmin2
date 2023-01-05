@@ -1,11 +1,16 @@
 #include "JSystem/J2D/J2DAnm.h"
+#include "JSystem/J2D/J2DManage.h"
 #include "JSystem/J2D/J2DMaterial.h"
 #include "JSystem/J2D/J2DPane.h"
 #include "JSystem/J3D/J3DFileBlock.h"
+#include "JSystem/J3D/J3DTypes.h"
 #include "JSystem/JGeometry.h"
+#include "JSystem/JKR/JKRArchive.h"
+#include "JSystem/JKR/JKRFileLoader.h"
 #include "JSystem/JKR/JKRHeap.h"
 #include "JSystem/JSupport/JSUStream.h"
 #include "JSystem/JUT/JUTNameTab.h"
+#include "JSystem/JUT/TColor.h"
 #include "types.h"
 
 /*
@@ -85,6 +90,8 @@
         .float 1.0
 */
 
+J2DDataManage* J2DScreen::mDataManage;
+
 /*
  * --INFO--
  * Address:	8003F474
@@ -92,9 +99,11 @@
  */
 J2DScreen::J2DScreen()
     : J2DPane(nullptr, true, 'root', JGeometry::TBox2f(0.0f, 0.0f, 640.0f, 480.0f))
+// : J2DPane(nullptr, true, 'root', JGeometry::TBox2f(JGeometry::TVec2f(0.0f), 640.0f, 480.0f))
+// : J2DPane(nullptr, true, 'root', JGeometry::TBox2f(0.0f, 0.0f, JGeometry::TVec2f(640.0f, 480.0f)))
 {
-	_114            = -1;
-	_004            = -1;
+	_114.set(0xFFFFFFFF);
+	_004            = 0xFFFF;
 	_100            = false;
 	m_materialCount = 0;
 	m_materials     = nullptr;
@@ -166,54 +175,14 @@ void J2DScreen::clean()
 	m_materialCount = 0;
 	m_materials     = nullptr;
 	delete[] _108;
+	_108 = nullptr;
 	delete[] _10C;
-	delete m_nameTab;
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	mr       r31, r3
-	lis      r3, __dt__11J2DMaterialFv@ha
-	addi     r4, r3, __dt__11J2DMaterialFv@l
-	lwz      r3, 0x104(r31)
-	bl       __destroy_new_array
-	li       r0, 0
-	sth      r0, 0x102(r31)
-	stw      r0, 0x104(r31)
-	lwz      r3, 0x108(r31)
-	bl       __dla__FPv
-	li       r0, 0
-	stw      r0, 0x108(r31)
-	lwz      r3, 0x10c(r31)
-	bl       __dla__FPv
-	li       r0, 0
-	stw      r0, 0x10c(r31)
-	lwz      r3, 0x110(r31)
-	cmplwi   r3, 0
-	beq      lbl_8003F610
-	lwz      r3, 4(r3)
-	bl       __dla__FPv
-	lwz      r3, 0x110(r31)
-	cmplwi   r3, 0
-	beq      lbl_8003F608
-	lwz      r12, 0(r3)
-	li       r4, 1
-	lwz      r12, 8(r12)
-	mtctr    r12
-	bctrl
-
-lbl_8003F608:
-	li       r0, 0
-	stw      r0, 0x110(r31)
-
-lbl_8003F610:
-	lwz      r0, 0x14(r1)
-	lwz      r31, 0xc(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	_10C = nullptr;
+	if (m_nameTab != nullptr) {
+		m_nameTab->clearResNameTable();
+		delete m_nameTab;
+		m_nameTab = nullptr;
+	}
 }
 
 /*
@@ -221,8 +190,16 @@ lbl_8003F610:
  * Address:	8003F624
  * Size:	000104
  */
-bool J2DScreen::set(const char*, unsigned long, JKRArchive*)
+bool J2DScreen::set(const char* name, unsigned long flags, JKRArchive* archive)
 {
+	void* resource = JKRFileLoader::getGlbResource(name, archive);
+	if (resource != nullptr) {
+		size_t resSize = archive->getExpandedResSize(resource);
+		JSUMemoryInputStream input;
+		input.setBuffer(resource, resSize);
+		return set(&input, flags);
+	}
+	return false;
 	/*
 	stwu     r1, -0x30(r1)
 	mflr     r0
@@ -317,106 +294,11 @@ bool J2DScreen::private_set(JSURandomInputStream* stream, unsigned long flags, J
 	if (!getScreenInformation(stream)) {
 		return false;
 	}
-	int result = makeHierarchyPanes(this, stream, flags, archive);
+	bool result = makeHierarchyPanes(this, stream, flags, archive) != 2;
 	if ((flags & 0x1F0000) == 0) {
 		clean();
 	}
-	return (result == 0) ? stream->m_isEOFMaybe : false;
-	/*
-	stwu     r1, -0x20(r1)
-	mflr     r0
-	stw      r0, 0x24(r1)
-	stw      r31, 0x1c(r1)
-	mr       r31, r4
-	stw      r30, 0x18(r1)
-	mr       r30, r3
-	stw      r29, 0x14(r1)
-	mr       r29, r6
-	stw      r28, 0x10(r1)
-	mr       r28, r5
-	bl       checkSignature__9J2DScreenFP20JSURandomInputStream
-	clrlwi.  r0, r3, 0x18
-	bne      lbl_8003F78C
-	li       r3, 0
-	b        lbl_8003F86C
-
-lbl_8003F78C:
-	mr       r3, r30
-	mr       r4, r31
-	bl       getScreenInformation__9J2DScreenFP20JSURandomInputStream
-	clrlwi.  r0, r3, 0x18
-	bne      lbl_8003F7A8
-	li       r3, 0
-	b        lbl_8003F86C
-
-lbl_8003F7A8:
-	mr       r3, r30
-	mr       r4, r30
-	mr       r5, r31
-	mr       r6, r28
-	mr       r7, r29
-	bl
-makeHierarchyPanes__9J2DScreenFP7J2DPaneP20JSURandomInputStreamUlP10JKRArchive
-	subfic   r4, r3, 2
-	addi     r3, r3, -2
-	or       r3, r4, r3
-	rlwinm.  r0, r28, 0, 0xb, 0xf
-	srwi     r29, r3, 0x1f
-	bne      lbl_8003F850
-	lis      r4, __dt__11J2DMaterialFv@ha
-	lwz      r3, 0x104(r30)
-	addi     r4, r4, __dt__11J2DMaterialFv@l
-	bl       __destroy_new_array
-	li       r0, 0
-	sth      r0, 0x102(r30)
-	stw      r0, 0x104(r30)
-	lwz      r3, 0x108(r30)
-	bl       __dla__FPv
-	li       r0, 0
-	stw      r0, 0x108(r30)
-	lwz      r3, 0x10c(r30)
-	bl       __dla__FPv
-	li       r0, 0
-	stw      r0, 0x10c(r30)
-	lwz      r3, 0x110(r30)
-	cmplwi   r3, 0
-	beq      lbl_8003F850
-	lwz      r3, 4(r3)
-	bl       __dla__FPv
-	lwz      r3, 0x110(r30)
-	cmplwi   r3, 0
-	beq      lbl_8003F848
-	lwz      r12, 0(r3)
-	li       r4, 1
-	lwz      r12, 8(r12)
-	mtctr    r12
-	bctrl
-
-lbl_8003F848:
-	li       r0, 0
-	stw      r0, 0x110(r30)
-
-lbl_8003F850:
-	cmplwi   r29, 0
-	beq      lbl_8003F868
-	lbz      r0, 4(r31)
-	cntlzw   r0, r0
-	srwi     r3, r0, 5
-	b        lbl_8003F86C
-
-lbl_8003F868:
-	li       r3, 0
-
-lbl_8003F86C:
-	lwz      r0, 0x24(r1)
-	lwz      r31, 0x1c(r1)
-	lwz      r30, 0x18(r1)
-	lwz      r29, 0x14(r1)
-	lwz      r28, 0x10(r1)
-	mtlr     r0
-	addi     r1, r1, 0x20
-	blr
-	*/
+	return (result != false) ? stream->m_isEOFMaybe == 0 : false;
 }
 
 /*
@@ -428,7 +310,13 @@ bool J2DScreen::checkSignature(JSURandomInputStream* stream)
 {
 	J3DFileHeader header;
 	stream->read(&header, sizeof(header));
-	return (header.m_j3dVersion == 'SCRN' && (header.m_fileVersion == 'blo1' || header.m_fileVersion == 'blo2'));
+	if (header.m_j3dVersion == 'SCRN') {
+		if (!(header.m_fileVersion == 'blo1' || header.m_fileVersion == 'blo2')) {
+			return false;
+		}
+		return true;
+	}
+	return false;
 	/*
 	stwu     r1, -0x30(r1)
 	mflr     r0
@@ -468,79 +356,24 @@ lbl_8003F8DC:
  * Address:	8003F8EC
  * Size:	0000FC
  */
-bool J2DScreen::getScreenInformation(JSURandomInputStream*)
+bool J2DScreen::getScreenInformation(JSURandomInputStream* input)
 {
-	/*
-	stwu     r1, -0x50(r1)
-	mflr     r0
-	li       r5, 0x10
-	stw      r0, 0x54(r1)
-	stw      r31, 0x4c(r1)
-	mr       r31, r4
-	addi     r4, r1, 0x1c
-	stw      r30, 0x48(r1)
-	mr       r30, r3
-	mr       r3, r31
-	bl       read__14JSUInputStreamFPvl
-	lwz      r3, 0x1c(r1)
-	addis    r0, r3, 0xb6b2
-	cmplwi   r0, 0x4631
-	beq      lbl_8003F930
-	li       r3, 0
-	b        lbl_8003F9D0
-
-lbl_8003F930:
-	lhz      r4, 0x24(r1)
-	lis      r5, 0x4330
-	lhz      r0, 0x26(r1)
-	mr       r3, r30
-	stw      r4, 0x34(r1)
-	addi     r4, r1, 0xc
-	lfs      f3, lbl_80516840@sda21(r2)
-	stw      r5, 0x30(r1)
-	lfd      f2, lbl_80516850@sda21(r2)
-	lfd      f0, 0x30(r1)
-	stw      r0, 0x3c(r1)
-	fsubs    f1, f0, f2
-	stw      r5, 0x38(r1)
-	lfd      f0, 0x38(r1)
-	stfs     f3, 0xc(r1)
-	fsubs    f0, f0, f2
-	stfs     f3, 0x10(r1)
-	stfs     f1, 0x14(r1)
-	stfs     f0, 0x18(r1)
-	bl       "place__7J2DPaneFRCQ29JGeometry8TBox2<f>"
-	lwz      r0, 0x28(r1)
-	stw      r0, 8(r1)
-	lbz      r3, 8(r1)
-	lbz      r0, 9(r1)
-	stb      r3, 0x114(r30)
-	lbz      r3, 0xa(r1)
-	stb      r0, 0x115(r30)
-	lbz      r0, 0xb(r1)
-	stb      r3, 0x116(r30)
-	stb      r0, 0x117(r30)
-	lwz      r4, 0x20(r1)
-	cmplwi   r4, 0x10
-	ble      lbl_8003F9CC
-	mr       r3, r31
-	addi     r4, r4, -16
-	lwz      r12, 0(r31)
-	lwz      r12, 0x10(r12)
-	mtctr    r12
-	bctrl
-
-lbl_8003F9CC:
-	li       r3, 1
-
-lbl_8003F9D0:
-	lwz      r0, 0x54(r1)
-	lwz      r31, 0x4c(r1)
-	lwz      r30, 0x48(r1)
-	mtlr     r0
-	addi     r1, r1, 0x50
-	blr
-	*/
+	J2DScreenInfoBlock info;
+	input->read(&info, sizeof(info));
+	if (info.m_bloBlockType != 'INF1') {
+		return false;
+	}
+	JGeometry::TBox2f box;
+	box.i.x = 0.0f;
+	box.i.y = 0.0f;
+	box.f.x = info.m_width;
+	box.f.y = info.m_height;
+	place(box);
+	_114 = JUtility::TColor(info.m_color);
+	if (sizeof(info) < info.m_blockLength) {
+		input->skip(info.m_blockLength - sizeof(info));
+	}
+	return true;
 }
 
 /*
@@ -548,8 +381,58 @@ lbl_8003F9D0:
  * Address:	8003F9E8
  * Size:	000560
  */
-u32 J2DScreen::makeHierarchyPanes(J2DPane*, JSURandomInputStream*, unsigned long, JKRArchive*)
+u32 J2DScreen::makeHierarchyPanes(J2DPane* parent, JSURandomInputStream* input, unsigned long flags, JKRArchive* archive)
 {
+	J2DScrnBlockHeader header;
+	J2DPane* currentPane = parent;
+	while (true) {
+		input->peek(&header, sizeof(header));
+		switch (header.m_bloBlockType) {
+		case 'EXT1':
+			input->seek(header.m_blockLength, SEEK_CUR);
+			return 1;
+			break;
+		case 'BGN1': {
+			input->seek(header.m_blockLength, SEEK_CUR);
+			u32 result = makeHierarchyPanes(currentPane, input, flags, archive);
+			if (result != 0) {
+				return result;
+			}
+			break;
+		}
+		case 'END1':
+			input->seek(header.m_blockLength, SEEK_CUR);
+			return 0;
+			break;
+		case 'TEX1':
+			_108 = getResReference(input, flags);
+			if (_108 == nullptr) {
+				return 2;
+			}
+			break;
+		case 'FNT1':
+			_10C = getResReference(input, flags);
+			if (_10C == nullptr) {
+				return 2;
+			}
+			break;
+		case 'MAT1':
+			if (!createMaterial(input, flags, archive)) {
+				return 2;
+			}
+			break;
+		default:
+			if (archive == nullptr) {
+				currentPane = createPane(header, input, parent, flags);
+			} else {
+				currentPane = createPane(header, input, parent, flags, archive);
+			}
+			if (currentPane == nullptr) {
+				return 2;
+			}
+			break;
+		}
+	}
 	/*
 	.loc_0x0:
 	  stwu      r1, -0x50(r1)
@@ -982,317 +865,66 @@ u32 J2DScreen::makeHierarchyPanes(J2DPane*, JSURandomInputStream*, unsigned long
  * Address:	8003FF48
  * Size:	000030
  */
-J2DPane* J2DScreen::createPane(const J2DScrnBlockHeader& header, JSURandomInputStream* stream, J2DPane* parent, unsigned long flags)
-{
-	return createPane(header, stream, parent, flags, nullptr);
-}
+// J2DPane* J2DScreen::createPane(const J2DScrnBlockHeader& header, JSURandomInputStream* input, J2DPane* parent, unsigned long flags)
+// {
+// 	return createPane(header, input, parent, flags, nullptr);
+// }
 
 /*
  * --INFO--
  * Address:	8003FF78
  * Size:	000334
  */
-J2DPane* J2DScreen::createPane(const J2DScrnBlockHeader& header, JSURandomInputStream* stream, J2DPane* parent, unsigned long flags,
+J2DPane* J2DScreen::createPane(const J2DScrnBlockHeader& header, JSURandomInputStream* input, J2DPane* parent, unsigned long flags,
                                JKRArchive* archive)
 {
+	// can't just do direct returns here...
+	J2DPane* pane;
 	switch (header.m_bloBlockType) {
 	case 'PAN1':
-		return new J2DPane(parent, stream, 0);
+		pane = new J2DPane(parent, input, 0);
+		break;
 	case 'WIN1':
-		return new J2DWindow(parent, stream, archive);
+		pane = new J2DWindow(parent, input, archive);
+		break;
 	case 'PIC1':
-		return new J2DPicture(parent, stream, archive);
+		pane = new J2DPicture(parent, input, archive);
+		break;
 	case 'TBX1':
-		return new J2DTextBox(parent, stream, archive);
+		pane = new J2DTextBox(parent, input, archive);
+		break;
 	case 'PAN2':
-		return new J2DPane(parent, stream, 1);
+		pane = new J2DPane(parent, input, 1);
+		break;
 	case 'WIN2':
 		if ((flags & 0x1F0000) != 0) {
-			return new J2DWindowEx(parent, stream, flags, m_materials);
+			pane = new J2DWindowEx(parent, input, flags, m_materials);
+			break;
 		}
-		return new J2DWindow(parent, stream, m_materials);
+		pane = new J2DWindow(parent, input, m_materials);
+		break;
 	case 'PIC2':
 		if ((flags & 0x1F0000) != 0) {
-			return new J2DPictureEx(parent, stream, flags, m_materials);
+			pane = new J2DPictureEx(parent, input, flags, m_materials);
+			break;
 		}
-		return new J2DPicture(parent, stream, m_materials);
+		pane = new J2DPicture(parent, input, m_materials);
+		break;
 	case 'TBX2':
 		if ((flags & 0x1F0000) != 0) {
-			return new J2DTextBoxEx(parent, stream, flags, m_materials);
+			pane = new J2DTextBoxEx(parent, input, flags, m_materials);
+			break;
 		}
-		return new J2DTextBox(parent, stream, flags, m_materials);
+		pane = new J2DTextBox(parent, input, flags, m_materials);
+		break;
 	default: {
-		int streamPosition = stream->getPosition();
-		int blockLength    = header.m_blockLength;
-		J2DPane* pane      = new J2DPane(parent, stream, 0);
-		stream->seek(blockLength + streamPosition, SEEK_SET);
-		return pane;
+		int targetPosition = input->getPosition() + header.m_blockLength;
+		pane               = new J2DPane(parent, input, 0);
+		input->seek(targetPosition, SEEK_SET);
+		break;
 	}
 	}
-	/*
-	.loc_0x0:
-	  stwu      r1, -0x20(r1)
-	  mflr      r0
-	  stw       r0, 0x24(r1)
-	  stmw      r26, 0x8(r1)
-	  mr        r28, r4
-	  lis       r4, 0x5442
-	  lwz       r9, 0x0(r28)
-	  addi      r0, r4, 0x5831
-	  mr        r27, r3
-	  cmpw      r9, r0
-	  mr        r29, r5
-	  mr        r30, r6
-	  mr        r31, r7
-	  mr        r26, r8
-	  beq-      .loc_0x140
-	  bge-      .loc_0x88
-	  lis       r3, 0x5049
-	  addi      r0, r3, 0x4331
-	  cmpw      r9, r0
-	  beq-      .loc_0x114
-	  bge-      .loc_0x78
-	  lis       r3, 0x5041
-	  addi      r0, r3, 0x4E32
-	  cmpw      r9, r0
-	  beq-      .loc_0x16C
-	  bge-      .loc_0x2C8
-	  addi      r0, r3, 0x4E31
-	  cmpw      r9, r0
-	  bge-      .loc_0xBC
-	  b         .loc_0x2C8
-
-	.loc_0x78:
-	  addi      r0, r3, 0x4333
-	  cmpw      r9, r0
-	  bge-      .loc_0x2C8
-	  b         .loc_0x1FC
-
-	.loc_0x88:
-	  lis       r3, 0x5749
-	  addi      r0, r3, 0x4E31
-	  cmpw      r9, r0
-	  beq-      .loc_0xE8
-	  bge-      .loc_0xAC
-	  addi      r0, r4, 0x5833
-	  cmpw      r9, r0
-	  bge-      .loc_0x2C8
-	  b         .loc_0x260
-
-	.loc_0xAC:
-	  addi      r0, r3, 0x4E33
-	  cmpw      r9, r0
-	  bge-      .loc_0x2C8
-	  b         .loc_0x198
-
-	.loc_0xBC:
-	  li        r3, 0x100
-	  bl        -0x1C194
-	  mr.       r0, r3
-	  beq-      .loc_0xE0
-	  mr        r4, r30
-	  mr        r5, r29
-	  li        r6, 0
-	  bl        -0x9088
-	  mr        r0, r3
-
-	.loc_0xE0:
-	  mr        r27, r0
-	  b         .loc_0x31C
-
-	.loc_0xE8:
-	  li        r3, 0x148
-	  bl        -0x1C1C0
-	  mr.       r0, r3
-	  beq-      .loc_0x10C
-	  mr        r4, r30
-	  mr        r5, r29
-	  mr        r6, r26
-	  bl        0x25C0
-	  mr        r0, r3
-
-	.loc_0x10C:
-	  mr        r27, r0
-	  b         .loc_0x31C
-
-	.loc_0x114:
-	  li        r3, 0x168
-	  bl        -0x1C1EC
-	  mr.       r0, r3
-	  beq-      .loc_0x138
-	  mr        r4, r30
-	  mr        r5, r29
-	  mr        r6, r26
-	  bl        -0x6504
-	  mr        r0, r3
-
-	.loc_0x138:
-	  mr        r27, r0
-	  b         .loc_0x31C
-
-	.loc_0x140:
-	  li        r3, 0x138
-	  bl        -0x1C218
-	  mr.       r0, r3
-	  beq-      .loc_0x164
-	  mr        r4, r30
-	  mr        r5, r29
-	  mr        r6, r26
-	  bl        0xF18
-	  mr        r0, r3
-
-	.loc_0x164:
-	  mr        r27, r0
-	  b         .loc_0x31C
-
-	.loc_0x16C:
-	  li        r3, 0x100
-	  bl        -0x1C244
-	  mr.       r0, r3
-	  beq-      .loc_0x190
-	  mr        r4, r30
-	  mr        r5, r29
-	  li        r6, 0x1
-	  bl        -0x9138
-	  mr        r0, r3
-
-	.loc_0x190:
-	  mr        r27, r0
-	  b         .loc_0x31C
-
-	.loc_0x198:
-	  rlwinm.   r0,r31,0,11,15
-	  beq-      .loc_0x1D0
-	  li        r3, 0x180
-	  bl        -0x1C278
-	  mr.       r0, r3
-	  beq-      .loc_0x1C8
-	  lwz       r7, 0x104(r27)
-	  mr        r4, r30
-	  mr        r5, r29
-	  mr        r6, r31
-	  bl        0x4CFC
-	  mr        r0, r3
-
-	.loc_0x1C8:
-	  mr        r27, r0
-	  b         .loc_0x31C
-
-	.loc_0x1D0:
-	  li        r3, 0x148
-	  bl        -0x1C2A8
-	  mr.       r0, r3
-	  beq-      .loc_0x1F4
-	  lwz       r6, 0x104(r27)
-	  mr        r4, r30
-	  mr        r5, r29
-	  bl        0x2584
-	  mr        r0, r3
-
-	.loc_0x1F4:
-	  mr        r27, r0
-	  b         .loc_0x31C
-
-	.loc_0x1FC:
-	  rlwinm.   r0,r31,0,11,15
-	  beq-      .loc_0x234
-	  li        r3, 0x1A8
-	  bl        -0x1C2DC
-	  mr.       r0, r3
-	  beq-      .loc_0x22C
-	  lwz       r7, 0x104(r27)
-	  mr        r4, r30
-	  mr        r5, r29
-	  mr        r6, r31
-	  bl        0x14BF4
-	  mr        r0, r3
-
-	.loc_0x22C:
-	  mr        r27, r0
-	  b         .loc_0x31C
-
-	.loc_0x234:
-	  li        r3, 0x168
-	  bl        -0x1C30C
-	  mr.       r0, r3
-	  beq-      .loc_0x258
-	  lwz       r6, 0x104(r27)
-	  mr        r4, r30
-	  mr        r5, r29
-	  bl        -0x6558
-	  mr        r0, r3
-
-	.loc_0x258:
-	  mr        r27, r0
-	  b         .loc_0x31C
-
-	.loc_0x260:
-	  rlwinm.   r0,r31,0,11,15
-	  beq-      .loc_0x298
-	  li        r3, 0x148
-	  bl        -0x1C340
-	  mr.       r0, r3
-	  beq-      .loc_0x290
-	  lwz       r7, 0x104(r27)
-	  mr        r4, r30
-	  mr        r5, r29
-	  mr        r6, r31
-	  bl        0x194A8
-	  mr        r0, r3
-
-	.loc_0x290:
-	  mr        r27, r0
-	  b         .loc_0x31C
-
-	.loc_0x298:
-	  li        r3, 0x138
-	  bl        -0x1C370
-	  mr.       r0, r3
-	  beq-      .loc_0x2C0
-	  lwz       r7, 0x104(r27)
-	  mr        r4, r30
-	  mr        r5, r29
-	  mr        r6, r31
-	  bl        0xE50
-	  mr        r0, r3
-
-	.loc_0x2C0:
-	  mr        r27, r0
-	  b         .loc_0x31C
-
-	.loc_0x2C8:
-	  mr        r3, r29
-	  lwz       r12, 0x0(r29)
-	  lwz       r12, 0x1C(r12)
-	  mtctr     r12
-	  bctrl
-	  lwz       r0, 0x4(r28)
-	  add       r28, r0, r3
-	  li        r3, 0x100
-	  bl        -0x1C3BC
-	  mr.       r0, r3
-	  beq-      .loc_0x308
-	  mr        r4, r30
-	  mr        r5, r29
-	  li        r6, 0
-	  bl        -0x92B0
-	  mr        r0, r3
-
-	.loc_0x308:
-	  mr        r27, r0
-	  mr        r3, r29
-	  mr        r4, r28
-	  li        r5, 0
-	  bl        -0x19B88
-
-	.loc_0x31C:
-	  mr        r3, r27
-	  lmw       r26, 0x8(r1)
-	  lwz       r0, 0x24(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x20
-	  blr
-	*/
+	return pane;
 }
 
 /*
@@ -1438,33 +1070,7 @@ lbl_8004042C:
  * Address:	80040478
  * Size:	000040
  */
-J2DPane* J2DScreen::search(unsigned long long id)
-{
-	return (id != 0) ? J2DPane::search(id) : nullptr;
-
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	li       r7, 0
-	stw      r0, 0x14(r1)
-	xor      r4, r6, r7
-	xor      r0, r5, r7
-	or.      r0, r4, r0
-	bne      lbl_8004049C
-	b        lbl_800404A4
-
-lbl_8004049C:
-	bl       search__7J2DPaneFUx
-	mr       r7, r3
-
-lbl_800404A4:
-	lwz      r0, 0x14(r1)
-	mr       r3, r7
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
-}
+J2DPane* J2DScreen::search(unsigned long long id) { return (id == 0) ? nullptr : J2DPane::search(id); }
 
 /*
  * --INFO--
@@ -1476,20 +1082,6 @@ u32 J2DScreen::gather(J2DPane** p1, unsigned long long p2, unsigned long long p3
 	int v1 = 0;
 	J2DPane::gather(p1, p2, p3, p4, v1);
 	return v1;
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	li       r0, 0
-	addi     r10, r1, 8
-	stw      r0, 8(r1)
-	bl       gather__7J2DPaneFPP7J2DPaneUxUxiRi
-	lwz      r0, 0x14(r1)
-	lwz      r3, 8(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
 }
 
 /*
@@ -1497,31 +1089,7 @@ u32 J2DScreen::gather(J2DPane** p1, unsigned long long p2, unsigned long long p3
  * Address:	800404E8
  * Size:	000040
  */
-J2DPane* J2DScreen::searchUserInfo(unsigned long long)
-{
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	li       r7, 0
-	stw      r0, 0x14(r1)
-	xor      r4, r6, r7
-	xor      r0, r5, r7
-	or.      r0, r4, r0
-	bne      lbl_8004050C
-	b        lbl_80040514
-
-lbl_8004050C:
-	bl       searchUserInfo__7J2DPaneFUx
-	mr       r7, r3
-
-lbl_80040514:
-	lwz      r0, 0x14(r1)
-	mr       r3, r7
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
-}
+J2DPane* J2DScreen::searchUserInfo(unsigned long long p1) { return (p1 == 0) ? nullptr : J2DPane::searchUserInfo(p1); }
 
 /*
  * --INFO--
@@ -1627,8 +1195,27 @@ lbl_8004066C:
  * Address:	80040680
  * Size:	0000F4
  */
-void* J2DScreen::getResReference(JSURandomInputStream*, unsigned long)
+u8* J2DScreen::getResReference(JSURandomInputStream* input, unsigned long flags)
 {
+	int initialPosition = input->getPosition();
+	input->skip(4);
+	int v1;
+	input->read(&v1, 4);
+	input->skip(4);
+	int v2;
+	input->read(&v2, 4);
+	input->seek(initialPosition + v2, SEEK_SET);
+	long byteCount = v1 - v2;
+	u8* data;
+	if (flags & (J3DMLF_17 | J3DMLF_18 | J3DMLF_19 | J3DMLF_20 | J3DMLF_21)) {
+		data = new u8[byteCount];
+	} else {
+		data = new (-4) u8[byteCount];
+	}
+	if (data != nullptr) {
+		input->read(data, byteCount);
+	}
+	return data;
 	/*
 	stwu     r1, -0x30(r1)
 	mflr     r0
@@ -1705,7 +1292,7 @@ lbl_8004075C:
  * Address:	80040774
  * Size:	0002F0
  */
-bool J2DScreen::createMaterial(JSURandomInputStream*, unsigned long, JKRArchive*)
+bool J2DScreen::createMaterial(JSURandomInputStream* input, unsigned long flags, JKRArchive* archive)
 {
 	/*
 	.loc_0x0:
@@ -1933,28 +1520,15 @@ bool J2DScreen::createMaterial(JSURandomInputStream*, unsigned long, JKRArchive*
  * Address:	80040A64
  * Size:	000038
  */
-J2DMaterial* J2DScreen::getMaterial(unsigned short)
+J2DMaterial* J2DScreen::getMaterial(unsigned short index)
 {
-	/*
-	lhz      r0, 0x102(r3)
-	clrlwi   r4, r4, 0x10
-	cmplw    r4, r0
-	blt      lbl_80040A7C
-	li       r3, 0
-	blr
-
-lbl_80040A7C:
-	lwz      r3, 0x104(r3)
-	cmplwi   r3, 0
-	bne      lbl_80040A90
-	li       r3, 0
-	blr
-
-lbl_80040A90:
-	mulli    r0, r4, 0x88
-	add      r3, r3, r0
-	blr
-	*/
+	if (index >= m_materialCount) {
+		return nullptr;
+	}
+	if (m_materials == nullptr) {
+		return nullptr;
+	}
+	return m_materials + index;
 }
 
 /*
@@ -1962,20 +1536,7 @@ lbl_80040A90:
  * Address:	80040A9C
  * Size:	000020
  */
-bool J2DScreen::isUsed(const ResTIMG* resource)
-{
-	return J2DPane::isUsed(resource);
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	bl       isUsed__7J2DPaneFPC7ResTIMG
-	lwz      r0, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
-}
+bool J2DScreen::isUsed(const ResTIMG* resource) { return J2DPane::isUsed(resource); }
 
 /*
  * --INFO--
@@ -2002,32 +1563,13 @@ bool J2DScreen::isUsed(const ResFONT* resource)
  * Address:	80040ADC
  * Size:	000050
  */
-void* J2DScreen::getNameResource(const char*)
+void* J2DScreen::getNameResource(const char* name)
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	li       r4, 0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	mr       r31, r3
-	bl       getGlbResource__13JKRFileLoaderFPCcP13JKRFileLoader
-	cmplwi   r3, 0
-	bne      lbl_80040B18
-	lwz      r0, mDataManage__9J2DScreen@sda21(r13)
-	cmplwi   r0, 0
-	beq      lbl_80040B18
-	mr       r3, r0
-	mr       r4, r31
-	bl       get__13J2DDataManageFPCc
-
-lbl_80040B18:
-	lwz      r0, 0x14(r1)
-	lwz      r31, 0xc(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	void* resource = JKRFileLoader::getGlbResource(name, nullptr);
+	if (resource == nullptr && mDataManage != nullptr) {
+		resource = mDataManage->get(name);
+	}
+	return resource;
 }
 
 /*
@@ -2041,41 +1583,6 @@ void J2DScreen::animation()
 	for (u16 i = 0; i < m_materialCount; i++) {
 		m_materials[i].animation();
 	}
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	stw      r30, 8(r1)
-	mr       r30, r3
-	lwz      r12, 0(r3)
-	lwz      r4, 0xf8(r3)
-	lwz      r12, 0x90(r12)
-	mtctr    r12
-	bctrl
-	li       r31, 0
-	b        lbl_80040B78
-
-lbl_80040B60:
-	clrlwi   r0, r31, 0x10
-	lwz      r3, 0x104(r30)
-	mulli    r0, r0, 0x88
-	add      r3, r3, r0
-	bl       animation__11J2DMaterialFv
-	addi     r31, r31, 1
-
-lbl_80040B78:
-	lhz      r0, 0x102(r30)
-	clrlwi   r3, r31, 0x10
-	cmplw    r3, r0
-	blt      lbl_80040B60
-	lwz      r0, 0x14(r1)
-	lwz      r31, 0xc(r1)
-	lwz      r30, 8(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
 }
 
 /*
@@ -2086,60 +1593,12 @@ lbl_80040B78:
 void J2DScreen::setAnimation(J2DAnmColor* animation)
 {
 	animation->searchUpdateMaterialID(this);
-	for (u16 i = 0; i < animation->_18; i++) {
+	u16 count = animation->_18;
+	for (u16 i = 0; i < count; i++) {
 		if (animation->_1C[i] < m_materialCount) {
 			m_materials[animation->_1C[i]].setAnimation(animation);
 		}
 	}
-	/*
-	stwu     r1, -0x20(r1)
-	mflr     r0
-	stw      r0, 0x24(r1)
-	stw      r31, 0x1c(r1)
-	stw      r30, 0x18(r1)
-	stw      r29, 0x14(r1)
-	mr       r29, r4
-	stw      r28, 0x10(r1)
-	mr       r28, r3
-	mr       r3, r29
-	lwz      r12, 0(r29)
-	mr       r4, r28
-	lwz      r12, 0xc(r12)
-	mtctr    r12
-	bctrl
-	lhz      r31, 0x18(r29)
-	li       r30, 0
-	b        lbl_80040C18
-
-lbl_80040BE8:
-	lwz      r4, 0x1c(r29)
-	rlwinm   r3, r30, 1, 0xf, 0x1e
-	lhz      r0, 0x102(r28)
-	lhzx     r3, r4, r3
-	cmplw    r3, r0
-	bge      lbl_80040C14
-	mulli    r0, r3, 0x88
-	lwz      r3, 0x104(r28)
-	mr       r4, r29
-	add      r3, r3, r0
-	bl       setAnimation__11J2DMaterialFP11J2DAnmColor
-
-lbl_80040C14:
-	addi     r30, r30, 1
-
-lbl_80040C18:
-	clrlwi   r0, r30, 0x10
-	cmplw    r0, r31
-	blt      lbl_80040BE8
-	lwz      r0, 0x24(r1)
-	lwz      r31, 0x1c(r1)
-	lwz      r30, 0x18(r1)
-	lwz      r29, 0x14(r1)
-	lwz      r28, 0x10(r1)
-	mtlr     r0
-	addi     r1, r1, 0x20
-	blr
-	*/
 }
 
 /*
@@ -2147,63 +1606,15 @@ lbl_80040C18:
  * Address:	80040C44
  * Size:	0000BC
  */
-void J2DScreen::setAnimation(J2DAnmTextureSRTKey*)
+void J2DScreen::setAnimation(J2DAnmTextureSRTKey* animation)
 {
-	/*
-	stwu     r1, -0x20(r1)
-	mflr     r0
-	stw      r0, 0x24(r1)
-	stw      r31, 0x1c(r1)
-	stw      r30, 0x18(r1)
-	stw      r29, 0x14(r1)
-	mr       r29, r4
-	stw      r28, 0x10(r1)
-	mr       r28, r3
-	mr       r3, r29
-	lwz      r12, 0(r29)
-	mr       r4, r28
-	lwz      r12, 0xc(r12)
-	mtctr    r12
-	bctrl
-	lis      r3, 0x55555556@ha
-	lhz      r0, 0x14(r29)
-	addi     r3, r3, 0x55555556@l
-	li       r30, 0
-	mulhw    r3, r3, r0
-	srwi     r0, r3, 0x1f
-	add      r0, r3, r0
-	clrlwi   r31, r0, 0x10
-	b        lbl_80040CD4
-
-lbl_80040CA4:
-	lwz      r4, 0x34(r29)
-	rlwinm   r3, r30, 1, 0xf, 0x1e
-	lhz      r0, 0x102(r28)
-	lhzx     r3, r4, r3
-	cmplw    r3, r0
-	bge      lbl_80040CD0
-	mulli    r0, r3, 0x88
-	lwz      r3, 0x104(r28)
-	mr       r4, r29
-	add      r3, r3, r0
-	bl       setAnimation__11J2DMaterialFP19J2DAnmTextureSRTKey
-
-lbl_80040CD0:
-	addi     r30, r30, 1
-
-lbl_80040CD4:
-	clrlwi   r0, r30, 0x10
-	cmplw    r0, r31
-	blt      lbl_80040CA4
-	lwz      r0, 0x24(r1)
-	lwz      r31, 0x1c(r1)
-	lwz      r30, 0x18(r1)
-	lwz      r29, 0x14(r1)
-	lwz      r28, 0x10(r1)
-	mtlr     r0
-	addi     r1, r1, 0x20
-	blr
-	*/
+	animation->searchUpdateMaterialID(this);
+	u16 count = animation->_14 / 3;
+	for (u16 i = 0; i < count; i++) {
+		if (animation->_34[i] < m_materialCount) {
+			m_materials[animation->_34[i]].setAnimation(animation);
+		}
+	}
 }
 
 /*
@@ -2211,57 +1622,15 @@ lbl_80040CD4:
  * Address:	80040D00
  * Size:	0000A4
  */
-void J2DScreen::setAnimation(J2DAnmTexPattern*)
+void J2DScreen::setAnimation(J2DAnmTexPattern* animation)
 {
-	/*
-	stwu     r1, -0x20(r1)
-	mflr     r0
-	stw      r0, 0x24(r1)
-	stw      r31, 0x1c(r1)
-	stw      r30, 0x18(r1)
-	stw      r29, 0x14(r1)
-	mr       r29, r4
-	stw      r28, 0x10(r1)
-	mr       r28, r3
-	mr       r3, r29
-	lwz      r12, 0(r29)
-	mr       r4, r28
-	lwz      r12, 0xc(r12)
-	mtctr    r12
-	bctrl
-	lhz      r31, 0x1a(r29)
-	li       r30, 0
-	b        lbl_80040D78
-
-lbl_80040D48:
-	lwz      r4, 0x1c(r29)
-	rlwinm   r3, r30, 1, 0xf, 0x1e
-	lhz      r0, 0x102(r28)
-	lhzx     r3, r4, r3
-	cmplw    r3, r0
-	bge      lbl_80040D74
-	mulli    r0, r3, 0x88
-	lwz      r3, 0x104(r28)
-	mr       r4, r29
-	add      r3, r3, r0
-	bl       setAnimation__11J2DMaterialFP16J2DAnmTexPattern
-
-lbl_80040D74:
-	addi     r30, r30, 1
-
-lbl_80040D78:
-	clrlwi   r0, r30, 0x10
-	cmplw    r0, r31
-	blt      lbl_80040D48
-	lwz      r0, 0x24(r1)
-	lwz      r31, 0x1c(r1)
-	lwz      r30, 0x18(r1)
-	lwz      r29, 0x14(r1)
-	lwz      r28, 0x10(r1)
-	mtlr     r0
-	addi     r1, r1, 0x20
-	blr
-	*/
+	animation->searchUpdateMaterialID(this);
+	u16 count = animation->_1A;
+	for (u16 i = 0; i < count; i++) {
+		if (animation->_1C[i] < m_materialCount) {
+			m_materials[animation->_1C[i]].setAnimation(animation);
+		}
+	}
 }
 
 /*
@@ -2269,81 +1638,21 @@ lbl_80040D78:
  * Address:	80040DA4
  * Size:	0000EC
  */
-void J2DScreen::setAnimation(J2DAnmTevRegKey*)
+void J2DScreen::setAnimation(J2DAnmTevRegKey* animation)
 {
-	/*
-	stwu     r1, -0x20(r1)
-	mflr     r0
-	stw      r0, 0x24(r1)
-	stw      r31, 0x1c(r1)
-	mr       r31, r4
-	stw      r30, 0x18(r1)
-	mr       r30, r3
-	mr       r3, r31
-	stw      r29, 0x14(r1)
-	mr       r4, r30
-	stw      r28, 0x10(r1)
-	lwz      r12, 0(r31)
-	lwz      r12, 0xc(r12)
-	mtctr    r12
-	bctrl
-	lhz      r29, 0x10(r31)
-	li       r28, 0
-	b        lbl_80040E1C
-
-lbl_80040DEC:
-	lwz      r4, 0x24(r31)
-	rlwinm   r3, r28, 1, 0xf, 0x1e
-	lhz      r0, 0x102(r30)
-	lhzx     r3, r4, r3
-	cmplw    r3, r0
-	bge      lbl_80040E18
-	mulli    r0, r3, 0x88
-	lwz      r3, 0x104(r30)
-	mr       r4, r31
-	add      r3, r3, r0
-	bl       setAnimation__11J2DMaterialFP15J2DAnmTevRegKey
-
-lbl_80040E18:
-	addi     r28, r28, 1
-
-lbl_80040E1C:
-	clrlwi   r0, r28, 0x10
-	cmplw    r0, r29
-	blt      lbl_80040DEC
-	lhz      r29, 0x12(r31)
-	li       r28, 0
-	b        lbl_80040E64
-
-lbl_80040E34:
-	lwz      r4, 0x38(r31)
-	rlwinm   r3, r28, 1, 0xf, 0x1e
-	lhz      r0, 0x102(r30)
-	lhzx     r3, r4, r3
-	cmplw    r3, r0
-	bge      lbl_80040E60
-	mulli    r0, r3, 0x88
-	lwz      r3, 0x104(r30)
-	mr       r4, r31
-	add      r3, r3, r0
-	bl       setAnimation__11J2DMaterialFP15J2DAnmTevRegKey
-
-lbl_80040E60:
-	addi     r28, r28, 1
-
-lbl_80040E64:
-	clrlwi   r0, r28, 0x10
-	cmplw    r0, r29
-	blt      lbl_80040E34
-	lwz      r0, 0x24(r1)
-	lwz      r31, 0x1c(r1)
-	lwz      r30, 0x18(r1)
-	lwz      r29, 0x14(r1)
-	lwz      r28, 0x10(r1)
-	mtlr     r0
-	addi     r1, r1, 0x20
-	blr
-	*/
+	animation->searchUpdateMaterialID(this);
+	u16 count = animation->_10;
+	for (u16 i = 0; i < count; i++) {
+		if (animation->_24[i] < m_materialCount) {
+			m_materials[animation->_24[i]].setAnimation(animation);
+		}
+	}
+	count = animation->_12;
+	for (u16 i = 0; i < count; i++) {
+		if (animation->_38[i] < m_materialCount) {
+			m_materials[animation->_38[i]].setAnimation(animation);
+		}
+	}
 }
 
 /*
@@ -2351,69 +1660,28 @@ lbl_80040E64:
  * Address:	80040E90
  * Size:	000020
  */
-void J2DScreen::setAnimation(J2DAnmVtxColor*)
-{
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	bl       setVtxColorAnimation__7J2DPaneFP14J2DAnmVtxColor
-	lwz      r0, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
-}
+void J2DScreen::setAnimation(J2DAnmVtxColor* animation) { J2DPane::setVtxColorAnimation(animation); }
 
 /*
  * --INFO--
  * Address:	80040EB0
  * Size:	000020
  */
-void J2DScreen::setAnimation(J2DAnmVisibilityFull*)
-{
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	bl       setVisibileAnimation__7J2DPaneFP20J2DAnmVisibilityFull
-	lwz      r0, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
-}
+void J2DScreen::setAnimation(J2DAnmVisibilityFull* animation) { J2DPane::setVisibileAnimation(animation); }
 
 /*
  * --INFO--
  * Address:	80040ED0
  * Size:	000008
  */
-u32 J2DScreen::getTypeID() const { return 0x8; }
+// u32 J2DScreen::getTypeID() const { return 0x8; }
 
 /*
  * --INFO--
  * Address:	80040ED8
  * Size:	000034
  */
-void J2DScreen::calcMtx()
-{
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	lwz      r12, 0(r3)
-	lfs      f1, 0xd4(r3)
-	lwz      r12, 0x44(r12)
-	lfs      f2, 0xd8(r3)
-	mtctr    r12
-	bctrl
-	lwz      r0, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
-}
+// void J2DScreen::calcMtx() { makeMatrix(_0D4.x, _0D4.y); }
 
 /*
  * --INFO--
@@ -2460,31 +1728,18 @@ void J2DScreen::setAnimation(J2DAnmBase* animation)
  * Address:	80040F4C
  * Size:	000020
  */
-void J2DScreen::clearAnmTransform()
-{
-	J2DPane::clearAnmTransform();
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	bl       clearAnmTransform__7J2DPaneFv
-	lwz      r0, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
-}
+// void J2DScreen::clearAnmTransform() { J2DPane::clearAnmTransform(); }
 
 /*
  * --INFO--
  * Address:	80040F6C
  * Size:	000004
  */
-void J2DScreen::setAnimationVF(J2DAnmVisibilityFull*) { }
+// void J2DScreen::setAnimationVF(J2DAnmVisibilityFull*) { }
 
 /*
  * --INFO--
  * Address:	80040F70
  * Size:	000004
  */
-void J2DScreen::setAnimationVC(J2DAnmVtxColor*) { }
+// void J2DScreen::setAnimationVC(J2DAnmVtxColor*) { }

@@ -1,8 +1,11 @@
 #include "Dolphin/string.h"
+#include "JSystem/JAI/JAIBasic.h"
 #include "JSystem/JAI/JAIGlobalParameter.h"
 #include "JSystem/JAI/JAISequence.h"
 #include "JSystem/JAI/JAInter.h"
+#include "JSystem/JAI/JAInter/MoveParaSet.h"
 #include "JSystem/JAS/JASPortCmd.h"
+#include "JSystem/JAS/JASResArcLoader.h"
 #include "JSystem/JKR/JKRArchive.h"
 #include "types.h"
 
@@ -64,6 +67,11 @@
         .4byte 0x43300000
         .4byte 0x00000000
 */
+
+JAInter::SeqUpdateData* JAInter::SequenceMgr::seqTrackInfo;
+JAISequence** JAInter::SequenceMgr::FixSeqBufPointer;
+JKRArchive* JAInter::SequenceMgr::arcPointer;
+JAInter::SequenceMgr::CustomHeapCallback JAInter::SequenceMgr::customHeapCallback;
 
 /*
  * --INFO--
@@ -391,18 +399,10 @@ lbl_800B0D8C:
  * Address:	800B0DCC
  * Size:	000020
  */
-JAInter::MuteBit::MuteBit(void)
+JAInter::MuteBit::MuteBit()
+    : _0(false)
+    , _2(false)
 {
-	/*
-	lbz      r0, 0(r3)
-	li       r4, 0
-	rlwimi   r0, r4, 7, 0x18, 0x18
-	stb      r0, 0(r3)
-	lbz      r0, 0(r3)
-	rlwimi   r0, r4, 5, 0x1a, 0x1a
-	stb      r0, 0(r3)
-	blr
-	*/
 }
 
 /*
@@ -410,8 +410,22 @@ JAInter::MuteBit::MuteBit(void)
  * Address:	800B0DEC
  * Size:	00012C
  */
-JAInter::SeqUpdateData::SeqUpdateData(void)
+JAInter::SeqUpdateData::SeqUpdateData()
+    : _00(0)
+    , _01(0)
+    , _02(0)
+    , _03(0)
+    , _08(0)
+    , m_sequence(nullptr)
+    , _4C(new (JAIBasic::msCurrentHeap, 0x20) PlayerParameter[33])
 {
+	_24 = new (JAIBasic::msCurrentHeap, 0x20) f32[JAIGlobalParameter::getParamSeqTrackMax()];
+	_30 = new (JAIBasic::msCurrentHeap, 0x20) f32[JAIGlobalParameter::getParamSeqTrackMax()];
+	_28 = new (JAIBasic::msCurrentHeap, 0x20) f32[JAIGlobalParameter::getParamSeqTrackMax()];
+	_2C = new (JAIBasic::msCurrentHeap, 0x20) f32[JAIGlobalParameter::getParamSeqTrackMax()];
+	_34 = new (JAIBasic::msCurrentHeap, 0x20) f32[JAIGlobalParameter::getParamSeqTrackMax()];
+	_44 = new (JAIBasic::msCurrentHeap, 0x20) u32[JAIGlobalParameter::getParamSeqTrackMax() + 1];
+
 	/*
 	stwu     r1, -0x10(r1)
 	mflr     r0
@@ -1045,82 +1059,20 @@ void JAInter::SequenceMgr::checkStoppedSeq(void)
  */
 void JAInter::SequenceMgr::checkPlayingSeq(void)
 {
-	/*
-	stwu     r1, -0x20(r1)
-	mflr     r0
-	stw      r0, 0x24(r1)
-	stmw     r27, 0xc(r1)
-	li       r31, 0
-	li       r29, 0
-	b        lbl_800B175C
-
-lbl_800B16AC:
-	lwz      r0, seqTrackInfo__Q27JAInter11SequenceMgr@sda21(r13)
-	add      r30, r0, r29
-	lwz      r3, 0x48(r30)
-	cmplwi   r3, 0
-	beq      lbl_800B1754
-	lbz      r0, 0x15(r3)
-	cmplwi   r0, 4
-	blt      lbl_800B1754
-	mr       r3, r31
-	bl       checkPlayingSeqTrack__Q27JAInter11SequenceMgrFUl
-	li       r27, 0
-	b        lbl_800B1740
-
-lbl_800B16DC:
-	lwz      r3, 0x44(r30)
-	rlwinm   r0, r27, 2, 0x16, 0x1d
-	clrlwi   r28, r27, 0x18
-	lwzx     r6, r3, r0
-	cmplwi   r6, 0
-	beq      lbl_800B173C
-	cmplwi   r28, 0x20
-	beq      lbl_800B1718
-	lwz      r3, 0x48(r30)
-	li       r0, 1
-	slw      r4, r0, r4
-	lwz      r3, 0x308(r3)
-	lwz      r0, 4(r3)
-	and.     r0, r4, r0
-	beq      lbl_800B173C
-
-lbl_800B1718:
-	mr       r3, r30
-	mr       r4, r28
-	li       r5, 2
-	bl
-setSeqPortargsU32__Q27JAInter15SystemInterfaceFPQ27JAInter13SeqUpdateDataUlUcUl
-	mulli    r3, r28, 0x48
-	lwz      r0, 0x4c(r30)
-	addi     r3, r3, 0x30
-	add      r3, r0, r3
-	bl       addPortCmdOnce__10JASPortCmdFv
-
-lbl_800B173C:
-	addi     r27, r27, 1
-
-lbl_800B1740:
-	bl       getParamSeqTrackMax__18JAIGlobalParameterFv
-	addi     r0, r3, 1
-	clrlwi   r4, r27, 0x18
-	cmplw    r4, r0
-	blt      lbl_800B16DC
-
-lbl_800B1754:
-	addi     r29, r29, 0x50
-	addi     r31, r31, 1
-
-lbl_800B175C:
-	bl       getParamSeqPlayTrackMax__18JAIGlobalParameterFv
-	cmplw    r31, r3
-	blt      lbl_800B16AC
-	lmw      r27, 0xc(r1)
-	lwz      r0, 0x24(r1)
-	mtlr     r0
-	addi     r1, r1, 0x20
-	blr
-	*/
+	for (u32 i = 0; i < JAIGlobalParameter::getParamSeqPlayTrackMax(); i++) {
+		SeqUpdateData* info = seqTrackInfo + i;
+		if (info->m_sequence != nullptr && info->m_sequence->_15 >= 4) {
+			checkPlayingSeqTrack(i);
+			for (u8 j = 0; j < JAIGlobalParameter::getParamSeqTrackMax() + 1; j++) {
+				if (info->_44[j] != 0) {
+					if (j == 0x20 || (1 << j & info->m_sequence->m_seqParameter._2C0->_04) != 0) {
+						SystemInterface::setSeqPortargsU32(info, j, 2, info->_44[j]);
+						info->_4C[j]._30.addPortCmdOnce();
+					}
+				}
+			}
+		}
+	}
 }
 
 /*
@@ -1131,7 +1083,7 @@ lbl_800B175C:
 void JAInter::SequenceMgr::checkStartedSeq(void)
 {
 	for (u32 i = 0; i < JAIGlobalParameter::getParamSeqPlayTrackMax(); i++) {
-		SeqUpdateData* info = &seqTrackInfo[i];
+		SeqUpdateData* info = seqTrackInfo + i;
 		if (info->m_sequence != nullptr && info->m_sequence->_15 == 3
 		    && SystemInterface::checkSeqActiveFlag(&info->m_sequence->m_seqParameter.m_track) != 0) {
 			info->m_sequence->_15 = 4;
@@ -1147,6 +1099,44 @@ void JAInter::SequenceMgr::checkStartedSeq(void)
  */
 void JAInter::SequenceMgr::checkReadSeq(void)
 {
+	for (u32 i = 0; i < JAIGlobalParameter::getParamSeqPlayTrackMax(); i++) {
+		SeqUpdateData* info = seqTrackInfo + i;
+		JAISequence* seq    = info->m_sequence;
+		if (seq != nullptr && seq->_15 == 2 && seq->m_seqParameter._27C == 0xFFFFFFFF && seq->m_seqParameter._2C0->_02 == 0
+		    && seq->m_seqParameter.m_track._35B == 0) {
+			seq->m_seqParameter.m_track.setSeqData(info->_40, JASResArcLoader::getResSize(arcPointer, seq->m_soundInfo->count.v3[1]));
+		}
+		SeqUpdateData* v1 = seqTrackInfo + info->m_sequence->_14;
+		v1->_0C           = 1.0f;
+		v1->_18           = 0.5f;
+		v1->_10           = 1.0f;
+		v1->_14           = 0.0f;
+		v1->_1C           = 0.0f;
+		v1->_20           = 1.0f;
+		for (u32 j = 0; j < JAIGlobalParameter::getParamSeqTrackMax(); j++) {
+			v1->_24[j] = 1.0f;
+			v1->_30[j] = 64.0f;
+			v1->_28[j] = 1.0f;
+			v1->_2C[j] = 0.0f;
+			v1->_34[j] = 0.0f;
+			v1->_44[j] = 0;
+		}
+		info->m_sequence->_15 = 3;
+		if (1 < info->m_sequence->_28) {
+			info->m_sequence->setVolume(0.0f, 0, 7);
+			info->m_sequence->setVolume(1.0f, info->m_sequence->_28, 7);
+		}
+		if (info->_00 != 0) {
+			info->m_sequence->setPauseMode(info->_00, info->_01);
+			info->_0C = 1.1f;
+		}
+		JAIBasic::msBasic->setSeExtParameter(info->m_sequence);
+		checkPlayingSeqTrack(i);
+		if (info->m_sequence != nullptr) {
+			SystemInterface::rootInit(info);
+			seq->m_seqParameter.m_track.startSeq();
+		}
+	}
 	/*
 	stwu     r1, -0x60(r1)
 	mflr     r0
@@ -1307,7 +1297,7 @@ lbl_800B1A08:
  * Address:	800B1A40
  * Size:	0000D8
  */
-void JAInter::SequenceMgr::checkSeqWave(void)
+void JAInter::SequenceMgr::checkSeqWave()
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -2883,8 +2873,18 @@ lbl_800B2DDC:
  * Address:	800B2DFC
  * Size:	00009C
  */
-void JAInter::SequenceMgr::checkCustomDvdLoadArc(unsigned long, unsigned long)
+void JAInter::SequenceMgr::checkCustomDvdLoadArc(unsigned long p1, unsigned long index)
 {
+	JAISequence* sequence   = seqTrackInfo[index].m_sequence;
+	seqTrackInfo[index]._03 = 0;
+	u32 v1;
+	customHeapCallback(v1, 1, reinterpret_cast<JAISequence*>(sequence->m_soundInfo->count.v3[1]));
+	if (sequence != nullptr && sequence->_15 == 1) {
+		sequence->_15 = 2;
+	} else {
+		u32 v2;
+		customHeapCallback(v2, 2, reinterpret_cast<JAISequence*>(sequence->m_soundInfo->count.v3[1]));
+	}
 	/*
 	stwu     r1, -0x20(r1)
 	mflr     r0
@@ -3279,8 +3279,53 @@ void JAInter::SequenceMgr::storeSeqBuffer(JAISequence**, JAInter::Actor*, unsign
  * Address:	800B32C8
  * Size:	000388
  */
-void JAInter::SeqParameter::init(void)
+void JAInter::SeqParameter::init()
 {
+	m_track.assignExtBuffer(&m_outerParam);
+	// TODO: is this something like assigning a new (on stack) MoveParaSet? Can't do that to `this`, though...
+	_27C = 0xFFFFFFFF;
+	_04  = 1.0f;
+	_00  = 1.0f;
+	_0C  = 0;
+	_279 = 0;
+	_27A = 0;
+	_280 = 0;
+	_284 = 0;
+	_288 = 0;
+	_28C = 0;
+	_290 = 0;
+	_294 = 0;
+	_298 = 0;
+	_29C = 0;
+	_2A0 = 0;
+	_2A4 = 0;
+	_2A8 = 0;
+	_2AC = 0;
+	_2B0 = 0;
+	for (u32 i = 0; i < JAIGlobalParameter::getParamSeqTrackMax(); i++) {
+		_260[i] = MoveParaSet();
+		_264[i] = MoveParaSetInitHalf();
+		_268[i] = MoveParaSet();
+		_26C[i] = MoveParaSetInitZero();
+		_270[i] = MoveParaSetInitZero();
+		_2B8[i] = 0;
+		_2B4[i] = 0;
+		for (int j = 0; j < 16; j++) {
+			_274[i][j] = 0;
+		}
+	}
+	for (int i = 0; i < 16; i++) {
+		_10[i] = MoveParaSetInitZero();
+	}
+	for (u32 i = 0; i < JAIGlobalParameter::getParamSeqPlayTrackMax() + 12; i++) {
+		_110[i] = MoveParaSet();
+	}
+	for (u32 i = 0; i < JAIGlobalParameter::getParamSeqParameterLines(); i++) {
+		_250[i] = MoveParaSetInitHalf();
+		_254[i] = MoveParaSet();
+		_258[i] = MoveParaSetInitZero();
+		_25C[i] = MoveParaSetInitHalf();
+	}
 	/*
 	stwu     r1, -0x50(r1)
 	mflr     r0

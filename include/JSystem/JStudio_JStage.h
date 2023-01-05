@@ -7,13 +7,16 @@
 #include "JStage/TSystem.h"
 #include "JStudio/TAdaptor.h"
 #include "JStudio/TControl.h"
+#include "JStudio/TCreateObject.h"
 #include "JStudio/TObject.h"
 #include "JStudio/TVariableValue.h"
 
 namespace JStudio_JStage {
-struct TCreateObject {
-	virtual ~TCreateObject();                                                                 // _08
-	virtual void create(JStudio::TObject**, const JStudio::stb::data::TParse_TBlock_object&); // _0C
+struct TCreateObject : JStudio::TCreateObject {
+	virtual ~TCreateObject();                                                                                // _08
+	virtual bool create(JStudio::TObject** newObject, const JStudio::stb::data::TParse_TBlock_object& data); // _0C
+
+	JStage::TSystem* m_system;
 };
 
 template <typename Adaptor, typename Object>
@@ -231,7 +234,7 @@ struct TAdaptor_fog : public JStudio::TAdaptor_fog {
 	static const TVVOutput saoVVOutput_[3];
 };
 
-struct TAdaptor_light {
+struct TAdaptor_light : public JStudio::TAdaptor_light {
 	struct TVVOutput_direction_ {
 		virtual void operator()(float, JStudio::TAdaptor*) const; // _08
 		virtual ~TVVOutput_direction_();                          // _0C (weak)

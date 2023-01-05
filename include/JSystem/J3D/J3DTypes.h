@@ -80,20 +80,68 @@ struct J3DAlphaComp {
 	u8 _03;  // _03
 };
 
-struct J3DBlend {
+struct J3DBlendInfo {
 	u8 _00; // _00
 	u8 _01; // _01
 	u8 _02; // _02
 	u8 _03; // _03
 };
 
-typedef u16 J3DZMode;
+extern const J3DBlendInfo j3dDefaultBlendInfo;
+
+struct J3DBlend {
+	/** @fabricated */
+	inline J3DBlend()
+	    : _00(j3dDefaultBlendInfo._00)
+	    , _01(j3dDefaultBlendInfo._01)
+	    , _02(j3dDefaultBlendInfo._02)
+	    , _03(j3dDefaultBlendInfo._03)
+	{
+	}
+
+	/** @fabricated */
+	inline J3DBlend(const J3DBlendInfo& info)
+	    : _00(info._00)
+	    , _01(info._01)
+	    , _02(info._02)
+	    , _03(info._03)
+	{
+	}
+
+	u8 _00; // _00
+	u8 _01; // _01
+	u8 _02; // _02
+	u8 _03; // _03
+};
+
+struct J3DZModeInfo {
+	u8 _00; // _00
+	u8 _01; // _01
+	u8 _02; // _02
+	u8 _03; // _03 - unknown/padding
+};
+
+extern const u16 j3dDefaultZModeID;
+
+struct J3DZMode {
+	/** @fabricated */
+	J3DZMode()
+	    : _00(j3dDefaultZModeID)
+	{
+	}
+
+	/** @fabricated */
+	J3DZMode(const J3DZModeInfo& info)
+	    : _00(info._01 * 2 + info._00 * 0x10 + info._02)
+	{
+	}
+	u16 _00; // _00
+};
 
 struct J3DColorChan {
 	J3DColorChan();
 
-	u8 _00; // _00
-	u8 _01; // _01
+	u16 _00;
 };
 
 // IDK what the structure of this is meant to be
@@ -101,7 +149,7 @@ struct J3DIndTevStageInfo {
 	u8 _00 : 2;
 };
 
-extern const J3DIndTevStageInfo j3dDefaultIndTevStageInfo[8];
+extern const J3DIndTevStageInfo j3dDefaultIndTevStageInfo[12];
 
 struct J3DIndTevStage {
 	J3DIndTevStage();
@@ -131,7 +179,7 @@ struct J3DIndTevStage {
 struct J3DLightObj {
 	JGeometry::TVec3f m_position;  // _00
 	JGeometry::TVec3f m_direction; // _0C
-	_GXColor* _18;                 // _18
+	_GXColor _18;                  // _18
 	f32 _1C;                       // _1C
 	f32 _20;                       // _20
 	f32 _24;                       // _24
@@ -142,13 +190,92 @@ struct J3DLightObj {
 	void load(u32) const;
 };
 
+struct J3DTevOrderInfo {
+	// inline GXTexCoordID getTexCoordID() const { return (GXTexCoordID)m_data[0]; }
+	// inline GXTexMapID getTexMapID() const { return (GXTexMapID)m_data[1]; }
+	// inline u8 getChannelID() const { return m_data[2]; }
+	u8 m_data[3]; // _00
+
+	// inline GXTexCoordID getTexCoordID() const { return (GXTexCoordID)m_texCoordID; }
+	// inline GXTexMapID getTexMapID() const { return (GXTexMapID)m_texMapID; }
+	// inline u8 getChannelID() const { return m_channelID; }
+
+	// u8 m_texCoordID; // _00
+	// u8 m_texMapID;   // _01
+	// u8 m_channelID;  // _02
+
+	// u8 _03;          // _03 - unknown/padding
+};
+
+extern const J3DTevOrderInfo j3dDefaultTevOrderInfoNull;
+
 struct J3DTevOrder {
-	J3DTevOrder();
+	J3DTevOrder()
+	// : m_data(j3dDefaultTevOrderInfoNull.m_data)
+	// : m_texCoordID(j3dDefaultTevOrderInfoNull.m_texCoordID)
+	// , m_texMapID(j3dDefaultTevOrderInfoNull.m_texMapID)
+	// , m_channelID(j3dDefaultTevOrderInfoNull.m_channelID)
+	{
+		// for (int i = 0; i < 3; i++) {
+		// 	m_data[i] = j3dDefaultTevOrderInfoNull.m_data[i];
+		// }
+		const J3DTevOrderInfo& info = j3dDefaultTevOrderInfoNull;
+		m_texCoordID                = info.m_data[0];
+		m_texMapID                  = info.m_data[1];
+		m_channelID                 = info.m_data[2];
+		// m_texCoordID                = info.m_texCoordID;
+		// m_texMapID                  = info.m_texMapID;
+		// m_channelID                 = info.m_channelID;
+		// setTexCoordID(info.getTexCoordID());
+		// setTexMapID(info.getTexMapID());
+		// setChannelID(info.getChannelID());
+
+		// *this = static_cast<const J3DTevOrder>(j3dDefaultTevOrderInfoNull);
+		// setTexCoordID(j3dDefaultTevOrderInfoNull.getTexCoordID());
+		// setTexMapID(j3dDefaultTevOrderInfoNull.getTexMapID());
+		// setChannelID(j3dDefaultTevOrderInfoNull.getChannelID());
+	}
+
+	/** @fabricated */
+	inline J3DTevOrder(const J3DTevOrderInfo& info)
+	    // : m_texCoordID(info.m_texCoordID)
+	    // , m_texMapID(info.m_texMapID)
+	    // , m_channelID(info.m_channelID)
+	    : m_texCoordID(info.m_data[0])
+	    , m_texMapID(info.m_data[1])
+	    , m_channelID(info.m_data[2])
+	{
+		// for (int i = 0; i < 3; i++) {
+		// 	m_data[i] = info.m_data[i];
+		// }
+	}
+
+	/** @fabricated */
+	inline J3DTevOrder& operator=(const J3DTevOrder& other)
+	{
+		m_texCoordID = other.m_texCoordID;
+		m_texMapID   = other.m_texMapID;
+		m_channelID  = other.m_channelID;
+		// for (int i = 0; i < 3; i++) {
+		// 	m_data[i] = other.m_data[i];
+		// }
+		return *this;
+	}
+
+	inline void setTexCoordID(GXTexCoordID id) { m_texCoordID = id; }
+	inline void setTexMapID(GXTexMapID id) { m_texMapID = id; }
+	inline void setChannelID(u8 id) { m_channelID = id; }
 
 	u8 m_texCoordID; // _00
 	u8 m_texMapID;   // _01
 	u8 m_channelID;  // _02
 	u8 _03;
+
+	// inline void setTexCoordID(GXTexCoordID id) { m_data[0] = id; }
+	// inline void setTexMapID(GXTexMapID id) { m_data[1] = id; }
+	// inline void setChannelID(u8 id) { m_data[2] = id; }
+
+	// u8 m_data[3]; // _00
 };
 
 // TODO: Determine if this needs packing pragmas to make it exactly 1 bytes
@@ -164,6 +291,18 @@ struct J3DTevSwapModeTable {
 struct J3DTevStage {
 	J3DTevStage();
 	J3DTevStage(const struct J3DTevStageInfo&);
+
+	/** @fabricated */
+	inline J3DTevStage& operator=(const J3DTevStage& other)
+	{
+		_01 = other._01;
+		_02 = other._02;
+		_03 = other._03;
+		_05 = other._05;
+		_06 = other._06;
+		_07 = other._07;
+		return *this;
+	}
 
 	void setTevStageInfo(const J3DTevStageInfo&);
 
@@ -181,7 +320,9 @@ struct J3DTexCoordInfo {
 	u8 _00; // _00
 	u8 _01; // _01
 	u8 _02; // _02
+	u8 _03; // _03 - unknown/padding
 };
+
 extern const J3DTexCoordInfo j3dDefaultTexCoordInfo[8];
 
 // TODO: Determine if this needs packing pragmas to make it exactly 6 bytes
@@ -201,7 +342,7 @@ struct J3DTexCoord {
 	    : _00(info._00)
 	    , _01(info._01)
 	    , _02(info._02)
-	    , _04(info._02)
+	    , _04(_02)
 	{
 	}
 
@@ -269,10 +410,12 @@ enum J3DTexDiffFlag { TexDiff_0 = 0, TexDiff_1 };
 enum J3DDeformAttachFlag { DeformAttach_0 = 0, DeformAttach_1 = 1 };
 
 extern const u32 j3dDefaultColInfo;
+extern const u32 j3dDefaultAmbInfo;
+extern const u8 j3dDefaultColorChanNum;
 // extern const J3DGXColor j3dDefaultTevColor;
 // extern const J3DGXColorS10 j3dDefaultTevKColor;
 extern const u32 j3dDefaultTevColor;
-extern const u64 j3dDefaultTevKColor;
+extern const u32 j3dDefaultTevKColor;
 
 extern const u8 j3dDefaultTevSwapTableID;
 

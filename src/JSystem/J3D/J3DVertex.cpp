@@ -75,33 +75,7 @@ void J3DVertexBuffer::setVertexData(J3DVertexData* data)
 	_28    = 0;
 	_2C    = _04;
 	_30    = _0C;
-	_34    = _14;
-	/*
-	stw      r4, 0(r3)
-	li       r5, 0
-	lwz      r0, 0x18(r4)
-	stw      r0, 4(r3)
-	lwz      r0, 0x1c(r4)
-	stw      r0, 0xc(r3)
-	lwz      r0, 0x24(r4)
-	stw      r0, 0x14(r3)
-	stw      r5, 8(r3)
-	stw      r5, 0x10(r3)
-	stw      r5, 0x18(r3)
-	lwz      r0, 0x18(r4)
-	stw      r0, 0x1c(r3)
-	lwz      r0, 0x1c(r4)
-	stw      r0, 0x24(r3)
-	stw      r5, 0x20(r3)
-	stw      r5, 0x28(r3)
-	lwz      r0, 4(r3)
-	stw      r0, 0x2c(r3)
-	lwz      r0, 0xc(r3)
-	stw      r0, 0x30(r3)
-	lwz      r0, 0x14(r3)
-	stw      r0, 0x34(r3)
-	blr
-	*/
+	_34    = _14[0];
 }
 
 /*
@@ -127,31 +101,7 @@ void J3DVertexBuffer::init()
 	_34    = nullptr;
 	_2C    = _04;
 	_30    = _0C;
-	_34    = _14;
-	/*
-	li       r0, 0
-	stw      r0, 0(r3)
-	stw      r0, 8(r3)
-	stw      r0, 4(r3)
-	stw      r0, 0x10(r3)
-	stw      r0, 0xc(r3)
-	stw      r0, 0x18(r3)
-	stw      r0, 0x14(r3)
-	stw      r0, 0x20(r3)
-	stw      r0, 0x1c(r3)
-	stw      r0, 0x28(r3)
-	stw      r0, 0x24(r3)
-	stw      r0, 0x2c(r3)
-	stw      r0, 0x30(r3)
-	stw      r0, 0x34(r3)
-	lwz      r0, 4(r3)
-	stw      r0, 0x2c(r3)
-	lwz      r0, 0xc(r3)
-	stw      r0, 0x30(r3)
-	lwz      r0, 0x14(r3)
-	stw      r0, 0x34(r3)
-	blr
-	*/
+	_34    = _14[0];
 }
 
 /*
@@ -159,28 +109,7 @@ void J3DVertexBuffer::init()
  * Address:	8005ECA0
  * Size:	00003C
  */
-J3DVertexBuffer::~J3DVertexBuffer()
-{
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	or.      r31, r3, r3
-	beq      lbl_8005ECC4
-	extsh.   r0, r4
-	ble      lbl_8005ECC4
-	bl       __dl__FPv
-
-lbl_8005ECC4:
-	lwz      r0, 0x14(r1)
-	mr       r3, r31
-	lwz      r31, 0xc(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
-}
+J3DVertexBuffer::~J3DVertexBuffer() { }
 
 /*
  * --INFO--
@@ -189,20 +118,9 @@ lbl_8005ECC4:
  */
 void J3DVertexBuffer::setArray() const
 {
-	// j3dSys._10C = _2C;
-	// j3dSys._110 = _30;
-	// j3dSys._114 = _34;
-	/*
-	lis      r4, j3dSys@ha
-	lwz      r6, 0x2c(r3)
-	addi     r5, r4, j3dSys@l
-	lwz      r4, 0x30(r3)
-	lwz      r0, 0x34(r3)
-	stw      r6, 0x10c(r5)
-	stw      r4, 0x110(r5)
-	stw      r0, 0x114(r5)
-	blr
-	*/
+	j3dSys._10C = (u32)_2C;
+	j3dSys._110 = (u32)_30;
+	j3dSys._114 = (u32)_34;
 }
 
 /*
@@ -249,25 +167,4 @@ J3DDrawMtxData::J3DDrawMtxData()
  * Address:	8005EE3C
  * Size:	00003C
  */
-J3DDrawMtxData::~J3DDrawMtxData()
-{
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	or.      r31, r3, r3
-	beq      lbl_8005EE60
-	extsh.   r0, r4
-	ble      lbl_8005EE60
-	bl       __dl__FPv
-
-lbl_8005EE60:
-	lwz      r0, 0x14(r1)
-	mr       r3, r31
-	lwz      r31, 0xc(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
-}
+J3DDrawMtxData::~J3DDrawMtxData() { }

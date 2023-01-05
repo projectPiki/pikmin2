@@ -235,273 +235,192 @@ void J3DFrameCtrl::update()
  */
 void J3DAnmTransformFull::getTransform(unsigned short p1, J3DTransformInfo* info) const
 {
-	// u16* v1 = _20->_00[p1];
-	// u16* v2 = _20->_00[p1+1];
-	/*
-	mulli    r0, r4, 3
-	lfs      f1, 8(r3)
-	lfs      f0, lbl_80516A1C@sda21(r2)
-	lwz      r8, 0x20(r3)
-	clrlwi   r6, r0, 0x10
-	fcmpo    cr0, f1, f0
-	addi     r0, r6, 2
-	stwu     r1, -0x10(r1)
-	addi     r4, r6, 1
-	mulli    r7, r6, 0xc
-	mulli    r6, r4, 0xc
-	add      r4, r8, r7
-	mulli    r0, r0, 0xc
-	add      r6, r8, r6
-	add      r7, r8, r0
-	bge      lbl_80067BFC
-	lhz      r0, 2(r4)
-	lwz      r9, 0xc(r3)
-	slwi     r0, r0, 2
-	lwz      r8, 0x10(r3)
-	lfsx     f0, r9, r0
-	lwz      r3, 0x14(r3)
-	stfs     f0, 0(r5)
-	lhz      r0, 2(r6)
-	slwi     r0, r0, 2
-	lfsx     f0, r9, r0
-	stfs     f0, 4(r5)
-	lhz      r0, 2(r7)
-	slwi     r0, r0, 2
-	lfsx     f0, r9, r0
-	stfs     f0, 8(r5)
-	lhz      r0, 6(r4)
-	slwi     r0, r0, 1
-	lhax     r0, r8, r0
-	sth      r0, 0xc(r5)
-	lhz      r0, 6(r6)
-	slwi     r0, r0, 1
-	lhax     r0, r8, r0
-	sth      r0, 0xe(r5)
-	lhz      r0, 6(r7)
-	slwi     r0, r0, 1
-	lhax     r0, r8, r0
-	sth      r0, 0x10(r5)
-	lhz      r0, 0xa(r4)
-	slwi     r0, r0, 2
-	lfsx     f0, r3, r0
-	stfs     f0, 0x14(r5)
-	lhz      r0, 0xa(r6)
-	slwi     r0, r0, 2
-	lfsx     f0, r3, r0
-	stfs     f0, 0x18(r5)
-	lhz      r0, 0xa(r7)
-	slwi     r0, r0, 2
-	lfsx     f0, r3, r0
-	stfs     f0, 0x1c(r5)
-	b        lbl_80067E74
+	u16 tableIndex                    = p1 * 3;
+	J3DAnmTransformFullTable::Row* v1 = _20->_00[tableIndex];
+	J3DAnmTransformFullTable::Row* v2 = _20->_00[tableIndex + 1];
+	J3DAnmTransformFullTable::Row* v3 = _20->_00[tableIndex + 2];
+	if (m_fTime < 0.0f) {
+		info->m_scale.x     = _0C[v1[0][1]];
+		info->m_scale.y     = _0C[v2[0][1]];
+		info->m_scale.z     = _0C[v3[0][1]];
+		info->m_eulerRot.x  = _10[v1[1][1]];
+		info->m_eulerRot.y  = _10[v2[1][1]];
+		info->m_eulerRot.z  = _10[v3[1][1]];
+		info->m_zRotation.x = _14[v1[2][1]];
+		info->m_zRotation.y = _14[v2[2][1]];
+		info->m_zRotation.z = _14[v3[2][1]];
+	} else {
+		u32 v4 = (int)(0.5f + m_fTime);
+		if (v4 >= v1[0][0]) {
+			info->m_scale.x = _0C[v1[0][0] - 1 + v1[0][1]];
+		} else {
+			info->m_scale.x = _0C[v1[0][1] + v4];
+		}
+		if (v4 >= v1[1][0]) {
+			info->m_eulerRot.x = _10[v1[1][0] - 1 + v1[1][1]];
+		} else {
+			info->m_eulerRot.x = _10[v1[1][1] + v4];
+		}
+		if (v4 >= v1[2][0]) {
+			info->m_zRotation.x = _14[v1[2][0] - 1 + v1[2][1]];
+		} else {
+			info->m_zRotation.x = _14[v1[2][1] + v4];
+		}
 
-lbl_80067BFC:
-	lfs      f0, lbl_80516A30@sda21(r2)
-	lhz      r10, 0(r4)
-	fadds    f0, f0, f1
-	fctiwz   f0, f0
-	stfd     f0, 8(r1)
-	lwz      r0, 0xc(r1)
-	cmplw    r0, r10
-	blt      lbl_80067C3C
-	lhz      r8, 2(r4)
-	lwz      r9, 0xc(r3)
-	add      r8, r10, r8
-	addi     r8, r8, -1
-	slwi     r8, r8, 2
-	lfsx     f0, r9, r8
-	stfs     f0, 0(r5)
-	b        lbl_80067C54
+		if (v4 >= v2[0][0]) {
+			info->m_scale.y = _0C[v2[0][0] - 1 + v2[0][1]];
+		} else {
+			info->m_scale.y = _0C[v2[0][1] + v4];
+		}
+		if (v4 >= v2[1][0]) {
+			info->m_eulerRot.y = _10[v2[1][0] - 1 + v2[1][1]];
+		} else {
+			info->m_eulerRot.y = _10[v2[1][1] + v4];
+		}
+		if (v4 >= v2[2][0]) {
+			info->m_zRotation.y = _14[v2[2][0] - 1 + v2[2][1]];
+		} else {
+			info->m_zRotation.y = _14[v2[2][1] + v4];
+		}
 
-lbl_80067C3C:
-	lhz      r8, 2(r4)
-	lwz      r9, 0xc(r3)
-	add      r8, r8, r0
-	slwi     r8, r8, 2
-	lfsx     f0, r9, r8
-	stfs     f0, 0(r5)
-
-lbl_80067C54:
-	lhz      r10, 4(r4)
-	cmplw    r0, r10
-	blt      lbl_80067C80
-	lhz      r8, 6(r4)
-	lwz      r9, 0x10(r3)
-	add      r8, r10, r8
-	addi     r8, r8, -1
-	slwi     r8, r8, 1
-	lhax     r8, r9, r8
-	sth      r8, 0xc(r5)
-	b        lbl_80067C98
-
-lbl_80067C80:
-	lhz      r8, 6(r4)
-	lwz      r9, 0x10(r3)
-	add      r8, r8, r0
-	slwi     r8, r8, 1
-	lhax     r8, r9, r8
-	sth      r8, 0xc(r5)
-
-lbl_80067C98:
-	lhz      r9, 8(r4)
-	cmplw    r0, r9
-	blt      lbl_80067CC4
-	lhz      r4, 0xa(r4)
-	lwz      r8, 0x14(r3)
-	add      r4, r9, r4
-	addi     r4, r4, -1
-	slwi     r4, r4, 2
-	lfsx     f0, r8, r4
-	stfs     f0, 0x14(r5)
-	b        lbl_80067CDC
-
-lbl_80067CC4:
-	lhz      r4, 0xa(r4)
-	lwz      r8, 0x14(r3)
-	add      r4, r4, r0
-	slwi     r4, r4, 2
-	lfsx     f0, r8, r4
-	stfs     f0, 0x14(r5)
-
-lbl_80067CDC:
-	lhz      r9, 0(r6)
-	cmplw    r0, r9
-	blt      lbl_80067D08
-	lhz      r4, 2(r6)
-	lwz      r8, 0xc(r3)
-	add      r4, r9, r4
-	addi     r4, r4, -1
-	slwi     r4, r4, 2
-	lfsx     f0, r8, r4
-	stfs     f0, 4(r5)
-	b        lbl_80067D20
-
-lbl_80067D08:
-	lhz      r4, 2(r6)
-	lwz      r8, 0xc(r3)
-	add      r4, r4, r0
-	slwi     r4, r4, 2
-	lfsx     f0, r8, r4
-	stfs     f0, 4(r5)
-
-lbl_80067D20:
-	lhz      r9, 4(r6)
-	cmplw    r0, r9
-	blt      lbl_80067D4C
-	lhz      r4, 6(r6)
-	lwz      r8, 0x10(r3)
-	add      r4, r9, r4
-	addi     r4, r4, -1
-	slwi     r4, r4, 1
-	lhax     r4, r8, r4
-	sth      r4, 0xe(r5)
-	b        lbl_80067D64
-
-lbl_80067D4C:
-	lhz      r4, 6(r6)
-	lwz      r8, 0x10(r3)
-	add      r4, r4, r0
-	slwi     r4, r4, 1
-	lhax     r4, r8, r4
-	sth      r4, 0xe(r5)
-
-lbl_80067D64:
-	lhz      r8, 8(r6)
-	cmplw    r0, r8
-	blt      lbl_80067D90
-	lhz      r4, 0xa(r6)
-	lwz      r6, 0x14(r3)
-	add      r4, r8, r4
-	addi     r4, r4, -1
-	slwi     r4, r4, 2
-	lfsx     f0, r6, r4
-	stfs     f0, 0x18(r5)
-	b        lbl_80067DA8
-
-lbl_80067D90:
-	lhz      r4, 0xa(r6)
-	lwz      r6, 0x14(r3)
-	add      r4, r4, r0
-	slwi     r4, r4, 2
-	lfsx     f0, r6, r4
-	stfs     f0, 0x18(r5)
-
-lbl_80067DA8:
-	lhz      r8, 0(r7)
-	cmplw    r0, r8
-	blt      lbl_80067DD4
-	lhz      r4, 2(r7)
-	lwz      r6, 0xc(r3)
-	add      r4, r8, r4
-	addi     r4, r4, -1
-	slwi     r4, r4, 2
-	lfsx     f0, r6, r4
-	stfs     f0, 8(r5)
-	b        lbl_80067DEC
-
-lbl_80067DD4:
-	lhz      r4, 2(r7)
-	lwz      r6, 0xc(r3)
-	add      r4, r4, r0
-	slwi     r4, r4, 2
-	lfsx     f0, r6, r4
-	stfs     f0, 8(r5)
-
-lbl_80067DEC:
-	lhz      r8, 4(r7)
-	cmplw    r0, r8
-	blt      lbl_80067E18
-	lhz      r4, 6(r7)
-	lwz      r6, 0x10(r3)
-	add      r4, r8, r4
-	addi     r4, r4, -1
-	slwi     r4, r4, 1
-	lhax     r4, r6, r4
-	sth      r4, 0x10(r5)
-	b        lbl_80067E30
-
-lbl_80067E18:
-	lhz      r4, 6(r7)
-	lwz      r6, 0x10(r3)
-	add      r4, r4, r0
-	slwi     r4, r4, 1
-	lhax     r4, r6, r4
-	sth      r4, 0x10(r5)
-
-lbl_80067E30:
-	lhz      r6, 8(r7)
-	cmplw    r0, r6
-	blt      lbl_80067E5C
-	lhz      r0, 0xa(r7)
-	lwz      r4, 0x14(r3)
-	add      r3, r6, r0
-	addi     r0, r3, -1
-	slwi     r0, r0, 2
-	lfsx     f0, r4, r0
-	stfs     f0, 0x1c(r5)
-	b        lbl_80067E74
-
-lbl_80067E5C:
-	lhz      r4, 0xa(r7)
-	lwz      r3, 0x14(r3)
-	add      r0, r4, r0
-	slwi     r0, r0, 2
-	lfsx     f0, r3, r0
-	stfs     f0, 0x1c(r5)
-
-lbl_80067E74:
-	addi     r1, r1, 0x10
-	blr
-	*/
+		if (v4 >= v3[0][0]) {
+			info->m_scale.z = _0C[v3[0][0] - 1 + v3[0][1]];
+		} else {
+			info->m_scale.z = _0C[v3[0][1] + v4];
+		}
+		if (v4 >= v3[1][0]) {
+			info->m_eulerRot.z = _10[v3[1][0] - 1 + v3[1][1]];
+		} else {
+			info->m_eulerRot.z = _10[v3[1][1] + v4];
+		}
+		if (v4 >= v3[2][0]) {
+			info->m_zRotation.z = _14[v3[2][0] - 1 + v3[2][1]];
+		} else {
+			info->m_zRotation.z = _14[v3[2][1] + v4];
+		}
+	}
 }
 
 /*
  * --INFO--
  * Address:	80067E7C
  * Size:	000420
+ * TODO: Needs J3DGetKeyFrameAnimation to be defined.
  */
-void J3DAnmTransformKey::calcTransform(float, unsigned short, J3DTransformInfo*) const
+void J3DAnmTransformKey::calcTransform(float p1, unsigned short p2, J3DTransformInfo* info) const
 {
+	u16 v0                 = p2 * 3;
+	J3DAnmKeyTableBase* v1 = _24[v0]._00;
+	J3DAnmKeyTableBase* v2 = _24[v0 + 1]._00;
+	J3DAnmKeyTableBase* v3 = _24[v0 + 2]._00;
+
+	switch (v1[0]._00) {
+	case 0:
+		info->m_scale.x = 1.0f;
+		break;
+	case 1:
+		info->m_scale.x = _0C[v1[0]._02];
+		break;
+	default:
+		info->m_scale.x = J3DGetKeyFrameInterpolation(p1, v1, _0C + v1[0]._02);
+		break;
+	}
+
+	switch (v2[0]._00) {
+	case 0:
+		info->m_scale.y = 1.0f;
+		break;
+	case 1:
+		info->m_scale.y = _0C[v2[0]._02];
+		break;
+	default:
+		info->m_scale.y = J3DGetKeyFrameInterpolation(p1, v2, _0C + v2[0]._02);
+		break;
+	}
+
+	switch (v3[0]._00) {
+	case 0:
+		info->m_scale.z = 1.0f;
+		break;
+	case 1:
+		info->m_scale.z = _0C[v3[0]._02];
+		break;
+	default:
+		info->m_scale.z = J3DGetKeyFrameInterpolation(p1, v3, _0C + v3[0]._02);
+		break;
+	}
+
+	switch (v1[1]._00) {
+	case 0:
+		info->m_eulerRot.x = 0;
+		break;
+	case 1:
+		info->m_eulerRot.x = _10[v1[1]._02] << _20;
+		break;
+	default:
+		info->m_eulerRot.x = (int)J3DGetKeyFrameInterpolation(p1, v1 + 1, _10 + v1[1]._02) << _20;
+		break;
+	}
+
+	switch (v2[1]._00) {
+	case 0:
+		info->m_eulerRot.y = 0;
+		break;
+	case 1:
+		info->m_eulerRot.y = _10[v2[1]._02] << _20;
+		break;
+	default:
+		info->m_eulerRot.y = (int)J3DGetKeyFrameInterpolation(p1, v2 + 1, _10 + v2[1]._02) << _20;
+		break;
+	}
+
+	switch (v3[1]._00) {
+	case 0:
+		info->m_eulerRot.z = 0;
+		break;
+	case 1:
+		info->m_eulerRot.z = _10[v3[1]._02] << _20;
+		break;
+	default:
+		info->m_eulerRot.z = (int)J3DGetKeyFrameInterpolation(p1, v3 + 1, _10 + v3[1]._02) << _20;
+		break;
+	}
+
+	switch (v1[2]._00) {
+	case 0:
+		info->m_zRotation.x = 0.0f;
+		break;
+	case 1:
+		info->m_zRotation.x = _14[v1[2]._02];
+		break;
+	default:
+		info->m_zRotation.x = J3DGetKeyFrameInterpolation(p1, v1 + 2, _14 + v1[2]._02);
+		break;
+	}
+
+	switch (v2[2]._00) {
+	case 0:
+		info->m_zRotation.y = 0.0f;
+		break;
+	case 1:
+		info->m_zRotation.y = _14[v2[2]._02];
+		break;
+	default:
+		info->m_zRotation.y = J3DGetKeyFrameInterpolation(p1, v2 + 2, _14 + v2[2]._02);
+		break;
+	}
+
+	switch (v3[2]._00) {
+	case 0:
+		info->m_zRotation.z = 0.0f;
+		break;
+	case 1:
+		info->m_zRotation.z = _14[v3[2]._02];
+		break;
+	default:
+		info->m_zRotation.z = J3DGetKeyFrameInterpolation(p1, v3 + 2, _14 + v3[2]._02);
+		break;
+	}
 	/*
 	.loc_0x0:
 	  stwu      r1, -0x40(r1)
@@ -848,8 +767,72 @@ void J3DAnmTransformKey::calcTransform(float, unsigned short, J3DTransformInfo*)
  * Address:	8006829C
  * Size:	000268
  */
-void J3DAnmTextureSRTKey::calcTransform(float, unsigned short, J3DTextureSRTInfo*) const
+void J3DAnmTextureSRTKey::calcTransform(float p1, unsigned short p2, J3DTextureSRTInfo* info) const
 {
+	u16 v0                 = p2 * 3;
+	J3DAnmKeyTableBase* v1 = _10[v0]._00;
+	J3DAnmKeyTableBase* v2 = _10[v0 + 1]._00;
+	J3DAnmKeyTableBase* v3 = _10[v0 + 2]._00;
+
+	switch (v1[0]._00) {
+	case 0:
+		info->m_scaleX = 1.0f;
+		break;
+	case 1:
+		info->m_scaleX = _1C[v1[0]._02];
+		break;
+	default:
+		info->m_scaleX = J3DGetKeyFrameInterpolation(p1, v1, _1C + v1[0]._02);
+		break;
+	}
+
+	switch (v2[0]._00) {
+	case 0:
+		info->m_scaleY = 1.0f;
+		break;
+	case 1:
+		info->m_scaleY = _1C[v2[0]._02];
+		break;
+	default:
+		info->m_scaleY = J3DGetKeyFrameInterpolation(p1, v2, _1C + v2[0]._02);
+		break;
+	}
+
+	switch (v3[1]._00) {
+	case 0:
+		info->_08 = 0;
+		break;
+	case 1:
+		info->_08 = _20[v3[1]._02] << _0C;
+		break;
+	default:
+		info->_08 = (int)J3DGetKeyFrameInterpolation(p1, v3 + 1, _20 + v3[1]._02) << _0C;
+		break;
+	}
+
+	switch (v1[2]._00) {
+	case 0:
+		info->_0C = 0.0f;
+		break;
+	case 1:
+		info->_0C = _24[v1[2]._02];
+		break;
+	default:
+		info->_0C = J3DGetKeyFrameInterpolation(p1, v1 + 2, _24 + v1[2]._02);
+		break;
+	}
+
+	switch (v2[2]._00) {
+	case 0:
+		info->_10 = 0.0f;
+		break;
+	case 1:
+		info->_10 = _24[v2[2]._02];
+		break;
+	default:
+		info->_10 = J3DGetKeyFrameInterpolation(p1, v2 + 2, _24 + v2[2]._02);
+		break;
+	}
 	/*
 	.loc_0x0:
 	  stwu      r1, -0x40(r1)
@@ -1054,8 +1037,55 @@ void J3DAnmTextureSRTKey::calcTransform(float, unsigned short, J3DTextureSRTInfo
  * Address:	80068504
  * Size:	000094
  */
-float J3DAnmClusterFull::getWeight(unsigned short) const
+float J3DAnmClusterFull::getWeight(unsigned short p1) const
 {
+
+	int v4                     = (int)(0.5f + m_fTime);
+	u32 index                  = p1;
+	J3DAnmClusterFullTable* v1 = _10;
+	if (m_fTime < 0.0f) {
+		return _0C[v1[index]._00[1]];
+	}
+	if (v4 >= v1[index]._00[0]) {
+		int v2 = v1[index]._00[0] - 1 + v1[index]._00[1];
+		return _0C[v2];
+	}
+	return _0C[v1[index]._00[1] + v4];
+
+	// int v4 = (int)(0.5f + m_fTime);
+
+	// J3DAnmClusterFullTable* v1 = _10;
+	// if (m_fTime < 0.0f) {
+	// 	return _0C[getTable(p1)->_02];
+	// }
+	// if (v4 >= getTable(p1)->_00) {
+	// 	int v2 = getTable(p1)->_00 + getTable(p1)->_02 - 1;
+	// 	return _0C[v2];
+	// }
+	// return _0C[getTable(p1)->_02 + v4];
+
+	// int v4                     = (int)(0.5f + m_fTime);
+
+	// J3DAnmClusterFullTable* v1 = _10;
+	// if (m_fTime < 0.0f) {
+	// 	return _0C[v1[p1]._02];
+	// }
+	// if (v4 >= v1[p1]._00) {
+	// 	int v2 = v1[p1]._00 + v1[p1]._02 - 1;
+	// 	return _0C[v2];
+	// }
+	// return _0C[v1[p1]._02 + v4];
+
+	// int v4  = (int)(0.5f + m_fTime);
+	// u16* v1 = &_10[p1]._00;
+	// if (m_fTime < 0.0f) {
+	// 	return _0C[v1[1]];
+	// }
+	// if (v4 >= v1[0]) {
+	// 	return _0C[v1[0] + v1[1] - 1];
+	// }
+	// return _0C[v4 + v1[1]];
+
 	/*
 	lfs      f1, lbl_80516A30@sda21(r2)
 	rlwinm   r0, r4, 2, 0xe, 0x1d
@@ -1516,120 +1546,46 @@ void J3DAnmColor::searchUpdateMaterialID(J3DModelData* data)
  * Address:	80068B30
  * Size:	000170
  */
-void J3DAnmColorFull::getColor(unsigned short, _GXColor*) const
+void J3DAnmColorFull::getColor(unsigned short tableIndex, _GXColor* color) const
 {
-	/*
-	lfs      f1, 8(r3)
-	rlwinm   r0, r4, 4, 0xc, 0x1b
-	lfs      f0, lbl_80516A1C@sda21(r2)
-	lwz      r4, 0x3c(r3)
-	fcmpo    cr0, f1, f0
-	stwu     r1, -0x10(r1)
-	add      r4, r4, r0
-	bge      lbl_80068B94
-	lwz      r6, 0x2c(r3)
-	lhz      r0, 2(r4)
-	lwz      r7, 0x30(r3)
-	lbzx     r0, r6, r0
-	lwz      r6, 0x34(r3)
-	stb      r0, 0(r5)
-	lwz      r3, 0x38(r3)
-	lhz      r0, 6(r4)
-	lbzx     r0, r7, r0
-	stb      r0, 1(r5)
-	lhz      r0, 0xa(r4)
-	lbzx     r0, r6, r0
-	stb      r0, 2(r5)
-	lhz      r0, 0xe(r4)
-	lbzx     r0, r3, r0
-	stb      r0, 3(r5)
-	b        lbl_80068C98
+	J3DAnmColorFullTable* table = _3C + tableIndex;
+	if (m_fTime < 0.0f) {
+		color->r = _2C[table->m_data[0][1]];
+		color->g = _30[table->m_data[1][1]];
+		color->b = _34[table->m_data[2][1]];
+		color->a = _38[table->m_data[3][1]];
+	} else {
+		int v4 = 0.5f + m_fTime;
+		if (v4 >= table->m_data[0][0]) {
+			color->r = _2C[table->m_data[0][1] - 1 + table->m_data[0][0]];
+		} else {
+			color->r = _2C[table->m_data[0][1] + v4];
+		}
+		if (v4 >= table->m_data[1][0]) {
+			color->g = _30[table->m_data[1][1] - 1 + table->m_data[1][0]];
+		} else {
+			color->g = _30[table->m_data[1][1] + v4];
+		}
+		if (v4 >= table->m_data[2][0]) {
+			color->b = _34[table->m_data[2][1] - 1 + table->m_data[2][0]];
+		} else {
+			color->b = _34[table->m_data[2][1] + v4];
+		}
+		if (v4 >= table->m_data[3][0]) {
+			color->a = _38[table->m_data[3][1] - 1 + table->m_data[3][0]];
+		} else {
+			color->a = _38[table->m_data[3][1] + v4];
+		}
+		// table->getField(0, v4, &color->r, _2C);
+		// table->getField(1, v4, &color->g, _30);
+		// table->getField(2, v4, &color->b, _34);
+		// table->getField(3, v4, &color->a, _38);
 
-lbl_80068B94:
-	lfs      f0, lbl_80516A30@sda21(r2)
-	lhz      r8, 0(r4)
-	fadds    f0, f0, f1
-	fctiwz   f0, f0
-	stfd     f0, 8(r1)
-	lwz      r0, 0xc(r1)
-	cmpw     r0, r8
-	blt      lbl_80068BD0
-	lwz      r7, 0x2c(r3)
-	lhz      r6, 2(r4)
-	add      r6, r7, r6
-	add      r6, r6, r8
-	lbz      r6, -1(r6)
-	stb      r6, 0(r5)
-	b        lbl_80068BE4
-
-lbl_80068BD0:
-	lhz      r6, 2(r4)
-	lwz      r7, 0x2c(r3)
-	add      r6, r6, r0
-	lbzx     r6, r7, r6
-	stb      r6, 0(r5)
-
-lbl_80068BE4:
-	lhz      r8, 4(r4)
-	cmpw     r0, r8
-	blt      lbl_80068C0C
-	lwz      r7, 0x30(r3)
-	lhz      r6, 6(r4)
-	add      r6, r7, r6
-	add      r6, r6, r8
-	lbz      r6, -1(r6)
-	stb      r6, 1(r5)
-	b        lbl_80068C20
-
-lbl_80068C0C:
-	lhz      r6, 6(r4)
-	lwz      r7, 0x30(r3)
-	add      r6, r6, r0
-	lbzx     r6, r7, r6
-	stb      r6, 1(r5)
-
-lbl_80068C20:
-	lhz      r8, 8(r4)
-	cmpw     r0, r8
-	blt      lbl_80068C48
-	lwz      r7, 0x34(r3)
-	lhz      r6, 0xa(r4)
-	add      r6, r7, r6
-	add      r6, r6, r8
-	lbz      r6, -1(r6)
-	stb      r6, 2(r5)
-	b        lbl_80068C5C
-
-lbl_80068C48:
-	lhz      r6, 0xa(r4)
-	lwz      r7, 0x34(r3)
-	add      r6, r6, r0
-	lbzx     r6, r7, r6
-	stb      r6, 2(r5)
-
-lbl_80068C5C:
-	lhz      r6, 0xc(r4)
-	cmpw     r0, r6
-	blt      lbl_80068C84
-	lwz      r3, 0x38(r3)
-	lhz      r0, 0xe(r4)
-	add      r0, r3, r0
-	add      r3, r0, r6
-	lbz      r0, -1(r3)
-	stb      r0, 3(r5)
-	b        lbl_80068C98
-
-lbl_80068C84:
-	lhz      r4, 0xe(r4)
-	lwz      r3, 0x38(r3)
-	add      r0, r4, r0
-	lbzx     r0, r3, r0
-	stb      r0, 3(r5)
-
-lbl_80068C98:
-	addi     r1, r1, 0x10
-	blr
-	*/
+		// color->r = table->getField(0, v4, _2C);
+		// color->g = table->getField(1, v4, _30);
+		// color->b = table->getField(2, v4, _34);
+		// color->a = table->getField(3, v4, _38);
+	}
 }
 
 /*
@@ -1875,8 +1831,20 @@ lbl_80068F48:
  * Address:	80068F6C
  * Size:	0000B4
  */
-void J3DAnmTexPattern::getTexNo(unsigned short, unsigned short*) const
+void J3DAnmTexPattern::getTexNo(unsigned short p1, unsigned short* p2) const
 {
+	int index                     = p1;
+	J3DAnmTexPatternFullTable* v1 = _10;
+	if (m_fTime < 0.0f) {
+		*p2 = _0C[v1[index].m_data[0][1]];
+		return;
+	}
+	if (m_fTime >= v1[index].m_data[0][0]) {
+		int v2 = v1[index].m_data[0][0] - 1 + v1[index].m_data[0][1];
+		*p2    = _0C[v2];
+		return;
+	}
+	*p2 = _0C[v1[index].m_data[0][1] + (int)m_fTime];
 	/*
 	lfs      f2, 8(r3)
 	rlwinm   r4, r4, 3, 0xd, 0x1c
@@ -2037,8 +2005,12 @@ lbl_80069110:
  * Address:	80069144
  * Size:	0002CC
  */
-void J3DAnmTevRegKey::getTevColorReg(unsigned short, _GXColorS10*) const
+void J3DAnmTevRegKey::getTevColorReg(unsigned short p1, _GXColorS10* color) const
 {
+	_48[p1]._00[0].getColorField(m_fTime, &color->r, _50);
+	_48[p1]._00[1].getColorField(m_fTime, &color->g, _54);
+	_48[p1]._00[2].getColorField(m_fTime, &color->b, _58);
+	_48[p1]._00[3].getColorField(m_fTime, &color->a, _5C);
 	/*
 	stwu     r1, -0x40(r1)
 	mflr     r0

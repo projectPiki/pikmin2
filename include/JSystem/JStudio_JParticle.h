@@ -4,6 +4,7 @@
 #include "JStage/TObject.h"
 #include "JStage/TSystem.h"
 #include "JStudio/TAdaptor.h"
+#include "JStudio/TCreateObject.h"
 #include "JStudio/TObject.h"
 #include "JSystem/JPA/JPAEmitter.h"
 #include "types.h"
@@ -57,9 +58,12 @@ struct TAdaptor_particle : JStudio::TAdaptor_particle {
 	bool _1A4;                           // _1A4
 };
 
-struct TCreateObject {
-	virtual ~TCreateObject();                                                                 // _08
-	virtual void create(JStudio::TObject**, const JStudio::stb::data::TParse_TBlock_object&); // _0C
+struct TCreateObject : JStudio::TCreateObject {
+	virtual ~TCreateObject();                                                                                // _08
+	virtual bool create(JStudio::TObject** newObject, const JStudio::stb::data::TParse_TBlock_object& data); // _0C
+
+	JPAEmitterManager* m_emitterManager; // _0C
+	JStage::TSystem* m_system;           // _10
 };
 } // namespace JStudio_JParticle
 

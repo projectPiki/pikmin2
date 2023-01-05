@@ -1,5 +1,13 @@
+#include "Dolphin/gd.h"
+#include "Dolphin/gx.h"
+#include "JSystem/J3D/J3DGD.h"
+#include "JSystem/J3D/J3DInd.h"
+#include "JSystem/J3D/J3DMaterialFactory.h"
+#include "JSystem/J3D/J3DSys.h"
+#include "JSystem/J3D/J3DTevBlock.h"
 #include "JSystem/J3D/J3DTexMtx.h"
 #include "JSystem/J3D/J3DTypes.h"
+#include "JSystem/JGeometry.h"
 #include "types.h"
 
 /*
@@ -251,62 +259,67 @@
         .4byte 0x00170000
 */
 
+const J3DTexCoordInfo j3dDefaultTexCoordInfo[8]
+    = { { 1, 4, 60 }, { 1, 5, 60 }, { 1, 6, 60 }, { 1, 7, 60 }, { 1, 8, 60 }, { 1, 9, 60 }, { 1, 10, 60 }, { 1, 11, 60 } };
+const J3DTexMtxInfo j3dDefaultTexMtxInfo
+    = { 1,
+	    0,
+	    0xFF,
+	    0xFF,
+	    0.0f,
+	    0.0f,
+	    0.0f,
+	    1.0f,
+	    1.0f,
+	    0,
+	    0.0f,
+	    0.0f,
+	    { { 1.0f, 0.0f, 0.0f, 0.0f }, { 0.0f, 1.0f, 0.0f, 0.0f }, { 0.0f, 0.0f, 1.0f, 0.0f }, { 0.0f, 0.0f, 0.0f, 1.0f } } };
+
+const J3DIndTexMtxInfo j3dDefaultIndTexMtxInfo = { 0.5f, 0.0f, 0.0f, 0.0f, 0.5f, 0.0f, 1 };
+
+const J3DTevStageInfo j3dDefaultTevStageInfo = { 4, 10, 15, 15, 0, 0, 0, 0, 1, 0, 5, 7, 7, 0, 0, 0, 0, 1, 0 };
+
+const J3DIndTevStageInfo j3dDefaultIndTevStageInfo[12]
+    = { { 0 }, { 0 }, { 0 }, { 0 }, { 0 }, { 0 }, { 0 }, { 0 }, { 0 }, { 0 }, { 0 }, { 0 } };
+
+const J3DFogInfo j3dDefaultFogInfo = { 0, 0, 0x140, 0.0f, 0.0f, 0.1f, 10000.0f, 0xFF, 0xFF, 0xFF, { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 } };
+
+// const J3DNBTScaleInfo j3dDefaultNBTScaleInfo = { 0, JGeometry::TVec3f(1.0f, 1.0f, 1.0f) };
+// const J3DNBTScaleInfo j3dDefaultNBTScaleInfo = { 0, {1.0f, 1.0f, 1.0f} };
+
+const u32 j3dDefaultColInfo                      = 0xFFFFFFFF;
+const u32 j3dDefaultAmbInfo                      = 0x32323232;
+const u8 j3dDefaultColorChanNum                  = 1;
+const J3DTevOrderInfo j3dDefaultTevOrderInfoNull = { GX_TEXCOORD_NULL, GX_TEXMAP_NULL, 0xFF, 0 };
+// const J3DIndTexOrder j3dDefaultIndTexOrderNull   = J3DIndTexOrder(GX_TEXCOORD_NULL, GX_TEXMAP_NULL);
+// const J3DIndTexOrder j3dDefaultIndTexOrderNull   = J3DIndTexOrder(GX_TEXCOORD_NULL, GX_TEXMAP_NULL, 0, 0);
+// const J3DIndTexOrder j3dDefaultIndTexOrderNull   = { GX_TEXCOORD_NULL, GX_TEXMAP_NULL };
+// const J3DIndTexOrder j3dDefaultIndTexOrderNull   = { GX_TEXCOORD_NULL, GX_TEXMAP_NULL, 0, 0 };
+const J3DIndTexOrderInfo j3dDefaultIndTexOrderNull       = { GX_TEXCOORD_NULL, GX_TEXMAP_NULL, 0, 0 };
+const u32 j3dDefaultTevColor                             = 0xFFFFFFFF;
+const u32 j3dDefaultTevKColor                            = 0xFFFFFFFF;
+const J3DTevSwapModeInfo j3dDefaultTevSwapMode           = { 0 };
+const J3DTevSwapModeTableInfo j3dDefaultTevSwapModeTable = { 0, 1, 2, 3 };
+const J3DBlendInfo j3dDefaultBlendInfo                   = { 1, 4, 5, 5 };
+const J3DColorChanInfo j3dDefaultColorChanInfo           = { 0, 0, 0, 2, 2, 0, 0xFF, 0xFF };
+const u8 j3dDefaultTevSwapTableID                        = 0x1B;
+const u16 j3dDefaultAlphaCmpID                           = 0xE7;
+const u16 j3dDefaultZModeID                              = 0x17;
+
 /*
  * --INFO--
  * Address:	80063B24
  * Size:	0000B4
  */
-void J3DLightObj::load(unsigned long) const
+void J3DLightObj::load(unsigned long p1) const
 {
-	/*
-	stwu     r1, -0x20(r1)
-	mflr     r0
-	stw      r0, 0x24(r1)
-	stw      r31, 0x1c(r1)
-	mr       r31, r4
-	stw      r30, 0x18(r1)
-	mr       r30, r3
-	lwz      r5, __GDCurrentDL@sda21(r13)
-	lwz      r3, 8(r5)
-	lwz      r0, 0xc(r5)
-	addi     r3, r3, 0x48
-	cmplw    r3, r0
-	ble      lbl_80063B5C
-	bl       GDOverflowed
-
-lbl_80063B5C:
-	li       r0, 1
-	lfs      f1, 0(r30)
-	slw      r31, r0, r31
-	lfs      f2, 4(r30)
-	lfs      f3, 8(r30)
-	mr       r3, r31
-	bl       J3DGDSetLightPos__F10_GXLightIDfff
-	lfs      f1, 0x1c(r30)
-	mr       r3, r31
-	lfs      f2, 0x20(r30)
-	lfs      f3, 0x24(r30)
-	lfs      f4, 0x28(r30)
-	lfs      f5, 0x2c(r30)
-	lfs      f6, 0x30(r30)
-	bl       J3DGDSetLightAttn__F10_GXLightIDffffff
-	lwz      r0, 0x18(r30)
-	mr       r3, r31
-	addi     r4, r1, 8
-	stw      r0, 8(r1)
-	bl       J3DGDSetLightColor__F10_GXLightID8_GXColor
-	lfs      f1, 0xc(r30)
-	mr       r3, r31
-	lfs      f2, 0x10(r30)
-	lfs      f3, 0x14(r30)
-	bl       J3DGDSetLightDir__F10_GXLightIDfff
-	lwz      r0, 0x24(r1)
-	lwz      r31, 0x1c(r1)
-	lwz      r30, 0x18(r1)
-	mtlr     r0
-	addi     r1, r1, 0x20
-	blr
-	*/
+	__GDCheckOverflowed(0x48);
+	GXLightID id = (GXLightID)(1 << p1);
+	J3DGDSetLightPos(id, m_position.x, m_position.y, m_position.z);
+	J3DGDSetLightAttn(id, _1C, _20, _24, _28, _2C, _30);
+	J3DGDSetLightColor(id, _18);
+	J3DGDSetLightDir(id, m_direction.x, m_direction.y, m_direction.z);
 }
 
 /*
@@ -677,29 +690,13 @@ lbl_800640F4:
  * Address:	80064108
  * Size:	00003C
  */
-void J3DTexMtx::load(unsigned long) const
+void J3DTexMtx::load(unsigned long p1) const
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	lis      r5, j3dSys@ha
-	stw      r0, 0x14(r1)
-	addi     r5, r5, j3dSys@l
-	lwz      r0, 0x34(r5)
-	rlwinm.  r0, r0, 0, 1, 1
-	beq      lbl_80064130
-	bl       loadPostTexMtx__9J3DTexMtxCFUl
-	b        lbl_80064134
-
-lbl_80064130:
-	bl       loadTexMtx__9J3DTexMtxCFUl
-
-lbl_80064134:
-	lwz      r0, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	if ((j3dSys._34 & 0x40000000) != 0) {
+		loadPostTexMtx(p1);
+	} else {
+		loadTexMtx(p1);
+	}
 }
 
 /*
@@ -707,37 +704,10 @@ lbl_80064134:
  * Address:	80064144
  * Size:	000064
  */
-void J3DTexMtx::loadTexMtx(unsigned long) const
+void J3DTexMtx::loadTexMtx(unsigned long p1) const
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	mr       r31, r4
-	stw      r30, 8(r1)
-	mr       r30, r3
-	lwz      r5, __GDCurrentDL@sda21(r13)
-	lwz      r3, 8(r5)
-	lwz      r0, 0xc(r5)
-	addi     r3, r3, 0x35
-	cmplw    r3, r0
-	ble      lbl_8006417C
-	bl       GDOverflowed
-
-lbl_8006417C:
-	mulli    r4, r31, 3
-	lbz      r5, 0(r30)
-	addi     r3, r30, 0x64
-	addi     r4, r4, 0x1e
-	bl       J3DGDLoadTexMtxImm__FPA4_fUl13_GXTexMtxType
-	lwz      r0, 0x14(r1)
-	lwz      r31, 0xc(r1)
-	lwz      r30, 8(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	__GDCheckOverflowed(0x35);
+	J3DGDLoadTexMtxImm(const_cast<float(*)[4]>(_64), p1 * 3 + 30, (_GXTexMtxType)_00);
 }
 
 /*
@@ -1112,36 +1082,10 @@ lbl_80064720:
  * Address:	80064728
  * Size:	000060
  */
-void J3DTexMtx::loadPostTexMtx(unsigned long) const
+void J3DTexMtx::loadPostTexMtx(unsigned long p1) const
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	mr       r31, r4
-	stw      r30, 8(r1)
-	mr       r30, r3
-	lwz      r5, __GDCurrentDL@sda21(r13)
-	lwz      r3, 8(r5)
-	lwz      r0, 0xc(r5)
-	addi     r3, r3, 0x35
-	cmplw    r3, r0
-	ble      lbl_80064760
-	bl       GDOverflowed
-
-lbl_80064760:
-	mulli    r4, r31, 3
-	addi     r3, r30, 0x64
-	addi     r4, r4, 0x40
-	bl       J3DGDLoadPostTexMtxImm__FPA4_fUl
-	lwz      r0, 0x14(r1)
-	lwz      r31, 0xc(r1)
-	lwz      r30, 8(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	__GDCheckOverflowed(0x35);
+	J3DGDLoadPostTexMtxImm(const_cast<float(*)[4]>(_64), p1 * 3 + 0x40);
 }
 
 /*
@@ -1507,19 +1451,7 @@ void J3DGDLoadPostTexMtxImm(float (*)[4], unsigned long)
  * Address:	80064CF4
  * Size:	000020
  */
-void J3DTexMtx::calc(const float (*)[4])
-{
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	bl       calcTexMtx__9J3DTexMtxFPA4_Cf
-	lwz      r0, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
-}
+void J3DTexMtx::calc(const float (*mtx)[4]) { calcTexMtx(mtx); }
 
 /*
  * --INFO--
@@ -2073,7 +2005,7 @@ lbl_80065340:
  * Address:	80065358
  * Size:	000024
  */
-void isTexNoReg(void*)
+bool isTexNoReg(void*)
 {
 	/*
 	lbz      r0, 1(r3)
@@ -2095,14 +2027,7 @@ lbl_80065374:
  * Address:	8006537C
  * Size:	00000C
  */
-void getTexNoReg(void*)
-{
-	/*
-	lwz      r0, 1(r3)
-	clrlwi   r3, r0, 0x10
-	blr
-	*/
-}
+u16 getTexNoReg(void* p1) { return *(u32*)(static_cast<u8*>(p1) + 1); }
 
 /*
  * --INFO--
@@ -2239,28 +2164,18 @@ lbl_80065520:
  * Address:	80065540
  * Size:	000024
  */
-void patchTexNo_PtrToIdx(unsigned long, const unsigned short&)
-{
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	lhz      r4, 0(r4)
-	stw      r0, 0x14(r1)
-	bl       J3DGDSetTexImgPtrRaw__F11_GXTexMapIDUl
-	lwz      r0, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
-}
+void patchTexNo_PtrToIdx(unsigned long p1, const unsigned short& p2) { J3DGDSetTexImgPtrRaw((_GXTexMapID)p1, p2); }
 
 /*
  * --INFO--
  * Address:	80065564
  * Size:	000034
  */
-void loadNBTScale(J3DNBTScale&)
+void loadNBTScale(J3DNBTScale& scale)
 {
+	if (scale._00 == 1) {
+		// j3dSys._118 = &scale._04;
+	}
 	/*
 	lbz      r0, 0(r3)
 	cmplwi   r0, 1

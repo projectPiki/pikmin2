@@ -32,13 +32,13 @@ struct JKRDvdFile : public JKRFile {
 	JKRDvdFile();
 	JKRDvdFile(const char*);
 	JKRDvdFile(long);
-	virtual ~JKRDvdFile();                          // _08
-	virtual u8 open(const char*);                   // _0C
-	virtual void close();                           // _10
-	virtual int readData(void*, long, long);        // _14
-	virtual int writeData(const void*, long, long); // _18
-	virtual int getFileSize() const;                // _1C (weak)
-	virtual u8 open(long);                          // _20
+	virtual ~JKRDvdFile();                                             // _08
+	virtual u8 open(const char*);                                      // _0C
+	virtual void close();                                              // _10
+	virtual int readData(void*, long, long);                           // _14
+	virtual int writeData(const void*, long, long);                    // _18
+	virtual int getFileSize() const { return m_dvdPlayer.m_fileSize; } // _1C (weak)
+	virtual u8 open(long);                                             // _20
 
 	inline int readDataAsync(void* buffer, long byteCount, long startOffset)
 	{
@@ -77,7 +77,7 @@ struct JKRDvdFile : public JKRFile {
 	void* _BC;                         // _BC  Single msg slot for _9C
 	OSMessageQueue _C0;                // _C0
 	void* _E0;                         // _E0  Single msg slot for _C0
-	JSUPtrLink _E4;                    // _E4
+	JSULink<JKRDvdFile> _E4;           // _E4
 	OSThread* _F4;                     // _F4
 
 	static JSUList<JKRDvdFile> sDvdList;

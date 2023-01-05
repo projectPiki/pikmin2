@@ -2,14 +2,15 @@
 #define _JSYSTEM_JSTUDIO_JMESSAGE_H
 
 #include "JStudio/TAdaptor.h"
+#include "JStudio/TCreateObject.h"
 #include "JStudio/stb-data.h"
 #include "JSystem/JMessage/TControl.h"
 
 namespace JStudio_JMessage {
-struct TCreateObject_base {
-	virtual ~TCreateObject_base() = 0;                                                        // _08
-	virtual void create(JStudio::TObject**, const JStudio::stb::data::TParse_TBlock_object&); // _0C
-	virtual void find(const JStudio::stb::data::TParse_TBlock_object&) = 0;                   // _10
+struct TCreateObject_base : JStudio::TCreateObject {
+	virtual ~TCreateObject_base() = 0;                                                                       // _08
+	virtual bool create(JStudio::TObject** newObject, const JStudio::stb::data::TParse_TBlock_object& data); // _0C
+	virtual void find(const JStudio::stb::data::TParse_TBlock_object&) = 0;                                  // _10
 };
 } // namespace JStudio_JMessage
 

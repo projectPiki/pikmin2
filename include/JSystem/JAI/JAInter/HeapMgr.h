@@ -6,20 +6,20 @@
 namespace JAInter {
 namespace HeapMgr {
 void init(unsigned char, unsigned long, unsigned char, unsigned long);
-void getAutoHeapPointer();
+HeapBlock* getAutoHeapPointer();
 void checkOnMemory(unsigned long, unsigned char*);
 void releaseAutoHeapPointer(unsigned char);
 void checkUsefulAutoHeapPosition();
-void getFreeAutoHeapPointer(unsigned char, unsigned long);
-void checkUsefulStayHeapPosition();
-void getFreeStayHeapPointer(unsigned long, unsigned long);
+void* getFreeAutoHeapPointer(unsigned char, unsigned long);
+u32 checkUsefulStayHeapPosition();
+void* getFreeStayHeapPointer(unsigned long, unsigned long);
 void setAutoHeapLoadedFlag(unsigned char, unsigned char);
 void setStayHeapLoadedFlag(unsigned char, unsigned char);
 
 // unused/inlined:
-void getStayHeapPointer();
-void getAutoHeapCount();
-void getStayHeapCount();
+HeapBlock* getStayHeapPointer();
+u32 getAutoHeapCount();
+u32 getStayHeapCount();
 void changeAutoHeapPointerToPosition(unsigned char*);
 void clearAutoHeap(JAInter::HeapBlock*);
 void clearAutoHeap(unsigned long);

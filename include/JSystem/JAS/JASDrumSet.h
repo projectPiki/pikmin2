@@ -42,7 +42,6 @@ struct JASDrumSet : public JASInst {
 	 * @reifiedFile{JSystem/JAS/JASDrumSet.cpp}
 	 */
 	virtual u32 getType() const { return 'PERC'; } // _10 (weak)
-	virtual void _14() = 0;                        // _14
 
 	TPerc* getPerc(int index);
 

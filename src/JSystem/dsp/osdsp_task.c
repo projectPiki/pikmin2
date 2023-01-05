@@ -1,11 +1,16 @@
+#include "JSystem/DSP.h"
 
+u8 DSP_prior_yield;
+u32 AUDIO_UPDATE_REQUEST;
+STRUCT_DSP_TASK* DSP_prior_task;
+u32 sync_stack[3];
 
 /*
  * --INFO--
  * Address:	........
  * Size:	000008
  */
-void DebugPrint_TaskInfo(STRUCT_DSP_TASK*)
+void DebugPrint_TaskInfo(STRUCT_DSP_TASK* task)
 {
 	// UNUSED FUNCTION
 }
@@ -15,7 +20,7 @@ void DebugPrint_TaskInfo(STRUCT_DSP_TASK*)
  * Address:	........
  * Size:	000040
  */
-void Check_Broken(STRUCT_DSP_TASK*)
+void Check_Broken(STRUCT_DSP_TASK* task)
 {
 	// UNUSED FUNCTION
 }
@@ -284,8 +289,17 @@ void __DSPHandler(void)
  * Address:	800AB020
  * Size:	000050
  */
-void DsyncFrame2(unsigned long, unsigned long, unsigned long)
+void DsyncFrame2(unsigned long p1, unsigned long p2, unsigned long p3)
 {
+	if (DSP_prior_yield != TRUE) {
+		sync_stack[0]        = p1;
+		sync_stack[1]        = p2;
+		sync_stack[2]        = p3;
+		AUDIO_UPDATE_REQUEST = TRUE;
+	} else {
+		DsyncFrame(p1, p2, p3);
+		AUDIO_UPDATE_REQUEST = FALSE;
+	}
 	/*
 	.loc_0x0:
 	  stwu      r1, -0x10(r1)
@@ -322,6 +336,9 @@ void DsyncFrame2(unsigned long, unsigned long, unsigned long)
  */
 void Dsp_Update_Request()
 {
+	if (AUDIO_UPDATE_REQUEST != 0) {
+		DsyncFrame2(sync_stack[0], sync_stack[1], sync_stack[2]);
+	}
 	/*
 	.loc_0x0:
 	  stwu      r1, -0x10(r1)
@@ -350,29 +367,11 @@ void Dsp_Update_Request()
  * Address:	800AB0C0
  * Size:	000014
  */
-void Dsp_Running_Check()
-{
-	/*
-	.loc_0x0:
-	  lbz       r0, -0x74C0(r13)
-	  subfic    r0, r0, 0x1
-	  cntlzw    r0, r0
-	  rlwinm    r3,r0,27,5,31
-	  blr
-	*/
-}
+BOOL Dsp_Running_Check() { return DSP_prior_yield == TRUE; }
 
 /*
  * --INFO--
  * Address:	800AB0E0
  * Size:	00000C
  */
-void Dsp_Running_Start()
-{
-	/*
-	.loc_0x0:
-	  li        r0, 0x1
-	  stb       r0, -0x74C0(r13)
-	  blr
-	*/
-}
+void Dsp_Running_Start() { DSP_prior_yield = 1; }

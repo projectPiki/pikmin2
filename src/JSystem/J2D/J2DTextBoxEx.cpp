@@ -99,7 +99,7 @@
  * Address:	800596A8
  * Size:	000330
  */
-J2DTextBoxEx::J2DTextBoxEx(J2DPane*, JSURandomInputStream*, unsigned long, J2DMaterial*)
+J2DTextBoxEx::J2DTextBoxEx(J2DPane* parent, JSURandomInputStream* input, unsigned long flags, J2DMaterial* materials)
 {
 	/*
 	.loc_0x0:
@@ -967,7 +967,7 @@ lbl_8005A1E4:
  * Address:	8005A214
  * Size:	000064
  */
-void J2DTextBoxEx::setFont(JUTFont*)
+void J2DTextBoxEx::setFont(JUTFont* font)
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -1286,7 +1286,7 @@ lbl_8005A5E8:
  * Address:	8005A618
  * Size:	000088
  */
-void J2DTextBoxEx::setBlack(JUtility::TColor)
+bool J2DTextBoxEx::setBlack(JUtility::TColor black)
 {
 	/*
 	stwu     r1, -0x20(r1)
@@ -1335,7 +1335,7 @@ lbl_8005A688:
  * Address:	8005A6A0
  * Size:	000088
  */
-void J2DTextBoxEx::setWhite(JUtility::TColor)
+bool J2DTextBoxEx::setWhite(JUtility::TColor white)
 {
 	/*
 	stwu     r1, -0x20(r1)
@@ -1384,7 +1384,7 @@ lbl_8005A710:
  * Address:	8005A728
  * Size:	000224
  */
-void J2DTextBoxEx::setBlackWhite(JUtility::TColor, JUtility::TColor)
+bool J2DTextBoxEx::setBlackWhite(JUtility::TColor black, JUtility::TColor white)
 {
 	/*
 	stwu     r1, -0x50(r1)

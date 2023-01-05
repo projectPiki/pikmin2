@@ -142,8 +142,7 @@ struct JKRHeap : public JKRDisposer {
 	u8 m_fillFlag;                       // _3C
 	u8 m_fillCheckFlag;                  // _3D
 	u8 _3E[2];                           // _3E
-	JSUPtrList _40;                      // _40
-	JSUPtrLink _4C;                      // _4C
+	JSUTree<JKRHeap> m_tree;             // _40
 	JSUList<JKRDisposer> m_disposerList; // _5C
 	bool _68;                            // _68
 	u8 _69;                              // _69
@@ -219,7 +218,7 @@ struct JKRExpHeap : public JKRHeap {
 	u32 appendUsedList(CMemBlock*);
 	static JKRExpHeap* create(u32, JKRHeap*, bool);
 	static JKRExpHeap* createRoot(int, bool);
-	int freeGroup(u8);
+	int freeGroup(u8 groupID);
 	void joinTwoBlocks(CMemBlock*);
 	void recycleFreeBlock(CMemBlock*);
 	void removeFreeBlock(CMemBlock*);
@@ -244,7 +243,7 @@ struct JKRSolidHeap : public JKRHeap {
 	JKRSolidHeap(void*, u32, JKRHeap*, bool);
 
 	virtual ~JKRSolidHeap();                                        // _08
-	virtual u32 getHeapType();                                      // _10 (weak)
+	virtual u32 getHeapType() { return 'SLID'; }                    // _10 (weak)
 	virtual bool check();                                           // _14
 	virtual bool dump();                                            // _1C
 	virtual void do_destroy();                                      // _20
@@ -255,21 +254,21 @@ struct JKRSolidHeap : public JKRHeap {
 	virtual void do_fillFreeArea();                                 // _34
 	virtual int do_resize(void*, u32);                              // _38
 	virtual int do_getSize(void*);                                  // _3C
-	virtual u32 do_getFreeSize();                                   // _40 (weak)
-	virtual void* do_getMaxFreeBlock();                             // _44 (weak)
-	virtual u32 do_getTotalFreeSize();                              // _48 (weak)
+	virtual u32 do_getFreeSize() { return m_freeSize; }             // _40 (weak)
+	virtual void* do_getMaxFreeBlock() { return (void*)_70; }       // _44 (weak)
+	virtual u32 do_getTotalFreeSize() { return getFreeSize(); }     // _48 (weak)
 	virtual void state_register(TState*, u32) const;                // _54
 	virtual bool state_compare(const TState&, const TState&) const; // _58
 
-	void adjustSize();
+	u32 adjustSize();
 	void* allocFromHead(unsigned long, int);
 	void* allocFromTail(unsigned long, int);
 
 	static JKRSolidHeap* create(unsigned long, JKRHeap*, bool);
 
 	u32 m_freeSize; // _6C
-	void* _70;      // _70
-	void* _74;      // _74
+	u32 _70;        // _70
+	u32 _74;        // _74
 	u32 _78;        // _78
 };
 

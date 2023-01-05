@@ -28,6 +28,9 @@ struct J3DJointTree {
 	void findImportantMtxIndex();
 	void makeHierarchy(J3DJoint*, const J3DModelHierarchy**, J3DMaterialTable*, J3DShapeTable*);
 
+	// unused/inlined:
+	void clear();
+
 	// VTBL _00
 	J3DModelHierarchy* m_hierarchy; // _04
 	s32 m_08;                       // _08 previously s8*
