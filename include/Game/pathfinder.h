@@ -20,8 +20,8 @@ struct PathfindRequest {
 		m_flag      = f;
 	}
 
-	u16 m_startWpID;
-	u16 m_endWpID;
+	s16 m_startWpID;
+	s16 m_endWpID;
 	u8 m_flag;
 };
 
@@ -33,42 +33,47 @@ struct PathNode {
 	void pop();
 	void countLinks(PathNode**);
 
-	float _00;        // _00
-	float _04;        // _04
-	PathNode* _08;    // _08
-	PathNode* m_next; // _0C
-	PathNode* _10;    // _10
-	PathNode* _14;    // _14
-	u8 _18[8];        // _18
-	short m_wpIndex;  // _20
+	float _00;         // _00
+	float _04;         // _04
+	PathNode* m_child; // _08
+	PathNode* m_next;  // _0C
+	PathNode* _10;     // _10
+	PathNode* _14;     // _14
+	u8 _18[8];         // _18
+	short m_wpIndex;   // _20
 };
 
 struct AStarContext {
 	AStarContext()
 	{
-		_04                       = 0;
-		_02                       = -1;
-		_00                       = -1;
+		m_requestFlag             = 0;
+		m_endWPID                 = -1;
+		m_startWPID               = -1;
 		PathfindContext::routeMgr = nullptr;
-		_60                       = 0;
+		m_status                  = 0;
 	}
 	void init(RouteMgr*, int);
 	void getNode(short);
-	void makepath(PathNode*, PathNode**);
+	int makepath(PathNode*, PathNode**);
 
-	s16 _00;      // _00
-	s16 _02;      // _02
-	u8 _04;       // _04
-	u8 _05[0x5A]; // _05, unknown
-	u32 _60;      // _60
+	s16 m_startWPID;  // _00
+	s16 m_endWPID;    // _02
+	u8 m_requestFlag; // _04
+	int _08[18];
+	s16 _50;
+	s16 m_wpNum;
+	u8 m_checkHandle;
+	int* _58;
+	PathNode* m_node; // _5C
+	u32 m_status;     // _60
 };
 
 struct AStarPathfinder {
 	AStarPathfinder();
 	void constructPath(PathNode*, short*, int);
-	void estimate(short, short);
+	f32 estimate(short, short);
 	void initsearch(AStarContext*);
-	void search(AStarContext*, int, PathNode**);
+	int search(AStarContext*, int, PathNode**);
 	void search(short, short, short*, int);
 	void search(AStarContext*, short, short, short*, int, int, int&);
 	void setContext(AStarContext*);
@@ -85,11 +90,11 @@ struct Pathfinder {
 	void release(u32);
 	int check(u32);
 	void getFreeContext();
-	void getContext(u32);
+	AStarContext* getContext(u32);
 
-	u32 _00;                            // _00
-	s32 m_clientCount;                  // _04
-	s32 m_aStarContextCount;            // _08
+	u32 m_counter;                      // _00
+	int m_clientCount;                  // _04
+	int m_aStarContextCount;            // _08
 	AStarContext* m_aStarContexts;      // _0C
 	AStarPathfinder* m_aStarPathfinder; // _10
 };
