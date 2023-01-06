@@ -484,7 +484,6 @@ bool InteractAstonish::actPiki(Game::Piki* piki)
 		return false;
 	}
 	PikiState* currState = piki->m_currentState;
-
 	if (currState && currState->transittable(PIKISTATE_Panic)) {
 		int pikiKind = piki->m_pikiKind;
 		if (pikiKind != Purple) {
