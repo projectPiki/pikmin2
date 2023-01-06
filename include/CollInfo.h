@@ -137,6 +137,8 @@ struct MouthSlots {
 	void update();
 	void setup(int, SysShape::Model*, char*);
 
+	int getMax() { return m_max; }
+
 	int m_max;              // _00
 	MouthCollPart* m_slots; // _04
 };

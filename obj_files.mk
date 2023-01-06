@@ -726,7 +726,7 @@ NISHIMURA:=\
 	$(BUILD_DIR)/asm/plugProjectNishimuraU/BabyState.o\
 	$(BUILD_DIR)/src/plugProjectNishimuraU/BabyAnimator.o\
 	$(BUILD_DIR)/src/plugProjectNishimuraU/BabyMgr.o\
-	$(BUILD_DIR)/asm/plugProjectNishimuraU/Baby.o\
+	$(BUILD_DIR)/src/plugProjectNishimuraU/Baby.o\
 	$(BUILD_DIR)/src/plugProjectNishimuraU/DemonMgr.o\
 	$(BUILD_DIR)/asm/plugProjectNishimuraU/Demon.o\
 	$(BUILD_DIR)/asm/plugProjectNishimuraU/QueenShadow.o\
