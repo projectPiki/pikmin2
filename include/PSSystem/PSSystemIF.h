@@ -58,6 +58,12 @@ inline JKRFileLoader* getLoaderInstance()
 }
 
 extern SysIF* spSysIF;
+
+inline SysIF* getSysIF()
+{
+	P2ASSERTLINE(395, spSysIF);
+	return spSysIF;
+}
 } // namespace PSSystem
 
 #endif

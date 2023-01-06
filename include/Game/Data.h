@@ -118,27 +118,24 @@ struct Mgr : public PlayCommonData {
 	void setDeflicker();
 	void setDeflicker(bool);
 
-	int _18;            // _18
-	u32 m_time;         // _1C
-	char m_fileIndex;   // _20
-	char padding;       // _21
-	short _22;          // _22
-	u32 _24;            // _24
-	u32 _28;            // _28
-	u32 _2C;            // _2C
-	u64 m_cardSerialNo; // _30
-	u8 m_soundMode;     // _38, TODO: Replace with Soundmode enum
-	u8 m_musicVol;      // _39
-	u8 m_seVol;         // _3A
-	u8 m_rumble;        // _3B
-	u8 m_rubyFont;      // _3C, japanese version leftover, mini font in cutscenes
-	u8 m_deflicker;     // _3D
-	u8 m_region;        // _3E
-	char _3F;           // _3F
-	union Data {
-		u16 shortView;
-		s8 byteView[2];
-	} m_flags;
+	int _18;              // _18
+	u32 m_time;           // _1C
+	char m_fileIndex;     // _20
+	char padding;         // _21
+	short _22;            // _22
+	u32 _24;              // _24
+	u32 _28;              // _28
+	u32 _2C;              // _2C
+	u64 m_cardSerialNo;   // _30
+	u8 m_soundMode;       // _38, TODO: Replace with Soundmode enum
+	u8 m_musicVol;        // _39
+	u8 m_seVol;           // _3A
+	u8 m_rumble;          // _3B
+	u8 m_rubyFont;        // _3C, japanese version leftover, mini font in cutscenes
+	u8 m_deflicker;       // _3D
+	u8 m_region;          // _3E
+	char _3F;             // _3F
+	BitFlag<u16> m_flags; // _40
 	bool m_challengeOpen; // _42
 	u32 _44;              // _44
 };
