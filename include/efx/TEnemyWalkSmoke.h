@@ -10,9 +10,9 @@ namespace efx {
 struct TEnemyWalkSmoke : public TBase {
 	inline TEnemyWalkSmoke() { }
 
-	virtual bool create(Arg*); // _08
-	virtual void forceKill();  // _0C (weak)
-	virtual void fade();       // _10 (weak)
+	virtual bool create(Arg*);   // _08
+	virtual void forceKill() { } // _0C (weak)
+	virtual void fade() { }      // _10 (weak)
 
 	// _00      = VTABLE
 	// Vector3f* _04;  // _04 - unknown

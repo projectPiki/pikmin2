@@ -19,8 +19,6 @@ struct TEnemyHamonM : public TChasePos {
 	}
 
 	virtual bool create(Arg*);  // _08
-	virtual void forceKill();   // _0C (weak)
-	virtual void fade();        // _10 (weak)
 	virtual ~TEnemyHamonM() { } // _48 (weak)
 
 	// _00      = VTABLE

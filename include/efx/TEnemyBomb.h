@@ -10,13 +10,14 @@ namespace efx {
 struct TEnemyBombScaleTable {
 	TEnemyBombScaleTable(Game::EnemyTypeID::EEnemyTypeID);
 
-	int m_type;
-	f32 m_scale;
+	int m_type;  // _00
+	f32 m_scale; // _04
 };
+
 struct TEnemyBomb : public TBase {
-	virtual bool create(Arg*); // _08
-	virtual void forceKill();  // _0C (weak)
-	virtual void fade();       // _10 (weak)
+	virtual bool create(Arg*);   // _08
+	virtual void forceKill() { } // _0C (weak)
+	virtual void fade() { }      // _10 (weak)
 
 	// _00  = VTABLE
 };
