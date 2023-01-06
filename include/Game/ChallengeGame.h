@@ -8,9 +8,13 @@
 namespace Game {
 namespace ChallengeGame {
 struct StageData : public CNode {
-	virtual ~StageData(); // _08 (weak)
+
+	StageData();
+
+	virtual ~StageData() { } // _08 (weak)
 
 	void read(Stream&);
+	void write(Stream&);
 
 	// _00     = VTBL
 	// _00-_18 = CNode
@@ -28,9 +32,10 @@ struct StageData : public CNode {
 struct StageList : public CNode {
 	StageList();
 
-	virtual ~StageList(); // _08 (weak)
+	virtual ~StageList() { } // _08 (weak)
 
 	void read(Stream&);
+	void write(Stream&);
 	StageData* getStageData(int);
 
 	// _00     = VTBL

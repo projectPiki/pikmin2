@@ -185,7 +185,7 @@ struct BaseGameSection : public BaseHIOSection {
 	void setupFixMemory();
 	void setupFixMemory_dvdload();
 	void enableAllocHalt();
-	void disableAllocHalt();
+	bool disableAllocHalt();
 	void setupFloatMemory();
 	void setDrawBuffer(int);
 	void createFallPikminSound();
