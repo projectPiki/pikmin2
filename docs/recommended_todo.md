@@ -45,7 +45,6 @@
 ### <section id="JSystem">JSystem</section>
 | File | Size (bytes) | File | Size (bytes) |
 | ---- | ---- | ---- | ---- |
-| <a href="https://github.com/projectPiki/pikmin2/tree/main/src/JSystem/J3D/J3DBinaryFormat.cpp">J3D/J3DBinaryFormat.cpp</a> | 301 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/JSystem/J3D/J3DModelSaver.cpp">J3D/J3DModelSaver.cpp</a> | 318 |
 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/JSystem/dsp/osdsp.c">dsp/osdsp.c</a> | 760 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/JSystem/JUT/JUTPalette.cpp">JUT/JUTPalette.cpp</a> | 1646 |
 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/JSystem/JAS/JASRegisterParam.cpp">JAS/JASRegisterParam.cpp</a> | 1861 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/JSystem/JAS/JASBasicBank.cpp">JAS/JASBasicBank.cpp</a> | 1877 |
 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/JSystem/JAS/JASTrackInterrupt.cpp">JAS/JASTrackInterrupt.cpp</a> | 2023 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/JSystem/JAS/JASInstRand.cpp">JAS/JASInstRand.cpp</a> | 2290 |
@@ -88,7 +87,6 @@
 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/JSystem/JAS/JASBankMgr.cpp">JAS/JASBankMgr.cpp</a> | 16353 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/JSystem/JUT/JUTTexture.cpp">JUT/JUTTexture.cpp</a> | 16951 |
 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/JSystem/JKR/JKRMemArchive.cpp">JKR/JKRMemArchive.cpp</a> | 17067 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/JSystem/JKR/JKRSolidHeap.cpp">JKR/JKRSolidHeap.cpp</a> | 17360 |
 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/JSystem/J3D/J3DDrawBuffer.cpp">J3D/J3DDrawBuffer.cpp</a> | 18274 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/JSystem/J3D/J3DTransform.cpp">J3D/J3DTransform.cpp</a> | 19101 |
-| <a href="https://github.com/projectPiki/pikmin2/tree/main/src/JSystem/JAI/JAIObject.cpp">JAI/JAIObject.cpp</a> | 19421 |
 
 ### <section id="plugProjectEbisawaU">plugProjectEbisawaU</section>
 | File | Size (bytes) | File | Size (bytes) |

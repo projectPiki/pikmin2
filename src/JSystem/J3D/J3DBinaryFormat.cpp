@@ -1,14 +1,10 @@
-#include "types.h"
-
 #include "JSystem/J3D/J3DShape.h"
+#include "JSystem/J3D/J3DU.h"
 
 /*
  * --INFO--
- * Address:	8006F888
- * Size:	00000C
- * Should be weak.
+ * Address:	........
+ * Size:	000080
+ * Fabricated to generate getType weak function.
  */
-// int J3DShapeMtx::getType() const { return 'SMTX'; }
-
-// only the above func should generate in this file.
-// the vtable should not generate in this file.
+void getShapeMtxType(J3DShape* shape, J3DShapeMtx* shapeMtx) { shapeMtx->getType(); }
