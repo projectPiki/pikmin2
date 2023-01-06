@@ -12,12 +12,15 @@ namespace Demon {
 struct Obj : public Sarai::Obj {
 	Obj();
 
-	virtual ~Obj() { }                                  // _1BC (weak)
-	virtual EnemyTypeID::EEnemyTypeID getEnemyTypeID(); // _258 (weak)
-	virtual int getStickPikminNum();                    // _2FC (weak)
-	virtual FakePiki* getAttackableTarget();            // _300
-	virtual int catchTarget();                          // _304
-	virtual void resetAttackableTimer(f32);             // _308 (weak)
+	virtual ~Obj() { }                                 // _1BC (weak)
+	virtual EnemyTypeID::EEnemyTypeID getEnemyTypeID() // _258 (weak)
+	{
+		return EnemyTypeID::EnemyID_Demon;
+	}
+	virtual int getStickPikminNum() { return m_stuckPikminCount; }        // _2FC (weak)
+	virtual FakePiki* getAttackableTarget();                              // _300
+	virtual int catchTarget();                                            // _304
+	virtual void resetAttackableTimer(f32 time) { m_attackTimer = time; } // _308 (weak)
 
 	// _00 		= VTBL
 	// _00-_2D8	= Sarai::Obj
