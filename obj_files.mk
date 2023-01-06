@@ -1158,7 +1158,7 @@ GC:=\
 	$(BUILD_DIR)/asm/sysGCU/THPRead.o\
 	$(BUILD_DIR)/asm/sysGCU/THPVideoDecode.o\
 	$(BUILD_DIR)/asm/sysGCU/pikmin2THPPlayer.o\
-	$(BUILD_DIR)/asm/sysGCU/captionMgr.o\
+	$(BUILD_DIR)/src/sysGCU/captionMgr.o\
 	$(BUILD_DIR)/asm/sysGCU/captionMessage.o\
 	$(BUILD_DIR)/asm/sysGCU/screenScene.o\
 	$(BUILD_DIR)/asm/sysGCU/screenMgr.o\

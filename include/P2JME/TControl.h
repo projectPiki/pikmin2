@@ -14,7 +14,7 @@ namespace P2JME {
 struct TControl : public JMessage::TControl {
 	TControl();
 
-	virtual ~TControl();                           // _08 (weak)
+	virtual ~TControl() { }                        // _08 (weak)
 	virtual void reset();                          // _0C
 	virtual void update();                         // _10
 	virtual void update(Controller*, Controller*); // _14 (weak)

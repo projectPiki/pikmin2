@@ -26,7 +26,7 @@ struct DrawInfoMgr {
 struct TControl : public P2JME::TControl {
 	TControl();
 
-	virtual ~TControl();                           // _08 (weak)
+	virtual ~TControl() { }                        // _08 (weak)
 	virtual void reset();                          // _0C
 	virtual void update(Controller*, Controller*); // _14
 	virtual void draw(Graphics&);                  // _18

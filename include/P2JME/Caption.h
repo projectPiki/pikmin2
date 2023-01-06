@@ -8,7 +8,7 @@ namespace Caption {
 struct TControl : public P2JME::Window::TControl {
 	TControl();
 
-	virtual ~TControl();                     // _08 (weak)
+	virtual ~TControl() { }                  // _08 (weak)
 	virtual void reset();                    // _0C
 	virtual void draw(Graphics&);            // _18
 	virtual void onInit();                   // _34

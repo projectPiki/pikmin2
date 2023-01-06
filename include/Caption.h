@@ -33,7 +33,7 @@ struct Node : public CNode {
 struct Mgr : public CNode {
 	Mgr();
 
-	virtual ~Mgr();             // _08 (weak)
+	virtual ~Mgr() { }          // _08 (weak)
 	virtual void read(Stream&); // _10
 
 	void draw(Graphics&);
