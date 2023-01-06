@@ -116,6 +116,11 @@ struct GeneratorMgr : public CNode {
 };
 
 struct GenArg : public CreatureInitArg {
+
+	inline GenArg(Vector3f& vec) { m_position = vec; }
+
+	inline GenArg() { }
+
 	virtual const char* getName(); // _08 (weak)
 
 	// _00 VTBL
