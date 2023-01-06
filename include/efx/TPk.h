@@ -21,7 +21,6 @@ void createSimpleBlackDrop(Vector3f&);
 void createSimpleDive(Vector3f&);
 void createSimpleChiru(Vector3f&, long);
 
-
 struct TPkAp : public TSimple2 {
 	inline TPkAp()
 	    : TSimple2(PID_PkAp_1, PID_PkAp_2)
