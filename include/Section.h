@@ -20,8 +20,8 @@ struct ISection : public JKRDisposer {
 struct ISectionMgr {
 	ISectionMgr() { }
 
-	virtual void run() = 0;                // _08
-	virtual ISection* getCurrentSection(); // _0C (weak)
+	virtual void run() = 0;                                   // _08
+	virtual ISection* getCurrentSection() { return nullptr; } // _0C (weak)
 };
 
 struct Section : public ISection {

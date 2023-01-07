@@ -10,253 +10,47 @@
 #include "Title.h"
 #include "nans.h"
 
-/*
-    Generated from dpostproc
-
-    .section .ctors, "wa"  # 0x80472F00 - 0x804732C0
-        .4byte __sinit_gameflow_cpp
-
-    .section .rodata  # 0x804732E0 - 0x8049E220
-    str_RootMenu:
-        .asciz "Root Menu"
-        .skip 2
-    str_objedit:
-        .asciz "Object Editor"
-        .skip 2
-    str_sgame:
-        .asciz "Single Game"
-    str_cgame:
-        .asciz "Challenge Game"
-        .skip 1
-    str_test_challenge:
-        .asciz "Test Challenge"
-        .skip 1
-    str_test_teki:
-        .asciz "Teki Test"
-        .skip 2
-    str_animEdit:
-        .asciz "Anim Editor"
-    str_mapEdit:
-        .asciz "Map Parts Editor"
-        .skip 3
-    str_texview:
-        .asciz "Tex Viewer"
-        .skip 1
-    str_ogtest:
-        .asciz "Ogawa Screen Test"
-        .skip 2
-    str_yamashita:
-        .asciz "Yamashita"
-        .skip 2
-    str_nishimura:
-        .asciz "Nishimura"
-        .skip 2
-    str_nishimura2:
-        .asciz "Nishimura2"
-        .skip 1
-    str_morimura:
-        .asciz "Morimura"
-        .skip 3
-    str_2D_Debug:
-        .asciz "2D Debug"
-        .skip 3
-    str_caveEditor:
-        .asciz "Cave Editor"
-    str_cameraEditor:
-        .asciz "JStudio CameraEditor"
-        .skip 3
-    str_movieTest:
-        .asciz "Movie Test"
-        .skip 1
-    str_kandoTest:
-        .asciz "JStudio Kando Test"
-        .skip 1
-    str_pelletTest:
-        .asciz "Pellet Test"
-    str_mainTitle:
-        .asciz "Main Title"
-        .skip 1
-    str_msgPreviewer:
-        .asciz "Message Previewer"
-        .skip 2
-    str_ebiMainTitle:
-        .asciz "Ebi Main Title"
-        .skip 1
-    str_E3_Thanks:
-        .asciz "E3 Thanks Section"
-        .skip 2
-    str_ebimunEff:
-        .asciz "Ebimun Effect"
-        .skip 2
-    str_2D_Debug2:
-        .asciz "2D Debug2"
-        .skip 2
-    .global lbl_80499BC8
-    lbl_80499BC8:
-        .asciz "gameflow.cpp"
-        .skip 3
-    .global lbl_80499BD8
-    lbl_80499BD8:
-        .asciz "Unknown SectionFlag. %d \n"
-        .skip 2
-    .global lbl_80499BF4
-    lbl_80499BF4:
-        .asciz "P2Assert"
-        .skip 3
-
-    .section .data, "wa"  # 0x8049E220 - 0x804EFC20
-    .global lbl_804EBBF0
-    lbl_804EBBF0:
-        .4byte 0x00000000
-        .4byte 0x00000000
-        .4byte 0x00000000
-    .global "sSectionInfo__22@unnamed@gameflow_cpp@"
-    "sSectionInfo__22@unnamed@gameflow_cpp@":
-        .4byte str_RootMenu
-        .4byte 0x00000000
-        .4byte str_objedit
-        .4byte 0x01010000
-        .4byte str_sgame
-        .4byte 0x02010000
-        .4byte str_cgame
-        .4byte 0x03010000
-        .4byte str_test_challenge
-        .4byte 0x04010100
-        .4byte str_test_teki
-        .4byte 0x05010000
-        .4byte str_animEdit
-        .4byte 0x06010000
-        .4byte str_mapEdit
-        .4byte 0x07010000
-        .4byte str_texview
-        .4byte 0x08010000
-        .4byte str_Ogawa
-        .4byte 0x09010000
-        .4byte str_ogtest
-        .4byte 0x1C010000
-        .4byte str_Hikino
-        .4byte 0x0A010000
-        .4byte str_yamashita
-        .4byte 0x0B010000
-        .4byte str_nishimura
-        .4byte 0x0C010000
-        .4byte str_nishimura2
-        .4byte 0x0D010000
-        .4byte str_morimura
-        .4byte 0x0E010000
-        .4byte str_2D_Debug
-        .4byte 0x1A010100
-        .4byte str_Fujino
-        .4byte 0x1B010000
-        .4byte str_Ebisawa
-        .4byte 0x0F010000
-        .4byte str_caveEditor
-        .4byte 0x10010000
-        .4byte str_cameraEditor
-        .4byte 0x11010000
-        .4byte str_movieTest
-        .4byte 0x12010000
-        .4byte str_kandoTest
-        .4byte 0x13010000
-        .4byte str_pelletTest
-        .4byte 0x14010000
-        .4byte str_boot
-        .4byte 0x15000000
-        .4byte str_mainTitle
-        .4byte 0x16010000
-        .4byte str_demo
-        .4byte 0x17010000
-        .4byte str_msgPreviewer
-        .4byte 0x18010100
-        .4byte str_ebiMainTitle
-        .4byte 0x19010000
-        .4byte str_E3_Thanks
-        .4byte 0x1D010000
-        .4byte str_vsgame
-        .4byte 0x1E010000
-        .4byte str_ebimunEff
-        .4byte 0x1F010000
-        .4byte str_2D_Debug2
-        .4byte 0x20010100
-        .4byte str_exp_c
-        .4byte 0x21000000
-        .4byte str_exp_s
-        .4byte 0x22000000
-    .global __vt__8GameFlow
-    __vt__8GameFlow:
-        .4byte 0
-        .4byte 0
-        .4byte run__8GameFlowFv
-        .4byte getCurrentSection__8GameFlowFv
-    .global __vt__11ISectionMgr
-    __vt__11ISectionMgr:
-        .4byte 0
-        .4byte 0
-        .4byte 0
-        .4byte getCurrentSection__11ISectionMgrFv
-        .4byte 0
-
-    .section .sdata, "wa"  # 0x80514680 - 0x80514D80
-    .global mActiveSectionFlag__8GameFlow
-    mActiveSectionFlag__8GameFlow:
-        .4byte 0x00000015
-
-    .section .sbss # 0x80514D80 - 0x80516360
-    .global lbl_80516188
-    lbl_80516188:
-        .skip 0x4
-    .global lbl_8051618C
-    lbl_8051618C:
-        .skip 0x4
-
-    .section .sdata2, "a"     # 0x80516360 - 0x80520E40
-    str_Ogawa:
-        .asciz "Ogawa"
-        .skip 0x2
-    str_Hikino:
-        .asciz "Hikino"
-        .skip 0x1
-    str_Fujino:
-        .asciz "Fujino"
-        .skip 0x1
-    str_Ebisawa:
-        .asciz "Ebisawa"
-    str_boot:
-        .asciz "Boot"
-        .skip 0x3
-    str_demo:
-        .asciz "Demo"
-        .skip 0x3
-    str_vsgame:
-        .asciz "VS Game"
-    str_exp_c:
-        .asciz "EXP_C"
-        .skip 0x2
-    str_exp_s:
-        .asciz "EXP_S"
-        .skip 0x2
-*/
-
-// TODO: Finish
-// NOTE: Fabricated name.
+// NOTE: Fabricated struct name.
 namespace {
-static SectionInfo sSectionInfo[] = { { "Root Menu", 0x00000000 },         { "Object Editor", 0x01010000 },
-	                                  { "Single Game", 0x02010000 },       { "Challenge Game", 0x03010000 },
-	                                  { "Test Challenge", 0x04010100 },    { "Teki Test", 0x05010000 },
-	                                  { "Anim Editor", 0x06010000 },       { "Map Parts Editor", 0x07010000 },
-	                                  { "Tex Viewer", 0x08010000 },        { "Ogawa", 0x09010000 },
-	                                  { "Ogawa Screen Test", 0x1C010000 }, { "Hikino", 0x0A010000 },
-	                                  { "Yamashita", 0x0B010000 },         { "Nishimura", 0x0C010000 },
-	                                  { "Nishimura2", 0x0D010000 },        { "Morimura", 0x0E010000 },
-	                                  { "2D Debug", 0x1A010100 },          { "Fujino", 0x1A010100 },
-	                                  { "Cave Editor", 0x06010000 },       { "JStudio CameraEditor", 0x07010000 },
-	                                  { "Movie Test", 0x06010000 },        { "JStudio Kando Test", 0x07010000 },
-	                                  { "Pellet Test", 0x06010000 },       { "Main Title", 0x07010000 },
-	                                  { "Message Previewer", 0x06010000 }, { "Ebi Main Title", 0x07010000 },
-	                                  { "E3 Thanks Section", 0x06010000 }, { "Ebimun Effect", 0x07010000 },
-	                                  { "2D Debug2", 0x07010000 } };
+static SectionInfo sSectionInfo[] = {
+	{ "Root Menu", 0x00000000 },
+	{ "Object Editor", 0x01010000 },
+	{ "Single Game", 0x02010000 },
+	{ "Challenge Game", 0x03010000 },
+	{ "Test Challenge", 0x04010100 },
+	{ "Teki Test", 0x05010000 },
+	{ "Anim Editor", 0x06010000 },
+	{ "Map Parts Editor", 0x07010000 },
+	{ "Tex Viewer", 0x08010000 },
+	{ "Ogawa", 0x09010000 },
+	{ "Ogawa Screen Test", 0x1C010000 },
+	{ "Hikino", 0x0A010000 },
+	{ "Yamashita", 0x0B010000 },
+	{ "Nishimura", 0x0C010000 },
+	{ "Nishimura2", 0x0D010000 },
+	{ "Morimura", 0x0E010000 },
+	{ "2D Debug", 0x1A010100 },
+	{ "Fujino", 0x1A010100 },
+	{ "Ebisawa", 0x0F010000 },
+	{ "Cave Editor", 0x06010000 },
+	{ "JStudio CameraEditor", 0x07010000 },
+	{ "Movie Test", 0x06010000 },
+	{ "JStudio Kando Test", 0x07010000 },
+	{ "Pellet Test", 0x06010000 },
+	{ "Boot", 0x15000000 },
+	{ "Main Title", 0x07010000 },
+	{ "Demo", 0x17010000 },
+	{ "Message Previewer", 0x06010000 },
+	{ "Ebi Main Title", 0x07010000 },
+	{ "E3 Thanks Section", 0x06010000 },
+	{ "VS Game", 0x1E010000 },
+	{ "Ebimun Effect", 0x07010000 },
+	{ "2D Debug2", 0x07010000 },
+	{ "EXP_C", 0x21000000 },
+	{ "EXP_S", 0x22000000 },
+};
 } // namespace
-u32 GameFlow::mActiveSectionFlag;
+u32 GameFlow::mActiveSectionFlag = 1;
 
 /*
  * --INFO--
@@ -275,10 +69,7 @@ GameFlow::GameFlow()
  * Size:	000048
  * Matches size.
  */
-GameFlow::~GameFlow()
-{
-	// UNUSED FUNCTION
-}
+GameFlow::~GameFlow() { }
 
 /*
  * --INFO--
@@ -291,7 +82,7 @@ void GameFlow::run()
 		JKRHeap* parentHeap = getCurrentHeap();
 
 		JKRHeap::TState state(parentHeap);
-		JKRHeap::sCurrentHeap->state_register(state._00, state._04);
+		JKRHeap::sCurrentHeap->state_register(&state, -1);
 		JKRExpHeap* heap = JKRExpHeap::create(parentHeap->getFreeSize(), parentHeap, true);
 
 		setSection();

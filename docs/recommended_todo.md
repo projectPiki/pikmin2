@@ -214,11 +214,11 @@
 ### <section id="sysGCU">sysGCU</section>
 | File | Size (bytes) | File | Size (bytes) |
 | ---- | ---- | ---- | ---- |
-| <a href="https://github.com/projectPiki/pikmin2/tree/main/src/sysGCU/moviePlayerAudio.cpp">moviePlayerAudio.cpp</a> | 5671 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/sysGCU/aramMgr.cpp">aramMgr.cpp</a> | 6632 |
-| <a href="https://github.com/projectPiki/pikmin2/tree/main/src/sysGCU/THPRead.c">THPRead.c</a> | 7147 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/sysGCU/section.cpp">section.cpp</a> | 7218 |
-| <a href="https://github.com/projectPiki/pikmin2/tree/main/src/sysGCU/THPAudioDecode.c">THPAudioDecode.c</a> | 7342 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/sysGCU/moviePlayerPauseAndDraw.cpp">moviePlayerPauseAndDraw.cpp</a> | 8595 |
-| <a href="https://github.com/projectPiki/pikmin2/tree/main/src/sysGCU/screenScene.cpp">screenScene.cpp</a> | 9355 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/sysGCU/THPVideoDecode.c">THPVideoDecode.c</a> | 10029 |
-| <a href="https://github.com/projectPiki/pikmin2/tree/main/src/sysGCU/gameflow.cpp">gameflow.cpp</a> | 11288 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/sysGCU/loadResource.cpp">loadResource.cpp</a> | 11781 |
+| <a href="https://github.com/projectPiki/pikmin2/tree/main/src/sysGCU/gameflow.cpp">gameflow.cpp</a> | 5235 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/sysGCU/moviePlayerAudio.cpp">moviePlayerAudio.cpp</a> | 5671 |
+| <a href="https://github.com/projectPiki/pikmin2/tree/main/src/sysGCU/aramMgr.cpp">aramMgr.cpp</a> | 6632 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/sysGCU/THPRead.c">THPRead.c</a> | 7147 |
+| <a href="https://github.com/projectPiki/pikmin2/tree/main/src/sysGCU/section.cpp">section.cpp</a> | 7218 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/sysGCU/THPAudioDecode.c">THPAudioDecode.c</a> | 7342 |
+| <a href="https://github.com/projectPiki/pikmin2/tree/main/src/sysGCU/moviePlayerPauseAndDraw.cpp">moviePlayerPauseAndDraw.cpp</a> | 8595 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/sysGCU/screenScene.cpp">screenScene.cpp</a> | 9355 |
+| <a href="https://github.com/projectPiki/pikmin2/tree/main/src/sysGCU/THPVideoDecode.c">THPVideoDecode.c</a> | 10029 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/sysGCU/loadResource.cpp">loadResource.cpp</a> | 11781 |
 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/sysGCU/heapStatus.cpp">heapStatus.cpp</a> | 12405 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/sysGCU/dvdThread.cpp">dvdThread.cpp</a> | 12535 |
 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/sysGCU/P2DScreen.cpp">P2DScreen.cpp</a> | 13017 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/sysGCU/modelEffect.cpp">modelEffect.cpp</a> | 13177 |
 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/sysGCU/JSTObjectSpecialActor.cpp">JSTObjectSpecialActor.cpp</a> | 13400 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/sysGCU/messageObj.cpp">messageObj.cpp</a> | 16081 |

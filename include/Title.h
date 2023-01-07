@@ -60,7 +60,6 @@ struct Section : public Game::BaseHIOSection {
 	int m_movieIndex;                      // _2F3C
 	JKRArchive* _2F40;                     // _2F40
 	u8 _2F44;                              // _2F44
-	u8 _2F48[8];                           // _2F48
 };
 } // namespace Title
 
