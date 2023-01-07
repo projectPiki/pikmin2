@@ -129,7 +129,7 @@ struct TNodeItemMgr : public BaseItemMgr, public Container<BaseItem> {
 	virtual void* getNext(void*);  // _BC (weak)
 	virtual void* getStart();      // _B0 (weak)
 	virtual void* getEnd();        // _B4 (weak)
-	virtual ~TNodeItemMgr();       // _B8 (weak)
+	virtual ~TNodeItemMgr() { }    // _B8 (weak)
 
 	BaseItem* birth();
 	void entry(BaseItem*);

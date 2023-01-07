@@ -270,6 +270,17 @@ inline f32 _distanceBetweenCheckDouble(Vector3f& me, Vector3f& them)
 	}
 }
 
+inline f32 _normalise2(Vector3f& diff)
+{
+	f32 dist = _length(diff);
+	if (dist > 0.0f) {
+		f32 norm = 1.0f / dist;
+		diff     = diff * norm;
+		return dist;
+	}
+	return 0.0f;
+}
+
 inline void _normalise(Vector3f& vec)
 {
 	Vector2f sqr(vec.z * vec.z, vec.x * vec.x + vec.y * vec.y);
@@ -344,6 +355,21 @@ inline f32 Vector3f::distance(Vector3f& them)
 	sumZ(diff, &sum);
 
 	return _sqrtf(sum);
+}
+
+inline f32 _normaliseDistance(Vector3f& vec1, Vector3f& vec2)
+{
+	Vector3f vec = vec1 - vec2;
+	Vector2f sqr(vec.z * vec.z, vec.x * vec.x + vec.y * vec.y);
+	f32 length = sqr.x + sqr.y;
+	__sqrtf(length, &length);
+
+	if (length > 0.0f) {
+		f32 norm = 1.0f / length;
+		vec      = vec * norm;
+		return length;
+	}
+	return 0.0f;
 }
 
 inline void setAccel(Vector3f& outputVec, const Vector3f& inputVec, f32 massRatio, f32 fps, f32 groundFactor, f32 airFactor)
