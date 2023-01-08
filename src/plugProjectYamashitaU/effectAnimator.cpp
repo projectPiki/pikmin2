@@ -15,7 +15,7 @@ KeyData sLength_Move1[] = { { 0.0f, 1.0f }, { 50.0f, 1.0f }, { -1.0f, 0.0f } };
 ObjMgrData sMove1[] = { sVibration_Move1, sBristle_Move1, sLength_Move1 };
 
 /// WAITACT1
-KeyData sVibration_Waitact1[] = { { 0.0f, 0.0f }, { 10.0f, 0.0f }, { 14.0f, 0.6f }, { 19.0f, 0.0f }, { 250.0f, 0.0f }, { -1.0f, 0.0f } };
+KeyData sVibration_Waitact1[] = { { 0.0f, 0.0f }, { 10.0f, 0.0f }, { 14.0f, 0.6f }, { 19.0f, 0.0f }, { 25.0f, 0.0f }, { -1.0f, 0.0f } };
 
 KeyData sBristle_Waitact1[] = { { 0.0f, 0.25f }, { 25.0f, 0.25f }, { -1.0f, 0.0f } };
 
