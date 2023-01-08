@@ -1,16 +1,20 @@
-#include "Controller.h"
 #include "Game/GameSystem.h"
 #include "Game/MoviePlayer.h"
 #include "Game/Navi.h"
 #include "Game/gamePlayData.h"
-#include "Game/gameStages.h"
-#include "JSystem/JKR/JKRHeap.h"
-#include "JSystem/JUT/JUTGamePad.h"
 #include "Screen/Game2DMgr.h"
-#include "System.h"
-#include "nans.h"
-#include "types.h"
 #include "Game/SingleGame.h"
+#include "kh/WorldMap.h"
+#include "PSGame/SceneInfo.h"
+#include "PSSystem/PSGame.h"
+#include "PSGame/PikScene.h"
+#include "TParticle2dMgr.h"
+#include "JSystem/J2D/J2DPrint.h"
+
+// probably have this somewhere easy to find
+#define MAX_LEVELS 4
+
+static const char name[] = "SingleGS_Game";
 
 /*
     Generated from dpostproc
@@ -182,72 +186,9 @@ namespace Game {
 SingleGame::SelectState::SelectState()
     : State(SGS_Select)
 {
-	_20               = new Controller(JUTGamePad::PORT_0);
-	m_dvdLoadCallback = new Delegate<SelectState>(this, &SelectState::dvdload);
-	_28               = -1;
-	/*
-	stwu     r1, -0x20(r1)
-	mflr     r0
-	lis      r4, "__vt__Q24Game36FSMState<Q24Game17SingleGameSection>"@ha
-	li       r5, 0
-	stw      r0, 0x24(r1)
-	addi     r0, r4, "__vt__Q24Game36FSMState<Q24Game17SingleGameSection>"@l
-	lis      r4, __vt__Q34Game10SingleGame5State@ha
-	stw      r31, 0x1c(r1)
-	mr       r31, r3
-	addi     r4, r4, __vt__Q34Game10SingleGame5State@l
-	stw      r0, 0(r3)
-	li       r0, 1
-	lis      r3, __vt__Q34Game10SingleGame11SelectState@ha
-	stw      r0, 4(r31)
-	addi     r0, r3, __vt__Q34Game10SingleGame11SelectState@l
-	li       r3, 0xb0
-	stw      r5, 8(r31)
-	stw      r4, 0(r31)
-	stw      r0, 0(r31)
-	bl       __nw__FUl
-	or.      r0, r3, r3
-	beq      lbl_8021B9B0
-	li       r4, 0
-	bl       __ct__10ControllerFQ210JUTGamePad8EPadPort
-	mr       r0, r3
-
-lbl_8021B9B0:
-	stw      r0, 0x20(r31)
-	li       r3, 0x14
-	bl       __nw__FUl
-	cmplwi   r3, 0
-	beq      lbl_8021BA0C
-	lis      r4, lbl_804C077C@ha
-	lis      r5, __vt__9IDelegate@ha
-	addi     r8, r4, lbl_804C077C@l
-	lis      r4, "__vt__42Delegate<Q34Game10SingleGame11SelectState>"@ha
-	lwz      r7, 0(r8)
-	addi     r5, r5, __vt__9IDelegate@l
-	lwz      r6, 4(r8)
-	addi     r0, r4, "__vt__42Delegate<Q34Game10SingleGame11SelectState>"@l
-	lwz      r4, 8(r8)
-	stw      r7, 8(r1)
-	stw      r5, 0(r3)
-	stw      r0, 0(r3)
-	stw      r31, 4(r3)
-	stw      r7, 8(r3)
-	stw      r6, 0xc(r3)
-	stw      r6, 0xc(r1)
-	stw      r4, 0x10(r1)
-	stw      r4, 0x10(r3)
-
-lbl_8021BA0C:
-	stw      r3, 0x14(r31)
-	li       r0, -1
-	mr       r3, r31
-	stw      r0, 0x28(r31)
-	lwz      r31, 0x1c(r1)
-	lwz      r0, 0x24(r1)
-	mtlr     r0
-	addi     r1, r1, 0x20
-	blr
-	*/
+	m_controller       = new Controller(JUTGamePad::PORT_0);
+	m_dvdLoadCallback  = new Delegate<SelectState>(this, &dvdload);
+	m_previousCourseID = -1;
 }
 
 /*
@@ -255,60 +196,20 @@ lbl_8021BA0C:
  * Address:	8021BA30
  * Size:	000098
  */
-void SingleGame::SelectState::init(Game::SingleGameSection*, Game::StateArg*)
+void SingleGame::SelectState::init(SingleGameSection*, StateArg*)
 {
 	moviePlayer->reset();
-	_24 = 0;
-	_1C = nullptr;
-	_18 = nullptr;
+	m_state      = 0;
+	m_parentHeap = nullptr;
+	m_wMapHeap   = nullptr;
 	Screen::gGame2DMgr->m_screenMgr->reset();
-	sParentHeapFreeSize_Last = sParentHeapFreeSize;
-	sParentHeapFreeSize      = JKRHeap::sCurrentHeap->getFreeSize();
+	JKRHeap::sParentHeapFreeSize_Last = JKRHeap::sParentHeapFreeSize;
+	JKRHeap::sParentHeapFreeSize      = JKRHeap::sCurrentHeap->getFreeSize();
 	JKRHeap::sCurrentHeap->getFreeSize();
 	JKRHeap::sCurrentHeap->getTotalFreeSize();
-	playData->_20 = 0;
+	playData->m_deadNaviID[0] = 0;
 	naviMgr->clearDeadCount();
-	m_anyFirstTimes = false;
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	mr       r31, r3
-	lwz      r3, moviePlayer__4Game@sda21(r13)
-	bl       reset__Q24Game11MoviePlayerFv
-	li       r0, 0
-	stw      r0, 0x24(r31)
-	stw      r0, 0x1c(r31)
-	stw      r0, 0x18(r31)
-	lwz      r3, gGame2DMgr__6Screen@sda21(r13)
-	lwz      r3, 0x18(r3)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x18(r12)
-	mtctr    r12
-	bctrl
-	lwz      r0, sParentHeapFreeSize@sda21(r13)
-	lwz      r3, sCurrentHeap__7JKRHeap@sda21(r13)
-	stw      r0, sParentHeapFreeSize_Last@sda21(r13)
-	bl       getFreeSize__7JKRHeapFv
-	stw      r3, sParentHeapFreeSize@sda21(r13)
-	lwz      r3, sCurrentHeap__7JKRHeap@sda21(r13)
-	bl       getFreeSize__7JKRHeapFv
-	lwz      r3, sCurrentHeap__7JKRHeap@sda21(r13)
-	bl       getTotalFreeSize__7JKRHeapFv
-	lwz      r3, playData__4Game@sda21(r13)
-	li       r0, 0
-	stb      r0, 0x20(r3)
-	lwz      r3, naviMgr__4Game@sda21(r13)
-	bl       clearDeadCount__Q24Game7NaviMgrFv
-	li       r0, 0
-	stb      r0, 0x2c(r31)
-	lwz      r0, 0x14(r1)
-	lwz      r31, 0xc(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	m_newLevelOpen = false;
 }
 
 /*
@@ -316,17 +217,19 @@ void SingleGame::SelectState::init(Game::SingleGameSection*, Game::StateArg*)
  * Address:	8021BAC8
  * Size:	000260
  */
-void SingleGame::SelectState::initNext(Game::SingleGameSection* section)
+void SingleGame::SelectState::initNext(SingleGameSection* section)
 {
 	sys->setFrameRate(1);
-	_24 = 1;
-	_1C = JKRHeap::sCurrentHeap;
-	_1C->getFreeSize();
-	sParentHeapFreeSize = _1C->getFreeSize();
-	_1C->getFreeSize();
-	_1C->getTotalFreeSize();
-	_18 = JKRExpHeap::create(_1C->getFreeSize(), _1C, true);
-	_18->becomeCurrentHeap();
+	m_state = 1;
+
+	m_parentHeap = JKRHeap::sCurrentHeap;
+	m_parentHeap->getFreeSize();
+	JKRHeap::sParentHeapFreeSize = m_parentHeap->getFreeSize();
+	m_parentHeap->getFreeSize();
+	m_parentHeap->getTotalFreeSize();
+	m_wMapHeap = JKRExpHeap::create(m_parentHeap->getFreeSize(), m_parentHeap, true);
+	m_wMapHeap->becomeCurrentHeap();
+
 	if (playData->courseOpen(2) && (playData->isStoryFlag(STORY_DebtPaid)) && !playData->courseOpen(3)) {
 		playData->openCourse(3);
 	}
@@ -334,200 +237,41 @@ void SingleGame::SelectState::initNext(Game::SingleGameSection* section)
 		playData->setDemoFlag(DEMO_First_Globe_Day_End);
 		playData->setDemoFlag(DEMO_First_Cave_Return);
 	}
+
 	bool anyFirstTimes = false;
-	for (int i = 0; i < 4; i++) {
+	for (int i = 0; i < MAX_LEVELS; i++) {
 		if (playData->courseFirstTime(i)) {
 			anyFirstTimes = true;
 		}
 	}
-	m_anyFirstTimes = anyFirstTimes;
-	_10             = new kh::Screen::WorldMap();
-	Game::WorldMap::InitArg arg;
-	arg.m_currentCourseIndex   = 0;
-	arg.m_hasNewOtakaraEntries = false;
-	arg.m_hasNewTekiEntries    = false;
-	arg._16                    = 0;
-	arg.m_dayCount             = gameSystem->m_timeMgr->m_dayCount + 1;
-	arg.m_stages               = stageList;
-	arg.m_heap                 = _18;
-	arg.m_controller           = _20;
-	arg.m_currentCourseIndex   = (_28 == -1) ? playData->getCurrentCourseIndex() : _28;
-	arg.m_hasNewTekiEntries    = playData->m_tekiStatMgr.whatsNew();
-	arg.m_hasNewOtakaraEntries = playData->hasPelletZukanWhatsNew();
-	arg._16                    = section->_228;
-	_10->init(arg);
+	m_newLevelOpen = anyFirstTimes;
+
+	m_worldMap = new kh::Screen::WorldMap;
+	WorldMap::InitArg arg;
+
+	arg.m_dayCount   = gameSystem->m_timeMgr->m_dayCount + 1;
+	arg.m_stages     = stageList;
+	arg.m_heap       = m_wMapHeap;
+	arg.m_controller = m_controller;
+
+	if (m_previousCourseID == -1) {
+		arg.m_initialCourseIndex = playData->getCurrentCourseIndex();
+	} else {
+		arg.m_initialCourseIndex = m_previousCourseID;
+	}
+
+	arg.m_hasNewPiklopediaEntries    = playData->m_tekiStatMgr.whatsNew();
+	arg.m_hasNewTreasureHoardEntries = playData->hasPelletZukanWhatsNew();
+	arg._16                          = section->_228;
+	section->_228                    = 1;
+	m_worldMap->init(arg);
+
 	section->m_displayWiper = section->m_wipeInFader;
+	section->m_wipeInFader->start(1.0f);
+
 	section->refreshHIO();
-	_20->setButtonRepeat(0x3000000, 0x1E, 1);
-	sys->dvdLoadUseCallBack(&section->_1B8, m_dvdLoadCallback);
-	/*
-	stwu     r1, -0x30(r1)
-	mflr     r0
-	stw      r0, 0x34(r1)
-	stw      r31, 0x2c(r1)
-	mr       r31, r4
-	li       r4, 1
-	stw      r30, 0x28(r1)
-	mr       r30, r3
-	stw      r29, 0x24(r1)
-	stw      r28, 0x20(r1)
-	lwz      r3, sys@sda21(r13)
-	bl       setFrameRate__6SystemFi
-	li       r0, 1
-	stw      r0, 0x24(r30)
-	lwz      r0, sCurrentHeap__7JKRHeap@sda21(r13)
-	stw      r0, 0x1c(r30)
-	lwz      r3, 0x1c(r30)
-	bl       getFreeSize__7JKRHeapFv
-	lwz      r3, 0x1c(r30)
-	bl       getFreeSize__7JKRHeapFv
-	stw      r3, sParentHeapFreeSize@sda21(r13)
-	lwz      r3, 0x1c(r30)
-	bl       getFreeSize__7JKRHeapFv
-	lwz      r3, 0x1c(r30)
-	bl       getTotalFreeSize__7JKRHeapFv
-	lwz      r29, 0x1c(r30)
-	mr       r3, r29
-	bl       getFreeSize__7JKRHeapFv
-	mr       r4, r29
-	li       r5, 1
-	bl       create__10JKRExpHeapFUlP7JKRHeapb
-	stw      r3, 0x18(r30)
-	lwz      r3, 0x18(r30)
-	bl       becomeCurrentHeap__7JKRHeapFv
-	lwz      r3, playData__4Game@sda21(r13)
-	li       r4, 2
-	bl       courseOpen__Q24Game8PlayDataFi
-	clrlwi.  r0, r3, 0x18
-	beq      lbl_8021BB90
-	lwz      r3, playData__4Game@sda21(r13)
-	lbz      r0, 0x2f(r3)
-	clrlwi.  r0, r0, 0x1f
-	beq      lbl_8021BB90
-	li       r4, 3
-	bl       courseOpen__Q24Game8PlayDataFi
-	clrlwi.  r0, r3, 0x18
-	bne      lbl_8021BB90
-	lwz      r3, playData__4Game@sda21(r13)
-	li       r4, 3
-	bl       openCourse__Q24Game8PlayDataFi
-
-lbl_8021BB90:
-	lwz      r3, playData__4Game@sda21(r13)
-	li       r4, 1
-	bl       courseOpen__Q24Game8PlayDataFi
-	clrlwi.  r0, r3, 0x18
-	beq      lbl_8021BBBC
-	lwz      r3, playData__4Game@sda21(r13)
-	li       r4, 0x12
-	bl       setDemoFlag__Q24Game8PlayDataFi
-	lwz      r3, playData__4Game@sda21(r13)
-	li       r4, 6
-	bl       setDemoFlag__Q24Game8PlayDataFi
-
-lbl_8021BBBC:
-	li       r29, 0
-	li       r28, 0
-
-lbl_8021BBC4:
-	lwz      r3, playData__4Game@sda21(r13)
-	mr       r4, r28
-	bl       courseFirstTime__Q24Game8PlayDataFi
-	clrlwi.  r0, r3, 0x18
-	beq      lbl_8021BBDC
-	li       r29, 1
-
-lbl_8021BBDC:
-	addi     r28, r28, 1
-	cmpwi    r28, 4
-	blt      lbl_8021BBC4
-	stb      r29, 0x2c(r30)
-	li       r3, 0x184
-	bl       __nw__FUl
-	or.      r0, r3, r3
-	beq      lbl_8021BC04
-	bl       __ct__Q32kh6Screen8WorldMapFv
-	mr       r0, r3
-
-lbl_8021BC04:
-	stw      r0, 0x10(r30)
-	li       r4, 0
-	stw      r4, 8(r1)
-	lwz      r3, gameSystem__4Game@sda21(r13)
-	stw      r4, 0x10(r1)
-	lwz      r0, stageList__4Game@sda21(r13)
-	stw      r4, 0xc(r1)
-	stw      r4, 0x14(r1)
-	stw      r4, 0x18(r1)
-	stb      r4, 0x1d(r1)
-	stb      r4, 0x1c(r1)
-	stb      r4, 0x1e(r1)
-	lwz      r3, 0x40(r3)
-	lwz      r3, 0x218(r3)
-	addi     r3, r3, 1
-	stw      r0, 0xc(r1)
-	stw      r3, 0x14(r1)
-	lwz      r0, 0x18(r30)
-	stw      r0, 8(r1)
-	lwz      r0, 0x20(r30)
-	stw      r0, 0x10(r1)
-	lwz      r0, 0x28(r30)
-	cmpwi    r0, -1
-	bne      lbl_8021BC74
-	lwz      r3, playData__4Game@sda21(r13)
-	bl       getCurrentCourseIndex__Q24Game8PlayDataFv
-	stw      r3, 0x18(r1)
-	b        lbl_8021BC78
-
-lbl_8021BC74:
-	stw      r0, 0x18(r1)
-
-lbl_8021BC78:
-	lwz      r3, playData__4Game@sda21(r13)
-	addi     r3, r3, 0x40
-	bl       whatsNew__Q34Game8TekiStat3MgrFv
-	stb      r3, 0x1c(r1)
-	lwz      r3, playData__4Game@sda21(r13)
-	bl       hasPelletZukanWhatsNew__Q24Game8PlayDataFv
-	stb      r3, 0x1d(r1)
-	li       r0, 1
-	addi     r4, r1, 8
-	lbz      r3, 0x228(r31)
-	stb      r3, 0x1e(r1)
-	stb      r0, 0x228(r31)
-	lwz      r3, 0x10(r30)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x10(r12)
-	mtctr    r12
-	bctrl
-	lwz      r0, 0xd4(r31)
-	lfs      f1, lbl_8051A050@sda21(r2)
-	stw      r0, 0x18(r31)
-	lwz      r3, 0xd4(r31)
-	bl       start__8WipeBaseFf
-	mr       r3, r31
-	lwz      r12, 0(r31)
-	lwz      r12, 0x4c(r12)
-	mtctr    r12
-	bctrl
-	lwz      r3, 0x20(r30)
-	lis      r4, 0x300
-	li       r5, 0x1e
-	li       r6, 1
-	bl       setButtonRepeat__10JUTGamePadFUlUlUl
-	lwz      r3, sys@sda21(r13)
-	addi     r4, r31, 0x1b8
-	lwz      r5, 0x14(r30)
-	bl       dvdLoadUseCallBack__6SystemFP16DvdThreadCommandP9IDelegate
-	lwz      r0, 0x34(r1)
-	lwz      r31, 0x2c(r1)
-	lwz      r30, 0x28(r1)
-	lwz      r29, 0x24(r1)
-	lwz      r28, 0x20(r1)
-	mtlr     r0
-	addi     r1, r1, 0x30
-	blr
-	*/
+	m_controller->setButtonRepeat(0x3000000, 0x1E, 1);
+	sys->dvdLoadUseCallBack(&section->m_dvdThread, m_dvdLoadCallback);
 }
 
 /*
@@ -542,8 +286,52 @@ void WorldMap::Base::init(Game::WorldMap::InitArg&) { }
  * Address:	8021BD2C
  * Size:	00030C
  */
-void SingleGame::SelectState::dvdload(void)
+void SingleGame::SelectState::dvdload()
 {
+	PSGame::SceneInfo info;
+	if (m_newLevelOpen) {
+		info.m_sceneType = PSGame::SceneInfo::WORLD_MAP_NEWLEVEL;
+	} else {
+		info.m_sceneType = PSGame::SceneInfo::WORLD_MAP_NORMAL;
+	}
+	info.m_cameras = 0;
+
+	PSSystem::SceneMgr* mgr = PSSystem::getSceneMgr();
+	JUT_ASSERTLINE(394, mgr, "PSGetSceneMgr null\n");
+	mgr = PSSystem::getSceneMgr();
+	static_cast<PSGame::PikSceneMgr*>(mgr)->newAndSetCurrentScene(&info);
+
+	mgr = PSSystem::getSceneMgr();
+	mgr->checkScene();
+	mgr->m_scenes->m_child->scene1stLoadSync();
+
+	mgr = PSSystem::getSceneMgr();
+	mgr->checkScene();
+	mgr->m_scenes->m_child->startMainSeq();
+
+	if (getCurrentHeap() != m_parentHeap) {
+		JUT_PANICLINE(401, "MOC = Mouse on Cars!\n");
+	}
+
+	void* handle = JKRDvdRipper::loadToMainRAM("user/Ebisawa/effect/eff2d_world_map.jpc", nullptr, Switch_0, 0, 0,
+	                                           JKRDvdRipper::ALLOC_DIR_TOP, 0, nullptr, nullptr);
+	JUT_ASSERTLINE(410, handle, "WORLD_MAP_JPC");
+	JPAResourceManager* jpamgr = new JPAResourceManager(handle, getCurrentHeap());
+	JPAEmitterManager* jpaemit = new JPAEmitterManager(1000, 256, getCurrentHeap(), 8, 8);
+	JUT_ASSERTLINE(416, particle2dMgr, "particle2dMgr null\n");
+	particle2dMgr->setSceneEmitterAndResourceManager(jpaemit, jpamgr);
+
+	if (getCurrentHeap() != m_parentHeap) {
+		JUT_PANICLINE(420, "MOC = Mouse on Cars!\n");
+	}
+
+	JUT_ASSERTLINE(423, m_worldMap, "mWorldMap null\n");
+	m_worldMap->loadResource();
+
+	if (getCurrentHeap() != m_parentHeap) {
+		JUT_PANICLINE(427, "MOC = Mouse on Cars!\n");
+	}
+
 	/*
 	stwu     r1, -0x60(r1)
 	mflr     r0
@@ -784,222 +572,109 @@ lbl_8021C018:
  * Address:	8021C038
  * Size:	000004
  */
-void WorldMap::Base::loadResource(void) { }
+void WorldMap::Base::loadResource() { }
 
 /*
  * --INFO--
  * Address:	8021C03C
  * Size:	0002AC
  */
-void SingleGame::SelectState::exec(Game::SingleGameSection*)
+void SingleGame::SelectState::exec(SingleGameSection* game)
 {
-	/*
-	stwu     r1, -0x40(r1)
-	mflr     r0
-	stw      r0, 0x44(r1)
-	stw      r31, 0x3c(r1)
-	mr       r31, r4
-	stw      r30, 0x38(r1)
-	mr       r30, r3
-	stw      r29, 0x34(r1)
-	lwz      r0, 0x24(r3)
-	cmpwi    r0, 1
-	beq      lbl_8021C080
-	bge      lbl_8021C098
-	cmpwi    r0, 0
-	bge      lbl_8021C078
-	b        lbl_8021C098
+	switch (m_state) {
+	case 0: {
+		initNext(game);
+		break;
+	}
+	case 1: {
+		if (game->m_dvdThread.m_mode == 2)
+			m_state = 2;
+		break;
+	}
+	default: {
+		if (m_wMapHeap) {
+			game->BaseHIOSection::doUpdate();
+			WorldMap::UpdateArg arg;
+			arg.m_courseInfo = nullptr;
+			arg.m_status     = WorldMap::WMapUpdate_0;
+			m_worldMap->update(arg);
 
-lbl_8021C078:
-	bl initNext__Q34Game10SingleGame11SelectStateFPQ24Game17SingleGameSection b
-lbl_8021C2CC
-
-lbl_8021C080:
-	lwz      r0, 0x1d0(r31)
-	cmpwi    r0, 2
-	bne      lbl_8021C2CC
-	li       r0, 2
-	stw      r0, 0x24(r30)
-	b        lbl_8021C2CC
-
-lbl_8021C098:
-	lwz      r0, 0x18(r30)
-	cmplwi   r0, 0
-	beq      lbl_8021C2CC
-	mr       r3, r31
-	bl       doUpdate__Q24Game14BaseHIOSectionFv
-	li       r0, 0
-	addi     r4, r1, 0x28
-	stw      r0, 0x28(r1)
-	stw      r0, 0x2c(r1)
-	lwz      r3, 0x10(r30)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x14(r12)
-	mtctr    r12
-	bctrl
-	lwz      r0, 0x2c(r1)
-	cmpwi    r0, 3
-	beq      lbl_8021C1D8
-	bge      lbl_8021C0F0
-	cmpwi    r0, 1
-	beq      lbl_8021C100
-	bge      lbl_8021C1A4
-	b        lbl_8021C2BC
-
-lbl_8021C0F0:
-	cmpwi    r0, 5
-	beq      lbl_8021C230
-	bge      lbl_8021C2BC
-	b        lbl_8021C26C
-
-lbl_8021C100:
-	li       r0, -1
-	li       r4, 0xa
-	stw      r0, 0x28(r30)
-	lwz      r3, 0x24c(r31)
-	bl       getState__Q34Game10SingleGame3FSMFi
-	cmplwi   r3, 0
-	beq      lbl_8021C128
-	li       r0, -1
-	stw      r0, 0x110(r3)
-	stw      r0, 0x114(r3)
-
-lbl_8021C128:
-	lwz      r29, 0x28(r1)
-	cmplwi   r29, 0
-	beq      lbl_8021C2BC
-	li       r0, 0
-	stb      r0, 0x228(r31)
-	lwz      r3, playData__4Game@sda21(r13)
-	bl       setPelletZukanOutOfDateAll__Q24Game8PlayDataFv
-	lwz      r3, playData__4Game@sda21(r13)
-	addi     r3, r3, 0x40
-	bl       setOutOfDateAll__Q34Game8TekiStat3MgrFv
-	lwz      r0, 0xd4(r31)
-	lfs      f1, lbl_8051A054@sda21(r2)
-	stw      r0, 0x18(r31)
-	lwz      r3, 0xd4(r31)
-	bl       start__8WipeBaseFf
-	stw      r29, 0x22c(r31)
-	li       r7, 0
-	li       r0, 1
-	mr       r3, r30
-	stb      r7, 0x20(r1)
-	mr       r4, r31
-	addi     r6, r1, 0x20
-	li       r5, 2
-	stb      r0, 0x21(r1)
-	stb      r7, 0x22(r1)
-	sth      r7, 0x24(r1)
-	lwz      r12, 0(r30)
-	lwz      r12, 0x1c(r12)
-	mtctr    r12
-	bctrl
-	b        lbl_8021C2BC
-
-lbl_8021C1A4:
-	li       r3, 1
-	li       r0, 0
-	stb      r3, 0x18(r1)
-	mr       r3, r30
-	mr       r4, r31
-	addi     r6, r1, 0x18
-	stw      r0, 0x1c(r1)
-	li       r5, 0xa
-	lwz      r12, 0(r30)
-	lwz      r12, 0x1c(r12)
-	mtctr    r12
-	bctrl
-	b        lbl_8021C2BC
-
-lbl_8021C1D8:
-	lwz      r4, 0x28(r1)
-	li       r3, 1
-	li       r0, 0
-	stb      r3, 0x10(r1)
-	cmplwi   r4, 0
-	stw      r0, 0x14(r1)
-	beq      lbl_8021C204
-	lwz      r0, 0x48(r4)
-	stw      r0, 0x14(r1)
-	stw      r0, 0x28(r30)
-	b        lbl_8021C20C
-
-lbl_8021C204:
-	li       r0, 2
-	stw      r0, 0x14(r1)
-
-lbl_8021C20C:
-	mr       r3, r30
-	mr       r4, r31
-	lwz      r12, 0(r30)
-	addi     r6, r1, 0x10
-	li       r5, 0xa
-	lwz      r12, 0x1c(r12)
-	mtctr    r12
-	bctrl
-	b        lbl_8021C2BC
-
-lbl_8021C230:
-	li       r0, -1
-	li       r4, 0xa
-	stw      r0, 0x28(r30)
-	lwz      r3, 0x24c(r31)
-	bl       getState__Q34Game10SingleGame3FSMFi
-	cmplwi   r3, 0
-	beq      lbl_8021C258
-	li       r0, -1
-	stw      r0, 0x110(r3)
-	stw      r0, 0x114(r3)
-
-lbl_8021C258:
-	li       r0, 0
-	mr       r3, r31
-	stb      r0, 0x228(r31)
-	bl       flow_goto_title__Q24Game17SingleGameSectionFv
-	b        lbl_8021C2CC
-
-lbl_8021C26C:
-	lwz      r3, 0x28(r1)
-	li       r0, 0
-	stb      r0, 8(r1)
-	cmplwi   r3, 0
-	stw      r0, 0xc(r1)
-	beq      lbl_8021C294
-	lwz      r0, 0x48(r3)
-	stw      r0, 0xc(r1)
-	stw      r0, 0x28(r30)
-	b        lbl_8021C29C
-
-lbl_8021C294:
-	li       r0, 2
-	stw      r0, 0xc(r1)
-
-lbl_8021C29C:
-	mr       r3, r30
-	mr       r4, r31
-	lwz      r12, 0(r30)
-	addi     r6, r1, 8
-	li       r5, 0xa
-	lwz      r12, 0x1c(r12)
-	mtctr    r12
-	bctrl
-
-lbl_8021C2BC:
-	lwz      r3, particle2dMgr@sda21(r13)
-	cmplwi   r3, 0
-	beq      lbl_8021C2CC
-	bl       update__14TParticle2dMgrFv
-
-lbl_8021C2CC:
-	lwz      r0, 0x44(r1)
-	lwz      r31, 0x3c(r1)
-	lwz      r30, 0x38(r1)
-	lwz      r29, 0x34(r1)
-	mtlr     r0
-	addi     r1, r1, 0x40
-	blr
-	*/
+			switch (arg.m_status) {
+			case WorldMap::WMapUpdate_GoToLoad: {
+				m_previousCourseID = -1;
+				ZukanState* state  = static_cast<ZukanState*>(game->m_fsm->getState(SGS_Zukan));
+				if (state) {
+					state->_110 = -1;
+					state->_114 = -1;
+				}
+				if (arg.m_courseInfo) {
+					CourseInfo* info = arg.m_courseInfo;
+					game->_228       = 0;
+					playData->setPelletZukanOutOfDateAll();
+					playData->m_tekiStatMgr.setOutOfDateAll();
+					game->m_displayWiper = game->m_wipeInFader;
+					game->m_wipeInFader->start(4.0f);
+					game->m_currentCourseInfo = info;
+					LoadStateArg larg;
+					larg._00 = 0;
+					larg._01 = 1;
+					larg._02 = 0;
+					larg._04 = 0;
+					transit(game, SGS_Load, &larg);
+				}
+				break;
+			}
+			case WorldMap::WMapUpdate_2: {
+				ZukanStateArg sarg;
+				sarg.m_zukanType = 1;
+				sarg.m_courseID  = 0;
+				transit(game, SGS_Zukan, &sarg);
+				break;
+			}
+			case WorldMap::WMapUpdate_GoToZukan: {
+				ZukanStateArg sarg;
+				sarg.m_zukanType = 1;
+				sarg.m_courseID  = 0;
+				if (arg.m_courseInfo) {
+					sarg.m_courseID    = arg.m_courseInfo->m_courseIndex;
+					m_previousCourseID = sarg.m_courseID;
+				} else {
+					sarg.m_courseID = 2;
+				}
+				transit(game, SGS_Zukan, &sarg);
+				break;
+			}
+			case WorldMap::WMapUpdate_ReturnToTitle: {
+				m_previousCourseID = -1;
+				ZukanState* state  = static_cast<ZukanState*>(game->m_fsm->getState(SGS_Zukan));
+				if (state) {
+					state->_110 = -1;
+					state->_114 = -1;
+				}
+				game->_228 = 0;
+				game->flow_goto_title();
+				return;
+			}
+			case WorldMap::WMapUpdate_4: {
+				ZukanStateArg sarg2;
+				sarg2.m_zukanType = 0;
+				sarg2.m_courseID  = 0;
+				if (arg.m_courseInfo) {
+					sarg2.m_courseID   = arg.m_courseInfo->m_courseIndex;
+					m_previousCourseID = sarg2.m_courseID;
+				} else {
+					sarg2.m_courseID = 2;
+				}
+				transit(game, SGS_Zukan, &sarg2);
+				break;
+			}
+			}
+			if (particle2dMgr) {
+				particle2dMgr->update();
+			}
+		}
+	}
+	}
 }
 
 /*
@@ -1014,8 +689,51 @@ void WorldMap::Base::update(Game::WorldMap::UpdateArg&) { }
  * Address:	8021C2EC
  * Size:	0002D0
  */
-void SingleGame::SelectState::draw(Game::SingleGameSection*, Graphics&)
+void SingleGame::SelectState::draw(SingleGameSection* game, Graphics& gfx)
 {
+	if (m_wMapHeap && m_state == 2) {
+		gfx.m_orthoGraph.setPort();
+
+		gfx.m_perspGraph.setPort();
+		m_worldMap->draw1st(gfx);
+
+		gfx.m_perspGraph.setPort();
+		particle2dMgr->draw(3, 0);
+
+		gfx.m_perspGraph.setPort();
+		m_worldMap->draw2nd(gfx);
+
+		gfx.m_perspGraph.setPort();
+		particle2dMgr->draw(2, 0);
+
+		gfx.m_perspGraph.setPort();
+		m_worldMap->draw3rd(gfx);
+
+		gfx.m_perspGraph.setPort();
+		particle2dMgr->draw(4, 0);
+
+		gfx.m_perspGraph.setPort();
+		m_worldMap->draw4th(gfx);
+
+		gfx.m_perspGraph.setPort();
+		particle2dMgr->draw(1, 0);
+
+		gfx.m_perspGraph.setPort();
+		particle2dMgr->draw(0, 0);
+
+		if ((int)JKRHeap::sParentHeapFreeSize && (int)JKRHeap::sParentHeapFreeSize_Last
+		    && (JKRHeap::sParentHeapFreeSize != JKRHeap::sParentHeapFreeSize_Last)) {
+			gfx.m_orthoGraph.setPort();
+			J2DPrint print(JFWSystem::systemFont, 0.0f);
+			print.initiate();
+			print._40.set(255, 19, 55, 255);
+			print._44.set(0, 0, 0, 255);
+			print.m_glyphWidth  = 16.0f;
+			print.m_glyphHeight = 16.0f;
+			print.print(60.0f, 120.0f, "* %d %d %d", JKRHeap::sParentHeapFreeSize_Last - JKRHeap::sParentHeapFreeSize,
+			            JKRHeap::sParentHeapFreeSize_Last, JKRHeap::sParentHeapFreeSize);
+		}
+	}
 	/*
 	stwu     r1, -0x80(r1)
 	mflr     r0
@@ -1235,8 +953,21 @@ void WorldMap::Base::draw1st(Graphics&) { }
  * Address:	8021C5CC
  * Size:	0000F4
  */
-void SingleGame::SelectState::cleanup(Game::SingleGameSection*)
+void SingleGame::SelectState::cleanup(SingleGameSection* game)
 {
+	PSSystem::SceneMgr* mgr = PSSystem::getSceneMgr();
+	PSSystem::checkSceneMgr(mgr);
+	mgr->deleteCurrentScene();
+
+	playData->doneWorldMapEffect();
+	particle2dMgr->killAll();
+	particle2dMgr->clearSceneEmitterAndResourceManager();
+	m_wMapHeap->freeAll();
+	m_wMapHeap->destroy();
+	m_wMapHeap = nullptr;
+	m_parentHeap->becomeCurrentHeap();
+	sys->setFrameRate(2);
+	JUT_ASSERTLINE(732, (int)JKRHeap::sParentHeapFreeSize == (int)m_parentHeap->getFreeSize(), "damek\n");
 	/*
 	stwu     r1, -0x20(r1)
 	mflr     r0

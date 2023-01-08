@@ -66,9 +66,11 @@ struct InitArg {
 	u8 _16;                            // _16
 };
 
+enum UpdateArgStatus { WMapUpdate_0, WMapUpdate_GoToLoad, WMapUpdate_2, WMapUpdate_GoToZukan, WMapUpdate_4, WMapUpdate_ReturnToTitle };
+
 struct UpdateArg {
 	CourseInfo* m_courseInfo; // _00
-	int _04;                  // _04
+	int m_status;             // _04
 };
 
 struct Base : public JKRDisposer {

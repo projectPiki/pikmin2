@@ -89,7 +89,7 @@ struct SingleGameSection : public BaseGameSection {
 	// known to be at least 22 in length. Probably 32.
 	// My guess there is that the spare 3 bytes is unintentional wiggle-room from this not being 4-byte aligned.
 	char m_caveFilename[0x20];               // _195
-	DvdThreadCommand _1B8;                   // _1B8
+	DvdThreadCommand m_dvdThread;            // _1B8
 	Delegate<Game::SingleGameSection>* _224; // _224
 	u8 _228;                                 // _228
 	Game::CourseInfo* m_currentCourseInfo;   // _22C
@@ -99,8 +99,8 @@ struct SingleGameSection : public BaseGameSection {
 	bool m_needTreasureCalc;
 	Delegate<Game::SingleGameSection>* _240;
 	efx::TChasePos* _244;
-	int m_currentFloor;          // _248
-	Game::SingleGame::FSM* _24C; // _24C
+	int m_currentFloor;           // _248
+	Game::SingleGame::FSM* m_fsm; // _24C
 	Game::SingleGame::GameState* m_currentState;
 	KindCounter _254;
 	KindCounter _25C;

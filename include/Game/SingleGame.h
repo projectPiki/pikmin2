@@ -329,6 +329,13 @@ struct LoadArg : public StateArg {
 	u16 _04;       // _04
 };
 
+struct LoadStateArg : public StateArg {
+	u8 _00;
+	u8 _01;
+	u8 _02;
+	u16 _04;
+};
+
 /**
  * @size{0x2C}
  */
@@ -434,14 +441,19 @@ struct SelectState : public State {
 	void dvdload();
 	void initNext(SingleGameSection*);
 
-	kh::Screen::WorldMap* _10;                // _10
+	kh::Screen::WorldMap* m_worldMap;         // _10
 	Delegate<SelectState>* m_dvdLoadCallback; // _14
-	JKRExpHeap* _18;                          // _18
-	JKRHeap* _1C;                             // _1C
-	Controller* _20;                          // _20
-	int _24;                                  // _24
-	int _28;                                  // _28
-	bool m_anyFirstTimes;                     // _2C
+	JKRExpHeap* m_wMapHeap;                   // _18
+	JKRHeap* m_parentHeap;                    // _1C
+	Controller* m_controller;                 // _20
+	int m_state;                              // _24
+	int m_previousCourseID;                   // _28
+	bool m_newLevelOpen;                      // _2C
+};
+
+struct ZukanStateArg : public StateArg {
+	u8 m_zukanType;
+	int m_courseID;
 };
 
 /**

@@ -93,11 +93,11 @@ void TitleState::dvdload()
 {
 	PSGame::SceneInfo scene;
 	if (gameSystem->isChallengeMode()) {
-		scene.m_gameType = PSGame::SceneInfo::TITLE_17;
+		scene.m_sceneType = PSGame::SceneInfo::CHALLENGE_MENU;
 	} else {
-		scene.m_gameType = PSGame::SceneInfo::TITLE_19;
+		scene.m_sceneType = PSGame::SceneInfo::VERSUS_MENU;
 	}
-	scene._07 = 0;
+	scene.m_cameras = 0;
 	static_cast<PSGame::PikSceneMgr*>(PSSystem::getSceneMgr())->newAndSetCurrentScene(&scene);
 
 	PSSystem::SceneMgr* sceneMgr = PSSystem::getSceneMgr();

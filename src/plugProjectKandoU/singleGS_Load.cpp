@@ -99,10 +99,10 @@ void LoadState::exec(SingleGameSection* gs)
 
 	} else {
 		if (_14 && !_15) {
-			sys->dvdLoadUseCallBack(&gs->_1B8, gs->_224);
+			sys->dvdLoadUseCallBack(&gs->m_dvdThread, gs->_224);
 			_15 = true;
 		}
-		if (gs->_1B8.m_mode == 2) {
+		if (gs->m_dvdThread.m_mode == 2) {
 			gs->postSetupFloatMemory();
 			if (gs->m_inCave) {
 				transit(gs, 4, nullptr);

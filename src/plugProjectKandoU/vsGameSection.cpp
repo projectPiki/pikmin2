@@ -320,12 +320,12 @@ void VsGameSection::onSetSoundScene()
 	PSGame::CaveFloorInfo floorInfo;
 
 	if (gameSystem->isChallengeMode()) {
-		floorInfo.m_gameType = PSGame::SceneInfo::CHALLENGE_MODE;
-		floorInfo._40        = getCurrFloor();
-		floorInfo._49        = m_challengeStageNum;
+		floorInfo.m_sceneType = PSGame::SceneInfo::CHALLENGE_MODE;
+		floorInfo._40         = getCurrFloor();
+		floorInfo._49         = m_challengeStageNum;
 	} else {
-		floorInfo.m_gameType = PSGame::SceneInfo::TWO_PLAYER_BATTLE;
-		floorInfo._40        = m_VsStageNum;
+		floorInfo.m_sceneType = PSGame::SceneInfo::TWO_PLAYER_BATTLE;
+		floorInfo._40         = m_VsStageNum;
 	}
 
 	floorInfo.m_alphaType = static_cast<RoomMapMgr*>(mapMgr)->m_floorInfo->m_parms.m_floorAlphaType.m_value;

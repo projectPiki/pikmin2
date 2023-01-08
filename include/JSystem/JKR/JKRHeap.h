@@ -134,6 +134,8 @@ struct JKRHeap : public JKRDisposer {
 	static u8* mUserRamStart;
 	static u8* mUserRamEnd;
 	static u32 mMemorySize;
+	static u32 sParentHeapFreeSize_Last;
+	static u32 sParentHeapFreeSize;
 
 	OSMutexObject m_mutex;               // _18
 	void* m_startAddress;                // _30

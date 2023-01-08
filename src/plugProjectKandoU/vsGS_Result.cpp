@@ -134,8 +134,8 @@ void ResultState::prepareMorimuraInfo(VsGameSection* section)
 void ResultState::dvdload()
 {
 	PSGame::SceneInfo scene;
-	scene.m_gameType = 0x10;
-	scene._07        = 0;
+	scene.m_sceneType = 0x10;
+	scene.m_cameras   = 0;
 	static_cast<PSGame::PikSceneMgr*>(PSSystem::getSceneMgr())->newAndSetCurrentScene(&scene);
 
 	PSSystem::SceneMgr* sceneMgr = PSSystem::getSceneMgr();

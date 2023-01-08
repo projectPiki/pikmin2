@@ -21,27 +21,27 @@ struct SceneInfo {
 	};
 
 	enum GameType {
-		UNKNOWN_1 = 0,
+		SCENE_NULL = 0,
 		COURSE_TUTORIAL,
 		COURSE_FOREST,
 		COURSE_YAKUSHIMA,
 		COURSE_LAST,
 		COURSE_TEST,
-		CHALLENGE_MODE,
+		CHALLENGE_MODE, // includes key get
 		TWO_PLAYER_BATTLE,
-		UNKNOWN_8,
+		TITLE_SCREEN, // includes options high score and bonus themes
 		CAVE_RESULTS,
-		UNKNOWN_10,
-		WORLD_MAP_11,
-		WORLD_MAP_12,
-		OBJECTS,
-		ENDING_14,
-		ENDING_15,
-		TITLE_16, // Seasons, I'm sure of it
-		TITLE_17,
+		FILE_SELECT,
+		WORLD_MAP_NORMAL,
+		WORLD_MAP_NEWLEVEL,
+		PIKLOPEDIA,
+		ENDING_COMPLETE,
+		ENDING_DEBTRESULT,
+		CHALLENGE_RESULTS,
+		CHALLENGE_MENU,
 		TITLE_18,
-		TITLE_19,
-		UNKOWN_20
+		VERSUS_MENU,
+		COURSE_TUTORIALDAY1
 	};
 
 	SceneInfo();
@@ -53,16 +53,16 @@ struct SceneInfo {
 	void setStageCamera() const;
 
 	// _00 = VTBL
-	u16 m_stageFlags;      // _04
-	u8 m_gameType;         // _06
-	u8 _07;                // _07
-	Vector3f* _08;         // _08
-	u32 _0C;               // _0C
-	Vector3f* _10;         // _10
-	u32 _14;               // _14
-	Vector3f* _18;         // _18
-	u32 _1C;               // _1C
-	JGeometry::TBox3f _20; // _20
+	u16 m_stageFlags;         // _04
+	u8 m_sceneType;           // _06
+	u8 m_cameras;             // _07
+	Vector3f* m_cam1Position; // _08
+	u32 _0C;                  // _0C
+	Vector3f* m_cam2Position; // _10
+	u32 _14;                  // _14
+	Vector3f* m_cameraMtx;    // _18
+	u32 _1C;                  // _1C
+	JGeometry::TBox3f _20;    // _20
 };
 
 /**
