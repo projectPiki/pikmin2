@@ -30,7 +30,7 @@ struct Generator : public CNode {
 	virtual void doSetView(int viewportNumber); // _18
 	virtual void doViewCalc();                  // _1C
 
-	void initialiseSystem();
+	static void initialiseSystem();
 	void generate();
 	void render(Graphics&);
 	void update();

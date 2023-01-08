@@ -32,7 +32,7 @@ struct ParticleMgr : public CNode {
 	static void globalInstance();
 	static void deleteInstance();
 	static void Instance_TPkEffectMgr();
-	static void deleteInstance_TPkEffectMgr();
+	void deleteInstance_TPkEffectMgr();
 
 	void createHeap(u32);
 	void createMgr(char*, u32, u32, u32);
