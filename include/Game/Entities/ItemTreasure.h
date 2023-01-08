@@ -31,7 +31,7 @@ struct State : public ItemState<Item> {
 	{
 	}
 
-	virtual void onDamage(Item*, f32); // _20 (weak)
+	virtual void onDamage(Item*, f32) { } // _20 (weak)
 
 	// _00     = VTBL
 	// _00-_0C = ItemState
@@ -61,7 +61,7 @@ struct Item : public WorkItem<Item, FSM, State> {
 	Item();
 
 	struct DummyShape : public SysShape::MtxObject {
-		virtual Matrixf* getMatrix(int); // _08 (weak)
+		virtual Matrixf* getMatrix(int) { return m_matrix; } // _08 (weak)
 
 		// _00 VTBL
 		Matrixf* m_matrix; // _04
@@ -73,17 +73,17 @@ struct Item : public WorkItem<Item, FSM, State> {
 	// {
 	// }
 
-	virtual void constructor();                           // _2C
-	virtual void onInit(CreatureInitArg* settings);       // _30
-	virtual void doDirectDraw(Graphics& gfx);             // _50
-	virtual bool ignoreAtari(Creature* toIgnore);         // _190
-	virtual char* getCreatureName();                      // _1A8 (weak)
-	virtual void doAI();                                  // _1C8
-	virtual bool interactAttack(InteractAttack&);         // _1E0
-	virtual bool getVectorField(Sys::Sphere&, Vector3f&); // _204
-	virtual f32 getWorkDistance(Sys::Sphere&);            // _208
-	virtual void updateBoundSphere();                     // _210
-	virtual void onSetPosition();                         // _21C
+	virtual void constructor();                            // _2C
+	virtual void onInit(CreatureInitArg* settings);        // _30
+	virtual void doDirectDraw(Graphics& gfx);              // _50
+	virtual bool ignoreAtari(Creature* toIgnore);          // _190
+	virtual char* getCreatureName() { return "Treasure"; } // _1A8 (weak)
+	virtual void doAI();                                   // _1C8
+	virtual bool interactAttack(InteractAttack&);          // _1E0
+	virtual bool getVectorField(Sys::Sphere&, Vector3f&);  // _204
+	virtual f32 getWorkDistance(Sys::Sphere&);             // _208
+	virtual void updateBoundSphere();                      // _210
+	virtual void onSetPosition();                          // _21C
 
 	void releasePellet();
 	void setTreasure(Pellet*);
@@ -122,9 +122,9 @@ struct TreasureParms : public CreatureParms {
 		Parm<f32> m_p003; // _160, max life when current depth < 25% of max depth
 	};
 
-	TreasureParms();
+	TreasureParms() { }
 
-	virtual void read(Stream&); // _08 (weak)
+	virtual void read(Stream& stream) { m_parms.read(stream); } // _08 (weak)
 
 	Parms m_parms; // _DC
 };
@@ -133,11 +133,11 @@ struct Mgr : public TNodeItemMgr {
 	Mgr();
 
 	virtual void onLoadResources();                                       // _48
-	virtual u32 generatorGetID();                                         // _58 (weak)
 	virtual BaseItem* generatorBirth(Vector3f&, Vector3f&, GenItemParm*); // _5C
-	virtual BaseItem* doNew();                                            // _A0 (weak)
-	virtual ~Mgr();                                                       // _B8 (weak)
-	virtual BaseItem* birth();                                            // _BC
+	virtual BaseItem* doNew() { return new Item; }                        // _A0 (weak)
+	virtual u32 generatorGetID() { return 'trsr'; }                       // _58 (weak)
+	// virtual ~Mgr();                                                    // _B8 (weak)
+	virtual BaseItem* birth(); // _BC
 
 	// _00      = VTBL
 	// _00-_88  = TNodeItemMgr

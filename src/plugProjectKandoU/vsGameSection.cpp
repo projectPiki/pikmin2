@@ -1621,20 +1621,6 @@ void StateMachine<VsGameSection>::transit(VsGameSection* section, int stateID, S
 
 /*
  * --INFO--
- * Address:	801C4AE4
- * Size:	000004
- */
-void FSMState<VsGameSection>::init(VsGameSection*, StateArg*) { }
-
-/*
- * --INFO--
- * Address:	801C4AE8
- * Size:	000004
- */
-void FSMState<VsGameSection>::cleanup(VsGameSection*) { }
-
-/*
- * --INFO--
  * Address:	801C4AEC
  * Size:	000084
  */
@@ -1672,12 +1658,5 @@ void StateMachine<VsGameSection>::exec(VsGameSection* section)
 		section->m_state->exec(section);
 	}
 }
-
-/*
- * --INFO--
- * Address:	801C4BA8
- * Size:	000004
- */
-void FSMState<VsGameSection>::exec(VsGameSection*) { }
 
 } // namespace Game

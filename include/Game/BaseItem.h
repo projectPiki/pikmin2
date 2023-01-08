@@ -176,11 +176,11 @@ struct ItemState : public FSMState<T> {
 	{
 	}
 
-	virtual void onDamage(T*, f32) {};                         // _18
-	virtual void onKeyEvent(T*, const SysShape::KeyEvent&) {}; // _1C
-	virtual void onBounce(T*, Sys::Triangle*) {};              // _20
-	virtual void onPlatCollision(T*, PlatEvent&) {};           // _24
-	virtual void onCollision(T*, CollEvent&) {};               // _28
+	virtual void onDamage(T*, f32) { }                         // _18
+	virtual void onKeyEvent(T*, const SysShape::KeyEvent&) { } // _1C
+	virtual void onBounce(T*, Sys::Triangle*) { }              // _20
+	virtual void onPlatCollision(T*, PlatEvent&) { }           // _24
+	virtual void onCollision(T*, CollEvent&) { }               // _28
 };
 
 template <typename ItemClass, typename FSMClass, typename StateClass>
@@ -195,6 +195,11 @@ struct FSMItem : public BaseItem {
 	}
 
 	// vtable 1
+	// vtable 2
+	virtual void doAI() // _10
+	{
+		static_cast<ItemFSM<ItemClass>*>(m_fsm)->exec((ItemClass*)this);
+	}
 	virtual void bounceCallback(Sys::Triangle* tri) // _E0
 	{
 		StateClass* state = m_currentState;
@@ -202,7 +207,6 @@ struct FSMItem : public BaseItem {
 			static_cast<ItemState<ItemClass>*>(state)->onBounce((ItemClass*)this, tri);
 		}
 	}
-
 	virtual void collisionCallback(CollEvent& event) // _E4
 	{
 		StateClass* state = m_currentState;
@@ -210,7 +214,6 @@ struct FSMItem : public BaseItem {
 			static_cast<ItemState<ItemClass>*>(state)->onCollision((ItemClass*)this, event);
 		}
 	}
-
 	virtual void platCallback(PlatEvent& event) // _E8
 	{
 		StateClass* state = m_currentState;
@@ -218,13 +221,6 @@ struct FSMItem : public BaseItem {
 			static_cast<ItemState<ItemClass>*>(state)->onPlatCollision((ItemClass*)this, event);
 		}
 	}
-
-	// vtable 2
-	virtual void doAI() // _10
-	{
-		static_cast<ItemFSM<ItemClass>*>(m_fsm)->exec((ItemClass*)this);
-	}
-
 	virtual void onKeyEvent(const SysShape::KeyEvent& event) // _68 (thunked at _00)
 	{
 		StateClass* state = m_currentState;

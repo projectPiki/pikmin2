@@ -388,13 +388,6 @@ bool ItemTreasure::Item::interactAttack(Game::InteractAttack& act)
 
 /*
  * --INFO--
- * Address:	801F3FFC
- * Size:	000004
- */
-void ItemTreasure::State::onDamage(Game::ItemTreasure::Item*, float) { }
-
-/*
- * --INFO--
  * Address:	801F4000
  * Size:	000058
  */
@@ -466,20 +459,6 @@ ItemTreasure::Mgr::Mgr()
 
 /*
  * --INFO--
- * Address:	801F427C
- * Size:	000024
- */
-void ItemTreasure::TreasureParms::read(Stream& stm) { m_parms.read(stm); }
-
-/*
- * --INFO--
- * Address:	801F42A0
- * Size:	0002A0
- */
-ItemTreasure::TreasureParms::TreasureParms() { }
-
-/*
- * --INFO--
  * Address:	801F4540
  * Size:	000130
  */
@@ -509,131 +488,6 @@ BaseItem* ItemTreasure::Mgr::generatorBirth(Vector3f& pos, Vector3f&, GenItemPar
  * Size:	000004
  */
 void ItemTreasure::Mgr::onLoadResources() { }
-
-/*
- * --INFO--
- * Address:	801F46D4
- * Size:	000134
- */
-ItemTreasure::Mgr::~Mgr() { }
-
-/*
- * --INFO--
- * Address:	801F4808
- * Size:	000118
- */
-BaseItem* ItemTreasure::Mgr::doNew() { return new Item; }
-
-/*
- * --INFO--
- * Address:	801F4920
- * Size:	00000C
- */
-u32 ItemTreasure::Mgr::generatorGetID() { return 'trsr'; }
-
-/*
- * --INFO--
- * Address:	801F492C
- * Size:	00000C
- */
-char* ItemTreasure::Item::getCreatureName() { return "Treasure"; }
-
-/*
- * --INFO--
- * Address:	801F4938
- * Size:	000008
- */
-Matrixf* ItemTreasure::Item::DummyShape::getMatrix(int) { return m_matrix; }
-
-/*
- * --INFO--
- * Address:	801F4948
- * Size:	000034
- */
-void FSMItem<Game::ItemTreasure::Item, Game::ItemTreasure::FSM, Game::ItemTreasure::State>::doAI()
-{
-	m_fsm->exec((ItemTreasure::Item*)this);
-}
-
-/*
- * --INFO--
- * Address:	801F497C
- * Size:	000004
- */
-void ItemState<Game::ItemTreasure::Item>::onDamage(ItemTreasure::Item*, f32) { }
-
-/*
- * --INFO--
- * Address:	801F4980
- * Size:	000004
- */
-void ItemState<Game::ItemTreasure::Item>::onKeyEvent(ItemTreasure::Item* item, const SysShape::KeyEvent&) { }
-
-/*
- * --INFO--
- * Address:	801F4984
- * Size:	000004
- */
-void ItemState<Game::ItemTreasure::Item>::onBounce(ItemTreasure::Item*, Sys::Triangle*) { }
-
-/*
- * --INFO--
- * Address:	801F4988
- * Size:	000004
- */
-void ItemState<Game::ItemTreasure::Item>::onPlatCollision(ItemTreasure::Item*, PlatEvent&) { }
-
-/*
- * --INFO--
- * Address:	801F498C
- * Size:	000004
- */
-void ItemState<Game::ItemTreasure::Item>::onCollision(ItemTreasure::Item*, CollEvent&) { }
-
-/*
- * --INFO--
- * Address:	801F4990
- * Size:	000004
- */
-void FSMState<Game::ItemTreasure::Item>::init(ItemTreasure::Item*, StateArg*) { }
-
-/*
- * --INFO--
- * Address:	801F4994
- * Size:	000004
- */
-void FSMState<Game::ItemTreasure::Item>::exec(ItemTreasure::Item*) { }
-
-/*
- * --INFO--
- * Address:	801F4998
- * Size:	000004
- */
-void FSMState<Game::ItemTreasure::Item>::cleanup(ItemTreasure::Item*) { }
-
-/*
- * --INFO--
- * Address:	801F499C
- * Size:	000004
- */
-void FSMState<Game::ItemTreasure::Item>::resume(ItemTreasure::Item*) { }
-
-/*
- * --INFO--
- * Address:	801F49A0
- * Size:	000004
- */
-void FSMState<Game::ItemTreasure::Item>::restart(ItemTreasure::Item*) { }
-
-/*
- * --INFO--
- * Address:	801F49A4
- * Size:	000030
- */
-void FSMState<Game::ItemTreasure::Item>::transit(ItemTreasure::Item* item, int id, StateArg* arg)
-{
-	m_stateMachine->transit(item, id, arg);
-}
 
 /*
  * --INFO--
@@ -717,56 +571,56 @@ void StateMachine<ItemTreasure::Item>::registerState(FSMState<Game::ItemTreasure
 	m_count++;
 }
 
-/*
- * --INFO--
- * Address:	801F4B94
- * Size:	000044
- */
-void FSMItem<ItemTreasure::Item, ItemTreasure::FSM, ItemTreasure::State>::onKeyEvent(const SysShape::KeyEvent& event)
-{
-	ItemState<ItemTreasure::Item>* state = m_currentState;
-	if (state) {
-		state->onKeyEvent((ItemTreasure::Item*)this, event);
-	}
-}
+// /*
+//  * --INFO--
+//  * Address:	801F4B94
+//  * Size:	000044
+//  */
+// void FSMItem<ItemTreasure::Item, ItemTreasure::FSM, ItemTreasure::State>::onKeyEvent(const SysShape::KeyEvent& event)
+// {
+// 	ItemState<ItemTreasure::Item>* state = m_currentState;
+// 	if (state) {
+// 		state->onKeyEvent((ItemTreasure::Item*)this, event);
+// 	}
+// }
 
-/*
- * --INFO--
- * Address:	801F4BD8
- * Size:	000044
- */
-void FSMItem<ItemTreasure::Item, ItemTreasure::FSM, ItemTreasure::State>::platCallback(PlatEvent& event)
-{
-	ItemState<ItemTreasure::Item>* state = m_currentState;
-	if (state) {
-		state->onPlatCollision((ItemTreasure::Item*)this, event);
-	}
-}
+// /*
+//  * --INFO--
+//  * Address:	801F4BD8
+//  * Size:	000044
+//  */
+// void FSMItem<ItemTreasure::Item, ItemTreasure::FSM, ItemTreasure::State>::platCallback(PlatEvent& event)
+// {
+// 	ItemState<ItemTreasure::Item>* state = m_currentState;
+// 	if (state) {
+// 		state->onPlatCollision((ItemTreasure::Item*)this, event);
+// 	}
+// }
 
-/*
- * --INFO--
- * Address:	801F4C1C
- * Size:	000044
- */
-void FSMItem<ItemTreasure::Item, ItemTreasure::FSM, ItemTreasure::State>::collisionCallback(CollEvent& event)
-{
-	ItemState<ItemTreasure::Item>* state = m_currentState;
-	if (state) {
-		state->onCollision((ItemTreasure::Item*)this, event);
-	}
-}
+// /*
+//  * --INFO--
+//  * Address:	801F4C1C
+//  * Size:	000044
+//  */
+// void FSMItem<ItemTreasure::Item, ItemTreasure::FSM, ItemTreasure::State>::collisionCallback(CollEvent& event)
+// {
+// 	ItemState<ItemTreasure::Item>* state = m_currentState;
+// 	if (state) {
+// 		state->onCollision((ItemTreasure::Item*)this, event);
+// 	}
+// }
 
-/*
- * --INFO--
- * Address:	801F4C60
- * Size:	000044
- */
-void FSMItem<ItemTreasure::Item, ItemTreasure::FSM, ItemTreasure::State>::bounceCallback(Sys::Triangle* tri)
-{
-	ItemState<ItemTreasure::Item>* state = m_currentState;
-	if (state) {
-		state->onBounce((ItemTreasure::Item*)this, tri);
-	}
-}
+// /*
+//  * --INFO--
+//  * Address:	801F4C60
+//  * Size:	000044
+//  */
+// void FSMItem<ItemTreasure::Item, ItemTreasure::FSM, ItemTreasure::State>::bounceCallback(Sys::Triangle* tri)
+// {
+// 	ItemState<ItemTreasure::Item>* state = m_currentState;
+// 	if (state) {
+// 		state->onBounce((ItemTreasure::Item*)this, tri);
+// 	}
+// }
 
 } // namespace Game

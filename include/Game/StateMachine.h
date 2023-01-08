@@ -19,9 +19,9 @@ struct FSMState {
 	{
 	}
 
-	virtual void init(T*, StateArg*);                             // _08
-	virtual void exec(T*);                                        // _0C
-	virtual void cleanup(T*);                                     // _10
+	virtual void init(T*, StateArg*) { }                          // _08
+	virtual void exec(T*) { }                                     // _0C
+	virtual void cleanup(T*) { }                                  // _10
 	virtual void resume(T*) { }                                   // _14
 	virtual void restart(T*) { }                                  // _18
 	virtual void transit(T* obj, int stateID, StateArg* stateArg) // _1C
