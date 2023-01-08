@@ -1853,20 +1853,6 @@ lbl_8013E714:
 
 /*
  * --INFO--
- * Address:	8013E754
- * Size:	00003C
- */
-GameStat::PikiCounter::operator int()
-{
-	int count = m_pikiCounts[0];
-	for (int i = 1; i < PikiColorCount; i++) {
-		count += m_pikiCounts[i];
-	}
-	return count;
-}
-
-/*
- * --INFO--
  * Address:	8013E790
  * Size:	000014
  */

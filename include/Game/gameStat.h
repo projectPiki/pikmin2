@@ -13,8 +13,18 @@ void clear();
 struct PikiCounter {
 	PikiCounter();
 
-	virtual operator int();      // _08 (weak)
-	virtual int operator()(int); // _0C (weak)
+	virtual operator int() // _08 (weak)
+	{
+		int count = m_pikiCounts[0];
+		for (int i = 1; i < PikiColorCount; i++) {
+			count += m_pikiCounts[i];
+		}
+		return count;
+	}
+	virtual int operator()(int color) // _0C (weak)
+	{
+		return m_pikiCounts[color];
+	}
 
 	void clear();
 	void inc(Piki*);
@@ -27,7 +37,7 @@ struct PikiCounter {
 };
 
 struct PikiNaviCounter {
-	PikiNaviCounter() { clear(); }
+	PikiNaviCounter();
 
 	void clear();
 	void inc(Piki*);
