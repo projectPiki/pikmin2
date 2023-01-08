@@ -92,7 +92,6 @@ void Obj::setup(KeyData* data)
  * Address:	........
  * Size:	000104
  */
-// this inline needs fixing up to fix the weak update functions.
 f32 Obj::calcValue(f32 keyFrame)
 {
 	int idx = -1;
@@ -111,8 +110,7 @@ f32 Obj::calcValue(f32 keyFrame)
 		KeyData* prevData = &m_data[idx - 1];
 		KeyData* currData = &m_data[idx];
 
-		// just this calculation here needs fixing.
-		f32 ratio     = ((keyFrame - prevData->m_frame) / (currData->m_frame - (keyFrame - prevData->m_frame)));
+		f32 ratio     = (keyFrame - prevData->m_frame) / (currData->m_frame - prevData->m_frame);
 		f32 scaleDiff = (currData->m_scale - prevData->m_scale);
 		return ratio * scaleDiff + prevData->m_scale;
 	}
