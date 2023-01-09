@@ -23,7 +23,7 @@ struct _CellParms {
 struct CellMgrParms : public Parameters, public JKRDisposer {
 	CellMgrParms();
 
-	void globalInstance();
+	static void globalInstance();
 
 	inline static CellMgrParms* getInstance() { return mInstance; }
 

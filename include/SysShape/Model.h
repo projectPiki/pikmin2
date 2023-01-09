@@ -79,6 +79,8 @@ struct Model : public MtxObject {
 	J3DModel* m_j3dModel; // _08
 	int m_jointCount;     // _0C
 	Joint* m_joints;      // _10
+
+	static u8 viewCalcMode;
 };
 
 } // namespace SysShape

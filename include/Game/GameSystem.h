@@ -57,9 +57,9 @@ struct GameSystem : public NodeObjectMgr<GenericObjectMgr> {
 	void addObjectMgr(GenericObjectMgr*);
 	s32 calcFrameDist(int);
 	void detachAllMgr();
-	void detachObjectMgr_reuse(GenericObjectMgr*);
+	TObjectNode<GenericObjectMgr>* detachObjectMgr_reuse(GenericObjectMgr*);
 	void detachObjectMgr(GenericObjectMgr*);
-	LightMgr* getLightMgr();
+	GameLightMgr* getLightMgr();
 	void init();
 	bool isZukanMode();
 	bool paused_soft();
@@ -68,7 +68,7 @@ struct GameSystem : public NodeObjectMgr<GenericObjectMgr> {
 	void setFrozen(bool, char*);
 	void setMoviePause(bool, char*);
 	void setPause(bool, char*, int);
-	void startPause(bool, int, char*);
+	int startPause(bool, int, char*);
 
 	inline bool isVersusMode() { return m_mode == GSM_VERSUS_MODE; }
 	inline bool isMultiplayerMode() { return (m_mode == GSM_VERSUS_MODE || m_mode == GSM_TWO_PLAYER_CHALLENGE); }
@@ -86,7 +86,7 @@ struct GameSystem : public NodeObjectMgr<GenericObjectMgr> {
 	u8 m_isInCave;              // _48
 	u8 _49;                     // _49
 	bool m_isFrozen;            // _4A
-	bool m_isPaused;            // _4B
+	u8 m_isPaused;              // _4B
 	bool m_isPausedSoft;        // _4C
 	bool m_isMoviePause;        // _4D
 	u32 m_frameTimer;           // _50
@@ -94,11 +94,22 @@ struct GameSystem : public NodeObjectMgr<GenericObjectMgr> {
 	BaseGameSection* m_section; // _58
 };
 
-struct OptimiseController {
-	virtual ~OptimiseController(); // _08
+struct OptimiseController : public JKRDisposer, public Parameters {
+	OptimiseController()
+	    : Parameters(nullptr, "Dynamics")
+	    , m_c000(this, 'c000', "ピクミン首", true, false, true)
+	    ,                                                                  // pikmin neck
+	    m_c001(this, 'c001', "コリジョンバッファ有効", false, false, true) // collision buffer enabled
+	{
+	}
 
-	void globalInstance();
-	void deleteInstance();
+	virtual ~OptimiseController() { mInstance = nullptr; } // _08
+
+	static void globalInstance();
+	static void deleteInstance();
+
+	Parm<bool> m_c000;
+	Parm<bool> m_c001;
 
 	static OptimiseController* mInstance;
 };

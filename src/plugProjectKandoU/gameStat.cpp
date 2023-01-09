@@ -96,7 +96,7 @@ PikiCounter::PikiCounter() { clear(); }
  */
 void PikiCounter::clear()
 {
-	for (int i = 0; i < 7; i++) {
+	for (int i = 0; i < PikiColorCount; i++) {
 		m_pikiCounts[i] = 0;
 	}
 }
@@ -161,7 +161,7 @@ PikiNaviCounter::PikiNaviCounter() { clear(); }
  */
 void PikiNaviCounter::clear()
 {
-	for (int i = 0; i < 7; i++) {
+	for (int i = 0; i < PikiColorCount; i++) {
 		m_counter[i].clear();
 	}
 }

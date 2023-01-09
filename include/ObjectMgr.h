@@ -3,6 +3,7 @@
 
 #include "Container.h"
 #include "GenericObjectMgr.h"
+#include "Iterator.h"
 
 template <typename T>
 struct ObjectMgr : public Container<T>, GenericObjectMgr {

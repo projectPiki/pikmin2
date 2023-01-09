@@ -15,7 +15,7 @@ struct Stickers : public Container<Game::Creature> {
 	virtual void* getEnd();       // _1C
 	virtual Creature* get(void*); // _20
 
-	void initialise();
+	static void initialise();
 };
 } // namespace Game
 

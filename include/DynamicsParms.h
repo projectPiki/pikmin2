@@ -15,7 +15,7 @@ struct DynamicsParms : public Parameters, public JKRDisposer {
 	// then dtor thunk at _10?
 	virtual ~DynamicsParms(); // _14 (weak)
 
-	void globalInstance();
+	static void globalInstance();
 
 	// _00-_0C	= Parameters
 	// _0C-_24	= JKRDisposer

@@ -64,6 +64,8 @@ enum DemoTimers {
 };
 
 struct BaseGameSection : public BaseHIOSection {
+
+	static u8 sOptDraw;
 	struct ZoomCamera : public LookAtCamera {
 		virtual ~ZoomCamera() { } // _08 (weak)
 		virtual void doUpdate();  // _78

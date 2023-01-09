@@ -33,7 +33,7 @@ struct PikiCounter {
 	void dec(int);
 
 	// _00 = VTBL
-	u32 m_pikiCounts[PikiColorCount]; // 04, counts of each piki type?
+	u32 m_pikiCounts[PikiColorCount]; // 04
 };
 
 struct PikiNaviCounter {
@@ -43,7 +43,7 @@ struct PikiNaviCounter {
 	void inc(Piki*);
 	void dec(Piki*);
 
-	PikiCounter m_counter[PikiColorCount]; // _00, probably?
+	PikiCounter m_counter[PikiColorCount]; // _00
 };
 
 int getMapPikmins(int);
