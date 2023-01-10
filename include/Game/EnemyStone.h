@@ -22,7 +22,16 @@ enum StoneFlags {
 	STONE_Unk6          = 0x20, // gets set on stone start, unsure
 };
 
+struct DrawInfo;
 struct FSMState;
+
+struct StateMachine : public Game::StateMachine<DrawInfo> {
+	virtual void init(DrawInfo*);                 // _08
+	virtual void makeMatrix(DrawInfo*, Matrixf*); // _18
+
+	// _00     = VTBL
+	// _00-_1C = StateMachine
+};
 
 #define ENEMYSTONE_FX_SIZE_LARGE (0)
 #define ENEMYSTONE_FX_SIZE_SMALL (1)
@@ -49,7 +58,7 @@ struct DrawInfo : public CNode {
 
 	void reset();
 	void update(EnemyBase*);
-	void makeMatrix(Matrixf*, bool);
+	bool makeMatrix(Matrixf*, bool);
 	int getStateID();
 	bool getPosAndScale(Vector3f*, f32*);
 	void appear(EnemyBase*, f32);
@@ -60,7 +69,7 @@ struct DrawInfo : public CNode {
 
 	static EnemyBase* sOwnerEnemy;
 
-	u8 _18[0x1C];             // _18
+	StateMachine m_fsm;       // _18
 	FSMState* m_currentState; // _34
 	f32 _38;                  // _38
 	f32 _3C;                  // _3C
@@ -145,14 +154,6 @@ enum StateID {
 	STONESTATE_Disappear     = 7,
 	STONESTATE_Dead          = 8,
 	STONESTATE_StateCount,
-};
-
-struct StateMachine : public Game::StateMachine<DrawInfo> {
-	virtual void init(DrawInfo*);                 // _08
-	virtual void makeMatrix(DrawInfo*, Matrixf*); // _18
-
-	// _00     = VTBL
-	// _00-_1C = StateMachine
 };
 
 struct FSMState : public Game::FSMState<DrawInfo> {
