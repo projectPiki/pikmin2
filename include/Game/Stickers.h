@@ -6,8 +6,8 @@
 #include "Game/Creature.h"
 
 namespace Game {
-struct Stickers : public Container<Game::Creature> {
-	Stickers(Game::Creature*);
+struct Stickers : public Container<Creature> {
+	Stickers(Creature*);
 
 	virtual ~Stickers();          // _08
 	virtual void* getNext(void*); // _14

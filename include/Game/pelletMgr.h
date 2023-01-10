@@ -88,7 +88,7 @@ struct PelletMgr : public NodeObjectMgr<GenericObjectMgr> {
 		return "ペレットマネージャ"; // pellet manager
 	}
 	virtual char* getCaveName(int);       // _84
-	virtual u8 getCaveID(char*);          // _88
+	virtual int getCaveID(char*);         // _88
 	virtual void doSimpleDraw(Viewport*); // _8C (weak)
 
 	void setMovieDraw(bool);

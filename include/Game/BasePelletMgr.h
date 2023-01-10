@@ -41,7 +41,7 @@ struct BasePelletMgr : public GenericObjectMgr, virtual public _BasePelletMgrPar
 	virtual u8 getMgrID()             = 0;                               // _5C
 	virtual void setRevival(Pellet*)  = 0;                               // _60
 	virtual void setFromTeki(Pellet*) = 0;                               // _64
-	virtual void getFlag(Pellet*)     = 0;                               // _68
+	virtual u32 getFlag(Pellet*)      = 0;                               // _68
 	virtual SysShape::Model* createShape(int, int);                      // _6C
 	virtual Pellet* generatorBirth(Vector3f&, Vector3f&, GenPelletParm*) // _70 (weak)
 	{
@@ -62,11 +62,13 @@ struct BasePelletMgr : public GenericObjectMgr, virtual public _BasePelletMgrPar
 	void setUse(int);
 	void load();
 	void load_texArc(char*);
-	void openTextArc(char*);
+	JKRArchive* openTextArc(char*);
 	void closeTextArc(JKRArchive*);
 	void useModelMgr(int, u32);
 	void createModelCallback(SysShape::Model* model) { onCreateModel(model); }
 	void setCollTree(Pellet*, int);
+
+	bool used(int);
 
 	// _00 VTBL
 	// _04 = ptr to NotSure/vtable for NotSure?

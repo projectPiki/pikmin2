@@ -38,6 +38,7 @@
 #include "Radar.h"
 #include "VsOtakaraName.h"
 #include "JSystem/J3D/J3DModelLoader.h"
+#include "nans.h"
 
 namespace {
 struct NotOff : public Game::WPCondition {
@@ -46,6 +47,15 @@ struct NotOff : public Game::WPCondition {
 } // namespace
 
 namespace Game {
+
+PelletMgr* pelletMgr;
+
+bool PelletMgr::mDebug          = false;
+bool PelletMgr::disableDynamics = false;
+bool Pellet::sFromTekiEnable    = true;
+
+static const int unusedPelletMgrArray[] = { 0, 0, 0 };
+static const char unusedPelletMgrName[] = "pelletMgr";
 
 /*
  * --INFO--
@@ -725,8 +735,23 @@ float Pellet::getBuryDepth() { return m_config->m_params.m_depth.m_data; }
  * Size:	000124
  */
 // WIP: https://decomp.me/scratch/HVCzF
-f32 Pellet::getBuryRadius(float)
+f32 Pellet::getBuryRadius(f32 p1)
 {
+	bool check               = false;
+	int index                = (int)(4.0f * p1);
+	float buryRadiusArray[5] = { 0.0f, 0.0f, 0.0f, 0.0f, 0.0f };
+
+	buryRadiusArray[0] = m_config->m_params.m_depthA.m_data;
+	buryRadiusArray[1] = m_config->m_params.m_depthB.m_data;
+	buryRadiusArray[2] = m_config->m_params.m_depthC.m_data;
+	buryRadiusArray[3] = m_config->m_params.m_depthD.m_data;
+	buryRadiusArray[4] = m_config->m_params.m_depthD.m_data;
+
+	float factor1 = 0.25f * (float)index;
+	float factor  = 4.0f * (p1 - factor1);
+	check         = (index >= 0) && (index <= 4);
+	P2ASSERTLINE(1006, check);
+	return ((1.0f - factor) * buryRadiusArray[index]) + (factor * buryRadiusArray[index + 1]);
 	/*
 	stwu     r1, -0x50(r1)
 	mflr     r0
@@ -1174,7 +1199,7 @@ void Pellet::onInit(CreatureInitArg* initArg)
 	m_bounceTriangle = nullptr;
 	_311             = 0;
 	m_faceDir        = 0.0f;
-	_438             = 0.0f;
+	m_animSpeed      = 0.0f;
 	_3C4             = 0;
 	_3D0             = 0;
 	m_carryInfoMgr   = nullptr;
@@ -1259,20 +1284,20 @@ void Pellet::onInit(CreatureInitArg* initArg)
 	}
 
 	if (m_model) {
-		_41C.m_animMgr = m_mgr->m_animMgr[_43C];
-		m_radius       = 2.0f * m_model->getRoughBoundingRadius();
+		m_carryAnim.m_animMgr = m_mgr->m_animMgr[_43C];
+		m_radius              = 2.0f * m_model->getRoughBoundingRadius();
 	} else {
 		m_radius = m_config->m_params.m_radius.m_data;
 	}
 
-	if (_41C.m_animMgr) {
+	if (m_carryAnim.m_animMgr) {
 		SysShape::MotionListener* listener = this;
-		_41C.startAnim(0, listener);
+		m_carryAnim.startAnim(0, listener);
 		stop_carrymotion();
 		init_pmotions();
 		start_pmotions();
 		if ((gameSystem->m_mode == GSM_PIKLOPEDIA) && (m_pelletFlag == FLAG_LOOZY)) {
-			_438 = 30.0f;
+			m_animSpeed = 30.0f;
 		}
 	}
 
@@ -1387,6 +1412,49 @@ int Pellet::getPelletConfigMax()
 // WIP: https://decomp.me/scratch/SWcqK
 void Pellet::setupParticles()
 {
+	float radius = m_config->m_params.m_radius.m_data; // 35C->A0
+	float nil    = 0.0f;
+	_2F4         = nil;
+	_360         = m_config->m_params.m_numParticles.m_data;
+
+	if (_360 != 0) {
+		if (strcmp("simple", m_config->m_params.m_particleType.m_data) == 0) {
+			if (2.0f * (0.5f * m_config->m_params.m_height.m_data) > radius) {
+				setupParticles_tall();
+			} else {
+				setupParticles_simple();
+			}
+		} else {
+			_364              = false;
+			_39C              = true;
+			int particleCount = _360;
+			_360++;
+
+			createParticles(_360);
+
+			for (int i = 0; i < particleCount; i++) {
+				float mid       = m_config->m_params.m_height.m_data / 2;
+				float midRadius = radius - mid;
+				float theta     = (TAU / (float)particleCount) * (float)i;
+				float cos       = midRadius * pikmin2_cosf(theta);
+				float sin       = midRadius * pikmin2_sinf(theta);
+				Vector3f rotation(sin, 0.0f, cos);
+				_2F4                         = _2F4 + rotation;
+				m_dynParticle->getAt(i)->_00 = rotation;
+				m_dynParticle->getAt(i)->_18 = mid;
+			}
+
+			float configHeight = m_config->m_params.m_height.m_data;
+			_2F4               = _2F4 + Vector3f(0.0f, 0.0f, 0.0f);
+			float height       = 0.5f;
+			height *= configHeight;
+			m_dynParticle->getAt(particleCount)->_00 = Vector3f(0.0f, 0.0f, 0.0f);
+			m_dynParticle->getAt(particleCount)->_18 = height;
+		}
+
+		float inverse = 1.0f / _360;
+		_2F4 *= inverse;
+	}
 	/*
 	stwu     r1, -0xe0(r1)
 	mflr     r0
@@ -1630,6 +1698,20 @@ lbl_801678C8:
 // WIP: https://decomp.me/scratch/DzVGu
 void Pellet::setupParticles_simple()
 {
+	float radius = m_config->m_params.m_radius.m_data;
+	createParticles(_360);
+
+	float endIndex = (float)_360;
+	float mid      = 0.5f * m_config->m_params.m_height.m_data;
+	float diff     = radius - mid;
+
+	for (int i = 0; i < _360; i++) {
+		float theta = (TAU / endIndex) * (float)i;
+		Vector3f rotation(diff * pikmin2_sinf(theta), 0.0f, diff * pikmin2_cosf(theta));
+		_2F4                         = _2F4 + rotation;
+		m_dynParticle->getAt(i)->_00 = rotation;
+		m_dynParticle->getAt(i)->_18 = mid;
+	}
 	/*
 	stwu     r1, -0xc0(r1)
 	mflr     r0
@@ -1788,6 +1870,27 @@ lbl_80167AD8:
 // WIP: https://decomp.me/scratch/jVGhn
 void Pellet::setupParticles_tall()
 {
+	float radius = m_config->m_params.m_radius.m_data;
+	float mid    = 0.5f * m_config->m_params.m_height.m_data;
+
+	float height = mid;
+	if (mid > 10.0f) {
+		height = 10.0f;
+	}
+
+	int count = _360;
+	createParticles(count);
+	float heightDiff = -(mid - height);
+	float endIndex   = (float)count;
+	mid              = radius - height;
+
+	for (int i = 0; i < count; i++) {
+		float theta = (TAU / endIndex) * (float)i;
+		Vector3f rotation(mid * pikmin2_sinf(theta), heightDiff, mid * pikmin2_cosf(theta));
+		_2F4                         = _2F4 + rotation;
+		m_dynParticle->getAt(i)->_00 = rotation;
+		m_dynParticle->getAt(i)->_18 = height;
+	}
 	/*
 	stwu     r1, -0xd0(r1)
 	mflr     r0
@@ -1980,7 +2083,7 @@ bool Pellet::isCarried()
 void Pellet::finishDisplayCarryInfo()
 {
 	if (m_carryInfoMgr) {
-		m_carryInfoMgr->m_activeList.m_param.m_carryInfo.disappear();
+		m_carryInfoMgr->m_activeList.m_param.m_carryInfo.disappear(); // something's off in the CarryInfoList tree
 		m_carryInfoMgr = nullptr;
 	}
 }
@@ -2080,8 +2183,6 @@ void Pellet::allocateTexCaster()
  * Address:	8016807C
  * Size:	0002F0
  */
-// WIP: https://decomp.me/scratch/hKxSS
-// matches aside from a dumb instruction swap in the pop????
 void Pellet::onSetPosition()
 {
 	if (gameSystem->m_mode != GSM_PIKLOPEDIA) {
@@ -2094,7 +2195,7 @@ void Pellet::onSetPosition()
 				item->setPosition(m_pelletPosition, false);
 				item->setTreasure(this);
 			} else {
-				JUT_PANICLINE(2326, "????????\n"); // 'disappointed' lol
+				JUT_PANICLINE(2326, "‚ª‚Á‚©‚è\n"); // 'disappointed' lol
 			}
 		}
 	}
@@ -2107,7 +2208,7 @@ void Pellet::onSetPosition()
 
 	m_mass = 0.0f;
 	if (m_pelletFlag == FLAG_NAVI_NAPSACK) {
-		m_mass = 0.01f;
+		m_mass = 0.1f;
 	}
 
 	float inertiaScaling = m_config->m_params.m_inertiaScaling.m_data;
@@ -2128,211 +2229,7 @@ void Pellet::onSetPosition()
 	m_rigid._144(2, 1) *= horizontal;
 	m_rigid._144(2, 2) *= horizontal;
 	m_lodSphere.m_position = m_pelletPosition;
-	m_rigid._175 |= 1;
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	mr       r31, r3
-	stw      r30, 8(r1)
-	lwz      r4, gameSystem__4Game@sda21(r13)
-	lwz      r4, 0x44(r4)
-	cmpwi    r4, 4
-	beq      lbl_801681C8
-	lwz      r5, 0xb8(r31)
-	li       r30, 0
-	cmplwi   r5, 0
-	bne      lbl_801680E4
-	lbz      r0, mDebug__Q24Game9PelletMgr@sda21(r13)
-	cmplwi   r0, 0
-	bne      lbl_801680E4
-	lwz      r3, 0x35c(r31)
-	lfs      f0, lbl_80518914@sda21(r2)
-	lfs      f1, 0x1b0(r3)
-	fcmpo    cr0, f1, f0
-	ble      lbl_801680E4
-	lbz      r0, 0x3c4(r31)
-	cmplwi   r0, 0
-	bne      lbl_801680E4
-	li       r30, 1
-
-lbl_801680E4:
-	cmpwi    r4, 1
-	bne      lbl_80168140
-	cmplwi   r5, 0
-	bne      lbl_80168140
-	lbz      r0, 0x3c4(r31)
-	cmplwi   r0, 0
-	bne      lbl_80168140
-	lbz      r0, 0x32c(r31)
-	cmplwi   r0, 4
-	bne      lbl_80168114
-	li       r30, 0
-	b        lbl_80168140
-
-lbl_80168114:
-	cmplwi   r0, 5
-	bne      lbl_80168124
-	li       r30, 0
-	b        lbl_80168140
-
-lbl_80168124:
-	cmplwi   r0, 6
-	bne      lbl_80168140
-	mr       r3, r31
-	bl       getStateID__Q24Game6PelletFv
-	cmpwi    r3, 5
-	beq      lbl_80168140
-	li       r30, 1
-
-lbl_80168140:
-	clrlwi.  r0, r30, 0x18
-	beq      lbl_801681C8
-	lwz      r3, mgr__Q24Game12ItemTreasure@sda21(r13)
-	lwz      r12, 0(r3)
-	lwz      r12, 0xbc(r12)
-	mtctr    r12
-	bctrl
-	or.      r30, r3, r3
-	beq      lbl_801681AC
-	lwz      r3, mapMgr__4Game@sda21(r13)
-	addi     r4, r31, 0x3ac
-	lwz      r12, 4(r3)
-	lwz      r12, 0x28(r12)
-	mtctr    r12
-	bctrl
-	stfs     f1, 0x3b0(r31)
-	mr       r3, r30
-	li       r4, 0
-	bl       init__Q24Game8CreatureFPQ24Game15CreatureInitArg
-	mr       r3, r30
-	addi     r4, r31, 0x3ac
-	li       r5, 0
-	bl       "setPosition__Q24Game8CreatureFR10Vector3<f>b"
-	mr       r3, r30
-	mr       r4, r31
-	bl       setTreasure__Q34Game12ItemTreasure4ItemFPQ24Game6Pellet
-	b        lbl_801681C8
-
-lbl_801681AC:
-	lis      r3, lbl_8047E344@ha
-	lis      r5, lbl_8047E38C@ha
-	addi     r3, r3, lbl_8047E344@l
-	li       r4, 0x916
-	addi     r5, r5, lbl_8047E38C@l
-	crclr    6
-	bl       panic_f__12JUTExceptionFPCciPCce
-
-lbl_801681C8:
-	lis      r4, "zero__10Vector3<f>"@ha
-	addi     r3, r31, 0x17c
-	addi     r5, r4, "zero__10Vector3<f>"@l
-	addi     r4, r31, 0x3ac
-	bl       "initPosition__Q24Game5RigidFR10Vector3<f>R10Vector3<f>"
-	lwz      r4, 0x180(r31)
-	mr       r3, r31
-	lwz      r0, 0x184(r31)
-	stw      r4, 0x138(r31)
-	stw      r0, 0x13c(r31)
-	lwz      r4, 0x188(r31)
-	lwz      r0, 0x18c(r31)
-	stw      r4, 0x140(r31)
-	stw      r0, 0x144(r31)
-	lwz      r4, 0x190(r31)
-	lwz      r0, 0x194(r31)
-	stw      r4, 0x148(r31)
-	stw      r0, 0x14c(r31)
-	lwz      r4, 0x198(r31)
-	lwz      r0, 0x19c(r31)
-	stw      r4, 0x150(r31)
-	stw      r0, 0x154(r31)
-	lwz      r4, 0x1a0(r31)
-	lwz      r0, 0x1a4(r31)
-	stw      r4, 0x158(r31)
-	stw      r0, 0x15c(r31)
-	lwz      r4, 0x1a8(r31)
-	lwz      r0, 0x1ac(r31)
-	stw      r4, 0x160(r31)
-	stw      r0, 0x164(r31)
-	lfs      f0, 0x3ac(r31)
-	stfs     f0, 0x444(r31)
-	lfs      f0, 0x3b0(r31)
-	stfs     f0, 0x448(r31)
-	lfs      f0, 0x3b4(r31)
-	stfs     f0, 0x44c(r31)
-	bl       updateParticlePositions__Q24Game11DynCreatureFv
-	lfs      f1, lbl_80518910@sda21(r2)
-	lfs      f0, lbl_80518914@sda21(r2)
-	stfs     f1, 0x17c(r31)
-	stfs     f0, 0x118(r31)
-	lbz      r0, 0x32c(r31)
-	cmplwi   r0, 1
-	bne      lbl_80168280
-	lfs      f0, lbl_80518998@sda21(r2)
-	stfs     f0, 0x118(r31)
-
-lbl_80168280:
-	lwz      r3, 0x35c(r31)
-	lfs      f2, lbl_8051899C@sda21(r2)
-	lfs      f6, 0xd0(r3)
-	lfs      f0, 0xc0(r3)
-	lfs      f3, 0xa0(r3)
-	fdivs    f7, f0, f6
-	lfs      f4, lbl_8051893C@sda21(r2)
-	lfs      f5, lbl_80518910@sda21(r2)
-	lfs      f0, 0x2c0(r31)
-	lfs      f1, lbl_80518918@sda21(r2)
-	fdivs    f6, f3, f6
-	fmuls    f3, f7, f7
-	fmuls    f6, f6, f6
-	fdivs    f2, f3, f2
-	fmadds   f2, f6, f4, f2
-	fmuls    f1, f6, f1
-	fmuls    f2, f5, f2
-	fmuls    f1, f5, f1
-	fmuls    f0, f0, f2
-	stfs     f0, 0x2c0(r31)
-	lfs      f0, 0x2c4(r31)
-	fmuls    f0, f0, f2
-	stfs     f0, 0x2c4(r31)
-	lfs      f0, 0x2c8(r31)
-	fmuls    f0, f0, f2
-	stfs     f0, 0x2c8(r31)
-	lfs      f0, 0x2d0(r31)
-	fmuls    f0, f0, f1
-	stfs     f0, 0x2d0(r31)
-	lfs      f0, 0x2d4(r31)
-	fmuls    f0, f0, f1
-	stfs     f0, 0x2d4(r31)
-	lfs      f0, 0x2d8(r31)
-	fmuls    f0, f0, f1
-	stfs     f0, 0x2d8(r31)
-	lfs      f0, 0x2e0(r31)
-	fmuls    f0, f0, f2
-	stfs     f0, 0x2e0(r31)
-	lfs      f0, 0x2e4(r31)
-	fmuls    f0, f0, f2
-	stfs     f0, 0x2e4(r31)
-	lfs      f0, 0x2e8(r31)
-	fmuls    f0, f0, f2
-	stfs     f0, 0x2e8(r31)
-	lfs      f0, 0x3ac(r31)
-	stfs     f0, 0x444(r31)
-	lfs      f0, 0x3b0(r31)
-	stfs     f0, 0x448(r31)
-	lfs      f0, 0x3b4(r31)
-	stfs     f0, 0x44c(r31)
-	lbz      r0, 0x2f1(r31)
-	ori      r0, r0, 1
-	stb      r0, 0x2f1(r31)
-	lwz      r31, 0xc(r1)
-	lwz      r30, 8(r1)
-	lwz      r0, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	m_rigid._175 |= (bool)1;
 }
 
 /*
@@ -2340,8 +2237,6 @@ lbl_80168280:
  * Address:	8016836C
  * Size:	000160
  */
-// WIP: https://decomp.me/scratch/n0RrF
-// probably matches once normalise matches
 void Pellet::setPanModokiRotation(float direction)
 {
 	m_faceDir = direction;
@@ -2351,108 +2246,12 @@ void Pellet::setPanModokiRotation(float direction)
 	yVec.normalise();
 
 	Matrixf mat;
-	mat.makeNaturalPosture(yVec);
+	mat.makeNaturalPosture(yVec, direction);
 	m_objMatrix = mat;
 	m_rigid.m_configs[0]._48.fromMatrixf(m_objMatrix);
 	m_rigid.m_configs[0]._48.normalise();
 	m_objMatrix.setTranslation(m_pelletPosition);
 	PSMTXCopy(m_objMatrix.m_matrix.mtxView, m_rigid._04.m_matrix.mtxView);
-	/*
-	stwu     r1, -0x50(r1)
-	mflr     r0
-	lfs      f2, lbl_80518914@sda21(r2)
-	stw      r0, 0x54(r1)
-	stw      r31, 0x4c(r1)
-	mr       r31, r3
-	stfs     f1, 0x3b8(r3)
-	lfs      f4, 0x13c(r3)
-	stfs     f4, 8(r1)
-	fmuls    f0, f4, f4
-	lfs      f3, 0x14c(r3)
-	stfs     f3, 0xc(r1)
-	fmuls    f5, f3, f3
-	lfs      f3, 0x15c(r3)
-	fadds    f0, f0, f5
-	fmuls    f6, f3, f3
-	stfs     f3, 0x10(r1)
-	fadds    f0, f6, f0
-	fcmpo    cr0, f0, f2
-	ble      lbl_801683D8
-	fmadds   f0, f4, f4, f5
-	fadds    f4, f6, f0
-	fcmpo    cr0, f4, f2
-	ble      lbl_801683DC
-	frsqrte  f0, f4
-	fmuls    f4, f0, f4
-	b        lbl_801683DC
-
-lbl_801683D8:
-	fmr      f4, f2
-
-lbl_801683DC:
-	lfs      f0, lbl_80518914@sda21(r2)
-	fcmpo    cr0, f4, f0
-	ble      lbl_80168414
-	lfs      f0, lbl_80518910@sda21(r2)
-	lfs      f3, 8(r1)
-	fdivs    f4, f0, f4
-	lfs      f2, 0xc(r1)
-	lfs      f0, 0x10(r1)
-	fmuls    f3, f3, f4
-	fmuls    f2, f2, f4
-	fmuls    f0, f0, f4
-	stfs     f3, 8(r1)
-	stfs     f2, 0xc(r1)
-	stfs     f0, 0x10(r1)
-
-lbl_80168414:
-	addi     r3, r1, 0x14
-	addi     r4, r1, 8
-	bl       "makeNaturalPosture__7MatrixfFR10Vector3<f>f"
-	lwz      r5, 0x14(r1)
-	addi     r3, r31, 0x1f8
-	lwz      r0, 0x18(r1)
-	addi     r4, r31, 0x138
-	stw      r5, 0x138(r31)
-	stw      r0, 0x13c(r31)
-	lwz      r5, 0x1c(r1)
-	lwz      r0, 0x20(r1)
-	stw      r5, 0x140(r31)
-	stw      r0, 0x144(r31)
-	lwz      r5, 0x24(r1)
-	lwz      r0, 0x28(r1)
-	stw      r5, 0x148(r31)
-	stw      r0, 0x14c(r31)
-	lwz      r5, 0x2c(r1)
-	lwz      r0, 0x30(r1)
-	stw      r5, 0x150(r31)
-	stw      r0, 0x154(r31)
-	lwz      r5, 0x34(r1)
-	lwz      r0, 0x38(r1)
-	stw      r5, 0x158(r31)
-	stw      r0, 0x15c(r31)
-	lwz      r5, 0x3c(r1)
-	lwz      r0, 0x40(r1)
-	stw      r5, 0x160(r31)
-	stw      r0, 0x164(r31)
-	bl       fromMatrixf__4QuatFR7Matrixf
-	addi     r3, r31, 0x1f8
-	bl       normalise__4QuatFv
-	lfs      f0, 0x3ac(r31)
-	addi     r3, r31, 0x138
-	addi     r4, r31, 0x180
-	stfs     f0, 0x144(r31)
-	lfs      f0, 0x3b0(r31)
-	stfs     f0, 0x154(r31)
-	lfs      f0, 0x3b4(r31)
-	stfs     f0, 0x164(r31)
-	bl       PSMTXCopy
-	lwz      r0, 0x54(r1)
-	lwz      r31, 0x4c(r1)
-	mtlr     r0
-	addi     r1, r1, 0x50
-	blr
-	*/
 }
 
 /*
@@ -2511,172 +2310,45 @@ int Pellet::getStateID() { return m_pelletSM->getCurrID(this); }
  * Size:	000260
  */
 // WIP: https://decomp.me/scratch/O341Q
-void Pellet::bounceCallback(Sys::Triangle*)
+void Pellet::bounceCallback(Sys::Triangle* triangle)
 {
-	/*
-	stwu     r1, -0x80(r1)
-	mflr     r0
-	stw      r0, 0x84(r1)
-	stfd     f31, 0x70(r1)
-	psq_st   f31, 120(r1), 0, qr0
-	stw      r31, 0x6c(r1)
-	stw      r30, 0x68(r1)
-	stw      r29, 0x64(r1)
-	mr       r30, r3
-	addi     r3, r1, 0x14
-	mr       r4, r30
-	lwz      r5, 0x35c(r30)
-	lwz      r12, 0(r30)
-	lfs      f31, 0xb0(r5)
-	lwz      r12, 8(r12)
-	mtctr    r12
-	bctrl
-	lfs      f0, 0x14(r1)
-	li       r31, 0
-	lfs      f2, 0x18(r1)
-	lfs      f1, 0x1c(r1)
-	stfs     f0, 0x20(r1)
-	lfs      f0, lbl_80518928@sda21(r2)
-	stfs     f2, 0x24(r1)
-	fcmpo    cr0, f31, f0
-	stfs     f1, 0x28(r1)
-	lwz      r3, 0x35c(r30)
-	lfs      f1, 0xc0(r3)
-	fsubs    f0, f2, f1
-	stfs     f1, 0x2c(r1)
-	stfs     f0, 0x24(r1)
-	ble      lbl_8016884C
-	li       r31, 2
-	b        lbl_8016885C
+	float pRadius     = m_config->m_params.m_pRadius.m_data;
+	Vector3f position = getPosition();
 
-lbl_8016884C:
-	lfs      f0, lbl_80518994@sda21(r2)
-	fcmpo    cr0, f31, f0
-	ble      lbl_8016885C
-	li       r31, 1
+	Sys::Sphere ball;
+	ball.m_position = position;
+	float height    = m_config->m_params.m_height.m_data;
+	ball.m_radius   = height;
+	ball.m_position.y -= height;
 
-lbl_8016885C:
-	mr       r3, r30
-	addi     r5, r1, 0x20
-	li       r4, 0
-	bl       checkWater__Q24Game8CreatureFPQ24Game8WaterBoxRQ23Sys6Sphere
-	mr       r0, r3
-	mr       r3, r30
-	mr       r29, r0
-	addi     r5, r1, 0x20
-	li       r4, 0
-	bl       checkWater__Q24Game8CreatureFPQ24Game8WaterBoxRQ23Sys6Sphere
-	cmplwi   r3, 0
-	beq      lbl_8016899C
-	lbz      r0, 0x324(r30)
-	cmplwi   r0, 0
-	bne      lbl_80168990
-	lis      r3, __vt__Q23efx5TBase@ha
-	li       r4, 0
-	addi     r0, r3, __vt__Q23efx5TBase@l
-	lis      r3, __vt__Q23efx8TSimple3@ha
-	stw      r0, 0x44(r1)
-	addi     r0, r3, __vt__Q23efx8TSimple3@l
-	lis      r3, __vt__Q23efx12TOtakaraDive@ha
-	li       r7, 0x279
-	stw      r0, 0x44(r1)
-	addi     r0, r3, __vt__Q23efx12TOtakaraDive@l
-	li       r6, 0x27a
-	li       r5, 0x27b
-	sth      r7, 0x48(r1)
-	mr       r3, r29
-	sth      r6, 0x4a(r1)
-	sth      r5, 0x4c(r1)
-	stw      r4, 0x50(r1)
-	stw      r4, 0x54(r1)
-	stw      r4, 0x58(r1)
-	stw      r0, 0x44(r1)
-	lwz      r12, 0(r29)
-	lwz      r12, 0x14(r12)
-	mtctr    r12
-	bctrl
-	lfs      f0, 0(r3)
-	lis      r4, __vt__Q23efx3Arg@ha
-	lwz      r8, 0x20(r1)
-	lis      r3, __vt__Q23efx8ArgScale@ha
-	stfs     f0, 0x24(r1)
-	addi     r5, r4, __vt__Q23efx3Arg@l
-	lwz      r6, 0x28(r1)
-	addi     r0, r3, __vt__Q23efx8ArgScale@l
-	lwz      r9, 0x35c(r30)
-	addi     r3, r1, 0x44
-	lwz      r7, 0x24(r1)
-	addi     r4, r1, 0x30
-	lfs      f3, 0xb0(r9)
-	stw      r8, 8(r1)
-	stw      r7, 0xc(r1)
-	lfs      f2, 8(r1)
-	stw      r6, 0x10(r1)
-	lfs      f1, 0xc(r1)
-	stw      r5, 0x30(r1)
-	lfs      f0, 0x10(r1)
-	stfs     f2, 0x34(r1)
-	stfs     f1, 0x38(r1)
-	stfs     f0, 0x3c(r1)
-	stw      r0, 0x30(r1)
-	stfs     f3, 0x40(r1)
-	bl       create__Q23efx12TOtakaraDiveFPQ23efx3Arg
-	lwz      r3, 0x330(r30)
-	addi     r4, r31, 0x380b
-	li       r5, 0
-	lwz      r12, 0x28(r3)
-	lwz      r12, 0x7c(r12)
-	mtctr    r12
-	bctrl
-	mr       r3, r30
-	lwz      r12, 0(r30)
-	lwz      r12, 0x1d8(r12)
-	mtctr    r12
-	bctrl
+	int fallType = 0;
+	if (pRadius > 30.0f) {
+		fallType = 2;
+	} else if (pRadius > 10.0f) {
+		fallType = 1;
+	}
 
-lbl_80168990:
-	li       r0, 1
-	stb      r0, 0x324(r30)
-	b        lbl_80168A00
+	WaterBox* wbox = checkWater(nullptr, ball);
 
-lbl_8016899C:
-	lbz      r0, 0x324(r30)
-	cmplwi   r0, 0
-	bne      lbl_80168A00
-	mr       r3, r30
-	lwz      r12, 0(r30)
-	lwz      r12, 0x1f4(r12)
-	mtctr    r12
-	bctrl
-	clrlwi   r0, r3, 0x18
-	cmplwi   r0, 1
-	beq      lbl_80168A00
-	lwz      r3, 0x330(r30)
-	addi     r4, r31, 0x3808
-	li       r5, 0
-	lwz      r12, 0x28(r3)
-	lwz      r12, 0x7c(r12)
-	mtctr    r12
-	bctrl
-	li       r0, 1
-	mr       r3, r30
-	stb      r0, 0x324(r30)
-	lwz      r12, 0(r30)
-	lwz      r12, 0x1d8(r12)
-	mtctr    r12
-	bctrl
+	if (checkWater(nullptr, ball) != nullptr) {
+		if (_324 == 0) {
+			efx::TOtakaraDive diveEffect; // sp44
+			ball.m_position.y = *wbox->getSeaHeightPtr();
 
-lbl_80168A00:
-	psq_l    f31, 120(r1), 0, qr0
-	lwz      r0, 0x84(r1)
-	lfd      f31, 0x70(r1)
-	lwz      r31, 0x6c(r1)
-	lwz      r30, 0x68(r1)
-	lwz      r29, 0x64(r1)
-	mtlr     r0
-	addi     r1, r1, 0x80
-	blr
-	*/
+			float scale = m_config->m_params.m_pRadius.m_data;
+			efx::ArgScale arg(ball.m_position, scale);
+			diveEffect.create(&arg);
+			m_soundMgr->startSound(fallType + 0x380B, 0);
+			onBounce();
+		}
+		_324 = 1;
+		return;
+	}
+	if ((_324 == 0) && (getKind() != PELTYPE_CARCASS)) {
+		m_soundMgr->startSound(fallType + 0x3808, 0);
+		_324 = 1;
+		onBounce();
+	}
 }
 
 /*
@@ -2695,6 +2367,319 @@ lbl_80168A00:
 // WIP: https://decomp.me/scratch/jL72g
 void Pellet::update()
 {
+	Vector3f position = getPosition();
+	Sys::Sphere ball;
+	ball.m_position = position;
+
+	float height      = m_config->m_params.m_height.m_data;
+	ball.m_radius     = height;
+	ball.m_position.y = position.y - height;
+
+	if (checkWater(nullptr, ball) != nullptr) {
+		m_isInWater = true;
+	} else {
+		m_isInWater = false;
+	}
+
+	updateDiscoverDisable();
+
+	if (m_soundMgr != nullptr) {
+		m_soundMgr->exec();
+		if ((gameSystem->m_mode == GSM_STORY_MODE) && !(moviePlayer->m_flags & MoviePlayer::IS_ACTIVE) && (!isPicked())
+		    && (getKind() == PELTYPE_TREASURE || getKind() == PELTYPE_UPGRADE)) {
+			PSSystem::SceneMgr* mgr = PSSystem::getSceneMgr();
+			PSSystem::checkSceneMgr(mgr);
+
+			PSM::Scene_Game* currScene = (PSM::Scene_Game*)mgr->getChildScene();
+			PSSystem::checkGameScene(currScene);
+
+			if (!currScene->isCave()) {
+				m_soundMgr->startSound(0x4002, 0);
+			}
+		}
+	}
+
+	Vector3f frameworkVec; // A4
+	if (m_pelletCarry->frameWork(frameworkVec) != 0) {
+		if (m_sticked == nullptr) {
+			m_pelletCarry->reset();
+		} else {
+			Vector3f velocity = getVelocity();
+			frameworkVec.y    = velocity.y;
+			setVelocity(frameworkVec);
+		}
+	}
+
+	if (!(_3D0 & 1)) {
+		updateClaim();
+	}
+
+	if (_3D0 & 1) {
+		if (getTotalCarryPikmins() < getPelletConfigMin()) {
+			endPick(false);
+			m_pelletCarry->reset();
+			if (_3F6 == 0) {
+				setVelocity(Vector3f::zero);
+			}
+		}
+	}
+
+	m_collTree->getBoundingSphere(m_lodSphere);
+	updateCell();
+	if (m_pelletView != nullptr) {
+		m_collTree->update();
+		m_collTree->getBoundingSphere(m_lodSphere);
+		m_collTree->m_part->m_model->getMatrix(0);
+	}
+
+	m_pelletSM->exec(this);
+	if (m_pelletSM->getCurrID(this) == 6) {
+		AILODParm parm1;
+		updateLOD(parm1);
+		return;
+	}
+
+	if (!isAlive()) {
+		AILODParm parm2;
+		updateLOD(parm2);
+		if (isMovieActor()) {
+			m_lod.m_flags |= (AILOD_FLAG_NEED_SHADOW + AILOD_FLAG_VISIBLE_VP0 + AILOD_FLAG_VISIBLE_VP1);
+		}
+	} else {
+		if (m_captureMatrix != nullptr) {
+			AILODParm parm3;
+			updateLOD(parm3);
+			return;
+		}
+		AILODParm parm4;
+		updateLOD(parm4);
+		if (isMovieActor()) {
+			m_lod.m_flags |= (AILOD_FLAG_NEED_SHADOW + AILOD_FLAG_VISIBLE_VP0 + AILOD_FLAG_VISIBLE_VP1);
+		}
+		bool check;
+		int type = 2;
+		if (_364 == 0) {
+			check = true;
+		} else if (_364 == 2) {
+			check = false;
+		} else if ((m_lod.m_flags & (AILOD_FLAG_IS_MID + AILOD_FLAG_IS_FAR)) >= 2) {
+			check = false;
+		} else {
+			check = true;
+		}
+
+		if (!(m_lod.m_flags & AILOD_FLAG_NEED_SHADOW) || ((m_lod.m_flags & (AILOD_FLAG_IS_MID + AILOD_FLAG_IS_FAR)) >= 1)) {
+			type = 1;
+		}
+		_39C = check;
+
+		if ((PelletMgr::disableDynamics != 0) || (!_39C)) {
+			float frametime = sys->m_deltaTime;
+			Sys::Sphere ball2;
+			ball2.m_position = m_pelletPosition;
+			if (_3D0 & 1) {
+				ball2.m_position.y -= 4.0f;
+			}
+			Vector3f* velocityPtr    = &m_rigid.m_configs[0].m_velocity;
+			ball2.m_radius           = 0.5f * m_config->m_params.m_height.m_data;
+			m_rigid.m_configs[0]._30 = Vector3f(0.0f);
+			m_rigid.m_configs[0]._24 = 0.0f;
+			m_rigid.m_configs[0]._28 = 0.0f;
+			m_rigid.m_configs[0]._2C = 0.0f;
+
+			if (((_3F6 == 0) && !(_3D0 & 1)) || (m_bounceTriangle == nullptr)) {
+				velocityPtr->y = -((frametime * _aiConstants->m_gravity.m_data) - velocityPtr->y);
+			}
+			m_acceleration.y = 0.0f;
+			Vector3f vec     = *velocityPtr;
+			if (isCollisionFlick() && (m_pelletFlag != 1) && !(_3D0 & 1) && (_3F6 == 0)) {
+				vec += m_acceleration;
+			}
+
+			m_acceleration = Vector3f(0.0f);
+
+			MoveInfo info(&ball2, &vec, 0.5f);
+			info.m_infoOrigin = (BaseItem*)this;
+			mapMgr->traceMove(info, frametime);
+
+			if (_3D0 & 1) {
+				bool check = (info.m_wallTriangle != nullptr);
+				if (check && (dot(vec, info.m_reflectPosition) > 0.5f)) {
+					check = false;
+				}
+				if (check) {
+					if (m_wallTimer < 100) {
+						m_wallTimer += 2;
+					}
+				} else {
+					if (m_wallTimer != 0) {
+						m_wallTimer--;
+					}
+				}
+			} else {
+				m_wallTimer = 0;
+			}
+			*velocityPtr    = vec;
+			info.m_velocity = velocityPtr;
+			info._19        = 0;
+			if (platMgr != nullptr) {
+				platMgr->traceMove(info, frametime);
+			}
+
+			if (info.m_bounceTriangle != nullptr) {
+				if (m_bounceTriangle == nullptr) {
+					bounceCallback(info.m_bounceTriangle);
+				}
+
+				m_bounceTriangle = info.m_bounceTriangle;
+
+				if (!(_3D0 & 1) && (_3F6 == 0)) {
+					/////// this bit is full of regswaps
+					Vector3f currVel  = *velocityPtr;
+					float dotVelocity = dot(currVel, info.m_position);
+					Vector3f impulse(0.0f, -(_aiConstants->m_gravity.m_data * sys->m_deltaTime), 0.0f);
+					float dotImpulse = dot(impulse, info.m_position);
+
+					Vector3f res = info.m_position * dotVelocity;
+					res          = currVel - res;
+					res          = res * frametime * 10.0f;
+					*velocityPtr = currVel - res;
+
+					Vector3f res2 = info.m_position * dotImpulse;
+					res2          = impulse - res2;
+					res2.x        = -res2.x;
+					res2.y        = -res2.y;
+					res2.z        = -res2.z;
+					res2          = res2 * 1.0f;
+					velocityPtr->x += res2.x;
+					velocityPtr->y += res2.y;
+					velocityPtr->z += res2.z;
+				}
+			} else {
+				m_bounceTriangle = nullptr;
+			}
+
+			if (_3D0 & 1) {
+				ball2.m_position.y += 4.0f;
+			}
+
+			m_pelletPosition         = ball2.m_position;
+			m_rigid.m_configs[0]._00 = m_pelletPosition;
+		} else if (type > 0) {
+			m_rigid.computeForces(0);
+
+			if (!(_3D0 & 1) && (_3F6 == 0)) {
+				computeForces(m_config->m_params.m_friction.m_data);
+			}
+
+			bool someCheck           = true;
+			m_rigid.m_configs[0]._1C = -_aiConstants->m_gravity.m_data;
+			if ((m_pelletSM->getCurrID(this) == 0) && (_311 != 0) && !isPicked()) {
+				Vector3f rigidVelocity = m_rigid.m_configs[0].m_velocity;
+				float mag              = rigidVelocity.length();
+
+				if (mag < 10.0f) {
+					Vector3f anotherVec = m_rigid.m_configs[0]._30;
+					float anotherMag    = anotherVec.length();
+
+					if ((anotherMag < 100.0f) && (_3F6 == 0)) {
+						float time = sys->m_deltaTime;
+
+						Sys::Sphere ball3;
+						ball3.m_position = m_rigid.m_configs[0]._00;
+						float halfHeight = 0.5f * m_config->m_params.m_height.m_data;
+						ball3.m_radius   = halfHeight;
+						ball3.m_position.y -= halfHeight;
+
+						Vector3f anotherImpulse(0.0f, -_aiConstants->m_gravity.m_data, 0.0f);
+
+						MoveInfo info2(&ball3, &anotherImpulse, 0.0f);
+						mapMgr->traceMove(info2, time);
+						if (info2.m_bounceTriangle == nullptr) {
+							if (platMgr != nullptr) {
+								platMgr->traceMove(info2, time);
+							}
+						}
+
+						if (info2.m_bounceTriangle != nullptr) {
+							someCheck = false;
+						}
+					}
+				}
+			}
+
+			Vector3f someVec = m_rigid.m_configs[0]._00;
+			float halfFrame  = sys->m_deltaTime / 2;
+
+			if (someCheck) {
+				if (isCollisionFlick() && !(_3D0 & 1) && (_3F6 == 0)) {
+					m_acceleration.y = 0.0f;
+					m_rigid.m_configs[0].m_velocity += m_acceleration;
+				}
+				for (int i = 0; i < 2; i++) {
+					simulate(halfFrame);
+				}
+			}
+			float frametimeagain = sys->m_deltaTime;
+			float frames         = 1.0f / frametimeagain;
+			Sys::Sphere ball4;
+			ball4.m_position = someVec;
+			ball4.m_radius   = 0.5f * m_config->m_params.m_height.m_data;
+
+			Vector3f anotherMoveVec = m_rigid.m_configs[0]._00;
+			anotherMoveVec          = anotherMoveVec - someVec;
+			anotherMoveVec          = anotherMoveVec * frames;
+
+			MoveInfo info3(&ball4, &anotherMoveVec, 0.5f);
+
+			mapMgr->traceMove(info3, frametimeagain);
+			if (platMgr != nullptr) {
+				platMgr->traceMove(info3, frametimeagain);
+			}
+
+			if (_3D0 & 1) {
+				bool check = (info3.m_wallTriangle != nullptr);
+				if (check && (dot(anotherMoveVec, info3.m_reflectPosition) > 0.5f)) {
+					check = false;
+				}
+				if (check) {
+					if (m_wallTimer < 100) {
+						m_wallTimer += 2;
+					}
+				} else {
+					if (m_wallTimer != 0) {
+						m_wallTimer--;
+					}
+				}
+			} else {
+				m_wallTimer = 0;
+			}
+
+			float x                    = info3._00->m_position.x;
+			float z                    = info3._00->m_position.z;
+			m_rigid.m_configs[0]._00.x = x;
+			m_rigid.m_configs[0]._00.z = z;
+
+			float anotherVelMag = m_rigid.m_configs[0].m_velocity.normalise();
+
+			float reallyAnotherMag = m_acceleration.length();
+
+			if (anotherVelMag > reallyAnotherMag) {
+				float diff = anotherVelMag - reallyAnotherMag;
+				m_rigid.m_configs[0].m_velocity.x *= diff;
+				m_rigid.m_configs[0].m_velocity.y *= diff;
+				m_rigid.m_configs[0].m_velocity.z *= diff;
+			} else {
+				m_rigid.m_configs[0].m_velocity.x *= anotherVelMag;
+				m_rigid.m_configs[0].m_velocity.y *= anotherVelMag;
+				m_rigid.m_configs[0].m_velocity.z *= anotherVelMag;
+			}
+
+			m_acceleration = Vector3f(0.0f);
+		}
+
+		do_update();
+	}
 	/*
 	stwu     r1, -0x2f0(r1)
 	mflr     r0
@@ -3948,20 +3933,20 @@ void Pellet::doAnimation()
 		}
 
 		if (m_pelletSM->getCurrID(this) == 6) {
-			_41C.animate(_438);
+			m_carryAnim.animate(m_animSpeed);
 
 			SysShape::Model* model  = m_model;
-			J3DMtxCalcAnmBase* calc = static_cast<J3DMtxCalcAnmBase*>(_41C.getCalc());
+			J3DMtxCalcAnmBase* calc = static_cast<J3DMtxCalcAnmBase*>(m_carryAnim.getCalc());
 
 			J3DJoint* joint  = model->m_j3dModel->m_modelData->m_jointTree.m_joints[0];
 			joint->m_mtxCalc = calc;
 			update_pmotions();
 		} else if (m_captureMatrix == nullptr) {
-			if (m_pelletView == nullptr && m_model != nullptr && _41C.m_animMgr) {
-				_41C.animate(_438);
+			if (m_pelletView == nullptr && m_model != nullptr && m_carryAnim.m_animMgr) {
+				m_carryAnim.animate(m_animSpeed);
 
 				SysShape::Model* model  = m_model;
-				J3DMtxCalcAnmBase* calc = static_cast<J3DMtxCalcAnmBase*>(_41C.getCalc());
+				J3DMtxCalcAnmBase* calc = static_cast<J3DMtxCalcAnmBase*>(m_carryAnim.getCalc());
 
 				J3DJoint* joint  = model->m_j3dModel->m_modelData->m_jointTree.m_joints[0];
 				joint->m_mtxCalc = calc;
@@ -4109,7 +4094,7 @@ void Pellet::init_pmotions()
 	int numPMotions = m_config->m_params.m_numPMotions.m_data;
 	if (numPMotions > 0) {
 		m_numPMotions  = numPMotions;
-		_33C.m_animMgr = _41C.m_animMgr;
+		_33C.m_animMgr = m_carryAnim.m_animMgr;
 		_33C.startAnim(0, nullptr);
 	} else {
 		m_numPMotions = 0;
@@ -4165,7 +4150,7 @@ void Pellet::start_pmotions()
  * Address:	8016A300
  * Size:	00000C
  */
-void Pellet::stop_carrymotion() { _438 = 0.0f; }
+void Pellet::stop_carrymotion() { m_animSpeed = 0.0f; }
 
 /*
  * --INFO--
@@ -4174,8 +4159,8 @@ void Pellet::stop_carrymotion() { _438 = 0.0f; }
  */
 void Pellet::finish_carrymotion()
 {
-	if (_41C.m_animMgr) {
-		_41C.m_flags |= 2;
+	if (m_carryAnim.m_animMgr) {
+		m_carryAnim.m_flags |= 2;
 		return;
 	}
 
@@ -4242,6 +4227,14 @@ int Pellet::getSpeicalSlot()
  */
 s16 Pellet::getFreeStickSlot(void)
 {
+	for (int slot = 0; slot < m_slotCount; slot++) {
+		u32 index = slot >> 3;
+		u32 flag  = 1 << slot - index * 8;
+		if (!(flag & m_slots[15 - index])) {
+			return slot;
+		}
+	}
+	return -1;
 	/*
 	lha      r0, 0x3f4(r3)
 	li       r7, 0
@@ -4278,8 +4271,26 @@ lbl_8016A510:
  * Address:	8016A518
  * Size:	000128
  */
-s16 Pellet::getNearFreeStickSlot(Vector3f&)
+s16 Pellet::getNearFreeStickSlot(Vector3f& position)
 {
+	float minDist    = 12800.0f;
+	short returnSlot = -1;
+
+	for (short slot = 0; slot < m_slotCount; slot++) {
+		u32 index = slot >> 3;
+		u32 flag  = 1 << slot - index * 8;
+		if (!(flag & m_slots[15 - index])) {
+			Vector3f slotPosition;
+			calcStickSlotGlobal(slot, slotPosition);
+			Vector3f diff = Vector3f(slotPosition.y - position.y, slotPosition.z - position.z, slotPosition.x - position.x);
+			float dist    = _length2(diff);
+			if (dist < minDist) {
+				minDist    = dist;
+				returnSlot = slot;
+			}
+		}
+	}
+	return returnSlot;
 	/*
 	stwu     r1, -0x40(r1)
 	mflr     r0
@@ -4375,6 +4386,24 @@ lbl_8016A604:
  */
 s16 Pellet::getRandomFreeStickSlot()
 {
+	short slotCap    = m_slotCount;
+	short randomSlot = (int)((float)slotCap * randFloat());
+	int slotByte     = 128;
+	short returnSlot = -1;
+	for (short slot = 0; slot < slotCap; slot++) {
+		u32 index = slot >> 3;
+		u32 flag  = 1 << slot - index * 8;
+		if (!(flag & m_slots[15 - index])) {
+			u32 slotDiff    = slot - randomSlot;
+			u32 slotShift   = slotDiff >> 31;
+			int newSlotByte = (slotShift ^ slotDiff) - slotShift;
+			if (newSlotByte < slotByte) {
+				slotByte   = newSlotByte;
+				returnSlot = slot;
+			}
+		}
+	}
+	return returnSlot;
 	/*
 	stwu     r1, -0x30(r1)
 	mflr     r0
@@ -4623,8 +4652,37 @@ void Pellet::onSlotStickEnd(Creature* creature, short slot)
  * Address:	8016AE10
  * Size:	00021C
  */
-void Pellet::calcStickSlotGlobal(short, Vector3f&)
+void Pellet::calcStickSlotGlobal(s16 slot, Vector3f& stickPosition)
 {
+	Vector3f pos; // sp14
+	if (slot == 9999) {
+		pos = Vector3f(0.0f);
+	} else {
+		bool validSlot = (slot >= 0) && (slot < m_slotCount);
+		P2ASSERTLINE(4016, validSlot);
+		float radius = m_config->m_params.m_pRadius.m_data;
+		float theta  = ((TAU / (float)m_slotCount) * slot) + _3E0;
+		pos          = Vector3f(radius * pikmin2_sinf(theta), 0.0f, radius * pikmin2_cosf(theta));
+		int face     = getFace();
+		float mid    = (0.5f * m_config->m_params.m_height.m_data) + 1.0f;
+
+		if (face == 0) {
+			float negMid = -mid;
+			pos.y        = negMid;
+			if (_3D0 & 1) {
+				pos.y -= 4.0f;
+			}
+		} else {
+			pos.y = mid;
+			if (_3D0 & 1) {
+				pos.y += 4.0f;
+			}
+		}
+	}
+
+	Vector3f outVec;
+	PSMTXMultVec(m_objMatrix.m_matrix.mtxView, (Vec*)&pos, (Vec*)&outVec);
+	stickPosition = Vector3f(outVec);
 	/*
 	stwu     r1, -0x60(r1)
 	mflr     r0
@@ -4813,10 +4871,10 @@ void Pellet::startPick()
 			shadowOn();
 		}
 
-		if (_41C.m_animMgr) {
-			if (!(_41C.m_flags & 2)) {
-				_41C.startAnim(0, this);
-				_438 = 30.0f * sys->m_deltaTime;
+		if (m_carryAnim.m_animMgr) {
+			if (!(m_carryAnim.m_flags & 2)) {
+				m_carryAnim.startAnim(0, this);
+				m_animSpeed = 30.0f * sys->m_deltaTime;
 			}
 		} else if (m_pelletView) {
 			m_pelletView->view_start_carrymotion();
@@ -4880,8 +4938,8 @@ void Pellet::endPick(bool b)
 		sound_otakaraEventStop();
 
 		if (!b) {
-			if (_41C.m_animMgr) {
-				_41C.m_flags |= 2;
+			if (m_carryAnim.m_animMgr) {
+				m_carryAnim.m_flags |= 2;
 			} else if (m_pelletView) {
 				m_pelletView->view_finish_carrymotion();
 			}
@@ -4969,137 +5027,37 @@ void Pellet::doSave(Stream& stream) { stream.writeByte((u8)_3C4); }
  * Address:	8016B548
  * Size:	0001DC
  */
-void Pellet::doLoad(Stream&)
+void Pellet::doLoad(Stream& stream)
 {
-	/*
-	stwu     r1, -0xa0(r1)
-	mflr     r0
-	stw      r0, 0xa4(r1)
-	stfd     f31, 0x90(r1)
-	psq_st   f31, 152(r1), 0, qr0
-	stfd     f30, 0x80(r1)
-	psq_st   f30, 136(r1), 0, qr0
-	stfd     f29, 0x70(r1)
-	psq_st   f29, 120(r1), 0, qr0
-	stw      r31, 0x6c(r1)
-	stw      r30, 0x68(r1)
-	stw      r29, 0x64(r1)
-	stw      r28, 0x60(r1)
-	mr       r31, r3
-	mr       r3, r4
-	bl       readByte__6StreamFv
-	clrlwi   r5, r3, 0x18
-	mr       r4, r31
-	neg      r0, r5
-	addi     r3, r1, 0xc
-	or       r0, r0, r5
-	srwi     r0, r0, 0x1f
-	stb      r0, 0x3c4(r31)
-	lwz      r12, 0(r31)
-	lwz      r12, 8(r12)
-	mtctr    r12
-	bctrl
-	lfs      f29, 0xc(r1)
-	li       r0, 0
-	lfs      f31, 0x10(r1)
-	addi     r4, r1, 0x3c
-	lfs      f30, 0x14(r1)
-	lfs      f0, lbl_80518994@sda21(r2)
-	stfs     f29, 0x3c(r1)
-	lwz      r3, mapMgr__4Game@sda21(r13)
-	stfs     f31, 0x40(r1)
-	stfs     f30, 0x44(r1)
-	stw      r0, 0x48(r1)
-	stb      r0, 0x4c(r1)
-	stfs     f0, 0x50(r1)
-	lwz      r3, 8(r3)
-	bl       getNearestWayPoint__Q24Game8RouteMgrFRQ24Game11WPSearchArg
-	mr       r30, r3
-	li       r29, 0
-	li       r28, 0
+	u8 byte = stream.readByte();
+	_3C4    = byte != 0;
 
-lbl_8016B5FC:
-	lwz      r3, mgr__Q24Game9ItemOnyon@sda21(r13)
-	mr       r4, r28
-	bl       getOnyon__Q34Game9ItemOnyon3MgrFi
-	cmplwi   r3, 0
-	beq      lbl_8016B620
-	lwz      r0, 0x23c(r3)
-	cmplw    r30, r0
-	bne      lbl_8016B620
-	li       r29, 1
+	Vector3f pelletPosition = getPosition();
+	WPSearchArg arg(pelletPosition, nullptr, 0, 10.0f);
+	WayPoint* wayPoint = mapMgr->m_routeMgr->getNearestWayPoint(arg);
 
-lbl_8016B620:
-	addi     r28, r28, 1
-	cmpwi    r28, 3
-	blt      lbl_8016B5FC
-	lwz      r3, mgr__Q24Game9ItemOnyon@sda21(r13)
-	lwz      r3, 0xb0(r3)
-	lwz      r0, 0x23c(r3)
-	cmplw    r0, r30
-	bne      lbl_8016B644
-	li       r29, 1
+	bool isOnyonNearest = false;
+	for (int i = 0; i < 3; i++) {
+		Onyon* onyon = ItemOnyon::mgr->getOnyon(i);
+		if (onyon != nullptr && wayPoint == onyon->m_goalWayPoint) {
+			isOnyonNearest = true;
+		}
+	}
+	if (ItemOnyon::mgr->m_ufo->m_goalWayPoint == wayPoint) {
+		isOnyonNearest = true;
+	}
 
-lbl_8016B644:
-	clrlwi.  r0, r29, 0x18
-	beq      lbl_8016B6EC
-	lis      r4, "__vt__27Condition<Q24Game8WayPoint>"@ha
-	lis      r3, __vt__Q24Game11WPCondition@ha
-	addi     r0, r4, "__vt__27Condition<Q24Game8WayPoint>"@l
-	lfs      f0, lbl_80518994@sda21(r2)
-	stw      r0, 8(r1)
-	addi     r0, r3, __vt__Q24Game11WPCondition@l
-	lis      r3, __vt__13WPExcludeSpot@ha
-	addi     r5, r1, 8
-	stw      r0, 8(r1)
-	addi     r4, r3, __vt__13WPExcludeSpot@l
-	li       r0, 0
-	lwz      r3, mapMgr__4Game@sda21(r13)
-	stw      r4, 8(r1)
-	addi     r4, r1, 0x24
-	stfs     f29, 0x24(r1)
-	stfs     f31, 0x28(r1)
-	stfs     f30, 0x2c(r1)
-	stw      r5, 0x30(r1)
-	stb      r0, 0x34(r1)
-	stfs     f0, 0x38(r1)
-	lwz      r3, 8(r3)
-	bl       getNearestWayPoint__Q24Game8RouteMgrFRQ24Game11WPSearchArg
-	cmplwi   r3, 0
-	beq      lbl_8016B6EC
-	lfs      f2, 0x50(r3)
-	addi     r4, r1, 0x18
-	lfs      f3, 0x54(r3)
-	li       r5, 0
-	lfs      f0, 0x4c(r3)
-	mr       r3, r31
-	lfs      f1, lbl_80518918@sda21(r2)
-	stfs     f0, 0x18(r1)
-	stfs     f2, 0x1c(r1)
-	stfs     f3, 0x20(r1)
-	lwz      r6, 0x35c(r31)
-	lfs      f0, 0xc0(r6)
-	fmuls    f0, f1, f0
-	fadds    f0, f2, f0
-	stfs     f0, 0x1c(r1)
-	bl       "setPosition__Q24Game8CreatureFR10Vector3<f>b"
-
-lbl_8016B6EC:
-	psq_l    f31, 152(r1), 0, qr0
-	lfd      f31, 0x90(r1)
-	psq_l    f30, 136(r1), 0, qr0
-	lfd      f30, 0x80(r1)
-	psq_l    f29, 120(r1), 0, qr0
-	lfd      f29, 0x70(r1)
-	lwz      r31, 0x6c(r1)
-	lwz      r30, 0x68(r1)
-	lwz      r29, 0x64(r1)
-	lwz      r0, 0xa4(r1)
-	lwz      r28, 0x60(r1)
-	mtlr     r0
-	addi     r1, r1, 0xa0
-	blr
-	*/
+	if (isOnyonNearest) {
+		WPExcludeSpot exclude;
+		WPSearchArg arg(pelletPosition, &exclude, 0, 10.0f);
+		WayPoint* wayPoint = mapMgr->m_routeMgr->getNearestWayPoint(arg);
+		if (wayPoint != nullptr) {
+			Vector3f newPosition = wayPoint->getPosition();
+			float y              = 0.5f * m_config->m_params.m_height.m_data;
+			newPosition.y += y;
+			setPosition(newPosition, false);
+		}
+	}
 }
 
 /*
@@ -5147,13 +5105,13 @@ void Pellet::onStartCapture()
  */
 void Pellet::onUpdateCapture(Matrixf& matrix)
 {
-	if (_41C.m_animMgr) {
-		_41C.animate(0.0f);
+	if (m_carryAnim.m_animMgr) {
+		m_carryAnim.animate(0.0f);
 	}
 
 	SysShape::Model* model = m_model;
 	if (model) {
-		J3DMtxCalcAnmBase* calc = static_cast<J3DMtxCalcAnmBase*>(_41C.getCalc());
+		J3DMtxCalcAnmBase* calc = static_cast<J3DMtxCalcAnmBase*>(m_carryAnim.getCalc());
 		J3DJoint* joint         = model->m_j3dModel->m_modelData->m_jointTree.m_joints[0];
 
 		joint->m_mtxCalc = calc;
@@ -5204,7 +5162,7 @@ BasePelletMgr::BasePelletMgr(PelletList::cKind kind)
 {
 	m_configList = PelletList::Mgr::getConfigList(kind);
 	int count    = m_configList->m_configCnt;
-	_50          = count;
+	m_entries    = count;
 
 	m_modelData = new J3DModelData*[count];
 	m_animMgr   = new SysShape::AnimMgr*[count];
@@ -5269,7 +5227,7 @@ PelletConfig* BasePelletMgr::getPelletConfig(int i)
 void BasePelletMgr::setUse(int i)
 {
 	bool validIndex = false;
-	if (i >= 0 && i < _50) {
+	if (i >= 0 && i < m_entries) {
 		validIndex = true;
 	}
 	P2ASSERTLINE(4419, validIndex);
@@ -5281,10 +5239,15 @@ void BasePelletMgr::setUse(int i)
  * Address:	........
  * Size:	000078
  */
-// void BasePelletMgr::used(int)
-// {
-// 	// UNUSED FUNCTION
-// }
+bool BasePelletMgr::used(int i)
+{
+	bool validIndex = false;
+	if (i >= 0 && i < m_entries) {
+		validIndex = true;
+	}
+	P2ASSERTLINE(4425, validIndex);
+	return validIndex;
+}
 
 /*
  * --INFO--
@@ -5388,8 +5351,111 @@ void BasePelletMgr::load()
  * Size:	0003E4
  */
 // WIP: https://decomp.me/scratch/Ltrad
-void BasePelletMgr::load_texArc(char*)
+void BasePelletMgr::load_texArc(char* filename)
 {
+	char buffer[512];
+	char* directory = nullptr;
+
+	if (gGameConfig.m_parms.m_pelletMultiLang.m_data != 0) {
+		switch (sys->m_region) {
+		case System::LANG_JAPANESE:
+			sprintf(buffer, "/user/Abe/Pellet/%s/", "jpn");
+			directory = buffer;
+			break;
+		case System::LANG_ENGLISH:
+			sprintf(buffer, "/user/Abe/Pellet/%s/", "us");
+			directory = buffer;
+			break;
+		case System::LANG_FRENCH:
+		case System::LANG_GERMAN:
+		// case System::LANG_HOL_UNUSED:
+		case System::LANG_ITALIAN:
+		case System::LANG_SPANISH:
+			sprintf(buffer, "/user/Abe/Pellet/%s/", "pal");
+			directory = buffer;
+			break;
+		}
+	} else {
+		directory = "user/Kando/pellet/";
+	}
+
+	char path[512];
+	sprintf(path, "%s%s", directory, filename);
+
+	JKRArchive* textArc = openTextArc(path);
+	if (textArc == nullptr) {
+		JUT_PANICLINE(4728, "%s: not found !\n", path);
+	}
+
+	for (int i = 0; i < m_configList->m_configCnt; i++) {
+		PelletConfig* config = &m_configList->m_configs[i];
+
+		used(i);
+
+		if (_4C[i]) {
+			config->m_params.m_index = i;
+
+			JKRArchive* archive = nullptr;
+			if (strcmp("null", config->m_params.m_archive.m_data)) {
+				sprintf(path, "%s%s", directory, config->m_params.m_archive.m_data);
+				archive = JKRArchive::mount(path, JKRArchive::EMM_Mem, nullptr, JKRArchive::EMD_Unk1);
+			}
+
+			J3DModelData* data = nullptr;
+
+			if (strcmp("null", config->m_params.m_bmd.m_data) == 0) {
+				m_modelData[i] = nullptr;
+			} else {
+				if (archive == nullptr) {
+					JUT_PANICLINE(4776, "archive not found\n");
+				}
+
+				sprintf(path, "%s", config->m_params.m_bmd.m_data);
+				void* resourceLoad = JKRFileLoader::getGlbResource(path, nullptr);
+				void* resource     = resourceLoad;
+				if (resourceLoad == nullptr) {
+					resource = archive->getResource(path);
+					JUT_PANICLINE(4786, "%s : is not foun !\n", path);
+				}
+
+				if (config->m_params.m_indirectState != 0) {
+					u32 flags = 0x21020010;
+					if (config->m_params.m_code.m_data & 2) {
+						flags |= 0x20;
+					}
+					data = J3DModelLoaderDataBase::load(resource, flags);
+				} else {
+					u32 flags = 0x20020010;
+					if (config->m_params.m_code.m_data & 2) {
+						flags |= 0x20;
+					}
+					data = J3DModelLoaderDataBase::load(resource, flags);
+				}
+
+				m_modelData[i] = data;
+
+				if (config->m_params.m_code.m_data & 2) {
+					for (u16 i = 0; i < data->m_shapeTable.m_count; i++) {
+						data->m_shapeTable.m_items[i]->m_flags = data->m_shapeTable.m_items[i]->m_flags & 0xFFFF0FFF | 0x2000;
+					}
+				}
+			}
+
+			if (config->m_params.m_animMgr.m_data != 0) {
+				sprintf(path, "%s/%s", config->m_params.m_name.m_data, config->m_params.m_animMgr.m_data);
+				m_animMgr[i] = SysShape::AnimMgr::load(textArc, path, data, archive, nullptr);
+				if (m_animMgr[i] == nullptr) {
+					m_animMgr[i] = SysShape::AnimMgr::load(textArc, path, data, archive, nullptr);
+				}
+			}
+
+			if (config->m_params.m_colltree.m_data != 0) {
+				sprintf(path, "%s/%s", config->m_params.m_name.m_data, config->m_params.m_colltree.m_data);
+				m_collParts[i] = CollPartFactory::load(textArc, path);
+			}
+		}
+	}
+	closeTextArc(textArc);
 	/*
 	stwu     r1, -0x430(r1)
 	mflr     r0
@@ -5697,7 +5763,7 @@ lbl_8016C480:
  * Address:	8016C4B0
  * Size:	00010C
  */
-void BasePelletMgr::openTextArc(char* arc)
+JKRArchive* BasePelletMgr::openTextArc(char* arc)
 {
 	char directory[512];
 	char* file = nullptr;
@@ -5727,7 +5793,7 @@ void BasePelletMgr::openTextArc(char* arc)
 	char filePath[512];
 
 	sprintf(filePath, "%s/%s", file, arc);
-	JKRArchive::mount(filePath, JKRArchive::EMM_Mem, JKRHeap::sCurrentHeap, JKRArchive::EMD_Unk2);
+	return JKRArchive::mount(filePath, JKRArchive::EMM_Mem, JKRHeap::sCurrentHeap, JKRArchive::EMD_Unk2);
 }
 
 /*
@@ -6228,7 +6294,7 @@ bool PelletMgr::setUse(PelletInitArg* arg)
 	int index = arg->_10;
 
 	bool validIndex = false;
-	if (index >= 0 && index < mgr->_50) {
+	if (index >= 0 && index < mgr->m_entries) {
 		validIndex = true;
 	}
 	P2ASSERTLINE(4419, validIndex);
@@ -6583,8 +6649,27 @@ char* PelletMgr::getCaveName(int caveID)
  * Address:	8016EE5C
  * Size:	000270
  */
-u8 PelletMgr::getCaveID(char*)
+int PelletMgr::getCaveID(char* name)
 {
+	Iterator<GenericObjectMgr> iter(this);
+	iter.first();
+
+	while (iter.m_index != iter.m_container->getEnd()) {
+		BasePelletMgr* mgr = (BasePelletMgr*)iter.m_container->get(iter.m_index);
+
+		for (int i = 0; i < mgr->m_configList->m_configCnt; i++) {
+			PelletConfig* config = mgr->getPelletConfig(i);
+			char* currName       = mgr->getPelletConfig(i)->m_params.m_name.m_data;
+
+			if (!strncmp(currName, name, strlen(name))) {
+				int id = (mgr->getMgrID() << 24);
+				id |= i;
+				return id;
+			}
+		}
+		iter.next();
+	}
+	return -1;
 	/*
 	stwu     r1, -0x30(r1)
 	mflr     r0

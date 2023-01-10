@@ -302,7 +302,7 @@ struct Creature : public CellObject {
 		return false;
 	}
 
-	inline void killInline(Game::CreatureKillArg* arg);
+	inline void killInline(CreatureKillArg* arg);
 
 	void applyAirDrag(f32, f32, f32);
 	f32 calcSphereDistance(Creature*);
