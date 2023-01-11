@@ -665,7 +665,7 @@ void CallBack_CounterRV::init(J2DScreen* screen, u64 tag1, u64 tag2, u64 tag3, u
 void CallBack_CounterRV::setKetaSub(int count, bool flag1, bool flag2)
 {
 	for (int i = 0; i < m_counterLimit; i++) {
-		u32 temp = pow(10.0f, (f32)i);
+		u32 temp = pow(10.0f, i);
 		temp     = (m_initialDisplayValue / temp) % 10;
 		if (m_isBlind) {
 			m_counters[i]->setSuji(m_imgResources, 10);
