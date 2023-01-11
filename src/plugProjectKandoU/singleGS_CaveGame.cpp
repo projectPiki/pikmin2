@@ -26,205 +26,10 @@
 #include "PSM/Scene.h"
 #include "PSSystem/PSMainSide_Scene.h"
 #include "Game/Entities/ItemPikihead.h"
+#include "nans.h"
 
 static const char someArray[] = { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 };
-static const char Name[]      = "singleGS_CaveGame";
-
-/*
-    Generated from dpostproc
-
-    .section .ctors, "wa"  # 0x80472F00 - 0x804732C0
-    .4byte __sinit_singleGS_CaveGame_cpp
-
-    .section .rodata  # 0x804732E0 - 0x8049E220
-    .global lbl_80482430
-    lbl_80482430:
-        .4byte 0x00000000
-        .4byte 0x00000000
-        .4byte 0x00000000
-        .4byte 0x53696E67
-        .4byte 0x6C654753
-        .4byte 0x5F47616D
-        .4byte 0x65000000
-    .global lbl_8048244C
-    lbl_8048244C:
-        .4byte 0x7330425F
-        .4byte 0x63765F63
-        .4byte 0x6F757273
-        .4byte 0x65696E00
-        .4byte 0x50534761
-        .4byte 0x6D652E68
-        .4byte 0x00000000
-        .asciz "P2Assert"
-        .skip 3
-        .4byte 0x50535363
-        .4byte 0x656E652E
-        .4byte 0x68000000
-        .4byte 0x67657420
-        .4byte 0x736F756E
-        .4byte 0x64207363
-        .4byte 0x656E6520
-        .4byte 0x61740A69
-        .4byte 0x6E76616C
-        .4byte 0x69642074
-        .4byte 0x696D6D69
-        .4byte 0x6E670A00
-        .4byte 0x50534D61
-        .4byte 0x696E5369
-        .4byte 0x64655F53
-        .4byte 0x63656E65
-        .4byte 0x2E680000
-    .global lbl_804824B8
-    lbl_804824B8:
-        .4byte 0x7330355F
-        .4byte 0x70696B6D
-        .4byte 0x696E7A65
-        .4byte 0x726F0000
-        .4byte 0x736D2D67
-        .4byte 0x69766575
-        .4byte 0x70000000
-        .4byte 0x7331325F
-        .4byte 0x63765F67
-        .4byte 0x69766575
-        .4byte 0x70000000
-        .4byte 0x73696E67
-        .4byte 0x6C654753
-        .4byte 0x5F436176
-        .4byte 0x6547616D
-        .4byte 0x652E6370
-        .4byte 0x70000000
-        .4byte 0x6E6F2070
-        .4byte 0x6F642064
-        .4byte 0x656D6F20
-        .4byte 0x31320000
-        .4byte 0x496C6C65
-        .4byte 0x67616C20
-        .4byte 0x72657475
-        .4byte 0x726E2076
-        .4byte 0x616C7565
-        .4byte 0x2025642E
-        .4byte 0x00000000
-    .global lbl_80482528
-    lbl_80482528:
-        .4byte 0x63617665
-        .4byte 0x73746174
-        .4byte 0x653A636C
-        .4byte 0x65616E75
-        .4byte 0x70000000
-    .global lbl_8048253C
-    lbl_8048253C:
-        .4byte 0x7330335F
-        .4byte 0x6F72696D
-        .4byte 0x61646F77
-        .4byte 0x6E000000
-    .global lbl_8048254C
-    lbl_8048254C:
-        .4byte 0x7330435F
-        .4byte 0x63765F65
-        .4byte 0x73636170
-        .4byte 0x65000000
-    .global lbl_8048255C
-    lbl_8048255C:
-        .4byte 0x7330395F
-        .4byte 0x686F6C65
-        .4byte 0x696E0000
-        .4byte 0x6730375F
-        .4byte 0x63765F67
-        .4byte 0x616D6573
-        .4byte 0x74617274
-        .4byte 0x00000000
-        .4byte 0x50696B69
-        .4byte 0x4B696C6C
-        .4byte 0x41726700
-        .4byte 0x43726561
-        .4byte 0x74757265
-        .4byte 0x4B696C6C
-        .4byte 0x41726700
-
-    .section .data, "wa"  # 0x8049E220 - 0x804EFC20
-    .global lbl_804C05F0
-    lbl_804C05F0:
-        .4byte 0x00000000
-        .4byte 0x00000000
-        .4byte 0x00000000
-    .global __vt__Q34Game10SingleGame9CaveState
-    __vt__Q34Game10SingleGame9CaveState:
-        .4byte 0
-        .4byte 0
-        .4byte
-   init__Q34Game10SingleGame9CaveStateFPQ24Game17SingleGameSectionPQ24Game8StateArg
-        .4byte exec__Q34Game10SingleGame9CaveStateFPQ24Game17SingleGameSection
-        .4byte
-   cleanup__Q34Game10SingleGame9CaveStateFPQ24Game17SingleGameSection .4byte
-   "resume__Q24Game36FSMState<Q24Game17SingleGameSection>FPQ24Game17SingleGameSection"
-        .4byte
-   "restart__Q24Game36FSMState<Q24Game17SingleGameSection>FPQ24Game17SingleGameSection"
-        .4byte
-   "transit__Q24Game36FSMState<Q24Game17SingleGameSection>FPQ24Game17SingleGameSectioniPQ24Game8StateArg"
-        .4byte
-   draw__Q34Game10SingleGame9CaveStateFPQ24Game17SingleGameSectionR8Graphics
-        .4byte
-   onOrimaDown__Q34Game10SingleGame9CaveStateFPQ24Game17SingleGameSectioni
-        .4byte
-   onMovieStart__Q34Game10SingleGame9CaveStateFPQ24Game17SingleGameSectionPQ24Game11MovieConfigUlUl
-        .4byte
-   onMovieDone__Q34Game10SingleGame9CaveStateFPQ24Game17SingleGameSectionPQ24Game11MovieConfigUlUl
-        .4byte
-   onMovieCommand__Q34Game10SingleGame9CaveStateFPQ24Game17SingleGameSectioni
-        .4byte
-   onHoleIn__Q34Game10SingleGame5StateFPQ24Game17SingleGameSectionPQ34Game8ItemCave4Item
-        .4byte
-   onNextFloor__Q34Game10SingleGame9CaveStateFPQ24Game17SingleGameSectionPQ34Game8ItemHole4Item
-        .4byte
-   onFountainReturn__Q34Game10SingleGame9CaveStateFPQ24Game17SingleGameSectionPQ34Game15ItemBigFountain4Item
-        .4byte
-   on_section_fadeout__Q34Game10SingleGame9CaveStateFPQ24Game17SingleGameSection
-        .4byte
-   on_demo_timer__Q34Game10SingleGame5StateFPQ24Game17SingleGameSectionUl .4byte
-   0
-
-    .section .sbss # 0x80514D80 - 0x80516360
-    .global lbl_80515BF0
-    lbl_80515BF0:
-        .skip 0x4
-    .global lbl_80515BF4
-    lbl_80515BF4:
-        .skip 0x4
-
-    .section .sdata2, "a"     # 0x80516360 - 0x80520E40
-    .global lbl_8051A000
-    lbl_8051A000:
-        .float 1.0
-    .global lbl_8051A004
-    lbl_8051A004:
-        .4byte 0x46480000
-    .global lbl_8051A008
-    lbl_8051A008:
-        .4byte 0x00000000
-    .global lbl_8051A00C
-    lbl_8051A00C:
-        .4byte 0x47FA0000
-    .global lbl_8051A010
-    lbl_8051A010:
-        .4byte 0x736D2D63
-        .4byte 0x616E6300
-    .global lbl_8051A018
-    lbl_8051A018:
-        .4byte 0x6F70656E
-        .4byte 0x2D736D00
-    .global lbl_8051A020
-    lbl_8051A020:
-        .4byte 0x47000000
-        .4byte 0x00000000
-    .global lbl_8051A028
-    lbl_8051A028:
-        .4byte 0x43300000
-        .4byte 0x80000000
-    .global lbl_8051A030
-    lbl_8051A030:
-        .4byte 0x44610000
-        .4byte 0x00000000
-*/
+static const char Name[]      = "SingleGS_Game";
 
 namespace Game {
 
@@ -248,12 +53,13 @@ void SingleGame::CaveState::init(SingleGameSection* game, StateArg* arg)
 	gameSystem->m_isInCave                    = true;
 	game->setFixNearFar(true, 1.0f, 12800.0f);
 
-	// no idea whats happening here
-	int test   = 1;
+	// I assume this is meant to check if the 'active' navi is dead and if so, swap to the other navi
+	// but good lord this is weird
 	int naviID = playData->m_caveSaveData.m_activeNaviID;
-	if (naviID != playData->m_deadNaviID[naviID - test] & 1) {
+	if ((1 << naviID * 8) & playData->m_deadNaviID[naviID]) {
 		naviID = 1 - naviID;
 	}
+
 	game->setPlayerMode(naviID);
 	game->setCamController();
 
@@ -553,7 +359,7 @@ void SingleGame::CaveState::exec(SingleGameSection* game)
 		particle2dMgr->update();
 		Screen::gGame2DMgr->update();
 		if ((u8)Screen::gGame2DMgr->check_Save()) {
-			LoadArg arg(game->m_inCave, false, false, 1);
+			LoadArg arg(1, false, false, game->m_inCave);
 			transit(game, SGS_Load, &arg);
 			return;
 		}
@@ -591,218 +397,24 @@ void SingleGame::CaveState::exec(SingleGameSection* game)
 				moviearg.m_origin        = navi->getPosition();
 				moviearg.m_angle         = navi->getFaceDir();
 				moviePlayer->play(moviearg);
-
+				return;
 				// check muting parts of music when lots of pikmin die (does this actually happen in caves?)
-			} else if (!game->m_openMenuFlags || game->updateCaveMenus()) {
-				check_SMenu(game);
-				PSM::PikminNumberDirector* psm = PSMGetPikminNumD();
-				if (GameStat::getMapPikmins_exclude_Me(-1) < 10 && deathMgr->mSoundDeathCount > 0) {
-					if (psm) {
-						psm->directOn();
-					}
-				} else {
-					if (psm) {
-						psm->directOff();
-					}
+			}
+		}
+		if (!game->m_openMenuFlags || game->updateCaveMenus()) {
+			check_SMenu(game);
+			PSM::PikminNumberDirector* psm = PSMGetPikminNumD();
+			if (GameStat::getMapPikmins_exclude_Me(-1) < 10 && deathMgr->mSoundDeathCount > 0) {
+				if (psm) {
+					psm->directOn();
+				}
+			} else {
+				if (psm) {
+					psm->directOff();
 				}
 			}
 		}
 	}
-
-	/*
-	stwu     r1, -0x70(r1)
-	mflr     r0
-	stw      r0, 0x74(r1)
-	stw      r31, 0x6c(r1)
-	mr       r31, r4
-	stw      r30, 0x68(r1)
-	mr       r30, r3
-	lbz      r0, 0x11(r3)
-	cmplwi   r0, 0
-	bne      lbl_80217D2C
-	lbz      r0, 0x18(r30)
-	cmplwi   r0, 0
-	beq      lbl_80217B08
-	lwz      r3, particle2dMgr@sda21(r13)
-	bl       update__14TParticle2dMgrFv
-	lwz      r3, gGame2DMgr__6Screen@sda21(r13)
-	bl       update__Q26Screen9Game2DMgrFv
-	lwz      r3, gGame2DMgr__6Screen@sda21(r13)
-	bl       check_Save__Q26Screen9Game2DMgrCFv
-	clrlwi.  r0, r3, 0x18
-	beq      lbl_80217D2C
-	lbz      r8, 0x23c(r31)
-	li       r7, 0
-	li       r0, 1
-	mr       r3, r30
-	stb      r7, 8(r1)
-	mr       r4, r31
-	addi     r6, r1, 8
-	li       r5, 2
-	stb      r7, 9(r1)
-	stb      r8, 0xa(r1)
-	sth      r0, 0xc(r1)
-	lwz      r12, 0(r30)
-	lwz      r12, 0x1c(r12)
-	mtctr    r12
-	bctrl
-	b        lbl_80217D2C
-	b        lbl_80217D2C
-
-lbl_80217B08:
-	mr       r3, r31
-	bl       doUpdate__Q24Game15BaseGameSectionFv
-	lwz      r0, randMapMgr__Q24Game4Cave@sda21(r13)
-	cmplwi   r0, 0
-	beq      lbl_80217B68
-	lwz      r3, naviMgr__4Game@sda21(r13)
-	bl       getActiveNavi__Q24Game7NaviMgrFv
-	cmplwi   r3, 0
-	beq      lbl_80217B68
-	mr       r4, r3
-	addi     r3, r1, 0x1c
-	lwz      r12, 0(r4)
-	lwz      r12, 8(r12)
-	mtctr    r12
-	bctrl
-	lfs      f2, 0x1c(r1)
-	addi     r4, r1, 0x28
-	lfs      f1, 0x20(r1)
-	lfs      f0, 0x24(r1)
-	stfs     f2, 0x28(r1)
-	lwz      r3, randMapMgr__Q24Game4Cave@sda21(r13)
-	stfs     f1, 0x2c(r1)
-	stfs     f0, 0x30(r1)
-	bl       "radarMapPartsOpen__Q34Game4Cave10RandMapMgrFR10Vector3<f>"
-
-lbl_80217B68:
-	lwz      r3, 0x250(r31)
-	lwz      r0, 4(r30)
-	lwz      r3, 4(r3)
-	cmpw     r3, r0
-	bne      lbl_80217D2C
-	mr       r3, r31
-	bl       updateCaveScreen__Q24Game17SingleGameSectionFv
-	lwz      r3, moviePlayer__4Game@sda21(r13)
-	lwz      r0, 0x1f0(r3)
-	clrlwi.  r0, r0, 0x1f
-	bne      lbl_80217CA0
-	li       r3, -1
-	bl       getMapPikmins__Q24Game8GameStatFi
-	cmpwi    r3, 0
-	bne      lbl_80217CA0
-	lwz      r5, gameSystem__4Game@sda21(r13)
-	lis      r3, lbl_804824B8@ha
-	addi     r4, r3, lbl_804824B8@l
-	lfs      f0, lbl_8051A008@sda21(r2)
-	lbz      r3, 0x3c(r5)
-	li       r0, 0
-	rlwinm   r3, r3, 0, 0x1b, 0x19
-	stb      r3, 0x3c(r5)
-	lwz      r5, 0xc8(r31)
-	lwz      r3, naviMgr__4Game@sda21(r13)
-	stw      r4, 0x34(r1)
-	stw      r0, 0x38(r1)
-	stw      r5, 0x40(r1)
-	stfs     f0, 0x4c(r1)
-	stfs     f0, 0x50(r1)
-	stfs     f0, 0x54(r1)
-	stfs     f0, 0x58(r1)
-	stw      r0, 0x5c(r1)
-	stw      r0, 0x44(r1)
-	stw      r0, 0x3c(r1)
-	stw      r0, 0x60(r1)
-	stw      r0, 0x48(r1)
-	stw      r0, 0x64(r1)
-	bl       getActiveNavi__Q24Game7NaviMgrFv
-	or.      r30, r3, r3
-	bne      lbl_80217C40
-	lwz      r3, gameSystem__4Game@sda21(r13)
-	li       r4, 1
-	lwz      r3, 0x58(r3)
-	lwz      r0, 0xe4(r3)
-	cmpwi    r0, 0
-	bne      lbl_80217C28
-	li       r4, 0
-
-lbl_80217C28:
-	lwz      r3, naviMgr__4Game@sda21(r13)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x24(r12)
-	mtctr    r12
-	bctrl
-	mr       r30, r3
-
-lbl_80217C40:
-	lwz      r0, 0xcc(r31)
-	mr       r4, r30
-	addi     r3, r1, 0x10
-	stw      r0, 0x44(r1)
-	lwz      r12, 0(r30)
-	lwz      r12, 8(r12)
-	mtctr    r12
-	bctrl
-	lfs      f2, 0x10(r1)
-	mr       r3, r30
-	lfs      f1, 0x14(r1)
-	lfs      f0, 0x18(r1)
-	stfs     f2, 0x4c(r1)
-	stfs     f1, 0x50(r1)
-	stfs     f0, 0x54(r1)
-	lwz      r12, 0(r30)
-	lwz      r12, 0x64(r12)
-	mtctr    r12
-	bctrl
-	stfs     f1, 0x58(r1)
-	addi     r4, r1, 0x34
-	lwz      r3, moviePlayer__4Game@sda21(r13)
-	bl       play__Q24Game11MoviePlayerFRQ24Game12MoviePlayArg
-	b        lbl_80217D2C
-
-lbl_80217CA0:
-	lbz      r0, 0x180(r31)
-	cmplwi   r0, 0
-	beq      lbl_80217CBC
-	mr       r3, r31
-	bl       updateCaveMenus__Q24Game17SingleGameSectionFv
-	clrlwi.  r0, r3, 0x18
-	beq      lbl_80217D2C
-
-lbl_80217CBC:
-	mr       r3, r30
-	mr       r4, r31
-	bl check_SMenu__Q34Game10SingleGame9CaveStateFPQ24Game17SingleGameSection bl
-PSMGetPikminNumD__Fv mr       r0, r3 li       r3, -1 mr       r30, r0 bl
-getMapPikmins_exclude_Me__Q24Game8GameStatFi cmpwi    r3, 0xa bge lbl_80217D10
-	lwz      r0, mSoundDeathCount__Q24Game8DeathMgr@sda21(r13)
-	cmpwi    r0, 0
-	ble      lbl_80217D10
-	cmplwi   r30, 0
-	beq      lbl_80217D2C
-	mr       r3, r30
-	lwz      r12, 0(r30)
-	lwz      r12, 0x10(r12)
-	mtctr    r12
-	bctrl
-	b        lbl_80217D2C
-
-lbl_80217D10:
-	cmplwi   r30, 0
-	beq      lbl_80217D2C
-	mr       r3, r30
-	lwz      r12, 0(r30)
-	lwz      r12, 0x14(r12)
-	mtctr    r12
-	bctrl
-
-lbl_80217D2C:
-	lwz      r0, 0x74(r1)
-	lwz      r31, 0x6c(r1)
-	lwz      r30, 0x68(r1)
-	mtlr     r0
-	addi     r1, r1, 0x70
-	blr
-	*/
 }
 
 /*
@@ -879,10 +491,12 @@ void SingleGame::CaveState::check_SMenu(SingleGameSection* game)
 			if (!Screen::gGame2DMgr->open_SMenu(disp)) {
 				return;
 			}
-			gameSystem->setPause(false, "open-sm", 3);
-			gameSystem->setMoviePause(false, "open-sm");
+			gameSystem->setPause(true, "open-sm", 3);
+			gameSystem->setMoviePause(true, "open-sm");
 		}
-		return;
+		break;
+	case 0:
+		break;
 	default:
 		JUT_PANICLINE(854, "Illegal return value %d.", Screen::gGame2DMgr->check_SMenu());
 	}

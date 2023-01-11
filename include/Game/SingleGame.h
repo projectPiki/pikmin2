@@ -167,7 +167,7 @@ struct CaveState : public State {
 	void check_SMenu(SingleGameSection*);
 
 	// Unused/inlined:
-	inline void gameStart(SingleGameSection*);
+	void gameStart(SingleGameSection*);
 
 	bool m_losePellets; // _10
 	bool m_fadeout;     // _11

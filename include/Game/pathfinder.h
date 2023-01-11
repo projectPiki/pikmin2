@@ -99,7 +99,7 @@ struct Pathfinder {
 	AStarPathfinder* m_aStarPathfinder; // _10
 };
 
-static Pathfinder* testPathfinder;
+extern Pathfinder* testPathfinder;
 
 } // namespace Game
 
