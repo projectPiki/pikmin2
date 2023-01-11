@@ -28,25 +28,28 @@ struct Obj : public EnemyBase {
 	Obj();
 
 	//////////////// VTABLE
-	virtual void onInit(CreatureInitArg* settings);          // _30
-	virtual void doDirectDraw(Graphics& gfx);                // _50
-	virtual void getShadowParam(ShadowParam& settings);      // _134
-	virtual ~Obj() { }                                       // _1BC (weak)
-	virtual void setInitialSetting(EnemyInitialParamBase*);  // _1C4
-	virtual void doUpdate();                                 // _1CC
-	virtual void doDebugDraw(Graphics&);                     // _1EC
-	virtual void initMouthSlots();                           // _22C
-	virtual EnemyTypeID::EEnemyTypeID getEnemyTypeID();      // _258 (weak)
-	virtual MouthSlots* getMouthSlots();                     // _25C (weak)
-	virtual bool damageCallBack(Creature*, f32, CollPart*);  // _278
-	virtual bool hipdropCallBack(Creature*, f32, CollPart*); // _284
-	virtual void doStartStoneState();                        // _2A4
-	virtual void doFinishStoneState();                       // _2A8
-	virtual void startCarcassMotion();                       // _2C4
-	virtual f32 getDownSmokeScale();                         // _2EC (weak)
-	virtual void doStartMovie();                             // _2F0
-	virtual void doEndMovie();                               // _2F4
-	virtual void setFSM(FSM*);                               // _2F8
+	virtual void onInit(CreatureInitArg* settings);               // _30
+	virtual void doDirectDraw(Graphics& gfx);                     // _50
+	virtual void getShadowParam(ShadowParam& settings);           // _134
+	virtual ~Obj() { }                                            // _1BC (weak)
+	virtual void setInitialSetting(EnemyInitialParamBase*);       // _1C4
+	virtual void doUpdate();                                      // _1CC
+	virtual void doDebugDraw(Graphics&);                          // _1EC
+	virtual void initMouthSlots();                                // _22C
+	virtual MouthSlots* getMouthSlots() { return &m_mouthSlots; } // _25C (weak)
+	virtual bool damageCallBack(Creature*, f32, CollPart*);       // _278
+	virtual bool hipdropCallBack(Creature*, f32, CollPart*);      // _284
+	virtual void doStartStoneState();                             // _2A4
+	virtual void doFinishStoneState();                            // _2A8
+	virtual void startCarcassMotion();                            // _2C4
+	virtual void doStartMovie();                                  // _2F0
+	virtual void doEndMovie();                                    // _2F4
+	virtual void setFSM(FSM*);                                    // _2F8
+	virtual f32 getDownSmokeScale() { return 0.9f; }              // _2EC (weak)
+	virtual EnemyTypeID::EEnemyTypeID getEnemyTypeID()            // _258 (weak)
+	{
+		return EnemyTypeID::EnemyID_Armor;
+	}
 	//////////////// VTABLE END
 
 	void lifeIncrement();
@@ -75,7 +78,7 @@ struct Obj : public EnemyBase {
 	// _00 		= VTBL
 	// _00-_2BC	= EnemyBase
 	FSM* m_fsm;                          // _2BC
-	u8 _2C0[0x4];                        // _2C0, unknown
+	u8 _2C0;                             // _2C0, might be bool?
 	int _2C4;                            // _2C4
 	f32 _2C8;                            // _2C8
 	MouthSlots m_mouthSlots;             // _2CC
@@ -144,6 +147,24 @@ struct ProperAnimator : public EnemyAnimatorBase {
 
 /////////////////////////////////////////////////////////////////
 // STATE MACHINE DEFINITIONS
+enum StateID {
+	ARMOR_Dead       = 0,
+	ARMOR_Stay       = 1,
+	ARMOR_Appear     = 2,
+	ARMOR_Dive       = 3,
+	ARMOR_Move       = 4,
+	ARMOR_MoveSide   = 5,
+	ARMOR_MoveCentre = 6,
+	ARMOR_MoveTop    = 7,
+	ARMOR_GoHome     = 8,
+	ARMOR_Attack1    = 9,
+	ARMOR_Attack2    = 10,
+	ARMOR_Eat        = 11,
+	ARMOR_Flick      = 12,
+	ARMOR_Fail       = 13,
+	ARMOR_StateCount,
+};
+
 struct FSM : public EnemyStateMachine {
 	virtual void init(EnemyBase*); // _08
 
@@ -152,11 +173,22 @@ struct FSM : public EnemyStateMachine {
 };
 
 struct State : public EnemyFSMState {
+	inline State(u16 stateID, char* name)
+	    : EnemyFSMState(stateID)
+	{
+		m_name = name;
+	}
+
 	// _00		= VTBL
 	// _00-_10 	= EnemyFSMState
 };
 
 struct StateAppear : public State {
+	inline StateAppear()
+	    : State(ARMOR_Appear, "appear")
+	{
+	}
+
 	virtual void init(EnemyBase*, StateArg*); // _08
 	virtual void exec(EnemyBase*);            // _0C
 	virtual void cleanup(EnemyBase*);         // _10
@@ -166,6 +198,11 @@ struct StateAppear : public State {
 };
 
 struct StateAttack1 : public State {
+	inline StateAttack1()
+	    : State(ARMOR_Attack1, "attack1")
+	{
+	}
+
 	virtual void init(EnemyBase*, StateArg*); // _08
 	virtual void exec(EnemyBase*);            // _0C
 	virtual void cleanup(EnemyBase*);         // _10
@@ -175,6 +212,11 @@ struct StateAttack1 : public State {
 };
 
 struct StateAttack2 : public State {
+	inline StateAttack2()
+	    : State(ARMOR_Attack2, "attack2")
+	{
+	}
+
 	virtual void init(EnemyBase*, StateArg*); // _08
 	virtual void exec(EnemyBase*);            // _0C
 	virtual void cleanup(EnemyBase*);         // _10
@@ -184,6 +226,11 @@ struct StateAttack2 : public State {
 };
 
 struct StateDead : public State {
+	inline StateDead()
+	    : State(ARMOR_Dead, "dead")
+	{
+	}
+
 	virtual void init(EnemyBase*, StateArg*); // _08
 	virtual void exec(EnemyBase*);            // _0C
 	virtual void cleanup(EnemyBase*);         // _10
@@ -193,6 +240,11 @@ struct StateDead : public State {
 };
 
 struct StateDive : public State {
+	inline StateDive()
+	    : State(ARMOR_Dive, "dive")
+	{
+	}
+
 	virtual void init(EnemyBase*, StateArg*); // _08
 	virtual void exec(EnemyBase*);            // _0C
 	virtual void cleanup(EnemyBase*);         // _10
@@ -202,6 +254,11 @@ struct StateDive : public State {
 };
 
 struct StateEat : public State {
+	inline StateEat()
+	    : State(ARMOR_Eat, "eat")
+	{
+	}
+
 	virtual void init(EnemyBase*, StateArg*); // _08
 	virtual void exec(EnemyBase*);            // _0C
 	virtual void cleanup(EnemyBase*);         // _10
@@ -211,6 +268,11 @@ struct StateEat : public State {
 };
 
 struct StateFail : public State {
+	inline StateFail()
+	    : State(ARMOR_Fail, "fail")
+	{
+	}
+
 	virtual void init(EnemyBase*, StateArg*); // _08
 	virtual void exec(EnemyBase*);            // _0C
 	virtual void cleanup(EnemyBase*);         // _10
@@ -220,6 +282,11 @@ struct StateFail : public State {
 };
 
 struct StateFlick : public State {
+	inline StateFlick()
+	    : State(ARMOR_Flick, "flick")
+	{
+	}
+
 	virtual void init(EnemyBase*, StateArg*); // _08
 	virtual void exec(EnemyBase*);            // _0C
 	virtual void cleanup(EnemyBase*);         // _10
@@ -229,6 +296,11 @@ struct StateFlick : public State {
 };
 
 struct StateGoHome : public State {
+	inline StateGoHome()
+	    : State(ARMOR_GoHome, "gohome")
+	{
+	}
+
 	virtual void init(EnemyBase*, StateArg*); // _08
 	virtual void exec(EnemyBase*);            // _0C
 	virtual void cleanup(EnemyBase*);         // _10
@@ -238,6 +310,11 @@ struct StateGoHome : public State {
 };
 
 struct StateMove : public State {
+	inline StateMove()
+	    : State(ARMOR_Move, "move")
+	{
+	}
+
 	virtual void init(EnemyBase*, StateArg*); // _08
 	virtual void exec(EnemyBase*);            // _0C
 	virtual void cleanup(EnemyBase*);         // _10
@@ -247,6 +324,11 @@ struct StateMove : public State {
 };
 
 struct StateMoveCentre : public State {
+	inline StateMoveCentre()
+	    : State(ARMOR_MoveCentre, "movecentre")
+	{
+	}
+
 	virtual void init(EnemyBase*, StateArg*); // _08
 	virtual void exec(EnemyBase*);            // _0C
 	virtual void cleanup(EnemyBase*);         // _10
@@ -256,6 +338,11 @@ struct StateMoveCentre : public State {
 };
 
 struct StateMoveSide : public State {
+	inline StateMoveSide()
+	    : State(ARMOR_MoveSide, "moveside")
+	{
+	}
+
 	virtual void init(EnemyBase*, StateArg*); // _08
 	virtual void exec(EnemyBase*);            // _0C
 	virtual void cleanup(EnemyBase*);         // _10
@@ -265,6 +352,11 @@ struct StateMoveSide : public State {
 };
 
 struct StateMoveTop : public State {
+	inline StateMoveTop()
+	    : State(ARMOR_MoveTop, "movetop")
+	{
+	}
+
 	virtual void init(EnemyBase*, StateArg*); // _08
 	virtual void exec(EnemyBase*);            // _0C
 	virtual void cleanup(EnemyBase*);         // _10
@@ -274,6 +366,11 @@ struct StateMoveTop : public State {
 };
 
 struct StateStay : public State {
+	inline StateStay()
+	    : State(ARMOR_Stay, "stay")
+	{
+	}
+
 	virtual void init(EnemyBase*, StateArg*); // _08
 	virtual void exec(EnemyBase*);            // _0C
 	virtual void cleanup(EnemyBase*);         // _10

@@ -6,9 +6,11 @@
 #include "efx/TChaseMtx.h"
 
 namespace efx {
+
+// burrownit appear effect
 struct TYoroiAp : public TSimpleMtx2 {
-	inline TYoroiAp()
-	    : TSimpleMtx2(nullptr, PID_YoroiAp_1, PID_YoroiAp_2)
+	inline TYoroiAp(Matrixf* mat)
+	    : TSimpleMtx2(mat, PID_YoroiAp_1, PID_YoroiAp_2)
 	{
 	}
 
@@ -22,7 +24,7 @@ struct TYoroiAttack : public TChaseMtx {
 	{
 	}
 
-	virtual ~TYoroiAttack(); // _48 (weak)
+	virtual ~TYoroiAttack() { } // _48 (weak)
 
 	// _00     = VTBL
 	// _00-_14 = TChaseMtx
@@ -48,9 +50,10 @@ struct TYoroiEat : public TSimple1 {
 	// _00-_0C = TSimple1
 };
 
+// burrownit hide/disappear effect
 struct TYoroiHd : public TSimpleMtx2 {
-	inline TYoroiHd()
-	    : TSimpleMtx2(nullptr, PID_YoroiHd_1, PID_YoroiHd_2)
+	inline TYoroiHd(Matrixf* mat)
+	    : TSimpleMtx2(mat, PID_YoroiHd_1, PID_YoroiHd_2)
 	{
 	}
 
