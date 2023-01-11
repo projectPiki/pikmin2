@@ -82,7 +82,6 @@ J3DModelData* Mgr::loadModelData(JKRArchive* archive)
 // regswaps
 void Mgr::doSimpleDraw(Viewport* viewport)
 {
-	int i    = 0;
 	Mtx mtx1 = { { 1.0f, 0.0f, 0.0f, 0.0f }, { 0.0f, 1.0f, 0.0f, 0.0f }, { 0.0f, 0.0f, 1.0f, 0.0f } };
 	Mtx mtx2;
 	GXColorS10 color;
@@ -91,7 +90,7 @@ void Mgr::doSimpleDraw(Viewport* viewport)
 	color.g = 0xFF;
 	color.r = 0xFF;
 
-	for (i; i < getMaxObjects(); i++) {
+	for (int i = 0; i < getMaxObjects(); i++) {
 		Obj* nest = static_cast<Obj*>(getEnemy(i));
 
 		P2ASSERTLINE(111, nest);
@@ -125,10 +124,9 @@ void Mgr::doSimpleDraw(Viewport* viewport)
 			material->m_shape->loadPreDrawSetting();
 			material->calc(mtx1);
 
-			u32 testAlpha = (nest->_2EE - 10);
-			color.a       = nest->_2EE;
-			color.a       = testAlpha;
-			if ((s16)testAlpha < -0xFF) {
+			color.a = nest->_2EE;
+			color.a -= 10;
+			if (color.a < -0xFF) {
 				color.a = -0xFF;
 				nest->kill(nullptr);
 				nest->setAlive(false);
