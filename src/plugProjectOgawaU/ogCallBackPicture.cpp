@@ -3,74 +3,6 @@
 #include "og/Screen/anime.h"
 #include "og/Screen/ogScreen.h"
 
-/*
-    Generated from dpostproc
-
-    .section .rodata  # 0x804732E0 - 0x8049E220
-    .global lbl_8048F6B0
-    lbl_8048F6B0:
-        .4byte 0x7467615F
-        .4byte 0x33645F61
-        .4byte 0x6E696D5F
-        .4byte 0x6F746168
-        .4byte 0x2E626C6F
-        .4byte 0x00000000
-    .global lbl_8048F6C8
-    lbl_8048F6C8:
-        .4byte 0x7467615F
-        .4byte 0x33645F61
-        .4byte 0x6E696D5F
-        .4byte 0x6F746168
-        .4byte 0x2E627470
-        .4byte 0x00000000
-    .global lbl_8048F6E0
-    lbl_8048F6E0:
-        .4byte 0x7467615F
-        .4byte 0x33645F61
-        .4byte 0x6E696D5F
-        .4byte 0x6F746168
-        .4byte 0x5F33322E
-        .4byte 0x626C6F00
-    .global lbl_8048F6F8
-    lbl_8048F6F8:
-        .4byte 0x7467615F
-        .4byte 0x33645F61
-        .4byte 0x6E696D5F
-        .4byte 0x6F746168
-        .4byte 0x5F33322E
-        .4byte 0x62747000
-
-    .section .data, "wa"  # 0x8049E220 - 0x804EFC20
-    .global __vt__Q32og6Screen16CallBack_Picture
-    __vt__Q32og6Screen16CallBack_Picture:
-        .4byte 0
-        .4byte 0
-        .4byte __dt__Q32og6Screen16CallBack_PictureFv
-        .4byte getChildCount__5CNodeFv
-        .4byte update__Q32og6Screen16CallBack_PictureFv
-        .4byte draw__Q32og6Screen16CallBack_PictureFR8GraphicsR14J2DGrafContext
-        .4byte doInit__Q29P2DScreen4NodeFv
-        .4byte 0
-
-    .section .sdata2, "a"     # 0x80516360 - 0x80520E40
-    .global lbl_8051DF60
-    lbl_8051DF60:
-        .4byte 0x00000000
-    .global lbl_8051DF64
-    lbl_8051DF64:
-        .float 0.25
-    .global lbl_8051DF68
-    lbl_8051DF68:
-        .4byte 0x41A80000
-    .global lbl_8051DF6C
-    lbl_8051DF6C:
-        .4byte 0x42200000
-    .global lbl_8051DF70
-    lbl_8051DF70:
-        .4byte 0x41A00000
-        .4byte 0x00000000
-*/
-
 namespace og {
 namespace Screen {
 
@@ -99,36 +31,6 @@ void CallBack_Picture::update()
 		m_partsScreen->animation();
 		m_partsScreen->update();
 	}
-	/*
-stwu     r1, -0x10(r1)
-mflr     r0
-stw      r0, 0x14(r1)
-stw      r31, 0xc(r1)
-mr       r31, r3
-lwz      r0, 0x1c(r3)
-cmplwi   r0, 0
-beq      lbl_8032CE64
-lwz      r3, 0x34(r31)
-cmplwi   r3, 0
-beq      lbl_8032CE48
-bl       update__Q32og6Screen9AnimGroupFv
-
-lbl_8032CE48:
-lwz      r3, 0x1c(r31)
-bl       animation__9J2DScreenFv
-lwz      r3, 0x1c(r31)
-lwz      r12, 0(r3)
-lwz      r12, 0x30(r12)
-mtctr    r12
-bctrl
-
-lbl_8032CE64:
-lwz      r0, 0x14(r1)
-lwz      r31, 0xc(r1)
-mtlr     r0
-addi     r1, r1, 0x10
-blr
-	*/
 }
 
 /*
@@ -349,9 +251,19 @@ blr
  * Address:	........
  * Size:	0000D4
  */
-CallBack_Picture* setCallBack_Picture(JKRArchive*, char*, u64, P2DScreen::Mgr*, u64)
+CallBack_Picture* setCallBack_Picture(JKRArchive* arc, char* name, u64 tag1, P2DScreen::Mgr* screen, u64 tag2)
 {
-	// UNUSED FUNCTION
+	P2DScreen::Mgr* mgr = new P2DScreen::Mgr;
+	mgr->set(name, 0x40000, arc);
+	CallBack_Picture* pic = new CallBack_Picture(mgr, tag1);
+
+	J2DPane* pane     = TagSearch(screen, tag2);
+	pane->m_isVisible = false;
+	pic->m_textBox    = pane;
+
+	screen->addCallBack(tag2, pic);
+
+	return pic;
 }
 
 /*
@@ -361,100 +273,12 @@ CallBack_Picture* setCallBack_Picture(JKRArchive*, char*, u64, P2DScreen::Mgr*, 
  */
 CallBack_Picture* setCallBack_3DStick(JKRArchive* arc, P2DScreen::Mgr* screen, u64 tag)
 {
-	P2DScreen::Mgr* mgr = new P2DScreen::Mgr;
-	mgr->set("tga_3d_anim_otah.blo", 0x40000, arc);
-	CallBack_Picture* pic = new CallBack_Picture(mgr, 'ota3dl');
-
-	J2DPane* pane     = TagSearch(screen, tag);
-	pane->m_isVisible = false;
-	pic->m_textBox    = pane;
-
-	screen->addCallBack(tag, pic);
-	J2DScreen* scrn = pic->getPartsScreen();
-	AnimGroup* anim = new AnimGroup(1);
+	CallBack_Picture* pic = setCallBack_Picture(arc, "tga_3d_anim_otah.blo", 'ota3dl', screen, tag);
+	J2DScreen* scrn       = pic->getPartsScreen();
+	AnimGroup* anim       = new AnimGroup(1);
 	registAnimGroupScreen(anim, arc, scrn, "tga_3d_anim_otah.btp", 0.25);
 	pic->m_animGroup = anim;
 	return pic;
-	/*
-stwu     r1, -0x20(r1)
-mflr     r0
-stw      r0, 0x24(r1)
-stmw     r26, 8(r1)
-mr       r31, r3
-mr       r26, r4
-mr       r28, r5
-mr       r27, r6
-li       r3, 0x138
-bl       __nw__FUl
-or.      r30, r3, r3
-beq      lbl_8032D16C
-bl       __ct__Q29P2DScreen3MgrFv
-mr       r30, r3
-
-lbl_8032D16C:
-lis      r4, lbl_8048F6B0@ha
-mr       r3, r30
-addi     r4, r4, lbl_8048F6B0@l
-mr       r6, r31
-lis      r5, 4
-bl       set__9J2DScreenFPCcUlP10JKRArchive
-li       r3, 0x38
-bl       __nw__FUl
-or.      r29, r3, r3
-beq      lbl_8032D1BC
-lis      r5, 0x6133646C@ha
-mr       r4, r30
-addi     r6, r5, 0x6133646C@l
-li       r5, 0x6f74
-bl       __ct__Q32og6Screen15CallBack_ScreenFPQ29P2DScreen3MgrUx
-lis      r3, __vt__Q32og6Screen16CallBack_Picture@ha
-li       r0, 0
-addi     r3, r3, __vt__Q32og6Screen16CallBack_Picture@l
-stw      r3, 0(r29)
-stw      r0, 0x34(r29)
-
-lbl_8032D1BC:
-mr       r3, r26
-mr       r6, r27
-mr       r5, r28
-bl       TagSearch__Q22og6ScreenFP9J2DScreenUx
-li       r0, 0
-mr       r6, r27
-stb      r0, 0xb0(r3)
-mr       r5, r28
-mr       r7, r29
-stw      r3, 0x24(r29)
-mr       r3, r26
-bl       addCallBack__Q29P2DScreen3MgrFUxPQ29P2DScreen4Node
-mr       r3, r29
-bl       getPartsScreen__Q32og6Screen15CallBack_ScreenFv
-mr       r0, r3
-li       r3, 0x1c
-mr       r28, r0
-bl       __nw__FUl
-or.      r30, r3, r3
-beq      lbl_8032D218
-li       r4, 1
-bl       __ct__Q32og6Screen9AnimGroupFi
-mr       r30, r3
-
-lbl_8032D218:
-lis      r3, lbl_8048F6C8@ha
-lfs      f1, lbl_8051DF64@sda21(r2)
-addi     r6, r3, lbl_8048F6C8@l
-mr       r4, r31
-mr       r3, r30
-mr       r5, r28
-bl
-registAnimGroupScreen__Q22og6ScreenFPQ32og6Screen9AnimGroupP10JKRArchiveP9J2DScreenPcf
-stw      r30, 0x34(r29)
-mr       r3, r29
-lmw      r26, 8(r1)
-lwz      r0, 0x24(r1)
-mtlr     r0
-addi     r1, r1, 0x20
-blr
-	*/
 }
 
 /*
@@ -465,150 +289,12 @@ blr
  */
 CallBack_Picture* setCallBack_3DStickSmall(JKRArchive* arc, P2DScreen::Mgr* screen, u64 tag)
 {
-	P2DScreen::Mgr* mgr = new P2DScreen::Mgr;
-	mgr->set("tga_3d_anim_otah_32.blo", 0x40000, arc);
-	CallBack_Picture* pic = new CallBack_Picture(mgr, 'ota3ds');
-
-	J2DPane* pane = TagSearch(screen, tag);
-	pane->hide();
-	pic->m_textBox = pane;
-
-	screen->addCallBack(tag, pic);
-	J2DScreen* scrn = pic->getPartsScreen();
-	AnimGroup* anim = new AnimGroup(1);
-	registAnimGroupScreen(anim, arc, scrn, "tga_3d_anim_otah.btp", 0.25f);
+	CallBack_Picture* pic = setCallBack_Picture(arc, "tga_3d_anim_otah_32.blo", 'ota3ds', screen, tag);
+	J2DScreen* scrn       = pic->getPartsScreen();
+	AnimGroup* anim       = new AnimGroup(1);
+	registAnimGroupScreen(anim, arc, scrn, "tga_3d_anim_otah_32.btp", 0.25f);
 	pic->m_animGroup = anim;
 	return pic;
-	/*
-	.loc_0x0:
-	  stwu      r1, -0x20(r1)
-	  mflr      r0
-	  stw       r0, 0x24(r1)
-	  stmw      r26, 0x8(r1)
-	  mr        r31, r3
-	  mr        r26, r4
-	  mr        r28, r5
-	  mr        r27, r6
-	  li        r3, 0x138
-	  bl        -0x3093D0
-	  mr.       r30, r3
-	  beq-      .loc_0x38
-	  bl        0x107840
-	  mr        r30, r3
-
-	.loc_0x38:
-	  lis       r4, 0x8049
-	  mr        r3, r30
-	  subi      r4, r4, 0x920
-	  mr        r6, r31
-	  lis       r5, 0x4
-	  bl        -0x2EDC78
-	  li        r3, 0x38
-	  bl        -0x309400
-	  mr.       r29, r3
-	  beq-      .loc_0x88
-	  lis       r5, 0x6133
-	  mr        r4, r30
-	  addi      r6, r5, 0x6473
-	  li        r5, 0x6F74
-	  bl        -0x21F50
-	  lis       r3, 0x804E
-	  li        r0, 0
-	  subi      r3, r3, 0x5EC8
-	  stw       r3, 0x0(r29)
-	  stw       r0, 0x34(r29)
-
-	.loc_0x88:
-	  mr        r3, r26
-	  mr        r6, r27
-	  mr        r5, r28
-	  bl        -0x2A438
-	  li        r0, 0
-	  mr        r6, r27
-	  stb       r0, 0xB0(r3)
-	  mr        r5, r28
-	  mr        r7, r29
-	  stw       r3, 0x24(r29)
-	  mr        r3, r26
-	  bl        0x107820
-	  mr        r3, r29
-	  bl        -0x21EF8
-	  mr        r0, r3
-	  li        r3, 0x1C
-	  mr        r28, r0
-	  bl        -0x309478
-	  mr.       r30, r3
-	  beq-      .loc_0xE4
-	  li        r4, 0x1
-	  bl        -0x27ED4
-	  mr        r30, r3
-
-	.loc_0xE4:
-	  lis       r3, 0x8049
-	  lfs       f1, -0x3FC(r2)
-	  subi      r6, r3, 0x908
-	  mr        r4, r31
-	  mr        r3, r30
-	  mr        r5, r28
-	  bl        -0x279B4
-	  stw       r30, 0x34(r29)
-	  mr        r3, r29
-	  lmw       r26, 0x8(r1)
-	  lwz       r0, 0x24(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x20
-	  blr
-	*/
-}
-
-/*
- * --INFO--
- * Address:	........
- * Size:	00011C
- */
-void setCallBack_CStick(JKRArchive*, P2DScreen::Mgr*, u64)
-{
-	// UNUSED FUNCTION
-}
-
-/*
- * --INFO--
- * Address:	........
- * Size:	00011C
- */
-void setCallBack_CStickSmall(JKRArchive*, P2DScreen::Mgr*, u64)
-{
-	// UNUSED FUNCTION
-}
-
-/*
- * --INFO--
- * Address:	........
- * Size:	000038
- */
-void startCB_StickAnimAll(og::Screen::CallBack_Picture*)
-{
-	// UNUSED FUNCTION
-}
-
-/*
- * --INFO--
- * Address:	........
- * Size:	000040
- */
-void startCB_StickAnimUp(og::Screen::CallBack_Picture*)
-{
-	// UNUSED FUNCTION
-}
-
-/*
- * --INFO--
- * Address:	........
- * Size:	000040
- */
-void startCB_StickAnimDown(og::Screen::CallBack_Picture*)
-{
-	// UNUSED FUNCTION
 }
 
 /*
@@ -620,13 +306,6 @@ StickAnimMgr::StickAnimMgr(og::Screen::CallBack_Picture* pic)
 {
 	m_callBackPicture = pic;
 	m_state           = STICKANIM_Disabled;
-
-	/*
-stw      r4, 0(r3)
-li       r0, 0
-stw      r0, 4(r3)
-blr
-	*/
 }
 
 /*
@@ -636,7 +315,8 @@ blr
  */
 void StickAnimMgr::stickStop()
 {
-	// UNUSED FUNCTION
+	// this absolutely was more involved originally, but this is just to fix the float ordering
+	m_callBackPicture->m_animGroup->reservAnim(21.0f, 0.0f, 40.0f);
 }
 
 /*
@@ -650,16 +330,20 @@ void StickAnimMgr::stickUp()
 		AnimGroup* anim = m_callBackPicture->m_animGroup;
 		f32 frame       = anim->getFrame();
 		switch (m_state) {
-		case STICKANIM_UpDown:
-			if (frame >= 21.0f) {
-				anim->reservAnim(40.0f, 21.0f, 40.0f);
-			} else {
-				anim->reservAnim(20.0f, 21.0f, 40.0f);
-			}
-			break;
 		case STICKANIM_Down:
-			anim->reservAnim(40.0f, 21.0f, 40.0f);
+			anim->reservAnim(20.0f, 21.0f, 40.0f);
 			break;
+
+		case STICKANIM_UpDown:
+			if (frame < 21.0f) {
+				anim->reservAnim(20.0f, 21.0f, 40.0f);
+
+			} else {
+				anim->reservAnim(40.0f, 21.0f, 40.0f);
+			}
+
+			break;
+
 		default:
 			anim->setArea(21.0f, 40.0f);
 			anim->start();
@@ -667,73 +351,6 @@ void StickAnimMgr::stickUp()
 		}
 		m_state = STICKANIM_Up;
 	}
-	/*
-stwu     r1, -0x10(r1)
-mflr     r0
-stw      r0, 0x14(r1)
-stw      r31, 0xc(r1)
-stw      r30, 8(r1)
-mr       r30, r3
-lwz      r0, 4(r3)
-cmpwi    r0, 1
-beq      lbl_8032D438
-lwz      r3, 0(r30)
-lwz      r31, 0x34(r3)
-mr       r3, r31
-bl       getFrame__Q32og6Screen9AnimGroupFv
-lwz      r0, 4(r30)
-cmpwi    r0, 3
-beq      lbl_8032D3E4
-bge      lbl_8032D418
-cmpwi    r0, 2
-bge      lbl_8032D3CC
-b        lbl_8032D418
-
-lbl_8032D3CC:
-lfs      f1, lbl_8051DF70@sda21(r2)
-mr       r3, r31
-lfs      f2, lbl_8051DF68@sda21(r2)
-lfs      f3, lbl_8051DF6C@sda21(r2)
-bl       reservAnim__Q32og6Screen9AnimGroupFfff
-b        lbl_8032D430
-
-lbl_8032D3E4:
-lfs      f2, lbl_8051DF68@sda21(r2)
-fcmpo    cr0, f1, f2
-bge      lbl_8032D404
-lfs      f1, lbl_8051DF70@sda21(r2)
-mr       r3, r31
-lfs      f3, lbl_8051DF6C@sda21(r2)
-bl       reservAnim__Q32og6Screen9AnimGroupFfff
-b        lbl_8032D430
-
-lbl_8032D404:
-lfs      f1, lbl_8051DF6C@sda21(r2)
-mr       r3, r31
-fmr      f3, f1
-bl       reservAnim__Q32og6Screen9AnimGroupFfff
-b        lbl_8032D430
-
-lbl_8032D418:
-lfs      f1, lbl_8051DF68@sda21(r2)
-mr       r3, r31
-lfs      f2, lbl_8051DF6C@sda21(r2)
-bl       setArea__Q32og6Screen9AnimGroupFff
-mr       r3, r31
-bl       start__Q32og6Screen9AnimGroupFv
-
-lbl_8032D430:
-li       r0, 1
-stw      r0, 4(r30)
-
-lbl_8032D438:
-lwz      r0, 0x14(r1)
-lwz      r31, 0xc(r1)
-lwz      r30, 8(r1)
-mtlr     r0
-addi     r1, r1, 0x10
-blr
-	*/
 }
 
 /*
@@ -747,97 +364,27 @@ void StickAnimMgr::stickDown()
 		AnimGroup* anim = m_callBackPicture->m_animGroup;
 		f32 frame       = anim->getFrame();
 		switch (m_state) {
-		case STICKANIM_UpDown:
-			if (frame >= 21.0f) {
-				anim->reservAnim(40.0f, 0.0f, 20.0f);
-			} else {
-				anim->reservAnim(20.0f, 0.0f, 20.0f);
-			}
-			break;
 		case STICKANIM_Up:
-			anim->reservAnim(40.0f, 0.0f, 40.0f);
+			anim->reservAnim(40.0f, 0.0f, 20.0f);
 			break;
+
+		case STICKANIM_UpDown:
+			if (frame < 21.0f) {
+				anim->reservAnim(20.0f, 0.0f, 20.0f);
+
+			} else {
+				anim->reservAnim(40.0f, 0.0f, 20.0f);
+			}
+
+			break;
+
 		default:
-			anim->setArea(0.0f, 40.0f);
+			anim->setArea(0.0f, 20.0f);
 			anim->start();
 			break;
 		}
 		m_state = STICKANIM_Down;
 	}
-	/*
-stwu     r1, -0x10(r1)
-mflr     r0
-stw      r0, 0x14(r1)
-stw      r31, 0xc(r1)
-stw      r30, 8(r1)
-mr       r30, r3
-lwz      r0, 4(r3)
-cmpwi    r0, 2
-beq      lbl_8032D520
-lwz      r3, 0(r30)
-lwz      r31, 0x34(r3)
-mr       r3, r31
-bl       getFrame__Q32og6Screen9AnimGroupFv
-lwz      r0, 4(r30)
-cmpwi    r0, 2
-beq      lbl_8032D500
-bge      lbl_8032D4A0
-cmpwi    r0, 1
-bge      lbl_8032D4AC
-b        lbl_8032D500
-
-lbl_8032D4A0:
-cmpwi    r0, 4
-bge      lbl_8032D500
-b        lbl_8032D4C4
-
-lbl_8032D4AC:
-lfs      f1, lbl_8051DF6C@sda21(r2)
-mr       r3, r31
-lfs      f2, lbl_8051DF60@sda21(r2)
-lfs      f3, lbl_8051DF70@sda21(r2)
-bl       reservAnim__Q32og6Screen9AnimGroupFfff
-b        lbl_8032D518
-
-lbl_8032D4C4:
-lfs      f0, lbl_8051DF68@sda21(r2)
-fcmpo    cr0, f1, f0
-bge      lbl_8032D4E8
-lfs      f1, lbl_8051DF70@sda21(r2)
-mr       r3, r31
-lfs      f2, lbl_8051DF60@sda21(r2)
-fmr      f3, f1
-bl       reservAnim__Q32og6Screen9AnimGroupFfff
-b        lbl_8032D518
-
-lbl_8032D4E8:
-lfs      f1, lbl_8051DF6C@sda21(r2)
-mr       r3, r31
-lfs      f2, lbl_8051DF60@sda21(r2)
-lfs      f3, lbl_8051DF70@sda21(r2)
-bl       reservAnim__Q32og6Screen9AnimGroupFfff
-b        lbl_8032D518
-
-lbl_8032D500:
-lfs      f1, lbl_8051DF60@sda21(r2)
-mr       r3, r31
-lfs      f2, lbl_8051DF70@sda21(r2)
-bl       setArea__Q32og6Screen9AnimGroupFff
-mr       r3, r31
-bl       start__Q32og6Screen9AnimGroupFv
-
-lbl_8032D518:
-li       r0, 2
-stw      r0, 4(r30)
-
-lbl_8032D520:
-lwz      r0, 0x14(r1)
-lwz      r31, 0xc(r1)
-lwz      r30, 8(r1)
-mtlr     r0
-addi     r1, r1, 0x10
-blr
-	*/
 }
 
 /*
@@ -867,55 +414,5 @@ void StickAnimMgr::stickUpDown()
 	}
 }
 
-/*
- * --INFO--
- * Address:	8032D5F4
- * Size:	000090
- */
-CallBack_Picture::~CallBack_Picture()
-{
-	/*
-stwu     r1, -0x10(r1)
-mflr     r0
-stw      r0, 0x14(r1)
-stw      r31, 0xc(r1)
-mr       r31, r4
-stw      r30, 8(r1)
-or.      r30, r3, r3
-beq      lbl_8032D668
-lis      r4, __vt__Q32og6Screen16CallBack_Picture@ha
-addi     r0, r4, __vt__Q32og6Screen16CallBack_Picture@l
-stw      r0, 0(r30)
-beq      lbl_8032D658
-lis      r4, __vt__Q32og6Screen15CallBack_Screen@ha
-addi     r0, r4, __vt__Q32og6Screen15CallBack_Screen@l
-stw      r0, 0(r30)
-beq      lbl_8032D658
-lis      r4, __vt__Q29P2DScreen12CallBackNode@ha
-addi     r0, r4, __vt__Q29P2DScreen12CallBackNode@l
-stw      r0, 0(r30)
-beq      lbl_8032D658
-lis      r5, __vt__Q29P2DScreen4Node@ha
-li       r4, 0
-addi     r0, r5, __vt__Q29P2DScreen4Node@l
-stw      r0, 0(r30)
-bl       __dt__5CNodeFv
-
-lbl_8032D658:
-extsh.   r0, r31
-ble      lbl_8032D668
-mr       r3, r30
-bl       __dl__FPv
-
-lbl_8032D668:
-lwz      r0, 0x14(r1)
-mr       r3, r30
-lwz      r31, 0xc(r1)
-lwz      r30, 8(r1)
-mtlr     r0
-addi     r1, r1, 0x10
-blr
-	*/
-}
 } // namespace Screen
 } // namespace og

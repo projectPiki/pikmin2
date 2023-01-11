@@ -374,7 +374,7 @@ struct CallBack_Screen : public P2DScreen::CallBackNode {
 struct CallBack_Picture : public CallBack_Screen {
 	CallBack_Picture(P2DScreen::Mgr*, u64);
 
-	virtual ~CallBack_Picture();                   // _08
+	virtual ~CallBack_Picture() { }                // _08
 	virtual void update();                         // _10
 	virtual void draw(Graphics&, J2DGrafContext&); // _14
 
