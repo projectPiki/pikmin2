@@ -1,5 +1,6 @@
 #include "Game/Entities/Miulin.h"
 #include "Game/EnemyAnimKeyEvent.h"
+#include "Game/EnemyFunc.h"
 
 namespace Game {
 namespace Miulin {
@@ -1120,7 +1121,7 @@ void StateAttackEnd::init(EnemyBase* enemy, StateArg* stateArg)
 {
 	enemy->setAnimSpeed(EnemyAnimatorBase::defaultAnimSpeed);
 	enemy->startMotion(2, nullptr);
-	static_cast<Obj*>(enemy)->_2C8 = 5;
+	static_cast<Obj*>(enemy)->m_nextState = MIULIN_Turn;
 	enemy->setEmotionCaution();
 }
 
@@ -1131,57 +1132,16 @@ void StateAttackEnd::init(EnemyBase* enemy, StateArg* stateArg)
  */
 void StateAttackEnd::exec(EnemyBase* enemy)
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	lfs      f0, lbl_8051E788@sda21(r2)
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	mr       r31, r4
-	stw      r30, 8(r1)
-	mr       r30, r3
-	lfs      f1, 0x200(r4)
-	fcmpo    cr0, f1, f0
-	cror     2, 0, 2
-	bne      lbl_803638C4
-	li       r0, 7
-	stw      r0, 0x2c8(r31)
-	b        lbl_803638E0
-
-lbl_803638C4:
-	mr       r3, r31
-	li       r4, 0
-	bl       isStartFlick__Q24Game9EnemyFuncFPQ24Game9EnemyBaseb
-	clrlwi.  r0, r3, 0x18
-	beq      lbl_803638E0
-	li       r0, 6
-	stw      r0, 0x2c8(r31)
-
-lbl_803638E0:
-	lwz      r3, 0x188(r31)
-	lbz      r0, 0x24(r3)
-	cmplwi   r0, 0
-	beq      lbl_8036391C
-	lwz      r0, 0x1c(r3)
-	cmplwi   r0, 0x3e8
-	bne      lbl_8036391C
-	mr       r3, r30
-	mr       r4, r31
-	lwz      r12, 0(r30)
-	li       r6, 0
-	lwz      r5, 0x2c8(r31)
-	lwz      r12, 0x1c(r12)
-	mtctr    r12
-	bctrl
-
-lbl_8036391C:
-	lwz      r0, 0x14(r1)
-	lwz      r31, 0xc(r1)
-	lwz      r30, 8(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	if (enemy->m_health <= 0.0f) {
+		static_cast<Obj*>(enemy)->m_nextState = MIULIN_Dead;
+	} else {
+		if (EnemyFunc::isStartFlick(enemy, false)) {
+			static_cast<Obj*>(enemy)->m_nextState = MIULIN_Flick;
+		}
+	}
+	if (enemy->m_curAnim->m_isPlaying && (u32)enemy->m_curAnim->m_type == KEYEVENT_END) {
+		transit(enemy, static_cast<Obj*>(enemy)->m_nextState, nullptr);
+	}
 }
 
 /*
