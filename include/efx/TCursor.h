@@ -14,9 +14,9 @@ struct TCursor : public TBase {
 		init(PID_Cursor_Olimar, WHISTLE_CONTEXT_NUM);
 	}
 
-	virtual bool create(Arg*); // _08
-	virtual void forceKill();  // _0C (weak)
-	virtual void fade();       // _10 (weak)
+	virtual bool create(Arg*);                             // _08
+	virtual void forceKill() { m_oneEmitter.forceKill(); } // _0C (weak)
+	virtual void fade() { m_oneEmitter.fade(); }           // _10 (weak)
 
 	void init(long, long);
 	void update(Arg*);

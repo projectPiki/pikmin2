@@ -5,7 +5,7 @@
 
 namespace efx {
 struct TFuebugOnpa : public TChasePos {
-	virtual ~TFuebugOnpa(); // _48 (weak)
+	virtual ~TFuebugOnpa() { } // _48 (weak)
 
 	// _00      = VTBL
 	// _00-_14  = TChasePos

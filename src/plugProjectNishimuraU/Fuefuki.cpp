@@ -1215,28 +1215,8 @@ void Obj::updateWhisleEffect(f32)
  */
 void Obj::finishWhisleEffect()
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	mr       r31, r3
-	lwz      r3, 0x2ec(r3)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x10(r12)
-	mtctr    r12
-	bctrl
-	lwz      r3, 0x2f0(r31)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x10(r12)
-	mtctr    r12
-	bctrl
-	lwz      r0, 0x14(r1)
-	lwz      r31, 0xc(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	m_efxWhistle->fade();
+	m_efxOnpa->fade();
 }
 
 // } // namespace Game
@@ -1264,10 +1244,6 @@ void Obj::finishWhisleEffect()
 // 	blr
 // 	*/
 // }
-
-// namespace Game {
-
-// } // namespace Game
 
 /*
  * --INFO--
@@ -1348,28 +1324,8 @@ lbl_8029D7C4:
  */
 void Obj::effectDrawOn()
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	mr       r31, r3
-	lwz      r3, 0x2ec(r3)
-	lwzu     r12, 4(r3)
-	lwz      r12, 0x38(r12)
-	mtctr    r12
-	bctrl
-	lwz      r3, 0x2f0(r31)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x44(r12)
-	mtctr    r12
-	bctrl
-	lwz      r0, 0x14(r1)
-	lwz      r31, 0xc(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	m_efxWhistle->m_oneEmitter.endDemoDrawOn();
+	m_efxOnpa->endDemoDrawOn();
 }
 
 // } // namespace efx
@@ -1393,10 +1349,6 @@ void Obj::effectDrawOn()
 // 	blr
 // 	*/
 // }
-
-// namespace Game {
-
-// } // namespace Game
 
 /*
  * --INFO--
@@ -1518,43 +1470,5 @@ void Obj::effectDrawOff()
 // 	blr
 // 	*/
 // }
-
-// namespace Game {
-
-// } // namespace Game
-
-/*
- * --INFO--
- * Address:	8029D958
- * Size:	000004
- */
-void Obj::inWaterCallback(WaterBox*) { }
-
-/*
- * --INFO--
- * Address:	8029D95C
- * Size:	000004
- */
-void Obj::outWaterCallback() { }
-
-/*
- * --INFO--
- * Address:	8029D960
- * Size:	000008
- */
-EnemyTypeID::EEnemyTypeID Obj::getEnemyTypeID() { return EnemyTypeID::EnemyID_Fuefuki; }
-
-/*
- * --INFO--
- * Address:	8029D968
- * Size:	000008
- */
-Footmarks* Fuefuki::Obj::getFootmarks()
-{
-	/*
-	lwz      r3, 0x2e8(r3)
-	blr
-	*/
-}
 } // namespace Fuefuki
 } // namespace Game
