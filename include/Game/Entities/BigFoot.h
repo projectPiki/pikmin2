@@ -88,8 +88,8 @@ struct Obj : public EnemyBase {
 	bool isFinishIKMotion();
 	void startBlendMotion();
 	void finishBlendMotion();
-	void getTraceCentrePosition();
-	void isCollisionCheck(CollPart*);
+	Vector3f getTraceCentrePosition();
+	bool isCollisionCheck(CollPart*);
 	void createShadowSystem();
 	void setupShadowSystem();
 	void doAnimationShadowSystem();
@@ -247,7 +247,17 @@ struct ProperAnimator : public EnemyAnimatorBase {
 	SysShape::Animator m_animator; // _10
 };
 
-struct BigFootShadowMgr;
+struct BigFootShadowMgr {
+	BigFootShadowMgr(Obj*);
+
+	void init();
+	void setJointPosPtr(int, int, Vector3f*);
+	void update();
+
+	Matrixf* _00; // _00
+	Obj* _04;     // _04
+	u8 _08[0xA8]; // _08, to fill in
+};
 
 struct BigFootGroundCallBack : public JointGroundCallBack {
 	inline BigFootGroundCallBack(Obj* obj)

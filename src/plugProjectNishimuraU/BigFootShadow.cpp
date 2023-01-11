@@ -1,4 +1,4 @@
-#include "types.h"
+#include "Game/Entities/BigFoot.h"
 
 /*
     Generated from dpostproc
@@ -129,13 +129,14 @@
 */
 
 namespace Game {
+namespace BigFoot {
 
 /*
  * --INFO--
  * Address:	802C7810
  * Size:	00020C
  */
-BigFoot::BigFootShadowMgr::BigFootShadowMgr(Game::BigFoot::Obj*)
+BigFootShadowMgr::BigFootShadowMgr(Obj*)
 {
 	/*
 	stwu     r1, -0x20(r1)
@@ -295,7 +296,7 @@ lbl_802C7990:
  * Address:	802C7A1C
  * Size:	00014C
  */
-void BigFoot::BigFootShadowMgr::init()
+void BigFootShadowMgr::init()
 {
 	/*
 	stwu     r1, -0x20(r1)
@@ -389,7 +390,7 @@ void BigFoot::BigFootShadowMgr::init()
  * Address:	802C7B68
  * Size:	000018
  */
-void BigFoot::BigFootShadowMgr::setJointPosPtr(int, int, Vector3f*)
+void BigFootShadowMgr::setJointPosPtr(int, int, Vector3f*)
 {
 	/*
 	slwi     r4, r4, 4
@@ -406,7 +407,7 @@ void BigFoot::BigFootShadowMgr::setJointPosPtr(int, int, Vector3f*)
  * Address:	802C7B80
  * Size:	000370
  */
-void BigFoot::BigFootShadowMgr::update()
+void BigFootShadowMgr::update()
 {
 	/*
 	stwu     r1, -0x110(r1)
@@ -654,4 +655,5 @@ lbl_802C7E88:
 	blr
 	*/
 }
+} // namespace BigFoot
 } // namespace Game

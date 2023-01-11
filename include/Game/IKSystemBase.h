@@ -127,7 +127,7 @@ struct IKSystemMgr {
 	u8 _00;                                     // _00, unknown
 	u8 _01;                                     // _01
 	u8 _02;                                     // _02
-	f32 _04;                                    // _04
+	f32 m_faceDir;                              // _04
 	f32 _08;                                    // _08
 	f32 _0C;                                    // _0C
 	f32 _10;                                    // _10
@@ -138,9 +138,7 @@ struct IKSystemMgr {
 	u32 _24;                                    // _24
 	u32 _28;                                    // _28
 	Vector3f m_targetPosition;                  // _2C
-	u32 _38;                                    // _38
-	u32 _3C;                                    // _3C
-	u32 _40;                                    // _40
+	Vector3f _38;                               // _38, position of something
 	Vector3f m_traceCentrePosition;             // _44
 	f32 _50;                                    // _50
 	f32 _54;                                    // _54
