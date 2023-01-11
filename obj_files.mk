@@ -532,7 +532,7 @@ KANDO:=\
 	$(BUILD_DIR)/asm/plugProjectKandoU/itemGate.o\
 	$(BUILD_DIR)/asm/plugProjectKandoU/itemMgr.o\
 	$(BUILD_DIR)/asm/plugProjectKandoU/aiBreakGate.o\
-	$(BUILD_DIR)/asm/plugProjectKandoU/gameStat.o\
+	$(BUILD_DIR)/src/plugProjectKandoU/gameStat.o\
 	$(BUILD_DIR)/asm/plugProjectKandoU/itemHole.o\
 	$(BUILD_DIR)/asm/plugProjectKandoU/itemHoney.o\
 	$(BUILD_DIR)/asm/plugProjectKandoU/gameCaveInfo.o\
