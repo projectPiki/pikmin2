@@ -40,9 +40,9 @@ struct TNaviEffect {
 	void killCursor_();
 	void killFueact_();
 	void update();
-	void createCursor_(Vector3f*, f32);
-	void updateCursor_(Vector3f*, f32);
-	void createFueact_(Vector3f*, Mtx);
+	void createCursor_(Vector3f, f32);
+	void updateCursor_(Vector3f, f32);
+	void createFueact_(Mtx, Vector3f*);
 	void createOrimadamage_(Mtx);
 	void killOrimadamage_();
 

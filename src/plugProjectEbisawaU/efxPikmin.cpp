@@ -1730,9 +1730,9 @@ void TNaviEffect::killLightAct_() { m_lightAct.fade(); }
  * Address:	803B8244
  * Size:	000064
  */
-void TNaviEffect::createCursor_(Vector3f* pos, f32 scale)
+void TNaviEffect::createCursor_(Vector3f pos, f32 scale)
 {
-	ArgCursor arg(*pos, scale);
+	ArgCursor arg(pos, scale);
 	m_cursor.create(&arg);
 }
 
@@ -1748,9 +1748,9 @@ void TNaviEffect::killCursor_() { m_cursor.fade(); }
  * Address:	803B82D4
  * Size:	000284
  */
-void TNaviEffect::updateCursor_(Vector3f* pos, f32 scale)
+void TNaviEffect::updateCursor_(Vector3f pos, f32 scale)
 {
-	ArgCursor arg(*pos, scale);
+	ArgCursor arg(pos, scale);
 	m_cursor.update(&arg);
 	/*
 	stwu     r1, -0xd0(r1)
@@ -1940,7 +1940,7 @@ lbl_803B8508:
  * Address:	803B8558
  * Size:	0000B4
  */
-void TNaviEffect::createFueact_(Vector3f* pos, Mtx mtx)
+void TNaviEffect::createFueact_(Mtx mtx, Vector3f* pos)
 {
 	P2ASSERTLINE(930, pos);
 	P2ASSERTLINE(931, mtx);
@@ -2076,26 +2076,6 @@ void TPkEffect::updateMoeSmoke_()
 	} else {
 		m_moeSmokeTimer--;
 	}
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	lwz      r4, 0x24(r3)
-	cmpwi    r4, 0
-	bne      lbl_803B8740
-	bl       killMoeSmoke___Q23efx9TPkEffectFv
-	b        lbl_803B8748
-
-lbl_803B8740:
-	addi     r0, r4, -1
-	stw      r0, 0x24(r3)
-
-lbl_803B8748:
-	lwz      r0, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
 }
 
 /*
