@@ -992,90 +992,11 @@ void NaviLifeGauge::setCallBack(DataNavi* data, CallBack_LifeGauge::LifeGaugeTyp
 			JUT_PANICLINE(243, "ERR! : NULL Pane !!!\n");
 		} else {
 			float temp       = 0.0f;
-			cback->m_offsetX = (pane->_020.f.x - pane->_020.i.x) * 0.5f + temp;
+			cback->m_offsetX = (pane->_020.f.x - pane->_020.i.x) / 2 + temp;
 			J2DPane* pane2   = cback->m_pane;
-			cback->m_offsetY = (pane2->_020.f.y - pane2->_020.i.y) * 0.5f + temp;
+			cback->m_offsetY = (pane2->_020.f.y - pane2->_020.i.y) / 2 + temp;
 		}
 	}
-	/*
-	.loc_0x0:
-	  stwu      r1, -0x20(r1)
-	  mflr      r0
-	  stw       r0, 0x24(r1)
-	  stw       r31, 0x1C(r1)
-	  mr        r31, r5
-	  stw       r30, 0x18(r1)
-	  mr        r30, r4
-	  stw       r29, 0x14(r1)
-	  mr        r29, r3
-	  lwz       r0, 0x150(r3)
-	  cmplwi    r0, 0
-	  bne-      .loc_0xFC
-	  stw       r30, 0x150(r29)
-	  bl        -0x3CC8
-	  li        r3, 0x9C
-	  bl        -0x2E3140
-	  mr.       r0, r3
-	  beq-      .loc_0x50
-	  bl        -0xFB8
-	  mr        r0, r3
-
-	.loc_0x50:
-	  stw       r0, 0x148(r29)
-	  mr        r4, r29
-	  mr        r5, r30
-	  mr        r6, r31
-	  lwz       r3, 0x148(r29)
-	  bl        -0xE0C
-	  lis       r4, 0x6C69
-	  lwz       r7, 0x148(r29)
-	  mr        r3, r29
-	  li        r5, 0
-	  addi      r6, r4, 0x6665
-	  bl        0x12DB00
-	  lis       r4, 0x6D65
-	  mr        r3, r29
-	  addi      r6, r4, 0x7465
-	  li        r5, 0
-	  bl        0x2674C
-	  stw       r3, 0x14C(r29)
-	  lwz       r3, 0x148(r29)
-	  lwz       r4, 0x18(r3)
-	  cmplwi    r4, 0
-	  bne-      .loc_0xC8
-	  lis       r3, 0x8049
-	  lis       r5, 0x8049
-	  subi      r3, r3, 0x2048
-	  li        r4, 0xF3
-	  subi      r5, r5, 0x2038
-	  crclr     6, 0x6
-	  bl        -0x2DCA28
-	  b         .loc_0xFC
-
-	.loc_0xC8:
-	  lfs       f1, 0x28(r4)
-	  lfs       f0, 0x20(r4)
-	  lfs       f3, -0xD9C(r2)
-	  fsubs     f0, f1, f0
-	  lfs       f2, -0xDA8(r2)
-	  fmadds    f0, f0, f3, f2
-	  stfs      f0, 0x28(r3)
-	  lwz       r4, 0x18(r3)
-	  lfs       f1, 0x2C(r4)
-	  lfs       f0, 0x24(r4)
-	  fsubs     f0, f1, f0
-	  fmadds    f0, f0, f3, f2
-	  stfs      f0, 0x2C(r3)
-
-	.loc_0xFC:
-	  lwz       r0, 0x24(r1)
-	  lwz       r31, 0x1C(r1)
-	  lwz       r30, 0x18(r1)
-	  lwz       r29, 0x14(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x20
-	  blr
-	*/
 }
 
 /*
