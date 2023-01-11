@@ -660,7 +660,7 @@ void StickAnimMgr::stickUp()
 		case STICKANIM_Down:
 			anim->reservAnim(40.0f, 21.0f, 40.0f);
 			break;
-		case STICKANIM_Disabled:
+		default:
 			anim->setArea(21.0f, 40.0f);
 			anim->start();
 			break;
@@ -757,7 +757,7 @@ void StickAnimMgr::stickDown()
 		case STICKANIM_Up:
 			anim->reservAnim(40.0f, 0.0f, 40.0f);
 			break;
-		case STICKANIM_Disabled:
+		default:
 			anim->setArea(0.0f, 40.0f);
 			anim->start();
 			break;
@@ -852,78 +852,19 @@ void StickAnimMgr::stickUpDown()
 		anim->getFrame();
 		f32 frame = m_callBackPicture->m_animGroup->getLastFrame();
 		switch (m_state) {
-		case STICKANIM_Down:
-			anim->reservAnim(40.0f, 0.0f, frame);
-			break;
 		case STICKANIM_Up:
 			anim->reservAnim(40.0f, 0.0f, frame);
 			break;
-		case STICKANIM_Disabled:
+		case STICKANIM_Down:
+			anim->reservAnim(20.0f, 0.0f, frame);
+			break;
+		default:
 			anim->setAllArea();
 			anim->start();
 			break;
 		}
 		m_state = STICKANIM_UpDown;
 	}
-	/*
-stwu     r1, -0x10(r1)
-mflr     r0
-stw      r0, 0x14(r1)
-stw      r31, 0xc(r1)
-stw      r30, 8(r1)
-mr       r30, r3
-lwz      r0, 4(r3)
-cmpwi    r0, 3
-beq      lbl_8032D5DC
-lwz      r3, 0(r30)
-lwz      r31, 0x34(r3)
-mr       r3, r31
-bl       getFrame__Q32og6Screen9AnimGroupFv
-lwz      r3, 0(r30)
-lwz      r3, 0x34(r3)
-bl       getLastFrame__Q32og6Screen9AnimGroupFv
-lwz      r0, 4(r30)
-cmpwi    r0, 2
-beq      lbl_8032D5AC
-bge      lbl_8032D5C4
-cmpwi    r0, 1
-bge      lbl_8032D594
-b        lbl_8032D5C4
-
-lbl_8032D594:
-fmr      f3, f1
-lfs      f1, lbl_8051DF6C@sda21(r2)
-lfs      f2, lbl_8051DF60@sda21(r2)
-mr       r3, r31
-bl       reservAnim__Q32og6Screen9AnimGroupFfff
-b        lbl_8032D5D4
-
-lbl_8032D5AC:
-fmr      f3, f1
-lfs      f1, lbl_8051DF70@sda21(r2)
-lfs      f2, lbl_8051DF60@sda21(r2)
-mr       r3, r31
-bl       reservAnim__Q32og6Screen9AnimGroupFfff
-b        lbl_8032D5D4
-
-lbl_8032D5C4:
-mr       r3, r31
-bl       setAllArea__Q32og6Screen9AnimGroupFv
-mr       r3, r31
-bl       start__Q32og6Screen9AnimGroupFv
-
-lbl_8032D5D4:
-li       r0, 3
-stw      r0, 4(r30)
-
-lbl_8032D5DC:
-lwz      r0, 0x14(r1)
-lwz      r31, 0xc(r1)
-lwz      r30, 8(r1)
-mtlr     r0
-addi     r1, r1, 0x10
-blr
-	*/
 }
 
 /*
