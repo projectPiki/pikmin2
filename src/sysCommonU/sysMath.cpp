@@ -831,20 +831,12 @@ void Quat::set(Vector3f&)
  * Address:	80412760
  * Size:	000024
  */
-Quat::Quat(Quat&)
+Quat::Quat(Quat& quat)
 {
-	/*
-	.loc_0x0:
-	  lfs       f0, 0x0(r4)
-	  stfs      f0, 0x0(r3)
-	  lfs       f0, 0x4(r4)
-	  stfs      f0, 0x4(r3)
-	  lfs       f0, 0x8(r4)
-	  stfs      f0, 0x8(r3)
-	  lfs       f0, 0xC(r4)
-	  stfs      f0, 0xC(r3)
-	  blr
-	*/
+	w = quat.w;
+	x = quat.x;
+	y = quat.y;
+	z = quat.z;
 }
 
 /*
