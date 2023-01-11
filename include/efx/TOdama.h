@@ -12,7 +12,7 @@ struct TOdamaDeadHahenA : public TChasePosPos {
 	{
 	}
 
-	virtual ~TOdamaDeadHahenA(); // _48 (weak)
+	virtual ~TOdamaDeadHahenA() { } // _48 (weak)
 
 	// _00		  = VTBL
 	// _00-_18	= TChasePosPos
@@ -24,7 +24,7 @@ struct TOdamaDeadHahenB : public TChasePosPos {
 	{
 	}
 
-	virtual ~TOdamaDeadHahenB(); // _48 (weak)
+	virtual ~TOdamaDeadHahenB() { } // _48 (weak)
 
 	// _00		  = VTBL
 	// _00-_18	= TChasePosPos
@@ -36,7 +36,7 @@ struct TOdamaDeadHahenC1 : public TChaseMtx {
 	{
 	}
 
-	virtual ~TOdamaDeadHahenC1(); // _48 (weak)
+	virtual ~TOdamaDeadHahenC1() { } // _48 (weak)
 
 	// _00		  = VTBL
 	// _00-_14	= TChaseMtx
@@ -48,7 +48,7 @@ struct TOdamaDeadHahenC2 : public TChaseMtx {
 	{
 	}
 
-	virtual ~TOdamaDeadHahenC2(); // _48 (weak)
+	virtual ~TOdamaDeadHahenC2() { } // _48 (weak)
 
 	// _00		  = VTBL
 	// _00-_14	= TChaseMtx
@@ -70,7 +70,7 @@ struct TOdamaFur1 : public TChaseMtx {
 	{
 	}
 
-	virtual ~TOdamaFur1(); // _48 (weak)
+	virtual ~TOdamaFur1() { } // _48 (weak)
 
 	void setGlobalScale(f32);
 
@@ -84,7 +84,7 @@ struct TOdamaFur2 : public TChaseMtx {
 	{
 	}
 
-	virtual ~TOdamaFur2(); // _48 (weak)
+	virtual ~TOdamaFur2() { } // _48 (weak)
 
 	void setGlobalScale(f32);
 
@@ -98,7 +98,7 @@ struct TOdamaHahen : public TChasePosPos {
 	{
 	}
 
-	virtual ~TOdamaHahen(); // _48 (weak)
+	virtual ~TOdamaHahen() { } // _48 (weak)
 
 	// _00		  = VTBL
 	// _00-_18	= TChasePosPos

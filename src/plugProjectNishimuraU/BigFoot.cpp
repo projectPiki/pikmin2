@@ -1,4 +1,7 @@
-#include "types.h"
+#include "Game/Entities/BigFoot.h"
+#include "Game/EnemyFunc.h"
+#include "Game/IKSystemBase.h"
+#include "nans.h"
 
 /*
     Generated from dpostproc
@@ -554,153 +557,36 @@
 */
 
 namespace Game {
+namespace BigFoot {
 
 /*
  * --INFO--
  * Address:	802C7EF0
  * Size:	000024
  */
-void BigFoot::BigFootGroundCallBack::invokeOnGround(int, Game::WaterBox*)
-{
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	lwz      r3, 4(r3)
-	bl       createOnGroundEffect__Q34Game7BigFoot3ObjFiPQ24Game8WaterBox
-	lwz      r0, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
-}
+void BigFootGroundCallBack::invokeOnGround(int p1, WaterBox* wbox) { m_obj->createOnGroundEffect(p1, wbox); }
 
 /*
  * --INFO--
  * Address:	802C7F14
  * Size:	000024
  */
-void BigFoot::BigFootGroundCallBack::invokeOffGround(int, Game::WaterBox*)
-{
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	lwz      r3, 4(r3)
-	bl       createOffGroundEffect__Q34Game7BigFoot3ObjFiPQ24Game8WaterBox
-	lwz      r0, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
-}
+void BigFootGroundCallBack::invokeOffGround(int p1, WaterBox* wbox) { m_obj->createOffGroundEffect(p1, wbox); }
 
 /*
  * --INFO--
  * Address:	802C7F38
  * Size:	00016C
  */
-BigFoot::Obj::Obj()
+Obj::Obj()
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	extsh.   r0, r4
-	stw      r31, 0xc(r1)
-	mr       r31, r3
-	stw      r30, 8(r1)
-	beq      lbl_802C7F78
-	addi     r0, r31, 0x4ac
-	lis      r3, __vt__Q24Game10PelletView@ha
-	stw      r0, 0x17c(r31)
-	addi     r3, r3, __vt__Q24Game10PelletView@l
-	li       r0, 0
-	stw      r3, 0x4ac(r31)
-	stw      r0, 0x4b0(r31)
-	stw      r0, 0x4b4(r31)
+	m_animator = new ProperAnimator;
+	setFSM(new FSM);
 
-lbl_802C7F78:
-	mr       r3, r31
-	li       r4, 0
-	bl       __ct__Q24Game9EnemyBaseFv
-	lis      r4, __vt__Q34Game7BigFoot3Obj@ha
-	addi     r0, r31, 0x4ac
-	addi     r6, r4, __vt__Q34Game7BigFoot3Obj@l
-	lis      r3, "__ct__10Vector3<f>Fv"@ha
-	stw      r6, 0(r31)
-	addi     r5, r6, 0x1b0
-	addi     r9, r6, 0x2fc
-	addi     r4, r3, "__ct__10Vector3<f>Fv"@l
-	stw      r5, 0x178(r31)
-	addi     r3, r31, 0x2f0
-	li       r5, 0
-	li       r6, 0xc
-	lwz      r8, 0x17c(r31)
-	li       r7, 0x10
-	stw      r9, 0(r8)
-	lwz      r8, 0x17c(r31)
-	subf     r0, r8, r0
-	stw      r0, 0xc(r8)
-	bl       __construct_array
-	li       r3, 0x2c
-	bl       __nw__FUl
-	or.      r30, r3, r3
-	beq      lbl_802C8020
-	bl       __ct__Q24Game17EnemyAnimatorBaseFv
-	lis      r3, __vt__Q34Game7BigFoot14ProperAnimator@ha
-	lis      r4, __vt__Q28SysShape12BaseAnimator@ha
-	addi     r0, r3, __vt__Q34Game7BigFoot14ProperAnimator@l
-	lis      r3, __vt__Q28SysShape8Animator@ha
-	stw      r0, 0(r30)
-	addi     r4, r4, __vt__Q28SysShape12BaseAnimator@l
-	addi     r3, r3, __vt__Q28SysShape8Animator@l
-	li       r0, 0
-	stw      r4, 0x10(r30)
-	stw      r3, 0x10(r30)
-	stb      r0, 0x28(r30)
-	stw      r0, 0x1c(r30)
-	stw      r0, 0x14(r30)
-	stb      r0, 0x28(r30)
-	stw      r0, 0x20(r30)
-
-lbl_802C8020:
-	stw      r30, 0x184(r31)
-	li       r3, 0x1c
-	bl       __nw__FUl
-	or.      r4, r3, r3
-	beq      lbl_802C8054
-	lis      r5, __vt__Q24Game17EnemyStateMachine@ha
-	lis      r3, __vt__Q34Game7BigFoot3FSM@ha
-	addi     r0, r5, __vt__Q24Game17EnemyStateMachine@l
-	li       r5, -1
-	stw      r0, 0(r4)
-	addi     r0, r3, __vt__Q34Game7BigFoot3FSM@l
-	stw      r5, 0x18(r4)
-	stw      r0, 0(r4)
-
-lbl_802C8054:
-	lwz      r12, 0(r31)
-	mr       r3, r31
-	lwz      r12, 0x2f8(r12)
-	mtctr    r12
-	bctrl
-	mr       r3, r31
-	bl       createIKSystem__Q34Game7BigFoot3ObjFv
-	mr       r3, r31
-	bl       createShadowSystem__Q34Game7BigFoot3ObjFv
-	mr       r3, r31
-	bl       createEffect__Q34Game7BigFoot3ObjFv
-	mr       r3, r31
-	bl       createMaterialAnimation__Q34Game7BigFoot3ObjFv
-	lwz      r0, 0x14(r1)
-	mr       r3, r31
-	lwz      r31, 0xc(r1)
-	lwz      r30, 8(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	createIKSystem();
+	createShadowSystem();
+	createEffect();
+	createMaterialAnimation();
 }
 
 /*
@@ -708,14 +594,14 @@ lbl_802C8054:
  * Address:	802C80A4
  * Size:	000004
  */
-void BigFoot::Obj::setInitialSetting(Game::EnemyInitialParamBase*) { }
+void Obj::setInitialSetting(EnemyInitialParamBase*) { }
 
 /*
  * --INFO--
  * Address:	802C80A8
  * Size:	000148
  */
-void BigFoot::Obj::onInit(Game::CreatureInitArg*)
+void Obj::onInit(CreatureInitArg* initArg)
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -812,27 +698,10 @@ lbl_802C81DC:
  * Address:	802C81F0
  * Size:	000044
  */
-void BigFoot::Obj::onKill(Game::CreatureKillArg*)
+void Obj::onKill(CreatureKillArg* killArg)
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	mr       r31, r4
-	stw      r30, 8(r1)
-	mr       r30, r3
-	bl       finishFurEffect__Q34Game7BigFoot3ObjFv
-	mr       r3, r30
-	mr       r4, r31
-	bl       onKill__Q24Game9EnemyBaseFPQ24Game15CreatureKillArg
-	lwz      r0, 0x14(r1)
-	lwz      r31, 0xc(r1)
-	lwz      r30, 8(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	finishFurEffect();
+	EnemyBase::onKill(killArg);
 }
 
 /*
@@ -840,30 +709,11 @@ void BigFoot::Obj::onKill(Game::CreatureKillArg*)
  * Address:	802C8234
  * Size:	000050
  */
-void BigFoot::Obj::doUpdate()
+void Obj::doUpdate()
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	mr       r31, r3
-	mr       r4, r31
-	lwz      r3, 0x2bc(r3)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x10(r12)
-	mtctr    r12
-	bctrl
-	mr       r3, r31
-	bl       updatePinchLife__Q34Game7BigFoot3ObjFv
-	mr       r3, r31
-	bl       updateIKSystem__Q34Game7BigFoot3ObjFv
-	lwz      r0, 0x14(r1)
-	lwz      r31, 0xc(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	m_fsm->exec(this);
+	updatePinchLife();
+	updateIKSystem();
 }
 
 /*
@@ -871,23 +721,10 @@ void BigFoot::Obj::doUpdate()
  * Address:	802C8284
  * Size:	000034
  */
-void BigFoot::Obj::doUpdateCommon()
+void Obj::doUpdateCommon()
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	mr       r31, r3
-	bl       doUpdateCommon__Q24Game9EnemyBaseFv
-	mr       r3, r31
-	bl       updateBossBGM__Q34Game7BigFoot3ObjFv
-	lwz      r0, 0x14(r1)
-	lwz      r31, 0xc(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	EnemyBase::doUpdateCommon();
+	updateBossBGM();
 }
 
 /*
@@ -895,7 +732,7 @@ void BigFoot::Obj::doUpdateCommon()
  * Address:	802C82B8
  * Size:	000098
  */
-void BigFoot::Obj::doAnimationCullingOff()
+void Obj::doAnimationCullingOff()
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -944,55 +781,25 @@ void BigFoot::Obj::doAnimationCullingOff()
  * Address:	802C8350
  * Size:	000004
  */
-void BigFoot::Obj::doDirectDraw(Graphics&) { }
+void Obj::doDirectDraw(Graphics&) { }
 
 /*
  * --INFO--
  * Address:	802C8354
  * Size:	000020
  */
-void BigFoot::Obj::doDebugDraw(Graphics&)
-{
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	bl       doDebugDraw__Q24Game9EnemyBaseFR8Graphics
-	lwz      r0, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
-}
+void Obj::doDebugDraw(Graphics& gfx) { EnemyBase::doDebugDraw(gfx); }
 
 /*
  * --INFO--
  * Address:	802C8374
  * Size:	00004C
  */
-void BigFoot::Obj::setFSM(Game::BigFoot::FSM*)
+void Obj::setFSM(FSM* fsm)
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	mr       r31, r3
-	stw      r4, 0x2bc(r3)
-	mr       r4, r31
-	lwz      r3, 0x2bc(r3)
-	lwz      r12, 0(r3)
-	lwz      r12, 8(r12)
-	mtctr    r12
-	bctrl
-	li       r0, 0
-	stw      r0, 0x2b4(r31)
-	lwz      r0, 0x14(r1)
-	lwz      r31, 0xc(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	m_fsm = fsm;
+	m_fsm->init(this);
+	m_currentLifecycleState = nullptr;
 }
 
 /*
@@ -1000,25 +807,12 @@ void BigFoot::Obj::setFSM(Game::BigFoot::FSM*)
  * Address:	802C83C0
  * Size:	00003C
  */
-void BigFoot::Obj::getShadowParam(Game::ShadowParam&)
+void Obj::getShadowParam(ShadowParam& param)
 {
-	/*
-	lfs      f0, 0x18c(r3)
-	lfs      f2, lbl_8051C728@sda21(r2)
-	stfs     f0, 0(r4)
-	lfs      f1, lbl_8051C72C@sda21(r2)
-	lfs      f3, 0x190(r3)
-	lfs      f0, lbl_8051C730@sda21(r2)
-	stfs     f3, 4(r4)
-	lfs      f3, 0x194(r3)
-	stfs     f3, 8(r4)
-	stfs     f2, 0xc(r4)
-	stfs     f1, 0x10(r4)
-	stfs     f2, 0x14(r4)
-	stfs     f0, 0x18(r4)
-	stfs     f0, 0x1c(r4)
-	blr
-	*/
+	param.m_position                  = m_position;
+	param.m_boundingSphere.m_position = Vector3f(0.0f, 1.0f, 0.0f);
+	param.m_boundingSphere.m_radius   = 0.1f;
+	param.m_size                      = 0.1f;
 }
 
 /*
@@ -1026,34 +820,13 @@ void BigFoot::Obj::getShadowParam(Game::ShadowParam&)
  * Address:	802C83FC
  * Size:	000050
  */
-void BigFoot::Obj::needShadow()
+bool Obj::needShadow()
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	mr       r31, r3
-	bl       needShadow__Q24Game9EnemyBaseFv
-	clrlwi.  r0, r3, 0x18
-	beq      lbl_802C8424
-	li       r3, 1
-	b        lbl_802C8438
-
-lbl_802C8424:
-	mr       r3, r31
-	bl       getStateID__Q24Game9EnemyBaseFv
-	subfic   r0, r3, 2
-	cntlzw   r0, r0
-	rlwinm   r3, r0, 0x1b, 0x18, 0x1f
-
-lbl_802C8438:
-	lwz      r0, 0x14(r1)
-	lwz      r31, 0xc(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	if (EnemyBase::needShadow()) {
+		return true;
+	} else {
+		return (u8)(getStateID() == 2);
+	}
 }
 
 /*
@@ -1061,7 +834,7 @@ lbl_802C8438:
  * Address:	802C844C
  * Size:	00009C
  */
-void BigFoot::Obj::damageCallBack(Game::Creature*, float, CollPart*)
+bool Obj::damageCallBack(Creature* creature, f32 damage, CollPart* collpart)
 {
 	/*
 	stwu     r1, -0x20(r1)
@@ -1115,7 +888,7 @@ lbl_802C84C8:
  * Address:	802C84E8
  * Size:	0001AC
  */
-void BigFoot::Obj::collisionCallback(Game::CollEvent&)
+void Obj::collisionCallback(CollEvent& event)
 {
 	/*
 	stwu     r1, -0x40(r1)
@@ -1239,27 +1012,12 @@ lbl_802C8660:
  * Address:	802C8694
  * Size:	000044
  */
-void BigFoot::Obj::doStartStoneState()
+void Obj::doStartStoneState()
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	mr       r31, r3
-	bl       doStartStoneState__Q24Game9EnemyBaseFv
-	mr       r3, r31
-	bl       finishPinchJointEffect__Q34Game7BigFoot3ObjFv
-	mr       r3, r31
-	bl       finishFurEffect__Q34Game7BigFoot3ObjFv
-	mr       r3, r31
-	bl       startStoneStateBossAttackLoopBGM__Q34Game7BigFoot3ObjFv
-	lwz      r0, 0x14(r1)
-	lwz      r31, 0xc(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	EnemyBase::doStartStoneState();
+	finishPinchJointEffect();
+	finishFurEffect();
+	startStoneStateBossAttackLoopBGM();
 }
 
 /*
@@ -1267,40 +1025,16 @@ void BigFoot::Obj::doStartStoneState()
  * Address:	802C86D8
  * Size:	00006C
  */
-void BigFoot::Obj::doFinishStoneState()
+void Obj::doFinishStoneState()
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	mr       r31, r3
-	bl       doFinishStoneState__Q24Game9EnemyBaseFv
-	lfs      f1, lbl_8051C72C@sda21(r2)
-	mr       r3, r31
-	lfs      f2, lbl_8051C738@sda21(r2)
-	li       r4, 0
-	lfs      f3, lbl_8051C728@sda21(r2)
-	lfs      f4, lbl_8051C73C@sda21(r2)
-	bl
-"flickStickPikmin__Q24Game9EnemyFuncFPQ24Game8CreatureffffP23Condition<Q24Game4Piki>"
-	lbz      r0, 0x2dd(r31)
-	cmplwi   r0, 0
-	beq      lbl_802C8720
-	mr       r3, r31
-	bl       startPinchJointEffect__Q34Game7BigFoot3ObjFv
+	EnemyBase::doFinishStoneState();
+	EnemyFunc::flickStickPikmin(this, 1.0f, 10.0f, 0.0f, -1000.0f, nullptr);
+	if (_2DD) {
+		startPinchJointEffect();
+	}
 
-lbl_802C8720:
-	mr       r3, r31
-	bl       startFurEffect__Q34Game7BigFoot3ObjFv
-	mr       r3, r31
-	bl       finishStoneStateBossAttackLoopBGM__Q34Game7BigFoot3ObjFv
-	lwz      r0, 0x14(r1)
-	lwz      r31, 0xc(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	startFurEffect();
+	finishStoneStateBossAttackLoopBGM();
 }
 
 /*
@@ -1308,72 +1042,25 @@ lbl_802C8720:
  * Address:	802C8744
  * Size:	000020
  */
-void BigFoot::Obj::doStartMovie()
-{
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	bl       effectDrawOff__Q34Game7BigFoot3ObjFv
-	lwz      r0, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
-}
+void Obj::doStartMovie() { effectDrawOff(); }
 
 /*
  * --INFO--
  * Address:	802C8764
  * Size:	000020
  */
-void BigFoot::Obj::doEndMovie()
-{
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	bl       effectDrawOn__Q34Game7BigFoot3ObjFv
-	lwz      r0, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
-}
+void Obj::doEndMovie() { effectDrawOn(); }
 
 /*
  * --INFO--
  * Address:	802C8784
  * Size:	000060
  */
-void BigFoot::Obj::getThrowupItemPosition(Vector3f*)
+void Obj::getThrowupItemPosition(Vector3f* position)
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	mr       r31, r4
-	addi     r4, r2, lbl_8051C740@sda21
-	lwz      r3, 0x174(r3)
-	bl       getJoint__Q28SysShape5ModelFPc
-	bl       getWorldMatrix__Q28SysShape5JointFv
-	lfs      f3, 0x2c(r3)
-	lfs      f2, 0x1c(r3)
-	lfs      f1, 0xc(r3)
-	lfs      f0, lbl_8051C748@sda21(r2)
-	stfs     f1, 0(r31)
-	stfs     f2, 4(r31)
-	stfs     f3, 8(r31)
-	lfs      f1, 4(r31)
-	fsubs    f0, f1, f0
-	stfs     f0, 4(r31)
-	lwz      r31, 0xc(r1)
-	lwz      r0, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	Matrixf* mat = m_model->getJoint("kosi")->getWorldMatrix();
+	*position    = mat->getBasis(3);
+	position->y -= 100.0f;
 }
 
 /*
@@ -1381,15 +1068,11 @@ void BigFoot::Obj::getThrowupItemPosition(Vector3f*)
  * Address:	802C87E4
  * Size:	000014
  */
-void BigFoot::Obj::getThrowupItemVelocity(Vector3f*)
+void Obj::getThrowupItemVelocity(Vector3f* velocity)
 {
-	/*
-	lfs      f0, lbl_8051C728@sda21(r2)
-	stfs     f0, 8(r4)
-	stfs     f0, 4(r4)
-	stfs     f0, 0(r4)
-	blr
-	*/
+	velocity->z = 0.0f;
+	velocity->y = 0.0f;
+	velocity->x = 0.0f;
 }
 
 /*
@@ -1397,7 +1080,7 @@ void BigFoot::Obj::getThrowupItemVelocity(Vector3f*)
  * Address:	802C87F8
  * Size:	00008C
  */
-void BigFoot::Obj::resetFlickWalkTimeMax()
+void Obj::resetFlickWalkTimeMax()
 {
 	/*
 	stwu     r1, -0x40(r1)
@@ -1443,7 +1126,7 @@ void BigFoot::Obj::resetFlickWalkTimeMax()
  * Address:	802C8884
  * Size:	00008C
  */
-void BigFoot::Obj::setFlickWalkTimeMax()
+void Obj::setFlickWalkTimeMax()
 {
 	/*
 	stwu     r1, -0x40(r1)
@@ -1489,7 +1172,7 @@ void BigFoot::Obj::setFlickWalkTimeMax()
  * Address:	802C8910
  * Size:	0003F0
  */
-void BigFoot::Obj::getTargetPosition()
+void Obj::getTargetPosition()
 {
 	/*
 	stwu     r1, -0x80(r1)
@@ -1775,83 +1458,11 @@ lbl_802C8CD0:
  * Address:	802C8D00
  * Size:	00010C
  */
-void BigFoot::Obj::createIKSystem()
+void Obj::createIKSystem()
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	mr       r31, r3
-	li       r3, 0x9c
-	bl       __nw__FUl
-	or.      r0, r3, r3
-	beq      lbl_802C8D2C
-	bl       __ct__Q24Game11IKSystemMgrFv
-	mr       r0, r3
-
-lbl_802C8D2C:
-	stw      r0, 0x2e0(r31)
-	li       r3, 0x48
-	bl       __nw__FUl
-	cmplwi   r3, 0
-	beq      lbl_802C8DC4
-	li       r0, -1
-	lfs      f5, lbl_8051C728@sda21(r2)
-	stw      r0, 0(r3)
-	lfs      f1, lbl_8051C77C@sda21(r2)
-	stfs     f5, 4(r3)
-	lfs      f0, lbl_8051C780@sda21(r2)
-	stfs     f5, 8(r3)
-	lfs      f2, lbl_8051C784@sda21(r2)
-	stfs     f1, 0xc(r3)
-	lfs      f1, lbl_8051C788@sda21(r2)
-	stfs     f0, 0x10(r3)
-	lfs      f0, lbl_8051C74C@sda21(r2)
-	stfs     f2, 0x14(r3)
-	lfs      f2, lbl_8051C738@sda21(r2)
-	stfs     f1, 0x18(r3)
-	lfs      f1, lbl_8051C78C@sda21(r2)
-	stfs     f0, 0x1c(r3)
-	lfs      f0, lbl_8051C790@sda21(r2)
-	stfs     f2, 0x20(r3)
-	lfs      f4, lbl_8051C794@sda21(r2)
-	stfs     f1, 0x24(r3)
-	lfs      f3, lbl_8051C798@sda21(r2)
-	stfs     f5, 0x28(r3)
-	lfs      f2, lbl_8051C730@sda21(r2)
-	stfs     f0, 0x2c(r3)
-	lfs      f1, lbl_8051C79C@sda21(r2)
-	stfs     f5, 0x30(r3)
-	lfs      f0, lbl_8051C7A0@sda21(r2)
-	stfs     f4, 0x34(r3)
-	stfs     f3, 0x38(r3)
-	stfs     f2, 0x3c(r3)
-	stfs     f1, 0x40(r3)
-	stfs     f0, 0x44(r3)
-
-lbl_802C8DC4:
-	stw      r3, 0x2e4(r31)
-	li       r3, 8
-	bl       __nw__FUl
-	cmplwi   r3, 0
-	beq      lbl_802C8DF4
-	lis      r5, __vt__Q24Game19JointGroundCallBack@ha
-	lis      r4, __vt__Q34Game7BigFoot21BigFootGroundCallBack@ha
-	addi     r0, r5, __vt__Q24Game19JointGroundCallBack@l
-	stw      r0, 0(r3)
-	addi     r0, r4, __vt__Q34Game7BigFoot21BigFootGroundCallBack@l
-	stw      r0, 0(r3)
-	stw      r31, 4(r3)
-
-lbl_802C8DF4:
-	stw      r3, 0x2e8(r31)
-	lwz      r0, 0x14(r1)
-	lwz      r31, 0xc(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	m_IKSystemMgr    = new IKSystemMgr;
+	m_IKSystemParms  = new IKSystemParms;
+	m_groundCallBack = new BigFootGroundCallBack(this);
 }
 
 /*
@@ -1859,8 +1470,26 @@ lbl_802C8DF4:
  * Address:	802C8E0C
  * Size:	000124
  */
-void BigFoot::Obj::setupIKSystem()
+void Obj::setupIKSystem()
 {
+	m_IKSystemMgr->init(this, nullptr);
+
+	char* lfoot[] = { "lfoot1jnt", "lfoot2jnt", "lfoot3jnt" };
+	char* rfoot[] = { "rfoot1jnt", "rfoot2jnt", "rfoot3jnt" };
+	char* lhand[] = { "lhand1jnt", "lhand2jnt", "lhand3jnt" };
+	char* rhand[] = { "rhand1jnt", "rhand2jnt", "rhand3jnt" };
+
+	char** joints[] = { rhand, lhand, rfoot, lfoot };
+
+	m_IKSystemMgr->setupJoint(m_model, 0, joints[0]);
+	m_IKSystemMgr->setupJoint(m_model, 1, joints[1]);
+	m_IKSystemMgr->setupJoint(m_model, 2, joints[2]);
+	m_IKSystemMgr->setupJoint(m_model, 3, joints[3]);
+	m_IKSystemMgr->setupCallBack(m_model, "rhand3jnt");
+
+	setIKParameter();
+	m_IKSystemMgr->setParameters(m_IKSystemParms);
+	m_IKSystemMgr->m_jointGroundCallBack = m_groundCallBack;
 	/*
 	stwu     r1, -0x50(r1)
 	mflr     r0
@@ -1944,7 +1573,7 @@ void BigFoot::Obj::setupIKSystem()
  * Address:	802C8F30
  * Size:	000124
  */
-void BigFoot::Obj::setIKParameter()
+void Obj::setIKParameter()
 {
 	/*
 	lwz      r4, 0x2e4(r3)
@@ -2030,7 +1659,7 @@ lbl_802C8FF0:
  * Address:	802C9054
  * Size:	000020
  */
-void BigFoot::Obj::setIKSystemTargetPosition(Vector3f&)
+void Obj::setIKSystemTargetPosition(Vector3f& targetPos)
 {
 	/*
 	lwz      r3, 0x2e0(r3)
@@ -2049,7 +1678,7 @@ void BigFoot::Obj::setIKSystemTargetPosition(Vector3f&)
  * Address:	802C9074
  * Size:	000060
  */
-void BigFoot::Obj::updateIKSystem()
+void Obj::updateIKSystem()
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -2084,7 +1713,7 @@ void BigFoot::Obj::updateIKSystem()
  * Address:	802C90D4
  * Size:	000060
  */
-void BigFoot::Obj::doAnimationIKSystem()
+void Obj::doAnimationIKSystem()
 {
 	/*
 	stwu     r1, -0x20(r1)
@@ -2119,7 +1748,7 @@ void BigFoot::Obj::doAnimationIKSystem()
  * Address:	802C9134
  * Size:	000024
  */
-void BigFoot::Obj::finishAnimationIKSystem()
+void Obj::finishAnimationIKSystem()
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -2139,7 +1768,7 @@ void BigFoot::Obj::finishAnimationIKSystem()
  * Address:	802C9158
  * Size:	000024
  */
-void BigFoot::Obj::startProgramedIK()
+void Obj::startProgramedIK()
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -2159,7 +1788,7 @@ void BigFoot::Obj::startProgramedIK()
  * Address:	802C917C
  * Size:	000024
  */
-void BigFoot::Obj::startIKMotion()
+void Obj::startIKMotion()
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -2179,7 +1808,7 @@ void BigFoot::Obj::startIKMotion()
  * Address:	802C91A0
  * Size:	000024
  */
-void BigFoot::Obj::finishIKMotion()
+void Obj::finishIKMotion()
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -2199,7 +1828,7 @@ void BigFoot::Obj::finishIKMotion()
  * Address:	802C91C4
  * Size:	000024
  */
-void BigFoot::Obj::forceFinishIKMotion()
+void Obj::forceFinishIKMotion()
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -2219,7 +1848,7 @@ void BigFoot::Obj::forceFinishIKMotion()
  * Address:	802C91E8
  * Size:	000024
  */
-void BigFoot::Obj::isFinishIKMotion()
+bool Obj::isFinishIKMotion()
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -2239,7 +1868,7 @@ void BigFoot::Obj::isFinishIKMotion()
  * Address:	802C920C
  * Size:	000024
  */
-void BigFoot::Obj::startBlendMotion()
+void Obj::startBlendMotion()
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -2259,7 +1888,7 @@ void BigFoot::Obj::startBlendMotion()
  * Address:	802C9230
  * Size:	000024
  */
-void BigFoot::Obj::finishBlendMotion()
+void Obj::finishBlendMotion()
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -2279,7 +1908,7 @@ void BigFoot::Obj::finishBlendMotion()
  * Address:	802C9254
  * Size:	000020
  */
-void BigFoot::Obj::getTraceCentrePosition()
+void Obj::getTraceCentrePosition()
 {
 	/*
 	lwz      r4, 0x2e0(r4)
@@ -2298,7 +1927,7 @@ void BigFoot::Obj::getTraceCentrePosition()
  * Address:	802C9274
  * Size:	000024
  */
-void BigFoot::Obj::isCollisionCheck(CollPart*)
+void Obj::isCollisionCheck(CollPart*)
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -2318,7 +1947,7 @@ void BigFoot::Obj::isCollisionCheck(CollPart*)
  * Address:	802C9298
  * Size:	000048
  */
-void BigFoot::Obj::createShadowSystem()
+void Obj::createShadowSystem()
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -2349,7 +1978,7 @@ lbl_802C92C8:
  * Address:	802C92E0
  * Size:	000074
  */
-void BigFoot::Obj::setupShadowSystem()
+void Obj::setupShadowSystem()
 {
 	/*
 	stwu     r1, -0x20(r1)
@@ -2393,7 +2022,7 @@ lbl_802C930C:
  * Address:	802C9354
  * Size:	000024
  */
-void BigFoot::Obj::doAnimationShadowSystem()
+void Obj::doAnimationShadowSystem()
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -2413,7 +2042,7 @@ void BigFoot::Obj::doAnimationShadowSystem()
  * Address:	802C9378
  * Size:	000054
  */
-void BigFoot::Obj::createMaterialAnimation()
+void Obj::createMaterialAnimation()
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -2447,7 +2076,7 @@ lbl_802C93B0:
  * Address:	802C93CC
  * Size:	00003C
  */
-void BigFoot::Obj::startMaterialAnimation()
+void Obj::startMaterialAnimation()
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -2473,7 +2102,7 @@ void BigFoot::Obj::startMaterialAnimation()
  * Address:	802C9408
  * Size:	0000F0
  */
-void BigFoot::Obj::updateMaterialAnimation()
+void Obj::updateMaterialAnimation()
 {
 	/*
 	stwu     r1, -0x20(r1)
@@ -2556,7 +2185,7 @@ lbl_802C94DC:
  * Address:	802C94F8
  * Size:	000090
  */
-void BigFoot::Obj::setupCollision()
+void Obj::setupCollision()
 {
 	/*
 	stwu     r1, -0x30(r1)
@@ -2607,7 +2236,7 @@ lbl_802C955C:
  * Address:	802C9588
  * Size:	0000A4
  */
-void BigFoot::Obj::createItemAndEnemy()
+void Obj::createItemAndEnemy()
 {
 	/*
 	stwu     r1, -0x50(r1)
@@ -2662,7 +2291,7 @@ lbl_802C9614:
  * Address:	802C962C
  * Size:	0000C8
  */
-void BigFoot::Obj::startBossChargeBGM()
+void Obj::startBossChargeBGM()
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -2729,7 +2358,7 @@ lbl_802C96C4:
  * Address:	802C96F4
  * Size:	0000C8
  */
-void BigFoot::Obj::startBossAttackLoopBGM()
+void Obj::startBossAttackLoopBGM()
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -2796,7 +2425,7 @@ lbl_802C978C:
  * Address:	802C97BC
  * Size:	0000C8
  */
-void BigFoot::Obj::finishBossAttackLoopBGM()
+void Obj::finishBossAttackLoopBGM()
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -2863,7 +2492,7 @@ lbl_802C9854:
  * Address:	802C9884
  * Size:	0000D4
  */
-void BigFoot::Obj::startStoneStateBossAttackLoopBGM()
+void Obj::startStoneStateBossAttackLoopBGM()
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -2935,7 +2564,7 @@ lbl_802C9940:
  * Address:	802C9958
  * Size:	0000D4
  */
-void BigFoot::Obj::finishStoneStateBossAttackLoopBGM()
+void Obj::finishStoneStateBossAttackLoopBGM()
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -3007,7 +2636,7 @@ lbl_802C9A14:
  * Address:	802C9A2C
  * Size:	0000FC
  */
-void BigFoot::Obj::updateBossBGM()
+void Obj::updateBossBGM()
 {
 	/*
 	stwu     r1, -0x20(r1)
@@ -3091,7 +2720,7 @@ lbl_802C9B0C:
  * Address:	802C9B28
  * Size:	0000BC
  */
-void BigFoot::Obj::resetBossAppearBGM()
+void Obj::resetBossAppearBGM()
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -3155,7 +2784,7 @@ lbl_802C9BC0:
  * Address:	802C9BE4
  * Size:	0000BC
  */
-void BigFoot::Obj::setBossAppearBGM()
+void Obj::setBossAppearBGM()
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -3219,7 +2848,7 @@ lbl_802C9C7C:
  * Address:	802C9CA0
  * Size:	0006C8
  */
-void BigFoot::Obj::createEffect()
+void Obj::createEffect()
 {
 	/*
 	stwu     r1, -0x50(r1)
@@ -3696,7 +3325,7 @@ lbl_802CA350:
  * Address:	802CA368
  * Size:	0001E4
  */
-void BigFoot::Obj::setupEffect()
+void Obj::setupEffect()
 {
 	/*
 	stwu     r1, -0x40(r1)
@@ -3830,7 +3459,7 @@ lbl_802CA3BC:
  * Address:	802CA54C
  * Size:	000228
  */
-void BigFoot::Obj::createOnGroundEffect(int, Game::WaterBox*)
+void Obj::createOnGroundEffect(int, WaterBox*)
 {
 	/*
 	stwu     r1, -0x80(r1)
@@ -3987,7 +3616,7 @@ lbl_802CA718:
  * Address:	802CA774
  * Size:	000164
  */
-void BigFoot::Obj::createOffGroundEffect(int, Game::WaterBox*)
+void Obj::createOffGroundEffect(int, WaterBox*)
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -4099,7 +3728,7 @@ lbl_802CA8C4:
  * Address:	802CA8D8
  * Size:	0001A0
  */
-void BigFoot::Obj::startPinchJointEffect()
+void Obj::startPinchJointEffect()
 {
 	/*
 	stwu     r1, -0x80(r1)
@@ -4220,7 +3849,7 @@ lbl_802CA9F8:
  * Address:	802CAA78
  * Size:	000058
  */
-void BigFoot::Obj::finishPinchJointEffect()
+void Obj::finishPinchJointEffect()
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -4255,7 +3884,7 @@ lbl_802CAA94:
  * Address:	802CAAD0
  * Size:	0001C0
  */
-void BigFoot::Obj::startDeadEffect()
+void Obj::startDeadEffect()
 {
 	/*
 	stwu     r1, -0x60(r1)
@@ -4388,7 +4017,7 @@ lbl_802CAC58:
  * Address:	802CAC90
  * Size:	000254
  */
-void BigFoot::Obj::updatePinchLife()
+void Obj::updatePinchLife()
 {
 	/*
 	stwu     r1, -0x80(r1)
@@ -4560,7 +4189,7 @@ lbl_802CAEB8:
  * Address:	802CAEE4
  * Size:	000074
  */
-void BigFoot::Obj::startFurEffect()
+void Obj::startFurEffect()
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -4602,7 +4231,7 @@ lbl_802CAF18:
  * Address:	802CAF58
  * Size:	00006C
  */
-void BigFoot::Obj::finishFurEffect()
+void Obj::finishFurEffect()
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -4642,7 +4271,7 @@ lbl_802CAF88:
  * Address:	802CAFC4
  * Size:	000068
  */
-void BigFoot::Obj::updateDeadFurEffect()
+void Obj::updateDeadFurEffect()
 {
 	/*
 	stwu     r1, -0x20(r1)
@@ -4681,7 +4310,7 @@ lbl_802CAFF4:
  * Address:	802CB02C
  * Size:	0001D8
  */
-void BigFoot::Obj::effectDrawOn()
+void Obj::effectDrawOn()
 {
 	/*
 	stwu     r1, -0x20(r1)
@@ -4826,7 +4455,7 @@ lbl_802CB1CC:
  * Address:	802CB204
  * Size:	0001D8
  */
-void BigFoot::Obj::effectDrawOff()
+void Obj::effectDrawOff()
 {
 	/*
 	stwu     r1, -0x20(r1)
@@ -4971,7 +4600,7 @@ lbl_802CB3A4:
  * Address:	802CB3DC
  * Size:	000038
  */
-void BigFoot::Obj::addShadowScale()
+void Obj::addShadowScale()
 {
 	/*
 	lfs      f3, 0x2d4(r3)
@@ -4991,646 +4620,40 @@ void BigFoot::Obj::addShadowScale()
 	*/
 }
 
-} // namespace Game
-
-namespace efx {
-
-/*
- * --INFO--
- * Address:	802CB414
- * Size:	00009C
- */
-TOdamaFur1::~TOdamaFur1()
-{
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	mr       r31, r4
-	stw      r30, 8(r1)
-	or.      r30, r3, r3
-	beq      lbl_802CB494
-	lis      r3, __vt__Q23efx10TOdamaFur1@ha
-	addi     r3, r3, __vt__Q23efx10TOdamaFur1@l
-	stw      r3, 0(r30)
-	addi     r0, r3, 0x14
-	stw      r0, 4(r30)
-	beq      lbl_802CB484
-	lis      r3, __vt__Q23efx9TChaseMtx@ha
-	addi     r3, r3, __vt__Q23efx9TChaseMtx@l
-	stw      r3, 0(r30)
-	addi     r0, r3, 0x14
-	stw      r0, 4(r30)
-	beq      lbl_802CB484
-	lis      r4, __vt__Q23efx5TSync@ha
-	addi     r3, r30, 4
-	addi     r5, r4, __vt__Q23efx5TSync@l
-	li       r4, 0
-	stw      r5, 0(r30)
-	addi     r0, r5, 0x14
-	stw      r0, 4(r30)
-	bl       __dt__18JPAEmitterCallBackFv
-
-lbl_802CB484:
-	extsh.   r0, r31
-	ble      lbl_802CB494
-	mr       r3, r30
-	bl       __dl__FPv
-
-lbl_802CB494:
-	lwz      r0, 0x14(r1)
-	mr       r3, r30
-	lwz      r31, 0xc(r1)
-	lwz      r30, 8(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
-}
-
-/*
- * --INFO--
- * Address:	802CB4B0
- * Size:	00009C
- */
-TOdamaDeadHahenC2::~TOdamaDeadHahenC2()
-{
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	mr       r31, r4
-	stw      r30, 8(r1)
-	or.      r30, r3, r3
-	beq      lbl_802CB530
-	lis      r3, __vt__Q23efx17TOdamaDeadHahenC2@ha
-	addi     r3, r3, __vt__Q23efx17TOdamaDeadHahenC2@l
-	stw      r3, 0(r30)
-	addi     r0, r3, 0x14
-	stw      r0, 4(r30)
-	beq      lbl_802CB520
-	lis      r3, __vt__Q23efx9TChaseMtx@ha
-	addi     r3, r3, __vt__Q23efx9TChaseMtx@l
-	stw      r3, 0(r30)
-	addi     r0, r3, 0x14
-	stw      r0, 4(r30)
-	beq      lbl_802CB520
-	lis      r4, __vt__Q23efx5TSync@ha
-	addi     r3, r30, 4
-	addi     r5, r4, __vt__Q23efx5TSync@l
-	li       r4, 0
-	stw      r5, 0(r30)
-	addi     r0, r5, 0x14
-	stw      r0, 4(r30)
-	bl       __dt__18JPAEmitterCallBackFv
-
-lbl_802CB520:
-	extsh.   r0, r31
-	ble      lbl_802CB530
-	mr       r3, r30
-	bl       __dl__FPv
-
-lbl_802CB530:
-	lwz      r0, 0x14(r1)
-	mr       r3, r30
-	lwz      r31, 0xc(r1)
-	lwz      r30, 8(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
-}
-
-/*
- * --INFO--
- * Address:	802CB54C
- * Size:	00009C
- */
-TOdamaDeadHahenC1::~TOdamaDeadHahenC1()
-{
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	mr       r31, r4
-	stw      r30, 8(r1)
-	or.      r30, r3, r3
-	beq      lbl_802CB5CC
-	lis      r3, __vt__Q23efx17TOdamaDeadHahenC1@ha
-	addi     r3, r3, __vt__Q23efx17TOdamaDeadHahenC1@l
-	stw      r3, 0(r30)
-	addi     r0, r3, 0x14
-	stw      r0, 4(r30)
-	beq      lbl_802CB5BC
-	lis      r3, __vt__Q23efx9TChaseMtx@ha
-	addi     r3, r3, __vt__Q23efx9TChaseMtx@l
-	stw      r3, 0(r30)
-	addi     r0, r3, 0x14
-	stw      r0, 4(r30)
-	beq      lbl_802CB5BC
-	lis      r4, __vt__Q23efx5TSync@ha
-	addi     r3, r30, 4
-	addi     r5, r4, __vt__Q23efx5TSync@l
-	li       r4, 0
-	stw      r5, 0(r30)
-	addi     r0, r5, 0x14
-	stw      r0, 4(r30)
-	bl       __dt__18JPAEmitterCallBackFv
-
-lbl_802CB5BC:
-	extsh.   r0, r31
-	ble      lbl_802CB5CC
-	mr       r3, r30
-	bl       __dl__FPv
-
-lbl_802CB5CC:
-	lwz      r0, 0x14(r1)
-	mr       r3, r30
-	lwz      r31, 0xc(r1)
-	lwz      r30, 8(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
-}
-
-/*
- * --INFO--
- * Address:	802CB5E8
- * Size:	00009C
- */
-TOdamaFur2::~TOdamaFur2()
-{
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	mr       r31, r4
-	stw      r30, 8(r1)
-	or.      r30, r3, r3
-	beq      lbl_802CB668
-	lis      r3, __vt__Q23efx10TOdamaFur2@ha
-	addi     r3, r3, __vt__Q23efx10TOdamaFur2@l
-	stw      r3, 0(r30)
-	addi     r0, r3, 0x14
-	stw      r0, 4(r30)
-	beq      lbl_802CB658
-	lis      r3, __vt__Q23efx9TChaseMtx@ha
-	addi     r3, r3, __vt__Q23efx9TChaseMtx@l
-	stw      r3, 0(r30)
-	addi     r0, r3, 0x14
-	stw      r0, 4(r30)
-	beq      lbl_802CB658
-	lis      r4, __vt__Q23efx5TSync@ha
-	addi     r3, r30, 4
-	addi     r5, r4, __vt__Q23efx5TSync@l
-	li       r4, 0
-	stw      r5, 0(r30)
-	addi     r0, r5, 0x14
-	stw      r0, 4(r30)
-	bl       __dt__18JPAEmitterCallBackFv
-
-lbl_802CB658:
-	extsh.   r0, r31
-	ble      lbl_802CB668
-	mr       r3, r30
-	bl       __dl__FPv
-
-lbl_802CB668:
-	lwz      r0, 0x14(r1)
-	mr       r3, r30
-	lwz      r31, 0xc(r1)
-	lwz      r30, 8(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
-}
-
-/*
- * --INFO--
- * Address:	802CB684
- * Size:	00009C
- */
-TOdamaDeadHahenB::~TOdamaDeadHahenB()
-{
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	mr       r31, r4
-	stw      r30, 8(r1)
-	or.      r30, r3, r3
-	beq      lbl_802CB704
-	lis      r3, __vt__Q23efx16TOdamaDeadHahenB@ha
-	addi     r3, r3, __vt__Q23efx16TOdamaDeadHahenB@l
-	stw      r3, 0(r30)
-	addi     r0, r3, 0x14
-	stw      r0, 4(r30)
-	beq      lbl_802CB6F4
-	lis      r3, __vt__Q23efx12TChasePosPos@ha
-	addi     r3, r3, __vt__Q23efx12TChasePosPos@l
-	stw      r3, 0(r30)
-	addi     r0, r3, 0x14
-	stw      r0, 4(r30)
-	beq      lbl_802CB6F4
-	lis      r4, __vt__Q23efx5TSync@ha
-	addi     r3, r30, 4
-	addi     r5, r4, __vt__Q23efx5TSync@l
-	li       r4, 0
-	stw      r5, 0(r30)
-	addi     r0, r5, 0x14
-	stw      r0, 4(r30)
-	bl       __dt__18JPAEmitterCallBackFv
-
-lbl_802CB6F4:
-	extsh.   r0, r31
-	ble      lbl_802CB704
-	mr       r3, r30
-	bl       __dl__FPv
-
-lbl_802CB704:
-	lwz      r0, 0x14(r1)
-	mr       r3, r30
-	lwz      r31, 0xc(r1)
-	lwz      r30, 8(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
-}
-
-/*
- * --INFO--
- * Address:	802CB720
- * Size:	00009C
- */
-TOdamaDeadHahenA::~TOdamaDeadHahenA()
-{
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	mr       r31, r4
-	stw      r30, 8(r1)
-	or.      r30, r3, r3
-	beq      lbl_802CB7A0
-	lis      r3, __vt__Q23efx16TOdamaDeadHahenA@ha
-	addi     r3, r3, __vt__Q23efx16TOdamaDeadHahenA@l
-	stw      r3, 0(r30)
-	addi     r0, r3, 0x14
-	stw      r0, 4(r30)
-	beq      lbl_802CB790
-	lis      r3, __vt__Q23efx12TChasePosPos@ha
-	addi     r3, r3, __vt__Q23efx12TChasePosPos@l
-	stw      r3, 0(r30)
-	addi     r0, r3, 0x14
-	stw      r0, 4(r30)
-	beq      lbl_802CB790
-	lis      r4, __vt__Q23efx5TSync@ha
-	addi     r3, r30, 4
-	addi     r5, r4, __vt__Q23efx5TSync@l
-	li       r4, 0
-	stw      r5, 0(r30)
-	addi     r0, r5, 0x14
-	stw      r0, 4(r30)
-	bl       __dt__18JPAEmitterCallBackFv
-
-lbl_802CB790:
-	extsh.   r0, r31
-	ble      lbl_802CB7A0
-	mr       r3, r30
-	bl       __dl__FPv
-
-lbl_802CB7A0:
-	lwz      r0, 0x14(r1)
-	mr       r3, r30
-	lwz      r31, 0xc(r1)
-	lwz      r30, 8(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
-}
-
-/*
- * --INFO--
- * Address:	802CB7BC
- * Size:	00009C
- */
-TOdamaHahen::~TOdamaHahen()
-{
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	mr       r31, r4
-	stw      r30, 8(r1)
-	or.      r30, r3, r3
-	beq      lbl_802CB83C
-	lis      r3, __vt__Q23efx11TOdamaHahen@ha
-	addi     r3, r3, __vt__Q23efx11TOdamaHahen@l
-	stw      r3, 0(r30)
-	addi     r0, r3, 0x14
-	stw      r0, 4(r30)
-	beq      lbl_802CB82C
-	lis      r3, __vt__Q23efx12TChasePosPos@ha
-	addi     r3, r3, __vt__Q23efx12TChasePosPos@l
-	stw      r3, 0(r30)
-	addi     r0, r3, 0x14
-	stw      r0, 4(r30)
-	beq      lbl_802CB82C
-	lis      r4, __vt__Q23efx5TSync@ha
-	addi     r3, r30, 4
-	addi     r5, r4, __vt__Q23efx5TSync@l
-	li       r4, 0
-	stw      r5, 0(r30)
-	addi     r0, r5, 0x14
-	stw      r0, 4(r30)
-	bl       __dt__18JPAEmitterCallBackFv
-
-lbl_802CB82C:
-	extsh.   r0, r31
-	ble      lbl_802CB83C
-	mr       r3, r30
-	bl       __dl__FPv
-
-lbl_802CB83C:
-	lwz      r0, 0x14(r1)
-	mr       r3, r30
-	lwz      r31, 0xc(r1)
-	lwz      r30, 8(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
-}
-
-namespace Game {
-
-} // namespace Game
-
 /*
  * --INFO--
  * Address:	802CB858
  * Size:	000004
  */
-void BigFoot::Obj::inWaterCallback(Game::WaterBox*) { }
+void Obj::inWaterCallback(WaterBox*) { }
 
 /*
  * --INFO--
  * Address:	802CB85C
  * Size:	000004
  */
-void BigFoot::Obj::outWaterCallback() { }
+void Obj::outWaterCallback() { }
 
 /*
  * --INFO--
  * Address:	802CB860
  * Size:	000008
  */
-void BigFoot::Obj::getDamageCoeStoneState()
-{
-	/*
-	lfs      f1, lbl_8051C7CC@sda21(r2)
-	blr
-	*/
-}
+f32 Obj::getDamageCoeStoneState() { return 0.25f; }
 
 /*
  * --INFO--
  * Address:	802CB868
  * Size:	000004
  */
-void BigFoot::Obj::throwupItemInDeathProcedure() { }
+void Obj::throwupItemInDeathProcedure() { }
 
 /*
  * --INFO--
  * Address:	802CB86C
  * Size:	000008
  */
-u32 BigFoot::Obj::getEnemyTypeID() { return 0x45; }
+EnemyTypeID::EEnemyTypeID Obj::getEnemyTypeID() { return EnemyTypeID::EnemyID_BigFoot; }
 
-} // namespace efx
-
-/*
- * --INFO--
- * Address:	802CB874
- * Size:	000028
- */
-void __sinit_BigFoot_cpp(void)
-{
-	/*
-	lis      r4, __float_nan@ha
-	li       r0, -1
-	lfs      f0, __float_nan@l(r4)
-	lis      r3, lbl_804D1BC0@ha
-	stw      r0, lbl_80515DB0@sda21(r13)
-	stfsu    f0, lbl_804D1BC0@l(r3)
-	stfs     f0, lbl_80515DB4@sda21(r13)
-	stfs     f0, 4(r3)
-	stfs     f0, 8(r3)
-	blr
-	*/
-}
-
-namespace Game {
-
-/*
- * --INFO--
- * Address:	802CB89C
- * Size:	000014
- */
-void EnemyBase::@1196 @12 @viewOnPelletKilled()
-{
-	/*
-	li       r11, 0xc
-	lwzx     r11, r3, r11
-	add      r3, r3, r11
-	addi     r3, r3, -1196
-	b        viewOnPelletKilled__Q24Game9EnemyBaseFv
-	*/
-}
-
-/*
- * --INFO--
- * Address:	802CB8B0
- * Size:	000014
- */
-void EnemyBase::@1196 @12 @viewStartCarryMotion()
-{
-	/*
-	li       r11, 0xc
-	lwzx     r11, r3, r11
-	add      r3, r3, r11
-	addi     r3, r3, -1196
-	b        viewStartCarryMotion__Q24Game9EnemyBaseFv
-	*/
-}
-
-/*
- * --INFO--
- * Address:	802CB8C4
- * Size:	000014
- */
-void EnemyBase::@1196 @12 @viewStartPreCarryMotion()
-{
-	/*
-	li       r11, 0xc
-	lwzx     r11, r3, r11
-	add      r3, r3, r11
-	addi     r3, r3, -1196
-	b        viewStartPreCarryMotion__Q24Game9EnemyBaseFv
-	*/
-}
-
-/*
- * --INFO--
- * Address:	802CB8D8
- * Size:	000014
- */
-void EnemyBase::@1196 @12 @view_finish_carrymotion()
-{
-	/*
-	li       r11, 0xc
-	lwzx     r11, r3, r11
-	add      r3, r3, r11
-	addi     r3, r3, -1196
-	b        view_finish_carrymotion__Q24Game9EnemyBaseFv
-	*/
-}
-
-/*
- * --INFO--
- * Address:	802CB8EC
- * Size:	000014
- */
-void EnemyBase::@1196 @12 @view_start_carrymotion()
-{
-	/*
-	li       r11, 0xc
-	lwzx     r11, r3, r11
-	add      r3, r3, r11
-	addi     r3, r3, -1196
-	b        view_start_carrymotion__Q24Game9EnemyBaseFv
-	*/
-}
-
-/*
- * --INFO--
- * Address:	802CB900
- * Size:	000014
- */
-void EnemyBase::@1196 @12 @viewGetShape()
-{
-	/*
-	li       r11, 0xc
-	lwzx     r11, r3, r11
-	add      r3, r3, r11
-	addi     r3, r3, -1196
-	b        viewGetShape__Q24Game9EnemyBaseFv
-	*/
-}
-
-namespace efx {
-
-/*
- * --INFO--
- * Address:	802CB914
- * Size:	000008
- */
-TOdamaHahen::@4 @~TOdamaHahen()
-{
-	/*
-addi     r3, r3, -4
-b        __dt__Q23efx11TOdamaHahenFv
-	*/
-}
-
-/*
- * --INFO--
- * Address:	802CB91C
- * Size:	000008
- */
-TOdamaDeadHahenA::@4 @~TOdamaDeadHahenA()
-{
-	/*
-addi     r3, r3, -4
-b        __dt__Q23efx16TOdamaDeadHahenAFv
-	*/
-}
-
-/*
- * --INFO--
- * Address:	802CB924
- * Size:	000008
- */
-TOdamaDeadHahenB::@4 @~TOdamaDeadHahenB()
-{
-	/*
-addi     r3, r3, -4
-b        __dt__Q23efx16TOdamaDeadHahenBFv
-	*/
-}
-
-/*
- * --INFO--
- * Address:	802CB92C
- * Size:	000008
- */
-TOdamaFur2::@4 @~TOdamaFur2()
-{
-	/*
-addi     r3, r3, -4
-b        __dt__Q23efx10TOdamaFur2Fv
-	*/
-}
-
-/*
- * --INFO--
- * Address:	802CB934
- * Size:	000008
- */
-TOdamaDeadHahenC1::@4 @~TOdamaDeadHahenC1()
-{
-	/*
-addi     r3, r3, -4
-b        __dt__Q23efx17TOdamaDeadHahenC1Fv
-	*/
-}
-
-/*
- * --INFO--
- * Address:	802CB93C
- * Size:	000008
- */
-TOdamaDeadHahenC2::@4 @~TOdamaDeadHahenC2()
-{
-	/*
-addi     r3, r3, -4
-b        __dt__Q23efx17TOdamaDeadHahenC2Fv
-	*/
-}
-
-/*
- * --INFO--
- * Address:	802CB944
- * Size:	000008
- */
-TOdamaFur1::@4 @~TOdamaFur1()
-{
-	/*
-addi     r3, r3, -4
-b        __dt__Q23efx10TOdamaFur1Fv
-	*/
-}
-} // namespace efx
-
+} // namespace BigFoot
 } // namespace Game

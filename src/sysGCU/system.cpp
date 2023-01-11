@@ -30,6 +30,8 @@
 #include "PSSystem/PSSystemIF.h"
 #include "LoadResource.h"
 
+_GXRenderModeObj* sRenderModeTable[4];
+
 System::ERenderMode System::mRenderMode;
 System* sys;
 System::GXVerifyArg System::sVerifyArg;

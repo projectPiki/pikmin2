@@ -21,8 +21,6 @@ extern void preUserCallback(unsigned short, OSContext*, unsigned long, unsigned 
 
 //_GXRenderModeObj* renderMode;
 
-_GXRenderModeObj* sRenderModeTable[4];
-
 struct HeapInfo : public Node, public JKRDisposer {
 	virtual ~HeapInfo(); // _20 (weak)
 

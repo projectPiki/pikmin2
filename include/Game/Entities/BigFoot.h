@@ -7,26 +7,13 @@
 #include "Game/EnemyMgrBase.h"
 #include "Game/JointFuncs.h"
 #include "Game/EnemyBase.h"
+#include "efx/TOdama.h"
+#include "efx/TDama.h"
 #include "Collinfo.h"
 
 /**
  * --Header for Raging Long Legs (BigFoot)--
  */
-
-namespace efx {
-struct TChasePos2;
-struct TDamaFootw;
-struct TDamaSmoke;
-struct TOdamaHahen;
-struct TDamaDeadElecA;
-struct TDamaDeadElecB;
-struct TOdamaDeadHahenA;
-struct TOdamaDeadHahenB;
-struct TOdamaDeadHahenC1;
-struct TOdamaDeadHahenC2;
-struct TOdamaFur1;
-struct TOdamaFur2;
-} // namespace efx
 
 namespace Sys {
 struct MatTevRegAnimation;
@@ -263,6 +250,11 @@ struct ProperAnimator : public EnemyAnimatorBase {
 struct BigFootShadowMgr;
 
 struct BigFootGroundCallBack : public JointGroundCallBack {
+	inline BigFootGroundCallBack(Obj* obj)
+	    : m_obj(obj)
+	{
+	}
+
 	virtual void invokeOnGround(int, WaterBox*);  // _08
 	virtual void invokeOffGround(int, WaterBox*); // _0C
 
