@@ -127,6 +127,13 @@ struct JPABaseEmitter {
 		_18.z = z;
 	}
 
+	inline void setAngle(JGeometry::TVec3f* vec)
+	{
+		_18.x = vec->x;
+		_18.y = vec->y;
+		_18.z = vec->z;
+	}
+
 	inline void setGlobalScale(f32 x)
 	{
 		_B0 = x;

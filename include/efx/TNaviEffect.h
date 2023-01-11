@@ -14,6 +14,8 @@ enum NaviEffectFlags {
 	NAVIFX_LightOn = 0x2,
 	NAVIFX_Unk3    = 0x4,
 	NAVIFX_Unk4    = 0x8,
+	NAVIFX_Unk5    = 0x10,
+	NAVIFX_Unk6    = 0x20,
 	NAVIFX_IsSaved = 0x80000000,
 };
 

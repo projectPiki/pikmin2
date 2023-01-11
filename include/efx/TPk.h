@@ -134,7 +134,7 @@ struct TPkNageBlur : public TChaseMtx {
 	{
 	}
 
-	virtual ~TPkNageBlur(); // _48 (weak)
+	virtual ~TPkNageBlur() { } // _48 (weak)
 
 	bool create(Arg*);
 
@@ -265,6 +265,10 @@ struct TParticleCallBack_Yodare {
 	~TParticleCallBack_Yodare();
 	void init(JPABaseEmitter*, JPABaseParticle*);
 	void execute(JPABaseEmitter*, JPABaseParticle*);
+
+	f32 _00;   // _00, just to match efxPikmin sdata2 loading
+	char* _04; // _04, just to match efxPikmin sdata2 loading
+	f32 _08;   // _08, just to match efxPikmin sdata2 loading
 };
 
 struct TTestYodareGen {

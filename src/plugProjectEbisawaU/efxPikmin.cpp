@@ -12,227 +12,7 @@
 #include "trig.h"
 #include "Game/MapMgr.h"
 #include "JSystem/JPA/JPAMath.h"
-
-/*
-    Generated from dpostproc
-
-    .section .rodata  # 0x804732E0 - 0x8049E220
-    .global lbl_80495A28
-    lbl_80495A28:
-        .4byte 0x65667850
-        .4byte 0x696B6D69
-        .4byte 0x6E2E6370
-        .4byte 0x70000000
-    .global lbl_80495A38
-    lbl_80495A38:
-        .asciz "P2Assert"
-        .skip 3
-        .4byte 0x41726744
-        .4byte 0x6F70696E
-        .4byte 0x67536D6F
-        .4byte 0x6B650000
-        .4byte 0x41726743
-        .4byte 0x7572736F
-        .4byte 0x72000000
-        .4byte 0x41726753
-        .4byte 0x63616C65
-        .4byte 0x00000000
-
-    .section .data, "wa"  # 0x8049E220 - 0x804EFC20
-    .global __vt__Q23efx12TStoneAttack
-    __vt__Q23efx12TStoneAttack:
-        .4byte 0
-        .4byte 0
-        .4byte create__Q23efx8TSimple1FPQ23efx3Arg
-        .4byte forceKill__Q23efx8TSimple1Fv
-        .4byte fade__Q23efx8TSimple1Fv
-    .global __vt__Q23efx13TBridgeAttack
-    __vt__Q23efx13TBridgeAttack:
-        .4byte 0
-        .4byte 0
-        .4byte create__Q23efx8TSimple1FPQ23efx3Arg
-        .4byte forceKill__Q23efx8TSimple1Fv
-        .4byte fade__Q23efx8TSimple1Fv
-    .global __vt__Q23efx12TGate2Attack
-    __vt__Q23efx12TGate2Attack:
-        .4byte 0
-        .4byte 0
-        .4byte create__Q23efx8TSimple2FPQ23efx3Arg
-        .4byte forceKill__Q23efx8TSimple2Fv
-        .4byte fade__Q23efx8TSimple2Fv
-    .global __vt__Q23efx10TPkInstick
-    __vt__Q23efx10TPkInstick:
-        .4byte 0
-        .4byte 0
-        .4byte create__Q23efx8TSimple1FPQ23efx3Arg
-        .4byte forceKill__Q23efx8TSimple1Fv
-        .4byte fade__Q23efx8TSimple1Fv
-    .global __vt__Q23efx12TGate1Attack
-    __vt__Q23efx12TGate1Attack:
-        .4byte 0
-        .4byte 0
-        .4byte create__Q23efx8TSimple2FPQ23efx3Arg
-        .4byte forceKill__Q23efx8TSimple2Fv
-        .4byte fade__Q23efx8TSimple2Fv
-    .global __vt__Q23efx12TPkBlackDrop
-    __vt__Q23efx12TPkBlackDrop:
-        .4byte 0
-        .4byte 0
-        .4byte create__Q23efx8TSimple3FPQ23efx3Arg
-        .4byte forceKill__Q23efx8TSimple3Fv
-        .4byte fade__Q23efx8TSimple3Fv
-    .global __vt__Q23efx15TFueactBiriBase
-    __vt__Q23efx15TFueactBiriBase:
-        .4byte 0
-        .4byte 0
-        .4byte create__Q23efx5TSyncFPQ23efx3Arg
-        .4byte forceKill__Q23efx5TSyncFv
-        .4byte fade__Q23efx5TSyncFv
-        .4byte 0
-        .4byte 0
-        .4byte "@4@__dt__Q23efx15TFueactBiriBaseFv"
-        .4byte "@4@execute__Q23efx5TSyncFP14JPABaseEmitter"
-        .4byte "@4@executeAfter__Q23efx5TSyncFP14JPABaseEmitter"
-        .4byte draw__18JPAEmitterCallBackFP14JPABaseEmitter
-        .4byte drawAfter__18JPAEmitterCallBackFP14JPABaseEmitter
-        .4byte execute__Q23efx5TSyncFP14JPABaseEmitter
-        .4byte executeAfter__Q23efx5TSyncFP14JPABaseEmitter
-        .4byte
-   doExecuteEmitterOperation__Q23efx15TFueactBiriBaseFP14JPABaseEmitter .4byte
-   doExecuteAfter__Q23efx5TSyncFP14JPABaseEmitter .4byte
-   startDemoDrawOff__Q23efx5TSyncFv .4byte endDemoDrawOn__Q23efx5TSyncFv .4byte
-   __dt__Q23efx15TFueactBiriBaseFv .global __vt__Q23efx13TFueactCircle
-    __vt__Q23efx13TFueactCircle:
-        .4byte 0
-        .4byte 0
-        .4byte create__Q23efx13TFueactCircleFPQ23efx3Arg
-        .4byte forceKill__Q23efx13TFueactCircleFv
-        .4byte fade__Q23efx13TFueactCircleFv
-        .4byte 0
-        .4byte 0
-        .4byte "@4@__dt__Q23efx13TFueactCircleFv"
-        .4byte "@4@execute__Q23efx13TFueactCircleFP14JPABaseEmitter"
-        .4byte "@4@executeAfter__Q23efx13TFueactCircleFP14JPABaseEmitter"
-        .4byte draw__18JPAEmitterCallBackFP14JPABaseEmitter
-        .4byte drawAfter__18JPAEmitterCallBackFP14JPABaseEmitter
-        .4byte 0
-        .4byte 0
-        .4byte "@8@__dt__Q23efx13TFueactCircleFv"
-        .4byte
-   "@8@execute__Q23efx13TFueactCircleFP14JPABaseEmitterP15JPABaseParticle"
-        .4byte draw__19JPAParticleCallBackFP14JPABaseEmitterP15JPABaseParticle
-        .4byte execute__Q23efx13TFueactCircleFP14JPABaseEmitter
-        .4byte
-   execute__Q23efx13TFueactCircleFP14JPABaseEmitterP15JPABaseParticle .4byte
-   executeAfter__Q23efx13TFueactCircleFP14JPABaseEmitter .4byte
-   __dt__Q23efx13TFueactCircleFv .global __vt__Q23efx7TCursor
-    __vt__Q23efx7TCursor:
-        .4byte 0
-        .4byte 0
-        .4byte create__Q23efx7TCursorFPQ23efx3Arg
-        .4byte forceKill__Q23efx7TCursorFv
-        .4byte fade__Q23efx7TCursorFv
-    .global __vt__Q23efx14TOrimaLightAct
-    __vt__Q23efx14TOrimaLightAct:
-        .4byte 0
-        .4byte 0
-        .4byte create__Q23efx14TOrimaLightActFPQ23efx3Arg
-        .4byte "forceKill__Q23efx29TSyncGroup2<Q23efx9TChaseMtx>Fv"
-        .4byte "fade__Q23efx29TSyncGroup2<Q23efx9TChaseMtx>Fv"
-        .4byte "startDemoDrawOff__Q23efx29TSyncGroup2<Q23efx9TChaseMtx>Fv"
-        .4byte "endDemoDrawOn__Q23efx29TSyncGroup2<Q23efx9TChaseMtx>Fv"
-    .global __vt__Q23efx11TOrimaLight
-    __vt__Q23efx11TOrimaLight:
-        .4byte 0
-        .4byte 0
-        .4byte create__Q23efx11TOrimaLightFPQ23efx3Arg
-        .4byte "forceKill__Q23efx29TSyncGroup2<Q23efx9TChaseMtx>Fv"
-        .4byte "fade__Q23efx29TSyncGroup2<Q23efx9TChaseMtx>Fv"
-        .4byte "startDemoDrawOff__Q23efx29TSyncGroup2<Q23efx9TChaseMtx>Fv"
-        .4byte "endDemoDrawOn__Q23efx29TSyncGroup2<Q23efx9TChaseMtx>Fv"
-    .global __vt__Q23efx12TDopingSmoke
-    __vt__Q23efx12TDopingSmoke:
-        .4byte 0
-        .4byte 0
-        .4byte create__Q23efx12TDopingSmokeFPQ23efx3Arg
-        .4byte forceKill__Q23efx8TSimple1Fv
-        .4byte fade__Q23efx8TSimple1Fv
-    .global __vt__Q23efx11TPkNageBlur
-    __vt__Q23efx11TPkNageBlur:
-        .4byte 0
-        .4byte 0
-        .4byte create__Q23efx11TPkNageBlurFPQ23efx3Arg
-        .4byte forceKill__Q23efx5TSyncFv
-        .4byte fade__Q23efx5TSyncFv
-        .4byte 0
-        .4byte 0
-        .4byte "@4@__dt__Q23efx11TPkNageBlurFv"
-        .4byte "@4@execute__Q23efx5TSyncFP14JPABaseEmitter"
-        .4byte "@4@executeAfter__Q23efx5TSyncFP14JPABaseEmitter"
-        .4byte draw__18JPAEmitterCallBackFP14JPABaseEmitter
-        .4byte drawAfter__18JPAEmitterCallBackFP14JPABaseEmitter
-        .4byte execute__Q23efx5TSyncFP14JPABaseEmitter
-        .4byte executeAfter__Q23efx5TSyncFP14JPABaseEmitter
-        .4byte doExecuteEmitterOperation__Q23efx9TChaseMtxFP14JPABaseEmitter
-        .4byte doExecuteAfter__Q23efx5TSyncFP14JPABaseEmitter
-        .4byte startDemoDrawOff__Q23efx5TSyncFv
-        .4byte endDemoDrawOn__Q23efx5TSyncFv
-        .4byte __dt__Q23efx11TPkNageBlurFv
-        .4byte 0
-
-    .section .sdata2, "a"     # 0x80516360 - 0x80520E40
-    .global lbl_8051F670
-    lbl_8051F670:
-        .4byte 0x00000000
-    .global lbl_8051F674
-    lbl_8051F674:
-        .4byte 0x41726754
-        .4byte 0x79706500
-    .global lbl_8051F67C
-    lbl_8051F67C:
-        .float 1.0
-    .global lbl_8051F680
-    lbl_8051F680:
-        .4byte 0x40C90FDB
-    .global lbl_8051F684
-    lbl_8051F684:
-        .4byte 0x40490FDB
-    .global lbl_8051F688
-    lbl_8051F688:
-        .4byte 0x40000000
-    .global lbl_8051F68C
-    lbl_8051F68C:
-        .4byte 0x43A2F983
-    .global lbl_8051F690
-    lbl_8051F690:
-        .4byte 0xC3A2F983
-        .4byte 0x00000000
-    .global lbl_8051F698
-    lbl_8051F698:
-        .4byte 0x43300000
-        .4byte 0x80000000
-    .global lbl_8051F6A0
-    lbl_8051F6A0:
-        .4byte 0x42000000
-    .global lbl_8051F6A4
-    lbl_8051F6A4:
-        .float 0.5
-    .global lbl_8051F6A8
-    lbl_8051F6A8:
-        .4byte 0x40400000
-    .global lbl_8051F6AC
-    lbl_8051F6AC:
-        .4byte 0x432F0000
-    .global lbl_8051F6B0
-    lbl_8051F6B0:
-        .4byte 0x42C80000
-    .global lbl_8051F6B4
-    lbl_8051F6B4:
-        .4byte 0x41400000
-    .global lbl_8051F6B8
-    lbl_8051F6B8:
-        .4byte 0x41B00000
-*/
+#include "Dolphin/float.h"
 
 namespace efx {
 
@@ -243,6 +23,9 @@ namespace efx {
  */
 void TParticleCallBack_Yodare::init(JPABaseEmitter*, JPABaseParticle*)
 {
+	_00 = 0.0f;
+	_04 = "ArgType";
+	_08 = 1.0f;
 	// UNUSED FUNCTION
 }
 
@@ -296,6 +79,8 @@ bool TPkNageBlur::create(Arg* arg)
 	TSync::create(arg);
 }
 
+static void fakeFuncEfxPikmin(TParticleCallBack_Yodare* callback) { callback->_00 = 1.0f; }
+
 /*
  * --INFO--
  * Address:	803B67A0
@@ -317,13 +102,17 @@ bool TDopingSmoke::create(Arg* arg)
 		m_effectIDs[0] = PID_DangoFly_2;
 	}
 	if (TSimple1::create(arg)) {
-		volatile Vector3f temp = targ->m_dopePos.normalise();
-		m_emitters[0]->setAngle(temp.x, temp.y, temp.z);
+		Vector3f vec      = targ->m_dopePos;
+		Vector3f* tempPtr = &vec;
+		vec.normalise();
+		setEmitterVector(tempPtr);
 		if (targ->m_dopeType == 0) {
 			JPABaseEmitter* emit = particleMgr->create(PID_DopingSmoke_2, arg->m_position, 0);
 			if (emit) {
 				emit->m_emitterCallback = &mCallBack_StaticClipping;
-				emit->setAngle(temp.x, temp.y, temp.z);
+				emit->_18.x             = vec.x;
+				emit->_18.y             = vec.y;
+				emit->_18.z             = vec.z;
 			} else {
 				return false;
 			}
@@ -331,152 +120,6 @@ bool TDopingSmoke::create(Arg* arg)
 		return true;
 	}
 	return false;
-	/*
-	stwu     r1, -0x30(r1)
-	mflr     r0
-	stw      r0, 0x34(r1)
-	stw      r31, 0x2c(r1)
-	stw      r30, 0x28(r1)
-	mr       r30, r4
-	lis      r4, lbl_80495A28@ha
-	stw      r29, 0x24(r1)
-	mr       r29, r3
-	mr       r3, r30
-	addi     r31, r4, lbl_80495A28@l
-	lwz      r12, 0(r30)
-	lwz      r12, 8(r12)
-	mtctr    r12
-	bctrl
-	mr       r4, r3
-	addi     r3, r31, 0x1c
-	bl       strcmp
-	cntlzw   r0, r3
-	rlwinm.  r0, r0, 0x1b, 0x18, 0x1f
-	bne      lbl_803B6808
-	addi     r3, r31, 0
-	addi     r5, r31, 0x10
-	li       r4, 0x15d
-	crclr    6
-	bl       panic_f__12JUTExceptionFPCciPCce
-
-lbl_803B6808:
-	lhz      r0, 0x1c(r30)
-	cmpwi    r0, 1
-	beq      lbl_803B6830
-	bge      lbl_803B683C
-	cmpwi    r0, 0
-	bge      lbl_803B6824
-	b        lbl_803B683C
-
-lbl_803B6824:
-	li       r0, 0x45
-	sth      r0, 4(r29)
-	b        lbl_803B6844
-
-lbl_803B6830:
-	li       r0, 0x43
-	sth      r0, 4(r29)
-	b        lbl_803B6844
-
-lbl_803B683C:
-	li       r0, 0x2b2
-	sth      r0, 4(r29)
-
-lbl_803B6844:
-	mr       r3, r29
-	mr       r4, r30
-	bl       create__Q23efx8TSimple1FPQ23efx3Arg
-	clrlwi.  r0, r3, 0x18
-	beq      lbl_803B6960
-	lfs      f4, 0x10(r30)
-	lfs      f3, 0x14(r30)
-	fmuls    f0, f4, f4
-	lfs      f2, 0x18(r30)
-	fmuls    f5, f3, f3
-	lfs      f1, lbl_8051F670@sda21(r2)
-	fmuls    f6, f2, f2
-	stfs     f4, 8(r1)
-	fadds    f0, f0, f5
-	stfs     f3, 0xc(r1)
-	stfs     f2, 0x10(r1)
-	fadds    f0, f6, f0
-	fcmpo    cr0, f0, f1
-	ble      lbl_803B68AC
-	fmadds   f0, f4, f4, f5
-	fadds    f3, f6, f0
-	fcmpo    cr0, f3, f1
-	ble      lbl_803B68B0
-	frsqrte  f0, f3
-	fmuls    f3, f0, f3
-	b        lbl_803B68B0
-
-lbl_803B68AC:
-	fmr      f3, f1
-
-lbl_803B68B0:
-	lfs      f0, lbl_8051F670@sda21(r2)
-	fcmpo    cr0, f3, f0
-	ble      lbl_803B68E8
-	lfs      f0, lbl_8051F67C@sda21(r2)
-	lfs      f2, 8(r1)
-	fdivs    f3, f0, f3
-	lfs      f1, 0xc(r1)
-	lfs      f0, 0x10(r1)
-	fmuls    f2, f2, f3
-	fmuls    f1, f1, f3
-	fmuls    f0, f0, f3
-	stfs     f2, 8(r1)
-	stfs     f1, 0xc(r1)
-	stfs     f0, 0x10(r1)
-
-lbl_803B68E8:
-	lwz      r3, 8(r29)
-	lfs      f0, 8(r1)
-	lfs      f1, 0xc(r1)
-	stfs     f0, 0x18(r3)
-	lfs      f0, 0x10(r1)
-	stfs     f1, 0x1c(r3)
-	stfs     f0, 0x20(r3)
-	lhz      r0, 0x1c(r30)
-	cmplwi   r0, 0
-	bne      lbl_803B6958
-	lwz      r3, particleMgr@sda21(r13)
-	addi     r5, r30, 4
-	li       r4, 0x44
-	li       r6, 0
-	bl       "create__11ParticleMgrFUsR10Vector3<f>Uc"
-	cmplwi   r3, 0
-	beq      lbl_803B6950
-	addi     r0, r13, mCallBack_StaticClipping__Q23efx5TBase@sda21
-	lfs      f0, 8(r1)
-	stw      r0, 0xec(r3)
-	lfs      f1, 0xc(r1)
-	stfs     f0, 0x18(r3)
-	lfs      f0, 0x10(r1)
-	stfs     f1, 0x1c(r3)
-	stfs     f0, 0x20(r3)
-	b        lbl_803B6958
-
-lbl_803B6950:
-	li       r3, 0
-	b        lbl_803B6964
-
-lbl_803B6958:
-	li       r3, 1
-	b        lbl_803B6964
-
-lbl_803B6960:
-	li       r3, 0
-
-lbl_803B6964:
-	lwz      r0, 0x34(r1)
-	lwz      r31, 0x2c(r1)
-	lwz      r30, 0x28(r1)
-	lwz      r29, 0x24(r1)
-	mtlr     r0
-	addi     r1, r1, 0x30
-	blr
-	*/
 }
 
 /*
@@ -609,15 +252,13 @@ void TCursor::update(Arg* arg)
  */
 void TCursor::calcPos_(Vector3f* pos, f32 mag, long id)
 {
-	Vector3f position = *pos;
-	f32 angle         = (m_angleTimer + (f32)id * 2.0f * PI) / (f32)m_contextNum;
-
-	position.x = mag * pikmin2_sinf(angle) + m_position.x;
-	position.z = mag * pikmin2_cosf(angle) + m_position.z;
+	f32 angle = m_angleTimer + ((f32)id * 2.0f * PI) / (f32)m_contextNum;
+	pos->x    = mag * pikmin2_cosf(angle) + m_position.x;
+	pos->z    = mag * pikmin2_sinf(angle) + m_position.z;
 	if (Game::mapMgr) {
-		position.y = Game::mapMgr->getMinY(position);
+		pos->y = Game::mapMgr->getMinY(*pos);
 	} else {
-		position.y = m_position.y;
+		pos->y = m_position.y;
 	}
 }
 
@@ -653,9 +294,21 @@ void TFueactCircle::execute(JPABaseEmitter* emit)
 	P2ASSERTLINE(530, m_mtx);
 	P2ASSERTLINE(531, m_pos);
 
-	Vector3f ang = *m_pos - m_mtx->getBasis(0);
-	ang.normalise();
-	emit->setAngle(ang.x, ang.y, ang.z);
+	Vector3f sep = *m_pos - m_mtx->getBasis(3);
+
+	// super wacky normalisation.
+	f32 sqrLen = sep.x * sep.x + sep.y * sep.y + sep.z * sep.z;
+	if (!(sqrLen <= 32.0f * __float_epsilon[0])) {
+		if (sqrLen <= 0.0f) {
+
+		} else {
+			f32 len = (f32)__frsqrte(sqrLen);
+			sqrLen  = (0.5f * len) * (3.0f - sqrLen * (len * len));
+		}
+		sep = sep * sqrLen;
+	}
+
+	emit->setAngle(sep.x, sep.y, sep.z);
 
 	/*
 	stwu     r1, -0x10(r1)
@@ -1346,40 +999,6 @@ void createSimpleStoneAttack(Vector3f& pos)
 	TStoneAttack efx;
 	Arg arg(pos);
 	efx.create(&arg);
-	/*
-	stwu     r1, -0x30(r1)
-	mflr     r0
-	lis      r5, __vt__Q23efx5TBase@ha
-	lis      r4, __vt__Q23efx8TSimple1@ha
-	stw      r0, 0x34(r1)
-	addi     r0, r5, __vt__Q23efx5TBase@l
-	lis      r5, __vt__Q23efx12TStoneAttack@ha
-	li       r7, 0x1af
-	stw      r0, 0x18(r1)
-	addi     r0, r4, __vt__Q23efx8TSimple1@l
-	li       r6, 0
-	lis      r4, __vt__Q23efx3Arg@ha
-	stw      r0, 0x18(r1)
-	addi     r0, r4, __vt__Q23efx3Arg@l
-	addi     r5, r5, __vt__Q23efx12TStoneAttack@l
-	addi     r4, r1, 8
-	sth      r7, 0x1c(r1)
-	stw      r6, 0x20(r1)
-	stw      r5, 0x18(r1)
-	stw      r0, 8(r1)
-	lfs      f0, 0(r3)
-	stfs     f0, 0xc(r1)
-	lfs      f0, 4(r3)
-	stfs     f0, 0x10(r1)
-	lfs      f0, 8(r3)
-	addi     r3, r1, 0x18
-	stfs     f0, 0x14(r1)
-	bl       create__Q23efx8TSimple1FPQ23efx3Arg
-	lwz      r0, 0x34(r1)
-	mtlr     r0
-	addi     r1, r1, 0x30
-	blr
-	*/
 }
 
 /*
@@ -1422,30 +1041,11 @@ void createSimpleWalkwater(Vector3f& pos)
  */
 void TNaviEffect::init(Vector3f* pos, Mtx mtx, Vector3f* naviPos, enumNaviType naviType)
 {
-	m_pos = naviPos;
-	// m_beaconMtx = mtx;
-	m_naviPos = naviPos;
-	m_height  = nullptr;
+	m_pos       = pos;
+	m_beaconMtx = (Matrixf*)mtx;
+	m_naviPos   = naviPos;
+	m_height    = nullptr;
 	setNaviType(naviType);
-	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  stw       r0, 0x14(r1)
-	  li        r0, 0
-	  stw       r4, 0x8(r3)
-	  mr        r4, r7
-	  stw       r5, 0x10(r3)
-	  stw       r6, 0xC(r3)
-	  stw       r0, 0x18(r3)
-	  bl        .loc_0x38
-	  lwz       r0, 0x14(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
-
-	.loc_0x38:
-	*/
 }
 
 /*
@@ -1477,7 +1077,7 @@ void TNaviEffect::setNaviType(enumNaviType type)
 		m_light.m_naviType               = 0;
 		m_lightAct.m_naviType            = 0;
 		break;
-	default:
+	case 3:
 		m_cursor.m_contextNum            = WHISTLE_CONTEXT_NUM;
 		m_cursor.m_angleSpeed            = TCursor::kAngleSpeed;
 		m_cursor.m_oneEmitter.m_effectID = PID_Cursor_Olimar;
@@ -1568,87 +1168,25 @@ void TNaviEffect::update() { updateHamon_(); }
 void TNaviEffect::updateHamon_()
 {
 	if (m_height && m_pos && isFlag(NAVIFX_InWater)) {
-		Vector3f temp(m_pos->x, *m_height, m_pos->z);
-		m_hamonPosition = temp;
-		f32 diff        = *m_height - m_pos->y;
-		if (diff < 12.0f) {
-			createHamonA_(&m_hamonPosition);
-		} else {
-			killHamonA_();
-		}
-
-		if (diff < 22.0f) {
-			createHamonB_(&m_hamonPosition);
-		} else {
-			killHamonB_();
-		}
+		m_hamonPosition.x = m_pos->x;
+		m_hamonPosition.y = *m_height;
+		m_hamonPosition.z = m_pos->z;
+	} else {
+		return;
 	}
-	/*
-	stwu     r1, -0x20(r1)
-	mflr     r0
-	stw      r0, 0x24(r1)
-	stfd     f31, 0x10(r1)
-	psq_st   f31, 24(r1), 0, qr0
-	stw      r31, 0xc(r1)
-	mr       r31, r3
-	lwz      r0, 0x18(r3)
-	cmplwi   r0, 0
-	beq      lbl_803B7FD8
-	lwz      r4, 8(r31)
-	cmplwi   r4, 0
-	beq      lbl_803B7FD8
-	lwz      r0, 0(r31)
-	clrlwi.  r0, r0, 0x1f
-	beq      lbl_803B7FD8
-	lfs      f0, 0(r4)
-	stfs     f0, 0x1c(r31)
-	lwz      r4, 0x18(r31)
-	lfs      f0, 0(r4)
-	stfs     f0, 0x20(r31)
-	lwz      r4, 8(r31)
-	lfs      f0, 8(r4)
-	stfs     f0, 0x24(r31)
-	b        lbl_803B7F84
-	b        lbl_803B7FD8
 
-lbl_803B7F84:
-	lwz      r5, 0x18(r31)
-	lwz      r4, 8(r31)
-	lfs      f2, 0(r5)
-	lfs      f1, 4(r4)
-	lfs      f0, lbl_8051F6B4@sda21(r2)
-	fsubs    f31, f2, f1
-	fcmpo    cr0, f31, f0
-	bge      lbl_803B7FB0
-	addi     r4, r31, 0x1c
-	bl       "createHamonA___Q23efx11TNaviEffectFP10Vector3<f>"
-	b        lbl_803B7FB4
+	f32 diff = *m_height - m_pos->y;
+	if (diff < 12.0f) {
+		createHamonA_(&m_hamonPosition);
+	} else {
+		killHamonA_();
+	}
 
-lbl_803B7FB0:
-	bl       killHamonA___Q23efx11TNaviEffectFv
-
-lbl_803B7FB4:
-	lfs      f0, lbl_8051F6B8@sda21(r2)
-	fcmpo    cr0, f31, f0
-	bge      lbl_803B7FD0
-	mr       r3, r31
-	addi     r4, r31, 0x1c
-	bl       "createHamonB___Q23efx11TNaviEffectFP10Vector3<f>"
-	b        lbl_803B7FD8
-
-lbl_803B7FD0:
-	mr       r3, r31
-	bl       killHamonB___Q23efx11TNaviEffectFv
-
-lbl_803B7FD8:
-	psq_l    f31, 24(r1), 0, qr0
-	lwz      r0, 0x24(r1)
-	lfd      f31, 0x10(r1)
-	lwz      r31, 0xc(r1)
-	mtlr     r0
-	addi     r1, r1, 0x20
-	blr
-	*/
+	if (diff < 22.0f) {
+		createHamonB_(&m_hamonPosition);
+	} else {
+		killHamonB_();
+	}
 }
 
 /*
@@ -1752,187 +1290,6 @@ void TNaviEffect::updateCursor_(Vector3f pos, f32 scale)
 {
 	ArgCursor arg(pos, scale);
 	m_cursor.update(&arg);
-	/*
-	stwu     r1, -0xd0(r1)
-	mflr     r0
-	stw      r0, 0xd4(r1)
-	stfd     f31, 0xc0(r1)
-	psq_st   f31, 200(r1), 0, qr0
-	stfd     f30, 0xb0(r1)
-	psq_st   f30, 184(r1), 0, qr0
-	stfd     f29, 0xa0(r1)
-	psq_st   f29, 168(r1), 0, qr0
-	stfd     f28, 0x90(r1)
-	psq_st   f28, 152(r1), 0, qr0
-	stfd     f27, 0x80(r1)
-	psq_st   f27, 136(r1), 0, qr0
-	stfd     f26, 0x70(r1)
-	psq_st   f26, 120(r1), 0, qr0
-	stmw     r27, 0x5c(r1)
-	lis      r5, __vt__Q23efx3Arg@ha
-	lfs      f3, 0(r4)
-	addi     r0, r5, __vt__Q23efx3Arg@l
-	lfs      f2, 4(r4)
-	lfs      f0, 8(r4)
-	lis      r4, __vt__Q23efx9ArgCursor@ha
-	stw      r0, 0x14(r1)
-	addi     r4, r4, __vt__Q23efx9ArgCursor@l
-	addic.   r0, r1, 0x14
-	mr       r28, r3
-	stfs     f3, 0x18(r1)
-	stfs     f2, 0x1c(r1)
-	stfs     f0, 0x20(r1)
-	stw      r4, 0x14(r1)
-	stfs     f1, 0x24(r1)
-	bne      lbl_803B8370
-	lis      r3, lbl_80495A28@ha
-	lis      r5, lbl_80495A38@ha
-	addi     r3, r3, lbl_80495A28@l
-	li       r4, 0x1e0
-	addi     r5, r5, lbl_80495A38@l
-	crclr    6
-	bl       panic_f__12JUTExceptionFPCciPCce
-
-lbl_803B8370:
-	lfs      f1, 0x18(r1)
-	lfs      f0, 0x1c(r1)
-	stfs     f1, 0x328(r28)
-	lfs      f1, 0x20(r1)
-	stfs     f0, 0x32c(r28)
-	lfs      f0, lbl_8051F670@sda21(r2)
-	stfs     f1, 0x330(r28)
-	lfs      f26, 0x24(r1)
-	lfs      f2, 0x334(r28)
-	lfs      f1, 0x338(r28)
-	fsubs    f1, f2, f1
-	stfs     f1, 0x334(r28)
-	lfs      f1, 0x334(r28)
-	fcmpo    cr0, f1, f0
-	bge      lbl_803B83B8
-	lfs      f0, lbl_8051F680@sda21(r2)
-	fadds    f0, f1, f0
-	stfs     f0, 0x334(r28)
-
-lbl_803B83B8:
-	lis      r3, sincosTable___5JMath@ha
-	lfs      f27, lbl_8051F684@sda21(r2)
-	lfs      f28, lbl_8051F688@sda21(r2)
-	addi     r29, r28, 0xac
-	lfd      f29, lbl_8051F698@sda21(r2)
-	addi     r27, r3, sincosTable___5JMath@l
-	lfs      f30, lbl_8051F670@sda21(r2)
-	li       r30, 0
-	lfs      f31, lbl_8051F68C@sda21(r2)
-	lis      r31, 0x4330
-	b        lbl_803B8508
-
-lbl_803B83E4:
-	xoris    r3, r30, 0x8000
-	xoris    r0, r0, 0x8000
-	stw      r3, 0x2c(r1)
-	lfs      f2, 0x334(r28)
-	stw      r31, 0x28(r1)
-	lfd      f0, 0x28(r1)
-	stw      r0, 0x34(r1)
-	fsubs    f0, f0, f29
-	stw      r31, 0x30(r1)
-	fmuls    f1, f28, f0
-	lfd      f0, 0x30(r1)
-	fsubs    f0, f0, f29
-	fmuls    f1, f27, f1
-	fdivs    f0, f1, f0
-	fadds    f2, f2, f0
-	fmr      f0, f2
-	fcmpo    cr0, f2, f30
-	bge      lbl_803B8430
-	fneg     f0, f2
-
-lbl_803B8430:
-	fmuls    f1, f0, f31
-	lfs      f0, 0x328(r28)
-	fcmpo    cr0, f2, f30
-	fctiwz   f1, f1
-	stfd     f1, 0x38(r1)
-	lwz      r0, 0x3c(r1)
-	rlwinm   r0, r0, 3, 0x12, 0x1c
-	add      r3, r27, r0
-	lfs      f1, 4(r3)
-	fmadds   f0, f26, f1, f0
-	stfs     f0, 8(r1)
-	bge      lbl_803B848C
-	lfs      f0, lbl_8051F690@sda21(r2)
-	lis      r3, sincosTable___5JMath@ha
-	addi     r3, r3, sincosTable___5JMath@l
-	fmuls    f0, f2, f0
-	fctiwz   f0, f0
-	stfd     f0, 0x40(r1)
-	lwz      r0, 0x44(r1)
-	rlwinm   r0, r0, 3, 0x12, 0x1c
-	lfsx     f0, r3, r0
-	fneg     f1, f0
-	b        lbl_803B84AC
-
-lbl_803B848C:
-	fmuls    f0, f2, f31
-	lis      r3, sincosTable___5JMath@ha
-	addi     r3, r3, sincosTable___5JMath@l
-	fctiwz   f0, f0
-	stfd     f0, 0x48(r1)
-	lwz      r0, 0x4c(r1)
-	rlwinm   r0, r0, 3, 0x12, 0x1c
-	lfsx     f1, r3, r0
-
-lbl_803B84AC:
-	lfs      f0, 0x330(r28)
-	lwz      r3, mapMgr__4Game@sda21(r13)
-	fmadds   f0, f26, f1, f0
-	cmplwi   r3, 0
-	stfs     f0, 0x10(r1)
-	beq      lbl_803B84E0
-	lwz      r12, 4(r3)
-	addi     r4, r1, 8
-	lwz      r12, 0x28(r12)
-	mtctr    r12
-	bctrl
-	stfs     f1, 0xc(r1)
-	b        lbl_803B84E8
-
-lbl_803B84E0:
-	lfs      f0, 0x32c(r28)
-	stfs     f0, 0xc(r1)
-
-lbl_803B84E8:
-	lfs      f0, 8(r1)
-	addi     r30, r30, 1
-	stfs     f0, 0x54(r29)
-	lfs      f0, 0xc(r1)
-	stfs     f0, 0x58(r29)
-	lfs      f0, 0x10(r1)
-	stfs     f0, 0x5c(r29)
-	addi     r29, r29, 0x24
-
-lbl_803B8508:
-	lwz      r0, 0xe4(r28)
-	cmpw     r30, r0
-	blt      lbl_803B83E4
-	psq_l    f31, 200(r1), 0, qr0
-	lfd      f31, 0xc0(r1)
-	psq_l    f30, 184(r1), 0, qr0
-	lfd      f30, 0xb0(r1)
-	psq_l    f29, 168(r1), 0, qr0
-	lfd      f29, 0xa0(r1)
-	psq_l    f28, 152(r1), 0, qr0
-	lfd      f28, 0x90(r1)
-	psq_l    f27, 136(r1), 0, qr0
-	lfd      f27, 0x80(r1)
-	psq_l    f26, 120(r1), 0, qr0
-	lfd      f26, 0x70(r1)
-	lmw      r27, 0x5c(r1)
-	lwz      r0, 0xd4(r1)
-	mtlr     r0
-	addi     r1, r1, 0xd0
-	blr
-	*/
 }
 
 /*
@@ -1942,67 +1299,16 @@ lbl_803B8508:
  */
 void TNaviEffect::createFueact_(Mtx mtx, Vector3f* pos)
 {
-	P2ASSERTLINE(930, pos);
-	P2ASSERTLINE(931, mtx);
+	P2ASSERTLINE(930, mtx);
+	P2ASSERTLINE(931, pos);
 
-	m_fueact.m_circle.m_pos = pos;
 	m_fueact.m_circle.m_mtx = (Matrixf*)mtx;
-	m_fueact.m_biri1.m_pos  = (JGeometry::TVec3f*)pos;
+	m_fueact.m_circle.m_pos = pos;
 	m_fueact.m_biri1.m_mtx  = (Matrixf*)mtx;
-	m_fueact.m_biri2.m_pos  = (JGeometry::TVec3f*)pos;
+	m_fueact.m_biri1.m_pos  = (JGeometry::TVec3f*)pos;
 	m_fueact.m_biri2.m_mtx  = (Matrixf*)mtx;
+	m_fueact.m_biri2.m_pos  = (JGeometry::TVec3f*)pos;
 	m_fueact.create(nullptr);
-	/*
-	stwu     r1, -0x20(r1)
-	mflr     r0
-	stw      r0, 0x24(r1)
-	stw      r31, 0x1c(r1)
-	mr       r31, r5
-	stw      r30, 0x18(r1)
-	or.      r30, r4, r4
-	stw      r29, 0x14(r1)
-	mr       r29, r3
-	bne      lbl_803B859C
-	lis      r3, lbl_80495A28@ha
-	lis      r5, lbl_80495A38@ha
-	addi     r3, r3, lbl_80495A28@l
-	li       r4, 0x3a2
-	addi     r5, r5, lbl_80495A38@l
-	crclr    6
-	bl       panic_f__12JUTExceptionFPCciPCce
-
-lbl_803B859C:
-	cmplwi   r31, 0
-	bne      lbl_803B85C0
-	lis      r3, lbl_80495A28@ha
-	lis      r5, lbl_80495A38@ha
-	addi     r3, r3, lbl_80495A28@l
-	li       r4, 0x3a3
-	addi     r5, r5, lbl_80495A38@l
-	crclr    6
-	bl       panic_f__12JUTExceptionFPCciPCce
-
-lbl_803B85C0:
-	stw      r30, 0x70(r29)
-	addi     r3, r29, 0x60
-	li       r4, 0
-	stw      r31, 0x74(r29)
-	stw      r30, 0x8c(r29)
-	stw      r31, 0x90(r29)
-	stw      r30, 0xa4(r29)
-	stw      r31, 0xa8(r29)
-	lwz      r12, 0x60(r29)
-	lwz      r12, 8(r12)
-	mtctr    r12
-	bctrl
-	lwz      r0, 0x24(r1)
-	lwz      r31, 0x1c(r1)
-	lwz      r30, 0x18(r1)
-	lwz      r29, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x20
-	blr
-	*/
 }
 
 /*
@@ -2085,86 +1391,24 @@ void TPkEffect::updateMoeSmoke_()
  */
 void TPkEffect::updateHamon_()
 {
-	if (m_height && m_hamonPosPtr && isFlag(0x20)) {
-		Vector3f temp(m_hamonPosPtr->x, *m_height, m_hamonPosPtr->z);
-		m_hamonPosition = temp;
-		f32 diff        = *m_height - m_hamonPosPtr->y;
-		if (diff < 12.0f) {
-			createHamonA_(&m_hamonPosition);
-		} else {
-			killHamonA_();
-		}
-
-		if (diff < 22.0f) {
-			createHamonB_(&m_hamonPosition);
-		} else {
-			killHamonB_();
-		}
+	if (m_height && m_hamonPosPtr && isFlag(NAVIFX_Unk6)) {
+		m_hamonPosition = Vector3f(m_hamonPosPtr->x, *m_height, m_hamonPosPtr->z);
+	} else {
+		return;
 	}
-	/*
-	stwu     r1, -0x20(r1)
-	mflr     r0
-	stw      r0, 0x24(r1)
-	stfd     f31, 0x10(r1)
-	psq_st   f31, 24(r1), 0, qr0
-	stw      r31, 0xc(r1)
-	mr       r31, r3
-	lwz      r5, 0x20(r3)
-	cmplwi   r5, 0
-	beq      lbl_803B880C
-	lwz      r4, 0x10(r31)
-	cmplwi   r4, 0
-	beq      lbl_803B880C
-	lwz      r0, 0(r31)
-	rlwinm.  r0, r0, 0, 0x1a, 0x1a
-	beq      lbl_803B880C
-	lfs      f2, 8(r4)
-	lfs      f1, 0(r5)
-	lfs      f0, 0(r4)
-	stfs     f0, 0x28(r31)
-	stfs     f1, 0x2c(r31)
-	stfs     f2, 0x30(r31)
-	b        lbl_803B87B8
-	b        lbl_803B880C
 
-lbl_803B87B8:
-	lwz      r5, 0x20(r31)
-	lwz      r4, 0x10(r31)
-	lfs      f2, 0(r5)
-	lfs      f1, 4(r4)
-	lfs      f0, lbl_8051F6B4@sda21(r2)
-	fsubs    f31, f2, f1
-	fcmpo    cr0, f31, f0
-	bge      lbl_803B87E4
-	addi     r4, r31, 0x28
-	bl       "createHamonA___Q23efx9TPkEffectFP10Vector3<f>"
-	b        lbl_803B87E8
+	f32 diff = *m_height - m_hamonPosPtr->y;
+	if (diff < 12.0f) {
+		createHamonA_(&m_hamonPosition);
+	} else {
+		killHamonA_();
+	}
 
-lbl_803B87E4:
-	bl       killHamonA___Q23efx9TPkEffectFv
-
-lbl_803B87E8:
-	lfs      f0, lbl_8051F6B8@sda21(r2)
-	fcmpo    cr0, f31, f0
-	bge      lbl_803B8804
-	mr       r3, r31
-	addi     r4, r31, 0x28
-	bl       "createHamonB___Q23efx9TPkEffectFP10Vector3<f>"
-	b        lbl_803B880C
-
-lbl_803B8804:
-	mr       r3, r31
-	bl       killHamonB___Q23efx9TPkEffectFv
-
-lbl_803B880C:
-	psq_l    f31, 24(r1), 0, qr0
-	lwz      r0, 0x24(r1)
-	lfd      f31, 0x10(r1)
-	lwz      r31, 0xc(r1)
-	mtlr     r0
-	addi     r1, r1, 0x20
-	blr
-	*/
+	if (diff < 22.0f) {
+		createHamonB_(&m_hamonPosition);
+	} else {
+		killHamonB_();
+	}
 }
 
 /*
@@ -2213,78 +1457,10 @@ void TPkEffect::createNage_(Vector3f* pos, Mtx mtx)
 	P2ASSERTLINE(1046, pos);
 	m_oeNagekira.create(pos);
 	P2ASSERTLINE(1049, mtx);
-	ArgType arg(Vector3f::zero);
-	arg.m_type       = m_pikiColor;
+	ArgType arg(m_pikiColor);
+	arg.m_position   = Vector3f::zero;
 	m_nageBlur.m_mtx = (Matrixf*)mtx;
 	m_nageBlur.create(&arg);
-	/*
-	stwu     r1, -0x30(r1)
-	mflr     r0
-	stw      r0, 0x34(r1)
-	stw      r31, 0x2c(r1)
-	mr       r31, r3
-	stw      r30, 0x28(r1)
-	mr       r30, r5
-	stw      r29, 0x24(r1)
-	or.      r29, r4, r4
-	bne      lbl_803B8978
-	lis      r3, lbl_80495A28@ha
-	lis      r5, lbl_80495A38@ha
-	addi     r3, r3, lbl_80495A28@l
-	li       r4, 0x416
-	addi     r5, r5, lbl_80495A38@l
-	crclr    6
-	bl       panic_f__12JUTExceptionFPCciPCce
-
-lbl_803B8978:
-	mr       r4, r29
-	addi     r3, r31, 0xac
-	bl       "create__Q23efx11ToeNagekiraFP10Vector3<f>"
-	cmplwi   r30, 0
-	bne      lbl_803B89A8
-	lis      r3, lbl_80495A28@ha
-	lis      r5, lbl_80495A38@ha
-	addi     r3, r3, lbl_80495A28@l
-	li       r4, 0x419
-	addi     r5, r5, lbl_80495A38@l
-	crclr    6
-	bl       panic_f__12JUTExceptionFPCciPCce
-
-lbl_803B89A8:
-	lis      r3, "zero__10Vector3<f>"@ha
-	lwz      r6, 8(r31)
-	addi     r4, r3, "zero__10Vector3<f>"@l
-	lis      r3, __vt__Q23efx3Arg@ha
-	lfs      f0, 0(r4)
-	addi     r5, r3, __vt__Q23efx3Arg@l
-	lfs      f1, 4(r4)
-	lfs      f2, 8(r4)
-	lis      r3, __vt__Q23efx7ArgType@ha
-	stfs     f0, 0xc(r1)
-	addi     r0, r3, __vt__Q23efx7ArgType@l
-	addi     r3, r31, 0x34
-	addi     r4, r1, 8
-	stw      r5, 8(r1)
-	stfs     f1, 0x10(r1)
-	stfs     f2, 0x14(r1)
-	stw      r0, 8(r1)
-	sth      r6, 0x18(r1)
-	stfs     f0, 0xc(r1)
-	stfs     f1, 0x10(r1)
-	stfs     f2, 0x14(r1)
-	stw      r30, 0x44(r31)
-	lwz      r12, 0x34(r31)
-	lwz      r12, 8(r12)
-	mtctr    r12
-	bctrl
-	lwz      r0, 0x34(r1)
-	lwz      r31, 0x2c(r1)
-	lwz      r30, 0x28(r1)
-	lwz      r29, 0x24(r1)
-	mtlr     r0
-	addi     r1, r1, 0x30
-	blr
-	*/
 }
 
 /*
@@ -2349,34 +1525,6 @@ void TPkEffect::createMoeSmoke_(Vector3f* pos)
 {
 	P2ASSERTLINE(1097, pos);
 	m_oeMoeSmoke.create(pos);
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	or.      r31, r4, r4
-	stw      r30, 8(r1)
-	mr       r30, r3
-	bne      lbl_803B8BF0
-	lis      r3, lbl_80495A28@ha
-	lis      r5, lbl_80495A38@ha
-	addi     r3, r3, lbl_80495A28@l
-	li       r4, 0x449
-	addi     r5, r5, lbl_80495A38@l
-	crclr    6
-	bl       panic_f__12JUTExceptionFPCciPCce
-
-lbl_803B8BF0:
-	mr       r4, r31
-	addi     r3, r30, 0x18c
-	bl       "create__Q23efx11ToeMoeSmokeFP10Vector3<f>"
-	lwz      r0, 0x14(r1)
-	lwz      r31, 0xc(r1)
-	lwz      r30, 8(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
 }
 
 /*
@@ -2384,21 +1532,7 @@ lbl_803B8BF0:
  * Address:	803B8C14
  * Size:	000024
  */
-void TPkEffect::killMoeSmoke_()
-{
-	m_oeMoeSmoke.kill();
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	addi     r3, r3, 0x18c
-	stw      r0, 0x14(r1)
-	bl       kill__Q23efx11ToeMoeSmokeFv
-	lwz      r0, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
-}
+void TPkEffect::killMoeSmoke_() { m_oeMoeSmoke.kill(); }
 
 /*
  * --INFO--
@@ -2435,21 +1569,7 @@ void TPkEffect::createWater_(Vector3f* pos)
  * Address:	803B8D34
  * Size:	000024
  */
-void TPkEffect::killWater_()
-{
-	m_oeWater[0].kill();
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	addi     r3, r3, 0x11c
-	stw      r0, 0x14(r1)
-	bl       kill__Q23efx8ToeWaterFv
-	lwz      r0, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
-}
+void TPkEffect::killWater_() { m_oeWater[0].kill(); }
 
 /*
  * --INFO--
@@ -2625,114 +1745,3 @@ TParticleCallBack_Yodare::~TParticleCallBack_Yodare()
 }
 
 } // namespace efx
-
-/*
- * --INFO--
- * Address:	........
- * Size:	000008
- */
-//@4 @efx::TTestYodareHit::~TTestYodareHit(void)
-//{
-// UNUSED FUNCTION
-//}
-
-/*
- * --INFO--
- * Address:	........
- * Size:	000008
- */
-//@4 @efx::TTestYodareGen::~TTestYodareGen(void)
-//{
-// UNUSED FUNCTION
-//}
-
-/*
- * --INFO--
- * Address:	803B902C
- * Size:	000008
- */
-//@4 @efx::TPkNageBlur::~TPkNageBlur(void)
-//{
-/*
-addi     r3, r3, -4
-b        __dt__Q23efx11TPkNageBlurFv
-*/
-//}
-
-/*
- * --INFO--
- * Address:	803B9034
- * Size:	000008
- */
-// void @4 @TFueactCircle::executeAfter(JPABaseEmitter*)
-//{
-/*
-addi     r3, r3, -4
-b        executeAfter__Q23efx13TFueactCircleFP14JPABaseEmitter
-*/
-//}
-
-/*
- * --INFO--
- * Address:	803B903C
- * Size:	000008
- */
-// void @4 @TFueactCircle::execute(JPABaseEmitter*)
-//{
-/*
-addi     r3, r3, -4
-b        execute__Q23efx13TFueactCircleFP14JPABaseEmitter
-*/
-//}
-
-/*
- * --INFO--
- * Address:	803B9044
- * Size:	000008
- */
-//@4 @TFueactCircle::~TFueactCircle()
-//{
-/*
-addi     r3, r3, -4
-b        __dt__Q23efx13TFueactCircleFv
-*/
-//}
-
-/*
- * --INFO--
- * Address:	803B904C
- * Size:	000008
- */
-// void @8 @TFueactCircle::execute(JPABaseEmitter*, JPABaseParticle*)
-//{
-/*
-addi     r3, r3, -8
-b        execute__Q23efx13TFueactCircleFP14JPABaseEmitterP15JPABaseParticle
-*/
-//}
-
-/*
- * --INFO--
- * Address:	803B9054
- * Size:	000008
- */
-//@8 @TFueactCircle::~TFueactCircle(void)
-//{
-/*
-addi     r3, r3, -8
-b        __dt__Q23efx13TFueactCircleFv
-*/
-//}
-
-/*
- * --INFO--
- * Address:	803B905C
- * Size:	000008
- */
-//@4 @efx::TFueactBiriBase::~TFueactBiriBase(void)
-//{
-/*
-addi     r3, r3, -4
-b        __dt__Q23efx15TFueactBiriBaseFv
-*/
-//}

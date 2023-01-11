@@ -98,7 +98,7 @@ struct ArgChou : public Arg {
 };
 
 struct ArgCursor : public Arg {
-	ArgCursor(Vector3f position, f32 scale)
+	ArgCursor(Vector3f& position, f32 scale)
 	    : Arg(position)
 	{
 		m_scale = scale;
@@ -299,6 +299,12 @@ struct ArgType : public Arg {
 	}
 
 	inline ArgType(Game::Onyon* onyon);
+
+	inline ArgType(u16 type)
+	    : Arg()
+	{
+		m_type = type;
+	}
 
 	virtual const char* getName() // _08 (weak)
 	{
