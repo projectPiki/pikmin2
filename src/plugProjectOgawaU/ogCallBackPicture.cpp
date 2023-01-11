@@ -82,7 +82,7 @@ namespace Screen {
 CallBack_Picture::CallBack_Picture(P2DScreen::Mgr* mgr, u64 tag)
     : CallBack_Screen(mgr, tag)
 {
-	// UNUSED FUNCTION
+	m_animGroup = nullptr;
 }
 
 /*
@@ -467,7 +467,7 @@ CallBack_Picture* setCallBack_3DStickSmall(JKRArchive* arc, P2DScreen::Mgr* scre
 {
 	P2DScreen::Mgr* mgr = new P2DScreen::Mgr;
 	mgr->set("tga_3d_anim_otah_32.blo", 0x40000, arc);
-	CallBack_Picture* pic = new CallBack_Picture(mgr, 'ota3dl');
+	CallBack_Picture* pic = new CallBack_Picture(mgr, 'ota3ds');
 
 	J2DPane* pane = TagSearch(screen, tag);
 	pane->hide();
