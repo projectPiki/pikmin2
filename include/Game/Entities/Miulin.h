@@ -42,18 +42,18 @@ struct Obj : public EnemyBase {
 	virtual void setFSM(FSM*);                              // _2F8 (weak)
 	//////////////// VTABLE END
 
-	void isAttackStart();
-	void isFindTarget();
-	void isOutOfTerritory();
-	void isProhibitedSearch();
-	void isStartWalk();
+	bool isAttackStart();
+	bool isFindTarget();
+	bool isOutOfTerritory();
+	bool isProhibitedSearch();
+	bool isStartWalk();
 	void setReturnState();
 	void walkFunc();
 	void turnFunc(f32);
-	void isReachToGoal(f32);
+	bool isReachToGoal(f32);
 	void setNextGoal();
-	void nextTargetTurnCheck();
-	void isNowCaution();
+	bool nextTargetTurnCheck();
+	bool isNowCaution();
 	void landEffect();
 	void attackEffect(Vector3f&);
 
@@ -145,6 +145,18 @@ struct ProperAnimator : public EnemyAnimatorBase {
 
 /////////////////////////////////////////////////////////////////
 // STATE MACHINE DEFINITIONS
+enum StateID {
+	MIULIN_Wait        = 0,
+	MIULIN_Walk        = 1,
+	MIULIN_AttackStart = 2,
+	MIULIN_Attacking   = 3,
+	MIULIN_AttackEnd   = 4,
+	MIULIN_Turn        = 5,
+	MIULIN_Flick       = 6,
+	MIULIN_Dead        = 7,
+	MIULIN_StateCount,
+};
+
 struct FSM : public EnemyStateMachine {
 	virtual void init(EnemyBase*); // _08
 
@@ -153,6 +165,11 @@ struct FSM : public EnemyStateMachine {
 };
 
 struct State : public EnemyFSMState {
+	inline State(int stateID)
+	    : EnemyFSMState(stateID)
+	{
+	}
+
 	// _00		= VTBL
 	// _00-_10 	= EnemyFSMState
 };
@@ -175,6 +192,7 @@ struct StateAttacking : public State {
 
 	// _00		= VTBL
 	// _00-_10 	= EnemyFSMState
+	u8 _10; // _10
 };
 
 struct StateAttackStart : public State {
@@ -235,6 +253,7 @@ struct StateWalk : public State {
 
 	// _00		= VTBL
 	// _00-_10 	= EnemyFSMState
+	u8 _10[0x8]; // _10, unknown
 };
 /////////////////////////////////////////////////////////////////
 } // namespace Miulin
