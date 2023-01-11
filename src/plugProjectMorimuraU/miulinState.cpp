@@ -1134,10 +1134,8 @@ void StateAttackEnd::exec(EnemyBase* enemy)
 {
 	if (enemy->m_health <= 0.0f) {
 		static_cast<Obj*>(enemy)->m_nextState = MIULIN_Dead;
-	} else {
-		if (EnemyFunc::isStartFlick(enemy, false)) {
-			static_cast<Obj*>(enemy)->m_nextState = MIULIN_Flick;
-		}
+	} else if (EnemyFunc::isStartFlick(enemy, false)) {
+		static_cast<Obj*>(enemy)->m_nextState = MIULIN_Flick;
 	}
 	if (enemy->m_curAnim->m_isPlaying && (u32)enemy->m_curAnim->m_type == KEYEVENT_END) {
 		transit(enemy, static_cast<Obj*>(enemy)->m_nextState, nullptr);
