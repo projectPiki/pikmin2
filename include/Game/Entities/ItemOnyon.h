@@ -244,8 +244,8 @@ struct GenOnyonParm : public Game::GenItemParm {
 namespace efx {
 inline ArgType::ArgType(Game::Onyon* onyon)
 {
-	m_onyonType = onyon->m_onyonType;
-	m_position  = onyon->m_position;
+	m_type     = onyon->m_onyonType;
+	m_position = onyon->m_position;
 }
 } // namespace efx
 

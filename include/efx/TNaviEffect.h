@@ -6,6 +6,7 @@
 #include "efx/TOrima.h"
 #include "efx/Toe.h"
 #include "efx/TPk.h"
+#include "BitFlag.h"
 
 namespace efx {
 enum NaviEffectFlags {
@@ -18,17 +19,15 @@ enum NaviEffectFlags {
 
 struct TNaviEffect {
 	TNaviEffect()
-	    : _08(nullptr)
-	    , _0C(nullptr)
+	    : m_pos(nullptr)
+	    , m_naviPos(nullptr)
 	    , m_beaconMtx(nullptr)
 	    , m_headMtx(nullptr)
 	    , m_height(0)
 	{
 	}
 
-	enum enumNaviType {
-		NAVITYPE_Unk0 = 0,
-	};
+	enum enumNaviType { NAVITYPE_Olimar, NAVITYPE_Louie, NAVITYPE_President };
 
 	void init(Vector3f*, Mtx, Vector3f*, enumNaviType);
 
@@ -40,8 +39,17 @@ struct TNaviEffect {
 	void killLightAct_();
 	void killCursor_();
 	void killFueact_();
+	void update();
+	void createCursor_(Vector3f*, f32);
+	void updateCursor_(Vector3f*, f32);
+	void createFueact_(Vector3f*, Mtx);
+	void createOrimadamage_(Mtx);
+	void killOrimadamage_();
 
 	void createLight_(Mtx);
+	void createLightAct_(Mtx);
+	void createHamonA_(Vector3f*);
+	void createHamonB_(Vector3f*);
 	void setNaviType(enumNaviType);
 
 	inline void setFlag(u32 flag) { m_flags.typeView |= flag; }
@@ -87,8 +95,8 @@ struct TNaviEffect {
 
 	BitFlag<u32> m_flags;      // _00
 	BitFlag<u32> m_savedFlags; // _04
-	Vector3f* _08;             // _08
-	Vector3f* _0C;             // _0C
+	Vector3f* m_pos;           // _08
+	Vector3f* m_naviPos;       // _0C
 	Matrixf* m_beaconMtx;      // _10
 	Matrixf* m_headMtx;        // _14
 	f32* m_height;             // _18

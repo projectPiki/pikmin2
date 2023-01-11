@@ -15,8 +15,8 @@ struct TFueactBiriBase : public TSync {
 
 	// _00      = VTBL
 	// _00-_10  = TSync
-	Vector3f* _10; // _10
-	Vector3f* _14; // _14
+	Matrixf* m_mtx;           // _10
+	JGeometry::TVec3f* m_pos; // _14
 };
 
 struct TFueactBiri1 : public TFueactBiriBase {
@@ -45,7 +45,7 @@ struct TFueactBiri2 : public TFueactBiriBase {
 
 struct TFueactCircle : public TBase, public JPAEmitterCallBack, public JPAParticleCallBack {
 	inline TFueactCircle()
-	    : _14(nullptr)
+	    : m_emitter(nullptr)
 	{
 	}
 
@@ -60,8 +60,9 @@ struct TFueactCircle : public TBase, public JPAEmitterCallBack, public JPAPartic
 	// _00 VTBL
 	// _04 = JPAEmitterCallBack
 	// _08 = JPAParticleCallBack
-	u8 _0C[0x8];         // _0C, unknown
-	JPABaseEmitter* _14; // _14
+	Matrixf* m_mtx;            // _0C
+	Vector3f* m_pos;           // _10
+	JPABaseEmitter* m_emitter; // _14
 };
 
 struct TFueact : public TBase {

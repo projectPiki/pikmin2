@@ -94,13 +94,13 @@ struct TOneEmitterSimple : public TBase, public JPAEmitterCallBack {
 	virtual void startDemoDrawOff()             // _34 (weak)
 	{
 		if (m_emitter) {
-			m_emitter->_F4 |= 0x4;
+			m_emitter->m_flags |= 0x4;
 		}
 	}
 	virtual void endDemoDrawOn() // _38 (weak)
 	{
 		if (m_emitter) {
-			m_emitter->_F4 &= ~0x4;
+			m_emitter->m_flags &= ~0x4;
 		}
 	}
 	virtual ~TOneEmitterSimple() { } // _3C (weak)

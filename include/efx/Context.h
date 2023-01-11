@@ -10,7 +10,7 @@ struct Context : public CNode {
 
 	virtual ~Context() { } // _08 (weak)
 
-	Vector3f _18; // _18
+	Vector3f m_position; // _18
 };
 
 struct ContextChasePos : public CNode {

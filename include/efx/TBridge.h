@@ -6,6 +6,10 @@
 
 namespace efx {
 struct TBridgeAttack : public TSimple1 {
+	TBridgeAttack()
+	    : TSimple1(PID_BridgeAttack)
+	{
+	}
 	// _00      = VTBL
 	// _00-_0C  = TSimple1
 };

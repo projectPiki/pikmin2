@@ -49,7 +49,7 @@ struct ToeHamonB {
 
 struct ToeKourin {
 
-	void create(Vector3f*);
+	void create(Vector3f*, long);
 	void kill();
 
 	ContextChasePos _00;

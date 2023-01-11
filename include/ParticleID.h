@@ -103,9 +103,9 @@
 #define PID_ChouDown_3 (0x017) // yellow spectralid death
 #define PID_ChouHit    (0x018) // spectralid hit
 
-#define PID_Cursor_1 (0x019) // whistle 1
-#define PID_Cursor_2 (0x01A) // whistle 2 (unused?)
-#define PID_Cursor_3 (0x01B) // whistle 3 (unused?)
+#define PID_Cursor_Olimar    (0x019) // whistle 1
+#define PID_Cursor_Louie     (0x01A) // whistle 2, Louie and president have their own whistle colors that dont get used
+#define PID_Cursor_President (0x01B) // whistle 3
 
 #define PID_DamaDeadBomb    (0x01C) // beady long legs fireworks
 #define PID_DamaDeadElecA   (0x01D) // beady long legs electricity 1
@@ -203,8 +203,8 @@
 #define PID_FueActBiri_2 (0x068) // leader whistle beam 2
 #define PID_FueActCircle (0x069) // leader whistle rainbow disc
 
-#define PID_FueBug_1   (0x06A) // antenna beetle whistle
-#define PID_FueBugOnpa (0x06B) // antenna beetle?
+#define PID_WhistleFuebug (0x06A) // antenna beetle whistle
+#define PID_FueBugOnpa    (0x06B) // antenna beetle?
 
 #define PID_FusenAirHit_Mar_1 (0x06C) // puffy blowhog white air
 #define PID_FusenAirHit_Mar_2 (0x06D) // puffy blowhog dust cloud

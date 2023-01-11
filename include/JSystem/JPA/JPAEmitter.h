@@ -91,12 +91,12 @@ struct JPABaseEmitter {
 	/**
 	 * @fabricated
 	 */
-	void setFlag(u32 flag) { _F4 = _F4 | flag; }
+	void setFlag(u32 flag) { m_flags = m_flags | flag; }
 	/**
 	 * @fabricated
 	 */
-	bool isFlag(u32 flag) { return _F4 & flag; }
-	bool is100() { return _F4 & 0x100; }
+	bool isFlag(u32 flag) { return m_flags & flag; }
+	bool is100() { return m_flags & 0x100; }
 
 	inline void setScale(f32 scale)
 	{
@@ -192,7 +192,7 @@ struct JPABaseEmitter {
 	JPAResource* m_resource;                 // _E8
 	JPAEmitterCallBack* m_emitterCallback;   // _EC
 	JPAParticleCallBack* m_particleCallback; // _F0
-	u32 _F4;                                 // _F4
+	u32 m_flags;                             // _F4
 	f32 _F8;                                 // _F8
 	f32 _FC;                                 // _FC
 	u32 _100;                                // _100

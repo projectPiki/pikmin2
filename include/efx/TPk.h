@@ -5,6 +5,7 @@
 #include "efx/TChasePos.h"
 #include "efx/TChaseMtx.h"
 #include "efx/Toe.h"
+#include "BitFlag.h"
 
 #define PKEFF_1     (0x1)
 #define PKEFF_2     (0x2)
@@ -135,6 +136,8 @@ struct TPkNageBlur : public TChaseMtx {
 
 	virtual ~TPkNageBlur(); // _48 (weak)
 
+	bool create(Arg*);
+
 	// _00     = VTBL
 	// _00-_14 = TChaseMtx
 };
@@ -153,11 +156,22 @@ struct TPkOneEmitterSimple : public JPAEmitterCallBack {
 };
 
 struct TPkEffectTane {
-	int _00; // _00
-	u32 _04; // _04, unknown
-	u32 _08; // _08, unknown
-	u32 _0C; // _0C, unknown
-	u32 _10; // _10, unknown
+	int m_pikiColor;  // _00
+	Vector3f* m_pos;  // _04, unknown
+	u32 _08;          // _08, unknown
+	Vector3f* m_pos2; // _0C, unknown
+	u32 _10;          // _10, unknown
+	TPkGlow1 m_glow;
+	ToeTanekira m_oeKira;
+	ToeKourin m_oeKourin;
+
+	void init();
+	void createTanekira_(Vector3f*);
+	void killTanekira_();
+	void createKourin_(Vector3f*);
+	void killKourin_();
+	void createGlow1_(Vector3f*);
+	void killGlow1_();
 };
 
 struct TPkEffect {
@@ -189,23 +203,23 @@ struct TPkEffect {
 	void createHamonB_(Vector3f*);
 	void killHamonB_();
 
-	inline void setFlag(int flagID) { m_flags |= flagID; }
+	inline void setFlag(int flagID) { m_flags.typeView |= flagID; }
 
-	inline void resetFlag(int flagID) { m_flags &= ~flagID; }
+	inline void resetFlag(int flagID) { m_flags.typeView &= ~flagID; }
 
-	inline bool isFlag(int flagID) { return m_flags & flagID; }
+	inline bool isFlag(int flagID) { return m_flags.typeView & flagID; }
 
-	u32 m_flags;              // _00
+	BitFlag<u32> m_flags;     // _00
 	u8 _04[4];                // _04, unknown
-	int _08;                  // _08, kourin color?
+	int m_pikiColor;          // _08, kourin color?
 	Vector3f* _0C;            // _0C, kourin position?
-	Vector3f* _10;            // _10
+	Vector3f* m_hamonPosPtr;  // _10
 	Vector3f* _14;            // _14
 	Matrixf* _18;             // _18
 	Matrixf* _1C;             // _1C
-	u32 _20;                  // _20, unknown
-	u32 _24;                  // _24, unknown
-	Vector3f _28;             // _28, dive vector?
+	f32* m_height;            // _20, unknown
+	u32 m_moeSmokeTimer;      // _24, unknown
+	Vector3f m_hamonPosition; // _28, dive vector?
 	TPkNageBlur m_nageBlur;   // _34
 	TPkMoeA m_moeA;           // _48
 	TPkBlackDown m_blackDown; // _5C
@@ -246,6 +260,25 @@ struct TPkEffectMgr {
 	void createS_Gate3Attack(Vector3f&);
 	void createS_Walkwater(Vector3f&);
 };
+static TPkEffectMgr* pkEffectMgr;
+
+struct TParticleCallBack_Yodare {
+	~TParticleCallBack_Yodare();
+	void init(JPABaseEmitter*, JPABaseParticle*);
+	void execute(JPABaseEmitter*, JPABaseParticle*);
+};
+
+struct TTestYodareGen {
+	~TTestYodareGen();
+	void create(efx::Arg*);
+	void forceKill();
+	void fade();
+};
+
+struct TTestYodareHit {
+	~TTestYodareHit();
+};
+
 } // namespace efx
 
 #endif

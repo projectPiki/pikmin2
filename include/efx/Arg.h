@@ -163,6 +163,8 @@ struct ArgDopingSmoke : public Arg {
 	{
 		return "ArgDopingSmoke";
 	}
+	Vector3f m_dopePos;
+	u16 m_dopeType;
 };
 
 struct ArgGasuHiba : public Arg {
@@ -303,7 +305,7 @@ struct ArgType : public Arg {
 		return "ArgType";
 	}
 
-	u16 m_onyonType; // _10, onyon type
+	u16 m_type; // _10, onyon or pikmin
 };
 } // namespace efx
 

@@ -1,4 +1,17 @@
-#include "types.h"
+#include "efx/TPk.h"
+#include "efx/TDopingSmoke.h"
+#include "efx/TOrima.h"
+#include "efx/TCursor.h"
+#include "efx/TFueact.h"
+#include "efx/TNaviEffect.h"
+#include "efx/TEnemyDead.h"
+#include "efx/TGate.h"
+#include "efx/TStoneAttack.h"
+#include "efx/TBridge.h"
+#include "game/Piki.h"
+#include "trig.h"
+#include "Game/MapMgr.h"
+#include "JSystem/JPA/JPAMath.h"
 
 /*
     Generated from dpostproc
@@ -248,7 +261,7 @@ void TParticleCallBack_Yodare::execute(JPABaseEmitter*, JPABaseParticle*)
  * Address:	........
  * Size:	000078
  */
-void TTestYodareGen::create(efx::Arg*)
+void TTestYodareGen::create(Arg*)
 {
 	// UNUSED FUNCTION
 }
@@ -258,86 +271,29 @@ void TTestYodareGen::create(efx::Arg*)
  * Address:	803B66B0
  * Size:	0000F0
  */
-void TPkNageBlur::create(efx::Arg*)
+bool TPkNageBlur::create(Arg* arg)
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	mr       r31, r4
-	stw      r30, 8(r1)
-	mr       r30, r3
-	mr       r3, r31
-	lwz      r12, 0(r31)
-	lwz      r12, 8(r12)
-	mtctr    r12
-	bctrl
-	mr       r4, r3
-	addi     r3, r2, lbl_8051F674@sda21
-	bl       strcmp
-	cntlzw   r0, r3
-	rlwinm.  r0, r0, 0x1b, 0x18, 0x1f
-	bne      lbl_803B6714
-	lis      r3, lbl_80495A28@ha
-	lis      r5, lbl_80495A38@ha
-	addi     r3, r3, lbl_80495A28@l
-	li       r4, 0x13f
-	addi     r5, r5, lbl_80495A38@l
-	crclr    6
-	bl       panic_f__12JUTExceptionFPCciPCce
-
-lbl_803B6714:
-	lhz      r0, 0x10(r31)
-	cmpwi    r0, 2
-	beq      lbl_803B675C
-	bge      lbl_803B6734
-	cmpwi    r0, 0
-	beq      lbl_803B6744
-	bge      lbl_803B6750
-	b        lbl_803B677C
-
-lbl_803B6734:
-	cmpwi    r0, 4
-	beq      lbl_803B6774
-	bge      lbl_803B677C
-	b        lbl_803B6768
-
-lbl_803B6744:
-	li       r0, 0x173
-	sth      r0, 0xc(r30)
-	b        lbl_803B677C
-
-lbl_803B6750:
-	li       r0, 0x174
-	sth      r0, 0xc(r30)
-	b        lbl_803B677C
-
-lbl_803B675C:
-	li       r0, 0x176
-	sth      r0, 0xc(r30)
-	b        lbl_803B677C
-
-lbl_803B6768:
-	li       r0, 0x172
-	sth      r0, 0xc(r30)
-	b        lbl_803B677C
-
-lbl_803B6774:
-	li       r0, 0x175
-	sth      r0, 0xc(r30)
-
-lbl_803B677C:
-	mr       r3, r30
-	mr       r4, r31
-	bl       create__Q23efx5TSyncFPQ23efx3Arg
-	lwz      r0, 0x14(r1)
-	lwz      r31, 0xc(r1)
-	lwz      r30, 8(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	bool nameCheck = strcmp("ArgType", arg->getName()) == 0;
+	P2ASSERTLINE(319, nameCheck);
+	ArgType* targ = static_cast<ArgType*>(arg);
+	switch (targ->m_type) {
+	case Game::Blue:
+		m_effectID = PID_PkNageBlur_Blue;
+		break;
+	case Game::Red:
+		m_effectID = PID_PkNageBlur_Red;
+		break;
+	case Game::Yellow:
+		m_effectID = PID_PkNageBlur_Yellow;
+		break;
+	case Game::Purple:
+		m_effectID = PID_PkNageBlur_Purple;
+		break;
+	case Game::White:
+		m_effectID = PID_PkNageBlur_White;
+		break;
+	}
+	TSync::create(arg);
 }
 
 /*
@@ -345,8 +301,36 @@ lbl_803B677C:
  * Address:	803B67A0
  * Size:	0001E0
  */
-void TDopingSmoke::create(efx::Arg*)
+bool TDopingSmoke::create(Arg* arg)
 {
+	bool nameCheck = strcmp("ArgDopingSmoke", arg->getName()) == 0;
+	P2ASSERTLINE(349, nameCheck);
+	ArgDopingSmoke* targ = static_cast<ArgDopingSmoke*>(arg);
+	switch (targ->m_dopeType) {
+	case 0:
+		m_effectIDs[0] = PID_DopingSmoke_3;
+		break;
+	case 1:
+		m_effectIDs[0] = PID_DopingSmoke_1;
+		break;
+	default:
+		m_effectIDs[0] = PID_DangoFly_2;
+	}
+	if (TSimple1::create(arg)) {
+		volatile Vector3f temp = targ->m_dopePos.normalise();
+		m_emitters[0]->setAngle(temp.x, temp.y, temp.z);
+		if (targ->m_dopeType == 0) {
+			JPABaseEmitter* emit = particleMgr->create(PID_DopingSmoke_2, arg->m_position, 0);
+			if (emit) {
+				emit->m_emitterCallback = &mCallBack_StaticClipping;
+				emit->setAngle(temp.x, temp.y, temp.z);
+			} else {
+				return false;
+			}
+		}
+		return true;
+	}
+	return false;
 	/*
 	stwu     r1, -0x30(r1)
 	mflr     r0
@@ -500,40 +484,19 @@ lbl_803B6964:
  * Address:	803B6980
  * Size:	000060
  */
-void TOrimaLight::create(efx::Arg*)
+bool TOrimaLight::create(Arg* arg)
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	lwz      r0, 0x2c(r3)
-	cmpwi    r0, 1
-	beq      lbl_803B69BC
-	bge      lbl_803B69CC
-	cmpwi    r0, 0
-	bge      lbl_803B69A8
-	b        lbl_803B69CC
-
-lbl_803B69A8:
-	li       r5, 0x123
-	li       r0, 0x126
-	sth      r5, 0x10(r3)
-	sth      r0, 0x24(r3)
-	b        lbl_803B69CC
-
-lbl_803B69BC:
-	li       r5, 0xde
-	li       r0, 0xe1
-	sth      r5, 0x10(r3)
-	sth      r0, 0x24(r3)
-
-lbl_803B69CC:
-	bl       "create__Q23efx29TSyncGroup2<Q23efx9TChaseMtx>FPQ23efx3Arg"
-	lwz      r0, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	switch (m_naviType) {
+	case 0:
+		m_items[0].m_effectID = PID_OrimaLight_Orima_1;
+		m_items[1].m_effectID = PID_OrimaLight_Orima_2;
+		break;
+	case 1:
+		m_items[0].m_effectID = PID_OrimaLight_Loozy_1;
+		m_items[1].m_effectID = PID_OrimaLight_Loozy_2;
+		break;
+	}
+	return TSyncGroup2::create(arg);
 }
 
 /*
@@ -541,40 +504,19 @@ lbl_803B69CC:
  * Address:	803B69E0
  * Size:	000060
  */
-void TOrimaLightAct::create(efx::Arg*)
+bool TOrimaLightAct::create(Arg* arg)
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	lwz      r0, 0x2c(r3)
-	cmpwi    r0, 1
-	beq      lbl_803B6A1C
-	bge      lbl_803B6A2C
-	cmpwi    r0, 0
-	bge      lbl_803B6A08
-	b        lbl_803B6A2C
-
-lbl_803B6A08:
-	li       r5, 0x124
-	li       r0, 0x125
-	sth      r5, 0x10(r3)
-	sth      r0, 0x24(r3)
-	b        lbl_803B6A2C
-
-lbl_803B6A1C:
-	li       r5, 0xdf
-	li       r0, 0xe0
-	sth      r5, 0x10(r3)
-	sth      r0, 0x24(r3)
-
-lbl_803B6A2C:
-	bl       "create__Q23efx29TSyncGroup2<Q23efx9TChaseMtx>FPQ23efx3Arg"
-	lwz      r0, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	switch (m_naviType) {
+	case 0:
+		m_items[0].m_effectID = PID_OrimaLightAct_Orima_1;
+		m_items[1].m_effectID = PID_OrimaLightAct_Orima_2;
+		break;
+	case 1:
+		m_items[0].m_effectID = PID_OrimaLightAct_Loozy_1;
+		m_items[1].m_effectID = PID_OrimaLightAct_Loozy_2;
+		break;
+	}
+	return TSyncGroup2::create(arg);
 }
 
 /*
@@ -582,54 +524,29 @@ lbl_803B6A2C:
  * Address:	803B6A40
  * Size:	000078
  */
-void TCursor::init(long, long)
+void TCursor::init(long whistleType, long cNum)
 {
-	/*
-	cmpwi    r5, 0
-	ble      lbl_803B6A50
-	cmpwi    r5, 0x10
-	ble      lbl_803B6A54
+	if (cNum <= 0 || cNum > 16) {
+		cNum = 16;
+	}
+	m_contextNum = cNum;
+	m_angleSpeed = kAngleSpeed;
 
-lbl_803B6A50:
-	li       r5, 0x10
-
-lbl_803B6A54:
-	stw      r5, 0x38(r3)
-	cmpwi    r4, 2
-	lfs      f0, kAngleSpeed__Q23efx7TCursor@sda21(r13)
-	stfs     f0, 0x28c(r3)
-	beq      lbl_803B6AA0
-	bge      lbl_803B6A7C
-	cmpwi    r4, 0
-	beq      lbl_803B6A88
-	bge      lbl_803B6A94
-	blr
-
-lbl_803B6A7C:
-	cmpwi    r4, 4
-	bgelr
-	b        lbl_803B6AAC
-
-lbl_803B6A88:
-	li       r0, 0x19
-	sth      r0, 0x10(r3)
-	blr
-
-lbl_803B6A94:
-	li       r0, 0x1b
-	sth      r0, 0x10(r3)
-	blr
-
-lbl_803B6AA0:
-	li       r0, 0x1a
-	sth      r0, 0x10(r3)
-	blr
-
-lbl_803B6AAC:
-	li       r0, 0x6a
-	sth      r0, 0x10(r3)
-	blr
-	*/
+	// Louie and President whistles are unused in vanilla as whistleType is always 0 for navis
+	switch (whistleType) {
+	case 0:
+		m_oneEmitter.m_effectID = PID_Cursor_Olimar;
+		break;
+	case 1:
+		m_oneEmitter.m_effectID = PID_Cursor_President;
+		break;
+	case 2:
+		m_oneEmitter.m_effectID = PID_Cursor_Louie;
+		break;
+	case 3:
+		m_oneEmitter.m_effectID = PID_WhistleFuebug;
+		break;
+	}
 }
 
 /*
@@ -637,105 +554,27 @@ lbl_803B6AAC:
  * Address:	803B6AB8
  * Size:	000154
  */
-void TCursor::create(efx::Arg*)
+bool TCursor::create(Arg* arg)
 {
-	/*
-	stwu     r1, -0x40(r1)
-	mflr     r0
-	stw      r0, 0x44(r1)
-	stfd     f31, 0x30(r1)
-	psq_st   f31, 56(r1), 0, qr0
-	stw      r31, 0x2c(r1)
-	stw      r30, 0x28(r1)
-	stw      r29, 0x24(r1)
-	stw      r28, 0x20(r1)
-	lfs      f0, lbl_8051F670@sda21(r2)
-	mr       r28, r3
-	mr       r29, r4
-	lis      r4, lbl_80495A28@ha
-	stfs     f0, 0x288(r3)
-	mr       r3, r29
-	addi     r31, r4, lbl_80495A28@l
-	lwz      r12, 0(r29)
-	lwz      r12, 8(r12)
-	mtctr    r12
-	bctrl
-	mr       r4, r3
-	addi     r3, r31, 0x2c
-	bl       strcmp
-	cntlzw   r0, r3
-	rlwinm.  r0, r0, 0x1b, 0x18, 0x1f
-	bne      lbl_803B6B34
-	addi     r3, r31, 0
-	addi     r5, r31, 0x10
-	li       r4, 0x1cb
-	crclr    6
-	bl       panic_f__12JUTExceptionFPCciPCce
+	m_angleTimer = 0.0f;
 
-lbl_803B6B34:
-	lfs      f0, 4(r29)
-	mr       r31, r28
-	li       r30, 0
-	stfs     f0, 0x27c(r28)
-	lfs      f0, 8(r29)
-	stfs     f0, 0x280(r28)
-	lfs      f0, 0xc(r29)
-	stfs     f0, 0x284(r28)
-	lfs      f31, 0x10(r29)
-	b        lbl_803B6B90
+	bool nameCheck = strcmp("ArgCursor", arg->getName()) == 0;
+	P2ASSERTLINE(459, nameCheck);
+	ArgCursor* targ = static_cast<ArgCursor*>(arg);
 
-lbl_803B6B5C:
-	fmr      f1, f31
-	mr       r3, r28
-	mr       r5, r30
-	addi     r4, r1, 8
-	bl       "calcPos___Q23efx7TCursorFP10Vector3<f>fl"
-	lfs      f0, 8(r1)
-	addi     r30, r30, 1
-	stfs     f0, 0x54(r31)
-	lfs      f0, 0xc(r1)
-	stfs     f0, 0x58(r31)
-	lfs      f0, 0x10(r1)
-	stfs     f0, 0x5c(r31)
-	addi     r31, r31, 0x24
+	m_position = arg->m_position;
+	f32 scale  = targ->m_scale;
+	for (int i = 0; i < m_contextNum; i++) {
+		Vector3f pos;
+		calcPos_(scale, pos, i);
+		m_contextArray[i].m_position = pos;
+	}
 
-lbl_803B6B90:
-	lwz      r0, 0x38(r28)
-	cmpw     r30, r0
-	blt      lbl_803B6B5C
-	mr       r31, r28
-	li       r30, 0
-	b        lbl_803B6BBC
-
-lbl_803B6BA8:
-	addi     r3, r28, 4
-	addi     r4, r31, 0x3c
-	bl       add__Q23efx11TOneEmitterFPQ23efx7Context
-	addi     r31, r31, 0x24
-	addi     r30, r30, 1
-
-lbl_803B6BBC:
-	lwz      r0, 0x38(r28)
-	cmpw     r30, r0
-	blt      lbl_803B6BA8
-	addi     r3, r28, 4
-	mr       r4, r29
-	lwz      r12, 4(r28)
-	lwz      r12, 8(r12)
-	mtctr    r12
-	bctrl
-	li       r3, 1
-	psq_l    f31, 56(r1), 0, qr0
-	lwz      r0, 0x44(r1)
-	lfd      f31, 0x30(r1)
-	lwz      r31, 0x2c(r1)
-	lwz      r30, 0x28(r1)
-	lwz      r29, 0x24(r1)
-	lwz      r28, 0x20(r1)
-	mtlr     r0
-	addi     r1, r1, 0x40
-	blr
-	*/
+	for (int i = 0; i < m_contextNum; i++) {
+		m_oneEmitter.add(&m_contextArray[i]);
+	}
+	m_oneEmitter.create(arg);
+	return true;
 }
 
 /*
@@ -743,93 +582,42 @@ lbl_803B6BBC:
  * Address:	803B6C0C
  * Size:	000100
  */
-void TCursor::update(efx::Arg*)
+void TCursor::update(Arg* arg)
 {
-	/*
-	stwu     r1, -0x40(r1)
-	mflr     r0
-	stw      r0, 0x44(r1)
-	stfd     f31, 0x30(r1)
-	psq_st   f31, 56(r1), 0, qr0
-	stw      r31, 0x2c(r1)
-	stw      r30, 0x28(r1)
-	stw      r29, 0x24(r1)
-	or.      r30, r4, r4
-	mr       r29, r3
-	bne      lbl_803B6C54
-	lis      r3, lbl_80495A28@ha
-	lis      r5, lbl_80495A38@ha
-	addi     r3, r3, lbl_80495A28@l
-	li       r4, 0x1e0
-	addi     r5, r5, lbl_80495A38@l
-	crclr    6
-	bl       panic_f__12JUTExceptionFPCciPCce
+	P2ASSERTLINE(480, arg);
+	ArgCursor* targ = static_cast<ArgCursor*>(arg);
 
-lbl_803B6C54:
-	lfs      f31, 0x10(r30)
-	lfs      f1, 4(r30)
-	lfs      f0, lbl_8051F670@sda21(r2)
-	stfs     f1, 0x27c(r29)
-	lfs      f1, 8(r30)
-	stfs     f1, 0x280(r29)
-	lfs      f1, 0xc(r30)
-	stfs     f1, 0x284(r29)
-	lfs      f2, 0x288(r29)
-	lfs      f1, 0x28c(r29)
-	fsubs    f1, f2, f1
-	stfs     f1, 0x288(r29)
-	lfs      f1, 0x288(r29)
-	fcmpo    cr0, f1, f0
-	bge      lbl_803B6C9C
-	lfs      f0, lbl_8051F680@sda21(r2)
-	fadds    f0, f1, f0
-	stfs     f0, 0x288(r29)
+	f32 scale  = targ->m_scale;
+	m_position = targ->m_position;
 
-lbl_803B6C9C:
-	mr       r31, r29
-	li       r30, 0
-	b        lbl_803B6CDC
+	m_angleTimer -= m_angleSpeed;
+	if (m_angleTimer < 0.0f) {
+		m_angleTimer += TAU;
+	}
 
-lbl_803B6CA8:
-	fmr      f1, f31
-	mr       r3, r29
-	mr       r5, r30
-	addi     r4, r1, 8
-	bl       "calcPos___Q23efx7TCursorFP10Vector3<f>fl"
-	lfs      f0, 8(r1)
-	addi     r30, r30, 1
-	stfs     f0, 0x54(r31)
-	lfs      f0, 0xc(r1)
-	stfs     f0, 0x58(r31)
-	lfs      f0, 0x10(r1)
-	stfs     f0, 0x5c(r31)
-	addi     r31, r31, 0x24
-
-lbl_803B6CDC:
-	lwz      r0, 0x38(r29)
-	cmpw     r30, r0
-	blt      lbl_803B6CA8
-	psq_l    f31, 56(r1), 0, qr0
-	lwz      r0, 0x44(r1)
-	lfd      f31, 0x30(r1)
-	lwz      r31, 0x2c(r1)
-	lwz      r30, 0x28(r1)
-	lwz      r29, 0x24(r1)
-	mtlr     r0
-	addi     r1, r1, 0x40
-	blr
-	*/
+	for (int i = 0; i < m_contextNum; i++) {
+		Vector3f pos;
+		calcPos_(scale, pos, i);
+		m_contextArray[i].m_position = pos;
+	}
 }
-
-} // namespace efx
 
 /*
  * --INFO--
  * Address:	803B6D0C
  * Size:	000148
  */
-void calcPos___Q23efx7TCursorFP10Vector3f fl(void)
+void TCursor::calcPos_(f32 mag, Vector3f& pos, long id)
 {
+	f32 angle = (m_angleTimer + (f32)id * 2.0f * PI) / (f32)m_contextNum;
+
+	pos.x = mag * pikmin2_sinf(angle) + m_position.x;
+	pos.z = mag * pikmin2_cosf(angle) + m_position.z;
+	if (Game::mapMgr) {
+		pos.y = Game::mapMgr->getMinY(pos);
+	} else {
+		pos.y = m_position.y;
+	}
 	/*
 	stwu     r1, -0x40(r1)
 	mflr     r0
@@ -926,70 +714,26 @@ lbl_803B6E40:
 	*/
 }
 
-namespace efx {
-
 /*
  * --INFO--
  * Address:	803B6E54
  * Size:	0000AC
  */
-void TFueactCircle::create(efx::Arg*)
+bool TFueactCircle::create(Arg* arg)
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	mr       r31, r3
-	lwz      r0, 0x14(r3)
-	cmplwi   r0, 0
-	beq      lbl_803B6E7C
-	li       r3, 0
-	b        lbl_803B6EEC
-
-lbl_803B6E7C:
-	lis      r4, "zero__10Vector3<f>"@ha
-	lwz      r3, particleMgr@sda21(r13)
-	addi     r5, r4, "zero__10Vector3<f>"@l
-	li       r6, 0
-	li       r4, 0x69
-	bl       "create__11ParticleMgrFUsR10Vector3<f>Uc"
-	stw      r3, 0x14(r31)
-	lwz      r3, 0x14(r31)
-	cmplwi   r3, 0
-	beq      lbl_803B6EE8
-	cmplwi   r31, 0
-	mr       r0, r31
-	beq      lbl_803B6EB4
-	addi     r0, r31, 4
-
-lbl_803B6EB4:
-	cmplwi   r31, 0
-	stw      r0, 0xec(r3)
-	mr       r0, r31
-	beq      lbl_803B6EC8
-	addi     r0, r31, 8
-
-lbl_803B6EC8:
-	lwz      r4, 0x14(r31)
-	li       r3, 1
-	stw      r0, 0xf0(r4)
-	lwz      r4, 0x14(r31)
-	lwz      r0, 0xf4(r4)
-	ori      r0, r0, 0x40
-	stw      r0, 0xf4(r4)
-	b        lbl_803B6EEC
-
-lbl_803B6EE8:
-	li       r3, 0
-
-lbl_803B6EEC:
-	lwz      r0, 0x14(r1)
-	lwz      r31, 0xc(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	if (m_emitter) {
+		return false;
+	} else {
+		m_emitter = particleMgr->create(PID_FueActCircle, Vector3f::zero, 0);
+		if (m_emitter) {
+			m_emitter->m_emitterCallback  = this;
+			m_emitter->m_particleCallback = this;
+			m_emitter->m_flags |= 0x40;
+			return true;
+		} else {
+			return false;
+		}
+	}
 }
 
 /*
@@ -997,8 +741,15 @@ lbl_803B6EEC:
  * Address:	803B6F00
  * Size:	000124
  */
-void TFueactCircle::execute(JPABaseEmitter*)
+void TFueactCircle::execute(JPABaseEmitter* emit)
 {
+	P2ASSERTLINE(530, m_mtx);
+	P2ASSERTLINE(531, m_pos);
+
+	Vector3f ang = *m_pos - m_mtx->getBasis(0);
+	ang.normalise();
+	emit->setAngle(ang.x, ang.y, ang.z);
+
 	/*
 	stwu     r1, -0x10(r1)
 	mflr     r0
@@ -1091,8 +842,20 @@ lbl_803B7000:
  * Address:	803B7024
  * Size:	0002CC
  */
-void TFueactCircle::execute(JPABaseEmitter*, JPABaseParticle*)
+void TFueactCircle::execute(JPABaseEmitter*, JPABaseParticle* prt)
 {
+	P2ASSERTLINE(530, m_mtx);
+	P2ASSERTLINE(531, m_pos);
+
+	Vector3f ang = *m_pos - m_mtx->getBasis(0);
+	if (ang.normalise() > 175.0f) {
+		ang.normalise();
+		ang *= 175.0f;
+	}
+
+	prt->_18.x = ang.x;
+	prt->_18.x = ang.y;
+	prt->_18.x = ang.z;
 	/*
 	stwu     r1, -0x60(r1)
 	mflr     r0
@@ -1299,8 +1062,16 @@ lbl_803B72D8:
  * Address:	803B72F0
  * Size:	0001D4
  */
-void TFueactBiriBase::doExecuteEmitterOperation(JPABaseEmitter*)
+void TFueactBiriBase::doExecuteEmitterOperation(JPABaseEmitter* emit)
 {
+	P2ASSERTLINE(530, m_mtx);
+	P2ASSERTLINE(531, m_pos);
+
+	Vector3f ang = *m_pos - m_mtx->getBasis(0);
+	ang.normalise();
+	Matrixf mtx; // i cant even
+	JPASetRMtxTVecfromMtx(mtx.m_matrix.mtxView, m_mtx->m_matrix.mtxView, m_pos);
+	emit->setAngle(ang.x, ang.y, ang.z);
 	/*
 	stwu     r1, -0x50(r1)
 	mflr     r0
@@ -1443,8 +1214,16 @@ lbl_803B7490:
  * Address:	803B74C4
  * Size:	00010C
  */
-void createSimpleDead(Vector3f&, long)
+void createSimpleDead(Vector3f& pos, long type)
 {
+	P2ASSERTLINE(618, pkEffectMgr);
+	if (type == Game::Bulbmin) {
+		TEnemyDead efx;
+		ArgScale arg(pos, 0.5f);
+		efx.create(&arg);
+	} else {
+		pkEffectMgr->createS_Dead(pos, type);
+	}
 	/*
 	stwu     r1, -0x40(r1)
 	mflr     r0
@@ -1559,35 +1338,10 @@ void createSimpleKanden(Vector3f&)
  * Address:	803B75D0
  * Size:	00005C
  */
-void createSimpleChinka(Vector3f&)
+void createSimpleChinka(Vector3f& pos)
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	mr       r31, r3
-	lwz      r0, pkEffectMgr@sda21(r13)
-	cmplwi   r0, 0
-	bne      lbl_803B760C
-	lis      r3, lbl_80495A28@ha
-	lis      r5, lbl_80495A38@ha
-	addi     r3, r3, lbl_80495A28@l
-	li       r4, 0x290
-	addi     r5, r5, lbl_80495A38@l
-	crclr    6
-	bl       panic_f__12JUTExceptionFPCciPCce
-
-lbl_803B760C:
-	lwz      r3, pkEffectMgr@sda21(r13)
-	mr       r4, r31
-	bl       "createS_Chinka__Q23efx12TPkEffectMgrFR10Vector3<f>"
-	lwz      r0, 0x14(r1)
-	lwz      r31, 0xc(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	P2ASSERTLINE(656, pkEffectMgr);
+	pkEffectMgr->createS_Chinka(pos);
 }
 
 /*
@@ -1595,35 +1349,10 @@ lbl_803B760C:
  * Address:	803B762C
  * Size:	00005C
  */
-void createSimpleGedoku(Vector3f&)
+void createSimpleGedoku(Vector3f& pos)
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	mr       r31, r3
-	lwz      r0, pkEffectMgr@sda21(r13)
-	cmplwi   r0, 0
-	bne      lbl_803B7668
-	lis      r3, lbl_80495A28@ha
-	lis      r5, lbl_80495A38@ha
-	addi     r3, r3, lbl_80495A28@l
-	li       r4, 0x296
-	addi     r5, r5, lbl_80495A38@l
-	crclr    6
-	bl       panic_f__12JUTExceptionFPCciPCce
-
-lbl_803B7668:
-	lwz      r3, pkEffectMgr@sda21(r13)
-	mr       r4, r31
-	bl       "createS_Gedoku__Q23efx12TPkEffectMgrFR10Vector3<f>"
-	lwz      r0, 0x14(r1)
-	lwz      r31, 0xc(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	P2ASSERTLINE(662, pkEffectMgr);
+	pkEffectMgr->createS_Gedoku(pos);
 }
 
 /*
@@ -1631,48 +1360,11 @@ lbl_803B7668:
  * Address:	803B7688
  * Size:	000098
  */
-void createSimpleBlackDrop(Vector3f&)
+void createSimpleBlackDrop(Vector3f& pos)
 {
-	/*
-	stwu     r1, -0x30(r1)
-	mflr     r0
-	lis      r6, __vt__Q23efx5TBase@ha
-	lis      r5, __vt__Q23efx8TSimple3@ha
-	stw      r0, 0x34(r1)
-	lis      r4, __vt__Q23efx3Arg@ha
-	addi     r0, r4, __vt__Q23efx3Arg@l
-	addi     r10, r6, __vt__Q23efx5TBase@l
-	stw      r0, 8(r1)
-	addi     r9, r5, __vt__Q23efx8TSimple3@l
-	lis      r4, __vt__Q23efx12TPkBlackDrop@ha
-	li       r8, 0x14b
-	lfs      f0, 0(r3)
-	addi     r0, r4, __vt__Q23efx12TPkBlackDrop@l
-	li       r7, 0x14c
-	li       r6, 0x14d
-	stfs     f0, 0xc(r1)
-	li       r5, 0
-	addi     r4, r1, 8
-	lfs      f0, 4(r3)
-	stfs     f0, 0x10(r1)
-	lfs      f0, 8(r3)
-	addi     r3, r1, 0x18
-	stw      r10, 0x18(r1)
-	stw      r9, 0x18(r1)
-	stfs     f0, 0x14(r1)
-	sth      r8, 0x1c(r1)
-	sth      r7, 0x1e(r1)
-	sth      r6, 0x20(r1)
-	stw      r5, 0x24(r1)
-	stw      r5, 0x28(r1)
-	stw      r5, 0x2c(r1)
-	stw      r0, 0x18(r1)
-	bl       create__Q23efx8TSimple3FPQ23efx3Arg
-	lwz      r0, 0x34(r1)
-	mtlr     r0
-	addi     r1, r1, 0x30
-	blr
-	*/
+	Arg arg(pos);
+	TPkBlackDrop efx;
+	efx.create(&arg);
 }
 
 /*
@@ -1680,45 +1372,11 @@ void createSimpleBlackDrop(Vector3f&)
  * Address:	803B7720
  * Size:	00008C
  */
-void createSimpleGate1Attack(Vector3f&)
+void createSimpleGate1Attack(Vector3f& pos)
 {
-	/*
-	stwu     r1, -0x30(r1)
-	mflr     r0
-	lis      r6, __vt__Q23efx5TBase@ha
-	lis      r5, __vt__Q23efx8TSimple2@ha
-	stw      r0, 0x34(r1)
-	lis      r4, __vt__Q23efx3Arg@ha
-	addi     r0, r4, __vt__Q23efx3Arg@l
-	addi     r9, r6, __vt__Q23efx5TBase@l
-	stw      r0, 0x18(r1)
-	addi     r8, r5, __vt__Q23efx8TSimple2@l
-	lis      r4, __vt__Q23efx12TGate1Attack@ha
-	li       r7, 0x76
-	lfs      f0, 0(r3)
-	addi     r0, r4, __vt__Q23efx12TGate1Attack@l
-	li       r6, 0x77
-	li       r5, 0
-	stfs     f0, 0x1c(r1)
-	addi     r4, r1, 0x18
-	lfs      f0, 4(r3)
-	stfs     f0, 0x20(r1)
-	lfs      f0, 8(r3)
-	addi     r3, r1, 8
-	stw      r9, 8(r1)
-	stw      r8, 8(r1)
-	stfs     f0, 0x24(r1)
-	sth      r7, 0xc(r1)
-	sth      r6, 0xe(r1)
-	stw      r5, 0x10(r1)
-	stw      r5, 0x14(r1)
-	stw      r0, 8(r1)
-	bl       create__Q23efx8TSimple2FPQ23efx3Arg
-	lwz      r0, 0x34(r1)
-	mtlr     r0
-	addi     r1, r1, 0x30
-	blr
-	*/
+	Arg arg(pos);
+	TGate1Attack efx;
+	efx.create(&arg);
 }
 
 /*
@@ -1726,45 +1384,11 @@ void createSimpleGate1Attack(Vector3f&)
  * Address:	803B77AC
  * Size:	00008C
  */
-void createSimplePkAp(Vector3f&)
+void createSimplePkAp(Vector3f& pos)
 {
-	/*
-	stwu     r1, -0x30(r1)
-	mflr     r0
-	lis      r6, __vt__Q23efx5TBase@ha
-	lis      r5, __vt__Q23efx8TSimple2@ha
-	stw      r0, 0x34(r1)
-	lis      r4, __vt__Q23efx3Arg@ha
-	addi     r0, r4, __vt__Q23efx3Arg@l
-	addi     r9, r6, __vt__Q23efx5TBase@l
-	stw      r0, 0x18(r1)
-	addi     r8, r5, __vt__Q23efx8TSimple2@l
-	lis      r4, __vt__Q23efx5TPkAp@ha
-	li       r7, 0x146
-	lfs      f0, 0(r3)
-	addi     r0, r4, __vt__Q23efx5TPkAp@l
-	li       r6, 0x147
-	li       r5, 0
-	stfs     f0, 0x1c(r1)
-	addi     r4, r1, 0x18
-	lfs      f0, 4(r3)
-	stfs     f0, 0x20(r1)
-	lfs      f0, 8(r3)
-	addi     r3, r1, 8
-	stw      r9, 8(r1)
-	stw      r8, 8(r1)
-	stfs     f0, 0x24(r1)
-	sth      r7, 0xc(r1)
-	sth      r6, 0xe(r1)
-	stw      r5, 0x10(r1)
-	stw      r5, 0x14(r1)
-	stw      r0, 8(r1)
-	bl       create__Q23efx8TSimple2FPQ23efx3Arg
-	lwz      r0, 0x34(r1)
-	mtlr     r0
-	addi     r1, r1, 0x30
-	blr
-	*/
+	Arg arg(pos);
+	TPkAp efx;
+	efx.create(&arg);
 }
 
 /*
@@ -1772,35 +1396,10 @@ void createSimplePkAp(Vector3f&)
  * Address:	803B7838
  * Size:	00005C
  */
-void createSimpleWaterOff(Vector3f&)
+void createSimpleWaterOff(Vector3f& pos)
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	mr       r31, r3
-	lwz      r0, pkEffectMgr@sda21(r13)
-	cmplwi   r0, 0
-	bne      lbl_803B7874
-	lis      r3, lbl_80495A28@ha
-	lis      r5, lbl_80495A38@ha
-	addi     r3, r3, lbl_80495A28@l
-	li       r4, 0x2b1
-	addi     r5, r5, lbl_80495A38@l
-	crclr    6
-	bl       panic_f__12JUTExceptionFPCciPCce
-
-lbl_803B7874:
-	lwz      r3, pkEffectMgr@sda21(r13)
-	mr       r4, r31
-	bl       "createS_WaterOff__Q23efx12TPkEffectMgrFR10Vector3<f>"
-	lwz      r0, 0x14(r1)
-	lwz      r31, 0xc(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	P2ASSERTLINE(689, pkEffectMgr);
+	pkEffectMgr->createS_WaterOff(pos);
 }
 
 /*
@@ -1808,35 +1407,10 @@ lbl_803B7874:
  * Address:	803B7894
  * Size:	00005C
  */
-void createSimpleDive(Vector3f&)
+void createSimpleDive(Vector3f& pos)
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	mr       r31, r3
-	lwz      r0, pkEffectMgr@sda21(r13)
-	cmplwi   r0, 0
-	bne      lbl_803B78D0
-	lis      r3, lbl_80495A28@ha
-	lis      r5, lbl_80495A38@ha
-	addi     r3, r3, lbl_80495A28@l
-	li       r4, 0x2b7
-	addi     r5, r5, lbl_80495A38@l
-	crclr    6
-	bl       panic_f__12JUTExceptionFPCciPCce
-
-lbl_803B78D0:
-	lwz      r3, pkEffectMgr@sda21(r13)
-	mr       r4, r31
-	bl       "createS_Dive__Q23efx12TPkEffectMgrFR10Vector3<f>"
-	lwz      r0, 0x14(r1)
-	lwz      r31, 0xc(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	P2ASSERTLINE(695, pkEffectMgr);
+	pkEffectMgr->createS_Dive(pos);
 }
 
 /*
@@ -1844,58 +1418,20 @@ lbl_803B78D0:
  * Address:	803B78F0
  * Size:	000098
  */
-void createSimpleChiru(Vector3f&, long)
+void createSimpleChiru(Vector3f& pos, long type)
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	mr       r31, r4
-	stw      r30, 8(r1)
-	mr       r30, r3
-	lwz      r0, pkEffectMgr@sda21(r13)
-	cmplwi   r0, 0
-	bne      lbl_803B7934
-	lis      r3, lbl_80495A28@ha
-	lis      r5, lbl_80495A38@ha
-	addi     r3, r3, lbl_80495A28@l
-	li       r4, 0x2bd
-	addi     r5, r5, lbl_80495A38@l
-	crclr    6
-	bl       panic_f__12JUTExceptionFPCciPCce
-
-lbl_803B7934:
-	cmpwi    r31, 3
-	bge      lbl_803B7948
-	cmpwi    r31, 0
-	bge      lbl_803B7954
-	b        lbl_803B7970
-
-lbl_803B7948:
-	cmpwi    r31, 5
-	bge      lbl_803B7970
-	b        lbl_803B7964
-
-lbl_803B7954:
-	lwz      r3, pkEffectMgr@sda21(r13)
-	mr       r4, r30
-	bl       "createS_Chiru__Q23efx12TPkEffectMgrFR10Vector3<f>"
-	b        lbl_803B7970
-
-lbl_803B7964:
-	lwz      r3, pkEffectMgr@sda21(r13)
-	mr       r4, r30
-	bl       "createS_ChiruRed__Q23efx12TPkEffectMgrFR10Vector3<f>"
-
-lbl_803B7970:
-	lwz      r0, 0x14(r1)
-	lwz      r31, 0xc(r1)
-	lwz      r30, 8(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	P2ASSERTLINE(701, pkEffectMgr);
+	switch (type) {
+	case Game::Blue:
+	case Game::Red:
+	case Game::Yellow:
+		pkEffectMgr->createS_Chiru(pos);
+		break;
+	case Game::Purple:
+	case Game::White:
+		pkEffectMgr->createS_ChiruRed(pos);
+		break;
+	}
 }
 
 /*
@@ -1903,35 +1439,10 @@ lbl_803B7970:
  * Address:	803B7988
  * Size:	00005C
  */
-void createSimpleInattack(Vector3f&)
+void createSimpleInattack(Vector3f& pos)
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	mr       r31, r3
-	lwz      r0, pkEffectMgr@sda21(r13)
-	cmplwi   r0, 0
-	bne      lbl_803B79C4
-	lis      r3, lbl_80495A28@ha
-	lis      r5, lbl_80495A38@ha
-	addi     r3, r3, lbl_80495A28@l
-	li       r4, 0x2cd
-	addi     r5, r5, lbl_80495A38@l
-	crclr    6
-	bl       panic_f__12JUTExceptionFPCciPCce
-
-lbl_803B79C4:
-	lwz      r3, pkEffectMgr@sda21(r13)
-	mr       r4, r31
-	bl       "createS_Inattack__Q23efx12TPkEffectMgrFR10Vector3<f>"
-	lwz      r0, 0x14(r1)
-	lwz      r31, 0xc(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	P2ASSERTLINE(717, pkEffectMgr);
+	pkEffectMgr->createS_Inattack(pos);
 }
 
 /*
@@ -1939,42 +1450,11 @@ lbl_803B79C4:
  * Address:	803B79E4
  * Size:	000080
  */
-void createSimpleInstick(Vector3f&)
+void createSimpleInstick(Vector3f& pos)
 {
-	/*
-	stwu     r1, -0x30(r1)
-	mflr     r0
-	lis      r6, __vt__Q23efx5TBase@ha
-	lis      r5, __vt__Q23efx8TSimple1@ha
-	stw      r0, 0x34(r1)
-	lis      r4, __vt__Q23efx3Arg@ha
-	addi     r0, r4, __vt__Q23efx3Arg@l
-	addi     r8, r6, __vt__Q23efx5TBase@l
-	stw      r0, 0x14(r1)
-	addi     r7, r5, __vt__Q23efx8TSimple1@l
-	lis      r4, __vt__Q23efx10TPkInstick@ha
-	li       r6, 0x164
-	lfs      f0, 0(r3)
-	addi     r0, r4, __vt__Q23efx10TPkInstick@l
-	li       r5, 0
-	addi     r4, r1, 0x14
-	stfs     f0, 0x18(r1)
-	lfs      f0, 4(r3)
-	stfs     f0, 0x1c(r1)
-	lfs      f0, 8(r3)
-	addi     r3, r1, 8
-	stw      r8, 8(r1)
-	stw      r7, 8(r1)
-	stfs     f0, 0x20(r1)
-	sth      r6, 0xc(r1)
-	stw      r5, 0x10(r1)
-	stw      r0, 8(r1)
-	bl       create__Q23efx8TSimple1FPQ23efx3Arg
-	lwz      r0, 0x34(r1)
-	mtlr     r0
-	addi     r1, r1, 0x30
-	blr
-	*/
+	Arg arg(pos);
+	TPkInstick efx;
+	efx.create(&arg);
 }
 
 /*
@@ -1982,45 +1462,11 @@ void createSimpleInstick(Vector3f&)
  * Address:	803B7A64
  * Size:	00008C
  */
-void createSimpleGate2Attack(Vector3f&)
+void createSimpleGate2Attack(Vector3f& pos)
 {
-	/*
-	stwu     r1, -0x30(r1)
-	mflr     r0
-	lis      r6, __vt__Q23efx5TBase@ha
-	lis      r5, __vt__Q23efx8TSimple2@ha
-	stw      r0, 0x34(r1)
-	lis      r4, __vt__Q23efx3Arg@ha
-	addi     r0, r4, __vt__Q23efx3Arg@l
-	addi     r9, r6, __vt__Q23efx5TBase@l
-	stw      r0, 0x18(r1)
-	addi     r8, r5, __vt__Q23efx8TSimple2@l
-	lis      r4, __vt__Q23efx12TGate2Attack@ha
-	li       r7, 0x7a
-	lfs      f0, 0(r3)
-	addi     r0, r4, __vt__Q23efx12TGate2Attack@l
-	li       r6, 0x7b
-	li       r5, 0
-	stfs     f0, 0x1c(r1)
-	addi     r4, r1, 0x18
-	lfs      f0, 4(r3)
-	stfs     f0, 0x20(r1)
-	lfs      f0, 8(r3)
-	addi     r3, r1, 8
-	stw      r9, 8(r1)
-	stw      r8, 8(r1)
-	stfs     f0, 0x24(r1)
-	sth      r7, 0xc(r1)
-	sth      r6, 0xe(r1)
-	stw      r5, 0x10(r1)
-	stw      r5, 0x14(r1)
-	stw      r0, 8(r1)
-	bl       create__Q23efx8TSimple2FPQ23efx3Arg
-	lwz      r0, 0x34(r1)
-	mtlr     r0
-	addi     r1, r1, 0x30
-	blr
-	*/
+	Arg arg(pos);
+	TGate2Attack efx;
+	efx.create(&arg);
 }
 
 /*
@@ -2028,42 +1474,11 @@ void createSimpleGate2Attack(Vector3f&)
  * Address:	803B7AF0
  * Size:	000080
  */
-void createSimpleBridgeAttack(Vector3f&)
+void createSimpleBridgeAttack(Vector3f& pos)
 {
-	/*
-	stwu     r1, -0x30(r1)
-	mflr     r0
-	lis      r6, __vt__Q23efx5TBase@ha
-	lis      r5, __vt__Q23efx8TSimple1@ha
-	stw      r0, 0x34(r1)
-	lis      r4, __vt__Q23efx3Arg@ha
-	addi     r0, r4, __vt__Q23efx3Arg@l
-	addi     r8, r6, __vt__Q23efx5TBase@l
-	stw      r0, 0x14(r1)
-	addi     r7, r5, __vt__Q23efx8TSimple1@l
-	lis      r4, __vt__Q23efx13TBridgeAttack@ha
-	li       r6, 0x10
-	lfs      f0, 0(r3)
-	addi     r0, r4, __vt__Q23efx13TBridgeAttack@l
-	li       r5, 0
-	addi     r4, r1, 0x14
-	stfs     f0, 0x18(r1)
-	lfs      f0, 4(r3)
-	stfs     f0, 0x1c(r1)
-	lfs      f0, 8(r3)
-	addi     r3, r1, 8
-	stw      r8, 8(r1)
-	stw      r7, 8(r1)
-	stfs     f0, 0x20(r1)
-	sth      r6, 0xc(r1)
-	stw      r5, 0x10(r1)
-	stw      r0, 8(r1)
-	bl       create__Q23efx8TSimple1FPQ23efx3Arg
-	lwz      r0, 0x34(r1)
-	mtlr     r0
-	addi     r1, r1, 0x30
-	blr
-	*/
+	Arg arg(pos);
+	TBridgeAttack efx;
+	efx.create(&arg);
 }
 
 /*
@@ -2071,35 +1486,10 @@ void createSimpleBridgeAttack(Vector3f&)
  * Address:	803B7B70
  * Size:	00005C
  */
-void createSimpleWalksmoke(Vector3f&)
+void createSimpleWalksmoke(Vector3f& pos)
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	mr       r31, r3
-	lwz      r0, pkEffectMgr@sda21(r13)
-	cmplwi   r0, 0
-	bne      lbl_803B7BAC
-	lis      r3, lbl_80495A28@ha
-	lis      r5, lbl_80495A38@ha
-	addi     r3, r3, lbl_80495A28@l
-	li       r4, 0x2e8
-	addi     r5, r5, lbl_80495A38@l
-	crclr    6
-	bl       panic_f__12JUTExceptionFPCciPCce
-
-lbl_803B7BAC:
-	lwz      r3, pkEffectMgr@sda21(r13)
-	mr       r4, r31
-	bl       "createS_Walksmoke__Q23efx12TPkEffectMgrFR10Vector3<f>"
-	lwz      r0, 0x14(r1)
-	lwz      r31, 0xc(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	P2ASSERTLINE(744, pkEffectMgr);
+	pkEffectMgr->createS_Walksmoke(pos);
 }
 
 /*
@@ -2107,45 +1497,11 @@ lbl_803B7BAC:
  * Address:	803B7BCC
  * Size:	00008C
  */
-void createSimpleGlow2(Vector3f&)
+void createSimpleGlow2(Vector3f& pos)
 {
-	/*
-	stwu     r1, -0x30(r1)
-	mflr     r0
-	lis      r5, __vt__Q23efx8TPkGlow2@ha
-	lis      r4, __vt__Q23efx5TBase@ha
-	stw      r0, 0x34(r1)
-	addi     r0, r4, __vt__Q23efx5TBase@l
-	li       r6, 0
-	li       r7, 0x160
-	lis      r4, __vt__Q23efx8TSimple2@ha
-	stw      r0, 0x18(r1)
-	addi     r0, r4, __vt__Q23efx8TSimple2@l
-	addi     r5, r5, __vt__Q23efx8TPkGlow2@l
-	stw      r0, 0x18(r1)
-	lis      r4, __vt__Q23efx3Arg@ha
-	addi     r0, r4, __vt__Q23efx3Arg@l
-	li       r4, 0x15f
-	sth      r7, 0x1e(r1)
-	sth      r4, 0x1c(r1)
-	addi     r4, r1, 8
-	stw      r6, 0x20(r1)
-	stw      r6, 0x24(r1)
-	stw      r5, 0x18(r1)
-	stw      r0, 8(r1)
-	lfs      f0, 0(r3)
-	stfs     f0, 0xc(r1)
-	lfs      f0, 4(r3)
-	stfs     f0, 0x10(r1)
-	lfs      f0, 8(r3)
-	addi     r3, r1, 0x18
-	stfs     f0, 0x14(r1)
-	bl       create__Q23efx8TSimple2FPQ23efx3Arg
-	lwz      r0, 0x34(r1)
-	mtlr     r0
-	addi     r1, r1, 0x30
-	blr
-	*/
+	TPkGlow2 efx;
+	Arg arg(pos);
+	efx.create(&arg);
 }
 
 /*
@@ -2153,8 +1509,11 @@ void createSimpleGlow2(Vector3f&)
  * Address:	803B7C58
  * Size:	000080
  */
-void createSimpleStoneAttack(Vector3f&)
+void createSimpleStoneAttack(Vector3f& pos)
 {
+	TStoneAttack efx;
+	Arg arg(pos);
+	efx.create(&arg);
 	/*
 	stwu     r1, -0x30(r1)
 	mflr     r0
@@ -2196,35 +1555,10 @@ void createSimpleStoneAttack(Vector3f&)
  * Address:	803B7CD8
  * Size:	00005C
  */
-void createSimpleDig(Vector3f&)
+void createSimpleDig(Vector3f& pos)
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	mr       r31, r3
-	lwz      r0, pkEffectMgr@sda21(r13)
-	cmplwi   r0, 0
-	bne      lbl_803B7D14
-	lis      r3, lbl_80495A28@ha
-	lis      r5, lbl_80495A38@ha
-	addi     r3, r3, lbl_80495A28@l
-	li       r4, 0x2fc
-	addi     r5, r5, lbl_80495A38@l
-	crclr    6
-	bl       panic_f__12JUTExceptionFPCciPCce
-
-lbl_803B7D14:
-	lwz      r3, pkEffectMgr@sda21(r13)
-	mr       r4, r31
-	bl       "createS_Dig__Q23efx12TPkEffectMgrFR10Vector3<f>"
-	lwz      r0, 0x14(r1)
-	lwz      r31, 0xc(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	P2ASSERTLINE(764, pkEffectMgr);
+	pkEffectMgr->createS_Dig(pos);
 }
 
 /*
@@ -2232,35 +1566,10 @@ lbl_803B7D14:
  * Address:	803B7D34
  * Size:	00005C
  */
-void createSimpleGate3Attack(Vector3f&)
+void createSimpleGate3Attack(Vector3f& pos)
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	mr       r31, r3
-	lwz      r0, pkEffectMgr@sda21(r13)
-	cmplwi   r0, 0
-	bne      lbl_803B7D70
-	lis      r3, lbl_80495A28@ha
-	lis      r5, lbl_80495A38@ha
-	addi     r3, r3, lbl_80495A28@l
-	li       r4, 0x302
-	addi     r5, r5, lbl_80495A38@l
-	crclr    6
-	bl       panic_f__12JUTExceptionFPCciPCce
-
-lbl_803B7D70:
-	lwz      r3, pkEffectMgr@sda21(r13)
-	mr       r4, r31
-	bl       "createS_Gate3Attack__Q23efx12TPkEffectMgrFR10Vector3<f>"
-	lwz      r0, 0x14(r1)
-	lwz      r31, 0xc(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	P2ASSERTLINE(770, pkEffectMgr);
+	pkEffectMgr->createS_Gate3Attack(pos);
 }
 
 /*
@@ -2268,35 +1577,10 @@ lbl_803B7D70:
  * Address:	803B7D90
  * Size:	00005C
  */
-void createSimpleWalkwater(Vector3f&)
+void createSimpleWalkwater(Vector3f& pos)
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	mr       r31, r3
-	lwz      r0, pkEffectMgr@sda21(r13)
-	cmplwi   r0, 0
-	bne      lbl_803B7DCC
-	lis      r3, lbl_80495A28@ha
-	lis      r5, lbl_80495A38@ha
-	addi     r3, r3, lbl_80495A28@l
-	li       r4, 0x308
-	addi     r5, r5, lbl_80495A38@l
-	crclr    6
-	bl       panic_f__12JUTExceptionFPCciPCce
-
-lbl_803B7DCC:
-	lwz      r3, pkEffectMgr@sda21(r13)
-	mr       r4, r31
-	bl       "createS_Walkwater__Q23efx12TPkEffectMgrFR10Vector3<f>"
-	lwz      r0, 0x14(r1)
-	lwz      r31, 0xc(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	P2ASSERTLINE(776, pkEffectMgr);
+	pkEffectMgr->createS_Walkwater(pos);
 }
 
 /*
@@ -2304,8 +1588,13 @@ lbl_803B7DCC:
  * Address:	803B7DEC
  * Size:	000038
  */
-void init__Q23efx11TNaviEffectFP10Vector3f PA4_fP10Vector3f Q33efx11TNaviEffect12enumNaviType(void)
+void TNaviEffect::init(Vector3f* pos, Mtx mtx, Vector3f* naviPos, enumNaviType naviType)
 {
+	m_pos = naviPos;
+	// m_beaconMtx = mtx;
+	m_naviPos = naviPos;
+	m_height  = nullptr;
+	setNaviType(naviType);
 	/*
 	.loc_0x0:
 	  stwu      r1, -0x10(r1)
@@ -2332,8 +1621,38 @@ void init__Q23efx11TNaviEffectFP10Vector3f PA4_fP10Vector3f Q33efx11TNaviEffect1
  * Address:	803B7E24
  * Size:	0000D8
  */
-void TNaviEffect::setNaviType(efx::TNaviEffect::enumNaviType)
+void TNaviEffect::setNaviType(enumNaviType type)
 {
+	switch (type) {
+	case NAVITYPE_Olimar:
+		m_cursor.m_contextNum            = WHISTLE_CONTEXT_NUM;
+		m_cursor.m_angleSpeed            = TCursor::kAngleSpeed;
+		m_cursor.m_oneEmitter.m_effectID = PID_Cursor_Olimar;
+		m_light.m_naviType               = 0;
+		m_lightAct.m_naviType            = 0;
+		break;
+	case NAVITYPE_Louie:
+		m_cursor.m_contextNum            = WHISTLE_CONTEXT_NUM;
+		m_cursor.m_angleSpeed            = TCursor::kAngleSpeed;
+		m_cursor.m_oneEmitter.m_effectID = PID_Cursor_Louie;
+		m_light.m_naviType               = 1;
+		m_lightAct.m_naviType            = 1;
+		break;
+	case NAVITYPE_President:
+		m_cursor.m_contextNum            = WHISTLE_CONTEXT_NUM;
+		m_cursor.m_angleSpeed            = TCursor::kAngleSpeed;
+		m_cursor.m_oneEmitter.m_effectID = PID_Cursor_President;
+		m_light.m_naviType               = 0;
+		m_lightAct.m_naviType            = 0;
+		break;
+	default:
+		m_cursor.m_contextNum            = WHISTLE_CONTEXT_NUM;
+		m_cursor.m_angleSpeed            = TCursor::kAngleSpeed;
+		m_cursor.m_oneEmitter.m_effectID = PID_Cursor_Olimar;
+		m_light.m_naviType               = 1;
+		m_lightAct.m_naviType            = 1;
+		break;
+	}
 	/*
 	cmpwi    r4, 2
 	beq      lbl_803B7EA4
@@ -2407,27 +1726,31 @@ lbl_803B7ED0:
  * Address:	803B7EFC
  * Size:	000020
  */
-void TNaviEffect::update(void)
-{
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	bl       updateHamon___Q23efx11TNaviEffectFv
-	lwz      r0, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
-}
+void TNaviEffect::update() { updateHamon_(); }
 
 /*
  * --INFO--
  * Address:	803B7F1C
  * Size:	0000D8
  */
-void TNaviEffect::updateHamon_(void)
+void TNaviEffect::updateHamon_()
 {
+	if (m_height && m_pos && isFlag(NAVIFX_InWater)) {
+		Vector3f temp(m_pos->x, *m_height, m_pos->z);
+		m_hamonPosition = temp;
+		f32 diff        = *m_height - m_pos->y;
+		if (diff < 12.0f) {
+			createHamonA_(&m_hamonPosition);
+		} else {
+			killHamonA_();
+		}
+
+		if (diff < 22.0f) {
+			createHamonB_(&m_hamonPosition);
+		} else {
+			killHamonB_();
+		}
+	}
 	/*
 	stwu     r1, -0x20(r1)
 	mflr     r0
@@ -2496,169 +1819,52 @@ lbl_803B7FD8:
 	*/
 }
 
-} // namespace efx
-
 /*
  * --INFO--
  * Address:	803B7FF4
  * Size:	000060
  */
-void createHamonA___Q23efx11TNaviEffectFP10Vector3f(void)
+void TNaviEffect::createHamonA_(Vector3f* pos)
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	or.      r31, r4, r4
-	stw      r30, 8(r1)
-	mr       r30, r3
-	bne      lbl_803B8030
-	lis      r3, lbl_80495A28@ha
-	lis      r5, lbl_80495A38@ha
-	addi     r3, r3, lbl_80495A28@l
-	li       r4, 0x35f
-	addi     r5, r5, lbl_80495A38@l
-	crclr    6
-	bl       panic_f__12JUTExceptionFPCciPCce
-
-lbl_803B8030:
-	mr       r4, r31
-	addi     r3, r30, 0x28
-	bl       "create__Q23efx9ToeHamonAFP10Vector3<f>"
-	lwz      r0, 0x14(r1)
-	lwz      r31, 0xc(r1)
-	lwz      r30, 8(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	P2ASSERTLINE(863, pos);
+	m_hamonA.create(pos);
 }
-
-namespace efx {
 
 /*
  * --INFO--
  * Address:	803B8054
  * Size:	000024
  */
-void TNaviEffect::killHamonA_(void)
-{
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	addi     r3, r3, 0x28
-	stw      r0, 0x14(r1)
-	bl       kill__Q23efx9ToeHamonAFv
-	lwz      r0, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
-}
-
-} // namespace efx
+void TNaviEffect::killHamonA_() { m_hamonA.kill(); }
 
 /*
  * --INFO--
  * Address:	803B8078
  * Size:	000060
  */
-void createHamonB___Q23efx11TNaviEffectFP10Vector3f(void)
+void TNaviEffect::createHamonB_(Vector3f* pos)
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	or.      r31, r4, r4
-	stw      r30, 8(r1)
-	mr       r30, r3
-	bne      lbl_803B80B4
-	lis      r3, lbl_80495A28@ha
-	lis      r5, lbl_80495A38@ha
-	addi     r3, r3, lbl_80495A28@l
-	li       r4, 0x36a
-	addi     r5, r5, lbl_80495A38@l
-	crclr    6
-	bl       panic_f__12JUTExceptionFPCciPCce
-
-lbl_803B80B4:
-	mr       r4, r31
-	addi     r3, r30, 0x44
-	bl       "create__Q23efx9ToeHamonBFP10Vector3<f>"
-	lwz      r0, 0x14(r1)
-	lwz      r31, 0xc(r1)
-	lwz      r30, 8(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	P2ASSERTLINE(874, pos);
+	m_hamonB.create(pos);
 }
-
-namespace efx {
 
 /*
  * --INFO--
  * Address:	803B80D8
  * Size:	000024
  */
-void TNaviEffect::killHamonB_(void)
-{
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	addi     r3, r3, 0x44
-	stw      r0, 0x14(r1)
-	bl       kill__Q23efx9ToeHamonBFv
-	lwz      r0, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
-}
+void TNaviEffect::killHamonB_() { m_hamonB.kill(); }
 
 /*
  * --INFO--
  * Address:	803B80FC
  * Size:	000078
  */
-void TNaviEffect::createLight_(float (*)[4])
+void TNaviEffect::createLight_(Mtx mtx)
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	or.      r31, r4, r4
-	stw      r30, 8(r1)
-	mr       r30, r3
-	bne      lbl_803B8138
-	lis      r3, lbl_80495A28@ha
-	lis      r5, lbl_80495A38@ha
-	addi     r3, r3, lbl_80495A28@l
-	li       r4, 0x376
-	addi     r5, r5, lbl_80495A38@l
-	crclr    6
-	bl       panic_f__12JUTExceptionFPCciPCce
-
-lbl_803B8138:
-	mr       r4, r31
-	addi     r3, r30, 0x33c
-	bl       setMtxptr__Q23efx10TChaseMtx2FPA4_f
-	addi     r3, r30, 0x33c
-	li       r4, 0
-	lwz      r12, 0x33c(r30)
-	lwz      r12, 8(r12)
-	mtctr    r12
-	bctrl
-	lwz      r0, 0x14(r1)
-	lwz      r31, 0xc(r1)
-	lwz      r30, 8(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	P2ASSERTLINE(886, mtx);
+	m_light.setMtxptr(mtx);
+	m_light.create(nullptr);
 }
 
 /*
@@ -2666,64 +1872,18 @@ lbl_803B8138:
  * Address:	803B8174
  * Size:	00002C
  */
-void TNaviEffect::killLight_(void)
-{
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	lwzu     r12, 0x33c(r3)
-	lwz      r12, 0x10(r12)
-	mtctr    r12
-	bctrl
-	lwz      r0, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
-}
+void TNaviEffect::killLight_() { m_light.fade(); }
 
 /*
  * --INFO--
  * Address:	803B81A0
  * Size:	000078
  */
-void TNaviEffect::createLightAct_(float (*)[4])
+void TNaviEffect::createLightAct_(Mtx mtx)
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	or.      r31, r4, r4
-	stw      r30, 8(r1)
-	mr       r30, r3
-	bne      lbl_803B81DC
-	lis      r3, lbl_80495A28@ha
-	lis      r5, lbl_80495A38@ha
-	addi     r3, r3, lbl_80495A28@l
-	li       r4, 0x383
-	addi     r5, r5, lbl_80495A38@l
-	crclr    6
-	bl       panic_f__12JUTExceptionFPCciPCce
-
-lbl_803B81DC:
-	mr       r4, r31
-	addi     r3, r30, 0x36c
-	bl       setMtxptr__Q23efx10TChaseMtx2FPA4_f
-	addi     r3, r30, 0x36c
-	li       r4, 0
-	lwz      r12, 0x36c(r30)
-	lwz      r12, 8(r12)
-	mtctr    r12
-	bctrl
-	lwz      r0, 0x14(r1)
-	lwz      r31, 0xc(r1)
-	lwz      r30, 8(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	P2ASSERTLINE(899, mtx);
+	m_lightAct.setMtxptr(mtx);
+	m_lightAct.create(nullptr);
 }
 
 /*
@@ -2731,94 +1891,35 @@ lbl_803B81DC:
  * Address:	803B8218
  * Size:	00002C
  */
-void TNaviEffect::killLightAct_(void)
-{
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	lwzu     r12, 0x36c(r3)
-	lwz      r12, 0x10(r12)
-	mtctr    r12
-	bctrl
-	lwz      r0, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
-}
-
-} // namespace efx
+void TNaviEffect::killLightAct_() { m_lightAct.fade(); }
 
 /*
  * --INFO--
  * Address:	803B8244
  * Size:	000064
  */
-void createCursor___Q23efx11TNaviEffectF10Vector3f f(void)
+void TNaviEffect::createCursor_(Vector3f* pos, f32 scale)
 {
-	/*
-	stwu     r1, -0x20(r1)
-	mflr     r0
-	lis      r5, __vt__Q23efx3Arg@ha
-	lfs      f3, 0(r4)
-	stw      r0, 0x24(r1)
-	addi     r0, r5, __vt__Q23efx3Arg@l
-	lfs      f2, 4(r4)
-	lfs      f0, 8(r4)
-	lis      r4, __vt__Q23efx9ArgCursor@ha
-	stw      r0, 8(r1)
-	addi     r0, r4, __vt__Q23efx9ArgCursor@l
-	addi     r4, r1, 8
-	stfs     f3, 0xc(r1)
-	stfs     f2, 0x10(r1)
-	stfs     f0, 0x14(r1)
-	stw      r0, 8(r1)
-	stfs     f1, 0x18(r1)
-	lwzu     r12, 0xac(r3)
-	lwz      r12, 8(r12)
-	mtctr    r12
-	bctrl
-	lwz      r0, 0x24(r1)
-	mtlr     r0
-	addi     r1, r1, 0x20
-	blr
-	*/
+	ArgCursor arg(*pos, scale);
+	m_cursor.create(&arg);
 }
-
-namespace efx {
 
 /*
  * --INFO--
  * Address:	803B82A8
  * Size:	00002C
  */
-void TNaviEffect::killCursor_(void)
-{
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	lwzu     r12, 0xac(r3)
-	lwz      r12, 0x10(r12)
-	mtctr    r12
-	bctrl
-	lwz      r0, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
-}
-
-} // namespace efx
+void TNaviEffect::killCursor_() { m_cursor.fade(); }
 
 /*
  * --INFO--
  * Address:	803B82D4
  * Size:	000284
  */
-void updateCursor___Q23efx11TNaviEffectF10Vector3f f(void)
+void TNaviEffect::updateCursor_(Vector3f* pos, f32 scale)
 {
+	ArgCursor arg(*pos, scale);
+	m_cursor.update(&arg);
 	/*
 	stwu     r1, -0xd0(r1)
 	mflr     r0
@@ -3007,8 +2108,18 @@ lbl_803B8508:
  * Address:	803B8558
  * Size:	0000B4
  */
-void createFueact___Q23efx11TNaviEffectFPA4_fP10Vector3f(void)
+void TNaviEffect::createFueact_(Vector3f* pos, Mtx mtx)
 {
+	P2ASSERTLINE(930, pos);
+	P2ASSERTLINE(931, mtx);
+
+	m_fueact.m_circle.m_pos = pos;
+	m_fueact.m_circle.m_mtx = (Matrixf*)mtx;
+	m_fueact.m_biri1.m_pos  = (JGeometry::TVec3f*)pos;
+	m_fueact.m_biri1.m_mtx  = (Matrixf*)mtx;
+	m_fueact.m_biri2.m_pos  = (JGeometry::TVec3f*)pos;
+	m_fueact.m_biri2.m_mtx  = (Matrixf*)mtx;
+	m_fueact.create(nullptr);
 	/*
 	stwu     r1, -0x20(r1)
 	mflr     r0
@@ -3062,71 +2173,23 @@ lbl_803B85C0:
 	*/
 }
 
-namespace efx {
-
 /*
  * --INFO--
  * Address:	803B860C
  * Size:	00002C
  */
-void TNaviEffect::killFueact_(void)
-{
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	lwzu     r12, 0x60(r3)
-	lwz      r12, 0x10(r12)
-	mtctr    r12
-	bctrl
-	lwz      r0, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
-}
+void TNaviEffect::killFueact_() { m_fueact.fade(); }
 
 /*
  * --INFO--
  * Address:	803B8638
  * Size:	000078
  */
-void TNaviEffect::createOrimadamage_(float (*)[4])
+void TNaviEffect::createOrimadamage_(Mtx mtx)
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	or.      r31, r4, r4
-	stw      r30, 8(r1)
-	mr       r30, r3
-	bne      lbl_803B8674
-	lis      r3, lbl_80495A28@ha
-	lis      r5, lbl_80495A38@ha
-	addi     r3, r3, lbl_80495A28@l
-	li       r4, 0x3b1
-	addi     r5, r5, lbl_80495A38@l
-	crclr    6
-	bl       panic_f__12JUTExceptionFPCciPCce
-
-lbl_803B8674:
-	mr       r4, r31
-	addi     r3, r30, 0x39c
-	bl       setMtxptr__Q23efx11TChaseMtxT2FPA4_f
-	addi     r3, r30, 0x39c
-	li       r4, 0
-	lwz      r12, 0x39c(r30)
-	lwz      r12, 8(r12)
-	mtctr    r12
-	bctrl
-	lwz      r0, 0x14(r1)
-	lwz      r31, 0xc(r1)
-	lwz      r30, 8(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	P2ASSERTLINE(945, mtx);
+	m_damage.setMtxptr(mtx);
+	m_damage.create(nullptr);
 }
 
 /*
@@ -3134,8 +2197,9 @@ lbl_803B8674:
  * Address:	........
  * Size:	00002C
  */
-void TNaviEffect::killOrimadamage_(void)
+void TNaviEffect::killOrimadamage_()
 {
+	m_damage.fade();
 	// UNUSED FUNCTION
 }
 
@@ -3144,25 +2208,17 @@ void TNaviEffect::killOrimadamage_(void)
  * Address:	803B86B0
  * Size:	00003C
  */
-void TPkEffect::init(void)
+void TPkEffect::init()
 {
-	/*
-	li       r4, -1
-	li       r0, 0
-	stw      r4, 8(r3)
-	stw      r0, 0xc(r3)
-	stw      r0, 0x10(r3)
-	stw      r0, 0x14(r3)
-	stw      r0, 0x18(r3)
-	stw      r0, 0x1c(r3)
-	stw      r0, 0x20(r3)
-	stw      r0, 0x24(r3)
-	stb      r0, 0(r3)
-	stb      r0, 1(r3)
-	stb      r0, 2(r3)
-	stb      r0, 3(r3)
-	blr
-	*/
+	m_pikiColor     = -1;
+	_0C             = nullptr;
+	m_hamonPosPtr   = nullptr;
+	_14             = nullptr;
+	_18             = nullptr;
+	_1C             = nullptr;
+	m_height        = nullptr;
+	m_moeSmokeTimer = 0;
+	m_flags.clear();
 }
 
 /*
@@ -3170,23 +2226,10 @@ void TPkEffect::init(void)
  * Address:	803B86EC
  * Size:	000034
  */
-void TPkEffect::update(void)
+void TPkEffect::update()
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	mr       r31, r3
-	bl       updateMoeSmoke___Q23efx9TPkEffectFv
-	mr       r3, r31
-	bl       updateHamon___Q23efx9TPkEffectFv
-	lwz      r0, 0x14(r1)
-	lwz      r31, 0xc(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	updateMoeSmoke_();
+	updateHamon_();
 }
 
 /*
@@ -3194,8 +2237,13 @@ void TPkEffect::update(void)
  * Address:	803B8720
  * Size:	000038
  */
-void TPkEffect::updateMoeSmoke_(void)
+void TPkEffect::updateMoeSmoke_()
 {
+	if (m_moeSmokeTimer) {
+		m_moeSmokeTimer--;
+	} else {
+		killMoeSmoke_();
+	}
 	/*
 	stwu     r1, -0x10(r1)
 	mflr     r0
@@ -3223,8 +2271,24 @@ lbl_803B8748:
  * Address:	803B8758
  * Size:	0000D0
  */
-void TPkEffect::updateHamon_(void)
+void TPkEffect::updateHamon_()
 {
+	if (m_height && m_hamonPosPtr && isFlag(0x20)) {
+		Vector3f temp(m_hamonPosPtr->x, *m_height, m_hamonPosPtr->z);
+		m_hamonPosition = temp;
+		f32 diff        = *m_height - m_hamonPosPtr->y;
+		if (diff < 12.0f) {
+			createHamonA_(&m_hamonPosition);
+		} else {
+			killHamonA_();
+		}
+
+		if (diff < 22.0f) {
+			createHamonB_(&m_hamonPosition);
+		} else {
+			killHamonB_();
+		}
+	}
 	/*
 	stwu     r1, -0x20(r1)
 	mflr     r0
@@ -3291,138 +2355,56 @@ lbl_803B880C:
 	*/
 }
 
-} // namespace efx
-
 /*
  * --INFO--
  * Address:	803B8828
  * Size:	000064
  */
-void createKourin___Q23efx9TPkEffectFP10Vector3f(void)
+void TPkEffect::createKourin_(Vector3f* pos)
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	or.      r31, r4, r4
-	stw      r30, 8(r1)
-	mr       r30, r3
-	bne      lbl_803B8864
-	lis      r3, lbl_80495A28@ha
-	lis      r5, lbl_80495A38@ha
-	addi     r3, r3, lbl_80495A28@l
-	li       r4, 0x3fb
-	addi     r5, r5, lbl_80495A38@l
-	crclr    6
-	bl       panic_f__12JUTExceptionFPCciPCce
-
-lbl_803B8864:
-	lwz      r5, 8(r30)
-	mr       r4, r31
-	addi     r3, r30, 0x70
-	bl       "create__Q23efx9ToeKourinFP10Vector3<f>l"
-	lwz      r0, 0x14(r1)
-	lwz      r31, 0xc(r1)
-	lwz      r30, 8(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	P2ASSERTLINE(1019, pos);
+	m_oeKourin.create(pos, m_pikiColor);
 }
-
-namespace efx {
 
 /*
  * --INFO--
  * Address:	803B888C
  * Size:	000024
  */
-void TPkEffect::killKourin_(void)
-{
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	addi     r3, r3, 0x70
-	stw      r0, 0x14(r1)
-	bl       kill__Q23efx9ToeKourinFv
-	lwz      r0, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
-}
-
-} // namespace efx
+void TPkEffect::killKourin_() { m_oeKourin.kill(); }
 
 /*
  * --INFO--
  * Address:	803B88B0
  * Size:	000060
  */
-void createDoping___Q23efx9TPkEffectFP10Vector3f(void)
+void TPkEffect::createDoping_(Vector3f* pos)
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	or.      r31, r4, r4
-	stw      r30, 8(r1)
-	mr       r30, r3
-	bne      lbl_803B88EC
-	lis      r3, lbl_80495A28@ha
-	lis      r5, lbl_80495A38@ha
-	addi     r3, r3, lbl_80495A28@l
-	li       r4, 0x409
-	addi     r5, r5, lbl_80495A38@l
-	crclr    6
-	bl       panic_f__12JUTExceptionFPCciPCce
-
-lbl_803B88EC:
-	mr       r4, r31
-	addi     r3, r30, 0x90
-	bl       "create__Q23efx9ToeDopingFP10Vector3<f>"
-	lwz      r0, 0x14(r1)
-	lwz      r31, 0xc(r1)
-	lwz      r30, 8(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	P2ASSERTLINE(1033, pos);
+	m_oeDoping.create(pos);
 }
-
-namespace efx {
 
 /*
  * --INFO--
  * Address:	803B8910
  * Size:	000024
  */
-void TPkEffect::killDoping_(void)
-{
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	addi     r3, r3, 0x90
-	stw      r0, 0x14(r1)
-	bl       kill__Q23efx9ToeDopingFv
-	lwz      r0, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
-}
-
-} // namespace efx
+void TPkEffect::killDoping_() { m_oeDoping.kill(); }
 
 /*
  * --INFO--
  * Address:	803B8934
  * Size:	0000F8
  */
-void createNage___Q23efx9TPkEffectFP10Vector3f PA4_f(void)
+void TPkEffect::createNage_(Vector3f* pos, Mtx mtx)
 {
+	P2ASSERTLINE(1046, pos);
+	m_oeNagekira.create(pos);
+	P2ASSERTLINE(1049, mtx);
+	ArgType arg(Vector3f::zero);
+	arg.m_type       = m_pikiColor;
+	m_nageBlur.m_mtx = (Matrixf*)mtx;
+	m_nageBlur.create(&arg);
 	/*
 	stwu     r1, -0x30(r1)
 	mflr     r0
@@ -3493,182 +2475,68 @@ lbl_803B89A8:
 	*/
 }
 
-namespace efx {
-
 /*
  * --INFO--
  * Address:	803B8A2C
  * Size:	000044
  */
-void TPkEffect::killNage_(void)
+void TPkEffect::killNage_()
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	mr       r31, r3
-	addi     r3, r31, 0xac
-	bl       kill__Q23efx11ToeNagekiraFv
-	addi     r3, r31, 0x34
-	lwz      r12, 0x34(r31)
-	lwz      r12, 0x10(r12)
-	mtctr    r12
-	bctrl
-	lwz      r0, 0x14(r1)
-	lwz      r31, 0xc(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	m_oeNagekira.kill();
+	m_nageBlur.fade();
 }
-
-} // namespace efx
 
 /*
  * --INFO--
  * Address:	803B8A70
  * Size:	00007C
  */
-void createMoe___Q23efx9TPkEffectFP10Vector3f(void)
+void TPkEffect::createMoe_(Vector3f* pos)
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	or.      r31, r4, r4
-	stw      r30, 8(r1)
-	mr       r30, r3
-	bne      lbl_803B8AAC
-	lis      r3, lbl_80495A28@ha
-	lis      r5, lbl_80495A38@ha
-	addi     r3, r3, lbl_80495A28@l
-	li       r4, 0x42a
-	addi     r5, r5, lbl_80495A38@l
-	crclr    6
-	bl       panic_f__12JUTExceptionFPCciPCce
-
-lbl_803B8AAC:
-	mr       r4, r31
-	addi     r3, r30, 0xc8
-	bl       "create__Q23efx8ToeMoeBCFP10Vector3<f>"
-	stw      r31, 0x58(r30)
-	addi     r3, r30, 0x48
-	li       r4, 0
-	lwz      r12, 0x48(r30)
-	lwz      r12, 8(r12)
-	mtctr    r12
-	bctrl
-	lwz      r0, 0x14(r1)
-	lwz      r31, 0xc(r1)
-	lwz      r30, 8(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	P2ASSERTLINE(1066, pos);
+	m_oeMoeBC->create(pos);
+	m_moeA.m_position = pos;
+	m_moeA.create(nullptr);
 }
-
-namespace efx {
 
 /*
  * --INFO--
  * Address:	803B8AEC
  * Size:	000044
  */
-void TPkEffect::killMoe_(void)
+void TPkEffect::killMoe_()
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	mr       r31, r3
-	addi     r3, r31, 0xc8
-	bl       kill__Q23efx8ToeMoeBCFv
-	addi     r3, r31, 0x48
-	lwz      r12, 0x48(r31)
-	lwz      r12, 0x10(r12)
-	mtctr    r12
-	bctrl
-	lwz      r0, 0x14(r1)
-	lwz      r31, 0xc(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	m_oeMoeBC->kill();
+	m_moeA.fade();
 }
-
-} // namespace efx
 
 /*
  * --INFO--
  * Address:	803B8B30
  * Size:	000060
  */
-void createChudoku___Q23efx9TPkEffectFP10Vector3f(void)
+void TPkEffect::createChudoku_(Vector3f* pos)
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	or.      r31, r4, r4
-	stw      r30, 8(r1)
-	mr       r30, r3
-	bne      lbl_803B8B6C
-	lis      r3, lbl_80495A28@ha
-	lis      r5, lbl_80495A38@ha
-	addi     r3, r3, lbl_80495A28@l
-	li       r4, 0x43b
-	addi     r5, r5, lbl_80495A38@l
-	crclr    6
-	bl       panic_f__12JUTExceptionFPCciPCce
-
-lbl_803B8B6C:
-	mr       r4, r31
-	addi     r3, r30, 0x100
-	bl       "create__Q23efx10ToeChudokuFP10Vector3<f>"
-	lwz      r0, 0x14(r1)
-	lwz      r31, 0xc(r1)
-	lwz      r30, 8(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	P2ASSERTLINE(1083, pos);
+	m_oeChudoku.create(pos);
 }
-
-namespace efx {
 
 /*
  * --INFO--
  * Address:	803B8B90
  * Size:	000024
  */
-void TPkEffect::killChudoku_(void)
-{
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	addi     r3, r3, 0x100
-	stw      r0, 0x14(r1)
-	bl       kill__Q23efx10ToeChudokuFv
-	lwz      r0, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
-}
-
-} // namespace efx
+void TPkEffect::killChudoku_() { m_oeChudoku.kill(); }
 
 /*
  * --INFO--
  * Address:	803B8BB4
  * Size:	000060
  */
-void createMoeSmoke___Q23efx9TPkEffectFP10Vector3f(void)
+void TPkEffect::createMoeSmoke_(Vector3f* pos)
 {
+	P2ASSERTLINE(1097, pos);
+	m_oeMoeSmoke.create(pos);
 	/*
 	stwu     r1, -0x10(r1)
 	mflr     r0
@@ -3699,15 +2567,14 @@ lbl_803B8BF0:
 	*/
 }
 
-namespace efx {
-
 /*
  * --INFO--
  * Address:	803B8C14
  * Size:	000024
  */
-void TPkEffect::killMoeSmoke_(void)
+void TPkEffect::killMoeSmoke_()
 {
+	m_oeMoeSmoke.kill();
 	/*
 	stwu     r1, -0x10(r1)
 	mflr     r0
@@ -3721,121 +2588,44 @@ void TPkEffect::killMoeSmoke_(void)
 	*/
 }
 
-} // namespace efx
-
 /*
  * --INFO--
  * Address:	803B8C38
  * Size:	000070
  */
-void createBlackDown___Q23efx9TPkEffectFP10Vector3f(void)
+void TPkEffect::createBlackDown_(Vector3f* pos)
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	or.      r31, r4, r4
-	stw      r30, 8(r1)
-	mr       r30, r3
-	bne      lbl_803B8C74
-	lis      r3, lbl_80495A28@ha
-	lis      r5, lbl_80495A38@ha
-	addi     r3, r3, lbl_80495A28@l
-	li       r4, 0x457
-	addi     r5, r5, lbl_80495A38@l
-	crclr    6
-	bl       panic_f__12JUTExceptionFPCciPCce
-
-lbl_803B8C74:
-	stw      r31, 0x6c(r30)
-	addi     r3, r30, 0x5c
-	li       r4, 0
-	lwz      r12, 0x5c(r30)
-	lwz      r12, 8(r12)
-	mtctr    r12
-	bctrl
-	lwz      r0, 0x14(r1)
-	lwz      r31, 0xc(r1)
-	lwz      r30, 8(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	P2ASSERTLINE(1111, pos);
+	m_blackDown.m_position = pos;
+	m_blackDown.create(nullptr);
 }
-
-namespace efx {
 
 /*
  * --INFO--
  * Address:	803B8CA8
  * Size:	00002C
  */
-void TPkEffect::killBlackDown_(void)
-{
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	lwzu     r12, 0x5c(r3)
-	lwz      r12, 0x10(r12)
-	mtctr    r12
-	bctrl
-	lwz      r0, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
-}
-
-} // namespace efx
+void TPkEffect::killBlackDown_() { m_blackDown.fade(); }
 
 /*
  * --INFO--
  * Address:	803B8CD4
  * Size:	000060
  */
-void createWater___Q23efx9TPkEffectFP10Vector3f(void)
+void TPkEffect::createWater_(Vector3f* pos)
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	or.      r31, r4, r4
-	stw      r30, 8(r1)
-	mr       r30, r3
-	bne      lbl_803B8D10
-	lis      r3, lbl_80495A28@ha
-	lis      r5, lbl_80495A38@ha
-	addi     r3, r3, lbl_80495A28@l
-	li       r4, 0x465
-	addi     r5, r5, lbl_80495A38@l
-	crclr    6
-	bl       panic_f__12JUTExceptionFPCciPCce
-
-lbl_803B8D10:
-	mr       r4, r31
-	addi     r3, r30, 0x11c
-	bl       "create__Q23efx8ToeWaterFP10Vector3<f>"
-	lwz      r0, 0x14(r1)
-	lwz      r31, 0xc(r1)
-	lwz      r30, 8(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	P2ASSERTLINE(1125, pos);
+	m_oeWater[0].create(pos);
 }
-
-namespace efx {
 
 /*
  * --INFO--
  * Address:	803B8D34
  * Size:	000024
  */
-void TPkEffect::killWater_(void)
+void TPkEffect::killWater_()
 {
+	m_oeWater[0].kill();
 	/*
 	stwu     r1, -0x10(r1)
 	mflr     r0
@@ -3849,322 +2639,112 @@ void TPkEffect::killWater_(void)
 	*/
 }
 
-} // namespace efx
-
 /*
  * --INFO--
  * Address:	803B8D58
  * Size:	000060
  */
-void createHamonA___Q23efx9TPkEffectFP10Vector3f(void)
+void TPkEffect::createHamonA_(Vector3f* pos)
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	or.      r31, r4, r4
-	stw      r30, 8(r1)
-	mr       r30, r3
-	bne      lbl_803B8D94
-	lis      r3, lbl_80495A28@ha
-	lis      r5, lbl_80495A38@ha
-	addi     r3, r3, lbl_80495A28@l
-	li       r4, 0x471
-	addi     r5, r5, lbl_80495A38@l
-	crclr    6
-	bl       panic_f__12JUTExceptionFPCciPCce
-
-lbl_803B8D94:
-	mr       r4, r31
-	addi     r3, r30, 0x154
-	bl       "create__Q23efx9ToeHamonAFP10Vector3<f>"
-	lwz      r0, 0x14(r1)
-	lwz      r31, 0xc(r1)
-	lwz      r30, 8(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	P2ASSERTLINE(1137, pos);
+	m_oeHamonA.create(pos);
 }
-
-namespace efx {
 
 /*
  * --INFO--
  * Address:	803B8DB8
  * Size:	000024
  */
-void TPkEffect::killHamonA_(void)
-{
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	addi     r3, r3, 0x154
-	stw      r0, 0x14(r1)
-	bl       kill__Q23efx9ToeHamonAFv
-	lwz      r0, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
-}
-
-} // namespace efx
+void TPkEffect::killHamonA_() { m_oeHamonA.kill(); }
 
 /*
  * --INFO--
  * Address:	803B8DDC
  * Size:	000060
  */
-void createHamonB___Q23efx9TPkEffectFP10Vector3f(void)
+void TPkEffect::createHamonB_(Vector3f* pos)
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	or.      r31, r4, r4
-	stw      r30, 8(r1)
-	mr       r30, r3
-	bne      lbl_803B8E18
-	lis      r3, lbl_80495A28@ha
-	lis      r5, lbl_80495A38@ha
-	addi     r3, r3, lbl_80495A28@l
-	li       r4, 0x47c
-	addi     r5, r5, lbl_80495A38@l
-	crclr    6
-	bl       panic_f__12JUTExceptionFPCciPCce
-
-lbl_803B8E18:
-	mr       r4, r31
-	addi     r3, r30, 0x170
-	bl       "create__Q23efx9ToeHamonBFP10Vector3<f>"
-	lwz      r0, 0x14(r1)
-	lwz      r31, 0xc(r1)
-	lwz      r30, 8(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	P2ASSERTLINE(1148, pos);
+	m_oeHamonB.create(pos);
 }
-
-namespace efx {
 
 /*
  * --INFO--
  * Address:	803B8E3C
  * Size:	000024
  */
-void TPkEffect::killHamonB_(void)
-{
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	addi     r3, r3, 0x170
-	stw      r0, 0x14(r1)
-	bl       kill__Q23efx9ToeHamonBFv
-	lwz      r0, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
-}
+void TPkEffect::killHamonB_() { m_oeHamonB.kill(); }
 
 /*
  * --INFO--
  * Address:	803B8E60
  * Size:	000020
  */
-void TPkEffectTane::init(void)
+void TPkEffectTane::init()
 {
-	/*
-	li       r4, -1
-	li       r0, 0
-	stw      r4, 0(r3)
-	stw      r0, 4(r3)
-	stw      r0, 0xc(r3)
-	stw      r0, 8(r3)
-	stw      r0, 0x10(r3)
-	blr
-	*/
+	m_pikiColor = -1;
+	m_pos       = nullptr;
+	m_pos2      = nullptr;
+	_08         = nullptr;
+	_10         = nullptr;
 }
-
-} // namespace efx
 
 /*
  * --INFO--
  * Address:	803B8E80
  * Size:	000060
  */
-void createTanekira___Q23efx13TPkEffectTaneFP10Vector3f(void)
+void TPkEffectTane::createTanekira_(Vector3f* pos)
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	or.      r31, r4, r4
-	stw      r30, 8(r1)
-	mr       r30, r3
-	bne      lbl_803B8EBC
-	lis      r3, lbl_80495A28@ha
-	lis      r5, lbl_80495A38@ha
-	addi     r3, r3, lbl_80495A28@l
-	li       r4, 0x496
-	addi     r5, r5, lbl_80495A38@l
-	crclr    6
-	bl       panic_f__12JUTExceptionFPCciPCce
-
-lbl_803B8EBC:
-	mr       r4, r31
-	addi     r3, r30, 0x28
-	bl       "create__Q23efx11ToeTanekiraFP10Vector3<f>"
-	lwz      r0, 0x14(r1)
-	lwz      r31, 0xc(r1)
-	lwz      r30, 8(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	P2ASSERTLINE(1174, pos);
+	m_oeKira.create(pos);
 }
-
-namespace efx {
 
 /*
  * --INFO--
  * Address:	803B8EE0
  * Size:	000024
  */
-void TPkEffectTane::killTanekira_(void)
-{
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	addi     r3, r3, 0x28
-	stw      r0, 0x14(r1)
-	bl       kill__Q23efx11ToeTanekiraFv
-	lwz      r0, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
-}
-
-} // namespace efx
+void TPkEffectTane::killTanekira_() { m_oeKira.kill(); }
 
 /*
  * --INFO--
  * Address:	803B8F04
  * Size:	000064
  */
-void createKourin___Q23efx13TPkEffectTaneFP10Vector3f(void)
+void TPkEffectTane::createKourin_(Vector3f* pos)
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	or.      r31, r4, r4
-	stw      r30, 8(r1)
-	mr       r30, r3
-	bne      lbl_803B8F40
-	lis      r3, lbl_80495A28@ha
-	lis      r5, lbl_80495A38@ha
-	addi     r3, r3, lbl_80495A28@l
-	li       r4, 0x4a5
-	addi     r5, r5, lbl_80495A38@l
-	crclr    6
-	bl       panic_f__12JUTExceptionFPCciPCce
-
-lbl_803B8F40:
-	lwz      r5, 0(r30)
-	mr       r4, r31
-	addi     r3, r30, 0x44
-	bl       "create__Q23efx9ToeKourinFP10Vector3<f>l"
-	lwz      r0, 0x14(r1)
-	lwz      r31, 0xc(r1)
-	lwz      r30, 8(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	P2ASSERTLINE(1189, pos);
+	m_oeKourin.create(pos, m_pikiColor);
 }
-
-namespace efx {
 
 /*
  * --INFO--
  * Address:	803B8F68
  * Size:	000024
  */
-void TPkEffectTane::killKourin_(void)
-{
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	addi     r3, r3, 0x44
-	stw      r0, 0x14(r1)
-	bl       kill__Q23efx9ToeKourinFv
-	lwz      r0, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
-}
-
-} // namespace efx
+void TPkEffectTane::killKourin_() { m_oeKourin.kill(); }
 
 /*
  * --INFO--
  * Address:	803B8F8C
  * Size:	000070
  */
-void createGlow1___Q23efx13TPkEffectTaneFP10Vector3f(void)
+void TPkEffectTane::createGlow1_(Vector3f* pos)
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	or.      r31, r4, r4
-	stw      r30, 8(r1)
-	mr       r30, r3
-	bne      lbl_803B8FC8
-	lis      r3, lbl_80495A28@ha
-	lis      r5, lbl_80495A38@ha
-	addi     r3, r3, lbl_80495A28@l
-	li       r4, 0x4b2
-	addi     r5, r5, lbl_80495A38@l
-	crclr    6
-	bl       panic_f__12JUTExceptionFPCciPCce
-
-lbl_803B8FC8:
-	stw      r31, 0x24(r30)
-	addi     r3, r30, 0x14
-	li       r4, 0
-	lwz      r12, 0x14(r30)
-	lwz      r12, 8(r12)
-	mtctr    r12
-	bctrl
-	lwz      r0, 0x14(r1)
-	lwz      r31, 0xc(r1)
-	lwz      r30, 8(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	P2ASSERTLINE(1202, pos);
+	m_glow.m_position = pos;
+	m_glow.create(nullptr);
 }
-
-namespace efx {
 
 /*
  * --INFO--
  * Address:	........
  * Size:	00002C
  */
-void TPkEffectTane::killGlow1_(void)
+void TPkEffectTane::killGlow1_()
 {
+	m_glow.fade();
 	// UNUSED FUNCTION
 }
 
@@ -4180,29 +2760,14 @@ void TFueactCircle::executeAfter(JPABaseEmitter*) { }
  * Address:	803B9000
  * Size:	00002C
  */
-void TCursor::forceKill(void)
-{
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	lwzu     r12, 4(r3)
-	lwz      r12, 0xc(r12)
-	mtctr    r12
-	bctrl
-	lwz      r0, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
-}
+void TCursor::forceKill() { m_oneEmitter.forceKill(); }
 
 /*
  * --INFO--
  * Address:	........
  * Size:	000104
  */
-TTestYodareGen::~TTestYodareGen(void)
+TTestYodareGen::~TTestYodareGen()
 {
 	// UNUSED FUNCTION
 }
@@ -4212,7 +2777,7 @@ TTestYodareGen::~TTestYodareGen(void)
  * Address:	........
  * Size:	000048
  */
-void TTestYodareGen::forceKill(void)
+void TTestYodareGen::forceKill()
 {
 	// UNUSED FUNCTION
 }
@@ -4222,7 +2787,7 @@ void TTestYodareGen::forceKill(void)
  * Address:	........
  * Size:	000048
  */
-void TTestYodareGen::fade(void)
+void TTestYodareGen::fade()
 {
 	// UNUSED FUNCTION
 }
@@ -4232,7 +2797,7 @@ void TTestYodareGen::fade(void)
  * Address:	........
  * Size:	000084
  */
-TTestYodareHit::~TTestYodareHit(void)
+TTestYodareHit::~TTestYodareHit()
 {
 	// UNUSED FUNCTION
 }
@@ -4242,120 +2807,120 @@ TTestYodareHit::~TTestYodareHit(void)
  * Address:	........
  * Size:	000060
  */
-TParticleCallBack_Yodare::~TParticleCallBack_Yodare(void)
+TParticleCallBack_Yodare::~TParticleCallBack_Yodare()
 {
 	// UNUSED FUNCTION
-}
-
-/*
- * --INFO--
- * Address:	........
- * Size:	000008
- */
-@4 @efx::TTestYodareHit::~TTestYodareHit(void)
-{
-	// UNUSED FUNCTION
-}
-
-/*
- * --INFO--
- * Address:	........
- * Size:	000008
- */
-@4 @efx::TTestYodareGen::~TTestYodareGen(void)
-{
-	// UNUSED FUNCTION
-}
-
-/*
- * --INFO--
- * Address:	803B902C
- * Size:	000008
- */
-@4 @efx::TPkNageBlur::~TPkNageBlur(void)
-{
-	/*
-	addi     r3, r3, -4
-	b        __dt__Q23efx11TPkNageBlurFv
-	*/
 }
 
 } // namespace efx
 
 /*
  * --INFO--
+ * Address:	........
+ * Size:	000008
+ */
+//@4 @efx::TTestYodareHit::~TTestYodareHit(void)
+//{
+// UNUSED FUNCTION
+//}
+
+/*
+ * --INFO--
+ * Address:	........
+ * Size:	000008
+ */
+//@4 @efx::TTestYodareGen::~TTestYodareGen(void)
+//{
+// UNUSED FUNCTION
+//}
+
+/*
+ * --INFO--
+ * Address:	803B902C
+ * Size:	000008
+ */
+//@4 @efx::TPkNageBlur::~TPkNageBlur(void)
+//{
+/*
+addi     r3, r3, -4
+b        __dt__Q23efx11TPkNageBlurFv
+*/
+//}
+
+/*
+ * --INFO--
  * Address:	803B9034
  * Size:	000008
  */
-void @4 @efx::TFueactCircle::executeAfter(JPABaseEmitter*)
-{
-	/*
-	addi     r3, r3, -4
-	b        executeAfter__Q23efx13TFueactCircleFP14JPABaseEmitter
-	*/
-}
+// void @4 @TFueactCircle::executeAfter(JPABaseEmitter*)
+//{
+/*
+addi     r3, r3, -4
+b        executeAfter__Q23efx13TFueactCircleFP14JPABaseEmitter
+*/
+//}
 
 /*
  * --INFO--
  * Address:	803B903C
  * Size:	000008
  */
-void @4 @efx::TFueactCircle::execute(JPABaseEmitter*)
-{
-	/*
-	addi     r3, r3, -4
-	b        execute__Q23efx13TFueactCircleFP14JPABaseEmitter
-	*/
-}
+// void @4 @TFueactCircle::execute(JPABaseEmitter*)
+//{
+/*
+addi     r3, r3, -4
+b        execute__Q23efx13TFueactCircleFP14JPABaseEmitter
+*/
+//}
 
 /*
  * --INFO--
  * Address:	803B9044
  * Size:	000008
  */
-@4 @efx::TFueactCircle::~TFueactCircle(void)
-{
-	/*
-	addi     r3, r3, -4
-	b        __dt__Q23efx13TFueactCircleFv
-	*/
-}
+//@4 @TFueactCircle::~TFueactCircle()
+//{
+/*
+addi     r3, r3, -4
+b        __dt__Q23efx13TFueactCircleFv
+*/
+//}
 
 /*
  * --INFO--
  * Address:	803B904C
  * Size:	000008
  */
-void @8 @efx::TFueactCircle::execute(JPABaseEmitter*, JPABaseParticle*)
-{
-	/*
-	addi     r3, r3, -8
-	b        execute__Q23efx13TFueactCircleFP14JPABaseEmitterP15JPABaseParticle
-	*/
-}
+// void @8 @TFueactCircle::execute(JPABaseEmitter*, JPABaseParticle*)
+//{
+/*
+addi     r3, r3, -8
+b        execute__Q23efx13TFueactCircleFP14JPABaseEmitterP15JPABaseParticle
+*/
+//}
 
 /*
  * --INFO--
  * Address:	803B9054
  * Size:	000008
  */
-@8 @efx::TFueactCircle::~TFueactCircle(void)
-{
-	/*
-	addi     r3, r3, -8
-	b        __dt__Q23efx13TFueactCircleFv
-	*/
-}
+//@8 @TFueactCircle::~TFueactCircle(void)
+//{
+/*
+addi     r3, r3, -8
+b        __dt__Q23efx13TFueactCircleFv
+*/
+//}
 
 /*
  * --INFO--
  * Address:	803B905C
  * Size:	000008
  */
-@4 @efx::TFueactBiriBase::~TFueactBiriBase(void)
-{
-	/*
-	addi     r3, r3, -4
-	b        __dt__Q23efx15TFueactBiriBaseFv
-	*/
-}
+//@4 @efx::TFueactBiriBase::~TFueactBiriBase(void)
+//{
+/*
+addi     r3, r3, -4
+b        __dt__Q23efx15TFueactBiriBaseFv
+*/
+//}
