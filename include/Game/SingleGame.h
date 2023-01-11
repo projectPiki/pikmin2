@@ -431,6 +431,12 @@ struct MovieState : public State {
  * @size{0x30}
  */
 struct SelectState : public State {
+	enum StateID {
+		SELECTSTATE_Init = 0,
+		SELECTSTATE_Load = 1,
+		SELECTSTATE_Draw = 2,
+	};
+
 	SelectState();
 
 	virtual void init(SingleGameSection*, StateArg*); // _08
@@ -446,7 +452,7 @@ struct SelectState : public State {
 	JKRExpHeap* m_wMapHeap;                   // _18
 	JKRHeap* m_parentHeap;                    // _1C
 	Controller* m_controller;                 // _20
-	int m_state;                              // _24
+	StateID m_state;                          // _24
 	int m_previousCourseID;                   // _28
 	bool m_newLevelOpen;                      // _2C
 };

@@ -62,6 +62,18 @@ struct SceneMgr {
 		return child;
 	}
 
+	inline void doFirstLoad()
+	{
+		checkScene();
+		m_scenes->m_child->scene1stLoadSync();
+	}
+
+	inline void doStartMainSeq()
+	{
+		checkScene();
+		m_scenes->m_child->startMainSeq();
+	}
+
 	// _00	= VTBL
 	Scene* m_scenes; // _04
 	Scene* m_endScene;
