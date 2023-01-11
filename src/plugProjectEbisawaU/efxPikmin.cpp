@@ -566,7 +566,7 @@ bool TCursor::create(Arg* arg)
 	f32 scale  = targ->m_scale;
 	for (int i = 0; i < m_contextNum; i++) {
 		Vector3f pos;
-		calcPos_(scale, pos, i);
+		calcPos_(&pos, scale, i);
 		m_contextArray[i].m_position = pos;
 	}
 
@@ -597,7 +597,7 @@ void TCursor::update(Arg* arg)
 
 	for (int i = 0; i < m_contextNum; i++) {
 		Vector3f pos;
-		calcPos_(scale, pos, i);
+		calcPos_(&pos, scale, i);
 		m_contextArray[i].m_position = pos;
 	}
 }
@@ -607,111 +607,18 @@ void TCursor::update(Arg* arg)
  * Address:	803B6D0C
  * Size:	000148
  */
-void TCursor::calcPos_(f32 mag, Vector3f& pos, long id)
+void TCursor::calcPos_(Vector3f* pos, f32 mag, long id)
 {
-	f32 angle = (m_angleTimer + (f32)id * 2.0f * PI) / (f32)m_contextNum;
+	Vector3f position = *pos;
+	f32 angle         = (m_angleTimer + (f32)id * 2.0f * PI) / (f32)m_contextNum;
 
-	pos.x = mag * pikmin2_sinf(angle) + m_position.x;
-	pos.z = mag * pikmin2_cosf(angle) + m_position.z;
+	position.x = mag * pikmin2_sinf(angle) + m_position.x;
+	position.z = mag * pikmin2_cosf(angle) + m_position.z;
 	if (Game::mapMgr) {
-		pos.y = Game::mapMgr->getMinY(pos);
+		position.y = Game::mapMgr->getMinY(position);
 	} else {
-		pos.y = m_position.y;
+		position.y = m_position.y;
 	}
-	/*
-	stwu     r1, -0x40(r1)
-	mflr     r0
-	lis      r6, 0x4330
-	lfd      f4, lbl_8051F698@sda21(r2)
-	stw      r0, 0x44(r1)
-	xoris    r0, r5, 0x8000
-	lfs      f2, lbl_8051F688@sda21(r2)
-	stw      r31, 0x3c(r1)
-	mr       r31, r4
-	lfs      f5, lbl_8051F684@sda21(r2)
-	stw      r0, 0xc(r1)
-	lwz      r0, 0x38(r3)
-	stw      r6, 8(r1)
-	xoris    r0, r0, 0x8000
-	lfs      f6, 0x288(r3)
-	lfd      f0, 8(r1)
-	stw      r0, 0x14(r1)
-	fsubs    f0, f0, f4
-	stw      r6, 0x10(r1)
-	fmuls    f3, f2, f0
-	lfd      f2, 0x10(r1)
-	lfs      f0, lbl_8051F670@sda21(r2)
-	fsubs    f2, f2, f4
-	fmuls    f3, f5, f3
-	fdivs    f2, f3, f2
-	fadds    f5, f6, f2
-	fmr      f2, f5
-	fcmpo    cr0, f5, f0
-	bge      lbl_803B6D84
-	fneg     f2, f5
-
-lbl_803B6D84:
-	lfs      f4, lbl_8051F68C@sda21(r2)
-	lis      r4, sincosTable___5JMath@ha
-	lfs      f0, lbl_8051F670@sda21(r2)
-	addi     r5, r4, sincosTable___5JMath@l
-	fmuls    f3, f2, f4
-	lfs      f2, 0x27c(r3)
-	fcmpo    cr0, f5, f0
-	fctiwz   f0, f3
-	stfd     f0, 0x18(r1)
-	lwz      r0, 0x1c(r1)
-	rlwinm   r0, r0, 3, 0x12, 0x1c
-	add      r4, r5, r0
-	lfs      f0, 4(r4)
-	fmadds   f0, f1, f0, f2
-	stfs     f0, 0(r31)
-	bge      lbl_803B6DE8
-	lfs      f0, lbl_8051F690@sda21(r2)
-	fmuls    f0, f5, f0
-	fctiwz   f0, f0
-	stfd     f0, 0x20(r1)
-	lwz      r0, 0x24(r1)
-	rlwinm   r0, r0, 3, 0x12, 0x1c
-	lfsx     f0, r5, r0
-	fneg     f2, f0
-	b        lbl_803B6E00
-
-lbl_803B6DE8:
-	fmuls    f0, f5, f4
-	fctiwz   f0, f0
-	stfd     f0, 0x28(r1)
-	lwz      r0, 0x2c(r1)
-	rlwinm   r0, r0, 3, 0x12, 0x1c
-	lfsx     f2, r5, r0
-
-lbl_803B6E00:
-	lfs      f0, 0x284(r3)
-	fmadds   f0, f1, f2, f0
-	stfs     f0, 8(r31)
-	lwz      r0, mapMgr__4Game@sda21(r13)
-	cmplwi   r0, 0
-	beq      lbl_803B6E38
-	mr       r3, r0
-	mr       r4, r31
-	lwz      r12, 4(r3)
-	lwz      r12, 0x28(r12)
-	mtctr    r12
-	bctrl
-	stfs     f1, 4(r31)
-	b        lbl_803B6E40
-
-lbl_803B6E38:
-	lfs      f0, 0x280(r3)
-	stfs     f0, 4(r31)
-
-lbl_803B6E40:
-	lwz      r0, 0x44(r1)
-	lwz      r31, 0x3c(r1)
-	mtlr     r0
-	addi     r1, r1, 0x40
-	blr
-	*/
 }
 
 /*
@@ -1217,90 +1124,15 @@ lbl_803B7490:
 void createSimpleDead(Vector3f& pos, long type)
 {
 	P2ASSERTLINE(618, pkEffectMgr);
-	if (type == Game::Bulbmin) {
-		TEnemyDead efx;
+	switch (type) {
+	case Game::Bulbmin:
+		TEnemyDead_ArgScale efx;
 		ArgScale arg(pos, 0.5f);
 		efx.create(&arg);
-	} else {
+		break;
+	default:
 		pkEffectMgr->createS_Dead(pos, type);
 	}
-	/*
-	stwu     r1, -0x40(r1)
-	mflr     r0
-	stw      r0, 0x44(r1)
-	stw      r31, 0x3c(r1)
-	mr       r31, r3
-	stw      r30, 0x38(r1)
-	mr       r30, r4
-	lwz      r0, pkEffectMgr@sda21(r13)
-	cmplwi   r0, 0
-	bne      lbl_803B7508
-	lis      r3, lbl_80495A28@ha
-	lis      r5, lbl_80495A38@ha
-	addi     r3, r3, lbl_80495A28@l
-	li       r4, 0x26a
-	addi     r5, r5, lbl_80495A38@l
-	crclr    6
-	bl       panic_f__12JUTExceptionFPCciPCce
-
-lbl_803B7508:
-	cmpwi    r30, 5
-	beq      lbl_803B7514
-	b        lbl_803B75A8
-
-lbl_803B7514:
-	lis      r3, __vt__Q23efx5TBase@ha
-	lis      r4, __vt__Q23efx8TSimple1@ha
-	addi     r0, r3, __vt__Q23efx5TBase@l
-	lis      r3, __vt__Q23efx19TEnemyDead_ArgScale@ha
-	stw      r0, 0x14(r1)
-	addi     r4, r4, __vt__Q23efx8TSimple1@l
-	li       r0, 0x52
-	li       r7, 0
-	stw      r4, 0x14(r1)
-	addi     r6, r3, __vt__Q23efx19TEnemyDead_ArgScale@l
-	lis      r4, __vt__Q23efx3Arg@ha
-	lis      r3, __vt__Q23efx8ArgScale@ha
-	sth      r0, 0x18(r1)
-	addi     r5, r4, __vt__Q23efx3Arg@l
-	lfs      f0, lbl_8051F6A4@sda21(r2)
-	addi     r0, r3, __vt__Q23efx8ArgScale@l
-	stw      r7, 0x1c(r1)
-	addi     r3, r1, 0x14
-	addi     r4, r1, 0x20
-	stw      r6, 0x14(r1)
-	lwz      r8, 0(r31)
-	lwz      r7, 4(r31)
-	lwz      r6, 8(r31)
-	stw      r8, 8(r1)
-	stw      r7, 0xc(r1)
-	lfs      f3, 8(r1)
-	stw      r6, 0x10(r1)
-	lfs      f2, 0xc(r1)
-	stw      r5, 0x20(r1)
-	lfs      f1, 0x10(r1)
-	stfs     f3, 0x24(r1)
-	stfs     f2, 0x28(r1)
-	stfs     f1, 0x2c(r1)
-	stw      r0, 0x20(r1)
-	stfs     f0, 0x30(r1)
-	bl       create__Q23efx19TEnemyDead_ArgScaleFPQ23efx3Arg
-	b        lbl_803B75B8
-
-lbl_803B75A8:
-	lwz      r3, pkEffectMgr@sda21(r13)
-	mr       r4, r31
-	mr       r5, r30
-	bl       "createS_Dead__Q23efx12TPkEffectMgrFR10Vector3<f>l"
-
-lbl_803B75B8:
-	lwz      r0, 0x44(r1)
-	lwz      r31, 0x3c(r1)
-	lwz      r30, 0x38(r1)
-	mtlr     r0
-	addi     r1, r1, 0x40
-	blr
-	*/
 }
 
 /*
@@ -2239,10 +2071,10 @@ void TPkEffect::update()
  */
 void TPkEffect::updateMoeSmoke_()
 {
-	if (m_moeSmokeTimer) {
-		m_moeSmokeTimer--;
-	} else {
+	if (!m_moeSmokeTimer) {
 		killMoeSmoke_();
+	} else {
+		m_moeSmokeTimer--;
 	}
 	/*
 	stwu     r1, -0x10(r1)

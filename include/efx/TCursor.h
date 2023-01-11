@@ -20,7 +20,7 @@ struct TCursor : public TBase {
 
 	void init(long, long);
 	void update(Arg*);
-	void calcPos_(f32, Vector3f&, long);
+	void calcPos_(Vector3f*, f32, long);
 
 	// _00      = VTBL
 	TOneEmitter m_oneEmitter;                    // _04

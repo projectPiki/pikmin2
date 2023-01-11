@@ -18,6 +18,10 @@ struct TEnemyDead : public TSimple1 {
 };
 
 struct TEnemyDead_ArgScale : public TSimple1 {
+	inline TEnemyDead_ArgScale()
+	    : TSimple1(PID_EnemyDead)
+	{
+	}
 	virtual bool create(Arg*); // _08
 
 	// _00		= VTBL

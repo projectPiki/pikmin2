@@ -218,7 +218,7 @@ struct TPkEffect {
 	Matrixf* _18;             // _18
 	Matrixf* _1C;             // _1C
 	f32* m_height;            // _20, unknown
-	u32 m_moeSmokeTimer;      // _24, unknown
+	int m_moeSmokeTimer;      // _24, unknown
 	Vector3f m_hamonPosition; // _28, dive vector?
 	TPkNageBlur m_nageBlur;   // _34
 	TPkMoeA m_moeA;           // _48
@@ -260,7 +260,6 @@ struct TPkEffectMgr {
 	void createS_Gate3Attack(Vector3f&);
 	void createS_Walkwater(Vector3f&);
 };
-static TPkEffectMgr* pkEffectMgr;
 
 struct TParticleCallBack_Yodare {
 	~TParticleCallBack_Yodare();
@@ -280,5 +279,7 @@ struct TTestYodareHit {
 };
 
 } // namespace efx
+
+extern efx::TPkEffectMgr* pkEffectMgr;
 
 #endif
