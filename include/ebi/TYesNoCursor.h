@@ -7,6 +7,13 @@ struct J2DPane;
 
 namespace ebi {
 struct TYesNoCursor : public efx2d::T2DCursor {
+	TYesNoCursor()
+	    : T2DCursor(&m_pos)
+	{
+		m_pane1 = nullptr;
+		m_pane2 = nullptr;
+	}
+
 	void update();
 
 	inline void setPanes(J2DPane* pane1, J2DPane* pane2)

@@ -1,4 +1,7 @@
-#include "types.h"
+#include "ebi/CardError.h"
+#include "System.h"
+#include "MemoryCardMgr.h"
+#include "Game/MemoryCard/Mgr.h"
 
 /*
     Generated from dpostproc
@@ -383,13 +386,45 @@
 
 namespace ebi {
 
+namespace CardError {
+
 /*
  * --INFO--
  * Address:	803D1104
  * Size:	000A2C
  */
-void CardError::FSMStateMachine::init(ebi::CardError::TMgr*)
+void FSMStateMachine::init(TMgr* mgr)
 {
+	create(CARDERROR_StateCount);
+
+	registerState(new FSMState_Standby);
+	registerState(new FSMState_EmptyScreen);
+	registerState(new FSMState_W00_NoCard);
+	registerState(new FSMState_W01_IOError);
+	registerState(new FSMState_W02_WrongDevice);
+	registerState(new FSMState_W03_WrongSector);
+	registerState(new FSMState_W04_OverCapacity);
+	registerState(new FSMState_W05_InitCardOnIPL);
+	registerState(new FSMState_W06_CardNotUsable);
+	registerState(new FSMState_W07_NoFileForSave);
+	registerState(new FSMState_W08_FinishFormat);
+	registerState(new FSMState_W09_FinishCreateNewFile);
+	registerState(new FSMState_W10_SerialNoError);
+	registerState(new FSMState_WF0_FailToFormat_NoCard);
+	registerState(new FSMState_WF1_FailToFormat_IOError);
+	registerState(new FSMState_WF2_FailToCreateNewFile_NoCard);
+	registerState(new FSMState_WF3_FailToCreateNewFile_IOError);
+	registerState(new FSMState_WF4_FailToSave_NoCard);
+	registerState(new FSMState_WF5_FailToSave_IOError);
+	registerState(new FSMState_Q00_DataBrokenAndDoYouFormat);
+	registerState(new FSMState_Q01_DoYouOpenIPL);
+	registerState(new FSMState_Q02_DoYouFormat);
+	registerState(new FSMState_Q03_DoYouCreateNewFile);
+	registerState(new FSMState_Q04_DoYouStartGameWithoutSave);
+	registerState(new FSMState_Q05_GameCantSave);
+	registerState(new FSMState_WN0_NowFormat);
+	registerState(new FSMState_WN1_NowCreateNewFile);
+
 	/*
 	stwu     r1, -0x10(r1)
 	mflr     r0
@@ -1117,102 +1152,44 @@ lbl_803D1B10:
  * Address:	803D1B30
  * Size:	00002C
  */
-void CardError::FSMState::init(ebi::CardError::TMgr*, Game::StateArg*)
-{
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x20(r12)
-	mtctr    r12
-	bctrl
-	lwz      r0, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
-}
+void FSMState::init(TMgr* mgr, Game::StateArg* arg) { do_init(mgr, arg); }
 
 /*
  * --INFO--
  * Address:	803D1B5C
  * Size:	000004
  */
-void CardError::FSMState::do_init(ebi::CardError::TMgr*, Game::StateArg*) { }
+void FSMState::do_init(TMgr*, Game::StateArg*) { }
 
 /*
  * --INFO--
  * Address:	803D1B60
  * Size:	00002C
  */
-void CardError::FSMState::exec(ebi::CardError::TMgr*)
-{
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x24(r12)
-	mtctr    r12
-	bctrl
-	lwz      r0, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
-}
+void FSMState::exec(TMgr* mgr) { do_exec(mgr); }
 
 /*
  * --INFO--
  * Address:	803D1B8C
  * Size:	000004
  */
-void CardError::FSMState::do_exec(ebi::CardError::TMgr*) { }
+void FSMState::do_exec(TMgr*) { }
 
 /*
  * --INFO--
  * Address:	803D1B90
  * Size:	000084
  */
-void CardError::FSMState_Warning::do_init(ebi::CardError::TMgr*, Game::StateArg*)
+void FSMState_Warning::do_init(TMgr* mgr, Game::StateArg*)
 {
-	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  lfs       f1, 0x1768(r2)
-	  stw       r0, 0x14(r1)
-	  li        r0, 0
-	  stw       r31, 0xC(r1)
-	  mr        r31, r4
-	  stw       r30, 0x8(r1)
-	  mr        r30, r3
-	  stb       r0, 0x11(r3)
-	  stb       r0, 0x10(r3)
-	  lwz       r3, -0x6514(r13)
-	  lfs       f0, 0x54(r3)
-	  fdivs     f1, f1, f0
-	  bl        -0x31007C
-	  stw       r3, 0x298(r31)
-	  li        r5, 0
-	  li        r0, 0x1
-	  mr        r4, r31
-	  stw       r3, 0x29C(r31)
-	  mr        r3, r30
-	  stb       r5, 0x12(r30)
-	  stb       r0, 0x19(r31)
-	  lwz       r12, 0x0(r30)
-	  lwz       r12, 0x28(r12)
-	  mtctr     r12
-	  bctrl
-	  lwz       r0, 0x14(r1)
-	  lwz       r31, 0xC(r1)
-	  lwz       r30, 0x8(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
-	*/
+	m_isClosed     = false;
+	m_canClose     = false;
+	u32 rate       = 0.0f / sys->m_deltaTime;
+	mgr->m_counter = rate;
+	mgr->_29C      = rate;
+	m_doCheckCard  = false;
+	mgr->m_canExit = true;
+	do_open(mgr);
 }
 
 /*
@@ -1220,57 +1197,20 @@ void CardError::FSMState_Warning::do_init(ebi::CardError::TMgr*, Game::StateArg*
  * Address:	803D1C14
  * Size:	0000A4
  */
-void CardError::FSMState_Warning::do_exec(ebi::CardError::TMgr*)
+void FSMState_Warning::do_exec(TMgr* mgr)
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	mr       r31, r4
-	stw      r30, 8(r1)
-	mr       r30, r3
-	lbz      r0, 0x12(r3)
-	cmplwi   r0, 0
-	beq      lbl_803D1C44
-	mr       r3, r31
-	bl       checkAndTransitNoCard___Q33ebi9CardError4TMgrFv
+	if (m_doCheckCard) {
+		mgr->checkAndTransitNoCard_();
+	}
 
-lbl_803D1C44:
-	lwz      r0, 0x298(r31)
-	cmplwi   r0, 0
-	bne      lbl_803D1C78
-	lbz      r0, 0x10(r30)
-	cmplwi   r0, 0
-	beq      lbl_803D1C78
-	lbz      r0, 0x11(r30)
-	cmplwi   r0, 0
-	bne      lbl_803D1C78
-	mr       r3, r31
-	bl       close__Q33ebi6Screen11TMemoryCardFv
-	li       r0, 1
-	stb      r0, 0x11(r30)
+	if (!mgr->m_counter && m_canClose && !m_isClosed) {
+		mgr->close();
+		m_isClosed = true;
+	}
 
-lbl_803D1C78:
-	mr       r3, r31
-	bl       isFinish__Q33ebi6Screen11TMemoryCardFv
-	clrlwi.  r0, r3, 0x18
-	beq      lbl_803D1CA0
-	mr       r3, r30
-	mr       r4, r31
-	lwz      r12, 0(r30)
-	lwz      r12, 0x2c(r12)
-	mtctr    r12
-	bctrl
-
-lbl_803D1CA0:
-	lwz      r0, 0x14(r1)
-	lwz      r31, 0xc(r1)
-	lwz      r30, 8(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	if (mgr->TMemoryCard::isFinish()) {
+		do_transit(mgr);
+	}
 }
 
 /*
@@ -1278,26 +1218,11 @@ lbl_803D1CA0:
  * Address:	803D1CB8
  * Size:	00003C
  */
-void CardError::FSMState_Question::do_init(ebi::CardError::TMgr*, Game::StateArg*)
+void FSMState_Question::do_init(TMgr* mgr, Game::StateArg*)
 {
-	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  li        r5, 0
-	  stw       r0, 0x14(r1)
-	  li        r0, 0x1
-	  stb       r5, 0x10(r3)
-	  stb       r0, 0x19(r4)
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0x28(r12)
-	  mtctr     r12
-	  bctrl
-	  lwz       r0, 0x14(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
-	*/
+	m_doCheckCard  = false;
+	mgr->m_canExit = true;
+	do_open(mgr);
 }
 
 /*
@@ -1305,54 +1230,19 @@ void CardError::FSMState_Question::do_init(ebi::CardError::TMgr*, Game::StateArg
  * Address:	803D1CF4
  * Size:	000098
  */
-void CardError::FSMState_Question::do_exec(ebi::CardError::TMgr*)
+void FSMState_Question::do_exec(TMgr* mgr)
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	mr       r31, r4
-	stw      r30, 8(r1)
-	mr       r30, r3
-	lbz      r0, 0x10(r3)
-	cmplwi   r0, 0
-	beq      lbl_803D1D24
-	mr       r3, r31
-	bl       checkAndTransitNoCard___Q33ebi9CardError4TMgrFv
+	if (m_doCheckCard) {
+		mgr->checkAndTransitNoCard_();
+	}
 
-lbl_803D1D24:
-	mr       r3, r31
-	bl       isFinish__Q33ebi6Screen11TMemoryCardFv
-	clrlwi.  r0, r3, 0x18
-	beq      lbl_803D1D74
-	lbz      r0, 0x18(r31)
-	cmplwi   r0, 1
-	bne      lbl_803D1D5C
-	mr       r3, r30
-	mr       r4, r31
-	lwz      r12, 0(r30)
-	lwz      r12, 0x2c(r12)
-	mtctr    r12
-	bctrl
-	b        lbl_803D1D74
-
-lbl_803D1D5C:
-	mr       r3, r30
-	mr       r4, r31
-	lwz      r12, 0(r30)
-	lwz      r12, 0x30(r12)
-	mtctr    r12
-	bctrl
-
-lbl_803D1D74:
-	lwz      r0, 0x14(r1)
-	lwz      r31, 0xc(r1)
-	lwz      r30, 8(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	if (mgr->TMemoryCard::isFinish()) {
+		if (mgr->m_currSel == 1) {
+			do_transitYes(mgr);
+		} else {
+			do_transitNo(mgr);
+		}
+	}
 }
 
 /*
@@ -1360,40 +1250,14 @@ lbl_803D1D74:
  * Address:	803D1D8C
  * Size:	000074
  */
-void CardError::FSMState_CardRequest::do_init(ebi::CardError::TMgr*, Game::StateArg*)
+void FSMState_CardRequest::do_init(TMgr* mgr, Game::StateArg*)
 {
-	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  lfs       f1, 0x176C(r2)
-	  stw       r0, 0x14(r1)
-	  li        r0, 0
-	  stw       r31, 0xC(r1)
-	  mr        r31, r4
-	  stw       r30, 0x8(r1)
-	  mr        r30, r3
-	  stb       r0, 0x19(r4)
-	  stw       r0, 0x10(r3)
-	  lwz       r3, -0x6514(r13)
-	  lfs       f0, 0x54(r3)
-	  fdivs     f1, f1, f0
-	  bl        -0x310278
-	  stw       r3, 0x298(r31)
-	  mr        r4, r31
-	  stw       r3, 0x29C(r31)
-	  mr        r3, r30
-	  lwz       r12, 0x0(r30)
-	  lwz       r12, 0x28(r12)
-	  mtctr     r12
-	  bctrl
-	  lwz       r0, 0x14(r1)
-	  lwz       r31, 0xC(r1)
-	  lwz       r30, 0x8(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
-	*/
+	mgr->m_canExit = false;
+	m_state        = 0;
+	u32 rate       = 3.0f / sys->m_deltaTime;
+	mgr->m_counter = rate;
+	mgr->_29C      = rate;
+	do_open(mgr);
 }
 
 /*
@@ -1401,8 +1265,90 @@ void CardError::FSMState_CardRequest::do_init(ebi::CardError::TMgr*, Game::State
  * Address:	803D1E00
  * Size:	000350
  */
-void CardError::FSMState_CardRequest::do_exec(ebi::CardError::TMgr*)
+void FSMState_CardRequest::do_exec(TMgr* mgr)
 {
+	// should be offset a8 but the struct is not there
+	bool check = (sys->m_cardMgr->_D8 == 0) && (sys->m_cardMgr->checkStatus() != 11);
+
+	if (check && (int)static_cast<Game::MemoryCard::Mgr*>(sys->m_cardMgr)->getCardStatus() == 0) {
+		check = true;
+	} else {
+		check = false;
+	}
+
+	if (check) {
+		m_cardStatus = static_cast<Game::MemoryCard::Mgr*>(sys->m_cardMgr)->getCardStatus();
+		mgr->close();
+	}
+
+	switch (m_state) // todo: enums for both of these switches
+	{
+	case 0:
+		bool check2 = (sys->m_cardMgr->_04) && (sys->m_cardMgr->checkStatus() != 11);
+		if (check2) {
+			if (do_cardRequest()) {
+				JUT_PANICLINE(191, "P2ASSERT");
+			} else {
+				m_state = 1;
+			}
+		}
+		break;
+	case 1:
+		bool check3 = (sys->m_cardMgr->_04) && (sys->m_cardMgr->checkStatus() != 11);
+		if (check3) {
+			m_cardStatus = (int)static_cast<Game::MemoryCard::Mgr*>(sys->m_cardMgr)->getCardStatus();
+			if (m_cardStatus != 2) {
+				static_cast<Game::MemoryCard::Mgr*>(sys->m_cardMgr)->getCardStatus();
+			}
+			m_state = 2;
+		}
+		break;
+	case 2:
+		if (!mgr->m_counter) {
+			mgr->close();
+		}
+		if (mgr->TMemoryCard::isFinish()) {
+			mgr->m_canExit = true;
+			switch (m_cardStatus) {
+			case 0:
+				do_transitCardNoCard(mgr);
+				break;
+			case 1:
+				do_transitCardFileOpenError(mgr);
+				break;
+			case 2:
+				do_transitCardReady(mgr);
+				break;
+			case 3:
+				do_transitCardBroken(mgr);
+				break;
+			case 4:
+				do_transitCardEncoding(mgr);
+				break;
+			case 5:
+				do_transitCardIOError(mgr);
+				break;
+			case 6:
+				do_transitCardWrongDevice(mgr);
+				break;
+			case 7:
+				do_transitCardWrongSector(mgr);
+				break;
+			case 8:
+				do_transitCardNoFileSpace(mgr);
+				break;
+			case 9:
+				do_transitCardNoFileEntry(mgr);
+				break;
+			case 14:
+				do_transitCardSerialNoError(mgr);
+				break;
+			default:
+				JUT_PANICLINE(266, "P2ASSERT");
+				break;
+			}
+		}
+	}
 	/*
 	stwu     r1, -0x20(r1)
 	mflr     r0
@@ -1688,40 +1634,13 @@ lbl_803D2134:
  * Address:	803D2150
  * Size:	000064
  */
-void CardError::FSMState_CardRequest::do_transitCardNoCard((ebi::CardError::TMgr*))
+void FSMState_CardRequest::do_transitCardNoCard(TMgr* mgr)
 {
-	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  stw       r0, 0x14(r1)
-	  lwz       r0, 0x2A4(r4)
-	  cmpwi     r0, 0
-	  bne-      .loc_0x34
-	  lwz       r12, 0x0(r3)
-	  li        r5, 0x2
-	  li        r6, 0
-	  lwz       r12, 0x1C(r12)
-	  mtctr     r12
-	  bctrl
-	  b         .loc_0x54
-
-	.loc_0x34:
-	  cmpwi     r0, 0x1
-	  bne-      .loc_0x54
-	  lwz       r12, 0x0(r3)
-	  li        r5, 0x2
-	  li        r6, 0
-	  lwz       r12, 0x1C(r12)
-	  mtctr     r12
-	  bctrl
-
-	.loc_0x54:
-	  lwz       r0, 0x14(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
-	*/
+	if (!mgr->m_isBroken) {
+		transit(mgr, CARDERROR_NoCard, nullptr);
+	} else if (mgr->m_isBroken == 1) {
+		transit(mgr, CARDERROR_NoCard, nullptr);
+	}
 }
 
 /*
@@ -1729,64 +1648,37 @@ void CardError::FSMState_CardRequest::do_transitCardNoCard((ebi::CardError::TMgr
  * Address:	803D21B4
  * Size:	000030
  */
-void transit__Q24Game31FSMState<ebi::CardError::TMgr> FPQ33ebi9CardError4TMgriPQ24Game8StateArg(void)
-{
-	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  stw       r0, 0x14(r1)
-	  lwz       r3, 0x8(r3)
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0x14(r12)
-	  mtctr     r12
-	  bctrl
-	  lwz       r0, 0x14(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
-	*/
-}
+// void Game::FSMState<ebi::CardError::TMgr>::transit(ebi::CardError::TMgr*, int, Game::StateArg*)
+//{
+/*
+.loc_0x0:
+  stwu      r1, -0x10(r1)
+  mflr      r0
+  stw       r0, 0x14(r1)
+  lwz       r3, 0x8(r3)
+  lwz       r12, 0x0(r3)
+  lwz       r12, 0x14(r12)
+  mtctr     r12
+  bctrl
+  lwz       r0, 0x14(r1)
+  mtlr      r0
+  addi      r1, r1, 0x10
+  blr
+*/
+//}
 
 /*
  * --INFO--
  * Address:	803D21E4
  * Size:	000064
  */
-void CardError::FSMState_CardRequest::do_transitCardIOError((ebi::CardError::TMgr*))
+void FSMState_CardRequest::do_transitCardIOError(TMgr* mgr)
 {
-	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  stw       r0, 0x14(r1)
-	  lwz       r0, 0x2A4(r4)
-	  cmpwi     r0, 0
-	  bne-      .loc_0x34
-	  lwz       r12, 0x0(r3)
-	  li        r5, 0x3
-	  li        r6, 0
-	  lwz       r12, 0x1C(r12)
-	  mtctr     r12
-	  bctrl
-	  b         .loc_0x54
-
-	.loc_0x34:
-	  cmpwi     r0, 0x1
-	  bne-      .loc_0x54
-	  lwz       r12, 0x0(r3)
-	  li        r5, 0x3
-	  li        r6, 0
-	  lwz       r12, 0x1C(r12)
-	  mtctr     r12
-	  bctrl
-
-	.loc_0x54:
-	  lwz       r0, 0x14(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
-	*/
+	if (!mgr->m_isBroken) {
+		transit(mgr, CARDERROR_IOError, nullptr);
+	} else if (mgr->m_isBroken == 1) {
+		transit(mgr, CARDERROR_IOError, nullptr);
+	}
 }
 
 /*
@@ -1794,40 +1686,13 @@ void CardError::FSMState_CardRequest::do_transitCardIOError((ebi::CardError::TMg
  * Address:	803D2248
  * Size:	000064
  */
-void CardError::FSMState_CardRequest::do_transitCardWrongDevice((ebi::CardError::TMgr*))
+void FSMState_CardRequest::do_transitCardWrongDevice(TMgr* mgr)
 {
-	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  stw       r0, 0x14(r1)
-	  lwz       r0, 0x2A4(r4)
-	  cmpwi     r0, 0
-	  bne-      .loc_0x34
-	  lwz       r12, 0x0(r3)
-	  li        r5, 0x4
-	  li        r6, 0
-	  lwz       r12, 0x1C(r12)
-	  mtctr     r12
-	  bctrl
-	  b         .loc_0x54
-
-	.loc_0x34:
-	  cmpwi     r0, 0x1
-	  bne-      .loc_0x54
-	  lwz       r12, 0x0(r3)
-	  li        r5, 0x4
-	  li        r6, 0
-	  lwz       r12, 0x1C(r12)
-	  mtctr     r12
-	  bctrl
-
-	.loc_0x54:
-	  lwz       r0, 0x14(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
-	*/
+	if (!mgr->m_isBroken) {
+		transit(mgr, CARDERROR_WrongDevice, nullptr);
+	} else if (mgr->m_isBroken == 1) {
+		transit(mgr, CARDERROR_WrongDevice, nullptr);
+	}
 }
 
 /*
@@ -1835,40 +1700,13 @@ void CardError::FSMState_CardRequest::do_transitCardWrongDevice((ebi::CardError:
  * Address:	803D22AC
  * Size:	000064
  */
-void CardError::FSMState_CardRequest::do_transitCardWrongSector((ebi::CardError::TMgr*))
+void FSMState_CardRequest::do_transitCardWrongSector(TMgr* mgr)
 {
-	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  stw       r0, 0x14(r1)
-	  lwz       r0, 0x2A4(r4)
-	  cmpwi     r0, 0
-	  bne-      .loc_0x34
-	  lwz       r12, 0x0(r3)
-	  li        r5, 0x5
-	  li        r6, 0
-	  lwz       r12, 0x1C(r12)
-	  mtctr     r12
-	  bctrl
-	  b         .loc_0x54
-
-	.loc_0x34:
-	  cmpwi     r0, 0x1
-	  bne-      .loc_0x54
-	  lwz       r12, 0x0(r3)
-	  li        r5, 0x5
-	  li        r6, 0
-	  lwz       r12, 0x1C(r12)
-	  mtctr     r12
-	  bctrl
-
-	.loc_0x54:
-	  lwz       r0, 0x14(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
-	*/
+	if (!mgr->m_isBroken) {
+		transit(mgr, CARDERROR_WrongSector, nullptr);
+	} else if (mgr->m_isBroken == 1) {
+		transit(mgr, CARDERROR_WrongSector, nullptr);
+	}
 }
 
 /*
@@ -1876,40 +1714,13 @@ void CardError::FSMState_CardRequest::do_transitCardWrongSector((ebi::CardError:
  * Address:	803D2310
  * Size:	000064
  */
-void CardError::FSMState_CardRequest::do_transitCardBroken((ebi::CardError::TMgr*))
+void FSMState_CardRequest::do_transitCardBroken(TMgr* mgr)
 {
-	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  stw       r0, 0x14(r1)
-	  lwz       r0, 0x2A4(r4)
-	  cmpwi     r0, 0
-	  bne-      .loc_0x34
-	  lwz       r12, 0x0(r3)
-	  li        r5, 0x13
-	  li        r6, 0
-	  lwz       r12, 0x1C(r12)
-	  mtctr     r12
-	  bctrl
-	  b         .loc_0x54
-
-	.loc_0x34:
-	  cmpwi     r0, 0x1
-	  bne-      .loc_0x54
-	  lwz       r12, 0x0(r3)
-	  li        r5, 0x13
-	  li        r6, 0
-	  lwz       r12, 0x1C(r12)
-	  mtctr     r12
-	  bctrl
-
-	.loc_0x54:
-	  lwz       r0, 0x14(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
-	*/
+	if (!mgr->m_isBroken) {
+		transit(mgr, CARDERROR_DataBrokenAndDoYouFormat, nullptr);
+	} else if (mgr->m_isBroken == 1) {
+		transit(mgr, CARDERROR_DataBrokenAndDoYouFormat, nullptr);
+	}
 }
 
 /*
@@ -1917,40 +1728,13 @@ void CardError::FSMState_CardRequest::do_transitCardBroken((ebi::CardError::TMgr
  * Address:	803D2374
  * Size:	000064
  */
-void CardError::FSMState_CardRequest::do_transitCardEncoding((ebi::CardError::TMgr*))
+void FSMState_CardRequest::do_transitCardEncoding(TMgr* mgr)
 {
-	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  stw       r0, 0x14(r1)
-	  lwz       r0, 0x2A4(r4)
-	  cmpwi     r0, 0
-	  bne-      .loc_0x34
-	  lwz       r12, 0x0(r3)
-	  li        r5, 0x13
-	  li        r6, 0
-	  lwz       r12, 0x1C(r12)
-	  mtctr     r12
-	  bctrl
-	  b         .loc_0x54
-
-	.loc_0x34:
-	  cmpwi     r0, 0x1
-	  bne-      .loc_0x54
-	  lwz       r12, 0x0(r3)
-	  li        r5, 0x13
-	  li        r6, 0
-	  lwz       r12, 0x1C(r12)
-	  mtctr     r12
-	  bctrl
-
-	.loc_0x54:
-	  lwz       r0, 0x14(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
-	*/
+	if (!mgr->m_isBroken) {
+		transit(mgr, CARDERROR_DataBrokenAndDoYouFormat, nullptr);
+	} else if (mgr->m_isBroken == 1) {
+		transit(mgr, CARDERROR_DataBrokenAndDoYouFormat, nullptr);
+	}
 }
 
 /*
@@ -1958,40 +1742,13 @@ void CardError::FSMState_CardRequest::do_transitCardEncoding((ebi::CardError::TM
  * Address:	803D23D8
  * Size:	000064
  */
-void CardError::FSMState_CardRequest::do_transitCardNoFileSpace((ebi::CardError::TMgr*))
+void FSMState_CardRequest::do_transitCardNoFileSpace(TMgr* mgr)
 {
-	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  stw       r0, 0x14(r1)
-	  lwz       r0, 0x2A4(r4)
-	  cmpwi     r0, 0
-	  bne-      .loc_0x34
-	  lwz       r12, 0x0(r3)
-	  li        r5, 0x6
-	  li        r6, 0
-	  lwz       r12, 0x1C(r12)
-	  mtctr     r12
-	  bctrl
-	  b         .loc_0x54
-
-	.loc_0x34:
-	  cmpwi     r0, 0x1
-	  bne-      .loc_0x54
-	  lwz       r12, 0x0(r3)
-	  li        r5, 0x6
-	  li        r6, 0
-	  lwz       r12, 0x1C(r12)
-	  mtctr     r12
-	  bctrl
-
-	.loc_0x54:
-	  lwz       r0, 0x14(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
-	*/
+	if (!mgr->m_isBroken) {
+		transit(mgr, CARDERROR_OverCapacity, nullptr);
+	} else if (mgr->m_isBroken == 1) {
+		transit(mgr, CARDERROR_OverCapacity, nullptr);
+	}
 }
 
 /*
@@ -1999,40 +1756,13 @@ void CardError::FSMState_CardRequest::do_transitCardNoFileSpace((ebi::CardError:
  * Address:	803D243C
  * Size:	000064
  */
-void CardError::FSMState_CardRequest::do_transitCardNoFileEntry((ebi::CardError::TMgr*))
+void FSMState_CardRequest::do_transitCardNoFileEntry(TMgr* mgr)
 {
-	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  stw       r0, 0x14(r1)
-	  lwz       r0, 0x2A4(r4)
-	  cmpwi     r0, 0
-	  bne-      .loc_0x34
-	  lwz       r12, 0x0(r3)
-	  li        r5, 0x6
-	  li        r6, 0
-	  lwz       r12, 0x1C(r12)
-	  mtctr     r12
-	  bctrl
-	  b         .loc_0x54
-
-	.loc_0x34:
-	  cmpwi     r0, 0x1
-	  bne-      .loc_0x54
-	  lwz       r12, 0x0(r3)
-	  li        r5, 0x6
-	  li        r6, 0
-	  lwz       r12, 0x1C(r12)
-	  mtctr     r12
-	  bctrl
-
-	.loc_0x54:
-	  lwz       r0, 0x14(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
-	*/
+	if (!mgr->m_isBroken) {
+		transit(mgr, CARDERROR_OverCapacity, nullptr);
+	} else if (mgr->m_isBroken == 1) {
+		transit(mgr, CARDERROR_OverCapacity, nullptr);
+	}
 }
 
 /*
@@ -2040,40 +1770,13 @@ void CardError::FSMState_CardRequest::do_transitCardNoFileEntry((ebi::CardError:
  * Address:	803D24A0
  * Size:	000064
  */
-void CardError::FSMState_CardRequest::do_transitCardFileOpenError((ebi::CardError::TMgr*))
+void FSMState_CardRequest::do_transitCardFileOpenError(TMgr* mgr)
 {
-	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  stw       r0, 0x14(r1)
-	  lwz       r0, 0x2A4(r4)
-	  cmpwi     r0, 0
-	  bne-      .loc_0x34
-	  lwz       r12, 0x0(r3)
-	  li        r5, 0x16
-	  li        r6, 0
-	  lwz       r12, 0x1C(r12)
-	  mtctr     r12
-	  bctrl
-	  b         .loc_0x54
-
-	.loc_0x34:
-	  cmpwi     r0, 0x1
-	  bne-      .loc_0x54
-	  lwz       r12, 0x0(r3)
-	  li        r5, 0x16
-	  li        r6, 0
-	  lwz       r12, 0x1C(r12)
-	  mtctr     r12
-	  bctrl
-
-	.loc_0x54:
-	  lwz       r0, 0x14(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
-	*/
+	if (!mgr->m_isBroken) {
+		transit(mgr, CARDERROR_DoYouCreateNewFile, nullptr);
+	} else if (mgr->m_isBroken == 1) {
+		transit(mgr, CARDERROR_DoYouCreateNewFile, nullptr);
+	}
 }
 
 /*
@@ -2081,41 +1784,13 @@ void CardError::FSMState_CardRequest::do_transitCardFileOpenError((ebi::CardErro
  * Address:	803D2504
  * Size:	000068
  */
-void CardError::FSMState_CardRequest::do_transitCardSerialNoError((ebi::CardError::TMgr*))
+void FSMState_CardRequest::do_transitCardSerialNoError(TMgr* mgr)
 {
-	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  stw       r0, 0x14(r1)
-	  lwz       r0, 0x2A4(r4)
-	  cmpwi     r0, 0
-	  bne-      .loc_0x38
-	  lis       r3, 0x8049
-	  lis       r5, 0x8049
-	  addi      r3, r3, 0x68DC
-	  li        r4, 0x169
-	  addi      r5, r5, 0x68EC
-	  crclr     6, 0x6
-	  bl        -0x3A7EF4
-	  b         .loc_0x58
-
-	.loc_0x38:
-	  cmpwi     r0, 0x1
-	  bne-      .loc_0x58
-	  lwz       r12, 0x0(r3)
-	  li        r5, 0xC
-	  li        r6, 0
-	  lwz       r12, 0x1C(r12)
-	  mtctr     r12
-	  bctrl
-
-	.loc_0x58:
-	  lwz       r0, 0x14(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
-	*/
+	if (!mgr->m_isBroken) {
+		JUT_PANICLINE(361, "P2ASSERT");
+	} else if (mgr->m_isBroken == 1) {
+		transit(mgr, CARDERROR_SerialNoError, nullptr);
+	}
 }
 
 /*
@@ -2123,23 +1798,10 @@ void CardError::FSMState_CardRequest::do_transitCardSerialNoError((ebi::CardErro
  * Address:	803D256C
  * Size:	000034
  */
-void CardError::FSMState_NoCard::do_init(ebi::CardError::TMgr*, Game::StateArg*)
+void FSMState_NoCard::do_init(TMgr* mgr, Game::StateArg*)
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	li       r0, 0
-	stb      r0, 0x10(r3)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x28(r12)
-	mtctr    r12
-	bctrl
-	lwz      r0, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	m_isClosed = false;
+	do_open(mgr);
 }
 
 /*
@@ -2147,8 +1809,21 @@ void CardError::FSMState_NoCard::do_init(ebi::CardError::TMgr*, Game::StateArg*)
  * Address:	803D25A0
  * Size:	0000B0
  */
-void CardError::FSMState_NoCard::do_exec(ebi::CardError::TMgr*)
+void FSMState_NoCard::do_exec(TMgr* mgr)
 {
+	u8 stat = static_cast<Game::MemoryCard::Mgr*>(sys->m_cardMgr)->getCardStatus() == 0;
+	if (stat) {
+		mgr->close();
+		m_isClosed = true;
+	}
+
+	if (mgr->TMemoryCard::isFinish()) {
+		if (m_isClosed) {
+			do_transitOnCard(mgr);
+		} else {
+			do_transit(mgr);
+		}
+	}
 	/*
 	stwu     r1, -0x10(r1)
 	mflr     r0
@@ -2208,8 +1883,12 @@ lbl_803D2638:
  * Address:	803D2650
  * Size:	000094
  */
-CardError::TMgr::TMgr(void)
+TMgr::TMgr()
 {
+	m_counter = 0;
+	_29C      = 0;
+	m_stateMachine.init(this);
+	m_stateMachine.start(this, CARDERROR_Standby, nullptr);
 	/*
 	stwu     r1, -0x10(r1)
 	mflr     r0
@@ -2256,25 +1935,13 @@ CardError::TMgr::TMgr(void)
  * Address:	803D26E4
  * Size:	000034
  */
-void start__Q24Game35StateMachine<ebi::CardError::TMgr> FPQ33ebi9CardError4TMgriPQ24Game8StateArg(void)
+void Game::StateMachine<ebi::CardError::TMgr>::start(ebi::CardError::TMgr* mgr, int id, Game::StateArg* arg)
 {
-	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  stw       r0, 0x14(r1)
-	  li        r0, 0
-	  stw       r0, 0x2C4(r4)
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0x14(r12)
-	  mtctr     r12
-	  bctrl
-	  lwz       r0, 0x14(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
-	*/
+	mgr->m_currentState = nullptr;
+	transit(mgr, id, arg);
 }
+
+} // namespace CardError
 
 namespace Screen {
 
@@ -2283,7 +1950,7 @@ namespace Screen {
  * Address:	803D2718
  * Size:	000460
  */
-TMemoryCard::~TMemoryCard(void)
+TMemoryCard::~TMemoryCard()
 {
 	/*
 stwu     r1, -0x10(r1)
@@ -2606,7 +2273,7 @@ blr
  * Address:	803D2B78
  * Size:	0004C8
  */
-TMemoryCard::TMemoryCard(void)
+TMemoryCard::TMemoryCard()
 {
 	/*
 stwu     r1, -0x20(r1)
@@ -2923,301 +2590,95 @@ blr
  * Address:	........
  * Size:	0000A0
  */
-TYesNoCursor::~TYesNoCursor(void)
-{
-	// UNUSED FUNCTION
-}
+// TYesNoCursor::~TYesNoCursor()
+//{
+// UNUSED FUNCTION
+//}
 
 } // namespace Screen
+
+namespace CardError {
 
 /*
  * --INFO--
  * Address:	803D3040
  * Size:	000378
  */
-void CardError::TMgr::startSeq(ebi::CardError::TMgr::enumStart)
+void TMgr::startSeq(enumStart id)
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	li       r0, 0
-	stw      r31, 0xc(r1)
-	mr       r31, r3
-	stw      r30, 8(r1)
-	or.      r30, r4, r4
-	stw      r0, 0x2a0(r3)
-	blt      lbl_803D3074
-	cmpwi    r30, 0x11
-	bge      lbl_803D3074
-	li       r0, 1
-
-lbl_803D3074:
-	clrlwi.  r0, r0, 0x18
-	bne      lbl_803D3098
-	lis      r3, lbl_804968DC@ha
-	lis      r5, lbl_804968EC@ha
-	addi     r3, r3, lbl_804968DC@l
-	li       r4, 0x19c
-	addi     r5, r5, lbl_804968EC@l
-	crclr    6
-	bl       panic_f__12JUTExceptionFPCciPCce
-
-lbl_803D3098:
-	cmplwi   r30, 0x10
-	bgt      lbl_803D33A0
-	lis      r3, lbl_804E8ADC@ha
-	slwi     r0, r30, 2
-	addi     r3, r3, lbl_804E8ADC@l
-	lwzx     r0, r3, r0
-	mtctr    r0
-	bctr
-	.global  lbl_803D30B8
-
-lbl_803D30B8:
-	li       r0, 0
-	addi     r3, r31, 0x2a8
-	stw      r0, 0x2a4(r31)
-	mr       r4, r31
-	li       r5, 2
-	li       r6, 0
-	lwz      r12, 0x2a8(r31)
-	lwz      r12, 0xc(r12)
-	mtctr    r12
-	bctrl
-	b        lbl_803D33A0
-	.global  lbl_803D30E4
-
-lbl_803D30E4:
-	li       r0, 0
-	addi     r3, r31, 0x2a8
-	stw      r0, 0x2a4(r31)
-	mr       r4, r31
-	li       r5, 3
-	li       r6, 0
-	lwz      r12, 0x2a8(r31)
-	lwz      r12, 0xc(r12)
-	mtctr    r12
-	bctrl
-	b        lbl_803D33A0
-	.global  lbl_803D3110
-
-lbl_803D3110:
-	li       r0, 0
-	addi     r3, r31, 0x2a8
-	stw      r0, 0x2a4(r31)
-	mr       r4, r31
-	li       r5, 4
-	li       r6, 0
-	lwz      r12, 0x2a8(r31)
-	lwz      r12, 0xc(r12)
-	mtctr    r12
-	bctrl
-	b        lbl_803D33A0
-	.global  lbl_803D313C
-
-lbl_803D313C:
-	li       r0, 0
-	addi     r3, r31, 0x2a8
-	stw      r0, 0x2a4(r31)
-	mr       r4, r31
-	li       r5, 5
-	li       r6, 0
-	lwz      r12, 0x2a8(r31)
-	lwz      r12, 0xc(r12)
-	mtctr    r12
-	bctrl
-	b        lbl_803D33A0
-	.global  lbl_803D3168
-
-lbl_803D3168:
-	li       r0, 0
-	addi     r3, r31, 0x2a8
-	stw      r0, 0x2a4(r31)
-	mr       r4, r31
-	li       r5, 0x13
-	li       r6, 0
-	lwz      r12, 0x2a8(r31)
-	lwz      r12, 0xc(r12)
-	mtctr    r12
-	bctrl
-	b        lbl_803D33A0
-	.global  lbl_803D3194
-
-lbl_803D3194:
-	li       r0, 0
-	addi     r3, r31, 0x2a8
-	stw      r0, 0x2a4(r31)
-	mr       r4, r31
-	li       r5, 6
-	li       r6, 0
-	lwz      r12, 0x2a8(r31)
-	lwz      r12, 0xc(r12)
-	mtctr    r12
-	bctrl
-	b        lbl_803D33A0
-	.global  lbl_803D31C0
-
-lbl_803D31C0:
-	li       r0, 0
-	addi     r3, r31, 0x2a8
-	stw      r0, 0x2a4(r31)
-	mr       r4, r31
-	li       r5, 0x16
-	li       r6, 0
-	lwz      r12, 0x2a8(r31)
-	lwz      r12, 0xc(r12)
-	mtctr    r12
-	bctrl
-	b        lbl_803D33A0
-	.global  lbl_803D31EC
-
-lbl_803D31EC:
-	li       r0, 1
-	addi     r3, r31, 0x2a8
-	stw      r0, 0x2a4(r31)
-	mr       r4, r31
-	li       r5, 2
-	li       r6, 0
-	lwz      r12, 0x2a8(r31)
-	lwz      r12, 0xc(r12)
-	mtctr    r12
-	bctrl
-	b        lbl_803D33A0
-	.global  lbl_803D3218
-
-lbl_803D3218:
-	li       r0, 1
-	addi     r3, r31, 0x2a8
-	stw      r0, 0x2a4(r31)
-	mr       r4, r31
-	li       r5, 3
-	li       r6, 0
-	lwz      r12, 0x2a8(r31)
-	lwz      r12, 0xc(r12)
-	mtctr    r12
-	bctrl
-	b        lbl_803D33A0
-	.global  lbl_803D3244
-
-lbl_803D3244:
-	li       r0, 1
-	addi     r3, r31, 0x2a8
-	stw      r0, 0x2a4(r31)
-	mr       r4, r31
-	li       r5, 4
-	li       r6, 0
-	lwz      r12, 0x2a8(r31)
-	lwz      r12, 0xc(r12)
-	mtctr    r12
-	bctrl
-	b        lbl_803D33A0
-	.global  lbl_803D3270
-
-lbl_803D3270:
-	li       r0, 1
-	addi     r3, r31, 0x2a8
-	stw      r0, 0x2a4(r31)
-	mr       r4, r31
-	li       r5, 5
-	li       r6, 0
-	lwz      r12, 0x2a8(r31)
-	lwz      r12, 0xc(r12)
-	mtctr    r12
-	bctrl
-	b        lbl_803D33A0
-	.global  lbl_803D329C
-
-lbl_803D329C:
-	li       r0, 1
-	addi     r3, r31, 0x2a8
-	stw      r0, 0x2a4(r31)
-	mr       r4, r31
-	li       r5, 0x13
-	li       r6, 0
-	lwz      r12, 0x2a8(r31)
-	lwz      r12, 0xc(r12)
-	mtctr    r12
-	bctrl
-	b        lbl_803D33A0
-	.global  lbl_803D32C8
-
-lbl_803D32C8:
-	li       r0, 1
-	addi     r3, r31, 0x2a8
-	stw      r0, 0x2a4(r31)
-	mr       r4, r31
-	li       r5, 6
-	li       r6, 0
-	lwz      r12, 0x2a8(r31)
-	lwz      r12, 0xc(r12)
-	mtctr    r12
-	bctrl
-	b        lbl_803D33A0
-	.global  lbl_803D32F4
-
-lbl_803D32F4:
-	li       r0, 1
-	addi     r3, r31, 0x2a8
-	stw      r0, 0x2a4(r31)
-	mr       r4, r31
-	li       r5, 0x16
-	li       r6, 0
-	lwz      r12, 0x2a8(r31)
-	lwz      r12, 0xc(r12)
-	mtctr    r12
-	bctrl
-	b        lbl_803D33A0
-	.global  lbl_803D3320
-
-lbl_803D3320:
-	li       r0, 1
-	addi     r3, r31, 0x2a8
-	stw      r0, 0x2a4(r31)
-	mr       r4, r31
-	li       r5, 0xc
-	li       r6, 0
-	lwz      r12, 0x2a8(r31)
-	lwz      r12, 0xc(r12)
-	mtctr    r12
-	bctrl
-	b        lbl_803D33A0
-	.global  lbl_803D334C
-
-lbl_803D334C:
-	li       r0, 1
-	addi     r3, r31, 0x2a8
-	stw      r0, 0x2a4(r31)
-	mr       r4, r31
-	li       r5, 0x11
-	li       r6, 0
-	lwz      r12, 0x2a8(r31)
-	lwz      r12, 0xc(r12)
-	mtctr    r12
-	bctrl
-	b        lbl_803D33A0
-	.global  lbl_803D3378
-
-lbl_803D3378:
-	li       r0, 1
-	addi     r3, r31, 0x2a8
-	stw      r0, 0x2a4(r31)
-	mr       r4, r31
-	li       r5, 0x12
-	li       r6, 0
-	lwz      r12, 0x2a8(r31)
-	lwz      r12, 0xc(r12)
-	mtctr    r12
-	bctrl
-
-lbl_803D33A0:
-	lwz      r0, 0x14(r1)
-	lwz      r31, 0xc(r1)
-	lwz      r30, 8(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	m_endStat  = 0;
+	bool check = (int)id >= 0 && (int)id < 17;
+	P2ASSERTLINE(412, check);
+	switch (id) {
+	case 0:
+		m_isBroken = 0;
+		m_stateMachine.start(this, CARDERROR_NoCard, nullptr);
+		break;
+	case 1:
+		m_isBroken = 0;
+		m_stateMachine.start(this, CARDERROR_IOError, nullptr);
+		break;
+	case 2:
+		m_isBroken = 0;
+		m_stateMachine.start(this, CARDERROR_WrongDevice, nullptr);
+		break;
+	case 3:
+		m_isBroken = 0;
+		m_stateMachine.start(this, CARDERROR_WrongSector, nullptr);
+		break;
+	case 4:
+		m_isBroken = 0;
+		m_stateMachine.start(this, CARDERROR_DataBrokenAndDoYouFormat, nullptr);
+		break;
+	case 5:
+		m_isBroken = 0;
+		m_stateMachine.start(this, CARDERROR_OverCapacity, nullptr);
+		break;
+	case 6:
+		m_isBroken = 0;
+		m_stateMachine.start(this, CARDERROR_DoYouCreateNewFile, nullptr);
+		break;
+	case 7:
+		m_isBroken = 1;
+		m_stateMachine.start(this, CARDERROR_NoCard, nullptr);
+		break;
+	case 8:
+		m_isBroken = 1;
+		m_stateMachine.start(this, CARDERROR_IOError, nullptr);
+		break;
+	case 9:
+		m_isBroken = 1;
+		m_stateMachine.start(this, CARDERROR_WrongDevice, nullptr);
+		break;
+	case 10:
+		m_isBroken = 1;
+		m_stateMachine.start(this, CARDERROR_WrongSector, nullptr);
+		break;
+	case 11:
+		m_isBroken = 1;
+		m_stateMachine.start(this, CARDERROR_DataBrokenAndDoYouFormat, nullptr);
+		break;
+	case 12:
+		m_isBroken = 1;
+		m_stateMachine.start(this, CARDERROR_OverCapacity, nullptr);
+		break;
+	case 13:
+		m_isBroken = 1;
+		m_stateMachine.start(this, CARDERROR_DoYouCreateNewFile, nullptr);
+		break;
+	case 14:
+		m_isBroken = 1;
+		m_stateMachine.start(this, CARDERROR_SerialNoError, nullptr);
+		break;
+	case 15:
+		m_isBroken = 1;
+		m_stateMachine.start(this, CARDERROR_FailToSave_NoCard, nullptr);
+		break;
+	case 16:
+		m_isBroken = 1;
+		m_stateMachine.start(this, CARDERROR_FailToSave_IOError, nullptr);
+		break;
+	}
 }
 
 /*
@@ -3225,30 +2686,10 @@ lbl_803D33A0:
  * Address:	803D33B8
  * Size:	000050
  */
-void CardError::TMgr::forceQuitSeq(void)
+void TMgr::forceQuitSeq()
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	li       r5, 0
-	li       r6, 0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	mr       r31, r3
-	addi     r3, r31, 0x2a8
-	lwz      r12, 0x2a8(r31)
-	mr       r4, r31
-	lwz      r12, 0xc(r12)
-	mtctr    r12
-	bctrl
-	mr       r3, r31
-	bl       killScreen__Q33ebi6Screen11TMemoryCardFv
-	lwz      r0, 0x14(r1)
-	lwz      r31, 0xc(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	m_stateMachine.start(this, CARDERROR_Standby, nullptr);
+	killScreen();
 }
 
 /*
@@ -3256,27 +2697,10 @@ void CardError::TMgr::forceQuitSeq(void)
  * Address:	803D3408
  * Size:	000044
  */
-void CardError::TMgr::goEnd_(ebi::CardError::TMgr::enumEnd)
+void TMgr::goEnd_(enumEnd end)
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	mr       r6, r3
-	li       r5, 1
-	stw      r0, 0x14(r1)
-	stw      r4, 0x2a0(r3)
-	addi     r3, r6, 0x2a8
-	mr       r4, r6
-	li       r6, 0
-	lwz      r12, 0(r3)
-	lwz      r12, 0x14(r12)
-	mtctr    r12
-	bctrl
-	lwz      r0, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	m_endStat = end;
+	m_stateMachine.transit(this, CARDERROR_EmptyScreen, nullptr);
 }
 
 /*
@@ -3284,8 +2708,13 @@ void CardError::TMgr::goEnd_(ebi::CardError::TMgr::enumEnd)
  * Address:	803D344C
  * Size:	0000E0
  */
-void CardError::TMgr::checkAndTransitNoCard_(void)
+void TMgr::checkAndTransitNoCard_()
 {
+	if (!m_isBroken) {
+		m_stateMachine.transit(this, CARDERROR_NoCard, nullptr);
+	} else if (m_isBroken == 1) {
+		m_stateMachine.transit(this, CARDERROR_NoCard, nullptr);
+	}
 	/*
 	stwu     r1, -0x10(r1)
 	mflr     r0
@@ -3361,39 +2790,15 @@ lbl_803D3514:
  * Address:	803D352C
  * Size:	00006C
  */
-void CardError::TMgr::update(void)
+void TMgr::update()
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	mr       r31, r3
-	addi     r3, r31, 0x2a8
-	lwz      r12, 0x2a8(r31)
-	mr       r4, r31
-	lwz      r12, 0x10(r12)
-	mtctr    r12
-	bctrl
-	mr       r3, r31
-	bl       getStateID__Q33ebi9CardError4TMgrFv
-	cmpwi    r3, 0
-	beq      lbl_803D3584
-	mr       r3, r31
-	bl       update__Q33ebi6Screen11TMemoryCardFv
-	lwz      r3, 0x298(r31)
-	cmplwi   r3, 0
-	beq      lbl_803D3584
-	addi     r0, r3, -1
-	stw      r0, 0x298(r31)
-
-lbl_803D3584:
-	lwz      r0, 0x14(r1)
-	lwz      r31, 0xc(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	m_stateMachine.exec(this);
+	if (getStateID() != CARDERROR_Standby) {
+		TMemoryCard::update();
+		if (m_counter) {
+			m_counter--;
+		}
+	}
 }
 
 /*
@@ -3401,8 +2806,11 @@ lbl_803D3584:
  * Address:	803D3598
  * Size:	00003C
  */
-void CardError::TMgr::draw(void)
+void TMgr::draw()
 {
+	if (getStateID() != CARDERROR_Standby) {
+		TMemoryCard::draw();
+	}
 	/*
 	stwu     r1, -0x10(r1)
 	mflr     r0
@@ -3429,8 +2837,9 @@ lbl_803D35C0:
  * Address:	803D35D4
  * Size:	000050
  */
-void CardError::TMgr::isGetEnd(void)
+bool TMgr::isGetEnd()
 {
+	return (getStateID() == CARDERROR_Standby) || (getStateID() == CARDERROR_EmptyScreen);
 	/*
 	stwu     r1, -0x10(r1)
 	mflr     r0
@@ -3466,7 +2875,7 @@ lbl_803D3610:
  * Address:	........
  * Size:	000028
  */
-void CardError::TMgr::isFinish(void)
+bool TMgr::isFinish()
 {
 	// UNUSED FUNCTION
 }
@@ -3476,7 +2885,7 @@ void CardError::TMgr::isFinish(void)
  * Address:	........
  * Size:	000004
  */
-void CardError::TMgr::showInfo(long, long, long, long)
+void TMgr::showInfo(long, long, long, long)
 {
 	// UNUSED FUNCTION
 }
@@ -3486,34 +2895,10 @@ void CardError::TMgr::showInfo(long, long, long, long)
  * Address:	803D3624
  * Size:	000058
  */
-void CardError::TMgr::getStateID(void)
+int TMgr::getStateID()
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	mr       r31, r3
-	lwz      r0, 0x2c4(r3)
-	cmplwi   r0, 0
-	bne      lbl_803D3660
-	lis      r3, lbl_804968DC@ha
-	lis      r5, lbl_804968EC@ha
-	addi     r3, r3, lbl_804968DC@l
-	li       r4, 0x2f8
-	addi     r5, r5, lbl_804968EC@l
-	crclr    6
-	bl       panic_f__12JUTExceptionFPCciPCce
-
-lbl_803D3660:
-	lwz      r3, 0x2c4(r31)
-	lwz      r0, 0x14(r1)
-	lwz      r3, 4(r3)
-	lwz      r31, 0xc(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	P2ASSERTLINE(760, m_currentState);
+	return m_currentState->m_id;
 }
 
 /*
@@ -3521,52 +2906,51 @@ lbl_803D3660:
  * Address:	803D367C
  * Size:	000004
  */
-void init__Q24Game31FSMState<ebi::CardError::TMgr> FPQ33ebi9CardError4TMgrPQ24Game8StateArg(void) { }
-
-} // namespace ebi
+void Game::FSMState<ebi::CardError::TMgr>::init(ebi::CardError::TMgr*, Game::StateArg*) { }
 
 /*
  * --INFO--
  * Address:	803D3680
  * Size:	000004
  */
-void exec__Q24Game31FSMState<ebi::CardError::TMgr> FPQ33ebi9CardError4TMgr(void) { }
+void Game::FSMState<ebi::CardError::TMgr>::exec(ebi::CardError::TMgr*) { }
 
 /*
  * --INFO--
  * Address:	803D3684
  * Size:	000004
  */
-void cleanup__Q24Game31FSMState<ebi::CardError::TMgr> FPQ33ebi9CardError4TMgr(void) { }
+void Game::FSMState<ebi::CardError::TMgr>::cleanup(ebi::CardError::TMgr*) { }
 
 /*
  * --INFO--
  * Address:	803D3688
  * Size:	000004
  */
-void resume__Q24Game31FSMState<ebi::CardError::TMgr> FPQ33ebi9CardError4TMgr(void) { }
+void Game::FSMState<ebi::CardError::TMgr>::resume(ebi::CardError::TMgr*) { }
 
 /*
  * --INFO--
  * Address:	803D368C
  * Size:	000004
  */
-void restart__Q24Game31FSMState<ebi::CardError::TMgr> FPQ33ebi9CardError4TMgr(void) { }
+void Game::FSMState<ebi::CardError::TMgr>::restart(ebi::CardError::TMgr*) { }
 
 /*
  * --INFO--
  * Address:	803D3690
  * Size:	000004
  */
-void init__Q24Game35StateMachine<ebi::CardError::TMgr> FPQ33ebi9CardError4TMgr(void) { }
+void Game::StateMachine<ebi::CardError::TMgr>::init(ebi::CardError::TMgr*) { }
 
 /*
  * --INFO--
  * Address:	803D3694
  * Size:	000038
  */
-void exec__Q24Game35StateMachine<ebi::CardError::TMgr> FPQ33ebi9CardError4TMgr(void)
+void Game::StateMachine<ebi::CardError::TMgr>::exec(ebi::CardError::TMgr*)
 {
+	// these surely should be getting inherited from a base class or something
 	/*
 	.loc_0x0:
 	  stwu      r1, -0x10(r1)
@@ -3593,7 +2977,7 @@ void exec__Q24Game35StateMachine<ebi::CardError::TMgr> FPQ33ebi9CardError4TMgr(v
  * Address:	803D36CC
  * Size:	000064
  */
-void create__Q24Game35StateMachine<ebi::CardError::TMgr> Fi(void)
+void Game::StateMachine<ebi::CardError::TMgr>::create(int)
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -3629,7 +3013,7 @@ void create__Q24Game35StateMachine<ebi::CardError::TMgr> Fi(void)
  * Address:	803D3730
  * Size:	00009C
  */
-void transit__Q24Game35StateMachine<ebi::CardError::TMgr> FPQ33ebi9CardError4TMgriPQ24Game8StateArg(void)
+void Game::StateMachine<ebi::CardError::TMgr>::transit(ebi::CardError::TMgr*, int, Game::StateArg*)
 {
 	/*
 	.loc_0x0:
@@ -3686,7 +3070,7 @@ void transit__Q24Game35StateMachine<ebi::CardError::TMgr> FPQ33ebi9CardError4TMg
  * Address:	803D37CC
  * Size:	000084
  */
-void registerState__Q24Game35StateMachine<ebi::CardError::TMgr> FPQ24Game31FSMState<ebi::CardError::TMgr>(void)
+void Game::StateMachine<ebi::CardError::TMgr>::registerState(Game::FSMState<ebi::CardError::TMgr>*)
 {
 	/*
 	.loc_0x0:
@@ -3731,3 +3115,6 @@ void registerState__Q24Game35StateMachine<ebi::CardError::TMgr> FPQ24Game31FSMSt
 	  blr
 	*/
 }
+
+} // namespace CardError
+} // namespace ebi

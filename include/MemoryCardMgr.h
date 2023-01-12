@@ -32,6 +32,7 @@ struct MemoryCardMgr {
 
 	void cardProc(void*);
 	void init();
+	u32 checkStatus();
 
 	u8 _04[0xD4]; // _04
 	u32 _D8;      // _D8

@@ -1692,7 +1692,7 @@ void TFueactCircle::executeAfter(JPABaseEmitter*) { }
  * Address:	803B9000
  * Size:	00002C
  */
-void TCursor::forceKill() { m_oneEmitter.forceKill(); }
+// void TCursor::forceKill() { m_oneEmitter.forceKill(); }
 
 /*
  * --INFO--
