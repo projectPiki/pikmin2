@@ -312,13 +312,13 @@ void TMemoryCard::open(long type)
 	m_alphaMod       = 30;
 
 	switch (type) {
-	case 0:
+	case OPEN_None:
 		startState(MEMCARD_Finish);
 		m_msgAlpha = 0;
 		m_alphaMod = 0;
 		break;
 
-	case 1:
+	case OPEN_NoCard:
 		PSSystem::spSysIF->playSystemSe(PSSE_SY_MEMORYCARD_ERROR, 0);
 		m_paneMsg3->setMsgID(
 		    '5450_00'); // "No Memory Card found in Slot A. Please check to make sure you have inserted a Memory Card properly."
@@ -331,7 +331,7 @@ void TMemoryCard::open(long type)
 		startState(MEMCARD_Message);
 		break;
 
-	case 2:
+	case OPEN_CardDamaged:
 		PSSystem::spSysIF->playSystemSe(PSSE_SY_MEMORYCARD_ERROR, 0);
 		m_paneMsg3->setMsgID('5451_00'); // "The Memory Card in Slot A is damaged and cannot be used."
 		m_paneMsg4->setMsgID('5451_00'); // "The Memory Card in Slot A is damaged and cannot be used."
@@ -340,7 +340,7 @@ void TMemoryCard::open(long type)
 		startState(MEMCARD_Message);
 		break;
 
-	case 3:
+	case OPEN_WrongDevice:
 		PSSystem::spSysIF->playSystemSe(PSSE_SY_MEMORYCARD_ERROR, 0);
 		m_paneMsg3->setMsgID('5452_00'); // "The device inserted in Slot A is not a Memory Card."
 		m_paneMsg4->setMsgID('5452_00'); // "The device inserted in Slot A is not a Memory Card."
@@ -349,7 +349,7 @@ void TMemoryCard::open(long type)
 		startState(MEMCARD_Message);
 		break;
 
-	case 4:
+	case OPEN_CantUseCard:
 		PSSystem::spSysIF->playSystemSe(PSSE_SY_MEMORYCARD_ERROR, 0);
 		m_paneMsg3->setMsgID('5453_00'); // "The Memory Card in Slot A cannot be used."
 		m_paneMsg4->setMsgID('5453_00'); // "The Memory Card in Slot A cannot be used."
@@ -358,7 +358,7 @@ void TMemoryCard::open(long type)
 		startState(MEMCARD_Message);
 		break;
 
-	case 5:
+	case OPEN_DoFormat:
 		PSSystem::spSysIF->playSystemSe(PSSE_SY_MEMORYCARD_ERROR, 0);
 		m_paneMsg3->setMsgID('0000_00');
 		m_paneMsg4->setMsgID('5454_00'); // "The Memory Card in Slot A is corrupted and must be formatted. Format the Memory Card now?"
@@ -368,7 +368,7 @@ void TMemoryCard::open(long type)
 		startState(MEMCARD_Selection);
 		break;
 
-	case 6:
+	case OPEN_NotEnoughSpace:
 		PSSystem::spSysIF->playSystemSe(PSSE_SY_MEMORYCARD_ERROR, 0);
 		m_paneMsg3->setMsgID(
 		    '5457_00'); // "The Memory Card in Slot A does not have enough free space. Pikmin 2 requires 1 File and 27 Blocks to save."
@@ -381,7 +381,7 @@ void TMemoryCard::open(long type)
 		startState(MEMCARD_Message);
 		break;
 
-	case 7:
+	case OPEN_GoToIPL:
 		m_paneMsg3->setMsgID('5458_00'); // "Please manage the Memory Card on the Memory Card Screen."
 		m_paneMsg4->setMsgID('5458_00'); // "Please manage the Memory Card on the Memory Card Screen."
 		m_paneMsg1->setMsgID('5458_00'); // "Please manage the Memory Card on the Memory Card Screen."
@@ -389,7 +389,7 @@ void TMemoryCard::open(long type)
 		startState((enumState)2);
 		break;
 
-	case 8:
+	case OPEN_CantFormat:
 		PSSystem::spSysIF->playSystemSe(PSSE_SY_MEMORYCARD_ERROR, 0);
 		m_paneMsg3->setMsgID('5459_00'); // "The Memory Card could not be formatted."
 		m_paneMsg4->setMsgID('5459_00'); // "The Memory Card could not be formatted."
@@ -398,7 +398,7 @@ void TMemoryCard::open(long type)
 		startState(MEMCARD_Message);
 		break;
 
-	case 9:
+	case OPEN_CardFormatted:
 		PSSystem::spSysIF->playSystemSe(PSSE_SY_MEMORYCARD_OK, 0);
 		m_paneMsg3->setMsgID('5460_00'); // "The Memory Card has been formatted."
 		m_paneMsg4->setMsgID('5460_00'); // "The Memory Card has been formatted."
@@ -407,7 +407,7 @@ void TMemoryCard::open(long type)
 		startState(MEMCARD_Message);
 		break;
 
-	case 10:
+	case OPEN_Formatting:
 		m_isPlaySavingSE = true;
 		m_paneMsg3->setMsgID('5461_00'); // "Formatting the Memory Card in Slot A. Do not touch the Memory Card or the POWER Button."
 		m_paneMsg4->setMsgID('5461_00'); // "Formatting the Memory Card in Slot A. Do not touch the Memory Card or the POWER Button."
@@ -416,7 +416,7 @@ void TMemoryCard::open(long type)
 		startState(MEMCARD_Message);
 		break;
 
-	case 11:
+	case OPEN_DoFormatConfirm:
 		m_paneMsg3->setMsgID('0000_00');
 		m_paneMsg4->setMsgID('5462_00'); // "Formatting the Memory Card will erase all saved data on the Memory Card. Is this OK?"
 		m_paneMsg1->setMsgID('5463_00'); // "Yes"
@@ -425,7 +425,7 @@ void TMemoryCard::open(long type)
 		startState(MEMCARD_Selection);
 		break;
 
-	case 12:
+	case OPEN_CantUseCard2:
 		PSSystem::spSysIF->playSystemSe(PSSE_SY_MEMORYCARD_ERROR, 0);
 		m_paneMsg3->setMsgID('5465_00'); // "The Memory Card in Slot A cannot be used. "
 		m_paneMsg4->setMsgID('5465_00'); // "The Memory Card in Slot A cannot be used. "
@@ -434,7 +434,7 @@ void TMemoryCard::open(long type)
 		startState(MEMCARD_Message);
 		break;
 
-	case 13:
+	case OPEN_DoGotoIPL:
 		m_paneMsg3->setMsgID('0000_00');
 		m_paneMsg4->setMsgID('5466_00'); // "Access the Memory Card Screen now?"
 		m_paneMsg1->setMsgID('5467_00'); // "Yes"
@@ -443,7 +443,7 @@ void TMemoryCard::open(long type)
 		startState(MEMCARD_Selection);
 		break;
 
-	case 14:
+	case OPEN_DoPlayNoSaving:
 		m_paneMsg3->setMsgID('0000_00');
 		m_paneMsg4->setMsgID('5469_00'); // "The game cannot be saved. Continue without saving?"
 		m_paneMsg1->setMsgID('5470_00'); // "Yes"
@@ -452,7 +452,7 @@ void TMemoryCard::open(long type)
 		startState(MEMCARD_Selection);
 		break;
 
-	case 15:
+	case OPEN_DoCreateFile:
 		m_paneMsg3->setMsgID('0000_00');
 		m_paneMsg4->setMsgID('5472_00'); // "Create a Pikmin 2 game file on the Memory Card in Slot A?"
 		m_paneMsg1->setMsgID('5473_00'); // "Yes"
@@ -461,7 +461,7 @@ void TMemoryCard::open(long type)
 		startState(MEMCARD_Selection);
 		break;
 
-	case 16:
+	case OPEN_NoFileFound:
 		PSSystem::spSysIF->playSystemSe(PSSE_SY_MEMORYCARD_ERROR, 0);
 		m_paneMsg3->setMsgID('5475_00'); // "There is no Pikmin 2 game file on the Memory Card in Slot A."
 		m_paneMsg4->setMsgID('5475_00'); // "There is no Pikmin 2 game file on the Memory Card in Slot A."
@@ -470,7 +470,7 @@ void TMemoryCard::open(long type)
 		startState(MEMCARD_Message);
 		break;
 
-	case 17:
+	case OPEN_CantCreateFile:
 		PSSystem::spSysIF->playSystemSe(PSSE_SY_MEMORYCARD_ERROR, 0);
 		m_paneMsg3->setMsgID('5476_00'); // "A game file could not be created."
 		m_paneMsg4->setMsgID('5476_00'); // "A game file could not be created."
@@ -479,7 +479,7 @@ void TMemoryCard::open(long type)
 		startState(MEMCARD_Message);
 		break;
 
-	case 18:
+	case OPEN_CreatingFile:
 		m_isPlaySavingSE = true;
 		m_paneMsg3->setMsgID('5477_00'); // "Creating a game file... Do not touch the Memory Card in Slot A or the POWER Button."
 		m_paneMsg4->setMsgID('5477_00'); // "Creating a game file... Do not touch the Memory Card in Slot A or the POWER Button."
@@ -488,7 +488,7 @@ void TMemoryCard::open(long type)
 		startState(MEMCARD_Message);
 		break;
 
-	case 19:
+	case OPEN_FileCreated:
 		PSSystem::spSysIF->playSystemSe(PSSE_SY_MEMORYCARD_OK, 0);
 		m_paneMsg3->setMsgID('5478_00'); // "A file has been created."
 		m_paneMsg4->setMsgID('5478_00'); // "A file has been created."
@@ -497,7 +497,7 @@ void TMemoryCard::open(long type)
 		startState(MEMCARD_Message);
 		break;
 
-	case 20:
+	case OPEN_CantSaveNoCard:
 		PSSystem::spSysIF->playSystemSe(PSSE_SY_MEMORYCARD_ERROR, 0);
 		m_paneMsg3->setMsgID(
 		    '5551_00'); // "The game cannot be saved. There is no Memory Card in Slot A. Please insert a Memory Card into Slot A."
@@ -510,7 +510,7 @@ void TMemoryCard::open(long type)
 		startState(MEMCARD_Message);
 		break;
 
-	case 21:
+	case OPEN_CantSaveCardDamaged:
 		PSSystem::spSysIF->playSystemSe(PSSE_SY_MEMORYCARD_ERROR, 0);
 		m_paneMsg3->setMsgID('5552_00'); // "The game cannot be saved. The Memory Card in Slot A is damaged and cannot be used."
 		m_paneMsg4->setMsgID('5552_00'); // "The game cannot be saved. The Memory Card in Slot A is damaged and cannot be used."
@@ -519,7 +519,7 @@ void TMemoryCard::open(long type)
 		startState(MEMCARD_Message);
 		break;
 
-	case 22:
+	case OPEN_CantSaveWrongDevice:
 		PSSystem::spSysIF->playSystemSe(PSSE_SY_MEMORYCARD_ERROR, 0);
 		m_paneMsg3->setMsgID('5553_00'); // "The game cannot be saved. An incorrect device is inserted in Slot A. Remove the device and
 		                                 // insert a Memory Card."
@@ -532,7 +532,7 @@ void TMemoryCard::open(long type)
 		startState(MEMCARD_Message);
 		break;
 
-	case 23:
+	case OPEN_CantSaveCantUseCard:
 		PSSystem::spSysIF->playSystemSe(PSSE_SY_MEMORYCARD_ERROR, 0);
 		m_paneMsg3->setMsgID('5554_00'); // "The game cannot be saved. The Memory Card in Slot A cannot be used."
 		m_paneMsg4->setMsgID('5554_00'); // "The game cannot be saved. The Memory Card in Slot A cannot be used."
@@ -541,7 +541,7 @@ void TMemoryCard::open(long type)
 		startState(MEMCARD_Message);
 		break;
 
-	case 24:
+	case OPEN_CantSaveDoFormat:
 		PSSystem::spSysIF->playSystemSe(PSSE_SY_MEMORYCARD_ERROR, 0);
 		m_paneMsg3->setMsgID('0000_00');
 		m_paneMsg4->setMsgID('5592_00'); // "The game cannot be saved. The Memory Card in Slot A is corrupted and must be formatted. Format
@@ -552,7 +552,7 @@ void TMemoryCard::open(long type)
 		startState(MEMCARD_Selection);
 		break;
 
-	case 25:
+	case OPEN_CantSaveNoSpace:
 		PSSystem::spSysIF->playSystemSe(PSSE_SY_MEMORYCARD_ERROR, 0);
 		m_paneMsg3->setMsgID('5555_00'); // "The game cannot be saved. There is not enough available space on the Memory Card in Slot A.
 		                                 // Pikmin 2 requires 1 File and 27 Blocks to save."
@@ -565,15 +565,15 @@ void TMemoryCard::open(long type)
 		startState(MEMCARD_Message);
 		break;
 
-	case 26:
-		m_paneMsg3->setMsgID('5556_00'); // "Please manage Memory Card dataon the Memory Card Screen, or insert the original Memory Card."
-		m_paneMsg4->setMsgID('5556_00'); // "Please manage Memory Card dataon the Memory Card Screen, or insert the original Memory Card."
-		m_paneMsg1->setMsgID('5556_00'); // "Please manage Memory Card dataon the Memory Card Screen, or insert the original Memory Card."
-		m_paneMsg2->setMsgID('5556_00'); // "Please manage Memory Card dataon the Memory Card Screen, or insert the original Memory Card."
+	case OPEN_InsertOriginalCard:
+		m_paneMsg3->setMsgID('5556_00'); // "Please manage Memory Card data on the Memory Card Screen, or insert the original Memory Card."
+		m_paneMsg4->setMsgID('5556_00'); // "Please manage Memory Card data on the Memory Card Screen, or insert the original Memory Card."
+		m_paneMsg1->setMsgID('5556_00'); // "Please manage Memory Card data on the Memory Card Screen, or insert the original Memory Card."
+		m_paneMsg2->setMsgID('5556_00'); // "Please manage Memory Card data on the Memory Card Screen, or insert the original Memory Card."
 		startState(MEMCARD_Message);
 		break;
 
-	case 27:
+	case OPEN_CantFormat2:
 		PSSystem::spSysIF->playSystemSe(PSSE_SY_MEMORYCARD_ERROR, 0);
 		m_paneMsg3->setMsgID('5557_00'); // "The Memory Card could not be formatted."
 		m_paneMsg4->setMsgID('5557_00'); // "The Memory Card could not be formatted."
@@ -582,7 +582,7 @@ void TMemoryCard::open(long type)
 		startState(MEMCARD_Message);
 		break;
 
-	case 28:
+	case OPEN_FormatSuccess:
 		PSSystem::spSysIF->playSystemSe(PSSE_SY_MEMORYCARD_OK, 0);
 		m_paneMsg3->setMsgID('5558_00'); // "The Memory Card has been formatted."
 		m_paneMsg4->setMsgID('5558_00'); // "The Memory Card has been formatted."
@@ -591,7 +591,7 @@ void TMemoryCard::open(long type)
 		startState(MEMCARD_Message);
 		break;
 
-	case 29:
+	case OPEN_Formatting2:
 		m_isPlaySavingSE = true;
 		m_paneMsg3->setMsgID('5559_00'); // "The Memory Card is being formatted. Do not touch the Memory Card or the POWER Button."
 		m_paneMsg4->setMsgID('5559_00'); // "The Memory Card is being formatted. Do not touch the Memory Card or the POWER Button."
@@ -600,7 +600,7 @@ void TMemoryCard::open(long type)
 		startState(MEMCARD_Message);
 		break;
 
-	case 30:
+	case OPEN_DoFormat2:
 		m_paneMsg3->setMsgID('0000_00');
 		m_paneMsg4->setMsgID('5560_00'); // "Formatting the Memory Card will erase all saved data. Is this OK?"
 		m_paneMsg1->setMsgID('5561_00'); // "Yes"
@@ -609,7 +609,7 @@ void TMemoryCard::open(long type)
 		startState(MEMCARD_Selection);
 		break;
 
-	case 31:
+	case OPEN_CantSaveCantUseCard2:
 		PSSystem::spSysIF->playSystemSe(PSSE_SY_MEMORYCARD_ERROR, 0);
 		m_paneMsg3->setMsgID('5563_00'); // "The game cannot be saved. The Memory Card in Slot A cannot be used."
 		m_paneMsg4->setMsgID('5563_00'); // "The game cannot be saved. The Memory Card in Slot A cannot be used."
@@ -618,7 +618,7 @@ void TMemoryCard::open(long type)
 		startState(MEMCARD_Message);
 		break;
 
-	case 32:
+	case OPEN_CantSaveGotoIPL:
 		m_paneMsg3->setMsgID('0000_00');
 		m_paneMsg4->setMsgID(
 		    '5564_00'); // "Data cannot be saved, so current progress will be lost. Continue to the Memory Card Screen anyway?"
@@ -628,7 +628,7 @@ void TMemoryCard::open(long type)
 		startState(MEMCARD_Selection);
 		break;
 
-	case 33:
+	case OPEN_DoGotoIPL2:
 		m_paneMsg3->setMsgID('0000_00');
 		m_paneMsg4->setMsgID('5567_00'); // "Access the Memory Card Screen now?"
 		m_paneMsg1->setMsgID('5568_00'); // "Yes"
@@ -637,7 +637,7 @@ void TMemoryCard::open(long type)
 		startState(MEMCARD_Selection);
 		break;
 
-	case 34:
+	case OPEN_DoCreateFile2:
 		m_paneMsg3->setMsgID('0000_00');
 		m_paneMsg4->setMsgID('5570_00'); // "Create a Pikmin 2 game file on the Memory Card in Slot A?"
 		m_paneMsg1->setMsgID('5571_00'); // "Yes"
@@ -646,7 +646,7 @@ void TMemoryCard::open(long type)
 		startState(MEMCARD_Selection);
 		break;
 
-	case 35:
+	case OPEN_CantSaveNoFile:
 		PSSystem::spSysIF->playSystemSe(PSSE_SY_MEMORYCARD_ERROR, 0);
 		m_paneMsg3->setMsgID('5573_00'); // "The game cannot be saved. The Memory Card in Slot A does not have a Pikmin 2 game file."
 		m_paneMsg4->setMsgID('5573_00'); // "The game cannot be saved. The Memory Card in Slot A does not have a Pikmin 2 game file."
@@ -655,7 +655,7 @@ void TMemoryCard::open(long type)
 		startState(MEMCARD_Message);
 		break;
 
-	case 36:
+	case OPEN_CreatingFile2:
 		m_isPlaySavingSE = true;
 		m_paneMsg3->setMsgID('5574_00'); // "Creating a game file... Do not touch the Memory Card in Slot A or the POWER Button."
 		m_paneMsg4->setMsgID('5574_00'); // "Creating a game file... Do not touch the Memory Card in Slot A or the POWER Button."
@@ -664,7 +664,7 @@ void TMemoryCard::open(long type)
 		startState(MEMCARD_Message);
 		break;
 
-	case 37:
+	case OPEN_CantCreateFile2:
 		PSSystem::spSysIF->playSystemSe(PSSE_SY_MEMORYCARD_ERROR, 0);
 		m_paneMsg3->setMsgID('5575_00'); // "A game file could not be created."
 		m_paneMsg4->setMsgID('5575_00'); // "A game file could not be created."
@@ -673,7 +673,7 @@ void TMemoryCard::open(long type)
 		startState(MEMCARD_Message);
 		break;
 
-	case 38:
+	case OPEN_FileCreated2:
 		PSSystem::spSysIF->playSystemSe(PSSE_SY_MEMORYCARD_OK, 0);
 		m_paneMsg3->setMsgID('5576_00'); // "A game file has been created."
 		m_paneMsg4->setMsgID('5576_00'); // "A game file has been created."
@@ -682,7 +682,7 @@ void TMemoryCard::open(long type)
 		startState(MEMCARD_Message);
 		break;
 
-	case 39:
+	case OPEN_CantSaveInsertOriginalCard:
 		PSSystem::spSysIF->playSystemSe(PSSE_SY_MEMORYCARD_ERROR, 0);
 		m_paneMsg3->setMsgID('5577_00'); // "The game cannot be saved. Please insert the original Memory Card into Slot A."
 		m_paneMsg4->setMsgID('5577_00'); // "The game cannot be saved. Please insert the original Memory Card into Slot A."
@@ -691,7 +691,7 @@ void TMemoryCard::open(long type)
 		startState(MEMCARD_Message);
 		break;
 
-	case 40:
+	case OPEN_CardCorruptedDoOverwrite:
 		PSSystem::spSysIF->playSystemSe(PSSE_SY_MEMORYCARD_ERROR, 0);
 		m_paneMsg3->setMsgID('0000_00');
 		m_paneMsg4->setMsgID(
@@ -702,7 +702,7 @@ void TMemoryCard::open(long type)
 		startState(MEMCARD_Selection);
 		break;
 
-	case 41:
+	case OPEN_Saving:
 		m_isPlaySavingSE = true;
 		m_paneMsg3->setMsgID('5581_00'); // "Saving... Do not touch the Memory Card in Slot A or the POWER Button."
 		m_paneMsg4->setMsgID('5581_00'); // "Saving... Do not touch the Memory Card in Slot A or the POWER Button."
@@ -711,7 +711,7 @@ void TMemoryCard::open(long type)
 		startState(MEMCARD_Message);
 		break;
 
-	case 42:
+	case OPEN_SaveSuccess:
 		PSSystem::spSysIF->playSystemSe(PSSE_SY_MEMORYCARD_OK, 0);
 		m_paneMsg3->setMsgID('0000_00');
 		m_paneMsg4->setMsgID('5582_00'); // "The game has been saved. Continue playing?"
@@ -721,7 +721,7 @@ void TMemoryCard::open(long type)
 		startState(MEMCARD_Selection);
 		break;
 
-	case 43:
+	case OPEN_SaveFail:
 		PSSystem::spSysIF->playSystemSe(PSSE_SY_MEMORYCARD_ERROR, 0);
 		m_paneMsg3->setMsgID('5585_00'); // "The game could not be saved."
 		m_paneMsg4->setMsgID('5585_00'); // "The game could not be saved."

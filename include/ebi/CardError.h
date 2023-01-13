@@ -169,9 +169,9 @@ struct FSMState_Warning : public FSMState {
 
 	// _00     = VTBL
 	// _00-_10 = FSMState
-	bool m_canClose;
-	bool m_isClosed;
-	bool m_doCheckCard;
+	bool m_canClose;    // _10
+	bool m_isClosed;    // _11
+	bool m_doCheckCard; // _12
 };
 ////////////////////////////////////////////////////////////
 
@@ -552,12 +552,26 @@ struct FSMState_WN1_NowCreateNewFile : public FSMState_CardRequest {
 
 struct TMgr : Screen::TMemoryCard {
 	enum enumStart {
-
+		Start_NoCard,
+		Start_IOError,
+		Start_WrongDevice,
+		Start_WrongSector,
+		Start_DataBrokenAndDoYouFormat,
+		Start_OverCapacity,
+		Start_DoYouCreateNewFile,
+		Start_NoCard2,
+		Start_IOError2,
+		Start_WrongDevice2,
+		Start_WrongSector2,
+		Start_DataBrokenAndDoYouFormat2,
+		Start_OverCapacity2,
+		Start_DoYouCreateNewFile2,
+		Start_SerialNoError,
+		Start_FailToSave_NoCard,
+		Start_FailToSave_IOError
 	};
 
-	enum enumEnd {
-
-	};
+	enum enumEnd { End_0, End_1, End_2, End_3, End_4 };
 
 	void startSeq(enumStart);
 	void forceQuitSeq();

@@ -209,7 +209,7 @@ Mgr::Mgr()
  * Address:	80442B9C
  * Size:	000030
  */
-u32 Mgr::isErrorOccured() { return !(getCardStatus() == MCS_Error); }
+u32 Mgr::isErrorOccured() { return !(getCardStatus() == MCS_Ready); }
 
 /*
  * --INFO--

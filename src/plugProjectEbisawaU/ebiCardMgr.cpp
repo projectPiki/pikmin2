@@ -1310,37 +1310,37 @@ void FSMState_CardRequest::do_exec(TMgr* mgr)
 		if (mgr->TMemoryCard::isFinish()) {
 			mgr->m_canExit = true;
 			switch (m_cardStatus) {
-			case 0:
+			case Game::MemoryCard::Mgr::MCS_NoCard:
 				do_transitCardNoCard(mgr);
 				break;
-			case 1:
+			case Game::MemoryCard::Mgr::MCS_FileOpenError:
 				do_transitCardFileOpenError(mgr);
 				break;
-			case 2:
+			case Game::MemoryCard::Mgr::MCS_Ready:
 				do_transitCardReady(mgr);
 				break;
-			case 3:
+			case Game::MemoryCard::Mgr::MCS_Broken:
 				do_transitCardBroken(mgr);
 				break;
-			case 4:
+			case Game::MemoryCard::Mgr::MCS_Encoding:
 				do_transitCardEncoding(mgr);
 				break;
-			case 5:
+			case Game::MemoryCard::Mgr::MCS_IOError:
 				do_transitCardIOError(mgr);
 				break;
-			case 6:
+			case Game::MemoryCard::Mgr::MCS_WrongDevice:
 				do_transitCardWrongDevice(mgr);
 				break;
-			case 7:
+			case Game::MemoryCard::Mgr::MCS_WrongSector:
 				do_transitCardWrongSector(mgr);
 				break;
-			case 8:
+			case Game::MemoryCard::Mgr::MCS_NoFileSpace:
 				do_transitCardNoFileSpace(mgr);
 				break;
-			case 9:
+			case Game::MemoryCard::Mgr::MCS_NoFileEntry:
 				do_transitCardNoFileEntry(mgr);
 				break;
-			case 14:
+			case Game::MemoryCard::Mgr::MCS_SerialNoError:
 				do_transitCardSerialNoError(mgr);
 				break;
 			default:
@@ -2275,6 +2275,16 @@ blr
  */
 TMemoryCard::TMemoryCard()
 {
+	m_state      = 0;
+	m_inputDelay = 0;
+	_0C          = 0;
+	m_msgAlpha   = 0;
+	m_alphaMod   = 0;
+	m_canExit    = 1;
+	m_paneMsg1   = nullptr;
+	m_paneMsg2   = nullptr;
+	m_paneMsg3   = nullptr;
+	m_paneMsg4   = nullptr;
 	/*
 stwu     r1, -0x20(r1)
 mflr     r0
@@ -2610,71 +2620,71 @@ void TMgr::startSeq(enumStart id)
 	bool check = (int)id >= 0 && (int)id < 17;
 	P2ASSERTLINE(412, check);
 	switch (id) {
-	case 0:
+	case Start_NoCard:
 		m_isBroken = 0;
 		m_stateMachine.start(this, CARDERROR_NoCard, nullptr);
 		break;
-	case 1:
+	case Start_IOError:
 		m_isBroken = 0;
 		m_stateMachine.start(this, CARDERROR_IOError, nullptr);
 		break;
-	case 2:
+	case Start_WrongDevice:
 		m_isBroken = 0;
 		m_stateMachine.start(this, CARDERROR_WrongDevice, nullptr);
 		break;
-	case 3:
+	case Start_WrongSector:
 		m_isBroken = 0;
 		m_stateMachine.start(this, CARDERROR_WrongSector, nullptr);
 		break;
-	case 4:
+	case Start_DataBrokenAndDoYouFormat:
 		m_isBroken = 0;
 		m_stateMachine.start(this, CARDERROR_DataBrokenAndDoYouFormat, nullptr);
 		break;
-	case 5:
+	case Start_OverCapacity:
 		m_isBroken = 0;
 		m_stateMachine.start(this, CARDERROR_OverCapacity, nullptr);
 		break;
-	case 6:
+	case Start_DoYouCreateNewFile:
 		m_isBroken = 0;
 		m_stateMachine.start(this, CARDERROR_DoYouCreateNewFile, nullptr);
 		break;
-	case 7:
+	case Start_NoCard2:
 		m_isBroken = 1;
 		m_stateMachine.start(this, CARDERROR_NoCard, nullptr);
 		break;
-	case 8:
+	case Start_IOError2:
 		m_isBroken = 1;
 		m_stateMachine.start(this, CARDERROR_IOError, nullptr);
 		break;
-	case 9:
+	case Start_WrongDevice2:
 		m_isBroken = 1;
 		m_stateMachine.start(this, CARDERROR_WrongDevice, nullptr);
 		break;
-	case 10:
+	case Start_WrongSector2:
 		m_isBroken = 1;
 		m_stateMachine.start(this, CARDERROR_WrongSector, nullptr);
 		break;
-	case 11:
+	case Start_DataBrokenAndDoYouFormat2:
 		m_isBroken = 1;
 		m_stateMachine.start(this, CARDERROR_DataBrokenAndDoYouFormat, nullptr);
 		break;
-	case 12:
+	case Start_OverCapacity2:
 		m_isBroken = 1;
 		m_stateMachine.start(this, CARDERROR_OverCapacity, nullptr);
 		break;
-	case 13:
+	case Start_DoYouCreateNewFile2:
 		m_isBroken = 1;
 		m_stateMachine.start(this, CARDERROR_DoYouCreateNewFile, nullptr);
 		break;
-	case 14:
+	case Start_SerialNoError:
 		m_isBroken = 1;
 		m_stateMachine.start(this, CARDERROR_SerialNoError, nullptr);
 		break;
-	case 15:
+	case Start_FailToSave_NoCard:
 		m_isBroken = 1;
 		m_stateMachine.start(this, CARDERROR_FailToSave_NoCard, nullptr);
 		break;
-	case 16:
+	case Start_FailToSave_IOError:
 		m_isBroken = 1;
 		m_stateMachine.start(this, CARDERROR_FailToSave_IOError, nullptr);
 		break;
@@ -2811,25 +2821,6 @@ void TMgr::draw()
 	if (getStateID() != CARDERROR_Standby) {
 		TMemoryCard::draw();
 	}
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	mr       r31, r3
-	bl       getStateID__Q33ebi9CardError4TMgrFv
-	cmpwi    r3, 0
-	beq      lbl_803D35C0
-	mr       r3, r31
-	bl       draw__Q33ebi6Screen11TMemoryCardFv
-
-lbl_803D35C0:
-	lwz      r0, 0x14(r1)
-	lwz      r31, 0xc(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
 }
 
 /*

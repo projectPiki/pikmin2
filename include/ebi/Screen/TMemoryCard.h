@@ -18,6 +18,53 @@ namespace Screen {
 struct TMemoryCard {
 	enum enumState { MEMCARD_Disabled, MEMCARD_Selection, MEMCARD_Message, MEMCARD_Finish };
 
+	enum openMsg {
+		OPEN_None,
+		OPEN_NoCard,
+		OPEN_CardDamaged,
+		OPEN_WrongDevice,
+		OPEN_CantUseCard,
+		OPEN_DoFormat,
+		OPEN_NotEnoughSpace,
+		OPEN_GoToIPL,
+		OPEN_CantFormat,
+		OPEN_CardFormatted,
+		OPEN_Formatting,
+		OPEN_DoFormatConfirm,
+		OPEN_CantUseCard2,
+		OPEN_DoGotoIPL,
+		OPEN_DoPlayNoSaving,
+		OPEN_DoCreateFile,
+		OPEN_NoFileFound,
+		OPEN_CantCreateFile,
+		OPEN_CreatingFile,
+		OPEN_FileCreated,
+		OPEN_CantSaveNoCard,
+		OPEN_CantSaveCardDamaged,
+		OPEN_CantSaveWrongDevice,
+		OPEN_CantSaveCantUseCard,
+		OPEN_CantSaveDoFormat,
+		OPEN_CantSaveNoSpace,
+		OPEN_InsertOriginalCard,
+		OPEN_CantFormat2,
+		OPEN_FormatSuccess,
+		OPEN_Formatting2,
+		OPEN_DoFormat2,
+		OPEN_CantSaveCantUseCard2,
+		OPEN_CantSaveGotoIPL,
+		OPEN_DoGotoIPL2,
+		OPEN_DoCreateFile2,
+		OPEN_CantSaveNoFile,
+		OPEN_CreatingFile2,
+		OPEN_CantCreateFile2,
+		OPEN_FileCreated2,
+		OPEN_CantSaveInsertOriginalCard,
+		OPEN_CardCorruptedDoOverwrite,
+		OPEN_Saving,
+		OPEN_SaveSuccess,
+		OPEN_SaveFail
+	};
+
 	TMemoryCard();
 
 	~TMemoryCard();

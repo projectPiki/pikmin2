@@ -29,7 +29,21 @@ struct Mgr : public MemoryCardMgr {
 	virtual bool isErrorOccured();                         // _28
 
 	enum MemoryCardStatus {
-		MCS_Error = 2,
+		MCS_NoCard,
+		MCS_FileOpenError,
+		MCS_Ready,
+		MCS_Broken,
+		MCS_Encoding,
+		MCS_IOError,
+		MCS_WrongDevice,
+		MCS_WrongSector,
+		MCS_NoFileSpace,
+		MCS_NoFileEntry,
+		MCS_10,
+		MCS_11,
+		MCS_12,
+		MCS_13,
+		MCS_SerialNoError
 	};
 
 	void loadResource(JKRHeap*);
