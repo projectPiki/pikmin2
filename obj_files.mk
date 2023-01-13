@@ -787,7 +787,7 @@ NISHIMURA:=\
 	$(BUILD_DIR)/asm/plugProjectNishimuraU/FuefukiState.o\
 	$(BUILD_DIR)/src/plugProjectNishimuraU/FuefukiAnimator.o\
 	$(BUILD_DIR)/src/plugProjectNishimuraU/FuefukiMgr.o\
-	$(BUILD_DIR)/asm/plugProjectNishimuraU/Fuefuki.o\
+	$(BUILD_DIR)/src/plugProjectNishimuraU/Fuefuki.o\
 	$(BUILD_DIR)/src/plugProjectNishimuraU/KoganemushiMgr.o\
 	$(BUILD_DIR)/src/plugProjectNishimuraU/Koganemushi.o\
 	$(BUILD_DIR)/src/plugProjectNishimuraU/FtankMgr.o\

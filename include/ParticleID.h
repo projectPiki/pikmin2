@@ -103,6 +103,8 @@
 #define PID_ChouDown_3 (0x017) // yellow spectralid death
 #define PID_ChouHit    (0x018) // spectralid hit
 
+#define PID_Cursor_NULL      (0x000) // whistle for fuefuki/non-captains
+#define PID_Cursor_Default   (0x019) // default whistle = olimar
 #define PID_Cursor_Olimar    (0x019) // whistle 1
 #define PID_Cursor_Louie     (0x01A) // whistle 2, Louie and president have their own whistle colors that dont get used
 #define PID_Cursor_President (0x01B) // whistle 3

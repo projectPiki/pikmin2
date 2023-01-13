@@ -23,9 +23,19 @@ struct TOneEmitter : public TBase, public JPAEmitterCallBack {
 	virtual void fade();       // _10
 	// vtable 2 (JPAEmitterCallBack + self)
 	virtual void executeAfter(JPABaseEmitter*); // _30 (weak)
-	virtual void startDemoDrawOff();            // _34 (weak)
-	virtual void endDemoDrawOn();               // _38 (weak)
-	virtual ~TOneEmitter() { }                  // _3C (weak)
+	virtual void startDemoDrawOff()             // _34 (weak)
+	{
+		if (m_emitter) {
+			m_emitter->setFlag(JPAEMIT_IsDemoOn);
+		}
+	}
+	virtual void endDemoDrawOn() // _38 (weak)
+	{
+		if (m_emitter) {
+			m_emitter->resetFlag(JPAEMIT_IsDemoOn);
+		}
+	}
+	virtual ~TOneEmitter() { } // _3C (weak)
 
 	void add(Context*);
 

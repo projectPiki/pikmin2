@@ -8,10 +8,10 @@
 
 namespace efx {
 struct TCursor : public TBase {
-	inline TCursor()
-	    : m_oneEmitter(PID_Cursor_Olimar)
+	inline TCursor(u16 ownerID)
+	    : m_oneEmitter(PID_Cursor_Default)
 	{
-		init(PID_Cursor_Olimar, WHISTLE_CONTEXT_NUM);
+		init(ownerID, WHISTLE_CONTEXT_NUM);
 	}
 
 	virtual bool create(Arg*);                             // _08

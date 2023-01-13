@@ -26,6 +26,7 @@ struct TNaviEffect {
 	    , m_beaconMtx(nullptr)
 	    , m_headMtx(nullptr)
 	    , m_height(0)
+	    , m_cursor(PID_Cursor_Default)
 	{
 	}
 

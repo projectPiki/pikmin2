@@ -90,7 +90,7 @@ struct Obj : public EnemyBase {
 	f32 m_appearTimer;           // _2C4
 	f32 m_airborneTimer;         // _2C8
 	f32 m_whistleTimer;          // _2CC
-	f32 _2D0;                    // _2D0, timer?
+	f32 m_whistleRadiusModifier; // _2D0, ranges from 0.0f to 1.0f as whistle grows
 	f32 _2D4;                    // _2D4, timer?
 	StateID m_stateID;           // _2D8
 	Vector3f m_targetPosition;   // _2DC

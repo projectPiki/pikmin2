@@ -40,7 +40,7 @@ enum StateID {
 	CARDERROR_GameCantSave,
 	CARDERROR_NowFormat,
 	CARDERROR_NowCreateNewFile,
-	CARDERROR_StateCount		// NOT A REAL STATE
+	CARDERROR_StateCount // NOT A REAL STATE
 };
 
 struct FSMStateMachine : public Game::StateMachine<TMgr> {

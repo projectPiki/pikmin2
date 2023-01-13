@@ -5,6 +5,11 @@
 
 namespace efx {
 struct TFuebugOnpa : public TChasePos {
+	inline TFuebugOnpa()
+	    : TChasePos(PID_FueBugOnpa)
+	{
+	}
+
 	virtual ~TFuebugOnpa() { } // _48 (weak)
 
 	// _00      = VTBL

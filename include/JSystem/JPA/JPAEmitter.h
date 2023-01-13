@@ -19,6 +19,18 @@ struct JPAEmitterCallBack;
 struct JPAParticleCallBack;
 struct JPADrawInfo;
 
+enum JPAEmitterFlags {
+	JPAEMIT_Unk1     = 0x1,
+	JPAEMIT_Unk2     = 0x2,
+	JPAEMIT_IsDemoOn = 0x4,
+	JPAEMIT_Unk4     = 0x8,
+	JPAEMIT_Unk5     = 0x10,
+	JPAEMIT_Unk6     = 0x20,
+	JPAEMIT_Unk7     = 0x40,
+	JPAEMIT_Unk8     = 0x80,
+	JPAEMIT_Unk9     = 0x100,
+};
+
 struct JPABaseParticle {
 	void init_p(JPAEmitterWorkData*);
 	void init_c(JPAEmitterWorkData*, JPABaseParticle*);
@@ -88,14 +100,9 @@ struct JPABaseEmitter {
 	int getDrawCount() const;
 	void loadTexture(u8, _GXTexMapID);
 
-	/**
-	 * @fabricated
-	 */
-	void setFlag(u32 flag) { m_flags = m_flags | flag; }
-	/**
-	 * @fabricated
-	 */
+	void setFlag(u32 flag) { m_flags |= flag; }
 	bool isFlag(u32 flag) { return m_flags & flag; }
+	void resetFlag(u32 flag) { m_flags &= ~flag; }
 	bool is100() { return m_flags & 0x100; }
 
 	inline void setScale(f32 scale)
