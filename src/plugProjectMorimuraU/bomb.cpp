@@ -619,9 +619,9 @@ bool Obj::canEat()
  */
 bool Obj::isAnimStart()
 {
-	bool check = false;
+	bool check;
 	if (isBirthTypeDropGroup() || !(m_toFlick >= C_PROPERPARMS.m_damageLimit.m_value)) {
-		if (!_2BC || m_bounceTriangle == nullptr) {
+		if (!_2BC || !m_bounceTriangle) {
 			if (!_2C0) {
 				check = false;
 			} else {
@@ -629,92 +629,24 @@ bool Obj::isAnimStart()
 				_2C0++;
 
 				if (_2C0 > C_PROPERPARMS.m_triggerLimit.m_value) {
-					check = true;
 					_2C0  = 0;
+					check = true;
 				} else {
 					check = false;
 				}
 			}
 
 			if (check) {
+			yes:
 				return true;
 			}
+		} else {
+			goto yes;
 		}
+	} else {
+		goto yes;
 	}
-
 	return false;
-	/*
-	stwu     r1, -0x20(r1)
-	mflr     r0
-	stw      r0, 0x24(r1)
-	stw      r31, 0x1c(r1)
-	mr       r31, r3
-	bl       isBirthTypeDropGroup__Q24Game9EnemyBaseFv
-	clrlwi.  r0, r3, 0x18
-	bne      lbl_8034B208
-	lwz      r3, 0xc0(r31)
-	lis      r0, 0x4330
-	stw      r0, 8(r1)
-	lwz      r0, 0x86c(r3)
-	lfd      f1, lbl_8051E360@sda21(r2)
-	xoris    r0, r0, 0x8000
-	lfs      f2, 0x20c(r31)
-	stw      r0, 0xc(r1)
-	lfd      f0, 8(r1)
-	fsubs    f0, f0, f1
-	fcmpo    cr0, f2, f0
-	cror     2, 1, 2
-	beq      lbl_8034B26C
-
-lbl_8034B208:
-	lbz      r0, 0x2bc(r31)
-	cmplwi   r0, 0
-	beq      lbl_8034B220
-	lwz      r0, 0xc8(r31)
-	cmplwi   r0, 0
-	bne      lbl_8034B26C
-
-lbl_8034B220:
-	lwz      r3, 0x2c0(r31)
-	cmpwi    r3, 0
-	bne      lbl_8034B234
-	li       r3, 0
-	b        lbl_8034B264
-
-lbl_8034B234:
-	addi     r0, r3, 1
-	stw      r0, 0x2c0(r31)
-	lwz      r3, 0xc0(r31)
-	lwz      r4, 0x2c0(r31)
-	lwz      r0, 0x894(r3)
-	cmpw     r4, r0
-	ble      lbl_8034B260
-	li       r0, 0
-	li       r3, 1
-	stw      r0, 0x2c0(r31)
-	b        lbl_8034B264
-
-lbl_8034B260:
-	li       r3, 0
-
-lbl_8034B264:
-	clrlwi.  r0, r3, 0x18
-	beq      lbl_8034B274
-
-lbl_8034B26C:
-	li       r3, 1
-	b        lbl_8034B278
-
-lbl_8034B274:
-	li       r3, 0
-
-lbl_8034B278:
-	lwz      r0, 0x24(r1)
-	lwz      r31, 0x1c(r1)
-	mtlr     r0
-	addi     r1, r1, 0x20
-	blr
-	*/
 }
 
 /*
