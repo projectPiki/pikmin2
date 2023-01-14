@@ -7,26 +7,13 @@
 #include "Game/EnemyMgrBase.h"
 #include "Game/EnemyBase.h"
 #include "Game/JointFuncs.h"
+#include "efx/TDama.h"
 #include "Sys/MatBaseAnimation.h"
 #include "Sys/MatBaseAnimator.h"
 
 /**
  * --Header for Beady Long Legs (Damagumo)--
  */
-
-namespace efx {
-// TODO: make headers for these
-struct TChasePos2;
-struct TDamaFootw;
-struct TDamaSmoke;
-struct TDamaHahen;
-struct TDamaDeadElecA;
-struct TDamaDeadElecB;
-struct TDamaDeadHahenA;
-struct TDamaDeadHahenB;
-struct TDamaDeadHahenC1;
-struct TDamaDeadHahenC2;
-} // namespace efx
 
 namespace Sys {
 struct MatLoopAnimator;
@@ -98,8 +85,8 @@ struct Obj : public EnemyBase {
 	bool isFinishIKMotion();
 	void startBlendMotion();
 	void finishBlendMotion();
-	void getTraceCentrePosition();
-	void isCollisionCheck(CollPart*);
+	Vector3f getTraceCentrePosition();
+	bool isCollisionCheck(CollPart*);
 	void createShadowSystem();
 	void setupShadowSystem();
 	void doAnimationShadowSystem();
@@ -133,12 +120,12 @@ struct Obj : public EnemyBase {
 	Vector3f m_targetPosition;                // _2CC
 	f32 _2D8;                                 // _2D8
 	u8 _2DC;                                  // _2DC
-	u8 _2DD;                                  // _2DD
+	bool m_isSmoking;                         // _2DD
 	IKSystemMgr* m_IKSystemMgr;               // _2E0
 	IKSystemParms* m_IKSystemParms;           // _2E4
 	DamagumoGroundCallBack* m_groundCallBack; // _2E8
 	DamagumoShadowMgr* m_shadowMgr;           // _2EC
-	Vector3f _2F0[16];                        // _2F0, guess based on BigFoot struct
+	Vector3f m_jointPositions[4][4];          // _2F0, guess based on BigFoot struct
 	efx::TChasePos2* _3B0[4];                 // _3B0
 	efx::TDamaFootw* _3C0[4];                 // _3C0
 	efx::TDamaSmoke* _3D0[3];                 // _3D0
@@ -226,13 +213,29 @@ struct ProperAnimator : public EnemyAnimatorBase {
 	SysShape::Animator m_animator; // _10
 };
 
-struct DamagumoShadowMgr;
+struct DamagumoShadowMgr {
+	DamagumoShadowMgr(Obj*);
+
+	void init();
+	void setJointPosPtr(int, int, Vector3f*);
+	void update();
+
+	Matrixf* _00; // _00
+	Obj* _04;     // _04
+	u8 _08[0xA8]; // _08, to fill in
+};
 
 struct DamagumoGroundCallBack : public JointGroundCallBack {
+	inline DamagumoGroundCallBack(Obj* obj)
+	    : m_obj(obj)
+	{
+	}
+
 	virtual void invokeOnGround(int, WaterBox*);  // _08
 	virtual void invokeOffGround(int, WaterBox*); // _0C
 
 	// _00	= VTBL
+	Obj* m_obj; // _04
 };
 
 /////////////////////////////////////////////////////////////////
