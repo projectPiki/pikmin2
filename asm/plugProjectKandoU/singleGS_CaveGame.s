@@ -5565,7 +5565,7 @@ onMovieDone__Q34Game10SingleGame9CaveStateFPQ24Game17SingleGameSectionPQ24Game11
 /* 80219F1C 00216E5C  4E 80 00 20 */	blr 
 .endif
 
-fn local __sinit_singleGS_CaveGame_cpp
+.fn __sinit_singleGS_CaveGame_cpp, local
 /* 80219F20 00216E60  3C 80 80 51 */	lis r4, __float_nan@ha
 /* 80219F24 00216E64  38 00 FF FF */	li r0, -1
 /* 80219F28 00216E68  C0 04 48 B0 */	lfs f0, __float_nan@l(r4)
@@ -5576,4 +5576,4 @@ fn local __sinit_singleGS_CaveGame_cpp
 /* 80219F3C 00216E7C  D0 03 00 04 */	stfs f0, 4(r3)
 /* 80219F40 00216E80  D0 03 00 08 */	stfs f0, 8(r3)
 /* 80219F44 00216E84  4E 80 00 20 */	blr 
-end __sinit_singleGS_CaveGame_cpp
+.endfn __sinit_singleGS_CaveGame_cpp

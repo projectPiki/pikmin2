@@ -3550,7 +3550,7 @@ update__7J2DPaneFv:
 drawSelf__7J2DPaneFff:
 /* 80039ABC 000369FC  4E 80 00 20 */	blr 
 
-fn local __sinit_J2DPane_cpp
+.fn __sinit_J2DPane_cpp, local
 /* 80039AC0 00036A00  C0 02 84 60 */	lfs f0, lbl_805167C0@sda21(r2)
 /* 80039AC4 00036A04  3C 60 80 51 */	lis r3, static_mBounds__7J2DPane@ha
 /* 80039AC8 00036A08  D4 03 F2 20 */	stfsu f0, static_mBounds__7J2DPane@l(r3)
@@ -3558,4 +3558,4 @@ fn local __sinit_J2DPane_cpp
 /* 80039AD0 00036A10  D0 03 00 08 */	stfs f0, 8(r3)
 /* 80039AD4 00036A14  D0 03 00 0C */	stfs f0, 0xc(r3)
 /* 80039AD8 00036A18  4E 80 00 20 */	blr 
-end __sinit_J2DPane_cpp
+.endfn __sinit_J2DPane_cpp

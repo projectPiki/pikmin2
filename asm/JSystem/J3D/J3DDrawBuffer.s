@@ -699,7 +699,7 @@ drawTail__13J3DDrawBufferCFv:
 /* 80066210 00063150  38 21 00 20 */	addi r1, r1, 0x20
 /* 80066214 00063154  4E 80 00 20 */	blr 
 
-fn local __sinit_J3DDrawBuffer_cpp
+.fn __sinit_J3DDrawBuffer_cpp, local
 /* 80066218 00063158  94 21 FF B0 */	stwu r1, -0x50(r1)
 /* 8006621C 0006315C  3C 60 80 4A */	lis r3, lbl_804A1930@ha
 /* 80066220 00063160  BE 01 00 10 */	stmw r16, 0x10(r1)
@@ -757,4 +757,4 @@ fn local __sinit_J3DDrawBuffer_cpp
 /* 800662F0 00063230  BA 01 00 10 */	lmw r16, 0x10(r1)
 /* 800662F4 00063234  38 21 00 50 */	addi r1, r1, 0x50
 /* 800662F8 00063238  4E 80 00 20 */	blr 
-end __sinit_J3DDrawBuffer_cpp
+.endfn __sinit_J3DDrawBuffer_cpp

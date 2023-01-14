@@ -16,6 +16,7 @@ BSS section:
 Entry Point: 0x80005240
 */
 # PowerPC Register Constants
+# General Purpose Registers (GPRs)
 .set r0, 0
 .set r1, 1
 .set r2, 2
@@ -48,6 +49,8 @@ Entry Point: 0x80005240
 .set r29, 29
 .set r30, 30
 .set r31, 31
+
+# Floating Point Registers (FPRs)
 .set f0, 0
 .set f1, 1
 .set f2, 2
@@ -80,6 +83,8 @@ Entry Point: 0x80005240
 .set f29, 29
 .set f30, 30
 .set f31, 31
+
+# Graphics Quantization Registers (GQRs)
 .set qr0, 0
 .set qr1, 1
 .set qr2, 2
@@ -88,30 +93,124 @@ Entry Point: 0x80005240
 .set qr5, 5
 .set qr6, 6
 .set qr7, 7
-.if version == 1
-# Small Data Area (read/write) Base
-#.set _SDA_BASE_, 0x8051C5C0
-# Small Data Area (read only) Base
-#.set _SDA2_BASE_, 0x8051E2A0
-.else
-# Small Data Area (read/write) Base
-#.set _SDA_BASE_, 0x8051C680
-# Small Data Area (read only) Base
-#.set _SDA2_BASE_, 0x8051E360
-.endif
 
-.macro fn visibility name
-.\visibility \name
-.type \name, @function
-\name:
+# Special Purpose Registers (SPRs)
+.set XER, 1
+.set LR, 8
+.set CTR, 9
+.set DSISR, 18
+.set DAR, 19
+.set DEC, 22
+.set SDR1, 25
+.set SRR0, 26
+.set SRR1, 27
+.set SPRG0, 272
+.set SPRG1, 273
+.set SPRG2, 274
+.set SPRG3, 275
+.set EAR, 282
+.set PVR, 287
+.set IBAT0U, 528
+.set IBAT0L, 529
+.set IBAT1U, 530
+.set IBAT1L, 531
+.set IBAT2U, 532
+.set IBAT2L, 533
+.set IBAT3U, 534
+.set IBAT3L, 535
+.set DBAT0U, 536
+.set DBAT0L, 537
+.set DBAT1U, 538
+.set DBAT1L, 539
+.set DBAT2U, 540
+.set DBAT2L, 541
+.set DBAT3U, 542
+.set DBAT3L, 543
+.set GQR0, 912
+.set GQR1, 913
+.set GQR2, 914
+.set GQR3, 915
+.set GQR4, 916
+.set GQR5, 917
+.set GQR6, 918
+.set GQR7, 919
+.set HID2, 920
+.set WPAR, 921
+.set DMA_U, 922
+.set DMA_L, 923
+.set UMMCR0, 936
+.set UPMC1, 937
+.set UPMC2, 938
+.set USIA, 939
+.set UMMCR1, 940
+.set UPMC3, 941
+.set UPMC4, 942
+.set USDA, 943
+.set MMCR0, 952
+.set PMC1, 953
+.set PMC2, 954
+.set SIA, 955
+.set MMCR1, 956
+.set PMC3, 957
+.set PMC4, 958
+.set SDA, 959
+.set HID0, 1008
+.set HID1, 1009
+.set IABR, 1010
+.set DABR, 1013
+.set L2CR, 1017
+.set ICTC, 1019
+.set THRM1, 1020
+.set THRM2, 1021
+.set THRM3, 1022
+
+# Defines a sized symbol with function type.
+# Usage:
+# .fn my_function, local
+# /* asm here */
+# .endfn my_function
+.macro .fn name, visibility=global
+.\visibility "\name"
+.type "\name", @function
+"\name":
 .endm
 
-.macro obj visibility name
-.\visibility \name
-.type \name, @object
-\name:
+.macro .endfn name
+.size "\name", . - "\name"
 .endm
 
-.macro end name
-.size \name, . - \name
+# Defines a sized symbol with object type.
+# Usage:
+# .obj my_object, local
+# /* data here */
+# .endobj my_object
+.macro .obj name, visibility=global
+.\visibility "\name"
+.type "\name", @object
+"\name":
+.endm
+
+.macro .endobj name
+.size "\name", . - "\name"
+.endm
+
+# Defines a sized symbol without a type.
+# Usage:
+# .sym my_sym, local
+# /* anything here */
+# .endsym my_sym
+.macro .sym name, visibility=global
+.\visibility "\name"
+"\name":
+.endm
+
+.macro .endsym name
+.size "\name", . - "\name"
+.endm
+
+# Generates a relative relocation against a symbol.
+# Usage:
+# .rel my_function, .L_label
+.macro .rel name, label
+.4byte "\name" + ("\label" - "\name")
 .endm

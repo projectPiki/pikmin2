@@ -3014,7 +3014,7 @@ __ct__Q34Game11PelletFruit6ObjectFv:
 /* 801FFD9C 001FCCDC  38 21 00 10 */	addi r1, r1, 0x10
 /* 801FFDA0 001FCCE0  4E 80 00 20 */	blr 
 
-fn local __sinit_pelletFruit_cpp
+.fn __sinit_pelletFruit_cpp, local
 /* 801FFDA4 001FCCE4  3C 80 80 51 */	lis r4, __float_nan@ha
 /* 801FFDA8 001FCCE8  38 00 FF FF */	li r0, -1
 /* 801FFDAC 001FCCEC  C0 04 48 B0 */	lfs f0, __float_nan@l(r4)
@@ -3025,7 +3025,7 @@ fn local __sinit_pelletFruit_cpp
 /* 801FFDC0 001FCD00  D0 03 00 04 */	stfs f0, 4(r3)
 /* 801FFDC4 001FCD04  D0 03 00 08 */	stfs f0, 8(r3)
 /* 801FFDC8 001FCD08  4E 80 00 20 */	blr 
-end __sinit_pelletFruit_cpp
+.endfn __sinit_pelletFruit_cpp
 
 .global "@84@__dt__Q24Game47FixedSizePelletMgr<Q34Game11PelletFruit6Object>Fv"
 "@84@__dt__Q24Game47FixedSizePelletMgr<Q34Game11PelletFruit6Object>Fv":

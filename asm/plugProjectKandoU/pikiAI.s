@@ -3935,7 +3935,7 @@ getName__Q26PikiAI10ActWeedArgFv:
 /* 801B3EBC 001B0DFC  38 21 00 10 */	addi r1, r1, 0x10
 /* 801B3EC0 001B0E00  4E 80 00 20 */	blr 
 
-fn local __sinit_pikiAI_cpp
+.fn __sinit_pikiAI_cpp, local
 /* 801B3EC4 001B0E04  3C 80 80 51 */	lis r4, __float_nan@ha
 /* 801B3EC8 001B0E08  38 00 FF FF */	li r0, -1
 /* 801B3ECC 001B0E0C  C0 04 48 B0 */	lfs f0, __float_nan@l(r4)
@@ -3946,4 +3946,4 @@ fn local __sinit_pikiAI_cpp
 /* 801B3EE0 001B0E20  D0 03 00 04 */	stfs f0, 4(r3)
 /* 801B3EE4 001B0E24  D0 03 00 08 */	stfs f0, 8(r3)
 /* 801B3EE8 001B0E28  4E 80 00 20 */	blr 
-end __sinit_pikiAI_cpp
+.endfn __sinit_pikiAI_cpp

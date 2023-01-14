@@ -1647,7 +1647,7 @@ setForOSResetSystem__10JFWDisplayFv:
 /* 8008B070 00087FB0  38 21 00 10 */	addi r1, r1, 0x10
 /* 8008B074 00087FB4  4E 80 00 20 */	blr 
 
-fn local __sinit_JFWDisplay_cpp
+.fn __sinit_JFWDisplay_cpp, local
 /* 8008B078 00087FB8  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8008B07C 00087FBC  7C 08 02 A6 */	mflr r0
 /* 8008B080 00087FC0  3C 60 80 51 */	lis r3, sList__8JFWAlarm@ha
@@ -1666,7 +1666,7 @@ fn local __sinit_JFWDisplay_cpp
 /* 8008B0B4 00087FF4  7C 08 03 A6 */	mtlr r0
 /* 8008B0B8 00087FF8  38 21 00 10 */	addi r1, r1, 0x10
 /* 8008B0BC 00087FFC  4E 80 00 20 */	blr 
-end __sinit_JFWDisplay_cpp
+.endfn __sinit_JFWDisplay_cpp
 
 .global "__dt__18JSUList<8JFWAlarm>Fv"
 "__dt__18JSUList<8JFWAlarm>Fv":

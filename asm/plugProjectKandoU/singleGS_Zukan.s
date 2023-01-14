@@ -9843,7 +9843,7 @@ __dt__Q34Game15IllustratedBook10DebugParmsFv:
 /* 802273E8 00224328  38 21 00 10 */	addi r1, r1, 0x10
 /* 802273EC 0022432C  4E 80 00 20 */	blr 
 
-fn local __sinit_singleGS_Zukan_cpp
+.fn __sinit_singleGS_Zukan_cpp, local
 /* 802273F0 00224330  3C 80 80 51 */	lis r4, __float_nan@ha
 /* 802273F4 00224334  38 00 FF FF */	li r0, -1
 /* 802273F8 00224338  C0 04 48 B0 */	lfs f0, __float_nan@l(r4)
@@ -9854,4 +9854,4 @@ fn local __sinit_singleGS_Zukan_cpp
 /* 8022740C 0022434C  D0 03 00 04 */	stfs f0, 4(r3)
 /* 80227410 00224350  D0 03 00 08 */	stfs f0, 8(r3)
 /* 80227414 00224354  4E 80 00 20 */	blr 
-end __sinit_singleGS_Zukan_cpp
+.endfn __sinit_singleGS_Zukan_cpp

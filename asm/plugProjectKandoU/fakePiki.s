@@ -3340,7 +3340,7 @@ isWalking__Q24Game8FakePikiFv:
 onKeyEvent__Q24Game8FakePikiFRCQ28SysShape8KeyEvent:
 /* 8013F6A0 0013C5E0  4E 80 00 20 */	blr 
 
-fn local __sinit_fakePiki_cpp
+.fn __sinit_fakePiki_cpp, local
 /* 8013F6A4 0013C5E4  3C 80 80 51 */	lis r4, __float_nan@ha
 /* 8013F6A8 0013C5E8  38 00 FF FF */	li r0, -1
 /* 8013F6AC 0013C5EC  C0 04 48 B0 */	lfs f0, __float_nan@l(r4)
@@ -3351,7 +3351,7 @@ fn local __sinit_fakePiki_cpp
 /* 8013F6C0 0013C600  D0 03 00 04 */	stfs f0, 4(r3)
 /* 8013F6C4 0013C604  D0 03 00 08 */	stfs f0, 8(r3)
 /* 8013F6C8 0013C608  4E 80 00 20 */	blr 
-end __sinit_fakePiki_cpp
+.endfn __sinit_fakePiki_cpp
 
 .global "@376@onKeyEvent__Q24Game8FakePikiFRCQ28SysShape8KeyEvent"
 "@376@onKeyEvent__Q24Game8FakePikiFRCQ28SysShape8KeyEvent":

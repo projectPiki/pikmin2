@@ -12389,7 +12389,7 @@ throwable__Q24Game13PikiWalkStateFv:
 /* 80192C04 0018FB44  90 03 00 08 */	stw r0, 8(r3)
 /* 80192C08 0018FB48  4E 80 00 20 */	blr 
 
-fn local __sinit_pikiState_cpp
+.fn __sinit_pikiState_cpp, local
 /* 80192C0C 0018FB4C  3C 80 80 51 */	lis r4, __float_nan@ha
 /* 80192C10 0018FB50  38 00 FF FF */	li r0, -1
 /* 80192C14 0018FB54  C0 04 48 B0 */	lfs f0, __float_nan@l(r4)
@@ -12400,7 +12400,7 @@ fn local __sinit_pikiState_cpp
 /* 80192C28 0018FB68  D0 03 00 04 */	stfs f0, 4(r3)
 /* 80192C2C 0018FB6C  D0 03 00 08 */	stfs f0, 8(r3)
 /* 80192C30 0018FB70  4E 80 00 20 */	blr 
-end __sinit_pikiState_cpp
+.endfn __sinit_pikiState_cpp
 
 .global "@28@4@onKeyEvent__Q24Game15PikiLookAtStateFRCQ28SysShape8KeyEvent"
 "@28@4@onKeyEvent__Q24Game15PikiLookAtStateFRCQ28SysShape8KeyEvent":

@@ -316,7 +316,7 @@ fetchVolumeName__13JKRFileLoaderFPclPCc:
 /* 80023214 00020154  38 21 00 20 */	addi r1, r1, 0x20
 /* 80023218 00020158  4E 80 00 20 */	blr 
 
-fn local __sinit_JKRFileLoader_cpp
+.fn __sinit_JKRFileLoader_cpp, local
 /* 8002321C 0002015C  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80023220 00020160  7C 08 02 A6 */	mflr r0
 /* 80023224 00020164  3C 60 80 50 */	lis r3, sVolumeList__13JKRFileLoader@ha
@@ -334,7 +334,7 @@ fn local __sinit_JKRFileLoader_cpp
 /* 80023254 00020194  7C 08 03 A6 */	mtlr r0
 /* 80023258 00020198  38 21 00 10 */	addi r1, r1, 0x10
 /* 8002325C 0002019C  4E 80 00 20 */	blr 
-end __sinit_JKRFileLoader_cpp
+.endfn __sinit_JKRFileLoader_cpp
 
 .global "__dt__24JSUList<13JKRFileLoader>Fv"
 "__dt__24JSUList<13JKRFileLoader>Fv":

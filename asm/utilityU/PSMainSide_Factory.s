@@ -3923,7 +3923,7 @@ __dt__Q23PSM15EnvSeObjBuilderFv: # weak function
 /* 8045CE34 00459D74  38 21 00 10 */	addi r1, r1, 0x10
 /* 8045CE38 00459D78  4E 80 00 20 */	blr 
 
-fn local __sinit_PSMainSide_Factory_cpp
+.fn __sinit_PSMainSide_Factory_cpp, local
 /* 8045CE3C 00459D7C  3C 80 80 51 */	lis r4, __float_nan@ha
 /* 8045CE40 00459D80  38 00 FF FF */	li r0, -1
 /* 8045CE44 00459D84  C0 04 48 B0 */	lfs f0, __float_nan@l(r4)
@@ -3934,4 +3934,4 @@ fn local __sinit_PSMainSide_Factory_cpp
 /* 8045CE58 00459D98  D0 03 00 04 */	stfs f0, 4(r3)
 /* 8045CE5C 00459D9C  D0 03 00 08 */	stfs f0, 8(r3)
 /* 8045CE60 00459DA0  4E 80 00 20 */	blr 
-end __sinit_PSMainSide_Factory_cpp
+.endfn __sinit_PSMainSide_Factory_cpp

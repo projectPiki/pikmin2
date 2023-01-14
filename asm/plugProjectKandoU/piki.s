@@ -4259,7 +4259,7 @@ getCreatureName__Q24Game4PikiFv:
 "exec__Q24Game22FSMState<Q24Game4Piki>FPQ24Game4Piki":
 /* 8014AC14 00147B54  4E 80 00 20 */	blr 
 
-fn local __sinit_piki_cpp
+.fn __sinit_piki_cpp, local
 /* 8014AC18 00147B58  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 8014AC1C 00147B5C  3C 60 80 51 */	lis r3, __float_nan@ha
 /* 8014AC20 00147B60  3C A0 80 4B */	lis r5, govNAN___Q24Game5P2JST@ha
@@ -4352,7 +4352,7 @@ fn local __sinit_piki_cpp
 /* 8014AD7C 00147CBC  83 81 00 10 */	lwz r28, 0x10(r1)
 /* 8014AD80 00147CC0  38 21 00 20 */	addi r1, r1, 0x20
 /* 8014AD84 00147CC4  4E 80 00 20 */	blr 
-end __sinit_piki_cpp
+.endfn __sinit_piki_cpp
 
 .global "@4@__dt__Q23efx7TPkMoeAFv"
 "@4@__dt__Q23efx7TPkMoeAFv":

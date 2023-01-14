@@ -205,7 +205,7 @@ __ct__Q32og6Screen18CallBack_LifeGaugeFv:
 /* 80306188 003030C8  38 21 00 10 */	addi r1, r1, 0x10
 /* 8030618C 003030CC  4E 80 00 20 */	blr 
 
-fn weak __dt__Q29P2DScreen12CallBackNodeFv
+.fn __dt__Q29P2DScreen12CallBackNodeFv, weak
 /* 80306190 003030D0  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80306194 003030D4  7C 08 02 A6 */	mflr r0
 /* 80306198 003030D8  90 01 00 14 */	stw r0, 0x14(r1)
@@ -236,9 +236,9 @@ fn weak __dt__Q29P2DScreen12CallBackNodeFv
 /* 803061F4 00303134  7C 08 03 A6 */	mtlr r0
 /* 803061F8 00303138  38 21 00 10 */	addi r1, r1, 0x10
 /* 803061FC 0030313C  4E 80 00 20 */	blr 
-end __dt__Q29P2DScreen12CallBackNodeFv
+.endfn __dt__Q29P2DScreen12CallBackNodeFv
 
-fn global init__Q32og6Screen18CallBack_LifeGaugeFPQ29P2DScreen3MgrPQ32og6Screen8DataNaviQ42og6Screen18CallBack_LifeGauge13LifeGaugeType
+.fn init__Q32og6Screen18CallBack_LifeGaugeFPQ29P2DScreen3MgrPQ32og6Screen8DataNaviQ42og6Screen18CallBack_LifeGauge13LifeGaugeType, global
 /* 80306200 00303140  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 80306204 00303144  7C 08 02 A6 */	mflr r0
 /* 80306208 00303148  90 01 00 24 */	stw r0, 0x24(r1)
@@ -420,7 +420,7 @@ fn global init__Q32og6Screen18CallBack_LifeGaugeFPQ29P2DScreen3MgrPQ32og6Screen8
 /* 803064B8 003033F8  7C 08 03 A6 */	mtlr r0
 /* 803064BC 003033FC  38 21 00 20 */	addi r1, r1, 0x20
 /* 803064C0 00303400  4E 80 00 20 */	blr 
-end init__Q32og6Screen18CallBack_LifeGaugeFPQ29P2DScreen3MgrPQ32og6Screen8DataNaviQ42og6Screen18CallBack_LifeGauge13LifeGaugeType
+.endfn init__Q32og6Screen18CallBack_LifeGaugeFPQ29P2DScreen3MgrPQ32og6Screen8DataNaviQ42og6Screen18CallBack_LifeGauge13LifeGaugeType
 
 .global setType__Q32og6Screen18CallBack_LifeGaugeFQ42og6Screen18CallBack_LifeGauge13LifeGaugeType
 setType__Q32og6Screen18CallBack_LifeGaugeFQ42og6Screen18CallBack_LifeGauge13LifeGaugeType:
@@ -1272,7 +1272,7 @@ update__Q32og6Screen13NaviLifeGaugeFv:
 /* 80307140 00304080  38 21 00 10 */	addi r1, r1, 0x10
 /* 80307144 00304084  4E 80 00 20 */	blr 
 
-fn weak __dt__Q32og6Screen13NaviLifeGaugeFv
+.fn __dt__Q32og6Screen13NaviLifeGaugeFv, weak
 /* 80307148 00304088  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8030714C 0030408C  7C 08 02 A6 */	mflr r0
 /* 80307150 00304090  90 01 00 14 */	stw r0, 0x14(r1)
@@ -1317,9 +1317,9 @@ fn weak __dt__Q32og6Screen13NaviLifeGaugeFv
 /* 803071E0 00304120  7C 08 03 A6 */	mtlr r0
 /* 803071E4 00304124  38 21 00 10 */	addi r1, r1, 0x10
 /* 803071E8 00304128  4E 80 00 20 */	blr 
-end __dt__Q32og6Screen13NaviLifeGaugeFv
+.endfn __dt__Q32og6Screen13NaviLifeGaugeFv
 
-fn weak __dt__Q32og6Screen18CallBack_LifeGaugeFv
+.fn __dt__Q32og6Screen18CallBack_LifeGaugeFv, weak
 /* 803071EC 0030412C  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 803071F0 00304130  7C 08 02 A6 */	mflr r0
 /* 803071F4 00304134  90 01 00 14 */	stw r0, 0x14(r1)
@@ -1354,13 +1354,13 @@ fn weak __dt__Q32og6Screen18CallBack_LifeGaugeFv
 /* 80307260 003041A0  7C 08 03 A6 */	mtlr r0
 /* 80307264 003041A4  38 21 00 10 */	addi r1, r1, 0x10
 /* 80307268 003041A8  4E 80 00 20 */	blr 
-end __dt__Q32og6Screen18CallBack_LifeGaugeFv
+.endfn __dt__Q32og6Screen18CallBack_LifeGaugeFv
 
-fn weak update__Q29P2DScreen12CallBackNodeFv
+.fn update__Q29P2DScreen12CallBackNodeFv, weak
 /* 8030726C 003041AC  4E 80 00 20 */	blr 
-end update__Q29P2DScreen12CallBackNodeFv
+.endfn update__Q29P2DScreen12CallBackNodeFv
 
-fn local __sinit_ogLifeGauge_cpp
+.fn __sinit_ogLifeGauge_cpp, local
 /* 80307270 003041B0  C0 42 F2 68 */	lfs f2, lbl_8051D5C8@sda21(r2)
 /* 80307274 003041B4  3C 60 80 51 */	lis r3, msVal__Q32og6Screen18CallBack_LifeGauge@ha
 /* 80307278 003041B8  C0 22 F2 70 */	lfs f1, lbl_8051D5D0@sda21(r2)
@@ -1370,4 +1370,4 @@ fn local __sinit_ogLifeGauge_cpp
 /* 80307288 003041C8  D0 03 00 08 */	stfs f0, 8(r3)
 /* 8030728C 003041CC  D0 43 00 0C */	stfs f2, 0xc(r3)
 /* 80307290 003041D0  4E 80 00 20 */	blr 
-end __sinit_ogLifeGauge_cpp
+.endfn __sinit_ogLifeGauge_cpp

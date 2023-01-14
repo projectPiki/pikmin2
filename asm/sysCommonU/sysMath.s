@@ -71,7 +71,7 @@ lbl_805202C4:
 	.float -32768.0
 
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
-fn global pikmin2_sinf__Ff
+.fn pikmin2_sinf__Ff, global
 /* 80411730 0040E670  C0 02 1F 10 */	lfs f0, lbl_80520270@sda21(r2)
 /* 80411734 0040E674  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 80411738 0040E678  FC 01 00 40 */	fcmpo cr0, f1, f0
@@ -100,9 +100,9 @@ fn global pikmin2_sinf__Ff
 .L_80411790:
 /* 80411790 0040E6D0  38 21 00 20 */	addi r1, r1, 0x20
 /* 80411794 0040E6D4  4E 80 00 20 */	blr 
-end pikmin2_sinf__Ff
+.endfn pikmin2_sinf__Ff
 
-fn global pikmin2_cosf__Ff
+.fn pikmin2_cosf__Ff, global
 /* 80411798 0040E6D8  C0 02 1F 10 */	lfs f0, lbl_80520270@sda21(r2)
 /* 8041179C 0040E6DC  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 804117A0 0040E6E0  FC 01 00 40 */	fcmpo cr0, f1, f0
@@ -121,9 +121,9 @@ fn global pikmin2_cosf__Ff
 /* 804117D0 0040E710  C0 23 00 04 */	lfs f1, 4(r3)
 /* 804117D4 0040E714  38 21 00 10 */	addi r1, r1, 0x10
 /* 804117D8 0040E718  4E 80 00 20 */	blr 
-end pikmin2_cosf__Ff
+.endfn pikmin2_cosf__Ff
 
-fn global pikmin2_atan2f__Fff
+.fn pikmin2_atan2f__Fff, global
 /* 804117DC 0040E71C  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 804117E0 0040E720  7C 08 02 A6 */	mflr r0
 /* 804117E4 0040E724  3C 60 80 51 */	lis r3, atanTable___5JMath@ha
@@ -134,18 +134,18 @@ fn global pikmin2_atan2f__Fff
 /* 804117F8 0040E738  7C 08 03 A6 */	mtlr r0
 /* 804117FC 0040E73C  38 21 00 10 */	addi r1, r1, 0x10
 /* 80411800 0040E740  4E 80 00 20 */	blr 
-end pikmin2_atan2f__Fff
+.endfn pikmin2_atan2f__Fff
 
-fn global pikmin2_sqrtf__Ff
+.fn pikmin2_sqrtf__Ff, global
 /* 80411804 0040E744  C0 02 1F 10 */	lfs f0, lbl_80520270@sda21(r2)
 /* 80411808 0040E748  FC 01 00 40 */	fcmpo cr0, f1, f0
 /* 8041180C 0040E74C  4C 81 00 20 */	blelr 
 /* 80411810 0040E750  FC 00 08 34 */	frsqrte f0, f1
 /* 80411814 0040E754  EC 20 00 72 */	fmuls f1, f0, f1
 /* 80411818 0040E758  4E 80 00 20 */	blr 
-end pikmin2_sqrtf__Ff
+.endfn pikmin2_sqrtf__Ff
 
-fn global qdist2__Fffff
+.fn qdist2__Fffff, global
 /* 8041181C 0040E75C  EC 84 10 28 */	fsubs f4, f4, f2
 /* 80411820 0040E760  C0 02 1F 10 */	lfs f0, lbl_80520270@sda21(r2)
 /* 80411824 0040E764  EC 43 08 28 */	fsubs f2, f3, f1
@@ -162,7 +162,7 @@ fn global qdist2__Fffff
 .L_80411850:
 /* 80411850 0040E790  38 21 00 10 */	addi r1, r1, 0x10
 /* 80411854 0040E794  4E 80 00 20 */	blr 
-end qdist2__Fffff
+.endfn qdist2__Fffff
 
 .global "CRSplineTangent__FfP10Vector3<f>"
 "CRSplineTangent__FfP10Vector3<f>":
@@ -228,7 +228,7 @@ end qdist2__Fffff
 /* 80411944 0040E884  38 21 00 20 */	addi r1, r1, 0x20
 /* 80411948 0040E888  4E 80 00 20 */	blr 
 
-fn global read__8BoundBoxFR6Stream
+.fn read__8BoundBoxFR6Stream, global
 /* 8041194C 0040E88C  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80411950 0040E890  7C 08 02 A6 */	mflr r0
 /* 80411954 0040E894  90 01 00 14 */	stw r0, 0x14(r1)
@@ -246,7 +246,7 @@ fn global read__8BoundBoxFR6Stream
 /* 80411984 0040E8C4  7C 08 03 A6 */	mtlr r0
 /* 80411988 0040E8C8  38 21 00 10 */	addi r1, r1, 0x10
 /* 8041198C 0040E8CC  4E 80 00 20 */	blr 
-end read__8BoundBoxFR6Stream
+.endfn read__8BoundBoxFR6Stream
 
 .global "read__10Vector3<f>FR6Stream"
 "read__10Vector3<f>FR6Stream":
@@ -298,7 +298,7 @@ end read__8BoundBoxFR6Stream
 /* 80411A38 0040E978  38 21 00 10 */	addi r1, r1, 0x10
 /* 80411A3C 0040E97C  4E 80 00 20 */	blr 
 
-fn global write__5PlaneFR6Stream
+.fn write__5PlaneFR6Stream, global
 /* 80411A40 0040E980  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80411A44 0040E984  7C 08 02 A6 */	mflr r0
 /* 80411A48 0040E988  90 01 00 14 */	stw r0, 0x14(r1)
@@ -324,9 +324,9 @@ fn global write__5PlaneFR6Stream
 /* 80411A98 0040E9D8  7C 08 03 A6 */	mtlr r0
 /* 80411A9C 0040E9DC  38 21 00 10 */	addi r1, r1, 0x10
 /* 80411AA0 0040E9E0  4E 80 00 20 */	blr 
-end write__5PlaneFR6Stream
+.endfn write__5PlaneFR6Stream
 
-fn global read__5PlaneFR6Stream
+.fn read__5PlaneFR6Stream, global
 /* 80411AA4 0040E9E4  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80411AA8 0040E9E8  7C 08 02 A6 */	mflr r0
 /* 80411AAC 0040E9EC  90 01 00 14 */	stw r0, 0x14(r1)
@@ -352,9 +352,9 @@ fn global read__5PlaneFR6Stream
 /* 80411AFC 0040EA3C  7C 08 03 A6 */	mtlr r0
 /* 80411B00 0040EA40  38 21 00 10 */	addi r1, r1, 0x10
 /* 80411B04 0040EA44  4E 80 00 20 */	blr 
-end read__5PlaneFR6Stream
+.endfn read__5PlaneFR6Stream
 
-fn global write__6Color4FR6Stream
+.fn write__6Color4FR6Stream, global
 /* 80411B08 0040EA48  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80411B0C 0040EA4C  7C 08 02 A6 */	mflr r0
 /* 80411B10 0040EA50  90 01 00 14 */	stw r0, 0x14(r1)
@@ -380,9 +380,9 @@ fn global write__6Color4FR6Stream
 /* 80411B60 0040EAA0  7C 08 03 A6 */	mtlr r0
 /* 80411B64 0040EAA4  38 21 00 10 */	addi r1, r1, 0x10
 /* 80411B68 0040EAA8  4E 80 00 20 */	blr 
-end write__6Color4FR6Stream
+.endfn write__6Color4FR6Stream
 
-fn global read__6Color4FR6Stream
+.fn read__6Color4FR6Stream, global
 /* 80411B6C 0040EAAC  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80411B70 0040EAB0  7C 08 02 A6 */	mflr r0
 /* 80411B74 0040EAB4  90 01 00 14 */	stw r0, 0x14(r1)
@@ -408,9 +408,9 @@ fn global read__6Color4FR6Stream
 /* 80411BC4 0040EB04  7C 08 03 A6 */	mtlr r0
 /* 80411BC8 0040EB08  38 21 00 10 */	addi r1, r1, 0x10
 /* 80411BCC 0040EB0C  4E 80 00 20 */	blr 
-end read__6Color4FR6Stream
+.endfn read__6Color4FR6Stream
 
-fn global roundAng__Ff
+.fn roundAng__Ff, global
 /* 80411BD0 0040EB10  C0 02 1F 10 */	lfs f0, lbl_80520270@sda21(r2)
 /* 80411BD4 0040EB14  FC 01 00 40 */	fcmpo cr0, f1, f0
 /* 80411BD8 0040EB18  40 80 00 0C */	bge .L_80411BE4
@@ -423,9 +423,9 @@ fn global roundAng__Ff
 /* 80411BF0 0040EB30  4C 82 00 20 */	bnelr 
 /* 80411BF4 0040EB34  EC 21 00 28 */	fsubs f1, f1, f0
 /* 80411BF8 0040EB38  4E 80 00 20 */	blr 
-end roundAng__Ff
+.endfn roundAng__Ff
 
-fn global angDist__Fff
+.fn angDist__Fff, global
 /* 80411BFC 0040EB3C  EC 41 10 28 */	fsubs f2, f1, f2
 /* 80411C00 0040EB40  C0 02 1F 10 */	lfs f0, lbl_80520270@sda21(r2)
 /* 80411C04 0040EB44  FC 02 00 40 */	fcmpo cr0, f2, f0
@@ -459,9 +459,9 @@ fn global angDist__Fff
 .L_80411C68:
 /* 80411C68 0040EBA8  FC 20 10 50 */	fneg f1, f2
 /* 80411C6C 0040EBAC  4E 80 00 20 */	blr 
-end angDist__Fff
+.endfn angDist__Fff
 
-fn global makeIdentity__8Matrix3fFv
+.fn makeIdentity__8Matrix3fFv, global
 /* 80411C70 0040EBB0  C0 22 1F 18 */	lfs f1, lbl_80520278@sda21(r2)
 /* 80411C74 0040EBB4  C0 02 1F 10 */	lfs f0, lbl_80520270@sda21(r2)
 /* 80411C78 0040EBB8  D0 23 00 00 */	stfs f1, 0(r3)
@@ -474,9 +474,9 @@ fn global makeIdentity__8Matrix3fFv
 /* 80411C94 0040EBD4  D0 03 00 1C */	stfs f0, 0x1c(r3)
 /* 80411C98 0040EBD8  D0 23 00 20 */	stfs f1, 0x20(r3)
 /* 80411C9C 0040EBDC  4E 80 00 20 */	blr 
-end makeIdentity__8Matrix3fFv
+.endfn makeIdentity__8Matrix3fFv
 
-fn global calcEigenMatrix__8Matrix3fFR8Matrix3fR8Matrix3f
+.fn calcEigenMatrix__8Matrix3fFR8Matrix3fR8Matrix3f, global
 /* 80411CA0 0040EBE0  94 21 FE 70 */	stwu r1, -0x190(r1)
 /* 80411CA4 0040EBE4  C0 42 1F 18 */	lfs f2, lbl_80520278@sda21(r2)
 /* 80411CA8 0040EBE8  BE 01 01 50 */	stmw r16, 0x150(r1)
@@ -960,16 +960,16 @@ fn global calcEigenMatrix__8Matrix3fFR8Matrix3fR8Matrix3f
 /* 804123BC 0040F2FC  BA 01 01 50 */	lmw r16, 0x150(r1)
 /* 804123C0 0040F300  38 21 01 90 */	addi r1, r1, 0x190
 /* 804123C4 0040F304  4E 80 00 20 */	blr 
-end calcEigenMatrix__8Matrix3fFR8Matrix3fR8Matrix3f
+.endfn calcEigenMatrix__8Matrix3fFR8Matrix3fR8Matrix3f
 
-fn global __ct__4QuatFv
+.fn __ct__4QuatFv, global
 /* 804123C8 0040F308  C0 02 1F 10 */	lfs f0, lbl_80520270@sda21(r2)
 /* 804123CC 0040F30C  D0 03 00 00 */	stfs f0, 0(r3)
 /* 804123D0 0040F310  D0 03 00 04 */	stfs f0, 4(r3)
 /* 804123D4 0040F314  D0 03 00 08 */	stfs f0, 8(r3)
 /* 804123D8 0040F318  D0 03 00 0C */	stfs f0, 0xc(r3)
 /* 804123DC 0040F31C  4E 80 00 20 */	blr 
-end __ct__4QuatFv
+.endfn __ct__4QuatFv
 
 .global "__ct__4QuatFf10Vector3<f>"
 "__ct__4QuatFf10Vector3<f>":
@@ -982,7 +982,7 @@ end __ct__4QuatFv
 /* 804123F8 0040F338  D0 03 00 0C */	stfs f0, 0xc(r3)
 /* 804123FC 0040F33C  4E 80 00 20 */	blr 
 
-fn weak __ml__FR4QuatR4Quat
+.fn __ml__FR4QuatR4Quat, weak
 /* 80412400 0040F340  94 21 FF B0 */	stwu r1, -0x50(r1)
 /* 80412404 0040F344  DB E1 00 40 */	stfd f31, 0x40(r1)
 /* 80412408 0040F348  F3 E1 00 48 */	psq_st f31, 72(r1), 0, qr0
@@ -1046,7 +1046,7 @@ fn weak __ml__FR4QuatR4Quat
 /* 804124F0 0040F430  CB C1 00 30 */	lfd f30, 0x30(r1)
 /* 804124F4 0040F434  38 21 00 50 */	addi r1, r1, 0x50
 /* 804124F8 0040F438  4E 80 00 20 */	blr 
-end __ml__FR4QuatR4Quat
+.endfn __ml__FR4QuatR4Quat
 
 .global "set__4QuatFR10Vector3<f>"
 "set__4QuatFR10Vector3<f>":
@@ -1210,7 +1210,7 @@ end __ml__FR4QuatR4Quat
 /* 80412758 0040F698  38 21 00 90 */	addi r1, r1, 0x90
 /* 8041275C 0040F69C  4E 80 00 20 */	blr 
 
-fn global __ct__4QuatFR4Quat
+.fn __ct__4QuatFR4Quat, global
 /* 80412760 0040F6A0  C0 04 00 00 */	lfs f0, 0(r4)
 /* 80412764 0040F6A4  D0 03 00 00 */	stfs f0, 0(r3)
 /* 80412768 0040F6A8  C0 04 00 04 */	lfs f0, 4(r4)
@@ -1220,17 +1220,17 @@ fn global __ct__4QuatFR4Quat
 /* 80412778 0040F6B8  C0 04 00 0C */	lfs f0, 0xc(r4)
 /* 8041277C 0040F6BC  D0 03 00 0C */	stfs f0, 0xc(r3)
 /* 80412780 0040F6C0  4E 80 00 20 */	blr 
-end __ct__4QuatFR4Quat
+.endfn __ct__4QuatFR4Quat
 
-fn global set__4QuatFffff
+.fn set__4QuatFffff, global
 /* 80412784 0040F6C4  D0 23 00 00 */	stfs f1, 0(r3)
 /* 80412788 0040F6C8  D0 43 00 04 */	stfs f2, 4(r3)
 /* 8041278C 0040F6CC  D0 63 00 08 */	stfs f3, 8(r3)
 /* 80412790 0040F6D0  D0 83 00 0C */	stfs f4, 0xc(r3)
 /* 80412794 0040F6D4  4E 80 00 20 */	blr 
-end set__4QuatFffff
+.endfn set__4QuatFffff
 
-fn global inverse__4QuatFv
+.fn inverse__4QuatFv, global
 /* 80412798 0040F6D8  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 8041279C 0040F6DC  C0 42 1F 14 */	lfs f2, lbl_80520274@sda21(r2)
 /* 804127A0 0040F6E0  C0 24 00 08 */	lfs f1, 8(r4)
@@ -1278,9 +1278,9 @@ fn global inverse__4QuatFv
 .L_80412844:
 /* 80412844 0040F784  38 21 00 20 */	addi r1, r1, 0x20
 /* 80412848 0040F788  4E 80 00 20 */	blr 
-end inverse__4QuatFv
+.endfn inverse__4QuatFv
 
-fn global normalise__4QuatFv
+.fn normalise__4QuatFv, global
 /* 8041284C 0040F78C  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 80412850 0040F790  C0 02 1F 10 */	lfs f0, lbl_80520270@sda21(r2)
 /* 80412854 0040F794  C0 C3 00 04 */	lfs f6, 4(r3)
@@ -1323,9 +1323,9 @@ fn global normalise__4QuatFv
 /* 804128E4 0040F824  D0 03 00 0C */	stfs f0, 0xc(r3)
 /* 804128E8 0040F828  38 21 00 20 */	addi r1, r1, 0x20
 /* 804128EC 0040F82C  4E 80 00 20 */	blr 
-end normalise__4QuatFv
+.endfn normalise__4QuatFv
 
-fn global slerp__4QuatFR4QuatfR4Quat
+.fn slerp__4QuatFR4QuatfR4Quat, global
 /* 804128F0 0040F830  94 21 FF A0 */	stwu r1, -0x60(r1)
 /* 804128F4 0040F834  7C 08 02 A6 */	mflr r0
 /* 804128F8 0040F838  90 01 00 64 */	stw r0, 0x64(r1)
@@ -1555,9 +1555,9 @@ fn global slerp__4QuatFR4QuatfR4Quat
 /* 80412C2C 0040FB6C  7C 08 03 A6 */	mtlr r0
 /* 80412C30 0040FB70  38 21 00 60 */	addi r1, r1, 0x60
 /* 80412C34 0040FB74  4E 80 00 20 */	blr 
-end slerp__4QuatFR4QuatfR4Quat
+.endfn slerp__4QuatFR4QuatfR4Quat
 
-fn global fromMatrixf__4QuatFR7Matrixf
+.fn fromMatrixf__4QuatFR7Matrixf, global
 /* 80412C38 0040FB78  C0 C4 00 00 */	lfs f6, 0(r4)
 /* 80412C3C 0040FB7C  C0 04 00 14 */	lfs f0, 0x14(r4)
 /* 80412C40 0040FB80  C0 64 00 28 */	lfs f3, 0x28(r4)
@@ -1789,9 +1789,9 @@ fn global fromMatrixf__4QuatFR7Matrixf
 /* 80412F68 0040FEA8  EC 00 00 72 */	fmuls f0, f0, f1
 /* 80412F6C 0040FEAC  D0 03 00 0C */	stfs f0, 0xc(r3)
 /* 80412F70 0040FEB0  4E 80 00 20 */	blr 
-end fromMatrixf__4QuatFR7Matrixf
+.endfn fromMatrixf__4QuatFR7Matrixf
 
-fn global makeBoundSphere__8BoundBoxFRQ23Sys6Sphere
+.fn makeBoundSphere__8BoundBoxFRQ23Sys6Sphere, global
 /* 80412F74 0040FEB4  C0 23 00 00 */	lfs f1, 0(r3)
 /* 80412F78 0040FEB8  C0 03 00 0C */	lfs f0, 0xc(r3)
 /* 80412F7C 0040FEBC  C0 63 00 04 */	lfs f3, 4(r3)
@@ -1846,9 +1846,9 @@ fn global makeBoundSphere__8BoundBoxFRQ23Sys6Sphere
 .L_80413034:
 /* 80413034 0040FF74  D0 E4 00 0C */	stfs f7, 0xc(r4)
 /* 80413038 0040FF78  4E 80 00 20 */	blr 
-end makeBoundSphere__8BoundBoxFRQ23Sys6Sphere
+.endfn makeBoundSphere__8BoundBoxFRQ23Sys6Sphere
 
-fn global transform__8BoundBoxFR7Matrixf
+.fn transform__8BoundBoxFR7Matrixf, global
 /* 8041303C 0040FF7C  94 21 FF 70 */	stwu r1, -0x90(r1)
 /* 80413040 0040FF80  7C 08 02 A6 */	mflr r0
 /* 80413044 0040FF84  90 01 00 94 */	stw r0, 0x94(r1)
@@ -1992,9 +1992,9 @@ fn global transform__8BoundBoxFR7Matrixf
 /* 8041321C 0041015C  7C 08 03 A6 */	mtlr r0
 /* 80413220 00410160  38 21 00 90 */	addi r1, r1, 0x90
 /* 80413224 00410164  4E 80 00 20 */	blr 
-end transform__8BoundBoxFR7Matrixf
+.endfn transform__8BoundBoxFR7Matrixf
 
-fn local __sinit_sysMath_cpp
+.fn __sinit_sysMath_cpp, local
 /* 80413228 00410168  88 0D 9A C8 */	lbz r0, "__init__zero__10Vector3<f>"@sda21(r13)
 /* 8041322C 0041016C  7C 00 07 75 */	extsb. r0, r0
 /* 80413230 00410170  4C 82 00 20 */	bnelr 
@@ -2006,4 +2006,4 @@ fn local __sinit_sysMath_cpp
 /* 80413248 00410188  D0 03 00 08 */	stfs f0, 8(r3)
 /* 8041324C 0041018C  98 0D 9A C8 */	stb r0, "__init__zero__10Vector3<f>"@sda21(r13)
 /* 80413250 00410190  4E 80 00 20 */	blr 
-end __sinit_sysMath_cpp
+.endfn __sinit_sysMath_cpp

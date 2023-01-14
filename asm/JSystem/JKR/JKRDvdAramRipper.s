@@ -1077,7 +1077,7 @@ dmaBufferFlush__FUl:
 /* 8001E4DC 0001B41C  38 21 00 10 */	addi r1, r1, 0x10
 /* 8001E4E0 0001B420  4E 80 00 20 */	blr 
 
-fn local __sinit_JKRDvdAramRipper_cpp
+.fn __sinit_JKRDvdAramRipper_cpp, local
 /* 8001E4E4 0001B424  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8001E4E8 0001B428  7C 08 02 A6 */	mflr r0
 /* 8001E4EC 0001B42C  3C 60 80 50 */	lis r3, sDvdAramAsyncList__16JKRDvdAramRipper@ha
@@ -1095,7 +1095,7 @@ fn local __sinit_JKRDvdAramRipper_cpp
 /* 8001E51C 0001B45C  7C 08 03 A6 */	mtlr r0
 /* 8001E520 0001B460  38 21 00 10 */	addi r1, r1, 0x10
 /* 8001E524 0001B464  4E 80 00 20 */	blr 
-end __sinit_JKRDvdAramRipper_cpp
+.endfn __sinit_JKRDvdAramRipper_cpp
 
 .global "__dt__23JSUList<12JKRADCommand>Fv"
 "__dt__23JSUList<12JKRADCommand>Fv":

@@ -797,7 +797,7 @@ request__7JKRTaskFPFPv_vPvPv:
 /* 800260C0 00023000  38 21 00 10 */	addi r1, r1, 0x10
 /* 800260C4 00023004  4E 80 00 20 */	blr 
 
-fn local __sinit_JKRThread_cpp
+.fn __sinit_JKRThread_cpp, local
 /* 800260C8 00023008  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 800260CC 0002300C  7C 08 02 A6 */	mflr r0
 /* 800260D0 00023010  3C 60 80 50 */	lis r3, sThreadList__9JKRThread@ha
@@ -826,7 +826,7 @@ fn local __sinit_JKRThread_cpp
 /* 8002612C 0002306C  7C 08 03 A6 */	mtlr r0
 /* 80026130 00023070  38 21 00 10 */	addi r1, r1, 0x10
 /* 80026134 00023074  4E 80 00 20 */	blr 
-end __sinit_JKRThread_cpp
+.endfn __sinit_JKRThread_cpp
 
 .global "__dt__17JSUList<7JKRTask>Fv"
 "__dt__17JSUList<7JKRTask>Fv":

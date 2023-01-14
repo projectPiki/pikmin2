@@ -3417,7 +3417,7 @@ __ct__Q34Game13PelletOtakara6ObjectFv:
 /* 802026C4 001FF604  38 21 00 10 */	addi r1, r1, 0x10
 /* 802026C8 001FF608  4E 80 00 20 */	blr 
 
-fn local __sinit_pelletOtakara_cpp
+.fn __sinit_pelletOtakara_cpp, local
 /* 802026CC 001FF60C  3C 80 80 51 */	lis r4, __float_nan@ha
 /* 802026D0 001FF610  38 00 FF FF */	li r0, -1
 /* 802026D4 001FF614  C0 04 48 B0 */	lfs f0, __float_nan@l(r4)
@@ -3428,7 +3428,7 @@ fn local __sinit_pelletOtakara_cpp
 /* 802026E8 001FF628  D0 03 00 04 */	stfs f0, 4(r3)
 /* 802026EC 001FF62C  D0 03 00 08 */	stfs f0, 8(r3)
 /* 802026F0 001FF630  4E 80 00 20 */	blr 
-end __sinit_pelletOtakara_cpp
+.endfn __sinit_pelletOtakara_cpp
 
 .global "@84@__dt__Q24Game49FixedSizePelletMgr<Q34Game13PelletOtakara6Object>Fv"
 "@84@__dt__Q24Game49FixedSizePelletMgr<Q34Game13PelletOtakara6Object>Fv":

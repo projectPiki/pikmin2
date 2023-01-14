@@ -2722,7 +2722,7 @@ exec__Q34Game9SnakeCrow13StateStruggleFPQ24Game9EnemyBase:
 cleanup__Q34Game9SnakeCrow13StateStruggleFPQ24Game9EnemyBase:
 /* 80292AFC 0028FA3C  4E 80 00 20 */	blr 
 
-fn local __sinit_SnakeCrowState_cpp
+.fn __sinit_SnakeCrowState_cpp, local
 /* 80292B00 0028FA40  3C 80 80 51 */	lis r4, __float_nan@ha
 /* 80292B04 0028FA44  38 00 FF FF */	li r0, -1
 /* 80292B08 0028FA48  C0 04 48 B0 */	lfs f0, __float_nan@l(r4)
@@ -2733,4 +2733,4 @@ fn local __sinit_SnakeCrowState_cpp
 /* 80292B1C 0028FA5C  D0 03 00 04 */	stfs f0, 4(r3)
 /* 80292B20 0028FA60  D0 03 00 08 */	stfs f0, 8(r3)
 /* 80292B24 0028FA64  4E 80 00 20 */	blr 
-end __sinit_SnakeCrowState_cpp
+.endfn __sinit_SnakeCrowState_cpp

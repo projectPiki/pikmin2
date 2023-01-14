@@ -4618,7 +4618,7 @@ getEnemyTypeID__Q34Game7BigFoot3ObjFv:
 /* 802CB86C 002C87AC  38 60 00 45 */	li r3, 0x45
 /* 802CB870 002C87B0  4E 80 00 20 */	blr 
 
-fn local __sinit_BigFoot_cpp
+.fn __sinit_BigFoot_cpp, local
 /* 802CB874 002C87B4  3C 80 80 51 */	lis r4, __float_nan@ha
 /* 802CB878 002C87B8  38 00 FF FF */	li r0, -1
 /* 802CB87C 002C87BC  C0 04 48 B0 */	lfs f0, __float_nan@l(r4)
@@ -4629,7 +4629,7 @@ fn local __sinit_BigFoot_cpp
 /* 802CB890 002C87D0  D0 03 00 04 */	stfs f0, 4(r3)
 /* 802CB894 002C87D4  D0 03 00 08 */	stfs f0, 8(r3)
 /* 802CB898 002C87D8  4E 80 00 20 */	blr 
-end __sinit_BigFoot_cpp
+.endfn __sinit_BigFoot_cpp
 
 .global "@1196@12@viewOnPelletKilled__Q24Game9EnemyBaseFv"
 "@1196@12@viewOnPelletKilled__Q24Game9EnemyBaseFv":

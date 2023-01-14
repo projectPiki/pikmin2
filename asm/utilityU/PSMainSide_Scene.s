@@ -6270,7 +6270,7 @@ __dt__Q23PSM15Scene_ChallengeFv:
 /* 8046C688 004695C8  38 21 00 10 */	addi r1, r1, 0x10
 /* 8046C68C 004695CC  4E 80 00 20 */	blr 
 
-fn local __sinit_PSMainSide_Scene_cpp
+.fn __sinit_PSMainSide_Scene_cpp, local
 /* 8046C690 004695D0  3C 80 80 51 */	lis r4, __float_nan@ha
 /* 8046C694 004695D4  38 00 FF FF */	li r0, -1
 /* 8046C698 004695D8  C0 04 48 B0 */	lfs f0, __float_nan@l(r4)
@@ -6281,4 +6281,4 @@ fn local __sinit_PSMainSide_Scene_cpp
 /* 8046C6AC 004695EC  D0 03 00 04 */	stfs f0, 4(r3)
 /* 8046C6B0 004695F0  D0 03 00 08 */	stfs f0, 8(r3)
 /* 8046C6B4 004695F4  4E 80 00 20 */	blr 
-end __sinit_PSMainSide_Scene_cpp
+.endfn __sinit_PSMainSide_Scene_cpp

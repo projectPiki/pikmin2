@@ -686,7 +686,7 @@ getCurrentSection__8GameFlowFv:
 /* 8042459C 004214DC  38 21 00 10 */	addi r1, r1, 0x10
 /* 804245A0 004214E0  4E 80 00 20 */	blr 
 
-fn local __sinit_gameflow_cpp
+.fn __sinit_gameflow_cpp, local
 /* 804245A4 004214E4  3C 80 80 51 */	lis r4, __float_nan@ha
 /* 804245A8 004214E8  38 00 FF FF */	li r0, -1
 /* 804245AC 004214EC  C0 04 48 B0 */	lfs f0, __float_nan@l(r4)
@@ -697,4 +697,4 @@ fn local __sinit_gameflow_cpp
 /* 804245C0 00421500  D0 03 00 04 */	stfs f0, 4(r3)
 /* 804245C4 00421504  D0 03 00 08 */	stfs f0, 8(r3)
 /* 804245C8 00421508  4E 80 00 20 */	blr 
-end __sinit_gameflow_cpp
+.endfn __sinit_gameflow_cpp

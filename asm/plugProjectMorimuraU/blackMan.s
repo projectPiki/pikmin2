@@ -6897,7 +6897,7 @@ getEnemyTypeID__Q34Game8BlackMan3ObjFv:
 /* 803AB794 003A86D4  38 60 00 63 */	li r3, 0x63
 /* 803AB798 003A86D8  4E 80 00 20 */	blr 
 
-fn local __sinit_blackMan_cpp
+.fn __sinit_blackMan_cpp, local
 /* 803AB79C 003A86DC  3C 80 80 51 */	lis r4, __float_nan@ha
 /* 803AB7A0 003A86E0  38 00 FF FF */	li r0, -1
 /* 803AB7A4 003A86E4  C0 04 48 B0 */	lfs f0, __float_nan@l(r4)
@@ -6908,7 +6908,7 @@ fn local __sinit_blackMan_cpp
 /* 803AB7B8 003A86F8  D0 03 00 04 */	stfs f0, 4(r3)
 /* 803AB7BC 003A86FC  D0 03 00 08 */	stfs f0, 8(r3)
 /* 803AB7C0 003A8700  4E 80 00 20 */	blr 
-end __sinit_blackMan_cpp
+.endfn __sinit_blackMan_cpp
 
 .global "@940@12@viewOnPelletKilled__Q24Game9EnemyBaseFv"
 "@940@12@viewOnPelletKilled__Q24Game9EnemyBaseFv":

@@ -3116,7 +3116,7 @@ satisfy__Q34Game6Jigumo24ConditionHeightCheckPikiFPQ24Game4Piki:
 /* 80368828 00365768  38 21 00 30 */	addi r1, r1, 0x30
 /* 8036882C 0036576C  4E 80 00 20 */	blr 
 
-fn local __sinit_jigumoState_cpp
+.fn __sinit_jigumoState_cpp, local
 /* 80368830 00365770  3C 80 80 51 */	lis r4, __float_nan@ha
 /* 80368834 00365774  38 00 FF FF */	li r0, -1
 /* 80368838 00365778  C0 04 48 B0 */	lfs f0, __float_nan@l(r4)
@@ -3127,4 +3127,4 @@ fn local __sinit_jigumoState_cpp
 /* 8036884C 0036578C  D0 03 00 04 */	stfs f0, 4(r3)
 /* 80368850 00365790  D0 03 00 08 */	stfs f0, 8(r3)
 /* 80368854 00365794  4E 80 00 20 */	blr 
-end __sinit_jigumoState_cpp
+.endfn __sinit_jigumoState_cpp

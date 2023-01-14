@@ -1250,7 +1250,7 @@ reinitPixelProc__6J3DSysFv:
 ErrorReport__6J3DSysCF10J3DErrType:
 /* 8005EB54 0005BA94  4E 80 00 20 */	blr 
 
-fn local __sinit_J3DSys_cpp
+.fn __sinit_J3DSys_cpp, local
 /* 8005EB58 0005BA98  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8005EB5C 0005BA9C  7C 08 02 A6 */	mflr r0
 /* 8005EB60 0005BAA0  3C 60 80 51 */	lis r3, j3dSys@ha
@@ -1261,4 +1261,4 @@ fn local __sinit_J3DSys_cpp
 /* 8005EB74 0005BAB4  7C 08 03 A6 */	mtlr r0
 /* 8005EB78 0005BAB8  38 21 00 10 */	addi r1, r1, 0x10
 /* 8005EB7C 0005BABC  4E 80 00 20 */	blr 
-end __sinit_J3DSys_cpp
+.endfn __sinit_J3DSys_cpp

@@ -3703,7 +3703,7 @@ getName__Q23efx12ArgRotYScaleFv:
 /* 8035C258 00359198  38 63 11 20 */	addi r3, r3, lbl_80491120@l
 /* 8035C25C 0035919C  4E 80 00 20 */	blr 
 
-fn local __sinit_kingChappyState_cpp
+.fn __sinit_kingChappyState_cpp, local
 /* 8035C260 003591A0  3C 80 80 51 */	lis r4, __float_nan@ha
 /* 8035C264 003591A4  38 00 FF FF */	li r0, -1
 /* 8035C268 003591A8  C0 04 48 B0 */	lfs f0, __float_nan@l(r4)
@@ -3714,4 +3714,4 @@ fn local __sinit_kingChappyState_cpp
 /* 8035C27C 003591BC  D0 03 00 04 */	stfs f0, 4(r3)
 /* 8035C280 003591C0  D0 03 00 08 */	stfs f0, 8(r3)
 /* 8035C284 003591C4  4E 80 00 20 */	blr 
-end __sinit_kingChappyState_cpp
+.endfn __sinit_kingChappyState_cpp

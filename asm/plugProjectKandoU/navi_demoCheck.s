@@ -3666,7 +3666,7 @@ checkDemoNaviAndPiki__Q24Game4NaviFRQ23Sys6Sphere:
 /* 80220FF8 0021DF38  38 21 00 10 */	addi r1, r1, 0x10
 /* 80220FFC 0021DF3C  4E 80 00 20 */	blr 
 
-fn local __sinit_navi_demoCheck_cpp
+.fn __sinit_navi_demoCheck_cpp, local
 /* 80221000 0021DF40  3C 80 80 51 */	lis r4, __float_nan@ha
 /* 80221004 0021DF44  38 00 FF FF */	li r0, -1
 /* 80221008 0021DF48  C0 04 48 B0 */	lfs f0, __float_nan@l(r4)
@@ -3677,4 +3677,4 @@ fn local __sinit_navi_demoCheck_cpp
 /* 8022101C 0021DF5C  D0 03 00 04 */	stfs f0, 4(r3)
 /* 80221020 0021DF60  D0 03 00 08 */	stfs f0, 8(r3)
 /* 80221024 0021DF64  4E 80 00 20 */	blr 
-end __sinit_navi_demoCheck_cpp
+.endfn __sinit_navi_demoCheck_cpp

@@ -15095,7 +15095,7 @@ getType__21J3DColorBlockLightOffFv:
 /* 80083768 000806A8  38 63 4F 46 */	addi r3, r3, 0x434C4F46@l
 /* 8008376C 000806AC  4E 80 00 20 */	blr 
 
-fn local __sinit_J3DMatBlock_cpp
+.fn __sinit_J3DMatBlock_cpp, local
 /* 80083770 000806B0  80 6D 80 B8 */	lwz r3, SizeOfLoadColorChans@sda21(r13)
 /* 80083774 000806B4  80 0D 80 B4 */	lwz r0, SizeOfLoadAmbColors@sda21(r13)
 /* 80083778 000806B8  80 8D 80 B0 */	lwz r4, SizeOfLoadMatColors@sda21(r13)
@@ -15105,4 +15105,4 @@ fn local __sinit_J3DMatBlock_cpp
 /* 80083788 000806C8  90 6D 89 98 */	stw r3, SizeOfJ3DColorBlockLightOffLoad@sda21(r13)
 /* 8008378C 000806CC  90 0D 89 9C */	stw r0, SizeOfJ3DColorBlockAmbientOnLoad@sda21(r13)
 /* 80083790 000806D0  4E 80 00 20 */	blr 
-end __sinit_J3DMatBlock_cpp
+.endfn __sinit_J3DMatBlock_cpp

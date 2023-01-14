@@ -962,7 +962,7 @@ isErrorRetry__12JKRDvdRipperFv:
 /* 8001FDA8 0001CCE8  88 6D 80 10 */	lbz r3, errorRetry__12JKRDvdRipper@sda21(r13)
 /* 8001FDAC 0001CCEC  4E 80 00 20 */	blr 
 
-fn local __sinit_JKRDvdRipper_cpp
+.fn __sinit_JKRDvdRipper_cpp, local
 /* 8001FDB0 0001CCF0  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8001FDB4 0001CCF4  7C 08 02 A6 */	mflr r0
 /* 8001FDB8 0001CCF8  3C 60 80 50 */	lis r3, sDvdAsyncList__12JKRDvdRipper@ha
@@ -980,7 +980,7 @@ fn local __sinit_JKRDvdRipper_cpp
 /* 8001FDE8 0001CD28  7C 08 03 A6 */	mtlr r0
 /* 8001FDEC 0001CD2C  38 21 00 10 */	addi r1, r1, 0x10
 /* 8001FDF0 0001CD30  4E 80 00 20 */	blr 
-end __sinit_JKRDvdRipper_cpp
+.endfn __sinit_JKRDvdRipper_cpp
 
 .global "__dt__23JSUList<12JKRDMCommand>Fv"
 "__dt__23JSUList<12JKRDMCommand>Fv":

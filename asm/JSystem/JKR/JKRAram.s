@@ -1167,7 +1167,7 @@ nextSrcData__FPUc:
 /* 800188B8 000157F8  38 21 00 20 */	addi r1, r1, 0x20
 /* 800188BC 000157FC  4E 80 00 20 */	blr 
 
-fn local __sinit_JKRAram_cpp
+.fn __sinit_JKRAram_cpp, local
 /* 800188C0 00015800  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 800188C4 00015804  7C 08 02 A6 */	mflr r0
 /* 800188C8 00015808  3C 60 80 50 */	lis r3, sAramCommandList__7JKRAram@ha
@@ -1185,7 +1185,7 @@ fn local __sinit_JKRAram_cpp
 /* 800188F8 00015838  7C 08 03 A6 */	mtlr r0
 /* 800188FC 0001583C  38 21 00 10 */	addi r1, r1, 0x10
 /* 80018900 00015840  4E 80 00 20 */	blr 
-end __sinit_JKRAram_cpp
+.endfn __sinit_JKRAram_cpp
 
 .global "__dt__23JSUList<12JKRAMCommand>Fv"
 "__dt__23JSUList<12JKRAMCommand>Fv":

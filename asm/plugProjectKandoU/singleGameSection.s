@@ -9271,7 +9271,7 @@ getCaveFilename__Q24Game17SingleGameSectionFv:
 /* 80156580 001534C0  90 03 00 08 */	stw r0, 8(r3)
 /* 80156584 001534C4  4E 80 00 20 */	blr 
 
-fn local __sinit_singleGameSection_cpp
+.fn __sinit_singleGameSection_cpp, local
 /* 80156588 001534C8  3C 80 80 51 */	lis r4, __float_nan@ha
 /* 8015658C 001534CC  38 00 FF FF */	li r0, -1
 /* 80156590 001534D0  C0 04 48 B0 */	lfs f0, __float_nan@l(r4)
@@ -9282,7 +9282,7 @@ fn local __sinit_singleGameSection_cpp
 /* 801565A4 001534E4  D0 03 00 04 */	stfs f0, 4(r3)
 /* 801565A8 001534E8  D0 03 00 08 */	stfs f0, 8(r3)
 /* 801565AC 001534EC  4E 80 00 20 */	blr 
-end __sinit_singleGameSection_cpp
+.endfn __sinit_singleGameSection_cpp
 
 "@4@__dt__Q23efx13TTutorialSnowFv":
 /* 801565B0 001534F0  38 63 FF FC */	addi r3, r3, -4

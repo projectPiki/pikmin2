@@ -1109,7 +1109,7 @@ start__Q34Game5P2JST11ObjectActorFv:
 parseUserData___Q34Game5P2JST10ObjectBaseFUlPCv:
 /* 8042F690 0042C5D0  4E 80 00 20 */	blr 
 
-fn local __sinit_JSTObjectActor_cpp
+.fn __sinit_JSTObjectActor_cpp, local
 /* 8042F694 0042C5D4  3C 80 80 51 */	lis r4, __float_nan@ha
 /* 8042F698 0042C5D8  38 00 FF FF */	li r0, -1
 /* 8042F69C 0042C5DC  C0 04 48 B0 */	lfs f0, __float_nan@l(r4)
@@ -1120,7 +1120,7 @@ fn local __sinit_JSTObjectActor_cpp
 /* 8042F6B0 0042C5F0  D0 03 00 04 */	stfs f0, 4(r3)
 /* 8042F6B4 0042C5F4  D0 03 00 08 */	stfs f0, 8(r3)
 /* 8042F6B8 0042C5F8  4E 80 00 20 */	blr
-end __sinit_JSTObjectActor_cpp 
+.endfn __sinit_JSTObjectActor_cpp 
 
 .global "@4@parseUserData___Q34Game5P2JST11ObjectActorFUlPCv"
 "@4@parseUserData___Q34Game5P2JST11ObjectActorFUlPCv":

@@ -259,7 +259,7 @@ setTevStageInfo__11J2DTevStageFRC15J2DTevStageInfo: # weak function
 /* 80049818 00046758  38 21 00 10 */	addi r1, r1, 0x10
 /* 8004981C 0004675C  4E 80 00 20 */	blr 
 
-fn local __sinit_J2DBloSaver_cpp
+.fn __sinit_J2DBloSaver_cpp, local
 /* 80049820 00046760  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80049824 00046764  7C 08 02 A6 */	mflr r0
 /* 80049828 00046768  3C 60 80 05 */	lis r3, __dt__Q211J2DBloSaver19CTextureNameConnectFv@ha
@@ -275,4 +275,4 @@ fn local __sinit_J2DBloSaver_cpp
 /* 80049850 00046790  7C 08 03 A6 */	mtlr r0
 /* 80049854 00046794  38 21 00 10 */	addi r1, r1, 0x10
 /* 80049858 00046798  4E 80 00 20 */	blr 
-end __sinit_J2DBloSaver_cpp
+.endfn __sinit_J2DBloSaver_cpp
