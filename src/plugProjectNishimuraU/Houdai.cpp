@@ -649,42 +649,14 @@ namespace Houdai {
  * Address:	802BFCB0
  * Size:	000024
  */
-void HoudaiGroundCallBack::invokeOnGround(int idx, Game::WaterBox* water)
-{
-	m_obj->createOnGroundEffect(idx, water);
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	lwz      r3, 4(r3)
-	bl       createOnGroundEffect__Q34Game6Houdai3ObjFiPQ24Game8WaterBox
-	lwz      r0, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
-}
+void HoudaiGroundCallBack::invokeOnGround(int idx, Game::WaterBox* water) { m_obj->createOnGroundEffect(idx, water); }
 
 /*
  * --INFO--
  * Address:	802BFCD4
  * Size:	000024
  */
-void HoudaiGroundCallBack::invokeOffGround(int idx, WaterBox* water)
-{
-	m_obj->createOffGroundEffect(idx, water);
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	lwz      r3, 4(r3)
-	bl       createOffGroundEffect__Q34Game6Houdai3ObjFiPQ24Game8WaterBox
-	lwz      r0, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
-}
+void HoudaiGroundCallBack::invokeOffGround(int idx, WaterBox* water) { m_obj->createOffGroundEffect(idx, water); }
 
 /*
  * --INFO--
@@ -915,7 +887,7 @@ void Obj::onKill(Game::CreatureKillArg* arg)
 	finishSteamEffect();
 	finishChimneyEffect();
 	forceFinishShotGun();
-	onKill(arg);
+	EnemyBase::onKill(arg);
 	/*
 	stwu     r1, -0x10(r1)
 	mflr     r0
@@ -1366,13 +1338,9 @@ void Obj::getThrowupItemPosition(Vector3f*)
  */
 void Obj::getThrowupItemVelocity(Vector3f* velocity)
 {
-	/*
-	lfs      f0, lbl_8051C4F8@sda21(r2)
-	stfs     f0, 8(r4)
-	stfs     f0, 4(r4)
-	stfs     f0, 0(r4)
-	blr
-	*/
+	velocity->z = 0.0f;
+	velocity->y = 0.0f;
+	velocity->x = 0.0f;
 }
 
 /*
