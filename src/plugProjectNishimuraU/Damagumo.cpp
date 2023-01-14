@@ -1167,32 +1167,9 @@ lbl_802A7B28:
  */
 void Obj::finishPinchJointEffect()
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	mr       r31, r3
-	stw      r30, 8(r1)
-	li       r30, 0
-
-lbl_802A7BC4:
-	lwz      r3, 0x3d0(r31)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x10(r12)
-	mtctr    r12
-	bctrl
-	addi     r30, r30, 1
-	addi     r31, r31, 4
-	cmpwi    r30, 3
-	blt      lbl_802A7BC4
-	lwz      r0, 0x14(r1)
-	lwz      r31, 0xc(r1)
-	lwz      r30, 8(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	for (int i = 0; i < 3; i++) {
+		m_smokeFX[i]->fade();
+	}
 }
 
 /*
@@ -1332,9 +1309,37 @@ lbl_802A7D88:
  * --INFO--
  * Address:	802A7DC0
  * Size:	000250
+ * Needs fixing.
  */
 void Obj::updatePinchLife()
 {
+	if (!isAlive()) {
+		return;
+	}
+
+	f32 healthRatio = m_health / C_PARMS->m_general.m_health.m_value;
+	if (m_isSmoking) {
+		if (healthRatio > 0.35f) {
+			for (int i = 0; i < 3; i++) {
+				m_smokeFX[i]->fade();
+			}
+
+			m_isSmoking = false;
+		}
+	} else if (healthRatio < 0.35f) {
+		f32 values[3];
+
+		for (int i = 0; i < 3; i++) {
+			values[i] = randWeightFloat(2.0f);
+		}
+
+		for (int i = 0; i < 3; i++) {
+			*m_smokeFX[i]->m_position = m_jointPositions[i][3] * values[i];
+		}
+
+		m_isSmoking = true;
+		getJAIObject()->startSound(PSSE_EN_DAMAGUMO_SMOKE, 0);
+	}
 	/*
 	stwu     r1, -0x80(r1)
 	mflr     r0
@@ -1506,124 +1511,35 @@ lbl_802A7FE4:
  */
 void Obj::effectDrawOn()
 {
-	/*
-	stwu     r1, -0x20(r1)
-	mflr     r0
-	stw      r0, 0x24(r1)
-	stmw     r27, 0xc(r1)
-	mr       r27, r3
-	li       r30, 0
-	mr       r31, r27
+	for (int i = 0; i < 4; i++) {
+		m_footFX[i]->endDemoDrawOn();
+		m_footWFX[i]->endDemoDrawOn();
+	}
 
-lbl_802A802C:
-	lwz      r3, 0x3b0(r31)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x18(r12)
-	mtctr    r12
-	bctrl
-	lwz      r3, 0x3c0(r31)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x44(r12)
-	mtctr    r12
-	bctrl
-	addi     r30, r30, 1
-	addi     r31, r31, 4
-	cmpwi    r30, 4
-	blt      lbl_802A802C
-	li       r30, 0
-	mr       r31, r27
+	for (int i = 0; i < 3; i++) {
+		m_smokeFX[i]->endDemoDrawOn();
+	}
 
-lbl_802A806C:
-	lwz      r3, 0x3d0(r31)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x44(r12)
-	mtctr    r12
-	bctrl
-	addi     r30, r30, 1
-	addi     r31, r31, 4
-	cmpwi    r30, 3
-	blt      lbl_802A806C
-	li       r29, 0
-	mr       r30, r27
+	for (int i = 0; i < 4; i++) {
+		for (int j = 0; j < 3; j++) {
+			m_hahenFX[i][j]->endDemoDrawOn();
+			m_deadElecAFX[i][j]->endDemoDrawOn();
+		}
+	}
 
-lbl_802A8098:
-	li       r28, 0
-	mr       r31, r30
+	for (int i = 0; i < 4; i++) {
+		for (int j = 0; j < 2; j++) {
+			m_deadElecBFX[i][j]->endDemoDrawOn();
+			m_deadHahenAFX[i][j]->endDemoDrawOn();
+		}
+	}
 
-lbl_802A80A0:
-	lwz      r3, 0x3dc(r31)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x44(r12)
-	mtctr    r12
-	bctrl
-	lwz      r3, 0x40c(r31)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x44(r12)
-	mtctr    r12
-	bctrl
-	addi     r28, r28, 1
-	addi     r31, r31, 4
-	cmpwi    r28, 3
-	blt      lbl_802A80A0
-	addi     r29, r29, 1
-	addi     r30, r30, 0xc
-	cmpwi    r29, 4
-	blt      lbl_802A8098
-	li       r28, 0
-	mr       r31, r27
+	for (int i = 0; i < 4; i++) {
+		m_deadHahenBFX[i]->endDemoDrawOn();
+	}
 
-lbl_802A80F0:
-	li       r29, 0
-	mr       r30, r31
-
-lbl_802A80F8:
-	lwz      r3, 0x43c(r30)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x44(r12)
-	mtctr    r12
-	bctrl
-	lwz      r3, 0x45c(r30)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x44(r12)
-	mtctr    r12
-	bctrl
-	addi     r29, r29, 1
-	addi     r30, r30, 4
-	cmpwi    r29, 2
-	blt      lbl_802A80F8
-	addi     r28, r28, 1
-	addi     r31, r31, 8
-	cmpwi    r28, 4
-	blt      lbl_802A80F0
-	li       r28, 0
-	mr       r30, r27
-
-lbl_802A8148:
-	lwz      r3, 0x47c(r30)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x44(r12)
-	mtctr    r12
-	bctrl
-	addi     r28, r28, 1
-	addi     r30, r30, 4
-	cmpwi    r28, 4
-	blt      lbl_802A8148
-	lwz      r3, 0x48c(r27)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x44(r12)
-	mtctr    r12
-	bctrl
-	lwz      r3, 0x490(r27)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x44(r12)
-	mtctr    r12
-	bctrl
-	lmw      r27, 0xc(r1)
-	lwz      r0, 0x24(r1)
-	mtlr     r0
-	addi     r1, r1, 0x20
-	blr
-	*/
+	m_deadHahenC1FX->endDemoDrawOn();
+	m_deadHahenC2FX->endDemoDrawOn();
 }
 
 /*
@@ -1633,124 +1549,35 @@ lbl_802A8148:
  */
 void Obj::effectDrawOff()
 {
-	/*
-	stwu     r1, -0x20(r1)
-	mflr     r0
-	stw      r0, 0x24(r1)
-	stmw     r27, 0xc(r1)
-	mr       r27, r3
-	li       r30, 0
-	mr       r31, r27
+	for (int i = 0; i < 4; i++) {
+		m_footFX[i]->startDemoDrawOff();
+		m_footWFX[i]->startDemoDrawOff();
+	}
 
-lbl_802A81C4:
-	lwz      r3, 0x3b0(r31)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x14(r12)
-	mtctr    r12
-	bctrl
-	lwz      r3, 0x3c0(r31)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x40(r12)
-	mtctr    r12
-	bctrl
-	addi     r30, r30, 1
-	addi     r31, r31, 4
-	cmpwi    r30, 4
-	blt      lbl_802A81C4
-	li       r30, 0
-	mr       r31, r27
+	for (int i = 0; i < 3; i++) {
+		m_smokeFX[i]->startDemoDrawOff();
+	}
 
-lbl_802A8204:
-	lwz      r3, 0x3d0(r31)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x40(r12)
-	mtctr    r12
-	bctrl
-	addi     r30, r30, 1
-	addi     r31, r31, 4
-	cmpwi    r30, 3
-	blt      lbl_802A8204
-	li       r29, 0
-	mr       r30, r27
+	for (int i = 0; i < 4; i++) {
+		for (int j = 0; j < 3; j++) {
+			m_hahenFX[i][j]->startDemoDrawOff();
+			m_deadElecAFX[i][j]->startDemoDrawOff();
+		}
+	}
 
-lbl_802A8230:
-	li       r28, 0
-	mr       r31, r30
+	for (int i = 0; i < 4; i++) {
+		for (int j = 0; j < 2; j++) {
+			m_deadElecBFX[i][j]->startDemoDrawOff();
+			m_deadHahenAFX[i][j]->startDemoDrawOff();
+		}
+	}
 
-lbl_802A8238:
-	lwz      r3, 0x3dc(r31)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x40(r12)
-	mtctr    r12
-	bctrl
-	lwz      r3, 0x40c(r31)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x40(r12)
-	mtctr    r12
-	bctrl
-	addi     r28, r28, 1
-	addi     r31, r31, 4
-	cmpwi    r28, 3
-	blt      lbl_802A8238
-	addi     r29, r29, 1
-	addi     r30, r30, 0xc
-	cmpwi    r29, 4
-	blt      lbl_802A8230
-	li       r28, 0
-	mr       r31, r27
+	for (int i = 0; i < 4; i++) {
+		m_deadHahenBFX[i]->startDemoDrawOff();
+	}
 
-lbl_802A8288:
-	li       r29, 0
-	mr       r30, r31
-
-lbl_802A8290:
-	lwz      r3, 0x43c(r30)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x40(r12)
-	mtctr    r12
-	bctrl
-	lwz      r3, 0x45c(r30)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x40(r12)
-	mtctr    r12
-	bctrl
-	addi     r29, r29, 1
-	addi     r30, r30, 4
-	cmpwi    r29, 2
-	blt      lbl_802A8290
-	addi     r28, r28, 1
-	addi     r31, r31, 8
-	cmpwi    r28, 4
-	blt      lbl_802A8288
-	li       r28, 0
-	mr       r30, r27
-
-lbl_802A82E0:
-	lwz      r3, 0x47c(r30)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x40(r12)
-	mtctr    r12
-	bctrl
-	addi     r28, r28, 1
-	addi     r30, r30, 4
-	cmpwi    r28, 4
-	blt      lbl_802A82E0
-	lwz      r3, 0x48c(r27)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x40(r12)
-	mtctr    r12
-	bctrl
-	lwz      r3, 0x490(r27)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x40(r12)
-	mtctr    r12
-	bctrl
-	lmw      r27, 0xc(r1)
-	lwz      r0, 0x24(r1)
-	mtlr     r0
-	addi     r1, r1, 0x20
-	blr
-	*/
+	m_deadHahenC1FX->startDemoDrawOff();
+	m_deadHahenC2FX->startDemoDrawOff();
 }
 
 /*
@@ -1760,22 +1587,12 @@ lbl_802A82E0:
  */
 void Obj::addShadowScale()
 {
-	/*
-	lfs      f3, 0x2d8(r3)
-	lfs      f2, lbl_8051BED4@sda21(r2)
-	fcmpo    cr0, f3, f2
-	bgelr
-	lwz      r4, sys@sda21(r13)
-	lfs      f1, lbl_8051BF60@sda21(r2)
-	lfs      f0, 0x54(r4)
-	fmadds   f0, f1, f0, f3
-	stfs     f0, 0x2d8(r3)
-	lfs      f0, 0x2d8(r3)
-	fcmpo    cr0, f0, f2
-	blelr
-	stfs     f2, 0x2d8(r3)
-	blr
-	*/
+	if (_2D8 < 1.0f) {
+		_2D8 += 2.0f * sys->m_deltaTime;
+		if (_2D8 > 1.0f) {
+			_2D8 = 1.0f;
+		}
+	}
 }
 
 } // namespace Damagumo
