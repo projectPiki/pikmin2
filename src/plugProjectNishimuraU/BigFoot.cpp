@@ -51,94 +51,32 @@ void Obj::setInitialSetting(EnemyInitialParamBase*) { }
  */
 void Obj::onInit(CreatureInitArg* initArg)
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	mr       r31, r3
-	bl       onInit__Q24Game9EnemyBaseFPQ24Game15CreatureInitArg
-	mr       r3, r31
-	bl       hardConstraintOn__Q24Game9EnemyBaseFv
-	lwz      r3, 0x1e0(r31)
-	li       r4, -1
-	lfs      f1, lbl_8051C728@sda21(r2)
-	li       r0, 0
-	rlwinm   r5, r3, 0, 0x14, 0x12
-	mr       r3, r31
-	stw      r5, 0x1e0(r31)
-	lwz      r5, 0x1e0(r31)
-	rlwinm   r5, r5, 0, 0x19, 0x17
-	stw      r5, 0x1e0(r31)
-	stfs     f1, 0x2c0(r31)
-	stw      r4, 0x2c4(r31)
-	lfs      f0, 0x198(r31)
-	stfs     f0, 0x2c8(r31)
-	lfs      f0, 0x19c(r31)
-	stfs     f0, 0x2cc(r31)
-	lfs      f0, 0x1a0(r31)
-	stfs     f0, 0x2d0(r31)
-	stfs     f1, 0x2d4(r31)
-	stb      r0, 0x2dc(r31)
-	stb      r0, 0x2dd(r31)
-	bl       resetFlickWalkTimeMax__Q34Game7BigFoot3ObjFv
-	li       r0, 0
-	mr       r3, r31
-	stb      r0, 0x2de(r31)
-	bl       setupIKSystem__Q34Game7BigFoot3ObjFv
-	mr       r3, r31
-	bl       setupShadowSystem__Q34Game7BigFoot3ObjFv
-	mr       r3, r31
-	bl       setupCollision__Q34Game7BigFoot3ObjFv
-	mr       r3, r31
-	bl       setupEffect__Q34Game7BigFoot3ObjFv
-	mr       r3, r31
-	bl       startFurEffect__Q34Game7BigFoot3ObjFv
-	mr       r3, r31
-	bl       resetBossAppearBGM__Q34Game7BigFoot3ObjFv
-	lwz      r3, shadowMgr__4Game@sda21(r13)
-	mr       r4, r31
-	bl       delShadow__Q24Game9ShadowMgrFPQ24Game8Creature
-	mr       r3, r31
-	bl       startMaterialAnimation__Q34Game7BigFoot3ObjFv
-	lwz      r3, 0x2bc(r31)
-	mr       r4, r31
-	li       r5, 1
-	li       r6, 0
-	lwz      r12, 0(r3)
-	lwz      r12, 0xc(r12)
-	mtctr    r12
-	bctrl
-	lwz      r3, gameSystem__4Game@sda21(r13)
-	cmplwi   r3, 0
-	beq      lbl_802C81C8
-	lwz      r0, 0x44(r3)
-	cmpwi    r0, 4
-	bne      lbl_802C81C8
-	lwz      r3, 0x2bc(r31)
-	mr       r4, r31
-	li       r5, 2
-	li       r6, 0
-	lwz      r12, 0(r3)
-	lwz      r12, 0x14(r12)
-	mtctr    r12
-	bctrl
-	b        lbl_802C81DC
-
-lbl_802C81C8:
-	mr       r3, r31
-	lwz      r12, 0(r31)
-	lwz      r12, 0x1dc(r12)
-	mtctr    r12
-	bctrl
-
-lbl_802C81DC:
-	lwz      r0, 0x14(r1)
-	lwz      r31, 0xc(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	EnemyBase::onInit(initArg);
+	EnemyBase::hardConstraintOn();
+	disableEvent(0, EB_IsPlatformCollsAllowed);
+	disableEvent(0, EB_ToLeaveCarcass);
+	m_stateTimer     = 0.0f;
+	m_nextState      = BIGFOOT_NULL;
+	m_targetPosition = m_homePosition;
+	_2D4             = 0.0f;
+	_2DC             = false;
+	m_isSmoking      = false;
+	resetFlickWalkTimeMax();
+	m_isEnraged = false;
+	setupIKSystem();
+	setupShadowSystem();
+	setupCollision();
+	setupEffect();
+	startFurEffect();
+	resetBossAppearBGM();
+	shadowMgr->delShadow(this);
+	startMaterialAnimation();
+	m_fsm->start(this, BIGFOOT_Stay, nullptr);
+	if (gameSystem && gameSystem->m_mode == GSM_PIKLOPEDIA) {
+		m_fsm->transit(this, BIGFOOT_Land, nullptr); // land immediately if in piklopedia mode
+	} else {
+		doAnimationCullingOff();
+	}
 }
 
 /*
@@ -182,6 +120,14 @@ void Obj::doUpdateCommon()
  */
 void Obj::doAnimationCullingOff()
 {
+	// inlined EnemyAnimKeyEvent ctor goes here
+	doAnimationUpdateAnimator();
+	doAnimationIKSystem();
+	// PSMTXCopy goes here
+	m_collTree->update();
+	doAnimationShadowSystem();
+	updateMaterialAnimation();
+	finishAnimationIKSystem();
 	/*
 	stwu     r1, -0x10(r1)
 	mflr     r0
