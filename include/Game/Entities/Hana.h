@@ -15,31 +15,31 @@ struct Obj : public ChappyBase::Obj {
 	Obj();
 
 	//////////////// VTABLE
-	virtual void onInit(CreatureInitArg* settings);        // _30
-	virtual void doDirectDraw(Graphics& gfx);              // _50
-	virtual bool isUnderground();                          // _D0 (weak)
-	virtual void getShadowParam(ShadowParam& settings);    // _134
-	virtual ~Obj() { }                                     // _1BC (weak)
-	virtual void changeMaterial();                         // _200 (weak)
-	virtual void initMouthSlots();                         // _22C
-	virtual void initWalkSmokeEffect();                    // _230 (weak)
-	virtual WalkSmokeEffect::Mgr* getWalkSmokeEffectMgr(); // _234 (weak)
-	virtual EnemyTypeID::EEnemyTypeID getEnemyTypeID();    // _258 (weak)
-	virtual f32 getDownSmokeScale();                       // _2EC (weak)
-	virtual bool isWakeup();                               // _2FC
-	virtual void setAnimationSpeed(float);                 // _300 (weak)
-	virtual void flickAttackFail();                        // _304 (weak)
-	virtual void flickStatePikmin();                       // _308
-	virtual void flickAttackBomb();                        // _30C
-	virtual void eatAttackPikmin();                        // _310
-	virtual void resetUnderGround();                       // _314
-	virtual void setUnderGround();                         // _318
-	virtual void createEffect();                           // _31C (weak)
-	virtual void setupEffect();                            // _320 (weak)
-	virtual void startSleepEffect();                       // _324 (weak)
-	virtual void finishSleepEffect();                      // _328 (weak)
-	virtual void createSmokeEffect();                      // _330
-	                                                       //////////////// VTABLE END
+	virtual void onInit(CreatureInitArg* settings);                                          // _30
+	virtual void doDirectDraw(Graphics& gfx);                                                // _50
+	virtual bool isUnderground() { return m_buried; }                                        // _D0 (weak)
+	virtual void getShadowParam(ShadowParam& settings);                                      // _134
+	virtual ~Obj() { }                                                                       // _1BC (weak)
+	virtual void changeMaterial() { }                                                        // _200 (weak)
+	virtual void initMouthSlots();                                                           // _22C
+	virtual void initWalkSmokeEffect() { }                                                   // _230 (weak)
+	virtual WalkSmokeEffect::Mgr* getWalkSmokeEffectMgr() { return nullptr; }                // _234 (weak)
+	virtual EnemyTypeID::EEnemyTypeID getEnemyTypeID() { return EnemyTypeID::EnemyID_Hana; } // _258 (weak)
+	virtual f32 getDownSmokeScale() { return 1.2f; }                                         // _2EC (weak)
+	virtual bool isWakeup();                                                                 // _2FC
+	virtual void setAnimationSpeed(float) { }                                                // _300 (weak)
+	virtual void flickAttackFail() { }                                                       // _304 (weak)
+	virtual void flickStatePikmin();                                                         // _308
+	virtual void flickAttackBomb();                                                          // _30C
+	virtual void eatAttackPikmin();                                                          // _310
+	virtual void resetUnderGround();                                                         // _314
+	virtual void setUnderGround();                                                           // _318
+	virtual void createEffect() { }                                                          // _31C (weak)
+	virtual void setupEffect() { }                                                           // _320 (weak)
+	virtual void startSleepEffect() { }                                                      // _324 (weak)
+	virtual void finishSleepEffect() { }                                                     // _328 (weak)
+	virtual void createSmokeEffect();                                                        // _330
+	                                                                                         //////////////// VTABLE END
 
 	// _00 		= VTBL
 	// _00-_2E4	= ChappyBase::Obj
