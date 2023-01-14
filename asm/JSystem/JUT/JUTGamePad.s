@@ -1620,7 +1620,7 @@ checkCallback__19JUTGamePadLongPressFiUl:
 /* 8002E91C 0002B85C  38 21 00 10 */	addi r1, r1, 0x10
 /* 8002E920 0002B860  4E 80 00 20 */	blr 
 
-__sinit_JUTGamePad_cpp: # static initializer
+fn local __sinit_JUTGamePad_cpp
 /* 8002E924 0002B864  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8002E928 0002B868  7C 08 02 A6 */	mflr r0
 /* 8002E92C 0002B86C  3C 60 80 50 */	lis r3, mPadList__10JUTGamePad@ha
@@ -1689,6 +1689,7 @@ __sinit_JUTGamePad_cpp: # static initializer
 /* 8002EA28 0002B968  7C 08 03 A6 */	mtlr r0
 /* 8002EA2C 0002B96C  38 21 00 10 */	addi r1, r1, 0x10
 /* 8002EA30 0002B970  4E 80 00 20 */	blr 
+end __sinit_JUTGamePad_cpp
 
 .global "__dt__30JSUList<19JUTGamePadLongPress>Fv"
 "__dt__30JSUList<19JUTGamePadLongPress>Fv": # weak function

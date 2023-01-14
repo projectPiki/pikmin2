@@ -5496,8 +5496,7 @@ isPickable__Q24Game17PelletNormalStateFv:
 /* 801A7F0C 001A4E4C  90 03 00 08 */	stw r0, 8(r3)
 /* 801A7F10 001A4E50  4E 80 00 20 */	blr 
 
-.global __sinit_pelletState_cpp
-__sinit_pelletState_cpp:
+fn local __sinit_pelletState_cpp
 /* 801A7F14 001A4E54  3C 80 80 51 */	lis r4, __float_nan@ha
 /* 801A7F18 001A4E58  38 00 FF FF */	li r0, -1
 /* 801A7F1C 001A4E5C  C0 04 48 B0 */	lfs f0, __float_nan@l(r4)
@@ -5508,3 +5507,4 @@ __sinit_pelletState_cpp:
 /* 801A7F30 001A4E70  D0 03 00 04 */	stfs f0, 4(r3)
 /* 801A7F34 001A4E74  D0 03 00 08 */	stfs f0, 8(r3)
 /* 801A7F38 001A4E78  4E 80 00 20 */	blr 
+end __sinit_pelletState_cpp

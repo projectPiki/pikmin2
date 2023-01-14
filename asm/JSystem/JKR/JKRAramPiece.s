@@ -325,7 +325,7 @@ __dt__12JKRAMCommandFv:
 /* 80019ED4 00016E14  38 21 00 10 */	addi r1, r1, 0x10
 /* 80019ED8 00016E18  4E 80 00 20 */	blr 
 
-__sinit_JKRAramPiece_cpp: # static initializer
+fn local __sinit_JKRAramPiece_cpp
 /* 80019EDC 00016E1C  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80019EE0 00016E20  7C 08 02 A6 */	mflr r0
 /* 80019EE4 00016E24  3C 60 80 50 */	lis r3, sAramPieceCommandList__12JKRAramPiece@ha
@@ -343,3 +343,4 @@ __sinit_JKRAramPiece_cpp: # static initializer
 /* 80019F14 00016E54  7C 08 03 A6 */	mtlr r0
 /* 80019F18 00016E58  38 21 00 10 */	addi r1, r1, 0x10
 /* 80019F1C 00016E5C  4E 80 00 20 */	blr 
+end __sinit_JKRAramPiece_cpp

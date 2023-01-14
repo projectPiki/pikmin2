@@ -1210,7 +1210,7 @@ getName__Q33ebi6Screen7ArgOpenFv:
 /* 803EB174 003E80B4  38 62 1A C8 */	addi r3, r2, lbl_8051FE28@sda21
 /* 803EB178 003E80B8  4E 80 00 20 */	blr 
 
-__sinit_ebiMainTitleMgr_cpp: # static initializer
+fn local __sinit_ebiMainTitleMgr_cpp
 /* 803EB17C 003E80BC  3C 80 80 51 */	lis r4, __float_nan@ha
 /* 803EB180 003E80C0  38 00 FF FF */	li r0, -1
 /* 803EB184 003E80C4  C0 04 48 B0 */	lfs f0, __float_nan@l(r4)
@@ -1221,3 +1221,4 @@ __sinit_ebiMainTitleMgr_cpp: # static initializer
 /* 803EB198 003E80D8  D0 03 00 04 */	stfs f0, 4(r3)
 /* 803EB19C 003E80DC  D0 03 00 08 */	stfs f0, 8(r3)
 /* 803EB1A0 003E80E0  4E 80 00 20 */	blr 
+end __sinit_ebiMainTitleMgr_cpp

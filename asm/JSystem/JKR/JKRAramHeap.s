@@ -279,7 +279,6 @@ getFreeSize__11JKRAramHeapFv:
 /* 80019A38 00016978  38 21 00 10 */	addi r1, r1, 0x10
 /* 80019A3C 0001697C  4E 80 00 20 */	blr 
 
-# __sinit_JKRAramHeap_cpp: # static initializer
 fn local __sinit_JKRAramHeap_cpp
 /* 80019A40 00016980  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80019A44 00016984  7C 08 02 A6 */	mflr r0

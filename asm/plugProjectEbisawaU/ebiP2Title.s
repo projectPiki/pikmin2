@@ -4930,7 +4930,7 @@ getCreatureType__Q33ebi5title8TObjBaseFv:
 /* 803C0AC0 003BDA00  38 60 FF FF */	li r3, -1
 /* 803C0AC4 003BDA04  4E 80 00 20 */	blr 
 
-__sinit_ebiP2Title_cpp: # static initializer
+fn local __sinit_ebiP2Title_cpp
 /* 803C0AC8 003BDA08  3C 80 80 51 */	lis r4, __float_nan@ha
 /* 803C0ACC 003BDA0C  38 00 FF FF */	li r0, -1
 /* 803C0AD0 003BDA10  C0 04 48 B0 */	lfs f0, __float_nan@l(r4)
@@ -4941,6 +4941,7 @@ __sinit_ebiP2Title_cpp: # static initializer
 /* 803C0AE4 003BDA24  D0 03 00 04 */	stfs f0, 4(r3)
 /* 803C0AE8 003BDA28  D0 03 00 08 */	stfs f0, 8(r3)
 /* 803C0AEC 003BDA2C  4E 80 00 20 */	blr 
+end __sinit_ebiP2Title_cpp
 
 .global "@24@__dt__Q33ebi5title9TTitleMgrFv"
 "@24@__dt__Q33ebi5title9TTitleMgrFv":

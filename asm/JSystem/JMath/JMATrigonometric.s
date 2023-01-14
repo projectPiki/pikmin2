@@ -219,7 +219,7 @@ lbl_80516778:
 /* 80035358 00032298  38 21 00 10 */	addi r1, r1, 0x10
 /* 8003535C 0003229C  4E 80 00 20 */	blr 
 
-__sinit_JMATrigonometric_cpp: # static initializer
+fn local __sinit_JMATrigonometric_cpp
 /* 80035360 000322A0  94 21 FF A0 */	stwu r1, -0x60(r1)
 /* 80035364 000322A4  7C 08 02 A6 */	mflr r0
 /* 80035368 000322A8  90 01 00 64 */	stw r0, 0x64(r1)
@@ -335,6 +335,7 @@ __sinit_JMATrigonometric_cpp: # static initializer
 /* 80035514 00032454  7C 08 03 A6 */	mtlr r0
 /* 80035518 00032458  38 21 00 60 */	addi r1, r1, 0x60
 /* 8003551C 0003245C  4E 80 00 20 */	blr 
+end __sinit_JMATrigonometric_cpp
 
 .global "__ct__Q23std9pair<f,f>Fv" # weak function
 "__ct__Q23std9pair<f,f>Fv":

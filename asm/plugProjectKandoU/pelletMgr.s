@@ -15633,7 +15633,7 @@ getName__Q24Game18PelletGoalStateArgFv:
 /* 801723E0 0016F320  90 03 00 2C */	stw r0, 0x2c(r3)
 /* 801723E4 0016F324  4E 80 00 20 */	blr 
 
-__sinit_pelletMgr_cpp: # static initializer
+fn local __sinit_pelletMgr_cpp
 /* 801723E8 0016F328  3C 80 80 51 */	lis r4, __float_nan@ha
 /* 801723EC 0016F32C  38 00 FF FF */	li r0, -1
 /* 801723F0 0016F330  C0 04 48 B0 */	lfs f0, __float_nan@l(r4)
@@ -15644,6 +15644,7 @@ __sinit_pelletMgr_cpp: # static initializer
 /* 80172404 0016F344  D0 03 00 04 */	stfs f0, 4(r3)
 /* 80172408 0016F348  D0 03 00 08 */	stfs f0, 8(r3)
 /* 8017240C 0016F34C  4E 80 00 20 */	blr 
+end __sinit_pelletMgr_cpp
 
 .global "@16@__dt__Q23PSM9EventBaseFv"
 "@16@__dt__Q23PSM9EventBaseFv":
