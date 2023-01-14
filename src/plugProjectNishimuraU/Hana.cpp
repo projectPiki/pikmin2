@@ -5,6 +5,7 @@
 #include "Game/rumble.h"
 #include "Game/ConditionNotStick.h"
 #include "trig.h"
+#include "nans.h"
 
 /*
     Generated from dpostproc
@@ -662,24 +663,3 @@ void Hana::Obj::startSleepEffect() { }
 void Hana::Obj::finishSleepEffect() { }
 
 } // namespace Game
-
-/*
- * --INFO--
- * Address:	802F3980
- * Size:	000028
- */
-void __sinit_Hana_cpp()
-{
-	/*
-	lis      r4, __float_nan@ha
-	li       r0, -1
-	lfs      f0, __float_nan@l(r4)
-	lis      r3, lbl_804D53A8@ha
-	stw      r0, lbl_80515E00@sda21(r13)
-	stfsu    f0, lbl_804D53A8@l(r3)
-	stfs     f0, lbl_80515E04@sda21(r13)
-	stfs     f0, 4(r3)
-	stfs     f0, 8(r3)
-	blr
-	*/
-}

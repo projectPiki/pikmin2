@@ -5,25 +5,24 @@ lbl_constructor:
 
 .section .data, "wa"  # 0x8049E220 - 0x804EFC20
 .balign 8
-.global lbl_804D53A8
-lbl_804D53A8:
-	.4byte 0x00000000
-	.4byte 0x00000000
-	.4byte 0x00000000
-.global __vt__Q24Game21ConditionNotStickSlot
-__vt__Q24Game21ConditionNotStickSlot:
+.obj govNAN___Q24Game5P2JST, local
+	.float 0.0
+	.float 0.0
+	.float 0.0
+.endobj govNAN___Q24Game5P2JST
+.obj __vt__Q24Game21ConditionNotStickSlot, weak
 	.4byte 0
 	.4byte 0
 	.4byte satisfy__Q24Game21ConditionNotStickSlotFPQ24Game4Piki
-.global __vt__Q23efx9THanaMiss
-__vt__Q23efx9THanaMiss:
+.endobj __vt__Q24Game21ConditionNotStickSlot
+.obj __vt__Q23efx9THanaMiss, weak
 	.4byte 0
 	.4byte 0
 	.4byte create__Q23efx11TSimpleMtx2FPQ23efx3Arg
 	.4byte forceKill__Q23efx8TSimple2Fv
 	.4byte fade__Q23efx8TSimple2Fv
-.global __vt__Q34Game4Hana3Obj
-__vt__Q34Game4Hana3Obj:
+.endobj __vt__Q23efx9THanaMiss
+.obj __vt__Q34Game4Hana3Obj, global
 	.4byte 0
 	.4byte 0
 	.4byte getPosition__Q24Game9EnemyBaseFv
@@ -241,82 +240,65 @@ __vt__Q34Game4Hana3Obj:
 	.4byte "@744@12@viewStartCarryMotion__Q24Game9EnemyBaseFv"
 	.4byte "@744@12@viewOnPelletKilled__Q24Game9EnemyBaseFv"
 	.4byte "viewEntryShape__Q24Game10PelletViewFR7MatrixfR10Vector3<f>"
+.endobj __vt__Q34Game4Hana3Obj
 
 .section .sbss # 0x80514D80 - 0x80516360
 .balign 8
-.global lbl_80515E00
-lbl_80515E00:
+.obj gu32NAN___Q24Game5P2JST, local
 	.skip 0x4
-.global lbl_80515E04
-lbl_80515E04:
+.endobj gu32NAN___Q24Game5P2JST
+.obj gfNAN___Q24Game5P2JST, local
 	.skip 0x4
+.endobj gfNAN___Q24Game5P2JST
 
 .section .sdata2, "a"     # 0x80516360 - 0x80520E40
 .balign 8
-.global lbl_8051D1A0
 lbl_8051D1A0:
-	.4byte 0x6B6F7369
-	.4byte 0x00000000
-.global lbl_8051D1A8
+	.asciz "kosi"
+.balign 4
 lbl_8051D1A8:
-	.4byte 0x00000000
-.global lbl_8051D1AC
+	.float 0.0
 lbl_8051D1AC:
 	.float 1.0
-.global lbl_8051D1B0
 lbl_8051D1B0:
 	.float 0.1
-.global lbl_8051D1B4
 lbl_8051D1B4:
-	.4byte 0x41200000
-.global lbl_8051D1B8
+	.float 10.0
 lbl_8051D1B8:
-	.4byte 0x42960000
-.global lbl_8051D1BC
+	.float 75.0
 lbl_8051D1BC:
-	.4byte 0x42480000
-.global lbl_8051D1C0
+	.float 50.0
 lbl_8051D1C0:
-	.4byte 0x41C80000
-.global lbl_8051D1C4
+	.float 25.0
+.balign 4
 lbl_8051D1C4:
-	.4byte 0x6B616D75
-	.4byte 0x31000000
-.global lbl_8051D1CC
+	.asciz "kamu1"
+.balign 4
 lbl_8051D1CC:
-	.4byte 0x6B616D75
-	.4byte 0x32000000
-.global lbl_8051D1D4
+	.asciz "kamu2"
+.balign 4
 lbl_8051D1D4:
-	.4byte 0x6B616D75
-	.4byte 0x33000000
-.global lbl_8051D1DC
+	.asciz "kamu3"
+.balign 4
 lbl_8051D1DC:
-	.4byte 0x41F00000
-.global lbl_8051D1E0
+	.float 30.0
 lbl_8051D1E0:
-	.4byte 0xC47A0000
-.global lbl_8051D1E4
+	.float -1000.0
+.balign 4
 lbl_8051D1E4:
-	.4byte 0x6B757469
-	.4byte 0x32000000
-.global lbl_8051D1EC
+	.asciz "kuti2"
+.balign 4
 lbl_8051D1EC:
-	.4byte 0x42700000
-.global lbl_8051D1F0
+	.float 60.0
 lbl_8051D1F0:
-	.4byte 0x43A2F983
-.global lbl_8051D1F4
+	.float 325.9493
 lbl_8051D1F4:
-	.4byte 0xC3A2F983
-.global lbl_8051D1F8
+	.float -325.9493
 lbl_8051D1F8:
-	.4byte 0x3F99999A
-	.4byte 0x00000000
+	.float 1.2
 
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
-.global __ct__Q34Game4Hana3ObjFv
-__ct__Q34Game4Hana3ObjFv:
+.fn __ct__Q34Game4Hana3ObjFv, global
 /* 802F3138 002F0078  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 802F313C 002F007C  7C 08 02 A6 */	mflr r0
 /* 802F3140 002F0080  90 01 00 14 */	stw r0, 0x14(r1)
@@ -359,13 +341,13 @@ __ct__Q34Game4Hana3ObjFv:
 /* 802F31D0 002F0110  7C 08 03 A6 */	mtlr r0
 /* 802F31D4 002F0114  38 21 00 10 */	addi r1, r1, 0x10
 /* 802F31D8 002F0118  4E 80 00 20 */	blr 
+.endfn __ct__Q34Game4Hana3ObjFv
 
-.global createEffect__Q34Game4Hana3ObjFv
-createEffect__Q34Game4Hana3ObjFv:
+.fn createEffect__Q34Game4Hana3ObjFv, weak
 /* 802F31DC 002F011C  4E 80 00 20 */	blr 
+.endfn createEffect__Q34Game4Hana3ObjFv
 
-.global onInit__Q34Game4Hana3ObjFPQ24Game15CreatureInitArg
-onInit__Q34Game4Hana3ObjFPQ24Game15CreatureInitArg:
+.fn onInit__Q34Game4Hana3ObjFPQ24Game15CreatureInitArg, global
 /* 802F31E0 002F0120  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 802F31E4 002F0124  7C 08 02 A6 */	mflr r0
 /* 802F31E8 002F0128  90 01 00 14 */	stw r0, 0x14(r1)
@@ -390,18 +372,18 @@ onInit__Q34Game4Hana3ObjFPQ24Game15CreatureInitArg:
 /* 802F3234 002F0174  83 E1 00 0C */	lwz r31, 0xc(r1)
 /* 802F3238 002F0178  7C 08 03 A6 */	mtlr r0
 /* 802F323C 002F017C  38 21 00 10 */	addi r1, r1, 0x10
-/* 802F3240 002F0180  4E 80 00 20 */	blr 
+/* 802F3240 002F0180  4E 80 00 20 */	blr
+.endfn onInit__Q34Game4Hana3ObjFPQ24Game15CreatureInitArg 
 
-.global setupEffect__Q34Game4Hana3ObjFv
-setupEffect__Q34Game4Hana3ObjFv:
+.fn setupEffect__Q34Game4Hana3ObjFv, weak
 /* 802F3244 002F0184  4E 80 00 20 */	blr 
+.endfn setupEffect__Q34Game4Hana3ObjFv
 
-.global doDirectDraw__Q34Game4Hana3ObjFR8Graphics
-doDirectDraw__Q34Game4Hana3ObjFR8Graphics:
+.fn doDirectDraw__Q34Game4Hana3ObjFR8Graphics, global
 /* 802F3248 002F0188  4E 80 00 20 */	blr 
+.endfn doDirectDraw__Q34Game4Hana3ObjFR8Graphics
 
-.global getShadowParam__Q34Game4Hana3ObjFRQ24Game11ShadowParam
-getShadowParam__Q34Game4Hana3ObjFRQ24Game11ShadowParam:
+.fn getShadowParam__Q34Game4Hana3ObjFRQ24Game11ShadowParam, global
 /* 802F324C 002F018C  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 802F3250 002F0190  7C 08 02 A6 */	mflr r0
 /* 802F3254 002F0194  90 01 00 14 */	stw r0, 0x14(r1)
@@ -464,9 +446,9 @@ getShadowParam__Q34Game4Hana3ObjFRQ24Game11ShadowParam:
 /* 802F3328 002F0268  7C 08 03 A6 */	mtlr r0
 /* 802F332C 002F026C  38 21 00 10 */	addi r1, r1, 0x10
 /* 802F3330 002F0270  4E 80 00 20 */	blr 
+.endfn getShadowParam__Q34Game4Hana3ObjFRQ24Game11ShadowParam
 
-.global initMouthSlots__Q34Game4Hana3ObjFv
-initMouthSlots__Q34Game4Hana3ObjFv:
+.fn initMouthSlots__Q34Game4Hana3ObjFv, global
 /* 802F3334 002F0274  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 802F3338 002F0278  7C 08 02 A6 */	mflr r0
 /* 802F333C 002F027C  90 01 00 24 */	stw r0, 0x24(r1)
@@ -514,9 +496,9 @@ initMouthSlots__Q34Game4Hana3ObjFv:
 /* 802F33DC 002F031C  7C 08 03 A6 */	mtlr r0
 /* 802F33E0 002F0320  38 21 00 20 */	addi r1, r1, 0x20
 /* 802F33E4 002F0324  4E 80 00 20 */	blr 
+.endfn initMouthSlots__Q34Game4Hana3ObjFv
 
-.global isWakeup__Q34Game4Hana3ObjFv
-isWakeup__Q34Game4Hana3ObjFv:
+.fn isWakeup__Q34Game4Hana3ObjFv, global
 /* 802F33E8 002F0328  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 802F33EC 002F032C  7C 08 02 A6 */	mflr r0
 /* 802F33F0 002F0330  90 01 00 24 */	stw r0, 0x24(r1)
@@ -552,9 +534,9 @@ isWakeup__Q34Game4Hana3ObjFv:
 /* 802F345C 002F039C  7C 08 03 A6 */	mtlr r0
 /* 802F3460 002F03A0  38 21 00 20 */	addi r1, r1, 0x20
 /* 802F3464 002F03A4  4E 80 00 20 */	blr 
+.endfn isWakeup__Q34Game4Hana3ObjFv
 
-.global flickStatePikmin__Q34Game4Hana3ObjFv
-flickStatePikmin__Q34Game4Hana3ObjFv:
+.fn flickStatePikmin__Q34Game4Hana3ObjFv, global
 /* 802F3468 002F03A8  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 802F346C 002F03AC  7C 08 02 A6 */	mflr r0
 /* 802F3470 002F03B0  C0 82 EE 80 */	lfs f4, lbl_8051D1E0@sda21(r2)
@@ -588,9 +570,9 @@ flickStatePikmin__Q34Game4Hana3ObjFv:
 /* 802F34E0 002F0420  7C 08 03 A6 */	mtlr r0
 /* 802F34E4 002F0424  38 21 00 10 */	addi r1, r1, 0x10
 /* 802F34E8 002F0428  4E 80 00 20 */	blr 
+.endfn flickStatePikmin__Q34Game4Hana3ObjFv
 
-.global flickAttackBomb__Q34Game4Hana3ObjFv
-flickAttackBomb__Q34Game4Hana3ObjFv:
+.fn flickAttackBomb__Q34Game4Hana3ObjFv, global
 /* 802F34EC 002F042C  94 21 FF D0 */	stwu r1, -0x30(r1)
 /* 802F34F0 002F0430  7C 08 02 A6 */	mflr r0
 /* 802F34F4 002F0434  C0 82 EE 80 */	lfs f4, lbl_8051D1E0@sda21(r2)
@@ -651,9 +633,9 @@ flickAttackBomb__Q34Game4Hana3ObjFv:
 /* 802F35D0 002F0510  7C 08 03 A6 */	mtlr r0
 /* 802F35D4 002F0514  38 21 00 30 */	addi r1, r1, 0x30
 /* 802F35D8 002F0518  4E 80 00 20 */	blr 
+.endfn flickAttackBomb__Q34Game4Hana3ObjFv
 
-.global eatAttackPikmin__Q34Game4Hana3ObjFv
-eatAttackPikmin__Q34Game4Hana3ObjFv:
+.fn eatAttackPikmin__Q34Game4Hana3ObjFv, global
 /* 802F35DC 002F051C  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 802F35E0 002F0520  7C 08 02 A6 */	mflr r0
 /* 802F35E4 002F0524  3C 80 80 4B */	lis r4, "__vt__23Condition<Q24Game4Piki>"@ha
@@ -669,9 +651,9 @@ eatAttackPikmin__Q34Game4Hana3ObjFv:
 /* 802F360C 002F054C  7C 08 03 A6 */	mtlr r0
 /* 802F3610 002F0550  38 21 00 10 */	addi r1, r1, 0x10
 /* 802F3614 002F0554  4E 80 00 20 */	blr 
+.endfn eatAttackPikmin__Q34Game4Hana3ObjFv
 
-.global resetUnderGround__Q34Game4Hana3ObjFv
-resetUnderGround__Q34Game4Hana3ObjFv:
+.fn resetUnderGround__Q34Game4Hana3ObjFv, global
 /* 802F3618 002F0558  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 802F361C 002F055C  7C 08 02 A6 */	mflr r0
 /* 802F3620 002F0560  90 01 00 14 */	stw r0, 0x14(r1)
@@ -700,9 +682,9 @@ resetUnderGround__Q34Game4Hana3ObjFv:
 /* 802F367C 002F05BC  7C 08 03 A6 */	mtlr r0
 /* 802F3680 002F05C0  38 21 00 10 */	addi r1, r1, 0x10
 /* 802F3684 002F05C4  4E 80 00 20 */	blr 
+.endfn resetUnderGround__Q34Game4Hana3ObjFv
 
-.global setUnderGround__Q34Game4Hana3ObjFv
-setUnderGround__Q34Game4Hana3ObjFv:
+.fn setUnderGround__Q34Game4Hana3ObjFv, global
 /* 802F3688 002F05C8  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 802F368C 002F05CC  7C 08 02 A6 */	mflr r0
 /* 802F3690 002F05D0  C0 82 EE 80 */	lfs f4, lbl_8051D1E0@sda21(r2)
@@ -736,9 +718,9 @@ setUnderGround__Q34Game4Hana3ObjFv:
 /* 802F3700 002F0640  7C 08 03 A6 */	mtlr r0
 /* 802F3704 002F0644  38 21 00 10 */	addi r1, r1, 0x10
 /* 802F3708 002F0648  4E 80 00 20 */	blr 
+.endfn setUnderGround__Q34Game4Hana3ObjFv
 
-.global createSmokeEffect__Q34Game4Hana3ObjFv
-createSmokeEffect__Q34Game4Hana3ObjFv:
+.fn createSmokeEffect__Q34Game4Hana3ObjFv, global
 /* 802F370C 002F064C  94 21 FF C0 */	stwu r1, -0x40(r1)
 /* 802F3710 002F0650  7C 08 02 A6 */	mflr r0
 /* 802F3714 002F0654  90 01 00 44 */	stw r0, 0x44(r1)
@@ -857,9 +839,9 @@ createSmokeEffect__Q34Game4Hana3ObjFv:
 /* 802F38C0 002F0800  7C 08 03 A6 */	mtlr r0
 /* 802F38C4 002F0804  38 21 00 40 */	addi r1, r1, 0x40
 /* 802F38C8 002F0808  4E 80 00 20 */	blr 
+.endfn createSmokeEffect__Q34Game4Hana3ObjFv
 
-.global satisfy__Q24Game21ConditionNotStickSlotFPQ24Game4Piki
-satisfy__Q24Game21ConditionNotStickSlotFPQ24Game4Piki:
+.fn satisfy__Q24Game21ConditionNotStickSlotFPQ24Game4Piki, weak
 /* 802F38CC 002F080C  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 802F38D0 002F0810  7C 08 02 A6 */	mflr r0
 /* 802F38D4 002F0814  90 01 00 14 */	stw r0, 0x14(r1)
@@ -893,60 +875,61 @@ satisfy__Q24Game21ConditionNotStickSlotFPQ24Game4Piki:
 /* 802F393C 002F087C  7C 08 03 A6 */	mtlr r0
 /* 802F3940 002F0880  38 21 00 10 */	addi r1, r1, 0x10
 /* 802F3944 002F0884  4E 80 00 20 */	blr 
+.endfn satisfy__Q24Game21ConditionNotStickSlotFPQ24Game4Piki
 
-.global changeMaterial__Q34Game4Hana3ObjFv
-changeMaterial__Q34Game4Hana3ObjFv:
+.fn changeMaterial__Q34Game4Hana3ObjFv, weak
 /* 802F3948 002F0888  4E 80 00 20 */	blr 
+.endfn changeMaterial__Q34Game4Hana3ObjFv
 
-.global isUnderground__Q34Game4Hana3ObjFv
-isUnderground__Q34Game4Hana3ObjFv:
+.fn isUnderground__Q34Game4Hana3ObjFv, weak
 /* 802F394C 002F088C  88 63 02 E4 */	lbz r3, 0x2e4(r3)
 /* 802F3950 002F0890  4E 80 00 20 */	blr 
+.endfn isUnderground__Q34Game4Hana3ObjFv
 
-.global initWalkSmokeEffect__Q34Game4Hana3ObjFv
-initWalkSmokeEffect__Q34Game4Hana3ObjFv:
+.fn initWalkSmokeEffect__Q34Game4Hana3ObjFv, weak
 /* 802F3954 002F0894  4E 80 00 20 */	blr 
+.endfn initWalkSmokeEffect__Q34Game4Hana3ObjFv
 
-.global getWalkSmokeEffectMgr__Q34Game4Hana3ObjFv
-getWalkSmokeEffectMgr__Q34Game4Hana3ObjFv:
+.fn getWalkSmokeEffectMgr__Q34Game4Hana3ObjFv, weak
 /* 802F3958 002F0898  38 60 00 00 */	li r3, 0
 /* 802F395C 002F089C  4E 80 00 20 */	blr 
+.endfn getWalkSmokeEffectMgr__Q34Game4Hana3ObjFv
 
-.global getDownSmokeScale__Q34Game4Hana3ObjFv
-getDownSmokeScale__Q34Game4Hana3ObjFv:
+.fn getDownSmokeScale__Q34Game4Hana3ObjFv, weak
 /* 802F3960 002F08A0  C0 22 EE 98 */	lfs f1, lbl_8051D1F8@sda21(r2)
 /* 802F3964 002F08A4  4E 80 00 20 */	blr 
+.endfn getDownSmokeScale__Q34Game4Hana3ObjFv
 
-.global getEnemyTypeID__Q34Game4Hana3ObjFv
-getEnemyTypeID__Q34Game4Hana3ObjFv:
+.fn getEnemyTypeID__Q34Game4Hana3ObjFv, weak
 /* 802F3968 002F08A8  38 60 00 54 */	li r3, 0x54
 /* 802F396C 002F08AC  4E 80 00 20 */	blr 
+.endfn getEnemyTypeID__Q34Game4Hana3ObjFv
 
-.global setAnimationSpeed__Q34Game4Hana3ObjFf
-setAnimationSpeed__Q34Game4Hana3ObjFf:
+.fn setAnimationSpeed__Q34Game4Hana3ObjFf, weak
 /* 802F3970 002F08B0  4E 80 00 20 */	blr 
+.endfn setAnimationSpeed__Q34Game4Hana3ObjFf
 
-.global flickAttackFail__Q34Game4Hana3ObjFv
-flickAttackFail__Q34Game4Hana3ObjFv:
+.fn flickAttackFail__Q34Game4Hana3ObjFv, weak
 /* 802F3974 002F08B4  4E 80 00 20 */	blr 
+.endfn flickAttackFail__Q34Game4Hana3ObjFv
 
-.global startSleepEffect__Q34Game4Hana3ObjFv
-startSleepEffect__Q34Game4Hana3ObjFv:
+.fn startSleepEffect__Q34Game4Hana3ObjFv, weak
 /* 802F3978 002F08B8  4E 80 00 20 */	blr 
+.endfn startSleepEffect__Q34Game4Hana3ObjFv
 
-.global finishSleepEffect__Q34Game4Hana3ObjFv
-finishSleepEffect__Q34Game4Hana3ObjFv:
+.fn finishSleepEffect__Q34Game4Hana3ObjFv, weak
 /* 802F397C 002F08BC  4E 80 00 20 */	blr 
+.endfn finishSleepEffect__Q34Game4Hana3ObjFv
 
-.global __sinit_Hana_cpp
-__sinit_Hana_cpp:
+.fn __sinit_Hana_cpp, local
 /* 802F3980 002F08C0  3C 80 80 51 */	lis r4, __float_nan@ha
 /* 802F3984 002F08C4  38 00 FF FF */	li r0, -1
 /* 802F3988 002F08C8  C0 04 48 B0 */	lfs f0, __float_nan@l(r4)
-/* 802F398C 002F08CC  3C 60 80 4D */	lis r3, lbl_804D53A8@ha
-/* 802F3990 002F08D0  90 0D 97 80 */	stw r0, lbl_80515E00@sda21(r13)
-/* 802F3994 002F08D4  D4 03 53 A8 */	stfsu f0, lbl_804D53A8@l(r3)
-/* 802F3998 002F08D8  D0 0D 97 84 */	stfs f0, lbl_80515E04@sda21(r13)
+/* 802F398C 002F08CC  3C 60 80 4D */	lis r3, govNAN___Q24Game5P2JST@ha
+/* 802F3990 002F08D0  90 0D 97 80 */	stw r0, gu32NAN___Q24Game5P2JST@sda21(r13)
+/* 802F3994 002F08D4  D4 03 53 A8 */	stfsu f0, govNAN___Q24Game5P2JST@l(r3)
+/* 802F3998 002F08D8  D0 0D 97 84 */	stfs f0, gfNAN___Q24Game5P2JST@sda21(r13)
 /* 802F399C 002F08DC  D0 03 00 04 */	stfs f0, 4(r3)
 /* 802F39A0 002F08E0  D0 03 00 08 */	stfs f0, 8(r3)
 /* 802F39A4 002F08E4  4E 80 00 20 */	blr 
+.endfn __sinit_Hana_cpp
