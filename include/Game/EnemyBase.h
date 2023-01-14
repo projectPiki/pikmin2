@@ -617,6 +617,11 @@ struct EnemyBase : public Creature, public SysShape::MotionListener, virtual pub
 
 #pragma endregion
 
+	inline bool isLiving()
+	{
+		return ((m_events.m_flags[0].typeView & 0x400) || ((m_events.m_flags[0].typeView & 0x40000)));
+	}
+
 	// Creature: _000 - _178
 	// MotionListener: _178 - _17C
 	// ptr to PelletView: _17C
@@ -790,6 +795,8 @@ struct AppearState : public State {
  * Generic "alive" state.
  * @size = 0x10
  */
+
+
 struct LivingState : public State {
 	inline LivingState(int state = EBS_Living)
 	    : State(state)
@@ -799,10 +806,7 @@ struct LivingState : public State {
 
 	// might need a different name once flags are done
 	// used in EnemyBaseFSM::LivingState::simulation
-	inline bool isLiving(EnemyBase* enemy)
-	{
-		return ((enemy->m_events.m_flags[0].typeView & 0x400) || ((enemy->m_events.m_flags[0].typeView & 0x40000)));
-	}
+
 
 	virtual void update(EnemyBase*);           // _24
 	virtual void entry(EnemyBase*);            // _28

@@ -85,79 +85,26 @@ void Obj::setFSM(FSM* fsm)
  * Address:	8027D930
  * Size:	0000EC
  */
+
+
+
 void Obj::getShadowParam(ShadowParam& param)
 {
-	/*
-	stwu     r1, -0x20(r1)
-	mflr     r0
-	stw      r0, 0x24(r1)
-	stw      r31, 0x1c(r1)
-	mr       r31, r4
-	addi     r4, r1, 8
-	stw      r30, 0x18(r1)
-	mr       r30, r3
-	lwz      r12, 0(r3)
-	lwz      r12, 0x10(r12)
-	mtctr    r12
-	bctrl
-	lwz      r4, 0x1e0(r30)
-	li       r3, 0
-	rlwinm.  r0, r4, 0, 0x15, 0x15
-	bne      lbl_8027D978
-	rlwinm.  r0, r4, 0, 0xd, 0xd
-	beq      lbl_8027D97C
-
-lbl_8027D978:
-	li       r3, 1
-
-lbl_8027D97C:
-	clrlwi.  r0, r3, 0x18
-	beq      lbl_8027D9A8
-	lfs      f1, 8(r1)
-	lfs      f0, lbl_8051B544@sda21(r2)
-	stfs     f1, 0(r31)
-	lfs      f1, 0xc(r1)
-	stfs     f1, 4(r31)
-	lfs      f1, 0x10(r1)
-	stfs     f1, 8(r31)
-	stfs     f0, 0x18(r31)
-	b        lbl_8027D9E8
-
-lbl_8027D9A8:
-	lfs      f0, 8(r1)
-	lfs      f1, lbl_8051B548@sda21(r2)
-	stfs     f0, 0(r31)
-	lfs      f0, 0x190(r30)
-	fadds    f0, f1, f0
-	stfs     f0, 4(r31)
-	lfs      f0, 0x10(r1)
-	stfs     f0, 8(r31)
-	lwz      r0, 0x1e4(r30)
-	clrlwi.  r0, r0, 0x1f
-	beq      lbl_8027D9E0
-	lfs      f0, lbl_8051B544@sda21(r2)
-	stfs     f0, 0x18(r31)
-	b        lbl_8027D9E8
-
-lbl_8027D9E0:
-	lfs      f0, lbl_8051B54C@sda21(r2)
-	stfs     f0, 0x18(r31)
-
-lbl_8027D9E8:
-	lfs      f2, lbl_8051B540@sda21(r2)
-	lfs      f1, lbl_8051B550@sda21(r2)
-	stfs     f2, 0xc(r31)
-	lfs      f0, lbl_8051B54C@sda21(r2)
-	stfs     f1, 0x10(r31)
-	stfs     f2, 0x14(r31)
-	stfs     f0, 0x1c(r31)
-	lwz      r31, 0x1c(r1)
-	lwz      r30, 0x18(r1)
-	lwz      r0, 0x24(r1)
-	mtlr     r0
-	addi     r1, r1, 0x20
-	blr
-	*/
+	Sys::Sphere boundingSphere;
+	getBoundingSphere(boundingSphere);
+	if (isLiving()) {
+		param.m_position = boundingSphere.m_position;
+		param.m_boundingSphere.m_radius = 50.0f;
+	}
+	else {
+		param.m_position.x = boundingSphere.m_position.x;
+		param.m_position.y = m_position.y + 2.5f;
+		param.m_position.z = boundingSphere.m_position.z;
+		if (m_events.m_flags[1].typeView & 1) param.m_boundingSphere.m_radius = 25.0f;
+		else param.m_boundingSphere.m_radius = 50.0f;
+	}
+	param.m_boundingSphere.m_position = Vector3f(0.0f, 1.0f, 0.0f);
+	param.m_size   = 25.0f;
 }
 
 /*
@@ -167,51 +114,15 @@ lbl_8027D9E8:
  */
 bool Obj::damageCallBack(Creature* creature, f32 damage, CollPart* collpart)
 {
-	/*
-	stwu     r1, -0x20(r1)
-	mflr     r0
-	stw      r0, 0x24(r1)
-	stfd     f31, 0x10(r1)
-	psq_st   f31, 24(r1), 0, qr0
-	stw      r31, 0xc(r1)
-	lwz      r0, 0x1e0(r3)
-	fmr      f31, f1
-	mr       r31, r3
-	rlwinm.  r0, r0, 0, 0x16, 0x16
-	beq      lbl_8027DA58
-	lfs      f2, lbl_8051B550@sda21(r2)
-	bl       addDamage__Q24Game9EnemyBaseFff
-	li       r3, 1
-	b        lbl_8027DA94
-
-lbl_8027DA58:
-	cmplwi   r5, 0
-	beq      lbl_8027DA90
-	lis      r4, 0x646D6731@ha
-	addi     r3, r5, 0x30
-	addi     r4, r4, 0x646D6731@l
-	bl       __eq__4ID32FUl
-	clrlwi.  r0, r3, 0x18
-	beq      lbl_8027DA90
-	fmr      f1, f31
-	lfs      f2, lbl_8051B550@sda21(r2)
-	mr       r3, r31
-	bl       addDamage__Q24Game9EnemyBaseFff
-	li       r3, 1
-	b        lbl_8027DA94
-
-lbl_8027DA90:
-	li       r3, 0
-
-lbl_8027DA94:
-	psq_l    f31, 24(r1), 0, qr0
-	lwz      r0, 0x24(r1)
-	lfd      f31, 0x10(r1)
-	lwz      r31, 0xc(r1)
-	mtlr     r0
-	addi     r1, r1, 0x20
-	blr
-	*/
+	if (m_events.m_flags[0].typeView & 0x200) {
+		addDamage(damage, 1.0f);
+		return true;
+	}
+	if (collpart && collpart->m_currentID == 'dmg1') {
+		addDamage(damage, 1.0f);
+		return true;
+	}
+	return false;
 }
 
 /*
@@ -221,36 +132,11 @@ lbl_8027DA94:
  */
 bool Obj::hipdropCallBack(Creature* creature, f32 damage, CollPart* collpart)
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	mr       r31, r3
-	lwz      r12, 0(r3)
-	lwz      r6, 0xc0(r3)
-	lwz      r12, 0x278(r12)
-	lfs      f1, 0x67c(r6)
-	mtctr    r12
-	bctrl
-	lwz      r4, 0x1e0(r31)
-	rlwinm.  r0, r4, 0, 0x16, 0x16
-	bne      lbl_8027DAF8
-	clrlwi.  r0, r3, 0x18
-	beq      lbl_8027DAF8
-	oris     r0, r4, 8
-	stw      r0, 0x1e0(r31)
-
-lbl_8027DAF8:
-	clrlwi   r0, r3, 0x18
-	lwz      r31, 0xc(r1)
-	cntlzw   r0, r0
-	srwi     r3, r0, 5
-	lwz      r0, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	bool b = damageCallBack(creature, static_cast<Parms*>(m_parms)->m_general.m_purplePikiStunDamage, collpart);
+	if (!(m_events.m_flags[0].typeView & 0x200) && b) {
+		SET_FLAG(m_events.m_flags[0].typeView, 0x80000);
+	}
+	return !b;
 }
 
 /*
