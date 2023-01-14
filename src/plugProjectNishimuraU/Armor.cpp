@@ -86,25 +86,24 @@ void Obj::setFSM(FSM* fsm)
  * Size:	0000EC
  */
 
-
-
 void Obj::getShadowParam(ShadowParam& param)
 {
 	Sys::Sphere boundingSphere;
 	getBoundingSphere(boundingSphere);
-	if (isLiving()) {
-		param.m_position = boundingSphere.m_position;
+	if (isConstrained()) {
+		param.m_position                = boundingSphere.m_position;
 		param.m_boundingSphere.m_radius = 50.0f;
-	}
-	else {
+	} else {
 		param.m_position.x = boundingSphere.m_position.x;
 		param.m_position.y = m_position.y + 2.5f;
 		param.m_position.z = boundingSphere.m_position.z;
-		if (m_events.m_flags[1].typeView & 1) param.m_boundingSphere.m_radius = 25.0f;
-		else param.m_boundingSphere.m_radius = 50.0f;
+		if (m_events.m_flags[1].typeView & 1)
+			param.m_boundingSphere.m_radius = 25.0f;
+		else
+			param.m_boundingSphere.m_radius = 50.0f;
 	}
 	param.m_boundingSphere.m_position = Vector3f(0.0f, 1.0f, 0.0f);
-	param.m_size   = 25.0f;
+	param.m_size                      = 25.0f;
 }
 
 /*
