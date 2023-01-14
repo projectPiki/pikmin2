@@ -35,8 +35,8 @@ void Obj::onInit(CreatureInitArg* initArg)
 {
 	EnemyBase::onInit(initArg);
 
-	_2C0 = -1;
-	_2C4 = 0.0f;
+	m_nextState = OTA_Null;
+	_2C4        = 0.0f;
 	resetTreasure();
 	_2D0             = 0;
 	_2C8             = 12800.0f;
@@ -47,7 +47,7 @@ void Obj::onInit(CreatureInitArg* initArg)
 		disableEvent(0, EB_LifegaugeVisible);
 		disableEvent(0, EB_ToLeaveCarcass);
 
-		if (m_dropGroup == EDG_Normal) {
+		if (m_dropGroup == EDG_None) {
 			initBombOtakara();
 		}
 
