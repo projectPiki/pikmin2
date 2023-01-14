@@ -17,9 +17,9 @@ lbl_constructor:
 
 .section .sbss # 0x80514D80 - 0x80516360
 .balign 8
-.global "__init__zero__10Vector3<f>"
-"__init__zero__10Vector3<f>": # weak object
+.obj __init__zero__10Vector3<f>, weak
 	.skip 0x1
+.endobj __init__zero__10Vector3<f>
 
 .section .sdata2, "a"     # 0x80516360 - 0x80520E40
 .balign 8
@@ -164,8 +164,7 @@ lbl_805202C4:
 /* 80411854 0040E794  4E 80 00 20 */	blr 
 .endfn qdist2__Fffff
 
-.global "CRSplineTangent__FfP10Vector3<f>"
-"CRSplineTangent__FfP10Vector3<f>":
+.fn CRSplineTangent__FfP10Vector3<f>, global
 /* 80411858 0040E798  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 8041185C 0040E79C  DB E1 00 10 */	stfd f31, 0x10(r1)
 /* 80411860 0040E7A0  F3 E1 00 18 */	psq_st f31, 24(r1), 0, qr0
@@ -227,6 +226,7 @@ lbl_805202C4:
 /* 80411940 0040E880  CB E1 00 10 */	lfd f31, 0x10(r1)
 /* 80411944 0040E884  38 21 00 20 */	addi r1, r1, 0x20
 /* 80411948 0040E888  4E 80 00 20 */	blr 
+.endfn CRSplineTangent__FfP10Vector3<f>
 
 .fn read__8BoundBoxFR6Stream, global
 /* 8041194C 0040E88C  94 21 FF F0 */	stwu r1, -0x10(r1)
@@ -248,8 +248,7 @@ lbl_805202C4:
 /* 8041198C 0040E8CC  4E 80 00 20 */	blr 
 .endfn read__8BoundBoxFR6Stream
 
-.global "read__10Vector3<f>FR6Stream"
-"read__10Vector3<f>FR6Stream":
+.fn read__10Vector3<f>FR6Stream, global
 /* 80411990 0040E8D0  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80411994 0040E8D4  7C 08 02 A6 */	mflr r0
 /* 80411998 0040E8D8  90 01 00 14 */	stw r0, 0x14(r1)
@@ -272,9 +271,9 @@ lbl_805202C4:
 /* 804119DC 0040E91C  7C 08 03 A6 */	mtlr r0
 /* 804119E0 0040E920  38 21 00 10 */	addi r1, r1, 0x10
 /* 804119E4 0040E924  4E 80 00 20 */	blr 
+.endfn read__10Vector3<f>FR6Stream
 
-.global "write__10Vector3<f>FR6Stream"
-"write__10Vector3<f>FR6Stream":
+.fn write__10Vector3<f>FR6Stream, global
 /* 804119E8 0040E928  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 804119EC 0040E92C  7C 08 02 A6 */	mflr r0
 /* 804119F0 0040E930  90 01 00 14 */	stw r0, 0x14(r1)
@@ -297,6 +296,7 @@ lbl_805202C4:
 /* 80411A34 0040E974  7C 08 03 A6 */	mtlr r0
 /* 80411A38 0040E978  38 21 00 10 */	addi r1, r1, 0x10
 /* 80411A3C 0040E97C  4E 80 00 20 */	blr 
+.endfn write__10Vector3<f>FR6Stream
 
 .fn write__5PlaneFR6Stream, global
 /* 80411A40 0040E980  94 21 FF F0 */	stwu r1, -0x10(r1)
@@ -971,8 +971,7 @@ lbl_805202C4:
 /* 804123DC 0040F31C  4E 80 00 20 */	blr 
 .endfn __ct__4QuatFv
 
-.global "__ct__4QuatFf10Vector3<f>"
-"__ct__4QuatFf10Vector3<f>":
+.fn __ct__4QuatFf10Vector3<f>, global
 /* 804123E0 0040F320  D0 23 00 00 */	stfs f1, 0(r3)
 /* 804123E4 0040F324  C0 04 00 00 */	lfs f0, 0(r4)
 /* 804123E8 0040F328  C0 24 00 04 */	lfs f1, 4(r4)
@@ -981,6 +980,7 @@ lbl_805202C4:
 /* 804123F4 0040F334  D0 23 00 08 */	stfs f1, 8(r3)
 /* 804123F8 0040F338  D0 03 00 0C */	stfs f0, 0xc(r3)
 /* 804123FC 0040F33C  4E 80 00 20 */	blr 
+.endfn __ct__4QuatFf10Vector3<f>
 
 .fn __ml__FR4QuatR4Quat, weak
 /* 80412400 0040F340  94 21 FF B0 */	stwu r1, -0x50(r1)
@@ -1048,8 +1048,7 @@ lbl_805202C4:
 /* 804124F8 0040F438  4E 80 00 20 */	blr 
 .endfn __ml__FR4QuatR4Quat
 
-.global "set__4QuatFR10Vector3<f>"
-"set__4QuatFR10Vector3<f>":
+.fn set__4QuatFR10Vector3<f>, global
 /* 804124FC 0040F43C  94 21 FF 70 */	stwu r1, -0x90(r1)
 /* 80412500 0040F440  7C 08 02 A6 */	mflr r0
 /* 80412504 0040F444  C0 02 1F 10 */	lfs f0, lbl_80520270@sda21(r2)
@@ -1209,6 +1208,7 @@ lbl_805202C4:
 /* 80412754 0040F694  7C 08 03 A6 */	mtlr r0
 /* 80412758 0040F698  38 21 00 90 */	addi r1, r1, 0x90
 /* 8041275C 0040F69C  4E 80 00 20 */	blr 
+.endfn set__4QuatFR10Vector3<f>
 
 .fn __ct__4QuatFR4Quat, global
 /* 80412760 0040F6A0  C0 04 00 00 */	lfs f0, 0(r4)
