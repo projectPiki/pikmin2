@@ -49,10 +49,10 @@ struct Mgr : public MemoryCardMgr {
 	void loadResource(JKRHeap*);
 	void destroyResource();
 	u32 getCardStatus();
-	void format();
+	bool format();
 	void checkBeforeSave();
 	void checkError();
-	void createNewFile();
+	bool createNewFile();
 	void saveGameOption();
 	void loadGameOption();
 	void savePlayerNoCheckSerialNumber(int);

@@ -56,6 +56,10 @@ void __GBASyncCallback(int portIndex, int);
 BOOL OnReset();
 void ShortCommandProc(int portIndex);
 void ReadProc(int portIndex);
+int GBAReset(int portIndex, u8* p2);
+int GBAGetStatus(int portIndex, u8* p2);
+int GBARead(int portIndex, u8* p2, u8* p3);
+int GBAWrite(int portIndex, u8* p2, u8* p3);
 
 #ifdef __cplusplus
 }

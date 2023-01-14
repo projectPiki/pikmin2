@@ -775,7 +775,7 @@ void FSMState_Q05_GameCantSave::do_transitNo(TMgr* mgr)
  * Address:	803E374C
  * Size:	000028
  */
-bool FSMState_WN0_NowFormat::do_cardRequest() { static_cast<Game::MemoryCard::Mgr*>(sys->m_cardMgr)->format(); }
+bool FSMState_WN0_NowFormat::do_cardRequest() { return static_cast<Game::MemoryCard::Mgr*>(sys->m_cardMgr)->format(); }
 
 /*
  * --INFO--
@@ -831,86 +831,28 @@ void FSMState_WN1_NowCreateNewFile::do_open(TMgr* mgr)
  * Address:	803E38A8
  * Size:	000028
  */
-bool FSMState_WN1_NowCreateNewFile::do_cardRequest() { static_cast<Game::MemoryCard::Mgr*>(sys->m_cardMgr)->createNewFile(); }
+bool FSMState_WN1_NowCreateNewFile::do_cardRequest() { return static_cast<Game::MemoryCard::Mgr*>(sys->m_cardMgr)->createNewFile(); }
 
 /*
  * --INFO--
  * Address:	803E38D0
  * Size:	000034
  */
-void FSMState_WN1_NowCreateNewFile::do_transitCardReady(TMgr* mgr)
-{
-	transit(mgr, CARDERROR_FinishCreateNewFile, nullptr);
-	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  li        r5, 0xB
-	  li        r6, 0
-	  stw       r0, 0x14(r1)
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0x1C(r12)
-	  mtctr     r12
-	  bctrl
-	  lwz       r0, 0x14(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
-	*/
-}
+void FSMState_WN1_NowCreateNewFile::do_transitCardReady(TMgr* mgr) { transit(mgr, CARDERROR_FinishCreateNewFile, nullptr); }
 
 /*
  * --INFO--
  * Address:	803E3904
  * Size:	000034
  */
-void FSMState_WN1_NowCreateNewFile::do_transitCardNoCard(TMgr* mgr)
-{
-	transit(mgr, CARDERROR_FailToCreateNewFile_NoCard, nullptr);
-
-	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  li        r5, 0xF
-	  li        r6, 0
-	  stw       r0, 0x14(r1)
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0x1C(r12)
-	  mtctr     r12
-	  bctrl
-	  lwz       r0, 0x14(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
-	*/
-}
+void FSMState_WN1_NowCreateNewFile::do_transitCardNoCard(TMgr* mgr) { transit(mgr, CARDERROR_FailToCreateNewFile_NoCard, nullptr); }
 
 /*
  * --INFO--
  * Address:	803E3938
  * Size:	000034
  */
-void FSMState_WN1_NowCreateNewFile::do_transitCardIOError(TMgr* mgr)
-{
-	transit(mgr, CARDERROR_FailToCreateNewFile_IOError, nullptr);
-	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  li        r5, 0x10
-	  li        r6, 0
-	  stw       r0, 0x14(r1)
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0x1C(r12)
-	  mtctr     r12
-	  bctrl
-	  lwz       r0, 0x14(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
-	*/
-}
+void FSMState_WN1_NowCreateNewFile::do_transitCardIOError(TMgr* mgr) { transit(mgr, CARDERROR_FailToCreateNewFile_IOError, nullptr); }
 
 } // namespace CardError
 } // namespace ebi

@@ -1,4 +1,12 @@
-#include "types.h"
+#include "ebi/CardEReader.h"
+#include "JSystem/JUT/JUTException.h"
+#include "Dolphin/gba.h"
+#include "JSystem/JKR/JKRFile.h"
+#include "JSystem/JKR/JKRDvdRipper.h"
+
+int SIProbe(int);
+
+static const char name[] = "ebiCardEReader";
 
 /*
     Generated from dpostproc
@@ -81,35 +89,10 @@ namespace ebi {
  * Address:	803ECB40
  * Size:	00005C
  */
-void gCardEMgr_ThreadFunc(void*)
+void gCardEMgr_ThreadFunc(void* data)
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	mr       r31, r3
-	lwz      r0, gCardEMgr__3ebi@sda21(r13)
-	cmplwi   r0, 0
-	bne      lbl_803ECB7C
-	lis      r3, lbl_80497988@ha
-	lis      r5, lbl_8049799C@ha
-	addi     r3, r3, lbl_80497988@l
-	li       r4, 0x10
-	addi     r5, r5, lbl_8049799C@l
-	crclr    6
-	bl       panic_f__12JUTExceptionFPCciPCce
-
-lbl_803ECB7C:
-	lwz      r3, gCardEMgr__3ebi@sda21(r13)
-	mr       r4, r31
-	bl       threadProc__Q33ebi11CardEReader4TMgrFPv
-	lwz      r0, 0x14(r1)
-	lwz      r31, 0xc(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	P2ASSERTLINE(16, gCardEMgr);
+	gCardEMgr->threadProc(data);
 }
 
 /*
@@ -117,7 +100,7 @@ lbl_803ECB7C:
  * Address:	........
  * Size:	000018
  */
-void CardEReader::changeEndian(unsigned long)
+void CardEReader::changeEndian(u32)
 {
 	// UNUSED FUNCTION
 }
@@ -127,7 +110,7 @@ void CardEReader::changeEndian(unsigned long)
  * Address:	........
  * Size:	00000C
  */
-void CardEReader::roundup4b(unsigned long)
+void CardEReader::roundup4b(u32)
 {
 	// UNUSED FUNCTION
 }
@@ -137,7 +120,7 @@ void CardEReader::roundup4b(unsigned long)
  * Address:	........
  * Size:	000070
  */
-void CardEReader::CardE_probeAGB(void)
+void CardEReader::CardE_probeAGB()
 {
 	// UNUSED FUNCTION
 }
@@ -147,8 +130,63 @@ void CardEReader::CardE_probeAGB(void)
  * Address:	803ECB9C
  * Size:	000274
  */
-void CardEReader::CardE_uploadToGBA(long, unsigned char*, unsigned long)
+bool CardEReader::CardE_uploadToGBA(long portIndex, u8* data, u32 size)
 {
+	u8 flags1[4];
+	u8 flags2[4];
+	u8 flags3[4];
+
+	if (GBAReset(portIndex, flags1)) {
+		return false;
+	} else if (GBAGetStatus(portIndex, flags1)) {
+		return false;
+	} else if (flags1[0] != 0x28) {
+		return false;
+	} else if (GBARead(portIndex, flags2, flags1)) {
+		return false;
+	} else if (flags2[0] != cInitialCode[0]) {
+		return false;
+	} else if (flags2[1] != cInitialCode[1]) {
+		return false;
+	} else if (flags2[2] != cInitialCode[2]) {
+		return false;
+	} else if (flags2[3] != cInitialCode[3]) {
+		return false;
+	} else if (GBAGetStatus(portIndex, flags1)) {
+		return false;
+	} else if (flags1[0] != 0x20) {
+		return false;
+	} else if (GBAWrite(portIndex, flags2, flags1)) {
+		return false;
+	} else if (GBAGetStatus(portIndex, flags1)) {
+		return false;
+	} else if (flags1[0] != 0x30) {
+		return false;
+	} else if (GBAWrite(portIndex, (u8*)&size, flags1)) {
+		return false;
+	} else if (GBARead(portIndex, flags3, flags1)) {
+		return false;
+	} else if (size != flags3[0]) {
+		return false;
+	}
+
+	for (int i = 0; i < size; i++) {
+		u8 flags4[4];
+		while (true) {
+			if (GBAGetStatus(portIndex, flags4)) {
+				return false;
+			}
+			if (flags4[0] & 2)
+				break;
+			if (flags4[0] & 0x30 != 0x30) {
+				return false;
+			}
+		}
+		if (GBAWrite(portIndex, data + i, flags4)) {
+			return false;
+		}
+	}
+	return true;
 	/*
 	stwu     r1, -0x30(r1)
 	mflr     r0
@@ -359,80 +397,17 @@ lbl_803ECDF0:
  * Address:	803ECE10
  * Size:	000068
  */
-CardEReader::TMgr::~TMgr(void)
-{
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	mr       r31, r4
-	stw      r30, 8(r1)
-	or.      r30, r3, r3
-	beq      lbl_803ECE5C
-	lis      r4, __vt__Q33ebi11CardEReader4TMgr@ha
-	li       r0, 0
-	addi     r5, r4, __vt__Q33ebi11CardEReader4TMgr@l
-	li       r4, 0
-	stw      r5, 0(r30)
-	stw      r0, gCardEMgr__3ebi@sda21(r13)
-	bl       __dt__11JKRDisposerFv
-	extsh.   r0, r31
-	ble      lbl_803ECE5C
-	mr       r3, r30
-	bl       __dl__FPv
-
-lbl_803ECE5C:
-	lwz      r0, 0x14(r1)
-	mr       r3, r30
-	lwz      r31, 0xc(r1)
-	lwz      r30, 8(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
-}
+CardEReader::TMgr::~TMgr() { gCardEMgr = nullptr; }
 
 /*
  * --INFO--
  * Address:	803ECE78
  * Size:	00006C
  */
-void CardEReader::TMgr::globalInstance(void)
+void CardEReader::TMgr::globalInstance()
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	lwz      r0, gCardEMgr__3ebi@sda21(r13)
-	cmplwi   r0, 0
-	bne      lbl_803ECED0
-	li       r3, 0x68
-	bl       __nw__FUl
-	or.      r31, r3, r3
-	beq      lbl_803ECECC
-	bl       __ct__11JKRDisposerFv
-	lis      r4, __vt__Q33ebi11CardEReader4TMgr@ha
-	li       r3, 0
-	addi     r4, r4, __vt__Q33ebi11CardEReader4TMgr@l
-	li       r0, -1
-	stw      r4, 0(r31)
-	stw      r3, 0x30(r31)
-	stw      r3, 0x34(r31)
-	stw      r3, 0x3c(r31)
-	stw      r0, 0x40(r31)
-
-lbl_803ECECC:
-	stw      r31, gCardEMgr__3ebi@sda21(r13)
-
-lbl_803ECED0:
-	lwz      r0, 0x14(r1)
-	lwz      r31, 0xc(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	if (!gCardEMgr)
+		gCardEMgr = new TMgr;
 }
 
 /*
@@ -440,7 +415,7 @@ lbl_803ECED0:
  * Address:	........
  * Size:	000048
  */
-void CardEReader::TMgr::deleteInstance(void)
+void CardEReader::TMgr::deleteInstance()
 {
 	// UNUSED FUNCTION
 }
@@ -450,92 +425,26 @@ void CardEReader::TMgr::deleteInstance(void)
  * Address:	803ECEE4
  * Size:	00011C
  */
-void CardEReader::TMgr::loadResource(void)
+void CardEReader::TMgr::loadResource()
 {
-	/*
-	stwu     r1, -0x120(r1)
-	mflr     r0
-	lis      r4, lbl_80497978@ha
-	stw      r0, 0x124(r1)
-	stw      r31, 0x11c(r1)
-	addi     r31, r4, lbl_80497978@l
-	stw      r30, 0x118(r1)
-	mr       r30, r3
-	stw      r29, 0x114(r1)
-	li       r29, 0
-	stw      r28, 0x110(r1)
-
-lbl_803ECF10:
-	cmpwi    r29, 0
-	addi     r28, r2, lbl_8051FE58@sda21
-	bne      lbl_803ECF24
-	addi     r28, r31, 0x30
-	b        lbl_803ECF40
-
-lbl_803ECF24:
-	cmpwi    r29, 1
-	bne      lbl_803ECF34
-	addi     r28, r31, 0x54
-	b        lbl_803ECF40
-
-lbl_803ECF34:
-	cmpwi    r29, 2
-	bne      lbl_803ECF40
-	addi     r28, r31, 0x78
-
-lbl_803ECF40:
-	addi     r3, r1, 0x10
-	bl       __ct__10JKRDvdFileFv
-	mr       r4, r28
-	addi     r3, r1, 0x10
-	bl       open__10JKRDvdFileFPCc
-	li       r0, 0
-	addi     r3, r1, 0x10
-	stw      r0, 8(r1)
-	li       r4, 0
-	li       r5, 0
-	li       r6, 0
-	li       r7, 0
-	li       r8, 2
-	li       r9, 0
-	li       r10, 0
-	bl
-loadToMainRAM__12JKRDvdRipperFP10JKRDvdFilePUc15JKRExpandSwitchUlP7JKRHeapQ212JKRDvdRipper15EAllocDirectionUlPiPUl
-	stw      r3, 0x18(r30)
-	lwz      r0, 0x18(r30)
-	cmplwi   r0, 0
-	bne      lbl_803ECFA4
-	addi     r3, r31, 0x10
-	addi     r5, r31, 0x24
-	li       r4, 0x1ce
-	crclr    6
-	bl       panic_f__12JUTExceptionFPCciPCce
-
-lbl_803ECFA4:
-	lwz      r0, 0xa0(r1)
-	addi     r3, r1, 0x10
-	stw      r0, 0x24(r30)
-	bl       close__10JKRDvdFileFv
-	lwz      r5, 0x24(r30)
-	addi     r3, r1, 0x10
-	li       r4, -1
-	addi     r0, r5, 3
-	rlwinm   r0, r0, 0, 0, 0x1d
-	stw      r0, 0x24(r30)
-	bl       __dt__10JKRDvdFileFv
-	addi     r29, r29, 1
-	addi     r30, r30, 4
-	cmpwi    r29, 3
-	blt      lbl_803ECF10
-	lwz      r0, 0x124(r1)
-	lwz      r31, 0x11c(r1)
-	lwz      r30, 0x118(r1)
-	lwz      r29, 0x114(r1)
-	lwz      r28, 0x110(r1)
-	mtlr     r0
-	addi     r1, r1, 0x120
-	blr
-	*/
+	for (int i = 0; i < EREADER_GAMES; i++) {
+		char* path = "";
+		if (i == 0) {
+			path = "user/Ebisawa/card_e_reader/pp1.dwn";
+		} else if (i == 1) {
+			path = "user/Ebisawa/card_e_reader/pp2.dwn";
+		} else if (i == 2) {
+			path = "user/Ebisawa/card_e_reader/pp3.dwn";
+		}
+		JKRDvdFile file;
+		file.open(path);
+		m_gameDatas[i] = JKRDvdRipper::loadToMainRAM(&file, nullptr, (JKRExpandSwitch)0, 0, nullptr, (JKRDvdRipper::ALLOC_DIR_BOTTOM), 0,
+		                                             nullptr, nullptr);
+		P2ASSERTLINE(462, m_gameDatas[i]);
+		m_sizes[i] = file.m_dvdPlayer.m_fileSize;
+		file.close();
+		m_sizes[i] = (m_sizes[i] + 3) & ~3;
+	}
 }
 
 /*
@@ -543,25 +452,11 @@ lbl_803ECFA4:
  * Address:	803ED000
  * Size:	00003C
  */
-void CardEReader::TMgr::init(void)
+void CardEReader::TMgr::init()
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	mr       r31, r3
-	bl       GBAInit
-	addi     r3, r31, 0x48
-	bl       OSInitMutex
-	addi     r3, r31, 0x60
-	bl       OSInitCond
-	lwz      r0, 0x14(r1)
-	lwz      r31, 0xc(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	GBAInit();
+	OSInitMutex(&m_mutex);
+	OSInitCond(&m_cond);
 }
 
 /*
@@ -569,17 +464,12 @@ void CardEReader::TMgr::init(void)
  * Address:	803ED03C
  * Size:	00001C
  */
-void CardEReader::TMgr::uploadToGBA(long)
+void CardEReader::TMgr::uploadToGBA(long data)
 {
-	/*
-	li       r5, 1
-	li       r0, 0
-	stw      r5, 0x38(r3)
-	stw      r5, 0x34(r3)
-	stw      r0, 0x44(r3)
-	stw      r4, 0x30(r3)
-	blr
-	*/
+	_38       = 1;
+	m_state   = 1;
+	m_counter = 0;
+	m_gameID  = data;
 }
 
 /*
@@ -587,16 +477,11 @@ void CardEReader::TMgr::uploadToGBA(long)
  * Address:	803ED058
  * Size:	000018
  */
-void CardEReader::TMgr::probeAGB(void)
+void CardEReader::TMgr::probeAGB()
 {
-	/*
-	li       r4, 0
-	li       r0, 1
-	stw      r4, 0x38(r3)
-	stw      r0, 0x34(r3)
-	stw      r4, 0x44(r3)
-	blr
-	*/
+	_38       = 0;
+	m_state   = 1;
+	m_counter = 0;
 }
 
 /*
@@ -604,8 +489,45 @@ void CardEReader::TMgr::probeAGB(void)
  * Address:	803ED070
  * Size:	000150
  */
-void CardEReader::TMgr::update(void)
+void CardEReader::TMgr::update()
 {
+	switch (m_state) {
+	case 1: {
+		int stat;
+		if (SIProbe(1) == 0x40000) {
+			stat = 1;
+		} else if (SIProbe(2) == 0x40000) {
+			stat = 2;
+		} else if (SIProbe(3) == 0x40000) {
+			stat = 3;
+		} else {
+			stat = -1;
+		}
+		m_gbaPort = stat;
+		m_counter++;
+		if (m_gbaPort != -1) {
+			goEnd_(Error_0);
+		} else if (_38 == 0) {
+			m_counter = 0;
+			m_state   = 2;
+		} else {
+			goEnd_(Error_1);
+		}
+		break;
+	}
+	case 2:
+		bool stat = tryUploadToGBA_();
+		m_counter++;
+		if (stat) {
+			m_counter = 0;
+			m_state   = 3;
+		} else {
+			if (m_counter >= 1) {
+				goEnd_(Error_2);
+			}
+		}
+		break;
+	}
 	/*
 	stwu     r1, -0x10(r1)
 	mflr     r0
@@ -719,8 +641,10 @@ lbl_803ED1AC:
  * Address:	803ED1C0
  * Size:	000010
  */
-void CardEReader::TMgr::isFinish(void)
+bool CardEReader::TMgr::isFinish()
 {
+	u8 test = m_state;
+	return test;
 	/*
 	lwz      r0, 0x34(r3)
 	cntlzw   r0, r0
@@ -734,45 +658,18 @@ void CardEReader::TMgr::isFinish(void)
  * Address:	803ED1D0
  * Size:	000074
  */
-void CardEReader::TMgr::threadProc(void*)
+void CardEReader::TMgr::threadProc(void* data)
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	mr       r31, r3
-
-lbl_803ED1E4:
-	addi     r3, r31, 0x48
-	bl       OSLockMutex
-	addi     r3, r31, 0x60
-	addi     r4, r31, 0x48
-	bl       OSWaitCond
-	lwz      r0, 0x30(r31)
-	lwz      r3, 0x40(r31)
-	slwi     r0, r0, 2
-	add      r5, r31, r0
-	lwz      r4, 0x18(r5)
-	lwz      r5, 0x24(r5)
-	bl       CardE_uploadToGBA__Q23ebi11CardEReaderFlPUcUl
-	clrlwi.  r0, r3, 0x18
-	beq      lbl_803ED22C
-	mr       r3, r31
-	li       r4, 0
-	bl       goEnd___Q33ebi11CardEReader4TMgrFQ43ebi11CardEReader4TMgr7enumErr
-	b        lbl_803ED238
-
-lbl_803ED22C:
-	mr       r3, r31
-	li       r4, 2
-	bl       goEnd___Q33ebi11CardEReader4TMgrFQ43ebi11CardEReader4TMgr7enumErr
-
-lbl_803ED238:
-	addi     r3, r31, 0x48
-	bl       OSUnlockMutex
-	b        lbl_803ED1E4
-	*/
+	while (true) {
+		OSLockMutex(&m_mutex);
+		OSWaitCond(&m_cond, &m_mutex);
+		if (CardE_uploadToGBA(m_gbaPort, (u8*)m_gameDatas[m_gameID], m_sizes[m_gameID])) {
+			goEnd_(Error_0);
+		} else {
+			goEnd_(Error_2);
+		}
+		OSUnlockMutex(&m_mutex);
+	}
 }
 
 /*
@@ -780,35 +677,14 @@ lbl_803ED238:
  * Address:	803ED244
  * Size:	000054
  */
-void CardEReader::TMgr::tryUploadToGBA_(void)
+bool CardEReader::TMgr::tryUploadToGBA_()
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	mr       r31, r3
-	addi     r3, r31, 0x48
-	bl       OSTryLockMutex
-	cmpwi    r3, 0
-	beq      lbl_803ED280
-	addi     r3, r31, 0x48
-	bl       OSUnlockMutex
-	addi     r3, r31, 0x60
-	bl       OSSignalCond
-	li       r3, 1
-	b        lbl_803ED284
-
-lbl_803ED280:
-	li       r3, 0
-
-lbl_803ED284:
-	lwz      r0, 0x14(r1)
-	lwz      r31, 0xc(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	if (OSTryLockMutex(&m_mutex)) {
+		OSUnlockMutex(&m_mutex);
+		OSSignalCond(&m_cond);
+		return true;
+	}
+	return false;
 }
 
 /*
@@ -816,13 +692,9 @@ lbl_803ED284:
  * Address:	803ED298
  * Size:	000010
  */
-void CardEReader::TMgr::goEnd_(ebi::CardEReader::TMgr::enumErr)
+void CardEReader::TMgr::goEnd_(enumErr stat)
 {
-	/*
-	stw      r4, 0x3c(r3)
-	li       r0, 0
-	stw      r0, 0x34(r3)
-	blr
-	*/
+	m_endStat = stat;
+	m_state   = 0;
 }
 } // namespace ebi
