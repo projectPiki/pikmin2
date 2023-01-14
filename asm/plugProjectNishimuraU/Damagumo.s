@@ -4173,6 +4173,7 @@ getEnemyTypeID__Q34Game8Damagumo3ObjFv:
 /* 802A8990 002A58D0  38 60 00 38 */	li r3, 0x38
 /* 802A8994 002A58D4  4E 80 00 20 */	blr 
 
+.global __sinit_Damagumo_cpp
 __sinit_Damagumo_cpp: # static initializer
 /* 802A8998 002A58D8  3C 80 80 51 */	lis r4, __float_nan@ha
 /* 802A899C 002A58DC  38 00 FF FF */	li r0, -1

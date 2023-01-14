@@ -43,31 +43,35 @@ struct Obj : public EnemyBase {
 	Obj();
 
 	//////////////// VTABLE
-	virtual void constructor();                             // _2C
-	virtual void onInit(CreatureInitArg* settings);         // _30
-	virtual void doDirectDraw(Graphics& gfx);               // _50
-	virtual void inWaterCallback(WaterBox* wb);             // _84 (weak)
-	virtual void outWaterCallback();                        // _88 (weak)
+	virtual void constructor();                     // _2C
+	virtual void onInit(CreatureInitArg* settings); // _30
+	virtual void doDirectDraw(Graphics& gfx);       // _50
+
 	virtual void collisionCallback(CollEvent& event);       // _EC
 	virtual void getShadowParam(ShadowParam& settings);     // _134
 	virtual bool needShadow();                              // _138
-	virtual ~Obj() {};                                      // _1BC (weak)
+	virtual ~Obj() { }                                      // _1BC (weak)
 	virtual void setInitialSetting(EnemyInitialParamBase*); // _1C4
 	virtual void doUpdate();                                // _1CC
 	virtual void doUpdateCommon();                          // _1D0
 	virtual void doAnimationCullingOff();                   // _1DC
 	virtual void doDebugDraw(Graphics&);                    // _1EC
-	virtual EnemyTypeID::EEnemyTypeID getEnemyTypeID();     // _258 (weak)
 	virtual void getThrowupItemPosition(Vector3f*);         // _268
 	virtual void getThrowupItemVelocity(Vector3f*);         // _26C
-	virtual void throwupItemInDeathProcedure();             // _270 (weak)
 	virtual bool damageCallBack(Creature*, f32, CollPart*); // _278
 	virtual void doStartStoneState();                       // _2A4
 	virtual void doFinishStoneState();                      // _2A8
-	virtual f32 getDamageCoeStoneState();                   // _2AC (weak)
 	virtual void doStartMovie();                            // _2F0
 	virtual void doEndMovie();                              // _2F4
 	virtual void setFSM(FSM*);                              // _2F8
+	virtual void inWaterCallback(WaterBox* wb) { }          // _84 (weak)
+	virtual void outWaterCallback() { }                     // _88 (weak)
+	virtual f32 getDamageCoeStoneState() { return 0.25f; }  // _2AC (weak)
+	virtual void throwupItemInDeathProcedure() { }          // _270 (weak)
+	virtual EnemyTypeID::EEnemyTypeID getEnemyTypeID()      // _258 (weak)
+	{
+		return EnemyTypeID::EnemyID_Damagumo;
+	}
 	//////////////// VTABLE END
 
 	void getTargetPosition();
@@ -113,31 +117,31 @@ struct Obj : public EnemyBase {
 
 	// _00 		= VTBL
 	// _00-_2BC	= EnemyBase
-	FSM* m_fsm;                               // _2BC
-	f32 m_stateTimer;                         // _2C0, how long BLL has been in wait or walk state
-	f32 m_stateDuration;                      // _2C4, how long each phase lasts - 1.75-3.5s for wait, 3.25-6.5s for walk
-	int m_nextState;                          // _2C8
-	Vector3f m_targetPosition;                // _2CC
-	f32 _2D8;                                 // _2D8
-	u8 _2DC;                                  // _2DC
-	bool m_isSmoking;                         // _2DD
-	IKSystemMgr* m_IKSystemMgr;               // _2E0
-	IKSystemParms* m_IKSystemParms;           // _2E4
-	DamagumoGroundCallBack* m_groundCallBack; // _2E8
-	DamagumoShadowMgr* m_shadowMgr;           // _2EC
-	Vector3f m_jointPositions[4][4];          // _2F0, guess based on BigFoot struct
-	efx::TChasePos2* _3B0[4];                 // _3B0
-	efx::TDamaFootw* _3C0[4];                 // _3C0
-	efx::TDamaSmoke* _3D0[3];                 // _3D0
-	efx::TDamaHahen* _3DC[3][4];              // _3DC, guess based on BigFoot struct
-	efx::TDamaDeadElecA* _40C[3][4];          // _40C, guess based on BigFoot struct
-	efx::TDamaDeadElecB* _43C[2][4];          // _43C, guess based on BigFoot struct
-	efx::TDamaDeadHahenA* _45C[2][4];         // _45C, guess based on BigFoot struct
-	efx::TDamaDeadHahenB* _47C[4];            // _47C
-	efx::TDamaDeadHahenC1* _48C;              // _48C
-	efx::TDamaDeadHahenC2* _490;              // _490
-	Sys::MatLoopAnimator* m_matLoopAnimator;  // _494, guess based on BigFoot struct
-	                                          // _498 = PelletView
+	FSM* m_fsm;                                 // _2BC
+	f32 m_stateTimer;                           // _2C0, how long BLL has been in wait or walk state
+	f32 m_stateDuration;                        // _2C4, how long each phase lasts - 1.75-3.5s for wait, 3.25-6.5s for walk
+	int m_nextState;                            // _2C8
+	Vector3f m_targetPosition;                  // _2CC
+	f32 _2D8;                                   // _2D8
+	u8 _2DC;                                    // _2DC
+	bool m_isSmoking;                           // _2DD
+	IKSystemMgr* m_ikSystemMgr;                 // _2E0
+	IKSystemParms* m_ikSystemParms;             // _2E4
+	DamagumoGroundCallBack* m_groundCallBack;   // _2E8
+	DamagumoShadowMgr* m_shadowMgr;             // _2EC
+	Vector3f m_jointPositions[4][4];            // _2F0, guess based on BigFoot struct
+	efx::TDamaFoot* m_footFX[4];                // _3B0
+	efx::TDamaFootw* m_footWFX[4];              // _3C0
+	efx::TDamaSmoke* m_smokeFX[3];              // _3D0
+	efx::TDamaHahen* m_hahenFX[4][3];           // _3DC, guess based on BigFoot struct
+	efx::TDamaDeadElecA* m_deadElecAFX[4][3];   // _40C, guess based on BigFoot struct
+	efx::TDamaDeadElecB* m_deadElecBFX[4][2];   // _43C, guess based on BigFoot struct
+	efx::TDamaDeadHahenA* m_deadHahenAFX[4][2]; // _45C, guess based on BigFoot struct
+	efx::TDamaDeadHahenB* m_deadHahenBFX[4];    // _47C
+	efx::TDamaDeadHahenC1* m_deadHahenC1FX;     // _48C
+	efx::TDamaDeadHahenC2* m_deadHahenC2FX;     // _490
+	Sys::MatLoopAnimator* m_matLoopAnimator;    // _494, array of 2 MatLoopAnimators: 0 = tex, 1 = tev reg
+	                                            // _498 = PelletView
 };
 
 struct Mgr : public EnemyMgrBase {

@@ -37,7 +37,7 @@ struct EnemyBoss : public EnemyBase {
 	bool m_appearFlag;    // _FC
 	u8 _FD;               // _FD - possibly didAppearSoundPlay flag
 	u8 _FE;               // _FE - unknown
-	u8 _FF;               // _FF - possibly padding
+	u8 _FF;               // _FF
 };
 
 /**
