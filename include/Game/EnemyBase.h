@@ -806,6 +806,10 @@ struct LivingState : public State {
 
 	// might need a different name once flags are done
 	// used in EnemyBaseFSM::LivingState::simulation
+	inline bool isLiving(EnemyBase* enemy)
+	{
+		return ((enemy->m_events.m_flags[0].typeView & 0x400) || ((enemy->m_events.m_flags[0].typeView & 0x40000)));
+	}
 
 
 	virtual void update(EnemyBase*);           // _24
