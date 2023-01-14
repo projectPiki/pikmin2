@@ -77,7 +77,7 @@ void Obj::doUpdate()
 	m_fsm->exec(this);
 	m_mouthSlots.update();
 	if (isEvent(0, EB_IsDamageAnimAllowed) && m_bounceTriangle) {
-		if (isEvent(0, EB_HardConstraint)) {
+		if (isEvent(0, EB_IsHardConstraint)) {
 			enableEvent(0, EB_IsVulnerable);
 			disableEvent(0, EB_IsDamageAnimAllowed);
 		} else {

@@ -355,7 +355,7 @@ void AppearState::cleanup(EnemyBase* enemy)
 void EnemyBaseFSM::LivingState::simulation(EnemyBase* enemy, f32 constraint)
 {
 	// If enemy is constraint OR alive AND is not earthquake AND is not being dropped
-	if (enemy->isEvent(0, EB_HardConstraint)
+	if (enemy->isEvent(0, EB_IsHardConstraint)
 	    || isLiving(enemy) && !enemy->isEvent(1, EB2_IsEarthquake) && !enemy->isEvent(1, EB2_IsDropping)) {
 		if (enemy->isCullingOff()) {
 			enemy->doSimulationConstraint(constraint);
@@ -996,7 +996,7 @@ void EnemyBase::onInitPost(CreatureInitArg* arg)
 	case EDG_Navi:
 	case EDG_Treasure:
 	case EDG_Earthquake:
-		if (isEvent(0, EB_HardConstraint)) {
+		if (isEvent(0, EB_IsHardConstraint)) {
 			m_lifecycleFSM->start(this, EnemyBaseFSM::EBS_Living, nullptr);
 		} else {
 			switch (m_dropGroup) {
@@ -2014,7 +2014,7 @@ void EnemyBase::doSimulation(f32 arg) { static_cast<EnemyBaseFSM::StateMachine*>
  */
 void EnemyBase::doSimulationConstraint(f32 timeStep)
 {
-	if (!(isEvent(0, EB_HardConstraint))) {
+	if (!(isEvent(0, EB_IsHardConstraint))) {
 		// If we're moving somewhere, enable checking collision
 		if (m_acceleration.x != 0.0f || m_acceleration.z != 0.0f) {
 			enableEvent(0, EB_ShouldCheckCollision);
@@ -2756,7 +2756,7 @@ bool EnemyBase::checkBirthTypeDropEarthquake()
  */
 bool EnemyBase::earthquakeCallBack(Creature* creature, f32 bounceFactor)
 {
-	if (m_bounceTriangle && !isDead() && !isFlying() && isAlive() && !isEvent(0, EB_HardConstraint) && !isEvent(0, EB_IsBittered)) {
+	if (m_bounceTriangle && !isDead() && !isFlying() && isAlive() && !isEvent(0, EB_IsHardConstraint) && !isEvent(0, EB_IsBittered)) {
 		if (((isEvent(0, EB_IsEnemyNotBitter)) || (isEvent(0, EB_IsImmuneBitter))) == false) {
 			EarthquakeStateArg eqArg;
 			eqArg.m_bounceFactor = bounceFactor;
@@ -3239,7 +3239,7 @@ void EnemyBase::constraintOff() { disableEvent(0, EB_Constraint); }
  */
 void EnemyBase::hardConstraintOn()
 {
-	enableEvent(0, EB_HardConstraint);
+	enableEvent(0, EB_IsHardConstraint);
 	m_mass = 0.0f;
 }
 
@@ -3250,7 +3250,7 @@ void EnemyBase::hardConstraintOn()
  */
 void EnemyBase::hardConstraintOff()
 {
-	disableEvent(0, EB_HardConstraint);
+	disableEvent(0, EB_IsHardConstraint);
 	m_mass         = m_friction;
 	m_acceleration = Vector3f(0.0f);
 }

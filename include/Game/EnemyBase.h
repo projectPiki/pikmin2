@@ -68,7 +68,7 @@ enum EnemyEvent {
 	EB_IsAnimating             = 0x8000,     // should we animate?
 	EB_IsNavi0Attacked         = 0x10000,    // is attacking the player's main character?
 	EB_IsNavi1Attacked         = 0x20000,    // is attacking an ai player?
-	EB_HardConstraint          = 0x40000,    // what is hard constraint?
+	EB_IsHardConstraint        = 0x40000,    // AKA: is kinematic, disables physics completely (locks position)
 	EB_SquashOnDamageAnimation = 0x80000,    // set on at finishDropping, and HipDropCallback
 	EB_ToEnableBitter          = 0x100000,   //
 	EB_IsEnemyNotBitter        = 0x200000,   //
