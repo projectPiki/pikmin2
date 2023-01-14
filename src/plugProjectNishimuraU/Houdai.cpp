@@ -1,4 +1,4 @@
-#include "types.h"
+#include "nans.h"
 
 /*
     Generated from dpostproc
@@ -642,15 +642,16 @@
 #include "Game/Entities/Houdai.h"
 
 namespace Game {
+namespace Houdai {
 
 /*
  * --INFO--
  * Address:	802BFCB0
  * Size:	000024
  */
-void Houdai::HoudaiGroundCallBack::invokeOnGround(int idx, Game::WaterBox* water)
+void HoudaiGroundCallBack::invokeOnGround(int idx, Game::WaterBox* water)
 {
-	m_parent->createOnGroundEffect(idx, water);
+	m_obj->createOnGroundEffect(idx, water);
 	/*
 	stwu     r1, -0x10(r1)
 	mflr     r0
@@ -669,9 +670,9 @@ void Houdai::HoudaiGroundCallBack::invokeOnGround(int idx, Game::WaterBox* water
  * Address:	802BFCD4
  * Size:	000024
  */
-void Houdai::HoudaiGroundCallBack::invokeOffGround(int idx, WaterBox* water)
+void HoudaiGroundCallBack::invokeOffGround(int idx, WaterBox* water)
 {
-	m_parent->createOffGroundEffect(idx, water);
+	m_obj->createOffGroundEffect(idx, water);
 	/*
 	stwu     r1, -0x10(r1)
 	mflr     r0
@@ -690,7 +691,7 @@ void Houdai::HoudaiGroundCallBack::invokeOffGround(int idx, WaterBox* water)
  * Address:	802BFCF8
  * Size:	00016C
  */
-Houdai::Obj::Obj()
+Obj::Obj()
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -798,25 +799,25 @@ lbl_802BFE14:
  * Address:	802BFE64
  * Size:	000004
  */
-void Houdai::Obj::setInitialSetting(EnemyInitialParamBase*) { }
+void Obj::setInitialSetting(EnemyInitialParamBase*) { }
 
 /*
  * --INFO--
  * Address:	802BFE68
  * Size:	000144
  */
-void Houdai::Obj::onInit(Game::CreatureInitArg*)
+void Obj::onInit(Game::CreatureInitArg* initArg)
 {
 	// TODO: Finish
-	onInit();
+	onInit(initArg);
 	hardConstraintOn();
 	setupIKSystem();
 	setupShadowSystem();
 	setTargetPattern();
-	setupShotgun();
+	setupShotGun();
 	setupCollision();
 	setupEffect();
-	startSteamEffect();
+	startSteamEffect(false);
 	resetBossAppearBGM();
 	shadowMgr->delShadow(this);
 	/*
@@ -909,7 +910,7 @@ void Houdai::Obj::onInit(Game::CreatureInitArg*)
  * Address:	802BFFAC
  * Size:	000054
  */
-void Houdai::Obj::onKill(Game::CreatureKillArg* arg)
+void Obj::onKill(Game::CreatureKillArg* arg)
 {
 	finishSteamEffect();
 	finishChimneyEffect();
@@ -945,7 +946,7 @@ void Houdai::Obj::onKill(Game::CreatureKillArg* arg)
  * Address:	802C0000
  * Size:	000088
  */
-void Houdai::Obj::setParameters()
+void Obj::setParameters()
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -992,7 +993,7 @@ lbl_802C006C:
  * Address:	802C0088
  * Size:	0000B4
  */
-void Houdai::Obj::doUpdate()
+void Obj::doUpdate()
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -1050,7 +1051,7 @@ lbl_802C0128:
  * Address:	802C013C
  * Size:	00003C
  */
-void Houdai::Obj::doUpdateCommon()
+void Obj::doUpdateCommon()
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -1076,7 +1077,7 @@ void Houdai::Obj::doUpdateCommon()
  * Address:	802C0178
  * Size:	0000A0
  */
-void Houdai::Obj::doAnimationCullingOff()
+void Obj::doAnimationCullingOff()
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -1127,33 +1128,21 @@ void Houdai::Obj::doAnimationCullingOff()
  * Address:	802C0218
  * Size:	000004
  */
-void Houdai::Obj::doDirectDraw(Graphics&) { }
+void Obj::doDirectDraw(Graphics& gfx) { }
 
 /*
  * --INFO--
  * Address:	802C021C
  * Size:	000020
  */
-void Houdai::Obj::doDebugDraw(Graphics&)
-{
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	bl       doDebugDraw__Q24Game9EnemyBaseFR8Graphics
-	lwz      r0, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
-}
+void Obj::doDebugDraw(Graphics& gfx) { EnemyBase::doDebugDraw(gfx); }
 
 /*
  * --INFO--
  * Address:	802C023C
  * Size:	00004C
  */
-void Houdai::Obj::setFSM(Game::Houdai::FSM*)
+void Obj::setFSM(FSM*)
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -1183,7 +1172,7 @@ void Houdai::Obj::setFSM(Game::Houdai::FSM*)
  * Address:	802C0288
  * Size:	00003C
  */
-void Houdai::Obj::getShadowParam(Game::ShadowParam&)
+void Obj::getShadowParam(Game::ShadowParam&)
 {
 	/*
 	lfs      f0, 0x18c(r3)
@@ -1209,7 +1198,7 @@ void Houdai::Obj::getShadowParam(Game::ShadowParam&)
  * Address:	802C02C4
  * Size:	0000B4
  */
-void Houdai::Obj::damageCallBack(Game::Creature*, float, CollPart*)
+bool Obj::damageCallBack(Game::Creature*, f32, CollPart*)
 {
 	/*
 	stwu     r1, -0x20(r1)
@@ -1271,31 +1260,14 @@ lbl_802C0358:
  * Address:	802C0378
  * Size:	000054
  */
-void Houdai::Obj::doStartStoneState()
+void Obj::doStartStoneState()
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	mr       r31, r3
-	bl       doStartStoneState__Q24Game9EnemyBaseFv
-	mr       r3, r31
-	bl       finishPinchJointEffect__Q34Game6Houdai3ObjFv
-	mr       r3, r31
-	bl       finishSteamEffect__Q34Game6Houdai3ObjFv
-	mr       r3, r31
-	bl       finishChimneyEffect__Q34Game6Houdai3ObjFv
-	lwz      r3, 0x300(r31)
-	bl       startStoneStateEffectOff__Q34Game6Houdai16HoudaiShotGunMgrFv
-	mr       r3, r31
-	bl       startStoneStateBossAttackLoopBGM__Q34Game6Houdai3ObjFv
-	lwz      r0, 0x14(r1)
-	lwz      r31, 0xc(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	EnemyBase::doStartStoneState();
+	finishPinchJointEffect();
+	finishSteamEffect();
+	finishChimneyEffect();
+	m_shotGunMgr->startStoneStateEffectOff();
+	startStoneStateBossAttackLoopBGM();
 }
 
 /*
@@ -1303,7 +1275,7 @@ void Houdai::Obj::doStartStoneState()
  * Address:	802C03CC
  * Size:	000078
  */
-void Houdai::Obj::doFinishStoneState()
+void Obj::doFinishStoneState()
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -1347,45 +1319,21 @@ lbl_802C0414:
  * Address:	802C0444
  * Size:	000020
  */
-void Houdai::Obj::doStartMovie()
-{
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	bl       effectDrawOff__Q34Game6Houdai3ObjFv
-	lwz      r0, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
-}
+void Obj::doStartMovie() { effectDrawOff(); }
 
 /*
  * --INFO--
  * Address:	802C0464
  * Size:	000020
  */
-void Houdai::Obj::doEndMovie()
-{
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	bl       effectDrawOn__Q34Game6Houdai3ObjFv
-	lwz      r0, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
-}
+void Obj::doEndMovie() { effectDrawOn(); }
 
 /*
  * --INFO--
  * Address:	802C0484
  * Size:	000050
  */
-void Houdai::Obj::getThrowupItemPosition(Vector3f*)
+void Obj::getThrowupItemPosition(Vector3f*)
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -1416,7 +1364,7 @@ void Houdai::Obj::getThrowupItemPosition(Vector3f*)
  * Address:	802C04D4
  * Size:	000014
  */
-void Houdai::Obj::getThrowupItemVelocity(Vector3f*)
+void Obj::getThrowupItemVelocity(Vector3f* velocity)
 {
 	/*
 	lfs      f0, lbl_8051C4F8@sda21(r2)
@@ -1432,7 +1380,7 @@ void Houdai::Obj::getThrowupItemVelocity(Vector3f*)
  * Address:	802C04E8
  * Size:	0000C8
  */
-void Houdai::Obj::setTargetPattern()
+void Obj::setTargetPattern()
 {
 	/*
 	stwu     r1, -0x20(r1)
@@ -1495,7 +1443,7 @@ lbl_802C059C:
  * Address:	802C05B0
  * Size:	000298
  */
-void Houdai::Obj::getTargetPosition()
+void Obj::getTargetPosition()
 {
 	/*
 	stwu     r1, -0x70(r1)
@@ -1685,7 +1633,7 @@ lbl_802C0818:
  * Address:	802C0848
  * Size:	000234
  */
-void Houdai::Obj::setShotGunTargetPosition()
+void Obj::setShotGunTargetPosition()
 {
 	/*
 	stwu     r1, -0x70(r1)
@@ -1854,7 +1802,7 @@ lbl_802C0A4C:
  * Address:	802C0A7C
  * Size:	00010C
  */
-void Houdai::Obj::createIKSystem()
+void Obj::createIKSystem()
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -1938,7 +1886,7 @@ lbl_802C0B70:
  * Address:	802C0B88
  * Size:	000124
  */
-void Houdai::Obj::setupIKSystem()
+void Obj::setupIKSystem()
 {
 	/*
 	stwu     r1, -0x50(r1)
@@ -2023,7 +1971,7 @@ void Houdai::Obj::setupIKSystem()
  * Address:	802C0CAC
  * Size:	000090
  */
-void Houdai::Obj::setIKParameter()
+void Obj::setIKParameter()
 {
 	/*
 	lfs      f0, lbl_8051C570@sda21(r2)
@@ -2070,7 +2018,7 @@ void Houdai::Obj::setIKParameter()
  * Address:	802C0D3C
  * Size:	000020
  */
-void Houdai::Obj::setIKSystemTargetPosition(Vector3f&)
+void Obj::setIKSystemTargetPosition(Vector3f&)
 {
 	/*
 	lwz      r3, 0x2f0(r3)
@@ -2089,7 +2037,7 @@ void Houdai::Obj::setIKSystemTargetPosition(Vector3f&)
  * Address:	802C0D5C
  * Size:	000060
  */
-void Houdai::Obj::updateIKSystem()
+void Obj::updateIKSystem()
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -2124,7 +2072,7 @@ void Houdai::Obj::updateIKSystem()
  * Address:	802C0DBC
  * Size:	000060
  */
-void Houdai::Obj::doAnimationIKSystem()
+void Obj::doAnimationIKSystem()
 {
 	/*
 	stwu     r1, -0x20(r1)
@@ -2159,7 +2107,7 @@ void Houdai::Obj::doAnimationIKSystem()
  * Address:	802C0E1C
  * Size:	000024
  */
-void Houdai::Obj::finishAnimationIKSystem()
+void Obj::finishAnimationIKSystem()
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -2179,7 +2127,7 @@ void Houdai::Obj::finishAnimationIKSystem()
  * Address:	802C0E40
  * Size:	000024
  */
-void Houdai::Obj::startProgramedIK()
+void Obj::startProgramedIK()
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -2199,7 +2147,7 @@ void Houdai::Obj::startProgramedIK()
  * Address:	802C0E64
  * Size:	000024
  */
-void Houdai::Obj::startIKMotion()
+void Obj::startIKMotion()
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -2219,7 +2167,7 @@ void Houdai::Obj::startIKMotion()
  * Address:	802C0E88
  * Size:	000024
  */
-void Houdai::Obj::finishIKMotion()
+void Obj::finishIKMotion()
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -2239,7 +2187,7 @@ void Houdai::Obj::finishIKMotion()
  * Address:	802C0EAC
  * Size:	000024
  */
-void Houdai::Obj::forceFinishIKMotion()
+void Obj::forceFinishIKMotion()
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -2259,7 +2207,7 @@ void Houdai::Obj::forceFinishIKMotion()
  * Address:	802C0ED0
  * Size:	000024
  */
-void Houdai::Obj::isFinishIKMotion()
+bool Obj::isFinishIKMotion()
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -2279,7 +2227,7 @@ void Houdai::Obj::isFinishIKMotion()
  * Address:	802C0EF4
  * Size:	000024
  */
-void Houdai::Obj::startBlendMotion()
+void Obj::startBlendMotion()
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -2299,7 +2247,7 @@ void Houdai::Obj::startBlendMotion()
  * Address:	802C0F18
  * Size:	000024
  */
-void Houdai::Obj::finishBlendMotion()
+void Obj::finishBlendMotion()
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -2319,7 +2267,7 @@ void Houdai::Obj::finishBlendMotion()
  * Address:	802C0F3C
  * Size:	000020
  */
-void Houdai::Obj::getTraceCentrePosition()
+void Obj::getTraceCentrePosition()
 {
 	/*
 	lwz      r4, 0x2f0(r4)
@@ -2338,7 +2286,7 @@ void Houdai::Obj::getTraceCentrePosition()
  * Address:	802C0F5C
  * Size:	000048
  */
-void Houdai::Obj::createShadowSystem()
+void Obj::createShadowSystem()
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -2369,7 +2317,7 @@ lbl_802C0F8C:
  * Address:	802C0FA4
  * Size:	000074
  */
-void Houdai::Obj::setupShadowSystem()
+void Obj::setupShadowSystem()
 {
 	/*
 	stwu     r1, -0x20(r1)
@@ -2413,7 +2361,7 @@ lbl_802C0FD0:
  * Address:	802C1018
  * Size:	000024
  */
-void Houdai::Obj::doAnimationShadowSystem()
+void Obj::doAnimationShadowSystem()
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -2433,7 +2381,7 @@ void Houdai::Obj::doAnimationShadowSystem()
  * Address:	802C103C
  * Size:	000078
  */
-void Houdai::Obj::setShotGunEmitKeepTimerOn()
+void Obj::setShotGunEmitKeepTimerOn()
 {
 	/*
 	stwu     r1, -0x30(r1)
@@ -2474,7 +2422,7 @@ void Houdai::Obj::setShotGunEmitKeepTimerOn()
  * Address:	802C10B4
  * Size:	000078
  */
-void Houdai::Obj::setShotGunEmitKeepTimerOff()
+void Obj::setShotGunEmitKeepTimerOff()
 {
 	/*
 	stwu     r1, -0x30(r1)
@@ -2515,7 +2463,7 @@ void Houdai::Obj::setShotGunEmitKeepTimerOff()
  * Address:	802C112C
  * Size:	000030
  */
-void Houdai::Obj::updateShotGunTimer()
+void Obj::updateShotGunTimer()
 {
 	/*
 	lwz      r0, 0x1e0(r3)
@@ -2540,7 +2488,7 @@ lbl_802C1144:
  * Address:	802C115C
  * Size:	00001C
  */
-void Houdai::Obj::isTransitShotGunState()
+bool Obj::isTransitShotGunState()
 {
 	/*
 	lwz      r4, 0xc0(r3)
@@ -2558,7 +2506,7 @@ void Houdai::Obj::isTransitShotGunState()
  * Address:	802C1178
  * Size:	000048
  */
-void Houdai::Obj::createShotGun()
+void Obj::createShotGun()
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -2589,7 +2537,7 @@ lbl_802C11A8:
  * Address:	802C11C0
  * Size:	000024
  */
-void Houdai::Obj::setupShotGun()
+void Obj::setupShotGun()
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -2609,7 +2557,7 @@ void Houdai::Obj::setupShotGun()
  * Address:	802C11E4
  * Size:	000024
  */
-void Houdai::Obj::setShotGunTarget(Vector3f&)
+void Obj::setShotGunTarget(Vector3f&)
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -2629,7 +2577,7 @@ void Houdai::Obj::setShotGunTarget(Vector3f&)
  * Address:	802C1208
  * Size:	000024
  */
-void Houdai::Obj::resetShotGunCallBack()
+void Obj::resetShotGunCallBack()
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -2649,7 +2597,7 @@ void Houdai::Obj::resetShotGunCallBack()
  * Address:	802C122C
  * Size:	000024
  */
-void Houdai::Obj::setShotGunCallBack()
+void Obj::setShotGunCallBack()
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -2669,7 +2617,7 @@ void Houdai::Obj::setShotGunCallBack()
  * Address:	802C1250
  * Size:	000024
  */
-void Houdai::Obj::doUpdateShotGun()
+void Obj::doUpdateShotGun()
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -2689,7 +2637,7 @@ void Houdai::Obj::doUpdateShotGun()
  * Address:	802C1274
  * Size:	000024
  */
-void Houdai::Obj::doUpdateCommonShotGun()
+void Obj::doUpdateCommonShotGun()
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -2709,7 +2657,7 @@ void Houdai::Obj::doUpdateCommonShotGun()
  * Address:	802C1298
  * Size:	000024
  */
-void Houdai::Obj::startShotGunRotation()
+void Obj::startShotGunRotation()
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -2729,7 +2677,7 @@ void Houdai::Obj::startShotGunRotation()
  * Address:	802C12BC
  * Size:	000024
  */
-void Houdai::Obj::finishShotGunRotation()
+void Obj::finishShotGunRotation()
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -2749,7 +2697,7 @@ void Houdai::Obj::finishShotGunRotation()
  * Address:	802C12E0
  * Size:	000024
  */
-void Houdai::Obj::isShotGunRotation()
+bool Obj::isShotGunRotation()
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -2769,7 +2717,7 @@ void Houdai::Obj::isShotGunRotation()
  * Address:	802C1304
  * Size:	000024
  */
-void Houdai::Obj::isShotGunLockOn()
+bool Obj::isShotGunLockOn()
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -2789,7 +2737,7 @@ void Houdai::Obj::isShotGunLockOn()
  * Address:	802C1328
  * Size:	000024
  */
-void Houdai::Obj::isFinishShotGun()
+bool Obj::isFinishShotGun()
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -2809,7 +2757,7 @@ void Houdai::Obj::isFinishShotGun()
  * Address:	802C134C
  * Size:	00005C
  */
-void Houdai::Obj::emitShotGun()
+void Obj::emitShotGun()
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -2843,7 +2791,7 @@ void Houdai::Obj::emitShotGun()
  * Address:	802C13A8
  * Size:	000024
  */
-void Houdai::Obj::forceFinishShotGun()
+void Obj::forceFinishShotGun()
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -2863,7 +2811,7 @@ void Houdai::Obj::forceFinishShotGun()
  * Address:	802C13CC
  * Size:	000038
  */
-void Houdai::Obj::setupCollision()
+void Obj::setupCollision()
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -2890,7 +2838,7 @@ lbl_802C13F4:
  * Address:	802C1404
  * Size:	0000C8
  */
-void Houdai::Obj::startBossChargeBGM()
+void Obj::startBossChargeBGM()
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -2957,7 +2905,7 @@ lbl_802C149C:
  * Address:	802C14CC
  * Size:	0000DC
  */
-void Houdai::Obj::startBossAttackLoopBGM()
+void Obj::startBossAttackLoopBGM()
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -3031,7 +2979,7 @@ lbl_802C1590:
  * Address:	802C15A8
  * Size:	0000D8
  */
-void Houdai::Obj::finishBossAttackLoopBGM()
+void Obj::finishBossAttackLoopBGM()
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -3104,7 +3052,7 @@ lbl_802C1668:
  * Address:	802C1680
  * Size:	0000D4
  */
-void Houdai::Obj::startStoneStateBossAttackLoopBGM()
+void Obj::startStoneStateBossAttackLoopBGM()
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -3176,7 +3124,7 @@ lbl_802C173C:
  * Address:	802C1754
  * Size:	0000D4
  */
-void Houdai::Obj::finishStoneStateBossAttackLoopBGM()
+void Obj::finishStoneStateBossAttackLoopBGM()
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -3248,7 +3196,7 @@ lbl_802C1810:
  * Address:	802C1828
  * Size:	0000C8
  */
-void Houdai::Obj::startBossFlickBGM()
+void Obj::startBossFlickBGM()
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -3315,7 +3263,7 @@ lbl_802C18C0:
  * Address:	802C18F0
  * Size:	0000FC
  */
-void Houdai::Obj::updateBossBGM()
+void Obj::updateBossBGM()
 {
 	/*
 	stwu     r1, -0x20(r1)
@@ -3399,7 +3347,7 @@ lbl_802C19D0:
  * Address:	802C19EC
  * Size:	0000BC
  */
-void Houdai::Obj::resetBossAppearBGM()
+void Obj::resetBossAppearBGM()
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -3463,7 +3411,7 @@ lbl_802C1A84:
  * Address:	802C1AA8
  * Size:	0000BC
  */
-void Houdai::Obj::setBossAppearBGM()
+void Obj::setBossAppearBGM()
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -3527,7 +3475,7 @@ lbl_802C1B40:
  * Address:	802C1B64
  * Size:	0005CC
  */
-void Houdai::Obj::createEffect()
+void Obj::createEffect()
 {
 	/*
 	stwu     r1, -0x30(r1)
@@ -3937,7 +3885,7 @@ lbl_802C2118:
  * Address:	802C2130
  * Size:	0001A8
  */
-void Houdai::Obj::setupEffect()
+void Obj::setupEffect()
 {
 	/*
 	stwu     r1, -0x30(r1)
@@ -4056,7 +4004,7 @@ lbl_802C2284:
  * Address:	802C22D8
  * Size:	000384
  */
-void Houdai::Obj::createOnGroundEffect(int, Game::WaterBox*)
+void Obj::createOnGroundEffect(int, Game::WaterBox*)
 {
 	/*
 	stwu     r1, -0xd0(r1)
@@ -4312,7 +4260,7 @@ lbl_802C2640:
  * Address:	802C265C
  * Size:	000168
  */
-void Houdai::Obj::createOffGroundEffect(int, Game::WaterBox*)
+void Obj::createOffGroundEffect(int, Game::WaterBox*)
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -4425,7 +4373,7 @@ lbl_802C27B4:
  * Address:	802C27C4
  * Size:	00005C
  */
-void Houdai::Obj::startPinchJointEffect()
+void Obj::startPinchJointEffect()
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -4461,7 +4409,7 @@ lbl_802C27E0:
  * Address:	802C2820
  * Size:	000058
  */
-void Houdai::Obj::finishPinchJointEffect()
+void Obj::finishPinchJointEffect()
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -4496,7 +4444,7 @@ lbl_802C283C:
  * Address:	802C2878
  * Size:	000194
  */
-void Houdai::Obj::createHoudaiDeadEffect()
+void Obj::createHoudaiDeadEffect()
 {
 	/*
 	stwu     r1, -0x70(r1)
@@ -4616,7 +4564,7 @@ lbl_802C29D4:
  * Address:	802C2A0C
  * Size:	000120
  */
-void Houdai::Obj::updatePinchLife()
+void Obj::updatePinchLife()
 {
 	/*
 	stwu     r1, -0x20(r1)
@@ -4707,7 +4655,7 @@ lbl_802C2B10:
  * Address:	802C2B2C
  * Size:	0000F0
  */
-void Houdai::Obj::createAppearEffect()
+void Obj::createAppearEffect()
 {
 	/*
 	stwu     r1, -0x40(r1)
@@ -4778,7 +4726,7 @@ void Houdai::Obj::createAppearEffect()
  * Address:	802C2C1C
  * Size:	000034
  */
-void Houdai::Obj::createAppearHahenEffect()
+void Obj::createAppearHahenEffect()
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -4802,7 +4750,7 @@ void Houdai::Obj::createAppearHahenEffect()
  * Address:	802C2C50
  * Size:	00003C
  */
-void Houdai::Obj::createAppearFootEffect(int)
+void Obj::createAppearFootEffect(int)
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -4828,7 +4776,7 @@ void Houdai::Obj::createAppearFootEffect(int)
  * Address:	802C2C8C
  * Size:	00007C
  */
-void Houdai::Obj::startSteamEffect(bool)
+void Obj::startSteamEffect(bool)
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -4874,7 +4822,7 @@ lbl_802C2CC8:
  * Address:	802C2D08
  * Size:	00006C
  */
-void Houdai::Obj::finishSteamEffect()
+void Obj::finishSteamEffect()
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -4914,7 +4862,7 @@ lbl_802C2D38:
  * Address:	802C2D74
  * Size:	00005C
  */
-void Houdai::Obj::startChimneyEffect()
+void Obj::startChimneyEffect()
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -4950,7 +4898,7 @@ lbl_802C2D90:
  * Address:	802C2DD0
  * Size:	000058
  */
-void Houdai::Obj::finishChimneyEffect()
+void Obj::finishChimneyEffect()
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -4985,7 +4933,7 @@ lbl_802C2DEC:
  * Address:	802C2E28
  * Size:	000090
  */
-void Houdai::Obj::createShotGunOpenEffect()
+void Obj::createShotGunOpenEffect()
 {
 	/*
 	stwu     r1, -0x30(r1)
@@ -5032,7 +4980,7 @@ void Houdai::Obj::createShotGunOpenEffect()
  * Address:	802C2EB8
  * Size:	000258
  */
-void Houdai::Obj::createDeadBombEffect()
+void Obj::createDeadBombEffect()
 {
 	/*
 	stwu     r1, -0xe0(r1)
@@ -5203,7 +5151,7 @@ lbl_802C30EC:
  * Address:	802C3110
  * Size:	00017C
  */
-void Houdai::Obj::effectDrawOn()
+void Obj::effectDrawOn()
 {
 	/*
 	stwu     r1, -0x20(r1)
@@ -5317,7 +5265,7 @@ lbl_802C3208:
  * Address:	802C328C
  * Size:	00017C
  */
-void Houdai::Obj::effectDrawOff()
+void Obj::effectDrawOff()
 {
 	/*
 	stwu     r1, -0x20(r1)
@@ -5426,660 +5374,40 @@ lbl_802C3384:
 	*/
 }
 
-} // namespace Game
-
-namespace efx {
-
-/*
- * --INFO--
- * Address:	802C3408
- * Size:	00000C
- */
-void ArgPosPos::getName()
-{
-	/*
-	lis      r3, lbl_8048B1EC@ha
-	addi     r3, r3, lbl_8048B1EC@l
-	blr
-	*/
-}
-
-/*
- * --INFO--
- * Address:	802C3414
- * Size:	00009C
- */
-THdamaSteamBd::~THdamaSteamBd()
-{
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	mr       r31, r4
-	stw      r30, 8(r1)
-	or.      r30, r3, r3
-	beq      lbl_802C3494
-	lis      r3, __vt__Q23efx13THdamaSteamBd@ha
-	addi     r3, r3, __vt__Q23efx13THdamaSteamBd@l
-	stw      r3, 0(r30)
-	addi     r0, r3, 0x14
-	stw      r0, 4(r30)
-	beq      lbl_802C3484
-	lis      r3, __vt__Q23efx10TChaseMtxT@ha
-	addi     r3, r3, __vt__Q23efx10TChaseMtxT@l
-	stw      r3, 0(r30)
-	addi     r0, r3, 0x14
-	stw      r0, 4(r30)
-	beq      lbl_802C3484
-	lis      r4, __vt__Q23efx5TSync@ha
-	addi     r3, r30, 4
-	addi     r5, r4, __vt__Q23efx5TSync@l
-	li       r4, 0
-	stw      r5, 0(r30)
-	addi     r0, r5, 0x14
-	stw      r0, 4(r30)
-	bl       __dt__18JPAEmitterCallBackFv
-
-lbl_802C3484:
-	extsh.   r0, r31
-	ble      lbl_802C3494
-	mr       r3, r30
-	bl       __dl__FPv
-
-lbl_802C3494:
-	lwz      r0, 0x14(r1)
-	mr       r3, r30
-	lwz      r31, 0xc(r1)
-	lwz      r30, 8(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
-}
-
-/*
- * --INFO--
- * Address:	802C34B0
- * Size:	00009C
- */
-THdamaOnSteam1::~THdamaOnSteam1()
-{
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	mr       r31, r4
-	stw      r30, 8(r1)
-	or.      r30, r3, r3
-	beq      lbl_802C3530
-	lis      r3, __vt__Q23efx14THdamaOnSteam1@ha
-	addi     r3, r3, __vt__Q23efx14THdamaOnSteam1@l
-	stw      r3, 0(r30)
-	addi     r0, r3, 0x14
-	stw      r0, 4(r30)
-	beq      lbl_802C3520
-	lis      r3, __vt__Q23efx10TChaseMtxT@ha
-	addi     r3, r3, __vt__Q23efx10TChaseMtxT@l
-	stw      r3, 0(r30)
-	addi     r0, r3, 0x14
-	stw      r0, 4(r30)
-	beq      lbl_802C3520
-	lis      r4, __vt__Q23efx5TSync@ha
-	addi     r3, r30, 4
-	addi     r5, r4, __vt__Q23efx5TSync@l
-	li       r4, 0
-	stw      r5, 0(r30)
-	addi     r0, r5, 0x14
-	stw      r0, 4(r30)
-	bl       __dt__18JPAEmitterCallBackFv
-
-lbl_802C3520:
-	extsh.   r0, r31
-	ble      lbl_802C3530
-	mr       r3, r30
-	bl       __dl__FPv
-
-lbl_802C3530:
-	lwz      r0, 0x14(r1)
-	mr       r3, r30
-	lwz      r31, 0xc(r1)
-	lwz      r30, 8(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
-}
-
-/*
- * --INFO--
- * Address:	802C354C
- * Size:	00009C
- */
-THdamaOnHahen1::~THdamaOnHahen1()
-{
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	mr       r31, r4
-	stw      r30, 8(r1)
-	or.      r30, r3, r3
-	beq      lbl_802C35CC
-	lis      r3, __vt__Q23efx14THdamaOnHahen1@ha
-	addi     r3, r3, __vt__Q23efx14THdamaOnHahen1@l
-	stw      r3, 0(r30)
-	addi     r0, r3, 0x14
-	stw      r0, 4(r30)
-	beq      lbl_802C35BC
-	lis      r3, __vt__Q23efx9TChaseMtx@ha
-	addi     r3, r3, __vt__Q23efx9TChaseMtx@l
-	stw      r3, 0(r30)
-	addi     r0, r3, 0x14
-	stw      r0, 4(r30)
-	beq      lbl_802C35BC
-	lis      r4, __vt__Q23efx5TSync@ha
-	addi     r3, r30, 4
-	addi     r5, r4, __vt__Q23efx5TSync@l
-	li       r4, 0
-	stw      r5, 0(r30)
-	addi     r0, r5, 0x14
-	stw      r0, 4(r30)
-	bl       __dt__18JPAEmitterCallBackFv
-
-lbl_802C35BC:
-	extsh.   r0, r31
-	ble      lbl_802C35CC
-	mr       r3, r30
-	bl       __dl__FPv
-
-lbl_802C35CC:
-	lwz      r0, 0x14(r1)
-	mr       r3, r30
-	lwz      r31, 0xc(r1)
-	lwz      r30, 8(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
-}
-
-/*
- * --INFO--
- * Address:	802C35E8
- * Size:	00009C
- */
-THdamaHahen::~THdamaHahen()
-{
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	mr       r31, r4
-	stw      r30, 8(r1)
-	or.      r30, r3, r3
-	beq      lbl_802C3668
-	lis      r3, __vt__Q23efx11THdamaHahen@ha
-	addi     r3, r3, __vt__Q23efx11THdamaHahen@l
-	stw      r3, 0(r30)
-	addi     r0, r3, 0x14
-	stw      r0, 4(r30)
-	beq      lbl_802C3658
-	lis      r3, __vt__Q23efx12TChasePosPos@ha
-	addi     r3, r3, __vt__Q23efx12TChasePosPos@l
-	stw      r3, 0(r30)
-	addi     r0, r3, 0x14
-	stw      r0, 4(r30)
-	beq      lbl_802C3658
-	lis      r4, __vt__Q23efx5TSync@ha
-	addi     r3, r30, 4
-	addi     r5, r4, __vt__Q23efx5TSync@l
-	li       r4, 0
-	stw      r5, 0(r30)
-	addi     r0, r5, 0x14
-	stw      r0, 4(r30)
-	bl       __dt__18JPAEmitterCallBackFv
-
-lbl_802C3658:
-	extsh.   r0, r31
-	ble      lbl_802C3668
-	mr       r3, r30
-	bl       __dl__FPv
-
-lbl_802C3668:
-	lwz      r0, 0x14(r1)
-	mr       r3, r30
-	lwz      r31, 0xc(r1)
-	lwz      r30, 8(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
-}
-
-/*
- * --INFO--
- * Address:	802C3684
- * Size:	00009C
- */
-THdamaSteamSt::~THdamaSteamSt()
-{
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	mr       r31, r4
-	stw      r30, 8(r1)
-	or.      r30, r3, r3
-	beq      lbl_802C3704
-	lis      r3, __vt__Q23efx13THdamaSteamSt@ha
-	addi     r3, r3, __vt__Q23efx13THdamaSteamSt@l
-	stw      r3, 0(r30)
-	addi     r0, r3, 0x14
-	stw      r0, 4(r30)
-	beq      lbl_802C36F4
-	lis      r3, __vt__Q23efx9TChaseMtx@ha
-	addi     r3, r3, __vt__Q23efx9TChaseMtx@l
-	stw      r3, 0(r30)
-	addi     r0, r3, 0x14
-	stw      r0, 4(r30)
-	beq      lbl_802C36F4
-	lis      r4, __vt__Q23efx5TSync@ha
-	addi     r3, r30, 4
-	addi     r5, r4, __vt__Q23efx5TSync@l
-	li       r4, 0
-	stw      r5, 0(r30)
-	addi     r0, r5, 0x14
-	stw      r0, 4(r30)
-	bl       __dt__18JPAEmitterCallBackFv
-
-lbl_802C36F4:
-	extsh.   r0, r31
-	ble      lbl_802C3704
-	mr       r3, r30
-	bl       __dl__FPv
-
-lbl_802C3704:
-	lwz      r0, 0x14(r1)
-	mr       r3, r30
-	lwz      r31, 0xc(r1)
-	lwz      r30, 8(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
-}
-
-/*
- * --INFO--
- * Address:	802C3720
- * Size:	00009C
- */
-THdamaSteam::~THdamaSteam()
-{
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	mr       r31, r4
-	stw      r30, 8(r1)
-	or.      r30, r3, r3
-	beq      lbl_802C37A0
-	lis      r3, __vt__Q23efx11THdamaSteam@ha
-	addi     r3, r3, __vt__Q23efx11THdamaSteam@l
-	stw      r3, 0(r30)
-	addi     r0, r3, 0x14
-	stw      r0, 4(r30)
-	beq      lbl_802C3790
-	lis      r3, __vt__Q23efx9TChaseMtx@ha
-	addi     r3, r3, __vt__Q23efx9TChaseMtx@l
-	stw      r3, 0(r30)
-	addi     r0, r3, 0x14
-	stw      r0, 4(r30)
-	beq      lbl_802C3790
-	lis      r4, __vt__Q23efx5TSync@ha
-	addi     r3, r30, 4
-	addi     r5, r4, __vt__Q23efx5TSync@l
-	li       r4, 0
-	stw      r5, 0(r30)
-	addi     r0, r5, 0x14
-	stw      r0, 4(r30)
-	bl       __dt__18JPAEmitterCallBackFv
-
-lbl_802C3790:
-	extsh.   r0, r31
-	ble      lbl_802C37A0
-	mr       r3, r30
-	bl       __dl__FPv
-
-lbl_802C37A0:
-	lwz      r0, 0x14(r1)
-	mr       r3, r30
-	lwz      r31, 0xc(r1)
-	lwz      r30, 8(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
-}
-
-/*
- * --INFO--
- * Address:	802C37BC
- * Size:	00009C
- */
-THdamaOnHahen2::~THdamaOnHahen2()
-{
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	mr       r31, r4
-	stw      r30, 8(r1)
-	or.      r30, r3, r3
-	beq      lbl_802C383C
-	lis      r3, __vt__Q23efx14THdamaOnHahen2@ha
-	addi     r3, r3, __vt__Q23efx14THdamaOnHahen2@l
-	stw      r3, 0(r30)
-	addi     r0, r3, 0x14
-	stw      r0, 4(r30)
-	beq      lbl_802C382C
-	lis      r3, __vt__Q23efx12TChasePosPos@ha
-	addi     r3, r3, __vt__Q23efx12TChasePosPos@l
-	stw      r3, 0(r30)
-	addi     r0, r3, 0x14
-	stw      r0, 4(r30)
-	beq      lbl_802C382C
-	lis      r4, __vt__Q23efx5TSync@ha
-	addi     r3, r30, 4
-	addi     r5, r4, __vt__Q23efx5TSync@l
-	li       r4, 0
-	stw      r5, 0(r30)
-	addi     r0, r5, 0x14
-	stw      r0, 4(r30)
-	bl       __dt__18JPAEmitterCallBackFv
-
-lbl_802C382C:
-	extsh.   r0, r31
-	ble      lbl_802C383C
-	mr       r3, r30
-	bl       __dl__FPv
-
-lbl_802C383C:
-	lwz      r0, 0x14(r1)
-	mr       r3, r30
-	lwz      r31, 0xc(r1)
-	lwz      r30, 8(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
-}
-
-namespace Game {
-
-} // namespace Game
-
 /*
  * --INFO--
  * Address:	802C3858
  * Size:	000004
  */
-void Houdai::Obj::inWaterCallback(Game::WaterBox*) { }
+void Obj::inWaterCallback(Game::WaterBox*) { }
 
 /*
  * --INFO--
  * Address:	802C385C
  * Size:	000004
  */
-void Houdai::Obj::outWaterCallback() { }
+void Obj::outWaterCallback() { }
 
 /*
  * --INFO--
  * Address:	802C3860
  * Size:	000008
  */
-void Houdai::Obj::getDamageCoeStoneState()
-{
-	/*
-	lfs      f1, lbl_8051C504@sda21(r2)
-	blr
-	*/
-}
+f32 Obj::getDamageCoeStoneState() { return 0.25f; }
 
 /*
  * --INFO--
  * Address:	802C3868
  * Size:	000004
  */
-void Houdai::Obj::throwupItemInDeathProcedure() { }
+void Obj::throwupItemInDeathProcedure() { }
 
 /*
  * --INFO--
  * Address:	802C386C
  * Size:	000008
  */
-u32 Houdai::Obj::getEnemyTypeID() { return 0x42; }
+EnemyTypeID::EEnemyTypeID Obj::getEnemyTypeID() { return EnemyTypeID::EnemyID_Houdai; }
 
-} // namespace efx
-
-/*
- * --INFO--
- * Address:	802C3874
- * Size:	000028
- */
-void __sinit_Houdai_cpp(void)
-{
-	/*
-	lis      r4, __float_nan@ha
-	li       r0, -1
-	lfs      f0, __float_nan@l(r4)
-	lis      r3, lbl_804D0E98@ha
-	stw      r0, lbl_80515D98@sda21(r13)
-	stfsu    f0, lbl_804D0E98@l(r3)
-	stfs     f0, lbl_80515D9C@sda21(r13)
-	stfs     f0, 4(r3)
-	stfs     f0, 8(r3)
-	blr
-	*/
-}
-
-namespace Game {
-
-/*
- * --INFO--
- * Address:	802C389C
- * Size:	000014
- */
-void EnemyBase::@1056 @12 @viewOnPelletKilled()
-{
-	/*
-	li       r11, 0xc
-	lwzx     r11, r3, r11
-	add      r3, r3, r11
-	addi     r3, r3, -1056
-	b        viewOnPelletKilled__Q24Game9EnemyBaseFv
-	*/
-}
-
-/*
- * --INFO--
- * Address:	802C38B0
- * Size:	000014
- */
-void EnemyBase::@1056 @12 @viewStartCarryMotion()
-{
-	/*
-	li       r11, 0xc
-	lwzx     r11, r3, r11
-	add      r3, r3, r11
-	addi     r3, r3, -1056
-	b        viewStartCarryMotion__Q24Game9EnemyBaseFv
-	*/
-}
-
-/*
- * --INFO--
- * Address:	802C38C4
- * Size:	000014
- */
-void EnemyBase::@1056 @12 @viewStartPreCarryMotion()
-{
-	/*
-	li       r11, 0xc
-	lwzx     r11, r3, r11
-	add      r3, r3, r11
-	addi     r3, r3, -1056
-	b        viewStartPreCarryMotion__Q24Game9EnemyBaseFv
-	*/
-}
-
-/*
- * --INFO--
- * Address:	802C38D8
- * Size:	000014
- */
-void EnemyBase::@1056 @12 @view_finish_carrymotion()
-{
-	/*
-	li       r11, 0xc
-	lwzx     r11, r3, r11
-	add      r3, r3, r11
-	addi     r3, r3, -1056
-	b        view_finish_carrymotion__Q24Game9EnemyBaseFv
-	*/
-}
-
-/*
- * --INFO--
- * Address:	802C38EC
- * Size:	000014
- */
-void EnemyBase::@1056 @12 @view_start_carrymotion()
-{
-	/*
-	li       r11, 0xc
-	lwzx     r11, r3, r11
-	add      r3, r3, r11
-	addi     r3, r3, -1056
-	b        view_start_carrymotion__Q24Game9EnemyBaseFv
-	*/
-}
-
-/*
- * --INFO--
- * Address:	802C3900
- * Size:	000014
- */
-void EnemyBase::@1056 @12 @viewGetShape()
-{
-	/*
-	li       r11, 0xc
-	lwzx     r11, r3, r11
-	add      r3, r3, r11
-	addi     r3, r3, -1056
-	b        viewGetShape__Q24Game9EnemyBaseFv
-	*/
-}
-
-namespace efx {
-
-/*
- * --INFO--
- * Address:	802C3914
- * Size:	000008
- */
-THdamaOnHahen2::@4 @~THdamaOnHahen2()
-{
-	/*
-addi     r3, r3, -4
-b        __dt__Q23efx14THdamaOnHahen2Fv
-	*/
-}
-
-/*
- * --INFO--
- * Address:	802C391C
- * Size:	000008
- */
-THdamaSteam::@4 @~THdamaSteam()
-{
-	/*
-addi     r3, r3, -4
-b        __dt__Q23efx11THdamaSteamFv
-	*/
-}
-
-/*
- * --INFO--
- * Address:	802C3924
- * Size:	000008
- */
-THdamaSteamSt::@4 @~THdamaSteamSt()
-{
-	/*
-addi     r3, r3, -4
-b        __dt__Q23efx13THdamaSteamStFv
-	*/
-}
-
-/*
- * --INFO--
- * Address:	802C392C
- * Size:	000008
- */
-THdamaHahen::@4 @~THdamaHahen()
-{
-	/*
-addi     r3, r3, -4
-b        __dt__Q23efx11THdamaHahenFv
-	*/
-}
-
-/*
- * --INFO--
- * Address:	802C3934
- * Size:	000008
- */
-THdamaOnHahen1::@4 @~THdamaOnHahen1()
-{
-	/*
-addi     r3, r3, -4
-b        __dt__Q23efx14THdamaOnHahen1Fv
-	*/
-}
-
-/*
- * --INFO--
- * Address:	802C393C
- * Size:	000008
- */
-THdamaOnSteam1::@4 @~THdamaOnSteam1()
-{
-	/*
-addi     r3, r3, -4
-b        __dt__Q23efx14THdamaOnSteam1Fv
-	*/
-}
-
-/*
- * --INFO--
- * Address:	802C3944
- * Size:	000008
- */
-THdamaSteamBd::@4 @~THdamaSteamBd()
-{
-	/*
-addi     r3, r3, -4
-b        __dt__Q23efx13THdamaSteamBdFv
-	*/
-}
-} // namespace efx
-
+} // namespace Houdai
 } // namespace Game
