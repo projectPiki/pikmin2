@@ -356,7 +356,7 @@ void EnemyBaseFSM::LivingState::simulation(EnemyBase* enemy, f32 constraint)
 {
 	// If enemy is constraint OR alive AND is not earthquake AND is not being dropped
 	if (enemy->isEvent(0, EB_IsHardConstraint)
-	    || isLiving(enemy) && !enemy->isEvent(1, EB2_IsEarthquake) && !enemy->isEvent(1, EB2_IsDropping)) {
+	    || isConstrained(enemy) && !enemy->isEvent(1, EB2_IsEarthquake) && !enemy->isEvent(1, EB2_IsDropping)) {
 		if (enemy->isCullingOff()) {
 			enemy->doSimulationConstraint(constraint);
 		}

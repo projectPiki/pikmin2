@@ -617,6 +617,8 @@ struct EnemyBase : public Creature, public SysShape::MotionListener, virtual pub
 
 #pragma endregion
 
+	inline bool isConstrained() { return (isEvent(0, EB_Constraint) || isEvent(0, EB_IsHardConstraint)); }
+
 	// Creature: _000 - _178
 	// MotionListener: _178 - _17C
 	// ptr to PelletView: _17C
@@ -790,6 +792,7 @@ struct AppearState : public State {
  * Generic "alive" state.
  * @size = 0x10
  */
+
 struct LivingState : public State {
 	inline LivingState(int state = EBS_Living)
 	    : State(state)
@@ -797,12 +800,7 @@ struct LivingState : public State {
 		m_name = "Living";
 	}
 
-	// might need a different name once flags are done
-	// used in EnemyBaseFSM::LivingState::simulation
-	inline bool isLiving(EnemyBase* enemy)
-	{
-		return ((enemy->m_events.m_flags[0].typeView & 0x400) || ((enemy->m_events.m_flags[0].typeView & 0x40000)));
-	}
+	inline bool isConstrained(EnemyBase* enemy) { return (enemy->isEvent(0, EB_Constraint) || enemy->isEvent(0, EB_IsHardConstraint)); }
 
 	virtual void update(EnemyBase*);           // _24
 	virtual void entry(EnemyBase*);            // _28
