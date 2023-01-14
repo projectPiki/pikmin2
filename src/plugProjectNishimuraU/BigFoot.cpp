@@ -2,6 +2,7 @@
 #include "Game/EnemyFunc.h"
 #include "Game/IKSystemBase.h"
 #include "nans.h"
+#include "Dolphin/rand.h"
 
 namespace Game {
 namespace BigFoot {
@@ -476,7 +477,7 @@ void Obj::doFinishStoneState()
 {
 	EnemyBase::doFinishStoneState();
 	EnemyFunc::flickStickPikmin(this, 1.0f, 10.0f, 0.0f, -1000.0f, nullptr);
-	if (_2DD) {
+	if (m_isSmoking) {
 		startPinchJointEffect();
 	}
 
@@ -907,8 +908,8 @@ lbl_802C8CD0:
  */
 void Obj::createIKSystem()
 {
-	m_IKSystemMgr    = new IKSystemMgr;
-	m_IKSystemParms  = new IKSystemParms;
+	m_ikSystemMgr    = new IKSystemMgr;
+	m_ikSystemParms  = new IKSystemParms;
 	m_groundCallBack = new BigFootGroundCallBack(this);
 }
 
@@ -919,7 +920,7 @@ void Obj::createIKSystem()
  */
 void Obj::setupIKSystem()
 {
-	m_IKSystemMgr->init(this, nullptr);
+	m_ikSystemMgr->init(this, nullptr);
 
 	char* lfoot[] = { "lfoot1jnt", "lfoot2jnt", "lfoot3jnt" };
 	char* rfoot[] = { "rfoot1jnt", "rfoot2jnt", "rfoot3jnt" };
@@ -928,15 +929,15 @@ void Obj::setupIKSystem()
 
 	char** joints[] = { rhand, lhand, rfoot, lfoot };
 
-	m_IKSystemMgr->setupJoint(m_model, 0, joints[0]);
-	m_IKSystemMgr->setupJoint(m_model, 1, joints[1]);
-	m_IKSystemMgr->setupJoint(m_model, 2, joints[2]);
-	m_IKSystemMgr->setupJoint(m_model, 3, joints[3]);
-	m_IKSystemMgr->setupCallBack(m_model, "rhand3jnt");
+	m_ikSystemMgr->setupJoint(m_model, 0, joints[0]);
+	m_ikSystemMgr->setupJoint(m_model, 1, joints[1]);
+	m_ikSystemMgr->setupJoint(m_model, 2, joints[2]);
+	m_ikSystemMgr->setupJoint(m_model, 3, joints[3]);
+	m_ikSystemMgr->setupCallBack(m_model, "rhand3jnt");
 
 	setIKParameter();
-	m_IKSystemMgr->setParameters(m_IKSystemParms);
-	m_IKSystemMgr->m_jointGroundCallBack = m_groundCallBack;
+	m_ikSystemMgr->setParameters(m_ikSystemParms);
+	m_ikSystemMgr->m_jointGroundCallBack = m_groundCallBack;
 	/*
 	stwu     r1, -0x50(r1)
 	mflr     r0
@@ -1106,7 +1107,7 @@ lbl_802C8FF0:
  * Address:	802C9054
  * Size:	000020
  */
-void Obj::setIKSystemTargetPosition(Vector3f& targetPos) { m_IKSystemMgr->m_targetPosition = targetPos; }
+void Obj::setIKSystemTargetPosition(Vector3f& targetPos) { m_ikSystemMgr->m_targetPosition = targetPos; }
 
 /*
  * --INFO--
@@ -1115,9 +1116,9 @@ void Obj::setIKSystemTargetPosition(Vector3f& targetPos) { m_IKSystemMgr->m_targ
  */
 void Obj::updateIKSystem()
 {
-	m_IKSystemMgr->doUpdate();
-	m_position   = Vector3f(m_IKSystemMgr->_38);
-	m_faceDir    = m_IKSystemMgr->m_faceDir;
+	m_ikSystemMgr->doUpdate();
+	m_position   = Vector3f(m_ikSystemMgr->_38);
+	m_faceDir    = m_ikSystemMgr->m_faceDir;
 	m_rotation.y = m_faceDir;
 }
 
@@ -1128,8 +1129,8 @@ void Obj::updateIKSystem()
  */
 void Obj::doAnimationIKSystem()
 {
-	m_IKSystemMgr->setAnimationCallBack();
-	Vector3f translation = Vector3f(m_IKSystemMgr->m_traceCentrePosition);
+	m_ikSystemMgr->setAnimationCallBack();
+	Vector3f translation = Vector3f(m_ikSystemMgr->m_traceCentrePosition);
 	m_objMatrix.makeSRT(m_scale, m_rotation, translation);
 }
 
@@ -1138,70 +1139,70 @@ void Obj::doAnimationIKSystem()
  * Address:	802C9134
  * Size:	000024
  */
-void Obj::finishAnimationIKSystem() { m_IKSystemMgr->resetAnimationCallBack(); }
+void Obj::finishAnimationIKSystem() { m_ikSystemMgr->resetAnimationCallBack(); }
 
 /*
  * --INFO--
  * Address:	802C9158
  * Size:	000024
  */
-void Obj::startProgramedIK() { m_IKSystemMgr->startProgramedIK(); }
+void Obj::startProgramedIK() { m_ikSystemMgr->startProgramedIK(); }
 
 /*
  * --INFO--
  * Address:	802C917C
  * Size:	000024
  */
-void Obj::startIKMotion() { m_IKSystemMgr->startIKMotion(); }
+void Obj::startIKMotion() { m_ikSystemMgr->startIKMotion(); }
 
 /*
  * --INFO--
  * Address:	802C91A0
  * Size:	000024
  */
-void Obj::finishIKMotion() { m_IKSystemMgr->finishIKMotion(); }
+void Obj::finishIKMotion() { m_ikSystemMgr->finishIKMotion(); }
 
 /*
  * --INFO--
  * Address:	802C91C4
  * Size:	000024
  */
-void Obj::forceFinishIKMotion() { m_IKSystemMgr->forceFinishIKMotion(); }
+void Obj::forceFinishIKMotion() { m_ikSystemMgr->forceFinishIKMotion(); }
 
 /*
  * --INFO--
  * Address:	802C91E8
  * Size:	000024
  */
-bool Obj::isFinishIKMotion() { return m_IKSystemMgr->isFinishIKMotion(); }
+bool Obj::isFinishIKMotion() { return m_ikSystemMgr->isFinishIKMotion(); }
 
 /*
  * --INFO--
  * Address:	802C920C
  * Size:	000024
  */
-void Obj::startBlendMotion() { m_IKSystemMgr->startBlendMotion(); }
+void Obj::startBlendMotion() { m_ikSystemMgr->startBlendMotion(); }
 
 /*
  * --INFO--
  * Address:	802C9230
  * Size:	000024
  */
-void Obj::finishBlendMotion() { m_IKSystemMgr->finishBlendMotion(); }
+void Obj::finishBlendMotion() { m_ikSystemMgr->finishBlendMotion(); }
 
 /*
  * --INFO--
  * Address:	802C9254
  * Size:	000020
  */
-Vector3f Obj::getTraceCentrePosition() { return m_IKSystemMgr->m_traceCentrePosition; }
+Vector3f Obj::getTraceCentrePosition() { return m_ikSystemMgr->m_traceCentrePosition; }
 
 /*
  * --INFO--
  * Address:	802C9274
  * Size:	000024
  */
-bool Obj::isCollisionCheck(CollPart* collpart) { return m_IKSystemMgr->isCollisionCheck(collpart); }
+bool Obj::isCollisionCheck(CollPart* collpart) { return m_ikSystemMgr->isCollisionCheck(collpart); }
 
 /*
  * --INFO--
@@ -1217,41 +1218,12 @@ void Obj::createShadowSystem() { m_shadowMgr = new BigFootShadowMgr(this); }
  */
 void Obj::setupShadowSystem()
 {
-	/*
-	stwu     r1, -0x20(r1)
-	mflr     r0
-	stw      r0, 0x24(r1)
-	stmw     r27, 0xc(r1)
-	mr       r27, r3
-	lwz      r3, 0x2ec(r3)
-	bl       init__Q34Game7BigFoot16BigFootShadowMgrFv
-	li       r29, 0
-	mr       r30, r27
-
-lbl_802C9304:
-	li       r28, 0
-	mr       r31, r30
-
-lbl_802C930C:
-	lwz      r3, 0x2ec(r27)
-	mr       r4, r29
-	mr       r5, r28
-	addi     r6, r31, 0x2f0
-	bl       "setJointPosPtr__Q34Game7BigFoot16BigFootShadowMgrFiiP10Vector3<f>"
-	addi     r28, r28, 1
-	addi     r31, r31, 0xc
-	cmpwi    r28, 4
-	blt      lbl_802C930C
-	addi     r29, r29, 1
-	addi     r30, r30, 0x30
-	cmpwi    r29, 4
-	blt      lbl_802C9304
-	lmw      r27, 0xc(r1)
-	lwz      r0, 0x24(r1)
-	mtlr     r0
-	addi     r1, r1, 0x20
-	blr
-	*/
+	m_shadowMgr->init();
+	for (int i = 0; i < 4; i++) {
+		for (int j = 0; j < 4; j++) {
+			m_shadowMgr->setJointPosPtr(i, j, &m_jointPositions[i][j]);
+		}
+	}
 }
 
 /*
@@ -1259,54 +1231,14 @@ lbl_802C930C:
  * Address:	802C9354
  * Size:	000024
  */
-void Obj::doAnimationShadowSystem()
-{
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	lwz      r3, 0x2ec(r3)
-	bl       update__Q34Game7BigFoot16BigFootShadowMgrFv
-	lwz      r0, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
-}
+void Obj::doAnimationShadowSystem() { m_shadowMgr->update(); }
 
 /*
  * --INFO--
  * Address:	802C9378
  * Size:	000054
  */
-void Obj::createMaterialAnimation()
-{
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	stw      r30, 8(r1)
-	mr       r30, r3
-	li       r3, 0xc
-	bl       __nw__FUl
-	or.      r31, r3, r3
-	beq      lbl_802C93B0
-	bl       __ct__Q23Sys15MatBaseAnimatorFv
-	lis      r3, __vt__Q23Sys15MatLoopAnimator@ha
-	addi     r0, r3, __vt__Q23Sys15MatLoopAnimator@l
-	stw      r0, 0(r31)
-
-lbl_802C93B0:
-	stw      r31, 0x4a8(r30)
-	lwz      r0, 0x14(r1)
-	lwz      r31, 0xc(r1)
-	lwz      r30, 8(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
-}
+void Obj::createMaterialAnimation() { m_matLoopAnimator = new Sys::MatLoopAnimator(); }
 
 /*
  * --INFO--
@@ -1315,23 +1247,8 @@ lbl_802C93B0:
  */
 void Obj::startMaterialAnimation()
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	mr       r4, r3
-	stw      r0, 0x14(r1)
-	lwz      r3, 0x4a8(r3)
-	lwz      r4, 0x180(r4)
-	lwz      r12, 0(r3)
-	lwz      r4, 0x44(r4)
-	lwz      r12, 8(r12)
-	mtctr    r12
-	bctrl
-	lwz      r0, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	Mgr* mgr = static_cast<Mgr*>(m_mgr);
+	m_matLoopAnimator->start((Sys::MatBaseAnimation*)mgr->m_tevRegAnimation); // silly cast
 }
 
 /*
@@ -1341,6 +1258,8 @@ void Obj::startMaterialAnimation()
  */
 void Obj::updateMaterialAnimation()
 {
+	if (_2DC) { }
+
 	/*
 	stwu     r1, -0x20(r1)
 	mflr     r0
@@ -3088,32 +3007,9 @@ lbl_802CA9F8:
  */
 void Obj::finishPinchJointEffect()
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	mr       r31, r3
-	stw      r30, 8(r1)
-	li       r30, 0
-
-lbl_802CAA94:
-	lwz      r3, 0x3d0(r31)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x10(r12)
-	mtctr    r12
-	bctrl
-	addi     r30, r30, 1
-	addi     r31, r31, 4
-	cmpwi    r30, 3
-	blt      lbl_802CAA94
-	lwz      r0, 0x14(r1)
-	lwz      r31, 0xc(r1)
-	lwz      r30, 8(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	for (int i = 0; i < 3; i++) {
+		_3D0[i]->fade();
+	}
 }
 
 /*
@@ -3256,6 +3152,33 @@ lbl_802CAC58:
  */
 void Obj::updatePinchLife()
 {
+	if (!isAlive()) {
+		return;
+	}
+
+	f32 healthRatio = m_health / C_PARMS->m_general.m_health.m_value;
+	if (m_isSmoking) {
+		if (healthRatio > 0.35f) {
+			for (int i = 0; i < 3; i++) {
+				_3D0[i]->fade();
+			}
+
+			m_isSmoking = false;
+		}
+	} else if (healthRatio < 0.35f) {
+		f32 values[3];
+
+		for (int i = 0; i < 3; i++) {
+			values[i] = randWeightFloat(2.0f);
+		}
+
+		for (int i = 0; i < 3; i++) {
+			*_3D0[i]->m_position = m_jointPositions[i][3] * values[i];
+		}
+
+		m_isSmoking = true;
+		getJAIObject()->startSound(PSSE_EN_DAMAGUMO_SMOKE, 0);
+	}
 	/*
 	stwu     r1, -0x80(r1)
 	mflr     r0
@@ -3428,39 +3351,10 @@ lbl_802CAEB8:
  */
 void Obj::startFurEffect()
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	li       r4, 0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	mr       r31, r3
-	stw      r30, 8(r1)
-	lwz      r3, 0x494(r3)
-	lwz      r12, 0(r3)
-	lwz      r12, 8(r12)
-	mtctr    r12
-	bctrl
-	li       r30, 0
-
-lbl_802CAF18:
-	lwz      r3, 0x498(r31)
-	li       r4, 0
-	lwz      r12, 0(r3)
-	lwz      r12, 8(r12)
-	mtctr    r12
-	bctrl
-	addi     r30, r30, 1
-	addi     r31, r31, 4
-	cmpwi    r30, 4
-	blt      lbl_802CAF18
-	lwz      r0, 0x14(r1)
-	lwz      r31, 0xc(r1)
-	lwz      r30, 8(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	m_fxMainHair->endDemoDrawOn();
+	for (int i = 0; i < 4; i++) {
+		m_fxLegHair[i]->endDemoDrawOn();
+	}
 }
 
 /*
@@ -3470,37 +3364,10 @@ lbl_802CAF18:
  */
 void Obj::finishFurEffect()
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	mr       r31, r3
-	stw      r30, 8(r1)
-	lwz      r3, 0x494(r3)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x10(r12)
-	mtctr    r12
-	bctrl
-	li       r30, 0
-
-lbl_802CAF88:
-	lwz      r3, 0x498(r31)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x10(r12)
-	mtctr    r12
-	bctrl
-	addi     r30, r30, 1
-	addi     r31, r31, 4
-	cmpwi    r30, 4
-	blt      lbl_802CAF88
-	lwz      r0, 0x14(r1)
-	lwz      r31, 0xc(r1)
-	lwz      r30, 8(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	m_fxMainHair->fade();
+	for (int i = 0; i < 4; i++) {
+		m_fxLegHair[i]->fade();
+	}
 }
 
 /*
@@ -3510,326 +3377,98 @@ lbl_802CAF88:
  */
 void Obj::updateDeadFurEffect()
 {
-	/*
-	stwu     r1, -0x20(r1)
-	mflr     r0
-	stw      r0, 0x24(r1)
-	stw      r31, 0x1c(r1)
-	stw      r30, 0x18(r1)
-	stw      r29, 0x14(r1)
-	mr       r29, r3
-	lwz      r3, 0x494(r3)
-	lfs      f1, 0x2d4(r29)
-	bl       setGlobalScale__Q23efx10TOdamaFur1Ff
-	li       r30, 0
-	mr       r31, r29
-
-lbl_802CAFF4:
-	lwz      r3, 0x498(r31)
-	lfs      f1, 0x2d4(r29)
-	bl       setGlobalScale__Q23efx10TOdamaFur2Ff
-	addi     r30, r30, 1
-	addi     r31, r31, 4
-	cmpwi    r30, 4
-	blt      lbl_802CAFF4
-	lwz      r0, 0x24(r1)
-	lwz      r31, 0x1c(r1)
-	lwz      r30, 0x18(r1)
-	lwz      r29, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x20
-	blr
-	*/
+	m_fxMainHair->setGlobalScale(_2D4);
+	for (int i = 0; i < 4; i++) {
+		m_fxLegHair[i]->setGlobalScale(_2D4);
+	}
 }
 
 /*
  * --INFO--
  * Address:	802CB02C
  * Size:	0001D8
+ * Matches besides some bullshit.
  */
 void Obj::effectDrawOn()
 {
-	/*
-	stwu     r1, -0x20(r1)
-	mflr     r0
-	stw      r0, 0x24(r1)
-	stmw     r27, 0xc(r1)
-	mr       r27, r3
-	li       r30, 0
-	mr       r31, r27
+	for (int i = 0; i < 4; i++) {
+		_3B0[i]->endDemoDrawOn();
+		_3C0[i]->endDemoDrawOn();
+	}
 
-lbl_802CB048:
-	lwz      r3, 0x3b0(r31)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x18(r12)
-	mtctr    r12
-	bctrl
-	lwz      r3, 0x3c0(r31)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x44(r12)
-	mtctr    r12
-	bctrl
-	addi     r30, r30, 1
-	addi     r31, r31, 4
-	cmpwi    r30, 4
-	blt      lbl_802CB048
-	li       r30, 0
-	mr       r31, r27
+	for (int i = 0; i < 3; i++) {
+		_3D0[i]->endDemoDrawOn();
+	}
 
-lbl_802CB088:
-	lwz      r3, 0x3d0(r31)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x44(r12)
-	mtctr    r12
-	bctrl
-	addi     r30, r30, 1
-	addi     r31, r31, 4
-	cmpwi    r30, 3
-	blt      lbl_802CB088
-	li       r29, 0
-	mr       r30, r27
+	for (int i = 0; i < 4; i++) {
+		for (int j = 0; j < 3; j++) {
+			_3DC[i][j]->endDemoDrawOn();
+			m_fxElectricDeath1[i][j]->endDemoDrawOn();
+		}
+	}
 
-lbl_802CB0B4:
-	li       r28, 0
-	mr       r31, r30
+	for (int i = 0; i < 4; i++) {
+		for (int j = 0; j < 2; j++) {
+			m_fxElectricDeath2[i][j]->endDemoDrawOn();
+			m_fxShards1[i][j]->endDemoDrawOn();
+		}
+	}
 
-lbl_802CB0BC:
-	lwz      r3, 0x3dc(r31)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x44(r12)
-	mtctr    r12
-	bctrl
-	lwz      r3, 0x40c(r31)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x44(r12)
-	mtctr    r12
-	bctrl
-	addi     r28, r28, 1
-	addi     r31, r31, 4
-	cmpwi    r28, 3
-	blt      lbl_802CB0BC
-	addi     r29, r29, 1
-	addi     r30, r30, 0xc
-	cmpwi    r29, 4
-	blt      lbl_802CB0B4
-	li       r28, 0
-	mr       r31, r27
+	for (int i = 0; i < 4; i++) {
+		m_fxShards2[i]->endDemoDrawOn();
+	}
 
-lbl_802CB10C:
-	li       r29, 0
-	mr       r30, r31
+	m_fxShards3->endDemoDrawOn();
+	m_fxShards4->endDemoDrawOn();
 
-lbl_802CB114:
-	lwz      r3, 0x43c(r30)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x44(r12)
-	mtctr    r12
-	bctrl
-	lwz      r3, 0x45c(r30)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x44(r12)
-	mtctr    r12
-	bctrl
-	addi     r29, r29, 1
-	addi     r30, r30, 4
-	cmpwi    r29, 2
-	blt      lbl_802CB114
-	addi     r28, r28, 1
-	addi     r31, r31, 8
-	cmpwi    r28, 4
-	blt      lbl_802CB10C
-	li       r28, 0
-	mr       r30, r27
-
-lbl_802CB164:
-	lwz      r3, 0x47c(r30)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x44(r12)
-	mtctr    r12
-	bctrl
-	addi     r28, r28, 1
-	addi     r30, r30, 4
-	cmpwi    r28, 4
-	blt      lbl_802CB164
-	lwz      r3, 0x48c(r27)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x44(r12)
-	mtctr    r12
-	bctrl
-	lwz      r3, 0x490(r27)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x44(r12)
-	mtctr    r12
-	bctrl
-	lwz      r3, 0x494(r27)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x44(r12)
-	mtctr    r12
-	bctrl
-	li       r28, 0
-	mr       r30, r27
-
-lbl_802CB1CC:
-	lwz      r3, 0x498(r30)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x44(r12)
-	mtctr    r12
-	bctrl
-	addi     r28, r28, 1
-	addi     r30, r30, 4
-	cmpwi    r28, 4
-	blt      lbl_802CB1CC
-	lmw      r27, 0xc(r1)
-	lwz      r0, 0x24(r1)
-	mtlr     r0
-	addi     r1, r1, 0x20
-	blr
-	*/
+	m_fxMainHair->endDemoDrawOn();
+	for (int i = 0; i < 4; i++) {
+		m_fxLegHair[i]->endDemoDrawOn();
+	}
 }
 
 /*
  * --INFO--
  * Address:	802CB204
  * Size:	0001D8
+ * Matches except some bullshit.
  */
 void Obj::effectDrawOff()
 {
-	/*
-	stwu     r1, -0x20(r1)
-	mflr     r0
-	stw      r0, 0x24(r1)
-	stmw     r27, 0xc(r1)
-	mr       r27, r3
-	li       r30, 0
-	mr       r31, r27
+	for (int i = 0; i < 4; i++) {
+		_3B0[i]->startDemoDrawOff();
+		_3C0[i]->startDemoDrawOff();
+	}
 
-lbl_802CB220:
-	lwz      r3, 0x3b0(r31)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x14(r12)
-	mtctr    r12
-	bctrl
-	lwz      r3, 0x3c0(r31)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x40(r12)
-	mtctr    r12
-	bctrl
-	addi     r30, r30, 1
-	addi     r31, r31, 4
-	cmpwi    r30, 4
-	blt      lbl_802CB220
-	li       r30, 0
-	mr       r31, r27
+	for (int i = 0; i < 3; i++) {
+		_3D0[i]->startDemoDrawOff();
+	}
 
-lbl_802CB260:
-	lwz      r3, 0x3d0(r31)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x40(r12)
-	mtctr    r12
-	bctrl
-	addi     r30, r30, 1
-	addi     r31, r31, 4
-	cmpwi    r30, 3
-	blt      lbl_802CB260
-	li       r29, 0
-	mr       r30, r27
+	for (int i = 0; i < 4; i++) {
+		for (int j = 0; j < 3; j++) {
+			_3DC[i][j]->startDemoDrawOff();
+			m_fxElectricDeath1[i][j]->startDemoDrawOff();
+		}
+	}
 
-lbl_802CB28C:
-	li       r28, 0
-	mr       r31, r30
+	for (int i = 0; i < 4; i++) {
+		for (int j = 0; j < 2; j++) {
+			m_fxElectricDeath2[i][j]->startDemoDrawOff();
+			m_fxShards1[i][j]->startDemoDrawOff();
+		}
+	}
 
-lbl_802CB294:
-	lwz      r3, 0x3dc(r31)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x40(r12)
-	mtctr    r12
-	bctrl
-	lwz      r3, 0x40c(r31)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x40(r12)
-	mtctr    r12
-	bctrl
-	addi     r28, r28, 1
-	addi     r31, r31, 4
-	cmpwi    r28, 3
-	blt      lbl_802CB294
-	addi     r29, r29, 1
-	addi     r30, r30, 0xc
-	cmpwi    r29, 4
-	blt      lbl_802CB28C
-	li       r28, 0
-	mr       r31, r27
+	for (int i = 0; i < 4; i++) {
+		m_fxShards2[i]->startDemoDrawOff();
+	}
 
-lbl_802CB2E4:
-	li       r29, 0
-	mr       r30, r31
+	m_fxShards3->startDemoDrawOff();
+	m_fxShards4->startDemoDrawOff();
 
-lbl_802CB2EC:
-	lwz      r3, 0x43c(r30)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x40(r12)
-	mtctr    r12
-	bctrl
-	lwz      r3, 0x45c(r30)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x40(r12)
-	mtctr    r12
-	bctrl
-	addi     r29, r29, 1
-	addi     r30, r30, 4
-	cmpwi    r29, 2
-	blt      lbl_802CB2EC
-	addi     r28, r28, 1
-	addi     r31, r31, 8
-	cmpwi    r28, 4
-	blt      lbl_802CB2E4
-	li       r28, 0
-	mr       r30, r27
-
-lbl_802CB33C:
-	lwz      r3, 0x47c(r30)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x40(r12)
-	mtctr    r12
-	bctrl
-	addi     r28, r28, 1
-	addi     r30, r30, 4
-	cmpwi    r28, 4
-	blt      lbl_802CB33C
-	lwz      r3, 0x48c(r27)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x40(r12)
-	mtctr    r12
-	bctrl
-	lwz      r3, 0x490(r27)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x40(r12)
-	mtctr    r12
-	bctrl
-	lwz      r3, 0x494(r27)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x40(r12)
-	mtctr    r12
-	bctrl
-	li       r28, 0
-	mr       r30, r27
-
-lbl_802CB3A4:
-	lwz      r3, 0x498(r30)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x40(r12)
-	mtctr    r12
-	bctrl
-	addi     r28, r28, 1
-	addi     r30, r30, 4
-	cmpwi    r28, 4
-	blt      lbl_802CB3A4
-	lmw      r27, 0xc(r1)
-	lwz      r0, 0x24(r1)
-	mtlr     r0
-	addi     r1, r1, 0x20
-	blr
-	*/
+	m_fxMainHair->startDemoDrawOff();
+	for (int i = 0; i < 4; i++) {
+		m_fxLegHair[i]->startDemoDrawOff();
+	}
 }
 
 /*
@@ -3839,22 +3478,12 @@ lbl_802CB3A4:
  */
 void Obj::addShadowScale()
 {
-	/*
-	lfs      f3, 0x2d4(r3)
-	lfs      f2, lbl_8051C72C@sda21(r2)
-	fcmpo    cr0, f3, f2
-	bgelr
-	lwz      r4, sys@sda21(r13)
-	lfs      f1, lbl_8051C760@sda21(r2)
-	lfs      f0, 0x54(r4)
-	fmadds   f0, f1, f0, f3
-	stfs     f0, 0x2d4(r3)
-	lfs      f0, 0x2d4(r3)
-	fcmpo    cr0, f0, f2
-	blelr
-	stfs     f2, 0x2d4(r3)
-	blr
-	*/
+	if (_2D4 < 1.0f) {
+		_2D4 += 2.0f * sys->m_deltaTime;
+		if (_2D4 > 1.0f) {
+			_2D4 = 1.0f;
+		}
+	}
 }
 
 /*

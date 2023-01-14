@@ -123,34 +123,34 @@ struct Obj : public EnemyBase {
 
 	// _00 		= VTBL
 	// _00-_2BC	= EnemyBase
-	FSM* m_fsm;                              // _2BC
-	f32 m_stateTimer;                        // _2C0
-	StateID m_nextState;                     // _2C4
-	Vector3f m_targetPosition;               // _2C8
-	f32 _2D4;                                // _2D4
-	f32 m_flickWalkTimeMax;                  // _2D8
-	u8 _2DC;                                 // _2DC
-	u8 _2DD;                                 // _2DD
-	bool m_isEnraged;                        // _2DE, next walk cycle will be fast
-	IKSystemMgr* m_IKSystemMgr;              // _2E0
-	IKSystemParms* m_IKSystemParms;          // _2E4
-	BigFootGroundCallBack* m_groundCallBack; // _2E8
-	BigFootShadowMgr* m_shadowMgr;           // _2EC
-	Vector3f _2F0[16];                       // _2F0
-	efx::TChasePos2* _3B0[4];                // _3B0
-	efx::TDamaFootw* _3C0[4];                // _3C0
-	efx::TDamaSmoke* _3D0[3];                // _3D0
-	efx::TOdamaHahen* _3DC[3][4];            // _3DC
-	efx::TDamaDeadElecA* _40C[3][4];         // _40C
-	efx::TDamaDeadElecB* _43C[2][4];         // _43C
-	efx::TOdamaDeadHahenA* _45C[2][4];       // _45C
-	efx::TOdamaDeadHahenB* _47C[4];          // _47C
-	efx::TOdamaDeadHahenC1* _48C;            // _48C
-	efx::TOdamaDeadHahenC2* _490;            // _490
-	efx::TOdamaFur1* _494;                   // _494
-	efx::TOdamaFur2* _498[4];                // _498
-	Sys::MatLoopAnimator* m_matLoopAnimator; // _4A8
-	                                         // _4AC = PelletView
+	FSM* m_fsm;                                    // _2BC
+	f32 m_stateTimer;                              // _2C0
+	StateID m_nextState;                           // _2C4
+	Vector3f m_targetPosition;                     // _2C8
+	f32 _2D4;                                      // _2D4
+	f32 m_flickWalkTimeMax;                        // _2D8
+	bool _2DC;                                     // _2DC
+	bool m_isSmoking;                              // _2DD
+	bool m_isEnraged;                              // _2DE, next walk cycle will be fast
+	IKSystemMgr* m_ikSystemMgr;                    // _2E0
+	IKSystemParms* m_ikSystemParms;                // _2E4
+	BigFootGroundCallBack* m_groundCallBack;       // _2E8
+	BigFootShadowMgr* m_shadowMgr;                 // _2EC
+	Vector3f m_jointPositions[4][4];               // _2F0
+	efx::TChasePos2* _3B0[4];                      // _3B0
+	efx::TDamaFootw* _3C0[4];                      // _3C0
+	efx::TDamaSmoke* _3D0[3];                      // _3D0
+	efx::TOdamaHahen* _3DC[3][4];                  // _3DC
+	efx::TDamaDeadElecA* m_fxElectricDeath1[3][4]; // _40C
+	efx::TDamaDeadElecB* m_fxElectricDeath2[2][4]; // _43C
+	efx::TOdamaDeadHahenA* m_fxShards1[2][4];      // _45C
+	efx::TOdamaDeadHahenB* m_fxShards2[4];         // _47C
+	efx::TOdamaDeadHahenC1* m_fxShards3;           // _48C
+	efx::TOdamaDeadHahenC2* m_fxShards4;           // _490
+	efx::TOdamaFur1* m_fxMainHair;                 // _494
+	efx::TOdamaFur2* m_fxLegHair[4];               // _498
+	Sys::MatLoopAnimator* m_matLoopAnimator;       // _4A8
+	                                               // _4AC = PelletView
 };
 
 struct Mgr : public EnemyMgrBase {
