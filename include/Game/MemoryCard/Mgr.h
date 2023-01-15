@@ -42,7 +42,7 @@ struct Mgr : public MemoryCardMgr {
 		MCS_10,
 		MCS_11,
 		MCS_12,
-		MCS_13,
+		MCS_PlayerDataBroken,
 		MCS_SerialNoError
 	};
 
@@ -60,7 +60,7 @@ struct Mgr : public MemoryCardMgr {
 	void loadPlayer(int);
 	void deletePlayer(int);
 	void copyPlayer(int, int);
-	void getPlayerHeader(PlayerFileInfo*);
+	bool getPlayerHeader(PlayerFileInfo*);
 	void commandUpdatePlayerHeader(PlayerFileInfo*);
 	void commandCheckBeforeSave();
 	void commandCheckError();
@@ -100,7 +100,7 @@ struct Mgr : public MemoryCardMgr {
 	void getIndexInvalidPlayerInfo(int*, char*, char, unsigned long, bool);
 	void modifyPlayerInfo(char, bool*);
 	void verifyCardSerialNo(unsigned long long*, MemoryCardMgr::ECardSlot);
-	void resetError();
+	bool resetError();
 
 	// _00-_E8 = MemoryCardMgr
 };

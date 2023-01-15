@@ -585,6 +585,7 @@ struct TMgr : Screen::TMemoryCard {
 	int getStateID();
 
 	TMgr();
+	~TMgr();
 
 	// _00-_298 = TMemoryCard
 	u32 m_counter;

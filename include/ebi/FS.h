@@ -221,8 +221,17 @@ struct FSMState10_FinishCopy : public FSMState_Warning {
 };
 
 struct TMgr {
+	TMgr() { }
+	~TMgr();
+	void perseInfo(Game::MemoryCard::PlayerFileInfo*);
+	void startSeq();
+	bool isFinish();
+	void forceQuitSeq();
+	void update();
+	void draw();
 
-	// TODO: members + functions
+	u8 _00[0xc60];
+	// TODO: members
 };
 } // namespace FS
 } // namespace ebi

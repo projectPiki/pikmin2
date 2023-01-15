@@ -1,4 +1,7 @@
-#include "types.h"
+#include "ebi/FileSelect.h"
+#include "System.h"
+#include "Game/MemoryCard/Mgr.h"
+#include "MemoryCardMgr.h"
 
 /*
     Generated from dpostproc
@@ -354,15 +357,26 @@
         .skip 0x8
 */
 
+static const char name[] = "ebiFileSelectMgr";
+
 namespace ebi {
+namespace FileSelect {
 
 /*
  * --INFO--
  * Address:	803E12E0
  * Size:	000248
  */
-void FileSelect::FSMStateMachine::init(ebi::FileSelect::TMgr*)
+void FSMStateMachine::init(TMgr* mgr)
 {
+	create(6);
+	registerState(new FSMState_Standby);
+	registerState(new FSMState_EmptyUpdate);
+	registerState(new FSMState_MountCheck);
+	registerState(new FSMState_GetPlayerHeader);
+	registerState(new FSMState_CardError);
+	registerState(new FSMState_ScreenFileSelect);
+
 	/*
 	stwu     r1, -0x10(r1)
 	mflr     r0
@@ -536,73 +550,38 @@ lbl_803E1508:
  * Address:	803E1528
  * Size:	00002C
  */
-void FileSelect::FSMState::init(ebi::FileSelect::TMgr*, Game::StateArg*)
-{
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x20(r12)
-	mtctr    r12
-	bctrl
-	lwz      r0, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
-}
+void FSMState::init(TMgr* mgr, Game::StateArg* arg) { do_init(mgr, arg); }
 
 /*
  * --INFO--
  * Address:	803E1554
  * Size:	000004
  */
-void FileSelect::FSMState::do_init(ebi::FileSelect::TMgr*, Game::StateArg*) { }
+void FSMState::do_init(TMgr*, Game::StateArg*) { }
 
 /*
  * --INFO--
  * Address:	803E1558
  * Size:	00002C
  */
-void FileSelect::FSMState::exec(ebi::FileSelect::TMgr*)
-{
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x24(r12)
-	mtctr    r12
-	bctrl
-	lwz      r0, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
-}
+void FSMState::exec(TMgr* mgr) { do_exec(mgr); }
 
 /*
  * --INFO--
  * Address:	803E1584
  * Size:	000004
  */
-void FileSelect::FSMState::do_exec(ebi::FileSelect::TMgr*) { }
+void FSMState::do_exec(TMgr*) { }
 
 /*
  * --INFO--
  * Address:	803E1588
  * Size:	000010
  */
-void FileSelect::FSMState_EmptyUpdate::do_init(ebi::FileSelect::TMgr*, Game::StateArg*)
+void FSMState_EmptyUpdate::do_init(TMgr* mgr, Game::StateArg* arg)
 {
-	/*
-	.loc_0x0:
-	  li        r0, 0x2
-	  stw       r0, 0x10(r3)
-	  stw       r0, 0x14(r3)
-	  blr
-	*/
+	m_counter = 2;
+	_14       = 2;
 }
 
 /*
@@ -610,35 +589,14 @@ void FileSelect::FSMState_EmptyUpdate::do_init(ebi::FileSelect::TMgr*, Game::Sta
  * Address:	803E1598
  * Size:	000054
  */
-void FileSelect::FSMState_EmptyUpdate::do_exec(ebi::FileSelect::TMgr*)
+void FSMState_EmptyUpdate::do_exec(TMgr* mgr)
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	lwz      r5, 0x10(r3)
-	cmplwi   r5, 0
-	beq      lbl_803E15B8
-	addi     r0, r5, -1
-	stw      r0, 0x10(r3)
-
-lbl_803E15B8:
-	lwz      r0, 0x10(r3)
-	cmplwi   r0, 0
-	bne      lbl_803E15DC
-	lwz      r12, 0(r3)
-	li       r5, 2
-	li       r6, 0
-	lwz      r12, 0x1c(r12)
-	mtctr    r12
-	bctrl
-
-lbl_803E15DC:
-	lwz      r0, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	if (m_counter) {
+		m_counter--;
+	}
+	if (!m_counter) {
+		transit(mgr, FSSTATE_MountCheck, nullptr);
+	}
 }
 
 /*
@@ -646,47 +604,99 @@ lbl_803E15DC:
  * Address:	803E15EC
  * Size:	000030
  */
-void transit__Q24Game33FSMState<ebi::FileSelect::TMgr> FPQ33ebi10FileSelect4TMgriPQ24Game8StateArg(void)
-{
-	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  stw       r0, 0x14(r1)
-	  lwz       r3, 0x8(r3)
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0x14(r12)
-	  mtctr     r12
-	  bctrl
-	  lwz       r0, 0x14(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
-	*/
-}
+// void Game::FSMState<ebi::FileSelect::TMgr>::transit(ebi::FileSelect::TMgr* mgr, int id, Game::StateArg*)
+//{
+/*
+.loc_0x0:
+  stwu      r1, -0x10(r1)
+  mflr      r0
+  stw       r0, 0x14(r1)
+  lwz       r3, 0x8(r3)
+  lwz       r12, 0x0(r3)
+  lwz       r12, 0x14(r12)
+  mtctr     r12
+  bctrl
+  lwz       r0, 0x14(r1)
+  mtlr      r0
+  addi      r1, r1, 0x10
+  blr
+*/
+//}
 
 /*
  * --INFO--
  * Address:	803E161C
  * Size:	00000C
  */
-void FileSelect::FSMState_CardRequest::do_init(ebi::FileSelect::TMgr*, Game::StateArg*)
-{
-	/*
-	.loc_0x0:
-	  li        r0, 0
-	  stw       r0, 0x10(r3)
-	  blr
-	*/
-}
+void FSMState_CardRequest::do_init(TMgr* mgr, Game::StateArg* arg) { m_state = 0; }
 
 /*
  * --INFO--
  * Address:	803E1628
  * Size:	000278
  */
-void FileSelect::FSMState_CardRequest::do_exec(ebi::FileSelect::TMgr*)
+void FSMState_CardRequest::do_exec(TMgr* mgr)
 {
+	switch (m_state) {
+	case 0:
+		bool check2 = (!sys->m_cardMgr->_D8) && (sys->m_cardMgr->checkStatus() != 11);
+		if (check2) {
+			P2ASSERTLINE(90, do_cardRequest(mgr));
+			m_state = 1;
+		}
+		break;
+	case 1:
+		bool check3 = (!sys->m_cardMgr->_D8) && (sys->m_cardMgr->checkStatus() != 11);
+		if (check3) {
+			m_cardStatus = (int)static_cast<Game::MemoryCard::Mgr*>(sys->m_cardMgr)->getCardStatus();
+			static_cast<Game::MemoryCard::Mgr*>(sys->m_cardMgr)->getCardStatus();
+			m_state = 2;
+		}
+		break;
+	case 2:
+		switch (m_cardStatus) {
+		case Game::MemoryCard::Mgr::MCS_NoCard:
+			do_transitCardNoCard(mgr);
+			break;
+		case Game::MemoryCard::Mgr::MCS_FileOpenError:
+			do_transitCardFileOpenError(mgr);
+			break;
+		case Game::MemoryCard::Mgr::MCS_Ready:
+			do_transitCardReady(mgr);
+			break;
+		case Game::MemoryCard::Mgr::MCS_Broken:
+			do_transitCardBroken(mgr);
+			break;
+		case Game::MemoryCard::Mgr::MCS_Encoding:
+			do_transitCardEncoding(mgr);
+			break;
+		case Game::MemoryCard::Mgr::MCS_IOError:
+			do_transitCardIOError(mgr);
+			break;
+		case Game::MemoryCard::Mgr::MCS_WrongDevice:
+			do_transitCardWrongDevice(mgr);
+			break;
+		case Game::MemoryCard::Mgr::MCS_WrongSector:
+			do_transitCardWrongSector(mgr);
+			break;
+		case Game::MemoryCard::Mgr::MCS_NoFileSpace:
+			do_transitCardNoFileSpace(mgr);
+			break;
+		case Game::MemoryCard::Mgr::MCS_NoFileEntry:
+			do_transitCardNoFileEntry(mgr);
+			break;
+		case Game::MemoryCard::Mgr::MCS_PlayerDataBroken:
+			do_transitCardPlayerDataBroken(mgr);
+			break;
+		case Game::MemoryCard::Mgr::MCS_SerialNoError:
+			do_transitCardSerialNoError(mgr);
+			break;
+		default:
+			JUT_PANICLINE(150, "※メモリーカードエラー:想定外のケースです\n");
+			JUT_PANICLINE(151, "P2Assert");
+			break;
+		}
+	}
 	/*
 	stwu     r1, -0x20(r1)
 	mflr     r0
@@ -909,26 +919,11 @@ lbl_803E1880:
  * Address:	803E18A0
  * Size:	00003C
  */
-void FileSelect::FSMState_CardRequest::do_transitCardNoCard((ebi::FileSelect::TMgr*))
+void FSMState_CardRequest::do_transitCardNoCard(TMgr* mgr)
 {
-	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  li        r5, 0x4
-	  stw       r0, 0x14(r1)
-	  li        r0, 0
-	  addi      r6, r1, 0x8
-	  stw       r0, 0x8(r1)
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0x1C(r12)
-	  mtctr     r12
-	  bctrl
-	  lwz       r0, 0x14(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
-	*/
+	CardErrorStateArg arg;
+	arg._00 = CardError::TMgr::Start_NoCard;
+	transit(mgr, FSSTATE_CardError, &arg);
 }
 
 /*
@@ -936,26 +931,11 @@ void FileSelect::FSMState_CardRequest::do_transitCardNoCard((ebi::FileSelect::TM
  * Address:	803E18DC
  * Size:	00003C
  */
-void FileSelect::FSMState_CardRequest::do_transitCardIOError((ebi::FileSelect::TMgr*))
+void FSMState_CardRequest::do_transitCardIOError(TMgr* mgr)
 {
-	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  li        r5, 0x4
-	  stw       r0, 0x14(r1)
-	  li        r0, 0x1
-	  addi      r6, r1, 0x8
-	  stw       r0, 0x8(r1)
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0x1C(r12)
-	  mtctr     r12
-	  bctrl
-	  lwz       r0, 0x14(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
-	*/
+	CardErrorStateArg arg;
+	arg._00 = CardError::TMgr::Start_IOError;
+	transit(mgr, FSSTATE_CardError, &arg);
 }
 
 /*
@@ -963,26 +943,11 @@ void FileSelect::FSMState_CardRequest::do_transitCardIOError((ebi::FileSelect::T
  * Address:	803E1918
  * Size:	00003C
  */
-void FileSelect::FSMState_CardRequest::do_transitCardWrongDevice((ebi::FileSelect::TMgr*))
+void FSMState_CardRequest::do_transitCardWrongDevice(TMgr* mgr)
 {
-	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  li        r5, 0x4
-	  stw       r0, 0x14(r1)
-	  li        r0, 0x2
-	  addi      r6, r1, 0x8
-	  stw       r0, 0x8(r1)
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0x1C(r12)
-	  mtctr     r12
-	  bctrl
-	  lwz       r0, 0x14(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
-	*/
+	CardErrorStateArg arg;
+	arg._00 = CardError::TMgr::Start_WrongDevice;
+	transit(mgr, FSSTATE_CardError, &arg);
 }
 
 /*
@@ -990,26 +955,11 @@ void FileSelect::FSMState_CardRequest::do_transitCardWrongDevice((ebi::FileSelec
  * Address:	803E1954
  * Size:	00003C
  */
-void FileSelect::FSMState_CardRequest::do_transitCardWrongSector((ebi::FileSelect::TMgr*))
+void FSMState_CardRequest::do_transitCardWrongSector(TMgr* mgr)
 {
-	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  li        r5, 0x4
-	  stw       r0, 0x14(r1)
-	  li        r0, 0x3
-	  addi      r6, r1, 0x8
-	  stw       r0, 0x8(r1)
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0x1C(r12)
-	  mtctr     r12
-	  bctrl
-	  lwz       r0, 0x14(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
-	*/
+	CardErrorStateArg arg;
+	arg._00 = CardError::TMgr::Start_WrongSector;
+	transit(mgr, FSSTATE_CardError, &arg);
 }
 
 /*
@@ -1017,26 +967,11 @@ void FileSelect::FSMState_CardRequest::do_transitCardWrongSector((ebi::FileSelec
  * Address:	803E1990
  * Size:	00003C
  */
-void FileSelect::FSMState_CardRequest::do_transitCardBroken((ebi::FileSelect::TMgr*))
+void FSMState_CardRequest::do_transitCardBroken(TMgr* mgr)
 {
-	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  li        r5, 0x4
-	  stw       r0, 0x14(r1)
-	  li        r0, 0x4
-	  addi      r6, r1, 0x8
-	  stw       r0, 0x8(r1)
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0x1C(r12)
-	  mtctr     r12
-	  bctrl
-	  lwz       r0, 0x14(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
-	*/
+	CardErrorStateArg arg;
+	arg._00 = CardError::TMgr::Start_DataBrokenAndDoYouFormat;
+	transit(mgr, FSSTATE_CardError, &arg);
 }
 
 /*
@@ -1044,26 +979,11 @@ void FileSelect::FSMState_CardRequest::do_transitCardBroken((ebi::FileSelect::TM
  * Address:	803E19CC
  * Size:	00003C
  */
-void FileSelect::FSMState_CardRequest::do_transitCardEncoding((ebi::FileSelect::TMgr*))
+void FSMState_CardRequest::do_transitCardEncoding(TMgr* mgr)
 {
-	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  li        r5, 0x4
-	  stw       r0, 0x14(r1)
-	  li        r0, 0x4
-	  addi      r6, r1, 0x8
-	  stw       r0, 0x8(r1)
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0x1C(r12)
-	  mtctr     r12
-	  bctrl
-	  lwz       r0, 0x14(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
-	*/
+	CardErrorStateArg arg;
+	arg._00 = CardError::TMgr::Start_DataBrokenAndDoYouFormat;
+	transit(mgr, FSSTATE_CardError, &arg);
 }
 
 /*
@@ -1071,26 +991,11 @@ void FileSelect::FSMState_CardRequest::do_transitCardEncoding((ebi::FileSelect::
  * Address:	803E1A08
  * Size:	00003C
  */
-void FileSelect::FSMState_CardRequest::do_transitCardNoFileSpace((ebi::FileSelect::TMgr*))
+void FSMState_CardRequest::do_transitCardNoFileSpace(TMgr* mgr)
 {
-	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  li        r5, 0x4
-	  stw       r0, 0x14(r1)
-	  li        r0, 0x5
-	  addi      r6, r1, 0x8
-	  stw       r0, 0x8(r1)
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0x1C(r12)
-	  mtctr     r12
-	  bctrl
-	  lwz       r0, 0x14(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
-	*/
+	CardErrorStateArg arg;
+	arg._00 = CardError::TMgr::Start_OverCapacity;
+	transit(mgr, FSSTATE_CardError, &arg);
 }
 
 /*
@@ -1098,26 +1003,11 @@ void FileSelect::FSMState_CardRequest::do_transitCardNoFileSpace((ebi::FileSelec
  * Address:	803E1A44
  * Size:	00003C
  */
-void FileSelect::FSMState_CardRequest::do_transitCardNoFileEntry((ebi::FileSelect::TMgr*))
+void FSMState_CardRequest::do_transitCardNoFileEntry(TMgr* mgr)
 {
-	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  li        r5, 0x4
-	  stw       r0, 0x14(r1)
-	  li        r0, 0x5
-	  addi      r6, r1, 0x8
-	  stw       r0, 0x8(r1)
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0x1C(r12)
-	  mtctr     r12
-	  bctrl
-	  lwz       r0, 0x14(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
-	*/
+	CardErrorStateArg arg;
+	arg._00 = CardError::TMgr::Start_OverCapacity;
+	transit(mgr, FSSTATE_CardError, &arg);
 }
 
 /*
@@ -1125,26 +1015,11 @@ void FileSelect::FSMState_CardRequest::do_transitCardNoFileEntry((ebi::FileSelec
  * Address:	803E1A80
  * Size:	00003C
  */
-void FileSelect::FSMState_CardRequest::do_transitCardFileOpenError((ebi::FileSelect::TMgr*))
+void FSMState_CardRequest::do_transitCardFileOpenError(TMgr* mgr)
 {
-	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  li        r5, 0x4
-	  stw       r0, 0x14(r1)
-	  li        r0, 0x6
-	  addi      r6, r1, 0x8
-	  stw       r0, 0x8(r1)
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0x1C(r12)
-	  mtctr     r12
-	  bctrl
-	  lwz       r0, 0x14(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
-	*/
+	CardErrorStateArg arg;
+	arg._00 = CardError::TMgr::Start_DoYouCreateNewFile;
+	transit(mgr, FSSTATE_CardError, &arg);
 }
 
 /*
@@ -1152,31 +1027,17 @@ void FileSelect::FSMState_CardRequest::do_transitCardFileOpenError((ebi::FileSel
  * Address:	803E1ABC
  * Size:	00002C
  */
-void FileSelect::FSMState_CardRequest::do_transitCardPlayerDataBroken((ebi::FileSelect::TMgr*))
-{
-	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  stw       r0, 0x14(r1)
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0x2C(r12)
-	  mtctr     r12
-	  bctrl
-	  lwz       r0, 0x14(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
-	*/
-}
+void FSMState_CardRequest::do_transitCardPlayerDataBroken(TMgr* mgr) { do_transitCardReady(mgr); }
 
 /*
  * --INFO--
  * Address:	803E1AE8
  * Size:	000054
  */
-void FileSelect::FSMState_CardRequest::do_transitCardSerialNoError((ebi::FileSelect::TMgr*))
+void FSMState_CardRequest::do_transitCardSerialNoError(TMgr* mgr)
 {
+	JUT_PANICLINE(224, "※ロードでシリアルエラーはありえない\n"); // * There is no serial error during loading
+	JUT_PANICLINE(225, "P2Assert");
 	/*
 	.loc_0x0:
 	  stwu      r1, -0x10(r1)
@@ -1208,54 +1069,23 @@ void FileSelect::FSMState_CardRequest::do_transitCardSerialNoError((ebi::FileSel
  * Address:	803E1B3C
  * Size:	000028
  */
-void FileSelect::FSMState_MountCheck::do_cardRequest(ebi::FileSelect::TMgr*)
-{
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	lwz      r3, sys@sda21(r13)
-	lwz      r3, 0x5c(r3)
-	bl       resetError__Q34Game10MemoryCard3MgrFv
-	lwz      r0, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
-}
+bool FSMState_MountCheck::do_cardRequest(TMgr* mgr) { return static_cast<Game::MemoryCard::Mgr*>(sys->m_cardMgr)->resetError(); }
 
 /*
  * --INFO--
  * Address:	803E1B64
  * Size:	000034
  */
-void FileSelect::FSMState_MountCheck::do_transitCardReady((ebi::FileSelect::TMgr*))
-{
-	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  li        r5, 0x3
-	  li        r6, 0
-	  stw       r0, 0x14(r1)
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0x1C(r12)
-	  mtctr     r12
-	  bctrl
-	  lwz       r0, 0x14(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
-	*/
-}
+void FSMState_MountCheck::do_transitCardReady(TMgr* mgr) { transit(mgr, FSState_GetPlayerHeader, nullptr); }
 
 /*
  * --INFO--
  * Address:	803E1B98
  * Size:	00002C
  */
-void FileSelect::FSMState_GetPlayerHeader::do_cardRequest((ebi::FileSelect::TMgr*))
+bool FSMState_GetPlayerHeader::do_cardRequest(TMgr* mgr)
 {
+	return static_cast<Game::MemoryCard::Mgr*>(sys->m_cardMgr)->getPlayerHeader(&mgr->m_player);
 	/*
 	.loc_0x0:
 	  stwu      r1, -0x10(r1)
@@ -1277,59 +1107,25 @@ void FileSelect::FSMState_GetPlayerHeader::do_cardRequest((ebi::FileSelect::TMgr
  * Address:	803E1BC4
  * Size:	000034
  */
-void FileSelect::FSMState_GetPlayerHeader::do_transitCardReady((ebi::FileSelect::TMgr*))
-{
-	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  li        r5, 0x5
-	  li        r6, 0
-	  stw       r0, 0x14(r1)
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0x1C(r12)
-	  mtctr     r12
-	  bctrl
-	  lwz       r0, 0x14(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
-	*/
-}
+void FSMState_GetPlayerHeader::do_transitCardReady(TMgr* mgr) { transit(mgr, FSState_ScreenFileSelect, nullptr); }
 
 /*
  * --INFO--
  * Address:	803E1BF8
  * Size:	000038
  */
-void FileSelect::FSMState_GetPlayerHeader::do_transitCardSerialNoError((ebi::FileSelect::TMgr*))
-{
-	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  lis       r3, 0x8049
-	  lis       r5, 0x8049
-	  stw       r0, 0x14(r1)
-	  addi      r3, r3, 0x706C
-	  li        r4, 0x105
-	  addi      r5, r5, 0x7084
-	  crclr     6, 0x6
-	  bl        -0x3B75DC
-	  lwz       r0, 0x14(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
-	*/
-}
+void FSMState_GetPlayerHeader::do_transitCardSerialNoError(TMgr* mgr) { JUT_PANICLINE(261, "P2Assert"); }
 
 /*
  * --INFO--
  * Address:	803E1C30
  * Size:	000044
  */
-void FileSelect::FSMState_ScreenFileSelect::do_init(ebi::FileSelect::TMgr*, Game::StateArg*)
+void FSMState_ScreenFileSelect::do_init(TMgr* mgr, Game::StateArg* arg)
 {
+	mgr->m_mgrFS.perseInfo(&mgr->m_player);
+	mgr->m_mgrFS.startSeq();
+	mgr->m_cardErrorMgr.forceQuitSeq();
 	/*
 	.loc_0x0:
 	  stwu      r1, -0x10(r1)
@@ -1357,8 +1153,25 @@ void FileSelect::FSMState_ScreenFileSelect::do_init(ebi::FileSelect::TMgr*, Game
  * Address:	803E1C74
  * Size:	0000C4
  */
-void FileSelect::FSMState_ScreenFileSelect::do_exec(ebi::FileSelect::TMgr*)
+void FSMState_ScreenFileSelect::do_exec(TMgr* mgr)
 {
+	if (mgr->m_mgrFS.isFinish()) {
+		switch (mgr->m_mgrFS._00[0xc38]) {
+		case 1:
+		case 2:
+			transit(mgr, FSSTATE_MountCheck, nullptr);
+			break;
+		case 3:
+			mgr->goEnd_(TMgr::End_2);
+			break;
+		case 4:
+			mgr->goEnd_(TMgr::End_1);
+			break;
+		case 5:
+			mgr->goEnd_(TMgr::End_3);
+			break;
+		}
+	}
 	/*
 	stwu     r1, -0x10(r1)
 	mflr     r0
@@ -1429,8 +1242,11 @@ lbl_803E1D20:
  * Address:	803E1D38
  * Size:	000060
  */
-void FileSelect::FSMState_CardError::do_init(ebi::FileSelect::TMgr*, Game::StateArg*)
+void FSMState_CardError::do_init(TMgr* mgr, Game::StateArg* arg)
 {
+	CardErrorStateArg* carg = static_cast<CardErrorStateArg*>(arg);
+	P2ASSERTLINE(319, arg);
+	mgr->m_cardErrorMgr.startSeq((CardError::TMgr::enumStart)carg->_00);
 	/*
 	.loc_0x0:
 	  stwu      r1, -0x10(r1)
@@ -1467,8 +1283,22 @@ void FileSelect::FSMState_CardError::do_init(ebi::FileSelect::TMgr*, Game::State
  * Address:	803E1D98
  * Size:	0000B8
  */
-void FileSelect::FSMState_CardError::do_exec(ebi::FileSelect::TMgr*)
+void FSMState_CardError::do_exec(TMgr* mgr)
 {
+	if (mgr->m_cardErrorMgr.isGetEnd()) {
+		switch (mgr->m_cardErrorMgr.m_state) {
+		case 1:
+			static_cast<Game::MemoryCard::Mgr*>(sys->m_cardMgr)->loadPlayerForNoCard(0);
+			mgr->goEnd_(TMgr::End_1);
+			break;
+		case 2:
+			mgr->start();
+			break;
+		default:
+			JUT_PANICLINE(342, "※ mgr->mCardErrorMgr->getEnd=%d ってありえない！\n", mgr->m_cardErrorMgr.m_state);
+			JUT_PANICLINE(343, "P2Assert");
+		}
+	}
 	/*
 	stwu     r1, -0x10(r1)
 	mflr     r0
@@ -1532,9 +1362,13 @@ lbl_803E1E38:
  * Address:	........
  * Size:	0000C0
  */
-FileSelect::TMgr::TMgr(void)
+TMgr::TMgr()
 {
-	// UNUSED FUNCTION
+	m_counter = 0;
+	_F44      = 0;
+	m_fsm.init(this);
+	m_fsm.start(this, FSSTATE_Standby, 0);
+	m_inError = false;
 }
 
 /*
@@ -1542,7 +1376,7 @@ FileSelect::TMgr::TMgr(void)
  * Address:	803E1E50
  * Size:	000034
  */
-void start__Q24Game37StateMachine<ebi::FileSelect::TMgr> FPQ33ebi10FileSelect4TMgriPQ24Game8StateArg(void)
+void Game::StateMachine<ebi::FileSelect::TMgr>::start(ebi::FileSelect::TMgr*, int, Game::StateArg*)
 {
 	/*
 	.loc_0x0:
@@ -1567,88 +1401,52 @@ void start__Q24Game37StateMachine<ebi::FileSelect::TMgr> FPQ33ebi10FileSelect4TM
  * Address:	803E1E84
  * Size:	000054
  */
-FS::TMgr::~TMgr(void)
-{
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	mr       r31, r4
-	stw      r30, 8(r1)
-	or.      r30, r3, r3
-	beq      lbl_803E1EBC
-	li       r4, -1
-	bl       __dt__Q43ebi6Screen10FileSelect11TMainScreenFv
-	extsh.   r0, r31
-	ble      lbl_803E1EBC
-	mr       r3, r30
-	bl       __dl__FPv
+// FS::TMgr::~TMgr()
+//{
+/*
+stwu     r1, -0x10(r1)
+mflr     r0
+stw      r0, 0x14(r1)
+stw      r31, 0xc(r1)
+mr       r31, r4
+stw      r30, 8(r1)
+or.      r30, r3, r3
+beq      lbl_803E1EBC
+li       r4, -1
+bl       __dt__Q43ebi6Screen10FileSelect11TMainScreenFv
+extsh.   r0, r31
+ble      lbl_803E1EBC
+mr       r3, r30
+bl       __dl__FPv
 
 lbl_803E1EBC:
-	lwz      r0, 0x14(r1)
-	mr       r3, r30
-	lwz      r31, 0xc(r1)
-	lwz      r30, 8(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
-}
+lwz      r0, 0x14(r1)
+mr       r3, r30
+lwz      r31, 0xc(r1)
+lwz      r30, 8(r1)
+mtlr     r0
+addi     r1, r1, 0x10
+blr
+*/
+//}
 
 /*
  * --INFO--
  * Address:	803E1ED8
  * Size:	000084
  */
-FileSelect::TMgr::~TMgr(void)
-{
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	mr       r31, r4
-	stw      r30, 8(r1)
-	or.      r30, r3, r3
-	beq      lbl_803E1F40
-	lis      r3, __vt__Q33ebi10FileSelect4TMgr@ha
-	li       r0, 0
-	addi     r4, r3, __vt__Q33ebi10FileSelect4TMgr@l
-	addi     r3, r30, 0xc78
-	stw      r4, 0(r30)
-	li       r4, -1
-	stw      r0, msInstance__Q33ebi10FileSelect4TMgr@sda21(r13)
-	bl       __dt__Q33ebi9CardError4TMgrFv
-	addi     r3, r30, 0x18
-	li       r4, -1
-	bl       __dt__Q33ebi2FS4TMgrFv
-	mr       r3, r30
-	li       r4, 0
-	bl       __dt__11JKRDisposerFv
-	extsh.   r0, r31
-	ble      lbl_803E1F40
-	mr       r3, r30
-	bl       __dl__FPv
-
-lbl_803E1F40:
-	lwz      r0, 0x14(r1)
-	mr       r3, r30
-	lwz      r31, 0xc(r1)
-	lwz      r30, 8(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
-}
+TMgr::~TMgr() { msInstance = nullptr; }
 
 /*
  * --INFO--
  * Address:	803E1F5C
  * Size:	0000DC
  */
-void FileSelect::TMgr::createInstance(void)
+TMgr* TMgr::createInstance()
 {
+	if (!msInstance)
+		msInstance = new TMgr;
+	return msInstance;
 	/*
 	stwu     r1, -0x10(r1)
 	mflr     r0
@@ -1717,56 +1515,30 @@ lbl_803E2020:
  * Address:	........
  * Size:	000048
  */
-void FileSelect::TMgr::deleteInstance(void)
-{
-	// UNUSED FUNCTION
-}
+void TMgr::deleteInstance() { delete msInstance; }
 
 /*
  * --INFO--
  * Address:	........
  * Size:	000008
  */
-void FileSelect::TMgr::getInstance(void)
-{
-	// UNUSED FUNCTION
-}
+TMgr* TMgr::getInstance() { return msInstance; }
 
 /*
  * --INFO--
  * Address:	803E2038
  * Size:	000058
  */
-void FileSelect::TMgr::onDvdErrorOccured(void)
+void TMgr::onDvdErrorOccured()
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	lwz      r3, msInstance__Q33ebi10FileSelect4TMgr@sda21(r13)
-	cmplwi   r3, 0
-	beq      lbl_803E2080
-	bl       isFinish__Q33ebi10FileSelect4TMgrFv
-	clrlwi.  r0, r3, 0x18
-	bne      lbl_803E2074
-	lwz      r3, msInstance__Q33ebi10FileSelect4TMgr@sda21(r13)
-	li       r0, 1
-	stb      r0, 0xfe9(r3)
-	lwz      r3, msInstance__Q33ebi10FileSelect4TMgr@sda21(r13)
-	bl       forceQuit__Q33ebi10FileSelect4TMgrFv
-	b        lbl_803E2080
-
-lbl_803E2074:
-	lwz      r3, msInstance__Q33ebi10FileSelect4TMgr@sda21(r13)
-	li       r0, 0
-	stb      r0, 0xfe9(r3)
-
-lbl_803E2080:
-	lwz      r0, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	if (msInstance) {
+		if (!msInstance->isFinish()) {
+			msInstance->m_inError = true;
+			msInstance->forceQuit();
+		} else {
+			msInstance->m_inError = false;
+		}
+	}
 }
 
 /*
@@ -1774,29 +1546,12 @@ lbl_803E2080:
  * Address:	803E2090
  * Size:	000044
  */
-void FileSelect::TMgr::onDvdErrorRecovered(void)
+void TMgr::onDvdErrorRecovered()
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	lwz      r3, msInstance__Q33ebi10FileSelect4TMgr@sda21(r13)
-	cmplwi   r3, 0
-	beq      lbl_803E20C4
-	lbz      r0, 0xfe9(r3)
-	cmplwi   r0, 0
-	beq      lbl_803E20C4
-	bl       start__Q33ebi10FileSelect4TMgrFv
-	lwz      r3, msInstance__Q33ebi10FileSelect4TMgr@sda21(r13)
-	li       r0, 0
-	stb      r0, 0xfe9(r3)
-
-lbl_803E20C4:
-	lwz      r0, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	if (msInstance && msInstance->m_inError) {
+		msInstance->start();
+		msInstance->m_inError = false;
+	}
 }
 
 /*
@@ -1804,29 +1559,11 @@ lbl_803E20C4:
  * Address:	803E20D4
  * Size:	00004C
  */
-void FileSelect::TMgr::start(void)
+void TMgr::start()
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	mr       r4, r3
-	li       r5, 1
-	stw      r0, 0x14(r1)
-	li       r0, 1
-	li       r6, 0
-	stb      r0, 0xfe8(r3)
-	li       r0, 0
-	addi     r3, r4, 0xfec
-	stw      r0, 0xfe4(r4)
-	lwz      r12, 0xfec(r4)
-	lwz      r12, 0xc(r12)
-	mtctr    r12
-	bctrl
-	lwz      r0, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	_FE8    = true;
+	m_state = 0;
+	m_fsm.start(this, FSSTATE_EmptyUpdate, nullptr);
 }
 
 /*
@@ -1834,32 +1571,11 @@ void FileSelect::TMgr::start(void)
  * Address:	803E2120
  * Size:	000058
  */
-void FileSelect::TMgr::forceQuit(void)
+void TMgr::forceQuit()
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	li       r5, 0
-	li       r6, 0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	mr       r31, r3
-	addi     r3, r31, 0xfec
-	lwz      r12, 0xfec(r31)
-	mr       r4, r31
-	lwz      r12, 0xc(r12)
-	mtctr    r12
-	bctrl
-	addi     r3, r31, 0xc78
-	bl       forceQuitSeq__Q33ebi9CardError4TMgrFv
-	addi     r3, r31, 0x18
-	bl       forceQuitSeq__Q33ebi2FS4TMgrFv
-	lwz      r0, 0x14(r1)
-	lwz      r31, 0xc(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	m_fsm.start(this, FSSTATE_Standby, nullptr);
+	m_cardErrorMgr.forceQuitSeq();
+	m_mgrFS.forceQuitSeq();
 }
 
 /*
@@ -1867,47 +1583,17 @@ void FileSelect::TMgr::forceQuit(void)
  * Address:	803E2178
  * Size:	00008C
  */
-void FileSelect::TMgr::update(void)
+void TMgr::update()
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	mr       r31, r3
-	addi     r3, r31, 0xfec
-	lwz      r12, 0xfec(r31)
-	mr       r4, r31
-	lwz      r12, 0x10(r12)
-	mtctr    r12
-	bctrl
-	mr       r3, r31
-	bl       getStateID__Q33ebi10FileSelect4TMgrFv
-	cmpwi    r3, 0
-	beq      lbl_803E21F0
-	lwz      r3, sys@sda21(r13)
-	lwz      r3, 0x5c(r3)
-	lwz      r12, 0(r3)
-	lwz      r12, 0xc(r12)
-	mtctr    r12
-	bctrl
-	addi     r3, r31, 0xc78
-	bl       update__Q33ebi9CardError4TMgrFv
-	addi     r3, r31, 0x18
-	bl       update__Q33ebi2FS4TMgrFv
-	lwz      r3, 0xf40(r31)
-	cmplwi   r3, 0
-	beq      lbl_803E21F0
-	addi     r0, r3, -1
-	stw      r0, 0xf40(r31)
-
-lbl_803E21F0:
-	lwz      r0, 0x14(r1)
-	lwz      r31, 0xc(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	m_fsm.exec(this);
+	if (getStateID()) {
+		sys->m_cardMgr->update();
+		m_cardErrorMgr.update();
+		m_mgrFS.update();
+		if (m_counter) {
+			m_counter--;
+		}
+	}
 }
 
 /*
@@ -1915,29 +1601,12 @@ lbl_803E21F0:
  * Address:	803E2204
  * Size:	000044
  */
-void FileSelect::TMgr::draw(void)
+void TMgr::draw()
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	mr       r31, r3
-	bl       getStateID__Q33ebi10FileSelect4TMgrFv
-	cmpwi    r3, 0
-	beq      lbl_803E2234
-	addi     r3, r31, 0x18
-	bl       draw__Q33ebi2FS4TMgrFv
-	addi     r3, r31, 0xc78
-	bl       draw__Q33ebi9CardError4TMgrFv
-
-lbl_803E2234:
-	lwz      r0, 0x14(r1)
-	lwz      r31, 0xc(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	if (getStateID()) {
+		m_mgrFS.draw();
+		m_cardErrorMgr.draw();
+	}
 }
 
 /*
@@ -1945,40 +1614,20 @@ lbl_803E2234:
  * Address:	803E2248
  * Size:	000004
  */
-void FileSelect::TMgr::showInfo(void) { }
+void TMgr::showInfo() { }
 
 /*
  * --INFO--
  * Address:	803E224C
  * Size:	00004C
  */
-void FileSelect::TMgr::isFinish(void)
+bool TMgr::isFinish()
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	mr       r31, r3
-	bl       getStateID__Q33ebi10FileSelect4TMgrFv
-	cmpwi    r3, 0
-	bne      lbl_803E2280
-	lbz      r0, 0xfe9(r31)
-	cmplwi   r0, 0
-	bne      lbl_803E2280
-	li       r3, 1
-	b        lbl_803E2284
-
-lbl_803E2280:
-	li       r3, 0
-
-lbl_803E2284:
-	lwz      r0, 0x14(r1)
-	lwz      r31, 0xc(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	if (!getStateID() && !m_inError) {
+		return true;
+	} else {
+		return false;
+	}
 }
 
 /*
@@ -1986,33 +1635,12 @@ lbl_803E2284:
  * Address:	803E2298
  * Size:	00005C
  */
-void FileSelect::TMgr::goEnd_(ebi::FileSelect::TMgr::enumEnd)
+void TMgr::goEnd_(enumEnd end)
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	li       r5, 0
-	li       r6, 0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	mr       r31, r3
-	stw      r4, 0xfe4(r3)
-	addi     r3, r31, 0xfec
-	mr       r4, r31
-	lwz      r12, 0xfec(r31)
-	lwz      r12, 0x14(r12)
-	mtctr    r12
-	bctrl
-	addi     r3, r31, 0x18
-	bl       forceQuitSeq__Q33ebi2FS4TMgrFv
-	addi     r3, r31, 0xc78
-	bl       forceQuitSeq__Q33ebi9CardError4TMgrFv
-	lwz      r0, 0x14(r1)
-	lwz      r31, 0xc(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	m_state = end;
+	m_fsm.transit(this, FSSTATE_Standby, nullptr);
+	m_mgrFS.forceQuitSeq();
+	m_cardErrorMgr.forceQuitSeq();
 }
 
 /*
@@ -2020,34 +1648,10 @@ void FileSelect::TMgr::goEnd_(ebi::FileSelect::TMgr::enumEnd)
  * Address:	803E22F4
  * Size:	000058
  */
-void FileSelect::TMgr::getStateID(void)
+int TMgr::getStateID()
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	mr       r31, r3
-	lwz      r0, 0x1008(r3)
-	cmplwi   r0, 0
-	bne      lbl_803E2330
-	lis      r3, lbl_8049706C@ha
-	lis      r5, lbl_80497084@ha
-	addi     r3, r3, lbl_8049706C@l
-	li       r4, 0x216
-	addi     r5, r5, lbl_80497084@l
-	crclr    6
-	bl       panic_f__12JUTExceptionFPCciPCce
-
-lbl_803E2330:
-	lwz      r3, 0x1008(r31)
-	lwz      r0, 0x14(r1)
-	lwz      r3, 4(r3)
-	lwz      r31, 0xc(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	P2ASSERTLINE(534, m_currentState);
+	return m_currentState->m_id;
 }
 
 /*
@@ -2055,49 +1659,49 @@ lbl_803E2330:
  * Address:	803E234C
  * Size:	000004
  */
-void init__Q24Game33FSMState<ebi::FileSelect::TMgr> FPQ33ebi10FileSelect4TMgrPQ24Game8StateArg(void) { }
+void Game::FSMState<ebi::FileSelect::TMgr>::init(ebi::FileSelect::TMgr*, Game::StateArg*) { }
 
 /*
  * --INFO--
  * Address:	803E2350
  * Size:	000004
  */
-void exec__Q24Game33FSMState<ebi::FileSelect::TMgr> FPQ33ebi10FileSelect4TMgr(void) { }
+void Game::FSMState<ebi::FileSelect::TMgr>::exec(ebi::FileSelect::TMgr*) { }
 
 /*
  * --INFO--
  * Address:	803E2354
  * Size:	000004
  */
-void cleanup__Q24Game33FSMState<ebi::FileSelect::TMgr> FPQ33ebi10FileSelect4TMgr(void) { }
+void Game::FSMState<ebi::FileSelect::TMgr>::cleanup(ebi::FileSelect::TMgr*) { }
 
 /*
  * --INFO--
  * Address:	803E2358
  * Size:	000004
  */
-void resume__Q24Game33FSMState<ebi::FileSelect::TMgr> FPQ33ebi10FileSelect4TMgr(void) { }
+void Game::FSMState<ebi::FileSelect::TMgr>::resume(ebi::FileSelect::TMgr*) { }
 
 /*
  * --INFO--
  * Address:	803E235C
  * Size:	000004
  */
-void restart__Q24Game33FSMState<ebi::FileSelect::TMgr> FPQ33ebi10FileSelect4TMgr(void) { }
+void Game::FSMState<ebi::FileSelect::TMgr>::restart(ebi::FileSelect::TMgr*) { }
 
 /*
  * --INFO--
  * Address:	803E2360
  * Size:	000004
  */
-void init__Q24Game37StateMachine<ebi::FileSelect::TMgr> FPQ33ebi10FileSelect4TMgr(void) { }
+void Game::StateMachine<ebi::FileSelect::TMgr>::init(ebi::FileSelect::TMgr*) { }
 
 /*
  * --INFO--
  * Address:	803E2364
  * Size:	000038
  */
-void exec__Q24Game37StateMachine<ebi::FileSelect::TMgr> FPQ33ebi10FileSelect4TMgr(void)
+void Game::StateMachine<ebi::FileSelect::TMgr>::exec(ebi::FileSelect::TMgr*)
 {
 	/*
 	.loc_0x0:
@@ -2120,14 +1724,12 @@ void exec__Q24Game37StateMachine<ebi::FileSelect::TMgr> FPQ33ebi10FileSelect4TMg
 	*/
 }
 
-} // namespace ebi
-
 /*
  * --INFO--
  * Address:	803E239C
  * Size:	000064
  */
-void create__Q24Game37StateMachine<ebi::FileSelect::TMgr> Fi(void)
+void Game::StateMachine<ebi::FileSelect::TMgr>::create(int)
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -2163,7 +1765,7 @@ void create__Q24Game37StateMachine<ebi::FileSelect::TMgr> Fi(void)
  * Address:	803E2400
  * Size:	00009C
  */
-void transit__Q24Game37StateMachine<ebi::FileSelect::TMgr> FPQ33ebi10FileSelect4TMgriPQ24Game8StateArg(void)
+void Game::StateMachine<ebi::FileSelect::TMgr>::transit(ebi::FileSelect::TMgr*, int, Game::StateArg*)
 {
 	/*
 	.loc_0x0:
@@ -2220,7 +1822,7 @@ void transit__Q24Game37StateMachine<ebi::FileSelect::TMgr> FPQ33ebi10FileSelect4
  * Address:	803E249C
  * Size:	000084
  */
-void registerState__Q24Game37StateMachine<ebi::FileSelect::TMgr> FPQ24Game33FSMState<ebi::FileSelect::TMgr>(void)
+void Game::StateMachine<ebi::FileSelect::TMgr>::registerState(Game::FSMState<ebi::FileSelect::TMgr>*)
 {
 	/*
 	.loc_0x0:
@@ -2265,3 +1867,7 @@ void registerState__Q24Game37StateMachine<ebi::FileSelect::TMgr> FPQ24Game33FSMS
 	  blr
 	*/
 }
+
+} // namespace FileSelect
+
+} // namespace ebi
