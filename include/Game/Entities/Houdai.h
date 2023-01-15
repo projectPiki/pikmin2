@@ -11,6 +11,7 @@
 #include "Collinfo.h"
 #include "Sys/MatBaseAnimation.h"
 #include "Sys/MatBaseAnimator.h"
+#include "Game/IKSystemBase.h"
 
 /**
  * --Header for Man-at-Legs (Houdai)--
@@ -33,9 +34,6 @@ struct THdamaSight;
 } // namespace efx
 
 namespace Game {
-struct IKSystemMgr;
-struct IKSystemParms;
-
 namespace Houdai {
 struct HoudaiGroundCallBack;
 struct HoudaiShadowMgr;

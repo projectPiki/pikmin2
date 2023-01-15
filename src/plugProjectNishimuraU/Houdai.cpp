@@ -1025,23 +1025,9 @@ lbl_802C0128:
  */
 void Obj::doUpdateCommon()
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	mr       r31, r3
-	bl       doUpdateCommon__Q24Game9EnemyBaseFv
-	mr       r3, r31
-	bl       doUpdateCommonShotGun__Q34Game6Houdai3ObjFv
-	mr       r3, r31
-	bl       updateBossBGM__Q34Game6Houdai3ObjFv
-	lwz      r0, 0x14(r1)
-	lwz      r31, 0xc(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	EnemyBase::doUpdateCommon();
+	doUpdateCommonShotGun();
+	updateBossBGM();
 }
 
 /*
@@ -1305,7 +1291,7 @@ void Obj::doEndMovie() { effectDrawOn(); }
  * Address:	802C0484
  * Size:	000050
  */
-void Obj::getThrowupItemPosition(Vector3f*)
+void Obj::getThrowupItemPosition(Vector3f* position)
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -1986,19 +1972,7 @@ void Obj::setIKParameter()
  * Address:	802C0D3C
  * Size:	000020
  */
-void Obj::setIKSystemTargetPosition(Vector3f&)
-{
-	/*
-	lwz      r3, 0x2f0(r3)
-	lfs      f0, 0(r4)
-	stfs     f0, 0x2c(r3)
-	lfs      f0, 4(r4)
-	stfs     f0, 0x30(r3)
-	lfs      f0, 8(r4)
-	stfs     f0, 0x34(r3)
-	blr
-	*/
-}
+void Obj::setIKSystemTargetPosition(Vector3f& targetpos) { m_IKSystemMgr->m_targetPosition = targetpos; }
 
 /*
  * --INFO--
@@ -2075,160 +2049,56 @@ void Obj::doAnimationIKSystem()
  * Address:	802C0E1C
  * Size:	000024
  */
-void Obj::finishAnimationIKSystem()
-{
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	lwz      r3, 0x2f0(r3)
-	bl       resetAnimationCallBack__Q24Game11IKSystemMgrFv
-	lwz      r0, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
-}
+void Obj::finishAnimationIKSystem() { m_IKSystemMgr->resetAnimationCallBack(); }
 
 /*
  * --INFO--
  * Address:	802C0E40
  * Size:	000024
  */
-void Obj::startProgramedIK()
-{
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	lwz      r3, 0x2f0(r3)
-	bl       startProgramedIK__Q24Game11IKSystemMgrFv
-	lwz      r0, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
-}
+void Obj::startProgramedIK() { m_IKSystemMgr->startProgramedIK(); }
 
 /*
  * --INFO--
  * Address:	802C0E64
  * Size:	000024
  */
-void Obj::startIKMotion()
-{
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	lwz      r3, 0x2f0(r3)
-	bl       startIKMotion__Q24Game11IKSystemMgrFv
-	lwz      r0, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
-}
+void Obj::startIKMotion() { m_IKSystemMgr->startIKMotion(); }
 
 /*
  * --INFO--
  * Address:	802C0E88
  * Size:	000024
  */
-void Obj::finishIKMotion()
-{
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	lwz      r3, 0x2f0(r3)
-	bl       finishIKMotion__Q24Game11IKSystemMgrFv
-	lwz      r0, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
-}
+void Obj::finishIKMotion() { m_IKSystemMgr->finishIKMotion(); }
 
 /*
  * --INFO--
  * Address:	802C0EAC
  * Size:	000024
  */
-void Obj::forceFinishIKMotion()
-{
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	lwz      r3, 0x2f0(r3)
-	bl       forceFinishIKMotion__Q24Game11IKSystemMgrFv
-	lwz      r0, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
-}
+void Obj::forceFinishIKMotion() { m_IKSystemMgr->forceFinishIKMotion(); }
 
 /*
  * --INFO--
  * Address:	802C0ED0
  * Size:	000024
  */
-bool Obj::isFinishIKMotion()
-{
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	lwz      r3, 0x2f0(r3)
-	bl       isFinishIKMotion__Q24Game11IKSystemMgrFv
-	lwz      r0, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
-}
+bool Obj::isFinishIKMotion() { return m_IKSystemMgr->isFinishIKMotion(); }
 
 /*
  * --INFO--
  * Address:	802C0EF4
  * Size:	000024
  */
-void Obj::startBlendMotion()
-{
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	lwz      r3, 0x2f0(r3)
-	bl       startBlendMotion__Q24Game11IKSystemMgrFv
-	lwz      r0, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
-}
+void Obj::startBlendMotion() { m_IKSystemMgr->startBlendMotion(); }
 
 /*
  * --INFO--
  * Address:	802C0F18
  * Size:	000024
  */
-void Obj::finishBlendMotion()
-{
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	lwz      r3, 0x2f0(r3)
-	bl       finishBlendMotion__Q24Game11IKSystemMgrFv
-	lwz      r0, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
-}
+void Obj::finishBlendMotion() { m_IKSystemMgr->finishBlendMotion(); }
 
 /*
  * --INFO--
@@ -2331,17 +2201,8 @@ lbl_802C0FD0:
  */
 void Obj::doAnimationShadowSystem()
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	lwz      r3, 0x2fc(r3)
-	bl       update__Q34Game6Houdai15HoudaiShadowMgrFv
-	lwz      r0, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	// give HoudaiShaowMgr a proper class.
+	// m_shadowMgr->update();
 }
 
 /*
@@ -2476,6 +2337,7 @@ bool Obj::isTransitShotGunState()
  */
 void Obj::createShotGun()
 {
+	// m_shotGunMgr = new HoudaiShotGunMgr;
 	/*
 	stwu     r1, -0x10(r1)
 	mflr     r0
@@ -2505,220 +2367,77 @@ lbl_802C11A8:
  * Address:	802C11C0
  * Size:	000024
  */
-void Obj::setupShotGun()
-{
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	lwz      r3, 0x300(r3)
-	bl       setupShotGun__Q34Game6Houdai16HoudaiShotGunMgrFv
-	lwz      r0, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
-}
+void Obj::setupShotGun() { m_shotGunMgr->setupShotGun(); }
 
 /*
  * --INFO--
  * Address:	802C11E4
  * Size:	000024
  */
-void Obj::setShotGunTarget(Vector3f&)
-{
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	lwz      r3, 0x300(r3)
-	bl       "setShotGunTarget__Q34Game6Houdai16HoudaiShotGunMgrFR10Vector3<f>"
-	lwz      r0, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
-}
+void Obj::setShotGunTarget(Vector3f& target) { m_shotGunMgr->setShotGunTarget(target); }
 
 /*
  * --INFO--
  * Address:	802C1208
  * Size:	000024
  */
-void Obj::resetShotGunCallBack()
-{
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	lwz      r3, 0x300(r3)
-	bl       resetCallBack__Q34Game6Houdai16HoudaiShotGunMgrFv
-	lwz      r0, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
-}
+void Obj::resetShotGunCallBack() { m_shotGunMgr->resetCallBack(); }
 
 /*
  * --INFO--
  * Address:	802C122C
  * Size:	000024
  */
-void Obj::setShotGunCallBack()
-{
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	lwz      r3, 0x300(r3)
-	bl       setCallBack__Q34Game6Houdai16HoudaiShotGunMgrFv
-	lwz      r0, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
-}
+void Obj::setShotGunCallBack() { m_shotGunMgr->setCallBack(); }
 
 /*
  * --INFO--
  * Address:	802C1250
  * Size:	000024
  */
-void Obj::doUpdateShotGun()
-{
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	lwz      r3, 0x300(r3)
-	bl       doUpdate__Q34Game6Houdai16HoudaiShotGunMgrFv
-	lwz      r0, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
-}
+void Obj::doUpdateShotGun() { m_shotGunMgr->doUpdate(); }
 
 /*
  * --INFO--
  * Address:	802C1274
  * Size:	000024
  */
-void Obj::doUpdateCommonShotGun()
-{
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	lwz      r3, 0x300(r3)
-	bl       doUpdateCommon__Q34Game6Houdai16HoudaiShotGunMgrFv
-	lwz      r0, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
-}
+void Obj::doUpdateCommonShotGun() { m_shotGunMgr->doUpdateCommon(); }
 
 /*
  * --INFO--
  * Address:	802C1298
  * Size:	000024
  */
-void Obj::startShotGunRotation()
-{
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	lwz      r3, 0x300(r3)
-	bl       startRotation__Q34Game6Houdai16HoudaiShotGunMgrFv
-	lwz      r0, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
-}
+void Obj::startShotGunRotation() { m_shotGunMgr->startRotation(); }
 
 /*
  * --INFO--
  * Address:	802C12BC
  * Size:	000024
  */
-void Obj::finishShotGunRotation()
-{
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	lwz      r3, 0x300(r3)
-	bl       finishRotation__Q34Game6Houdai16HoudaiShotGunMgrFv
-	lwz      r0, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
-}
+void Obj::finishShotGunRotation() { m_shotGunMgr->finishRotation(); }
 
 /*
  * --INFO--
  * Address:	802C12E0
  * Size:	000024
  */
-bool Obj::isShotGunRotation()
-{
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	lwz      r3, 0x300(r3)
-	bl       isShotGunRotation__Q34Game6Houdai16HoudaiShotGunMgrFv
-	lwz      r0, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
-}
+bool Obj::isShotGunRotation() { return m_shotGunMgr->isShotGunRotation(); }
 
 /*
  * --INFO--
  * Address:	802C1304
  * Size:	000024
  */
-bool Obj::isShotGunLockOn()
-{
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	lwz      r3, 0x300(r3)
-	bl       isShotGunLockOn__Q34Game6Houdai16HoudaiShotGunMgrFv
-	lwz      r0, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
-}
+bool Obj::isShotGunLockOn() { return m_shotGunMgr->isShotGunLockOn(); }
 
 /*
  * --INFO--
  * Address:	802C1328
  * Size:	000024
  */
-bool Obj::isFinishShotGun()
-{
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	lwz      r3, 0x300(r3)
-	bl       isFinishShotGun__Q34Game6Houdai16HoudaiShotGunMgrFv
-	lwz      r0, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
-}
+bool Obj::isFinishShotGun() { return m_shotGunMgr->isFinishShotGun(); }
 
 /*
  * --INFO--
@@ -2727,31 +2446,8 @@ bool Obj::isFinishShotGun()
  */
 void Obj::emitShotGun()
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	mr       r31, r3
-	lwz      r3, 0x300(r3)
-	bl       emitShotGun__Q34Game6Houdai16HoudaiShotGunMgrFv
-	mr       r3, r31
-	lwz      r12, 0(r31)
-	lwz      r12, 0xf4(r12)
-	mtctr    r12
-	bctrl
-	lwz      r12, 0(r3)
-	li       r4, 0x5934
-	li       r5, 0
-	lwz      r12, 0xc(r12)
-	mtctr    r12
-	bctrl
-	lwz      r0, 0x14(r1)
-	lwz      r31, 0xc(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	m_shotGunMgr->emitShotGun();
+	getJAIObject()->startSound(PSSE_EN_HOUDAI_SHOT, 0);
 }
 
 /*
@@ -2759,20 +2455,7 @@ void Obj::emitShotGun()
  * Address:	802C13A8
  * Size:	000024
  */
-void Obj::forceFinishShotGun()
-{
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	lwz      r3, 0x300(r3)
-	bl       forceFinishShotGun__Q34Game6Houdai16HoudaiShotGunMgrFv
-	lwz      r0, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
-}
+void Obj::forceFinishShotGun() { return m_shotGunMgr->forceFinishShotGun(); }
 
 /*
  * --INFO--
@@ -4696,6 +4379,8 @@ void Obj::createAppearEffect()
  */
 void Obj::createAppearHahenEffect()
 {
+	// _3E4->create(nullptr);
+	// incomplete class?
 	/*
 	stwu     r1, -0x10(r1)
 	mflr     r0
