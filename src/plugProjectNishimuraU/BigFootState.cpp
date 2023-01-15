@@ -131,9 +131,9 @@ void StateStay::cleanup(EnemyBase* enemy) { }
  */
 void StateLand::init(EnemyBase* enemy, StateArg* stateArg)
 {
-	Obj* bigfoot         = static_cast<Obj*>(enemy);
-	bigfoot->m_nextState = BIGFOOT_NULL;
-	bigfoot->_2D4        = 0.001f;
+	Obj* bigfoot           = static_cast<Obj*>(enemy);
+	bigfoot->m_nextState   = BIGFOOT_NULL;
+	bigfoot->m_shadowScale = 0.001f;
 
 	bigfoot->enableEvent(0, EB_IsImmuneBitter);
 	bigfoot->disableEvent(0, EB_IsCullable);
@@ -195,7 +195,7 @@ void StateLand::cleanup(EnemyBase* enemy)
 	bigfoot->startProgramedIK();
 	bigfoot->setBossAppearBGM();
 	bigfoot->enableEvent(0, EB_IsCullable);
-	bigfoot->_2D4 = 1.0f;
+	bigfoot->m_shadowScale = 1.0f;
 	shadowMgr->setForceVisible(bigfoot, false);
 }
 

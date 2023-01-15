@@ -840,7 +840,7 @@ NISHIMURA:=\
 	$(BUILD_DIR)/src/plugProjectNishimuraU/BigFootAnimator.o\
 	$(BUILD_DIR)/src/plugProjectNishimuraU/BigFootMgr.o\
 	$(BUILD_DIR)/asm/plugProjectNishimuraU/BigFootShadow.o\
-	$(BUILD_DIR)/asm/plugProjectNishimuraU/BigFoot.o\
+	$(BUILD_DIR)/src/plugProjectNishimuraU/BigFoot.o\
 	$(BUILD_DIR)/asm/plugProjectNishimuraU/SnakeWholeState.o\
 	$(BUILD_DIR)/src/plugProjectNishimuraU/SnakeWholeAnimator.o\
 	$(BUILD_DIR)/src/plugProjectNishimuraU/SnakeWholeMgr.o\

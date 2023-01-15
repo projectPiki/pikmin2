@@ -116,7 +116,7 @@ struct IKSystemMgr {
 	void setAnimationCallBack();
 	void doUpdate();
 	void makeMatrix();
-	void getCollisionCentre(int);
+	Vector3f getCollisionCentre(int);
 	bool isCollisionCheck(CollPart*);
 	void updateController();
 	void setNextCentrePosition();

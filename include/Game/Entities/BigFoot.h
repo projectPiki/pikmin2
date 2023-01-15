@@ -7,6 +7,8 @@
 #include "Game/EnemyMgrBase.h"
 #include "Game/JointFuncs.h"
 #include "Game/EnemyBase.h"
+#include "Sys/MatBaseAnimation.h"
+#include "Sys/MatBaseAnimator.h"
 #include "efx/TOdama.h"
 #include "efx/TDama.h"
 #include "Collinfo.h"
@@ -14,11 +16,6 @@
 /**
  * --Header for Raging Long Legs (BigFoot)--
  */
-
-namespace Sys {
-struct MatTevRegAnimation;
-struct MatLoopAnimator;
-} // namespace Sys
 
 namespace Game {
 struct IKSystemMgr;
@@ -47,8 +44,6 @@ struct Obj : public EnemyBase {
 	virtual void onInit(CreatureInitArg* settings);         // _30
 	virtual void onKill(CreatureKillArg* settings);         // _34
 	virtual void doDirectDraw(Graphics& gfx);               // _50
-	virtual void inWaterCallback(WaterBox* wb);             // _84 (weak)
-	virtual void outWaterCallback();                        // _88 (weak)
 	virtual void collisionCallback(CollEvent& event);       // _EC
 	virtual void getShadowParam(ShadowParam& settings);     // _134
 	virtual bool needShadow();                              // _138
@@ -58,17 +53,22 @@ struct Obj : public EnemyBase {
 	virtual void doUpdateCommon();                          // _1D0
 	virtual void doAnimationCullingOff();                   // _1DC
 	virtual void doDebugDraw(Graphics&);                    // _1EC
-	virtual EnemyTypeID::EEnemyTypeID getEnemyTypeID();     // _258 (weak)
 	virtual void getThrowupItemPosition(Vector3f*);         // _268
 	virtual void getThrowupItemVelocity(Vector3f*);         // _26C
-	virtual void throwupItemInDeathProcedure();             // _270 (weak)
 	virtual bool damageCallBack(Creature*, f32, CollPart*); // _278
 	virtual void doStartStoneState();                       // _2A4
 	virtual void doFinishStoneState();                      // _2A8
-	virtual f32 getDamageCoeStoneState();                   // _2AC (weak)
 	virtual void doStartMovie();                            // _2F0
 	virtual void doEndMovie();                              // _2F4
 	virtual void setFSM(FSM*);                              // _2F8
+	virtual void inWaterCallback(WaterBox* wb) { }          // _84 (weak)
+	virtual void outWaterCallback() { }                     // _88 (weak)
+	virtual f32 getDamageCoeStoneState() { return 0.25f; }  // _2AC (weak)
+	virtual void throwupItemInDeathProcedure() { }          // _270 (weak)
+	virtual EnemyTypeID::EEnemyTypeID getEnemyTypeID()      // _258 (weak)
+	{
+		return EnemyTypeID::EnemyID_BigFoot;
+	}
 	//////////////// VTABLE END
 
 	void resetFlickWalkTimeMax();
@@ -123,34 +123,34 @@ struct Obj : public EnemyBase {
 
 	// _00 		= VTBL
 	// _00-_2BC	= EnemyBase
-	FSM* m_fsm;                                    // _2BC
-	f32 m_stateTimer;                              // _2C0
-	StateID m_nextState;                           // _2C4
-	Vector3f m_targetPosition;                     // _2C8
-	f32 _2D4;                                      // _2D4
-	f32 m_flickWalkTimeMax;                        // _2D8
-	bool _2DC;                                     // _2DC
-	bool m_isSmoking;                              // _2DD
-	bool m_isEnraged;                              // _2DE, next walk cycle will be fast
-	IKSystemMgr* m_ikSystemMgr;                    // _2E0
-	IKSystemParms* m_ikSystemParms;                // _2E4
-	BigFootGroundCallBack* m_groundCallBack;       // _2E8
-	BigFootShadowMgr* m_shadowMgr;                 // _2EC
-	Vector3f m_jointPositions[4][4];               // _2F0
-	efx::TChasePos2* _3B0[4];                      // _3B0
-	efx::TDamaFootw* _3C0[4];                      // _3C0
-	efx::TDamaSmoke* _3D0[3];                      // _3D0
-	efx::TOdamaHahen* _3DC[3][4];                  // _3DC
-	efx::TDamaDeadElecA* m_fxElectricDeath1[3][4]; // _40C
-	efx::TDamaDeadElecB* m_fxElectricDeath2[2][4]; // _43C
-	efx::TOdamaDeadHahenA* m_fxShards1[2][4];      // _45C
-	efx::TOdamaDeadHahenB* m_fxShards2[4];         // _47C
-	efx::TOdamaDeadHahenC1* m_fxShards3;           // _48C
-	efx::TOdamaDeadHahenC2* m_fxShards4;           // _490
-	efx::TOdamaFur1* m_fxMainHair;                 // _494
-	efx::TOdamaFur2* m_fxLegHair[4];               // _498
-	Sys::MatLoopAnimator* m_matLoopAnimator;       // _4A8
-	                                               // _4AC = PelletView
+	FSM* m_fsm;                                  // _2BC
+	f32 m_stateTimer;                            // _2C0
+	StateID m_nextState;                         // _2C4
+	Vector3f m_targetPosition;                   // _2C8
+	f32 m_shadowScale;                           // _2D4
+	f32 m_flickWalkTimeMax;                      // _2D8
+	bool _2DC;                                   // _2DC
+	bool m_isSmoking;                            // _2DD
+	bool m_isEnraged;                            // _2DE, next walk cycle will be fast
+	IKSystemMgr* m_ikSystemMgr;                  // _2E0
+	IKSystemParms* m_ikSystemParms;              // _2E4
+	BigFootGroundCallBack* m_groundCallBack;     // _2E8
+	BigFootShadowMgr* m_shadowMgr;               // _2EC
+	Vector3f m_jointPositions[4][4];             // _2F0
+	efx::TOdamaFoot* m_footFX[4];                // _3B0, stepping on ground
+	efx::TDamaFootw* m_footWFX[4];               // _3C0, stepping in water
+	efx::TDamaSmoke* m_smokeFX[3];               // _3D0, smoke
+	efx::TOdamaHahen* m_hahenFX[4][3];           // _3DC, shards
+	efx::TDamaDeadElecA* m_deadElecAFX[4][3];    // _40C, death electricity A
+	efx::TDamaDeadElecB* m_deadElecBFX[4][2];    // _43C, death electricity B
+	efx::TOdamaDeadHahenA* m_deadHahenAFX[4][2]; // _45C, death shards A
+	efx::TOdamaDeadHahenB* m_deadHahenBFX[4];    // _47C, death shards B
+	efx::TOdamaDeadHahenC1* m_deadHahenC1FX;     // _48C, death shards C1
+	efx::TOdamaDeadHahenC2* m_deadHahenC2FX;     // _490, death shards C2
+	efx::TOdamaFur1* m_bodyHairFX;               // _494
+	efx::TOdamaFur2* m_legHairFX[4];             // _498
+	Sys::MatLoopAnimator* m_matLoopAnimator;     // _4A8
+	                                             // _4AC = PelletView
 };
 
 struct Mgr : public EnemyMgrBase {
@@ -206,21 +206,21 @@ struct Parms : public EnemyParmsBase {
 		{
 		}
 
-		Parm<f32> m_baseCoefficient;     // _804
-		Parm<f32> m_raiseSlowdownFactor; // _82C
-		Parm<f32> m_downwardAccelFactor; // _854
-		Parm<f32> m_minDecelFactor;      // _87C
-		Parm<f32> m_maxDecelFactor;      // _8A4
-		Parm<f32> m_legSwing;            // _8CC
-		Parm<f32> m_baseCoefficients;    // _8F4
+		Parm<f32> m_baseCoefficient;     // _804, fp01
+		Parm<f32> m_raiseSlowdownFactor; // _82C, fp02
+		Parm<f32> m_downwardAccelFactor; // _854, fp03
+		Parm<f32> m_minDecelFactor;      // _87C, fp04
+		Parm<f32> m_maxDecelFactor;      // _8A4, fp05
+		Parm<f32> m_legSwing;            // _8CC, fp06
+		Parm<f32> m_baseCoefficients;    // _8F4, fp11
 		Parm<f32> m_fp12;                // _91C
 		Parm<f32> m_fp13;                // _944
 		Parm<f32> m_fp14;                // _96C
 		Parm<f32> m_fp15;                // _994
 		Parm<f32> m_fp16;                // _9BC
-		Parm<f32> m_movementOffset;      // _9E4
-		Parm<f32> m_normalTravelTime;    // _A0C
-		Parm<f32> m_postShakeTravelTime; // _A34
+		Parm<f32> m_movementOffset;      // _9E4, fp17
+		Parm<f32> m_normalTravelTime;    // _A0C, fp20
+		Parm<f32> m_postShakeTravelTime; // _A34, fp21
 	};
 
 	Parms() { }
