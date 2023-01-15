@@ -3,6 +3,8 @@
 
 #include "types.h"
 #include "ebi/Screen/TScreenBase.h"
+#include "ebi/Screen/TMainScreen.h"
+#include "ebi/Utility.h"
 #include "Game/StateMachine.h"
 
 struct Controller;
@@ -221,8 +223,9 @@ struct FSMState10_FinishCopy : public FSMState_Warning {
 };
 
 struct TMgr {
-	TMgr() { }
-	~TMgr();
+	TMgr();
+
+	~TMgr() { }
 	void perseInfo(Game::MemoryCard::PlayerFileInfo&);
 	void startSeq();
 	bool isFinish();
@@ -230,8 +233,18 @@ struct TMgr {
 	void update();
 	void draw();
 
-	u8 _00[0xc60];
-	// TODO: members
+	Screen::FileSelect::TMainScreen m_mainScreen; // _00
+	u32 _BF8;                                     // _BF8
+	u32 _BFC;                                     // _BFC
+	Controller* m_controller;                     // _C00
+	EUTPadInterface_countNum m_countNumInterface; // _C04
+	int _C30;                                     // _C30
+	u8 _C34[0x4];                                 // _C34, unknown
+	int _C38;                                     // _C38
+	u8 _C3C;                                      // _C3C
+	FSMStateMachine m_stateMachine;               // _C40
+	FSMState* m_currentState;                     // _C5C
+	                                              // TODO: members
 };
 } // namespace FS
 } // namespace ebi

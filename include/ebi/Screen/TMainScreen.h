@@ -61,7 +61,8 @@ struct TMainScreen : public TScreenBase {
 	void setIconColorAlpha_(u8);
 
 	// _00     = VTBL
-	// _00-_08 = TScreenBase
+	// _00-_0C = TScreenBase
+	u8 _0C[0xBEC]; // _0C, unknown
 };
 } // namespace FileSelect
 } // namespace Screen

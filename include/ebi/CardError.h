@@ -588,8 +588,8 @@ struct TMgr : Screen::TMemoryCard {
 	~TMgr();
 
 	// _00-_298 = TMemoryCard
-	u32 m_counter;
-	int _29C;
+	u32 m_counter;                  // _298
+	int _29C;                       // _29C
 	u32 m_endStat;                  // _2A0, unknown
 	int m_isBroken;                 // _2A4
 	FSMStateMachine m_stateMachine; // _2A8

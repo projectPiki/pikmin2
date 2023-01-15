@@ -47,18 +47,6 @@ struct FSMState : public Game::FSMState<TMgr> {
 	char* m_name;
 };
 
-struct FSMState_Standby : public FSMState {
-	inline FSMState_Standby()
-	    : FSMState(FSSTATE_Standby, "Standby")
-	{
-	}
-
-	// no vtable?
-
-	// _00     = VTBL
-	// _00-_0C = FSMState
-};
-
 struct CardErrorStateArg : public Game::StateArg {
 	int _00;
 };
@@ -78,7 +66,7 @@ struct FSMState_CardError : public FSMState {
 
 struct FSMState_EmptyUpdate : public FSMState {
 	inline FSMState_EmptyUpdate()
-	    : FSMState(FSSTATE_EmptyUpdate, "EmptyUpdate")
+	    : FSMState(FSSTATE_EmptyUpdate, "EnptyUpdate") // nice devs
 	{
 		m_counter = 0;
 		_14       = 0;
@@ -183,19 +171,20 @@ struct TMgr : public JKRDisposer {
 	void deleteInstance();
 	TMgr* getInstance();
 
-	// _00 = VTBL
-	FS::TMgr m_mgrFS;
-	CardError::TMgr m_cardErrorMgr;
-	u32 m_counter;
-	int _F44;
-	Game::MemoryCard::PlayerFileInfo m_player;
-	int m_state;
-	bool _FE8;
-	bool m_inError;
-	FSMStateMachine m_fsm;
-	FSMState* m_currentState;
-
 	static TMgr* msInstance;
+
+	// _00     = VTBL
+	// _00-_18 = JKRDisposer
+	FS::TMgr m_mgrFS;                          // _18
+	CardError::TMgr m_cardErrorMgr;            // _C78
+	u32 m_counter;                             // _F40
+	int _F44;                                  // _F44
+	Game::MemoryCard::PlayerFileInfo m_player; // _F48
+	int m_state;                               // _FE4
+	bool _FE8;                                 // _FE8
+	bool m_inError;                            // _FE9
+	FSMStateMachine m_fsm;                     // _FEC
+	FSMState* m_currentState;                  // _1008
 };
 } // namespace FileSelect
 } // namespace ebi

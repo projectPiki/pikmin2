@@ -3,364 +3,12 @@
 #include "Game/MemoryCard/Mgr.h"
 #include "MemoryCardMgr.h"
 
-/*
-    Generated from dpostproc
-
-    .section .rodata  # 0x804732E0 - 0x8049E220
-    .global lbl_80497010
-    lbl_80497010:
-        .4byte 0x65626946
-        .4byte 0x696C6553
-        .4byte 0x656C6563
-        .4byte 0x744D6772
-        .4byte 0x00000000
-        .4byte 0x456E7074
-        .4byte 0x79557064
-        .4byte 0x61746500
-        .4byte 0x4D6F756E
-        .4byte 0x74436865
-        .4byte 0x636B0000
-        .4byte 0x47657450
-        .4byte 0x6C617965
-        .4byte 0x72486561
-        .4byte 0x64657200
-        .4byte 0x43617264
-        .4byte 0x4572726F
-        .4byte 0x72000000
-        .4byte 0x53637265
-        .4byte 0x656E4669
-        .4byte 0x6C655365
-        .4byte 0x6C656374
-        .4byte 0x00000000
-    .global lbl_8049706C
-    lbl_8049706C:
-        .4byte 0x65626946
-        .4byte 0x696C6553
-        .4byte 0x656C6563
-        .4byte 0x744D6772
-        .4byte 0x2E637070
-        .4byte 0x00000000
-    .global lbl_80497084
-    lbl_80497084:
-        .asciz "P2Assert"
-        .skip 3
-        .4byte 0x81A68381
-        .4byte 0x8382838A
-        .4byte 0x815B834A
-        .4byte 0x815B8368
-        .4byte 0x83478389
-        .4byte 0x815B3A91
-        .4byte 0x7A92E88A
-        .4byte 0x4F82CC83
-        .4byte 0x50815B83
-        .4byte 0x5882C582
-        .4byte 0xB70A0000
-        .4byte 0x81A6838D
-        .4byte 0x815B8368
-        .4byte 0x82C58356
-        .4byte 0x838A8341
-        .4byte 0x838B8347
-        .4byte 0x8389815B
-        .4byte 0x82CD82A0
-        .4byte 0x82E882A6
-        .4byte 0x82C882A2
-        .4byte 0x0A000000
-        .4byte 0x81A68140
-        .4byte 0x6D67722D
-        .4byte 0x3E6D4361
-        .4byte 0x72644572
-        .4byte 0x726F724D
-        .4byte 0x67722D3E
-        .4byte 0x67657445
-        .4byte 0x6E643D25
-        .4byte 0x642082C1
-        .4byte 0x82C482A0
-        .4byte 0x82E882A6
-        .4byte 0x82C882A2
-        .4byte 0x81490A00
-
-    .section .data, "wa"  # 0x8049E220 - 0x804EFC20
-    .global lbl_804E9678
-    lbl_804E9678:
-        .4byte lbl_803E177C
-        .4byte lbl_803E181C
-        .4byte lbl_803E1768
-        .4byte lbl_803E17CC
-        .4byte lbl_803E17E0
-        .4byte lbl_803E1790
-        .4byte lbl_803E17A4
-        .4byte lbl_803E17B8
-        .4byte lbl_803E17F4
-        .4byte lbl_803E1808
-        .4byte lbl_803E1858
-        .4byte lbl_803E1858
-        .4byte lbl_803E1858
-        .4byte lbl_803E1844
-        .4byte lbl_803E1830
-    .global __vt__Q33ebi10FileSelect4TMgr
-    __vt__Q33ebi10FileSelect4TMgr:
-        .4byte 0
-        .4byte 0
-        .4byte __dt__Q33ebi10FileSelect4TMgrFv
-    .global "__vt__Q24Game37StateMachine<Q33ebi10FileSelect4TMgr>"
-    "__vt__Q24Game37StateMachine<Q33ebi10FileSelect4TMgr>":
-        .4byte 0
-        .4byte 0
-        .4byte
-   "init__Q24Game37StateMachine<Q33ebi10FileSelect4TMgr>FPQ33ebi10FileSelect4TMgr"
-        .4byte
-   "start__Q24Game37StateMachine<Q33ebi10FileSelect4TMgr>FPQ33ebi10FileSelect4TMgriPQ24Game8StateArg"
-        .4byte
-   "exec__Q24Game37StateMachine<Q33ebi10FileSelect4TMgr>FPQ33ebi10FileSelect4TMgr"
-        .4byte
-   "transit__Q24Game37StateMachine<Q33ebi10FileSelect4TMgr>FPQ33ebi10FileSelect4TMgriPQ24Game8StateArg"
-    .global __vt__Q33ebi10FileSelect18FSMState_CardError
-    __vt__Q33ebi10FileSelect18FSMState_CardError:
-        .4byte 0
-        .4byte 0
-        .4byte
-   init__Q33ebi10FileSelect8FSMStateFPQ33ebi10FileSelect4TMgrPQ24Game8StateArg
-        .4byte exec__Q33ebi10FileSelect8FSMStateFPQ33ebi10FileSelect4TMgr
-        .4byte
-   "cleanup__Q24Game33FSMState<Q33ebi10FileSelect4TMgr>FPQ33ebi10FileSelect4TMgr"
-        .4byte
-   "resume__Q24Game33FSMState<Q33ebi10FileSelect4TMgr>FPQ33ebi10FileSelect4TMgr"
-        .4byte
-   "restart__Q24Game33FSMState<Q33ebi10FileSelect4TMgr>FPQ33ebi10FileSelect4TMgr"
-        .4byte
-   "transit__Q24Game33FSMState<Q33ebi10FileSelect4TMgr>FPQ33ebi10FileSelect4TMgriPQ24Game8StateArg"
-        .4byte
-   do_init__Q33ebi10FileSelect18FSMState_CardErrorFPQ33ebi10FileSelect4TMgrPQ24Game8StateArg
-        .4byte
-   do_exec__Q33ebi10FileSelect18FSMState_CardErrorFPQ33ebi10FileSelect4TMgr
-    .global __vt__Q33ebi10FileSelect25FSMState_ScreenFileSelect
-    __vt__Q33ebi10FileSelect25FSMState_ScreenFileSelect:
-        .4byte 0
-        .4byte 0
-        .4byte
-   init__Q33ebi10FileSelect8FSMStateFPQ33ebi10FileSelect4TMgrPQ24Game8StateArg
-        .4byte exec__Q33ebi10FileSelect8FSMStateFPQ33ebi10FileSelect4TMgr
-        .4byte
-   "cleanup__Q24Game33FSMState<Q33ebi10FileSelect4TMgr>FPQ33ebi10FileSelect4TMgr"
-        .4byte
-   "resume__Q24Game33FSMState<Q33ebi10FileSelect4TMgr>FPQ33ebi10FileSelect4TMgr"
-        .4byte
-   "restart__Q24Game33FSMState<Q33ebi10FileSelect4TMgr>FPQ33ebi10FileSelect4TMgr"
-        .4byte
-   "transit__Q24Game33FSMState<Q33ebi10FileSelect4TMgr>FPQ33ebi10FileSelect4TMgriPQ24Game8StateArg"
-        .4byte
-   do_init__Q33ebi10FileSelect25FSMState_ScreenFileSelectFPQ33ebi10FileSelect4TMgrPQ24Game8StateArg
-        .4byte
-   do_exec__Q33ebi10FileSelect25FSMState_ScreenFileSelectFPQ33ebi10FileSelect4TMgr
-    .global __vt__Q33ebi10FileSelect24FSMState_GetPlayerHeader
-    __vt__Q33ebi10FileSelect24FSMState_GetPlayerHeader:
-        .4byte 0
-        .4byte 0
-        .4byte
-   init__Q33ebi10FileSelect8FSMStateFPQ33ebi10FileSelect4TMgrPQ24Game8StateArg
-        .4byte exec__Q33ebi10FileSelect8FSMStateFPQ33ebi10FileSelect4TMgr
-        .4byte
-   "cleanup__Q24Game33FSMState<Q33ebi10FileSelect4TMgr>FPQ33ebi10FileSelect4TMgr"
-        .4byte
-   "resume__Q24Game33FSMState<Q33ebi10FileSelect4TMgr>FPQ33ebi10FileSelect4TMgr"
-        .4byte
-   "restart__Q24Game33FSMState<Q33ebi10FileSelect4TMgr>FPQ33ebi10FileSelect4TMgr"
-        .4byte
-   "transit__Q24Game33FSMState<Q33ebi10FileSelect4TMgr>FPQ33ebi10FileSelect4TMgriPQ24Game8StateArg"
-        .4byte
-   do_init__Q33ebi10FileSelect20FSMState_CardRequestFPQ33ebi10FileSelect4TMgrPQ24Game8StateArg
-        .4byte
-   do_exec__Q33ebi10FileSelect20FSMState_CardRequestFPQ33ebi10FileSelect4TMgr
-        .4byte
-   do_cardRequest__Q33ebi10FileSelect24FSMState_GetPlayerHeaderFPQ33ebi10FileSelect4TMgr
-        .4byte
-   do_transitCardReady__Q33ebi10FileSelect24FSMState_GetPlayerHeaderFPQ33ebi10FileSelect4TMgr
-        .4byte
-   do_transitCardNoCard__Q33ebi10FileSelect20FSMState_CardRequestFPQ33ebi10FileSelect4TMgr
-        .4byte
-   do_transitCardIOError__Q33ebi10FileSelect20FSMState_CardRequestFPQ33ebi10FileSelect4TMgr
-        .4byte
-   do_transitCardWrongDevice__Q33ebi10FileSelect20FSMState_CardRequestFPQ33ebi10FileSelect4TMgr
-        .4byte
-   do_transitCardWrongSector__Q33ebi10FileSelect20FSMState_CardRequestFPQ33ebi10FileSelect4TMgr
-        .4byte
-   do_transitCardBroken__Q33ebi10FileSelect20FSMState_CardRequestFPQ33ebi10FileSelect4TMgr
-        .4byte
-   do_transitCardEncoding__Q33ebi10FileSelect20FSMState_CardRequestFPQ33ebi10FileSelect4TMgr
-        .4byte
-   do_transitCardNoFileSpace__Q33ebi10FileSelect20FSMState_CardRequestFPQ33ebi10FileSelect4TMgr
-        .4byte
-   do_transitCardNoFileEntry__Q33ebi10FileSelect20FSMState_CardRequestFPQ33ebi10FileSelect4TMgr
-        .4byte
-   do_transitCardFileOpenError__Q33ebi10FileSelect20FSMState_CardRequestFPQ33ebi10FileSelect4TMgr
-        .4byte
-   do_transitCardSerialNoError__Q33ebi10FileSelect24FSMState_GetPlayerHeaderFPQ33ebi10FileSelect4TMgr
-        .4byte
-   do_transitCardPlayerDataBroken__Q33ebi10FileSelect20FSMState_CardRequestFPQ33ebi10FileSelect4TMgr
-    .global __vt__Q33ebi10FileSelect19FSMState_MountCheck
-    __vt__Q33ebi10FileSelect19FSMState_MountCheck:
-        .4byte 0
-        .4byte 0
-        .4byte
-   init__Q33ebi10FileSelect8FSMStateFPQ33ebi10FileSelect4TMgrPQ24Game8StateArg
-        .4byte exec__Q33ebi10FileSelect8FSMStateFPQ33ebi10FileSelect4TMgr
-        .4byte
-   "cleanup__Q24Game33FSMState<Q33ebi10FileSelect4TMgr>FPQ33ebi10FileSelect4TMgr"
-        .4byte
-   "resume__Q24Game33FSMState<Q33ebi10FileSelect4TMgr>FPQ33ebi10FileSelect4TMgr"
-        .4byte
-   "restart__Q24Game33FSMState<Q33ebi10FileSelect4TMgr>FPQ33ebi10FileSelect4TMgr"
-        .4byte
-   "transit__Q24Game33FSMState<Q33ebi10FileSelect4TMgr>FPQ33ebi10FileSelect4TMgriPQ24Game8StateArg"
-        .4byte
-   do_init__Q33ebi10FileSelect20FSMState_CardRequestFPQ33ebi10FileSelect4TMgrPQ24Game8StateArg
-        .4byte
-   do_exec__Q33ebi10FileSelect20FSMState_CardRequestFPQ33ebi10FileSelect4TMgr
-        .4byte
-   do_cardRequest__Q33ebi10FileSelect19FSMState_MountCheckFPQ33ebi10FileSelect4TMgr
-        .4byte
-   do_transitCardReady__Q33ebi10FileSelect19FSMState_MountCheckFPQ33ebi10FileSelect4TMgr
-        .4byte
-   do_transitCardNoCard__Q33ebi10FileSelect20FSMState_CardRequestFPQ33ebi10FileSelect4TMgr
-        .4byte
-   do_transitCardIOError__Q33ebi10FileSelect20FSMState_CardRequestFPQ33ebi10FileSelect4TMgr
-        .4byte
-   do_transitCardWrongDevice__Q33ebi10FileSelect20FSMState_CardRequestFPQ33ebi10FileSelect4TMgr
-        .4byte
-   do_transitCardWrongSector__Q33ebi10FileSelect20FSMState_CardRequestFPQ33ebi10FileSelect4TMgr
-        .4byte
-   do_transitCardBroken__Q33ebi10FileSelect20FSMState_CardRequestFPQ33ebi10FileSelect4TMgr
-        .4byte
-   do_transitCardEncoding__Q33ebi10FileSelect20FSMState_CardRequestFPQ33ebi10FileSelect4TMgr
-        .4byte
-   do_transitCardNoFileSpace__Q33ebi10FileSelect20FSMState_CardRequestFPQ33ebi10FileSelect4TMgr
-        .4byte
-   do_transitCardNoFileEntry__Q33ebi10FileSelect20FSMState_CardRequestFPQ33ebi10FileSelect4TMgr
-        .4byte
-   do_transitCardFileOpenError__Q33ebi10FileSelect20FSMState_CardRequestFPQ33ebi10FileSelect4TMgr
-        .4byte
-   do_transitCardSerialNoError__Q33ebi10FileSelect20FSMState_CardRequestFPQ33ebi10FileSelect4TMgr
-        .4byte
-   do_transitCardPlayerDataBroken__Q33ebi10FileSelect20FSMState_CardRequestFPQ33ebi10FileSelect4TMgr
-    .global __vt__Q33ebi10FileSelect20FSMState_CardRequest
-    __vt__Q33ebi10FileSelect20FSMState_CardRequest:
-        .4byte 0
-        .4byte 0
-        .4byte
-   init__Q33ebi10FileSelect8FSMStateFPQ33ebi10FileSelect4TMgrPQ24Game8StateArg
-        .4byte exec__Q33ebi10FileSelect8FSMStateFPQ33ebi10FileSelect4TMgr
-        .4byte
-   "cleanup__Q24Game33FSMState<Q33ebi10FileSelect4TMgr>FPQ33ebi10FileSelect4TMgr"
-        .4byte
-   "resume__Q24Game33FSMState<Q33ebi10FileSelect4TMgr>FPQ33ebi10FileSelect4TMgr"
-        .4byte
-   "restart__Q24Game33FSMState<Q33ebi10FileSelect4TMgr>FPQ33ebi10FileSelect4TMgr"
-        .4byte
-   "transit__Q24Game33FSMState<Q33ebi10FileSelect4TMgr>FPQ33ebi10FileSelect4TMgriPQ24Game8StateArg"
-        .4byte
-   do_init__Q33ebi10FileSelect20FSMState_CardRequestFPQ33ebi10FileSelect4TMgrPQ24Game8StateArg
-        .4byte
-   do_exec__Q33ebi10FileSelect20FSMState_CardRequestFPQ33ebi10FileSelect4TMgr
-        .4byte 0
-        .4byte 0
-        .4byte
-   do_transitCardNoCard__Q33ebi10FileSelect20FSMState_CardRequestFPQ33ebi10FileSelect4TMgr
-        .4byte
-   do_transitCardIOError__Q33ebi10FileSelect20FSMState_CardRequestFPQ33ebi10FileSelect4TMgr
-        .4byte
-   do_transitCardWrongDevice__Q33ebi10FileSelect20FSMState_CardRequestFPQ33ebi10FileSelect4TMgr
-        .4byte
-   do_transitCardWrongSector__Q33ebi10FileSelect20FSMState_CardRequestFPQ33ebi10FileSelect4TMgr
-        .4byte
-   do_transitCardBroken__Q33ebi10FileSelect20FSMState_CardRequestFPQ33ebi10FileSelect4TMgr
-        .4byte
-   do_transitCardEncoding__Q33ebi10FileSelect20FSMState_CardRequestFPQ33ebi10FileSelect4TMgr
-        .4byte
-   do_transitCardNoFileSpace__Q33ebi10FileSelect20FSMState_CardRequestFPQ33ebi10FileSelect4TMgr
-        .4byte
-   do_transitCardNoFileEntry__Q33ebi10FileSelect20FSMState_CardRequestFPQ33ebi10FileSelect4TMgr
-        .4byte
-   do_transitCardFileOpenError__Q33ebi10FileSelect20FSMState_CardRequestFPQ33ebi10FileSelect4TMgr
-        .4byte
-   do_transitCardSerialNoError__Q33ebi10FileSelect20FSMState_CardRequestFPQ33ebi10FileSelect4TMgr
-        .4byte
-   do_transitCardPlayerDataBroken__Q33ebi10FileSelect20FSMState_CardRequestFPQ33ebi10FileSelect4TMgr
-    .global __vt__Q33ebi10FileSelect20FSMState_EmptyUpdate
-    __vt__Q33ebi10FileSelect20FSMState_EmptyUpdate:
-        .4byte 0
-        .4byte 0
-        .4byte
-   init__Q33ebi10FileSelect8FSMStateFPQ33ebi10FileSelect4TMgrPQ24Game8StateArg
-        .4byte exec__Q33ebi10FileSelect8FSMStateFPQ33ebi10FileSelect4TMgr
-        .4byte
-   "cleanup__Q24Game33FSMState<Q33ebi10FileSelect4TMgr>FPQ33ebi10FileSelect4TMgr"
-        .4byte
-   "resume__Q24Game33FSMState<Q33ebi10FileSelect4TMgr>FPQ33ebi10FileSelect4TMgr"
-        .4byte
-   "restart__Q24Game33FSMState<Q33ebi10FileSelect4TMgr>FPQ33ebi10FileSelect4TMgr"
-        .4byte
-   "transit__Q24Game33FSMState<Q33ebi10FileSelect4TMgr>FPQ33ebi10FileSelect4TMgriPQ24Game8StateArg"
-        .4byte
-   do_init__Q33ebi10FileSelect20FSMState_EmptyUpdateFPQ33ebi10FileSelect4TMgrPQ24Game8StateArg
-        .4byte
-   do_exec__Q33ebi10FileSelect20FSMState_EmptyUpdateFPQ33ebi10FileSelect4TMgr
-    .global __vt__Q33ebi10FileSelect8FSMState
-    __vt__Q33ebi10FileSelect8FSMState:
-        .4byte 0
-        .4byte 0
-        .4byte
-   init__Q33ebi10FileSelect8FSMStateFPQ33ebi10FileSelect4TMgrPQ24Game8StateArg
-        .4byte exec__Q33ebi10FileSelect8FSMStateFPQ33ebi10FileSelect4TMgr
-        .4byte
-   "cleanup__Q24Game33FSMState<Q33ebi10FileSelect4TMgr>FPQ33ebi10FileSelect4TMgr"
-        .4byte
-   "resume__Q24Game33FSMState<Q33ebi10FileSelect4TMgr>FPQ33ebi10FileSelect4TMgr"
-        .4byte
-   "restart__Q24Game33FSMState<Q33ebi10FileSelect4TMgr>FPQ33ebi10FileSelect4TMgr"
-        .4byte
-   "transit__Q24Game33FSMState<Q33ebi10FileSelect4TMgr>FPQ33ebi10FileSelect4TMgriPQ24Game8StateArg"
-        .4byte
-   do_init__Q33ebi10FileSelect8FSMStateFPQ33ebi10FileSelect4TMgrPQ24Game8StateArg
-        .4byte do_exec__Q33ebi10FileSelect8FSMStateFPQ33ebi10FileSelect4TMgr
-    .global "__vt__Q24Game33FSMState<Q33ebi10FileSelect4TMgr>"
-    "__vt__Q24Game33FSMState<Q33ebi10FileSelect4TMgr>":
-        .4byte 0
-        .4byte 0
-        .4byte
-   "init__Q24Game33FSMState<Q33ebi10FileSelect4TMgr>FPQ33ebi10FileSelect4TMgrPQ24Game8StateArg"
-        .4byte
-   "exec__Q24Game33FSMState<Q33ebi10FileSelect4TMgr>FPQ33ebi10FileSelect4TMgr"
-        .4byte
-   "cleanup__Q24Game33FSMState<Q33ebi10FileSelect4TMgr>FPQ33ebi10FileSelect4TMgr"
-        .4byte
-   "resume__Q24Game33FSMState<Q33ebi10FileSelect4TMgr>FPQ33ebi10FileSelect4TMgr"
-        .4byte
-   "restart__Q24Game33FSMState<Q33ebi10FileSelect4TMgr>FPQ33ebi10FileSelect4TMgr"
-        .4byte
-   "transit__Q24Game33FSMState<Q33ebi10FileSelect4TMgr>FPQ33ebi10FileSelect4TMgriPQ24Game8StateArg"
-    .global __vt__Q33ebi10FileSelect15FSMStateMachine
-    __vt__Q33ebi10FileSelect15FSMStateMachine:
-        .4byte 0
-        .4byte 0
-        .4byte
-   init__Q33ebi10FileSelect15FSMStateMachineFPQ33ebi10FileSelect4TMgr .4byte
-   "start__Q24Game37StateMachine<Q33ebi10FileSelect4TMgr>FPQ33ebi10FileSelect4TMgriPQ24Game8StateArg"
-        .4byte
-   "exec__Q24Game37StateMachine<Q33ebi10FileSelect4TMgr>FPQ33ebi10FileSelect4TMgr"
-        .4byte
-   "transit__Q24Game37StateMachine<Q33ebi10FileSelect4TMgr>FPQ33ebi10FileSelect4TMgriPQ24Game8StateArg"
-        .4byte 0
-
-    .section .sbss # 0x80514D80 - 0x80516360
-    .global msInstance__Q33ebi10FileSelect4TMgr
-    msInstance__Q33ebi10FileSelect4TMgr:
-        .skip 0x8
-*/
-
 static const char name[] = "ebiFileSelectMgr";
 
 namespace ebi {
 namespace FileSelect {
+
+TMgr* TMgr::msInstance;
 
 /*
  * --INFO--
@@ -370,179 +18,12 @@ namespace FileSelect {
 void FSMStateMachine::init(TMgr* mgr)
 {
 	create(6);
-	registerState(new FSMState_Standby);
+	registerState(new FSMState(FSSTATE_Standby, "Standby"));
 	registerState(new FSMState_EmptyUpdate);
 	registerState(new FSMState_MountCheck);
 	registerState(new FSMState_GetPlayerHeader);
 	registerState(new FSMState_CardError);
 	registerState(new FSMState_ScreenFileSelect);
-
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	lis      r4, lbl_80497010@ha
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	addi     r31, r4, lbl_80497010@l
-	li       r4, 6
-	stw      r30, 8(r1)
-	mr       r30, r3
-	bl       "create__Q24Game37StateMachine<Q33ebi10FileSelect4TMgr>Fi"
-	li       r3, 0x10
-	bl       __nw__FUl
-	or.      r4, r3, r3
-	beq      lbl_803E1344
-	lis      r5, "__vt__Q24Game33FSMState<Q33ebi10FileSelect4TMgr>"@ha
-	lis      r3, __vt__Q33ebi10FileSelect8FSMState@ha
-	addi     r0, r5, "__vt__Q24Game33FSMState<Q33ebi10FileSelect4TMgr>"@l
-	li       r5, 0
-	stw      r0, 0(r4)
-	addi     r3, r3, __vt__Q33ebi10FileSelect8FSMState@l
-	addi     r0, r2, lbl_8051FC18@sda21
-	stw      r5, 4(r4)
-	stw      r5, 8(r4)
-	stw      r3, 0(r4)
-	stw      r0, 0xc(r4)
-
-lbl_803E1344:
-	mr       r3, r30
-	bl
-"registerState__Q24Game37StateMachine<Q33ebi10FileSelect4TMgr>FPQ24Game33FSMState<Q33ebi10FileSelect4TMgr>"
-	li       r3, 0x18
-	bl       __nw__FUl
-	or.      r4, r3, r3
-	beq      lbl_803E13A0
-	lis      r3, "__vt__Q24Game33FSMState<Q33ebi10FileSelect4TMgr>"@ha
-	lis      r5, __vt__Q33ebi10FileSelect8FSMState@ha
-	addi     r0, r3, "__vt__Q24Game33FSMState<Q33ebi10FileSelect4TMgr>"@l
-	lis      r3, __vt__Q33ebi10FileSelect20FSMState_EmptyUpdate@ha
-	stw      r0, 0(r4)
-	li       r0, 1
-	li       r7, 0
-	addi     r6, r5, __vt__Q33ebi10FileSelect8FSMState@l
-	stw      r0, 4(r4)
-	addi     r5, r31, 0x14
-	addi     r0, r3, __vt__Q33ebi10FileSelect20FSMState_EmptyUpdate@l
-	stw      r7, 8(r4)
-	stw      r6, 0(r4)
-	stw      r5, 0xc(r4)
-	stw      r0, 0(r4)
-	stw      r7, 0x10(r4)
-	stw      r7, 0x14(r4)
-
-lbl_803E13A0:
-	mr       r3, r30
-	bl
-"registerState__Q24Game37StateMachine<Q33ebi10FileSelect4TMgr>FPQ24Game33FSMState<Q33ebi10FileSelect4TMgr>"
-	li       r3, 0x18
-	bl       __nw__FUl
-	or.      r4, r3, r3
-	beq      lbl_803E1400
-	lis      r3, "__vt__Q24Game33FSMState<Q33ebi10FileSelect4TMgr>"@ha
-	lis      r6, __vt__Q33ebi10FileSelect8FSMState@ha
-	addi     r0, r3, "__vt__Q24Game33FSMState<Q33ebi10FileSelect4TMgr>"@l
-	lis      r5, __vt__Q33ebi10FileSelect20FSMState_CardRequest@ha
-	stw      r0, 0(r4)
-	li       r7, 2
-	lis      r3, __vt__Q33ebi10FileSelect19FSMState_MountCheck@ha
-	li       r0, 0
-	stw      r7, 4(r4)
-	addi     r7, r6, __vt__Q33ebi10FileSelect8FSMState@l
-	addi     r6, r31, 0x20
-	addi     r5, r5, __vt__Q33ebi10FileSelect20FSMState_CardRequest@l
-	stw      r0, 8(r4)
-	addi     r0, r3, __vt__Q33ebi10FileSelect19FSMState_MountCheck@l
-	stw      r7, 0(r4)
-	stw      r6, 0xc(r4)
-	stw      r5, 0(r4)
-	stw      r0, 0(r4)
-
-lbl_803E1400:
-	mr       r3, r30
-	bl
-"registerState__Q24Game37StateMachine<Q33ebi10FileSelect4TMgr>FPQ24Game33FSMState<Q33ebi10FileSelect4TMgr>"
-	li       r3, 0x18
-	bl       __nw__FUl
-	or.      r4, r3, r3
-	beq      lbl_803E1460
-	lis      r3, "__vt__Q24Game33FSMState<Q33ebi10FileSelect4TMgr>"@ha
-	lis      r6, __vt__Q33ebi10FileSelect8FSMState@ha
-	addi     r0, r3, "__vt__Q24Game33FSMState<Q33ebi10FileSelect4TMgr>"@l
-	lis      r5, __vt__Q33ebi10FileSelect20FSMState_CardRequest@ha
-	stw      r0, 0(r4)
-	li       r7, 3
-	lis      r3, __vt__Q33ebi10FileSelect24FSMState_GetPlayerHeader@ha
-	li       r0, 0
-	stw      r7, 4(r4)
-	addi     r7, r6, __vt__Q33ebi10FileSelect8FSMState@l
-	addi     r6, r31, 0x2c
-	addi     r5, r5, __vt__Q33ebi10FileSelect20FSMState_CardRequest@l
-	stw      r0, 8(r4)
-	addi     r0, r3, __vt__Q33ebi10FileSelect24FSMState_GetPlayerHeader@l
-	stw      r7, 0(r4)
-	stw      r6, 0xc(r4)
-	stw      r5, 0(r4)
-	stw      r0, 0(r4)
-
-lbl_803E1460:
-	mr       r3, r30
-	bl
-"registerState__Q24Game37StateMachine<Q33ebi10FileSelect4TMgr>FPQ24Game33FSMState<Q33ebi10FileSelect4TMgr>"
-	li       r3, 0x10
-	bl       __nw__FUl
-	or.      r4, r3, r3
-	beq      lbl_803E14B4
-	lis      r3, "__vt__Q24Game33FSMState<Q33ebi10FileSelect4TMgr>"@ha
-	lis      r5, __vt__Q33ebi10FileSelect8FSMState@ha
-	addi     r0, r3, "__vt__Q24Game33FSMState<Q33ebi10FileSelect4TMgr>"@l
-	lis      r3, __vt__Q33ebi10FileSelect18FSMState_CardError@ha
-	stw      r0, 0(r4)
-	li       r0, 4
-	li       r7, 0
-	addi     r6, r5, __vt__Q33ebi10FileSelect8FSMState@l
-	stw      r0, 4(r4)
-	addi     r5, r31, 0x3c
-	addi     r0, r3, __vt__Q33ebi10FileSelect18FSMState_CardError@l
-	stw      r7, 8(r4)
-	stw      r6, 0(r4)
-	stw      r5, 0xc(r4)
-	stw      r0, 0(r4)
-
-lbl_803E14B4:
-	mr       r3, r30
-	bl
-"registerState__Q24Game37StateMachine<Q33ebi10FileSelect4TMgr>FPQ24Game33FSMState<Q33ebi10FileSelect4TMgr>"
-	li       r3, 0x10
-	bl       __nw__FUl
-	or.      r4, r3, r3
-	beq      lbl_803E1508
-	lis      r3, "__vt__Q24Game33FSMState<Q33ebi10FileSelect4TMgr>"@ha
-	lis      r5, __vt__Q33ebi10FileSelect8FSMState@ha
-	addi     r0, r3, "__vt__Q24Game33FSMState<Q33ebi10FileSelect4TMgr>"@l
-	lis      r3, __vt__Q33ebi10FileSelect25FSMState_ScreenFileSelect@ha
-	stw      r0, 0(r4)
-	li       r0, 5
-	li       r7, 0
-	addi     r6, r5, __vt__Q33ebi10FileSelect8FSMState@l
-	stw      r0, 4(r4)
-	addi     r5, r31, 0x48
-	addi     r0, r3, __vt__Q33ebi10FileSelect25FSMState_ScreenFileSelect@l
-	stw      r7, 8(r4)
-	stw      r6, 0(r4)
-	stw      r5, 0xc(r4)
-	stw      r0, 0(r4)
-
-lbl_803E1508:
-	mr       r3, r30
-	bl
-"registerState__Q24Game37StateMachine<Q33ebi10FileSelect4TMgr>FPQ24Game33FSMState<Q33ebi10FileSelect4TMgr>"
-	lwz      r0, 0x14(r1)
-	lwz      r31, 0xc(r1)
-	lwz      r30, 8(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
 }
 
 /*
@@ -598,30 +79,6 @@ void FSMState_EmptyUpdate::do_exec(TMgr* mgr)
 		transit(mgr, FSSTATE_MountCheck, nullptr);
 	}
 }
-
-/*
- * --INFO--
- * Address:	803E15EC
- * Size:	000030
- */
-// void Game::FSMState<ebi::FileSelect::TMgr>::transit(ebi::FileSelect::TMgr* mgr, int id, Game::StateArg*)
-//{
-/*
-.loc_0x0:
-  stwu      r1, -0x10(r1)
-  mflr      r0
-  stw       r0, 0x14(r1)
-  lwz       r3, 0x8(r3)
-  lwz       r12, 0x0(r3)
-  lwz       r12, 0x14(r12)
-  mtctr     r12
-  bctrl
-  lwz       r0, 0x14(r1)
-  mtlr      r0
-  addi      r1, r1, 0x10
-  blr
-*/
-//}
 
 /*
  * --INFO--
@@ -883,7 +340,7 @@ void FSMState_ScreenFileSelect::do_init(TMgr* mgr, Game::StateArg* arg)
 void FSMState_ScreenFileSelect::do_exec(TMgr* mgr)
 {
 	if (mgr->m_mgrFS.isFinish()) {
-		switch (mgr->m_mgrFS._00[0xc38]) { // needs to load byte
+		switch (mgr->m_mgrFS._C38) {
 		case 1:
 		case 2:
 			transit(mgr, FSSTATE_MountCheck, nullptr);
@@ -899,69 +356,6 @@ void FSMState_ScreenFileSelect::do_exec(TMgr* mgr)
 			break;
 		}
 	}
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	mr       r31, r4
-	stw      r30, 8(r1)
-	mr       r30, r3
-	addi     r3, r31, 0x18
-	bl       isFinish__Q33ebi2FS4TMgrFv
-	clrlwi.  r0, r3, 0x18
-	beq      lbl_803E1D20
-	lwz      r0, 0xc50(r31)
-	cmpwi    r0, 4
-	beq      lbl_803E1D04
-	bge      lbl_803E1CC4
-	cmpwi    r0, 3
-	bge      lbl_803E1CF4
-	cmpwi    r0, 1
-	bge      lbl_803E1CD0
-	b        lbl_803E1D20
-
-lbl_803E1CC4:
-	cmpwi    r0, 6
-	bge      lbl_803E1D20
-	b        lbl_803E1D14
-
-lbl_803E1CD0:
-	mr       r3, r30
-	mr       r4, r31
-	lwz      r12, 0(r30)
-	li       r5, 2
-	li       r6, 0
-	lwz      r12, 0x1c(r12)
-	mtctr    r12
-	bctrl
-	b        lbl_803E1D20
-
-lbl_803E1CF4:
-	mr       r3, r31
-	li       r4, 2
-	bl       goEnd___Q33ebi10FileSelect4TMgrFQ43ebi10FileSelect4TMgr7enumEnd
-	b        lbl_803E1D20
-
-lbl_803E1D04:
-	mr       r3, r31
-	li       r4, 1
-	bl       goEnd___Q33ebi10FileSelect4TMgrFQ43ebi10FileSelect4TMgr7enumEnd
-	b        lbl_803E1D20
-
-lbl_803E1D14:
-	mr       r3, r31
-	li       r4, 3
-	bl       goEnd___Q33ebi10FileSelect4TMgrFQ43ebi10FileSelect4TMgr7enumEnd
-
-lbl_803E1D20:
-	lwz      r0, 0x14(r1)
-	lwz      r31, 0xc(r1)
-	lwz      r30, 8(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
 }
 
 /*
@@ -1005,9 +399,9 @@ void FSMState_CardError::do_exec(TMgr* mgr)
  * Size:	0000C0
  */
 TMgr::TMgr()
+    : m_counter(0)
+    , _F44(0)
 {
-	m_counter = 0;
-	_F44      = 0;
 	m_fsm.init(this);
 	m_fsm.start(this, FSSTATE_Standby, 0);
 	m_inError = false;
@@ -1018,66 +412,20 @@ TMgr::TMgr()
  * Address:	803E1E50
  * Size:	000034
  */
-void Game::StateMachine<ebi::FileSelect::TMgr>::start(ebi::FileSelect::TMgr*, int, Game::StateArg*)
+void Game::StateMachine<ebi::FileSelect::TMgr>::start(ebi::FileSelect::TMgr* mgr, int stateID, Game::StateArg* stateArg)
 {
-	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  stw       r0, 0x14(r1)
-	  li        r0, 0
-	  stw       r0, 0x1008(r4)
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0x14(r12)
-	  mtctr     r12
-	  bctrl
-	  lwz       r0, 0x14(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
-	*/
+	mgr->m_currentState = nullptr;
+	transit(mgr, stateID, stateArg);
 }
 
-/*
- * --INFO--
- * Address:	803E1E84
- * Size:	000054
- */
-// FS::TMgr::~TMgr()
-//{
-/*
-stwu     r1, -0x10(r1)
-mflr     r0
-stw      r0, 0x14(r1)
-stw      r31, 0xc(r1)
-mr       r31, r4
-stw      r30, 8(r1)
-or.      r30, r3, r3
-beq      lbl_803E1EBC
-li       r4, -1
-bl       __dt__Q43ebi6Screen10FileSelect11TMainScreenFv
-extsh.   r0, r31
-ble      lbl_803E1EBC
-mr       r3, r30
-bl       __dl__FPv
-
-lbl_803E1EBC:
-lwz      r0, 0x14(r1)
-mr       r3, r30
-lwz      r31, 0xc(r1)
-lwz      r30, 8(r1)
-mtlr     r0
-addi     r1, r1, 0x10
-blr
-*/
-//}
-
+#pragma dont_inline on
 /*
  * --INFO--
  * Address:	803E1ED8
  * Size:	000084
  */
 TMgr::~TMgr() { msInstance = nullptr; }
+#pragma dont_inline reset
 
 /*
  * --INFO--
@@ -1086,70 +434,10 @@ TMgr::~TMgr() { msInstance = nullptr; }
  */
 TMgr* TMgr::createInstance()
 {
-	if (!msInstance)
+	if (!msInstance) {
 		msInstance = new TMgr;
+	}
 	return msInstance;
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	lwz      r0, msInstance__Q33ebi10FileSelect4TMgr@sda21(r13)
-	cmplwi   r0, 0
-	bne      lbl_803E2020
-	li       r3, 0x100c
-	bl       __nw__FUl
-	or.      r31, r3, r3
-	beq      lbl_803E201C
-	bl       __ct__11JKRDisposerFv
-	lis      r4, __vt__Q33ebi10FileSelect4TMgr@ha
-	addi     r3, r31, 0x18
-	addi     r0, r4, __vt__Q33ebi10FileSelect4TMgr@l
-	stw      r0, 0(r31)
-	bl       __ct__Q33ebi2FS4TMgrFv
-	addi     r3, r31, 0xc78
-	bl       __ct__Q33ebi9CardError4TMgrFv
-	li       r0, 0
-	addi     r3, r31, 0xf48
-	stw      r0, 0xf40(r31)
-	stw      r0, 0xf44(r31)
-	bl       __ct__Q34Game10MemoryCard14PlayerFileInfoFv
-	lis      r4, "__vt__Q24Game37StateMachine<Q33ebi10FileSelect4TMgr>"@ha
-	lis      r3, __vt__Q33ebi10FileSelect15FSMStateMachine@ha
-	addi     r0, r4, "__vt__Q24Game37StateMachine<Q33ebi10FileSelect4TMgr>"@l
-	li       r5, -1
-	stw      r0, 0xfec(r31)
-	addi     r0, r3, __vt__Q33ebi10FileSelect15FSMStateMachine@l
-	addi     r3, r31, 0xfec
-	mr       r4, r31
-	stw      r5, 0x1004(r31)
-	stw      r0, 0xfec(r31)
-	lwz      r12, 0xfec(r31)
-	lwz      r12, 8(r12)
-	mtctr    r12
-	bctrl
-	addi     r3, r31, 0xfec
-	mr       r4, r31
-	lwz      r12, 0xfec(r31)
-	li       r5, 0
-	li       r6, 0
-	lwz      r12, 0xc(r12)
-	mtctr    r12
-	bctrl
-	li       r0, 0
-	stb      r0, 0xfe9(r31)
-
-lbl_803E201C:
-	stw      r31, msInstance__Q33ebi10FileSelect4TMgr@sda21(r13)
-
-lbl_803E2020:
-	lwz      r0, 0x14(r1)
-	lwz      r3, msInstance__Q33ebi10FileSelect4TMgr@sda21(r13)
-	lwz      r31, 0xc(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
 }
 
 /*
@@ -1343,27 +631,11 @@ void Game::StateMachine<ebi::FileSelect::TMgr>::init(ebi::FileSelect::TMgr*) { }
  * Address:	803E2364
  * Size:	000038
  */
-void Game::StateMachine<ebi::FileSelect::TMgr>::exec(ebi::FileSelect::TMgr*)
+void Game::StateMachine<ebi::FileSelect::TMgr>::exec(ebi::FileSelect::TMgr* mgr)
 {
-	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  stw       r0, 0x14(r1)
-	  lwz       r3, 0x1008(r4)
-	  cmplwi    r3, 0
-	  beq-      .loc_0x28
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0xC(r12)
-	  mtctr     r12
-	  bctrl
-
-	.loc_0x28:
-	  lwz       r0, 0x14(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
-	*/
+	if (mgr->m_currentState) {
+		mgr->m_currentState->exec(mgr);
+	}
 }
 
 /*
@@ -1371,35 +643,13 @@ void Game::StateMachine<ebi::FileSelect::TMgr>::exec(ebi::FileSelect::TMgr*)
  * Address:	803E239C
  * Size:	000064
  */
-void Game::StateMachine<ebi::FileSelect::TMgr>::create(int)
+void Game::StateMachine<ebi::FileSelect::TMgr>::create(int count)
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	li       r0, 0
-	stw      r31, 0xc(r1)
-	mr       r31, r3
-	stw      r4, 0xc(r3)
-	stw      r0, 8(r3)
-	lwz      r0, 0xc(r3)
-	slwi     r3, r0, 2
-	bl       __nwa__FUl
-	stw      r3, 4(r31)
-	lwz      r0, 0xc(r31)
-	slwi     r3, r0, 2
-	bl       __nwa__FUl
-	stw      r3, 0x10(r31)
-	lwz      r0, 0xc(r31)
-	slwi     r3, r0, 2
-	bl       __nwa__FUl
-	stw      r3, 0x14(r31)
-	lwz      r0, 0x14(r1)
-	lwz      r31, 0xc(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	m_limit          = count;
+	m_count          = 0;
+	m_states         = new FSMState<ebi::FileSelect::TMgr>*[m_limit];
+	m_indexToIDArray = new int[m_limit];
+	m_idToIndexArray = new int[m_limit];
 }
 
 /*
@@ -1407,56 +657,20 @@ void Game::StateMachine<ebi::FileSelect::TMgr>::create(int)
  * Address:	803E2400
  * Size:	00009C
  */
-void Game::StateMachine<ebi::FileSelect::TMgr>::transit(ebi::FileSelect::TMgr*, int, Game::StateArg*)
+void Game::StateMachine<ebi::FileSelect::TMgr>::transit(ebi::FileSelect::TMgr* mgr, int stateID, Game::StateArg* stateArg)
 {
-	/*
-	.loc_0x0:
-	  stwu      r1, -0x20(r1)
-	  mflr      r0
-	  stw       r0, 0x24(r1)
-	  rlwinm    r0,r5,2,0,29
-	  stmw      r27, 0xC(r1)
-	  mr        r27, r3
-	  mr        r28, r4
-	  mr        r29, r6
-	  lwz       r30, 0x1008(r4)
-	  lwz       r3, 0x14(r3)
-	  cmplwi    r30, 0
-	  lwzx      r31, r3, r0
-	  beq-      .loc_0x50
-	  mr        r3, r30
-	  lwz       r12, 0x0(r30)
-	  lwz       r12, 0x10(r12)
-	  mtctr     r12
-	  bctrl
-	  lwz       r0, 0x4(r30)
-	  stw       r0, 0x18(r27)
+	int index                        = m_idToIndexArray[stateID];
+	ebi::FileSelect::FSMState* state = mgr->m_currentState;
+	if (state) {
+		state->cleanup(mgr);
+		m_currentID = state->m_id;
+	}
 
-	.loc_0x50:
-	  lwz       r0, 0xC(r27)
-	  cmpw      r31, r0
-	  blt-      .loc_0x60
+	ASSERT_HANG(index < m_limit);
 
-	.loc_0x5C:
-	  b         .loc_0x5C
-
-	.loc_0x60:
-	  lwz       r3, 0x4(r27)
-	  rlwinm    r0,r31,2,0,29
-	  mr        r4, r28
-	  mr        r5, r29
-	  lwzx      r3, r3, r0
-	  stw       r3, 0x1008(r28)
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0x8(r12)
-	  mtctr     r12
-	  bctrl
-	  lmw       r27, 0xC(r1)
-	  lwz       r0, 0x24(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x20
-	  blr
-	*/
+	state               = static_cast<ebi::FileSelect::FSMState*>(m_states[index]);
+	mgr->m_currentState = state;
+	state->init(mgr, stateArg);
 }
 
 /*
@@ -1464,50 +678,26 @@ void Game::StateMachine<ebi::FileSelect::TMgr>::transit(ebi::FileSelect::TMgr*, 
  * Address:	803E249C
  * Size:	000084
  */
-void Game::StateMachine<ebi::FileSelect::TMgr>::registerState(Game::FSMState<ebi::FileSelect::TMgr>*)
+void Game::StateMachine<ebi::FileSelect::TMgr>::registerState(Game::FSMState<ebi::FileSelect::TMgr>* newState)
 {
-	/*
-	.loc_0x0:
-	  lwz       r6, 0x8(r3)
-	  lwz       r0, 0xC(r3)
-	  cmpw      r6, r0
-	  bgelr-
-	  lwz       r5, 0x4(r3)
-	  rlwinm    r0,r6,2,0,29
-	  stwx      r4, r5, r0
-	  lwz       r5, 0x4(r4)
-	  cmpwi     r5, 0
-	  blt-      .loc_0x34
-	  lwz       r0, 0xC(r3)
-	  cmpw      r5, r0
-	  blt-      .loc_0x3C
+	bool check;
+	if (m_count >= m_limit) {
+		return;
+	}
+	m_states[m_count] = newState;
 
-	.loc_0x34:
-	  li        r0, 0
-	  b         .loc_0x40
-
-	.loc_0x3C:
-	  li        r0, 0x1
-
-	.loc_0x40:
-	  rlwinm.   r0,r0,0,24,31
-	  beqlr-
-	  stw       r3, 0x8(r4)
-	  lwz       r0, 0x8(r3)
-	  lwz       r6, 0x4(r4)
-	  lwz       r5, 0x10(r3)
-	  rlwinm    r0,r0,2,0,29
-	  stwx      r6, r5, r0
-	  lwz       r0, 0x4(r4)
-	  lwz       r5, 0x8(r3)
-	  lwz       r4, 0x14(r3)
-	  rlwinm    r0,r0,2,0,29
-	  stwx      r5, r4, r0
-	  lwz       r4, 0x8(r3)
-	  addi      r0, r4, 0x1
-	  stw       r0, 0x8(r3)
-	  blr
-	*/
+	if (!(0 <= newState->m_id && newState->m_id < m_limit)) {
+		check = false;
+	} else {
+		check = true;
+	}
+	if (check == false) {
+		return;
+	}
+	newState->m_stateMachine         = this;
+	m_indexToIDArray[m_count]        = newState->m_id;
+	m_idToIndexArray[newState->m_id] = m_count;
+	m_count++;
 }
 
 } // namespace FileSelect
