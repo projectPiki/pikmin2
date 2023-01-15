@@ -1,194 +1,15 @@
-#include "types.h"
+#include "ebi/Screen/TPressStart.h"
+#include "System.h"
+#include "P2DScreen.h"
+#include "ebi/Utility.h"
+#include "JSystem/J2D/J2DMaterial.h"
+#include "ebi/E2DGraph.h"
+#include "PSSystem/PSSystemIF.h"
+#include "Graphics.h"
+#include "SoundID.h"
+#include "Dolphin/rand.h"
 
-/*
-    Generated from dpostproc
-
-    .section .rodata  # 0x804732E0 - 0x8049E220
-    .global lbl_80496908
-    lbl_80496908:
-        .4byte 0x65626953
-        .4byte 0x63726565
-        .4byte 0x6E507573
-        .4byte 0x68537461
-        .4byte 0x72740000
-        .4byte 0x54536372
-        .4byte 0x65656E50
-        .4byte 0x75736853
-        .4byte 0x74617274
-        .4byte 0x3A3A7365
-        .4byte 0x74417263
-        .4byte 0x68697665
-        .4byte 0x2D2D7365
-        .4byte 0x745F626C
-        .4byte 0x6F5F6100
-        .4byte 0x70757368
-        .4byte 0x5F737461
-        .4byte 0x72745F61
-        .4byte 0x2E626C6F
-        .4byte 0x00000000
-        .4byte 0x54536372
-        .4byte 0x65656E50
-        .4byte 0x75736853
-        .4byte 0x74617274
-        .4byte 0x3A3A7365
-        .4byte 0x74417263
-        .4byte 0x68697665
-        .4byte 0x2D2D7365
-        .4byte 0x745F626C
-        .4byte 0x6F5F6200
-        .4byte 0x70757368
-        .4byte 0x5F737461
-        .4byte 0x72745F62
-        .4byte 0x2E626C6F
-        .4byte 0x00000000
-        .4byte 0x54536372
-        .4byte 0x65656E50
-        .4byte 0x75736853
-        .4byte 0x74617274
-        .4byte 0x3A3A7365
-        .4byte 0x74417263
-        .4byte 0x68697665
-        .4byte 0x2D2D7365
-        .4byte 0x745F626C
-        .4byte 0x6F5F6300
-        .4byte 0x70757368
-        .4byte 0x5F737461
-        .4byte 0x72745F63
-        .4byte 0x2E626C6F
-        .4byte 0x00000000
-        .4byte 0x54536372
-        .4byte 0x65656E50
-        .4byte 0x75736853
-        .4byte 0x74617274
-        .4byte 0x3A3A7365
-        .4byte 0x74417263
-        .4byte 0x68697665
-        .4byte 0x2D2D7365
-        .4byte 0x745F626C
-        .4byte 0x6F5F6400
-        .4byte 0x70757368
-        .4byte 0x5F737461
-        .4byte 0x72745F64
-        .4byte 0x2E626C6F
-        .4byte 0x00000000
-        .4byte 0x54536372
-        .4byte 0x65656E50
-        .4byte 0x75736853
-        .4byte 0x74617274
-        .4byte 0x3A3A7365
-        .4byte 0x74417263
-        .4byte 0x68697665
-        .4byte 0x2D2D6D61
-        .4byte 0x6B65416E
-        .4byte 0x6D506F69
-        .4byte 0x6E746572
-        .4byte 0x00000000
-        .4byte 0x70757368
-        .4byte 0x5F737461
-        .4byte 0x72745F61
-        .4byte 0x2E62636B
-        .4byte 0x00000000
-        .4byte 0x70757368
-        .4byte 0x5F737461
-        .4byte 0x72745F61
-        .4byte 0x2E62706B
-        .4byte 0x00000000
-        .4byte 0x70757368
-        .4byte 0x5F737461
-        .4byte 0x72745F62
-        .4byte 0x2E62636B
-        .4byte 0x00000000
-        .4byte 0x70757368
-        .4byte 0x5F737461
-        .4byte 0x72745F62
-        .4byte 0x2E62706B
-        .4byte 0x00000000
-        .4byte 0x70757368
-        .4byte 0x5F737461
-        .4byte 0x72745F63
-        .4byte 0x2E62636B
-        .4byte 0x00000000
-        .4byte 0x70757368
-        .4byte 0x5F737461
-        .4byte 0x72745F63
-        .4byte 0x2E62706B
-        .4byte 0x00000000
-        .4byte 0x70757368
-        .4byte 0x5F737461
-        .4byte 0x72745F64
-        .4byte 0x2E62636B
-        .4byte 0x00000000
-        .4byte 0x70757368
-        .4byte 0x5F737461
-        .4byte 0x72745F64
-        .4byte 0x2E62706B
-        .4byte 0x00000000
-    .global lbl_80496ADC
-    lbl_80496ADC:
-        .4byte 0x54507265
-        .4byte 0x73735374
-        .4byte 0x61727400
-
-    .section .data, "wa"  # 0x8049E220 - 0x804EFC20
-    .global __vt__Q33ebi6Screen11TPressStart
-    __vt__Q33ebi6Screen11TPressStart:
-        .4byte 0
-        .4byte 0
-        .4byte setArchive__Q33ebi6Screen11TScreenBaseFP10JKRArchive
-        .4byte openScreen__Q33ebi6Screen11TScreenBaseFPQ33ebi6Screen7ArgOpen
-        .4byte closeScreen__Q33ebi6Screen11TScreenBaseFPQ33ebi6Screen8ArgClose
-        .4byte killScreen__Q33ebi6Screen11TScreenBaseFv
-        .4byte update__Q33ebi6Screen11TScreenBaseFv
-        .4byte draw__Q33ebi6Screen11TScreenBaseFv
-        .4byte isFinishScreen__Q33ebi6Screen11TScreenBaseFv
-        .4byte doSetArchive__Q33ebi6Screen11TPressStartFP10JKRArchive
-        .4byte doOpenScreen__Q33ebi6Screen11TPressStartFPQ33ebi6Screen7ArgOpen
-        .4byte doCloseScreen__Q33ebi6Screen11TPressStartFPQ33ebi6Screen8ArgClose
-        .4byte doKillScreen__Q33ebi6Screen11TScreenBaseFv
-        .4byte doInitWaitState__Q33ebi6Screen11TScreenBaseFv
-        .4byte doUpdateStateOpen__Q33ebi6Screen11TScreenBaseFv
-        .4byte doUpdateStateWait__Q33ebi6Screen11TPressStartFv
-        .4byte doUpdateStateClose__Q33ebi6Screen11TPressStartFv
-        .4byte doDraw__Q33ebi6Screen11TPressStartFv
-        .4byte getName__Q33ebi6Screen11TPressStartFv
-        .4byte 0
-
-    .section .sdata2, "a"     # 0x80516360 - 0x80520E40
-    .global lbl_8051FAE0
-    lbl_8051FAE0:
-        .4byte 0x3E4CCCCD
-    .global lbl_8051FAE4
-    lbl_8051FAE4:
-        .4byte 0x00000000
-    .global lbl_8051FAE8
-    lbl_8051FAE8:
-        .4byte 0x437F0000
-        .4byte 0x00000000
-    .global lbl_8051FAF0
-    lbl_8051FAF0:
-        .4byte 0x43300000
-        .4byte 0x00000000
-    .global lbl_8051FAF8
-    lbl_8051FAF8:
-        .4byte 0x46FFFE00
-    .global lbl_8051FAFC
-    lbl_8051FAFC:
-        .float 0.25
-    .global lbl_8051FB00
-    lbl_8051FB00:
-        .float 0.5
-    .global lbl_8051FB04
-    lbl_8051FB04:
-        .4byte 0x3F400000
-    .global lbl_8051FB08
-    lbl_8051FB08:
-        .4byte 0x42700000
-        .4byte 0x00000000
-    .global lbl_8051FB10
-    lbl_8051FB10:
-        .4byte 0x43300000
-        .4byte 0x80000000
-*/
+static const char name[] = "ebiScreenPushStart";
 
 namespace ebi {
 namespace Screen {
@@ -198,8 +19,60 @@ namespace Screen {
  * Address:	803D3B10
  * Size:	000324
  */
-void TPressStart::doSetArchive(JKRArchive*)
+void TPressStart::doSetArchive(JKRArchive* arc)
 {
+	sys->heapStatusStart("TScreenPushStart::setArchive--set_blo_a", nullptr);
+	m_screens[0] = new P2DScreen::Mgr_tuning;
+	m_screens[0]->set("push_start_a.blo", 0x1100000, arc);
+	sys->heapStatusEnd("TScreenPushStart::setArchive--set_blo_a");
+
+	sys->heapStatusStart("TScreenPushStart::setArchive--set_blo_b", nullptr);
+	m_screens[1] = new P2DScreen::Mgr_tuning;
+	m_screens[1]->set("push_start_b.blo", 0x1100000, arc);
+	sys->heapStatusEnd("TScreenPushStart::setArchive--set_blo_b");
+
+	sys->heapStatusStart("TScreenPushStart::setArchive--set_blo_c", nullptr);
+	m_screens[2] = new P2DScreen::Mgr_tuning;
+	m_screens[2]->set("push_start_c.blo", 0x1100000, arc);
+	sys->heapStatusEnd("TScreenPushStart::setArchive--set_blo_c");
+
+	sys->heapStatusStart("TScreenPushStart::setArchive--set_blo_d", nullptr);
+	m_screens[3] = new P2DScreen::Mgr_tuning;
+	m_screens[3]->set("push_start_d.blo", 0x1100000, arc);
+	sys->heapStatusEnd("TScreenPushStart::setArchive--set_blo_d");
+
+	sys->heapStatusStart("TScreenPushStart::setArchive--makeAnmPointer", nullptr);
+	u32 mats;
+	J2DScreen* pane;
+	u16 j;
+	for (int i = 0; i < 4; i++) {
+		pane = m_screens[i];
+		mats = pane->m_materialCount;
+		for (j = 0; j < mats; j++) {
+			pane->getMaterial(j)->makeAnmPointer();
+		}
+	}
+	sys->heapStatusEnd("TScreenPushStart::setArchive--makeAnmPointer");
+
+	for (int i = 0; i < 4; i++) {
+		static_cast<P2DScreen::Mgr*>(m_screens[i])->addCallBackPane(m_screens[i], &m_anims1[i]);
+		static_cast<P2DScreen::Mgr*>(m_screens[i])->addCallBackPane(m_screens[i], &m_anims2[i]);
+		static_cast<P2DScreen::Mgr*>(m_screens[i])->addCallBackPane(m_screens[i], &m_anims3[i]);
+		E2DPane_setTreeInfluencedAlpha(m_screens[i], true);
+		m_screens[i]->setAlpha(255);
+	}
+
+	m_anims1[0].loadAnm("push_start_a.bck", arc, 0, 99999);
+	m_anims2[0].loadAnm("push_start_a.bpk", arc, 0, 99999);
+
+	m_anims1[1].loadAnm("push_start_b.bck", arc, 0, 99999);
+	m_anims2[1].loadAnm("push_start_b.bpk", arc, 0, 99999);
+
+	m_anims1[2].loadAnm("push_start_c.bck", arc, 0, 99999);
+	m_anims2[2].loadAnm("push_start_c.bpk", arc, 0, 99999);
+
+	m_anims1[3].loadAnm("push_start_d.bck", arc, 0, 99999);
+	m_anims2[3].loadAnm("push_start_d.bpk", arc, 0, 99999);
 	/*
 stwu     r1, -0x30(r1)
 mflr     r0
@@ -426,20 +299,10 @@ blr
  * Address:	803D3E34
  * Size:	000028
  */
-void TPressStart::doOpenScreen(ebi::Screen::ArgOpen*)
+void TPressStart::doOpenScreen(ArgOpen*)
 {
-	/*
-stwu     r1, -0x10(r1)
-mflr     r0
-stw      r0, 0x14(r1)
-li       r0, 1
-stb      r0, 0x10(r3)
-bl       startLoop___Q33ebi6Screen11TPressStartFv
-lwz      r0, 0x14(r1)
-mtlr     r0
-addi     r1, r1, 0x10
-blr
-	*/
+	m_isOpen = true;
+	startLoop_();
 }
 
 /*
@@ -447,27 +310,11 @@ blr
  * Address:	803D3E5C
  * Size:	000044
  */
-void TPressStart::doCloseScreen(ebi::Screen::ArgClose*)
+void TPressStart::doCloseScreen(ArgClose*)
 {
-	/*
-stwu     r1, -0x10(r1)
-mflr     r0
-lfs      f1, lbl_8051FAE0@sda21(r2)
-stw      r0, 0x14(r1)
-stw      r31, 0xc(r1)
-mr       r31, r3
-lwz      r4, sys@sda21(r13)
-lfs      f0, 0x54(r4)
-fdivs    f1, f1, f0
-bl       __cvt_fp2unsigned
-stw      r3, 0x28(r31)
-stw      r3, 0x2c(r31)
-lwz      r0, 0x14(r1)
-lwz      r31, 0xc(r1)
-mtlr     r0
-addi     r1, r1, 0x10
-blr
-	*/
+	u32 time   = 0.2f / sys->m_deltaTime;
+	m_alpha    = time;
+	m_alphaMax = time;
 }
 
 /*
@@ -475,57 +322,18 @@ blr
  * Address:	803D3EA0
  * Size:	0000A4
  */
-void TPressStart::doUpdateStateWait(void)
+bool TPressStart::doUpdateStateWait()
 {
-	/*
-stwu     r1, -0x10(r1)
-mflr     r0
-stw      r0, 0x14(r1)
-stw      r31, 0xc(r1)
-mr       r31, r3
-lwz      r0, 0x14(r3)
-slwi     r0, r0, 2
-add      r3, r31, r0
-lwz      r3, 0x18(r3)
-lwz      r12, 0(r3)
-lwz      r12, 0x30(r12)
-mtctr    r12
-bctrl
-lbz      r0, 0x10(r31)
-cmplwi   r0, 0
-beq      lbl_803D3F08
-lwz      r3, 0xc(r31)
-lwz      r0, 0x18(r3)
-andi.    r0, r0, 0x1100
-beq      lbl_803D3F08
-lwz      r3, spSysIF__8PSSystem@sda21(r13)
-li       r4, 0x1800
-li       r5, 0
-bl       playSystemSe__Q28PSSystem5SysIFFUlUl
-li       r3, 1
-b        lbl_803D3F30
-
-lbl_803D3F08:
-lwz      r0, 0x14(r31)
-mulli    r3, r0, 0x3c
-addi     r3, r3, 0x30
-add      r3, r31, r3
-bl       isFinish__Q23ebi19E2DCallBack_AnmBaseFv
-clrlwi.  r0, r3, 0x18
-beq      lbl_803D3F2C
-mr       r3, r31
-bl       startLoop___Q33ebi6Screen11TPressStartFv
-
-lbl_803D3F2C:
-li       r3, 0
-
-lbl_803D3F30:
-lwz      r0, 0x14(r1)
-lwz      r31, 0xc(r1)
-mtlr     r0
-addi     r1, r1, 0x10
-blr
-	*/
+	m_screens[m_currentScreen]->update();
+	if (m_isOpen && m_control->m_padButton.m_mask & (Controller::PRESS_START | Controller::PRESS_A)) {
+		PSSystem::spSysIF->playSystemSe(PSSE_SY_MENU_DECIDE, 0);
+		return true;
+	} else {
+		if (m_anims1[m_currentScreen].isFinish()) {
+			startLoop_();
+		}
+		return false;
+	}
 }
 
 /*
@@ -533,88 +341,26 @@ blr
  * Address:	803D3F44
  * Size:	000108
  */
-void TPressStart::doUpdateStateClose(void)
+bool TPressStart::doUpdateStateClose()
 {
-	/*
-stwu     r1, -0x30(r1)
-mflr     r0
-stw      r0, 0x34(r1)
-stw      r31, 0x2c(r1)
-mr       r31, r3
-lwz      r0, 0x14(r3)
-slwi     r0, r0, 2
-add      r3, r31, r0
-lwz      r3, 0x18(r3)
-lwz      r12, 0(r3)
-lwz      r12, 0x30(r12)
-mtctr    r12
-bctrl
-lwz      r3, 0x28(r31)
-cmplwi   r3, 0
-beq      lbl_803D3F8C
-addi     r0, r3, -1
-stw      r0, 0x28(r31)
+	m_screens[m_currentScreen]->update();
+	if (m_alpha) {
+		m_alpha--;
+	}
+	f32 alpha;
+	if (m_alphaMax) {
+		alpha = (f32)m_alpha / (f32)m_alphaMax;
+	} else {
+		alpha = 0.0f;
+	}
 
-lbl_803D3F8C:
-lwz      r4, 0x2c(r31)
-cmplwi   r4, 0
-beq      lbl_803D3FCC
-lwz      r3, 0x28(r31)
-lis      r0, 0x4330
-stw      r0, 8(r1)
-lfd      f2, lbl_8051FAF0@sda21(r2)
-stw      r3, 0xc(r1)
-lfd      f0, 8(r1)
-stw      r4, 0x14(r1)
-fsubs    f1, f0, f2
-stw      r0, 0x10(r1)
-lfd      f0, 0x10(r1)
-fsubs    f0, f0, f2
-fdivs    f1, f1, f0
-b        lbl_803D3FD0
+	m_screens[m_currentScreen]->setAlpha(alpha * 255.0f);
 
-lbl_803D3FCC:
-lfs      f1, lbl_8051FAE4@sda21(r2)
-
-lbl_803D3FD0:
-lwz      r0, 0x14(r31)
-lfs      f0, lbl_8051FAE8@sda21(r2)
-slwi     r0, r0, 2
-fmuls    f0, f0, f1
-add      r3, r31, r0
-lwz      r3, 0x18(r3)
-fctiwz   f0, f0
-lwz      r12, 0(r3)
-lwz      r12, 0x24(r12)
-stfd     f0, 0x18(r1)
-lwz      r4, 0x1c(r1)
-mtctr    r12
-bctrl
-lwz      r0, 0x28(r31)
-cmplwi   r0, 0
-beq      lbl_803D402C
-lwz      r0, 0x14(r31)
-mulli    r3, r0, 0x3c
-addi     r3, r3, 0x30
-add      r3, r31, r3
-bl       isFinish__Q23ebi19E2DCallBack_AnmBaseFv
-clrlwi.  r0, r3, 0x18
-beq      lbl_803D4034
-
-lbl_803D402C:
-li       r3, 1
-b        lbl_803D4038
-
-lbl_803D4034:
-li       r3, 0
-
-lbl_803D4038:
-lwz      r0, 0x34(r1)
-lwz      r31, 0x2c(r1)
-mtlr     r0
-addi     r1, r1, 0x30
-blr
-	*/
+	if (!m_alpha || m_anims1[m_currentScreen].isFinish()) {
+		return true;
+	} else {
+		return false;
+	}
 }
 
 /*
@@ -622,42 +368,12 @@ blr
  * Address:	803D404C
  * Size:	000080
  */
-void TPressStart::doDraw(void)
+void TPressStart::doDraw()
 {
-	/*
-stwu     r1, -0x20(r1)
-mflr     r0
-stw      r0, 0x24(r1)
-stw      r31, 0x1c(r1)
-stw      r30, 0x18(r1)
-stw      r29, 0x14(r1)
-mr       r29, r3
-lwz      r4, sys@sda21(r13)
-lwz      r31, 0x24(r4)
-addi     r30, r31, 0x190
-lwz      r12, 0(r30)
-mr       r3, r30
-lwz      r12, 0x14(r12)
-mtctr    r12
-bctrl
-lwz      r0, 0x14(r29)
-mr       r4, r31
-mr       r5, r30
-slwi     r0, r0, 2
-add      r3, r29, r0
-lwz      r3, 0x18(r3)
-lwz      r12, 0(r3)
-lwz      r12, 0x9c(r12)
-mtctr    r12
-bctrl
-lwz      r0, 0x24(r1)
-lwz      r31, 0x1c(r1)
-lwz      r30, 0x18(r1)
-lwz      r29, 0x14(r1)
-mtlr     r0
-addi     r1, r1, 0x20
-blr
-	*/
+	Graphics* gfx       = sys->m_gfx;
+	J2DPerspGraph& graf = gfx->m_perspGraph;
+	graf.setPort();
+	m_screens[m_currentScreen]->draw(*gfx, graf);
 }
 
 /*
@@ -665,111 +381,27 @@ blr
  * Address:	803D40CC
  * Size:	00016C
  */
-void TPressStart::startLoop_(void)
+void TPressStart::startLoop_()
 {
-	/*
-stwu     r1, -0x20(r1)
-mflr     r0
-stw      r0, 0x24(r1)
-stw      r31, 0x1c(r1)
-mr       r31, r3
-stw      r30, 0x18(r1)
-stw      r29, 0x14(r1)
-stw      r28, 0x10(r1)
-bl       rand
-xoris    r3, r3, 0x8000
-lis      r0, 0x4330
-stw      r3, 0xc(r1)
-lfd      f3, lbl_8051FB10@sda21(r2)
-stw      r0, 8(r1)
-lfs      f1, lbl_8051FAF8@sda21(r2)
-lfd      f2, 8(r1)
-lfs      f0, lbl_8051FAFC@sda21(r2)
-fsubs    f2, f2, f3
-fdivs    f1, f2, f1
-fcmpo    cr0, f1, f0
-bge      lbl_803D412C
-li       r0, 0
-stw      r0, 0x14(r31)
-b        lbl_803D4164
+	f32 r = randFloat();
+	if (r < 0.25f) {
+		m_currentScreen = 0;
+	} else if (r < 0.5f) {
+		m_currentScreen = 1;
+	} else if (r < 0.75f) {
+		m_currentScreen = 2;
+	} else {
+		m_currentScreen = 3;
+	}
 
-lbl_803D412C:
-lfs      f0, lbl_8051FB00@sda21(r2)
-fcmpo    cr0, f1, f0
-bge      lbl_803D4144
-li       r0, 1
-stw      r0, 0x14(r31)
-b        lbl_803D4164
-
-lbl_803D4144:
-lfs      f0, lbl_8051FB04@sda21(r2)
-fcmpo    cr0, f1, f0
-bge      lbl_803D415C
-li       r0, 2
-stw      r0, 0x14(r31)
-b        lbl_803D4164
-
-lbl_803D415C:
-li       r0, 3
-stw      r0, 0x14(r31)
-
-lbl_803D4164:
-mr       r30, r31
-mr       r29, r31
-li       r28, 0
-
-lbl_803D4170:
-lwz      r3, 0x18(r30)
-li       r4, 0xff
-lwz      r12, 0(r3)
-lwz      r12, 0x24(r12)
-mtctr    r12
-bctrl
-addi     r3, r29, 0x30
-bl       stop__Q23ebi19E2DCallBack_AnmBaseFv
-addi     r3, r29, 0x120
-bl       stop__Q23ebi19E2DCallBack_AnmBaseFv
-addi     r28, r28, 1
-addi     r29, r29, 0x3c
-cmpwi    r28, 4
-addi     r30, r30, 4
-blt      lbl_803D4170
-lwz      r0, 0x14(r31)
-li       r4, 0
-lwz      r3, sys@sda21(r13)
-li       r5, 1
-mulli    r6, r0, 0x3c
-lfs      f1, lbl_8051FB08@sda21(r2)
-lfs      f0, 0x54(r3)
-addi     r3, r6, 0x30
-fmuls    f1, f1, f0
-add      r3, r31, r3
-bl       play__Q23ebi19E2DCallBack_AnmBaseFf10J3DAnmAttrb
-lwz      r0, 0x14(r31)
-li       r4, 0
-lwz      r3, sys@sda21(r13)
-li       r5, 1
-mulli    r6, r0, 0x3c
-lfs      f1, lbl_8051FB08@sda21(r2)
-lfs      f0, 0x54(r3)
-addi     r3, r6, 0x120
-fmuls    f1, f1, f0
-add      r3, r31, r3
-bl       play__Q23ebi19E2DCallBack_AnmBaseFf10J3DAnmAttrb
-lwz      r0, 0x14(r31)
-slwi     r0, r0, 2
-add      r3, r31, r0
-lwz      r3, 0x18(r3)
-bl       animation__9J2DScreenFv
-lwz      r0, 0x24(r1)
-lwz      r31, 0x1c(r1)
-lwz      r30, 0x18(r1)
-lwz      r29, 0x14(r1)
-lwz      r28, 0x10(r1)
-mtlr     r0
-addi     r1, r1, 0x20
-blr
-	*/
+	for (int i = 0; i < 4; i++) {
+		m_screens[i]->setAlpha(255);
+		m_anims1[i].stop();
+		m_anims2[i].stop();
+	}
+	m_anims1[m_currentScreen].play(sys->m_deltaTime * 60.0f, J3DAA_UNKNOWN_0, true);
+	m_anims2[m_currentScreen].play(sys->m_deltaTime * 60.0f, J3DAA_UNKNOWN_0, true);
+	m_screens[m_currentScreen]->animation();
 }
 
 /*
@@ -777,13 +409,6 @@ blr
  * Address:	803D4238
  * Size:	00000C
  */
-void TPressStart::getName(void)
-{
-	/*
-lis      r3, lbl_80496ADC@ha
-addi     r3, r3, lbl_80496ADC@l
-blr
-	*/
-}
+char* TPressStart::getName() { return "TPressStart"; }
 } // namespace Screen
 } // namespace ebi
