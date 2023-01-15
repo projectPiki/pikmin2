@@ -54,7 +54,7 @@ struct Radar {
 		// _00     = VTBL
 		// _00-_18 = CNode
 		cRadarType m_objType;            // _18
-		Game::TPositionObject* m_object; // _1c
+		Game::TPositionObject* m_object; // _1C
 		u32 m_caveID;                    // _20
 	};
 

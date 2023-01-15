@@ -1638,7 +1638,7 @@ void TitleMsgWave::init() { }
  */
 void TitleMsgWave::start()
 {
-	for (u32 i = 0; i < m_stringLength; i++) {
+	for (int i = 0; i < m_stringLength; i++) {
 		m_scaleMgrs[i]->up(m_scaleup1, m_scaleup2, m_scaleup3, (f32)i * m_scaleup4);
 	}
 	m_delayTimer = 3.0f;

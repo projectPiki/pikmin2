@@ -386,7 +386,7 @@ void ObjSMenuMap::initMapIcon(JKRArchive* arc)
 			case Radar::MAP_INCOMPLETE_CAVE:
 				if (id == Radar::MAP_UPGRADE) { }
 				if (id == Radar::MAP_COMPLETED_CAVE || id == Radar::MAP_INCOMPLETE_CAVE) {
-					appendCaveName(pane, count & 0xffff, og::Screen::maskTag(caveIDtoMsgID(cPoint->_20), 1, 3));
+					appendCaveName(pane, count & 0xffff, og::Screen::maskTag(caveIDtoMsgID(cPoint->m_caveID), 1, 3));
 				}
 				m_radarPaneList[count][0] = pane;
 				count++;
@@ -1308,7 +1308,7 @@ void ObjSMenuMap::appendCaveName(J2DPane* parent, u16 caveIndex, u64 tag)
 	og::Screen::TagToName(tag, buf);
 	const JGeometry::TBox2f box(30.0f, 0.0f, 40.0f, 10.0f);
 
-	J2DTextBox* pane = new J2DTextBox(newtag, box, nullptr, "", -1, J2DTextBoxHBinding(2), J2DTextBoxVBinding(2));
+	J2DTextBox* pane = new J2DTextBox(newtag, box, (const ResFONT*)nullptr, "", -1, J2DTextBoxHBinding(2), J2DTextBoxVBinding(2));
 	pane->_11C       = 24.0f;
 	pane->_120       = 24.0f;
 	pane->m_color1   = JUtility::TColor(-1);

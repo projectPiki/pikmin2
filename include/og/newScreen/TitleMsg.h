@@ -62,7 +62,7 @@ struct TitleMsg {
 	TitleMessageAnalyzer m_analyzer; // _04
 	J2DPictureEx* m_panes1[128];     // _140
 	J2DPictureEx* m_panes2[128];     // _340
-	int m_stringLength;              // _540
+	u32 m_stringLength;              // _540
 	f32 m_currXpos;                  // _544
 	EnumCentering m_centering;       // _548
 	J2DPane* m_rootPane;             // _54C

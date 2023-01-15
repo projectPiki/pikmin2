@@ -2215,8 +2215,8 @@ void ObjVs::ScreenSet::update(og::Screen::DataNavi& data)
 	dope->m_naviLifeRatio         = data.m_naviLifeRatio;
 	dope->m_followPiki            = data.m_followPikis;
 	dope->m_nextThrowPiki         = data.m_nextThrowPiki;
-	dope->m_sprays1               = data.m_dope1Count;
-	dope->m_sprays2               = data.m_dope0Count;
+	dope->m_spicySprayCount       = data.m_dope1Count;
+	dope->m_bitterSprayCount      = data.m_dope0Count;
 	dope->m_activeNaviID          = data.m_activeNaviID;
 	dope->update();
 }
