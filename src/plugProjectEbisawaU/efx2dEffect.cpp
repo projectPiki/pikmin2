@@ -283,104 +283,15 @@ bool T2DSprayset_forVS::create(Arg* arg)
 		JUtility::TColor col1 = args->m_color1;
 		JUtility::TColor col2 = args->m_color2;
 		f32 scale             = args->m_scale;
-		m_emitters[0]->setScale(scale);
-		m_emitters[0]->setPrmColorRGB(col1);
-		m_emitters[0]->setColorRGB(col2);
 
-		m_emitters[1]->setScale(scale);
-		m_emitters[1]->setPrmColorRGB(col1);
-		m_emitters[1]->setColorRGB(col2);
+		for (int i = 0; i < 2; i++) {
+			m_emitters[i]->setScale(scale);
+			m_emitters[i]->setPrmColorRGB(col1);
+			m_emitters[i]->setColorRGB(col2);
+		}
 		return true;
 	}
 	return false;
-	/*
-	stwu     r1, -0x20(r1)
-	mflr     r0
-	stw      r0, 0x24(r1)
-	stw      r31, 0x1c(r1)
-	mr       r31, r3
-	stw      r30, 0x18(r1)
-	stw      r29, 0x14(r1)
-	mr       r29, r4
-	lis      r4, lbl_80495B68@ha
-	lwz      r12, 8(r29)
-	mr       r3, r29
-	addi     r30, r4, lbl_80495B68@l
-	lwz      r12, 8(r12)
-	mtctr    r12
-	bctrl
-	mr       r4, r3
-	addi     r3, r30, 0x34
-	bl       strcmp
-	cntlzw   r0, r3
-	rlwinm.  r0, r0, 0x1b, 0x18, 0x1f
-	bne      lbl_803BA3A4
-	addi     r3, r30, 0x18
-	addi     r5, r30, 0x28
-	li       r4, 0x4f
-	crclr    6
-	bl       panic_f__12JUTExceptionFPCciPCce
-
-lbl_803BA3A4:
-	mr       r3, r31
-	mr       r4, r29
-	bl       create__Q25efx2d8TSimple2FPQ25efx2d3Arg
-	clrlwi.  r0, r3, 0x18
-	beq      lbl_803BA45C
-	lwz      r4, 0x10(r29)
-	li       r3, 1
-	lwz      r0, 0x14(r29)
-	lfs      f0, 0xc(r29)
-	lwz      r5, 0xc(r31)
-	stw      r4, 0xc(r1)
-	stfs     f0, 0x98(r5)
-	lbz      r4, 0xc(r1)
-	stfs     f0, 0x9c(r5)
-	lbz      r6, 0xd(r1)
-	stfs     f0, 0xa0(r5)
-	lbz      r7, 0xe(r1)
-	stfs     f0, 0xb0(r5)
-	stfs     f0, 0xb4(r5)
-	lwz      r5, 0xc(r31)
-	stw      r0, 8(r1)
-	stb      r4, 0xb8(r5)
-	lbz      r0, 8(r1)
-	stb      r6, 0xb9(r5)
-	lbz      r8, 9(r1)
-	stb      r7, 0xba(r5)
-	lbz      r9, 0xa(r1)
-	lwz      r5, 0xc(r31)
-	stb      r0, 0xbc(r5)
-	stb      r8, 0xbd(r5)
-	stb      r9, 0xbe(r5)
-	lwz      r5, 0x10(r31)
-	stfs     f0, 0x98(r5)
-	stfs     f0, 0x9c(r5)
-	stfs     f0, 0xa0(r5)
-	stfs     f0, 0xb0(r5)
-	stfs     f0, 0xb4(r5)
-	lwz      r5, 0x10(r31)
-	stb      r4, 0xb8(r5)
-	stb      r6, 0xb9(r5)
-	stb      r7, 0xba(r5)
-	lwz      r5, 0x10(r31)
-	stb      r0, 0xbc(r5)
-	stb      r8, 0xbd(r5)
-	stb      r9, 0xbe(r5)
-	b        lbl_803BA460
-
-lbl_803BA45C:
-	li       r3, 0
-
-lbl_803BA460:
-	lwz      r0, 0x24(r1)
-	lwz      r31, 0x1c(r1)
-	lwz      r30, 0x18(r1)
-	lwz      r29, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x20
-	blr
-	*/
 }
 
 /*
