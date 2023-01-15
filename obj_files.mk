@@ -874,7 +874,7 @@ NISHIMURA:=\
 	$(BUILD_DIR)/asm/plugProjectNishimuraU/JointShadowBase.o\
 	$(BUILD_DIR)/asm/plugProjectNishimuraU/UmimushiShadow.o\
 	$(BUILD_DIR)/src/plugProjectNishimuraU/HanaMgr.o\
-	$(BUILD_DIR)/asm/plugProjectNishimuraU/Hana.o\
+	$(BUILD_DIR)/src/plugProjectNishimuraU/Hana.o\
 	$(BUILD_DIR)/asm/plugProjectNishimuraU/BigTreasureAttack.o\
 	$(BUILD_DIR)/asm/plugProjectNishimuraU/SnakeCrowShadow.o\
 	$(BUILD_DIR)/asm/plugProjectNishimuraU/SnakeWholeShadow.o\

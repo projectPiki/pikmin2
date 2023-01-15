@@ -195,10 +195,11 @@ void Obj::createSmokeEffect()
 	Vector3f pos = m_position;
 	int id       = getCurrAnimIndex();
 	if (id == 8) {
-		pos -= Vector3f(pikmin2_sinf(m_faceDir) * 60.0f, 0.9f, pikmin2_cosf(m_faceDir) * 60.0f);
+		pos -= Vector3f(pikmin2_sinf(m_faceDir) * 60.0f, 0.0f, pikmin2_cosf(m_faceDir) * 60.0f);
 
 		cameraMgr->startVibration(3, pos, 2);
 		rumbleMgr->startRumble(11, pos, 2);
+
 	} else if (id == 4) {
 		setAtari(true);
 
@@ -210,19 +211,12 @@ void Obj::createSmokeEffect()
 		EnemyFunc::flickNearbyNavi(this, parms->m_general.m_privateRadius.m_value, parms->m_general.m_shakeKnockback.m_value,
 		                           parms->m_general.m_shakeDamage.m_value, -1000.0f, nullptr);
 		rumbleMgr->startRumble(10, pos, 2);
+
 	} else {
 		return;
 	}
+
 	createBounceEffect(pos, 1.0f);
 }
-
-/*
- * --INFO--
- * Address:	802F38CC
- * Size:	00007C
- */
-// void ConditionNotStickSlot::satisfy(Piki* p)
-//{
-//}
 } // namespace Hana
 } // namespace Game

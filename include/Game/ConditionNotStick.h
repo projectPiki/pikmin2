@@ -41,12 +41,18 @@ struct ConditionNotStickClientAndItem : public Condition<Piki> {
 	}
 
 	// _00 VTBL
-	Creature* m_client; // _04, otakara
-	Creature* m_item;   // _08, treasure
+	Creature* m_client; // _04, dweevil
+	Creature* m_item;   // _08, pellet
 };
 
 struct ConditionNotStickSlot : public Condition<Piki> {
-	virtual bool satisfy(Piki*); // _08 (weak)
+	virtual bool satisfy(Piki* piki) // _08 (weak)
+	{
+		if (piki->isAlive() && piki->isPikmin() && !piki->isStickToMouth()) {
+			return true;
+		}
+		return false;
+	}
 
 	// _00 VTBL
 };
