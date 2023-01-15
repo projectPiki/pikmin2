@@ -249,6 +249,7 @@ struct CellIterator {
 	u32 _1C;               // _1C
 	u32 m_passID;          // _20
 	CellIteratorArg m_arg; // _24
+	u32 _44;               // _44
 };
 
 extern CellPyramid* cellMgr;

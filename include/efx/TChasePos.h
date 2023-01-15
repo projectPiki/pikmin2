@@ -101,11 +101,26 @@ struct TChasePosPosLocalYScale : public TSync {
 		m_effectID = effectID;
 	}
 
+	inline TChasePosPosLocalYScale(u16 effectID, f32 scale)
+	    : TSync()
+	    , _10(nullptr)
+	    , _14(nullptr)
+	    , _18(scale)
+	{
+		m_effectID = effectID;
+	}
+
+	inline void setPosPosPtr(Vector3f* pos1, Vector3f* pos2)
+	{
+		_10 = pos1;
+		_14 = pos2;
+	}
+
 	// vtable 1 (TBase)
 	// 		_08-_14
 	// vtable 2 (JPAEmitterCallBack + self)
 	virtual void doExecuteEmitterOperation(JPABaseEmitter*); // _38
-	virtual ~TChasePosPosLocalYScale();                      // _48 (weak, thunk at _1C)
+	virtual ~TChasePosPosLocalYScale() { }                   // _48 (weak, thunk at _1C)
 
 	// _00		= VTBL
 	// _00-_10	= TSync

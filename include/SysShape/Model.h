@@ -72,6 +72,8 @@ struct Model : public MtxObject {
 		}
 	}
 
+	inline J3DModel* getJ3DModel() { return m_j3dModel; }
+
 	// VTBL _00
 	bool m_isAnimating;   // _04, assumed name
 	u8 _05;               // _05

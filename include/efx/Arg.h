@@ -243,12 +243,22 @@ struct ArgPosPos : public Arg {
 	{
 	}
 
+	ArgPosPos(Vector3f pos1, Vector3f pos2)
+	    : Arg()
+	{
+		m_pos1 = pos1;
+		m_pos2 = pos2;
+	}
+
 	virtual const char* getName() // _08 (weak)
 	{
 		return "ArgPosPos";
 	}
-	Vector3f m_pos1;
-	Vector3f m_pos2;
+
+	// _00     = VTBL
+	// _00-_10 = Arg
+	Vector3f m_pos1; // _10
+	Vector3f m_pos2; // _1C
 };
 
 struct ArgPrmColor : public Arg {

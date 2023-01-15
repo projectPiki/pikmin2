@@ -35,7 +35,7 @@ struct TOootaChangeBody : public TChaseMtx {
 	{
 	}
 
-	virtual ~TOootaChangeBody(); // _48 (weak)
+	virtual ~TOootaChangeBody() { } // _48 (weak)
 
 	// _00     = VTBL
 	// _00-_14 = TChaseMtx
@@ -43,11 +43,11 @@ struct TOootaChangeBody : public TChaseMtx {
 
 struct TOootaChangeLeg : public TChasePosPosLocalYScale {
 	inline TOootaChangeLeg()
-	    : TChasePosPosLocalYScale(PID_OoOtaChangeLeg)
+	    : TChasePosPosLocalYScale(PID_OoOtaChangeLeg, 100.0f)
 	{
 	}
 
-	virtual ~TOootaChangeLeg(); // _48 (weak)
+	virtual ~TOootaChangeLeg() { } // _48 (weak)
 
 	// _00     = VTBL
 	// _00-_1C = TChasePosPosLocalYScale
@@ -59,7 +59,7 @@ struct TOootaDeadAwa : public TChaseMtx {
 	{
 	}
 
-	virtual ~TOootaDeadAwa(); // _48 (weak)
+	virtual ~TOootaDeadAwa() { } // _48 (weak)
 
 	// _00     = VTBL
 	// _00-_14 = TChaseMtx
@@ -77,7 +77,7 @@ struct TOootaDeadBody : public TChaseMtx3 {
 
 struct TOootaDeadLeg : public TChasePosPosLocalYScale3 {
 	inline TOootaDeadLeg()
-	    : TChasePosPosLocalYScale3(nullptr, nullptr, 0.0f, PID_OoOtaDeadLeg_1, PID_OoOtaDeadLeg_2, PID_OoOtaDeadLeg_3)
+	    : TChasePosPosLocalYScale3(nullptr, nullptr, 100.0f, PID_OoOtaDeadLeg_1, PID_OoOtaDeadLeg_2, PID_OoOtaDeadLeg_3)
 	{
 	}
 
@@ -179,7 +179,7 @@ struct TOootaParticle : public TChasePos {
 	{
 	}
 
-	virtual ~TOootaParticle(); // _48 (weak)
+	virtual ~TOootaParticle() { } // _48 (weak)
 
 	void setGlobalDynamicsScale(f32);
 
@@ -223,7 +223,7 @@ struct TOootaStartBody : public TChaseMtx {
 	{
 	}
 
-	virtual ~TOootaStartBody(); // _48 (weak)
+	virtual ~TOootaStartBody() { } // _48 (weak)
 
 	// _00     = VTBL
 	// _00-_14 = TChaseMtx
@@ -231,11 +231,11 @@ struct TOootaStartBody : public TChaseMtx {
 
 struct TOootaStartLeg : public TChasePosPosLocalYScale {
 	inline TOootaStartLeg()
-	    : TChasePosPosLocalYScale(PID_OoOtaStartLeg)
+	    : TChasePosPosLocalYScale(PID_OoOtaStartLeg, 100.0f)
 	{
 	}
 
-	virtual ~TOootaStartLeg(); // _48 (weak)
+	virtual ~TOootaStartLeg() { } // _48 (weak)
 
 	// _00     = VTBL
 	// _00-_1C = TChasePosPosLocalYScale
@@ -247,7 +247,7 @@ struct TOootaStartOta : public TChaseMtxT {
 	{
 	}
 
-	virtual ~TOootaStartOta(); // _48 (weak)
+	virtual ~TOootaStartOta() { } // _48 (weak)
 
 	// _00     = VTBL
 	// _00-_14 = TChaseMtxT

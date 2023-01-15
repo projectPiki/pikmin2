@@ -52,8 +52,6 @@ struct Obj : public EnemyBase {
 	virtual void onInit(CreatureInitArg* settings);          // _30
 	virtual void onKill(CreatureKillArg* settings);          // _34
 	virtual void doDirectDraw(Graphics& gfx);                // _50
-	virtual void inWaterCallback(WaterBox* wb);              // _84 (weak)
-	virtual void outWaterCallback();                         // _88 (weak)
 	virtual void getShadowParam(ShadowParam& settings);      // _134
 	virtual ~Obj() { }                                       // _1BC (weak)
 	virtual void setInitialSetting(EnemyInitialParamBase*);  // _1C4
@@ -63,18 +61,23 @@ struct Obj : public EnemyBase {
 	virtual void doAnimationCullingOff();                    // _1DC
 	virtual void doDebugDraw(Graphics&);                     // _1EC
 	virtual void changeMaterial();                           // _200
-	virtual EnemyTypeID::EEnemyTypeID getEnemyTypeID();      // _258 (weak)
 	virtual void getThrowupItemPosition(Vector3f*);          // _268
 	virtual void getThrowupItemVelocity(Vector3f*);          // _26C
-	virtual void throwupItemInDeathProcedure();              // _270 (weak)
 	virtual bool damageCallBack(Creature*, f32, CollPart*);  // _278
 	virtual bool hipdropCallBack(Creature*, f32, CollPart*); // _284
 	virtual void doStartStoneState();                        // _2A4
 	virtual void doFinishStoneState();                       // _2A8
-	virtual f32 getDamageCoeStoneState();                    // _2AC (weak)
 	virtual void doStartMovie();                             // _2F0
 	virtual void doEndMovie();                               // _2F4
 	virtual void setFSM(FSM*);                               // _2F8
+	virtual void inWaterCallback(WaterBox* wb) { }           // _84 (weak)
+	virtual void outWaterCallback() { }                      // _88 (weak)
+	virtual f32 getDamageCoeStoneState() { return 0.5f; }    // _2AC (weak)
+	virtual void throwupItemInDeathProcedure() { }           // _270 (weak)
+	virtual EnemyTypeID::EEnemyTypeID getEnemyTypeID()       // _258 (weak)
+	{
+		return EnemyTypeID::EnemyID_BigTreasure;
+	}
 	//////////////// VTABLE END
 
 	void resetAttackLimitTimer();
@@ -95,8 +98,8 @@ struct Obj : public EnemyBase {
 	void startBlendMotion();
 	void finishBlendMotion();
 	void checkJointScaleOn();
-	void getTraceCentrePosition();
-	void getJointPositionPtr(int, int);
+	Vector3f getTraceCentrePosition();
+	Vector3f* getJointPositionPtr(int, int);
 	void createShadowSystem();
 	void setupShadowSystem();
 	void doAnimationShadowSystem();
@@ -107,8 +110,8 @@ struct Obj : public EnemyBase {
 	void dropTreasure(int);
 	bool isCapturedTreasure();
 	bool isCapturedTreasure(int);
-	void getCapturedTreasureNum();
-	void addTreasureDamage(int, f32);
+	int getCapturedTreasureNum();
+	bool addTreasureDamage(int, f32);
 	void flickStickCollPartPikmin(CollPart*);
 	void releaseItemLoozy();
 	void createAttack();
@@ -173,42 +176,48 @@ struct Obj : public EnemyBase {
 	// _00-_2BC	= EnemyBase
 	FSM* m_fsm;                                  // _2BC
 	f32 m_stateTimer;                            // _2C0
-	f32 _2C4;                                    // _2C4, attack timer?
+	f32 m_attackLimitTimer;                      // _2C4
 	StateID m_nextState;                         // _2C8
-	Vector3f _2CC;                               // _2CC, target position?
-	f32 _2D8;                                    // _2D8, timer of some sort?
+	Vector3f m_targetPosition;                   // _2CC
+	f32 m_shadowScale;                           // _2D8
 	u8 _2DC[0x8];                                // _2DC, unknown
-	IKSystemMgr* m_IKSystemMgr;                  // _2E4
-	IKSystemParms* m_IKSystemParms;              // _2E8
+	IKSystemMgr* m_ikSystemMgr;                  // _2E4
+	IKSystemParms* m_ikSystemParms;              // _2E8
 	BigTreasureGroundCallBack* m_groundCallBack; // _2EC
 	BigTreasureShadowMgr* m_shadowMgr;           // _2F0
 	BigTreasureAttackMgr* m_attackMgr;           // _2F4
-	Vector3f _2F8;                               // _2F8, kosi joint pos?
-	Vector3f _304[16];                           // _304, joint positions?
-	Creature* m_treasures[4];                    // _3C4, elec / fire / gas / water
-	Creature* m_louie;                           // _3D4, King of Bugs
+	Vector3f m_kosiJointPos;                     // _2F8
+	Vector3f m_jointPositions[4][4];             // _304
+	Pellet* m_treasures[4];                      // _3C4, elec / fire / gas / water
+	Pellet* m_louie;                             // _3D4, King of Bugs
 	f32 m_treasureHealth[4];                     // _3D8, elec / fire / gas / water
 	f32 _3E8;                                    // _3E8
 	u8 _3EC[0xC];                                // _3EC, unknown
-	CollPart* _3F8;                              // _3F8
-	u8 _3FC[0xC];                                // _3FC
+	CollPart* m_treasureCollParts[4];            // _3F8, elec / fire / gas / water
 	int m_attackIndex;                           // _408, enum TitanDweevilAttack?
 	u8 _40C[0x8];                                // _40C, unknown
 	J3DGXColorS10 _414;                          // _414
 	int _41C;                                    // _41C
-	u8 _420[0x60];                               // _420, unknown
-	efx::TChasePos2* _480[4];                    // _480
-	efx::TDamaFootw* _490[4];                    // _490
-	efx::TDamaSmoke* _4A0[4];                    // _4A0
-	efx::TOootaStartBody* _4B0;                  // _4B0
-	efx::TOootaStartOta* _4B4[4];                // _4B4
-	efx::TOootaStartLeg* _4C4[3][4];             // _4C4
-	efx::TChasePosPosLocalYScale3* _4F4[4][4];   // _4F4
-	efx::TChaseMtx3* _534;                       // _534
-	efx::TOootaDeadAwa* _538;                    // _538
-	efx::TOootaChangeLeg* _53C[4][4];            // _53C
-	efx::TOootaChangeBody* _57C;                 // _57C
-	efx::TOootaParticle* _580;                   // _580
+	u8 _420[0x30];                               // _420, unknown
+	f32 _450;                                    // _450
+	f32 _454;                                    // _454
+	f32 _458;                                    // _458
+	u8 _45C[0x18];                               // _45C, unknown
+	f32 _474;                                    // _474
+	f32 _478;                                    // _478
+	f32 _47C;                                    // _47C
+	efx::TOootaFoot* m_footFX[4];                // _480
+	efx::TDamaFootw* m_footWFX[4];               // _490
+	efx::TDamaSmoke* m_treasureSmokeFX[4];       // _4A0
+	efx::TOootaStartBody* m_startBodyFX;         // _4B0
+	efx::TOootaStartOta* m_startTreasureFX[4];   // _4B4
+	efx::TOootaStartLeg* m_startLegFX[4][3];     // _4C4
+	efx::TOootaDeadLeg* m_deadLegFX[4][4];       // _4F4, leg bubble effect on death
+	efx::TOootaDeadBody* m_deadBodyFX;           // _534, body bubble effect on death
+	efx::TOootaDeadAwa* m_deadAwaFX;             // _538, mouth bubble effect on death
+	efx::TOootaChangeLeg* m_changeLegFX[4][4];   // _53C
+	efx::TOootaChangeBody* m_changeBodyFX;       // _57C
+	efx::TOootaParticle* m_shineParticleFX;      // _580
 	                                             // _584 = PelletView
 };
 
@@ -393,16 +402,32 @@ struct Parms : public EnemyParmsBase {
 	ProperParms m_properParms; // _7F8
 };
 
-struct ProperAnimator : public EnemyAnimatorBase {
-	virtual ~ProperAnimator(); // _08 (weak)
+struct ProperAnimator : public EnemyBlendAnimatorBase {
+	virtual ~ProperAnimator() { } // _08 (weak)
 
 	// _00 		= VTBL
-	// _00-_10	= EnemyAnimatorBase
+	// _00-_60	= EnemyBlendAnimatorBase
 };
 
-struct BigTreasureShadowMgr;
+struct BigTreasureShadowMgr {
+	BigTreasureShadowMgr(Obj*);
+
+	void init();
+	void setJointPosPtr(int, int, Vector3f*);
+	void setKosiJointPosPtr(Vector3f*);
+	void update();
+
+	Matrixf* _00;  // _00
+	Obj* _04;      // _04
+	u8 _08[0x168]; // _08, to fill in
+};
 
 struct BigTreasureGroundCallBack : public JointGroundCallBack {
+	inline BigTreasureGroundCallBack(Obj* obj)
+	    : m_obj(obj)
+	{
+	}
+
 	virtual void invokeOnGround(int, WaterBox*);  // _08
 	virtual void invokeOffGround(int, WaterBox*); // _0C
 
