@@ -639,14 +639,14 @@ void FSMState_CardRequest::do_exec(TMgr* mgr)
 {
 	switch (m_state) {
 	case 0:
-		bool check2 = (!sys->m_cardMgr->_D8) && (sys->m_cardMgr->checkStatus() != 11);
+		bool check2 = (!sys->m_cardMgr->_A8) && (sys->m_cardMgr->checkStatus() != 11);
 		if (check2) {
 			P2ASSERTLINE(90, do_cardRequest(mgr));
 			m_state = 1;
 		}
 		break;
 	case 1:
-		bool check3 = (!sys->m_cardMgr->_D8) && (sys->m_cardMgr->checkStatus() != 11);
+		bool check3 = (!sys->m_cardMgr->_A8) && (sys->m_cardMgr->checkStatus() != 11);
 		if (check3) {
 			m_cardStatus = (int)static_cast<Game::MemoryCard::Mgr*>(sys->m_cardMgr)->getCardStatus();
 			static_cast<Game::MemoryCard::Mgr*>(sys->m_cardMgr)->getCardStatus();
@@ -655,20 +655,11 @@ void FSMState_CardRequest::do_exec(TMgr* mgr)
 		break;
 	case 2:
 		switch (m_cardStatus) {
-		case Game::MemoryCard::Mgr::MCS_NoCard:
-			do_transitCardNoCard(mgr);
-			break;
-		case Game::MemoryCard::Mgr::MCS_FileOpenError:
-			do_transitCardFileOpenError(mgr);
-			break;
 		case Game::MemoryCard::Mgr::MCS_Ready:
 			do_transitCardReady(mgr);
 			break;
-		case Game::MemoryCard::Mgr::MCS_Broken:
-			do_transitCardBroken(mgr);
-			break;
-		case Game::MemoryCard::Mgr::MCS_Encoding:
-			do_transitCardEncoding(mgr);
+		case Game::MemoryCard::Mgr::MCS_NoCard:
+			do_transitCardNoCard(mgr);
 			break;
 		case Game::MemoryCard::Mgr::MCS_IOError:
 			do_transitCardIOError(mgr);
@@ -679,17 +670,26 @@ void FSMState_CardRequest::do_exec(TMgr* mgr)
 		case Game::MemoryCard::Mgr::MCS_WrongSector:
 			do_transitCardWrongSector(mgr);
 			break;
+		case Game::MemoryCard::Mgr::MCS_Broken:
+			do_transitCardBroken(mgr);
+			break;
+		case Game::MemoryCard::Mgr::MCS_Encoding:
+			do_transitCardEncoding(mgr);
+			break;
 		case Game::MemoryCard::Mgr::MCS_NoFileSpace:
 			do_transitCardNoFileSpace(mgr);
 			break;
 		case Game::MemoryCard::Mgr::MCS_NoFileEntry:
 			do_transitCardNoFileEntry(mgr);
 			break;
-		case Game::MemoryCard::Mgr::MCS_PlayerDataBroken:
-			do_transitCardPlayerDataBroken(mgr);
+		case Game::MemoryCard::Mgr::MCS_FileOpenError:
+			do_transitCardFileOpenError(mgr);
 			break;
 		case Game::MemoryCard::Mgr::MCS_SerialNoError:
 			do_transitCardSerialNoError(mgr);
+			break;
+		case Game::MemoryCard::Mgr::MCS_PlayerDataBroken:
+			do_transitCardPlayerDataBroken(mgr);
 			break;
 		default:
 			JUT_PANICLINE(150, "※メモリーカードエラー:想定外のケースです\n");
@@ -697,221 +697,6 @@ void FSMState_CardRequest::do_exec(TMgr* mgr)
 			break;
 		}
 	}
-	/*
-	stwu     r1, -0x20(r1)
-	mflr     r0
-	lis      r5, lbl_80497010@ha
-	stw      r0, 0x24(r1)
-	stw      r31, 0x1c(r1)
-	mr       r31, r3
-	stw      r30, 0x18(r1)
-	stw      r29, 0x14(r1)
-	addi     r29, r5, lbl_80497010@l
-	stw      r28, 0x10(r1)
-	mr       r28, r4
-	lwz      r0, 0x10(r3)
-	cmpwi    r0, 1
-	beq      lbl_803E16EC
-	bge      lbl_803E1670
-	cmpwi    r0, 0
-	bge      lbl_803E167C
-	b        lbl_803E1880
-
-lbl_803E1670:
-	cmpwi    r0, 3
-	bge      lbl_803E1880
-	b        lbl_803E1744
-
-lbl_803E167C:
-	lwz      r3, sys@sda21(r13)
-	li       r30, 0
-	lwz      r3, 0x5c(r3)
-	lwz      r0, 0xa8(r3)
-	cmpwi    r0, 0
-	bne      lbl_803E16A4
-	bl       checkStatus__13MemoryCardMgrFv
-	cmplwi   r3, 0xb
-	beq      lbl_803E16A4
-	li       r30, 1
-
-lbl_803E16A4:
-	clrlwi.  r0, r30, 0x18
-	beq      lbl_803E1880
-	mr       r3, r31
-	mr       r4, r28
-	lwz      r12, 0(r31)
-	lwz      r12, 0x28(r12)
-	mtctr    r12
-	bctrl
-	clrlwi.  r0, r3, 0x18
-	bne      lbl_803E16E0
-	addi     r3, r29, 0x5c
-	addi     r5, r29, 0x74
-	li       r4, 0x5a
-	crclr    6
-	bl       panic_f__12JUTExceptionFPCciPCce
-
-lbl_803E16E0:
-	li       r0, 1
-	stw      r0, 0x10(r31)
-	b        lbl_803E1880
-
-lbl_803E16EC:
-	lwz      r3, sys@sda21(r13)
-	li       r30, 0
-	lwz      r3, 0x5c(r3)
-	lwz      r0, 0xa8(r3)
-	cmpwi    r0, 0
-	bne      lbl_803E1714
-	bl       checkStatus__13MemoryCardMgrFv
-	cmplwi   r3, 0xb
-	beq      lbl_803E1714
-	li       r30, 1
-
-lbl_803E1714:
-	clrlwi.  r0, r30, 0x18
-	beq      lbl_803E1880
-	lwz      r3, sys@sda21(r13)
-	lwz      r3, 0x5c(r3)
-	bl       getCardStatus__Q34Game10MemoryCard3MgrFv
-	stw      r3, 0x14(r31)
-	lwz      r3, sys@sda21(r13)
-	lwz      r3, 0x5c(r3)
-	bl       getCardStatus__Q34Game10MemoryCard3MgrFv
-	li       r0, 2
-	stw      r0, 0x10(r31)
-	b        lbl_803E1880
-
-lbl_803E1744:
-	lwz      r0, 0x14(r31)
-	cmplwi   r0, 0xe
-	bgt      lbl_803E1858
-	lis      r5, lbl_804E9678@ha
-	slwi     r0, r0, 2
-	addi     r5, r5, lbl_804E9678@l
-	lwzx     r0, r5, r0
-	mtctr    r0
-	bctr
-	.global  lbl_803E1768
-
-lbl_803E1768:
-	lwz      r12, 0(r3)
-	lwz      r12, 0x2c(r12)
-	mtctr    r12
-	bctrl
-	b        lbl_803E1880
-	.global  lbl_803E177C
-
-lbl_803E177C:
-	lwz      r12, 0(r3)
-	lwz      r12, 0x30(r12)
-	mtctr    r12
-	bctrl
-	b        lbl_803E1880
-	.global  lbl_803E1790
-
-lbl_803E1790:
-	lwz      r12, 0(r3)
-	lwz      r12, 0x34(r12)
-	mtctr    r12
-	bctrl
-	b        lbl_803E1880
-	.global  lbl_803E17A4
-
-lbl_803E17A4:
-	lwz      r12, 0(r3)
-	lwz      r12, 0x38(r12)
-	mtctr    r12
-	bctrl
-	b        lbl_803E1880
-	.global  lbl_803E17B8
-
-lbl_803E17B8:
-	lwz      r12, 0(r3)
-	lwz      r12, 0x3c(r12)
-	mtctr    r12
-	bctrl
-	b        lbl_803E1880
-	.global  lbl_803E17CC
-
-lbl_803E17CC:
-	lwz      r12, 0(r3)
-	lwz      r12, 0x40(r12)
-	mtctr    r12
-	bctrl
-	b        lbl_803E1880
-	.global  lbl_803E17E0
-
-lbl_803E17E0:
-	lwz      r12, 0(r3)
-	lwz      r12, 0x44(r12)
-	mtctr    r12
-	bctrl
-	b        lbl_803E1880
-	.global  lbl_803E17F4
-
-lbl_803E17F4:
-	lwz      r12, 0(r3)
-	lwz      r12, 0x48(r12)
-	mtctr    r12
-	bctrl
-	b        lbl_803E1880
-	.global  lbl_803E1808
-
-lbl_803E1808:
-	lwz      r12, 0(r3)
-	lwz      r12, 0x4c(r12)
-	mtctr    r12
-	bctrl
-	b        lbl_803E1880
-	.global  lbl_803E181C
-
-lbl_803E181C:
-	lwz      r12, 0(r3)
-	lwz      r12, 0x50(r12)
-	mtctr    r12
-	bctrl
-	b        lbl_803E1880
-	.global  lbl_803E1830
-
-lbl_803E1830:
-	lwz      r12, 0(r3)
-	lwz      r12, 0x54(r12)
-	mtctr    r12
-	bctrl
-	b        lbl_803E1880
-	.global  lbl_803E1844
-
-lbl_803E1844:
-	lwz      r12, 0(r3)
-	lwz      r12, 0x58(r12)
-	mtctr    r12
-	bctrl
-	b        lbl_803E1880
-	.global  lbl_803E1858
-
-lbl_803E1858:
-	addi     r3, r29, 0x5c
-	addi     r5, r29, 0x80
-	li       r4, 0x96
-	crclr    6
-	bl       panic_f__12JUTExceptionFPCciPCce
-	addi     r3, r29, 0x5c
-	addi     r5, r29, 0x74
-	li       r4, 0x97
-	crclr    6
-	bl       panic_f__12JUTExceptionFPCciPCce
-
-lbl_803E1880:
-	lwz      r0, 0x24(r1)
-	lwz      r31, 0x1c(r1)
-	lwz      r30, 0x18(r1)
-	lwz      r29, 0x14(r1)
-	lwz      r28, 0x10(r1)
-	mtlr     r0
-	addi     r1, r1, 0x20
-	blr
-	*/
 }
 
 /*
@@ -1038,30 +823,6 @@ void FSMState_CardRequest::do_transitCardSerialNoError(TMgr* mgr)
 {
 	JUT_PANICLINE(224, "※ロードでシリアルエラーはありえない\n"); // * There is no serial error during loading
 	JUT_PANICLINE(225, "P2Assert");
-	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  lis       r3, 0x8049
-	  li        r4, 0xE0
-	  stw       r0, 0x14(r1)
-	  stw       r31, 0xC(r1)
-	  addi      r31, r3, 0x7010
-	  addi      r3, r31, 0x5C
-	  addi      r5, r31, 0xAC
-	  crclr     6, 0x6
-	  bl        -0x3B74D0
-	  addi      r3, r31, 0x5C
-	  addi      r5, r31, 0x74
-	  li        r4, 0xE1
-	  crclr     6, 0x6
-	  bl        -0x3B74E4
-	  lwz       r0, 0x14(r1)
-	  lwz       r31, 0xC(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
-	*/
 }
 
 /*
@@ -1086,20 +847,6 @@ void FSMState_MountCheck::do_transitCardReady(TMgr* mgr) { transit(mgr, FSState_
 bool FSMState_GetPlayerHeader::do_cardRequest(TMgr* mgr)
 {
 	return static_cast<Game::MemoryCard::Mgr*>(sys->m_cardMgr)->getPlayerHeader(&mgr->m_player);
-	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  addi      r4, r4, 0xF48
-	  stw       r0, 0x14(r1)
-	  lwz       r3, -0x6514(r13)
-	  lwz       r3, 0x5C(r3)
-	  bl        0x61A74
-	  lwz       r0, 0x14(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
-	*/
 }
 
 /*
@@ -1123,29 +870,9 @@ void FSMState_GetPlayerHeader::do_transitCardSerialNoError(TMgr* mgr) { JUT_PANI
  */
 void FSMState_ScreenFileSelect::do_init(TMgr* mgr, Game::StateArg* arg)
 {
-	mgr->m_mgrFS.perseInfo(&mgr->m_player);
+	mgr->m_mgrFS.perseInfo(mgr->m_player);
 	mgr->m_mgrFS.startSeq();
 	mgr->m_cardErrorMgr.forceQuitSeq();
-	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  stw       r0, 0x14(r1)
-	  stw       r31, 0xC(r1)
-	  mr        r31, r4
-	  addi      r3, r31, 0x18
-	  addi      r4, r31, 0xF48
-	  bl        -0x1BD4
-	  addi      r3, r31, 0x18
-	  bl        -0x1A00
-	  addi      r3, r31, 0xC78
-	  bl        -0xE8A4
-	  lwz       r0, 0x14(r1)
-	  lwz       r31, 0xC(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
-	*/
 }
 
 /*
@@ -1156,7 +883,7 @@ void FSMState_ScreenFileSelect::do_init(TMgr* mgr, Game::StateArg* arg)
 void FSMState_ScreenFileSelect::do_exec(TMgr* mgr)
 {
 	if (mgr->m_mgrFS.isFinish()) {
-		switch (mgr->m_mgrFS._00[0xc38]) {
+		switch (mgr->m_mgrFS._00[0xc38]) { // needs to load byte
 		case 1:
 		case 2:
 			transit(mgr, FSSTATE_MountCheck, nullptr);
@@ -1247,35 +974,6 @@ void FSMState_CardError::do_init(TMgr* mgr, Game::StateArg* arg)
 	CardErrorStateArg* carg = static_cast<CardErrorStateArg*>(arg);
 	P2ASSERTLINE(319, arg);
 	mgr->m_cardErrorMgr.startSeq((CardError::TMgr::enumStart)carg->_00);
-	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  stw       r0, 0x14(r1)
-	  stw       r31, 0xC(r1)
-	  mr.       r31, r5
-	  stw       r30, 0x8(r1)
-	  mr        r30, r4
-	  bne-      .loc_0x3C
-	  lis       r3, 0x8049
-	  lis       r5, 0x8049
-	  addi      r3, r3, 0x706C
-	  li        r4, 0x13F
-	  addi      r5, r5, 0x7084
-	  crclr     6, 0x6
-	  bl        -0x3B7730
-
-	.loc_0x3C:
-	  lwz       r4, 0x0(r31)
-	  addi      r3, r30, 0xC78
-	  bl        -0xED3C
-	  lwz       r0, 0x14(r1)
-	  lwz       r31, 0xC(r1)
-	  lwz       r30, 0x8(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
-	*/
 }
 
 /*
@@ -1286,7 +984,7 @@ void FSMState_CardError::do_init(TMgr* mgr, Game::StateArg* arg)
 void FSMState_CardError::do_exec(TMgr* mgr)
 {
 	if (mgr->m_cardErrorMgr.isGetEnd()) {
-		switch (mgr->m_cardErrorMgr.m_state) {
+		switch (mgr->m_cardErrorMgr.m_endStat) {
 		case 1:
 			static_cast<Game::MemoryCard::Mgr*>(sys->m_cardMgr)->loadPlayerForNoCard(0);
 			mgr->goEnd_(TMgr::End_1);
@@ -1295,66 +993,10 @@ void FSMState_CardError::do_exec(TMgr* mgr)
 			mgr->start();
 			break;
 		default:
-			JUT_PANICLINE(342, "※ mgr->mCardErrorMgr->getEnd=%d ってありえない！\n", mgr->m_cardErrorMgr.m_state);
+			JUT_PANICLINE(342, "※ mgr->mCardErrorMgr->getEnd=%d ってありえない！\n", mgr->m_cardErrorMgr.m_endStat);
 			JUT_PANICLINE(343, "P2Assert");
 		}
 	}
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	lis      r3, lbl_80497010@ha
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	addi     r31, r3, lbl_80497010@l
-	stw      r30, 8(r1)
-	mr       r30, r4
-	addi     r3, r30, 0xc78
-	bl       isGetEnd__Q33ebi9CardError4TMgrFv
-	clrlwi.  r0, r3, 0x18
-	beq      lbl_803E1E38
-	lwz      r6, 0xf18(r30)
-	cmpwi    r6, 2
-	beq      lbl_803E1E04
-	bge      lbl_803E1E10
-	cmpwi    r6, 1
-	bge      lbl_803E1DE4
-	b        lbl_803E1E10
-
-lbl_803E1DE4:
-	lwz      r3, sys@sda21(r13)
-	li       r4, 0
-	lwz      r3, 0x5c(r3)
-	bl       loadPlayerForNoCard__Q34Game10MemoryCard3MgrFSc
-	mr       r3, r30
-	li       r4, 1
-	bl       goEnd___Q33ebi10FileSelect4TMgrFQ43ebi10FileSelect4TMgr7enumEnd
-	b        lbl_803E1E38
-
-lbl_803E1E04:
-	mr       r3, r30
-	bl       start__Q33ebi10FileSelect4TMgrFv
-	b        lbl_803E1E38
-
-lbl_803E1E10:
-	addi     r3, r31, 0x5c
-	addi     r5, r31, 0xd4
-	li       r4, 0x156
-	crclr    6
-	bl       panic_f__12JUTExceptionFPCciPCce
-	addi     r3, r31, 0x5c
-	addi     r5, r31, 0x74
-	li       r4, 0x157
-	crclr    6
-	bl       panic_f__12JUTExceptionFPCciPCce
-
-lbl_803E1E38:
-	lwz      r0, 0x14(r1)
-	lwz      r31, 0xc(r1)
-	lwz      r30, 8(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
 }
 
 /*

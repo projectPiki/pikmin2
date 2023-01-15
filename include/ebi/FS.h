@@ -223,7 +223,7 @@ struct FSMState10_FinishCopy : public FSMState_Warning {
 struct TMgr {
 	TMgr() { }
 	~TMgr();
-	void perseInfo(Game::MemoryCard::PlayerFileInfo*);
+	void perseInfo(Game::MemoryCard::PlayerFileInfo&);
 	void startSeq();
 	bool isFinish();
 	void forceQuitSeq();

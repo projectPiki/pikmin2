@@ -34,11 +34,12 @@ struct MemoryCardMgr {
 	void init();
 	u32 checkStatus();
 
-	u8 _04[0xD4]; // _04
-	u32 _D8;      // _D8
-	u32 _DC;      // _DC
-	u32 _E0;      // _E0
-	u32 _E4;      // _E4
+	u8 _04[0xA4];        // _04
+	int _A8;             // _A8
+	u8 _AC[0xDC - 0xAC]; // _AC
+	u32 _DC;             // _DC
+	u32 _E0;             // _E0
+	u32 _E4;             // _E4
 };
 
 #endif

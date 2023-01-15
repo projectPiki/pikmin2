@@ -29,21 +29,21 @@ struct Mgr : public MemoryCardMgr {
 	virtual bool isErrorOccured();                         // _28
 
 	enum MemoryCardStatus {
-		MCS_NoCard,
-		MCS_FileOpenError,
 		MCS_Ready,
-		MCS_Broken,
-		MCS_Encoding,
+		MCS_NoCard,
 		MCS_IOError,
 		MCS_WrongDevice,
 		MCS_WrongSector,
+		MCS_Broken,
+		MCS_Encoding,
 		MCS_NoFileSpace,
 		MCS_NoFileEntry,
-		MCS_10,
+		MCS_FileOpenError,
+		MCS_SerialNoError,
 		MCS_11,
 		MCS_12,
-		MCS_PlayerDataBroken,
-		MCS_SerialNoError
+		MCS_13,
+		MCS_PlayerDataBroken
 	};
 
 	void loadResource(JKRHeap*);
@@ -79,7 +79,7 @@ struct Mgr : public MemoryCardMgr {
 	void getPlayerInfo(char, PlayerInfoHeader*, bool*);
 	void getIndexPlayerInfo(char, PlayerInfoHeader*, bool*);
 	void commandLoadPlayer(char);
-	void loadPlayerForNoCard(char);
+	void loadPlayerForNoCard(s8);
 	void loadPlayerProc(char, unsigned char*);
 	void commandDeletePlayer(char);
 	void savePlayerProc(char, unsigned char*, bool);
