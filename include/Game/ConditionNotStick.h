@@ -13,7 +13,13 @@ struct ConditionNotStickClient : public Condition<Piki> {
 	{
 	}
 
-	virtual bool satisfy(Piki*); // _08 (weak)
+	virtual bool satisfy(Piki* piki) // _08 (weak)
+	{
+		if (piki->isAlive() && piki->isPikmin() && piki->m_sticker != m_client) {
+			return true;
+		}
+		return false;
+	}
 
 	// _00 VTBL
 	Creature* m_client; // _04

@@ -77,6 +77,12 @@ struct TChasePosPos : public TSync {
 	virtual void doExecuteEmitterOperation(JPABaseEmitter*); // _38
 	virtual ~TChasePosPos() { }                              // _48 (weak, thunk at _1C)
 
+	inline void setPosPosptrs(Vector3f* pos1, Vector3f* pos2)
+	{
+		_10 = pos1;
+		_14 = pos2;
+	}
+
 	// _00		= VTBL
 	// _00-_10	= TSync
 	Vector3f* _10; // _10

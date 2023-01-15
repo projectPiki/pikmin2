@@ -94,10 +94,11 @@ bool Obj::isWakeup()
 	if (EnemyFunc::isThereOlimar(this, rad, nullptr)) {
 		return true;
 	}
-	if (!EnemyFunc::isTherePikmin(this, rad, nullptr))
+	if (!EnemyFunc::isTherePikmin(this, rad, nullptr)) {
 		ret = false;
-	else
+	} else {
 		return true;
+	}
 
 	return ret;
 }

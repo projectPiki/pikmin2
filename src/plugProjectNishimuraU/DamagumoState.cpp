@@ -130,9 +130,9 @@ void StateStay::cleanup(EnemyBase* enemy) { }
  */
 void StateLand::init(EnemyBase* enemy, StateArg* stateArg)
 {
-	Obj* damagumo         = static_cast<Obj*>(enemy);
-	damagumo->m_nextState = DAMAGUMO_NULL;
-	damagumo->_2D8        = 0.001f;
+	Obj* damagumo           = static_cast<Obj*>(enemy);
+	damagumo->m_nextState   = DAMAGUMO_NULL;
+	damagumo->m_shadowScale = 0.001f;
 
 	damagumo->enableEvent(0, EB_IsImmuneBitter);
 	damagumo->disableEvent(0, EB_IsCullable);
@@ -206,7 +206,7 @@ void StateLand::cleanup(EnemyBase* enemy)
 	damagumo->startProgramedIK();
 	damagumo->setBossAppearBGM();
 	damagumo->enableEvent(0, EB_IsCullable);
-	damagumo->_2D8 = 1.0f;
+	damagumo->m_shadowScale = 1.0f;
 	shadowMgr->setForceVisible(damagumo, false);
 }
 

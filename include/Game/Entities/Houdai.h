@@ -8,6 +8,7 @@
 #include "Game/JointFuncs.h"
 #include "Game/EnemyBase.h"
 #include "efx/TDama.h"
+#include "efx/THdama.h"
 #include "Collinfo.h"
 #include "Sys/MatBaseAnimation.h"
 #include "Sys/MatBaseAnimator.h"
@@ -16,22 +17,6 @@
 /**
  * --Header for Man-at-Legs (Houdai)--
  */
-
-namespace efx {
-struct TDamaSmoke;
-struct THdamaHahen;
-struct TDamaDeadElecA;
-struct THdamaOnHahen1;
-struct THdamaOnHahen2;
-struct THdamaOnSteam1;
-struct THdamaSteamBd;
-struct THdamaSteam;
-struct THdamaSteamSt;
-struct TChaseMtx4;
-struct TChaseMtx2;
-struct THdamaShell;
-struct THdamaSight;
-} // namespace efx
 
 namespace Game {
 namespace Houdai {
@@ -264,7 +249,17 @@ struct ProperAnimator : public EnemyAnimatorBase {
 	SysShape::Animator m_animator; // _10
 };
 
-struct HoudaiShadowMgr;
+struct HoudaiShadowMgr {
+	HoudaiShadowMgr(Obj*);
+
+	void init();
+	void setJointPosPtr(int, int, Vector3f*);
+	void update();
+
+	Matrixf* _00; // _00
+	Obj* _04;     // _04
+	u8 _08[0xA8]; // _08, to fill in
+};
 
 struct HoudaiGroundCallBack : public JointGroundCallBack {
 	virtual void invokeOnGround(int, WaterBox*);  // _08

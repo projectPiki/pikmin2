@@ -122,7 +122,7 @@ struct Obj : public EnemyBase {
 	f32 m_stateDuration;                        // _2C4, how long each phase lasts - 1.75-3.5s for wait, 3.25-6.5s for walk
 	int m_nextState;                            // _2C8
 	Vector3f m_targetPosition;                  // _2CC
-	f32 _2D8;                                   // _2D8
+	f32 m_shadowScale;                          // _2D8
 	u8 _2DC;                                    // _2DC
 	bool m_isSmoking;                           // _2DD
 	IKSystemMgr* m_ikSystemMgr;                 // _2E0
