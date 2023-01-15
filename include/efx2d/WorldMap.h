@@ -17,7 +17,8 @@ struct ArgDirScale : public Arg {
 
 	// _00-_08 	= Vector2f
 	// _08		= VTBL
-	Vector3f _0C; // _0C
+	Vector2f m_dir; // _0C
+	f32 m_scale;
 };
 
 struct TSimple_ArgDirScale : public TSimple1 {
@@ -68,7 +69,7 @@ struct T2DOnyonKira : public TChasePosDir {
 
 	// _00		= VTBL
 	// _00-_1C	= TChasePosDir
-	Vector3f _1C; // _1C
+	JGeometry::TVec3f _1C; // _1C
 };
 
 struct T2DRocketA : public TSimple_ArgDirScale {

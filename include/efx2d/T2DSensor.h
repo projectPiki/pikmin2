@@ -15,6 +15,18 @@ struct T2DSensorAct : public TSimple2 {
 	// _00-_14 = TSimple2
 };
 
+struct T2DSensorAct_forVS : public TSimple2 {
+	inline T2DSensorAct_forVS()
+	    : TSimple2(PID_SensorAct_1, PID_SensorAct_2)
+	{
+	}
+
+	bool create(Arg*);
+
+	// _00     = VTBL
+	// _00-_14 = TSimple2
+};
+
 struct T2DSensorComp : public TSimple2 {
 	inline T2DSensorComp()
 	    : TSimple2(PID_SensorComp_1, PID_SensorComp_2)

@@ -1,4 +1,14 @@
-#include "types.h"
+#include "efx2d/T2DCursor.h"
+#include "efx2d/T2DCountKira.h"
+#include "efx2d/T2DSensor.h"
+#include "efx2d/T2DSprayset.h"
+#include "efx2d/FileSelect.h"
+#include "efx2d/WorldMap.h"
+#include "System.h"
+#include "Jsystem/JPA/JPAMath.h"
+#include "Matrixf.h"
+
+static const char name[] = "efx2dEffect";
 
 /*
     Generated from dpostproc
@@ -195,52 +205,23 @@
         .float 1.0
 */
 
+namespace efx2d {
 /*
  * --INFO--
  * Address:	803BA18C
  * Size:	00007C
  */
-void efx2d::T2DCursor::create(efx2d::Arg*)
+bool T2DCursor::create(Arg* arg)
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	lfs      f0, lbl_8051F6E0@sda21(r2)
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	mr       r31, r3
-	lwz      r5, sys@sda21(r13)
-	lfs      f1, 0x54(r5)
-	fcmpo    cr0, f1, f0
-	bge      lbl_803BA1BC
-	li       r0, 1
-	sth      r0, 0xc(r31)
+	if (sys->m_deltaTime < 0.01694915f) {
+		m_efxID = PID_RocketA;
+	}
 
-lbl_803BA1BC:
-	mr       r3, r31
-	bl       create__Q25efx2d9TChasePosFPQ25efx2d3Arg
-	clrlwi.  r0, r3, 0x18
-	beq      lbl_803BA1F0
-	lfs      f0, 0x18(r31)
-	li       r3, 1
-	lwz      r4, 0x10(r31)
-	stfs     f0, 0x98(r4)
-	stfs     f0, 0x9c(r4)
-	stfs     f0, 0xa0(r4)
-	stfs     f0, 0xb0(r4)
-	stfs     f0, 0xb4(r4)
-	b        lbl_803BA1F4
-
-lbl_803BA1F0:
-	li       r3, 0
-
-lbl_803BA1F4:
-	lwz      r0, 0x14(r1)
-	lwz      r31, 0xc(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	if (TChasePos::create(arg)) {
+		m_emitter->setScale(m_scale);
+		return true;
+	}
+	return false;
 }
 
 /*
@@ -248,37 +229,13 @@ lbl_803BA1F4:
  * Address:	803BA208
  * Size:	00005C
  */
-void efx2d::T2DCountKira::create(efx2d::Arg*)
+bool T2DCountKira::create(Arg* arg)
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	mr       r31, r3
-	bl       create__Q25efx2d8TForeverFPQ25efx2d3Arg
-	clrlwi.  r0, r3, 0x18
-	beq      lbl_803BA24C
-	lfs      f0, 0x14(r31)
-	li       r3, 1
-	lwz      r4, 0x10(r31)
-	stfs     f0, 0x98(r4)
-	stfs     f0, 0x9c(r4)
-	stfs     f0, 0xa0(r4)
-	stfs     f0, 0xb0(r4)
-	stfs     f0, 0xb4(r4)
-	b        lbl_803BA250
-
-lbl_803BA24C:
-	li       r3, 0
-
-lbl_803BA250:
-	lwz      r0, 0x14(r1)
-	lwz      r31, 0xc(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	if (TForever::create(arg)) {
+		m_emitter->setScale(m_scale);
+		return true;
+	}
+	return false;
 }
 
 /*
@@ -286,7 +243,7 @@ lbl_803BA250:
  * Address:	........
  * Size:	0000E8
  */
-void efx2d::T2DSensorAct_forVS::create(efx2d::Arg*)
+bool T2DSensorAct_forVS::create(Arg*)
 {
 	// UNUSED FUNCTION
 }
@@ -296,70 +253,19 @@ void efx2d::T2DSensorAct_forVS::create(efx2d::Arg*)
  * Address:	803BA264
  * Size:	0000D8
  */
-void efx2d::T2DSensorGet_forVS::create(efx2d::Arg*)
+bool T2DSensorGet_forVS::create(Arg* arg)
 {
-	/*
-	stwu     r1, -0x20(r1)
-	mflr     r0
-	stw      r0, 0x24(r1)
-	stw      r31, 0x1c(r1)
-	stw      r30, 0x18(r1)
-	mr       r30, r4
-	lis      r4, lbl_80495B68@ha
-	stw      r29, 0x14(r1)
-	mr       r29, r3
-	mr       r3, r30
-	addi     r31, r4, lbl_80495B68@l
-	lwz      r12, 8(r30)
-	lwz      r12, 8(r12)
-	mtctr    r12
-	bctrl
-	mr       r4, r3
-	addi     r3, r31, 0xc
-	bl       strcmp
-	cntlzw   r0, r3
-	rlwinm.  r0, r0, 0x1b, 0x18, 0x1f
-	bne      lbl_803BA2CC
-	addi     r3, r31, 0x18
-	addi     r5, r31, 0x28
-	li       r4, 0x3b
-	crclr    6
-	bl       panic_f__12JUTExceptionFPCciPCce
+	bool nameCheck = strcmp("ArgScale", arg->getName()) == 0;
+	P2ASSERTLINE(59, nameCheck);
+	ArgScale* args = static_cast<ArgScale*>(arg);
 
-lbl_803BA2CC:
-	mr       r3, r29
-	mr       r4, r30
-	bl       create__Q25efx2d8TSimple2FPQ25efx2d3Arg
-	clrlwi.  r0, r3, 0x18
-	beq      lbl_803BA31C
-	lfs      f0, 0xc(r30)
-	li       r3, 1
-	lwz      r4, 0xc(r29)
-	stfs     f0, 0x98(r4)
-	stfs     f0, 0x9c(r4)
-	stfs     f0, 0xa0(r4)
-	stfs     f0, 0xb0(r4)
-	stfs     f0, 0xb4(r4)
-	lwz      r4, 0x10(r29)
-	stfs     f0, 0x98(r4)
-	stfs     f0, 0x9c(r4)
-	stfs     f0, 0xa0(r4)
-	stfs     f0, 0xb0(r4)
-	stfs     f0, 0xb4(r4)
-	b        lbl_803BA320
-
-lbl_803BA31C:
-	li       r3, 0
-
-lbl_803BA320:
-	lwz      r0, 0x24(r1)
-	lwz      r31, 0x1c(r1)
-	lwz      r30, 0x18(r1)
-	lwz      r29, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x20
-	blr
-	*/
+	if (TSimple2::create(arg)) {
+		f32 scale = args->m_scale;
+		m_emitters[0]->setScale(scale);
+		m_emitters[1]->setScale(scale);
+		return true;
+	}
+	return false;
 }
 
 /*
@@ -367,8 +273,26 @@ lbl_803BA320:
  * Address:	803BA33C
  * Size:	000140
  */
-void efx2d::T2DSprayset_forVS::create(efx2d::Arg*)
+bool T2DSprayset_forVS::create(Arg* arg)
 {
+	bool nameCheck = strcmp("ArgScaleColorColor", arg->getName()) == 0;
+	P2ASSERTLINE(79, nameCheck);
+	ArgScaleColorColor* args = static_cast<ArgScaleColorColor*>(arg);
+
+	if (TSimple2::create(arg)) {
+		JUtility::TColor col1 = args->m_color1;
+		JUtility::TColor col2 = args->m_color2;
+		f32 scale             = args->m_scale;
+		m_emitters[0]->setScale(scale);
+		m_emitters[0]->setPrmColorRGB(col1);
+		m_emitters[0]->setColorRGB(col2);
+
+		m_emitters[1]->setScale(scale);
+		m_emitters[1]->setPrmColorRGB(col1);
+		m_emitters[1]->setColorRGB(col2);
+		return true;
+	}
+	return false;
 	/*
 	stwu     r1, -0x20(r1)
 	mflr     r0
@@ -464,66 +388,18 @@ lbl_803BA460:
  * Address:	803BA47C
  * Size:	0000C8
  */
-void efx2d::FileSelect::T2DFilecopied::create(efx2d::Arg*)
+bool FileSelect::T2DFilecopied::create(Arg* arg)
 {
-	/*
-	stwu     r1, -0x20(r1)
-	mflr     r0
-	stw      r0, 0x24(r1)
-	stw      r31, 0x1c(r1)
-	stw      r30, 0x18(r1)
-	mr       r30, r4
-	lis      r4, lbl_80495B68@ha
-	stw      r29, 0x14(r1)
-	mr       r29, r3
-	mr       r3, r30
-	addi     r31, r4, lbl_80495B68@l
-	lwz      r12, 8(r30)
-	lwz      r12, 8(r12)
-	mtctr    r12
-	bctrl
-	mr       r4, r3
-	addi     r3, r31, 0x48
-	bl       strcmp
-	cntlzw   r0, r3
-	rlwinm.  r0, r0, 0x1b, 0x18, 0x1f
-	bne      lbl_803BA4E4
-	addi     r3, r31, 0x18
-	addi     r5, r31, 0x28
-	li       r4, 0x6f
-	crclr    6
-	bl       panic_f__12JUTExceptionFPCciPCce
+	bool nameCheck = strcmp("ArgColor", arg->getName()) == 0;
+	P2ASSERTLINE(111, nameCheck);
+	ArgColor* args = static_cast<ArgColor*>(arg);
 
-lbl_803BA4E4:
-	lwz      r0, 0xc(r30)
-	mr       r3, r29
-	mr       r4, r30
-	stw      r0, 8(r1)
-	bl       create__Q25efx2d8TSimple1FPQ25efx2d3Arg
-	clrlwi.  r0, r3, 0x18
-	beq      lbl_803BA524
-	lwz      r5, 0xc(r29)
-	li       r3, 1
-	lbz      r0, 8(r1)
-	lbz      r4, 9(r1)
-	stb      r0, 0xbc(r5)
-	lbz      r0, 0xa(r1)
-	stb      r4, 0xbd(r5)
-	stb      r0, 0xbe(r5)
-	b        lbl_803BA528
-
-lbl_803BA524:
-	li       r3, 0
-
-lbl_803BA528:
-	lwz      r0, 0x24(r1)
-	lwz      r31, 0x1c(r1)
-	lwz      r30, 0x18(r1)
-	lwz      r29, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x20
-	blr
-	*/
+	JUtility::TColor col = args->m_color;
+	if (TSimple1::create(arg)) {
+		m_emitters[0]->setColorRGB(col);
+		return true;
+	}
+	return false;
 }
 
 /*
@@ -531,66 +407,18 @@ lbl_803BA528:
  * Address:	803BA544
  * Size:	0000C8
  */
-void efx2d::FileSelect::T2DFiledelete::create(efx2d::Arg*)
+bool FileSelect::T2DFiledelete::create(Arg* arg)
 {
-	/*
-	stwu     r1, -0x20(r1)
-	mflr     r0
-	stw      r0, 0x24(r1)
-	stw      r31, 0x1c(r1)
-	stw      r30, 0x18(r1)
-	mr       r30, r4
-	lis      r4, lbl_80495B68@ha
-	stw      r29, 0x14(r1)
-	mr       r29, r3
-	mr       r3, r30
-	addi     r31, r4, lbl_80495B68@l
-	lwz      r12, 8(r30)
-	lwz      r12, 8(r12)
-	mtctr    r12
-	bctrl
-	mr       r4, r3
-	addi     r3, r31, 0x48
-	bl       strcmp
-	cntlzw   r0, r3
-	rlwinm.  r0, r0, 0x1b, 0x18, 0x1f
-	bne      lbl_803BA5AC
-	addi     r3, r31, 0x18
-	addi     r5, r31, 0x28
-	li       r4, 0x7f
-	crclr    6
-	bl       panic_f__12JUTExceptionFPCciPCce
+	bool nameCheck = strcmp("ArgColor", arg->getName()) == 0;
+	P2ASSERTLINE(127, nameCheck);
+	ArgColor* args = static_cast<ArgColor*>(arg);
 
-lbl_803BA5AC:
-	lwz      r0, 0xc(r30)
-	mr       r3, r29
-	mr       r4, r30
-	stw      r0, 8(r1)
-	bl       create__Q25efx2d8TSimple1FPQ25efx2d3Arg
-	clrlwi.  r0, r3, 0x18
-	beq      lbl_803BA5EC
-	lwz      r5, 0xc(r29)
-	li       r3, 1
-	lbz      r0, 8(r1)
-	lbz      r4, 9(r1)
-	stb      r0, 0xbc(r5)
-	lbz      r0, 0xa(r1)
-	stb      r4, 0xbd(r5)
-	stb      r0, 0xbe(r5)
-	b        lbl_803BA5F0
-
-lbl_803BA5EC:
-	li       r3, 0
-
-lbl_803BA5F0:
-	lwz      r0, 0x24(r1)
-	lwz      r31, 0x1c(r1)
-	lwz      r30, 0x18(r1)
-	lwz      r29, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x20
-	blr
-	*/
+	JUtility::TColor col = args->m_color;
+	if (TSimple1::create(arg)) {
+		m_emitters[0]->setColorRGB(col);
+		return true;
+	}
+	return false;
 }
 
 /*
@@ -598,66 +426,18 @@ lbl_803BA5F0:
  * Address:	803BA60C
  * Size:	0000C8
  */
-void efx2d::FileSelect::T2DFiledeleteM::create(efx2d::Arg*)
+bool FileSelect::T2DFiledeleteM::create(Arg* arg)
 {
-	/*
-	stwu     r1, -0x20(r1)
-	mflr     r0
-	stw      r0, 0x24(r1)
-	stw      r31, 0x1c(r1)
-	stw      r30, 0x18(r1)
-	mr       r30, r4
-	lis      r4, lbl_80495B68@ha
-	stw      r29, 0x14(r1)
-	mr       r29, r3
-	mr       r3, r30
-	addi     r31, r4, lbl_80495B68@l
-	lwz      r12, 8(r30)
-	lwz      r12, 8(r12)
-	mtctr    r12
-	bctrl
-	mr       r4, r3
-	addi     r3, r31, 0x48
-	bl       strcmp
-	cntlzw   r0, r3
-	rlwinm.  r0, r0, 0x1b, 0x18, 0x1f
-	bne      lbl_803BA674
-	addi     r3, r31, 0x18
-	addi     r5, r31, 0x28
-	li       r4, 0x8f
-	crclr    6
-	bl       panic_f__12JUTExceptionFPCciPCce
+	bool nameCheck = strcmp("ArgColor", arg->getName()) == 0;
+	P2ASSERTLINE(143, nameCheck);
+	ArgColor* args = static_cast<ArgColor*>(arg);
 
-lbl_803BA674:
-	lwz      r0, 0xc(r30)
-	mr       r3, r29
-	mr       r4, r30
-	stw      r0, 8(r1)
-	bl       create__Q25efx2d8TSimple1FPQ25efx2d3Arg
-	clrlwi.  r0, r3, 0x18
-	beq      lbl_803BA6B4
-	lwz      r5, 0xc(r29)
-	li       r3, 1
-	lbz      r0, 8(r1)
-	lbz      r4, 9(r1)
-	stb      r0, 0xbc(r5)
-	lbz      r0, 0xa(r1)
-	stb      r4, 0xbd(r5)
-	stb      r0, 0xbe(r5)
-	b        lbl_803BA6B8
-
-lbl_803BA6B4:
-	li       r3, 0
-
-lbl_803BA6B8:
-	lwz      r0, 0x24(r1)
-	lwz      r31, 0x1c(r1)
-	lwz      r30, 0x18(r1)
-	lwz      r29, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x20
-	blr
-	*/
+	JUtility::TColor col = args->m_color;
+	if (TSimple1::create(arg)) {
+		m_emitters[0]->setColorRGB(col);
+		return true;
+	}
+	return false;
 }
 
 /*
@@ -665,8 +445,22 @@ lbl_803BA6B8:
  * Address:	803BA6D4
  * Size:	0001CC
  */
-void efx2d::FileSelect::T2DFilecopyBase::create(efx2d::Arg*)
+bool FileSelect::T2DFilecopyBase::create(Arg* arg)
 {
+	bool nameCheck = strcmp("ArgFilecopy", arg->getName()) == 0;
+	P2ASSERTLINE(160, nameCheck);
+	ArgFilecopy* args = static_cast<ArgFilecopy*>(arg);
+
+	f32 scale            = 200.0f; // yeah nope
+	JUtility::TColor col = args->m_color;
+	Matrixf mtx;
+	if (TForever::create(arg)) {
+		m_emitter->setColorRGB(col);
+		JPASetRMtxfromMtx(mtx.m_matrix.mtxView, m_emitter->_68);
+		m_emitter->setScaleOnly(scale);
+		return true;
+	}
+	return false;
 	/*
 	stwu     r1, -0x60(r1)
 	mflr     r0
@@ -807,71 +601,21 @@ lbl_803BA87C:
  * Address:	803BA8A0
  * Size:	0000DC
  */
-void efx2d::WorldMap::T2DShstar2::create(efx2d::Arg*)
+bool WorldMap::T2DShstar2::create(Arg* arg)
 {
-	/*
-	stwu     r1, -0x40(r1)
-	mflr     r0
-	stw      r0, 0x44(r1)
-	stfd     f31, 0x30(r1)
-	psq_st   f31, 56(r1), 0, qr0
-	stw      r31, 0x2c(r1)
-	stw      r30, 0x28(r1)
-	stw      r29, 0x24(r1)
-	mr       r30, r4
-	mr       r29, r3
-	mr       r3, r30
-	lis      r4, lbl_80495B68@ha
-	lwz      r12, 8(r30)
-	addi     r31, r4, lbl_80495B68@l
-	lwz      r12, 8(r12)
-	mtctr    r12
-	bctrl
-	mr       r4, r3
-	addi     r3, r31, 0xc
-	bl       strcmp
-	cntlzw   r0, r3
-	rlwinm.  r0, r0, 0x1b, 0x18, 0x1f
-	bne      lbl_803BA910
-	addi     r3, r31, 0x18
-	addi     r5, r31, 0x28
-	li       r4, 0xc9
-	crclr    6
-	bl       panic_f__12JUTExceptionFPCciPCce
+	bool nameCheck = strcmp("ArgScale", arg->getName()) == 0;
+	P2ASSERTLINE(201, nameCheck);
+	ArgScale* args = static_cast<ArgScale*>(arg);
 
-lbl_803BA910:
-	lfs      f31, 0xc(r30)
-	mr       r3, r29
-	mr       r4, r30
-	bl       create__Q25efx2d8TSimple1FPQ25efx2d3Arg
-	clrlwi.  r0, r3, 0x18
-	beq      lbl_803BA954
-	lwz      r4, 0xc(r29)
-	li       r3, 1
-	stfs     f31, 8(r1)
-	stfs     f31, 0x98(r4)
-	stfs     f31, 0x9c(r4)
-	stfs     f31, 0xa0(r4)
-	stfs     f31, 0xb0(r4)
-	stfs     f31, 0xc(r1)
-	stfs     f31, 0x10(r1)
-	stfs     f31, 0xb4(r4)
-	b        lbl_803BA958
+	f32 scale = args->m_scale;
+	if (TSimple1::create(arg)) {
+		volatile Vector3f idk = scale;
 
-lbl_803BA954:
-	li       r3, 0
+		m_emitters[0]->setScale(scale);
 
-lbl_803BA958:
-	psq_l    f31, 56(r1), 0, qr0
-	lwz      r0, 0x44(r1)
-	lfd      f31, 0x30(r1)
-	lwz      r31, 0x2c(r1)
-	lwz      r30, 0x28(r1)
-	lwz      r29, 0x24(r1)
-	mtlr     r0
-	addi     r1, r1, 0x40
-	blr
-	*/
+		return true;
+	}
+	return false;
 }
 
 /*
@@ -879,77 +623,22 @@ lbl_803BA958:
  * Address:	803BA97C
  * Size:	0000F4
  */
-void efx2d::WorldMap::T2DNewmap::create(efx2d::Arg*)
+bool WorldMap::T2DNewmap::create(Arg* arg)
 {
-	/*
-	stwu     r1, -0x40(r1)
-	mflr     r0
-	stw      r0, 0x44(r1)
-	stfd     f31, 0x30(r1)
-	psq_st   f31, 56(r1), 0, qr0
-	stw      r31, 0x2c(r1)
-	stw      r30, 0x28(r1)
-	stw      r29, 0x24(r1)
-	mr       r30, r4
-	mr       r29, r3
-	mr       r3, r30
-	lis      r4, lbl_80495B68@ha
-	lwz      r12, 8(r30)
-	addi     r31, r4, lbl_80495B68@l
-	lwz      r12, 8(r12)
-	mtctr    r12
-	bctrl
-	mr       r4, r3
-	addi     r3, r31, 0xc
-	bl       strcmp
-	cntlzw   r0, r3
-	rlwinm.  r0, r0, 0x1b, 0x18, 0x1f
-	bne      lbl_803BA9EC
-	addi     r3, r31, 0x18
-	addi     r5, r31, 0x28
-	li       r4, 0xdb
-	crclr    6
-	bl       panic_f__12JUTExceptionFPCciPCce
+	bool nameCheck = strcmp("ArgScale", arg->getName()) == 0;
+	P2ASSERTLINE(219, nameCheck);
+	ArgScale* args = static_cast<ArgScale*>(arg);
 
-lbl_803BA9EC:
-	lfs      f31, 0xc(r30)
-	mr       r3, r29
-	mr       r4, r30
-	bl       create__Q25efx2d8TSimple2FPQ25efx2d3Arg
-	clrlwi.  r0, r3, 0x18
-	beq      lbl_803BAA48
-	lwz      r4, 0xc(r29)
-	li       r3, 1
-	stfs     f31, 8(r1)
-	stfs     f31, 0x98(r4)
-	stfs     f31, 0x9c(r4)
-	stfs     f31, 0xa0(r4)
-	stfs     f31, 0xb0(r4)
-	stfs     f31, 0xb4(r4)
-	lwz      r4, 0x10(r29)
-	stfs     f31, 0xc(r1)
-	stfs     f31, 0x98(r4)
-	stfs     f31, 0x9c(r4)
-	stfs     f31, 0xa0(r4)
-	stfs     f31, 0xb0(r4)
-	stfs     f31, 0x10(r1)
-	stfs     f31, 0xb4(r4)
-	b        lbl_803BAA4C
+	f32 scale = args->m_scale;
+	if (TSimple2::create(arg)) {
+		volatile Vector3f idk = scale;
 
-lbl_803BAA48:
-	li       r3, 0
+		m_emitters[0]->setScale(scale);
+		m_emitters[1]->setScale(scale);
 
-lbl_803BAA4C:
-	psq_l    f31, 56(r1), 0, qr0
-	lwz      r0, 0x44(r1)
-	lfd      f31, 0x30(r1)
-	lwz      r31, 0x2c(r1)
-	lwz      r30, 0x28(r1)
-	lwz      r29, 0x24(r1)
-	mtlr     r0
-	addi     r1, r1, 0x40
-	blr
-	*/
+		return true;
+	}
+	return false;
 }
 
 /*
@@ -957,57 +646,22 @@ lbl_803BAA4C:
  * Address:	803BAA70
  * Size:	0000AC
  */
-void efx2d::WorldMap::TSimple_ArgDirScale::create(efx2d::Arg*)
+bool WorldMap::TSimple_ArgDirScale::create(Arg* arg)
 {
-	/*
-	stwu     r1, -0x40(r1)
-	mflr     r0
-	stw      r0, 0x44(r1)
-	stfd     f31, 0x30(r1)
-	psq_st   f31, 56(r1), 0, qr0
-	stfd     f30, 0x20(r1)
-	psq_st   f30, 40(r1), 0, qr0
-	stfd     f29, 0x10(r1)
-	psq_st   f29, 24(r1), 0, qr0
-	stw      r31, 0xc(r1)
-	lfs      f31, 0xc(r4)
-	mr       r31, r3
-	lfs      f30, 0x10(r4)
-	lfs      f29, 0x14(r4)
-	bl       create__Q25efx2d8TSimple1FPQ25efx2d3Arg
-	clrlwi.  r0, r3, 0x18
-	beq      lbl_803BAAEC
-	lwz      r4, 0xc(r31)
-	li       r3, 1
-	lfs      f0, lbl_8051F6E4@sda21(r2)
-	stfs     f29, 0xb0(r4)
-	stfs     f29, 0xb4(r4)
-	lwz      r4, 0xc(r31)
-	stfs     f29, 0x98(r4)
-	stfs     f29, 0x9c(r4)
-	stfs     f29, 0xa0(r4)
-	lwz      r4, 0xc(r31)
-	stfs     f31, 0x18(r4)
-	stfs     f30, 0x1c(r4)
-	stfs     f0, 0x20(r4)
-	b        lbl_803BAAF0
+	ArgDirScale* args = static_cast<ArgDirScale*>(arg);
 
-lbl_803BAAEC:
-	li       r3, 0
+	f32 x     = args->m_dir.x;
+	f32 y     = args->m_dir.y;
+	f32 scale = args->m_scale;
+	if (TSimple1::create(arg)) {
 
-lbl_803BAAF0:
-	psq_l    f31, 56(r1), 0, qr0
-	lfd      f31, 0x30(r1)
-	psq_l    f30, 40(r1), 0, qr0
-	lfd      f30, 0x20(r1)
-	psq_l    f29, 24(r1), 0, qr0
-	lfd      f29, 0x10(r1)
-	lwz      r0, 0x44(r1)
-	lwz      r31, 0xc(r1)
-	mtlr     r0
-	addi     r1, r1, 0x40
-	blr
-	*/
+		m_emitters[0]->setGlobalScale(scale);
+		m_emitters[0]->setScaleOnly(scale);
+		m_emitters[0]->setAngle(x, y, 0.0f);
+
+		return true;
+	}
+	return false;
 }
 
 /*
@@ -1015,37 +669,16 @@ lbl_803BAAF0:
  * Address:	803BAB1C
  * Size:	00005C
  */
-void efx2d::WorldMap::T2DOnyonKira::create(efx2d::Arg*)
+bool WorldMap::T2DOnyonKira::create(Arg* arg)
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	mr       r31, r3
-	bl       create__Q25efx2d12TChasePosDirFPQ25efx2d3Arg
-	clrlwi.  r0, r3, 0x18
-	beq      lbl_803BAB60
-	lwz      r4, 0x10(r31)
-	li       r3, 1
-	lfs      f0, 0(r4)
-	stfs     f0, 0x1c(r31)
-	lfs      f0, 4(r4)
-	stfs     f0, 0x20(r31)
-	lfs      f0, 8(r4)
-	stfs     f0, 0x24(r31)
-	b        lbl_803BAB64
-
-lbl_803BAB60:
-	li       r3, 0
-
-lbl_803BAB64:
-	lwz      r0, 0x14(r1)
-	lwz      r31, 0xc(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	if (TChasePosDir::create(arg)) {
+		Vector3f* vec = &m_emitter->m_scale;
+		_1C.x         = vec->x;
+		_1C.y         = vec->y;
+		_1C.z         = vec->z;
+		return true;
+	}
+	return false;
 }
 
 /*
@@ -1053,26 +686,19 @@ lbl_803BAB64:
  * Address:	803BAB78
  * Size:	000040
  */
-void efx2d::WorldMap::T2DOnyonKira::setGlobalParticleScale(float)
+void WorldMap::T2DOnyonKira::setGlobalParticleScale(f32 scale)
 {
-	/*
-	lwz      r4, 0x10(r3)
-	cmplwi   r4, 0
-	beqlr
-	lfs      f0, 0x1c(r3)
-	lfs      f2, 0x20(r3)
-	lfs      f3, 0x24(r3)
-	fmuls    f0, f0, f1
-	fmuls    f2, f2, f1
-	stfs     f1, 0xb0(r4)
-	fmuls    f3, f3, f1
-	stfs     f1, 0xb4(r4)
-	lwz      r3, 0x10(r3)
-	stfs     f0, 0(r3)
-	stfs     f2, 4(r3)
-	stfs     f3, 8(r3)
-	blr
-	*/
+	JPABaseEmitter* emit = m_emitter;
+	if (!emit)
+		return;
+	Vector3f test;
+	test.x = _1C.x;
+	test.y = _1C.y;
+	test.z = _1C.z;
+
+	emit->setGlobalScale(scale);
+	test = test * scale;
+	m_emitter->setScaleMain(test.x, test.y, test.z);
 }
 
 /*
@@ -1080,16 +706,13 @@ void efx2d::WorldMap::T2DOnyonKira::setGlobalParticleScale(float)
  * Address:	803BABB8
  * Size:	000018
  */
-void efx2d::WorldMap::T2DRocketGlow::setGlobalParticleScale(float)
+void WorldMap::T2DRocketGlow::setGlobalParticleScale(f32 scale)
 {
-	/*
-	lwz      r3, 0x10(r3)
-	cmplwi   r3, 0
-	beqlr
-	stfs     f1, 0xb0(r3)
-	stfs     f1, 0xb4(r3)
-	blr
-	*/
+	JPABaseEmitter* emit = m_emitter;
+	if (!emit)
+		return;
+
+	emit->setGlobalScale(scale);
 }
 
 /*
@@ -1097,37 +720,16 @@ void efx2d::WorldMap::T2DRocketGlow::setGlobalParticleScale(float)
  * Address:	803BABD0
  * Size:	00005C
  */
-void efx2d::WorldMap::T2DRocketB::create(efx2d::Arg*)
+bool WorldMap::T2DRocketB::create(Arg* arg)
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	mr       r31, r3
-	bl       create__Q25efx2d12TChasePosDirFPQ25efx2d3Arg
-	clrlwi.  r0, r3, 0x18
-	beq      lbl_803BAC14
-	lwz      r4, 0x10(r31)
-	li       r3, 1
-	lfs      f0, 0(r4)
-	stfs     f0, 0x1c(r31)
-	lfs      f0, 4(r4)
-	stfs     f0, 0x20(r31)
-	lfs      f0, 8(r4)
-	stfs     f0, 0x24(r31)
-	b        lbl_803BAC18
-
-lbl_803BAC14:
-	li       r3, 0
-
-lbl_803BAC18:
-	lwz      r0, 0x14(r1)
-	lwz      r31, 0xc(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	if (TChasePosDir::create(arg)) {
+		Vector3f* vec = &m_emitter->m_scale;
+		_1C.x         = vec->x;
+		_1C.y         = vec->y;
+		_1C.z         = vec->z;
+		return true;
+	}
+	return false;
 }
 
 /*
@@ -1135,26 +737,19 @@ lbl_803BAC18:
  * Address:	803BAC2C
  * Size:	000040
  */
-void efx2d::WorldMap::T2DRocketB::setGlobalParticleScale(float)
+void WorldMap::T2DRocketB::setGlobalParticleScale(f32 scale)
 {
-	/*
-	lwz      r4, 0x10(r3)
-	cmplwi   r4, 0
-	beqlr
-	lfs      f0, 0x1c(r3)
-	lfs      f2, 0x20(r3)
-	lfs      f3, 0x24(r3)
-	fmuls    f0, f0, f1
-	fmuls    f2, f2, f1
-	stfs     f1, 0xb0(r4)
-	fmuls    f3, f3, f1
-	stfs     f1, 0xb4(r4)
-	lwz      r3, 0x10(r3)
-	stfs     f0, 0(r3)
-	stfs     f2, 4(r3)
-	stfs     f3, 8(r3)
-	blr
-	*/
+	JPABaseEmitter* emit = m_emitter;
+	if (!emit)
+		return;
+	Vector3f test;
+	test.x = _1C.x;
+	test.y = _1C.y;
+	test.z = _1C.z;
+
+	emit->setGlobalScale(scale);
+	test = test * scale;
+	m_emitter->setScaleMain(test.x, test.y, test.z);
 }
 
 /*
@@ -1162,320 +757,34 @@ void efx2d::WorldMap::T2DRocketB::setGlobalParticleScale(float)
  * Address:	803BAC6C
  * Size:	00009C
  */
-efx2d::WorldMap::T2DRocketB::~T2DRocketB(void)
-{
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	mr       r31, r4
-	stw      r30, 8(r1)
-	or.      r30, r3, r3
-	beq      lbl_803BACEC
-	lis      r3, __vt__Q35efx2d8WorldMap10T2DRocketB@ha
-	addi     r3, r3, __vt__Q35efx2d8WorldMap10T2DRocketB@l
-	stw      r3, 0(r30)
-	addi     r0, r3, 0x18
-	stw      r0, 8(r30)
-	beq      lbl_803BACDC
-	lis      r3, __vt__Q25efx2d12TChasePosDir@ha
-	addi     r3, r3, __vt__Q25efx2d12TChasePosDir@l
-	stw      r3, 0(r30)
-	addi     r0, r3, 0x18
-	stw      r0, 8(r30)
-	beq      lbl_803BACDC
-	lis      r4, __vt__Q25efx2d8TForever@ha
-	addi     r3, r30, 8
-	addi     r5, r4, __vt__Q25efx2d8TForever@l
-	li       r4, 0
-	stw      r5, 0(r30)
-	addi     r0, r5, 0x18
-	stw      r0, 8(r30)
-	bl       __dt__18JPAEmitterCallBackFv
-
-lbl_803BACDC:
-	extsh.   r0, r31
-	ble      lbl_803BACEC
-	mr       r3, r30
-	bl       __dl__FPv
-
-lbl_803BACEC:
-	lwz      r0, 0x14(r1)
-	mr       r3, r30
-	lwz      r31, 0xc(r1)
-	lwz      r30, 8(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
-}
+WorldMap::T2DRocketB::~T2DRocketB() { }
 
 /*
  * --INFO--
  * Address:	803BAD08
  * Size:	00009C
  */
-efx2d::WorldMap::T2DOnyonKira::~T2DOnyonKira(void)
-{
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	mr       r31, r4
-	stw      r30, 8(r1)
-	or.      r30, r3, r3
-	beq      lbl_803BAD88
-	lis      r3, __vt__Q35efx2d8WorldMap12T2DOnyonKira@ha
-	addi     r3, r3, __vt__Q35efx2d8WorldMap12T2DOnyonKira@l
-	stw      r3, 0(r30)
-	addi     r0, r3, 0x18
-	stw      r0, 8(r30)
-	beq      lbl_803BAD78
-	lis      r3, __vt__Q25efx2d12TChasePosDir@ha
-	addi     r3, r3, __vt__Q25efx2d12TChasePosDir@l
-	stw      r3, 0(r30)
-	addi     r0, r3, 0x18
-	stw      r0, 8(r30)
-	beq      lbl_803BAD78
-	lis      r4, __vt__Q25efx2d8TForever@ha
-	addi     r3, r30, 8
-	addi     r5, r4, __vt__Q25efx2d8TForever@l
-	li       r4, 0
-	stw      r5, 0(r30)
-	addi     r0, r5, 0x18
-	stw      r0, 8(r30)
-	bl       __dt__18JPAEmitterCallBackFv
-
-lbl_803BAD78:
-	extsh.   r0, r31
-	ble      lbl_803BAD88
-	mr       r3, r30
-	bl       __dl__FPv
-
-lbl_803BAD88:
-	lwz      r0, 0x14(r1)
-	mr       r3, r30
-	lwz      r31, 0xc(r1)
-	lwz      r30, 8(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
-}
+WorldMap::T2DOnyonKira::~T2DOnyonKira() { }
 
 /*
  * --INFO--
  * Address:	803BADA4
  * Size:	000084
  */
-efx2d::FileSelect::T2DFilecopyBase::~T2DFilecopyBase(void)
-{
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	mr       r31, r4
-	stw      r30, 8(r1)
-	or.      r30, r3, r3
-	beq      lbl_803BAE0C
-	lis      r3, __vt__Q35efx2d10FileSelect15T2DFilecopyBase@ha
-	addi     r3, r3, __vt__Q35efx2d10FileSelect15T2DFilecopyBase@l
-	stw      r3, 0(r30)
-	addi     r0, r3, 0x18
-	stw      r0, 8(r30)
-	beq      lbl_803BADFC
-	lis      r4, __vt__Q25efx2d8TForever@ha
-	addi     r3, r30, 8
-	addi     r5, r4, __vt__Q25efx2d8TForever@l
-	li       r4, 0
-	stw      r5, 0(r30)
-	addi     r0, r5, 0x18
-	stw      r0, 8(r30)
-	bl       __dt__18JPAEmitterCallBackFv
-
-lbl_803BADFC:
-	extsh.   r0, r31
-	ble      lbl_803BAE0C
-	mr       r3, r30
-	bl       __dl__FPv
-
-lbl_803BAE0C:
-	lwz      r0, 0x14(r1)
-	mr       r3, r30
-	lwz      r31, 0xc(r1)
-	lwz      r30, 8(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
-}
+FileSelect::T2DFilecopyBase::~T2DFilecopyBase() { }
 
 /*
  * --INFO--
  * Address:	803BAE28
  * Size:	000084
  */
-efx2d::T2DCountKira::~T2DCountKira(void)
-{
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	mr       r31, r4
-	stw      r30, 8(r1)
-	or.      r30, r3, r3
-	beq      lbl_803BAE90
-	lis      r3, __vt__Q25efx2d12T2DCountKira@ha
-	addi     r3, r3, __vt__Q25efx2d12T2DCountKira@l
-	stw      r3, 0(r30)
-	addi     r0, r3, 0x18
-	stw      r0, 8(r30)
-	beq      lbl_803BAE80
-	lis      r4, __vt__Q25efx2d8TForever@ha
-	addi     r3, r30, 8
-	addi     r5, r4, __vt__Q25efx2d8TForever@l
-	li       r4, 0
-	stw      r5, 0(r30)
-	addi     r0, r5, 0x18
-	stw      r0, 8(r30)
-	bl       __dt__18JPAEmitterCallBackFv
-
-lbl_803BAE80:
-	extsh.   r0, r31
-	ble      lbl_803BAE90
-	mr       r3, r30
-	bl       __dl__FPv
-
-lbl_803BAE90:
-	lwz      r0, 0x14(r1)
-	mr       r3, r30
-	lwz      r31, 0xc(r1)
-	lwz      r30, 8(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
-}
+T2DCountKira::~T2DCountKira() { }
 
 /*
  * --INFO--
  * Address:	803BAEAC
  * Size:	00009C
  */
-efx2d::T2DCursor::~T2DCursor(void)
-{
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	mr       r31, r4
-	stw      r30, 8(r1)
-	or.      r30, r3, r3
-	beq      lbl_803BAF2C
-	lis      r3, __vt__Q25efx2d9T2DCursor@ha
-	addi     r3, r3, __vt__Q25efx2d9T2DCursor@l
-	stw      r3, 0(r30)
-	addi     r0, r3, 0x18
-	stw      r0, 8(r30)
-	beq      lbl_803BAF1C
-	lis      r3, __vt__Q25efx2d9TChasePos@ha
-	addi     r3, r3, __vt__Q25efx2d9TChasePos@l
-	stw      r3, 0(r30)
-	addi     r0, r3, 0x18
-	stw      r0, 8(r30)
-	beq      lbl_803BAF1C
-	lis      r4, __vt__Q25efx2d8TForever@ha
-	addi     r3, r30, 8
-	addi     r5, r4, __vt__Q25efx2d8TForever@l
-	li       r4, 0
-	stw      r5, 0(r30)
-	addi     r0, r5, 0x18
-	stw      r0, 8(r30)
-	bl       __dt__18JPAEmitterCallBackFv
+T2DCursor::~T2DCursor() { }
 
-lbl_803BAF1C:
-	extsh.   r0, r31
-	ble      lbl_803BAF2C
-	mr       r3, r30
-	bl       __dl__FPv
-
-lbl_803BAF2C:
-	lwz      r0, 0x14(r1)
-	mr       r3, r30
-	lwz      r31, 0xc(r1)
-	lwz      r30, 8(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
-}
-
-/*
- * --INFO--
- * Address:	803BAF48
- * Size:	000008
- */
-@8 @efx2d::T2DCursor::~T2DCursor(void)
-{
-	/*
-	addi     r3, r3, -8
-	b        __dt__Q25efx2d9T2DCursorFv
-	*/
-}
-
-/*
- * --INFO--
- * Address:	803BAF50
- * Size:	000008
- */
-@8 @efx2d::T2DCountKira::~T2DCountKira(void)
-{
-	/*
-	addi     r3, r3, -8
-	b        __dt__Q25efx2d12T2DCountKiraFv
-	*/
-}
-
-/*
- * --INFO--
- * Address:	803BAF58
- * Size:	000008
- */
-@8 @efx2d::FileSelect::T2DFilecopyBase::~T2DFilecopyBase(void)
-{
-	/*
-	addi     r3, r3, -8
-	b        __dt__Q35efx2d10FileSelect15T2DFilecopyBaseFv
-	*/
-}
-
-/*
- * --INFO--
- * Address:	803BAF60
- * Size:	000008
- */
-@8 @efx2d::WorldMap::T2DOnyonKira::~T2DOnyonKira(void)
-{
-	/*
-	addi     r3, r3, -8
-	b        __dt__Q35efx2d8WorldMap12T2DOnyonKiraFv
-	*/
-}
-
-/*
- * --INFO--
- * Address:	803BAF68
- * Size:	000008
- */
-@8 @efx2d::WorldMap::T2DRocketB::~T2DRocketB(void)
-{
-	/*
-	addi     r3, r3, -8
-	b        __dt__Q35efx2d8WorldMap10T2DRocketBFv
-	*/
-}
+} // namespace efx2d

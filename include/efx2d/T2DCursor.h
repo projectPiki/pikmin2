@@ -9,7 +9,7 @@ struct T2DCursor : public TChasePos {
 	T2DCursor(Vector2f* pos)
 	    : TChasePos(PID_2DCursor, pos)
 	{
-		_18 = 1.0f;
+		m_scale = 1.0f;
 	}
 
 	virtual bool create(Arg*); // _08
@@ -17,7 +17,7 @@ struct T2DCursor : public TChasePos {
 
 	// _00     = VTBL
 	// _00-_18 = TChasePos
-	f32 _18; // _18
+	f32 m_scale; // _18
 };
 } // namespace efx2d
 

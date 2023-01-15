@@ -11,6 +11,7 @@ struct T2DCountKira : public TForever {
 
 	// _00     = VTBL
 	// _00-_14 = TForever
+	f32 m_scale;
 };
 } // namespace efx2d
 

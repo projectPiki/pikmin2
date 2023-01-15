@@ -11,6 +11,7 @@
 #include "JSystem/JUT/TColor.h"
 #include "types.h"
 #include "Color4.h"
+#include "Vector3.h"
 
 struct JPABaseEmitter;
 struct JPAEmitterWorkData;
@@ -141,6 +142,27 @@ struct JPABaseEmitter {
 		_18.z = vec->z;
 	}
 
+	inline void setScaleMain(JGeometry::TVec3f& vec)
+	{
+		m_scale.x = vec.x;
+		m_scale.y = vec.y;
+		m_scale.z = vec.z;
+	}
+
+	inline void setScaleMain(Vector3f& vec)
+	{
+		m_scale.x = vec.x;
+		m_scale.y = vec.y;
+		m_scale.z = vec.z;
+	}
+
+	inline void setScaleMain(f32 x, f32 y, f32 z)
+	{
+		m_scale.x = x;
+		m_scale.y = y;
+		m_scale.z = z;
+	}
+
 	inline void setGlobalScale(f32 x)
 	{
 		_B0 = x;
@@ -162,9 +184,21 @@ struct JPABaseEmitter {
 		m_color1.b = color.b;
 	}
 
-	f32 _00;                    // _00
-	f32 _04;                    // _04
-	f32 _08;                    // _08
+	inline void setColorRGB(JUtility::TColor& color)
+	{
+		m_color2.r = color.r;
+		m_color2.g = color.g;
+		m_color2.b = color.b;
+	}
+
+	inline void setPrmColorRGB(JUtility::TColor& color)
+	{
+		m_color1.r = color.r;
+		m_color1.g = color.g;
+		m_color1.b = color.b;
+	}
+
+	Vector3f m_scale;           // _00
 	JGeometry::TVec3f _0C;      // _0C
 	JGeometry::TVec3f _18;      // _18
 	s32 _24;                    // _24
@@ -187,7 +221,7 @@ struct JPABaseEmitter {
 	JGeometry::TVec3f _A4;      // _A4
 	f32 _B0;                    // _B0
 	f32 _B4;                    // _B4
-	JUtility::TColor m_color1;  // _BC
+	JUtility::TColor m_color1;  // _B8
 	JUtility::TColor m_color2;  // _BC
 	s32 : 0;                    // reset alignment to _C0
 	u8 _C0[4];                  // _C0
