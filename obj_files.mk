@@ -1069,7 +1069,7 @@ EBISAWA:=\
 	$(BUILD_DIR)/asm/plugProjectEbisawaU/ebiP2TitleUnit.o\
 	$(BUILD_DIR)/asm/plugProjectEbisawaU/ebiUtility.o\
 	$(BUILD_DIR)/src/plugProjectEbisawaU/ebiP2TitleCamera.o\
-	$(BUILD_DIR)/asm/plugProjectEbisawaU/ebiP2TitleLight.o\
+	$(BUILD_DIR)/src/plugProjectEbisawaU/ebiP2TitleLight.o\
 	$(BUILD_DIR)/asm/plugProjectEbisawaU/ebiScreenMemoryCard.o\
 	$(BUILD_DIR)/asm/plugProjectEbisawaU/efxTPkEffectMgr.o\
 	$(BUILD_DIR)/src/plugProjectEbisawaU/efxEnemyGeneral.o\

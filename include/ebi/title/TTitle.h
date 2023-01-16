@@ -132,8 +132,8 @@ struct TTitleLightSetting {
 struct TTitleLightMgr : public LightMgr {
 	TTitleLightMgr();
 
-	virtual ~TTitleLightMgr(); // _08 (weak)
-	virtual void update();     // _10
+	virtual ~TTitleLightMgr() { } // _08 (weak)
+	virtual void update();        // _10
 
 	void loadSettingFile(JKRArchive*, char*);
 	void setParam_();
