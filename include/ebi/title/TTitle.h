@@ -139,6 +139,13 @@ struct TTitleLightMgr : public LightMgr {
 	void setParam_();
 	void setCameraMtx(Mtx);
 
+	inline void setRefValues(f32 dist, f32 brightness, f32 angle)
+	{
+		m_lightObjMain.m_refDistance   = dist;
+		m_lightObjMain.m_refBrightness = brightness;
+		m_lightObjMain.m_cutoffAngle   = angle;
+	}
+
 	// _00     = VTBL
 	// _00-_50 = LightMgr
 	LightObj m_lightObjMain;      // _50

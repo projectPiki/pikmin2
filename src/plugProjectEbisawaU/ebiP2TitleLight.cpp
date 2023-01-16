@@ -2,47 +2,6 @@
 #include "stream.h"
 #include "nans.h"
 
-/*
-    Generated from dpostproc
-
-    .section .ctors, "wa"  # 0x80472F00 - 0x804732C0
-        .4byte __sinit_ebiP2TitleLight_cpp
-
-    .section .data, "wa"  # 0x8049E220 - 0x804EFC20
-    .global lbl_804E79D8
-    lbl_804E79D8:
-        .4byte 0x00000000
-        .4byte 0x00000000
-        .4byte 0x00000000
-    .global __vt__Q33ebi5title14TTitleLightMgr
-    __vt__Q33ebi5title14TTitleLightMgr:
-        .4byte 0
-        .4byte 0
-        .4byte __dt__Q33ebi5title14TTitleLightMgrFv
-        .4byte getChildCount__5CNodeFv
-        .4byte update__Q33ebi5title14TTitleLightMgrFv
-        .4byte set__8LightMgrFR8Graphics
-        .4byte set__8LightMgrFR7Matrixf
-        .4byte drawDebugInfo__8LightMgrFR8Graphics
-        .4byte 0
-
-    .section .sbss # 0x80514D80 - 0x80516360
-    .global lbl_805160C8
-    lbl_805160C8:
-        .skip 0x4
-    .global lbl_805160CC
-    lbl_805160CC:
-        .skip 0x4
-
-    .section .sdata2, "a"     # 0x80516360 - 0x80520E40
-    .global lbl_8051F8A0
-    lbl_8051F8A0:
-        .4byte 0x00000000
-    .global lbl_8051F8A4
-    lbl_8051F8A4:
-        .float 1.0
-*/
-
 namespace ebi {
 namespace title {
 
@@ -82,11 +41,9 @@ void TTitleLightMgr::setParam_()
 	_normalise2(temp);
 	m_lightObjMain.m_elevation = temp;
 
-	m_lightObjMain.m_refDistance   = m_setting.m_mainParms.m_tl56;
-	m_lightObjMain.m_refBrightness = m_setting.m_mainParms.m_tl57;
-	m_lightObjMain.m_cutoffAngle   = m_setting.m_mainParms.m_tl58;
-	m_lightObjMain.m_distAttnFn    = 1;
-	m_lightObjMain.m_spotFn        = 3;
+	setRefValues(m_setting.m_mainParms.m_tl56, m_setting.m_mainParms.m_tl57, m_setting.m_mainParms.m_tl58);
+	m_lightObjMain.m_distAttnFn = 1;
+	m_lightObjMain.m_spotFn     = 3;
 
 	m_lightObjSpec.m_color
 	    = Color4(m_setting.m_specParms.m_sp04, m_setting.m_specParms.m_sp05, m_setting.m_specParms.m_sp06, m_setting.m_specParms.m_sp07);
