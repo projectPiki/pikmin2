@@ -79,7 +79,7 @@ void TTitleLightMgr::setParam_()
 	m_lightObjMain.m_position = Vector3f(m_setting.m_mainParms.m_tl50, m_setting.m_mainParms.m_tl51, m_setting.m_mainParms.m_tl52);
 
 	Vector3f temp(m_setting.m_mainParms.m_tl53, m_setting.m_mainParms.m_tl54, m_setting.m_mainParms.m_tl55);
-	_normalise(temp);
+	_normalise2(temp);
 	m_lightObjMain.m_elevation = temp;
 
 	m_lightObjMain.m_refDistance   = m_setting.m_mainParms.m_tl56;
@@ -230,10 +230,3 @@ void TTitleLightMgr::setCameraMtx(Mtx mtx)
 
 } // namespace title
 } // namespace ebi
-
-/*
- * --INFO--
- * Address:	803C221C
- * Size:	000028
- */
-void __sinit_ebiP2TitleLight_cpp() { }

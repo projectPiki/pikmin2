@@ -91,8 +91,8 @@
 ### <section id="plugProjectEbisawaU">plugProjectEbisawaU</section>
 | File | Size (bytes) | File | Size (bytes) |
 | ---- | ---- | ---- | ---- |
-| <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectEbisawaU/ebiUtility.cpp">ebiUtility.cpp</a> | 3779 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectEbisawaU/ebiGeometry.cpp">ebiGeometry.cpp</a> | 5821 |
-| <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectEbisawaU/ebiP2TitleLight.cpp">ebiP2TitleLight.cpp</a> | 5906 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectEbisawaU/ebiP2TitleCoordMgr.cpp">ebiP2TitleCoordMgr.cpp</a> | 9326 |
+| <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectEbisawaU/ebiUtility.cpp">ebiUtility.cpp</a> | 3779 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectEbisawaU/ebiP2TitleLight.cpp">ebiP2TitleLight.cpp</a> | 5804 |
+| <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectEbisawaU/ebiGeometry.cpp">ebiGeometry.cpp</a> | 5821 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectEbisawaU/ebiP2TitleCoordMgr.cpp">ebiP2TitleCoordMgr.cpp</a> | 9326 |
 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectEbisawaU/ebiScreenPushStart.cpp">ebiScreenPushStart.cpp</a> | 10505 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectEbisawaU/ebiCardEReader.cpp">ebiCardEReader.cpp</a> | 13664 |
 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectEbisawaU/ebiFileSelectMgr.cpp">ebiFileSelectMgr.cpp</a> | 14258 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectEbisawaU/efx2dEffect.cpp">efx2dEffect.cpp</a> | 17805 |
 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectEbisawaU/efxObject.cpp">efxObject.cpp</a> | 18283 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectEbisawaU/particle2dMgr.cpp">particle2dMgr.cpp</a> | 18589 |
