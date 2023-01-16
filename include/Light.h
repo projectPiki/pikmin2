@@ -48,7 +48,7 @@ struct LightObj : public CNode {
 	f32 m_cutoffAngle;    // _44
 	u8 m_distAttnFn;      // _48, GXDistAttnFn
 	u8 m_spotFn;          // _49, GXSpotFn
-	f32 _4C;              // _4C, kScale?
+	f32 m_kScale;         // _4C
 	f32 m_sphereRadius;   // _50
 	u8 _54;               // _54
 };

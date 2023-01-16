@@ -21,8 +21,8 @@ Mgr::Mgr()
 	m_mainLight->m_elevation = Vector3f(0.0f, -1.0f, 0.0f);
 	registLightObj(m_mainLight);
 
-	m_specLight      = new LightObj("スペキュラ-ライト", GX_LIGHT7, TYPE_4, JUtility::TColor(0xFF, 0xFF, 0xFF, 0xFF));
-	m_specLight->_4C = 40.0f;
+	m_specLight           = new LightObj("スペキュラ-ライト", GX_LIGHT7, TYPE_4, JUtility::TColor(0xFF, 0xFF, 0xFF, 0xFF));
+	m_specLight->m_kScale = 40.0f;
 	registLightObj(m_specLight);
 
 	m_ambientLight.m_color = Color4(0x32, 0x32, 0x32, 0xFF);

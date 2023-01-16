@@ -234,7 +234,7 @@ setCameraMtx__Q33ebi5title14TTitleLightMgrFPA4_f:
 /* 803C2214 003BF154  38 21 00 50 */	addi r1, r1, 0x50
 /* 803C2218 003BF158  4E 80 00 20 */	blr 
 
-__sinit_ebiP2TitleLight_cpp: # static initializer
+.fn __sinit_ebiP2TitleLight_cpp, local
 /* 803C221C 003BF15C  3C 80 80 51 */	lis r4, __float_nan@ha
 /* 803C2220 003BF160  38 00 FF FF */	li r0, -1
 /* 803C2224 003BF164  C0 04 48 B0 */	lfs f0, __float_nan@l(r4)
@@ -245,3 +245,4 @@ __sinit_ebiP2TitleLight_cpp: # static initializer
 /* 803C2238 003BF178  D0 03 00 04 */	stfs f0, 4(r3)
 /* 803C223C 003BF17C  D0 03 00 08 */	stfs f0, 8(r3)
 /* 803C2240 003BF180  4E 80 00 20 */	blr 
+.endfn __sinit_ebiP2TitleLight_cpp

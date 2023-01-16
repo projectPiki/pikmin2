@@ -1,4 +1,6 @@
-#include "types.h"
+#include "ebi/title/TTitle.h"
+#include "stream.h"
+#include "nans.h"
 
 /*
     Generated from dpostproc
@@ -49,51 +51,17 @@ namespace title {
  * Address:	803C1F58
  * Size:	000094
  */
-void TTitleLightMgr::loadSettingFile(JKRArchive*, char*)
+void TTitleLightMgr::loadSettingFile(JKRArchive* arc, char* path)
 {
-	/*
-stwu     r1, -0x430(r1)
-mflr     r0
-stw      r0, 0x434(r1)
-stw      r31, 0x42c(r1)
-mr       r31, r3
-mr       r3, r4
-lwz      r12, 0(r4)
-mr       r4, r5
-lwz      r12, 0x14(r12)
-mtctr    r12
-bctrl
-cmplwi   r3, 0
-beq      lbl_803C1FD8
-mr       r4, r3
-addi     r3, r1, 8
-li       r5, -1
-bl       __ct__9RamStreamFPvi
-li       r0, 1
-cmpwi    r0, 1
-stw      r0, 0x14(r1)
-bne      lbl_803C1FB4
-li       r0, 0
-stw      r0, 0x41c(r1)
+	void* file = arc->getResource(path);
+	if (file) {
+		RamStream stream(file, -1);
+		stream.resetPosition(true, 1);
 
-lbl_803C1FB4:
-addi     r3, r31, 0x100
-addi     r4, r1, 8
-bl       read__10ParametersFR6Stream
-addi     r3, r31, 0x1b0
-addi     r4, r1, 8
-bl       read__10ParametersFR6Stream
-addi     r3, r31, 0x3c8
-addi     r4, r1, 8
-bl       read__10ParametersFR6Stream
-
-lbl_803C1FD8:
-lwz      r0, 0x434(r1)
-lwz      r31, 0x42c(r1)
-mtlr     r0
-addi     r1, r1, 0x430
-blr
-	*/
+		m_setting.m_ambParms.read(stream);
+		m_setting.m_mainParms.read(stream);
+		m_setting.m_specParms.read(stream);
+	}
 }
 
 /*
@@ -103,6 +71,30 @@ blr
  */
 void TTitleLightMgr::setParam_()
 {
+	m_ambientLight.m_color
+	    = Color4(m_setting.m_ambParms.m_red, m_setting.m_ambParms.m_green, m_setting.m_ambParms.m_blue, m_setting.m_ambParms.m_alpha);
+
+	m_lightObjMain.m_color
+	    = Color4(m_setting.m_mainParms.m_tl04, m_setting.m_mainParms.m_tl05, m_setting.m_mainParms.m_tl06, m_setting.m_mainParms.m_tl07);
+	m_lightObjMain.m_position = Vector3f(m_setting.m_mainParms.m_tl50, m_setting.m_mainParms.m_tl51, m_setting.m_mainParms.m_tl52);
+
+	Vector3f temp(m_setting.m_mainParms.m_tl53, m_setting.m_mainParms.m_tl54, m_setting.m_mainParms.m_tl55);
+	_normalise(temp);
+	m_lightObjMain.m_elevation = temp;
+
+	m_lightObjMain.m_refDistance   = m_setting.m_mainParms.m_tl56;
+	m_lightObjMain.m_refBrightness = m_setting.m_mainParms.m_tl57;
+	m_lightObjMain.m_cutoffAngle   = m_setting.m_mainParms.m_tl58;
+	m_lightObjMain.m_distAttnFn    = 1;
+	m_lightObjMain.m_spotFn        = 3;
+
+	m_lightObjSpec.m_color
+	    = Color4(m_setting.m_specParms.m_sp04, m_setting.m_specParms.m_sp05, m_setting.m_specParms.m_sp06, m_setting.m_specParms.m_sp07);
+	Vector3f temp2(m_setting.m_specParms.m_sp53, m_setting.m_specParms.m_sp54, m_setting.m_specParms.m_sp55);
+	_normalise(temp2);
+	m_lightObjSpec.m_elevation = temp2;
+	m_lightObjSpec.m_kScale    = m_setting.m_specParms.m_sp56;
+
 	/*
 lwz      r6, 0x19c(r3)
 lwz      r5, 0x174(r3)
@@ -219,70 +211,21 @@ blr
  * Address:	803C2168
  * Size:	000020
  */
-void TTitleLightMgr::update()
-{
-	/*
-stwu     r1, -0x10(r1)
-mflr     r0
-stw      r0, 0x14(r1)
-bl       setParam___Q33ebi5title14TTitleLightMgrFv
-lwz      r0, 0x14(r1)
-mtlr     r0
-addi     r1, r1, 0x10
-blr
-	*/
-}
+void TTitleLightMgr::update() { setParam_(); }
 
 /*
  * --INFO--
  * Address:	803C2188
  * Size:	000094
  */
-void TTitleLightMgr::setCameraMtx(float (*)[4])
+void TTitleLightMgr::setCameraMtx(Mtx mtx)
 {
-	/*
-stwu     r1, -0x50(r1)
-mflr     r0
-stw      r0, 0x54(r1)
-stw      r31, 0x4c(r1)
-mr       r31, r3
-mr       r3, r4
-addi     r4, r1, 0x10
-bl       PSMTXCopy
-lbz      r7, 0x30(r31)
-addi     r4, r1, 0xc
-lbz      r6, 0x31(r31)
-li       r3, 4
-lbz      r5, 0x32(r31)
-lbz      r0, 0x33(r31)
-stb      r7, 8(r1)
-stb      r6, 9(r1)
-stb      r5, 0xa(r1)
-stb      r0, 0xb(r1)
-lwz      r0, 8(r1)
-stw      r0, 0xc(r1)
-bl       GXSetChanAmbColor
-lwz      r31, 0x44(r31)
-b        lbl_803C2200
+	Matrixf mtx2;
+	PSMTXCopy(mtx, mtx2.m_matrix.mtxView);
+	GXColor col = m_ambientLight.m_color.toGXColor();
+	GXSetChanAmbColor(GX_COLOR0A0, col);
 
-lbl_803C21E4:
-mr       r3, r31
-addi     r4, r1, 0x10
-lwz      r12, 0(r31)
-lwz      r12, 0x14(r12)
-mtctr    r12
-bctrl
-lwz      r31, 4(r31)
-
-lbl_803C2200:
-cmplwi   r31, 0
-bne      lbl_803C21E4
-lwz      r0, 0x54(r1)
-lwz      r31, 0x4c(r1)
-mtlr     r0
-addi     r1, r1, 0x50
-blr
-	*/
+	FOREACH_NODE(LightObj, m_lightObjChain.m_child, node) { node->set(mtx2); }
 }
 
 } // namespace title
@@ -293,18 +236,4 @@ blr
  * Address:	803C221C
  * Size:	000028
  */
-void __sinit_ebiP2TitleLight_cpp()
-{
-	/*
-	lis      r4, __float_nan@ha
-	li       r0, -1
-	lfs      f0, __float_nan@l(r4)
-	lis      r3, lbl_804E79D8@ha
-	stw      r0, lbl_805160C8@sda21(r13)
-	stfsu    f0, lbl_804E79D8@l(r3)
-	stfs     f0, lbl_805160CC@sda21(r13)
-	stfs     f0, 4(r3)
-	stfs     f0, 8(r3)
-	blr
-	*/
-}
+void __sinit_ebiP2TitleLight_cpp() { }

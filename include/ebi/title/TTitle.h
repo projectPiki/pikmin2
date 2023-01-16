@@ -141,8 +141,8 @@ struct TTitleLightMgr : public LightMgr {
 
 	// _00     = VTBL
 	// _00-_50 = LightMgr
-	LightObj _50;                 // _50
-	LightObj _A8;                 // _A8
+	LightObj m_lightObjMain;      // _50
+	LightObj m_lightObjSpec;      // _A8
 	TTitleLightSetting m_setting; // _100
 };
 
