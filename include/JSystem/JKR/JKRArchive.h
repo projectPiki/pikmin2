@@ -178,7 +178,7 @@ struct JKRMemArchive : public JKRArchive {
 	void mountFixed(long, EMountDirection);
 	void mountFixed(const char*, EMountDirection);
 	void mountFixed(void*, JKRMemBreakFlag);
-	void unmountFixed(void);
+	void unmountFixed();
 	void open(const char*, EMountDirection);
 
 	int _5C;                          // _5C
@@ -204,7 +204,7 @@ struct JKRCompArchive : public JKRArchive {
 	void fixedInit(long);
 	void mountFixed(long);
 	void mountFixed(const char*);
-	void unmountFixed(void);
+	void unmountFixed();
 
 	int _5C;              // _5C
 	int m_mountDirection; // _60
@@ -233,7 +233,7 @@ struct JKRDvdArchive : public JKRArchive {
 	unknown fixedInit(long, EMountDirection);
 	unknown mountFixed(long, EMountDirection);
 	unknown mountFixed(const char*, EMountDirection);
-	unknown unmountFixed(void);
+	unknown unmountFixed();
 
 	int _5C;  // _5C
 	int _60;  // _60

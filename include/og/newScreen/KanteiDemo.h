@@ -75,7 +75,7 @@ struct ObjKantei : public ::Screen::ObjBase {
 	// unused/inline
 	void startItemName(u64);
 	void startKanteiVoice(int);
-	void updateKanteiVoice(void);
+	void updateKanteiVoice();
 
 	inline void setRect(JGeometry::TBox2f& box)
 	{

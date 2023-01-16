@@ -5,14 +5,14 @@
 #ifdef __cplusplus
 extern "C" {
 #endif
-typedef void (*voidfunctionptr)(void); // pointer to function returning void
+typedef void (*voidfunctionptr)(); // pointer to function returning void
 __declspec(section ".ctors") extern voidfunctionptr _ctors[];
 __declspec(section ".dtors") extern voidfunctionptr _dtors[];
 
-static void __init_cpp(void);
+static void __init_cpp();
 
 // clang-format off
-__declspec(section ".init") asm void __init_hardware(void) {
+__declspec(section ".init") asm void __init_hardware() {
     nofralloc
     mfmsr r0
     ori r0,r0,0x2000
@@ -25,7 +25,7 @@ __declspec(section ".init") asm void __init_hardware(void) {
     blr
 }
 
-__declspec(section ".init") asm void __flush_cache(unsigned long param_1, int param_2) {
+__declspec(section ".init") asm void __flush_cache(u32 param_1, int param_2) {
 	nofralloc
 	lis r5, 0xFFFFFFF1@h
 	ori r5, r5, 0xFFFFFFF1@l
@@ -49,14 +49,14 @@ loop:
  * Address:	800F2FB4
  * Size:	000020
  */
-void __init_user(void) { __init_cpp(); }
+void __init_user() { __init_cpp(); }
 
 /*
  * --INFO--
  * Address:	800F2FD4
  * Size:	000054
  */
-static void __init_cpp(void)
+static void __init_cpp()
 {
 	voidfunctionptr* constructor;
 	/*
@@ -72,7 +72,7 @@ static void __init_cpp(void)
  * Address:	........
  * Size:	000054
  */
-void __fini_cpp(void)
+void __fini_cpp()
 {
 	// UNUSED FUNCTION
 }
@@ -82,7 +82,7 @@ void __fini_cpp(void)
  * Address:	800F3028
  * Size:	000020
  */
-void _ExitProcess(void) { PPCHalt(); }
+void _ExitProcess() { PPCHalt(); }
 #ifdef __cplusplus
 }
 #endif

@@ -13,7 +13,7 @@ struct Mgr;
 
 namespace ebi {
 struct E2DDebugWindow {
-	void draw(void);
+	void draw();
 };
 
 struct E2DFader {

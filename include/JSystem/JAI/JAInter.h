@@ -303,9 +303,9 @@ void init(u8*, u32);
 SoundInfo* getInfoPointer(u32);
 u32 getInfoFormat(u32);
 void setInfoTrack(u32, u8);
-u8 getCategotyMax(void);
+u8 getCategotyMax(); // [sic]
 u16 getSoundMax(u8);
-void getSoundTablePointer(void);
+void getSoundTablePointer();
 
 extern u8 mVersion;
 extern u8 mCategotyMax;

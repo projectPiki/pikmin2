@@ -7,8 +7,6 @@
 namespace Game {
 namespace Cave {
 
-inline ObjectLayoutNode::ObjectLayoutNode();
-
 /*
  * --INFO--
  * Address:	802440F4

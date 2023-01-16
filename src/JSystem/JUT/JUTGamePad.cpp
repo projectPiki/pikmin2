@@ -2352,7 +2352,7 @@ void JUTGamePadRecordFixed::setDataSize(unsigned long)
  * Address:	........
  * Size:	000038
  */
-void JUTGamePadRecord::setPart(unsigned int)
+void JUTGamePadRecord::setPart(uint)
 {
 	// UNUSED FUNCTION
 }

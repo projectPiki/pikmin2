@@ -110,7 +110,7 @@ extern DeallocCallback deallocCallback;
  * This isn't the same type as the param to setExternalAramBuffer.
  * It must return typeof(aramParentHeap).
  */
-extern JASHeap* (*externalAramCallback)(void);
+extern JASHeap* (*externalAramCallback)();
 extern int dataFileNumber;
 extern MgrCallback mgrCallback;
 

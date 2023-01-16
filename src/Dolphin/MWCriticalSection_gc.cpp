@@ -1,8 +1,8 @@
 #include "types.h"
 
 extern "C" {
-bool OSRestoreInterrupts(unsigned int);
-unsigned int OSDisableInterrupts();
+bool OSRestoreInterrupts(uint);
+uint OSDisableInterrupts();
 
 /*
  * --INFO--
@@ -19,14 +19,14 @@ void MWTerminateCriticalSection(void)
  * Address:	800C1598
  * Size:	000024
  */
-void MWExitCriticalSection(unsigned int* section) { OSRestoreInterrupts(*section); }
+void MWExitCriticalSection(uint* section) { OSRestoreInterrupts(*section); }
 
 /*
  * --INFO--
  * Address:	800C15BC
  * Size:	000030
  */
-void MWEnterCriticalSection(unsigned int* section) { *section = OSDisableInterrupts(); }
+void MWEnterCriticalSection(uint* section) { *section = OSDisableInterrupts(); }
 
 /*
  * --INFO--

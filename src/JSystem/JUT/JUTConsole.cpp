@@ -68,7 +68,7 @@ static JUTConsole* sWarningConsole;
  * Address:	800280DC
  * Size:	000088
  */
-JUTConsole* JUTConsole::create(unsigned int param_0, unsigned int param_1, JKRHeap* param_2)
+JUTConsole* JUTConsole::create(uint param_0, uint param_1, JKRHeap* param_2)
 {
 	JUTConsoleManager* mgr = JUTConsoleManager::sManager;
 	u32 byteCount          = getObjectSizeFromBufferSize(param_0, param_1);
@@ -87,7 +87,7 @@ JUTConsole* JUTConsole::create(unsigned int param_0, unsigned int param_1, JKRHe
  * Address:	80028164
  * Size:	000098
  */
-JUTConsole* JUTConsole::create(unsigned int param_0, void* param_1, u32 param_2)
+JUTConsole* JUTConsole::create(uint param_0, void* param_1, u32 param_2)
 {
 	JUTConsoleManager* mgr = JUTConsoleManager::sManager;
 	u32 byteCount          = getLineFromObjectSize(param_2, param_0);
@@ -115,7 +115,7 @@ JUTConsole* JUTConsole::create(unsigned int param_0, void* param_1, u32 param_2)
  * Address:	800281FC
  * Size:	000100
  */
-JUTConsole::JUTConsole(unsigned int param_0, unsigned int param_1, bool param_2)
+JUTConsole::JUTConsole(uint param_0, uint param_1, bool param_2)
 {
 	field_0x2c = param_2;
 	field_0x20 = param_0;
@@ -561,7 +561,7 @@ extern "C" void JUTConsole_print_f_va_(JUTConsole* console, const char* format, 
  * Address:	........
  * Size:	00012C
  */
-void JUTConsole::dumpToTerminal(unsigned int)
+void JUTConsole::dumpToTerminal(uint)
 {
 	// UNUSED FUNCTION
 }
@@ -571,7 +571,7 @@ void JUTConsole::dumpToTerminal(unsigned int)
  * Address:	........
  * Size:	000154
  */
-void JUTConsole::dumpToConsole(JUTConsole*, unsigned int)
+void JUTConsole::dumpToConsole(JUTConsole*, uint)
 {
 	// UNUSED FUNCTION
 }

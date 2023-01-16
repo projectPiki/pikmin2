@@ -325,13 +325,13 @@ struct GenObjectEnemy : public GenObject {
 	u8 _4C;                                       // _4C
 };
 
-GenObject* makeObjectEnemy(void);
+GenObject* makeObjectEnemy();
 
 /**
  * @size{0x10}
  */
 struct GenObjectFactory {
-	typedef GenObject* MakeFunction(void);
+	typedef GenObject* MakeFunction();
 	void createInstance();
 
 	u32 m_typeID;                 // _00

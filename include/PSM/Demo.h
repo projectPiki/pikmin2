@@ -44,14 +44,14 @@ struct Demo : public JKRDisposer {
 
 	// _00     = VTBL
 	// _00-_18 = JKRDisposer
-	s8 _18;                   // _18
-	u8 m_doStartWithAudio;    // _19, from PikDecomp
-	u8 _1A;                   // _1A, unknown/possibly padding
-	u8 _1B;                   // _1B, unknown/possibly padding
-	SoundID m_soundID;        // _1C, from PikDecomp
-	SoundID m_systemSE;       // _20, from PikDecomp
-	void* (*m_funcptr)(void); // _24
-	char* m_currentDemoName;  // _28
+	s8 _18;                  // _18
+	u8 m_doStartWithAudio;   // _19, from PikDecomp
+	u8 _1A;                  // _1A, unknown/possibly padding
+	u8 _1B;                  // _1B, unknown/possibly padding
+	SoundID m_soundID;       // _1C, from PikDecomp
+	SoundID m_systemSE;      // _20, from PikDecomp
+	void* (*m_funcptr)();    // _24
+	char* m_currentDemoName; // _28
 };
 } // namespace PSM
 

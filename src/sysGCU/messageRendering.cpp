@@ -4405,7 +4405,7 @@ lbl_8043C6C8:
  * Address:	8043C6DC
  * Size:	000020
  */
-void TRenderingProcessor::preProcCode(unsigned int)
+void TRenderingProcessor::preProcCode(uint)
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -4424,7 +4424,7 @@ void TRenderingProcessor::preProcCode(unsigned int)
  * Address:	8043C6FC
  * Size:	000020
  */
-void TRenderingProcessor::preProcID(unsigned int, unsigned int)
+void TRenderingProcessor::preProcID(uint, uint)
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -4463,7 +4463,7 @@ void TRenderingProcessor::preProcCenteringPost(void)
  * Address:	8043C71C
  * Size:	00039C
  */
-void TRenderingProcessor::preProcCenteringCode(unsigned int)
+void TRenderingProcessor::preProcCenteringCode(uint)
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -4725,7 +4725,7 @@ lbl_8043CA8C:
  * Address:	8043CAB8
  * Size:	0003AC
  */
-void TRenderingProcessor::preProcCenteringID(unsigned int, unsigned int)
+void TRenderingProcessor::preProcCenteringID(uint, uint)
 {
 	/*
 	stwu     r1, -0x20(r1)
