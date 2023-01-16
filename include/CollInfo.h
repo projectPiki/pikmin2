@@ -43,7 +43,7 @@ struct CollPart : public CNode {
 	virtual void doEntry() { }                   // _20 (weak)
 	virtual void doSetView(u32) { }              // _24 (weak)
 	virtual void doViewCalc() { }                // _28 (weak)
-	virtual void doSimulation(float rate) { }    // _2C (weak)
+	virtual void doSimulation(f32 rate) { }      // _2C (weak)
 	virtual void doDirectDraw(Graphics& gfx) { } // _30 (weak)
 	////////////// END VTABLE
 
@@ -82,11 +82,11 @@ struct CollPart : public CNode {
 	void makeMatrixTo(Matrixf&);
 	void makeTubeTree();
 	void read(Stream&, bool);
-	void setScale(float);
+	void setScale(f32);
 	void update();
 
-	float m_baseRadius;           // _18, base radius used to calculate real radius (in setScale, it's scaled)
-	float m_radius;               // _1C
+	f32 m_baseRadius;             // _18, base radius used to calculate real radius (in setScale, it's scaled)
+	f32 m_radius;                 // _1C
 	Vector3f m_offset;            // _20
 	u32 m_jointIndex;             // _2C
 	ID32 m_currentID;             // _30, identifier of current part, initialised to root

@@ -24,12 +24,12 @@ struct Obj {
 	void update(EnemyBase*);
 
 	// unused
-	void init(Matrixf*, float);
+	void init(Matrixf*, f32);
 	void draw(Graphics&);
 
 	bool _00;            // _00
 	Matrixf* m_matrix;   // _04 - unknown
-	float _08;           // _08 - height?
+	f32 _08;             // _08 - height?
 	Vector3f m_position; // _0C
 };
 
@@ -41,7 +41,7 @@ struct Mgr {
 
 	void alloc(int);
 	void update(EnemyBase*);
-	void setup(int, SysShape::Model*, char*, float);
+	void setup(int, SysShape::Model*, char*, f32);
 
 	// unused/inlined
 	void draw(Graphics&);

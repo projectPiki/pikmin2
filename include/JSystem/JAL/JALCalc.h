@@ -11,23 +11,23 @@ enum CurveSign {
 	CS_1 = 1,
 };
 
-float linearTransform(float, float, float, float, float, bool);
-float getParamByExp(float, float, float, float, float, float, CurveSign);
-float getRandom(float, float, float);
-float getRandom_0_1();
+f32 linearTransform(f32, f32, f32, f32, f32, bool);
+f32 getParamByExp(f32, f32, f32, f32, f32, f32, CurveSign);
+f32 getRandom(f32, f32, f32);
+f32 getRandom_0_1();
 // {
 // 	static JMath::TRandom_fast_ oRandom(0);
 // 	u32 next = (oRandom.next() >> 9) | 0x3F800000;
-// 	return *(float*)(void*)&next - 1.0f;
+// 	return *(f32*)(void*)&next - 1.0f;
 // }
 
 // Unused/inlined:
-float getParamByExp_0_1(float, float, float, float, CurveSign);
-float getRandom_Sign();
-float pow2(float);
-int getRint(float);
-float getDist(Vec*, Vec*);
-float getDistPow(Vec*, Vec*);
+f32 getParamByExp_0_1(f32, f32, f32, f32, CurveSign);
+f32 getRandom_Sign();
+f32 pow2(f32);
+int getRint(f32);
+f32 getDist(Vec*, Vec*);
+f32 getDistPow(Vec*, Vec*);
 } // namespace JALCalc
 
 #endif

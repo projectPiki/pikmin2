@@ -15,7 +15,7 @@ struct BoundBox {
 	{
 	}
 
-	BoundBox(float min, float max)
+	BoundBox(f32 min, f32 max)
 	    : m_min(min)
 	    , m_max(max)
 	{
@@ -55,10 +55,10 @@ struct BoundBox {
 };
 
 struct BoundBox2d {
-	float _00;
-	float _04;
-	float _08;
-	float _0C;
+	f32 _00;
+	f32 _04;
+	f32 _08;
+	f32 _0C;
 };
 
 #endif

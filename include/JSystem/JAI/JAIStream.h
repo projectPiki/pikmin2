@@ -9,10 +9,10 @@
 struct JAIStream : public JAISound {
 	JAIStream();
 
-	virtual void setPortData(u8, u16);              // _08 (weak)
-	virtual u16 getPortData(u8);                    // _0C (weak)
-	virtual void stop(u32);                         // _14 (weak)
-	virtual void setVolume(float p1, u32 p2, u8 p3) // _1C (weak)
+	virtual void setPortData(u8, u16);            // _08 (weak)
+	virtual u16 getPortData(u8);                  // _0C (weak)
+	virtual void stop(u32);                       // _14 (weak)
+	virtual void setVolume(f32 p1, u32 p2, u8 p3) // _1C (weak)
 	{
 		int result = _64[p3].set(p1, p2);
 		if (result == 1) {
@@ -22,15 +22,15 @@ struct JAIStream : public JAISound {
 			_1B4->_18 |= 0x40000;
 		}
 	}
-	virtual float getVolume(u8);                                                       // _20 (weak)
-	virtual void setPan(float, u32, u8);                                               // _24 (weak)
-	virtual float getPan(u8);                                                          // _28 (weak)
-	virtual void setPitch(float, u32, u8);                                             // _2C (weak)
-	virtual float getPitch(u8);                                                        // _30 (weak)
-	virtual void setFxmix(float, u32, u8);                                             // _34 (weak)
-	virtual float getFxmix(u8);                                                        // _38 (weak)
-	virtual void setDolby(float, u32, u8);                                             // _3C (weak)
-	virtual float getDolby(u8);                                                        // _40 (weak)
+	virtual f32 getVolume(u8);                                                         // _20 (weak)
+	virtual void setPan(f32, u32, u8);                                                 // _24 (weak)
+	virtual f32 getPan(u8);                                                            // _28 (weak)
+	virtual void setPitch(f32, u32, u8);                                               // _2C (weak)
+	virtual f32 getPitch(u8);                                                          // _30 (weak)
+	virtual void setFxmix(f32, u32, u8);                                               // _34 (weak)
+	virtual f32 getFxmix(u8);                                                          // _38 (weak)
+	virtual void setDolby(f32, u32, u8);                                               // _3C (weak)
+	virtual f32 getDolby(u8);                                                          // _40 (weak)
 	virtual void setVolumeU7(u8 p1, u32 p2, u8 p3) { setVolume(p1 / 127.0f, p2, p3); } // _4C (weak)
 	virtual u8 getVolumeU7(u8);                                                        // _50 (weak)
 	virtual void setPanU7(u8, u32, u8);                                                // _54 (weak)
@@ -45,18 +45,18 @@ struct JAIStream : public JAISound {
 
 	void setStreamPrepareFlag(u8);
 	bool checkStreamReady();
-	void setChannelVolume(u8, float, u32);
-	void setChannelPan(u8, float, u32);
+	void setChannelVolume(u8, f32, u32);
+	void setChannelPan(u8, f32, u32);
 
 	// unused/inlined:
 	void setStreamMode(unsigned long);
-	void setStreamInterVolume(unsigned char, float, unsigned long);
-	void setStreamInterPan(unsigned char, float, unsigned long);
-	void setStreamInterPitch(unsigned char, float, unsigned long);
-	void setStreamInterFxmix(unsigned char, float, unsigned long);
-	void setStreamInterDolby(unsigned char, float, unsigned long);
-	void setChannelFxmix(unsigned char, float, unsigned long);
-	void setChannelDolby(unsigned char, float, unsigned long);
+	void setStreamInterVolume(unsigned char, f32, unsigned long);
+	void setStreamInterPan(unsigned char, f32, unsigned long);
+	void setStreamInterPitch(unsigned char, f32, unsigned long);
+	void setStreamInterFxmix(unsigned char, f32, unsigned long);
+	void setStreamInterDolby(unsigned char, f32, unsigned long);
+	void setChannelFxmix(unsigned char, f32, unsigned long);
+	void setChannelDolby(unsigned char, f32, unsigned long);
 	void getChannelVolume(unsigned char);
 	void getChannelPan(unsigned char);
 	void getChannelFxmix(unsigned char);

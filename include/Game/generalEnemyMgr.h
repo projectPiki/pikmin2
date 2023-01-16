@@ -105,7 +105,7 @@ struct GeneralEnemyMgr : public GenericObjectMgr, public CNode {
 	virtual void doEntry();                     // _0C
 	virtual void doSetView(int viewportNumber); // _10
 	virtual void doViewCalc();                  // _14
-	virtual void doSimulation(float rate);      // _18
+	virtual void doSimulation(f32 rate);        // _18
 	virtual void doDirectDraw(Graphics& gfx);   // _1C
 	virtual void doSimpleDraw(Viewport*);       // _20
 	// vtable 2 (CNode, _04, _40-_4C)

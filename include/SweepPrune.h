@@ -12,7 +12,7 @@ struct Node {
 	void insertAfter(Node*);
 	void insertSort(Node&);
 
-	float m_radius;   // _00
+	f32 m_radius;     // _00
 	Node* m_prev;     // _04
 	Node* m_next;     // _08
 	Object* m_object; // _0C

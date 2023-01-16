@@ -10,7 +10,7 @@ void getTransformation_SRxyzT(f32 (*)[4], const Vec&, const Vec&, const Vec&);
 void getFromTransformation_SRxyzT(Vec*, Vec*, Vec*, const f32 (*)[4]);
 
 // unused/inlined:
-void getRotation_xyz(f32 (*)[4], float, float, float);
+void getRotation_xyz(f32 (*)[4], f32, f32, f32);
 void transform_SRxyzT(f32 (*)[4], const f32 (*)[4], const Vec&, const Vec&, const Vec&);
 } // namespace math
 } // namespace JStudio

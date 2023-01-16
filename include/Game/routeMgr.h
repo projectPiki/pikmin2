@@ -100,7 +100,7 @@ struct WPCondition : public Condition<WayPoint> {
 };
 
 struct WPSearchArg {
-	WPSearchArg(Vector3f& position, WPCondition* condition, u8 arg3, float arg4)
+	WPSearchArg(Vector3f& position, WPCondition* condition, u8 arg3, f32 arg4)
 	{
 		m_position  = position;
 		m_condition = condition;

@@ -52,7 +52,7 @@ struct JSUInputStream : public JSUIosBase {
 	}
 
 	/** @fabricated */
-	inline float readS16ToFloat()
+	inline f32 readS16ToFloat()
 	{
 		s16 temp;
 		read(&temp, 2);
@@ -68,7 +68,7 @@ struct JSUInputStream : public JSUIosBase {
 	}
 
 	/** @fabricated */
-	inline float readU16ToFloat()
+	inline f32 readU16ToFloat()
 	{
 		u16 temp;
 		read(&temp, 2);

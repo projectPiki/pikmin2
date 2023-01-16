@@ -36,10 +36,10 @@ struct J2DAnmBase {
 	virtual void searchUpdateMaterialID(J2DScreen*); // _0C (weak)
 
 	// VTBL _00
-	u8 _04[2];            // _04
-	short m_maxFrame;     // _06
-	float m_currentFrame; // _08
-	u32 m_type;           // _0C
+	u8 _04[2];          // _04
+	short m_maxFrame;   // _06
+	f32 m_currentFrame; // _08
+	u32 m_type;         // _0C
 };
 
 struct J2DAnmColor : public J2DAnmBase {
@@ -140,10 +140,10 @@ struct J2DAnmTextureSRTKey : public J2DAnmBase {
 	virtual ~J2DAnmTextureSRTKey() { }               // _08 (weak)
 	virtual void searchUpdateMaterialID(J2DScreen*); // _0C
 
-	void calcTransform(float, unsigned short, J3DTextureSRTInfo*) const;
+	void calcTransform(f32, unsigned short, J3DTextureSRTInfo*) const;
 
 	// unused/inlined:
-	void calcPostTransform(float, unsigned short, J3DTextureSRTInfo*) const;
+	void calcPostTransform(f32, unsigned short, J3DTextureSRTInfo*) const;
 
 	u32 _10;
 	u16 _14;
@@ -151,9 +151,9 @@ struct J2DAnmTextureSRTKey : public J2DAnmBase {
 	short _1C;
 	short _1E;
 	short _20;
-	float* _24;
+	f32* _24;
 	short* _28;
-	float* _2C;
+	f32* _2C;
 	u8* _30;
 	u16* _34;
 	JUTNameTab m_nameTab;
@@ -161,7 +161,7 @@ struct J2DAnmTextureSRTKey : public J2DAnmBase {
 	short _4C;
 	short _4E;
 	short _50;
-	float* _54;
+	f32* _54;
 	short* _58;
 	u32 _5C;
 	short _60;
@@ -177,9 +177,9 @@ struct J2DAnmTransform : public J2DAnmBase {
 	virtual ~J2DAnmTransform() { }                                         // _08 (weak)
 	virtual void getTransform(unsigned short, J3DTransformInfo*) const { } // _10 (weak)
 
-	float* _10; // _10
+	f32* _10;   // _10
 	short* _14; // _14
-	float* _18; // _18
+	f32* _18;   // _18
 };
 
 // Size: 0x28
@@ -193,9 +193,9 @@ struct J2DAnmTransformFull : public J2DAnmTransform {
 
 // Size: 0x2C
 struct J2DAnmTransformKey : public J2DAnmTransform {
-	virtual ~J2DAnmTransformKey() { }                                           // _08 (weak)
-	virtual void getTransform(unsigned short, J3DTransformInfo*) const;         // _10 (weak)
-	virtual void calcTransform(float, unsigned short, J3DTransformInfo*) const; // _14
+	virtual ~J2DAnmTransformKey() { }                                         // _08 (weak)
+	virtual void getTransform(unsigned short, J3DTransformInfo*) const;       // _10 (weak)
+	virtual void calcTransform(f32, unsigned short, J3DTransformInfo*) const; // _14
 
 	u8 _1C[8]; // _1C
 	int _24;   // _24

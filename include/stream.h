@@ -52,7 +52,7 @@ struct Stream {
 	u8 _readByte();
 	short readShort();
 	int readInt();
-	float readFloat();
+	f32 readFloat();
 	char* readString(char*, int);
 	void readFixedString(); // unused
 
@@ -62,7 +62,7 @@ struct Stream {
 	void _writeByte(u8);
 	void writeShort(short);
 	void writeInt(int);
-	void writeFloat(float);
+	void writeFloat(f32);
 
 	u16 readU16() { return readShort(); }
 

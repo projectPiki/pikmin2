@@ -28,7 +28,7 @@ public:
 
 	// unused/inlined:
 	void bar_subroutine(int, int, int, int, int, int, int, JUtility::TColor, JUtility::TColor);
-	void adjustMeterLength(u32, float*, float, float, int*);
+	void adjustMeterLength(u32, f32*, f32, f32, int*);
 	void getUnuseUserBar();
 
 	static JUTProcBar* sManager;

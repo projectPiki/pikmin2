@@ -67,7 +67,7 @@ struct Obj : public EnemyBase {
 	virtual bool doBecomeCarcass();                         // _2D0
 	virtual void doStartWaitingBirthTypeDrop();             // _2E0
 	virtual void doFinishWaitingBirthTypeDrop();            // _2E4
-	virtual float getDownSmokeScale();                      // _2EC (weak)
+	virtual f32 getDownSmokeScale();                        // _2EC (weak)
 	virtual void doStartMovie();                            // _2F0
 	virtual void doEndMovie();                              // _2F4
 	virtual void setFSM(FSM*);                              // _2F8
@@ -112,9 +112,9 @@ struct Obj : public EnemyBase {
 	// _00-_2B8	= EnemyBase
 	FSM* m_fsm;                           // _2BC
 	WalkSmokeEffect::Mgr m_walkSmokeMgr;  // _2C0
-	float _2C8;                           // _2C8, caution?
-	float _2CC;                           // _2CC
-	float _2D0;                           // _2D0
+	f32 _2C8;                             // _2C8, caution?
+	f32 _2CC;                             // _2CC
+	f32 _2D0;                             // _2D0
 	MiniHoudaiStateID m_houdaiStateID;    // _2D4
 	Vector3f m_targetPosition;            // _2D8
 	Vector3f _2E4;                        // _2E4, shotgun target distance maybe?

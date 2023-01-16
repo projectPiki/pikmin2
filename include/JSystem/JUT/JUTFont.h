@@ -83,21 +83,21 @@ struct JUTFont {
 	JUTFont();
 
 	// TODO: Finish VTBL.
-	virtual ~JUTFont() {};                                                   // _08
-	virtual void setGX() = 0;                                                // _0C
-	virtual void setGX(JUtility::TColor, JUtility::TColor) { setGX(); };     // _10
-	virtual float drawChar_scale(float, float, float, float, int, bool) = 0; // _14
-	virtual int getLeading() const                                      = 0; // _18
-	virtual int getAscent() const                                       = 0; // _1C
-	virtual int getDescent() const                                      = 0; // _20
-	virtual int getHeight() const                                       = 0; // _24
-	virtual int getWidth() const                                        = 0; // _28
-	virtual void getWidthEntry(int, JUTFont::TWidth*) const             = 0; // _2C
-	virtual int getCellWidth() const { return getWidth(); };                 // _30
-	virtual int getCellHeight() const { return getHeight(); };               // _34
-	virtual int getFontType() const           = 0;                           // _38
-	virtual const ResFONT* getResFont() const = 0;                           // _3C
-	virtual bool isLeadByte(int) const        = 0;                           // _40
+	virtual ~JUTFont() {};                                               // _08
+	virtual void setGX() = 0;                                            // _0C
+	virtual void setGX(JUtility::TColor, JUtility::TColor) { setGX(); }; // _10
+	virtual f32 drawChar_scale(f32, f32, f32, f32, int, bool) = 0;       // _14
+	virtual int getLeading() const                            = 0;       // _18
+	virtual int getAscent() const                             = 0;       // _1C
+	virtual int getDescent() const                            = 0;       // _20
+	virtual int getHeight() const                             = 0;       // _24
+	virtual int getWidth() const                              = 0;       // _28
+	virtual void getWidthEntry(int, JUTFont::TWidth*) const   = 0;       // _2C
+	virtual int getCellWidth() const { return getWidth(); };             // _30
+	virtual int getCellHeight() const { return getHeight(); };           // _34
+	virtual int getFontType() const           = 0;                       // _38
+	virtual const ResFONT* getResFont() const = 0;                       // _3C
+	virtual bool isLeadByte(int) const        = 0;                       // _40
 	// virtual void loadImage(int, _GXTexMapID) = 0;                // _44
 
 	void initialize_state();
@@ -143,7 +143,7 @@ struct JUTRomFont : public JUTFont {
 
 	virtual ~JUTRomFont();                                                     // _08
 	virtual void setGX();                                                      // _0C
-	virtual float drawChar_scale(f32, f32, f32, f32, int, bool);               // _14
+	virtual f32 drawChar_scale(f32, f32, f32, f32, int, bool);                 // _14
 	virtual int getWidth() const { return spFontHeader_->m_width; };           // _28
 	virtual int getLeading() const { return spFontHeader_->m_leading; };       // _18
 	virtual int getAscent() const { return spFontHeader_->m_ascent; };         // _1C
@@ -188,7 +188,7 @@ struct JUTResFont : public JUTFont {
 	virtual ~JUTResFont();                                                // _08
 	virtual void setGX();                                                 // _0C
 	virtual void setGX(JUtility::TColor, JUtility::TColor);               // _10
-	virtual float drawChar_scale(float, float, float, float, int, bool);  // _14
+	virtual f32 drawChar_scale(f32, f32, f32, f32, int, bool);            // _14
 	virtual int getDescent() const { return m_infoBlock->m_descent; };    // _20
 	virtual int getHeight() const { return getAscent() + getDescent(); }; // _24
 	virtual int getAscent() const { return m_infoBlock->m_ascent; };      // _1C

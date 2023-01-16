@@ -26,7 +26,7 @@ struct J3DShapeInitData {
 	u16 m_vtxDescListIndex;       // _04
 	u16 m_shapeMtxInitDataIndex;  // _06
 	u16 m_shapeDrawInitDataIndex; // _08
-	float _0C;                    // _0C
+	f32 _0C;                      // _0C
 	JGeometry::TVec3f _10;        // _10
 	JGeometry::TVec3f _1C;        // _1C
 };
@@ -77,12 +77,12 @@ struct J3DShape {
 struct J3DShapeMtx {
 	typedef void (J3DShapeMtx::*LoadMtxIndxFunction)(int, u16) const;
 
-	virtual ~J3DShapeMtx() { }                                               // _08 (weak)
-	virtual int getType() const { return 'SMTX'; }                           // _0C (weak)
-	virtual int getUseMtxNum() const { return 1; }                           // _10 (weak)
-	virtual u16 getUseMtxIndex(u16) const { return m_useMtxIndex; }          // _14 (weak)
-	virtual void load() const;                                               // _18
-	virtual void calcNBTScale(const Vec&, float (*)[3][3], float (*)[3][3]); // _1C
+	virtual ~J3DShapeMtx() { }                                           // _08 (weak)
+	virtual int getType() const { return 'SMTX'; }                       // _0C (weak)
+	virtual int getUseMtxNum() const { return 1; }                       // _10 (weak)
+	virtual u16 getUseMtxIndex(u16) const { return m_useMtxIndex; }      // _14 (weak)
+	virtual void load() const;                                           // _18
+	virtual void calcNBTScale(const Vec&, f32 (*)[3][3], f32 (*)[3][3]); // _1C
 
 	void loadMtxIndx_PNGP(int, u16) const;
 	void loadMtxIndx_PCPU(int, u16) const;
@@ -148,12 +148,12 @@ struct J3DShapeTable {
 };
 
 struct J3DShapeMtxMulti : public J3DShapeMtx {
-	virtual ~J3DShapeMtxMulti() { }                                          // _08 (weak)
-	virtual int getType() const { return 'SMML'; }                           // _0C (weak)
-	virtual int getUseMtxNum() const { return m_useMtxNum; }                 // _10 (weak)
-	virtual u16 getUseMtxIndex(unsigned short p1) const { return _0C[p1]; }  // _14 (weak)
-	virtual void load() const;                                               // _18
-	virtual void calcNBTScale(const Vec&, float (*)[3][3], float (*)[3][3]); // _1C
+	virtual ~J3DShapeMtxMulti() { }                                         // _08 (weak)
+	virtual int getType() const { return 'SMML'; }                          // _0C (weak)
+	virtual int getUseMtxNum() const { return m_useMtxNum; }                // _10 (weak)
+	virtual u16 getUseMtxIndex(unsigned short p1) const { return _0C[p1]; } // _14 (weak)
+	virtual void load() const;                                              // _18
+	virtual void calcNBTScale(const Vec&, f32 (*)[3][3], f32 (*)[3][3]);    // _1C
 
 	u16 m_useMtxNum; // _08
 	u16* _0C;        // _0C
@@ -162,11 +162,11 @@ struct J3DShapeMtxMulti : public J3DShapeMtx {
 struct J3DShapeMtxConcatView : public J3DShapeMtx {
 	typedef void (J3DShapeMtxConcatView::*LoadMtxConcatViewFunction)(int, u16) const;
 
-	virtual ~J3DShapeMtxConcatView() { }                              // _08 (weak)
-	virtual int getType() const { return 'SMCV'; }                    // _0C (weak)
-	virtual void load() const;                                        // _18
-	virtual void loadNrmMtx(int, unsigned short) const;               // _20 (weak)
-	virtual void loadNrmMtx(int, unsigned short, float (*)[4]) const; // _24
+	virtual ~J3DShapeMtxConcatView() { }                            // _08 (weak)
+	virtual int getType() const { return 'SMCV'; }                  // _0C (weak)
+	virtual void load() const;                                      // _18
+	virtual void loadNrmMtx(int, unsigned short) const;             // _20 (weak)
+	virtual void loadNrmMtx(int, unsigned short, f32 (*)[4]) const; // _24
 
 	void loadMtxConcatView_PNGP(int, unsigned short) const;
 	void loadMtxConcatView_PCPU(int, unsigned short) const;
@@ -186,7 +186,7 @@ struct J3DShapeMtxMultiConcatView : public J3DShapeMtxConcatView {
 	virtual u16 getUseMtxIndex(unsigned short index) const { return _0C[index]; } // _14 (weak)
 	virtual void load() const;                                                    // _18
 	virtual void loadNrmMtx(int, unsigned short) const;                           // _20 (weak)
-	virtual void loadNrmMtx(int, unsigned short, float (*)[4]) const;             // _24
+	virtual void loadNrmMtx(int, unsigned short, f32 (*)[4]) const;               // _24
 
 	u16 m_useMtxNum; // _08
 	u16* _0C;        // _0C

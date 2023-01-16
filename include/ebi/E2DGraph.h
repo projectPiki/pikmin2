@@ -17,7 +17,7 @@ struct E2DDebugWindow {
 };
 
 struct E2DFader {
-	static const float kFadeTime;
+	static const f32 kFadeTime;
 };
 
 void E2DPane_getCalcGlbVisible(J2DPane*);

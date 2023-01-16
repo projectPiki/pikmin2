@@ -33,7 +33,7 @@ void bcopyfast(const void*, void*, unsigned long);
 void bzerofast(void*, unsigned long);
 void hannWindow(short*, unsigned long);
 void hammWindow(short*, unsigned long);
-void fft(float*, float*, unsigned long, long);
+void fft(f32*, f32*, unsigned long, long);
 } // namespace JASCalc
 
 #endif

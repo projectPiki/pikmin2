@@ -12,7 +12,7 @@ extern "C" {
 void srand(u32);
 int rand();
 
-inline f32 randFloat() { return (float)rand() / RAND_MAX; }
+inline f32 randFloat() { return (f32)rand() / RAND_MAX; }
 inline f32 randWeightFloat(f32 range) { return (range * (f32)rand()) / RAND_MAX; }
 
 #ifdef __cplusplus

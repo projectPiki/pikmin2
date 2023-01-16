@@ -13,7 +13,7 @@ namespace BossBgmFader {
  * @size{0x30}
  */
 struct TypedProc {
-	// inline TypedProc(float, float);
+	// inline TypedProc(f32, f32);
 
 	virtual void update(); // _08
 
@@ -23,10 +23,10 @@ struct TypedProc {
 	void getBossFadeVolume();
 
 	// _00 VTBL
-	float _04;                               // _04
-	float _08;                               // _08
-	float _0C;                               // _0C
-	float _10;                               // _10
+	f32 _04;                                 // _04
+	f32 _08;                                 // _08
+	f32 _0C;                                 // _0C
+	f32 _10;                                 // _10
 	u32 _14;                                 // _14, unknown
 	u32 _18;                                 // _18, unknown
 	u32 _1C;                                 // _1C, unknown
@@ -34,14 +34,14 @@ struct TypedProc {
 	PSM::DirectorUpdator* m_directorUpdator; // _24
 	u8 _28;                                  // _28
 	u8 _29[0x3];                             // _29, unknown/padding
-	float _2C;                               // _2C
+	f32 _2C;                                 // _2C
 };
 
 /**
  * @size{0x34}
  */
 struct TypedProc_MidBoss : public TypedProc {
-	// inline TypedProc_MidBoss(float, float);
+	// inline TypedProc_MidBoss(f32, f32);
 
 	virtual void update(); // _08
 

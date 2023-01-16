@@ -43,7 +43,7 @@ struct SingleGameSection : public BaseGameSection {
 	virtual void playMovie_firstexperience(int, Creature*);            // _98
 	virtual void playMovie_bootup(Onyon*);                             // _9C
 	virtual void playMovie_helloPikmin(Piki*);                         // _A0
-	virtual void enableTimer(float, u32);                              // _A4
+	virtual void enableTimer(f32, u32);                                // _A4
 	virtual void disableTimer(u32);                                    // _A8
 	virtual u32 getTimerType();                                        // _AC (weak)
 	virtual void onMovieStart(MovieConfig*, u32, u32);                 // _B0
@@ -77,7 +77,7 @@ struct SingleGameSection : public BaseGameSection {
 	void updateMainMapScreen();
 	void drawCaveScreen();
 
-	float m_timer;                                  // _174
+	f32 m_timer;                                    // _174
 	bool m_timerEnabled;                            // _178
 	u32 m_timerType;                                // _17C
 	u8 m_openMenuFlags;                             // _180

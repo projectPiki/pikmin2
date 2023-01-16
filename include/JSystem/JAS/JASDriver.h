@@ -10,15 +10,15 @@ typedef s32 JASOutputRate;
 typedef s32 JASMixMode;
 
 namespace JASDriver {
-float key2pitch_c5(int);
-void setLevel(float, float, float);
-void setMixerLevel(float, float);
-void setAutoLevel(float);
-void setDSPLevel(float);
+f32 key2pitch_c5(int);
+void setLevel(f32, f32, f32);
+void setMixerLevel(f32, f32);
+void setAutoLevel(f32);
+void setDSPLevel(f32);
 u16 getChannelLevel();
 u16 getAutoLevel();
-float getAutoLevel_f32();
-float getDSPLevel_f32();
+f32 getAutoLevel_f32();
+f32 getDSPLevel_f32();
 void setOutputMode(unsigned long);
 u32 getOutputMode();
 bool rejectCallback(long (*)(void*), void*);
@@ -36,7 +36,7 @@ void updateDSP();
 void readDspBuffer(short*, unsigned long);
 void finishDSPFrame();
 void registerMixCallback(short* (*)(long), JASMixMode);
-float getDacRate();
+f32 getDacRate();
 int getSubFrames();
 int getDacSize();
 int getFrameSamples();
@@ -46,9 +46,9 @@ void mixExtraTrack(short*, unsigned long, short* (*)(long));
 void mixInterleaveTrack(short*, unsigned long, short* (*)(long));
 
 // unused/inlined:
-void setChannelLevel(float);
+void setChannelLevel(f32);
 s16 getDSPLevel();
-float getChannelLevel_f32();
+f32 getChannelLevel_f32();
 bool registerUpdateDacCallback(long (*)(void*), void*);
 void setOutputRate(JASOutputRate);
 void setSubFrames(u32);

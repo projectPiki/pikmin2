@@ -15,9 +15,9 @@ struct _u32FakeMatch {
 };
 // static u32 gu32NAN = -1;
 static _u32FakeMatch gu32NAN_(-1);
-// static float gfNAN = *reinterpret_cast<const float*>(&__float_nan);
-static float gfNAN_    = __float_nan;
-const float govNAN_[3] = { __float_nan, gfNAN_, __float_nan };
+// static f32 gfNAN = *reinterpret_cast<const f32*>(&__float_nan);
+static f32 gfNAN_    = __float_nan;
+const f32 govNAN_[3] = { __float_nan, gfNAN_, __float_nan };
 } // namespace P2JST
 } // namespace Game
 

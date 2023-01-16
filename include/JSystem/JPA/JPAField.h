@@ -13,7 +13,7 @@ struct JPAFieldBase {
 
 	// unused/inlined:
 	void calcAffect(JPAFieldBlock*, JPABaseParticle*);
-	void calcFadeAffect(JPAFieldBlock*, float) const;
+	void calcFadeAffect(JPAFieldBlock*, f32) const;
 
 	// VTBL _00
 };
@@ -69,7 +69,7 @@ struct JPAFieldNewton : public JPAFieldBase {
 
 	JGeometry::TVec3f _04; // _04
 	JGeometry::TVec3f _10; // _10
-	float _1C;             // _1C
+	f32 _1C;               // _1C
 };
 
 struct JPAFieldRandom : public JPAFieldBase {
@@ -101,8 +101,8 @@ struct JPAFieldVortex : public JPAFieldBase {
 
 	JGeometry::TVec3f _04; // _04
 	JGeometry::TVec3f _10; // _10
-	float _1C;             // _1C
-	float _20;             // _20
+	f32 _1C;               // _1C
+	f32 _20;               // _20
 };
 
 #endif

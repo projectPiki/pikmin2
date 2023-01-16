@@ -10,7 +10,7 @@ struct JASInstEffect {
 	{
 	}
 
-	virtual float getY(int, int) const = 0; // _08
+	virtual f32 getY(int, int) const = 0; // _08
 	// virtual void _0C(); 					// _0C - maybe.
 
 	void setTarget(int);
@@ -29,11 +29,11 @@ struct JASInstRand : public JASInstEffect {
 	{
 	}
 
-	virtual float getY(int, int) const; // _08
+	virtual f32 getY(int, int) const; // _08
 	// virtual void _0C(); 					// _0C - maybe.
 
-	float _08;
-	float _0C;
+	f32 _08;
+	f32 _0C;
 };
 
 /**
@@ -49,15 +49,15 @@ struct JASInstSense : public JASInstEffect {
 	{
 	}
 
-	virtual float getY(int, int) const; // _08
+	virtual f32 getY(int, int) const; // _08
 	// virtual void _0C(); 					// _0C - maybe.
 
-	void setParams(int, int, float, float);
+	void setParams(int, int, f32, f32);
 
-	u8 _08;    // _08
-	u8 _09;    // _09
-	float _0C; // _0C
-	float _10; // _10
+	u8 _08;  // _08
+	u8 _09;  // _09
+	f32 _0C; // _0C
+	f32 _10; // _10
 };
 
 /**
@@ -83,11 +83,11 @@ struct JASInstParam {
 	u32 _04;                         // _04
 	JASOscillator::Data** m_oscData; // _08
 	int m_oscCount;                  // _0C - possibly oscillator count?
-	float _10;                       // _10
-	float _14;                       // _14
-	float _18;                       // _18
-	float _1C;                       // _1C
-	float _20;                       // _20
+	f32 _10;                         // _10
+	f32 _14;                         // _14
+	f32 _18;                         // _18
+	f32 _1C;                         // _1C
+	f32 _20;                         // _20
 	u8 _24;                          // _24
 	u8 _25;                          // _25
 	short _26;                       // _26
@@ -156,8 +156,8 @@ struct JASBasicInst : public JASInst {
 	TKeymap* getKeyRegion(int) const;
 
 	// _00 = VTABLE
-	float _04;                       // _04
-	float _08;                       // _08
+	f32 _04;                         // _04
+	f32 _08;                         // _08
 	JASInstEffect** m_effects;       // _0C
 	u32 m_effectCount;               // _10
 	JASOscillator::Data** m_oscData; // _14

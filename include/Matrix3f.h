@@ -18,11 +18,11 @@ struct Matrix3f {
 		m_matrix[2][2] = 0.0f;
 	}
 	void makeIdentity();
-	inline bool isDiagonal(float thresh)
+	inline bool isDiagonal(f32 thresh)
 	{
 		// TODO: Verify that this is 0xD0 bytes long.
 		// sum off-diagonal terms of matrix
-		float sumOffDiag = 0.0f;
+		f32 sumOffDiag = 0.0f;
 		for (int row_idx = 0; row_idx < 3; row_idx++) {
 			for (int col_idx = 0; col_idx < 3; col_idx++) {
 				if (row_idx != col_idx) {
@@ -31,7 +31,7 @@ struct Matrix3f {
 			}
 		}
 		// take absolute value of sum
-		float absOffDiag = FABS(sumOffDiag);
+		f32 absOffDiag = FABS(sumOffDiag);
 		// check for convergence, i.e. if off-diagonals are sufficiently small yet
 		// threshold for convergence is if abs(sum of off-diags) < 0.01
 		if (absOffDiag < thresh) {
@@ -52,14 +52,14 @@ struct Matrix3f {
 		}
 	}
 
-	inline float calcJacobi(int row, int col)
+	inline f32 calcJacobi(int row, int col)
 	{
-		float x = (2.0f * m_matrix[row][col]);
-		float y = (m_matrix[col][col] - m_matrix[row][row]) / x;
+		f32 x = (2.0f * m_matrix[row][col]);
+		f32 y = (m_matrix[col][col] - m_matrix[row][row]) / x;
 		return y;
 	}
 
-	inline void createJacobi(int row, int col, float c_theta, float s_theta)
+	inline void createJacobi(int row, int col, f32 c_theta, f32 s_theta)
 	{
 		m_matrix[row][row] = c_theta; // these are especially dodgy
 		m_matrix[col][col] = c_theta;

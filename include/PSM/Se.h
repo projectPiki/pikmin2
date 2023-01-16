@@ -74,10 +74,10 @@ struct SeSound : public JAISe {
 
 	static void makeSeSound();
 	void specializePerspCalc(const PSGame::SoundTable::SePerspInfo&);
-	void calcVolumeSpecialized(float);
-	void calcVolume(float, unsigned char, unsigned char);
-	void calcPan(const Vec&, float);
-	void calcDolby(const Vec&, float);
+	void calcVolumeSpecialized(f32);
+	void calcVolume(f32, unsigned char, unsigned char);
+	void calcPan(const Vec&, f32);
+	void calcDolby(const Vec&, f32);
 
 	// _00      = VTABLE
 	// _00-_484 = JAISe

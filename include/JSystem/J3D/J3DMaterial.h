@@ -39,16 +39,16 @@ struct J3DMaterial {
 
 	~J3DMaterial();
 
-	virtual void calc(const float (*)[4]);           // _08
-	virtual void calcDiffTexMtx(const float (*)[4]); // _0C
-	virtual void makeDisplayList();                  // _10
-	virtual void makeSharedDisplayList();            // _14
-	virtual void load();                             // _18
-	virtual void loadSharedDL();                     // _1C
-	virtual void patch();                            // _20
-	virtual void diff(u32);                          // _24
-	virtual void reset();                            // _28
-	virtual void change();                           // _2C
+	virtual void calc(const f32 (*)[4]);           // _08
+	virtual void calcDiffTexMtx(const f32 (*)[4]); // _0C
+	virtual void makeDisplayList();                // _10
+	virtual void makeSharedDisplayList();          // _14
+	virtual void load();                           // _18
+	virtual void loadSharedDL();                   // _1C
+	virtual void patch();                          // _20
+	virtual void diff(u32);                        // _24
+	virtual void reset();                          // _28
+	virtual void change();                         // _2C
 
 	void calcCurrentMtx();
 	static u32 calcSizeColorBlock(u32);
@@ -100,15 +100,15 @@ struct J3DLockedMaterial : public J3DMaterial {
 		initialize();
 	}
 
-	virtual void calc(const float (*)[4]); // _08
-	virtual void makeDisplayList();        // _10
-	virtual void makeSharedDisplayList();  // _14
-	virtual void load();                   // _18
-	virtual void loadSharedDL();           // _1C
-	virtual void patch();                  // _20
-	virtual void diff(u32);                // _24
-	virtual void reset();                  // _28
-	virtual void change();                 // _2C
+	virtual void calc(const f32 (*)[4]);  // _08
+	virtual void makeDisplayList();       // _10
+	virtual void makeSharedDisplayList(); // _14
+	virtual void load();                  // _18
+	virtual void loadSharedDL();          // _1C
+	virtual void patch();                 // _20
+	virtual void diff(u32);               // _24
+	virtual void reset();                 // _28
+	virtual void change();                // _2C
 
 	void initialize();
 };

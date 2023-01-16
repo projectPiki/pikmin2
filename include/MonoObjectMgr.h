@@ -52,7 +52,7 @@ struct MonoObjectMgr : public ObjectMgr<T> {
 			}
 		}
 	}
-	virtual void doSimulation(float p1) // _74 (weak, thunk at _44)
+	virtual void doSimulation(f32 p1) // _74 (weak, thunk at _44)
 	{
 		for (int i = 0; i < m_max; i++) {
 			if (m_openIds[i] == false) {

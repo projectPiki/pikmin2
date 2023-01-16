@@ -18,16 +18,16 @@ struct VertexTable;
 
 struct Triangle {
 	struct SphereSweep {
-		float _00;    // _00
-		float _04;    // _04
-		float _08;    // _08
-		float _0C;    // _0C
-		float _10;    // _10
-		float _14;    // _14
-		float _18;    // _18
+		f32 _00;      // _00
+		f32 _04;      // _04
+		f32 _08;      // _08
+		f32 _0C;      // _0C
+		f32 _10;      // _10
+		f32 _14;      // _14
+		f32 _18;      // _18
 		u8 _1C;       // _1C
 		Vector3f _20; // _20
-		float _2C;    // _2C
+		f32 _2C;      // _2C
 		Vector3f _30; // _30
 	};
 
@@ -35,9 +35,9 @@ struct Triangle {
 
 	void createSphere(VertexTable&);
 	bool fastIntersect(Sphere&);
-	float calcDist(Plane&, VertexTable&);
-	bool intersect(Edge&, float, Vector3f&);
-	bool intersect(Edge&, float, Vector3f&, float&);
+	f32 calcDist(Plane&, VertexTable&);
+	bool intersect(Edge&, f32, Vector3f&);
+	bool intersect(Edge&, f32, Vector3f&, f32&);
 	bool intersect(VertexTable&, Sphere&);
 	bool intersect(VertexTable&, Sphere&, Vector3f&);
 	bool intersectHard(VertexTable&, Sphere&, Vector3f&);

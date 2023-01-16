@@ -64,7 +64,7 @@ struct JUTException : public JKRThread {
 
 	// unused/inlined:
 	static void panic_f_va(const char*, int, const char*, va_list*);
-	void showFloatSub(int, float);
+	void showFloatSub(int, f32);
 	void searchPartialModule(unsigned long, unsigned long*, unsigned long*, unsigned long*, unsigned long*);
 	void showGPR(OSContext*);
 	void showSRR0Map(OSContext*);

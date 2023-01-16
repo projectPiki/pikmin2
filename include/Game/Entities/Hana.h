@@ -35,7 +35,7 @@ struct Obj : public ChappyBase::Obj {
 	virtual WalkSmokeEffect::Mgr* getWalkSmokeEffectMgr() { return nullptr; }                // _234 (weak)
 	virtual f32 getDownSmokeScale() { return 1.2f; }                                         // _2EC (weak)
 	virtual EnemyTypeID::EEnemyTypeID getEnemyTypeID() { return EnemyTypeID::EnemyID_Hana; } // _258 (weak)
-	virtual void setAnimationSpeed(float) { }                                                // _300 (weak)
+	virtual void setAnimationSpeed(f32) { }                                                  // _300 (weak)
 	virtual void flickAttackFail() { }                                                       // _304 (weak)
 	virtual void startSleepEffect() { }                                                      // _324 (weak)
 	virtual void finishSleepEffect() { }                                                     // _328 (weak)

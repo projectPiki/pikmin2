@@ -131,7 +131,7 @@ struct MoviePlayArg {
 	IDelegate3<MovieConfig*, void*, u32>* m_delegateStart; // _10 /* Second type is unknown. */
 	u32 _14;                                               // _14
 	Vector3f m_origin;                                     // _18 /* previously called m_itemPosition */
-	float m_angle;                                         // _24 /* previously called m_itemFaceDirection */
+	f32 m_angle;                                           // _24 /* previously called m_itemFaceDirection */
 	u32 m_naviID;                                          // _28
 	u32 m_streamID;                                        // _2C
 	Vector3f* m_soundPosition;                             // _30
@@ -212,9 +212,9 @@ struct MoviePlayer : public JKRDisposer {
 	u8 m_isPaused;                    // _88
 	// TODO: Is this a quat?
 	Vector3f m_cameraPosition;                  // _8C
-	float m_cameraAngle;                        // _98
+	f32 m_cameraAngle;                          // _98
 	u8 _09C[4];                                 // _9C
-	float _0A0;                                 // _A0
+	f32 _0A0;                                   // _A0
 	bool m_canFinish;                           // _A4
 	Vector3f* m_offset;                         // _A8
 	PSM::Demo* m_demoPSM;                       // _AC
@@ -242,7 +242,7 @@ struct MoviePlayer : public JKRDisposer {
 	int m_messageEndCount;                      // _1B8
 	// TODO: Is this a quat?
 	Vector3f m_transform;                                           // _1BC
-	float m_transformAngle;                                         // _1C8
+	f32 m_transformAngle;                                           // _1C8
 	P2JST::ObjectSystem* m_objectSystem;                            // _1CC
 	JStudio::TControl* m_studioControl;                             // _1D0
 	JStudio::TFactory* m_studioFactory;                             // _1D4

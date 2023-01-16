@@ -81,7 +81,7 @@ struct PelletMgr : public NodeObjectMgr<GenericObjectMgr> {
 	virtual void doEntry();                     // _68 (weak)
 	virtual void doSetView(int viewportNumber); // _6C (weak)
 	virtual void doViewCalc();                  // _70 (weak)
-	virtual void doSimulation(float rate);      // _74 (weak)
+	virtual void doSimulation(f32 rate);        // _74 (weak)
 	virtual void doDirectDraw(Graphics& gfx);   // _78 (weak)
 	virtual char* getMgrName()                  // _80 (weak)
 	{
@@ -217,9 +217,9 @@ struct Pellet : public DynCreature, public SysShape::MotionListener, public Carr
 	virtual void doEntry();                                           // _40
 	virtual void doSetView(int viewportNumber);                       // _44
 	virtual void doViewCalc();                                        // _48
-	virtual void doSimulation(float rate);                            // _4C
+	virtual void doSimulation(f32 rate);                              // _4C
 	virtual void doDirectDraw(Graphics& gfx);                         // _50
-	virtual float getFaceDir() { return m_faceDir; }                  // _64 (weak)
+	virtual f32 getFaceDir() { return m_faceDir; }                    // _64 (weak)
 	virtual void setVelocity(Vector3f& vel);                          // _68
 	virtual Vector3f getVelocity();                                   // _6C
 	virtual void onSetPosition(Vector3f& dest);                       // _70 (weak)
@@ -311,13 +311,13 @@ struct Pellet : public DynCreature, public SysShape::MotionListener, public Carr
 	void clearClaim();
 	void sendClaim();
 	void updateClaim();
-	float getBuryDepthMax();
-	float getBuryDepth();
-	float getBuryRadius(float);
+	f32 getBuryDepthMax();
+	f32 getBuryDepth();
+	f32 getBuryRadius(f32);
 
-	float getBottomRadius();
-	float getPickRadius();
-	float getCylinderHeight();
+	f32 getBottomRadius();
+	f32 getPickRadius();
+	f32 getCylinderHeight();
 	int getConfigIndex();
 	char* getConfigName();
 	int getPelletConfigMin();
@@ -330,7 +330,7 @@ struct Pellet : public DynCreature, public SysShape::MotionListener, public Carr
 	void setCarryColor(int);
 	void clearCarryColor();
 	void allocateTexCaster();
-	void setPanModokiRotation(float);
+	void setPanModokiRotation(f32);
 	void setOrientation(Matrixf&);
 	int getStateID();
 	void update();
@@ -420,8 +420,8 @@ struct Pellet : public DynCreature, public SysShape::MotionListener, public Carr
 	// _00		= VTABLE 1
 	// _04-_314	= DYNCREATURE
 	// _318 	= VTABLE 2? 3?
-	float m_radius;                 // _31C
-	float m_depth;                  // _320
+	f32 m_radius;                   // _31C
+	f32 m_depth;                    // _320
 	u8 _324;                        // _324 - unknown
 	bool m_isInWater;               // _325
 	u8 _326[0x2];                   // _326 - could be padding
@@ -443,7 +443,7 @@ struct Pellet : public DynCreature, public SysShape::MotionListener, public Carr
 	u8 _39C;                        // _39C - unknown
 	u8 _39D[0xF];                   // _39D - unknown
 	Vector3f m_pelletPosition;      // _3AC
-	float m_faceDir;                // _3B8
+	f32 m_faceDir;                  // _3B8
 	u8 m_wallTimer;                 // _3BC
 	u8 _3BD[0x3];                   // _3BD - possibly padding
 	u32 m_claim;                    // _3C0
@@ -455,14 +455,14 @@ struct Pellet : public DynCreature, public SysShape::MotionListener, public Carr
 	int m_carryColor;               // _3D4
 	int m_minCarriers;              // _3D8, to do with pikmin number
 	int m_maxCarriers;              // _3DC
-	float _3E0;                     // _3E0
+	f32 _3E0;                       // _3E0
 	u8 m_slots[16];                 // _3E4
 	short m_slotCount;              // _3F4
 	u8 _3F6;                        // _3F6
 	u8 _3F7;                        // _3F7 - unknown, maybe padding
 	u32 m_pikminCount[7];           // _3F8, TODO: likely [PikiColorCount]
 	u32 _414;                       // _414 - unknown
-	float m_carryPower;             // _418
+	f32 m_carryPower;               // _418
 	SysShape::Animator m_carryAnim; // _41C
 	f32 m_animSpeed;                // _438
 	u16 _43C;                       // _43C
@@ -536,9 +536,9 @@ struct PelletAppearState : public PelletState {
 	f32 m_time;      // _10
 	f32 m_angle;     // _14
 	f32 m_goalScale; // _18
-	float _1C;       // _1C
-	float _20;       // _20
-	float _24;       // _24
+	f32 _1C;         // _1C
+	f32 _20;         // _20
+	f32 _24;         // _24
 	f32 _28;         // _28
 	bool m_efxMade;  // _29
 };
@@ -650,10 +650,10 @@ struct PelletScaleAppearState : public PelletState {
 	f32 m_time;      // _10
 	f32 m_angle;     // _14
 	f32 m_goalScale; // _18
-	float _1C;       // _1C
-	float _20;       // _20
-	float _24;       // _24
-	float _28;       // _28
+	f32 _1C;         // _1C
+	f32 _20;         // _20
+	f32 _24;         // _24
+	f32 _28;         // _28
 	bool m_efxMade;  // _2C
 };
 

@@ -65,8 +65,8 @@ struct TTitleFogMgr : public FogMgr {
 		// fabricated
 		// offsets relative to TTitleFogMgr
 		Parm<bool> m_isFogActive; // _34
-		Parm<float> m_startDist;  // _50
-		Parm<float> m_endDist;    // _78
+		Parm<f32> m_startDist;    // _50
+		Parm<f32> m_endDist;      // _78
 		Parm<int> m_colR;         // _A0
 		Parm<int> m_colG;         // _C8
 		Parm<int> m_colB;         // _F0

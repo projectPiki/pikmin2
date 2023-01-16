@@ -83,11 +83,11 @@ struct IKSystemBase {
 	bool m_onGround;              // _02
 	bool _03;                     // _03
 	bool m_scaleJoints;           // _04
-	float m_bendRatio;            // _08, aka rotation in radians
-	float m_moveRatio;            // _0C
-	float m_timer;                // _10
-	float m_distance1;            // _14, some distance I'm not sure of
-	float m_distance2;            // _18, same as above
+	f32 m_bendRatio;              // _08, aka rotation in radians
+	f32 m_moveRatio;              // _0C
+	f32 m_timer;                  // _10
+	f32 m_distance1;              // _14, some distance I'm not sure of
+	f32 m_distance2;              // _18, same as above
 	Vector3f m_targetPosition;    // _1C
 	Vector3f m_ikPositions[3];    // _28
 	Matrixf** m_legJointMatrices; // _4C

@@ -25,14 +25,14 @@ struct JointShadowRootNode;
 struct ShadowParam {
 	Vector3f m_position;          // _00
 	Sys::Sphere m_boundingSphere; // _0C
-	float m_size;                 // _1C
+	f32 m_size;                   // _1C
 };
 
 // Size: 0x60
 struct ShadowParms : public Parameters {
-	Parm<float> m_lodNear; // _0C
-	Parm<float> m_lodFar;  // _34
-	void* m_end;           // _5C
+	Parm<f32> m_lodNear; // _0C
+	Parm<f32> m_lodFar;  // _34
+	void* m_end;         // _5C
 };
 
 // Size: 0x24
@@ -74,7 +74,7 @@ struct CylinderBase {
 	Rectf _10;              // _10
 	Vector3f _20[2];        // _20
 	Vector3f _38[2];        // _38
-	float _50;              // _50
+	f32 _50;                // _50
 };
 
 struct ShadowCylinder2 : public CylinderBase {

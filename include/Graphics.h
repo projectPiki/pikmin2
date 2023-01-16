@@ -17,7 +17,7 @@ struct JUTTexture;
 struct Plane;
 template <typename T>
 struct Rect;
-typedef Rect<float> Rectf;
+typedef Rect<f32> Rectf;
 struct Viewport;
 
 namespace Sys {
@@ -40,7 +40,7 @@ struct PerspPrintfInfo {
 	u32 _04;                // _04
 	u32 _08;                // _08
 	int _0C;                // _0C
-	float _10;              // _10
+	f32 _10;                // _10
 	Color4 _14;             // _14
 	Color4 _18;             // _18
 };
@@ -91,30 +91,30 @@ struct Graphics : public _GraphicsParent {
 	void graphicsTokenCallback(u16);
 	void setToken(char*);
 
-	void drawAxis(float, Matrixf*);
-	void drawBox(Vector3f&, Vector3f*, float*, float*);
+	void drawAxis(f32, Matrixf*);
+	void drawBox(Vector3f&, Vector3f*, f32*, f32*);
 	void drawBox(Vector3f&, Vector3f&, Vector3f&, Vector3f&);
-	void drawCone(Vector3f&, Vector3f&, float, int);
-	void drawCylinder(Vector3f&, Vector3f&, float);
+	void drawCone(Vector3f&, Vector3f&, f32, int);
+	void drawCylinder(Vector3f&, Vector3f&, f32);
 	void drawLine(Vector3f&, Vector3f&);
-	void drawMarker(float, Matrixf*);
+	void drawMarker(f32, Matrixf*);
 	void drawMesh(Matrixf*);
-	void drawPlane(Plane&, float);
+	void drawPlane(Plane&, f32);
 	void drawPoint(Vector3f&);
 	void drawPoint(Vector3f*, u16);
 	void drawRect(Rectf&, Color4&);
 	void drawRect(Rectf&, JUTTexture*);
 	void drawRectangle(Rectf&, bool);
-	void drawSphere(Vector3f&, float);
-	void drawSphere(float, Matrixf*);
-	void drawTexture(JUTTexture*, float, float, float, float);
+	void drawSphere(Vector3f&, f32);
+	void drawSphere(f32, Matrixf*);
+	void drawTexture(JUTTexture*, f32, f32, f32, f32);
 	void drawTile(Sys::Sphere&, Sys::Sphere&, JUTTexture*);
-	void drawTube(Vector3f&, Vector3f&, float, float);
+	void drawTube(Vector3f&, Vector3f&, f32, f32);
 	void initPrimDraw(Matrixf*);
 	void loadPrimViewMtx();
 
 	void clearZBuffer(Rectf&);
-	void fillZBuffer(Rectf&, float);
+	void fillZBuffer(Rectf&, f32);
 
 	void initJ2DOrthoGraph(J2DOrthoGraph*);
 	void initJ2DPerspGraph(J2DPerspGraph*);

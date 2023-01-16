@@ -32,7 +32,7 @@ typedef struct _STRUCT_DSP_TASK {
 void DSPReleaseHalt2(u32 msg);
 void setup_callback(unsigned short p1);
 void DsetupTable(unsigned long p1, unsigned long p2, unsigned long p3, unsigned long p4, unsigned long p5);
-void DsetMixerLevel(float mixerLevel);
+void DsetMixerLevel(f32 mixerLevel);
 void DsyncFrame(unsigned long p1, unsigned long p2, unsigned long p3);
 
 // dsptask.c

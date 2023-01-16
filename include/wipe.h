@@ -47,15 +47,15 @@ struct WipeBase : public CNode {
 	 * @reifiedAddress{8042BE84}
 	 * @reifiedFile{sysGCU/wipe.cpp}
 	 */
-	virtual void do_draw(float) { } // _24 (weak)
+	virtual void do_draw(f32) { } // _24 (weak)
 	//////////////// END VTABLE
 
-	void start(float);
+	void start(f32);
 
-	float _18; // _18
-	float _1C; // _1C
-	bool _20;  // _20
-	u8 _21;    // _21
+	f32 _18;  // _18
+	f32 _1C;  // _1C
+	bool _20; // _20
+	u8 _21;   // _21
 };
 
 /**
@@ -68,10 +68,10 @@ struct WipeInFader : public WipeBase {
 	 * @reifiedAddress{8014AFBC}
 	 * @reifiedFile{plugProjectKandoU/baseGameSection.cpp}
 	 */
-	virtual ~WipeInFader() { }   // _08 (weak)
-	virtual bool isWhite();      // _18
-	virtual bool isBlack();      // _1C
-	virtual void do_draw(float); // _24
+	virtual ~WipeInFader() { } // _08 (weak)
+	virtual bool isWhite();    // _18
+	virtual bool isBlack();    // _1C
+	virtual void do_draw(f32); // _24
 
 	JUtility::TColor _24; // _24
 };
@@ -86,11 +86,11 @@ struct WipeOutFader : public WipeBase {
 	 * @reifiedAddress{8014B02C}
 	 * @reifiedFile{plugProjectKandoU/baseGameSection.cpp}
 	 */
-	virtual ~WipeOutFader() { }  // _08 (weak)
-	virtual bool isWhite();      // _18
-	virtual bool isBlack();      // _1C
-	virtual void on_start();     // _20
-	virtual void do_draw(float); // _24
+	virtual ~WipeOutFader() { } // _08 (weak)
+	virtual bool isWhite();     // _18
+	virtual bool isBlack();     // _1C
+	virtual void on_start();    // _20
+	virtual void do_draw(f32);  // _24
 
 	JUtility::TColor _24; // _24
 };
@@ -108,7 +108,7 @@ struct WipeOutInFader : public WipeBase {
 	virtual bool isWhite();       // _18
 	virtual bool isBlack();       // _1C
 	virtual void on_start();      // _20
-	virtual void do_draw(float);  // _24
+	virtual void do_draw(f32);    // _24
 
 	WipeOutFader m_wipeOutFader; // _24
 	WipeInFader m_wipeInFader;   // _4C
@@ -122,10 +122,10 @@ struct BlackFader : public WipeBase {
 	 * @reifiedAddress{8042C588}
 	 * @reifiedFile{sysGCU/wipe.cpp}
 	 */
-	virtual ~BlackFader() { }    // _08 (weak)
-	virtual bool isWhite();      // _18
-	virtual bool isBlack();      // _1C
-	virtual void do_draw(float); // _24
+	virtual ~BlackFader() { }  // _08 (weak)
+	virtual bool isWhite();    // _18
+	virtual bool isBlack();    // _1C
+	virtual void do_draw(f32); // _24
 
 	JUtility::TColor _24; // _24
 	bool _28;             // _28
@@ -140,17 +140,17 @@ struct BallFader : public WipeBase {
 
 	BallFader(int);
 
-	virtual ~BallFader();        // _08
-	virtual bool isWhite();      // _18
-	virtual bool isBlack();      // _1C
-	virtual void on_start();     // _20
-	virtual void do_draw(float); // _24
+	virtual ~BallFader();      // _08
+	virtual bool isWhite();    // _18
+	virtual bool isBlack();    // _1C
+	virtual void on_start();   // _20
+	virtual void do_draw(f32); // _24
 
 	// Unused/inlined:
 	void computeForces();
-	void emitBalls(float);
-	void drawBall(Graphics&, Vector2f, float);
-	void drawBall2(Graphics&, Vector2f, float);
+	void emitBalls(f32);
+	void drawBall(Graphics&, Vector2f, f32);
+	void drawBall2(Graphics&, Vector2f, f32);
 	void drawAll();
 	void simulate();
 	void resolveCollision();

@@ -49,7 +49,7 @@ struct JFWDisplay {
 	void addToDoubleXfb(JKRHeap*);
 	void clearEfb();
 	void clearAllXfb();
-	void frameToTick(float);
+	void frameToTick(f32);
 
 	// _00 VTBL
 	JUTFader* m_fader;    // _04
@@ -62,15 +62,15 @@ struct JFWDisplay {
 	/// PikDecomp calls this "fpsDivider".
 	u16 m_secondsPer60Frames; // _1C
 
-	u32 _20;   // _20
-	bool _24;  // _24
-	u16 _26;   // _26
-	float _28; // _28
-	int _2C;   // _2C
-	int _30;   // _30
-	int _34;   // _34
-	u16 _38;   // _38
-	u8 _3A;    // _3A
+	u32 _20;  // _20
+	bool _24; // _24
+	u16 _26;  // _26
+	f32 _28;  // _28
+	int _2C;  // _2C
+	int _30;  // _30
+	int _34;  // _34
+	u16 _38;  // _38
+	u8 _3A;   // _3A
 
 	static JFWDisplay* sManager;
 };

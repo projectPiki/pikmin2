@@ -21,8 +21,8 @@ struct FogMgr : public CNode {
 	// _00 		= VTBL
 	// _00-_18  = CNode
 	GXFogType m_type; // _18
-	float m_nearZ;    // _1C
-	float m_farZ;     // _20
+	f32 m_nearZ;      // _1C
+	f32 m_farZ;       // _20
 	u_color m_color;  // _24
 };
 

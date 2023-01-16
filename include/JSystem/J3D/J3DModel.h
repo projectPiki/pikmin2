@@ -37,7 +37,7 @@ struct J3DModelData {
 	void newSharedDisplayList(u32);
 	void indexToPtr();
 	void makeSharedDL();
-	void simpleCalcMaterial(u16, float (*)[4]);
+	void simpleCalcMaterial(u16, f32 (*)[4]);
 	void syncJ3DSysFlags() const;
 
 	inline u16 getShapeCount() { return m_shapeTable.m_count; }

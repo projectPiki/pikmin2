@@ -10,7 +10,7 @@ struct TFunctionValue {
 	virtual void getAttributeSet() = 0; // _08
 	virtual void initialize()      = 0; // _0C
 	virtual void prepare()         = 0; // _10
-	virtual void getValue(double)  = 0; // _14
+	virtual void getValue(f64)     = 0; // _14
 
 	// _00 VTBL
 };
@@ -21,7 +21,7 @@ struct TFunctionValue_composite : public TFunctionValue {
 	virtual void getAttributeSet();      // _08
 	virtual void initialize();           // _0C
 	virtual void prepare();              // _10
-	virtual void getValue(double);       // _14
+	virtual void getValue(f64);          // _14
 
 	// _00 VTBL
 };
@@ -32,7 +32,7 @@ struct TFunctionValue_constant : public TFunctionValue {
 	virtual void getAttributeSet();     // _08
 	virtual void initialize();          // _0C
 	virtual void prepare();             // _10
-	virtual void getValue(double);      // _14
+	virtual void getValue(f64);         // _14
 
 	// _00 VTBL
 };
@@ -43,7 +43,7 @@ struct TFunctionValue_transition : public TFunctionValue {
 	virtual void getAttributeSet();       // _08
 	virtual void initialize();            // _0C
 	virtual void prepare();               // _10
-	virtual void getValue(double);        // _14
+	virtual void getValue(f64);           // _14
 
 	// _00 VTBL
 };
@@ -54,7 +54,7 @@ struct TFunctionValue_list : public TFunctionValue {
 	virtual void getAttributeSet(); // _08
 	virtual void initialize();      // _0C
 	virtual void prepare();         // _10
-	virtual void getValue(double);  // _14
+	virtual void getValue(f64);     // _14
 
 	// _00 VTBL
 };
@@ -65,7 +65,7 @@ struct TFunctionValue_list_parameter : public TFunctionValue {
 	virtual void getAttributeSet();           // _08
 	virtual void initialize();                // _0C
 	virtual void prepare();                   // _10
-	virtual void getValue(double);            // _14
+	virtual void getValue(f64);               // _14
 
 	// _00 VTBL
 };
@@ -76,7 +76,7 @@ struct TFunctionValue_hermite : public TFunctionValue {
 	virtual void getAttributeSet();    // _08
 	virtual void initialize();         // _0C
 	virtual void prepare();            // _10
-	virtual void getValue(double);     // _14
+	virtual void getValue(f64);        // _14
 
 	// _00 VTBL
 };

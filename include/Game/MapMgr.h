@@ -49,25 +49,25 @@ struct MapMgr : virtual public GenericObjectMgr {
 	virtual void getBoundBox2d(BoundBox2d&) = 0;              // _18
 	virtual void getBoundBox(BoundBox&)     = 0;              // _1C
 	virtual void findRayIntersection(Sys::RayIntersectInfo&); // _20 (weak)
-	virtual void traceMove(MoveInfo&, float) = 0;             // _24
-	virtual float getMinY(Vector3f&)         = 0;             // _28
-	virtual void getCurrTri(CurrTriInfo&)    = 0;             // _2C
+	virtual void traceMove(MoveInfo&, f32) = 0;               // _24
+	virtual f32 getMinY(Vector3f&)         = 0;               // _28
+	virtual void getCurrTri(CurrTriInfo&)  = 0;               // _2C
 	virtual void createTriangles(Sys::CreateTriangleArg&);    // _30 (weak)
 	virtual void setupJUTTextures() {};                       // _34 (weak)
 	virtual bool frozenable();                                // _38 (weak)
 	virtual void update();                                    // _3C (weak)
 	virtual void do_update();                                 // _40 (weak)
 	virtual void drawCollision(Graphics&, Sys::Sphere&) = 0;  // _44
-	virtual void doSimulation(float rate);                    // _48 (weak)
+	virtual void doSimulation(f32 rate);                      // _48 (weak)
 	virtual void doDirectDraw(Graphics& gfx);                 // _4C (weak)
 
 	WaterBox* findWater(Sys::Sphere&);
 	void getMapRotation();
-	void getBestAngle(Vector3f&, float, float);
+	void getBestAngle(Vector3f&, f32, f32);
 	void checkBeamCollision(BeamCollisionArg&);
 	void clearPerfMonitor();
-	void traceMove(MapCollision&, Game::MoveInfo&, float);
-	void traceMove_test1203_cylinder(MapCollision&, Game::MoveInfo&, float);
+	void traceMove(MapCollision&, Game::MoveInfo&, f32);
+	void traceMove_test1203_cylinder(MapCollision&, Game::MoveInfo&, f32);
 
 	// _00: ptr to _0x24 (GenericObjectMgr)
 	// _04: vtable 1

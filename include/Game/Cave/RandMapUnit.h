@@ -10,14 +10,14 @@
 namespace Game {
 namespace Cave {
 struct EditMapUnit {
-	float m_chanceOfUse; // _00
-	u32 _04;             // _04
-	u32 _08;             // _08
-	u32 _0C;             // _0C
-	u32 _10;             // _10
-	u32 _14;             // _14
-	u32 _18;             // _18
-	int _1C;             // _1C
+	f32 m_chanceOfUse; // _00
+	u32 _04;           // _04
+	u32 _08;           // _08
+	u32 _0C;           // _0C
+	u32 _10;           // _10
+	u32 _14;           // _14
+	u32 _18;           // _18
+	int _1C;           // _1C
 };
 
 struct EnemyNode;

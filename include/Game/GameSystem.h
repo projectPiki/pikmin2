@@ -41,15 +41,15 @@ struct GameSystem : public NodeObjectMgr<GenericObjectMgr> {
 	virtual void doEntry();                     // _68 (weak)
 	virtual void doSetView(int viewportNumber); // _6C (weak)
 	virtual void doViewCalc();                  // _70 (weak)
-	virtual void doSimulation(float rate);      // _74 (weak)
+	virtual void doSimulation(f32 rate);        // _74 (weak)
 	virtual void doDirectDraw(Graphics& gfx);   // _78 (weak)
 	virtual void startFrame();                  // _80
 	virtual void endFrame();                    // _84
 	virtual void doSimpleDraw(Viewport*);       // _88 (weak)
 	virtual void directDraw(Graphics&);         // _8C
-	virtual void startFadeout(float);           // _90
-	virtual void startFadein(float);            // _94
-	virtual void startFadeoutin(float);         // _98
+	virtual void startFadeout(f32);             // _90
+	virtual void startFadein(f32);              // _94
+	virtual void startFadeoutin(f32);           // _98
 	virtual void startFadeblack();              // _9C
 	virtual void startFadewhite();              // _A0
 

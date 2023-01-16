@@ -109,8 +109,8 @@ struct Mgr : public PlayCommonData {
 	void read(Stream&);
 	void write(Stream&);
 
-	void setBgmVolume(float);
-	void setSeVolume(float);
+	void setBgmVolume(f32);
+	void setSeVolume(f32);
 	void setSoundModeMono();
 	void setSoundModeStereo();
 	void setSoundModeSurround();

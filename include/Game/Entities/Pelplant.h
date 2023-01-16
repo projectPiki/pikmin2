@@ -223,11 +223,11 @@ struct Obj : public EnemyBase {
 	// PelletView*: 	_17C - _180
 	// EnemyBase: 		_180 - _2B8
 	FSM* m_fsm;                           // _2BC
-	float _2C0;                           // _2C0
+	f32 _2C0;                             // _2C0
 	Matrixf* m_rootJointMtx;              // _2C4
 	u8 m_flags;                           // _2C8
 	Game::PelletNumber::Object* m_pellet; // _2CC
-	float m_colorChangeTimer;             // _2D0
+	f32 m_colorChangeTimer;               // _2D0
 	u8 m_color;                           // _2D4
 	u8 m_size;                            // _2D5
 	s8 m_farmPow;                         // _2D6, farm power
@@ -279,9 +279,9 @@ struct Parms : EnemyParmsBase {
 		    , m_colorChangeTime(this, 'fp03', "ÉJÉâÅ[ïœçXéûä‘", 1.5f, 0.0f, 5.0f)     // color change time
 		{
 		}
-		Parm<float> m_smallToMedGrowth;
-		Parm<float> m_medToLargeGrowth;
-		Parm<float> m_colorChangeTime;
+		Parm<f32> m_smallToMedGrowth;
+		Parm<f32> m_medToLargeGrowth;
+		Parm<f32> m_colorChangeTime;
 	};
 
 	Parms()

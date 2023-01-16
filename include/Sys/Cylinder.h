@@ -9,19 +9,19 @@ struct Triangle;
 
 struct Cylinder {
 	inline Cylinder() { }
-	Cylinder(const Vector3f&, const Vector3f&, float);
-	Cylinder(const Vector3f&, const Vector3f&, float, float);
+	Cylinder(const Vector3f&, const Vector3f&, f32);
+	Cylinder(const Vector3f&, const Vector3f&, f32, f32);
 
 	bool culled(const Plane&);
 	void draw(Graphics&);
-	bool intersect(const Triangle&, float&);
+	bool intersect(const Triangle&, f32&);
 	bool intersect(const Plane&);
-	void set(const Vector3f&, const Vector3f&, float);
+	void set(const Vector3f&, const Vector3f&, f32);
 
 	Vector3f m_center; // _00 - coords of center of cylinder
 	Vector3f m_axis;   // _0C - unit vector pointing along cylinder axis
-	float m_length;    // _18 - length of cylinder
-	float m_radius;    // _1C - radius of cylinder
+	f32 m_length;      // _18 - length of cylinder
+	f32 m_radius;      // _1C - radius of cylinder
 };
 } // namespace Sys
 

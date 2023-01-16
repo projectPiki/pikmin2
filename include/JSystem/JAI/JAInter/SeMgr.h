@@ -56,7 +56,7 @@ extern LinkSound* seRegist;
 extern JAISequence* seHandle;
 extern u8 seScene;
 extern u32 seqMuteFlagFromSe;
-extern float* seCategoryVolume;
+extern f32* seCategoryVolume;
 extern u8* seEntryCancel;
 } // namespace SeMgr
 } // namespace JAInter

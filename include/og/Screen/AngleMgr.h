@@ -9,9 +9,9 @@ struct AngleMgr {
 	enum State { AGM_Start = 0, AGM_Chase, AGM_Finish };
 
 	AngleMgr();
-	void init(float startAngle, float interpRate, float scale);
-	void chase(float target, float step);
-	float calc();
+	void init(f32 startAngle, f32 interpRate, f32 scale);
+	void chase(f32 target, f32 step);
+	f32 calc();
 
 	f32 m_currentAngle; // _00, guessed name
 	f32 m_angleStep;    // _04, guessed name

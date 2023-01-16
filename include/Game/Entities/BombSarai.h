@@ -36,7 +36,7 @@ struct Obj : public EnemyBase {
 	virtual void doUpdate();                                // _1CC
 	virtual void doDebugDraw(Graphics&);                    // _1EC
 	virtual EnemyTypeID::EEnemyTypeID getEnemyTypeID();     // _258 (weak)
-	virtual bool bombCallBack(Creature*, Vector3f&, float); // _294
+	virtual bool bombCallBack(Creature*, Vector3f&, f32);   // _294
 	virtual void doFinishStoneState();                      // _2A8
 	virtual void startCarcassMotion();                      // _2C4
 	virtual void doStartWaitingBirthTypeDrop();             // _2E0

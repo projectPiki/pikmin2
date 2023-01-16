@@ -65,7 +65,7 @@ struct BootSection : public Game::BaseHIOSection {
 
 	StateID m_stateID;                         // _48
 	int _4C;                                   // _4C
-	float _50;                                 // _50
+	f32 _50;                                   // _50
 	JUTTexture* m_warningTexture;              // _54
 	JUTTexture* m_warningPressStartTexture;    // _58
 	JUTTexture* m_nintendoLogoTexture;         // _5C
@@ -77,7 +77,7 @@ struct BootSection : public Game::BaseHIOSection {
 	bool _DC;                                  // _DC, previously m_inProgreSet <-- the fuck does that mean?
 	u8 _DD;                                    // _DD
 	TinyPikmin* m_tinyPikis;                   // _E0
-	float _E4;                                 // _E4, scale of sorts
+	f32 _E4;                                   // _E4, scale of sorts
 };
 
 #endif

@@ -22,9 +22,9 @@ struct JASVibrate {
 	void incCounter();
 	f32 getValue() const;
 
-	float _00; // _00
-	float _04; // _04 - depth?
-	float _08; // _08 - pitch?
+	f32 _00; // _00
+	f32 _04; // _04 - depth?
+	f32 _08; // _08 - pitch?
 };
 
 /**
@@ -69,7 +69,7 @@ struct JASOuterParam {
 	JASOuterParam();
 
 	void initExtBuffer();
-	void setParam(u8, float);
+	void setParam(u8, f32);
 	void setOuterSwitch(u16 newValue);
 	bool checkOuterSwitch(u16);
 	void setOuterUpdate(u16 newValue);
@@ -85,12 +85,12 @@ struct JASOuterParam {
 
 	u16 m_outerSwitch;  // _00 - outerSwitch?
 	u16 m_outerUpdate;  // _02 - outerUpdate?
-	float _04;          // _04
-	float _08;          // _08
-	float _0C;          // _0C
-	float _10;          // _10
-	float _14;          // _14
-	float _18;          // _18 - tempo?
+	f32 _04;            // _04
+	f32 _08;            // _08
+	f32 _0C;            // _0C
+	f32 _10;            // _10
+	f32 _14;            // _14
+	f32 _18;            // _18 - tempo?
 	s16 m_firFilter[8]; // _1C - firFilter?
 };
 
@@ -101,10 +101,10 @@ struct JASTrack : JSUList<JASChannel> {
 	struct MoveParam_ {
 		MoveParam_();
 
-		float _00; // _00
-		float _04; // _04
-		float _08; // _08
-		float _0C; // _0C
+		f32 _00; // _00
+		f32 _04; // _04
+		f32 _08; // _08
+		f32 _0C; // _0C
 	};
 
 	struct AInnerParam_ {
@@ -140,7 +140,7 @@ struct JASTrack : JSUList<JASChannel> {
 	void updateTempo();
 	void updateSeq(u32, bool);
 	void seqTimeToDspTime(long, u8);
-	void setParam(int, float, int);
+	void setParam(int, f32, int);
 	bool setSeqData(u8*, long);
 	void startSeq();
 	void stopSeq();
@@ -163,7 +163,7 @@ struct JASTrack : JSUList<JASChannel> {
 	int getTranspose() const;
 	void setTempo(u16);
 	void setTimebase(u16);
-	float panCalc(float, float, float, u8);
+	f32 panCalc(f32, f32, f32, u8);
 	void rootCallback(void*);
 	void channelUpdateCallback(unsigned long, JASChannel*, JASDsp::TChannel*, void*);
 	void setNoteMask(u8);
@@ -186,7 +186,7 @@ struct JASTrack : JSUList<JASChannel> {
 	void getPan() const;
 	void getFxmix() const;
 	void getDolby() const;
-	void updateOscParam(int, float);
+	void updateOscParam(int, f32);
 	void muteChildTracks(u16);
 	void loadTbl(u32, u32, u32);
 	void routeTrack(u32);
@@ -215,19 +215,19 @@ struct JASTrack : JSUList<JASChannel> {
 	u8 _298[0x10];                      // _298 - unknown
 	JASOscillator::Data _2A8;           // _2A8
 	u32 _2C0;                           // _2C0 - another oscillator data?
-	float _2C4;                         // _2C4
+	f32 _2C4;                           // _2C4
 	void* _2C8;                         // _2C8 - unknown pointer - table?
 	void* _2CC;                         // _2CC - unknown pointer - reltable?
-	float _2D0;                         // _2D0
-	float _2D4;                         // _2D4
+	f32 _2D0;                           // _2D0
+	f32 _2D4;                           // _2D4
 	u32 _2D8;                           // _2D8
 	u32 _2DC;                           // _2DC
 	short _2E0[12];                     // _2E0
 	JASTrack* _2F8;                     // _2F8
 	JASTrack* _2FC[16];                 // _2FC
 	JASOuterParam* m_extBuffer;         // _33C
-	float _340;                         // _340
-	float _344;                         // _344
+	f32 _340;                           // _340
+	f32 _344;                           // _344
 	u32 _348;                           // _348
 	u32 _34C;                           // _34C - unknown
 	u16 _350;                           // _350

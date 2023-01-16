@@ -20,6 +20,6 @@ struct Rect {
 };
 
 typedef Rect<int> Recti;
-typedef Rect<float> Rectf;
+typedef Rect<f32> Rectf;
 
 #endif

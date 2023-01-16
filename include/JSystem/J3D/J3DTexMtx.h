@@ -9,9 +9,9 @@
 #include "types.h"
 
 struct J3DTexMtx {
-	void calc(const float (*)[4]);
-	void calcTexMtx(const float (*)[4]);
-	void calcPostTexMtx(const float (*)[4]);
+	void calc(const f32 (*)[4]);
+	void calcTexMtx(const f32 (*)[4]);
+	void calcPostTexMtx(const f32 (*)[4]);
 
 	void load(unsigned long) const;
 	void loadTexMtx(unsigned long) const;
@@ -28,7 +28,7 @@ struct J3DTexMtx {
 };
 
 namespace J3DDifferedTexMtx {
-void loadExecute(const float (*)[4]);
+void loadExecute(const f32 (*)[4]);
 extern J3DTexGenBlock* sTexGenBlock;
 extern J3DShapePacket_0x24* sTexMtxObj;
 } // namespace J3DDifferedTexMtx

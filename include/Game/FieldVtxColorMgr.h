@@ -39,8 +39,8 @@ struct FieldVtxColorMgr : public J3DVtxColorCalc, public CNode {
 	void initVtxColor();
 	void setupFieldVtxColorInfoFromStrip(void*, int, int, int, int);
 	void setupFieldVtxColorInfo(J3DShape*);
-	FieldVtxColorControl* createNewControl(Vector3f&, float, float);
-	void setupFieldVtxColorControl(FieldVtxColorControl*, Vector3f&, float, float);
+	FieldVtxColorControl* createNewControl(Vector3f&, f32, f32);
+	void setupFieldVtxColorControl(FieldVtxColorControl*, Vector3f&, f32, f32);
 
 	// Unused/inlined:
 	void updateFieldVtxColorControl(FieldVtxColorControl*);
@@ -51,7 +51,7 @@ struct FieldVtxColorMgr : public J3DVtxColorCalc, public CNode {
 	FieldVtxColorInfo* m_info;       // _28
 	int _2C;                         // _2C
 	FieldVtxColorControl* m_control; // _30
-	float _34;                       // _34
+	f32 _34;                         // _34
 	u8 _38[4];                       // _38
 };
 } // namespace Game

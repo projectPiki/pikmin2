@@ -21,7 +21,7 @@ struct JPADynamicsBlock {
 		u8 _00[0x8];  // _00
 		u32 _08;      // _08
 		u8 _0C[0x48]; // _0C
-		float _54;    // _54
+		f32 _54;      // _54
 		u8 _58[0x18]; // _58
 		s16 _70;      // _70
 	};
@@ -69,11 +69,11 @@ struct JPAFieldBlock {
 
 	const u8* m_data;      // _00
 	JPAFieldBase* m_field; // _04
-	float _08;             // _08
-	float _0C;             // _0C
+	f32 _08;               // _08
+	f32 _0C;               // _0C
 	JGeometry::TVec3f _10; // _10
 	JGeometry::TVec3f _1C; // _1C
-	float _28;             // _28
+	f32 _28;               // _28
 };
 
 /**
@@ -82,13 +82,13 @@ struct JPAFieldBlock {
 struct JPAKeyBlock {
 	JPAKeyBlock(const u8*);
 
-	void calc(float);
+	void calc(f32);
 
 	// Unused/inlined:
 	void init_jpa(const u8*, JKRHeap*);
 
 	const u8* m_dataStart; // _00
-	const float* _04;      // _04
+	const f32* _04;        // _04
 };
 
 #endif

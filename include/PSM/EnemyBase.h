@@ -24,8 +24,8 @@ struct EnemyBase : public CreatureAnime, public BattleLink, public KehaiLink {
 	}
 	virtual void onCalcOn();                      // _28
 	virtual void startSoundInner(StartSoundArg&); // _30
-	virtual bool judgeNearWithPlayer(const Vec&, const Vec&, float,
-	                                 float); // _34
+	virtual bool judgeNearWithPlayer(const Vec&, const Vec&, f32,
+	                                 f32); // _34
 	// vtable 3 (CreatureAnime)
 	virtual void startAnimSound(u32, JAISound**, JAInter::Actor*,
 	                            u8); // _94 (weak)
@@ -80,8 +80,8 @@ struct EnemyBig : public EnemyBase {
 
 	// virtual ~EnemyBig() { }                 // _14 (weak)
 	virtual CreatureCastType getCastType(); // _1C (weak)
-	virtual bool judgeNearWithPlayer(const Vec&, const Vec&, float,
-	                                 float); // _34
+	virtual bool judgeNearWithPlayer(const Vec&, const Vec&, f32,
+	                                 f32); // _34
 };
 
 /**

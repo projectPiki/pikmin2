@@ -23,7 +23,7 @@ struct Quat {
 	//     y = arg0.y;
 	//     z = arg0.z;
 	// };
-	Quat(float _w, Vector3f vec);
+	Quat(f32 _w, Vector3f vec);
 	// {
 	// w = _w;
 	// x = vec.x;
@@ -31,15 +31,15 @@ struct Quat {
 	// z = vec.z;
 	// };
 	void set(Vector3f& vec);
-	void set(float a, float b, float c, float d);
-	void set(float, Vector3f& vec);
+	void set(f32 a, f32 b, f32 c, f32 d);
+	void set(f32, Vector3f& vec);
 	void norm();
 	void conjugate();
 	void rotate(Quat&, Vector3f&);
 	Quat operator*(Quat& q2);
 	void inverse();
 	void normalise();
-	void slerp(Quat& q1, float f, Quat& q2);
+	void slerp(Quat& q1, f32 f, Quat& q2);
 	void toMatrix(Matrix3f& arg0);
 	void fromMatrixf(Matrixf& arg0);
 };

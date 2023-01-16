@@ -124,10 +124,10 @@ struct ObjKantei : public ::Screen::ObjBase {
 	KanteiNameState m_nameState;                         // _CC
 	u64 m_treasureNameMesgID;                            // _D0, treasure name message id
 	u8 m_isPelletNameNotAppeared;                        // _D8, starts true, set to false when pellet name appears
-	float m_nameWaitTimer;                               // _DC
-	float m_idleStateTimer;                              // _E0
+	f32 m_nameWaitTimer;                                 // _DC
+	f32 m_idleStateTimer;                                // _E0
 	u8 m_doShipSpeech;                                   // _E4 - unknown type
-	float m_commonTimer;                                 // _E8
+	f32 m_commonTimer;                                   // _E8
 	int m_shipSpeechTimer;                               // _EC
 	u8 m_playExitSE;                                     // _F0
 

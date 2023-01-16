@@ -73,23 +73,23 @@ struct JPAExtraShape {
 	//  */
 	struct Data {
 		u8 _00[0xC];
-		float _0C;
-		float _10;
-		float _14;
-		float _18;
-		float _1C;
-		float _20;
+		f32 _0C;
+		f32 _10;
+		f32 _14;
+		f32 _18;
+		f32 _1C;
+		f32 _20;
 		u8 _24[4];
 		s16 _28;
 		s16 _2A;
-		float _2C;
-		float _30;
-		float _34;
-		float _38;
-		float _3C;
-		float _40;
+		f32 _2C;
+		f32 _30;
+		f32 _34;
+		f32 _38;
+		f32 _3C;
+		f32 _40;
 		u8 _44[4];
-		float _48;
+		f32 _48;
 	};
 
 	JPAExtraShape(const u8*);
@@ -105,12 +105,12 @@ struct JPAExtraShape {
 	inline const Data* castData() const { return reinterpret_cast<const Data*>(m_data); }
 
 	const u8* m_data; // _00
-	float _04;        // _04
-	float _08;        // _08
-	float _0C;        // _0C
-	float _10;        // _10
-	float _14;        // _14
-	float _18;        // _18
+	f32 _04;          // _04
+	f32 _08;          // _08
+	f32 _0C;          // _0C
+	f32 _10;          // _10
+	f32 _14;          // _14
+	f32 _18;          // _18
 };
 
 // In JPABaseShape.cpp:

@@ -8,7 +8,7 @@
 
 namespace efx2d {
 struct Arg : Vector2f {
-	Arg(float x, float y)
+	Arg(f32 x, f32 y)
 	{
 		this->x = x;
 		this->y = y;
@@ -52,7 +52,7 @@ struct ArgScale : public Arg {
 
 	// _00-_08	= Vector2f
 	// _08 		= VTBL
-	float m_scale; // _0C
+	f32 m_scale; // _0C
 };
 
 struct ArgScaleColorColor : public Arg {
@@ -72,7 +72,7 @@ struct ArgScaleColorColor : public Arg {
 
 	// _00-_08	= Vector2f
 	// _08 		= VTBL
-	float m_scale;             // _0C
+	f32 m_scale;               // _0C
 	JUtility::TColor m_color1; // _10
 	JUtility::TColor m_color2; // _14
 };

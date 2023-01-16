@@ -9,12 +9,12 @@ struct TVariableValue {
 	typedef void (*UpdateFunction)(TVariableValue*, f64);
 	struct TOutput {
 		// TODO: This still has a non-inline dtor, apparently?
-		virtual void operator()(float, TAdaptor*) const = 0; // _08
-		virtual ~TOutput()                              = 0; // _0C
+		virtual void operator()(f32, TAdaptor*) const = 0; // _08
+		virtual ~TOutput()                            = 0; // _0C
 	};
 	struct TOutput_none_ : public TOutput {
-		virtual void operator()(float, TAdaptor*) const; // _08
-		virtual ~TOutput_none_();                        // _0C
+		virtual void operator()(f32, TAdaptor*) const; // _08
+		virtual ~TOutput_none_();                      // _0C
 	};
 
 	TVariableValue()
@@ -29,7 +29,7 @@ struct TVariableValue {
 	static void update_functionValue_(TVariableValue*, f64);
 
 	// unused/inlined:
-	void update(double, TAdaptor*);
+	void update(f64, TAdaptor*);
 
 	/**
 	 * @fabricated

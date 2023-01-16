@@ -49,10 +49,10 @@ SeqUpdateData* getPlayTrackInfo(unsigned long);
 
 // unused/inlined:
 void checkPlayingSeqUpdateMultiplication(unsigned long, unsigned char, unsigned long, JAInter::MoveParaSet*, unsigned long*, unsigned char,
-                                         float*);
-void checkPlayingSeqUpdateAddition(unsigned long, unsigned char, unsigned long, JAInter::MoveParaSet*, unsigned long*, unsigned char,
-                                   float*, float);
-void checkPlayingSeqUpdateTrack(unsigned long, unsigned long, JAInter::MoveParaSet*, unsigned long*, unsigned char, float*);
+                                         f32*);
+void checkPlayingSeqUpdateAddition(unsigned long, unsigned char, unsigned long, JAInter::MoveParaSet*, unsigned long*, unsigned char, f32*,
+                                   f32);
+void checkPlayingSeqUpdateTrack(unsigned long, unsigned long, JAInter::MoveParaSet*, unsigned long*, unsigned char, f32*);
 void checkCustomDvdPreloadArc(unsigned long, unsigned long);
 void stopPlayingSeq(unsigned long);
 void checkPlayingSoundTrack(unsigned long);
@@ -204,12 +204,12 @@ struct SeParameter {
 	MoveParaSetInitZero _2A4[8]; // _2A4
 	MoveParaSetInitZero _324[8]; // _324
 	MoveParaSet _3A4[8];         // _3A4
-	float* _424;                 // _424
-	float* _428;                 // _428
-	float* _42C;                 // _42C
-	float* _430;                 // _430
+	f32* _424;                   // _424
+	f32* _428;                   // _428
+	f32* _42C;                   // _42C
+	f32* _430;                   // _430
 	u32 _434;                    // _434
-	float* _438;                 // _438
+	f32* _438;                   // _438
 };
 
 struct SeqUpdateData {
@@ -243,9 +243,9 @@ struct SeqParameter : MoveParaSet {
 	~SeqParameter();
 	void init();
 
-	// float _00;                  // _00
-	// float _04;                  // _04 - tempo proportion?
-	// float _08;                  // _08 - affected by tempo?
+	// f32 _00;                  // _00
+	// f32 _04;                  // _04 - tempo proportion?
+	// f32 _08;                  // _08 - affected by tempo?
 	// u32 _0C;                    // _0C
 	MoveParaSet _10[16];        // _10
 	MoveParaSet _110[20];       // _110
@@ -290,8 +290,8 @@ struct SoundInfo {
 		unsigned long v1;
 		unsigned char v2[4];
 		unsigned short v3[2];
-	} count;     // _04
-	float pitch; // _08
+	} count;   // _04
+	f32 pitch; // _08
 	union volume_t {
 		unsigned long v1;
 		unsigned char v2[4];

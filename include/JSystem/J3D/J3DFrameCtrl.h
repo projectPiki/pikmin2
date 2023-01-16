@@ -17,8 +17,8 @@ struct J3DFrameCtrl {
 	// TODO: Rename to m_endFrame
 	short _08; // _08
 	short _0A; // _0A
-	float _0C; // _0C
-	float _10; // _10
+	f32 _0C;   // _0C
+	f32 _10;   // _10
 };
 
 #endif

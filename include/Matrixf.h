@@ -35,7 +35,7 @@ struct Matrixf {
 	 * @reifiedAddress{80137300}
 	 * @reifiedFile{plugProjectKandoU/collinfo.cpp}
 	 */
-	float& operator()(int p1, int p2) { return m_matrix.mtxView[p1][p2]; }
+	f32& operator()(int p1, int p2) { return m_matrix.mtxView[p1][p2]; }
 
 	Vector3f operator*(Vector3f& vec)
 	{
@@ -93,7 +93,7 @@ struct Matrixf {
 	 */
 	void setTranslation(Vector3f& translation) { setBasis(3, translation); }
 
-	void makeNaturalPosture(Vector3f&, float);
+	void makeNaturalPosture(Vector3f&, f32);
 	void print(char*);
 	void makeST(Vector3f&, Vector3f&);
 	void makeSR(Vector3f&, Vector3f&);
@@ -137,9 +137,9 @@ struct Matrixf {
 		// } flippedVectorView;
 
 		struct {
-			float xx, yx, zx, tx;
-			float xy, yy, zy, ty;
-			float xz, yz, zz, tz;
+			f32 xx, yx, zx, tx;
+			f32 xy, yy, zy, ty;
+			f32 xz, yz, zz, tz;
 		} structView;
 	} m_matrix;
 	// f32 m_matrix[3][4];

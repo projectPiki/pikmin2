@@ -63,7 +63,7 @@ struct Section : public ISection {
 	JFWDisplay* m_display;    // _24
 	JUTFader* m_fader;        // _28
 	Graphics* m_graphics;     // _2C
-	float m_timeStep;         // _30
+	f32 m_timeStep;           // _30
 	bool m_isMainActive;      // _34
 	bool m_isDisplayNew;      // _35
 	u8 _36;                   // _36

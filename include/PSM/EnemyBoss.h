@@ -13,8 +13,8 @@ struct EnemyBoss : public EnemyBase {
 	virtual CreatureCastType getCastType(); // _1C (weak)
 	virtual void exec();                    // _20
 	virtual void onCalcOn();                // _28
-	virtual bool judgeNearWithPlayer(const Vec&, const Vec&, float,
-	                                 float);            // _34
+	virtual bool judgeNearWithPlayer(const Vec&, const Vec&, f32,
+	                                 f32);              // _34
 	virtual void onPlayingSe(unsigned long, JAISound*); // _38
 	virtual void setKilled();                           // _C8
 	virtual void jumpRequest(u16)     = 0;              // _D4
@@ -30,7 +30,7 @@ struct EnemyBoss : public EnemyBase {
 	void dyingFramework();
 	void isOnDisappearing();
 
-	float _E0;            // _E0
+	f32 _E0;              // _E0
 	u16 m_disappearTimer; // _E4
 	int _E8;              // _E8
 	JSUPtrLink _EC;       // _EC - could be JSULink<PSM::EnemyBoss>
@@ -54,7 +54,7 @@ struct EnemyMidBoss : public EnemyBoss {
 	virtual void onAppear1st();             // _E8
 
 	u8 _100[0x4];    // _100 - unknown
-	float _104;      // _104
+	f32 _104;        // _104
 	JSUPtrLink _108; // _108 - could be JSULink<PSM::EnemyBoss>
 	u8 _118;         // _118
 	u8 _119[0x3];    // _119 - unknown

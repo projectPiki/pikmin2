@@ -374,7 +374,7 @@ struct GenObjectNavi : public GenObject {
 
 	static void initialise();
 
-	Parm<float> m_rotation; // _24
+	Parm<f32> m_rotation; // _24
 };
 
 extern GeneratorMgr* generatorMgr;

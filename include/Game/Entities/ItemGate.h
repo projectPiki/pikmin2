@@ -137,7 +137,7 @@ struct ItemGateMgr : public BaseItemMgr {
 	virtual void doEntry();                                               // _0C (weak)
 	virtual void doSetView(int viewportNumber);                           // _10 (weak)
 	virtual void doViewCalc();                                            // _14 (weak)
-	virtual void doSimulation(float rate);                                // _18 (weak)
+	virtual void doSimulation(f32 rate);                                  // _18 (weak)
 	virtual void doDirectDraw(Graphics& gfx);                             // _1C (weak)
 	virtual void initDependency();                                        // _38
 	virtual u32 generatorGetID();                                         // _58 (weak)

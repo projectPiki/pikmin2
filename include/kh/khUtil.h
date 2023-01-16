@@ -17,7 +17,7 @@ void setTex(J2DScreen*, u64, const ResTIMG*);
 void setTex(J2DScreen*, u64, const char*);
 void setMatAnm(J2DPane*, J2DAnmBase*);
 void setInfAlpha(J2DPane*);
-float getPaneCenterX(J2DPane*);
+f32 getPaneCenterX(J2DPane*);
 
 struct khUtilFadePane : public P2DScreen::CallBackNode {
 	struct khPaneNode {

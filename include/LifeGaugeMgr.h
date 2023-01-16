@@ -16,14 +16,14 @@ struct Creature;
 struct LifeGauge {
 	LifeGauge();
 
-	void draw(float, float, float);
+	void draw(f32, f32, f32);
 	void drawOneTri(Vector3f*, Color4&);
 	void init(u8);
-	void update(float);
+	void update(f32);
 
 	static void initLifeGaugeDraw();
 
-	float _00;  // _00
+	f32 _00;    // _00
 	Color4 _04; // _04 // might be TColor
 	u8 _08;     // _08
 	u8 _09;     // _09
@@ -42,7 +42,7 @@ struct LifeGaugeList : public JKRDisposer {
 	Game::Creature* _20; // _20
 	u8 _24[0x14];        // _24
 	u8 _38;              // _38
-	float _3C;           // _3C
+	f32 _3C;             // _3C
 	u8 _40[4];           // _ 40
 	u8 _44;              // _44
 	u8 _45;              // _45
@@ -56,7 +56,7 @@ struct LifeGaugeMgr {
 	LifeGaugeMgr();
 
 	void createLifeGauge(Game::Creature*);
-	void activeLifeGauge(Game::Creature*, float);
+	void activeLifeGauge(Game::Creature*, f32);
 	void inactiveLifeGauge(Game::Creature*);
 	void loadResource();
 	void update();

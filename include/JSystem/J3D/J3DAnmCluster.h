@@ -16,7 +16,7 @@ struct J3DAnmCluster : public J3DAnmBase {
 
 	virtual ~J3DAnmCluster() { }                                      // _08 (weak)
 	virtual J3DAnmKind getKind() const { return J3DAnmKind_Cluster; } // _0C (weak)
-	virtual float getWeight(unsigned short) const;                    // _10 (weak)
+	virtual f32 getWeight(unsigned short) const;                      // _10 (weak)
 
 	f32* _0C; // _0C
 };
@@ -39,7 +39,7 @@ struct J3DAnmClusterFull : public J3DAnmCluster {
 
 	virtual ~J3DAnmClusterFull() { }                                      // _08 (weak)
 	virtual J3DAnmKind getKind() const { return J3DAnmKind_ClusterFull; } // _0C (weak)
-	virtual float getWeight(unsigned short) const;                        // _10
+	virtual f32 getWeight(unsigned short) const;                          // _10
 
 	J3DAnmClusterFullTable* _10; // _10
 
@@ -62,7 +62,7 @@ struct J3DAnmClusterKey : public J3DAnmCluster {
 
 	virtual ~J3DAnmClusterKey() { }                                      // _08 (weak)
 	virtual J3DAnmKind getKind() const { return J3DAnmKind_ClusterKey; } // _0C (weak)
-	virtual float getWeight(unsigned short) const;                       // _10
+	virtual f32 getWeight(unsigned short) const;                         // _10
 
 	J3DAnmClusterKeyTable* _10; // _10
 };

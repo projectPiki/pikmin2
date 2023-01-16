@@ -372,8 +372,8 @@ struct J3DNBTScaleInfo {
 	u8 _00;                // _00
 	JGeometry::TVec3f _04; // _04
 
-	// float _08; // _08
-	// float _0C; // _0C
+	// f32 _08; // _08
+	// f32 _0C; // _0C
 };
 
 extern const J3DNBTScaleInfo j3dDefaultNBTScaleInfo;

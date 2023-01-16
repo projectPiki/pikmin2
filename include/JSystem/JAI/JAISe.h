@@ -11,16 +11,16 @@ struct JAISe : public JAISound {
 	virtual void setPortData(u8, u16);      // _08 (weak)
 	virtual u16 getPortData(u8);            // _0C (weak)
 	virtual void stop(u32);                 // _14 (weak)
-	virtual void setVolume(float, u32, u8); // _1C (weak)
-	virtual float getVolume(u8);            // _20 (weak)
-	virtual void setPan(float, u32, u8);    // _24 (weak)
-	virtual float getPan(u8);               // _28 (weak)
-	virtual void setPitch(float, u32, u8);  // _2C (weak)
-	virtual float getPitch(u8);             // _30 (weak)
-	virtual void setFxmix(float, u32, u8);  // _34 (weak)
-	virtual float getFxmix(u8);             // _38 (weak)
-	virtual void setDolby(float, u32, u8);  // _3C (weak)
-	virtual float getDolby(u8);             // _40 (weak)
+	virtual void setVolume(f32, u32, u8);   // _1C (weak)
+	virtual f32 getVolume(u8);              // _20 (weak)
+	virtual void setPan(f32, u32, u8);      // _24 (weak)
+	virtual f32 getPan(u8);                 // _28 (weak)
+	virtual void setPitch(f32, u32, u8);    // _2C (weak)
+	virtual f32 getPitch(u8);               // _30 (weak)
+	virtual void setFxmix(f32, u32, u8);    // _34 (weak)
+	virtual f32 getFxmix(u8);               // _38 (weak)
+	virtual void setDolby(f32, u32, u8);    // _3C (weak)
+	virtual f32 getDolby(u8);               // _40 (weak)
 	virtual void setVolumeU7(u8, u32, u8);  // _4C (weak)
 	virtual u8 getVolumeU7(u8);             // _50 (weak)
 	virtual void setPanU7(u8, u32, u8);     // _54 (weak)
@@ -40,14 +40,14 @@ struct JAISe : public JAISound {
 	virtual void setSePositionDopplar();    // _F0
 
 	u32 getSeCategoryNumber();
-	void setSeInterVolume(u8, float, u32, u8);
-	void setSeInterPan(u8, float, u32, u8);
-	void setSeInterDolby(u8, float, u32, u8);
+	void setSeInterVolume(u8, f32, u32, u8);
+	void setSeInterPan(u8, f32, u32, u8);
+	void setSeInterDolby(u8, f32, u32, u8);
 
 	// unused/inlined:
-	void setSeInterRandomPara(float*, unsigned long, float, float);
-	void setSeInterPitch(unsigned char, float, unsigned long, float);
-	void setSeInterFxmix(unsigned char, float, unsigned long, unsigned char);
+	void setSeInterRandomPara(f32*, unsigned long, f32, f32);
+	void setSeInterPitch(unsigned char, f32, unsigned long, f32);
+	void setSeInterFxmix(unsigned char, f32, unsigned long, unsigned char);
 	void setSeInterFir(unsigned char, unsigned char, unsigned long, unsigned char);
 	void setSePortData(unsigned char, unsigned short);
 	void getSePortData(unsigned char);

@@ -32,18 +32,18 @@ struct MenuMgr {
 	void initSub(J2DScreen*, u16, u64, u64, u64);
 	void initSelNum(u16);
 	void killCursor();
-	void startCursor(float);
+	void startCursor(f32);
 	void select(u16);
 	void selectSub(u16);
 	void update();
 	void MenuOnOff();
 
 	int m_cursorState;              // _00, Ill enum this eventually
-	float m_cursorDelayTimer;       // _04
+	f32 m_cursorDelayTimer;         // _04
 	u16 m_elementCount;             // _08
 	u16 m_cSelectId;                // _0A
-	float m_timer;                  // _0C
-	float m_timerMax;               // _10
+	f32 m_timer;                    // _0C
+	f32 m_timerMax;                 // _10
 	J2DPane** m_paneList1;          // _14 /* ptr to array of ptrs */
 	J2DPane** m_paneList2;          // _18 /* ptr to array of ptrs */
 	J2DPane** m_paneList3;          // _1C /* ptr to array of ptrs */
@@ -62,9 +62,9 @@ struct MenuMgr {
 	Vector2f m_transitionPosRight;  // _54
 	Vector2f m_selPosLeft;          // _5C
 	Vector2f m_selPosRight;         // _64
-	float _6C;                      // _6C
+	f32 _6C;                        // _6C
 	u16 m_prevSelected;             // _70
-	float _74;                      // _74
+	f32 _74;                        // _74
 };
 } // namespace Screen
 } // namespace og

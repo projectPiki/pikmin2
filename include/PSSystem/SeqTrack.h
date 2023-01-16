@@ -53,8 +53,8 @@ struct SeqTrackRoot : public SeqTrackBase {
 	virtual void onBeatTop() { }  // _18 (weak)
 
 	void initSwingRatio();
-	void pitchModulation(float, float, u32, DirectorBase*);
-	void tempoChange(float, u32, DirectorBase*);
+	void pitchModulation(f32, f32, u32, DirectorBase*);
+	void tempoChange(f32, u32, DirectorBase*);
 
 	// _00      = VTABLE
 	// _04-_2C  = SeqBase
@@ -62,7 +62,7 @@ struct SeqTrackRoot : public SeqTrackBase {
 	u16 _2E;                       // _2E
 	u16 _30;                       // _30
 	u16 _32;                       // _32
-	float _34;                     // _34
+	f32 _34;                       // _34
 	int _38;                       // _38 - unknown
 	BeatMgr m_beatMgr;             // _3C
 	u8 _3D;                        // _3D - possibly padding or part of BeatMgr
@@ -86,9 +86,9 @@ struct SeqTrackChild : public SeqTrackBase {
 
 	virtual void onStopSeq(); // _10
 
-	void muteOffAndFadeIn(float, u32, DirectorBase*);
+	void muteOffAndFadeIn(f32, u32, DirectorBase*);
 	void fadeoutAndMute(u32, DirectorBase*);
-	void fade(float, u32, DirectorBase*);
+	void fade(f32, u32, DirectorBase*);
 	void setIdMask(u8, DirectorBase*);
 
 	// _00      = VTABLE

@@ -13,7 +13,7 @@ struct EUTPadInterface_countNum {
 		MODE_UNKNOWN_3,
 	};
 
-	void init(Controller*, long, long, long*, enumMode, float, float);
+	void init(Controller*, long, long, long*, enumMode, f32, f32);
 	void update();
 
 	Controller* m_controller; // _00
@@ -25,12 +25,12 @@ struct EUTPadInterface_countNum {
 	long _14;                 // _14
 	long* _18;                // _18
 	long _1C;                 // _1C
-	float _20;                // _20
-	float _24;                // _24
+	f32 _20;                  // _20
+	f32 _24;                  // _24
 	enumMode m_mode;          // _28
 };
 
-void EUTColor_complement(JUtility::TColor&, JUtility::TColor&, float, float, JUtility::TColor*);
+void EUTColor_complement(JUtility::TColor&, JUtility::TColor&, f32, f32, JUtility::TColor*);
 void EUTDebug_Wait();
 void EUTDebug_Tag32ToName(u32, char*);
 void EUTDebug_Tag64ToName(u64, char*);

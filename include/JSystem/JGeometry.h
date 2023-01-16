@@ -229,10 +229,10 @@ struct TBox3 {
 	T maxZ;
 };
 
-typedef TVec2<float> TVec2f;
-typedef TVec3<float> TVec3f;
-typedef TBox2<float> TBox2f;
-typedef TBox3<float> TBox3f;
+typedef TVec2<f32> TVec2f;
+typedef TVec3<f32> TVec3f;
+typedef TBox2<f32> TBox2f;
+typedef TBox3<f32> TBox3f;
 
 } // namespace JGeometry
 

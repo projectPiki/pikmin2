@@ -14,7 +14,7 @@ struct Plane {
 
 	void read(Stream&);
 	void write(Stream&);
-	float calcDist(const Vector3f& vec) const { return (vec.x * a + vec.y * b + vec.z * c - d); }
+	f32 calcDist(const Vector3f& vec) const { return (vec.x * a + vec.y * b + vec.z * c - d); }
 
 	inline void setVec(Plane& plane)
 	{

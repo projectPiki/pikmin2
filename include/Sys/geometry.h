@@ -10,17 +10,17 @@
 #define FABS(x) (float)__fabs(x)
 
 // probably a Vector3.h thing
-inline float lenVec(const Vector3f& a) { return pikmin2_sqrtf(dot(a, a)); }
+inline f32 lenVec(const Vector3f& a) { return pikmin2_sqrtf(dot(a, a)); }
 
 // no zero check
-inline float _normalise(Vector3f* a)
+inline f32 _normalise(Vector3f* a)
 {
-	float mag = lenVec(*a);
-	float out = 0;
+	f32 mag = lenVec(*a);
+	f32 out = 0;
 
 	if (mag > 0.0f) {
-		out        = mag;
-		float norm = 1.0f / mag;
+		out      = mag;
+		f32 norm = 1.0f / mag;
 		a->x *= norm;
 		a->y *= norm;
 		a->z *= norm;
@@ -29,12 +29,12 @@ inline float _normalise(Vector3f* a)
 }
 
 // additional zero check
-inline float normalise(Vector3f* a)
+inline f32 normalise(Vector3f* a)
 {
-	float mag = lenVec(*a);
+	f32 mag = lenVec(*a);
 
 	if (mag > 0.0f) {
-		float norm = 1.0f / mag;
+		f32 norm = 1.0f / mag;
 		a->x *= norm;
 		a->y *= norm;
 		a->z *= norm;
@@ -46,6 +46,6 @@ inline float normalise(Vector3f* a)
 }
 
 // useful for planes, could be a plane method
-inline float planeDist(Vector3f& vec, Plane& plane) { return (vec.x * plane.a + vec.y * plane.b + vec.z * plane.c) - plane.d; }
+inline f32 planeDist(Vector3f& vec, Plane& plane) { return (vec.x * plane.a + vec.y * plane.b + vec.z * plane.c) - plane.d; }
 
 #endif

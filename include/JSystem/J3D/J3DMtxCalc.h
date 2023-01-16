@@ -17,10 +17,10 @@ struct J3DMtxCalc {
 	virtual J3DAnmTransform* getAnmTransform();                    // _10
 	virtual void setAnmTransform(unsigned char, J3DAnmTransform*); // _14
 	virtual J3DAnmTransform* getAnmTransform(unsigned char);       // _18
-	virtual void setWeight(unsigned char, float);                  // _1C
+	virtual void setWeight(unsigned char, f32);                    // _1C
 	virtual void getWeight(unsigned char) const;                   // _20
-	virtual void init(const Vec&, const float (&)[3][4]) = 0;      // _24
-	virtual void calc()                                  = 0;      // _28
+	virtual void init(const Vec&, const f32 (&)[3][4]) = 0;        // _24
+	virtual void calc()                                = 0;        // _28
 
 	/**
 	 * @reifiedAddress{80088650}
@@ -44,9 +44,9 @@ struct J3DMtxCalcNoAnmBase : public J3DMtxCalc {
 
 template <typename Calc, typename Init>
 struct J3DMtxCalcNoAnm : public J3DMtxCalcNoAnmBase {
-	virtual ~J3DMtxCalcNoAnm() { }                                                    // _08
-	virtual void init(const Vec& p1, const float (&p2)[3][4]) { Init::init(p1, p2); } // _24
-	virtual void calc() { Calc::calcTransform(mJoint->m_transformInfo); }             // _28
+	virtual ~J3DMtxCalcNoAnm() { }                                                  // _08
+	virtual void init(const Vec& p1, const f32 (&p2)[3][4]) { Init::init(p1, p2); } // _24
+	virtual void calc() { Calc::calcTransform(mJoint->m_transformInfo); }           // _28
 };
 
 struct J3DMtxCalcAnmBase : public J3DMtxCalc {
@@ -71,10 +71,10 @@ struct J3DMtxCalcAnimation : public J3DMtxCalcAnmBase {
 	{
 	}
 
-	virtual ~J3DMtxCalcAnimation() {};                                                // _08
-	virtual void setAnmTransform(J3DAnmTransform* p1) { _04 = p1; }                   // _0C
-	virtual void init(const Vec& p1, const float (&p2)[3][4]) { Init::init(p1, p2); } // _24
-	virtual void calc()                                                               // _28
+	virtual ~J3DMtxCalcAnimation() {};                                              // _08
+	virtual void setAnmTransform(J3DAnmTransform* p1) { _04 = p1; }                 // _0C
+	virtual void init(const Vec& p1, const f32 (&p2)[3][4]) { Init::init(p1, p2); } // _24
+	virtual void calc()                                                             // _28
 	{
 		Adaptor::calc(this);
 		// J3DTransformInfo* pInfo;
@@ -97,16 +97,16 @@ struct J3DMtxCalcBlendAnmBase : public J3DMtxCalcAnmBase {
 	virtual J3DAnmTransform* getAnmTransform();                    // _10 (weak)
 	virtual void setAnmTransform(unsigned char, J3DAnmTransform*); // _14 (weak)
 	virtual J3DAnmTransform* getAnmTransform(unsigned char);       // _18 (weak)
-	virtual void setWeight(unsigned char, float);                  // _1C (weak)
+	virtual void setWeight(unsigned char, f32);                    // _1C (weak)
 	virtual void getWeight(unsigned char) const;                   // _20 (weak)
 
 	J3DAnmTransform* _08; // _08
 	J3DAnmTransform* _0C; // _0C
 	J3DAnmTransform* _10; // _10
-	float _14;            // _14
-	float _18;            // _18
-	float _1C;            // _1C
-	float _20;            // _20
+	f32 _14;              // _14
+	f32 _18;              // _18
+	f32 _1C;              // _1C
+	f32 _20;              // _20
 };
 
 template <typename Calc>
@@ -136,10 +136,10 @@ struct J3DMtxCalcCalcTransformMaya {
 	static void calcTransform(const J3DTransformInfo&);
 };
 struct J3DMtxCalcJ3DSysInitBasic {
-	static void init(const Vec& p1, const float (&p2)[3][4]);
+	static void init(const Vec& p1, const f32 (&p2)[3][4]);
 };
 struct J3DMtxCalcJ3DSysInitSoftimage {
-	static void init(const Vec& p1, const float (&p2)[3][4])
+	static void init(const Vec& p1, const f32 (&p2)[3][4])
 	{
 		J3DSys::mCurrentS.x = p1.x;
 		J3DSys::mCurrentS.y = p1.y;
@@ -147,7 +147,7 @@ struct J3DMtxCalcJ3DSysInitSoftimage {
 	}
 };
 struct J3DMtxCalcJ3DSysInitMaya {
-	static void init(const Vec& p1, const float (&p2)[3][4]);
+	static void init(const Vec& p1, const f32 (&p2)[3][4]);
 };
 
 #endif

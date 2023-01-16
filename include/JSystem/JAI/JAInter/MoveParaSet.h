@@ -9,14 +9,14 @@ namespace JAInter {
  * @size = 0x10
  */
 struct MoveParaSet {
-	MoveParaSet(float v1 = 1.0f)
+	MoveParaSet(f32 v1 = 1.0f)
 	{
 		_04 = v1;
 		_00 = v1;
 		_0C = 0;
 	}
 
-	int set(float, unsigned long);
+	int set(f32, unsigned long);
 	BOOL move();
 
 	/** @fabricated */
@@ -28,10 +28,10 @@ struct MoveParaSet {
 		return *this;
 	}
 
-	float _00; // _00
-	float _04; // _04
-	float _08; // _08 - unknown
-	u32 _0C;   // _0C - unknown
+	f32 _00; // _00
+	f32 _04; // _04
+	f32 _08; // _08 - unknown
+	u32 _0C; // _0C - unknown
 };
 
 /**

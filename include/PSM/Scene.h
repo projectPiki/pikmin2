@@ -174,7 +174,7 @@ struct Scene_Ground : public Scene_Game {
 	virtual void getPollutUpTimer() const; // _70 (weak)
 
 	void setPollutUp();
-	void fadeMainBgm(float, u32, Time);
+	void fadeMainBgm(f32, u32, Time);
 	void jumpMainBgm(u8);
 	void changeEnvSE_Noon();
 
@@ -208,7 +208,7 @@ struct Scene_Cave : public Scene_Game {
 	// _00      = VTBL
 	// _00-_5C  = Scene_Game
 	u8 _5C[0x4];         // _5C, unknown
-	float m_sceneFx;     // _60
+	f32 m_sceneFx;       // _60
 	int m_pollutUpTimer; // _64
 };
 

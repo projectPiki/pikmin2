@@ -7,9 +7,9 @@
 
 #define TAU 6.2831855f
 
-inline bool checkASinCosBounds(float x) { return (x >= -1.0f) && (x <= 1.0f); }
+inline bool checkASinCosBounds(f32 x) { return (x >= -1.0f) && (x <= 1.0f); }
 
-inline float pikmin2_sinf(float x)
+inline f32 pikmin2_sinf(f32 x)
 {
 	if (x < 0.0f) {
 		return -JMath::sincosTable_.m_table[((int)(x *= -325.9493f) & 0x7ffU)].first;
@@ -17,7 +17,7 @@ inline float pikmin2_sinf(float x)
 	return JMath::sincosTable_.m_table[((int)(x *= 325.9493f) & 0x7ffU)].first;
 }
 
-inline float pikmin2_cosf(float x)
+inline f32 pikmin2_cosf(f32 x)
 {
 	if (x < 0.0f) {
 		x = -x;
@@ -25,15 +25,15 @@ inline float pikmin2_cosf(float x)
 	return JMath::sincosTable_.m_table[((int)(x *= 325.9493f) & 0x7ffU)].second;
 }
 
-inline float pikmin2_acos(float x)
+inline f32 pikmin2_acos(f32 x)
 {
 	if (x >= 1.0f) {
 		return 0.0f;
 	} else if (x <= -1.0f) {
 		return PI;
 	} else if (x < 0.0f) {
-		float dumb = HALF_PI;
-		float acos = JMath::asinAcosTable_.m_table[(u32)(-x * 1023.5f)];
+		f32 dumb = HALF_PI;
+		f32 acos = JMath::asinAcosTable_.m_table[(u32)(-x * 1023.5f)];
 		return acos + dumb;
 	} else {
 		return HALF_PI - JMath::asinAcosTable_.m_table[(u32)(x * 1023.5f)];

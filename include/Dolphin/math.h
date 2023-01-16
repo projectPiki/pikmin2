@@ -34,31 +34,31 @@ extern "C" {
 
 #define DEG2RAD (1.0f / 180.0f)
 
-double cos(double);
-float cosf(float);
-double sin(double);
-float sinf(float);
-double tan(double);
-float tanf(float);
-double atan(double);
-double atan2(double, double);
+f64 cos(f64);
+f32 cosf(f32);
+f64 sin(f64);
+f32 sinf(f32);
+f64 tan(f64);
+f32 tanf(f32);
+f64 atan(f64);
+f64 atan2(f64, f64);
 
 /**
  * kludges for emulating inlined f versions of funcs.
  * Replace these with tanf/sinf/cosf once we have library support in the build chain.
  * If my theory is correct, those functions will become inlined by code using libDolphin as a library.
  */
-inline float tanf_kludge(float __x) { return tan((double)__x); }
-inline float sinf_kludge(float __x) { return sin((double)__x); }
-inline float cosf_kludge(float __x) { return cos((double)__x); }
+inline f32 tanf_kludge(f32 __x) { return tan((f64)__x); }
+inline f32 sinf_kludge(f32 __x) { return sin((f64)__x); }
+inline f32 cosf_kludge(f32 __x) { return cos((f64)__x); }
 
-double ceil(double);
+f64 ceil(f64);
 
 #ifdef __cplusplus
 };
 #endif // ifdef __cplusplus
 
-inline int __fpclassifyf(float x)
+inline int __fpclassifyf(f32 x)
 {
 	switch ((*(s32*)&x) & 0x7f800000) {
 	case 0x7f800000: {
@@ -78,7 +78,7 @@ inline int __fpclassifyf(float x)
 	}
 	return 4;
 }
-inline int __fpclassifyd(double x)
+inline int __fpclassifyd(f64 x)
 {
 	switch (__HI(x) & 0x7ff00000) {
 	case 0x7ff00000: {
@@ -99,7 +99,7 @@ inline int __fpclassifyd(double x)
 	return 4;
 }
 
-#define fpclassify(x) ((sizeof(x) == sizeof(float)) ? __fpclassifyf((float)(x)) : __fpclassifyd((double)(x)))
+#define fpclassify(x) ((sizeof(x) == sizeof(f32)) ? __fpclassifyf((f32)(x)) : __fpclassifyd((f64)(x)))
 
 #define isfinite(x) ((fpclassify(x) > 2))
 

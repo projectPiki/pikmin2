@@ -11,7 +11,7 @@ struct JAISound;
 namespace PSSystem {
 
 struct EnvSeBase : JSULink<EnvSeBase> {
-	EnvSeBase(unsigned long, float);
+	EnvSeBase(unsigned long, f32);
 
 	virtual void exec();                    // _08
 	virtual void play();                    // _0C
@@ -20,14 +20,14 @@ struct EnvSeBase : JSULink<EnvSeBase> {
 
 	// _00 - _10: JSULink
 	// VTBL _10
-	float _14;         // _14
+	f32 _14;           // _14
 	u32 _18;           // _18
 	int _1C;           // _1C
 	u8 _20;            // _20
 	SoundID m_soundID; // _24
-	float _28;         // _28
-	float _2C;         // _2C
-	float _30;         // _30
+	f32 _28;           // _28
+	f32 _2C;           // _2C
+	f32 _30;           // _30
 	JAISound* m_sound; // _34
 	u8 _38;            // _38
 	u8 _39;            // _39
@@ -43,7 +43,7 @@ struct EnvSeMgr {
 	void off();
 	void off(u32, bool);
 	void reservePauseOff();
-	void setVolumeRequest(float, u32, u8);
+	void setVolumeRequest(f32, u32, u8);
 	void exec();
 
 	// inlined/unused:

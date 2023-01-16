@@ -21,14 +21,14 @@ struct TActor : public TObject {
 	virtual int JSGGetAnimation() const;                // _5C
 	virtual void JSGSetAnimation(unsigned long);        // _60
 	virtual f32 JSGGetAnimationFrame() const;           // _64
-	virtual void JSGSetAnimationFrame(float);           // _68
+	virtual void JSGSetAnimationFrame(f32);             // _68
 	virtual f32 JSGGetAnimationFrameMax() const;        // _6C
 	virtual f32 JSGGetAnimationTransition() const;      // _70
-	virtual void JSGSetAnimationTransition(float);      // _74
+	virtual void JSGSetAnimationTransition(f32);        // _74
 	virtual int JSGGetTextureAnimation() const;         // _78
 	virtual void JSGSetTextureAnimation(unsigned long); // _7C
 	virtual f32 JSGGetTextureAnimationFrame() const;    // _80
-	virtual void JSGSetTextureAnimationFrame(float);    // _84
+	virtual void JSGSetTextureAnimationFrame(f32);      // _84
 	virtual f32 JSGGetTextureAnimationFrameMax() const; // _88
 };
 } // namespace JStage

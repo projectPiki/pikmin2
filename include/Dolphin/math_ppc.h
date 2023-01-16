@@ -1,8 +1,10 @@
 #ifndef _DOLPHIN_MATH_PPC_H
 #define _DOLPHIN_MATH_PPC_H
 
-float tanf(float __x);
-float sinf(float __x);
-float cosf(float __x);
+#include "types.h"
+
+f32 tanf(f32 __x);
+f32 sinf(f32 __x);
+f32 cosf(f32 __x);
 
 #endif

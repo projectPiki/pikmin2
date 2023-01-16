@@ -31,9 +31,9 @@ struct CPlate : public Container<Creature> {
 		    , p002(this, 'p002', "ポジションの大きさ(最大)", 6.0f, 1.0f, 50.0f)
 		{
 		}
-		Parm<float> p000; // _0C
-		Parm<float> p001; // _34
-		Parm<float> p002; // _5C
+		Parm<f32> p000; // _0C
+		Parm<f32> p001; // _34
+		Parm<f32> p002; // _5C
 	};
 
 	CPlate(int);
@@ -48,13 +48,13 @@ struct CPlate : public Container<Creature> {
 	void directDraw(Graphics&);
 	int getSlot(Creature*, SlotChangeListener*, bool);
 	void getSlotPosition(int, Vector3f&);
-	void rearrangeSlot(Vector3f&, float, Vector3f&);
-	void refresh(int, float);
-	void refreshSlot(float);
+	void rearrangeSlot(Vector3f&, f32, Vector3f&);
+	void refresh(int, f32);
+	void refreshSlot(f32);
 	void releaseSlot(Creature*, int);
-	void setPos(Vector3f&, float, Vector3f&, float);
-	void setPosGray(Vector3f&, float, Vector3f&, float);
-	void setPosNeutral(Vector3f&, float, Vector3f&, float);
+	void setPos(Vector3f&, f32, Vector3f&, f32);
+	void setPosGray(Vector3f&, f32, Vector3f&, f32);
+	void setPosNeutral(Vector3f&, f32, Vector3f&, f32);
 	void shrink();
 	void sortByColor(Creature*, int);
 	void swapSlot(int, int);
@@ -64,9 +64,9 @@ struct CPlate : public Container<Creature> {
 
 	Parms m_parms;       // _1C
 	Vector3f _A4;        // _A4
-	float _B0;           // _B0
-	float _B4;           // _B4
-	float _B8;           // _B8
+	f32 _B0;             // _B0
+	f32 _B4;             // _B4
+	f32 _B8;             // _B8
 	int _BC;             // _BC
 	Slot* m_slots;       // _C0
 	int m_slotLimit;     // _C4
@@ -74,10 +74,10 @@ struct CPlate : public Container<Creature> {
 	Vector3f m_position; // _CC
 	Vector3f _D8;        // _D8
 	Vector3f m_velocity; // _E4
-	float _F0;           // _F0
-	float _F4;           // _F4
-	float _F8;           // _F8
-	float _FC;           // _FC
+	f32 _F0;             // _F0
+	f32 _F4;             // _F4
+	f32 _F8;             // _F8
+	f32 _FC;             // _FC
 	u8 _100;             // _100
 	u32* _104;           // _104
 	u32 _108;            // _108

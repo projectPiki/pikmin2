@@ -33,8 +33,8 @@ struct PathNode {
 	void pop();
 	void countLinks(PathNode**);
 
-	float _00;         // _00
-	float _04;         // _04
+	f32 _00;           // _00
+	f32 _04;           // _04
 	PathNode* m_child; // _08
 	PathNode* m_next;  // _0C
 	PathNode* _10;     // _10

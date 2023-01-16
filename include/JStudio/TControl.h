@@ -40,8 +40,8 @@ struct TControl : stb::TControl {
 
 	virtual ~TControl(); // _08
 
-	void transformOnSet_setOrigin(const Vec&, float);
-	void transformOnGet_setOrigin(const Vec&, float);
+	void transformOnSet_setOrigin(const Vec&, f32);
+	void transformOnGet_setOrigin(const Vec&, f32);
 
 	// unused/inlined:
 	void forward_value(u32);

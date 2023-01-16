@@ -14,9 +14,9 @@ struct JASChannel : JSUPtrLink, JASPoolAllocObject<JASChannel, JASCreationPolicy
 	struct EffectOscParam {
 	};
 	struct PanVector {
-		float x;
-		float y;
-		float z;
+		f32 x;
+		f32 y;
+		f32 z;
 	};
 
 	JASChannel(Callback*, void*);
@@ -32,7 +32,7 @@ struct JASChannel : JSUPtrLink, JASPoolAllocObject<JASChannel, JASCreationPolicy
 	void overwriteOsc(int, JASOscillator::Data*);
 	void setKeySweepTarget(unsigned char, unsigned long);
 	void setPauseFlag(bool);
-	void setPanPower(float, float, float);
+	void setPanPower(f32, f32, f32);
 	bool play();
 	bool playForce();
 	void release(unsigned short);
@@ -40,10 +40,10 @@ struct JASChannel : JSUPtrLink, JASPoolAllocObject<JASChannel, JASCreationPolicy
 	static long dspUpdateCallback(unsigned long, JASDsp::TChannel*, void*);
 	void initialUpdateDSPChannel(JASDsp::TChannel*);
 	long updateDSPChannel(JASDsp::TChannel*);
-	float calcEffect(const PanVector*, const PanVector*, unsigned char);
-	float calcPan(const PanVector*, const PanVector*, unsigned char);
-	void updateAutoMixer(JASDsp::TChannel*, float, float, float, float);
-	void updateMixer(float, float, float, float, unsigned short*);
+	f32 calcEffect(const PanVector*, const PanVector*, unsigned char);
+	f32 calcPan(const PanVector*, const PanVector*, unsigned char);
+	void updateAutoMixer(JASDsp::TChannel*, f32, f32, f32, f32);
+	void updateMixer(f32, f32, f32, f32, unsigned short*);
 	void sweepProc();
 	void free();
 
@@ -104,11 +104,11 @@ struct JASChannelUpdater {
 	void initialUpdateChannel(JASChannel*, JASDsp::TChannel*);
 	void updateChannel(JASChannel*, JASDsp::TChannel*);
 
-	float _00;  // _00
-	float _04;  // _04
-	float _08;  // _08
-	float _0C;  // _0C
-	float _10;  // _10
+	f32 _00;    // _00
+	f32 _04;    // _04
+	f32 _08;    // _08
+	f32 _0C;    // _0C
+	f32 _10;    // _10
 	short _14;  // _14
 	u16 _16[7]; // _16 - unknown
 	short _24;  // _24

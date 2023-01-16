@@ -32,7 +32,7 @@ struct TVariableValueOutput_object_ : public JStudio::TVariableValue::TOutput {
 	{
 	}
 
-	virtual void operator()(float value, JStudio::TAdaptor* adaptor) const // _08 (weak)
+	virtual void operator()(f32 value, JStudio::TAdaptor* adaptor) const // _08 (weak)
 	{
 		(static_cast<Object*>(static_cast<Adaptor*>(adaptor)->m_object)->*m_setter)(value);
 	}
@@ -68,8 +68,8 @@ struct TAdaptor_actor : public JStudio::TAdaptor_actor {
 		{
 		}
 
-		virtual void operator()(float, JStudio::TAdaptor*) const; // _08
-		virtual ~TVVOutput_ANIMATION_FRAME_() { }                 // _0C (weak)
+		virtual void operator()(f32, JStudio::TAdaptor*) const; // _08
+		virtual ~TVVOutput_ANIMATION_FRAME_() { }               // _0C (weak)
 
 		int m_valueIndex;      // _04
 		u32 _08;               // _08
@@ -236,8 +236,8 @@ struct TAdaptor_fog : public JStudio::TAdaptor_fog {
 
 struct TAdaptor_light : public JStudio::TAdaptor_light {
 	struct TVVOutput_direction_ {
-		virtual void operator()(float, JStudio::TAdaptor*) const; // _08
-		virtual ~TVVOutput_direction_();                          // _0C (weak)
+		virtual void operator()(f32, JStudio::TAdaptor*) const; // _08
+		virtual ~TVVOutput_direction_();                        // _0C (weak)
 	};
 
 	TAdaptor_light(const JStage::TSystem*, JStage::TLight*);

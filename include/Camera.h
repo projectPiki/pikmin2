@@ -150,14 +150,14 @@ struct BlendCamera : public Camera {
 	void setCameras(Camera**);
 
 	// Camera _00 - _144
-	int m_cameraCount;   // _144
-	Camera** m_cameras;  // _148
-	float m_blendFactor; // _14C
-	Matrixf _150;        // _150
+	int m_cameraCount;  // _144
+	Camera** m_cameras; // _148
+	f32 m_blendFactor;  // _14C
+	Matrixf _150;       // _150
 };
 
 namespace PSM {
-extern float sCamFov;
+extern f32 sCamFov;
 }
 
 #endif

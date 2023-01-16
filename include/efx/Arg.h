@@ -64,7 +64,7 @@ struct ArgEnemyType : public Arg {
 	}
 
 	Game::EnemyTypeID::EEnemyTypeID m_typeID;
-	float m_scale;
+	f32 m_scale;
 };
 
 struct ArgScale : public Arg {
@@ -82,7 +82,7 @@ struct ArgScale : public Arg {
 		return "ArgScale";
 	}
 
-	float m_scale; // _10
+	f32 m_scale; // _10
 };
 
 struct ArgChou : public Arg {

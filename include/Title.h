@@ -45,7 +45,7 @@ struct Section : public Game::BaseHIOSection {
 	// _00		= VTBL
 	// _00-_48	= Game::BaseHIOSection
 	int _48;                               // _0048
-	float _4C;                             // _004C
+	f32 _4C;                               // _004C
 	Menu* m_menu;                          // _0050
 	DvdThreadCommand m_threadCommand;      // _0054
 	IDelegate1<Section>* m_buttonCallback; // _00C0

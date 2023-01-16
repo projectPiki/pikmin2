@@ -99,7 +99,7 @@ struct J3DAnmTransformKey : public J3DAnmTransform {
 	}
 	virtual void getTransform(unsigned short p1, J3DTransformInfo* p2) const { calcTransform(m_fTime, p1, p2); } // _10 (weak)
 
-	void calcTransform(float, unsigned short, J3DTransformInfo*) const;
+	void calcTransform(f32, unsigned short, J3DTransformInfo*) const;
 
 	int _20;                      // _20
 	J3DAnmTransformKeyTable* _24; // _24

@@ -169,7 +169,7 @@ struct Game2DMgr : public JKRDisposer {
 	void open_HighScore(Morimura::DispMemberHighScore&);
 	bool isEndHighScore();
 	bool drawKanteiMsg(Graphics&);
-	bool checkDayEnd(float) const;
+	bool checkDayEnd(f32) const;
 
 	Mgr* m_screenMgr; // _18
 };

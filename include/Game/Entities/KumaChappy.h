@@ -26,29 +26,29 @@ struct Obj : public EnemyBase {
 	Obj();
 
 	////////// VTABLE
-	virtual void onInit(CreatureInitArg* settings);           // _30
-	virtual void doDirectDraw(Graphics& gfx);                 // _50
-	virtual void getShadowParam(ShadowParam& settings);       // _134
-	virtual ~Obj() { }                                        // _1BC (weak)
-	virtual void setInitialSetting(EnemyInitialParamBase*);   // _1C4
-	virtual void doUpdate();                                  // _1CC
-	virtual void doUpdateCarcass();                           // _1D4
-	virtual void doDebugDraw(Graphics&);                      // _1EC
-	virtual Vector3f getOffsetForMapCollision();              // _224
-	virtual void initMouthSlots();                            // _22C
-	virtual void initWalkSmokeEffect();                       // _230
-	virtual WalkSmokeEffect::Mgr* getWalkSmokeEffectMgr();    // _234
-	virtual EnemyTypeID::EEnemyTypeID getEnemyTypeID();       // _258 (weak)
-	virtual MouthSlots* getMouthSlots();                      // _25C (weak)
-	virtual void doGetLifeGaugeParam(LifeGaugeParam&);        // _260
-	virtual bool damageCallBack(Creature*, float, CollPart*); // _278
-	virtual void startCarcassMotion();                        // _2C4
-	virtual bool doBecomeCarcass();                           // _2D0
-	virtual f32 getDownSmokeScale();                          // _2EC (weak)
-	virtual void setFSM(FSM*);                                // _2F8
-	virtual void createChappyRelation();                      // _2FC
-	virtual ChappyRelation* getChappyRelation();              // _300 (weak)
-	virtual void startEnemyRumble();                          // _304
+	virtual void onInit(CreatureInitArg* settings);         // _30
+	virtual void doDirectDraw(Graphics& gfx);               // _50
+	virtual void getShadowParam(ShadowParam& settings);     // _134
+	virtual ~Obj() { }                                      // _1BC (weak)
+	virtual void setInitialSetting(EnemyInitialParamBase*); // _1C4
+	virtual void doUpdate();                                // _1CC
+	virtual void doUpdateCarcass();                         // _1D4
+	virtual void doDebugDraw(Graphics&);                    // _1EC
+	virtual Vector3f getOffsetForMapCollision();            // _224
+	virtual void initMouthSlots();                          // _22C
+	virtual void initWalkSmokeEffect();                     // _230
+	virtual WalkSmokeEffect::Mgr* getWalkSmokeEffectMgr();  // _234
+	virtual EnemyTypeID::EEnemyTypeID getEnemyTypeID();     // _258 (weak)
+	virtual MouthSlots* getMouthSlots();                    // _25C (weak)
+	virtual void doGetLifeGaugeParam(LifeGaugeParam&);      // _260
+	virtual bool damageCallBack(Creature*, f32, CollPart*); // _278
+	virtual void startCarcassMotion();                      // _2C4
+	virtual bool doBecomeCarcass();                         // _2D0
+	virtual f32 getDownSmokeScale();                        // _2EC (weak)
+	virtual void setFSM(FSM*);                              // _2F8
+	virtual void createChappyRelation();                    // _2FC
+	virtual ChappyRelation* getChappyRelation();            // _300 (weak)
+	virtual void startEnemyRumble();                        // _304
 	////////// VTABLE END
 
 	f32 getViewAngle();
@@ -63,7 +63,7 @@ struct Obj : public EnemyBase {
 	// _00-_2B8	= EnemyBase
 	FSM* m_fsm;                          // _2BC
 	WalkSmokeEffect::Mgr m_walkSmokeMgr; // _2C0
-	float m_reviveTimer;                 // _2C8
+	f32 m_reviveTimer;                   // _2C8
 	int _2CC;                            // _2CC
 	f32 m_timer;                         // _2D0
 	int m_nextState;                     // _2D4

@@ -32,7 +32,7 @@ struct PelletView {
 	{
 	}
 
-	virtual float viewGetBaseScale() // _08 (weak)
+	virtual f32 viewGetBaseScale() // _08 (weak)
 	{
 		return 1.0f;
 	}

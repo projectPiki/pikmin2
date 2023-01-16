@@ -63,7 +63,7 @@ struct Obj : public EnemyBase {
 	// _00-_2B8	= EnemyBase
 	FSM* m_fsm;                          // _2BC
 	WalkSmokeEffect::Mgr m_walkSmokeMgr; // _2C0
-	float _2C8;                          // _2C8
+	f32 _2C8;                            // _2C8
 	int _2CC;                            // _2CC
 	MouthSlots m_mouthSlots;             // _2D0
 	Vector3f m_targetParentPosition;     // _2D8

@@ -123,8 +123,8 @@ struct JUTGamePad : public JKRDisposer {
 		u8 _0E;         // _0E
 		u8 _0F;         // _0F
 
-		static float sPressPoint;
-		static float sReleasePoint;
+		static f32 sPressPoint;
+		static f32 sReleasePoint;
 	};
 
 	struct C3ButtonReset {

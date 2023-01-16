@@ -44,7 +44,7 @@ struct Obj : public EnemyBase {
 	virtual void doStartStoneState();                       // _2A4
 	virtual void doFinishStoneState();                      // _2A8
 	virtual void startCarcassMotion();                      // _2C4
-	virtual float getDownSmokeScale();                      // _2EC (weak)
+	virtual f32 getDownSmokeScale();                        // _2EC (weak)
 	virtual void doStartMovie();                            // _2F0
 	virtual void doEndMovie();                              // _2F4
 	virtual void setFSM(FSM*);                              // _2F8
@@ -71,10 +71,10 @@ struct Obj : public EnemyBase {
 	// _00-_2BC = EnemyBase
 	FSM* m_kabutoFSM;                    // _2BC
 	WalkSmokeEffect::Mgr m_walkSmokeMgr; // _2C0
-	float _2C8;                          // _2C8
+	f32 _2C8;                            // _2C8
 	int _2CC;                            // _2CC
 	Vector3f m_targetPosition;           // _2D0
-	float _2DC;                          // _2DC
+	f32 _2DC;                            // _2DC
 	u8 _2E0;                             // _2E0, unknown
 	bool m_isUnderground;                // _2E1
 	                                     // _2E4 = PelletView

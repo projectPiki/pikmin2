@@ -45,7 +45,7 @@ struct J3DAnmTextureSRTKey : public J3DAnmBase {
 		return J3DAnmKind_TextureSRTKey;
 	}
 
-	void calcTransform(float, unsigned short, struct J3DTextureSRTInfo*) const;
+	void calcTransform(f32, unsigned short, struct J3DTextureSRTInfo*) const;
 	void searchUpdateMaterialID(struct J3DModelData*);
 
 	u32 _0C;                      // _0C

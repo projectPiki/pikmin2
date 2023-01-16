@@ -33,7 +33,7 @@ struct E3DAnimFolderBase {
 struct E3DAnimCtrl {
 
 	void setAnimFolder(ebi::E3DAnimFolderBase*);
-	void init(long, float);
+	void init(long, f32);
 	void setStartFrame(); // UNUSED
 	void play();
 	void playStopEnd();

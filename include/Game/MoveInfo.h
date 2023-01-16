@@ -16,7 +16,7 @@ struct DynCreature;
 struct TDispTriangleArray;
 
 struct MoveInfo {
-	inline MoveInfo(Sys::Sphere* sphere, Vector3f* vec, float a)
+	inline MoveInfo(Sys::Sphere* sphere, Vector3f* vec, f32 a)
 	    : _00(sphere)
 	    , m_velocity(vec)
 	    , _08(a)
@@ -40,30 +40,30 @@ struct MoveInfo {
 
 	Sys::Sphere* _00;                                  // _00
 	Vector3f* m_velocity;                              // _04
-	float _08;                                         // _08
-	float _0C;                                         // _0C
+	f32 _08;                                           // _08
+	f32 _0C;                                           // _0C
 	Delegate2<DynCreature, Vector3f&, Vector3f&>* _10; // _10
 	BaseItem* m_infoOrigin;                            // _14
 	u8 _18;                                            // _18
 	u8 _19;                                            // _19
 	u8 _1A;                                            // _1A
 	Vector3f _1C;                                      // _1C
-	float _28;                                         // _28
-	float _2C;                                         // _2C
-	float _30;                                         // _30
+	f32 _28;                                           // _28
+	f32 _2C;                                           // _2C
+	f32 _30;                                           // _30
 	u8 _34[16];                                        // _34
 	Sys::Triangle* m_bounceTriangle;                   // _44
 	Sys::Triangle* m_wallTriangle;                     // _48
 	Sys::Triangle* _4C;                                // _4C
 	Vector3f m_position;                               // _50
 	Vector3f m_reflectPosition;                        // _5C
-	float _68;                                         // _60
-	float _6C;                                         // _64
-	float _70;                                         // _68
+	f32 _68;                                           // _60
+	f32 _6C;                                           // _64
+	f32 _70;                                           // _68
 	u8 _74;                                            // _74
-	float _78;                                         // _78
-	float _7C;                                         // _7C
-	float _80;                                         // _80
+	f32 _78;                                           // _78
+	f32 _7C;                                           // _7C
+	f32 _80;                                           // _80
 	Vector3f _84;                                      // _84
 	u8 _90;                                            // _90
 	TDispTriangleArray* _94;                           // _94

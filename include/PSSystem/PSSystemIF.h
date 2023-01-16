@@ -28,12 +28,12 @@ struct SysIF : public JAIBasic {
 	void playSystemSe(u32, u32);
 	void playSystemSe(u32, JAISound**, u32);
 	void mainLoop();
-	void setConfigVol_Se(float);
-	void setConfigVol_Bgm(float);
+	void setConfigVol_Se(f32);
+	void setConfigVol_Bgm(f32);
 	void start1stSeq();
 
-	float _20;             // _20
-	float _24;             // _24
+	f32 _20;               // _20
+	f32 _24;               // _24
 	OSMutexObject m_mutex; // _28
 	int _40;               // _40
 	FxMgr m_fxMgr;         // _44

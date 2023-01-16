@@ -34,9 +34,9 @@ struct TFunctionValueAttribute_range {
 	void range_prepare();
 	void range_getParameter(f64, f64, f64) const;
 
-	double m_start; // _00
-	double m_end;   // _08
-	double m_width; // _10
+	f64 m_start; // _00
+	f64 m_end;   // _08
+	f64 m_width; // _10
 };
 
 struct TFunctionValueAttribute_refer {

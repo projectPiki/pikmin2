@@ -8,7 +8,7 @@
 struct J3DAnmKeyTableBase;
 
 template <typename T>
-float J3DGetKeyFrameInterpolation(float, J3DAnmKeyTableBase*, T*);
+f32 J3DGetKeyFrameInterpolation(f32, J3DAnmKeyTableBase*, T*);
 
 /**
  * @fabricated
@@ -50,10 +50,10 @@ struct J3DAnmBase {
 	virtual J3DAnmKind getKind() const = 0; // _0C
 
 	// _00 VTBL
-	u8 _04;        // _04
-	u8 _05;        // _05
-	s16 m_time;    // _06
-	float m_fTime; // _08
+	u8 _04;      // _04
+	u8 _05;      // _05
+	s16 m_time;  // _06
+	f32 m_fTime; // _08
 };
 
 /**
@@ -76,7 +76,7 @@ struct J3DAnmKeyTableBase {
 	 * @fabricated
 	 * TODO: This is wrong. It's not generating the paired instructions that I was hoping it'd generate.
 	 */
-	inline void getColorField(float fTime, s16* result, s16* values)
+	inline void getColorField(f32 fTime, s16* result, s16* values)
 	{
 		switch (_00) {
 		case 0:

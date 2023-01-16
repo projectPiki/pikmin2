@@ -91,7 +91,7 @@ struct System : public OSMutexObject {
 	void loadResourceFirst();
 	void loadResourceSecond();
 	int run();
-	float getTime();
+	f32 getTime();
 	void clearOptionBlockSaveFlag();
 	void setOptionBlockSaveFlag();
 	Game::CommonSaveData::Mgr* getPlayCommonData();
@@ -159,11 +159,11 @@ struct System : public OSMutexObject {
 	struct DvdStatus* m_dvdStatus;                // _48
 	struct JFWDisplay* m_display;                 // _4C
 	HeapStatus* m_heapStatus;                     // _50
-	float m_deltaTime;                            // _54
+	f32 m_deltaTime;                              // _54
 	struct JKRTask* m_task;                       // _58
 	struct MemoryCardMgr* m_cardMgr;              // _5C
 	struct Game::CommonSaveData::Mgr* m_playData; // _60
-	float m_fpsFactor;                            // _64
+	f32 m_fpsFactor;                              // _64
 	DvdThreadCommand m_threadCommand;             // _68
 	LanguageID m_region;                          // _D4
 	BitFlag<u32> m_flags;                         // _D8

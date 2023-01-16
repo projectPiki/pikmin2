@@ -8,7 +8,7 @@ struct VsOtakaraName {
 	static const char* cBedamaBlue;
 	static const char* cBedamaRed;
 	static const char* cBedamaYellow;
-	static float cBedamaYellowDepth;
+	static f32 cBedamaYellowDepth;
 };
 
 #endif

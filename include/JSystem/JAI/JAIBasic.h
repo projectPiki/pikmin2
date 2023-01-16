@@ -21,7 +21,7 @@ struct JAIBasic {
 	virtual JAIStream* makeStream();           // _10
 	virtual BOOL getMapInfoFxline(u32);        // _14
 	virtual BOOL getMapInfoGround(u32);        // _18
-	virtual float getMapInfoFxParameter(u32);  // _1C
+	virtual f32 getMapInfoFxParameter(u32);    // _1C
 	virtual void setSeExtParameter(JAISound*); // _20
 	virtual void setRegisterTrackCallback();   // _24
 
@@ -34,7 +34,7 @@ struct JAIBasic {
 	void initHeap();
 	JKRArchive* initArchive();
 	void initResourcePath();
-	void setCameraInfo(Vec*, Vec*, float (*)[4], u32);
+	void setCameraInfo(Vec*, Vec*, f32 (*)[4], u32);
 	void initAudioThread(JKRSolidHeap*, u32, u8);
 	void initCamera();
 	void setInitFileLoadSwitch(u8);
@@ -123,10 +123,10 @@ struct JAIBasic {
 	static JKRHeap* msCurrentHeap;
 	static bool msStopMode;
 	static u32 msAudioStopTime;
-	static float msDspLevel;
-	static float msAutoLevel;
-	static float msAutoDif;
-	static float msDspDif;
+	static f32 msDspLevel;
+	static f32 msAutoLevel;
+	static f32 msAutoDif;
+	static f32 msDspDif;
 
 	static u8 msStopStatus;
 };

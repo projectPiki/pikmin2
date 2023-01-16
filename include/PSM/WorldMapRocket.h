@@ -21,17 +21,17 @@ struct WorldMapRocket : public JADHioNode {
 
 	virtual ~WorldMapRocket(); // _08
 
-	void startRocketSE(float, float);
+	void startRocketSE(f32, f32);
 	void stateChange(rocketState);
 
 	// _00 VTBL
 	rocketState m_state; // _04
-	float _08;           // _08
-	float _0C;           // _0C
-	float _10;           // _10
-	float _14;           // _14
-	float _18;           // _18
-	float _1C;           // _1C
+	f32 _08;             // _08
+	f32 _0C;             // _0C
+	f32 _10;             // _10
+	f32 _14;             // _14
+	f32 _18;             // _18
+	f32 _1C;             // _1C
 };
 
 } // namespace PSM

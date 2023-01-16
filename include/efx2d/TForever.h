@@ -27,7 +27,7 @@ struct TForever : public TBase, public JPAEmitterCallBack {
 
 	void setGlobalAlpha(u8);
 	void setGlobalEnvColor(JUtility::TColor&);
-	void setGlobalScale(float);
+	void setGlobalScale(f32);
 
 	// _00		= VTBL
 	// _04-_0C	= JPAEmitterCallBack

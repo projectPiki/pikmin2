@@ -66,7 +66,7 @@ struct Vector3 {
 	/**
 	 * @fabricated
 	 */
-	inline float magnitude() { return x + y + z; }
+	inline f32 magnitude() { return x + y + z; }
 
 	/**
 	 * @fabricated
@@ -104,14 +104,14 @@ struct Vector3 {
 	//     z += other.z;
 	//     return newVector;
 	// }
-	// inline Vector3& operator*(const float other) {
+	// inline Vector3& operator*(const f32 other) {
 	//     Vector3 newVector = *this;
 	//     newVector.x *= other;
 	//     newVector.y *= other;
 	//     newVector.z *= other;
 	//     return newVector;
 	// }
-	inline void operator*=(const float other) { *this = Vector3(x * other, y * other, z * other); }
+	inline void operator*=(const f32 other) { *this = Vector3(x * other, y * other, z * other); }
 	inline void operator+=(const Vector3& other)
 	{
 		this->x += other.x;
@@ -126,13 +126,13 @@ struct Vector3 {
 	}
 
 	// Squared magnitude
-	inline float sqrMagnitude() { return x * x + y * y + z * z; }
+	inline f32 sqrMagnitude() { return x * x + y * y + z * z; }
 	// Quick length
-	inline float qLength() { return pikmin2_sqrtf(sqrMagnitude()); }
+	inline f32 qLength() { return pikmin2_sqrtf(sqrMagnitude()); }
 
-	float length() const;
-	float distance(Vector3&);
-	float normalise();
+	f32 length() const;
+	f32 distance(Vector3&);
+	f32 normalise();
 
 	void read(Stream&);
 	void write(Stream&);
@@ -160,11 +160,11 @@ inline Vector3f operator+(const Vector3f& a, const Vector3f& b) { return Vector3
  */
 inline Vector3f operator-(const Vector3f& a, const Vector3f& b) { return Vector3f(a.x - b.x, a.y - b.y, a.z - b.z); }
 
-inline Vector3f operator*(const Vector3f& a, const float b) { return Vector3f(a.x * b, a.y * b, a.z * b); }
+inline Vector3f operator*(const Vector3f& a, const f32 b) { return Vector3f(a.x * b, a.y * b, a.z * b); }
 
-inline Vector3f operator*=(const Vector3f& a, const float b) { return Vector3f(a.x * b, a.y * b, a.z * b); }
+inline Vector3f operator*=(const Vector3f& a, const f32 b) { return Vector3f(a.x * b, a.y * b, a.z * b); }
 
-inline float dot(const Vector3f& a, const Vector3f& b) { return a.x * b.x + a.y * b.y + a.z * b.z; }
+inline f32 dot(const Vector3f& a, const Vector3f& b) { return a.x * b.x + a.y * b.y + a.z * b.z; }
 
 inline void weightVecXZ(Vector3f& vec, f32 weight)
 {
@@ -337,9 +337,9 @@ inline f32 _distanceXZ(Vector3f& vec1, Vector3f& vec2)
 	return _sqrtf(vec.x * vec.x + vec.y * vec.y);
 }
 
-inline void sumXY(Vector3f vec, float* sum) { *sum = (vec.x *= vec.x) + (vec.y *= vec.y); }
+inline void sumXY(Vector3f vec, f32* sum) { *sum = (vec.x *= vec.x) + (vec.y *= vec.y); }
 
-inline void sumZ(Vector3f vec, float* sum)
+inline void sumZ(Vector3f vec, f32* sum)
 {
 	f32 z = vec.z * vec.z;
 	*sum  = z + *sum;

@@ -7,7 +7,7 @@
 extern "C" {
 #endif // ifdef __cplusplus
 
-unsigned long __cvt_fp2unsigned(double);
+unsigned long __cvt_fp2unsigned(f64);
 // TODO: The rest
 
 void* __copy(char*, char*, size_t);

@@ -65,7 +65,7 @@ struct MeloArr_RandomAvoid : public MeloArrBase {
 	virtual bool avoidChk(MeloArrArg&); // _24
 	virtual ~MeloArr_RandomAvoid() { }  // _28 (weak)
 
-	float _1C; // _1C
+	f32 _1C; // _1C
 };
 
 } // namespace PSAutoBgm

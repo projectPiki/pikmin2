@@ -17,7 +17,7 @@ struct Object : public Pellet {
 
 	// _00      = VTBL
 	// _00-_458 = Pellet
-	float m_rottingTimer; // _458, seconds before rotting
+	f32 m_rottingTimer; // _458, seconds before rotting
 };
 
 struct Mgr : public FixedSizePelletMgr<Object> {

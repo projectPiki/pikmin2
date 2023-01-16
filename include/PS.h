@@ -25,13 +25,13 @@ void PSStart2DStream(u32);
 void PSStop2DStream();
 
 void PSStartChallengeTimeUpStream();
-void PSStartEnemyDownSmokeSE(Game::EnemyBase*, float);
-void PSStartEnemyDownWatSE(Game::EnemyBase*, float);
-void PSStartEnemyFatalHitSE(Game::EnemyBase*, float);
-void PSStartEnemyGhostSE(Game::EnemyBase*, float);
+void PSStartEnemyDownSmokeSE(Game::EnemyBase*, f32);
+void PSStartEnemyDownWatSE(Game::EnemyBase*, f32);
+void PSStartEnemyFatalHitSE(Game::EnemyBase*, f32);
+void PSStartEnemyGhostSE(Game::EnemyBase*, f32);
 PSM::SeSound* PSStartSoundVec(u32, Vec*);
-void PSStartTreasureLaderSE(float);
-void PSStartTresureLaderNoiseSE(u8, float, float);
+void PSStartTreasureLaderSE(f32);
+void PSStartTresureLaderNoiseSE(u8, f32, f32);
 void PSMuteSE_on2D();
 void PSMuteOffSE_on2D();
 

@@ -73,7 +73,7 @@ struct RandItemUnit {
 	bool isFallCapEnemySetDone(MapNode*);
 
 	void setItemDropPositionList(Game::Cave::MapNode**, Game::Cave::BaseGen**);
-	void getItemDropPosition(Vector3f&, float, int);
+	void getItemDropPosition(Vector3f&, f32, int);
 	MapNode* getItemNormalSetMapNode(Game::Cave::BaseGen**);
 	MapNode* getItemHardSetMapNode(Game::Cave::BaseGen**);
 	ItemUnit* getItemUnit();

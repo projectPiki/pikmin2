@@ -24,20 +24,20 @@ struct ObjectCamera : public JStage::TCamera, public ObjectBase {
 	virtual u32 JSGGetFlag() const;                    // _18
 	virtual void JSGSetFlag(u32);                      // _1C
 	virtual void JSGSetData(u32, const void*, u32);    // _24
-	virtual float JSGGetProjectionNear() const;        // _44
-	virtual void JSGSetProjectionNear(float);          // _48
-	virtual float JSGGetProjectionFar() const;         // _4C
-	virtual void JSGSetProjectionFar(float);           // _50
-	virtual float JSGGetProjectionFovy() const;        // _54
-	virtual void JSGSetProjectionFovy(float);          // _58
-	virtual float JSGGetProjectionAspect() const;      // _5C
-	virtual void JSGSetProjectionAspect(float);        // _60
+	virtual f32 JSGGetProjectionNear() const;          // _44
+	virtual void JSGSetProjectionNear(f32);            // _48
+	virtual f32 JSGGetProjectionFar() const;           // _4C
+	virtual void JSGSetProjectionFar(f32);             // _50
+	virtual f32 JSGGetProjectionFovy() const;          // _54
+	virtual void JSGSetProjectionFovy(f32);            // _58
+	virtual f32 JSGGetProjectionAspect() const;        // _5C
+	virtual void JSGSetProjectionAspect(f32);          // _60
 	virtual void JSGGetViewPosition(Vec*) const;       // _74
 	virtual void JSGSetViewPosition(const Vec&);       // _78
 	virtual void JSGGetViewTargetPosition(Vec*) const; // _84
 	virtual void JSGSetViewTargetPosition(const Vec&); // _88
-	virtual float JSGGetViewRoll() const;              // _8C
-	virtual void JSGSetViewRoll(float);                // _90
+	virtual f32 JSGGetViewRoll() const;                // _8C
+	virtual void JSGSetViewRoll(f32);                  // _90
 	virtual void updateCamera();                       // _B0
 	virtual void setProjection();                      // _B4
 	virtual void setView();                            // _B8
@@ -64,11 +64,11 @@ struct ObjectCamera : public JStage::TCamera, public ObjectBase {
 	Matrixf _60;              // _60
 	Vector3f m_viewPos;       // _90 - view position?
 	Vector3f m_viewTargetPos; // _9C - view target position?
-	float m_viewRoll;         // _A8 - view roll?
-	float m_projectionNear;   // _AC - projectionNear?
-	float m_projectionFar;    // _B0 - projectionFar?
-	float m_projectionFovy;   // _B4 - projectionFovy?
-	float m_projectionAspect; // _BC - projectionAspect?
+	f32 m_viewRoll;           // _A8 - view roll?
+	f32 m_projectionNear;     // _AC - projectionNear?
+	f32 m_projectionFar;      // _B0 - projectionFar?
+	f32 m_projectionFovy;     // _B4 - projectionFovy?
+	f32 m_projectionAspect;   // _BC - projectionAspect?
 	Camera* _C0;              // _C0 - owner?
 	Camera* _C4;              // _C4 - camera obj?
 	bool m_isRunning;         // _C8

@@ -13,7 +13,7 @@
 enum J2DGrafType { J2DGraf_Base = 0, J2DGraf_Ortho, J2DGraf_Persp };
 
 struct J2DGrafContext {
-	J2DGrafContext(float, float, float, float);
+	J2DGrafContext(f32, f32, f32, f32);
 
 	virtual ~J2DGrafContext() { }                 // _08 (weak)
 	virtual void place(const JGeometry::TBox2f&); // _0C
@@ -70,15 +70,15 @@ struct J2DPerspGraph : public J2DGrafContext {
 	virtual void setLookat();                                         // _24
 
 	void makeLookat();
-	void set(float, float, float);
-	void setFovy(float);
+	void set(f32, f32, f32);
+	void setFovy(f32);
 
 	// _00 		= VTBL
 	// _00-_BC	= J2DGrafContext
-	float m_fovY; // _BC
-	float _C0;    // _C0
-	float _C4;    // _C4
-	float _C8;    // _C8
+	f32 m_fovY; // _BC
+	f32 _C0;    // _C0
+	f32 _C4;    // _C4
+	f32 _C8;    // _C8
 };
 
 struct J2DOrthoGraph : public J2DGrafContext {

@@ -20,8 +20,8 @@ struct J3DUShadowInfo {
 	void setViewportAndScissor(bool) const;
 	void gxConfig(const _GXColor&, _GXTevColorArg, _GXTevAlphaArg) const;
 	void renderShape() const;
-	void getTexMtx(float (*)[4]) const;
-	void getTexMtxForGX(float (*)[4]) const;
+	void getTexMtx(f32 (*)[4]) const;
+	void getTexMtxForGX(f32 (*)[4]) const;
 };
 
 struct J3DUShadowTextureSizeRatioCalcBase {
@@ -77,9 +77,9 @@ struct ViewportBackup {
 	~ViewportBackup();
 };
 
-void calcSphereIncludingTwoSpheres(Vec*, float, Vec*, float, Vec*, float*);
-void calcSphereIncludingTwoSpheres(Vec*, float, Vec*, float*);
+void calcSphereIncludingTwoSpheres(Vec*, f32, Vec*, f32, Vec*, f32*);
+void calcSphereIncludingTwoSpheres(Vec*, f32, Vec*, f32*);
 void calcSphereIncludingModel(const J3DModel*, Vec*);
-void J3DUIsShadowInViewFrustum(const J3DUShadowInfo&, float (*)[4], const J3DUClipper&, const JGeometry::TPartition3<float>&);
+void J3DUIsShadowInViewFrustum(const J3DUShadowInfo&, f32 (*)[4], const J3DUClipper&, const JGeometry::TPartition3<f32>&);
 
 #endif

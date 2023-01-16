@@ -27,8 +27,8 @@ struct J2DTexMtx {
 
 	void load(u32);
 	void calc();
-	void getTextureMtx(const J2DTextureSRTInfo&, Vec, float (*)[4]);
-	void getTextureMtxMaya(const J2DTextureSRTInfo&, float (*)[4]);
+	void getTextureMtx(const J2DTextureSRTInfo&, Vec, f32 (*)[4]);
+	void getTextureMtxMaya(const J2DTextureSRTInfo&, f32 (*)[4]);
 
 	J2DTexMtxInfo m_info;
 	Mtx m_mtx;

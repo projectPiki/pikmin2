@@ -82,27 +82,27 @@ struct ModParamWithTableTask : public TaskBase {
 	{
 	}
 
-	virtual int task(JASTrack&);                 // _08
-	virtual float getTgtWithTable(u8)       = 0; // _0C
-	virtual u8 getTableIdxNum()             = 0; // _10
-	virtual int tableTask(JASTrack&, float) = 0; // _14
+	virtual int task(JASTrack&);               // _08
+	virtual f32 getTgtWithTable(u8)       = 0; // _0C
+	virtual u8 getTableIdxNum()           = 0; // _10
+	virtual int tableTask(JASTrack&, f32) = 0; // _14
 
-	float _1C;
-	float _20;
-	float _24;
+	f32 _1C;
+	f32 _20;
+	f32 _24;
 };
 
 struct TriangleTableModTask : public ModParamWithTableTask {
 
-	virtual float getTgtWithTable(u8);           // _0C
-	virtual u8 getTableIdxNum();                 // _10
-	virtual int tableTask(JASTrack&, float) = 0; // _14
+	virtual f32 getTgtWithTable(u8);           // _0C
+	virtual u8 getTableIdxNum();               // _10
+	virtual int tableTask(JASTrack&, f32) = 0; // _14
 
-	static const float sTable[40];
+	static const f32 sTable[40];
 };
 
 struct PitchModTask : public TriangleTableModTask {
-	virtual int tableTask(JASTrack&, float); // _14
+	virtual int tableTask(JASTrack&, f32); // _14
 };
 
 struct ModParamWithFade : public TaskBase {
@@ -116,15 +116,15 @@ struct ModParamWithFade : public TaskBase {
 	{
 	}
 
-	virtual int task(JASTrack&);                 // _08
-	virtual float getPreParam(JASTrack&)    = 0; // _0C
-	virtual void timeTask(JASTrack&, float) = 0; // _10
+	virtual int task(JASTrack&);               // _08
+	virtual f32 getPreParam(JASTrack&)    = 0; // _0C
+	virtual void timeTask(JASTrack&, f32) = 0; // _10
 
-	u32 _1C;   // _1C
-	float _20; // _20
-	float _24; // _24
-	u32 _28;   // _28
-	float _2C; // _2C
+	u32 _1C; // _1C
+	f32 _20; // _20
+	f32 _24; // _24
+	u32 _28; // _28
+	f32 _2C; // _2C
 };
 
 struct BankRandTask : public ModParamWithFade {
@@ -134,8 +134,8 @@ struct BankRandTask : public ModParamWithFade {
 		P2ASSERTLINE(351, BankRandPrm::sInstance != nullptr);
 	}
 
-	virtual float getPreParam(JASTrack&);    // _0C (weak)
-	virtual void timeTask(JASTrack&, float); // _10 (weak)
+	virtual f32 getPreParam(JASTrack&);    // _0C (weak)
+	virtual void timeTask(JASTrack&, f32); // _10 (weak)
 };
 
 struct OuterParamTask : public ModParamWithFade {
@@ -145,8 +145,8 @@ struct OuterParamTask : public ModParamWithFade {
 	{
 	}
 
-	virtual float getPreParam(JASTrack&);    // _0C
-	virtual void timeTask(JASTrack&, float); // _10
+	virtual f32 getPreParam(JASTrack&);    // _0C
+	virtual void timeTask(JASTrack&, f32); // _10
 
 	int _30; // _30
 };
@@ -196,7 +196,7 @@ struct TaskEntry_MuteVolume : public TaskEntry {
 	{
 	}
 
-	void makeEntry(float, u32);
+	void makeEntry(f32, u32);
 
 	MuteTask m_muteTask1;             // _38
 	OuterParamTask m_outerParamTask1; // _58
@@ -212,13 +212,13 @@ struct TaskEntry_OuterParam : public TaskEntry {
 	{
 	}
 
-	void makeEntry(float, u32);
+	void makeEntry(f32, u32);
 
 	OuterParamTask m_outerParamTask; // _38
 };
 
 struct TaskEntry_PitMod : public TaskEntry {
-	void makeEntry(float, float, u32);
+	void makeEntry(f32, f32, u32);
 
 	PitchModTask m_pitModTask;     // _38
 	SimpleWaitTask m_waitTask;     // _60
@@ -234,7 +234,7 @@ struct TaskEntry_Tempo : public TaskEntry {
 	{
 	}
 
-	void makeEntry(float, u32);
+	void makeEntry(f32, u32);
 
 	OuterParamTask m_outerParamTask1; // _38
 	FlagWaitTask m_flagWaitTask;      // _6C
@@ -251,7 +251,7 @@ struct TaskEntry_Wait_Volume : public TaskEntry {
 	{
 	}
 
-	void makeEntry(float, u32);
+	void makeEntry(f32, u32);
 
 	MuteTask m_muteTask1;             // _38
 	OuterParamTask m_outerParamTask1; // _58

@@ -1,6 +1,8 @@
 #ifndef _SQRT_H
 #define _SQRT_H
 
+#include "types.h"
+
 #define FRSQRTE(input, output)                   \
 	{                                            \
 		register f32 __frsqrte_v = input;        \
@@ -21,11 +23,11 @@ inline f32 sqrtf(f32& __sqrtf_g)
 inline f32 _sqrtf(f32 x) { return (x > 0.0f) ? sqrtf(x) : 0.0f; }
 
 // used in pelplant's Obj::getShadowParam(ShadowParam&)
-inline void __sqrtf(register float x, float* val)
+inline void __sqrtf(register f32 x, f32* val)
 {
 	if (x > 0.0f) {
 		if (x > 0.0f) {
-			register float reg_f0;
+			register f32 reg_f0;
 			asm {
                 frsqrte reg_f0, x
 			}

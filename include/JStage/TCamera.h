@@ -15,16 +15,16 @@ struct TCamera : public TObject {
 	virtual int JSGFGetType() const;                       // _0C
 	virtual int JSGGetProjectionType() const;              // _3C
 	virtual void JSGSetProjectionType(TECameraProjection); // _40
-	virtual float JSGGetProjectionNear() const;            // _44
-	virtual void JSGSetProjectionNear(float);              // _48
-	virtual float JSGGetProjectionFar() const;             // _4C
-	virtual void JSGSetProjectionFar(float);               // _50
-	virtual float JSGGetProjectionFovy() const;            // _54
-	virtual void JSGSetProjectionFovy(float);              // _58
-	virtual float JSGGetProjectionAspect() const;          // _5C
-	virtual void JSGSetProjectionAspect(float);            // _60
-	virtual void JSGGetProjectionField(float*) const;      // _64
-	virtual void JSGSetProjectionField(const float*);      // _68
+	virtual f32 JSGGetProjectionNear() const;              // _44
+	virtual void JSGSetProjectionNear(f32);                // _48
+	virtual f32 JSGGetProjectionFar() const;               // _4C
+	virtual void JSGSetProjectionFar(f32);                 // _50
+	virtual f32 JSGGetProjectionFovy() const;              // _54
+	virtual void JSGSetProjectionFovy(f32);                // _58
+	virtual f32 JSGGetProjectionAspect() const;            // _5C
+	virtual void JSGSetProjectionAspect(f32);              // _60
+	virtual void JSGGetProjectionField(f32*) const;        // _64
+	virtual void JSGSetProjectionField(const f32*);        // _68
 	virtual int JSGGetViewType() const;                    // _6C
 	virtual void JSGSetViewType(TECameraView);             // _70
 	virtual void JSGGetViewPosition(Vec*) const;           // _74
@@ -33,8 +33,8 @@ struct TCamera : public TObject {
 	virtual void JSGSetViewUpVector(const Vec&);           // _80
 	virtual void JSGGetViewTargetPosition(Vec*) const;     // _84
 	virtual void JSGSetViewTargetPosition(const Vec&);     // _88
-	virtual float JSGGetViewRoll() const;                  // _8C
-	virtual void JSGSetViewRoll(float);                    // _90
+	virtual f32 JSGGetViewRoll() const;                    // _8C
+	virtual void JSGSetViewRoll(f32);                      // _90
 };
 } // namespace JStage
 

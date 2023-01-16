@@ -87,7 +87,7 @@ struct CourseInfo : public CNode {
 	char* m_farmPath;         // _30
 	char* m_routePath;        // _34
 	Vector3f m_startPosition; // _38
-	float m_startAngle;       // _44
+	f32 m_startAngle;         // _44
 	u32 m_courseIndex;        // _48
 
 	LimitGenInfo m_limitGenInfo;       // _4C

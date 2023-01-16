@@ -53,10 +53,10 @@ struct Object : public ObjectBase {
 	// _00		= VTABLE
 	// _04-_18	= JKRDisposer
 	// _18-_28	= ObjectBase
-	Vec _28;   // _28
-	float _34; // _34
-	float _38; // _38
-	float _3C; // _3C
+	Vec _28; // _28
+	f32 _34; // _34
+	f32 _38; // _38
+	f32 _3C; // _3C
 };
 } // namespace JAInter
 

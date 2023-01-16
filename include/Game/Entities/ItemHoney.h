@@ -44,7 +44,7 @@ struct Item : public CFSMItem {
 
 	// vtable 1 (Creature)
 	virtual void onInit(CreatureInitArg* settings);   // _30
-	virtual void doSimulation(float rate);            // _4C
+	virtual void doSimulation(f32 rate);              // _4C
 	virtual void doDirectDraw(Graphics& gfx);         // _50
 	virtual void onStartCapture();                    // _94
 	virtual void onUpdateCapture(Matrixf&);           // _98
@@ -57,7 +57,7 @@ struct Item : public CFSMItem {
 	virtual void makeTrMatrix();                              // _1C4
 	virtual void doAI();                                      // _1C8
 	virtual void changeMaterial();                            // _1D0
-	virtual float getMapCollisionRadius();                    // _1DC
+	virtual f32 getMapCollisionRadius();                      // _1DC
 	virtual bool interactAbsorb(InteractAbsorb&);             // _1F0
 	virtual void updateBoundSphere();                         // _210
 	virtual void onSetPosition();                             // _21C

@@ -17,21 +17,21 @@ struct AlphaMgr {
 	};
 
 	AlphaMgr();
-	void setBlinkArea(float min, float max);
-	void in(float end);
-	void out(float end);
-	void blink(float end);
+	void setBlinkArea(f32 min, f32 max);
+	void in(f32 end);
+	void out(f32 end);
+	void blink(f32 end);
 
 	/// @brief Calculates alpha based on the state
 	/// @return Alpha (0 - 255)
 	u8 calc();
 
-	int m_state;           // _00
-	float m_currAlpha;     // _04
-	float m_growRate;      // _08
-	float m_blinkEndAlpha; // _0C
-	float m_alphaMin;      // _10
-	float m_alphaMax;      // _14
+	int m_state;         // _00
+	f32 m_currAlpha;     // _04
+	f32 m_growRate;      // _08
+	f32 m_blinkEndAlpha; // _0C
+	f32 m_alphaMin;      // _10
+	f32 m_alphaMax;      // _14
 };
 } // namespace Screen
 } // namespace og
