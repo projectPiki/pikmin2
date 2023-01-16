@@ -183,132 +183,25 @@ void Obj::doAnimationCullingOff()
 void Obj::changeMaterial()
 {
 	J3DModel* j3dModel      = m_model->m_j3dModel;
-	J3DModelData* modelData = j3dModel->m_modelData;
+	J3DModelData* modelData = j3dModel->getModelData();
 
 	u16 bodyIdx          = modelData->m_materialTable._0C->getIndex("mat_body");
 	J3DMaterial* bodyMat = modelData->m_materialTable.m_materials1[bodyIdx];
-	bodyMat->m_tevBlock->setTevColor(0, _414);
+	bodyMat->m_tevBlock->setTevColor(0, m_currMatBodyColor);
 
-	u16 red1   = (u16)_450;
-	u16 green1 = (u16)_454;
-	u16 blue1  = (u16)_458;
+	J3DGXColorS10 color1(m_currEyeColor1.m_rgb[0], m_currEyeColor1.m_rgb[1], m_currEyeColor1.m_rgb[2], 255);
 
 	u16 eyeIdx1          = modelData->m_materialTable._0C->getIndex("mat_eye1");
 	J3DMaterial* eyeMat1 = modelData->m_materialTable.m_materials1[eyeIdx1];
-	eyeMat1->m_tevBlock->setTevColor(0, J3DGXColorS10(red1, green1, blue1, 255));
+	eyeMat1->m_tevBlock->setTevColor(0, color1);
 
-	u16 red2   = (u16)_474;
-	u16 green2 = (u16)_478;
-	u16 blue2  = (u16)_47C;
+	J3DGXColorS10 color2(m_currEyeColor2.m_rgb[0], m_currEyeColor2.m_rgb[1], m_currEyeColor2.m_rgb[2], 255);
 
 	u16 eyeIdx2          = modelData->m_materialTable._0C->getIndex("mat_eye2");
 	J3DMaterial* eyeMat2 = modelData->m_materialTable.m_materials1[eyeIdx2];
-	eyeMat2->m_tevBlock->setTevColor(0, J3DGXColorS10(red2, green2, blue2, 255));
+	eyeMat2->m_tevBlock->setTevColor(0, color2);
 
 	j3dModel->calcMaterial();
-	/*
-	stwu     r1, -0x70(r1)
-	mflr     r0
-	lis      r4, lbl_8048CA80@ha
-	stw      r0, 0x74(r1)
-	stmw     r25, 0x54(r1)
-	mr       r30, r3
-	addi     r29, r4, lbl_8048CA80@l
-	addi     r4, r29, 0x1c
-	lwz      r3, 0x174(r3)
-	lwz      r31, 8(r3)
-	lwz      r28, 4(r31)
-	lwz      r3, 0x64(r28)
-	bl       getIndex__10JUTNameTabCFPCc
-	lwz      r4, 0x60(r28)
-	rlwinm   r3, r3, 2, 0xe, 0x1d
-	lha      r0, 0x414(r30)
-	addi     r5, r1, 0x18
-	lwzx     r3, r4, r3
-	li       r4, 0
-	sth      r0, 0x18(r1)
-	lha      r0, 0x416(r30)
-	sth      r0, 0x1a(r1)
-	lha      r0, 0x418(r30)
-	sth      r0, 0x1c(r1)
-	lha      r0, 0x41a(r30)
-	sth      r0, 0x1e(r1)
-	lwz      r3, 0x2c(r3)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x64(r12)
-	mtctr    r12
-	bctrl
-	lfs      f2, 0x450(r30)
-	addi     r4, r29, 0x28
-	lfs      f1, 0x454(r30)
-	lfs      f0, 0x458(r30)
-	fctiwz   f2, f2
-	fctiwz   f1, f1
-	lwz      r3, 0x64(r28)
-	fctiwz   f0, f0
-	stfd     f2, 0x20(r1)
-	stfd     f1, 0x28(r1)
-	lwz      r27, 0x24(r1)
-	stfd     f0, 0x30(r1)
-	lwz      r26, 0x2c(r1)
-	lwz      r25, 0x34(r1)
-	bl       getIndex__10JUTNameTabCFPCc
-	lwz      r4, 0x60(r28)
-	rlwinm   r3, r3, 2, 0xe, 0x1d
-	li       r0, 0xff
-	addi     r5, r1, 0x10
-	lwzx     r3, r4, r3
-	li       r4, 0
-	sth      r27, 0x10(r1)
-	sth      r26, 0x12(r1)
-	sth      r25, 0x14(r1)
-	sth      r0, 0x16(r1)
-	lwz      r3, 0x2c(r3)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x64(r12)
-	mtctr    r12
-	bctrl
-	lfs      f2, 0x474(r30)
-	addi     r4, r29, 0x34
-	lfs      f1, 0x478(r30)
-	lfs      f0, 0x47c(r30)
-	fctiwz   f2, f2
-	fctiwz   f1, f1
-	lwz      r3, 0x64(r28)
-	fctiwz   f0, f0
-	stfd     f2, 0x38(r1)
-	stfd     f1, 0x40(r1)
-	lwz      r25, 0x3c(r1)
-	stfd     f0, 0x48(r1)
-	lwz      r26, 0x44(r1)
-	lwz      r27, 0x4c(r1)
-	bl       getIndex__10JUTNameTabCFPCc
-	lwz      r4, 0x60(r28)
-	rlwinm   r3, r3, 2, 0xe, 0x1d
-	li       r0, 0xff
-	addi     r5, r1, 8
-	lwzx     r3, r4, r3
-	li       r4, 0
-	sth      r25, 8(r1)
-	sth      r26, 0xa(r1)
-	sth      r27, 0xc(r1)
-	sth      r0, 0xe(r1)
-	lwz      r3, 0x2c(r3)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x64(r12)
-	mtctr    r12
-	bctrl
-	mr       r3, r31
-	lwz      r12, 0(r31)
-	lwz      r12, 0x14(r12)
-	mtctr    r12
-	bctrl
-	lmw      r25, 0x54(r1)
-	lwz      r0, 0x74(r1)
-	mtlr     r0
-	addi     r1, r1, 0x70
-	blr
-	*/
 }
 
 /*
@@ -1577,6 +1470,22 @@ bool Obj::isNormalAttack(int idx) { return (m_treasureHealth[idx] > 3000.0f); }
  */
 void Obj::resetMaterialColor()
 {
+	bool isVisible = false;
+	_2DC           = false;
+	for (int i = 0; i < 4; i++) {
+		if (m_treasures[i]) {
+			isVisible = true;
+			break;
+		}
+	}
+
+	resetTargetMatBodyColor(isVisible);
+	resetCurrentMatBodyColor();
+	_41C = 1;
+	resetTargetEyeMatColor();
+	resetCurrentMatEyeColor();
+	setMatEyeAnimSpeed();
+
 	/*
 	stwu     r1, -0x10(r1)
 	mflr     r0
@@ -1638,26 +1547,16 @@ lbl_802DE368:
  * Address:	802DE3AC
  * Size:	000038
  */
-void Obj::resetTargetMatBodyColor(bool check)
+void Obj::resetTargetMatBodyColor(bool isVisible)
 {
-	/*
-	li       r5, 0x1e
-	clrlwi.  r0, r4, 0x18
-	sth      r5, 0x40c(r3)
-	li       r4, 0x46
-	li       r0, 0x3c
-	sth      r4, 0x40e(r3)
-	sth      r0, 0x410(r3)
-	beq      lbl_802DE3D8
-	li       r0, 0xff
-	sth      r0, 0x412(r3)
-	blr
-
-lbl_802DE3D8:
-	li       r0, 0
-	sth      r0, 0x412(r3)
-	blr
-	*/
+	m_targetMatBodyColor.r = 30;
+	m_targetMatBodyColor.g = 70;
+	m_targetMatBodyColor.b = 60;
+	if (isVisible) {
+		m_targetMatBodyColor.a = 255;
+	} else {
+		m_targetMatBodyColor.a = 0;
+	}
 }
 
 /*
@@ -1665,20 +1564,7 @@ lbl_802DE3D8:
  * Address:	802DE3E4
  * Size:	000024
  */
-void Obj::resetCurrentMatBodyColor()
-{
-	/*
-	lha      r0, 0x40c(r3)
-	sth      r0, 0x414(r3)
-	lha      r0, 0x40e(r3)
-	sth      r0, 0x416(r3)
-	lha      r0, 0x410(r3)
-	sth      r0, 0x418(r3)
-	lha      r0, 0x412(r3)
-	sth      r0, 0x41a(r3)
-	blr
-	*/
-}
+void Obj::resetCurrentMatBodyColor() { m_currMatBodyColor = m_targetMatBodyColor; }
 
 /*
  * --INFO--
@@ -1687,30 +1573,10 @@ void Obj::resetCurrentMatBodyColor()
  */
 void Obj::resetTargetEyeMatColor()
 {
-	/*
-	lfs      f2, lbl_8051CD14@sda21(r2)
-	lfs      f0, lbl_8051CC38@sda21(r2)
-	stfs     f2, 0x438(r3)
-	lfs      f1, lbl_8051CC90@sda21(r2)
-	stfs     f0, 0x43c(r3)
-	lfs      f0, lbl_8051CD18@sda21(r2)
-	stfs     f2, 0x440(r3)
-	lfs      f4, lbl_8051CD1C@sda21(r2)
-	stfs     f1, 0x444(r3)
-	lfs      f3, lbl_8051CC30@sda21(r2)
-	stfs     f0, 0x448(r3)
-	lfs      f2, lbl_8051CCA4@sda21(r2)
-	stfs     f4, 0x44c(r3)
-	lfs      f1, lbl_8051CCF8@sda21(r2)
-	stfs     f3, 0x45c(r3)
-	lfs      f0, lbl_8051CD20@sda21(r2)
-	stfs     f2, 0x460(r3)
-	stfs     f3, 0x464(r3)
-	stfs     f4, 0x468(r3)
-	stfs     f1, 0x46c(r3)
-	stfs     f0, 0x470(r3)
-	blr
-	*/
+	m_targetEyeColor1[0].set(20.0f, 60.0f, 20.0f);
+	m_targetEyeColor1[1].set(120.0f, 255.0f, 90.0f);
+	m_targetEyeColor2[0].set(0.0f, 30.0f, 0.0f);
+	m_targetEyeColor2[1].set(90.0f, 180.0f, 160.0f);
 }
 
 /*
@@ -1720,21 +1586,8 @@ void Obj::resetTargetEyeMatColor()
  */
 void Obj::resetCurrentMatEyeColor()
 {
-	/*
-	lfs      f0, 0x438(r3)
-	stfs     f0, 0x450(r3)
-	lfs      f0, 0x43c(r3)
-	stfs     f0, 0x454(r3)
-	lfs      f0, 0x440(r3)
-	stfs     f0, 0x458(r3)
-	lfs      f0, 0x45c(r3)
-	stfs     f0, 0x474(r3)
-	lfs      f0, 0x460(r3)
-	stfs     f0, 0x478(r3)
-	lfs      f0, 0x464(r3)
-	stfs     f0, 0x47c(r3)
-	blr
-	*/
+	m_currEyeColor1 = m_targetEyeColor1[0];
+	m_currEyeColor2 = m_targetEyeColor2[0];
 }
 
 /*
@@ -1744,6 +1597,44 @@ void Obj::resetCurrentMatEyeColor()
  */
 void Obj::setMatEyeAnimSpeed()
 {
+	f32 time = 30.0f;
+	if (_2DC) {
+		time = 10.0f;
+	}
+
+	for (int i = 0; i < 3; i++) {
+		// eye 1
+		f32 colorDiff1 = m_targetEyeColor1[_41C].m_rgb[i] - m_currEyeColor1.m_rgb[i];
+		colorDiff1     = (colorDiff1 > 0.0f) ? colorDiff1 : -colorDiff1;
+
+		f32 otherDiff1 = m_targetEyeColor1[1].m_rgb[i] - m_targetEyeColor1[0].m_rgb[i];
+		otherDiff1     = (otherDiff1 > 0.0f) ? otherDiff1 : -otherDiff1;
+
+		colorDiff1          = (colorDiff1 > otherDiff1) ? colorDiff1 : otherDiff1;
+		m_eye1AnimSpeeds[i] = colorDiff1;
+
+		if (m_eye1AnimSpeeds[i] < 1.0f) {
+			m_eye1AnimSpeeds[i] = 1.0f;
+		}
+
+		m_eye1AnimSpeeds[i] = m_eye1AnimSpeeds[i] / time;
+
+		// eye 2
+		f32 colorDiff2 = m_targetEyeColor2[_41C].m_rgb[i] - m_currEyeColor2.m_rgb[i];
+		colorDiff2     = (colorDiff2 > 0.0f) ? colorDiff2 : -colorDiff2;
+
+		f32 otherDiff2 = m_targetEyeColor2[1].m_rgb[i] - m_targetEyeColor2[0].m_rgb[i];
+		otherDiff2     = (otherDiff2 > 0.0f) ? otherDiff2 : -otherDiff2;
+
+		colorDiff2          = (colorDiff2 > otherDiff2) ? colorDiff2 : otherDiff2;
+		m_eye2AnimSpeeds[i] = colorDiff2;
+
+		if (m_eye2AnimSpeeds[i] < 1.0f) {
+			m_eye2AnimSpeeds[i] = 1.0f;
+		}
+
+		m_eye2AnimSpeeds[i] = m_eye2AnimSpeeds[i] / time;
+	}
 	/*
 	lbz      r0, 0x2dc(r3)
 	lfs      f5, lbl_8051CCA4@sda21(r2)

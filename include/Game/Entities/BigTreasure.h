@@ -28,6 +28,32 @@ struct BigTreasureShadowMgr;
 struct BigTreasureAttackMgr;
 struct FSM;
 
+struct EyeColor {
+	inline void set(f32 _r, f32 _g, f32 _b)
+	{
+		m_rgb[0] = _r;
+		m_rgb[1] = _g;
+		m_rgb[2] = _b;
+	}
+
+	inline EyeColor& operator=(const EyeColor& other)
+	{
+		m_rgb[0] = other.m_rgb[0];
+		m_rgb[1] = other.m_rgb[1];
+		m_rgb[2] = other.m_rgb[2];
+		return *this;
+	}
+
+	inline void operator=(EyeColor& other)
+	{
+		m_rgb[0] = other.m_rgb[0];
+		m_rgb[1] = other.m_rgb[1];
+		m_rgb[2] = other.m_rgb[2];
+	}
+
+	f32 m_rgb[3]; // _00, r=0, g=1, b=2
+};
+
 enum StateID {
 	BIGTREASURE_NULL      = -1,
 	BIGTREASURE_Dead      = 0,
@@ -190,7 +216,7 @@ struct Obj : public EnemyBase {
 	StateID m_nextState;                         // _2C8
 	Vector3f m_targetPosition;                   // _2CC
 	f32 m_shadowScale;                           // _2D8
-	u8 _2DC;                                     // _2DC
+	bool _2DC;                                   // _2DC
 	bool _2DD[0x4];                              // _2DD, to do with treasures?
 	IKSystemMgr* m_ikSystemMgr;                  // _2E4
 	IKSystemParms* m_ikSystemParms;              // _2E8
@@ -205,17 +231,15 @@ struct Obj : public EnemyBase {
 	f32 _3E8[4];                                 // _3E8, to do with treasures
 	CollPart* m_treasureCollParts[4];            // _3F8, elec / fire / gas / water
 	int m_attackIndex;                           // _408, enum TitanDweevilAttack?
-	J3DGXColorS10 m_currMatBodyColor;            // _40C
-	J3DGXColorS10 _414;                          // _414
-	int _41C;                                    // _41C
-	u8 _420[0x30];                               // _420, unknown
-	f32 _450;                                    // _450
-	f32 _454;                                    // _454
-	f32 _458;                                    // _458
-	u8 _45C[0x18];                               // _45C, unknown
-	f32 _474;                                    // _474
-	f32 _478;                                    // _478
-	f32 _47C;                                    // _47C
+	J3DGXColorS10 m_targetMatBodyColor;          // _40C
+	J3DGXColorS10 m_currMatBodyColor;            // _414
+	int _41C;                                    // _41C, indexes the targetEyeColor arrays
+	f32 m_eye1AnimSpeeds[3];                     // _420, r=0, g=1, b=2
+	f32 m_eye2AnimSpeeds[3];                     // _42C, r=0, g=1, b=2
+	EyeColor m_targetEyeColor1[2];               // _438, indexed by _41C
+	EyeColor m_currEyeColor1;                    // _450
+	EyeColor m_targetEyeColor2[2];               // _45C, indexed by _41C
+	EyeColor m_currEyeColor2;                    // _474
 	efx::TOootaFoot* m_footFX[4];                // _480
 	efx::TDamaFootw* m_footWFX[4];               // _490
 	efx::TDamaSmoke* m_treasureSmokeFX[4];       // _4A0

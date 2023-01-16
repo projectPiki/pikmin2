@@ -56,6 +56,14 @@ struct J3DGXColorS10 : public GXColorS10 {
 		a = _a;
 	}
 
+	J3DGXColorS10(f32 _r, f32 _g, f32 _b, u16 _a)
+	{
+		r = _r;
+		g = _g;
+		b = _b;
+		a = _a;
+	}
+
 	J3DGXColorS10(const J3DGXColorS10& other)
 	{
 		r = other.r;
