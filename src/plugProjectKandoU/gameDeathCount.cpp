@@ -85,7 +85,7 @@ namespace Game {
  * Address:	........
  * Size:	000030
  */
-// BirthCounter::BirthCounter(void)
+// BirthCounter::BirthCounter()
 // {
 // 	// UNUSED FUNCTION
 // 	reset();
@@ -96,7 +96,7 @@ namespace Game {
  * Address:	........
  * Size:	000024
  */
-void BirthCounter::reset(void)
+void BirthCounter::reset()
 {
 	// UNUSED FUNCTION
 	for (int i = 0; i < PikiColorCount - 1; i++) {
@@ -160,7 +160,7 @@ void BirthCounter::write(Stream& output)
  * Address:	........
  * Size:	000030
  */
-BirthMgr::BirthMgr(void)
+BirthMgr::BirthMgr()
 {
 	// UNUSED FUNCTION
 }
@@ -170,7 +170,7 @@ BirthMgr::BirthMgr(void)
  * Address:	8022F9FC
  * Size:	000068
  */
-void BirthMgr::clear(void)
+void BirthMgr::clear()
 {
 	mToday.reset();
 	mCave.reset();
@@ -268,7 +268,7 @@ void BirthMgr::dec_cave(int pikiColor)
  * Address:	8022FE34
  * Size:	000140
  */
-void BirthMgr::account_cave(void)
+void BirthMgr::account_cave()
 {
 	for (int i = 0; i < 6; i++) {
 		mToday(i) += mCave(i);
@@ -281,7 +281,7 @@ void BirthMgr::account_cave(void)
  * Address:	8022FF74
  * Size:	0002B4
  */
-void BirthMgr::account_today_adjust(void)
+void BirthMgr::account_today_adjust()
 {
 	for (int i = 0; i < 5; i++) {
 		if (mToday(i) < 0) {
@@ -302,7 +302,7 @@ void BirthMgr::account_today_adjust(void)
  * Size:	000204
  * account_today__Q24Game8BirthMgrFv
  */
-void BirthMgr::account_today(void)
+void BirthMgr::account_today()
 {
 	for (int i = 0; i < 6; i++) {
 		mTotal(i) += mToday(i);
@@ -462,7 +462,7 @@ DeathMgr::DeathMgr()
  * Size:	000084
  * clear__Q24Game8DeathMgrFv
  */
-void DeathMgr::clear(void)
+void DeathMgr::clear()
 {
 	mToday.reset();
 	mCave.reset();
@@ -517,7 +517,7 @@ void DeathMgr::inc_cave(int cod)
  * Size:	0001FC
  * account_cave__Q24Game8DeathMgrFv
  */
-void DeathMgr::account_cave(void)
+void DeathMgr::account_cave()
 {
 	for (int i = 0; i < DeathCounter::COD_SourceCount + 1; i++) {
 		mToday(i) += mCave(i);
@@ -531,7 +531,7 @@ void DeathMgr::account_cave(void)
  * Size:	0001FC
  * account_today__Q24Game8DeathMgrFv
  */
-void DeathMgr::account_today(void)
+void DeathMgr::account_today()
 {
 	for (int i = 0; i < DeathCounter::COD_SourceCount + 1; i++) {
 		mTotal(i) += mToday(i);
@@ -596,7 +596,7 @@ void DeathMgr::write(Stream& output)
  * Address:	80231214
  * Size:	0000E0
  */
-// void __sinit_gameDeathCount_cpp(void)
+// void __sinit_gameDeathCount_cpp()
 // {
 // 	/*
 // 	li       r0, 0

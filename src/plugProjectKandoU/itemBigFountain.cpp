@@ -1182,7 +1182,7 @@ lbl_801EC3FC:
  * Address:	801EC428
  * Size:	000030
  */
-void transit__Q24Game39FSMState<Game::ItemBigFountain::Item> FPQ34Game15ItemBigFountain4ItemiPQ24Game8StateArg(void)
+void transit__Q24Game39FSMState<Game::ItemBigFountain::Item> FPQ34Game15ItemBigFountain4ItemiPQ24Game8StateArg()
 {
 	/*
 	.loc_0x0:
@@ -1750,7 +1750,7 @@ lbl_801ECA18:
  * Address:	........
  * Size:	0000DC
  */
-ItemBigFountain::Item::Item(void)
+ItemBigFountain::Item::Item()
 {
 	// UNUSED FUNCTION
 }
@@ -1760,7 +1760,7 @@ ItemBigFountain::Item::Item(void)
  * Address:	801ECA2C
  * Size:	000048
  */
-void ItemBigFountain::Item::constructor(void)
+void ItemBigFountain::Item::constructor()
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -1980,7 +1980,7 @@ lbl_801ECCAC:
  * Address:	801ECCF8
  * Size:	000034
  */
-void start__Q24Game43StateMachine<Game::ItemBigFountain::Item> FPQ34Game15ItemBigFountain4ItemiPQ24Game8StateArg(void)
+void start__Q24Game43StateMachine<Game::ItemBigFountain::Item> FPQ34Game15ItemBigFountain4ItemiPQ24Game8StateArg()
 {
 	/*
 	.loc_0x0:
@@ -2007,7 +2007,7 @@ namespace efx {
  * Address:	........
  * Size:	000080
  */
-TForever3::~TForever3(void)
+TForever3::~TForever3()
 {
 	// UNUSED FUNCTION
 }
@@ -2019,7 +2019,7 @@ TForever3::~TForever3(void)
  * Address:	801ECD2C
  * Size:	000054
  */
-void ItemBigFountain::Item::initDependency(void)
+void ItemBigFountain::Item::initDependency()
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -2053,7 +2053,7 @@ lbl_801ECD70:
  * Address:	801ECD80
  * Size:	0000C0
  */
-void ItemBigFountain::Item::update(void)
+void ItemBigFountain::Item::update()
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -2116,7 +2116,7 @@ lbl_801ECE18:
  * Address:	801ECE40
  * Size:	000060
  */
-void ItemBigFountain::Item::killAllEffect(void)
+void ItemBigFountain::Item::killAllEffect()
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -2155,7 +2155,7 @@ lbl_801ECE8C:
  * Address:	801ECEA0
  * Size:	000068
  */
-void ItemBigFountain::Item::makeTrMatrix(void)
+void ItemBigFountain::Item::makeTrMatrix()
 {
 	/*
 	stwu     r1, -0x20(r1)
@@ -2192,7 +2192,7 @@ void ItemBigFountain::Item::makeTrMatrix(void)
  * Address:	801ECF08
  * Size:	000118
  */
-void ItemBigFountain::Item::onSetPosition(void)
+void ItemBigFountain::Item::onSetPosition()
 {
 	/*
 	stwu     r1, -0x40(r1)
@@ -2275,7 +2275,7 @@ lbl_801ECF48:
  * Address:	801ED020
  * Size:	0000A0
  */
-void ItemBigFountain::Item::doAI(void)
+void ItemBigFountain::Item::doAI()
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -2438,7 +2438,7 @@ lbl_801ED20C:
  * Address:	801ED22C
  * Size:	000038
  */
-void ItemBigFountain::Item::updateBoundSphere(void)
+void ItemBigFountain::Item::updateBoundSphere()
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -2470,7 +2470,7 @@ void ItemBigFountain::Item::doSimulation(float) { }
  * Address:	801ED268
  * Size:	000030
  */
-void ItemBigFountain::Item::canRide(void)
+void ItemBigFountain::Item::canRide()
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -2493,7 +2493,7 @@ void ItemBigFountain::Item::canRide(void)
  * Address:	801ED298
  * Size:	000008
  */
-u32 ItemBigFountain::State::canRide(void) { return 0x0; }
+u32 ItemBigFountain::State::canRide() { return 0x0; }
 
 /*
  * --INFO--
@@ -2601,7 +2601,7 @@ void ItemBigFountain::State::onDamage(Game::ItemBigFountain::Item*, float) { }
  * Address:	801ED3C0
  * Size:	0000C8
  */
-void getVectorField__Q34Game15ItemBigFountain4ItemFRQ23Sys6SphereR10Vector3<float>(void)
+void getVectorField__Q34Game15ItemBigFountain4ItemFRQ23Sys6SphereR10Vector3<float>()
 {
 	/*
 	.loc_0x0:
@@ -2742,14 +2742,14 @@ void ItemBigFountain::Item::onKeyEvent(SysShape::KeyEvent const&)
  * Address:	801ED524
  * Size:	000004
  */
-void onKeyEvent__Q24Game40ItemState<Game::ItemBigFountain::Item> FPQ34Game15ItemBigFountain4ItemRCQ28SysShape8KeyEvent(void) { }
+void onKeyEvent__Q24Game40ItemState<Game::ItemBigFountain::Item> FPQ34Game15ItemBigFountain4ItemRCQ28SysShape8KeyEvent() { }
 
 /*
  * --INFO--
  * Address:	801ED528
  * Size:	000120
  */
-ItemBigFountain::Mgr::Mgr(void)
+ItemBigFountain::Mgr::Mgr()
 {
 	/*
 	stwu     r1, -0x440(r1)
@@ -2861,7 +2861,7 @@ void ItemBigFountain::FountainParms::read(Stream&)
  * Address:	801ED66C
  * Size:	0001EC
  */
-ItemBigFountain::FountainParms::FountainParms(void)
+ItemBigFountain::FountainParms::FountainParms()
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -2995,7 +2995,7 @@ ItemBigFountain::FountainParms::FountainParms(void)
  * Address:	801ED858
  * Size:	0000DC
  */
-void ItemBigFountain::Mgr::onLoadResources(void)
+void ItemBigFountain::Mgr::onLoadResources()
 {
 	/*
 	stwu     r1, -0x20(r1)
@@ -3061,7 +3061,7 @@ void ItemBigFountain::Mgr::onLoadResources(void)
  * Address:	801ED934
  * Size:	000020
  */
-void ItemBigFountain::Mgr::birth(void)
+void ItemBigFountain::Mgr::birth()
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -3080,7 +3080,7 @@ void ItemBigFountain::Mgr::birth(void)
  * Address:	801ED954
  * Size:	000058
  */
-void generatorBirth__Q34Game15ItemBigFountain3MgrFR10Vector3f R10Vector3f PQ24Game11GenItemParm(void)
+void generatorBirth__Q34Game15ItemBigFountain3MgrFR10Vector3f R10Vector3f PQ24Game11GenItemParm()
 {
 	/*
 	.loc_0x0:
@@ -3114,7 +3114,7 @@ void generatorBirth__Q34Game15ItemBigFountain3MgrFR10Vector3f R10Vector3f PQ24Ga
  * Address:	801ED9AC
  * Size:	000134
  */
-ItemBigFountain::Mgr::~Mgr(void)
+ItemBigFountain::Mgr::~Mgr()
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -3210,7 +3210,7 @@ lbl_801EDAC4:
  * Address:	801EDAE0
  * Size:	0000E8
  */
-void ItemBigFountain::Mgr::doNew(void)
+void ItemBigFountain::Mgr::doNew()
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -3284,7 +3284,7 @@ lbl_801EDBB0:
  * Address:	801EDBC8
  * Size:	00000C
  */
-void ItemBigFountain::Mgr::generatorGetID(void)
+void ItemBigFountain::Mgr::generatorGetID()
 {
 	/*
 	lis      r3, 0x77617270@ha
@@ -3298,14 +3298,14 @@ void ItemBigFountain::Mgr::generatorGetID(void)
  * Address:	801EDBD4
  * Size:	000008
  */
-u32 ItemBigFountain::Item::sound_culling(void) { return 0x0; }
+u32 ItemBigFountain::Item::sound_culling() { return 0x0; }
 
 /*
  * --INFO--
  * Address:	801EDBDC
  * Size:	00000C
  */
-void ItemBigFountain::Item::getCreatureName(void)
+void ItemBigFountain::Item::getCreatureName()
 {
 	/*
 	lis      r3, lbl_80481218@ha
@@ -3319,7 +3319,7 @@ void ItemBigFountain::Item::getCreatureName(void)
  * Address:	801EDBE8
  * Size:	000034
  */
-void doAI__Q24Game98FSMItem<Game::ItemBigFountain::Item, Game::ItemBigFountain::FSM, Game::ItemBigFountain::State> Fv(void)
+void doAI__Q24Game98FSMItem<Game::ItemBigFountain::Item, Game::ItemBigFountain::FSM, Game::ItemBigFountain::State> Fv()
 {
 	/*
 	.loc_0x0:
@@ -3344,7 +3344,7 @@ void doAI__Q24Game98FSMItem<Game::ItemBigFountain::Item, Game::ItemBigFountain::
  * Address:	801EDC1C
  * Size:	000008
  */
-u32 ItemBigFountain::OutState::canRide(void) { return 0x1; }
+u32 ItemBigFountain::OutState::canRide() { return 0x1; }
 
 /*
  * --INFO--
@@ -3352,7 +3352,7 @@ u32 ItemBigFountain::OutState::canRide(void) { return 0x1; }
  * Size:	000044
  */
 void onKeyEvent__Q24Game98FSMItem<Game::ItemBigFountain::Item, Game::ItemBigFountain::FSM, Game::ItemBigFountain::State>
-FRCQ28SysShape8KeyEvent(void)
+FRCQ28SysShape8KeyEvent()
 {
 	/*
 	.loc_0x0:
@@ -3383,77 +3383,77 @@ FRCQ28SysShape8KeyEvent(void)
  * Address:	801EDC68
  * Size:	000004
  */
-void onDamage__Q24Game40ItemState<Game::ItemBigFountain::Item> FPQ34Game15ItemBigFountain4Itemf(void) { }
+void onDamage__Q24Game40ItemState<Game::ItemBigFountain::Item> FPQ34Game15ItemBigFountain4Itemf() { }
 
 /*
  * --INFO--
  * Address:	801EDC6C
  * Size:	000004
  */
-void onBounce__Q24Game40ItemState<Game::ItemBigFountain::Item> FPQ34Game15ItemBigFountain4ItemPQ23Sys8Triangle(void) { }
+void onBounce__Q24Game40ItemState<Game::ItemBigFountain::Item> FPQ34Game15ItemBigFountain4ItemPQ23Sys8Triangle() { }
 
 /*
  * --INFO--
  * Address:	801EDC70
  * Size:	000004
  */
-void onPlatCollision__Q24Game40ItemState<Game::ItemBigFountain::Item> FPQ34Game15ItemBigFountain4ItemRQ24Game9PlatEvent(void) { }
+void onPlatCollision__Q24Game40ItemState<Game::ItemBigFountain::Item> FPQ34Game15ItemBigFountain4ItemRQ24Game9PlatEvent() { }
 
 /*
  * --INFO--
  * Address:	801EDC74
  * Size:	000004
  */
-void onCollision__Q24Game40ItemState<Game::ItemBigFountain::Item> FPQ34Game15ItemBigFountain4ItemRQ24Game9CollEvent(void) { }
+void onCollision__Q24Game40ItemState<Game::ItemBigFountain::Item> FPQ34Game15ItemBigFountain4ItemRQ24Game9CollEvent() { }
 
 /*
  * --INFO--
  * Address:	801EDC78
  * Size:	000004
  */
-void init__Q24Game39FSMState<Game::ItemBigFountain::Item> FPQ34Game15ItemBigFountain4ItemPQ24Game8StateArg(void) { }
+void init__Q24Game39FSMState<Game::ItemBigFountain::Item> FPQ34Game15ItemBigFountain4ItemPQ24Game8StateArg() { }
 
 /*
  * --INFO--
  * Address:	801EDC7C
  * Size:	000004
  */
-void exec__Q24Game39FSMState<Game::ItemBigFountain::Item> FPQ34Game15ItemBigFountain4Item(void) { }
+void exec__Q24Game39FSMState<Game::ItemBigFountain::Item> FPQ34Game15ItemBigFountain4Item() { }
 
 /*
  * --INFO--
  * Address:	801EDC80
  * Size:	000004
  */
-void cleanup__Q24Game39FSMState<Game::ItemBigFountain::Item> FPQ34Game15ItemBigFountain4Item(void) { }
+void cleanup__Q24Game39FSMState<Game::ItemBigFountain::Item> FPQ34Game15ItemBigFountain4Item() { }
 
 /*
  * --INFO--
  * Address:	801EDC84
  * Size:	000004
  */
-void resume__Q24Game39FSMState<Game::ItemBigFountain::Item> FPQ34Game15ItemBigFountain4Item(void) { }
+void resume__Q24Game39FSMState<Game::ItemBigFountain::Item> FPQ34Game15ItemBigFountain4Item() { }
 
 /*
  * --INFO--
  * Address:	801EDC88
  * Size:	000004
  */
-void restart__Q24Game39FSMState<Game::ItemBigFountain::Item> FPQ34Game15ItemBigFountain4Item(void) { }
+void restart__Q24Game39FSMState<Game::ItemBigFountain::Item> FPQ34Game15ItemBigFountain4Item() { }
 
 /*
  * --INFO--
  * Address:	801EDC8C
  * Size:	000004
  */
-void init__Q24Game43StateMachine<Game::ItemBigFountain::Item> FPQ34Game15ItemBigFountain4Item(void) { }
+void init__Q24Game43StateMachine<Game::ItemBigFountain::Item> FPQ34Game15ItemBigFountain4Item() { }
 
 /*
  * --INFO--
  * Address:	801EDC90
  * Size:	000038
  */
-void exec__Q24Game43StateMachine<Game::ItemBigFountain::Item> FPQ34Game15ItemBigFountain4Item(void)
+void exec__Q24Game43StateMachine<Game::ItemBigFountain::Item> FPQ34Game15ItemBigFountain4Item()
 {
 	/*
 	.loc_0x0:
@@ -3483,7 +3483,7 @@ void exec__Q24Game43StateMachine<Game::ItemBigFountain::Item> FPQ34Game15ItemBig
  * Address:	801EDCC8
  * Size:	000064
  */
-void create__Q24Game43StateMachine<Game::ItemBigFountain::Item> Fi(void)
+void create__Q24Game43StateMachine<Game::ItemBigFountain::Item> Fi()
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -3519,7 +3519,7 @@ void create__Q24Game43StateMachine<Game::ItemBigFountain::Item> Fi(void)
  * Address:	801EDD2C
  * Size:	00009C
  */
-void transit__Q24Game43StateMachine<Game::ItemBigFountain::Item> FPQ34Game15ItemBigFountain4ItemiPQ24Game8StateArg(void)
+void transit__Q24Game43StateMachine<Game::ItemBigFountain::Item> FPQ34Game15ItemBigFountain4ItemiPQ24Game8StateArg()
 {
 	/*
 	.loc_0x0:
@@ -3576,7 +3576,7 @@ void transit__Q24Game43StateMachine<Game::ItemBigFountain::Item> FPQ34Game15Item
  * Address:	801EDDC8
  * Size:	000084
  */
-void registerState__Q24Game43StateMachine<Game::ItemBigFountain::Item> FPQ24Game39FSMState<Game::ItemBigFountain::Item>(void)
+void registerState__Q24Game43StateMachine<Game::ItemBigFountain::Item> FPQ24Game39FSMState<Game::ItemBigFountain::Item>()
 {
 	/*
 	.loc_0x0:
@@ -3627,7 +3627,7 @@ void registerState__Q24Game43StateMachine<Game::ItemBigFountain::Item> FPQ24Game
  * Address:	801EDE4C
  * Size:	00001C
  */
-void getStateID__Q24Game98FSMItem<Game::ItemBigFountain::Item, Game::ItemBigFountain::FSM, Game::ItemBigFountain::State> Fv(void)
+void getStateID__Q24Game98FSMItem<Game::ItemBigFountain::Item, Game::ItemBigFountain::FSM, Game::ItemBigFountain::State> Fv()
 {
 	/*
 	.loc_0x0:
@@ -3649,7 +3649,7 @@ void getStateID__Q24Game98FSMItem<Game::ItemBigFountain::Item, Game::ItemBigFoun
  * Size:	000044
  */
 void platCallback__Q24Game98FSMItem<Game::ItemBigFountain::Item, Game::ItemBigFountain::FSM, Game::ItemBigFountain::State>
-FRQ24Game9PlatEvent(void)
+FRQ24Game9PlatEvent()
 {
 	/*
 	.loc_0x0:
@@ -3681,7 +3681,7 @@ FRQ24Game9PlatEvent(void)
  * Size:	000044
  */
 void collisionCallback__Q24Game98FSMItem<Game::ItemBigFountain::Item, Game::ItemBigFountain::FSM, Game::ItemBigFountain::State>
-FRQ24Game9CollEvent(void)
+FRQ24Game9CollEvent()
 {
 	/*
 	.loc_0x0:
@@ -3713,7 +3713,7 @@ FRQ24Game9CollEvent(void)
  * Size:	000044
  */
 void bounceCallback__Q24Game98FSMItem<Game::ItemBigFountain::Item, Game::ItemBigFountain::FSM, Game::ItemBigFountain::State>
-FPQ23Sys8Triangle(void)
+FPQ23Sys8Triangle()
 {
 	/*
 	.loc_0x0:
@@ -3744,7 +3744,7 @@ FPQ23Sys8Triangle(void)
  * Address:	801EDF34
  * Size:	000028
  */
-void __sinit_itemBigFountain_cpp(void)
+void __sinit_itemBigFountain_cpp()
 {
 	/*
 	lis      r4, __float_nan@ha
@@ -3766,7 +3766,7 @@ void __sinit_itemBigFountain_cpp(void)
  * Size:	000008
  */
 void @376 @onKeyEvent__Q24Game98FSMItem<Game::ItemBigFountain::Item, Game::ItemBigFountain::FSM, Game::ItemBigFountain::State>
-FRCQ28SysShape8KeyEvent(void)
+FRCQ28SysShape8KeyEvent()
 {
 	/*
 	.loc_0x0:
@@ -3793,7 +3793,7 @@ void @376 @Game::ItemBigFountain::Item::onKeyEvent(SysShape::KeyEvent const&)
  * Address:	801EDF6C
  * Size:	000008
  */
-@48 @Game::ItemBigFountain::Mgr::~Mgr(void)
+@48 @Game::ItemBigFountain::Mgr::~Mgr()
 {
 	/*
 	addi     r3, r3, -48

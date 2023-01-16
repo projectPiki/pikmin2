@@ -59,7 +59,7 @@ Vs2D_TitleInfo::Vs2D_TitleInfo(int count)
  * Address:	80235214
  * Size:	00000C
  */
-Vs2D_TitleInfo::Info::Info(void) { m_info = 0; }
+Vs2D_TitleInfo::Info::Info() { m_info = 0; }
 
 /*
  * --INFO--

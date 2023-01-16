@@ -529,7 +529,7 @@ lbl_8038315C:
  * Address:	80383170
  * Size:	0000B4
  */
-void UmiMushi::Obj::setParameters(void)
+void UmiMushi::Obj::setParameters()
 {
 	/*
 	stwu     r1, -0x20(r1)
@@ -589,7 +589,7 @@ lbl_803831EC:
  * Address:	80383224
  * Size:	000030
  */
-void UmiMushi::Obj::getBodyRadius(void)
+void UmiMushi::Obj::getBodyRadius()
 {
 	/*
 	lwz      r0, 0x1e0(r3)
@@ -618,7 +618,7 @@ lbl_8038324C:
  * Address:	80383254
  * Size:	000020
  */
-void birth__Q34Game8UmiMushi3ObjFR10Vector3f f(void)
+void birth__Q34Game8UmiMushi3ObjFR10Vector3f f()
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -1048,7 +1048,7 @@ lbl_803837DC:
  * Address:	8038381C
  * Size:	000428
  */
-UmiMushi::Obj::Obj(void)
+UmiMushi::Obj::Obj()
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -1383,7 +1383,7 @@ void UmiMushi::Obj::setFSM(Game::UmiMushi::FSM*)
  * Address:	80383C90
  * Size:	000090
  */
-void UmiMushi::Obj::doUpdate(void)
+void UmiMushi::Obj::doUpdate()
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -1434,7 +1434,7 @@ lbl_80383D0C:
  * Address:	80383D20
  * Size:	0004B0
  */
-void UmiMushi::Obj::doAnimationCullingOff(void)
+void UmiMushi::Obj::doAnimationCullingOff()
 {
 	/*
 	stwu     r1, -0x50(r1)
@@ -1793,7 +1793,7 @@ lbl_803841A0:
  * Address:	803841D0
  * Size:	000034
  */
-void UmiMushi::Obj::doAnimationCullingOn(void)
+void UmiMushi::Obj::doAnimationCullingOn()
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -1843,7 +1843,7 @@ void UmiMushi::Obj::doDebugDraw(Graphics&)
  * Address:	80384228
  * Size:	000098
  */
-void UmiMushi::Obj::changeMaterial(void)
+void UmiMushi::Obj::changeMaterial()
 {
 	/*
 	stwu     r1, -0x20(r1)
@@ -1892,7 +1892,7 @@ void UmiMushi::Obj::changeMaterial(void)
  * Address:	803842C0
  * Size:	0000DC
  */
-void UmiMushi::Obj::doStartMovie(void)
+void UmiMushi::Obj::doStartMovie()
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -1958,7 +1958,7 @@ void UmiMushi::Obj::doStartMovie(void)
  * Address:	8038439C
  * Size:	0000DC
  */
-void UmiMushi::Obj::doEndMovie(void)
+void UmiMushi::Obj::doEndMovie()
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -2411,7 +2411,7 @@ void UmiMushi::Obj::collisionCallback(Game::CollEvent&)
  * Address:	803848F0
  * Size:	000130
  */
-void UmiMushi::Obj::initMouthSlots(void)
+void UmiMushi::Obj::initMouthSlots()
 {
 	/*
 	stwu     r1, -0x50(r1)
@@ -2506,7 +2506,7 @@ lbl_803849EC:
  * Address:	80384A20
  * Size:	000094
  */
-void UmiMushi::Obj::doStartStoneState(void)
+void UmiMushi::Obj::doStartStoneState()
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -2554,7 +2554,7 @@ void UmiMushi::Obj::doStartStoneState(void)
  * Address:	80384AB4
  * Size:	0000BC
  */
-void UmiMushi::Obj::doFinishStoneState(void)
+void UmiMushi::Obj::doFinishStoneState()
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -2613,7 +2613,7 @@ void UmiMushi::Obj::doFinishStoneState(void)
  * Address:	80384B70
  * Size:	000028
  */
-void UmiMushi::Obj::startCarcassMotion(void)
+void UmiMushi::Obj::startCarcassMotion()
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -2702,7 +2702,7 @@ lbl_80384C0C:
  * Address:	80384C40
  * Size:	000358
  */
-void UmiMushi::Obj::walkFunc(void)
+void UmiMushi::Obj::walkFunc()
 {
 	/*
 	stwu     r1, -0xa0(r1)
@@ -2945,7 +2945,7 @@ lbl_80384F40:
  * Address:	80384F98
  * Size:	000150
  */
-void UmiMushi::Obj::setNextGoal(void)
+void UmiMushi::Obj::setNextGoal()
 {
 	/*
 	stwu     r1, -0x40(r1)
@@ -3048,7 +3048,7 @@ lbl_80385098:
  * Address:	803850E8
  * Size:	000810
  */
-void UmiMushi::Obj::changeColor(void)
+void UmiMushi::Obj::changeColor()
 {
 	/*
 	stwu     r1, -0x90(r1)
@@ -3611,7 +3611,7 @@ lbl_803858CC:
  * Address:	803858F8
  * Size:	0001C0
  */
-void UmiMushi::Obj::resetColor(void)
+void UmiMushi::Obj::resetColor()
 {
 	/*
 	stwu     r1, -0x80(r1)
@@ -3740,7 +3740,7 @@ lbl_803859AC:
  * Address:	80385AB8
  * Size:	0001BC
  */
-void UmiMushi::Obj::turnFunc(void)
+void UmiMushi::Obj::turnFunc()
 {
 	/*
 	stwu     r1, -0x70(r1)
@@ -3870,7 +3870,7 @@ lbl_80385C10:
  * Address:	80385C74
  * Size:	000014
  */
-void UmiMushi::Obj::resetWalkParm(void)
+void UmiMushi::Obj::resetWalkParm()
 {
 	/*
 	lfs      f1, 0x1fc(r3)
@@ -3886,7 +3886,7 @@ void UmiMushi::Obj::resetWalkParm(void)
  * Address:	80385C88
  * Size:	000248
  */
-void UmiMushi::Obj::isChangeNavi(void)
+void UmiMushi::Obj::isChangeNavi()
 {
 	/*
 	stwu     r1, -0x70(r1)
@@ -4062,7 +4062,7 @@ lbl_80385EA0:
  * Address:	80385ED0
  * Size:	0001D8
  */
-void UmiMushi::Obj::isFindTarget(void)
+void UmiMushi::Obj::isFindTarget()
 {
 	/*
 	stwu     r1, -0x90(r1)
@@ -4203,7 +4203,7 @@ lbl_80386074:
  * Address:	803860A8
  * Size:	000240
  */
-void UmiMushi::Obj::isAttackStart(void)
+void UmiMushi::Obj::isAttackStart()
 {
 	/*
 	stwu     r1, -0xb0(r1)
@@ -4368,7 +4368,7 @@ lbl_803862AC:
  * Address:	803862E8
  * Size:	0001B4
  */
-void UmiMushi::Obj::isNeedTurn(void)
+void UmiMushi::Obj::isNeedTurn()
 {
 	/*
 	stwu     r1, -0x70(r1)
@@ -4530,7 +4530,7 @@ lbl_803864C0:
  * Address:	........
  * Size:	000044
  */
-void UmiMushi::Obj::returnHome(void)
+void UmiMushi::Obj::returnHome()
 {
 	// UNUSED FUNCTION
 }
@@ -4540,7 +4540,7 @@ void UmiMushi::Obj::returnHome(void)
  * Address:	803864F8
  * Size:	00012C
  */
-void UmiMushi::Obj::canMove(void)
+void UmiMushi::Obj::canMove()
 {
 	/*
 	stwu     r1, -0x30(r1)
@@ -4634,7 +4634,7 @@ lbl_80386608:
  * Address:	80386624
  * Size:	000490
  */
-void UmiMushi::Obj::outMove(void)
+void UmiMushi::Obj::outMove()
 {
 	/*
 	stwu     r1, -0xc0(r1)
@@ -4967,7 +4967,7 @@ lbl_80386A70:
  * Address:	80386AB4
  * Size:	000080
  */
-void UmiMushi::Obj::setFindAnim(void)
+void UmiMushi::Obj::setFindAnim()
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -5014,7 +5014,7 @@ lbl_80386B20:
  * Address:	80386B34
  * Size:	000044
  */
-void UmiMushi::Obj::fadeAllEffect(void)
+void UmiMushi::Obj::fadeAllEffect()
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -5042,7 +5042,7 @@ void UmiMushi::Obj::fadeAllEffect(void)
  * Address:	80386B78
  * Size:	0000A8
  */
-void UmiMushi::Obj::fadeColorEffect(void)
+void UmiMushi::Obj::fadeColorEffect()
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -5095,7 +5095,7 @@ void UmiMushi::Obj::fadeColorEffect(void)
  * Address:	80386C20
  * Size:	00010C
  */
-void UmiMushi::Obj::createColorEffect(void)
+void UmiMushi::Obj::createColorEffect()
 {
 	/*
 	stwu     r1, -0x20(r1)
@@ -5177,7 +5177,7 @@ lbl_80386D18:
  * Address:	80386D2C
  * Size:	0000C0
  */
-void UmiMushi::Obj::attackEffect(void)
+void UmiMushi::Obj::attackEffect()
 {
 	/*
 	stwu     r1, -0x40(r1)
@@ -5236,7 +5236,7 @@ void UmiMushi::Obj::attackEffect(void)
  * Address:	80386DEC
  * Size:	0000C0
  */
-void UmiMushi::Obj::meltEffect(void)
+void UmiMushi::Obj::meltEffect()
 {
 	/*
 	stwu     r1, -0x40(r1)
@@ -5295,7 +5295,7 @@ void UmiMushi::Obj::meltEffect(void)
  * Address:	80386EAC
  * Size:	00010C
  */
-void UmiMushi::Obj::flickEffect(void)
+void UmiMushi::Obj::flickEffect()
 {
 	/*
 	stwu     r1, -0x50(r1)
@@ -5375,7 +5375,7 @@ lbl_80386FA4:
  * Address:	80386FB8
  * Size:	000070
  */
-void UmiMushi::Obj::eatEffect(void)
+void UmiMushi::Obj::eatEffect()
 {
 	/*
 	stwu     r1, -0x20(r1)
@@ -5414,7 +5414,7 @@ void UmiMushi::Obj::eatEffect(void)
  * Address:	80387028
  * Size:	000070
  */
-void UmiMushi::Obj::bubbleEffect(void)
+void UmiMushi::Obj::bubbleEffect()
 {
 	/*
 	stwu     r1, -0x20(r1)
@@ -5453,7 +5453,7 @@ void UmiMushi::Obj::bubbleEffect(void)
  * Address:	80387098
  * Size:	000028
  */
-void UmiMushi::Obj::delShadow(void)
+void UmiMushi::Obj::delShadow()
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -5474,7 +5474,7 @@ void UmiMushi::Obj::delShadow(void)
  * Address:	803870C0
  * Size:	0002C8
  */
-void UmiMushi::Obj::eyeScaleMtxCalc(void)
+void UmiMushi::Obj::eyeScaleMtxCalc()
 {
 	/*
 	stwu     r1, -0x40(r1)
@@ -5687,7 +5687,7 @@ lbl_80387358:
  * Address:	80387388
  * Size:	000184
  */
-void UmiMushi::Obj::weakScaleMtxCalc(void)
+void UmiMushi::Obj::weakScaleMtxCalc()
 {
 	/*
 	lwz      r4, 0x174(r3)
@@ -5815,7 +5815,7 @@ namespace efx {
  * Address:	8038750C
  * Size:	00009C
  */
-TUmiDeadawa::~TUmiDeadawa(void)
+TUmiDeadawa::~TUmiDeadawa()
 {
 	/*
 stwu     r1, -0x10(r1)
@@ -5869,7 +5869,7 @@ blr
  * Address:	803875A8
  * Size:	00009C
  */
-TUmiEat::~TUmiEat(void)
+TUmiEat::~TUmiEat()
 {
 	/*
 stwu     r1, -0x10(r1)
@@ -5932,14 +5932,14 @@ void UmiMushi::Obj::setInitialSetting(Game::EnemyInitialParamBase*) { }
  * Address:	80387648
  * Size:	000004
  */
-void applyImpulse__Q34Game8UmiMushi3ObjFR10Vector3f R10Vector3f(void) { }
+void applyImpulse__Q34Game8UmiMushi3ObjFR10Vector3f R10Vector3f() { }
 
 /*
  * --INFO--
  * Address:	8038764C
  * Size:	00000C
  */
-void UmiMushi::Obj::getDamageCoeStoneState(void)
+void UmiMushi::Obj::getDamageCoeStoneState()
 {
 	/*
 	lwz      r3, 0xc0(r3)
@@ -5974,7 +5974,7 @@ void UmiMushi::Obj::eatWhitePikminCallBack(Game::Creature*, float)
  * Address:	80387680
  * Size:	000008
  */
-void UmiMushi::Obj::getEnemyTypeID(void)
+void UmiMushi::Obj::getEnemyTypeID()
 {
 	/*
 	lwz      r3, 0x39c(r3)
@@ -5987,7 +5987,7 @@ void UmiMushi::Obj::getEnemyTypeID(void)
  * Address:	80387688
  * Size:	000008
  */
-void UmiMushi::Obj::getMouthSlots(void)
+void UmiMushi::Obj::getMouthSlots()
 {
 	/*
 	addi     r3, r3, 0x2cc
@@ -6002,7 +6002,7 @@ void UmiMushi::Obj::getMouthSlots(void)
  * Address:	80387690
  * Size:	000014
  */
-void @932 @12 @Game::EnemyBase::viewOnPelletKilled(void)
+void @932 @12 @Game::EnemyBase::viewOnPelletKilled()
 {
 	/*
 	li       r11, 0xc
@@ -6018,7 +6018,7 @@ void @932 @12 @Game::EnemyBase::viewOnPelletKilled(void)
  * Address:	803876A4
  * Size:	000014
  */
-void @932 @12 @Game::EnemyBase::viewStartCarryMotion(void)
+void @932 @12 @Game::EnemyBase::viewStartCarryMotion()
 {
 	/*
 	li       r11, 0xc
@@ -6034,7 +6034,7 @@ void @932 @12 @Game::EnemyBase::viewStartCarryMotion(void)
  * Address:	803876B8
  * Size:	000014
  */
-void @932 @12 @Game::EnemyBase::viewStartPreCarryMotion(void)
+void @932 @12 @Game::EnemyBase::viewStartPreCarryMotion()
 {
 	/*
 	li       r11, 0xc
@@ -6050,7 +6050,7 @@ void @932 @12 @Game::EnemyBase::viewStartPreCarryMotion(void)
  * Address:	803876CC
  * Size:	000014
  */
-void @932 @12 @Game::EnemyBase::view_finish_carrymotion(void)
+void @932 @12 @Game::EnemyBase::view_finish_carrymotion()
 {
 	/*
 	li       r11, 0xc
@@ -6066,7 +6066,7 @@ void @932 @12 @Game::EnemyBase::view_finish_carrymotion(void)
  * Address:	803876E0
  * Size:	000014
  */
-void @932 @12 @Game::EnemyBase::view_start_carrymotion(void)
+void @932 @12 @Game::EnemyBase::view_start_carrymotion()
 {
 	/*
 	li       r11, 0xc
@@ -6082,7 +6082,7 @@ void @932 @12 @Game::EnemyBase::view_start_carrymotion(void)
  * Address:	803876F4
  * Size:	000014
  */
-void @932 @12 @Game::EnemyBase::viewGetShape(void)
+void @932 @12 @Game::EnemyBase::viewGetShape()
 {
 	/*
 	li       r11, 0xc
@@ -6098,7 +6098,7 @@ void @932 @12 @Game::EnemyBase::viewGetShape(void)
  * Address:	80387708
  * Size:	000008
  */
-@4 @efx::TUmiEat::~TUmiEat(void)
+@4 @efx::TUmiEat::~TUmiEat()
 {
 	/*
 	addi     r3, r3, -4
@@ -6111,7 +6111,7 @@ void @932 @12 @Game::EnemyBase::viewGetShape(void)
  * Address:	80387710
  * Size:	000008
  */
-@4 @efx::TUmiDeadawa::~TUmiDeadawa(void)
+@4 @efx::TUmiDeadawa::~TUmiDeadawa()
 {
 	/*
 	addi     r3, r3, -4

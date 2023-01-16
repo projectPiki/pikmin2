@@ -867,7 +867,7 @@ void Door::read(Stream& stream)
  * Address:	801B65D0
  * Size:	0000AC
  */
-MapUnit::MapUnit(void)
+MapUnit::MapUnit()
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -921,7 +921,7 @@ MapUnit::MapUnit(void)
  * Address:	........
  * Size:	0000CC
  */
-void MapUnit::setupSizeInfo(void)
+void MapUnit::setupSizeInfo()
 {
 	// UNUSED FUNCTION
 }
@@ -1001,7 +1001,7 @@ void MapUnit::load(Stream& stream)
  * Address:	........
  * Size:	0000B8
  */
-MapUnitMgr::MapUnitMgr(void)
+MapUnitMgr::MapUnitMgr()
 {
 	// UNUSED FUNCTION
 }
@@ -1310,7 +1310,7 @@ namespace Game {
  * Address:	........
  * Size:	000038
  */
-void MapUnitMgr::testConstruct(void)
+void MapUnitMgr::testConstruct()
 {
 	// UNUSED FUNCTION
 }
@@ -1732,7 +1732,7 @@ void MapUnitMgr::load(char*)
  * Address:	801B6E2C
  * Size:	0000DC
  */
-MapRoom::MapRoom(void)
+MapRoom::MapRoom()
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -1798,7 +1798,7 @@ MapRoom::MapRoom(void)
  * Address:	........
  * Size:	0000FC
  */
-void MapRoom::countItems(void)
+void MapRoom::countItems()
 {
 	// UNUSED FUNCTION
 }
@@ -1808,7 +1808,7 @@ void MapRoom::countItems(void)
  * Address:	........
  * Size:	000170
  */
-void MapRoom::countEnemys(void)
+void MapRoom::countEnemys()
 {
 	// UNUSED FUNCTION
 }
@@ -1818,7 +1818,7 @@ void MapRoom::countEnemys(void)
  * Address:	801B6F08
  * Size:	000008
  */
-u32 ObjectLayoutNode::getExtraCode(void) { return 0x0; }
+u32 ObjectLayoutNode::getExtraCode() { return 0x0; }
 
 /*
  * --INFO--
@@ -2396,21 +2396,21 @@ lbl_801B76B4:
  * Address:	801B76C8
  * Size:	000008
  */
-s32 ObjectLayoutNode::getBirthDoorIndex(void) { return -0x1; }
+s32 ObjectLayoutNode::getBirthDoorIndex() { return -0x1; }
 
 /*
  * --INFO--
  * Address:	801B76D0
  * Size:	000008
  */
-u32 ObjectLayoutNode::isFixedBattery(void) { return 0x0; }
+u32 ObjectLayoutNode::isFixedBattery() { return 0x0; }
 
 /*
  * --INFO--
  * Address:	801B76D8
  * Size:	000008
  */
-void ObjectLayoutNode::getDirection(void)
+void ObjectLayoutNode::getDirection()
 {
 	/*
 	lfs      f1, lbl_80519440@sda21(r2)
@@ -2432,7 +2432,7 @@ void ObjectLayoutNode::getBirthPosition(float&, float&) { }
  * Address:	........
  * Size:	00001C
  */
-void getCenterPosition__Q24Game7MapRoomFR10Vector3f(void)
+void getCenterPosition__Q24Game7MapRoomFR10Vector3f()
 {
 	// UNUSED FUNCTION
 }
@@ -2464,14 +2464,14 @@ void MapRoom::createDoorInfo(Game::MapUnitInterface*)
  * Address:	801B76E4
  * Size:	000004
  */
-RoomDoorInfo::RoomDoorInfo(void) { }
+RoomDoorInfo::RoomDoorInfo() { }
 
 /*
  * --INFO--
  * Address:	801B76E8
  * Size:	0000D4
  */
-void MapRoom::doAnimation(void)
+void MapRoom::doAnimation()
 {
 	/*
 	stwu     r1, -0x20(r1)
@@ -2547,7 +2547,7 @@ lbl_801B77A8:
  * Address:	801B77BC
  * Size:	0001F4
  */
-void MapRoom::doEntry(void)
+void MapRoom::doEntry()
 {
 	/*
 	stwu     r1, -0x20(r1)
@@ -2819,7 +2819,7 @@ lbl_801B7AB8:
  * Address:	801B7AD4
  * Size:	000024
  */
-void MapRoom::doViewCalc(void)
+void MapRoom::doViewCalc()
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -3243,7 +3243,7 @@ namespace Game {
  * Address:	801B7FD0
  * Size:	00000C
  */
-CaveVRBox::CaveVRBox(void)
+CaveVRBox::CaveVRBox()
 {
 	/*
 	li       r0, 0
@@ -4035,7 +4035,7 @@ lbl_801B8A08:
  * Address:	801B8A24
  * Size:	0000EC
  */
-MapUnitInterface::~MapUnitInterface(void)
+MapUnitInterface::~MapUnitInterface()
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -4117,7 +4117,7 @@ lbl_801B8AF4:
  * Address:	801B8B10
  * Size:	00003C
  */
-MapUnitInterface::MapUnitInterface(void)
+MapUnitInterface::MapUnitInterface()
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -4143,7 +4143,7 @@ MapUnitInterface::MapUnitInterface(void)
  * Address:	801B8B4C
  * Size:	0000DC
  */
-PartsView::~PartsView(void)
+PartsView::~PartsView()
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -4219,7 +4219,7 @@ lbl_801B8C0C:
  * Address:	801B8C28
  * Size:	000224
  */
-void RoomMapMgr::completeUnitData(void)
+void RoomMapMgr::completeUnitData()
 {
 	/*
 	stwu     r1, -0x230(r1)
@@ -4385,7 +4385,7 @@ lbl_801B8E10:
  * Address:	801B8E4C
  * Size:	000234
  */
-void RoomMapMgr::setupJUTTextures(void)
+void RoomMapMgr::setupJUTTextures()
 {
 	/*
 	stwu     r1, -0x30(r1)
@@ -5120,7 +5120,7 @@ void RoomMapMgr::makeRoom(char*, float, float, int, int, Game::RoomLink*, Game::
  * Address:	801B9790
  * Size:	0003B4
  */
-void RoomMapMgr::placeObjects(void)
+void RoomMapMgr::placeObjects()
 {
 	/*
 	stwu     r1, -0xa0(r1)
@@ -5596,7 +5596,7 @@ lbl_801B9D70:
  * Address:	801B9D90
  * Size:	000024
  */
-void RoomMapMgr::hasHiddenCollision(void)
+void RoomMapMgr::hasHiddenCollision()
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -5668,7 +5668,7 @@ lbl_801B9E20:
  * Address:	801B9E40
  * Size:	0001F4
  */
-void RoomMapMgr::entryToMapRoomCellMgr(void)
+void RoomMapMgr::entryToMapRoomCellMgr()
 {
 	/*
 	stwu     r1, -0x20(r1)
@@ -5915,7 +5915,7 @@ lbl_801BA144:
  * Address:	........
  * Size:	00003C
  */
-void MapRoom::createGlobalCollision(void)
+void MapRoom::createGlobalCollision()
 {
 	// UNUSED FUNCTION
 }
@@ -5925,7 +5925,7 @@ void MapRoom::createGlobalCollision(void)
  * Address:	801BA15C
  * Size:	0009FC
  */
-void RoomMapMgr::createGlobalCollision(void)
+void RoomMapMgr::createGlobalCollision()
 {
 	/*
 	stwu     r1, -0x140(r1)
@@ -6656,7 +6656,7 @@ lbl_801BAB44:
  * Address:	801BAB58
  * Size:	0000B8
  */
-void addOne__Q23Sys11VertexTableFR10Vector3f(void)
+void addOne__Q23Sys11VertexTableFR10Vector3f()
 {
 	/*
 	lwz      r7, 0x1c(r3)
@@ -7961,7 +7961,7 @@ lbl_801BBC1C:
  * Address:	801BBCB8
  * Size:	00008C
  */
-void getMinY__Q24Game10RoomMapMgrFR10Vector3f(void)
+void getMinY__Q24Game10RoomMapMgrFR10Vector3f()
 {
 	/*
 	stwu     r1, -0x40(r1)
@@ -10563,7 +10563,7 @@ void RoomMapMgr::makeOneRoom(float, float, float, char*, short, Game::RoomLink*,
  * Address:	801BDFCC
  * Size:	0001F4
  */
-void RoomMapMgr::deleteTemp(void)
+void RoomMapMgr::deleteTemp()
 {
 	/*
 	stwu     r1, -0x20(r1)
@@ -10771,7 +10771,7 @@ lbl_801BE234:
  * Address:	801BE254
  * Size:	000060
  */
-void RoomMapMgr::doAnimation(void)
+void RoomMapMgr::doAnimation()
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -10808,7 +10808,7 @@ lbl_801BE2A0:
  * Address:	801BE2B4
  * Size:	0000DC
  */
-void RoomMapMgr::doEntry(void)
+void RoomMapMgr::doEntry()
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -10926,7 +10926,7 @@ lbl_801BE3F4:
  * Address:	801BE40C
  * Size:	000068
  */
-void RoomMapMgr::doViewCalc(void)
+void RoomMapMgr::doViewCalc()
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -11135,7 +11135,7 @@ lbl_801BE650:
  * Address:	801BE688
  * Size:	000024
  */
-void getStartPosition__Q24Game10RoomMapMgrFR10Vector3f i(void)
+void getStartPosition__Q24Game10RoomMapMgrFR10Vector3f i()
 {
 	/*
 	mulli    r0, r5, 0xc
@@ -11157,14 +11157,14 @@ namespace Game {
  * Address:	801BE6AC
  * Size:	000008
  */
-u32 RoomMapMgr::getDemoMatrix(void) { return 0x0; }
+u32 RoomMapMgr::getDemoMatrix() { return 0x0; }
 
 /*
  * --INFO--
  * Address:	801BE6B4
  * Size:	000084
  */
-Door::~Door(void)
+Door::~Door()
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -11212,7 +11212,7 @@ lbl_801BE71C:
  * Address:	801BE738
  * Size:	000004
  */
-void PartsView::constructor(void) { }
+void PartsView::constructor() { }
 
 /*
  * --INFO--
@@ -11517,7 +11517,7 @@ void MapRoom::getBoundingSphere(Sys::Sphere&)
  * Address:	801BEA54
  * Size:	000008
  */
-void MapRoom::getTypeName(void)
+void MapRoom::getTypeName()
 {
 	/*
 	addi     r3, r2, lbl_805194A0@sda21
@@ -11530,7 +11530,7 @@ void MapRoom::getTypeName(void)
  * Address:	801BEA5C
  * Size:	00000C
  */
-void MapRoom::getObjType(void)
+void MapRoom::getObjType()
 {
 	/*
 	lis      r3, 0x0000AAAA@ha
@@ -11544,14 +11544,14 @@ void MapRoom::getObjType(void)
  * Address:	801BEA68
  * Size:	000008
  */
-u32 MapRoom::collisionUpdatable(void) { return 0x0; }
+u32 MapRoom::collisionUpdatable() { return 0x0; }
 
 /*
  * --INFO--
  * Address:	801BEA70
  * Size:	00001C
  */
-void MapRoom::getPosition(void)
+void MapRoom::getPosition()
 {
 	/*
 	lfs      f0, 0x140(r4)
@@ -11569,14 +11569,14 @@ void MapRoom::getPosition(void)
  * Address:	801BEA8C
  * Size:	000004
  */
-void MapRoom::constructor(void) { }
+void MapRoom::constructor() { }
 
 /*
  * --INFO--
  * Address:	801BEA90
  * Size:	00000C
  */
-void ItemGateInitArg::getName(void)
+void ItemGateInitArg::getName()
 {
 	/*
 	lis      r3, lbl_8047FF38@ha
@@ -11590,7 +11590,7 @@ void ItemGateInitArg::getName(void)
  * Address:	801BEA9C
  * Size:	00000C
  */
-void ItemBigFountain::InitArg::getName(void)
+void ItemBigFountain::InitArg::getName()
 {
 	/*
 	lis      r3, lbl_8047FF48@ha
@@ -11604,7 +11604,7 @@ void ItemBigFountain::InitArg::getName(void)
  * Address:	801BEAA8
  * Size:	00000C
  */
-// void ItemHole::InitArg::getName(void)
+// void ItemHole::InitArg::getName()
 // {
 // 	/*
 // 	lis      r3, lbl_8047FF64@ha
@@ -11797,7 +11797,7 @@ namespace Game {
  * Address:	801BECAC
  * Size:	0000E0
  */
-MapUnitMgr::~MapUnitMgr(void)
+MapUnitMgr::~MapUnitMgr()
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -11870,21 +11870,21 @@ lbl_801BED70:
  * Address:	801BED8C
  * Size:	000004
  */
-void MapUnit::constructor(void) { }
+void MapUnit::constructor() { }
 
 /*
  * --INFO--
  * Address:	801BED90
  * Size:	000004
  */
-void MapUnit::doAnimation(void) { }
+void MapUnit::doAnimation() { }
 
 /*
  * --INFO--
  * Address:	801BED94
  * Size:	000004
  */
-void MapUnit::doEntry(void) { }
+void MapUnit::doEntry() { }
 
 /*
  * --INFO--
@@ -11898,7 +11898,7 @@ void MapUnit::doSetView(int) { }
  * Address:	801BED9C
  * Size:	000004
  */
-void MapUnit::doViewCalc(void) { }
+void MapUnit::doViewCalc() { }
 
 /*
  * --INFO--
@@ -11919,7 +11919,7 @@ void MapUnit::doDirectDraw(Graphics&) { }
  * Address:	801BEDA8
  * Size:	000060
  */
-DoorLink::~DoorLink(void)
+DoorLink::~DoorLink()
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -14604,7 +14604,7 @@ void MonoObjectMgr<Game::MapRoom>::MonoObjectMgr()
  * Address:	801C0CA4
  * Size:	000028
  */
-void __sinit_gameMapParts_cpp(void)
+void __sinit_gameMapParts_cpp()
 {
 	/*
 	lis      r4, __float_nan@ha
@@ -14885,7 +14885,7 @@ void ObjectMgr<Game::MapRoom>::@28 @doAnimation()
  * Address:	801C0D6C
  * Size:	000014
  */
-void @280 @4 @Game::MapMgr::frozenable(void)
+void @280 @4 @Game::MapMgr::frozenable()
 {
 	/*
 	li       r11, 4
@@ -14933,7 +14933,7 @@ void @280 @4 @Game::RoomMapMgr::doSimulation(float)
  * Address:	801C0DA8
  * Size:	000014
  */
-void @280 @4 @Game::RoomMapMgr::doViewCalc(void)
+void @280 @4 @Game::RoomMapMgr::doViewCalc()
 {
 	/*
 	li       r11, 4
@@ -14965,7 +14965,7 @@ void @280 @4 @Game::RoomMapMgr::doSetView(int)
  * Address:	801C0DD0
  * Size:	000014
  */
-void @280 @4 @Game::RoomMapMgr::doEntry(void)
+void @280 @4 @Game::RoomMapMgr::doEntry()
 {
 	/*
 	li       r11, 4
@@ -14981,7 +14981,7 @@ void @280 @4 @Game::RoomMapMgr::doEntry(void)
  * Address:	801C0DE4
  * Size:	000014
  */
-void @280 @4 @Game::RoomMapMgr::doAnimation(void)
+void @280 @4 @Game::RoomMapMgr::doAnimation()
 {
 	/*
 	li       r11, 4

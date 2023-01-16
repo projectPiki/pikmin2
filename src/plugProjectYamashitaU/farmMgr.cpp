@@ -560,7 +560,7 @@ FarmMgr::~FarmMgr() { }
  * Address:	80124748
  * Size:	000028
  */
-// void __sinit_farmMgr_cpp(void)
+// void __sinit_farmMgr_cpp()
 // {
 // 	/*
 // 	lis      r4, __float_nan@ha

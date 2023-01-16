@@ -12,7 +12,7 @@ namespace Nest {
  * Address:	8036CA94
  * Size:	000034
  */
-// void birth__Q34Game4Nest3ObjFR10Vector3f f(void)
+// void birth__Q34Game4Nest3ObjFR10Vector3f f()
 void Obj::birth(Vector3f& position, float p2)
 {
 	EnemyBase::birth(position, p2);

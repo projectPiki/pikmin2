@@ -1197,7 +1197,7 @@ blr
  * Address:	8040FCD4
  * Size:	00000C
  */
-void __sinit_khPayDept_cpp(void)
+void __sinit_khPayDept_cpp()
 {
 	/*
 	lfs      f0, lbl_80520204@sda21(r2)

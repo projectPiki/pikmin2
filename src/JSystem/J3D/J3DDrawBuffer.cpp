@@ -806,7 +806,7 @@ lbl_800661F4:
  * Address:	80066218
  * Size:	0000E4
  */
-void __sinit_J3DDrawBuffer_cpp(void)
+void __sinit_J3DDrawBuffer_cpp()
 {
 	/*
 	stwu     r1, -0x50(r1)

@@ -788,7 +788,7 @@ namespace Game {
  * Address:	8015928C
  * Size:	0000CC
  */
-NaviMgr::NaviMgr(void)
+NaviMgr::NaviMgr()
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -852,7 +852,7 @@ lbl_80159328:
  * Address:	80159358
  * Size:	000060
  */
-NaviParms::NaviParms(void)
+NaviParms::NaviParms()
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -887,7 +887,7 @@ NaviParms::NaviParms(void)
  * Address:	801593B8
  * Size:	000F10
  */
-NaviParms::Parms::Parms(void)
+NaviParms::Parms::Parms()
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -1864,7 +1864,7 @@ lbl_801593E8:
  * Address:	8015A2C8
  * Size:	0001A4
  */
-FakePikiParms::FakePikiParms(void)
+FakePikiParms::FakePikiParms()
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -1980,7 +1980,7 @@ FakePikiParms::FakePikiParms(void)
  * Address:	8015A46C
  * Size:	0002B4
  */
-FakePikiParms::Parms::Parms(void)
+FakePikiParms::Parms::Parms()
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -2225,7 +2225,7 @@ namespace Game {
  * Address:	8015A7C0
  * Size:	000110
  */
-NaviMgr::~NaviMgr(void)
+NaviMgr::~NaviMgr()
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -2312,7 +2312,7 @@ lbl_8015A8B4:
  * Address:	........
  * Size:	000020
  */
-unknown NaviMgr::init(void)
+unknown NaviMgr::init()
 {
 	// UNUSED FUNCTION
 }
@@ -2322,7 +2322,7 @@ unknown NaviMgr::init(void)
  * Address:	8015A8D0
  * Size:	000078
  */
-void NaviMgr::createPSMDirectorUpdator(void)
+void NaviMgr::createPSMDirectorUpdator()
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -2366,7 +2366,7 @@ lbl_8015A914:
  * Address:	8015A948
  * Size:	00005C
  */
-void NaviMgr::resetMgr(void)
+void NaviMgr::resetMgr()
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -2404,7 +2404,7 @@ lbl_8015A990:
  * Address:	8015A9A4
  * Size:	000090
  */
-void NaviMgr::killAll(void)
+void NaviMgr::killAll()
 {
 	/*
 	stwu     r1, -0x20(r1)
@@ -2674,7 +2674,7 @@ lbl_8015ACA8:
  * Address:	8015ACBC
  * Size:	0000BC
  */
-void NaviMgr::loadResources(void)
+void NaviMgr::loadResources()
 {
 	/*
 	stwu     r1, -0x440(r1)
@@ -3359,7 +3359,7 @@ lbl_8015B434:
  * Address:	8015B460
  * Size:	0000E0
  */
-void NaviMgr::doAnimation(void)
+void NaviMgr::doAnimation()
 {
 	/*
 	stwu     r1, -0x20(r1)
@@ -3434,7 +3434,7 @@ lbl_8015B514:
  * Address:	8015B540
  * Size:	000168
  */
-void NaviMgr::doEntry(void)
+void NaviMgr::doEntry()
 {
 	/*
 	stwu     r1, -0x20(r1)
@@ -3836,7 +3836,7 @@ unknown NaviMgr::draw2d(J2DGrafContext&)
  * Address:	8015BA20
  * Size:	000004
  */
-void NaviMgr::setupSoundViewerAndBas(void) { }
+void NaviMgr::setupSoundViewerAndBas() { }
 
 /*
  * --INFO--
@@ -5623,7 +5623,7 @@ void ObjectMgr<Game::Navi>::@28 @doAnimation()
  * Address:	8015CCC4
  * Size:	000008
  */
-void @28 @Game::NaviMgr::frozenable(void)
+void @28 @Game::NaviMgr::frozenable()
 {
 	/*
 	addi     r3, r3, -28
@@ -5636,7 +5636,7 @@ void @28 @Game::NaviMgr::frozenable(void)
  * Address:	8015CCCC
  * Size:	000008
  */
-void @28 @Game::NaviMgr::resetMgr(void)
+void @28 @Game::NaviMgr::resetMgr()
 {
 	/*
 	addi     r3, r3, -28
@@ -5649,7 +5649,7 @@ void @28 @Game::NaviMgr::resetMgr(void)
  * Address:	8015CCD4
  * Size:	000008
  */
-void @28 @Game::NaviMgr::loadResources(void)
+void @28 @Game::NaviMgr::loadResources()
 {
 	/*
 	addi     r3, r3, -28
@@ -5714,7 +5714,7 @@ void MonoObjectMgr<Game::Navi>::@28 @doSetView(int)
  * Address:	8015CCFC
  * Size:	000008
  */
-void @28 @Game::NaviMgr::doEntry(void)
+void @28 @Game::NaviMgr::doEntry()
 {
 	/*
 	addi     r3, r3, -28
@@ -5727,7 +5727,7 @@ void @28 @Game::NaviMgr::doEntry(void)
  * Address:	8015CD04
  * Size:	000008
  */
-void @28 @Game::NaviMgr::doAnimation(void)
+void @28 @Game::NaviMgr::doAnimation()
 {
 	/*
 	addi     r3, r3, -28
@@ -5740,7 +5740,7 @@ void @28 @Game::NaviMgr::doAnimation(void)
  * Address:	8015CD0C
  * Size:	000008
  */
-@48 @Game::NaviMgr::~NaviMgr(void)
+@48 @Game::NaviMgr::~NaviMgr()
 {
 	/*
 	addi     r3, r3, -48

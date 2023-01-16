@@ -155,7 +155,7 @@ void TAdaptor_fog::adaptor_do_data(const JStudio::TObject* object, const void* p
  * Size:	000228
  * sinit
  */
-// void __sinit_object - fog_cpp(void)
+// void __sinit_object - fog_cpp()
 // {
 // 	/*
 // 	stwu     r1, -0x80(r1)

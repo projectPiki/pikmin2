@@ -118,7 +118,7 @@ namespace Game {
  * Address:	802326A8
  * Size:	0000E0
  */
-SingleGame::EndingState::EndingState(void)
+SingleGame::EndingState::EndingState()
 {
 	/*
 	stwu     r1, -0x20(r1)
@@ -266,7 +266,7 @@ void SingleGame::EndingState::initNext(Game::SingleGameSection*)
  * Address:	8023285C
  * Size:	0001C8
  */
-void SingleGame::EndingState::dvdload(void)
+void SingleGame::EndingState::dvdload()
 {
 	/*
 	stwu     r1, -0x150(r1)
@@ -406,7 +406,7 @@ lbl_80232A08:
  * Address:	80232A24
  * Size:	000004
  */
-void SingleGame::EndingState::do_dvdload(void) { }
+void SingleGame::EndingState::do_dvdload() { }
 
 /*
  * --INFO--
@@ -1157,14 +1157,14 @@ namespace Screen {
  * Address:	80233404
  * Size:	000008
  */
-u32 DispMemberFinalMessage::getSize(void) { return 0xC; }
+u32 DispMemberFinalMessage::getSize() { return 0xC; }
 
 /*
  * --INFO--
  * Address:	8023340C
  * Size:	00000C
  */
-void DispMemberFinalMessage::getOwnerID(void)
+void DispMemberFinalMessage::getOwnerID()
 {
 	/*
 lis      r3, 0x004F4741@ha
@@ -1178,7 +1178,7 @@ blr
  * Address:	80233418
  * Size:	000014
  */
-void DispMemberFinalMessage::getMemberID(void)
+void DispMemberFinalMessage::getMemberID()
 {
 	/*
 lis      r4, 0x4C4D5347@ha
@@ -1220,7 +1220,7 @@ void Delegate<Game::SingleGame::EndingState>::invoke()
  * Address:	8023345C
  * Size:	000028
  */
-void __sinit_singleGS_Ending_cpp(void)
+void __sinit_singleGS_Ending_cpp()
 {
 	/*
 	lis      r4, __float_nan@ha

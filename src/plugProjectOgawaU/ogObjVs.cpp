@@ -3296,7 +3296,7 @@ void __sinit_ogObjVs_cpp()
  * Address:	80327C54
  * Size:	000008
  */
-//@24 @og::newScreen::ObjVs::~ObjVs(void)
+//@24 @og::newScreen::ObjVs::~ObjVs()
 //{
 /*
 addi     r3, r3, -24

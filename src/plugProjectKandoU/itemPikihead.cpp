@@ -7046,7 +7046,7 @@ void Delegate1<Game::FixedSizeItemMgr<Game::ItemPikihead::Item>, Model*>::invoke
  * Address:	801DCD50
  * Size:	000028
  */
-void __sinit_itemPikihead_cpp(void)
+void __sinit_itemPikihead_cpp()
 {
 	/*
 	lis      r4, __float_nan@ha

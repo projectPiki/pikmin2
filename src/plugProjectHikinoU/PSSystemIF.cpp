@@ -1062,7 +1062,7 @@ void JAIBasic::startSoundActorT<JAISe>(unsigned long, JAISe**, JAInter::Actor*, 
  * Address:	80338D8C
  * Size:	000028
  */
-void __sinit_PSSystemIF_cpp(void)
+void __sinit_PSSystemIF_cpp()
 {
 	/*
 	stwu     r1, -0x10(r1)

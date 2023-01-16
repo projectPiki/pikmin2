@@ -199,7 +199,7 @@ JKRAMCommand::~JKRAMCommand()
  * Address:	80019EDC
  * Size:	000044
  */
-// void __sinit_JKRAramPiece_cpp(void)
+// void __sinit_JKRAramPiece_cpp()
 // {
 // 	/*
 // 	stwu     r1, -0x10(r1)

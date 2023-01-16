@@ -38,7 +38,7 @@ void RoomMapMgr::nishimuraCreateRandomMap(MapUnitInterface* muiArray, int p2, Ca
  * Address:	8024C6D4
  * Size:	00011C
  */
-void RoomMapMgr::nishimuraPlaceRooms(void)
+void RoomMapMgr::nishimuraPlaceRooms()
 {
 	const int numRooms = Cave::randMapMgr->getNumRooms();
 	allocRooms(numRooms);
@@ -70,7 +70,7 @@ void RoomMapMgr::nishimuraPlaceRooms(void)
  * Address:	8024C7F0
  * Size:	000088
  */
-void RoomMapMgr::nishimuraSetTexture(void)
+void RoomMapMgr::nishimuraSetTexture()
 {
 	const int numRooms = Cave::randMapMgr->getNumRooms();
 	for (int i = 0; i < numRooms; i++) {

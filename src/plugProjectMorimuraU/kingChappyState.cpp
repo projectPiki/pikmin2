@@ -4300,7 +4300,7 @@ namespace efx {
  * Address:	8035C254
  * Size:	00000C
  */
-void ArgRotYScale::getName(void)
+void ArgRotYScale::getName()
 {
 	/*
 	lis      r3, lbl_80491120@ha
@@ -4316,7 +4316,7 @@ void ArgRotYScale::getName(void)
  * Address:	8035C260
  * Size:	000028
  */
-void __sinit_kingChappyState_cpp(void)
+void __sinit_kingChappyState_cpp()
 {
 	/*
 	lis      r4, __float_nan@ha

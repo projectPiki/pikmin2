@@ -54,7 +54,7 @@ namespace Game {
  * Address:	80233484
  * Size:	000048
  */
-IconTexture::Loader::Loader(void)
+IconTexture::Loader::Loader()
     : JKRDisposer()
 {
 	m_archive = nullptr;
@@ -66,7 +66,7 @@ IconTexture::Loader::Loader(void)
  * Address:	802334CC
  * Size:	00008C
  */
-IconTexture::Loader::~Loader(void)
+IconTexture::Loader::~Loader()
 {
 	if (m_archive) {
 		m_archive = nullptr;
@@ -104,7 +104,7 @@ ResTIMG* IconTexture::Loader::getResTIMG(char* path) { return (ResTIMG*)m_archiv
  * Address:	8023360C
  * Size:	000048
  */
-IconTexture::Mgr::Mgr(void)
+IconTexture::Mgr::Mgr()
     : JKRDisposer()
     , m_textures(nullptr)
     , m_count(0)
@@ -116,7 +116,7 @@ IconTexture::Mgr::Mgr(void)
  * Address:	80233654
  * Size:	00008C
  */
-IconTexture::Mgr::~Mgr(void)
+IconTexture::Mgr::~Mgr()
 {
 	if (m_textures) {
 		delete[] m_textures;

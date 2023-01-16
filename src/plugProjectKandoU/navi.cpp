@@ -1354,7 +1354,7 @@ void Navi::platCallback(PlatEvent&)
 //  * Address:	........
 //  * Size:	00005C
 //  */
-// void Game::ColorAnimator::__ct(void)
+// void Game::ColorAnimator::__ct()
 // {
 // 	// UNUSED FUNCTION
 // }
@@ -1364,7 +1364,7 @@ void Navi::platCallback(PlatEvent&)
 //  * Address:	........
 //  * Size:	000060
 //  */
-// void Game::ColorAnimLoop::__dt(void)
+// void Game::ColorAnimLoop::__dt()
 // {
 // 	// UNUSED FUNCTION
 // }

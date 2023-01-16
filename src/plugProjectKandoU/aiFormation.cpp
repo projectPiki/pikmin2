@@ -1978,7 +1978,7 @@ void ActFormation::platCallback(Game::Piki* p, Game::PlatEvent& platEvent)
  * Address:	8019EE34
  * Size:	000008
  */
-bool ActFormation::resumable(void) { return true; }
+bool ActFormation::resumable() { return true; }
 
 /*
  * --INFO--

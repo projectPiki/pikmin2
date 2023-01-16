@@ -10,7 +10,7 @@ PelletInitArg PelletBirthBuffer::sArgs[MAX_PELLET_COUNT];
  * Address:	8023D41C
  * Size:	00000C
  */
-void PelletBirthBuffer::clear(void) { PelletBirthBuffer::sNum = 0; }
+void PelletBirthBuffer::clear() { PelletBirthBuffer::sNum = 0; }
 
 /*
  * --INFO--
@@ -39,7 +39,7 @@ void PelletBirthBuffer::entry(Game::PelletInitArg& initArg)
  * Address:	8023D518
  * Size:	0000A0
  */
-void PelletBirthBuffer::birthAll(void)
+void PelletBirthBuffer::birthAll()
 {
 	if (!Pellet::sFromTekiEnable) {
 		return;

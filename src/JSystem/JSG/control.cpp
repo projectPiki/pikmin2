@@ -51,7 +51,7 @@ JStudio::TObject* createObject_JSG_(const JStudio::stb::data::TParse_TBlock_obje
  * Address:	80014734
  * Size:	000060
  */
-JStudio_JStage::TCreateObject::~TCreateObject(void) { }
+JStudio_JStage::TCreateObject::~TCreateObject() { }
 
 /*
  * --INFO--
@@ -104,7 +104,7 @@ bool JStudio_JStage::TCreateObject::create(JStudio::TObject** newObject, JStudio
  * Size:	0000CC
  */
 // void createObject_JSG_<JStudio_JStage::TAdaptor_actor, JStage::TActor> __Q214JStudio_JStage21 @unnamed @control_cpp
-//     @FRCQ47JStudio3stb4data20TParse_TBlock_objectPQ26JStage7TObjectPCQ26JStage7TSystem(void)
+//     @FRCQ47JStudio3stb4data20TParse_TBlock_objectPQ26JStage7TObjectPCQ26JStage7TSystem()
 // {
 // 	/*
 // 	.loc_0x0:
@@ -180,7 +180,7 @@ bool JStudio_JStage::TCreateObject::create(JStudio::TObject** newObject, JStudio
  * Size:	0000CC
  */
 // void createObject_JSG_<JStudio_JStage::TAdaptor_camera, JStage::TCamera> __Q214JStudio_JStage21 @unnamed @control_cpp
-//     @FRCQ47JStudio3stb4data20TParse_TBlock_objectPQ26JStage7TObjectPCQ26JStage7TSystem(void)
+//     @FRCQ47JStudio3stb4data20TParse_TBlock_objectPQ26JStage7TObjectPCQ26JStage7TSystem()
 // {
 // 	/*
 // 	.loc_0x0:
@@ -256,7 +256,7 @@ bool JStudio_JStage::TCreateObject::create(JStudio::TObject** newObject, JStudio
  * Size:	0000CC
  */
 // void createObject_JSG_<JStudio_JStage::TAdaptor_ambientLight, JStage::TAmbientLight> __Q214JStudio_JStage21 @unnamed @control_cpp
-//     @FRCQ47JStudio3stb4data20TParse_TBlock_objectPQ26JStage7TObjectPCQ26JStage7TSystem(void)
+//     @FRCQ47JStudio3stb4data20TParse_TBlock_objectPQ26JStage7TObjectPCQ26JStage7TSystem()
 // {
 // 	/*
 // 	.loc_0x0:
@@ -332,7 +332,7 @@ bool JStudio_JStage::TCreateObject::create(JStudio::TObject** newObject, JStudio
  * Size:	0000CC
  */
 // void createObject_JSG_<JStudio_JStage::TAdaptor_light, JStage::TLight> __Q214JStudio_JStage21 @unnamed @control_cpp
-//     @FRCQ47JStudio3stb4data20TParse_TBlock_objectPQ26JStage7TObjectPCQ26JStage7TSystem(void)
+//     @FRCQ47JStudio3stb4data20TParse_TBlock_objectPQ26JStage7TObjectPCQ26JStage7TSystem()
 // {
 // 	/*
 // 	.loc_0x0:
@@ -408,7 +408,7 @@ bool JStudio_JStage::TCreateObject::create(JStudio::TObject** newObject, JStudio
  * Size:	0000CC
  */
 // void createObject_JSG_<JStudio_JStage::TAdaptor_fog, JStage::TFog> __Q214JStudio_JStage21 @unnamed @control_cpp
-//     @FRCQ47JStudio3stb4data20TParse_TBlock_objectPQ26JStage7TObjectPCQ26JStage7TSystem(void)
+//     @FRCQ47JStudio3stb4data20TParse_TBlock_objectPQ26JStage7TObjectPCQ26JStage7TSystem()
 // {
 // 	/*
 // 	.loc_0x0:

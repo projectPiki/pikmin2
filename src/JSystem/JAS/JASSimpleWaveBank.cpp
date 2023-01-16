@@ -56,7 +56,7 @@ JASSimpleWaveBank::~JASSimpleWaveBank() { delete[] m_handles; }
  * Size:	00005C
  * __dt__Q217JASSimpleWaveBank11TWaveHandleFv
  */
-JASSimpleWaveBank::TWaveHandle::~TWaveHandle(void) { }
+JASSimpleWaveBank::TWaveHandle::~TWaveHandle() { }
 
 /*
  * --INFO--

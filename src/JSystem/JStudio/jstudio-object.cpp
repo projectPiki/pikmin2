@@ -1212,7 +1212,7 @@ static TOutputVariableValue_BOOL_<TAdaptor_sound> soovv_sound_PARENT_ENABLE_;
  * Size:	000048
  * __dt__Q37JStudio14TVariableValue7TOutputFv
  */
-TVariableValue::TOutput::~TOutput(void) { }
+TVariableValue::TOutput::~TOutput() { }
 
 /*
  * --INFO--
@@ -1304,7 +1304,7 @@ void TVariableValue::update_functionValue_(JStudio::TVariableValue*, double)
  * Size:	00005C
  * __dt__Q37JStudio14TVariableValue13TOutput_none_Fv
  */
-TVariableValue::TOutput_none_::~TOutput_none_(void) { }
+TVariableValue::TOutput_none_::~TOutput_none_() { }
 
 /*
  * --INFO--
@@ -1666,7 +1666,7 @@ void TAdaptor::adaptor_updateVariableValue_GXColor(unsigned long const*, _GXColo
  * Address:	........
  * Size:	00009C
  */
-void TAdaptor::adaptor_updateVariableValue(void)
+void TAdaptor::adaptor_updateVariableValue()
 {
 	// UNUSED FUNCTION
 }
@@ -1852,7 +1852,7 @@ void TObject::do_begin()
  * Size:	00003C
  * do_end__Q27JStudio7TObjectFv
  */
-void TObject::do_end(void)
+void TObject::do_end()
 {
 	if (m_adaptor != nullptr) {
 		m_adaptor->adaptor_do_end(this);
@@ -1981,7 +1981,7 @@ TObject::TObject(JStudio::data::TE32Block, void const*, unsigned long, JStudio::
  * Size:	00005C
  * __dt__Q27JStudio14TAdaptor_actorFv
  */
-TAdaptor_actor::~TAdaptor_actor(void) { }
+TAdaptor_actor::~TAdaptor_actor() { }
 
 /*
  * --INFO--
@@ -2767,7 +2767,7 @@ multi:
  * Size:	00005C
  * __dt__Q27JStudio15TAdaptor_cameraFv
  */
-TAdaptor_camera::~TAdaptor_camera(void) { }
+TAdaptor_camera::~TAdaptor_camera() { }
 
 /*
  * --INFO--
@@ -3226,7 +3226,7 @@ lbl_8000E4FC:
  * Size:	00005C
  * __dt__Q27JStudio12TAdaptor_fogFv
  */
-TAdaptor_fog::~TAdaptor_fog(void) { }
+TAdaptor_fog::~TAdaptor_fog() { }
 
 /*
  * --INFO--
@@ -3480,7 +3480,7 @@ lbl_8000E798:
  * Size:	00005C
  * __dt__Q27JStudio14TAdaptor_lightFv
  */
-TAdaptor_light::~TAdaptor_light(void)
+TAdaptor_light::~TAdaptor_light()
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -3907,7 +3907,7 @@ lbl_8000EBBC:
  * Size:	00005C
  * __dt__Q27JStudio16TAdaptor_messageFv
  */
-TAdaptor_message::~TAdaptor_message(void) { }
+TAdaptor_message::~TAdaptor_message() { }
 
 /*
  * --INFO--
@@ -3992,7 +3992,7 @@ lbl_8000ED04:
  * Size:	00005C
  * __dt__Q27JStudio17TAdaptor_particleFv
  */
-TAdaptor_particle::~TAdaptor_particle(void) { }
+TAdaptor_particle::~TAdaptor_particle() { }
 
 /*
  * --INFO--
@@ -4462,7 +4462,7 @@ lbl_8000F20C:
  * Size:	00005C
  * __dt__Q27JStudio14TAdaptor_soundFv
  */
-TAdaptor_sound::~TAdaptor_sound(void) { }
+TAdaptor_sound::~TAdaptor_sound() { }
 
 /*
  * --INFO--
@@ -4944,7 +4944,7 @@ TObject_actor::~TObject_actor() { }
  * Address:	8000FB6C
  * Size:	000284
  */
-// void __sinit_jstudio - object_cpp(void)
+// void __sinit_jstudio - object_cpp()
 // {
 // 	/*
 // 	stwu     r1, -0x10(r1)
@@ -5133,7 +5133,7 @@ TObject_actor::~TObject_actor() { }
  * Size:	00005C
  * __dt__Q37JStudio28@unnamed@jstudio_object_cpp@54TOutputVariableValue_BOOL_<Q27JStudio14TAdaptor_sound>Fv
  */
-// void __dt__Q37JStudio28 @unnamed @jstudio_object_cpp @54TOutputVariableValue_BOOL_ < JStudio::TAdaptor_sound > Fv(void)
+// void __dt__Q37JStudio28 @unnamed @jstudio_object_cpp @54TOutputVariableValue_BOOL_ < JStudio::TAdaptor_sound > Fv()
 // {
 // 	/*
 // 	.loc_0x0:
@@ -5172,7 +5172,7 @@ TObject_actor::~TObject_actor() { }
  * Address:	8000FE4C
  * Size:	00005C
  */
-// void __dt__Q37JStudio28 @unnamed @jstudio_object_cpp @57TOutputVariableValue_BOOL_ < JStudio::TAdaptor_particle > Fv(void)
+// void __dt__Q37JStudio28 @unnamed @jstudio_object_cpp @57TOutputVariableValue_BOOL_ < JStudio::TAdaptor_particle > Fv()
 // {
 // 	/*
 // 	.loc_0x0:
@@ -5211,7 +5211,7 @@ TObject_actor::~TObject_actor() { }
  * Address:	8000FEA8
  * Size:	00005C
  */
-// void __dt__Q37JStudio28 @unnamed @jstudio_object_cpp @54TOutputVariableValue_BOOL_ < JStudio::TAdaptor_light > Fv(void)
+// void __dt__Q37JStudio28 @unnamed @jstudio_object_cpp @54TOutputVariableValue_BOOL_ < JStudio::TAdaptor_light > Fv()
 // {
 // 	/*
 // 	.loc_0x0:
@@ -5250,7 +5250,7 @@ TObject_actor::~TObject_actor() { }
  * Address:	8000FF04
  * Size:	00005C
  */
-// void __dt__Q37JStudio28 @unnamed @jstudio_object_cpp @55TOutputVariableValue_BOOL_ < JStudio::TAdaptor_camera > Fv(void)
+// void __dt__Q37JStudio28 @unnamed @jstudio_object_cpp @55TOutputVariableValue_BOOL_ < JStudio::TAdaptor_camera > Fv()
 // {
 // 	/*
 // 	.loc_0x0:
@@ -5289,7 +5289,7 @@ TObject_actor::~TObject_actor() { }
  * Address:	8000FF60
  * Size:	00005C
  */
-// void __dt__Q37JStudio28 @unnamed @jstudio_object_cpp @54TOutputVariableValue_BOOL_ < JStudio::TAdaptor_actor > Fv(void)
+// void __dt__Q37JStudio28 @unnamed @jstudio_object_cpp @54TOutputVariableValue_BOOL_ < JStudio::TAdaptor_actor > Fv()
 // {
 // 	/*
 // 	.loc_0x0:
@@ -5329,7 +5329,7 @@ TObject_actor::~TObject_actor() { }
  * Size:	00005C
  */
 // void __cl__Q37JStudio28 @unnamed @jstudio_object_cpp @54TOutputVariableValue_BOOL_ < JStudio::TAdaptor_sound >
-// CFfPQ27JStudio8TAdaptor(void)
+// CFfPQ27JStudio8TAdaptor()
 // {
 // 	/*
 // 	.loc_0x0:
@@ -5367,7 +5367,7 @@ TObject_actor::~TObject_actor() { }
  * Size:	00005C
  */
 // void __cl__Q37JStudio28 @unnamed @jstudio_object_cpp @57TOutputVariableValue_BOOL_ < JStudio::TAdaptor_particle
-//     > CFfPQ27JStudio8TAdaptor(void)
+//     > CFfPQ27JStudio8TAdaptor()
 // {
 // 	/*
 // 	.loc_0x0:
@@ -5405,7 +5405,7 @@ TObject_actor::~TObject_actor() { }
  * Size:	00005C
  */
 // void __cl__Q37JStudio28 @unnamed @jstudio_object_cpp @54TOutputVariableValue_BOOL_ < JStudio::TAdaptor_light >
-// CFfPQ27JStudio8TAdaptor(void)
+// CFfPQ27JStudio8TAdaptor()
 // {
 // 	/*
 // 	.loc_0x0:
@@ -5443,7 +5443,7 @@ TObject_actor::~TObject_actor() { }
  * Size:	00005C
  */
 // void __cl__Q37JStudio28 @unnamed @jstudio_object_cpp @55TOutputVariableValue_BOOL_ < JStudio::TAdaptor_camera
-//     > CFfPQ27JStudio8TAdaptor(void)
+//     > CFfPQ27JStudio8TAdaptor()
 // {
 // 	/*
 // 	.loc_0x0:
@@ -5481,7 +5481,7 @@ TObject_actor::~TObject_actor() { }
  * Size:	00005C
  */
 // void __cl__Q37JStudio28 @unnamed @jstudio_object_cpp @54TOutputVariableValue_BOOL_ < JStudio::TAdaptor_actor >
-// CFfPQ27JStudio8TAdaptor(void)
+// CFfPQ27JStudio8TAdaptor()
 // {
 // 	/*
 // 	.loc_0x0:

@@ -105,7 +105,7 @@ JStudio::TObject* createObject_MESSAGE(const JStudio::stb::data::TParse_TBlock_o
  * Address:	........
  * Size:	000060
  */
-JStudio_JMessage::TCreateObject_base::~TCreateObject_base(void)
+JStudio_JMessage::TCreateObject_base::~TCreateObject_base()
 {
 	// UNUSED FUNCTION
 }
@@ -180,7 +180,7 @@ bool JStudio_JMessage::TCreateObject_base::create(JStudio::TObject** newObject, 
  * Address:	80014F60
  * Size:	000070
  */
-JStudio_JMessage::TCreateObject::~TCreateObject(void)
+JStudio_JMessage::TCreateObject::~TCreateObject()
 {
 	/*
 	stwu     r1, -0x10(r1)

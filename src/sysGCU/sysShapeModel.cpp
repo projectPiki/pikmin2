@@ -476,7 +476,7 @@ lbl_8043E5C4:
  * Address:	8043E5D4
  * Size:	00015C
  */
-void Model::getRoughBoundingRadius(void)
+void Model::getRoughBoundingRadius()
 {
 	/*
 	stwu     r1, -0x20(r1)
@@ -598,7 +598,7 @@ lbl_8043E71C:
  * Address:	8043E730
  * Size:	000174
  */
-void Model::getRoughCenter(void)
+void Model::getRoughCenter()
 {
 	/*
 	stwu     r1, -0x60(r1)
@@ -864,7 +864,7 @@ lbl_8043E9B0:
  * Size:	000058
  * Matching! https://decomp.me/scratch/ZILok
  */
-void Model::hide(void)
+void Model::hide()
 {
 	for (u16 i = 0; i < m_jointCount; i++) {
 		for (J3DMaterial* material = m_j3dModel->m_modelData->m_jointTree.m_joints[i]->m_material; material != nullptr;
@@ -879,7 +879,7 @@ void Model::hide(void)
  * Address:	8043EA14
  * Size:	000058
  */
-void Model::show(void)
+void Model::show()
 {
 	for (u16 i = 0; i < m_jointCount; i++) {
 		for (J3DMaterial* material = m_j3dModel->m_modelData->m_jointTree.m_joints[i]->m_material; material != nullptr;
@@ -926,7 +926,7 @@ lbl_8043EA58:
  * Address:	8043EA6C
  * Size:	000044
  */
-void Model::hidePackets(void)
+void Model::hidePackets()
 {
 	/*
 	li       r7, 0
@@ -958,7 +958,7 @@ lbl_8043EA94:
  * Address:	8043EAB0
  * Size:	000044
  */
-void Model::showPackets(void)
+void Model::showPackets()
 {
 	/*
 	li       r7, 0
@@ -990,7 +990,7 @@ lbl_8043EAD8:
  * Address:	8043EAF4
  * Size:	0000BC
  */
-void Model::initJoints(void)
+void Model::initJoints()
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -1052,7 +1052,7 @@ lbl_8043EB78:
  * Address:	8043EBB0
  * Size:	000060
  */
-Joint::~Joint(void)
+Joint::~Joint()
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -1089,7 +1089,7 @@ lbl_8043EBF4:
  * Address:	8043EC10
  * Size:	00005C
  */
-Joint::Joint(void)
+Joint::Joint()
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -1472,7 +1472,7 @@ void Model::update()
  * Address:	8043F040
  * Size:	00000C
  */
-void Model::setViewCalcModeImm(void)
+void Model::setViewCalcModeImm()
 {
 	/*
 	li       r0, 0
@@ -1486,7 +1486,7 @@ void Model::setViewCalcModeImm(void)
  * Address:	8043F04C
  * Size:	00000C
  */
-void Model::setViewCalcModeInd(void)
+void Model::setViewCalcModeInd()
 {
 	/*
 	li       r0, 1
@@ -1510,7 +1510,7 @@ bool Model::needViewCalc()
  * Address:	8043F058
  * Size:	000068
  */
-void Model::viewCalc(void)
+void Model::viewCalc()
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -1585,7 +1585,7 @@ lbl_8043F0F4:
  * Address:	8043F10C
  * Size:	000014
  */
-void Model::isMtxImmediate(void)
+void Model::isMtxImmediate()
 {
 	/*
 	lwz      r3, 8(r3)
@@ -1608,7 +1608,7 @@ bool Model::isModel() { return true; }
  * Address:	8043F128
  * Size:	000008
  */
-bool Model::isVisible(void)
+bool Model::isVisible()
 {
 	return m_isVisible;
 	/*
@@ -1647,7 +1647,7 @@ void Model::jointVisible(bool, SysShape::Joint*)
  * Address:	8043F160
  * Size:	000028
  */
-void __sinit_sysShapeModel_cpp(void)
+void __sinit_sysShapeModel_cpp()
 {
 	/*
 	lis      r4, __float_nan@ha

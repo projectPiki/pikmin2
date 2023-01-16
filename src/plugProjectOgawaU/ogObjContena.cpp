@@ -3351,7 +3351,7 @@ void __sinit_ogObjContena_cpp()
  * Address:	80321F00
  * Size:	000008
  */
-// @24 @og::newScreen::ObjContena::~ObjContena(void)
+// @24 @og::newScreen::ObjContena::~ObjContena()
 //{
 /*
 addi     r3, r3, -24

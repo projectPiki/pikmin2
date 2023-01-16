@@ -236,7 +236,7 @@ namespace title {
  * Address:	803E7358
  * Size:	000148
  */
-Kogane::TMgr::TMgr(void)
+Kogane::TMgr::TMgr()
 {
 	/*
 stwu     r1, -0x10(r1)
@@ -364,7 +364,7 @@ blr
  * Address:	803E74F0
  * Size:	000028
  */
-void Kogane::TMgr::initUnit(void)
+void Kogane::TMgr::initUnit()
 {
 	/*
 stwu     r1, -0x10(r1)
@@ -395,7 +395,7 @@ void Kogane::TAnimFolder::load(J3DModelData*, JKRArchive*)
  * Address:	803E7518
  * Size:	000068
  */
-Kogane::TAnimator::TAnimator(void)
+Kogane::TAnimator::TAnimator()
 {
 	/*
 stwu     r1, -0x10(r1)
@@ -520,7 +520,7 @@ blr
  * Address:	........
  * Size:	000078
  */
-void Kogane::TAnimator::newJ3DModel(void)
+void Kogane::TAnimator::newJ3DModel()
 {
 	// UNUSED FUNCTION
 }
@@ -615,7 +615,7 @@ blr
  * Address:	803E7798
  * Size:	00004C
  */
-void startZigzagWalk__Q43ebi5title6Kogane5TUnitFR10Vector2<float> R10Vector2<float>(void)
+void startZigzagWalk__Q43ebi5title6Kogane5TUnitFR10Vector2<float> R10Vector2<float>()
 {
 	/*
 	.loc_0x0:
@@ -646,7 +646,7 @@ void startZigzagWalk__Q43ebi5title6Kogane5TUnitFR10Vector2<float> R10Vector2<flo
  * Address:	803E77E4
  * Size:	000030
  */
-void Kogane::TUnit::goHome(void)
+void Kogane::TUnit::goHome()
 {
 	/*
 stwu     r1, -0x10(r1)
@@ -671,7 +671,7 @@ blr
  * Address:	803E7814
  * Size:	000024
  */
-void Kogane::TUnit::outOfCalc(void)
+void Kogane::TUnit::outOfCalc()
 {
 	/*
 stwu     r1, -0x10(r1)
@@ -691,7 +691,7 @@ blr
  * Address:	803E7838
  * Size:	000014
  */
-void Kogane::TUnit::isCalc(void)
+void Kogane::TUnit::isCalc()
 {
 	/*
 lwz      r3, 0x60(r3)
@@ -707,7 +707,7 @@ blr
  * Address:	803E784C
  * Size:	000014
  */
-void Kogane::TUnit::isController(void)
+void Kogane::TUnit::isController()
 {
 	/*
 lwz      r0, 0x60(r3)
@@ -947,7 +947,7 @@ blr
  * Address:	803E7B30
  * Size:	000734
  */
-void Kogane::TUnit::update(void)
+void Kogane::TUnit::update()
 {
 	/*
 stwu     r1, -0x20(r1)
@@ -1509,7 +1509,7 @@ blr
  * Address:	803E8264
  * Size:	00032C
  */
-Kogane::TParam::TParam(void)
+Kogane::TParam::TParam()
 {
 	/*
 stwu     r1, -0x10(r1)
@@ -1725,7 +1725,7 @@ blr
  * Address:	803E8590
  * Size:	000008
  */
-u32 Kogane::TUnit::getCreatureType(void) { return 0x5; }
+u32 Kogane::TUnit::getCreatureType() { return 0x5; }
 
 /*
  * --INFO--
@@ -1748,7 +1748,7 @@ blr
  * Address:	803E85AC
  * Size:	000004
  */
-E3DAnimRes::E3DAnimRes(void) { }
+E3DAnimRes::E3DAnimRes() { }
 
 } // namespace title
 } // namespace ebi
@@ -1758,7 +1758,7 @@ E3DAnimRes::E3DAnimRes(void) { }
  * Address:	803E85B0
  * Size:	000028
  */
-void __sinit_ebiP2TitleKogane_cpp(void)
+void __sinit_ebiP2TitleKogane_cpp()
 {
 	/*
 	lis      r4, __float_nan@ha

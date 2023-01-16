@@ -776,7 +776,7 @@ void LightMgr::update() { }
  * Address:	8042BCE4
  * Size:	000028
  */
-// void __sinit_light_cpp(void)
+// void __sinit_light_cpp()
 // {
 // 	/*
 // 	lis      r4, __float_nan@ha

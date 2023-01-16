@@ -210,7 +210,7 @@ void CPlate::shrink()
  * Address:	........
  * Size:	000018
  */
-void CPlate::updateShrink(void)
+void CPlate::updateShrink()
 {
 	// UNUSED FUNCTION
 }
@@ -384,7 +384,7 @@ CPlate::CPlate(int slotLimit)
  * Address:	80195250
  * Size:	00002C
  */
-CPlate::Slot::Slot(void)
+CPlate::Slot::Slot()
 {
 	m_creature = nullptr;
 	_1C        = 0;
@@ -411,7 +411,7 @@ CPlate::Slot::Slot(void)
  * Address:	801952EC
  * Size:	000210
  */
-// void setPos__Q24Game6CPlateFR10Vector3f fR10Vector3f f(void)
+// void setPos__Q24Game6CPlateFR10Vector3f fR10Vector3f f()
 void CPlate::setPos(Vector3f& position, float directionMaybe, Vector3f& velocity, float p4)
 {
 
@@ -574,7 +574,7 @@ lbl_801954C0:
  * Address:	801954FC
  * Size:	00020C
  */
-// void setPosGray__Q24Game6CPlateFR10Vector3f fR10Vector3f f(void)
+// void setPosGray__Q24Game6CPlateFR10Vector3f fR10Vector3f f()
 void CPlate::setPosGray(Vector3f& p1, float p2, Vector3f& p3, float p4)
 {
 	/*
@@ -735,7 +735,7 @@ lbl_801956CC:
  * Address:	........
  * Size:	00004C
  */
-// void setPosNeutral__Q24Game6CPlateFR10Vector3f fR10Vector3f f(void)
+// void setPosNeutral__Q24Game6CPlateFR10Vector3f fR10Vector3f f()
 void CPlate::setPosNeutral(Vector3f& p1, float p2, Vector3f& p3, float p4)
 {
 	// UNUSED FUNCTION
@@ -1353,7 +1353,7 @@ lbl_80195E34:
  * Address:	80195E54
  * Size:	0001E0
  */
-// void rearrangeSlot__Q24Game6CPlateFR10Vector3f fR10Vector3f(void)
+// void rearrangeSlot__Q24Game6CPlateFR10Vector3f fR10Vector3f()
 void CPlate::rearrangeSlot(Vector3f& p1, float p2, Vector3f& p3)
 {
 	/*
@@ -1503,7 +1503,7 @@ lbl_80196008:
  * Address:	80196034
  * Size:	0000C4
  */
-// void getSlotPosition__Q24Game6CPlateFiR10Vector3f(void)
+// void getSlotPosition__Q24Game6CPlateFiR10Vector3f()
 void CPlate::getSlotPosition(int p1, Vector3f& p2)
 {
 	/*
@@ -1939,7 +1939,7 @@ lbl_8019652C:
  * Address:	8019659C
  * Size:	000018
  */
-void CPlate::update(void)
+void CPlate::update()
 {
 	if (_100 == 0) {
 		return;
@@ -1962,7 +1962,7 @@ void CPlate::directDraw(Graphics&)
  * Address:	801965B4
  * Size:	000080
  */
-// CPlate::~CPlate(void)
+// CPlate::~CPlate()
 // {
 // 	/*
 // 	stwu     r1, -0x10(r1)

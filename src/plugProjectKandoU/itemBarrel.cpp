@@ -907,7 +907,7 @@ void ItemBarrel::NormalState::onDamage(Game::ItemBarrel::Item* item, float damag
  * Address:	801F7B1C
  * Size:	000030
  */
-// void transit__Q24Game34FSMState<Game::ItemBarrel::Item> FPQ34Game10ItemBarrel4ItemiPQ24Game8StateArg(void)
+// void transit__Q24Game34FSMState<Game::ItemBarrel::Item> FPQ34Game10ItemBarrel4ItemiPQ24Game8StateArg()
 // {
 // 	/*
 // 	.loc_0x0:
@@ -1252,7 +1252,7 @@ void ItemBarrel::Item::doLoad(Stream& input)
  * Address:	........
  * Size:	0000E4
  */
-// ItemBarrel::Item::Item(void)
+// ItemBarrel::Item::Item()
 // {
 // 	// UNUSED FUNCTION
 // }
@@ -1262,7 +1262,7 @@ void ItemBarrel::Item::doLoad(Stream& input)
  * Address:	801F7F34
  * Size:	000048
  */
-void ItemBarrel::Item::constructor(void)
+void ItemBarrel::Item::constructor()
 {
 	// m_soundObj = new PSM::WorkItem(this);
 
@@ -1318,7 +1318,7 @@ void ItemBarrel::Item::onInit(Game::CreatureInitArg*)
  * Size:	000034
  * start__Q24Game38StateMachine<Q34Game10ItemBarrel4Item>FPQ34Game10ItemBarrel4ItemiPQ24Game8StateArg
  */
-// void start__Q24Game38StateMachine<Game::ItemBarrel::Item> FPQ34Game10ItemBarrel4ItemiPQ24Game8StateArg(void)
+// void start__Q24Game38StateMachine<Game::ItemBarrel::Item> FPQ34Game10ItemBarrel4ItemiPQ24Game8StateArg()
 // {
 // 	/*
 // 	.loc_0x0:
@@ -1343,7 +1343,7 @@ void ItemBarrel::Item::onInit(Game::CreatureInitArg*)
  * Address:	801F80F0
  * Size:	00004C
  */
-void ItemBarrel::Item::onSetPosition(void)
+void ItemBarrel::Item::onSetPosition()
 {
 	makeTrMatrix();
 	updateBoundSphere();
@@ -1354,7 +1354,7 @@ void ItemBarrel::Item::onSetPosition(void)
  * Address:	801F813C
  * Size:	000048
  */
-void ItemBarrel::Item::updateBoundSphere(void)
+void ItemBarrel::Item::updateBoundSphere()
 {
 	float radius                = getWorkRadius();
 	m_boundingSphere.m_position = m_position;
@@ -1366,7 +1366,7 @@ void ItemBarrel::Item::updateBoundSphere(void)
  * Address:	801F8184
  * Size:	0000C4
  */
-void ItemBarrel::Item::doAI(void)
+void ItemBarrel::Item::doAI()
 {
 	m_stateMachine->exec(this);
 	updateCollTree();
@@ -1533,7 +1533,7 @@ lbl_801F8324:
  * Address:	801F835C
  * Size:	000058
  */
-float ItemBarrel::Item::getWorkRadius(void)
+float ItemBarrel::Item::getWorkRadius()
 {
 	Sys::Sphere bounds;
 	if (isAlive()) {
@@ -1617,7 +1617,7 @@ lbl_801F8458:
  * Address:	801F8478
  * Size:	000024
  */
-void ItemBarrel::Item::createBarrel(void)
+void ItemBarrel::Item::createBarrel()
 {
 	_1EC = mgr->m_parms->m_barrelParms.p000.m_value;
 	_1F0 = _1EC;
@@ -1766,7 +1766,7 @@ lbl_801F85CC:
  * Size:	000120
  * __ct__Q34Game10ItemBarrel3MgrFv
  */
-ItemBarrel::Mgr::Mgr(void)
+ItemBarrel::Mgr::Mgr()
     : TNodeItemMgr()
 {
 	setName("Barrel");
@@ -1885,7 +1885,7 @@ lbl_801F86EC:
  * Size:	0001EC
  * __ct__Q34Game10ItemBarrel11BarrelParmsFv
  */
-// ItemBarrel::BarrelParms::BarrelParms(void)
+// ItemBarrel::BarrelParms::BarrelParms()
 // {
 // 	/*
 // 	stwu     r1, -0x10(r1)
@@ -2020,7 +2020,7 @@ lbl_801F86EC:
  * Size:	000108
  * birth__Q34Game10ItemBarrel3MgrFv
  */
-ItemBarrel::Item* ItemBarrel::Mgr::birth(void)
+ItemBarrel::Item* ItemBarrel::Mgr::birth()
 {
 	Item* item = new Item();
 	entry(item);
@@ -2046,7 +2046,7 @@ BaseItem* ItemBarrel::Mgr::generatorBirth(Vector3f& position, Vector3f& p2, GenI
  * Address:	801F8A80
  * Size:	0000B8
  */
-void ItemBarrel::Mgr::onLoadResources(void)
+void ItemBarrel::Mgr::onLoadResources()
 {
 	loadArchive("arc.szs");
 	loadBmd("model.bmd", 0, 0x20000);
@@ -2112,7 +2112,7 @@ void ItemBarrel::Mgr::onLoadResources(void)
  * Size:	000134
  * __dt__Q34Game10ItemBarrel3MgrFv
  */
-// ItemBarrel::Mgr::~Mgr(void)
+// ItemBarrel::Mgr::~Mgr()
 // {
 // 	/*
 // 	stwu     r1, -0x10(r1)
@@ -2209,7 +2209,7 @@ void ItemBarrel::Mgr::onLoadResources(void)
  * Size:	0000F0
  * doNew__Q34Game10ItemBarrel3MgrFv
  */
-// void ItemBarrel::Mgr::doNew(void)
+// void ItemBarrel::Mgr::doNew()
 // {
 // }
 
@@ -2218,7 +2218,7 @@ void ItemBarrel::Mgr::onLoadResources(void)
  * Address:	801F8D5C
  * Size:	00000C
  */
-// void ItemBarrel::Mgr::generatorGetID(void)
+// void ItemBarrel::Mgr::generatorGetID()
 // {
 // }
 
@@ -2227,7 +2227,7 @@ void ItemBarrel::Mgr::onLoadResources(void)
  * Address:	801F8D68
  * Size:	000008
  */
-// void ItemBarrel::Item::getCreatureName(void)
+// void ItemBarrel::Item::getCreatureName()
 // {
 // 	/*
 // 	addi     r3, r2, lbl_80519CA0@sda21
@@ -2241,7 +2241,7 @@ void ItemBarrel::Mgr::onLoadResources(void)
  * Size:	000034
  * doAI__Q24Game83FSMItem<Q34Game10ItemBarrel4Item,Q34Game10ItemBarrel3FSM,Q34Game10ItemBarrel5State>Fv
  */
-// void doAI__Q24Game83FSMItem<Game::ItemBarrel::Item, Game::ItemBarrel::FSM, Game::ItemBarrel::State> Fv(void)
+// void doAI__Q24Game83FSMItem<Game::ItemBarrel::Item, Game::ItemBarrel::FSM, Game::ItemBarrel::State> Fv()
 // {
 // }
 
@@ -2250,14 +2250,14 @@ void ItemBarrel::Mgr::onLoadResources(void)
  * Address:	801F8DA4
  * Size:	000004
  */
-// void onDamage__Q24Game35ItemState<Game::ItemBarrel::Item> FPQ34Game10ItemBarrel4Itemf(void) { }
+// void onDamage__Q24Game35ItemState<Game::ItemBarrel::Item> FPQ34Game10ItemBarrel4Itemf() { }
 
 /*
  * --INFO--
  * Address:	801F8DA8
  * Size:	000004
  */
-// void onKeyEvent__Q24Game35ItemState<Game::ItemBarrel::Item> FPQ34Game10ItemBarrel4ItemRCQ28SysShape8KeyEvent(void) {
+// void onKeyEvent__Q24Game35ItemState<Game::ItemBarrel::Item> FPQ34Game10ItemBarrel4ItemRCQ28SysShape8KeyEvent() {
 // }
 
 /*
@@ -2265,14 +2265,14 @@ void ItemBarrel::Mgr::onLoadResources(void)
  * Address:	801F8DAC
  * Size:	000004
  */
-// void onBounce__Q24Game35ItemState<Game::ItemBarrel::Item> FPQ34Game10ItemBarrel4ItemPQ23Sys8Triangle(void) { }
+// void onBounce__Q24Game35ItemState<Game::ItemBarrel::Item> FPQ34Game10ItemBarrel4ItemPQ23Sys8Triangle() { }
 
 /*
  * --INFO--
  * Address:	801F8DB0
  * Size:	000004
  */
-// void onPlatCollision__Q24Game35ItemState<Game::ItemBarrel::Item> FPQ34Game10ItemBarrel4ItemRQ24Game9PlatEvent(void) {
+// void onPlatCollision__Q24Game35ItemState<Game::ItemBarrel::Item> FPQ34Game10ItemBarrel4ItemRQ24Game9PlatEvent() {
 // }
 
 /*
@@ -2280,56 +2280,56 @@ void ItemBarrel::Mgr::onLoadResources(void)
  * Address:	801F8DB4
  * Size:	000004
  */
-// void onCollision__Q24Game35ItemState<Game::ItemBarrel::Item> FPQ34Game10ItemBarrel4ItemRQ24Game9CollEvent(void) { }
+// void onCollision__Q24Game35ItemState<Game::ItemBarrel::Item> FPQ34Game10ItemBarrel4ItemRQ24Game9CollEvent() { }
 
 /*
  * --INFO--
  * Address:	801F8DB8
  * Size:	000004
  */
-// void init__Q24Game34FSMState<Game::ItemBarrel::Item> FPQ34Game10ItemBarrel4ItemPQ24Game8StateArg(void) { }
+// void init__Q24Game34FSMState<Game::ItemBarrel::Item> FPQ34Game10ItemBarrel4ItemPQ24Game8StateArg() { }
 
 /*
  * --INFO--
  * Address:	801F8DBC
  * Size:	000004
  */
-// void exec__Q24Game34FSMState<Game::ItemBarrel::Item> FPQ34Game10ItemBarrel4Item(void) { }
+// void exec__Q24Game34FSMState<Game::ItemBarrel::Item> FPQ34Game10ItemBarrel4Item() { }
 
 /*
  * --INFO--
  * Address:	801F8DC0
  * Size:	000004
  */
-// void cleanup__Q24Game34FSMState<Game::ItemBarrel::Item> FPQ34Game10ItemBarrel4Item(void) { }
+// void cleanup__Q24Game34FSMState<Game::ItemBarrel::Item> FPQ34Game10ItemBarrel4Item() { }
 
 /*
  * --INFO--
  * Address:	801F8DC4
  * Size:	000004
  */
-// void resume__Q24Game34FSMState<Game::ItemBarrel::Item> FPQ34Game10ItemBarrel4Item(void) { }
+// void resume__Q24Game34FSMState<Game::ItemBarrel::Item> FPQ34Game10ItemBarrel4Item() { }
 
 /*
  * --INFO--
  * Address:	801F8DC8
  * Size:	000004
  */
-// void restart__Q24Game34FSMState<Game::ItemBarrel::Item> FPQ34Game10ItemBarrel4Item(void) { }
+// void restart__Q24Game34FSMState<Game::ItemBarrel::Item> FPQ34Game10ItemBarrel4Item() { }
 
 /*
  * --INFO--
  * Address:	801F8DCC
  * Size:	000004
  */
-// void init__Q24Game38StateMachine<Game::ItemBarrel::Item> FPQ34Game10ItemBarrel4Item(void) { }
+// void init__Q24Game38StateMachine<Game::ItemBarrel::Item> FPQ34Game10ItemBarrel4Item() { }
 
 /*
  * --INFO--
  * Address:	801F8DD0
  * Size:	000038
  */
-// void exec__Q24Game38StateMachine<Game::ItemBarrel::Item> FPQ34Game10ItemBarrel4Item(void)
+// void exec__Q24Game38StateMachine<Game::ItemBarrel::Item> FPQ34Game10ItemBarrel4Item()
 // {
 // 	/*
 // 	.loc_0x0:
@@ -2359,7 +2359,7 @@ void ItemBarrel::Mgr::onLoadResources(void)
  * Address:	801F8E08
  * Size:	000064
  */
-// void create__Q24Game38StateMachine<Game::ItemBarrel::Item> Fi(void)
+// void create__Q24Game38StateMachine<Game::ItemBarrel::Item> Fi()
 // {
 // 	/*
 // 	stwu     r1, -0x10(r1)
@@ -2395,7 +2395,7 @@ void ItemBarrel::Mgr::onLoadResources(void)
  * Address:	801F8E6C
  * Size:	00009C
  */
-// void transit__Q24Game38StateMachine<Game::ItemBarrel::Item> FPQ34Game10ItemBarrel4ItemiPQ24Game8StateArg(void)
+// void transit__Q24Game38StateMachine<Game::ItemBarrel::Item> FPQ34Game10ItemBarrel4ItemiPQ24Game8StateArg()
 // {
 // 	/*
 // 	.loc_0x0:
@@ -2452,7 +2452,7 @@ void ItemBarrel::Mgr::onLoadResources(void)
  * Address:	801F8F08
  * Size:	000084
  */
-// void registerState__Q24Game38StateMachine<Game::ItemBarrel::Item> FPQ24Game34FSMState<Game::ItemBarrel::Item>(void)
+// void registerState__Q24Game38StateMachine<Game::ItemBarrel::Item> FPQ24Game34FSMState<Game::ItemBarrel::Item>()
 // {
 // 	/*
 // 	.loc_0x0:
@@ -2504,7 +2504,7 @@ void ItemBarrel::Mgr::onLoadResources(void)
  * Size:	000044
  */
 // void onKeyEvent__Q24Game83FSMItem<Game::ItemBarrel::Item, Game::ItemBarrel::FSM, Game::ItemBarrel::State>
-// FRCQ28SysShape8KeyEvent(void)
+// FRCQ28SysShape8KeyEvent()
 // {
 // }
 
@@ -2514,7 +2514,7 @@ void ItemBarrel::Mgr::onLoadResources(void)
  * Size:	000044
  */
 // void platCallback__Q24Game83FSMItem<Game::ItemBarrel::Item, Game::ItemBarrel::FSM, Game::ItemBarrel::State>
-// FRQ24Game9PlatEvent(void)
+// FRQ24Game9PlatEvent()
 // {
 // }
 
@@ -2524,7 +2524,7 @@ void ItemBarrel::Mgr::onLoadResources(void)
  * Size:	000044
  */
 // void collisionCallback__Q24Game83FSMItem<Game::ItemBarrel::Item, Game::ItemBarrel::FSM, Game::ItemBarrel::State>
-// FRQ24Game9CollEvent(void)
+// FRQ24Game9CollEvent()
 // {
 // }
 
@@ -2534,7 +2534,7 @@ void ItemBarrel::Mgr::onLoadResources(void)
  * Size:	000044
  */
 // void bounceCallback__Q24Game83FSMItem<Game::ItemBarrel::Item, Game::ItemBarrel::FSM, Game::ItemBarrel::State>
-// FPQ23Sys8Triangle(void)
+// FPQ23Sys8Triangle()
 // {
 // }
 
@@ -2543,7 +2543,7 @@ void ItemBarrel::Mgr::onLoadResources(void)
  * Address:	801F909C
  * Size:	000028
  */
-// void __sinit_itemBarrel_cpp(void)
+// void __sinit_itemBarrel_cpp()
 // {
 // 	/*
 // 	lis      r4, __float_nan@ha
@@ -2565,7 +2565,7 @@ void ItemBarrel::Mgr::onLoadResources(void)
  * Size:	000008
  */
 // void @376 @onKeyEvent__Q24Game83FSMItem<Game::ItemBarrel::Item, Game::ItemBarrel::FSM, Game::ItemBarrel::State>
-// FRCQ28SysShape8KeyEvent(void)
+// FRCQ28SysShape8KeyEvent()
 // {
 // 	/*
 // 	.loc_0x0:
@@ -2579,7 +2579,7 @@ void ItemBarrel::Mgr::onLoadResources(void)
  * Address:	801F90CC
  * Size:	000008
  */
-// @48 @Game::ItemBarrel::Mgr::~Mgr(void)
+// @48 @Game::ItemBarrel::Mgr::~Mgr()
 // {
 // 	/*
 // 	addi     r3, r3, -48

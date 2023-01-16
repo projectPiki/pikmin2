@@ -158,7 +158,7 @@ TObject::TObject(data::TParse_TBlock_object const& block)
  * Size:	000048
  * __dt__Q37JStudio3stb7TObjectFv
  */
-TObject::~TObject(void) { }
+TObject::~TObject() { }
 
 /*
  * --INFO--
@@ -428,14 +428,14 @@ lbl_8001054C:
  * Address:	80010568
  * Size:	000004
  */
-void TObject::do_begin(void) { }
+void TObject::do_begin() { }
 
 /*
  * --INFO--
  * Address:	8001056C
  * Size:	000004
  */
-void TObject::do_end(void) { }
+void TObject::do_end() { }
 
 /*
  * --INFO--
@@ -463,7 +463,7 @@ void TObject::do_data(void const*, unsigned long, void const*, unsigned long) { 
  * Address:	8001057C
  * Size:	0001A4
  */
-void TObject::process_sequence_(void)
+void TObject::process_sequence_()
 {
 	data::TParse_TSequence temp;
 	data::TParse_TSequence::TData data;
@@ -846,7 +846,7 @@ TControl::TControl()
  * Size:	00005C
  * __dt__Q37JStudio3stb15TObject_controlFv
  */
-// stb::TObject_control::~TObject_control(void) { }
+// stb::TObject_control::~TObject_control() { }
 
 } // namespace stb
 // } // namespace JStudio
@@ -856,7 +856,7 @@ TControl::TControl()
  * Address:	........
  * Size:	000054
  */
-// void __dt__Q27JGadget37TLinkList<JStudio::stb::TObject, -12> Fv(void)
+// void __dt__Q27JGadget37TLinkList<JStudio::stb::TObject, -12> Fv()
 //{
 // UNUSED FUNCTION
 //}
@@ -869,7 +869,7 @@ TControl::TControl()
  * Size:	00009C
  * __dt__Q37JStudio3stb8TControlFv
  */
-stb::TControl::~TControl(void) { mObject_control.pControl = nullptr; }
+stb::TControl::~TControl() { mObject_control.pControl = nullptr; }
 
 /*
  * --INFO--
@@ -896,7 +896,7 @@ void stb::TControl::removeObject(JStudio::stb::TObject*)
  * Address:	........
  * Size:	00006C
  */
-void stb::TControl::removeObject_all(void)
+void stb::TControl::removeObject_all()
 {
 	// UNUSED FUNCTION
 }
@@ -916,7 +916,7 @@ void stb::TControl::destroyObject(JStudio::stb::TObject*)
  * Address:	........
  * Size:	000094
  */
-void stb::TControl::destroyObject_all(void)
+void stb::TControl::destroyObject_all()
 {
 	// UNUSED FUNCTION
 }
@@ -1046,7 +1046,7 @@ void stb::TControl::getObject_index(unsigned long)
  * Address:	........
  * Size:	000084
  */
-void stb::TControl::reset(void)
+void stb::TControl::reset()
 {
 	// UNUSED FUNCTION
 }
@@ -1136,7 +1136,7 @@ lbl_80010BC4:
  * Size:	000048
  * __dt__Q37JStudio3stb8TFactoryFv
  */
-stb::TFactory::~TFactory(void) { }
+stb::TFactory::~TFactory() { }
 
 /*
  * --INFO--

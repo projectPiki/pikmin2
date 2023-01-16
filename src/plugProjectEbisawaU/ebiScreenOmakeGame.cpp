@@ -83,7 +83,7 @@ namespace Screen {
  * Address:	803F0CF4
  * Size:	000278
  */
-TOmakeGame::TOmakeGame(void)
+TOmakeGame::TOmakeGame()
 {
 	/*
 stwu     r1, -0x10(r1)
@@ -664,7 +664,7 @@ blr
  * Address:	803F1530
  * Size:	000054
  */
-bool TOmakeGame::doUpdateStateOpen(void)
+bool TOmakeGame::doUpdateStateOpen()
 {
 	/*
 stwu     r1, -0x10(r1)
@@ -696,7 +696,7 @@ blr
  * Address:	803F1584
  * Size:	000258
  */
-bool TOmakeGame::doUpdateStateWait(void)
+bool TOmakeGame::doUpdateStateWait()
 {
 	/*
 stwu     r1, -0x20(r1)
@@ -867,7 +867,7 @@ blr
  * Address:	803F17DC
  * Size:	000054
  */
-bool TOmakeGame::doUpdateStateClose(void)
+bool TOmakeGame::doUpdateStateClose()
 {
 	/*
 stwu     r1, -0x10(r1)
@@ -899,7 +899,7 @@ blr
  * Address:	803F1830
  * Size:	000074
  */
-void TOmakeGame::doDraw(void)
+void TOmakeGame::doDraw()
 {
 	/*
 stwu     r1, -0x20(r1)
@@ -968,7 +968,7 @@ blr
  * Address:	803F18E8
  * Size:	000048
  */
-bool TOmakeGame::isDelegateControl(void)
+bool TOmakeGame::isDelegateControl()
 {
 	/*
 stwu     r1, -0x10(r1)
@@ -999,7 +999,7 @@ blr
  * Address:	803F1930
  * Size:	00003C
  */
-void TOmakeGame::setSelfControl(void)
+void TOmakeGame::setSelfControl()
 {
 	/*
 stwu     r1, -0x10(r1)
@@ -1126,7 +1126,7 @@ blr
  * Address:	803F1A74
  * Size:	00000C
  */
-char* TOmakeGame::getName(void)
+char* TOmakeGame::getName()
 {
 	/*
 lis      r3, lbl_80497C64@ha

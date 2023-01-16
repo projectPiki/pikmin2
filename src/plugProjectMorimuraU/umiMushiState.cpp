@@ -2632,7 +2632,7 @@ lbl_80382688:
  * Address:	803826A0
  * Size:	000028
  */
-void __sinit_umiMushiState_cpp(void)
+void __sinit_umiMushiState_cpp()
 {
 	/*
 	lis      r4, __float_nan@ha

@@ -59,7 +59,7 @@ namespace Cave {
  * Address:	80245C5C
  * Size:	000030
  */
-EditMapUnit::EditMapUnit(void)
+EditMapUnit::EditMapUnit()
 {
 	/*
 	lfs      f0, lbl_8051A760@sda21(r2)
@@ -461,7 +461,7 @@ lbl_802460D8:
  * Address:	8024611C
  * Size:	0000F4
  */
-void RandMapUnit::setMapUnit(void)
+void RandMapUnit::setMapUnit()
 {
 	/*
 	stwu     r1, -0x20(r1)
@@ -632,7 +632,7 @@ lbl_802462C0:
  * Address:	802462E4
  * Size:	00006C
  */
-MapNode* RandMapUnit::getRandMapUnit(void)
+MapNode* RandMapUnit::getRandMapUnit()
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -676,7 +676,7 @@ lbl_8024633C:
  * Address:	80246350
  * Size:	000284
  */
-void RandMapUnit::changeCapToRootLoopMapUnit(void)
+void RandMapUnit::changeCapToRootLoopMapUnit()
 {
 	/*
 	stwu     r1, -0x90(r1)
@@ -888,7 +888,7 @@ lbl_802465C0:
  * Address:	802465D4
  * Size:	000360
  */
-void RandMapUnit::changeTwoToOneMapUnit(void)
+void RandMapUnit::changeTwoToOneMapUnit()
 {
 	/*
 	stwu     r1, -0xe0(r1)
@@ -1165,7 +1165,7 @@ lbl_80246920:
  * Address:	80246934
  * Size:	000144
  */
-void RandMapUnit::setEditorMapUnit(void)
+void RandMapUnit::setEditorMapUnit()
 {
 	/*
 	stwu     r1, -0x40(r1)
@@ -1269,7 +1269,7 @@ lbl_80246A54:
  * Address:	80246A78
  * Size:	00006C
  */
-void RandMapUnit::setFirstMapUnit(void)
+void RandMapUnit::setFirstMapUnit()
 {
 	/*
 	stwu     r1, -0x20(r1)
@@ -1309,7 +1309,7 @@ lbl_80246AC8:
  * Address:	80246AE4
  * Size:	00008C
  */
-MapNode* RandMapUnit::getFirstMapUnit(void)
+MapNode* RandMapUnit::getFirstMapUnit()
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -1369,7 +1369,7 @@ lbl_80246B5C:
  * Address:	80246B70
  * Size:	000188
  */
-MapNode* RandMapUnit::getNormalRandMapUnit(void)
+MapNode* RandMapUnit::getNormalRandMapUnit()
 {
 	/*
 	stwu     r1, -0xa0(r1)
@@ -1931,7 +1931,7 @@ lbl_8024720C:
  * Address:	80247238
  * Size:	000208
  */
-MapNode* RandMapUnit::getLoopRandMapUnit(void)
+MapNode* RandMapUnit::getLoopRandMapUnit()
 {
 	/*
 	stwu     r1, -0x850(r1)
@@ -2837,7 +2837,7 @@ lbl_80247C00:
  * Address:	80247C1C
  * Size:	0002F0
  */
-MapNode* RandMapUnit::getLoopEndMapUnit(void)
+MapNode* RandMapUnit::getLoopEndMapUnit()
 {
 	/*
 	stwu     r1, -0xd0(r1)
@@ -3129,7 +3129,7 @@ lbl_80247F54:
  * Address:	80247F7C
  * Size:	00008C
  */
-int RandMapUnit::getOpenDoorNum(void)
+int RandMapUnit::getOpenDoorNum()
 {
 	/*
 	stwu     r1, -0x20(r1)
@@ -3557,7 +3557,7 @@ lbl_8024846C:
  * Address:	80248498
  * Size:	00012C
  */
-void RandMapUnit::moveCentre(void)
+void RandMapUnit::moveCentre()
 {
 	/*
 	stwu     r1, -0x30(r1)
@@ -3663,7 +3663,7 @@ lbl_802485B0:
  * Address:	802485C4
  * Size:	000134
  */
-void RandMapUnit::closeDoorCheck(void)
+void RandMapUnit::closeDoorCheck()
 {
 	/*
 	stwu     r1, -0x30(r1)
@@ -3798,7 +3798,7 @@ void RandMapUnit::deleteMapNode(MapNode*)
  * Address:	80248730
  * Size:	000198
  */
-void RandMapUnit::createLoopMapNodeCheck(void)
+void RandMapUnit::createLoopMapNodeCheck()
 {
 	/*
 	stwu     r1, -0x30(r1)

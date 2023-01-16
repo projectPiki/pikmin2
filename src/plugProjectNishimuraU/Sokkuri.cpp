@@ -289,7 +289,7 @@ namespace Game {
  * Address:	802F1264
  * Size:	000130
  */
-Sokkuri::Obj::Obj(void)
+Sokkuri::Obj::Obj()
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -435,7 +435,7 @@ void Sokkuri::Obj::onInit(Game::CreatureInitArg*)
  * Address:	802F1424
  * Size:	000034
  */
-void Sokkuri::Obj::doUpdate(void)
+void Sokkuri::Obj::doUpdate()
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -604,7 +604,7 @@ lbl_802F15C8:
  * Address:	802F15E0
  * Size:	000008
  */
-void Sokkuri::Obj::isUnderground(void)
+void Sokkuri::Obj::isUnderground()
 {
 	/*
 	lbz      r3, 0x2c0(r3)
@@ -805,7 +805,7 @@ lbl_802F17C0:
  * Address:	802F181C
  * Size:	000040
  */
-void Sokkuri::Obj::doStartStoneState(void)
+void Sokkuri::Obj::doStartStoneState()
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -832,7 +832,7 @@ void Sokkuri::Obj::doStartStoneState(void)
  * Address:	802F185C
  * Size:	000020
  */
-void Sokkuri::Obj::doFinishStoneState(void)
+void Sokkuri::Obj::doFinishStoneState()
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -851,7 +851,7 @@ void Sokkuri::Obj::doFinishStoneState(void)
  * Address:	802F187C
  * Size:	000028
  */
-void Sokkuri::Obj::startCarcassMotion(void)
+void Sokkuri::Obj::startCarcassMotion()
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -872,7 +872,7 @@ void Sokkuri::Obj::startCarcassMotion(void)
  * Address:	802F18A4
  * Size:	0000AC
  */
-void Sokkuri::Obj::getOffsetForMapCollision(void)
+void Sokkuri::Obj::getOffsetForMapCollision()
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -930,7 +930,7 @@ lbl_802F1938:
  * Address:	........
  * Size:	000068
  */
-void Sokkuri::Obj::getSearchedTarget(void)
+void Sokkuri::Obj::getSearchedTarget()
 {
 	// UNUSED FUNCTION
 }
@@ -940,7 +940,7 @@ void Sokkuri::Obj::getSearchedTarget(void)
  * Address:	802F1950
  * Size:	00007C
  */
-void Sokkuri::Obj::isAppear(void)
+void Sokkuri::Obj::isAppear()
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -992,7 +992,7 @@ lbl_802F19BC:
  * Address:	802F19CC
  * Size:	0000A8
  */
-void Sokkuri::Obj::isDisappear(void)
+void Sokkuri::Obj::isDisappear()
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -1055,7 +1055,7 @@ lbl_802F1A64:
  * Address:	802F1A74
  * Size:	0001E0
  */
-void Sokkuri::Obj::setNextMoveInfo(void)
+void Sokkuri::Obj::setNextMoveInfo()
 {
 	/*
 	stwu     r1, -0x50(r1)
@@ -1196,7 +1196,7 @@ lbl_802F1C00:
  * Address:	802F1C54
  * Size:	00016C
  */
-void Sokkuri::Obj::updateMoveState(void)
+void Sokkuri::Obj::updateMoveState()
 {
 	/*
 	stwu     r1, -0x30(r1)
@@ -1324,7 +1324,7 @@ lbl_802F1DAC:
  * Address:	802F1DC0
  * Size:	00002C
  */
-void Sokkuri::Obj::resetMoveVelocity(void)
+void Sokkuri::Obj::resetMoveVelocity()
 {
 	/*
 	lwz      r0, 0x280(r3)
@@ -1348,7 +1348,7 @@ lbl_802F1DDC:
  * Address:	802F1DEC
  * Size:	000078
  */
-void Sokkuri::Obj::setNextWaitInfo(void)
+void Sokkuri::Obj::setNextWaitInfo()
 {
 	/*
 	stwu     r1, -0x30(r1)
@@ -1453,7 +1453,7 @@ lbl_802F1F0C:
  * Address:	802F1F28
  * Size:	0000C0
  */
-void Sokkuri::Obj::createBubbleEffect(void)
+void Sokkuri::Obj::createBubbleEffect()
 {
 	/*
 	stwu     r1, -0x30(r1)
@@ -1514,7 +1514,7 @@ lbl_802F1FD4:
  * Address:	802F1FE8
  * Size:	000048
  */
-void Sokkuri::Obj::createEfxHamon(void)
+void Sokkuri::Obj::createEfxHamon()
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -1545,7 +1545,7 @@ lbl_802F201C:
  * Address:	802F2030
  * Size:	000008
  */
-void Sokkuri::Obj::getDownSmokeScale(void)
+void Sokkuri::Obj::getDownSmokeScale()
 {
 	/*
 	lfs      f1, lbl_8051D16C@sda21(r2)
@@ -1558,5 +1558,5 @@ void Sokkuri::Obj::getDownSmokeScale(void)
  * Address:	802F2038
  * Size:	000008
  */
-u32 Sokkuri::Obj::getEnemyTypeID(void) { return 0x4F; }
+u32 Sokkuri::Obj::getEnemyTypeID() { return 0x4F; }
 } // namespace Game

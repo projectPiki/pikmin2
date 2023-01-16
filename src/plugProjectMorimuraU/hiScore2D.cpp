@@ -564,7 +564,7 @@ void J2DPane::isInfluencedAlpha() const
  * Address:	8037C9AC
  * Size:	000214
  */
-void Morimura::THiScoreIndPane::draw(void)
+void Morimura::THiScoreIndPane::draw()
 {
 	/*
 	stwu     r1, -0x70(r1)
@@ -952,7 +952,7 @@ lbl_8037CE70:
  * Address:	8037CEEC
  * Size:	0001CC
  */
-Morimura::THiScore::THiScore(void)
+Morimura::THiScore::THiScore()
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -2208,7 +2208,7 @@ lbl_8037E030:
  * Address:	8037E118
  * Size:	000060
  */
-Morimura::TIndPane::~TIndPane(void)
+Morimura::TIndPane::~TIndPane()
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -2263,7 +2263,7 @@ void Morimura::THiScore::getNameID(int)
  * Address:	8037E194
  * Size:	0009F0
  */
-void Morimura::THiScore::doUpdate(void)
+void Morimura::THiScore::doUpdate()
 {
 	/*
 	stwu     r1, -0x90(r1)
@@ -3010,7 +3010,7 @@ lbl_8037EB44:
  * Address:	8037EB84
  * Size:	000030
  */
-void Morimura::THiScoreListScreen::update(void)
+void Morimura::THiScoreListScreen::update()
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -3153,7 +3153,7 @@ setColor__14J2DGrafContextFQ28JUtility6TColorQ28JUtility6TColorQ28JUtility6TColo
  * Address:	8037ED5C
  * Size:	000358
  */
-void Morimura::THiScore::paneInit(void)
+void Morimura::THiScore::paneInit()
 {
 	/*
 	stwu     r1, -0x20(r1)
@@ -3373,7 +3373,7 @@ lbl_8051ECA0@sda21(r2) lwzx     r3, r3, r0 lfs      f0, lbl_8051EC70@sda21(r2)
  * Address:	8037F0B4
  * Size:	00005C
  */
-void Morimura::THiScore::doUpdateFadeinFinish(void)
+void Morimura::THiScore::doUpdateFadeinFinish()
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -3409,7 +3409,7 @@ lbl_8037F100:
  * Address:	8037F110
  * Size:	00001C
  */
-void Morimura::THiScore::doUpdateFadeoutFinish(void)
+void Morimura::THiScore::doUpdateFadeoutFinish()
 {
 	/*
 	lbz      r0, mIsSection__Q28Morimura9TTestBase@sda21(r13)
@@ -3427,7 +3427,7 @@ void Morimura::THiScore::doUpdateFadeoutFinish(void)
  * Address:	8037F12C
  * Size:	0005C4
  */
-void Morimura::THiScore::changePaneInfo(void)
+void Morimura::THiScore::changePaneInfo()
 {
 	/*
 	stwu     r1, -0x40(r1)
@@ -4969,7 +4969,7 @@ lbl_803805C0:
  * Address:	803805D4
  * Size:	000180
  */
-void Morimura::THiScore::updateLayout(void)
+void Morimura::THiScore::updateLayout()
 {
 	/*
 	stwu     r1, -0x40(r1)
@@ -5082,7 +5082,7 @@ lbl_8038071C:
  * Address:	80380754
  * Size:	000050
  */
-Morimura::THiScoreScene::THiScoreScene(void)
+Morimura::THiScoreScene::THiScoreScene()
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -5166,14 +5166,14 @@ lbl_803807E8:
  * Address:	80380818
  * Size:	000008
  */
-u32 Morimura::THiScoreScene::getSceneType(void) { return 0x2736; }
+u32 Morimura::THiScoreScene::getSceneType() { return 0x2736; }
 
 /*
  * --INFO--
  * Address:	80380820
  * Size:	00000C
  */
-void Morimura::THiScoreScene::getOwnerID(void)
+void Morimura::THiScoreScene::getOwnerID()
 {
 	/*
 	lis      r3, 0x4D524D52@ha
@@ -5187,7 +5187,7 @@ void Morimura::THiScoreScene::getOwnerID(void)
  * Address:	8038082C
  * Size:	000010
  */
-void Morimura::THiScoreScene::getMemberID(void)
+void Morimura::THiScoreScene::getMemberID()
 {
 	/*
 	lis      r4, 0x48495343@ha
@@ -5202,14 +5202,14 @@ void Morimura::THiScoreScene::getMemberID(void)
  * Address:	8038083C
  * Size:	000008
  */
-u32 Morimura::DispMemberHighScore::getSize(void) { return 0x10; }
+u32 Morimura::DispMemberHighScore::getSize() { return 0x10; }
 
 /*
  * --INFO--
  * Address:	80380844
  * Size:	00000C
  */
-void Morimura::DispMemberHighScore::getOwnerID(void)
+void Morimura::DispMemberHighScore::getOwnerID()
 {
 	/*
 	lis      r3, 0x4D524D52@ha
@@ -5223,7 +5223,7 @@ void Morimura::DispMemberHighScore::getOwnerID(void)
  * Address:	80380850
  * Size:	000010
  */
-void Morimura::DispMemberHighScore::getMemberID(void)
+void Morimura::DispMemberHighScore::getMemberID()
 {
 	/*
 	lis      r4, 0x48495343@ha
@@ -5238,7 +5238,7 @@ void Morimura::DispMemberHighScore::getMemberID(void)
  * Address:	80380860
  * Size:	000034
  */
-void Morimura::THiScore::getDispMemberBase(void)
+void Morimura::THiScore::getDispMemberBase()
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -5266,7 +5266,7 @@ lbl_80380884:
  * Address:	80380894
  * Size:	000008
  */
-u32 Morimura::THiScore::getIdMax(void) { return 0x10; }
+u32 Morimura::THiScore::getIdMax() { return 0x10; }
 
 /*
  * --INFO--
@@ -5280,21 +5280,21 @@ void Morimura::TScrollList::setShortenIndex(int, int, bool) { }
  * Address:	803808A0
  * Size:	000004
  */
-void Morimura::TScrollList::doUpdateIn(void) { }
+void Morimura::TScrollList::doUpdateIn() { }
 
 /*
  * --INFO--
  * Address:	803808A4
  * Size:	000004
  */
-void Morimura::TScrollList::doUpdateOut(void) { }
+void Morimura::TScrollList::doUpdateOut() { }
 
 /*
  * --INFO--
  * Address:	803808A8
  * Size:	0000DC
  */
-Morimura::THiScore::~THiScore(void)
+Morimura::THiScore::~THiScore()
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -5364,7 +5364,7 @@ lbl_80380968:
  * Address:	80380984
  * Size:	000070
  */
-Morimura::THiScoreIndPane::~THiScoreIndPane(void)
+Morimura::THiScoreIndPane::~THiScoreIndPane()
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -5407,7 +5407,7 @@ lbl_803809D8:
  * Address:	803809F4
  * Size:	000030
  */
-void __sinit_hiScore2D_cpp(void)
+void __sinit_hiScore2D_cpp()
 {
 	/*
 	lfs      f4, lbl_8051EC54@sda21(r2)
@@ -5430,7 +5430,7 @@ void __sinit_hiScore2D_cpp(void)
  * Address:	80380A24
  * Size:	000008
  */
-@24 @Morimura::THiScore::~THiScore(void)
+@24 @Morimura::THiScore::~THiScore()
 {
 	/*
 	addi     r3, r3, -24

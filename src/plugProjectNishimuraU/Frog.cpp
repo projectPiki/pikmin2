@@ -1969,7 +1969,7 @@ u32 Frog::Obj::getEnemyTypeID() { return 0x11; }
  * Address:	802596E0
  * Size:	000028
  */
-void __sinit_Frog_cpp(void)
+void __sinit_Frog_cpp()
 {
 	/*
 	lis      r4, __float_nan@ha

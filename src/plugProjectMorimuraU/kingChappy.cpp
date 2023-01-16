@@ -720,7 +720,7 @@ lbl_8035CD44:
  * Address:	8035CD58
  * Size:	0000A4
  */
-void KingChappy::Obj::setParameters(void)
+void KingChappy::Obj::setParameters()
 {
 	/*
 	stwu     r1, -0x20(r1)
@@ -778,7 +778,7 @@ lbl_8035CDE0:
  * Address:	8035CDFC
  * Size:	000020
  */
-void birth__Q34Game10KingChappy3ObjFR10Vector3f f(void)
+void birth__Q34Game10KingChappy3ObjFR10Vector3f f()
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -1110,7 +1110,7 @@ lbl_8035D23C:
  * Address:	8035D264
  * Size:	0005AC
  */
-KingChappy::Obj::Obj(void)
+KingChappy::Obj::Obj()
 {
 	/*
 	stwu     r1, -0x20(r1)
@@ -1643,7 +1643,7 @@ blr
  * Address:	8035D9E8
  * Size:	000148
  */
-TKchYodareBaseChaseMtx::~TKchYodareBaseChaseMtx(void)
+TKchYodareBaseChaseMtx::~TKchYodareBaseChaseMtx()
 {
 	/*
 stwu     r1, -0x10(r1)
@@ -1746,7 +1746,7 @@ blr
  * Address:	8035DB30
  * Size:	0000EC
  */
-TParticleCallBack_KchYodare::~TParticleCallBack_KchYodare(void)
+TParticleCallBack_KchYodare::~TParticleCallBack_KchYodare()
 {
 	/*
 stwu     r1, -0x10(r1)
@@ -1822,7 +1822,7 @@ blr
  * Address:	8035DC1C
  * Size:	000084
  */
-TKchYodareHitWat::~TKchYodareHitWat(void)
+TKchYodareHitWat::~TKchYodareHitWat()
 {
 	/*
 stwu     r1, -0x10(r1)
@@ -1870,7 +1870,7 @@ blr
  * Address:	8035DCA0
  * Size:	000084
  */
-TKchYodareHitGr::~TKchYodareHitGr(void)
+TKchYodareHitGr::~TKchYodareHitGr()
 {
 	/*
 stwu     r1, -0x10(r1)
@@ -2208,7 +2208,7 @@ void KingChappy::Obj::setFSM(Game::KingChappy::FSM*)
  * Address:	8035E120
  * Size:	0001A0
  */
-void KingChappy::Obj::doUpdate(void)
+void KingChappy::Obj::doUpdate()
 {
 	/*
 	stwu     r1, -0x40(r1)
@@ -2359,7 +2359,7 @@ void KingChappy::Obj::doDebugDraw(Graphics&)
  * Address:	8035E2E4
  * Size:	0000B8
  */
-void KingChappy::Obj::doAnimationUpdateAnimator(void)
+void KingChappy::Obj::doAnimationUpdateAnimator()
 {
 	/*
 	stwu     r1, -0x20(r1)
@@ -2444,7 +2444,7 @@ void KingChappy::Obj::onKill(Game::CreatureKillArg*)
  * Address:	8035E3D0
  * Size:	000588
  */
-void KingChappy::Obj::doAnimationCullingOff(void)
+void KingChappy::Obj::doAnimationCullingOff()
 {
 	/*
 	stwu     r1, -0x90(r1)
@@ -3090,7 +3090,7 @@ void KingChappy::Obj::wallCallback(Game::MoveInfo const&)
  * Address:	8035EBE8
  * Size:	000028
  */
-void bombCallBack__Q34Game10KingChappy3ObjFPQ24Game8CreatureR10Vector3f f(void)
+void bombCallBack__Q34Game10KingChappy3ObjFPQ24Game8CreatureR10Vector3f f()
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -3143,7 +3143,7 @@ lbl_8035EC44:
  * Address:	8035EC5C
  * Size:	000028
  */
-void KingChappy::Obj::startCarcassMotion(void)
+void KingChappy::Obj::startCarcassMotion()
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -3164,7 +3164,7 @@ void KingChappy::Obj::startCarcassMotion(void)
  * Address:	8035EC84
  * Size:	000064
  */
-void KingChappy::Obj::initWalkSmokeEffect(void)
+void KingChappy::Obj::initWalkSmokeEffect()
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -3200,7 +3200,7 @@ void KingChappy::Obj::initWalkSmokeEffect(void)
  * Address:	8035ECE8
  * Size:	000008
  */
-void KingChappy::Obj::getWalkSmokeEffectMgr(void)
+void KingChappy::Obj::getWalkSmokeEffectMgr()
 {
 	/*
 	addi     r3, r3, 0x344
@@ -3213,7 +3213,7 @@ void KingChappy::Obj::getWalkSmokeEffectMgr(void)
  * Address:	8035ECF0
  * Size:	000074
  */
-void KingChappy::Obj::doStartStoneState(void)
+void KingChappy::Obj::doStartStoneState()
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -3253,7 +3253,7 @@ void KingChappy::Obj::doStartStoneState(void)
  * Address:	8035ED64
  * Size:	0000A0
  */
-void KingChappy::Obj::doFinishStoneState(void)
+void KingChappy::Obj::doFinishStoneState()
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -3305,7 +3305,7 @@ void KingChappy::Obj::doFinishStoneState(void)
  * Address:	8035EE04
  * Size:	00013C
  */
-void KingChappy::Obj::doStartMovie(void)
+void KingChappy::Obj::doStartMovie()
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -3399,7 +3399,7 @@ namespace efx {
  * Address:	8035EF40
  * Size:	00005C
  */
-void TKchYodareBaseChaseMtx::startDemoDrawOff(void)
+void TKchYodareBaseChaseMtx::startDemoDrawOff()
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -3437,7 +3437,7 @@ namespace Game {
  * Address:	8035EF9C
  * Size:	00013C
  */
-void KingChappy::Obj::doEndMovie(void)
+void KingChappy::Obj::doEndMovie()
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -3531,7 +3531,7 @@ namespace efx {
  * Address:	8035F0D8
  * Size:	00005C
  */
-void TKchYodareBaseChaseMtx::endDemoDrawOn(void)
+void TKchYodareBaseChaseMtx::endDemoDrawOn()
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -3569,7 +3569,7 @@ namespace Game {
  * Address:	8035F134
  * Size:	000134
  */
-void KingChappy::Obj::initMouthSlots(void)
+void KingChappy::Obj::initMouthSlots()
 {
 	/*
 	stwu     r1, -0x60(r1)
@@ -3661,7 +3661,7 @@ lbl_8035F22C:
  * Address:	8035F268
  * Size:	0001A4
  */
-void KingChappy::Obj::eatBomb(void)
+void KingChappy::Obj::eatBomb()
 {
 	/*
 	stwu     r1, -0x40(r1)
@@ -3795,7 +3795,7 @@ lbl_8035F3F4:
  * Address:	8035F40C
  * Size:	000008
  */
-void KingChappy::Obj::getMouthSlots(void)
+void KingChappy::Obj::getMouthSlots()
 {
 	/*
 	addi     r3, r3, 0x2c8
@@ -4019,7 +4019,7 @@ lbl_8035F68C:
  * Address:	8035F6DC
  * Size:	00011C
  */
-void getTonguePosVel__Q34Game10KingChappy3ObjFR10Vector3f R10Vector3f(void)
+void getTonguePosVel__Q34Game10KingChappy3ObjFR10Vector3f R10Vector3f()
 {
 	/*
 	stwu     r1, -0x20(r1)
@@ -4107,7 +4107,7 @@ lbl_8035F7DC:
  * Address:	8035F7F8
  * Size:	0001F0
  */
-void KingChappy::Obj::setNextGoal(void)
+void KingChappy::Obj::setNextGoal()
 {
 	/*
 	stwu     r1, -0x60(r1)
@@ -4254,7 +4254,7 @@ lbl_8035F9CC:
  * Address:	8035F9E8
  * Size:	000500
  */
-void KingChappy::Obj::searchTarget(void)
+void KingChappy::Obj::searchTarget()
 {
 	/*
 	stwu     r1, -0x100(r1)
@@ -4740,7 +4740,7 @@ void KingChappy::Obj::requestTransit(int)
  * Address:	80360034
  * Size:	00012C
  */
-void KingChappy::Obj::walkFunc(void)
+void KingChappy::Obj::walkFunc()
 {
 	/*
 	stwu     r1, -0x40(r1)
@@ -4963,7 +4963,7 @@ void KingChappy::Obj::isReachToGoal(float)
  * Address:	........
  * Size:	0000D8
  */
-void KingChappy::Obj::isUseTurn(void)
+void KingChappy::Obj::isUseTurn()
 {
 	// UNUSED FUNCTION
 }
@@ -6123,7 +6123,7 @@ lbl_803612DC:
  * Address:	80361300
  * Size:	000098
  */
-void KingChappy::Obj::endBlendAnimation(void)
+void KingChappy::Obj::endBlendAnimation()
 {
 	/*
 	stwu     r1, -0x20(r1)
@@ -6176,7 +6176,7 @@ lbl_80361350:
  * Address:	80361398
  * Size:	000044
  */
-void KingChappy::Obj::leftFootMtxCalc(void)
+void KingChappy::Obj::leftFootMtxCalc()
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -6204,7 +6204,7 @@ void KingChappy::Obj::leftFootMtxCalc(void)
  * Address:	803613DC
  * Size:	000044
  */
-void KingChappy::Obj::rightFootMtxCalc(void)
+void KingChappy::Obj::rightFootMtxCalc()
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -6234,7 +6234,7 @@ void KingChappy::Obj::rightFootMtxCalc(void)
  * Address:	80361420
  * Size:	000190
  */
-void footMtxCalc__Q34Game10KingChappy3ObjFPA4_fP10Vector3f Pf(void)
+void footMtxCalc__Q34Game10KingChappy3ObjFPA4_fP10Vector3f Pf()
 {
 	/*
 	stwu     r1, -0x20(r1)
@@ -6357,7 +6357,7 @@ namespace Game {
  * Address:	803615B0
  * Size:	000078
  */
-void KingChappy::Obj::resetFootPos(void)
+void KingChappy::Obj::resetFootPos()
 {
 	/*
 	lwz      r4, 0x174(r3)
@@ -6398,7 +6398,7 @@ void KingChappy::Obj::resetFootPos(void)
  * Address:	80361628
  * Size:	0000DC
  */
-void KingChappy::Obj::fadeAllEffect(void)
+void KingChappy::Obj::fadeAllEffect()
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -6468,7 +6468,7 @@ namespace efx {
  * Address:	80361704
  * Size:	000054
  */
-void TKchYodareBaseChaseMtx::fade(void)
+void TKchYodareBaseChaseMtx::fade()
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -6955,7 +6955,7 @@ lbl_80361CF8:
  * Address:	80361D0C
  * Size:	0000C8
  */
-void KingChappy::Obj::createBounceEffect(void)
+void KingChappy::Obj::createBounceEffect()
 {
 	/*
 	stwu     r1, -0x40(r1)
@@ -7024,7 +7024,7 @@ namespace efx {
  * Address:	80361DD4
  * Size:	00000C
  */
-void ArgKchYodare::getName(void)
+void ArgKchYodare::getName()
 {
 	/*
 	lis      r3, lbl_8049165C@ha
@@ -7038,7 +7038,7 @@ void ArgKchYodare::getName(void)
  * Address:	80361DE0
  * Size:	000160
  */
-TKchYodare::~TKchYodare(void)
+TKchYodare::~TKchYodare()
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -7147,7 +7147,7 @@ lbl_80361F24:
  * Address:	80361F40
  * Size:	000054
  */
-void TKchYodareBaseChaseMtx::forceKill(void)
+void TKchYodareBaseChaseMtx::forceKill()
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -7179,7 +7179,7 @@ void TKchYodareBaseChaseMtx::forceKill(void)
  * Address:	80361F94
  * Size:	000160
  */
-TKchAttackYodare::~TKchAttackYodare(void)
+TKchAttackYodare::~TKchAttackYodare()
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -7288,7 +7288,7 @@ lbl_803620D8:
  * Address:	803620F4
  * Size:	000160
  */
-TKchDeadYodare::~TKchDeadYodare(void)
+TKchDeadYodare::~TKchDeadYodare()
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -7397,7 +7397,7 @@ lbl_80362238:
  * Address:	80362254
  * Size:	00009C
  */
-TKchSmokeHana::~TKchSmokeHana(void)
+TKchSmokeHana::~TKchSmokeHana()
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -7451,7 +7451,7 @@ lbl_803622D4:
  * Address:	803622F0
  * Size:	00009C
  */
-TKchCryInd::~TKchCryInd(void)
+TKchCryInd::~TKchCryInd()
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -7507,7 +7507,7 @@ namespace Game {
  * Address:	8036238C
  * Size:	00006C
  */
-KingChappy::ProperAnimator::~ProperAnimator(void)
+KingChappy::ProperAnimator::~ProperAnimator()
 {
 	/*
 stwu     r1, -0x10(r1)
@@ -7558,14 +7558,14 @@ void KingChappy::Obj::setInitialSetting(Game::EnemyInitialParamBase*) { }
  * Address:	803623FC
  * Size:	000004
  */
-void applyImpulse__Q34Game10KingChappy3ObjFR10Vector3f R10Vector3f(void) { }
+void applyImpulse__Q34Game10KingChappy3ObjFR10Vector3f R10Vector3f() { }
 
 /*
  * --INFO--
  * Address:	80362400
  * Size:	00003C
  */
-void KingChappy::Obj::createEfxHamon(void)
+void KingChappy::Obj::createEfxHamon()
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -7593,7 +7593,7 @@ lbl_80362428:
  * Address:	8036243C
  * Size:	000054
  */
-void KingChappy::Obj::updateEfxHamon(void)
+void KingChappy::Obj::updateEfxHamon()
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -7629,7 +7629,7 @@ lbl_8036247C:
  * Address:	80362490
  * Size:	000020
  */
-void KingChappy::Obj::isUnderground(void)
+void KingChappy::Obj::isUnderground()
 {
 	/*
 	lwz      r4, 0x1e0(r3)
@@ -7650,7 +7650,7 @@ lbl_803624A8:
  * Address:	803624B0
  * Size:	000014
  */
-void KingChappy::Obj::getCellRadius(void)
+void KingChappy::Obj::getCellRadius()
 {
 	/*
 	lwz      r4, 0xc0(r3)
@@ -7666,7 +7666,7 @@ void KingChappy::Obj::getCellRadius(void)
  * Address:	803624C4
  * Size:	000014
  */
-void KingChappy::Obj::getBodyRadius(void)
+void KingChappy::Obj::getBodyRadius()
 {
 	/*
 	lwz      r4, 0xc0(r3)
@@ -7726,14 +7726,14 @@ void KingChappy::Obj::eatWhitePikminCallBack(Game::Creature*, float)
  * Address:	80362530
  * Size:	000008
  */
-u32 KingChappy::Obj::getEnemyTypeID(void) { return 0x35; }
+u32 KingChappy::Obj::getEnemyTypeID() { return 0x35; }
 
 /*
  * --INFO--
  * Address:	80362538
  * Size:	000008
  */
-void KingChappy::Obj::getDownSmokeScale(void)
+void KingChappy::Obj::getDownSmokeScale()
 {
 	/*
 	lfs      f1, lbl_8051E77C@sda21(r2)
@@ -7748,7 +7748,7 @@ void KingChappy::Obj::getDownSmokeScale(void)
  * Address:	80362540
  * Size:	000028
  */
-void __sinit_kingChappy_cpp(void)
+void __sinit_kingChappy_cpp()
 {
 	/*
 	lis      r4, __float_nan@ha
@@ -7769,7 +7769,7 @@ void __sinit_kingChappy_cpp(void)
  * Address:	80362568
  * Size:	000014
  */
-void @920 @12 @Game::EnemyBase::viewOnPelletKilled(void)
+void @920 @12 @Game::EnemyBase::viewOnPelletKilled()
 {
 	/*
 	li       r11, 0xc
@@ -7785,7 +7785,7 @@ void @920 @12 @Game::EnemyBase::viewOnPelletKilled(void)
  * Address:	8036257C
  * Size:	000014
  */
-void @920 @12 @Game::EnemyBase::viewStartCarryMotion(void)
+void @920 @12 @Game::EnemyBase::viewStartCarryMotion()
 {
 	/*
 	li       r11, 0xc
@@ -7801,7 +7801,7 @@ void @920 @12 @Game::EnemyBase::viewStartCarryMotion(void)
  * Address:	80362590
  * Size:	000014
  */
-void @920 @12 @Game::EnemyBase::viewStartPreCarryMotion(void)
+void @920 @12 @Game::EnemyBase::viewStartPreCarryMotion()
 {
 	/*
 	li       r11, 0xc
@@ -7817,7 +7817,7 @@ void @920 @12 @Game::EnemyBase::viewStartPreCarryMotion(void)
  * Address:	803625A4
  * Size:	000014
  */
-void @920 @12 @Game::EnemyBase::view_finish_carrymotion(void)
+void @920 @12 @Game::EnemyBase::view_finish_carrymotion()
 {
 	/*
 	li       r11, 0xc
@@ -7833,7 +7833,7 @@ void @920 @12 @Game::EnemyBase::view_finish_carrymotion(void)
  * Address:	803625B8
  * Size:	000014
  */
-void @920 @12 @Game::EnemyBase::view_start_carrymotion(void)
+void @920 @12 @Game::EnemyBase::view_start_carrymotion()
 {
 	/*
 	li       r11, 0xc
@@ -7849,7 +7849,7 @@ void @920 @12 @Game::EnemyBase::view_start_carrymotion(void)
  * Address:	803625CC
  * Size:	000014
  */
-void @920 @12 @Game::EnemyBase::viewGetShape(void)
+void @920 @12 @Game::EnemyBase::viewGetShape()
 {
 	/*
 	li       r11, 0xc
@@ -7865,7 +7865,7 @@ void @920 @12 @Game::EnemyBase::viewGetShape(void)
  * Address:	803625E0
  * Size:	000008
  */
-@4 @efx::TKchCryInd::~TKchCryInd(void)
+@4 @efx::TKchCryInd::~TKchCryInd()
 {
 	/*
 	addi     r3, r3, -4
@@ -7878,7 +7878,7 @@ void @920 @12 @Game::EnemyBase::viewGetShape(void)
  * Address:	803625E8
  * Size:	000008
  */
-@4 @efx::TKchSmokeHana::~TKchSmokeHana(void)
+@4 @efx::TKchSmokeHana::~TKchSmokeHana()
 {
 	/*
 	addi     r3, r3, -4
@@ -7891,7 +7891,7 @@ void @920 @12 @Game::EnemyBase::viewGetShape(void)
  * Address:	803625F0
  * Size:	000008
  */
-@4 @efx::TKchYodareHitGr::~TKchYodareHitGr(void)
+@4 @efx::TKchYodareHitGr::~TKchYodareHitGr()
 {
 	/*
 	addi     r3, r3, -4
@@ -7904,7 +7904,7 @@ void @920 @12 @Game::EnemyBase::viewGetShape(void)
  * Address:	803625F8
  * Size:	000008
  */
-@4 @efx::TKchYodareHitWat::~TKchYodareHitWat(void)
+@4 @efx::TKchYodareHitWat::~TKchYodareHitWat()
 {
 	/*
 	addi     r3, r3, -4
@@ -7917,7 +7917,7 @@ void @920 @12 @Game::EnemyBase::viewGetShape(void)
  * Address:	80362600
  * Size:	000008
  */
-@4 @efx::TKchDeadYodare::~TKchDeadYodare(void)
+@4 @efx::TKchDeadYodare::~TKchDeadYodare()
 {
 	/*
 	addi     r3, r3, -4
@@ -7930,7 +7930,7 @@ void @920 @12 @Game::EnemyBase::viewGetShape(void)
  * Address:	80362608
  * Size:	000008
  */
-@4 @efx::TKchAttackYodare::~TKchAttackYodare(void)
+@4 @efx::TKchAttackYodare::~TKchAttackYodare()
 {
 	/*
 	addi     r3, r3, -4
@@ -7943,7 +7943,7 @@ void @920 @12 @Game::EnemyBase::viewGetShape(void)
  * Address:	80362610
  * Size:	000008
  */
-@4 @efx::TKchYodare::~TKchYodare(void)
+@4 @efx::TKchYodare::~TKchYodare()
 {
 	/*
 	addi     r3, r3, -4

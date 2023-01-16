@@ -751,7 +751,7 @@ lbl_803A5EC4:
  * Address:	803A5ED8
  * Size:	0000F0
  */
-void BlackMan::Obj::setParameters(void)
+void BlackMan::Obj::setParameters()
 {
 	/*
 	stwu     r1, -0x20(r1)
@@ -1299,7 +1299,7 @@ lbl_803A665C:
  * Address:	803A669C
  * Size:	000560
  */
-BlackMan::Obj::Obj(void)
+BlackMan::Obj::Obj()
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -1704,7 +1704,7 @@ void BlackMan::Obj::setFSM(Game::BlackMan::FSM*)
  * Address:	803A6C48
  * Size:	0006C4
  */
-void BlackMan::Obj::doUpdate(void)
+void BlackMan::Obj::doUpdate()
 {
 	/*
 	stwu     r1, -0x110(r1)
@@ -2318,7 +2318,7 @@ lbl_803A7474:
  * Address:	803A74A4
  * Size:	000238
  */
-void BlackMan::Obj::doAnimationCullingOff(void)
+void BlackMan::Obj::doAnimationCullingOff()
 {
 	/*
 	stwu     r1, -0x20(r1)
@@ -2513,7 +2513,7 @@ void BlackMan::Obj::onKill(Game::CreatureKillArg*)
  * Address:	803A7718
  * Size:	0000DC
  */
-void BlackMan::Obj::doStartStoneState(void)
+void BlackMan::Obj::doStartStoneState()
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -2583,7 +2583,7 @@ lbl_803A7770:
  * Address:	803A77F4
  * Size:	0000BC
  */
-void BlackMan::Obj::doFinishStoneState(void)
+void BlackMan::Obj::doFinishStoneState()
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -2643,7 +2643,7 @@ lbl_803A788C:
  * Address:	803A78B0
  * Size:	000058
  */
-bool BlackMan::Obj::isUnderground(void)
+bool BlackMan::Obj::isUnderground()
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -3163,7 +3163,7 @@ lbl_803A7EC4:
  * Address:	803A7EE0
  * Size:	000068
  */
-void BlackMan::Obj::doEntry(void)
+void BlackMan::Obj::doEntry()
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -3204,7 +3204,7 @@ lbl_803A7F20:
  * Address:	803A7F48
  * Size:	00031C
  */
-void BlackMan::Obj::changeMaterial(void)
+void BlackMan::Obj::changeMaterial()
 {
 	/*
 	stwu     r1, -0x60(r1)
@@ -3449,7 +3449,7 @@ void BlackMan::Obj::getShadowParam(Game::ShadowParam&)
  * Address:	803A82B4
  * Size:	000064
  */
-void BlackMan::Obj::initWalkSmokeEffect(void)
+void BlackMan::Obj::initWalkSmokeEffect()
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -3485,7 +3485,7 @@ void BlackMan::Obj::initWalkSmokeEffect(void)
  * Address:	803A8318
  * Size:	00001C
  */
-WalkSmokeEffect::Mgr* BlackMan::Obj::getWalkSmokeEffectMgr(void)
+WalkSmokeEffect::Mgr* BlackMan::Obj::getWalkSmokeEffectMgr()
 {
 	/*
 	lwz      r0, 0x364(r3)
@@ -3505,7 +3505,7 @@ lbl_803A832C:
  * Address:	803A8334
  * Size:	000848
  */
-void BlackMan::Obj::walkFunc(void)
+void BlackMan::Obj::walkFunc()
 {
 	/*
 	stwu     r1, -0x80(r1)
@@ -4152,7 +4152,7 @@ bool BlackMan::Obj::isReachToGoal(float)
  * Address:	803A8BB0
  * Size:	000ED0
  */
-void BlackMan::Obj::findNextRoutePoint(void)
+void BlackMan::Obj::findNextRoutePoint()
 {
 	/*
 	stwu     r1, -0x1e0(r1)
@@ -5247,7 +5247,7 @@ lbl_803A9A3C:
  * Address:	803A9A80
  * Size:	0000D0
  */
-void BlackMan::Obj::findNextTraceRoutePoint(void)
+void BlackMan::Obj::findNextTraceRoutePoint()
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -5322,7 +5322,7 @@ lbl_803A9B3C:
  * Address:	803A9B50
  * Size:	000114
  */
-bool BlackMan::Obj::isEndPathFinder(void)
+bool BlackMan::Obj::isEndPathFinder()
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -5561,7 +5561,7 @@ lbl_803A9E28:
  * Address:	803A9E3C
  * Size:	000044
  */
-void BlackMan::Obj::releasePathFinder(void)
+void BlackMan::Obj::releasePathFinder()
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -5990,7 +5990,7 @@ lbl_803AA39C:
  * Address:	803AA410
  * Size:	00028C
  */
-void BlackMan::Obj::bodyMtxCalc(void)
+void BlackMan::Obj::bodyMtxCalc()
 {
 	/*
 	stwu     r1, -0x80(r1)
@@ -6184,7 +6184,7 @@ lbl_803AA684:
  * Address:	803AA69C
  * Size:	000040
  */
-bool BlackMan::Obj::isTyreFreeze(void)
+bool BlackMan::Obj::isTyreFreeze()
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -6215,7 +6215,7 @@ lbl_803AA6CC:
  * Address:	803AA6DC
  * Size:	00009C
  */
-bool BlackMan::Obj::isTyreDead(void)
+bool BlackMan::Obj::isTyreDead()
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -6271,7 +6271,7 @@ lbl_803AA764:
  * Address:	803AA778
  * Size:	000074
  */
-bool BlackMan::Obj::isFallEnd(void)
+bool BlackMan::Obj::isFallEnd()
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -6317,7 +6317,7 @@ lbl_803AA7D0:
  * Address:	803AA7EC
  * Size:	0001D4
  */
-void BlackMan::Obj::moveRestart(void)
+void BlackMan::Obj::moveRestart()
 {
 	/*
 	stwu     r1, -0x20(r1)
@@ -6464,7 +6464,7 @@ lbl_803AA9A4:
  * Address:	803AA9C0
  * Size:	000004
  */
-void BlackMan::Obj::escape(void) { }
+void BlackMan::Obj::escape() { }
 
 /*
  * --INFO--
@@ -6484,7 +6484,7 @@ void BlackMan::Obj::setTimer(float)
  * Address:	803AA9CC
  * Size:	000008
  */
-void BlackMan::Obj::getTimer(void)
+void BlackMan::Obj::getTimer()
 {
 	/*
 	lfs      f1, 0x33c(r3)
@@ -6497,7 +6497,7 @@ void BlackMan::Obj::getTimer(void)
  * Address:	803AA9D4
  * Size:	0000A0
  */
-void BlackMan::Obj::collisionStOn(void)
+void BlackMan::Obj::collisionStOn()
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -6550,7 +6550,7 @@ lbl_803AAA60:
  * Address:	803AAA74
  * Size:	000098
  */
-void BlackMan::Obj::collisionStOff(void)
+void BlackMan::Obj::collisionStOff()
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -6599,7 +6599,7 @@ void BlackMan::Obj::collisionStOff(void)
  * Address:	803AAB0C
  * Size:	00004C
  */
-void BlackMan::Obj::flick(void)
+void BlackMan::Obj::flick()
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -6630,7 +6630,7 @@ void BlackMan::Obj::flick(void)
  * Address:	803AAB58
  * Size:	000150
  */
-void BlackMan::Obj::recover(void)
+void BlackMan::Obj::recover()
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -6733,7 +6733,7 @@ lbl_803AAC94:
  * Address:	803AACA8
  * Size:	0000F8
  */
-void BlackMan::Obj::recoverFlick(void)
+void BlackMan::Obj::recoverFlick()
 {
 	/*
 	stwu     r1, -0x50(r1)
@@ -6812,7 +6812,7 @@ lbl_803AAD18:
  * Address:	803AADA0
  * Size:	00002C
  */
-void BlackMan::Obj::tyreFlick(void)
+void BlackMan::Obj::tyreFlick()
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -6836,7 +6836,7 @@ lbl_803AADBC:
  * Address:	803AADCC
  * Size:	0000D0
  */
-void BlackMan::Obj::deadEffect(void)
+void BlackMan::Obj::deadEffect()
 {
 	/*
 	stwu     r1, -0x30(r1)
@@ -6899,7 +6899,7 @@ void BlackMan::Obj::deadEffect(void)
  * Address:	803AAE9C
  * Size:	000034
  */
-void BlackMan::Obj::deadTraceEffect(void)
+void BlackMan::Obj::deadTraceEffect()
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -6923,7 +6923,7 @@ void BlackMan::Obj::deadTraceEffect(void)
  * Address:	803AAED0
  * Size:	000074
  */
-void BlackMan::Obj::tyreUpEffect(void)
+void BlackMan::Obj::tyreUpEffect()
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -6967,7 +6967,7 @@ lbl_803AAF30:
  * Address:	803AAF44
  * Size:	000050
  */
-void BlackMan::Obj::tyreDownEffect(void)
+void BlackMan::Obj::tyreDownEffect()
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -7000,7 +7000,7 @@ lbl_803AAF80:
  * Address:	803AAF94
  * Size:	000094
  */
-void BlackMan::Obj::bendEffect(void)
+void BlackMan::Obj::bendEffect()
 {
 	/*
 	stwu     r1, -0x20(r1)
@@ -7050,7 +7050,7 @@ lbl_803AB018:
  * Address:	803AB028
  * Size:	00005C
  */
-void BlackMan::Obj::createTraceEffect(void)
+void BlackMan::Obj::createTraceEffect()
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -7088,7 +7088,7 @@ lbl_803AB074:
  * Address:	803AB084
  * Size:	000050
  */
-void BlackMan::Obj::fadeTraceEffect(void)
+void BlackMan::Obj::fadeTraceEffect()
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -7119,7 +7119,7 @@ void BlackMan::Obj::fadeTraceEffect(void)
  * Address:	803AB0D4
  * Size:	000058
  */
-void BlackMan::Obj::createFlickEffect(void)
+void BlackMan::Obj::createFlickEffect()
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -7152,7 +7152,7 @@ void BlackMan::Obj::createFlickEffect(void)
  * Address:	803AB12C
  * Size:	000050
  */
-void BlackMan::Obj::fadeFlickEffect(void)
+void BlackMan::Obj::fadeFlickEffect()
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -7183,7 +7183,7 @@ void BlackMan::Obj::fadeFlickEffect(void)
  * Address:	803AB17C
  * Size:	0000C4
  */
-bool BlackMan::Obj::isFinalFloor(void)
+bool BlackMan::Obj::isFinalFloor()
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -7249,7 +7249,7 @@ lbl_803AB228:
  * Address:	803AB240
  * Size:	0001C0
  */
-void BlackMan::Obj::appearFanfare(void)
+void BlackMan::Obj::appearFanfare()
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -7401,14 +7401,14 @@ void BlackMan::Obj::setInitialSetting(Game::EnemyInitialParamBase*) { }
  * Address:	803AB71C
  * Size:	000004
  */
-void BlackMan::Obj::throwupItemInDeathProcedure(void) { }
+void BlackMan::Obj::throwupItemInDeathProcedure() { }
 
 /*
  * --INFO--
  * Address:	803AB720
  * Size:	00002C
  */
-void BlackMan::Obj::createEfxHamon(void)
+void BlackMan::Obj::createEfxHamon()
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -7432,7 +7432,7 @@ lbl_803AB73C:
  * Address:	803AB74C
  * Size:	000040
  */
-void BlackMan::Obj::updateEfxHamon(void)
+void BlackMan::Obj::updateEfxHamon()
 {
 	/*
 	stwu     r1, -0x10(r1)

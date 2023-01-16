@@ -382,7 +382,7 @@ lbl_8023B7BC:
  * Address:	8023B80C
  * Size:	000258
  */
-void BaseGameSection::startKantei2D(void)
+void BaseGameSection::startKantei2D()
 {
 	/*
 	stwu     r1, -0x80(r1)
@@ -714,7 +714,7 @@ void BaseGameSection::ZoomCamera::init(float, float, Vector3f&, Controller*)
  * Address:	8023BC44
  * Size:	0002B0
  */
-void BaseGameSection::ZoomCamera::makeLookAt(void)
+void BaseGameSection::ZoomCamera::makeLookAt()
 {
 	/*
 	stwu     r1, -0x70(r1)
@@ -923,7 +923,7 @@ lbl_8023BEBC:
  * Address:	8023BEF4
  * Size:	000164
  */
-void BaseGameSection::ZoomCamera::doUpdate(void)
+void BaseGameSection::ZoomCamera::doUpdate()
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -1330,7 +1330,7 @@ lbl_8023C444:
  * Address:	8023C468
  * Size:	0000D0
  */
-// BaseGameSection::ZoomCamera::~ZoomCamera(void)
+// BaseGameSection::ZoomCamera::~ZoomCamera()
 // {
 // 	/*
 // 	stwu     r1, -0x10(r1)
@@ -1409,14 +1409,14 @@ void LookAtCamera::startVibration(int) { }
 //  * Address:	8023C53C
 //  * Size:	000008
 //  */
-// u32 DispMemberSpecialItem::getSize(void) { return 0x10; }
+// u32 DispMemberSpecialItem::getSize() { return 0x10; }
 
 // /*
 //  * --INFO--
 //  * Address:	8023C544
 //  * Size:	00000C
 //  */
-// void DispMemberSpecialItem::getOwnerID(void)
+// void DispMemberSpecialItem::getOwnerID()
 // {
 // 	/*
 // lis      r3, 0x004F4741@ha
@@ -1430,7 +1430,7 @@ void LookAtCamera::startVibration(int) { }
 //  * Address:	8023C550
 //  * Size:	000014
 //  */
-// void DispMemberSpecialItem::getMemberID(void)
+// void DispMemberSpecialItem::getMemberID()
 // {
 // 	/*
 // lis      r4, 0x4954454D@ha
@@ -1446,14 +1446,14 @@ void LookAtCamera::startVibration(int) { }
 //  * Address:	8023C564
 //  * Size:	000008
 //  */
-// u32 DispMemberKantei::getSize(void) { return 0x40; }
+// u32 DispMemberKantei::getSize() { return 0x40; }
 
 // /*
 //  * --INFO--
 //  * Address:	8023C56C
 //  * Size:	00000C
 //  */
-// void DispMemberKantei::getOwnerID(void)
+// void DispMemberKantei::getOwnerID()
 // {
 // 	/*
 // lis      r3, 0x004F4741@ha
@@ -1467,7 +1467,7 @@ void LookAtCamera::startVibration(int) { }
 //  * Address:	8023C578
 //  * Size:	000010
 //  */
-// void DispMemberKantei::getMemberID(void)
+// void DispMemberKantei::getMemberID()
 // {
 // 	/*
 // lis      r4, 0x4E544549@ha

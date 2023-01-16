@@ -573,7 +573,7 @@ lbl_804727EC:
  * Address:	80472804
  * Size:	0000A0
  */
-void __sinit_PSMainSide_CreaturePrm_cpp(void)
+void __sinit_PSMainSide_CreaturePrm_cpp()
 {
 	/*
 	stwu     r1, -0x10(r1)

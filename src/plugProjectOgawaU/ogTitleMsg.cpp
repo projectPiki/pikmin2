@@ -2376,7 +2376,7 @@ bool ::P2JME::Analyzer::tagPosition(u16, const void*, u32) { return true; }
  * Address:	80330284
  * Size:	000008
  */
-//@8 @efx2d::T2DCvnameChal::~T2DCvnameChal(void)
+//@8 @efx2d::T2DCvnameChal::~T2DCvnameChal()
 //{
 /*
 addi     r3, r3, -8

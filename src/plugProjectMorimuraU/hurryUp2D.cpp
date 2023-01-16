@@ -437,7 +437,7 @@ void Morimura::THuWhitePaneSet::drawSelf(float, float, float (*)[3][4])
  * Address:	8034639C
  * Size:	000094
  */
-void Morimura::THuWhitePaneSet::gxSet(void)
+void Morimura::THuWhitePaneSet::gxSet()
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -485,7 +485,7 @@ void Morimura::THuWhitePaneSet::gxSet(void)
  * Address:	80346430
  * Size:	0000B0
  */
-Morimura::THurryUp2D::THurryUp2D(void)
+Morimura::THurryUp2D::THurryUp2D()
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -540,7 +540,7 @@ Morimura::THurryUp2D::THurryUp2D(void)
  * Address:	803464E0
  * Size:	000024
  */
-Morimura::THurryUp2D::TStateParam::TStateParam(void)
+Morimura::THurryUp2D::TStateParam::TStateParam()
 {
 	/*
 	li       r4, 0
@@ -823,7 +823,7 @@ lbl_80346810:
  * Address:	80346894
  * Size:	00018C
  */
-void Morimura::THurryUp2D::doUpdate(void)
+void Morimura::THurryUp2D::doUpdate()
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -1281,7 +1281,7 @@ void Morimura::THurryUp2D::doStart(Screen::StartSceneArg const*)
  * Address:	........
  * Size:	00002C
  */
-void Morimura::THurryUp2D::calcCount(void)
+void Morimura::THurryUp2D::calcCount()
 {
 	// UNUSED FUNCTION
 }
@@ -1291,7 +1291,7 @@ void Morimura::THurryUp2D::calcCount(void)
  * Address:	80346E88
  * Size:	0004C0
  */
-void Morimura::THurryUp2D::init(void)
+void Morimura::THurryUp2D::init()
 {
 	/*
 	stwu     r1, -0x30(r1)
@@ -1614,7 +1614,7 @@ lbl_80347304:
  * Address:	80347348
  * Size:	0002CC
  */
-void Morimura::THurryUp2D::move(void)
+void Morimura::THurryUp2D::move()
 {
 	/*
 	stwu     r1, -0x50(r1)
@@ -1818,7 +1818,7 @@ lbl_803475EC:
  * Address:	80347614
  * Size:	000168
  */
-void Morimura::THurryUp2D::scaleUp1(void)
+void Morimura::THurryUp2D::scaleUp1()
 {
 	/*
 	stwu     r1, -0x40(r1)
@@ -1925,7 +1925,7 @@ lbl_803476F8:
  * Address:	8034777C
  * Size:	0001B0
  */
-void Morimura::THurryUp2D::colorUp(void)
+void Morimura::THurryUp2D::colorUp()
 {
 	/*
 	stwu     r1, -0x30(r1)
@@ -2048,7 +2048,7 @@ lbl_80347850:
  * Address:	8034792C
  * Size:	000240
  */
-void Morimura::THurryUp2D::scaleUp2(void)
+void Morimura::THurryUp2D::scaleUp2()
 {
 	/*
 	stwu     r1, -0x70(r1)
@@ -2381,7 +2381,7 @@ lbl_80347DAC:
  * Address:	80347DC0
  * Size:	000034
  */
-void Morimura::THurryUp2D::getDispMemberBase(void)
+void Morimura::THurryUp2D::getDispMemberBase()
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -2409,7 +2409,7 @@ lbl_80347DE4:
  * Address:	80347DF4
  * Size:	0000C4
  */
-Morimura::THurryUp2D::~THurryUp2D(void)
+Morimura::THurryUp2D::~THurryUp2D()
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -2473,7 +2473,7 @@ lbl_80347E9C:
  * Address:	80347EB8
  * Size:	000060
  */
-Morimura::THuWhitePaneSet::~THuWhitePaneSet(void)
+Morimura::THuWhitePaneSet::~THuWhitePaneSet()
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -2510,7 +2510,7 @@ lbl_80347EFC:
  * Address:	80347F18
  * Size:	000028
  */
-void __sinit_hurryUp2D_cpp(void)
+void __sinit_hurryUp2D_cpp()
 {
 	/*
 	lis      r4, __float_nan@ha
@@ -2531,7 +2531,7 @@ void __sinit_hurryUp2D_cpp(void)
  * Address:	80347F40
  * Size:	000008
  */
-@24 @Morimura::THurryUp2D::~THurryUp2D(void)
+@24 @Morimura::THurryUp2D::~THurryUp2D()
 {
 	/*
 	addi     r3, r3, -24

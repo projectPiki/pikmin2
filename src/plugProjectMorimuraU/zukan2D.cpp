@@ -1869,7 +1869,7 @@ Morimura::TZukanBase::TZukanBase(char*)
  * Address:	80370E0C
  * Size:	0000C4
  */
-Morimura::TScrollList::~TScrollList(void)
+Morimura::TScrollList::~TScrollList()
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -1933,7 +1933,7 @@ lbl_80370EB4:
  * Address:	80370ED0
  * Size:	0000FC
  */
-Morimura::TZukanBase::~TZukanBase(void)
+Morimura::TZukanBase::~TZukanBase()
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -2659,7 +2659,7 @@ lbl_8037184C:
  * Address:	803718D8
  * Size:	000FC8
  */
-void Morimura::TZukanBase::doUpdate(void)
+void Morimura::TZukanBase::doUpdate()
 {
 	/*
 	stwu     r1, -0x80(r1)
@@ -4034,7 +4034,7 @@ lbl_80372B48:
  * Address:	80372B60
  * Size:	000008
  */
-void Morimura::TZukanBase::isComplete(void)
+void Morimura::TZukanBase::isComplete()
 {
 	/*
 	lbz      r3, 0x228(r3)
@@ -4557,7 +4557,7 @@ void Morimura::TZukanBase::doDemoDraw(Graphics&) { }
  * Address:	80373280
  * Size:	000018
  */
-void Morimura::TZukanBase::doUpdateFadeoutFinish(void)
+void Morimura::TZukanBase::doUpdateFadeoutFinish()
 {
 	/*
 	lwz      r0, 0x198(r3)
@@ -4973,7 +4973,7 @@ lbl_803737FC:
  * Address:	80373810
  * Size:	000258
  */
-void Morimura::TZukanBase::paneInit(void)
+void Morimura::TZukanBase::paneInit()
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -5146,7 +5146,7 @@ lbl_80373A24:
  * Address:	80373A68
  * Size:	0000C8
  */
-void Morimura::TZukanBase::changePaneInfo(void)
+void Morimura::TZukanBase::changePaneInfo()
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -5213,7 +5213,7 @@ lbl_80373B1C:
  * Address:	80373B30
  * Size:	0000A8
  */
-void Morimura::TZukanBase::changeName(void)
+void Morimura::TZukanBase::changeName()
 {
 	/*
 	stwu     r1, -0x20(r1)
@@ -5270,7 +5270,7 @@ lbl_80373BBC:
  * Address:	80373BD8
  * Size:	00005C
  */
-void Morimura::TZukanBase::doUpdateIn(void)
+void Morimura::TZukanBase::doUpdateIn()
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -5308,7 +5308,7 @@ lbl_80373C24:
  * Address:	80373C34
  * Size:	000630
  */
-void Morimura::TZukanBase::doUpdateOut(void)
+void Morimura::TZukanBase::doUpdateOut()
 {
 	/*
 	stwu     r1, -0x60(r1)
@@ -5783,7 +5783,7 @@ lbl_8037423C:
  * Address:	80374264
  * Size:	000114
  */
-void Morimura::TZukanBase::doPushXButton(void)
+void Morimura::TZukanBase::doPushXButton()
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -5869,7 +5869,7 @@ lbl_80374364:
  * Address:	80374378
  * Size:	000130
  */
-void Morimura::TZukanBase::doPushYButton(void)
+void Morimura::TZukanBase::doPushYButton()
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -5962,7 +5962,7 @@ lbl_80374494:
  * Address:	803744A8
  * Size:	0000B0
  */
-void Morimura::TZukanBase::doPushBButton(void)
+void Morimura::TZukanBase::doPushBButton()
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -6250,7 +6250,7 @@ lbl_80374810:
  * Address:	80374824
  * Size:	000074
  */
-void Morimura::TZukanBase::isPanelExist(void)
+void Morimura::TZukanBase::isPanelExist()
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -6290,7 +6290,7 @@ void Morimura::TZukanBase::isPanelExist(void)
  * Address:	80374898
  * Size:	000018
  */
-void Morimura::TZukanBase::requireRequest(void)
+void Morimura::TZukanBase::requireRequest()
 {
 	/*
 	li       r4, 1
@@ -6307,7 +6307,7 @@ void Morimura::TZukanBase::requireRequest(void)
  * Address:	803748B0
  * Size:	00000C
  */
-void Morimura::TZukanBase::requireEffectOff(void)
+void Morimura::TZukanBase::requireEffectOff()
 {
 	// Generated from stb r0, 0x217(r3)
 	_217 = 1;
@@ -6318,7 +6318,7 @@ void Morimura::TZukanBase::requireEffectOff(void)
  * Address:	803748BC
  * Size:	00001C
  */
-void Morimura::TZukanBase::isEnlargedWindow(void)
+void Morimura::TZukanBase::isEnlargedWindow()
 {
 	/*
 	lbz      r0, 0x244(r3)
@@ -6338,7 +6338,7 @@ lbl_803748D0:
  * Address:	803748D8
  * Size:	000020
  */
-void Morimura::TZukanBase::isMemoWindow(void)
+void Morimura::TZukanBase::isMemoWindow()
 {
 	/*
 	lwz      r3, 0xdc(r3)
@@ -6359,7 +6359,7 @@ lbl_803748F0:
  * Address:	........
  * Size:	000048
  */
-void Morimura::TZukanBase::requireSceneEnd(void)
+void Morimura::TZukanBase::requireSceneEnd()
 {
 	// UNUSED FUNCTION
 }
@@ -6384,7 +6384,7 @@ void Morimura::TZukanBase::checkRequest(int&)
  * Address:	80374908
  * Size:	000068
  */
-void Morimura::TZukanBase::getCurrSelectId(void)
+void Morimura::TZukanBase::getCurrSelectId()
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -6515,7 +6515,7 @@ lbl_80374A7C:
  * Address:	........
  * Size:	0000BC
  */
-void Morimura::TZukanBase::resetDebugShow(void)
+void Morimura::TZukanBase::resetDebugShow()
 {
 	// UNUSED FUNCTION
 }
@@ -6535,7 +6535,7 @@ void Morimura::TEnemyZukanIndex::getIndexInfo(int)
  * Address:	........
  * Size:	00005C
  */
-Morimura::TEnemyZukan::TEnemyZukan(void)
+Morimura::TEnemyZukan::TEnemyZukan()
 {
 	// UNUSED FUNCTION
 }
@@ -6545,7 +6545,7 @@ Morimura::TEnemyZukan::TEnemyZukan(void)
  * Address:	80374A94
  * Size:	000124
  */
-Morimura::TEnemyZukan::~TEnemyZukan(void)
+Morimura::TEnemyZukan::~TEnemyZukan()
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -8346,14 +8346,14 @@ void Morimura::TScaleUpCounter::init(J2DScreen*, unsigned long long, unsigned lo
  * Address:	80376330
  * Size:	000008
  */
-u32 Morimura::TEnemyZukan::getIdMax(void) { return 0x51; }
+u32 Morimura::TEnemyZukan::getIdMax() { return 0x51; }
 
 /*
  * --INFO--
  * Address:	80376338
  * Size:	0001D8
  */
-void Morimura::TEnemyZukan::setDetail(void)
+void Morimura::TEnemyZukan::setDetail()
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -9992,7 +9992,7 @@ lbl_8037776C:
  * Address:	80377774
  * Size:	000060
  */
-void Morimura::TEnemyZukan::setXWindow(void)
+void Morimura::TEnemyZukan::setXWindow()
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -10027,7 +10027,7 @@ void Morimura::TEnemyZukan::setXWindow(void)
  * Address:	803777D4
  * Size:	000060
  */
-void Morimura::TEnemyZukan::setYWindow(void)
+void Morimura::TEnemyZukan::setYWindow()
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -10062,7 +10062,7 @@ void Morimura::TEnemyZukan::setYWindow(void)
  * Address:	80377834
  * Size:	000034
  */
-void Morimura::TEnemyZukan::isOpenConfirmWindow(void)
+void Morimura::TEnemyZukan::isOpenConfirmWindow()
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -10178,7 +10178,7 @@ lbl_80377954:
  * Address:	80377964
  * Size:	0000E4
  */
-void Morimura::TEnemyZukan::isPanelExist(void)
+void Morimura::TEnemyZukan::isPanelExist()
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -10256,7 +10256,7 @@ lbl_80377A30:
  * Address:	80377A48
  * Size:	00004C
  */
-void Morimura::TEnemyZukan::openConfirmWindow(void)
+void Morimura::TEnemyZukan::openConfirmWindow()
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -10581,7 +10581,7 @@ lbl_80377DDC:
  * Address:	80377DEC
  * Size:	000054
  */
-Morimura::TDEnemyScene::TDEnemyScene(void)
+Morimura::TDEnemyScene::TDEnemyScene()
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -10613,7 +10613,7 @@ Morimura::TDEnemyScene::TDEnemyScene(void)
  * Address:	........
  * Size:	000074
  */
-Morimura::THIOScene::~THIOScene(void)
+Morimura::THIOScene::~THIOScene()
 {
 	// UNUSED FUNCTION
 }
@@ -10717,7 +10717,7 @@ void Morimura::TDEnemyScene::doStart(Screen::StartSceneArg*)
  * Address:	80377F50
  * Size:	000028
  */
-void Morimura::TDEnemyScene::isAppearConfirmWindow(void)
+void Morimura::TDEnemyScene::isAppearConfirmWindow()
 {
 	/*
 	lwz      r3, 0x224(r3)
@@ -10740,7 +10740,7 @@ lbl_80377F70:
  * Address:	........
  * Size:	0000E8
  */
-void Morimura::TItemZukan::isCategoryComplete(void)
+void Morimura::TItemZukan::isCategoryComplete()
 {
 	// UNUSED FUNCTION
 }
@@ -10750,7 +10750,7 @@ void Morimura::TItemZukan::isCategoryComplete(void)
  * Address:	........
  * Size:	000148
  */
-Morimura::TItemZukan::TItemZukan(void)
+Morimura::TItemZukan::TItemZukan()
 {
 	// UNUSED FUNCTION
 }
@@ -10760,7 +10760,7 @@ Morimura::TItemZukan::TItemZukan(void)
  * Address:	80377F78
  * Size:	000124
  */
-Morimura::TItemZukan::~TItemZukan(void)
+Morimura::TItemZukan::~TItemZukan()
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -10850,7 +10850,7 @@ lbl_80378080:
  * Address:	8037809C
  * Size:	000424
  */
-void Morimura::TItemZukan::doUpdate(void)
+void Morimura::TItemZukan::doUpdate()
 {
 	/*
 	stwu     r1, -0x90(r1)
@@ -11168,7 +11168,7 @@ lbl_80378494:
  * Address:	803784C0
  * Size:	0000A8
  */
-void Morimura::TItemZukan::demoSet(void)
+void Morimura::TItemZukan::demoSet()
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -11576,7 +11576,7 @@ void Morimura::TItemZukan::getCategoryColorId(int)
  * Address:	803789D4
  * Size:	0002D4
  */
-void Morimura::TItemZukan::doUpdateOut(void)
+void Morimura::TItemZukan::doUpdateOut()
 {
 	/*
 	stwu     r1, -0xb0(r1)
@@ -11973,7 +11973,7 @@ lbl_80378E40:
  * Address:	80378E50
  * Size:	000020
  */
-void Morimura::TItemZukan::getIdMax(void)
+void Morimura::TItemZukan::getIdMax()
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -14161,7 +14161,7 @@ lbl_8037AC74:
  * Address:	8037ACB4
  * Size:	000170
  */
-void Morimura::TItemZukan::setDetail(void)
+void Morimura::TItemZukan::setDetail()
 {
 	/*
 	stwu     r1, -0x20(r1)
@@ -14276,7 +14276,7 @@ lbl_8037AE08:
  * Address:	8037AE24
  * Size:	000090
  */
-void Morimura::TItemZukan::isComplete(void)
+void Morimura::TItemZukan::isComplete()
 {
 	/*
 	lbz      r0, 0x241(r3)
@@ -14384,7 +14384,7 @@ lbl_8037AF24:
  * Address:	8037AF34
  * Size:	00006C
  */
-void Morimura::TItemZukan::setXWindow(void)
+void Morimura::TItemZukan::setXWindow()
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -14422,7 +14422,7 @@ void Morimura::TItemZukan::setXWindow(void)
  * Address:	8037AFA0
  * Size:	0000A8
  */
-void Morimura::TItemZukan::setYWindow(void)
+void Morimura::TItemZukan::setYWindow()
 {
 	/*
 	stwu     r1, -0x20(r1)
@@ -14674,7 +14674,7 @@ lbl_8037B258:
  * Address:	8037B268
  * Size:	0000C4
  */
-void Morimura::TItemZukan::isPanelExist(void)
+void Morimura::TItemZukan::isPanelExist()
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -14744,7 +14744,7 @@ lbl_8037B314:
  * Address:	8037B32C
  * Size:	000034
  */
-void Morimura::TItemZukan::isOpenConfirmWindow(void)
+void Morimura::TItemZukan::isOpenConfirmWindow()
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -14768,7 +14768,7 @@ void Morimura::TItemZukan::isOpenConfirmWindow(void)
  * Address:	8037B360
  * Size:	00004C
  */
-void Morimura::TItemZukan::openConfirmWindow(void)
+void Morimura::TItemZukan::openConfirmWindow()
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -14798,7 +14798,7 @@ void Morimura::TItemZukan::openConfirmWindow(void)
  * Address:	8037B3AC
  * Size:	000054
  */
-Morimura::TDItemScene::TDItemScene(void)
+Morimura::TDItemScene::TDItemScene()
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -14983,7 +14983,7 @@ void Morimura::TDItemScene::doStart(Screen::StartSceneArg*)
  * Address:	8037B5FC
  * Size:	000028
  */
-void Morimura::TDItemScene::isAppearConfirmWindow(void)
+void Morimura::TDItemScene::isAppearConfirmWindow()
 {
 	/*
 	lwz      r3, 0x224(r3)
@@ -15006,7 +15006,7 @@ lbl_8037B61C:
  * Address:	8037B624
  * Size:	000080
  */
-Morimura::TCallbackScrollMsg::TCallbackScrollMsg(void)
+Morimura::TCallbackScrollMsg::TCallbackScrollMsg()
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -15051,7 +15051,7 @@ lbl_8037B678:
  * Address:	8037B6A4
  * Size:	000070
  */
-void Morimura::TCallbackScrollMsg::doInit(void)
+void Morimura::TCallbackScrollMsg::doInit()
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -15092,7 +15092,7 @@ lbl_8037B6F4:
  * Address:	8037B714
  * Size:	000038
  */
-void Morimura::TCallbackScrollMsg::update(void)
+void Morimura::TCallbackScrollMsg::update()
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -15117,7 +15117,7 @@ void Morimura::TCallbackScrollMsg::update(void)
  * Address:	8037B74C
  * Size:	0000C8
  */
-void Morimura::TCallbackScrollMsg::reset(void)
+void Morimura::TCallbackScrollMsg::reset()
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -15235,7 +15235,7 @@ lbl_8037B880:
  * Address:	8037B890
  * Size:	000024
  */
-void Morimura::TCallbackScrollMsg::getPosRate(void)
+void Morimura::TCallbackScrollMsg::getPosRate()
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -15669,7 +15669,7 @@ lbl_8037BE48:
  * Address:	8037BE6C
  * Size:	000390
  */
-void Morimura::TZukanWindow::update(void)
+void Morimura::TZukanWindow::update()
 {
 	/*
 	stwu     r1, -0x70(r1)
@@ -15964,7 +15964,7 @@ lbl_8037C218:
  * Address:	8037C228
  * Size:	0000F0
  */
-void Morimura::TZukanWindow::windowOpen(void)
+void Morimura::TZukanWindow::windowOpen()
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -16037,7 +16037,7 @@ lbl_8037C300:
  * Address:	8037C318
  * Size:	000030
  */
-void Morimura::TZukanWindow::windowClose(void)
+void Morimura::TZukanWindow::windowClose()
 {
 	/*
 	lwz      r0, 0x20(r3)
@@ -16089,7 +16089,7 @@ void Morimura::TZukanWindow::msgScroll(float)
  * Address:	8037C380
  * Size:	000030
  */
-void Morimura::TZukanWindow::getPosRate(void)
+void Morimura::TZukanWindow::getPosRate()
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -16372,7 +16372,7 @@ void Morimura::TZukanWindow::changeIconTexture(int, ResTIMG*)
  * Address:	8037C6AC
  * Size:	000090
  */
-Morimura::TCallbackScrollMsg::~TCallbackScrollMsg(void)
+Morimura::TCallbackScrollMsg::~TCallbackScrollMsg()
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -16437,14 +16437,14 @@ void Morimura::TDItemScene::getResName() const
  * Address:	8037C748
  * Size:	000008
  */
-u32 Morimura::TDItemScene::getSceneType(void) { return 0x2735; }
+u32 Morimura::TDItemScene::getSceneType() { return 0x2735; }
 
 /*
  * --INFO--
  * Address:	8037C750
  * Size:	00000C
  */
-void Morimura::TDItemScene::getOwnerID(void)
+void Morimura::TDItemScene::getOwnerID()
 {
 	/*
 	lis      r3, 0x4D524D52@ha
@@ -16458,7 +16458,7 @@ void Morimura::TDItemScene::getOwnerID(void)
  * Address:	8037C75C
  * Size:	000010
  */
-void Morimura::TDItemScene::getMemberID(void)
+void Morimura::TDItemScene::getMemberID()
 {
 	/*
 	lis      r4, 0x4954454D@ha
@@ -16473,7 +16473,7 @@ void Morimura::TDItemScene::getMemberID(void)
  * Address:	8037C76C
  * Size:	000034
  */
-void Morimura::TItemZukan::getDispMemberBase(void)
+void Morimura::TItemZukan::getDispMemberBase()
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -16501,7 +16501,7 @@ lbl_8037C790:
  * Address:	8037C7A0
  * Size:	000008
  */
-void Morimura::TItemZukan::getDispDataZukan(void)
+void Morimura::TItemZukan::getDispDataZukan()
 {
 	/*
 	lwz      r3, 0x248(r3)
@@ -16514,7 +16514,7 @@ void Morimura::TItemZukan::getDispDataZukan(void)
  * Address:	8037C7A8
  * Size:	000014
  */
-void Morimura::TZukanBase::doUpdateFadeinFinish(void)
+void Morimura::TZukanBase::doUpdateFadeinFinish()
 {
 	/*
 	li       r0, 1
@@ -16530,7 +16530,7 @@ void Morimura::TZukanBase::doUpdateFadeinFinish(void)
  * Address:	8037C7BC
  * Size:	000028
  */
-void Morimura::TZukanBase::doUpdateFadeout(void)
+void Morimura::TZukanBase::doUpdateFadeout()
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -16579,14 +16579,14 @@ void Morimura::TDEnemyScene::getResName() const
  * Address:	8037C7F8
  * Size:	000008
  */
-u32 Morimura::TDEnemyScene::getSceneType(void) { return 0x2734; }
+u32 Morimura::TDEnemyScene::getSceneType() { return 0x2734; }
 
 /*
  * --INFO--
  * Address:	8037C800
  * Size:	00000C
  */
-void Morimura::TDEnemyScene::getOwnerID(void)
+void Morimura::TDEnemyScene::getOwnerID()
 {
 	/*
 	lis      r3, 0x4D524D52@ha
@@ -16600,7 +16600,7 @@ void Morimura::TDEnemyScene::getOwnerID(void)
  * Address:	8037C80C
  * Size:	000010
  */
-void Morimura::TDEnemyScene::getMemberID(void)
+void Morimura::TDEnemyScene::getMemberID()
 {
 	/*
 	lis      r4, 0x4E454D59@ha
@@ -16615,7 +16615,7 @@ void Morimura::TDEnemyScene::getMemberID(void)
  * Address:	8037C81C
  * Size:	000034
  */
-void Morimura::TEnemyZukan::getDispMemberBase(void)
+void Morimura::TEnemyZukan::getDispMemberBase()
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -16643,7 +16643,7 @@ lbl_8037C840:
  * Address:	8037C850
  * Size:	000008
  */
-void Morimura::TEnemyZukan::getDispDataZukan(void)
+void Morimura::TEnemyZukan::getDispDataZukan()
 {
 	/*
 	lwz      r3, 0x248(r3)
@@ -16663,7 +16663,7 @@ u32 Morimura::TZukanBase::getCategoryColorId(int) { return 0x0; }
  * Address:	8037C860
  * Size:	000134
  */
-void __sinit_zukan2D_cpp(void)
+void __sinit_zukan2D_cpp()
 {
 	/*
 	stwu     r1, -0x20(r1)
@@ -16751,7 +16751,7 @@ void __sinit_zukan2D_cpp(void)
  * Address:	8037C994
  * Size:	000008
  */
-@24 @Morimura::TZukanBase::~TZukanBase(void)
+@24 @Morimura::TZukanBase::~TZukanBase()
 {
 	/*
 	addi     r3, r3, -24
@@ -16764,7 +16764,7 @@ void __sinit_zukan2D_cpp(void)
  * Address:	8037C99C
  * Size:	000008
  */
-@24 @Morimura::TEnemyZukan::~TEnemyZukan(void)
+@24 @Morimura::TEnemyZukan::~TEnemyZukan()
 {
 	/*
 	addi     r3, r3, -24
@@ -16777,7 +16777,7 @@ void __sinit_zukan2D_cpp(void)
  * Address:	8037C9A4
  * Size:	000008
  */
-@24 @Morimura::TItemZukan::~TItemZukan(void)
+@24 @Morimura::TItemZukan::~TItemZukan()
 {
 	/*
 	addi     r3, r3, -24

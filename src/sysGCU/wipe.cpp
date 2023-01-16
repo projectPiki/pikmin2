@@ -682,7 +682,7 @@ BallFader::BallFader(int)
  * Address:	........
  * Size:	000004
  */
-BallFader::Ball::Ball(void)
+BallFader::Ball::Ball()
 {
 	// UNUSED FUNCTION
 }
@@ -834,7 +834,7 @@ BallFader::~BallFader()
  * Address:	8042C6D8
  * Size:	000028
  */
-void __sinit_wipe_cpp(void)
+void __sinit_wipe_cpp()
 {
 	/*
 	lis      r4, __float_nan@ha

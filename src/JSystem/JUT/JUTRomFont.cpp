@@ -83,7 +83,7 @@ void JUTRomFont::loadImage(JKRHeap* param_1)
  * Size:	0000F8
  * TODO: finish GX enums
  */
-void JUTRomFont::setGX(void)
+void JUTRomFont::setGX()
 {
 	GXSetNumChans(1);
 	GXSetNumTevStages(1);

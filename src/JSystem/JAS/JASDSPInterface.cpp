@@ -857,7 +857,7 @@ lbl_800A5708:
  * Address:	800A5714
  * Size:	00000C
  */
-void JASDsp::TChannel::playStop(void)
+void JASDsp::TChannel::playStop()
 {
 	// Generated from sth r0, 0x0(r3)
 	_00 = 0;
@@ -879,7 +879,7 @@ void JASDsp::TChannel::replyFinishRequest()
  * Address:	800A5730
  * Size:	00000C
  */
-void JASDsp::TChannel::forceStop(void)
+void JASDsp::TChannel::forceStop()
 {
 	// Generated from sth r0, 0x10A(r3)
 	_10A = 1;

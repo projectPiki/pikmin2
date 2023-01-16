@@ -12,7 +12,7 @@ namespace Game {
  * Address:	80124778
  * Size:	00003C
  */
-GenObject* makeObjectEnemy(void) { return new GenObjectEnemy; }
+GenObject* makeObjectEnemy() { return new GenObjectEnemy; }
 
 /*
  * --INFO--

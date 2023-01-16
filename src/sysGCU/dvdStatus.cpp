@@ -107,7 +107,7 @@ bool DvdStatus::update()
  * Address:	8042A544
  * Size:	0002B8
  */
-void DvdStatus::draw(void)
+void DvdStatus::draw()
 {
 	if (isErrorOccured()) {
 		sys->m_gfx->setupJ2DOrthoGraphDefault();

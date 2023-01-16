@@ -729,7 +729,7 @@ lbl_80393444:
  * Address:	80393480
  * Size:	000054
  */
-void Morimura::TChallengeResultScreen::updateBckPane(void)
+void Morimura::TChallengeResultScreen::updateBckPane()
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -852,7 +852,7 @@ lbl_8039358C:
  * Address:	803935CC
  * Size:	0000E4
  */
-void Morimura::TChallengeResultDemoScreen::update(void)
+void Morimura::TChallengeResultDemoScreen::update()
 {
 	/*
 	stwu     r1, -0x30(r1)
@@ -952,7 +952,7 @@ lbl_803936CC:
  * Address:	........
  * Size:	00003C
  */
-void Morimura::TChallengeResultDemoScreen::startDemo(void)
+void Morimura::TChallengeResultDemoScreen::startDemo()
 {
 	// UNUSED FUNCTION
 }
@@ -972,7 +972,7 @@ void Morimura::TChallengeResultDemoScreen::setComplete(bool)
  * Address:	........
  * Size:	000074
  */
-void Morimura::TChallengeResultDemoScreen::reset(void)
+void Morimura::TChallengeResultDemoScreen::reset()
 {
 	// UNUSED FUNCTION
 }
@@ -982,7 +982,7 @@ void Morimura::TChallengeResultDemoScreen::reset(void)
  * Address:	........
  * Size:	000028
  */
-Morimura::TMovePane::TMovePane(void)
+Morimura::TMovePane::TMovePane()
 {
 	// UNUSED FUNCTION
 }
@@ -1036,7 +1036,7 @@ lbl_80393718:
  * Address:	80393758
  * Size:	0000FC
  */
-void Morimura::TMovePane::update(void)
+void Morimura::TMovePane::update()
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -1126,7 +1126,7 @@ lbl_80393840:
  * Address:	80393854
  * Size:	00016C
  */
-void Morimura::TMovePane::move(void)
+void Morimura::TMovePane::move()
 {
 	/*
 	stwu     r1, -0x30(r1)
@@ -1236,7 +1236,7 @@ lbl_803939AC:
  * Address:	803939C0
  * Size:	00008C
  */
-void Morimura::TMovePane::turn(void)
+void Morimura::TMovePane::turn()
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -1286,7 +1286,7 @@ lbl_80393A28:
  * Address:	80393A4C
  * Size:	00007C
  */
-void Morimura::TMovePane::getAngDist(void)
+void Morimura::TMovePane::getAngDist()
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -1332,7 +1332,7 @@ lbl_80393A98:
  * Address:	80393AC8
  * Size:	000204
  */
-void Morimura::TMovePane::hosei(void)
+void Morimura::TMovePane::hosei()
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -1488,7 +1488,7 @@ lbl_80393CA0:
  * Address:	80393CCC
  * Size:	000030
  */
-void Morimura::TMovePane::rolling(void)
+void Morimura::TMovePane::rolling()
 {
 	/*
 	lfs      f3, lbl_8051F0B4@sda21(r2)
@@ -1511,7 +1511,7 @@ void Morimura::TMovePane::rolling(void)
  * Address:	80393CFC
  * Size:	00012C
  */
-void Morimura::TMovePane::stick(void)
+void Morimura::TMovePane::stick()
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -1607,7 +1607,7 @@ lbl_80393DEC:
  * Address:	........
  * Size:	00008C
  */
-void Morimura::TMovePane::forceTurn(void)
+void Morimura::TMovePane::forceTurn()
 {
 	// UNUSED FUNCTION
 }
@@ -1627,7 +1627,7 @@ void Morimura::TMovePane::startStick(J2DPane*)
  * Address:	80393E28
  * Size:	000034
  */
-void Morimura::TMovePane::isReachToGoal(void)
+void Morimura::TMovePane::isReachToGoal()
 {
 	/*
 	lfs      f1, 0x1c(r3)
@@ -1651,7 +1651,7 @@ void Morimura::TMovePane::isReachToGoal(void)
  * Address:	80393E5C
  * Size:	0000D0
  */
-void Morimura::TMovePane::reset(void)
+void Morimura::TMovePane::reset()
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -1891,7 +1891,7 @@ Morimura::TCounterRV::TCounterRV(char**, unsigned short, unsigned short, JKRArch
  * Address:	8039415C
  * Size:	0000DC
  */
-void Morimura::TCounterRV::update(void)
+void Morimura::TCounterRV::update()
 {
 	/*
 	stwu     r1, -0x30(r1)
@@ -2046,7 +2046,7 @@ void Morimura::TCounterRV::createKiraEffect(float, int)
  * Address:	........
  * Size:	000094
  */
-void Morimura::TCounterRV::fadeKiraEffect(void)
+void Morimura::TCounterRV::fadeKiraEffect()
 {
 	// UNUSED FUNCTION
 }
@@ -2056,7 +2056,7 @@ void Morimura::TCounterRV::fadeKiraEffect(void)
  * Address:	........
  * Size:	00000C
  */
-void Morimura::TCounterRV::startScaleAnim(void)
+void Morimura::TCounterRV::startScaleAnim()
 {
 	// UNUSED FUNCTION
 }
@@ -2066,7 +2066,7 @@ void Morimura::TCounterRV::startScaleAnim(void)
  * Address:	........
  * Size:	0000A8
  */
-void Morimura::TCounterRV::reset(void)
+void Morimura::TCounterRV::reset()
 {
 	// UNUSED FUNCTION
 }
@@ -2086,7 +2086,7 @@ Morimura::TChallengeResultCounter::TChallengeResultCounter(unsigned long*, int, 
  * Address:	........
  * Size:	000138
  */
-void Morimura::TChallengeResultCounter::start(void)
+void Morimura::TChallengeResultCounter::start()
 {
 	// UNUSED FUNCTION
 }
@@ -2096,7 +2096,7 @@ void Morimura::TChallengeResultCounter::start(void)
  * Address:	........
  * Size:	000040
  */
-void Morimura::TChallengeResultCounter::stop(void)
+void Morimura::TChallengeResultCounter::stop()
 {
 	// UNUSED FUNCTION
 }
@@ -2106,7 +2106,7 @@ void Morimura::TChallengeResultCounter::stop(void)
  * Address:	........
  * Size:	000070
  */
-void Morimura::TChallengeResultCounter::getFillRate(void)
+void Morimura::TChallengeResultCounter::getFillRate()
 {
 	// UNUSED FUNCTION
 }
@@ -2116,7 +2116,7 @@ void Morimura::TChallengeResultCounter::getFillRate(void)
  * Address:	........
  * Size:	0001B0
  */
-void Morimura::TChallengeResultCounter::update(void)
+void Morimura::TChallengeResultCounter::update()
 {
 	// UNUSED FUNCTION
 }
@@ -2126,7 +2126,7 @@ void Morimura::TChallengeResultCounter::update(void)
  * Address:	........
  * Size:	000080
  */
-void Morimura::TClearTexture::resetTexture(void)
+void Morimura::TClearTexture::resetTexture()
 {
 	// UNUSED FUNCTION
 }
@@ -2146,7 +2146,7 @@ void Morimura::TClearTexture::changeTexture(bool)
  * Address:	........
  * Size:	0000A4
  */
-void getPosition__Q28Morimura13TClearTextureFR10Vector2<float>(void)
+void getPosition__Q28Morimura13TClearTextureFR10Vector2<float>()
 {
 	// UNUSED FUNCTION
 }
@@ -2156,7 +2156,7 @@ void getPosition__Q28Morimura13TClearTextureFR10Vector2<float>(void)
  * Address:	........
  * Size:	0000AC
  */
-void getEffectPosition__Q28Morimura13TClearTextureFR10Vector2<float>(void)
+void getEffectPosition__Q28Morimura13TClearTextureFR10Vector2<float>()
 {
 	// UNUSED FUNCTION
 }
@@ -2166,7 +2166,7 @@ void getEffectPosition__Q28Morimura13TClearTextureFR10Vector2<float>(void)
  * Address:	80394310
  * Size:	0002F0
  */
-Morimura::TChallengeResult::TChallengeResult(void)
+Morimura::TChallengeResult::TChallengeResult()
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -2369,14 +2369,14 @@ lbl_803945E4:
  * Address:	80394600
  * Size:	000004
  */
-Morimura::TChallengeResult::VectorUnit::VectorUnit(void) { }
+Morimura::TChallengeResult::VectorUnit::VectorUnit() { }
 
 /*
  * --INFO--
  * Address:	80394604
  * Size:	0000F4
  */
-Morimura::TChallengeResult::~TChallengeResult(void)
+Morimura::TChallengeResult::~TChallengeResult()
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -4094,7 +4094,7 @@ lbl_80395EF0:
  * Address:	80395F4C
  * Size:	0009C0
  */
-void Morimura::TChallengeResult::doUpdate(void)
+void Morimura::TChallengeResult::doUpdate()
 {
 	/*
 	stwu     r1, -0xf0(r1)
@@ -4909,7 +4909,7 @@ setColor__14J2DGrafContextFQ28JUtility6TColorQ28JUtility6TColorQ28JUtility6TColo
  * Address:	80396A6C
  * Size:	00005C
  */
-void Morimura::TChallengeResult::doUpdateFadeoutFinish(void)
+void Morimura::TChallengeResult::doUpdateFadeoutFinish()
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -4945,7 +4945,7 @@ lbl_80396AA8:
  * Address:	80396AC8
  * Size:	000EDC
  */
-void Morimura::TChallengeResult::setInfo(void)
+void Morimura::TChallengeResult::setInfo()
 {
 	/*
 	stwu     r1, -0xe0(r1)
@@ -6029,7 +6029,7 @@ lbl_80397978:
  * Address:	803979A4
  * Size:	001250
  */
-void Morimura::TChallengeResult::updateDemo(void)
+void Morimura::TChallengeResult::updateDemo()
 {
 	/*
 	stwu     r1, -0x160(r1)
@@ -7368,7 +7368,7 @@ lbl_80398BC4:
  * Address:	80398BF4
  * Size:	000540
  */
-void Morimura::TChallengeResult::changeAnimDemo(void)
+void Morimura::TChallengeResult::changeAnimDemo()
 {
 	/*
 	stwu     r1, -0xf0(r1)
@@ -7741,7 +7741,7 @@ lbl_80399118:
  * Address:	80399134
  * Size:	000220
  */
-void Morimura::TChallengeResult::startRankInDemo(void)
+void Morimura::TChallengeResult::startRankInDemo()
 {
 	/*
 	stwu     r1, -0xa0(r1)
@@ -7900,7 +7900,7 @@ lbl_80399320:
  * Address:	80399354
  * Size:	00017C
  */
-void Morimura::TChallengeResult::startDemo(void)
+void Morimura::TChallengeResult::startDemo()
 {
 	/*
 	stwu     r1, -0x50(r1)
@@ -8024,7 +8024,7 @@ lbl_803994AC:
  * Address:	803994D0
  * Size:	000120
  */
-void Morimura::TChallengeResult::fadeEffect(void)
+void Morimura::TChallengeResult::fadeEffect()
 {
 	/*
 	stwu     r1, -0x30(r1)
@@ -8200,14 +8200,14 @@ void Morimura::TChallengeResultScene::doCreateObj(JKRArchive*) { }
  * Address:	803996AC
  * Size:	000008
  */
-u32 Morimura::TChallengeResultScene::getSceneType(void) { return 0x2738; }
+u32 Morimura::TChallengeResultScene::getSceneType() { return 0x2738; }
 
 /*
  * --INFO--
  * Address:	803996B4
  * Size:	00000C
  */
-void Morimura::TChallengeResultScene::getOwnerID(void)
+void Morimura::TChallengeResultScene::getOwnerID()
 {
 	/*
 	lis      r3, 0x4D524D52@ha
@@ -8221,7 +8221,7 @@ void Morimura::TChallengeResultScene::getOwnerID(void)
  * Address:	803996C0
  * Size:	000014
  */
-void Morimura::TChallengeResultScene::getMemberID(void)
+void Morimura::TChallengeResultScene::getMemberID()
 {
 	/*
 	lis      r4, 0x53554C54@ha
@@ -8237,7 +8237,7 @@ void Morimura::TChallengeResultScene::getMemberID(void)
  * Address:	803996D4
  * Size:	000034
  */
-void Morimura::TChallengeResult::getDispMemberBase(void)
+void Morimura::TChallengeResult::getDispMemberBase()
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -8265,7 +8265,7 @@ lbl_803996F8:
  * Address:	80399708
  * Size:	000084
  */
-efx2d::T2DCavecompLoop::~T2DCavecompLoop(void)
+efx2d::T2DCavecompLoop::~T2DCavecompLoop()
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -8313,7 +8313,7 @@ lbl_80399770:
  * Address:	8039978C
  * Size:	000090
  */
-Morimura::TCounterRV::~TCounterRV(void)
+Morimura::TCounterRV::~TCounterRV()
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -8364,7 +8364,7 @@ lbl_80399800:
  * Address:	8039981C
  * Size:	000008
  */
-@8 @efx2d::T2DCavecompLoop::~T2DCavecompLoop(void)
+@8 @efx2d::T2DCavecompLoop::~T2DCavecompLoop()
 {
 	/*
 	addi     r3, r3, -8
@@ -8377,7 +8377,7 @@ lbl_80399800:
  * Address:	80399824
  * Size:	000008
  */
-@24 @Morimura::TChallengeResult::~TChallengeResult(void)
+@24 @Morimura::TChallengeResult::~TChallengeResult()
 {
 	/*
 	addi     r3, r3, -24

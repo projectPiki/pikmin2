@@ -423,21 +423,21 @@ lbl_80234698:
  * Address:	8023470C
  * Size:	00000C
  */
-bool PlayCommonData::isChallengeGamePlayable(void) { return m_challengeData.m_flags & PlayChallengeGameData::PCGDF_IsPlayable; }
+bool PlayCommonData::isChallengeGamePlayable() { return m_challengeData.m_flags & PlayChallengeGameData::PCGDF_IsPlayable; }
 
 /*
  * --INFO--
  * Address:	80234718
  * Size:	00000C
  */
-bool PlayCommonData::isLouieRescued(void) { return m_challengeData.m_flags & PlayChallengeGameData::PCGDF_IsLouieRescued; }
+bool PlayCommonData::isLouieRescued() { return m_challengeData.m_flags & PlayChallengeGameData::PCGDF_IsLouieRescued; }
 
 /*
  * --INFO--
  * Address:	80234724
  * Size:	00008C
  */
-bool PlayCommonData::isPerfectChallenge(void)
+bool PlayCommonData::isPerfectChallenge()
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -493,7 +493,7 @@ lbl_80234798:
  * Address:	802347B0
  * Size:	000030
  */
-void PlayCommonData::enableChallengeGame(void)
+void PlayCommonData::enableChallengeGame()
 {
 	m_challengeData.m_flags |= PlayChallengeGameData::PCGDF_IsPlayable;
 	sys->setOptionBlockSaveFlag();
@@ -504,7 +504,7 @@ void PlayCommonData::enableChallengeGame(void)
  * Address:	802347E0
  * Size:	000030
  */
-void PlayCommonData::enableLouieRescue(void)
+void PlayCommonData::enableLouieRescue()
 {
 	m_challengeData.m_flags |= PlayChallengeGameData::PCGDF_IsLouieRescued;
 	sys->setOptionBlockSaveFlag();
@@ -515,7 +515,7 @@ void PlayCommonData::enableLouieRescue(void)
  * Address:	80234810
  * Size:	00001C
  */
-bool PlayCommonData::challenge_is_virgin(void)
+bool PlayCommonData::challenge_is_virgin()
 {
 	bool result = (u8)(m_challengeData.m_flags & PlayChallengeGameData::PCGDF_IsNotVirgin) == 0;
 	m_challengeData.m_flags |= PlayChallengeGameData::PCGDF_IsNotVirgin;
@@ -695,7 +695,7 @@ lbl_802349BC:
  * Address:	802349CC
  * Size:	000094
  */
-int PlayCommonData::challenge_openNewCourse(void)
+int PlayCommonData::challenge_openNewCourse()
 {
 	if (gGameConfig.m_parms.m_KFesVersion.m_data != 0) {
 		return -1;
@@ -800,7 +800,7 @@ Highscore* PlayCommonData::challenge_getHighscore(int courseIndex, int scoreType
  * Address:	80234BC4
  * Size:	0000C8
  */
-PlayChallengeGameData::PlayChallengeGameData(void)
+PlayChallengeGameData::PlayChallengeGameData()
     : m_flags(PlayChallengeGameData::PCGDF_Unset)
 {
 	m_courseCount = CHALLENGE_COURSE_COUNT;
@@ -819,7 +819,7 @@ PlayChallengeGameData::PlayChallengeGameData(void)
  * Address:	80234C8C
  * Size:	000078
  */
-PlayChallengeGameData::CourseState::CourseState(void)
+PlayChallengeGameData::CourseState::CourseState()
     : m_flags()
     , m_highscores()
 {

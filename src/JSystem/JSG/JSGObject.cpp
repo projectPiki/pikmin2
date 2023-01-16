@@ -22,7 +22,7 @@ char* TObject::JSGGetName() const { return nullptr; }
  * Address:	80098924
  * Size:	000004
  */
-void TObject::JSGUpdate(void) { }
+void TObject::JSGUpdate() { }
 
 /*
  * --INFO--

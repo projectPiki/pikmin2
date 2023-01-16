@@ -752,7 +752,7 @@ lbl_803B6554:
  * Address:	803B6560
  * Size:	00009C
  */
-Container::~Container(void)
+Container::~Container()
 {
 	/*
 	stwu     r1, -0x10(r1)

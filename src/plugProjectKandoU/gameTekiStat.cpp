@@ -7,7 +7,7 @@ namespace Game {
  * Address:	8023381C
  * Size:	000034
  */
-void TekiStat::Info::incKilled(void)
+void TekiStat::Info::incKilled()
 {
 	if (gameSystem && gameSystem->m_mode == GSM_STORY_MODE) {
 		m_killedTekiCount++;
@@ -20,7 +20,7 @@ void TekiStat::Info::incKilled(void)
  * Address:	80233850
  * Size:	000028
  */
-void TekiStat::Info::incKillPikmin(void)
+void TekiStat::Info::incKillPikmin()
 {
 	if (gameSystem && gameSystem->m_mode == GSM_STORY_MODE) {
 		m_killedPikminCount++;
@@ -32,7 +32,7 @@ void TekiStat::Info::incKillPikmin(void)
  * Address:	80233878
  * Size:	000010
  */
-TekiStat::Mgr::Mgr(void)
+TekiStat::Mgr::Mgr()
 {
 	m_data  = nullptr;
 	m_count = 0;
@@ -43,7 +43,7 @@ TekiStat::Mgr::Mgr(void)
  * Address:	80233888
  * Size:	000084
  */
-bool TekiStat::Mgr::whatsNew(void)
+bool TekiStat::Mgr::whatsNew()
 {
 	for (int i = 0; i < m_count; i++) {
 		// If the stat is updated and isn't out of date, there is new data to review
@@ -60,7 +60,7 @@ bool TekiStat::Mgr::whatsNew(void)
  * Address:	8023390C
  * Size:	000078
  */
-void TekiStat::Mgr::setOutOfDateAll(void)
+void TekiStat::Mgr::setOutOfDateAll()
 {
 	for (int i = 0; i < m_count; i++) {
 		if (getTekiInfo(i)->m_state & TEKISTAT_STATE_UPDATED) {
@@ -75,7 +75,7 @@ void TekiStat::Mgr::setOutOfDateAll(void)
  * Address:	80233984
  * Size:	0000C8
  */
-void TekiStat::Mgr::clear(void)
+void TekiStat::Mgr::clear()
 {
 	P2ASSERTBOOLLINE(60, m_data && m_count);
 
@@ -102,7 +102,7 @@ void TekiStat::Mgr::allocate(int amount)
  * Address:	80233AAC
  * Size:	000018
  */
-TekiStat::Info::Info(void)
+TekiStat::Info::Info()
 {
 	m_state             = 0;
 	m_killedPikminCount = 0;

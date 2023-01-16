@@ -826,7 +826,7 @@ lbl_803DB6B4:
  * Address:	803DB6CC
  * Size:	000030
  */
-void transit__Q24Game26FSMState<ebi::Save::TMgr> FPQ33ebi4Save4TMgriPQ24Game8StateArg(void)
+void transit__Q24Game26FSMState<ebi::Save::TMgr> FPQ33ebi4Save4TMgriPQ24Game8StateArg()
 {
 	/*
 	.loc_0x0:
@@ -2332,7 +2332,7 @@ lbl_803DC6B4:
  * Address:	803DC6D0
  * Size:	00014C
  */
-Save::TMgr::~TMgr(void)
+Save::TMgr::~TMgr()
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -2432,7 +2432,7 @@ lbl_803DC800:
  * Address:	803DC81C
  * Size:	000054
  */
-CardError::TMgr::~TMgr(void)
+CardError::TMgr::~TMgr()
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -2466,7 +2466,7 @@ lbl_803DC854:
  * Address:	803DC870
  * Size:	000048
  */
-void Save::TMgr::createInstance(void)
+void Save::TMgr::createInstance()
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -2499,7 +2499,7 @@ lbl_803DC8A4:
  * Address:	........
  * Size:	000048
  */
-void Save::TMgr::deleteInstance(void)
+void Save::TMgr::deleteInstance()
 {
 	// UNUSED FUNCTION
 }
@@ -2509,7 +2509,7 @@ void Save::TMgr::deleteInstance(void)
  * Address:	........
  * Size:	000008
  */
-void Save::TMgr::getInstance(void)
+void Save::TMgr::getInstance()
 {
 	// UNUSED FUNCTION
 }
@@ -2519,7 +2519,7 @@ void Save::TMgr::getInstance(void)
  * Address:	803DC8B8
  * Size:	000058
  */
-void Save::TMgr::onDvdErrorOccured(void)
+void Save::TMgr::onDvdErrorOccured()
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -2556,7 +2556,7 @@ lbl_803DC900:
  * Address:	803DC910
  * Size:	000044
  */
-void Save::TMgr::onDvdErrorRecovered(void)
+void Save::TMgr::onDvdErrorRecovered()
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -2586,7 +2586,7 @@ lbl_803DC944:
  * Address:	803DC954
  * Size:	0000D4
  */
-Save::TMgr::TMgr(void)
+Save::TMgr::TMgr()
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -2650,7 +2650,7 @@ Save::TMgr::TMgr(void)
  * Address:	803DCA28
  * Size:	000034
  */
-void start__Q24Game30StateMachine<ebi::Save::TMgr> FPQ33ebi4Save4TMgriPQ24Game8StateArg(void)
+void start__Q24Game30StateMachine<ebi::Save::TMgr> FPQ33ebi4Save4TMgriPQ24Game8StateArg()
 {
 	/*
 	.loc_0x0:
@@ -2677,7 +2677,7 @@ namespace Screen {
  * Address:	........
  * Size:	000128
  */
-TSaveMenu::~TSaveMenu(void)
+TSaveMenu::~TSaveMenu()
 {
 	// UNUSED FUNCTION
 }
@@ -2687,7 +2687,7 @@ TSaveMenu::~TSaveMenu(void)
  * Address:	803DCA5C
  * Size:	0001A0
  */
-TSaveMenu::TSaveMenu(void)
+TSaveMenu::TSaveMenu()
 {
 	/*
 stwu     r1, -0x20(r1)
@@ -2804,7 +2804,7 @@ blr
  * Address:	803DCBFC
  * Size:	000080
  */
-void Save::TMgr::start(void)
+void Save::TMgr::start()
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -2851,7 +2851,7 @@ lbl_803DCC60:
  * Address:	803DCC7C
  * Size:	000064
  */
-void Save::TMgr::forceQuit(void)
+void Save::TMgr::forceQuit()
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -2887,7 +2887,7 @@ void Save::TMgr::forceQuit(void)
  * Address:	803DCCE0
  * Size:	00004C
  */
-void Save::TMgr::isFinish(void)
+void Save::TMgr::isFinish()
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -2958,7 +2958,7 @@ void Save::TMgr::goEnd_(ebi::Save::TMgr::enumEnd)
  * Address:	803DCD94
  * Size:	000098
  */
-void Save::TMgr::update(void)
+void Save::TMgr::update()
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -3009,7 +3009,7 @@ lbl_803DCE18:
  * Address:	803DCE2C
  * Size:	000050
  */
-void Save::TMgr::draw(void)
+void Save::TMgr::draw()
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -3042,7 +3042,7 @@ lbl_803DCE68:
  * Address:	........
  * Size:	000034
  */
-void Save::TMgr::showInfo(void)
+void Save::TMgr::showInfo()
 {
 	// UNUSED FUNCTION
 }
@@ -3052,7 +3052,7 @@ void Save::TMgr::showInfo(void)
  * Address:	803DCE7C
  * Size:	000058
  */
-void Save::TMgr::getStateID(void)
+void Save::TMgr::getStateID()
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -3087,7 +3087,7 @@ lbl_803DCEB8:
  * Address:	803DCED4
  * Size:	000004
  */
-void init__Q24Game26FSMState<ebi::Save::TMgr> FPQ33ebi4Save4TMgrPQ24Game8StateArg(void) { }
+void init__Q24Game26FSMState<ebi::Save::TMgr> FPQ33ebi4Save4TMgrPQ24Game8StateArg() { }
 
 } // namespace ebi
 
@@ -3096,42 +3096,42 @@ void init__Q24Game26FSMState<ebi::Save::TMgr> FPQ33ebi4Save4TMgrPQ24Game8StateAr
  * Address:	803DCED8
  * Size:	000004
  */
-void exec__Q24Game26FSMState<ebi::Save::TMgr> FPQ33ebi4Save4TMgr(void) { }
+void exec__Q24Game26FSMState<ebi::Save::TMgr> FPQ33ebi4Save4TMgr() { }
 
 /*
  * --INFO--
  * Address:	803DCEDC
  * Size:	000004
  */
-void cleanup__Q24Game26FSMState<ebi::Save::TMgr> FPQ33ebi4Save4TMgr(void) { }
+void cleanup__Q24Game26FSMState<ebi::Save::TMgr> FPQ33ebi4Save4TMgr() { }
 
 /*
  * --INFO--
  * Address:	803DCEE0
  * Size:	000004
  */
-void resume__Q24Game26FSMState<ebi::Save::TMgr> FPQ33ebi4Save4TMgr(void) { }
+void resume__Q24Game26FSMState<ebi::Save::TMgr> FPQ33ebi4Save4TMgr() { }
 
 /*
  * --INFO--
  * Address:	803DCEE4
  * Size:	000004
  */
-void restart__Q24Game26FSMState<ebi::Save::TMgr> FPQ33ebi4Save4TMgr(void) { }
+void restart__Q24Game26FSMState<ebi::Save::TMgr> FPQ33ebi4Save4TMgr() { }
 
 /*
  * --INFO--
  * Address:	803DCEE8
  * Size:	000004
  */
-void init__Q24Game30StateMachine<ebi::Save::TMgr> FPQ33ebi4Save4TMgr(void) { }
+void init__Q24Game30StateMachine<ebi::Save::TMgr> FPQ33ebi4Save4TMgr() { }
 
 /*
  * --INFO--
  * Address:	803DCEEC
  * Size:	000038
  */
-void exec__Q24Game30StateMachine<ebi::Save::TMgr> FPQ33ebi4Save4TMgr(void)
+void exec__Q24Game30StateMachine<ebi::Save::TMgr> FPQ33ebi4Save4TMgr()
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -3158,7 +3158,7 @@ lbl_803DCF14:
  * Address:	803DCF24
  * Size:	000064
  */
-void create__Q24Game30StateMachine<ebi::Save::TMgr> Fi(void)
+void create__Q24Game30StateMachine<ebi::Save::TMgr> Fi()
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -3194,7 +3194,7 @@ void create__Q24Game30StateMachine<ebi::Save::TMgr> Fi(void)
  * Address:	803DCF88
  * Size:	00009C
  */
-void transit__Q24Game30StateMachine<ebi::Save::TMgr> FPQ33ebi4Save4TMgriPQ24Game8StateArg(void)
+void transit__Q24Game30StateMachine<ebi::Save::TMgr> FPQ33ebi4Save4TMgriPQ24Game8StateArg()
 {
 	/*
 	.loc_0x0:
@@ -3251,7 +3251,7 @@ void transit__Q24Game30StateMachine<ebi::Save::TMgr> FPQ33ebi4Save4TMgriPQ24Game
  * Address:	803DD024
  * Size:	000084
  */
-void registerState__Q24Game30StateMachine<ebi::Save::TMgr> FPQ24Game26FSMState<ebi::Save::TMgr>(void)
+void registerState__Q24Game30StateMachine<ebi::Save::TMgr> FPQ24Game26FSMState<ebi::Save::TMgr>()
 {
 	/*
 	.loc_0x0:

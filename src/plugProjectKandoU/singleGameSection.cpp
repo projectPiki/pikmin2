@@ -624,7 +624,7 @@ namespace Game {
  * Address:	80152074
  * Size:	000084
  */
-SingleGameSection::~SingleGameSection(void)
+SingleGameSection::~SingleGameSection()
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -672,7 +672,7 @@ lbl_801520DC:
  * Address:	801520F8
  * Size:	000184
  */
-void SingleGameSection::startMainBgm(void)
+void SingleGameSection::startMainBgm()
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -800,7 +800,7 @@ namespace PSM {
  * Address:	8015227C
  * Size:	000008
  */
-bool SceneBase::isGameScene(void) { return false; }
+bool SceneBase::isGameScene() { return false; }
 } // namespace PSM
 
 namespace Game {
@@ -1426,7 +1426,7 @@ lbl_80152984:
  * Address:	8015299C
  * Size:	000030
  */
-// void transit__Q24Game36FSMState<Game::SingleGameSection> FPQ24Game17SingleGameSectioniPQ24Game8StateArg(void)
+// void transit__Q24Game36FSMState<Game::SingleGameSection> FPQ24Game17SingleGameSectioniPQ24Game8StateArg()
 // {
 // 	/*
 // 	.loc_0x0:
@@ -1569,7 +1569,7 @@ lbl_80152AF8:
  * Address:	80152B1C
  * Size:	000034
  */
-void SingleGameSection::section_fadeout(void)
+void SingleGameSection::section_fadeout()
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -1600,7 +1600,7 @@ void SingleGame::State::on_section_fadeout(Game::SingleGameSection*) { }
  * Address:	80152B54
  * Size:	00000C
  */
-void SingleGameSection::flow_goto_title(void)
+void SingleGameSection::flow_goto_title()
 {
 	// Generated from stb r0, 0x1B5(r3)
 	_1B5 = 1;
@@ -1611,7 +1611,7 @@ void SingleGameSection::flow_goto_title(void)
  * Address:	80152B60
  * Size:	000188
  */
-void SingleGameSection::onInit(void)
+void SingleGameSection::onInit()
 {
 	/*
 	stwu     r1, -0x20(r1)
@@ -1726,7 +1726,7 @@ lbl_80152CB4:
  * Address:	80152CE8
  * Size:	000034
  */
-// void start__Q24Game40StateMachine<Game::SingleGameSection> FPQ24Game17SingleGameSectioniPQ24Game8StateArg(void)
+// void start__Q24Game40StateMachine<Game::SingleGameSection> FPQ24Game17SingleGameSectioniPQ24Game8StateArg()
 // {
 // 	/*
 // 	.loc_0x0:
@@ -1751,7 +1751,7 @@ lbl_80152CB4:
  * Address:	80152D1C
  * Size:	0000EC
  */
-void SingleGameSection::doUpdate(void)
+void SingleGameSection::doUpdate()
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -1901,7 +1901,7 @@ lbl_80152EA4:
  * Address:	80152EB8
  * Size:	000260
  */
-void SingleGameSection::onSetSoundScene(void)
+void SingleGameSection::onSetSoundScene()
 {
 	/*
 	stwu     r1, -0xa0(r1)
@@ -2082,7 +2082,7 @@ lbl_80153100:
  * Address:	80153118
  * Size:	000008
  */
-void SingleGameSection::getCaveID(void)
+void SingleGameSection::getCaveID()
 {
 	/*
 	lwz      r3, 0x238(r3)
@@ -2095,7 +2095,7 @@ void SingleGameSection::getCaveID(void)
  * Address:	80153120
  * Size:	0002A0
  */
-void SingleGameSection::onSetupFloatMemory(void)
+void SingleGameSection::onSetupFloatMemory()
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -2302,7 +2302,7 @@ lbl_801533AC:
  * Address:	801533C0
  * Size:	000050
  */
-void SingleGameSection::onClearHeap(void)
+void SingleGameSection::onClearHeap()
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -2335,7 +2335,7 @@ lbl_801533FC:
  * Address:	80153410
  * Size:	00000C
  */
-void SingleGameSection::onStartHeap(void)
+void SingleGameSection::onStartHeap()
 {
 	// Generated from stb r0, 0x194(r3)
 	_194 = 0;
@@ -2386,7 +2386,7 @@ void SingleGame::State::onOrimaDown(Game::SingleGameSection*, int) { }
  * Address:	80153464
  * Size:	000004
  */
-void SingleGameSection::gmPikminZero(void) { }
+void SingleGameSection::gmPikminZero() { }
 
 /*
  * --INFO--
@@ -2774,7 +2774,7 @@ lbl_80153854:
  * Address:	80153868
  * Size:	000008
  */
-void Onyon::getFaceDir(void)
+void Onyon::getFaceDir()
 {
 	/*
 	lfs      f1, 0x228(r3)
@@ -3932,7 +3932,7 @@ void SingleGameSection::openKanketuMenu(Game::ItemBigFountain::Item*, Controller
  * Address:	8015471C
  * Size:	000300
  */
-void SingleGameSection::updateCaveMenus(void)
+void SingleGameSection::updateCaveMenus()
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -4290,7 +4290,7 @@ void SingleGame::State::onFountainReturn(Game::SingleGameSection*, Game::ItemBig
  * Address:	80154B24
  * Size:	000020
  */
-void SingleGameSection::setupMainMapGames(void)
+void SingleGameSection::setupMainMapGames()
 {
 	createFallPikmins();
 	/*
@@ -4310,7 +4310,7 @@ void SingleGameSection::setupMainMapGames(void)
  * Address:	80154B44
  * Size:	000020
  */
-void SingleGameSection::setupCaveGames(void)
+void SingleGameSection::setupCaveGames()
 {
 	createFallPikmins();
 	/*
@@ -4330,7 +4330,7 @@ void SingleGameSection::setupCaveGames(void)
  * Address:	80154B64
  * Size:	000474
  */
-void SingleGameSection::createFallPikmins(void)
+void SingleGameSection::createFallPikmins()
 {
 	/*
 	stwu     r1, -0x150(r1)
@@ -5061,7 +5061,7 @@ void SingleGameSection::calcOtakaraLevel(float&)
  * Address:	801554EC
  * Size:	00058C
  */
-void SingleGameSection::updateMainMapScreen(void)
+void SingleGameSection::updateMainMapScreen()
 {
 	/*
 	stwu     r1, -0xd0(r1)
@@ -5465,14 +5465,14 @@ lbl_801559E4:
  * Address:	80155A78
  * Size:	000004
  */
-void SingleGameSection::drawMainMapScreen(void) { }
+void SingleGameSection::drawMainMapScreen() { }
 
 /*
  * --INFO--
  * Address:	80155A7C
  * Size:	0004D8
  */
-void SingleGameSection::updateCaveScreen(void)
+void SingleGameSection::updateCaveScreen()
 {
 	/*
 	stwu     r1, -0xb0(r1)
@@ -5833,14 +5833,14 @@ int SingleGameSection::getCurrFloor()
  * Address:	80155F5C
  * Size:	000004
  */
-void SingleGameSection::drawCaveScreen(void) { }
+void SingleGameSection::drawCaveScreen() { }
 
 /*
  * --INFO--
  * Address:	80155F60
  * Size:	00008C
  */
-void SingleGameSection::newCaveOtakaraEarningsAndDrops(void)
+void SingleGameSection::newCaveOtakaraEarningsAndDrops()
 {
 	int otakaraCount = PelletList::Mgr::getCount(PelletList::OTAKARA);
 	int itemCount    = PelletList::Mgr::getCount(PelletList::ITEM);
@@ -5893,7 +5893,7 @@ void SingleGameSection::newCaveOtakaraEarningsAndDrops(void)
  * Address:	80155FEC
  * Size:	000050
  */
-void SingleGameSection::clearCaveOtakaraEarningsAndDrops(void)
+void SingleGameSection::clearCaveOtakaraEarningsAndDrops()
 {
 	_254.clear();
 	_25C.clear();
@@ -5935,14 +5935,14 @@ namespace Screen {
  * Address:	8015603C
  * Size:	000008
  */
-u32 DispMemberCave::getSize(void) { return sizeof(DispMemberCave); }
+u32 DispMemberCave::getSize() { return sizeof(DispMemberCave); }
 
 /*
  * --INFO--
  * Address:	80156044
  * Size:	00000C
  */
-ScreenOwnerID DispMemberCave::getOwnerID(void)
+ScreenOwnerID DispMemberCave::getOwnerID()
 {
 	return OWNER_OGA;
 	/*
@@ -5957,7 +5957,7 @@ blr
  * Address:	80156050
  * Size:	000010
  */
-ScreenMemberID DispMemberCave::getMemberID(void)
+ScreenMemberID DispMemberCave::getMemberID()
 {
 	return MEMBER_CAVE;
 	/*
@@ -5973,21 +5973,21 @@ blr
  * Address:	80156060
  * Size:	000004
  */
-void DispMemberBase::doSetSubMemberAll(void) { }
+void DispMemberBase::doSetSubMemberAll() { }
 
 /*
  * --INFO--
  * Address:	80156064
  * Size:	000008
  */
-u32 DispMemberHurryUp::getSize(void) { return sizeof(DispMemberHurryUp); }
+u32 DispMemberHurryUp::getSize() { return sizeof(DispMemberHurryUp); }
 
 /*
  * --INFO--
  * Address:	8015606C
  * Size:	00000C
  */
-ScreenOwnerID DispMemberHurryUp::getOwnerID(void)
+ScreenOwnerID DispMemberHurryUp::getOwnerID()
 {
 	return OWNER_MRMR;
 	/*
@@ -6002,7 +6002,7 @@ blr
  * Address:	80156078
  * Size:	000014
  */
-ScreenMemberID DispMemberHurryUp::getMemberID(void)
+ScreenMemberID DispMemberHurryUp::getMemberID()
 {
 	return MEMBER_HURRY_UP;
 	/*
@@ -6019,14 +6019,14 @@ blr
  * Address:	8015608C
  * Size:	000008
  */
-u32 DispMemberDayEndCount::getSize(void) { return sizeof(DispMemberDayEndCount); }
+u32 DispMemberDayEndCount::getSize() { return sizeof(DispMemberDayEndCount); }
 
 /*
  * --INFO--
  * Address:	80156094
  * Size:	00000C
  */
-ScreenOwnerID DispMemberDayEndCount::getOwnerID(void)
+ScreenOwnerID DispMemberDayEndCount::getOwnerID()
 {
 	return OWNER_MRMR;
 	/*
@@ -6041,7 +6041,7 @@ blr
  * Address:	801560A0
  * Size:	000014
  */
-ScreenMemberID DispMemberDayEndCount::getMemberID(void)
+ScreenMemberID DispMemberDayEndCount::getMemberID()
 {
 	return MEMBER_DAY_END_COUNT;
 	/*
@@ -6058,14 +6058,14 @@ blr
 //  * Address:	801560B4
 //  * Size:	000008
 //  */
-// u32 DispMemberGround::getSize(void) { return 0x88; }
+// u32 DispMemberGround::getSize() { return 0x88; }
 
 // /*
 //  * --INFO--
 //  * Address:	801560BC
 //  * Size:	00000C
 //  */
-// void DispMemberGround::getOwnerID(void)
+// void DispMemberGround::getOwnerID()
 // {
 // 	/*
 // lis      r3, 0x004F4741@ha
@@ -6079,7 +6079,7 @@ blr
 //  * Address:	801560C8
 //  * Size:	000010
 //  */
-// void DispMemberGround::getMemberID(void)
+// void DispMemberGround::getMemberID()
 // {
 // 	/*
 // lis      r4, 0x4F554E44@ha
@@ -6100,7 +6100,7 @@ namespace Game {
  * Address:	801560D8
  * Size:	00000C
  */
-void PikiInitArg::getName(void)
+void PikiInitArg::getName()
 {
 	return "PikiInitArg";
 	/*
@@ -6121,14 +6121,14 @@ namespace Screen {
  * Address:	801560E4
  * Size:	000008
  */
-u32 DispMemberKanketuMenu::getSize(void) { return sizeof(DispMemberKanketuMenu); }
+u32 DispMemberKanketuMenu::getSize() { return sizeof(DispMemberKanketuMenu); }
 
 /*
  * --INFO--
  * Address:	801560EC
  * Size:	00000C
  */
-ScreenOwnerID DispMemberKanketuMenu::getOwnerID(void)
+ScreenOwnerID DispMemberKanketuMenu::getOwnerID()
 {
 	return OWNER_OGA;
 	/*
@@ -6143,7 +6143,7 @@ blr
  * Address:	801560F8
  * Size:	000014
  */
-ScreenMemberID DispMemberKanketuMenu::getMemberID(void)
+ScreenMemberID DispMemberKanketuMenu::getMemberID()
 {
 	/*
 lis      r4, 0x4B455455@ha
@@ -6159,14 +6159,14 @@ blr
  * Address:	8015610C
  * Size:	000008
  */
-u32 DispMemberCaveMore::getSize(void) { return 0x28; }
+u32 DispMemberCaveMore::getSize() { return 0x28; }
 
 /*
  * --INFO--
  * Address:	80156114
  * Size:	00000C
  */
-void DispMemberCaveMore::getOwnerID(void)
+void DispMemberCaveMore::getOwnerID()
 {
 	/*
 lis      r3, 0x004F4741@ha
@@ -6180,7 +6180,7 @@ blr
  * Address:	80156120
  * Size:	000014
  */
-void DispMemberCaveMore::getMemberID(void)
+void DispMemberCaveMore::getMemberID()
 {
 	/*
 lis      r4, 0x4D4F5245@ha
@@ -6196,14 +6196,14 @@ blr
  * Address:	80156134
  * Size:	000008
  */
-u32 DispMemberAnaDemo::getSize(void) { return 0x24; }
+u32 DispMemberAnaDemo::getSize() { return 0x24; }
 
 /*
  * --INFO--
  * Address:	8015613C
  * Size:	00000C
  */
-void DispMemberAnaDemo::getOwnerID(void)
+void DispMemberAnaDemo::getOwnerID()
 {
 	/*
 lis      r3, 0x004F4741@ha
@@ -6217,7 +6217,7 @@ blr
  * Address:	80156148
  * Size:	000014
  */
-void DispMemberAnaDemo::getMemberID(void)
+void DispMemberAnaDemo::getMemberID()
 {
 	/*
 lis      r4, 0x44454D4F@ha
@@ -6239,7 +6239,7 @@ namespace Game {
  * Address:	8015615C
  * Size:	00000C
  */
-void PikiKillArg::getName(void)
+void PikiKillArg::getName()
 {
 	/*
 	lis      r3, lbl_8047CFC4@ha
@@ -6255,7 +6255,7 @@ namespace efx {
  * Address:	80156168
  * Size:	00009C
  */
-TLastMomiji::~TLastMomiji(void)
+TLastMomiji::~TLastMomiji()
 {
 	/*
 stwu     r1, -0x10(r1)
@@ -6309,7 +6309,7 @@ blr
  * Address:	80156204
  * Size:	00009C
  */
-TForestSakura::~TForestSakura(void)
+TForestSakura::~TForestSakura()
 {
 	/*
 stwu     r1, -0x10(r1)
@@ -6363,7 +6363,7 @@ blr
  * Address:	801562A0
  * Size:	00009C
  */
-TTutorialSnow::~TTutorialSnow(void)
+TTutorialSnow::~TTutorialSnow()
 {
 	/*
 stwu     r1, -0x10(r1)
@@ -6449,7 +6449,7 @@ void SingleGameSection::getTimerType()
  * Address:	8015637C
  * Size:	000008
  */
-void SingleGameSection::getCaveFilename(void)
+void SingleGameSection::getCaveFilename()
 {
 	/*
 	addi     r3, r3, 0x195
@@ -6682,7 +6682,7 @@ void StateMachine<SingleGameSection>::registerState(FSMState<SingleGameSection>*
  * Address:	80156588
  * Size:	000028
  */
-void __sinit_singleGameSection_cpp(void)
+void __sinit_singleGameSection_cpp()
 {
 	/*
 	lis      r4, __float_nan@ha

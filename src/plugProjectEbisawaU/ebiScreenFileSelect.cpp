@@ -590,7 +590,7 @@ void FileSelect::TScreenDataWindow_data::setData((long, unsigned long, unsigned 
  * Address:	803D4498
  * Size:	000EB0
  */
-FileSelect::TMainScreen::TMainScreen(void)
+FileSelect::TMainScreen::TMainScreen()
 {
 	/*
 stwu     r1, -0x50(r1)
@@ -1549,7 +1549,7 @@ blr
  * Address:	803D5348
  * Size:	0000B0
  */
-void FileSelect::TMainScreen::loadResource(void)
+void FileSelect::TMainScreen::loadResource()
 {
 	/*
 stwu     r1, -0x120(r1)
@@ -2864,7 +2864,7 @@ blr
  * Address:	803D66DC
  * Size:	000100
  */
-void FileSelect::TMainScreen::doKillScreen(void)
+void FileSelect::TMainScreen::doKillScreen()
 {
 	/*
 stwu     r1, -0x20(r1)
@@ -3119,7 +3119,7 @@ blr
  * Address:	803D6A60
  * Size:	0001B0
  */
-void FileSelect::TMainScreen::doInitWaitState(void)
+void FileSelect::TMainScreen::doInitWaitState()
 {
 	/*
 stwu     r1, -0x50(r1)
@@ -3293,7 +3293,7 @@ blr
  * Address:	803D6CA8
  * Size:	000088
  */
-void FileSelect::TMainScreen::doUpdateStateOpen(void)
+void FileSelect::TMainScreen::doUpdateStateOpen()
 {
 	/*
 stwu     r1, -0x10(r1)
@@ -3344,7 +3344,7 @@ blr
  * Address:	803D6D30
  * Size:	00031C
  */
-void FileSelect::TMainScreen::doUpdateStateWait(void)
+void FileSelect::TMainScreen::doUpdateStateWait()
 {
 	/*
 stwu     r1, -0x70(r1)
@@ -3578,7 +3578,7 @@ blr
  * Address:	803D704C
  * Size:	0000CC
  */
-void FileSelect::TMainScreen::doUpdateStateClose(void)
+void FileSelect::TMainScreen::doUpdateStateClose()
 {
 	/*
 stwu     r1, -0x20(r1)
@@ -3648,7 +3648,7 @@ blr
  * Address:	803D7118
  * Size:	000374
  */
-void FileSelect::TMainScreen::doDraw(void)
+void FileSelect::TMainScreen::doDraw()
 {
 	/*
 stwu     r1, -0x5a0(r1)
@@ -4362,7 +4362,7 @@ blr
  * Address:	803D79FC
  * Size:	000050
  */
-void FileSelect::TMainScreen::fadeCopyCursor(void)
+void FileSelect::TMainScreen::fadeCopyCursor()
 {
 	/*
 stwu     r1, -0x10(r1)
@@ -4393,7 +4393,7 @@ blr
  * Address:	........
  * Size:	000050
  */
-void FileSelect::TMainScreen::killCopyCursor(void)
+void FileSelect::TMainScreen::killCopyCursor()
 {
 	// UNUSED FUNCTION
 }
@@ -4403,7 +4403,7 @@ void FileSelect::TMainScreen::killCopyCursor(void)
  * Address:	803D7A4C
  * Size:	000010
  */
-void FileSelect::TMainScreen::moveLeftCopyCursor(void)
+void FileSelect::TMainScreen::moveLeftCopyCursor()
 {
 	/*
 li       r0, 1
@@ -4418,7 +4418,7 @@ blr
  * Address:	803D7A5C
  * Size:	000010
  */
-void FileSelect::TMainScreen::moveRightCopyCursor(void)
+void FileSelect::TMainScreen::moveRightCopyCursor()
 {
 	/*
 li       r0, 0
@@ -4564,7 +4564,7 @@ blr
  * Address:	803D7C4C
  * Size:	000058
  */
-void FileSelect::TMainScreen::fadeFilecopyEffect(void)
+void FileSelect::TMainScreen::fadeFilecopyEffect()
 {
 	/*
 stwu     r1, -0x10(r1)
@@ -4678,7 +4678,7 @@ blr
  * Address:	803D7DBC
  * Size:	000058
  */
-void FileSelect::TMainScreen::fadeFiledeletingEffect(void)
+void FileSelect::TMainScreen::fadeFiledeletingEffect()
 {
 	/*
 stwu     r1, -0x10(r1)
@@ -4711,7 +4711,7 @@ blr
  * Address:	........
  * Size:	0000F0
  */
-void FileSelect::TMainScreen::killAllEffect(void)
+void FileSelect::TMainScreen::killAllEffect()
 {
 	// UNUSED FUNCTION
 }
@@ -4950,7 +4950,7 @@ blr
  * Address:	803D812C
  * Size:	00006C
  */
-void FileSelect::TMainScreen::closeDataWindow(void)
+void FileSelect::TMainScreen::closeDataWindow()
 {
 	/*
 stwu     r1, -0x10(r1)
@@ -4990,7 +4990,7 @@ blr
  * Address:	803D8198
  * Size:	00006C
  */
-void FileSelect::TMainScreen::decideDataWindow(void)
+void FileSelect::TMainScreen::decideDataWindow()
 {
 	/*
 stwu     r1, -0x10(r1)
@@ -5030,7 +5030,7 @@ blr
  * Address:	803D8204
  * Size:	000024
  */
-void FileSelect::TMainScreen::isFinishCloseDataWindow(void)
+void FileSelect::TMainScreen::isFinishCloseDataWindow()
 {
 	/*
 stwu     r1, -0x10(r1)
@@ -5264,7 +5264,7 @@ blr
  * Address:	803D84C8
  * Size:	000060
  */
-void FileSelect::TMainScreen::closeMSG(void)
+void FileSelect::TMainScreen::closeMSG()
 {
 	/*
 stwu     r1, -0x10(r1)
@@ -5301,7 +5301,7 @@ blr
  * Address:	803D8528
  * Size:	000028
  */
-void FileSelect::TMainScreen::isFinishCloseMSG(void)
+void FileSelect::TMainScreen::isFinishCloseMSG()
 {
 	/*
 lwz      r0, 0xafc(r3)
@@ -5388,7 +5388,7 @@ blr
  * Address:	803D8614
  * Size:	000144
  */
-void FileSelect::TMainScreen::updateMsg_(void)
+void FileSelect::TMainScreen::updateMsg_()
 {
 	/*
 stwu     r1, -0x30(r1)
@@ -5525,7 +5525,7 @@ void FileSelect::TMainScreen::setMsgID_(unsigned long long, unsigned long long, 
  * Address:	........
  * Size:	00005C
  */
-void FileSelect::TMainScreen::isFinishOutCopyErase(void)
+void FileSelect::TMainScreen::isFinishOutCopyErase()
 {
 	// UNUSED FUNCTION
 }
@@ -5535,7 +5535,7 @@ void FileSelect::TMainScreen::isFinishOutCopyErase(void)
  * Address:	803D87A4
  * Size:	00008C
  */
-void FileSelect::TMainScreen::inCopyErase(void)
+void FileSelect::TMainScreen::inCopyErase()
 {
 	/*
 stwu     r1, -0x10(r1)
@@ -5583,7 +5583,7 @@ blr
  * Address:	803D8830
  * Size:	00008C
  */
-void FileSelect::TMainScreen::outCopyErase(void)
+void FileSelect::TMainScreen::outCopyErase()
 {
 	/*
 stwu     r1, -0x10(r1)
@@ -5631,7 +5631,7 @@ blr
  * Address:	803D88BC
  * Size:	00008C
  */
-void FileSelect::TMainScreen::inYesNo_(void)
+void FileSelect::TMainScreen::inYesNo_()
 {
 	/*
 stwu     r1, -0x10(r1)
@@ -5679,7 +5679,7 @@ blr
  * Address:	803D8948
  * Size:	00008C
  */
-void FileSelect::TMainScreen::outYesNo_(void)
+void FileSelect::TMainScreen::outYesNo_()
 {
 	/*
 stwu     r1, -0x10(r1)
@@ -5727,7 +5727,7 @@ blr
  * Address:	........
  * Size:	00005C
  */
-void FileSelect::TMainScreen::isFinishOutYesNo_(void)
+void FileSelect::TMainScreen::isFinishOutYesNo_()
 {
 	// UNUSED FUNCTION
 }
@@ -6068,7 +6068,7 @@ blr
  * Address:	803D8E7C
  * Size:	00004C
  */
-void FileSelect::TMainScreen::initDataBalls_(void)
+void FileSelect::TMainScreen::initDataBalls_()
 {
 	/*
 stwu     r1, -0x10(r1)
@@ -6729,7 +6729,7 @@ blr
  * Address:	803D9724
  * Size:	000058
  */
-FileSelect::TFileData::TFileData(void)
+FileSelect::TFileData::TFileData()
 {
 	/*
 li       r7, 0
@@ -6762,7 +6762,7 @@ blr
  * Address:	803D977C
  * Size:	00000C
  */
-void FileSelect::TMainScreen::getName(void)
+void FileSelect::TMainScreen::getName()
 {
 	/*
 lis      r3, lbl_80496D28@ha
@@ -6776,7 +6776,7 @@ blr
  * Address:	803D9788
  * Size:	00009C
  */
-efx2d::FileSelect::T2DFileselM::~T2DFileselM(void)
+efx2d::FileSelect::T2DFileselM::~T2DFileselM()
 {
 	/*
 stwu     r1, -0x10(r1)
@@ -6830,7 +6830,7 @@ blr
  * Address:	803D9824
  * Size:	000084
  */
-efx2d::FileSelect::T2DFiledeletingM::~T2DFiledeletingM(void)
+efx2d::FileSelect::T2DFiledeletingM::~T2DFiledeletingM()
 {
 	/*
 stwu     r1, -0x10(r1)
@@ -6878,7 +6878,7 @@ blr
  * Address:	803D98A8
  * Size:	000084
  */
-efx2d::FileSelect::T2DFiledeleting::~T2DFiledeleting(void)
+efx2d::FileSelect::T2DFiledeleting::~T2DFiledeleting()
 {
 	/*
 stwu     r1, -0x10(r1)
@@ -6926,7 +6926,7 @@ blr
  * Address:	803D992C
  * Size:	00009C
  */
-efx2d::FileSelect::T2DFilecopyM::~T2DFilecopyM(void)
+efx2d::FileSelect::T2DFilecopyM::~T2DFilecopyM()
 {
 	/*
 stwu     r1, -0x10(r1)
@@ -6980,7 +6980,7 @@ blr
  * Address:	803D99C8
  * Size:	00009C
  */
-efx2d::FileSelect::T2DFilecopy::~T2DFilecopy(void)
+efx2d::FileSelect::T2DFilecopy::~T2DFilecopy()
 {
 	/*
 stwu     r1, -0x10(r1)
@@ -7034,7 +7034,7 @@ blr
  * Address:	803D9A64
  * Size:	000094
  */
-E2DCallBack_AnmBase::E2DCallBack_AnmBase(void)
+E2DCallBack_AnmBase::E2DCallBack_AnmBase()
 {
 	/*
 stwu     r1, -0x10(r1)
@@ -7163,7 +7163,7 @@ void E2DCallBack_BlinkFontColor::set(ebi::E2DFullFontColor&, ebi::E2DFullFontCol
  * Address:	803D9BFC
  * Size:	00000C
  */
-void efx2d::ArgColor::getName(void)
+void efx2d::ArgColor::getName()
 {
 	/*
 	lis      r3, lbl_80496D10@ha
@@ -7177,7 +7177,7 @@ void efx2d::ArgColor::getName(void)
  * Address:	803D9C08
  * Size:	00000C
  */
-void efx2d::FileSelect::ArgFilecopy::getName(void)
+void efx2d::FileSelect::ArgFilecopy::getName()
 {
 	/*
 	lis      r3, lbl_80496D1C@ha
@@ -7191,7 +7191,7 @@ void efx2d::FileSelect::ArgFilecopy::getName(void)
  * Address:	803D9C14
  * Size:	00009C
  */
-efx2d::FileSelect::T2DFilesel::~T2DFilesel(void)
+efx2d::FileSelect::T2DFilesel::~T2DFilesel()
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -7245,7 +7245,7 @@ lbl_803D9C94:
  * Address:	803D9CB0
  * Size:	000008
  */
-@8 @efx2d::FileSelect::T2DFilecopy::~T2DFilecopy(void)
+@8 @efx2d::FileSelect::T2DFilecopy::~T2DFilecopy()
 {
 	/*
 	addi     r3, r3, -8
@@ -7258,7 +7258,7 @@ lbl_803D9C94:
  * Address:	803D9CB8
  * Size:	000008
  */
-@8 @efx2d::FileSelect::T2DFilecopyM::~T2DFilecopyM(void)
+@8 @efx2d::FileSelect::T2DFilecopyM::~T2DFilecopyM()
 {
 	/*
 	addi     r3, r3, -8
@@ -7271,7 +7271,7 @@ lbl_803D9C94:
  * Address:	803D9CC0
  * Size:	000008
  */
-@8 @efx2d::FileSelect::T2DFiledeleting::~T2DFiledeleting(void)
+@8 @efx2d::FileSelect::T2DFiledeleting::~T2DFiledeleting()
 {
 	/*
 	addi     r3, r3, -8
@@ -7284,7 +7284,7 @@ lbl_803D9C94:
  * Address:	803D9CC8
  * Size:	000008
  */
-@8 @efx2d::FileSelect::T2DFiledeletingM::~T2DFiledeletingM(void)
+@8 @efx2d::FileSelect::T2DFiledeletingM::~T2DFiledeletingM()
 {
 	/*
 	addi     r3, r3, -8
@@ -7297,7 +7297,7 @@ lbl_803D9C94:
  * Address:	803D9CD0
  * Size:	000008
  */
-@8 @efx2d::FileSelect::T2DFilesel::~T2DFilesel(void)
+@8 @efx2d::FileSelect::T2DFilesel::~T2DFilesel()
 {
 	/*
 	addi     r3, r3, -8
@@ -7310,7 +7310,7 @@ lbl_803D9C94:
  * Address:	803D9CD8
  * Size:	000008
  */
-@8 @efx2d::FileSelect::T2DFileselM::~T2DFileselM(void)
+@8 @efx2d::FileSelect::T2DFileselM::~T2DFileselM()
 {
 	/*
 	addi     r3, r3, -8

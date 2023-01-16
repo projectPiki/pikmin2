@@ -19,7 +19,7 @@
  * Size:	0000CC
  */
 void createObject_SOUND_JAI___Q214JStudio_JAudio21 @unnamed @control_cpp
-    @FRCQ47JStudio3stb4data20TParse_TBlock_objectP8JAIBasicPCQ26JStage7TSystem(void)
+    @FRCQ47JStudio3stb4data20TParse_TBlock_objectP8JAIBasicPCQ26JStage7TSystem()
 {
 	/*
 	.loc_0x0:
@@ -94,7 +94,7 @@ void createObject_SOUND_JAI___Q214JStudio_JAudio21 @unnamed @control_cpp
  * Address:	80015D10
  * Size:	000060
  */
-JStudio_JAudio::TCreateObject::~TCreateObject(void)
+JStudio_JAudio::TCreateObject::~TCreateObject()
 {
 	/*
 	stwu     r1, -0x10(r1)

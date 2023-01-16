@@ -274,7 +274,7 @@ lbl_800ABF90:
  * Address:	........
  * Size:	00002C
  */
-void JAInter::BankWave::readInitSoundData(void)
+void JAInter::BankWave::readInitSoundData()
 {
 	// UNUSED FUNCTION
 }
@@ -284,7 +284,7 @@ void JAInter::BankWave::readInitSoundData(void)
  * Address:	800ABFA4
  * Size:	000094
  */
-void JAInter::BankWave::loadFirstStayWave(void)
+void JAInter::BankWave::loadFirstStayWave()
 {
 	if (initOnCodeWs != nullptr && !flags.asStruct._7) {
 		for (int i = 0; initOnCodeWs[i][0] != nullptr; i++) {
@@ -301,7 +301,7 @@ void JAInter::BankWave::loadFirstStayWave(void)
  * Address:	800AC038
  * Size:	000094
  */
-void JAInter::BankWave::loadSecondStayWave(void)
+void JAInter::BankWave::loadSecondStayWave()
 {
 	if (!flags.asStruct._6 && initOnCodeWs != nullptr) {
 		for (int i = 0; initOnCodeWs[i][0] != 0; i++) {
@@ -425,7 +425,7 @@ long JAInter::BankWave::getWaveLoadStatus(long)
  * Address:	........
  * Size:	00003C
  */
-void JAInter::BankWave::checkAllWaveLoadStatus(void)
+void JAInter::BankWave::checkAllWaveLoadStatus()
 {
 	// UNUSED FUNCTION
 }

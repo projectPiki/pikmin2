@@ -226,7 +226,7 @@ namespace P2JME {
  * Address:	8043F188
  * Size:	000050
  */
-Window::DrawInfo::DrawInfo(void)
+Window::DrawInfo::DrawInfo()
 {
 	/*
 	lis      r5, __vt__5CNode@ha
@@ -257,7 +257,7 @@ Window::DrawInfo::DrawInfo(void)
  * Address:	........
  * Size:	00002C
  */
-void Window::DrawInfo::update(void)
+void Window::DrawInfo::update()
 {
 	// UNUSED FUNCTION
 }
@@ -277,7 +277,7 @@ void Window::DrawInfo::init(int)
  * Address:	........
  * Size:	000038
  */
-Window::DrawInfoMgr::DrawInfoMgr(void)
+Window::DrawInfoMgr::DrawInfoMgr()
 {
 	// UNUSED FUNCTION
 }
@@ -297,7 +297,7 @@ void Window::DrawInfoMgr::init(unsigned long)
  * Address:	8043F1D8
  * Size:	000060
  */
-Window::DrawInfo::~DrawInfo(void)
+Window::DrawInfo::~DrawInfo()
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -334,7 +334,7 @@ lbl_8043F21C:
  * Address:	........
  * Size:	000040
  */
-void Window::DrawInfoMgr::update(void)
+void Window::DrawInfoMgr::update()
 {
 	// UNUSED FUNCTION
 }
@@ -344,7 +344,7 @@ void Window::DrawInfoMgr::update(void)
  * Address:	........
  * Size:	000050
  */
-void Window::DrawInfoMgr::reset(void)
+void Window::DrawInfoMgr::reset()
 {
 	// UNUSED FUNCTION
 }
@@ -511,7 +511,7 @@ lbl_8043F394:
  * Address:	8043F3A8
  * Size:	00007C
  */
-void Window::TSequenceProcessor::doCharacterSEStart(void)
+void Window::TSequenceProcessor::doCharacterSEStart()
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -553,7 +553,7 @@ lbl_8043F414:
  * Address:	8043F424
  * Size:	00007C
  */
-void Window::TSequenceProcessor::doCharacterSEEnd(void)
+void Window::TSequenceProcessor::doCharacterSEEnd()
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -595,7 +595,7 @@ lbl_8043F490:
  * Address:	8043F4A0
  * Size:	00005C
  */
-void Window::TSequenceProcessor::doFastForwardSE(void)
+void Window::TSequenceProcessor::doFastForwardSE()
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -661,7 +661,7 @@ Window::TRenderingProcessor::TRenderingProcessor(JMessage::TReference*)
  * Address:	........
  * Size:	000064
  */
-Window::DrawInfoMgr::~DrawInfoMgr(void)
+Window::DrawInfoMgr::~DrawInfoMgr()
 {
 	// UNUSED FUNCTION
 }
@@ -948,7 +948,7 @@ void Window::TRenderingProcessor::doGetDrawInfo(P2JME::Window::DrawInfo*) { }
  * Address:	8043F8A4
  * Size:	000284
  */
-void makeMatrix__Q35P2JME6Window19TRenderingProcessorFP7MatrixfPQ35P2JME6Window8DrawInfof10Vector3<float>(void)
+void makeMatrix__Q35P2JME6Window19TRenderingProcessorFP7MatrixfPQ35P2JME6Window8DrawInfof10Vector3<float>()
 {
 	/*
 	.loc_0x0:
@@ -1497,7 +1497,7 @@ void Window::TRenderingProcessor::doDrawImage(JUTTexture*, float, float, float, 
  * Address:	80440008
  * Size:	000040
  */
-void Window::TRenderingProcessor::update(void)
+void Window::TRenderingProcessor::update()
 {
 	/*
 	lwz      r4, 0x120(r3)
@@ -1530,7 +1530,7 @@ lbl_8044003C:
  * Address:	80440048
  * Size:	0000A4
  */
-void Window::TRenderingProcessor::reset(void)
+void Window::TRenderingProcessor::reset()
 {
 	/*
 	stwu     r1, -0x30(r1)
@@ -1588,7 +1588,7 @@ lbl_804400C8:
  * Address:	804400EC
  * Size:	000050
  */
-Window::TControl::TControl(void)
+Window::TControl::TControl()
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -1827,7 +1827,7 @@ lbl_804403AC:
  * Address:	804403C4
  * Size:	000020
  */
-void Window::TControl::reset(void)
+void Window::TControl::reset()
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -1888,7 +1888,7 @@ void Window::TControl::draw(Graphics&)
  * Address:	80440460
  * Size:	000050
  */
-void Window::TControl::onInit(void)
+void Window::TControl::onInit()
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -1921,7 +1921,7 @@ lbl_80440498:
  * Address:	804404B0
  * Size:	0000A8
  */
-Window::TRenderingProcessor::~TRenderingProcessor(void)
+Window::TRenderingProcessor::~TRenderingProcessor()
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -1980,7 +1980,7 @@ lbl_8044053C:
  * Address:	80440558
  * Size:	000070
  */
-Window::TSequenceProcessor::~TSequenceProcessor(void)
+Window::TSequenceProcessor::~TSequenceProcessor()
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -2025,7 +2025,7 @@ lbl_804405AC:
  * Address:	804405C8
  * Size:	000028
  */
-void __sinit_windowMessage_cpp(void)
+void __sinit_windowMessage_cpp()
 {
 	/*
 	lis      r4, __float_nan@ha

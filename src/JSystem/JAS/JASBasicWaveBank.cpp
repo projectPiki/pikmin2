@@ -206,7 +206,7 @@ JASBasicWaveBank::TWaveGroup::TWaveGroup(JASBasicWaveBank* bank)
  * Size:	0000B4
  * __dt__Q216JASBasicWaveBank10TWaveGroupFv
  */
-JASBasicWaveBank::TWaveGroup::~TWaveGroup(void) { delete[] m_info; }
+JASBasicWaveBank::TWaveGroup::~TWaveGroup() { delete[] m_info; }
 
 /*
  * --INFO--
@@ -214,7 +214,7 @@ JASBasicWaveBank::TWaveGroup::~TWaveGroup(void) { delete[] m_info; }
  * Size:	000060
  * __dt__Q216JASBasicWaveBank9TWaveInfoFv
  */
-// JASBasicWaveBank::TWaveInfo::~TWaveInfo(void) { }
+// JASBasicWaveBank::TWaveInfo::~TWaveInfo() { }
 
 /*
  * --INFO--
@@ -238,7 +238,7 @@ void JASBasicWaveBank::TWaveGroup::setWaveCount(unsigned long count)
  * Size:	000030
  * __ct__Q216JASBasicWaveBank9TWaveInfoFv
  */
-JASBasicWaveBank::TWaveInfo::TWaveInfo(void)
+JASBasicWaveBank::TWaveInfo::TWaveInfo()
     : m_handle()
     , _34(nullptr)
     , _38(0)
@@ -278,7 +278,7 @@ void JASBasicWaveBank::TWaveGroup::setWaveInfo(int infoIndex, unsigned long p2, 
  * Address:	8009A5F0
  * Size:	0000A0
  */
-void JASBasicWaveBank::TWaveGroup::onLoadDone(void)
+void JASBasicWaveBank::TWaveGroup::onLoadDone()
 {
 	JASMutexLock lock(&m_bank->m_mutex);
 	for (int i = 0; i < m_infoCount; i++) {
@@ -345,7 +345,7 @@ lbl_8009A668:
  * Address:	8009A690
  * Size:	0000E8
  */
-void JASBasicWaveBank::TWaveGroup::onEraseDone(void)
+void JASBasicWaveBank::TWaveGroup::onEraseDone()
 {
 	/*
 	stwu     r1, -0x20(r1)

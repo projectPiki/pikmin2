@@ -109,7 +109,7 @@
  * Address:	802F8090
  * Size:	00022C
  */
-void makeShadowSRT__Q24Game23SnakeCrowTubeShadowNodeFRQ24Game15JointShadowParmR10Vector3<float> R10Vector3f(void)
+void makeShadowSRT__Q24Game23SnakeCrowTubeShadowNodeFRQ24Game15JointShadowParmR10Vector3<float> R10Vector3f()
 {
 	/*
 	.loc_0x0:
@@ -268,7 +268,7 @@ void makeShadowSRT__Q24Game23SnakeCrowTubeShadowNodeFRQ24Game15JointShadowParmR1
  * Address:	802F82BC
  * Size:	00012C
  */
-void makeShadowSRT__Q24Game25SnakeCrowSphereShadowNodeFRQ24Game15JointShadowParmR10Vector3<float>(void)
+void makeShadowSRT__Q24Game25SnakeCrowSphereShadowNodeFRQ24Game15JointShadowParmR10Vector3<float>()
 {
 	/*
 	.loc_0x0:
@@ -437,7 +437,7 @@ lbl_802F8490:
  * Address:	802F84D4
  * Size:	0000C0
  */
-void SnakeCrow::SnakeCrowShadowMgr::init(void)
+void SnakeCrow::SnakeCrowShadowMgr::init()
 {
 	/*
 	stwu     r1, -0x40(r1)
@@ -498,7 +498,7 @@ lbl_802F854C:
  * Address:	802F8594
  * Size:	000078
  */
-void SnakeCrow::SnakeCrowShadowMgr::startJointShadow(void)
+void SnakeCrow::SnakeCrowShadowMgr::startJointShadow()
 {
 	/*
 	stwu     r1, -0x20(r1)
@@ -543,7 +543,7 @@ lbl_802F85F0:
  * Address:	802F860C
  * Size:	000064
  */
-void SnakeCrow::SnakeCrowShadowMgr::finishJointShadow(void)
+void SnakeCrow::SnakeCrowShadowMgr::finishJointShadow()
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -583,7 +583,7 @@ lbl_802F8658:
  * Address:	802F8670
  * Size:	00025C
  */
-void SnakeCrow::SnakeCrowShadowMgr::update(void)
+void SnakeCrow::SnakeCrowShadowMgr::update()
 {
 	/*
 	stwu     r1, -0xe0(r1)
@@ -759,7 +759,7 @@ lbl_802F88B8:
  * Address:	802F88CC
  * Size:	000070
  */
-SnakeCrowSphereShadowNode::~SnakeCrowSphereShadowNode(void)
+SnakeCrowSphereShadowNode::~SnakeCrowSphereShadowNode()
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -802,7 +802,7 @@ lbl_802F8920:
  * Address:	802F893C
  * Size:	000070
  */
-SnakeCrowTubeShadowNode::~SnakeCrowTubeShadowNode(void)
+SnakeCrowTubeShadowNode::~SnakeCrowTubeShadowNode()
 {
 	/*
 	stwu     r1, -0x10(r1)

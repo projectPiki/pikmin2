@@ -181,7 +181,7 @@ void Cave::RandEnemyUnit::setManageClassPtr(Game::Cave::RandMapScore* a1)
  * Address:	802489C4
  * Size:	000054
  */
-void Cave::RandEnemyUnit::setEnemySlot(void)
+void Cave::RandEnemyUnit::setEnemySlot()
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -215,7 +215,7 @@ lbl_80248A04:
  * Address:	80248A18
  * Size:	000278
  */
-void Cave::RandEnemyUnit::setEnemyTypeWeight(void)
+void Cave::RandEnemyUnit::setEnemyTypeWeight()
 {
 	/*
 	stwu     r1, -0xa0(r1)
@@ -406,7 +406,7 @@ lbl_80248C60:
  * Address:	80248C90
  * Size:	0000F0
  */
-void Cave::RandEnemyUnit::setEnemyTypeC(void)
+void Cave::RandEnemyUnit::setEnemyTypeC()
 {
 	/*
 	stwu     r1, -0x20(r1)
@@ -488,7 +488,7 @@ lbl_80248D68:
  * Address:	80248D80
  * Size:	0000CC
  */
-void Cave::RandEnemyUnit::setEnemyTypeF(void)
+void Cave::RandEnemyUnit::setEnemyTypeF()
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -559,7 +559,7 @@ lbl_80248E34:
  * Address:	80248E4C
  * Size:	0000CC
  */
-void Cave::RandEnemyUnit::setEnemyTypeB(void)
+void Cave::RandEnemyUnit::setEnemyTypeB()
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -630,7 +630,7 @@ lbl_80248F00:
  * Address:	80248F18
  * Size:	000104
  */
-void Cave::RandEnemyUnit::setEnemyTypeA(void)
+void Cave::RandEnemyUnit::setEnemyTypeA()
 {
 	/*
 	stwu     r1, -0x20(r1)
@@ -715,7 +715,7 @@ lbl_80249004:
  * Address:	8024901C
  * Size:	000190
  */
-void Cave::RandEnemyUnit::setVersusHibaTypeC(void)
+void Cave::RandEnemyUnit::setVersusHibaTypeC()
 {
 	/*
 	stwu     r1, -0x50(r1)
@@ -847,7 +847,7 @@ lbl_80249190:
  * Address:	802491AC
  * Size:	0001A4
  */
-void Cave::RandEnemyUnit::setVersusEnemyTypeC(void)
+void Cave::RandEnemyUnit::setVersusEnemyTypeC()
 {
 	/*
 	stwu     r1, -0x40(r1)
@@ -1226,7 +1226,7 @@ lbl_80249634:
  * Address:	80249648
  * Size:	0001A0
  */
-void Cave::RandEnemyUnit::setUnitRandEnemyTypeC(void)
+void Cave::RandEnemyUnit::setUnitRandEnemyTypeC()
 {
 	/*
 	stwu     r1, -0x430(r1)
@@ -1423,7 +1423,7 @@ void Cave::RandEnemyUnit::makeSetEnemyTypeC(Game::Cave::MapNode*, int, Game::Cav
  * Address:	802498C0
  * Size:	00017C
  */
-void Cave::RandEnemyUnit::setVersusEnemyTypeF(void)
+void Cave::RandEnemyUnit::setVersusEnemyTypeF()
 {
 	/*
 	stwu     r1, -0x40(r1)
@@ -1819,7 +1819,7 @@ lbl_80249E08:
  * Address:	80249E1C
  * Size:	0001A0
  */
-void Cave::RandEnemyUnit::setUnitRandEnemyTypeF(void)
+void Cave::RandEnemyUnit::setUnitRandEnemyTypeF()
 {
 	/*
 	stwu     r1, -0x430(r1)
@@ -1996,7 +1996,7 @@ void Cave::RandEnemyUnit::makeSetEnemyTypeF(Game::Cave::MapNode*, Game::Cave::Ba
  * Address:	8024A044
  * Size:	00017C
  */
-void Cave::RandEnemyUnit::setVersusEnemyTypeB(void)
+void Cave::RandEnemyUnit::setVersusEnemyTypeB()
 {
 	/*
 	stwu     r1, -0x40(r1)
@@ -2392,7 +2392,7 @@ lbl_8024A58C:
  * Address:	8024A5A0
  * Size:	0001A0
  */
-void Cave::RandEnemyUnit::setUnitRandEnemyTypeB(void)
+void Cave::RandEnemyUnit::setUnitRandEnemyTypeB()
 {
 	/*
 	stwu     r1, -0x430(r1)
@@ -2569,7 +2569,7 @@ void Cave::RandEnemyUnit::makeSetEnemyTypeB(Game::Cave::MapNode*, Game::Cave::Ba
  * Address:	8024A7C8
  * Size:	0002CC
  */
-void Cave::RandEnemyUnit::setVersusEasyEnemy(void)
+void Cave::RandEnemyUnit::setVersusEasyEnemy()
 {
 	/*
 	stwu     r1, -0x70(r1)
@@ -2894,7 +2894,7 @@ void Cave::RandEnemyUnit::getVersusEasyEnemyBaseGen(Game::Cave::MapNode*, Game::
  * Address:	8024ABD8
  * Size:	0001D4
  */
-void Cave::RandEnemyUnit::setVersusEnemyTypeA(void)
+void Cave::RandEnemyUnit::setVersusEnemyTypeA()
 {
 	/*
 	stwu     r1, -0x50(r1)

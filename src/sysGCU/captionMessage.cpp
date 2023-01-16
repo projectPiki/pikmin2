@@ -336,7 +336,7 @@ void Caption::TRenderingProcessor::doDrawCommon(float, float, Matrixf*, Matrixf*
  * Address:	804511B8
  * Size:	000054
  */
-Caption::TControl::TControl(void)
+Caption::TControl::TControl()
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -368,7 +368,7 @@ Caption::TControl::TControl(void)
  * Address:	8045120C
  * Size:	0000E8
  */
-void Caption::TControl::onInit(void)
+void Caption::TControl::onInit()
 {
 	/*
 	stwu     r1, -0x20(r1)
@@ -439,7 +439,7 @@ lbl_80451244:
  * Address:	804512F4
  * Size:	000034
  */
-void Caption::TControl::reset(void)
+void Caption::TControl::reset()
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -637,7 +637,7 @@ void Caption::TControl::start(char*, long, long)
  * Address:	8045152C
  * Size:	000088
  */
-void Caption::TControl::createSequenceProcessor(void)
+void Caption::TControl::createSequenceProcessor()
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -687,7 +687,7 @@ lbl_80451598:
  * Address:	804515B4
  * Size:	00008C
  */
-void Caption::TControl::createRenderingProcessor(void)
+void Caption::TControl::createRenderingProcessor()
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -737,7 +737,7 @@ lbl_80451624:
  * Address:	80451640
  * Size:	000080
  */
-Caption::TSequenceProcessor::~TSequenceProcessor(void)
+Caption::TSequenceProcessor::~TSequenceProcessor()
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -784,14 +784,14 @@ lbl_804516A4:
  * Address:	804516C0
  * Size:	000008
  */
-u32 Caption::TSequenceProcessor::do_isReady(void) { return 0x1; }
+u32 Caption::TSequenceProcessor::do_isReady() { return 0x1; }
 
 /*
  * --INFO--
  * Address:	804516C8
  * Size:	000004
  */
-void Caption::TSequenceProcessor::doResetAbtnWaitSE(void) { }
+void Caption::TSequenceProcessor::doResetAbtnWaitSE() { }
 
 /*
  * --INFO--
@@ -805,21 +805,21 @@ void Caption::TSequenceProcessor::doCharacterSE(int) { }
  * Address:	804516D0
  * Size:	000004
  */
-void Caption::TSequenceProcessor::doCharacterSEStart(void) { }
+void Caption::TSequenceProcessor::doCharacterSEStart() { }
 
 /*
  * --INFO--
  * Address:	804516D4
  * Size:	000004
  */
-void Caption::TSequenceProcessor::doCharacterSEEnd(void) { }
+void Caption::TSequenceProcessor::doCharacterSEEnd() { }
 
 /*
  * --INFO--
  * Address:	804516D8
  * Size:	0000B8
  */
-Caption::TRenderingProcessor::~TRenderingProcessor(void)
+Caption::TRenderingProcessor::~TRenderingProcessor()
 {
 	/*
 	stwu     r1, -0x10(r1)

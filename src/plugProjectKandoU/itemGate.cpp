@@ -7589,7 +7589,7 @@ lbl_801CBF08:
  * Address:	801CBF40
  * Size:	000028
  */
-void __sinit_itemGate_cpp(void)
+void __sinit_itemGate_cpp()
 {
 	/*
 	lis      r4, __float_nan@ha

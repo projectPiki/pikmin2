@@ -209,7 +209,7 @@ s32 JKRAramHeap::getFreeSize()
  * Address:	80019A40
  * Size:	000044
  */
-// void __sinit_JKRAramHeap_cpp(void) { }
+// void __sinit_JKRAramHeap_cpp() { }
 
 /*
  * @generated{__dt__23JSUList<12JKRAramBlock>Fv}

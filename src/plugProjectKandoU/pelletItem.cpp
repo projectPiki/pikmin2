@@ -422,7 +422,7 @@ void PelletItem::Object::do_onInit(Game::CreatureInitArg*) { }
  * Address:	80202E18
  * Size:	00005C
  */
-void PelletItem::Object::onBounce(void)
+void PelletItem::Object::onBounce()
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -458,7 +458,7 @@ lbl_80202E60:
  * Address:	80202E74
  * Size:	000054
  */
-void PelletItem::Object::constructor(void)
+void PelletItem::Object::constructor()
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -492,7 +492,7 @@ lbl_80202EA4:
  * Address:	80202EC8
  * Size:	000074
  */
-void PelletItem::Object::sound_otakaraEventStart(void)
+void PelletItem::Object::sound_otakaraEventStart()
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -534,7 +534,7 @@ lbl_80202F14:
  * Address:	80202F3C
  * Size:	000074
  */
-void PelletItem::Object::sound_otakaraEventRestart(void)
+void PelletItem::Object::sound_otakaraEventRestart()
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -576,7 +576,7 @@ lbl_80202F88:
  * Address:	80202FB0
  * Size:	000074
  */
-void PelletItem::Object::sound_otakaraEventStop(void)
+void PelletItem::Object::sound_otakaraEventStop()
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -618,7 +618,7 @@ lbl_80202FFC:
  * Address:	80203024
  * Size:	000074
  */
-void PelletItem::Object::sound_otakaraEventFinish(void)
+void PelletItem::Object::sound_otakaraEventFinish()
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -660,7 +660,7 @@ lbl_80203070:
  * Address:	80203098
  * Size:	0000B0
  */
-PelletItem::Mgr::Mgr(void)
+PelletItem::Mgr::Mgr()
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -708,7 +708,7 @@ r0, 0x54(r30) lwz      r31, 0xc(r1) lwz      r30, 8(r1) lwz      r0, 0x14(r1)
  * Address:	80203148
  * Size:	00019C
  */
-void __dt__Q24Game46FixedSizePelletMgr<Game::PelletItem::Object> Fv(void)
+void __dt__Q24Game46FixedSizePelletMgr<Game::PelletItem::Object> Fv()
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -924,7 +924,7 @@ namespace Game {
  * Address:	802033F4
  * Size:	000074
  */
-void PelletItem::Mgr::setupResources(void)
+void PelletItem::Mgr::setupResources()
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -964,7 +964,7 @@ void PelletItem::Mgr::setupResources(void)
  * Address:	80203468
  * Size:	000024
  */
-void PelletItem::Mgr::generatorNewPelletParm(void)
+void PelletItem::Mgr::generatorNewPelletParm()
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -984,7 +984,7 @@ void PelletItem::Mgr::generatorNewPelletParm(void)
  * Address:	8020348C
  * Size:	000148
  */
-void generatorBirth__Q34Game10PelletItem3MgrFR10Vector3f R10Vector3f PQ24Game13GenPelletParm(void)
+void generatorBirth__Q34Game10PelletItem3MgrFR10Vector3f R10Vector3f PQ24Game13GenPelletParm()
 {
 	/*
 	.loc_0x0:
@@ -1131,7 +1131,7 @@ void PelletItem::Mgr::generatorRead(Stream&, Game::GenPelletParm*, unsigned long
  * Address:	8020363C
  * Size:	0001B4
  */
-PelletItem::Mgr::~Mgr(void)
+PelletItem::Mgr::~Mgr()
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -1253,7 +1253,7 @@ lbl_802037D4:
  * Address:	802037F0
  * Size:	000008
  */
-void PelletItem::Mgr::getMgrName(void)
+void PelletItem::Mgr::getMgrName()
 {
 	/*
 	addi     r3, r2, lbl_80519D58@sda21
@@ -1266,14 +1266,14 @@ void PelletItem::Mgr::getMgrName(void)
  * Address:	802037F8
  * Size:	000008
  */
-u32 PelletItem::Mgr::getMgrID(void) { return 0x4; }
+u32 PelletItem::Mgr::getMgrID() { return 0x4; }
 
 /*
  * --INFO--
  * Address:	80203800
  * Size:	00000C
  */
-void PelletItem::Mgr::generatorLocalVersion(void)
+void PelletItem::Mgr::generatorLocalVersion()
 {
 	/*
 	lis      r3, 0x30303030@ha
@@ -1340,14 +1340,14 @@ namespace Game {
  * Address:	80203894
  * Size:	000008
  */
-u32 PelletItem::Object::getKind(void) { return 0x4; }
+u32 PelletItem::Object::getKind() { return 0x4; }
 
 /*
  * --INFO--
  * Address:	8020389C
  * Size:	000004
  */
-void onCreateModel__Q24Game46FixedSizePelletMgr<Game::PelletItem::Object> FPQ28SysShape5Model(void) { }
+void onCreateModel__Q24Game46FixedSizePelletMgr<Game::PelletItem::Object> FPQ28SysShape5Model() { }
 
 } // namespace Game
 
@@ -1356,7 +1356,7 @@ void onCreateModel__Q24Game46FixedSizePelletMgr<Game::PelletItem::Object> FPQ28S
  * Address:	802038A0
  * Size:	00002C
  */
-void birth__Q24Game46FixedSizePelletMgr<Game::PelletItem::Object> Fv(void)
+void birth__Q24Game46FixedSizePelletMgr<Game::PelletItem::Object> Fv()
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -1378,7 +1378,7 @@ void birth__Q24Game46FixedSizePelletMgr<Game::PelletItem::Object> Fv(void)
  * Address:	802038CC
  * Size:	00002C
  */
-void doAnimation__Q24Game46FixedSizePelletMgr<Game::PelletItem::Object> Fv(void)
+void doAnimation__Q24Game46FixedSizePelletMgr<Game::PelletItem::Object> Fv()
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -1400,7 +1400,7 @@ void doAnimation__Q24Game46FixedSizePelletMgr<Game::PelletItem::Object> Fv(void)
  * Address:	802038F8
  * Size:	00002C
  */
-void doEntry__Q24Game46FixedSizePelletMgr<Game::PelletItem::Object> Fv(void)
+void doEntry__Q24Game46FixedSizePelletMgr<Game::PelletItem::Object> Fv()
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -1422,7 +1422,7 @@ void doEntry__Q24Game46FixedSizePelletMgr<Game::PelletItem::Object> Fv(void)
  * Address:	80203924
  * Size:	00002C
  */
-void doSetView__Q24Game46FixedSizePelletMgr<Game::PelletItem::Object> Fi(void)
+void doSetView__Q24Game46FixedSizePelletMgr<Game::PelletItem::Object> Fi()
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -1444,7 +1444,7 @@ void doSetView__Q24Game46FixedSizePelletMgr<Game::PelletItem::Object> Fi(void)
  * Address:	80203950
  * Size:	00002C
  */
-void doViewCalc__Q24Game46FixedSizePelletMgr<Game::PelletItem::Object> Fv(void)
+void doViewCalc__Q24Game46FixedSizePelletMgr<Game::PelletItem::Object> Fv()
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -1466,7 +1466,7 @@ void doViewCalc__Q24Game46FixedSizePelletMgr<Game::PelletItem::Object> Fv(void)
  * Address:	8020397C
  * Size:	00002C
  */
-void doSimulation__Q24Game46FixedSizePelletMgr<Game::PelletItem::Object> Ff(void)
+void doSimulation__Q24Game46FixedSizePelletMgr<Game::PelletItem::Object> Ff()
 {
 	/*
 	.loc_0x0:
@@ -1489,7 +1489,7 @@ void doSimulation__Q24Game46FixedSizePelletMgr<Game::PelletItem::Object> Ff(void
  * Address:	802039A8
  * Size:	00002C
  */
-void doDirectDraw__Q24Game46FixedSizePelletMgr<Game::PelletItem::Object> FR8Graphics(void)
+void doDirectDraw__Q24Game46FixedSizePelletMgr<Game::PelletItem::Object> FR8Graphics()
 {
 	/*
 	.loc_0x0:
@@ -1512,7 +1512,7 @@ void doDirectDraw__Q24Game46FixedSizePelletMgr<Game::PelletItem::Object> FR8Grap
  * Address:	802039D4
  * Size:	000024
  */
-void kill__Q24Game46FixedSizePelletMgr<Game::PelletItem::Object> FPQ24Game6Pellet(void)
+void kill__Q24Game46FixedSizePelletMgr<Game::PelletItem::Object> FPQ24Game6Pellet()
 {
 	/*
 	.loc_0x0:
@@ -1533,7 +1533,7 @@ void kill__Q24Game46FixedSizePelletMgr<Game::PelletItem::Object> FPQ24Game6Pelle
  * Address:	802039F8
  * Size:	00002C
  */
-void getNext__Q24Game46FixedSizePelletMgr<Game::PelletItem::Object> FPv(void)
+void getNext__Q24Game46FixedSizePelletMgr<Game::PelletItem::Object> FPv()
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -1555,7 +1555,7 @@ void getNext__Q24Game46FixedSizePelletMgr<Game::PelletItem::Object> FPv(void)
  * Address:	80203A24
  * Size:	00002C
  */
-void getStart__Q24Game46FixedSizePelletMgr<Game::PelletItem::Object> Fv(void)
+void getStart__Q24Game46FixedSizePelletMgr<Game::PelletItem::Object> Fv()
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -3122,7 +3122,7 @@ void MonoObjectMgr<Game::PelletItem::Object>::MonoObjectMgr()
  * Address:	80204BA4
  * Size:	000020
  */
-void getFlag__Q24Game46FixedSizePelletMgr<Game::PelletItem::Object> FPQ24Game6Pellet(void)
+void getFlag__Q24Game46FixedSizePelletMgr<Game::PelletItem::Object> FPQ24Game6Pellet()
 {
 	/*
 	.loc_0x0:
@@ -3144,7 +3144,7 @@ void getFlag__Q24Game46FixedSizePelletMgr<Game::PelletItem::Object> FPQ24Game6Pe
  * Address:	80204BC4
  * Size:	00001C
  */
-void setFromTeki__Q24Game46FixedSizePelletMgr<Game::PelletItem::Object> FPQ24Game6Pellet(void)
+void setFromTeki__Q24Game46FixedSizePelletMgr<Game::PelletItem::Object> FPQ24Game6Pellet()
 {
 	/*
 	.loc_0x0:
@@ -3163,7 +3163,7 @@ void setFromTeki__Q24Game46FixedSizePelletMgr<Game::PelletItem::Object> FPQ24Gam
  * Address:	80204BE0
  * Size:	00001C
  */
-void setRevival__Q24Game46FixedSizePelletMgr<Game::PelletItem::Object> FPQ24Game6Pellet(void)
+void setRevival__Q24Game46FixedSizePelletMgr<Game::PelletItem::Object> FPQ24Game6Pellet()
 {
 	/*
 	.loc_0x0:
@@ -3182,7 +3182,7 @@ void setRevival__Q24Game46FixedSizePelletMgr<Game::PelletItem::Object> FPQ24Game
  * Address:	80204BFC
  * Size:	00001C
  */
-void setComeAlive__Q24Game46FixedSizePelletMgr<Game::PelletItem::Object> FPQ24Game6Pellet(void)
+void setComeAlive__Q24Game46FixedSizePelletMgr<Game::PelletItem::Object> FPQ24Game6Pellet()
 {
 	/*
 	.loc_0x0:
@@ -3201,7 +3201,7 @@ void setComeAlive__Q24Game46FixedSizePelletMgr<Game::PelletItem::Object> FPQ24Ga
  * Address:	80204C18
  * Size:	000010
  */
-void setComeAlive__Q24Game46FixedSizePelletMgr<Game::PelletItem::Object> Fi(void)
+void setComeAlive__Q24Game46FixedSizePelletMgr<Game::PelletItem::Object> Fi()
 {
 	/*
 	.loc_0x0:
@@ -3217,7 +3217,7 @@ void setComeAlive__Q24Game46FixedSizePelletMgr<Game::PelletItem::Object> Fi(void
  * Address:	80204C28
  * Size:	00002C
  */
-void getEnd__Q24Game46FixedSizePelletMgr<Game::PelletItem::Object> Fv(void)
+void getEnd__Q24Game46FixedSizePelletMgr<Game::PelletItem::Object> Fv()
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -3239,7 +3239,7 @@ void getEnd__Q24Game46FixedSizePelletMgr<Game::PelletItem::Object> Fv(void)
  * Address:	80204C54
  * Size:	00002C
  */
-void get__Q24Game46FixedSizePelletMgr<Game::PelletItem::Object> FPv(void)
+void get__Q24Game46FixedSizePelletMgr<Game::PelletItem::Object> FPv()
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -3261,7 +3261,7 @@ void get__Q24Game46FixedSizePelletMgr<Game::PelletItem::Object> FPv(void)
  * Address:	80204C80
  * Size:	00002C
  */
-void getObjectPtr__Q24Game46FixedSizePelletMgr<Game::PelletItem::Object> FPv(void)
+void getObjectPtr__Q24Game46FixedSizePelletMgr<Game::PelletItem::Object> FPv()
 {
 	/*
 	.loc_0x0:
@@ -3284,7 +3284,7 @@ void getObjectPtr__Q24Game46FixedSizePelletMgr<Game::PelletItem::Object> FPv(voi
  * Address:	80204CAC
  * Size:	000090
  */
-void birthFromTeki__Q24Game46FixedSizePelletMgr<Game::PelletItem::Object> FPQ24Game12PelletConfig(void)
+void birthFromTeki__Q24Game46FixedSizePelletMgr<Game::PelletItem::Object> FPQ24Game12PelletConfig()
 {
 	/*
 	.loc_0x0:
@@ -3340,7 +3340,7 @@ void birthFromTeki__Q24Game46FixedSizePelletMgr<Game::PelletItem::Object> FPQ24G
  * Address:	80204D3C
  * Size:	000080
  */
-void alloc__Q24Game46FixedSizePelletMgr<Game::PelletItem::Object> Fi(void)
+void alloc__Q24Game46FixedSizePelletMgr<Game::PelletItem::Object> Fi()
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -3386,7 +3386,7 @@ lbl_80204D98:
  * Address:	80204DBC
  * Size:	000064
  */
-void onAlloc__Q24Game46FixedSizePelletMgr<Game::PelletItem::Object> Fv(void)
+void onAlloc__Q24Game46FixedSizePelletMgr<Game::PelletItem::Object> Fv()
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -3549,7 +3549,7 @@ namespace Game {
  * Address:	80204FA8
  * Size:	00004C
  */
-PelletItem::Object::Object(void)
+PelletItem::Object::Object()
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -3581,7 +3581,7 @@ PelletItem::Object::Object(void)
  * Address:	80204FF4
  * Size:	000008
  */
-void @84 @__dt__Q24Game46FixedSizePelletMgr<Game::PelletItem::Object> Fv(void)
+void @84 @__dt__Q24Game46FixedSizePelletMgr<Game::PelletItem::Object> Fv()
 {
 	/*
 	addi     r3, r3, -84
@@ -3763,7 +3763,7 @@ void ObjectMgr<Game::PelletItem::Object>::@28 @doAnimation()
  * Address:	80205064
  * Size:	000008
  */
-void @84 @getEnd__Q24Game46FixedSizePelletMgr<Game::PelletItem::Object> Fv(void)
+void @84 @getEnd__Q24Game46FixedSizePelletMgr<Game::PelletItem::Object> Fv()
 {
 	/*
 	addi     r3, r3, -84
@@ -3776,7 +3776,7 @@ void @84 @getEnd__Q24Game46FixedSizePelletMgr<Game::PelletItem::Object> Fv(void)
  * Address:	8020506C
  * Size:	000008
  */
-void @84 @getStart__Q24Game46FixedSizePelletMgr<Game::PelletItem::Object> Fv(void)
+void @84 @getStart__Q24Game46FixedSizePelletMgr<Game::PelletItem::Object> Fv()
 {
 	/*
 	.loc_0x0:
@@ -3790,7 +3790,7 @@ void @84 @getStart__Q24Game46FixedSizePelletMgr<Game::PelletItem::Object> Fv(voi
  * Address:	80205074
  * Size:	000008
  */
-void @84 @getNext__Q24Game46FixedSizePelletMgr<Game::PelletItem::Object> FPv(void)
+void @84 @getNext__Q24Game46FixedSizePelletMgr<Game::PelletItem::Object> FPv()
 {
 	/*
 	.loc_0x0:
@@ -3804,7 +3804,7 @@ void @84 @getNext__Q24Game46FixedSizePelletMgr<Game::PelletItem::Object> FPv(voi
  * Address:	8020507C
  * Size:	000008
  */
-void @84 @get__Q24Game46FixedSizePelletMgr<Game::PelletItem::Object> FPv(void)
+void @84 @get__Q24Game46FixedSizePelletMgr<Game::PelletItem::Object> FPv()
 {
 	/*
 	addi     r3, r3, -84
@@ -3817,7 +3817,7 @@ void @84 @get__Q24Game46FixedSizePelletMgr<Game::PelletItem::Object> FPv(void)
  * Address:	80205084
  * Size:	000008
  */
-@84 @Game::PelletItem::Mgr::~Mgr(void)
+@84 @Game::PelletItem::Mgr::~Mgr()
 {
 	/*
 	addi     r3, r3, -84

@@ -270,7 +270,7 @@ void CylinderList::createCylinder(int, float)
  * Address:	........
  * Size:	00002C
  */
-void CylinderList::draw(void)
+void CylinderList::draw()
 {
 	// UNUSED FUNCTION
 }
@@ -280,7 +280,7 @@ void CylinderList::draw(void)
  * Address:	8023DA30
  * Size:	0004DC
  */
-CylinderBase::CylinderBase(void)
+CylinderBase::CylinderBase()
 {
 	/*
 	stwu     r1, -0xe0(r1)
@@ -663,7 +663,7 @@ void CylinderBase::setColor(Color4* a1)
  * Address:	8023DF14
  * Size:	000024
  */
-void setShadowRect__Q24Game12CylinderBaseFR7Rect<float>(void)
+void setShadowRect__Q24Game12CylinderBaseFR7Rect<float>()
 {
 	/*
 	lfs      f0, 0(r4)
@@ -872,7 +872,7 @@ void CylinderBase::setFilterTextureID(int) { }
  * Address:	8023E160
  * Size:	000004
  */
-void CylinderBase::drawInit(void) { }
+void CylinderBase::drawInit() { }
 
 /*
  * --INFO--
@@ -886,14 +886,14 @@ void CylinderBase::drawCylinder(Matrixf&, int) { }
  * Address:	8023E168
  * Size:	000004
  */
-void CylinderBase::drawFinish(void) { }
+void CylinderBase::drawFinish() { }
 
 /*
  * --INFO--
  * Address:	........
  * Size:	00010C
  */
-void CylinderBase::setupFillGX(void)
+void CylinderBase::setupFillGX()
 {
 	// UNUSED FUNCTION
 }
@@ -903,7 +903,7 @@ void CylinderBase::setupFillGX(void)
  * Address:	........
  * Size:	00005C
  */
-void CylinderBase::setupDrawCylinderGX(void)
+void CylinderBase::setupDrawCylinderGX()
 {
 	// UNUSED FUNCTION
 }
@@ -913,7 +913,7 @@ void CylinderBase::setupDrawCylinderGX(void)
  * Address:	........
  * Size:	000088
  */
-void CylinderBase::setupFilterGX(void)
+void CylinderBase::setupFilterGX()
 {
 	// UNUSED FUNCTION
 }
@@ -923,7 +923,7 @@ void CylinderBase::setupFilterGX(void)
  * Address:	........
  * Size:	00004C
  */
-void CylinderBase::setOrthoProjection(void)
+void CylinderBase::setOrthoProjection()
 {
 	// UNUSED FUNCTION
 }
@@ -933,7 +933,7 @@ void CylinderBase::setOrthoProjection(void)
  * Address:	........
  * Size:	0000A4
  */
-void CylinderBase::setOrthoCamera(void)
+void CylinderBase::setOrthoCamera()
 {
 	// UNUSED FUNCTION
 }
@@ -943,7 +943,7 @@ void CylinderBase::setOrthoCamera(void)
  * Address:	........
  * Size:	0000D0
  */
-void CylinderBase::setScissorViewport(void)
+void CylinderBase::setScissorViewport()
 {
 	// UNUSED FUNCTION
 }
@@ -953,7 +953,7 @@ void CylinderBase::setScissorViewport(void)
  * Address:	........
  * Size:	000090
  */
-void CylinderBase::fillShadowRect(void)
+void CylinderBase::fillShadowRect()
 {
 	// UNUSED FUNCTION
 }
@@ -963,7 +963,7 @@ void CylinderBase::fillShadowRect(void)
  * Address:	........
  * Size:	0000D4
  */
-void CylinderBase::fillRectAlphaZero(void)
+void CylinderBase::fillRectAlphaZero()
 {
 	// UNUSED FUNCTION
 }
@@ -1125,7 +1125,7 @@ lbl_8023E30C:
  * Address:	8023E314
  * Size:	000350
  */
-void ShadowCylinder2::drawInit(void)
+void ShadowCylinder2::drawInit()
 {
 	/*
 	stwu     r1, -0xe0(r1)
@@ -1407,7 +1407,7 @@ void ShadowCylinder2::drawCylinder(Matrixf&, int)
  * Address:	8023E724
  * Size:	0001E4
  */
-void ShadowCylinder2::drawFinish(void)
+void ShadowCylinder2::drawFinish()
 {
 	/*
 	stwu     r1, -0xe0(r1)
@@ -1539,7 +1539,7 @@ void ShadowCylinder2::drawFinish(void)
  * Address:	8023E908
  * Size:	000170
  */
-void ShadowCylinder2::copyShadowTexture(void)
+void ShadowCylinder2::copyShadowTexture()
 {
 	/*
 	stwu     r1, -0x50(r1)
@@ -1642,7 +1642,7 @@ void ShadowCylinder2::copyShadowTexture(void)
  * Address:	8023EA78
  * Size:	0000FC
  */
-void ShadowCylinder2::setupTextureFilterGX(void)
+void ShadowCylinder2::setupTextureFilterGX()
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -1716,7 +1716,7 @@ void ShadowCylinder2::setupTextureFilterGX(void)
  * Address:	8023EB74
  * Size:	000108
  */
-void ShadowCylinder2::drawTextureFilter(void)
+void ShadowCylinder2::drawTextureFilter()
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -1827,7 +1827,7 @@ ShadowCylinder3::ShadowCylinder3(Game::ShadowParms*, Color4*)
  * Address:	8023ECD8
  * Size:	000350
  */
-void ShadowCylinder3::drawInit(void)
+void ShadowCylinder3::drawInit()
 {
 	/*
 	stwu     r1, -0xe0(r1)
@@ -2123,7 +2123,7 @@ void ShadowCylinder3::drawCylinder(Matrixf&, int)
  * Address:	8023F120
  * Size:	0001D4
  */
-void ShadowCylinder3::drawFinish(void)
+void ShadowCylinder3::drawFinish()
 {
 	/*
 	stwu     r1, -0xe0(r1)
@@ -2251,7 +2251,7 @@ void ShadowCylinder3::drawFinish(void)
  * Address:	8023F2F4
  * Size:	0000D0
  */
-void ShadowCylinder3::drawScreenFilter(void)
+void ShadowCylinder3::drawScreenFilter()
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -2323,7 +2323,7 @@ void ShadowCylinder3::setFilterTextureID(int) { }
  * Address:	8023F3C8
  * Size:	000028
  */
-void __sinit_ShadowCylinder_cpp(void)
+void __sinit_ShadowCylinder_cpp()
 {
 	/*
 	lis      r4, __float_nan@ha

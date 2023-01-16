@@ -3615,7 +3615,7 @@ void Game::FSMItem<Game::ItemCave::Item, Game::ItemCave::FSM, ItemCave::State>::
  * Address:	801EC150
  * Size:	000028
  */
-void __sinit_itemCave_cpp(void)
+void __sinit_itemCave_cpp()
 {
 	/*
 	lis      r4, __float_nan@ha

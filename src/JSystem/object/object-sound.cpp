@@ -1047,7 +1047,7 @@ void JAIBasic::startSoundActorT<JAISound>(unsigned long, JAISound**, JAInter::Ac
  * Address:	80015934
  * Size:	000310
  */
-// void __sinit_object - sound_cpp(void)
+// void __sinit_object - sound_cpp()
 // {
 // 	/*
 // 	stwu     r1, -0x90(r1)

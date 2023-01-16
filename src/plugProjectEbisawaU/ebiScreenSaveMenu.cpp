@@ -430,7 +430,7 @@ blr
  * Address:	803DD4D8
  * Size:	000084
  */
-void TSaveMenu::doKillScreen(void)
+void TSaveMenu::doKillScreen()
 {
 	/*
 stwu     r1, -0x10(r1)
@@ -470,7 +470,7 @@ blr
  * Address:	803DD55C
  * Size:	0000DC
  */
-void TSaveMenu::doUpdateStateOpen(void)
+void TSaveMenu::doUpdateStateOpen()
 {
 	/*
 stwu     r1, -0x10(r1)
@@ -538,7 +538,7 @@ blr
  * Address:	803DD638
  * Size:	000074
  */
-void TSaveMenu::doUpdateStateWait(void)
+void TSaveMenu::doUpdateStateWait()
 {
 	/*
 stwu     r1, -0x10(r1)
@@ -580,7 +580,7 @@ blr
  * Address:	803DD6AC
  * Size:	0000D4
  */
-void TSaveMenu::doUpdateStateClose(void)
+void TSaveMenu::doUpdateStateClose()
 {
 	/*
 stwu     r1, -0x10(r1)
@@ -646,7 +646,7 @@ blr
  * Address:	803DD780
  * Size:	000234
  */
-void TSaveMenu::doDraw(void)
+void TSaveMenu::doDraw()
 {
 	/*
 stwu     r1, -0x70(r1)
@@ -815,7 +815,7 @@ blr
  * Address:	803DD9B4
  * Size:	0000B0
  */
-void TSaveMenu::loadResource(void)
+void TSaveMenu::loadResource()
 {
 	/*
 stwu     r1, -0x120(r1)
@@ -930,7 +930,7 @@ blr
  * Address:	803DDAF8
  * Size:	00003C
  */
-void TSaveMenu::closeMsg(void)
+void TSaveMenu::closeMsg()
 {
 	/*
 stwu     r1, -0x10(r1)
@@ -961,7 +961,7 @@ blr
  * Address:	803DDB34
  * Size:	000054
  */
-void TSaveMenu::noMsg(void)
+void TSaveMenu::noMsg()
 {
 	/*
 stwu     r1, -0x10(r1)
@@ -995,7 +995,7 @@ blr
  * Address:	803DDB88
  * Size:	000010
  */
-void TSaveMenu::isFinishMsg(void)
+void TSaveMenu::isFinishMsg()
 {
 	/*
 lwz      r0, 0x28(r3)
@@ -1284,7 +1284,7 @@ blr
  * Address:	803DDF4C
  * Size:	000368
  */
-void TSaveMenu::updateMsg_(void)
+void TSaveMenu::updateMsg_()
 {
 	/*
 stwu     r1, -0x10(r1)
@@ -1573,7 +1573,7 @@ blr
  * Address:	803DE2B4
  * Size:	00000C
  */
-void TSaveMenu::getName(void)
+void TSaveMenu::getName()
 {
 	/*
 lis      r3, lbl_80496F0C@ha

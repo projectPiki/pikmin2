@@ -337,7 +337,7 @@ namespace Game {
 * Address:	80442CEC
 * Size:	000010
 
-void MemoryCard::Mgr::destroyResource(void)
+void MemoryCard::Mgr::destroyResource()
 {
 /*
     li       r0, 0
@@ -352,7 +352,7 @@ void MemoryCard::Mgr::destroyResource(void)
 * Address:	80442CFC
 * Size:	000020
 
-void MemoryCard::Mgr::update(void)
+void MemoryCard::Mgr::update()
 {
 /*
     stwu     r1, -0x10(r1)
@@ -371,7 +371,7 @@ void MemoryCard::Mgr::update(void)
 * Address:	80442D1C
 * Size:	00006C
 
-void MemoryCard::Mgr::format(void)
+void MemoryCard::Mgr::format()
 {
 /*
     stwu     r1, -0x10(r1)
@@ -421,7 +421,7 @@ void MemoryCard::Mgr::setCommandFlag(int)
 * Address:	........
 * Size:	000074
 
-void MemoryCard::Mgr::verifySerialNo(void)
+void MemoryCard::Mgr::verifySerialNo()
 {
 // UNUSED FUNCTION
 }
@@ -431,7 +431,7 @@ void MemoryCard::Mgr::verifySerialNo(void)
 * Address:	80442D88
 * Size:	000074
 
-void MemoryCard::Mgr::checkBeforeSave(void)
+void MemoryCard::Mgr::checkBeforeSave()
 {
 /*
     stwu     r1, -0x10(r1)
@@ -473,7 +473,7 @@ lbl_80442DE0:
 * Address:	80442DFC
 * Size:	000074
 
-void MemoryCard::Mgr::checkError(void)
+void MemoryCard::Mgr::checkError()
 {
 /*
     stwu     r1, -0x10(r1)
@@ -515,7 +515,7 @@ lbl_80442E54:
 * Address:	80442E70
 * Size:	000074
 
-void MemoryCard::Mgr::createNewFile(void)
+void MemoryCard::Mgr::createNewFile()
 {
 /*
     stwu     r1, -0x10(r1)
@@ -557,7 +557,7 @@ lbl_80442EC8:
 * Address:	80442EE4
 * Size:	0000B8
 
-void MemoryCard::Mgr::saveGameOption(void)
+void MemoryCard::Mgr::saveGameOption()
 {
 /*
     stwu     r1, -0x20(r1)
@@ -618,7 +618,7 @@ lbl_80442F7C:
 * Address:	80442F9C
 * Size:	0000B8
 
-void MemoryCard::Mgr::loadGameOption(void)
+void MemoryCard::Mgr::loadGameOption()
 {
 /*
     stwu     r1, -0x20(r1)
@@ -1781,7 +1781,7 @@ void MemoryCard::Mgr::commandUpdatePlayerHeader(
 * Address:	80443DF0
 * Size:	00007C
 
-void MemoryCard::Mgr::commandCheckBeforeSave(void)
+void MemoryCard::Mgr::commandCheckBeforeSave()
 {
 /*
     stwu     r1, -0x30(r1)
@@ -1829,7 +1829,7 @@ lbl_80443E58:
 * Address:	80443E6C
 * Size:	000080
 
-void MemoryCard::Mgr::commandCheckError(void)
+void MemoryCard::Mgr::commandCheckError()
 {
 /*
     stwu     r1, -0x30(r1)
@@ -1947,7 +1947,7 @@ lbl_80443F88:
 * Address:	80443FA4
 * Size:	000118
 
-void MemoryCard::Mgr::commandSaveHeader(void)
+void MemoryCard::Mgr::commandSaveHeader()
 {
 /*
     stwu     r1, -0x30(r1)
@@ -2036,7 +2036,7 @@ lbl_804440A0:
 * Address:	804440BC
 * Size:	0001A0
 
-void MemoryCard::Mgr::commandCreateNewFile(void)
+void MemoryCard::Mgr::commandCreateNewFile()
 {
 /*
     stwu     r1, -0x40(r1)
@@ -2268,7 +2268,7 @@ void MemoryCard::Mgr::writeBrokenData(MemoryCardMgr::ECardSlot)
 * Address:	8044435C
 * Size:	000170
 
-void MemoryCard::Mgr::varifyCardStatus(void)
+void MemoryCard::Mgr::varifyCardStatus()
 {
 /*
     stwu     r1, -0x30(r1)
@@ -2529,7 +2529,7 @@ lbl_80444674:
 * Address:	8044468C
 * Size:	000248
 
-void MemoryCard::Mgr::commandLoadGameOption(void)
+void MemoryCard::Mgr::commandLoadGameOption()
 {
 /*
     stwu     r1, -0x460(r1)
@@ -3860,7 +3860,7 @@ bool)
 * Address:	804456D8
 * Size:	000068
 
-void MemoryCard::Mgr::commandCheckSerialNo(void)
+void MemoryCard::Mgr::commandCheckSerialNo()
 {
 /*
     stwu     r1, -0x10(r1)
@@ -4273,7 +4273,7 @@ void MemoryCard::Mgr::testCheckSumPlayerInfo(
 * Address:	80445B0C
 * Size:	0000B8
 
-void MemoryCard::Mgr::getCardStatus(void)
+void MemoryCard::Mgr::getCardStatus()
 {
 /*
     stwu     r1, -0x10(r1)
@@ -4346,7 +4346,7 @@ lbl_80445BA8:
 * Address:	80445BC4
 * Size:	0000B8
 
-void MemoryCard::Mgr::writeInvalidGameOption(void)
+void MemoryCard::Mgr::writeInvalidGameOption()
 {
 /*
     stwu     r1, -0x20(r1)
@@ -4409,7 +4409,7 @@ lbl_80445C4C:
 * Address:	80445C7C
 * Size:	000070
 
-void MemoryCard::Mgr::writeInvalidPlayerInfoAll(void)
+void MemoryCard::Mgr::writeInvalidPlayerInfoAll()
 {
 /*
     stwu     r1, -0x20(r1)
@@ -5386,7 +5386,7 @@ void MemoryCard::Mgr::verifyCardSerialNo(unsigned long long*,
 * Address:	80446864
 * Size:	00007C
 
-void MemoryCard::Mgr::resetError(void)
+void MemoryCard::Mgr::resetError()
 {
 /*
     stwu     r1, -0x10(r1)
@@ -5670,7 +5670,7 @@ lbl_80446BE4:
 * Address:	80446BEC
 * Size:	000008
 
-u32 MemoryCard::MgrCommandGetPlayerHeader::getClassSize(void)
+u32 MemoryCard::MgrCommandGetPlayerHeader::getClassSize()
 {
     return 0xC;
 }
@@ -5680,7 +5680,7 @@ u32 MemoryCard::MgrCommandGetPlayerHeader::getClassSize(void)
 * Address:	80446BF4
 * Size:	000008
 
-u32 MemoryCard::MgrCommandCopyPlayer::getClassSize(void)
+u32 MemoryCard::MgrCommandCopyPlayer::getClassSize()
 {
     return 0xC;
 }
@@ -5690,7 +5690,7 @@ u32 MemoryCard::MgrCommandCopyPlayer::getClassSize(void)
 * Address:	80446BFC
 * Size:	000008
 
-u32 MemoryCard::MgrCommandPlayerNo::getClassSize(void)
+u32 MemoryCard::MgrCommandPlayerNo::getClassSize()
 {
     return 0xC;
 }
@@ -5700,7 +5700,7 @@ u32 MemoryCard::MgrCommandPlayerNo::getClassSize(void)
 * Address:	80446C04
 * Size:	00005C
 
-MemoryCard::Mgr::~Mgr(void)
+MemoryCard::Mgr::~Mgr()
 {
 /*
     stwu     r1, -0x10(r1)
@@ -5738,7 +5738,7 @@ lbl_80446C48:
 * Address:	80446C60
 * Size:	000008
 
-u32 MemoryCard::Mgr::getHeaderSize(void)
+u32 MemoryCard::Mgr::getHeaderSize()
 {
     return 0x2000;
 }

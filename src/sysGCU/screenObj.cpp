@@ -74,7 +74,7 @@ namespace Screen {
  * Address:	80453AE8
  * Size:	000090
  */
-ObjBase::ObjBase(void)
+ObjBase::ObjBase()
     : IObjBase()
 {
 	_30     = 0;
@@ -279,7 +279,7 @@ lbl_80453D68:
  * Address:	80453D88
  * Size:	000110
  */
-bool ObjBase::update(void)
+bool ObjBase::update()
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -516,7 +516,7 @@ void ObjMgrBase::registObj(Screen::IObjBase* obj, Screen::SceneBase* scene)
  * Address:	8045410C
  * Size:	000068
  */
-bool ObjMgrBase::update(void)
+bool ObjMgrBase::update()
 {
 	bool result = true;
 	for (IObjBase* obj = (IObjBase*)_00.m_child; obj != nullptr; obj = (IObjBase*)obj->m_next) {
@@ -909,7 +909,7 @@ lbl_804544AC:
 //  * Address:	804544CC
 //  * Size:	000008
 //  */
-// @24 @Screen::ObjBase::~ObjBase(void)
+// @24 @Screen::ObjBase::~ObjBase()
 // {
 // 	/*
 // 	addi     r3, r3, -24

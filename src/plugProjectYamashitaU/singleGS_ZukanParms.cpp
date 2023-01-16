@@ -2511,7 +2511,7 @@ lbl_80132828:
  * Address:	80132844
  * Size:	000028
  */
-void __sinit_singleGS_ZukanParms_cpp(void)
+void __sinit_singleGS_ZukanParms_cpp()
 {
 	/*
 	lis      r4, __float_nan@ha

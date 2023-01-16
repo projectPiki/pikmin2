@@ -123,7 +123,7 @@ TControl::TControl()
  * Size:	000070
  * __dt
  */
-TControl::~TControl(void) { }
+TControl::~TControl() { }
 
 /*
  * --INFO--
@@ -171,7 +171,7 @@ void TControl::forward_value(unsigned long)
  * Size:	000048
  * __dt__Q27JStudio13TCreateObjectFv
  */
-TCreateObject::~TCreateObject(void) { }
+TCreateObject::~TCreateObject() { }
 
 /*
  * --INFO--
@@ -179,7 +179,7 @@ TCreateObject::~TCreateObject(void) { }
  * Size:	000084
  * __dt__Q27JStudio8TFactoryFv
  */
-TFactory::~TFactory(void)
+TFactory::~TFactory()
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -269,7 +269,7 @@ void TFactory::removeCreateObject(JStudio::TCreateObject*)
  * Address:	........
  * Size:	000024
  */
-void TFactory::removeCreateObject_all(void)
+void TFactory::removeCreateObject_all()
 {
 	// UNUSED FUNCTION
 }

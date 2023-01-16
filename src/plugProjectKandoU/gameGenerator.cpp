@@ -600,7 +600,7 @@ Creature* GenObject::generate(Generator*) { return nullptr; }
  * Address:	801AAA78
  * Size:	00007C
  */
-bool Generator::need_saveCreature(void)
+bool Generator::need_saveCreature()
 {
 	// FIRST TRY! ^_^
 	bool shouldSave;
@@ -709,7 +709,7 @@ lbl_801AABA0:
  * Address:	801AABBC
  * Size:	000138
  */
-void Generator::generate(void)
+void Generator::generate()
 {
 	// TODO: inlined isExpired does not match for this function
 	if (isExpired()) {
@@ -852,7 +852,7 @@ void Generator::informDeath(Game::Creature* creature)
  * Address:	........
  * Size:	000004
  */
-void Generator::update(void)
+void Generator::update()
 {
 	// UNUSED FUNCTION
 }
@@ -1722,7 +1722,7 @@ void GeneratorMgr::addMgr(Game::GeneratorMgr* newMgr)
  * Address:	........
  * Size:	000028
  */
-bool GeneratorMgr::isRootMgr(void)
+bool GeneratorMgr::isRootMgr()
 {
 	// UNUSED FUNCTION
 }
@@ -1732,7 +1732,7 @@ bool GeneratorMgr::isRootMgr(void)
  * Address:	801AB5B4
  * Size:	000148
  */
-void GeneratorMgr::generate(void)
+void GeneratorMgr::generate()
 {
 	for (Generator* gen = m_generator; gen != nullptr; gen = gen->_64) {
 		gen->generate();
@@ -2259,7 +2259,7 @@ void GeneratorMgr::write(Stream&)
  * Address:	801ABF08
  * Size:	0000D8
  */
-void Generator::doAnimation(void)
+void Generator::doAnimation()
 {
 	// if (_18 != nullptr && _18->_20 != 0) {
 	// }
@@ -2330,7 +2330,7 @@ lbl_801ABFCC:
  * Address:	801ABFE0
  * Size:	000070
  */
-void Generator::doEntry(void)
+void Generator::doEntry()
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -2416,7 +2416,7 @@ lbl_801AC0A8:
  * Address:	801AC0C0
  * Size:	000060
  */
-void Generator::doViewCalc(void)
+void Generator::doViewCalc()
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -2457,7 +2457,7 @@ lbl_801AC10C:
  * Address:	801AC120
  * Size:	00007C
  */
-void GeneratorMgr::doAnimation(void)
+void GeneratorMgr::doAnimation()
 {
 	if (m_generator) {
 		m_generator->doAnimation();
@@ -2477,7 +2477,7 @@ void GeneratorMgr::doAnimation(void)
  * Address:	801AC19C
  * Size:	00007C
  */
-void GeneratorMgr::doEntry(void)
+void GeneratorMgr::doEntry()
 {
 	if (m_generator) {
 		m_generator->doEntry();
@@ -2517,7 +2517,7 @@ void GeneratorMgr::doSetView(int index)
  * Address:	801AC2A8
  * Size:	00007C
  */
-void GeneratorMgr::doViewCalc(void)
+void GeneratorMgr::doViewCalc()
 {
 	if (m_generator) {
 		m_generator->doViewCalc();
@@ -2535,7 +2535,7 @@ void GeneratorMgr::doViewCalc(void)
  * Address:	801AC324
  * Size:	000060
  */
-GeneratorMgr::~GeneratorMgr(void)
+GeneratorMgr::~GeneratorMgr()
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -2602,7 +2602,7 @@ void GenBase::render(Graphics&, Game::Generator*) { }
  * Address:	801AC398
  * Size:	000028
  */
-// void __sinit_gameGenerator_cpp(void)
+// void __sinit_gameGenerator_cpp()
 // {
 // 	/*
 // 	lis      r4, __float_nan@ha

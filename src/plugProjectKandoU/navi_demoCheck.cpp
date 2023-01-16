@@ -2712,7 +2712,7 @@ lbl_80220FB0:
  * Address:	80220FC8
  * Size:	000038
  */
-// void Game::EnemyIterator<Game::Pom::Obj>::operator*(void)
+// void Game::EnemyIterator<Game::Pom::Obj>::operator*()
 // {
 // 	/*
 // 	stwu     r1, -0x10(r1)

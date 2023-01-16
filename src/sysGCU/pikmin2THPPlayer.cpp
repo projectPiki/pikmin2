@@ -206,7 +206,7 @@ namespace Game {
  * Address:	8044FDF0
  * Size:	000118
  */
-THPPlayer::THPPlayer(void)
+THPPlayer::THPPlayer()
 {
 	/*
 	stwu     r1, -0x20(r1)
@@ -289,7 +289,7 @@ lbl_8044FED8:
  * Address:	8044FF08
  * Size:	000098
  */
-THPPlayer::~THPPlayer(void)
+THPPlayer::~THPPlayer()
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -410,7 +410,7 @@ lbl_80450044:
  * Address:	8045006C
  * Size:	00006C
  */
-void THPPlayer::load(void)
+void THPPlayer::load()
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -450,7 +450,7 @@ lbl_804500B4:
  * Address:	........
  * Size:	00003C
  */
-void THPPlayer::reset(void)
+void THPPlayer::reset()
 {
 	// UNUSED FUNCTION
 }
@@ -460,7 +460,7 @@ void THPPlayer::reset(void)
  * Address:	804500D8
  * Size:	000024
  */
-void THPPlayer::loadResource(void)
+void THPPlayer::loadResource()
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -617,7 +617,7 @@ lbl_80450268:
  * Address:	804502C8
  * Size:	0000FC
  */
-void THPPlayer::prepare(void)
+void THPPlayer::prepare()
 {
 	/*
 	stwu     r1, -0x20(r1)
@@ -762,7 +762,7 @@ lbl_80450460:
  * Address:	80450484
  * Size:	0000A0
  */
-void THPPlayer::play(void)
+void THPPlayer::play()
 {
 	/*
 	stwu     r1, -0x20(r1)
@@ -821,7 +821,7 @@ lbl_80450510:
  * Address:	80450524
  * Size:	000038
  */
-void THPPlayer::pause(void)
+void THPPlayer::pause()
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -850,7 +850,7 @@ lbl_8045054C:
  * Address:	8045055C
  * Size:	000028
  */
-void THPPlayer::stop(void)
+void THPPlayer::stop()
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -871,7 +871,7 @@ void THPPlayer::stop(void)
  * Address:	80450584
  * Size:	000094
  */
-void THPPlayer::update(void)
+void THPPlayer::update()
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -1106,7 +1106,7 @@ lbl_80450824:
  * Address:	80450838
  * Size:	00005C
  */
-void THPPlayer::isFinishLoading(void)
+void THPPlayer::isFinishLoading()
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -1144,7 +1144,7 @@ lbl_80450878:
  * Address:	80450894
  * Size:	00001C
  */
-void THPPlayer::isFinishPlaying(void)
+void THPPlayer::isFinishPlaying()
 {
 	/*
 	lis      r3, ActivePlayer@ha
@@ -1187,7 +1187,7 @@ void Delegate<Game::THPPlayer>::invoke()
  * Address:	804508E0
  * Size:	000008
  */
-@24 @Game::THPPlayer::~THPPlayer(void)
+@24 @Game::THPPlayer::~THPPlayer()
 {
 	/*
 	addi     r3, r3, -24

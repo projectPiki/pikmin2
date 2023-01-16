@@ -167,7 +167,7 @@ void JASBasicInst::setKeyRegionCount(u32 count)
  * Address:	80099C14
  * Size:	000018
  */
-JASBasicInst::TKeymap::TKeymap(void)
+JASBasicInst::TKeymap::TKeymap()
 {
 	_00               = -1;
 	m_veloRegionCount = 0;

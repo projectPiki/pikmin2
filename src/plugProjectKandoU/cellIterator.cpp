@@ -78,7 +78,7 @@ CellIterator::CellIterator(Game::CellIteratorArg& arg) { m_arg = arg; }
  * Address:	8022E45C
  * Size:	0000A4
  */
-void CellIterator::first(void)
+void CellIterator::first()
 {
 	// TODO: figure out WTF is going on with the cellMgr->passID access and
 	// writes
@@ -168,14 +168,14 @@ bool CellIterator::next()
  * Size:	000010
  * Matches
  */
-bool CellIterator::isDone(void) { return _00 == 0; }
+bool CellIterator::isDone() { return _00 == 0; }
 
 // /*
 //  * --INFO--
 //  * Address:	8022E544
 //  * Size:	00001C
 //  */
-// void CellIterator::operator*(void)
+// void CellIterator::operator*()
 // {
 // 	/*
 // 	lwz      r3, 0(r3)
@@ -195,7 +195,7 @@ bool CellIterator::isDone(void) { return _00 == 0; }
 //  * Address:	8022E560
 //  * Size:	00001C
 //  */
-// void CellIterator::getCellObject(void)
+// void CellIterator::getCellObject()
 // {
 // 	/*
 // 	lwz      r3, 0(r3)
@@ -215,7 +215,7 @@ bool CellIterator::isDone(void) { return _00 == 0; }
 //  * Address:	8022E57C
 //  * Size:	0000EC
 //  */
-// void CellIterator::step(void)
+// void CellIterator::step()
 // {
 // 	/*
 // 	stwu     r1, -0x10(r1)
@@ -295,7 +295,7 @@ bool CellIterator::isDone(void) { return _00 == 0; }
 //  * Address:	8022E668
 //  * Size:	000110
 //  */
-// void CellIterator::find(void)
+// void CellIterator::find()
 // {
 // 	/*
 // 	stwu     r1, -0x10(r1)
@@ -390,7 +390,7 @@ bool CellIterator::isDone(void) { return _00 == 0; }
 //  * Address:	8022E778
 //  * Size:	00018C
 //  */
-// void CellIterator::satisfy(void)
+// void CellIterator::satisfy()
 // {
 // 	/*
 // 	stwu     r1, -0x50(r1)
@@ -514,7 +514,7 @@ bool CellIterator::isDone(void) { return _00 == 0; }
 //  * Address:	8022E904
 //  * Size:	00018C
 //  */
-// void CellIterator::calcExtent(void)
+// void CellIterator::calcExtent()
 // {
 // 	/*
 // 	stwu     r1, -0x40(r1)
@@ -630,5 +630,5 @@ bool CellIterator::isDone(void) { return _00 == 0; }
  * Address:	8022EA90
  * Size:	000004
  */
-void CellIterator::dump(void) { }
+void CellIterator::dump() { }
 } // namespace Game

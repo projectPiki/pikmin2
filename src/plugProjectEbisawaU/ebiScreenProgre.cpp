@@ -82,7 +82,7 @@ namespace ebi {
  * Address:	803CD6D8
  * Size:	0000B0
  */
-void TScreenProgre::loadResource(void)
+void TScreenProgre::loadResource()
 {
 	/*
 	stwu     r1, -0x120(r1)
@@ -667,7 +667,7 @@ lbl_803CDEC8:
  * Address:	803CDED8
  * Size:	000028
  */
-void TScreenProgre::isFinish(void)
+void TScreenProgre::isFinish()
 {
 	/*
 	lwz      r0, 0x1c(r3)
@@ -690,7 +690,7 @@ lbl_803CDEF8:
  * Address:	........
  * Size:	000060
  */
-void TScreenProgre::killScreen(void)
+void TScreenProgre::killScreen()
 {
 	// UNUSED FUNCTION
 }
@@ -769,7 +769,7 @@ lbl_803CDFAC:
  * Address:	803CDFC0
  * Size:	000554
  */
-void TScreenProgre::update(void)
+void TScreenProgre::update()
 {
 	/*
 	stwu     r1, -0x30(r1)
@@ -1199,7 +1199,7 @@ lbl_803CE4FC:
  * Address:	803CE514
  * Size:	0000DC
  */
-void TScreenProgre::draw(void)
+void TScreenProgre::draw()
 {
 	/*
 	stwu     r1, -0x2b0(r1)
@@ -1269,7 +1269,7 @@ lbl_803CE5D8:
  * Address:	803CE5F0
  * Size:	000308
  */
-void TScreenProgre::setDecide(void)
+void TScreenProgre::setDecide()
 {
 	/*
 	stwu     r1, -0x70(r1)

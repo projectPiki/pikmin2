@@ -514,7 +514,7 @@ TRenderingProcessor::TRenderingProcessor(JMessage::TReference const*)
  * Address:	804395F8
  * Size:	000060
  */
-TRenderingProcessorBase::~TRenderingProcessorBase(void)
+TRenderingProcessorBase::~TRenderingProcessorBase()
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -551,7 +551,7 @@ lbl_8043963C:
  * Address:	........
  * Size:	00007C
  */
-void TRenderingProcessor::setDrawLocateX(void)
+void TRenderingProcessor::setDrawLocateX()
 {
 	// UNUSED FUNCTION
 }
@@ -561,7 +561,7 @@ void TRenderingProcessor::setDrawLocateX(void)
  * Address:	........
  * Size:	000338
  */
-void TRenderingProcessor::setDrawLocateY(void)
+void TRenderingProcessor::setDrawLocateY()
 {
 	// UNUSED FUNCTION
 }
@@ -640,7 +640,7 @@ void TRenderingProcessor::do_begin(void const*, char const*)
  * Address:	80439740
  * Size:	0003B0
  */
-void TRenderingProcessor::setDrawLocate(void)
+void TRenderingProcessor::setDrawLocate()
 {
 	/*
 	stwu     r1, -0x60(r1)
@@ -909,7 +909,7 @@ lbl_80439AC4:
  * Address:	........
  * Size:	000050
  */
-void TRenderingProcessor::addDrawLines(void)
+void TRenderingProcessor::addDrawLines()
 {
 	// UNUSED FUNCTION
 }
@@ -919,7 +919,7 @@ void TRenderingProcessor::addDrawLines(void)
  * Address:	80439AF0
  * Size:	0000DC
  */
-void TRenderingProcessor::newParagraph(void)
+void TRenderingProcessor::newParagraph()
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -1235,7 +1235,7 @@ lbl_80439EBC:
  * Address:	........
  * Size:	0000B0
  */
-void TRenderingProcessor::mf(void)
+void TRenderingProcessor::mf()
 {
 	// UNUSED FUNCTION
 }
@@ -1302,7 +1302,7 @@ void TRenderingProcessor::do_select_begin(unsigned long)
  * Address:	80439FA0
  * Size:	00006C
  */
-void TRenderingProcessor::do_select_end(void)
+void TRenderingProcessor::do_select_end()
 {
 	/*
 	stwu     r1, -0x20(r1)
@@ -1340,7 +1340,7 @@ void TRenderingProcessor::do_select_end(void)
  * Address:	8043A00C
  * Size:	0000BC
  */
-void TRenderingProcessor::do_select_separate(void)
+void TRenderingProcessor::do_select_separate()
 {
 	/*
 	stwu     r1, -0x20(r1)
@@ -1772,7 +1772,7 @@ lbl_8043A494:
  * Address:	8043A4A8
  * Size:	000014
  */
-void TRenderingProcessor::doTagControlAbtnWait(void)
+void TRenderingProcessor::doTagControlAbtnWait()
 {
 	/*
 	lwz      r0, 0x8c(r3)
@@ -2281,7 +2281,7 @@ void TRenderingProcessor::tagPosition(unsigned short, void const*, unsigned long
  * Address:	8043ABD8
  * Size:	00001C
  */
-void TRenderingProcessor::initRuby(void)
+void TRenderingProcessor::initRuby()
 {
 	/*
 	li       r0, 0
@@ -2299,7 +2299,7 @@ void TRenderingProcessor::initRuby(void)
  * Address:	8043ABF4
  * Size:	000360
  */
-void TRenderingProcessor::drawRuby(void)
+void TRenderingProcessor::drawRuby()
 {
 	/*
 	stwu     r1, -0x110(r1)
@@ -3456,7 +3456,7 @@ void TRenderingProcessor::doDrawImage(JUTTexture*, float, float, float, float)
  * Address:	8043BADC
  * Size:	000334
  */
-void TRenderingProcessor::setImageGX(void)
+void TRenderingProcessor::setImageGX()
 {
 	/*
 	stwu     r1, -0x20(r1)
@@ -4052,7 +4052,7 @@ lbl_8043C1E4:
  * Address:	8043C304
  * Size:	000010
  */
-void TRenderingProcessor::reset(void)
+void TRenderingProcessor::reset()
 {
 	/*
 	lfs      f0, lbl_805208C0@sda21(r2)
@@ -4158,7 +4158,7 @@ lbl_8043C418:
  * Address:	8043C43C
  * Size:	000024
  */
-void TRenderingProcessor::setLineWidth(void)
+void TRenderingProcessor::setLineWidth()
 {
 	/*
 	lwz      r0, 0x8c(r3)
@@ -4178,7 +4178,7 @@ void TRenderingProcessor::setLineWidth(void)
  * Address:	8043C460
  * Size:	0000D8
  */
-void TRenderingProcessor::resetLineWidth(void)
+void TRenderingProcessor::resetLineWidth()
 {
 	/*
 	li       r0, 4
@@ -4245,7 +4245,7 @@ lbl_8043C470:
  * Address:	8043C538
  * Size:	000040
  */
-void TRenderingProcessor::setOnePageLine(void)
+void TRenderingProcessor::setOnePageLine()
 {
 	/*
 	lwz      r0, 0x8c(r3)
@@ -4278,7 +4278,7 @@ lbl_8043C568:
  * Address:	8043C578
  * Size:	0000D8
  */
-void TRenderingProcessor::resetOnePageLine(void)
+void TRenderingProcessor::resetOnePageLine()
 {
 	/*
 	li       r0, 4
@@ -4345,7 +4345,7 @@ lbl_8043C584:
  * Address:	........
  * Size:	0000A0
  */
-void TRenderingProcessor::resetPageInfo(void)
+void TRenderingProcessor::resetPageInfo()
 {
 	// UNUSED FUNCTION
 }
@@ -4355,7 +4355,7 @@ void TRenderingProcessor::resetPageInfo(void)
  * Address:	8043C650
  * Size:	00008C
  */
-void TRenderingProcessor::setPageInfo(void)
+void TRenderingProcessor::setPageInfo()
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -4443,7 +4443,7 @@ void TRenderingProcessor::preProcID(uint, uint)
  * Address:	........
  * Size:	000260
  */
-void TRenderingProcessor::preProcCenteringPre(void)
+void TRenderingProcessor::preProcCenteringPre()
 {
 	// UNUSED FUNCTION
 }
@@ -4453,7 +4453,7 @@ void TRenderingProcessor::preProcCenteringPre(void)
  * Address:	........
  * Size:	00011C
  */
-void TRenderingProcessor::preProcCenteringPost(void)
+void TRenderingProcessor::preProcCenteringPost()
 {
 	// UNUSED FUNCTION
 }
@@ -5310,7 +5310,7 @@ lbl_8043D288:
  * Address:	8043D2B8
  * Size:	000070
  */
-TRenderingProcessor::~TRenderingProcessor(void)
+TRenderingProcessor::~TRenderingProcessor()
 {
 	/*
 	stwu     r1, -0x10(r1)

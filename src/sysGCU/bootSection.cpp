@@ -1838,7 +1838,7 @@ namespace ebi {
  * Address:	8044851C
  * Size:	000294
  */
-TScreenProgre::TScreenProgre(void)
+TScreenProgre::TScreenProgre()
 {
 	/*
 	stwu     r1, -0x20(r1)
@@ -4094,7 +4094,7 @@ void Delegate<BootSection>::invoke()
  * Address:	8044A014
  * Size:	000028
  */
-void __sinit_bootSection_cpp(void)
+void __sinit_bootSection_cpp()
 {
 	/*
 	lis      r4, __float_nan@ha

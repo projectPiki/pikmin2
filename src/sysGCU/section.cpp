@@ -357,7 +357,7 @@ void Section::draw(Graphics& gfx)
  * Address:	80424150
  * Size:	000054
  */
-// void __sinit_section_cpp(void)
+// void __sinit_section_cpp()
 // {
 // 	/*
 // 	lis      r3, 0x800000F8@ha

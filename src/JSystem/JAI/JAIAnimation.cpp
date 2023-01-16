@@ -1281,7 +1281,7 @@ void JAIAnimeSound::setSpeedModifySound(JAISound*, JAIAnimeFrameSoundData*, floa
  * Address:	800ABE38
  * Size:	00000C
  */
-// void JAInter::ObjectBase::enable(void)
+// void JAInter::ObjectBase::enable()
 // {
 // 	// Generated from stb r0, 0x18(r3)
 // 	_18 = 1;

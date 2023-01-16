@@ -334,7 +334,7 @@ namespace Game {
  * Address:	........
  * Size:	00000C
  */
-void PlayData::prepareSave(void)
+void PlayData::prepareSave()
 {
 	// UNUSED FUNCTION
 }

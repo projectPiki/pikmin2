@@ -6873,7 +6873,7 @@ void complement<float>(float, float, float)
  * Address:	80122428
  * Size:	000028
  */
-void __sinit_gameLightMgr_cpp(void)
+void __sinit_gameLightMgr_cpp()
 {
 	/*
 	lis      r4, __float_nan@ha

@@ -305,7 +305,7 @@ lbl_80023200:
  * Address:	8002321C
  * Size:	000044
  */
-// void __sinit_JKRFileLoader_cpp(void)
+// void __sinit_JKRFileLoader_cpp()
 // {
 // 	/*
 // 	stwu     r1, -0x10(r1)

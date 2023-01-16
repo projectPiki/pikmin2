@@ -262,7 +262,7 @@ void PlayCamera::setVibrationParms(Game::VibrationParms* a1)
  * Address:	8023F538
  * Size:	00016C
  */
-void PlayCamera::init(void)
+void PlayCamera::init()
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -513,7 +513,7 @@ lbl_8023F7DC:
  * Address:	8023F810
  * Size:	00004C
  */
-void PlayCamera::isSpecialCamera(void)
+void PlayCamera::isSpecialCamera()
 {
 	/*
 	lwz      r4, 0x198(r3)
@@ -545,7 +545,7 @@ lbl_8023F854:
  * Address:	8023F85C
  * Size:	0000E8
  */
-void PlayCamera::doUpdate(void)
+void PlayCamera::doUpdate()
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -628,7 +628,7 @@ lbl_8023F918:
  * Address:	8023F944
  * Size:	0000E0
  */
-void PlayCamera::updateMatrix(void)
+void PlayCamera::updateMatrix()
 {
 	/*
 	stwu     r1, -0x100(r1)
@@ -695,7 +695,7 @@ void PlayCamera::updateMatrix(void)
  * Address:	8023FA24
  * Size:	00007C
  */
-void PlayCamera::noUpdate(void)
+void PlayCamera::noUpdate()
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -737,7 +737,7 @@ void PlayCamera::noUpdate(void)
  * Address:	8023FAA0
  * Size:	000044
  */
-void PlayCamera::isVibration(void)
+void PlayCamera::isVibration()
 {
 	/*
 	lbz      r0, 0x1f0(r3)
@@ -1003,7 +1003,7 @@ lbl_8023FD50:
  * Address:	8023FDBC
  * Size:	000020
  */
-void PlayCamera::finishDemoCamera(void)
+void PlayCamera::finishDemoCamera()
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -1022,7 +1022,7 @@ void PlayCamera::finishDemoCamera(void)
  * Address:	8023FDDC
  * Size:	0000EC
  */
-void PlayCamera::updateCameraMode(void)
+void PlayCamera::updateCameraMode()
 {
 	/*
 	lwz      r4, 0x198(r3)
@@ -1108,7 +1108,7 @@ lbl_8023FEC0:
  * Address:	8023FEC8
  * Size:	000080
  */
-void PlayCamera::startZoomCamera(void)
+void PlayCamera::startZoomCamera()
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -1199,7 +1199,7 @@ lbl_8023FFA0:
  * Address:	8023FFCC
  * Size:	0002F8
  */
-void PlayCamera::setTargetParms(void)
+void PlayCamera::setTargetParms()
 {
 	/*
 	lfs      f0, lbl_8051A664@sda21(r2)
@@ -1418,7 +1418,7 @@ lbl_80240258:
  * Address:	802402C4
  * Size:	000070
  */
-void PlayCamera::setTargetThetaToWhistle(void)
+void PlayCamera::setTargetThetaToWhistle()
 {
 	/*
 	stwu     r1, -0x20(r1)
@@ -1457,7 +1457,7 @@ void PlayCamera::setTargetThetaToWhistle(void)
  * Address:	80240334
  * Size:	000010
  */
-void PlayCamera::setFollowTime(void)
+void PlayCamera::setFollowTime()
 {
 	/*
 	lwz      r4, 0x24c(r3)
@@ -1472,7 +1472,7 @@ void PlayCamera::setFollowTime(void)
  * Address:	80240344
  * Size:	000068
  */
-void PlayCamera::setSmoothThetaSpeed(void)
+void PlayCamera::setSmoothThetaSpeed()
 {
 	/*
 	lwz      r4, 0x198(r3)
@@ -1515,7 +1515,7 @@ lbl_802403A4:
  * Address:	802403AC
  * Size:	0000E0
  */
-void PlayCamera::changeTargetTheta(void)
+void PlayCamera::changeTargetTheta()
 {
 	/*
 	stwu     r1, -0x20(r1)
@@ -1590,7 +1590,7 @@ lbl_80240464:
  * Address:	8024048C
  * Size:	000384
  */
-void PlayCamera::changeTargetAtPosition(void)
+void PlayCamera::changeTargetAtPosition()
 {
 	/*
 	stwu     r1, -0xb0(r1)
@@ -2098,7 +2098,7 @@ lbl_80240AEC:
  * Address:	80240B14
  * Size:	000174
  */
-void PlayCamera::isModCameraFinished(void)
+void PlayCamera::isModCameraFinished()
 {
 	/*
 	lwz      r0, 0x19c(r3)
@@ -2615,7 +2615,7 @@ lbl_802410C8:
  * Address:	80241164
  * Size:	0000D0
  */
-PlayCamera::~PlayCamera(void)
+PlayCamera::~PlayCamera()
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -2689,7 +2689,7 @@ void PlayCamera::startVibration(int) { }
  * Address:	80241238
  * Size:	00001C
  */
-void PlayCamera::getLookAtPosition_(void)
+void PlayCamera::getLookAtPosition_()
 {
 	/*
 	lfs      f0, 0x180(r4)
@@ -2709,7 +2709,7 @@ void PlayCamera::getLookAtPosition_(void)
  * Address:	80241254
  * Size:	000028
  */
-void __sinit_playCamera_cpp(void)
+void __sinit_playCamera_cpp()
 {
 	/*
 	lis      r4, __float_nan@ha

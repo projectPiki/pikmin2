@@ -1140,7 +1140,7 @@ void NaviState::draw2d(J2DGrafContext& graf, int& a2) { }
  * Address:	........
  * Size:	00000C
  */
-void NaviState::getBackupStateID(void)
+void NaviState::getBackupStateID()
 {
 	// UNUSED FUNCTION
 }
@@ -1180,7 +1180,7 @@ void NaviState::playPikon(Game::Navi*)
  * Address:	........
  * Size:	00000C
  */
-void NaviFSM::clearBackupState(void)
+void NaviFSM::clearBackupState()
 {
 	// UNUSED FUNCTION
 }
@@ -1922,7 +1922,7 @@ lbl_8017DDAC:
  * Address:	8017DDCC
  * Size:	000030
  */
-void transit__Q24Game22FSMState<Game::Navi> FPQ24Game4NaviiPQ24Game8StateArg(void)
+void transit__Q24Game22FSMState<Game::Navi> FPQ24Game4NaviiPQ24Game8StateArg()
 {
 	/*
 	.loc_0x0:
@@ -3285,7 +3285,7 @@ lbl_8017EF44:
  * Address:	8017EF60
  * Size:	000008
  */
-bool NaviState::needYChangeMotion(void) { return false; }
+bool NaviState::needYChangeMotion() { return false; }
 
 /*
  * --INFO--
@@ -3745,7 +3745,7 @@ lbl_8017F4BC:
  * Address:	8017F4D4
  * Size:	000034
  */
-void wallCallback__Q24Game13NaviWalkStateFPQ24Game4NaviR10Vector3f(void)
+void wallCallback__Q24Game13NaviWalkStateFPQ24Game4NaviR10Vector3f()
 {
 	/*
 	lbz      r0, 0x10(r3)
@@ -4598,7 +4598,7 @@ lbl_8017FF50:
  * Address:	8017FF80
  * Size:	000034
  */
-void blendVelocity__Q24Game13NaviWalkStateFPQ24Game4NaviR10Vector3f(void)
+void blendVelocity__Q24Game13NaviWalkStateFPQ24Game4NaviR10Vector3f()
 {
 	/*
 	lfs      f1, 0x1e4(r4)
@@ -5952,7 +5952,7 @@ void NaviFollowState::cleanup(Game::Navi*) { }
  * Address:	80180DE8
  * Size:	000040
  */
-NaviPunchState::NaviPunchState(void)
+NaviPunchState::NaviPunchState()
 {
 	/*
 	lis      r4, "__vt__Q24Game22FSMState<Q24Game4Navi>"@ha
@@ -7673,7 +7673,7 @@ lbl_80182208:
  * Address:	801822E0
  * Size:	000010
  */
-void wallCallback__Q24Game19NaviNukuAdjustStateFPQ24Game4NaviR10Vector3f(void)
+void wallCallback__Q24Game19NaviNukuAdjustStateFPQ24Game4NaviR10Vector3f()
 {
 	/*
 	lbz      r4, 0x5c(r3)
@@ -12279,7 +12279,7 @@ lbl_80185B30:
  * Address:	80185B60
  * Size:	0000F4
  */
-NaviThrowWaitState::NaviThrowWaitState(void)
+NaviThrowWaitState::NaviThrowWaitState()
 {
 	/*
 	stwu     r1, -0x20(r1)
@@ -12835,7 +12835,7 @@ lbl_80186240:
  * Address:	8018624C
  * Size:	000024
  */
-void NaviThrowWaitState::doAnimCallback(void)
+void NaviThrowWaitState::doAnimCallback()
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -16423,98 +16423,98 @@ void NaviPressedState::cleanup(Game::Navi*)
  * Address:	80189010
  * Size:	000008
  */
-u32 NaviPressedState::pressable(void) { return 0x0; }
+u32 NaviPressedState::pressable() { return 0x0; }
 
 /*
  * --INFO--
  * Address:	80189018
  * Size:	000008
  */
-u32 NaviPressedState::invincible(void) { return 0x1; }
+u32 NaviPressedState::invincible() { return 0x1; }
 
 /*
  * --INFO--
  * Address:	80189020
  * Size:	000008
  */
-u32 NaviPressedState::vsUsableY(void) { return 0x0; }
+u32 NaviPressedState::vsUsableY() { return 0x0; }
 
 /*
  * --INFO--
  * Address:	80189028
  * Size:	000008
  */
-bool NaviState::callable(void) { return false; }
+bool NaviState::callable() { return false; }
 
 /*
  * --INFO--
  * Address:	80189030
  * Size:	000008
  */
-bool NaviState::pressable(void) { return true; }
+bool NaviState::pressable() { return true; }
 
 /*
  * --INFO--
  * Address:	80189038
  * Size:	000008
  */
-u32 NaviPelletState::callable(void) { return 0x1; }
+u32 NaviPelletState::callable() { return 0x1; }
 
 /*
  * --INFO--
  * Address:	80189040
  * Size:	000008
  */
-u32 NaviDeadState::invincible(void) { return 0x1; }
+u32 NaviDeadState::invincible() { return 0x1; }
 
 /*
  * --INFO--
  * Address:	80189048
  * Size:	000008
  */
-u32 NaviDeadState::pressable(void) { return 0x0; }
+u32 NaviDeadState::pressable() { return 0x0; }
 
 /*
  * --INFO--
  * Address:	80189050
  * Size:	000008
  */
-u32 NaviDeadState::vsUsableY(void) { return 0x0; }
+u32 NaviDeadState::vsUsableY() { return 0x0; }
 
 /*
  * --INFO--
  * Address:	80189058
  * Size:	000008
  */
-u32 NaviDamagedState::invincible(void) { return 0x1; }
+u32 NaviDamagedState::invincible() { return 0x1; }
 
 /*
  * --INFO--
  * Address:	80189060
  * Size:	000008
  */
-u32 NaviDamagedState::vsUsableY(void) { return 0x0; }
+u32 NaviDamagedState::vsUsableY() { return 0x0; }
 
 /*
  * --INFO--
  * Address:	80189068
  * Size:	000008
  */
-u32 NaviAbsorbState::vsUsableY(void) { return 0x0; }
+u32 NaviAbsorbState::vsUsableY() { return 0x0; }
 
 /*
  * --INFO--
  * Address:	80189070
  * Size:	000008
  */
-u32 NaviAbsorbState::invincible(void) { return 0x1; }
+u32 NaviAbsorbState::invincible() { return 0x1; }
 
 /*
  * --INFO--
  * Address:	80189078
  * Size:	000008
  */
-u32 NaviAbsorbState::pressable(void) { return 0x0; }
+u32 NaviAbsorbState::pressable() { return 0x0; }
 
 } // namespace Game
 
@@ -16527,14 +16527,14 @@ namespace Screen {
  * Address:	80189080
  * Size:	000008
  */
-u32 DispMemberContena::getSize(void) { return 0x38; }
+u32 DispMemberContena::getSize() { return 0x38; }
 
 /*
  * --INFO--
  * Address:	80189088
  * Size:	00000C
  */
-void DispMemberContena::getOwnerID(void)
+void DispMemberContena::getOwnerID()
 {
 	/*
 lis      r3, 0x004F4741@ha
@@ -16548,7 +16548,7 @@ blr
  * Address:	80189094
  * Size:	000014
  */
-void DispMemberContena::getMemberID(void)
+void DispMemberContena::getMemberID()
 {
 	/*
 lis      r4, 0x54454E41@ha
@@ -16564,14 +16564,14 @@ blr
  * Address:	801890A8
  * Size:	000008
  */
-u32 DispMemberUfoMenu::getSize(void) { return 0x10; }
+u32 DispMemberUfoMenu::getSize() { return 0x10; }
 
 /*
  * --INFO--
  * Address:	801890B0
  * Size:	00000C
  */
-void DispMemberUfoMenu::getOwnerID(void)
+void DispMemberUfoMenu::getOwnerID()
 {
 	/*
 lis      r3, 0x004F4741@ha
@@ -16585,7 +16585,7 @@ blr
  * Address:	801890BC
  * Size:	000014
  */
-void DispMemberUfoMenu::getMemberID(void)
+void DispMemberUfoMenu::getMemberID()
 {
 	/*
 lis      r4, 0x4D454E55@ha
@@ -16601,14 +16601,14 @@ blr
  * Address:	801890D0
  * Size:	000008
  */
-u32 DispMemberUfoGroup::getSize(void) { return 0x8C; }
+u32 DispMemberUfoGroup::getSize() { return 0x8C; }
 
 /*
  * --INFO--
  * Address:	801890D8
  * Size:	00000C
  */
-void DispMemberUfoGroup::getOwnerID(void)
+void DispMemberUfoGroup::getOwnerID()
 {
 	/*
 lis      r3, 0x004F4741@ha
@@ -16622,7 +16622,7 @@ blr
  * Address:	801890E4
  * Size:	000014
  */
-void DispMemberUfoGroup::getMemberID(void)
+void DispMemberUfoGroup::getMemberID()
 {
 	/*
 lis      r4, 0x5F475250@ha
@@ -16638,7 +16638,7 @@ blr
  * Address:	801890F8
  * Size:	000048
  */
-void DispMemberUfoGroup::doSetSubMemberAll(void)
+void DispMemberUfoGroup::doSetSubMemberAll()
 {
 	/*
 stwu     r1, -0x10(r1)
@@ -16673,56 +16673,56 @@ namespace Game {
  * Address:	80189140
  * Size:	000008
  */
-u32 NaviContainerState::invincible(void) { return 0x1; }
+u32 NaviContainerState::invincible() { return 0x1; }
 
 /*
  * --INFO--
  * Address:	80189148
  * Size:	000008
  */
-u32 NaviSaraiExitState::pressable(void) { return 0x0; }
+u32 NaviSaraiExitState::pressable() { return 0x0; }
 
 /*
  * --INFO--
  * Address:	80189150
  * Size:	000008
  */
-u32 NaviSaraiState::pressable(void) { return 0x0; }
+u32 NaviSaraiState::pressable() { return 0x0; }
 
 /*
  * --INFO--
  * Address:	80189158
  * Size:	000008
  */
-u32 NaviKokeDamageState::pressable(void) { return 0x1; }
+u32 NaviKokeDamageState::pressable() { return 0x1; }
 
 /*
  * --INFO--
  * Address:	80189160
  * Size:	000008
  */
-u32 NaviKokeDamageState::vsUsableY(void) { return 0x0; }
+u32 NaviKokeDamageState::vsUsableY() { return 0x0; }
 
 /*
  * --INFO--
  * Address:	80189168
  * Size:	000008
  */
-u32 NaviFlickState::pressable(void) { return 0x1; }
+u32 NaviFlickState::pressable() { return 0x1; }
 
 /*
  * --INFO--
  * Address:	80189170
  * Size:	000008
  */
-u32 NaviFlickState::vsUsableY(void) { return 0x0; }
+u32 NaviFlickState::vsUsableY() { return 0x0; }
 
 /*
  * --INFO--
  * Address:	80189178
  * Size:	000008
  */
-u32 NaviFallMeckState::pressable(void) { return 0x0; }
+u32 NaviFallMeckState::pressable() { return 0x0; }
 
 } // namespace og
 
@@ -16733,7 +16733,7 @@ namespace efx {
  * Address:	80189180
  * Size:	00000C
  */
-void ArgDopingSmoke::getName(void)
+void ArgDopingSmoke::getName()
 {
 	/*
 	lis      r3, lbl_8047EBD8@ha
@@ -16751,42 +16751,42 @@ namespace Game {
  * Address:	8018918C
  * Size:	000008
  */
-u32 NaviDopeState::invincible(void) { return 0x1; }
+u32 NaviDopeState::invincible() { return 0x1; }
 
 /*
  * --INFO--
  * Address:	80189194
  * Size:	000008
  */
-u32 NaviNukuState::invincible(void) { return 0x1; }
+u32 NaviNukuState::invincible() { return 0x1; }
 
 /*
  * --INFO--
  * Address:	8018919C
  * Size:	000008
  */
-bool NaviFollowState::needYChangeMotion(void) { return true; }
+bool NaviFollowState::needYChangeMotion() { return true; }
 
 /*
  * --INFO--
  * Address:	801891A4
  * Size:	000008
  */
-u32 NaviWalkState::callable(void) { return 0x1; }
+u32 NaviWalkState::callable() { return 0x1; }
 
 /*
  * --INFO--
  * Address:	801891AC
  * Size:	000008
  */
-u32 NaviWalkState::needYChangeMotion(void) { return 0x1; }
+u32 NaviWalkState::needYChangeMotion() { return 0x1; }
 
 /*
  * --INFO--
  * Address:	801891B4
  * Size:	000008
  */
-u32 NaviStuckState::vsUsableY(void) { return 0x0; }
+u32 NaviStuckState::vsUsableY() { return 0x0; }
 
 } // namespace efx
 
@@ -16795,21 +16795,21 @@ u32 NaviStuckState::vsUsableY(void) { return 0x0; }
  * Address:	801891BC
  * Size:	000004
  */
-void resume__Q24Game22FSMState<Game::Navi> FPQ24Game4Navi(void) { }
+void resume__Q24Game22FSMState<Game::Navi> FPQ24Game4Navi() { }
 
 /*
  * --INFO--
  * Address:	801891C0
  * Size:	000004
  */
-void restart__Q24Game22FSMState<Game::Navi> FPQ24Game4Navi(void) { }
+void restart__Q24Game22FSMState<Game::Navi> FPQ24Game4Navi() { }
 
 /*
  * --INFO--
  * Address:	801891C4
  * Size:	000064
  */
-void create__Q24Game26StateMachine<Game::Navi> Fi(void)
+void create__Q24Game26StateMachine<Game::Navi> Fi()
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -16891,7 +16891,7 @@ void Delegate<Game::NaviThrowWaitState>::invoke()
  * Address:	80189288
  * Size:	00001C
  */
-void getCurrID__Q24Game26StateMachine<Game::Navi> FPQ24Game4Navi(void)
+void getCurrID__Q24Game26StateMachine<Game::Navi> FPQ24Game4Navi()
 {
 	/*
 	lwz      r3, 0x274(r4)
@@ -16911,7 +16911,7 @@ lbl_8018929C:
  * Address:	801892A4
  * Size:	000084
  */
-void registerState__Q24Game26StateMachine<Game::Navi> FPQ24Game22FSMState<Game::Navi>(void)
+void registerState__Q24Game26StateMachine<Game::Navi> FPQ24Game22FSMState<Game::Navi>()
 {
 	/*
 	.loc_0x0:
@@ -16962,7 +16962,7 @@ void registerState__Q24Game26StateMachine<Game::Navi> FPQ24Game22FSMState<Game::
  * Address:	80189328
  * Size:	000028
  */
-void __sinit_naviState_cpp(void)
+void __sinit_naviState_cpp()
 {
 	/*
 	lis      r4, __float_nan@ha

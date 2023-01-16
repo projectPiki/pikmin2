@@ -53,7 +53,7 @@ JUTResFont::~JUTResFont()
  * Size:	000024
  * Matches
  */
-void JUTResFont::deleteMemBlocks_ResFont(void) { delete[] m_memBlocks; }
+void JUTResFont::deleteMemBlocks_ResFont() { delete[] m_memBlocks; }
 
 /*
  * --INFO--
@@ -61,7 +61,7 @@ void JUTResFont::deleteMemBlocks_ResFont(void) { delete[] m_memBlocks; }
  * Size:	00002C
  * Matches
  */
-void JUTResFont::initialize_state(void)
+void JUTResFont::initialize_state()
 {
 	m_resource    = nullptr;
 	m_memBlocks   = nullptr;
@@ -431,7 +431,7 @@ void JUTResFont::getWidthEntry(int a, JUTFont::TWidth* width) const
  * Address:	80032014
  * Size:	00004C
  */
-int JUTResFont::getCellWidth(void) const
+int JUTResFont::getCellWidth() const
 {
 	GlyphBlock* glyph;
 	GlyphBlock** glyphs;
@@ -458,7 +458,7 @@ int JUTResFont::getCellWidth(void) const
  * Address:	8003206C
  * Size:	00004C
  */
-int JUTResFont::getCellHeight(void) const
+int JUTResFont::getCellHeight() const
 {
 	GlyphBlock* glyph;
 	GlyphBlock** glyphs;

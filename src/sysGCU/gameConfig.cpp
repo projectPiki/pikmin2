@@ -190,7 +190,7 @@ bool GameConfig::load(char*)
 //  * Address:	80432898
 //  * Size:	00003C
 //  */
-// void __sinit_gameConfig_cpp(void)
+// void __sinit_gameConfig_cpp()
 // {
 // 	/*
 // 	stwu     r1, -0x10(r1)
@@ -217,6 +217,6 @@ bool GameConfig::load(char*)
  * Address:	804328D4
  * Size:	000074
  */
-// GameConfig::~GameConfig(void) {}
+// GameConfig::~GameConfig() {}
 
 } // namespace Game

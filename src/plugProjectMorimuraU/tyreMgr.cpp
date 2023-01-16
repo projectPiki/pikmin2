@@ -19,7 +19,7 @@ Mgr::Mgr(int objLimit, u8 modelType)
  * Address:	803ABEB0
  * Size:	000048
  */
-void Mgr::doAlloc(void) { init(new Parms); }
+void Mgr::doAlloc() { init(new Parms); }
 
 /*
  * --INFO--

@@ -878,7 +878,7 @@ blr
  * Address:	80410F98
  * Size:	000040
  */
-void __sinit_khWinLoseReason_cpp(void)
+void __sinit_khWinLoseReason_cpp()
 {
 	/*
 	lis      r3, msVal__Q32kh6Screen16ObjWinLoseReason@ha

@@ -285,7 +285,7 @@ JASTrack::TimedParam_::TimedParam_()
  * Address:	8009F10C
  * Size:	000018
  */
-JASTrack::MoveParam_::MoveParam_(void)
+JASTrack::MoveParam_::MoveParam_()
     : _00(0.0f)
     , _04(0.0f)
     , _08(0.0f)
@@ -298,7 +298,7 @@ JASTrack::MoveParam_::MoveParam_(void)
  * Address:	8009F124
  * Size:	000130
  */
-JASTrack::AInnerParam_::AInnerParam_(void)
+JASTrack::AInnerParam_::AInnerParam_()
 {
 	/*
 	stwu     r1, -0x10(r1)

@@ -810,7 +810,7 @@ bool Sphere::intersect(Edge& edge, float& t, Vector3f& repulsionVec, float& stre
  * Address:	804168F0
  * Size:	000068
  */
-Triangle::Triangle(void) { m_code.m_contents = (bool)0; }
+Triangle::Triangle() { m_code.m_contents = (bool)0; }
 
 /*
  * --INFO--
@@ -4015,7 +4015,7 @@ TriangleTable::TriangleTable() { }
  * Address:	........
  * Size:	000060
  */
-void TriangleTable::findMaxVertexIndex(void)
+void TriangleTable::findMaxVertexIndex()
 {
 	// UNUSED FUNCTION
 }
@@ -4223,7 +4223,7 @@ void VertexTable::writeObject(Stream&, Vector3f&)
  * Address:	80419D1C
  * Size:	000090
  */
-VertexTable::~VertexTable(void)
+VertexTable::~VertexTable()
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -4294,7 +4294,7 @@ void VertexTable::readObject(Stream&, Vector3f&)
  * Address:	80419DD0
  * Size:	000090
  */
-TriangleTable::~TriangleTable(void)
+TriangleTable::~TriangleTable()
 {
 	/*
 	stwu     r1, -0x10(r1)

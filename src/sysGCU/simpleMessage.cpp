@@ -8,7 +8,7 @@ namespace P2JME {
  * Address:	8043DBEC
  * Size:	000004
  */
-SimpleMessage::SimpleMessage(void) { }
+SimpleMessage::SimpleMessage() { }
 
 /*
  * --INFO--

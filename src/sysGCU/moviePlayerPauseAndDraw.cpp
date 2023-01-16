@@ -30,7 +30,7 @@ void MoviePlayer::setPauseAndDraw(Game::MovieConfig* config)
  * Address:	80436F40
  * Size:	000498
  */
-void MoviePlayer::clearPauseAndDraw(void)
+void MoviePlayer::clearPauseAndDraw()
 {
 	pikiMgr->setMovieDraw(true);
 	naviMgr->setMovieDraw(true);

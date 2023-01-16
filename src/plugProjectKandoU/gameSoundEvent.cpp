@@ -43,7 +43,7 @@ u32 TSoundEvent::event()
  * Address:	8022EC30
  * Size:	000010
  */
-void TSoundEvent::finish(void) { m_state |= TSE_Finish; }
+void TSoundEvent::finish() { m_state |= TSE_Finish; }
 
 /*
  * --INFO--

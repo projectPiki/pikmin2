@@ -365,7 +365,7 @@ lbl_8020D9A4:
  * Address:	8020D9D4
  * Size:	000068
  */
-void PikiAI::ActWeed::decideTarget(void)
+void PikiAI::ActWeed::decideTarget()
 {
 	/*
 	stwu     r1, -0x30(r1)
@@ -402,7 +402,7 @@ void PikiAI::ActWeed::decideTarget(void)
  * Address:	........
  * Size:	0000B0
  */
-void PikiAI::ActWeed::initStickAttack(void)
+void PikiAI::ActWeed::initStickAttack()
 {
 	// UNUSED FUNCTION
 }
@@ -412,7 +412,7 @@ void PikiAI::ActWeed::initStickAttack(void)
  * Address:	8020DA3C
  * Size:	000188
  */
-void PikiAI::ActWeed::initAdjust(void)
+void PikiAI::ActWeed::initAdjust()
 {
 	/*
 	stwu     r1, -0x60(r1)
@@ -529,7 +529,7 @@ lbl_8020DB94:
  * Address:	8020DBC4
  * Size:	0000D0
  */
-void PikiAI::ActWeed::calcAttackPos(void)
+void PikiAI::ActWeed::calcAttackPos()
 {
 	/*
 	stwu     r1, -0x20(r1)
@@ -598,7 +598,7 @@ lbl_8020DC74:
  * Address:	8020DC94
  * Size:	000840
  */
-void PikiAI::ActWeed::exec(void)
+void PikiAI::ActWeed::exec()
 {
 	/*
 	stwu     r1, -0xf0(r1)
@@ -1199,7 +1199,7 @@ lbl_8020E4A4:
  * Address:	8020E4D4
  * Size:	000068
  */
-void PikiAI::ActWeed::cleanup(void)
+void PikiAI::ActWeed::cleanup()
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -1395,7 +1395,7 @@ lbl_8020E6A4:
  * Address:	8020E700
  * Size:	000324
  */
-void PikiAI::ActFlockAttack::exec(void)
+void PikiAI::ActFlockAttack::exec()
 {
 	/*
 	stwu     r1, -0x90(r1)
@@ -1671,7 +1671,7 @@ lbl_8020EA78:
  * Address:	8020EA88
  * Size:	00000C
  */
-void PikiAI::ActFlockAttack::cleanup(void)
+void PikiAI::ActFlockAttack::cleanup()
 {
 	// Generated from stw r0, 0x14(r3)
 	_14 = 0;
@@ -1682,7 +1682,7 @@ void PikiAI::ActFlockAttack::cleanup(void)
  * Address:	8020EA94
  * Size:	00000C
  */
-void PikiAI::FlockAttackActionArg::getName(void)
+void PikiAI::FlockAttackActionArg::getName()
 {
 	/*
 	lis      r3, lbl_80481F70@ha
@@ -1696,7 +1696,7 @@ void PikiAI::FlockAttackActionArg::getName(void)
  * Address:	8020EAA0
  * Size:	000028
  */
-void __sinit_aiWeed_cpp(void)
+void __sinit_aiWeed_cpp()
 {
 	/*
 	lis      r4, __float_nan@ha

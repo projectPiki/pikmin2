@@ -1680,7 +1680,7 @@ lbl_8011AF88:
  * Address:	8011AFA8
  * Size:	000028
  */
-void __sinit_lifeGaugeMgr_cpp(void)
+void __sinit_lifeGaugeMgr_cpp()
 {
 	/*
 	lis      r4, __float_nan@ha

@@ -1014,7 +1014,7 @@
  * Address:	8039982C
  * Size:	000314
  */
-void Morimura::TVsSelectIndPane::draw(void)
+void Morimura::TVsSelectIndPane::draw()
 {
 	/*
 	stwu     r1, -0x160(r1)
@@ -1256,7 +1256,7 @@ void Morimura::TVsSelectExplanationWindow::create(char const*, unsigned long)
  * Address:	80399B7C
  * Size:	000004
  */
-void Morimura::TVsSelectExplanationWindow::screenScaleUp(void) { }
+void Morimura::TVsSelectExplanationWindow::screenScaleUp() { }
 
 /*
  * --INFO--
@@ -1273,7 +1273,7 @@ Morimura::TVsPiki::TVsPiki(J2DPane*, J2DPane*, J2DPane*)
  * Address:	80399B80
  * Size:	000004
  */
-Morimura::TVsPiki::posInfo::posInfo(void) { }
+Morimura::TVsPiki::posInfo::posInfo() { }
 
 /*
  * --INFO--
@@ -1503,7 +1503,7 @@ lbl_80399E18:
  * Address:	80399E4C
  * Size:	000280
  */
-void Morimura::TVsPiki::draw(void)
+void Morimura::TVsPiki::draw()
 {
 	/*
 	stwu     r1, -0x80(r1)
@@ -1686,7 +1686,7 @@ void Morimura::TVsPiki::setAlpha(unsigned char)
  * Address:	........
  * Size:	000108
  */
-void Morimura::TVsSelectOnyon::reset(void)
+void Morimura::TVsSelectOnyon::reset()
 {
 	// UNUSED FUNCTION
 }
@@ -1927,7 +1927,7 @@ lbl_8039A39C:
  * Address:	8039A3D4
  * Size:	00007C
  */
-void Morimura::TVsSelectOnyon::getAngDist(void)
+void Morimura::TVsSelectOnyon::getAngDist()
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -1973,7 +1973,7 @@ lbl_8039A420:
  * Address:	........
  * Size:	000198
  */
-void Morimura::TVsSelectOnyon::draw(void)
+void Morimura::TVsSelectOnyon::draw()
 {
 	// UNUSED FUNCTION
 }
@@ -2188,7 +2188,7 @@ Morimura::TVsSelectCBWinNum::TVsSelectCBWinNum(char**, unsigned short, JKRArchiv
  * Address:	8039A700
  * Size:	000058
  */
-void Morimura::TVsSelectCBWinNum::update(void)
+void Morimura::TVsSelectCBWinNum::update()
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -2272,7 +2272,7 @@ void Morimura::TVsSelectSlotIndex::getIndexInfo(int)
  * Address:	8039A7C0
  * Size:	0003A0
  */
-Morimura::TVsSelect::TVsSelect(void)
+Morimura::TVsSelect::TVsSelect()
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -2519,7 +2519,7 @@ lbl_8039A968:
  * Address:	8039AB60
  * Size:	00010C
  */
-Morimura::TVsSelect::~TVsSelect(void)
+Morimura::TVsSelect::~TVsSelect()
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -5275,7 +5275,7 @@ void Morimura::TVsSelectListScreen::create(char const*, unsigned long)
  * Address:	8039D1E0
  * Size:	001244
  */
-void Morimura::TVsSelect::doUpdate(void)
+void Morimura::TVsSelect::doUpdate()
 {
 	/*
 	stwu     r1, -0x100(r1)
@@ -6601,7 +6601,7 @@ lbl_8039E3FC:
  * Address:	8039E424
  * Size:	000030
  */
-void Morimura::TVsSelectListScreen::update(void)
+void Morimura::TVsSelectListScreen::update()
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -7645,7 +7645,7 @@ void J2DPane::operator=(const J2DPane&)
  * Address:	8039F334
  * Size:	00000C
  */
-void Morimura::TVsSelect::doUpdateFadeinFinish(void)
+void Morimura::TVsSelect::doUpdateFadeinFinish()
 {
 	// Generated from stb r0, 0x45(r3)
 	_45 = 1;
@@ -7656,7 +7656,7 @@ void Morimura::TVsSelect::doUpdateFadeinFinish(void)
  * Address:	8039F340
  * Size:	0000AC
  */
-void Morimura::TVsSelect::doUpdateFadeoutFinish(void)
+void Morimura::TVsSelect::doUpdateFadeoutFinish()
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -7716,7 +7716,7 @@ lbl_8039F3D8:
  * Address:	8039F3EC
  * Size:	0003CC
  */
-void Morimura::TVsSelect::paneInit(void)
+void Morimura::TVsSelect::paneInit()
 {
 	/*
 	stwu     r1, -0x20(r1)
@@ -7986,7 +7986,7 @@ lbl_8039F790:
  * Address:	8039F7B8
  * Size:	000240
  */
-void Morimura::TVsSelect::changePaneInfo(void)
+void Morimura::TVsSelect::changePaneInfo()
 {
 	/*
 	stwu     r1, -0x40(r1)
@@ -8211,7 +8211,7 @@ lbl_8039FA48:
  * Address:	8039FA7C
  * Size:	000008
  */
-void Morimura::TVsSelect::getIdMax(void)
+void Morimura::TVsSelect::getIdMax()
 {
 	/*
 	lwz      r3, 0x248(r3)
@@ -8252,7 +8252,7 @@ lbl_8039FAAC:
  * Address:	........
  * Size:	000194
  */
-void Morimura::TVsSelect::reset(void)
+void Morimura::TVsSelect::reset()
 {
 	// UNUSED FUNCTION
 }
@@ -8262,7 +8262,7 @@ void Morimura::TVsSelect::reset(void)
  * Address:	8039FAC0
  * Size:	0001F4
  */
-void Morimura::TVsSelect::doZoom(void)
+void Morimura::TVsSelect::doZoom()
 {
 	/*
 	stwu     r1, -0x30(r1)
@@ -8414,7 +8414,7 @@ lbl_8039FC78:
  * Address:	8039FCB4
  * Size:	00006C
  */
-void Morimura::TVsSelect::doMoveOnyon(void)
+void Morimura::TVsSelect::doMoveOnyon()
 {
 	/*
 	stwu     r1, -0x20(r1)
@@ -8456,7 +8456,7 @@ lbl_8039FCEC:
  * Address:	8039FD20
  * Size:	000214
  */
-void Morimura::TVsSelect::doScreenEffect(void)
+void Morimura::TVsSelect::doScreenEffect()
 {
 	/*
 	stwu     r1, -0x30(r1)
@@ -8624,7 +8624,7 @@ lbl_8039FF20:
  * Address:	8039FF34
  * Size:	0004FC
  */
-void Morimura::TVsSelect::onyonDemoInit(void)
+void Morimura::TVsSelect::onyonDemoInit()
 {
 	/*
 	stwu     r1, -0x130(r1)
@@ -8982,7 +8982,7 @@ lbl_803A0384:
  * Address:	803A0430
  * Size:	0001C0
  */
-void Morimura::TVsSelect::demoStart(void)
+void Morimura::TVsSelect::demoStart()
 {
 	/*
 	stwu     r1, -0xa0(r1)
@@ -9109,7 +9109,7 @@ lbl_803A0548:
  * Address:	803A05F0
  * Size:	00009C
  */
-void Morimura::TVsSelect::changeCourseTexture(void)
+void Morimura::TVsSelect::changeCourseTexture()
 {
 	/*
 	stwu     r1, -0x20(r1)
@@ -9165,7 +9165,7 @@ lbl_803A0664:
  * Address:	803A068C
  * Size:	0000D0
  */
-void Morimura::TVsSelect::changeIndirectTexture(void)
+void Morimura::TVsSelect::changeIndirectTexture()
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -9291,7 +9291,7 @@ lbl_803A07CC:
  * Address:	803A0814
  * Size:	000140
  */
-void Morimura::TVsSelect::updateFacePicture(void)
+void Morimura::TVsSelect::updateFacePicture()
 {
 	/*
 	stwu     r1, -0x20(r1)
@@ -9392,7 +9392,7 @@ lbl_803A0940:
  * Address:	803A0954
  * Size:	0001F4
  */
-void Morimura::TVsSelect::changeFaceTexture(void)
+void Morimura::TVsSelect::changeFaceTexture()
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -9666,7 +9666,7 @@ lbl_803A0C38:
  * Address:	803A0C80
  * Size:	000118
  */
-void Morimura::TVsSelect::changeSlotPage(void)
+void Morimura::TVsSelect::changeSlotPage()
 {
 	/*
 	lbz      r0, 0x22c(r3)
@@ -9857,14 +9857,14 @@ void Morimura::TVsSelectScene::getResName() const
  * Address:	803A0E74
  * Size:	000008
  */
-u32 Morimura::TVsSelectScene::getSceneType(void) { return 0x2739; }
+u32 Morimura::TVsSelectScene::getSceneType() { return 0x2739; }
 
 /*
  * --INFO--
  * Address:	803A0E7C
  * Size:	00000C
  */
-void Morimura::TVsSelectScene::getOwnerID(void)
+void Morimura::TVsSelectScene::getOwnerID()
 {
 	/*
 	lis      r3, 0x4D524D52@ha
@@ -9878,7 +9878,7 @@ void Morimura::TVsSelectScene::getOwnerID(void)
  * Address:	803A0E88
  * Size:	000014
  */
-void Morimura::TVsSelectScene::getMemberID(void)
+void Morimura::TVsSelectScene::getMemberID()
 {
 	/*
 	lis      r4, 0x4C454354@ha
@@ -9894,7 +9894,7 @@ void Morimura::TVsSelectScene::getMemberID(void)
  * Address:	803A0E9C
  * Size:	000034
  */
-void Morimura::TVsSelect::getDispMemberBase(void)
+void Morimura::TVsSelect::getDispMemberBase()
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -9922,7 +9922,7 @@ lbl_803A0EC0:
  * Address:	803A0ED0
  * Size:	0000A0
  */
-Morimura::TVsSelectCBWinNum::~TVsSelectCBWinNum(void)
+Morimura::TVsSelectCBWinNum::~TVsSelectCBWinNum()
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -9977,7 +9977,7 @@ lbl_803A0F54:
  * Address:	803A0F70
  * Size:	000070
  */
-Morimura::TVsSelectIndPane::~TVsSelectIndPane(void)
+Morimura::TVsSelectIndPane::~TVsSelectIndPane()
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -10020,7 +10020,7 @@ lbl_803A0FC4:
  * Address:	803A0FE0
  * Size:	000044
  */
-void __sinit_vsSelect2D_cpp(void)
+void __sinit_vsSelect2D_cpp()
 {
 	/*
 	lfs      f4, lbl_8051F2B8@sda21(r2)
@@ -10048,7 +10048,7 @@ void __sinit_vsSelect2D_cpp(void)
  * Address:	803A1024
  * Size:	000008
  */
-@24 @Morimura::TVsSelect::~TVsSelect(void)
+@24 @Morimura::TVsSelect::~TVsSelect()
 {
 	/*
 	addi     r3, r3, -24

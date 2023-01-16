@@ -119,7 +119,7 @@ namespace Game {
  * Address:	8021C718
  * Size:	0000A8
  */
-SingleGame::FileState::FileState(void)
+SingleGame::FileState::FileState()
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -244,7 +244,7 @@ void SingleGame::FileState::first_init(Game::SingleGameSection*)
  * Address:	8021C85C
  * Size:	00019C
  */
-void SingleGame::FileState::dvdload(void)
+void SingleGame::FileState::dvdload()
 {
 	/*
 	stwu     r1, -0x50(r1)
@@ -842,7 +842,7 @@ lbl_8021CF30:
  * Address:	8021CFCC
  * Size:	000028
  */
-void __sinit_singleGS_FileSelect_cpp(void)
+void __sinit_singleGS_FileSelect_cpp()
 {
 	/*
 	lis      r4, __float_nan@ha

@@ -386,7 +386,7 @@ namespace Game {
  * Address:	801476DC
  * Size:	0001A4
  */
-Piki::Piki(void)
+Piki::Piki()
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -515,7 +515,7 @@ namespace efx {
  * Address:	80147880
  * Size:	0002BC
  */
-TPkEffect::TPkEffect(void)
+TPkEffect::TPkEffect()
 {
 	/*
 stwu     r1, -0x40(r1)
@@ -701,7 +701,7 @@ blr
  * Address:	........
  * Size:	000060
  */
-ToeMoeSmoke::~ToeMoeSmoke(void)
+ToeMoeSmoke::~ToeMoeSmoke()
 {
 	// UNUSED FUNCTION
 }
@@ -711,7 +711,7 @@ ToeMoeSmoke::~ToeMoeSmoke(void)
  * Address:	........
  * Size:	000060
  */
-ToeWater::~ToeWater(void)
+ToeWater::~ToeWater()
 {
 	// UNUSED FUNCTION
 }
@@ -721,7 +721,7 @@ ToeWater::~ToeWater(void)
  * Address:	........
  * Size:	000060
  */
-ToeChudoku::~ToeChudoku(void)
+ToeChudoku::~ToeChudoku()
 {
 	// UNUSED FUNCTION
 }
@@ -731,7 +731,7 @@ ToeChudoku::~ToeChudoku(void)
  * Address:	........
  * Size:	000060
  */
-ToeMoeBC::~ToeMoeBC(void)
+ToeMoeBC::~ToeMoeBC()
 {
 	// UNUSED FUNCTION
 }
@@ -741,7 +741,7 @@ ToeMoeBC::~ToeMoeBC(void)
  * Address:	........
  * Size:	000060
  */
-ToeNagekira::~ToeNagekira(void)
+ToeNagekira::~ToeNagekira()
 {
 	// UNUSED FUNCTION
 }
@@ -751,7 +751,7 @@ ToeNagekira::~ToeNagekira(void)
  * Address:	........
  * Size:	000060
  */
-ToeDoping::~ToeDoping(void)
+ToeDoping::~ToeDoping()
 {
 	// UNUSED FUNCTION
 }
@@ -761,7 +761,7 @@ ToeDoping::~ToeDoping(void)
  * Address:	........
  * Size:	000060
  */
-ToeKourin::~ToeKourin(void)
+ToeKourin::~ToeKourin()
 {
 	// UNUSED FUNCTION
 }
@@ -771,7 +771,7 @@ ToeKourin::~ToeKourin(void)
  * Address:	80147B3C
  * Size:	00009C
  */
-TPkBlackDown::~TPkBlackDown(void)
+TPkBlackDown::~TPkBlackDown()
 {
 	/*
 stwu     r1, -0x10(r1)
@@ -825,7 +825,7 @@ blr
  * Address:	80147BD8
  * Size:	00009C
  */
-TPkMoeA::~TPkMoeA(void)
+TPkMoeA::~TPkMoeA()
 {
 	/*
 stwu     r1, -0x10(r1)
@@ -879,7 +879,7 @@ blr
  * Address:	80147C74
  * Size:	00009C
  */
-TPkNageBlur::~TPkNageBlur(void)
+TPkNageBlur::~TPkNageBlur()
 {
 	/*
 stwu     r1, -0x10(r1)
@@ -1034,7 +1034,7 @@ lbl_80147E00:
  * Address:	80147E14
  * Size:	000024
  */
-void Piki::getCurrAction(void)
+void Piki::getCurrAction()
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -1054,7 +1054,7 @@ void Piki::getCurrAction(void)
  * Address:	80147E38
  * Size:	000010
  */
-void Piki::clearCurrAction(void)
+void Piki::clearCurrAction()
 {
 	/*
 	lwz      r3, 0x294(r3)
@@ -1069,7 +1069,7 @@ void Piki::clearCurrAction(void)
  * Address:	80147E48
  * Size:	00000C
  */
-int Piki::getCurrActionID(void)
+int Piki::getCurrActionID()
 {
 	/*
 	lwz      r3, 0x294(r3)
@@ -1269,7 +1269,7 @@ lbl_80148084:
  * Size:	000034
  */
 // void start__Q24Game26StateMachine<Game::Piki>
-// FPQ24Game4PikiiPQ24Game8StateArg(void)
+// FPQ24Game4PikiiPQ24Game8StateArg()
 template <>
 void StateMachine<Piki>::start(Piki*, int, StateArg*)
 {
@@ -1556,7 +1556,7 @@ lbl_8014845C:
  * Address:	80148494
  * Size:	000004
  */
-void PikiAI::Action::cleanup(void) { }
+void PikiAI::Action::cleanup() { }
 
 namespace Game {
 
@@ -1565,7 +1565,7 @@ namespace Game {
  * Address:	80148498
  * Size:	00001C
  */
-void Piki::onSetPosition(void)
+void Piki::onSetPosition()
 {
 	/*
 	lfs      f0, 0x20c(r3)
@@ -1603,7 +1603,7 @@ void Piki::getLODSphere(Sys::Sphere&)
  * Address:	801484D8
  * Size:	000210
  */
-void Piki::update(void)
+void Piki::update()
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -1752,14 +1752,14 @@ lbl_801486D0:
  * Address:	801486E8
  * Size:	000008
  */
-bool PikiState::dead(void) { return false; }
+bool PikiState::dead() { return false; }
 
 /*
  * --INFO--
  * Address:	801486F0
  * Size:	000058
  */
-bool Piki::isAlive(void)
+bool Piki::isAlive()
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -1841,7 +1841,7 @@ lbl_8014879C:
  * Address:	801487B0
  * Size:	000008
  */
-s32 Piki::getCreatureID(void)
+s32 Piki::getCreatureID()
 {
 	/*
 	lwz      r3, 0x2c0(r3)
@@ -1915,7 +1915,7 @@ void Piki::movieStartDemoAnimation(SysShape::AnimInfo*)
  * Address:	8014883C
  * Size:	000088
  */
-// void movieSetTranslation__Q24Game4PikiFR10Vector3f f(void)
+// void movieSetTranslation__Q24Game4PikiFR10Vector3f f()
 void Piki::movieSetTranslation(Vector3f&, float)
 {
 	/*
@@ -1961,7 +1961,7 @@ void Piki::movieSetTranslation(Vector3f&, float)
  * Address:	801488C4
  * Size:	000008
  */
-// u32 movieGotoPosition__Q24Game4PikiFR10Vector3f(void) { return 0x0; }
+// u32 movieGotoPosition__Q24Game4PikiFR10Vector3f() { return 0x0; }
 bool Piki::movieGotoPosition(Vector3f&) { return false; }
 
 /*
@@ -2143,7 +2143,7 @@ lbl_80148A70:
  * Address:	80148A90
  * Size:	000014
  */
-void Piki::getJAIObject(void)
+void Piki::getJAIObject()
 {
 	/*
 	lwz      r3, 0x250(r3)
@@ -2159,7 +2159,7 @@ void Piki::getJAIObject(void)
  * Address:	80148AA4
  * Size:	000008
  */
-PSM::Creature* Piki::getPSCreature(void)
+PSM::Creature* Piki::getPSCreature()
 {
 	return m_soundObj;
 	/*
@@ -2173,7 +2173,7 @@ PSM::Creature* Piki::getPSCreature(void)
  * Address:	80148AAC
  * Size:	000030
  */
-bool Piki::canVsBattle(void)
+bool Piki::canVsBattle()
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -2403,7 +2403,7 @@ lbl_80148CFC:
  * Address:	80148D18
  * Size:	000068
  */
-void Piki::outWaterCallback(void)
+void Piki::outWaterCallback()
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -2449,7 +2449,7 @@ void PikiState::outWaterCallback(Game::Piki* p) { }
  * Address:	80148D84
  * Size:	000154
  */
-void Piki::might_bury(void)
+void Piki::might_bury()
 {
 	/*
 	stwu     r1, -0xa0(r1)
@@ -2561,7 +2561,7 @@ lbl_80148EC4:
  * Address:	80148ED8
  * Size:	000014
  */
-void Piki::surviveDayEnd(void)
+void Piki::surviveDayEnd()
 {
 	/*
 	lwz      r3, 0x294(r3)
@@ -2614,7 +2614,7 @@ void PikiState::onKeyEvent(Game::Piki*, SysShape::KeyEvent const&) { }
  * Address:	80148F34
  * Size:	00001C
  */
-int Piki::getStateID(void)
+int Piki::getStateID()
 {
 	/*
 	lwz      r3, 0x290(r3)
@@ -2705,7 +2705,7 @@ lbl_80148FFC:
  * Address:	80149018
  * Size:	0001C0
  */
-// void setSpeed__Q24Game4PikiFfR10Vector3f(void)
+// void setSpeed__Q24Game4PikiFfR10Vector3f()
 void Piki::setSpeed(float, Vector3f&)
 {
 	/*
@@ -2863,7 +2863,7 @@ void Piki::getSpeed(float, float)
  * Address:	801491D8
  * Size:	00020C
  */
-// void setSpeed__Q24Game4PikiFfR10Vector3f f(void)
+// void setSpeed__Q24Game4PikiFfR10Vector3f f()
 void Piki::setSpeed(float, Vector3f&, float)
 {
 	/*
@@ -3038,7 +3038,7 @@ lbl_801493BC:
  * Address:	801493E4
  * Size:	000040
  */
-bool Piki::isPikmin(void)
+bool Piki::isPikmin()
 {
 	/*
 	lbz      r0, sTekiChappyFlag__Q24Game12BaseHIOParms@sda21(r13)
@@ -3069,7 +3069,7 @@ lbl_8014941C:
  * Address:	80149424
  * Size:	00004C
  */
-bool Piki::isThrowable(void)
+bool Piki::isThrowable()
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -3103,14 +3103,14 @@ lbl_80149460:
  * Address:	80149470
  * Size:	000008
  */
-bool PikiState::throwable(void) { return false; }
+bool PikiState::throwable() { return false; }
 
 /*
  * --INFO--
  * Address:	80149478
  * Size:	000040
  */
-int Piki::getDownfloorMass(void)
+int Piki::getDownfloorMass()
 {
 	/*
 	lwz      r4, 0x290(r3)
@@ -3143,7 +3143,7 @@ lbl_801494A0:
  * Address:	801494B8
  * Size:	000014
  */
-bool Piki::gasInvicible(void)
+bool Piki::gasInvicible()
 {
 	/*
 	lbz      r3, 0x2a6(r3)
@@ -3170,7 +3170,7 @@ void Piki::setGasInvincible(u8 a1)
  * Address:	801494D4
  * Size:	000018
  */
-void Piki::updateGasInvincible(void)
+void Piki::updateGasInvincible()
 {
 	/*
 	lbz      r4, 0x2a6(r3)
@@ -3187,7 +3187,7 @@ void Piki::updateGasInvincible(void)
  * Address:	801494EC
  * Size:	0000F8
  */
-void Piki::getAttackDamage(void)
+void Piki::getAttackDamage()
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -3280,7 +3280,7 @@ lbl_801495D0:
  * Address:	801495E4
  * Size:	0000C0
  */
-float Piki::getThrowHeight(void)
+float Piki::getThrowHeight()
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -3355,7 +3355,7 @@ lbl_80149690:
  * Address:	801496A4
  * Size:	0000C4
  */
-void Piki::getPelletCarryPower(void)
+void Piki::getPelletCarryPower()
 {
 	/*
 	stwu     r1, -0x20(r1)
@@ -3625,7 +3625,7 @@ namespace Game {
  * Address:	80149984
  * Size:	000008
  */
-bool PikiState::aiActive(void) { return false; }
+bool PikiState::aiActive() { return false; }
 
 /*
  * --INFO--
@@ -3639,7 +3639,7 @@ void PikiState::bounceCallback(Game::Piki*, Sys::Triangle*) { }
  * Address:	80149990
  * Size:	0000A0
  */
-// void wallCallback__Q24Game4PikiFR10Vector3f(void)
+// void wallCallback__Q24Game4PikiFR10Vector3f()
 void Piki::wallCallback(Vector3f&)
 {
 	/*
@@ -3696,7 +3696,7 @@ lbl_80149A18:
  * Address:	80149A30
  * Size:	000004
  */
-// void wallCallback__Q26PikiAI6ActionFR10Vector3f(void) { }
+// void wallCallback__Q26PikiAI6ActionFR10Vector3f() { }
 void PikiAI::Action::wallCallback(Vector3f&) { }
 
 namespace Game {
@@ -3705,7 +3705,7 @@ namespace Game {
  * Address:	80149A34
  * Size:	000004
  */
-// void wallCallback__Q24Game9PikiStateFPQ24Game4PikiR10Vector3f(void) { }
+// void wallCallback__Q24Game9PikiStateFPQ24Game4PikiR10Vector3f() { }
 void PikiState::wallCallback(Piki*, Vector3f&) { }
 
 /*
@@ -4045,7 +4045,7 @@ lbl_80149D94:
  * Address:	80149DA8
  * Size:	000088
  */
-void Piki::clearDope(void)
+void Piki::clearDope()
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -4094,7 +4094,7 @@ lbl_80149E1C:
  * Address:	80149E30
  * Size:	000014
  */
-void Piki::extendDopeTime(void) { m_dopeTime = pikiMgr->_6C->_1150; }
+void Piki::extendDopeTime() { m_dopeTime = pikiMgr->_6C->_1150; }
 
 /*
  * --INFO--
@@ -4230,7 +4230,7 @@ bool Piki::doped() { return m_isDoped != -1; }
  * Address:	........
  * Size:	0000E0
  */
-void Piki::updateDope(void)
+void Piki::updateDope()
 {
 	// UNUSED FUNCTION
 }
@@ -4240,7 +4240,7 @@ void Piki::updateDope(void)
  * Address:	80149FF8
  * Size:	000040
  */
-void Piki::initColor(void)
+void Piki::initColor()
 {
 	/*
 	lfs      f0, lbl_80518440@sda21(r2)
@@ -4267,7 +4267,7 @@ void Piki::initColor(void)
  * Address:	........
  * Size:	000194
  */
-void Piki::updateColor(void)
+void Piki::updateColor()
 {
 	// UNUSED FUNCTION
 }
@@ -4480,7 +4480,7 @@ lbl_8014A270:
  * Address:	8014A288
  * Size:	000018
  */
-bool Piki::isTekiFollowAI(void)
+bool Piki::isTekiFollowAI()
 {
 	return m_brain->m_actionId == 11; // teki follow AI
 	                                  /*
@@ -4498,7 +4498,7 @@ bool Piki::isTekiFollowAI(void)
  * Address:	8014A2A0
  * Size:	0000EC
  */
-void Piki::doColorChange(void)
+void Piki::doColorChange()
 {
 	/*
 	stwu     r1, -0x30(r1)
@@ -4572,7 +4572,7 @@ lbl_8014A374:
  * Address:	8014A38C
  * Size:	00002C
  */
-void Piki::doDebugDL(void)
+void Piki::doDebugDL()
 {
 	/*
 	lwz      r3, 0x174(r3)
@@ -4682,7 +4682,7 @@ void Piki::startMotion(int, int, SysShape::MotionListener*, SysShape::MotionList
  * Address:	8014A4B0
  * Size:	0000E4
  */
-void Piki::doAnimation(void)
+void Piki::doAnimation()
 {
 	FakePiki::doAnimation();
 
@@ -4784,7 +4784,7 @@ void Piki::doDirectDraw(Graphics&) { }
  * Address:	8014A598
  * Size:	000028
  */
-float Piki::getBaseScale(void)
+float Piki::getBaseScale()
 {
 	switch (m_pikiKind) {
 	case Purple:
@@ -4939,7 +4939,7 @@ void Piki::changeHappa(int a1) { m_happaKind = a1; }
  * Address:	8014A778
  * Size:	000344
  */
-void Piki::do_updateLookCreature(void)
+void Piki::do_updateLookCreature()
 {
 	/*
 	stwu     r1, -0xc0(r1)
@@ -5216,7 +5216,7 @@ bool Piki::deferPikiCollision() { return true; }
  * Address:	8014AAD8
  * Size:	000008
  */
-char* Piki::getCreatureName(void) { return "pikmin"; }
+char* Piki::getCreatureName() { return "pikmin"; }
 
 } // namespace Game
 
@@ -5261,14 +5261,14 @@ lbl_8014AB24:
  * Address:	8014AB34
  * Size:	000004
  */
-void init__Q24Game26StateMachine<Game::Piki> FPQ24Game4Piki(void) { }
+void init__Q24Game26StateMachine<Game::Piki> FPQ24Game4Piki() { }
 
 /*
  * --INFO--
  * Address:	8014AB38
  * Size:	00009C
  */
-void transit__Q24Game26StateMachine<Game::Piki> FPQ24Game4PikiiPQ24Game8StateArg(void)
+void transit__Q24Game26StateMachine<Game::Piki> FPQ24Game4PikiiPQ24Game8StateArg()
 {
 	/*
 	.loc_0x0:
@@ -5325,21 +5325,21 @@ void transit__Q24Game26StateMachine<Game::Piki> FPQ24Game4PikiiPQ24Game8StateArg
  * Address:	8014ABD4
  * Size:	000004
  */
-void init__Q24Game22FSMState<Game::Piki> FPQ24Game4PikiPQ24Game8StateArg(void) { }
+void init__Q24Game22FSMState<Game::Piki> FPQ24Game4PikiPQ24Game8StateArg() { }
 
 /*
  * --INFO--
  * Address:	8014ABD8
  * Size:	000004
  */
-void cleanup__Q24Game22FSMState<Game::Piki> FPQ24Game4Piki(void) { }
+void cleanup__Q24Game22FSMState<Game::Piki> FPQ24Game4Piki() { }
 
 /*
  * --INFO--
  * Address:	8014ABDC
  * Size:	000038
  */
-void exec__Q24Game26StateMachine<Game::Piki> FPQ24Game4Piki(void)
+void exec__Q24Game26StateMachine<Game::Piki> FPQ24Game4Piki()
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -5366,14 +5366,14 @@ lbl_8014AC04:
  * Address:	8014AC14
  * Size:	000004
  */
-void exec__Q24Game22FSMState<Game::Piki> FPQ24Game4Piki(void) { }
+void exec__Q24Game22FSMState<Game::Piki> FPQ24Game4Piki() { }
 
 /*
  * --INFO--
  * Address:	8014AC18
  * Size:	000170
  */
-void __sinit_piki_cpp(void)
+void __sinit_piki_cpp()
 {
 	/*
 	stwu     r1, -0x20(r1)
@@ -5476,7 +5476,7 @@ void __sinit_piki_cpp(void)
  * Address:	8014AD88
  * Size:	000008
  */
-@4 @efx::TPkMoeA::~TPkMoeA(void)
+@4 @efx::TPkMoeA::~TPkMoeA()
 {
 	/*
 	addi     r3, r3, -4
@@ -5489,7 +5489,7 @@ void __sinit_piki_cpp(void)
  * Address:	8014AD90
  * Size:	000008
  */
-@4 @efx::TPkBlackDown::~TPkBlackDown(void)
+@4 @efx::TPkBlackDown::~TPkBlackDown()
 {
 	/*
 	addi     r3, r3, -4

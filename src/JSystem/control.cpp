@@ -93,7 +93,7 @@ bool TControl::update()
  * Address:	80008520
  * Size:	00015C
  */
-void TControl::render(void)
+void TControl::render()
 {
 	/*
 	stwu     r1, -0x20(r1)

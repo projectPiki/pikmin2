@@ -209,7 +209,7 @@ void getSceneMemberName(Screen::SceneBase*)
  * Address:	80452300
  * Size:	000054
  */
-SceneInfoList::SceneInfoList(void)
+SceneInfoList::SceneInfoList()
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -251,7 +251,7 @@ void SceneInfoList::set(long, og::Screen::DispMemberBase*)
  * Address:	........
  * Size:	000088
  */
-MgrCommand::MgrCommand(void)
+MgrCommand::MgrCommand()
 {
 	// UNUSED FUNCTION
 }
@@ -261,7 +261,7 @@ MgrCommand::MgrCommand(void)
  * Address:	........
  * Size:	000048
  */
-void MgrCommand::clearArgBuf(void)
+void MgrCommand::clearArgBuf()
 {
 	// UNUSED FUNCTION
 }
@@ -271,7 +271,7 @@ void MgrCommand::clearArgBuf(void)
  * Address:	........
  * Size:	000048
  */
-void MgrCommand::clearDispMemberBuf(void)
+void MgrCommand::clearDispMemberBuf()
 {
 	// UNUSED FUNCTION
 }
@@ -331,7 +331,7 @@ void MgrCommand::setTypeEndScene(Screen::SceneArgBase*)
  * Address:	........
  * Size:	00008C
  */
-void MgrCommand::setTypeInvalid(void)
+void MgrCommand::setTypeInvalid()
 {
 	// UNUSED FUNCTION
 }
@@ -341,7 +341,7 @@ void MgrCommand::setTypeInvalid(void)
  * Address:	80452354
  * Size:	0001CC
  */
-Mgr::Mgr(void)
+Mgr::Mgr()
 {
 	/*
 	stwu     r1, -0x20(r1)
@@ -473,7 +473,7 @@ lbl_804524E4:
  * Address:	80452520
  * Size:	000060
  */
-SceneInfoList::~SceneInfoList(void)
+SceneInfoList::~SceneInfoList()
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -510,7 +510,7 @@ lbl_80452564:
  * Address:	80452580
  * Size:	000070
  */
-void Mgr::init(void)
+void Mgr::init()
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -551,7 +551,7 @@ lbl_804525DC:
  * Address:	804525F0
  * Size:	0000FC
  */
-void Mgr::reset(void)
+void Mgr::reset()
 {
 	/*
 	stwu     r1, -0x30(r1)
@@ -633,7 +633,7 @@ lbl_804526D0:
  * Address:	........
  * Size:	000240
  */
-void Mgr::create(void)
+void Mgr::create()
 {
 	// UNUSED FUNCTION
 }
@@ -930,7 +930,7 @@ lbl_80452A48:
  * Address:	80452A60
  * Size:	000008
  */
-void Mgr::getCurrentCommand(void)
+void Mgr::getCurrentCommand()
 {
 	/*
 	lwz      r3, 0x3c(r3)
@@ -943,7 +943,7 @@ void Mgr::getCurrentCommand(void)
  * Address:	80452A68
  * Size:	0000A8
  */
-void Mgr::getNewCommand(void)
+void Mgr::getNewCommand()
 {
 	/*
 	stwu     r1, -0x20(r1)
@@ -1035,7 +1035,7 @@ void Mgr::releaseCommand(Screen::MgrCommand*)
  * Address:	........
  * Size:	00002C
  */
-void Mgr::updateCurrentScene(void)
+void Mgr::updateCurrentScene()
 {
 	// UNUSED FUNCTION
 }
@@ -1045,7 +1045,7 @@ void Mgr::updateCurrentScene(void)
  * Address:	80452B68
  * Size:	0002D8
  */
-void Mgr::update(void)
+void Mgr::update()
 {
 	/*
 	stwu     r1, -0x20(r1)
@@ -1366,7 +1366,7 @@ void Mgr::createNewBackupSceneInfo(Screen::SceneBase*)
  * Address:	80452F00
  * Size:	000078
  */
-void Mgr::clearBackupSceneInfo(void)
+void Mgr::clearBackupSceneInfo()
 {
 	/*
 	stwu     r1, -0x20(r1)
@@ -2024,7 +2024,7 @@ lbl_80453744:
  * Address:	8045375C
  * Size:	000024
  */
-void Mgr::isCurrentSceneLoading(void)
+void Mgr::isCurrentSceneLoading()
 {
 	/*
 	lwz      r4, 0x1c(r3)
@@ -2177,7 +2177,7 @@ lbl_80453904:
  * Address:	80453914
  * Size:	00001C
  */
-void Mgr::getDispMember(void)
+void Mgr::getDispMember()
 {
 	/*
 	lwz      r3, 0x1c(r3)
@@ -2197,7 +2197,7 @@ lbl_80453928:
  * Address:	80453930
  * Size:	000040
  */
-void Mgr::getSceneType(void)
+void Mgr::getSceneType()
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -2228,7 +2228,7 @@ lbl_80453960:
  * Address:	80453970
  * Size:	000028
  */
-bool Mgr::isSceneFinish(void)
+bool Mgr::isSceneFinish()
 {
 	/*
 	lwz      r3, 0x1c(r3)
@@ -2251,7 +2251,7 @@ lbl_80453990:
  * Address:	80453998
  * Size:	000038
  */
-void Mgr::getSceneFinishState(void)
+void Mgr::getSceneFinishState()
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -2296,7 +2296,7 @@ void Mgr::setGamePad(Controller*)
  * Address:	804539EC
  * Size:	000034
  */
-void Mgr::setBackupScene(void)
+void Mgr::setBackupScene()
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -2357,7 +2357,7 @@ lbl_80453A48:
  * Address:	80453A58
  * Size:	000068
  */
-MgrCommand::~MgrCommand(void)
+MgrCommand::~MgrCommand()
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -2398,7 +2398,7 @@ lbl_80453AA4:
  * Address:	80453AC0
  * Size:	000028
  */
-void __sinit_screenMgr_cpp(void)
+void __sinit_screenMgr_cpp()
 {
 	/*
 	lis      r4, __float_nan@ha

@@ -521,7 +521,7 @@ void TSync::executeAfter(JPABaseEmitter* emitter)
  * Address:	803AF8C4
  * Size:	00003C
  */
-void TSync::forceKill(void)
+void TSync::forceKill()
 {
 	particleMgr->forceKill(m_emitter);
 	m_emitter = nullptr;
@@ -533,7 +533,7 @@ void TSync::forceKill(void)
  * Address:	803AF900
  * Size:	000070
  */
-void TSync::fade(void)
+void TSync::fade()
 {
 	if (m_emitter) {
 		if (m_flags & 1) {
@@ -1190,7 +1190,7 @@ TChaseMtx2::TChaseMtx2(float (*mtx)[4], unsigned short effectID1, unsigned short
  * Address:	803B0548
  * Size:	000058
  */
-// TChaseMtx::TChaseMtx(void) { }
+// TChaseMtx::TChaseMtx() { }
 
 /*
  * setMtxptr__Q23efx10TChaseMtx2FPA4_f
@@ -1968,7 +1968,7 @@ TCallBack_StaticClipping::~TCallBack_StaticClipping() { }
  * Address:	803B0F10
  * Size:	00007C
  */
-// void create__Q23efx29TSyncGroup6<efx::TChaseMtx> FPQ23efx3Arg(void)
+// void create__Q23efx29TSyncGroup6<efx::TChaseMtx> FPQ23efx3Arg()
 // {
 // }
 
@@ -1978,7 +1978,7 @@ TCallBack_StaticClipping::~TCallBack_StaticClipping() { }
  * Address:	803B0F8C
  * Size:	000058
  */
-// void fade__Q23efx29TSyncGroup6<efx::TChaseMtx> Fv(void)
+// void fade__Q23efx29TSyncGroup6<efx::TChaseMtx> Fv()
 // {
 // }
 
@@ -1988,7 +1988,7 @@ TCallBack_StaticClipping::~TCallBack_StaticClipping() { }
  * Address:	803B0FE4
  * Size:	000058
  */
-// void forceKill__Q23efx29TSyncGroup6<efx::TChaseMtx> Fv(void)
+// void forceKill__Q23efx29TSyncGroup6<efx::TChaseMtx> Fv()
 // {
 // }
 
@@ -1998,7 +1998,7 @@ TCallBack_StaticClipping::~TCallBack_StaticClipping() { }
  * Address:	803B103C
  * Size:	000058
  */
-// void startDemoDrawOff__Q23efx29TSyncGroup6<efx::TChaseMtx> Fv(void)
+// void startDemoDrawOff__Q23efx29TSyncGroup6<efx::TChaseMtx> Fv()
 // {
 // }
 
@@ -2008,7 +2008,7 @@ TCallBack_StaticClipping::~TCallBack_StaticClipping() { }
  * Address:	803B1094
  * Size:	000058
  */
-// void endDemoDrawOn__Q23efx29TSyncGroup6<efx::TChaseMtx> Fv(void)
+// void endDemoDrawOn__Q23efx29TSyncGroup6<efx::TChaseMtx> Fv()
 // {
 // }
 
@@ -2017,7 +2017,7 @@ TCallBack_StaticClipping::~TCallBack_StaticClipping() { }
  * Address:	........
  * Size:	00007C
  */
-// void create__Q23efx29TSyncGroup5<efx::TChaseMtx> FPQ23efx3Arg(void)
+// void create__Q23efx29TSyncGroup5<efx::TChaseMtx> FPQ23efx3Arg()
 // {
 // 	// UNUSED FUNCTION
 // }
@@ -2027,7 +2027,7 @@ TCallBack_StaticClipping::~TCallBack_StaticClipping() { }
  * Address:	........
  * Size:	000058
  */
-// void fade__Q23efx29TSyncGroup5<efx::TChaseMtx> Fv(void)
+// void fade__Q23efx29TSyncGroup5<efx::TChaseMtx> Fv()
 // {
 // 	// UNUSED FUNCTION
 // }
@@ -2037,7 +2037,7 @@ TCallBack_StaticClipping::~TCallBack_StaticClipping() { }
  * Address:	........
  * Size:	000058
  */
-// void forceKill__Q23efx29TSyncGroup5<efx::TChaseMtx> Fv(void)
+// void forceKill__Q23efx29TSyncGroup5<efx::TChaseMtx> Fv()
 // {
 // 	// UNUSED FUNCTION
 // }
@@ -2047,7 +2047,7 @@ TCallBack_StaticClipping::~TCallBack_StaticClipping() { }
  * Address:	........
  * Size:	000058
  */
-// void startDemoDrawOff__Q23efx29TSyncGroup5<efx::TChaseMtx> Fv(void)
+// void startDemoDrawOff__Q23efx29TSyncGroup5<efx::TChaseMtx> Fv()
 // {
 // 	// UNUSED FUNCTION
 // }
@@ -2057,7 +2057,7 @@ TCallBack_StaticClipping::~TCallBack_StaticClipping() { }
  * Address:	........
  * Size:	000058
  */
-// void endDemoDrawOn__Q23efx29TSyncGroup5<efx::TChaseMtx> Fv(void)
+// void endDemoDrawOn__Q23efx29TSyncGroup5<efx::TChaseMtx> Fv()
 // {
 // 	// UNUSED FUNCTION
 // }
@@ -2068,7 +2068,7 @@ TCallBack_StaticClipping::~TCallBack_StaticClipping() { }
  * Address:	803B10EC
  * Size:	00007C
  */
-// void create__Q23efx31TSyncGroup4<efx::TChaseMtxT> FPQ23efx3Arg(void)
+// void create__Q23efx31TSyncGroup4<efx::TChaseMtxT> FPQ23efx3Arg()
 // {
 // }
 
@@ -2078,7 +2078,7 @@ TCallBack_StaticClipping::~TCallBack_StaticClipping() { }
  * Address:	803B1168
  * Size:	000058
  */
-// void fade__Q23efx31TSyncGroup4<efx::TChaseMtxT> Fv(void)
+// void fade__Q23efx31TSyncGroup4<efx::TChaseMtxT> Fv()
 // {
 // }
 
@@ -2088,7 +2088,7 @@ TCallBack_StaticClipping::~TCallBack_StaticClipping() { }
  * Address:	803B11C0
  * Size:	000058
  */
-// void forceKill__Q23efx31TSyncGroup4<efx::TChaseMtxT> Fv(void)
+// void forceKill__Q23efx31TSyncGroup4<efx::TChaseMtxT> Fv()
 // {
 // }
 
@@ -2098,7 +2098,7 @@ TCallBack_StaticClipping::~TCallBack_StaticClipping() { }
  * Address:	803B1218
  * Size:	000058
  */
-// void startDemoDrawOff__Q23efx31TSyncGroup4<efx::TChaseMtxT> Fv(void)
+// void startDemoDrawOff__Q23efx31TSyncGroup4<efx::TChaseMtxT> Fv()
 // {
 // }
 
@@ -2108,7 +2108,7 @@ TCallBack_StaticClipping::~TCallBack_StaticClipping() { }
  * Address:	803B1270
  * Size:	000058
  */
-// void endDemoDrawOn__Q23efx31TSyncGroup4<efx::TChaseMtxT> Fv(void)
+// void endDemoDrawOn__Q23efx31TSyncGroup4<efx::TChaseMtxT> Fv()
 // {
 // }
 
@@ -2118,7 +2118,7 @@ TCallBack_StaticClipping::~TCallBack_StaticClipping() { }
  * Address:	803B12C8
  * Size:	00007C
  */
-// void create__Q23efx29TSyncGroup4<efx::TChaseMtx> FPQ23efx3Arg(void)
+// void create__Q23efx29TSyncGroup4<efx::TChaseMtx> FPQ23efx3Arg()
 // {
 // }
 
@@ -2128,7 +2128,7 @@ TCallBack_StaticClipping::~TCallBack_StaticClipping() { }
  * Address:	803B1344
  * Size:	000058
  */
-// void fade__Q23efx29TSyncGroup4<efx::TChaseMtx> Fv(void)
+// void fade__Q23efx29TSyncGroup4<efx::TChaseMtx> Fv()
 // {
 // }
 
@@ -2138,7 +2138,7 @@ TCallBack_StaticClipping::~TCallBack_StaticClipping() { }
  * Address:	803B139C
  * Size:	000058
  */
-// void forceKill__Q23efx29TSyncGroup4<efx::TChaseMtx> Fv(void)
+// void forceKill__Q23efx29TSyncGroup4<efx::TChaseMtx> Fv()
 // {
 // }
 
@@ -2148,7 +2148,7 @@ TCallBack_StaticClipping::~TCallBack_StaticClipping() { }
  * Address:	803B13F4
  * Size:	000058
  */
-// void startDemoDrawOff__Q23efx29TSyncGroup4<efx::TChaseMtx> Fv(void)
+// void startDemoDrawOff__Q23efx29TSyncGroup4<efx::TChaseMtx> Fv()
 // {
 // }
 
@@ -2158,7 +2158,7 @@ TCallBack_StaticClipping::~TCallBack_StaticClipping() { }
  * Address:	803B144C
  * Size:	000058
  */
-// void endDemoDrawOn__Q23efx29TSyncGroup4<efx::TChaseMtx> Fv(void)
+// void endDemoDrawOn__Q23efx29TSyncGroup4<efx::TChaseMtx> Fv()
 // {
 // }
 
@@ -2168,7 +2168,7 @@ TCallBack_StaticClipping::~TCallBack_StaticClipping() { }
  * Address:	803B14A4
  * Size:	00007C
  */
-// void create__Q23efx29TSyncGroup4<efx::TChasePos> FPQ23efx3Arg(void)
+// void create__Q23efx29TSyncGroup4<efx::TChasePos> FPQ23efx3Arg()
 // {
 // }
 
@@ -2178,7 +2178,7 @@ TCallBack_StaticClipping::~TCallBack_StaticClipping() { }
  * Address:	803B1520
  * Size:	000058
  */
-// void fade__Q23efx29TSyncGroup4<efx::TChasePos> Fv(void)
+// void fade__Q23efx29TSyncGroup4<efx::TChasePos> Fv()
 // {
 // }
 
@@ -2188,7 +2188,7 @@ TCallBack_StaticClipping::~TCallBack_StaticClipping() { }
  * Address:	803B1578
  * Size:	000058
  */
-// void forceKill__Q23efx29TSyncGroup4<efx::TChasePos> Fv(void)
+// void forceKill__Q23efx29TSyncGroup4<efx::TChasePos> Fv()
 // {
 // }
 
@@ -2198,7 +2198,7 @@ TCallBack_StaticClipping::~TCallBack_StaticClipping() { }
  * Address:	803B15D0
  * Size:	000058
  */
-// void startDemoDrawOff__Q23efx29TSyncGroup4<efx::TChasePos> Fv(void)
+// void startDemoDrawOff__Q23efx29TSyncGroup4<efx::TChasePos> Fv()
 // {
 // }
 
@@ -2208,7 +2208,7 @@ TCallBack_StaticClipping::~TCallBack_StaticClipping() { }
  * Address:	803B1628
  * Size:	000058
  */
-// void endDemoDrawOn__Q23efx29TSyncGroup4<efx::TChasePos> Fv(void)
+// void endDemoDrawOn__Q23efx29TSyncGroup4<efx::TChasePos> Fv()
 // {
 // }
 
@@ -2218,7 +2218,7 @@ TCallBack_StaticClipping::~TCallBack_StaticClipping() { }
  * Address:	803B1680
  * Size:	00007C
  */
-// void create__Q23efx28TSyncGroup4<efx::TForever> FPQ23efx3Arg(void)
+// void create__Q23efx28TSyncGroup4<efx::TForever> FPQ23efx3Arg()
 // {
 // }
 
@@ -2228,7 +2228,7 @@ TCallBack_StaticClipping::~TCallBack_StaticClipping() { }
  * Address:	803B16FC
  * Size:	000058
  */
-// void fade__Q23efx28TSyncGroup4<efx::TForever> Fv(void)
+// void fade__Q23efx28TSyncGroup4<efx::TForever> Fv()
 // {
 // }
 
@@ -2238,7 +2238,7 @@ TCallBack_StaticClipping::~TCallBack_StaticClipping() { }
  * Address:	803B1754
  * Size:	000058
  */
-// void forceKill__Q23efx28TSyncGroup4<efx::TForever> Fv(void)
+// void forceKill__Q23efx28TSyncGroup4<efx::TForever> Fv()
 // {
 // }
 
@@ -2248,7 +2248,7 @@ TCallBack_StaticClipping::~TCallBack_StaticClipping() { }
  * Address:	803B17AC
  * Size:	000058
  */
-// void startDemoDrawOff__Q23efx28TSyncGroup4<efx::TForever> Fv(void)
+// void startDemoDrawOff__Q23efx28TSyncGroup4<efx::TForever> Fv()
 // {
 // }
 
@@ -2258,7 +2258,7 @@ TCallBack_StaticClipping::~TCallBack_StaticClipping() { }
  * Address:	803B1804
  * Size:	000058
  */
-// void endDemoDrawOn__Q23efx28TSyncGroup4<efx::TForever> Fv(void)
+// void endDemoDrawOn__Q23efx28TSyncGroup4<efx::TForever> Fv()
 // {
 // }
 
@@ -2268,7 +2268,7 @@ TCallBack_StaticClipping::~TCallBack_StaticClipping() { }
  * Address:	803B185C
  * Size:	00007C
  */
-// void create__Q23efx44TSyncGroup3<efx::TChasePosPosLocalZScale> FPQ23efx3Arg(void)
+// void create__Q23efx44TSyncGroup3<efx::TChasePosPosLocalZScale> FPQ23efx3Arg()
 // {
 // }
 
@@ -2278,7 +2278,7 @@ TCallBack_StaticClipping::~TCallBack_StaticClipping() { }
  * Address:	803B18D8
  * Size:	000058
  */
-// void fade__Q23efx44TSyncGroup3<efx::TChasePosPosLocalZScale> Fv(void)
+// void fade__Q23efx44TSyncGroup3<efx::TChasePosPosLocalZScale> Fv()
 // {
 // }
 
@@ -2288,7 +2288,7 @@ TCallBack_StaticClipping::~TCallBack_StaticClipping() { }
  * Address:	803B1930
  * Size:	000058
  */
-// void forceKill__Q23efx44TSyncGroup3<efx::TChasePosPosLocalZScale> Fv(void)
+// void forceKill__Q23efx44TSyncGroup3<efx::TChasePosPosLocalZScale> Fv()
 // {
 // }
 
@@ -2298,7 +2298,7 @@ TCallBack_StaticClipping::~TCallBack_StaticClipping() { }
  * Address:	803B1988
  * Size:	000058
  */
-// void startDemoDrawOff__Q23efx44TSyncGroup3<efx::TChasePosPosLocalZScale> Fv(void)
+// void startDemoDrawOff__Q23efx44TSyncGroup3<efx::TChasePosPosLocalZScale> Fv()
 // {
 // }
 
@@ -2308,7 +2308,7 @@ TCallBack_StaticClipping::~TCallBack_StaticClipping() { }
  * Address:	803B19E0
  * Size:	000058
  */
-// void endDemoDrawOn__Q23efx44TSyncGroup3<efx::TChasePosPosLocalZScale> Fv(void)
+// void endDemoDrawOn__Q23efx44TSyncGroup3<efx::TChasePosPosLocalZScale> Fv()
 // {
 // }
 
@@ -2318,7 +2318,7 @@ TCallBack_StaticClipping::~TCallBack_StaticClipping() { }
  * Address:	803B1A38
  * Size:	00007C
  */
-// void create__Q23efx44TSyncGroup3<efx::TChasePosPosLocalYScale> FPQ23efx3Arg(void)
+// void create__Q23efx44TSyncGroup3<efx::TChasePosPosLocalYScale> FPQ23efx3Arg()
 // {
 // }
 
@@ -2328,7 +2328,7 @@ TCallBack_StaticClipping::~TCallBack_StaticClipping() { }
  * Address:	803B1AB4
  * Size:	000058
  */
-// void fade__Q23efx44TSyncGroup3<efx::TChasePosPosLocalYScale> Fv(void)
+// void fade__Q23efx44TSyncGroup3<efx::TChasePosPosLocalYScale> Fv()
 // {
 // }
 
@@ -2338,7 +2338,7 @@ TCallBack_StaticClipping::~TCallBack_StaticClipping() { }
  * Address:	803B1B0C
  * Size:	000058
  */
-// void forceKill__Q23efx44TSyncGroup3<efx::TChasePosPosLocalYScale> Fv(void)
+// void forceKill__Q23efx44TSyncGroup3<efx::TChasePosPosLocalYScale> Fv()
 // {
 // }
 
@@ -2348,7 +2348,7 @@ TCallBack_StaticClipping::~TCallBack_StaticClipping() { }
  * Address:	803B1B64
  * Size:	000058
  */
-// void startDemoDrawOff__Q23efx44TSyncGroup3<efx::TChasePosPosLocalYScale> Fv(void)
+// void startDemoDrawOff__Q23efx44TSyncGroup3<efx::TChasePosPosLocalYScale> Fv()
 // {
 // }
 
@@ -2358,7 +2358,7 @@ TCallBack_StaticClipping::~TCallBack_StaticClipping() { }
  * Address:	803B1BBC
  * Size:	000058
  */
-// void endDemoDrawOn__Q23efx44TSyncGroup3<efx::TChasePosPosLocalYScale> Fv(void)
+// void endDemoDrawOn__Q23efx44TSyncGroup3<efx::TChasePosPosLocalYScale> Fv()
 // {
 // }
 
@@ -2368,7 +2368,7 @@ TCallBack_StaticClipping::~TCallBack_StaticClipping() { }
  * Address:	803B1C14
  * Size:	00007C
  */
-// void create__Q23efx34TSyncGroup3<efx::TChasePosYRot> FPQ23efx3Arg(void)
+// void create__Q23efx34TSyncGroup3<efx::TChasePosYRot> FPQ23efx3Arg()
 // {
 // }
 
@@ -2378,7 +2378,7 @@ TCallBack_StaticClipping::~TCallBack_StaticClipping() { }
  * Address:	803B1C90
  * Size:	000058
  */
-// void fade__Q23efx34TSyncGroup3<efx::TChasePosYRot> Fv(void)
+// void fade__Q23efx34TSyncGroup3<efx::TChasePosYRot> Fv()
 // {
 // }
 
@@ -2388,7 +2388,7 @@ TCallBack_StaticClipping::~TCallBack_StaticClipping() { }
  * Address:	803B1CE8
  * Size:	000058
  */
-// void forceKill__Q23efx34TSyncGroup3<efx::TChasePosYRot> Fv(void)
+// void forceKill__Q23efx34TSyncGroup3<efx::TChasePosYRot> Fv()
 // {
 // }
 
@@ -2398,7 +2398,7 @@ TCallBack_StaticClipping::~TCallBack_StaticClipping() { }
  * Address:	803B1D40
  * Size:	000058
  */
-// void startDemoDrawOff__Q23efx34TSyncGroup3<efx::TChasePosYRot> Fv(void)
+// void startDemoDrawOff__Q23efx34TSyncGroup3<efx::TChasePosYRot> Fv()
 // {
 // }
 
@@ -2408,7 +2408,7 @@ TCallBack_StaticClipping::~TCallBack_StaticClipping() { }
  * Address:	803B1D98
  * Size:	000058
  */
-// void endDemoDrawOn__Q23efx34TSyncGroup3<efx::TChasePosYRot> Fv(void)
+// void endDemoDrawOn__Q23efx34TSyncGroup3<efx::TChasePosYRot> Fv()
 // {
 // }
 
@@ -2417,7 +2417,7 @@ TCallBack_StaticClipping::~TCallBack_StaticClipping() { }
  * Address:	........
  * Size:	00007C
  */
-// void create__Q23efx31TSyncGroup3<efx::TChaseMtxT> FPQ23efx3Arg(void)
+// void create__Q23efx31TSyncGroup3<efx::TChaseMtxT> FPQ23efx3Arg()
 // {
 // 	// UNUSED FUNCTION
 // }
@@ -2427,7 +2427,7 @@ TCallBack_StaticClipping::~TCallBack_StaticClipping() { }
  * Address:	........
  * Size:	000058
  */
-// void fade__Q23efx31TSyncGroup3<efx::TChaseMtxT> Fv(void)
+// void fade__Q23efx31TSyncGroup3<efx::TChaseMtxT> Fv()
 // {
 // 	// UNUSED FUNCTION
 // }
@@ -2437,7 +2437,7 @@ TCallBack_StaticClipping::~TCallBack_StaticClipping() { }
  * Address:	........
  * Size:	000058
  */
-// void forceKill__Q23efx31TSyncGroup3<efx::TChaseMtxT> Fv(void)
+// void forceKill__Q23efx31TSyncGroup3<efx::TChaseMtxT> Fv()
 // {
 // 	// UNUSED FUNCTION
 // }
@@ -2447,7 +2447,7 @@ TCallBack_StaticClipping::~TCallBack_StaticClipping() { }
  * Address:	........
  * Size:	000058
  */
-// void startDemoDrawOff__Q23efx31TSyncGroup3<efx::TChaseMtxT> Fv(void)
+// void startDemoDrawOff__Q23efx31TSyncGroup3<efx::TChaseMtxT> Fv()
 // {
 // 	// UNUSED FUNCTION
 // }
@@ -2457,7 +2457,7 @@ TCallBack_StaticClipping::~TCallBack_StaticClipping() { }
  * Address:	........
  * Size:	000058
  */
-// void endDemoDrawOn__Q23efx31TSyncGroup3<efx::TChaseMtxT> Fv(void)
+// void endDemoDrawOn__Q23efx31TSyncGroup3<efx::TChaseMtxT> Fv()
 // {
 // 	// UNUSED FUNCTION
 // }
@@ -2468,7 +2468,7 @@ TCallBack_StaticClipping::~TCallBack_StaticClipping() { }
  * Address:	803B1DF0
  * Size:	00007C
  */
-// void create__Q23efx29TSyncGroup3<efx::TChaseMtx> FPQ23efx3Arg(void)
+// void create__Q23efx29TSyncGroup3<efx::TChaseMtx> FPQ23efx3Arg()
 // {
 // }
 
@@ -2478,7 +2478,7 @@ TCallBack_StaticClipping::~TCallBack_StaticClipping() { }
  * Address:	803B1E6C
  * Size:	000058
  */
-// void fade__Q23efx29TSyncGroup3<efx::TChaseMtx> Fv(void)
+// void fade__Q23efx29TSyncGroup3<efx::TChaseMtx> Fv()
 // {
 // }
 
@@ -2488,7 +2488,7 @@ TCallBack_StaticClipping::~TCallBack_StaticClipping() { }
  * Address:	803B1EC4
  * Size:	000058
  */
-// void forceKill__Q23efx29TSyncGroup3<efx::TChaseMtx> Fv(void)
+// void forceKill__Q23efx29TSyncGroup3<efx::TChaseMtx> Fv()
 // {
 // }
 
@@ -2498,7 +2498,7 @@ TCallBack_StaticClipping::~TCallBack_StaticClipping() { }
  * Address:	803B1F1C
  * Size:	000058
  */
-// void startDemoDrawOff__Q23efx29TSyncGroup3<efx::TChaseMtx> Fv(void)
+// void startDemoDrawOff__Q23efx29TSyncGroup3<efx::TChaseMtx> Fv()
 // {
 // }
 
@@ -2508,7 +2508,7 @@ TCallBack_StaticClipping::~TCallBack_StaticClipping() { }
  * Address:	803B1F74
  * Size:	000058
  */
-// void endDemoDrawOn__Q23efx29TSyncGroup3<efx::TChaseMtx> Fv(void)
+// void endDemoDrawOn__Q23efx29TSyncGroup3<efx::TChaseMtx> Fv()
 // {
 // }
 
@@ -2518,7 +2518,7 @@ TCallBack_StaticClipping::~TCallBack_StaticClipping() { }
  * Address:	803B1FCC
  * Size:	00007C
  */
-// void create__Q23efx29TSyncGroup3<efx::TChasePos> FPQ23efx3Arg(void)
+// void create__Q23efx29TSyncGroup3<efx::TChasePos> FPQ23efx3Arg()
 // {
 // }
 
@@ -2528,7 +2528,7 @@ TCallBack_StaticClipping::~TCallBack_StaticClipping() { }
  * Address:	803B2048
  * Size:	000058
  */
-// void fade__Q23efx29TSyncGroup3<efx::TChasePos> Fv(void)
+// void fade__Q23efx29TSyncGroup3<efx::TChasePos> Fv()
 // {
 // }
 
@@ -2538,7 +2538,7 @@ TCallBack_StaticClipping::~TCallBack_StaticClipping() { }
  * Address:	803B20A0
  * Size:	000058
  */
-// void forceKill__Q23efx29TSyncGroup3<efx::TChasePos> Fv(void)
+// void forceKill__Q23efx29TSyncGroup3<efx::TChasePos> Fv()
 // {
 // }
 
@@ -2548,7 +2548,7 @@ TCallBack_StaticClipping::~TCallBack_StaticClipping() { }
  * Address:	803B20F8
  * Size:	000058
  */
-// void startDemoDrawOff__Q23efx29TSyncGroup3<efx::TChasePos> Fv(void)
+// void startDemoDrawOff__Q23efx29TSyncGroup3<efx::TChasePos> Fv()
 // {
 // }
 
@@ -2558,7 +2558,7 @@ TCallBack_StaticClipping::~TCallBack_StaticClipping() { }
  * Address:	803B2150
  * Size:	000058
  */
-// void endDemoDrawOn__Q23efx29TSyncGroup3<efx::TChasePos> Fv(void)
+// void endDemoDrawOn__Q23efx29TSyncGroup3<efx::TChasePos> Fv()
 // {
 // }
 
@@ -2568,7 +2568,7 @@ TCallBack_StaticClipping::~TCallBack_StaticClipping() { }
  * Address:	803B21A8
  * Size:	00007C
  */
-// void create__Q23efx28TSyncGroup3<efx::TForever> FPQ23efx3Arg(void)
+// void create__Q23efx28TSyncGroup3<efx::TForever> FPQ23efx3Arg()
 // {
 // }
 
@@ -2578,7 +2578,7 @@ TCallBack_StaticClipping::~TCallBack_StaticClipping() { }
  * Address:	803B2224
  * Size:	000058
  */
-// void fade__Q23efx28TSyncGroup3<efx::TForever> Fv(void)
+// void fade__Q23efx28TSyncGroup3<efx::TForever> Fv()
 // {
 // }
 
@@ -2588,7 +2588,7 @@ TCallBack_StaticClipping::~TCallBack_StaticClipping() { }
  * Address:	803B227C
  * Size:	000058
  */
-// void forceKill__Q23efx28TSyncGroup3<efx::TForever> Fv(void)
+// void forceKill__Q23efx28TSyncGroup3<efx::TForever> Fv()
 // {
 // }
 
@@ -2598,7 +2598,7 @@ TCallBack_StaticClipping::~TCallBack_StaticClipping() { }
  * Address:	803B22D4
  * Size:	000058
  */
-// void startDemoDrawOff__Q23efx28TSyncGroup3<efx::TForever> Fv(void)
+// void startDemoDrawOff__Q23efx28TSyncGroup3<efx::TForever> Fv()
 // {
 // }
 
@@ -2608,7 +2608,7 @@ TCallBack_StaticClipping::~TCallBack_StaticClipping() { }
  * Address:	803B232C
  * Size:	000058
  */
-// void endDemoDrawOn__Q23efx28TSyncGroup3<efx::TForever> Fv(void)
+// void endDemoDrawOn__Q23efx28TSyncGroup3<efx::TForever> Fv()
 // {
 // }
 
@@ -2617,7 +2617,7 @@ TCallBack_StaticClipping::~TCallBack_StaticClipping() { }
  * Address:	........
  * Size:	00007C
  */
-// void create__Q23efx44TSyncGroup2<efx::TChasePosPosLocalZScale> FPQ23efx3Arg(void)
+// void create__Q23efx44TSyncGroup2<efx::TChasePosPosLocalZScale> FPQ23efx3Arg()
 // {
 // 	// UNUSED FUNCTION
 // }
@@ -2627,7 +2627,7 @@ TCallBack_StaticClipping::~TCallBack_StaticClipping() { }
  * Address:	........
  * Size:	000058
  */
-// void fade__Q23efx44TSyncGroup2<efx::TChasePosPosLocalZScale> Fv(void)
+// void fade__Q23efx44TSyncGroup2<efx::TChasePosPosLocalZScale> Fv()
 // {
 // 	// UNUSED FUNCTION
 // }
@@ -2637,7 +2637,7 @@ TCallBack_StaticClipping::~TCallBack_StaticClipping() { }
  * Address:	........
  * Size:	000058
  */
-// void forceKill__Q23efx44TSyncGroup2<efx::TChasePosPosLocalZScale> Fv(void)
+// void forceKill__Q23efx44TSyncGroup2<efx::TChasePosPosLocalZScale> Fv()
 // {
 // 	// UNUSED FUNCTION
 // }
@@ -2647,7 +2647,7 @@ TCallBack_StaticClipping::~TCallBack_StaticClipping() { }
  * Address:	........
  * Size:	000058
  */
-// void startDemoDrawOff__Q23efx44TSyncGroup2<efx::TChasePosPosLocalZScale> Fv(void)
+// void startDemoDrawOff__Q23efx44TSyncGroup2<efx::TChasePosPosLocalZScale> Fv()
 // {
 // 	// UNUSED FUNCTION
 // }
@@ -2657,7 +2657,7 @@ TCallBack_StaticClipping::~TCallBack_StaticClipping() { }
  * Address:	........
  * Size:	000058
  */
-// void endDemoDrawOn__Q23efx44TSyncGroup2<efx::TChasePosPosLocalZScale> Fv(void)
+// void endDemoDrawOn__Q23efx44TSyncGroup2<efx::TChasePosPosLocalZScale> Fv()
 // {
 // 	// UNUSED FUNCTION
 // }
@@ -2667,7 +2667,7 @@ TCallBack_StaticClipping::~TCallBack_StaticClipping() { }
  * Address:	........
  * Size:	00007C
  */
-// void create__Q23efx44TSyncGroup2<efx::TChasePosPosLocalYScale> FPQ23efx3Arg(void)
+// void create__Q23efx44TSyncGroup2<efx::TChasePosPosLocalYScale> FPQ23efx3Arg()
 // {
 // 	// UNUSED FUNCTION
 // }
@@ -2677,7 +2677,7 @@ TCallBack_StaticClipping::~TCallBack_StaticClipping() { }
  * Address:	........
  * Size:	000058
  */
-// void fade__Q23efx44TSyncGroup2<efx::TChasePosPosLocalYScale> Fv(void)
+// void fade__Q23efx44TSyncGroup2<efx::TChasePosPosLocalYScale> Fv()
 // {
 // 	// UNUSED FUNCTION
 // }
@@ -2687,7 +2687,7 @@ TCallBack_StaticClipping::~TCallBack_StaticClipping() { }
  * Address:	........
  * Size:	000058
  */
-// void forceKill__Q23efx44TSyncGroup2<efx::TChasePosPosLocalYScale> Fv(void)
+// void forceKill__Q23efx44TSyncGroup2<efx::TChasePosPosLocalYScale> Fv()
 // {
 // 	// UNUSED FUNCTION
 // }
@@ -2697,7 +2697,7 @@ TCallBack_StaticClipping::~TCallBack_StaticClipping() { }
  * Address:	........
  * Size:	000058
  */
-// void startDemoDrawOff__Q23efx44TSyncGroup2<efx::TChasePosPosLocalYScale> Fv(void)
+// void startDemoDrawOff__Q23efx44TSyncGroup2<efx::TChasePosPosLocalYScale> Fv()
 // {
 // 	// UNUSED FUNCTION
 // }
@@ -2707,7 +2707,7 @@ TCallBack_StaticClipping::~TCallBack_StaticClipping() { }
  * Address:	........
  * Size:	000058
  */
-// void endDemoDrawOn__Q23efx44TSyncGroup2<efx::TChasePosPosLocalYScale> Fv(void)
+// void endDemoDrawOn__Q23efx44TSyncGroup2<efx::TChasePosPosLocalYScale> Fv()
 // {
 // 	// UNUSED FUNCTION
 // }
@@ -2718,7 +2718,7 @@ TCallBack_StaticClipping::~TCallBack_StaticClipping() { }
  * Address:	803B2384
  * Size:	00007C
  */
-// void create__Q23efx34TSyncGroup2<efx::TChasePosYRot> FPQ23efx3Arg(void)
+// void create__Q23efx34TSyncGroup2<efx::TChasePosYRot> FPQ23efx3Arg()
 // {
 // }
 
@@ -2728,7 +2728,7 @@ TCallBack_StaticClipping::~TCallBack_StaticClipping() { }
  * Address:	803B2400
  * Size:	000058
  */
-// void fade__Q23efx34TSyncGroup2<efx::TChasePosYRot> Fv(void)
+// void fade__Q23efx34TSyncGroup2<efx::TChasePosYRot> Fv()
 // {
 // }
 
@@ -2738,7 +2738,7 @@ TCallBack_StaticClipping::~TCallBack_StaticClipping() { }
  * Address:	803B2458
  * Size:	000058
  */
-// void forceKill__Q23efx34TSyncGroup2<efx::TChasePosYRot> Fv(void)
+// void forceKill__Q23efx34TSyncGroup2<efx::TChasePosYRot> Fv()
 // {
 // }
 
@@ -2748,7 +2748,7 @@ TCallBack_StaticClipping::~TCallBack_StaticClipping() { }
  * Address:	803B24B0
  * Size:	000058
  */
-// void startDemoDrawOff__Q23efx34TSyncGroup2<efx::TChasePosYRot> Fv(void)
+// void startDemoDrawOff__Q23efx34TSyncGroup2<efx::TChasePosYRot> Fv()
 // {
 // }
 
@@ -2758,7 +2758,7 @@ TCallBack_StaticClipping::~TCallBack_StaticClipping() { }
  * Address:	803B2508
  * Size:	000058
  */
-// void endDemoDrawOn__Q23efx34TSyncGroup2<efx::TChasePosYRot> Fv(void)
+// void endDemoDrawOn__Q23efx34TSyncGroup2<efx::TChasePosYRot> Fv()
 // {
 // }
 
@@ -2768,7 +2768,7 @@ TCallBack_StaticClipping::~TCallBack_StaticClipping() { }
  * Address:	803B2560
  * Size:	00007C
  */
-// void create__Q23efx31TSyncGroup2<efx::TChaseMtxT> FPQ23efx3Arg(void)
+// void create__Q23efx31TSyncGroup2<efx::TChaseMtxT> FPQ23efx3Arg()
 // {
 // }
 
@@ -2778,7 +2778,7 @@ TCallBack_StaticClipping::~TCallBack_StaticClipping() { }
  * Address:	803B25DC
  * Size:	000058
  */
-// void fade__Q23efx31TSyncGroup2<efx::TChaseMtxT> Fv(void)
+// void fade__Q23efx31TSyncGroup2<efx::TChaseMtxT> Fv()
 // {
 // }
 
@@ -2788,7 +2788,7 @@ TCallBack_StaticClipping::~TCallBack_StaticClipping() { }
  * Address:	803B2634
  * Size:	000058
  */
-// void forceKill__Q23efx31TSyncGroup2<efx::TChaseMtxT> Fv(void)
+// void forceKill__Q23efx31TSyncGroup2<efx::TChaseMtxT> Fv()
 // {
 // }
 
@@ -2798,7 +2798,7 @@ TCallBack_StaticClipping::~TCallBack_StaticClipping() { }
  * Address:	803B268C
  * Size:	000058
  */
-// void startDemoDrawOff__Q23efx31TSyncGroup2<efx::TChaseMtxT> Fv(void)
+// void startDemoDrawOff__Q23efx31TSyncGroup2<efx::TChaseMtxT> Fv()
 // {
 // }
 
@@ -2808,7 +2808,7 @@ TCallBack_StaticClipping::~TCallBack_StaticClipping() { }
  * Address:	803B26E4
  * Size:	000058
  */
-// void endDemoDrawOn__Q23efx31TSyncGroup2<efx::TChaseMtxT> Fv(void)
+// void endDemoDrawOn__Q23efx31TSyncGroup2<efx::TChaseMtxT> Fv()
 // {
 // }
 
@@ -2818,7 +2818,7 @@ TCallBack_StaticClipping::~TCallBack_StaticClipping() { }
  * Address:	803B273C
  * Size:	00007C
  */
-// void create__Q23efx29TSyncGroup2<efx::TChaseMtx> FPQ23efx3Arg(void)
+// void create__Q23efx29TSyncGroup2<efx::TChaseMtx> FPQ23efx3Arg()
 // {
 // }
 
@@ -2828,7 +2828,7 @@ TCallBack_StaticClipping::~TCallBack_StaticClipping() { }
  * Address:	803B27B8
  * Size:	000058
  */
-// void fade__Q23efx29TSyncGroup2<efx::TChaseMtx> Fv(void)
+// void fade__Q23efx29TSyncGroup2<efx::TChaseMtx> Fv()
 // {
 // }
 
@@ -2838,7 +2838,7 @@ TCallBack_StaticClipping::~TCallBack_StaticClipping() { }
  * Address:	803B2810
  * Size:	000058
  */
-// void forceKill__Q23efx29TSyncGroup2<efx::TChaseMtx> Fv(void)
+// void forceKill__Q23efx29TSyncGroup2<efx::TChaseMtx> Fv()
 // {
 // }
 
@@ -2848,7 +2848,7 @@ TCallBack_StaticClipping::~TCallBack_StaticClipping() { }
  * Address:	803B2868
  * Size:	000058
  */
-// void startDemoDrawOff__Q23efx29TSyncGroup2<efx::TChaseMtx> Fv(void)
+// void startDemoDrawOff__Q23efx29TSyncGroup2<efx::TChaseMtx> Fv()
 // {
 // }
 
@@ -2858,7 +2858,7 @@ TCallBack_StaticClipping::~TCallBack_StaticClipping() { }
  * Address:	803B28C0
  * Size:	000058
  */
-// void endDemoDrawOn__Q23efx29TSyncGroup2<efx::TChaseMtx> Fv(void)
+// void endDemoDrawOn__Q23efx29TSyncGroup2<efx::TChaseMtx> Fv()
 // {
 // }
 
@@ -2868,7 +2868,7 @@ TCallBack_StaticClipping::~TCallBack_StaticClipping() { }
  * Address:	803B2918
  * Size:	00007C
  */
-// void create__Q23efx29TSyncGroup2<efx::TChasePos> FPQ23efx3Arg(void)
+// void create__Q23efx29TSyncGroup2<efx::TChasePos> FPQ23efx3Arg()
 // {
 // }
 
@@ -2878,7 +2878,7 @@ TCallBack_StaticClipping::~TCallBack_StaticClipping() { }
  * Address:	803B2994
  * Size:	000058
  */
-// void fade__Q23efx29TSyncGroup2<efx::TChasePos> Fv(void)
+// void fade__Q23efx29TSyncGroup2<efx::TChasePos> Fv()
 // {
 // }
 
@@ -2888,7 +2888,7 @@ TCallBack_StaticClipping::~TCallBack_StaticClipping() { }
  * Address:	803B29EC
  * Size:	000058
  */
-// void forceKill__Q23efx29TSyncGroup2<efx::TChasePos> Fv(void)
+// void forceKill__Q23efx29TSyncGroup2<efx::TChasePos> Fv()
 // {
 // }
 
@@ -2898,7 +2898,7 @@ TCallBack_StaticClipping::~TCallBack_StaticClipping() { }
  * Address:	803B2A44
  * Size:	000058
  */
-// void startDemoDrawOff__Q23efx29TSyncGroup2<efx::TChasePos> Fv(void)
+// void startDemoDrawOff__Q23efx29TSyncGroup2<efx::TChasePos> Fv()
 // {
 // }
 
@@ -2908,7 +2908,7 @@ TCallBack_StaticClipping::~TCallBack_StaticClipping() { }
  * Address:	803B2A9C
  * Size:	000058
  */
-// void endDemoDrawOn__Q23efx29TSyncGroup2<efx::TChasePos> Fv(void)
+// void endDemoDrawOn__Q23efx29TSyncGroup2<efx::TChasePos> Fv()
 // {
 // }
 
@@ -2918,7 +2918,7 @@ TCallBack_StaticClipping::~TCallBack_StaticClipping() { }
  * Address:	803B2AF4
  * Size:	00007C
  */
-// void create__Q23efx28TSyncGroup2<efx::TForever> FPQ23efx3Arg(void)
+// void create__Q23efx28TSyncGroup2<efx::TForever> FPQ23efx3Arg()
 // {
 // }
 
@@ -2928,7 +2928,7 @@ TCallBack_StaticClipping::~TCallBack_StaticClipping() { }
  * Address:	803B2B70
  * Size:	000058
  */
-// void fade__Q23efx28TSyncGroup2<efx::TForever> Fv(void)
+// void fade__Q23efx28TSyncGroup2<efx::TForever> Fv()
 // {
 // }
 
@@ -2938,7 +2938,7 @@ TCallBack_StaticClipping::~TCallBack_StaticClipping() { }
  * Address:	803B2BC8
  * Size:	000058
  */
-// void forceKill__Q23efx28TSyncGroup2<efx::TForever> Fv(void)
+// void forceKill__Q23efx28TSyncGroup2<efx::TForever> Fv()
 // {
 // }
 
@@ -2948,7 +2948,7 @@ TCallBack_StaticClipping::~TCallBack_StaticClipping() { }
  * Address:	803B2C20
  * Size:	000058
  */
-// void startDemoDrawOff__Q23efx28TSyncGroup2<efx::TForever> Fv(void)
+// void startDemoDrawOff__Q23efx28TSyncGroup2<efx::TForever> Fv()
 // {
 // }
 
@@ -2958,7 +2958,7 @@ TCallBack_StaticClipping::~TCallBack_StaticClipping() { }
  * Address:	803B2C78
  * Size:	000058
  */
-// void endDemoDrawOn__Q23efx28TSyncGroup2<efx::TForever> Fv(void)
+// void endDemoDrawOn__Q23efx28TSyncGroup2<efx::TForever> Fv()
 // {
 // }
 
@@ -2967,7 +2967,7 @@ TCallBack_StaticClipping::~TCallBack_StaticClipping() { }
  * Address:	803B2CD0
  * Size:	00004C
  */
-// void __sinit_efxBase_cpp(void)
+// void __sinit_efxBase_cpp()
 // {
 // 	/*
 // 	stwu     r1, -0x10(r1)

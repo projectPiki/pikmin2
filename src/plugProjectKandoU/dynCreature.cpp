@@ -51,7 +51,7 @@ DynParticle* DynParticle::getAt(int idx)
 //  * Address:	........
 //  * Size:	000058
 //  */
-// void DynParticle::release(void)
+// void DynParticle::release()
 // {
 // 	// UNUSED FUNCTION
 // }
@@ -636,7 +636,7 @@ namespace Game {
  * Address:	........
  * Size:	000080
  */
-void DynCreature::getContactParticeRatio(void)
+void DynCreature::getContactParticeRatio()
 {
 	// UNUSED FUNCTION
 }
@@ -646,7 +646,7 @@ void DynCreature::getContactParticeRatio(void)
  * Address:	........
  * Size:	00002C
  */
-int DynCreature::getContactParticleNum(void)
+int DynCreature::getContactParticleNum()
 {
 	// UNUSED FUNCTION
 }
@@ -656,7 +656,7 @@ int DynCreature::getContactParticleNum(void)
  * Address:	........
  * Size:	000020
  */
-int DynCreature::getParticleNum(void)
+int DynCreature::getParticleNum()
 {
 	// UNUSED FUNCTION
 }
@@ -1024,7 +1024,7 @@ lbl_801A8CE0:
  * Address:	801A8D34
  * Size:	00001C
  */
-Vector3f DynCreature::getPosition(void)
+Vector3f DynCreature::getPosition()
 {
 	/*
 	lfs      f0, 0x1b0(r4)
@@ -1042,7 +1042,7 @@ Vector3f DynCreature::getPosition(void)
  * Address:	801A8D50
  * Size:	0000AC
  */
-// void onSetPosition__Q24Game11DynCreatureFR10Vector3f(void)
+// void onSetPosition__Q24Game11DynCreatureFR10Vector3f()
 void DynCreature::onSetPosition(Vector3f&)
 {
 	/*
@@ -1097,14 +1097,14 @@ void DynCreature::onSetPosition(Vector3f&)
  * Address:	801A8DFC
  * Size:	000004
  */
-void DynCreature::onSetPosition(void) { }
+void DynCreature::onSetPosition() { }
 
 /*
  * --INFO--
  * Address:	801A8E00
  * Size:	00001C
  */
-Vector3f DynCreature::getVelocity(void)
+Vector3f DynCreature::getVelocity()
 {
 	/*
 	lfs      f0, 0x1bc(r4)
@@ -1122,7 +1122,7 @@ Vector3f DynCreature::getVelocity(void)
  * Address:	801A8E1C
  * Size:	00001C
  */
-// void setVelocity__Q24Game11DynCreatureFR10Vector3f(void)
+// void setVelocity__Q24Game11DynCreatureFR10Vector3f()
 void DynCreature::setVelocity(Vector3f&)
 {
 	/*
@@ -1141,7 +1141,7 @@ void DynCreature::setVelocity(Vector3f&)
  * Address:	801A8E38
  * Size:	000088
  */
-// void getVelocityAt__Q24Game11DynCreatureFR10Vector3f R10Vector3f(void)
+// void getVelocityAt__Q24Game11DynCreatureFR10Vector3f R10Vector3f()
 void DynCreature::getVelocityAt(Vector3f&, Vector3f&)
 {
 	/*
@@ -1187,7 +1187,7 @@ void DynCreature::getVelocityAt(Vector3f&, Vector3f&)
  * Address:	801A8EC0
  * Size:	000008
  */
-// void getAngularEffect__Q24Game11DynCreatureFR10Vector3f R10Vector3f(void)
+// void getAngularEffect__Q24Game11DynCreatureFR10Vector3f R10Vector3f()
 f32 DynCreature::getAngularEffect(Vector3f&, Vector3f&)
 {
 	/*
@@ -1201,7 +1201,7 @@ f32 DynCreature::getAngularEffect(Vector3f&, Vector3f&)
  * Address:	801A8EC8
  * Size:	000044
  */
-// void applyImpulse__Q24Game11DynCreatureFR10Vector3f R10Vector3f(void)
+// void applyImpulse__Q24Game11DynCreatureFR10Vector3f R10Vector3f()
 void DynCreature::applyImpulse(Vector3f&, Vector3f&)
 {
 	/*
@@ -1240,7 +1240,7 @@ void DynCreature::simulateCylinder(Sys::Cylinder&, float)
  * Address:	801A8F0C
  * Size:	0000B8
  */
-DynParticleMgr::~DynParticleMgr(void)
+DynParticleMgr::~DynParticleMgr()
 {
 	/*
 	stwu     r1, -0x10(r1)

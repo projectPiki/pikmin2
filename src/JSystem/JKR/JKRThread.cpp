@@ -581,7 +581,7 @@ lbl_800260B4:
  * Address:	800260C8
  * Size:	000070
  */
-// void __sinit_JKRThread_cpp(void) { }
+// void __sinit_JKRThread_cpp() { }
 
 /*
  * @generated{__dt__17JSUList<7JKRTask>Fv}

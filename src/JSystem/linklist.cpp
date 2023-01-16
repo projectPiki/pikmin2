@@ -10,7 +10,7 @@
  * Address:	800272E4
  * Size:	00003C
  */
-JGadget::TNodeLinkList::~TNodeLinkList(void) { }
+JGadget::TNodeLinkList::~TNodeLinkList() { }
 
 /*
  * --INFO--
@@ -37,7 +37,7 @@ void JGadget::TNodeLinkList::erase(JGadget::TNodeLinkList::iterator, JGadget::TN
  * Address:	........
  * Size:	000018
  */
-void JGadget::TNodeLinkList::clear(void)
+void JGadget::TNodeLinkList::clear()
 {
 	// UNUSED FUNCTION
 }
@@ -88,7 +88,7 @@ void JGadget::TNodeLinkList::swap(JGadget::TNodeLinkList&)
  * Address:	........
  * Size:	00008C
  */
-void JGadget::TNodeLinkList::reverse(void)
+void JGadget::TNodeLinkList::reverse()
 {
 	// UNUSED FUNCTION
 }
@@ -177,7 +177,7 @@ void JGadget::TNodeLinkList::Remove(JGadget::TLinkListNode*)
  */
 // void remove_if<JGadget::@unnamed @linklist_cpp @ ::TPRIsEqual_pointer_<JGadget::TLinkListNode>> __Q27JGadget13TNodeLinkListFQ37JGadget22
 //     @unnamed @linklist_cpp @46TPRIsEqual_pointer_
-//     < JGadget::TLinkListNode > (void)
+//     < JGadget::TLinkListNode > ()
 // {
 // 	/*
 // 	.loc_0x0:

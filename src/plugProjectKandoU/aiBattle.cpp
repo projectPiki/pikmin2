@@ -203,7 +203,7 @@ void ActBattle::init(PikiAI::ActionArg* arg)
  * Address:	8022F0B0
  * Size:	0000EC
  */
-int ActBattle::exec(void)
+int ActBattle::exec()
 {
 	if (!m_other || !m_other->isAlive() || m_other != m_parent->getVsBattlePiki() || m_parent != m_other->getVsBattlePiki()) {
 		return 0;
@@ -645,7 +645,7 @@ void ActBattle::initBattle()
  * Address:	8022F804
  * Size:	0000FC
  */
-int ActBattle::execBattle(void)
+int ActBattle::execBattle()
 {
 	if (!m_parent->assertMotion(64) && !m_parent->assertMotion(65)) {
 		if (m_other) {
@@ -668,7 +668,7 @@ int ActBattle::execBattle(void)
  * Address:	8022F900
  * Size:	0000E8
  */
-int ActBattle::execDamage(void)
+int ActBattle::execDamage()
 {
 	if (!m_parent->assertMotion(4)) {
 		if (m_other) {

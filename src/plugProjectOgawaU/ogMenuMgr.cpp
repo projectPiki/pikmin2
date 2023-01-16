@@ -95,7 +95,7 @@ void MenuMgr::killCursor()
 //  * Address:	........
 //  * Size:	00004C
 //  */
-// void MenuMgr::initCommon(void)
+// void MenuMgr::initCommon()
 // {
 // 	// UNUSED FUNCTION
 // }

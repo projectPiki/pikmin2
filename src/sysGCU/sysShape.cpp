@@ -111,7 +111,7 @@ namespace SysShape {
  * Address:	80428C50
  * Size:	000038
  */
-void Model::clearAnimatorAll(void)
+void Model::clearAnimatorAll()
 {
 	/*
 	li       r6, 0
@@ -379,7 +379,7 @@ lbl_80428EE8:
  * Address:	80428F00
  * Size:	000078
  */
-void Animator::setLastFrame(void)
+void Animator::setLastFrame()
 {
 	/*
 	stwu     r1, -0x20(r1)
@@ -917,7 +917,7 @@ void BlendAnimator::startBlend(SysShape::BlendFunction*, float, SysShape::Motion
  * Address:	80429554
  * Size:	000018
  */
-void BlendAnimator::endBlend(void)
+void BlendAnimator::endBlend()
 {
 	/*
 	li       r0, 0
@@ -1194,7 +1194,7 @@ void Joint::init(unsigned short, SysShape::Model*, J3DJoint*)
  * Address:	804298A0
  * Size:	000020
  */
-void Joint::getWorldMatrix(void)
+void Joint::getWorldMatrix()
 {
 	/*
 	lwz      r4, 0x34(r3)
@@ -1223,7 +1223,7 @@ void Joint::setCallback(SysShape::JointCallback*)
  * Address:	........
  * Size:	000078
  */
-void JointCallback::calc(void)
+void JointCallback::calc()
 {
 	// UNUSED FUNCTION
 }
@@ -1287,7 +1287,7 @@ lbl_8042991C:
  * Address:	........
  * Size:	00002C
  */
-void AnimInfo::dump(void)
+void AnimInfo::dump()
 {
 	// UNUSED FUNCTION
 }
@@ -1561,7 +1561,7 @@ lbl_80429BD0:
  * Address:	80429BE4
  * Size:	000084
  */
-AnimInfo::~AnimInfo(void)
+AnimInfo::~AnimInfo()
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -1609,7 +1609,7 @@ lbl_80429C4C:
  * Address:	80429C68
  * Size:	000080
  */
-void AnimMgr::dump(void)
+void AnimMgr::dump()
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -1674,7 +1674,7 @@ void AnimMgr::load(Stream&, SysShape::Model*, JKRFileLoader*, char*)
  * Address:	80429CE8
  * Size:	0000A0
  */
-AnimMgr::~AnimMgr(void)
+AnimMgr::~AnimMgr()
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -1731,7 +1731,7 @@ lbl_80429D6C:
  * Address:	........
  * Size:	00005C
  */
-JointCallback::~JointCallback(void)
+JointCallback::~JointCallback()
 {
 	// UNUSED FUNCTION
 }
@@ -1753,7 +1753,7 @@ void JointCallback::init(Vec const&, float const (&)[3][4])
  * Address:	80429D88
  * Size:	000028
  */
-void __sinit_sysShape_cpp(void)
+void __sinit_sysShape_cpp()
 {
 	/*
 	lis      r4, __float_nan@ha

@@ -433,7 +433,7 @@ void PikiAI::ActGotoPos::init(PikiAI::ActionArg*)
  * Address:	80197390
  * Size:	00011C
  */
-void PikiAI::ActGotoPos::exec(void)
+void PikiAI::ActGotoPos::exec()
 {
 	/*
 	stwu     r1, -0x30(r1)
@@ -527,7 +527,7 @@ lbl_80197498:
  * Address:	801974AC
  * Size:	000004
  */
-void PikiAI::ActGotoPos::cleanup(void) { }
+void PikiAI::ActGotoPos::cleanup() { }
 
 /*
  * --INFO--
@@ -640,7 +640,7 @@ lbl_8019756C:
  * Address:	801975F0
  * Size:	000328
  */
-void PikiAI::ActApproachPos::exec(void)
+void PikiAI::ActApproachPos::exec()
 {
 	/*
 	stwu     r1, -0x60(r1)
@@ -883,7 +883,7 @@ lbl_801978EC:
  * Address:	80197918
  * Size:	000034
  */
-void PikiAI::ActApproachPos::cleanup(void)
+void PikiAI::ActApproachPos::cleanup()
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -1053,7 +1053,7 @@ lbl_80197AE4:
  * Address:	80197B14
  * Size:	000018
  */
-void wallCallback__Q26PikiAI11ActGotoSlotFR10Vector3f(void)
+void wallCallback__Q26PikiAI11ActGotoSlotFR10Vector3f()
 {
 	/*
 	lbz      r4, 0x1c(r3)
@@ -1070,7 +1070,7 @@ void wallCallback__Q26PikiAI11ActGotoSlotFR10Vector3f(void)
  * Address:	80197B2C
  * Size:	000014
  */
-void PikiAI::ActGotoSlot::resetTimers(void)
+void PikiAI::ActGotoSlot::resetTimers()
 {
 	/*
 	li       r0, 0
@@ -1086,7 +1086,7 @@ void PikiAI::ActGotoSlot::resetTimers(void)
  * Address:	80197B40
  * Size:	000A94
  */
-void PikiAI::ActGotoSlot::exec(void)
+void PikiAI::ActGotoSlot::exec()
 {
 	/*
 	stwu     r1, -0x130(r1)
@@ -1880,7 +1880,7 @@ lbl_80198580:
  * Address:	801985D4
  * Size:	000004
  */
-void PikiAI::ActGotoSlot::cleanup(void) { }
+void PikiAI::ActGotoSlot::cleanup() { }
 
 /*
  * --INFO--
@@ -2343,7 +2343,7 @@ lbl_80198BA0:
  * Address:	80198BBC
  * Size:	00005C
  */
-void PikiAI::ActPathMove::decideGoal(void)
+void PikiAI::ActPathMove::decideGoal()
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -2379,7 +2379,7 @@ lbl_80198BFC:
  * Address:	80198C18
  * Size:	00011C
  */
-void PikiAI::ActPathMove::exec(void)
+void PikiAI::ActPathMove::exec()
 {
 	/*
 	stwu     r1, -0x20(r1)
@@ -2481,7 +2481,7 @@ lbl_80198D1C:
  * Address:	80198D34
  * Size:	0002B0
  */
-void PikiAI::ActPathMove::execPathfinding(void)
+void PikiAI::ActPathMove::execPathfinding()
 {
 	/*
 	stwu     r1, -0x130(r1)
@@ -2698,7 +2698,7 @@ lbl_80198FC8:
  * Address:	........
  * Size:	0001AC
  */
-void PikiAI::ActPathMove::getCarrySpeed(void)
+void PikiAI::ActPathMove::getCarrySpeed()
 {
 	// UNUSED FUNCTION
 }
@@ -2708,7 +2708,7 @@ void PikiAI::ActPathMove::getCarrySpeed(void)
  * Address:	80198FE4
  * Size:	0006A8
  */
-void PikiAI::ActPathMove::execMoveGoal(void)
+void PikiAI::ActPathMove::execMoveGoal()
 {
 	/*
 	stwu     r1, -0xd0(r1)
@@ -3203,7 +3203,7 @@ lbl_80199660:
  * Address:	8019968C
  * Size:	00009C
  */
-void PikiAI::ActPathMove::isAllBlue(void)
+void PikiAI::ActPathMove::isAllBlue()
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -3259,7 +3259,7 @@ lbl_80199710:
  * Address:	80199728
  * Size:	0000A8
  */
-void carry__Q26PikiAI11ActPathMoveFR10Vector3f(void)
+void carry__Q26PikiAI11ActPathMoveFR10Vector3f()
 {
 	/*
 	stwu     r1, -0x20(r1)
@@ -3314,7 +3314,7 @@ lbl_801997B4:
  * Address:	801997D0
  * Size:	000428
  */
-void PikiAI::ActPathMove::execMove(void)
+void PikiAI::ActPathMove::execMove()
 {
 	/*
 	stwu     r1, -0x70(r1)
@@ -3623,7 +3623,7 @@ lbl_80199BC8:
  * Address:	80199BF8
  * Size:	000090
  */
-void PikiAI::ActPathMove::cleanup(void)
+void PikiAI::ActPathMove::cleanup()
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -3674,7 +3674,7 @@ lbl_80199C68:
  * Address:	80199C88
  * Size:	0004E8
  */
-void PikiAI::ActPathMove::execMoveGuru(void)
+void PikiAI::ActPathMove::execMoveGuru()
 {
 	/*
 	stwu     r1, -0x80(r1)
@@ -4656,7 +4656,7 @@ lbl_8019A89C:
  * Address:	8019A8AC
  * Size:	000738
  */
-void PikiAI::ActPathMove::crInit(void)
+void PikiAI::ActPathMove::crInit()
 {
 	/*
 	stwu     r1, -0x180(r1)
@@ -5221,7 +5221,7 @@ lbl_8019AF78:
  * Address:	8019AFE4
  * Size:	000080
  */
-void PikiAI::ActPathMove::crMakeRefs(void)
+void PikiAI::ActPathMove::crMakeRefs()
 {
 	/*
 	stwu     r1, -0x30(r1)
@@ -5266,7 +5266,7 @@ lbl_8019B008:
  * Address:	8019B064
  * Size:	000C54
  */
-void PikiAI::ActPathMove::crMove(void)
+void PikiAI::ActPathMove::crMove()
 {
 	/*
 	stwu     r1, -0x130(r1)
@@ -6445,7 +6445,7 @@ lbl_8019BF04:
  * Address:	8019BF24
  * Size:	000164
  */
-void PikiAI::ActStickAttack::exec(void)
+void PikiAI::ActStickAttack::exec()
 {
 	/*
 	stwu     r1, -0x20(r1)
@@ -6561,7 +6561,7 @@ lbl_8019C074:
  * Address:	8019C088
  * Size:	000650
  */
-void PikiAI::ActStickAttack::createEfx(void)
+void PikiAI::ActStickAttack::createEfx()
 {
 	/*
 	stwu     r1, -0xb0(r1)
@@ -7074,7 +7074,7 @@ lbl_8019C748:
  * Address:	8019C758
  * Size:	000024
  */
-void PikiAI::ActStickAttack::cleanup(void)
+void PikiAI::ActStickAttack::cleanup()
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -7197,7 +7197,7 @@ lbl_8019C83C:
  * Address:	8019C8B8
  * Size:	0000E4
  */
-void PikiAI::ActClimb::exec(void)
+void PikiAI::ActClimb::exec()
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -7273,7 +7273,7 @@ lbl_8019C988:
  * Address:	8019C99C
  * Size:	000004
  */
-void PikiAI::ActClimb::cleanup(void) { }
+void PikiAI::ActClimb::cleanup() { }
 
 /*
  * --INFO--
@@ -7375,7 +7375,7 @@ lbl_8019CA44:
  * Address:	8019CABC
  * Size:	000154
  */
-void PikiAI::ActGather::exec(void)
+void PikiAI::ActGather::exec()
 {
 	/*
 	stwu     r1, -0x30(r1)
@@ -7485,7 +7485,7 @@ lbl_8019CBFC:
  * Address:	8019CC10
  * Size:	000004
  */
-void PikiAI::ActGather::cleanup(void) { }
+void PikiAI::ActGather::cleanup() { }
 
 /*
  * --INFO--
@@ -7553,7 +7553,7 @@ void PikiAI::ActFollowVectorField::init(PikiAI::ActionArg*)
  * Address:	8019CCB0
  * Size:	000080
  */
-void PikiAI::ActFollowVectorField::exec(void)
+void PikiAI::ActFollowVectorField::exec()
 {
 	/*
 	stwu     r1, -0x30(r1)
@@ -7600,14 +7600,14 @@ lbl_8019CD1C:
  * Address:	8019CD30
  * Size:	000004
  */
-void PikiAI::ActFollowVectorField::cleanup(void) { }
+void PikiAI::ActFollowVectorField::cleanup() { }
 
 /*
  * --INFO--
  * Address:	8019CD34
  * Size:	000028
  */
-void __sinit_aiPrimitives_cpp(void)
+void __sinit_aiPrimitives_cpp()
 {
 	/*
 	lis      r4, __float_nan@ha

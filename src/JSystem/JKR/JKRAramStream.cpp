@@ -105,7 +105,7 @@ JKRAramStream::~JKRAramStream() {};
  * Address:	8001A040
  * Size:	000070
  */
-void* JKRAramStream::run(void)
+void* JKRAramStream::run()
 {
 	OSMessage result;
 	OSInitMessageQueue(&JKRAramStream::sMessageQueue, (void**)JKRAramStream::sMessageBuffer,

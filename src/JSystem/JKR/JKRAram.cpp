@@ -1441,7 +1441,7 @@ lbl_8001889C:
  * Address:	800188C0
  * Size:	000044
  */
-void __sinit_JKRAram_cpp(void)
+void __sinit_JKRAram_cpp()
 {
 	/*
 	stwu     r1, -0x10(r1)

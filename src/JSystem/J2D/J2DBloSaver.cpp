@@ -293,7 +293,7 @@ lbl_800497EC:
  * Address:	80049820
  * Size:	00003C
  */
-// void __sinit_J2DBloSaver_cpp(void)
+// void __sinit_J2DBloSaver_cpp()
 // {
 // 	/*
 // 	stwu     r1, -0x10(r1)

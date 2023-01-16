@@ -26,7 +26,7 @@ namespace Sys {
  * Address:	........
  * Size:	000104
  */
-// void __ct__Q23Sys8CylinderFRC10Vector3f RC10Vector3f f(void)
+// void __ct__Q23Sys8CylinderFRC10Vector3f RC10Vector3f f()
 Cylinder::Cylinder(const Vector3f& p1, const Vector3f& p2, float p3)
 {
 	// UNUSED FUNCTION
@@ -38,7 +38,7 @@ Cylinder::Cylinder(const Vector3f& p1, const Vector3f& p2, float p3)
  * Address:	80421628
  * Size:	00003C
  */
-// void __ct__Q23Sys8CylinderFRC10Vector3f RC10Vector3f ff(void)
+// void __ct__Q23Sys8CylinderFRC10Vector3f RC10Vector3f ff()
 Cylinder::Cylinder(const Vector3f& p1, const Vector3f& p2, float p3, float p4)
 {
 	/*
@@ -65,7 +65,7 @@ Cylinder::Cylinder(const Vector3f& p1, const Vector3f& p2, float p3, float p4)
  * Address:	80421664
  * Size:	000100
  */
-// void set__Q23Sys8CylinderFRC10Vector3f RC10Vector3f f(void)
+// void set__Q23Sys8CylinderFRC10Vector3f RC10Vector3f f()
 void Cylinder::set(const Vector3f& p1, const Vector3f& p2, float p3)
 {
 	_00.x      = (p1.x + p2.x) * 0.5f;

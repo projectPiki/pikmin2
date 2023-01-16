@@ -95,7 +95,7 @@ Resource::Node::Node(char const*)
  * Address:	804330D8
  * Size:	0000DC
  */
-Resource::Node::~Node(void)
+Resource::Node::~Node()
 {
 	P2ASSERTLINE(99, m_mgrCommand != nullptr);
 	P2ASSERTLINE(101, m_mgrCommand->_38 == this);
@@ -171,7 +171,7 @@ lbl_80433198:
  * Address:	........
  * Size:	000040
  */
-void Resource::Node::dump(void)
+void Resource::Node::dump()
 {
 	// UNUSED FUNCTION
 }
@@ -191,7 +191,7 @@ void Resource::Node::drawDump(Graphics&, int&, int&)
  * Address:	........
  * Size:	00003C
  */
-void Resource::Node::becomeCurrentHeap(void)
+void Resource::Node::becomeCurrentHeap()
 {
 	// UNUSED FUNCTION
 	_30->becomeCurrentHeap();
@@ -236,7 +236,7 @@ Resource::MgrCommand::MgrCommand(char* name)
  * Address:	........
  * Size:	000064
  */
-// void __dt__Q38Resource10MgrCommand26 @class$2436resourceMgr_cppFv(void)
+// void __dt__Q38Resource10MgrCommand26 @class$2436resourceMgr_cppFv()
 // {
 // 	// UNUSED FUNCTION
 // }
@@ -246,7 +246,7 @@ Resource::MgrCommand::MgrCommand(char* name)
  * Address:	804332EC
  * Size:	0000B8
  */
-Resource::MgrCommand::~MgrCommand(void)
+Resource::MgrCommand::~MgrCommand()
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -310,7 +310,7 @@ lbl_80433388:
  * Address:	804333A4
  * Size:	000070
  */
-void Resource::MgrCommand::becomeCurrentHeap(void)
+void Resource::MgrCommand::becomeCurrentHeap()
 {
 	P2ASSERTLINE(187, _30 != -1);
 	_AC = JKRHeap::sCurrentHeap;
@@ -322,7 +322,7 @@ void Resource::MgrCommand::becomeCurrentHeap(void)
  * Address:	80433414
  * Size:	000088
  */
-void Resource::MgrCommand::releaseCurrentHeap(void)
+void Resource::MgrCommand::releaseCurrentHeap()
 {
 	P2ASSERTLINE(199, _30 != -1);
 	P2ASSERTLINE(201, _AC != nullptr);
@@ -335,7 +335,7 @@ void Resource::MgrCommand::releaseCurrentHeap(void)
  * Address:	........
  * Size:	0000E8
  */
-bool Resource::MgrCommand::isFinish(void)
+bool Resource::MgrCommand::isFinish()
 {
 	// UNUSED FUNCTION
 }
@@ -345,7 +345,7 @@ bool Resource::MgrCommand::isFinish(void)
  * Address:	8043349C
  * Size:	00000C
  */
-void* Resource::MgrCommand::getResource(void)
+void* Resource::MgrCommand::getResource()
 {
 	return _38->m_resource;
 	/*
@@ -390,7 +390,7 @@ void Resource::MgrCommand::setModeDvd(Resource::Node*)
  * Address:	804334A8
  * Size:	00001C
  */
-void Resource::MgrCommand::setModeInvalid(void)
+void Resource::MgrCommand::setModeInvalid()
 {
 	_30 = -1;
 	_38 = nullptr;
@@ -414,7 +414,7 @@ void Resource::MgrCommand::memoryCallBackFunc()
  * Address:	8043350C
  * Size:	000094
  */
-void Resource::MgrCommand::aramLoadCallBackFunc(void)
+void Resource::MgrCommand::aramLoadCallBackFunc()
 {
 	_38->_30->changeGroupID(_38->m_groupIDMaybe);
 	void* resource = gAramMgr->aramToMainRam(_A8->m_name, nullptr, 0, 0, Switch_1, 0, _38->_30, JKRDvdRipper::ALLOC_DIR_TOP, -1, nullptr);
@@ -429,7 +429,7 @@ void Resource::MgrCommand::aramLoadCallBackFunc(void)
  * Address:	804335A0
  * Size:	0000BC
  */
-void Resource::MgrCommand::dvdLoadCallBackFunc(void)
+void Resource::MgrCommand::dvdLoadCallBackFunc()
 {
 	/*
 	stwu     r1, -0x30(r1)
@@ -494,7 +494,7 @@ lbl_80433640:
  * Address:	8043365C
  * Size:	000074
  */
-void Resource::MgrCommand::userCallBackInvoke(void)
+void Resource::MgrCommand::userCallBackInvoke()
 {
 	if (_B0) {
 		JKRHeap* existingCurrentHeap = JKRHeap::sCurrentHeap;
@@ -649,7 +649,7 @@ void Resource::Mgr::search(char const*)
  * Address:	........
  * Size:	000064
  */
-void Resource::Mgr::dump(void)
+void Resource::Mgr::dump()
 {
 	// UNUSED FUNCTION
 }
@@ -937,7 +937,7 @@ bool Resource::Mgr::destroy(Resource::MgrCommand* command) { return command->des
  * Address:	80433B8C
  * Size:	000064
  */
-void Resource::Mgr::destroyAll(void)
+void Resource::Mgr::destroyAll()
 {
 	Node* parent;
 	Node* child = (Node*)_10.m_child;
@@ -1169,7 +1169,7 @@ void Resource::Mgr::syncAll(bool)
  * Address:	80433DD0
  * Size:	000130
  */
-void Resource::Mgr::delFinishCommand(void)
+void Resource::Mgr::delFinishCommand()
 {
 	/*
 	stwu     r1, -0x20(r1)
@@ -1311,7 +1311,7 @@ lbl_80433F24:
  * Address:	........
  * Size:	000004
  */
-void Resource::Mgr::watchHeap(void)
+void Resource::Mgr::watchHeap()
 {
 	// UNUSED FUNCTION
 }
@@ -1345,7 +1345,7 @@ void Resource::Mgr::watchHeap(void)
 //  * Address:	80433F60
 //  * Size:	000008
 //  */
-// @24 @Resource::Node::~Node(void)
+// @24 @Resource::Node::~Node()
 // {
 // 	/*
 // 	addi     r3, r3, -24
@@ -1358,7 +1358,7 @@ void Resource::Mgr::watchHeap(void)
 //  * Address:	80433F68
 //  * Size:	000008
 //  */
-// @24 @Resource::MgrCommand::~MgrCommand(void)
+// @24 @Resource::MgrCommand::~MgrCommand()
 // {
 // 	/*
 // 	addi     r3, r3, -24

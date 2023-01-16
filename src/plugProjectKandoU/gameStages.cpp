@@ -416,7 +416,7 @@ CourseInfo* Stages::getCourseInfo(int courseNum)
  * Address:	........
  * Size:	0003FC
  */
-inline void Stages::draw2d(void)
+inline void Stages::draw2d()
 {
 	// UNUSED FUNCTION
 }
@@ -491,7 +491,7 @@ namespace Game {
  * Address:	........
  * Size:	000018
  */
-inline void Stages::dump(void)
+inline void Stages::dump()
 {
 	// UNUSED FUNCTION
 }

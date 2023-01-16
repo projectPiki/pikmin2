@@ -4448,7 +4448,7 @@ lbl_80115F54:
  * Address:	80115F68
  * Size:	000028
  */
-void __sinit_enemyAction_cpp(void)
+void __sinit_enemyAction_cpp()
 {
 	/*
 	lis      r4, __float_nan@ha

@@ -490,7 +490,7 @@ char* PelletCarcass::Mgr::getMgrName() { return "carcass"; }
  * Address:	801FBE50
  * Size:	000008
  */
-u8 PelletCarcass::Mgr::getMgrID(void) { return 0x1; }
+u8 PelletCarcass::Mgr::getMgrID() { return 0x1; }
 
 /*
  * --INFO--
@@ -1967,7 +1967,7 @@ PelletCarcass::Object::Object() { }
  * Address:	801FD918
  * Size:	000008
  */
-u8 PelletCarcass::Object::getKind(void) { return PELTYPE_CARCASS; }
+u8 PelletCarcass::Object::getKind() { return PELTYPE_CARCASS; }
 
 } // namespace Game
 
@@ -1977,7 +1977,7 @@ u8 PelletCarcass::Object::getKind(void) { return PELTYPE_CARCASS; }
  * Size:	000008
  */
 
-// void @84 @__dt__Q24Game49FixedSizePelletMgr<Game::PelletCarcass::Object> Fv(void)
+// void @84 @__dt__Q24Game49FixedSizePelletMgr<Game::PelletCarcass::Object> Fv()
 //{
 /*
 .loc_0x0:
@@ -2162,7 +2162,7 @@ b        "doAnimation__40ObjectMgr<Q34Game13PelletCarcass6Object>Fv"
  * Address:	801FD990
  * Size:	000008
  */
-// void @84 @getEnd__Q24Game49FixedSizePelletMgr<Game::PelletCarcass::Object> Fv(void)
+// void @84 @getEnd__Q24Game49FixedSizePelletMgr<Game::PelletCarcass::Object> Fv()
 //{
 /*
 .loc_0x0:
@@ -2176,7 +2176,7 @@ b        "doAnimation__40ObjectMgr<Q34Game13PelletCarcass6Object>Fv"
  * Address:	801FD998
  * Size:	000008
  */
-// void @84 @getStart__Q24Game49FixedSizePelletMgr<Game::PelletCarcass::Object> Fv(void)
+// void @84 @getStart__Q24Game49FixedSizePelletMgr<Game::PelletCarcass::Object> Fv()
 //{
 /*
 .loc_0x0:
@@ -2190,7 +2190,7 @@ b        "doAnimation__40ObjectMgr<Q34Game13PelletCarcass6Object>Fv"
  * Address:	801FD9A0
  * Size:	000008
  */
-// void @84 @getNext__Q24Game49FixedSizePelletMgr<Game::PelletCarcass::Object> FPv(void)
+// void @84 @getNext__Q24Game49FixedSizePelletMgr<Game::PelletCarcass::Object> FPv()
 //{
 /*
 .loc_0x0:
@@ -2204,7 +2204,7 @@ b        "doAnimation__40ObjectMgr<Q34Game13PelletCarcass6Object>Fv"
  * Address:	801FD9A8
  * Size:	000008
  */
-// void @84 @get__Q24Game49FixedSizePelletMgr<Game::PelletCarcass::Object> FPv(void)
+// void @84 @get__Q24Game49FixedSizePelletMgr<Game::PelletCarcass::Object> FPv()
 //{
 /*
 .loc_0x0:
@@ -2218,7 +2218,7 @@ b        "doAnimation__40ObjectMgr<Q34Game13PelletCarcass6Object>Fv"
  * Address:	801FD9B0
  * Size:	000008
  */
-//@84 @Game::PelletCarcass::Mgr::~Mgr(void)
+//@84 @Game::PelletCarcass::Mgr::~Mgr()
 //{
 /*
 addi     r3, r3, -84

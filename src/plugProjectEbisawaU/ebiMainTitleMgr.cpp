@@ -120,7 +120,7 @@ namespace ebi {
  * Address:	803EA170
  * Size:	0003B4
  */
-TMainTitleMgr::TMainTitleMgr(void)
+TMainTitleMgr::TMainTitleMgr()
 {
 	/*
 	stwu     r1, -0x20(r1)
@@ -370,7 +370,7 @@ namespace Screen {
  * Address:	........
  * Size:	0000A0
  */
-TPressStart::~TPressStart(void)
+TPressStart::~TPressStart()
 {
 	// UNUSED FUNCTION
 }
@@ -429,7 +429,7 @@ lbl_803EA57C:
  * Address:	803EA58C
  * Size:	000124
  */
-void TMainTitleMgr::loadResource(void)
+void TMainTitleMgr::loadResource()
 {
 	/*
 	stwu     r1, -0x120(r1)
@@ -546,7 +546,7 @@ void TMainTitleMgr::setController(Controller*)
  * Address:	803EA6FC
  * Size:	0000C0
  */
-void TMainTitleMgr::start(void)
+void TMainTitleMgr::start()
 {
 	/*
 	stwu     r1, -0x20(r1)
@@ -762,7 +762,7 @@ lbl_803EA8EC:
  * Address:	803EA9AC
  * Size:	00000C
  */
-void TMainTitleMgr::forceQuit(void)
+void TMainTitleMgr::forceQuit()
 {
 	// Generated from stw r0, 0x1650(r3)
 	_1650 = 0;
@@ -773,7 +773,7 @@ void TMainTitleMgr::forceQuit(void)
  * Address:	803EA9B8
  * Size:	000010
  */
-void TMainTitleMgr::isFinish(void)
+void TMainTitleMgr::isFinish()
 {
 	/*
 	lwz      r0, 0x1650(r3)
@@ -788,7 +788,7 @@ void TMainTitleMgr::isFinish(void)
  * Address:	........
  * Size:	000068
  */
-void TMainTitleMgr::isAnyKey(void)
+void TMainTitleMgr::isAnyKey()
 {
 	// UNUSED FUNCTION
 }
@@ -798,7 +798,7 @@ void TMainTitleMgr::isAnyKey(void)
  * Address:	803EA9C8
  * Size:	000008
  */
-void TMainTitleMgr::getSelectedMenu(void)
+void TMainTitleMgr::getSelectedMenu()
 {
 	/*
 	lwz      r3, 0x1658(r3)
@@ -811,7 +811,7 @@ void TMainTitleMgr::getSelectedMenu(void)
  * Address:	803EA9D0
  * Size:	0004B0
  */
-void TMainTitleMgr::update(void)
+void TMainTitleMgr::update()
 {
 	/*
 	stwu     r1, -0x30(r1)
@@ -1170,7 +1170,7 @@ lbl_803EAE68:
  * Address:	803EAE80
  * Size:	000274
  */
-void TMainTitleMgr::draw(void)
+void TMainTitleMgr::draw()
 {
 	/*
 	stwu     r1, -0x60(r1)
@@ -1355,7 +1355,7 @@ lbl_803EB0DC:
  * Address:	........
  * Size:	000034
  */
-void TMainTitleMgr::showInfo(void)
+void TMainTitleMgr::showInfo()
 {
 	// UNUSED FUNCTION
 }
@@ -1365,7 +1365,7 @@ void TMainTitleMgr::showInfo(void)
  * Address:	803EB0F4
  * Size:	000070
  */
-E2DCallBack_CalcAnimation::E2DCallBack_CalcAnimation(void)
+E2DCallBack_CalcAnimation::E2DCallBack_CalcAnimation()
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -1406,7 +1406,7 @@ namespace Screen {
  * Address:	........
  * Size:	00020C
  */
-TTitleMenu::~TTitleMenu(void)
+TTitleMenu::~TTitleMenu()
 {
 	// UNUSED FUNCTION
 }
@@ -1416,14 +1416,14 @@ TTitleMenu::~TTitleMenu(void)
  * Address:	803EB164
  * Size:	000004
  */
-TTitleMenu_Object_Icon::TTitleMenu_Object_Icon(void) { }
+TTitleMenu_Object_Icon::TTitleMenu_Object_Icon() { }
 
 /*
  * --INFO--
  * Address:	803EB168
  * Size:	00000C
  */
-void ArgClose::getName(void)
+void ArgClose::getName()
 {
 	/*
 lis      r3, lbl_80497900@ha
@@ -1437,7 +1437,7 @@ blr
  * Address:	803EB174
  * Size:	000008
  */
-void ArgOpen::getName(void)
+void ArgOpen::getName()
 {
 	/*
 addi     r3, r2, lbl_8051FE28@sda21
@@ -1454,7 +1454,7 @@ blr
  * Address:	803EB17C
  * Size:	000028
  */
-void __sinit_ebiMainTitleMgr_cpp(void)
+void __sinit_ebiMainTitleMgr_cpp()
 {
 	/*
 	lis      r4, __float_nan@ha

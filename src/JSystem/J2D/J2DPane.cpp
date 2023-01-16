@@ -3055,4 +3055,4 @@ bool J2DPane::setConnectParent(bool connectParent)
  * Address:	80039AC0
  * Size:	00001C
  */
-// void __sinit_J2DPane_cpp(void) { }
+// void __sinit_J2DPane_cpp() { }

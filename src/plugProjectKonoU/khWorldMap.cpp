@@ -8635,7 +8635,7 @@ blr
  * Address:	803F84D0
  * Size:	0001A8
  */
-void __sinit_khWorldMap_cpp(void)
+void __sinit_khWorldMap_cpp()
 {
 	/*
 	stwu     r1, -0x50(r1)

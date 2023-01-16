@@ -387,7 +387,7 @@ namespace ebi {
  * Address:	8044A12C
  * Size:	000070
  */
-Omake::TMgr::~TMgr(void)
+Omake::TMgr::~TMgr()
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -428,7 +428,7 @@ lbl_8044A180:
  * Address:	8044A19C
  * Size:	000054
  */
-Option::TMgr::~TMgr(void)
+Option::TMgr::~TMgr()
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -462,7 +462,7 @@ lbl_8044A1D4:
  * Address:	8044A1F0
  * Size:	000270
  */
-TMainTitleMgr::~TMainTitleMgr(void)
+TMainTitleMgr::~TMainTitleMgr()
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -645,7 +645,7 @@ lbl_8044A444:
  * Address:	8044A460
  * Size:	0000A4
  */
-Title::Section::~Section(void)
+Title::Section::~Section()
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -703,7 +703,7 @@ lbl_8044A4E8:
  * Address:	8044A504
  * Size:	0000C4
  */
-void Title::Section::doExit(void)
+void Title::Section::doExit()
 {
 	/*
 	stwu     r1, -0x20(r1)
@@ -769,7 +769,7 @@ lbl_8044A5AC:
  * Address:	8044A5C8
  * Size:	000104
  */
-void Title::Section::loadResident(void)
+void Title::Section::loadResident()
 {
 	/*
 	stwu     r1, -0x20(r1)
@@ -853,7 +853,7 @@ lbl_8044A6A0:
  * Address:	8044A6CC
  * Size:	000434
  */
-void Title::Section::init(void)
+void Title::Section::init()
 {
 	/*
 	stwu     r1, -0x50(r1)
@@ -1336,7 +1336,7 @@ void Title::Section::drawDebugInfo(Graphics&)
  * Address:	........
  * Size:	000118
  */
-void Title::Section::updateMenu(void)
+void Title::Section::updateMenu()
 {
 	// UNUSED FUNCTION
 }
@@ -1346,7 +1346,7 @@ void Title::Section::updateMenu(void)
  * Address:	8044AC90
  * Size:	000688
  */
-void Title::Section::doUpdateMainTitle(void)
+void Title::Section::doUpdateMainTitle()
 {
 	/*
 	stwu     r1, -0x30(r1)
@@ -1854,7 +1854,7 @@ lbl_8044B2FC:
  * Address:	........
  * Size:	000214
  */
-void Title::Section::doUpdateHiScore(void)
+void Title::Section::doUpdateHiScore()
 {
 	// UNUSED FUNCTION
 }
@@ -1864,7 +1864,7 @@ void Title::Section::doUpdateHiScore(void)
  * Address:	8044B318
  * Size:	0004C8
  */
-void Title::Section::doUpdateOmake(void)
+void Title::Section::doUpdateOmake()
 {
 	/*
 	stwu     r1, -0x20(r1)
@@ -2243,7 +2243,7 @@ lbl_8044B7C0:
  * Address:	........
  * Size:	00025C
  */
-void Title::Section::doUpdateOption(void)
+void Title::Section::doUpdateOption()
 {
 	// UNUSED FUNCTION
 }
@@ -2253,7 +2253,7 @@ void Title::Section::doUpdateOption(void)
  * Address:	8044B7E0
  * Size:	000108
  */
-void Title::Section::run(void)
+void Title::Section::run()
 {
 	/*
 	stwu     r1, -0x20(r1)
@@ -2340,7 +2340,7 @@ lbl_8044B8B4:
  * Address:	8044B8E8
  * Size:	0005B8
  */
-void Title::Section::doUpdate(void)
+void Title::Section::doUpdate()
 {
 	/*
 	stwu     r1, -0x20(r1)
@@ -2789,7 +2789,7 @@ lbl_8044BE6C:
  * Address:	8044BEA0
  * Size:	000040
  */
-void Title::Section::isFinishable(void)
+void Title::Section::isFinishable()
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -2816,7 +2816,7 @@ void Title::Section::isFinishable(void)
  * Address:	8044BEE0
  * Size:	00008C
  */
-void Title::Section::doLoadingStart(void)
+void Title::Section::doLoadingStart()
 {
 	/*
 	stwu     r1, -0x20(r1)
@@ -2864,7 +2864,7 @@ lbl_8044BF4C:
  * Address:	8044BF6C
  * Size:	0000EC
  */
-void Title::Section::doLoading(void)
+void Title::Section::doLoading()
 {
 	/*
 	stwu     r1, -0x20(r1)
@@ -2942,7 +2942,7 @@ lbl_8044C030:
  * Address:	8044C058
  * Size:	0003C8
  */
-void Title::Section::loadResource(void)
+void Title::Section::loadResource()
 {
 	/*
 	stwu     r1, -0xa0(r1)
@@ -3250,7 +3250,7 @@ TitleDummy::Section::Section(JKRHeap*)
  * Address:	........
  * Size:	000034
  */
-void TitleDummy::Section::init(void)
+void TitleDummy::Section::init()
 {
 	// UNUSED FUNCTION
 }
@@ -3260,7 +3260,7 @@ void TitleDummy::Section::init(void)
  * Address:	........
  * Size:	0001C0
  */
-void TitleDummy::Section::loadResource(void)
+void TitleDummy::Section::loadResource()
 {
 	// UNUSED FUNCTION
 }
@@ -3270,7 +3270,7 @@ void TitleDummy::Section::loadResource(void)
  * Address:	........
  * Size:	000124
  */
-void TitleDummy::Section::doUpdate(void)
+void TitleDummy::Section::doUpdate()
 {
 	// UNUSED FUNCTION
 }
@@ -3290,7 +3290,7 @@ void TitleDummy::Section::doDraw(Graphics& gfx)
  * Address:	........
  * Size:	000060
  */
-TitleDummy::Section::~Section(void)
+TitleDummy::Section::~Section()
 {
 	// UNUSED FUNCTION
 }
@@ -3300,7 +3300,7 @@ TitleDummy::Section::~Section(void)
  * Address:	8044C420
  * Size:	000008
  */
-u32 Title::Section::forceReset(void) { return 0x0; }
+u32 Title::Section::forceReset() { return 0x0; }
 
 /*
  * --INFO--
@@ -3396,7 +3396,7 @@ void Delegate<Title::Section>::invoke()
  * Address:	8044C4F8
  * Size:	000028
  */
-void __sinit_titleSection_cpp(void)
+void __sinit_titleSection_cpp()
 {
 	/*
 	lis      r4, __float_nan@ha

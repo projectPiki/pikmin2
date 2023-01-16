@@ -910,7 +910,7 @@ blr
  * Address:	803DA824
  * Size:	0001C4
  */
-void TTitleMenu::doInitWaitState(void)
+void TTitleMenu::doInitWaitState()
 {
 	/*
 stwu     r1, -0x20(r1)
@@ -1089,7 +1089,7 @@ blr
  * Address:	803DAA58
  * Size:	000084
  */
-void TTitleMenu::doUpdateStateOpen(void)
+void TTitleMenu::doUpdateStateOpen()
 {
 	/*
 stwu     r1, -0x10(r1)
@@ -1139,7 +1139,7 @@ blr
  * Address:	803DAADC
  * Size:	000470
  */
-void TTitleMenu::doUpdateStateWait(void)
+void TTitleMenu::doUpdateStateWait()
 {
 	/*
 stwu     r1, -0x20(r1)
@@ -1476,7 +1476,7 @@ blr
  * Address:	803DAF4C
  * Size:	0000D4
  */
-void TTitleMenu::doUpdateStateClose(void)
+void TTitleMenu::doUpdateStateClose()
 {
 	/*
 stwu     r1, -0x30(r1)
@@ -1550,7 +1550,7 @@ blr
  * Address:	803DB020
  * Size:	000074
  */
-void TTitleMenu::doDraw(void)
+void TTitleMenu::doDraw()
 {
 	/*
 stwu     r1, -0x20(r1)
@@ -1640,7 +1640,7 @@ blr
  * Address:	803DB0FC
  * Size:	000008
  */
-void TTitleMenu::isDecide(void)
+void TTitleMenu::isDecide()
 {
 	/*
 lbz      r3, 0x40(r3)
@@ -1653,7 +1653,7 @@ blr
  * Address:	803DB104
  * Size:	000008
  */
-void TTitleMenu::isCancel(void)
+void TTitleMenu::isCancel()
 {
 	/*
 lbz      r3, 0x41(r3)
@@ -1726,7 +1726,7 @@ blr
  * Address:	803DB184
  * Size:	00000C
  */
-void TTitleMenu::getName(void)
+void TTitleMenu::getName()
 {
 	/*
 lis      r3, lbl_80496DC4@ha

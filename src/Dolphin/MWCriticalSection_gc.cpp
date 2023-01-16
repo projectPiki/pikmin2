@@ -9,7 +9,7 @@ uint OSDisableInterrupts();
  * Address:	........
  * Size:	000004
  */
-void MWTerminateCriticalSection(void)
+void MWTerminateCriticalSection()
 {
 	// UNUSED FUNCTION
 }
@@ -33,5 +33,5 @@ void MWEnterCriticalSection(uint* section) { *section = OSDisableInterrupts(); }
  * Address:	800C15EC
  * Size:	000004
  */
-void MWInitializeCriticalSection(void) { }
+void MWInitializeCriticalSection() { }
 };

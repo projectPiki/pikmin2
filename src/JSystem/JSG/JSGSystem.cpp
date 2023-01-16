@@ -9,7 +9,7 @@ namespace JStage {
  * Address:	8009876C
  * Size:	000060
  */
-TSystem::~TSystem(void) { }
+TSystem::~TSystem() { }
 
 /*
  * --INFO--

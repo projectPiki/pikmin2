@@ -563,7 +563,7 @@ lbl_8044CAAC:
 //  * Address:	8044CAC4
 //  * Size:	000008
 //  */
-// @24 @LoadResource::Node::~Node(void)
+// @24 @LoadResource::Node::~Node()
 // {
 // 	/*
 // 	addi     r3, r3, -24

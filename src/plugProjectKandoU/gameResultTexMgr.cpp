@@ -466,7 +466,7 @@ lbl_802277E4:
 //  * Address:	........
 //  * Size:	000058
 //  */
-// void ResultTexMgr::Mgr::getOtakaraNum(void)
+// void ResultTexMgr::Mgr::getOtakaraNum()
 // {
 // 	// UNUSED FUNCTION
 // }
@@ -476,7 +476,7 @@ lbl_802277E4:
 //  * Address:	........
 //  * Size:	000058
 //  */
-// void ResultTexMgr::Mgr::getItemNum(void)
+// void ResultTexMgr::Mgr::getItemNum()
 // {
 // 	// UNUSED FUNCTION
 // }
@@ -921,7 +921,7 @@ lbl_80227C0C:
 //  * Address:	........
 //  * Size:	000020
 //  */
-// void DNode::calcNextCount(void)
+// void DNode::calcNextCount()
 // {
 // 	// UNUSED FUNCTION
 // }

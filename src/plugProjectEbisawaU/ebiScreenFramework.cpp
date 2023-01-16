@@ -73,7 +73,7 @@ void TScreenBase::doCloseScreen(ArgClose*) { }
  * Address:	803D3948
  * Size:	000040
  */
-void TScreenBase::killScreen(void)
+void TScreenBase::killScreen()
 {
 	doKillScreen();
 	m_state = TSB_US_Finish;
@@ -84,7 +84,7 @@ void TScreenBase::killScreen(void)
  * Address:	803D3988
  * Size:	000010
  */
-u8 TScreenBase::isFinishScreen(void) { return m_state == TSB_US_Finish; }
+u8 TScreenBase::isFinishScreen() { return m_state == TSB_US_Finish; }
 
 /*
  * --INFO--
@@ -92,28 +92,28 @@ u8 TScreenBase::isFinishScreen(void) { return m_state == TSB_US_Finish; }
  * Size:	000014
  */
 // unused function
-u8 TScreenBase::isOpenScreen(void) { return m_state == TSB_US_Open; }
+u8 TScreenBase::isOpenScreen() { return m_state == TSB_US_Open; }
 
 /*
  * --INFO--
  * Address:	803D3998
  * Size:	000014
  */
-u8 TScreenBase::isWaitScreen(void) { return m_state == TSB_US_Wait; }
+u8 TScreenBase::isWaitScreen() { return m_state == TSB_US_Wait; }
 
 /*
  * --INFO--
  * Address:	803D39AC
  * Size:	000014
  */
-u8 TScreenBase::isCloseScreen(void) { return m_state == TSB_US_Close; }
+u8 TScreenBase::isCloseScreen() { return m_state == TSB_US_Close; }
 
 /*
  * --INFO--
  * Address:	803D39C0
  * Size:	0000EC
  */
-void TScreenBase::update(void)
+void TScreenBase::update()
 {
 	switch (m_state) {
 	case TSB_US_Open:
@@ -143,35 +143,35 @@ void TScreenBase::update(void)
  * Address:	803D3AAC
  * Size:	000008
  */
-bool TScreenBase::doUpdateStateClose(void) { return true; }
+bool TScreenBase::doUpdateStateClose() { return true; }
 
 /*
  * --INFO--
  * Address:	803D3AB4
  * Size:	000008
  */
-bool TScreenBase::doUpdateStateWait(void) { return true; }
+bool TScreenBase::doUpdateStateWait() { return true; }
 
 /*
  * --INFO--
  * Address:	803D3ABC
  * Size:	000004
  */
-void TScreenBase::doInitWaitState(void) { }
+void TScreenBase::doInitWaitState() { }
 
 /*
  * --INFO--
  * Address:	803D3AC0
  * Size:	000008
  */
-bool TScreenBase::doUpdateStateOpen(void) { return true; }
+bool TScreenBase::doUpdateStateOpen() { return true; }
 
 /*
  * --INFO--
  * Address:	803D3AC8
  * Size:	000038
  */
-void TScreenBase::draw(void)
+void TScreenBase::draw()
 {
 	if (m_state != TSB_US_Finish) {
 		doDraw();
@@ -183,13 +183,13 @@ void TScreenBase::draw(void)
  * Address:	803D3B00
  * Size:	000004
  */
-void TScreenBase::doDraw(void) { }
+void TScreenBase::doDraw() { }
 
 /*
  * --INFO--
  * Address:	803D3B04
  * Size:	00000C
  */
-char* TScreenBase::getName(void) { return "NoNameScreen"; }
+char* TScreenBase::getName() { return "NoNameScreen"; }
 } // namespace Screen
 } // namespace ebi

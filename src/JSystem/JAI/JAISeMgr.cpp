@@ -104,7 +104,7 @@
  * Address:	800AE0A0
  * Size:	0003A4
  */
-void JAInter::SeMgr::init(void)
+void JAInter::SeMgr::init()
 {
 	if (JAIBasic::msBasic->_1C != nullptr) {
 		JAIGlobalParameter::setParamSeTrackMax(0);
@@ -439,7 +439,7 @@ lbl_800AE40C:
  * Size:	0000F0
  * __ct__Q27JAInter11SeParameterFv
  */
-// JAInter::SeParameter::SeParameter(void)
+// JAInter::SeParameter::SeParameter()
 //     : _24()
 //     , _124()
 //     , _1A4()
@@ -464,7 +464,7 @@ lbl_800AE40C:
  * Size:	000018
  * __ct__Q27JAInter19MoveParaSetInitHalfFv
  */
-// JAInter::MoveParaSetInitHalf::MoveParaSetInitHalf(void) { }
+// JAInter::MoveParaSetInitHalf::MoveParaSetInitHalf() { }
 
 /*
  * --INFO--
@@ -472,7 +472,7 @@ lbl_800AE40C:
  * Size:	000018
  * __defctor__Q27JAInter11MoveParaSetFv
  */
-// void JAInter::MoveParaSet::__defctor(void) { }
+// void JAInter::MoveParaSet::__defctor() { }
 
 /*
  * --INFO--
@@ -513,7 +513,7 @@ void JAInter::SeMgr::startSeSequence()
  * Address:	800AE5CC
  * Size:	000034
  */
-void JAInter::SeMgr::processGFrameSe(void)
+void JAInter::SeMgr::processGFrameSe()
 {
 	if (seHandle == nullptr) {
 		return;
@@ -528,7 +528,7 @@ void JAInter::SeMgr::processGFrameSe(void)
  * Address:	800AE600
  * Size:	0007E4
  */
-void JAInter::SeMgr::checkNextFrameSe(void)
+void JAInter::SeMgr::checkNextFrameSe()
 {
 	/*
 	stwu     r1, -0x140(r1)
@@ -1172,7 +1172,7 @@ lbl_800AEDB8:
  * Address:	800AEDE4
  * Size:	000488
  */
-void JAInter::SeMgr::checkPlayingSe(void)
+void JAInter::SeMgr::checkPlayingSe()
 {
 	/*
 	stwu     r1, -0x50(r1)
@@ -1639,7 +1639,7 @@ void JAInter::SeMgr::clearSeqMuteFromSeStop(JAISound*)
  * Address:	800AF3B8
  * Size:	0000D4
  */
-void JAInter::SeMgr::checkSeMovePara(void)
+void JAInter::SeMgr::checkSeMovePara()
 {
 	if (seHandle == nullptr || seHandle->m_seqParameter._279 == 2) {
 		return;

@@ -461,7 +461,7 @@ lbl_800AC678:
  * Address:	800AC690
  * Size:	000014
  */
-// void JAInter::Camera::__defctor(void) { }
+// void JAInter::Camera::__defctor() { }
 
 /*
  * --INFO--

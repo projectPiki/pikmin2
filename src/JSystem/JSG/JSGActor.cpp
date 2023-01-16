@@ -7,7 +7,7 @@ namespace JStage {
  * Address:	80098990
  * Size:	000060
  */
-TActor::~TActor(void) { }
+TActor::~TActor() { }
 
 /*
  * --INFO--

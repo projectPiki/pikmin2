@@ -180,7 +180,7 @@ lbl_8042F7B8:
  * Address:	8042F7D4
  * Size:	000068
  */
-P2JST::ObjectCamera::~ObjectCamera(void)
+P2JST::ObjectCamera::~ObjectCamera()
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -219,7 +219,7 @@ lbl_8042F820:
  * Address:	8042F83C
  * Size:	0000A8
  */
-void P2JST::ObjectCamera::reset(void)
+void P2JST::ObjectCamera::reset()
 {
 	/*
 	stwu     r1, -0x20(r1)
@@ -272,14 +272,14 @@ void P2JST::ObjectCamera::reset(void)
  * Address:	8042F8E4
  * Size:	000004
  */
-void P2JST::ObjectCamera::update(void) { }
+void P2JST::ObjectCamera::update() { }
 
 /*
  * --INFO--
  * Address:	8042F8E8
  * Size:	000024
  */
-void P2JST::ObjectCamera::setProjection(void)
+void P2JST::ObjectCamera::setProjection()
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -299,7 +299,7 @@ void P2JST::ObjectCamera::setProjection(void)
  * Address:	8042F90C
  * Size:	00007C
  */
-void P2JST::ObjectCamera::setView(void)
+void P2JST::ObjectCamera::setView()
 {
 	/*
 	stwu     r1, -0x80(r1)
@@ -341,7 +341,7 @@ void P2JST::ObjectCamera::setView(void)
  * Address:	8042F988
  * Size:	00006C
  */
-void P2JST::ObjectCamera::updateCamera(void)
+void P2JST::ObjectCamera::updateCamera()
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -781,7 +781,7 @@ void P2JST::ObjectCamera::setCamera(Camera*)
  * Address:	8042FCD8
  * Size:	000038
  */
-void P2JST::ObjectCamera::start(void)
+void P2JST::ObjectCamera::start()
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -806,7 +806,7 @@ void P2JST::ObjectCamera::start(void)
  * Address:	8042FD10
  * Size:	000050
  */
-void P2JST::ObjectCamera::stop(void)
+void P2JST::ObjectCamera::stop()
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -841,7 +841,7 @@ lbl_8042FD44:
  * Address:	8042FD60
  * Size:	000028
  */
-void __sinit_JSTObjectCamera_cpp(void)
+void __sinit_JSTObjectCamera_cpp()
 {
 	/*
 	lis      r4, __float_nan@ha
@@ -862,7 +862,7 @@ void __sinit_JSTObjectCamera_cpp(void)
  * Address:	8042FD88
  * Size:	000008
  */
-void @4 @Game::P2JST::ObjectCamera::stop(void)
+void @4 @Game::P2JST::ObjectCamera::stop()
 {
 	/*
 	addi     r3, r3, -4
@@ -875,7 +875,7 @@ void @4 @Game::P2JST::ObjectCamera::stop(void)
  * Address:	8042FD90
  * Size:	000008
  */
-void @4 @Game::P2JST::ObjectCamera::start(void)
+void @4 @Game::P2JST::ObjectCamera::start()
 {
 	/*
 	addi     r3, r3, -4
@@ -888,7 +888,7 @@ void @4 @Game::P2JST::ObjectCamera::start(void)
  * Address:	8042FD98
  * Size:	000008
  */
-void @4 @Game::P2JST::ObjectCamera::update(void)
+void @4 @Game::P2JST::ObjectCamera::update()
 {
 	/*
 	addi     r3, r3, -4
@@ -901,7 +901,7 @@ void @4 @Game::P2JST::ObjectCamera::update(void)
  * Address:	8042FDA0
  * Size:	000008
  */
-void @4 @Game::P2JST::ObjectCamera::reset(void)
+void @4 @Game::P2JST::ObjectCamera::reset()
 {
 	/*
 	addi     r3, r3, -4

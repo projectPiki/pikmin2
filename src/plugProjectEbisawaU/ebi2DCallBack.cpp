@@ -113,7 +113,7 @@ namespace ebi {
  * Address:	803D068C
  * Size:	000060
  */
-void E2DCallBack_Purupuru::do_update(void)
+void E2DCallBack_Purupuru::do_update()
 {
 	if (_18) {
 		_3C             = m_scaleMgr.calc();
@@ -130,7 +130,7 @@ void E2DCallBack_Purupuru::do_update(void)
  * Address:	803D06EC
  * Size:	0002CC
  */
-void E2DCallBack_BlinkFontColor::do_update(void)
+void E2DCallBack_BlinkFontColor::do_update()
 {
 	/*
 	stwu     r1, -0x90(r1)
@@ -332,7 +332,7 @@ lbl_803D0994:
  * Address:	803D09B8
  * Size:	000118
  */
-void E2DCallBack_BlinkAlpha::do_update(void)
+void E2DCallBack_BlinkAlpha::do_update()
 {
 	/*
 	stwu     r1, -0x20(r1)
@@ -663,7 +663,7 @@ lbl_803D0D80:
  * Address:	803D0DB4
  * Size:	000014
  */
-void E2DCallBack_AnmBase::stop(void)
+void E2DCallBack_AnmBase::stop()
 {
 	m_isEnabled  = 0;
 	m_isFinished = true;
@@ -674,7 +674,7 @@ void E2DCallBack_AnmBase::stop(void)
  * Address:	........
  * Size:	000050
  */
-void E2DCallBack_AnmBase::disconnect(void)
+void E2DCallBack_AnmBase::disconnect()
 {
 	// UNUSED FUNCTION
 }
@@ -684,7 +684,7 @@ void E2DCallBack_AnmBase::disconnect(void)
  * Address:	803D0DC8
  * Size:	00003C
  */
-void E2DCallBack_AnmBase::setStartFrame(void)
+void E2DCallBack_AnmBase::setStartFrame()
 {
 	m_frameCtrl._10        = m_frameCtrl._06;
 	m_anim->m_currentFrame = m_frameCtrl._10;
@@ -695,7 +695,7 @@ void E2DCallBack_AnmBase::setStartFrame(void)
  * Address:	803D0E04
  * Size:	00003C
  */
-void E2DCallBack_AnmBase::setEndFrame(void)
+void E2DCallBack_AnmBase::setEndFrame()
 {
 	m_frameCtrl._10        = m_frameCtrl._08;
 	m_anim->m_currentFrame = m_frameCtrl._10;
@@ -706,7 +706,7 @@ void E2DCallBack_AnmBase::setEndFrame(void)
  * Address:	803D0E40
  * Size:	0000C0
  */
-void E2DCallBack_AnmBase::setRandFrame(void)
+void E2DCallBack_AnmBase::setRandFrame()
 {
 	/*
 	stwu     r1, -0x50(r1)
@@ -765,7 +765,7 @@ void E2DCallBack_AnmBase::setRandFrame(void)
  * Address:	803D0F00
  * Size:	000054
  */
-float E2DCallBack_AnmBase::getPlayFinRate(void)
+float E2DCallBack_AnmBase::getPlayFinRate()
 {
 	return (m_frameCtrl._10 - m_frameCtrl._06) / m_frameCtrl._08;
 	/*
@@ -798,7 +798,7 @@ float E2DCallBack_AnmBase::getPlayFinRate(void)
  * Address:	803D0F54
  * Size:	00005C
  */
-void E2DCallBack_AnmBase::do_update(void)
+void E2DCallBack_AnmBase::do_update()
 {
 	if (_18) {
 		m_frameCtrl.update();
@@ -843,7 +843,7 @@ lbl_803D0F9C:
  * Address:	803D0FB0
  * Size:	000008
  */
-bool E2DCallBack_AnmBase::isFinish(void)
+bool E2DCallBack_AnmBase::isFinish()
 {
 	return m_isFinished;
 	/*
@@ -857,7 +857,7 @@ bool E2DCallBack_AnmBase::isFinish(void)
  * Address:	803D0FB8
  * Size:	00014C
  */
-void E2DCallBack_WindowCursor::do_update(void)
+void E2DCallBack_WindowCursor::do_update()
 {
 	/*
 	stwu     r1, -0x30(r1)

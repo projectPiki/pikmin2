@@ -246,7 +246,7 @@ void PlatInstance::getBoundingSphere(Sys::Sphere& sphere) { sphere = ((Sys::OBBT
  * Address:	........
  * Size:	0000FC
  */
-// void getMinY__Q24Game12PlatInstanceFR10Vector3f(void)
+// void getMinY__Q24Game12PlatInstanceFR10Vector3f()
 void PlatInstance::getMinY(Vector3f&) const
 {
 	// UNUSED FUNCTION
@@ -1846,7 +1846,7 @@ void PlatMgr::traceMove(MoveInfo&, float)
  * Address:	........
  * Size:	0002FC
  */
-// void getMinY__Q24Game7PlatMgrFR10Vector3f(void)
+// void getMinY__Q24Game7PlatMgrFR10Vector3f()
 void PlatMgr::getMinY(Vector3f&) const
 {
 	// UNUSED FUNCTION
@@ -2338,7 +2338,7 @@ void PlatMgr::doDirectDraw(Graphics&) { }
  * Address:	801C6670
  * Size:	0000E0
  */
-PlatMgr::~PlatMgr(void)
+PlatMgr::~PlatMgr()
 {
 	/*
 	.loc_0x0:
@@ -2618,7 +2618,7 @@ void PlatInstance::doSetView(int) { }
  * Address:	801C6958
  * Size:	000004
  */
-void PlatInstance::doViewCalc(void) { }
+void PlatInstance::doViewCalc() { }
 
 /*
  * --INFO--

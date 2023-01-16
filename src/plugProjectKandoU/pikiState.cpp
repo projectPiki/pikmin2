@@ -4011,14 +4011,14 @@ void PikiSuikomiState::cleanup(Piki* piki)
  * Address:	8018F1B4
  * Size:	000004
  */
-void PikiFlyingState::stopEffect(void) { }
+void PikiFlyingState::stopEffect() { }
 
 /*
  * --INFO--
  * Address:	8018F1B8
  * Size:	000004
  */
-void PikiFlyingState::restartEffect(void) { }
+void PikiFlyingState::restartEffect() { }
 
 /*
  * --INFO--
@@ -7107,7 +7107,7 @@ lbl_80191944:
 //  * Address:	........
 //  * Size:	000004
 //  */
-// void PikiEmotionState::doDump(void)
+// void PikiEmotionState::doDump()
 // {
 // 	// UNUSED FUNCTION
 // }

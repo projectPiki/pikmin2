@@ -1262,7 +1262,7 @@ int JASKernel::getAramSize()
  * Address:	800A7454
  * Size:	000080
  */
-void __sinit_JASHeapCtrl_cpp(void)
+void __sinit_JASHeapCtrl_cpp()
 {
 	/*
 	stwu     r1, -0x10(r1)

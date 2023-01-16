@@ -4246,7 +4246,7 @@ void Splitter::split4(float, float) { }
  * Address:	80427F68
  * Size:	000028
  */
-void __sinit_graphics_cpp(void)
+void __sinit_graphics_cpp()
 {
 	/*
 	lis      r4, __float_nan@ha

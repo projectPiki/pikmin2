@@ -189,7 +189,7 @@ lbl_80164C8C:
  * Address:	80164CB0
  * Size:	0000C4
  */
-BaseHIOSection::~BaseHIOSection(void)
+BaseHIOSection::~BaseHIOSection()
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -256,7 +256,7 @@ lbl_80164D58:
  * Address:	80164D74
  * Size:	000060
  */
-// HIORootNode::~HIORootNode(void)
+// HIORootNode::~HIORootNode()
 // {
 // 	/*
 // 	stwu     r1, -0x10(r1)
@@ -490,7 +490,7 @@ void BaseHIOSection::addGenNode(CNode* node) { m_rootNode->add(node); }
  * Address:	80164FD4
  * Size:	000004
  */
-void BaseHIOSection::refreshHIO(void) { }
+void BaseHIOSection::refreshHIO() { }
 
 /*
  * --INFO--
@@ -548,7 +548,7 @@ bool Section::forceFinish() { return false; }
  * Address:	80165060
  * Size:	000028
  */
-void __sinit_baseHIOSection_cpp(void)
+void __sinit_baseHIOSection_cpp()
 {
 	/*
 	lis      r4, __float_nan@ha

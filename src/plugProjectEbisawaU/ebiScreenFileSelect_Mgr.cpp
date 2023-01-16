@@ -3025,7 +3025,7 @@ lbl_803DFF70:
  * Address:	803DFF8C
  * Size:	0000A4
  */
-FS::TMgr::TMgr(void)
+FS::TMgr::TMgr()
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -3183,7 +3183,7 @@ lbl_803E009C:
  * Address:	803E0174
  * Size:	000098
  */
-void FS::TMgr::update(void)
+void FS::TMgr::update()
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -3234,7 +3234,7 @@ lbl_803E01F8:
  * Address:	803E020C
  * Size:	000048
  */
-void FS::TMgr::draw(void)
+void FS::TMgr::draw()
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -3265,7 +3265,7 @@ lbl_803E0240:
  * Address:	803E0254
  * Size:	000044
  */
-void FS::TMgr::startSeq(void)
+void FS::TMgr::startSeq()
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -3293,7 +3293,7 @@ void FS::TMgr::startSeq(void)
  * Address:	803E0298
  * Size:	000058
  */
-void FS::TMgr::forceQuitSeq(void)
+void FS::TMgr::forceQuitSeq()
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -3326,7 +3326,7 @@ void FS::TMgr::forceQuitSeq(void)
  * Address:	803E02F0
  * Size:	000028
  */
-void FS::TMgr::isFinish(void)
+void FS::TMgr::isFinish()
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -3382,7 +3382,7 @@ void FS::TMgr::goEnd_(ebi::FS::TMgr::enumEnd)
  * Address:	803E0378
  * Size:	0000D0
  */
-void FS::TMgr::checkAndTransitNoCard_(void)
+void FS::TMgr::checkAndTransitNoCard_()
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -3453,7 +3453,7 @@ lbl_803E0430:
  * Address:	803E0448
  * Size:	000058
  */
-void FS::TMgr::getStateID(void)
+void FS::TMgr::getStateID()
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -3523,7 +3523,7 @@ void FS::FSMState_CardTask::do_close(ebi::FS::TMgr*) { }
  * Address:	803E04B4
  * Size:	000030
  */
-void transit__Q24Game24FSMState<ebi::FS::TMgr> FPQ33ebi2FS4TMgriPQ24Game8StateArg(void)
+void transit__Q24Game24FSMState<ebi::FS::TMgr> FPQ33ebi2FS4TMgriPQ24Game8StateArg()
 {
 	/*
 	.loc_0x0:
@@ -3547,7 +3547,7 @@ void transit__Q24Game24FSMState<ebi::FS::TMgr> FPQ33ebi2FS4TMgriPQ24Game8StateAr
  * Address:	803E04E4
  * Size:	000034
  */
-void start__Q24Game28StateMachine<ebi::FS::TMgr> FPQ33ebi2FS4TMgriPQ24Game8StateArg(void)
+void start__Q24Game28StateMachine<ebi::FS::TMgr> FPQ33ebi2FS4TMgriPQ24Game8StateArg()
 {
 	/*
 	.loc_0x0:
@@ -3574,7 +3574,7 @@ namespace Screen {
  * Address:	803E0518
  * Size:	000BF4
  */
-FileSelect::TMainScreen::~TMainScreen(void)
+FileSelect::TMainScreen::~TMainScreen()
 {
 	/*
 stwu     r1, -0x10(r1)
@@ -4442,7 +4442,7 @@ blr
  * Address:	803E110C
  * Size:	000004
  */
-void init__Q24Game24FSMState<ebi::FS::TMgr> FPQ33ebi2FS4TMgrPQ24Game8StateArg(void) { }
+void init__Q24Game24FSMState<ebi::FS::TMgr> FPQ33ebi2FS4TMgrPQ24Game8StateArg() { }
 
 } // namespace Screen
 
@@ -4453,42 +4453,42 @@ void init__Q24Game24FSMState<ebi::FS::TMgr> FPQ33ebi2FS4TMgrPQ24Game8StateArg(vo
  * Address:	803E1110
  * Size:	000004
  */
-void exec__Q24Game24FSMState<ebi::FS::TMgr> FPQ33ebi2FS4TMgr(void) { }
+void exec__Q24Game24FSMState<ebi::FS::TMgr> FPQ33ebi2FS4TMgr() { }
 
 /*
  * --INFO--
  * Address:	803E1114
  * Size:	000004
  */
-void cleanup__Q24Game24FSMState<ebi::FS::TMgr> FPQ33ebi2FS4TMgr(void) { }
+void cleanup__Q24Game24FSMState<ebi::FS::TMgr> FPQ33ebi2FS4TMgr() { }
 
 /*
  * --INFO--
  * Address:	803E1118
  * Size:	000004
  */
-void resume__Q24Game24FSMState<ebi::FS::TMgr> FPQ33ebi2FS4TMgr(void) { }
+void resume__Q24Game24FSMState<ebi::FS::TMgr> FPQ33ebi2FS4TMgr() { }
 
 /*
  * --INFO--
  * Address:	803E111C
  * Size:	000004
  */
-void restart__Q24Game24FSMState<ebi::FS::TMgr> FPQ33ebi2FS4TMgr(void) { }
+void restart__Q24Game24FSMState<ebi::FS::TMgr> FPQ33ebi2FS4TMgr() { }
 
 /*
  * --INFO--
  * Address:	803E1120
  * Size:	000004
  */
-void init__Q24Game28StateMachine<ebi::FS::TMgr> FPQ33ebi2FS4TMgr(void) { }
+void init__Q24Game28StateMachine<ebi::FS::TMgr> FPQ33ebi2FS4TMgr() { }
 
 /*
  * --INFO--
  * Address:	803E1124
  * Size:	000038
  */
-void exec__Q24Game28StateMachine<ebi::FS::TMgr> FPQ33ebi2FS4TMgr(void)
+void exec__Q24Game28StateMachine<ebi::FS::TMgr> FPQ33ebi2FS4TMgr()
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -4515,7 +4515,7 @@ lbl_803E114C:
  * Address:	803E115C
  * Size:	000064
  */
-void create__Q24Game28StateMachine<ebi::FS::TMgr> Fi(void)
+void create__Q24Game28StateMachine<ebi::FS::TMgr> Fi()
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -4551,7 +4551,7 @@ void create__Q24Game28StateMachine<ebi::FS::TMgr> Fi(void)
  * Address:	803E11C0
  * Size:	00009C
  */
-void transit__Q24Game28StateMachine<ebi::FS::TMgr> FPQ33ebi2FS4TMgriPQ24Game8StateArg(void)
+void transit__Q24Game28StateMachine<ebi::FS::TMgr> FPQ33ebi2FS4TMgriPQ24Game8StateArg()
 {
 	/*
 	.loc_0x0:
@@ -4608,7 +4608,7 @@ void transit__Q24Game28StateMachine<ebi::FS::TMgr> FPQ33ebi2FS4TMgriPQ24Game8Sta
  * Address:	803E125C
  * Size:	000084
  */
-void registerState__Q24Game28StateMachine<ebi::FS::TMgr> FPQ24Game24FSMState<ebi::FS::TMgr>(void)
+void registerState__Q24Game28StateMachine<ebi::FS::TMgr> FPQ24Game24FSMState<ebi::FS::TMgr>()
 {
 	/*
 	.loc_0x0:

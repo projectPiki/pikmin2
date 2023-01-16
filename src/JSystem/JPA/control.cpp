@@ -115,7 +115,7 @@ JStudio::TObject_particle* createObject_PARTICLE_JPA_(const JStudio::stb::data::
  * Address:	800062EC
  * Size:	000060
  */
-TCreateObject::~TCreateObject(void) { }
+TCreateObject::~TCreateObject() { }
 
 /*
  * --INFO--

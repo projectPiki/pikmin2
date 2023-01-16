@@ -163,7 +163,7 @@
  * Address:	803A2154
  * Size:	00004C
  */
-Morimura::TIndexGroup::TIndexGroup(void)
+Morimura::TIndexGroup::TIndexGroup()
 {
 	/*
 	lfs      f5, lbl_8051F2F8@sda21(r2)
@@ -193,7 +193,7 @@ Morimura::TIndexGroup::TIndexGroup(void)
  * Address:	803A21A0
  * Size:	00006C
  */
-void Morimura::TIndexGroup::upIndex(void)
+void Morimura::TIndexGroup::upIndex()
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -235,7 +235,7 @@ lbl_803A21F0:
  * Address:	803A220C
  * Size:	00006C
  */
-void Morimura::TIndexGroup::downIndex(void)
+void Morimura::TIndexGroup::downIndex()
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -297,7 +297,7 @@ void Morimura::TIndexGroup::offsetUpdate(float)
  * Address:	803A2278
  * Size:	000030
  */
-void Morimura::TIndexGroup::rollSpUp(void)
+void Morimura::TIndexGroup::rollSpUp()
 {
 	/*
 	lfs      f1, 0x1c(r3)
@@ -320,7 +320,7 @@ void Morimura::TIndexGroup::rollSpUp(void)
  * Address:	803A22A8
  * Size:	00009C
  */
-void Morimura::TIndexPane::update(void)
+void Morimura::TIndexPane::update()
 {
 	/*
 	stwu     r1, -0x30(r1)
@@ -592,7 +592,7 @@ lbl_803A25A8:
  * Address:	803A25BC
  * Size:	000058
  */
-void Morimura::TIndexPane::getIndex(void)
+void Morimura::TIndexPane::getIndex()
 {
 	/*
 	lwz      r4, 0x20(r3)
@@ -629,7 +629,7 @@ lbl_803A260C:
  * Address:	803A2614
  * Size:	000008
  */
-void Morimura::TIndexPane::getListIndex(void)
+void Morimura::TIndexPane::getListIndex()
 {
 	/*
 	lwz      r3, 0(r3)
@@ -642,7 +642,7 @@ void Morimura::TIndexPane::getListIndex(void)
  * Address:	803A261C
  * Size:	0000F4
  */
-void Morimura::TIndexPane::doIconOffsetY(void)
+void Morimura::TIndexPane::doIconOffsetY()
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -718,7 +718,7 @@ lbl_803A26F8:
  * Address:	803A2710
  * Size:	000068
  */
-Morimura::TIconInfo::TIconInfo(void)
+Morimura::TIconInfo::TIconInfo()
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -1630,7 +1630,7 @@ lbl_803A3234:
  * Address:	803A324C
  * Size:	000390
  */
-void Morimura::TScrollList::updateList(void)
+void Morimura::TScrollList::updateList()
 {
 	/*
 	stwu     r1, -0x30(r1)
@@ -1915,7 +1915,7 @@ lbl_803A3598:
  * Address:	803A35DC
  * Size:	000060
  */
-void Morimura::TScrollList::changeIndex(void)
+void Morimura::TScrollList::changeIndex()
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -1950,7 +1950,7 @@ void Morimura::TScrollList::changeIndex(void)
  * Address:	803A363C
  * Size:	000008
  */
-@24 @Morimura::TScrollList::~TScrollList(void)
+@24 @Morimura::TScrollList::~TScrollList()
 {
 	/*
 	addi     r3, r3, -24

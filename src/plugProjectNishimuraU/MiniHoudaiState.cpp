@@ -4081,7 +4081,7 @@ lbl_802EB1A4:
  * Address:	802EB200
  * Size:	000008
  */
-u32 MiniHoudai::Obj::getEnemyTypeID(void) { return 0x4E; }
+u32 MiniHoudai::Obj::getEnemyTypeID() { return 0x4E; }
 
 /*
  * --INFO--
@@ -4911,7 +4911,7 @@ void MiniHoudai::StateWalkPath::cleanup(Game::EnemyBase*) { }
  * Address:	802EBCB8
  * Size:	000028
  */
-void __sinit_MiniHoudaiState_cpp(void)
+void __sinit_MiniHoudaiState_cpp()
 {
 	/*
 	lis      r4, __float_nan@ha

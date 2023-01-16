@@ -170,7 +170,7 @@ void ObjSMenuMap::setMapTexture()
 //  * Address:	........
 //  * Size:	0001B0
 //  */
-// void ObjSMenuMap::setMapPos(void)
+// void ObjSMenuMap::setMapPos()
 // {
 // 	// UNUSED FUNCTION
 // }
@@ -180,7 +180,7 @@ void ObjSMenuMap::setMapTexture()
 //  * Address:	........
 //  * Size:	0000BC
 //  */
-// void ObjSMenuMap::setCompass(void)
+// void ObjSMenuMap::setCompass()
 // {
 // 	// UNUSED FUNCTION
 // }
@@ -1461,7 +1461,7 @@ void ObjSMenuMap::appendCaveName(J2DPane* parent, u16 caveIndex, u64 tag)
 //  * Address:	........
 //  * Size:	000004
 //  */
-// void ObjSMenuMap::rotateMap(void)
+// void ObjSMenuMap::rotateMap()
 // {
 // 	// UNUSED FUNCTION
 // }
@@ -1770,7 +1770,7 @@ lbl_80310E9C:
  * Address:	........
  * Size:	0000C4
  */
-void ObjSMenuMap::scaleMap(void)
+void ObjSMenuMap::scaleMap()
 {
 	// UNUSED FUNCTION
 }
@@ -1780,7 +1780,7 @@ void ObjSMenuMap::scaleMap(void)
  * Address:	........
  * Size:	0000B0
  */
-void ObjSMenuMap::setMapColor(void)
+void ObjSMenuMap::setMapColor()
 {
 	// UNUSED FUNCTION
 }
@@ -1790,7 +1790,7 @@ void ObjSMenuMap::setMapColor(void)
 //  * Address:	........
 //  * Size:	000054
 //  */
-// void ObjSMenuMap::calcCaveNameAlpha(void)
+// void ObjSMenuMap::calcCaveNameAlpha()
 // {
 // 	// UNUSED FUNCTION
 // }
@@ -4000,7 +4000,7 @@ namespace Screen {
  * Address:	80312AB0
  * Size:	000008
  */
-int SetSceneArg::getClassSize(void) { return 0x10; }
+int SetSceneArg::getClassSize() { return 0x10; }
 
 /*
  * --INFO--
@@ -4026,7 +4026,7 @@ namespace newScreen {
  * Address:	80312AC8
  * Size:	000004
  */
-void ObjSMenuMap::doUpdateCancelAction(void) { }
+void ObjSMenuMap::doUpdateCancelAction() { }
 
 } // namespace newScreen
 
@@ -4037,7 +4037,7 @@ void ObjSMenuMap::doUpdateCancelAction(void) { }
  * Address:	80312ACC
  * Size:	000128
  */
-void __sinit_ogObjSMenuMap_cpp(void)
+void __sinit_ogObjSMenuMap_cpp()
 {
 	/*
 	lis      r3, msVal__Q32og9newScreen11ObjSMenuMap@ha

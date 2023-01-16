@@ -2899,7 +2899,7 @@ void DangoMushi::StateFlick::cleanup(Game::EnemyBase*)
  * Address:	802FBCF4
  * Size:	000028
  */
-void __sinit_DangoMushiState_cpp(void)
+void __sinit_DangoMushiState_cpp()
 {
 	/*
 	lis      r4, __float_nan@ha

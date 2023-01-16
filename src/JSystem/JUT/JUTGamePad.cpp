@@ -1117,7 +1117,7 @@ void JUTGamePad::clearForReset()
  * Size:	00003C
  * clear__Q210JUTGamePad7CButtonFv
  */
-void JUTGamePad::CButton::clear(void)
+void JUTGamePad::CButton::clear()
 {
 	m_mask         = 0;
 	m_buttonDown   = 0;
@@ -1635,7 +1635,7 @@ lbl_8002E360:
  * Size:	000024
  * clear__Q210JUTGamePad7CRumbleFv
  */
-void JUTGamePad::CRumble::clear(void)
+void JUTGamePad::CRumble::clear()
 {
 	// UNUSED FUNCTION
 	_00      = 0;
@@ -1988,7 +1988,7 @@ void JUTGamePad::CRumble::stopPatternedRumble(short)
  * Address:	........
  * Size:	000024
  */
-void JUTGamePad::CRumble::stopPatternedRumbleAtThePeriod(void)
+void JUTGamePad::CRumble::stopPatternedRumbleAtThePeriod()
 {
 	// UNUSED FUNCTION
 }
@@ -2462,7 +2462,7 @@ JUTGamePadRecord::~JUTGamePadRecord()
  * Address:	8002E924
  * Size:	000110
  */
-// void __sinit_JUTGamePad_cpp(void)
+// void __sinit_JUTGamePad_cpp()
 // {
 // 	/*
 // 	stwu     r1, -0x10(r1)
@@ -2576,7 +2576,7 @@ JUTGamePadRecord::~JUTGamePadRecord()
  * Size:	00001C
  * __ct__Q210JUTGamePad6CStickFv
  */
-// JUTGamePad::CStick::CStick(void)
+// JUTGamePad::CStick::CStick()
 // {
 // 	/*
 // 	lfs      f0, lbl_80516670@sda21(r2)
@@ -2595,7 +2595,7 @@ JUTGamePadRecord::~JUTGamePadRecord()
  * Size:	00003C
  * __ct__Q210JUTGamePad7CButtonFv
  */
-// JUTGamePad::CButton::CButton(void)
+// JUTGamePad::CButton::CButton()
 // {
 // 	/*
 // 	li       r0, 0

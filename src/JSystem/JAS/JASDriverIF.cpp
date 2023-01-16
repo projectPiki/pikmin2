@@ -400,11 +400,11 @@ void JASDriver::updateDacCallback() { sUpdateDacCallback.callback(); }
  * Address:	800A4AB8
  * Size:	000080
  */
-// void __sinit_JASDriverIF_cpp(void) { }
+// void __sinit_JASDriverIF_cpp() { }
 
 /*
  * --INFO--
  * Address:	800A4B38
  * Size:	000010
  */
-// JASCallbackMgr::TCallback::TCallback(void) { }
+// JASCallbackMgr::TCallback::TCallback() { }

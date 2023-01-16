@@ -1141,7 +1141,7 @@ void J3DSys::ErrorReport(J3DErrType) const { }
  * Address:	8005EB58
  * Size:	000028
  */
-void __sinit_J3DSys_cpp(void)
+void __sinit_J3DSys_cpp()
 {
 	/*
 	stwu     r1, -0x10(r1)

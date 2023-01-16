@@ -3816,7 +3816,7 @@ blr
  * Address:	8040F0E4
  * Size:	0000F4
  */
-void __sinit_khFinalResult_cpp(void)
+void __sinit_khFinalResult_cpp()
 {
 	/*
 	stwu     r1, -0x20(r1)

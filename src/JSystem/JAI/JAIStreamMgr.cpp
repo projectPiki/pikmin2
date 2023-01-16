@@ -132,7 +132,7 @@ JASHeap* aramBufferHeap;
 JASHeap* aramParentHeap;
 AllocCallback allocCallback;
 DeallocCallback deallocCallback;
-JASHeap* (*externalAramCallback)(void);
+JASHeap* (*externalAramCallback)();
 int dataFileNumber;
 MgrCallback mgrCallback;
 u32 sChannelMax         = 2;
@@ -145,7 +145,7 @@ u32 decodedBufferBlocks = 0x2760;
  * Address:	800B764C
  * Size:	00031C
  */
-void JAInter::StreamMgr::init(void)
+void JAInter::StreamMgr::init()
 {
 	if (flags._2 == 0) {
 		flags._0 = 0;
@@ -945,7 +945,7 @@ lbl_800B7EE4:
  * Address:	800B7EF4
  * Size:	000A00
  */
-void JAInter::StreamMgr::PlayingStream(void)
+void JAInter::StreamMgr::PlayingStream()
 {
 	/*
 	stwu     r1, -0x60(r1)
@@ -1740,7 +1740,7 @@ lbl_800B88D0:
  * Address:	........
  * Size:	000038
  */
-void JAInter::StreamMgr::RequestStream(void)
+void JAInter::StreamMgr::RequestStream()
 {
 	// UNUSED FUNCTION
 }
@@ -2168,7 +2168,7 @@ lbl_800B8D6C:
  * Address:	800B8D84
  * Size:	00003C
  */
-void JAInter::StreamMgr::stopDirect(void)
+void JAInter::StreamMgr::stopDirect()
 {
 	if (controlStatus == 5) {
 		controlStatus = 6;

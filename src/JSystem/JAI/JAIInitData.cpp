@@ -157,7 +157,7 @@ lbl_800ADC80:
  * Address:	800ADC98
  * Size:	000264
  */
-void JAInter::InitData::checkInitDataOnMemory(void)
+void JAInter::InitData::checkInitDataOnMemory()
 {
 	/*
 	stwu     r1, -0x20(r1)

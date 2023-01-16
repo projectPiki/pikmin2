@@ -56,7 +56,7 @@ namespace ARAM {
  * Address:	........
  * Size:	00003C
  */
-inline Node::Node(void)
+inline Node::Node()
     : CNode("")
 {
 	m_status = 0;
@@ -121,21 +121,21 @@ void* Node::aramToMainRam(unsigned char* a2, unsigned long a3, unsigned long a4,
  * Address:	........
  * Size:	000004
  */
-inline void Node::dump(void) { }
+inline void Node::dump() { }
 
 /*
  * --INFO--
  * Address:	80432B18
  * Size:	000030
  */
-void Mgr::init(void) { new Mgr(); }
+void Mgr::init() { new Mgr(); }
 
 /*
  * --INFO--
  * Address:	80432B48
  * Size:	000080
  */
-Mgr::Mgr(void)
+Mgr::Mgr()
     : m_node("root")
 {
 	P2ASSERTLINE(248, gAramMgr == nullptr);

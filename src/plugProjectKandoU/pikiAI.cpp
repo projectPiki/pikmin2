@@ -4100,7 +4100,7 @@ blr
  * Address:	801B3C08
  * Size:	000054
  */
-// void Piki::invokeAI(void)
+// void Piki::invokeAI()
 // {
 /*
 stwu     r1, -0x10(r1)
@@ -4159,7 +4159,7 @@ blr
  * Address:	801B3C84
  * Size:	00000C
  */
-// void PikiAI::ActBridgeArg::getName(void)
+// void PikiAI::ActBridgeArg::getName()
 // {
 // 	/*
 // 	lis      r3, lbl_8047FA4C@ha
@@ -4173,7 +4173,7 @@ blr
  * Address:	801B3C90
  * Size:	00000C
  */
-// void PikiAI::ActBreakRockArg::getName(void)
+// void PikiAI::ActBreakRockArg::getName()
 // {
 // 	/*
 // 	lis      r3, lbl_8047FA5C@ha
@@ -4187,7 +4187,7 @@ blr
 //  * Address:	801B3C9C
 //  * Size:	00000C
 //  */
-// void PikiAI::ActBreakGateArg::getName(void)
+// void PikiAI::ActBreakGateArg::getName()
 // {
 // 	/*
 // 	lis      r3, lbl_8047FA6C@ha
@@ -4201,7 +4201,7 @@ blr
 //  * Address:	801B3CA8
 //  * Size:	00000C
 //  */
-// void PikiAI::ActTransportArg::getName(void)
+// void PikiAI::ActTransportArg::getName()
 // {
 // 	/*
 // 	lis      r3, lbl_8047FA7C@ha
@@ -4215,7 +4215,7 @@ blr
 //  * Address:	801B3CB4
 //  * Size:	00000C
 //  */
-// void PikiAI::ActAttackArg::getName(void)
+// void PikiAI::ActAttackArg::getName()
 // {
 // 	/*
 // 	lis      r3, lbl_8047FA8C@ha
@@ -4229,7 +4229,7 @@ blr
 //  * Address:	801B3CC0
 //  * Size:	00000C
 //  */
-// void PikiAI::ActWeedArg::getName(void)
+// void PikiAI::ActWeedArg::getName()
 // {
 // 	/*
 // 	lis      r3, lbl_8047FA9C@ha

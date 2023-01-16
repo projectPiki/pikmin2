@@ -8,7 +8,7 @@
  * Address:	804111B4
  * Size:	000050
  */
-int main(void)
+int main()
 {
 	OSReport("bootup -----------------------\n");
 

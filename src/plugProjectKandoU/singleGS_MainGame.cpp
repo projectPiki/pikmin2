@@ -2541,7 +2541,7 @@ namespace Screen {
  * Address:	802152F8
  * Size:	0001DC
  */
-DispMemberSMenuAll::DispMemberSMenuAll(void)
+DispMemberSMenuAll::DispMemberSMenuAll()
 {
 	/*
 stwu     r1, -0x30(r1)
@@ -4825,7 +4825,7 @@ void SingleGame::GameState::onMovieDone(Game::SingleGameSection*, Game::MovieCon
  * Address:	8021725C
  * Size:	000074
  */
-void SingleGame::GameState::needRepayDemo(void)
+void SingleGame::GameState::needRepayDemo()
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -4873,7 +4873,7 @@ lbl_802172BC:
  * Address:	802172D0
  * Size:	000140
  */
-void SingleGame::GameState::startRepayDemo(void)
+void SingleGame::GameState::startRepayDemo()
 {
 	/*
 	stwu     r1, -0x60(r1)
@@ -5132,14 +5132,14 @@ namespace Screen {
  * Address:	80217598
  * Size:	000008
  */
-u32 DispMemberSave::getSize(void) { return 0xC; }
+u32 DispMemberSave::getSize() { return 0xC; }
 
 /*
  * --INFO--
  * Address:	802175A0
  * Size:	00000C
  */
-void DispMemberSave::getOwnerID(void)
+void DispMemberSave::getOwnerID()
 {
 	/*
 lis      r3, 0x004F4741@ha
@@ -5153,7 +5153,7 @@ blr
  * Address:	802175AC
  * Size:	000010
  */
-void DispMemberSave::getMemberID(void)
+void DispMemberSave::getMemberID()
 {
 	/*
 lis      r4, 0x53415645@ha
@@ -5168,14 +5168,14 @@ blr
  * Address:	802175BC
  * Size:	000008
  */
-u32 DispMemberSMenuCont::getSize(void) { return 0x8; }
+u32 DispMemberSMenuCont::getSize() { return 0x8; }
 
 /*
  * --INFO--
  * Address:	802175C4
  * Size:	00000C
  */
-void DispMemberSMenuCont::getOwnerID(void)
+void DispMemberSMenuCont::getOwnerID()
 {
 	/*
 lis      r3, 0x004F4741@ha
@@ -5189,7 +5189,7 @@ blr
  * Address:	802175D0
  * Size:	000014
  */
-void DispMemberSMenuCont::getMemberID(void)
+void DispMemberSMenuCont::getMemberID()
 {
 	/*
 lis      r4, 0x434F4E54@ha
@@ -5205,14 +5205,14 @@ blr
  * Address:	802175E4
  * Size:	000008
  */
-u32 DispMemberSMenuPauseVS::getSize(void) { return 0xC; }
+u32 DispMemberSMenuPauseVS::getSize() { return 0xC; }
 
 /*
  * --INFO--
  * Address:	802175EC
  * Size:	00000C
  */
-void DispMemberSMenuPauseVS::getOwnerID(void)
+void DispMemberSMenuPauseVS::getOwnerID()
 {
 	/*
 lis      r3, 0x004F4741@ha
@@ -5226,7 +5226,7 @@ blr
  * Address:	802175F8
  * Size:	000014
  */
-void DispMemberSMenuPauseVS::getMemberID(void)
+void DispMemberSMenuPauseVS::getMemberID()
 {
 	/*
 lis      r4, 0x535F5653@ha
@@ -5242,14 +5242,14 @@ blr
  * Address:	8021760C
  * Size:	000008
  */
-u32 DispMemberSMenuMap::getSize(void) { return 0x4C; }
+u32 DispMemberSMenuMap::getSize() { return 0x4C; }
 
 /*
  * --INFO--
  * Address:	80217614
  * Size:	00000C
  */
-void DispMemberSMenuMap::getOwnerID(void)
+void DispMemberSMenuMap::getOwnerID()
 {
 	/*
 lis      r3, 0x004F4741@ha
@@ -5263,7 +5263,7 @@ blr
  * Address:	80217620
  * Size:	000010
  */
-void DispMemberSMenuMap::getMemberID(void)
+void DispMemberSMenuMap::getMemberID()
 {
 	/*
 lis      r4, 0x5F4D4150@ha
@@ -5278,14 +5278,14 @@ blr
  * Address:	80217630
  * Size:	000008
  */
-u32 DispMemberSMenuItem::getSize(void) { return 0x28; }
+u32 DispMemberSMenuItem::getSize() { return 0x28; }
 
 /*
  * --INFO--
  * Address:	80217638
  * Size:	00000C
  */
-void DispMemberSMenuItem::getOwnerID(void)
+void DispMemberSMenuItem::getOwnerID()
 {
 	/*
 lis      r3, 0x004F4741@ha
@@ -5299,7 +5299,7 @@ blr
  * Address:	80217644
  * Size:	000014
  */
-void DispMemberSMenuItem::getMemberID(void)
+void DispMemberSMenuItem::getMemberID()
 {
 	/*
 lis      r4, 0x4954454D@ha
@@ -5315,14 +5315,14 @@ blr
  * Address:	80217658
  * Size:	000008
  */
-u32 DispMemberSMenuPauseDoukutu::getSize(void) { return 0x18; }
+u32 DispMemberSMenuPauseDoukutu::getSize() { return 0x18; }
 
 /*
  * --INFO--
  * Address:	80217660
  * Size:	00000C
  */
-void DispMemberSMenuPauseDoukutu::getOwnerID(void)
+void DispMemberSMenuPauseDoukutu::getOwnerID()
 {
 	/*
 lis      r3, 0x004F4741@ha
@@ -5336,7 +5336,7 @@ blr
  * Address:	8021766C
  * Size:	000014
  */
-void DispMemberSMenuPauseDoukutu::getMemberID(void)
+void DispMemberSMenuPauseDoukutu::getMemberID()
 {
 	/*
 lis      r4, 0x53455F44@ha
@@ -5352,14 +5352,14 @@ blr
  * Address:	80217680
  * Size:	000008
  */
-u32 DispMemberSMenuPause::getSize(void) { return 0x14; }
+u32 DispMemberSMenuPause::getSize() { return 0x14; }
 
 /*
  * --INFO--
  * Address:	80217688
  * Size:	00000C
  */
-void DispMemberSMenuPause::getOwnerID(void)
+void DispMemberSMenuPause::getOwnerID()
 {
 	/*
 lis      r3, 0x004F4741@ha
@@ -5373,7 +5373,7 @@ blr
  * Address:	80217694
  * Size:	000014
  */
-void DispMemberSMenuPause::getMemberID(void)
+void DispMemberSMenuPause::getMemberID()
 {
 	/*
 lis      r4, 0x41555345@ha
@@ -5389,14 +5389,14 @@ blr
  * Address:	802176A8
  * Size:	000008
  */
-u32 DispMemberSMenuAll::getSize(void) { return 0xC4; }
+u32 DispMemberSMenuAll::getSize() { return 0xC4; }
 
 /*
  * --INFO--
  * Address:	802176B0
  * Size:	00000C
  */
-void DispMemberSMenuAll::getOwnerID(void)
+void DispMemberSMenuAll::getOwnerID()
 {
 	/*
 lis      r3, 0x004F4741@ha
@@ -5410,7 +5410,7 @@ blr
  * Address:	802176BC
  * Size:	000010
  */
-void DispMemberSMenuAll::getMemberID(void)
+void DispMemberSMenuAll::getMemberID()
 {
 	/*
 lis      r4, 0x5F414C4C@ha
@@ -5425,7 +5425,7 @@ blr
  * Address:	802176CC
  * Size:	00006C
  */
-void DispMemberSMenuAll::doSetSubMemberAll(void)
+void DispMemberSMenuAll::doSetSubMemberAll()
 {
 	/*
 stwu     r1, -0x10(r1)
@@ -5466,7 +5466,7 @@ blr
  * Address:	80217738
  * Size:	000028
  */
-void __sinit_singleGS_MainGame_cpp(void)
+void __sinit_singleGS_MainGame_cpp()
 {
 	/*
 	lis      r4, __float_nan@ha

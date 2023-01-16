@@ -693,7 +693,7 @@ bool ObjAnaDemo::doEnd(::Screen::EndSceneArg const*) { return true; }
  * Address:	8031E820
  * Size:	000004
  */
-void ObjAnaDemo::doUpdateFadeinFinish(void) { }
+void ObjAnaDemo::doUpdateFadeinFinish() { }
 
 /*
  * --INFO--

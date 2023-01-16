@@ -152,7 +152,7 @@ lbl_8042014C:
  */
 // void
 // traceMoveTriList_new__Q23Sys3OBBFRQ24Game8MoveInfoRQ23Sys11VertexTableRQ23Sys13TriangleTableR7MatrixfR7MatrixfRiPPQ23Sys8TrianglePfP10Vector3<
-//     float>(void)
+//     float>()
 void OBB::traceMoveTriList_new(Game::MoveInfo& moveInfo, Sys::VertexTable& vertexTable, Sys::TriangleTable& triangleTable, Matrixf& p4,
                                Matrixf& p5, int& p6, Sys::Triangle** p7, float* p8, Vector3f* p9)
 {

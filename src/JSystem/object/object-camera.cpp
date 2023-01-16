@@ -738,7 +738,7 @@ void JStudio_JStage::TAdaptor_camera::getJSG_targetPosition_(const JStudio::TCon
  * Address:	80013D34
  * Size:	000370
  */
-// void __sinit_object - camera_cpp(void)
+// void __sinit_object - camera_cpp()
 // {
 // 	/*
 // 	stwu     r1, -0xc0(r1)

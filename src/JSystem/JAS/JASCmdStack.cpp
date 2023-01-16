@@ -84,7 +84,7 @@ void JASPortCmd::execAllCommand()
  * Address:	800A67D8
  * Size:	000088
  */
-void JASPortCmd::TPortHead::execCommandOnce(void)
+void JASPortCmd::TPortHead::execCommandOnce()
 {
 	int interrupts = OSDisableInterrupts();
 	JSULink<JASPortCmd>* next;
@@ -101,7 +101,7 @@ void JASPortCmd::TPortHead::execCommandOnce(void)
  * Address:	800A6860
  * Size:	000068
  */
-void JASPortCmd::TPortHead::execCommandStay(void)
+void JASPortCmd::TPortHead::execCommandStay()
 {
 	int interrupts = OSDisableInterrupts();
 	for (JSULink<JASPortCmd>* link = getFirst(); link != nullptr; link = link->getNext()) {
@@ -115,7 +115,7 @@ void JASPortCmd::TPortHead::execCommandStay(void)
  * Address:	800A68C8
  * Size:	00006C
  */
-// void __sinit_JASCmdStack_cpp(void)
+// void __sinit_JASCmdStack_cpp()
 // {
 // 	/*
 // 	stwu     r1, -0x10(r1)
@@ -153,7 +153,7 @@ void JASPortCmd::TPortHead::execCommandStay(void)
  * Address:	800A6934
  * Size:	000058
  */
-// JASPortCmd::TPortHead::~TPortHead(void) { }
+// JASPortCmd::TPortHead::~TPortHead() { }
 
 /*
  * --INFO--

@@ -1552,7 +1552,7 @@ lbl_803B3978:
  * Address:	803B399C
  * Size:	000040
  */
-void setGlobalTranslation__Q23efx13TNewkurageSuiFR10Vector3f(void)
+void setGlobalTranslation__Q23efx13TNewkurageSuiFR10Vector3f()
 {
 	/*
 	lwz      r5, 0xc(r3)
@@ -1613,7 +1613,7 @@ lbl_803B39FC:
  * Address:	803B3A10
  * Size:	000040
  */
-void setGlobalTranslation__Q23efx10TKurageSuiFR10Vector3f(void)
+void setGlobalTranslation__Q23efx10TKurageSuiFR10Vector3f()
 {
 	/*
 	lwz      r5, 0xc(r3)
@@ -1846,7 +1846,7 @@ lbl_803B3BD8:
  * Address:	803B3BEC
  * Size:	00004C
  */
-void setGlobalDynamicsScale__Q23efx13TKechappyTestFR10Vector3f(void)
+void setGlobalDynamicsScale__Q23efx13TKechappyTestFR10Vector3f()
 {
 	/*
 	lwz      r5, 0x20(r3)
@@ -3542,7 +3542,7 @@ void TDenkiHibaMgr::createHiba(int)
  * Address:	........
  * Size:	000174
  */
-void TDenkiHibaMgr::createHiba(void)
+void TDenkiHibaMgr::createHiba()
 {
 	// UNUSED FUNCTION
 }
@@ -3552,7 +3552,7 @@ void TDenkiHibaMgr::createHiba(void)
  * Address:	803B507C
  * Size:	00008C
  */
-void TDenkiHibaMgr::forceKill(void)
+void TDenkiHibaMgr::forceKill()
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -3598,7 +3598,7 @@ void TDenkiHibaMgr::forceKill(void)
  * Address:	803B5108
  * Size:	00008C
  */
-void TDenkiHibaMgr::fade(void)
+void TDenkiHibaMgr::fade()
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -3706,7 +3706,7 @@ lbl_803B5238:
  * Address:	803B5248
  * Size:	000048
  */
-void TTankWat::forceKill(void)
+void TTankWat::forceKill()
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -3737,7 +3737,7 @@ lbl_803B527C:
  * Address:	803B5290
  * Size:	000050
  */
-void TTankFire::forceKill(void)
+void TTankFire::forceKill()
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -3768,7 +3768,7 @@ void TTankFire::forceKill(void)
  * Address:	803B52E0
  * Size:	000048
  */
-void TTankFireABC::forceKill(void)
+void TTankFireABC::forceKill()
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -3799,7 +3799,7 @@ lbl_803B5314:
  * Address:	803B5328
  * Size:	00009C
  */
-TBabaFly_ver01::~TBabaFly_ver01(void)
+TBabaFly_ver01::~TBabaFly_ver01()
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -3853,7 +3853,7 @@ lbl_803B53A8:
  * Address:	803B53C4
  * Size:	00009C
  */
-TPanSmoke::~TPanSmoke(void)
+TPanSmoke::~TPanSmoke()
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -3907,7 +3907,7 @@ lbl_803B5444:
  * Address:	803B5460
  * Size:	00009C
  */
-TPanHide::~TPanHide(void)
+TPanHide::~TPanHide()
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -3961,7 +3961,7 @@ lbl_803B54E0:
  * Address:	803B54FC
  * Size:	00009C
  */
-TImoSmoke::~TImoSmoke(void)
+TImoSmoke::~TImoSmoke()
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -4015,7 +4015,7 @@ lbl_803B557C:
  * Address:	803B5598
  * Size:	00009C
  */
-TImoEat::~TImoEat(void)
+TImoEat::~TImoEat()
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -4069,7 +4069,7 @@ lbl_803B5618:
  * Address:	803B5634
  * Size:	00009C
  */
-TJgmBack::~TJgmBack(void)
+TJgmBack::~TJgmBack()
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -4123,7 +4123,7 @@ lbl_803B56B4:
  * Address:	803B56D0
  * Size:	00009C
  */
-TChouDown::~TChouDown(void)
+TChouDown::~TChouDown()
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -4177,7 +4177,7 @@ lbl_803B5750:
  * Address:	803B576C
  * Size:	000008
  */
-@4 @efx::TChouDown::~TChouDown(void)
+@4 @efx::TChouDown::~TChouDown()
 {
 	/*
 	addi     r3, r3, -4
@@ -4190,7 +4190,7 @@ lbl_803B5750:
  * Address:	803B5774
  * Size:	000008
  */
-@4 @efx::TJgmBack::~TJgmBack(void)
+@4 @efx::TJgmBack::~TJgmBack()
 {
 	/*
 	addi     r3, r3, -4
@@ -4203,7 +4203,7 @@ lbl_803B5750:
  * Address:	803B577C
  * Size:	000008
  */
-@4 @efx::TImoEat::~TImoEat(void)
+@4 @efx::TImoEat::~TImoEat()
 {
 	/*
 	addi     r3, r3, -4
@@ -4216,7 +4216,7 @@ lbl_803B5750:
  * Address:	803B5784
  * Size:	000008
  */
-@4 @efx::TImoSmoke::~TImoSmoke(void)
+@4 @efx::TImoSmoke::~TImoSmoke()
 {
 	/*
 	addi     r3, r3, -4
@@ -4229,7 +4229,7 @@ lbl_803B5750:
  * Address:	803B578C
  * Size:	000008
  */
-@4 @efx::TPanHide::~TPanHide(void)
+@4 @efx::TPanHide::~TPanHide()
 {
 	/*
 	addi     r3, r3, -4
@@ -4242,7 +4242,7 @@ lbl_803B5750:
  * Address:	803B5794
  * Size:	000008
  */
-@4 @efx::TPanSmoke::~TPanSmoke(void)
+@4 @efx::TPanSmoke::~TPanSmoke()
 {
 	/*
 	addi     r3, r3, -4
@@ -4255,7 +4255,7 @@ lbl_803B5750:
  * Address:	803B579C
  * Size:	000008
  */
-@4 @efx::TBabaFly_ver01::~TBabaFly_ver01(void)
+@4 @efx::TBabaFly_ver01::~TBabaFly_ver01()
 {
 	/*
 	addi     r3, r3, -4
@@ -4268,7 +4268,7 @@ lbl_803B5750:
  * Address:	803B57A4
  * Size:	000008
  */
-@4 @efx::TTankFireIND::~TTankFireIND(void)
+@4 @efx::TTankFireIND::~TTankFireIND()
 {
 	/*
 	addi     r3, r3, -4
@@ -4281,7 +4281,7 @@ lbl_803B5750:
  * Address:	803B57AC
  * Size:	000008
  */
-@4 @efx::TDnkmsThunderA::~TDnkmsThunderA(void)
+@4 @efx::TDnkmsThunderA::~TDnkmsThunderA()
 {
 	/*
 	addi     r3, r3, -4
@@ -4294,7 +4294,7 @@ lbl_803B5750:
  * Address:	803B57B4
  * Size:	000008
  */
-@4 @efx::TDnkmsThunderB::~TDnkmsThunderB(void)
+@4 @efx::TDnkmsThunderB::~TDnkmsThunderB()
 {
 	/*
 	addi     r3, r3, -4

@@ -391,7 +391,7 @@ namespace Game {
  * Address:	802EBFF8
  * Size:	000148
  */
-MiniHoudai::Obj::Obj(void)
+MiniHoudai::Obj::Obj()
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -590,7 +590,7 @@ void MiniHoudai::Obj::onKill(Game::CreatureKillArg*)
  * Address:	802EC258
  * Size:	000054
  */
-void MiniHoudai::Obj::doUpdate(void)
+void MiniHoudai::Obj::doUpdate()
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -622,7 +622,7 @@ void MiniHoudai::Obj::doUpdate(void)
  * Address:	802EC2AC
  * Size:	000034
  */
-void MiniHoudai::Obj::doUpdateCommon(void)
+void MiniHoudai::Obj::doUpdateCommon()
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -646,7 +646,7 @@ void MiniHoudai::Obj::doUpdateCommon(void)
  * Address:	802EC2E0
  * Size:	00003C
  */
-void MiniHoudai::Obj::doAnimationCullingOff(void)
+void MiniHoudai::Obj::doAnimationCullingOff()
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -835,7 +835,7 @@ lbl_802EC49C:
  * Address:	802EC4B0
  * Size:	000034
  */
-void MiniHoudai::Obj::doStartStoneState(void)
+void MiniHoudai::Obj::doStartStoneState()
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -859,7 +859,7 @@ void MiniHoudai::Obj::doStartStoneState(void)
  * Address:	802EC4E4
  * Size:	000020
  */
-void MiniHoudai::Obj::doFinishStoneState(void)
+void MiniHoudai::Obj::doFinishStoneState()
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -878,7 +878,7 @@ void MiniHoudai::Obj::doFinishStoneState(void)
  * Address:	802EC504
  * Size:	000034
  */
-void MiniHoudai::Obj::doStartEarthquakeFitState(void)
+void MiniHoudai::Obj::doStartEarthquakeFitState()
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -902,7 +902,7 @@ void MiniHoudai::Obj::doStartEarthquakeFitState(void)
  * Address:	802EC538
  * Size:	000020
  */
-void MiniHoudai::Obj::doFinishEarthquakeFitState(void)
+void MiniHoudai::Obj::doFinishEarthquakeFitState()
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -921,7 +921,7 @@ void MiniHoudai::Obj::doFinishEarthquakeFitState(void)
  * Address:	802EC558
  * Size:	000034
  */
-void MiniHoudai::Obj::doStartWaitingBirthTypeDrop(void)
+void MiniHoudai::Obj::doStartWaitingBirthTypeDrop()
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -945,7 +945,7 @@ void MiniHoudai::Obj::doStartWaitingBirthTypeDrop(void)
  * Address:	802EC58C
  * Size:	000034
  */
-void MiniHoudai::Obj::doFinishWaitingBirthTypeDrop(void)
+void MiniHoudai::Obj::doFinishWaitingBirthTypeDrop()
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -969,7 +969,7 @@ void MiniHoudai::Obj::doFinishWaitingBirthTypeDrop(void)
  * Address:	802EC5C0
  * Size:	000028
  */
-void MiniHoudai::Obj::startCarcassMotion(void)
+void MiniHoudai::Obj::startCarcassMotion()
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -990,7 +990,7 @@ void MiniHoudai::Obj::startCarcassMotion(void)
  * Address:	802EC5E8
  * Size:	000020
  */
-void MiniHoudai::Obj::doStartMovie(void)
+void MiniHoudai::Obj::doStartMovie()
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -1009,7 +1009,7 @@ void MiniHoudai::Obj::doStartMovie(void)
  * Address:	802EC608
  * Size:	000020
  */
-void MiniHoudai::Obj::doEndMovie(void)
+void MiniHoudai::Obj::doEndMovie()
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -1028,7 +1028,7 @@ void MiniHoudai::Obj::doEndMovie(void)
  * Address:	802EC628
  * Size:	000064
  */
-void MiniHoudai::Obj::initWalkSmokeEffect(void)
+void MiniHoudai::Obj::initWalkSmokeEffect()
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -1064,7 +1064,7 @@ void MiniHoudai::Obj::initWalkSmokeEffect(void)
  * Address:	802EC68C
  * Size:	000008
  */
-void MiniHoudai::Obj::getWalkSmokeEffectMgr(void)
+void MiniHoudai::Obj::getWalkSmokeEffectMgr()
 {
 	/*
 	addi     r3, r3, 0x2c0
@@ -1077,7 +1077,7 @@ void MiniHoudai::Obj::getWalkSmokeEffectMgr(void)
  * Address:	802EC694
  * Size:	000014
  */
-void MiniHoudai::Obj::doBecomeCarcass(void)
+void MiniHoudai::Obj::doBecomeCarcass()
 {
 	/*
 	lfs      f0, lbl_8051CF8C@sda21(r2)
@@ -1093,7 +1093,7 @@ void MiniHoudai::Obj::doBecomeCarcass(void)
  * Address:	802EC6A8
  * Size:	0001FC
  */
-void MiniHoudai::Obj::doUpdateCarcass(void)
+void MiniHoudai::Obj::doUpdateCarcass()
 {
 	/*
 	stwu     r1, -0x70(r1)
@@ -1277,7 +1277,7 @@ lbl_802EC8E4:
  * Address:	802EC908
  * Size:	000050
  */
-void MiniHoudai::Obj::updateCaution(void)
+void MiniHoudai::Obj::updateCaution()
 {
 	/*
 	lwz      r4, 0x1e0(r3)
@@ -1312,7 +1312,7 @@ lbl_802EC930:
  * Address:	802EC958
  * Size:	000024
  */
-void MiniHoudai::Obj::getViewAngle(void)
+void MiniHoudai::Obj::getViewAngle()
 {
 	/*
 	lwz      r4, 0xc0(r3)
@@ -1334,7 +1334,7 @@ lbl_802EC974:
  * Address:	802EC97C
  * Size:	000010
  */
-void MiniHoudai::Obj::resetWayPoint(void)
+void MiniHoudai::Obj::resetWayPoint()
 {
 	/*
 	li       r0, 0
@@ -1349,7 +1349,7 @@ void MiniHoudai::Obj::resetWayPoint(void)
  * Address:	802EC98C
  * Size:	0000B0
  */
-void MiniHoudai::Obj::setNearestWayPoint(void)
+void MiniHoudai::Obj::setNearestWayPoint()
 {
 	/*
 	stwu     r1, -0x30(r1)
@@ -1408,7 +1408,7 @@ lbl_802ECA28:
  * Address:	802ECA3C
  * Size:	000260
  */
-void MiniHoudai::Obj::setLinkWayPoint(void)
+void MiniHoudai::Obj::setLinkWayPoint()
 {
 	/*
 	stwu     r1, -0x80(r1)
@@ -1587,7 +1587,7 @@ lbl_802ECC7C:
  * Address:	802ECC9C
  * Size:	00006C
  */
-void MiniHoudai::Obj::getSearchedTarget(void)
+void MiniHoudai::Obj::getSearchedTarget()
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -1632,7 +1632,7 @@ lbl_802ECCF4:
  * Address:	802ECD08
  * Size:	000128
  */
-void MiniHoudai::Obj::updateTargetDistance(void)
+void MiniHoudai::Obj::updateTargetDistance()
 {
 	/*
 	stwu     r1, -0x30(r1)
@@ -1729,7 +1729,7 @@ lbl_802ECE1C:
  * Address:	802ECE30
  * Size:	0000BC
  */
-void MiniHoudai::Obj::updateHomePosition(void)
+void MiniHoudai::Obj::updateHomePosition()
 {
 	/*
 	stwu     r1, -0x20(r1)
@@ -1793,7 +1793,7 @@ lbl_802ECED0:
  * Address:	802ECEEC
  * Size:	00032C
  */
-void MiniHoudai::Obj::isAttackableTarget(void)
+void MiniHoudai::Obj::isAttackableTarget()
 {
 	/*
 	stwu     r1, -0x130(r1)
@@ -2031,7 +2031,7 @@ lbl_802ED1CC:
  * Address:	802ED218
  * Size:	000048
  */
-void MiniHoudai::Obj::createShotGun(void)
+void MiniHoudai::Obj::createShotGun()
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -2062,7 +2062,7 @@ lbl_802ED248:
  * Address:	802ED260
  * Size:	000024
  */
-void MiniHoudai::Obj::setupShotGun(void)
+void MiniHoudai::Obj::setupShotGun()
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -2084,7 +2084,7 @@ void MiniHoudai::Obj::setupShotGun(void)
  * Address:	........
  * Size:	000024
  */
-void setShotGunTarget__Q34Game10MiniHoudai3ObjFR10Vector3f(void)
+void setShotGunTarget__Q34Game10MiniHoudai3ObjFR10Vector3f()
 {
 	// UNUSED FUNCTION
 }
@@ -2096,7 +2096,7 @@ namespace Game {
  * Address:	802ED284
  * Size:	000024
  */
-void MiniHoudai::Obj::resetShotGunCallBack(void)
+void MiniHoudai::Obj::resetShotGunCallBack()
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -2116,7 +2116,7 @@ void MiniHoudai::Obj::resetShotGunCallBack(void)
  * Address:	802ED2A8
  * Size:	000024
  */
-void MiniHoudai::Obj::setShotGunCallBack(void)
+void MiniHoudai::Obj::setShotGunCallBack()
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -2136,7 +2136,7 @@ void MiniHoudai::Obj::setShotGunCallBack(void)
  * Address:	802ED2CC
  * Size:	000024
  */
-void MiniHoudai::Obj::doUpdateShotGun(void)
+void MiniHoudai::Obj::doUpdateShotGun()
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -2156,7 +2156,7 @@ void MiniHoudai::Obj::doUpdateShotGun(void)
  * Address:	802ED2F0
  * Size:	000024
  */
-void MiniHoudai::Obj::doUpdateCommonShotGun(void)
+void MiniHoudai::Obj::doUpdateCommonShotGun()
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -2176,7 +2176,7 @@ void MiniHoudai::Obj::doUpdateCommonShotGun(void)
  * Address:	802ED314
  * Size:	000024
  */
-void MiniHoudai::Obj::startShotGunRotation(void)
+void MiniHoudai::Obj::startShotGunRotation()
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -2196,7 +2196,7 @@ void MiniHoudai::Obj::startShotGunRotation(void)
  * Address:	802ED338
  * Size:	000024
  */
-void MiniHoudai::Obj::finishShotGunRotation(void)
+void MiniHoudai::Obj::finishShotGunRotation()
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -2216,7 +2216,7 @@ void MiniHoudai::Obj::finishShotGunRotation(void)
  * Address:	802ED35C
  * Size:	000024
  */
-void MiniHoudai::Obj::isShotGunRotation(void)
+void MiniHoudai::Obj::isShotGunRotation()
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -2236,7 +2236,7 @@ void MiniHoudai::Obj::isShotGunRotation(void)
  * Address:	802ED380
  * Size:	000024
  */
-void MiniHoudai::Obj::isShotGunLockOn(void)
+void MiniHoudai::Obj::isShotGunLockOn()
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -2256,7 +2256,7 @@ void MiniHoudai::Obj::isShotGunLockOn(void)
  * Address:	802ED3A4
  * Size:	000024
  */
-void MiniHoudai::Obj::isFinishShotGun(void)
+void MiniHoudai::Obj::isFinishShotGun()
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -2276,7 +2276,7 @@ void MiniHoudai::Obj::isFinishShotGun(void)
  * Address:	802ED3C8
  * Size:	000024
  */
-void MiniHoudai::Obj::emitShotGun(void)
+void MiniHoudai::Obj::emitShotGun()
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -2296,7 +2296,7 @@ void MiniHoudai::Obj::emitShotGun(void)
  * Address:	802ED3EC
  * Size:	00002C
  */
-void MiniHoudai::Obj::setShotGunTargetPosition(void)
+void MiniHoudai::Obj::setShotGunTargetPosition()
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -2329,7 +2329,7 @@ void MiniHoudai::Obj::shotGunDoDebugDraw(Graphics&)
  * Address:	802ED418
  * Size:	000024
  */
-void MiniHoudai::Obj::forceFinishShotGun(void)
+void MiniHoudai::Obj::forceFinishShotGun()
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -2349,7 +2349,7 @@ void MiniHoudai::Obj::forceFinishShotGun(void)
  * Address:	802ED43C
  * Size:	000138
  */
-void MiniHoudai::Obj::createEffect(void)
+void MiniHoudai::Obj::createEffect()
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -2442,7 +2442,7 @@ lbl_802ED55C:
  * Address:	802ED574
  * Size:	000058
  */
-void MiniHoudai::Obj::setupEffect(void)
+void MiniHoudai::Obj::setupEffect()
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -2530,7 +2530,7 @@ lbl_802ED60C:
  * Address:	802ED66C
  * Size:	0000E8
  */
-void MiniHoudai::Obj::createSmokeLargeEffect(void)
+void MiniHoudai::Obj::createSmokeLargeEffect()
 {
 	/*
 	stwu     r1, -0x30(r1)
@@ -2619,7 +2619,7 @@ void MiniHoudai::Obj::createDownEffect(float)
  * Address:	802ED778
  * Size:	000034
  */
-void MiniHoudai::Obj::startChargeEffect(void)
+void MiniHoudai::Obj::startChargeEffect()
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -2643,7 +2643,7 @@ void MiniHoudai::Obj::startChargeEffect(void)
  * Address:	802ED7AC
  * Size:	000030
  */
-void MiniHoudai::Obj::finishChargeEffect(void)
+void MiniHoudai::Obj::finishChargeEffect()
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -2666,7 +2666,7 @@ void MiniHoudai::Obj::finishChargeEffect(void)
  * Address:	802ED7DC
  * Size:	000034
  */
-void MiniHoudai::Obj::createDeadLightEffect(void)
+void MiniHoudai::Obj::createDeadLightEffect()
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -2690,7 +2690,7 @@ void MiniHoudai::Obj::createDeadLightEffect(void)
  * Address:	802ED810
  * Size:	0001D4
  */
-void MiniHoudai::Obj::createDeadBombEmitEffect(void)
+void MiniHoudai::Obj::createDeadBombEmitEffect()
 {
 	/*
 	stwu     r1, -0x70(r1)
@@ -2818,7 +2818,7 @@ void MiniHoudai::Obj::createDeadBombEmitEffect(void)
  * Address:	802ED9E4
  * Size:	000058
  */
-void MiniHoudai::Obj::effectDrawOn(void)
+void MiniHoudai::Obj::effectDrawOn()
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -2851,7 +2851,7 @@ void MiniHoudai::Obj::effectDrawOn(void)
  * Address:	802EDA3C
  * Size:	000058
  */
-void MiniHoudai::Obj::effectDrawOff(void)
+void MiniHoudai::Obj::effectDrawOff()
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -2886,7 +2886,7 @@ namespace efx {
  * Address:	802EDA94
  * Size:	00009C
  */
-TChibiDeadLight::~TChibiDeadLight(void)
+TChibiDeadLight::~TChibiDeadLight()
 {
 	/*
 stwu     r1, -0x10(r1)
@@ -2940,7 +2940,7 @@ blr
  * Address:	802EDB30
  * Size:	00009C
  */
-TChibiCharge::~TChibiCharge(void)
+TChibiCharge::~TChibiCharge()
 {
 	/*
 stwu     r1, -0x10(r1)
@@ -2994,7 +2994,7 @@ blr
  * Address:	802EDBCC
  * Size:	0000BC
  */
-MiniHoudai::Obj::~Obj(void)
+MiniHoudai::Obj::~Obj()
 {
 	/*
 stwu     r1, -0x10(r1)
@@ -3058,7 +3058,7 @@ blr
  * Address:	802EDC88
  * Size:	000008
  */
-void MiniHoudai::Obj::getDownSmokeScale(void)
+void MiniHoudai::Obj::getDownSmokeScale()
 {
 	/*
 	lfs      f1, lbl_8051D018@sda21(r2)
@@ -3071,7 +3071,7 @@ void MiniHoudai::Obj::getDownSmokeScale(void)
  * Address:	802EDC90
  * Size:	000008
  */
-@4 @efx::TChibiCharge::~TChibiCharge(void)
+@4 @efx::TChibiCharge::~TChibiCharge()
 {
 	/*
 	addi     r3, r3, -4
@@ -3084,7 +3084,7 @@ void MiniHoudai::Obj::getDownSmokeScale(void)
  * Address:	802EDC98
  * Size:	000008
  */
-@4 @efx::TChibiDeadLight::~TChibiDeadLight(void)
+@4 @efx::TChibiDeadLight::~TChibiDeadLight()
 {
 	/*
 	addi     r3, r3, -4

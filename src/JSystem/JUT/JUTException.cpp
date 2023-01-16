@@ -3304,7 +3304,7 @@ JUTException::~JUTException() { }
  * Address:	8002CDC0
  * Size:	000048
  */
-// void __sinit_JUTException_cpp(void) { }
+// void __sinit_JUTException_cpp() { }
 
 /*
  * --INFO--

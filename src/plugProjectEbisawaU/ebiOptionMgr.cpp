@@ -657,7 +657,7 @@ lbl_803CECCC:
  * Size:	000030
  */
 // void transit__Q24Game28FSMState<ebi::Option::TMgr>
-// FPQ33ebi6Option4TMgriPQ24Game8StateArg(void)
+// FPQ33ebi6Option4TMgriPQ24Game8StateArg()
 // template<> void Game::FSMState<ebi::Option::TMgr>::transit(ebi::Option::TMgr
 // *, int, StateArg *)
 // {
@@ -1362,7 +1362,7 @@ lbl_803CF3CC:
  * Address:	803CF3E4
  * Size:	0000C0
  */
-Option::TMgr::TMgr(void)
+Option::TMgr::TMgr()
     : m_optionScreen()
     , _F20(0)
     , m_stateMachine()
@@ -1433,7 +1433,7 @@ Option::TMgr::TMgr(void)
  * Size:	000034
  */
 // void start__Q24Game32StateMachine<ebi::Option::TMgr>
-// FPQ33ebi6Option4TMgriPQ24Game8StateArg(void)
+// FPQ33ebi6Option4TMgriPQ24Game8StateArg()
 template <>
 void Game::StateMachine<ebi::Option::TMgr>::start(ebi::Option::TMgr* obj, int id, StateArg* arg)
 {
@@ -1465,7 +1465,7 @@ namespace Screen {
  * Address:	803CF4D8
  * Size:	00030C
  */
-TOption::~TOption(void)
+TOption::~TOption()
 {
 	/*
 stwu     r1, -0x10(r1)
@@ -1688,7 +1688,7 @@ blr
  * Address:	803CF7E4
  * Size:	000090
  */
-E2DCallBack_Purupuru::~E2DCallBack_Purupuru(void)
+E2DCallBack_Purupuru::~E2DCallBack_Purupuru()
 {
 	/*
 stwu     r1, -0x10(r1)
@@ -1739,7 +1739,7 @@ blr
  * Address:	803CF874
  * Size:	00043C
  */
-Screen::TOption::TOption(void)
+Screen::TOption::TOption()
     : TScreenBase()
     , _010(1)
     , m_padInterfaces()
@@ -2037,7 +2037,7 @@ blr
  * Address:	803CFCB0
  * Size:	000090
  */
-E2DCallBack_WindowCursor::~E2DCallBack_WindowCursor(void)
+E2DCallBack_WindowCursor::~E2DCallBack_WindowCursor()
 {
 	/*
 stwu     r1, -0x10(r1)
@@ -2135,7 +2135,7 @@ blr
  * Address:	803CFDCC
  * Size:	000090
  */
-E2DCallBack_BlinkAlpha::~E2DCallBack_BlinkAlpha(void)
+E2DCallBack_BlinkAlpha::~E2DCallBack_BlinkAlpha()
 {
 	/*
 stwu     r1, -0x10(r1)
@@ -2186,7 +2186,7 @@ blr
  * Address:	803CFE5C
  * Size:	000090
  */
-E2DCallBack_BlinkFontColor::~E2DCallBack_BlinkFontColor(void)
+E2DCallBack_BlinkFontColor::~E2DCallBack_BlinkFontColor()
 {
 	/*
 stwu     r1, -0x10(r1)
@@ -2237,7 +2237,7 @@ blr
  * Address:	803CFEEC
  * Size:	000018
  */
-E2DFullFontColor::E2DFullFontColor(void)
+E2DFullFontColor::E2DFullFontColor()
     : _00(0xFFFFFFFF)
     , _04(0xFFFFFFFF)
     , m_white(0xFFFFFFFF)
@@ -2258,7 +2258,7 @@ blr
  * Address:	803CFF04
  * Size:	000090
  */
-E2DCallBack_CalcAnimation::~E2DCallBack_CalcAnimation(void)
+E2DCallBack_CalcAnimation::~E2DCallBack_CalcAnimation()
 {
 	/*
 stwu     r1, -0x10(r1)
@@ -2309,7 +2309,7 @@ blr
  * Address:	803CFF94
  * Size:	0000AC
  */
-E2DCallBack_AnmBase::~E2DCallBack_AnmBase(void)
+E2DCallBack_AnmBase::~E2DCallBack_AnmBase()
 {
 	/*
 stwu     r1, -0x10(r1)
@@ -2369,7 +2369,7 @@ blr
  * Address:	803D0040
  * Size:	000080
  */
-E2DCallBack_Base::~E2DCallBack_Base(void)
+E2DCallBack_Base::~E2DCallBack_Base()
 {
 	/*
 stwu     r1, -0x10(r1)
@@ -2416,7 +2416,7 @@ blr
  * Address:	803D00C0
  * Size:	000088
  */
-void Option::TMgr::loadResource(void)
+void Option::TMgr::loadResource()
 {
 	sys->heapStatusStart("Option::TMgr::loadResource", nullptr);
 	m_optionScreen.loadResource();
@@ -2503,7 +2503,7 @@ void Option::TMgr::setController(Controller* controller)
  * Address:	803D0194
  * Size:	00003C
  */
-void Option::TMgr::start(void)
+void Option::TMgr::start()
 {
 	m_stateMachine.transit(this, LoadOption, nullptr);
 	/*
@@ -2530,7 +2530,7 @@ void Option::TMgr::start(void)
  * Address:	........
  * Size:	000064
  */
-void Option::TMgr::forceQuit(void)
+void Option::TMgr::forceQuit()
 {
 	// UNUSED FUNCTION
 	m_optionScreen.killScreen();
@@ -2543,7 +2543,7 @@ void Option::TMgr::forceQuit(void)
  * Address:	803D01D0
  * Size:	000028
  */
-bool Option::TMgr::isFinish(void)
+bool Option::TMgr::isFinish()
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -2564,7 +2564,7 @@ bool Option::TMgr::isFinish(void)
  * Address:	803D01F8
  * Size:	00007C
  */
-void Option::TMgr::goEnd_(void)
+void Option::TMgr::goEnd_()
 {
 	m_stateMachine.transit(this, Standby, nullptr);
 	forceQuit();
@@ -2608,7 +2608,7 @@ void Option::TMgr::goEnd_(void)
  * Address:	803D0274
  * Size:	000094
  */
-void Option::TMgr::update(void)
+void Option::TMgr::update()
 {
 	_F20 = 0;
 	m_stateMachine.exec(this);
@@ -2666,7 +2666,7 @@ lbl_803D02EC:
  * Address:	803D0308
  * Size:	000090
  */
-void Option::TMgr::draw(void)
+void Option::TMgr::draw()
 {
 	if (getStateID()) {
 		sys->m_gfx->m_perspGraph.setPort();
@@ -2722,7 +2722,7 @@ lbl_803D0374:
  * Address:	........
  * Size:	000024
  */
-void Option::TMgr::showInfo(void)
+void Option::TMgr::showInfo()
 {
 	// UNUSED FUNCTION
 }
@@ -2732,7 +2732,7 @@ void Option::TMgr::showInfo(void)
  * Address:	803D0398
  * Size:	000058
  */
-int Option::TMgr::getStateID(void)
+int Option::TMgr::getStateID()
 {
 	P2ASSERTLINE(430, _F28 != 0);
 	return _F28;
@@ -2769,7 +2769,7 @@ lbl_803D03D4:
  * Address:	803D03F0
  * Size:	000050
  */
-void E2DCallBack_CalcAnimation::do_update(void)
+void E2DCallBack_CalcAnimation::do_update()
 {
 	if (_18->getTypeID() == 8) {
 		static_cast<J2DScreen*>(_18)->animation();
@@ -2805,7 +2805,7 @@ lbl_803D042C:
  * Address:	803D0440
  * Size:	000038
  */
-void E2DCallBack_Base::update(void)
+void E2DCallBack_Base::update()
 {
 	if (m_isEnabled) {
 		do_update();
@@ -2835,7 +2835,7 @@ lbl_803D0468:
  * Address:	803D0478
  * Size:	000004
  */
-void E2DCallBack_Base::do_update(void) { }
+void E2DCallBack_Base::do_update() { }
 
 /*
  * --INFO--
@@ -2881,7 +2881,7 @@ void E2DCallBack_Base::do_draw(Graphics&, J2DGrafContext&) { }
  * Size:	000004
  */
 // void init__Q24Game28FSMState<ebi::Option::TMgr>
-// FPQ33ebi6Option4TMgrPQ24Game8StateArg(void)
+// FPQ33ebi6Option4TMgrPQ24Game8StateArg()
 template <>
 void Game::FSMState<ebi::Option::TMgr>::init(ebi::Option::TMgr*, StateArg* arg)
 {
@@ -2892,7 +2892,7 @@ void Game::FSMState<ebi::Option::TMgr>::init(ebi::Option::TMgr*, StateArg* arg)
  * Address:	803D04BC
  * Size:	000004
  */
-// void exec__Q24Game28FSMState<ebi::Option::TMgr> FPQ33ebi6Option4TMgr(void) {
+// void exec__Q24Game28FSMState<ebi::Option::TMgr> FPQ33ebi6Option4TMgr() {
 // }
 template <>
 void Game::FSMState<ebi::Option::TMgr>::exec(ebi::Option::TMgr*)
@@ -2904,7 +2904,7 @@ void Game::FSMState<ebi::Option::TMgr>::exec(ebi::Option::TMgr*)
  * Address:	803D04C0
  * Size:	000004
  */
-// void cleanup__Q24Game28FSMState<ebi::Option::TMgr> FPQ33ebi6Option4TMgr(void)
+// void cleanup__Q24Game28FSMState<ebi::Option::TMgr> FPQ33ebi6Option4TMgr()
 // {}
 template <>
 void Game::FSMState<ebi::Option::TMgr>::cleanup(ebi::Option::TMgr*)
@@ -2916,7 +2916,7 @@ void Game::FSMState<ebi::Option::TMgr>::cleanup(ebi::Option::TMgr*)
  * Address:	803D04C4
  * Size:	000004
  */
-// void resume__Q24Game28FSMState<ebi::Option::TMgr> FPQ33ebi6Option4TMgr(void)
+// void resume__Q24Game28FSMState<ebi::Option::TMgr> FPQ33ebi6Option4TMgr()
 // { }
 template <>
 void Game::FSMState<ebi::Option::TMgr>::resume(ebi::Option::TMgr*)
@@ -2928,7 +2928,7 @@ void Game::FSMState<ebi::Option::TMgr>::resume(ebi::Option::TMgr*)
  * Address:	803D04C8
  * Size:	000004
  */
-// void restart__Q24Game28FSMState<ebi::Option::TMgr> FPQ33ebi6Option4TMgr(void)
+// void restart__Q24Game28FSMState<ebi::Option::TMgr> FPQ33ebi6Option4TMgr()
 // {}
 template <>
 void Game::FSMState<ebi::Option::TMgr>::restart(ebi::Option::TMgr*)
@@ -2941,7 +2941,7 @@ void Game::FSMState<ebi::Option::TMgr>::restart(ebi::Option::TMgr*)
  * Size:	000004
  */
 // void init__Q24Game32StateMachine<ebi::Option::TMgr>
-// FPQ33ebi6Option4TMgr(void)
+// FPQ33ebi6Option4TMgr()
 template <>
 void Game::StateMachine<ebi::Option::TMgr>::init(ebi::Option::TMgr*)
 {
@@ -2953,7 +2953,7 @@ void Game::StateMachine<ebi::Option::TMgr>::init(ebi::Option::TMgr*)
  * Size:	000038
  */
 // void exec__Q24Game32StateMachine<ebi::Option::TMgr>
-// FPQ33ebi6Option4TMgr(void)
+// FPQ33ebi6Option4TMgr()
 template <>
 void Game::StateMachine<ebi::Option::TMgr>::exec(ebi::Option::TMgr* obj)
 {
@@ -2984,7 +2984,7 @@ lbl_803D04F8:
  * Address:	803D0508
  * Size:	000064
  */
-// void create__Q24Game32StateMachine<ebi::Option::TMgr> Fi(void)
+// void create__Q24Game32StateMachine<ebi::Option::TMgr> Fi()
 // template <> void Game::StateMachine<ebi::Option::TMgr>::create(int)
 // {
 /*
@@ -3022,7 +3022,7 @@ blr
  * Size:	00009C
  */
 // void transit__Q24Game32StateMachine<ebi::Option::TMgr>
-// FPQ33ebi6Option4TMgriPQ24Game8StateArg(void)
+// FPQ33ebi6Option4TMgriPQ24Game8StateArg()
 template <>
 void Game::StateMachine<ebi::Option::TMgr>::transit(ebi::Option::TMgr*, int, Game::StateArg* arg)
 {
@@ -3084,7 +3084,7 @@ void Game::StateMachine<ebi::Option::TMgr>::transit(ebi::Option::TMgr*, int, Gam
  * Size:	000084
  */
 // void registerState__Q24Game32StateMachine<ebi::Option::TMgr>
-// FPQ24Game28FSMState<ebi::Option::TMgr>(void)
+// FPQ24Game28FSMState<ebi::Option::TMgr>()
 // template <> void
 // Game::StateMachine<ebi::Option::TMgr>::registerState(Game::FSMState<ebi::Option::TMgr>*);
 // {

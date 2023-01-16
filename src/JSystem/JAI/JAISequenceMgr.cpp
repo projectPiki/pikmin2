@@ -78,7 +78,7 @@ JAInter::SequenceMgr::CustomHeapCallback JAInter::SequenceMgr::customHeapCallbac
  * Address:	800B0944
  * Size:	000488
  */
-void JAInter::SequenceMgr::init(void)
+void JAInter::SequenceMgr::init()
 {
 	/*
 	stwu     r1, -0x80(r1)
@@ -510,7 +510,7 @@ JAInter::SeqUpdateData::SeqUpdateData()
  * Address:	800B0F18
  * Size:	000068
  */
-JAInter::PlayerParameter::~PlayerParameter(void)
+JAInter::PlayerParameter::~PlayerParameter()
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -551,7 +551,7 @@ lbl_800B0F64:
  * Address:	800B0F80
  * Size:	000050
  */
-JAInter::PlayerParameter::PlayerParameter(void)
+JAInter::PlayerParameter::PlayerParameter()
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -669,7 +669,7 @@ void JAInter::SequenceMgr::setCustomHeapCallback(JAInter::SequenceMgr::CustomHea
  * Address:	800B10AC
  * Size:	000038
  */
-void JAInter::SequenceMgr::processGFrameSequence(void)
+void JAInter::SequenceMgr::processGFrameSequence()
 {
 	checkEntriedSeq();
 	checkStoppedSeq();
@@ -685,7 +685,7 @@ void JAInter::SequenceMgr::processGFrameSequence(void)
  * Address:	800B10E4
  * Size:	000430
  */
-void JAInter::SequenceMgr::checkEntriedSeq(void)
+void JAInter::SequenceMgr::checkEntriedSeq()
 {
 	/*
 	stwu     r1, -0x40(r1)
@@ -1014,7 +1014,7 @@ lbl_800B14F4:
  * Address:	800B1514
  * Size:	0000B8
  */
-void JAInter::SequenceMgr::checkFadeoutSeq(void)
+void JAInter::SequenceMgr::checkFadeoutSeq()
 {
 	for (u32 i = 0; i < JAIGlobalParameter::getParamSeqPlayTrackMax(); i++) {
 		SeqUpdateData* info = &seqTrackInfo[i];
@@ -1039,7 +1039,7 @@ void JAInter::SequenceMgr::checkFadeoutSeq(void)
  * Address:	800B15EC
  * Size:	0000A4
  */
-void JAInter::SequenceMgr::checkStoppedSeq(void)
+void JAInter::SequenceMgr::checkStoppedSeq()
 {
 	for (u32 i = 0; i < JAIGlobalParameter::getParamSeqPlayTrackMax(); i++) {
 		SeqUpdateData* info = &seqTrackInfo[i];
@@ -1057,7 +1057,7 @@ void JAInter::SequenceMgr::checkStoppedSeq(void)
  * Address:	800B1690
  * Size:	0000EC
  */
-void JAInter::SequenceMgr::checkPlayingSeq(void)
+void JAInter::SequenceMgr::checkPlayingSeq()
 {
 	for (u32 i = 0; i < JAIGlobalParameter::getParamSeqPlayTrackMax(); i++) {
 		SeqUpdateData* info = seqTrackInfo + i;
@@ -1080,7 +1080,7 @@ void JAInter::SequenceMgr::checkPlayingSeq(void)
  * Address:	800B177C
  * Size:	0000A0
  */
-void JAInter::SequenceMgr::checkStartedSeq(void)
+void JAInter::SequenceMgr::checkStartedSeq()
 {
 	for (u32 i = 0; i < JAIGlobalParameter::getParamSeqPlayTrackMax(); i++) {
 		SeqUpdateData* info = seqTrackInfo + i;
@@ -1097,7 +1097,7 @@ void JAInter::SequenceMgr::checkStartedSeq(void)
  * Address:	800B181C
  * Size:	000224
  */
-void JAInter::SequenceMgr::checkReadSeq(void)
+void JAInter::SequenceMgr::checkReadSeq()
 {
 	for (u32 i = 0; i < JAIGlobalParameter::getParamSeqPlayTrackMax(); i++) {
 		SeqUpdateData* info = seqTrackInfo + i;

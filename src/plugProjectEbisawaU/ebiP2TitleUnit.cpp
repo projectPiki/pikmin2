@@ -119,7 +119,7 @@
  * Address:	........
  * Size:	0000A8
  */
-void E3DModel_set2DCoordToBaseTRMatrix__Q23ebi5titleFP8J3DModelR10Vector2<float> R10Vector2<float> f(void)
+void E3DModel_set2DCoordToBaseTRMatrix__Q23ebi5titleFP8J3DModelR10Vector2<float> R10Vector2<float> f()
 {
 	// UNUSED FUNCTION
 }
@@ -183,7 +183,7 @@ blr
  * Address:	803C0B80
  * Size:	0000B0
  */
-void TObjBase::calcModelBaseMtx_(void)
+void TObjBase::calcModelBaseMtx_()
 {
 	/*
 stwu     r1, -0x40(r1)
@@ -241,7 +241,7 @@ blr
  * Address:	........
  * Size:	000040
  */
-void pushOut___Q33ebi5title8TObjBaseFP10Vector2<float> f(void)
+void pushOut___Q33ebi5title8TObjBaseFP10Vector2<float> f()
 {
 	// UNUSED FUNCTION
 }
@@ -489,7 +489,7 @@ blr
  * Address:	803C0F2C
  * Size:	00027C
  */
-void TMapBase::update(void)
+void TMapBase::update()
 {
 	/*
 stwu     r1, -0x60(r1)
@@ -780,7 +780,7 @@ blr
  * Address:	803C12F8
  * Size:	00005C
  */
-void TBGEnemyBase::start(void)
+void TBGEnemyBase::start()
 {
 	/*
 stwu     r1, -0x10(r1)
@@ -814,7 +814,7 @@ blr
  * Address:	803C1354
  * Size:	000124
  */
-void TBGEnemyBase::update(void)
+void TBGEnemyBase::update()
 {
 	/*
 stwu     r1, -0x40(r1)
@@ -1105,7 +1105,7 @@ blr
  * Address:	803C1750
  * Size:	0000A0
  */
-void TBlackPlane::start(void)
+void TBlackPlane::start()
 {
 	/*
 stwu     r1, -0x10(r1)
@@ -1156,7 +1156,7 @@ blr
  * Address:	803C17F0
  * Size:	000110
  */
-void TBlackPlane::updateBeforeCamera(void)
+void TBlackPlane::updateBeforeCamera()
 {
 	/*
 stwu     r1, -0x40(r1)
@@ -1235,7 +1235,7 @@ blr
  * Address:	803C1900
  * Size:	000050
  */
-void TBlackPlane::updateAfterCamera(void)
+void TBlackPlane::updateAfterCamera()
 {
 	/*
 stwu     r1, -0x10(r1)
@@ -1266,7 +1266,7 @@ blr
  * Address:	803C1950
  * Size:	00004C
  */
-void TBlackPlane::setLogo(void)
+void TBlackPlane::setLogo()
 {
 	/*
 stwu     r1, -0x20(r1)
@@ -1296,7 +1296,7 @@ blr
  * Address:	803C199C
  * Size:	000078
  */
-void TBlackPlane::getCameraPos(void)
+void TBlackPlane::getCameraPos()
 {
 	/*
 stwu     r1, -0x10(r1)
@@ -1340,7 +1340,7 @@ blr
  * Address:	803C1A14
  * Size:	000028
  */
-void __sinit_ebiP2TitleUnit_cpp(void)
+void __sinit_ebiP2TitleUnit_cpp()
 {
 	/*
 	lis      r4, __float_nan@ha

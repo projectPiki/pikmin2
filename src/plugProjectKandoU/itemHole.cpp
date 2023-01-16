@@ -2501,7 +2501,7 @@ char* ItemHole::Item::getCreatureName()
  * Address:	801D2D3C
  * Size:	000028
  */
-// void __sinit_itemHole_cpp(void)
+// void __sinit_itemHole_cpp()
 // {
 // 	/*
 // 	lis      r4, __float_nan@ha

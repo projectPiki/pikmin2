@@ -244,7 +244,7 @@ P2JST::ObjectActor::ObjectActor(char const*, Game::MoviePlayer*)
  * Address:	8042EA30
  * Size:	000068
  */
-P2JST::ObjectActor::~ObjectActor(void)
+P2JST::ObjectActor::~ObjectActor()
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -283,7 +283,7 @@ lbl_8042EA7C:
  * Address:	8042EA98
  * Size:	000070
  */
-void P2JST::ObjectActor::reset(void)
+void P2JST::ObjectActor::reset()
 {
 	/*
 	lis      r4, lbl_804EC018@ha
@@ -322,7 +322,7 @@ void P2JST::ObjectActor::reset(void)
  * Address:	8042EB08
  * Size:	000390
  */
-void P2JST::ObjectActor::update(void)
+void P2JST::ObjectActor::update()
 {
 	/*
 	stwu     r1, -0x120(r1)
@@ -573,7 +573,7 @@ lbl_8042EE70:
  * Address:	8042EE98
  * Size:	000068
  */
-void P2JST::ObjectActor::entry(void)
+void P2JST::ObjectActor::entry()
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -612,7 +612,7 @@ lbl_8042EEEC:
  * Address:	8042EF00
  * Size:	0001A4
  */
-void P2JST::ObjectActor::setShape(void)
+void P2JST::ObjectActor::setShape()
 {
 	/*
 	stwu     r1, -0x20(r1)
@@ -746,7 +746,7 @@ lbl_8042F084:
  * Address:	8042F0A4
  * Size:	000128
  */
-void P2JST::ObjectActor::setAnim(void)
+void P2JST::ObjectActor::setAnim()
 {
 	/*
 	stwu     r1, -0x20(r1)
@@ -841,7 +841,7 @@ lbl_8042F1B8:
  * Address:	8042F1CC
  * Size:	000038
  */
-void P2JST::ObjectActor::mountArchive(void)
+void P2JST::ObjectActor::mountArchive()
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -1392,14 +1392,14 @@ void P2JST::ObjectActor::JSGGetAnimationFrame() const
  * Address:	8042F688
  * Size:	000004
  */
-void P2JST::ObjectActor::stop(void) { }
+void P2JST::ObjectActor::stop() { }
 
 /*
  * --INFO--
  * Address:	8042F68C
  * Size:	000004
  */
-void P2JST::ObjectActor::start(void) { }
+void P2JST::ObjectActor::start() { }
 
 /*
  * --INFO--
@@ -1415,7 +1415,7 @@ void P2JST::ObjectBase::parseUserData_(unsigned long, void const*) { }
  * Address:	8042F694
  * Size:	000028
  */
-void __sinit_JSTObjectActor_cpp(void)
+void __sinit_JSTObjectActor_cpp()
 {
 	/*
 	lis      r4, __float_nan@ha
@@ -1449,7 +1449,7 @@ void @4 @Game::P2JST::ObjectActor::parseUserData_(unsigned long, void const*)
  * Address:	8042F6C4
  * Size:	000008
  */
-void @4 @Game::P2JST::ObjectActor::stop(void)
+void @4 @Game::P2JST::ObjectActor::stop()
 {
 	/*
 	addi     r3, r3, -4
@@ -1462,7 +1462,7 @@ void @4 @Game::P2JST::ObjectActor::stop(void)
  * Address:	8042F6CC
  * Size:	000008
  */
-void @4 @Game::P2JST::ObjectActor::start(void)
+void @4 @Game::P2JST::ObjectActor::start()
 {
 	/*
 	addi     r3, r3, -4
@@ -1475,7 +1475,7 @@ void @4 @Game::P2JST::ObjectActor::start(void)
  * Address:	8042F6D4
  * Size:	000008
  */
-void @4 @Game::P2JST::ObjectActor::update(void)
+void @4 @Game::P2JST::ObjectActor::update()
 {
 	/*
 	addi     r3, r3, -4
@@ -1488,7 +1488,7 @@ void @4 @Game::P2JST::ObjectActor::update(void)
  * Address:	8042F6DC
  * Size:	000008
  */
-void @4 @Game::P2JST::ObjectActor::reset(void)
+void @4 @Game::P2JST::ObjectActor::reset()
 {
 	/*
 	addi     r3, r3, -4

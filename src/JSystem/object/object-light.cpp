@@ -724,7 +724,7 @@ JStudio_JStage::TAdaptor_light::TVVOutput_direction_::~TVVOutput_direction_()
  * Address:	80011B34
  * Size:	000298
  */
-// void __sinit_object - light_cpp(void)
+// void __sinit_object - light_cpp()
 // {
 // 	/*
 // 	stwu     r1, -0x60(r1)

@@ -1855,4 +1855,4 @@ void J3DShapeMtxMultiConcatView::loadNrmMtx(int, unsigned short) const { }
  * Address:	80087758
  * Size:	0001A8
  */
-// void __sinit_J3DShapeMtx_cpp(void) { }
+// void __sinit_J3DShapeMtx_cpp() { }

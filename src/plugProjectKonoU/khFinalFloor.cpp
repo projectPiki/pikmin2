@@ -1109,7 +1109,7 @@ blr
  * Address:	804027F8
  * Size:	00004C
  */
-void __sinit_khFinalFloor_cpp(void)
+void __sinit_khFinalFloor_cpp()
 {
 	/*
 	lis      r3, __float_nan@ha

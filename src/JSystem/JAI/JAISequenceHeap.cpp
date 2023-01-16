@@ -220,7 +220,7 @@ void JAInter::HeapMgr::init(unsigned char p1, unsigned long p2, unsigned char p3
  * Address:	800B0594
  * Size:	000008
  */
-JAInter::HeapBlock* JAInter::HeapMgr::getAutoHeapPointer(void) { return sAutoHeap; }
+JAInter::HeapBlock* JAInter::HeapMgr::getAutoHeapPointer() { return sAutoHeap; }
 
 /*
  * --INFO--
@@ -389,7 +389,7 @@ void JAInter::HeapMgr::changeAutoHeapPointerToPosition(unsigned char*)
  * Address:	800B06C0
  * Size:	0000E8
  */
-void JAInter::HeapMgr::checkUsefulAutoHeapPosition(void)
+void JAInter::HeapMgr::checkUsefulAutoHeapPosition()
 {
 	/*
 	stwu     r1, -0x20(r1)
@@ -655,7 +655,7 @@ void JAInter::HeapMgr::setStayHeapLoadedFlag(unsigned char index, unsigned char 
  * Address:	800B092C
  * Size:	000018
  */
-JAInter::HeapBlock::HeapBlock(void)
+JAInter::HeapBlock::HeapBlock()
 {
 	_0C = 0;
 	_08 = -1;

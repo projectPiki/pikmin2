@@ -172,7 +172,7 @@ lbl_8020EB7C:
  * Address:	8020EBBC
  * Size:	000154
  */
-void getNearestFlock__Q24Game12BaseFlockMgrFR10Vector3f(void)
+void getNearestFlock__Q24Game12BaseFlockMgrFR10Vector3f()
 {
 	/*
 	stwu     r1, -0x30(r1)
@@ -280,7 +280,7 @@ namespace Game {
  * Address:	........
  * Size:	000140
  */
-// void BaseFlockMgr::getRandomFlock(void)
+// void BaseFlockMgr::getRandomFlock()
 // {
 // UNUSED FUNCTION
 // }
@@ -719,7 +719,7 @@ blr
  * Address:	8020F258
  * Size:	000028
  */
-void __sinit_flockMgr_cpp(void)
+void __sinit_flockMgr_cpp()
 {
 	/*
 	lis      r4, __float_nan@ha

@@ -102,7 +102,7 @@ JADUtility::PrmSetBase::PrmSetBase(bool)
  * Address:	........
  * Size:	000094
  */
-JADUtility::PrmSetTree::~PrmSetTree(void)
+JADUtility::PrmSetTree::~PrmSetTree()
 {
 	// UNUSED FUNCTION
 }
@@ -112,7 +112,7 @@ JADUtility::PrmSetTree::~PrmSetTree(void)
  * Address:	........
  * Size:	000084
  */
-void __dt__Q210JADUtility36NodeTree<JADUtility::PrmSetBase> Fv(void)
+void __dt__Q210JADUtility36NodeTree<JADUtility::PrmSetBase> Fv()
 {
 	// UNUSED FUNCTION
 }
@@ -254,7 +254,7 @@ lbl_800BA6D8:
  * Address:	800BA6E8
  * Size:	0000E8
  */
-JADUtility::PrmSetBase::~PrmSetBase(void)
+JADUtility::PrmSetBase::~PrmSetBase()
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -333,7 +333,7 @@ lbl_800BA7B4:
  * Address:	800BA7D0
  * Size:	000004
  */
-void JADUtility::PrmSetBase::appendAfter(void) { }
+void JADUtility::PrmSetBase::appendAfter() { }
 
 /*
  * --INFO--
@@ -354,41 +354,39 @@ void JADUtility::PrmSetBase::afterRemovingThisButton(JADUtility::PrmSetBase*) { 
  * Address:	800BA7DC
  * Size:	000008
  */
-u32 JADUtility::PrmSetBase::getEraseLink(void) { return 0x0; }
+u32 JADUtility::PrmSetBase::getEraseLink() { return 0x0; }
 
 /*
  * --INFO--
  * Address:	800BA7E4
  * Size:	000004
  */
-void JADUtility::PrmSetBase::afterGetFromFree(void) { }
+void JADUtility::PrmSetBase::afterGetFromFree() { }
 
 /*
  * --INFO--
  * Address:	800BA7E8
  * Size:	000004
  */
-void beforeRemovingChild__Q210JADUtility36NodeTree<JADUtility::PrmSetBase> FPQ210JADUtility10PrmSetBase(void) { }
+void beforeRemovingChild__Q210JADUtility36NodeTree<JADUtility::PrmSetBase> FPQ210JADUtility10PrmSetBase() { }
 
 /*
  * --INFO--
  * Address:	800BA7EC
  * Size:	000004
  */
-void beforeRemovingThis__Q210JADUtility36NodeTree<JADUtility::PrmSetBase> FPQ210JADUtility10PrmSetBase(void) { }
+void beforeRemovingThis__Q210JADUtility36NodeTree<JADUtility::PrmSetBase> FPQ210JADUtility10PrmSetBase() { }
 
 /*
  * --INFO--
  * Address:	800BA7F0
  * Size:	000004
  */
-void afterRemovingChildButton__Q210JADUtility36NodeTree<JADUtility::PrmSetBase> FPQ210JADUtility10PrmSetBase(void) { }
+void afterRemovingChildButton__Q210JADUtility36NodeTree<JADUtility::PrmSetBase> FPQ210JADUtility10PrmSetBase() { }
 
 /*
  * --INFO--
  * Address:	800BA7F4
  * Size:	000004
  */
-void afterRemovingThisButton__Q210JADUtility36NodeTree<JADUtility::PrmSetBase> FPQ210JADUtility10PrmSetBasePQ210JADUtility10PrmSetBase(void)
-{
-}
+void afterRemovingThisButton__Q210JADUtility36NodeTree<JADUtility::PrmSetBase> FPQ210JADUtility10PrmSetBasePQ210JADUtility10PrmSetBase() { }

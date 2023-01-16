@@ -219,7 +219,7 @@ lbl_80238FF8:
  * Address:	8023902C
  * Size:	000060
  */
-void PikiAI::ActRescue::exec(void)
+void PikiAI::ActRescue::exec()
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -266,7 +266,7 @@ lbl_8023907C:
  * Address:	........
  * Size:	0000C0
  */
-void PikiAI::ActRescue::checkPikmin(void)
+void PikiAI::ActRescue::checkPikmin()
 {
 	// UNUSED FUNCTION
 }
@@ -276,7 +276,7 @@ void PikiAI::ActRescue::checkPikmin(void)
  * Address:	8023908C
  * Size:	0000AC
  */
-void PikiAI::ActRescue::initApproach(void)
+void PikiAI::ActRescue::initApproach()
 {
 	/*
 	stwu     r1, -0x40(r1)
@@ -330,7 +330,7 @@ void PikiAI::ActRescue::initApproach(void)
  * Address:	80239138
  * Size:	00013C
  */
-void PikiAI::ActRescue::execApproach(void)
+void PikiAI::ActRescue::execApproach()
 {
 	/*
 	stwu     r1, -0x20(r1)
@@ -436,7 +436,7 @@ lbl_8023925C:
  * Address:	80239274
  * Size:	000150
  */
-void PikiAI::ActRescue::initGo(void)
+void PikiAI::ActRescue::initGo()
 {
 	/*
 	stwu     r1, -0x60(r1)
@@ -533,7 +533,7 @@ lbl_802393A8:
  * Address:	802393C4
  * Size:	0001C0
  */
-void PikiAI::ActRescue::execGo(void)
+void PikiAI::ActRescue::execGo()
 {
 	/*
 	stwu     r1, -0x30(r1)
@@ -678,7 +678,7 @@ lbl_80239568:
  * Address:	80239584
  * Size:	000064
  */
-void PikiAI::ActRescue::initThrow(void)
+void PikiAI::ActRescue::initThrow()
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -716,7 +716,7 @@ lbl_802395AC:
  * Address:	802395E8
  * Size:	000278
  */
-void PikiAI::ActRescue::execThrow(void)
+void PikiAI::ActRescue::execThrow()
 {
 	/*
 	stwu     r1, -0x80(r1)
@@ -929,7 +929,7 @@ lbl_8023987C:
  * Address:	8023988C
  * Size:	000004
  */
-void PikiAI::ActRescue::emotion_success(void) { }
+void PikiAI::ActRescue::emotion_success() { }
 
 /*
  * --INFO--
@@ -943,7 +943,7 @@ void PikiAI::ActRescue::doDirectDraw(Graphics&) { }
  * Address:	80239894
  * Size:	000004
  */
-void PikiAI::ActRescue::cleanup(void) { }
+void PikiAI::ActRescue::cleanup() { }
 
 /*
  * --INFO--
@@ -976,7 +976,7 @@ void WPFindCond::satisfy(Game::WayPoint*)
  * Address:	802398BC
  * Size:	000008
  */
-u32 PikiAI::ActRescue::getNextAIType(void) { return 0x1; }
+u32 PikiAI::ActRescue::getNextAIType() { return 0x1; }
 
 /*
  * --INFO--

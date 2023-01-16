@@ -265,7 +265,7 @@ void PikiAI::ActBore::init(PikiAI::ActionArg*)
  * Address:	8023140C
  * Size:	000180
  */
-void PikiAI::ActBore::startCurrAction(void)
+void PikiAI::ActBore::startCurrAction()
 {
 	/*
 	stwu     r1, -0x50(r1)
@@ -382,7 +382,7 @@ lbl_8023153C:
  * Address:	8023158C
  * Size:	00007C
  */
-void PikiAI::ActBore::finish(void)
+void PikiAI::ActBore::finish()
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -426,7 +426,7 @@ lbl_802315C8:
  * Address:	80231608
  * Size:	000294
  */
-void PikiAI::ActBore::exec(void)
+void PikiAI::ActBore::exec()
 {
 	/*
 	stwu     r1, -0x50(r1)
@@ -626,7 +626,7 @@ lbl_80231880:
  * Address:	8023189C
  * Size:	000004
  */
-void PikiAI::ActBore::cleanup(void) { }
+void PikiAI::ActBore::cleanup() { }
 
 /*
  * --INFO--
@@ -685,7 +685,7 @@ lbl_802318D0:
  * Address:	8023193C
  * Size:	00001C
  */
-void PikiAI::ActRest::finish(void)
+void PikiAI::ActRest::finish()
 {
 	/*
 	lbz      r0, 0x18(r3)
@@ -746,7 +746,7 @@ void PikiAI::ActRest::init(PikiAI::ActionArg*)
  * Address:	802319D8
  * Size:	0000B8
  */
-void PikiAI::ActRest::sitDown(void)
+void PikiAI::ActRest::sitDown()
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -813,7 +813,7 @@ lbl_80231A7C:
  * Address:	........
  * Size:	00007C
  */
-void PikiAI::ActRest::standUp(void)
+void PikiAI::ActRest::standUp()
 {
 	// UNUSED FUNCTION
 }
@@ -823,7 +823,7 @@ void PikiAI::ActRest::standUp(void)
  * Address:	80231A90
  * Size:	000330
  */
-void PikiAI::ActRest::exec(void)
+void PikiAI::ActRest::exec()
 {
 	/*
 	stwu     r1, -0x20(r1)
@@ -1088,7 +1088,7 @@ lbl_80231DAC:
  * Address:	80231DC0
  * Size:	000004
  */
-void PikiAI::ActRest::cleanup(void) { }
+void PikiAI::ActRest::cleanup() { }
 
 /*
  * --INFO--
@@ -1371,7 +1371,7 @@ lbl_802320C8:
  * Address:	80232108
  * Size:	000048
  */
-void PikiAI::ActOneshot::finish(void)
+void PikiAI::ActOneshot::finish()
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -1400,7 +1400,7 @@ void PikiAI::ActOneshot::finish(void)
  * Address:	80232150
  * Size:	000070
  */
-void PikiAI::ActOneshot::exec(void)
+void PikiAI::ActOneshot::exec()
 {
 	/*
 	lwz      r4, 4(r3)
@@ -1449,7 +1449,7 @@ lbl_802321B8:
  * Address:	802321C0
  * Size:	000004
  */
-void PikiAI::ActOneshot::cleanup(void) { }
+void PikiAI::ActOneshot::cleanup() { }
 
 /*
  * --INFO--

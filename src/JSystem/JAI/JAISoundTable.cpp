@@ -209,7 +209,7 @@ void JAInter::SoundTable::setInfoTrack(unsigned long, unsigned char)
  * Address:	800B7634
  * Size:	000008
  */
-u8 JAInter::SoundTable::getCategotyMax(void) { return mCategotyMax; }
+u8 JAInter::SoundTable::getCategotyMax() { return mCategotyMax; }
 
 /*
  * --INFO--
@@ -223,7 +223,7 @@ u16 JAInter::SoundTable::getSoundMax(unsigned char p1) { return mSoundMax[p1]; }
  * Address:	........
  * Size:	000008
  */
-void JAInter::SoundTable::getSoundTablePointer(void)
+void JAInter::SoundTable::getSoundTablePointer()
 {
 	// UNUSED FUNCTION
 }

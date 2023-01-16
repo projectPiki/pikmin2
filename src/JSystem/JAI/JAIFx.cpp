@@ -211,7 +211,7 @@ void JAInter::Fx::setScenePointer(u8 index, void* scenePointer)
  * Address:	800AD880
  * Size:	000008
  */
-u8 JAInter::Fx::getSceneMax(void) { return mSceneMax; }
+u8 JAInter::Fx::getSceneMax() { return mSceneMax; }
 
 /*
  * --INFO--

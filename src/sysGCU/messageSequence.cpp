@@ -399,7 +399,7 @@ void TSequenceProcessor::setAbtnWait()
  * Size:	000004
  */
 // WEAK - in header.
-// void TSequenceProcessor::doCharacterSEEnd(void) { }
+// void TSequenceProcessor::doCharacterSEEnd() { }
 
 /*
  * --INFO--

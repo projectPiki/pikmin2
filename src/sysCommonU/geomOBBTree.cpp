@@ -172,7 +172,7 @@ r1, 0x30 blr
  * Address:	........
  * Size:	000108
  */
-OBB::OBB(void)
+OBB::OBB()
 {
 	// UNUSED FUNCTION
 }
@@ -184,7 +184,7 @@ OBB::OBB(void)
  * Address:	........
  * Size:	0000C8
  */
-void calcPointDist__Q23Sys3OBBFR10Vector3f(void)
+void calcPointDist__Q23Sys3OBBFR10Vector3f()
 {
 	// UNUSED FUNCTION
 }
@@ -194,7 +194,7 @@ void calcPointDist__Q23Sys3OBBFR10Vector3f(void)
  * Address:	........
  * Size:	0000C0
  */
-void intersect__Q23Sys3OBBFR10Vector3f(void)
+void intersect__Q23Sys3OBBFR10Vector3f()
 {
 	// UNUSED FUNCTION
 }
@@ -246,7 +246,7 @@ void OBB::draw(Graphics&, Sys::VertexTable&, Sys::TriangleTable&)
  * Address:	8041D02C
  * Size:	000704
  */
-void create2__Q23Sys3OBBFRQ23Sys11VertexTableRQ23Sys13TriangleTableR8Matrix3fR8Matrix3fR10Vector3<float>(void)
+void create2__Q23Sys3OBBFRQ23Sys11VertexTableRQ23Sys13TriangleTableR8Matrix3fR8Matrix3fR10Vector3<float>()
 {
 	/*
 	.loc_0x0:
@@ -1436,7 +1436,7 @@ lbl_8041E038:
  * Address:	8041E054
  * Size:	000144
  */
-OBBTree::OBBTree(void)
+OBBTree::OBBTree()
 {
 	/*
 	stwu     r1, -0x20(r1)
@@ -1938,7 +1938,7 @@ namespace Sys {
  * Address:	8041E68C
  * Size:	000028
  */
-void OBB::isLeaf(void)
+void OBB::isLeaf()
 {
 	/*
 	lwz      r0, 0xc0(r3)
@@ -2468,7 +2468,7 @@ lbl_8041EC1C:
  * Address:	........
  * Size:	000070
  */
-void testIntersection__Q23Sys7OBBTreeFRQ23Sys6SphereR10Vector3f(void)
+void testIntersection__Q23Sys7OBBTreeFRQ23Sys6SphereR10Vector3f()
 {
 	// UNUSED FUNCTION
 }
@@ -2478,7 +2478,7 @@ void testIntersection__Q23Sys7OBBTreeFRQ23Sys6SphereR10Vector3f(void)
  * Address:	........
  * Size:	000180
  */
-void testIntersectionTriList__Q23Sys3OBBFRQ23Sys6SphereR10Vector3f RQ23Sys11VertexTableRQ23Sys13TriangleTable(void)
+void testIntersectionTriList__Q23Sys3OBBFRQ23Sys6SphereR10Vector3f RQ23Sys11VertexTableRQ23Sys13TriangleTable()
 {
 	// UNUSED FUNCTION
 }
@@ -2488,7 +2488,7 @@ void testIntersectionTriList__Q23Sys3OBBFRQ23Sys6SphereR10Vector3f RQ23Sys11Vert
  * Address:	........
  * Size:	00019C
  */
-void testIntersection__Q23Sys3OBBFRQ23Sys6SphereR10Vector3f RQ23Sys11VertexTableRQ23Sys13TriangleTable(void)
+void testIntersection__Q23Sys3OBBFRQ23Sys6SphereR10Vector3f RQ23Sys11VertexTableRQ23Sys13TriangleTable()
 {
 	// UNUSED FUNCTION
 }
@@ -2499,7 +2499,7 @@ void testIntersection__Q23Sys3OBBFRQ23Sys6SphereR10Vector3f RQ23Sys11VertexTable
  * Size:	000224
  */
 void traceMoveTriList_original__Q23Sys3OBBFRQ24Game8MoveInfoRQ23Sys11VertexTableRQ23Sys13TriangleTableR7MatrixfR7MatrixfRiPPQ23Sys8TrianglePfP10Vector3<
-    float>(void)
+    float>()
 {
 	// UNUSED FUNCTION
 }
@@ -2510,7 +2510,7 @@ void traceMoveTriList_original__Q23Sys3OBBFRQ24Game8MoveInfoRQ23Sys11VertexTable
  * Size:	0007F0
  */
 void traceMove_original__Q23Sys3OBBFRQ24Game8MoveInfoRQ23Sys11VertexTableRQ23Sys13TriangleTableR7MatrixfR7MatrixfRiPPQ23Sys8TrianglePfP10Vector3<
-    float>(void)
+    float>()
 {
 	// UNUSED FUNCTION
 }
@@ -3237,7 +3237,7 @@ lbl_8041F49C:
  * Address:	8041F4B8
  * Size:	00002C
  */
-void getMinY__Q23Sys7OBBTreeFR10Vector3f(void)
+void getMinY__Q23Sys7OBBTreeFR10Vector3f()
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -3259,7 +3259,7 @@ void getMinY__Q23Sys7OBBTreeFR10Vector3f(void)
  * Address:	8041F4E4
  * Size:	0006C0
  */
-void getMinY__Q23Sys3OBBFR10Vector3f RQ23Sys13TriangleTablef(void)
+void getMinY__Q23Sys3OBBFR10Vector3f RQ23Sys13TriangleTablef()
 {
 	/*
 	stwu     r1, -0x70(r1)
@@ -3814,7 +3814,7 @@ lbl_8041FB74:
  * Address:	8041FBA4
  * Size:	0000B4
  */
-void getMinYTriList__Q23Sys3OBBFR10Vector3f RQ23Sys13TriangleTable(void)
+void getMinYTriList__Q23Sys3OBBFR10Vector3f RQ23Sys13TriangleTable()
 {
 	/*
 	stwu     r1, -0x40(r1)

@@ -246,7 +246,7 @@ lbl_80454F44:
  * Address:	80454F60
  * Size:	000028
  */
-void __sinit_moviePlayerAudio_cpp(void)
+void __sinit_moviePlayerAudio_cpp()
 {
 	/*
 	lis      r4, __float_nan@ha

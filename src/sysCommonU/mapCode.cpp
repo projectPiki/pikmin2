@@ -9,7 +9,7 @@
  * Address:	8041C434
  * Size:	00000C
  */
-int MapCode::Code::getAttribute(void) { return m_contents & ATTR_MASK; }
+int MapCode::Code::getAttribute() { return m_contents & ATTR_MASK; }
 
 /*
  * Returns 'Slip Code' component of code.

@@ -2912,7 +2912,7 @@ lbl_803BCCA4:
  * Address:	803BCCB8
  * Size:	000028
  */
-void __sinit_particleMgr_cpp(void)
+void __sinit_particleMgr_cpp()
 {
 	/*
 	lis      r4, __float_nan@ha

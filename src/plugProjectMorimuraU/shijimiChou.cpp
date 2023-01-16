@@ -377,7 +377,7 @@ namespace Game {
  * Address:	80389634
  * Size:	0000A4
  */
-void ShijimiChou::Obj::setParameters(void)
+void ShijimiChou::Obj::setParameters()
 {
 	/*
 	stwu     r1, -0x40(r1)
@@ -431,7 +431,7 @@ void ShijimiChou::Obj::setParameters(void)
  * Address:	803896D8
  * Size:	000020
  */
-void birth__Q34Game11ShijimiChou3ObjFR10Vector3f f(void)
+void birth__Q34Game11ShijimiChou3ObjFR10Vector3f f()
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -614,7 +614,7 @@ lbl_80389908:
  * Address:	80389944
  * Size:	000250
  */
-ShijimiChou::Obj::Obj(void)
+ShijimiChou::Obj::Obj()
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -815,7 +815,7 @@ void ShijimiChou::Obj::setFSM(Game::ShijimiChou::FSM*)
  * Address:	80389BE0
  * Size:	0000AC
  */
-void ShijimiChou::Obj::doUpdate(void)
+void ShijimiChou::Obj::doUpdate()
 {
 	/*
 	stwu     r1, -0x20(r1)
@@ -899,7 +899,7 @@ void ShijimiChou::Obj::doDebugDraw(Graphics&)
  * Address:	80389CB0
  * Size:	000020
  */
-void ShijimiChou::Obj::doAnimation(void)
+void ShijimiChou::Obj::doAnimation()
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -918,7 +918,7 @@ void ShijimiChou::Obj::doAnimation(void)
  * Address:	80389CD0
  * Size:	00004C
  */
-void ShijimiChou::Obj::doEntry(void)
+void ShijimiChou::Obj::doEntry()
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -952,7 +952,7 @@ lbl_80389D0C:
  * Address:	80389D1C
  * Size:	0001A0
  */
-void ShijimiChou::Obj::doAnimationCullingOff(void)
+void ShijimiChou::Obj::doAnimationCullingOff()
 {
 	/*
 	stwu     r1, -0x50(r1)
@@ -1077,7 +1077,7 @@ lbl_80389E94:
  * Address:	80389EBC
  * Size:	0000B8
  */
-void ShijimiChou::Obj::doAnimationCullingOn(void)
+void ShijimiChou::Obj::doAnimationCullingOn()
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -1499,7 +1499,7 @@ lbl_8038A410:
  * Address:	8038A430
  * Size:	00026C
  */
-void ShijimiChou::Obj::changeMaterial(void)
+void ShijimiChou::Obj::changeMaterial()
 {
 	/*
 	stwu     r1, -0x40(r1)
@@ -1675,7 +1675,7 @@ lbl_8038A66C:
  * Address:	8038A69C
  * Size:	000030
  */
-void ShijimiChou::Obj::doStartMovie(void)
+void ShijimiChou::Obj::doStartMovie()
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -1698,7 +1698,7 @@ void ShijimiChou::Obj::doStartMovie(void)
  * Address:	8038A6CC
  * Size:	000030
  */
-void ShijimiChou::Obj::doEndMovie(void)
+void ShijimiChou::Obj::doEndMovie()
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -1721,7 +1721,7 @@ void ShijimiChou::Obj::doEndMovie(void)
  * Address:	8038A6FC
  * Size:	000034
  */
-void ShijimiChou::Obj::doStartStoneState(void)
+void ShijimiChou::Obj::doStartStoneState()
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -1844,7 +1844,7 @@ lbl_8038A818:
  * Address:	8038A830
  * Size:	000028
  */
-void ShijimiChou::Obj::startCarcassMotion(void)
+void ShijimiChou::Obj::startCarcassMotion()
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -1959,7 +1959,7 @@ lbl_8038A958:
  * Address:	8038A97C
  * Size:	00023C
  */
-void ShijimiChou::Obj::genItem(void)
+void ShijimiChou::Obj::genItem()
 {
 	/*
 	stwu     r1, -0x50(r1)
@@ -2131,7 +2131,7 @@ lbl_8038ABA0:
  * Address:	8038ABB8
  * Size:	000080
  */
-void ShijimiChou::Obj::checkFlyStart(void)
+void ShijimiChou::Obj::checkFlyStart()
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -2182,7 +2182,7 @@ lbl_8038AC28:
  * Address:	8038AC38
  * Size:	0003BC
  */
-void ShijimiChou::Obj::fly(void)
+void ShijimiChou::Obj::fly()
 {
 	/*
 	stwu     r1, -0xa0(r1)
@@ -2462,7 +2462,7 @@ lbl_8038AFB8:
  * Address:	8038AFF4
  * Size:	000108
  */
-void ShijimiChou::Obj::restFly(void)
+void ShijimiChou::Obj::restFly()
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -2547,7 +2547,7 @@ lbl_8038B0D0:
  * Address:	8038B0FC
  * Size:	0000B4
  */
-void ShijimiChou::Obj::restCheck(void)
+void ShijimiChou::Obj::restCheck()
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -2605,7 +2605,7 @@ lbl_8038B19C:
  * Address:	8038B1B0
  * Size:	000370
  */
-void ShijimiChou::Obj::checkRestOn(void)
+void ShijimiChou::Obj::checkRestOn()
 {
 	/*
 	stwu     r1, -0x60(r1)
@@ -2860,7 +2860,7 @@ lbl_8038B4FC:
  * Address:	8038B520
  * Size:	0002AC
  */
-void ShijimiChou::Obj::checkRestOff(void)
+void ShijimiChou::Obj::checkRestOff()
 {
 	/*
 	stwu     r1, -0x30(r1)
@@ -3060,7 +3060,7 @@ lbl_8038B7B8:
  * Address:	8038B7CC
  * Size:	0000FC
  */
-void ShijimiChou::Obj::resetRestPos(void)
+void ShijimiChou::Obj::resetRestPos()
 {
 	/*
 	stwu     r1, -0x50(r1)
@@ -3136,7 +3136,7 @@ lbl_8038B820:
  * Address:	8038B8C8
  * Size:	000174
  */
-void ShijimiChou::Obj::leave(void)
+void ShijimiChou::Obj::leave()
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -3245,7 +3245,7 @@ lbl_8038BA28:
  * Address:	8038BA3C
  * Size:	0001AC
  */
-void ShijimiChou::Obj::leaveInit(void)
+void ShijimiChou::Obj::leaveInit()
 {
 	/*
 	stwu     r1, -0x50(r1)
@@ -3370,7 +3370,7 @@ lbl_8038BBD0:
  * Address:	8038BBE8
  * Size:	000210
  */
-void ShijimiChou::Obj::setNextGoal(void)
+void ShijimiChou::Obj::setNextGoal()
 {
 	/*
 	stwu     r1, -0x50(r1)
@@ -3527,7 +3527,7 @@ lbl_8038BDD8:
  * Address:	8038BDF8
  * Size:	000100
  */
-void ShijimiChou::Obj::setTraceGoal(void)
+void ShijimiChou::Obj::setTraceGoal()
 {
 	/*
 	stwu     r1, -0x40(r1)
@@ -3606,7 +3606,7 @@ lbl_8038BEDC:
  * Address:	8038BEF8
  * Size:	000060
  */
-void ShijimiChou::Obj::isFallEnd(void)
+void ShijimiChou::Obj::isFallEnd()
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -3647,7 +3647,7 @@ lbl_8038BF48:
  * Address:	8038BF58
  * Size:	000028
  */
-void ShijimiChou::Obj::deadEffect(void)
+void ShijimiChou::Obj::deadEffect()
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -3668,7 +3668,7 @@ void ShijimiChou::Obj::deadEffect(void)
  * Address:	8038BF80
  * Size:	0001C4
  */
-void ShijimiChou::Obj::fallBehavior(void)
+void ShijimiChou::Obj::fallBehavior()
 {
 	/*
 	stwu     r1, -0x50(r1)
@@ -3806,7 +3806,7 @@ lbl_8038C130:
  * Address:	8038C144
  * Size:	0000B0
  */
-void ShijimiChou::Obj::updateCluster(void)
+void ShijimiChou::Obj::updateCluster()
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -3869,7 +3869,7 @@ lbl_8038C1DC:
  * Address:	8038C1F4
  * Size:	000020
  */
-void ShijimiChou::Obj::getFlyType(void)
+void ShijimiChou::Obj::getFlyType()
 {
 	/*
 	lwz      r4, 0xc0(r3)
@@ -3890,7 +3890,7 @@ lbl_8038C20C:
  * Address:	8038C214
  * Size:	00006C
  */
-void ShijimiChou::Obj::leaderInit(void)
+void ShijimiChou::Obj::leaderInit()
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -3930,7 +3930,7 @@ lbl_8038C260:
  * Address:	8038C280
  * Size:	0000A8
  */
-void ShijimiChou::Obj::createAppearEffect(void)
+void ShijimiChou::Obj::createAppearEffect()
 {
 	/*
 	stwu     r1, -0x20(r1)
@@ -3989,7 +3989,7 @@ lbl_8038C318:
  * Address:	8038C328
  * Size:	000030
  */
-void ShijimiChou::Obj::fadeAppearEffect(void)
+void ShijimiChou::Obj::fadeAppearEffect()
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -4016,7 +4016,7 @@ namespace efx {
  * Address:	8038C358
  * Size:	000008
  */
-void ArgChou::getName(void)
+void ArgChou::getName()
 {
 	/*
 	addi     r3, r2, lbl_8051EF7C@sda21
@@ -4116,7 +4116,7 @@ u32 ShijimiChou::Obj::earthquakeCallBack(Game::Creature*, float) { return 0x0; }
  * Address:	8038C404
  * Size:	000008
  */
-u32 ShijimiChou::Obj::getEnemyTypeID(void) { return 0x4D; }
+u32 ShijimiChou::Obj::getEnemyTypeID() { return 0x4D; }
 
 } // namespace efx
 
@@ -4125,14 +4125,14 @@ u32 ShijimiChou::Obj::getEnemyTypeID(void) { return 0x4D; }
  * Address:	8038C40C
  * Size:	000004
  */
-void __sinit_shijimiChou_cpp(void) { }
+void __sinit_shijimiChou_cpp() { }
 
 /*
  * --INFO--
  * Address:	8038C410
  * Size:	000014
  */
-void @828 @12 @Game::EnemyBase::viewOnPelletKilled(void)
+void @828 @12 @Game::EnemyBase::viewOnPelletKilled()
 {
 	/*
 	li       r11, 0xc
@@ -4148,7 +4148,7 @@ void @828 @12 @Game::EnemyBase::viewOnPelletKilled(void)
  * Address:	8038C424
  * Size:	000014
  */
-void @828 @12 @Game::EnemyBase::viewStartCarryMotion(void)
+void @828 @12 @Game::EnemyBase::viewStartCarryMotion()
 {
 	/*
 	li       r11, 0xc
@@ -4164,7 +4164,7 @@ void @828 @12 @Game::EnemyBase::viewStartCarryMotion(void)
  * Address:	8038C438
  * Size:	000014
  */
-void @828 @12 @Game::EnemyBase::viewStartPreCarryMotion(void)
+void @828 @12 @Game::EnemyBase::viewStartPreCarryMotion()
 {
 	/*
 	li       r11, 0xc
@@ -4180,7 +4180,7 @@ void @828 @12 @Game::EnemyBase::viewStartPreCarryMotion(void)
  * Address:	8038C44C
  * Size:	000014
  */
-void @828 @12 @Game::EnemyBase::view_finish_carrymotion(void)
+void @828 @12 @Game::EnemyBase::view_finish_carrymotion()
 {
 	/*
 	li       r11, 0xc
@@ -4196,7 +4196,7 @@ void @828 @12 @Game::EnemyBase::view_finish_carrymotion(void)
  * Address:	8038C460
  * Size:	000014
  */
-void @828 @12 @Game::EnemyBase::view_start_carrymotion(void)
+void @828 @12 @Game::EnemyBase::view_start_carrymotion()
 {
 	/*
 	li       r11, 0xc
@@ -4212,7 +4212,7 @@ void @828 @12 @Game::EnemyBase::view_start_carrymotion(void)
  * Address:	8038C474
  * Size:	000014
  */
-void @828 @12 @Game::EnemyBase::viewGetShape(void)
+void @828 @12 @Game::EnemyBase::viewGetShape()
 {
 	/*
 	li       r11, 0xc

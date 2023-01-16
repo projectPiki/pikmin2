@@ -449,7 +449,7 @@ namespace PSSystem {
  * Address:	80330D20
  * Size:	000060
  */
-SeqDataList::SeqDataList(void)
+SeqDataList::SeqDataList()
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -486,7 +486,7 @@ lbl_80330D50:
  * Address:	80330D80
  * Size:	000088
  */
-SeqDataList::~SeqDataList(void)
+SeqDataList::~SeqDataList()
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -625,7 +625,7 @@ lbl_80330EF4:
  * Address:	80330F10
  * Size:	000060
  */
-StreamDataList::StreamDataList(void)
+StreamDataList::StreamDataList()
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -662,7 +662,7 @@ lbl_80330F40:
  * Address:	80330F70
  * Size:	000088
  */
-StreamDataList::~StreamDataList(void)
+StreamDataList::~StreamDataList()
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -901,7 +901,7 @@ SeqHeap::SeqHeap(unsigned long, PSSystem::SeqBase*)
  * Address:	803311DC
  * Size:	000060
  */
-SeqHeap::~SeqHeap(void)
+SeqHeap::~SeqHeap()
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -1228,7 +1228,7 @@ lbl_80331590:
  * Address:	803315A8
  * Size:	000030
  */
-void SeqPlayReservator::reservatorTask(void)
+void SeqPlayReservator::reservatorTask()
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -1251,7 +1251,7 @@ void SeqPlayReservator::reservatorTask(void)
  * Address:	803315D8
  * Size:	000030
  */
-void SeqPauseOffReservator::reservatorTask(void)
+void SeqPauseOffReservator::reservatorTask()
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -1365,7 +1365,7 @@ namespace PSSystem {
  * Address:	80331708
  * Size:	000134
  */
-void SeqBase::init(void)
+void SeqBase::init()
 {
 	/*
 	stwu     r1, -0x20(r1)
@@ -1464,7 +1464,7 @@ lbl_80331820:
  * Address:	8033183C
  * Size:	000098
  */
-SeqBase::~SeqBase(void)
+SeqBase::~SeqBase()
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -1519,7 +1519,7 @@ lbl_803318B8:
  * Address:	803318D4
  * Size:	00003C
  */
-void SeqBase::isPlaying(void)
+void SeqBase::isPlaying()
 {
 	/*
 	lwz      r3, 0x4c(r3)
@@ -1551,7 +1551,7 @@ lbl_80331908:
  * Address:	80331910
  * Size:	000090
  */
-void SeqBase::getFileEntry(void)
+void SeqBase::getFileEntry()
 {
 	/*
 	stwu     r1, -0x20(r1)
@@ -1760,7 +1760,7 @@ lbl_80331B58:
  * Address:	80331B74
  * Size:	00013C
  */
-void SeqBase::pauseOff(void)
+void SeqBase::pauseOff()
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -1860,7 +1860,7 @@ lbl_80331C94:
  * Address:	80331CB0
  * Size:	0000D4
  */
-void SeqBase::exec(void)
+void SeqBase::exec()
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -1932,14 +1932,14 @@ lbl_80331D70:
  * Address:	80331D84
  * Size:	000004
  */
-void SeqBase::onPlayingFrame(void) { }
+void SeqBase::onPlayingFrame() { }
 
 /*
  * --INFO--
  * Address:	80331D88
  * Size:	000154
  */
-void SeqBase::startSeq(void)
+void SeqBase::startSeq()
 {
 	/*
 	stwu     r1, -0x20(r1)
@@ -2044,7 +2044,7 @@ lbl_80331E98:
  * Address:	80331EDC
  * Size:	0000D0
  */
-void SeqBase::setConfigVolume(void)
+void SeqBase::setConfigVolume()
 {
 	/*
 	stwu     r1, -0x20(r1)
@@ -2255,7 +2255,7 @@ lbl_80332124:
  * Address:	80332158
  * Size:	0000C0
  */
-BgmSeq::~BgmSeq(void)
+BgmSeq::~BgmSeq()
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -2395,14 +2395,14 @@ StreamBgm::StreamBgm(unsigned long, JAInter::SoundInfo const&)
  * Address:	80332318
  * Size:	000004
  */
-void StreamBgm::init(void) { }
+void StreamBgm::init() { }
 
 /*
  * --INFO--
  * Address:	8033231C
  * Size:	0000EC
  */
-StreamBgm::~StreamBgm(void)
+StreamBgm::~StreamBgm()
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -2489,7 +2489,7 @@ void StreamBgm::setId(unsigned long a1)
  * Address:	80332410
  * Size:	00015C
  */
-void StreamBgm::startSeq(void)
+void StreamBgm::startSeq()
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -2599,7 +2599,7 @@ lbl_80332558:
  * Address:	8033256C
  * Size:	0000D0
  */
-void StreamBgm::setConfigVolume(void)
+void StreamBgm::setConfigVolume()
 {
 	/*
 	stwu     r1, -0x20(r1)
@@ -2664,7 +2664,7 @@ lbl_803325B0:
  * Address:	8033263C
  * Size:	000014
  */
-void StreamBgm::isPlaying(void)
+void StreamBgm::isPlaying()
 {
 	/*
 	lwz      r3, 0x6c(r3)
@@ -2680,7 +2680,7 @@ void StreamBgm::isPlaying(void)
  * Address:	80332650
  * Size:	0000C0
  */
-SeSeq::~SeSeq(void)
+SeSeq::~SeSeq()
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -2745,7 +2745,7 @@ lbl_803326F4:
  * Address:	80332710
  * Size:	00002C
  */
-void SeSeq::seqLoadAfter(void)
+void SeSeq::seqLoadAfter()
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -2767,7 +2767,7 @@ void SeSeq::seqLoadAfter(void)
  * Address:	8033273C
  * Size:	0000D0
  */
-void SeSeq::setConfigVolume(void)
+void SeSeq::setConfigVolume()
 {
 	/*
 	stwu     r1, -0x20(r1)
@@ -3180,7 +3180,7 @@ lbl_80332BEC:
  * Address:	80332C14
  * Size:	000064
  */
-void DirectedBgm::newSeqTrackRoot(void)
+void DirectedBgm::newSeqTrackRoot()
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -3264,7 +3264,7 @@ lbl_80332CD0:
  * Address:	80332CEC
  * Size:	0001F0
  */
-void DirectedBgm::init(void)
+void DirectedBgm::init()
 {
 	/*
 	stwu     r1, -0x20(r1)
@@ -3420,7 +3420,7 @@ lbl_80332EA8:
  * Address:	80332EDC
  * Size:	000154
  */
-void DirectedBgm::startSeq(void)
+void DirectedBgm::startSeq()
 {
 	/*
 	stwu     r1, -0x20(r1)
@@ -3604,7 +3604,7 @@ lbl_80333104:
  * Address:	80333120
  * Size:	00002C
  */
-void DirectedBgm::onPlayingFrame(void)
+void DirectedBgm::onPlayingFrame()
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -3628,7 +3628,7 @@ lbl_8033313C:
  * Address:	8033314C
  * Size:	00002C
  */
-void SeqTrackRoot_JumpBgm::onBeatTop(void)
+void SeqTrackRoot_JumpBgm::onBeatTop()
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -3751,7 +3751,7 @@ void JumpBgmPort::requestEveryBeat(unsigned short)
  * Address:	........
  * Size:	0000AC
  */
-void JumpBgmPort::output(void)
+void JumpBgmPort::output()
 {
 	// UNUSED FUNCTION
 }
@@ -3875,7 +3875,7 @@ JumpBgmSeq::JumpBgmSeq(char const*, JAInter::SoundInfo const&, PSSystem::Directo
  * Address:	803333C0
  * Size:	000080
  */
-void JumpBgmSeq::newSeqTrackRoot(void)
+void JumpBgmSeq::newSeqTrackRoot()
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -3922,7 +3922,7 @@ lbl_80333424:
  * Address:	........
  * Size:	000420
  */
-SeqTrackRoot::~SeqTrackRoot(void)
+SeqTrackRoot::~SeqTrackRoot()
 {
 	// UNUSED FUNCTION
 }
@@ -3932,7 +3932,7 @@ SeqTrackRoot::~SeqTrackRoot(void)
  * Address:	80333440
  * Size:	000170
  */
-void JumpBgmSeq::startSeq(void)
+void JumpBgmSeq::startSeq()
 {
 	/*
 	stwu     r1, -0x20(r1)
@@ -4266,7 +4266,7 @@ lbl_80333824:
  * Address:	8033383C
  * Size:	00004C
  */
-void JumpBgmSeq::onPlayingFrame(void)
+void JumpBgmSeq::onPlayingFrame()
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -4300,7 +4300,7 @@ lbl_80333874:
  * Address:	80333888
  * Size:	0000C8
  */
-void JumpBgmSeq::outputJumpRequest(void)
+void JumpBgmSeq::outputJumpRequest()
 {
 	/*
 	stwu     r1, -0x20(r1)
@@ -4367,7 +4367,7 @@ lbl_80333930:
  * Address:	80333950
  * Size:	000040
  */
-void JumpBgmSeq::getSeqStartPoint(void)
+void JumpBgmSeq::getSeqStartPoint()
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -4410,7 +4410,7 @@ void JumpBgmSeq::setAvoidJumpTimer_Checked(unsigned long)
  * Address:	803339A4
  * Size:	000060
  */
-void SeqMgr::isPlaying(void)
+void SeqMgr::isPlaying()
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -4453,7 +4453,7 @@ lbl_803339F0:
  * Address:	80333A04
  * Size:	0000C8
  */
-SeqMgr::~SeqMgr(void)
+SeqMgr::~SeqMgr()
 {
 	/*
 	stwu     r1, -0x20(r1)
@@ -4562,7 +4562,7 @@ lbl_80333B08:
  * Address:	80333B28
  * Size:	00004C
  */
-void SeqMgr::pauseOffAllSeq(void)
+void SeqMgr::pauseOffAllSeq()
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -4596,7 +4596,7 @@ lbl_80333B58:
  * Address:	80333B74
  * Size:	000024
  */
-void SeqMgr::reservePauseOffAllSeq(void)
+void SeqMgr::reservePauseOffAllSeq()
 {
 	/*
 	lwz      r4, 0(r3)
@@ -4620,7 +4620,7 @@ lbl_80333B8C:
  * Address:	80333B98
  * Size:	000024
  */
-void SeqMgr::cancelPauseOffAllSeq(void)
+void SeqMgr::cancelPauseOffAllSeq()
 {
 	/*
 	lwz      r4, 0(r3)
@@ -4644,7 +4644,7 @@ lbl_80333BB0:
  * Address:	80333BBC
  * Size:	000080
  */
-void SeqMgr::exec(void)
+void SeqMgr::exec()
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -4905,7 +4905,7 @@ lbl_80333E44:
  * Address:	80333E5C
  * Size:	00001C
  */
-void SeqMgr::getFirstSeq(void)
+void SeqMgr::getFirstSeq()
 {
 	/*
 	lwz      r3, 0(r3)
@@ -4925,7 +4925,7 @@ lbl_80333E70:
  * Address:	80333E78
  * Size:	000024
  */
-void SeqMgr::getFirstSeqA(void)
+void SeqMgr::getFirstSeqA()
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -4973,7 +4973,7 @@ lbl_80333EC0:
  * Address:	80333ED0
  * Size:	0000E0
  */
-JumpBgmSeq::~JumpBgmSeq(void)
+JumpBgmSeq::~JumpBgmSeq()
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -5048,7 +5048,7 @@ lbl_80333F94:
  * Address:	80333FB0
  * Size:	000050
  */
-void __dt__Q28PSSystem39SingletonBase<PSSystem::SeqDataList> Fv(void)
+void __dt__Q28PSSystem39SingletonBase<PSSystem::SeqDataList> Fv()
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -5081,7 +5081,7 @@ lbl_80333FE8:
  * Address:	80334000
  * Size:	000050
  */
-void __dt__Q28PSSystem42SingletonBase<PSSystem::StreamDataList> Fv(void)
+void __dt__Q28PSSystem42SingletonBase<PSSystem::StreamDataList> Fv()
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -5115,7 +5115,7 @@ lbl_80334038:
  * Address:	80334050
  * Size:	000008
  */
-@28 @PSSystem::SeqDataList::~SeqDataList(void)
+@28 @PSSystem::SeqDataList::~SeqDataList()
 {
 	/*
 	addi     r3, r3, -28
@@ -5128,7 +5128,7 @@ lbl_80334038:
  * Address:	80334058
  * Size:	000008
  */
-@28 @PSSystem::StreamDataList::~StreamDataList(void)
+@28 @PSSystem::StreamDataList::~StreamDataList()
 {
 	/*
 	addi     r3, r3, -28
@@ -5169,14 +5169,14 @@ namespace PSSystem {
  * Address:	80334070
  * Size:	000004
  */
-void SeqBase::seqLoadAfter(void) { }
+void SeqBase::seqLoadAfter() { }
 
 /*
  * --INFO--
  * Address:	80334074
  * Size:	000008
  */
-void BgmSeq::getHandleP(void)
+void BgmSeq::getHandleP()
 {
 	/*
 	addi     r3, r3, 0x68
@@ -5189,7 +5189,7 @@ void BgmSeq::getHandleP(void)
  * Address:	8033407C
  * Size:	0000D0
  */
-DirectedBgm::~DirectedBgm(void)
+DirectedBgm::~DirectedBgm()
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -5265,14 +5265,14 @@ void JumpBgmSeq::onJump(unsigned short) { }
  * Address:	80334150
  * Size:	000008
  */
-u32 JumpBgmSeq::getCastType(void) { return 0x4; }
+u32 JumpBgmSeq::getCastType() { return 0x4; }
 
 /*
  * --INFO--
  * Address:	80334158
  * Size:	000008
  */
-void BgmSeq::getSeqType(void)
+void BgmSeq::getSeqType()
 {
 	/*
 	lis      r3, 0x8000
@@ -5285,14 +5285,14 @@ void BgmSeq::getSeqType(void)
  * Address:	80334160
  * Size:	000008
  */
-u32 DirectedBgm::getCastType(void) { return 0x2; }
+u32 DirectedBgm::getCastType() { return 0x2; }
 
 /*
  * --INFO--
  * Address:	80334168
  * Size:	00000C
  */
-void SeSeq::getSeqType(void)
+void SeSeq::getSeqType()
 {
 	/*
 	lis      r3, 0x80000800@ha
@@ -5306,14 +5306,14 @@ void SeSeq::getSeqType(void)
  * Address:	80334174
  * Size:	000008
  */
-u32 SeSeq::getCastType(void) { return 0x5; }
+u32 SeSeq::getCastType() { return 0x5; }
 
 /*
  * --INFO--
  * Address:	8033417C
  * Size:	000008
  */
-void SeSeq::getHandleP(void)
+void SeSeq::getHandleP()
 {
 	/*
 	addi     r3, r13, seHandle__Q27JAInter5SeMgr@sda21
@@ -5326,7 +5326,7 @@ void SeSeq::getHandleP(void)
  * Address:	80334184
  * Size:	000008
  */
-void StreamBgm::getHandleP(void)
+void StreamBgm::getHandleP()
 {
 	/*
 	addi     r3, r3, 0x6c
@@ -5346,21 +5346,21 @@ void StreamBgm::scene1st(PSSystem::TaskChecker*) { }
  * Address:	80334190
  * Size:	000008
  */
-u32 StreamBgm::getSeqType(void) { return 0x0; }
+u32 StreamBgm::getSeqType() { return 0x0; }
 
 /*
  * --INFO--
  * Address:	80334198
  * Size:	000008
  */
-u32 StreamBgm::getCastType(void) { return 0x1; }
+u32 StreamBgm::getCastType() { return 0x1; }
 
 /*
  * --INFO--
  * Address:	803341A0
  * Size:	000008
  */
-u32 BgmSeq::getCastType(void) { return 0x0; }
+u32 BgmSeq::getCastType() { return 0x0; }
 
 /*
  * --INFO--
@@ -5399,7 +5399,7 @@ void TriangleTableModTask::getTgtWithTable(unsigned char)
  * Address:	803341D4
  * Size:	000008
  */
-u32 TriangleTableModTask::getTableIdxNum(void) { return 0x28; }
+u32 TriangleTableModTask::getTableIdxNum() { return 0x28; }
 
 /*
  * --INFO--
@@ -5471,7 +5471,7 @@ float BankRandTask::getPreParam(JASTrack&)
  * Address:	80334230
  * Size:	000038
  */
-void SeqTrackRoot::update(void)
+void SeqTrackRoot::update()
 {
 	/*
 	stwu     r1, -0x10(r1)

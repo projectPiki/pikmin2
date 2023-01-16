@@ -158,7 +158,7 @@ Cave::RandMapScore::RandMapScore(Game::Cave::MapUnitGenerator*)
  * Address:	8024C920
  * Size:	00006C
  */
-void Cave::RandMapScore::setMapUnitScore(void)
+void Cave::RandMapScore::setMapUnitScore()
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -200,7 +200,7 @@ lbl_8024C974:
  * Address:	8024C98C
  * Size:	000038
  */
-void Cave::RandMapScore::setStartSlot(void)
+void Cave::RandMapScore::setStartSlot()
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -229,7 +229,7 @@ lbl_8024C9B4:
  * Address:	8024C9C4
  * Size:	000058
  */
-void Cave::RandMapScore::setGoalSlot(void)
+void Cave::RandMapScore::setGoalSlot()
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -417,7 +417,7 @@ void Cave::RandMapScore::getFixObjGen(int)
  * Address:	8024CBC8
  * Size:	000064
  */
-void getGlobalPosition__Q34Game4Cave12RandMapScoreFiR10Vector3f(void)
+void getGlobalPosition__Q34Game4Cave12RandMapScoreFiR10Vector3f()
 {
 	/*
 	stwu     r1, -0x20(r1)
@@ -453,7 +453,7 @@ namespace Game {
  * Address:	8024CC2C
  * Size:	000008
  */
-void Cave::RandMapScore::getVersusHighScore(void)
+void Cave::RandMapScore::getVersusHighScore()
 {
 	/*
 	lwz      r3, 0xc(r3)
@@ -466,7 +466,7 @@ void Cave::RandMapScore::getVersusHighScore(void)
  * Address:	8024CC34
  * Size:	000008
  */
-void Cave::RandMapScore::getVersusLowScore(void)
+void Cave::RandMapScore::getVersusLowScore()
 {
 	/*
 	lwz      r3, 0x10(r3)
@@ -479,7 +479,7 @@ void Cave::RandMapScore::getVersusLowScore(void)
  * Address:	8024CC3C
  * Size:	000084
  */
-void Cave::RandMapScore::isScoreSetDone(void)
+void Cave::RandMapScore::isScoreSetDone()
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -535,7 +535,7 @@ lbl_8024CCA8:
  * Address:	8024CCC0
  * Size:	0000C4
  */
-void Cave::RandMapScore::clearRoomAndDoorScore(void)
+void Cave::RandMapScore::clearRoomAndDoorScore()
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -605,7 +605,7 @@ lbl_8024CD6C:
  * Address:	8024CD84
  * Size:	000154
  */
-void Cave::RandMapScore::setUnitAndDoorScore(void)
+void Cave::RandMapScore::setUnitAndDoorScore()
 {
 	/*
 	stwu     r1, -0x40(r1)
@@ -780,7 +780,7 @@ lbl_8024CF64:
  * Address:	........
  * Size:	0000DC
  */
-void Cave::RandMapScore::getRandRoomMapNode(void)
+void Cave::RandMapScore::getRandRoomMapNode()
 {
 	// UNUSED FUNCTION
 }
@@ -790,7 +790,7 @@ void Cave::RandMapScore::getRandRoomMapNode(void)
  * Address:	8024CF88
  * Size:	00013C
  */
-void Cave::RandMapScore::setChallengePod(void)
+void Cave::RandMapScore::setChallengePod()
 {
 	/*
 	stwu     r1, -0x70(r1)
@@ -898,7 +898,7 @@ lbl_8024D0A8:
  * Address:	8024D0C4
  * Size:	0001B8
  */
-void Cave::RandMapScore::setVersusOnyon(void)
+void Cave::RandMapScore::setVersusOnyon()
 {
 	/*
 	stwu     r1, -0x80(r1)
@@ -1431,7 +1431,7 @@ lbl_8024D714:
  * Address:	8024D728
  * Size:	000048
  */
-void Cave::RandMapScore::copyNodeScore(void)
+void Cave::RandMapScore::copyNodeScore()
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -1464,7 +1464,7 @@ lbl_8024D754:
  * Address:	8024D770
  * Size:	00008C
  */
-void Cave::RandMapScore::subNodeScore(void)
+void Cave::RandMapScore::subNodeScore()
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -1558,7 +1558,7 @@ lbl_8024D848:
  * Address:	8024D860
  * Size:	0003BC
  */
-void Cave::RandMapScore::setChallengeFixObjNormal(void)
+void Cave::RandMapScore::setChallengeFixObjNormal()
 {
 	/*
 	stwu     r1, -0x1880(r1)
@@ -1853,7 +1853,7 @@ lbl_8024DC08:
  * Address:	8024DC1C
  * Size:	000324
  */
-void Cave::RandMapScore::setChallengeFixObjHard(void)
+void Cave::RandMapScore::setChallengeFixObjHard()
 {
 	/*
 	stwu     r1, -0x1070(r1)
@@ -2108,7 +2108,7 @@ lbl_8024DF2C:
  * Address:	8024DF40
  * Size:	000064
  */
-void Cave::RandMapScore::isGoalSetHard(void)
+void Cave::RandMapScore::isGoalSetHard()
 {
 	/*
 	lwz      r3, 0(r3)
@@ -2257,7 +2257,7 @@ lbl_8024E0C4:
  * Address:	8024E0CC
  * Size:	000070
  */
-Cave::FixObjNode::~FixObjNode(void)
+Cave::FixObjNode::~FixObjNode()
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -2300,14 +2300,14 @@ lbl_8024E120:
  * Address:	8024E13C
  * Size:	000008
  */
-u32 Cave::FixObjNode::getObjectId(void) { return 0x1; }
+u32 Cave::FixObjNode::getObjectId() { return 0x1; }
 
 /*
  * --INFO--
  * Address:	8024E144
  * Size:	000008
  */
-void Cave::FixObjNode::getObjectType(void)
+void Cave::FixObjNode::getObjectType()
 {
 	/*
 	lwz      r3, 0x18(r3)
@@ -2320,14 +2320,14 @@ void Cave::FixObjNode::getObjectType(void)
  * Address:	8024E14C
  * Size:	000008
  */
-u32 Cave::FixObjNode::getBirthCount(void) { return 0x1; }
+u32 Cave::FixObjNode::getBirthCount() { return 0x1; }
 
 /*
  * --INFO--
  * Address:	8024E154
  * Size:	000008
  */
-void Cave::FixObjNode::getDirection(void)
+void Cave::FixObjNode::getDirection()
 {
 	/*
 	lfs      f1, 0x1c(r3)

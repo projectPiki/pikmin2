@@ -329,7 +329,7 @@ namespace Game {
  * Address:	8036EBA8
  * Size:	000020
  */
-void TamagoMushi::Obj::setParameters(void)
+void TamagoMushi::Obj::setParameters()
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -350,7 +350,7 @@ void TamagoMushi::Obj::setParameters(void)
  * Address:	8036EBC8
  * Size:	000020
  */
-void birth__Q34Game11TamagoMushi3ObjFR10Vector3f f(void)
+void birth__Q34Game11TamagoMushi3ObjFR10Vector3f f()
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -574,7 +574,7 @@ lbl_8036EE80:
  * Address:	8036EEB8
  * Size:	00013C
  */
-TamagoMushi::Obj::Obj(void)
+TamagoMushi::Obj::Obj()
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -700,7 +700,7 @@ void TamagoMushi::Obj::setFSM(Game::TamagoMushi::FSM*)
  * Address:	8036F040
  * Size:	0000A0
  */
-void TamagoMushi::Obj::doUpdate(void)
+void TamagoMushi::Obj::doUpdate()
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -755,7 +755,7 @@ lbl_8036F0CC:
  * Address:	8036F0E0
  * Size:	000158
  */
-void TamagoMushi::Obj::doAnimationCullingOff(void)
+void TamagoMushi::Obj::doAnimationCullingOff()
 {
 	/*
 	stwu     r1, -0x50(r1)
@@ -960,7 +960,7 @@ lbl_8036F324:
  * Address:	8036F338
  * Size:	0000BC
  */
-void bombCallBack__Q34Game11TamagoMushi3ObjFPQ24Game8CreatureR10Vector3f f(void)
+void bombCallBack__Q34Game11TamagoMushi3ObjFPQ24Game8CreatureR10Vector3f f()
 {
 	/*
 	stwu     r1, -0x30(r1)
@@ -1408,7 +1408,7 @@ lbl_8036F860:
  * Address:	8036F89C
  * Size:	000030
  */
-void TamagoMushi::Obj::needShadow(void)
+void TamagoMushi::Obj::needShadow()
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -1431,7 +1431,7 @@ void TamagoMushi::Obj::needShadow(void)
  * Address:	8036F8CC
  * Size:	000208
  */
-void TamagoMushi::Obj::genItem(void)
+void TamagoMushi::Obj::genItem()
 {
 	/*
 	stwu     r1, -0x50(r1)
@@ -1586,7 +1586,7 @@ lbl_8036FABC:
  * Address:	8036FAD4
  * Size:	000310
  */
-void TamagoMushi::Obj::walkFunc(void)
+void TamagoMushi::Obj::walkFunc()
 {
 	/*
 	stwu     r1, -0x90(r1)
@@ -1813,7 +1813,7 @@ lbl_8036FD80:
  * Address:	8036FDE4
  * Size:	000168
  */
-void TamagoMushi::Obj::setGoalRandom(void)
+void TamagoMushi::Obj::setGoalRandom()
 {
 	/*
 	stwu     r1, -0x50(r1)
@@ -1922,7 +1922,7 @@ lbl_8036FEFC:
  * Address:	8036FF4C
  * Size:	0000B8
  */
-void setGoalDirect__Q34Game11TamagoMushi3ObjFR10Vector3f(void)
+void setGoalDirect__Q34Game11TamagoMushi3ObjFR10Vector3f()
 {
 	/*
 	stwu     r1, -0x30(r1)
@@ -1981,7 +1981,7 @@ namespace Game {
  * Address:	80370004
  * Size:	00015C
  */
-void TamagoMushi::Obj::turnFunc(void)
+void TamagoMushi::Obj::turnFunc()
 {
 	/*
 	stwu     r1, -0x50(r1)
@@ -2111,7 +2111,7 @@ void TamagoMushi::Obj::isReachToGoal(float)
  * Address:	80370194
  * Size:	00002C
  */
-void TamagoMushi::Obj::resetWalkParm(void)
+void TamagoMushi::Obj::resetWalkParm()
 {
 	/*
 	lfs      f0, lbl_8051EAC4@sda21(r2)
@@ -2133,7 +2133,7 @@ void TamagoMushi::Obj::resetWalkParm(void)
  * Address:	803701C0
  * Size:	000028
  */
-void TamagoMushi::Obj::startCarcassMotion(void)
+void TamagoMushi::Obj::startCarcassMotion()
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -2191,7 +2191,7 @@ lbl_8037022C:
  * Address:	80370240
  * Size:	000054
  */
-void TamagoMushi::Obj::setTypeBall(void)
+void TamagoMushi::Obj::setTypeBall()
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -2223,7 +2223,7 @@ void TamagoMushi::Obj::setTypeBall(void)
  * Address:	80370294
  * Size:	000344
  */
-void TamagoMushi::Obj::appearPanic(void)
+void TamagoMushi::Obj::appearPanic()
 {
 	/*
 	stwu     r1, -0x90(r1)
@@ -2467,7 +2467,7 @@ lbl_8037059C:
  * Address:	803705D8
  * Size:	0003BC
  */
-void TamagoMushi::Obj::isFound(void)
+void TamagoMushi::Obj::isFound()
 {
 	/*
 	stwu     r1, -0x20(r1)
@@ -2794,7 +2794,7 @@ namespace Game {
  * Address:	8037099C
  * Size:	000014
  */
-void GameSystem::isZukanMode(void)
+void GameSystem::isZukanMode()
 {
 	/*
 	lwz      r0, 0x44(r3)
@@ -2810,7 +2810,7 @@ void GameSystem::isZukanMode(void)
  * Address:	803709B0
  * Size:	000044
  */
-void TamagoMushi::Obj::createFellow(void)
+void TamagoMushi::Obj::createFellow()
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -2842,7 +2842,7 @@ lbl_803709E4:
  * Address:	803709F4
  * Size:	00009C
  */
-void TamagoMushi::Obj::ballMove(void)
+void TamagoMushi::Obj::ballMove()
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -2889,7 +2889,7 @@ f0, 0x1a4(r31) lfs      f1, lbl_8051EB14@sda21(r2) fmuls    f0, f0, f1 stfs f0,
  * Address:	80370A90
  * Size:	0000A8
  */
-void TamagoMushi::Obj::createHideEffect(void)
+void TamagoMushi::Obj::createHideEffect()
 {
 	/*
 	stwu     r1, -0x30(r1)
@@ -2942,7 +2942,7 @@ void TamagoMushi::Obj::createHideEffect(void)
  * Address:	80370B38
  * Size:	0000A8
  */
-void TamagoMushi::Obj::createAppearEffect(void)
+void TamagoMushi::Obj::createAppearEffect()
 {
 	/*
 	stwu     r1, -0x30(r1)
@@ -3002,7 +3002,7 @@ void TamagoMushi::Obj::setInitialSetting(Game::EnemyInitialParamBase*) { }
  * Address:	80370BE4
  * Size:	000014
  */
-void TamagoMushi::Obj::isLivingThing(void)
+void TamagoMushi::Obj::isLivingThing()
 {
 	/*
 	lwz      r3, 0xc0(r3)
@@ -3018,7 +3018,7 @@ void TamagoMushi::Obj::isLivingThing(void)
  * Address:	80370BF8
  * Size:	000008
  */
-void TamagoMushi::Obj::getDownSmokeScale(void)
+void TamagoMushi::Obj::getDownSmokeScale()
 {
 	/*
 	lfs      f1, lbl_8051EB18@sda21(r2)
@@ -3031,5 +3031,5 @@ void TamagoMushi::Obj::getDownSmokeScale(void)
  * Address:	80370C00
  * Size:	000008
  */
-u32 TamagoMushi::Obj::getEnemyTypeID(void) { return 0x44; }
+u32 TamagoMushi::Obj::getEnemyTypeID() { return 0x44; }
 } // namespace Game

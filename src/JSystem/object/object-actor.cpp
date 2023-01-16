@@ -885,7 +885,7 @@ void TAdaptor_actor::TVVOutput_ANIMATION_FRAME_::operator()(float, JStudio::TAda
  * Address:	80012D2C
  * Size:	0003D0
  */
-// void __sinit_object - actor_cpp(void)
+// void __sinit_object - actor_cpp()
 // {
 // 	/*
 // 	stwu     r1, -0x110(r1)

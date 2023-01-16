@@ -299,7 +299,7 @@ namespace Game {
  * Address:	8042C700
  * Size:	000150
  */
-MoviePlayer::MoviePlayer(void)
+MoviePlayer::MoviePlayer()
 {
 	/*
 	stwu     r1, -0x20(r1)
@@ -396,7 +396,7 @@ lbl_8042C834:
  * Address:	8042C850
  * Size:	000060
  */
-MovieContext::~MovieContext(void)
+MovieContext::~MovieContext()
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -433,7 +433,7 @@ lbl_8042C894:
  * Address:	8042C8B0
  * Size:	00002C
  */
-void MoviePlayer::reset(void)
+void MoviePlayer::reset()
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -457,7 +457,7 @@ lbl_8042C8CC:
  * Address:	8042C8DC
  * Size:	00001C
  */
-void MoviePlayer::getActiveOrima(void)
+void MoviePlayer::getActiveOrima()
 {
 	/*
 	lwz      r0, 0x19c(r3)
@@ -477,7 +477,7 @@ lbl_8042C8F0:
  * Address:	8042C8F8
  * Size:	00001C
  */
-void MoviePlayer::getActiveGameCamera(void)
+void MoviePlayer::getActiveGameCamera()
 {
 	/*
 	lwz      r0, 0x1a0(r3)
@@ -569,7 +569,7 @@ lbl_8042C99C:
  * Address:	........
  * Size:	000038
  */
-void MoviePlayer::clearMovieHeap(void)
+void MoviePlayer::clearMovieHeap()
 {
 	// UNUSED FUNCTION
 }
@@ -867,7 +867,7 @@ lbl_8042CD58:
  * Address:	........
  * Size:	000064
  */
-void MoviePlayer::doStartMovie(void)
+void MoviePlayer::doStartMovie()
 {
 	// UNUSED FUNCTION
 }
@@ -897,7 +897,7 @@ void MoviePlayer::findConfig(char*, char*)
  * Address:	8042CD90
  * Size:	0000B0
  */
-MovieContext::MovieContext(void)
+MovieContext::MovieContext()
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -952,7 +952,7 @@ MovieContext::MovieContext(void)
  * Address:	8042CE40
  * Size:	00009C
  */
-void MoviePlayer::allocContexts(void)
+void MoviePlayer::allocContexts()
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -1002,7 +1002,7 @@ void MoviePlayer::allocContexts(void)
  * Address:	8042CEDC
  * Size:	0000AC
  */
-void MoviePlayer::clearContexts(void)
+void MoviePlayer::clearContexts()
 {
 	/*
 	stwu     r1, -0x20(r1)
@@ -1060,7 +1060,7 @@ lbl_8042CF54:
  * Address:	........
  * Size:	0000F0
  */
-void MoviePlayer::playSuspended(void)
+void MoviePlayer::playSuspended()
 {
 	// UNUSED FUNCTION
 }
@@ -1070,7 +1070,7 @@ void MoviePlayer::playSuspended(void)
  * Address:	8042CF88
  * Size:	0000AC
  */
-void MoviePlayer::clearSuspendedDemo(void)
+void MoviePlayer::clearSuspendedDemo()
 {
 	/*
 	stwu     r1, -0x20(r1)
@@ -1128,7 +1128,7 @@ lbl_8042D000:
  * Address:	........
  * Size:	000020
  */
-void MoviePlayer::hasSuspendedDemo(void)
+void MoviePlayer::hasSuspendedDemo()
 {
 	// UNUSED FUNCTION
 }
@@ -1138,7 +1138,7 @@ void MoviePlayer::hasSuspendedDemo(void)
  * Address:	8042D034
  * Size:	00006C
  */
-void MoviePlayer::getNewContext(void)
+void MoviePlayer::getNewContext()
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -1178,7 +1178,7 @@ lbl_8042D084:
  * Address:	8042D0A0
  * Size:	000008
  */
-void MovieContext::getChild(void)
+void MovieContext::getChild()
 {
 	/*
 	lwz      r3, 0x10(r3)
@@ -1191,7 +1191,7 @@ void MovieContext::getChild(void)
  * Address:	........
  * Size:	000038
  */
-void MoviePlayer::hasSuspendedContext(void)
+void MoviePlayer::hasSuspendedContext()
 {
 	// UNUSED FUNCTION
 }
@@ -1201,7 +1201,7 @@ void MoviePlayer::hasSuspendedContext(void)
  * Address:	........
  * Size:	00006C
  */
-void MoviePlayer::getSuspendedContext(void)
+void MoviePlayer::getSuspendedContext()
 {
 	// UNUSED FUNCTION
 }
@@ -1257,7 +1257,7 @@ void MoviePlayer::setContext(Game::MovieContext*, Game::MovieConfig*, Game::Movi
  * Address:	8042D130
  * Size:	000478
  */
-void MoviePlayer::loadResource(void)
+void MoviePlayer::loadResource()
 {
 	/*
 	stwu     r1, -0x250(r1)
@@ -1592,7 +1592,7 @@ lbl_8042D538:
  * Address:	........
  * Size:	000054
  */
-void __dt__Q27JGadget39TLinkList<JStudio::TCreateObject, -4> Fv(void)
+void __dt__Q27JGadget39TLinkList<JStudio::TCreateObject, -4> Fv()
 {
 	// UNUSED FUNCTION
 }
@@ -2402,7 +2402,7 @@ lbl_8042DF28:
  * Address:	8042DF44
  * Size:	000120
  */
-void MoviePlayer::stop(void)
+void MoviePlayer::stop()
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -2495,7 +2495,7 @@ lbl_8042E02C:
  * Address:	........
  * Size:	00010C
  */
-void MoviePlayer::do_stop(void)
+void MoviePlayer::do_stop()
 {
 	// UNUSED FUNCTION
 }
@@ -2844,7 +2844,7 @@ lbl_8042E444:
  * Address:	8042E458
  * Size:	0000C4
  */
-void MoviePlayer::resetFrame(void)
+void MoviePlayer::resetFrame()
 {
 	/*
 	stwu     r1, -0x30(r1)
@@ -2912,7 +2912,7 @@ lbl_8042E508:
  * Address:	8042E51C
  * Size:	00009C
  */
-void setTransform__Q24Game11MoviePlayerFR10Vector3f f(void)
+void setTransform__Q24Game11MoviePlayerFR10Vector3f f()
 {
 	/*
 	stwu     r1, -0x20(r1)
@@ -2992,7 +2992,7 @@ lbl_8042E5DC:
  * Address:	........
  * Size:	000020
  */
-void MoviePlayer::isLoadingBlack(void)
+void MoviePlayer::isLoadingBlack()
 {
 	// UNUSED FUNCTION
 }
@@ -3106,7 +3106,7 @@ lbl_8042E718:
  * Address:	8042E734
  * Size:	000108
  */
-void MoviePlayer::skip(void)
+void MoviePlayer::skip()
 {
 	/*
 	stwu     r1, -0x40(r1)
@@ -3189,7 +3189,7 @@ lbl_8042E7FC:
  * Address:	........
  * Size:	000404
  */
-void MoviePlayer::draw2d(void)
+void MoviePlayer::draw2d()
 {
 	// UNUSED FUNCTION
 }
@@ -3199,7 +3199,7 @@ void MoviePlayer::draw2d(void)
  * Address:	8042E83C
  * Size:	000008
  */
-void MovieContext::getNext(void)
+void MovieContext::getNext()
 {
 	/*
 	lwz      r3, 4(r3)
@@ -3212,7 +3212,7 @@ void MovieContext::getNext(void)
  * Address:	8042E844
  * Size:	0000C4
  */
-MoviePlayer::~MoviePlayer(void)
+MoviePlayer::~MoviePlayer()
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -3305,7 +3305,7 @@ void Delegate<Game::MoviePlayer>::invoke()
  * Address:	8042E938
  * Size:	000028
  */
-void __sinit_moviePlayer_cpp(void)
+void __sinit_moviePlayer_cpp()
 {
 	/*
 	lis      r4, __float_nan@ha

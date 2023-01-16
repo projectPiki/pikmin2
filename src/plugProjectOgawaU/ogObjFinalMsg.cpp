@@ -239,7 +239,7 @@ void ObjFinalMsg::doUpdateFinish()
  * Address:	803257B0
  * Size:	0000B0
  */
-bool ObjFinalMsg::doUpdateFadeout(void)
+bool ObjFinalMsg::doUpdateFadeout()
 {
 	bool check = false;
 	commonUpdate();

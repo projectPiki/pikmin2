@@ -315,7 +315,7 @@ void P2DScreen::Mgr::addCallBackPane(J2DPane* pane, P2DScreen::Node* node)
  * Address:	80434CE0
  * Size:	00004C
  */
-void P2DScreen::Mgr::update(void)
+void P2DScreen::Mgr::update()
 {
 	for (Node* node = (Node*)_118.m_child; node != nullptr; node = (Node*)node->m_next) {
 		node->update();
@@ -340,7 +340,7 @@ void P2DScreen::Mgr::draw(Graphics& gfx, J2DGrafContext& context)
  * Address:	80434DAC
  * Size:	000088
  */
-P2DScreen::Mgr_tuning::Mgr_tuning(void)
+P2DScreen::Mgr_tuning::Mgr_tuning()
     : Mgr()
     , m_widthMaybe(0.95f)
     , m_heightMaybe(0.95f)

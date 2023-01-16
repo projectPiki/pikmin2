@@ -878,7 +878,7 @@ void TParticle2dMgr::showInfo(long, long, long, long)
  * Address:	803B9800
  * Size:	000028
  */
-void __sinit_particle2dMgr_cpp(void)
+void __sinit_particle2dMgr_cpp()
 {
 	/*
 	lis      r4, __float_nan@ha

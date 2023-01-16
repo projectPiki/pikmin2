@@ -558,14 +558,14 @@ bool InteractSuckDone::actOnyon(Onyon* item)
  * Address:	80176E84
  * Size:	00000C
  */
-void Onyon::startPropera(void) { m_propera = 20.0f; }
+void Onyon::startPropera() { m_propera = 20.0f; }
 
 /*
  * --INFO--
  * Address:	80176E90
  * Size:	00000C
  */
-void Onyon::stopPropera(void) { m_propera = -20.0f; }
+void Onyon::stopPropera() { m_propera = -20.0f; }
 
 /*
  * --INFO--
@@ -651,7 +651,7 @@ void Onyon::onKill(Game::CreatureKillArg*) { }
  * Address:	80177040
  * Size:	00023C
  */
-void Onyon::onSetPosition(void)
+void Onyon::onSetPosition()
 {
 	if (mapMgr) {
 		m_position.y = mapMgr->getMinY(m_position);
@@ -1078,7 +1078,7 @@ void Onyon::initTube()
  * Address:	80177DF4
  * Size:	000198
  */
-void Onyon::startWaitMotion(void)
+void Onyon::startWaitMotion()
 {
 	if (m_onyonType == ONYON_TYPE_SHIP) {
 		int whites = playData->m_pikiContainer.getColorSum(White);

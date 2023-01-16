@@ -48,7 +48,7 @@ IObjBase* SceneBase::searchObj(char* name) { return m_objMgr->search(this, name)
  * Address:	804518F4
  * Size:	000038
  */
-void SceneBase::destroy(void)
+void SceneBase::destroy()
 {
 	if (m_command._30 != -1) {
 		gResMgr2D->destroy(&m_command);
@@ -60,7 +60,7 @@ void SceneBase::destroy(void)
  * Address:	8045192C
  * Size:	0000BC
  */
-void SceneBase::create(void)
+void SceneBase::create()
 {
 	if (m_command._30 == -1) {
 		m_someTime    = sys->getTime();

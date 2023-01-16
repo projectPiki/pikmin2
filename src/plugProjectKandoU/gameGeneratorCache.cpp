@@ -483,7 +483,7 @@ lbl_801F1C30:
  * Address:	801F1C54
  * Size:	00009C
  */
-void GeneratorCache::createHeap(void)
+void GeneratorCache::createHeap()
 {
 	m_heapBuffer = new u8[GENERATOR_CACHE_HEAP_SIZE];
 	m_heapSize   = GENERATOR_CACHE_HEAP_SIZE;
@@ -547,7 +547,7 @@ lbl_801F1CC8:
  * Address:	........
  * Size:	000004
  */
-void GeneratorCache::destroyHeap(void)
+void GeneratorCache::destroyHeap()
 {
 	// UNUSED FUNCTION
 }
@@ -860,7 +860,7 @@ lbl_801F1FF4:
  * Address:	801F2008
  * Size:	000114
  */
-void GeneratorCache::loadPikiheads(void)
+void GeneratorCache::loadPikiheads()
 {
 	/*
 	stwu     r1, -0x480(r1)
@@ -944,7 +944,7 @@ lbl_801F20F0:
  * Address:	801F211C
  * Size:	0000C0
  */
-void GeneratorCache::slideCache(void)
+void GeneratorCache::slideCache()
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -1052,7 +1052,7 @@ lbl_801F220C:
  * Address:	801F2228
  * Size:	000078
  */
-void GeneratorCache::createNumberGenerators(void)
+void GeneratorCache::createNumberGenerators()
 {
 	for (Generator* gen = getFirstGenerator(); gen != nullptr; gen = (Generator*)gen->m_next) {
 		if (gen->_AC == 0 && (gen->m_reservedNum & 4U) != 0) {
@@ -1444,7 +1444,7 @@ lbl_801F2678:
  * Address:	801F2690
  * Size:	0002D0
  */
-void GeneratorCache::savePikiheads(void)
+void GeneratorCache::savePikiheads()
 {
 	/*
 	stwu     r1, -0x450(r1)
@@ -1657,7 +1657,7 @@ lbl_801F2924:
  * Address:	........
  * Size:	000030
  */
-void GeneratorCache::checkOverflow(void)
+void GeneratorCache::checkOverflow()
 {
 	// UNUSED FUNCTION
 }

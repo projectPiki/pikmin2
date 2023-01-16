@@ -1736,7 +1736,7 @@ lbl_8036719C:
  * Address:	803671D8
  * Size:	00001C
  */
-void Jigumo::Obj::getGoalPos(void)
+void Jigumo::Obj::getGoalPos()
 {
 	/*
 	lfs      f0, 0x2c8(r4)
@@ -3620,7 +3620,7 @@ lbl_80368810:
  * Address:	80368830
  * Size:	000028
  */
-void __sinit_jigumoState_cpp(void)
+void __sinit_jigumoState_cpp()
 {
 	/*
 	lis      r4, __float_nan@ha

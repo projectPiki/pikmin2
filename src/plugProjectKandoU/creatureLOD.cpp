@@ -793,7 +793,7 @@ lbl_801D7E1C:
  * Address:	801D7E3C
  * Size:	000028
  */
-void __sinit_creatureLOD_cpp(void)
+void __sinit_creatureLOD_cpp()
 {
 	/*
 	lis      r4, __float_nan@ha

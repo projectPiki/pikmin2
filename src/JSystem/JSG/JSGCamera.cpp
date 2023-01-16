@@ -12,7 +12,7 @@ namespace JStage {
  * Address:	800987F4
  * Size:	000060
  */
-TCamera::~TCamera(void) { }
+TCamera::~TCamera() { }
 
 /*
  * --INFO--

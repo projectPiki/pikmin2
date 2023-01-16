@@ -119,7 +119,7 @@ namespace Game {
  * Address:	........
  * Size:	000048
  */
-JointShadowRootNode::JointShadowRootNode(void)
+JointShadowRootNode::JointShadowRootNode()
 {
 	// UNUSED FUNCTION
 }
@@ -174,7 +174,7 @@ void JointShadowRootNode::init(int)
  * Address:	........
  * Size:	00004C
  */
-JointShadowNode::JointShadowNode(void)
+JointShadowNode::JointShadowNode()
 {
 	// UNUSED FUNCTION
 }
@@ -268,7 +268,7 @@ lbl_8024139C:
  * Address:	........
  * Size:	00004C
  */
-ShadowNode::ShadowNode(void)
+ShadowNode::ShadowNode()
 {
 	// UNUSED FUNCTION
 }
@@ -341,7 +341,7 @@ ShadowMgr::ShadowMgr(int)
  * Address:	80241444
  * Size:	000210
  */
-void ShadowMgr::loadResource(void)
+void ShadowMgr::loadResource()
 {
 	/*
 	stwu     r1, -0x20(r1)
@@ -498,7 +498,7 @@ lbl_80241628:
  * Address:	80241654
  * Size:	000004
  */
-void ShadowMgr::init(void) { }
+void ShadowMgr::init() { }
 
 /*
  * --INFO--
@@ -549,7 +549,7 @@ void ShadowMgr::setShadowColor(Color4*)
  * Address:	........
  * Size:	000040
  */
-void ShadowMgr::resetShadowColor(void)
+void ShadowMgr::resetShadowColor()
 {
 	// UNUSED FUNCTION
 }
@@ -559,7 +559,7 @@ void ShadowMgr::resetShadowColor(void)
  * Address:	........
  * Size:	00000C
  */
-void ShadowMgr::drawShadowOn(void)
+void ShadowMgr::drawShadowOn()
 {
 	// UNUSED FUNCTION
 }
@@ -569,7 +569,7 @@ void ShadowMgr::drawShadowOn(void)
  * Address:	........
  * Size:	00000C
  */
-void ShadowMgr::drawShadowOff(void)
+void ShadowMgr::drawShadowOff()
 {
 	// UNUSED FUNCTION
 }
@@ -579,7 +579,7 @@ void ShadowMgr::drawShadowOff(void)
  * Address:	802416B0
  * Size:	000260
  */
-void ShadowMgr::update(void)
+void ShadowMgr::update()
 {
 	/*
 	stwu     r1, -0x80(r1)
@@ -1036,7 +1036,7 @@ lbl_80241BFC:
  * Address:	80241C10
  * Size:	000058
  */
-void ShadowMgr::killAll(void)
+void ShadowMgr::killAll()
 {
 	/*
 	lwz      r4, 0x34(r3)
@@ -1670,7 +1670,7 @@ lbl_802421E4:
  * Address:	802421F0
  * Size:	000030
  */
-void ShadowMgr::getSize(void)
+void ShadowMgr::getSize()
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -1693,7 +1693,7 @@ void ShadowMgr::getSize(void)
  * Address:	80242220
  * Size:	000008
  */
-void ShadowMgr::getMax(void)
+void ShadowMgr::getMax()
 {
 	/*
 	lwz      r3, 0x1c(r3)
@@ -1735,7 +1735,7 @@ lbl_80242250:
  * Address:	80242260
  * Size:	000008
  */
-u32 ShadowMgr::getFirst(void) { return 0x0; }
+u32 ShadowMgr::getFirst() { return 0x0; }
 
 /*
  * --INFO--
@@ -2100,7 +2100,7 @@ void ShadowMgr::read(Stream&)
  * Address:	80242600
  * Size:	000060
  */
-ShadowMgr::~ShadowMgr(void)
+ShadowMgr::~ShadowMgr()
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -2137,7 +2137,7 @@ lbl_80242644:
  * Address:	80242660
  * Size:	000060
  */
-ShadowNode::~ShadowNode(void)
+ShadowNode::~ShadowNode()
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -2174,7 +2174,7 @@ lbl_802426A4:
  * Address:	802426C0
  * Size:	000060
  */
-JointShadowNode::~JointShadowNode(void)
+JointShadowNode::~JointShadowNode()
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -2211,7 +2211,7 @@ lbl_80242704:
  * Address:	80242720
  * Size:	000060
  */
-JointShadowRootNode::~JointShadowRootNode(void)
+JointShadowRootNode::~JointShadowRootNode()
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -2250,7 +2250,7 @@ lbl_80242764:
  * Address:	80242780
  * Size:	000028
  */
-void __sinit_shadowMgr_cpp(void)
+void __sinit_shadowMgr_cpp()
 {
 	/*
 	lis      r4, __float_nan@ha

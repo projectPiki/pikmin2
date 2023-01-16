@@ -2391,7 +2391,7 @@ lbl_803ECB14:
  * Address:	803ECB30
  * Size:	000008
  */
-//@4 @efx::TKchYodareBaseChaseMtx::~TKchYodareBaseChaseMtx(void)
+//@4 @efx::TKchYodareBaseChaseMtx::~TKchYodareBaseChaseMtx()
 //{
 /*
 addi     r3, r3, -4

@@ -69,7 +69,7 @@ namespace P2JME {
  * Address:	80438A34
  * Size:	000074
  */
-TControl::TControl(void)
+TControl::TControl()
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -227,7 +227,7 @@ lbl_80438BB0:
  * Address:	80438BD4
  * Size:	000104
  */
-void TControl::init(void)
+void TControl::init()
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -305,14 +305,14 @@ lbl_80438CB0:
  * Address:	80438CD8
  * Size:	000008
  */
-u32 TControl::onInit(void) { return 0x1; }
+u32 TControl::onInit() { return 0x1; }
 
 /*
  * --INFO--
  * Address:	80438CE0
  * Size:	00007C
  */
-void TControl::createRenderingProcessor(void)
+void TControl::createRenderingProcessor()
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -358,7 +358,7 @@ lbl_80438D40:
  * Address:	80438D5C
  * Size:	000080
  */
-void TControl::createSequenceProcessor(void)
+void TControl::createSequenceProcessor()
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -406,7 +406,7 @@ lbl_80438DC0:
  * Address:	80438DDC
  * Size:	000070
  */
-void TControl::reset(void)
+void TControl::reset()
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -445,7 +445,7 @@ void TControl::reset(void)
  * Address:	80438E4C
  * Size:	00008C
  */
-void TControl::update(void)
+void TControl::update()
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -497,14 +497,14 @@ lbl_80438EBC:
  * Address:	80438ED8
  * Size:	000004
  */
-void TRenderingProcessor::update(void) { }
+void TRenderingProcessor::update() { }
 
 /*
  * --INFO--
  * Address:	........
  * Size:	000020
  */
-void TControl::drawCommon(void)
+void TControl::drawCommon()
 {
 	// UNUSED FUNCTION
 }
@@ -766,7 +766,7 @@ void TControl::setMessageCode(unsigned long)
  * Address:	80439190
  * Size:	000060
  */
-TControl::~TControl(void)
+TControl::~TControl()
 {
 	/*
 	stwu     r1, -0x10(r1)

@@ -1159,7 +1159,7 @@ lbl_804718A0:
  * Address:	804718A8
  * Size:	000028
  */
-void __sinit_PSMainSide_Sound_cpp(void)
+void __sinit_PSMainSide_Sound_cpp()
 {
 	/*
 	lis      r4, __float_nan@ha

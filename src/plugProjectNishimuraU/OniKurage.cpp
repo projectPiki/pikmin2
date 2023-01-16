@@ -4753,7 +4753,7 @@ u32 OniKurage::Obj::getEnemyTypeID() { return 0x48; }
  * Address:	802D7284
  * Size:	000028
  */
-void __sinit_OniKurage_cpp(void)
+void __sinit_OniKurage_cpp()
 {
 	/*
 	lis      r4, __float_nan@ha

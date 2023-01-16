@@ -68,7 +68,7 @@
  * Address:	........
  * Size:	000064
  */
-TexCaster::Caster::Caster(void)
+TexCaster::Caster::Caster()
 {
 	// UNUSED FUNCTION
 }
@@ -78,7 +78,7 @@ TexCaster::Caster::Caster(void)
  * Address:	8023C95C
  * Size:	000060
  */
-TexCaster::Caster::~Caster(void)
+TexCaster::Caster::~Caster()
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -115,7 +115,7 @@ lbl_8023C9A0:
  * Address:	........
  * Size:	000014
  */
-void TexCaster::Caster::show(void)
+void TexCaster::Caster::show()
 {
 	// UNUSED FUNCTION
 }
@@ -125,7 +125,7 @@ void TexCaster::Caster::show(void)
  * Address:	8023C9BC
  * Size:	000014
  */
-void TexCaster::Caster::hide(void)
+void TexCaster::Caster::hide()
 {
 	/*
 	lfs      f0, lbl_8051A5D8@sda21(r2)
@@ -196,7 +196,7 @@ void TexCaster::Caster::fadeout(float)
  * Address:	........
  * Size:	000150
  */
-void TexCaster::Caster::makeDL(void)
+void TexCaster::Caster::makeDL()
 {
 	// UNUSED FUNCTION
 }
@@ -206,7 +206,7 @@ void TexCaster::Caster::makeDL(void)
  * Address:	........
  * Size:	000094
  */
-void TexCaster::Caster::update(void)
+void TexCaster::Caster::update()
 {
 	// UNUSED FUNCTION
 }
@@ -236,7 +236,7 @@ void TexCaster::Caster::drawLine(Graphics&)
  * Address:	........
  * Size:	000080
  */
-TexCaster::Mgr::Mgr(void)
+TexCaster::Mgr::Mgr()
 {
 	// UNUSED FUNCTION
 }
@@ -246,7 +246,7 @@ TexCaster::Mgr::Mgr(void)
  * Address:	........
  * Size:	000074
  */
-TexCaster::Mgr::~Mgr(void)
+TexCaster::Mgr::~Mgr()
 {
 	// UNUSED FUNCTION
 }
@@ -256,7 +256,7 @@ TexCaster::Mgr::~Mgr(void)
  * Address:	8023CA50
  * Size:	0000A0
  */
-void TexCaster::Mgr::globalInstance(void)
+void TexCaster::Mgr::globalInstance()
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -311,7 +311,7 @@ lbl_8023CAD8:
  * Address:	8023CAF0
  * Size:	00006C
  */
-void TexCaster::Mgr::deleteInstance(void)
+void TexCaster::Mgr::deleteInstance()
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -355,7 +355,7 @@ lbl_8023CB48:
  * Address:	8023CB5C
  * Size:	0000E8
  */
-void TexCaster::Mgr::loadResource(void)
+void TexCaster::Mgr::loadResource()
 {
 	/*
 	stwu     r1, -0x20(r1)

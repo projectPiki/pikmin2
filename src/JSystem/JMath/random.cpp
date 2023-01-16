@@ -28,7 +28,7 @@ TRandom_fast_::TRandom_fast_(u32 param_0) { value = param_0; }
  * Address:	........
  * Size:	0000A8
  */
-// void TRandom_enough_::get(void)
+// void TRandom_enough_::get()
 //{
 // UNUSED FUNCTION
 //}

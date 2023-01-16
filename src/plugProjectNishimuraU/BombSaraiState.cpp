@@ -3313,7 +3313,7 @@ void BombSarai::StateBombFlick::cleanup(Game::EnemyBase*)
  * Address:	802B2108
  * Size:	000028
  */
-void __sinit_BombSaraiState_cpp(void)
+void __sinit_BombSaraiState_cpp()
 {
 	/*
 	lis      r4, __float_nan@ha

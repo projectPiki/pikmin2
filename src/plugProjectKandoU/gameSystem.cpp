@@ -1377,7 +1377,7 @@ void __sinit_gameSystem_cpp()
  * Address:	801B6290
  * Size:	000008
  */
-// void @28 @Game::GameSystem::doViewCalc(void)
+// void @28 @Game::GameSystem::doViewCalc()
 // {
 // 	/*
 // 	addi     r3, r3, -28
@@ -1403,7 +1403,7 @@ void __sinit_gameSystem_cpp()
  * Address:	801B62A0
  * Size:	000008
  */
-// void @28 @Game::GameSystem::doEntry(void)
+// void @28 @Game::GameSystem::doEntry()
 // {
 // 	/*
 // 	addi     r3, r3, -28
@@ -1416,7 +1416,7 @@ void __sinit_gameSystem_cpp()
  * Address:	801B62A8
  * Size:	000008
  */
-// void @28 @Game::GameSystem::doAnimation(void)
+// void @28 @Game::GameSystem::doAnimation()
 // {
 // 	/*
 // 	addi     r3, r3, -28

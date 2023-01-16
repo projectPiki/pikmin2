@@ -383,7 +383,7 @@ lbl_80437F68:
  * Address:	8043805C
  * Size:	000068
  */
-Mgr::~Mgr(void)
+Mgr::~Mgr()
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -422,7 +422,7 @@ lbl_804380A8:
  * Address:	........
  * Size:	000004
  */
-void Mgr::reloadMessageResource(void)
+void Mgr::reloadMessageResource()
 {
 	// UNUSED FUNCTION
 }
@@ -432,7 +432,7 @@ void Mgr::reloadMessageResource(void)
  * Address:	804380C4
  * Size:	000100
  */
-void Mgr::setupMessage(void)
+void Mgr::setupMessage()
 {
 	/*
 	stwu     r1, -0x20(r1)
@@ -514,7 +514,7 @@ lbl_80438178:
  * Address:	804381C4
  * Size:	0000F8
  */
-void Mgr::setupTex(void)
+void Mgr::setupTex()
 {
 	/*
 	stwu     r1, -0x30(r1)
@@ -1186,7 +1186,7 @@ lbl_804389D4:
  * Address:	80438A0C
  * Size:	000028
  */
-void __sinit_messageMgr_cpp(void)
+void __sinit_messageMgr_cpp()
 {
 	/*
 	lis      r4, __float_nan@ha

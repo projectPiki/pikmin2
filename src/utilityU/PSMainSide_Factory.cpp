@@ -4577,7 +4577,7 @@ lbl_8045CE20:
  * Address:	8045CE3C
  * Size:	000028
  */
-void __sinit_PSMainSide_Factory_cpp(void)
+void __sinit_PSMainSide_Factory_cpp()
 {
 	/*
 	lis      r4, __float_nan@ha

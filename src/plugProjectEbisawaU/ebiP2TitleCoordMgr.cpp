@@ -69,7 +69,7 @@ namespace title {
  * Address:	803E396C
  * Size:	0001A4
  */
-void TCoordMgr::TCoordMgr(void)
+void TCoordMgr::TCoordMgr()
 {
 	/*
 stwu     r1, -0x10(r1)

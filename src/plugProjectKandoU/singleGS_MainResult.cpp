@@ -124,7 +124,7 @@ namespace Game {
  * Address:	80219F48
  * Size:	000150
  */
-SingleGame::MainResultState::MainResultState(void)
+SingleGame::MainResultState::MainResultState()
 {
 	/*
 	stwu     r1, -0x30(r1)
@@ -225,7 +225,7 @@ lbl_8021A07C:
  * Address:	8021A098
  * Size:	000060
  */
-Result::TNode::~TNode(void)
+Result::TNode::~TNode()
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -343,7 +343,7 @@ void SingleGame::MainResultState::init(Game::SingleGameSection*, Game::StateArg*
  * Address:	8021A1FC
  * Size:	000024
  */
-void SingleGame::MainResultState::beforeSave(void)
+void SingleGame::MainResultState::beforeSave()
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -363,7 +363,7 @@ void SingleGame::MainResultState::beforeSave(void)
  * Address:	8021A220
  * Size:	000088
  */
-void SingleGame::MainResultState::loadResource(void)
+void SingleGame::MainResultState::loadResource()
 {
 	/*
 	stwu     r1, -0x20(r1)
@@ -749,7 +749,7 @@ void SingleGame::MainResultState::onMovieDone(Game::SingleGameSection*, Game::Mo
  * Address:	8021A6C0
  * Size:	00035C
  */
-void SingleGame::MainResultState::createResultNodes(void)
+void SingleGame::MainResultState::createResultNodes()
 {
 	/*
 	stwu     r1, -0x40(r1)
@@ -1105,21 +1105,21 @@ namespace Screen {
  * Address:	8021AB2C
  * Size:	000008
  */
-u32 DispDayEndResultTitl::getSize(void) { return 0x8; }
+u32 DispDayEndResultTitl::getSize() { return 0x8; }
 
 /*
  * --INFO--
  * Address:	8021AB34
  * Size:	000008
  */
-u32 DispDayEndResultTitl::getOwnerID(void) { return 0x4B48; }
+u32 DispDayEndResultTitl::getOwnerID() { return 0x4B48; }
 
 /*
  * --INFO--
  * Address:	8021AB3C
  * Size:	000014
  */
-void DispDayEndResultTitl::getMemberID(void)
+void DispDayEndResultTitl::getMemberID()
 {
 	/*
 lis      r4, 0x5449544C@ha
@@ -1135,21 +1135,21 @@ blr
  * Address:	8021AB50
  * Size:	000008
  */
-u32 DispDayEndResult::getSize(void) { return 0x68; }
+u32 DispDayEndResult::getSize() { return 0x68; }
 
 /*
  * --INFO--
  * Address:	8021AB58
  * Size:	000008
  */
-u32 DispDayEndResult::getOwnerID(void) { return 0x4B48; }
+u32 DispDayEndResult::getOwnerID() { return 0x4B48; }
 
 /*
  * --INFO--
  * Address:	8021AB60
  * Size:	000014
  */
-void DispDayEndResult::getMemberID(void)
+void DispDayEndResult::getMemberID()
 {
 	/*
 lis      r4, 0x52534C54@ha
@@ -1165,7 +1165,7 @@ blr
  * Address:	8021AB74
  * Size:	000054
  */
-void DispDayEndResult::doSetSubMemberAll(void)
+void DispDayEndResult::doSetSubMemberAll()
 {
 	/*
 stwu     r1, -0x10(r1)
@@ -1223,7 +1223,7 @@ void Delegate<Game::SingleGame::MainResultState>::invoke()
  * Address:	8021ABF8
  * Size:	000028
  */
-void __sinit_singleGS_MainResult_cpp(void)
+void __sinit_singleGS_MainResult_cpp()
 {
 	/*
 	lis      r4, __float_nan@ha

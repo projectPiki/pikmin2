@@ -48,7 +48,7 @@ namespace Game {
  * Address:	80242D58
  * Size:	000018
  */
-Cave::AdjustInfo::AdjustInfo(void)
+Cave::AdjustInfo::AdjustInfo()
 {
 	/*
 	li       r4, 0
@@ -492,7 +492,7 @@ void Cave::MapNode::setDoorClose(int, Game::Cave::MapNode*, int)
  * Address:	8024327C
  * Size:	00009C
  */
-void Cave::MapNode::detachDoorClose(void)
+void Cave::MapNode::detachDoorClose()
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -566,7 +566,7 @@ void Cave::MapNode::isDoorClose(int)
  * Address:	80243334
  * Size:	000100
  */
-void Cave::MapNode::resetDoorScore(void)
+void Cave::MapNode::resetDoorScore()
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -1002,7 +1002,7 @@ lbl_802437A0:
  * Address:	802437B8
  * Size:	0000AC
  */
-void Cave::MapNode::setEnemyScore(void)
+void Cave::MapNode::setEnemyScore()
 {
 	/*
 	stwu     r1, -0x20(r1)
@@ -1075,7 +1075,7 @@ void Cave::MapNode::setNodeScore(int a1)
  * Address:	8024386C
  * Size:	00000C
  */
-void Cave::MapNode::copyNodeScoreToVersusScore(void)
+void Cave::MapNode::copyNodeScoreToVersusScore()
 {
 	/*
 	lwz      r0, 0x38(r3)
@@ -1089,7 +1089,7 @@ void Cave::MapNode::copyNodeScoreToVersusScore(void)
  * Address:	80243878
  * Size:	000014
  */
-void Cave::MapNode::subNodeScoreToVersusScore(void)
+void Cave::MapNode::subNodeScoreToVersusScore()
 {
 	/*
 	lwz      r4, 0x38(r3)
@@ -1184,7 +1184,7 @@ void Cave::MapNode::draw(float, float, float)
  * Address:	8024399C
  * Size:	000008
  */
-void Cave::MapNode::getNodeOffsetX(void)
+void Cave::MapNode::getNodeOffsetX()
 {
 	/*
 	lwz      r3, 0x2c(r3)
@@ -1197,7 +1197,7 @@ void Cave::MapNode::getNodeOffsetX(void)
  * Address:	802439A4
  * Size:	000008
  */
-void Cave::MapNode::getNodeOffsetY(void)
+void Cave::MapNode::getNodeOffsetY()
 {
 	/*
 	lwz      r3, 0x30(r3)
@@ -1210,7 +1210,7 @@ void Cave::MapNode::getNodeOffsetY(void)
  * Address:	802439AC
  * Size:	000008
  */
-void Cave::MapNode::getEnemyScore(void)
+void Cave::MapNode::getEnemyScore()
 {
 	/*
 	lwz      r3, 0x34(r3)
@@ -1223,7 +1223,7 @@ void Cave::MapNode::getEnemyScore(void)
  * Address:	802439B4
  * Size:	000008
  */
-void Cave::MapNode::getNodeScore(void)
+void Cave::MapNode::getNodeScore()
 {
 	/*
 	lwz      r3, 0x38(r3)
@@ -1236,7 +1236,7 @@ void Cave::MapNode::getNodeScore(void)
  * Address:	802439BC
  * Size:	000008
  */
-void Cave::MapNode::getVersusScore(void)
+void Cave::MapNode::getVersusScore()
 {
 	/*
 	lwz      r3, 0x3c(r3)
@@ -1249,7 +1249,7 @@ void Cave::MapNode::getVersusScore(void)
  * Address:	802439C4
  * Size:	000024
  */
-void Cave::MapNode::getUnitName(void)
+void Cave::MapNode::getUnitName()
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -1332,7 +1332,7 @@ void Cave::MapNode::getNodeCentreOffset(float&, float&)
  * Address:	80243AB8
  * Size:	000024
  */
-void Cave::MapNode::getDirection(void)
+void Cave::MapNode::getDirection()
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -1807,7 +1807,7 @@ lbl_80244050:
  * Address:	80244060
  * Size:	000034
  */
-void Cave::MapNode::getNumDoors(void)
+void Cave::MapNode::getNumDoors()
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -1831,7 +1831,7 @@ void Cave::MapNode::getNumDoors(void)
  * Address:	80244094
  * Size:	000060
  */
-Cave::MapNode::~MapNode(void)
+Cave::MapNode::~MapNode()
 {
 	/*
 	stwu     r1, -0x10(r1)

@@ -316,7 +316,7 @@ namespace Game {
  * Address:	80364454
  * Size:	000020
  */
-void Miulin::Obj::setParameters(void)
+void Miulin::Obj::setParameters()
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -337,7 +337,7 @@ void Miulin::Obj::setParameters(void)
  * Address:	80364474
  * Size:	0000B0
  */
-void birth__Q34Game6Miulin3ObjFR10Vector3f f(void)
+void birth__Q34Game6Miulin3ObjFR10Vector3f f()
 {
 	/*
 	stwu     r1, -0x60(r1)
@@ -455,7 +455,7 @@ lbl_80364578:
  * Address:	803645D8
  * Size:	000140
  */
-Miulin::Obj::Obj(void)
+Miulin::Obj::Obj()
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -582,7 +582,7 @@ void Miulin::Obj::setFSM(Game::Miulin::FSM*)
  * Address:	80364764
  * Size:	000080
  */
-void Miulin::Obj::doUpdate(void)
+void Miulin::Obj::doUpdate()
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -749,7 +749,7 @@ void Miulin::Obj::wallCallback(Game::MoveInfo const&)
  * Address:	803648FC
  * Size:	000028
  */
-void Miulin::Obj::startCarcassMotion(void)
+void Miulin::Obj::startCarcassMotion()
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -770,7 +770,7 @@ void Miulin::Obj::startCarcassMotion(void)
  * Address:	80364924
  * Size:	00006C
  */
-void Miulin::Obj::initWalkSmokeEffect(void)
+void Miulin::Obj::initWalkSmokeEffect()
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -808,7 +808,7 @@ void Miulin::Obj::initWalkSmokeEffect(void)
  * Address:	80364990
  * Size:	000008
  */
-void Miulin::Obj::getWalkSmokeEffectMgr(void)
+void Miulin::Obj::getWalkSmokeEffectMgr()
 {
 	/*
 	addi     r3, r3, 0x2ec
@@ -821,7 +821,7 @@ void Miulin::Obj::getWalkSmokeEffectMgr(void)
  * Address:	80364998
  * Size:	000534
  */
-void Miulin::Obj::isAttackStart(void)
+void Miulin::Obj::isAttackStart()
 {
 	/*
 	stwu     r1, -0x120(r1)
@@ -1191,7 +1191,7 @@ lbl_80364E80:
  * Address:	80364ECC
  * Size:	0004A4
  */
-void Miulin::Obj::isFindTarget(void)
+void Miulin::Obj::isFindTarget()
 {
 	/*
 	stwu     r1, -0xd0(r1)
@@ -1528,7 +1528,7 @@ lbl_8036532C:
  * Address:	80365370
  * Size:	00003C
  */
-void Miulin::Obj::isOutOfTerritory(void)
+void Miulin::Obj::isOutOfTerritory()
 {
 	/*
 	lfs      f1, 0x1a0(r3)
@@ -1554,7 +1554,7 @@ void Miulin::Obj::isOutOfTerritory(void)
  * Address:	803653AC
  * Size:	000088
  */
-void Miulin::Obj::isProhibitedSearch(void)
+void Miulin::Obj::isProhibitedSearch()
 {
 	/*
 	lwz      r0, 0x2d0(r3)
@@ -1605,7 +1605,7 @@ lbl_8036542C:
  * Address:	80365434
  * Size:	0000AC
  */
-void Miulin::Obj::isStartWalk(void)
+void Miulin::Obj::isStartWalk()
 {
 	/*
 	stwu     r1, -0x20(r1)
@@ -1666,7 +1666,7 @@ lbl_803654CC:
  * Address:	803654E0
  * Size:	00002C
  */
-void Miulin::Obj::setReturnState(void)
+void Miulin::Obj::setReturnState()
 {
 	/*
 	li       r4, 0
@@ -1688,7 +1688,7 @@ void Miulin::Obj::setReturnState(void)
  * Address:	8036550C
  * Size:	000270
  */
-void Miulin::Obj::walkFunc(void)
+void Miulin::Obj::walkFunc()
 {
 	/*
 	stwu     r1, -0x90(r1)
@@ -2010,7 +2010,7 @@ lbl_80365940:
  * Address:	80365948
  * Size:	00015C
  */
-void Miulin::Obj::setNextGoal(void)
+void Miulin::Obj::setNextGoal()
 {
 	/*
 	stwu     r1, -0x40(r1)
@@ -2118,7 +2118,7 @@ lbl_80365A88:
  * Address:	80365AA4
  * Size:	0002E0
  */
-void Miulin::Obj::nextTargetTurnCheck(void)
+void Miulin::Obj::nextTargetTurnCheck()
 {
 	/*
 	stwu     r1, -0x90(r1)
@@ -2333,7 +2333,7 @@ lbl_80365D4C:
  * Address:	80365D84
  * Size:	0000D0
  */
-void Miulin::Obj::isNowCaution(void)
+void Miulin::Obj::isNowCaution()
 {
 	/*
 	stwu     r1, -0x20(r1)
@@ -2410,7 +2410,7 @@ lbl_80365E38:
  * Address:	80365E54
  * Size:	000028
  */
-void Miulin::Obj::landEffect(void)
+void Miulin::Obj::landEffect()
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -2433,7 +2433,7 @@ void Miulin::Obj::landEffect(void)
  * Address:	80365E7C
  * Size:	000144
  */
-void attackEffect__Q34Game6Miulin3ObjFR10Vector3f(void)
+void attackEffect__Q34Game6Miulin3ObjFR10Vector3f()
 {
 	/*
 	stwu     r1, -0xa0(r1)
@@ -2538,7 +2538,7 @@ void Miulin::Obj::setInitialSetting(Game::EnemyInitialParamBase*) { }
  * Address:	80365FC4
  * Size:	000004
  */
-void applyImpulse__Q34Game6Miulin3ObjFR10Vector3f R10Vector3f(void) { }
+void applyImpulse__Q34Game6Miulin3ObjFR10Vector3f R10Vector3f() { }
 
 namespace Game {
 
@@ -2547,14 +2547,14 @@ namespace Game {
  * Address:	80365FC8
  * Size:	000008
  */
-u32 Miulin::Obj::getEnemyTypeID(void) { return 0x36; }
+u32 Miulin::Obj::getEnemyTypeID() { return 0x36; }
 
 /*
  * --INFO--
  * Address:	80365FD0
  * Size:	000008
  */
-void Miulin::Obj::getDownSmokeScale(void)
+void Miulin::Obj::getDownSmokeScale()
 {
 	/*
 	lfs      f1, lbl_8051E86C@sda21(r2)
@@ -2567,7 +2567,7 @@ void Miulin::Obj::getDownSmokeScale(void)
  * Address:	80365FD8
  * Size:	00001C
  */
-void Miulin::Obj::getGoalPos(void)
+void Miulin::Obj::getGoalPos()
 {
 	/*
 	lfs      f0, 0x2bc(r4)

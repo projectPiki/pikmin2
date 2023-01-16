@@ -209,7 +209,7 @@ void JAInter::DummyObjectMgr::releasePointer(JAInter::DummyVec*)
  * Address:	800AD5D4
  * Size:	0000F8
  */
-void JAInter::DummyObjectMgr::check(void)
+void JAInter::DummyObjectMgr::check()
 {
 	/*
 	stwu     r1, -0x10(r1)

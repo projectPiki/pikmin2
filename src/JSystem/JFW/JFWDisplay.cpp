@@ -2102,7 +2102,7 @@ lbl_8008B064:
  * Address:	8008B078
  * Size:	000048
  */
-void __sinit_JFWDisplay_cpp(void)
+void __sinit_JFWDisplay_cpp()
 {
 	/*
 	stwu     r1, -0x10(r1)

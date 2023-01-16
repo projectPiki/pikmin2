@@ -252,7 +252,7 @@ void Cave::RandMapMgr::loadResource(Game::MapUnitInterface*, int, Game::Cave::Fl
  * Address:	80244754
  * Size:	000104
  */
-void Cave::RandMapMgr::create(void)
+void Cave::RandMapMgr::create()
 {
 	/*
 	stwu     r1, -0x20(r1)
@@ -330,7 +330,7 @@ lbl_80244820:
  * Address:	80244858
  * Size:	000034
  */
-void Cave::RandMapMgr::getNumRooms(void)
+void Cave::RandMapMgr::getNumRooms()
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -565,7 +565,7 @@ lbl_80244A98:
  * Address:	80244AB4
  * Size:	000088
  */
-void getStartPosition__Q34Game4Cave10RandMapMgrFR10Vector3f i(void)
+void getStartPosition__Q34Game4Cave10RandMapMgrFR10Vector3f i()
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -616,7 +616,7 @@ lbl_80244B18:
  * Address:	80244B3C
  * Size:	0000A0
  */
-void getItemDropPosition__Q34Game4Cave10RandMapMgrFR10Vector3f ff(void)
+void getItemDropPosition__Q34Game4Cave10RandMapMgrFR10Vector3f ff()
 {
 	/*
 	stwu     r1, -0x40(r1)
@@ -667,7 +667,7 @@ void getItemDropPosition__Q34Game4Cave10RandMapMgrFR10Vector3f ff(void)
  * Address:	80244BDC
  * Size:	000188
  */
-void getItemDropPosition__Q34Game4Cave10RandMapMgrFP10Vector3f iff(void)
+void getItemDropPosition__Q34Game4Cave10RandMapMgrFP10Vector3f iff()
 {
 	/*
 	stwu     r1, -0xd0(r1)
@@ -822,7 +822,7 @@ lbl_80244D98:
  * Address:	80244DAC
  * Size:	00000C
  */
-void Cave::RandMapMgr::setCaptureOn(void)
+void Cave::RandMapMgr::setCaptureOn()
 {
 	// Generated from stb r0, 0x3C(r3)
 	_3C = 1;
@@ -901,7 +901,7 @@ lbl_80244E7C:
  * Address:	80244E94
  * Size:	00001C
  */
-bool Cave::RandMapMgr::isLastFloor(void)
+bool Cave::RandMapMgr::isLastFloor()
 {
 	/*
 	lwz      r3, 0x18(r3)
@@ -921,7 +921,7 @@ lbl_80244EA8:
  * Address:	80244EB0
  * Size:	000008
  */
-bool Cave::RandMapMgr::isVersusHiba(void)
+bool Cave::RandMapMgr::isVersusHiba()
 {
 	/*
 	lbz      r3, 0x44(r3)
@@ -934,7 +934,7 @@ bool Cave::RandMapMgr::isVersusHiba(void)
  * Address:	80244EB8
  * Size:	000008
  */
-void Cave::RandMapMgr::getRadarMapTexture(void)
+void Cave::RandMapMgr::getRadarMapTexture()
 {
 	/*
 	lwz      r3, 0x40(r3)
@@ -949,7 +949,7 @@ void Cave::RandMapMgr::getRadarMapTexture(void)
  * Address:	80244EC0
  * Size:	000024
  */
-void radarMapPartsOpen__Q34Game4Cave10RandMapMgrFR10Vector3f(void)
+void radarMapPartsOpen__Q34Game4Cave10RandMapMgrFR10Vector3f()
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -969,7 +969,7 @@ void radarMapPartsOpen__Q34Game4Cave10RandMapMgrFR10Vector3f(void)
  * Address:	80244EE4
  * Size:	000020
  */
-void getPositionOnTex__Q34Game4Cave10RandMapMgrFR10Vector3f RfRf(void)
+void getPositionOnTex__Q34Game4Cave10RandMapMgrFR10Vector3f RfRf()
 {
 	/*
 	lfs      f1, lbl_8051A748@sda21(r2)
@@ -988,7 +988,7 @@ void getPositionOnTex__Q34Game4Cave10RandMapMgrFR10Vector3f RfRf(void)
  * Address:	80244F04
  * Size:	000254
  */
-void getBaseGenData__Q34Game4Cave10RandMapMgrFP10Vector3f Pf(void)
+void getBaseGenData__Q34Game4Cave10RandMapMgrFP10Vector3f Pf()
 {
 	/*
 	stwu     r1, -0x18a0(r1)
@@ -1294,7 +1294,7 @@ void Cave::RandMapMgr::drawFrameBuffer(Graphics&)
  * Address:	80245358
  * Size:	000060
  */
-RoomLink::~RoomLink(void)
+RoomLink::~RoomLink()
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -1331,7 +1331,7 @@ lbl_8024539C:
  * Address:	802453B8
  * Size:	000060
  */
-Cave::RandMapMgr::~RandMapMgr(void)
+Cave::RandMapMgr::~RandMapMgr()
 {
 	/*
 	stwu     r1, -0x10(r1)

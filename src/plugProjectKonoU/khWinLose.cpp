@@ -966,7 +966,7 @@ blr
  * Address:	804106C8
  * Size:	000044
  */
-void __sinit_khWinLose_cpp(void)
+void __sinit_khWinLose_cpp()
 {
 	/*
 	lis      r3, msVal__Q32kh6Screen10ObjWinLose@ha

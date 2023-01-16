@@ -4363,7 +4363,7 @@ u32 SnakeCrow::Obj::getEnemyTypeID() { return 0x22; }
  * Address:	80295D78
  * Size:	000028
  */
-void __sinit_SnakeCrow_cpp(void)
+void __sinit_SnakeCrow_cpp()
 {
 	/*
 	lis      r4, __float_nan@ha

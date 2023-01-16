@@ -325,7 +325,7 @@ void PikiAI::Brain::addAction(PikiAI::Action*)
  * Address:	80196D00
  * Size:	000024
  */
-void PikiAI::Brain::getCurrAction(void)
+void PikiAI::Brain::getCurrAction()
 {
 	/*
 	lwz      r0, 8(r3)
@@ -347,7 +347,7 @@ lbl_80196D1C:
  * Address:	........
  * Size:	00000C
  */
-void PikiAI::Brain::init(void)
+void PikiAI::Brain::init()
 {
 	// UNUSED FUNCTION
 }
@@ -357,7 +357,7 @@ void PikiAI::Brain::init(void)
  * Address:	80196D24
  * Size:	000258
  */
-void PikiAI::Brain::exec(void)
+void PikiAI::Brain::exec()
 {
 	/*
 	stwu     r1, -0x30(r1)
@@ -542,28 +542,28 @@ lbl_80196F64:
  * Address:	80196F7C
  * Size:	000004
  */
-void PikiAI::Action::emotion_fail(void) { }
+void PikiAI::Action::emotion_fail() { }
 
 /*
  * --INFO--
  * Address:	80196F80
  * Size:	000004
  */
-void PikiAI::Action::emotion_success(void) { }
+void PikiAI::Action::emotion_success() { }
 
 /*
  * --INFO--
  * Address:	80196F84
  * Size:	000008
  */
-u32 PikiAI::Action::getNextAIType(void) { return 0x0; }
+u32 PikiAI::Action::getNextAIType() { return 0x0; }
 
 /*
  * --INFO--
  * Address:	80196F8C
  * Size:	000008
  */
-u32 PikiAI::Action::exec(void) { return 0x1; }
+u32 PikiAI::Action::exec() { return 0x1; }
 
 /*
  * --INFO--
@@ -663,7 +663,7 @@ lbl_80197078:
  * Address:	80197094
  * Size:	000008
  */
-u32 PikiAI::Action::applicable(void) { return 0x1; }
+u32 PikiAI::Action::applicable() { return 0x1; }
 
 /*
  * --INFO--
@@ -677,7 +677,7 @@ void PikiAI::Action::init(PikiAI::ActionArg*) { }
  * Address:	801970A0
  * Size:	000210
  */
-void PikiAI::Brain::searchOrima(void)
+void PikiAI::Brain::searchOrima()
 {
 	/*
 	stwu     r1, -0xb0(r1)
@@ -845,7 +845,7 @@ void PikiAI::Action::doDirectDraw(Graphics&) { }
  * Address:	801972B4
  * Size:	000028
  */
-void __sinit_aiAction_cpp(void)
+void __sinit_aiAction_cpp()
 {
 	/*
 	lis      r4, __float_nan@ha

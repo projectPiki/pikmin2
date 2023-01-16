@@ -276,7 +276,7 @@ namespace Game {
  * Address:	........
  * Size:	000004
  */
-TDispTriangleArray::TDispTriangleArray(void)
+TDispTriangleArray::TDispTriangleArray()
 {
 	// UNUSED FUNCTION
 }
@@ -296,7 +296,7 @@ void TDispTriangleArray::alloc(int)
  * Address:	........
  * Size:	000054
  */
-TDispTriangle::TDispTriangle(void)
+TDispTriangle::TDispTriangle()
 {
 	// UNUSED FUNCTION
 }
@@ -306,7 +306,7 @@ TDispTriangle::TDispTriangle(void)
  * Address:	........
  * Size:	00000C
  */
-void TDispTriangleArray::clear(void)
+void TDispTriangleArray::clear()
 {
 	// UNUSED FUNCTION
 }
@@ -531,7 +531,7 @@ void TDispTriangle::draw(Graphics&)
  * Address:	801625E4
  * Size:	000098
  */
-MapMgr::MapMgr(void)
+MapMgr::MapMgr()
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -654,7 +654,7 @@ lbl_8016271C:
  * Address:	80162724
  * Size:	00001C
  */
-void MapMgr::getDemoMatrix(void)
+void MapMgr::getDemoMatrix()
 {
 	/*
 	lwz      r3, 0xc(r3)
@@ -1960,7 +1960,7 @@ namespace Sys {
  * Address:	801638EC
  * Size:	00003C
  */
-// MatLoopAnimator::MatLoopAnimator(void)
+// MatLoopAnimator::MatLoopAnimator()
 // {
 // 	/*
 // stwu     r1, -0x10(r1)
@@ -2016,7 +2016,7 @@ lbl_8016394C:
  * Address:	8016395C
  * Size:	00009C
  */
-void ShapeMapMgr::do_update(void)
+void ShapeMapMgr::do_update()
 {
 	/*
 	stwu     r1, -0x20(r1)
@@ -2072,7 +2072,7 @@ lbl_801639DC:
  * Address:	801639F8
  * Size:	000050
  */
-void MapMgr::update(void)
+void MapMgr::update()
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -2105,7 +2105,7 @@ lbl_80163A20:
  * Address:	80163A48
  * Size:	000004
  */
-void MapMgr::do_update(void) { }
+void MapMgr::do_update() { }
 
 /*
  * --INFO--
@@ -2254,7 +2254,7 @@ void TriDivider::createTriangles(Sys::CreateTriangleArg&) { }
  * Address:	80163B70
  * Size:	00008C
  */
-// void getMinY__Q24Game11ShapeMapMgrFR10Vector3f(void)
+// void getMinY__Q24Game11ShapeMapMgrFR10Vector3f()
 float ShapeMapMgr::getMinY(Vector3f&)
 {
 	/*
@@ -2325,7 +2325,7 @@ void ShapeMapMgr::getCurrTri(Game::CurrTriInfo&)
  * Address:	80163C28
  * Size:	000038
  */
-void ShapeMapMgr::doAnimation(void)
+void ShapeMapMgr::doAnimation()
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -2389,7 +2389,7 @@ lbl_80163CA8:
  * Address:	80163CC0
  * Size:	00004C
  */
-void ShapeMapMgr::doViewCalc(void)
+void ShapeMapMgr::doViewCalc()
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -2421,7 +2421,7 @@ lbl_80163CF0:
  * Address:	80163D0C
  * Size:	0000C0
  */
-void ShapeMapMgr::doEntry(void)
+void ShapeMapMgr::doEntry()
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -2734,7 +2734,7 @@ void ShapeMapMgr::getBoundBox(BoundBox&)
  * Address:	801640F0
  * Size:	000008
  */
-bool MapMgr::frozenable(void) { return false; }
+bool MapMgr::frozenable() { return false; }
 
 /*
  * --INFO--
@@ -2921,7 +2921,7 @@ namespace Game {
  * Address:	801642F0
  * Size:	000004
  */
-void WaterBox::doViewCalc(void) { }
+void WaterBox::doViewCalc() { }
 
 } // namespace Game
 
@@ -3273,7 +3273,7 @@ namespace Game {
  * Address:	8016471C
  * Size:	000004
  */
-void WaterBox::doEntry(void) { }
+void WaterBox::doEntry() { }
 
 } // namespace Game
 
@@ -3432,7 +3432,7 @@ namespace Game {
  * Address:	80164904
  * Size:	000004
  */
-void WaterBox::doAnimation(void) { }
+void WaterBox::doAnimation() { }
 
 } // namespace Game
 
@@ -3616,7 +3616,7 @@ lbl_80164AEC:
  * Address:	80164B00
  * Size:	000028
  */
-void __sinit_mapMgr_cpp(void)
+void __sinit_mapMgr_cpp()
 {
 	/*
 	lis      r4, __float_nan@ha
@@ -3637,7 +3637,7 @@ void __sinit_mapMgr_cpp(void)
  * Address:	80164B28
  * Size:	000014
  */
-void @36 @4 @Game::MapMgr::frozenable(void)
+void @36 @4 @Game::MapMgr::frozenable()
 {
 	/*
 	li       r11, 4
@@ -3685,7 +3685,7 @@ void @36 @4 @Game::MapMgr::doSimulation(float)
  * Address:	80164B64
  * Size:	000014
  */
-void @84 @4 @Game::MapMgr::frozenable(void)
+void @84 @4 @Game::MapMgr::frozenable()
 {
 	/*
 	li       r11, 4
@@ -3733,7 +3733,7 @@ void @84 @4 @Game::MapMgr::doSimulation(float)
  * Address:	80164BA0
  * Size:	000014
  */
-void @84 @4 @Game::ShapeMapMgr::doViewCalc(void)
+void @84 @4 @Game::ShapeMapMgr::doViewCalc()
 {
 	/*
 	li       r11, 4
@@ -3765,7 +3765,7 @@ void @84 @4 @Game::ShapeMapMgr::doSetView(int)
  * Address:	80164BC8
  * Size:	000014
  */
-void @84 @4 @Game::ShapeMapMgr::doEntry(void)
+void @84 @4 @Game::ShapeMapMgr::doEntry()
 {
 	/*
 	li       r11, 4
@@ -3781,7 +3781,7 @@ void @84 @4 @Game::ShapeMapMgr::doEntry(void)
  * Address:	80164BDC
  * Size:	000014
  */
-void @84 @4 @Game::ShapeMapMgr::doAnimation(void)
+void @84 @4 @Game::ShapeMapMgr::doAnimation()
 {
 	/*
 	li       r11, 4

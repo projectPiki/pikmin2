@@ -698,7 +698,7 @@ void ParticleMgr::doViewCalc()
  * Address:	8043DAF0
  * Size:	000028
  */
-void __sinit_modelEffect_cpp(void)
+void __sinit_modelEffect_cpp()
 {
 	/*
 	lis      r4, __float_nan@ha

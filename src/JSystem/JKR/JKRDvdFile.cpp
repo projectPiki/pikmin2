@@ -457,7 +457,7 @@ BOOL JKRDvdFile::doneProcess(long p1, DVDFileInfo* info) { return OSSendMessage(
  * Address:	8001D658
  * Size:	000044
  */
-void __sinit_JKRDvdFile_cpp(void)
+void __sinit_JKRDvdFile_cpp()
 {
 	/*
 	stwu     r1, -0x10(r1)

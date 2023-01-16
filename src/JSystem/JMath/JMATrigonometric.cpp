@@ -69,7 +69,7 @@
  * Address:	........
  * Size:	0000D4
  */
-// void atan___Q25JMath18TAtanTable<1024, float> CFf(void)
+// void atan___Q25JMath18TAtanTable<1024, float> CFf()
 float JMath::TAtanTable<1024, float>::atan_(float) const
 {
 	// UNUSED FUNCTION
@@ -80,7 +80,7 @@ float JMath::TAtanTable<1024, float>::atan_(float) const
  * Address:	80035108
  * Size:	000258
  */
-// void atan2___Q25JMath18TAtanTable<1024, float> CFff(void)
+// void atan2___Q25JMath18TAtanTable<1024, float> CFff()
 float JMath::TAtanTable<1024, float>::atan2_(float param_1, float param_2) const
 {
 	// const register float zero = 0.0f;
@@ -382,7 +382,7 @@ const TAtanTable<1024, float> atanTable_;
  * Address:	80035360
  * Size:	0001C0
  */
-// void __sinit_JMATrigonometric_cpp(void)
+// void __sinit_JMATrigonometric_cpp()
 // {
 // 	/*
 // 	stwu     r1, -0x60(r1)
@@ -511,7 +511,7 @@ const TAtanTable<1024, float> atanTable_;
  * Address:	80035520
  * Size:	000010
  */
-// void __ct__Q23std9pair<float, float> Fv(void)
+// void __ct__Q23std9pair<float, float> Fv()
 // std::pair<float, float>::pair()
 // {
 // 	/*

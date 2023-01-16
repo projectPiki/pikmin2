@@ -707,7 +707,7 @@ void JAInterface::setAudioThreadPauseFlag(bool)
  * Address:	800B95A8
  * Size:	000054
  */
-// void __sinit_JAISystemInterface_cpp(void)
+// void __sinit_JAISystemInterface_cpp()
 // {
 // 	/*
 // 	stwu     r1, -0x10(r1)

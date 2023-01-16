@@ -1028,7 +1028,7 @@ namespace Game {
  * Address:	8015CD14
  * Size:	0000B4
  */
-PikiMgr::PikiMgr(void)
+PikiMgr::PikiMgr()
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -1088,7 +1088,7 @@ lbl_8015CD90:
  * Address:	8015CDC8
  * Size:	000060
  */
-PikiParms::PikiParms(void)
+PikiParms::PikiParms()
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -1123,7 +1123,7 @@ PikiParms::PikiParms(void)
  * Address:	8015CE28
  * Size:	0017C4
  */
-PikiParms::Parms::Parms(void)
+PikiParms::Parms::Parms()
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -2716,7 +2716,7 @@ namespace Game {
  * Address:	........
  * Size:	000050
  */
-void PikiMgr::init(void)
+void PikiMgr::init()
 {
 	// UNUSED FUNCTION
 }
@@ -2726,7 +2726,7 @@ void PikiMgr::init(void)
  * Address:	8015E68C
  * Size:	000038
  */
-void PikiMgr::resetMgr(void)
+void PikiMgr::resetMgr()
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -2751,7 +2751,7 @@ void PikiMgr::resetMgr(void)
  * Address:	8015E6C4
  * Size:	000064
  */
-void PikiMgr::onAlloc(void)
+void PikiMgr::onAlloc()
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -2845,7 +2845,7 @@ void PikiMgr::setupPiki(Game::Piki* p)
  * Address:	8015E798
  * Size:	000324
  */
-void PikiMgr::birth(void)
+void PikiMgr::birth()
 {
 	/*
 	stwu     r1, -0x30(r1)
@@ -3865,7 +3865,7 @@ lbl_8015F3F0:
  * Address:	8015F41C
  * Size:	0001D8
  */
-void PikiMgr::doAnimation(void)
+void PikiMgr::doAnimation()
 {
 	/*
 	stwu     r1, -0x20(r1)
@@ -4064,7 +4064,7 @@ lbl_8015F63C:
  * Address:	8015F64C
  * Size:	0001FC
  */
-void PikiMgr::doEntry(void)
+void PikiMgr::doEntry()
 {
 	/*
 	stwu     r1, -0x20(r1)
@@ -4230,7 +4230,7 @@ lbl_8015F828:
  * Address:	8015F848
  * Size:	000004
  */
-void PikiMgr::setupSoundViewerAndBas(void) { }
+void PikiMgr::setupSoundViewerAndBas() { }
 
 /*
  * --INFO--
@@ -4287,7 +4287,7 @@ lbl_8015F8AC:
  * Address:	8015F8C0
  * Size:	00003C
  */
-void PikiMgr::allocStorePikmins(void)
+void PikiMgr::allocStorePikmins()
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -4313,7 +4313,7 @@ void PikiMgr::allocStorePikmins(void)
  * Address:	8015F8FC
  * Size:	00006C
  */
-void PikiMgr::clearStorePikmins(void)
+void PikiMgr::clearStorePikmins()
 {
 	/*
 	li       r0, 3
@@ -4353,7 +4353,7 @@ lbl_8015F90C:
  * Address:	........
  * Size:	0002C0
  */
-// void saveStorePikmins__Q24Game7PikiMgrFP23Condition<Game::Piki>(void)
+// void saveStorePikmins__Q24Game7PikiMgrFP23Condition<Game::Piki>()
 void PikiMgr::saveStorePikmins(Condition<Piki>*)
 {
 	// UNUSED FUNCTION
@@ -4375,7 +4375,7 @@ void PikiMgr::getStorePikmin(int, int)
  * Size:	00034C
  */
 // void moveAllPikmins__Q24Game7PikiMgrFR10Vector3f
-// fP23Condition<Game::Piki>(void)
+// fP23Condition<Game::Piki>()
 void PikiMgr::moveAllPikmins(Vector3f&, float, Condition<Piki>*)
 {
 	/*
@@ -5263,7 +5263,7 @@ lbl_8016050C:
  * Address:	80160558
  * Size:	000258
  */
-void PikiMgr::killAllPikmins(void)
+void PikiMgr::killAllPikmins()
 {
 	/*
 	stwu     r1, -0x1d0(r1)
@@ -6094,7 +6094,7 @@ lbl_80160FAC:
  * Address:	80160FE4
  * Size:	0000B8
  */
-PikiMgr::~PikiMgr(void)
+PikiMgr::~PikiMgr()
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -6155,7 +6155,7 @@ lbl_80161080:
  * Address:	8016109C
  * Size:	000008
  */
-void PikiMgr::getMgrName(void)
+void PikiMgr::getMgrName()
 {
 	/*
 	addi     r3, r2, lbl_80518858@sda21
@@ -6168,14 +6168,14 @@ void PikiMgr::getMgrName(void)
  * Address:	801610A4
  * Size:	000008
  */
-u32 PikiMgr::getMatrixLoadType(void) { return 0x1; }
+u32 PikiMgr::getMatrixLoadType() { return 0x1; }
 
 /*
  * --INFO--
  * Address:	801610AC
  * Size:	000004
  */
-void PikiMgr::loadResources(void) { }
+void PikiMgr::loadResources() { }
 
 } // namespace Game
 
@@ -7803,7 +7803,7 @@ void MonoObjectMgr<Game::Piki>::MonoObjectMgr()
  * Address:	801622DC
  * Size:	000028
  */
-void __sinit_pikiMgr_cpp(void)
+void __sinit_pikiMgr_cpp()
 {
 	/*
 	lis      r4, __float_nan@ha
@@ -7941,7 +7941,7 @@ void ObjectMgr<Game::Piki>::@28 @doAnimation()
  * Address:	8016234C
  * Size:	000008
  */
-void @28 @Game::PikiMgr::getMatrixLoadType(void)
+void @28 @Game::PikiMgr::getMatrixLoadType()
 {
 	/*
 	addi     r3, r3, -28
@@ -7954,7 +7954,7 @@ void @28 @Game::PikiMgr::getMatrixLoadType(void)
  * Address:	80162354
  * Size:	000008
  */
-void @28 @Game::PikiMgr::resetMgr(void)
+void @28 @Game::PikiMgr::resetMgr()
 {
 	/*
 	addi     r3, r3, -28
@@ -7967,7 +7967,7 @@ void @28 @Game::PikiMgr::resetMgr(void)
  * Address:	8016235C
  * Size:	000008
  */
-void @28 @Game::PikiMgr::loadResources(void)
+void @28 @Game::PikiMgr::loadResources()
 {
 	/*
 	addi     r3, r3, -28
@@ -8045,7 +8045,7 @@ void MonoObjectMgr<Game::Piki>::@28 @doSetView(int)
  * Address:	8016238C
  * Size:	000008
  */
-void @28 @Game::PikiMgr::doEntry(void)
+void @28 @Game::PikiMgr::doEntry()
 {
 	/*
 	addi     r3, r3, -28
@@ -8058,7 +8058,7 @@ void @28 @Game::PikiMgr::doEntry(void)
  * Address:	80162394
  * Size:	000008
  */
-void @28 @Game::PikiMgr::doAnimation(void)
+void @28 @Game::PikiMgr::doAnimation()
 {
 	/*
 	addi     r3, r3, -28

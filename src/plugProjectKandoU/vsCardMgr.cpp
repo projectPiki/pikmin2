@@ -398,7 +398,7 @@ namespace Game {
  * Address:	........
  * Size:	000040
  */
-VsGame::CardSelector::CardSelector(void)
+VsGame::CardSelector::CardSelector()
 {
 	// UNUSED FUNCTION
 }
@@ -408,7 +408,7 @@ VsGame::CardSelector::CardSelector(void)
  * Address:	........
  * Size:	000064
  */
-void VsGame::CardSelector::getTotalWeight(void)
+void VsGame::CardSelector::getTotalWeight()
 {
 	// UNUSED FUNCTION
 }
@@ -418,7 +418,7 @@ void VsGame::CardSelector::getTotalWeight(void)
  * Address:	........
  * Size:	000274
  */
-void VsGame::CardSelector::selectCard(void)
+void VsGame::CardSelector::selectCard()
 {
 	// UNUSED FUNCTION
 }
@@ -523,7 +523,7 @@ lbl_802355CC:
  * Address:	80235654
  * Size:	000058
  */
-VsGame::CardMgr::SlotMachine::SlotMachine(void)
+VsGame::CardMgr::SlotMachine::SlotMachine()
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -556,7 +556,7 @@ VsGame::CardMgr::SlotMachine::SlotMachine(void)
  * Address:	........
  * Size:	000020
  */
-void VsGame::CardMgr::clear(void)
+void VsGame::CardMgr::clear()
 {
 	// UNUSED FUNCTION
 }
@@ -566,7 +566,7 @@ void VsGame::CardMgr::clear(void)
  * Address:	802356AC
  * Size:	0002B8
  */
-void VsGame::CardMgr::loadResource(void)
+void VsGame::CardMgr::loadResource()
 {
 	/*
 	stwu     r1, -0x30(r1)
@@ -780,7 +780,7 @@ lbl_8023594C:
  * Address:	80235964
  * Size:	000048
  */
-void VsGame::CardMgr::update(void)
+void VsGame::CardMgr::update()
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -2056,7 +2056,7 @@ lbl_802369B4:
  * Address:	........
  * Size:	00004C
  */
-void VsGame::CardMgr::clearPlayerCard(void)
+void VsGame::CardMgr::clearPlayerCard()
 {
 	// UNUSED FUNCTION
 }
@@ -2066,7 +2066,7 @@ void VsGame::CardMgr::clearPlayerCard(void)
  * Address:	802369C8
  * Size:	000058
  */
-void VsGame::CardMgr::SlotMachine::clear(void)
+void VsGame::CardMgr::SlotMachine::clear()
 {
 	/*
 	lfs      f1, lbl_8051A3D8@sda21(r2)
@@ -2099,7 +2099,7 @@ void VsGame::CardMgr::SlotMachine::clear(void)
  * Address:	80236A20
  * Size:	0005F0
  */
-void VsGame::CardMgr::SlotMachine::start(void)
+void VsGame::CardMgr::SlotMachine::start()
 {
 	/*
 	stwu     r1, -0xc0(r1)
@@ -2548,7 +2548,7 @@ lbl_80236FDC:
  * Address:	80237010
  * Size:	000050
  */
-void VsGame::CardMgr::SlotMachine::startStop(void)
+void VsGame::CardMgr::SlotMachine::startStop()
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -2591,7 +2591,7 @@ void VsGame::CardMgr::SlotMachine::equalTo(int)
  * Address:	........
  * Size:	00004C
  */
-void VsGame::CardMgr::SlotMachine::goodPlace(void)
+void VsGame::CardMgr::SlotMachine::goodPlace()
 {
 	// UNUSED FUNCTION
 }
@@ -2601,7 +2601,7 @@ void VsGame::CardMgr::SlotMachine::goodPlace(void)
  * Address:	80237060
  * Size:	0007B8
  */
-void VsGame::CardMgr::SlotMachine::update(void)
+void VsGame::CardMgr::SlotMachine::update()
 {
 	/*
 	stwu     r1, -0x30(r1)
@@ -3171,7 +3171,7 @@ lbl_802377F8:
  * Address:	80237818
  * Size:	000150
  */
-void VsGame::CardMgr::SlotMachine::updateAppear(void)
+void VsGame::CardMgr::SlotMachine::updateAppear()
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -3290,7 +3290,7 @@ void VsGame::CardMgr::getTexture(Game::VsGame::eCardType)
  * Address:	80237968
  * Size:	000354
  */
-void VsGame::CardMgr::initDraw(void)
+void VsGame::CardMgr::initDraw()
 {
 	/*
 	stwu     r1, -0x70(r1)
@@ -3558,7 +3558,7 @@ void VsGame::CardMgr::norm(int)
  * Address:	80237CBC
  * Size:	000E4C
  */
-void drawSlot__Q34Game6VsGame7CardMgrFR8GraphicsR10Vector3f RQ44Game6VsGame7CardMgr11SlotMachine(void)
+void drawSlot__Q34Game6VsGame7CardMgrFR8GraphicsR10Vector3f RQ44Game6VsGame7CardMgr11SlotMachine()
 {
 	/*
 	.loc_0x0:
@@ -4526,7 +4526,7 @@ namespace Game {
  * Address:	80238B0C
  * Size:	000028
  */
-void VsGame::CardMgr::SlotMachine::startZoomIn(void)
+void VsGame::CardMgr::SlotMachine::startZoomIn()
 {
 	/*
 	lfs      f1, lbl_8051A4A0@sda21(r2)
@@ -4547,7 +4547,7 @@ void VsGame::CardMgr::SlotMachine::startZoomIn(void)
  * Address:	80238B34
  * Size:	000020
  */
-void VsGame::CardMgr::SlotMachine::startZoomUse(void)
+void VsGame::CardMgr::SlotMachine::startZoomUse()
 {
 	/*
 	lfs      f1, lbl_8051A3D8@sda21(r2)
@@ -4566,7 +4566,7 @@ void VsGame::CardMgr::SlotMachine::startZoomUse(void)
  * Address:	80238B54
  * Size:	0001F0
  */
-void VsGame::CardMgr::SlotMachine::updateZoomIn(void)
+void VsGame::CardMgr::SlotMachine::updateZoomIn()
 {
 	/*
 	stwu     r1, -0x30(r1)
@@ -4717,7 +4717,7 @@ lbl_80238CF8:
  * Address:	80238D44
  * Size:	000128
  */
-void VsGame::CardMgr::SlotMachine::updateZoomUse(void)
+void VsGame::CardMgr::SlotMachine::updateZoomUse()
 {
 	/*
 	stwu     r1, -0x20(r1)
@@ -4823,7 +4823,7 @@ void efx2d::TBase::setGroup(unsigned char a1)
  * Address:	80238E74
  * Size:	00000C
  */
-void efx2d::ArgScaleColorColor::getName(void)
+void efx2d::ArgScaleColorColor::getName()
 {
 	/*
 	lis      r3, lbl_80483CBC@ha
@@ -4837,7 +4837,7 @@ void efx2d::ArgScaleColorColor::getName(void)
  * Address:	80238E80
  * Size:	000008
  */
-void efx2d::Arg::getName(void)
+void efx2d::Arg::getName()
 {
 	/*
 	addi     r3, r2, lbl_8051A4EC@sda21
@@ -4850,7 +4850,7 @@ void efx2d::Arg::getName(void)
  * Address:	80238E88
  * Size:	000028
  */
-void __sinit_vsCardMgr_cpp(void)
+void __sinit_vsCardMgr_cpp()
 {
 	/*
 	lis      r4, __float_nan@ha

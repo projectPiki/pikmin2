@@ -1100,7 +1100,7 @@ lbl_8001E4D0:
  * Address:	8001E4E4
  * Size:	000044
  */
-void __sinit_JKRDvdAramRipper_cpp(void)
+void __sinit_JKRDvdAramRipper_cpp()
 {
 	/*
 	stwu     r1, -0x10(r1)

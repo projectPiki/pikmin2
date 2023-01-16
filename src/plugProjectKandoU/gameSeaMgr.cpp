@@ -365,7 +365,7 @@ void AABBWaterBox::startUp(float) { JUT_PANICLINE(167, "まんだ! startUp\n"); 
  * Address:	801AE4A8
  * Size:	0000B8
  */
-inline bool AABBWaterBox::update(void)
+inline bool AABBWaterBox::update()
 {
 	if (_08 == 1) {
 		_0C = -(_38 * sys->m_deltaTime - _0C);
@@ -414,7 +414,7 @@ void AABBWaterBox::attachModel(J3DModelData* modelData, Sys::MatTexAnimation* an
  * Address:	801AE710
  * Size:	0000A0
  */
-void AABBWaterBox::calcMatrix(void)
+void AABBWaterBox::calcMatrix()
 {
 	if (m_model) {
 		_44.y = _30 + _0C;
@@ -431,7 +431,7 @@ void AABBWaterBox::calcMatrix(void)
  * Address:	801AE7B0
  * Size:	000048
  */
-void AABBWaterBox::doAnimation(void)
+void AABBWaterBox::doAnimation()
 {
 	m_matAnimator.animate(30.0f);
 	calcMatrix();
@@ -454,7 +454,7 @@ void AABBWaterBox::doSetView(int viewNo)
  * Address:	801AE828
  * Size:	00002C
  */
-void AABBWaterBox::doViewCalc(void)
+void AABBWaterBox::doViewCalc()
 {
 	if (m_model) {
 		m_model->viewCalc();
@@ -466,7 +466,7 @@ void AABBWaterBox::doViewCalc(void)
  * Address:	801AE854
  * Size:	000538
  */
-void AABBWaterBox::doEntry(void)
+void AABBWaterBox::doEntry()
 {
 	/*
 	stwu     r1, -0x80(r1)
@@ -1042,7 +1042,7 @@ lbl_801AF17C:
  * Address:	........
  * Size:	000060
  */
-// void create__Q24Game12AABBWaterBoxFR10Vector3f R10Vector3f(void)
+// void create__Q24Game12AABBWaterBoxFR10Vector3f R10Vector3f()
 void AABBWaterBox::create(Vector3f&, Vector3f&)
 {
 	// UNUSED FUNCTION
@@ -1253,7 +1253,7 @@ void AABBWaterBox::directDraw(Graphics&) { }
  * Address:	801AF350
  * Size:	0002F8
  */
-SeaMgr::SeaMgr(void)
+SeaMgr::SeaMgr()
 {
 	_3C         = 1;
 	m_modelData = new J3DModelData*[_3C];
@@ -1853,7 +1853,7 @@ lbl_801B0170:
  * Address:	801B01B0
  * Size:	0000E0
  */
-SeaMgr::~SeaMgr(void)
+SeaMgr::~SeaMgr()
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -1926,7 +1926,7 @@ lbl_801B0274:
  * Address:	801B0290
  * Size:	000010
  */
-float AABBWaterBox::getSeaLevel(void)
+float AABBWaterBox::getSeaLevel()
 {
 	/*
 	lfs      f1, 0x30(r3)
@@ -1941,7 +1941,7 @@ float AABBWaterBox::getSeaLevel(void)
  * Address:	801B02A0
  * Size:	000008
  */
-float* AABBWaterBox::getSeaHeightPtr(void)
+float* AABBWaterBox::getSeaHeightPtr()
 {
 	/*
 	addi     r3, r3, 0x34
@@ -1989,7 +1989,7 @@ void WaterBox::directDraw(Graphics&) { }
  * Address:	801B02BC
  * Size:	000004
  */
-void WaterBox::calcMatrix(void) { }
+void WaterBox::calcMatrix() { }
 
 } // namespace Game
 
@@ -2458,7 +2458,7 @@ void WaterBox::calcMatrix(void) { }
 //  * Address:	801B0760
 //  * Size:	000028
 //  */
-// void __sinit_gameSeaMgr_cpp(void)
+// void __sinit_gameSeaMgr_cpp()
 // {
 // 	/*
 // 	lis      r4, __float_nan@ha

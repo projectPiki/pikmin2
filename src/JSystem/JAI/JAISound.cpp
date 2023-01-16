@@ -365,7 +365,7 @@ JAISequence::JAISequence()
  * Address:	........
  * Size:	000058
  */
-JAInter::SeqParameter::~SeqParameter(void)
+JAInter::SeqParameter::~SeqParameter()
 {
 	// UNUSED FUNCTION
 }
@@ -2767,7 +2767,7 @@ void JAISound::onRelease() { }
  * Address:	........
  * Size:	00001C
  */
-void JAInter::LinkSound::getFreeStartFirstObject(void)
+void JAInter::LinkSound::getFreeStartFirstObject()
 {
 	// UNUSED FUNCTION
 }
@@ -2777,7 +2777,7 @@ void JAInter::LinkSound::getFreeStartFirstObject(void)
  * Address:	........
  * Size:	00001C
  */
-void JAInter::LinkSound::getUsedEndFirstObject(void)
+void JAInter::LinkSound::getUsedEndFirstObject()
 {
 	// UNUSED FUNCTION
 }
@@ -2812,7 +2812,7 @@ int JAInter::MoveParaSet::set(float p1, unsigned long p2)
  * Size:	00004C
  * move__Q27JAInter11MoveParaSetFv
  */
-BOOL JAInter::MoveParaSet::move(void)
+BOOL JAInter::MoveParaSet::move()
 {
 	BOOL result;
 	if (_0C == 0) {

@@ -74,7 +74,7 @@ namespace Screen {
  * Address:	803F02A4
  * Size:	0002B4
  */
-TOmakeCardE::TOmakeCardE(void)
+TOmakeCardE::TOmakeCardE()
 {
 	/*
 stwu     r1, -0x10(r1)
@@ -530,7 +530,7 @@ blr
  * Address:	803F08F4
  * Size:	00003C
  */
-void TOmakeCardE::doInitWaitState(void)
+void TOmakeCardE::doInitWaitState()
 {
 	/*
 stwu     r1, -0x10(r1)
@@ -556,7 +556,7 @@ blr
  * Address:	803F0930
  * Size:	000054
  */
-bool TOmakeCardE::doUpdateStateOpen(void)
+bool TOmakeCardE::doUpdateStateOpen()
 {
 	/*
 stwu     r1, -0x10(r1)
@@ -588,7 +588,7 @@ blr
  * Address:	803F0984
  * Size:	00029C
  */
-bool TOmakeCardE::doUpdateStateWait(void)
+bool TOmakeCardE::doUpdateStateWait()
 {
 	/*
 stwu     r1, -0x20(r1)
@@ -800,7 +800,7 @@ blr
  * Address:	803F0C20
  * Size:	000054
  */
-bool TOmakeCardE::doUpdateStateClose(void)
+bool TOmakeCardE::doUpdateStateClose()
 {
 	/*
 stwu     r1, -0x10(r1)
@@ -832,7 +832,7 @@ blr
  * Address:	803F0C74
  * Size:	000074
  */
-void TOmakeCardE::doDraw(void)
+void TOmakeCardE::doDraw()
 {
 	/*
 stwu     r1, -0x20(r1)
@@ -872,7 +872,7 @@ blr
  * Address:	803F0CE8
  * Size:	00000C
  */
-char* TOmakeCardE::getName(void)
+char* TOmakeCardE::getName()
 {
 	/*
 lis      r3, lbl_80497BDC@ha

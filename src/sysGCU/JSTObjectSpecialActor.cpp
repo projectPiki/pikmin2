@@ -154,7 +154,7 @@ P2JST::ObjectSpecialActor::ObjectSpecialActor(char const*, Game::MoviePlayer*)
  * Address:	80437458
  * Size:	00005C
  */
-void P2JST::ObjectSpecialActor::reset(void)
+void P2JST::ObjectSpecialActor::reset()
 {
 	/*
 	li       r4, 0
@@ -188,14 +188,14 @@ void P2JST::ObjectSpecialActor::reset(void)
  * Address:	804374B4
  * Size:	000004
  */
-void P2JST::ObjectSpecialActor::stop(void) { }
+void P2JST::ObjectSpecialActor::stop() { }
 
 /*
  * --INFO--
  * Address:	804374B8
  * Size:	000254
  */
-void P2JST::ObjectSpecialActor::update(void)
+void P2JST::ObjectSpecialActor::update()
 {
 	/*
 	stwu     r1, -0x20(r1)
@@ -438,7 +438,7 @@ void P2JST::ObjectSpecialActor::parseUserData_(unsigned long, void const*) { }
  * Address:	80437794
  * Size:	000068
  */
-P2JST::ObjectSpecialActor::~ObjectSpecialActor(void)
+P2JST::ObjectSpecialActor::~ObjectSpecialActor()
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -479,7 +479,7 @@ lbl_804377E0:
  * Address:	804377FC
  * Size:	000028
  */
-void __sinit_JSTObjectSpecialActor_cpp(void)
+void __sinit_JSTObjectSpecialActor_cpp()
 {
 	/*
 	lis      r4, __float_nan@ha
@@ -514,7 +514,7 @@ void @4 @Game::P2JST::ObjectSpecialActor::parseUserData_(unsigned long, void con
  * Address:	8043782C
  * Size:	000008
  */
-void @4 @Game::P2JST::ObjectSpecialActor::stop(void)
+void @4 @Game::P2JST::ObjectSpecialActor::stop()
 {
 	/*
 	addi     r3, r3, -4
@@ -527,7 +527,7 @@ void @4 @Game::P2JST::ObjectSpecialActor::stop(void)
  * Address:	80437834
  * Size:	000008
  */
-void @4 @Game::P2JST::ObjectSpecialActor::update(void)
+void @4 @Game::P2JST::ObjectSpecialActor::update()
 {
 	/*
 	addi     r3, r3, -4
@@ -540,7 +540,7 @@ void @4 @Game::P2JST::ObjectSpecialActor::update(void)
  * Address:	8043783C
  * Size:	000008
  */
-void @4 @Game::P2JST::ObjectSpecialActor::reset(void)
+void @4 @Game::P2JST::ObjectSpecialActor::reset()
 {
 	/*
 	addi     r3, r3, -4

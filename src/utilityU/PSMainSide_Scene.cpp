@@ -7369,7 +7369,7 @@ lbl_8046C678:
  * Address:	8046C690
  * Size:	000028
  */
-void __sinit_PSMainSide_Scene_cpp(void)
+void __sinit_PSMainSide_Scene_cpp()
 {
 	/*
 	lis      r4, __float_nan@ha

@@ -1236,7 +1236,7 @@ bool JKRDvdRipper::isErrorRetry() { return errorRetry; }
 //  * Address:	8001FDB0
 //  * Size:	000044
 //  */
-// void __sinit_JKRDvdRipper_cpp(void)
+// void __sinit_JKRDvdRipper_cpp()
 // {
 // 	/*
 // 	stwu     r1, -0x10(r1)

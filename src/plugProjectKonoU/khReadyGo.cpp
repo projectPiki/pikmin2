@@ -1049,7 +1049,7 @@ blr
  * Address:	80401CD4
  * Size:	00005C
  */
-void __sinit_khReadyGo_cpp(void)
+void __sinit_khReadyGo_cpp()
 {
 	/*
 	lis      r3, __float_nan@ha

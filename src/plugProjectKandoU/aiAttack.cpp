@@ -205,7 +205,7 @@ void PikiAI::ActAttack::getInfo(char* dest)
  * Address:	801A053C
  * Size:	000044
  */
-void PikiAI::ActAttack::emotion_success(void)
+void PikiAI::ActAttack::emotion_success()
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -395,7 +395,7 @@ lbl_801A0748:
  * Address:	801A0770
  * Size:	000084
  */
-void PikiAI::ActAttack::initStickAttack(void)
+void PikiAI::ActAttack::initStickAttack()
 {
 	/*
 	stwu     r1, -0x30(r1)
@@ -439,7 +439,7 @@ void PikiAI::ActAttack::initStickAttack(void)
  * Address:	801A07F4
  * Size:	0000A8
  */
-void PikiAI::ActAttack::initAdjust(void)
+void PikiAI::ActAttack::initAdjust()
 {
 	/*
 	stwu     r1, -0x30(r1)
@@ -492,7 +492,7 @@ void PikiAI::ActAttack::initAdjust(void)
  * Address:	801A089C
  * Size:	0000AC
  */
-void PikiAI::ActAttack::initJumpAdjust(void)
+void PikiAI::ActAttack::initJumpAdjust()
 {
 	/*
 	stwu     r1, -0x30(r1)
@@ -546,7 +546,7 @@ void PikiAI::ActAttack::initJumpAdjust(void)
  * Address:	801A0948
  * Size:	00008C
  */
-void PikiAI::ActAttack::applicable(void)
+void PikiAI::ActAttack::applicable()
 {
 	/*
 	stwu     r1, -0x20(r1)
@@ -596,7 +596,7 @@ lbl_801A09C0:
  * Address:	........
  * Size:	0000D8
  */
-void PikiAI::ActAttack::initJump(void)
+void PikiAI::ActAttack::initJump()
 {
 	// UNUSED FUNCTION
 }
@@ -606,7 +606,7 @@ void PikiAI::ActAttack::initJump(void)
  * Address:	801A09D4
  * Size:	0001C4
  */
-void PikiAI::ActAttack::calcAttackPos(void)
+void PikiAI::ActAttack::calcAttackPos()
 {
 	/*
 	stwu     r1, -0x50(r1)
@@ -740,7 +740,7 @@ lbl_801A0B7C:
  * Address:	801A0B98
  * Size:	00094C
  */
-void PikiAI::ActAttack::exec(void)
+void PikiAI::ActAttack::exec()
 {
 	/*
 	stwu     r1, -0x110(r1)
@@ -1418,7 +1418,7 @@ lbl_801A14C8:
  * Address:	801A14E4
  * Size:	000054
  */
-void PikiAI::ActAttack::cleanup(void)
+void PikiAI::ActAttack::cleanup()
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -1748,7 +1748,7 @@ lbl_801A18C8:
  * Address:	801A18E0
  * Size:	00000C
  */
-void PikiAI::ApproachPosActionArg::getName(void)
+void PikiAI::ApproachPosActionArg::getName()
 {
 	/*
 	lis      r3, lbl_8047F304@ha
@@ -1762,7 +1762,7 @@ void PikiAI::ApproachPosActionArg::getName(void)
  * Address:	801A18EC
  * Size:	00000C
  */
-void PikiAI::StickAttackActionArg::getName(void)
+void PikiAI::StickAttackActionArg::getName()
 {
 	/*
 	lis      r3, lbl_8047F31C@ha
@@ -1776,7 +1776,7 @@ void PikiAI::StickAttackActionArg::getName(void)
  * Address:	801A18F8
  * Size:	000008
  */
-u32 PikiAI::ActAttack::getNextAIType(void) { return 0x1; }
+u32 PikiAI::ActAttack::getNextAIType() { return 0x1; }
 
 /*
  * --INFO--

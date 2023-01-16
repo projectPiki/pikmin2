@@ -404,7 +404,7 @@ lbl_801A2AEC:
 //  * Address:	801A2B28
 //  * Size:	000240
 //  */
-// void PikiAI::ActEnter::exec(void)
+// void PikiAI::ActEnter::exec()
 // {
 // 	/*
 // 	stwu     r1, -0x50(r1)
@@ -579,7 +579,7 @@ lbl_801A2AEC:
 //  * Address:	801A2D68
 //  * Size:	000068
 //  */
-// void PikiAI::ActEnter::cleanup(void)
+// void PikiAI::ActEnter::cleanup()
 // {
 // 	/*
 // 	stwu     r1, -0x10(r1)
@@ -623,7 +623,7 @@ lbl_801A2AEC:
 //  * Address:	801A2DD4
 //  * Size:	000078
 //  */
-// void PikiAI::ActEnter::initStay(void)
+// void PikiAI::ActEnter::initStay()
 // {
 // 	/*
 // 	stwu     r1, -0x30(r1)
@@ -664,7 +664,7 @@ lbl_801A2AEC:
 //  * Address:	801A2E4C
 //  * Size:	000064
 //  */
-// void PikiAI::ActEnter::execStay(void)
+// void PikiAI::ActEnter::execStay()
 // {
 // 	/*
 // 	stwu     r1, -0x10(r1)
@@ -702,7 +702,7 @@ lbl_801A2AEC:
 //  * Address:	801A2EB0
 //  * Size:	0001A0
 //  */
-// void PikiAI::ActEnter::initSuck(void)
+// void PikiAI::ActEnter::initSuck()
 // {
 // 	/*
 // 	stwu     r1, -0x30(r1)
@@ -825,7 +825,7 @@ lbl_801A2AEC:
 //  * Address:	801A3050
 //  * Size:	00018C
 //  */
-// void PikiAI::ActEnter::execSuck(void)
+// void PikiAI::ActEnter::execSuck()
 // {
 // 	/*
 // 	stwu     r1, -0x20(r1)
@@ -1132,7 +1132,7 @@ lbl_801A2AEC:
 //  * Address:	801A3450
 //  * Size:	0000A8
 //  */
-// void PikiAI::ActExit::exec(void)
+// void PikiAI::ActExit::exec()
 // {
 // 	/*
 // 	stwu     r1, -0x20(r1)
@@ -1191,7 +1191,7 @@ lbl_801A2AEC:
 //  * Address:	801A34F8
 //  * Size:	0000C8
 //  */
-// void PikiAI::ActExit::cleanup(void)
+// void PikiAI::ActExit::cleanup()
 // {
 // 	/*
 // 	stwu     r1, -0x30(r1)
@@ -1252,7 +1252,7 @@ lbl_801A2AEC:
 //  * Address:	801A35C0
 //  * Size:	00000C
 //  */
-// void PikiAI::ClimbActionArg::getName(void)
+// void PikiAI::ClimbActionArg::getName()
 // {
 // 	/*
 // 	lis      r3, lbl_8047F3D8@ha
@@ -1266,7 +1266,7 @@ lbl_801A2AEC:
 //  * Address:	801A35CC
 //  * Size:	00000C
 //  */
-// void PikiAI::GotoPosActionArg::getName(void)
+// void PikiAI::GotoPosActionArg::getName()
 // {
 // 	/*
 // 	lis      r3, lbl_8047F3E8@ha

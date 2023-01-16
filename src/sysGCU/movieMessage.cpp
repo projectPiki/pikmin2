@@ -372,7 +372,7 @@ namespace P2JME {
  * Address:	........
  * Size:	0000B8
  */
-Movie::WindowPane::WindowPane(void)
+Movie::WindowPane::WindowPane()
 {
 	// UNUSED FUNCTION
 }
@@ -382,7 +382,7 @@ Movie::WindowPane::WindowPane(void)
  * Address:	80434F5C
  * Size:	000020
  */
-void Movie::WindowPane::doInit(void)
+void Movie::WindowPane::doInit()
 {
 	/*
 	lwz      r4, 0x18(r3)
@@ -401,7 +401,7 @@ void Movie::WindowPane::doInit(void)
  * Address:	80434F7C
  * Size:	000164
  */
-void Movie::WindowPane::update(void)
+void Movie::WindowPane::update()
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -747,7 +747,7 @@ Movie::AbtnPane::AbtnPane(unsigned char)
  * Address:	804353A0
  * Size:	000054
  */
-void Movie::AbtnPane::doInit(void)
+void Movie::AbtnPane::doInit()
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -779,7 +779,7 @@ void Movie::AbtnPane::doInit(void)
  * Address:	804353F4
  * Size:	000170
  */
-void Movie::AbtnPane::update(void)
+void Movie::AbtnPane::update()
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -896,7 +896,7 @@ lbl_80435534:
  * Address:	........
  * Size:	0000CC
  */
-Movie::PodIconScreen::PodIconScreen(void)
+Movie::PodIconScreen::PodIconScreen()
 {
 	// UNUSED FUNCTION
 }
@@ -906,7 +906,7 @@ Movie::PodIconScreen::PodIconScreen(void)
  * Address:	........
  * Size:	000078
  */
-void Movie::PodIconScreen::setTrans(void)
+void Movie::PodIconScreen::setTrans()
 {
 	// UNUSED FUNCTION
 }
@@ -916,7 +916,7 @@ void Movie::PodIconScreen::setTrans(void)
  * Address:	........
  * Size:	000168
  */
-void Movie::PodIconScreen::reset(void)
+void Movie::PodIconScreen::reset()
 {
 	// UNUSED FUNCTION
 }
@@ -926,7 +926,7 @@ void Movie::PodIconScreen::reset(void)
  * Address:	........
  * Size:	000178
  */
-void Movie::PodIconScreen::appear(void)
+void Movie::PodIconScreen::appear()
 {
 	// UNUSED FUNCTION
 }
@@ -936,7 +936,7 @@ void Movie::PodIconScreen::appear(void)
  * Address:	........
  * Size:	0002A0
  */
-void Movie::PodIconScreen::disappear(void)
+void Movie::PodIconScreen::disappear()
 {
 	// UNUSED FUNCTION
 }
@@ -956,7 +956,7 @@ void Movie::PodIconScreen::set(JKRArchive*)
  * Address:	80435564
  * Size:	000438
  */
-void Movie::PodIconScreen::update(void)
+void Movie::PodIconScreen::update()
 {
 	/*
 	stwu     r1, -0x20(r1)
@@ -1273,7 +1273,7 @@ lbl_80435980:
  * Address:	........
  * Size:	00003C
  */
-Movie::MessageWindowScreen::MessageWindowScreen(void)
+Movie::MessageWindowScreen::MessageWindowScreen()
 {
 	// UNUSED FUNCTION
 }
@@ -1293,7 +1293,7 @@ void Movie::MessageWindowScreen::set(JKRArchive*)
  * Address:	8043599C
  * Size:	000080
  */
-Movie::TControl::TControl(void)
+Movie::TControl::TControl()
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -1336,7 +1336,7 @@ Movie::TControl::TControl(void)
  * Address:	80435A1C
  * Size:	000070
  */
-Window::TControl::~TControl(void)
+Window::TControl::~TControl()
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -1379,7 +1379,7 @@ lbl_80435A70:
  * Address:	80435A8C
  * Size:	0007B0
  */
-void Movie::TControl::onInit(void)
+void Movie::TControl::onInit()
 {
 	/*
 	stwu     r1, -0x40(r1)
@@ -1934,7 +1934,7 @@ lbl_804361D8:
  * Address:	8043623C
  * Size:	000038
  */
-void Movie::TControl::reset(void)
+void Movie::TControl::reset()
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -2581,7 +2581,7 @@ lbl_80436A50:
  * Address:	80436A6C
  * Size:	000080
  */
-Movie::TControl::~TControl(void)
+Movie::TControl::~TControl()
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -2647,7 +2647,7 @@ void Window::TControl::draw(float (*)[4], float (*)[4])
  * Address:	80436B0C
  * Size:	00007C
  */
-void Window::TControl::createRenderingProcessor(void)
+void Window::TControl::createRenderingProcessor()
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -2693,7 +2693,7 @@ lbl_80436B6C:
  * Address:	80436B88
  * Size:	000080
  */
-void Window::TControl::createSequenceProcessor(void)
+void Window::TControl::createSequenceProcessor()
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -2766,7 +2766,7 @@ void TControl::setMessageID(unsigned long long)
  * Address:	80436C40
  * Size:	000010
  */
-void TControl::createReference(void)
+void TControl::createReference()
 {
 	/*
 	lwz      r4, gP2JMEMgr@sda21(r13)
@@ -2781,7 +2781,7 @@ void TControl::createReference(void)
  * Address:	80436C50
  * Size:	000010
  */
-void TControl::createResourceContainer(void)
+void TControl::createResourceContainer()
 {
 	/*
 	lwz      r4, gP2JMEMgr@sda21(r13)
@@ -2796,7 +2796,7 @@ void TControl::createResourceContainer(void)
  * Address:	80436C60
  * Size:	0000A4
  */
-Movie::MessageWindowScreen::~MessageWindowScreen(void)
+Movie::MessageWindowScreen::~MessageWindowScreen()
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -2854,7 +2854,7 @@ lbl_80436CE8:
  * Address:	80436D04
  * Size:	0000A4
  */
-Movie::PodIconScreen::~PodIconScreen(void)
+Movie::PodIconScreen::~PodIconScreen()
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -2912,7 +2912,7 @@ lbl_80436D8C:
  * Address:	80436DA8
  * Size:	000080
  */
-Movie::AbtnPane::~AbtnPane(void)
+Movie::AbtnPane::~AbtnPane()
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -2959,7 +2959,7 @@ lbl_80436E0C:
  * Address:	80436E28
  * Size:	000080
  */
-Movie::WindowPane::~WindowPane(void)
+Movie::WindowPane::~WindowPane()
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -3008,7 +3008,7 @@ lbl_80436E8C:
  * Address:	80436EA8
  * Size:	000028
  */
-void __sinit_movieMessage_cpp(void)
+void __sinit_movieMessage_cpp()
 {
 	/*
 	lis      r4, __float_nan@ha

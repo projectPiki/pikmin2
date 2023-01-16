@@ -3273,7 +3273,7 @@ lbl_80252A5C:
  * Address:	80252AF8
  * Size:	000028
  */
-void __sinit_CameraMgr_cpp(void)
+void __sinit_CameraMgr_cpp()
 {
 	/*
 	lis      r4, __float_nan@ha

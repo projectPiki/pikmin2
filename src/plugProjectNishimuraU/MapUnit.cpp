@@ -97,7 +97,7 @@ void MapUnits::setBaseGenPtr(BaseGen* baseGen) { m_baseGen = baseGen; }
  * Address:	........
  * Size:	000008
  */
-// char* Cave::MapUnits::getUnitName(void)
+// char* Cave::MapUnits::getUnitName()
 // {
 // // UNUSED FUNCTION
 // }
@@ -107,7 +107,7 @@ void MapUnits::setBaseGenPtr(BaseGen* baseGen) { m_baseGen = baseGen; }
  * Address:	........
  * Size:	000008
  */
-// int Cave::MapUnits::getUnitIndex(void)
+// int Cave::MapUnits::getUnitIndex()
 // {
 // // UNUSED FUNCTION
 // }
@@ -117,7 +117,7 @@ void MapUnits::setBaseGenPtr(BaseGen* baseGen) { m_baseGen = baseGen; }
  * Address:	........
  * Size:	000008
  */
-// int Cave::MapUnits::getUnitKind(void)
+// int Cave::MapUnits::getUnitKind()
 // {
 // // UNUSED FUNCTION
 // }
@@ -127,7 +127,7 @@ void MapUnits::setBaseGenPtr(BaseGen* baseGen) { m_baseGen = baseGen; }
  * Address:	........
  * Size:	000008
  */
-// int Cave::MapUnits::getUnitSizeX(void)
+// int Cave::MapUnits::getUnitSizeX()
 // {
 // // UNUSED FUNCTION
 // }
@@ -137,7 +137,7 @@ void MapUnits::setBaseGenPtr(BaseGen* baseGen) { m_baseGen = baseGen; }
  * Address:	........
  * Size:	000008
  */
-// int Cave::MapUnits::getUnitSizeY(void)
+// int Cave::MapUnits::getUnitSizeY()
 // {
 // // UNUSED FUNCTION
 // }
@@ -147,7 +147,7 @@ void MapUnits::setBaseGenPtr(BaseGen* baseGen) { m_baseGen = baseGen; }
  * Address:	........
  * Size:	000008
  */
-// BaseGen* Cave::MapUnits::getBaseGen(void)
+// BaseGen* Cave::MapUnits::getBaseGen()
 // {
 // // UNUSED FUNCTION
 // }
@@ -157,7 +157,7 @@ void MapUnits::setBaseGenPtr(BaseGen* baseGen) { m_baseGen = baseGen; }
  * Address:	........
  * Size:	000008
  */
-// JUTTexture* Cave::MapUnits::getUnitTexture(void)
+// JUTTexture* Cave::MapUnits::getUnitTexture()
 // {
 // // UNUSED FUNCTION
 // }
@@ -271,7 +271,7 @@ char* UnitInfo::getUnitName() { return m_mapUnits->m_name; }
  * Address:	........
  * Size:	00000C
  */
-// int Cave::UnitInfo::getUnitIndex(void)
+// int Cave::UnitInfo::getUnitIndex()
 // {
 // // UNUSED FUNCTION
 // }

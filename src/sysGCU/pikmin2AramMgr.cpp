@@ -291,7 +291,7 @@
  * Address:	80455C30
  * Size:	000060
  */
-void Pikmin2ARAM::Mgr::init(void)
+void Pikmin2ARAM::Mgr::init()
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -330,7 +330,7 @@ lbl_80455C7C:
  * Address:	80455C90
  * Size:	000018
  */
-Pikmin2ARAM::Mgr::Mgr(void)
+Pikmin2ARAM::Mgr::Mgr()
 {
 	/*
 	lis      r4, __vt__Q211Pikmin2ARAM3Mgr@ha
@@ -358,7 +358,7 @@ void Pikmin2ARAM::Mgr::setLoadPermission(bool a1)
  * Address:	........
  * Size:	000010
  */
-void Pikmin2ARAM::Mgr::isEntryOnly(void)
+void Pikmin2ARAM::Mgr::isEntryOnly()
 {
 	// UNUSED FUNCTION
 }
@@ -368,7 +368,7 @@ void Pikmin2ARAM::Mgr::isEntryOnly(void)
  * Address:	80455CB0
  * Size:	000060
  */
-void Pikmin2ARAM::Mgr::load(void)
+void Pikmin2ARAM::Mgr::load()
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -403,7 +403,7 @@ void Pikmin2ARAM::Mgr::load(void)
  * Address:	80455D10
  * Size:	000024
  */
-void Pikmin2ARAM::Mgr::dump(void)
+void Pikmin2ARAM::Mgr::dump()
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -423,7 +423,7 @@ void Pikmin2ARAM::Mgr::dump(void)
  * Address:	80455D34
  * Size:	0001A4
  */
-void Pikmin2ARAM::Mgr::loadEnemy(void)
+void Pikmin2ARAM::Mgr::loadEnemy()
 {
 	/*
 	stwu     r1, -0x450(r1)
@@ -552,7 +552,7 @@ lbl_80455E9C:
  * Address:	80455ED8
  * Size:	0000B8
  */
-void Pikmin2ARAM::Mgr::load2D(void)
+void Pikmin2ARAM::Mgr::load2D()
 {
 	/*
 	stwu     r1, -0x120(r1)
@@ -615,7 +615,7 @@ lbl_80455F4C:
  * Address:	80455F90
  * Size:	000078
  */
-void Pikmin2ARAM::Mgr::loadDemo(void)
+void Pikmin2ARAM::Mgr::loadDemo()
 {
 	/*
 	stwu     r1, -0x20(r1)
@@ -659,7 +659,7 @@ lbl_80455FC4:
  * Address:	80456008
  * Size:	000078
  */
-void Pikmin2ARAM::Mgr::loadItem(void)
+void Pikmin2ARAM::Mgr::loadItem()
 {
 	/*
 	stwu     r1, -0x20(r1)
@@ -703,7 +703,7 @@ lbl_8045603C:
  * Address:	80456080
  * Size:	000048
  */
-Pikmin2ARAM::Mgr::~Mgr(void)
+Pikmin2ARAM::Mgr::~Mgr()
 {
 	/*
 	stwu     r1, -0x10(r1)

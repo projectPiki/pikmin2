@@ -281,7 +281,7 @@ namespace Game {
  * Address:	802E7050
  * Size:	000148
  */
-KumaKochappy::Obj::Obj(void)
+KumaKochappy::Obj::Obj()
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -452,7 +452,7 @@ void KumaKochappy::Obj::onKill(Game::CreatureKillArg*)
  * Address:	802E7248
  * Size:	00004C
  */
-void KumaKochappy::Obj::doUpdate(void)
+void KumaKochappy::Obj::doUpdate()
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -666,7 +666,7 @@ void KumaKochappy::Obj::hipdropCallBack(Game::Creature*, float, CollPart*)
  * Address:	802E7460
  * Size:	000028
  */
-void KumaKochappy::Obj::startCarcassMotion(void)
+void KumaKochappy::Obj::startCarcassMotion()
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -687,7 +687,7 @@ void KumaKochappy::Obj::startCarcassMotion(void)
  * Address:	802E7488
  * Size:	00008C
  */
-void KumaKochappy::Obj::initMouthSlots(void)
+void KumaKochappy::Obj::initMouthSlots()
 {
 	/*
 	stwu     r1, -0x20(r1)
@@ -737,7 +737,7 @@ lbl_802E74E8:
  * Address:	802E7514
  * Size:	000064
  */
-void KumaKochappy::Obj::initWalkSmokeEffect(void)
+void KumaKochappy::Obj::initWalkSmokeEffect()
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -773,7 +773,7 @@ void KumaKochappy::Obj::initWalkSmokeEffect(void)
  * Address:	802E7578
  * Size:	000008
  */
-void KumaKochappy::Obj::getWalkSmokeEffectMgr(void)
+void KumaKochappy::Obj::getWalkSmokeEffectMgr()
 {
 	/*
 	addi     r3, r3, 0x2c0
@@ -786,7 +786,7 @@ void KumaKochappy::Obj::getWalkSmokeEffectMgr(void)
  * Address:	802E7580
  * Size:	000078
  */
-void KumaKochappy::Obj::resetZukanAnimationFrame(void)
+void KumaKochappy::Obj::resetZukanAnimationFrame()
 {
 	/*
 	stwu     r1, -0x20(r1)
@@ -829,7 +829,7 @@ lbl_802E75E4:
  * Address:	802E75F8
  * Size:	000380
  */
-void KumaKochappy::Obj::setNearestParent(void)
+void KumaKochappy::Obj::setNearestParent()
 {
 	/*
 	stwu     r1, -0xa0(r1)
@@ -1088,7 +1088,7 @@ lbl_802E7934:
  * Address:	802E7978
  * Size:	00004C
  */
-void isDone__Q24Game38EnemyIterator<Game::KumaChappy::Obj> Fv(void)
+void isDone__Q24Game38EnemyIterator<Game::KumaChappy::Obj> Fv()
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -1120,7 +1120,7 @@ namespace Game {
  * Address:	802E79C4
  * Size:	0001A8
  */
-void KumaKochappy::Obj::setTargetParentPosition(void)
+void KumaKochappy::Obj::setTargetParentPosition()
 {
 	/*
 	stwu     r1, -0x30(r1)
@@ -1247,7 +1247,7 @@ lbl_802E7B54:
  * Address:	802E7B6C
  * Size:	00001C
  */
-void KumaKochappy::Obj::updateHomePosition(void)
+void KumaKochappy::Obj::updateHomePosition()
 {
 	/*
 	lfs      f0, 0x18c(r3)
@@ -1265,7 +1265,7 @@ void KumaKochappy::Obj::updateHomePosition(void)
  * Address:	802E7B88
  * Size:	000038
  */
-void KumaKochappy::Obj::getSearchedTarget(void)
+void KumaKochappy::Obj::getSearchedTarget()
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -1291,7 +1291,7 @@ void KumaKochappy::Obj::getSearchedTarget(void)
  * Address:	802E7BC0
  * Size:	000070
  */
-void KumaKochappy::Obj::createChappyRelation(void)
+void KumaKochappy::Obj::createChappyRelation()
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -1332,7 +1332,7 @@ lbl_802E7BFC:
  * Address:	802E7C30
  * Size:	000024
  */
-void KumaKochappy::Obj::releaseParent(void)
+void KumaKochappy::Obj::releaseParent()
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -1352,7 +1352,7 @@ void KumaKochappy::Obj::releaseParent(void)
  * Address:	802E7C54
  * Size:	00000C
  */
-void KumaKochappy::Obj::getParentRelation(void)
+void KumaKochappy::Obj::getParentRelation()
 {
 	/*
 	lwz      r3, 0x2e4(r3)
@@ -1455,7 +1455,7 @@ lbl_802E7D20:
  * Address:	802E7D3C
  * Size:	000038
  */
-void __ml__Q24Game38EnemyIterator<Game::KumaChappy::Obj> Fv(void)
+void __ml__Q24Game38EnemyIterator<Game::KumaChappy::Obj> Fv()
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -1480,7 +1480,7 @@ void __ml__Q24Game38EnemyIterator<Game::KumaChappy::Obj> Fv(void)
  * Address:	802E7D74
  * Size:	0000E4
  */
-void next__Q24Game38EnemyIterator<Game::KumaChappy::Obj> Fv(void)
+void next__Q24Game38EnemyIterator<Game::KumaChappy::Obj> Fv()
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -1556,7 +1556,7 @@ lbl_802E7E44:
  * Address:	802E7E58
  * Size:	0000DC
  */
-void first__Q24Game38EnemyIterator<Game::KumaChappy::Obj> Fv(void)
+void first__Q24Game38EnemyIterator<Game::KumaChappy::Obj> Fv()
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -1632,7 +1632,7 @@ namespace Game {
  * Address:	802E7F34
  * Size:	000008
  */
-void KumaKochappy::Obj::getMouthSlots(void)
+void KumaKochappy::Obj::getMouthSlots()
 {
 	/*
 	addi     r3, r3, 0x2d0
@@ -1645,7 +1645,7 @@ void KumaKochappy::Obj::getMouthSlots(void)
  * Address:	802E7F3C
  * Size:	000008
  */
-void KumaKochappy::Obj::getDownSmokeScale(void)
+void KumaKochappy::Obj::getDownSmokeScale()
 {
 	/*
 	lfs      f1, lbl_8051CF08@sda21(r2)
@@ -1658,5 +1658,5 @@ void KumaKochappy::Obj::getDownSmokeScale(void)
  * Address:	802E7F44
  * Size:	000008
  */
-u32 KumaKochappy::Obj::getEnemyTypeID(void) { return 0x4C; }
+u32 KumaKochappy::Obj::getEnemyTypeID() { return 0x4C; }
 } // namespace Game

@@ -587,7 +587,7 @@ lbl_80334280:
  * Address:	........
  * Size:	000070
  */
-ConductorList::ConductorList(void)
+ConductorList::ConductorList()
 {
 	// UNUSED FUNCTION
 }
@@ -597,7 +597,7 @@ ConductorList::ConductorList(void)
  * Address:	80334290
  * Size:	0000D4
  */
-ConductorList::~ConductorList(void)
+ConductorList::~ConductorList()
 {
 	/*
 	stwu     r1, -0x20(r1)
@@ -810,7 +810,7 @@ lbl_803344E8:
  * Address:	80334510
  * Size:	000014
  */
-ConductorList::CaveInfo::CaveInfo(void)
+ConductorList::CaveInfo::CaveInfo()
 {
 	/*
 	li       r4, 0xff
@@ -1145,7 +1145,7 @@ void ConductorList::getSeqAndWaveFromConductor(char const*, unsigned char*, char
  * Address:	803348F8
  * Size:	0000E0
  */
-SoundTable::CategoryMgr::CategoryMgr(void)
+SoundTable::CategoryMgr::CategoryMgr()
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -1486,7 +1486,7 @@ lbl_80334CA4:
  * Address:	80334CC8
  * Size:	0000A8
  */
-CameraMgr::CameraMgr(void)
+CameraMgr::CameraMgr()
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -1539,7 +1539,7 @@ CameraMgr::CameraMgr(void)
  * Address:	80334D70
  * Size:	000060
  */
-CameraMgr::~CameraMgr(void)
+CameraMgr::~CameraMgr()
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -1694,7 +1694,7 @@ lbl_80334EC8:
  * Address:	80334ED8
  * Size:	000034
  */
-SysFactory::SysFactory(void)
+SysFactory::SysFactory()
 {
 	/*
 	lis      r5, __vt__Q26PSGame10SysFactory@ha
@@ -1718,7 +1718,7 @@ SysFactory::SysFactory(void)
  * Address:	80334F0C
  * Size:	000404
  */
-void SysFactory::newSoundSystem(void)
+void SysFactory::newSoundSystem()
 {
 	/*
 	stwu     r1, -0x40(r1)
@@ -2021,7 +2021,7 @@ lbl_803352C8:
  * Address:	80335310
  * Size:	000080
  */
-void SysFactory::preInitJAI(void)
+void SysFactory::preInitJAI()
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -2064,7 +2064,7 @@ void SysFactory::preInitJAI(void)
  * Address:	80335390
  * Size:	000120
  */
-void SysFactory::postInitJAI(void)
+void SysFactory::postInitJAI()
 {
 	/*
 	stwu     r1, -0x30(r1)
@@ -2161,7 +2161,7 @@ lbl_80335460:
  * Address:	803354B0
  * Size:	000038
  */
-SceneInfo::SceneInfo(void)
+SceneInfo::SceneInfo()
 {
 	/*
 	lis      r4, __vt__Q26PSGame9SceneInfo@ha
@@ -2319,7 +2319,7 @@ PikScene::PikScene((unsigned char))
  * Address:	80335620
  * Size:	000060
  */
-PikScene::~PikScene(void)
+PikScene::~PikScene()
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -2356,7 +2356,7 @@ lbl_80335664:
  * Address:	80335680
  * Size:	0000A8
  */
-void PikScene::getMiddleBossBgm(void)
+void PikScene::getMiddleBossBgm()
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -2417,7 +2417,7 @@ lbl_80335710:
  * Address:	........
  * Size:	00007C
  */
-void PikScene::getJumpMainBgm(void)
+void PikScene::getJumpMainBgm()
 {
 	// UNUSED FUNCTION
 }
@@ -2427,7 +2427,7 @@ void PikScene::getJumpMainBgm(void)
  * Address:	80335728
  * Size:	000378
  */
-void PikSceneMgr::newAndSetGlobalScene(void)
+void PikSceneMgr::newAndSetGlobalScene()
 {
 	/*
 	stwu     r1, -0x70(r1)
@@ -5824,7 +5824,7 @@ void PSSetBgmSelectAsToolMode()
  * Address:	803380AC
  * Size:	000050
  */
-void __dt__Q28PSSystem39SingletonBase<PSGame::ConductorList> Fv(void)
+void __dt__Q28PSSystem39SingletonBase<PSGame::ConductorList> Fv()
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -5857,7 +5857,7 @@ lbl_803380E4:
  * Address:	803380FC
  * Size:	000050
  */
-void __dt__Q28PSSystem49SingletonBase<PSGame::SoundTable::CategoryMgr> Fv(void)
+void __dt__Q28PSSystem49SingletonBase<PSGame::SoundTable::CategoryMgr> Fv()
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -5890,7 +5890,7 @@ lbl_80338134:
  * Address:	8033814C
  * Size:	000098
  */
-void newInstance__Q28PSSystem49SingletonBase<PSGame::SoundTable::CategoryMgr> Fv(void)
+void newInstance__Q28PSSystem49SingletonBase<PSGame::SoundTable::CategoryMgr> Fv()
 {
 	/*
 	.loc_0x0:
@@ -5948,7 +5948,7 @@ void newInstance__Q28PSSystem49SingletonBase<PSGame::SoundTable::CategoryMgr> Fv
  * Address:	803381E4
  * Size:	000008
  */
-@28 @PSGame::ConductorList::~ConductorList(void)
+@28 @PSGame::ConductorList::~ConductorList()
 {
 	/*
 	addi     r3, r3, -28
@@ -5963,14 +5963,14 @@ namespace PSGame {
  * Address:	803381EC
  * Size:	000008
  */
-bool SceneInfo::isCaveFloor(void) { return false; }
+bool SceneInfo::isCaveFloor() { return false; }
 
 /*
  * --INFO--
  * Address:	803381F4
  * Size:	000008
  */
-u32 PikSceneMgr::curSceneIsBigBossFloor(void) { return 0x0; }
+u32 PikSceneMgr::curSceneIsBigBossFloor() { return 0x0; }
 
 } // namespace PSGame
 
@@ -5981,7 +5981,7 @@ namespace PSSystem {
  * Address:	803381FC
  * Size:	000038
  */
-void SceneMgr::exec(void)
+void SceneMgr::exec()
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -6008,14 +6008,14 @@ lbl_80338224:
  * Address:	80338234
  * Size:	000004
  */
-void Scene::init(void) { }
+void Scene::init() { }
 
 /*
  * --INFO--
  * Address:	80338238
  * Size:	000050
  */
-PSAutoBgm::ConductorArcMgr::~ConductorArcMgr(void)
+PSAutoBgm::ConductorArcMgr::~ConductorArcMgr()
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -6050,7 +6050,7 @@ namespace PSGame {
  * Address:	80338288
  * Size:	000064
  */
-SoundTable::CategoryMgr::~CategoryMgr(void)
+SoundTable::CategoryMgr::~CategoryMgr()
 {
 	/*
 stwu     r1, -0x10(r1)
@@ -6095,7 +6095,7 @@ blr
  * Address:	803382EC
  * Size:	000080
  */
-void __dt__Q28PSSystem24ArcMgr<PSGame::BASARC> Fv(void)
+void __dt__Q28PSSystem24ArcMgr<PSGame::BASARC> Fv()
 {
 	/*
 	stwu     r1, -0x10(r1)

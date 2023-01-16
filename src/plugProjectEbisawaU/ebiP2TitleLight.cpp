@@ -101,7 +101,7 @@ blr
  * Address:	803C1FEC
  * Size:	00017C
  */
-void TTitleLightMgr::setParam_(void)
+void TTitleLightMgr::setParam_()
 {
 	/*
 lwz      r6, 0x19c(r3)
@@ -219,7 +219,7 @@ blr
  * Address:	803C2168
  * Size:	000020
  */
-void TTitleLightMgr::update(void)
+void TTitleLightMgr::update()
 {
 	/*
 stwu     r1, -0x10(r1)
@@ -293,7 +293,7 @@ blr
  * Address:	803C221C
  * Size:	000028
  */
-void __sinit_ebiP2TitleLight_cpp(void)
+void __sinit_ebiP2TitleLight_cpp()
 {
 	/*
 	lis      r4, __float_nan@ha

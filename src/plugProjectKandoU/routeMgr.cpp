@@ -262,7 +262,7 @@ bool WayPointIterator::isDone()
  * Address:	801725C4
  * Size:	000034
  */
-s16 WayPointIterator::operator*(void)
+s16 WayPointIterator::operator*()
 {
 	if (m_index < 8) {
 		return m_wayPoint->m_fromLinks[m_index];
@@ -277,7 +277,7 @@ s16 WayPointIterator::operator*(void)
  * Address:	801725F8
  * Size:	0000A8
  */
-void Game::WayPointIterator::forward(void)
+void Game::WayPointIterator::forward()
 {
 	/*
 	.loc_0x0:
@@ -381,7 +381,7 @@ Game::WayPoint::WayPoint()
  * Address:	8017270C
  * Size:	000060
  */
-Game::WayPoint::RoomList::~RoomList(void)
+Game::WayPoint::RoomList::~RoomList()
 {
 	/*
 	.loc_0x0:
@@ -419,7 +419,7 @@ Game::WayPoint::RoomList::~RoomList(void)
  * Address:	8017276C
  * Size:	000084
  */
-Game::WayPoint::~WayPoint(void)
+Game::WayPoint::~WayPoint()
 {
 	/*
 	.loc_0x0:
@@ -478,7 +478,7 @@ void Game::WayPoint::includeRoom(short)
  * Address:	801727F0
  * Size:	000084
  */
-void Game::WayPoint::reset(void)
+void Game::WayPoint::reset()
 {
 	for (int i = 0; i < 8; ++i) {
 		m_fromLinks[i] = -1;
@@ -708,7 +708,7 @@ Game::RouteMgr::RouteMgr()
  * Address:	80172964
  * Size:	000080
  */
-Game::RouteMgr::~RouteMgr(void)
+Game::RouteMgr::~RouteMgr()
 {
 	/*
 	.loc_0x0:
@@ -756,7 +756,7 @@ Game::RouteMgr::~RouteMgr(void)
  * Address:	801729E4
  * Size:	000148
  */
-void Game::RouteMgr::makeInvertLinks(void)
+void Game::RouteMgr::makeInvertLinks()
 {
 	/*
 	.loc_0x0:
@@ -1013,7 +1013,7 @@ bool Game::RouteMgr::linkable(Game::WayPoint*, Game::WayPoint*)
  * Address:	80172D10
  * Size:	000268
  */
-void Game::RouteMgr::refreshWater(void)
+void Game::RouteMgr::refreshWater()
 {
 	Iterator<WayPoint> iterator(this, 0, nullptr);
 	iterator.first();
@@ -2188,7 +2188,7 @@ void Game::RouteMgr::getNearestEdge(Game::WPEdgeSearchArg&)
  * Address:	80173B88
  * Size:	0001E0
  */
-void Game::RouteMgr::setCloseAll(void)
+void Game::RouteMgr::setCloseAll()
 {
 	Iterator<WayPoint> iterator(this);
 	iterator.first();
@@ -2635,7 +2635,7 @@ void Game::RouteMgr::directDraw(Graphics&, Game::WayPoint*, Game::WayPoint*, int
  * Address:	80174294
  * Size:	00007C
  */
-Game::GameRouteMgr::GameRouteMgr(void)
+Game::GameRouteMgr::GameRouteMgr()
     : RouteMgr()
 {
 	m_wayPoints = nullptr;
@@ -2646,7 +2646,7 @@ Game::GameRouteMgr::GameRouteMgr(void)
  * Address:	80174310
  * Size:	0000BC
  */
-Game::GameRouteMgr::~GameRouteMgr(void)
+Game::GameRouteMgr::~GameRouteMgr()
 {
 	/*
 	.loc_0x0:
@@ -2933,7 +2933,7 @@ Game::EditorRouteMgr::EditorRouteMgr()
  * Address:	8017463C
  * Size:	000060
  */
-Game::EditorRouteMgr::WPNode::~WPNode(void)
+Game::EditorRouteMgr::WPNode::~WPNode()
 {
 	/*
 	.loc_0x0:
@@ -3278,7 +3278,7 @@ void* Game::EditorRouteMgr::getEnd()
  * Address:	801749B4
  * Size:	0000B8
  */
-Game::EditorRouteMgr::~EditorRouteMgr(void)
+Game::EditorRouteMgr::~EditorRouteMgr()
 {
 	/*
 	.loc_0x0:

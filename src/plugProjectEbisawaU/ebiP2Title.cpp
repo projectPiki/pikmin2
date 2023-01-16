@@ -731,7 +731,7 @@ namespace title {
  * Address:	803BCD18
  * Size:	0005EC
  */
-TTitleMgr::TTitleMgr(void)
+TTitleMgr::TTitleMgr()
 {
 	/*
 stwu     r1, -0x20(r1)
@@ -1121,7 +1121,7 @@ blr
  * Address:	803BD304
  * Size:	000458
  */
-TTitleParameters::TTitleParameters(void)
+TTitleParameters::TTitleParameters()
 {
 	/*
 stwu     r1, -0x10(r1)
@@ -1412,7 +1412,7 @@ blr
  * Address:	803BD75C
  * Size:	000070
  */
-TTitleFogMgr::~TTitleFogMgr(void)
+TTitleFogMgr::~TTitleFogMgr()
 {
 	/*
 stwu     r1, -0x10(r1)
@@ -1496,7 +1496,7 @@ namespace ebi {
  * Address:	803BD82C
  * Size:	0000E4
  */
-TTitleLightMgr::~TTitleLightMgr(void)
+TTitleLightMgr::~TTitleLightMgr()
 {
 	/*
 stwu     r1, -0x10(r1)
@@ -1574,7 +1574,7 @@ blr
  * Address:	803BD910
  * Size:	0000D8
  */
-TTitleLightMgr::TTitleLightMgr(void)
+TTitleLightMgr::TTitleLightMgr()
 {
 	/*
 stwu     r1, -0x20(r1)
@@ -1639,7 +1639,7 @@ blr
  * Address:	803BD9E8
  * Size:	00014C
  */
-TTitleLightSetting::TTitleLightSetting(void)
+TTitleLightSetting::TTitleLightSetting()
 {
 	/*
 stwu     r1, -0x10(r1)
@@ -1733,7 +1733,7 @@ blr
  * Address:	803BDB34
  * Size:	000228
  */
-TTitleLightSetting::TSpecParms::TSpecParms(void)
+TTitleLightSetting::TSpecParms::TSpecParms()
 {
 	/*
 stwu     r1, -0x10(r1)
@@ -1884,7 +1884,7 @@ blr
  * Address:	803BDD5C
  * Size:	000350
  */
-TTitleLightSetting::TMainParms::TMainParms(void)
+TTitleLightSetting::TMainParms::TMainParms()
 {
 	/*
 stwu     r1, -0x10(r1)
@@ -2150,7 +2150,7 @@ namespace ebi {
  * Address:	803BE10C
  * Size:	0000D0
  */
-TTitleCameraMgr::~TTitleCameraMgr(void)
+TTitleCameraMgr::~TTitleCameraMgr()
 {
 	/*
 stwu     r1, -0x10(r1)
@@ -2258,7 +2258,7 @@ namespace ebi {
  * Address:	803BE23C
  * Size:	000060
  */
-TCoordMgr::~TCoordMgr(void)
+TCoordMgr::~TCoordMgr()
 {
 	/*
 stwu     r1, -0x10(r1)
@@ -2295,7 +2295,7 @@ blr
  * Address:	803BE29C
  * Size:	000060
  */
-Chappy::TMgr::~TMgr(void)
+Chappy::TMgr::~TMgr()
 {
 	/*
 stwu     r1, -0x10(r1)
@@ -2332,7 +2332,7 @@ blr
  * Address:	803BE2FC
  * Size:	000060
  */
-Kogane::TMgr::~TMgr(void)
+Kogane::TMgr::~TMgr()
 {
 	/*
 stwu     r1, -0x10(r1)
@@ -2369,7 +2369,7 @@ blr
  * Address:	803BE35C
  * Size:	000084
  */
-Pikmin::TMgr::~TMgr(void)
+Pikmin::TMgr::~TMgr()
 {
 	/*
 stwu     r1, -0x10(r1)
@@ -2417,7 +2417,7 @@ blr
  * Address:	........
  * Size:	000074
  */
-TBlackPlane::~TBlackPlane(void)
+TBlackPlane::~TBlackPlane()
 {
 	// UNUSED FUNCTION
 }
@@ -2427,7 +2427,7 @@ TBlackPlane::~TBlackPlane(void)
  * Address:	........
  * Size:	000060
  */
-TBGEnemyBase::~TBGEnemyBase(void)
+TBGEnemyBase::~TBGEnemyBase()
 {
 	// UNUSED FUNCTION
 }
@@ -2437,7 +2437,7 @@ TBGEnemyBase::~TBGEnemyBase(void)
  * Address:	........
  * Size:	000074
  */
-TMapBase::~TMapBase(void)
+TMapBase::~TMapBase()
 {
 	// UNUSED FUNCTION
 }
@@ -2482,7 +2482,7 @@ namespace ebi {
  * Address:	803BE428
  * Size:	00034C
  */
-TTitleMgr::~TTitleMgr(void)
+TTitleMgr::~TTitleMgr()
 {
 	/*
 stwu     r1, -0x10(r1)
@@ -2738,7 +2738,7 @@ blr
  * Address:	803BE774
  * Size:	000024
  */
-void TTitleMgr::globalInstance(void)
+void TTitleMgr::globalInstance()
 {
 	/*
 stwu     r1, -0x10(r1)
@@ -2758,7 +2758,7 @@ blr
  * Address:	803BE798
  * Size:	000048
  */
-void TTitleMgr::Instance(void)
+void TTitleMgr::Instance()
 {
 	/*
 stwu     r1, -0x10(r1)
@@ -2791,7 +2791,7 @@ blr
  * Address:	803BE7E0
  * Size:	000050
  */
-void TTitleMgr::deleteInstance(void)
+void TTitleMgr::deleteInstance()
 {
 	/*
 stwu     r1, -0x10(r1)
@@ -2826,7 +2826,7 @@ blr
  * Address:	803BE830
  * Size:	000228
  */
-void TTitleMgr::init(void)
+void TTitleMgr::init()
 {
 	/*
 stwu     r1, -0x40(r1)
@@ -2999,7 +2999,7 @@ void TTitleMgr::setPosToPiki(long)
  * Address:	........
  * Size:	00003C
  */
-void TTitleMgr::setStartPosToPiki(void)
+void TTitleMgr::setStartPosToPiki()
 {
 	// UNUSED FUNCTION
 }
@@ -3009,7 +3009,7 @@ void TTitleMgr::setStartPosToPiki(void)
  * Address:	803BEA58
  * Size:	000050
  */
-void TTitleMgr::setLogo(void)
+void TTitleMgr::setLogo()
 {
 	/*
 stwu     r1, -0x10(r1)
@@ -3040,7 +3040,7 @@ blr
  * Address:	........
  * Size:	0001D8
  */
-void TTitleMgr::calcBreakupDestination(void)
+void TTitleMgr::calcBreakupDestination()
 {
 	// UNUSED FUNCTION
 }
@@ -3060,7 +3060,7 @@ void TTitleMgr::calcDestination(long)
  * Address:	........
  * Size:	000084
  */
-void TTitleMgr::isAssemble(void)
+void TTitleMgr::isAssemble()
 {
 	// UNUSED FUNCTION
 }
@@ -3070,7 +3070,7 @@ void TTitleMgr::isAssemble(void)
  * Address:	803BEAA8
  * Size:	000300
  */
-void TTitleMgr::loadResource(void)
+void TTitleMgr::loadResource()
 {
 	/*
 stwu     r1, -0x20(r1)
@@ -3315,7 +3315,7 @@ blr
  * Address:	803BEDA8
  * Size:	000040
  */
-void TTitleMgr::initAfterLoadRes(void)
+void TTitleMgr::initAfterLoadRes()
 {
 	/*
 stwu     r1, -0x10(r1)
@@ -3370,7 +3370,7 @@ blr
  * Address:	........
  * Size:	00001C
  */
-void TTitleMgr::setDrawBufferToJ3DSys(void)
+void TTitleMgr::setDrawBufferToJ3DSys()
 {
 	// UNUSED FUNCTION
 }
@@ -3384,7 +3384,7 @@ void TTitleMgr::setDrawBufferToJ3DSys(void)
  * Address:	........
  * Size:	000038
  */
-void inField__Q33ebi5title9TTitleMgrFP10Vector2<float>(void)
+void inField__Q33ebi5title9TTitleMgrFP10Vector2<float>()
 {
 	// UNUSED FUNCTION
 }
@@ -3438,7 +3438,7 @@ blr
  * Address:	803BEE9C
  * Size:	000008
  */
-u32 TObjBase::isCalc(void) { return 0x1; }
+u32 TObjBase::isCalc() { return 0x1; }
 
 } // namespace title
 } // namespace ebi
@@ -3448,7 +3448,7 @@ u32 TObjBase::isCalc(void) { return 0x1; }
  * Address:	........
  * Size:	000044
  */
-void inViewField__Q33ebi5title9TTitleMgrFP10Vector2<float> f(void)
+void inViewField__Q33ebi5title9TTitleMgrFP10Vector2<float> f()
 {
 	// UNUSED FUNCTION
 }
@@ -3509,7 +3509,7 @@ blr
  * Address:	........
  * Size:	000044
  */
-void isInViewField__Q33ebi5title9TTitleMgrFR10Vector2<float> f(void)
+void isInViewField__Q33ebi5title9TTitleMgrFR10Vector2<float> f()
 {
 	// UNUSED FUNCTION
 }
@@ -3574,7 +3574,7 @@ blr
  * Address:	803BEFAC
  * Size:	000044
  */
-void isOutViewField__Q33ebi5title9TTitleMgrFR10Vector2<float> f(void)
+void isOutViewField__Q33ebi5title9TTitleMgrFR10Vector2<float> f()
 {
 	/*
 	stwu     r1, -0x20(r1)
@@ -3654,7 +3654,7 @@ blr
  * Address:	803BF078
  * Size:	000020
  */
-void TTitleMgr::getPosOutOfViewField(void)
+void TTitleMgr::getPosOutOfViewField()
 {
 	/*
 lfs      f2, lbl_8051F7A4@sda21(r2)
@@ -3673,7 +3673,7 @@ blr
  * Address:	803BF098
  * Size:	000408
  */
-void TTitleMgr::start(void)
+void TTitleMgr::start()
 {
 	/*
 stwu     r1, -0xf0(r1)
@@ -3958,7 +3958,7 @@ blr
  * Address:	........
  * Size:	0000AC
  */
-void TTitleMgr::windBlow(void)
+void TTitleMgr::windBlow()
 {
 	// UNUSED FUNCTION
 }
@@ -3968,7 +3968,7 @@ void TTitleMgr::windBlow(void)
  * Address:	803BF4A0
  * Size:	00020C
  */
-void TTitleMgr::breakup(void)
+void TTitleMgr::breakup()
 {
 	/*
 stwu     r1, -0xe0(r1)
@@ -4118,7 +4118,7 @@ blr
  * Address:	803BF6AC
  * Size:	0001A0
  */
-void TTitleMgr::startKogane(void)
+void TTitleMgr::startKogane()
 {
 	/*
 stwu     r1, -0x40(r1)
@@ -4251,7 +4251,7 @@ blr
  * Address:	803BF84C
  * Size:	0001A0
  */
-void TTitleMgr::startChappy(void)
+void TTitleMgr::startChappy()
 {
 	/*
 stwu     r1, -0x40(r1)
@@ -4550,7 +4550,7 @@ blr
  * Address:	........
  * Size:	000050
  */
-void TTitleMgr::boid3ToAssemble(void)
+void TTitleMgr::boid3ToAssemble()
 {
 	// UNUSED FUNCTION
 }
@@ -4560,7 +4560,7 @@ void TTitleMgr::boid3ToAssemble(void)
  * Address:	803BFC28
  * Size:	00001C
  */
-void TTitleMgr::isControllerOK(void)
+void TTitleMgr::isControllerOK()
 {
 	/*
 lwz      r0, 0xf74(r3)
@@ -4580,7 +4580,7 @@ blr
  * Address:	803BFC44
  * Size:	00001C
  */
-void TTitleMgr::isPressStart(void)
+void TTitleMgr::isPressStart()
 {
 	/*
 lwz      r0, 0xf7c(r3)
@@ -4600,7 +4600,7 @@ blr
  * Address:	........
  * Size:	000058
  */
-void TTitleMgr::isAnyKey(void)
+void TTitleMgr::isAnyKey()
 {
 	// UNUSED FUNCTION
 }
@@ -4708,7 +4708,7 @@ blr
  * Address:	803BFD84
  * Size:	000458
  */
-void TTitleMgr::update(void)
+void TTitleMgr::update()
 {
 	/*
 stwu     r1, -0x20(r1)
@@ -5065,7 +5065,7 @@ blr
  * Address:	803C01DC
  * Size:	00034C
  */
-void TTitleMgr::updateState(void)
+void TTitleMgr::updateState()
 {
 	/*
 stwu     r1, -0x50(r1)
@@ -5330,7 +5330,7 @@ blr
  * Address:	803C0528
  * Size:	00022C
  */
-void TTitleMgr::checkEncounter_(void)
+void TTitleMgr::checkEncounter_()
 {
 	/*
 stwu     r1, -0x30(r1)
@@ -5510,7 +5510,7 @@ blr
  * Address:	803C0754
  * Size:	000268
  */
-void TTitleMgr::draw(void)
+void TTitleMgr::draw()
 {
 	/*
 stwu     r1, -0x70(r1)
@@ -5739,7 +5739,7 @@ blr
  * Address:	803C0A38
  * Size:	000060
  */
-Pikmin::TBoidParamMgr::~TBoidParamMgr(void)
+Pikmin::TBoidParamMgr::~TBoidParamMgr()
 {
 	/*
 stwu     r1, -0x10(r1)
@@ -5809,7 +5809,7 @@ namespace title {
  * Address:	803C0AC0
  * Size:	000008
  */
-s32 TObjBase::getCreatureType(void) { return -0x1; }
+s32 TObjBase::getCreatureType() { return -0x1; }
 
 } // namespace title
 } // namespace ebi
@@ -5819,7 +5819,7 @@ s32 TObjBase::getCreatureType(void) { return -0x1; }
  * Address:	803C0AC8
  * Size:	000028
  */
-void __sinit_ebiP2Title_cpp(void)
+void __sinit_ebiP2Title_cpp()
 {
 	/*
 	lis      r4, __float_nan@ha
@@ -5840,7 +5840,7 @@ void __sinit_ebiP2Title_cpp(void)
  * Address:	803C0AF0
  * Size:	000008
  */
-@24 @ebi::title::TTitleMgr::~TTitleMgr(void)
+@24 @ebi::title::TTitleMgr::~TTitleMgr()
 {
 	/*
 	addi     r3, r3, -24

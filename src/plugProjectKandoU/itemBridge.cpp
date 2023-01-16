@@ -1179,7 +1179,7 @@ void Item::update()
 //  * Address:	801EE47C
 //  * Size:	000044
 //  */
-// void ItemBridge::Item::do_updateLOD(void)
+// void ItemBridge::Item::do_updateLOD()
 // {
 // 	/*
 // 	stwu     r1, -0x20(r1)
@@ -1214,7 +1214,7 @@ void Item::update()
 //  * Address:	801EE4C4
 //  * Size:	000048
 //  */
-// void ItemBridge::Item::constructor(void)
+// void ItemBridge::Item::constructor()
 // {
 // 	/*
 // 	stwu     r1, -0x10(r1)
@@ -1371,7 +1371,7 @@ void Item::update()
 //  * Address:	801EE67C
 //  * Size:	000090
 //  */
-// void ItemBridge::Item::onSetPosition(void)
+// void ItemBridge::Item::onSetPosition()
 // {
 // 	/*
 // 	stwu     r1, -0x20(r1)
@@ -1419,7 +1419,7 @@ void Item::update()
 //  * Address:	801EE70C
 //  * Size:	000024
 //  */
-// void ItemBridge::Item::updateBoundSphere(void)
+// void ItemBridge::Item::updateBoundSphere()
 // {
 // 	/*
 // 	lfs      f1, 0x19c(r3)
@@ -1439,7 +1439,7 @@ void Item::update()
 //  * Address:	801EE730
 //  * Size:	000124
 //  */
-// void ItemBridge::Item::changeMaterial(void)
+// void ItemBridge::Item::changeMaterial()
 // {
 // 	/*
 // 	stwu     r1, -0x20(r1)
@@ -1535,7 +1535,7 @@ void Item::update()
 //  * Address:	801EE854
 //  * Size:	0001A0
 //  */
-// void ItemBridge::Item::doAI(void)
+// void ItemBridge::Item::doAI()
 // {
 // 	/*
 // 	stwu     r1, -0x10(r1)
@@ -1872,7 +1872,7 @@ void Item::update()
 //  * Address:	801EEC80
 //  * Size:	0001CC
 //  */
-// void ItemBridge::Item::createWayPoints(void)
+// void ItemBridge::Item::createWayPoints()
 // {
 // 	/*
 // 	stwu     r1, -0xa0(r1)
@@ -2077,7 +2077,7 @@ void Item::update()
 //  * Address:	801EEF34
 //  * Size:	0000A0
 //  */
-// void ItemBridge::Item::getStartPos(void)
+// void ItemBridge::Item::getStartPos()
 // {
 // 	/*
 // 	stwu     r1, -0x50(r1)
@@ -2164,7 +2164,7 @@ void Item::update()
 //  * Address:	........
 //  * Size:	000008
 //  */
-// void ItemBridge::Item::getStageDepth(void)
+// void ItemBridge::Item::getStageDepth()
 // {
 // 	// UNUSED FUNCTION
 // }
@@ -2174,7 +2174,7 @@ void Item::update()
 //  * Address:	801EF030
 //  * Size:	000008
 //  */
-// void ItemBridge::Item::getStageWidth(void)
+// void ItemBridge::Item::getStageWidth()
 // {
 // 	/*
 // 	lfs      f1, lbl_80519B50@sda21(r2)
@@ -2187,7 +2187,7 @@ void Item::update()
 //  * Address:	801EF038
 //  * Size:	0000A4
 //  */
-// void ItemBridge::Item::getBridgeZVec(void)
+// void ItemBridge::Item::getBridgeZVec()
 // {
 // 	/*
 // 	stwu     r1, -0x20(r1)
@@ -2245,7 +2245,7 @@ void Item::update()
 //  * Address:	801EF0DC
 //  * Size:	0000B8
 //  */
-// void ItemBridge::Item::getBridgeXVec(void)
+// void ItemBridge::Item::getBridgeXVec()
 // {
 // 	/*
 // 	stwu     r1, -0x20(r1)
@@ -2310,7 +2310,7 @@ void Item::update()
 //  * Address:	801EF194
 //  * Size:	0001F0
 //  */
-// void getBridgePos__Q34Game10ItemBridge4ItemFR10Vector3f RfRf(void)
+// void getBridgePos__Q34Game10ItemBridge4ItemFR10Vector3f RfRf()
 // {
 // 	/*
 // 	stwu     r1, -0x80(r1)
@@ -2457,7 +2457,7 @@ void Item::update()
 //  * Address:	801EF384
 //  * Size:	000138
 //  */
-// void workable__Q34Game10ItemBridge4ItemFR10Vector3f(void)
+// void workable__Q34Game10ItemBridge4ItemFR10Vector3f()
 // {
 // 	/*
 // 	stwu     r1, -0x20(r1)
@@ -2560,7 +2560,7 @@ void Item::update()
 //  * Address:	801EF4BC
 //  * Size:	000430
 //  */
-// void getVectorField__Q34Game10ItemBridge4ItemFRQ23Sys6SphereR10Vector3f(void)
+// void getVectorField__Q34Game10ItemBridge4ItemFRQ23Sys6SphereR10Vector3f()
 // {
 // 	/*
 // 	stwu     r1, -0x80(r1)
@@ -3386,7 +3386,7 @@ void Item::update()
 //  * Address:	........
 //  * Size:	000008
 //  */
-// void ItemBridge::Item::getWorkRadius(void)
+// void ItemBridge::Item::getWorkRadius()
 // {
 // 	// UNUSED FUNCTION
 // }
@@ -3396,7 +3396,7 @@ void Item::update()
 //  * Address:	801EFF6C
 //  * Size:	00004C
 //  */
-// void ItemBridge::Mgr::generatorNewItemParm(void)
+// void ItemBridge::Mgr::generatorNewItemParm()
 // {
 // 	/*
 // 	stwu     r1, -0x10(r1)
@@ -3526,7 +3526,7 @@ void Item::update()
 //  * Address:	801F00C8
 //  * Size:	000130
 //  */
-// ItemBridge::Mgr::Mgr(void)
+// ItemBridge::Mgr::Mgr()
 // {
 // 	/*
 // 	stwu     r1, -0x440(r1)
@@ -3642,7 +3642,7 @@ void Item::update()
 //  * Address:	801F021C
 //  * Size:	0001EC
 //  */
-// ItemBridge::BridgeParms::BridgeParms(void)
+// ItemBridge::BridgeParms::BridgeParms()
 // {
 // 	/*
 // 	stwu     r1, -0x10(r1)
@@ -3776,7 +3776,7 @@ void Item::update()
 //  * Address:	801F0408
 //  * Size:	000118
 //  */
-// void ItemBridge::Mgr::birth(void)
+// void ItemBridge::Mgr::birth()
 // {
 // 	/*
 // 	stwu     r1, -0x10(r1)
@@ -3865,7 +3865,7 @@ void Item::update()
 //  * Address:	801F0520
 //  * Size:	0000A8
 //  */
-// void generatorBirth__Q34Game10ItemBridge3MgrFR10Vector3f R10Vector3f PQ24Game11GenItemParm(void)
+// void generatorBirth__Q34Game10ItemBridge3MgrFR10Vector3f R10Vector3f PQ24Game11GenItemParm()
 // {
 // 	/*
 // 	.loc_0x0:
@@ -3921,7 +3921,7 @@ void Item::update()
 //  * Address:	801F05C8
 //  * Size:	000260
 //  */
-// void ItemBridge::Mgr::onLoadResources(void)
+// void ItemBridge::Mgr::onLoadResources()
 // {
 // 	/*
 // 	stwu     r1, -0x20(r1)
@@ -4088,7 +4088,7 @@ void Item::update()
 //  * Address:	801F0828
 //  * Size:	00001C
 //  */
-// ItemBridge::BridgeInfo::BridgeInfo(void)
+// ItemBridge::BridgeInfo::BridgeInfo()
 // {
 // 	/*
 // 	li       r4, 0
@@ -4455,7 +4455,7 @@ void Item::update()
 //  * Address:	801F0C68
 //  * Size:	00000C
 //  */
-// void ItemBridge::BridgeInitArg::getName(void)
+// void ItemBridge::BridgeInitArg::getName()
 // {
 // 	/*
 // 	lis      r3, lbl_80481418@ha
@@ -4469,7 +4469,7 @@ void Item::update()
 //  * Address:	801F0C74
 //  * Size:	000134
 //  */
-// ItemBridge::Mgr::~Mgr(void)
+// ItemBridge::Mgr::~Mgr()
 // {
 // 	/*
 // 	stwu     r1, -0x10(r1)
@@ -4565,7 +4565,7 @@ void Item::update()
 //  * Address:	801F0DA8
 //  * Size:	000100
 //  */
-// void ItemBridge::Mgr::doNew(void)
+// void ItemBridge::Mgr::doNew()
 // {
 // 	/*
 // 	stwu     r1, -0x10(r1)
@@ -4648,7 +4648,7 @@ void Item::update()
 //  * Address:	801F0EA8
 //  * Size:	00000C
 //  */
-// void ItemBridge::Mgr::generatorGetID(void)
+// void ItemBridge::Mgr::generatorGetID()
 // {
 // 	/*
 // 	lis      r3, 0x62726467@ha
@@ -4662,7 +4662,7 @@ void Item::update()
 //  * Address:	801F0EB4
 //  * Size:	00000C
 //  */
-// void ItemBridge::Mgr::generatorLocalVersion(void)
+// void ItemBridge::Mgr::generatorLocalVersion()
 // {
 // 	/*
 // 	lis      r3, 0x30303031@ha
@@ -4676,14 +4676,14 @@ void Item::update()
 //  * Address:	801F0EC0
 //  * Size:	000004
 //  */
-// void ItemBridge::Item::makeTrMatrix(void) { }
+// void ItemBridge::Item::makeTrMatrix() { }
 
 // /*
 //  * --INFO--
 //  * Address:	801F0EC4
 //  * Size:	000008
 //  */
-// void ItemBridge::Item::getCreatureName(void)
+// void ItemBridge::Item::getCreatureName()
 // {
 // 	/*
 // 	addi     r3, r2, lbl_80519B7C@sda21
@@ -4696,7 +4696,7 @@ void Item::update()
 //  * Address:	801F0ECC
 //  * Size:	000008
 //  */
-// void ItemBridge::Item::getMabiki(void)
+// void ItemBridge::Item::getMabiki()
 // {
 // 	/*
 // 	addi     r3, r3, 0x1ec
@@ -4709,7 +4709,7 @@ void Item::update()
 //  * Address:	801F0ED4
 //  * Size:	000034
 //  */
-// void doAI__Q24Game83FSMItem<Game::ItemBridge::Item, Game::ItemBridge::FSM, Game::ItemBridge::State> Fv(void)
+// void doAI__Q24Game83FSMItem<Game::ItemBridge::Item, Game::ItemBridge::FSM, Game::ItemBridge::State> Fv()
 // {
 // 	/*
 // 	.loc_0x0:
@@ -4734,14 +4734,14 @@ void Item::update()
 //  * Address:	801F0F08
 //  * Size:	000004
 //  */
-// void onDamage__Q24Game35ItemState<Game::ItemBridge::Item> FPQ34Game10ItemBridge4Itemf(void) { }
+// void onDamage__Q24Game35ItemState<Game::ItemBridge::Item> FPQ34Game10ItemBridge4Itemf() { }
 
 // /*
 //  * --INFO--
 //  * Address:	801F0F0C
 //  * Size:	000004
 //  */
-// void onKeyEvent__Q24Game35ItemState<Game::ItemBridge::Item> FPQ34Game10ItemBridge4ItemRCQ28SysShape8KeyEvent(void) {
+// void onKeyEvent__Q24Game35ItemState<Game::ItemBridge::Item> FPQ34Game10ItemBridge4ItemRCQ28SysShape8KeyEvent() {
 // }
 
 // /*
@@ -4749,14 +4749,14 @@ void Item::update()
 //  * Address:	801F0F10
 //  * Size:	000004
 //  */
-// void onBounce__Q24Game35ItemState<Game::ItemBridge::Item> FPQ34Game10ItemBridge4ItemPQ23Sys8Triangle(void) { }
+// void onBounce__Q24Game35ItemState<Game::ItemBridge::Item> FPQ34Game10ItemBridge4ItemPQ23Sys8Triangle() { }
 
 // /*
 //  * --INFO--
 //  * Address:	801F0F14
 //  * Size:	000004
 //  */
-// void onPlatCollision__Q24Game35ItemState<Game::ItemBridge::Item> FPQ34Game10ItemBridge4ItemRQ24Game9PlatEvent(void) {
+// void onPlatCollision__Q24Game35ItemState<Game::ItemBridge::Item> FPQ34Game10ItemBridge4ItemRQ24Game9PlatEvent() {
 // }
 
 // /*
@@ -4764,49 +4764,49 @@ void Item::update()
 //  * Address:	801F0F18
 //  * Size:	000004
 //  */
-// void onCollision__Q24Game35ItemState<Game::ItemBridge::Item> FPQ34Game10ItemBridge4ItemRQ24Game9CollEvent(void) { }
+// void onCollision__Q24Game35ItemState<Game::ItemBridge::Item> FPQ34Game10ItemBridge4ItemRQ24Game9CollEvent() { }
 
 // /*
 //  * --INFO--
 //  * Address:	801F0F1C
 //  * Size:	000004
 //  */
-// void init__Q24Game34FSMState<Game::ItemBridge::Item> FPQ34Game10ItemBridge4ItemPQ24Game8StateArg(void) { }
+// void init__Q24Game34FSMState<Game::ItemBridge::Item> FPQ34Game10ItemBridge4ItemPQ24Game8StateArg() { }
 
 // /*
 //  * --INFO--
 //  * Address:	801F0F20
 //  * Size:	000004
 //  */
-// void exec__Q24Game34FSMState<Game::ItemBridge::Item> FPQ34Game10ItemBridge4Item(void) { }
+// void exec__Q24Game34FSMState<Game::ItemBridge::Item> FPQ34Game10ItemBridge4Item() { }
 
 // /*
 //  * --INFO--
 //  * Address:	801F0F24
 //  * Size:	000004
 //  */
-// void cleanup__Q24Game34FSMState<Game::ItemBridge::Item> FPQ34Game10ItemBridge4Item(void) { }
+// void cleanup__Q24Game34FSMState<Game::ItemBridge::Item> FPQ34Game10ItemBridge4Item() { }
 
 // /*
 //  * --INFO--
 //  * Address:	801F0F28
 //  * Size:	000004
 //  */
-// void resume__Q24Game34FSMState<Game::ItemBridge::Item> FPQ34Game10ItemBridge4Item(void) { }
+// void resume__Q24Game34FSMState<Game::ItemBridge::Item> FPQ34Game10ItemBridge4Item() { }
 
 // /*
 //  * --INFO--
 //  * Address:	801F0F2C
 //  * Size:	000004
 //  */
-// void restart__Q24Game34FSMState<Game::ItemBridge::Item> FPQ34Game10ItemBridge4Item(void) { }
+// void restart__Q24Game34FSMState<Game::ItemBridge::Item> FPQ34Game10ItemBridge4Item() { }
 
 // /*
 //  * --INFO--
 //  * Address:	801F0F30
 //  * Size:	000030
 //  */
-// void transit__Q24Game34FSMState<Game::ItemBridge::Item> FPQ34Game10ItemBridge4ItemiPQ24Game8StateArg(void)
+// void transit__Q24Game34FSMState<Game::ItemBridge::Item> FPQ34Game10ItemBridge4ItemiPQ24Game8StateArg()
 // {
 // 	/*
 // 	.loc_0x0:
@@ -4830,7 +4830,7 @@ void Item::update()
 //  * Address:	801F0F60
 //  * Size:	000004
 //  */
-// void init__Q24Game38StateMachine<Game::ItemBridge::Item> FPQ34Game10ItemBridge4Item(void) { }
+// void init__Q24Game38StateMachine<Game::ItemBridge::Item> FPQ34Game10ItemBridge4Item() { }
 
 // } // namespace Game
 
@@ -4839,7 +4839,7 @@ void Item::update()
 //  * Address:	801F0F64
 //  * Size:	000064
 //  */
-// void create__Q24Game38StateMachine<Game::ItemBridge::Item> Fi(void)
+// void create__Q24Game38StateMachine<Game::ItemBridge::Item> Fi()
 // {
 // 	/*
 // 	stwu     r1, -0x10(r1)
@@ -4875,7 +4875,7 @@ void Item::update()
 //  * Address:	801F0FC8
 //  * Size:	00009C
 //  */
-// void transit__Q24Game38StateMachine<Game::ItemBridge::Item> FPQ34Game10ItemBridge4ItemiPQ24Game8StateArg(void)
+// void transit__Q24Game38StateMachine<Game::ItemBridge::Item> FPQ34Game10ItemBridge4ItemiPQ24Game8StateArg()
 // {
 // 	/*
 // 	.loc_0x0:
@@ -4932,7 +4932,7 @@ void Item::update()
 //  * Address:	801F1064
 //  * Size:	000084
 //  */
-// void registerState__Q24Game38StateMachine<Game::ItemBridge::Item> FPQ24Game34FSMState<Game::ItemBridge::Item>(void)
+// void registerState__Q24Game38StateMachine<Game::ItemBridge::Item> FPQ24Game34FSMState<Game::ItemBridge::Item>()
 // {
 // 	/*
 // 	.loc_0x0:
@@ -4983,7 +4983,7 @@ void Item::update()
 //  * Address:	801F10E8
 //  * Size:	000038
 //  */
-// void exec__Q24Game38StateMachine<Game::ItemBridge::Item> FPQ34Game10ItemBridge4Item(void)
+// void exec__Q24Game38StateMachine<Game::ItemBridge::Item> FPQ34Game10ItemBridge4Item()
 // {
 // 	/*
 // 	.loc_0x0:
@@ -5012,7 +5012,7 @@ void Item::update()
 //  * Size:	000044
 //  */
 // void onKeyEvent__Q24Game83FSMItem<Game::ItemBridge::Item, Game::ItemBridge::FSM, Game::ItemBridge::State>
-// FRCQ28SysShape8KeyEvent(void)
+// FRCQ28SysShape8KeyEvent()
 // {
 // 	/*
 // 	.loc_0x0:
@@ -5044,7 +5044,7 @@ void Item::update()
 //  * Size:	000044
 //  */
 // void platCallback__Q24Game83FSMItem<Game::ItemBridge::Item, Game::ItemBridge::FSM, Game::ItemBridge::State>
-// FRQ24Game9PlatEvent(void)
+// FRQ24Game9PlatEvent()
 // {
 // 	/*
 // 	.loc_0x0:
@@ -5076,7 +5076,7 @@ void Item::update()
 //  * Size:	000044
 //  */
 // void collisionCallback__Q24Game83FSMItem<Game::ItemBridge::Item, Game::ItemBridge::FSM, Game::ItemBridge::State>
-// FRQ24Game9CollEvent(void)
+// FRQ24Game9CollEvent()
 // {
 // 	/*
 // 	.loc_0x0:
@@ -5108,7 +5108,7 @@ void Item::update()
 //  * Size:	000044
 //  */
 // void bounceCallback__Q24Game83FSMItem<Game::ItemBridge::Item, Game::ItemBridge::FSM, Game::ItemBridge::State>
-// FPQ23Sys8Triangle(void)
+// FPQ23Sys8Triangle()
 // {
 // 	/*
 // 	.loc_0x0:
@@ -5140,7 +5140,7 @@ void Item::update()
 //  * Size:	000008
 //  */
 // void @376 @onKeyEvent__Q24Game83FSMItem<Game::ItemBridge::Item, Game::ItemBridge::FSM, Game::ItemBridge::State>
-// FRCQ28SysShape8KeyEvent(void)
+// FRCQ28SysShape8KeyEvent()
 // {
 // 	/*
 // 	.loc_0x0:
@@ -5154,7 +5154,7 @@ void Item::update()
 //  * Address:	801F1238
 //  * Size:	000008
 //  */
-// @48 @Game::ItemBridge::Mgr::~Mgr(void)
+// @48 @Game::ItemBridge::Mgr::~Mgr()
 // {
 // 	/*
 // 	addi     r3, r3, -48

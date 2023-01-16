@@ -12,7 +12,7 @@ namespace Game {
  * Address:	80233CEC
  * Size:	00001C
  */
-Highscore::Highscore(void)
+Highscore::Highscore()
 {
 	m_scoreCount = 0;
 	m_scores     = nullptr;
@@ -132,7 +132,7 @@ void Highscore::write(Stream& output)
  * Address:	802340DC
  * Size:	000030
  */
-void Highscore::clear(void)
+void Highscore::clear()
 {
 	for (int i = 0; i < m_scoreCount; i++) {
 		m_scores[i] = -1;

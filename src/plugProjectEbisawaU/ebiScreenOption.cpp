@@ -185,7 +185,7 @@ namespace Screen {
  * Address:	803CADC8
  * Size:	000100
  */
-void TOptionParameter::loadRam(void)
+void TOptionParameter::loadRam()
 {
 	Game::CommonSaveData::Mgr* mgr = sys->m_playData;
 	_00                            = mgr->_3C;
@@ -213,7 +213,7 @@ void TOptionParameter::loadRam(void)
  * Address:	803CAEC8
  * Size:	0000FC
  */
-void TOptionParameter::saveRam(void)
+void TOptionParameter::saveRam()
 {
 	Game::CommonSaveData::Mgr* mgr = sys->m_playData;
 	mgr->_3C                       = _00;
@@ -315,7 +315,7 @@ blr
  * Address:	803CAFC4
  * Size:	000024
  */
-void TOptionParameter::initParamForTest(void)
+void TOptionParameter::initParamForTest()
 {
 	_00           = false;
 	_01           = false;
@@ -1153,7 +1153,7 @@ void TOption::doInitWaitState() { _1E4.stop(); }
  * Address:	803CBA60
  * Size:	000084
  */
-bool TOption::doUpdateStateOpen(void)
+bool TOption::doUpdateStateOpen()
 {
 	if (_0F8 != 0 && _0FC != 0) {
 		_0FC--;
@@ -1208,7 +1208,7 @@ blr
  * Address:	803CBAE4
  * Size:	0009B4
  */
-bool TOption::doUpdateStateWait(void)
+bool TOption::doUpdateStateWait()
 {
 	/*
 stwu     r1, -0x40(r1)
@@ -1959,7 +1959,7 @@ blr
  * Address:	803CC498
  * Size:	000074
  */
-bool TOption::doUpdateStateClose(void)
+bool TOption::doUpdateStateClose()
 {
 	_10C->update();
 	if (_0F8 != 0 && _0FC != 0) {
@@ -2015,7 +2015,7 @@ blr
  * Address:	803CC50C
  * Size:	000244
  */
-void TOption::doDraw(void)
+void TOption::doDraw()
 {
 	/*
 stwu     r1, -0x60(r1)
@@ -2188,7 +2188,7 @@ blr
  * Address:	803CC750
  * Size:	0000B0
  */
-void TOption::loadResource(void)
+void TOption::loadResource()
 {
 	char resName[256];
 	sys->heapStatusStart("TOption::loadResource", nullptr);
@@ -2271,7 +2271,7 @@ blr
  * Address:	803CC8BC
  * Size:	000174
  */
-void TOption::initScreen_(void) const
+void TOption::initScreen_() const
 {
 	/*
 stwu     r1, -0x20(r1)
@@ -2397,7 +2397,7 @@ blr
  * Address:	803CCA30
  * Size:	000C9C
  */
-void TOption::setOptionParamToScreen_(void)
+void TOption::setOptionParamToScreen_()
 {
 #if !MATCHING
 	// if (_0C8._01) {
@@ -3724,7 +3724,7 @@ blr
  * Address:	803CD6CC
  * Size:	000008
  */
-char* TOption::getName(void)
+char* TOption::getName()
 {
 	return "TOption";
 	/*
@@ -3738,6 +3738,6 @@ blr
  * Address:	803CD6D4
  * Size:	000004
  */
-void TScreenBase::doKillScreen(void) { }
+void TScreenBase::doKillScreen() { }
 } // namespace Screen
 } // namespace ebi

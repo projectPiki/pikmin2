@@ -57,7 +57,7 @@
  * Address:	802F27DC
  * Size:	0001DC
  */
-void makeShadowSRT__Q24Game22UmimushiTubeShadowNodeFRQ24Game15JointShadowParmP7MatrixfR10Vector3<float> R10Vector3f(void)
+void makeShadowSRT__Q24Game22UmimushiTubeShadowNodeFRQ24Game15JointShadowParmP7MatrixfR10Vector3<float> R10Vector3f()
 {
 	/*
 	.loc_0x0:
@@ -194,7 +194,7 @@ void makeShadowSRT__Q24Game22UmimushiTubeShadowNodeFRQ24Game15JointShadowParmP7M
  * Address:	802F29B8
  * Size:	0000CC
  */
-void makeShadowSRT__Q24Game24UmimushiSphereShadowNodeFRQ24Game15JointShadowParmP7MatrixfR10Vector3<float> b(void)
+void makeShadowSRT__Q24Game24UmimushiSphereShadowNodeFRQ24Game15JointShadowParmP7MatrixfR10Vector3<float> b()
 {
 	/*
 	.loc_0x0:
@@ -329,7 +329,7 @@ lbl_802F2B1C:
  * Address:	802F2B48
  * Size:	000068
  */
-void UmiMushi::UmimushiShadowMgr::init(void)
+void UmiMushi::UmimushiShadowMgr::init()
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -366,7 +366,7 @@ void UmiMushi::UmimushiShadowMgr::init(void)
  * Address:	802F2BB0
  * Size:	00015C
  */
-void UmiMushi::UmimushiShadowMgr::update(void)
+void UmiMushi::UmimushiShadowMgr::update()
 {
 	/*
 	stwu     r1, -0x60(r1)
@@ -470,7 +470,7 @@ lbl_802F2CF8:
  * Address:	802F2D0C
  * Size:	000070
  */
-UmimushiSphereShadowNode::~UmimushiSphereShadowNode(void)
+UmimushiSphereShadowNode::~UmimushiSphereShadowNode()
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -513,7 +513,7 @@ lbl_802F2D60:
  * Address:	802F2D7C
  * Size:	000070
  */
-UmimushiTubeShadowNode::~UmimushiTubeShadowNode(void)
+UmimushiTubeShadowNode::~UmimushiTubeShadowNode()
 {
 	/*
 	stwu     r1, -0x10(r1)

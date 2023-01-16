@@ -15315,7 +15315,7 @@ JBlockType J3DColorBlockLightOff::getType() { return JBT_ColorLightOff; }
  * Address:	80083770
  * Size:	000024
  */
-void __sinit_J3DMatBlock_cpp(void)
+void __sinit_J3DMatBlock_cpp()
 {
 	/*
 	lwz      r3, SizeOfLoadColorChans@sda21(r13)

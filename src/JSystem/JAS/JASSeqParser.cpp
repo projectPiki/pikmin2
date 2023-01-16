@@ -3345,7 +3345,7 @@ lbl_8009E840:
  * Address:	8009E854
  * Size:	000740
  */
-void __sinit_JASSeqParser_cpp(void)
+void __sinit_JASSeqParser_cpp()
 {
 	/*
 	stwu     r1, -0x120(r1)

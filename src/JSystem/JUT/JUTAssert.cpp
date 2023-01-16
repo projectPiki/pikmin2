@@ -332,7 +332,7 @@ void JUTAssertion::setConfirmMessage(unsigned long, char*, int, bool, const char
  * Address:	........
  * Size:	0001B0
  */
-void showAssert_f_va(void)
+void showAssert_f_va()
 {
 	// UNUSED FUNCTION
 }
@@ -362,7 +362,7 @@ void JUTAssertion::checkAssert(unsigned long, char*, int, bool, const char*)
  * Address:	........
  * Size:	000100
  */
-void setWarningMessage_f_va(void)
+void setWarningMessage_f_va()
 {
 	// UNUSED FUNCTION
 }
@@ -382,7 +382,7 @@ void JUTAssertion::setWarningMessage_f(unsigned long, char*, int, const char*, .
  * Address:	........
  * Size:	0000FC
  */
-void setLogMessage_f_va(void)
+void setLogMessage_f_va()
 {
 	// UNUSED FUNCTION
 }

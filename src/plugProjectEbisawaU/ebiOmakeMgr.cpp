@@ -892,7 +892,7 @@ Omake::TMgr::TMgr()
  * Address:	803EF4DC
  * Size:	0000E8
  */
-void Omake::TMgr::loadResource(void)
+void Omake::TMgr::loadResource()
 {
 	/*
 	stwu     r1, -0x120(r1)
@@ -964,7 +964,7 @@ lbl_803EF54C:
  * Address:	803EF5C4
  * Size:	000050
  */
-void Omake::TMgr::newCardEMgrAndTask(void)
+void Omake::TMgr::newCardEMgrAndTask()
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -995,7 +995,7 @@ void Omake::TMgr::newCardEMgrAndTask(void)
  * Address:	803EF614
  * Size:	00003C
  */
-void Omake::TMgr::start(void)
+void Omake::TMgr::start()
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -1021,7 +1021,7 @@ void Omake::TMgr::start(void)
  * Address:	803EF650
  * Size:	00003C
  */
-void Omake::TMgr::goEnd_(void)
+void Omake::TMgr::goEnd_()
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -1047,7 +1047,7 @@ void Omake::TMgr::goEnd_(void)
  * Address:	........
  * Size:	000084
  */
-void Omake::TMgr::forceQuit(void)
+void Omake::TMgr::forceQuit()
 {
 	// UNUSED FUNCTION
 }
@@ -1057,7 +1057,7 @@ void Omake::TMgr::forceQuit(void)
  * Address:	803EF68C
  * Size:	000028
  */
-bool Omake::TMgr::isFinish(void)
+bool Omake::TMgr::isFinish()
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -1078,7 +1078,7 @@ bool Omake::TMgr::isFinish(void)
  * Address:	803EF6B4
  * Size:	0000E0
  */
-void Omake::TMgr::update(void)
+void Omake::TMgr::update()
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -1147,7 +1147,7 @@ lbl_803EF77C:
  * Address:	803EF794
  * Size:	000080
  */
-void Omake::TMgr::draw(void)
+void Omake::TMgr::draw()
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -1192,7 +1192,7 @@ lbl_803EF800:
  * Address:	803EF814
  * Size:	00002C
  */
-bool Omake::TMgr::isMovieState(void)
+bool Omake::TMgr::isMovieState()
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -1214,7 +1214,7 @@ bool Omake::TMgr::isMovieState(void)
  * Address:	803EF840
  * Size:	000054
  */
-void Omake::TMgr::restartFromMovieState(void)
+void Omake::TMgr::restartFromMovieState()
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -1248,7 +1248,7 @@ lbl_803EF880:
  * Address:	803EF894
  * Size:	000008
  */
-int Omake::TMgr::getMovieID(void)
+int Omake::TMgr::getMovieID()
 {
 	/*
 	lwz      r3, 0x44(r3)
@@ -1261,7 +1261,7 @@ int Omake::TMgr::getMovieID(void)
  * Address:	........
  * Size:	00016C
  */
-bool Omake::TMgr::isTouchAnyKey_(void)
+bool Omake::TMgr::isTouchAnyKey_()
 {
 	// UNUSED FUNCTION
 }
@@ -1271,7 +1271,7 @@ bool Omake::TMgr::isTouchAnyKey_(void)
  * Address:	803EF89C
  * Size:	000058
  */
-int Omake::TMgr::getStateID(void)
+int Omake::TMgr::getStateID()
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -1322,7 +1322,7 @@ void Omake::FSMState::do_exec(ebi::Omake::TMgr*) { }
  * Size:	000030
  */
 // void transit__Q24Game27FSMState<ebi::Omake::TMgr>
-// FPQ33ebi5Omake4TMgriPQ24Game8StateArg(void)
+// FPQ33ebi5Omake4TMgriPQ24Game8StateArg()
 template <>
 void Game::FSMState<ebi::Omake::TMgr>::transit(ebi::Omake::TMgr*, int, Game::StateArg*)
 {
@@ -1349,7 +1349,7 @@ void Game::FSMState<ebi::Omake::TMgr>::transit(ebi::Omake::TMgr*, int, Game::Sta
  * Size:	000034
  */
 // void start__Q24Game31StateMachine<ebi::Omake::TMgr>
-// FPQ33ebi5Omake4TMgriPQ24Game8StateArg(void)
+// FPQ33ebi5Omake4TMgriPQ24Game8StateArg()
 template <>
 void Game::StateMachine<ebi::Omake::TMgr>::start(ebi::Omake::TMgr*, int, StateArg*)
 {
@@ -1379,7 +1379,7 @@ namespace Screen {
  * Address:	803EF960
  * Size:	000278
  */
-TOmakeGame::~TOmakeGame(void)
+TOmakeGame::~TOmakeGame()
 {
 	/*
 stwu     r1, -0x10(r1)
@@ -1566,7 +1566,7 @@ blr
  * Address:	803EFBD8
  * Size:	0002E4
  */
-TOmakeCardE::~TOmakeCardE(void)
+TOmakeCardE::~TOmakeCardE()
 {
 	/*
 stwu     r1, -0x10(r1)
@@ -1786,7 +1786,7 @@ blr
  * Address:	803EFEBC
  * Size:	000208
  */
-TOmake::~TOmake(void)
+TOmake::~TOmake()
 {
 	/*
 stwu     r1, -0x10(r1)
@@ -1944,7 +1944,7 @@ blr
  * Size:	000004
  */
 // void init__Q24Game27FSMState<ebi::Omake::TMgr>
-// FPQ33ebi5Omake4TMgrPQ24Game8StateArg(void)
+// FPQ33ebi5Omake4TMgrPQ24Game8StateArg()
 template <>
 void Game::FSMState<ebi::Omake::TMgr>::init(ebi::Omake::TMgr*, StateArg*)
 {
@@ -1955,7 +1955,7 @@ void Game::FSMState<ebi::Omake::TMgr>::init(ebi::Omake::TMgr*, StateArg*)
  * Address:	803F00C8
  * Size:	000004
  */
-// void exec__Q24Game27FSMState<ebi::Omake::TMgr> FPQ33ebi5Omake4TMgr(void) { }
+// void exec__Q24Game27FSMState<ebi::Omake::TMgr> FPQ33ebi5Omake4TMgr() { }
 template <>
 void Game::FSMState<ebi::Omake::TMgr>::exec(ebi::Omake::TMgr*)
 {
@@ -1966,7 +1966,7 @@ void Game::FSMState<ebi::Omake::TMgr>::exec(ebi::Omake::TMgr*)
  * Address:	803F00CC
  * Size:	000004
  */
-// void cleanup__Q24Game27FSMState<ebi::Omake::TMgr> FPQ33ebi5Omake4TMgr(void) {
+// void cleanup__Q24Game27FSMState<ebi::Omake::TMgr> FPQ33ebi5Omake4TMgr() {
 // }
 template <>
 void Game::FSMState<ebi::Omake::TMgr>::cleanup(ebi::Omake::TMgr*)
@@ -1978,7 +1978,7 @@ void Game::FSMState<ebi::Omake::TMgr>::cleanup(ebi::Omake::TMgr*)
  * Address:	803F00D0
  * Size:	000004
  */
-// void resume__Q24Game27FSMState<ebi::Omake::TMgr> FPQ33ebi5Omake4TMgr(void) {
+// void resume__Q24Game27FSMState<ebi::Omake::TMgr> FPQ33ebi5Omake4TMgr() {
 // }
 template <>
 void Game::FSMState<ebi::Omake::TMgr>::resume(ebi::Omake::TMgr*)
@@ -1990,7 +1990,7 @@ void Game::FSMState<ebi::Omake::TMgr>::resume(ebi::Omake::TMgr*)
  * Address:	803F00D4
  * Size:	000004
  */
-// void restart__Q24Game27FSMState<ebi::Omake::TMgr> FPQ33ebi5Omake4TMgr(void) {
+// void restart__Q24Game27FSMState<ebi::Omake::TMgr> FPQ33ebi5Omake4TMgr() {
 // }
 template <>
 void Game::FSMState<ebi::Omake::TMgr>::restart(ebi::Omake::TMgr*)
@@ -2002,7 +2002,7 @@ void Game::FSMState<ebi::Omake::TMgr>::restart(ebi::Omake::TMgr*)
  * Address:	803F00D8
  * Size:	000004
  */
-// void init__Q24Game31StateMachine<ebi::Omake::TMgr> FPQ33ebi5Omake4TMgr(void)
+// void init__Q24Game31StateMachine<ebi::Omake::TMgr> FPQ33ebi5Omake4TMgr()
 // { }
 template <>
 void Game::StateMachine<ebi::Omake::TMgr>::init(ebi::Omake::TMgr*)
@@ -2014,7 +2014,7 @@ void Game::StateMachine<ebi::Omake::TMgr>::init(ebi::Omake::TMgr*)
  * Address:	803F00DC
  * Size:	000038
  */
-// void exec__Q24Game31StateMachine<ebi::Omake::TMgr> FPQ33ebi5Omake4TMgr(void)
+// void exec__Q24Game31StateMachine<ebi::Omake::TMgr> FPQ33ebi5Omake4TMgr()
 template <>
 void Game::StateMachine<ebi::Omake::TMgr>::exec(ebi::Omake::TMgr*)
 {
@@ -2043,7 +2043,7 @@ lbl_803F0104:
  * Address:	803F0114
  * Size:	000064
  */
-// void create__Q24Game31StateMachine<ebi::Omake::TMgr> Fi(void)
+// void create__Q24Game31StateMachine<ebi::Omake::TMgr> Fi()
 template <>
 void Game::StateMachine<ebi::Omake::TMgr>::create(int)
 {
@@ -2082,7 +2082,7 @@ void Game::StateMachine<ebi::Omake::TMgr>::create(int)
  * Size:	00009C
  */
 // void transit__Q24Game31StateMachine<ebi::Omake::TMgr>
-// FPQ33ebi5Omake4TMgriPQ24Game8StateArg(void)
+// FPQ33ebi5Omake4TMgriPQ24Game8StateArg()
 template <>
 void Game::StateMachine<ebi::Omake::TMgr>::transit(ebi::Omake::TMgr*, int, Game::StateArg*)
 {
@@ -2142,7 +2142,7 @@ void Game::StateMachine<ebi::Omake::TMgr>::transit(ebi::Omake::TMgr*, int, Game:
  * Size:	000084
  */
 // void registerState__Q24Game31StateMachine<ebi::Omake::TMgr>
-// FPQ24Game27FSMState<ebi::Omake::TMgr>(void)
+// FPQ24Game27FSMState<ebi::Omake::TMgr>()
 template <>
 void Game::StateMachine<ebi::Omake::TMgr>::registerState(Game::FSMState<ebi::Omake::TMgr>*)
 {
@@ -2198,7 +2198,7 @@ namespace Screen {
  * Address:	803F0298
  * Size:	00000C
  */
-char* ArgOpenOmake::getName(void)
+char* ArgOpenOmake::getName()
 {
 	/*
 lis      r3, lbl_80497B30@ha

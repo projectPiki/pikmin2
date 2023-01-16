@@ -402,7 +402,7 @@ lbl_8020553C:
 //  * Address:	8020557C
 //  * Size:	000028
 //  */
-// void __sinit_mapMgrTraceMove_cpp(void)
+// void __sinit_mapMgrTraceMove_cpp()
 // {
 // 	/*
 // 	lis      r4, __float_nan@ha

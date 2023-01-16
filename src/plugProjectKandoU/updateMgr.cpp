@@ -70,7 +70,7 @@ void UpdateContext::exit()
  * Address:	80196778
  * Size:	00001C
  */
-UpdateMgr::UpdateMgr(void)
+UpdateMgr::UpdateMgr()
 {
 	_08 = nullptr;
 	_0C = nullptr;
@@ -85,7 +85,7 @@ UpdateMgr::UpdateMgr(void)
  * Address:	80196794
  * Size:	000024
  */
-void UpdateMgr::update(void)
+void UpdateMgr::update()
 {
 	int i = ++_10;
 	if (i < _00) {

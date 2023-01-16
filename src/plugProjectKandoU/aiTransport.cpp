@@ -339,7 +339,7 @@ lbl_801A1ADC:
  * Address:	801A1BC4
  * Size:	000044
  */
-void PikiAI::ActTransport::emotion_success(void)
+void PikiAI::ActTransport::emotion_success()
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -367,14 +367,14 @@ void PikiAI::ActTransport::emotion_success(void)
  * Address:	801A1C08
  * Size:	000004
  */
-void PikiAI::ActTransport::emotion_fail(void) { }
+void PikiAI::ActTransport::emotion_fail() { }
 
 /*
  * --INFO--
  * Address:	801A1C0C
  * Size:	0003E8
  */
-void PikiAI::ActTransport::exec(void)
+void PikiAI::ActTransport::exec()
 {
 	/*
 	stwu     r1, -0x40(r1)
@@ -677,7 +677,7 @@ lbl_801A1FD4:
  * Address:	801A1FF4
  * Size:	000078
  */
-void PikiAI::ActTransport::cleanup(void)
+void PikiAI::ActTransport::cleanup()
 {
 	/*
 	stwu     r1, -0x20(r1)
@@ -816,7 +816,7 @@ lbl_801A2170:
  * Address:	........
  * Size:	000068
  */
-void PikiAI::ActTransport::getNumStickers(void)
+void PikiAI::ActTransport::getNumStickers()
 {
 	// UNUSED FUNCTION
 }
@@ -826,7 +826,7 @@ void PikiAI::ActTransport::getNumStickers(void)
  * Address:	801A2188
  * Size:	00009C
  */
-void PikiAI::ActTransport::isStickLeader(void)
+void PikiAI::ActTransport::isStickLeader()
 {
 	/*
 	stwu     r1, -0x20(r1)
@@ -888,7 +888,7 @@ lbl_801A2208:
  * Address:	801A2224
  * Size:	0000BC
  */
-void PikiAI::ActTransport::initLift(void)
+void PikiAI::ActTransport::initLift()
 {
 	/*
 	stwu     r1, -0x20(r1)
@@ -948,7 +948,7 @@ lbl_801A224C:
  * Address:	801A22E0
  * Size:	000414
  */
-void PikiAI::ActTransport::execLift(void)
+void PikiAI::ActTransport::execLift()
 {
 	/*
 	stwu     r1, -0x60(r1)
@@ -1260,7 +1260,7 @@ lbl_801A26D8:
  * Address:	801A26F4
  * Size:	00000C
  */
-void PikiAI::PathMoveArg::getName(void)
+void PikiAI::PathMoveArg::getName()
 {
 	/*
 	lis      r3, lbl_8047F3A4@ha
@@ -1274,7 +1274,7 @@ void PikiAI::PathMoveArg::getName(void)
  * Address:	801A2700
  * Size:	00000C
  */
-void PikiAI::GotoSlotArg::getName(void)
+void PikiAI::GotoSlotArg::getName()
 {
 	/*
 	lis      r3, lbl_8047F3B0@ha

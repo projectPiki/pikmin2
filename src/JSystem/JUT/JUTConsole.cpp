@@ -658,7 +658,7 @@ JUTConsoleManager::JUTConsoleManager()
  * Address:	........
  * Size:	000054
  */
-// void __dt__Q27JGadget27TLinkList<JUTConsole, -24> Fv(void)
+// void __dt__Q27JGadget27TLinkList<JUTConsole, -24> Fv()
 // {
 // 	// UNUSED FUNCTION
 // }
@@ -1040,7 +1040,7 @@ void JUTSetReportConsole(JUTConsole* console)
  * Address:	800292AC
  * Size:	000008
  */
-JUTConsole* JUTGetReportConsole(void)
+JUTConsole* JUTGetReportConsole()
 {
 	return sReportConsole;
 	/*
@@ -1068,7 +1068,7 @@ void JUTSetWarningConsole(JUTConsole* console)
  * Address:	800292BC
  * Size:	000008
  */
-JUTConsole* JUTGetWarningConsole(void)
+JUTConsole* JUTGetWarningConsole()
 {
 	return sWarningConsole;
 	/*
@@ -1082,7 +1082,7 @@ JUTConsole* JUTGetWarningConsole(void)
  * Address:	........
  * Size:	00006C
  */
-// void JUTReportConsole_f_va(void)
+// void JUTReportConsole_f_va()
 // {
 // 	// UNUSED FUNCTION
 // }
@@ -1199,7 +1199,7 @@ void JUTReportConsole(char const* str)
  * Address:	........
  * Size:	00006C
  */
-void JUTWarningConsole_f_va(void)
+void JUTWarningConsole_f_va()
 {
 	// UNUSED FUNCTION
 }

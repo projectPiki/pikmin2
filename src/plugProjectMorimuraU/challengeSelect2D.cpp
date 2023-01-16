@@ -864,14 +864,14 @@ Morimura::TChallengePiki::TChallengePiki(J2DPane*, J2DPane*, J2DPane*)
  * Address:	8038C488
  * Size:	000004
  */
-Morimura::TChallengePiki::posInfo::posInfo(void) { }
+Morimura::TChallengePiki::posInfo::posInfo() { }
 
 /*
  * --INFO--
  * Address:	........
  * Size:	0000FC
  */
-void Morimura::TChallengePiki::reset(void)
+void Morimura::TChallengePiki::reset()
 {
 	// UNUSED FUNCTION
 }
@@ -891,7 +891,7 @@ void Morimura::TChallengePiki::jumpStart(float)
  * Address:	8038C48C
  * Size:	00046C
  */
-void Morimura::TChallengePiki::update(void)
+void Morimura::TChallengePiki::update()
 {
 	/*
 	stwu     r1, -0x40(r1)
@@ -1215,7 +1215,7 @@ lbl_8038C8D0:
  * Address:	........
  * Size:	00019C
  */
-void Morimura::TChallengePiki::draw(void)
+void Morimura::TChallengePiki::draw()
 {
 	// UNUSED FUNCTION
 }
@@ -1225,7 +1225,7 @@ void Morimura::TChallengePiki::draw(void)
  * Address:	........
  * Size:	00001C
  */
-void setGoalPos__Q28Morimura14TChallengePikiFR10Vector2<float>(void)
+void setGoalPos__Q28Morimura14TChallengePikiFR10Vector2<float>()
 {
 	// UNUSED FUNCTION
 }
@@ -1235,7 +1235,7 @@ void setGoalPos__Q28Morimura14TChallengePikiFR10Vector2<float>(void)
  * Address:	........
  * Size:	000050
  */
-void Morimura::TChallengePiki::isDemoEnd(void)
+void Morimura::TChallengePiki::isDemoEnd()
 {
 	// UNUSED FUNCTION
 }
@@ -1265,7 +1265,7 @@ void Morimura::TChallengeDoping::setLevel(int)
  * Address:	........
  * Size:	000120
  */
-void Morimura::TChallengeDoping::update(void)
+void Morimura::TChallengeDoping::update()
 {
 	// UNUSED FUNCTION
 }
@@ -1295,7 +1295,7 @@ void Morimura::TChallengePanel::stateInitialize(JKRArchive*, int, int)
  * Address:	........
  * Size:	000018
  */
-void Morimura::TChallengePanel::changeState(void)
+void Morimura::TChallengePanel::changeState()
 {
 	// UNUSED FUNCTION
 }
@@ -1305,7 +1305,7 @@ void Morimura::TChallengePanel::changeState(void)
  * Address:	........
  * Size:	00016C
  */
-void Morimura::TChallengePanel::addAlpha(void)
+void Morimura::TChallengePanel::addAlpha()
 {
 	// UNUSED FUNCTION
 }
@@ -1315,7 +1315,7 @@ void Morimura::TChallengePanel::addAlpha(void)
  * Address:	........
  * Size:	00004C
  */
-void Morimura::TChallengePanel::decAlpha(void)
+void Morimura::TChallengePanel::decAlpha()
 {
 	// UNUSED FUNCTION
 }
@@ -1335,7 +1335,7 @@ void Morimura::TChallengePanel::alphaUpdate(float)
  * Address:	........
  * Size:	000014
  */
-void Morimura::TChallengePanel::canSelect(void)
+void Morimura::TChallengePanel::canSelect()
 {
 	// UNUSED FUNCTION
 }
@@ -1624,7 +1624,7 @@ lbl_8038CB44:
  * Address:	........
  * Size:	000034
  */
-void Morimura::TChallengePanel::startScaleUp(void)
+void Morimura::TChallengePanel::startScaleUp()
 {
 	// UNUSED FUNCTION
 }
@@ -2029,7 +2029,7 @@ lbl_8038D1E0:
  * Address:	8038D200
  * Size:	00018C
  */
-void Morimura::TChallengeScreen::update(void)
+void Morimura::TChallengeScreen::update()
 {
 	/*
 	stwu     r1, -0x30(r1)
@@ -2155,7 +2155,7 @@ lbl_8038D370:
  * Address:	8038D38C
  * Size:	0000B0
  */
-void Morimura::TChallengeScreen::updateBckPane(void)
+void Morimura::TChallengeScreen::updateBckPane()
 {
 	/*
 	stwu     r1, -0x30(r1)
@@ -2218,7 +2218,7 @@ lbl_8038D408:
  * Address:	8038D43C
  * Size:	000020
  */
-void Morimura::TChallengeScreen::isRandAnimStart(void)
+void Morimura::TChallengeScreen::isRandAnimStart()
 {
 	/*
 	lwz      r3, 0x1c(r3)
@@ -2729,7 +2729,7 @@ lbl_8038DB08:
  * Address:	8038DB1C
  * Size:	0007FC
  */
-void Morimura::TChallengePlayModeScreen::update(void)
+void Morimura::TChallengePlayModeScreen::update()
 {
 	/*
 	stwu     r1, -0x50(r1)
@@ -3768,7 +3768,7 @@ void Morimura::TChallengePlayModeScreen::setBlink(float)
  * Address:	........
  * Size:	000078
  */
-void Morimura::TChallengePlayModeScreen::reset(void)
+void Morimura::TChallengePlayModeScreen::reset()
 {
 	// UNUSED FUNCTION
 }
@@ -3815,14 +3815,14 @@ void Morimura::TChallengeSelectExplanationWindow::create(char const*, unsigned l
  * Address:	8038E9B4
  * Size:	000004
  */
-void Morimura::TChallengeSelectExplanationWindow::screenScaleUp(void) { }
+void Morimura::TChallengeSelectExplanationWindow::screenScaleUp() { }
 
 /*
  * --INFO--
  * Address:	8038E9B8
  * Size:	00013C
  */
-Morimura::TChallengeSelect::TChallengeSelect(void)
+Morimura::TChallengeSelect::TChallengeSelect()
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -3912,7 +3912,7 @@ Morimura::TChallengeSelect::TChallengeSelect(void)
  * Address:	8038EAF4
  * Size:	0000F4
  */
-Morimura::TChallengeSelect::~TChallengeSelect(void)
+Morimura::TChallengeSelect::~TChallengeSelect()
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -5928,7 +5928,7 @@ lbl_80390760:
  * Address:	80390780
  * Size:	0014CC
  */
-void Morimura::TChallengeSelect::doUpdate(void)
+void Morimura::TChallengeSelect::doUpdate()
 {
 	/*
 	stwu     r1, -0x100(r1)
@@ -7882,7 +7882,7 @@ setColor__14J2DGrafContextFQ28JUtility6TColorQ28JUtility6TColorQ28JUtility6TColo
  * Address:	80392160
  * Size:	000078
  */
-void Morimura::TChallengeSelect::doUpdateFadeoutFinish(void)
+void Morimura::TChallengeSelect::doUpdateFadeoutFinish()
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -8549,7 +8549,7 @@ lbl_80392938:
  * Address:	80392954
  * Size:	0001CC
  */
-void Morimura::TChallengeSelect::getIndexMax(void)
+void Morimura::TChallengeSelect::getIndexMax()
 {
 	/*
 	stwu     r1, -0x20(r1)
@@ -8707,7 +8707,7 @@ lbl_80392B04:
  * Address:	80392B20
  * Size:	000024
  */
-void Morimura::TChallengeSelect::openWindow(void)
+void Morimura::TChallengeSelect::openWindow()
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -8727,7 +8727,7 @@ void Morimura::TChallengeSelect::openWindow(void)
  * Address:	80392B44
  * Size:	000024
  */
-void Morimura::TChallengeSelect::closeWindow(void)
+void Morimura::TChallengeSelect::closeWindow()
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -8747,7 +8747,7 @@ void Morimura::TChallengeSelect::closeWindow(void)
  * Address:	80392B68
  * Size:	000140
  */
-void Morimura::TChallengeSelect::reset(void)
+void Morimura::TChallengeSelect::reset()
 {
 	/*
 	li       r0, 0
@@ -8844,7 +8844,7 @@ lbl_80392C7C:
  * Address:	........
  * Size:	000374
  */
-void Morimura::TChallengeSelect::jumpStart(void)
+void Morimura::TChallengeSelect::jumpStart()
 {
 	// UNUSED FUNCTION
 }
@@ -8854,7 +8854,7 @@ void Morimura::TChallengeSelect::jumpStart(void)
  * Address:	80392CA8
  * Size:	0004C0
  */
-void Morimura::TChallengeSelect::demoStart(void)
+void Morimura::TChallengeSelect::demoStart()
 {
 	/*
 	stwu     r1, -0x1a0(r1)
@@ -9273,14 +9273,14 @@ void Morimura::TChallengeSelectScene::getResName() const
  * Address:	80393244
  * Size:	000008
  */
-u32 Morimura::TChallengeSelectScene::getSceneType(void) { return 0x2737; }
+u32 Morimura::TChallengeSelectScene::getSceneType() { return 0x2737; }
 
 /*
  * --INFO--
  * Address:	8039324C
  * Size:	00000C
  */
-void Morimura::TChallengeSelectScene::getOwnerID(void)
+void Morimura::TChallengeSelectScene::getOwnerID()
 {
 	/*
 	lis      r3, 0x4D524D52@ha
@@ -9294,7 +9294,7 @@ void Morimura::TChallengeSelectScene::getOwnerID(void)
  * Address:	80393258
  * Size:	000014
  */
-void Morimura::TChallengeSelectScene::getMemberID(void)
+void Morimura::TChallengeSelectScene::getMemberID()
 {
 	/*
 	lis      r4, 0x4C454354@ha
@@ -9310,7 +9310,7 @@ void Morimura::TChallengeSelectScene::getMemberID(void)
  * Address:	8039326C
  * Size:	000084
  */
-efx2d::T2DChalDive::~T2DChalDive(void)
+efx2d::T2DChalDive::~T2DChalDive()
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -9358,7 +9358,7 @@ lbl_803932D4:
  * Address:	803932F0
  * Size:	000034
  */
-void Morimura::TChallengeSelect::getDispMemberBase(void)
+void Morimura::TChallengeSelect::getDispMemberBase()
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -9386,7 +9386,7 @@ lbl_80393314:
  * Address:	80393324
  * Size:	000014
  */
-void __sinit_challengeSelect2D_cpp(void)
+void __sinit_challengeSelect2D_cpp()
 {
 	/*
 	lfs      f0, lbl_8051F078@sda21(r2)
@@ -9402,7 +9402,7 @@ void __sinit_challengeSelect2D_cpp(void)
  * Address:	80393338
  * Size:	000008
  */
-@24 @Morimura::TChallengeSelect::~TChallengeSelect(void)
+@24 @Morimura::TChallengeSelect::~TChallengeSelect()
 {
 	/*
 	addi     r3, r3, -24
@@ -9415,7 +9415,7 @@ void __sinit_challengeSelect2D_cpp(void)
  * Address:	80393340
  * Size:	000008
  */
-@8 @efx2d::T2DChalDive::~T2DChalDive(void)
+@8 @efx2d::T2DChalDive::~T2DChalDive()
 {
 	/*
 	addi     r3, r3, -8

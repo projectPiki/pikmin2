@@ -646,7 +646,7 @@ lbl_800B9E6C:
  * Address:	800B9E80
  * Size:	000158
  */
-void JAInter::Object::disable(void)
+void JAInter::Object::disable()
 {
 	/*
 	stwu     r1, -0x20(r1)
@@ -755,7 +755,7 @@ lbl_800B9FA0:
  * Address:	800B9FD8
  * Size:	000214
  */
-void JAInter::Object::loop(void)
+void JAInter::Object::loop()
 {
 	/*
 	stwu     r1, -0x20(r1)

@@ -363,7 +363,7 @@ void Obj::doFinishStoneState()
  * Address:	8034ACB4
  * Size:	000048
  */
-void Obj::doStartStoneState(void)
+void Obj::doStartStoneState()
 {
 	EnemyBase::doStartStoneState();
 	m_efxLight->fade();
@@ -586,7 +586,7 @@ void Obj::forceBomb()
  * Address:	........
  * Size:	000048
  */
-bool Obj::isBombStart(void)
+bool Obj::isBombStart()
 {
 	// UNUSED FUNCTION
 }

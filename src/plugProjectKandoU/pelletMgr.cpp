@@ -3840,7 +3840,7 @@ lbl_80169970:
  * Address:	........
  * Size:	000004
  */
-// void Pellet::move_noDynamics(void)
+// void Pellet::move_noDynamics()
 // {
 // 	// UNUSED FUNCTION
 // }
@@ -4130,7 +4130,7 @@ void Pellet::start_pmotions()
  * Address:	........
  * Size:	000004
  */
-// void Pellet::stop_pmotions(void)
+// void Pellet::stop_pmotions()
 // {
 // 	// UNUSED FUNCTION
 // }
@@ -4140,7 +4140,7 @@ void Pellet::start_pmotions()
  * Address:	........
  * Size:	000090
  */
-// void Pellet::start_carrymotion(void)
+// void Pellet::start_carrymotion()
 // {
 // 	// UNUSED FUNCTION
 // }
@@ -4225,7 +4225,7 @@ int Pellet::getSpeicalSlot()
  * Address:	8016A4C4
  * Size:	000054
  */
-s16 Pellet::getFreeStickSlot(void)
+s16 Pellet::getFreeStickSlot()
 {
 	for (int slot = 0; slot < m_slotCount; slot++) {
 		u32 index = slot >> 3;
@@ -4642,7 +4642,7 @@ void Pellet::onSlotStickEnd(Creature* creature, short slot)
  * Size:	00018C
  * calcStickSlotLocal__Q24Game6PelletFsR10Vector3f
  */
-// void calcStickSlotLocal__Q24Game6PelletFsR10Vector3f(void)
+// void calcStickSlotLocal__Q24Game6PelletFsR10Vector3f()
 // {
 // 	// UNUSED FUNCTION
 // }
@@ -5093,7 +5093,7 @@ void Pellet::onStartCapture()
  * Address:	........
  * Size:	00001C
  */
-// void Pellet::getCurrentBuryDepth(void)
+// void Pellet::getCurrentBuryDepth()
 // {
 // 	// UNUSED FUNCTION
 // }
@@ -5893,7 +5893,7 @@ J3DModelData* BasePelletMgr::generatorGetShape(GenPelletParm*) { return nullptr;
  * Address:	........
  * Size:	000004
  */
-// void BasePelletMgr::setupSoundViewerAndBas(void)
+// void BasePelletMgr::setupSoundViewerAndBas()
 // {
 // 	// UNUSED FUNCTION
 // }
@@ -6172,7 +6172,7 @@ void PelletMgr::setupResources()
  * Size:	00050C
  * calcNearestTreasure__Q24Game9PelletMgrFR10Vector3<f>f
  */
-// void calcNearestTreasure__Q24Game9PelletMgrFR10Vector3f f(void)
+// void calcNearestTreasure__Q24Game9PelletMgrFR10Vector3f f()
 // {
 // 	// UNUSED FUNCTION
 // }
@@ -7043,7 +7043,7 @@ lbl_8016F2D0:
  * Address:	........
  * Size:	0000BC
  */
-// void PelletMgr::dumpAllPellets(void)
+// void PelletMgr::dumpAllPellets()
 // {
 // 	// UNUSED FUNCTION
 // }
@@ -7737,7 +7737,7 @@ lbl_8016FB54:
 //  * Address:	8016FB6C
 //  * Size:	0004DC
 //  */
-// void satisfy__Q223 @unnamed @pelletMgr_cpp @6NotOffFPQ24Game8WayPoint(void)
+// void satisfy__Q223 @unnamed @pelletMgr_cpp @6NotOffFPQ24Game8WayPoint()
 // {
 // 	/*
 // 	stwu     r1, -0x80(r1)
@@ -8152,7 +8152,7 @@ void Pellet::onSetPosition(Vector3f&)
  * Address:	8017008C
  * Size:	000008
  */
-// void Pellet::inWater(void)
+// void Pellet::inWater()
 // {
 // 	/*
 // 	lbz      r3, 0x325(r3)
@@ -8165,14 +8165,14 @@ void Pellet::onSetPosition(Vector3f&)
  * Address:	80170094
  * Size:	000008
  */
-// s32 Pellet::getBedamaColor(void) { return -0x1; }
+// s32 Pellet::getBedamaColor() { return -0x1; }
 
 /*
  * --INFO--
  * Address:	8017009C
  * Size:	000008
  */
-// void Pellet::getSound_PosPtr(void)
+// void Pellet::getSound_PosPtr()
 // {
 // 	/*
 // 	addi     r3, r3, 0x3ac
@@ -8185,7 +8185,7 @@ void Pellet::onSetPosition(Vector3f&)
  * Address:	801700A4
  * Size:	000008
  */
-// void Pellet::getFaceDir(void)
+// void Pellet::getFaceDir()
 // {
 // 	/*
 // 	lfs      f1, 0x3b8(r3)
@@ -8198,14 +8198,14 @@ void Pellet::onSetPosition(Vector3f&)
  * Address:	801700AC
  * Size:	000008
  */
-// u32 Pellet::deferPikiCollision(void) { return 0x1; }
+// u32 Pellet::deferPikiCollision() { return 0x1; }
 
 /*
  * --INFO--
  * Address:	801700B4
  * Size:	000004
  */
-// void Pellet::sound_otakaraEventFinish(void) { }
+// void Pellet::sound_otakaraEventFinish() { }
 
 // namespace PSM {
 
@@ -8224,7 +8224,7 @@ void Pellet::onSetPosition(Vector3f&)
  * Address:	80170174
  * Size:	000008
  */
-// u32 CreatureObj::getCastType(void) { return 0x0; }
+// u32 CreatureObj::getCastType() { return 0x0; }
 
 /*
  * --INFO--
@@ -8261,14 +8261,14 @@ void Pellet::onSetPosition(Vector3f&)
  * Address:	8017019C
  * Size:	000004
  */
-// void CreatureObj::onCalcOn(void) { }
+// void CreatureObj::onCalcOn() { }
 
 /*
  * --INFO--
  * Address:	801701AC
  * Size:	000004
  */
-// void init__Q24Game28StateMachine<Game::Pellet> FPQ24Game6Pellet(void) { }
+// void init__Q24Game28StateMachine<Game::Pellet> FPQ24Game6Pellet() { }
 
 /*
  * --INFO--
@@ -10816,7 +10816,7 @@ lbl_80171E20:
  * Address:	80171EEC
  * Size:	00009C
  */
-// void transit__Q24Game28StateMachine<Game::Pellet> FPQ24Game6PelletiPQ24Game8StateArg(void)
+// void transit__Q24Game28StateMachine<Game::Pellet> FPQ24Game6PelletiPQ24Game8StateArg()
 // {
 // 	/*
 // 	.loc_0x0:
@@ -10873,21 +10873,21 @@ lbl_80171E20:
 //  * Address:	80171F88
 //  * Size:	000004
 //  */
-// void init__Q24Game24FSMState<Game::Pellet> FPQ24Game6PelletPQ24Game8StateArg(void) { }
+// void init__Q24Game24FSMState<Game::Pellet> FPQ24Game6PelletPQ24Game8StateArg() { }
 
 // /*
 //  * --INFO--
 //  * Address:	80171F8C
 //  * Size:	000004
 //  */
-// void cleanup__Q24Game24FSMState<Game::Pellet> FPQ24Game6Pellet(void) { }
+// void cleanup__Q24Game24FSMState<Game::Pellet> FPQ24Game6Pellet() { }
 
 // /*
 //  * --INFO--
 //  * Address:	80171F90
 //  * Size:	00001C
 //  */
-// void getCurrID__Q24Game28StateMachine<Game::Pellet> FPQ24Game6Pellet(void)
+// void getCurrID__Q24Game28StateMachine<Game::Pellet> FPQ24Game6Pellet()
 // {
 // 	/*
 // 	lwz      r3, 0x3cc(r4)
@@ -10907,7 +10907,7 @@ lbl_80171E20:
 //  * Address:	80171FAC
 //  * Size:	000038
 //  */
-// void exec__Q24Game28StateMachine<Game::Pellet> FPQ24Game6Pellet(void)
+// void exec__Q24Game28StateMachine<Game::Pellet> FPQ24Game6Pellet()
 // {
 // 	/*
 // 	stwu     r1, -0x10(r1)
@@ -10934,14 +10934,14 @@ lbl_80171E20:
 //  * Address:	80171FE4
 //  * Size:	000004
 //  */
-// void exec__Q24Game24FSMState<Game::Pellet> FPQ24Game6Pellet(void) { }
+// void exec__Q24Game24FSMState<Game::Pellet> FPQ24Game6Pellet() { }
 
 // /*
 //  * --INFO--
 //  * Address:	80171FE8
 //  * Size:	00009C
 //  */
-// void resetMgrAndResources__Q24Game49FixedSizePelletMgr<Game::PelletOtakara::Object> Fv(void)
+// void resetMgrAndResources__Q24Game49FixedSizePelletMgr<Game::PelletOtakara::Object> Fv()
 // {
 // 	/*
 // 	.loc_0x0:
@@ -10998,7 +10998,7 @@ lbl_80171E20:
  * Address:	80172084
  * Size:	000050
  */
-// void resetMgr__Q24Game49FixedSizePelletMgr<Game::PelletOtakara::Object> Fv(void)
+// void resetMgr__Q24Game49FixedSizePelletMgr<Game::PelletOtakara::Object> Fv()
 // {
 // 	/*
 // 	stwu     r1, -0x10(r1)
@@ -11029,7 +11029,7 @@ lbl_80171E20:
  * Address:	801720D4
  * Size:	00009C
  */
-// void resetMgrAndResources__Q24Game46FixedSizePelletMgr<Game::PelletItem::Object> Fv(void)
+// void resetMgrAndResources__Q24Game46FixedSizePelletMgr<Game::PelletItem::Object> Fv()
 // {
 // 	/*
 // 	.loc_0x0:
@@ -11086,7 +11086,7 @@ lbl_80171E20:
 //  * Address:	80172170
 //  * Size:	000050
 //  */
-// void resetMgr__Q24Game46FixedSizePelletMgr<Game::PelletItem::Object> Fv(void)
+// void resetMgr__Q24Game46FixedSizePelletMgr<Game::PelletItem::Object> Fv()
 // {
 // 	/*
 // 	stwu     r1, -0x10(r1)

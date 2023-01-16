@@ -152,7 +152,7 @@ P2JST::ObjectSystem::ObjectSystem(char const*, Game::MoviePlayer*)
  * Address:	........
  * Size:	000054
  */
-void __dt__Q27JGadget33TList_pointer<JStage::TObject*> Fv(void)
+void __dt__Q27JGadget33TList_pointer<JStage::TObject*> Fv()
 {
 	// UNUSED FUNCTION
 }
@@ -164,7 +164,7 @@ namespace Game {
  * Address:	804309F4
  * Size:	000084
  */
-P2JST::ObjectSystem::~ObjectSystem(void)
+P2JST::ObjectSystem::~ObjectSystem()
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -212,7 +212,7 @@ lbl_80430A5C:
  * Address:	80430A78
  * Size:	0000A8
  */
-void P2JST::ObjectSystem::destroyObjectAll(void)
+void P2JST::ObjectSystem::destroyObjectAll()
 {
 	/*
 	stwu     r1, -0x30(r1)
@@ -272,7 +272,7 @@ lbl_80430AF4:
  * Address:	80430B20
  * Size:	0000F4
  */
-void P2JST::ObjectSystem::reset(void)
+void P2JST::ObjectSystem::reset()
 {
 	/*
 	stwu     r1, -0x30(r1)
@@ -358,7 +358,7 @@ lbl_80430BEC:
  * Address:	80430C14
  * Size:	0000AC
  */
-void P2JST::ObjectSystem::entry(void)
+void P2JST::ObjectSystem::entry()
 {
 	/*
 	stwu     r1, -0x30(r1)
@@ -420,7 +420,7 @@ lbl_80430C98:
  * Address:	80430CC0
  * Size:	0000D4
  */
-void P2JST::ObjectSystem::update(void)
+void P2JST::ObjectSystem::update()
 {
 	/*
 	stwu     r1, -0x30(r1)
@@ -494,7 +494,7 @@ lbl_80430D6C:
  * Address:	80430D94
  * Size:	0000D4
  */
-void P2JST::ObjectSystem::start(void)
+void P2JST::ObjectSystem::start()
 {
 	/*
 	stwu     r1, -0x30(r1)
@@ -568,7 +568,7 @@ lbl_80430E40:
  * Address:	80430E68
  * Size:	0000D4
  */
-void P2JST::ObjectSystem::stop(void)
+void P2JST::ObjectSystem::stop()
 {
 	/*
 	stwu     r1, -0x30(r1)
@@ -1044,7 +1044,7 @@ void P2JST::ObjectSystem::JSGSetData(unsigned long, void const*, unsigned long)
  * Address:	80431370
  * Size:	000028
  */
-void __sinit_JSTObjectSystem_cpp(void)
+void __sinit_JSTObjectSystem_cpp()
 {
 	/*
 	lis      r4, __float_nan@ha
@@ -1065,7 +1065,7 @@ void __sinit_JSTObjectSystem_cpp(void)
  * Address:	80431398
  * Size:	000008
  */
-void @4 @Game::P2JST::ObjectSystem::stop(void)
+void @4 @Game::P2JST::ObjectSystem::stop()
 {
 	/*
 	addi     r3, r3, -4
@@ -1078,7 +1078,7 @@ void @4 @Game::P2JST::ObjectSystem::stop(void)
  * Address:	804313A0
  * Size:	000008
  */
-void @4 @Game::P2JST::ObjectSystem::start(void)
+void @4 @Game::P2JST::ObjectSystem::start()
 {
 	/*
 	addi     r3, r3, -4
@@ -1091,7 +1091,7 @@ void @4 @Game::P2JST::ObjectSystem::start(void)
  * Address:	804313A8
  * Size:	000008
  */
-void @4 @Game::P2JST::ObjectSystem::update(void)
+void @4 @Game::P2JST::ObjectSystem::update()
 {
 	/*
 	addi     r3, r3, -4
@@ -1104,7 +1104,7 @@ void @4 @Game::P2JST::ObjectSystem::update(void)
  * Address:	804313B0
  * Size:	000008
  */
-void @4 @Game::P2JST::ObjectSystem::reset(void)
+void @4 @Game::P2JST::ObjectSystem::reset()
 {
 	/*
 	addi     r3, r3, -4

@@ -888,7 +888,7 @@ void EUTDrawWindow(J2DGrafContext&, long, long, long, long)
  * Address:	........
  * Size:	000004
  */
-void E2DDebugWindow::draw(void)
+void E2DDebugWindow::draw()
 {
 	// UNUSED FUNCTION
 }

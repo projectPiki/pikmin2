@@ -751,7 +751,7 @@ Vector3f Camera::getLookAtPosition_() { return Vector3f::zero; }
  * Size:	000008
  */
 // WEAK - in header
-// void Game::P2JST::ObjectCamera::isRunning(void) { return m_isRunning; }
+// void Game::P2JST::ObjectCamera::isRunning() { return m_isRunning; }
 
 /*
  * --INFO--
@@ -1608,7 +1608,7 @@ lbl_8041BA14:
  * Address:	8041BD04
  * Size:	000028
  */
-void __sinit_camera_cpp(void)
+void __sinit_camera_cpp()
 {
 	/*
 	lis      r4, __float_nan@ha

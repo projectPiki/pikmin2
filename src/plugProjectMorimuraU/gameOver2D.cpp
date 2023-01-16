@@ -482,7 +482,7 @@ Morimura::TGameOverBase::TGameOverBase(char*)
  * Address:	80347FB4
  * Size:	0000F0
  */
-void Morimura::TGameOverBase::doUpdate(void)
+void Morimura::TGameOverBase::doUpdate()
 {
 	/*
 	stwu     r1, -0x30(r1)
@@ -730,7 +730,7 @@ lbl_803482D0:
  * Address:	........
  * Size:	000010
  */
-void Morimura::TGameOverBase::init(void)
+void Morimura::TGameOverBase::init()
 {
 	// UNUSED FUNCTION
 }
@@ -1256,7 +1256,7 @@ lbl_803488C8:
  * Address:	8034891C
  * Size:	00008C
  */
-void Morimura::TGameOverScreen::update(void)
+void Morimura::TGameOverScreen::update()
 {
 	/*
 	stwu     r1, -0x20(r1)
@@ -1500,7 +1500,7 @@ void Morimura::TGameOverScreen::setFadeAlpha(unsigned char)
  * Address:	80348BC0
  * Size:	000060
  */
-Morimura::TGXSetPane::~TGXSetPane(void)
+Morimura::TGXSetPane::~TGXSetPane()
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -1559,7 +1559,7 @@ void Morimura::TGXSetPane::drawSelf(float, float, float (*)[3][4])
  * Address:	80348C4C
  * Size:	0000DC
  */
-Morimura::TPikminDown2D::~TPikminDown2D(void)
+Morimura::TPikminDown2D::~TPikminDown2D()
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -1629,7 +1629,7 @@ lbl_80348D0C:
  * Address:	80348D28
  * Size:	000008
  */
-void Morimura::TGameOverBase::getDispMemberBase(void)
+void Morimura::TGameOverBase::getDispMemberBase()
 {
 	/*
 	lwz      r3, 0x80(r3)
@@ -1642,7 +1642,7 @@ void Morimura::TGameOverBase::getDispMemberBase(void)
  * Address:	80348D30
  * Size:	000034
  */
-void Morimura::TGameOverBase::doUpdateFadeout(void)
+void Morimura::TGameOverBase::doUpdateFadeout()
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -1670,7 +1670,7 @@ lbl_80348D54:
  * Address:	80348D64
  * Size:	0000DC
  */
-Morimura::TPresidentDown2D::~TPresidentDown2D(void)
+Morimura::TPresidentDown2D::~TPresidentDown2D()
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -1740,7 +1740,7 @@ lbl_80348E24:
  * Address:	80348E40
  * Size:	0000DC
  */
-Morimura::TLujiDown2D::~TLujiDown2D(void)
+Morimura::TLujiDown2D::~TLujiDown2D()
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -1810,7 +1810,7 @@ lbl_80348F00:
  * Address:	80348F1C
  * Size:	0000DC
  */
-Morimura::TOrimaDown2D::~TOrimaDown2D(void)
+Morimura::TOrimaDown2D::~TOrimaDown2D()
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -1880,7 +1880,7 @@ lbl_80348FDC:
  * Address:	80348FF8
  * Size:	0000DC
  */
-Morimura::TGameOver2D::~TGameOver2D(void)
+Morimura::TGameOver2D::~TGameOver2D()
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -1950,7 +1950,7 @@ lbl_803490B8:
  * Address:	803490D4
  * Size:	0000C4
  */
-Morimura::TGameOverBase::~TGameOverBase(void)
+Morimura::TGameOverBase::~TGameOverBase()
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -2014,7 +2014,7 @@ lbl_8034917C:
  * Address:	80349198
  * Size:	000008
  */
-@24 @Morimura::TGameOverBase::~TGameOverBase(void)
+@24 @Morimura::TGameOverBase::~TGameOverBase()
 {
 	/*
 	addi     r3, r3, -24
@@ -2027,7 +2027,7 @@ lbl_8034917C:
  * Address:	803491A0
  * Size:	000008
  */
-@24 @Morimura::TGameOver2D::~TGameOver2D(void)
+@24 @Morimura::TGameOver2D::~TGameOver2D()
 {
 	/*
 	addi     r3, r3, -24
@@ -2040,7 +2040,7 @@ lbl_8034917C:
  * Address:	803491A8
  * Size:	000008
  */
-@24 @Morimura::TOrimaDown2D::~TOrimaDown2D(void)
+@24 @Morimura::TOrimaDown2D::~TOrimaDown2D()
 {
 	/*
 	addi     r3, r3, -24
@@ -2053,7 +2053,7 @@ lbl_8034917C:
  * Address:	803491B0
  * Size:	000008
  */
-@24 @Morimura::TLujiDown2D::~TLujiDown2D(void)
+@24 @Morimura::TLujiDown2D::~TLujiDown2D()
 {
 	/*
 	addi     r3, r3, -24
@@ -2066,7 +2066,7 @@ lbl_8034917C:
  * Address:	803491B8
  * Size:	000008
  */
-@24 @Morimura::TPresidentDown2D::~TPresidentDown2D(void)
+@24 @Morimura::TPresidentDown2D::~TPresidentDown2D()
 {
 	/*
 	addi     r3, r3, -24
@@ -2079,7 +2079,7 @@ lbl_8034917C:
  * Address:	803491C0
  * Size:	000008
  */
-@24 @Morimura::TPikminDown2D::~TPikminDown2D(void)
+@24 @Morimura::TPikminDown2D::~TPikminDown2D()
 {
 	/*
 	addi     r3, r3, -24

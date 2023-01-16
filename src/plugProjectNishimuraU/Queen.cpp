@@ -4611,7 +4611,7 @@ u32 Queen::Obj::getEnemyTypeID() { return 0x1E; }
  * Address:	8028C4AC
  * Size:	000028
  */
-void __sinit_Queen_cpp(void)
+void __sinit_Queen_cpp()
 {
 	/*
 	lis      r4, __float_nan@ha

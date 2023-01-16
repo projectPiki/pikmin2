@@ -87,7 +87,7 @@ namespace Game {
  * Address:	8019EE94
  * Size:	000024
  */
-void Creature::clearStick(void)
+void Creature::clearStick()
 {
 	/*
 	li       r4, 0
@@ -107,7 +107,7 @@ void Creature::clearStick(void)
  * Address:	8019EEB8
  * Size:	00003C
  */
-void Creature::releaseAllStickers(void)
+void Creature::releaseAllStickers()
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -554,7 +554,7 @@ lbl_8019F408:
  * Address:	8019F424
  * Size:	000150
  */
-void Creature::endStick(void)
+void Creature::endStick()
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -662,7 +662,7 @@ lbl_8019F560:
  * Size:	000014
  * Returns whether the creature is stuck to anything
  */
-bool Creature::isStickTo(void)
+bool Creature::isStickTo()
 {
 	/*
 	lwz      r3, 0xf4(r3)
@@ -678,7 +678,7 @@ bool Creature::isStickTo(void)
  * Address:	8019F588
  * Size:	000060
  */
-bool Creature::isStickToMouth(void)
+bool Creature::isStickToMouth()
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -715,7 +715,7 @@ lbl_8019F5D0:
  * Address:	........
  * Size:	000028
  */
-bool Creature::isStickLeader(void)
+bool Creature::isStickLeader()
 {
 	// UNUSED FUNCTION
 }
@@ -727,7 +727,7 @@ bool Creature::isStickLeader(void)
  * Address:	8019F5E8
  * Size:	0004B4
  */
-void updateStick__Q24Game8CreatureFR10Vector3f(void)
+void updateStick__Q24Game8CreatureFR10Vector3f()
 {
 	/*
 	stwu     r1, -0x110(r1)
@@ -1067,7 +1067,7 @@ namespace Game {
  * Address:	8019FA9C
  * Size:	00000C
  */
-void Creature::clearCapture(void)
+void Creature::clearCapture()
 {
 	// Generated from stw r0, 0xB8(r3)
 	_B8 = 0;
@@ -1163,7 +1163,7 @@ lbl_8019FB84:
  * Address:	8019FB9C
  * Size:	000058
  */
-void Creature::endCapture(void)
+void Creature::endCapture()
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -1196,7 +1196,7 @@ void Creature::endCapture(void)
  * Address:	8019FBF4
  * Size:	000068
  */
-void Stickers::initialise(void)
+void Stickers::initialise()
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -1322,7 +1322,7 @@ lbl_8019FD38:
  * Address:	8019FD64
  * Size:	00008C
  */
-Stickers::~Stickers(void)
+Stickers::~Stickers()
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -1428,14 +1428,14 @@ void Stickers::getNext(void*)
  * Address:	8019FE68
  * Size:	000008
  */
-u32 Stickers::getStart(void) { return 0x0; }
+u32 Stickers::getStart() { return 0x0; }
 
 /*
  * --INFO--
  * Address:	8019FE70
  * Size:	000008
  */
-void Stickers::getEnd(void)
+void Stickers::getEnd()
 {
 	/*
 	lwz      r3, numBuffer__Q24Game8Stickers@sda21(r13)
