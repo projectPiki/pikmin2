@@ -686,10 +686,10 @@ void Obj::setupTreasure()
 	char* jointNames[]  = { "otakara_elec", "otakara_fire", "otakara_gas", "otakara_water" };
 
 	for (int i = 0; i < 4; i++) {
-		_2DD[i]                = false;
+		m_isWeaponAttacked[i]                = false;
 		m_treasures[i]         = nullptr;
 		m_treasureHealth[i]    = 0.0f;
-		_3E8[i]                = 0.0f;
+		m_treasureShakeAngle[i]                = 0.0f;
 		m_treasureCollParts[i] = m_collTree->getCollPart(collTags[i]);
 
 		PelletInitArg weaponArg;
@@ -733,20 +733,20 @@ void Obj::updateTreasure()
 		if (m_treasures[i]) {
 			PSMTXIdentity(captureMtx.m_matrix.mtxView);
 
-			if (_2DD[i]) {
-				_3E8[i] += 1.4f;
+			if (m_isWeaponAttacked[i]) {
+				m_treasureShakeAngle[i] += 1.4f;
 
-				if (_3E8[i] > TAU) {
-					_3E8[i] = 0.0f;
-					_2DD[i] = false;
+				if (m_treasureShakeAngle[i] > TAU) {
+					m_treasureShakeAngle[i] = 0.0f;
+					m_isWeaponAttacked[i] = false;
 				}
 
 				Matrixf rotRad;
-				PSMTXRotRad(rotRad.m_matrix.mtxView, 'Y', 0.15f * pikmin2_sinf(_3E8[i]));
+				PSMTXRotRad(rotRad.m_matrix.mtxView, 'Y', 0.15f * pikmin2_sinf(m_treasureShakeAngle[i]));
 				PSMTXConcat(captureMtx.m_matrix.mtxView, rotRad.m_matrix.mtxView, captureMtx.m_matrix.mtxView);
 			}
 
-			// gas
+			// vertically offset the comedy bomb from where it should be
 			if (i == 2) {
 				captureMtx.m_matrix.structView.ty = -22.0f;
 			}
@@ -853,7 +853,7 @@ bool Obj::addTreasureDamage(int idx, f32 damage)
 			damage *= 0.1f;
 		}
 
-		_2DD[idx] = true;
+		m_isWeaponAttacked[idx] = true;
 		m_treasureHealth[idx] -= damage;
 		if (m_treasureHealth[idx] < 0.0f) {
 			m_treasureHealth[idx] = 0.0f;
@@ -1471,7 +1471,7 @@ bool Obj::isNormalAttack(int idx) { return (m_treasureHealth[idx] > 3000.0f); }
 void Obj::resetMaterialColor()
 {
 	bool isVisible = false;
-	_2DC           = false;
+	m_isFastMatAnim           = false;
 	for (int i = 0; i < 4; i++) {
 		if (m_treasures[i]) {
 			isVisible = true;
@@ -1598,7 +1598,7 @@ void Obj::resetCurrentMatEyeColor()
 void Obj::setMatEyeAnimSpeed()
 {
 	f32 time = 30.0f;
-	if (_2DC) {
+	if (m_isFastMatAnim) {
 		time = 10.0f;
 	}
 

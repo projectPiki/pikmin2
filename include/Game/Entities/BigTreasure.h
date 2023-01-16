@@ -216,8 +216,8 @@ struct Obj : public EnemyBase {
 	StateID m_nextState;                         // _2C8
 	Vector3f m_targetPosition;                   // _2CC
 	f32 m_shadowScale;                           // _2D8
-	bool _2DC;                                   // _2DC
-	bool _2DD[0x4];                              // _2DD, to do with treasures?
+	bool m_isFastMatAnim;                        // _2DC
+	bool m_isWeaponAttacked[0x4];                // _2DD, used to determine if the weapon should shake
 	IKSystemMgr* m_ikSystemMgr;                  // _2E4
 	IKSystemParms* m_ikSystemParms;              // _2E8
 	BigTreasureGroundCallBack* m_groundCallBack; // _2EC
@@ -228,7 +228,7 @@ struct Obj : public EnemyBase {
 	Pellet* m_treasures[4];                      // _3C4, elec / fire / gas / water
 	Pellet* m_louie;                             // _3D4, King of Bugs
 	f32 m_treasureHealth[4];                     // _3D8, elec / fire / gas / water
-	f32 _3E8[4];                                 // _3E8, to do with treasures
+	f32 m_treasureShakeAngle[4];                 // _3E8, used to make treasures shake while being attacked
 	CollPart* m_treasureCollParts[4];            // _3F8, elec / fire / gas / water
 	int m_attackIndex;                           // _408, enum TitanDweevilAttack?
 	J3DGXColorS10 m_targetMatBodyColor;          // _40C
