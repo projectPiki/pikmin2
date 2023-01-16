@@ -235,7 +235,7 @@ struct Obj : public EnemyBase {
 	f32 m_treasureHealth[4];                     // _3D8, elec / fire / gas / water
 	f32 m_treasureShakeAngle[4];                 // _3E8, used to make treasures shake while being attacked
 	CollPart* m_treasureCollParts[4];            // _3F8, elec / fire / gas / water
-	int m_attackIndex;                           // _408, enum TitanDweevilAttack?
+	int m_attackIndex;                           // _408, see AttackID enum
 	J3DGXColorS10 m_targetMatBodyColor;          // _40C
 	J3DGXColorS10 m_currMatBodyColor;            // _414
 	int m_targetEyeColorIdx;                     // _41C, 0 = going to dark, 1 = going to light (indexes _438, _45C)

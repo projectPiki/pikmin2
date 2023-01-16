@@ -70,4 +70,6 @@ inline f32 scaledSin(f32 theta) { return altSin(theta * TAU); }
 
 inline f32 absVal(f32 val) { return (val > 0.0f) ? val : -val; }
 
+inline int absVal(int val) { return (val > 0) ? val : -val; }
+
 #endif

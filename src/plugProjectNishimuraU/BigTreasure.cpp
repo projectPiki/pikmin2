@@ -5,6 +5,7 @@
 #include "Game/IKSystemBase.h"
 #include "Game/CameraMgr.h"
 #include "Game/rumble.h"
+#include "Game/Navi.h"
 #include "Game/MoviePlayer.h"
 #include "Game/gamePlayData.h"
 #include "Game/Stickers.h"
@@ -1040,56 +1041,26 @@ int Obj::getPreAttackAnimIndex()
  */
 int Obj::getAttackAnimIndex()
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	lwz      r0, 0x408(r3)
-	cmpwi    r0, 0
-	bne      lbl_802DDF64
-	li       r3, 0x16
-	b        lbl_802DDFC4
+	if (m_attackIndex == BIGATTACK_Elec) {
+		return 22;
+	} else if (m_attackIndex == BIGATTACK_Fire) {
+		int currAnimIdx = getCurrAnimationIndex();
+		if (currAnimIdx == 3) {
+			return 4;
+		} else if (currAnimIdx == 6) {
+			return 7;
+		} else if (currAnimIdx == 9) {
+			return 10;
+		} else {
+			return 13;
+		}
+	} else if (m_attackIndex == BIGATTACK_Gas) {
+		return 19;
+	} else if (m_attackIndex == BIGATTACK_Water) {
+		return 16;
+	}
 
-lbl_802DDF64:
-	cmpwi    r0, 1
-	bne      lbl_802DDFA4
-	bl       getCurrAnimationIndex__Q34Game11BigTreasure3ObjFv
-	cmpwi    r3, 3
-	bne      lbl_802DDF80
-	li       r3, 4
-	b        lbl_802DDFC4
-
-lbl_802DDF80:
-	cmpwi    r3, 6
-	bne      lbl_802DDF90
-	li       r3, 7
-	b        lbl_802DDFC4
-
-lbl_802DDF90:
-	cmpwi    r3, 9
-	li       r3, 0xd
-	bne      lbl_802DDFC4
-	li       r3, 0xa
-	b        lbl_802DDFC4
-
-lbl_802DDFA4:
-	cmpwi    r0, 2
-	bne      lbl_802DDFB4
-	li       r3, 0x13
-	b        lbl_802DDFC4
-
-lbl_802DDFB4:
-	cmpwi    r0, 3
-	li       r3, 0x18
-	bne      lbl_802DDFC4
-	li       r3, 0x10
-
-lbl_802DDFC4:
-	lwz      r0, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	return 24;
 }
 
 /*
@@ -1099,56 +1070,26 @@ lbl_802DDFC4:
  */
 int Obj::getPutItemAnimIndex()
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	lwz      r0, 0x408(r3)
-	cmpwi    r0, 0
-	bne      lbl_802DDFF4
-	li       r3, 0x17
-	b        lbl_802DE054
+	if (m_attackIndex == BIGATTACK_Elec) {
+		return 23;
+	} else if (m_attackIndex == BIGATTACK_Fire) {
+		int currAnimIdx = getCurrAnimationIndex();
+		if (currAnimIdx == 4) {
+			return 5;
+		} else if (currAnimIdx == 7) {
+			return 8;
+		} else if (currAnimIdx == 10) {
+			return 11;
+		} else {
+			return 14;
+		}
+	} else if (m_attackIndex == BIGATTACK_Gas) {
+		return 20;
+	} else if (m_attackIndex == BIGATTACK_Water) {
+		return 17;
+	}
 
-lbl_802DDFF4:
-	cmpwi    r0, 1
-	bne      lbl_802DE034
-	bl       getCurrAnimationIndex__Q34Game11BigTreasure3ObjFv
-	cmpwi    r3, 4
-	bne      lbl_802DE010
-	li       r3, 5
-	b        lbl_802DE054
-
-lbl_802DE010:
-	cmpwi    r3, 7
-	bne      lbl_802DE020
-	li       r3, 8
-	b        lbl_802DE054
-
-lbl_802DE020:
-	cmpwi    r3, 0xa
-	li       r3, 0xe
-	bne      lbl_802DE054
-	li       r3, 0xb
-	b        lbl_802DE054
-
-lbl_802DE034:
-	cmpwi    r0, 2
-	bne      lbl_802DE044
-	li       r3, 0x14
-	b        lbl_802DE054
-
-lbl_802DE044:
-	cmpwi    r0, 3
-	li       r3, 0x18
-	bne      lbl_802DE054
-	li       r3, 0x11
-
-lbl_802DE054:
-	lwz      r0, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	return 24;
 }
 
 /*
@@ -1158,124 +1099,42 @@ lbl_802DE054:
  */
 int Obj::getFireAttackAnimIndex()
 {
-	/*
-	stwu     r1, -0x30(r1)
-	mflr     r0
-	lfs      f1, lbl_8051CCF8@sda21(r2)
-	li       r4, 0
-	stw      r0, 0x34(r1)
-	li       r5, 0
-	lfs      f2, lbl_8051CCFC@sda21(r2)
-	stw      r31, 0x2c(r1)
-	mr       r31, r3
-	bl
-"getNearestNavi__Q24Game9EnemyFuncFPQ24Game8CreatureffPfP23Condition<Q24Game4Navi>"
-	cmplwi   r3, 0
-	beq      lbl_802DE134
-	mr       r4, r3
-	addi     r3, r1, 8
-	lwz      r12, 0(r4)
-	lwz      r12, 8(r12)
-	mtctr    r12
-	bctrl
-	lfs      f3, 8(r1)
-	lis      r3, atanTable___5JMath@ha
-	lfs      f1, 0x18c(r31)
-	addi     r3, r3, atanTable___5JMath@l
-	lfs      f2, 0x10(r1)
-	lfs      f0, 0x194(r31)
-	fsubs    f1, f3, f1
-	fsubs    f2, f2, f0
-	bl       "atan2___Q25JMath18TAtanTable<1024,f>CFff"
-	lfs      f0, lbl_8051CC30@sda21(r2)
-	fcmpo    cr0, f1, f0
-	bge      lbl_802DE0E8
-	lfs      f0, lbl_8051CCDC@sda21(r2)
-	fadds    f1, f0, f1
-	b        lbl_802DE0FC
+	f32 angle;
 
-lbl_802DE0E8:
-	lfs      f0, lbl_8051CCDC@sda21(r2)
-	fcmpo    cr0, f1, f0
-	cror     2, 1, 2
-	bne      lbl_802DE0FC
-	fsubs    f1, f1, f0
+	Navi* navi = EnemyFunc::getNearestNavi(this, 180.0f, 1280.0f, nullptr, nullptr);
 
-lbl_802DE0FC:
-	lfs      f2, 0x1fc(r31)
-	lfs      f0, lbl_8051CC30@sda21(r2)
-	fsubs    f1, f1, f2
-	fcmpo    cr0, f1, f0
-	bge      lbl_802DE11C
-	lfs      f0, lbl_8051CCDC@sda21(r2)
-	fadds    f1, f0, f1
-	b        lbl_802DE164
+	if (navi) {
+		Vector3f naviPos = navi->getPosition();
+		angle            = JMath::atanTable_.atan2_(naviPos.x - m_position.x, naviPos.z - m_position.z);
+		if (angle < 0.0f) {
+			angle = TAU + angle;
+		} else if (angle >= TAU) {
+			angle -= TAU;
+		}
 
-lbl_802DE11C:
-	lfs      f0, lbl_8051CCDC@sda21(r2)
-	fcmpo    cr0, f1, f0
-	cror     2, 1, 2
-	bne      lbl_802DE164
-	fsubs    f1, f1, f0
-	b        lbl_802DE164
+		angle -= m_faceDir;
 
-lbl_802DE134:
-	bl       rand
-	xoris    r3, r3, 0x8000
-	lis      r0, 0x4330
-	stw      r3, 0x1c(r1)
-	lfd      f3, lbl_8051CC60@sda21(r2)
-	stw      r0, 0x18(r1)
-	lfs      f1, lbl_8051CCDC@sda21(r2)
-	lfd      f2, 0x18(r1)
-	lfs      f0, lbl_8051CC58@sda21(r2)
-	fsubs    f2, f2, f3
-	fmuls    f1, f1, f2
-	fdivs    f1, f1, f0
+		if (angle < 0.0f) {
+			angle = TAU + angle;
+		} else if (angle >= TAU) {
+			angle -= TAU;
+		}
 
-lbl_802DE164:
-	lfs      f0, lbl_8051CD00@sda21(r2)
-	fcmpo    cr0, f1, f0
-	ble      lbl_802DE188
-	lfs      f0, lbl_8051CD04@sda21(r2)
-	fcmpo    cr0, f1, f0
-	cror     2, 0, 2
-	bne      lbl_802DE188
-	li       r3, 9
-	b        lbl_802DE1D4
+	} else {
+		angle = randWeightFloat(TAU);
+	}
 
-lbl_802DE188:
-	lfs      f0, lbl_8051CD04@sda21(r2)
-	fcmpo    cr0, f1, f0
-	ble      lbl_802DE1AC
-	lfs      f0, lbl_8051CD08@sda21(r2)
-	fcmpo    cr0, f1, f0
-	cror     2, 0, 2
-	bne      lbl_802DE1AC
-	li       r3, 0xc
-	b        lbl_802DE1D4
+	if (angle > (PI / 4) && angle <= (3 * PI / 4)) {
+		return 9;
 
-lbl_802DE1AC:
-	lfs      f0, lbl_8051CD08@sda21(r2)
-	fcmpo    cr0, f1, f0
-	ble      lbl_802DE1D0
-	lfs      f0, lbl_8051CD0C@sda21(r2)
-	fcmpo    cr0, f1, f0
-	cror     2, 0, 2
-	bne      lbl_802DE1D0
-	li       r3, 6
-	b        lbl_802DE1D4
+	} else if (angle > (3 * PI / 4) && angle <= (5 * PI / 4)) {
+		return 12;
 
-lbl_802DE1D0:
-	li       r3, 3
+	} else if (angle > (5 * PI / 4) && angle <= (7 * PI / 4)) {
+		return 6;
+	}
 
-lbl_802DE1D4:
-	lwz      r0, 0x34(r1)
-	lwz      r31, 0x2c(r1)
-	mtlr     r0
-	addi     r1, r1, 0x30
-	blr
-	*/
+	return 3;
 }
 
 /*
@@ -1285,58 +1144,24 @@ lbl_802DE1D4:
  */
 f32 Obj::getPreAttackTimeMax()
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	mr       r31, r3
-	lwz      r4, 0x408(r3)
-	cmpwi    r4, 0
-	bne      lbl_802DE214
-	lwz      r3, 0xc0(r31)
-	lfs      f1, 0x90c(r3)
-	b        lbl_802DE26C
+	if (m_attackIndex == BIGATTACK_Elec) {
+		return C_PROPERPARMS.m_fp10.m_value;
 
-lbl_802DE214:
-	cmpwi    r4, 1
-	bne      lbl_802DE240
-	bl       isNormalAttack__Q34Game11BigTreasure3ObjFi
-	clrlwi.  r0, r3, 0x18
-	beq      lbl_802DE234
-	lwz      r3, 0xc0(r31)
-	lfs      f1, 0x934(r3)
-	b        lbl_802DE26C
+	} else if (m_attackIndex == BIGATTACK_Fire) {
+		if (isNormalAttack(m_attackIndex)) {
+			return C_PROPERPARMS.m_fp11.m_value;
+		} else {
+			return C_PROPERPARMS.m_fp31.m_value;
+		}
 
-lbl_802DE234:
-	lwz      r3, 0xc0(r31)
-	lfs      f1, 0x95c(r3)
-	b        lbl_802DE26C
+	} else if (m_attackIndex == BIGATTACK_Gas) {
+		return C_PROPERPARMS.m_fp12.m_value;
 
-lbl_802DE240:
-	cmpwi    r4, 2
-	bne      lbl_802DE254
-	lwz      r3, 0xc0(r31)
-	lfs      f1, 0x984(r3)
-	b        lbl_802DE26C
+	} else if (m_attackIndex == BIGATTACK_Water) {
+		return C_PROPERPARMS.m_fp13.m_value;
+	}
 
-lbl_802DE254:
-	cmpwi    r4, 3
-	bne      lbl_802DE268
-	lwz      r3, 0xc0(r31)
-	lfs      f1, 0x9ac(r3)
-	b        lbl_802DE26C
-
-lbl_802DE268:
-	lfs      f1, lbl_8051CD10@sda21(r2)
-
-lbl_802DE26C:
-	lwz      r0, 0x14(r1)
-	lwz      r31, 0xc(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	return 5.0f;
 }
 
 /*
@@ -1346,39 +1171,20 @@ lbl_802DE26C:
  */
 f32 Obj::getAttackTimeMax()
 {
-	/*
-	lwz      r0, 0x408(r3)
-	cmpwi    r0, 0
-	bne      lbl_802DE298
-	lwz      r3, 0xc0(r3)
-	lfs      f1, 0x9d4(r3)
-	blr
+	if (m_attackIndex == BIGATTACK_Elec) {
+		return C_PROPERPARMS.m_elecAttackTimeMax.m_value;
 
-lbl_802DE298:
-	cmpwi    r0, 1
-	bne      lbl_802DE2AC
-	lwz      r3, 0xc0(r3)
-	lfs      f1, 0x9fc(r3)
-	blr
+	} else if (m_attackIndex == BIGATTACK_Fire) {
+		return C_PROPERPARMS.m_fireAttackTimeMax.m_value;
 
-lbl_802DE2AC:
-	cmpwi    r0, 2
-	bne      lbl_802DE2C0
-	lwz      r3, 0xc0(r3)
-	lfs      f1, 0xa24(r3)
-	blr
+	} else if (m_attackIndex == BIGATTACK_Gas) {
+		return C_PROPERPARMS.m_gasAttackTimeMax.m_value;
 
-lbl_802DE2C0:
-	cmpwi    r0, 3
-	bne      lbl_802DE2D4
-	lwz      r3, 0xc0(r3)
-	lfs      f1, 0xa4c(r3)
-	blr
+	} else if (m_attackIndex == BIGATTACK_Water) {
+		return C_PROPERPARMS.m_waterAttackTimeMax.m_value;
+	}
 
-lbl_802DE2D4:
-	lfs      f1, lbl_8051CD10@sda21(r2)
-	blr
-	*/
+	return 5.0f;
 }
 
 /*
@@ -1565,378 +1371,96 @@ void Obj::setMatEyeAnimSpeed()
  * Address:	802DE5C0
  * Size:	0004D0
  */
-void Obj::setAttackMaterialColor(bool check)
+void Obj::setAttackMaterialColor(bool isFast)
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	mr       r31, r3
-	stb      r4, 0x2dc(r3)
-	lbz      r0, 0x2dc(r3)
-	cmplwi   r0, 0
-	beq      lbl_802DE7CC
-	lwz      r0, 0x408(r31)
-	cmpwi    r0, 2
-	beq      lbl_802DE6E8
-	bge      lbl_802DE604
-	cmpwi    r0, 0
-	beq      lbl_802DE610
-	bge      lbl_802DE67C
-	b        lbl_802DE954
+	m_isFastMatAnim = isFast;
 
-lbl_802DE604:
-	cmpwi    r0, 4
-	bge      lbl_802DE954
-	b        lbl_802DE75C
+	if (m_isFastMatAnim) {
+		switch (m_attackIndex) {
+		case BIGATTACK_Elec:
+			m_targetMatBodyColor.r = 150;
+			m_targetMatBodyColor.g = 130;
+			m_targetMatBodyColor.b = 20;
 
-lbl_802DE610:
-	li       r0, 0x96
-	li       r3, 0x82
-	sth      r0, 0x40c(r31)
-	li       r0, 0x14
-	lfs      f5, lbl_8051CCA4@sda21(r2)
-	sth      r3, 0x40e(r31)
-	lfs      f1, lbl_8051CC30@sda21(r2)
-	sth      r0, 0x410(r31)
-	lfs      f4, lbl_8051CD18@sda21(r2)
-	stfs     f5, 0x438(r31)
-	lfs      f0, lbl_8051CCF8@sda21(r2)
-	stfs     f5, 0x43c(r31)
-	lfs      f3, lbl_8051CD24@sda21(r2)
-	stfs     f1, 0x440(r31)
-	lfs      f2, lbl_8051CC38@sda21(r2)
-	stfs     f4, 0x444(r31)
-	lfs      f1, lbl_8051CCF0@sda21(r2)
-	stfs     f0, 0x448(r31)
-	lfs      f0, lbl_8051CD28@sda21(r2)
-	stfs     f3, 0x44c(r31)
-	stfs     f2, 0x45c(r31)
-	stfs     f2, 0x460(r31)
-	stfs     f5, 0x464(r31)
-	stfs     f4, 0x468(r31)
-	stfs     f1, 0x46c(r31)
-	stfs     f0, 0x470(r31)
-	b        lbl_802DE954
+			m_targetClusterEyeColor[EYECOLOR_Dark].set(30.0f, 30.0f, 0.0f);
+			m_targetClusterEyeColor[EYECOLOR_Light].set(255.0f, 180.0f, 70.0f);
 
-lbl_802DE67C:
-	li       r0, 0xa0
-	li       r3, 0x32
-	sth      r0, 0x40c(r31)
-	li       r0, 0x14
-	lfs      f6, lbl_8051CC38@sda21(r2)
-	sth      r3, 0x40e(r31)
-	lfs      f0, lbl_8051CD14@sda21(r2)
-	sth      r0, 0x410(r31)
-	lfs      f5, lbl_8051CD18@sda21(r2)
-	stfs     f6, 0x438(r31)
-	lfs      f4, lbl_8051CCE8@sda21(r2)
-	stfs     f0, 0x43c(r31)
-	lfs      f3, lbl_8051CD28@sda21(r2)
-	stfs     f0, 0x440(r31)
-	lfs      f2, lbl_8051CD2C@sda21(r2)
-	stfs     f5, 0x444(r31)
-	lfs      f1, lbl_8051CCF0@sda21(r2)
-	stfs     f4, 0x448(r31)
-	lfs      f0, lbl_8051CC90@sda21(r2)
-	stfs     f4, 0x44c(r31)
-	stfs     f3, 0x45c(r31)
-	stfs     f6, 0x460(r31)
-	stfs     f2, 0x464(r31)
-	stfs     f5, 0x468(r31)
-	stfs     f1, 0x46c(r31)
-	stfs     f0, 0x470(r31)
-	b        lbl_802DE954
+			m_targetSideEyeColor[EYECOLOR_Dark].set(60.0f, 60.0f, 30.0f);
+			m_targetSideEyeColor[EYECOLOR_Light].set(255.0f, 150.0f, 80.0f);
+			break;
 
-lbl_802DE6E8:
-	li       r0, 0x5a
-	li       r3, 5
-	sth      r0, 0x40c(r31)
-	li       r0, 0x78
-	lfs      f4, lbl_8051CCA4@sda21(r2)
-	sth      r3, 0x40e(r31)
-	lfs      f0, lbl_8051CC30@sda21(r2)
-	sth      r0, 0x410(r31)
-	lfs      f3, lbl_8051CD30@sda21(r2)
-	stfs     f4, 0x438(r31)
-	lfs      f2, lbl_8051CD34@sda21(r2)
-	stfs     f0, 0x43c(r31)
-	lfs      f1, lbl_8051CD20@sda21(r2)
-	stfs     f4, 0x440(r31)
-	lfs      f0, lbl_8051CD38@sda21(r2)
-	stfs     f3, 0x444(r31)
-	lfs      f3, lbl_8051CD14@sda21(r2)
-	stfs     f2, 0x448(r31)
-	lfs      f2, lbl_8051CD28@sda21(r2)
-	stfs     f1, 0x44c(r31)
-	lfs      f1, lbl_8051CC90@sda21(r2)
-	stfs     f0, 0x45c(r31)
-	lfs      f0, lbl_8051CD3C@sda21(r2)
-	stfs     f3, 0x460(r31)
-	stfs     f2, 0x464(r31)
-	stfs     f1, 0x468(r31)
-	stfs     f3, 0x46c(r31)
-	stfs     f0, 0x470(r31)
-	b        lbl_802DE954
+		case BIGATTACK_Fire:
+			m_targetMatBodyColor.r = 160;
+			m_targetMatBodyColor.g = 50;
+			m_targetMatBodyColor.b = 20;
 
-lbl_802DE75C:
-	li       r0, 0x28
-	li       r3, 0x64
-	sth      r0, 0x40c(r31)
-	li       r0, 0xb4
-	lfs      f2, lbl_8051CD38@sda21(r2)
-	sth      r3, 0x40e(r31)
-	lfs      f1, lbl_8051CD28@sda21(r2)
-	sth      r0, 0x410(r31)
-	lfs      f0, lbl_8051CD24@sda21(r2)
-	stfs     f2, 0x438(r31)
-	lfs      f4, lbl_8051CC90@sda21(r2)
-	stfs     f1, 0x43c(r31)
-	lfs      f3, lbl_8051CD18@sda21(r2)
-	stfs     f0, 0x440(r31)
-	lfs      f0, lbl_8051CCF8@sda21(r2)
-	stfs     f4, 0x444(r31)
-	lfs      f2, lbl_8051CD14@sda21(r2)
-	stfs     f3, 0x448(r31)
-	lfs      f1, lbl_8051CC38@sda21(r2)
-	stfs     f0, 0x44c(r31)
-	lfs      f0, lbl_8051CCF0@sda21(r2)
-	stfs     f2, 0x45c(r31)
-	stfs     f2, 0x460(r31)
-	stfs     f1, 0x464(r31)
-	stfs     f4, 0x468(r31)
-	stfs     f0, 0x46c(r31)
-	stfs     f3, 0x470(r31)
-	b        lbl_802DE954
+			m_targetClusterEyeColor[EYECOLOR_Dark].set(60.0f, 20.0f, 20.0f);
+			m_targetClusterEyeColor[EYECOLOR_Light].set(255.0f, 100.0f, 100.0f);
 
-lbl_802DE7CC:
-	lwz      r0, 0x3c4(r31)
-	li       r4, 0
-	cmplwi   r0, 0
-	beq      lbl_802DE7E4
-	li       r4, 1
-	b        lbl_802DE820
+			m_targetSideEyeColor[EYECOLOR_Dark].set(80.0f, 60.0f, 45.0f);
+			m_targetSideEyeColor[EYECOLOR_Light].set(255.0f, 150.0f, 120.0f);
+			break;
 
-lbl_802DE7E4:
-	lwz      r0, 0x3c8(r31)
-	cmplwi   r0, 0
-	beq      lbl_802DE7F8
-	li       r4, 1
-	b        lbl_802DE820
+		case BIGATTACK_Gas:
+			m_targetMatBodyColor.r = 90;
+			m_targetMatBodyColor.g = 5;
+			m_targetMatBodyColor.b = 120;
 
-lbl_802DE7F8:
-	addi     r3, r31, 8
-	lwz      r0, 0x3cc(r31)
-	cmplwi   r0, 0
-	beq      lbl_802DE810
-	li       r4, 1
-	b        lbl_802DE820
+			m_targetClusterEyeColor[EYECOLOR_Dark].set(30.0f, 0.0f, 30.0f);
+			m_targetClusterEyeColor[EYECOLOR_Light].set(220.0f, 68.0f, 160.0f);
 
-lbl_802DE810:
-	lwz      r0, 0x3c8(r3)
-	cmplwi   r0, 0
-	beq      lbl_802DE820
-	li       r4, 1
+			m_targetSideEyeColor[EYECOLOR_Dark].set(40.0f, 20.0f, 80.0f);
+			m_targetSideEyeColor[EYECOLOR_Light].set(120.0f, 20.0f, 200.0f);
+			break;
 
-lbl_802DE820:
-	li       r3, 0x1e
-	clrlwi.  r0, r4, 0x18
-	sth      r3, 0x40c(r31)
-	li       r3, 0x46
-	li       r0, 0x3c
-	sth      r3, 0x40e(r31)
-	sth      r0, 0x410(r31)
-	beq      lbl_802DE84C
-	li       r0, 0xff
-	sth      r0, 0x412(r31)
-	b        lbl_802DE854
+		case BIGATTACK_Water:
+			m_targetMatBodyColor.r = 40;
+			m_targetMatBodyColor.g = 100;
+			m_targetMatBodyColor.b = 180;
 
-lbl_802DE84C:
-	li       r0, 0
-	sth      r0, 0x412(r31)
+			m_targetClusterEyeColor[EYECOLOR_Dark].set(40.0f, 80.0f, 70.0f);
+			m_targetClusterEyeColor[EYECOLOR_Light].set(120.0f, 255.0f, 180.0f);
 
-lbl_802DE854:
-	clrlwi.  r0, r4, 0x18
-	beq      lbl_802DE8B4
-	lfs      f2, lbl_8051CD14@sda21(r2)
-	lfs      f0, lbl_8051CC38@sda21(r2)
-	stfs     f2, 0x438(r31)
-	lfs      f1, lbl_8051CC90@sda21(r2)
-	stfs     f0, 0x43c(r31)
-	lfs      f0, lbl_8051CD18@sda21(r2)
-	stfs     f2, 0x440(r31)
-	lfs      f4, lbl_8051CD1C@sda21(r2)
-	stfs     f1, 0x444(r31)
-	lfs      f3, lbl_8051CC30@sda21(r2)
-	stfs     f0, 0x448(r31)
-	lfs      f2, lbl_8051CCA4@sda21(r2)
-	stfs     f4, 0x44c(r31)
-	lfs      f1, lbl_8051CCF8@sda21(r2)
-	stfs     f3, 0x45c(r31)
-	lfs      f0, lbl_8051CD20@sda21(r2)
-	stfs     f2, 0x460(r31)
-	stfs     f3, 0x464(r31)
-	stfs     f4, 0x468(r31)
-	stfs     f1, 0x46c(r31)
-	stfs     f0, 0x470(r31)
-	b        lbl_802DE954
+			m_targetSideEyeColor[EYECOLOR_Dark].set(20.0f, 20.0f, 60.0f);
+			m_targetSideEyeColor[EYECOLOR_Light].set(120.0f, 150.0f, 255.0f);
+			break;
+		}
 
-lbl_802DE8B4:
-	lfs      f0, lbl_8051CC44@sda21(r2)
-	lfs      f3, lbl_8051CCE8@sda21(r2)
-	stfs     f0, 0x438(r31)
-	lfs      f0, lbl_8051CD18@sda21(r2)
-	stfs     f3, 0x43c(r31)
-	lfs      f2, lbl_8051CCF8@sda21(r2)
-	stfs     f0, 0x440(r31)
-	lfs      f1, lbl_8051CD40@sda21(r2)
-	stfs     f0, 0x444(r31)
-	lfs      f0, lbl_8051CC38@sda21(r2)
-	stfs     f2, 0x448(r31)
-	lfs      f2, lbl_8051CD44@sda21(r2)
-	stfs     f1, 0x44c(r31)
-	lfs      f1, lbl_8051CCA4@sda21(r2)
-	stfs     f0, 0x45c(r31)
-	lfs      f0, lbl_8051CD3C@sda21(r2)
-	stfs     f2, 0x460(r31)
-	stfs     f1, 0x464(r31)
-	stfs     f3, 0x468(r31)
-	stfs     f1, 0x46c(r31)
-	stfs     f0, 0x470(r31)
-	lha      r0, 0x412(r31)
-	cmpwi    r0, 0
-	bne      lbl_802DE954
-	lha      r0, 0x41a(r31)
-	cmpwi    r0, 0xff
-	bne      lbl_802DE954
-	mr       r3, r31
-	bl       createChangeMaterialEffect__Q34Game11BigTreasure3ObjFv
-	mr       r3, r31
-	lwz      r12, 0(r31)
-	lwz      r12, 0xf4(r12)
-	mtctr    r12
-	bctrl
-	lwz      r12, 0(r3)
-	li       r4, 0x591b
-	li       r5, 0
-	lwz      r12, 0xc(r12)
-	mtctr    r12
-	bctrl
+	} else {
+		bool hasTreasures = isCapturedTreasure();
 
-lbl_802DE954:
-	lbz      r0, 0x2dc(r31)
-	lfs      f4, lbl_8051CCA4@sda21(r2)
-	cmplwi   r0, 0
-	beq      lbl_802DE968
-	lfs      f4, lbl_8051CC44@sda21(r2)
+		m_targetMatBodyColor.r = 30;
+		m_targetMatBodyColor.g = 70;
+		m_targetMatBodyColor.b = 60;
 
-lbl_802DE968:
-	li       r0, 3
-	li       r5, 0
-	mr       r4, r31
-	lfs      f3, lbl_8051CC30@sda21(r2)
-	lfs      f2, lbl_8051CC34@sda21(r2)
-	mtctr    r0
+		if (hasTreasures) {
+			m_targetMatBodyColor.a = 255;
+		} else {
+			m_targetMatBodyColor.a = 0;
+		}
 
-lbl_802DE980:
-	lwz      r0, 0x41c(r31)
-	lfs      f0, 0x450(r4)
-	mulli    r0, r0, 0xc
-	add      r3, r0, r5
-	addi     r0, r3, 0x438
-	lfsx     f1, r31, r0
-	fsubs    f5, f1, f0
-	fcmpo    cr0, f5, f3
-	ble      lbl_802DE9A8
-	b        lbl_802DE9AC
+		if (hasTreasures) {
+			m_targetClusterEyeColor[EYECOLOR_Dark].set(20.0f, 60.0f, 20.0f);
+			m_targetClusterEyeColor[EYECOLOR_Light].set(120.0f, 255.0f, 90.0f);
 
-lbl_802DE9A8:
-	fneg     f5, f5
+			m_targetSideEyeColor[EYECOLOR_Dark].set(0.0f, 30.0f, 0.0f);
+			m_targetSideEyeColor[EYECOLOR_Light].set(90.0f, 180.0f, 160.0f);
 
-lbl_802DE9AC:
-	lfs      f1, 0x444(r4)
-	lfs      f0, 0x438(r4)
-	fsubs    f0, f1, f0
-	fcmpo    cr0, f0, f3
-	ble      lbl_802DE9C4
-	b        lbl_802DE9C8
+		} else {
+			m_targetClusterEyeColor[EYECOLOR_Dark].set(10.0f, 100.0f, 255.0f);
+			m_targetClusterEyeColor[EYECOLOR_Light].set(255.0f, 180.0f, 64.0f);
 
-lbl_802DE9C4:
-	fneg     f0, f0
+			m_targetSideEyeColor[EYECOLOR_Dark].set(60.0f, 230.0f, 30.0f);
+			m_targetSideEyeColor[EYECOLOR_Light].set(100.0f, 30.0f, 200.0f);
 
-lbl_802DE9C8:
-	fcmpo    cr0, f5, f0
-	ble      lbl_802DE9D4
-	b        lbl_802DE9D8
+			if (m_targetMatBodyColor.a == 0 && m_currMatBodyColor.a == 255) {
+				createChangeMaterialEffect();
+				getJAIObject()->startSound(PSSE_EN_BIGTAKARA_SHELL, 0);
+			}
+		}
+	}
 
-lbl_802DE9D4:
-	fmr      f5, f0
-
-lbl_802DE9D8:
-	stfs     f5, 0x420(r4)
-	lfs      f0, 0x420(r4)
-	fcmpo    cr0, f0, f2
-	bge      lbl_802DE9EC
-	stfs     f2, 0x420(r4)
-
-lbl_802DE9EC:
-	lfs      f0, 0x420(r4)
-	fdivs    f0, f0, f4
-	stfs     f0, 0x420(r4)
-	lwz      r0, 0x41c(r31)
-	lfs      f0, 0x474(r4)
-	mulli    r0, r0, 0xc
-	add      r3, r0, r5
-	addi     r0, r3, 0x45c
-	lfsx     f1, r31, r0
-	fsubs    f5, f1, f0
-	fcmpo    cr0, f5, f3
-	ble      lbl_802DEA20
-	b        lbl_802DEA24
-
-lbl_802DEA20:
-	fneg     f5, f5
-
-lbl_802DEA24:
-	lfs      f1, 0x468(r4)
-	lfs      f0, 0x45c(r4)
-	fsubs    f0, f1, f0
-	fcmpo    cr0, f0, f3
-	ble      lbl_802DEA3C
-	b        lbl_802DEA40
-
-lbl_802DEA3C:
-	fneg     f0, f0
-
-lbl_802DEA40:
-	fcmpo    cr0, f5, f0
-	ble      lbl_802DEA4C
-	b        lbl_802DEA50
-
-lbl_802DEA4C:
-	fmr      f5, f0
-
-lbl_802DEA50:
-	stfs     f5, 0x42c(r4)
-	lfs      f0, 0x42c(r4)
-	fcmpo    cr0, f0, f2
-	bge      lbl_802DEA64
-	stfs     f2, 0x42c(r4)
-
-lbl_802DEA64:
-	lfs      f0, 0x42c(r4)
-	addi     r5, r5, 4
-	fdivs    f0, f0, f4
-	stfs     f0, 0x42c(r4)
-	addi     r4, r4, 4
-	bdnz     lbl_802DE980
-	lwz      r0, 0x14(r1)
-	lwz      r31, 0xc(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	setMatEyeAnimSpeed();
 }
 
 /*
@@ -1946,6 +1470,72 @@ lbl_802DEA64:
  */
 void Obj::updateMaterialColor()
 {
+	// red
+	s16 newRed  = m_targetMatBodyColor.r;
+	s16 oldRed  = m_currMatBodyColor.r;
+	int redDiff = absVal(oldRed - newRed);
+
+	newRed               = (redDiff < 5) ? newRed : ((oldRed < newRed) ? oldRed + 5 : oldRed - 5);
+	m_currMatBodyColor.r = newRed;
+
+	// green
+	s16 newGreen  = m_targetMatBodyColor.g;
+	s16 oldGreen  = m_currMatBodyColor.g;
+	int greenDiff = absVal(oldGreen - newGreen);
+
+	newGreen             = (greenDiff < 5) ? newGreen : ((oldGreen < newGreen) ? oldGreen + 5 : oldGreen - 5);
+	m_currMatBodyColor.g = newGreen;
+
+	// blue
+	s16 newBlue  = m_targetMatBodyColor.b;
+	s16 oldBlue  = m_currMatBodyColor.b;
+	int blueDiff = absVal(oldBlue - newBlue);
+
+	newBlue              = (blueDiff < 5) ? newBlue : ((oldBlue < newBlue) ? oldBlue + 5 : oldBlue - 5);
+	m_currMatBodyColor.b = newBlue;
+
+	// alpha
+	s16 newAlpha  = m_targetMatBodyColor.a;
+	s16 oldAlpha  = m_currMatBodyColor.a;
+	int alphaDiff = absVal(oldAlpha - newAlpha);
+
+	newAlpha             = (alphaDiff < 5) ? newAlpha : ((oldAlpha < newAlpha) ? oldAlpha + 5 : oldAlpha - 5);
+	m_currMatBodyColor.a = newAlpha;
+
+	for (int i = 0; i < 3; i++) {
+		f32 oldVal = m_currClusterEyeColor.m_rgb[i];
+		f32 speed  = m_clusterEyeAnimSpeeds[i];
+		f32 newVal = m_targetClusterEyeColor[m_targetEyeColorIdx].m_rgb[i];
+		f32 diff   = absVal(oldVal - newVal);
+
+		if (diff < speed) {
+			newVal = newVal;
+		} else if (oldVal < newVal) {
+			newVal = oldVal + speed;
+		} else {
+			newVal = oldVal - speed;
+		}
+
+		m_currClusterEyeColor.m_rgb[i] = newVal;
+	}
+
+	for (int i = 0; i < 3; i++) {
+		f32 oldVal = m_currSideEyeColor.m_rgb[i];
+		f32 speed  = m_sideEyeAnimSpeeds[i];
+		f32 newVal = m_targetSideEyeColor[m_targetEyeColorIdx].m_rgb[i];
+		f32 diff   = absVal(oldVal - newVal);
+
+		if (diff < speed) {
+			newVal = newVal;
+		} else if (oldVal < newVal) {
+			newVal = oldVal + speed;
+		} else {
+			newVal = oldVal - speed;
+		}
+
+		m_currSideEyeColor.m_rgb[i] = newVal;
+	}
+
 	/*
 	lha      r4, 0x40c(r3)
 	lha      r5, 0x414(r3)
@@ -2407,96 +1997,40 @@ lbl_802DEF34:
  * Address:	802DEF50
  * Size:	00011C
  */
-void Obj::startBlendAnimation(int animIdx, bool check)
+void Obj::startBlendAnimation(int animIdx, bool doBlendAnim)
 {
-	/*
-	stwu     r1, -0x30(r1)
-	mflr     r0
-	stw      r0, 0x34(r1)
-	stfd     f31, 0x20(r1)
-	psq_st   f31, 40(r1), 0, qr0
-	stw      r31, 0x1c(r1)
-	stw      r30, 0x18(r1)
-	stw      r29, 0x14(r1)
-	clrlwi.  r0, r5, 0x18
-	mr       r29, r3
-	mr       r30, r4
-	beq      lbl_802DF040
-	lwz      r3, 0x184(r29)
-	li       r4, 0
-	lwz      r12, 0(r3)
-	lwz      r12, 0x14(r12)
-	mtctr    r12
-	bctrl
-	lwz      r4, 0xc(r3)
-	mr       r31, r3
-	cmplwi   r4, 0
-	beq      lbl_802DEFD0
-	lwz      r3, 0x18(r4)
-	lis      r0, 0x4330
-	stw      r0, 8(r1)
-	lha      r0, 6(r3)
-	lfd      f1, lbl_8051CC60@sda21(r2)
-	xoris    r0, r0, 0x8000
-	stw      r0, 0xc(r1)
-	lfd      f0, 8(r1)
-	fsubs    f1, f0, f1
-	b        lbl_802DEFD4
+	if (doBlendAnim) {
+		SysShape::Animator& animator = static_cast<ProperAnimator*>(m_animator)->getAnimator(0);
+		SysShape::AnimInfo* animInfo = animator.m_animInfo;
+		f32 time;
 
-lbl_802DEFD0:
-	lfs      f1, lbl_8051CC30@sda21(r2)
+		if (animInfo) {
+			time = animInfo->m_anm->m_time;
+		} else {
+			time = 0.0f;
+		}
 
-lbl_802DEFD4:
-	lfs      f0, lbl_8051CC34@sda21(r2)
-	lfs      f31, 8(r31)
-	fsubs    f0, f1, f0
-	fcmpo    cr0, f0, f31
-	ble      lbl_802DF02C
-	cmplwi   r4, 0
-	beq      lbl_802DEFF8
-	lha      r4, 0x20(r4)
-	b        lbl_802DEFFC
+		f32 currFrame = animator.m_timer;
 
-lbl_802DEFF8:
-	li       r4, -1
+		if (time - 1.0f > currFrame) {
+			int newIdx;
+			if (animInfo) {
+				newIdx = animInfo->m_id;
+			} else {
+				newIdx = -1;
+			}
 
-lbl_802DEFFC:
-	cmpw     r30, r4
-	beq      lbl_802DF048
-	lfs      f1, lbl_8051CCA4@sda21(r2)
-	mr       r3, r29
-	mr       r5, r30
-	addi     r6, r13, sBlendLinearFun__Q24Game22EnemyBlendAnimatorBase@sda21
-	li       r7, 0
-	bl
-startBlend__Q24Game9EnemyBaseFiiPQ28SysShape13BlendFunctionfPQ28SysShape14MotionListener
-	fmr      f1, f31
-	mr       r3, r31
-	bl       setCurrFrame__Q28SysShape8AnimatorFf
-	b        lbl_802DF048
+			if (animIdx != newIdx) {
+				startBlend(newIdx, animIdx, &EnemyBlendAnimatorBase::sBlendLinearFun, 30.0f, nullptr);
+				animator.setCurrFrame(currFrame);
+			}
+		} else {
+			startMotion(animIdx, nullptr);
+		}
 
-lbl_802DF02C:
-	mr       r3, r29
-	mr       r4, r30
-	li       r5, 0
-	bl       startMotion__Q24Game9EnemyBaseFiPQ28SysShape14MotionListener
-	b        lbl_802DF048
-
-lbl_802DF040:
-	li       r5, 0
-	bl       startMotion__Q24Game9EnemyBaseFiPQ28SysShape14MotionListener
-
-lbl_802DF048:
-	psq_l    f31, 40(r1), 0, qr0
-	lwz      r0, 0x34(r1)
-	lfd      f31, 0x20(r1)
-	lwz      r31, 0x1c(r1)
-	lwz      r30, 0x18(r1)
-	lwz      r29, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x30
-	blr
-	*/
+	} else {
+		startMotion(animIdx, nullptr);
+	}
 }
 
 /*
@@ -2506,50 +2040,20 @@ lbl_802DF048:
  */
 void Obj::endBlendAnimation()
 {
-	/*
-	stwu     r1, -0x20(r1)
-	mflr     r0
-	stw      r0, 0x24(r1)
-	stfd     f31, 0x10(r1)
-	psq_st   f31, 24(r1), 0, qr0
-	stw      r31, 0xc(r1)
-	stw      r30, 8(r1)
-	mr       r30, r3
-	li       r4, 1
-	lwz      r3, 0x184(r3)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x14(r12)
-	mtctr    r12
-	bctrl
-	lwz      r4, 0xc(r3)
-	cmplwi   r4, 0
-	beq      lbl_802DF0B8
-	lha      r31, 0x20(r4)
-	b        lbl_802DF0BC
+	SysShape::Animator& animator = static_cast<ProperAnimator*>(m_animator)->getAnimator(1);
+	SysShape::AnimInfo* animInfo = animator.m_animInfo;
+	int animIdx;
+	if (animInfo) {
+		animIdx = animInfo->m_id;
+	} else {
+		animIdx = -1;
+	}
 
-lbl_802DF0B8:
-	li       r31, -1
+	f32 currFrame = animator.m_timer;
 
-lbl_802DF0BC:
-	lfs      f31, 8(r3)
-	mr       r3, r30
-	bl       endBlend__Q24Game9EnemyBaseFv
-	mr       r3, r30
-	mr       r4, r31
-	li       r5, 0
-	bl       startMotion__Q24Game9EnemyBaseFiPQ28SysShape14MotionListener
-	fmr      f1, f31
-	mr       r3, r30
-	bl       setMotionFrame__Q24Game9EnemyBaseFf
-	psq_l    f31, 24(r1), 0, qr0
-	lwz      r0, 0x24(r1)
-	lfd      f31, 0x10(r1)
-	lwz      r31, 0xc(r1)
-	lwz      r30, 8(r1)
-	mtlr     r0
-	addi     r1, r1, 0x20
-	blr
-	*/
+	endBlend();
+	startMotion(animIdx, nullptr);
+	setMotionFrame(currFrame);
 }
 
 /*
@@ -2559,31 +2063,12 @@ lbl_802DF0BC:
  */
 int Obj::getCurrAnimationIndex()
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	li       r4, 0
-	stw      r0, 0x14(r1)
-	lwz      r3, 0x184(r3)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x14(r12)
-	mtctr    r12
-	bctrl
-	lwz      r3, 0xc(r3)
-	cmplwi   r3, 0
-	beq      lbl_802DF13C
-	lha      r3, 0x20(r3)
-	b        lbl_802DF140
+	SysShape::AnimInfo* animInfo = static_cast<ProperAnimator*>(m_animator)->getAnimator(0).m_animInfo;
+	if (animInfo) {
+		return animInfo->m_id;
+	}
 
-lbl_802DF13C:
-	li       r3, -1
-
-lbl_802DF140:
-	lwz      r0, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	return -1;
 }
 
 /*
