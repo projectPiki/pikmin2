@@ -21,16 +21,16 @@ struct TPressStart : public TScreenBase {
 	void startLoop_();
 
 	// _00     = VTBL
-	// _00-_08 = TScreenBase
-	Controller* m_control;
-	bool m_isOpen;
-	int m_currentScreen;
-	P2DScreen::Mgr_tuning* m_screens[4];
-	u32 m_alpha;
-	u32 m_alphaMax;
-	E2DCallBack_AnmBase m_anims1[4];
-	E2DCallBack_AnmBase m_anims2[4];
-	E2DCallBack_CalcAnimation m_anims3[4];
+	// _00-_0C = TScreenBase
+	Controller* m_control;                 // _0C
+	bool m_isOpen;                         // _10
+	int m_currentScreen;                   // _14
+	P2DScreen::Mgr_tuning* m_screens[4];   // _18
+	u32 m_alpha;                           // _28
+	u32 m_alphaMax;                        // _2C
+	E2DCallBack_AnmBase m_anims1[4];       // _30
+	E2DCallBack_AnmBase m_anims2[4];       // _34
+	E2DCallBack_CalcAnimation m_anims3[4]; // _38
 };
 } // namespace Screen
 } // namespace ebi

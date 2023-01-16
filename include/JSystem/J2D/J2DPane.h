@@ -11,6 +11,7 @@
 #include "JSystem/JSupport/JSUList.h"
 #include "JSystem/JSupport/JSUStream.h"
 #include "JSystem/JUT/TColor.h"
+#include "JSystem/J2D/J2DMaterial.h"
 #include "types.h"
 
 struct J2DAnmBase;
@@ -372,6 +373,18 @@ struct J2DScreen : public J2DPane {
 	bool set(const char*, u32, JKRArchive*);
 	bool set(JSURandomInputStream*, u32);
 	bool private_set(JSURandomInputStream* stream, u32 flags, JKRArchive* archive);
+
+	inline u32 getMaterialCount() { return m_materialCount; }
+
+	inline void makeAnmPointer()
+	{
+		J2DMaterial* material;
+		u32 mats = getMaterialCount();
+		for (u16 i = 0; i < mats; i++) {
+			material = getMaterial(i);
+			material->makeAnmPointer();
+		}
+	}
 
 	static void* getNameResource(const char*);
 
