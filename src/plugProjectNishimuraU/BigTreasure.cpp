@@ -189,13 +189,13 @@ void Obj::changeMaterial()
 	J3DMaterial* bodyMat = modelData->m_materialTable.m_materials1[bodyIdx];
 	bodyMat->m_tevBlock->setTevColor(0, m_currMatBodyColor);
 
-	J3DGXColorS10 color1(m_currEyeColor1.m_rgb[0], m_currEyeColor1.m_rgb[1], m_currEyeColor1.m_rgb[2], 255);
+	J3DGXColorS10 color1(m_currClusterEyeColor.m_rgb[0], m_currClusterEyeColor.m_rgb[1], m_currClusterEyeColor.m_rgb[2], 255);
 
 	u16 eyeIdx1          = modelData->m_materialTable._0C->getIndex("mat_eye1");
 	J3DMaterial* eyeMat1 = modelData->m_materialTable.m_materials1[eyeIdx1];
 	eyeMat1->m_tevBlock->setTevColor(0, color1);
 
-	J3DGXColorS10 color2(m_currEyeColor2.m_rgb[0], m_currEyeColor2.m_rgb[1], m_currEyeColor2.m_rgb[2], 255);
+	J3DGXColorS10 color2(m_currSideEyeColor.m_rgb[0], m_currSideEyeColor.m_rgb[1], m_currSideEyeColor.m_rgb[2], 255);
 
 	u16 eyeIdx2          = modelData->m_materialTable._0C->getIndex("mat_eye2");
 	J3DMaterial* eyeMat2 = modelData->m_materialTable.m_materials1[eyeIdx2];
@@ -686,11 +686,11 @@ void Obj::setupTreasure()
 	char* jointNames[]  = { "otakara_elec", "otakara_fire", "otakara_gas", "otakara_water" };
 
 	for (int i = 0; i < 4; i++) {
-		m_isWeaponAttacked[i]                = false;
-		m_treasures[i]         = nullptr;
-		m_treasureHealth[i]    = 0.0f;
-		m_treasureShakeAngle[i]                = 0.0f;
-		m_treasureCollParts[i] = m_collTree->getCollPart(collTags[i]);
+		m_isWeaponAttacked[i]   = false;
+		m_treasures[i]          = nullptr;
+		m_treasureHealth[i]     = 0.0f;
+		m_treasureShakeAngle[i] = 0.0f;
+		m_treasureCollParts[i]  = m_collTree->getCollPart(collTags[i]);
 
 		PelletInitArg weaponArg;
 		if (pelletMgr->makePelletInitArg(weaponArg, pelletNames[i])) {
@@ -738,7 +738,7 @@ void Obj::updateTreasure()
 
 				if (m_treasureShakeAngle[i] > TAU) {
 					m_treasureShakeAngle[i] = 0.0f;
-					m_isWeaponAttacked[i] = false;
+					m_isWeaponAttacked[i]   = false;
 				}
 
 				Matrixf rotRad;
@@ -962,130 +962,55 @@ void Obj::finishAttack() { m_attackMgr->finishAttack(); }
  */
 void Obj::setTreasureAttack()
 {
-	/*
-	stwu     r1, -0x50(r1)
-	mflr     r0
-	stw      r0, 0x54(r1)
-	stfd     f31, 0x40(r1)
-	psq_st   f31, 72(r1), 0, qr0
-	stw      r31, 0x3c(r1)
-	stw      r30, 0x38(r1)
-	stw      r29, 0x34(r1)
-	mr       r29, r3
-	addi     r31, r1, 8
-	lwz      r0, 0x3c4(r3)
-	mr       r4, r31
-	lfs      f31, lbl_8051CC30@sda21(r2)
-	addi     r3, r1, 0x18
-	cmplwi   r0, 0
-	lfs      f1, lbl_8051CCF4@sda21(r2)
-	li       r30, 0
-	li       r5, 0
-	beq      lbl_802DDDC4
-	lfs      f0, 0x3d8(r29)
-	addi     r4, r31, 4
-	stw      r5, 0x18(r1)
-	li       r30, 1
-	fsubs    f0, f1, f0
-	addi     r3, r3, 4
-	stfs     f0, 0(r31)
-	lfs      f0, 0(r31)
-	fadds    f31, f31, f0
+	int attackIdx[4];     // indices for available attacks, max 4
+	f32 weaponWeights[4]; // weightings for each available attack based on health, max 4
 
-lbl_802DDDC4:
-	lwz      r0, 0x3c8(r29)
-	li       r5, 1
-	cmplwi   r0, 0
-	beq      lbl_802DDDF8
-	lfs      f0, 0x3dc(r29)
-	addi     r30, r30, 1
-	stw      r5, 0(r3)
-	addi     r3, r3, 4
-	fsubs    f0, f1, f0
-	stfs     f0, 0(r4)
-	lfs      f0, 0(r4)
-	addi     r4, r4, 4
-	fadds    f31, f31, f0
+	f32 totalWeights = 0.0f; // total weightings
+	int count        = 0;    // how many weapons alive, max 4
 
-lbl_802DDDF8:
-	lwz      r0, 0x3cc(r29)
-	li       r5, 2
-	cmplwi   r0, 0
-	beq      lbl_802DDE2C
-	lfs      f0, 0x3e0(r29)
-	addi     r30, r30, 1
-	stw      r5, 0(r3)
-	addi     r3, r3, 4
-	fsubs    f0, f1, f0
-	stfs     f0, 0(r4)
-	lfs      f0, 0(r4)
-	addi     r4, r4, 4
-	fadds    f31, f31, f0
+	// loop through all weapons; if alive, calc weighting + add to arrays
+	// 0 = elec, 1 = fire, 2 = gas, 3 = water
+	for (int i = 0; i < 4; i++) {
+		if (m_treasures[i]) {
+			attackIdx[count] = i;
 
-lbl_802DDE2C:
-	lwz      r0, 0x3d0(r29)
-	li       r5, 3
-	cmplwi   r0, 0
-	beq      lbl_802DDE58
-	lfs      f0, 0x3e4(r29)
-	addi     r30, r30, 1
-	stw      r5, 0(r3)
-	fsubs    f0, f1, f0
-	stfs     f0, 0(r4)
-	lfs      f0, 0(r4)
-	fadds    f31, f31, f0
+			// each weapon weight is [6000.0f, 12000.0f)
+			// 6000.0f at max health, linearly approaches 12000.0f as health decreases
+			weaponWeights[count] = 12000.0f - m_treasureHealth[i];
+			totalWeights += weaponWeights[count];
 
-lbl_802DDE58:
-	cmpwi    r30, 0
-	beq      lbl_802DDED0
-	bl       rand
-	xoris    r3, r3, 0x8000
-	lis      r0, 0x4330
-	stw      r3, 0x2c(r1)
-	li       r3, 0
-	lfd      f2, lbl_8051CC60@sda21(r2)
-	stw      r0, 0x28(r1)
-	lfs      f0, lbl_8051CC58@sda21(r2)
-	lfd      f1, 0x28(r1)
-	lfs      f3, lbl_8051CC30@sda21(r2)
-	fsubs    f1, f1, f2
-	fmuls    f1, f31, f1
-	fdivs    f1, f1, f0
-	mtctr    r30
-	cmpwi    r30, 0
-	ble      lbl_802DDED0
+			count++;
+		}
+	}
 
-lbl_802DDEA0:
-	lfs      f0, 0(r31)
-	fadds    f3, f3, f0
-	fcmpo    cr0, f3, f1
-	ble      lbl_802DDEC4
-	slwi     r0, r3, 2
-	addi     r3, r1, 0x18
-	lwzx     r0, r3, r0
-	stw      r0, 0x408(r29)
-	b        lbl_802DDED8
+	// if we have any weapons left, determine attack
+	if (count) {
+		/*
+		 * 'threshold' is a random float between 0 and totalWeights.
+		 * - If threshold falls 'within' one of the 'bands' of weights, that weapon is selected.
+		 * - A given band is bigger if that weapon is on lower health.
+		 * - Bands are always in the order (elec -> fire -> gas -> water).
+		 *
+		 * i.e.
+		 *
+		 *      |     elec     | fire |   gas   |       water       |
+		 *      0                 ^(threshold)                    total
+		 *
+		 * == fire gets chosen.
+		 */
+		f32 threshold = randWeightFloat(totalWeights);
+		f32 inc       = 0.0f;
+		for (int i = 0; i < count; i++) {
+			inc += weaponWeights[i]; // jump to next weapon bracket
+			if (inc > threshold) {   // if threshold falls in that bracket, choose weapon
+				m_attackIndex = attackIdx[i];
+				return;
+			}
+		}
+	}
 
-lbl_802DDEC4:
-	addi     r31, r31, 4
-	addi     r3, r3, 1
-	bdnz     lbl_802DDEA0
-
-lbl_802DDED0:
-	li       r0, -1
-	stw      r0, 0x408(r29)
-
-lbl_802DDED8:
-	psq_l    f31, 72(r1), 0, qr0
-	lwz      r0, 0x54(r1)
-	lfd      f31, 0x40(r1)
-	lwz      r31, 0x3c(r1)
-	lwz      r30, 0x38(r1)
-	lwz      r29, 0x34(r1)
-	mtlr     r0
-	addi     r1, r1, 0x50
-	blr
-	*/
+	// no weapons left/something weird happened, no attack
+	m_attackIndex = BIGATTACK_NULL;
 }
 
 /*
@@ -1470,8 +1395,9 @@ bool Obj::isNormalAttack(int idx) { return (m_treasureHealth[idx] > 3000.0f); }
  */
 void Obj::resetMaterialColor()
 {
-	bool isVisible = false;
-	m_isFastMatAnim           = false;
+	bool isVisible  = false;
+	m_isFastMatAnim = false;
+
 	for (int i = 0; i < 4; i++) {
 		if (m_treasures[i]) {
 			isVisible = true;
@@ -1481,7 +1407,7 @@ void Obj::resetMaterialColor()
 
 	resetTargetMatBodyColor(isVisible);
 	resetCurrentMatBodyColor();
-	_41C = 1;
+	m_targetEyeColorIdx = EYECOLOR_Light; // initially go towards light color
 	resetTargetEyeMatColor();
 	resetCurrentMatEyeColor();
 	setMatEyeAnimSpeed();
@@ -1573,10 +1499,10 @@ void Obj::resetCurrentMatBodyColor() { m_currMatBodyColor = m_targetMatBodyColor
  */
 void Obj::resetTargetEyeMatColor()
 {
-	m_targetEyeColor1[0].set(20.0f, 60.0f, 20.0f);
-	m_targetEyeColor1[1].set(120.0f, 255.0f, 90.0f);
-	m_targetEyeColor2[0].set(0.0f, 30.0f, 0.0f);
-	m_targetEyeColor2[1].set(90.0f, 180.0f, 160.0f);
+	m_targetClusterEyeColor[EYECOLOR_Dark].set(20.0f, 60.0f, 20.0f);
+	m_targetClusterEyeColor[EYECOLOR_Light].set(120.0f, 255.0f, 90.0f);
+	m_targetSideEyeColor[EYECOLOR_Dark].set(0.0f, 30.0f, 0.0f);
+	m_targetSideEyeColor[EYECOLOR_Light].set(90.0f, 180.0f, 160.0f);
 }
 
 /*
@@ -1586,8 +1512,8 @@ void Obj::resetTargetEyeMatColor()
  */
 void Obj::resetCurrentMatEyeColor()
 {
-	m_currEyeColor1 = m_targetEyeColor1[0];
-	m_currEyeColor2 = m_targetEyeColor2[0];
+	m_currClusterEyeColor = m_targetClusterEyeColor[EYECOLOR_Dark];
+	m_currSideEyeColor    = m_targetSideEyeColor[EYECOLOR_Dark];
 }
 
 /*
@@ -1599,151 +1525,39 @@ void Obj::setMatEyeAnimSpeed()
 {
 	f32 time = 30.0f;
 	if (m_isFastMatAnim) {
-		time = 10.0f;
+		time = 10.0f; // i.e. when readying an attack
 	}
 
+	// 0 = red, 1 = green, 2 = blue
 	for (int i = 0; i < 3; i++) {
-		// eye 1
-		f32 colorDiff1 = m_targetEyeColor1[_41C].m_rgb[i] - m_currEyeColor1.m_rgb[i];
-		colorDiff1     = (colorDiff1 > 0.0f) ? colorDiff1 : -colorDiff1;
+		// eye 1 - cluster of eyes
+		f32 colorDiff1   = absVal(m_targetClusterEyeColor[m_targetEyeColorIdx].m_rgb[i] - m_currClusterEyeColor.m_rgb[i]);
+		f32 defaultDiff1 = absVal(m_targetClusterEyeColor[EYECOLOR_Light].m_rgb[i] - m_targetClusterEyeColor[EYECOLOR_Dark].m_rgb[i]);
 
-		f32 otherDiff1 = m_targetEyeColor1[1].m_rgb[i] - m_targetEyeColor1[0].m_rgb[i];
-		otherDiff1     = (otherDiff1 > 0.0f) ? otherDiff1 : -otherDiff1;
-
-		colorDiff1          = (colorDiff1 > otherDiff1) ? colorDiff1 : otherDiff1;
-		m_eye1AnimSpeeds[i] = colorDiff1;
-
-		if (m_eye1AnimSpeeds[i] < 1.0f) {
-			m_eye1AnimSpeeds[i] = 1.0f;
+		// go faster if 'further away' than the normal oscillating range
+		// otherwise just go 'normal speed'
+		colorDiff1                = (colorDiff1 > defaultDiff1) ? colorDiff1 : defaultDiff1;
+		m_clusterEyeAnimSpeeds[i] = colorDiff1;
+		if (m_clusterEyeAnimSpeeds[i] < 1.0f) {
+			m_clusterEyeAnimSpeeds[i] = 1.0f;
 		}
 
-		m_eye1AnimSpeeds[i] = m_eye1AnimSpeeds[i] / time;
+		m_clusterEyeAnimSpeeds[i] = m_clusterEyeAnimSpeeds[i] / time;
 
-		// eye 2
-		f32 colorDiff2 = m_targetEyeColor2[_41C].m_rgb[i] - m_currEyeColor2.m_rgb[i];
-		colorDiff2     = (colorDiff2 > 0.0f) ? colorDiff2 : -colorDiff2;
+		// eye 2 - side eyes
+		f32 colorDiff2 = absVal(m_targetSideEyeColor[m_targetEyeColorIdx].m_rgb[i] - m_currSideEyeColor.m_rgb[i]);
+		f32 otherDiff2 = absVal(m_targetSideEyeColor[EYECOLOR_Light].m_rgb[i] - m_targetSideEyeColor[EYECOLOR_Dark].m_rgb[i]);
 
-		f32 otherDiff2 = m_targetEyeColor2[1].m_rgb[i] - m_targetEyeColor2[0].m_rgb[i];
-		otherDiff2     = (otherDiff2 > 0.0f) ? otherDiff2 : -otherDiff2;
-
-		colorDiff2          = (colorDiff2 > otherDiff2) ? colorDiff2 : otherDiff2;
-		m_eye2AnimSpeeds[i] = colorDiff2;
-
-		if (m_eye2AnimSpeeds[i] < 1.0f) {
-			m_eye2AnimSpeeds[i] = 1.0f;
+		// go faster if 'further away' than the normal oscillating range
+		// otherwise just go 'normal speed'
+		colorDiff2             = (colorDiff2 > otherDiff2) ? colorDiff2 : otherDiff2;
+		m_sideEyeAnimSpeeds[i] = colorDiff2;
+		if (m_sideEyeAnimSpeeds[i] < 1.0f) {
+			m_sideEyeAnimSpeeds[i] = 1.0f;
 		}
 
-		m_eye2AnimSpeeds[i] = m_eye2AnimSpeeds[i] / time;
+		m_sideEyeAnimSpeeds[i] = m_sideEyeAnimSpeeds[i] / time;
 	}
-	/*
-	lbz      r0, 0x2dc(r3)
-	lfs      f5, lbl_8051CCA4@sda21(r2)
-	cmplwi   r0, 0
-	beq      lbl_802DE4A8
-	lfs      f5, lbl_8051CC44@sda21(r2)
-
-lbl_802DE4A8:
-	li       r0, 3
-	mr       r5, r3
-	lfs      f3, lbl_8051CC30@sda21(r2)
-	li       r6, 0
-	lfs      f2, lbl_8051CC34@sda21(r2)
-	mtctr    r0
-
-lbl_802DE4C0:
-	lwz      r0, 0x41c(r3)
-	lfs      f0, 0x450(r5)
-	mulli    r0, r0, 0xc
-	add      r4, r0, r6
-	addi     r0, r4, 0x438
-	lfsx     f1, r3, r0
-	fsubs    f4, f1, f0
-	fcmpo    cr0, f4, f3
-	ble      lbl_802DE4E8
-	b        lbl_802DE4EC
-
-lbl_802DE4E8:
-	fneg     f4, f4
-
-lbl_802DE4EC:
-	lfs      f1, 0x444(r5)
-	lfs      f0, 0x438(r5)
-	fsubs    f0, f1, f0
-	fcmpo    cr0, f0, f3
-	ble      lbl_802DE504
-	b        lbl_802DE508
-
-lbl_802DE504:
-	fneg     f0, f0
-
-lbl_802DE508:
-	fcmpo    cr0, f4, f0
-	ble      lbl_802DE514
-	b        lbl_802DE518
-
-lbl_802DE514:
-	fmr      f4, f0
-
-lbl_802DE518:
-	stfs     f4, 0x420(r5)
-	lfs      f0, 0x420(r5)
-	fcmpo    cr0, f0, f2
-	bge      lbl_802DE52C
-	stfs     f2, 0x420(r5)
-
-lbl_802DE52C:
-	lfs      f0, 0x420(r5)
-	fdivs    f0, f0, f5
-	stfs     f0, 0x420(r5)
-	lwz      r0, 0x41c(r3)
-	lfs      f0, 0x474(r5)
-	mulli    r0, r0, 0xc
-	add      r4, r0, r6
-	addi     r0, r4, 0x45c
-	lfsx     f1, r3, r0
-	fsubs    f4, f1, f0
-	fcmpo    cr0, f4, f3
-	ble      lbl_802DE560
-	b        lbl_802DE564
-
-lbl_802DE560:
-	fneg     f4, f4
-
-lbl_802DE564:
-	lfs      f1, 0x468(r5)
-	lfs      f0, 0x45c(r5)
-	fsubs    f0, f1, f0
-	fcmpo    cr0, f0, f3
-	ble      lbl_802DE57C
-	b        lbl_802DE580
-
-lbl_802DE57C:
-	fneg     f0, f0
-
-lbl_802DE580:
-	fcmpo    cr0, f4, f0
-	ble      lbl_802DE58C
-	b        lbl_802DE590
-
-lbl_802DE58C:
-	fmr      f4, f0
-
-lbl_802DE590:
-	stfs     f4, 0x42c(r5)
-	lfs      f0, 0x42c(r5)
-	fcmpo    cr0, f0, f2
-	bge      lbl_802DE5A4
-	stfs     f2, 0x42c(r5)
-
-lbl_802DE5A4:
-	lfs      f0, 0x42c(r5)
-	addi     r6, r6, 4
-	fdivs    f0, f0, f5
-	stfs     f0, 0x42c(r5)
-	addi     r5, r5, 4
-	bdnz     lbl_802DE4C0
-	blr
-	*/
 }
 
 /*

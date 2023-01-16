@@ -79,6 +79,11 @@ enum AttackID {
 	BIGATTACK_Water = 3,
 };
 
+enum EyeColorTargetID {
+	EYECOLOR_Dark  = 0,
+	EYECOLOR_Light = 1,
+};
+
 struct Obj : public EnemyBase {
 	Obj();
 
@@ -233,13 +238,13 @@ struct Obj : public EnemyBase {
 	int m_attackIndex;                           // _408, enum TitanDweevilAttack?
 	J3DGXColorS10 m_targetMatBodyColor;          // _40C
 	J3DGXColorS10 m_currMatBodyColor;            // _414
-	int _41C;                                    // _41C, indexes the targetEyeColor arrays
-	f32 m_eye1AnimSpeeds[3];                     // _420, r=0, g=1, b=2
-	f32 m_eye2AnimSpeeds[3];                     // _42C, r=0, g=1, b=2
-	EyeColor m_targetEyeColor1[2];               // _438, indexed by _41C
-	EyeColor m_currEyeColor1;                    // _450
-	EyeColor m_targetEyeColor2[2];               // _45C, indexed by _41C
-	EyeColor m_currEyeColor2;                    // _474
+	int m_targetEyeColorIdx;                     // _41C, 0 = going to dark, 1 = going to light (indexes _438, _45C)
+	f32 m_clusterEyeAnimSpeeds[3];               // _420, r=0, g=1, b=2
+	f32 m_sideEyeAnimSpeeds[3];                  // _42C, r=0, g=1, b=2
+	EyeColor m_targetClusterEyeColor[2];         // _438, 0 = dark, 1 = light, bounces between
+	EyeColor m_currClusterEyeColor;              // _450
+	EyeColor m_targetSideEyeColor[2];            // _45C, 0 = dark, 1 = light, bounces between
+	EyeColor m_currSideEyeColor;                 // _474
 	efx::TOootaFoot* m_footFX[4];                // _480
 	efx::TDamaFootw* m_footWFX[4];               // _490
 	efx::TDamaSmoke* m_treasureSmokeFX[4];       // _4A0
