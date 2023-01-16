@@ -1201,77 +1201,16 @@ bool Obj::isNormalAttack(int idx) { return (m_treasureHealth[idx] > 3000.0f); }
  */
 void Obj::resetMaterialColor()
 {
-	bool isVisible  = false;
 	m_isFastMatAnim = false;
 
-	for (int i = 0; i < 4; i++) {
-		if (m_treasures[i]) {
-			isVisible = true;
-			break;
-		}
-	}
-
-	resetTargetMatBodyColor(isVisible);
+	resetTargetMatBodyColor(isCapturedTreasure());
 	resetCurrentMatBodyColor();
+
 	m_targetEyeColorIdx = EYECOLOR_Light; // initially go towards light color
 	resetTargetEyeMatColor();
 	resetCurrentMatEyeColor();
+
 	setMatEyeAnimSpeed();
-
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	li       r4, 0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	mr       r31, r3
-	stb      r4, 0x2dc(r3)
-	lwz      r0, 0x3c4(r3)
-	cmplwi   r0, 0
-	beq      lbl_802DE32C
-	li       r4, 1
-	b        lbl_802DE368
-
-lbl_802DE32C:
-	lwz      r0, 0x3c8(r31)
-	cmplwi   r0, 0
-	beq      lbl_802DE340
-	li       r4, 1
-	b        lbl_802DE368
-
-lbl_802DE340:
-	addi     r3, r31, 8
-	lwz      r0, 0x3cc(r31)
-	cmplwi   r0, 0
-	beq      lbl_802DE358
-	li       r4, 1
-	b        lbl_802DE368
-
-lbl_802DE358:
-	lwz      r0, 0x3c8(r3)
-	cmplwi   r0, 0
-	beq      lbl_802DE368
-	li       r4, 1
-
-lbl_802DE368:
-	mr       r3, r31
-	bl       resetTargetMatBodyColor__Q34Game11BigTreasure3ObjFb
-	mr       r3, r31
-	bl       resetCurrentMatBodyColor__Q34Game11BigTreasure3ObjFv
-	li       r0, 1
-	mr       r3, r31
-	stw      r0, 0x41c(r31)
-	bl       resetTargetEyeMatColor__Q34Game11BigTreasure3ObjFv
-	mr       r3, r31
-	bl       resetCurrentMatEyeColor__Q34Game11BigTreasure3ObjFv
-	mr       r3, r31
-	bl       setMatEyeAnimSpeed__Q34Game11BigTreasure3ObjFv
-	lwz      r0, 0x14(r1)
-	lwz      r31, 0xc(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
 }
 
 /*
