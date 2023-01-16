@@ -45,6 +45,14 @@ enum StateID {
 	BIGTREASURE_Count,
 };
 
+enum AttackID {
+	BIGATTACK_NULL  = -1,
+	BIGATTACK_Elec  = 0,
+	BIGATTACK_Fire  = 1,
+	BIGATTACK_Gas   = 2,
+	BIGATTACK_Water = 3,
+};
+
 struct Obj : public EnemyBase {
 	Obj();
 
@@ -107,7 +115,7 @@ struct Obj : public EnemyBase {
 	void setupTreasure();
 	void updateTreasure();
 	void dropTreasure();
-	void dropTreasure(int);
+	bool dropTreasure(int);
 	bool isCapturedTreasure();
 	bool isCapturedTreasure(int);
 	int getCapturedTreasureNum();
@@ -172,6 +180,8 @@ struct Obj : public EnemyBase {
 	void subShadowScale();
 	bool startBigTreasureBootUpDemo();
 
+	void setupBigTreasureCollision();
+
 	// _00 		= VTBL
 	// _00-_2BC	= EnemyBase
 	FSM* m_fsm;                                  // _2BC
@@ -180,7 +190,8 @@ struct Obj : public EnemyBase {
 	StateID m_nextState;                         // _2C8
 	Vector3f m_targetPosition;                   // _2CC
 	f32 m_shadowScale;                           // _2D8
-	u8 _2DC[0x8];                                // _2DC, unknown
+	u8 _2DC;                                     // _2DC
+	bool _2DD[0x4];                              // _2DD, to do with treasures?
 	IKSystemMgr* m_ikSystemMgr;                  // _2E4
 	IKSystemParms* m_ikSystemParms;              // _2E8
 	BigTreasureGroundCallBack* m_groundCallBack; // _2EC
@@ -191,11 +202,10 @@ struct Obj : public EnemyBase {
 	Pellet* m_treasures[4];                      // _3C4, elec / fire / gas / water
 	Pellet* m_louie;                             // _3D4, King of Bugs
 	f32 m_treasureHealth[4];                     // _3D8, elec / fire / gas / water
-	f32 _3E8;                                    // _3E8
-	u8 _3EC[0xC];                                // _3EC, unknown
+	f32 _3E8[4];                                 // _3E8, to do with treasures
 	CollPart* m_treasureCollParts[4];            // _3F8, elec / fire / gas / water
 	int m_attackIndex;                           // _408, enum TitanDweevilAttack?
-	u8 _40C[0x8];                                // _40C, unknown
+	J3DGXColorS10 m_currMatBodyColor;            // _40C
 	J3DGXColorS10 _414;                          // _414
 	int _41C;                                    // _41C
 	u8 _420[0x30];                               // _420, unknown

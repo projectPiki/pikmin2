@@ -7,6 +7,7 @@
 #include "Game/rumble.h"
 #include "Game/MoviePlayer.h"
 #include "Game/gamePlayData.h"
+#include "Game/Stickers.h"
 #include "PSM/EnemyBoss.h"
 #include "PSSystem/PSMainSide_ObjSound.h"
 #include "PS.h"
@@ -748,249 +749,82 @@ void Obj::setupCollision()
 
 /*
  * --INFO--
+ * Address:	........
+ * Size:	00013C
+ */
+void Obj::setupBigTreasureCollision()
+{
+	bool treasureCheck = true;
+	for (int i = 0; i < 4; i++) {
+		if (m_treasures[i]) {
+			treasureCheck = false;
+		} else if (m_treasureCollParts[i]) {
+			flickStickCollPartPikmin(m_treasureCollParts[i]);
+			m_treasureCollParts[i]->m_specialID = '_t__';
+			m_treasureCollParts[i]->m_radius    = 0.0f;
+			m_treasureCollParts[i]->m_attribute = 1;
+			m_treasureCollParts[i]              = nullptr;
+		}
+	}
+
+	CollPart* tam1 = m_collTree->getCollPart('tam1');
+	CollPart* tam2 = m_collTree->getCollPart('tam2');
+
+	if (tam1 && tam2) {
+		if (treasureCheck) {
+			tam1->m_specialID = 'st__';
+			tam2->m_specialID = 'st__';
+		} else {
+			tam1->m_specialID = '_t__';
+			tam2->m_specialID = '_t__';
+		}
+	}
+}
+
+/*
+ * --INFO--
  * Address:	802DD0CC
  * Size:	00035C
  */
 void Obj::setupTreasure()
 {
-	u32 tags[]        = { 'elec', 'fire', 'gasi', 'mizu' };
-	char* weapons[]   = { "elec", "fire", "gas", "water" };
-	char* treasures[] = { "otakara_elec", "otakara_fire", "otakara_gas", "otakara_water" };
+	u32 collTags[]      = { 'elec', 'fire', 'gasi', 'mizu' };
+	char* pelletNames[] = { "elec", "fire", "gas", "water" };
+	char* jointNames[]  = { "otakara_elec", "otakara_fire", "otakara_gas", "otakara_water" };
 
-	for (int i = 0; i < 4; i++) { }
-	/*
-	stwu     r1, -0xc0(r1)
-	mflr     r0
-	stw      r0, 0xc4(r1)
-	stfd     f31, 0xb0(r1)
-	psq_st   f31, 184(r1), 0, qr0
-	stmw     r22, 0x88(r1)
-	lis      r4, lbl_8048CA80@ha
-	mr       r24, r3
-	addi     r30, r4, lbl_8048CA80@l
-	lis      r4, __vt__Q24Game15CreatureInitArg@ha
-	lwz      r22, 0x110(r30)
-	lis      r3, __vt__Q24Game13PelletInitArg@ha
-	lwz      r12, 0x114(r30)
-	mr       r29, r24
-	lwz      r11, 0x118(r30)
-	addi     r28, r1, 0x28
-	lwz      r10, 0x11c(r30)
-	addi     r27, r1, 0x18
-	lwz      r9, 0x120(r30)
-	addi     r26, r1, 8
-	lwz      r8, 0x124(r30)
-	addi     r31, r4, __vt__Q24Game15CreatureInitArg@l
-	lwz      r7, 0x128(r30)
-	addi     r23, r3, __vt__Q24Game13PelletInitArg@l
-	lwz      r6, 0x12c(r30)
-	li       r25, 0
-	lwz      r5, 0x16c(r30)
-	lwz      r4, 0x170(r30)
-	lwz      r3, 0x174(r30)
-	lwz      r0, 0x178(r30)
-	stw      r22, 0x28(r1)
-	lfs      f31, lbl_8051CC30@sda21(r2)
-	stw      r12, 0x2c(r1)
-	stw      r11, 0x30(r1)
-	stw      r10, 0x34(r1)
-	stw      r9, 0x18(r1)
-	stw      r8, 0x1c(r1)
-	stw      r7, 0x20(r1)
-	stw      r6, 0x24(r1)
-	stw      r5, 8(r1)
-	stw      r4, 0xc(r1)
-	stw      r3, 0x10(r1)
-	stw      r0, 0x14(r1)
+	for (int i = 0; i < 4; i++) {
+		_2DD[i]                = false;
+		m_treasures[i]         = nullptr;
+		m_treasureHealth[i]    = 0.0f;
+		_3E8[i]                = 0.0f;
+		m_treasureCollParts[i] = m_collTree->getCollPart(collTags[i]);
 
-lbl_802DD178:
-	addi     r0, r25, 0x2dd
-	li       r3, 0
-	stbx     r3, r24, r0
-	lwz      r4, 0(r28)
-	stw      r3, 0x3c4(r29)
-	stfs     f31, 0x3d8(r29)
-	stfs     f31, 0x3e8(r29)
-	lwz      r3, 0x114(r24)
-	bl       getCollPart__8CollTreeFUl
-	stw      r3, 0x3f8(r29)
-	li       r8, 0
-	li       r0, -1
-	li       r7, 0xff
-	stw      r31, 0x60(r1)
-	li       r6, 1
-	lwz      r3, pelletMgr__4Game@sda21(r13)
-	addi     r4, r1, 0x60
-	stw      r23, 0x60(r1)
-	lwz      r5, 0(r27)
-	stb      r8, 0x7c(r1)
-	sth      r8, 0x74(r1)
-	stb      r7, 0x76(r1)
-	stw      r8, 0x78(r1)
-	stb      r8, 0x77(r1)
-	stb      r6, 0x64(r1)
-	stb      r8, 0x7d(r1)
-	stw      r0, 0x84(r1)
-	stw      r0, 0x80(r1)
-	stb      r8, 0x7e(r1)
-	stb      r8, 0x7f(r1)
-	bl       makePelletInitArg__Q24Game9PelletMgrFRQ24Game13PelletInitArgPc
-	clrlwi.  r0, r3, 0x18
-	beq      lbl_802DD240
-	lwz      r3, pelletMgr__4Game@sda21(r13)
-	addi     r4, r1, 0x60
-	bl       birth__Q24Game9PelletMgrFPQ24Game13PelletInitArg
-	stw      r3, 0x3c4(r29)
-	lwz      r0, 0x3c4(r29)
-	cmplwi   r0, 0
-	beq      lbl_802DD240
-	lwz      r3, 0x174(r24)
-	lwz      r4, 0(r26)
-	bl       getJoint__Q28SysShape5ModelFPc
-	bl       getWorldMatrix__Q28SysShape5JointFv
-	mr       r0, r3
-	lwz      r3, 0x3c4(r29)
-	mr       r4, r0
-	bl       startCapture__Q24Game8CreatureFP7Matrixf
-	lfs      f0, lbl_8051CCCC@sda21(r2)
-	stfs     f0, 0x3d8(r29)
+		PelletInitArg weaponArg;
+		if (pelletMgr->makePelletInitArg(weaponArg, pelletNames[i])) {
+			m_treasures[i] = pelletMgr->birth(&weaponArg);
 
-lbl_802DD240:
-	addi     r25, r25, 1
-	addi     r28, r28, 4
-	cmpwi    r25, 4
-	addi     r27, r27, 4
-	addi     r26, r26, 4
-	addi     r29, r29, 4
-	blt      lbl_802DD178
-	li       r8, 0
-	lis      r3, __vt__Q24Game15CreatureInitArg@ha
-	stw      r8, 0x3d4(r24)
-	li       r0, -1
-	addi     r4, r3, __vt__Q24Game15CreatureInitArg@l
-	lis      r3, __vt__Q24Game13PelletInitArg@ha
-	stw      r4, 0x38(r1)
-	addi     r3, r3, __vt__Q24Game13PelletInitArg@l
-	li       r7, 0xff
-	li       r6, 1
-	stw      r3, 0x38(r1)
-	addi     r4, r1, 0x38
-	lwz      r3, pelletMgr__4Game@sda21(r13)
-	addi     r5, r2, lbl_8051CCD0@sda21
-	stb      r8, 0x54(r1)
-	sth      r8, 0x4c(r1)
-	stb      r7, 0x4e(r1)
-	stw      r8, 0x50(r1)
-	stb      r8, 0x4f(r1)
-	stb      r6, 0x3c(r1)
-	stb      r8, 0x55(r1)
-	stw      r0, 0x5c(r1)
-	stw      r0, 0x58(r1)
-	stb      r8, 0x56(r1)
-	stb      r8, 0x57(r1)
-	bl       makePelletInitArg__Q24Game9PelletMgrFRQ24Game13PelletInitArgPc
-	clrlwi.  r0, r3, 0x18
-	beq      lbl_802DD308
-	lwz      r3, pelletMgr__4Game@sda21(r13)
-	addi     r4, r1, 0x38
-	bl       birth__Q24Game9PelletMgrFPQ24Game13PelletInitArg
-	stw      r3, 0x3d4(r24)
-	lwz      r0, 0x3d4(r24)
-	cmplwi   r0, 0
-	beq      lbl_802DD308
-	lwz      r3, 0x174(r24)
-	addi     r4, r30, 0x17c
-	bl       getJoint__Q28SysShape5ModelFPc
-	bl       getWorldMatrix__Q28SysShape5JointFv
-	mr       r0, r3
-	lwz      r3, 0x3d4(r24)
-	mr       r4, r0
-	bl       startCapture__Q24Game8CreatureFP7Matrixf
+			if (m_treasures[i]) {
+				Matrixf* pelletMat = m_model->getJoint(jointNames[i])->getWorldMatrix();
+				m_treasures[i]->startCapture(pelletMat);
+				m_treasureHealth[i] = 6000.0f;
+			}
+		}
+	}
 
-lbl_802DD308:
-	mr       r25, r24
-	li       r23, 1
-	li       r22, 0
+	m_louie = nullptr;
+	PelletInitArg louieArg;
+	if (pelletMgr->makePelletInitArg(louieArg, "loozy")) {
+		m_louie = pelletMgr->birth(&louieArg);
 
-lbl_802DD314:
-	lwz      r0, 0x3c4(r25)
-	cmplwi   r0, 0
-	beq      lbl_802DD328
-	li       r23, 0
-	b        lbl_802DD370
+		if (m_louie) {
+			Matrixf* louieMat = m_model->getJoint("otakara_loozy")->getWorldMatrix();
+			m_louie->startCapture(louieMat);
+		}
+	}
 
-lbl_802DD328:
-	lwz      r4, 0x3f8(r25)
-	cmplwi   r4, 0
-	beq      lbl_802DD370
-	mr       r3, r24
-	bl       flickStickCollPartPikmin__Q34Game11BigTreasure3ObjFP8CollPart
-	lwz      r5, 0x3f8(r25)
-	lis      r3, 0x5F745F5F@ha
-	addi     r4, r3, 0x5F745F5F@l
-	addi     r3, r5, 0x3c
-	bl       __as__4ID32FUl
-	lfs      f0, lbl_8051CC30@sda21(r2)
-	li       r4, 1
-	lwz      r3, 0x3f8(r25)
-	li       r0, 0
-	stfs     f0, 0x1c(r3)
-	lwz      r3, 0x3f8(r25)
-	sth      r4, 0x48(r3)
-	stw      r0, 0x3f8(r25)
+	setupBigTreasureCollision();
 
-lbl_802DD370:
-	addi     r22, r22, 1
-	addi     r25, r25, 4
-	cmpwi    r22, 4
-	blt      lbl_802DD314
-	lis      r4, 0x74616D31@ha
-	lwz      r3, 0x114(r24)
-	addi     r4, r4, 0x74616D31@l
-	bl       getCollPart__8CollTreeFUl
-	mr       r26, r3
-	lis      r4, 0x74616D32@ha
-	lwz      r3, 0x114(r24)
-	addi     r4, r4, 0x74616D32@l
-	bl       getCollPart__8CollTreeFUl
-	cmplwi   r26, 0
-	mr       r25, r3
-	beq      lbl_802DD404
-	cmplwi   r25, 0
-	beq      lbl_802DD404
-	clrlwi.  r0, r23, 0x18
-	beq      lbl_802DD3E4
-	lis      r4, 0x73745F5F@ha
-	addi     r3, r26, 0x3c
-	addi     r4, r4, 0x73745F5F@l
-	bl       __as__4ID32FUl
-	lis      r4, 0x73745F5F@ha
-	addi     r3, r25, 0x3c
-	addi     r4, r4, 0x73745F5F@l
-	bl       __as__4ID32FUl
-	b        lbl_802DD404
-
-lbl_802DD3E4:
-	lis      r4, 0x5F745F5F@ha
-	addi     r3, r26, 0x3c
-	addi     r4, r4, 0x5F745F5F@l
-	bl       __as__4ID32FUl
-	lis      r4, 0x5F745F5F@ha
-	addi     r3, r25, 0x3c
-	addi     r4, r4, 0x5F745F5F@l
-	bl       __as__4ID32FUl
-
-lbl_802DD404:
-	li       r0, -1
-	stw      r0, 0x408(r24)
-	psq_l    f31, 184(r1), 0, qr0
-	lfd      f31, 0xb0(r1)
-	lmw      r22, 0x88(r1)
-	lwz      r0, 0xc4(r1)
-	mtlr     r0
-	addi     r1, r1, 0xc0
-	blr
-	*/
+	m_attackIndex = -1;
 }
 
 /*
@@ -1000,114 +834,38 @@ lbl_802DD404:
  */
 void Obj::updateTreasure()
 {
-	/*
-	stwu     r1, -0x90(r1)
-	mflr     r0
-	stw      r0, 0x94(r1)
-	stw      r31, 0x8c(r1)
-	stw      r30, 0x88(r1)
-	stw      r29, 0x84(r1)
-	mr       r29, r3
-	bl       dropTreasure__Q34Game11BigTreasure3ObjFv
-	li       r30, 0
-	mr       r31, r29
+	dropTreasure();
+	Matrixf captureMtx;
+	for (int i = 0; i < 4; i++) {
+		if (m_treasures[i]) {
+			PSMTXIdentity(captureMtx.m_matrix.mtxView);
 
-lbl_802DD450:
-	lwz      r0, 0x3c4(r31)
-	cmplwi   r0, 0
-	beq      lbl_802DD544
-	addi     r3, r1, 0x38
-	bl       PSMTXIdentity
-	addi     r3, r30, 0x2dd
-	lbzx     r0, r29, r3
-	cmplwi   r0, 0
-	beq      lbl_802DD528
-	lfs      f2, 0x3e8(r31)
-	lfs      f1, lbl_8051CCD8@sda21(r2)
-	lfs      f0, lbl_8051CCDC@sda21(r2)
-	fadds    f1, f2, f1
-	stfs     f1, 0x3e8(r31)
-	lfs      f1, 0x3e8(r31)
-	fcmpo    cr0, f1, f0
-	ble      lbl_802DD4A4
-	lfs      f0, lbl_8051CC30@sda21(r2)
-	li       r0, 0
-	stfs     f0, 0x3e8(r31)
-	stbx     r0, r29, r3
+			if (_2DD[i]) {
+				_3E8[i] += 1.4f;
 
-lbl_802DD4A4:
-	lfs      f2, 0x3e8(r31)
-	addi     r3, r1, 8
-	lfs      f0, lbl_8051CC30@sda21(r2)
-	li       r4, 0x59
-	lfs      f1, lbl_8051CCE0@sda21(r2)
-	fcmpo    cr0, f2, f0
-	bge      lbl_802DD4EC
-	lfs      f0, lbl_8051CC84@sda21(r2)
-	lis      r5, sincosTable___5JMath@ha
-	addi     r5, r5, sincosTable___5JMath@l
-	fmuls    f0, f2, f0
-	fctiwz   f0, f0
-	stfd     f0, 0x68(r1)
-	lwz      r0, 0x6c(r1)
-	rlwinm   r0, r0, 3, 0x12, 0x1c
-	lfsx     f0, r5, r0
-	fneg     f0, f0
-	b        lbl_802DD510
+				if (_3E8[i] > TAU) {
+					_3E8[i] = 0.0f;
+					_2DD[i] = false;
+				}
 
-lbl_802DD4EC:
-	lfs      f0, lbl_8051CC88@sda21(r2)
-	lis      r5, sincosTable___5JMath@ha
-	addi     r5, r5, sincosTable___5JMath@l
-	fmuls    f0, f2, f0
-	fctiwz   f0, f0
-	stfd     f0, 0x70(r1)
-	lwz      r0, 0x74(r1)
-	rlwinm   r0, r0, 3, 0x12, 0x1c
-	lfsx     f0, r5, r0
+				Matrixf rotRad;
+				PSMTXRotRad(rotRad.m_matrix.mtxView, 'Y', 0.15f * pikmin2_sinf(_3E8[i]));
+				PSMTXConcat(captureMtx.m_matrix.mtxView, rotRad.m_matrix.mtxView, captureMtx.m_matrix.mtxView);
+			}
 
-lbl_802DD510:
-	fmuls    f1, f1, f0
-	bl       PSMTXRotRad
-	addi     r3, r1, 0x38
-	addi     r4, r1, 8
-	mr       r5, r3
-	bl       PSMTXConcat
+			// gas
+			if (i == 2) {
+				captureMtx.m_matrix.structView.ty = -22.0f;
+			}
 
-lbl_802DD528:
-	cmpwi    r30, 2
-	bne      lbl_802DD538
-	lfs      f0, lbl_8051CCE4@sda21(r2)
-	stfs     f0, 0x54(r1)
+			m_treasures[i]->updateCapture(captureMtx);
+		}
+	}
 
-lbl_802DD538:
-	lwz      r3, 0x3c4(r31)
-	addi     r4, r1, 0x38
-	bl       updateCapture__Q24Game8CreatureFR7Matrixf
-
-lbl_802DD544:
-	addi     r30, r30, 1
-	addi     r31, r31, 4
-	cmpwi    r30, 4
-	blt      lbl_802DD450
-	lwz      r0, 0x3d4(r29)
-	cmplwi   r0, 0
-	beq      lbl_802DD574
-	addi     r3, r1, 0x38
-	bl       PSMTXIdentity
-	lwz      r3, 0x3d4(r29)
-	addi     r4, r1, 0x38
-	bl       updateCapture__Q24Game8CreatureFR7Matrixf
-
-lbl_802DD574:
-	lwz      r0, 0x94(r1)
-	lwz      r31, 0x8c(r1)
-	lwz      r30, 0x88(r1)
-	lwz      r29, 0x84(r1)
-	mtlr     r0
-	addi     r1, r1, 0x90
-	blr
-	*/
+	if (m_louie) {
+		PSMTXIdentity(captureMtx.m_matrix.mtxView);
+		m_louie->updateCapture(captureMtx);
+	}
 }
 
 /*
@@ -1117,134 +875,20 @@ lbl_802DD574:
  */
 void Obj::dropTreasure()
 {
-	/*
-	stwu     r1, -0x30(r1)
-	mflr     r0
-	stw      r0, 0x34(r1)
-	stfd     f31, 0x20(r1)
-	psq_st   f31, 40(r1), 0, qr0
-	stw      r31, 0x1c(r1)
-	stw      r30, 0x18(r1)
-	stw      r29, 0x14(r1)
-	stw      r28, 0x10(r1)
-	mr       r31, r3
-	lfs      f31, lbl_8051CC30@sda21(r2)
-	mr       r29, r31
-	li       r28, 0
-	li       r30, 0
+	bool dropCheck = false;
+	for (int i = 0; i < 4; i++) {
+		if (m_treasures[i] && m_treasureHealth[i] <= 0.0f) {
+			dropCheck = true;
+			createDropTreasureEffect(i);
+			finishTreasurePinchSmoke(i);
+			dropTreasure(i);
+		}
+	}
 
-lbl_802DD5C8:
-	lwz      r0, 0x3c4(r29)
-	cmplwi   r0, 0
-	beq      lbl_802DD60C
-	lfs      f0, 0x3d8(r29)
-	fcmpo    cr0, f0, f31
-	cror     2, 0, 2
-	bne      lbl_802DD60C
-	mr       r3, r31
-	mr       r4, r30
-	li       r28, 1
-	bl       createDropTreasureEffect__Q34Game11BigTreasure3ObjFi
-	mr       r3, r31
-	mr       r4, r30
-	bl       finishTreasurePinchSmoke__Q34Game11BigTreasure3ObjFi
-	mr       r3, r31
-	mr       r4, r30
-	bl       dropTreasure__Q34Game11BigTreasure3ObjFi
-
-lbl_802DD60C:
-	addi     r30, r30, 1
-	addi     r29, r29, 4
-	cmpwi    r30, 4
-	blt      lbl_802DD5C8
-	clrlwi.  r0, r28, 0x18
-	beq      lbl_802DD728
-	mr       r3, r31
-	bl       startBossItemDropBGM__Q34Game11BigTreasure3ObjFv
-	mr       r28, r31
-	li       r29, 1
-	li       r30, 0
-
-lbl_802DD638:
-	lwz      r0, 0x3c4(r28)
-	cmplwi   r0, 0
-	beq      lbl_802DD64C
-	li       r29, 0
-	b        lbl_802DD694
-
-lbl_802DD64C:
-	lwz      r4, 0x3f8(r28)
-	cmplwi   r4, 0
-	beq      lbl_802DD694
-	mr       r3, r31
-	bl       flickStickCollPartPikmin__Q34Game11BigTreasure3ObjFP8CollPart
-	lwz      r5, 0x3f8(r28)
-	lis      r3, 0x5F745F5F@ha
-	addi     r4, r3, 0x5F745F5F@l
-	addi     r3, r5, 0x3c
-	bl       __as__4ID32FUl
-	lfs      f0, lbl_8051CC30@sda21(r2)
-	li       r4, 1
-	lwz      r3, 0x3f8(r28)
-	li       r0, 0
-	stfs     f0, 0x1c(r3)
-	lwz      r3, 0x3f8(r28)
-	sth      r4, 0x48(r3)
-	stw      r0, 0x3f8(r28)
-
-lbl_802DD694:
-	addi     r30, r30, 1
-	addi     r28, r28, 4
-	cmpwi    r30, 4
-	blt      lbl_802DD638
-	lis      r4, 0x74616D31@ha
-	lwz      r3, 0x114(r31)
-	addi     r4, r4, 0x74616D31@l
-	bl       getCollPart__8CollTreeFUl
-	mr       r30, r3
-	lis      r4, 0x74616D32@ha
-	lwz      r3, 0x114(r31)
-	addi     r4, r4, 0x74616D32@l
-	bl       getCollPart__8CollTreeFUl
-	cmplwi   r30, 0
-	mr       r31, r3
-	beq      lbl_802DD728
-	cmplwi   r31, 0
-	beq      lbl_802DD728
-	clrlwi.  r0, r29, 0x18
-	beq      lbl_802DD708
-	lis      r4, 0x73745F5F@ha
-	addi     r3, r30, 0x3c
-	addi     r4, r4, 0x73745F5F@l
-	bl       __as__4ID32FUl
-	lis      r4, 0x73745F5F@ha
-	addi     r3, r31, 0x3c
-	addi     r4, r4, 0x73745F5F@l
-	bl       __as__4ID32FUl
-	b        lbl_802DD728
-
-lbl_802DD708:
-	lis      r4, 0x5F745F5F@ha
-	addi     r3, r30, 0x3c
-	addi     r4, r4, 0x5F745F5F@l
-	bl       __as__4ID32FUl
-	lis      r4, 0x5F745F5F@ha
-	addi     r3, r31, 0x3c
-	addi     r4, r4, 0x5F745F5F@l
-	bl       __as__4ID32FUl
-
-lbl_802DD728:
-	psq_l    f31, 40(r1), 0, qr0
-	lwz      r0, 0x34(r1)
-	lfd      f31, 0x20(r1)
-	lwz      r31, 0x1c(r1)
-	lwz      r30, 0x18(r1)
-	lwz      r29, 0x14(r1)
-	lwz      r28, 0x10(r1)
-	mtlr     r0
-	addi     r1, r1, 0x30
-	blr
-	*/
+	if (dropCheck) {
+		startBossItemDropBGM();
+		setupBigTreasureCollision();
+	}
 }
 
 /*
@@ -1252,44 +896,14 @@ lbl_802DD728:
  * Address:	802DD750
  * Size:	000088
  */
-void Obj::dropTreasure(int idx)
+bool Obj::dropTreasure(int idx)
 {
-	/*
-	stwu     r1, -0x30(r1)
-	mflr     r0
-	stw      r0, 0x34(r1)
-	stw      r31, 0x2c(r1)
-	stw      r30, 0x28(r1)
-	slwi     r30, r4, 2
-	stw      r29, 0x24(r1)
-	mr       r29, r3
-	add      r31, r29, r30
-	lwz      r3, 0x3c4(r31)
-	bl       endCapture__Q24Game8CreatureFv
-	lfs      f1, lbl_8051CC30@sda21(r2)
-	addi     r4, r1, 8
-	lfs      f0, lbl_8051CCE8@sda21(r2)
-	stfs     f1, 8(r1)
-	stfs     f0, 0xc(r1)
-	stfs     f1, 0x10(r1)
-	lwz      r3, 0x3c4(r31)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x68(r12)
-	mtctr    r12
-	bctrl
-	li       r0, 0
-	lfs      f0, lbl_8051CC30@sda21(r2)
-	stw      r0, 0x3c4(r31)
-	li       r3, 1
-	stfs     f0, 0x3d8(r31)
-	lwz      r0, 0x34(r1)
-	lwz      r31, 0x2c(r1)
-	lwz      r30, 0x28(r1)
-	lwz      r29, 0x24(r1)
-	mtlr     r0
-	addi     r1, r1, 0x30
-	blr
-	*/
+	m_treasures[idx]->endCapture();
+	Vector3f velocity(0.0f, 100.0f, 0.0f);
+	m_treasures[idx]->setVelocity(velocity);
+	m_treasures[idx]      = nullptr;
+	m_treasureHealth[idx] = 0.0f;
+	return true;
 }
 
 /*
@@ -1299,39 +913,13 @@ void Obj::dropTreasure(int idx)
  */
 bool Obj::isCapturedTreasure()
 {
-	/*
-	lwz      r0, 0x3c4(r3)
-	cmplwi   r0, 0
-	beq      lbl_802DD7EC
-	li       r3, 1
-	blr
+	for (int i = 0; i < 4; i++) {
+		if (m_treasures[i]) {
+			return true;
+		}
+	}
 
-lbl_802DD7EC:
-	lwz      r0, 0x3c8(r3)
-	cmplwi   r0, 0
-	beq      lbl_802DD800
-	li       r3, 1
-	blr
-
-lbl_802DD800:
-	addi     r3, r3, 8
-	lwz      r0, 0x3c4(r3)
-	cmplwi   r0, 0
-	beq      lbl_802DD818
-	li       r3, 1
-	blr
-
-lbl_802DD818:
-	lwz      r0, 0x3c8(r3)
-	cmplwi   r0, 0
-	beq      lbl_802DD82C
-	li       r3, 1
-	blr
-
-lbl_802DD82C:
-	li       r3, 0
-	blr
-	*/
+	return false;
 }
 
 /*
@@ -1339,18 +927,7 @@ lbl_802DD82C:
  * Address:	802DD834
  * Size:	00001C
  */
-bool Obj::isCapturedTreasure(int idx)
-{
-	/*
-	slwi     r0, r4, 2
-	add      r3, r3, r0
-	lwz      r3, 0x3c4(r3)
-	neg      r0, r3
-	or       r0, r0, r3
-	srwi     r3, r0, 0x1f
-	blr
-	*/
-}
+bool Obj::isCapturedTreasure(int idx) { return m_treasures[idx]; }
 
 /*
  * --INFO--
@@ -1359,35 +936,14 @@ bool Obj::isCapturedTreasure(int idx)
  */
 int Obj::getCapturedTreasureNum()
 {
-	/*
-	lwz      r0, 0x3c4(r3)
-	li       r4, 0
-	cmplwi   r0, 0
-	beq      lbl_802DD864
-	li       r4, 1
+	int count = 0;
+	for (int i = 0; i < 4; i++) {
+		if (m_treasures[i]) {
+			count++;
+		}
+	}
 
-lbl_802DD864:
-	lwz      r0, 0x3c8(r3)
-	cmplwi   r0, 0
-	beq      lbl_802DD874
-	addi     r4, r4, 1
-
-lbl_802DD874:
-	lwz      r0, 0x3cc(r3)
-	cmplwi   r0, 0
-	beq      lbl_802DD884
-	addi     r4, r4, 1
-
-lbl_802DD884:
-	lwz      r0, 0x3d0(r3)
-	cmplwi   r0, 0
-	beq      lbl_802DD894
-	addi     r4, r4, 1
-
-lbl_802DD894:
-	mr       r3, r4
-	blr
-	*/
+	return count;
 }
 
 /*
@@ -1397,58 +953,27 @@ lbl_802DD894:
  */
 bool Obj::addTreasureDamage(int idx, f32 damage)
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	slwi     r0, r4, 2
-	add      r6, r3, r0
-	lwz      r0, 0x3c4(r6)
-	cmplwi   r0, 0
-	beq      lbl_802DD928
-	lwz      r0, 0x1e0(r3)
-	lfs      f3, 0x3d8(r6)
-	rlwinm.  r0, r0, 0, 0x16, 0x16
-	beq      lbl_802DD8D4
-	lfs      f0, lbl_8051CC3C@sda21(r2)
-	fmuls    f1, f1, f0
+	if (m_treasures[idx]) {
+		f32 startingHealth = m_treasureHealth[idx];
 
-lbl_802DD8D4:
-	add      r5, r3, r4
-	li       r0, 1
-	stb      r0, 0x2dd(r5)
-	lfs      f0, lbl_8051CC30@sda21(r2)
-	lfs      f2, 0x3d8(r6)
-	fsubs    f1, f2, f1
-	stfs     f1, 0x3d8(r6)
-	lfs      f1, 0x3d8(r6)
-	fcmpo    cr0, f1, f0
-	bge      lbl_802DD900
-	stfs     f0, 0x3d8(r6)
+		if (isEvent(0, EB_IsBittered)) {
+			damage *= 0.1f;
+		}
 
-lbl_802DD900:
-	lfs      f1, lbl_8051CCEC@sda21(r2)
-	fcmpo    cr0, f3, f1
-	cror     2, 1, 2
-	bne      lbl_802DD920
-	lfs      f0, 0x3d8(r6)
-	fcmpo    cr0, f0, f1
-	bge      lbl_802DD920
-	bl       startTreasurePinchSmoke__Q34Game11BigTreasure3ObjFi
+		_2DD[idx] = true;
+		m_treasureHealth[idx] -= damage;
+		if (m_treasureHealth[idx] < 0.0f) {
+			m_treasureHealth[idx] = 0.0f;
+		}
 
-lbl_802DD920:
-	li       r3, 1
-	b        lbl_802DD92C
+		if (startingHealth >= 3000.0f && m_treasureHealth[idx] < 3000.0f) {
+			startTreasurePinchSmoke(idx);
+		}
 
-lbl_802DD928:
-	li       r3, 0
+		return true;
+	}
 
-lbl_802DD92C:
-	lwz      r0, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	return false;
 }
 
 /*
@@ -1458,187 +983,17 @@ lbl_802DD92C:
  */
 void Obj::flickStickCollPartPikmin(CollPart* collpart)
 {
-	/*
-	stwu     r1, -0x60(r1)
-	mflr     r0
-	stw      r0, 0x64(r1)
-	stw      r31, 0x5c(r1)
-	mr       r31, r4
-	stw      r30, 0x58(r1)
-	mr       r30, r3
-	mr       r4, r30
-	addi     r3, r1, 0x2c
-	stw      r29, 0x54(r1)
-	bl       __ct__Q24Game8StickersFPQ24Game8Creature
-	li       r0, 0
-	lis      r3, "__vt__26Iterator<Q24Game8Creature>"@ha
-	addi     r4, r3, "__vt__26Iterator<Q24Game8Creature>"@l
-	addi     r3, r1, 0x2c
-	cmplwi   r0, 0
-	stw      r4, 8(r1)
-	stw      r0, 0x14(r1)
-	stw      r0, 0xc(r1)
-	stw      r3, 0x10(r1)
-	bne      lbl_802DD9A8
-	lwz      r12, 0(r3)
-	lwz      r12, 0x18(r12)
-	mtctr    r12
-	bctrl
-	stw      r3, 0xc(r1)
-	b        lbl_802DDB78
+	Stickers stickers(this);
+	Iterator<Creature> iter(&stickers);
 
-lbl_802DD9A8:
-	lwz      r12, 0(r3)
-	lwz      r12, 0x18(r12)
-	mtctr    r12
-	bctrl
-	stw      r3, 0xc(r1)
-	b        lbl_802DDA14
-
-lbl_802DD9C0:
-	lwz      r3, 0x10(r1)
-	lwz      r4, 0xc(r1)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x20(r12)
-	mtctr    r12
-	bctrl
-	mr       r4, r3
-	lwz      r3, 0x14(r1)
-	lwz      r12, 0(r3)
-	lwz      r12, 8(r12)
-	mtctr    r12
-	bctrl
-	clrlwi.  r0, r3, 0x18
-	bne      lbl_802DDB78
-	lwz      r3, 0x10(r1)
-	lwz      r4, 0xc(r1)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x14(r12)
-	mtctr    r12
-	bctrl
-	stw      r3, 0xc(r1)
-
-lbl_802DDA14:
-	lwz      r12, 8(r1)
-	addi     r3, r1, 8
-	lwz      r12, 0x10(r12)
-	mtctr    r12
-	bctrl
-	clrlwi.  r0, r3, 0x18
-	beq      lbl_802DD9C0
-	b        lbl_802DDB78
-
-lbl_802DDA34:
-	lwz      r3, 0x10(r1)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x20(r12)
-	mtctr    r12
-	bctrl
-	lwz      r12, 0(r3)
-	mr       r29, r3
-	lwz      r12, 0xa8(r12)
-	mtctr    r12
-	bctrl
-	clrlwi.  r0, r3, 0x18
-	beq      lbl_802DDABC
-	lwz      r0, 0xf8(r29)
-	cmplw    r0, r31
-	bne      lbl_802DDABC
-	lis      r3, __vt__Q24Game11Interaction@ha
-	lfs      f2, lbl_8051CC44@sda21(r2)
-	addi     r0, r3, __vt__Q24Game11Interaction@l
-	lfs      f1, lbl_8051CC30@sda21(r2)
-	lfs      f0, lbl_8051CC48@sda21(r2)
-	lis      r3, __vt__Q24Game13InteractFlick@ha
-	stw      r0, 0x18(r1)
-	addi     r0, r3, __vt__Q24Game13InteractFlick@l
-	mr       r3, r29
-	addi     r4, r1, 0x18
-	stw      r30, 0x1c(r1)
-	stw      r0, 0x18(r1)
-	stfs     f2, 0x20(r1)
-	stfs     f1, 0x24(r1)
-	stfs     f0, 0x28(r1)
-	lwz      r12, 0(r29)
-	lwz      r12, 0x1a4(r12)
-	mtctr    r12
-	bctrl
-
-lbl_802DDABC:
-	lwz      r0, 0x14(r1)
-	cmplwi   r0, 0
-	bne      lbl_802DDAE8
-	lwz      r3, 0x10(r1)
-	lwz      r4, 0xc(r1)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x14(r12)
-	mtctr    r12
-	bctrl
-	stw      r3, 0xc(r1)
-	b        lbl_802DDB78
-
-lbl_802DDAE8:
-	lwz      r3, 0x10(r1)
-	lwz      r4, 0xc(r1)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x14(r12)
-	mtctr    r12
-	bctrl
-	stw      r3, 0xc(r1)
-	b        lbl_802DDB5C
-
-lbl_802DDB08:
-	lwz      r3, 0x10(r1)
-	lwz      r4, 0xc(r1)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x20(r12)
-	mtctr    r12
-	bctrl
-	mr       r4, r3
-	lwz      r3, 0x14(r1)
-	lwz      r12, 0(r3)
-	lwz      r12, 8(r12)
-	mtctr    r12
-	bctrl
-	clrlwi.  r0, r3, 0x18
-	bne      lbl_802DDB78
-	lwz      r3, 0x10(r1)
-	lwz      r4, 0xc(r1)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x14(r12)
-	mtctr    r12
-	bctrl
-	stw      r3, 0xc(r1)
-
-lbl_802DDB5C:
-	lwz      r12, 8(r1)
-	addi     r3, r1, 8
-	lwz      r12, 0x10(r12)
-	mtctr    r12
-	bctrl
-	clrlwi.  r0, r3, 0x18
-	beq      lbl_802DDB08
-
-lbl_802DDB78:
-	lwz      r3, 0x10(r1)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x1c(r12)
-	mtctr    r12
-	bctrl
-	lwz      r4, 0xc(r1)
-	cmplw    r4, r3
-	bne      lbl_802DDA34
-	addi     r3, r1, 0x2c
-	li       r4, -1
-	bl       __dt__Q24Game8StickersFv
-	lwz      r0, 0x64(r1)
-	lwz      r31, 0x5c(r1)
-	lwz      r30, 0x58(r1)
-	lwz      r29, 0x54(r1)
-	mtlr     r0
-	addi     r1, r1, 0x60
-	blr
-	*/
+	CI_LOOP(iter)
+	{
+		Creature* creature = (*iter);
+		if (creature->isAlive() && creature->m_stuckCollPart == collpart) {
+			InteractFlick flick(this, 10.0f, 0.0f, -1000.0f);
+			creature->stimulate(flick);
+		}
+	}
 }
 
 /*
@@ -1648,37 +1003,12 @@ lbl_802DDB78:
  */
 void Obj::releaseItemLoozy()
 {
-	/*
-	stwu     r1, -0x20(r1)
-	mflr     r0
-	stw      r0, 0x24(r1)
-	stw      r31, 0x1c(r1)
-	mr       r31, r3
-	lwz      r3, 0x3d4(r3)
-	cmplwi   r3, 0
-	beq      lbl_802DDC18
-	bl       endCapture__Q24Game8CreatureFv
-	lfs      f1, lbl_8051CC30@sda21(r2)
-	addi     r4, r1, 8
-	lfs      f0, lbl_8051CCF0@sda21(r2)
-	stfs     f1, 8(r1)
-	stfs     f0, 0xc(r1)
-	stfs     f1, 0x10(r1)
-	lwz      r3, 0x3d4(r31)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x68(r12)
-	mtctr    r12
-	bctrl
-	li       r0, 0
-	stw      r0, 0x3d4(r31)
-
-lbl_802DDC18:
-	lwz      r0, 0x24(r1)
-	lwz      r31, 0x1c(r1)
-	mtlr     r0
-	addi     r1, r1, 0x20
-	blr
-	*/
+	if (m_louie) {
+		m_louie->endCapture();
+		Vector3f velocity(0.0f, 150.0f, 0.0f);
+		m_louie->setVelocity(velocity);
+		m_louie = nullptr;
+	}
 }
 
 /*
@@ -1686,72 +1016,21 @@ lbl_802DDC18:
  * Address:	802DDC2C
  * Size:	000048
  */
-void Obj::createAttack()
-{
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	mr       r31, r3
-	li       r3, 0x120
-	bl       __nw__FUl
-	or.      r0, r3, r3
-	beq      lbl_802DDC5C
-	mr       r4, r31
-	bl
-__ct__Q34Game11BigTreasure20BigTreasureAttackMgrFPQ34Game11BigTreasure3Obj mr
-r0, r3
-
-lbl_802DDC5C:
-	stw      r0, 0x2f4(r31)
-	lwz      r0, 0x14(r1)
-	lwz      r31, 0xc(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
-}
+void Obj::createAttack() { m_attackMgr = new BigTreasureAttackMgr(this); }
 
 /*
  * --INFO--
  * Address:	802DDC74
  * Size:	000024
  */
-void Obj::setupAttack()
-{
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	lwz      r3, 0x2f4(r3)
-	bl       init__Q34Game11BigTreasure20BigTreasureAttackMgrFv
-	lwz      r0, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
-}
+void Obj::setupAttack() { m_attackMgr->init(); }
 
 /*
  * --INFO--
  * Address:	802DDC98
  * Size:	000024
  */
-void Obj::updateAttack()
-{
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	lwz      r3, 0x2f4(r3)
-	bl       update__Q34Game11BigTreasure20BigTreasureAttackMgrFv
-	lwz      r0, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
-}
+void Obj::updateAttack() { m_attackMgr->update(); }
 
 /*
  * --INFO--
@@ -1760,49 +1039,20 @@ void Obj::updateAttack()
  */
 void Obj::startAttack()
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	lwz      r0, 0x408(r3)
-	cmpwi    r0, 2
-	beq      lbl_802DDD0C
-	bge      lbl_802DDCE8
-	cmpwi    r0, 0
-	beq      lbl_802DDCF4
-	bge      lbl_802DDD00
-	b        lbl_802DDD20
-
-lbl_802DDCE8:
-	cmpwi    r0, 4
-	bge      lbl_802DDD20
-	b        lbl_802DDD18
-
-lbl_802DDCF4:
-	lwz      r3, 0x2f4(r3)
-	bl       startElecAttack__Q34Game11BigTreasure20BigTreasureAttackMgrFv
-	b        lbl_802DDD20
-
-lbl_802DDD00:
-	lwz      r3, 0x2f4(r3)
-	bl       startFireAttack__Q34Game11BigTreasure20BigTreasureAttackMgrFv
-	b        lbl_802DDD20
-
-lbl_802DDD0C:
-	lwz      r3, 0x2f4(r3)
-	bl       startGasAttack__Q34Game11BigTreasure20BigTreasureAttackMgrFv
-	b        lbl_802DDD20
-
-lbl_802DDD18:
-	lwz      r3, 0x2f4(r3)
-	bl       startWaterAttack__Q34Game11BigTreasure20BigTreasureAttackMgrFv
-
-lbl_802DDD20:
-	lwz      r0, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	switch (m_attackIndex) {
+	case BIGATTACK_Elec:
+		m_attackMgr->startElecAttack();
+		break;
+	case BIGATTACK_Fire:
+		m_attackMgr->startFireAttack();
+		break;
+	case BIGATTACK_Gas:
+		m_attackMgr->startGasAttack();
+		break;
+	case BIGATTACK_Water:
+		m_attackMgr->startWaterAttack();
+		break;
+	}
 }
 
 /*
@@ -1810,20 +1060,7 @@ lbl_802DDD20:
  * Address:	802DDD30
  * Size:	000024
  */
-void Obj::finishAttack()
-{
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	lwz      r3, 0x2f4(r3)
-	bl       finishAttack__Q34Game11BigTreasure20BigTreasureAttackMgrFv
-	lwz      r0, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
-}
+void Obj::finishAttack() { m_attackMgr->finishAttack(); }
 
 /*
  * --INFO--
@@ -1965,32 +1202,17 @@ lbl_802DDED8:
  */
 int Obj::getPreAttackAnimIndex()
 {
-	/*
-	lwz      r0, 0x408(r3)
-	cmpwi    r0, 0
-	bne      lbl_802DDF10
-	li       r3, 0x15
-	blr
+	if (m_attackIndex == BIGATTACK_Elec) {
+		return 21;
+	} else if (m_attackIndex == BIGATTACK_Fire) {
+		return 3;
+	} else if (m_attackIndex == BIGATTACK_Gas) {
+		return 18;
+	} else if (m_attackIndex == BIGATTACK_Water) {
+		return 15;
+	}
 
-lbl_802DDF10:
-	cmpwi    r0, 1
-	bne      lbl_802DDF20
-	li       r3, 3
-	blr
-
-lbl_802DDF20:
-	cmpwi    r0, 2
-	bne      lbl_802DDF30
-	li       r3, 0x12
-	blr
-
-lbl_802DDF30:
-	cmpwi    r0, 3
-	li       r3, 0x18
-	bnelr
-	li       r3, 0xf
-	blr
-	*/
+	return 24;
 }
 
 /*
@@ -2346,19 +1568,7 @@ lbl_802DE2D4:
  * Address:	802DE2DC
  * Size:	000020
  */
-bool Obj::isNormalAttack(int p1)
-{
-	/*
-	slwi     r0, r4, 2
-	lfs      f0, lbl_8051CCEC@sda21(r2)
-	add      r3, r3, r0
-	lfs      f1, 0x3d8(r3)
-	fcmpo    cr0, f1, f0
-	mfcr     r0
-	rlwinm   r3, r0, 2, 0x1f, 0x1f
-	blr
-	*/
-}
+bool Obj::isNormalAttack(int idx) { return (m_treasureHealth[idx] > 3000.0f); }
 
 /*
  * --INFO--
