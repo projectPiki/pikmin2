@@ -21,14 +21,14 @@ namespace BigFoot {
  * Address:	802C7EF0
  * Size:	000024
  */
-void BigFootGroundCallBack::invokeOnGround(int p1, WaterBox* wbox) { m_obj->createOnGroundEffect(p1, wbox); }
+void BigFootGroundCallBack::invokeOnGround(int footIdx, WaterBox* wbox) { m_obj->createOnGroundEffect(footIdx, wbox); }
 
 /*
  * --INFO--
  * Address:	802C7F14
  * Size:	000024
  */
-void BigFootGroundCallBack::invokeOffGround(int p1, WaterBox* wbox) { m_obj->createOffGroundEffect(p1, wbox); }
+void BigFootGroundCallBack::invokeOffGround(int footIdx, WaterBox* wbox) { m_obj->createOffGroundEffect(footIdx, wbox); }
 
 /*
  * --INFO--

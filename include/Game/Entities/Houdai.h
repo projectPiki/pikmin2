@@ -44,8 +44,6 @@ struct Obj : public EnemyBase {
 	virtual void onInit(CreatureInitArg* settings);         // _30
 	virtual void onKill(CreatureKillArg* settings);         // _34
 	virtual void doDirectDraw(Graphics& gfx);               // _50
-	virtual void inWaterCallback(WaterBox* wb);             // _84 (weak)
-	virtual void outWaterCallback();                        // _88 (weak)
 	virtual void getShadowParam(ShadowParam& settings);     // _134
 	virtual ~Obj() {};                                      // _1BC (weak)
 	virtual void setInitialSetting(EnemyInitialParamBase*); // _1C4
@@ -54,17 +52,22 @@ struct Obj : public EnemyBase {
 	virtual void doAnimationCullingOff();                   // _1DC
 	virtual void doDebugDraw(Graphics&);                    // _1EC
 	virtual void setParameters();                           // _228
-	virtual EnemyTypeID::EEnemyTypeID getEnemyTypeID();     // _258 (weak)
 	virtual void getThrowupItemPosition(Vector3f*);         // _268
 	virtual void getThrowupItemVelocity(Vector3f*);         // _26C
-	virtual void throwupItemInDeathProcedure();             // _270 (weak)
 	virtual bool damageCallBack(Creature*, f32, CollPart*); // _278
 	virtual void doStartStoneState();                       // _2A4
 	virtual void doFinishStoneState();                      // _2A8
-	virtual f32 getDamageCoeStoneState();                   // _2AC (weak)
 	virtual void doStartMovie();                            // _2F0
 	virtual void doEndMovie();                              // _2F4
 	virtual void setFSM(FSM*);                              // _2F8
+	virtual void inWaterCallback(WaterBox* wb) { }          // _84 (weak)
+	virtual void outWaterCallback() { }                     // _88 (weak)
+	virtual f32 getDamageCoeStoneState() { return 0.25f; }  // _2AC (weak)
+	virtual void throwupItemInDeathProcedure() { }          // _270 (weak)
+	virtual EnemyTypeID::EEnemyTypeID getEnemyTypeID()      // _258 (weak)
+	{
+		return EnemyTypeID::EnemyID_Houdai;
+	}
 	//////////////// VTABLE END
 
 	void setTargetPattern();
@@ -84,7 +87,7 @@ struct Obj : public EnemyBase {
 	bool isFinishIKMotion();
 	void startBlendMotion();
 	void finishBlendMotion();
-	void getTraceCentrePosition();
+	Vector3f getTraceCentrePosition();
 	void createShadowSystem();
 	void setupShadowSystem();
 	void doAnimationShadowSystem();
@@ -138,36 +141,36 @@ struct Obj : public EnemyBase {
 
 	// _00 		= VTBL
 	// _00-_2BC	= EnemyBase
-	FSM* m_fsm;                             // _2BC
-	f32 m_stateTimer;                       // _2C0, how long MAL has been in wait or walk state
-	f32 m_stateDuration;                    // _2C4, how long each phase lasts - 1.5-3s for wait, 3.5-7s for walk
-	f32 _2C8;                               // _2C8, shotgun timer?
-	f32 _2CC;                               // _2CC, timer?
-	StateID m_nextState;                    // _2D0
-	Vector3f m_targetPosition;              // _2D4
-	Vector3f m_shotGunTargetPosition;       // _2E0
-	u8 _2EC;                                // _2EC
-	u8 _2ED;                                // _2ED
-	u8 _2EE;                                // _2EE
-	u8 _2EF;                                // _2EF
-	IKSystemMgr* m_IKSystemMgr;             // _2F0
-	IKSystemParms* m_IKSystemParms;         // _2F4
-	HoudaiGroundCallBack* m_groundCallBack; // _2F8
-	HoudaiShadowMgr* m_shadowMgr;           // _2FC
-	HoudaiShotGunMgr* m_shotGunMgr;         // _300
-	Vector3f _304[16];                      // _304
-	efx::TDamaSmoke* _3C4[2];               // _3C4
-	efx::THdamaHahen* _3CC[3];              // _3CC
-	efx::TDamaDeadElecA* _3D8[3];           // _3D8
-	efx::THdamaOnHahen1* _3E4;              // _3E4
-	efx::THdamaOnHahen2* _3E8[4];           // _3E8
-	efx::THdamaOnSteam1* _3F8;              // _3F8
-	efx::THdamaSteamBd* _3FC;               // _3FC
-	efx::THdamaSteam* _400[3];              // _400
-	efx::THdamaSteamSt* _40C[3];            // _40C
-	efx::TChaseMtx4* _418;                  // _418, Deadbomb?
-	efx::TChaseMtx2* _41C;                  // _41C, DeadSteam?
-	                                        // _420 = PelletView
+	FSM* m_fsm;                                  // _2BC
+	f32 m_stateTimer;                            // _2C0, how long MAL has been in wait or walk state
+	f32 m_stateDuration;                         // _2C4, how long each phase lasts - 1.5-3s for wait, 3.5-7s for walk
+	f32 m_shotGunBurstTimer;                     // _2C8, how long shotgun has been blasting for (this burst)
+	f32 m_shotGunSearchTimer;                    // _2CC, how long to keep shotgun on with no targets left in range
+	StateID m_nextState;                         // _2D0
+	Vector3f m_targetPosition;                   // _2D4
+	Vector3f m_shotGunTargetPosition;            // _2E0
+	bool m_isSmoking;                            // _2EC, is below critical health
+	u8 _2ED;                                     // _2ED
+	bool m_targetNearest;                        // _2EE, if false, target nearest navi's nearest piki (i.e. party)
+	bool m_isAttackMusicLooping;                 // _2EF
+	IKSystemMgr* m_ikSystemMgr;                  // _2F0
+	IKSystemParms* m_ikSystemParms;              // _2F4
+	HoudaiGroundCallBack* m_groundCallBack;      // _2F8
+	HoudaiShadowMgr* m_shadowMgr;                // _2FC
+	HoudaiShotGunMgr* m_shotGunMgr;              // _300
+	Vector3f m_jointPositions[4][4];             // _304
+	efx::TDamaSmoke* m_smokeFX[2];               // _3C4
+	efx::THdamaHahen* m_hahenFX[3];              // _3CC
+	efx::TDamaDeadElecA* m_deadElecAFX[3];       // _3D8
+	efx::THdamaOnHahen1* m_appearHahenFX;        // _3E4
+	efx::THdamaOnHahen2* m_appearHahenFootFX[4]; // _3E8
+	efx::THdamaOnSteam1* m_onSteam1FX;           // _3F8
+	efx::THdamaSteamBd* m_steamBodyFX;           // _3FC
+	efx::THdamaSteam* m_steamFX[3];              // _400
+	efx::THdamaSteamSt* m_chimneyFX[3];          // _40C
+	efx::THdamaDeadbomb* m_deadBombFX;           // _418
+	efx::THdamaDeadSteam* m_deadSteamFX;         // _41C
+	                                             // _420 = PelletView
 };
 
 struct Mgr : public EnemyMgrBase {
@@ -258,10 +261,15 @@ struct HoudaiShadowMgr {
 
 	Matrixf* _00; // _00
 	Obj* _04;     // _04
-	u8 _08[0xA8]; // _08, to fill in
+	u8 _08[0xBC]; // _08, to fill in
 };
 
 struct HoudaiGroundCallBack : public JointGroundCallBack {
+	inline HoudaiGroundCallBack(Obj* obj)
+	    : m_obj(obj)
+	{
+	}
+
 	virtual void invokeOnGround(int, WaterBox*);  // _08
 	virtual void invokeOffGround(int, WaterBox*); // _0C
 
@@ -308,6 +316,7 @@ struct HoudaiShotGunMgr {
 	void effectDrawOff();
 	void startStoneStateEffectOff();
 	void startStoneStateEffectOn();
+	void finishStoneStateEffectOn();
 
 	Obj* m_owner;                 // _00
 	bool m_isShotGunRotation;     // _04

@@ -404,14 +404,14 @@ void StateShot::init(EnemyBase* enemy, StateArg* stateArg)
 	houdai->m_nextState  = HOUDAI_NULL;
 	houdai->m_stateTimer = 0.0f;
 	houdai->setTargetPattern();
-	houdai->_2ED             = 0;
-	houdai->_2CC             = 0.0f;
-	houdai->m_targetCreature = nullptr;
-	houdai->m_targetVelocity = Vector3f(0.0f);
+	houdai->_2ED                 = 0;
+	houdai->m_shotGunSearchTimer = 0.0f;
+	houdai->m_targetCreature     = nullptr;
+	houdai->m_targetVelocity     = Vector3f(0.0f);
 	houdai->startMotion(4, nullptr);
 	houdai->startBlendMotion();
 	houdai->createShotGunOpenEffect();
-	houdai->_2EF = 0;
+	houdai->m_isAttackMusicLooping = false;
 	houdai->startBossChargeBGM();
 }
 
@@ -426,7 +426,8 @@ void StateShot::exec(EnemyBase* enemy)
 
 	if (houdai->isStopMotion()) {
 		if (houdai->_2ED != 0) {
-			if (houdai->isFinishMotion() || houdai->_2CC > static_cast<Parms*>(houdai->m_parms)->m_properParms.m_fp12.m_value) {
+			if (houdai->isFinishMotion()
+			    || houdai->m_shotGunSearchTimer > static_cast<Parms*>(houdai->m_parms)->m_properParms.m_fp12.m_value) {
 				houdai->setShotGunEmitKeepTimerOn();
 				houdai->startMotion();
 			}
@@ -445,9 +446,9 @@ void StateShot::exec(EnemyBase* enemy)
 			}
 		} else {
 			if (houdai->isShotGunLockOn() && (houdai->m_stateTimer > 2.0f)) {
-				houdai->_2ED         = 1;
-				houdai->_2CC         = 0.0f;
-				houdai->m_stateTimer = 0.0f;
+				houdai->_2ED                 = 1;
+				houdai->m_shotGunSearchTimer = 0.0f;
+				houdai->m_stateTimer         = 0.0f;
 				houdai->startMotion();
 				houdai->startBossAttackLoopBGM();
 			}
@@ -464,7 +465,7 @@ void StateShot::exec(EnemyBase* enemy)
 		}
 	}
 
-	houdai->_2CC += sys->m_deltaTime;
+	houdai->m_shotGunSearchTimer += sys->m_deltaTime;
 	houdai->m_stateTimer += sys->m_deltaTime;
 
 	if (houdai->m_health <= 0.0f) {
@@ -494,7 +495,7 @@ void StateShot::exec(EnemyBase* enemy)
 			if (!houdai->isFinishMotion()) {
 				Parms* parms2 = static_cast<Parms*>(houdai->m_parms);
 				if (parms2->m_general.m_searchAngle.m_value - houdai->m_stateTimer > parms2->m_properParms.m_fp12.m_value
-				    && houdai->_2CC > parms2->m_properParms.m_fp10.m_value) {
+				    && houdai->m_shotGunSearchTimer > parms2->m_properParms.m_fp10.m_value) {
 					houdai->setShotGunEmitKeepTimerOff();
 					houdai->stopMotion();
 				}
