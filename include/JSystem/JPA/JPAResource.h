@@ -28,32 +28,32 @@ struct JPAResource {
 	void calcWorkData_c(JPAEmitterWorkData*);
 	void calcWorkData_d(JPAEmitterWorkData*);
 
-	JPAFunctionA** _00;           // _00
-	JPAFunctionA** _04;           // _04
-	JPAFunctionA** _08;           // _08
-	JPAFunctionB** _0C;           // _0C
-	JPAFunctionB** _10;           // _10
-	JPAFunctionB** _14;           // _14
-	JPAFunctionB** _18;           // _18
-	struct JPABaseShape* _1C;     // _1C
-	struct JPAExtraShape* _20;    // _20
-	struct JPAChildShape* _24;    // _24
-	struct JPAExTexShape* _28;    // _28
-	struct JPADynamicsBlock* _2C; // _2C
-	struct JPAFieldBlock** _30;   // _30
-	struct JPAKeyBlock** _34;     // _34
-	u16* _38;                     // _38
-	u16 _3C;                      // _3C
-	u8 _3E;                       // _3E
-	u8 _3F;                       // _3F
-	u8 _40;                       // _40
-	u8 _41;                       // _41
-	u8 _42;                       // _42
-	u8 _43;                       // _43
-	u8 _44;                       // _44
-	u8 _45;                       // _45
-	u8 _46;                       // _46
-	u8 _47;                       // _47
+	JPAFunctionA** _00;                       // _00
+	JPAFunctionA** _04;                       // _04
+	JPAFunctionA** _08;                       // _08
+	JPAFunctionB** _0C;                       // _0C
+	JPAFunctionB** _10;                       // _10
+	JPAFunctionB** _14;                       // _14
+	JPAFunctionB** _18;                       // _18
+	struct JPABaseShape* m_baseShape;         // _1C
+	struct JPAExtraShape* m_extraShape;       // _20
+	struct JPAChildShape* m_childShape;       // _24
+	struct JPAExTexShape* m_exTexShape;       // _28
+	struct JPADynamicsBlock* m_dynamicsBlock; // _2C
+	struct JPAFieldBlock** m_fieldBlocks;     // _30
+	struct JPAKeyBlock** m_keyBlocks;         // _34
+	u16* _38;                                 // _38
+	u16 _3C;                                  // _3C
+	u8 _3E;                                   // _3E
+	u8 _3F;                                   // _3F
+	u8 _40;                                   // _40
+	u8 _41;                                   // _41
+	u8 _42;                                   // _42
+	u8 _43;                                   // _43
+	u8 _44;                                   // _44
+	u8 _45;                                   // _45
+	u8 _46;                                   // _46
+	u8 _47;                                   // _47
 };
 
 /**

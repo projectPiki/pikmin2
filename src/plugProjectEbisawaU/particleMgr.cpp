@@ -1,4 +1,15 @@
-#include "types.h"
+#include "ParticleMgr.h"
+#include "System.h"
+#include "JSystem/JKR/JKRDvdRipper.h"
+#include "efx/TPk.h"
+#include "Camera.h"
+#include "JSystem/JPA/JPABlock.h"
+#include "Light.h"
+#include "Game/GameLight.h"
+#include "Game/cellPyramid.h"
+#include "nans.h"
+
+static const char name[] = "particleMgr";
 
 /*
     Generated from dpostproc
@@ -216,29 +227,9 @@
  */
 void ParticleMgr::globalInstance()
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	lwz      r0, particleMgr@sda21(r13)
-	cmplwi   r0, 0
-	bne      lbl_803BAFA4
-	li       r3, 0xac
-	bl       __nw__FUl
-	or.      r0, r3, r3
-	beq      lbl_803BAFA0
-	bl       __ct__11ParticleMgrFv
-	mr       r0, r3
-
-lbl_803BAFA0:
-	stw      r0, particleMgr@sda21(r13)
-
-lbl_803BAFA4:
-	lwz      r0, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	if (!particleMgr) {
+		particleMgr = new ParticleMgr;
+	}
 }
 
 /*
@@ -248,30 +239,10 @@ lbl_803BAFA4:
  */
 void ParticleMgr::deleteInstance()
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	lwz      r3, particleMgr@sda21(r13)
-	cmplwi   r3, 0
-	beq      lbl_803BAFEC
-	beq      lbl_803BAFE4
-	lwz      r12, 0(r3)
-	li       r4, 1
-	lwz      r12, 8(r12)
-	mtctr    r12
-	bctrl
-
-lbl_803BAFE4:
-	li       r0, 0
-	stw      r0, particleMgr@sda21(r13)
-
-lbl_803BAFEC:
-	lwz      r0, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	if (particleMgr) {
+		delete particleMgr;
+		particleMgr = nullptr;
+	}
 }
 
 /*
@@ -281,77 +252,13 @@ lbl_803BAFEC:
  */
 ParticleMgr::ParticleMgr()
 {
-	/*
-	stwu     r1, -0x20(r1)
-	mflr     r0
-	stw      r0, 0x24(r1)
-	stw      r31, 0x1c(r1)
-	mr       r31, r3
-	stw      r30, 0x18(r1)
-	stw      r29, 0x14(r1)
-	bl       __ct__5CNodeFv
-	lis      r3, __vt__11ParticleMgr@ha
-	addi     r30, r31, 0x1c
-	addi     r0, r3, __vt__11ParticleMgr@l
-	stw      r0, 0(r31)
-	mr       r3, r30
-	bl       __ct__5CNodeFv
-	lis      r4, __vt__16GenericContainer@ha
-	lis      r3, "__vt__24Container<11ModelEffect>"@ha
-	addi     r0, r4, __vt__16GenericContainer@l
-	lis      r5, __vt__16GenericObjectMgr@ha
-	stw      r0, 0(r30)
-	addi     r0, r3, "__vt__24Container<11ModelEffect>"@l
-	lis      r4, "__vt__24ObjectMgr<11ModelEffect>"@ha
-	lis      r3, "__vt__28NodeObjectMgr<11ModelEffect>"@ha
-	stw      r0, 0(r30)
-	li       r0, 0
-	addi     r6, r4, "__vt__24ObjectMgr<11ModelEffect>"@l
-	addi     r4, r3, "__vt__28NodeObjectMgr<11ModelEffect>"@l
-	stb      r0, 0x18(r30)
-	addi     r0, r5, __vt__16GenericObjectMgr@l
-	addi     r29, r30, 0x20
-	addi     r5, r6, 0x2c
-	stw      r0, 0x1c(r30)
-	addi     r0, r4, 0x2c
-	mr       r3, r29
-	stw      r6, 0(r30)
-	stw      r5, 0x1c(r30)
-	stw      r4, 0(r30)
-	stw      r0, 0x1c(r30)
-	bl       __ct__5CNodeFv
-	lis      r3, "__vt__26TObjectNode<11ModelEffect>"@ha
-	addi     r30, r31, 0x60
-	addi     r0, r3, "__vt__26TObjectNode<11ModelEffect>"@l
-	stw      r0, 0(r29)
-	mr       r3, r30
-	bl       __ct__5CNodeFv
-	lis      r3, __vt__15ModelEffectData@ha
-	lis      r4, __vt__19ModelEffectDataRoot@ha
-	addi     r0, r3, __vt__15ModelEffectData@l
-	lis      r3, lbl_80495BE0@ha
-	stw      r0, 0(r30)
-	addi     r0, r4, __vt__19ModelEffectDataRoot@l
-	addi     r5, r3, lbl_80495BE0@l
-	li       r4, 0
-	stw      r0, 0(r30)
-	li       r0, 0xc8
-	mr       r3, r31
-	stw      r5, 0x14(r31)
-	stw      r4, 0xa0(r31)
-	stw      r4, 0x98(r31)
-	stw      r4, 0x9c(r31)
-	stw      r4, 0x80(r31)
-	stw      r0, 0xa8(r31)
-	stw      r4, 0x18(r31)
-	lwz      r31, 0x1c(r1)
-	lwz      r30, 0x18(r1)
-	lwz      r29, 0x14(r1)
-	lwz      r0, 0x24(r1)
-	mtlr     r0
-	addi     r1, r1, 0x20
-	blr
-	*/
+	m_name                    = "ParticleMgr";
+	m_heap                    = nullptr;
+	m_emitterManager          = nullptr;
+	m_resourceManager         = nullptr;
+	m_referencedViewportCount = 0;
+	_A8                       = 200;
+	m_lightMgr                = nullptr;
 }
 
 /*
@@ -359,239 +266,43 @@ ParticleMgr::ParticleMgr()
  * Address:	803BB110
  * Size:	000070
  */
-ModelEffectDataRoot::~ModelEffectDataRoot()
-{
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	mr       r31, r4
-	stw      r30, 8(r1)
-	or.      r30, r3, r3
-	beq      lbl_803BB164
-	lis      r4, __vt__19ModelEffectDataRoot@ha
-	addi     r0, r4, __vt__19ModelEffectDataRoot@l
-	stw      r0, 0(r30)
-	beq      lbl_803BB154
-	lis      r5, __vt__15ModelEffectData@ha
-	li       r4, 0
-	addi     r0, r5, __vt__15ModelEffectData@l
-	stw      r0, 0(r30)
-	bl       __dt__5CNodeFv
-
-lbl_803BB154:
-	extsh.   r0, r31
-	ble      lbl_803BB164
-	mr       r3, r30
-	bl       __dl__FPv
-
-lbl_803BB164:
-	lwz      r0, 0x14(r1)
-	mr       r3, r30
-	lwz      r31, 0xc(r1)
-	lwz      r30, 8(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
-}
+ModelEffectDataRoot::~ModelEffectDataRoot() { }
 
 /*
  * --INFO--
  * Address:	803BB180
  * Size:	0000C8
  */
-void NodeObjectMgr<ModelEffect>::~NodeObjectMgr()
-{
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	mr       r31, r4
-	stw      r30, 8(r1)
-	or.      r30, r3, r3
-	beq      lbl_803BB22C
-	lis      r3, "__vt__28NodeObjectMgr<11ModelEffect>"@ha
-	addic.   r0, r30, 0x20
-	addi     r3, r3, "__vt__28NodeObjectMgr<11ModelEffect>"@l
-	stw      r3, 0(r30)
-	addi     r0, r3, 0x2c
-	stw      r0, 0x1c(r30)
-	beq      lbl_803BB1D4
-	lis      r4, "__vt__26TObjectNode<11ModelEffect>"@ha
-	addi     r3, r30, 0x20
-	addi     r0, r4, "__vt__26TObjectNode<11ModelEffect>"@l
-	li       r4, 0
-	stw      r0, 0x20(r30)
-	bl       __dt__5CNodeFv
-
-lbl_803BB1D4:
-	cmplwi   r30, 0
-	beq      lbl_803BB21C
-	lis      r3, "__vt__24ObjectMgr<11ModelEffect>"@ha
-	addi     r3, r3, "__vt__24ObjectMgr<11ModelEffect>"@l
-	stw      r3, 0(r30)
-	addi     r0, r3, 0x2c
-	stw      r0, 0x1c(r30)
-	beq      lbl_803BB21C
-	lis      r3, "__vt__24Container<11ModelEffect>"@ha
-	addi     r0, r3, "__vt__24Container<11ModelEffect>"@l
-	stw      r0, 0(r30)
-	beq      lbl_803BB21C
-	lis      r4, __vt__16GenericContainer@ha
-	mr       r3, r30
-	addi     r0, r4, __vt__16GenericContainer@l
-	li       r4, 0
-	stw      r0, 0(r30)
-	bl       __dt__5CNodeFv
-
-lbl_803BB21C:
-	extsh.   r0, r31
-	ble      lbl_803BB22C
-	mr       r3, r30
-	bl       __dl__FPv
-
-lbl_803BB22C:
-	lwz      r0, 0x14(r1)
-	mr       r3, r30
-	lwz      r31, 0xc(r1)
-	lwz      r30, 8(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
-}
+// NodeObjectMgr<ModelEffect>::~NodeObjectMgr()
+//{
+//}
 
 /*
  * --INFO--
  * Address:	803BB248
  * Size:	000060
  */
-void TObjectNode<ModelEffect>::~TObjectNode()
-{
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	mr       r31, r4
-	stw      r30, 8(r1)
-	or.      r30, r3, r3
-	beq      lbl_803BB28C
-	lis      r5, "__vt__26TObjectNode<11ModelEffect>"@ha
-	li       r4, 0
-	addi     r0, r5, "__vt__26TObjectNode<11ModelEffect>"@l
-	stw      r0, 0(r30)
-	bl       __dt__5CNodeFv
-	extsh.   r0, r31
-	ble      lbl_803BB28C
-	mr       r3, r30
-	bl       __dl__FPv
-
-lbl_803BB28C:
-	lwz      r0, 0x14(r1)
-	mr       r3, r30
-	lwz      r31, 0xc(r1)
-	lwz      r30, 8(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
-}
+// TObjectNode<ModelEffect>::~TObjectNode()
+//{
+//}
 
 /*
  * --INFO--
  * Address:	803BB2A8
  * Size:	000088
  */
-void ObjectMgr<ModelEffect>::~ObjectMgr()
-{
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	mr       r31, r4
-	stw      r30, 8(r1)
-	or.      r30, r3, r3
-	beq      lbl_803BB314
-	lis      r4, "__vt__24ObjectMgr<11ModelEffect>"@ha
-	addi     r4, r4, "__vt__24ObjectMgr<11ModelEffect>"@l
-	stw      r4, 0(r30)
-	addi     r0, r4, 0x2c
-	stw      r0, 0x1c(r30)
-	beq      lbl_803BB304
-	lis      r4, "__vt__24Container<11ModelEffect>"@ha
-	addi     r0, r4, "__vt__24Container<11ModelEffect>"@l
-	stw      r0, 0(r30)
-	beq      lbl_803BB304
-	lis      r5, __vt__16GenericContainer@ha
-	li       r4, 0
-	addi     r0, r5, __vt__16GenericContainer@l
-	stw      r0, 0(r30)
-	bl       __dt__5CNodeFv
-
-lbl_803BB304:
-	extsh.   r0, r31
-	ble      lbl_803BB314
-	mr       r3, r30
-	bl       __dl__FPv
-
-lbl_803BB314:
-	lwz      r0, 0x14(r1)
-	mr       r3, r30
-	lwz      r31, 0xc(r1)
-	lwz      r30, 8(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
-}
+// ObjectMgr<ModelEffect>::~ObjectMgr()
+//{
+//}
 
 /*
  * --INFO--
  * Address:	803BB330
  * Size:	000070
  */
-void Container<ModelEffect>::~Container()
-{
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	mr       r31, r4
-	stw      r30, 8(r1)
-	or.      r30, r3, r3
-	beq      lbl_803BB384
-	lis      r4, "__vt__24Container<11ModelEffect>"@ha
-	addi     r0, r4, "__vt__24Container<11ModelEffect>"@l
-	stw      r0, 0(r30)
-	beq      lbl_803BB374
-	lis      r5, __vt__16GenericContainer@ha
-	li       r4, 0
-	addi     r0, r5, __vt__16GenericContainer@l
-	stw      r0, 0(r30)
-	bl       __dt__5CNodeFv
-
-lbl_803BB374:
-	extsh.   r0, r31
-	ble      lbl_803BB384
-	mr       r3, r30
-	bl       __dl__FPv
-
-lbl_803BB384:
-	lwz      r0, 0x14(r1)
-	mr       r3, r30
-	lwz      r31, 0xc(r1)
-	lwz      r30, 8(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
-}
+// Container<ModelEffect>::~Container()
+//{
+//}
 
 /*
  * --INFO--
@@ -600,91 +311,8 @@ lbl_803BB384:
  */
 ParticleMgr::~ParticleMgr()
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	mr       r31, r4
-	stw      r30, 8(r1)
-	or.      r30, r3, r3
-	beq      lbl_803BB4B0
-	lis      r4, __vt__11ParticleMgr@ha
-	li       r3, 0
-	addi     r4, r4, __vt__11ParticleMgr@l
-	addic.   r0, r30, 0x60
-	stw      r4, 0(r30)
-	stw      r3, 0x18(r30)
-	stw      r3, 0xa0(r30)
-	beq      lbl_803BB40C
-	lis      r3, __vt__19ModelEffectDataRoot@ha
-	addic.   r0, r30, 0x60
-	addi     r0, r3, __vt__19ModelEffectDataRoot@l
-	stw      r0, 0x60(r30)
-	beq      lbl_803BB40C
-	lis      r4, __vt__15ModelEffectData@ha
-	addi     r3, r30, 0x60
-	addi     r0, r4, __vt__15ModelEffectData@l
-	li       r4, 0
-	stw      r0, 0x60(r30)
-	bl       __dt__5CNodeFv
-
-lbl_803BB40C:
-	addic.   r0, r30, 0x1c
-	beq      lbl_803BB494
-	lis      r4, "__vt__28NodeObjectMgr<11ModelEffect>"@ha
-	addic.   r3, r30, 0x3c
-	addi     r4, r4, "__vt__28NodeObjectMgr<11ModelEffect>"@l
-	stw      r4, 0x1c(r30)
-	addi     r0, r4, 0x2c
-	stw      r0, 0x38(r30)
-	beq      lbl_803BB444
-	lis      r4, "__vt__26TObjectNode<11ModelEffect>"@ha
-	addi     r0, r4, "__vt__26TObjectNode<11ModelEffect>"@l
-	stw      r0, 0x3c(r30)
-	li       r4, 0
-	bl       __dt__5CNodeFv
-
-lbl_803BB444:
-	addic.   r0, r30, 0x1c
-	beq      lbl_803BB494
-	lis      r3, "__vt__24ObjectMgr<11ModelEffect>"@ha
-	addic.   r0, r30, 0x1c
-	addi     r3, r3, "__vt__24ObjectMgr<11ModelEffect>"@l
-	stw      r3, 0x1c(r30)
-	addi     r0, r3, 0x2c
-	stw      r0, 0x38(r30)
-	beq      lbl_803BB494
-	lis      r3, "__vt__24Container<11ModelEffect>"@ha
-	addic.   r0, r30, 0x1c
-	addi     r0, r3, "__vt__24Container<11ModelEffect>"@l
-	stw      r0, 0x1c(r30)
-	beq      lbl_803BB494
-	lis      r4, __vt__16GenericContainer@ha
-	addi     r3, r30, 0x1c
-	addi     r0, r4, __vt__16GenericContainer@l
-	li       r4, 0
-	stw      r0, 0x1c(r30)
-	bl       __dt__5CNodeFv
-
-lbl_803BB494:
-	mr       r3, r30
-	li       r4, 0
-	bl       __dt__5CNodeFv
-	extsh.   r0, r31
-	ble      lbl_803BB4B0
-	mr       r3, r30
-	bl       __dl__FPv
-
-lbl_803BB4B0:
-	lwz      r0, 0x14(r1)
-	mr       r3, r30
-	lwz      r31, 0xc(r1)
-	lwz      r30, 8(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	m_lightMgr = nullptr;
+	m_heap     = nullptr;
 }
 
 /*
@@ -692,40 +320,10 @@ lbl_803BB4B0:
  * Address:	803BB4CC
  * Size:	000070
  */
-void ParticleMgr::createHeap(unsigned long)
+void ParticleMgr::createHeap(u32 size)
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	mr       r31, r4
-	stw      r30, 8(r1)
-	mr       r30, r3
-	lwz      r0, 0xa0(r3)
-	cmplwi   r0, 0
-	beq      lbl_803BB510
-	lis      r3, lbl_80495BEC@ha
-	lis      r5, lbl_80495BFC@ha
-	addi     r3, r3, lbl_80495BEC@l
-	li       r4, 0xca
-	addi     r5, r5, lbl_80495BFC@l
-	crclr    6
-	bl       panic_f__12JUTExceptionFPCciPCce
-
-lbl_803BB510:
-	lwz      r4, sCurrentHeap__7JKRHeap@sda21(r13)
-	mr       r3, r31
-	li       r5, 1
-	bl       create__12JKRSolidHeapFUlP7JKRHeapb
-	stw      r3, 0xa0(r30)
-	lwz      r0, 0x14(r1)
-	lwz      r31, 0xc(r1)
-	lwz      r30, 8(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	P2ASSERTLINE(202, !m_heap);
+	m_heap = JKRSolidHeap::create(size, getCurrentHeap(), true);
 }
 
 /*
@@ -733,8 +331,24 @@ lbl_803BB510:
  * Address:	803BB53C
  * Size:	00014C
  */
-void ParticleMgr::createMgr(char*, unsigned long, unsigned long, unsigned long)
+void ParticleMgr::createMgr(char* path, u32 flag1, u32 flag2, u32)
 {
+	JUT_ASSERTLINE(209, m_heap, "effect heap not allocated !\n");
+	sys->heapStatusStart("particleMgr", m_heap);
+	JKRHeap* oldheap = getCurrentHeap();
+	m_heap->becomeCurrentHeap();
+
+	void* file
+	    = JKRDvdRipper::loadToMainRAM(path, nullptr, (JKRExpandSwitch)0, 0, nullptr, JKRDvdRipper::ALLOC_DIR_TOP, 0, nullptr, nullptr);
+	JUT_ASSERTLINE(223, file, "ParticleResource (%s) not found\n", path);
+	oldheap->becomeCurrentHeap();
+
+	m_resourceManager = new (m_heap, 0) JPAResourceManager(file, m_heap);
+	m_emitterManager  = new (m_heap, 0) JPAEmitterManager(flag1, flag2, m_heap, 9, 8);
+	m_emitterManager->entryResourceManager(m_resourceManager, 0);
+
+	sys->heapStatusEnd("particleMgr");
+
 	/*
 	stwu     r1, -0x30(r1)
 	mflr     r0
@@ -836,38 +450,14 @@ lbl_803BB654:
  * Address:	803BB688
  * Size:	000020
  */
-void ParticleMgr::Instance_TPkEffectMgr()
-{
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	bl       globalInstance__Q23efx12TPkEffectMgrFv
-	lwz      r0, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
-}
+void ParticleMgr::Instance_TPkEffectMgr() { efx::TPkEffectMgr::globalInstance(); }
 
 /*
  * --INFO--
  * Address:	803BB6A8
  * Size:	000020
  */
-void ParticleMgr::deleteInstance_TPkEffectMgr()
-{
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	bl       deleteInstance__Q23efx12TPkEffectMgrFv
-	lwz      r0, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
-}
+void ParticleMgr::deleteInstance_TPkEffectMgr() { efx::TPkEffectMgr::deleteInstance(); }
 
 /*
  * --INFO--
@@ -876,7 +466,9 @@ void ParticleMgr::deleteInstance_TPkEffectMgr()
  */
 void ParticleMgr::destroyHeap()
 {
-	// UNUSED FUNCTION
+	m_heap->destroy();
+	m_heap = nullptr;
+	// unused, probably something like this
 }
 
 /*
@@ -886,19 +478,8 @@ void ParticleMgr::destroyHeap()
  */
 void ParticleMgr::beginEntryModelEffect()
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	lwz      r0, sCurrentHeap__7JKRHeap@sda21(r13)
-	stw      r0, 0xa4(r3)
-	lwz      r3, 0xa0(r3)
-	bl       becomeCurrentHeap__7JKRHeapFv
-	lwz      r0, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	m_modelEffectHeap = getCurrentHeap();
+	m_heap->becomeCurrentHeap();
 }
 
 /*
@@ -906,40 +487,14 @@ void ParticleMgr::beginEntryModelEffect()
  * Address:	803BB6F4
  * Size:	000024
  */
-void ParticleMgr::endEntryModelEffect()
-{
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	lwz      r3, 0xa4(r3)
-	bl       becomeCurrentHeap__7JKRHeapFv
-	lwz      r0, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
-}
+void ParticleMgr::endEntryModelEffect() { m_modelEffectHeap->becomeCurrentHeap(); }
 
 /*
  * --INFO--
  * Address:	803BB718
  * Size:	000024
  */
-void ParticleMgr::start()
-{
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	lwz      r3, pkEffectMgr@sda21(r13)
-	bl       startMgr__Q23efx12TPkEffectMgrFv
-	lwz      r0, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
-}
+void ParticleMgr::start() { pkEffectMgr->startMgr(); }
 
 /*
  * --INFO--
@@ -948,32 +503,11 @@ void ParticleMgr::start()
  */
 void ParticleMgr::reset()
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	mr       r31, r3
-	lwz      r0, pkEffectMgr@sda21(r13)
-	cmplwi   r0, 0
-	beq      lbl_803BB764
-	mr       r3, r0
-	bl       exitMgr__Q23efx12TPkEffectMgrFv
-
-lbl_803BB764:
-	addi     r3, r31, 0x1c
-	lwz      r12, 0x1c(r31)
-	lwz      r12, 0x7c(r12)
-	mtctr    r12
-	bctrl
-	li       r0, 0
-	stw      r0, 0x18(r31)
-	lwz      r0, 0x14(r1)
-	lwz      r31, 0xc(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	if (pkEffectMgr) {
+		pkEffectMgr->exitMgr();
+	}
+	m_modelEffectMgr.resetMgr();
+	m_lightMgr = nullptr;
 }
 
 /*
@@ -981,20 +515,7 @@ lbl_803BB764:
  * Address:	803BB794
  * Size:	000024
  */
-void ParticleMgr::killAll()
-{
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	lwz      r3, 0x98(r3)
-	bl       forceDeleteAllEmitter__17JPAEmitterManagerFv
-	lwz      r0, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
-}
+void ParticleMgr::killAll() { m_emitterManager->forceDeleteAllEmitter(); }
 
 /*
  * --INFO--
@@ -1003,19 +524,8 @@ void ParticleMgr::killAll()
  */
 void ParticleMgr::update()
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	lwz      r3, 0x98(r3)
-	bl       calc__17JPAEmitterManagerFv
-	lwz      r3, pkEffectMgr@sda21(r13)
-	bl       resetContextS__Q23efx12TPkEffectMgrFv
-	lwz      r0, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	m_emitterManager->calc();
+	pkEffectMgr->resetContextS();
 }
 
 /*
@@ -1023,73 +533,22 @@ void ParticleMgr::update()
  * Address:	803BB7E4
  * Size:	00002C
  */
-void ParticleMgr::setXfb(const ResTIMG*)
-{
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	lis      r5, lbl_80495C4C@ha
-	stw      r0, 0x14(r1)
-	addi     r5, r5, lbl_80495C4C@l
-	lwz      r3, 0x9c(r3)
-	bl       swapTexture__18JPAResourceManagerFPC7ResTIMGPCc
-	lwz      r0, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
-}
+void ParticleMgr::setXfb(const ResTIMG* tex) { m_resourceManager->swapTexture(tex, "IP2_dummy"); }
 
 /*
  * --INFO--
  * Address:	803BB810
  * Size:	0000A4
  */
-void ParticleMgr::draw(Viewport*, unsigned char)
+void ParticleMgr::draw(Viewport* vp, u8 flag)
 {
-	/*
-	stwu     r1, -0x90(r1)
-	mflr     r0
-	stw      r0, 0x94(r1)
-	stfd     f31, 0x80(r1)
-	psq_st   f31, 136(r1), 0, qr0
-	stfd     f30, 0x70(r1)
-	psq_st   f30, 120(r1), 0, qr0
-	stw      r31, 0x6c(r1)
-	stw      r30, 0x68(r1)
-	lwz      r6, 0x44(r4)
-	mr       r30, r3
-	mr       r3, r4
-	mr       r31, r5
-	lfs      f30, 0x2c(r6)
-	li       r4, 1
-	lfs      f31, 0x28(r6)
-	bl       getMatrix__8ViewportFb
-	addi     r4, r1, 8
-	bl       PSMTXCopy
-	lfs      f3, lbl_8051F6F0@sda21(r2)
-	fmr      f1, f31
-	fmr      f2, f30
-	lfs      f4, lbl_8051F6F4@sda21(r2)
-	fmr      f5, f3
-	addi     r3, r1, 0x38
-	fmr      f6, f3
-	bl       C_MTXLightPerspective
-	lwz      r3, 0x98(r30)
-	mr       r5, r31
-	addi     r4, r1, 8
-	bl       draw__17JPAEmitterManagerFPC11JPADrawInfoUc
-	psq_l    f31, 136(r1), 0, qr0
-	lfd      f31, 0x80(r1)
-	psq_l    f30, 120(r1), 0, qr0
-	lfd      f30, 0x70(r1)
-	lwz      r31, 0x6c(r1)
-	lwz      r0, 0x94(r1)
-	lwz      r30, 0x68(r1)
-	mtlr     r0
-	addi     r1, r1, 0x90
-	blr
-	*/
+	f32 x, y;
+	y = vp->m_camera->m_aspectRatio;
+	x = vp->m_camera->m_viewAngle;
+	JPADrawInfo info;
+	PSMTXCopy(vp->getMatrix(1)->m_matrix.mtxView, info.mtx1);
+	C_MTXLightPerspective(x, y, 0.5f, -0.5f, 0.5f, 0.5f, info.mtx2);
+	m_emitterManager->draw(&info, flag);
 }
 
 /*
@@ -1097,71 +556,24 @@ void ParticleMgr::draw(Viewport*, unsigned char)
  * Address:	803BB8B4
  * Size:	0000C8
  */
-void ParticleMgr::create(unsigned short, Vector3f&, unsigned char)
+JPABaseEmitter* ParticleMgr::create(u16 id, Vector3f& position, u8 flag)
 {
-	/*
-	stwu     r1, -0x20(r1)
-	mflr     r0
-	stw      r0, 0x24(r1)
-	stw      r31, 0x1c(r1)
-	mr       r31, r6
-	stw      r30, 0x18(r1)
-	mr       r30, r5
-	stw      r29, 0x14(r1)
-	mr       r29, r4
-	stw      r28, 0x10(r1)
-	mr       r28, r3
-	lwz      r3, 0x9c(r3)
-	bl       getResUserWork__18JPAResourceManagerCFUs
-	rlwinm.  r0, r3, 0, 0x1d, 0x1d
-	beq      lbl_803BB8F8
-	li       r6, 0
-	b        lbl_803BB90C
-
-lbl_803BB8F8:
-	clrlwi.  r0, r3, 0x1f
-	beq      lbl_803BB908
-	li       r6, 1
-	b        lbl_803BB90C
-
-lbl_803BB908:
-	li       r6, 2
-
-lbl_803BB90C:
-	clrlwi.  r0, r6, 0x18
-	bne      lbl_803BB928
-	lwz      r0, 0x94(r28)
-	cmpwi    r0, 2
-	blt      lbl_803BB928
-	li       r3, 0
-	b        lbl_803BB95C
-
-lbl_803BB928:
-	lwz      r3, 0x98(r28)
-	mr       r4, r30
-	mr       r5, r29
-	mr       r7, r31
-	li       r8, 0
-	li       r9, 0
-	bl
-"createSimpleEmitterID__17JPAEmitterManagerFRCQ29JGeometry8TVec3<f>UsUcUcP18JPAEmitterCallBackP19JPAParticleCallBack"
-	mr       r0, r3
-	mr       r3, r28
-	mr       r31, r0
-	mr       r4, r31
-	bl       setGlobalColor__11ParticleMgrFP14JPABaseEmitter
-	mr       r3, r31
-
-lbl_803BB95C:
-	lwz      r0, 0x24(r1)
-	lwz      r31, 0x1c(r1)
-	lwz      r30, 0x18(r1)
-	lwz      r29, 0x14(r1)
-	lwz      r28, 0x10(r1)
-	mtlr     r0
-	addi     r1, r1, 0x20
-	blr
-	*/
+	u32 res = (u32)m_resourceManager->getResUserWork(id);
+	u8 type;
+	if (res & 4) {
+		type = 0;
+	} else if (res & 1) {
+		type = 1;
+	} else {
+		type = 2;
+	}
+	if (type == 0 && m_activeViewportCount >= 2) {
+		return nullptr;
+	} else {
+		JPABaseEmitter* emit = m_emitterManager->createSimpleEmitterID((JGeometry::TVec3f&)position, id, type, flag, nullptr, nullptr);
+		setGlobalColor(emit);
+		return emit;
+	}
 }
 
 /*
@@ -1169,36 +581,11 @@ lbl_803BB95C:
  * Address:	803BB97C
  * Size:	00005C
  */
-void ParticleMgr::createDemo(unsigned short, Vector3f&, unsigned char, unsigned char)
+JPABaseEmitter* ParticleMgr::createDemo(u16 id, Vector3f& position, u8 flag1, u8 flag2)
 {
-	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  li        r8, 0
-	  li        r9, 0
-	  stw       r0, 0x14(r1)
-	  mr        r0, r4
-	  mr        r4, r5
-	  stw       r31, 0xC(r1)
-	  mr        r31, r3
-	  mr        r5, r0
-	  lwz       r3, 0x98(r3)
-	  bl        -0x32B0EC
-	  mr        r0, r3
-	  mr        r3, r31
-	  mr        r31, r0
-	  mr        r4, r31
-	  bl        .loc_0x5C
-	  lwz       r0, 0x14(r1)
-	  mr        r3, r31
-	  lwz       r31, 0xC(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
-
-	.loc_0x5C:
-	*/
+	JPABaseEmitter* emit = m_emitterManager->createSimpleEmitterID((JGeometry::TVec3f&)position, id, flag1, flag2, nullptr, nullptr);
+	setGlobalColor(emit);
+	return emit;
 }
 
 /*
@@ -1206,8 +593,38 @@ void ParticleMgr::createDemo(unsigned short, Vector3f&, unsigned char, unsigned 
  * Address:	803BB9D8
  * Size:	0000A8
  */
-void ParticleMgr::setGlobalColor(JPABaseEmitter*)
+void ParticleMgr::setGlobalColor(JPABaseEmitter* emit)
 {
+	if (!emit)
+		return;
+
+	Game::GameLightMgr* mgr = m_lightMgr;
+	if (!mgr)
+		return;
+
+	if (!(emit->m_resource->m_dynamicsBlock->m_data[0] & 2))
+		return; // needs file data struct
+
+	LightObj* obj = mgr->m_mainLight;
+
+	int red = (obj->m_color.r + mgr->m_ambientLight.m_color.r) * 2;
+	if (red > 255) {
+		red = 255;
+	}
+
+	int green = (obj->m_color.g + mgr->m_ambientLight.m_color.g) * 2;
+	if (green > 255) {
+		green = 255;
+	}
+
+	int blue = (obj->m_color.b + mgr->m_ambientLight.m_color.b) * 2;
+	if (blue > 255) {
+		blue = 255;
+	}
+
+	emit->setColorRGB(red, green, blue);
+	emit->setPrmColorRGB(red, green, blue);
+
 	/*
 	cmplwi   r4, 0
 	beqlr
@@ -1265,8 +682,11 @@ lbl_803BBA64:
  * Address:	803BBA80
  * Size:	00002C
  */
-void ParticleMgr::forceKill(JPABaseEmitter*)
+void ParticleMgr::forceKill(JPABaseEmitter* emit)
 {
+	if (emit) {
+		m_emitterManager->forceDeleteEmitter(emit);
+	}
 	/*
 	stwu     r1, -0x10(r1)
 	mflr     r0
@@ -1289,21 +709,14 @@ lbl_803BBA9C:
  * Address:	803BBAAC
  * Size:	00002C
  */
-void ParticleMgr::fade(JPABaseEmitter*)
+void ParticleMgr::fade(JPABaseEmitter* emit)
 {
-	/*
-	cmplwi   r4, 0
-	beqlr
-	lwz      r3, 0xf4(r4)
-	li       r0, 1
-	ori      r3, r3, 1
-	stw      r3, 0xf4(r4)
-	stw      r0, 0x24(r4)
-	lwz      r0, 0xf4(r4)
-	rlwinm   r0, r0, 0, 0x1a, 0x18
-	stw      r0, 0xf4(r4)
-	blr
-	*/
+	if (!emit)
+		return;
+
+	emit->m_flags |= 1;
+	emit->_24 = 1;
+	emit->m_flags &= ~0x40;
 }
 
 /*
@@ -1311,21 +724,7 @@ void ParticleMgr::fade(JPABaseEmitter*)
  * Address:	803BBAD8
  * Size:	000028
  */
-void ParticleMgr::setDemoResourceManager(JPAResourceManager*)
-{
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	li       r5, 7
-	stw      r0, 0x14(r1)
-	lwz      r3, 0x98(r3)
-	bl       entryResourceManager__17JPAEmitterManagerFP18JPAResourceManagerUc
-	lwz      r0, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
-}
+void ParticleMgr::setDemoResourceManager(JPAResourceManager* mgr) { m_emitterManager->entryResourceManager(mgr, 7); }
 
 /*
  * --INFO--
@@ -1334,6 +733,7 @@ void ParticleMgr::setDemoResourceManager(JPAResourceManager*)
  */
 void ParticleMgr::clearDemoResourceManager()
 {
+	m_emitterManager->clearResourceManager(7);
 	/*
 	stwu     r1, -0x10(r1)
 	mflr     r0
@@ -1353,8 +753,19 @@ void ParticleMgr::clearDemoResourceManager()
  * Address:	803BBB28
  * Size:	0000A8
  */
-void ParticleMgr::setViewport(Graphics&)
+void ParticleMgr::setViewport(Graphics& gfx)
 {
+	int max    = gfx.m_viewportCount;
+	bool check = (max >= 0 && max < 4);
+	P2ASSERTLINE(504, check);
+
+	m_referencedViewportCount = max;
+
+	for (int i = 0; i < max; i++) {
+		m_viewports[i] = gfx.getViewport(i);
+	}
+	m_activeViewportCount = gfx.getNumActiveViewports();
+
 	/*
 	stwu     r1, -0x20(r1)
 	mflr     r0
@@ -1424,8 +835,36 @@ void ParticleMgr::cull(Sys::Sphere&)
  * Address:	803BBBD0
  * Size:	000114
  */
-void ParticleMgr::cullByResFlg(Vector3f&, unsigned short)
+bool ParticleMgr::cullByResFlg(Vector3f& pos, u16 id)
 {
+	if (disableCulling)
+		return false;
+
+	Sys::Sphere bound;
+	u32 flag = (u32)m_resourceManager->getResUserWork(id);
+	if (flag & 0x20) {
+		bound.m_radius = mClipRadiusL;
+	} else if (flag & 0x10) {
+		bound.m_radius = mClipRadiusM;
+	} else {
+		bound.m_radius = mClipRadiusS;
+	}
+
+	bound.m_position = pos;
+
+	if (disableCulling)
+		return false;
+
+	bool ret = false;
+	for (int i = 0; i < m_activeViewportCount; i++) {
+		CullPlane* plane = m_viewports[i]->m_camera;
+		if (m_viewports[i]->viewable() && plane->isVisible(bound)) {
+			ret = true;
+			break;
+		}
+	}
+	return ret;
+
 	/*
 	stwu     r1, -0x30(r1)
 	mflr     r0
@@ -1526,8 +965,39 @@ lbl_803BBCD0:
  * Address:	803BBCE4
  * Size:	000178
  */
-void ParticleMgr::cullByResFlg(JPABaseEmitter*)
+bool ParticleMgr::cullByResFlg(JPABaseEmitter* emit)
 {
+	if (disableCulling)
+		return false;
+
+	Sys::Sphere bound;
+	u32 flag = emit->m_resource->m_dynamicsBlock->m_data[0]; // needs struct
+	if (flag & 0x20) {
+		bound.m_radius = mClipRadiusL;
+	} else if (flag & 0x10) {
+		bound.m_radius = mClipRadiusM;
+	} else {
+		bound.m_radius = mClipRadiusS;
+	}
+	bound.m_position = emit->m_positon;
+
+	bool ret = false;
+	for (int i = 0; i < m_activeViewportCount; i++) {
+		CullPlane* plane = m_viewports[i]->m_camera;
+		if (m_viewports[i]->viewable() && plane->isVisible(bound)) {
+			ret = true;
+			break;
+		}
+	}
+	if (ret) {
+		emit->m_flags &= ~4;
+		emit->m_flags &= ~1;
+	} else {
+		emit->m_flags |= 4;
+		emit->m_flags |= 1;
+	}
+
+	return ret;
 	/*
 	stwu     r1, -0x40(r1)
 	mflr     r0
@@ -1686,129 +1156,87 @@ void ModelEffectDataRoot::loadResources() { }
  * Address:	803BBE60
  * Size:	000010
  */
-void ModelEffectDataRoot::getID()
-{
-	/*
-	lis      r4, 0x524F4F54@ha
-	li       r3, 0
-	addi     r4, r4, 0x524F4F54@l
-	blr
-	*/
-}
+u64 ModelEffectDataRoot::getID() { return 'ROOT'; }
 
 /*
  * --INFO--
  * Address:	803BBE70
  * Size:	000008
  */
-u32 ModelEffectDataRoot::onCreate(ModelEffectCreateArg*) { return 0x0; }
+ModelEffect* ModelEffectDataRoot::onCreate(ModelEffectCreateArg*) { return nullptr; }
 
 /*
  * --INFO--
  * Address:	803BBE78
  * Size:	000008
  */
-void NodeObjectMgr<ModelEffect>::get(void*)
-{
-	/*
-	lwz      r3, 0x18(r4)
-	blr
-	*/
-}
+ModelEffect* NodeObjectMgr<ModelEffect>::get(void* node) { return ((TObjectNode<ModelEffect>*)node)->m_contents; }
 
 /*
  * --INFO--
  * Address:	803BBE80
  * Size:	000008
  */
-void NodeObjectMgr<ModelEffect>::getNext(void*)
-{
-	/*
-	lwz      r3, 4(r4)
-	blr
-	*/
-}
+void* NodeObjectMgr<ModelEffect>::getNext(void* node) { return ((TObjectNode<ModelEffect>*)node)->m_next; }
 
 /*
  * --INFO--
  * Address:	803BBE88
  * Size:	000008
  */
-void NodeObjectMgr<ModelEffect>::getStart()
-{
-	/*
-	lwz      r3, 0x30(r3)
-	blr
-	*/
-}
+void* NodeObjectMgr<ModelEffect>::getStart() { return m_node.m_child; }
 
 /*
  * --INFO--
  * Address:	803BBE90
  * Size:	000008
  */
-u32 NodeObjectMgr<ModelEffect>::getEnd() { return 0x0; }
+void* NodeObjectMgr<ModelEffect>::getEnd() { return nullptr; }
 
 /*
  * --INFO--
  * Address:	803BBE98
  * Size:	000018
  */
-void NodeObjectMgr<ModelEffect>::resetMgr()
-{
-	/*
-	li       r0, 0
-	stw      r0, 0x30(r3)
-	stw      r0, 0x2c(r3)
-	stw      r0, 0x28(r3)
-	stw      r0, 0x24(r3)
-	blr
-	*/
-}
+// void NodeObjectMgr<ModelEffect>::resetMgr()
+//{
+//}
 
 /*
  * --INFO--
  * Address:	803BBEB0
  * Size:	00002C
  */
-void Container<ModelEffect>::getObject(void*)
-{
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x20(r12)
-	mtctr    r12
-	bctrl
-	lwz      r0, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
-}
+void* Container<ModelEffect>::getObject(void* index) { return get(index); }
 
 /*
  * --INFO--
  * Address:	803BBEDC
  * Size:	000008
  */
-u32 Container<ModelEffect>::getAt(int) { return 0x0; }
+ModelEffect* Container<ModelEffect>::getAt(int) { return nullptr; }
 
 /*
  * --INFO--
  * Address:	803BBEE4
  * Size:	000008
  */
-u32 Container<ModelEffect>::getTo() { return 0x0; }
+int Container<ModelEffect>::getTo() { return 0; }
 
 /*
  * --INFO--
  * Address:	803BBEEC
  * Size:	0001F4
  */
-void ObjectMgr<ModelEffect>::doDirectDraw(Graphics&)
+void ObjectMgr<ModelEffect>::doDirectDraw(Graphics& gfx)
 {
+	Iterator<ModelEffect> it(this);
+	CI_LOOP(it)
+	{
+		ModelEffect* efx = *it;
+		efx->doDirectDraw(gfx);
+	}
+
 	/*
 	stwu     r1, -0x20(r1)
 	mflr     r0
@@ -1959,38 +1387,44 @@ lbl_803BC0AC:
  * Address:	803BC0E0
  * Size:	00004C
  */
-void Iterator<ModelEffect>::isDone()
-{
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	mr       r31, r3
-	lwz      r3, 8(r3)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x1c(r12)
-	mtctr    r12
-	bctrl
-	lwz      r0, 4(r31)
-	subf     r0, r0, r3
-	cntlzw   r0, r0
-	srwi     r3, r0, 5
-	lwz      r31, 0xc(r1)
-	lwz      r0, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
-}
+// bool Iterator<ModelEffect>::isDone()
+//{
+/*
+stwu     r1, -0x10(r1)
+mflr     r0
+stw      r0, 0x14(r1)
+stw      r31, 0xc(r1)
+mr       r31, r3
+lwz      r3, 8(r3)
+lwz      r12, 0(r3)
+lwz      r12, 0x1c(r12)
+mtctr    r12
+bctrl
+lwz      r0, 4(r31)
+subf     r0, r0, r3
+cntlzw   r0, r0
+srwi     r3, r0, 5
+lwz      r31, 0xc(r1)
+lwz      r0, 0x14(r1)
+mtlr     r0
+addi     r1, r1, 0x10
+blr
+*/
+//}
 
 /*
  * --INFO--
  * Address:	803BC12C
  * Size:	0001F4
  */
-void ObjectMgr<ModelEffect>::doSimulation(float)
+void ObjectMgr<ModelEffect>::doSimulation(f32 sim)
 {
+	Iterator<ModelEffect> it(this);
+	CI_LOOP(it)
+	{
+		ModelEffect* efx = *it;
+		efx->doSimulation(sim);
+	}
 	/*
 	stwu     r1, -0x20(r1)
 	mflr     r0
@@ -2143,6 +1577,12 @@ lbl_803BC2EC:
  */
 void ObjectMgr<ModelEffect>::doViewCalc()
 {
+	Iterator<ModelEffect> it(this);
+	CI_LOOP(it)
+	{
+		ModelEffect* efx = *it;
+		efx->doViewCalc();
+	}
 	/*
 	stwu     r1, -0x20(r1)
 	mflr     r0
@@ -2289,8 +1729,14 @@ lbl_803BC4D4:
  * Address:	803BC504
  * Size:	0001F4
  */
-void ObjectMgr<ModelEffect>::doSetView(int)
+void ObjectMgr<ModelEffect>::doSetView(int id)
 {
+	Iterator<ModelEffect> it(this);
+	CI_LOOP(it)
+	{
+		ModelEffect* efx = *it;
+		efx->doSetView(id);
+	}
 	/*
 	stwu     r1, -0x20(r1)
 	mflr     r0
@@ -2443,6 +1889,12 @@ lbl_803BC6C4:
  */
 void ObjectMgr<ModelEffect>::doEntry()
 {
+	Iterator<ModelEffect> it(this);
+	CI_LOOP(it)
+	{
+		ModelEffect* efx = *it;
+		efx->doEntry();
+	}
 	/*
 	stwu     r1, -0x20(r1)
 	mflr     r0
@@ -2591,6 +2043,12 @@ lbl_803BC8AC:
  */
 void ObjectMgr<ModelEffect>::doAnimation()
 {
+	Iterator<ModelEffect> it(this);
+	CI_LOOP(it)
+	{
+		ModelEffect* efx = *it;
+		efx->doAnimation();
+	}
 	/*
 	stwu     r1, -0x20(r1)
 	mflr     r0
@@ -2737,175 +2195,175 @@ lbl_803BCA90:
  * Address:	803BCAC0
  * Size:	000038
  */
-void Iterator<ModelEffect>::operator*()
-{
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	mr       r4, r3
-	stw      r0, 0x14(r1)
-	lwz      r3, 8(r3)
-	lwz      r4, 4(r4)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x20(r12)
-	mtctr    r12
-	bctrl
-	lwz      r0, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
-}
+// ModelEffect* Iterator<ModelEffect>::operator*()
+//{
+/*
+stwu     r1, -0x10(r1)
+mflr     r0
+mr       r4, r3
+stw      r0, 0x14(r1)
+lwz      r3, 8(r3)
+lwz      r4, 4(r4)
+lwz      r12, 0(r3)
+lwz      r12, 0x20(r12)
+mtctr    r12
+bctrl
+lwz      r0, 0x14(r1)
+mtlr     r0
+addi     r1, r1, 0x10
+blr
+*/
+//}
 
 /*
  * --INFO--
  * Address:	803BCAF8
  * Size:	0000E4
  */
-void Iterator<ModelEffect>::next()
-{
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	mr       r31, r3
-	lwz      r0, 0xc(r3)
-	cmplwi   r0, 0
-	bne      lbl_803BCB38
-	lwz      r3, 8(r31)
-	lwz      r4, 4(r31)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x14(r12)
-	mtctr    r12
-	bctrl
-	stw      r3, 4(r31)
-	b        lbl_803BCBC8
+// void Iterator<ModelEffect>::next()
+//{
+/*
+stwu     r1, -0x10(r1)
+mflr     r0
+stw      r0, 0x14(r1)
+stw      r31, 0xc(r1)
+mr       r31, r3
+lwz      r0, 0xc(r3)
+cmplwi   r0, 0
+bne      lbl_803BCB38
+lwz      r3, 8(r31)
+lwz      r4, 4(r31)
+lwz      r12, 0(r3)
+lwz      r12, 0x14(r12)
+mtctr    r12
+bctrl
+stw      r3, 4(r31)
+b        lbl_803BCBC8
 
 lbl_803BCB38:
-	lwz      r3, 8(r31)
-	lwz      r4, 4(r31)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x14(r12)
-	mtctr    r12
-	bctrl
-	stw      r3, 4(r31)
-	b        lbl_803BCBAC
+lwz      r3, 8(r31)
+lwz      r4, 4(r31)
+lwz      r12, 0(r3)
+lwz      r12, 0x14(r12)
+mtctr    r12
+bctrl
+stw      r3, 4(r31)
+b        lbl_803BCBAC
 
 lbl_803BCB58:
-	lwz      r3, 8(r31)
-	lwz      r4, 4(r31)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x20(r12)
-	mtctr    r12
-	bctrl
-	mr       r4, r3
-	lwz      r3, 0xc(r31)
-	lwz      r12, 0(r3)
-	lwz      r12, 8(r12)
-	mtctr    r12
-	bctrl
-	clrlwi.  r0, r3, 0x18
-	bne      lbl_803BCBC8
-	lwz      r3, 8(r31)
-	lwz      r4, 4(r31)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x14(r12)
-	mtctr    r12
-	bctrl
-	stw      r3, 4(r31)
+lwz      r3, 8(r31)
+lwz      r4, 4(r31)
+lwz      r12, 0(r3)
+lwz      r12, 0x20(r12)
+mtctr    r12
+bctrl
+mr       r4, r3
+lwz      r3, 0xc(r31)
+lwz      r12, 0(r3)
+lwz      r12, 8(r12)
+mtctr    r12
+bctrl
+clrlwi.  r0, r3, 0x18
+bne      lbl_803BCBC8
+lwz      r3, 8(r31)
+lwz      r4, 4(r31)
+lwz      r12, 0(r3)
+lwz      r12, 0x14(r12)
+mtctr    r12
+bctrl
+stw      r3, 4(r31)
 
 lbl_803BCBAC:
-	mr       r3, r31
-	lwz      r12, 0(r31)
-	lwz      r12, 0x10(r12)
-	mtctr    r12
-	bctrl
-	clrlwi.  r0, r3, 0x18
-	beq      lbl_803BCB58
+mr       r3, r31
+lwz      r12, 0(r31)
+lwz      r12, 0x10(r12)
+mtctr    r12
+bctrl
+clrlwi.  r0, r3, 0x18
+beq      lbl_803BCB58
 
 lbl_803BCBC8:
-	lwz      r0, 0x14(r1)
-	lwz      r31, 0xc(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
-}
+lwz      r0, 0x14(r1)
+lwz      r31, 0xc(r1)
+mtlr     r0
+addi     r1, r1, 0x10
+blr
+*/
+//}
 
 /*
  * --INFO--
  * Address:	803BCBDC
  * Size:	0000DC
  */
-void Iterator<ModelEffect>::first()
-{
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	mr       r31, r3
-	lwz      r0, 0xc(r3)
-	cmplwi   r0, 0
-	bne      lbl_803BCC18
-	lwz      r3, 8(r31)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x18(r12)
-	mtctr    r12
-	bctrl
-	stw      r3, 4(r31)
-	b        lbl_803BCCA4
+// void Iterator<ModelEffect>::first()
+//{
+/*
+stwu     r1, -0x10(r1)
+mflr     r0
+stw      r0, 0x14(r1)
+stw      r31, 0xc(r1)
+mr       r31, r3
+lwz      r0, 0xc(r3)
+cmplwi   r0, 0
+bne      lbl_803BCC18
+lwz      r3, 8(r31)
+lwz      r12, 0(r3)
+lwz      r12, 0x18(r12)
+mtctr    r12
+bctrl
+stw      r3, 4(r31)
+b        lbl_803BCCA4
 
 lbl_803BCC18:
-	lwz      r3, 8(r31)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x18(r12)
-	mtctr    r12
-	bctrl
-	stw      r3, 4(r31)
-	b        lbl_803BCC88
+lwz      r3, 8(r31)
+lwz      r12, 0(r3)
+lwz      r12, 0x18(r12)
+mtctr    r12
+bctrl
+stw      r3, 4(r31)
+b        lbl_803BCC88
 
 lbl_803BCC34:
-	lwz      r3, 8(r31)
-	lwz      r4, 4(r31)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x20(r12)
-	mtctr    r12
-	bctrl
-	mr       r4, r3
-	lwz      r3, 0xc(r31)
-	lwz      r12, 0(r3)
-	lwz      r12, 8(r12)
-	mtctr    r12
-	bctrl
-	clrlwi.  r0, r3, 0x18
-	bne      lbl_803BCCA4
-	lwz      r3, 8(r31)
-	lwz      r4, 4(r31)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x14(r12)
-	mtctr    r12
-	bctrl
-	stw      r3, 4(r31)
+lwz      r3, 8(r31)
+lwz      r4, 4(r31)
+lwz      r12, 0(r3)
+lwz      r12, 0x20(r12)
+mtctr    r12
+bctrl
+mr       r4, r3
+lwz      r3, 0xc(r31)
+lwz      r12, 0(r3)
+lwz      r12, 8(r12)
+mtctr    r12
+bctrl
+clrlwi.  r0, r3, 0x18
+bne      lbl_803BCCA4
+lwz      r3, 8(r31)
+lwz      r4, 4(r31)
+lwz      r12, 0(r3)
+lwz      r12, 0x14(r12)
+mtctr    r12
+bctrl
+stw      r3, 4(r31)
 
 lbl_803BCC88:
-	mr       r3, r31
-	lwz      r12, 0(r31)
-	lwz      r12, 0x10(r12)
-	mtctr    r12
-	bctrl
-	clrlwi.  r0, r3, 0x18
-	beq      lbl_803BCC34
+mr       r3, r31
+lwz      r12, 0(r31)
+lwz      r12, 0x10(r12)
+mtctr    r12
+bctrl
+clrlwi.  r0, r3, 0x18
+beq      lbl_803BCC34
 
 lbl_803BCCA4:
-	lwz      r0, 0x14(r1)
-	lwz      r31, 0xc(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
-}
+lwz      r0, 0x14(r1)
+lwz      r31, 0xc(r1)
+mtlr     r0
+addi     r1, r1, 0x10
+blr
+*/
+//}
 
 /*
  * --INFO--
@@ -2925,96 +2383,5 @@ void __sinit_particleMgr_cpp()
 	stfs     f0, 4(r3)
 	stfs     f0, 8(r3)
 	blr
-	*/
-}
-
-/*
- * --INFO--
- * Address:	803BCCE0
- * Size:	000008
- */
-void NodeObjectMgr<ModelEffect>::@28 @resetMgr()
-{
-	/*
-	addi     r3, r3, -28
-	b        "resetMgr__28NodeObjectMgr<11ModelEffect>Fv"
-	*/
-}
-
-/*
- * --INFO--
- * Address:	803BCCE8
- * Size:	000008
- */
-void ObjectMgr<ModelEffect>::@28 @doDirectDraw(Graphics&)
-{
-	/*
-	addi     r3, r3, -28
-	b        "doDirectDraw__24ObjectMgr<11ModelEffect>FR8Graphics"
-	*/
-}
-
-/*
- * --INFO--
- * Address:	803BCCF0
- * Size:	000008
- */
-void ObjectMgr<ModelEffect>::@28 @doSimulation(float)
-{
-	/*
-	addi     r3, r3, -28
-	b        "doSimulation__24ObjectMgr<11ModelEffect>Ff"
-	*/
-}
-
-/*
- * --INFO--
- * Address:	803BCCF8
- * Size:	000008
- */
-void ObjectMgr<ModelEffect>::@28 @doViewCalc()
-{
-	/*
-	addi     r3, r3, -28
-	b        "doViewCalc__24ObjectMgr<11ModelEffect>Fv"
-	*/
-}
-
-/*
- * --INFO--
- * Address:	803BCD00
- * Size:	000008
- */
-void ObjectMgr<ModelEffect>::@28 @doSetView(int)
-{
-	/*
-	addi     r3, r3, -28
-	b        "doSetView__24ObjectMgr<11ModelEffect>Fi"
-	*/
-}
-
-/*
- * --INFO--
- * Address:	803BCD08
- * Size:	000008
- */
-void ObjectMgr<ModelEffect>::@28 @doEntry()
-{
-	/*
-	addi     r3, r3, -28
-	b        "doEntry__24ObjectMgr<11ModelEffect>Fv"
-	*/
-}
-
-/*
- * --INFO--
- * Address:	803BCD10
- * Size:	000008
- */
-void ObjectMgr<ModelEffect>::@28 @doAnimation()
-{
-	/*
-	addi     r3, r3, -28
-	b        "doAnimation__24ObjectMgr<11ModelEffect>Fv"
 	*/
 }

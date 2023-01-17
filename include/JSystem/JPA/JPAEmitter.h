@@ -18,7 +18,11 @@ struct JPAEmitterWorkData;
 struct JPAEmitterManager;
 struct JPAEmitterCallBack;
 struct JPAParticleCallBack;
-struct JPADrawInfo;
+
+struct JPADrawInfo {
+	Mtx mtx1;
+	Mtx mtx2;
+};
 
 enum JPAEmitterFlags {
 	JPAEMIT_Unk1     = 0x1,
@@ -184,6 +188,13 @@ struct JPABaseEmitter {
 		m_color1.b = color.b;
 	}
 
+	inline void setColorRGB(u8 r, u8 g, u8 b)
+	{
+		m_color1.r = r;
+		m_color1.g = g;
+		m_color1.b = b;
+	}
+
 	inline void setColorRGB(JUtility::TColor& color)
 	{
 		m_color2.r = color.r;
@@ -198,36 +209,43 @@ struct JPABaseEmitter {
 		m_color1.b = color.b;
 	}
 
-	Vector3f m_scale;           // _00
-	JGeometry::TVec3f _0C;      // _0C
-	JGeometry::TVec3f _18;      // _18
-	s32 _24;                    // _24
-	f32 _28;                    // _28
-	f32 _2C;                    // _2C
-	f32 _30;                    // _30
-	f32 _34;                    // _34
-	u8 _38[0x8];                // _38
-	f32 _40;                    // _40
-	u8 _44[4];                  // _44
-	f32 _48;                    // _48
-	s16 _4C;                    // _4C
-	s16 _4E;                    // _4E
-	s16 _50;                    // _50
-	u16 _52;                    // _52
-	u16 _54;                    // _54
-	JSUPtrLink _58;             // _58
-	Mtx _68;                    // _68
-	JGeometry::TVec3f _98;      // _98
-	JGeometry::TVec3f _A4;      // _A4
-	f32 _B0;                    // _B0
-	f32 _B4;                    // _B4
-	JUtility::TColor m_color1;  // _B8
-	JUtility::TColor m_color2;  // _BC
-	s32 : 0;                    // reset alignment to _C0
-	u8 _C0[4];                  // _C0
-	JMath::TRandom_fast_ m_rng; // _C4
-	void* _C8;                  // _C8
-	void* _CC;                  // _CC
+	inline void setPrmColorRGB(u8 r, u8 g, u8 b)
+	{
+		m_color1.r = r;
+		m_color1.g = g;
+		m_color1.b = b;
+	}
+
+	Vector3f m_scale;            // _00
+	JGeometry::TVec3f _0C;       // _0C
+	JGeometry::TVec3f _18;       // _18
+	s32 _24;                     // _24
+	f32 _28;                     // _28
+	f32 _2C;                     // _2C
+	f32 _30;                     // _30
+	f32 _34;                     // _34
+	u8 _38[0x8];                 // _38
+	f32 _40;                     // _40
+	u8 _44[4];                   // _44
+	f32 _48;                     // _48
+	s16 _4C;                     // _4C
+	s16 _4E;                     // _4E
+	s16 _50;                     // _50
+	u16 _52;                     // _52
+	u16 _54;                     // _54
+	JSUPtrLink _58;              // _58
+	Mtx _68;                     // _68
+	JGeometry::TVec3f _98;       // _98
+	JGeometry::TVec3f m_positon; // _A4
+	f32 _B0;                     // _B0
+	f32 _B4;                     // _B4
+	JUtility::TColor m_color1;   // _B8
+	JUtility::TColor m_color2;   // _BC
+	s32 : 0;                     // reset alignment to _C0
+	u8 _C0[4];                   // _C0
+	JMath::TRandom_fast_ m_rng;  // _C4
+	void* _C8;                   // _C8
+	void* _CC;                   // _CC
 	// JPANode<JPABaseParticle>* _C8; // _C8
 	// JPANode<JPABaseParticle>* _CC; // _CC
 	s32 _D0;   // _D0
@@ -323,13 +341,13 @@ struct JPAEmitterWorkData {
 struct JPAEmitterManager {
 	JPAEmitterManager(u32, u32, JKRHeap*, u8, u8);
 
-	void createSimpleEmitterID(const JGeometry::TVec3f&, u16, u8, u8, JPAEmitterCallBack*, JPAParticleCallBack*);
+	JPABaseEmitter* createSimpleEmitterID(const JGeometry::TVec3f&, u16, u8, u8, JPAEmitterCallBack*, JPAParticleCallBack*);
 	void calc();
 	void draw(const JPADrawInfo*, u8);
 	void forceDeleteAllEmitter();
 	void forceDeleteGroupEmitter(u8);
 	void forceDeleteEmitter(JPABaseEmitter*);
-	static void entryResourceManager(JPAResourceManager*, u8);
+	void entryResourceManager(JPAResourceManager*, u8);
 	void clearResourceManager(u8);
 	void calcYBBCam();
 

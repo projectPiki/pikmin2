@@ -273,9 +273,9 @@ void TChasePos::execute(JPABaseEmitter* emitter)
 	float x = _14->x;
 	float y = _14->y;
 
-	emitter->_A4.x = x;
-	emitter->_A4.y = y;
-	emitter->_A4.z = 0.0f;
+	emitter->m_positon.x = x;
+	emitter->m_positon.y = y;
+	emitter->m_positon.z = 0.0f;
 }
 
 /*
@@ -316,9 +316,9 @@ void TChasePosDir::execute(JPABaseEmitter* emitter)
 	float x2 = _18->x;
 	float y2 = _18->y;
 
-	emitter->_A4.x = x1;
-	emitter->_A4.y = y1;
-	emitter->_A4.z = 0.0f;
+	emitter->m_positon.x = x1;
+	emitter->m_positon.y = y1;
+	emitter->m_positon.z = 0.0f;
 
 	emitter->_18.x = x2;
 	emitter->_18.y = y2;

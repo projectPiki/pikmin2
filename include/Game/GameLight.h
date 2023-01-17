@@ -5,6 +5,7 @@
 #include "Light.h"
 #include "CNode.h"
 #include "Game/GameLightSetting.h"
+#include "id32.h"
 
 struct Color4;
 
@@ -96,7 +97,8 @@ struct GameLightMgr : public LightMgr {
 
 	// _00      = VTBL
 	// _00-_50  = LightMgr
-	u8 _50[0x2344 - 0x50];
+	LightObj* m_mainLight; // _50
+	u8 _50[0x2344 - 0x54];
 	FogMgr* m_fogMgr; // _2344
 };
 } // namespace Game

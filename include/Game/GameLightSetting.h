@@ -4,6 +4,7 @@
 #include "types.h"
 #include "Parameters.h"
 #include "stream.h"
+#include "BaseParm.h"
 
 namespace Game {
 struct GameLightSettingBase {

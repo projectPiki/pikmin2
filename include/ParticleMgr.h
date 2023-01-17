@@ -67,15 +67,19 @@ struct ParticleMgr : public CNode {
 	NodeObjectMgr<ModelEffect> m_modelEffectMgr; // _1C
 	u8 _58[8];                                   // _58
 	ModelEffectDataRoot m_modelEffectDataRoot;   // _60
-	u8 _78[8];                                   // _78
 	int m_referencedViewportCount;               // _80
 	Viewport* m_viewports[4];                    // _84
 	int m_activeViewportCount;                   // _94
 	JPAEmitterManager* m_emitterManager;         // _98
 	JPAResourceManager* m_resourceManager;       // _9C
-	JKRHeap* _A0;                                // _A0
-	JKRHeap* _A4;                                // _A4
+	JKRHeap* m_heap;                             // _A0
+	JKRHeap* m_modelEffectHeap;                  // _A4
 	int _A8;                                     // _A8
+
+	static bool disableCulling;
+	static f32 mClipRadiusS; // = 10.0f;
+	static f32 mClipRadiusM; // = 30.0f;
+	static f32 mClipRadiusL; // = 100.0f;
 };
 
 extern ParticleMgr* particleMgr;

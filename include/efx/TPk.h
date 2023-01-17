@@ -240,8 +240,8 @@ struct TPkEffectMgr {
 
 	virtual ~TPkEffectMgr(); // _08
 
-	void globalInstance();
-	void deleteInstance();
+	static void globalInstance();
+	static void deleteInstance();
 	void Instance();
 	void startMgr();
 	void exitMgr();
