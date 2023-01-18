@@ -7,26 +7,26 @@
 namespace ebi {
 struct EUTPadInterface_countNum {
 	enum enumMode {
-		MODE_UNKNOWN_0 = 0,
-		MODE_UNKNOWN_1,
-		MODE_UNKNOWN_2,
-		MODE_UNKNOWN_3,
+		MODE_LEFTRIGHT,
+		MODE_RIGHTLEFT,
+		MODE_UPDOWN,
+		MODE_DOWNUP,
 	};
 
 	void init(Controller*, long, long, long*, enumMode, f32, f32);
 	void update();
 
 	Controller* m_controller; // _00
-	u32 _04;                  // _04
+	u32 m_counter;            // _04
 	u32 _08;                  // _08
-	u8 _0C;                   // _0C
+	bool m_isChanging;        // _0C
 	u8 _0D;                   // _0D
 	long _10;                 // _10
 	long _14;                 // _14
 	long* _18;                // _18
 	long _1C;                 // _1C
-	f32 _20;                  // _20
-	f32 _24;                  // _24
+	f32 m_timeFactor1;        // _20
+	f32 m_timeFactor2;        // _24
 	enumMode m_mode;          // _28
 };
 

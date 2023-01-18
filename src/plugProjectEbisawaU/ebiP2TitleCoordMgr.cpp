@@ -1,63 +1,6 @@
 #include "ebi/title/TCoordMgr.h"
 #include "JSystem/JKR/JKRArchive.h"
 
-/*
-    Generated from dpostproc
-
-    .section .rodata  # 0x804732E0 - 0x8049E220
-    .global lbl_80497138
-    lbl_80497138:
-        .4byte 0x54436F6F
-        .4byte 0x72644D67
-        .4byte 0x72000000
-    .global lbl_80497144
-    lbl_80497144:
-        .4byte 0x54546761
-        .4byte 0x4C6F6164
-        .4byte 0x50617261
-        .4byte 0x6D657465
-        .4byte 0x72730000
-
-    .section .sdata2, "a"     # 0x80516360 - 0x80520E40
-    .global lbl_8051FC20
-    lbl_8051FC20:
-        .4byte 0x4F666673
-        .4byte 0x65745800
-    .global lbl_8051FC28
-    lbl_8051FC28:
-        .4byte 0xC3A00000
-    .global lbl_8051FC2C
-    lbl_8051FC2C:
-        .4byte 0xC3FA0000
-    .global lbl_8051FC30
-    lbl_8051FC30:
-        .4byte 0x43FA0000
-    .global lbl_8051FC34
-    lbl_8051FC34:
-        .4byte 0x4F666673
-        .4byte 0x65745900
-    .global lbl_8051FC3C
-    lbl_8051FC3C:
-        .4byte 0xC3700000
-    .global lbl_8051FC40
-    lbl_8051FC40:
-        .4byte 0x588AD48A
-        .4byte 0x75000000
-    .global lbl_8051FC48
-    lbl_8051FC48:
-        .float 1.0
-    .global lbl_8051FC4C
-    lbl_8051FC4C:
-        .4byte 0x00000000
-    .global lbl_8051FC50
-    lbl_8051FC50:
-        .4byte 0x42C80000
-    .global lbl_8051FC54
-    lbl_8051FC54:
-        .4byte 0x598AD48A
-        .4byte 0x75000000
-*/
-
 namespace ebi {
 namespace title {
 
