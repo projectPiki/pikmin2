@@ -1441,38 +1441,119 @@ void Obj::updateMaterialColor()
 	newAlpha             = (alphaDiff < 5) ? newAlpha : ((oldAlpha < newAlpha) ? oldAlpha + 5 : oldAlpha - 5);
 	m_currMatBodyColor.a = newAlpha;
 
-	for (int i = 0; i < 3; i++) {
-		f32 oldVal = m_currClusterEyeColor.m_rgb[i];
-		f32 speed  = m_clusterEyeAnimSpeeds[i];
-		f32 newVal = m_targetClusterEyeColor[m_targetEyeColorIdx].m_rgb[i];
-		f32 diff   = absVal(oldVal - newVal);
+	// cluster red
+	f32 oldVal = m_currClusterEyeColor.m_rgb[0];
+	f32 speed  = m_clusterEyeAnimSpeeds[0];
+	f32 newVal = m_targetClusterEyeColor[m_targetEyeColorIdx].m_rgb[0];
+	f32 diff   = absVal(oldVal - newVal);
 
-		if (diff < speed) {
-			newVal = newVal;
-		} else if (oldVal < newVal) {
-			newVal = oldVal + speed;
-		} else {
-			newVal = oldVal - speed;
-		}
-
-		m_currClusterEyeColor.m_rgb[i] = newVal;
+	if (diff < speed) {
+		newVal = newVal;
+	} else if (oldVal < newVal) {
+		newVal = oldVal + speed;
+	} else {
+		newVal = oldVal - speed;
 	}
 
+	m_currClusterEyeColor.m_rgb[0] = newVal;
+
+	// cluster green
+	oldVal = m_currClusterEyeColor.m_rgb[1];
+	speed  = m_clusterEyeAnimSpeeds[1];
+	newVal = m_targetClusterEyeColor[m_targetEyeColorIdx].m_rgb[1];
+	diff   = absVal(oldVal - newVal);
+
+	if (diff < speed) {
+		newVal = newVal;
+	} else if (oldVal < newVal) {
+		newVal = oldVal + speed;
+	} else {
+		newVal = oldVal - speed;
+	}
+
+	m_currClusterEyeColor.m_rgb[1] = newVal;
+
+	// cluster blue
+	oldVal = m_currClusterEyeColor.m_rgb[2];
+	speed  = m_clusterEyeAnimSpeeds[2];
+	newVal = m_targetClusterEyeColor[m_targetEyeColorIdx].m_rgb[2];
+	diff   = absVal(oldVal - newVal);
+
+	if (diff < speed) {
+		newVal = newVal;
+	} else if (oldVal < newVal) {
+		newVal = oldVal + speed;
+	} else {
+		newVal = oldVal - speed;
+	}
+
+	m_currClusterEyeColor.m_rgb[2] = newVal;
+
+	// side red
+	oldVal = m_currSideEyeColor.m_rgb[0];
+	speed  = m_sideEyeAnimSpeeds[0];
+	newVal = m_targetSideEyeColor[m_targetEyeColorIdx].m_rgb[0];
+	diff   = absVal(oldVal - newVal);
+
+	if (diff < speed) {
+		newVal = newVal;
+	} else if (oldVal < newVal) {
+		newVal = oldVal + speed;
+	} else {
+		newVal = oldVal - speed;
+	}
+
+	m_currSideEyeColor.m_rgb[0] = newVal;
+
+	// side green
+	oldVal = m_currSideEyeColor.m_rgb[1];
+	speed  = m_sideEyeAnimSpeeds[1];
+	newVal = m_targetSideEyeColor[m_targetEyeColorIdx].m_rgb[1];
+	diff   = absVal(oldVal - newVal);
+
+	if (diff < speed) {
+		newVal = newVal;
+	} else if (oldVal < newVal) {
+		newVal = oldVal + speed;
+	} else {
+		newVal = oldVal - speed;
+	}
+
+	m_currSideEyeColor.m_rgb[1] = newVal;
+
+	// side blue
+	oldVal = m_currSideEyeColor.m_rgb[2];
+	speed  = m_sideEyeAnimSpeeds[2];
+	newVal = m_targetSideEyeColor[m_targetEyeColorIdx].m_rgb[2];
+	diff   = absVal(oldVal - newVal);
+
+	if (diff < speed) {
+		newVal = newVal;
+	} else if (oldVal < newVal) {
+		newVal = oldVal + speed;
+	} else {
+		newVal = oldVal - speed;
+	}
+
+	m_currSideEyeColor.m_rgb[2] = newVal;
+
+	bool check = true;
 	for (int i = 0; i < 3; i++) {
-		f32 oldVal = m_currSideEyeColor.m_rgb[i];
-		f32 speed  = m_sideEyeAnimSpeeds[i];
-		f32 newVal = m_targetSideEyeColor[m_targetEyeColorIdx].m_rgb[i];
-		f32 diff   = absVal(oldVal - newVal);
-
-		if (diff < speed) {
-			newVal = newVal;
-		} else if (oldVal < newVal) {
-			newVal = oldVal + speed;
-		} else {
-			newVal = oldVal - speed;
+		f32 clusterColorDiff = absVal(m_currClusterEyeColor.m_rgb[i] - m_targetClusterEyeColor[m_targetEyeColorIdx].m_rgb[i]);
+		if (!(clusterColorDiff > 0.01f)) {
+			f32 sideColorDiff = absVal(m_currSideEyeColor.m_rgb[i] - m_targetSideEyeColor[m_targetEyeColorIdx].m_rgb[i]);
+			if (!(sideColorDiff > 0.01f)) {
+				continue;
+			}
 		}
+		check = false;
+		break;
+	}
 
-		m_currSideEyeColor.m_rgb[i] = newVal;
+	if (check) {
+		m_targetEyeColorIdx ^= 1;
+
+		setMatEyeAnimSpeed();
 	}
 
 	/*
