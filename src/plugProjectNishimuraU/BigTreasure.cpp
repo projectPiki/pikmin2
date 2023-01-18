@@ -1409,133 +1409,27 @@ void Obj::setAttackMaterialColor(bool isFast)
  */
 void Obj::updateMaterialColor()
 {
-	// red
-	s16 newRed  = m_targetMatBodyColor.r;
-	s16 oldRed  = m_currMatBodyColor.r;
-	int redDiff = absVal(oldRed - newRed);
+	// body
+	m_currMatBodyColor.r = adjustValInt(m_currMatBodyColor.r, m_targetMatBodyColor.r, 5);
+	m_currMatBodyColor.g = adjustValInt(m_currMatBodyColor.g, m_targetMatBodyColor.g, 5);
+	m_currMatBodyColor.b = adjustValInt(m_currMatBodyColor.b, m_targetMatBodyColor.b, 5);
+	m_currMatBodyColor.a = adjustValInt(m_currMatBodyColor.a, m_targetMatBodyColor.a, 5);
 
-	newRed               = (redDiff < 5) ? newRed : ((oldRed < newRed) ? oldRed + 5 : oldRed - 5);
-	m_currMatBodyColor.r = newRed;
+	// cluster eyes
+	m_currClusterEyeColor.m_rgb[0]
+	    = adjustVal(m_currClusterEyeColor.m_rgb[0], m_targetClusterEyeColor[m_targetEyeColorIdx].m_rgb[0], m_clusterEyeAnimSpeeds[0]);
+	m_currClusterEyeColor.m_rgb[1]
+	    = adjustVal(m_currClusterEyeColor.m_rgb[1], m_targetClusterEyeColor[m_targetEyeColorIdx].m_rgb[1], m_clusterEyeAnimSpeeds[1]);
+	m_currClusterEyeColor.m_rgb[2]
+	    = adjustVal(m_currClusterEyeColor.m_rgb[2], m_targetClusterEyeColor[m_targetEyeColorIdx].m_rgb[2], m_clusterEyeAnimSpeeds[2]);
 
-	// green
-	s16 newGreen  = m_targetMatBodyColor.g;
-	s16 oldGreen  = m_currMatBodyColor.g;
-	int greenDiff = absVal(oldGreen - newGreen);
-
-	newGreen             = (greenDiff < 5) ? newGreen : ((oldGreen < newGreen) ? oldGreen + 5 : oldGreen - 5);
-	m_currMatBodyColor.g = newGreen;
-
-	// blue
-	s16 newBlue  = m_targetMatBodyColor.b;
-	s16 oldBlue  = m_currMatBodyColor.b;
-	int blueDiff = absVal(oldBlue - newBlue);
-
-	newBlue              = (blueDiff < 5) ? newBlue : ((oldBlue < newBlue) ? oldBlue + 5 : oldBlue - 5);
-	m_currMatBodyColor.b = newBlue;
-
-	// alpha
-	s16 newAlpha  = m_targetMatBodyColor.a;
-	s16 oldAlpha  = m_currMatBodyColor.a;
-	int alphaDiff = absVal(oldAlpha - newAlpha);
-
-	newAlpha             = (alphaDiff < 5) ? newAlpha : ((oldAlpha < newAlpha) ? oldAlpha + 5 : oldAlpha - 5);
-	m_currMatBodyColor.a = newAlpha;
-
-	// cluster red
-	f32 oldVal = m_currClusterEyeColor.m_rgb[0];
-	f32 speed  = m_clusterEyeAnimSpeeds[0];
-	f32 newVal = m_targetClusterEyeColor[m_targetEyeColorIdx].m_rgb[0];
-	f32 diff   = absVal(oldVal - newVal);
-
-	if (diff < speed) {
-		newVal = newVal;
-	} else if (oldVal < newVal) {
-		newVal = oldVal + speed;
-	} else {
-		newVal = oldVal - speed;
-	}
-
-	m_currClusterEyeColor.m_rgb[0] = newVal;
-
-	// cluster green
-	oldVal = m_currClusterEyeColor.m_rgb[1];
-	speed  = m_clusterEyeAnimSpeeds[1];
-	newVal = m_targetClusterEyeColor[m_targetEyeColorIdx].m_rgb[1];
-	diff   = absVal(oldVal - newVal);
-
-	if (diff < speed) {
-		newVal = newVal;
-	} else if (oldVal < newVal) {
-		newVal = oldVal + speed;
-	} else {
-		newVal = oldVal - speed;
-	}
-
-	m_currClusterEyeColor.m_rgb[1] = newVal;
-
-	// cluster blue
-	oldVal = m_currClusterEyeColor.m_rgb[2];
-	speed  = m_clusterEyeAnimSpeeds[2];
-	newVal = m_targetClusterEyeColor[m_targetEyeColorIdx].m_rgb[2];
-	diff   = absVal(oldVal - newVal);
-
-	if (diff < speed) {
-		newVal = newVal;
-	} else if (oldVal < newVal) {
-		newVal = oldVal + speed;
-	} else {
-		newVal = oldVal - speed;
-	}
-
-	m_currClusterEyeColor.m_rgb[2] = newVal;
-
-	// side red
-	oldVal = m_currSideEyeColor.m_rgb[0];
-	speed  = m_sideEyeAnimSpeeds[0];
-	newVal = m_targetSideEyeColor[m_targetEyeColorIdx].m_rgb[0];
-	diff   = absVal(oldVal - newVal);
-
-	if (diff < speed) {
-		newVal = newVal;
-	} else if (oldVal < newVal) {
-		newVal = oldVal + speed;
-	} else {
-		newVal = oldVal - speed;
-	}
-
-	m_currSideEyeColor.m_rgb[0] = newVal;
-
-	// side green
-	oldVal = m_currSideEyeColor.m_rgb[1];
-	speed  = m_sideEyeAnimSpeeds[1];
-	newVal = m_targetSideEyeColor[m_targetEyeColorIdx].m_rgb[1];
-	diff   = absVal(oldVal - newVal);
-
-	if (diff < speed) {
-		newVal = newVal;
-	} else if (oldVal < newVal) {
-		newVal = oldVal + speed;
-	} else {
-		newVal = oldVal - speed;
-	}
-
-	m_currSideEyeColor.m_rgb[1] = newVal;
-
-	// side blue
-	oldVal = m_currSideEyeColor.m_rgb[2];
-	speed  = m_sideEyeAnimSpeeds[2];
-	newVal = m_targetSideEyeColor[m_targetEyeColorIdx].m_rgb[2];
-	diff   = absVal(oldVal - newVal);
-
-	if (diff < speed) {
-		newVal = newVal;
-	} else if (oldVal < newVal) {
-		newVal = oldVal + speed;
-	} else {
-		newVal = oldVal - speed;
-	}
-
-	m_currSideEyeColor.m_rgb[2] = newVal;
+	// side eyes
+	m_currSideEyeColor.m_rgb[0]
+	    = adjustVal(m_currSideEyeColor.m_rgb[0], m_targetSideEyeColor[m_targetEyeColorIdx].m_rgb[0], m_sideEyeAnimSpeeds[0]);
+	m_currSideEyeColor.m_rgb[1]
+	    = adjustVal(m_currSideEyeColor.m_rgb[1], m_targetSideEyeColor[m_targetEyeColorIdx].m_rgb[1], m_sideEyeAnimSpeeds[1]);
+	m_currSideEyeColor.m_rgb[2]
+	    = adjustVal(m_currSideEyeColor.m_rgb[2], m_targetSideEyeColor[m_targetEyeColorIdx].m_rgb[2], m_sideEyeAnimSpeeds[2]);
 
 	bool check = true;
 	for (int i = 0; i < 3; i++) {
