@@ -79,22 +79,9 @@ inline f32 adjustVal(f32 y, f32 x, f32 delta)
 	return (diff < delta) ? x : (y < x) ? y + delta : y - delta;
 }
 
-inline int adjustValThreshold(int target, int current, int delta)
+inline int adjustValInt(int current, int dest, const int delta)
 {
-	if (current < target) {
-		current += delta;
-	} else {
-		current -= delta;
-	}
-
-	return current;
-}
-
-inline int adjustValInt(int current, int target, int delta)
-{
-	int diff = absVal(current - target);
-
-	return (diff < delta) ? target : adjustValThreshold(target, current, delta);
+	return (absVal(current - dest) < delta) ? dest : (current < dest ? current += delta : current -= delta);
 }
 
 #endif

@@ -853,7 +853,7 @@ NISHIMURA:=\
 	$(BUILD_DIR)/src/plugProjectNishimuraU/BigTreasureState.o\
 	$(BUILD_DIR)/src/plugProjectNishimuraU/BigTreasureMgr.o\
 	$(BUILD_DIR)/asm/plugProjectNishimuraU/BigTreasureShadow.o\
-	$(BUILD_DIR)/asm/plugProjectNishimuraU/BigTreasure.o\
+	$(BUILD_DIR)/src/plugProjectNishimuraU/BigTreasure.o\
 	$(BUILD_DIR)/asm/plugProjectNishimuraU/KabutoState.o\
 	$(BUILD_DIR)/src/plugProjectNishimuraU/KabutoAnimator.o\
 	$(BUILD_DIR)/src/plugProjectNishimuraU/KabutoMgr.o\

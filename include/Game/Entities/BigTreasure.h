@@ -213,6 +213,22 @@ struct Obj : public EnemyBase {
 
 	void setupBigTreasureCollision();
 
+	inline int getCurrentBodyRed() { return m_currMatBodyColor.r; }
+
+	inline int getTargetBodyRed() { return m_targetMatBodyColor.r; }
+
+	inline int getCurrentBodyGreen() { return m_currMatBodyColor.g; }
+
+	inline int getTargetBodyGreen() { return m_targetMatBodyColor.g; }
+
+	inline int getCurrentBodyBlue() { return m_currMatBodyColor.b; }
+
+	inline int getTargetBodyBlue() { return m_targetMatBodyColor.b; }
+
+	inline int getCurrentBodyAlpha() { return m_currMatBodyColor.a; }
+
+	inline int getTargetBodyAlpha() { return m_targetMatBodyColor.a; }
+
 	// _00 		= VTBL
 	// _00-_2BC	= EnemyBase
 	FSM* m_fsm;                                  // _2BC
