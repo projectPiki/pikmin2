@@ -69,11 +69,14 @@ struct EnemyBlendAnimatorBase : public EnemyAnimatorBase {
 	void endBlend();
 	void animate(SysShape::BlendFunction* function, f32, f32, f32);
 
-	SysShape::BlendAnimator m_animator; // _10
-
 	static SysShape::BlendLinearFun sBlendLinearFun;
 	static SysShape::BlendQuadraticFunc sBlendQuadraticFun;
+
+	// _00     = VTBL
+	// _00-_10 = EnemyAnimatorBase
+	SysShape::BlendAnimator m_animator; // _10
 };
+
 } // namespace Game
 
 #endif

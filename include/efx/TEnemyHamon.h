@@ -63,6 +63,18 @@ struct TEnemyHamonChasePos : public TBase {
 		m_hamonMInd.fade();
 	}
 
+	inline void startDemoDrawOff()
+	{
+		m_hamonM.startDemoDrawOff();
+		m_hamonMInd.startDemoDrawOff();
+	}
+
+	inline void endDemoDrawOn()
+	{
+		m_hamonM.endDemoDrawOn();
+		m_hamonMInd.endDemoDrawOn();
+	}
+
 	// _00      = VTABLE
 	TEnemyHamonM m_hamonM;       // _04
 	TEnemyHamonMInd m_hamonMInd; // _18

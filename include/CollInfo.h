@@ -139,6 +139,8 @@ struct MouthSlots {
 
 	int getMax() { return m_max; }
 
+	inline Game::Creature* getStuckCreature(int i) { return getSlot(i)->m_stuckCreature; }
+
 	int m_max;              // _00
 	MouthCollPart* m_slots; // _04
 };

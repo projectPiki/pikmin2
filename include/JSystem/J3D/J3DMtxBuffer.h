@@ -41,6 +41,8 @@ struct J3DMtxBuffer : public J3DMtxBufferParent {
 	void calcNrmMtx();
 	void calcBBoardMtx();
 
+	inline Matrixf* getWorldMatrix(int i) { return (Matrixf*)m_worldMatrices[i]; }
+
 	static Mtx* sNoUseDrawMtxPtr;
 	static Mtx33* sNoUseNrmMtxPtr;
 

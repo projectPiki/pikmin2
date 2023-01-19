@@ -6748,6 +6748,7 @@ getDownSmokeScale__Q34Game10KingChappy3ObjFv: # weak function
 /* 80362538 0035F478  C0 22 04 1C */	lfs f1, lbl_8051E77C@sda21(r2)
 /* 8036253C 0035F47C  4E 80 00 20 */	blr 
 
+.global __sinit_kingChappy_cpp
 __sinit_kingChappy_cpp: # static initializer
 /* 80362540 0035F480  3C 80 80 51 */	lis r4, __float_nan@ha
 /* 80362544 0035F484  38 00 FF FF */	li r0, -1

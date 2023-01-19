@@ -19,150 +19,28 @@
 
 namespace Game {
 namespace KingChappy {
-struct FSM;
-
-struct Obj : public EnemyBase {
-	Obj();
-
-	//////////////// VTABLE
-	virtual void onInit(CreatureInitArg* settings);         // _30
-	virtual void onKill(CreatureKillArg* settings);         // _34
-	virtual void doSimulation(f32);                         // _4C
-	virtual void doDirectDraw(Graphics& gfx);               // _50
-	virtual f32 getBodyRadius();                            // _54 (weak)
-	virtual f32 getCellRadius();                            // _58 (weak)
-	virtual void inWaterCallback(WaterBox* wb);             // _84
-	virtual bool isUnderground();                           // _D0 (weak)
-	virtual void collisionCallback(CollEvent& event);       // _EC
-	virtual void getShadowParam(ShadowParam& settings);     // _134
-	virtual void applyImpulse(Vector3f&, Vector3f&);        // _18C (weak)
-	virtual ~Obj() { }                                      // _1BC (weak)
-	virtual void birth(Vector3f&, f32);                     // _1C0
-	virtual void setInitialSetting(EnemyInitialParamBase*); // _1C4 (weak)
-	virtual void doUpdate();                                // _1CC
-	virtual void doAnimationUpdateAnimator();               // _1D8
-	virtual void doAnimationCullingOff();                   // _1DC
-	virtual void doDebugDraw(Graphics&);                    // _1EC
-	virtual void setParameters();                           // _228
-	virtual void initMouthSlots();                          // _22C
-	virtual void initWalkSmokeEffect();                     // _230
-	virtual WalkSmokeEffect::Mgr* getWalkSmokeEffectMgr();  // _234
-	virtual void updateEfxHamon();                          // _24C (weak)
-	virtual void createEfxHamon();                          // _250 (weak)
-	virtual EnemyTypeID::EEnemyTypeID getEnemyTypeID();     // _258 (weak)
-	virtual MouthSlots* getMouthSlots();                    // _25C (weak)
-	virtual bool damageCallBack(Creature*, f32, CollPart*); // _278
-	virtual bool pressCallBack(Creature*, f32, CollPart*);  // _27C (weak)
-	virtual bool bombCallBack(Creature*, Vector3f&, f32);   // _294
-	virtual bool eatWhitePikminCallBack(Creature*, f32);    // _298 (weak)
-	virtual void doStartStoneState();                       // _2A4
-	virtual void doFinishStoneState();                      // _2A8
-	virtual void startCarcassMotion();                      // _2C4
-	virtual void wallCallback(const MoveInfo&);             // _2E8
-	virtual f32 getDownSmokeScale();                        // _2EC (weak)
-	virtual void doStartMovie();                            // _2F0
-	virtual void doEndMovie();                              // _2F4
-	virtual void setFSM(FSM*);                              // _2F8 (weak)
-	//////////////// VTABLE END
-
-	void eatBomb();
-	void getPikminInMouth(bool);
-	void getTonguePosVel(Vector3f&, Vector3f&);
-	void setNextGoal();
-	void searchTarget();
-	void isOutOfTerritory(f32);
-	bool forceTransit(int);
-	void requestTransit(int);
-	void walkFunc();
-	void turnFunc(f32);
-	void isReachToGoal(f32);
-	void checkAttack(bool);
-	void checkFlick(bool);
-	void checkDead(bool);
-	void checkTurn(bool);
-	void startMotionSelf(int, SysShape::MotionListener*);
-	void endBlendAnimation();
-	void leftFootMtxCalc();
-	void rightFootMtxCalc();
-	void footMtxCalc(f32 (*)[4], Vector3f*, f32*);
-	void resetFootPos();
-	void fadeAllEffect();
-	void createEffect(int);
-	void fadeEffect(int);
-	void createBounceEffect();
-
-	// _00 		= VTBL
-	// _00-_2BC	= EnemyBase
-	Vector3f _2BC;                        // _2BC, initialised as m_homePosition
-	MouthSlots m_mouthSlots;              // _2C8
-	SysShape::Joint* m_mouthJoint1;       // _2D0, 'kuti'
-	SysShape::Joint* m_bodyJoint;         // _2D4, 'kosijnt'
-	SysShape::Joint* m_tongueJoint1;      // _2D8, 'bero6'
-	SysShape::Joint* m_tongueJoint2;      // _2DC, 'bero5'
-	SysShape::Joint* m_mouthJoint2;       // _2E0, 'kuti'
-	u8 _2E4[0x8];                         // _2E4, unknown
-	u8 _2EC;                              // _2EC, unknown
-	int _2F0;                             // _2F0
-	Vector3f _2F4;                        // _2F4, initialised as m_homePosition (but y = 0.0f)
-	u8 _300[0xC];                         // _300, unknown
-	int _30C;                             // _30C
-	s16 m_lFootJointIndex;                // _310, index for 'asiL'
-	u8 _312[0x2];                         // _312, padding probably
-	u8 _314[0xC];                         // _314, unknown
-	f32 _320;                             // _320
-	s16 m_rFootJointIndex;                // _324, index for 'asiR'
-	Vector3f _328;                        // _328
-	f32 _334;                             // _334
-	u8 _338;                              // _338
-	u8 _339[0x3];                         // _339, padding probably
-	u8 _33C[0x4];                         // _33C, unknown
-	void* _340;                           // _340, code? unknown
-	WalkSmokeEffect::Mgr m_walkSmokeMgr;  // _344
-	FSM* m_fsm;                           // _34C
-	efx::TKchYodare* m_efxYodare;         // _350
-	efx::TKchDiveSand* m_efxDiveSand;     // _354
-	efx::TKchDiveWat* m_efxDiveWater;     // _358
-	efx::TKchCryAB* m_efxCryAB;           // _35C
-	efx::TKchCryInd* m_efxCryInd;         // _360
-	efx::TKchSmokeHana* m_efxSmoke;       // _364
-	efx::TKchAttackYodare* m_efxAttack;   // _368
-	efx::TKchDeadYodare* m_efxDeadYodare; // _36C
-	efx::TKchDeadHana* m_efxDeadHana;     // _370
-	efx::TEnemyHamonChasePos* _374;       // _374
-	efx::TEnemyHamonChasePos* _378;       // _378
-	Vector3f _37C;                        // _37C
-	Vector3f _388;                        // _388
-	u8 _394;                              // _394
-	                                      // _398 = PelletView
+enum StateID {
+	KINGCHAPPY_Walk     = 0,
+	KINGCHAPPY_Attack   = 1,
+	KINGCHAPPY_Dead     = 2,
+	KINGCHAPPY_Flick    = 3,
+	KINGCHAPPY_WarCry   = 4,
+	KINGCHAPPY_Damage   = 5,
+	KINGCHAPPY_Turn     = 6,
+	KINGCHAPPY_Eat      = 7,
+	KINGCHAPPY_Hide     = 8,
+	KINGCHAPPY_HideWait = 9,
+	KINGCHAPPY_Appear   = 10,
+	KINGCHAPPY_Caution  = 11,
+	KINGCHAPPY_Swallow  = 12,
+	KINGCHAPPY_Count,
 };
 
-struct Mgr : public EnemyMgrBase {
-	Mgr(int objLimit, u8 modelType);
+struct FSM : public EnemyStateMachine {
+	virtual void init(EnemyBase*); // _08
 
-	//////////////// VTABLE
-	// virtual ~Mgr();                                     // _58 (weak)
-	virtual EnemyBase* birth(EnemyBirthArg&); // _70
-	virtual void doAlloc();                   // _A8
-	virtual SysShape::Model* createModel();   // _B0
-	virtual EnemyBase* getEnemy(int index)    // _A4 (weak)
-	{
-		return &m_obj[index];
-	}
-	virtual EnemyTypeID::EEnemyTypeID getEnemyTypeID() // _AC (weak)
-	{
-		return EnemyTypeID::EnemyID_KingChappy;
-	}
-	virtual void createObj(int count) // _A0 (weak)
-	{
-		m_obj = new Obj[count];
-	}
-	//////////////// VTABLE END
-
-	void requestState(Obj*, int);
-
-	// _00 		= VTBL
-	// _00-_44	= EnemyMgrBase
-	Obj* m_obj; // _44
+	// _00		= VTBL
+	// _00-_1C	= EnemyStateMachine
 };
 
 struct Parms : public EnemyParmsBase {
@@ -249,40 +127,192 @@ struct Parms : public EnemyParmsBase {
 	f32 _BD0;                  // _BD0
 };
 
+struct Obj : public EnemyBase {
+	Obj();
+
+	//////////////// VTABLE
+	virtual void onInit(CreatureInitArg* settings);            // _30
+	virtual void onKill(CreatureKillArg* settings);            // _34
+	virtual void doSimulation(f32);                            // _4C
+	virtual void doDirectDraw(Graphics& gfx);                  // _50
+	virtual void inWaterCallback(WaterBox* wb);                // _84
+	virtual void collisionCallback(CollEvent& event);          // _EC
+	virtual void getShadowParam(ShadowParam& settings);        // _134
+	virtual ~Obj() { }                                         // _1BC (weak)
+	virtual void birth(Vector3f&, f32);                        // _1C0
+	virtual void doUpdate();                                   // _1CC
+	virtual void doAnimationUpdateAnimator();                  // _1D8
+	virtual void doAnimationCullingOff();                      // _1DC
+	virtual void doDebugDraw(Graphics&);                       // _1EC
+	virtual void setParameters();                              // _228
+	virtual void initMouthSlots();                             // _22C
+	virtual void initWalkSmokeEffect();                        // _230
+	virtual WalkSmokeEffect::Mgr* getWalkSmokeEffectMgr();     // _234
+	virtual MouthSlots* getMouthSlots();                       // _25C (weak)
+	virtual bool damageCallBack(Creature*, f32, CollPart*);    // _278
+	virtual bool bombCallBack(Creature*, Vector3f&, f32);      // _294
+	virtual void doStartStoneState();                          // _2A4
+	virtual void doFinishStoneState();                         // _2A8
+	virtual void startCarcassMotion();                         // _2C4
+	virtual void wallCallback(const MoveInfo&);                // _2E8
+	virtual void doStartMovie();                               // _2F0
+	virtual void doEndMovie();                                 // _2F4
+	virtual void setFSM(FSM*);                                 // _2F8 (weak)
+	virtual void setInitialSetting(EnemyInitialParamBase*) { } // _1C4 (weak)
+	virtual void applyImpulse(Vector3f&, Vector3f&) { }        // _18C (weak)
+	virtual void createEfxHamon()                              // _250 (weak)
+	{
+		if (getStateID() != KINGCHAPPY_HideWait) {
+			EnemyBase::createEfxHamon();
+		}
+	}
+	virtual void updateEfxHamon() // _24C (weak)
+	{
+		if (getStateID() == KINGCHAPPY_HideWait) {
+			fadeEfxHamon();
+		} else {
+			EnemyBase::updateEfxHamon();
+		}
+	}
+	virtual bool isUnderground() // _D0 (weak)
+	{
+		return isConstrained();
+	}
+	virtual f32 getCellRadius() // _58 (weak)
+	{
+		return m_scaleModifier * C_PARMS->m_general.m_cellRadius.m_value;
+	}
+	virtual f32 getBodyRadius() // _54 (weak)
+	{
+		return m_scaleModifier * C_PARMS->m_general.m_pikminDamageRadius.m_value;
+	}
+	virtual bool pressCallBack(Creature* creature, f32 damage, CollPart* collpart) // _27C (weak)
+	{
+		damageCallBack(creature, damage, collpart);
+		return false;
+	}
+	virtual bool eatWhitePikminCallBack(Creature* creature, f32 damage) // _298 (weak)
+	{
+		EnemyBase::eatWhitePikminCallBack(creature, C_PROPERPARMS.m_fp14.m_value);
+	}
+	virtual EnemyTypeID::EEnemyTypeID getEnemyTypeID() // _258 (weak)
+	{
+		return EnemyTypeID::EnemyID_KingChappy;
+	}
+	virtual f32 getDownSmokeScale() { return 1.3f; } // _2EC (weak)
+	//////////////// VTABLE END
+
+	int eatBomb();
+	int getPikminInMouth(bool);
+	void getTonguePosVel(Vector3f&, Vector3f&);
+	void setNextGoal();
+	void searchTarget();
+	void isOutOfTerritory(f32);
+	bool forceTransit(int);
+	void requestTransit(int);
+	void walkFunc();
+	void turnFunc(f32);
+	void isReachToGoal(f32);
+	void checkAttack(bool);
+	void checkFlick(bool);
+	void checkDead(bool);
+	void checkTurn(bool);
+	void startMotionSelf(int, SysShape::MotionListener*);
+	void endBlendAnimation();
+	void leftFootMtxCalc();
+	void rightFootMtxCalc();
+	void footMtxCalc(f32 (*)[4], Vector3f*, f32*);
+	void resetFootPos();
+	void fadeAllEffect();
+	void createEffect(int);
+	void fadeEffect(int);
+	void createBounceEffect();
+
+	// _00 		= VTBL
+	// _00-_2BC	= EnemyBase
+	Vector3f _2BC;                        // _2BC, initialised as m_homePosition
+	MouthSlots m_mouthSlots;              // _2C8
+	SysShape::Joint* m_mouthJoint1;       // _2D0, 'kuti'
+	SysShape::Joint* m_bodyJoint;         // _2D4, 'kosijnt'
+	SysShape::Joint* m_tongueJoint1;      // _2D8, 'bero6'
+	SysShape::Joint* m_tongueJoint2;      // _2DC, 'bero5'
+	SysShape::Joint* m_mouthJoint2;       // _2E0, 'kuti'
+	u8 _2E4;                              // _2E4
+	u32 _2E8;                             // _2E8, unknown
+	u8 _2EC;                              // _2EC
+	int _2F0;                             // _2F0
+	Vector3f _2F4;                        // _2F4, initialised as m_homePosition (but y = 0.0f)
+	Vector3f _300;                        // _300
+	int _30C;                             // _30C
+	u16 m_lFootJointIndex;                // _310, index for 'asiL'
+	u8 _312[0x2];                         // _312, padding probably
+	u8 _314[0xC];                         // _314, unknown
+	f32 _320;                             // _320
+	u16 m_rFootJointIndex;                // _324, index for 'asiR'
+	Vector3f _328;                        // _328
+	f32 _334;                             // _334
+	u8 _338;                              // _338
+	u8 _339[0x3];                         // _339, padding probably
+	u16* m_jointIndices;                  // _33C, indices for world matrices/joints?
+	WaterBox* _340;                       // _340, nearest water?? maybe??
+	WalkSmokeEffect::Mgr m_walkSmokeMgr;  // _344
+	FSM* m_fsm;                           // _34C
+	efx::TKchYodare* m_efxYodare;         // _350
+	efx::TKchDiveSand* m_efxDiveSand;     // _354
+	efx::TKchDiveWat* m_efxDiveWater;     // _358
+	efx::TKchCryAB* m_efxCryAB;           // _35C
+	efx::TKchCryInd* m_efxCryInd;         // _360
+	efx::TKchSmokeHana* m_efxSmoke;       // _364
+	efx::TKchAttackYodare* m_efxAttack;   // _368
+	efx::TKchDeadYodare* m_efxDeadYodare; // _36C
+	efx::TKchDeadHana* m_efxDeadHana;     // _370
+	efx::TEnemyHamonChasePos* _374;       // _374
+	efx::TEnemyHamonChasePos* _378;       // _378
+	Vector3f _37C;                        // _37C
+	Vector3f _388;                        // _388
+	u8 _394;                              // _394
+	                                      // _398 = PelletView
+};
+
+struct Mgr : public EnemyMgrBase {
+	Mgr(int objLimit, u8 modelType);
+
+	//////////////// VTABLE
+	// virtual ~Mgr();                                     // _58 (weak)
+	virtual EnemyBase* birth(EnemyBirthArg&); // _70
+	virtual void doAlloc();                   // _A8
+	virtual SysShape::Model* createModel();   // _B0
+	virtual EnemyBase* getEnemy(int index)    // _A4 (weak)
+	{
+		return &m_obj[index];
+	}
+	virtual EnemyTypeID::EEnemyTypeID getEnemyTypeID() // _AC (weak)
+	{
+		return EnemyTypeID::EnemyID_KingChappy;
+	}
+	virtual void createObj(int count) // _A0 (weak)
+	{
+		m_obj = new Obj[count];
+	}
+	//////////////// VTABLE END
+
+	void requestState(Obj*, int);
+
+	// _00 		= VTBL
+	// _00-_44	= EnemyMgrBase
+	Obj* m_obj; // _44
+};
+
 struct ProperAnimator : public EnemyBlendAnimatorBase {
-	virtual ~ProperAnimator(); // _08 (weak)
+	virtual ~ProperAnimator() { } // _08 (weak)
 
 	// _00      = VTBL
 	// _00-_60  = EnemyBlendAnimatorBase
-	SysShape::Animator m_specificAnimator;
+	SysShape::Animator m_specificAnimator; // _60
 };
 
 /////////////////////////////////////////////////////////////////
 // STATE MACHINE DEFINITIONS
-enum StateID {
-	KINGCHAPPY_Walk     = 0,
-	KINGCHAPPY_Attack   = 1,
-	KINGCHAPPY_Dead     = 2,
-	KINGCHAPPY_Flick    = 3,
-	KINGCHAPPY_WarCry   = 4,
-	KINGCHAPPY_Damage   = 5,
-	KINGCHAPPY_Turn     = 6,
-	KINGCHAPPY_Eat      = 7,
-	KINGCHAPPY_Hide     = 8,
-	KINGCHAPPY_HideWait = 9,
-	KINGCHAPPY_Appear   = 10,
-	KINGCHAPPY_Caution  = 11,
-	KINGCHAPPY_Swallow  = 12,
-	KINGCHAPPY_Count,
-};
-
-struct FSM : public EnemyStateMachine {
-	virtual void init(EnemyBase*); // _08
-
-	// _00		= VTBL
-	// _00-_1C	= EnemyStateMachine
-};
-
 struct State : public EnemyFSMState {
 	// _00		= VTBL
 	// _00-_10 	= EnemyFSMState

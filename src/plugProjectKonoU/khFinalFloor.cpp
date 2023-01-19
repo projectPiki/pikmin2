@@ -191,11 +191,7 @@ void ObjFinalFloor::restartSound()
  * Address:	80402618
  * Size:	000040
  */
-bool SceneFinalFloor::doConfirmSetScene(::Screen::SetSceneArg& arg)
-{
-	// u32 id = arg.getSceneType();
-	return arg.getSceneType() != SCENE_PAUSE_MENU;
-}
+bool SceneFinalFloor::doConfirmSetScene(::Screen::SetSceneArg& arg) { return arg.getSceneType() != SCENE_PAUSE_MENU; }
 
 ObjFinalFloor::StaticValues ObjFinalFloor::msVal;
 
