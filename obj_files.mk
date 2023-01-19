@@ -1112,7 +1112,7 @@ KONO:=\
 	$(BUILD_DIR)/asm/plugProjectKonoU/newGame2DMgr.o\
 	$(BUILD_DIR)/asm/plugProjectKonoU/newScreenMgr.o\
 	$(BUILD_DIR)/asm/plugProjectKonoU/khReadyGo.o\
-	$(BUILD_DIR)/asm/plugProjectKonoU/khFinalFloor.o\
+	$(BUILD_DIR)/src/plugProjectKonoU/khFinalFloor.o\
 	$(BUILD_DIR)/asm/plugProjectKonoU/khDayEndResult.o\
 	$(BUILD_DIR)/asm/plugProjectKonoU/khUtil.o\
 	$(BUILD_DIR)/asm/plugProjectKonoU/khFinalResult.o\

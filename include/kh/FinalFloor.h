@@ -46,7 +46,7 @@ struct ObjFinalFloor : public ::Screen::ObjBase {
 		m_sound = nullptr;
 	}
 
-	virtual ~ObjFinalFloor();             // _08 (weak)
+	virtual ~ObjFinalFloor() { }          // _08 (weak)
 	virtual void doCreate(JKRArchive*);   // _4C
 	virtual bool doUpdateFadein();        // _50
 	virtual bool doUpdate();              // _58
@@ -100,12 +100,17 @@ struct SceneFinalFloor : public ::Screen::SceneBase {
 	{
 	}
 
-	virtual SceneType getSceneType();                       // _08 (weak)
-	virtual ScreenOwnerID getOwnerID();                     // _0C (weak)
-	virtual ScreenMemberID getMemberID();                   // _10 (weak)
-	virtual bool isUseBackupSceneInfo();                    // _14 (weak)
-	virtual const char* getResName() const;                 // _1C (weak)
-	virtual void doCreateObj(JKRArchive*);                  // _20 (weak)
+	virtual const char* getResName() const { return "final_floor.szs"; } // _1C (weak)
+	virtual bool isUseBackupSceneInfo() { return true; }                 // _14 (weak)
+	virtual SceneType getSceneType() { return SCENE_FINAL_FLOOR; }       // _08 (weak)
+	virtual ScreenOwnerID getOwnerID() { return OWNER_KH; }              // _0C (weak)
+	virtual ScreenMemberID getMemberID() { return MEMBER_FINAL_FLOOR; }  // _10 (weak)
+	virtual void doCreateObj(JKRArchive* arc)                            // _20 (weak)
+	{
+		ObjFinalFloor* obj = new ObjFinalFloor;
+		m_objFinalFloor    = obj;
+		registObj(obj, arc);
+	}
 	virtual bool doConfirmSetScene(::Screen::SetSceneArg&); // _30
 
 	// _00      = VTBL

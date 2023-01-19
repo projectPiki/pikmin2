@@ -193,63 +193,9 @@ void ObjFinalFloor::restartSound()
  */
 bool SceneFinalFloor::doConfirmSetScene(::Screen::SetSceneArg& arg)
 {
-	u32 id = arg.getSceneType();
-	return (SCENE_PAUSE_MENU - id | id - SCENE_PAUSE_MENU) >> 0x1f;
+	// u32 id = arg.getSceneType();
+	return arg.getSceneType() != SCENE_PAUSE_MENU;
 }
-
-/*
- * --INFO--
- * Address:	80402658
- * Size:	00000C
- */
-const char* SceneFinalFloor::getResName() const { return "final_floor.szs"; }
-
-/*
- * --INFO--
- * Address:	80402664
- * Size:	000008
- */
-bool SceneFinalFloor::isUseBackupSceneInfo() { return true; }
-
-/*
- * --INFO--
- * Address:	8040266C
- * Size:	000008
- */
-SceneType SceneFinalFloor::getSceneType() { return SCENE_FINAL_FLOOR; }
-
-/*
- * --INFO--
- * Address:	80402674
- * Size:	000008
- */
-ScreenOwnerID SceneFinalFloor::getOwnerID() { return OWNER_KH; }
-
-/*
- * --INFO--
- * Address:	8040267C
- * Size:	000014
- */
-ScreenMemberID SceneFinalFloor::getMemberID() { return MEMBER_FINAL_FLOOR; }
-
-/*
- * --INFO--
- * Address:	80402690
- * Size:	0000BC
- */
-void SceneFinalFloor::doCreateObj(JKRArchive* arc)
-{
-	ObjFinalFloor* obj = new ObjFinalFloor;
-	m_objFinalFloor    = obj;
-	registObj(obj, arc);
-}
-
-/*
- * --INFO--
- * Address:	8040274C
- * Size:	0000AC
- */
-ObjFinalFloor::~ObjFinalFloor() { }
 
 ObjFinalFloor::StaticValues ObjFinalFloor::msVal;
 
