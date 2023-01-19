@@ -140,7 +140,7 @@
 ### <section id="plugProjectKonoU">plugProjectKonoU</section>
 | File | Size (bytes) | File | Size (bytes) |
 | ---- | ---- | ---- | ---- |
-| <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectKonoU/khFinalFloor.cpp">khFinalFloor.cpp</a> | 6204 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectKonoU/khWinLoseReason.cpp">khWinLoseReason.cpp</a> | 21744 |
+| <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectKonoU/khFinalFloor.cpp">khFinalFloor.cpp</a> | 5667 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectKonoU/khWinLoseReason.cpp">khWinLoseReason.cpp</a> | 21744 |
 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectKonoU/khWinLose.cpp">khWinLose.cpp</a> | 22507 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectKonoU/khReadyGo.cpp">khReadyGo.cpp</a> | 25825 |
 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectKonoU/khUtil.cpp">khUtil.cpp</a> | 26990 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectKonoU/khPayDept.cpp">khPayDept.cpp</a> | 27871 |
 

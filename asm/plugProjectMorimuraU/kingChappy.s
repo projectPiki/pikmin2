@@ -606,6 +606,7 @@ lbl_8051E77C:
 	.float 1.3
 
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
+.global lFootCallBack__Q24Game10KingChappyFP8J3DJointi
 lFootCallBack__Q24Game10KingChappyFP8J3DJointi: # local function
 /* 8035CCE8 00359C28  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8035CCEC 00359C2C  7C 08 02 A6 */	mflr r0
@@ -623,6 +624,7 @@ lFootCallBack__Q24Game10KingChappyFP8J3DJointi: # local function
 /* 8035CD18 00359C58  38 21 00 10 */	addi r1, r1, 0x10
 /* 8035CD1C 00359C5C  4E 80 00 20 */	blr 
 
+.global rFootCallBack__Q24Game10KingChappyFP8J3DJointi
 rFootCallBack__Q24Game10KingChappyFP8J3DJointi: # local function
 /* 8035CD20 00359C60  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8035CD24 00359C64  7C 08 02 A6 */	mflr r0

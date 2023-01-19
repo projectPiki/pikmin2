@@ -93,46 +93,47 @@ struct Obj : public EnemyBase {
 
 	// _00 		= VTBL
 	// _00-_2BC	= EnemyBase
-	Vector3f _2BC;                       // _2BC
-	MouthSlots m_mouthSlots;             // _2C8
-	SysShape::Joint* _2D0;               // _2D0
-	SysShape::Joint* _2D4;               // _2D4
-	SysShape::Joint* _2D8;               // _2D8
-	SysShape::Joint* _2DC;               // _2DC
-	SysShape::Joint* _2E0;               // _2E0
-	u8 _2E4[0x8];                        // _2E4, unknown
-	u8 _2EC;                             // _2EC, unknown
-	int _2F0;                            // _2F0
-	Vector3f _2F4;                       // _2F4
-	u8 _300[0xC];                        // _300, unknown
-	int _30C;                            // _30C
-	s16 _310;                            // _310, specific joint index?
-	u8 _312[0x2];                        // _312, padding probably
-	u8 _314[0x10];                       // _314, unknown
-	s16 _324;                            // _324, right foot joint index?
-	Vector3f _328;                       // _328
-	u8 _334[0x4];                        // _334, unknown
-	u8 _338;                             // _338
-	u8 _339[0x3];                        // _339, padding probably
-	u8 _33C[0x4];                        // _33C, unknown
-	void* _340;                          // _340, code? unknown
-	WalkSmokeEffect::Mgr m_walkSmokeMgr; // _344
-	FSM* m_fsm;                          // _34C
-	efx::TKchYodare* m_efxYodare;        // _350
-	efx::TKchDiveSand* m_efxDiveSand;    // _354
-	efx::TKchDiveWat* m_efxDiveWater;    // _358
-	efx::TKchCryAB* m_efxCryAB;          // _35C
-	efx::TKchCryInd* m_efxCryInd;        // _360
-	efx::TKchSmokeHana* m_efxSmoke;      // _364
-	efx::TKchAttackYodare* m_efxAttack;  // _368
-	efx::TKchDeadYodare* _36C;           // _36C
-	efx::TKchDeadHana* _370;             // _370
-	efx::TEnemyHamonChasePos* _374;      // _374
-	efx::TEnemyHamonChasePos* _378;      // _378
-	Vector3f _37C;                       // _37C
-	Vector3f _388;                       // _388
-	u8 _394;                             // _394
-	                                     // _398 = PelletView
+	Vector3f _2BC;                        // _2BC, initialised as m_homePosition
+	MouthSlots m_mouthSlots;              // _2C8
+	SysShape::Joint* m_mouthJoint1;       // _2D0, 'kuti'
+	SysShape::Joint* m_bodyJoint;         // _2D4, 'kosijnt'
+	SysShape::Joint* m_tongueJoint1;      // _2D8, 'bero6'
+	SysShape::Joint* m_tongueJoint2;      // _2DC, 'bero5'
+	SysShape::Joint* m_mouthJoint2;       // _2E0, 'kuti'
+	u8 _2E4[0x8];                         // _2E4, unknown
+	u8 _2EC;                              // _2EC, unknown
+	int _2F0;                             // _2F0
+	Vector3f _2F4;                        // _2F4, initialised as m_homePosition (but y = 0.0f)
+	u8 _300[0xC];                         // _300, unknown
+	int _30C;                             // _30C
+	s16 m_lFootJointIndex;                // _310, index for 'asiL'
+	u8 _312[0x2];                         // _312, padding probably
+	u8 _314[0xC];                         // _314, unknown
+	f32 _320;                             // _320
+	s16 m_rFootJointIndex;                // _324, index for 'asiR'
+	Vector3f _328;                        // _328
+	f32 _334;                             // _334
+	u8 _338;                              // _338
+	u8 _339[0x3];                         // _339, padding probably
+	u8 _33C[0x4];                         // _33C, unknown
+	void* _340;                           // _340, code? unknown
+	WalkSmokeEffect::Mgr m_walkSmokeMgr;  // _344
+	FSM* m_fsm;                           // _34C
+	efx::TKchYodare* m_efxYodare;         // _350
+	efx::TKchDiveSand* m_efxDiveSand;     // _354
+	efx::TKchDiveWat* m_efxDiveWater;     // _358
+	efx::TKchCryAB* m_efxCryAB;           // _35C
+	efx::TKchCryInd* m_efxCryInd;         // _360
+	efx::TKchSmokeHana* m_efxSmoke;       // _364
+	efx::TKchAttackYodare* m_efxAttack;   // _368
+	efx::TKchDeadYodare* m_efxDeadYodare; // _36C
+	efx::TKchDeadHana* m_efxDeadHana;     // _370
+	efx::TEnemyHamonChasePos* _374;       // _374
+	efx::TEnemyHamonChasePos* _378;       // _378
+	Vector3f _37C;                        // _37C
+	Vector3f _388;                        // _388
+	u8 _394;                              // _394
+	                                      // _398 = PelletView
 };
 
 struct Mgr : public EnemyMgrBase {
@@ -425,6 +426,8 @@ struct StateWarCry : public State {
 	// _00-_10 	= EnemyFSMState
 };
 /////////////////////////////////////////////////////////////////
+
+extern Obj* curK;
 } // namespace KingChappy
 } // namespace Game
 

@@ -51,7 +51,7 @@ struct TKchCryAB : public TChasePos2 {
 	// _00-_2C  = TChasePos2
 };
 
-struct TKchCryInd : public TChasePos2 {
+struct TKchCryInd : public TChaseMtxT {
 	virtual ~TKchCryInd(); // _48 (weak)
 
 	void setGlobalScale(f32);

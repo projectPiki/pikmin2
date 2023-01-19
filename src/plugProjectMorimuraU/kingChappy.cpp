@@ -1,691 +1,29 @@
-#include "types.h"
-
-/*
-    Generated from dpostproc
-
-    .section .ctors, "wa"  # 0x80472F00 - 0x804732C0
-    .4byte __sinit_kingChappy_cpp
-
-    .section .rodata  # 0x804732E0 - 0x8049E220
-    .global lbl_804915D0
-    lbl_804915D0:
-        .4byte 0x00000000
-        .4byte 0x00000000
-        .4byte 0x00000000
-        .4byte 0x6B696E67
-        .4byte 0x43686170
-        .4byte 0x70790000
-    .global lbl_804915E8
-    lbl_804915E8:
-        .asciz "kingChappy.cpp"
-        .skip 1
-    .global lbl_804915F8
-    lbl_804915F8:
-        .asciz "P2Assert"
-        .skip 3
-    .global lbl_80491604
-    lbl_80491604:
-        .asciz "PSMainSide_ObjSound.h"
-        .skip 2
-    .global lbl_8049161C
-    lbl_8049161C:
-        .4byte lbl_8051E6E4
-        .4byte lbl_8051E6EC
-        .4byte lbl_8051E6F4
-        .4byte lbl_8051E6FC
-        .4byte lbl_8051E704
-        .4byte lbl_8051E70C
-        .4byte lbl_8051E714
-        .4byte lbl_8051E71C
-        .4byte lbl_8051E724
-        .asciz "ArgEnemyType"
-        .skip 3
-        .asciz "ArgScale"
-        .skip 3
-    .global lbl_8049165C
-    lbl_8049165C:
-        .asciz "ArgKchYodare"
-        .skip 3
-
-    .section .data, "wa"  # 0x8049E220 - 0x804EFC20
-    .global lbl_804E1D28
-    lbl_804E1D28:
-        .4byte 0x00000000
-        .4byte 0x00000000
-        .4byte 0x00000000
-    .global lbl_804E1D34
-    lbl_804E1D34:
-        .4byte lbl_803617F8
-        .4byte lbl_80361844
-        .4byte lbl_803618A0
-        .4byte lbl_803618C8
-        .4byte lbl_803618F0
-        .4byte lbl_803619B8
-        .4byte lbl_803619E0
-        .4byte lbl_80361A2C
-        .4byte lbl_80361A9C
-    .global lbl_804E1D58
-    lbl_804E1D58:
-        .4byte lbl_80361C00
-        .4byte lbl_80361C18
-        .4byte lbl_80361C44
-        .4byte lbl_80361C5C
-        .4byte lbl_80361CF8
-        .4byte lbl_80361C74
-        .4byte lbl_80361C8C
-        .4byte lbl_80361CA4
-        .4byte lbl_80361CD0
-    .global __vt__Q23efx12ArgKchYodare
-    __vt__Q23efx12ArgKchYodare:
-        .4byte 0
-        .4byte 0
-        .4byte getName__Q23efx12ArgKchYodareFv
-    .global __vt__Q23efx10TKchYodare
-    __vt__Q23efx10TKchYodare:
-        .4byte 0
-        .4byte 0
-        .4byte create__Q23efx22TKchYodareBaseChaseMtxFPQ23efx3Arg
-        .4byte forceKill__Q23efx22TKchYodareBaseChaseMtxFv
-        .4byte fade__Q23efx22TKchYodareBaseChaseMtxFv
-        .4byte 0
-        .4byte 0
-        .4byte "@4@__dt__Q23efx10TKchYodareFv"
-        .4byte "@4@execute__Q23efx5TSyncFP14JPABaseEmitter"
-        .4byte "@4@executeAfter__Q23efx5TSyncFP14JPABaseEmitter"
-        .4byte draw__18JPAEmitterCallBackFP14JPABaseEmitter
-        .4byte drawAfter__18JPAEmitterCallBackFP14JPABaseEmitter
-        .4byte execute__Q23efx5TSyncFP14JPABaseEmitter
-        .4byte executeAfter__Q23efx5TSyncFP14JPABaseEmitter
-        .4byte doExecuteEmitterOperation__Q23efx9TChaseMtxFP14JPABaseEmitter
-        .4byte doExecuteAfter__Q23efx5TSyncFP14JPABaseEmitter
-        .4byte startDemoDrawOff__Q23efx22TKchYodareBaseChaseMtxFv
-        .4byte endDemoDrawOn__Q23efx22TKchYodareBaseChaseMtxFv
-        .4byte __dt__Q23efx10TKchYodareFv
-    .global __vt__Q23efx16TKchAttackYodare
-    __vt__Q23efx16TKchAttackYodare:
-        .4byte 0
-        .4byte 0
-        .4byte create__Q23efx22TKchYodareBaseChaseMtxFPQ23efx3Arg
-        .4byte forceKill__Q23efx22TKchYodareBaseChaseMtxFv
-        .4byte fade__Q23efx22TKchYodareBaseChaseMtxFv
-        .4byte 0
-        .4byte 0
-        .4byte "@4@__dt__Q23efx16TKchAttackYodareFv"
-        .4byte "@4@execute__Q23efx5TSyncFP14JPABaseEmitter"
-        .4byte "@4@executeAfter__Q23efx5TSyncFP14JPABaseEmitter"
-        .4byte draw__18JPAEmitterCallBackFP14JPABaseEmitter
-        .4byte drawAfter__18JPAEmitterCallBackFP14JPABaseEmitter
-        .4byte execute__Q23efx5TSyncFP14JPABaseEmitter
-        .4byte executeAfter__Q23efx5TSyncFP14JPABaseEmitter
-        .4byte doExecuteEmitterOperation__Q23efx9TChaseMtxFP14JPABaseEmitter
-        .4byte doExecuteAfter__Q23efx5TSyncFP14JPABaseEmitter
-        .4byte startDemoDrawOff__Q23efx22TKchYodareBaseChaseMtxFv
-        .4byte endDemoDrawOn__Q23efx22TKchYodareBaseChaseMtxFv
-        .4byte __dt__Q23efx16TKchAttackYodareFv
-    .global __vt__Q23efx14TKchDeadYodare
-    __vt__Q23efx14TKchDeadYodare:
-        .4byte 0
-        .4byte 0
-        .4byte create__Q23efx22TKchYodareBaseChaseMtxFPQ23efx3Arg
-        .4byte forceKill__Q23efx22TKchYodareBaseChaseMtxFv
-        .4byte fade__Q23efx22TKchYodareBaseChaseMtxFv
-        .4byte 0
-        .4byte 0
-        .4byte "@4@__dt__Q23efx14TKchDeadYodareFv"
-        .4byte "@4@execute__Q23efx5TSyncFP14JPABaseEmitter"
-        .4byte "@4@executeAfter__Q23efx5TSyncFP14JPABaseEmitter"
-        .4byte draw__18JPAEmitterCallBackFP14JPABaseEmitter
-        .4byte drawAfter__18JPAEmitterCallBackFP14JPABaseEmitter
-        .4byte execute__Q23efx5TSyncFP14JPABaseEmitter
-        .4byte executeAfter__Q23efx5TSyncFP14JPABaseEmitter
-        .4byte doExecuteEmitterOperation__Q23efx9TChaseMtxFP14JPABaseEmitter
-        .4byte doExecuteAfter__Q23efx5TSyncFP14JPABaseEmitter
-        .4byte startDemoDrawOff__Q23efx22TKchYodareBaseChaseMtxFv
-        .4byte endDemoDrawOn__Q23efx22TKchYodareBaseChaseMtxFv
-        .4byte __dt__Q23efx14TKchDeadYodareFv
-    .global __vt__Q23efx16TKchYodareHitWat
-    __vt__Q23efx16TKchYodareHitWat:
-        .4byte 0
-        .4byte 0
-        .4byte create__Q23efx17TOneEmitterSimpleFPQ23efx3Arg
-        .4byte forceKill__Q23efx17TOneEmitterSimpleFv
-        .4byte fade__Q23efx17TOneEmitterSimpleFv
-        .4byte 0
-        .4byte 0
-        .4byte "@4@__dt__Q23efx16TKchYodareHitWatFv"
-        .4byte execute__18JPAEmitterCallBackFP14JPABaseEmitter
-        .4byte "@4@executeAfter__Q23efx17TOneEmitterSimpleFP14JPABaseEmitter"
-        .4byte draw__18JPAEmitterCallBackFP14JPABaseEmitter
-        .4byte drawAfter__18JPAEmitterCallBackFP14JPABaseEmitter
-        .4byte executeAfter__Q23efx17TOneEmitterSimpleFP14JPABaseEmitter
-        .4byte startDemoDrawOff__Q23efx17TOneEmitterSimpleFv
-        .4byte endDemoDrawOn__Q23efx17TOneEmitterSimpleFv
-        .4byte __dt__Q23efx16TKchYodareHitWatFv
-    .global __vt__Q23efx15TKchYodareHitGr
-    __vt__Q23efx15TKchYodareHitGr:
-        .4byte 0
-        .4byte 0
-        .4byte create__Q23efx17TOneEmitterSimpleFPQ23efx3Arg
-        .4byte forceKill__Q23efx17TOneEmitterSimpleFv
-        .4byte fade__Q23efx17TOneEmitterSimpleFv
-        .4byte 0
-        .4byte 0
-        .4byte "@4@__dt__Q23efx15TKchYodareHitGrFv"
-        .4byte execute__18JPAEmitterCallBackFP14JPABaseEmitter
-        .4byte "@4@executeAfter__Q23efx17TOneEmitterSimpleFP14JPABaseEmitter"
-        .4byte draw__18JPAEmitterCallBackFP14JPABaseEmitter
-        .4byte drawAfter__18JPAEmitterCallBackFP14JPABaseEmitter
-        .4byte executeAfter__Q23efx17TOneEmitterSimpleFP14JPABaseEmitter
-        .4byte startDemoDrawOff__Q23efx17TOneEmitterSimpleFv
-        .4byte endDemoDrawOn__Q23efx17TOneEmitterSimpleFv
-        .4byte __dt__Q23efx15TKchYodareHitGrFv
-    .global __vt__Q23efx12TKchDeadHana
-    __vt__Q23efx12TKchDeadHana:
-        .4byte 0
-        .4byte 0
-        .4byte "create__Q23efx29TSyncGroup2<Q23efx9TChaseMtx>FPQ23efx3Arg"
-        .4byte "forceKill__Q23efx29TSyncGroup2<Q23efx9TChaseMtx>Fv"
-        .4byte "fade__Q23efx29TSyncGroup2<Q23efx9TChaseMtx>Fv"
-        .4byte "startDemoDrawOff__Q23efx29TSyncGroup2<Q23efx9TChaseMtx>Fv"
-        .4byte "endDemoDrawOn__Q23efx29TSyncGroup2<Q23efx9TChaseMtx>Fv"
-    .global __vt__Q23efx13TKchSmokeHana
-    __vt__Q23efx13TKchSmokeHana:
-        .4byte 0
-        .4byte 0
-        .4byte create__Q23efx5TSyncFPQ23efx3Arg
-        .4byte forceKill__Q23efx5TSyncFv
-        .4byte fade__Q23efx5TSyncFv
-        .4byte 0
-        .4byte 0
-        .4byte "@4@__dt__Q23efx13TKchSmokeHanaFv"
-        .4byte "@4@execute__Q23efx5TSyncFP14JPABaseEmitter"
-        .4byte "@4@executeAfter__Q23efx5TSyncFP14JPABaseEmitter"
-        .4byte draw__18JPAEmitterCallBackFP14JPABaseEmitter
-        .4byte drawAfter__18JPAEmitterCallBackFP14JPABaseEmitter
-        .4byte execute__Q23efx5TSyncFP14JPABaseEmitter
-        .4byte executeAfter__Q23efx5TSyncFP14JPABaseEmitter
-        .4byte doExecuteEmitterOperation__Q23efx9TChaseMtxFP14JPABaseEmitter
-        .4byte doExecuteAfter__Q23efx5TSyncFP14JPABaseEmitter
-        .4byte startDemoDrawOff__Q23efx5TSyncFv
-        .4byte endDemoDrawOn__Q23efx5TSyncFv
-        .4byte __dt__Q23efx13TKchSmokeHanaFv
-    .global __vt__Q23efx10TKchCryInd
-    __vt__Q23efx10TKchCryInd:
-        .4byte 0
-        .4byte 0
-        .4byte create__Q23efx5TSyncFPQ23efx3Arg
-        .4byte forceKill__Q23efx5TSyncFv
-        .4byte fade__Q23efx5TSyncFv
-        .4byte 0
-        .4byte 0
-        .4byte "@4@__dt__Q23efx10TKchCryIndFv"
-        .4byte "@4@execute__Q23efx5TSyncFP14JPABaseEmitter"
-        .4byte "@4@executeAfter__Q23efx5TSyncFP14JPABaseEmitter"
-        .4byte draw__18JPAEmitterCallBackFP14JPABaseEmitter
-        .4byte drawAfter__18JPAEmitterCallBackFP14JPABaseEmitter
-        .4byte execute__Q23efx5TSyncFP14JPABaseEmitter
-        .4byte executeAfter__Q23efx5TSyncFP14JPABaseEmitter
-        .4byte doExecuteEmitterOperation__Q23efx10TChaseMtxTFP14JPABaseEmitter
-        .4byte doExecuteAfter__Q23efx5TSyncFP14JPABaseEmitter
-        .4byte startDemoDrawOff__Q23efx5TSyncFv
-        .4byte endDemoDrawOn__Q23efx5TSyncFv
-        .4byte __dt__Q23efx10TKchCryIndFv
-    .global __vt__Q23efx9TKchCryAB
-    __vt__Q23efx9TKchCryAB:
-        .4byte 0
-        .4byte 0
-        .4byte "create__Q23efx29TSyncGroup2<Q23efx9TChasePos>FPQ23efx3Arg"
-        .4byte "forceKill__Q23efx29TSyncGroup2<Q23efx9TChasePos>Fv"
-        .4byte "fade__Q23efx29TSyncGroup2<Q23efx9TChasePos>Fv"
-        .4byte "startDemoDrawOff__Q23efx29TSyncGroup2<Q23efx9TChasePos>Fv"
-        .4byte "endDemoDrawOn__Q23efx29TSyncGroup2<Q23efx9TChasePos>Fv"
-    .global __vt__Q23efx11TKchDiveWat
-    __vt__Q23efx11TKchDiveWat:
-        .4byte 0
-        .4byte 0
-        .4byte "create__Q23efx34TSyncGroup3<Q23efx13TChasePosYRot>FPQ23efx3Arg"
-        .4byte "forceKill__Q23efx34TSyncGroup3<Q23efx13TChasePosYRot>Fv"
-        .4byte "fade__Q23efx34TSyncGroup3<Q23efx13TChasePosYRot>Fv"
-        .4byte "startDemoDrawOff__Q23efx34TSyncGroup3<Q23efx13TChasePosYRot>Fv"
-        .4byte "endDemoDrawOn__Q23efx34TSyncGroup3<Q23efx13TChasePosYRot>Fv"
-    .global __vt__Q23efx12TKchDiveSand
-    __vt__Q23efx12TKchDiveSand:
-        .4byte 0
-        .4byte 0
-        .4byte "create__Q23efx34TSyncGroup3<Q23efx13TChasePosYRot>FPQ23efx3Arg"
-        .4byte "forceKill__Q23efx34TSyncGroup3<Q23efx13TChasePosYRot>Fv"
-        .4byte "fade__Q23efx34TSyncGroup3<Q23efx13TChasePosYRot>Fv"
-        .4byte "startDemoDrawOff__Q23efx34TSyncGroup3<Q23efx13TChasePosYRot>Fv"
-        .4byte "endDemoDrawOn__Q23efx34TSyncGroup3<Q23efx13TChasePosYRot>Fv"
-    .global __vt__Q34Game10KingChappy14ProperAnimator
-    __vt__Q34Game10KingChappy14ProperAnimator:
-        .4byte 0
-        .4byte 0
-        .4byte __dt__Q34Game10KingChappy14ProperAnimatorFv
-        .4byte setAnimMgr__Q24Game22EnemyBlendAnimatorBaseFPQ28SysShape7AnimMgr
-        .4byte getAnimator__Q24Game22EnemyBlendAnimatorBaseFv
-        .4byte getAnimator__Q24Game22EnemyBlendAnimatorBaseFi
-        .4byte animate__Q24Game22EnemyBlendAnimatorBaseFf
-        .4byte animate__Q24Game22EnemyBlendAnimatorBaseFif
-        .4byte resetAnimSpeed__Q24Game17EnemyAnimatorBaseFv
-        .4byte getTypeID__Q24Game22EnemyBlendAnimatorBaseFv
-    .global __vt__Q34Game10KingChappy3Obj
-    __vt__Q34Game10KingChappy3Obj:
-        .4byte 0
-        .4byte 0
-        .4byte getPosition__Q24Game9EnemyBaseFv
-        .4byte checkCollision__Q24Game8CreatureFPQ24Game10CellObject
-        .4byte getBoundingSphere__Q24Game9EnemyBaseFRQ23Sys6Sphere
-        .4byte collisionUpdatable__Q24Game8CreatureFv
-        .4byte isPiki__Q24Game8CreatureFv
-        .4byte isNavi__Q24Game8CreatureFv
-        .4byte deferPikiCollision__Q24Game10CellObjectFv
-        .4byte getTypeName__Q24Game8CreatureFv
-        .4byte getObjType__Q24Game8CreatureFv
-        .4byte constructor__Q24Game9EnemyBaseFv
-        .4byte onInit__Q34Game10KingChappy3ObjFPQ24Game15CreatureInitArg
-        .4byte onKill__Q34Game10KingChappy3ObjFPQ24Game15CreatureKillArg
-        .4byte onInitPost__Q24Game9EnemyBaseFPQ24Game15CreatureInitArg
-        .4byte doAnimation__Q24Game9EnemyBaseFv
-        .4byte doEntry__Q24Game9EnemyBaseFv
-        .4byte doSetView__Q24Game9EnemyBaseFi
-        .4byte doViewCalc__Q24Game9EnemyBaseFv
-        .4byte doSimulation__Q34Game10KingChappy3ObjFf
-        .4byte doDirectDraw__Q34Game10KingChappy3ObjFR8Graphics
-        .4byte getBodyRadius__Q34Game10KingChappy3ObjFv
-        .4byte getCellRadius__Q34Game10KingChappy3ObjFv
-        .4byte "initPosition__Q24Game8CreatureFR10Vector3<f>"
-        .4byte "onInitPosition__Q24Game8CreatureFR10Vector3<f>"
-        .4byte getFaceDir__Q24Game9EnemyBaseFv
-        .4byte "setVelocity__Q24Game9EnemyBaseFR10Vector3<f>"
-        .4byte getVelocity__Q24Game9EnemyBaseFv
-        .4byte "onSetPosition__Q24Game9EnemyBaseFR10Vector3<f>"
-        .4byte "onSetPositionPost__Q24Game9EnemyBaseFR10Vector3<f>"
-        .4byte updateTrMatrix__Q24Game9EnemyBaseFv
-        .4byte isTeki__Q24Game9EnemyBaseFv
-        .4byte isPellet__Q24Game8CreatureFv
-        .4byte inWaterCallback__Q34Game10KingChappy3ObjFPQ24Game8WaterBox
-        .4byte outWaterCallback__Q24Game9EnemyBaseFv
-        .4byte inWater__Q24Game9EnemyBaseFv
-        .4byte getFlockMgr__Q24Game8CreatureFv
-        .4byte onStartCapture__Q24Game8CreatureFv
-        .4byte onUpdateCapture__Q24Game8CreatureFR7Matrixf
-        .4byte onEndCapture__Q24Game8CreatureFv
-        .4byte isAtari__Q24Game8CreatureFv
-        .4byte setAtari__Q24Game8CreatureFb
-        .4byte isAlive__Q24Game8CreatureFv
-        .4byte setAlive__Q24Game8CreatureFb
-        .4byte isCollisionFlick__Q24Game8CreatureFv
-        .4byte setCollisionFlick__Q24Game8CreatureFb
-        .4byte isMovieActor__Q24Game8CreatureFv
-        .4byte isMovieExtra__Q24Game8CreatureFv
-        .4byte isMovieMotion__Q24Game8CreatureFv
-        .4byte setMovieMotion__Q24Game8CreatureFb
-        .4byte isBuried__Q24Game8CreatureFv
-        .4byte isFlying__Q24Game9EnemyBaseFv
-        .4byte isUnderground__Q34Game10KingChappy3ObjFv
-        .4byte isLivingThing__Q24Game8CreatureFv
-        .4byte isDebugCollision__Q24Game8CreatureFv
-        .4byte setDebugCollision__Q24Game8CreatureFb
-        .4byte doSave__Q24Game8CreatureFR6Stream
-        .4byte doLoad__Q24Game8CreatureFR6Stream
-        .4byte bounceCallback__Q24Game8CreatureFPQ23Sys8Triangle
-        .4byte collisionCallback__Q34Game10KingChappy3ObjFRQ24Game9CollEvent
-        .4byte platCallback__Q24Game8CreatureFRQ24Game9PlatEvent
-        .4byte getJAIObject__Q24Game9EnemyBaseFv
-        .4byte getPSCreature__Q24Game9EnemyBaseFv
-        .4byte getSound_AILOD__Q24Game8CreatureFv
-        .4byte getSound_PosPtr__Q24Game9EnemyBaseFv
-        .4byte sound_culling__Q24Game9EnemyBaseFv
-        .4byte getSound_CurrAnimFrame__Q24Game9EnemyBaseFv
-        .4byte getSound_CurrAnimSpeed__Q24Game9EnemyBaseFv
-        .4byte on_movie_begin__Q24Game8CreatureFb
-        .4byte on_movie_end__Q24Game8CreatureFb
-        .4byte movieStartAnimation__Q24Game8CreatureFUl
-        .4byte movieStartDemoAnimation__Q24Game8CreatureFPQ28SysShape8AnimInfo
-        .4byte movieSetAnimationLastFrame__Q24Game8CreatureFv
-        .4byte "movieSetTranslation__Q24Game8CreatureFR10Vector3<f>f"
-        .4byte movieSetFaceDir__Q24Game8CreatureFf
-        .4byte "movieGotoPosition__Q24Game8CreatureFR10Vector3<f>"
-        .4byte movieUserCommand__Q24Game8CreatureFUlPQ24Game11MoviePlayer
-        .4byte getShadowParam__Q34Game10KingChappy3ObjFRQ24Game11ShadowParam
-        .4byte needShadow__Q24Game9EnemyBaseFv
-        .4byte getLifeGaugeParam__Q24Game9EnemyBaseFRQ24Game14LifeGaugeParam
-        .4byte getLODSphere__Q24Game9EnemyBaseFRQ23Sys6Sphere
-        .4byte getLODCylinder__Q24Game8CreatureFRQ23Sys8Cylinder
-        .4byte startPick__Q24Game8CreatureFv
-        .4byte endPick__Q24Game8CreatureFb
-        .4byte getMabiki__Q24Game8CreatureFv
-        .4byte getFootmarks__Q24Game8CreatureFv
-        .4byte onStickStart__Q24Game9EnemyBaseFPQ24Game8Creature
-        .4byte onStickEnd__Q24Game9EnemyBaseFPQ24Game8Creature
-        .4byte onStickStartSelf__Q24Game8CreatureFPQ24Game8Creature
-        .4byte onStickEndSelf__Q24Game8CreatureFPQ24Game8Creature
-        .4byte isSlotFree__Q24Game8CreatureFs
-        .4byte getFreeStickSlot__Q24Game8CreatureFv
-        .4byte "getNearFreeStickSlot__Q24Game8CreatureFR10Vector3<f>"
-        .4byte getRandomFreeStickSlot__Q24Game8CreatureFv
-        .4byte onSlotStickStart__Q24Game8CreatureFPQ24Game8Creatures
-        .4byte onSlotStickEnd__Q24Game8CreatureFPQ24Game8Creatures
-        .4byte "calcStickSlotGlobal__Q24Game8CreatureFsR10Vector3<f>"
-        .4byte "getVelocityAt__Q24Game9EnemyBaseFR10Vector3<f>R10Vector3<f>"
-        .4byte "getAngularEffect__Q24Game8CreatureFR10Vector3<f>R10Vector3<f>"
-        .4byte
-   "applyImpulse__Q34Game10KingChappy3ObjFR10Vector3<f>R10Vector3<f>" .4byte
-   ignoreAtari__Q24Game8CreatureFPQ24Game8Creature .4byte
-   getSuckPos__Q24Game8CreatureFv .4byte getGoalPos__Q24Game8CreatureFv .4byte
-   isSuckReady__Q24Game8CreatureFv .4byte isSuckArriveWait__Q24Game8CreatureFv
-        .4byte stimulate__Q24Game9EnemyBaseFRQ24Game11Interaction
-        .4byte getCreatureName__Q24Game9EnemyBaseFv
-        .4byte getCreatureID__Q24Game9EnemyBaseFv
-        .4byte 0
-        .4byte 0
-        .4byte "@376@onKeyEvent__Q24Game9EnemyBaseFRCQ28SysShape8KeyEvent"
-        .4byte __dt__Q34Game10KingChappy3ObjFv
-        .4byte "birth__Q34Game10KingChappy3ObjFR10Vector3<f>f"
-        .4byte
-   setInitialSetting__Q34Game10KingChappy3ObjFPQ24Game21EnemyInitialParamBase
-        .4byte update__Q24Game9EnemyBaseFv
-        .4byte doUpdate__Q34Game10KingChappy3ObjFv
-        .4byte doUpdateCommon__Q24Game9EnemyBaseFv
-        .4byte doUpdateCarcass__Q24Game9EnemyBaseFv
-        .4byte doAnimationUpdateAnimator__Q34Game10KingChappy3ObjFv
-        .4byte doAnimationCullingOff__Q34Game10KingChappy3ObjFv
-        .4byte doAnimationCullingOn__Q24Game9EnemyBaseFv
-        .4byte doAnimationStick__Q24Game9EnemyBaseFv
-        .4byte doSimulationCarcass__Q24Game9EnemyBaseFf
-        .4byte doDebugDraw__Q34Game10KingChappy3ObjFR8Graphics
-        .4byte doSimpleDraw__Q24Game9EnemyBaseFP8Viewport
-        .4byte doSimulationGround__Q24Game9EnemyBaseFf
-        .4byte doSimulationFlying__Q24Game9EnemyBaseFf
-        .4byte doSimulationStick__Q24Game9EnemyBaseFf
-        .4byte changeMaterial__Q24Game9EnemyBaseFv
-        .4byte "getCommonEffectPos__Q24Game9EnemyBaseFR10Vector3<f>"
-        .4byte getFitEffectPos__Q24Game9EnemyBaseFv
-        .4byte viewGetShape__Q24Game9EnemyBaseFv
-        .4byte view_start_carrymotion__Q24Game9EnemyBaseFv
-        .4byte view_finish_carrymotion__Q24Game9EnemyBaseFv
-        .4byte viewStartPreCarryMotion__Q24Game9EnemyBaseFv
-        .4byte viewStartCarryMotion__Q24Game9EnemyBaseFv
-        .4byte viewOnPelletKilled__Q24Game9EnemyBaseFv
-        .4byte getOffsetForMapCollision__Q24Game9EnemyBaseFv
-        .4byte setParameters__Q34Game10KingChappy3ObjFv
-        .4byte initMouthSlots__Q34Game10KingChappy3ObjFv
-        .4byte initWalkSmokeEffect__Q34Game10KingChappy3ObjFv
-        .4byte getWalkSmokeEffectMgr__Q34Game10KingChappy3ObjFv
-        .4byte onKeyEvent__Q24Game9EnemyBaseFRCQ28SysShape8KeyEvent
-        .4byte injure__Q24Game9EnemyBaseFv
-        .4byte setCollEvent__Q24Game9EnemyBaseFRQ24Game9CollEvent
-        .4byte "getEfxHamonPos__Q24Game9EnemyBaseFP10Vector3<f>"
-        .4byte createInstanceEfxHamon__Q24Game9EnemyBaseFv
-        .4byte updateEfxHamon__Q34Game10KingChappy3ObjFv
-        .4byte createEfxHamon__Q34Game10KingChappy3ObjFv
-        .4byte fadeEfxHamon__Q24Game9EnemyBaseFv
-        .4byte getEnemyTypeID__Q34Game10KingChappy3ObjFv
-        .4byte getMouthSlots__Q34Game10KingChappy3ObjFv
-        .4byte doGetLifeGaugeParam__Q24Game9EnemyBaseFRQ24Game14LifeGaugeParam
-        .4byte throwupItem__Q24Game9EnemyBaseFv
-        .4byte "getThrowupItemPosition__Q24Game9EnemyBaseFP10Vector3<f>"
-        .4byte "getThrowupItemVelocity__Q24Game9EnemyBaseFP10Vector3<f>"
-        .4byte throwupItemInDeathProcedure__Q24Game9EnemyBaseFv
-        .4byte setLODSphere__Q24Game9EnemyBaseFRQ23Sys6Sphere
-        .4byte
-   damageCallBack__Q34Game10KingChappy3ObjFPQ24Game8CreaturefP8CollPart .4byte
-   pressCallBack__Q34Game10KingChappy3ObjFPQ24Game8CreaturefP8CollPart .4byte
-   flyCollisionCallBack__Q24Game9EnemyBaseFPQ24Game8CreaturefP8CollPart .4byte
-   hipdropCallBack__Q24Game9EnemyBaseFPQ24Game8CreaturefP8CollPart .4byte
-   dropCallBack__Q24Game9EnemyBaseFPQ24Game8Creature .4byte
-   earthquakeCallBack__Q24Game9EnemyBaseFPQ24Game8Creaturef .4byte
-   farmCallBack__Q24Game9EnemyBaseFPQ24Game8Creaturef .4byte
-   "bombCallBack__Q34Game10KingChappy3ObjFPQ24Game8CreatureR10Vector3<f>f"
-        .4byte
-   eatWhitePikminCallBack__Q34Game10KingChappy3ObjFPQ24Game8Creaturef .4byte
-   dopeCallBack__Q24Game9EnemyBaseFPQ24Game8Creaturei .4byte
-   doDopeCallBack__Q24Game9EnemyBaseFPQ24Game8Creaturei .4byte
-   doStartStoneState__Q34Game10KingChappy3ObjFv .4byte
-   doFinishStoneState__Q34Game10KingChappy3ObjFv .4byte
-   getDamageCoeStoneState__Q24Game9EnemyBaseFv .4byte
-   doStartEarthquakeState__Q24Game9EnemyBaseFf .4byte
-   doFinishEarthquakeState__Q24Game9EnemyBaseFv .4byte
-   doStartEarthquakeFitState__Q24Game9EnemyBaseFv .4byte
-   doFinishEarthquakeFitState__Q24Game9EnemyBaseFv .4byte
-   lifeRecover__Q24Game9EnemyBaseFv .4byte
-   startCarcassMotion__Q34Game10KingChappy3ObjFv .4byte
-   setCarcassArg__Q24Game9EnemyBaseFRQ24Game13PelletViewArg .4byte
-   getCarcassArgHeight__Q24Game9EnemyBaseFv .4byte
-   doBecomeCarcass__Q24Game9EnemyBaseFv .4byte
-   startWaitingBirthTypeDrop__Q24Game9EnemyBaseFv .4byte
-   finishWaitingBirthTypeDrop__Q24Game9EnemyBaseFv .4byte
-   isFinishableWaitingBirthTypeDrop__Q24Game9EnemyBaseFv .4byte
-   doStartWaitingBirthTypeDrop__Q24Game9EnemyBaseFv .4byte
-   doFinishWaitingBirthTypeDrop__Q24Game9EnemyBaseFv .4byte
-   wallCallback__Q34Game10KingChappy3ObjFRCQ24Game8MoveInfo .4byte
-   getDownSmokeScale__Q34Game10KingChappy3ObjFv .4byte
-   doStartMovie__Q34Game10KingChappy3ObjFv .4byte
-   doEndMovie__Q34Game10KingChappy3ObjFv .4byte
-   setFSM__Q34Game10KingChappy3ObjFPQ34Game10KingChappy3FSM .4byte 0 .4byte 0
-        .4byte viewGetBaseScale__Q24Game10PelletViewFv
-        .4byte "@920@12@viewGetShape__Q24Game9EnemyBaseFv"
-        .4byte viewGetCollTreeJointIndex__Q24Game10PelletViewFv
-        .4byte viewGetCollTreeOffset__Q24Game10PelletViewFv
-        .4byte "@920@12@view_start_carrymotion__Q24Game9EnemyBaseFv"
-        .4byte "@920@12@view_finish_carrymotion__Q24Game9EnemyBaseFv"
-        .4byte "@920@12@viewStartPreCarryMotion__Q24Game9EnemyBaseFv"
-        .4byte "@920@12@viewStartCarryMotion__Q24Game9EnemyBaseFv"
-        .4byte "@920@12@viewOnPelletKilled__Q24Game9EnemyBaseFv"
-        .4byte "viewEntryShape__Q24Game10PelletViewFR7MatrixfR10Vector3<f>"
-
-    .section .sbss # 0x80514D80 - 0x80516360
-    .global lbl_80515F48
-    lbl_80515F48:
-        .skip 0x4
-    .global lbl_80515F4C
-    lbl_80515F4C:
-        .skip 0x4
-    .global curK__Q24Game10KingChappy
-    curK__Q24Game10KingChappy:
-        .skip 0x8
-
-    .section .sdata2, "a"     # 0x80516360 - 0x80520E40
-    .global lbl_8051E668
-    lbl_8051E668:
-        .4byte 0x42700000
-    .global lbl_8051E66C
-    lbl_8051E66C:
-        .4byte 0x6B757469
-        .4byte 0x00000000
-    .global lbl_8051E674
-    lbl_8051E674:
-        .4byte 0x6B6F7369
-        .4byte 0x6A6E7400
-    .global lbl_8051E67C
-    lbl_8051E67C:
-        .4byte 0x6265726F
-        .4byte 0x36000000
-    .global lbl_8051E684
-    lbl_8051E684:
-        .4byte 0x6265726F
-        .4byte 0x35000000
-    .global lbl_8051E68C
-    lbl_8051E68C:
-        .4byte 0x00000000
-    .global lbl_8051E690
-    lbl_8051E690:
-        .4byte 0x6173694C
-        .4byte 0x00000000
-    .global lbl_8051E698
-    lbl_8051E698:
-        .4byte 0x61736952
-        .4byte 0x00000000
-    .global lbl_8051E6A0
-    lbl_8051E6A0:
-        .4byte 0x68616E61
-        .4byte 0x00000000
-    .global lbl_8051E6A8
-    lbl_8051E6A8:
-        .4byte 0x43FA0000
-    .global lbl_8051E6AC
-    lbl_8051E6AC:
-        .4byte 0x41200000
-    .global lbl_8051E6B0
-    lbl_8051E6B0:
-        .4byte 0xC3A2F983
-    .global lbl_8051E6B4
-    lbl_8051E6B4:
-        .4byte 0x43A2F983
-    .global lbl_8051E6B8
-    lbl_8051E6B8:
-        .float 1.0
-    .global lbl_8051E6BC
-    lbl_8051E6BC:
-        .4byte 0x41A00000
-    .global lbl_8051E6C0
-    lbl_8051E6C0:
-        .4byte 0x42C80000
-    .global lbl_8051E6C4
-    lbl_8051E6C4:
-        .4byte 0x42340000
-    .global lbl_8051E6C8
-    lbl_8051E6C8:
-        .float 0.1
-    .global lbl_8051E6CC
-    lbl_8051E6CC:
-        .4byte 0x40A00000
-    .global lbl_8051E6D0
-    lbl_8051E6D0:
-        .4byte 0x44C80000
-    .global lbl_8051E6D4
-    lbl_8051E6D4:
-        .4byte 0x3E4CCCCD
-    .global lbl_8051E6D8
-    lbl_8051E6D8:
-        .float 0.25
-    .global lbl_8051E6DC
-    lbl_8051E6DC:
-        .float 2.0
-    .global lbl_8051E6E0
-    lbl_8051E6E0:
-        .float -1000.0
-    .global lbl_8051E6E4
-    lbl_8051E6E4:
-        .asciz "kamu1"
-        .skip 2
-    .global lbl_8051E6EC
-    lbl_8051E6EC:
-        .asciz "kamu2"
-        .skip 2
-    .global lbl_8051E6F4
-    lbl_8051E6F4:
-        .asciz "kamu3"
-        .skip 2
-    .global lbl_8051E6FC
-    lbl_8051E6FC:
-        .asciz "kamu4"
-        .skip 2
-    .global lbl_8051E704
-    lbl_8051E704:
-        .asciz "kamu5"
-        .skip 2
-    .global lbl_8051E70C
-    lbl_8051E70C:
-        .asciz "kamu6"
-        .skip 2
-    .global lbl_8051E714
-    lbl_8051E714:
-        .asciz "kamu7"
-        .skip 2
-    .global lbl_8051E71C
-    lbl_8051E71C:
-        .asciz "kamu8"
-        .skip 2
-    .global lbl_8051E724
-    lbl_8051E724:
-        .asciz "kamu9"
-        .skip 2
-    .global lbl_8051E72C
-    lbl_8051E72C:
-        .float 25.0
-    .global lbl_8051E730
-    lbl_8051E730:
-        .float 32768.0
-    .global lbl_8051E734
-    lbl_8051E734:
-        .float 0.3
-    .global lbl_8051E738
-    lbl_8051E738:
-        .4byte 0x40C90FDB
-        .4byte 0x00000000
-    .global lbl_8051E740
-    lbl_8051E740:
-        .4byte 0x43300000
-        .4byte 0x80000000
-    .global lbl_8051E748
-    lbl_8051E748:
-        .4byte 0x3F4CCCCD
-    .global lbl_8051E74C
-    lbl_8051E74C:
-        .4byte 0x40490FDB
-    .global lbl_8051E750
-    lbl_8051E750:
-        .4byte 0x3BB60B61
-    .global lbl_8051E754
-    lbl_8051E754:
-        .4byte 0x42480000
-    .global lbl_8051E758
-    lbl_8051E758:
-        .4byte 0x44610000
-    .global lbl_8051E75C
-    lbl_8051E75C:
-        .float 0.5
-    .global lbl_8051E760
-    lbl_8051E760:
-        .4byte 0x41F00000
-    .global lbl_8051E764
-    lbl_8051E764:
-        .float 0.7
-    .global lbl_8051E768
-    lbl_8051E768:
-        .4byte 0x65796533
-        .4byte 0x52000000
-    .global lbl_8051E770
-    lbl_8051E770:
-        .4byte 0x65796533
-        .4byte 0x4C000000
-    .global lbl_8051E778
-    lbl_8051E778:
-        .4byte 0x3FCCCCCD
-    .global lbl_8051E77C
-    lbl_8051E77C:
-        .4byte 0x3FA66666
-*/
+#include "Game/Entities/KingChappy.h"
+#include "PSM/EnemyBoss.h"
+#include "PSSystem/PSMainSide_ObjSound.h"
+#include "nans.h"
 
 namespace Game {
+namespace KingChappy {
+Obj* curK;
+
+static const int unusedKingChappyArray[] = { 0, 0, 0 };
+static const char kingChappyName[]       = "kingChappy";
 
 /*
  * --INFO--
  * Address:	8035CCE8
  * Size:	000038
  */
-void KingChappy::lFootCallBack(J3DJoint*, int)
+static bool lFootCallBack(J3DJoint* joint, int footIdx)
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	cmpwi    r4, 0
-	stw      r0, 0x14(r1)
-	bne      lbl_8035CD0C
-	lwz      r3, curK__Q24Game10KingChappy@sda21(r13)
-	cmplwi   r3, 0
-	beq      lbl_8035CD0C
-	bl       leftFootMtxCalc__Q34Game10KingChappy3ObjFv
+	if (footIdx == 0) {
+		if (curK) {
+			curK->leftFootMtxCalc();
+		}
+	}
 
-lbl_8035CD0C:
-	lwz      r0, 0x14(r1)
-	li       r3, 1
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	return true;
 }
 
 /*
@@ -693,26 +31,15 @@ lbl_8035CD0C:
  * Address:	8035CD20
  * Size:	000038
  */
-void KingChappy::rFootCallBack(J3DJoint*, int)
+static bool rFootCallBack(J3DJoint* joint, int footIdx)
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	cmpwi    r4, 0
-	stw      r0, 0x14(r1)
-	bne      lbl_8035CD44
-	lwz      r3, curK__Q24Game10KingChappy@sda21(r13)
-	cmplwi   r3, 0
-	beq      lbl_8035CD44
-	bl       rightFootMtxCalc__Q34Game10KingChappy3ObjFv
+	if (footIdx == 0) {
+		if (curK) {
+			curK->rightFootMtxCalc();
+		}
+	}
 
-lbl_8035CD44:
-	lwz      r0, 0x14(r1)
-	li       r3, 1
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	return true;
 }
 
 /*
@@ -720,87 +47,93 @@ lbl_8035CD44:
  * Address:	8035CD58
  * Size:	0000A4
  */
-void KingChappy::Obj::setParameters()
+void Obj::setParameters()
 {
-	/*
-	stwu     r1, -0x20(r1)
-	mflr     r0
-	stw      r0, 0x24(r1)
-	stfd     f31, 0x10(r1)
-	psq_st   f31, 24(r1), 0, qr0
-	stw      r31, 0xc(r1)
-	mr       r31, r3
-	bl       setParameters__Q24Game9EnemyBaseFv
-	lbz      r0, 0x394(r31)
-	cmplwi   r0, 0
-	bne      lbl_8035CD94
-	lwz      r3, 0xc0(r31)
-	lbz      r0, 0xbcc(r3)
-	cmplwi   r0, 0
-	beq      lbl_8035CDE0
-
-lbl_8035CD94:
-	li       r0, 1
-	stb      r0, 0x394(r31)
-	lwz      r3, 0xc0(r31)
-	lfs      f31, 0xa4c(r3)
-	stfs     f31, 0x1f8(r31)
-	fmr      f1, f31
-	stfs     f31, 0x168(r31)
-	stfs     f31, 0x16c(r31)
-	stfs     f31, 0x170(r31)
-	lwz      r3, 0x114(r31)
-	lwz      r3, 0(r3)
-	bl       setScale__8CollPartFf
-	lwz      r3, 0xc0(r31)
-	lfs      f0, lbl_8051E668@sda21(r2)
-	lfs      f1, 0x21c(r3)
-	fmuls    f1, f31, f1
-	stfs     f1, 0x27c(r31)
-	lwz      r3, 0xc0(r31)
-	stfs     f0, 0x1a4(r3)
-
-lbl_8035CDE0:
-	psq_l    f31, 24(r1), 0, qr0
-	lwz      r0, 0x24(r1)
-	lfd      f31, 0x10(r1)
-	lwz      r31, 0xc(r1)
-	mtlr     r0
-	addi     r1, r1, 0x20
-	blr
-	*/
+	EnemyBase::setParameters();
+	if (_394 || C_PARMS->_BCC) {
+		_394            = 1;
+		f32 scale       = C_PROPERPARMS.m_fp15.m_value;
+		m_scaleModifier = scale;
+		m_scale         = Vector3f(scale);
+		m_collTree->m_part->setScale(scale);
+		m_curLodSphere.m_radius                            = scale * C_PARMS->m_general.m_offCameraRadius.m_value;
+		C_PARMS->m_general.m_heightOffsetFromFloor.m_value = 60.0f;
+	}
 }
-
-} // namespace Game
 
 /*
  * --INFO--
  * Address:	8035CDFC
  * Size:	000020
  */
-void birth__Q34Game10KingChappy3ObjFR10Vector3f f()
-{
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	bl       "birth__Q24Game9EnemyBaseFR10Vector3<f>f"
-	lwz      r0, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
-}
-
-namespace Game {
+void Obj::birth(Vector3f& position, f32 faceDir) { EnemyBase::birth(position, faceDir); }
 
 /*
  * --INFO--
  * Address:	8035CE1C
  * Size:	000448
  */
-void KingChappy::Obj::onInit(Game::CreatureInitArg*)
+void Obj::onInit(CreatureInitArg* initArg)
 {
+	EnemyBase::onInit(initArg);
+	fadeEfxHamon();
+	m_mouthJoint1 = m_model->getJoint("kuti");
+	P2ASSERTLINE(90, m_mouthJoint1);
+
+	m_bodyJoint = m_model->getJoint("kosijnt");
+	P2ASSERTLINE(93, m_bodyJoint);
+
+	m_tongueJoint1 = m_model->getJoint("bero6");
+	P2ASSERTLINE(96, m_tongueJoint1);
+
+	m_tongueJoint2 = m_model->getJoint("bero5");
+	P2ASSERTLINE(99, m_tongueJoint2);
+
+	m_mouthJoint2 = m_model->getJoint("kuti");
+	P2ASSERTLINE(102, m_mouthJoint2);
+
+	m_fsm->start(this, KINGCHAPPY_HideWait, nullptr);
+
+	m_homePosition   = m_position;
+	_2BC             = m_homePosition;
+	m_homePosition.y = 0.0f;
+	_2EC             = 1;
+	_2F0             = 0;
+	_2F4             = m_homePosition;
+	_30C             = 0;
+	_338             = 0;
+
+	P2ASSERTLINE(121, m_model);
+	J3DModelData* modelData = m_model->m_j3dModel->m_modelData;
+
+	m_lFootJointIndex    = m_model->getJointIndex("asiL");
+	J3DJoint* lFootJoint = modelData->m_jointTree.m_joints[m_lFootJointIndex];
+	P2ASSERTLINE(127, lFootJoint);
+	lFootJoint->m_function = (J3DJointCallBack*)&lFootCallBack;
+
+	m_rFootJointIndex    = m_model->getJointIndex("asiR");
+	J3DJoint* rFootJoint = modelData->m_jointTree.m_joints[m_rFootJointIndex];
+	P2ASSERTLINE(132, rFootJoint);
+	rFootJoint->m_function = (J3DJointCallBack*)&rFootCallBack;
+
+	_320 = 0.0f;
+	_334 = 0.0f;
+
+	m_efxYodare->m_mtx     = m_mouthJoint2->getWorldMatrix();
+	m_efxCryInd->m_mtx     = m_mouthJoint2->getWorldMatrix();
+	m_efxSmoke->m_mtx      = m_model->getJoint("hana")->getWorldMatrix();
+	m_efxAttack->m_mtx     = m_model->getJoint("bero5")->getWorldMatrix();
+	m_efxDeadYodare->m_mtx = m_model->getJoint("kuti")->getWorldMatrix();
+	m_efxDeadHana->setMtxptr(m_model->getJoint("hana")->getWorldMatrix()->m_matrix.mtxView);
+
+	PSM::EnemyBoss* soundObj = static_cast<PSM::EnemyBoss*>(m_soundObj);
+	PSM::checkBoss(soundObj);
+	soundObj->setAppearFlag(false);
+
+	_394 = 0;
+	if (C_PARMS->_BCC) {
+		if (gameSystem->m_section) { }
+	}
 	/*
 	stwu     r1, -0x30(r1)
 	mflr     r0
@@ -1110,7 +443,7 @@ lbl_8035D23C:
  * Address:	8035D264
  * Size:	0005AC
  */
-KingChappy::Obj::Obj()
+Obj::Obj()
 {
 	/*
 	stwu     r1, -0x20(r1)
@@ -1506,137 +839,139 @@ lbl_8035D7F4:
 	blr
 	*/
 }
+} // namespace KingChappy
+} // namespace Game
 
 namespace efx {
 
-/*
- * --INFO--
- * Address:	8035D810
- * Size:	0001D8
- */
-TKchDeadYodare::TKchDeadYodare(float (*)[4])
-{
-	/*
-stwu     r1, -0x20(r1)
-mflr     r0
-lis      r7, __vt__19JPAParticleCallBack@ha
-lis      r6, __vt__Q23efx27TParticleCallBack_KchYodare@ha
-stw      r0, 0x24(r1)
-lis      r5, __vt__Q23efx5TBase@ha
-li       r10, 0x220
-addi     r7, r7, __vt__19JPAParticleCallBack@l
-stmw     r26, 8(r1)
-mr       r30, r3
-addi     r26, r5, __vt__Q23efx5TBase@l
-lis      r3, __vt__18JPAEmitterCallBack@ha
-addi     r27, r3, __vt__18JPAEmitterCallBack@l
-lis      r5, __vt__Q23efx5TSync@ha
-addi     r5, r5, __vt__Q23efx5TSync@l
-lis      r3, __vt__Q23efx9TChaseMtx@ha
-addi     r12, r3, __vt__Q23efx9TChaseMtx@l
-li       r28, 0
-lis      r3, __vt__Q23efx22TKchYodareBaseChaseMtx@ha
-addi     r0, r5, 0x14
-addi     r9, r3, __vt__Q23efx22TKchYodareBaseChaseMtx@l
-addi     r11, r12, 0x14
-addi     r8, r9, 0x14
-addi     r6, r6, __vt__Q23efx27TParticleCallBack_KchYodare@l
-stw      r26, 0(r30)
-lis      r3, __vt__Q23efx17TOneEmitterSimple@ha
-addi     r29, r30, 0x18
-stw      r27, 4(r30)
-stw      r5, 0(r30)
-addi     r5, r3, __vt__Q23efx17TOneEmitterSimple@l
-addi     r31, r5, 0x14
-li       r3, 0x22c
-stw      r0, 4(r30)
-li       r0, 0x2b2
-stw      r28, 8(r30)
-sth      r0, 0xc(r30)
-li       r0, 0xa
-stb      r28, 0xe(r30)
-stw      r12, 0(r30)
-stw      r11, 4(r30)
-stw      r4, 0x10(r30)
-sth      r10, 0xc(r30)
-stw      r9, 0(r30)
-stw      r8, 4(r30)
-stw      r7, 0x14(r30)
-stw      r6, 0x14(r30)
-stw      r26, 0x18(r30)
-stw      r27, 0x1c(r30)
-stw      r5, 0x18(r30)
-stw      r31, 0x1c(r30)
-stw      r28, 0x20(r30)
-sth      r3, 0x24(r30)
-stw      r28, 0x2c(r30)
-stw      r0, 0x30(r30)
-lwz      r26, 0x30(r30)
-mulli    r3, r26, 0xc
-addi     r3, r3, 0x10
-bl       __nwa__FUl
-lis      r4, "__ct__10Vector3<f>Fv"@ha
-mr       r7, r26
-addi     r4, r4, "__ct__10Vector3<f>Fv"@l
-li       r5, 0
-li       r6, 0xc
-bl       __construct_new_array
-lis      r4, __vt__Q23efx15TKchYodareHitGr@ha
-stw      r3, 0x10(r29)
-addi     r4, r4, __vt__Q23efx15TKchYodareHitGr@l
-lis      r3, __vt__Q23efx5TBase@ha
-stw      r4, 0(r29)
-addi     r0, r4, 0x14
-addi     r28, r30, 0x34
-lis      r4, __vt__18JPAEmitterCallBack@ha
-stw      r0, 4(r29)
-addi     r5, r3, __vt__Q23efx5TBase@l
-lis      r3, __vt__Q23efx17TOneEmitterSimple@ha
-addi     r0, r4, __vt__18JPAEmitterCallBack@l
-stw      r5, 0x34(r30)
-addi     r5, r3, __vt__Q23efx17TOneEmitterSimple@l
-li       r4, 0
-li       r3, 0x22d
-stw      r0, 0x38(r30)
-li       r0, 0xa
-mr       r27, r28
-stw      r5, 0x34(r30)
-stw      r31, 0x38(r30)
-stw      r4, 0x3c(r30)
-sth      r3, 0x40(r30)
-stw      r4, 0x48(r30)
-stw      r0, 0x4c(r30)
-lwz      r26, 0x4c(r30)
-mulli    r3, r26, 0xc
-addi     r3, r3, 0x10
-bl       __nwa__FUl
-lis      r4, "__ct__10Vector3<f>Fv"@ha
-mr       r7, r26
-addi     r4, r4, "__ct__10Vector3<f>Fv"@l
-li       r5, 0
-li       r6, 0xc
-bl       __construct_new_array
-stw      r3, 0x10(r27)
-lis      r3, __vt__Q23efx16TKchYodareHitWat@ha
-addi     r4, r3, __vt__Q23efx16TKchYodareHitWat@l
-lis      r3, __vt__Q23efx14TKchDeadYodare@ha
-stw      r4, 0(r28)
-addi     r0, r4, 0x14
-addi     r4, r3, __vt__Q23efx14TKchDeadYodare@l
-lfs      f0, lbl_8051E68C@sda21(r2)
-stw      r0, 4(r28)
-addi     r0, r4, 0x14
-mr       r3, r30
-stfs     f0, 0x50(r30)
-stw      r4, 0(r30)
-stw      r0, 4(r30)
-lmw      r26, 8(r1)
-lwz      r0, 0x24(r1)
-mtlr     r0
-addi     r1, r1, 0x20
-blr
-	*/
-}
+// /*
+//  * --INFO--
+//  * Address:	8035D810
+//  * Size:	0001D8
+//  */
+// TKchDeadYodare::TKchDeadYodare(float (*)[4])
+// {
+// 	/*
+// stwu     r1, -0x20(r1)
+// mflr     r0
+// lis      r7, __vt__19JPAParticleCallBack@ha
+// lis      r6, __vt__Q23efx27TParticleCallBack_KchYodare@ha
+// stw      r0, 0x24(r1)
+// lis      r5, __vt__Q23efx5TBase@ha
+// li       r10, 0x220
+// addi     r7, r7, __vt__19JPAParticleCallBack@l
+// stmw     r26, 8(r1)
+// mr       r30, r3
+// addi     r26, r5, __vt__Q23efx5TBase@l
+// lis      r3, __vt__18JPAEmitterCallBack@ha
+// addi     r27, r3, __vt__18JPAEmitterCallBack@l
+// lis      r5, __vt__Q23efx5TSync@ha
+// addi     r5, r5, __vt__Q23efx5TSync@l
+// lis      r3, __vt__Q23efx9TChaseMtx@ha
+// addi     r12, r3, __vt__Q23efx9TChaseMtx@l
+// li       r28, 0
+// lis      r3, __vt__Q23efx22TKchYodareBaseChaseMtx@ha
+// addi     r0, r5, 0x14
+// addi     r9, r3, __vt__Q23efx22TKchYodareBaseChaseMtx@l
+// addi     r11, r12, 0x14
+// addi     r8, r9, 0x14
+// addi     r6, r6, __vt__Q23efx27TParticleCallBack_KchYodare@l
+// stw      r26, 0(r30)
+// lis      r3, __vt__Q23efx17TOneEmitterSimple@ha
+// addi     r29, r30, 0x18
+// stw      r27, 4(r30)
+// stw      r5, 0(r30)
+// addi     r5, r3, __vt__Q23efx17TOneEmitterSimple@l
+// addi     r31, r5, 0x14
+// li       r3, 0x22c
+// stw      r0, 4(r30)
+// li       r0, 0x2b2
+// stw      r28, 8(r30)
+// sth      r0, 0xc(r30)
+// li       r0, 0xa
+// stb      r28, 0xe(r30)
+// stw      r12, 0(r30)
+// stw      r11, 4(r30)
+// stw      r4, 0x10(r30)
+// sth      r10, 0xc(r30)
+// stw      r9, 0(r30)
+// stw      r8, 4(r30)
+// stw      r7, 0x14(r30)
+// stw      r6, 0x14(r30)
+// stw      r26, 0x18(r30)
+// stw      r27, 0x1c(r30)
+// stw      r5, 0x18(r30)
+// stw      r31, 0x1c(r30)
+// stw      r28, 0x20(r30)
+// sth      r3, 0x24(r30)
+// stw      r28, 0x2c(r30)
+// stw      r0, 0x30(r30)
+// lwz      r26, 0x30(r30)
+// mulli    r3, r26, 0xc
+// addi     r3, r3, 0x10
+// bl       __nwa__FUl
+// lis      r4, "__ct__10Vector3<f>Fv"@ha
+// mr       r7, r26
+// addi     r4, r4, "__ct__10Vector3<f>Fv"@l
+// li       r5, 0
+// li       r6, 0xc
+// bl       __construct_new_array
+// lis      r4, __vt__Q23efx15TKchYodareHitGr@ha
+// stw      r3, 0x10(r29)
+// addi     r4, r4, __vt__Q23efx15TKchYodareHitGr@l
+// lis      r3, __vt__Q23efx5TBase@ha
+// stw      r4, 0(r29)
+// addi     r0, r4, 0x14
+// addi     r28, r30, 0x34
+// lis      r4, __vt__18JPAEmitterCallBack@ha
+// stw      r0, 4(r29)
+// addi     r5, r3, __vt__Q23efx5TBase@l
+// lis      r3, __vt__Q23efx17TOneEmitterSimple@ha
+// addi     r0, r4, __vt__18JPAEmitterCallBack@l
+// stw      r5, 0x34(r30)
+// addi     r5, r3, __vt__Q23efx17TOneEmitterSimple@l
+// li       r4, 0
+// li       r3, 0x22d
+// stw      r0, 0x38(r30)
+// li       r0, 0xa
+// mr       r27, r28
+// stw      r5, 0x34(r30)
+// stw      r31, 0x38(r30)
+// stw      r4, 0x3c(r30)
+// sth      r3, 0x40(r30)
+// stw      r4, 0x48(r30)
+// stw      r0, 0x4c(r30)
+// lwz      r26, 0x4c(r30)
+// mulli    r3, r26, 0xc
+// addi     r3, r3, 0x10
+// bl       __nwa__FUl
+// lis      r4, "__ct__10Vector3<f>Fv"@ha
+// mr       r7, r26
+// addi     r4, r4, "__ct__10Vector3<f>Fv"@l
+// li       r5, 0
+// li       r6, 0xc
+// bl       __construct_new_array
+// stw      r3, 0x10(r27)
+// lis      r3, __vt__Q23efx16TKchYodareHitWat@ha
+// addi     r4, r3, __vt__Q23efx16TKchYodareHitWat@l
+// lis      r3, __vt__Q23efx14TKchDeadYodare@ha
+// stw      r4, 0(r28)
+// addi     r0, r4, 0x14
+// addi     r4, r3, __vt__Q23efx14TKchDeadYodare@l
+// lfs      f0, lbl_8051E68C@sda21(r2)
+// stw      r0, 4(r28)
+// addi     r0, r4, 0x14
+// mr       r3, r30
+// stfs     f0, 0x50(r30)
+// stw      r4, 0(r30)
+// stw      r0, 4(r30)
+// lmw      r26, 8(r1)
+// lwz      r0, 0x24(r1)
+// mtlr     r0
+// addi     r1, r1, 0x20
+// blr
+// 	*/
+// }
 
 /*
  * --INFO--
@@ -1913,272 +1248,275 @@ blr
 	*/
 }
 
-/*
- * --INFO--
- * Address:	8035DD24
- * Size:	0001D8
- */
-TKchAttackYodare::TKchAttackYodare(float (*)[4])
-{
-	/*
-stwu     r1, -0x20(r1)
-mflr     r0
-lis      r7, __vt__19JPAParticleCallBack@ha
-lis      r6, __vt__Q23efx27TParticleCallBack_KchYodare@ha
-stw      r0, 0x24(r1)
-lis      r5, __vt__Q23efx5TBase@ha
-li       r10, 0x216
-addi     r7, r7, __vt__19JPAParticleCallBack@l
-stmw     r26, 8(r1)
-mr       r30, r3
-addi     r26, r5, __vt__Q23efx5TBase@l
-lis      r3, __vt__18JPAEmitterCallBack@ha
-addi     r27, r3, __vt__18JPAEmitterCallBack@l
-lis      r5, __vt__Q23efx5TSync@ha
-addi     r5, r5, __vt__Q23efx5TSync@l
-lis      r3, __vt__Q23efx9TChaseMtx@ha
-addi     r12, r3, __vt__Q23efx9TChaseMtx@l
-li       r28, 0
-lis      r3, __vt__Q23efx22TKchYodareBaseChaseMtx@ha
-addi     r0, r5, 0x14
-addi     r9, r3, __vt__Q23efx22TKchYodareBaseChaseMtx@l
-addi     r11, r12, 0x14
-addi     r8, r9, 0x14
-addi     r6, r6, __vt__Q23efx27TParticleCallBack_KchYodare@l
-stw      r26, 0(r30)
-lis      r3, __vt__Q23efx17TOneEmitterSimple@ha
-addi     r29, r30, 0x18
-stw      r27, 4(r30)
-stw      r5, 0(r30)
-addi     r5, r3, __vt__Q23efx17TOneEmitterSimple@l
-addi     r31, r5, 0x14
-li       r3, 0x22c
-stw      r0, 4(r30)
-li       r0, 0x2b2
-stw      r28, 8(r30)
-sth      r0, 0xc(r30)
-li       r0, 0xa
-stb      r28, 0xe(r30)
-stw      r12, 0(r30)
-stw      r11, 4(r30)
-stw      r4, 0x10(r30)
-sth      r10, 0xc(r30)
-stw      r9, 0(r30)
-stw      r8, 4(r30)
-stw      r7, 0x14(r30)
-stw      r6, 0x14(r30)
-stw      r26, 0x18(r30)
-stw      r27, 0x1c(r30)
-stw      r5, 0x18(r30)
-stw      r31, 0x1c(r30)
-stw      r28, 0x20(r30)
-sth      r3, 0x24(r30)
-stw      r28, 0x2c(r30)
-stw      r0, 0x30(r30)
-lwz      r26, 0x30(r30)
-mulli    r3, r26, 0xc
-addi     r3, r3, 0x10
-bl       __nwa__FUl
-lis      r4, "__ct__10Vector3<f>Fv"@ha
-mr       r7, r26
-addi     r4, r4, "__ct__10Vector3<f>Fv"@l
-li       r5, 0
-li       r6, 0xc
-bl       __construct_new_array
-lis      r4, __vt__Q23efx15TKchYodareHitGr@ha
-stw      r3, 0x10(r29)
-addi     r4, r4, __vt__Q23efx15TKchYodareHitGr@l
-lis      r3, __vt__Q23efx5TBase@ha
-stw      r4, 0(r29)
-addi     r0, r4, 0x14
-addi     r28, r30, 0x34
-lis      r4, __vt__18JPAEmitterCallBack@ha
-stw      r0, 4(r29)
-addi     r5, r3, __vt__Q23efx5TBase@l
-lis      r3, __vt__Q23efx17TOneEmitterSimple@ha
-addi     r0, r4, __vt__18JPAEmitterCallBack@l
-stw      r5, 0x34(r30)
-addi     r5, r3, __vt__Q23efx17TOneEmitterSimple@l
-li       r4, 0
-li       r3, 0x22d
-stw      r0, 0x38(r30)
-li       r0, 0xa
-mr       r27, r28
-stw      r5, 0x34(r30)
-stw      r31, 0x38(r30)
-stw      r4, 0x3c(r30)
-sth      r3, 0x40(r30)
-stw      r4, 0x48(r30)
-stw      r0, 0x4c(r30)
-lwz      r26, 0x4c(r30)
-mulli    r3, r26, 0xc
-addi     r3, r3, 0x10
-bl       __nwa__FUl
-lis      r4, "__ct__10Vector3<f>Fv"@ha
-mr       r7, r26
-addi     r4, r4, "__ct__10Vector3<f>Fv"@l
-li       r5, 0
-li       r6, 0xc
-bl       __construct_new_array
-stw      r3, 0x10(r27)
-lis      r3, __vt__Q23efx16TKchYodareHitWat@ha
-addi     r4, r3, __vt__Q23efx16TKchYodareHitWat@l
-lis      r3, __vt__Q23efx16TKchAttackYodare@ha
-stw      r4, 0(r28)
-addi     r0, r4, 0x14
-addi     r4, r3, __vt__Q23efx16TKchAttackYodare@l
-lfs      f0, lbl_8051E68C@sda21(r2)
-stw      r0, 4(r28)
-addi     r0, r4, 0x14
-mr       r3, r30
-stfs     f0, 0x50(r30)
-stw      r4, 0(r30)
-stw      r0, 4(r30)
-lmw      r26, 8(r1)
-lwz      r0, 0x24(r1)
-mtlr     r0
-addi     r1, r1, 0x20
-blr
-	*/
-}
+// /*
+//  * --INFO--
+//  * Address:	8035DD24
+//  * Size:	0001D8
+//  */
+// TKchAttackYodare::TKchAttackYodare(float (*)[4])
+// {
+// 	/*
+// stwu     r1, -0x20(r1)
+// mflr     r0
+// lis      r7, __vt__19JPAParticleCallBack@ha
+// lis      r6, __vt__Q23efx27TParticleCallBack_KchYodare@ha
+// stw      r0, 0x24(r1)
+// lis      r5, __vt__Q23efx5TBase@ha
+// li       r10, 0x216
+// addi     r7, r7, __vt__19JPAParticleCallBack@l
+// stmw     r26, 8(r1)
+// mr       r30, r3
+// addi     r26, r5, __vt__Q23efx5TBase@l
+// lis      r3, __vt__18JPAEmitterCallBack@ha
+// addi     r27, r3, __vt__18JPAEmitterCallBack@l
+// lis      r5, __vt__Q23efx5TSync@ha
+// addi     r5, r5, __vt__Q23efx5TSync@l
+// lis      r3, __vt__Q23efx9TChaseMtx@ha
+// addi     r12, r3, __vt__Q23efx9TChaseMtx@l
+// li       r28, 0
+// lis      r3, __vt__Q23efx22TKchYodareBaseChaseMtx@ha
+// addi     r0, r5, 0x14
+// addi     r9, r3, __vt__Q23efx22TKchYodareBaseChaseMtx@l
+// addi     r11, r12, 0x14
+// addi     r8, r9, 0x14
+// addi     r6, r6, __vt__Q23efx27TParticleCallBack_KchYodare@l
+// stw      r26, 0(r30)
+// lis      r3, __vt__Q23efx17TOneEmitterSimple@ha
+// addi     r29, r30, 0x18
+// stw      r27, 4(r30)
+// stw      r5, 0(r30)
+// addi     r5, r3, __vt__Q23efx17TOneEmitterSimple@l
+// addi     r31, r5, 0x14
+// li       r3, 0x22c
+// stw      r0, 4(r30)
+// li       r0, 0x2b2
+// stw      r28, 8(r30)
+// sth      r0, 0xc(r30)
+// li       r0, 0xa
+// stb      r28, 0xe(r30)
+// stw      r12, 0(r30)
+// stw      r11, 4(r30)
+// stw      r4, 0x10(r30)
+// sth      r10, 0xc(r30)
+// stw      r9, 0(r30)
+// stw      r8, 4(r30)
+// stw      r7, 0x14(r30)
+// stw      r6, 0x14(r30)
+// stw      r26, 0x18(r30)
+// stw      r27, 0x1c(r30)
+// stw      r5, 0x18(r30)
+// stw      r31, 0x1c(r30)
+// stw      r28, 0x20(r30)
+// sth      r3, 0x24(r30)
+// stw      r28, 0x2c(r30)
+// stw      r0, 0x30(r30)
+// lwz      r26, 0x30(r30)
+// mulli    r3, r26, 0xc
+// addi     r3, r3, 0x10
+// bl       __nwa__FUl
+// lis      r4, "__ct__10Vector3<f>Fv"@ha
+// mr       r7, r26
+// addi     r4, r4, "__ct__10Vector3<f>Fv"@l
+// li       r5, 0
+// li       r6, 0xc
+// bl       __construct_new_array
+// lis      r4, __vt__Q23efx15TKchYodareHitGr@ha
+// stw      r3, 0x10(r29)
+// addi     r4, r4, __vt__Q23efx15TKchYodareHitGr@l
+// lis      r3, __vt__Q23efx5TBase@ha
+// stw      r4, 0(r29)
+// addi     r0, r4, 0x14
+// addi     r28, r30, 0x34
+// lis      r4, __vt__18JPAEmitterCallBack@ha
+// stw      r0, 4(r29)
+// addi     r5, r3, __vt__Q23efx5TBase@l
+// lis      r3, __vt__Q23efx17TOneEmitterSimple@ha
+// addi     r0, r4, __vt__18JPAEmitterCallBack@l
+// stw      r5, 0x34(r30)
+// addi     r5, r3, __vt__Q23efx17TOneEmitterSimple@l
+// li       r4, 0
+// li       r3, 0x22d
+// stw      r0, 0x38(r30)
+// li       r0, 0xa
+// mr       r27, r28
+// stw      r5, 0x34(r30)
+// stw      r31, 0x38(r30)
+// stw      r4, 0x3c(r30)
+// sth      r3, 0x40(r30)
+// stw      r4, 0x48(r30)
+// stw      r0, 0x4c(r30)
+// lwz      r26, 0x4c(r30)
+// mulli    r3, r26, 0xc
+// addi     r3, r3, 0x10
+// bl       __nwa__FUl
+// lis      r4, "__ct__10Vector3<f>Fv"@ha
+// mr       r7, r26
+// addi     r4, r4, "__ct__10Vector3<f>Fv"@l
+// li       r5, 0
+// li       r6, 0xc
+// bl       __construct_new_array
+// stw      r3, 0x10(r27)
+// lis      r3, __vt__Q23efx16TKchYodareHitWat@ha
+// addi     r4, r3, __vt__Q23efx16TKchYodareHitWat@l
+// lis      r3, __vt__Q23efx16TKchAttackYodare@ha
+// stw      r4, 0(r28)
+// addi     r0, r4, 0x14
+// addi     r4, r3, __vt__Q23efx16TKchAttackYodare@l
+// lfs      f0, lbl_8051E68C@sda21(r2)
+// stw      r0, 4(r28)
+// addi     r0, r4, 0x14
+// mr       r3, r30
+// stfs     f0, 0x50(r30)
+// stw      r4, 0(r30)
+// stw      r0, 4(r30)
+// lmw      r26, 8(r1)
+// lwz      r0, 0x24(r1)
+// mtlr     r0
+// addi     r1, r1, 0x20
+// blr
+// 	*/
+// }
 
-/*
- * --INFO--
- * Address:	8035DEFC
- * Size:	0001D8
- */
-TKchYodare::TKchYodare(float (*)[4])
-{
-	/*
-stwu     r1, -0x20(r1)
-mflr     r0
-lis      r7, __vt__19JPAParticleCallBack@ha
-lis      r6, __vt__Q23efx27TParticleCallBack_KchYodare@ha
-stw      r0, 0x24(r1)
-lis      r5, __vt__Q23efx5TBase@ha
-li       r10, 0x22b
-addi     r7, r7, __vt__19JPAParticleCallBack@l
-stmw     r26, 8(r1)
-mr       r30, r3
-addi     r26, r5, __vt__Q23efx5TBase@l
-lis      r3, __vt__18JPAEmitterCallBack@ha
-addi     r27, r3, __vt__18JPAEmitterCallBack@l
-lis      r5, __vt__Q23efx5TSync@ha
-addi     r5, r5, __vt__Q23efx5TSync@l
-lis      r3, __vt__Q23efx9TChaseMtx@ha
-addi     r12, r3, __vt__Q23efx9TChaseMtx@l
-li       r28, 0
-lis      r3, __vt__Q23efx22TKchYodareBaseChaseMtx@ha
-addi     r0, r5, 0x14
-addi     r9, r3, __vt__Q23efx22TKchYodareBaseChaseMtx@l
-addi     r11, r12, 0x14
-addi     r8, r9, 0x14
-addi     r6, r6, __vt__Q23efx27TParticleCallBack_KchYodare@l
-stw      r26, 0(r30)
-lis      r3, __vt__Q23efx17TOneEmitterSimple@ha
-addi     r29, r30, 0x18
-stw      r27, 4(r30)
-stw      r5, 0(r30)
-addi     r5, r3, __vt__Q23efx17TOneEmitterSimple@l
-addi     r31, r5, 0x14
-li       r3, 0x22c
-stw      r0, 4(r30)
-li       r0, 0x2b2
-stw      r28, 8(r30)
-sth      r0, 0xc(r30)
-li       r0, 0xa
-stb      r28, 0xe(r30)
-stw      r12, 0(r30)
-stw      r11, 4(r30)
-stw      r4, 0x10(r30)
-sth      r10, 0xc(r30)
-stw      r9, 0(r30)
-stw      r8, 4(r30)
-stw      r7, 0x14(r30)
-stw      r6, 0x14(r30)
-stw      r26, 0x18(r30)
-stw      r27, 0x1c(r30)
-stw      r5, 0x18(r30)
-stw      r31, 0x1c(r30)
-stw      r28, 0x20(r30)
-sth      r3, 0x24(r30)
-stw      r28, 0x2c(r30)
-stw      r0, 0x30(r30)
-lwz      r26, 0x30(r30)
-mulli    r3, r26, 0xc
-addi     r3, r3, 0x10
-bl       __nwa__FUl
-lis      r4, "__ct__10Vector3<f>Fv"@ha
-mr       r7, r26
-addi     r4, r4, "__ct__10Vector3<f>Fv"@l
-li       r5, 0
-li       r6, 0xc
-bl       __construct_new_array
-lis      r4, __vt__Q23efx15TKchYodareHitGr@ha
-stw      r3, 0x10(r29)
-addi     r4, r4, __vt__Q23efx15TKchYodareHitGr@l
-lis      r3, __vt__Q23efx5TBase@ha
-stw      r4, 0(r29)
-addi     r0, r4, 0x14
-addi     r28, r30, 0x34
-lis      r4, __vt__18JPAEmitterCallBack@ha
-stw      r0, 4(r29)
-addi     r5, r3, __vt__Q23efx5TBase@l
-lis      r3, __vt__Q23efx17TOneEmitterSimple@ha
-addi     r0, r4, __vt__18JPAEmitterCallBack@l
-stw      r5, 0x34(r30)
-addi     r5, r3, __vt__Q23efx17TOneEmitterSimple@l
-li       r4, 0
-li       r3, 0x22d
-stw      r0, 0x38(r30)
-li       r0, 0xa
-mr       r27, r28
-stw      r5, 0x34(r30)
-stw      r31, 0x38(r30)
-stw      r4, 0x3c(r30)
-sth      r3, 0x40(r30)
-stw      r4, 0x48(r30)
-stw      r0, 0x4c(r30)
-lwz      r26, 0x4c(r30)
-mulli    r3, r26, 0xc
-addi     r3, r3, 0x10
-bl       __nwa__FUl
-lis      r4, "__ct__10Vector3<f>Fv"@ha
-mr       r7, r26
-addi     r4, r4, "__ct__10Vector3<f>Fv"@l
-li       r5, 0
-li       r6, 0xc
-bl       __construct_new_array
-stw      r3, 0x10(r27)
-lis      r3, __vt__Q23efx16TKchYodareHitWat@ha
-addi     r4, r3, __vt__Q23efx16TKchYodareHitWat@l
-lis      r3, __vt__Q23efx10TKchYodare@ha
-stw      r4, 0(r28)
-addi     r0, r4, 0x14
-addi     r4, r3, __vt__Q23efx10TKchYodare@l
-lfs      f0, lbl_8051E68C@sda21(r2)
-stw      r0, 4(r28)
-addi     r0, r4, 0x14
-mr       r3, r30
-stfs     f0, 0x50(r30)
-stw      r4, 0(r30)
-stw      r0, 4(r30)
-lmw      r26, 8(r1)
-lwz      r0, 0x24(r1)
-mtlr     r0
-addi     r1, r1, 0x20
-blr
-	*/
-}
+// /*
+//  * --INFO--
+//  * Address:	8035DEFC
+//  * Size:	0001D8
+//  */
+// TKchYodare::TKchYodare(float (*)[4])
+// {
+// 	/*
+// stwu     r1, -0x20(r1)
+// mflr     r0
+// lis      r7, __vt__19JPAParticleCallBack@ha
+// lis      r6, __vt__Q23efx27TParticleCallBack_KchYodare@ha
+// stw      r0, 0x24(r1)
+// lis      r5, __vt__Q23efx5TBase@ha
+// li       r10, 0x22b
+// addi     r7, r7, __vt__19JPAParticleCallBack@l
+// stmw     r26, 8(r1)
+// mr       r30, r3
+// addi     r26, r5, __vt__Q23efx5TBase@l
+// lis      r3, __vt__18JPAEmitterCallBack@ha
+// addi     r27, r3, __vt__18JPAEmitterCallBack@l
+// lis      r5, __vt__Q23efx5TSync@ha
+// addi     r5, r5, __vt__Q23efx5TSync@l
+// lis      r3, __vt__Q23efx9TChaseMtx@ha
+// addi     r12, r3, __vt__Q23efx9TChaseMtx@l
+// li       r28, 0
+// lis      r3, __vt__Q23efx22TKchYodareBaseChaseMtx@ha
+// addi     r0, r5, 0x14
+// addi     r9, r3, __vt__Q23efx22TKchYodareBaseChaseMtx@l
+// addi     r11, r12, 0x14
+// addi     r8, r9, 0x14
+// addi     r6, r6, __vt__Q23efx27TParticleCallBack_KchYodare@l
+// stw      r26, 0(r30)
+// lis      r3, __vt__Q23efx17TOneEmitterSimple@ha
+// addi     r29, r30, 0x18
+// stw      r27, 4(r30)
+// stw      r5, 0(r30)
+// addi     r5, r3, __vt__Q23efx17TOneEmitterSimple@l
+// addi     r31, r5, 0x14
+// li       r3, 0x22c
+// stw      r0, 4(r30)
+// li       r0, 0x2b2
+// stw      r28, 8(r30)
+// sth      r0, 0xc(r30)
+// li       r0, 0xa
+// stb      r28, 0xe(r30)
+// stw      r12, 0(r30)
+// stw      r11, 4(r30)
+// stw      r4, 0x10(r30)
+// sth      r10, 0xc(r30)
+// stw      r9, 0(r30)
+// stw      r8, 4(r30)
+// stw      r7, 0x14(r30)
+// stw      r6, 0x14(r30)
+// stw      r26, 0x18(r30)
+// stw      r27, 0x1c(r30)
+// stw      r5, 0x18(r30)
+// stw      r31, 0x1c(r30)
+// stw      r28, 0x20(r30)
+// sth      r3, 0x24(r30)
+// stw      r28, 0x2c(r30)
+// stw      r0, 0x30(r30)
+// lwz      r26, 0x30(r30)
+// mulli    r3, r26, 0xc
+// addi     r3, r3, 0x10
+// bl       __nwa__FUl
+// lis      r4, "__ct__10Vector3<f>Fv"@ha
+// mr       r7, r26
+// addi     r4, r4, "__ct__10Vector3<f>Fv"@l
+// li       r5, 0
+// li       r6, 0xc
+// bl       __construct_new_array
+// lis      r4, __vt__Q23efx15TKchYodareHitGr@ha
+// stw      r3, 0x10(r29)
+// addi     r4, r4, __vt__Q23efx15TKchYodareHitGr@l
+// lis      r3, __vt__Q23efx5TBase@ha
+// stw      r4, 0(r29)
+// addi     r0, r4, 0x14
+// addi     r28, r30, 0x34
+// lis      r4, __vt__18JPAEmitterCallBack@ha
+// stw      r0, 4(r29)
+// addi     r5, r3, __vt__Q23efx5TBase@l
+// lis      r3, __vt__Q23efx17TOneEmitterSimple@ha
+// addi     r0, r4, __vt__18JPAEmitterCallBack@l
+// stw      r5, 0x34(r30)
+// addi     r5, r3, __vt__Q23efx17TOneEmitterSimple@l
+// li       r4, 0
+// li       r3, 0x22d
+// stw      r0, 0x38(r30)
+// li       r0, 0xa
+// mr       r27, r28
+// stw      r5, 0x34(r30)
+// stw      r31, 0x38(r30)
+// stw      r4, 0x3c(r30)
+// sth      r3, 0x40(r30)
+// stw      r4, 0x48(r30)
+// stw      r0, 0x4c(r30)
+// lwz      r26, 0x4c(r30)
+// mulli    r3, r26, 0xc
+// addi     r3, r3, 0x10
+// bl       __nwa__FUl
+// lis      r4, "__ct__10Vector3<f>Fv"@ha
+// mr       r7, r26
+// addi     r4, r4, "__ct__10Vector3<f>Fv"@l
+// li       r5, 0
+// li       r6, 0xc
+// bl       __construct_new_array
+// stw      r3, 0x10(r27)
+// lis      r3, __vt__Q23efx16TKchYodareHitWat@ha
+// addi     r4, r3, __vt__Q23efx16TKchYodareHitWat@l
+// lis      r3, __vt__Q23efx10TKchYodare@ha
+// stw      r4, 0(r28)
+// addi     r0, r4, 0x14
+// addi     r4, r3, __vt__Q23efx10TKchYodare@l
+// lfs      f0, lbl_8051E68C@sda21(r2)
+// stw      r0, 4(r28)
+// addi     r0, r4, 0x14
+// mr       r3, r30
+// stfs     f0, 0x50(r30)
+// stw      r4, 0(r30)
+// stw      r0, 4(r30)
+// lmw      r26, 8(r1)
+// lwz      r0, 0x24(r1)
+// mtlr     r0
+// addi     r1, r1, 0x20
+// blr
+// 	*/
+// }
 
 } // namespace efx
+
+namespace Game {
+namespace KingChappy {
 
 /*
  * --INFO--
  * Address:	8035E0D4
  * Size:	00004C
  */
-void KingChappy::Obj::setFSM(Game::KingChappy::FSM*)
+void Obj::setFSM(FSM*)
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -2208,7 +1546,7 @@ void KingChappy::Obj::setFSM(Game::KingChappy::FSM*)
  * Address:	8035E120
  * Size:	0001A0
  */
-void KingChappy::Obj::doUpdate()
+void Obj::doUpdate()
 {
 	/*
 	stwu     r1, -0x40(r1)
@@ -2333,14 +1671,14 @@ lbl_8035E23C:
  * Address:	8035E2C0
  * Size:	000004
  */
-void KingChappy::Obj::doDirectDraw(Graphics&) { }
+void Obj::doDirectDraw(Graphics&) { }
 
 /*
  * --INFO--
  * Address:	8035E2C4
  * Size:	000020
  */
-void KingChappy::Obj::doDebugDraw(Graphics&)
+void Obj::doDebugDraw(Graphics&)
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -2359,7 +1697,7 @@ void KingChappy::Obj::doDebugDraw(Graphics&)
  * Address:	8035E2E4
  * Size:	0000B8
  */
-void KingChappy::Obj::doAnimationUpdateAnimator()
+void Obj::doAnimationUpdateAnimator()
 {
 	/*
 	stwu     r1, -0x20(r1)
@@ -2420,7 +1758,7 @@ lbl_8035E384:
  * Address:	8035E39C
  * Size:	000034
  */
-void KingChappy::Obj::onKill(Game::CreatureKillArg*)
+void Obj::onKill(CreatureKillArg*)
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -2444,7 +1782,7 @@ void KingChappy::Obj::onKill(Game::CreatureKillArg*)
  * Address:	8035E3D0
  * Size:	000588
  */
-void KingChappy::Obj::doAnimationCullingOff()
+void Obj::doAnimationCullingOff()
 {
 	/*
 	stwu     r1, -0x90(r1)
@@ -2859,7 +2197,7 @@ lbl_8035E934:
  * Address:	8035E958
  * Size:	000040
  */
-void KingChappy::Obj::doSimulation(float)
+void Obj::doSimulation(float)
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -2888,7 +2226,7 @@ lbl_8035E984:
  * Address:	8035E998
  * Size:	000098
  */
-void KingChappy::Obj::getShadowParam(Game::ShadowParam&)
+void Obj::getShadowParam(ShadowParam&)
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -2937,7 +2275,7 @@ void KingChappy::Obj::getShadowParam(Game::ShadowParam&)
  * Address:	8035EA30
  * Size:	000158
  */
-void KingChappy::Obj::damageCallBack(Game::Creature*, float, CollPart*)
+bool Obj::damageCallBack(Creature*, float, CollPart*)
 {
 	/*
 	stwu     r1, -0x30(r1)
@@ -3044,7 +2382,7 @@ lbl_8035EB68:
  * Address:	8035EB88
  * Size:	000030
  */
-void KingChappy::Obj::collisionCallback(Game::CollEvent&)
+void Obj::collisionCallback(CollEvent&)
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -3067,7 +2405,7 @@ void KingChappy::Obj::collisionCallback(Game::CollEvent&)
  * Address:	8035EBB8
  * Size:	000030
  */
-void KingChappy::Obj::wallCallback(Game::MoveInfo const&)
+void Obj::wallCallback(MoveInfo const&)
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -3090,7 +2428,7 @@ void KingChappy::Obj::wallCallback(Game::MoveInfo const&)
  * Address:	8035EBE8
  * Size:	000028
  */
-void bombCallBack__Q34Game10KingChappy3ObjFPQ24Game8CreatureR10Vector3f f()
+bool Obj::bombCallBack(Creature*, Vector3f&, f32)
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -3111,7 +2449,7 @@ void bombCallBack__Q34Game10KingChappy3ObjFPQ24Game8CreatureR10Vector3f f()
  * Address:	8035EC10
  * Size:	00004C
  */
-void KingChappy::Obj::inWaterCallback(Game::WaterBox*)
+void Obj::inWaterCallback(WaterBox*)
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -3143,7 +2481,7 @@ lbl_8035EC44:
  * Address:	8035EC5C
  * Size:	000028
  */
-void KingChappy::Obj::startCarcassMotion()
+void Obj::startCarcassMotion()
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -3164,7 +2502,7 @@ void KingChappy::Obj::startCarcassMotion()
  * Address:	8035EC84
  * Size:	000064
  */
-void KingChappy::Obj::initWalkSmokeEffect()
+void Obj::initWalkSmokeEffect()
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -3200,7 +2538,7 @@ void KingChappy::Obj::initWalkSmokeEffect()
  * Address:	8035ECE8
  * Size:	000008
  */
-void KingChappy::Obj::getWalkSmokeEffectMgr()
+WalkSmokeEffect::Mgr* Obj::getWalkSmokeEffectMgr()
 {
 	/*
 	addi     r3, r3, 0x344
@@ -3213,7 +2551,7 @@ void KingChappy::Obj::getWalkSmokeEffectMgr()
  * Address:	8035ECF0
  * Size:	000074
  */
-void KingChappy::Obj::doStartStoneState()
+void Obj::doStartStoneState()
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -3253,7 +2591,7 @@ void KingChappy::Obj::doStartStoneState()
  * Address:	8035ED64
  * Size:	0000A0
  */
-void KingChappy::Obj::doFinishStoneState()
+void Obj::doFinishStoneState()
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -3305,7 +2643,7 @@ void KingChappy::Obj::doFinishStoneState()
  * Address:	8035EE04
  * Size:	00013C
  */
-void KingChappy::Obj::doStartMovie()
+void Obj::doStartMovie()
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -3389,7 +2727,7 @@ void KingChappy::Obj::doStartMovie()
 	blr
 	*/
 }
-
+} // namespace KingChappy
 } // namespace Game
 
 namespace efx {
@@ -3428,16 +2766,17 @@ void TKchYodareBaseChaseMtx::startDemoDrawOff()
 	*/
 }
 
-namespace Game {
+} // namespace efx
 
-} // namespace Game
+namespace Game {
+namespace KingChappy {
 
 /*
  * --INFO--
  * Address:	8035EF9C
  * Size:	00013C
  */
-void KingChappy::Obj::doEndMovie()
+void Obj::doEndMovie()
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -3521,8 +2860,8 @@ void KingChappy::Obj::doEndMovie()
 	blr
 	*/
 }
-
-} // namespace efx
+} // namespace KingChappy
+} // namespace Game
 
 namespace efx {
 
@@ -3560,16 +2899,17 @@ void TKchYodareBaseChaseMtx::endDemoDrawOn()
 	*/
 }
 
-namespace Game {
+} // namespace efx
 
-} // namespace Game
+namespace Game {
+namespace KingChappy {
 
 /*
  * --INFO--
  * Address:	8035F134
  * Size:	000134
  */
-void KingChappy::Obj::initMouthSlots()
+void Obj::initMouthSlots()
 {
 	/*
 	stwu     r1, -0x60(r1)
@@ -3661,7 +3001,7 @@ lbl_8035F22C:
  * Address:	8035F268
  * Size:	0001A4
  */
-void KingChappy::Obj::eatBomb()
+void Obj::eatBomb()
 {
 	/*
 	stwu     r1, -0x40(r1)
@@ -3795,7 +3135,7 @@ lbl_8035F3F4:
  * Address:	8035F40C
  * Size:	000008
  */
-void KingChappy::Obj::getMouthSlots()
+MouthSlots* Obj::getMouthSlots()
 {
 	/*
 	addi     r3, r3, 0x2c8
@@ -3808,7 +3148,7 @@ void KingChappy::Obj::getMouthSlots()
  * Address:	8035F414
  * Size:	0002C8
  */
-void KingChappy::Obj::getPikminInMouth(bool)
+void Obj::getPikminInMouth(bool)
 {
 	/*
 	stwu     r1, -0x50(r1)
@@ -4019,7 +3359,7 @@ lbl_8035F68C:
  * Address:	8035F6DC
  * Size:	00011C
  */
-void getTonguePosVel__Q34Game10KingChappy3ObjFR10Vector3f R10Vector3f()
+void Obj::getTonguePosVel(Vector3f&, Vector3f&)
 {
 	/*
 	stwu     r1, -0x20(r1)
@@ -4107,7 +3447,7 @@ lbl_8035F7DC:
  * Address:	8035F7F8
  * Size:	0001F0
  */
-void KingChappy::Obj::setNextGoal()
+void Obj::setNextGoal()
 {
 	/*
 	stwu     r1, -0x60(r1)
@@ -4254,7 +3594,7 @@ lbl_8035F9CC:
  * Address:	8035F9E8
  * Size:	000500
  */
-void KingChappy::Obj::searchTarget()
+void Obj::searchTarget()
 {
 	/*
 	stwu     r1, -0x100(r1)
@@ -4610,7 +3950,7 @@ lbl_8035FE94:
  * Address:	8035FEE8
  * Size:	000040
  */
-void KingChappy::Obj::isOutOfTerritory(float)
+void Obj::isOutOfTerritory(float)
 {
 	/*
 	lfs      f2, 0x1a0(r3)
@@ -4637,7 +3977,7 @@ void KingChappy::Obj::isOutOfTerritory(float)
  * Address:	8035FF28
  * Size:	0000DC
  */
-void KingChappy::Obj::forceTransit(int)
+bool Obj::forceTransit(int)
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -4717,7 +4057,7 @@ lbl_8035FFEC:
  * Address:	80360004
  * Size:	000030
  */
-void KingChappy::Obj::requestTransit(int)
+void Obj::requestTransit(int)
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -4740,7 +4080,7 @@ void KingChappy::Obj::requestTransit(int)
  * Address:	80360034
  * Size:	00012C
  */
-void KingChappy::Obj::walkFunc()
+void Obj::walkFunc()
 {
 	/*
 	stwu     r1, -0x40(r1)
@@ -4813,7 +4153,7 @@ lbl_80360134:
  * Address:	80360160
  * Size:	0001AC
  */
-void KingChappy::Obj::turnFunc(float)
+void Obj::turnFunc(float)
 {
 	/*
 	stwu     r1, -0x90(r1)
@@ -4939,7 +4279,7 @@ lbl_803602A4:
  * Address:	8036030C
  * Size:	000034
  */
-void KingChappy::Obj::isReachToGoal(float)
+void Obj::isReachToGoal(float)
 {
 	/*
 	fmuls    f0, f1, f1
@@ -4958,22 +4298,22 @@ void KingChappy::Obj::isReachToGoal(float)
 	*/
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	0000D8
- */
-void KingChappy::Obj::isUseTurn()
-{
-	// UNUSED FUNCTION
-}
+// /*
+//  * --INFO--
+//  * Address:	........
+//  * Size:	0000D8
+//  */
+// void Obj::isUseTurn()
+// {
+// 	// UNUSED FUNCTION
+// }
 
 /*
  * --INFO--
  * Address:	80360340
  * Size:	000844
  */
-void KingChappy::Obj::checkAttack(bool)
+void Obj::checkAttack(bool)
 {
 	/*
 	stwu     r1, -0x240(r1)
@@ -5547,7 +4887,7 @@ lbl_80360B20:
  * Address:	80360B84
  * Size:	00042C
  */
-void KingChappy::Obj::checkFlick(bool)
+void Obj::checkFlick(bool)
 {
 	/*
 	stwu     r1, -0xc0(r1)
@@ -5851,7 +5191,7 @@ lbl_80360F74:
  * Address:	80360FB0
  * Size:	0000EC
  */
-void KingChappy::Obj::checkDead(bool)
+void Obj::checkDead(bool)
 {
 	/*
 	stwu     r1, -0x20(r1)
@@ -5927,7 +5267,7 @@ lbl_80361084:
  * Address:	8036109C
  * Size:	000128
  */
-void KingChappy::Obj::checkTurn(bool)
+void Obj::checkTurn(bool)
 {
 	/*
 	stwu     r1, -0x40(r1)
@@ -6016,7 +5356,7 @@ lbl_803611A4:
  * Address:	803611C4
  * Size:	00013C
  */
-void KingChappy::Obj::startMotionSelf(int, SysShape::MotionListener*)
+void Obj::startMotionSelf(int, SysShape::MotionListener*)
 {
 	/*
 	stwu     r1, -0x40(r1)
@@ -6123,7 +5463,7 @@ lbl_803612DC:
  * Address:	80361300
  * Size:	000098
  */
-void KingChappy::Obj::endBlendAnimation()
+void Obj::endBlendAnimation()
 {
 	/*
 	stwu     r1, -0x20(r1)
@@ -6176,7 +5516,7 @@ lbl_80361350:
  * Address:	80361398
  * Size:	000044
  */
-void KingChappy::Obj::leftFootMtxCalc()
+void Obj::leftFootMtxCalc()
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -6204,7 +5544,7 @@ void KingChappy::Obj::leftFootMtxCalc()
  * Address:	803613DC
  * Size:	000044
  */
-void KingChappy::Obj::rightFootMtxCalc()
+void Obj::rightFootMtxCalc()
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -6227,14 +5567,12 @@ void KingChappy::Obj::rightFootMtxCalc()
 	*/
 }
 
-} // namespace efx
-
 /*
  * --INFO--
  * Address:	80361420
  * Size:	000190
  */
-void footMtxCalc__Q34Game10KingChappy3ObjFPA4_fP10Vector3f Pf()
+void Obj::footMtxCalc(Mtx, Vector3f*, f32*)
 {
 	/*
 	stwu     r1, -0x20(r1)
@@ -6350,14 +5688,12 @@ lbl_80361590:
 	*/
 }
 
-namespace Game {
-
 /*
  * --INFO--
  * Address:	803615B0
  * Size:	000078
  */
-void KingChappy::Obj::resetFootPos()
+void Obj::resetFootPos()
 {
 	/*
 	lwz      r4, 0x174(r3)
@@ -6398,7 +5734,7 @@ void KingChappy::Obj::resetFootPos()
  * Address:	80361628
  * Size:	0000DC
  */
-void KingChappy::Obj::fadeAllEffect()
+void Obj::fadeAllEffect()
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -6459,6 +5795,7 @@ void KingChappy::Obj::fadeAllEffect()
 	*/
 }
 
+} // namespace KingChappy
 } // namespace Game
 
 namespace efx {
@@ -6495,16 +5832,17 @@ void TKchYodareBaseChaseMtx::fade()
 	*/
 }
 
-namespace Game {
+} // namespace efx
 
-} // namespace Game
+namespace Game {
+namespace KingChappy {
 
 /*
  * --INFO--
  * Address:	80361758
  * Size:	000474
  */
-void KingChappy::Obj::createEffect(int)
+void Obj::createEffect(int)
 {
 	/*
 	stwu     r1, -0xb0(r1)
@@ -6837,7 +6175,7 @@ lbl_80361BB8:
  * Address:	80361BCC
  * Size:	000140
  */
-void KingChappy::Obj::fadeEffect(int)
+void Obj::fadeEffect(int)
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -6955,7 +6293,7 @@ lbl_80361CF8:
  * Address:	80361D0C
  * Size:	0000C8
  */
-void KingChappy::Obj::createBounceEffect()
+void Obj::createBounceEffect()
 {
 	/*
 	stwu     r1, -0x40(r1)
@@ -7015,499 +6353,502 @@ lbl_80361DC4:
 	*/
 }
 
-} // namespace efx
+// } // namespace KingChappy
+// } // namespace Game
 
-namespace efx {
+// namespace efx {
 
-/*
- * --INFO--
- * Address:	80361DD4
- * Size:	00000C
- */
-void ArgKchYodare::getName()
-{
-	/*
-	lis      r3, lbl_8049165C@ha
-	addi     r3, r3, lbl_8049165C@l
-	blr
-	*/
-}
+// /*
+//  * --INFO--
+//  * Address:	80361DD4
+//  * Size:	00000C
+//  */
+// void ArgKchYodare::getName()
+// {
+// 	/*
+// 	lis      r3, lbl_8049165C@ha
+// 	addi     r3, r3, lbl_8049165C@l
+// 	blr
+// 	*/
+// }
 
-/*
- * --INFO--
- * Address:	80361DE0
- * Size:	000160
- */
-TKchYodare::~TKchYodare()
-{
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	mr       r31, r4
-	stw      r30, 8(r1)
-	or.      r30, r3, r3
-	beq      lbl_80361F24
-	lis      r3, __vt__Q23efx10TKchYodare@ha
-	addi     r3, r3, __vt__Q23efx10TKchYodare@l
-	stw      r3, 0(r30)
-	addi     r0, r3, 0x14
-	stw      r0, 4(r30)
-	beq      lbl_80361F14
-	lis      r3, __vt__Q23efx22TKchYodareBaseChaseMtx@ha
-	addic.   r0, r30, 0x14
-	addi     r3, r3, __vt__Q23efx22TKchYodareBaseChaseMtx@l
-	stw      r3, 0(r30)
-	addi     r0, r3, 0x14
-	stw      r0, 4(r30)
-	beq      lbl_80361ED4
-	lis      r3, __vt__Q23efx27TParticleCallBack_KchYodare@ha
-	addic.   r4, r30, 0x34
-	addi     r0, r3, __vt__Q23efx27TParticleCallBack_KchYodare@l
-	stw      r0, 0x14(r30)
-	beq      lbl_80361E84
-	lis      r3, __vt__Q23efx16TKchYodareHitWat@ha
-	cmplwi   r4, 0
-	addi     r3, r3, __vt__Q23efx16TKchYodareHitWat@l
-	stw      r3, 0x34(r30)
-	addi     r0, r3, 0x14
-	stw      r0, 0x38(r30)
-	beq      lbl_80361E84
-	lis      r4, __vt__Q23efx17TOneEmitterSimple@ha
-	addi     r3, r30, 0x38
-	addi     r5, r4, __vt__Q23efx17TOneEmitterSimple@l
-	li       r4, 0
-	stw      r5, 0x34(r30)
-	addi     r0, r5, 0x14
-	stw      r0, 0x38(r30)
-	bl       __dt__18JPAEmitterCallBackFv
+// /*
+//  * --INFO--
+//  * Address:	80361DE0
+//  * Size:	000160
+//  */
+// TKchYodare::~TKchYodare()
+// {
+// 	/*
+// 	stwu     r1, -0x10(r1)
+// 	mflr     r0
+// 	stw      r0, 0x14(r1)
+// 	stw      r31, 0xc(r1)
+// 	mr       r31, r4
+// 	stw      r30, 8(r1)
+// 	or.      r30, r3, r3
+// 	beq      lbl_80361F24
+// 	lis      r3, __vt__Q23efx10TKchYodare@ha
+// 	addi     r3, r3, __vt__Q23efx10TKchYodare@l
+// 	stw      r3, 0(r30)
+// 	addi     r0, r3, 0x14
+// 	stw      r0, 4(r30)
+// 	beq      lbl_80361F14
+// 	lis      r3, __vt__Q23efx22TKchYodareBaseChaseMtx@ha
+// 	addic.   r0, r30, 0x14
+// 	addi     r3, r3, __vt__Q23efx22TKchYodareBaseChaseMtx@l
+// 	stw      r3, 0(r30)
+// 	addi     r0, r3, 0x14
+// 	stw      r0, 4(r30)
+// 	beq      lbl_80361ED4
+// 	lis      r3, __vt__Q23efx27TParticleCallBack_KchYodare@ha
+// 	addic.   r4, r30, 0x34
+// 	addi     r0, r3, __vt__Q23efx27TParticleCallBack_KchYodare@l
+// 	stw      r0, 0x14(r30)
+// 	beq      lbl_80361E84
+// 	lis      r3, __vt__Q23efx16TKchYodareHitWat@ha
+// 	cmplwi   r4, 0
+// 	addi     r3, r3, __vt__Q23efx16TKchYodareHitWat@l
+// 	stw      r3, 0x34(r30)
+// 	addi     r0, r3, 0x14
+// 	stw      r0, 0x38(r30)
+// 	beq      lbl_80361E84
+// 	lis      r4, __vt__Q23efx17TOneEmitterSimple@ha
+// 	addi     r3, r30, 0x38
+// 	addi     r5, r4, __vt__Q23efx17TOneEmitterSimple@l
+// 	li       r4, 0
+// 	stw      r5, 0x34(r30)
+// 	addi     r0, r5, 0x14
+// 	stw      r0, 0x38(r30)
+// 	bl       __dt__18JPAEmitterCallBackFv
 
-lbl_80361E84:
-	addic.   r0, r30, 0x18
-	beq      lbl_80361EC8
-	lis      r3, __vt__Q23efx15TKchYodareHitGr@ha
-	cmplwi   r0, 0
-	addi     r3, r3, __vt__Q23efx15TKchYodareHitGr@l
-	stw      r3, 0x18(r30)
-	addi     r0, r3, 0x14
-	stw      r0, 0x1c(r30)
-	beq      lbl_80361EC8
-	lis      r4, __vt__Q23efx17TOneEmitterSimple@ha
-	addi     r3, r30, 0x1c
-	addi     r5, r4, __vt__Q23efx17TOneEmitterSimple@l
-	li       r4, 0
-	stw      r5, 0x18(r30)
-	addi     r0, r5, 0x14
-	stw      r0, 0x1c(r30)
-	bl       __dt__18JPAEmitterCallBackFv
+// lbl_80361E84:
+// 	addic.   r0, r30, 0x18
+// 	beq      lbl_80361EC8
+// 	lis      r3, __vt__Q23efx15TKchYodareHitGr@ha
+// 	cmplwi   r0, 0
+// 	addi     r3, r3, __vt__Q23efx15TKchYodareHitGr@l
+// 	stw      r3, 0x18(r30)
+// 	addi     r0, r3, 0x14
+// 	stw      r0, 0x1c(r30)
+// 	beq      lbl_80361EC8
+// 	lis      r4, __vt__Q23efx17TOneEmitterSimple@ha
+// 	addi     r3, r30, 0x1c
+// 	addi     r5, r4, __vt__Q23efx17TOneEmitterSimple@l
+// 	li       r4, 0
+// 	stw      r5, 0x18(r30)
+// 	addi     r0, r5, 0x14
+// 	stw      r0, 0x1c(r30)
+// 	bl       __dt__18JPAEmitterCallBackFv
 
-lbl_80361EC8:
-	addi     r3, r30, 0x14
-	li       r4, 0
-	bl       __dt__19JPAParticleCallBackFv
+// lbl_80361EC8:
+// 	addi     r3, r30, 0x14
+// 	li       r4, 0
+// 	bl       __dt__19JPAParticleCallBackFv
 
-lbl_80361ED4:
-	cmplwi   r30, 0
-	beq      lbl_80361F14
-	lis      r3, __vt__Q23efx9TChaseMtx@ha
-	addi     r3, r3, __vt__Q23efx9TChaseMtx@l
-	stw      r3, 0(r30)
-	addi     r0, r3, 0x14
-	stw      r0, 4(r30)
-	beq      lbl_80361F14
-	lis      r4, __vt__Q23efx5TSync@ha
-	addi     r3, r30, 4
-	addi     r5, r4, __vt__Q23efx5TSync@l
-	li       r4, 0
-	stw      r5, 0(r30)
-	addi     r0, r5, 0x14
-	stw      r0, 4(r30)
-	bl       __dt__18JPAEmitterCallBackFv
+// lbl_80361ED4:
+// 	cmplwi   r30, 0
+// 	beq      lbl_80361F14
+// 	lis      r3, __vt__Q23efx9TChaseMtx@ha
+// 	addi     r3, r3, __vt__Q23efx9TChaseMtx@l
+// 	stw      r3, 0(r30)
+// 	addi     r0, r3, 0x14
+// 	stw      r0, 4(r30)
+// 	beq      lbl_80361F14
+// 	lis      r4, __vt__Q23efx5TSync@ha
+// 	addi     r3, r30, 4
+// 	addi     r5, r4, __vt__Q23efx5TSync@l
+// 	li       r4, 0
+// 	stw      r5, 0(r30)
+// 	addi     r0, r5, 0x14
+// 	stw      r0, 4(r30)
+// 	bl       __dt__18JPAEmitterCallBackFv
 
-lbl_80361F14:
-	extsh.   r0, r31
-	ble      lbl_80361F24
-	mr       r3, r30
-	bl       __dl__FPv
+// lbl_80361F14:
+// 	extsh.   r0, r31
+// 	ble      lbl_80361F24
+// 	mr       r3, r30
+// 	bl       __dl__FPv
 
-lbl_80361F24:
-	lwz      r0, 0x14(r1)
-	mr       r3, r30
-	lwz      r31, 0xc(r1)
-	lwz      r30, 8(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
-}
+// lbl_80361F24:
+// 	lwz      r0, 0x14(r1)
+// 	mr       r3, r30
+// 	lwz      r31, 0xc(r1)
+// 	lwz      r30, 8(r1)
+// 	mtlr     r0
+// 	addi     r1, r1, 0x10
+// 	blr
+// 	*/
+// }
 
-/*
- * --INFO--
- * Address:	80361F40
- * Size:	000054
- */
-void TKchYodareBaseChaseMtx::forceKill()
-{
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	mr       r31, r3
-	bl       forceKill__Q23efx5TSyncFv
-	addi     r3, r31, 0x18
-	lwz      r12, 0x18(r31)
-	lwz      r12, 0xc(r12)
-	mtctr    r12
-	bctrl
-	addi     r3, r31, 0x34
-	lwz      r12, 0x34(r31)
-	lwz      r12, 0xc(r12)
-	mtctr    r12
-	bctrl
-	lwz      r0, 0x14(r1)
-	lwz      r31, 0xc(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
-}
+// /*
+//  * --INFO--
+//  * Address:	80361F40
+//  * Size:	000054
+//  */
+// void TKchYodareBaseChaseMtx::forceKill()
+// {
+// 	/*
+// 	stwu     r1, -0x10(r1)
+// 	mflr     r0
+// 	stw      r0, 0x14(r1)
+// 	stw      r31, 0xc(r1)
+// 	mr       r31, r3
+// 	bl       forceKill__Q23efx5TSyncFv
+// 	addi     r3, r31, 0x18
+// 	lwz      r12, 0x18(r31)
+// 	lwz      r12, 0xc(r12)
+// 	mtctr    r12
+// 	bctrl
+// 	addi     r3, r31, 0x34
+// 	lwz      r12, 0x34(r31)
+// 	lwz      r12, 0xc(r12)
+// 	mtctr    r12
+// 	bctrl
+// 	lwz      r0, 0x14(r1)
+// 	lwz      r31, 0xc(r1)
+// 	mtlr     r0
+// 	addi     r1, r1, 0x10
+// 	blr
+// 	*/
+// }
 
-/*
- * --INFO--
- * Address:	80361F94
- * Size:	000160
- */
-TKchAttackYodare::~TKchAttackYodare()
-{
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	mr       r31, r4
-	stw      r30, 8(r1)
-	or.      r30, r3, r3
-	beq      lbl_803620D8
-	lis      r3, __vt__Q23efx16TKchAttackYodare@ha
-	addi     r3, r3, __vt__Q23efx16TKchAttackYodare@l
-	stw      r3, 0(r30)
-	addi     r0, r3, 0x14
-	stw      r0, 4(r30)
-	beq      lbl_803620C8
-	lis      r3, __vt__Q23efx22TKchYodareBaseChaseMtx@ha
-	addic.   r0, r30, 0x14
-	addi     r3, r3, __vt__Q23efx22TKchYodareBaseChaseMtx@l
-	stw      r3, 0(r30)
-	addi     r0, r3, 0x14
-	stw      r0, 4(r30)
-	beq      lbl_80362088
-	lis      r3, __vt__Q23efx27TParticleCallBack_KchYodare@ha
-	addic.   r4, r30, 0x34
-	addi     r0, r3, __vt__Q23efx27TParticleCallBack_KchYodare@l
-	stw      r0, 0x14(r30)
-	beq      lbl_80362038
-	lis      r3, __vt__Q23efx16TKchYodareHitWat@ha
-	cmplwi   r4, 0
-	addi     r3, r3, __vt__Q23efx16TKchYodareHitWat@l
-	stw      r3, 0x34(r30)
-	addi     r0, r3, 0x14
-	stw      r0, 0x38(r30)
-	beq      lbl_80362038
-	lis      r4, __vt__Q23efx17TOneEmitterSimple@ha
-	addi     r3, r30, 0x38
-	addi     r5, r4, __vt__Q23efx17TOneEmitterSimple@l
-	li       r4, 0
-	stw      r5, 0x34(r30)
-	addi     r0, r5, 0x14
-	stw      r0, 0x38(r30)
-	bl       __dt__18JPAEmitterCallBackFv
+// /*
+//  * --INFO--
+//  * Address:	80361F94
+//  * Size:	000160
+//  */
+// TKchAttackYodare::~TKchAttackYodare()
+// {
+// 	/*
+// 	stwu     r1, -0x10(r1)
+// 	mflr     r0
+// 	stw      r0, 0x14(r1)
+// 	stw      r31, 0xc(r1)
+// 	mr       r31, r4
+// 	stw      r30, 8(r1)
+// 	or.      r30, r3, r3
+// 	beq      lbl_803620D8
+// 	lis      r3, __vt__Q23efx16TKchAttackYodare@ha
+// 	addi     r3, r3, __vt__Q23efx16TKchAttackYodare@l
+// 	stw      r3, 0(r30)
+// 	addi     r0, r3, 0x14
+// 	stw      r0, 4(r30)
+// 	beq      lbl_803620C8
+// 	lis      r3, __vt__Q23efx22TKchYodareBaseChaseMtx@ha
+// 	addic.   r0, r30, 0x14
+// 	addi     r3, r3, __vt__Q23efx22TKchYodareBaseChaseMtx@l
+// 	stw      r3, 0(r30)
+// 	addi     r0, r3, 0x14
+// 	stw      r0, 4(r30)
+// 	beq      lbl_80362088
+// 	lis      r3, __vt__Q23efx27TParticleCallBack_KchYodare@ha
+// 	addic.   r4, r30, 0x34
+// 	addi     r0, r3, __vt__Q23efx27TParticleCallBack_KchYodare@l
+// 	stw      r0, 0x14(r30)
+// 	beq      lbl_80362038
+// 	lis      r3, __vt__Q23efx16TKchYodareHitWat@ha
+// 	cmplwi   r4, 0
+// 	addi     r3, r3, __vt__Q23efx16TKchYodareHitWat@l
+// 	stw      r3, 0x34(r30)
+// 	addi     r0, r3, 0x14
+// 	stw      r0, 0x38(r30)
+// 	beq      lbl_80362038
+// 	lis      r4, __vt__Q23efx17TOneEmitterSimple@ha
+// 	addi     r3, r30, 0x38
+// 	addi     r5, r4, __vt__Q23efx17TOneEmitterSimple@l
+// 	li       r4, 0
+// 	stw      r5, 0x34(r30)
+// 	addi     r0, r5, 0x14
+// 	stw      r0, 0x38(r30)
+// 	bl       __dt__18JPAEmitterCallBackFv
 
-lbl_80362038:
-	addic.   r0, r30, 0x18
-	beq      lbl_8036207C
-	lis      r3, __vt__Q23efx15TKchYodareHitGr@ha
-	cmplwi   r0, 0
-	addi     r3, r3, __vt__Q23efx15TKchYodareHitGr@l
-	stw      r3, 0x18(r30)
-	addi     r0, r3, 0x14
-	stw      r0, 0x1c(r30)
-	beq      lbl_8036207C
-	lis      r4, __vt__Q23efx17TOneEmitterSimple@ha
-	addi     r3, r30, 0x1c
-	addi     r5, r4, __vt__Q23efx17TOneEmitterSimple@l
-	li       r4, 0
-	stw      r5, 0x18(r30)
-	addi     r0, r5, 0x14
-	stw      r0, 0x1c(r30)
-	bl       __dt__18JPAEmitterCallBackFv
+// lbl_80362038:
+// 	addic.   r0, r30, 0x18
+// 	beq      lbl_8036207C
+// 	lis      r3, __vt__Q23efx15TKchYodareHitGr@ha
+// 	cmplwi   r0, 0
+// 	addi     r3, r3, __vt__Q23efx15TKchYodareHitGr@l
+// 	stw      r3, 0x18(r30)
+// 	addi     r0, r3, 0x14
+// 	stw      r0, 0x1c(r30)
+// 	beq      lbl_8036207C
+// 	lis      r4, __vt__Q23efx17TOneEmitterSimple@ha
+// 	addi     r3, r30, 0x1c
+// 	addi     r5, r4, __vt__Q23efx17TOneEmitterSimple@l
+// 	li       r4, 0
+// 	stw      r5, 0x18(r30)
+// 	addi     r0, r5, 0x14
+// 	stw      r0, 0x1c(r30)
+// 	bl       __dt__18JPAEmitterCallBackFv
 
-lbl_8036207C:
-	addi     r3, r30, 0x14
-	li       r4, 0
-	bl       __dt__19JPAParticleCallBackFv
+// lbl_8036207C:
+// 	addi     r3, r30, 0x14
+// 	li       r4, 0
+// 	bl       __dt__19JPAParticleCallBackFv
 
-lbl_80362088:
-	cmplwi   r30, 0
-	beq      lbl_803620C8
-	lis      r3, __vt__Q23efx9TChaseMtx@ha
-	addi     r3, r3, __vt__Q23efx9TChaseMtx@l
-	stw      r3, 0(r30)
-	addi     r0, r3, 0x14
-	stw      r0, 4(r30)
-	beq      lbl_803620C8
-	lis      r4, __vt__Q23efx5TSync@ha
-	addi     r3, r30, 4
-	addi     r5, r4, __vt__Q23efx5TSync@l
-	li       r4, 0
-	stw      r5, 0(r30)
-	addi     r0, r5, 0x14
-	stw      r0, 4(r30)
-	bl       __dt__18JPAEmitterCallBackFv
+// lbl_80362088:
+// 	cmplwi   r30, 0
+// 	beq      lbl_803620C8
+// 	lis      r3, __vt__Q23efx9TChaseMtx@ha
+// 	addi     r3, r3, __vt__Q23efx9TChaseMtx@l
+// 	stw      r3, 0(r30)
+// 	addi     r0, r3, 0x14
+// 	stw      r0, 4(r30)
+// 	beq      lbl_803620C8
+// 	lis      r4, __vt__Q23efx5TSync@ha
+// 	addi     r3, r30, 4
+// 	addi     r5, r4, __vt__Q23efx5TSync@l
+// 	li       r4, 0
+// 	stw      r5, 0(r30)
+// 	addi     r0, r5, 0x14
+// 	stw      r0, 4(r30)
+// 	bl       __dt__18JPAEmitterCallBackFv
 
-lbl_803620C8:
-	extsh.   r0, r31
-	ble      lbl_803620D8
-	mr       r3, r30
-	bl       __dl__FPv
+// lbl_803620C8:
+// 	extsh.   r0, r31
+// 	ble      lbl_803620D8
+// 	mr       r3, r30
+// 	bl       __dl__FPv
 
-lbl_803620D8:
-	lwz      r0, 0x14(r1)
-	mr       r3, r30
-	lwz      r31, 0xc(r1)
-	lwz      r30, 8(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
-}
+// lbl_803620D8:
+// 	lwz      r0, 0x14(r1)
+// 	mr       r3, r30
+// 	lwz      r31, 0xc(r1)
+// 	lwz      r30, 8(r1)
+// 	mtlr     r0
+// 	addi     r1, r1, 0x10
+// 	blr
+// 	*/
+// }
 
-/*
- * --INFO--
- * Address:	803620F4
- * Size:	000160
- */
-TKchDeadYodare::~TKchDeadYodare()
-{
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	mr       r31, r4
-	stw      r30, 8(r1)
-	or.      r30, r3, r3
-	beq      lbl_80362238
-	lis      r3, __vt__Q23efx14TKchDeadYodare@ha
-	addi     r3, r3, __vt__Q23efx14TKchDeadYodare@l
-	stw      r3, 0(r30)
-	addi     r0, r3, 0x14
-	stw      r0, 4(r30)
-	beq      lbl_80362228
-	lis      r3, __vt__Q23efx22TKchYodareBaseChaseMtx@ha
-	addic.   r0, r30, 0x14
-	addi     r3, r3, __vt__Q23efx22TKchYodareBaseChaseMtx@l
-	stw      r3, 0(r30)
-	addi     r0, r3, 0x14
-	stw      r0, 4(r30)
-	beq      lbl_803621E8
-	lis      r3, __vt__Q23efx27TParticleCallBack_KchYodare@ha
-	addic.   r4, r30, 0x34
-	addi     r0, r3, __vt__Q23efx27TParticleCallBack_KchYodare@l
-	stw      r0, 0x14(r30)
-	beq      lbl_80362198
-	lis      r3, __vt__Q23efx16TKchYodareHitWat@ha
-	cmplwi   r4, 0
-	addi     r3, r3, __vt__Q23efx16TKchYodareHitWat@l
-	stw      r3, 0x34(r30)
-	addi     r0, r3, 0x14
-	stw      r0, 0x38(r30)
-	beq      lbl_80362198
-	lis      r4, __vt__Q23efx17TOneEmitterSimple@ha
-	addi     r3, r30, 0x38
-	addi     r5, r4, __vt__Q23efx17TOneEmitterSimple@l
-	li       r4, 0
-	stw      r5, 0x34(r30)
-	addi     r0, r5, 0x14
-	stw      r0, 0x38(r30)
-	bl       __dt__18JPAEmitterCallBackFv
+// /*
+//  * --INFO--
+//  * Address:	803620F4
+//  * Size:	000160
+//  */
+// TKchDeadYodare::~TKchDeadYodare()
+// {
+// 	/*
+// 	stwu     r1, -0x10(r1)
+// 	mflr     r0
+// 	stw      r0, 0x14(r1)
+// 	stw      r31, 0xc(r1)
+// 	mr       r31, r4
+// 	stw      r30, 8(r1)
+// 	or.      r30, r3, r3
+// 	beq      lbl_80362238
+// 	lis      r3, __vt__Q23efx14TKchDeadYodare@ha
+// 	addi     r3, r3, __vt__Q23efx14TKchDeadYodare@l
+// 	stw      r3, 0(r30)
+// 	addi     r0, r3, 0x14
+// 	stw      r0, 4(r30)
+// 	beq      lbl_80362228
+// 	lis      r3, __vt__Q23efx22TKchYodareBaseChaseMtx@ha
+// 	addic.   r0, r30, 0x14
+// 	addi     r3, r3, __vt__Q23efx22TKchYodareBaseChaseMtx@l
+// 	stw      r3, 0(r30)
+// 	addi     r0, r3, 0x14
+// 	stw      r0, 4(r30)
+// 	beq      lbl_803621E8
+// 	lis      r3, __vt__Q23efx27TParticleCallBack_KchYodare@ha
+// 	addic.   r4, r30, 0x34
+// 	addi     r0, r3, __vt__Q23efx27TParticleCallBack_KchYodare@l
+// 	stw      r0, 0x14(r30)
+// 	beq      lbl_80362198
+// 	lis      r3, __vt__Q23efx16TKchYodareHitWat@ha
+// 	cmplwi   r4, 0
+// 	addi     r3, r3, __vt__Q23efx16TKchYodareHitWat@l
+// 	stw      r3, 0x34(r30)
+// 	addi     r0, r3, 0x14
+// 	stw      r0, 0x38(r30)
+// 	beq      lbl_80362198
+// 	lis      r4, __vt__Q23efx17TOneEmitterSimple@ha
+// 	addi     r3, r30, 0x38
+// 	addi     r5, r4, __vt__Q23efx17TOneEmitterSimple@l
+// 	li       r4, 0
+// 	stw      r5, 0x34(r30)
+// 	addi     r0, r5, 0x14
+// 	stw      r0, 0x38(r30)
+// 	bl       __dt__18JPAEmitterCallBackFv
 
-lbl_80362198:
-	addic.   r0, r30, 0x18
-	beq      lbl_803621DC
-	lis      r3, __vt__Q23efx15TKchYodareHitGr@ha
-	cmplwi   r0, 0
-	addi     r3, r3, __vt__Q23efx15TKchYodareHitGr@l
-	stw      r3, 0x18(r30)
-	addi     r0, r3, 0x14
-	stw      r0, 0x1c(r30)
-	beq      lbl_803621DC
-	lis      r4, __vt__Q23efx17TOneEmitterSimple@ha
-	addi     r3, r30, 0x1c
-	addi     r5, r4, __vt__Q23efx17TOneEmitterSimple@l
-	li       r4, 0
-	stw      r5, 0x18(r30)
-	addi     r0, r5, 0x14
-	stw      r0, 0x1c(r30)
-	bl       __dt__18JPAEmitterCallBackFv
+// lbl_80362198:
+// 	addic.   r0, r30, 0x18
+// 	beq      lbl_803621DC
+// 	lis      r3, __vt__Q23efx15TKchYodareHitGr@ha
+// 	cmplwi   r0, 0
+// 	addi     r3, r3, __vt__Q23efx15TKchYodareHitGr@l
+// 	stw      r3, 0x18(r30)
+// 	addi     r0, r3, 0x14
+// 	stw      r0, 0x1c(r30)
+// 	beq      lbl_803621DC
+// 	lis      r4, __vt__Q23efx17TOneEmitterSimple@ha
+// 	addi     r3, r30, 0x1c
+// 	addi     r5, r4, __vt__Q23efx17TOneEmitterSimple@l
+// 	li       r4, 0
+// 	stw      r5, 0x18(r30)
+// 	addi     r0, r5, 0x14
+// 	stw      r0, 0x1c(r30)
+// 	bl       __dt__18JPAEmitterCallBackFv
 
-lbl_803621DC:
-	addi     r3, r30, 0x14
-	li       r4, 0
-	bl       __dt__19JPAParticleCallBackFv
+// lbl_803621DC:
+// 	addi     r3, r30, 0x14
+// 	li       r4, 0
+// 	bl       __dt__19JPAParticleCallBackFv
 
-lbl_803621E8:
-	cmplwi   r30, 0
-	beq      lbl_80362228
-	lis      r3, __vt__Q23efx9TChaseMtx@ha
-	addi     r3, r3, __vt__Q23efx9TChaseMtx@l
-	stw      r3, 0(r30)
-	addi     r0, r3, 0x14
-	stw      r0, 4(r30)
-	beq      lbl_80362228
-	lis      r4, __vt__Q23efx5TSync@ha
-	addi     r3, r30, 4
-	addi     r5, r4, __vt__Q23efx5TSync@l
-	li       r4, 0
-	stw      r5, 0(r30)
-	addi     r0, r5, 0x14
-	stw      r0, 4(r30)
-	bl       __dt__18JPAEmitterCallBackFv
+// lbl_803621E8:
+// 	cmplwi   r30, 0
+// 	beq      lbl_80362228
+// 	lis      r3, __vt__Q23efx9TChaseMtx@ha
+// 	addi     r3, r3, __vt__Q23efx9TChaseMtx@l
+// 	stw      r3, 0(r30)
+// 	addi     r0, r3, 0x14
+// 	stw      r0, 4(r30)
+// 	beq      lbl_80362228
+// 	lis      r4, __vt__Q23efx5TSync@ha
+// 	addi     r3, r30, 4
+// 	addi     r5, r4, __vt__Q23efx5TSync@l
+// 	li       r4, 0
+// 	stw      r5, 0(r30)
+// 	addi     r0, r5, 0x14
+// 	stw      r0, 4(r30)
+// 	bl       __dt__18JPAEmitterCallBackFv
 
-lbl_80362228:
-	extsh.   r0, r31
-	ble      lbl_80362238
-	mr       r3, r30
-	bl       __dl__FPv
+// lbl_80362228:
+// 	extsh.   r0, r31
+// 	ble      lbl_80362238
+// 	mr       r3, r30
+// 	bl       __dl__FPv
 
-lbl_80362238:
-	lwz      r0, 0x14(r1)
-	mr       r3, r30
-	lwz      r31, 0xc(r1)
-	lwz      r30, 8(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
-}
+// lbl_80362238:
+// 	lwz      r0, 0x14(r1)
+// 	mr       r3, r30
+// 	lwz      r31, 0xc(r1)
+// 	lwz      r30, 8(r1)
+// 	mtlr     r0
+// 	addi     r1, r1, 0x10
+// 	blr
+// 	*/
+// }
 
-/*
- * --INFO--
- * Address:	80362254
- * Size:	00009C
- */
-TKchSmokeHana::~TKchSmokeHana()
-{
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	mr       r31, r4
-	stw      r30, 8(r1)
-	or.      r30, r3, r3
-	beq      lbl_803622D4
-	lis      r3, __vt__Q23efx13TKchSmokeHana@ha
-	addi     r3, r3, __vt__Q23efx13TKchSmokeHana@l
-	stw      r3, 0(r30)
-	addi     r0, r3, 0x14
-	stw      r0, 4(r30)
-	beq      lbl_803622C4
-	lis      r3, __vt__Q23efx9TChaseMtx@ha
-	addi     r3, r3, __vt__Q23efx9TChaseMtx@l
-	stw      r3, 0(r30)
-	addi     r0, r3, 0x14
-	stw      r0, 4(r30)
-	beq      lbl_803622C4
-	lis      r4, __vt__Q23efx5TSync@ha
-	addi     r3, r30, 4
-	addi     r5, r4, __vt__Q23efx5TSync@l
-	li       r4, 0
-	stw      r5, 0(r30)
-	addi     r0, r5, 0x14
-	stw      r0, 4(r30)
-	bl       __dt__18JPAEmitterCallBackFv
+// /*
+//  * --INFO--
+//  * Address:	80362254
+//  * Size:	00009C
+//  */
+// TKchSmokeHana::~TKchSmokeHana()
+// {
+// 	/*
+// 	stwu     r1, -0x10(r1)
+// 	mflr     r0
+// 	stw      r0, 0x14(r1)
+// 	stw      r31, 0xc(r1)
+// 	mr       r31, r4
+// 	stw      r30, 8(r1)
+// 	or.      r30, r3, r3
+// 	beq      lbl_803622D4
+// 	lis      r3, __vt__Q23efx13TKchSmokeHana@ha
+// 	addi     r3, r3, __vt__Q23efx13TKchSmokeHana@l
+// 	stw      r3, 0(r30)
+// 	addi     r0, r3, 0x14
+// 	stw      r0, 4(r30)
+// 	beq      lbl_803622C4
+// 	lis      r3, __vt__Q23efx9TChaseMtx@ha
+// 	addi     r3, r3, __vt__Q23efx9TChaseMtx@l
+// 	stw      r3, 0(r30)
+// 	addi     r0, r3, 0x14
+// 	stw      r0, 4(r30)
+// 	beq      lbl_803622C4
+// 	lis      r4, __vt__Q23efx5TSync@ha
+// 	addi     r3, r30, 4
+// 	addi     r5, r4, __vt__Q23efx5TSync@l
+// 	li       r4, 0
+// 	stw      r5, 0(r30)
+// 	addi     r0, r5, 0x14
+// 	stw      r0, 4(r30)
+// 	bl       __dt__18JPAEmitterCallBackFv
 
-lbl_803622C4:
-	extsh.   r0, r31
-	ble      lbl_803622D4
-	mr       r3, r30
-	bl       __dl__FPv
+// lbl_803622C4:
+// 	extsh.   r0, r31
+// 	ble      lbl_803622D4
+// 	mr       r3, r30
+// 	bl       __dl__FPv
 
-lbl_803622D4:
-	lwz      r0, 0x14(r1)
-	mr       r3, r30
-	lwz      r31, 0xc(r1)
-	lwz      r30, 8(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
-}
+// lbl_803622D4:
+// 	lwz      r0, 0x14(r1)
+// 	mr       r3, r30
+// 	lwz      r31, 0xc(r1)
+// 	lwz      r30, 8(r1)
+// 	mtlr     r0
+// 	addi     r1, r1, 0x10
+// 	blr
+// 	*/
+// }
 
-/*
- * --INFO--
- * Address:	803622F0
- * Size:	00009C
- */
-TKchCryInd::~TKchCryInd()
-{
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	mr       r31, r4
-	stw      r30, 8(r1)
-	or.      r30, r3, r3
-	beq      lbl_80362370
-	lis      r3, __vt__Q23efx10TKchCryInd@ha
-	addi     r3, r3, __vt__Q23efx10TKchCryInd@l
-	stw      r3, 0(r30)
-	addi     r0, r3, 0x14
-	stw      r0, 4(r30)
-	beq      lbl_80362360
-	lis      r3, __vt__Q23efx10TChaseMtxT@ha
-	addi     r3, r3, __vt__Q23efx10TChaseMtxT@l
-	stw      r3, 0(r30)
-	addi     r0, r3, 0x14
-	stw      r0, 4(r30)
-	beq      lbl_80362360
-	lis      r4, __vt__Q23efx5TSync@ha
-	addi     r3, r30, 4
-	addi     r5, r4, __vt__Q23efx5TSync@l
-	li       r4, 0
-	stw      r5, 0(r30)
-	addi     r0, r5, 0x14
-	stw      r0, 4(r30)
-	bl       __dt__18JPAEmitterCallBackFv
+// /*
+//  * --INFO--
+//  * Address:	803622F0
+//  * Size:	00009C
+//  */
+// TKchCryInd::~TKchCryInd()
+// {
+// 	/*
+// 	stwu     r1, -0x10(r1)
+// 	mflr     r0
+// 	stw      r0, 0x14(r1)
+// 	stw      r31, 0xc(r1)
+// 	mr       r31, r4
+// 	stw      r30, 8(r1)
+// 	or.      r30, r3, r3
+// 	beq      lbl_80362370
+// 	lis      r3, __vt__Q23efx10TKchCryInd@ha
+// 	addi     r3, r3, __vt__Q23efx10TKchCryInd@l
+// 	stw      r3, 0(r30)
+// 	addi     r0, r3, 0x14
+// 	stw      r0, 4(r30)
+// 	beq      lbl_80362360
+// 	lis      r3, __vt__Q23efx10TChaseMtxT@ha
+// 	addi     r3, r3, __vt__Q23efx10TChaseMtxT@l
+// 	stw      r3, 0(r30)
+// 	addi     r0, r3, 0x14
+// 	stw      r0, 4(r30)
+// 	beq      lbl_80362360
+// 	lis      r4, __vt__Q23efx5TSync@ha
+// 	addi     r3, r30, 4
+// 	addi     r5, r4, __vt__Q23efx5TSync@l
+// 	li       r4, 0
+// 	stw      r5, 0(r30)
+// 	addi     r0, r5, 0x14
+// 	stw      r0, 4(r30)
+// 	bl       __dt__18JPAEmitterCallBackFv
 
-lbl_80362360:
-	extsh.   r0, r31
-	ble      lbl_80362370
-	mr       r3, r30
-	bl       __dl__FPv
+// lbl_80362360:
+// 	extsh.   r0, r31
+// 	ble      lbl_80362370
+// 	mr       r3, r30
+// 	bl       __dl__FPv
 
-lbl_80362370:
-	lwz      r0, 0x14(r1)
-	mr       r3, r30
-	lwz      r31, 0xc(r1)
-	lwz      r30, 8(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
-}
+// lbl_80362370:
+// 	lwz      r0, 0x14(r1)
+// 	mr       r3, r30
+// 	lwz      r31, 0xc(r1)
+// 	lwz      r30, 8(r1)
+// 	mtlr     r0
+// 	addi     r1, r1, 0x10
+// 	blr
+// 	*/
+// }
 
-namespace Game {
+// } // namespace efx
+// namespace Game {
+// namespace KingChappy {
 
 /*
  * --INFO--
  * Address:	8036238C
  * Size:	00006C
  */
-KingChappy::ProperAnimator::~ProperAnimator()
+ProperAnimator::~ProperAnimator()
 {
 	/*
 stwu     r1, -0x10(r1)
@@ -7544,28 +6885,26 @@ blr
 	*/
 }
 
-} // namespace Game
-
 /*
  * --INFO--
  * Address:	803623F8
  * Size:	000004
  */
-void KingChappy::Obj::setInitialSetting(Game::EnemyInitialParamBase*) { }
+void Obj::setInitialSetting(EnemyInitialParamBase*) { }
 
 /*
  * --INFO--
  * Address:	803623FC
  * Size:	000004
  */
-void applyImpulse__Q34Game10KingChappy3ObjFR10Vector3f R10Vector3f() { }
+void Obj::applyImpulse(Vector3f&, Vector3f&) { }
 
 /*
  * --INFO--
  * Address:	80362400
  * Size:	00003C
  */
-void KingChappy::Obj::createEfxHamon()
+void Obj::createEfxHamon()
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -7593,7 +6932,7 @@ lbl_80362428:
  * Address:	8036243C
  * Size:	000054
  */
-void KingChappy::Obj::updateEfxHamon()
+void Obj::updateEfxHamon()
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -7629,7 +6968,7 @@ lbl_8036247C:
  * Address:	80362490
  * Size:	000020
  */
-void KingChappy::Obj::isUnderground()
+bool Obj::isUnderground()
 {
 	/*
 	lwz      r4, 0x1e0(r3)
@@ -7650,7 +6989,7 @@ lbl_803624A8:
  * Address:	803624B0
  * Size:	000014
  */
-void KingChappy::Obj::getCellRadius()
+f32 Obj::getCellRadius()
 {
 	/*
 	lwz      r4, 0xc0(r3)
@@ -7666,7 +7005,7 @@ void KingChappy::Obj::getCellRadius()
  * Address:	803624C4
  * Size:	000014
  */
-void KingChappy::Obj::getBodyRadius()
+f32 Obj::getBodyRadius()
 {
 	/*
 	lwz      r4, 0xc0(r3)
@@ -7682,7 +7021,7 @@ void KingChappy::Obj::getBodyRadius()
  * Address:	803624D8
  * Size:	000030
  */
-void KingChappy::Obj::pressCallBack(Game::Creature*, float, CollPart*)
+bool Obj::pressCallBack(Creature*, float, CollPart*)
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -7705,7 +7044,7 @@ void KingChappy::Obj::pressCallBack(Game::Creature*, float, CollPart*)
  * Address:	80362508
  * Size:	000028
  */
-void KingChappy::Obj::eatWhitePikminCallBack(Game::Creature*, float)
+bool Obj::eatWhitePikminCallBack(Creature*, float)
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -7726,227 +7065,19 @@ void KingChappy::Obj::eatWhitePikminCallBack(Game::Creature*, float)
  * Address:	80362530
  * Size:	000008
  */
-u32 KingChappy::Obj::getEnemyTypeID() { return 0x35; }
+EnemyTypeID::EEnemyTypeID Obj::getEnemyTypeID() { return EnemyTypeID::EnemyID_KingChappy; }
 
 /*
  * --INFO--
  * Address:	80362538
  * Size:	000008
  */
-void KingChappy::Obj::getDownSmokeScale()
+f32 Obj::getDownSmokeScale()
 {
 	/*
 	lfs      f1, lbl_8051E77C@sda21(r2)
 	blr
 	*/
 }
-
-} // namespace efx
-
-/*
- * --INFO--
- * Address:	80362540
- * Size:	000028
- */
-void __sinit_kingChappy_cpp()
-{
-	/*
-	lis      r4, __float_nan@ha
-	li       r0, -1
-	lfs      f0, __float_nan@l(r4)
-	lis      r3, lbl_804E1D28@ha
-	stw      r0, lbl_80515F48@sda21(r13)
-	stfsu    f0, lbl_804E1D28@l(r3)
-	stfs     f0, lbl_80515F4C@sda21(r13)
-	stfs     f0, 4(r3)
-	stfs     f0, 8(r3)
-	blr
-	*/
-}
-
-/*
- * --INFO--
- * Address:	80362568
- * Size:	000014
- */
-void @920 @12 @Game::EnemyBase::viewOnPelletKilled()
-{
-	/*
-	li       r11, 0xc
-	lwzx     r11, r3, r11
-	add      r3, r3, r11
-	addi     r3, r3, -920
-	b        viewOnPelletKilled__Q24Game9EnemyBaseFv
-	*/
-}
-
-/*
- * --INFO--
- * Address:	8036257C
- * Size:	000014
- */
-void @920 @12 @Game::EnemyBase::viewStartCarryMotion()
-{
-	/*
-	li       r11, 0xc
-	lwzx     r11, r3, r11
-	add      r3, r3, r11
-	addi     r3, r3, -920
-	b        viewStartCarryMotion__Q24Game9EnemyBaseFv
-	*/
-}
-
-/*
- * --INFO--
- * Address:	80362590
- * Size:	000014
- */
-void @920 @12 @Game::EnemyBase::viewStartPreCarryMotion()
-{
-	/*
-	li       r11, 0xc
-	lwzx     r11, r3, r11
-	add      r3, r3, r11
-	addi     r3, r3, -920
-	b        viewStartPreCarryMotion__Q24Game9EnemyBaseFv
-	*/
-}
-
-/*
- * --INFO--
- * Address:	803625A4
- * Size:	000014
- */
-void @920 @12 @Game::EnemyBase::view_finish_carrymotion()
-{
-	/*
-	li       r11, 0xc
-	lwzx     r11, r3, r11
-	add      r3, r3, r11
-	addi     r3, r3, -920
-	b        view_finish_carrymotion__Q24Game9EnemyBaseFv
-	*/
-}
-
-/*
- * --INFO--
- * Address:	803625B8
- * Size:	000014
- */
-void @920 @12 @Game::EnemyBase::view_start_carrymotion()
-{
-	/*
-	li       r11, 0xc
-	lwzx     r11, r3, r11
-	add      r3, r3, r11
-	addi     r3, r3, -920
-	b        view_start_carrymotion__Q24Game9EnemyBaseFv
-	*/
-}
-
-/*
- * --INFO--
- * Address:	803625CC
- * Size:	000014
- */
-void @920 @12 @Game::EnemyBase::viewGetShape()
-{
-	/*
-	li       r11, 0xc
-	lwzx     r11, r3, r11
-	add      r3, r3, r11
-	addi     r3, r3, -920
-	b        viewGetShape__Q24Game9EnemyBaseFv
-	*/
-}
-
-/*
- * --INFO--
- * Address:	803625E0
- * Size:	000008
- */
-@4 @efx::TKchCryInd::~TKchCryInd()
-{
-	/*
-	addi     r3, r3, -4
-	b        __dt__Q23efx10TKchCryIndFv
-	*/
-}
-
-/*
- * --INFO--
- * Address:	803625E8
- * Size:	000008
- */
-@4 @efx::TKchSmokeHana::~TKchSmokeHana()
-{
-	/*
-	addi     r3, r3, -4
-	b        __dt__Q23efx13TKchSmokeHanaFv
-	*/
-}
-
-/*
- * --INFO--
- * Address:	803625F0
- * Size:	000008
- */
-@4 @efx::TKchYodareHitGr::~TKchYodareHitGr()
-{
-	/*
-	addi     r3, r3, -4
-	b        __dt__Q23efx15TKchYodareHitGrFv
-	*/
-}
-
-/*
- * --INFO--
- * Address:	803625F8
- * Size:	000008
- */
-@4 @efx::TKchYodareHitWat::~TKchYodareHitWat()
-{
-	/*
-	addi     r3, r3, -4
-	b        __dt__Q23efx16TKchYodareHitWatFv
-	*/
-}
-
-/*
- * --INFO--
- * Address:	80362600
- * Size:	000008
- */
-@4 @efx::TKchDeadYodare::~TKchDeadYodare()
-{
-	/*
-	addi     r3, r3, -4
-	b        __dt__Q23efx14TKchDeadYodareFv
-	*/
-}
-
-/*
- * --INFO--
- * Address:	80362608
- * Size:	000008
- */
-@4 @efx::TKchAttackYodare::~TKchAttackYodare()
-{
-	/*
-	addi     r3, r3, -4
-	b        __dt__Q23efx16TKchAttackYodareFv
-	*/
-}
-
-/*
- * --INFO--
- * Address:	80362610
- * Size:	000008
- */
-@4 @efx::TKchYodare::~TKchYodare()
-{
-	/*
-	addi     r3, r3, -4
-	b        __dt__Q23efx10TKchYodareFv
-	*/
-}
+} // namespace KingChappy
+} // namespace Game
