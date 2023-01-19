@@ -364,11 +364,17 @@ struct ObjChallenge2P : public ObjChallengeBase {
 };
 
 struct SArgChallengeBase : public ::Screen::StartSceneArg {
+	SArgChallengeBase(f32 data) { _04 = data; }
+
 	// _00     = VTBL
 	f32 _04; // _04
 };
 
 struct SArgChallenge1P : public SArgChallengeBase {
+	SArgChallenge1P(f32 data)
+	    : SArgChallengeBase(data)
+	{
+	}
 	virtual SceneType getSceneType() const; // _08 (weak)
 	virtual int getClassSize();             // _0C (weak)
 
@@ -377,6 +383,11 @@ struct SArgChallenge1P : public SArgChallengeBase {
 };
 
 struct SArgChallenge2P : public SArgChallengeBase {
+	SArgChallenge2P(f32 data)
+	    : SArgChallengeBase(data)
+	{
+	}
+
 	virtual SceneType getSceneType() const; // _08 (weak)
 	virtual int getClassSize();             // _0C (weak)
 
