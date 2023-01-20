@@ -374,8 +374,8 @@ void GameState::exec(VsGameSection* section)
 			}
 
 			kh::Screen::DispWinLoseReason winLoseReason;
-			winLoseReason._08 = redReason;
-			winLoseReason._0C = blueReason;
+			winLoseReason.m_outcomeP1 = redReason;
+			winLoseReason.m_outcomeP2 = blueReason;
 
 			P2ASSERTLINE(513, Screen::gGame2DMgr->open_WinLoseReason(winLoseReason));
 		}

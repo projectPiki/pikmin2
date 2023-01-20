@@ -31,8 +31,8 @@ struct DispWinLoseReason : public og::Screen::DispMemberBase {
 
 	// _00     = VTBL
 	// _00-_08 = DispMemberBase
-	int _08; // _08
-	int _0C; // _0C
+	int m_outcomeP1; // _08
+	int m_outcomeP2; // _0C
 };
 
 struct ObjWinLose : public ::Screen::ObjBase {
@@ -87,8 +87,17 @@ struct ObjWinLose : public ::Screen::ObjBase {
 };
 
 struct ObjWinLoseReason : public ::Screen::ObjBase {
+	ObjWinLoseReason(int type)
+	{
+		m_screen = nullptr;
+		m_anim1  = nullptr;
+		m_anim2  = nullptr;
+		_48      = 0.0f;
+		_44      = 0.0f;
+		_4C      = type;
+	}
 
-	virtual ~ObjWinLoseReason();        // _08 (weak)
+	virtual ~ObjWinLoseReason() { }     // _08 (weak)
 	virtual void doCreate(JKRArchive*); // _4C
 	virtual bool doUpdate();            // _58
 	virtual void doDraw(Graphics& gfx); // _68
@@ -96,12 +105,33 @@ struct ObjWinLoseReason : public ::Screen::ObjBase {
 	// _00     = VTBL1
 	// _18     = VTBL2
 	// _00-_38 = Screen::ObjBase
-	P2DScreen::Mgr_tuning* _38; // _38
-	J2DAnmBase* _3C;            // _3C
-	J2DAnmBase* _40;            // _40
-	f32 _44;                    // _44
-	f32 _48;                    // _48
-	u32 _4C;                    // _4C
+	P2DScreen::Mgr_tuning* m_screen; // _38
+	J2DAnmBase* m_anim1;             // _3C
+	J2DAnmBase* m_anim2;             // _40
+	f32 _44;                         // _44
+	f32 _48;                         // _48
+	u32 _4C;                         // _4C
+
+	static struct StaticValues {
+		inline StaticValues()
+		{
+			_00 = 1.0f;
+			_04 = -120.0f;
+			_08 = 120.0f;
+			_0C = 100;
+			_10 = 125;
+			_14 = 100;
+			_18 = 2;
+		}
+
+		f32 _00; // _00
+		f32 _04; // _04
+		f32 _08; // _08
+		int _0C;
+		int _10;
+		int _14;
+		u8 _18;
+	} msVal;
 };
 
 struct SceneWinLose : public ::Screen::SceneBase {
@@ -121,23 +151,20 @@ struct SceneWinLose : public ::Screen::SceneBase {
 struct SceneWinLoseReason : public ::Screen::SceneBase {
 	SceneWinLoseReason();
 
-	virtual SceneType getSceneType();           // _08 (weak)
-	virtual ScreenOwnerID getOwnerID();         // _0C (weak)
-	virtual ScreenMemberID getMemberID();       // _10 (weak)
-	virtual const char* getResName() const;     // _1C (weak)
-	virtual void doCreateObj(JKRArchive*);      // _20
-	virtual void doUpdateActive();              // _2C
-	virtual bool doEnd(::Screen::EndSceneArg*); // _40
+	virtual const char* getResName() const { return "win_lose_reason.szs"; }; // _1C (weak)
+	virtual SceneType getSceneType() { return SCENE_WIN_LOSE_REASON; }        // _08 (weak)
+	virtual ScreenOwnerID getOwnerID() { return OWNER_KH; }                   // _0C (weak)
+	virtual ScreenMemberID getMemberID() { return MEMBER_WIN_LOSE_REASON; }   // _10 (weak)
+	virtual void doCreateObj(JKRArchive*);                                    // _20
+	virtual void doUpdateActive();                                            // _2C
+	virtual bool doEnd(::Screen::EndSceneArg*);                               // _40
 
 	// _00      = VTBL
 	// _00-_220 = Screen::SceneBase
-	::Screen::ObjBase* _220; // _220, game over base?
-	::Screen::ObjBase* _224; // _224, game over base?
-	int _228;                // _228
-	int _22C;                // _22C
-	u8 _230;                 // _230
-	u8 _231;                 // _231
-	u32 _234;                // _234, unknown
+	::Screen::ObjBase* m_screenObj[2]; // _220
+	int m_outcome[2];                  // _228
+	bool m_done[2];
+	int m_counter; // _234
 };
 } // namespace Screen
 } // namespace kh

@@ -7,6 +7,7 @@
 
 namespace Morimura {
 struct TGameOverScreen {
+	void setPosY(f32);
 	JKRArchive* _00;              // _00
 	P2DScreen::Mgr_tuning* _04;   // _04
 	og::Screen::AnimScreen** _08; // _08
@@ -19,6 +20,7 @@ struct TGameOverScreen {
 
 struct TGameOverBase : public TTestBase {
 	TGameOverBase();
+	TGameOverBase(char* name);
 
 	virtual ~TGameOverBase();                                // _08 (weak)
 	virtual bool doUpdate();                                 // _58
@@ -35,7 +37,7 @@ struct TGameOverBase : public TTestBase {
 	u8 _84;                            // _84
 	u8 _85;                            // _85
 	s16 _86;                           // _86
-	u32 _88;                           // _88, unknown
+	u32 m_type;                        // _88, unknown
 	s16 _8C;                           // _8C
 	s16 _8E;                           // _8E
 };
@@ -50,6 +52,11 @@ struct TGameOver2D : public TGameOverBase {
 };
 
 struct TLujiDown2D : public TGameOverBase {
+	TLujiDown2D()
+	    : TGameOverBase("LujiDown")
+	{
+	}
+
 	virtual ~TLujiDown2D();             // _08 (weak)
 	virtual void doCreate(JKRArchive*); // _4C
 
@@ -59,6 +66,11 @@ struct TLujiDown2D : public TGameOverBase {
 };
 
 struct TOrimaDown2D : public TGameOverBase {
+	TOrimaDown2D()
+	    : TGameOverBase("OrimaDown")
+	{
+	}
+
 	virtual ~TOrimaDown2D();            // _08 (weak)
 	virtual void doCreate(JKRArchive*); // _4C
 
@@ -68,6 +80,11 @@ struct TOrimaDown2D : public TGameOverBase {
 };
 
 struct TPikminDown2D : public TGameOverBase {
+	TPikminDown2D()
+	    : TGameOverBase("PikminDown")
+	{
+	}
+
 	virtual ~TPikminDown2D();           // _08 (weak)
 	virtual void doCreate(JKRArchive*); // _4C
 
