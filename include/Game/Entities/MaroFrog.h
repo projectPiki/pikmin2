@@ -12,9 +12,12 @@ namespace MaroFrog {
 struct Obj : public Frog::Obj {
 	Obj();
 
-	virtual ~Obj() { }                                  // _1BC (weak)
-	virtual EnemyTypeID::EEnemyTypeID getEnemyTypeID(); // _258 (weak)
-	virtual void attackNaviPosition();                  // _300
+	virtual ~Obj() { }                                 // _1BC (weak)
+	virtual EnemyTypeID::EEnemyTypeID getEnemyTypeID() // _258 (weak)
+	{
+		return EnemyTypeID::EnemyID_MaroFrog;
+	}
+	virtual void attackNaviPosition(); // _300
 
 	void createEffect();
 

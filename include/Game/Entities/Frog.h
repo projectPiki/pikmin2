@@ -73,7 +73,7 @@ struct Obj : public EnemyBase {
 	FSM* m_fsm;                // _2BC
 	f32 _2C0;                  // _2C0
 	f32 _2C4;                  // _2C4
-	Vector3f _2C8;             // _2C8
+	Vector3f m_targetPosition; // _2C8
 	int _2D4;                  // _2D4
 	bool _2D8;                 // _2D8, unknown
 	bool _2D9;                 // _2D9, unknown
