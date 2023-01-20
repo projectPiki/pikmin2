@@ -803,7 +803,7 @@ NISHIMURA:=\
 	$(BUILD_DIR)/src/plugProjectNishimuraU/Damagumo.o\
 	$(BUILD_DIR)/asm/plugProjectNishimuraU/IKSystemMgr.o\
 	$(BUILD_DIR)/asm/plugProjectNishimuraU/IKSystemBase.o\
-	$(BUILD_DIR)/asm/plugProjectNishimuraU/DamagumoShadow.o\
+	$(BUILD_DIR)/src/plugProjectNishimuraU/DamagumoShadow.o\
 	$(BUILD_DIR)/src/plugProjectNishimuraU/KurageState.o\
 	$(BUILD_DIR)/src/plugProjectNishimuraU/KurageAnimator.o\
 	$(BUILD_DIR)/src/plugProjectNishimuraU/KurageMgr.o\

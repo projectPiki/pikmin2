@@ -9,6 +9,7 @@
 #include "Rect.h"
 #include "Vector3.h"
 #include "Sys/Sphere.h"
+#include "SysShape/Joint.h"
 
 struct Camera;
 struct Color4;
@@ -116,31 +117,50 @@ struct TubeShadowPosNode : public CNode {
 	// _00-_18 = CNode
 };
 
-struct TubeShadowSetNode : public CNode {
-	virtual ~TubeShadowSetNode(); // _08 (weak)
+struct TubeShadowSetNode : public JointShadowNode {
+	inline TubeShadowSetNode()
+	    : JointShadowNode(2)
+	{
+		m_joint = nullptr;
+	}
+
+	virtual ~TubeShadowSetNode() { } // _08 (weak)
 
 	void makeShadowSRT(JointShadowParm&, Vector3f&, Vector3f&);
 
 	// _00     = VTBL
-	// _00-_18 = CNode
+	// _00-_24 = JointShadowNode
+	SysShape::Joint* m_joint; // _24
 };
 
-struct TubeShadowTransNode : public CNode {
-	virtual ~TubeShadowTransNode(); // _08 (weak)
+struct TubeShadowTransNode : public JointShadowNode {
+	inline TubeShadowTransNode()
+	    : JointShadowNode(2)
+	{
+		m_joint = nullptr;
+	}
+
+	virtual ~TubeShadowTransNode() { } // _08 (weak)
 
 	void makeShadowSRT(JointShadowParm&, Vector3f&, Vector3f&);
 
 	// _00     = VTBL
-	// _00-_18 = CNode
+	// _00-_24 = JointShadowNode
+	SysShape::Joint* m_joint; // _24
 };
 
-struct SphereShadowNode : public CNode {
-	virtual ~SphereShadowNode(); // _08 (weak)
+struct SphereShadowNode : public JointShadowNode {
+	inline SphereShadowNode()
+	    : JointShadowNode(2)
+	{
+	}
+
+	virtual ~SphereShadowNode() { } // _08 (weak)
 
 	void makeShadowSRT(JointShadowParm&, Vector3f&);
 
 	// _00     = VTBL
-	// _00-_18 = CNode
+	// _00-_24 = JointShadowNode
 };
 
 // Size: 0x50
