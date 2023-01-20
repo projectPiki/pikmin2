@@ -99,7 +99,7 @@ void StateWait::exec(EnemyBase* enemy)
 		Creature* target = EnemyFunc::getNearestPikminOrNavi(tank, view, sightRad, nullptr, nullptr, nullptr);
 		if (target) {
 			tank->m_targetCreature = target;
-			tank->_2EC             = 0.0f; // some target chase timer?
+			tank->m_cautionTimer   = 0.0f; // some target chase timer?
 			transit(enemy, TANK_ChaseTurn, nullptr);
 		} else if (randWeightFloat(1.0f) < 0.2f) {
 			transit(enemy, TANK_Wait, nullptr);
@@ -658,7 +658,7 @@ void StateMoveTurn::exec(EnemyBase* enemy)
 		Creature* target = EnemyFunc::getNearestPikminOrNavi(tank, view, sightRad, nullptr, nullptr, nullptr);
 		if (target) {
 			tank->m_targetCreature = target;
-			tank->_2EC             = 0.0f; // some target chase timer?
+			tank->m_cautionTimer   = 0.0f; // some target chase timer?
 			transit(enemy, TANK_ChaseTurn, nullptr);
 		} else {
 			transit(enemy, TANK_Move, nullptr);
@@ -1138,10 +1138,10 @@ void StateChaseTurn::cleanup(EnemyBase* enemy)
  */
 void StateAttack::init(EnemyBase* enemy, StateArg* stateArg)
 {
-	Obj* tank  = static_cast<Obj*>(enemy);
-	tank->_304 = 0;
-	tank->_2E4 = 0.0f;
-	tank->_2EC = 0.0f;
+	Obj* tank            = static_cast<Obj*>(enemy);
+	tank->m_isBlowing    = false;
+	tank->_2E4           = 0.0f;
+	tank->m_cautionTimer = 0.0f;
 	tank->disableEvent(0, EB_IsCullable);
 	tank->m_targetCreature = nullptr;
 	tank->m_targetVelocity = Vector3f(0.0f);
@@ -1170,7 +1170,7 @@ void StateAttack::exec(EnemyBase* enemy)
 		transit(enemy, TANK_Dead, nullptr);
 		return;
 	}
-	if (tank->_304) {
+	if (tank->m_isBlowing) {
 		tank->isAttackable(true);
 		tank->createDisChargeSE();
 	}
@@ -1178,7 +1178,7 @@ void StateAttack::exec(EnemyBase* enemy)
 		return;
 
 	if ((u32)enemy->m_curAnim->m_type == KEYEVENT_2) {
-		tank->_304 = true;
+		tank->m_isBlowing = true;
 		tank->startEffect();
 		return;
 	}
@@ -1195,7 +1195,7 @@ void StateAttack::exec(EnemyBase* enemy)
 		Creature* target = EnemyFunc::getNearestPikminOrNavi(tank, view, sightRad, nullptr, nullptr, nullptr);
 		if (target) {
 			tank->m_targetCreature = target;
-			tank->_2EC             = 0.0f;
+			tank->m_cautionTimer   = 0.0f;
 			transit(enemy, TANK_ChaseTurn, nullptr);
 			return;
 		}
@@ -1226,7 +1226,7 @@ void StateAttack::cleanup(EnemyBase* enemy)
 {
 	Obj* tank = static_cast<Obj*>(enemy);
 	tank->enableEvent(0, EB_IsCullable);
-	tank->_304 = false;
+	tank->m_isBlowing = false;
 	tank->startYodare();
 	tank->setEmotionCaution();
 }

@@ -9,6 +9,7 @@
 #include "Game/WalkSmokeEffect.h"
 #include "SysShape/Joint.h"
 #include "efx/TTank.h"
+#include "types.h"
 
 /**
  * --Header for (Ground) Blowhogs--
@@ -51,7 +52,6 @@ struct Obj : public EnemyBase {
 	virtual Vector3f getOffsetForMapCollision();            // _224
 	virtual void initWalkSmokeEffect();                     // _230
 	virtual WalkSmokeEffect::Mgr* getWalkSmokeEffectMgr();  // _234
-	virtual EnemyTypeID::EEnemyTypeID getEnemyTypeID();     // _258 (weak)
 	virtual void doStartStoneState();                       // _2A4
 	virtual void doFinishStoneState();                      // _2A8
 	virtual void doStartEarthquakeFitState();               // _2B8
@@ -59,25 +59,29 @@ struct Obj : public EnemyBase {
 	virtual void startCarcassMotion();                      // _2C4
 	virtual void doStartWaitingBirthTypeDrop();             // _2E0
 	virtual void doFinishWaitingBirthTypeDrop();            // _2E4
-	virtual f32 getDownSmokeScale();                        // _2EC (weak)
 	virtual void doStartMovie();                            // _2F0
 	virtual void doEndMovie();                              // _2F4
 	virtual void setFSM(FSM*);                              // _2F8
-	virtual void createEffect();                            // _2FC (weak)
-	virtual void setupEffect();                             // _300 (weak)
-	virtual void startEffect();                             // _304 (weak)
-	virtual void startYodare();                             // _308 (weak)
-	virtual void finishEffect() { }                         // _30C (weak)
-	virtual void effectDrawOn();                            // _310 (weak)
-	virtual void effectDrawOff();                           // _314 (weak)
-	virtual void interactCreature(Creature*);               // _318 (weak)
-	virtual void stopEffectRadius(f32);                     // _31C (weak)
-	virtual void createChargeSE();                          // _320 (weak)
-	virtual void createDisChargeSE();                       // _324 (weak)
+	virtual f32 getDownSmokeScale() { return 0.55f; }       // _2EC (weak)
+	virtual EnemyTypeID::EEnemyTypeID getEnemyTypeID()      // _258 (weak)
+	{
+		return EnemyTypeID::EnemyID_Tank;
+	}
+	virtual void createEffect() { }              // _2FC (weak)
+	virtual void setupEffect() { }               // _300 (weak)
+	virtual void startEffect();                  // _304 (weak)
+	virtual void startYodare();                  // _308 (weak)
+	virtual void finishEffect() { }              // _30C (weak)
+	virtual void effectDrawOn() { }              // _310 (weak)
+	virtual void effectDrawOff() { }             // _314 (weak)
+	virtual void interactCreature(Creature*) { } // _318 (weak)
+	virtual void stopEffectRadius(f32) { }       // _31C (weak)
+	virtual void createChargeSE();               // _320 (weak)
+	virtual void createDisChargeSE();            // _324 (weak)
 	//////////////// VTABLE END
 
 	bool isAttackable(bool);
-	void emitCollideRatio(Vector3f&, Vector3f&, f32);
+	f32 emitCollideRatio(Vector3f&, Vector3f&, f32);
 	void updateEmit();
 	void updateCaution();
 	f32 getViewAngle();
@@ -91,11 +95,11 @@ struct Obj : public EnemyBase {
 	Vector3f _2D8;                       // _2D8
 	f32 _2E4;                            // _2E4
 	f32 _2E8;                            // _2E8
-	f32 _2EC;                            // _2EC, timer?
+	f32 m_cautionTimer;                  // _2EC
 	f32 _2F0;                            // _2F0
 	f32 _2F4;                            // _2F4
 	Vector3f _2F8;                       // _2F8
-	u8 _304;                             // _304, unknown
+	bool m_isBlowing;                    // _304, is blowing fire/water
 	                                     // _308 = PelletView
 };
 

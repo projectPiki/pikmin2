@@ -13,6 +13,7 @@ struct Triangle;
 namespace Game {
 struct BaseItem;
 struct DynCreature;
+struct Creature;
 struct TDispTriangleArray;
 
 struct MoveInfo {
@@ -43,7 +44,7 @@ struct MoveInfo {
 	f32 _08;                                           // _08
 	f32 _0C;                                           // _0C
 	Delegate2<DynCreature, Vector3f&, Vector3f&>* _10; // _10
-	BaseItem* m_infoOrigin;                            // _14
+	Creature* m_infoOrigin;                            // _14
 	u8 _18;                                            // _18
 	u8 _19;                                            // _19
 	u8 _1A;                                            // _1A
