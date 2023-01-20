@@ -1,4 +1,8 @@
-#include "types.h"
+#include "kh/WinLose.h"
+#include "JSystem/JKR/JKRFileLoader.h"
+#include "kh/khUtil.h"
+#include "JSystem/JKR/JKRArchive.h"
+#include "utilityU.h"
 
 /*
     Generated from dpostproc
@@ -197,6 +201,34 @@ namespace Screen {
  */
 ObjWinLose::ObjWinLose()
 {
+	m_screenA[0]   = nullptr;
+	m_screenB[0]   = nullptr;
+	m_anim1[0]     = nullptr;
+	m_anim2[0]     = nullptr;
+	m_anim3[0]     = nullptr;
+	m_anim4[0]     = nullptr;
+	m_animTime4[0] = 0.0f;
+	m_animTime3[0] = 0.0f;
+	m_animTime2[0] = 0.0f;
+	m_animTime1[0] = 0.0f;
+	m_yOffset[0]   = 0.0f;
+
+	m_screenA[1]   = nullptr;
+	m_screenB[1]   = nullptr;
+	m_anim1[1]     = nullptr;
+	m_anim2[1]     = nullptr;
+	m_anim3[1]     = nullptr;
+	m_anim4[1]     = nullptr;
+	m_animTime4[1] = 0.0f;
+	m_animTime3[1] = 0.0f;
+	m_animTime2[1] = 0.0f;
+	m_animTime1[1] = 0.0f;
+	m_yOffset[1]   = 0.0f;
+
+	m_doUpdateAnim = false;
+	m_frameTimer   = 0;
+	m_screenNum    = 2;
+	m_alpha        = 0;
 	/*
 stwu     r1, -0x10(r1)
 mflr     r0
@@ -252,8 +284,88 @@ blr
  * Address:	8040FDA0
  * Size:	000418
  */
-void ObjWinLose::doCreate(JKRArchive*)
+void ObjWinLose::doCreate(JKRArchive* arc)
 {
+	const char* nameList[7 * 3]
+	    = { "win.blo",       "win.bck",          "win.bpk",          "lose.blo",         "lose.bck",     "lose.bpk",      "time_up.blo",
+		    "time_up.bck",   "time_up.bpk",      "win_wait.blo",     "win_wait.bck",     "win_wait.bpk", "lose_wait.blo", "lose_wait.bck",
+		    "lose_wait.bpk", "time_up_wait.blo", "time_up_wait.bck", "time_up_wait.bpk", "draw.blo",     "draw.bck",      "draw.bpk" };
+	const int arg[2];
+
+	if (!getDispMember()->isID(OWNER_KH, MEMBER_WIN_LOSE)) {
+		JUT_PANICLINE(79, "disp member err");
+	}
+
+	DispWinLose* disp = static_cast<DispWinLose*>(getDispMember());
+	switch (disp->m_outcome) {
+	case WinPlayer1:
+		arg[0] = 0;
+		arg[1] = 1;
+		break;
+	case WinPlayer2:
+		arg[0] = 1;
+		arg[1] = 0;
+		break;
+	case Draw: // draw
+		arg[0] = 3;
+		arg[1] = 3;
+		break;
+	case Timeup1P: // time out 1p
+		arg[0]      = 2;
+		arg[1]      = -1;
+		m_screenNum = 1;
+		break;
+	case Timeup2P: // time out 2p
+		arg[0] = 2;
+		arg[1] = 2;
+		break;
+	}
+
+	for (int i = 0; i < m_screenNum; i++) {
+		if (disp->m_outcome != Draw) {
+			m_screenA[i] = new P2DScreen::Mgr_tuning;
+			m_screenA[i]->set(nameList[3 * arg[i]], 0x40000, arc);
+
+			void* file = JKRFileLoader::getGlbResource(nameList[3 * arg[i] + 1], arc);
+			m_anim1[i] = static_cast<J2DAnmTransform*>(J2DAnmLoaderDataBase::load(file));
+
+			file       = JKRFileLoader::getGlbResource(nameList[3 * arg[i] + 2], arc);
+			m_anim3[i] = static_cast<J2DAnmColor*>(J2DAnmLoaderDataBase::load(file));
+			m_screenA[i]->setAnimation(m_anim1[i]);
+			m_screenA[i]->setAnimation(m_anim3[i]);
+
+		} else {
+			m_doUpdateAnim = true;
+		}
+
+		m_screenB[i] = new P2DScreen::Mgr_tuning;
+		m_screenB[i]->set(nameList[3 * arg[i]], 0x40000, arc);
+
+		void* file = JKRFileLoader::getGlbResource(nameList[3 * arg[i] + 1], arc);
+		m_anim2[i] = static_cast<J2DAnmTransform*>(J2DAnmLoaderDataBase::load(file));
+
+		file       = JKRFileLoader::getGlbResource(nameList[3 * arg[i] + 2], arc);
+		m_anim4[i] = static_cast<J2DAnmColor*>(J2DAnmLoaderDataBase::load(file));
+		m_screenB[i]->setAnimation(m_anim2[i]);
+		m_screenB[i]->setAnimation(m_anim4[i]);
+
+		setInfAlpha(m_screenB[i]->search('ROOT'));
+		m_screenB[i]->search('ROOT')->setAlpha(m_alpha);
+	}
+
+	if (m_screenNum == 2) {
+		m_yOffset[0] = msVal._04;
+		m_yOffset[1] = msVal._08;
+	}
+
+	getOwner()->setColorBG(0, 0, 0, 160);
+	switch (disp->m_outcome) {
+	case Timeup1P:
+	case Timeup2P:
+		PSStartChallengeTimeUpStream();
+		break;
+	}
+
 	/*
 stwu     r1, -0xb0(r1)
 mflr     r0
@@ -559,19 +671,7 @@ blr
  * Address:	804101B8
  * Size:	000020
  */
-void ObjWinLose::doUpdate()
-{
-	/*
-stwu     r1, -0x10(r1)
-mflr     r0
-stw      r0, 0x14(r1)
-bl       updateAnimation__Q32kh6Screen10ObjWinLoseFv
-lwz      r0, 0x14(r1)
-mtlr     r0
-addi     r1, r1, 0x10
-blr
-	*/
-}
+bool ObjWinLose::doUpdate() { return updateAnimation(); }
 
 /*
  * --INFO--
@@ -580,60 +680,14 @@ blr
  */
 void ObjWinLose::doDraw(Graphics& gfx)
 {
-	/*
-stwu     r1, -0x20(r1)
-mflr     r0
-stw      r0, 0x24(r1)
-stw      r31, 0x1c(r1)
-stw      r30, 0x18(r1)
-stw      r29, 0x14(r1)
-mr       r29, r4
-stw      r28, 0x10(r1)
-mr       r28, r3
-addi     r3, r29, 0xbc
-lwz      r12, 0xbc(r4)
-lwz      r12, 0x14(r12)
-mtctr    r12
-bctrl
-mr       r31, r28
-li       r30, 0
-b        lbl_80410264
+	gfx.m_orthoGraph.setPort();
 
-lbl_8041021C:
-lwz      r3, 0x38(r31)
-cmplwi   r3, 0
-beq      lbl_80410240
-lwz      r12, 0(r3)
-mr       r4, r29
-addi     r5, r29, 0xbc
-lwz      r12, 0x9c(r12)
-mtctr    r12
-bctrl
+	for (int i = 0; i < m_screenNum; i++) {
+		if (m_screenA[i])
+			m_screenA[i]->draw(gfx, gfx.m_orthoGraph);
 
-lbl_80410240:
-lwz      r3, 0x40(r31)
-mr       r4, r29
-addi     r5, r29, 0xbc
-lwz      r12, 0(r3)
-lwz      r12, 0x9c(r12)
-mtctr    r12
-bctrl
-addi     r31, r31, 4
-addi     r30, r30, 1
-
-lbl_80410264:
-lwz      r0, 0x98(r28)
-cmpw     r30, r0
-blt      lbl_8041021C
-lwz      r0, 0x24(r1)
-lwz      r31, 0x1c(r1)
-lwz      r30, 0x18(r1)
-lwz      r29, 0x14(r1)
-lwz      r28, 0x10(r1)
-mtlr     r0
-addi     r1, r1, 0x20
-blr
-	*/
+		m_screenB[i]->draw(gfx, gfx.m_orthoGraph);
+	}
 }
 
 /*
@@ -641,368 +695,69 @@ blr
  * Address:	80410290
  * Size:	00038C
  */
-void ObjWinLose::updateAnimation()
+bool ObjWinLose::updateAnimation()
 {
-	/*
-stwu     r1, -0x30(r1)
-mflr     r0
-stw      r0, 0x34(r1)
-stfd     f31, 0x20(r1)
-psq_st   f31, 40(r1), 0, qr0
-stw      r31, 0x1c(r1)
-stw      r30, 0x18(r1)
-stw      r29, 0x14(r1)
-stw      r28, 0x10(r1)
-mr       r28, r3
-lis      r3, msVal__Q32kh6Screen10ObjWinLose@ha
-mr       r30, r28
-li       r29, 0
-addi     r31, r3, msVal__Q32kh6Screen10ObjWinLose@l
-b        lbl_8041054C
+	for (int i = 0; i < m_screenNum; i++) {
+		if (m_screenA[i]) {
+			m_anim1[i]->m_currentFrame = m_animTime1[i];
+			m_anim3[i]->m_currentFrame = m_animTime3[i];
+			m_screenA[i]->animation();
+			m_animTime1[i] += msVal._00;
+			m_animTime3[i] += msVal._00;
 
-lbl_804102CC:
-lwz      r0, 0x38(r30)
-cmplwi   r0, 0
-beq      lbl_804103E8
-lfs      f0, 0x68(r30)
-lwz      r3, 0x48(r30)
-stfs     f0, 8(r3)
-lfs      f0, 0x78(r30)
-lwz      r3, 0x58(r30)
-stfs     f0, 8(r3)
-lwz      r3, 0x38(r30)
-bl       animation__9J2DScreenFv
-lis      r3, msVal__Q32kh6Screen10ObjWinLose@ha
-lfs      f1, 0x68(r30)
-lfsu     f0, msVal__Q32kh6Screen10ObjWinLose@l(r3)
-fadds    f0, f1, f0
-stfs     f0, 0x68(r30)
-lfs      f1, 0x78(r30)
-lfs      f0, 0(r3)
-fadds    f0, f1, f0
-stfs     f0, 0x78(r30)
-lfs      f1, 0x68(r30)
-lfs      f0, 0xc(r31)
-fcmpo    cr0, f1, f0
-cror     2, 1, 2
-bne      lbl_80410338
-li       r0, 1
-stb      r0, 0x90(r28)
+			if (m_animTime1[i] >= msVal._0C) {
+				m_doUpdateAnim = true;
+			}
 
-lbl_80410338:
-lwz      r3, 0x48(r30)
-lis      r0, 0x4330
-stw      r0, 8(r1)
-lha      r3, 6(r3)
-lfd      f2, lbl_80520228@sda21(r2)
-xoris    r3, r3, 0x8000
-lfs      f1, 0x68(r30)
-stw      r3, 0xc(r1)
-lfd      f0, 8(r1)
-fsubs    f0, f0, f2
-fcmpo    cr0, f1, f0
-cror     2, 1, 2
-beq      lbl_80410398
-lwz      r3, 0x58(r30)
-stw      r0, 8(r1)
-lha      r0, 6(r3)
-lfs      f1, 0x78(r30)
-xoris    r0, r0, 0x8000
-stw      r0, 0xc(r1)
-lfd      f0, 8(r1)
-fsubs    f0, f0, f2
-fcmpo    cr0, f1, f0
-cror     2, 1, 2
-bne      lbl_804103B0
+			if (m_animTime1[i] >= m_anim1[i]->m_maxFrame || m_animTime3[i] >= m_anim3[i]->m_maxFrame) {
+				m_animTime3[i] = 0.0f;
+				m_animTime1[i] = 0.0f;
+				m_screenA[i]->hide();
+			}
+			m_screenA[i]->search('ROOT')->add(0.0f, m_yOffset[i]);
+		}
 
-lbl_80410398:
-lfs      f0, lbl_80520208@sda21(r2)
-li       r0, 0
-stfs     f0, 0x78(r30)
-stfs     f0, 0x68(r30)
-lwz      r3, 0x38(r30)
-stb      r0, 0xb0(r3)
+		if (m_doUpdateAnim) {
+			m_anim2[i]->m_currentFrame = m_animTime2[i];
+			m_anim4[i]->m_currentFrame = m_animTime4[i];
+			m_screenB[i]->animation();
+			m_animTime2[i] += 1.0f;
+			m_animTime4[i] += 1.0f;
 
-lbl_804103B0:
-lwz      r3, 0x38(r30)
-lis      r4, 0x524F4F54@ha
-addi     r6, r4, 0x524F4F54@l
-li       r5, 0
-lwz      r12, 0(r3)
-lwz      r12, 0x3c(r12)
-mtctr    r12
-bctrl
-lwz      r12, 0(r3)
-lfs      f1, lbl_80520208@sda21(r2)
-lwz      r12, 0x14(r12)
-lfs      f2, 0x88(r30)
-mtctr    r12
-bctrl
+			if (m_animTime2[i] >= m_anim2[i]->m_maxFrame) {
+				m_animTime2[i] = 0.0f;
+			}
+			if (m_animTime4[i] >= m_anim4[i]->m_maxFrame) {
+				m_animTime4[i] = 0.0f;
+			}
+			m_screenB[i]->search('ROOT')->setOffset(0.0f, m_yOffset[i]);
+			m_screenB[i]->search('ROOT')->setAlpha(m_alpha);
+			if (m_alpha < 255 - msVal._18) {
+				m_alpha += msVal._18;
+			} else {
+				m_alpha = 255;
+			}
+		}
+	}
 
-lbl_804103E8:
-lbz      r0, 0x90(r28)
-cmplwi   r0, 0
-beq      lbl_80410544
-lfs      f0, 0x70(r30)
-lwz      r3, 0x50(r30)
-stfs     f0, 8(r3)
-lfs      f0, 0x80(r30)
-lwz      r3, 0x60(r30)
-stfs     f0, 8(r3)
-lwz      r3, 0x40(r30)
-bl       animation__9J2DScreenFv
-lfs      f0, 0x70(r30)
-lis      r0, 0x4330
-lfs      f2, lbl_80520224@sda21(r2)
-stw      r0, 8(r1)
-fadds    f0, f0, f2
-lfd      f1, lbl_80520228@sda21(r2)
-stfs     f0, 0x70(r30)
-lfs      f0, 0x80(r30)
-fadds    f0, f0, f2
-stfs     f0, 0x80(r30)
-lwz      r3, 0x50(r30)
-lfs      f2, 0x70(r30)
-lha      r0, 6(r3)
-xoris    r0, r0, 0x8000
-stw      r0, 0xc(r1)
-lfd      f0, 8(r1)
-fsubs    f0, f0, f1
-fcmpo    cr0, f2, f0
-cror     2, 1, 2
-bne      lbl_8041046C
-lfs      f0, lbl_80520208@sda21(r2)
-stfs     f0, 0x70(r30)
+	if (!getDispMember()->isID(OWNER_KH, MEMBER_WIN_LOSE)) {
+		JUT_PANICLINE(276, "disp member err");
+	}
 
-lbl_8041046C:
-lwz      r3, 0x60(r30)
-lis      r0, 0x4330
-stw      r0, 8(r1)
-lha      r0, 6(r3)
-lfd      f1, lbl_80520228@sda21(r2)
-xoris    r0, r0, 0x8000
-lfs      f2, 0x80(r30)
-stw      r0, 0xc(r1)
-lfd      f0, 8(r1)
-fsubs    f0, f0, f1
-fcmpo    cr0, f2, f0
-cror     2, 1, 2
-bne      lbl_804104A8
-lfs      f0, lbl_80520208@sda21(r2)
-stfs     f0, 0x80(r30)
-
-lbl_804104A8:
-lwz      r3, 0x40(r30)
-lis      r4, 0x524F4F54@ha
-addi     r6, r4, 0x524F4F54@l
-lfs      f31, 0x88(r30)
-lwz      r12, 0(r3)
-li       r5, 0
-lwz      r12, 0x3c(r12)
-mtctr    r12
-bctrl
-lfs      f0, lbl_80520208@sda21(r2)
-stfs     f0, 0xd4(r3)
-stfs     f31, 0xd8(r3)
-lwz      r12, 0(r3)
-lwz      r12, 0x2c(r12)
-mtctr    r12
-bctrl
-lwz      r3, 0x40(r30)
-lis      r4, 0x524F4F54@ha
-addi     r6, r4, 0x524F4F54@l
-li       r5, 0
-lwz      r12, 0(r3)
-lwz      r12, 0x3c(r12)
-mtctr    r12
-bctrl
-lwz      r12, 0(r3)
-lbz      r4, 0x9c(r28)
-lwz      r12, 0x24(r12)
-mtctr    r12
-bctrl
-lbz      r4, 0x18(r31)
-lbz      r3, 0x9c(r28)
-subfic   r0, r4, 0xff
-cmpw     r3, r0
-bge      lbl_8041053C
-add      r0, r3, r4
-stb      r0, 0x9c(r28)
-b        lbl_80410544
-
-lbl_8041053C:
-li       r0, 0xff
-stb      r0, 0x9c(r28)
-
-lbl_80410544:
-addi     r30, r30, 4
-addi     r29, r29, 1
-
-lbl_8041054C:
-lwz      r0, 0x98(r28)
-cmpw     r29, r0
-blt      lbl_804102CC
-mr       r3, r28
-bl       getDispMember__Q26Screen7ObjBaseFv
-lis      r4, 0x4C4F5345@ha
-lis      r5, 0x57494E5F@ha
-addi     r6, r4, 0x4C4F5345@l
-li       r4, 0x4b48
-addi     r5, r5, 0x57494E5F@l
-bl       isID__Q32og6Screen14DispMemberBaseFUlUx
-clrlwi.  r0, r3, 0x18
-bne      lbl_8041059C
-lis      r3, lbl_80499358@ha
-lis      r5, lbl_804994C4@ha
-addi     r3, r3, lbl_80499358@l
-li       r4, 0x114
-addi     r5, r5, lbl_804994C4@l
-crclr    6
-bl       panic_f__12JUTExceptionFPCciPCce
-
-lbl_8041059C:
-mr       r3, r28
-bl       getDispMember__Q26Screen7ObjBaseFv
-lwz      r6, 0x94(r28)
-lis      r4, msVal__Q32kh6Screen10ObjWinLose@ha
-addi     r5, r4, msVal__Q32kh6Screen10ObjWinLose@l
-addi     r4, r6, 1
-stw      r4, 0x94(r28)
-lwz      r0, 0x14(r5)
-cmpw     r4, r0
-ble      lbl_804105D8
-li       r0, 3
-stw      r0, 0xc(r3)
-bl       PSStop2DStream__Fv
-bl       PSMuteOffSE_on2D__Fv
-b        lbl_804105F0
-
-lbl_804105D8:
-lwz      r4, 0x94(r28)
-lwz      r0, 0x10(r5)
-cmpw     r4, r0
-ble      lbl_804105F0
-li       r0, 2
-stw      r0, 0xc(r3)
-
-lbl_804105F0:
-li       r3, 0
-psq_l    f31, 40(r1), 0, qr0
-lwz      r0, 0x34(r1)
-lfd      f31, 0x20(r1)
-lwz      r31, 0x1c(r1)
-lwz      r30, 0x18(r1)
-lwz      r29, 0x14(r1)
-lwz      r28, 0x10(r1)
-mtlr     r0
-addi     r1, r1, 0x30
-blr
-	*/
+	DispWinLose* disp = static_cast<DispWinLose*>(getDispMember());
+	int old           = m_frameTimer + 1;
+	m_frameTimer      = old;
+	if (old > msVal._14) {
+		disp->_0C = 3;
+		PSStop2DStream();
+		PSMuteOffSE_on2D();
+	} else if (m_frameTimer > msVal._10) {
+		disp->_0C = 2;
+	}
+	return false;
 }
 
-/*
- * --INFO--
- * Address:	8041061C
- * Size:	0000AC
- */
-ObjWinLose::~ObjWinLose()
-{
-	/*
-stwu     r1, -0x10(r1)
-mflr     r0
-stw      r0, 0x14(r1)
-stw      r31, 0xc(r1)
-mr       r31, r4
-stw      r30, 8(r1)
-or.      r30, r3, r3
-beq      lbl_804106AC
-lis      r4, __vt__Q32kh6Screen10ObjWinLose@ha
-addi     r4, r4, __vt__Q32kh6Screen10ObjWinLose@l
-stw      r4, 0(r30)
-addi     r0, r4, 0x10
-stw      r0, 0x18(r30)
-beq      lbl_8041069C
-lis      r4, __vt__Q26Screen7ObjBase@ha
-addi     r4, r4, __vt__Q26Screen7ObjBase@l
-stw      r4, 0(r30)
-addi     r0, r4, 0x10
-stw      r0, 0x18(r30)
-beq      lbl_8041069C
-lis      r4, __vt__Q26Screen8IObjBase@ha
-addi     r4, r4, __vt__Q26Screen8IObjBase@l
-stw      r4, 0(r30)
-addi     r0, r4, 0x10
-stw      r0, 0x18(r30)
-bl       del__5CNodeFv
-addi     r3, r30, 0x18
-li       r4, 0
-bl       __dt__11JKRDisposerFv
-mr       r3, r30
-li       r4, 0
-bl       __dt__5CNodeFv
+ObjWinLose::StaticValues ObjWinLose::msVal;
 
-lbl_8041069C:
-extsh.   r0, r31
-ble      lbl_804106AC
-mr       r3, r30
-bl       __dl__FPv
-
-lbl_804106AC:
-lwz      r0, 0x14(r1)
-mr       r3, r30
-lwz      r31, 0xc(r1)
-lwz      r30, 8(r1)
-mtlr     r0
-addi     r1, r1, 0x10
-blr
-	*/
-}
-
-} // namespace Screen
-} // namespace kh
-
-/*
- * --INFO--
- * Address:	804106C8
- * Size:	000044
- */
-void __sinit_khWinLose_cpp()
-{
-	/*
-	lis      r3, msVal__Q32kh6Screen10ObjWinLose@ha
-	lfs      f3, lbl_80520224@sda21(r2)
-	addi     r5, r3, msVal__Q32kh6Screen10ObjWinLose@l
-	lfs      f2, lbl_80520230@sda21(r2)
-	lfs      f1, lbl_80520234@sda21(r2)
-	li       r4, 0x3c
-	lfs      f0, lbl_80520238@sda21(r2)
-	li       r3, 0xb4
-	li       r0, 0x10
-	stfs     f3, 0(r5)
-	stfs     f2, 4(r5)
-	stfs     f1, 8(r5)
-	stfs     f0, 0xc(r5)
-	stw      r4, 0x10(r5)
-	stw      r3, 0x14(r5)
-	stb      r0, 0x18(r5)
-	blr
-	*/
-}
-
-namespace kh {
-namespace Screen {
-
-/*
- * --INFO--
- * Address:	8041070C
- * Size:	000008
- */
-ObjWinLose::@24 @~ObjWinLose()
-{
-	/*
-addi     r3, r3, -24
-b        __dt__Q32kh6Screen10ObjWinLoseFv
-	*/
-}
 } // namespace Screen
 } // namespace kh

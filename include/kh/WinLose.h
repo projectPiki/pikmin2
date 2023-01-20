@@ -7,6 +7,8 @@
 
 struct JAISound;
 
+enum WinLoseCondition { WinPlayer1 = 1, WinPlayer2 = 2, Draw = 3, Timeup1P = 4, Timeup2P = 5 };
+
 namespace kh {
 namespace Screen {
 struct DispWinLose : public og::Screen::DispMemberBase {
@@ -36,32 +38,52 @@ struct DispWinLoseReason : public og::Screen::DispMemberBase {
 struct ObjWinLose : public ::Screen::ObjBase {
 	ObjWinLose();
 
-	virtual ~ObjWinLose();              // _08 (weak)
+	virtual ~ObjWinLose() { }           // _08 (weak)
 	virtual void doCreate(JKRArchive*); // _4C
 	virtual bool doUpdate();            // _58
 	virtual void doDraw(Graphics& gfx); // _68
 
-	void updateAnimation();
+	bool updateAnimation();
 
 	// _00     = VTBL1
 	// _18     = VTBL2
 	// _00-_38 = Screen::ObjBase
-	P2DScreen::Mgr_tuning* _38[2]; // _38
-	P2DScreen::Mgr_tuning* _40[2]; // _40
-	J2DAnmBase* _48[2];            // _48
-	J2DAnmBase* _50[2];            // _50
-	J2DAnmBase* _58[2];            // _58
-	J2DAnmBase* _60[2];            // _60
-	f32 _68[2];                    // _68
-	f32 _70[2];                    // _70
-	f32 _78[2];                    // _78
-	f32 _80[2];                    // _80
-	f32 _88;                       // _88
-	f32 _8C;                       // _8C
-	u8 _90;                        // _90
-	int _94;                       // _94
-	int _98;                       // _98
-	u8 _9C;                        // _9C, alpha of some kind?
+	P2DScreen::Mgr_tuning* m_screenA[2]; // _38
+	P2DScreen::Mgr_tuning* m_screenB[2]; // _40
+	J2DAnmTransform* m_anim1[2];         // _48
+	J2DAnmTransform* m_anim2[2];         // _50
+	J2DAnmColor* m_anim3[2];             // _58
+	J2DAnmColor* m_anim4[2];             // _60
+	f32 m_animTime1[2];                  // _68
+	f32 m_animTime2[2];                  // _70
+	f32 m_animTime3[2];                  // _78
+	f32 m_animTime4[2];                  // _80
+	f32 m_yOffset[2];                    // _88
+	bool m_doUpdateAnim;                 // _90
+	int m_frameTimer;                    // _94
+	int m_screenNum;                     // _98
+	u8 m_alpha;                          // _9C
+
+	static struct StaticValues {
+		inline StaticValues()
+		{
+			_00 = 1.0f;
+			_04 = -120.0f;
+			_08 = 120.0f;
+			_0C = 60.0f;
+			_10 = 60;
+			_14 = 180;
+			_18 = 16;
+		}
+
+		f32 _00; // _00
+		f32 _04; // _04
+		f32 _08; // _08
+		f32 _0C;
+		int _10;
+		int _14;
+		u8 _18;
+	} msVal;
 };
 
 struct ObjWinLoseReason : public ::Screen::ObjBase {
