@@ -24,34 +24,34 @@ struct Obj : public EnemyBase {
 	Obj();
 
 	//////////////// VTABLE
-	virtual void onInit(CreatureInitArg* settings);         // _30
-	virtual void onKill(CreatureKillArg* settings);         // _34
-	virtual void doDirectDraw(Graphics& gfx);               // _50
-	virtual void collisionCallback(CollEvent& event);       // _EC
-	virtual void getShadowParam(ShadowParam& settings);     // _134
-	virtual bool needShadow();                              // _138
-	virtual ~Obj() { }                                      // _1BC (weak)
-	virtual void setInitialSetting(EnemyInitialParamBase*); // _1C4
-	virtual void doUpdate();                                // _1CC
-	virtual void doUpdateCommon();                          // _1D0
-	virtual void doAnimationUpdateAnimator();               // _1D8
-	virtual void doDebugDraw(Graphics&);                    // _1EC
-	virtual void changeMaterial();                          // _200
-	virtual void getCommonEffectPos(Vector3f&);             // _204
-	virtual void initWalkSmokeEffect();                     // _230
-	virtual WalkSmokeEffect::Mgr* getWalkSmokeEffectMgr();  // _234
-	virtual EnemyTypeID::EEnemyTypeID getEnemyTypeID();     // _258 (weak)
-	virtual bool damageCallBack(Creature*, f32, CollPart*); // _278
-	virtual bool earthquakeCallBack(Creature*, f32);        // _28C
-	virtual void doStartStoneState();                       // _2A4
-	virtual void doFinishStoneState();                      // _2A8
-	virtual f32 getDamageCoeStoneState();                   // _2AC (weak)
-	virtual void startCarcassMotion();                      // _2C4
-	virtual void wallCallback(const MoveInfo&);             // _2E8
-	virtual f32 getDownSmokeScale();                        // _2EC (weak)
-	virtual void doStartMovie();                            // _2F0
-	virtual void doEndMovie();                              // _2F4
-	virtual void setFSM(FSM*);                              // _2F8
+	virtual void onInit(CreatureInitArg* settings);                                                // _30
+	virtual void onKill(CreatureKillArg* settings);                                                // _34
+	virtual void doDirectDraw(Graphics& gfx);                                                      // _50
+	virtual void collisionCallback(CollEvent& event);                                              // _EC
+	virtual void getShadowParam(ShadowParam& settings);                                            // _134
+	virtual bool needShadow();                                                                     // _138
+	virtual ~Obj() { }                                                                             // _1BC (weak)
+	virtual void setInitialSetting(EnemyInitialParamBase*);                                        // _1C4
+	virtual void doUpdate();                                                                       // _1CC
+	virtual void doUpdateCommon();                                                                 // _1D0
+	virtual void doAnimationUpdateAnimator();                                                      // _1D8
+	virtual void doDebugDraw(Graphics&);                                                           // _1EC
+	virtual void changeMaterial();                                                                 // _200
+	virtual void getCommonEffectPos(Vector3f&);                                                    // _204
+	virtual void initWalkSmokeEffect();                                                            // _230
+	virtual WalkSmokeEffect::Mgr* getWalkSmokeEffectMgr();                                         // _234
+	virtual EnemyTypeID::EEnemyTypeID getEnemyTypeID() { return EnemyTypeID::EnemyID_DangoMushi; } // _258 (weak)
+	virtual bool damageCallBack(Creature*, f32, CollPart*);                                        // _278
+	virtual bool earthquakeCallBack(Creature*, f32);                                               // _28C
+	virtual void doStartStoneState();                                                              // _2A4
+	virtual void doFinishStoneState();                                                             // _2A8
+	virtual f32 getDamageCoeStoneState();                                                          // _2AC (weak)
+	virtual void startCarcassMotion();                                                             // _2C4
+	virtual void wallCallback(const MoveInfo&);                                                    // _2E8
+	virtual f32 getDownSmokeScale() { return 1.3f; }                                               // _2EC (weak)
+	virtual void doStartMovie();                                                                   // _2F0
+	virtual void doEndMovie();                                                                     // _2F4
+	virtual void setFSM(FSM*);                                                                     // _2F8
 	//////////////// VTABLE END
 
 	void addShadowScale();

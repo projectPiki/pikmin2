@@ -1,4 +1,6 @@
 #include "types.h"
+#include "Game/Entities/DangoMushi.h"
+#include "PSSystem/PSMainSide_ObjSound.h"
 
 /*
     Generated from dpostproc
@@ -517,13 +519,14 @@
 */
 
 namespace Game {
+namespace DangoMushi {
 
 /*
  * --INFO--
  * Address:	802FC3BC
  * Size:	000134
  */
-DangoMushi::Obj::Obj()
+Obj::Obj()
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -619,14 +622,14 @@ lbl_802FC4D0:
  * Address:	802FC4F0
  * Size:	000004
  */
-void DangoMushi::Obj::setInitialSetting(Game::EnemyInitialParamBase*) { }
+void Obj::setInitialSetting(EnemyInitialParamBase*) { }
 
 /*
  * --INFO--
  * Address:	802FC4F4
  * Size:	000130
  */
-void DangoMushi::Obj::onInit(Game::CreatureInitArg*)
+void Obj::onInit(CreatureInitArg*)
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -717,7 +720,7 @@ lbl_802FC5F4:
  * Address:	802FC624
  * Size:	000044
  */
-void DangoMushi::Obj::onKill(Game::CreatureKillArg*)
+void Obj::onKill(CreatureKillArg*)
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -745,7 +748,7 @@ void DangoMushi::Obj::onKill(Game::CreatureKillArg*)
  * Address:	802FC668
  * Size:	000050
  */
-void DangoMushi::Obj::doUpdate()
+void Obj::doUpdate()
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -776,7 +779,7 @@ void DangoMushi::Obj::doUpdate()
  * Address:	802FC6B8
  * Size:	000044
  */
-void DangoMushi::Obj::doUpdateCommon()
+void Obj::doUpdateCommon()
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -804,7 +807,7 @@ void DangoMushi::Obj::doUpdateCommon()
  * Address:	802FC6FC
  * Size:	000094
  */
-void DangoMushi::Obj::doAnimationUpdateAnimator()
+void Obj::doAnimationUpdateAnimator()
 {
 	/*
 	stwu     r1, -0x20(r1)
@@ -852,7 +855,7 @@ void DangoMushi::Obj::doAnimationUpdateAnimator()
  * Address:	802FC790
  * Size:	0000C4
  */
-void DangoMushi::Obj::changeMaterial()
+void Obj::changeMaterial()
 {
 	/*
 	stwu     r1, -0x20(r1)
@@ -916,33 +919,21 @@ lbl_802FC824:
  * Address:	802FC854
  * Size:	000004
  */
-void DangoMushi::Obj::doDirectDraw(Graphics&) { }
+void Obj::doDirectDraw(Graphics& gfx) { }
 
 /*
  * --INFO--
  * Address:	802FC858
  * Size:	000020
  */
-void DangoMushi::Obj::doDebugDraw(Graphics&)
-{
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	bl       doDebugDraw__Q24Game9EnemyBaseFR8Graphics
-	lwz      r0, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
-}
+void Obj::doDebugDraw(Graphics& gfx) { EnemyBase::doDebugDraw(gfx); }
 
 /*
  * --INFO--
  * Address:	802FC878
  * Size:	00004C
  */
-void DangoMushi::Obj::setFSM(Game::DangoMushi::FSM*)
+void Obj::setFSM(FSM*)
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -972,7 +963,7 @@ void DangoMushi::Obj::setFSM(Game::DangoMushi::FSM*)
  * Address:	802FC8C4
  * Size:	0000B8
  */
-void DangoMushi::Obj::getShadowParam(Game::ShadowParam&)
+void Obj::getShadowParam(ShadowParam&)
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -1033,7 +1024,7 @@ lbl_802FC954:
  * Address:	802FC97C
  * Size:	000070
  */
-void DangoMushi::Obj::needShadow()
+bool Obj::needShadow()
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -1080,7 +1071,7 @@ lbl_802FC9D8:
  * Address:	802FC9EC
  * Size:	0000EC
  */
-void DangoMushi::Obj::damageCallBack(Game::Creature*, float, CollPart*)
+bool Obj::damageCallBack(Creature*, float, CollPart*)
 {
 	/*
 	stwu     r1, -0x20(r1)
@@ -1158,14 +1149,14 @@ lbl_802FCAB8:
  * Address:	802FCAD8
  * Size:	000008
  */
-u32 DangoMushi::Obj::earthquakeCallBack(Game::Creature*, float) { return 0x0; }
+bool Obj::earthquakeCallBack(Creature*, f32) { return false; }
 
 /*
  * --INFO--
  * Address:	802FCAE0
  * Size:	000104
  */
-void DangoMushi::Obj::collisionCallback(Game::CollEvent&)
+void Obj::collisionCallback(CollEvent&)
 {
 	/*
 	stwu     r1, -0x20(r1)
@@ -1245,7 +1236,7 @@ lbl_802FCBB4:
  * Address:	802FCBE4
  * Size:	00010C
  */
-void DangoMushi::Obj::wallCallback(const Game::MoveInfo&)
+void Obj::wallCallback(const MoveInfo&)
 {
 	/*
 	stwu     r1, -0x20(r1)
@@ -1333,24 +1324,10 @@ lbl_802FCCDC:
  * Address:	802FCCF0
  * Size:	000038
  */
-void DangoMushi::Obj::doStartStoneState()
+void Obj::doStartStoneState()
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	mr       r31, r3
-	bl       doStartStoneState__Q24Game9EnemyBaseFv
-	lwz      r0, 0x1e0(r31)
-	rlwinm   r0, r0, 0, 0, 0x1e
-	stw      r0, 0x1e0(r31)
-	lwz      r31, 0xc(r1)
-	lwz      r0, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	EnemyBase::doStartStoneState();
+	disableEvent(0, EB_IsVulnerable);
 }
 
 /*
@@ -1358,7 +1335,7 @@ void DangoMushi::Obj::doStartStoneState()
  * Address:	802FCD28
  * Size:	000074
  */
-void DangoMushi::Obj::doFinishStoneState()
+void Obj::doFinishStoneState()
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -1403,66 +1380,28 @@ lbl_802FCD88:
  * Address:	802FCD9C
  * Size:	000028
  */
-void DangoMushi::Obj::startCarcassMotion()
-{
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	li       r4, 8
-	li       r5, 0
-	stw      r0, 0x14(r1)
-	bl       startMotion__Q24Game9EnemyBaseFiPQ28SysShape14MotionListener
-	lwz      r0, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
-}
+void Obj::startCarcassMotion() { startMotion(8, nullptr); }
 
 /*
  * --INFO--
  * Address:	802FCDC4
  * Size:	000020
  */
-void DangoMushi::Obj::doStartMovie()
-{
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	bl       effectDrawOff__Q34Game10DangoMushi3ObjFv
-	lwz      r0, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
-}
+void Obj::doStartMovie() { effectDrawOff(); }
 
 /*
  * --INFO--
  * Address:	802FCDE4
  * Size:	000020
  */
-void DangoMushi::Obj::doEndMovie()
-{
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	bl       effectDrawOn__Q34Game10DangoMushi3ObjFv
-	lwz      r0, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
-}
+void Obj::doEndMovie() { effectDrawOn(); }
 
 /*
  * --INFO--
  * Address:	802FCE04
  * Size:	00004C
  */
-void DangoMushi::Obj::initWalkSmokeEffect()
+void Obj::initWalkSmokeEffect()
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -1492,20 +1431,14 @@ void DangoMushi::Obj::initWalkSmokeEffect()
  * Address:	802FCE50
  * Size:	000008
  */
-void DangoMushi::Obj::getWalkSmokeEffectMgr()
-{
-	/*
-	addi     r3, r3, 0x2e8
-	blr
-	*/
-}
+WalkSmokeEffect::Mgr* Obj::getWalkSmokeEffectMgr() { return &m_walkSmokeMgr; }
 
 /*
  * --INFO--
  * Address:	802FCE58
  * Size:	000024
  */
-void DangoMushi::Obj::getCommonEffectPos(Vector3f&)
+void Obj::getCommonEffectPos(Vector3f&)
 {
 	/*
 	lfs      f0, 0x18c(r3)
@@ -1525,7 +1458,7 @@ void DangoMushi::Obj::getCommonEffectPos(Vector3f&)
  * Address:	802FCE7C
  * Size:	000050
  */
-void DangoMushi::Obj::addShadowScale()
+void Obj::addShadowScale()
 {
 	/*
 	lfs      f3, 0x2c8(r3)
@@ -1560,7 +1493,7 @@ lbl_802FCEC4:
  * Address:	802FCECC
  * Size:	000198
  */
-void DangoMushi::Obj::setRandTarget()
+void Obj::setRandTarget()
 {
 	/*
 	stwu     r1, -0x60(r1)
@@ -1679,7 +1612,7 @@ lbl_802FD02C:
  * Address:	802FD064
  * Size:	000034
  */
-void DangoMushi::Obj::isReachedTarget()
+void Obj::isReachedTarget()
 {
 	/*
 	lfs      f1, 0x194(r3)
@@ -1703,7 +1636,7 @@ void DangoMushi::Obj::isReachedTarget()
  * Address:	802FD098
  * Size:	000038
  */
-void DangoMushi::Obj::getSearchedTarget()
+void Obj::getSearchedTarget()
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -1729,7 +1662,7 @@ void DangoMushi::Obj::getSearchedTarget()
  * Address:	802FD0D0
  * Size:	0002BC
  */
-void DangoMushi::Obj::rollingMove()
+void Obj::rollingMove()
 {
 	/*
 	stwu     r1, -0x80(r1)
@@ -1936,7 +1869,7 @@ lbl_802FD358:
  * Address:	802FD38C
  * Size:	0004E8
  */
-void DangoMushi::Obj::createCrashEnemy()
+void Obj::createCrashEnemy()
 {
 	/*
 	stwu     r1, -0x160(r1)
@@ -2291,7 +2224,7 @@ lbl_802FD7EC:
  * Address:	802FD874
  * Size:	0000EC
  */
-void DangoMushi::Obj::getFallEggNum()
+void Obj::getFallEggNum()
 {
 	/*
 	stwu     r1, -0x40(r1)
@@ -2367,7 +2300,7 @@ lbl_802FD940:
  * Address:	802FD960
  * Size:	000104
  */
-void DangoMushi::Obj::getFallPosition(int)
+void Obj::getFallPosition(int)
 {
 	/*
 	stwu     r1, -0x60(r1)
@@ -2448,7 +2381,7 @@ lbl_802FDA28:
  * Address:	802FDA64
  * Size:	000038
  */
-void DangoMushi::Obj::setupCollision()
+void Obj::setupCollision()
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -2475,7 +2408,7 @@ lbl_802FDA8C:
  * Address:	802FDA9C
  * Size:	000444
  */
-void DangoMushi::Obj::setBodyCollision(bool)
+void Obj::setBodyCollision(bool)
 {
 	/*
 	stwu     r1, -0xd0(r1)
@@ -2793,7 +2726,7 @@ lbl_802FDEB4:
  * Address:	802FDEE0
  * Size:	0002AC
  */
-void DangoMushi::Obj::flickHandCollision(Game::Creature*)
+void Obj::flickHandCollision(Creature*)
 {
 	/*
 	stwu     r1, -0x80(r1)
@@ -2993,7 +2926,7 @@ lbl_802FE164:
  * Address:	802FE18C
  * Size:	000058
  */
-void DangoMushi::Obj::isNoDamageCollision()
+void Obj::isNoDamageCollision()
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -3030,7 +2963,7 @@ lbl_802FE1D4:
  * Address:	802FE1E4
  * Size:	00002C
  */
-void DangoMushi::Obj::resetMapCollisionSize(bool)
+void Obj::resetMapCollisionSize(bool)
 {
 	/*
 	clrlwi.  r0, r4, 0x18
@@ -3054,7 +2987,7 @@ lbl_802FE200:
  * Address:	802FE210
  * Size:	00008C
  */
-void DangoMushi::Obj::updateMapCollisionSize()
+void Obj::updateMapCollisionSize()
 {
 	/*
 	lbz      r0, 0x2c2(r3)
@@ -3102,7 +3035,7 @@ lbl_802FE25C:
  * Address:	802FE29C
  * Size:	0003AC
  */
-void DangoMushi::Obj::flickHandCollision()
+void Obj::flickHandCollision()
 {
 	/*
 	stwu     r1, -0x160(r1)
@@ -3376,7 +3309,7 @@ lbl_802FE5A8:
  * Address:	802FE648
  * Size:	00011C
  */
-void DangoMushi::Obj::startBlendAnimation(int, bool)
+void Obj::startBlendAnimation(int, bool)
 {
 	/*
 	stwu     r1, -0x30(r1)
@@ -3473,7 +3406,7 @@ lbl_802FE740:
  * Address:	802FE764
  * Size:	000098
  */
-void DangoMushi::Obj::endBlendAnimation()
+void Obj::endBlendAnimation()
 {
 	/*
 	stwu     r1, -0x20(r1)
@@ -3526,7 +3459,7 @@ lbl_802FE7B4:
  * Address:	802FE7FC
  * Size:	0000C8
  */
-void DangoMushi::Obj::startBossFlickBGM()
+void Obj::startBossFlickBGM()
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -3593,7 +3526,7 @@ lbl_802FE894:
  * Address:	802FE8C4
  * Size:	0000C8
  */
-void DangoMushi::Obj::startBossAttackLoopBGM()
+void Obj::startBossAttackLoopBGM()
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -3660,7 +3593,7 @@ lbl_802FE95C:
  * Address:	802FE98C
  * Size:	0000C8
  */
-void DangoMushi::Obj::finishBossAttackLoopBGM()
+void Obj::finishBossAttackLoopBGM()
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -3727,7 +3660,7 @@ lbl_802FEA24:
  * Address:	802FEA54
  * Size:	0000FC
  */
-void DangoMushi::Obj::updateBossBGM()
+void Obj::updateBossBGM()
 {
 	/*
 	stwu     r1, -0x20(r1)
@@ -3811,7 +3744,7 @@ lbl_802FEB34:
  * Address:	802FEB50
  * Size:	0000BC
  */
-void DangoMushi::Obj::resetBossAppearBGM()
+void Obj::resetBossAppearBGM()
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -3875,7 +3808,7 @@ lbl_802FEBE8:
  * Address:	802FEC0C
  * Size:	0000BC
  */
-void DangoMushi::Obj::setBossAppearBGM()
+void Obj::setBossAppearBGM()
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -3939,7 +3872,7 @@ lbl_802FECA4:
  * Address:	802FECC8
  * Size:	000170
  */
-void DangoMushi::Obj::createEffect()
+void Obj::createEffect()
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -4048,7 +3981,7 @@ lbl_802FEE1C:
  * Address:	802FEE38
  * Size:	000064
  */
-void DangoMushi::Obj::setupEffect()
+void Obj::setupEffect()
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -4084,7 +4017,7 @@ void DangoMushi::Obj::setupEffect()
  * Address:	802FEE9C
  * Size:	00007C
  */
-void DangoMushi::Obj::createDeadSmokeEffect()
+void Obj::createDeadSmokeEffect()
 {
 	/*
 	stwu     r1, -0x20(r1)
@@ -4126,7 +4059,7 @@ void DangoMushi::Obj::createDeadSmokeEffect()
  * Address:	802FEF18
  * Size:	000088
  */
-void DangoMushi::Obj::createDeadBombEffect()
+void Obj::createDeadBombEffect()
 {
 	/*
 	stwu     r1, -0x20(r1)
@@ -4171,7 +4104,7 @@ void DangoMushi::Obj::createDeadBombEffect()
  * Address:	802FEFA0
  * Size:	0000A0
  */
-void DangoMushi::Obj::createBodyTurnEffect()
+void Obj::createBodyTurnEffect()
 {
 	/*
 	stwu     r1, -0x30(r1)
@@ -4222,31 +4155,10 @@ void DangoMushi::Obj::createBodyTurnEffect()
  * Address:	802FF040
  * Size:	000054
  */
-void DangoMushi::Obj::createWallBreakEffect()
+void Obj::createWallBreakEffect()
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	li       r4, 0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	mr       r31, r3
-	lwz      r3, 0x2f4(r3)
-	lwz      r12, 0(r3)
-	lwz      r12, 8(r12)
-	mtctr    r12
-	bctrl
-	lwz      r3, 0x2f8(r31)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x10(r12)
-	mtctr    r12
-	bctrl
-	lwz      r0, 0x14(r1)
-	lwz      r31, 0xc(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	m_efxWallBreak->create(nullptr);
+	m_efxAttack2->fade();
 }
 
 /*
@@ -4254,31 +4166,14 @@ void DangoMushi::Obj::createWallBreakEffect()
  * Address:	802FF094
  * Size:	000034
  */
-void DangoMushi::Obj::createFlickAttackEffect()
-{
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	li       r4, 0
-	stw      r0, 0x14(r1)
-	lwz      r3, 0x2f8(r3)
-	lwz      r12, 0(r3)
-	lwz      r12, 8(r12)
-	mtctr    r12
-	bctrl
-	lwz      r0, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
-}
+void Obj::createFlickAttackEffect() { m_efxAttack2->create(nullptr); }
 
 /*
  * --INFO--
  * Address:	802FF0C8
  * Size:	00007C
  */
-void DangoMushi::Obj::createBodyDamageEffect()
+void Obj::createBodyDamageEffect()
 {
 	/*
 	stwu     r1, -0x20(r1)
@@ -4320,7 +4215,7 @@ void DangoMushi::Obj::createBodyDamageEffect()
  * Address:	802FF144
  * Size:	0000CC
  */
-void DangoMushi::Obj::createBodyWallCrashEffect(Vector3f)
+void Obj::createBodyWallCrashEffect(Vector3f)
 {
 	/*
 	stwu     r1, -0x40(r1)
@@ -4382,54 +4277,21 @@ void DangoMushi::Obj::createBodyWallCrashEffect(Vector3f)
  * Address:	802FF210
  * Size:	000034
  */
-void DangoMushi::Obj::startRollingMoveEffect()
-{
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	li       r4, 0
-	stw      r0, 0x14(r1)
-	lwz      r3, 0x2fc(r3)
-	lwz      r12, 0(r3)
-	lwz      r12, 8(r12)
-	mtctr    r12
-	bctrl
-	lwz      r0, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
-}
+void Obj::startRollingMoveEffect() { m_efxRun->create(nullptr); }
 
 /*
  * --INFO--
  * Address:	802FF244
  * Size:	000030
  */
-void DangoMushi::Obj::finishRollingMoveEffect()
-{
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	lwz      r3, 0x2fc(r3)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x10(r12)
-	mtctr    r12
-	bctrl
-	lwz      r0, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
-}
+void Obj::finishRollingMoveEffect() { m_efxRun->fade(); }
 
 /*
  * --INFO--
  * Address:	802FF274
  * Size:	000044
  */
-void DangoMushi::Obj::createEnemyBounceEffect()
+void Obj::createEnemyBounceEffect()
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -4454,23 +4316,10 @@ void DangoMushi::Obj::createEnemyBounceEffect()
 
 /*
  * --INFO--
- * Address:	802FF2B8
- * Size:	000008
- */
-void DangoMushi::Obj::getDownSmokeScale()
-{
-	/*
-	lfs      f1, lbl_8051D4A8@sda21(r2)
-	blr
-	*/
-}
-
-/*
- * --INFO--
  * Address:	802FF2C0
  * Size:	0001E8
  */
-void DangoMushi::Obj::createMoveHandEffect()
+void Obj::createMoveHandEffect()
 {
 	/*
 	stwu     r1, -0x20(r1)
@@ -4621,7 +4470,7 @@ lbl_802FF494:
  * Address:	802FF4A8
  * Size:	000098
  */
-void DangoMushi::Obj::createAppearSmokeEffect()
+void Obj::createAppearSmokeEffect()
 {
 	/*
 	stwu     r1, -0x30(r1)
@@ -4670,35 +4519,11 @@ void DangoMushi::Obj::createAppearSmokeEffect()
  * Address:	802FF540
  * Size:	000064
  */
-void DangoMushi::Obj::effectDrawOn()
+void Obj::effectDrawOn()
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	mr       r31, r3
-	lwz      r3, 0x2f4(r3)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x44(r12)
-	mtctr    r12
-	bctrl
-	lwz      r3, 0x2f8(r31)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x44(r12)
-	mtctr    r12
-	bctrl
-	lwz      r3, 0x2fc(r31)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x18(r12)
-	mtctr    r12
-	bctrl
-	lwz      r0, 0x14(r1)
-	lwz      r31, 0xc(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	m_efxWallBreak->endDemoDrawOn();
+	m_efxAttack2->endDemoDrawOn();
+	m_efxRun->endDemoDrawOn();
 }
 
 /*
@@ -4706,242 +4531,12 @@ void DangoMushi::Obj::effectDrawOn()
  * Address:	802FF5A4
  * Size:	000064
  */
-void DangoMushi::Obj::effectDrawOff()
+void Obj::effectDrawOff()
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	mr       r31, r3
-	lwz      r3, 0x2f4(r3)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x40(r12)
-	mtctr    r12
-	bctrl
-	lwz      r3, 0x2f8(r31)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x40(r12)
-	mtctr    r12
-	bctrl
-	lwz      r3, 0x2fc(r31)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x14(r12)
-	mtctr    r12
-	bctrl
-	lwz      r0, 0x14(r1)
-	lwz      r31, 0xc(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	m_efxWallBreak->startDemoDrawOff();
+	m_efxAttack2->startDemoDrawOff();
+	m_efxRun->startDemoDrawOff();
 }
 
+} // namespace DangoMushi
 } // namespace Game
-
-namespace efx {
-
-/*
- * --INFO--
- * Address:	802FF608
- * Size:	00009C
- */
-TDangoAttack2::~TDangoAttack2()
-{
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	mr       r31, r4
-	stw      r30, 8(r1)
-	or.      r30, r3, r3
-	beq      lbl_802FF688
-	lis      r3, __vt__Q23efx13TDangoAttack2@ha
-	addi     r3, r3, __vt__Q23efx13TDangoAttack2@l
-	stw      r3, 0(r30)
-	addi     r0, r3, 0x14
-	stw      r0, 4(r30)
-	beq      lbl_802FF678
-	lis      r3, __vt__Q23efx9TChaseMtx@ha
-	addi     r3, r3, __vt__Q23efx9TChaseMtx@l
-	stw      r3, 0(r30)
-	addi     r0, r3, 0x14
-	stw      r0, 4(r30)
-	beq      lbl_802FF678
-	lis      r4, __vt__Q23efx5TSync@ha
-	addi     r3, r30, 4
-	addi     r5, r4, __vt__Q23efx5TSync@l
-	li       r4, 0
-	stw      r5, 0(r30)
-	addi     r0, r5, 0x14
-	stw      r0, 4(r30)
-	bl       __dt__18JPAEmitterCallBackFv
-
-lbl_802FF678:
-	extsh.   r0, r31
-	ble      lbl_802FF688
-	mr       r3, r30
-	bl       __dl__FPv
-
-lbl_802FF688:
-	lwz      r0, 0x14(r1)
-	mr       r3, r30
-	lwz      r31, 0xc(r1)
-	lwz      r30, 8(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
-}
-
-/*
- * --INFO--
- * Address:	802FF6A4
- * Size:	00009C
- */
-TDangoWallBreak::~TDangoWallBreak()
-{
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	mr       r31, r4
-	stw      r30, 8(r1)
-	or.      r30, r3, r3
-	beq      lbl_802FF724
-	lis      r3, __vt__Q23efx15TDangoWallBreak@ha
-	addi     r3, r3, __vt__Q23efx15TDangoWallBreak@l
-	stw      r3, 0(r30)
-	addi     r0, r3, 0x14
-	stw      r0, 4(r30)
-	beq      lbl_802FF714
-	lis      r3, __vt__Q23efx9TChaseMtx@ha
-	addi     r3, r3, __vt__Q23efx9TChaseMtx@l
-	stw      r3, 0(r30)
-	addi     r0, r3, 0x14
-	stw      r0, 4(r30)
-	beq      lbl_802FF714
-	lis      r4, __vt__Q23efx5TSync@ha
-	addi     r3, r30, 4
-	addi     r5, r4, __vt__Q23efx5TSync@l
-	li       r4, 0
-	stw      r5, 0(r30)
-	addi     r0, r5, 0x14
-	stw      r0, 4(r30)
-	bl       __dt__18JPAEmitterCallBackFv
-
-lbl_802FF714:
-	extsh.   r0, r31
-	ble      lbl_802FF724
-	mr       r3, r30
-	bl       __dl__FPv
-
-lbl_802FF724:
-	lwz      r0, 0x14(r1)
-	mr       r3, r30
-	lwz      r31, 0xc(r1)
-	lwz      r30, 8(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
-}
-
-namespace Game {
-
-} // namespace Game
-
-/*
- * --INFO--
- * Address:	802FF740
- * Size:	000008
- */
-void DangoMushi::Obj::getDamageCoeStoneState()
-{
-	/*
-	lfs      f1, lbl_8051D4BC@sda21(r2)
-	blr
-	*/
-}
-
-/*
- * --INFO--
- * Address:	802FF748
- * Size:	000008
- */
-u32 DangoMushi::Obj::getEnemyTypeID() { return 0x5E; }
-
-/*
- * --INFO--
- * Address:	802FF750
- * Size:	00006C
- */
-DangoMushi::ProperAnimator::~ProperAnimator()
-{
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	or.      r31, r3, r3
-	beq      lbl_802FF7A4
-	lis      r3, __vt__Q34Game10DangoMushi14ProperAnimator@ha
-	addi     r0, r3, __vt__Q34Game10DangoMushi14ProperAnimator@l
-	stw      r0, 0(r31)
-	beq      lbl_802FF794
-	lis      r3, __vt__Q24Game22EnemyBlendAnimatorBase@ha
-	addi     r0, r3, __vt__Q24Game22EnemyBlendAnimatorBase@l
-	stw      r0, 0(r31)
-	beq      lbl_802FF794
-	lis      r3, __vt__Q24Game17EnemyAnimatorBase@ha
-	addi     r0, r3, __vt__Q24Game17EnemyAnimatorBase@l
-	stw      r0, 0(r31)
-
-lbl_802FF794:
-	extsh.   r0, r4
-	ble      lbl_802FF7A4
-	mr       r3, r31
-	bl       __dl__FPv
-
-lbl_802FF7A4:
-	lwz      r0, 0x14(r1)
-	mr       r3, r31
-	lwz      r31, 0xc(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
-}
-
-namespace efx {
-
-/*
- * --INFO--
- * Address:	802FF7BC
- * Size:	000008
- */
-TDangoWallBreak::@4 @~TDangoWallBreak()
-{
-	/*
-addi     r3, r3, -4
-b        __dt__Q23efx15TDangoWallBreakFv
-	*/
-}
-
-/*
- * --INFO--
- * Address:	802FF7C4
- * Size:	000008
- */
-TDangoAttack2::@4 @~TDangoAttack2()
-{
-	/*
-addi     r3, r3, -4
-b        __dt__Q23efx13TDangoAttack2Fv
-	*/
-}
-} // namespace efx
-
-} // namespace efx

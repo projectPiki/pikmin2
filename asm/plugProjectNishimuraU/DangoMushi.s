@@ -1,18 +1,14 @@
 .include "macros.inc"
 .section .rodata  # 0x804732E0 - 0x8049E220
 .balign 8
-.global lbl_8048D7E0
 lbl_8048D7E0:
 	.asciz "world_root"
-	.skip 1
-.global lbl_8048D7EC
+.balign 4
 lbl_8048D7EC:
 	.asciz "PSMainSide_ObjSound.h"
-	.skip 2
-.global lbl_8048D804
+.balign 4
 lbl_8048D804:
 	.asciz "P2Assert"
-	.skip 3
 
 .section .data, "wa"  # 0x8049E220 - 0x804EFC20
 .balign 8
@@ -495,9 +491,8 @@ lbl_8051D498:
 lbl_8051D4A0:
 	.4byte 0x73746F6D
 	.4byte 0x61636800
-.global lbl_8051D4A8
 lbl_8051D4A8:
-	.4byte 0x3FA66666
+	.float 1.3
 .global lbl_8051D4AC
 lbl_8051D4AC:
 	.4byte 0x422A0000
