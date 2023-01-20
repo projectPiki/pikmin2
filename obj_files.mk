@@ -1118,7 +1118,7 @@ KONO:=\
 	$(BUILD_DIR)/asm/plugProjectKonoU/khFinalResult.o\
 	$(BUILD_DIR)/asm/plugProjectKonoU/khPayDept.o\
 	$(BUILD_DIR)/src/plugProjectKonoU/khWinLose.o\
-	$(BUILD_DIR)/asm/plugProjectKonoU/khWinLoseReason.o\
+	$(BUILD_DIR)/src/plugProjectKonoU/khWinLoseReason.o\
 	$(BUILD_DIR)/src/plugProjectKonoU/khMailSaveData.o\
 
 BOOTUP:=\
