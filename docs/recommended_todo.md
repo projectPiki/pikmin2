@@ -179,9 +179,9 @@
 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectNishimuraU/ArmorState.cpp">ArmorState.cpp</a> | 37180 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectNishimuraU/Kogane.cpp">Kogane.cpp</a> | 38023 |
 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectNishimuraU/Armor.cpp">Armor.cpp</a> | 38062 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectNishimuraU/Sokkuri.cpp">Sokkuri.cpp</a> | 39144 |
 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectNishimuraU/KumaKochappy.cpp">KumaKochappy.cpp</a> | 40950 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectNishimuraU/SnakeCrowState.cpp">SnakeCrowState.cpp</a> | 41858 |
-| <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectNishimuraU/shadowMgr.cpp">shadowMgr.cpp</a> | 43065 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectNishimuraU/Tank.cpp">Tank.cpp</a> | 43887 |
-| <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectNishimuraU/BombSarai.cpp">BombSarai.cpp</a> | 45463 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectNishimuraU/BigTreasureShadow.cpp">BigTreasureShadow.cpp</a> | 45533 |
-| <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectNishimuraU/RandMapScore.cpp">RandMapScore.cpp</a> | 48423 |
+| <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectNishimuraU/Frog.cpp">Frog.cpp</a> | 42704 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectNishimuraU/shadowMgr.cpp">shadowMgr.cpp</a> | 43065 |
+| <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectNishimuraU/Tank.cpp">Tank.cpp</a> | 43887 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectNishimuraU/BombSarai.cpp">BombSarai.cpp</a> | 45463 |
+| <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectNishimuraU/BigTreasureShadow.cpp">BigTreasureShadow.cpp</a> | 45533 |
 
 ### <section id="plugProjectOgawaU">plugProjectOgawaU</section>
 | File | Size (bytes) | File | Size (bytes) |

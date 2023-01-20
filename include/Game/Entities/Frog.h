@@ -25,34 +25,34 @@ struct Obj : public EnemyBase {
 	Obj();
 
 	//////////////// VTABLE
-	virtual void onInit(CreatureInitArg* settings);         // _30
-	virtual void onKill(CreatureKillArg* settings);         // _34
-	virtual void doDirectDraw(Graphics& gfx);               // _50
-	virtual void inWaterCallback(WaterBox* wb);             // _84 (weak)
-	virtual void outWaterCallback();                        // _88 (weak)
-	virtual void collisionCallback(CollEvent& event);       // _EC
-	virtual void getShadowParam(ShadowParam& settings);     // _134
-	virtual ~Obj() { }                                      // _1BC (weak)
-	virtual void setInitialSetting(EnemyInitialParamBase*); // _1C4
-	virtual void doUpdate();                                // _1CC
-	virtual void doDebugDraw(Graphics&);                    // _1EC
-	virtual void doSimulationFlying(f32);                   // _1F8
-	virtual void getCommonEffectPos(Vector3f&);             // _204
-	virtual Vector3f getOffsetForMapCollision();            // _224
-	virtual EnemyTypeID::EEnemyTypeID getEnemyTypeID();     // _258 (weak)
-	virtual void doStartStoneState();                       // _2A4
-	virtual void doFinishStoneState();                      // _2A8
-	virtual void doStartEarthquakeFitState();               // _2B8
-	virtual void doFinishEarthquakeFitState();              // _2BC
-	virtual void startCarcassMotion();                      // _2C4
-	virtual void doStartWaitingBirthTypeDrop();             // _2E0
-	virtual void doFinishWaitingBirthTypeDrop();            // _2E4
-	virtual f32 getDownSmokeScale();                        // _2EC (weak)
-	virtual void doStartMovie();                            // _2F0
-	virtual void doEndMovie();                              // _2F4
-	virtual void setFSM(FSM*);                              // _2F8
-	virtual Vector3f viewGetCollTreeOffset();               // _2FC (weak)
-	virtual void attackNaviPosition();                      // _300 (weak)
+	virtual void onInit(CreatureInitArg* settings);                                          // _30
+	virtual void onKill(CreatureKillArg* settings);                                          // _34
+	virtual void doDirectDraw(Graphics& gfx);                                                // _50
+	virtual void inWaterCallback(WaterBox* wb) { }                                           // _84 (weak)
+	virtual void outWaterCallback() { }                                                      // _88 (weak)
+	virtual void collisionCallback(CollEvent& event);                                        // _EC
+	virtual void getShadowParam(ShadowParam& settings);                                      // _134
+	virtual ~Obj() { }                                                                       // _1BC (weak)
+	virtual void setInitialSetting(EnemyInitialParamBase*);                                  // _1C4
+	virtual void doUpdate();                                                                 // _1CC
+	virtual void doDebugDraw(Graphics&);                                                     // _1EC
+	virtual void doSimulationFlying(f32);                                                    // _1F8
+	virtual void getCommonEffectPos(Vector3f&);                                              // _204
+	virtual Vector3f getOffsetForMapCollision();                                             // _224
+	virtual EnemyTypeID::EEnemyTypeID getEnemyTypeID() { return EnemyTypeID::EnemyID_Frog; } // _258 (weak)
+	virtual void doStartStoneState();                                                        // _2A4
+	virtual void doFinishStoneState();                                                       // _2A8
+	virtual void doStartEarthquakeFitState();                                                // _2B8
+	virtual void doFinishEarthquakeFitState();                                               // _2BC
+	virtual void startCarcassMotion();                                                       // _2C4
+	virtual void doStartWaitingBirthTypeDrop();                                              // _2E0
+	virtual void doFinishWaitingBirthTypeDrop();                                             // _2E4
+	virtual f32 getDownSmokeScale() { return 1.0f; }                                         // _2EC (weak)
+	virtual void doStartMovie();                                                             // _2F0
+	virtual void doEndMovie();                                                               // _2F4
+	virtual void setFSM(FSM*);                                                               // _2F8
+	virtual Vector3f viewGetCollTreeOffset() { return Vector3f(20.0f, 15.0f, 0.0f); }        // _2FC (weak)
+	virtual void attackNaviPosition() { }                                                    // _300 (weak)
 	//////////////// VTABLE END
 
 	void updateCaution();
@@ -75,8 +75,8 @@ struct Obj : public EnemyBase {
 	f32 _2C4;                  // _2C4
 	Vector3f _2C8;             // _2C8
 	int _2D4;                  // _2D4
-	u8 _2D8;                   // _2D8, unknown
-	u8 _2D9;                   // _2D9, unknown
+	bool _2D8;                 // _2D8, unknown
+	bool _2D9;                 // _2D9, unknown
 	efx::TFrogPota* m_efxPota; // _2DC
 	                           // _2E0 = PelletView
 };

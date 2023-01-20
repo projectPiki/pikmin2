@@ -1,4 +1,6 @@
 #include "types.h"
+#include "nans.h"
+#include "Game/Entities/Frog.h"
 
 /*
     Generated from dpostproc
@@ -325,13 +327,14 @@
 */
 
 namespace Game {
+namespace Frog {
 
 /*
  * --INFO--
  * Address:	80258548
  * Size:	000138
  */
-Frog::Obj::Obj()
+Obj::Obj()
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -426,47 +429,23 @@ lbl_80258648:
  * Address:	80258680
  * Size:	000004
  */
-void Frog::Obj::setInitialSetting(Game::EnemyInitialParamBase*) { }
+void Obj::setInitialSetting(EnemyInitialParamBase*) { }
 
 /*
  * --INFO--
  * Address:	80258684
  * Size:	000078
  */
-void Frog::Obj::onInit(Game::CreatureInitArg*)
+void Obj::onInit(CreatureInitArg* initArg)
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	mr       r31, r3
-	bl       onInit__Q24Game9EnemyBaseFPQ24Game15CreatureInitArg
-	lfs      f1, lbl_8051AAC8@sda21(r2)
-	li       r4, -1
-	lfs      f0, lbl_8051AACC@sda21(r2)
-	li       r0, 0
-	stfs     f1, 0x2c4(r31)
-	mr       r3, r31
-	stfs     f0, 0x2c0(r31)
-	stw      r4, 0x2d4(r31)
-	stb      r0, 0x2d8(r31)
-	stb      r0, 0x2d9(r31)
-	bl       setupEffect__Q34Game4Frog3ObjFv
-	lwz      r3, 0x2bc(r31)
-	mr       r4, r31
-	li       r5, 1
-	li       r6, 0
-	lwz      r12, 0(r3)
-	lwz      r12, 0xc(r12)
-	mtctr    r12
-	bctrl
-	lwz      r0, 0x14(r1)
-	lwz      r31, 0xc(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	EnemyBase::onInit(initArg);
+	_2C4 = 128.0f;
+	_2C0 = 0.0f;
+	_2D4 = -1;
+	_2D8 = false;
+	_2D9 = false;
+	setupEffect();
+	m_fsm->start(this, 1, nullptr);
 }
 
 /*
@@ -474,27 +453,10 @@ void Frog::Obj::onInit(Game::CreatureInitArg*)
  * Address:	802586FC
  * Size:	000044
  */
-void Frog::Obj::onKill(Game::CreatureKillArg*)
+void Obj::onKill(CreatureKillArg* killArg)
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	mr       r31, r4
-	stw      r30, 8(r1)
-	mr       r30, r3
-	bl       finishJumpEffect__Q34Game4Frog3ObjFv
-	mr       r3, r30
-	mr       r4, r31
-	bl       onKill__Q24Game9EnemyBaseFPQ24Game15CreatureKillArg
-	lwz      r0, 0x14(r1)
-	lwz      r31, 0xc(r1)
-	lwz      r30, 8(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	finishJumpEffect();
+	EnemyBase::onKill(killArg);
 }
 
 /*
@@ -502,27 +464,11 @@ void Frog::Obj::onKill(Game::CreatureKillArg*)
  * Address:	80258740
  * Size:	000044
  */
-void Frog::Obj::doUpdate()
+void Obj::doUpdate()
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	mr       r31, r3
-	bl       updateCaution__Q34Game4Frog3ObjFv
-	lwz      r3, 0x2bc(r31)
-	mr       r4, r31
-	lwz      r12, 0(r3)
-	lwz      r12, 0x10(r12)
-	mtctr    r12
-	bctrl
-	lwz      r0, 0x14(r1)
-	lwz      r31, 0xc(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	EnemyBase* frog = static_cast<EnemyBase*>(this);
+	updateCaution();
+	m_fsm->exec(frog);
 }
 
 /*
@@ -530,7 +476,7 @@ void Frog::Obj::doUpdate()
  * Address:	80258784
  * Size:	000280
  */
-void Frog::Obj::doSimulationFlying(float)
+void Obj::doSimulationFlying(f32)
 {
 	/*
 	stwu     r1, -0x60(r1)
@@ -725,33 +671,21 @@ lbl_802589C4:
  * Address:	80258A04
  * Size:	000004
  */
-void Frog::Obj::doDirectDraw(Graphics&) { }
+void Obj::doDirectDraw(Graphics& gfx) { }
 
 /*
  * --INFO--
  * Address:	80258A08
  * Size:	000020
  */
-void Frog::Obj::doDebugDraw(Graphics&)
-{
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	bl       doDebugDraw__Q24Game9EnemyBaseFR8Graphics
-	lwz      r0, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
-}
+void Obj::doDebugDraw(Graphics& gfx) { EnemyBase::doDebugDraw(gfx); }
 
 /*
  * --INFO--
  * Address:	80258A28
  * Size:	00004C
  */
-void Frog::Obj::setFSM(Game::Frog::FSM*)
+void Obj::setFSM(FSM*)
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -781,7 +715,7 @@ void Frog::Obj::setFSM(Game::Frog::FSM*)
  * Address:	80258A74
  * Size:	000110
  */
-void Frog::Obj::getShadowParam(Game::ShadowParam&)
+void Obj::getShadowParam(ShadowParam&)
 {
 	/*
 	stwu     r1, -0x20(r1)
@@ -870,7 +804,7 @@ lbl_80258B50:
  * Address:	80258B84
  * Size:	000104
  */
-void Frog::Obj::collisionCallback(Game::CollEvent&)
+void Obj::collisionCallback(CollEvent&)
 {
 	/*
 	stwu     r1, -0x30(r1)
@@ -950,23 +884,10 @@ lbl_80258C54:
  * Address:	80258C88
  * Size:	000034
  */
-void Frog::Obj::doStartStoneState()
+void Obj::doStartStoneState()
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	mr       r31, r3
-	bl       doStartStoneState__Q24Game9EnemyBaseFv
-	mr       r3, r31
-	bl       finishJumpEffect__Q34Game4Frog3ObjFv
-	lwz      r0, 0x14(r1)
-	lwz      r31, 0xc(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	EnemyBase::doStartStoneState();
+	finishJumpEffect();
 }
 
 /*
@@ -974,7 +895,7 @@ void Frog::Obj::doStartStoneState()
  * Address:	80258CBC
  * Size:	000064
  */
-void Frog::Obj::doFinishStoneState()
+void Obj::doFinishStoneState()
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -1012,23 +933,10 @@ lbl_80258D0C:
  * Address:	80258D20
  * Size:	000034
  */
-void Frog::Obj::doStartEarthquakeFitState()
+void Obj::doStartEarthquakeFitState()
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	mr       r31, r3
-	bl       doStartEarthquakeFitState__Q24Game9EnemyBaseFv
-	mr       r3, r31
-	bl       finishJumpEffect__Q34Game4Frog3ObjFv
-	lwz      r0, 0x14(r1)
-	lwz      r31, 0xc(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	EnemyBase::doStartEarthquakeFitState();
+	finishJumpEffect();
 }
 
 /*
@@ -1036,7 +944,7 @@ void Frog::Obj::doStartEarthquakeFitState()
  * Address:	80258D54
  * Size:	00005C
  */
-void Frog::Obj::doFinishEarthquakeFitState()
+void Obj::doFinishEarthquakeFitState()
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -1072,23 +980,10 @@ lbl_80258D9C:
  * Address:	80258DB0
  * Size:	000034
  */
-void Frog::Obj::doStartWaitingBirthTypeDrop()
+void Obj::doStartWaitingBirthTypeDrop()
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	mr       r31, r3
-	bl       doStartWaitingBirthTypeDrop__Q24Game9EnemyBaseFv
-	mr       r3, r31
-	bl       effectDrawOff__Q34Game4Frog3ObjFv
-	lwz      r0, 0x14(r1)
-	lwz      r31, 0xc(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	EnemyBase::doStartWaitingBirthTypeDrop();
+	effectDrawOff();
 }
 
 /*
@@ -1096,23 +991,10 @@ void Frog::Obj::doStartWaitingBirthTypeDrop()
  * Address:	80258DE4
  * Size:	000034
  */
-void Frog::Obj::doFinishWaitingBirthTypeDrop()
+void Obj::doFinishWaitingBirthTypeDrop()
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	mr       r31, r3
-	bl       doFinishWaitingBirthTypeDrop__Q24Game9EnemyBaseFv
-	mr       r3, r31
-	bl       effectDrawOn__Q34Game4Frog3ObjFv
-	lwz      r0, 0x14(r1)
-	lwz      r31, 0xc(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	EnemyBase::doFinishWaitingBirthTypeDrop();
+	effectDrawOn();
 }
 
 /*
@@ -1120,84 +1002,28 @@ void Frog::Obj::doFinishWaitingBirthTypeDrop()
  * Address:	80258E18
  * Size:	000028
  */
-void Frog::Obj::startCarcassMotion()
-{
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	li       r4, 0xa
-	li       r5, 0
-	stw      r0, 0x14(r1)
-	bl       startMotion__Q24Game9EnemyBaseFiPQ28SysShape14MotionListener
-	lwz      r0, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
-}
-
-/*
- * --INFO--
- * Address:	80258E40
- * Size:	00001C
- */
-void Frog::Obj::viewGetCollTreeOffset()
-{
-	/*
-	lfs      f0, lbl_8051AAF8@sda21(r2)
-	lfs      f1, lbl_8051AAFC@sda21(r2)
-	stfs     f0, 0(r3)
-	lfs      f0, lbl_8051AACC@sda21(r2)
-	stfs     f1, 4(r3)
-	stfs     f0, 8(r3)
-	blr
-	*/
-}
+void Obj::startCarcassMotion() { EnemyBase::startMotion(10, nullptr); }
 
 /*
  * --INFO--
  * Address:	80258E5C
  * Size:	000020
  */
-void Frog::Obj::doStartMovie()
-{
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	bl       effectDrawOff__Q34Game4Frog3ObjFv
-	lwz      r0, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
-}
+void Obj::doStartMovie() { effectDrawOff(); }
 
 /*
  * --INFO--
  * Address:	80258E7C
  * Size:	000020
  */
-void Frog::Obj::doEndMovie()
-{
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	bl       effectDrawOn__Q34Game4Frog3ObjFv
-	lwz      r0, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
-}
+void Obj::doEndMovie() { effectDrawOn(); }
 
 /*
  * --INFO--
  * Address:	80258E9C
  * Size:	000088
  */
-void Frog::Obj::getOffsetForMapCollision()
+Vector3f Obj::getOffsetForMapCollision()
 {
 	/*
 	stwu     r1, -0x20(r1)
@@ -1242,7 +1068,7 @@ void Frog::Obj::getOffsetForMapCollision()
  * Address:	80258F24
  * Size:	000054
  */
-void Frog::Obj::getCommonEffectPos(Vector3f&)
+void Obj::getCommonEffectPos(Vector3f&)
 {
 	/*
 	stwu     r1, -0x20(r1)
@@ -1274,7 +1100,7 @@ void Frog::Obj::getCommonEffectPos(Vector3f&)
  * Address:	80258F78
  * Size:	000050
  */
-void Frog::Obj::updateCaution()
+void Obj::updateCaution()
 {
 	/*
 	lwz      r4, 0x1e0(r3)
@@ -1309,8 +1135,9 @@ lbl_80258FA0:
  * Address:	80258FC8
  * Size:	000024
  */
-void Frog::Obj::getViewAngle()
+void Obj::getViewAngle()
 {
+	// C_PARMS->
 	/*
 	lwz      r4, 0xc0(r3)
 	lfs      f1, 0x2c4(r3)
@@ -1331,7 +1158,7 @@ lbl_80258FE4:
  * Address:	80258FEC
  * Size:	0000D8
  */
-void Frog::Obj::startJumpAttack()
+void Obj::startJumpAttack()
 {
 	/*
 	lwz      r0, 0x1e0(r3)
@@ -1404,7 +1231,7 @@ lbl_80259088:
  * Address:	802590C4
  * Size:	0000D8
  */
-void Frog::Obj::resetHomePosition()
+void Obj::resetHomePosition()
 {
 	/*
 	stwu     r1, -0x20(r1)
@@ -1475,7 +1302,7 @@ lbl_80259160:
  * Address:	8025919C
  * Size:	00024C
  */
-void Frog::Obj::pressOnGround()
+void Obj::pressOnGround()
 {
 	/*
 	stwu     r1, -0x80(r1)
@@ -1642,7 +1469,7 @@ lbl_802593D4:
  * Address:	802593E8
  * Size:	0000B0
  */
-void Frog::Obj::createEffect()
+void Obj::createEffect()
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -1699,8 +1526,9 @@ lbl_80259480:
  * Address:	80259498
  * Size:	000010
  */
-void Frog::Obj::setupEffect()
+void Obj::setupEffect()
 {
+	// m_efxPota
 	/*
 	lwz      r4, 0x2dc(r3)
 	addi     r0, r3, 0x18c
@@ -1714,8 +1542,10 @@ void Frog::Obj::setupEffect()
  * Address:	802594A8
  * Size:	000034
  */
-void Frog::Obj::startJumpEffect()
+void Obj::startJumpEffect()
 {
+	// m_efxPota->create(nullptr);
+	// incomplete class
 	/*
 	stwu     r1, -0x10(r1)
 	mflr     r0
@@ -1738,8 +1568,10 @@ void Frog::Obj::startJumpEffect()
  * Address:	802594DC
  * Size:	000030
  */
-void Frog::Obj::finishJumpEffect()
+void Obj::finishJumpEffect()
 {
+	// m_efxPota->fade();
+	// incomplete class
 	/*
 	stwu     r1, -0x10(r1)
 	mflr     r0
@@ -1761,7 +1593,7 @@ void Frog::Obj::finishJumpEffect()
  * Address:	8025950C
  * Size:	0000C0
  */
-void Frog::Obj::createDownEffect(float)
+void Obj::createDownEffect(f32)
 {
 	/*
 	stwu     r1, -0x40(r1)
@@ -1824,8 +1656,9 @@ lbl_80259588:
  * Address:	802595CC
  * Size:	000030
  */
-void Frog::Obj::effectDrawOn()
+void Obj::effectDrawOn()
 {
+	// m_efxPota
 	/*
 	stwu     r1, -0x10(r1)
 	mflr     r0
@@ -1847,8 +1680,9 @@ void Frog::Obj::effectDrawOn()
  * Address:	802595FC
  * Size:	000030
  */
-void Frog::Obj::effectDrawOff()
+void Obj::effectDrawOff()
 {
+	// m_efxPota
 	/*
 	stwu     r1, -0x10(r1)
 	mflr     r0
@@ -1865,254 +1699,5 @@ void Frog::Obj::effectDrawOff()
 	*/
 }
 
-} // namespace Game
-
-namespace efx {
-
-/*
- * --INFO--
- * Address:	8025962C
- * Size:	00009C
- */
-TFrogPota::~TFrogPota()
-{
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	mr       r31, r4
-	stw      r30, 8(r1)
-	or.      r30, r3, r3
-	beq      lbl_802596AC
-	lis      r3, __vt__Q23efx9TFrogPota@ha
-	addi     r3, r3, __vt__Q23efx9TFrogPota@l
-	stw      r3, 0(r30)
-	addi     r0, r3, 0x14
-	stw      r0, 4(r30)
-	beq      lbl_8025969C
-	lis      r3, __vt__Q23efx9TChasePos@ha
-	addi     r3, r3, __vt__Q23efx9TChasePos@l
-	stw      r3, 0(r30)
-	addi     r0, r3, 0x14
-	stw      r0, 4(r30)
-	beq      lbl_8025969C
-	lis      r4, __vt__Q23efx5TSync@ha
-	addi     r3, r30, 4
-	addi     r5, r4, __vt__Q23efx5TSync@l
-	li       r4, 0
-	stw      r5, 0(r30)
-	addi     r0, r5, 0x14
-	stw      r0, 4(r30)
-	bl       __dt__18JPAEmitterCallBackFv
-
-lbl_8025969C:
-	extsh.   r0, r31
-	ble      lbl_802596AC
-	mr       r3, r30
-	bl       __dl__FPv
-
-lbl_802596AC:
-	lwz      r0, 0x14(r1)
-	mr       r3, r30
-	lwz      r31, 0xc(r1)
-	lwz      r30, 8(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
-}
-
-/*
- * --INFO--
- * Address:	802596C8
- * Size:	000004
- */
-void TSimple4::forceKill() { }
-
-/*
- * --INFO--
- * Address:	802596CC
- * Size:	000004
- */
-void TSimple4::fade() { }
-
-namespace Game {
-
-} // namespace Game
-
-/*
- * --INFO--
- * Address:	802596D0
- * Size:	000004
- */
-void Frog::Obj::inWaterCallback(Game::WaterBox*) { }
-
-/*
- * --INFO--
- * Address:	802596D4
- * Size:	000004
- */
-void Frog::Obj::outWaterCallback() { }
-
-/*
- * --INFO--
- * Address:	802596D8
- * Size:	000008
- */
-u32 Frog::Obj::getEnemyTypeID() { return 0x11; }
-
-} // namespace efx
-
-/*
- * --INFO--
- * Address:	802596E0
- * Size:	000028
- */
-void __sinit_Frog_cpp()
-{
-	/*
-	lis      r4, __float_nan@ha
-	li       r0, -1
-	lfs      f0, __float_nan@l(r4)
-	lis      r3, lbl_804C2450@ha
-	stw      r0, lbl_80515D38@sda21(r13)
-	stfsu    f0, lbl_804C2450@l(r3)
-	stfs     f0, lbl_80515D3C@sda21(r13)
-	stfs     f0, 4(r3)
-	stfs     f0, 8(r3)
-	blr
-	*/
-}
-
-namespace Game {
-
-/*
- * --INFO--
- * Address:	80259708
- * Size:	000014
- */
-void EnemyBase::@736 @12 @viewOnPelletKilled()
-{
-	/*
-	li       r11, 0xc
-	lwzx     r11, r3, r11
-	add      r3, r3, r11
-	addi     r3, r3, -736
-	b        viewOnPelletKilled__Q24Game9EnemyBaseFv
-	*/
-}
-
-/*
- * --INFO--
- * Address:	8025971C
- * Size:	000014
- */
-void EnemyBase::@736 @12 @viewStartCarryMotion()
-{
-	/*
-	li       r11, 0xc
-	lwzx     r11, r3, r11
-	add      r3, r3, r11
-	addi     r3, r3, -736
-	b        viewStartCarryMotion__Q24Game9EnemyBaseFv
-	*/
-}
-
-/*
- * --INFO--
- * Address:	80259730
- * Size:	000014
- */
-void EnemyBase::@736 @12 @viewStartPreCarryMotion()
-{
-	/*
-	li       r11, 0xc
-	lwzx     r11, r3, r11
-	add      r3, r3, r11
-	addi     r3, r3, -736
-	b        viewStartPreCarryMotion__Q24Game9EnemyBaseFv
-	*/
-}
-
-/*
- * --INFO--
- * Address:	80259744
- * Size:	000014
- */
-void EnemyBase::@736 @12 @view_finish_carrymotion()
-{
-	/*
-	li       r11, 0xc
-	lwzx     r11, r3, r11
-	add      r3, r3, r11
-	addi     r3, r3, -736
-	b        view_finish_carrymotion__Q24Game9EnemyBaseFv
-	*/
-}
-
-/*
- * --INFO--
- * Address:	80259758
- * Size:	000014
- */
-void EnemyBase::@736 @12 @view_start_carrymotion()
-{
-	/*
-	li       r11, 0xc
-	lwzx     r11, r3, r11
-	add      r3, r3, r11
-	addi     r3, r3, -736
-	b        view_start_carrymotion__Q24Game9EnemyBaseFv
-	*/
-}
-
-/*
- * --INFO--
- * Address:	8025976C
- * Size:	000014
- */
-void Frog::Obj::@736 @12 @viewGetCollTreeOffset()
-{
-	/*
-	li       r11, 0xc
-	lwzx     r11, r4, r11
-	add      r4, r4, r11
-	addi     r4, r4, -736
-	b        viewGetCollTreeOffset__Q34Game4Frog3ObjFv
-	*/
-}
-
-/*
- * --INFO--
- * Address:	80259780
- * Size:	000014
- */
-void EnemyBase::@736 @12 @viewGetShape()
-{
-	/*
-	li       r11, 0xc
-	lwzx     r11, r3, r11
-	add      r3, r3, r11
-	addi     r3, r3, -736
-	b        viewGetShape__Q24Game9EnemyBaseFv
-	*/
-}
-
-namespace efx {
-
-/*
- * --INFO--
- * Address:	80259794
- * Size:	000008
- */
-TFrogPota::@4 @~TFrogPota()
-{
-	/*
-addi     r3, r3, -4
-b        __dt__Q23efx9TFrogPotaFv
-	*/
-}
-} // namespace efx
-
+} // namespace Frog
 } // namespace Game

@@ -1593,7 +1593,7 @@ getEnemyTypeID__Q34Game4Frog3ObjFv:
 /* 802596D8 00256618  38 60 00 11 */	li r3, 0x11
 /* 802596DC 0025661C  4E 80 00 20 */	blr 
 
-__sinit_Frog_cpp: # static initializer
+.fn __sinit_Frog_cpp, local
 /* 802596E0 00256620  3C 80 80 51 */	lis r4, __float_nan@ha
 /* 802596E4 00256624  38 00 FF FF */	li r0, -1
 /* 802596E8 00256628  C0 04 48 B0 */	lfs f0, __float_nan@l(r4)
@@ -1604,6 +1604,7 @@ __sinit_Frog_cpp: # static initializer
 /* 802596FC 0025663C  D0 03 00 04 */	stfs f0, 4(r3)
 /* 80259700 00256640  D0 03 00 08 */	stfs f0, 8(r3)
 /* 80259704 00256644  4E 80 00 20 */	blr 
+.endfn __sinit_Frog_cpp
 
 .global "@736@12@viewOnPelletKilled__Q24Game9EnemyBaseFv"
 "@736@12@viewOnPelletKilled__Q24Game9EnemyBaseFv":
