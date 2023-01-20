@@ -1,4 +1,6 @@
 #include "types.h"
+#include "Game/Entities/DangoMushi.h"
+#include "nans.h"
 
 /*
     Generated from dpostproc
@@ -241,6 +243,7 @@
 */
 
 namespace Game {
+namespace DangoMushi {
 
 /*
  * --INFO--
@@ -2892,25 +2895,5 @@ void DangoMushi::StateFlick::cleanup(Game::EnemyBase*)
 	*/
 }
 
+} // namespace DangoMushi
 } // namespace Game
-
-/*
- * --INFO--
- * Address:	802FBCF4
- * Size:	000028
- */
-void __sinit_DangoMushiState_cpp()
-{
-	/*
-	lis      r4, __float_nan@ha
-	li       r0, -1
-	lfs      f0, __float_nan@l(r4)
-	lis      r3, lbl_804D5E60@ha
-	stw      r0, lbl_80515E08@sda21(r13)
-	stfsu    f0, lbl_804D5E60@l(r3)
-	stfs     f0, lbl_80515E0C@sda21(r13)
-	stfs     f0, 4(r3)
-	stfs     f0, 8(r3)
-	blr
-	*/
-}

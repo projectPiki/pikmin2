@@ -76,8 +76,8 @@ DoorNode::DoorNode(Door& door)
  */
 bool DoorNode::isDoorAdjust(DoorNode* other)
 {
-	CardinalDirection x = (CardinalDirection)m_node.m_direction;
-	CardinalDirection y = (CardinalDirection)other->m_node.m_direction;
+	CardinalDirection x = static_cast<CardinalDirection>(m_node.m_direction);
+	CardinalDirection y = static_cast<CardinalDirection>(other->m_node.m_direction);
 
 	if (x == CD_UP && y == CD_DOWN) {
 		return true;
