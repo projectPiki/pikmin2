@@ -24,12 +24,12 @@ void ObjFinalFloor::doCreate(JKRArchive* arc)
 	}
 
 	if (static_cast<DispFinalFloor*>(getDispMember())->m_is2Player) {
-		m_lines         = 2;
-		m_letterYPos[0] = msVal._04;
-		m_letterYPos[1] = msVal._08;
+		m_screenNum  = 2;
+		m_yOffset[0] = msVal.m_yOffsetP1;
+		m_yOffset[1] = msVal.m_yOffsetP2;
 	}
 
-	for (int i = 0; i < m_lines; i++) {
+	for (int i = 0; i < m_screenNum; i++) {
 		m_screen[i] = new P2DScreen::Mgr_tuning;
 		m_screen[i]->set("final_floor.blo", 0x40000, arc);
 		void* file = JKRFileLoader::getGlbResource("final_floor.bck", arc);
@@ -60,8 +60,8 @@ void ObjFinalFloor::doDraw(Graphics& gfx)
 {
 	gfx.m_orthoGraph.setPort();
 
-	for (int i = 0; i < m_lines; i++) {
-		m_screen[i]->search('ROOT')->setOffset(0.0f, m_letterYPos[i]);
+	for (int i = 0; i < m_screenNum; i++) {
+		m_screen[i]->search('ROOT')->setOffset(0.0f, m_yOffset[i]);
 		m_screen[i]->draw(gfx, gfx.m_orthoGraph);
 	}
 }
@@ -133,27 +133,27 @@ void ObjFinalFloor::doUpdateFadeoutFinish() { Game::gameSystem->m_section->start
 bool ObjFinalFloor::updateAnimation()
 {
 	bool ret = false;
-	for (int i = 0; i < m_lines; i++) {
-		m_anim1[i]->m_currentFrame = m_animTimer1[i];
-		m_anim2[i]->m_currentFrame = m_animTimer2[i];
+	for (int i = 0; i < m_screenNum; i++) {
+		m_anim1[i]->m_currentFrame = m_animTime1[i];
+		m_anim2[i]->m_currentFrame = m_animTime2[i];
 		m_screen[i]->animation();
 
 		if (::Screen::gGame2DMgr && ::Screen::gGame2DMgr->m_screenMgr->m_inDemo) {
 			m_screen[i]->hide();
-			if (m_animTimer1[i] > (m_anim1[i]->m_maxFrame * 3) >> 2) {
-				m_animTimer1[i] = m_anim1[i]->m_maxFrame;
-				m_animTimer2[i] = m_anim2[i]->m_maxFrame;
+			if (m_animTime1[i] > (m_anim1[i]->m_maxFrame * 3) >> 2) {
+				m_animTime1[i] = m_anim1[i]->m_maxFrame;
+				m_animTime2[i] = m_anim2[i]->m_maxFrame;
 			} else {
-				m_animTimer2[i] = 0.0f;
-				m_animTimer1[i] = 0.0f;
+				m_animTime2[i] = 0.0f;
+				m_animTime1[i] = 0.0f;
 			}
 		} else {
 			m_screen[i]->show();
 		}
-		m_animTimer1[i] += msVal._00;
-		m_animTimer2[i] += msVal._00;
+		m_animTime1[i] += msVal.m_animSpeed;
+		m_animTime2[i] += msVal.m_animSpeed;
 
-		if (m_animTimer1[i] >= m_anim1[i]->m_maxFrame || m_animTimer2[i] >= m_anim2[i]->m_maxFrame) {
+		if (m_animTime1[i] >= m_anim1[i]->m_maxFrame || m_animTime2[i] >= m_anim2[i]->m_maxFrame) {
 			ret = true;
 		}
 	}
@@ -180,7 +180,7 @@ void ObjFinalFloor::stopSound()
  */
 void ObjFinalFloor::restartSound()
 {
-	if (m_animTimer1[0] <= (m_anim1[0]->m_maxFrame * 3) >> 2) {
+	if (m_animTime1[0] <= (m_anim1[0]->m_maxFrame * 3) >> 2) {
 		PSSystem::spSysIF->playSystemSe(PSSE_FINALLEVEL_COME, &m_sound, 0);
 		startBGM();
 	}

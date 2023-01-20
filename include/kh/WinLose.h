@@ -67,22 +67,22 @@ struct ObjWinLose : public ::Screen::ObjBase {
 	static struct StaticValues {
 		inline StaticValues()
 		{
-			_00 = 1.0f;
-			_04 = -120.0f;
-			_08 = 120.0f;
-			_0C = 60.0f;
-			_10 = 60;
-			_14 = 180;
-			_18 = 16;
+			m_animSpeed   = 1.0f;
+			m_yOffsetP1   = -120.0f;
+			m_yOffsetP2   = 120.0f;
+			m_duration    = 60.0f;
+			m_finishFrame = 60;
+			m_endBGMFrame = 180;
+			m_alphaInc    = 16;
 		}
 
-		f32 _00; // _00
-		f32 _04; // _04
-		f32 _08; // _08
-		f32 _0C;
-		int _10;
-		int _14;
-		u8 _18;
+		f32 m_animSpeed;   // _00
+		f32 m_yOffsetP1;   // _04
+		f32 m_yOffsetP2;   // _08
+		f32 m_duration;    // _0C
+		int m_finishFrame; // _10
+		int m_endBGMFrame; // _14
+		u8 m_alphaInc;     // _18
 	} msVal;
 };
 
@@ -115,20 +115,20 @@ struct ObjWinLoseReason : public ::Screen::ObjBase {
 	static struct StaticValues {
 		inline StaticValues()
 		{
-			_00 = 1.0f;
-			_04 = -120.0f;
-			_08 = 120.0f;
-			_0C = 100;
-			_10 = 125;
-			_14 = 100;
-			_18 = 2;
+			m_animSpeed     = 1.0f;
+			m_yOffsetP1     = -120.0f;
+			m_yOffsetP2     = 120.0f;
+			m_progressFrame = 100;
+			m_finishFrame   = 125;
+			_14             = 100;
+			_18             = 2;
 		}
 
-		f32 _00; // _00
-		f32 _04; // _04
-		f32 _08; // _08
-		int _0C;
-		int _10;
+		f32 m_animSpeed; // _00
+		f32 m_yOffsetP1; // _04
+		f32 m_yOffsetP2; // _08
+		int m_progressFrame;
+		int m_finishFrame;
 		int _14;
 		u8 _18;
 	} msVal;

@@ -114,8 +114,8 @@ void ObjWinLose::doCreate(JKRArchive* arc)
 	}
 
 	if (m_screenNum == 2) {
-		m_yOffset[0] = msVal._04;
-		m_yOffset[1] = msVal._08;
+		m_yOffset[0] = msVal.m_yOffsetP1;
+		m_yOffset[1] = msVal.m_yOffsetP2;
 	}
 
 	getOwner()->setColorBG(0, 0, 0, 160);
@@ -163,10 +163,10 @@ bool ObjWinLose::updateAnimation()
 			m_anim1[i]->m_currentFrame = m_animTime1[i];
 			m_anim3[i]->m_currentFrame = m_animTime3[i];
 			m_screenA[i]->animation();
-			m_animTime1[i] += msVal._00;
-			m_animTime3[i] += msVal._00;
+			m_animTime1[i] += msVal.m_animSpeed;
+			m_animTime3[i] += msVal.m_animSpeed;
 
-			if (m_animTime1[i] >= msVal._0C) {
+			if (m_animTime1[i] >= msVal.m_duration) {
 				m_doUpdateAnim = true;
 			}
 
@@ -193,8 +193,8 @@ bool ObjWinLose::updateAnimation()
 			}
 			m_screenB[i]->search('ROOT')->setOffset(0.0f, m_yOffset[i]);
 			m_screenB[i]->search('ROOT')->setAlpha(m_alpha);
-			if (m_alpha < 255 - msVal._18) {
-				m_alpha += msVal._18;
+			if (m_alpha < 255 - msVal.m_alphaInc) {
+				m_alpha += msVal.m_alphaInc;
 			} else {
 				m_alpha = 255;
 			}
@@ -208,11 +208,11 @@ bool ObjWinLose::updateAnimation()
 	DispWinLose* disp = static_cast<DispWinLose*>(getDispMember());
 	int old           = m_frameTimer + 1;
 	m_frameTimer      = old;
-	if (old > msVal._14) {
+	if (old > msVal.m_endBGMFrame) {
 		disp->_0C = 3;
 		PSStop2DStream();
 		PSMuteOffSE_on2D();
-	} else if (m_frameTimer > msVal._10) {
+	} else if (m_frameTimer > msVal.m_finishFrame) {
 		disp->_0C = 2;
 	}
 	return false;

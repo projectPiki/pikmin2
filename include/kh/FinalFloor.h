@@ -15,6 +15,7 @@ struct JAISound;
 namespace kh {
 namespace Screen {
 struct DispFinalFloor : public og::Screen::DispMemberBase {
+	DispFinalFloor() { m_is2Player = false; }
 
 	virtual u32 getSize();     // _08 (weak)
 	virtual u32 getOwnerID();  // _0C (weak)
@@ -28,22 +29,22 @@ struct DispFinalFloor : public og::Screen::DispMemberBase {
 struct ObjFinalFloor : public ::Screen::ObjBase {
 	ObjFinalFloor()
 	{
-		m_screen[0]     = nullptr;
-		m_anim1[0]      = nullptr;
-		m_anim2[0]      = nullptr;
-		m_animTimer2[0] = 0.0f;
-		m_animTimer1[0] = 0.0f;
-		m_letterYPos[0] = 0.0f;
+		m_screen[0]    = nullptr;
+		m_anim1[0]     = nullptr;
+		m_anim2[0]     = nullptr;
+		m_animTime2[0] = 0.0f;
+		m_animTime1[0] = 0.0f;
+		m_yOffset[0]   = 0.0f;
 
-		m_screen[1]     = nullptr;
-		m_anim1[1]      = nullptr;
-		m_anim2[1]      = nullptr;
-		m_animTimer2[1] = 0.0f;
-		m_animTimer1[1] = 0.0f;
-		m_letterYPos[1] = 0.0f;
+		m_screen[1]    = nullptr;
+		m_anim1[1]     = nullptr;
+		m_anim2[1]     = nullptr;
+		m_animTime2[1] = 0.0f;
+		m_animTime1[1] = 0.0f;
+		m_yOffset[1]   = 0.0f;
 
-		m_lines = 1;
-		m_sound = nullptr;
+		m_screenNum = 1;
+		m_sound     = nullptr;
 	}
 
 	virtual ~ObjFinalFloor() { }          // _08 (weak)
@@ -74,23 +75,23 @@ struct ObjFinalFloor : public ::Screen::ObjBase {
 	P2DScreen::Mgr_tuning* m_screen[2]; // _38
 	J2DAnmTransform* m_anim1[2];        // _40
 	J2DAnmColor* m_anim2[2];            // _48
-	f32 m_animTimer1[2];                // _50
-	f32 m_animTimer2[2];                // _58
-	f32 m_letterYPos[2];                // _60
-	int m_lines;                        // _68
+	f32 m_animTime1[2];                 // _50
+	f32 m_animTime2[2];                 // _58
+	f32 m_yOffset[2];                   // _60
+	int m_screenNum;                    // _68
 	JAISound* m_sound;                  // _6C
 
 	static struct StaticValues {
 		inline StaticValues()
 		{
-			_04 = -120.0f;
-			_08 = 120.0f;
-			_00 = 0.8f;
+			m_yOffsetP1 = -120.0f;
+			m_yOffsetP2 = 120.0f;
+			m_animSpeed = 0.8f;
 		}
 
-		f32 _00; // _00
-		f32 _04; // _04
-		f32 _08; // _08
+		f32 m_animSpeed; // _00
+		f32 m_yOffsetP1; // _04
+		f32 m_yOffsetP2; // _08
 	} msVal;
 };
 

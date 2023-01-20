@@ -909,7 +909,7 @@ __dt__Q32kh6Screen10ObjReadyGoFv:
 /* 80401CCC 003FEC0C  38 21 00 10 */	addi r1, r1, 0x10
 /* 80401CD0 003FEC10  4E 80 00 20 */	blr 
 
-__sinit_khReadyGo_cpp: # static initializer
+.fn __sinit_khReadyGo_cpp, local
 /* 80401CD4 003FEC14  3C 60 80 51 */	lis r3, __float_nan@ha
 /* 80401CD8 003FEC18  38 00 FF FF */	li r0, -1
 /* 80401CDC 003FEC1C  38 A3 48 B0 */	addi r5, r3, __float_nan@l
@@ -933,6 +933,7 @@ __sinit_khReadyGo_cpp: # static initializer
 /* 80401D24 003FEC64  D0 23 00 0C */	stfs f1, 0xc(r3)
 /* 80401D28 003FEC68  D0 03 00 10 */	stfs f0, 0x10(r3)
 /* 80401D2C 003FEC6C  4E 80 00 20 */	blr 
+.endfn __sinit_khReadyGo_cpp
 
 .global "@24@__dt__Q32kh6Screen10ObjReadyGoFv"
 "@24@__dt__Q32kh6Screen10ObjReadyGoFv":

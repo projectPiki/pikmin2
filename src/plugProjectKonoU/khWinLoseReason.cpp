@@ -78,7 +78,7 @@ void SceneWinLoseReason::doCreateObj(JKRArchive* arc)
 		registObj(m_screenObj[0], arc);
 		Morimura::TOrimaDown2D* screen = static_cast<Morimura::TOrimaDown2D*>(m_screenObj[0]);
 		P2ASSERTLINE(149, screen);
-		screen->m_gameOverScreen->setPosY(ObjWinLoseReason::msVal._04);
+		screen->m_gameOverScreen->setPosY(ObjWinLoseReason::msVal.m_yOffsetP1);
 		screen->m_type = 1;
 		screen->_8C    = ObjWinLoseReason::msVal._18;
 		break;
@@ -89,7 +89,7 @@ void SceneWinLoseReason::doCreateObj(JKRArchive* arc)
 		registObj(m_screenObj[0], arc);
 		Morimura::TPikminDown2D* screen = static_cast<Morimura::TPikminDown2D*>(m_screenObj[0]);
 		P2ASSERTLINE(159, screen);
-		screen->m_gameOverScreen->setPosY(ObjWinLoseReason::msVal._04);
+		screen->m_gameOverScreen->setPosY(ObjWinLoseReason::msVal.m_yOffsetP1);
 		screen->m_type = 1;
 		screen->_8C    = ObjWinLoseReason::msVal._18;
 		break;
@@ -113,7 +113,7 @@ void SceneWinLoseReason::doCreateObj(JKRArchive* arc)
 		registObj(m_screenObj[1], arc);
 		Morimura::TOrimaDown2D* screen = static_cast<Morimura::TOrimaDown2D*>(m_screenObj[1]);
 		P2ASSERTLINE(180, screen);
-		screen->m_gameOverScreen->setPosY(ObjWinLoseReason::msVal._08);
+		screen->m_gameOverScreen->setPosY(ObjWinLoseReason::msVal.m_yOffsetP2);
 		screen->m_type = 2;
 		screen->_8C    = ObjWinLoseReason::msVal._18;
 		break;
@@ -124,7 +124,7 @@ void SceneWinLoseReason::doCreateObj(JKRArchive* arc)
 		registObj(m_screenObj[1], arc);
 		Morimura::TPikminDown2D* screen = static_cast<Morimura::TPikminDown2D*>(m_screenObj[1]);
 		P2ASSERTLINE(190, screen);
-		screen->m_gameOverScreen->setPosY(ObjWinLoseReason::msVal._08);
+		screen->m_gameOverScreen->setPosY(ObjWinLoseReason::msVal.m_yOffsetP2);
 		screen->m_type = 2;
 		screen->_8C    = ObjWinLoseReason::msVal._18;
 		break;
@@ -207,11 +207,11 @@ void SceneWinLoseReason::doUpdateActive()
 		switch (m_outcome[i]) {
 		case 1:
 		case 2:
-			if (m_counter == ObjWinLoseReason::msVal._0C) {
+			if (m_counter == ObjWinLoseReason::msVal.m_progressFrame) {
 				Morimura::TGameOverBase* obj = static_cast<Morimura::TGameOverBase*>(m_screenObj[i]);
 				P2ASSERTLINE(272, obj);
 				obj->_8C = -ObjWinLoseReason::msVal._18;
-			} else if (m_counter > ObjWinLoseReason::msVal._10) {
+			} else if (m_counter > ObjWinLoseReason::msVal.m_finishFrame) {
 				m_done[i] = true;
 			}
 			break;
