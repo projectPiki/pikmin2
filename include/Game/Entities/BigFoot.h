@@ -254,9 +254,17 @@ struct BigFootShadowMgr {
 	void setJointPosPtr(int, int, Vector3f*);
 	void update();
 
-	Matrixf* _00; // _00
-	Obj* _04;     // _04
-	u8 _08[0xA8]; // _08, to fill in
+	Matrixf* m_matrix;                        // _00
+	Obj* m_obj;                               // _04
+	Vector3f* m_jointPosPtrs[4][4];           // _08
+	JointShadowRootNode* m_rootNode;          // _48
+	SphereShadowNode* m_bodySphereShadow;     // _4C
+	TubeShadowTransNode* m_legTubeShadow1[4]; // _50, rhand=0, lhand=1, rfoot=2, lfoot=3
+	TubeShadowSetNode* m_legTubeShadow2[4];   // _60, rhand=0, lhand=1, rfoot=2, lfoot=3
+	TubeShadowSetNode* m_legTubeShadow3[4];   // _70, rhand=0, lhand=1, rfoot=2, lfoot=3
+	SphereShadowNode* m_legSphereShadow1[4];  // _80, rhand=0, lhand=1, rfoot=2, lfoot=3
+	SphereShadowNode* m_legSphereShadow2[4];  // _90, rhand=0, lhand=1, rfoot=2, lfoot=3
+	SphereShadowNode* m_legSphereShadow3[4];  // _A0, rhand=0, lhand=1, rfoot=2, lfoot=3
 };
 
 struct BigFootGroundCallBack : public JointGroundCallBack {
