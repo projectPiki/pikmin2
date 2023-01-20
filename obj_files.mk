@@ -831,7 +831,7 @@ NISHIMURA:=\
 	$(BUILD_DIR)/src/plugProjectNishimuraU/HoudaiState.o\
 	$(BUILD_DIR)/src/plugProjectNishimuraU/HoudaiAnimator.o\
 	$(BUILD_DIR)/src/plugProjectNishimuraU/HoudaiMgr.o\
-	$(BUILD_DIR)/asm/plugProjectNishimuraU/HoudaiShadow.o\
+	$(BUILD_DIR)/src/plugProjectNishimuraU/HoudaiShadow.o\
 	$(BUILD_DIR)/src/plugProjectNishimuraU/Houdai.o\
 	$(BUILD_DIR)/asm/plugProjectNishimuraU/HoudaiShotGun.o\
 	$(BUILD_DIR)/src/plugProjectNishimuraU/LeafChappyMgr.o\

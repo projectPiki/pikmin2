@@ -259,9 +259,19 @@ struct HoudaiShadowMgr {
 	void setJointPosPtr(int, int, Vector3f*);
 	void update();
 
-	Matrixf* _00; // _00
-	Obj* _04;     // _04
-	u8 _08[0xBC]; // _08, to fill in
+	Matrixf* m_matrix;                        // _00
+	Obj* m_obj;                               // _04
+	Vector3f* m_jointPosPtrs[4][4];           // _08
+	JointShadowRootNode* m_rootNode;          // _48
+	TubeShadowSetNode* m_legTubeShadow1[4];   // _4C, rhand=0, lhand=1, rfoot=2, lfoot=3
+	TubeShadowSetNode* m_legTubeShadow2[4];   // _5C, rhand=0, lhand=1, rfoot=2, lfoot=3
+	TubeShadowSetNode* m_legTubeShadow3[4];   // _6C, rhand=0, lhand=1, rfoot=2, lfoot=3
+	TubeShadowSetNode* m_legTubeShadow4[4];   // _7C, rhand=0, lhand=1, rfoot=2, lfoot=3
+	SphereShadowNode* m_bodySphereShadow;     // _8C
+	SphereShadowNode* m_legSphereShadow1[4];  // _90, rhand=0, lhand=1, rfoot=2, lfoot=3
+	SphereShadowNode* m_legSphereShadow2[4];  // _A0, rhand=0, lhand=1, rfoot=2, lfoot=3
+	SphereShadowNode* m_legSphereShadow3[4];  // _B0, rhand=0, lhand=1, rfoot=2, lfoot=3
+	SphereShadowNode* m_metalLegSphereShadow; // _C0
 };
 
 struct HoudaiGroundCallBack : public JointGroundCallBack {
