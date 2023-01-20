@@ -1,4 +1,5 @@
 #include "types.h"
+#include "Game/Entities/MaroFrog.h"
 
 /*
     Generated from dpostproc
@@ -222,13 +223,14 @@
 */
 
 namespace Game {
+namespace MaroFrog {
 
 /*
  * --INFO--
  * Address:	802617E0
  * Size:	000098
  */
-MaroFrog::Obj::Obj()
+Obj::Obj()
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -279,7 +281,7 @@ lbl_8026181C:
  * Address:	80261878
  * Size:	00045C
  */
-void MaroFrog::Obj::attackNaviPosition()
+void Obj::attackNaviPosition()
 {
 	/*
 	stwu     r1, -0x110(r1)
@@ -589,7 +591,7 @@ lbl_80261C68:
  * Address:	80261CD4
  * Size:	0000B0
  */
-void MaroFrog::Obj::createEffect()
+void Obj::createEffect()
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -641,10 +643,5 @@ lbl_80261D6C:
 	*/
 }
 
-/*
- * --INFO--
- * Address:	80261D84
- * Size:	000008
- */
-u32 MaroFrog::Obj::getEnemyTypeID() { return 0x12; }
+} // namespace MaroFrog
 } // namespace Game
