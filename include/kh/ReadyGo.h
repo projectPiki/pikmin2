@@ -78,15 +78,16 @@ struct ObjReadyGo : public ::Screen::ObjBase {
 		f32 m_yOffsetP2;  // _08
 		f32 m_efxOffsetX; // _0C
 		f32 m_efxOffsetY; // _10
+		f32 _14;          // _14
 	} msVal;
 };
 
 struct SceneReadyGo : public ::Screen::SceneBase {
+	virtual const char* getResName() const { return "ready_go.szs"; }             // _1C (weak)
+	virtual bool isUseBackupSceneInfo() { return true; }                          // _14 (weak)
 	virtual SceneType getSceneType() { return SCENE_READY_GO; }                   // _08 (weak)
 	virtual ScreenOwnerID getOwnerID() { return OWNER_KH; }                       // _0C (weak)
 	virtual ScreenMemberID getMemberID() { return MEMBER_READY_GO; }              // _10 (weak)
-	virtual bool isUseBackupSceneInfo() { return true; }                          // _14 (weak)
-	virtual const char* getResName() const { return "ready_go.szs"; }             // _1C (weak)
 	virtual void doCreateObj(JKRArchive* arc) { registObj(new ObjReadyGo, arc); } // _20 (weak)
 	virtual bool doConfirmSetScene(::Screen::SetSceneArg&);                       // _30
 
