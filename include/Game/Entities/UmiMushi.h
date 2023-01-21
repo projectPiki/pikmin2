@@ -44,27 +44,112 @@ namespace UmiMushi {
 struct UmimushiShadowMgr;
 struct FSM;
 
+struct Parms : public EnemyParmsBase {
+	struct ProperParms : public Parameters {
+		ProperParms()
+		    : Parameters(nullptr, "EnemyParmsBase")
+		    , m_damageRate(this, 'fp01', "ダメージレート", 1.0f, 0.0f, 1.0f)           // 'damage rate'
+		    , m_turnStartAngle(this, 'fp02', "旋回開始角度", 60.0f, 0.0f, 180.0f)      // 'turn start angle'
+		    , m_turnEndAngle(this, 'fp03', "旋回終了角度", 10.0f, 0.0f, 180.0f)        // 'turn end angle'
+		    , m_moveSpeed(this, 'fp04', "サーチ移動速度", 10.0f, 0.0f, 100.0f)         // 'search movement speed'
+		    , m_rotateSpeed(this, 'fp06', "サーチ回転速度率", 0.1f, 0.0f, 1.0f)        // 'search rotation speed rate'
+		    , m_rotateSpeedMax(this, 'fp07', "サーチ回転最大速度", 5.0f, 0.0f, 360.0f) // 'search rotation max speed'
+		    , m_purpleDamageRate(this, 'fp09', "黒ピクミンダメージレート", 0.0f, 0.0f,
+		                         1.0f)                                              // 'black pikmin damage rate'
+		    , m_caveTerritory(this, 'fp10', "地下テリトリー", 200.0f, 0.0f, 500.0f) // 'underground territory'
+		    , m_whiteDamage(this, 'fp11', "白ピクミン", 300.0f, 0.0f, 1000.0f)      // 'white pikmin'
+		    , m_blindHealth(this, 'fp12', "めくらライフ", 1000.0f, 0.0f, 2000.0f)   // 'blind life'
+		    , m_blindWaitTime(this, 'fp13', "めくら待機間隔", 200.0f, 0.0f, 500.0f) // 'blind wait interval'
+		    , m_blindMoveTime(this, 'fp14', "めくら移動間隔", 200.0f, 0.0f, 500.0f) // 'blind movement interval'
+		    , m_waitTimeAfterAttack(this, 'ip01', "攻撃後待機期間", 100, 0, 300)    // 'waiting period after attack'
+		{
+		}
+
+		Parm<f32> m_damageRate;          // _804, fp01
+		Parm<f32> m_turnStartAngle;      // _82C, fp02
+		Parm<f32> m_turnEndAngle;        // _854, fp03
+		Parm<f32> m_moveSpeed;           // _87C, fp04
+		Parm<f32> m_rotateSpeed;         // _8A4, fp06
+		Parm<f32> m_rotateSpeedMax;      // _8CC, fp07
+		Parm<f32> m_purpleDamageRate;    // _8F4, fp09
+		Parm<f32> m_caveTerritory;       // _91C, fp10
+		Parm<f32> m_whiteDamage;         // _944, fp11
+		Parm<f32> m_blindHealth;         // _96C, fp12
+		Parm<f32> m_blindWaitTime;       // _994, fp13
+		Parm<f32> m_blindMoveTime;       // _9BC, fp14
+		Parm<int> m_waitTimeAfterAttack; // _9E4, ip01
+	};
+
+	Parms()
+	{
+		_A10 = 1;
+		_A11 = 1;
+		_A12 = 1;
+		_A13 = 1;
+		_A14 = 1;
+		_A15 = 0;
+		_A16 = 1;
+		_A18 = -1;
+		_A1C = 10.0f;
+		_A20 = 0.05f;
+		_A24 = 1.0f;
+		_A28 = 10.0f;
+		_A2C = 0.3f;
+		_A30 = 1.0f;
+		_A34 = 1.4f;
+	}
+
+	virtual void read(Stream& stream) // _08 (weak)
+	{
+		CreatureParms::read(stream);
+		m_general.read(stream);
+		m_properParms.read(stream);
+	}
+
+	// _00-_7F8	= EnemyParmsBase
+	ProperParms m_properParms; // _7F8
+	u8 _A10;                   // _A10, unknown
+	u8 _A11;                   // _A11, unknown
+	u8 _A12;                   // _A12, unknown
+	u8 _A13;                   // _A13, unknown
+	u8 _A14;                   // _A14, unknown
+	u8 _A15;                   // _A15, unknown
+	u8 _A16;                   // _A16, unknown
+	s16 _A18;                  // _A18, unknown
+	f32 _A1C;                  // _A1C
+	f32 _A20;                  // _A20
+	f32 _A24;                  // _A24
+	f32 _A28;                  // _A28
+	f32 _A2C;                  // _A2C
+	f32 _A30;                  // _A30
+	f32 _A34;                  // _A34
+};
+
 struct Obj : public EnemyBase {
 	Obj();
 
 	//////////////// VTABLE
-	virtual void onInit(CreatureInitArg* settings);                               // _30
-	virtual void doSimulation(f32);                                               // _4C
-	virtual void doDirectDraw(Graphics& gfx);                                     // _50
-	virtual f32 getBodyRadius();                                                  // _54
-	virtual void collisionCallback(CollEvent& event);                             // _EC
-	virtual void getShadowParam(ShadowParam& settings);                           // _134
-	virtual void applyImpulse(Vector3f&, Vector3f&);                              // _18C (weak)
-	virtual ~Obj() { }                                                            // _1BC (weak)
-	virtual void birth(Vector3f&, f32);                                           // _1C0
-	virtual void setInitialSetting(EnemyInitialParamBase*);                       // _1C4 (weak)
-	virtual void doUpdate();                                                      // _1CC
-	virtual void doAnimationCullingOff();                                         // _1DC
-	virtual void doAnimationCullingOn();                                          // _1E0
-	virtual void doDebugDraw(Graphics&);                                          // _1EC
-	virtual void changeMaterial();                                                // _200
-	virtual void setParameters();                                                 // _228
-	virtual void initMouthSlots();                                                // _22C
+	virtual void onInit(CreatureInitArg* settings);            // _30
+	virtual void doSimulation(f32);                            // _4C
+	virtual void doDirectDraw(Graphics& gfx);                  // _50
+	virtual f32 getBodyRadius();                               // _54
+	virtual void collisionCallback(CollEvent& event);          // _EC
+	virtual void getShadowParam(ShadowParam& settings);        // _134
+	virtual void applyImpulse(Vector3f&, Vector3f&) { }        // _18C (weak)
+	virtual ~Obj() { }                                         // _1BC (weak)
+	virtual void birth(Vector3f&, f32);                        // _1C0
+	virtual void setInitialSetting(EnemyInitialParamBase*) { } // _1C4 (weak)
+	virtual void doUpdate();                                   // _1CC
+	virtual void doAnimationCullingOff();                      // _1DC
+	virtual void doAnimationCullingOn();                       // _1E0
+	virtual void doDebugDraw(Graphics&);                       // _1EC
+	virtual void changeMaterial();                             // _200
+	virtual void setParameters();                              // _228
+	virtual void initMouthSlots();                             // _22C
+	virtual bool eatWhitePikminCallBack(Creature* creature, f32 f)
+	{
+		return EnemyBase::eatWhitePikminCallBack(creature, C_PROPERPARMS.m_whiteDamage);
+	}                                                                             // _298 (weak)
 	virtual EnemyTypeID::EEnemyTypeID getEnemyTypeID() { return m_bloysterType; } // _258 (weak)
 	virtual MouthSlots* getMouthSlots() { return &m_mouthSlots; }                 // _25C (weak)
 	virtual void doGetLifeGaugeParam(LifeGaugeParam&);                            // _260
@@ -72,10 +157,9 @@ struct Obj : public EnemyBase {
 	virtual bool pressCallBack(Creature*, f32, CollPart*);                        // _27C
 	virtual bool hipdropCallBack(Creature*, f32, CollPart*);                      // _284
 	virtual bool earthquakeCallBack(Creature*, f32);                              // _28C
-	virtual bool eatWhitePikminCallBack(Creature*, f32);                          // _298 (weak)
 	virtual void doStartStoneState();                                             // _2A4
 	virtual void doFinishStoneState();                                            // _2A8
-	virtual f32 getDamageCoeStoneState();                                         // _2AC (weak)
+	virtual f32 getDamageCoeStoneState() { return C_PROPERPARMS.m_damageRate; }   // _2AC (weak)
 	virtual void startCarcassMotion();                                            // _2C4
 	virtual void doStartMovie();                                                  // _2F0
 	virtual void doEndMovie();                                                    // _2F4
@@ -185,87 +269,6 @@ struct Mgr : public EnemyMgrBase {
 	// _00-_44	= EnemyMgrBase
 	Sys::MatTexAnimation* m_texAnimation; // _44
 	Obj* m_obj;                           // _48, array of Objs
-};
-
-struct Parms : public EnemyParmsBase {
-	struct ProperParms : public Parameters {
-		ProperParms()
-		    : Parameters(nullptr, "EnemyParmsBase")
-		    , m_damageRate(this, 'fp01', "ダメージレート", 1.0f, 0.0f, 1.0f)           // 'damage rate'
-		    , m_turnStartAngle(this, 'fp02', "旋回開始角度", 60.0f, 0.0f, 180.0f)      // 'turn start angle'
-		    , m_turnEndAngle(this, 'fp03', "旋回終了角度", 10.0f, 0.0f, 180.0f)        // 'turn end angle'
-		    , m_moveSpeed(this, 'fp04', "サーチ移動速度", 10.0f, 0.0f, 100.0f)         // 'search movement speed'
-		    , m_rotateSpeed(this, 'fp06', "サーチ回転速度率", 0.1f, 0.0f, 1.0f)        // 'search rotation speed rate'
-		    , m_rotateSpeedMax(this, 'fp07', "サーチ回転最大速度", 5.0f, 0.0f, 360.0f) // 'search rotation max speed'
-		    , m_purpleDamageRate(this, 'fp09', "黒ピクミンダメージレート", 0.0f, 0.0f,
-		                         1.0f)                                              // 'black pikmin damage rate'
-		    , m_caveTerritory(this, 'fp10', "地下テリトリー", 200.0f, 0.0f, 500.0f) // 'underground territory'
-		    , m_whiteDamage(this, 'fp11', "白ピクミン", 300.0f, 0.0f, 1000.0f)      // 'white pikmin'
-		    , m_blindHealth(this, 'fp12', "めくらライフ", 1000.0f, 0.0f, 2000.0f)   // 'blind life'
-		    , m_blindWaitTime(this, 'fp13', "めくら待機間隔", 200.0f, 0.0f, 500.0f) // 'blind wait interval'
-		    , m_blindMoveTime(this, 'fp14', "めくら移動間隔", 200.0f, 0.0f, 500.0f) // 'blind movement interval'
-		    , m_waitTimeAfterAttack(this, 'ip01', "攻撃後待機期間", 100, 0, 300)    // 'waiting period after attack'
-		{
-		}
-
-		Parm<f32> m_damageRate;          // _804, fp01
-		Parm<f32> m_turnStartAngle;      // _82C, fp02
-		Parm<f32> m_turnEndAngle;        // _854, fp03
-		Parm<f32> m_moveSpeed;           // _87C, fp04
-		Parm<f32> m_rotateSpeed;         // _8A4, fp06
-		Parm<f32> m_rotateSpeedMax;      // _8CC, fp07
-		Parm<f32> m_purpleDamageRate;    // _8F4, fp09
-		Parm<f32> m_caveTerritory;       // _91C, fp10
-		Parm<f32> m_whiteDamage;         // _944, fp11
-		Parm<f32> m_blindHealth;         // _96C, fp12
-		Parm<f32> m_blindWaitTime;       // _994, fp13
-		Parm<f32> m_blindMoveTime;       // _9BC, fp14
-		Parm<int> m_waitTimeAfterAttack; // _9E4, ip01
-	};
-
-	Parms()
-	{
-		_A10 = 1;
-		_A11 = 1;
-		_A12 = 1;
-		_A13 = 1;
-		_A14 = 1;
-		_A15 = 0;
-		_A16 = 1;
-		_A18 = -1;
-		_A1C = 10.0f;
-		_A20 = 0.05f;
-		_A24 = 1.0f;
-		_A28 = 10.0f;
-		_A2C = 0.3f;
-		_A30 = 1.0f;
-		_A34 = 1.4f;
-	}
-
-	virtual void read(Stream& stream) // _08 (weak)
-	{
-		CreatureParms::read(stream);
-		m_general.read(stream);
-		m_properParms.read(stream);
-	}
-
-	// _00-_7F8	= EnemyParmsBase
-	ProperParms m_properParms; // _7F8
-	u8 _A10;                   // _A10, unknown
-	u8 _A11;                   // _A11, unknown
-	u8 _A12;                   // _A12, unknown
-	u8 _A13;                   // _A13, unknown
-	u8 _A14;                   // _A14, unknown
-	u8 _A15;                   // _A15, unknown
-	u8 _A16;                   // _A16, unknown
-	s16 _A18;                  // _A18, unknown
-	f32 _A1C;                  // _A1C
-	f32 _A20;                  // _A20
-	f32 _A24;                  // _A24
-	f32 _A28;                  // _A28
-	f32 _A2C;                  // _A2C
-	f32 _A30;                  // _A30
-	f32 _A34;                  // _A34
 };
 
 struct ProperAnimator : public EnemyAnimatorBase {

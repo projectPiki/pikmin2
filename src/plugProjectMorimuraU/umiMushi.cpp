@@ -5125,36 +5125,9 @@ lbl_80386FA4:
  */
 void Obj::eatEffect()
 {
-	/*
-	stwu     r1, -0x20(r1)
-	mflr     r0
-	lis      r4, __vt__Q23efx3Arg@ha
-	stw      r0, 0x24(r1)
-	addi     r0, r4, __vt__Q23efx3Arg@l
-	addi     r4, r1, 8
-	stw      r31, 0x1c(r1)
-	mr       r31, r3
-	stw      r0, 8(r1)
-	lfs      f0, 0x18c(r3)
-	stfs     f0, 0xc(r1)
-	lfs      f0, 0x190(r3)
-	stfs     f0, 0x10(r1)
-	lfs      f0, 0x194(r3)
-	stfs     f0, 0x14(r1)
-	lwz      r3, 0x380(r3)
-	lwz      r12, 0(r3)
-	lwz      r12, 8(r12)
-	mtctr    r12
-	bctrl
-	lwz      r3, 0x380(r31)
-	lfs      f1, 0x1f8(r31)
-	bl       setGlobalScale__Q23efx7TUmiEatFf
-	lwz      r0, 0x24(r1)
-	lwz      r31, 0x1c(r1)
-	mtlr     r0
-	addi     r1, r1, 0x20
-	blr
-	*/
+	efx::Arg arg(m_position);
+	m_efxEat->create(&arg);
+	m_efxEat->setGlobalScale(m_scaleModifier);
 }
 
 /*
@@ -5164,36 +5137,9 @@ void Obj::eatEffect()
  */
 void Obj::bubbleEffect()
 {
-	/*
-	stwu     r1, -0x20(r1)
-	mflr     r0
-	lis      r4, __vt__Q23efx3Arg@ha
-	stw      r0, 0x24(r1)
-	addi     r0, r4, __vt__Q23efx3Arg@l
-	addi     r4, r1, 8
-	stw      r31, 0x1c(r1)
-	mr       r31, r3
-	stw      r0, 8(r1)
-	lfs      f0, 0x18c(r3)
-	stfs     f0, 0xc(r1)
-	lfs      f0, 0x190(r3)
-	stfs     f0, 0x10(r1)
-	lfs      f0, 0x194(r3)
-	stfs     f0, 0x14(r1)
-	lwz      r3, 0x384(r3)
-	lwz      r12, 0(r3)
-	lwz      r12, 8(r12)
-	mtctr    r12
-	bctrl
-	lwz      r3, 0x384(r31)
-	lfs      f1, 0x1f8(r31)
-	bl       setGlobalScale__Q23efx11TUmiDeadawaFf
-	lwz      r0, 0x24(r1)
-	lwz      r31, 0x1c(r1)
-	mtlr     r0
-	addi     r1, r1, 0x20
-	blr
-	*/
+	efx::Arg arg(m_position);
+	_384->create(&arg);
+	_384->setGlobalScale(m_scaleModifier);
 }
 
 /*
@@ -5538,55 +5484,6 @@ lbl_803874B8:
 	stfs     f2, 8(r4)
 	stfs     f1, 0x18(r4)
 	stfs     f0, 0x28(r4)
-	blr
-	*/
-}
-
-/*
- * --INFO--
- * Address:	80387644
- * Size:	000004
- */
-void Obj::setInitialSetting(EnemyInitialParamBase*) { }
-
-/*
- * --INFO--
- * Address:	80387648
- * Size:	000004
- */
-void Obj::applyImpulse(Vector3f&, Vector3f&) { }
-
-/*
- * --INFO--
- * Address:	8038764C
- * Size:	00000C
- */
-f32 Obj::getDamageCoeStoneState()
-{
-	/*
-	lwz      r3, 0xc0(r3)
-	lfs      f1, 0x81c(r3)
-	blr
-	*/
-}
-
-/*
- * --INFO--
- * Address:	80387658
- * Size:	000028
- */
-bool Obj::eatWhitePikminCallBack(Creature* creature, f32 f)
-{
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	lwz      r5, 0xc0(r3)
-	lfs      f1, 0x95c(r5)
-	bl       eatWhitePikminCallBack__Q24Game9EnemyBaseFPQ24Game8Creaturef
-	lwz      r0, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
 	blr
 	*/
 }
