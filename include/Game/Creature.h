@@ -16,6 +16,10 @@
 #define CG_PROPERPARMS(x) (CG_PARMS(x)->m_properParms)
 #define C_PROPERPARMS     (CG_PROPERPARMS(this))
 
+// shorthand cast to obj-specific 'm_mgr'
+#define CG_MGR(x) (static_cast<Mgr*>(x->m_mgr))
+#define C_MGR	  (CG_MGR(this))
+
 struct Graphics;
 struct Matrixf;
 struct CollPart;

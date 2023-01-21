@@ -1,5 +1,7 @@
 #include "types.h"
 #include "Game/Entities/UmiMushi.h"
+#include "PSM/EnemyBoss.h"
+#include "PSSystem/PSMainSide_ObjSound.h"
 
 /*
     Generated from dpostproc
@@ -479,13 +481,17 @@ Obj* curU;
  * Address:	80383100
  * Size:	000038
  */
+
+
 bool eyeScaleCallBack(J3DJoint* joint, int t)
 {
 	if (t == 0 && curU) {
 		curU->eyeScaleMtxCalc();
 	}
 	return true;
-}
+};
+
+
 
 /*
  * --INFO--
@@ -498,7 +504,7 @@ bool weakScaleCallBack(J3DJoint* joint, int t)
 		curU->weakScaleMtxCalc();
 	}
 	return true;
-}
+};
 
 /*
  * --INFO--
@@ -507,57 +513,21 @@ bool weakScaleCallBack(J3DJoint* joint, int t)
  */
 void Obj::setParameters()
 {
-	/*
-	stwu     r1, -0x20(r1)
-	mflr     r0
-	stw      r0, 0x24(r1)
-	stfd     f31, 0x10(r1)
-	psq_st   f31, 24(r1), 0, qr0
-	stw      r31, 0xc(r1)
-	mr       r31, r3
-	bl       setParameters__Q24Game9EnemyBaseFv
-	lwz      r0, 0x39c(r31)
-	lfs      f31, lbl_8051ED90@sda21(r2)
-	cmpwi    r0, 0x65
-	bne      lbl_803831A4
-	lfs      f31, lbl_8051ED94@sda21(r2)
-
-lbl_803831A4:
-	stfs     f31, 0x1f8(r31)
-	fmr      f1, f31
-	stfs     f31, 0x168(r31)
-	stfs     f31, 0x16c(r31)
-	stfs     f31, 0x170(r31)
-	lwz      r3, 0x114(r31)
-	lwz      r3, 0(r3)
-	bl       setScale__8CollPartFf
-	lwz      r3, 0xc0(r31)
-	lfs      f0, 0x21c(r3)
-	fmuls    f0, f31, f0
-	stfs     f0, 0x27c(r31)
-	lwz      r0, 0x39c(r31)
-	cmpwi    r0, 0x65
-	bne      lbl_803831EC
-	lfs      f0, lbl_8051ED98@sda21(r2)
-	lwz      r3, 0xc0(r31)
-	stfs     f0, 0x1a4(r3)
-
-lbl_803831EC:
-	lis      r4, 0x7765616B@ha
-	lwz      r3, 0x114(r31)
-	addi     r4, r4, 0x7765616B@l
-	bl       getCollPart__8CollTreeFUl
-	lwz      r4, 0xc0(r31)
-	lfs      f1, 0xa34(r4)
-	bl       setScale__8CollPartFf
-	psq_l    f31, 24(r1), 0, qr0
-	lwz      r0, 0x24(r1)
-	lfd      f31, 0x10(r1)
-	lwz      r31, 0xc(r1)
-	mtlr     r0
-	addi     r1, r1, 0x20
-	blr
-	*/
+	EnemyBase::setParameters();
+	float scale = 1.0f;
+	if (m_bloysterType == EnemyTypeID::EnemyID_UmiMushiBlind) {
+		scale = 0.5f;
+	}
+	m_scaleModifier = scale;
+	m_scale.x = scale;
+	m_scale.y = scale;
+	m_scale.z = scale;
+	m_collTree->m_part->setScale(scale);
+	m_curLodSphere.m_radius = scale * C_PARMS->m_general.m_offCameraRadius.m_value;
+	if (m_bloysterType == EnemyTypeID::EnemyID_UmiMushiBlind) {
+		C_PARMS->m_general.m_heightOffsetFromFloor = 50.0f; 
+	}
+	m_collTree->getCollPart('weak')->setScale(C_PARMS->_A34); // Tounge Size?
 }
 
 /*
@@ -588,408 +558,128 @@ void Obj::birth(Vector3f& position, f32 faceDirection) { EnemyBase::birth(positi
  * Address:	80383274
  * Size:	0005A8
  */
+
+const char* unusedString = "umiMushi";
+
 void Obj::onInit(CreatureInitArg* initArg)
 {
-	/*
-	stwu     r1, -0x30(r1)
-	mflr     r0
-	lis      r5, lbl_80493AE8@ha
-	stw      r0, 0x34(r1)
-	stmw     r27, 0x1c(r1)
-	mr       r30, r3
-	addi     r31, r5, lbl_80493AE8@l
-	bl       onInit__Q24Game9EnemyBaseFPQ24Game15CreatureInitArg
-	lwz      r0, 0x1e0(r30)
-	addi     r4, r31, 0xc
-	rlwinm   r0, r0, 0, 0x18, 0x16
-	stw      r0, 0x1e0(r30)
-	lwz      r3, 0x174(r30)
-	bl       getJoint__Q28SysShape5ModelFPc
-	stw      r3, 0x2d4(r30)
-	lwz      r0, 0x2d4(r30)
-	cmplwi   r0, 0
-	bne      lbl_803832D0
-	addi     r3, r31, 0x18
-	addi     r5, r31, 0x28
-	li       r4, 0x7c
-	crclr    6
-	bl       panic_f__12JUTExceptionFPCciPCce
+	EnemyBase::onInit(initArg);
+	disableEvent(0, EB_IsDeathEffectEnabled);
+	m_headJoint = m_model->getJoint("head_joint1");
+	P2ASSERTLINE(124, m_headJoint);
+	m_targetNavi = nullptr;
+	_2BC = m_homePosition;
+	_2E0 = 0;
+	_2E4 = m_homePosition;
+	_2F0 = 0;
+	_2F4 = 0;
+	_2FC = 0.0f;
+	m_targetNavi = nullptr; // morimura has dementia :skull:
+	_2DC = 0;
+	_300 = 0;
+	_2C8 = -1;
 
-lbl_803832D0:
-	li       r27, 0
-	lfs      f0, lbl_8051EDA0@sda21(r2)
-	stw      r27, 0x2d8(r30)
-	li       r28, -1
-	li       r29, -25
-	li       r12, -100
-	lfs      f1, 0x198(r30)
-	li       r11, -30
-	li       r10, 0x3c
-	li       r9, -115
-	stfs     f1, 0x2bc(r30)
-	li       r8, -180
-	li       r7, 0x32
-	li       r3, -80
-	lfs      f1, 0x19c(r30)
-	li       r0, -75
-	mr       r4, r30
-	li       r5, 1
-	stfs     f1, 0x2c0(r30)
-	li       r6, 0
-	lfs      f1, 0x1a0(r30)
-	stfs     f1, 0x2c4(r30)
-	stw      r27, 0x2e0(r30)
-	lfs      f1, 0x198(r30)
-	stfs     f1, 0x2e4(r30)
-	lfs      f1, 0x19c(r30)
-	stfs     f1, 0x2e8(r30)
-	lfs      f1, 0x1a0(r30)
-	stfs     f1, 0x2ec(r30)
-	stw      r27, 0x2f0(r30)
-	stw      r27, 0x2f4(r30)
-	stfs     f0, 0x2fc(r30)
-	stw      r27, 0x2d8(r30)
-	stb      r27, 0x2dc(r30)
-	stw      r27, 0x300(r30)
-	stw      r28, 0x2c8(r30)
-	sth      r29, 0x34c(r30)
-	sth      r12, 0x34e(r30)
-	sth      r11, 0x350(r30)
-	sth      r10, 0x324(r30)
-	sth      r9, 0x326(r30)
-	sth      r9, 0x328(r30)
-	sth      r27, 0x32c(r30)
-	sth      r8, 0x32e(r30)
-	sth      r8, 0x330(r30)
-	sth      r11, 0x334(r30)
-	sth      r11, 0x336(r30)
-	sth      r7, 0x338(r30)
-	sth      r3, 0x33c(r30)
-	sth      r3, 0x33e(r30)
-	sth      r27, 0x340(r30)
-	sth      r27, 0x344(r30)
-	sth      r29, 0x346(r30)
-	sth      r0, 0x348(r30)
-	lha      r0, 0x344(r30)
-	sth      r0, 0x31c(r30)
-	lha      r0, 0x346(r30)
-	sth      r0, 0x31e(r30)
-	lha      r0, 0x348(r30)
-	sth      r0, 0x320(r30)
-	lha      r0, 0x34a(r30)
-	sth      r0, 0x322(r30)
-	lha      r0, 0x344(r30)
-	sth      r0, 0x314(r30)
-	lha      r0, 0x346(r30)
-	sth      r0, 0x316(r30)
-	lha      r0, 0x348(r30)
-	sth      r0, 0x318(r30)
-	lha      r0, 0x34a(r30)
-	sth      r0, 0x31a(r30)
-	stw      r27, curU__Q24Game8UmiMushi@sda21(r13)
-	lwz      r3, 0x398(r30)
-	lwz      r12, 0(r3)
-	lwz      r12, 0xc(r12)
-	mtctr    r12
-	bctrl
-	lwz      r0, 0x354(r30)
-	cmplwi   r0, 0
-	bne      lbl_80383420
-	addi     r3, r31, 0x18
-	addi     r5, r31, 0x28
-	li       r4, 0x9d
-	crclr    6
-	bl       panic_f__12JUTExceptionFPCciPCce
+	m_normalColor2.r = 0xffe7;
+	m_normalColor2.g = 0xff9c;
+	m_normalColor2.b = 0xffe2;
 
-lbl_80383420:
-	lwz      r3, 0x354(r30)
-	lwz      r4, 0x180(r30)
-	lwz      r12, 0(r3)
-	lwz      r4, 0x44(r4)
-	lwz      r12, 8(r12)
-	mtctr    r12
-	bctrl
-	lwz      r0, 0x358(r30)
-	cmplwi   r0, 0
-	bne      lbl_8038345C
-	addi     r3, r31, 0x18
-	addi     r5, r31, 0x28
-	li       r4, 0xa0
-	crclr    6
-	bl       panic_f__12JUTExceptionFPCciPCce
+	m_olimarColor1.r = 0x003c;
+	m_olimarColor1.g = 0xff8d;
+	m_olimarColor1.b = 0xff8d;
 
-lbl_8038345C:
-	lwz      r3, 0x358(r30)
-	bl       init__Q34Game8UmiMushi17UmimushiShadowMgrFv
-	lwz      r3, 0x174(r30)
-	lwz      r3, 8(r3)
-	lwz      r27, 4(r3)
-	cmplwi   r27, 0
-	bne      lbl_8038348C
-	addi     r3, r31, 0x18
-	addi     r5, r31, 0x28
-	li       r4, 0xa6
-	crclr    6
-	bl       panic_f__12JUTExceptionFPCciPCce
+    m_olimarColor2.r = 0x0000;
+	m_olimarColor2.g = 0xff4c;
+	m_olimarColor2.b = 0xff4c;
 
-lbl_8038348C:
-	lwz      r3, 0x64(r27)
-	addi     r4, r31, 0x34
-	bl       getIndex__10JUTNameTabCFPCc
-	lwz      r4, 0x60(r27)
-	rlwinm   r0, r3, 2, 0xe, 0x1d
-	lwzx     r0, r4, r0
-	stw      r0, 0x310(r30)
-	lwz      r0, 0x310(r30)
-	cmplwi   r0, 0
-	bne      lbl_803834C8
-	addi     r3, r31, 0x18
-	addi     r5, r31, 0x28
-	li       r4, 0xab
-	crclr    6
-	bl       panic_f__12JUTExceptionFPCciPCce
+	m_louieColor1.r = 0xffe2;
+	m_louieColor1.g = 0xffe2;
+	m_louieColor1.b = 0x0032;
 
-lbl_803834C8:
-	lwz      r0, 0x39c(r30)
-	cmpwi    r0, 0x47
-	bne      lbl_80383520
-	lwz      r27, 0x28c(r30)
-	mr       r3, r27
-	lwz      r12, 0x28(r27)
-	lwz      r12, 0x1c(r12)
-	mtctr    r12
-	bctrl
-	cmpwi    r3, 6
-	beq      lbl_80383508
-	addi     r3, r31, 0x40
-	addi     r5, r31, 0x28
-	li       r4, 0x45a
-	crclr    6
-	bl       panic_f__12JUTExceptionFPCciPCce
+	m_louieColor2.r = 0xffb0;
+	m_louieColor2.g = 0xffb0;
+	m_louieColor2.b = 0x0000;
 
-lbl_80383508:
-	mr       r3, r27
-	li       r4, 0
-	bl       setAppearFlag__Q23PSM9EnemyBossFb
-	li       r0, 1
-	stb      r0, 0x118(r27)
-	b        lbl_803835CC
+	m_normalColor1.r = 0x0000;
+	m_normalColor1.g = 0xffe7;
+	m_normalColor1.b = 0xffb5;
 
-lbl_80383520:
-	mr       r3, r30
-	lwz      r12, 0(r30)
-	lwz      r12, 0x228(r12)
-	mtctr    r12
-	bctrl
-	lwz      r3, 0xc0(r30)
-	lfs      f0, lbl_8051EDA4@sda21(r2)
-	lfs      f1, 0x984(r3)
-	stfs     f1, 0x200(r30)
-	stfs     f1, 0x204(r30)
-	stfs     f0, 0x35c(r30)
-	lwz      r0, 0x174(r30)
-	cmplwi   r0, 0
-	bne      lbl_8038356C
-	addi     r3, r31, 0x18
-	addi     r5, r31, 0x28
-	li       r4, 0xbd
-	crclr    6
-	bl       panic_f__12JUTExceptionFPCciPCce
+	_31C = m_normalColor1;
+	_314 = m_normalColor1;
+	
+	curU = nullptr;
 
-lbl_8038356C:
-	lwz      r3, 0x174(r30)
-	addi     r4, r31, 0x58
-	lwz      r5, 8(r3)
-	lwz      r27, 4(r5)
-	bl       getJointIndex__Q28SysShape5ModelFPc
-	sth      r3, 0x360(r30)
-	addi     r4, r31, 0x64
-	lwz      r3, 0x174(r30)
-	bl       getJointIndex__Q28SysShape5ModelFPc
-	sth      r3, 0x362(r30)
-	lis      r4, eyeScaleCallBack__Q24Game8UmiMushiFP8J3DJointi@ha
-	lis      r3, weakScaleCallBack__Q24Game8UmiMushiFP8J3DJointi@ha
-	lhz      r0, 0x360(r30)
-	addi     r6, r4, eyeScaleCallBack__Q24Game8UmiMushiFP8J3DJointi@l
-	lwz      r5, 0x28(r27)
-	addi     r4, r3, weakScaleCallBack__Q24Game8UmiMushiFP8J3DJointi@l
-	slwi     r0, r0, 2
-	lwzx     r3, r5, r0
-	stw      r6, 4(r3)
-	lhz      r0, 0x362(r30)
-	lwz      r3, 0x28(r27)
-	slwi     r0, r0, 2
-	lwzx     r3, r3, r0
-	stw      r4, 4(r3)
+	m_fsm->start(this, 1, nullptr); // fix this later
 
-lbl_803835CC:
-	li       r0, 0
-	stb      r0, 0x2b0(r30)
-	lfs      f0, 0x18c(r30)
-	stfs     f0, 0x38c(r30)
-	lfs      f0, 0x190(r30)
-	stfs     f0, 0x390(r30)
-	lfs      f0, 0x194(r30)
-	stfs     f0, 0x394(r30)
-	lwz      r0, 0x364(r30)
-	cmplwi   r0, 0
-	bne      lbl_8038360C
-	addi     r3, r31, 0x18
-	addi     r5, r31, 0x28
-	li       r4, 0xd4
-	crclr    6
-	bl       panic_f__12JUTExceptionFPCciPCce
+	P2ASSERTLINE(157, _354);
+	_354->start(C_MGR->m_texAnimation);
 
-lbl_8038360C:
-	lis      r3, __vt__Q23efx3Arg@ha
-	addi     r4, r1, 8
-	addi     r0, r3, __vt__Q23efx3Arg@l
-	stw      r0, 8(r1)
-	lfs      f0, 0x38c(r30)
-	stfs     f0, 0xc(r1)
-	lfs      f0, 0x390(r30)
-	stfs     f0, 0x10(r1)
-	lfs      f0, 0x394(r30)
-	stfs     f0, 0x14(r1)
-	lwz      r3, 0x364(r30)
-	lwz      r12, 0(r3)
-	lwz      r12, 8(r12)
-	mtctr    r12
-	bctrl
-	lwz      r3, 0x364(r30)
-	lfs      f1, 0x1f8(r30)
-	bl       setGlobalScale__Q23efx9TUmiHamonFf
-	lwz      r0, 0x368(r30)
-	cmplwi   r0, 0
-	bne      lbl_80383674
-	addi     r3, r31, 0x18
-	addi     r5, r31, 0x28
-	li       r4, 0xda
-	crclr    6
-	bl       panic_f__12JUTExceptionFPCciPCce
+	P2ASSERTLINE(160, m_shadowMgr);
+	m_shadowMgr->init();
+	
+	J3DModelData* modelData = m_model->m_j3dModel->m_modelData;
+	P2ASSERTLINE(166, modelData);
 
-lbl_80383674:
-	lwz      r0, 0x36c(r30)
-	cmplwi   r0, 0
-	bne      lbl_80383694
-	addi     r3, r31, 0x18
-	addi     r5, r31, 0x28
-	li       r4, 0xdb
-	crclr    6
-	bl       panic_f__12JUTExceptionFPCciPCce
+	u16 matIdx = modelData->m_materialTable._0C->getIndex("cc_mat1_v");
+	_310 = modelData->m_materialTable.m_materials1[matIdx];
 
-lbl_80383694:
-	lwz      r3, 0x174(r30)
-	addi     r4, r31, 0x64
-	bl       getJoint__Q28SysShape5ModelFPc
-	bl       getWorldMatrix__Q28SysShape5JointFv
-	mr       r0, r3
-	lwz      r3, 0x368(r30)
-	mr       r27, r0
-	mr       r4, r27
-	bl       setMtxptr__Q23efx10TChaseMtx2FPA4_f
-	lwz      r3, 0x36c(r30)
-	mr       r4, r27
-	bl       setMtxptr__Q23efx10TChaseMtx2FPA4_f
-	lwz      r0, 0x370(r30)
-	cmplwi   r0, 0
-	bne      lbl_803836E4
-	addi     r3, r31, 0x18
-	addi     r5, r31, 0x28
-	li       r4, 0xe1
-	crclr    6
-	bl       panic_f__12JUTExceptionFPCciPCce
+	P2ASSERTLINE(171, _310);
 
-lbl_803836E4:
-	lwz      r0, 0x374(r30)
-	cmplwi   r0, 0
-	bne      lbl_80383704
-	addi     r3, r31, 0x18
-	addi     r5, r31, 0x28
-	li       r4, 0xe2
-	crclr    6
-	bl       panic_f__12JUTExceptionFPCciPCce
+	if (m_bloysterType == EnemyTypeID::EnemyID_UmiMushi) {
+		PSM::EnemyMidBoss* bossSoundObj = static_cast<PSM::EnemyMidBoss*>(m_soundObj);
+		checkMidBoss(bossSoundObj);
+		bossSoundObj->setAppearFlag(false);
+		bossSoundObj->_118 = true;
+	}
+	else {
+		setParameters();
+		float health = C_PROPERPARMS.m_blindHealth.m_value;
+		m_health = health;
+		m_maxHealth = health;
+		_35C = 0.45f;
+		P2ASSERTLINE(189, m_model);
+		J3DModelData* modelData =  m_model->m_j3dModel->m_modelData;
+		m_eyeJointIdx = m_model->getJointIndex("eyes_joint1");
+		m_weakJointIdx = m_model->getJointIndex("weak_joint2");
+		modelData->m_jointTree.m_joints[m_eyeJointIdx]->m_function  = UmiMushi::eyeScaleCallBack;
+		modelData->m_jointTree.m_joints[m_weakJointIdx]->m_function = UmiMushi::weakScaleCallBack;
+	}
+    m_dropGroup = EDG_None;
+    _38C = m_position;
+    P2ASSERTLINE(212, _364);
+    efx::Arg efxArg (_38C);
+    _364->create(&efxArg);
+    _364->setGlobalScale(m_scaleModifier);
+    P2ASSERTLINE(218, _368);
+    P2ASSERTLINE(219, _36C);
+    Matrixf* modelMtx = m_model->getJoint("weak_joint2")->getWorldMatrix();
+    _368->setMtxptr((PSQuaternion*)modelMtx);
+    _36C->setMtxptr((PSQuaternion*)modelMtx);
 
-lbl_80383704:
-	lwz      r0, 0x378(r30)
-	cmplwi   r0, 0
-	bne      lbl_80383724
-	addi     r3, r31, 0x18
-	addi     r5, r31, 0x28
-	li       r4, 0xe4
-	crclr    6
-	bl       panic_f__12JUTExceptionFPCciPCce
+    P2ASSERTLINE(225, _370[0]);
+    P2ASSERTLINE(226, _370[1]);
+    // random newline here bc why not
+    P2ASSERTLINE(228, _378[0]);
+    P2ASSERTLINE(229, _378[1]);
 
-lbl_80383724:
-	lwz      r0, 0x37c(r30)
-	cmplwi   r0, 0
-	bne      lbl_80383744
-	addi     r3, r31, 0x18
-	addi     r5, r31, 0x28
-	li       r4, 0xe5
-	crclr    6
-	bl       panic_f__12JUTExceptionFPCciPCce
+    
 
-lbl_80383744:
-	lwz      r3, 0x174(r30)
-	addi     r4, r31, 0x70
-	bl       getJoint__Q28SysShape5ModelFPc
-	bl       getWorldMatrix__Q28SysShape5JointFv
-	mr       r27, r3
-	lwz      r3, 0x370(r30)
-	mr       r4, r27
-	bl       setMtxptr__Q23efx10TChaseMtx2FPA4_f
-	lwz      r3, 0x378(r30)
-	mr       r4, r27
-	bl       setMtxptr__Q23efx10TChaseMtx2FPA4_f
-	lwz      r3, 0x174(r30)
-	addi     r4, r31, 0x7c
-	bl       getJoint__Q28SysShape5ModelFPc
-	bl       getWorldMatrix__Q28SysShape5JointFv
-	mr       r27, r3
-	lwz      r3, 0x374(r30)
-	mr       r4, r27
-	bl       setMtxptr__Q23efx10TChaseMtx2FPA4_f
-	lwz      r3, 0x37c(r30)
-	mr       r4, r27
-	bl       setMtxptr__Q23efx10TChaseMtx2FPA4_f
-	lwz      r0, 0x380(r30)
-	cmplwi   r0, 0
-	bne      lbl_803837BC
-	addi     r3, r31, 0x18
-	addi     r5, r31, 0x28
-	li       r4, 0xef
-	crclr    6
-	bl       panic_f__12JUTExceptionFPCciPCce
+    modelMtx = m_model->getJoint("ef_eye_r")->getWorldMatrix();
+    _370[0]->setMtxptr((PSQuaternion*)modelMtx);
+    _378[0]->setMtxptr((PSQuaternion*)modelMtx);
 
-lbl_803837BC:
-	lwz      r0, 0x384(r30)
-	cmplwi   r0, 0
-	bne      lbl_803837DC
-	addi     r3, r31, 0x18
-	addi     r5, r31, 0x28
-	li       r4, 0xf0
-	crclr    6
-	bl       panic_f__12JUTExceptionFPCciPCce
+    modelMtx = m_model->getJoint("ef_eye_l")->getWorldMatrix();
+    _370[1]->setMtxptr((PSQuaternion*)modelMtx);
+    _378[1]->setMtxptr((PSQuaternion*)modelMtx);
 
-lbl_803837DC:
-	lwz      r3, 0x174(r30)
-	addi     r4, r31, 0x88
-	bl       getJoint__Q28SysShape5ModelFPc
-	bl       getWorldMatrix__Q28SysShape5JointFv
-	stw      r3, 0x388(r30)
-	lwz      r0, 0x388(r30)
-	lwz      r3, 0x380(r30)
-	stw      r0, 0x10(r3)
-	lwz      r0, 0x388(r30)
-	lwz      r3, 0x384(r30)
-	stw      r0, 0x10(r3)
-	lmw      r27, 0x1c(r1)
-	lwz      r0, 0x34(r1)
-	mtlr     r0
-	addi     r1, r1, 0x30
-	blr
-	*/
+    P2ASSERTLINE(239, m_efxEat);
+    P2ASSERTLINE(240, _384);
+
+    _388 = m_model->getJoint("bero_joint1")->getWorldMatrix();
+    
+    m_efxEat->m_mtx = _388;
+    _384->m_mtx     = _388;
+
+
 }
 
 /*
@@ -999,302 +689,13 @@ lbl_803837DC:
  */
 Obj::Obj()
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	extsh.   r0, r4
-	stw      r31, 0xc(r1)
-	mr       r31, r3
-	stw      r30, 8(r1)
-	beq      lbl_8038385C
-	addi     r0, r31, 0x3a4
-	lis      r3, __vt__Q24Game10PelletView@ha
-	stw      r0, 0x17c(r31)
-	addi     r3, r3, __vt__Q24Game10PelletView@l
-	li       r0, 0
-	stw      r3, 0x3a4(r31)
-	stw      r0, 0x3a8(r31)
-	stw      r0, 0x3ac(r31)
-
-lbl_8038385C:
-	mr       r3, r31
-	li       r4, 0
-	bl       __ct__Q24Game9EnemyBaseFv
-	lis      r3, __vt__Q34Game8UmiMushi3Obj@ha
-	addi     r0, r31, 0x3a4
-	addi     r5, r3, __vt__Q34Game8UmiMushi3Obj@l
-	addi     r3, r31, 0x2cc
-	stw      r5, 0(r31)
-	addi     r4, r5, 0x1b0
-	addi     r5, r5, 0x2fc
-	stw      r4, 0x178(r31)
-	lwz      r4, 0x17c(r31)
-	stw      r5, 0(r4)
-	lwz      r4, 0x17c(r31)
-	subf     r0, r4, r0
-	stw      r0, 0xc(r4)
-	bl       __ct__10MouthSlotsFv
-	li       r0, 0
-	li       r3, 0x2c
-	stw      r0, 0x2d4(r31)
-	stw      r0, 0x2d8(r31)
-	stb      r0, 0x2dd(r31)
-	stw      r0, 0x310(r31)
-	stw      r0, 0x354(r31)
-	stw      r0, 0x358(r31)
-	stw      r0, 0x364(r31)
-	stw      r0, 0x368(r31)
-	stw      r0, 0x36c(r31)
-	stw      r0, 0x370(r31)
-	stw      r0, 0x374(r31)
-	stw      r0, 0x378(r31)
-	stw      r0, 0x37c(r31)
-	stw      r0, 0x380(r31)
-	stw      r0, 0x384(r31)
-	stw      r0, 0x388(r31)
-	stw      r0, 0x398(r31)
-	stw      r0, 0x3a0(r31)
-	bl       __nw__FUl
-	or.      r30, r3, r3
-	beq      lbl_8038393C
-	bl       __ct__Q24Game17EnemyAnimatorBaseFv
-	lis      r3, __vt__Q34Game8UmiMushi14ProperAnimator@ha
-	lis      r4, __vt__Q28SysShape12BaseAnimator@ha
-	addi     r0, r3, __vt__Q34Game8UmiMushi14ProperAnimator@l
-	lis      r3, __vt__Q28SysShape8Animator@ha
-	stw      r0, 0(r30)
-	addi     r4, r4, __vt__Q28SysShape12BaseAnimator@l
-	addi     r3, r3, __vt__Q28SysShape8Animator@l
-	li       r0, 0
-	stw      r4, 0x10(r30)
-	stw      r3, 0x10(r30)
-	stb      r0, 0x28(r30)
-	stw      r0, 0x1c(r30)
-	stw      r0, 0x14(r30)
-	stb      r0, 0x28(r30)
-	stw      r0, 0x20(r30)
-
-lbl_8038393C:
-	stw      r30, 0x184(r31)
-	li       r3, 0x1c
-	bl       __nw__FUl
-	or.      r4, r3, r3
-	beq      lbl_80383970
-	lis      r5, __vt__Q24Game17EnemyStateMachine@ha
-	lis      r3, __vt__Q34Game8UmiMushi3FSM@ha
-	addi     r0, r5, __vt__Q24Game17EnemyStateMachine@l
-	li       r5, -1
-	stw      r0, 0(r4)
-	addi     r0, r3, __vt__Q34Game8UmiMushi3FSM@l
-	stw      r5, 0x18(r4)
-	stw      r0, 0(r4)
-
-lbl_80383970:
-	lwz      r12, 0(r31)
-	mr       r3, r31
-	lwz      r12, 0x2f8(r12)
-	mtctr    r12
-	bctrl
-	li       r3, 0xc
-	bl       __nw__FUl
-	or.      r30, r3, r3
-	beq      lbl_803839A4
-	bl       __ct__Q23Sys15MatBaseAnimatorFv
-	lis      r3, __vt__Q23Sys15MatLoopAnimator@ha
-	addi     r0, r3, __vt__Q23Sys15MatLoopAnimator@l
-	stw      r0, 0(r30)
-
-lbl_803839A4:
-	stw      r30, 0x354(r31)
-	li       r3, 0x18
-	bl       __nw__FUl
-	or.      r0, r3, r3
-	beq      lbl_803839C4
-	mr       r4, r31
-	bl       __ct__Q34Game8UmiMushi17UmimushiShadowMgrFPQ34Game8UmiMushi3Obj
-	mr       r0, r3
-
-lbl_803839C4:
-	stw      r0, 0x358(r31)
-	li       r3, 0x2c
-	bl       __nw__FUl
-	or.      r30, r3, r3
-	beq      lbl_803839F4
-	addi     r4, r31, 0x38c
-	li       r5, 0x1de
-	li       r6, 0x1df
-	bl       "__ct__Q23efx10TChasePos2FP10Vector3<f>UsUs"
-	lis      r3, __vt__Q23efx9TUmiHamon@ha
-	addi     r0, r3, __vt__Q23efx9TUmiHamon@l
-	stw      r0, 0(r30)
-
-lbl_803839F4:
-	stw      r30, 0x364(r31)
-	li       r3, 0x2c
-	bl       __nw__FUl
-	or.      r30, r3, r3
-	beq      lbl_80383A24
-	li       r4, 0
-	li       r5, 0x1e2
-	li       r6, 0x1e3
-	bl       __ct__Q23efx10TChaseMtx2FPA4_fUsUs
-	lis      r3, __vt__Q23efx11TUmiWeakRed@ha
-	addi     r0, r3, __vt__Q23efx11TUmiWeakRed@l
-	stw      r0, 0(r30)
-
-lbl_80383A24:
-	stw      r30, 0x368(r31)
-	li       r3, 0x2c
-	bl       __nw__FUl
-	or.      r30, r3, r3
-	beq      lbl_80383A54
-	li       r4, 0
-	li       r5, 0x1e0
-	li       r6, 0x1e1
-	bl       __ct__Q23efx10TChaseMtx2FPA4_fUsUs
-	lis      r3, __vt__Q23efx12TUmiWeakBlue@ha
-	addi     r0, r3, __vt__Q23efx12TUmiWeakBlue@l
-	stw      r0, 0(r30)
-
-lbl_80383A54:
-	stw      r30, 0x36c(r31)
-	li       r3, 0x2c
-	bl       __nw__FUl
-	or.      r30, r3, r3
-	beq      lbl_80383A84
-	li       r4, 0
-	li       r5, 0x1d9
-	li       r6, 0x1da
-	bl       __ct__Q23efx10TChaseMtx2FPA4_fUsUs
-	lis      r3, __vt__Q23efx10TUmiEyeRed@ha
-	addi     r0, r3, __vt__Q23efx10TUmiEyeRed@l
-	stw      r0, 0(r30)
-
-lbl_80383A84:
-	stw      r30, 0x370(r31)
-	li       r3, 0x2c
-	bl       __nw__FUl
-	or.      r30, r3, r3
-	beq      lbl_80383AB4
-	li       r4, 0
-	li       r5, 0x1d7
-	li       r6, 0x1d8
-	bl       __ct__Q23efx10TChaseMtx2FPA4_fUsUs
-	lis      r3, __vt__Q23efx11TUmiEyeBlue@ha
-	addi     r0, r3, __vt__Q23efx11TUmiEyeBlue@l
-	stw      r0, 0(r30)
-
-lbl_80383AB4:
-	stw      r30, 0x378(r31)
-	li       r3, 0x2c
-	bl       __nw__FUl
-	or.      r30, r3, r3
-	beq      lbl_80383AE4
-	li       r4, 0
-	li       r5, 0x1d9
-	li       r6, 0x1da
-	bl       __ct__Q23efx10TChaseMtx2FPA4_fUsUs
-	lis      r3, __vt__Q23efx10TUmiEyeRed@ha
-	addi     r0, r3, __vt__Q23efx10TUmiEyeRed@l
-	stw      r0, 0(r30)
-
-lbl_80383AE4:
-	stw      r30, 0x374(r31)
-	li       r3, 0x2c
-	bl       __nw__FUl
-	or.      r30, r3, r3
-	beq      lbl_80383B14
-	li       r4, 0
-	li       r5, 0x1d7
-	li       r6, 0x1d8
-	bl       __ct__Q23efx10TChaseMtx2FPA4_fUsUs
-	lis      r3, __vt__Q23efx11TUmiEyeBlue@ha
-	addi     r0, r3, __vt__Q23efx11TUmiEyeBlue@l
-	stw      r0, 0(r30)
-
-lbl_80383B14:
-	stw      r30, 0x37c(r31)
-	li       r3, 0x14
-	bl       __nw__FUl
-	cmplwi   r3, 0
-	beq      lbl_80383B9C
-	lis      r4, __vt__Q23efx5TBase@ha
-	lis      r5, __vt__18JPAEmitterCallBack@ha
-	addi     r0, r4, __vt__Q23efx5TBase@l
-	lis      r4, __vt__Q23efx5TSync@ha
-	stw      r0, 0(r3)
-	addi     r0, r5, __vt__18JPAEmitterCallBack@l
-	addi     r5, r4, __vt__Q23efx5TSync@l
-	lis      r4, __vt__Q23efx9TChaseMtx@ha
-	stw      r0, 4(r3)
-	addi     r7, r4, __vt__Q23efx9TChaseMtx@l
-	lis      r4, __vt__Q23efx7TUmiEat@ha
-	addi     r0, r5, 0x14
-	stw      r5, 0(r3)
-	addi     r4, r4, __vt__Q23efx7TUmiEat@l
-	li       r9, 0
-	li       r8, 0x2b2
-	stw      r0, 4(r3)
-	addi     r6, r7, 0x14
-	li       r5, 0x1d6
-	addi     r0, r4, 0x14
-	stw      r9, 8(r3)
-	sth      r8, 0xc(r3)
-	stb      r9, 0xe(r3)
-	stw      r7, 0(r3)
-	stw      r6, 4(r3)
-	stw      r9, 0x10(r3)
-	sth      r5, 0xc(r3)
-	stw      r4, 0(r3)
-	stw      r0, 4(r3)
-
-lbl_80383B9C:
-	stw      r3, 0x380(r31)
-	li       r3, 0x14
-	bl       __nw__FUl
-	cmplwi   r3, 0
-	beq      lbl_80383C24
-	lis      r4, __vt__Q23efx5TBase@ha
-	lis      r5, __vt__18JPAEmitterCallBack@ha
-	addi     r0, r4, __vt__Q23efx5TBase@l
-	lis      r4, __vt__Q23efx5TSync@ha
-	stw      r0, 0(r3)
-	addi     r0, r5, __vt__18JPAEmitterCallBack@l
-	addi     r5, r4, __vt__Q23efx5TSync@l
-	lis      r4, __vt__Q23efx9TChaseMtx@ha
-	stw      r0, 4(r3)
-	addi     r7, r4, __vt__Q23efx9TChaseMtx@l
-	lis      r4, __vt__Q23efx11TUmiDeadawa@ha
-	addi     r0, r5, 0x14
-	stw      r5, 0(r3)
-	addi     r4, r4, __vt__Q23efx11TUmiDeadawa@l
-	li       r9, 0
-	li       r8, 0x2b2
-	stw      r0, 4(r3)
-	addi     r6, r7, 0x14
-	li       r5, 0x1d4
-	addi     r0, r4, 0x14
-	stw      r9, 8(r3)
-	sth      r8, 0xc(r3)
-	stb      r9, 0xe(r3)
-	stw      r7, 0(r3)
-	stw      r6, 4(r3)
-	stw      r9, 0x10(r3)
-	sth      r5, 0xc(r3)
-	stw      r4, 0(r3)
-	stw      r0, 4(r3)
-
-lbl_80383C24:
-	stw      r3, 0x384(r31)
-	mr       r3, r31
-	lwz      r0, 0x14(r1)
-	lwz      r31, 0xc(r1)
-	lwz      r30, 8(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+    m_headJoint = nullptr;
+    m_targetNavi = nullptr;
+    _2DD = 0;
+    _310 = nullptr;
+    _354 = nullptr;
+    m_shadowMgr = nullptr;
+    
 }
 
 /*
