@@ -126,7 +126,11 @@ void CommonSaveData::Mgr::setup()
 			setSoundModeSurround();
 			break;
 		default:
+#if BUILDTARGET == USADEMO1
+			JUT_PANICLINE(271, "Unknown sound mode:%d \n", m_soundMode);
+#else
 			JUT_PANICLINE(268, "Unknown sound mode:%d \n", m_soundMode);
+#endif
 			break;
 		}
 		break;
@@ -244,7 +248,11 @@ void CommonSaveData::Mgr::setBgmVolume(f32 volume)
 	if (volume >= 0.0f && volume <= 1.0f) {
 		volumeCheck = true;
 	}
+#if BUILDTARGET == USADEMO1
+	P2ASSERTLINE(392, volumeCheck);
+#else
 	P2ASSERTLINE(389, volumeCheck);
+#endif
 
 	if (PSSystem::spSysIF) {
 		f32 calc = volume * 255.0f;
@@ -275,7 +283,11 @@ void CommonSaveData::Mgr::setSeVolume(f32 volume)
 	if (volume >= 0.0f && volume <= 1.0f) {
 		volumeCheck = true;
 	}
+#if BUILDTARGET == USADEMO1
+	P2ASSERTLINE(410, volumeCheck);
+#else
 	P2ASSERTLINE(407, volumeCheck);
+#endif
 
 	if (PSSystem::spSysIF) {
 		f32 calc = volume * 255.0f;
