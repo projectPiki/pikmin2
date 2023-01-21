@@ -5,7 +5,7 @@
 
 namespace Screen {
 struct MgrBase : public JKRDisposer {
-	virtual ~MgrBase();                          // _08
+	virtual ~MgrBase() { }                       // _08
 	virtual bool setScene(SetSceneArg&)     = 0; // _0C
 	virtual bool startScene(StartSceneArg*) = 0; // _10
 	virtual void endScene(EndSceneArg*)     = 0; // _14
@@ -17,16 +17,16 @@ struct MgrBase : public JKRDisposer {
 struct Mgr : public MgrBase {
 	Mgr();
 
-	virtual ~Mgr();                             // _08 (weak)
-	virtual bool setScene(SetSceneArg&);        // _0C
-	virtual bool startScene(StartSceneArg*);    // _10
-	virtual void endScene(EndSceneArg*);        // _14
-	virtual void reset();                       // _18
-	virtual void setColorBG(JUtility::TColor&); // _1C (weak)
-	virtual void setBGMode(int);                // _20 (weak)
-	virtual void doGetSceneBase(long);          // _24
-	virtual void drawBG(Graphics&);             // _28 (weak)
-	virtual void drawWipe(Graphics&);           // _2C (weak)
+	virtual ~Mgr() { sScreenMgr = nullptr; }           // _08 (weak)
+	virtual bool setScene(SetSceneArg&);               // _0C
+	virtual bool startScene(StartSceneArg*);           // _10
+	virtual void endScene(EndSceneArg*);               // _14
+	virtual bool reset();                              // _18
+	virtual void setColorBG(JUtility::TColor&);        // _1C (weak)
+	virtual void setBGMode(int);                       // _20 (weak)
+	virtual ::Screen::SceneBase* doGetSceneBase(long); // _24
+	virtual void drawBG(Graphics&);                    // _28 (weak)
+	virtual void drawWipe(Graphics&) { }               // _2C (weak)
 
 	void init();
 	void getCurrentCommand();
@@ -77,25 +77,41 @@ struct Mgr : public MgrBase {
 	JUtility::TColor m_bgColor; // _9C
 	JUtility::TColor _A0;       // _A0
 	int m_bgMode;               // _A4
+
+	static Mgr* sScreenMgr;
 };
 
 } // namespace Screen
 
 namespace newScreen {
-struct Mgr : public Screen::Mgr {
-	virtual ~Mgr();                             // _08 (weak)
-	virtual void reset();                       // _18
-	virtual void setColorBG(JUtility::TColor&); // _1C (weak)
-	virtual void setBGMode(int);                // _20 (weak)
-	virtual void doGetSceneBase(long);          // _24
-	virtual void drawBG(Graphics&);             // _28
+::Screen::SceneBase* createScene_Ogawa(long);
+::Screen::SceneBase* createScene_Morimura(long);
+::Screen::SceneBase* createScene_Koono(long);
 
-	void create();
+struct Mgr : public Screen::Mgr {
+	Mgr()
+	{
+		m_bgColor.set(-1);
+		_A0.set(-1);
+		_90      = 0;
+		m_inCave = false;
+		m_inDemo = false;
+		_94      = 0;
+		_98      = 0;
+	}
+
+	virtual ~Mgr() { }                                                  // _08 (weak)
+	virtual bool reset();                                               // _18
+	virtual void setColorBG(JUtility::TColor& col) { m_bgColor = col; } // _1C (weak)
+	virtual void setBGMode(int mode) { m_bgMode = mode; }               // _20 (weak)
+	virtual ::Screen::SceneBase* doGetSceneBase(long);                  // _24
+	virtual void drawBG(Graphics&);                                     // _28
+
+	static Mgr* create();
 
 	// _00     = VTBL
 	// _00-_A8 = Mgr
 };
-
 } // namespace newScreen
 
 #endif

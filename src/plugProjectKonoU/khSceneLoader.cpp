@@ -5,6 +5,7 @@
 #include "kh/FinalFloor.h"
 #include "kh/FinalResult.h"
 #include "kh/PayDept.h"
+#include "Screen/screenMgr.h"
 
 namespace kh {
 namespace Screen {

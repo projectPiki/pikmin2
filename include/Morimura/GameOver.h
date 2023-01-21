@@ -4,6 +4,7 @@
 #include "Morimura/Bases.h"
 #include "Morimura/mrUtil.h"
 #include "P2DScreen.h"
+#include "Game/Navi.h"
 
 namespace Morimura {
 struct TGameOverScreen {
@@ -22,28 +23,33 @@ struct TGameOverBase : public TTestBase {
 	TGameOverBase();
 	TGameOverBase(char* name);
 
-	virtual ~TGameOverBase();                                // _08 (weak)
-	virtual bool doUpdate();                                 // _58
-	virtual bool doUpdateFadeout();                          // _60 (weak)
-	virtual void doDraw(Graphics& gfx);                      // _68
-	virtual og::Screen::DispMemberBase* getDispMemberBase(); // _78 (weak)
+	virtual ~TGameOverBase() { }                                               // _08 (weak)
+	virtual bool doUpdate();                                                   // _58
+	virtual bool doUpdateFadeout() { return TTestBase::doUpdateFadeout(); }    // _60 (weak)
+	virtual void doDraw(Graphics& gfx);                                        // _68
+	virtual og::Screen::DispMemberBase* getDispMemberBase() { return m_disp; } // _78 (weak)
 
 	// _00     = VTBL1
 	// _18     = VTBL2
 	// _00-_78 = TTestBase
-	JKRArchive* m_archive;             // _78
-	TGameOverScreen* m_gameOverScreen; // _7C
-	u8 _80[0x4];                       // _80, unknown
-	u8 _84;                            // _84
-	u8 _85;                            // _85
-	s16 _86;                           // _86
-	u32 m_type;                        // _88, unknown
-	s16 _8C;                           // _8C
-	s16 _8E;                           // _8E
+	JKRArchive* m_archive;              // _78
+	TGameOverScreen* m_gameOverScreen;  // _7C
+	og::Screen::DispMemberBase* m_disp; // _80, unknown
+	u8 _84;                             // _84
+	u8 _85;                             // _85
+	s16 _86;                            // _86
+	u32 m_type;                         // _88, unknown
+	s16 _8C;                            // _8C
+	s16 _8E;                            // _8E
 };
 
 struct TGameOver2D : public TGameOverBase {
-	virtual ~TGameOver2D();             // _08 (weak)
+	TGameOver2D()
+	    : TGameOverBase("GameOver")
+	{
+	}
+
+	virtual ~TGameOver2D() { }          // _08 (weak)
 	virtual void doCreate(JKRArchive*); // _4C
 
 	// _00     = VTBL1
@@ -57,7 +63,7 @@ struct TLujiDown2D : public TGameOverBase {
 	{
 	}
 
-	virtual ~TLujiDown2D();             // _08 (weak)
+	virtual ~TLujiDown2D() { }          // _08 (weak)
 	virtual void doCreate(JKRArchive*); // _4C
 
 	// _00     = VTBL1
@@ -71,7 +77,7 @@ struct TOrimaDown2D : public TGameOverBase {
 	{
 	}
 
-	virtual ~TOrimaDown2D();            // _08 (weak)
+	virtual ~TOrimaDown2D() { }         // _08 (weak)
 	virtual void doCreate(JKRArchive*); // _4C
 
 	// _00     = VTBL1
@@ -85,7 +91,7 @@ struct TPikminDown2D : public TGameOverBase {
 	{
 	}
 
-	virtual ~TPikminDown2D();           // _08 (weak)
+	virtual ~TPikminDown2D() { }        // _08 (weak)
 	virtual void doCreate(JKRArchive*); // _4C
 
 	// _00     = VTBL1
@@ -94,7 +100,12 @@ struct TPikminDown2D : public TGameOverBase {
 };
 
 struct TPresidentDown2D : public TGameOverBase {
-	virtual ~TPresidentDown2D();        // _08 (weak)
+	TPresidentDown2D()
+	    : TGameOverBase("PresidentDown")
+	{
+	}
+
+	virtual ~TPresidentDown2D() { }     // _08 (weak)
 	virtual void doCreate(JKRArchive*); // _4C
 
 	// _00     = VTBL1
@@ -103,7 +114,7 @@ struct TPresidentDown2D : public TGameOverBase {
 };
 
 struct TGameOverSceneBase : public THIOScene {
-	virtual bool isUseBackupSceneInfo(); // _14 (weak)
+	virtual bool isUseBackupSceneInfo() { return (!Game::naviMgr || Game::naviMgr->getAliveCount() < 2); } // _14
 
 	// _00      = VTBL
 	// _00-_224 = THIOScene
@@ -111,12 +122,17 @@ struct TGameOverSceneBase : public THIOScene {
 };
 
 struct TGameOverScene : public TGameOverSceneBase {
-	virtual SceneType getSceneType();       // _08 (weak)
-	virtual ScreenOwnerID getOwnerID();     // _0C (weak)
-	virtual ScreenMemberID getMemberID();   // _10 (weak)
-	virtual bool isUseBackupSceneInfo();    // _14 (weak)
-	virtual const char* getResName() const; // _1C (weak)
-	virtual void doCreateObj(JKRArchive*);  // _20 (weak)
+	virtual SceneType getSceneType() { return SCENE_GAME_OVER_GENERAL; }  // _08 (weak)
+	virtual ScreenOwnerID getOwnerID() { return OWNER_MRMR; }             // _0C (weak)
+	virtual ScreenMemberID getMemberID() { return MEMBER_GAME_OVER; }     // _10 (weak)
+	virtual bool isUseBackupSceneInfo() { return false; }                 // _14 (weak)
+	virtual const char* getResName() const { return "res_gameover.szs"; } // _1C (weak)
+	virtual void doCreateObj(JKRArchive* arc)
+	{
+		TGameOver2D* obj = new TGameOver2D;
+		registObj(obj, arc);
+		m_object = obj;
+	} // _20 (weak)
 
 	// _00      = VTBL
 	// _00-_224 = TGameOverSceneBase
@@ -124,11 +140,16 @@ struct TGameOverScene : public TGameOverSceneBase {
 };
 
 struct TLujiDownScene : public TGameOverSceneBase {
-	virtual SceneType getSceneType();       // _08 (weak)
-	virtual ScreenOwnerID getOwnerID();     // _0C (weak)
-	virtual ScreenMemberID getMemberID();   // _10 (weak)
-	virtual const char* getResName() const; // _1C (weak)
-	virtual void doCreateObj(JKRArchive*);  // _20 (weak)
+	virtual SceneType getSceneType() { return SCENE_LUJI_DOWN; }            // _08 (weak)
+	virtual ScreenOwnerID getOwnerID() { return OWNER_MRMR; }               // _0C (weak)
+	virtual ScreenMemberID getMemberID() { return MEMBER_GAME_OVER; }       // _10 (weak)
+	virtual const char* getResName() const { return "gameover_louie.szs"; } // _1C (weak)
+	virtual void doCreateObj(JKRArchive* arc)
+	{
+		TLujiDown2D* obj = new TLujiDown2D;
+		registObj(obj, arc);
+		m_object = obj;
+	} // _20 (weak)
 
 	// _00      = VTBL
 	// _00-_224 = TGameOverSceneBase
@@ -136,11 +157,16 @@ struct TLujiDownScene : public TGameOverSceneBase {
 };
 
 struct TOrimaDownScene : public TGameOverSceneBase {
-	virtual SceneType getSceneType();       // _08 (weak)
-	virtual ScreenOwnerID getOwnerID();     // _0C (weak)
-	virtual ScreenMemberID getMemberID();   // _10 (weak)
-	virtual const char* getResName() const; // _1C (weak)
-	virtual void doCreateObj(JKRArchive*);  // _20 (weak)
+	virtual SceneType getSceneType() { return SCENE_ORIMA_DOWN; }          // _08 (weak)
+	virtual ScreenOwnerID getOwnerID() { return OWNER_MRMR; }              // _0C (weak)
+	virtual ScreenMemberID getMemberID() { return MEMBER_GAME_OVER; }      // _10 (weak)
+	virtual const char* getResName() const { return "res_orimadown.szs"; } // _1C (weak)
+	virtual void doCreateObj(JKRArchive* arc)
+	{
+		TOrimaDown2D* obj = new TOrimaDown2D;
+		registObj(obj, arc);
+		m_object = obj;
+	} // _20 (weak)
 
 	// _00      = VTBL
 	// _00-_224 = TGameOverSceneBase
@@ -148,12 +174,17 @@ struct TOrimaDownScene : public TGameOverSceneBase {
 };
 
 struct TPikminDownScene : public TGameOverSceneBase {
-	virtual SceneType getSceneType();       // _08 (weak)
-	virtual ScreenOwnerID getOwnerID();     // _0C (weak)
-	virtual ScreenMemberID getMemberID();   // _10 (weak)
-	virtual bool isUseBackupSceneInfo();    // _14 (weak)
-	virtual const char* getResName() const; // _1C (weak)
-	virtual void doCreateObj(JKRArchive*);  // _20 (weak)
+	virtual SceneType getSceneType() { return SCENE_PIKMIN_DOWN; }          // _08 (weak)
+	virtual ScreenOwnerID getOwnerID() { return OWNER_MRMR; }               // _0C (weak)
+	virtual ScreenMemberID getMemberID() { return MEMBER_GAME_OVER; }       // _10 (weak)
+	virtual bool isUseBackupSceneInfo() { return false; }                   // _14 (weak)
+	virtual const char* getResName() const { return "res_pikmindown.szs"; } // _1C (weak)
+	virtual void doCreateObj(JKRArchive* arc)
+	{
+		TPikminDown2D* obj = new TPikminDown2D;
+		registObj(obj, arc);
+		m_object = obj;
+	} // _20 (weak)
 
 	// _00      = VTBL
 	// _00-_224 = TGameOverSceneBase
@@ -161,11 +192,16 @@ struct TPikminDownScene : public TGameOverSceneBase {
 };
 
 struct TPresidentDownScene : public TGameOverSceneBase {
-	virtual SceneType getSceneType();       // _08 (weak)
-	virtual ScreenOwnerID getOwnerID();     // _0C (weak)
-	virtual ScreenMemberID getMemberID();   // _10 (weak)
-	virtual const char* getResName() const; // _1C (weak)
-	virtual void doCreateObj(JKRArchive*);  // _20 (weak)
+	virtual SceneType getSceneType() { return SCENE_PRESIDENT_DOWN; }          // _08 (weak)
+	virtual ScreenOwnerID getOwnerID() { return OWNER_MRMR; }                  // _0C (weak)
+	virtual ScreenMemberID getMemberID() { return MEMBER_GAME_OVER; }          // _10 (weak)
+	virtual const char* getResName() const { return "res_presidentdown.szs"; } // _1C (weak)
+	virtual void doCreateObj(JKRArchive* arc)
+	{
+		TPresidentDown2D* obj = new TPresidentDown2D;
+		registObj(obj, arc);
+		m_object = obj;
+	} // _20 (weak)
 
 	// _00      = VTBL
 	// _00-_224 = TGameOverSceneBase

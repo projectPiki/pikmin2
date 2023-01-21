@@ -224,7 +224,7 @@ void SceneWinLoseReason::doUpdateActive()
  * Address:	80410EA0
  * Size:	000020
  */
-bool SceneWinLoseReason::doEnd(::Screen::EndSceneArg* arg) { SceneBase::doEnd(arg); }
+bool SceneWinLoseReason::doEnd(::Screen::EndSceneArg* arg) { return SceneBase::doEnd(arg); }
 
 ObjWinLoseReason::StaticValues ObjWinLoseReason::msVal;
 

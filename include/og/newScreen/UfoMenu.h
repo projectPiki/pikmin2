@@ -1,5 +1,5 @@
-#ifndef _OG_NEWSCREEN_SAVE_H
-#define _OG_NEWSCREEN_SAVE_H
+#ifndef _OG_NEWSCREEN_UFOMENU_H
+#define _OG_NEWSCREEN_UfOMENU_H
 
 #include "Screen/screenObj.h"
 #include "JSystem/J2D/J2DPane.h"
