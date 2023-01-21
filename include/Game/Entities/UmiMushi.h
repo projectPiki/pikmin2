@@ -128,17 +128,14 @@ struct Obj : public EnemyBase {
 	u8 _300[0x4];                             // _300
 	Vector3f _304;                            // _304
 	u8 _310[0x4];                             // _310, unknown
-	s16 _314;                                 // _314
-	s16 _316;                                 // _316
-	s16 _318;                                 // _318
-	s16 _320;                                 // _320
-	s16 _322;                                 // _322
-	u8 _324[0x26];                            // _324, unknown
-	s16 _344;                                 // _344
-	s16 _346;                                 // _346
-	s16 _348;                                 // _348
-	u8 _34A[0x2];                             // _34A, unknown/maybe padding
-	u8 _34C[0x8];                             // _34C, unknown
+	J3DGXColorS10 _314;                       // _314
+	J3DGXColorS10 _31C;                       // _31C
+	J3DGXColorS10 m_olimarColor1;             // _324
+	J3DGXColorS10 m_olimarColor2;             // _32C
+	J3DGXColorS10 m_louieColor1;              // _334
+	J3DGXColorS10 m_louieColor2;              // _33C
+	J3DGXColorS10 m_normalColor1;             // _344
+	J3DGXColorS10 m_normalColor2;             // _34C
 	Sys::MatLoopAnimator* _354;               // _354
 	UmimushiShadowMgr* m_shadowMgr;           // _358
 	f32 _35C;                                 // _35C
