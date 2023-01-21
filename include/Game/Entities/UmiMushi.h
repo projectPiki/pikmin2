@@ -206,12 +206,15 @@ struct Obj : public EnemyBase {
 	bool _2DC;                                // _2DC, unknown
 	u8 _2DD;                                  // _2DD, unknown
 	u8 _2DE[0x2];                             // _2DE, unknown/maybe padding
-	u8 _2E0[0x18];                            // _2E0, unknown
+	int _2E0;                                 // _2E0, unknown
+    Vector3f _2E4;                            // _2E4
+	int _2F0;                                 // _2F0
+    int _2F4;                                 // _2F0
 	f32 _2F8;                                 // _2F8
 	f32 _2FC;                                 // _2FC
-	u8 _300[0x4];                             // _300
+	int _300;                                 // _300
 	Vector3f _304;                            // _304
-	u8 _310[0x4];                             // _310, unknown
+	J3DMaterial* _310;                        // _310, unknown
 	J3DGXColorS10 _314;                       // _314
 	J3DGXColorS10 _31C;                       // _31C
 	J3DGXColorS10 m_olimarColor1;             // _324
@@ -223,8 +226,8 @@ struct Obj : public EnemyBase {
 	Sys::MatLoopAnimator* _354;               // _354
 	UmimushiShadowMgr* m_shadowMgr;           // _358
 	f32 _35C;                                 // _35C
-	u8 _360[0x2];                             // _360, unknown
-	s16 _362;                                 // _362
+	u16 m_eyeJointIdx;                        // _360, unknown
+	u16 m_weakJointIdx;                       // _362
 	efx::TUmiHamon* _364;                     // _364
 	efx::TUmiWeakRed* _368;                   // _368
 	efx::TUmiWeakBlue* _36C;                  // _36C
@@ -283,6 +286,7 @@ struct ProperAnimator : public EnemyAnimatorBase {
 };
 
 struct UmimushiShadowMgr {
+    void init();
 	u8 _00[0x8];                     // _00, unknown
 	Obj* _08;                        // _08
 	JointShadowRootNode* m_rootNode; // _0C

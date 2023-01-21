@@ -11,7 +11,7 @@ struct J3DMtxCalc;
 struct J3DMtxCalcAnmBase;
 struct J3DJoint;
 
-typedef unknown J3DJointCallBack(J3DJoint*, int);
+typedef bool (*J3DJointCallBack)(J3DJoint*, int);
 
 struct J3DJoint {
 	enum J3DJoint_0x16 {
@@ -49,7 +49,7 @@ struct J3DJoint {
 	inline void setCurrentMtxCalc(J3DMtxCalc* calc) { mCurrentMtxCalc = calc; }
 
 	u32 _00;                          // _00
-	J3DJointCallBack* m_function;     // _04
+	J3DJointCallBack m_function;      // _04
 	u32 _08;                          // _08
 	J3DJoint* m_child;                // _0C
 	J3DJoint* m_parent;               // _10
