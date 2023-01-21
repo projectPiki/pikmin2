@@ -568,7 +568,7 @@ lbl_803831EC:
 f32 Obj::getBodyRadius()
 {
 	if (isEvent(0, EB_IsBittered)) {
-		if (this->m_bloysterType == EnemyTypeID::EnemyID_UmiMushiBlind) {
+		if (m_bloysterType == EnemyTypeID::EnemyID_UmiMushiBlind) {
 			return 50.0f;
 		}
 		return 100.0f;

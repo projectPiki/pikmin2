@@ -37,16 +37,60 @@ namespace newScreen {
 		base = new og::newScreen::Ground;
 		break;
 
-	case SCENE_CAVE:
-		base = new og::newScreen::Cave;
+	case SCENE_PAUSE_MENU_MAP:
+		base = new og::newScreen::SMenuMap;
 		break;
 
-	case SCENE_VS:
-		base = new og::newScreen::Vs;
+	case SCENE_PAUSE_MENU_ITEMS:
+		base = new og::newScreen::SMenuItem;
+		break;
+
+	case SCENE_PAUSE_MENU:
+		base = new og::newScreen::SMenuPause;
+		break;
+
+	case SCENE_PAUSE_MENU_DOUKUTU:
+		base = new og::newScreen::SMenuPauseDoukutu;
+		break;
+
+	case SCENE_COURSE_NAME:
+		base = new og::newScreen::CourseName;
+		break;
+
+	case SCENE_KANTEI_DEMO:
+		base = new og::newScreen::KanteiDemo;
+		break;
+
+	case SCENE_SPECIAL_ITEM:
+		base = new og::newScreen::SpecialItem;
 		break;
 
 	case SCENE_FLOOR:
 		base = new og::newScreen::Floor;
+		break;
+
+	case SCENE_CAVE:
+		base = new og::newScreen::Cave;
+		break;
+
+	case SCENE_CAVE_IN_MENU:
+		base = new og::newScreen::AnaDemo(SCENE_CAVE_IN_MENU);
+		break;
+
+	case SCENE_KANKETU_MENU:
+		base = new og::newScreen::AnaDemo(SCENE_KANKETU_MENU);
+		break;
+
+	case SCENE_CAVE_MORE_MENU:
+		base = new og::newScreen::AnaDemo(SCENE_CAVE_MORE_MENU);
+		break;
+
+	case SCENE_CHALLENGE_2P:
+		base = new og::newScreen::Challenge2P;
+		break;
+
+	case SCENE_UFO_MENU:
+		base = new og::newScreen::UfoMenu;
 		break;
 
 	case SCENE_CONTENA_BLUE:
@@ -69,60 +113,16 @@ namespace newScreen {
 		base = new og::newScreen::Contena;
 		break;
 
-	case SCENE_UFO_MENU:
-		base = new og::newScreen::UfoMenu;
-		break;
-
-	case SCENE_PAUSE_MENU:
-		base = new og::newScreen::SMenuPause;
-		break;
-
-	case SCENE_PAUSE_MENU_DOUKUTU:
-		base = new og::newScreen::SMenuPauseDoukutu;
-		break;
-
-	case SCENE_PAUSE_MENU_ITEMS:
-		base = new og::newScreen::SMenuItem;
-		break;
-
-	case SCENE_PAUSE_MENU_MAP:
-		base = new og::newScreen::SMenuMap;
-		break;
-
-	case SCENE_COURSE_NAME:
-		base = new og::newScreen::CourseName;
-		break;
-
-	case SCENE_CAVE_IN_MENU:
-		base = new og::newScreen::AnaDemo(SCENE_CAVE_IN_MENU);
-		break;
-
-	case SCENE_KANKETU_MENU:
-		base = new og::newScreen::AnaDemo(SCENE_KANKETU_MENU);
-		break;
-
-	case SCENE_CAVE_MORE_MENU:
-		base = new og::newScreen::AnaDemo(SCENE_CAVE_MORE_MENU);
-		break;
-
-	case SCENE_KANTEI_DEMO:
-		base = new og::newScreen::KanteiDemo;
-		break;
-
-	case SCENE_SPECIAL_ITEM:
-		base = new og::newScreen::SpecialItem;
-		break;
-
-	case SCENE_CHALLENGE_2P:
-		base = new og::newScreen::Challenge2P;
-		break;
-
 	case SCENE_SAVE:
 		base = new og::newScreen::Save;
 		break;
 
 	case SCENE_FINAL_MSG:
 		base = new og::newScreen::FinalMsg;
+		break;
+
+	case SCENE_VS:
+		base = new og::newScreen::Vs;
 		break;
 
 	case SCENE_CHALLENGE_1P:
@@ -146,393 +146,6 @@ namespace newScreen {
 		break;
 	}
 	return base;
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	addi     r0, r3, -10000
-	cmplwi   r0, 0x1b
-	li       r3, 0
-	bgt      lbl_80400594
-	lis      r4, lbl_804EA878@ha
-	slwi     r0, r0, 2
-	addi     r4, r4, lbl_804EA878@l
-	lwzx     r0, r4, r0
-	mtctr    r0
-	bctr
-	.global  lbl_8040020C
-
-lbl_8040020C:
-	li       r3, 0x228
-	bl       __nw__FUl
-	or.      r0, r3, r3
-	beq      lbl_80400224
-	bl       __ct__Q32og9newScreen6GroundFv
-	mr       r0, r3
-
-lbl_80400224:
-	mr       r3, r0
-	b        lbl_80400594
-	.global  lbl_8040022C
-
-lbl_8040022C:
-	li       r3, 0x224
-	bl       __nw__FUl
-	or.      r0, r3, r3
-	beq      lbl_80400244
-	bl       __ct__Q32og9newScreen8SMenuMapFv
-	mr       r0, r3
-
-lbl_80400244:
-	mr       r3, r0
-	b        lbl_80400594
-	.global  lbl_8040024C
-
-lbl_8040024C:
-	li       r3, 0x224
-	bl       __nw__FUl
-	or.      r0, r3, r3
-	beq      lbl_80400264
-	bl       __ct__Q32og9newScreen9SMenuItemFv
-	mr       r0, r3
-
-lbl_80400264:
-	mr       r3, r0
-	b        lbl_80400594
-	.global  lbl_8040026C
-
-lbl_8040026C:
-	li       r3, 0x224
-	bl       __nw__FUl
-	or.      r0, r3, r3
-	beq      lbl_80400284
-	bl       __ct__Q32og9newScreen10SMenuPauseFv
-	mr       r0, r3
-
-lbl_80400284:
-	mr       r3, r0
-	b        lbl_80400594
-	.global  lbl_8040028C
-
-lbl_8040028C:
-	li       r3, 0x224
-	bl       __nw__FUl
-	or.      r0, r3, r3
-	beq      lbl_804002A4
-	bl       __ct__Q32og9newScreen17SMenuPauseDoukutuFv
-	mr       r0, r3
-
-lbl_804002A4:
-	mr       r3, r0
-	b        lbl_80400594
-	.global  lbl_804002AC
-
-lbl_804002AC:
-	li       r3, 0x224
-	bl       __nw__FUl
-	or.      r0, r3, r3
-	beq      lbl_804002C4
-	bl       __ct__Q32og9newScreen10CourseNameFv
-	mr       r0, r3
-
-lbl_804002C4:
-	mr       r3, r0
-	b        lbl_80400594
-	.global  lbl_804002CC
-
-lbl_804002CC:
-	li       r3, 0x224
-	bl       __nw__FUl
-	or.      r0, r3, r3
-	beq      lbl_804002E4
-	bl       __ct__Q32og9newScreen10KanteiDemoFv
-	mr       r0, r3
-
-lbl_804002E4:
-	mr       r3, r0
-	b        lbl_80400594
-	.global  lbl_804002EC
-
-lbl_804002EC:
-	li       r3, 0x220
-	bl       __nw__FUl
-	or.      r0, r3, r3
-	beq      lbl_80400304
-	bl       __ct__Q32og9newScreen11SpecialItemFv
-	mr       r0, r3
-
-lbl_80400304:
-	mr       r3, r0
-	b        lbl_80400594
-	.global  lbl_8040030C
-
-lbl_8040030C:
-	li       r3, 0x220
-	bl       __nw__FUl
-	or.      r0, r3, r3
-	beq      lbl_80400324
-	bl       __ct__Q32og9newScreen5FloorFv
-	mr       r0, r3
-
-lbl_80400324:
-	mr       r3, r0
-	b        lbl_80400594
-	.global  lbl_8040032C
-
-lbl_8040032C:
-	li       r3, 0x220
-	bl       __nw__FUl
-	or.      r0, r3, r3
-	beq      lbl_80400344
-	bl       __ct__Q32og9newScreen4CaveFv
-	mr       r0, r3
-
-lbl_80400344:
-	mr       r3, r0
-	b        lbl_80400594
-	.global  lbl_8040034C
-
-lbl_8040034C:
-	li       r3, 0x224
-	bl       __nw__FUl
-	or.      r0, r3, r3
-	beq      lbl_80400368
-	li       r4, 0x271f
-	bl       __ct__Q32og9newScreen7AnaDemoFl
-	mr       r0, r3
-
-lbl_80400368:
-	mr       r3, r0
-	b        lbl_80400594
-	.global  lbl_80400370
-
-lbl_80400370:
-	li       r3, 0x224
-	bl       __nw__FUl
-	or.      r0, r3, r3
-	beq      lbl_8040038C
-	li       r4, 0x2720
-	bl       __ct__Q32og9newScreen7AnaDemoFl
-	mr       r0, r3
-
-lbl_8040038C:
-	mr       r3, r0
-	b        lbl_80400594
-	.global  lbl_80400394
-
-lbl_80400394:
-	li       r3, 0x224
-	bl       __nw__FUl
-	or.      r0, r3, r3
-	beq      lbl_804003B0
-	li       r4, 0x2721
-	bl       __ct__Q32og9newScreen7AnaDemoFl
-	mr       r0, r3
-
-lbl_804003B0:
-	mr       r3, r0
-	b        lbl_80400594
-	.global  lbl_804003B8
-
-lbl_804003B8:
-	li       r3, 0x224
-	bl       __nw__FUl
-	or.      r0, r3, r3
-	beq      lbl_804003D0
-	bl       __ct__Q32og9newScreen11Challenge2PFv
-	mr       r0, r3
-
-lbl_804003D0:
-	mr       r3, r0
-	b        lbl_80400594
-	.global  lbl_804003D8
-
-lbl_804003D8:
-	li       r3, 0x220
-	bl       __nw__FUl
-	or.      r0, r3, r3
-	beq      lbl_804003F0
-	bl       __ct__Q32og9newScreen7UfoMenuFv
-	mr       r0, r3
-
-lbl_804003F0:
-	mr       r3, r0
-	b        lbl_80400594
-	.global  lbl_804003F8
-
-lbl_804003F8:
-	li       r3, 0x224
-	bl       __nw__FUl
-	or.      r0, r3, r3
-	beq      lbl_80400410
-	bl       __ct__Q32og9newScreen7ContenaFv
-	mr       r0, r3
-
-lbl_80400410:
-	mr       r3, r0
-	b        lbl_80400594
-	.global  lbl_80400418
-
-lbl_80400418:
-	li       r3, 0x224
-	bl       __nw__FUl
-	or.      r0, r3, r3
-	beq      lbl_80400430
-	bl       __ct__Q32og9newScreen7ContenaFv
-	mr       r0, r3
-
-lbl_80400430:
-	mr       r3, r0
-	b        lbl_80400594
-	.global  lbl_80400438
-
-lbl_80400438:
-	li       r3, 0x224
-	bl       __nw__FUl
-	or.      r0, r3, r3
-	beq      lbl_80400450
-	bl       __ct__Q32og9newScreen7ContenaFv
-	mr       r0, r3
-
-lbl_80400450:
-	mr       r3, r0
-	b        lbl_80400594
-	.global  lbl_80400458
-
-lbl_80400458:
-	li       r3, 0x224
-	bl       __nw__FUl
-	or.      r0, r3, r3
-	beq      lbl_80400470
-	bl       __ct__Q32og9newScreen7ContenaFv
-	mr       r0, r3
-
-lbl_80400470:
-	mr       r3, r0
-	b        lbl_80400594
-	.global  lbl_80400478
-
-lbl_80400478:
-	li       r3, 0x224
-	bl       __nw__FUl
-	or.      r0, r3, r3
-	beq      lbl_80400490
-	bl       __ct__Q32og9newScreen7ContenaFv
-	mr       r0, r3
-
-lbl_80400490:
-	mr       r3, r0
-	b        lbl_80400594
-	.global  lbl_80400498
-
-lbl_80400498:
-	li       r3, 0x224
-	bl       __nw__FUl
-	or.      r0, r3, r3
-	beq      lbl_804004B0
-	bl       __ct__Q32og9newScreen4SaveFv
-	mr       r0, r3
-
-lbl_804004B0:
-	mr       r3, r0
-	b        lbl_80400594
-	.global  lbl_804004B8
-
-lbl_804004B8:
-	li       r3, 0x220
-	bl       __nw__FUl
-	or.      r0, r3, r3
-	beq      lbl_804004D0
-	bl       __ct__Q32og9newScreen8FinalMsgFv
-	mr       r0, r3
-
-lbl_804004D0:
-	mr       r3, r0
-	b        lbl_80400594
-	.global  lbl_804004D8
-
-lbl_804004D8:
-	li       r3, 0x220
-	bl       __nw__FUl
-	or.      r0, r3, r3
-	beq      lbl_804004F0
-	bl       __ct__Q32og9newScreen2VsFv
-	mr       r0, r3
-
-lbl_804004F0:
-	mr       r3, r0
-	b        lbl_80400594
-	.global  lbl_804004F8
-
-lbl_804004F8:
-	li       r3, 0x224
-	bl       __nw__FUl
-	or.      r0, r3, r3
-	beq      lbl_80400510
-	bl       __ct__Q32og9newScreen11Challenge1PFv
-	mr       r0, r3
-
-lbl_80400510:
-	mr       r3, r0
-	b        lbl_80400594
-	.global  lbl_80400518
-
-lbl_80400518:
-	li       r3, 0x220
-	bl       __nw__FUl
-	or.      r0, r3, r3
-	beq      lbl_80400530
-	bl       __ct__Q32og9newScreen12SMenuPauseVSFv
-	mr       r0, r3
-
-lbl_80400530:
-	mr       r3, r0
-	b        lbl_80400594
-	.global  lbl_80400538
-
-lbl_80400538:
-	li       r3, 0x220
-	bl       __nw__FUl
-	or.      r0, r3, r3
-	beq      lbl_80400550
-	bl       __ct__Q32og9newScreen19WorldMapInfoWindow0Fv
-	mr       r0, r3
-
-lbl_80400550:
-	mr       r3, r0
-	b        lbl_80400594
-	.global  lbl_80400558
-
-lbl_80400558:
-	li       r3, 0x220
-	bl       __nw__FUl
-	or.      r0, r3, r3
-	beq      lbl_80400570
-	bl       __ct__Q32og9newScreen19WorldMapInfoWindow1Fv
-	mr       r0, r3
-
-lbl_80400570:
-	mr       r3, r0
-	b        lbl_80400594
-	.global  lbl_80400578
-
-lbl_80400578:
-	li       r3, 0x224
-	bl       __nw__FUl
-	or.      r0, r3, r3
-	beq      lbl_80400590
-	bl       __ct__Q32og9newScreen9SMenuContFv
-	mr       r0, r3
-
-lbl_80400590:
-	mr       r3, r0
-
-lbl_80400594:
-	lwz      r0, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
 }
 
 /*
@@ -882,6 +495,7 @@ lbl_804008D8:
  * --INFO--
  * Address:	804008EC
  * Size:	000050
+ * Needs less inlining.
  */
 ::Screen::SceneBase* Mgr::doGetSceneBase(long id)
 {
