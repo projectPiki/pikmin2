@@ -24,7 +24,7 @@ struct TUmiDeadawa : public TChaseMtx {
 	{
 	}
 
-	virtual ~TUmiDeadawa(); // _48 (weak)
+	virtual ~TUmiDeadawa() { } // _48 (weak)
 
 	void setGlobalScale(f32);
 
@@ -50,7 +50,7 @@ struct TUmiEat : public TChaseMtx {
 	{
 	}
 
-	virtual ~TUmiEat(); // _48 (weak)
+	virtual ~TUmiEat() { } // _48 (weak)
 
 	void setGlobalScale(f32);
 
