@@ -117,7 +117,7 @@ void Obj::setInitialSetting(EnemyInitialParamBase* initParms)
 
 		SysShape::Joint* joint = m_model->getJoint("headjnt");
 		P2ASSERTLINE(365, joint);
-		joint->m_j3d->m_function = *(Obj::headJointCallBack);
+		joint->m_j3d->m_function = Obj::headJointCallBack;
 
 		sCurrentObj = nullptr;
 	}
@@ -127,11 +127,11 @@ void Obj::setInitialSetting(EnemyInitialParamBase* initParms)
 
 		SysShape::Joint* joint = m_model->getJoint("headjnt");
 		P2ASSERTLINE(376, joint);
-		joint->m_j3d->m_function = *(Obj::headJointCallBack);
+		joint->m_j3d->m_function = Obj::headJointCallBack;
 
 		joint = m_model->getJoint("bodyjnt1");
 		P2ASSERTLINE(381, joint);
-		joint->m_j3d->m_function = *(Obj::neckJointCallBack);
+		joint->m_j3d->m_function = Obj::neckJointCallBack;
 
 		sCurrentObj = nullptr;
 	}
@@ -534,7 +534,7 @@ void Obj::onStickStart(Creature* other)
  * Address:	80109360
  * Size:	0000F0
  */
-unknown Obj::headJointCallBack(J3DJoint* joint, int p2)
+bool Obj::headJointCallBack(J3DJoint* joint, int p2)
 {
 	if (sCurrentObj != nullptr && p2 == 1) {
 		Mtx& mtx  = J3DMtxCalc::mMtxBuffer->m_worldMatrices[joint->getJntNo()];
@@ -554,7 +554,7 @@ unknown Obj::headJointCallBack(J3DJoint* joint, int p2)
  * Address:	80109450
  * Size:	000104
  */
-unknown Obj::neckJointCallBack(J3DJoint* joint, int p2)
+bool Obj::neckJointCallBack(J3DJoint* joint, int p2)
 {
 	if (sCurrentObj != nullptr && p2 == 1) {
 		Mtx& mtx = J3DMtxCalc::mMtxBuffer->m_worldMatrices[joint->getJntNo()];

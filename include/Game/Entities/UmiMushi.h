@@ -207,9 +207,9 @@ struct Obj : public EnemyBase {
 	u8 _2DD;                                  // _2DD, unknown
 	u8 _2DE[0x2];                             // _2DE, unknown/maybe padding
 	int _2E0;                                 // _2E0, unknown
-    Vector3f _2E4;                            // _2E4
+	Vector3f _2E4;                            // _2E4
 	int _2F0;                                 // _2F0
-    int _2F4;                                 // _2F0
+	int _2F4;                                 // _2F0
 	f32 _2F8;                                 // _2F8
 	f32 _2FC;                                 // _2FC
 	int _300;                                 // _300
@@ -286,7 +286,7 @@ struct ProperAnimator : public EnemyAnimatorBase {
 };
 
 struct UmimushiShadowMgr {
-    void init();
+	void init();
 	u8 _00[0x8];                     // _00, unknown
 	Obj* _08;                        // _08
 	JointShadowRootNode* m_rootNode; // _0C

@@ -482,7 +482,6 @@ Obj* curU;
  * Size:	000038
  */
 
-
 bool eyeScaleCallBack(J3DJoint* joint, int t)
 {
 	if (t == 0 && curU) {
@@ -490,8 +489,6 @@ bool eyeScaleCallBack(J3DJoint* joint, int t)
 	}
 	return true;
 };
-
-
 
 /*
  * --INFO--
@@ -519,13 +516,13 @@ void Obj::setParameters()
 		scale = 0.5f;
 	}
 	m_scaleModifier = scale;
-	m_scale.x = scale;
-	m_scale.y = scale;
-	m_scale.z = scale;
+	m_scale.x       = scale;
+	m_scale.y       = scale;
+	m_scale.z       = scale;
 	m_collTree->m_part->setScale(scale);
 	m_curLodSphere.m_radius = scale * C_PARMS->m_general.m_offCameraRadius.m_value;
 	if (m_bloysterType == EnemyTypeID::EnemyID_UmiMushiBlind) {
-		C_PARMS->m_general.m_heightOffsetFromFloor = 50.0f; 
+		C_PARMS->m_general.m_heightOffsetFromFloor = 50.0f;
 	}
 	m_collTree->getCollPart('weak')->setScale(C_PARMS->_A34); // Tounge Size?
 }
@@ -568,16 +565,16 @@ void Obj::onInit(CreatureInitArg* initArg)
 	m_headJoint = m_model->getJoint("head_joint1");
 	P2ASSERTLINE(124, m_headJoint);
 	m_targetNavi = nullptr;
-	_2BC = m_homePosition;
-	_2E0 = 0;
-	_2E4 = m_homePosition;
-	_2F0 = 0;
-	_2F4 = 0;
-	_2FC = 0.0f;
+	_2BC         = m_homePosition;
+	_2E0         = 0;
+	_2E4         = m_homePosition;
+	_2F0         = 0;
+	_2F4         = 0;
+	_2FC         = 0.0f;
 	m_targetNavi = nullptr; // morimura has dementia :skull:
-	_2DC = 0;
-	_300 = 0;
-	_2C8 = -1;
+	_2DC         = 0;
+	_300         = 0;
+	_2C8         = -1;
 
 	m_normalColor2.r = 0xffe7;
 	m_normalColor2.g = 0xff9c;
@@ -587,7 +584,7 @@ void Obj::onInit(CreatureInitArg* initArg)
 	m_olimarColor1.g = 0xff8d;
 	m_olimarColor1.b = 0xff8d;
 
-    m_olimarColor2.r = 0x0000;
+	m_olimarColor2.r = 0x0000;
 	m_olimarColor2.g = 0xff4c;
 	m_olimarColor2.b = 0xff4c;
 
@@ -605,7 +602,7 @@ void Obj::onInit(CreatureInitArg* initArg)
 
 	_31C = m_normalColor1;
 	_314 = m_normalColor1;
-	
+
 	curU = nullptr;
 
 	m_fsm->start(this, 1, nullptr); // fix this later
@@ -615,12 +612,12 @@ void Obj::onInit(CreatureInitArg* initArg)
 
 	P2ASSERTLINE(160, m_shadowMgr);
 	m_shadowMgr->init();
-	
+
 	J3DModelData* modelData = m_model->m_j3dModel->m_modelData;
 	P2ASSERTLINE(166, modelData);
 
 	u16 matIdx = modelData->m_materialTable._0C->getIndex("cc_mat1_v");
-	_310 = modelData->m_materialTable.m_materials1[matIdx];
+	_310       = modelData->m_materialTable.m_materials1[matIdx];
 
 	P2ASSERTLINE(171, _310);
 
@@ -629,57 +626,52 @@ void Obj::onInit(CreatureInitArg* initArg)
 		checkMidBoss(bossSoundObj);
 		bossSoundObj->setAppearFlag(false);
 		bossSoundObj->_118 = true;
-	}
-	else {
+	} else {
 		setParameters();
 		float health = C_PROPERPARMS.m_blindHealth.m_value;
-		m_health = health;
-		m_maxHealth = health;
-		_35C = 0.45f;
+		m_health     = health;
+		m_maxHealth  = health;
+		_35C         = 0.45f;
 		P2ASSERTLINE(189, m_model);
-		J3DModelData* modelData =  m_model->m_j3dModel->m_modelData;
-		m_eyeJointIdx = m_model->getJointIndex("eyes_joint1");
-		m_weakJointIdx = m_model->getJointIndex("weak_joint2");
+		J3DModelData* modelData                                     = m_model->m_j3dModel->m_modelData;
+		m_eyeJointIdx                                               = m_model->getJointIndex("eyes_joint1");
+		m_weakJointIdx                                              = m_model->getJointIndex("weak_joint2");
 		modelData->m_jointTree.m_joints[m_eyeJointIdx]->m_function  = UmiMushi::eyeScaleCallBack;
 		modelData->m_jointTree.m_joints[m_weakJointIdx]->m_function = UmiMushi::weakScaleCallBack;
 	}
-    m_dropGroup = EDG_None;
-    _38C = m_position;
-    P2ASSERTLINE(212, _364);
-    efx::Arg efxArg (_38C);
-    _364->create(&efxArg);
-    _364->setGlobalScale(m_scaleModifier);
-    P2ASSERTLINE(218, _368);
-    P2ASSERTLINE(219, _36C);
-    Matrixf* modelMtx = m_model->getJoint("weak_joint2")->getWorldMatrix();
-    _368->setMtxptr((PSQuaternion*)modelMtx);
-    _36C->setMtxptr((PSQuaternion*)modelMtx);
+	m_dropGroup = EDG_None;
+	_38C        = m_position;
+	P2ASSERTLINE(212, _364);
+	efx::Arg efxArg(_38C);
+	_364->create(&efxArg);
+	_364->setGlobalScale(m_scaleModifier);
+	P2ASSERTLINE(218, _368);
+	P2ASSERTLINE(219, _36C);
+	Matrixf* modelMtx = m_model->getJoint("weak_joint2")->getWorldMatrix();
+	_368->setMtxptr((PSQuaternion*)modelMtx);
+	_36C->setMtxptr((PSQuaternion*)modelMtx);
 
-    P2ASSERTLINE(225, _370[0]);
-    P2ASSERTLINE(226, _370[1]);
-    // random newline here bc why not
-    P2ASSERTLINE(228, _378[0]);
-    P2ASSERTLINE(229, _378[1]);
+	P2ASSERTLINE(225, _370[0]);
+	P2ASSERTLINE(226, _370[1]);
+	// random newline here bc why not
+	P2ASSERTLINE(228, _378[0]);
+	P2ASSERTLINE(229, _378[1]);
 
-    
+	modelMtx = m_model->getJoint("ef_eye_r")->getWorldMatrix();
+	_370[0]->setMtxptr((PSQuaternion*)modelMtx);
+	_378[0]->setMtxptr((PSQuaternion*)modelMtx);
 
-    modelMtx = m_model->getJoint("ef_eye_r")->getWorldMatrix();
-    _370[0]->setMtxptr((PSQuaternion*)modelMtx);
-    _378[0]->setMtxptr((PSQuaternion*)modelMtx);
+	modelMtx = m_model->getJoint("ef_eye_l")->getWorldMatrix();
+	_370[1]->setMtxptr((PSQuaternion*)modelMtx);
+	_378[1]->setMtxptr((PSQuaternion*)modelMtx);
 
-    modelMtx = m_model->getJoint("ef_eye_l")->getWorldMatrix();
-    _370[1]->setMtxptr((PSQuaternion*)modelMtx);
-    _378[1]->setMtxptr((PSQuaternion*)modelMtx);
+	P2ASSERTLINE(239, m_efxEat);
+	P2ASSERTLINE(240, _384);
 
-    P2ASSERTLINE(239, m_efxEat);
-    P2ASSERTLINE(240, _384);
+	_388 = m_model->getJoint("bero_joint1")->getWorldMatrix();
 
-    _388 = m_model->getJoint("bero_joint1")->getWorldMatrix();
-    
-    m_efxEat->m_mtx = _388;
-    _384->m_mtx     = _388;
-
-
+	m_efxEat->m_mtx = _388;
+	_384->m_mtx     = _388;
 }
 
 /*
@@ -689,13 +681,12 @@ void Obj::onInit(CreatureInitArg* initArg)
  */
 Obj::Obj()
 {
-    m_headJoint = nullptr;
-    m_targetNavi = nullptr;
-    _2DD = 0;
-    _310 = nullptr;
-    _354 = nullptr;
-    m_shadowMgr = nullptr;
-    
+	m_headJoint  = nullptr;
+	m_targetNavi = nullptr;
+	_2DD         = 0;
+	_310         = nullptr;
+	_354         = nullptr;
+	m_shadowMgr  = nullptr;
 }
 
 /*

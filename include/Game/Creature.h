@@ -18,7 +18,7 @@
 
 // shorthand cast to obj-specific 'm_mgr'
 #define CG_MGR(x) (static_cast<Mgr*>(x->m_mgr))
-#define C_MGR	  (CG_MGR(this))
+#define C_MGR     (CG_MGR(this))
 
 struct Graphics;
 struct Matrixf;

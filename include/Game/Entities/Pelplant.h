@@ -213,8 +213,8 @@ struct Obj : public EnemyBase {
 	void updateLODSphereRadius(int);
 	void getNeckScale(Vector3f*);
 
-	static unknown headJointCallBack(J3DJoint*, int);
-	static unknown neckJointCallBack(J3DJoint*, int);
+	static bool headJointCallBack(J3DJoint*, int);
+	static bool neckJointCallBack(J3DJoint*, int);
 
 	static Obj* sCurrentObj;
 
