@@ -48,38 +48,38 @@ struct Obj : public EnemyBase {
 	Obj();
 
 	//////////////// VTABLE
-	virtual void onInit(CreatureInitArg* settings);          // _30
-	virtual void doSimulation(f32);                          // _4C
-	virtual void doDirectDraw(Graphics& gfx);                // _50
-	virtual f32 getBodyRadius();                             // _54
-	virtual void collisionCallback(CollEvent& event);        // _EC
-	virtual void getShadowParam(ShadowParam& settings);      // _134
-	virtual void applyImpulse(Vector3f&, Vector3f&);         // _18C (weak)
-	virtual ~Obj() { }                                       // _1BC (weak)
-	virtual void birth(Vector3f&, f32);                      // _1C0
-	virtual void setInitialSetting(EnemyInitialParamBase*);  // _1C4 (weak)
-	virtual void doUpdate();                                 // _1CC
-	virtual void doAnimationCullingOff();                    // _1DC
-	virtual void doAnimationCullingOn();                     // _1E0
-	virtual void doDebugDraw(Graphics&);                     // _1EC
-	virtual void changeMaterial();                           // _200
-	virtual void setParameters();                            // _228
-	virtual void initMouthSlots();                           // _22C
-	virtual EnemyTypeID::EEnemyTypeID getEnemyTypeID();      // _258 (weak)
-	virtual MouthSlots* getMouthSlots();                     // _25C (weak)
-	virtual void doGetLifeGaugeParam(LifeGaugeParam&);       // _260
-	virtual bool damageCallBack(Creature*, f32, CollPart*);  // _278
-	virtual bool pressCallBack(Creature*, f32, CollPart*);   // _27C
-	virtual bool hipdropCallBack(Creature*, f32, CollPart*); // _284
-	virtual bool earthquakeCallBack(Creature*, f32);         // _28C
-	virtual bool eatWhitePikminCallBack(Creature*, f32);     // _298 (weak)
-	virtual void doStartStoneState();                        // _2A4
-	virtual void doFinishStoneState();                       // _2A8
-	virtual f32 getDamageCoeStoneState();                    // _2AC (weak)
-	virtual void startCarcassMotion();                       // _2C4
-	virtual void doStartMovie();                             // _2F0
-	virtual void doEndMovie();                               // _2F4
-	virtual void setFSM(FSM*);                               // _2F8 (weak)
+	virtual void onInit(CreatureInitArg* settings);                               // _30
+	virtual void doSimulation(f32);                                               // _4C
+	virtual void doDirectDraw(Graphics& gfx);                                     // _50
+	virtual f32 getBodyRadius();                                                  // _54
+	virtual void collisionCallback(CollEvent& event);                             // _EC
+	virtual void getShadowParam(ShadowParam& settings);                           // _134
+	virtual void applyImpulse(Vector3f&, Vector3f&);                              // _18C (weak)
+	virtual ~Obj() { }                                                            // _1BC (weak)
+	virtual void birth(Vector3f&, f32);                                           // _1C0
+	virtual void setInitialSetting(EnemyInitialParamBase*);                       // _1C4 (weak)
+	virtual void doUpdate();                                                      // _1CC
+	virtual void doAnimationCullingOff();                                         // _1DC
+	virtual void doAnimationCullingOn();                                          // _1E0
+	virtual void doDebugDraw(Graphics&);                                          // _1EC
+	virtual void changeMaterial();                                                // _200
+	virtual void setParameters();                                                 // _228
+	virtual void initMouthSlots();                                                // _22C
+	virtual EnemyTypeID::EEnemyTypeID getEnemyTypeID() { return m_bloysterType; } // _258 (weak)
+	virtual MouthSlots* getMouthSlots() { return &m_mouthSlots; }                 // _25C (weak)
+	virtual void doGetLifeGaugeParam(LifeGaugeParam&);                            // _260
+	virtual bool damageCallBack(Creature*, f32, CollPart*);                       // _278
+	virtual bool pressCallBack(Creature*, f32, CollPart*);                        // _27C
+	virtual bool hipdropCallBack(Creature*, f32, CollPart*);                      // _284
+	virtual bool earthquakeCallBack(Creature*, f32);                              // _28C
+	virtual bool eatWhitePikminCallBack(Creature*, f32);                          // _298 (weak)
+	virtual void doStartStoneState();                                             // _2A4
+	virtual void doFinishStoneState();                                            // _2A8
+	virtual f32 getDamageCoeStoneState();                                         // _2AC (weak)
+	virtual void startCarcassMotion();                                            // _2C4
+	virtual void doStartMovie();                                                  // _2F0
+	virtual void doEndMovie();                                                    // _2F4
+	virtual void setFSM(FSM*);                                                    // _2F8 (weak)
 	//////////////// VTABLE END
 
 	void isReachToGoal(f32);
@@ -107,7 +107,10 @@ struct Obj : public EnemyBase {
 	void bubbleEffect();
 	void delShadow();
 	void eyeScaleMtxCalc();
+	bool eyeScaleCallBack(J3DJoint*, int);
 	void weakScaleMtxCalc();
+	bool weakScaleCallBack(J3DJoint*, int);
+	void returnHome(); // unused
 
 	// _00 		= VTBL
 	// _00-_2BC	= EnemyBase
@@ -116,7 +119,7 @@ struct Obj : public EnemyBase {
 	MouthSlots m_mouthSlots;                  // _2CC
 	SysShape::Joint* m_headJoint;             // _2D4
 	Navi* m_targetNavi;                       // _2D8
-	u8 _2DC;                                  // _2DC, unknown
+	bool _2DC;                                // _2DC, unknown
 	u8 _2DD;                                  // _2DD, unknown
 	u8 _2DE[0x2];                             // _2DE, unknown/maybe padding
 	u8 _2E0[0x18];                            // _2E0, unknown
@@ -286,6 +289,8 @@ struct UmimushiShadowMgr {
 	UmimushiTubeShadowNode* _14;     // _10
 	UmimushiSphereShadowNode* _18;   // _14
 };
+
+extern Obj* curU;
 
 /////////////////////////////////////////////////////////////////
 // STATE MACHINE DEFINITIONS
