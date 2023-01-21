@@ -1,233 +1,29 @@
-#include "types.h"
+#include "kh/PayDept.h"
+#include "JSystem/JKR/JKRFileLoader.h"
+#include "JSystem/JKR/JKRArchive.h"
+#include "utilityU.h"
+#include "PSSystem/PSSystemIF.h"
+#include "og/newScreen/ogUtil.h"
+#include "LoadResource.h"
+#include "kh/khUtil.h"
 
-/*
-    Generated from dpostproc
-
-    .section .ctors, "wa"  # 0x80472F00 - 0x804732C0
-        .4byte __sinit_khPayDept_cpp
-
-    .section .rodata  # 0x804732E0 - 0x8049E220
-    .global lbl_80499160
-    lbl_80499160:
-        .asciz "khPayDept.cpp"
-        .skip 2
-    .global lbl_80499170
-    lbl_80499170:
-        .asciz "0_48.bti"
-        .skip 3
-    .global lbl_8049917C
-    lbl_8049917C:
-        .asciz "1_48.bti"
-        .skip 3
-    .global lbl_80499188
-    lbl_80499188:
-        .asciz "2_48.bti"
-        .skip 3
-    .global lbl_80499194
-    lbl_80499194:
-        .asciz "3_48.bti"
-        .skip 3
-    .global lbl_804991A0
-    lbl_804991A0:
-        .asciz "4_48.bti"
-        .skip 3
-    .global lbl_804991AC
-    lbl_804991AC:
-        .asciz "5_48.bti"
-        .skip 3
-    .global lbl_804991B8
-    lbl_804991B8:
-        .asciz "6_48.bti"
-        .skip 3
-    .global lbl_804991C4
-    lbl_804991C4:
-        .asciz "7_48.bti"
-        .skip 3
-    .global lbl_804991D0
-    lbl_804991D0:
-        .asciz "8_48.bti"
-        .skip 3
-    .global lbl_804991DC
-    lbl_804991DC:
-        .asciz "9_48.bti"
-        .skip 3
-    .global lbl_804991E8
-    lbl_804991E8:
-        .asciz "hensai_demo_parsent.blo"
-    .global lbl_80499200
-    lbl_80499200:
-        .asciz "hensai_demo_parsent.bck"
-    .global lbl_80499218
-    lbl_80499218:
-        .asciz "hensai_demo_parsent.bpk"
-        .4byte lbl_804991E8
-        .4byte lbl_80499200
-        .4byte lbl_80499218
-    .global lbl_8049923C
-    lbl_8049923C:
-        .asciz "hensai_demo_kanryo.blo"
-        .skip 1
-    .global lbl_80499254
-    lbl_80499254:
-        .asciz "hensai_demo_kanryo.bck"
-        .skip 1
-    .global lbl_8049926C
-    lbl_8049926C:
-        .asciz "hensai_demo_kanryo.bpk"
-        .skip 1
-        .4byte lbl_8049923C
-        .4byte lbl_80499254
-        .4byte lbl_8049926C
-    .global lbl_80499290
-    lbl_80499290:
-        .asciz "hensai_demo_otakara.blo"
-    .global lbl_804992A8
-    lbl_804992A8:
-        .asciz "hensai_demo_otakara.bck"
-    .global lbl_804992C0
-    lbl_804992C0:
-        .asciz "hensai_demo_otakara.bpk"
-        .4byte lbl_80499290
-        .4byte lbl_804992A8
-        .4byte lbl_804992C0
-    .global lbl_804992E4
-    lbl_804992E4:
-        .asciz "disp member err"
-        .asciz "hensai_demo_parsent.szs"
-        .asciz "hensai_demo_kanryo.szs"
-        .skip 1
-        .asciz "hensai_demo_otakara.szs"
-        .asciz "screenObj.h"
-        .asciz "P2Assert"
-        .skip 7
-
-    .section .data, "wa"  # 0x8049E220 - 0x804EFC20
-    .global cpNumTexLargeName__Q22kh6Screen
-    cpNumTexLargeName__Q22kh6Screen:
-        .4byte lbl_80499170
-        .4byte lbl_8049917C
-        .4byte lbl_80499188
-        .4byte lbl_80499194
-        .4byte lbl_804991A0
-        .4byte lbl_804991AC
-        .4byte lbl_804991B8
-        .4byte lbl_804991C4
-        .4byte lbl_804991D0
-        .4byte lbl_804991DC
-    .global __vt__Q32kh6Screen12ScenePayDept
-    __vt__Q32kh6Screen12ScenePayDept:
-        .4byte 0
-        .4byte 0
-        .4byte getSceneType__Q32kh6Screen12ScenePayDeptFv
-        .4byte getOwnerID__Q32kh6Screen12ScenePayDeptFv
-        .4byte getMemberID__Q32kh6Screen12ScenePayDeptFv
-        .4byte isUseBackupSceneInfo__Q32kh6Screen12ScenePayDeptFv
-        .4byte isDrawInDemo__Q26Screen9SceneBaseCFv
-        .4byte getResName__Q32kh6Screen12ScenePayDeptCFv
-        .4byte doCreateObj__Q32kh6Screen12ScenePayDeptFP10JKRArchive
-        .4byte
-   doUserCallBackFunc__Q32kh6Screen12ScenePayDeptFPQ28Resource10MgrCommand
-        .4byte setPort__Q26Screen9SceneBaseFR8Graphics
-        .4byte doUpdateActive__Q26Screen9SceneBaseFv
-        .4byte doConfirmSetScene__Q26Screen9SceneBaseFRQ26Screen11SetSceneArg
-        .4byte
-   doConfirmStartScene__Q26Screen9SceneBaseFPQ26Screen13StartSceneArg .4byte
-   doConfirmEndScene__Q26Screen9SceneBaseFRPQ26Screen11EndSceneArg .4byte
-   doStart__Q26Screen9SceneBaseFPQ26Screen13StartSceneArg .4byte
-   doEnd__Q26Screen9SceneBaseFPQ26Screen11EndSceneArg .4byte
-   setDefaultDispMember__Q26Screen9SceneBaseFv .4byte
-   doSetBackupScene__Q26Screen9SceneBaseFRQ26Screen11SetSceneArg .4byte
-   doGetFinishState__Q26Screen9SceneBaseFv .global
-   __vt__Q32kh6Screen10ObjPayDept
-    __vt__Q32kh6Screen10ObjPayDept:
-        .4byte 0
-        .4byte 0
-        .4byte __dt__Q32kh6Screen10ObjPayDeptFv
-        .4byte getChildCount__5CNodeFv
-        .4byte 0
-        .4byte 0
-        .4byte "@24@__dt__Q32kh6Screen10ObjPayDeptFv"
-        .4byte update__Q26Screen7ObjBaseFv
-        .4byte draw__Q26Screen7ObjBaseFR8Graphics
-        .4byte start__Q26Screen7ObjBaseFPCQ26Screen13StartSceneArg
-        .4byte end__Q26Screen7ObjBaseFPCQ26Screen11EndSceneArg
-        .4byte setOwner__Q26Screen7ObjBaseFPQ26Screen9SceneBase
-        .4byte getOwner__Q26Screen7ObjBaseCFv
-        .4byte create__Q26Screen7ObjBaseFP10JKRArchive
-        .4byte confirmSetScene__Q26Screen7ObjBaseFRQ26Screen11SetSceneArg
-        .4byte confirmStartScene__Q26Screen7ObjBaseFPQ26Screen13StartSceneArg
-        .4byte confirmEndScene__Q26Screen7ObjBaseFPQ26Screen11EndSceneArg
-        .4byte doStart__Q26Screen7ObjBaseFPCQ26Screen13StartSceneArg
-        .4byte doEnd__Q26Screen7ObjBaseFPCQ26Screen11EndSceneArg
-        .4byte doCreate__Q32kh6Screen10ObjPayDeptFP10JKRArchive
-        .4byte doUpdateFadein__Q32kh6Screen10ObjPayDeptFv
-        .4byte doUpdateFadeinFinish__Q26Screen7ObjBaseFv
-        .4byte doUpdate__Q32kh6Screen10ObjPayDeptFv
-        .4byte doUpdateFinish__Q26Screen7ObjBaseFv
-        .4byte doUpdateFadeout__Q26Screen7ObjBaseFv
-        .4byte doUpdateFadeoutFinish__Q32kh6Screen10ObjPayDeptFv
-        .4byte doDraw__Q32kh6Screen10ObjPayDeptFR8Graphics
-        .4byte doConfirmSetScene__Q26Screen7ObjBaseFRQ26Screen11SetSceneArg
-        .4byte doConfirmStartScene__Q26Screen7ObjBaseFPQ26Screen13StartSceneArg
-        .4byte doConfirmEndScene__Q26Screen7ObjBaseFRPQ26Screen11EndSceneArg
-    .global __vt__Q32kh6Screen11DispPayDept
-    __vt__Q32kh6Screen11DispPayDept:
-        .4byte 0
-        .4byte 0
-        .4byte getSize__Q32kh6Screen11DispPayDeptFv
-        .4byte getOwnerID__Q32kh6Screen11DispPayDeptFv
-        .4byte getMemberID__Q32kh6Screen11DispPayDeptFv
-        .4byte doSetSubMemberAll__Q32og6Screen14DispMemberBaseFv
-
-    .section .sbss # 0x80514D80 - 0x80516360
-    .global msVal__Q32kh6Screen10ObjPayDept
-    msVal__Q32kh6Screen10ObjPayDept:
-        .skip 0x8
-
-    .section .sdata2, "a"     # 0x80516360 - 0x80520E40
-    .global lbl_805201E8
-    lbl_805201E8:
-        .4byte 0x00000000
-        .4byte 0x00000000
-    .global lbl_805201F0
-    lbl_805201F0:
-        .4byte 0x43300000
-        .4byte 0x80000000
-    .global lbl_805201F8
-    lbl_805201F8:
-        .asciz "failed"
-        .skip 1
-    .global lbl_80520200
-    lbl_80520200:
-        .4byte 0x00000000
-    .global lbl_80520204
-    lbl_80520204:
-        .float 1.0
-*/
+static void _Print(char* format, ...) { OSReport(format, __FILE__); }
 
 namespace kh {
 namespace Screen {
+
+const char* cpNumTexLargeName[]
+    = { "0_48.bti", "1_48.bti", "2_48.bti", "3_48.bti", "4_48.bti", "5_48.bti", "6_48.bti", "7_48.bti", "8_48.bti", "9_48.bti" };
 
 /*
  * --INFO--
  * Address:	8040F1E0
  * Size:	00002C
  */
-DispPayDept::DispPayDept(kh::Screen::DispPayDept::PayDeptType, int)
+DispPayDept::DispPayDept(PayDeptType type, int level)
 {
-	/*
-lis      r7, __vt__Q32og6Screen14DispMemberBase@ha
-lis      r6, __vt__Q32kh6Screen11DispPayDept@ha
-addi     r0, r7, __vt__Q32og6Screen14DispMemberBase@l
-li       r7, 0
-stw      r0, 0(r3)
-addi     r0, r6, __vt__Q32kh6Screen11DispPayDept@l
-stw      r7, 4(r3)
-stw      r0, 0(r3)
-stw      r4, 8(r3)
-stw      r5, 0xc(r3)
-blr
-	*/
+	m_payDeptType  = type;
+	m_percentLevel = level;
 }
 
 /*
@@ -235,8 +31,57 @@ blr
  * Address:	8040F20C
  * Size:	00025C
  */
-void ObjPayDept::doCreate(JKRArchive*)
+void ObjPayDept::doCreate(JKRArchive* arc)
 {
+	char* paths1[3] = { "hensai_demo_parsent.blo", "hensai_demo_parsent.bck", "hensai_demo_parsent.bpk" };
+	char* paths2[3] = { "hensai_demo_kanryo.blo", "hensai_demo_kanryo.bck", "hensai_demo_kanryo.bpk" };
+	char* paths3[3] = { "hensai_demo_otakara.blo", "hensai_demo_otakara.bck", "hensai_demo_otakara.bpk" };
+
+	if (!getDispMember()->isID(OWNER_KH, MEMBER_PAY_DEBT)) {
+		JUT_PANICLINE(91, "disp member err");
+	}
+
+	DispPayDept* disp = static_cast<DispPayDept*>(getDispMember());
+	char** paths      = nullptr;
+	switch (disp->m_payDeptType) {
+	case DispPayDept::PAYDEPT_Percent:
+		paths = paths1;
+		break;
+	case DispPayDept::PAYDEPT_DebtPayed:
+		paths = paths2;
+		break;
+	case DispPayDept::PAYDEPT_Complete:
+		paths = paths3;
+		break;
+	}
+
+	m_screen = new P2DScreen::Mgr_tuning;
+	m_screen->set(paths[0], 0x40000, arc);
+	void* file = JKRFileLoader::getGlbResource(paths[1], arc);
+	m_anim1    = static_cast<J2DAnmTransform*>(J2DAnmLoaderDataBase::load(file));
+	file       = JKRFileLoader::getGlbResource(paths[2], arc);
+	m_anim2    = static_cast<J2DAnmColor*>(J2DAnmLoaderDataBase::load(file));
+	m_screen->setAnimation(m_anim1);
+	m_screen->setAnimation(m_anim2);
+
+	if (disp->m_payDeptType == DispPayDept::PAYDEPT_Percent) {
+		u32 level     = disp->m_percentLevel;
+		J2DPane* pane = m_screen->search('ROOT');
+		searchNumPane(pane, level / 10, level % 10);
+	}
+
+	switch (disp->m_payDeptType) {
+	case DispPayDept::PAYDEPT_Percent:
+		PSStart2DStream(0xc0011021);
+		break;
+	case DispPayDept::PAYDEPT_DebtPayed:
+		PSStart2DStream(0xc0011020);
+		break;
+	case DispPayDept::PAYDEPT_Complete:
+		PSStart2DStream(0xc0011020);
+		break;
+	}
+
 	/*
 stwu     r1, -0x40(r1)
 mflr     r0
@@ -423,75 +268,30 @@ blr
  * Address:	8040F468
  * Size:	0000CC
  */
-void ObjPayDept::doUpdateFadein()
+bool ObjPayDept::doUpdateFadein()
 {
-	/*
-stwu     r1, -0x10(r1)
-mflr     r0
-stw      r0, 0x14(r1)
-stw      r31, 0xc(r1)
-mr       r31, r3
-bl       getDispMember__Q26Screen7ObjBaseFv
-lis      r4, 0x44455054@ha
-lis      r5, 0x5041595F@ha
-addi     r6, r4, 0x44455054@l
-li       r4, 0x4b48
-addi     r5, r5, 0x5041595F@l
-bl       isID__Q32og6Screen14DispMemberBaseFUlUx
-clrlwi.  r0, r3, 0x18
-bne      lbl_8040F4BC
-lis      r3, lbl_80499160@ha
-lis      r5, lbl_804992E4@ha
-addi     r3, r3, lbl_80499160@l
-li       r4, 0x96
-addi     r5, r5, lbl_804992E4@l
-crclr    6
-bl       panic_f__12JUTExceptionFPCciPCce
+	if (!getDispMember()->isID(OWNER_KH, MEMBER_PAY_DEBT)) {
+		JUT_PANICLINE(150, "disp member err");
+	}
 
-lbl_8040F4BC:
-mr       r3, r31
-bl       getDispMember__Q26Screen7ObjBaseFv
-lwz      r0, 8(r3)
-li       r4, -1
-cmpwi    r0, 1
-beq      lbl_8040F4F8
-bge      lbl_8040F4E4
-cmpwi    r0, 0
-bge      lbl_8040F4F0
-b        lbl_8040F504
+	DispPayDept* disp = static_cast<DispPayDept*>(getDispMember());
+	u32 soundID       = -1;
+	switch (disp->m_payDeptType) {
+	case DispPayDept::PAYDEPT_Percent:
+		soundID = PSSE_PAY_COME;
+		break;
+	case DispPayDept::PAYDEPT_DebtPayed:
+		soundID = PSSE_PAY_COMPLETE;
+		break;
+	case DispPayDept::PAYDEPT_Complete:
+		soundID = PSSE_OTAKARA_COMPLETE;
+		break;
+	}
 
-lbl_8040F4E4:
-cmpwi    r0, 3
-bge      lbl_8040F504
-b        lbl_8040F500
-
-lbl_8040F4F0:
-li       r4, 0x1825
-b        lbl_8040F504
-
-lbl_8040F4F8:
-li       r4, 0x1844
-b        lbl_8040F504
-
-lbl_8040F500:
-li       r4, 0x1845
-
-lbl_8040F504:
-addis    r0, r4, 1
-cmplwi   r0, 0xffff
-beq      lbl_8040F51C
-lwz      r3, spSysIF__8PSSystem@sda21(r13)
-li       r5, 0
-bl       playSystemSe__Q28PSSystem5SysIFFUlUl
-
-lbl_8040F51C:
-lwz      r0, 0x14(r1)
-li       r3, 1
-lwz      r31, 0xc(r1)
-mtlr     r0
-addi     r1, r1, 0x10
-blr
-	*/
+	if (soundID != -1) {
+		PSSystem::spSysIF->playSystemSe(soundID, 0);
+	}
+	return true;
 }
 
 /*
@@ -499,19 +299,7 @@ blr
  * Address:	8040F534
  * Size:	000020
  */
-void ObjPayDept::doUpdate()
-{
-	/*
-stwu     r1, -0x10(r1)
-mflr     r0
-stw      r0, 0x14(r1)
-bl       updateAnimation__Q32kh6Screen10ObjPayDeptFv
-lwz      r0, 0x14(r1)
-mtlr     r0
-addi     r1, r1, 0x10
-blr
-	*/
-}
+bool ObjPayDept::doUpdate() { return updateAnimation(); }
 
 /*
  * --INFO--
@@ -520,60 +308,18 @@ blr
  */
 void ObjPayDept::doUpdateFadeoutFinish()
 {
-	/*
-stwu     r1, -0x10(r1)
-mflr     r0
-stw      r0, 0x14(r1)
-stw      r31, 0xc(r1)
-mr       r31, r3
-bl       PSStop2DStream__Fv
-mr       r3, r31
-bl       getDispMember__Q26Screen7ObjBaseFv
-lis      r4, 0x44455054@ha
-lis      r5, 0x5041595F@ha
-addi     r6, r4, 0x44455054@l
-li       r4, 0x4b48
-addi     r5, r5, 0x5041595F@l
-bl       isID__Q32og6Screen14DispMemberBaseFUlUx
-clrlwi.  r0, r3, 0x18
-bne      lbl_8040F5B0
-lis      r3, lbl_80499160@ha
-lis      r5, lbl_804992E4@ha
-addi     r3, r3, lbl_80499160@l
-li       r4, 0xb7
-addi     r5, r5, lbl_804992E4@l
-crclr    6
-bl       panic_f__12JUTExceptionFPCciPCce
+	PSStop2DStream();
 
-lbl_8040F5B0:
-mr       r3, r31
-bl       getDispMember__Q26Screen7ObjBaseFv
-lwz      r0, 8(r3)
-cmpwi    r0, 0
-bne      lbl_8040F600
-mr       r3, r31
-lwz      r12, 0(r31)
-lwz      r12, 0x30(r12)
-mtctr    r12
-bctrl
-bl       setBackupScene__Q26Screen9SceneBaseFv
-clrlwi.  r0, r3, 0x18
-beq      lbl_8040F600
-mr       r3, r31
-lwz      r12, 0(r31)
-lwz      r12, 0x30(r12)
-mtctr    r12
-bctrl
-li       r4, 0
-bl       startScene__Q26Screen9SceneBaseFPQ26Screen13StartSceneArg
+	if (!getDispMember()->isID(OWNER_KH, MEMBER_PAY_DEBT)) {
+		JUT_PANICLINE(183, "disp member err");
+	}
 
-lbl_8040F600:
-lwz      r0, 0x14(r1)
-lwz      r31, 0xc(r1)
-mtlr     r0
-addi     r1, r1, 0x10
-blr
-	*/
+	DispPayDept* disp = static_cast<DispPayDept*>(getDispMember());
+	if (disp->m_payDeptType == DispPayDept::PAYDEPT_Percent) {
+		if (getOwner()->setBackupScene()) {
+			getOwner()->startScene(nullptr);
+		}
+	}
 }
 
 /*
@@ -583,33 +329,8 @@ blr
  */
 void ObjPayDept::doDraw(Graphics& gfx)
 {
-	/*
-stwu     r1, -0x10(r1)
-mflr     r0
-stw      r0, 0x14(r1)
-stw      r31, 0xc(r1)
-mr       r31, r4
-stw      r30, 8(r1)
-mr       r30, r3
-addi     r3, r31, 0xbc
-lwz      r12, 0xbc(r4)
-lwz      r12, 0x14(r12)
-mtctr    r12
-bctrl
-lwz      r3, 0x38(r30)
-mr       r4, r31
-addi     r5, r31, 0xbc
-lwz      r12, 0(r3)
-lwz      r12, 0x9c(r12)
-mtctr    r12
-bctrl
-lwz      r0, 0x14(r1)
-lwz      r31, 0xc(r1)
-lwz      r30, 8(r1)
-mtlr     r0
-addi     r1, r1, 0x10
-blr
-	*/
+	gfx.m_orthoGraph.setPort();
+	m_screen->draw(gfx, gfx.m_orthoGraph);
 }
 
 /*
@@ -617,69 +338,18 @@ blr
  * Address:	8040F678
  * Size:	0000DC
  */
-void ObjPayDept::updateAnimation()
+bool ObjPayDept::updateAnimation()
 {
-	/*
-stwu     r1, -0x20(r1)
-mflr     r0
-stw      r0, 0x24(r1)
-stw      r31, 0x1c(r1)
-li       r31, 0
-stw      r30, 0x18(r1)
-mr       r30, r3
-lfs      f0, 0x44(r3)
-lwz      r3, 0x3c(r3)
-stfs     f0, 8(r3)
-lfs      f0, 0x48(r30)
-lwz      r3, 0x40(r30)
-stfs     f0, 8(r3)
-lwz      r3, 0x38(r30)
-bl       animation__9J2DScreenFv
-lfs      f1, 0x44(r30)
-lis      r0, 0x4330
-lfs      f0, msVal__Q32kh6Screen10ObjPayDept@sda21(r13)
-stw      r0, 8(r1)
-fadds    f0, f1, f0
-lfd      f2, lbl_805201F0@sda21(r2)
-stfs     f0, 0x44(r30)
-lfs      f1, 0x48(r30)
-lfs      f0, msVal__Q32kh6Screen10ObjPayDept@sda21(r13)
-fadds    f0, f1, f0
-stfs     f0, 0x48(r30)
-lwz      r3, 0x3c(r30)
-lfs      f1, 0x44(r30)
-lha      r3, 6(r3)
-xoris    r3, r3, 0x8000
-stw      r3, 0xc(r1)
-lfd      f0, 8(r1)
-fsubs    f0, f0, f2
-fcmpo    cr0, f1, f0
-cror     2, 1, 2
-beq      lbl_8040F734
-lwz      r3, 0x40(r30)
-stw      r0, 8(r1)
-lha      r0, 6(r3)
-lfs      f1, 0x48(r30)
-xoris    r0, r0, 0x8000
-stw      r0, 0xc(r1)
-lfd      f0, 8(r1)
-fsubs    f0, f0, f2
-fcmpo    cr0, f1, f0
-cror     2, 1, 2
-bne      lbl_8040F738
-
-lbl_8040F734:
-li       r31, 1
-
-lbl_8040F738:
-lwz      r0, 0x24(r1)
-mr       r3, r31
-lwz      r31, 0x1c(r1)
-lwz      r30, 0x18(r1)
-mtlr     r0
-addi     r1, r1, 0x20
-blr
-	*/
+	bool ret                = false;
+	m_anim1->m_currentFrame = m_animTime1;
+	m_anim2->m_currentFrame = m_animTime2;
+	m_screen->animation();
+	m_animTime1 += msVal.m_animSpeed;
+	m_animTime2 += msVal.m_animSpeed;
+	if (m_animTime1 >= m_anim1->m_maxFrame || m_animTime2 >= m_anim2->m_maxFrame) {
+		ret = true;
+	}
+	return ret;
 }
 
 /*
@@ -687,8 +357,56 @@ blr
  * Address:	8040F754
  * Size:	00031C
  */
-void ObjPayDept::searchNumPane(J2DPane*, int, int)
+#pragma dont_inline on
+void ObjPayDept::searchNumPane(J2DPane* pane, int id1, int id2)
 {
+	if (pane->m_messageID == '2keta') {
+		setTex(m_screen, pane->m_tag, cpNumTexLargeName[id1]);
+	} else if (pane->m_messageID == '1keta') {
+		setTex(m_screen, pane->m_tag, cpNumTexLargeName[id2]);
+	}
+
+	JSUTree<J2DPane>* tree = pane->getPaneTree();
+	JSUTreeIterator<J2DPane> iter(tree->getFirstChild());
+	while (iter != tree->getEndChild()) {
+		J2DPane* cPane = iter.getObject();
+		if (cPane->m_messageID == '2keta') {
+			setTex(m_screen, cPane->m_tag, cpNumTexLargeName[id1]);
+		} else if (cPane->m_messageID == '2keta') {
+			setTex(m_screen, cPane->m_tag, cpNumTexLargeName[id2]);
+		}
+
+		JSUTree<J2DPane>* tree2 = pane->getPaneTree();
+		JSUTreeIterator<J2DPane> iter2(tree->getFirstChild());
+		while (iter2 != tree2->getEndChild()) {
+			J2DPane* cPane2 = iter2.getObject();
+			if (cPane2->m_messageID == '2keta') {
+				setTex(m_screen, cPane2->m_tag, cpNumTexLargeName[id1]);
+			} else if (cPane2->m_messageID == '2keta') {
+				setTex(m_screen, cPane2->m_tag, cpNumTexLargeName[id2]);
+			}
+
+			JSUTree<J2DPane>* tree3 = cPane2->m_tree.getFirstChild();
+			while (tree3 != cPane2->m_tree.getEndChild()) {
+				J2DPane* cPane3 = tree3->getObject();
+				if (cPane3->getUserInfo() == '2keta') {
+					setTex(m_screen, cPane3->getTagName(), cpNumTexLargeName[id1]);
+				} else if (cPane3->getUserInfo() == '1keta') {
+					setTex(m_screen, cPane3->getTagName(), cpNumTexLargeName[id2]);
+				}
+
+				JSUTree<J2DPane>* tree4 = cPane3->getPaneTree();
+				JSUTreeIterator<J2DPane> iter4(tree->getFirstChild());
+				while (iter4 != tree4->getEndChild()) {
+					searchNumPane(iter4.getObject(), id1, id2);
+					iter4++;
+				}
+				tree3 = tree3->getNextChild();
+			}
+			++iter2;
+		}
+		++iter;
+	}
 	/*
 stwu     r1, -0x40(r1)
 mflr     r0
@@ -927,6 +645,7 @@ addi     r1, r1, 0x40
 blr
 	*/
 }
+#pragma dont_inline off
 
 /*
  * --INFO--
@@ -935,6 +654,29 @@ blr
  */
 void ScenePayDept::doUserCallBackFunc(Resource::MgrCommand*)
 {
+	if (!m_dispMember->isID(OWNER_KH, MEMBER_PAY_DEBT)) {
+		JUT_PANICLINE(259, "disp member err");
+	}
+
+	DispPayDept* disp = static_cast<DispPayDept*>(m_dispMember);
+	switch (disp->m_payDeptType) {
+	case DispPayDept::PAYDEPT_Percent:
+		og::newScreen::makeLanguageResName(m_name, "hensai_demo_parsent.szs");
+		break;
+	case DispPayDept::PAYDEPT_DebtPayed:
+		og::newScreen::makeLanguageResName(m_name, "hensai_demo_kanryo.szs");
+		break;
+	case DispPayDept::PAYDEPT_Complete:
+		og::newScreen::makeLanguageResName(m_name, "hensai_demo_otakara.szs");
+		break;
+	}
+	LoadResource::Arg arg(m_name);
+	LoadResource::Node* node = gLoadResourceMgr->mountArchive(arg);
+	if (node) {
+		registObj(new ObjPayDept, node->m_archive);
+	} else {
+		JUT_PANICLINE(277, "failed");
+	}
 	/*
 stwu     r1, -0x50(r1)
 mflr     r0
@@ -1044,182 +786,7 @@ blr
 	*/
 }
 
-/*
- * --INFO--
- * Address:	8040FBCC
- * Size:	000008
- */
-void ScenePayDept::getResName() const
-{
-	/*
-addi     r3, r2, lbl_80520200@sda21
-blr
-	*/
-}
+ObjPayDept::StaticValues ObjPayDept::msVal;
 
-/*
- * --INFO--
- * Address:	8040FBD4
- * Size:	000008
- */
-u32 ScenePayDept::isUseBackupSceneInfo() { return 0x1; }
-
-/*
- * --INFO--
- * Address:	8040FBDC
- * Size:	000008
- */
-u32 ScenePayDept::getSceneType() { return 0x4E27; }
-
-/*
- * --INFO--
- * Address:	8040FBE4
- * Size:	000008
- */
-u32 ScenePayDept::getOwnerID() { return 0x4B48; }
-
-/*
- * --INFO--
- * Address:	8040FBEC
- * Size:	000014
- */
-void ScenePayDept::getMemberID()
-{
-	/*
-lis      r4, 0x44455054@ha
-lis      r3, 0x5041595F@ha
-addi     r4, r4, 0x44455054@l
-addi     r3, r3, 0x5041595F@l
-blr
-	*/
-}
-
-/*
- * --INFO--
- * Address:	8040FC00
- * Size:	000004
- */
-void ScenePayDept::doCreateObj(JKRArchive*) { }
-
-/*
- * --INFO--
- * Address:	8040FC04
- * Size:	0000AC
- */
-ObjPayDept::~ObjPayDept()
-{
-	/*
-stwu     r1, -0x10(r1)
-mflr     r0
-stw      r0, 0x14(r1)
-stw      r31, 0xc(r1)
-mr       r31, r4
-stw      r30, 8(r1)
-or.      r30, r3, r3
-beq      lbl_8040FC94
-lis      r4, __vt__Q32kh6Screen10ObjPayDept@ha
-addi     r4, r4, __vt__Q32kh6Screen10ObjPayDept@l
-stw      r4, 0(r30)
-addi     r0, r4, 0x10
-stw      r0, 0x18(r30)
-beq      lbl_8040FC84
-lis      r4, __vt__Q26Screen7ObjBase@ha
-addi     r4, r4, __vt__Q26Screen7ObjBase@l
-stw      r4, 0(r30)
-addi     r0, r4, 0x10
-stw      r0, 0x18(r30)
-beq      lbl_8040FC84
-lis      r4, __vt__Q26Screen8IObjBase@ha
-addi     r4, r4, __vt__Q26Screen8IObjBase@l
-stw      r4, 0(r30)
-addi     r0, r4, 0x10
-stw      r0, 0x18(r30)
-bl       del__5CNodeFv
-addi     r3, r30, 0x18
-li       r4, 0
-bl       __dt__11JKRDisposerFv
-mr       r3, r30
-li       r4, 0
-bl       __dt__5CNodeFv
-
-lbl_8040FC84:
-extsh.   r0, r31
-ble      lbl_8040FC94
-mr       r3, r30
-bl       __dl__FPv
-
-lbl_8040FC94:
-lwz      r0, 0x14(r1)
-mr       r3, r30
-lwz      r31, 0xc(r1)
-lwz      r30, 8(r1)
-mtlr     r0
-addi     r1, r1, 0x10
-blr
-	*/
-}
-
-/*
- * --INFO--
- * Address:	8040FCB0
- * Size:	000008
- */
-u32 DispPayDept::getSize() { return 0x10; }
-
-/*
- * --INFO--
- * Address:	8040FCB8
- * Size:	000008
- */
-u32 DispPayDept::getOwnerID() { return 0x4B48; }
-
-/*
- * --INFO--
- * Address:	8040FCC0
- * Size:	000014
- */
-void DispPayDept::getMemberID()
-{
-	/*
-lis      r4, 0x44455054@ha
-lis      r3, 0x5041595F@ha
-addi     r4, r4, 0x44455054@l
-addi     r3, r3, 0x5041595F@l
-blr
-	*/
-}
-
-} // namespace Screen
-} // namespace kh
-
-/*
- * --INFO--
- * Address:	8040FCD4
- * Size:	00000C
- */
-void __sinit_khPayDept_cpp()
-{
-	/*
-	lfs      f0, lbl_80520204@sda21(r2)
-	stfs     f0, msVal__Q32kh6Screen10ObjPayDept@sda21(r13)
-	blr
-	*/
-}
-
-namespace kh {
-namespace Screen {
-
-/*
- * --INFO--
- * Address:	8040FCE0
- * Size:	000008
- */
-ObjPayDept::@24 @~ObjPayDept()
-{
-	/*
-addi     r3, r3, -24
-b        __dt__Q32kh6Screen10ObjPayDeptFv
-	*/
-}
 } // namespace Screen
 } // namespace kh
