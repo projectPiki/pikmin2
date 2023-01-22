@@ -170,7 +170,7 @@ JSYSTEM:=\
 	$(BUILD_DIR)/src/JSystem/JSG/JSGActor.o\
 	$(BUILD_DIR)/asm/JSystem/JAS/JASWSParser.o\
 	$(BUILD_DIR)/asm/JSystem/JAS/JASBankMgr.o\
-	$(BUILD_DIR)/asm/JSystem/JAS/JASBasicBank.o\
+	$(BUILD_DIR)/src/JSystem/JAS/JASBasicBank.o\
 	$(BUILD_DIR)/src/JSystem/JAS/JASBasicInst.o\
 	$(BUILD_DIR)/asm/JSystem/JAS/JASBasicWaveBank.o\
 	$(BUILD_DIR)/asm/JSystem/JAS/JASBNKParser.o\

@@ -4,26 +4,6 @@
 #include "types.h"
 
 /*
-    Generated from dpostproc
-
-    .section .data, "wa"  # 0x8049E220 - 0x804EFC20
-    .global __vt__12JASBasicBank
-    __vt__12JASBasicBank:
-        .4byte 0
-        .4byte 0
-        .4byte __dt__12JASBasicBankFv
-        .4byte getInst__12JASBasicBankCFi
-        .4byte getType__12JASBasicBankCFv
-    .global __vt__7JASBank
-    __vt__7JASBank:
-        .4byte 0
-        .4byte 0
-        .4byte __dt__7JASBankFv
-        .4byte 0
-        .4byte 0
-*/
-
-/*
  * --INFO--
  * Address:	800996FC
  * Size:	00002C
@@ -35,16 +15,6 @@ JASBasicBank::JASBasicBank()
     , m_instCount(0)
 {
 }
-
-/*
- * --INFO--
- * Address:	80099728
- * Size:	000048
- * __dt__7JASBankFv
- */
-// JASBank::~JASBank()
-// {
-// }
 
 /*
  * --INFO--
@@ -83,13 +53,3 @@ void JASBasicBank::setInst(int index, JASInst* inst) { m_insts[index] = inst; }
  * getInst__12JASBasicBankCFi
  */
 JASInst* JASBasicBank::getInst(int index) const { return (index >= m_instCount) ? nullptr : m_insts[index]; }
-
-/*
- * --INFO--
- * Address:	8009987C
- * Size:	00000C
- * getType__12JASBasicBankCFv
- */
-// u32 JASBasicBank::getType() const
-// {
-// }
