@@ -18,12 +18,10 @@
  * Note: Rollers are a separate enemy/struct (Tyre).
  */
 
+#include "Game/Entities/Tyre.h"
+
 namespace Game {
 struct PathNode;
-
-namespace Tyre {
-struct Obj;
-} // namespace Tyre
 
 namespace BlackMan {
 struct Parms;

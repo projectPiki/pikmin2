@@ -2204,7 +2204,7 @@ void BlackMan::Obj::doDebugDraw(Graphics& gfx) { EnemyBase::doDebugDraw(gfx); }
  * Address:	803A7330
  * Size:	000174
  */
-void BlackMan::Obj::doSimulation(float)
+void BlackMan::Obj::doSimulation(f32)
 {
 	/*
 	stwu     r1, -0x50(r1)
@@ -2873,7 +2873,7 @@ lbl_803A7B44:
  * Address:	803A7B64
  * Size:	00016C
  */
-bool BlackMan::Obj::damageCallBack(Game::Creature*, float, CollPart*)
+bool BlackMan::Obj::damageCallBack(Game::Creature*, f32, CollPart*)
 {
 	/*
 	stwu     r1, -0x30(r1)
@@ -2987,7 +2987,7 @@ lbl_803A7CA8:
  * Address:	803A7CD0
  * Size:	000134
  */
-bool BlackMan::Obj::hipdropCallBack(Game::Creature*, float, CollPart*)
+bool BlackMan::Obj::hipdropCallBack(Game::Creature*, f32, CollPart*)
 {
 	/*
 	stwu     r1, -0x30(r1)
@@ -3089,7 +3089,7 @@ lbl_803A7DE0:
  * Address:	803A7E04
  * Size:	0000DC
  */
-bool BlackMan::Obj::earthquakeCallBack(Game::Creature*, float)
+bool BlackMan::Obj::earthquakeCallBack(Game::Creature*, f32)
 {
 	/*
 	stwu     r1, -0x20(r1)
@@ -4128,7 +4128,7 @@ lbl_803A8B4C:
  * Address:	803A8B7C
  * Size:	000034
  */
-bool BlackMan::Obj::isReachToGoal(float)
+bool BlackMan::Obj::isReachToGoal(f32)
 {
 	/*
 	fmuls    f0, f1, f1
@@ -6471,26 +6471,14 @@ void BlackMan::Obj::escape() { }
  * Address:	803AA9C4
  * Size:	000008
  */
-void BlackMan::Obj::setTimer(float)
-{
-	/*
-	stfs     f1, 0x33c(r3)
-	blr
-	*/
-}
+void BlackMan::Obj::setTimer(f32 time) { _33C = time; }
 
 /*
  * --INFO--
  * Address:	803AA9CC
  * Size:	000008
  */
-void BlackMan::Obj::getTimer()
-{
-	/*
-	lfs      f1, 0x33c(r3)
-	blr
-	*/
-}
+f32 BlackMan::Obj::getTimer() { return _33C; }
 
 /*
  * --INFO--
@@ -6814,21 +6802,9 @@ lbl_803AAD18:
  */
 void BlackMan::Obj::tyreFlick()
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	lwz      r3, 0x364(r3)
-	cmplwi   r3, 0
-	beq      lbl_803AADBC
-	bl       flick__Q34Game4Tyre3ObjFv
-
-lbl_803AADBC:
-	lwz      r0, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	if (m_tyre) {
+		m_tyre->flick();
+	}
 }
 
 /*
@@ -7090,28 +7066,8 @@ lbl_803AB074:
  */
 void BlackMan::Obj::fadeTraceEffect()
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	mr       r31, r3
-	lwz      r3, 0x390(r3)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x10(r12)
-	mtctr    r12
-	bctrl
-	lwz      r3, 0x394(r31)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x10(r12)
-	mtctr    r12
-	bctrl
-	lwz      r0, 0x14(r1)
-	lwz      r31, 0xc(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	m_efxMove->fade();
+	m_efxRun->fade();
 }
 
 /*
@@ -7154,28 +7110,8 @@ void BlackMan::Obj::createFlickEffect()
  */
 void BlackMan::Obj::fadeFlickEffect()
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	mr       r31, r3
-	lwz      r3, 0x3a0(r3)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x10(r12)
-	mtctr    r12
-	bctrl
-	lwz      r3, 0x3a4(r31)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x10(r12)
-	mtctr    r12
-	bctrl
-	lwz      r0, 0x14(r1)
-	lwz      r31, 0xc(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	_3A0->fade();
+	_3A4->fade();
 }
 
 /*
@@ -7410,21 +7346,9 @@ void BlackMan::Obj::throwupItemInDeathProcedure() { }
  */
 void BlackMan::Obj::createEfxHamon()
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	lwz      r0, 0x364(r3)
-	cmplwi   r0, 0
-	bne      lbl_803AB73C
-	bl       createEfxHamon__Q24Game9EnemyBaseFv
-
-lbl_803AB73C:
-	lwz      r0, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	if (!m_tyre) {
+		EnemyBase::createEfxHamon();
+	}
 }
 
 /*
@@ -7434,28 +7358,11 @@ lbl_803AB73C:
  */
 void BlackMan::Obj::updateEfxHamon()
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	lwz      r0, 0x364(r3)
-	cmplwi   r0, 0
-	beq      lbl_803AB778
-	lwz      r12, 0(r3)
-	lwz      r12, 0x254(r12)
-	mtctr    r12
-	bctrl
-	b        lbl_803AB77C
-
-lbl_803AB778:
-	bl       updateEfxHamon__Q24Game9EnemyBaseFv
-
-lbl_803AB77C:
-	lwz      r0, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	if (m_tyre) {
+		fadeEfxHamon();
+	} else {
+		EnemyBase::updateEfxHamon();
+	}
 }
 
 /*
