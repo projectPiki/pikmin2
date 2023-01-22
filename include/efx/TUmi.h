@@ -91,8 +91,8 @@ struct TUmiFlick : public TSimple3 {
 };
 
 struct TUmiHamon : public TChasePos2 {
-	inline TUmiHamon()
-	    : TChasePos2(nullptr, PID_UmiHamon_1, PID_UmiHamon_2)
+	inline TUmiHamon(Vector3f* pos)
+	    : TChasePos2(pos, PID_UmiHamon_1, PID_UmiHamon_2)
 	{
 	}
 

@@ -44,6 +44,21 @@ namespace UmiMushi {
 struct UmimushiShadowMgr;
 struct FSM;
 
+enum StateID {
+	UMIMUSHI_NULL   = -1,
+	UMIMUSHI_Wait   = 0,
+	UMIMUSHI_Walk   = 1,
+	UMIMUSHI_Find   = 2,
+	UMIMUSHI_Search = 3,
+	UMIMUSHI_Turn   = 4,
+	UMIMUSHI_Flick  = 5,
+	UMIMUSHI_Attack = 6,
+	UMIMUSHI_Eat    = 7,
+	UMIMUSHI_Dead   = 8,
+	UMIMUSHI_Lost   = 9,
+	UMIMUSHI_StateCount,
+};
+
 struct Parms : public EnemyParmsBase {
 	struct ProperParms : public Parameters {
 		ProperParms()
@@ -125,9 +140,6 @@ struct Parms : public EnemyParmsBase {
 	f32 _A34;                  // _A34
 };
 
-bool eyeScaleCallBack(J3DJoint*, int);
-bool weakScaleCallBack(J3DJoint*, int);
-
 struct Obj : public EnemyBase {
 	Obj();
 
@@ -200,13 +212,12 @@ struct Obj : public EnemyBase {
 	// _00 		= VTBL
 	// _00-_2BC	= EnemyBase
 	Vector3f _2BC;                            // _2BC
-	int _2C8;                                 // _2C8, next state ID maybe?
+	StateID m_nextState;                      // _2C8
 	MouthSlots m_mouthSlots;                  // _2CC
 	SysShape::Joint* m_headJoint;             // _2D4
 	Navi* m_targetNavi;                       // _2D8
 	bool _2DC;                                // _2DC, unknown
 	u8 _2DD;                                  // _2DD, unknown
-	u8 _2DE[0x2];                             // _2DE, unknown/maybe padding
 	int _2E0;                                 // _2E0, unknown
 	Vector3f _2E4;                            // _2E4
 	int _2F0;                                 // _2F0
@@ -227,20 +238,20 @@ struct Obj : public EnemyBase {
 	Sys::MatLoopAnimator* _354;               // _354
 	UmimushiShadowMgr* m_shadowMgr;           // _358
 	f32 _35C;                                 // _35C
-	u16 m_eyeJointIdx;                        // _360, unknown
+	u16 m_eyeJointIdx;                        // _360
 	u16 m_weakJointIdx;                       // _362
-	efx::TUmiHamon* _364;                     // _364
-	efx::TUmiWeakRed* _368;                   // _368
-	efx::TUmiWeakBlue* _36C;                  // _36C
-	efx::TChaseMtx2* _370[2];                 // _370, UmiEyeRed?
-	efx::TChaseMtx2* _378[2];                 // _378, UmiEyeBlue?
+	efx::TUmiHamon* m_efxHamon;               // _364
+	efx::TUmiWeakRed* m_efxWeakRed;           // _368
+	efx::TUmiWeakBlue* m_efxWeakBlue;         // _36C
+	efx::TUmiEyeRed* m_efxEyeRed[2];          // _370
+	efx::TUmiEyeBlue* m_efxEyeBlue[2];        // _378
 	efx::TUmiEat* m_efxEat;                   // _380
-	efx::TUmiDeadawa* _384;                   // _384
+	efx::TUmiDeadawa* m_efxBubble;            // _384
 	Matrixf* _388;                            // _388
-	Vector3f _38C;                            // _38C
+	Vector3f m_hamonPosition;                 // _38C
 	FSM* m_fsm;                               // _398
 	EnemyTypeID::EEnemyTypeID m_bloysterType; // _39C
-	u8 _3A0[0x4];                             // _3A0, unknown
+	u32 _3A0;                                 // _3A0
 	                                          // _3A4 = PelletView
 };
 
@@ -287,7 +298,10 @@ struct ProperAnimator : public EnemyAnimatorBase {
 };
 
 struct UmimushiShadowMgr {
+	UmimushiShadowMgr(Obj* obj);
+
 	void init();
+
 	u8 _00[0x8];                     // _00, unknown
 	Obj* _08;                        // _08
 	JointShadowRootNode* m_rootNode; // _0C

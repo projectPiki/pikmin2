@@ -474,6 +474,7 @@
 namespace Game {
 namespace UmiMushi {
 
+static const char unusedString[] = "umiMushi";
 Obj* curU;
 
 /*
@@ -482,7 +483,7 @@ Obj* curU;
  * Size:	000038
  */
 
-bool eyeScaleCallBack(J3DJoint* joint, int t)
+static bool eyeScaleCallBack(J3DJoint* joint, int t)
 {
 	if (t == 0 && curU) {
 		curU->eyeScaleMtxCalc();
@@ -495,7 +496,7 @@ bool eyeScaleCallBack(J3DJoint* joint, int t)
  * Address:	80383138
  * Size:	000038
  */
-bool weakScaleCallBack(J3DJoint* joint, int t)
+static bool weakScaleCallBack(J3DJoint* joint, int t)
 {
 	if (t == 0 && curU) {
 		curU->weakScaleMtxCalc();
@@ -516,13 +517,11 @@ void Obj::setParameters()
 		scale = 0.5f;
 	}
 	m_scaleModifier = scale;
-	m_scale.x       = scale;
-	m_scale.y       = scale;
-	m_scale.z       = scale;
+	m_scale         = Vector3f(scale);
 	m_collTree->m_part->setScale(scale);
 	m_curLodSphere.m_radius = scale * C_PARMS->m_general.m_offCameraRadius.m_value;
 	if (m_bloysterType == EnemyTypeID::EnemyID_UmiMushiBlind) {
-		C_PARMS->m_general.m_heightOffsetFromFloor = 50.0f;
+		C_PARMS->m_general.m_heightOffsetFromFloor.m_value = 50.0f;
 	}
 	m_collTree->getCollPart('weak')->setScale(C_PARMS->_A34); // scale of weak point (tail bulb)
 }
@@ -550,8 +549,6 @@ f32 Obj::getBodyRadius()
  */
 void Obj::birth(Vector3f& position, f32 faceDirection) { EnemyBase::birth(position, faceDirection); }
 
-const char unusedString[] = "umiMushi";
-
 /*
  * --INFO--
  * Address:	80383274
@@ -574,38 +571,38 @@ void Obj::onInit(CreatureInitArg* initArg)
 	m_targetNavi = nullptr; // second null initialization of targetNavi
 	_2DC         = 0;
 	_300         = 0;
-	_2C8         = -1;
+	m_nextState  = UMIMUSHI_NULL;
 
-	m_normalColor2.r = 0xffe7;
-	m_normalColor2.g = 0xff9c;
-	m_normalColor2.b = 0xffe2;
+	m_normalColor2.r = -25;
+	m_normalColor2.g = -100;
+	m_normalColor2.b = -30;
 
-	m_olimarColor1.r = 0x003c;
-	m_olimarColor1.g = 0xff8d;
-	m_olimarColor1.b = 0xff8d;
+	m_olimarColor1.r = 60;
+	m_olimarColor1.g = -115;
+	m_olimarColor1.b = -115;
 
-	m_olimarColor2.r = 0x0000;
-	m_olimarColor2.g = 0xff4c;
-	m_olimarColor2.b = 0xff4c;
+	m_olimarColor2.r = 0;
+	m_olimarColor2.g = -180;
+	m_olimarColor2.b = -180;
 
-	m_louieColor1.r = 0xffe2;
-	m_louieColor1.g = 0xffe2;
-	m_louieColor1.b = 0x0032;
+	m_louieColor1.r = -30;
+	m_louieColor1.g = -30;
+	m_louieColor1.b = 50;
 
-	m_louieColor2.r = 0xffb0;
-	m_louieColor2.g = 0xffb0;
-	m_louieColor2.b = 0x0000;
+	m_louieColor2.r = -80;
+	m_louieColor2.g = -80;
+	m_louieColor2.b = 0;
 
-	m_normalColor1.r = 0x0000;
-	m_normalColor1.g = 0xffe7;
-	m_normalColor1.b = 0xffb5;
+	m_normalColor1.r = 0;
+	m_normalColor1.g = -25;
+	m_normalColor1.b = -75;
 
 	_31C = m_normalColor1;
 	_314 = m_normalColor1;
 
 	curU = nullptr;
 
-	m_fsm->start(this, 1, nullptr); // fix this later - Drought Ender
+	m_fsm->start(this, UMIMUSHI_Walk, nullptr);
 
 	P2ASSERTLINE(157, _354);
 	_354->start(C_MGR->m_texAnimation);
@@ -639,39 +636,40 @@ void Obj::onInit(CreatureInitArg* initArg)
 		modelData->m_jointTree.m_joints[m_eyeJointIdx]->m_function  = UmiMushi::eyeScaleCallBack;
 		modelData->m_jointTree.m_joints[m_weakJointIdx]->m_function = UmiMushi::weakScaleCallBack;
 	}
-	m_dropGroup = EDG_None;
-	_38C        = m_position;
-	P2ASSERTLINE(212, _364);
-	efx::Arg efxArg(_38C);
-	_364->create(&efxArg);
-	_364->setGlobalScale(m_scaleModifier);
-	P2ASSERTLINE(218, _368);
-	P2ASSERTLINE(219, _36C);
-	Matrixf* modelMtx = m_model->getJoint("weak_joint2")->getWorldMatrix();
-	_368->setMtxptr((PSQuaternion*)modelMtx);
-	_36C->setMtxptr((PSQuaternion*)modelMtx);
+	m_dropGroup     = EDG_None;
+	m_hamonPosition = m_position;
+	P2ASSERTLINE(212, m_efxHamon);
+	efx::Arg efxArg(m_hamonPosition);
+	m_efxHamon->create(&efxArg);
+	m_efxHamon->setGlobalScale(m_scaleModifier);
 
-	P2ASSERTLINE(225, _370[0]);
-	P2ASSERTLINE(226, _370[1]);
-	// random newline here bc why not
-	P2ASSERTLINE(228, _378[0]);
-	P2ASSERTLINE(229, _378[1]);
+	P2ASSERTLINE(218, m_efxWeakRed);
+	P2ASSERTLINE(219, m_efxWeakBlue);
+	Matrixf* modelMtx = m_model->getJoint("weak_joint2")->getWorldMatrix();
+	m_efxWeakRed->setMtxptr(modelMtx->m_matrix.mtxView);
+	m_efxWeakBlue->setMtxptr(modelMtx->m_matrix.mtxView);
+
+	P2ASSERTLINE(225, m_efxEyeRed[0]);
+	P2ASSERTLINE(226, m_efxEyeRed[1]);
+
+	P2ASSERTLINE(228, m_efxEyeBlue[0]);
+	P2ASSERTLINE(229, m_efxEyeBlue[1]);
 
 	modelMtx = m_model->getJoint("ef_eye_r")->getWorldMatrix();
-	_370[0]->setMtxptr((PSQuaternion*)modelMtx);
-	_378[0]->setMtxptr((PSQuaternion*)modelMtx);
+	m_efxEyeRed[0]->setMtxptr(modelMtx->m_matrix.mtxView);
+	m_efxEyeBlue[0]->setMtxptr(modelMtx->m_matrix.mtxView);
 
 	modelMtx = m_model->getJoint("ef_eye_l")->getWorldMatrix();
-	_370[1]->setMtxptr((PSQuaternion*)modelMtx);
-	_378[1]->setMtxptr((PSQuaternion*)modelMtx);
+	m_efxEyeRed[1]->setMtxptr(modelMtx->m_matrix.mtxView);
+	m_efxEyeBlue[1]->setMtxptr(modelMtx->m_matrix.mtxView);
 
 	P2ASSERTLINE(239, m_efxEat);
-	P2ASSERTLINE(240, _384);
+	P2ASSERTLINE(240, m_efxBubble);
 
 	_388 = m_model->getJoint("bero_joint1")->getWorldMatrix();
 
-	m_efxEat->m_mtx = _388;
-	_384->m_mtx     = _388;
+	m_efxEat->m_mtx    = _388;
+	m_efxBubble->m_mtx = _388;
 }
 
 /*
@@ -680,13 +678,43 @@ void Obj::onInit(CreatureInitArg* initArg)
  * Size:	000428
  */
 Obj::Obj()
+    : m_headJoint(nullptr)
+    , m_targetNavi(nullptr)
+    , _2DD(0)
+    , _310(nullptr)
+    , _354(nullptr)
+    , m_shadowMgr(nullptr)
 {
-	m_headJoint  = nullptr;
-	m_targetNavi = nullptr;
-	_2DD         = 0;
-	_310         = nullptr;
-	_354         = nullptr;
-	m_shadowMgr  = nullptr;
+	m_efxHamon      = nullptr;
+	m_efxWeakRed    = nullptr;
+	m_efxWeakBlue   = nullptr;
+	m_efxEyeRed[0]  = nullptr;
+	m_efxEyeRed[1]  = nullptr;
+	m_efxEyeBlue[0] = nullptr;
+	m_efxEyeBlue[1] = nullptr;
+	m_efxEat        = nullptr;
+	m_efxBubble     = nullptr;
+	_388            = nullptr;
+	m_fsm           = nullptr;
+	_3A0            = 0;
+
+	m_animator = new ProperAnimator;
+	setFSM(new FSM);
+	_354        = new Sys::MatLoopAnimator;
+	m_shadowMgr = new UmimushiShadowMgr(this);
+
+	m_efxHamon = new efx::TUmiHamon(&m_hamonPosition);
+
+	m_efxWeakRed  = new efx::TUmiWeakRed;
+	m_efxWeakBlue = new efx::TUmiWeakBlue;
+
+	m_efxEyeRed[0]  = new efx::TUmiEyeRed;
+	m_efxEyeBlue[0] = new efx::TUmiEyeBlue;
+	m_efxEyeRed[1]  = new efx::TUmiEyeRed;
+	m_efxEyeBlue[1] = new efx::TUmiEyeBlue;
+
+	m_efxEat    = new efx::TUmiEat;
+	m_efxBubble = new efx::TUmiDeadawa;
 }
 
 /*
@@ -696,27 +724,9 @@ Obj::Obj()
  */
 void Obj::setFSM(FSM* fsm)
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	mr       r31, r3
-	stw      r4, 0x398(r3)
-	mr       r4, r31
-	lwz      r3, 0x398(r3)
-	lwz      r12, 0(r3)
-	lwz      r12, 8(r12)
-	mtctr    r12
-	bctrl
-	li       r0, 0
-	stw      r0, 0x2b4(r31)
-	lwz      r0, 0x14(r1)
-	lwz      r31, 0xc(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	m_fsm = fsm;
+	m_fsm->init(this);
+	m_currentLifecycleState = nullptr;
 }
 
 /*
@@ -1210,15 +1220,15 @@ void Obj::changeMaterial()
  */
 void Obj::doStartMovie()
 {
-	_364->startDemoDrawOff();
-	_368->startDemoDrawOff();
-	_36C->startDemoDrawOff();
-	_370[0]->startDemoDrawOff();
-	_370[1]->startDemoDrawOff();
-	_378[0]->startDemoDrawOff();
-	_378[1]->startDemoDrawOff();
+	m_efxHamon->startDemoDrawOff();
+	m_efxWeakRed->startDemoDrawOff();
+	m_efxWeakBlue->startDemoDrawOff();
+	m_efxEyeRed[0]->startDemoDrawOff();
+	m_efxEyeRed[1]->startDemoDrawOff();
+	m_efxEyeBlue[0]->startDemoDrawOff();
+	m_efxEyeBlue[1]->startDemoDrawOff();
 	m_efxEat->startDemoDrawOff();
-	_384->startDemoDrawOff();
+	m_efxBubble->startDemoDrawOff();
 }
 
 /*
@@ -1228,15 +1238,15 @@ void Obj::doStartMovie()
  */
 void Obj::doEndMovie()
 {
-	_364->endDemoDrawOn();
-	_368->endDemoDrawOn();
-	_36C->endDemoDrawOn();
-	_370[0]->endDemoDrawOn();
-	_370[1]->endDemoDrawOn();
-	_378[0]->endDemoDrawOn();
-	_378[1]->endDemoDrawOn();
+	m_efxHamon->endDemoDrawOn();
+	m_efxWeakRed->endDemoDrawOn();
+	m_efxWeakBlue->endDemoDrawOn();
+	m_efxEyeRed[0]->endDemoDrawOn();
+	m_efxEyeRed[1]->endDemoDrawOn();
+	m_efxEyeBlue[0]->endDemoDrawOn();
+	m_efxEyeBlue[1]->endDemoDrawOn();
 	m_efxEat->endDemoDrawOn();
-	_384->endDemoDrawOn();
+	m_efxBubble->endDemoDrawOn();
 }
 
 /*
@@ -1554,62 +1564,14 @@ lbl_803847EC:
  * Address:	80384824
  * Size:	0000AC
  */
-bool Obj::earthquakeCallBack(Creature* obj, f32 f)
+bool Obj::earthquakeCallBack(Creature* obj, f32 damage)
 {
-	if (obj && obj->isPiki()) {
-		return EnemyBase::earthquakeCallBack(obj, f);
-	} else {
-		return false;
+	P2ASSERTLINE(752, obj);
+	if (obj->isPiki() && (int)static_cast<Piki*>(obj)->m_pikiKind == Purple) {
+		damage *= C_PROPERPARMS.m_purpleDamageRate.m_value;
 	}
-	/*
-	stwu     r1, -0x20(r1)
-	mflr     r0
-	stw      r0, 0x24(r1)
-	stfd     f31, 0x10(r1)
-	psq_st   f31, 24(r1), 0, qr0
-	stw      r31, 0xc(r1)
-	stw      r30, 8(r1)
-	or.      r31, r4, r4
-	fmr      f31, f1
-	mr       r30, r3
-	bne      lbl_8038486C
-	lis      r3, lbl_80493B00@ha
-	lis      r5, lbl_80493B10@ha
-	addi     r3, r3, lbl_80493B00@l
-	li       r4, 0x2f0
-	addi     r5, r5, lbl_80493B10@l
-	crclr    6
-	bl       panic_f__12JUTExceptionFPCciPCce
 
-lbl_8038486C:
-	mr       r3, r31
-	lwz      r12, 0(r31)
-	lwz      r12, 0x18(r12)
-	mtctr    r12
-	bctrl
-	clrlwi.  r0, r3, 0x18
-	beq      lbl_803848A0
-	lbz      r0, 0x2b8(r31)
-	cmpwi    r0, 3
-	bne      lbl_803848A0
-	lwz      r3, 0xc0(r30)
-	lfs      f0, 0x90c(r3)
-	fmuls    f31, f31, f0
-
-lbl_803848A0:
-	fmr      f1, f31
-	mr       r3, r30
-	mr       r4, r31
-	bl       earthquakeCallBack__Q24Game9EnemyBaseFPQ24Game8Creaturef
-	psq_l    f31, 24(r1), 0, qr0
-	lwz      r0, 0x24(r1)
-	lfd      f31, 0x10(r1)
-	lwz      r31, 0xc(r1)
-	lwz      r30, 8(r1)
-	mtlr     r0
-	addi     r1, r1, 0x20
-	blr
-	*/
+	return EnemyBase::earthquakeCallBack(obj, damage);
 }
 
 /*
@@ -4210,7 +4172,7 @@ lbl_80386B20:
  */
 void Obj::fadeAllEffect()
 {
-	_364->fade();
+	m_efxHamon->fade();
 	fadeColorEffect();
 }
 
@@ -4221,12 +4183,12 @@ void Obj::fadeAllEffect()
  */
 void Obj::fadeColorEffect()
 {
-	_368->fade();
-	_36C->fade();
-	_370[0]->fade();
-	_370[1]->fade();
-	_378[0]->fade();
-	_378[1]->fade();
+	m_efxWeakRed->fade();
+	m_efxWeakBlue->fade();
+	m_efxEyeRed[0]->fade();
+	m_efxEyeRed[1]->fade();
+	m_efxEyeBlue[0]->fade();
+	m_efxEyeBlue[1]->fade();
 	_2DC = false;
 }
 
@@ -4530,8 +4492,8 @@ void Obj::eatEffect()
 void Obj::bubbleEffect()
 {
 	efx::Arg arg(m_position);
-	_384->create(&arg);
-	_384->setGlobalScale(m_scaleModifier);
+	m_efxBubble->create(&arg);
+	m_efxBubble->setGlobalScale(m_scaleModifier);
 }
 
 /*
