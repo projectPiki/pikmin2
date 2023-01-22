@@ -12,6 +12,7 @@
 #include "JSystem/JGeometry.h"
 #include "JSystem/J3D/J3DPacket.h"
 #include "JSystem/JUT/JUTNameTab.h"
+#include "BitFlag.h"
 
 struct J3DDeformData;
 struct J3DMatPacket;
@@ -123,10 +124,10 @@ struct J3DModel {
 
 	// _00 VTBL
 	J3DModelData* m_modelData;          // _04
-	u32 _08;                            // _08 /* bitfield of some sort */
+	BitFlag<u32> _08;                   // _08 /* bitfield of some sort */
 	u32 m_displayListFlag;              // _0C
 	void* _10;                          // _10
-	u32 _14;                            // _14
+	BitFlag<u32> _14;                   // _14
 	JGeometry::TVec3<f32> m_modelScale; // _18
 	Mtx m_posMtx;                       // _24
 	Mtx _54;                            // _54
@@ -144,6 +145,10 @@ struct J3DModel {
 struct J3DModelHierarchy {
 	u16 _00;
 	u16 _02;
+};
+
+struct J3DSkinDeform : public J3DModel { // absolutely a guess of inheritance
+	void deform(J3DModel* model);
 };
 
 #endif

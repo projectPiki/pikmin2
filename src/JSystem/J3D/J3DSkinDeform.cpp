@@ -1,24 +1,26 @@
 #include "types.h"
-
-/*
-    Generated from dpostproc
-
-    .section .data, "wa"  # 0x8049E220 - 0x804EFC20
-    .global __vt__15J3DVtxColorCalc
-    __vt__15J3DVtxColorCalc:
-        .4byte 0
-        .4byte 0
-        .4byte calc__15J3DVtxColorCalcFP15J3DVertexBuffer
-        .4byte __dt__15J3DVtxColorCalcFv
-*/
+#include "JSystem/J3D/J3DModel.h"
+#include "JSystem/J3D/J3DVtxColorCalc.h"
 
 /*
  * --INFO--
  * Address:	80088658
  * Size:	000088
  */
-void J3DSkinDeform::deform(J3DModel*)
+void J3DSkinDeform::deform(J3DModel* model)
 {
+	if (IS_FLAG(model->_08.typeView, 4)) {
+		SET_FLAG(_14.typeView, 2);
+	} else {
+		RESET_FLAG(_14.typeView, 2);
+	}
+
+	if (IS_FLAG(model->_08.typeView, 8)) {
+		SET_FLAG(_14.typeView, 1);
+	} else {
+		RESET_FLAG(_14.typeView, 1);
+	}
+	model->update();
 	/*
 	stwu     r1, -0x10(r1)
 	mflr     r0
@@ -70,30 +72,14 @@ lbl_800886B8:
  * Address:	800886E0
  * Size:	000030
  */
-void J3DVtxColorCalc::calc(J3DModel*)
-{
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	addi     r4, r4, 0x88
-	stw      r0, 0x14(r1)
-	lwz      r12, 0(r3)
-	lwz      r12, 8(r12)
-	mtctr    r12
-	bctrl
-	lwz      r0, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
-}
+void J3DVtxColorCalc::calc(J3DModel* model) { calc(&model->m_vertexBuffer); }
 
 /*
  * --INFO--
  * Address:	80088710
  * Size:	0000F4
  */
-void J3DVtxColorCalc::calc(J3DVertexBuffer*)
+void J3DVtxColorCalc::calc(J3DVertexBuffer* buffer)
 {
 	/*
 	stwu     r1, -0x30(r1)
@@ -166,37 +152,6 @@ lbl_800887F0:
 	lwz      r0, 0x34(r1)
 	mtlr     r0
 	addi     r1, r1, 0x30
-	blr
-	*/
-}
-
-/*
- * --INFO--
- * Address:	80088804
- * Size:	000048
- */
-J3DVtxColorCalc::~J3DVtxColorCalc()
-{
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	or.      r31, r3, r3
-	beq      lbl_80088834
-	lis      r5, __vt__15J3DVtxColorCalc@ha
-	extsh.   r0, r4
-	addi     r0, r5, __vt__15J3DVtxColorCalc@l
-	stw      r0, 0(r31)
-	ble      lbl_80088834
-	bl       __dl__FPv
-
-lbl_80088834:
-	lwz      r0, 0x14(r1)
-	mr       r3, r31
-	lwz      r31, 0xc(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
 	blr
 	*/
 }

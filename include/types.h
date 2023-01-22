@@ -47,6 +47,9 @@ typedef u32 unknown;
 // Resets specific flag from (val) back to 0
 #define RESET_FLAG(x, val) (x &= ~(val))
 
+// Return 1 if flag is set, 0 if flag is not set
+#define IS_FLAG(x, val) (x & val)
+
 // Array size define
 #define ARRAY_SIZE(o) (sizeof((o)) / sizeof(*(o)))
 

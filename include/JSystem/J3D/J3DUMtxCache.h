@@ -43,7 +43,7 @@ struct J3DUMtxCacheRef : public J3DUMtxCacheBase {
 		J3DModelData* modelData = model->m_modelData;
 		int jointCount          = modelData->m_jointTree.m_jointCnt;
 
-		if (model->_08 & 0x2) {
+		if (IS_FLAG(model->_08.typeView, 2)) {
 			J3DUMtxAnmCacheTable* table = getTable();
 			for (int i = 0; i < jointCount; i++) {
 				PSMTXCopy(table->m_matrices[i + table->_00 * table->m_jointCount], model->m_mtxBuffer->m_worldMatrices[i]);
