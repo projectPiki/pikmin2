@@ -524,7 +524,7 @@ void Obj::setParameters()
 	if (m_bloysterType == EnemyTypeID::EnemyID_UmiMushiBlind) {
 		C_PARMS->m_general.m_heightOffsetFromFloor = 50.0f;
 	}
-	m_collTree->getCollPart('weak')->setScale(C_PARMS->_A34); // Tounge Size?
+	m_collTree->getCollPart('weak')->setScale(C_PARMS->_A34); // scale of weak point (tail bulb)
 }
 
 /*
@@ -550,13 +550,13 @@ f32 Obj::getBodyRadius()
  */
 void Obj::birth(Vector3f& position, f32 faceDirection) { EnemyBase::birth(position, faceDirection); }
 
+const char unusedString[] = "umiMushi";
+
 /*
  * --INFO--
  * Address:	80383274
  * Size:	0005A8
  */
-
-const char* unusedString = "umiMushi";
 
 void Obj::onInit(CreatureInitArg* initArg)
 {
@@ -571,7 +571,7 @@ void Obj::onInit(CreatureInitArg* initArg)
 	_2F0         = 0;
 	_2F4         = 0;
 	_2FC         = 0.0f;
-	m_targetNavi = nullptr; // morimura has dementia :skull:
+	m_targetNavi = nullptr; // second null initialization of targetNavi
 	_2DC         = 0;
 	_300         = 0;
 	_2C8         = -1;
@@ -605,7 +605,7 @@ void Obj::onInit(CreatureInitArg* initArg)
 
 	curU = nullptr;
 
-	m_fsm->start(this, 1, nullptr); // fix this later
+	m_fsm->start(this, 1, nullptr); // fix this later - Drought Ender
 
 	P2ASSERTLINE(157, _354);
 	_354->start(C_MGR->m_texAnimation);

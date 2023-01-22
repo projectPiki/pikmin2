@@ -125,6 +125,9 @@ struct Parms : public EnemyParmsBase {
 	f32 _A34;                  // _A34
 };
 
+bool eyeScaleCallBack(J3DJoint*, int);
+bool weakScaleCallBack(J3DJoint*, int);
+
 struct Obj : public EnemyBase {
 	Obj();
 
@@ -191,9 +194,7 @@ struct Obj : public EnemyBase {
 	void bubbleEffect();
 	void delShadow();
 	void eyeScaleMtxCalc();
-	bool eyeScaleCallBack(J3DJoint*, int);
 	void weakScaleMtxCalc();
-	bool weakScaleCallBack(J3DJoint*, int);
 	void returnHome(); // unused
 
 	// _00 		= VTBL
