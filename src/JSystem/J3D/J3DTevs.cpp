@@ -291,7 +291,7 @@ const J3DFogInfo j3dDefaultFogInfo = { 0, 0, 0x140, 0.0f, 0.0f, 0.1f, 10000.0f, 
 const u32 j3dDefaultColInfo                      = 0xFFFFFFFF;
 const u32 j3dDefaultAmbInfo                      = 0x32323232;
 const u8 j3dDefaultColorChanNum                  = 1;
-const J3DTevOrderInfo j3dDefaultTevOrderInfoNull = { GX_TEXCOORD_NULL, GX_TEXMAP_NULL, 0xFF, 0 };
+const J3DTevOrderInfo j3dDefaultTevOrderInfoNull = { GX_TEXCOORD_NULL, GX_TEXMAP_NULL, 0xFF };
 // const J3DIndTexOrder j3dDefaultIndTexOrderNull   = J3DIndTexOrder(GX_TEXCOORD_NULL, GX_TEXMAP_NULL);
 // const J3DIndTexOrder j3dDefaultIndTexOrderNull   = J3DIndTexOrder(GX_TEXCOORD_NULL, GX_TEXMAP_NULL, 0, 0);
 // const J3DIndTexOrder j3dDefaultIndTexOrderNull   = { GX_TEXCOORD_NULL, GX_TEXMAP_NULL };
@@ -715,7 +715,7 @@ void J3DTexMtx::loadTexMtx(unsigned long p1) const
  * Address:	800641A8
  * Size:	000580
  */
-void J3DGDLoadTexMtxImm(float (*)[4], unsigned long, _GXTexMtxType)
+void J3DGDLoadTexMtxImm(Mtx, unsigned long, _GXTexMtxType)
 {
 	/*
 	cmpwi    r5, 1
@@ -1093,7 +1093,7 @@ void J3DTexMtx::loadPostTexMtx(unsigned long p1) const
  * Address:	80064788
  * Size:	00056C
  */
-void J3DGDLoadPostTexMtxImm(float (*)[4], unsigned long)
+void J3DGDLoadPostTexMtxImm(Mtx, unsigned long)
 {
 	/*
 	stwu     r1, -0x40(r1)
@@ -1458,7 +1458,7 @@ void J3DTexMtx::calc(const float (*mtx)[4]) { calcTexMtx(mtx); }
  * Address:	80064D14
  * Size:	0002EC
  */
-void J3DTexMtx::calcTexMtx(const float (*)[4])
+void J3DTexMtx::calcTexMtx(const Mtx)
 {
 	/*
 	stwu     r1, -0x90(r1)
@@ -1712,7 +1712,7 @@ lbl_80064FE8:
  * Address:	80065000
  * Size:	000358
  */
-void J3DTexMtx::calcPostTexMtx(const float (*)[4])
+void J3DTexMtx::calcPostTexMtx(const Mtx)
 {
 	/*
 	stwu     r1, -0x90(r1)
@@ -2005,21 +2005,12 @@ lbl_80065340:
  * Address:	80065358
  * Size:	000024
  */
-bool isTexNoReg(void*)
+bool isTexNoReg(void* ptr)
 {
-	/*
-	lbz      r0, 1(r3)
-	cmplwi   r0, 0x80
-	blt      lbl_80065374
-	cmplwi   r0, 0xbb
-	bgt      lbl_80065374
-	li       r3, 1
-	blr
-
-lbl_80065374:
-	li       r3, 0
-	blr
-	*/
+	if ((0x80 <= *(u8*)((u32)ptr + 1)) && (*(u8*)((u32)ptr + 1) <= 0xbb)) {
+		return true;
+	}
+	return false;
 }
 
 /*
