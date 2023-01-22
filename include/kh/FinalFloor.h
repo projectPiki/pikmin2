@@ -17,9 +17,9 @@ namespace Screen {
 struct DispFinalFloor : public og::Screen::DispMemberBase {
 	DispFinalFloor() { m_is2Player = false; }
 
-	virtual u32 getSize();     // _08 (weak)
-	virtual u32 getOwnerID();  // _0C (weak)
-	virtual u64 getMemberID(); // _10 (weak)
+	virtual u32 getSize() { return sizeof(DispFinalFloor); } // _08 (weak)
+	virtual u32 getOwnerID() { return OWNER_KH; }            // _0C (weak)
+	virtual u64 getMemberID() { return MEMBER_FINAL_FLOOR; } // _10 (weak)
 
 	// _00     = VTBL
 	// _00-_08 = DispMemberBase

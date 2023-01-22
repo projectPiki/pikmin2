@@ -375,8 +375,8 @@ struct SArgChallenge1P : public SArgChallengeBase {
 	    : SArgChallengeBase(data)
 	{
 	}
-	virtual SceneType getSceneType() const; // _08 (weak)
-	virtual int getClassSize();             // _0C (weak)
+	virtual SceneType getSceneType() const { return SCENE_CHALLENGE_1P; } // _08 (weak)
+	virtual int getClassSize() { return sizeof(SArgChallenge1P); }        // _0C (weak)
 
 	// _00     = VTBL
 	// _00-_04 = SArgChallengeBase
@@ -388,8 +388,8 @@ struct SArgChallenge2P : public SArgChallengeBase {
 	{
 	}
 
-	virtual SceneType getSceneType() const; // _08 (weak)
-	virtual int getClassSize();             // _0C (weak)
+	virtual SceneType getSceneType() const { return SCENE_CHALLENGE_2P; } // _08 (weak)
+	virtual int getClassSize() { return sizeof(SArgChallenge2P); }        // _0C (weak)
 
 	// _00     = VTBL
 	// _00-_04 = SArgChallengeBase

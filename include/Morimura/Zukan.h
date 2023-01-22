@@ -87,7 +87,7 @@ struct TDEnemyScene : public THIOScene {
 	virtual void doCreateObj(JKRArchive*);        // _20
 	virtual bool doStart(Screen::StartSceneArg*); // _3C
 
-	void isAppearConfirmWindow();
+	bool isAppearConfirmWindow();
 
 	// _00      = VTBL
 	// _00-_224 = THIOScene
@@ -105,7 +105,7 @@ struct TDItemScene : public THIOScene {
 	virtual void doCreateObj(JKRArchive*);        // _20
 	virtual bool doStart(Screen::StartSceneArg*); // _3C
 
-	void isAppearConfirmWindow();
+	bool isAppearConfirmWindow();
 
 	// _00      = VTBL
 	// _00-_224 = THIOScene
@@ -154,8 +154,8 @@ struct TZukanBase : public TScrollList {
 	void requireEffectOff();
 	bool isEnlargedWindow();
 	bool isMemoWindow();
-	void checkRequest(int&);
-	void getCurrSelectId();
+	int checkRequest(int&);
+	int getCurrSelectId();
 	void getTexInfo(int);
 
 	// _00     = VTBL1

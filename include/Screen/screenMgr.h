@@ -38,14 +38,14 @@ struct Mgr : public MgrBase {
 	void changeScene(Screen::SetSceneArg&, u8*);
 	void isCurrentSceneLoading();
 	void copyDispMember(u8*, u8*);
-	void setDispMember(og::Screen::DispMemberBase*);
-	void getDispMember();
-	void getSceneType();
-	void isSceneFinish();
-	void getSceneFinishState();
+	bool setDispMember(og::Screen::DispMemberBase*);
+	og::Screen::DispMemberBase* getDispMember();
+	SceneType getSceneType();
+	bool isSceneFinish();
+	int getSceneFinishState();
 	void setGamePad(Controller*);
-	void setBackupScene();
-	void isAnyReservation() const;
+	bool setBackupScene();
+	bool isAnyReservation() const;
 
 	inline void checkController()
 	{

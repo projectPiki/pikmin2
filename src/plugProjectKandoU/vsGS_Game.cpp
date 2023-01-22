@@ -229,9 +229,7 @@ void GameState::exec(VsGameSection* section)
 					section->m_vsWinner = -1;
 				}
 
-				kh::Screen::DispWinLose winLose;
-				winLose.m_outcome = outcome;
-				winLose._0C       = 1;
+				kh::Screen::DispWinLose winLose(outcome, 1);
 				Screen::gGame2DMgr->open_WinLose(winLose);
 				return;
 
@@ -480,7 +478,7 @@ void GameState::checkSMenu(VsGameSection* section)
 			if (gameSystem->isVersusMode()) {
 				versus = 1;
 			}
-			sMenu.m_pauseVSType = versus;
+			sMenu.m_openMode = versus;
 			Screen::gGame2DMgr->setGamePad(section->m_controllerP1);
 			if (Screen::gGame2DMgr->open_SMenu(sMenu)) {
 				gameSystem->setPause(true, "open-sm", 3);
@@ -494,7 +492,7 @@ void GameState::checkSMenu(VsGameSection* section)
 				if (gameSystem->isVersusMode()) {
 					versus = 1;
 				}
-				sMenu.m_pauseVSType = versus;
+				sMenu.m_openMode = versus;
 				Screen::gGame2DMgr->setGamePad(section->m_controllerP2);
 				if (Screen::gGame2DMgr->open_SMenu(sMenu)) {
 					gameSystem->setPause(true, "open-sm", 3);

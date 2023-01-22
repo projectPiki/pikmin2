@@ -12,6 +12,11 @@ enum WinLoseCondition { WinPlayer1 = 1, WinPlayer2 = 2, Draw = 3, Timeup1P = 4, 
 namespace kh {
 namespace Screen {
 struct DispWinLose : public og::Screen::DispMemberBase {
+	DispWinLose(int type, int state)
+	{
+		m_outcome = type;
+		_0C       = state;
+	}
 
 	virtual u32 getSize() { return sizeof(DispWinLose); } // _08 (weak)
 	virtual u32 getOwnerID() { return OWNER_KH; }         // _0C (weak)

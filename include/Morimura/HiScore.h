@@ -16,7 +16,7 @@ struct DispMemberHighScore : public og::Screen::DispMemberBase {
 	// _00     = VTBL
 	// _00-_08 = DispMemberBase
 	void* _08; // _08, unknown ptr
-	u8 _0C;    // _0C
+	bool _0C;  // _0C
 };
 
 struct THiScoreIndPane : public TIndPane {

@@ -280,8 +280,8 @@ struct DispMemberCourseName : public DispMemberBase {
 	inline DispMemberCourseName()
 	    : m_courseIndex(0)
 	{
-		_0C = 0;
-		_0D = 0;
+		m_isCounting = 0;
+		m_isExiting  = 0;
 	}
 
 	virtual u32 getSize() { return sizeof(DispMemberCourseName); } // _08 (weak)
@@ -291,8 +291,8 @@ struct DispMemberCourseName : public DispMemberBase {
 	// _00     = VTBL
 	// _00-_08 = DispMemberBase
 	int m_courseIndex; // _08
-	u8 _0C;            // _0C
-	u8 _0D;            // _0D
+	u8 m_isCounting;   // _0C
+	u8 m_isExiting;    // _0D
 };
 
 // size 0x8
@@ -575,6 +575,12 @@ struct DispMemberSMenuPauseVS : public DispMemberBase {
 struct DispMemberSMenuAll : public DispMemberBase {
 	DispMemberSMenuAll();
 
+	enum OpenType {
+		Open_StoryMode, // start on map
+		Open_ChallengeMode,
+		Open_Versus
+	};
+
 	virtual u32 getSize() { return sizeof(DispMemberSMenuAll); } // _08 (weak)
 	virtual u32 getOwnerID() { return OWNER_OGA; }               // _0C (weak)
 	virtual u64 getMemberID() { return MEMBER_START_MENU_ALL; }  // _10 (weak)
@@ -587,7 +593,7 @@ struct DispMemberSMenuAll : public DispMemberBase {
 	DispMemberSMenuMap m_sMenuMap;                   // _5C
 	DispMemberSMenuPauseVS m_sMenuVS;                // _A8
 	DispMemberSMenuCont m_sMenuCont;                 // _B4
-	int m_pauseVSType;                               // _BC
+	int m_openMode;                                  // _BC
 	bool m_isDay1;                                   // _C0
 };
 
@@ -632,8 +638,8 @@ struct DispMemberUfoMenu : public DispMemberBase {
 struct DispMemberUfoGroup : public DispMemberBase {
 	inline DispMemberUfoGroup()
 	{
-		m_hasPurple          = false;
 		m_hasWhite           = false;
+		m_hasPurple          = false;
 		m_contena1.m_onyonID = 4;
 		m_contena2.m_onyonID = 3;
 		m_hasPaidDebt        = false;
@@ -648,8 +654,8 @@ struct DispMemberUfoGroup : public DispMemberBase {
 	DispMemberUfoMenu m_ufoMenu;  // _08
 	DispMemberContena m_contena1; // _18
 	DispMemberContena m_contena2; // _50
-	bool m_hasPurple;             // _88
-	bool m_hasWhite;              // _89
+	bool m_hasWhite;              // _88
+	bool m_hasPurple;             // _89
 	bool m_hasPaidDebt;           // _8A
 };
 
@@ -683,7 +689,7 @@ struct DispMemberVs : public DispMemberBase {
 
 	// _00     = VTBL
 	// _00-_08 = DispMemberBase
-	u32 m_doneState;        // _08, unknown
+	u32 m_doneState;        // _08
 	DataGame m_dataGame;    // _0C
 	DataNavi m_olimarData;  // _28
 	DataNavi m_louieData;   // _40

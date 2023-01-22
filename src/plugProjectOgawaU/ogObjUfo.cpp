@@ -147,7 +147,7 @@ bool ObjUfoMenu::doUpdate()
 {
 	bool ret        = false;
 	Controller* pad = getGamePad();
-	if (m_disp->m_hasPurple && m_disp->m_hasWhite) {
+	if (m_disp->m_hasWhite && m_disp->m_hasPurple) {
 		if (pad->m_padButton.m_buttonDown & (Controller::PRESS_DPAD_UP | Controller::UNKNOWN_32)) {
 			if (m_selectIndex > 0) {
 				m_selectIndex--;

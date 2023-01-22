@@ -10,10 +10,17 @@ struct JKRArchive;
 namespace kh {
 namespace Screen {
 struct DispReadyGo : public og::Screen::DispMemberBase {
+	DispReadyGo()
+	{
+		m_status       = 0;
+		m_is2Player    = false;
+		m_isFinalFloor = false;
+		m_gameType     = 0;
+	}
 
-	virtual u32 getSize();     // _08 (weak)
-	virtual u32 getOwnerID();  // _0C (weak)
-	virtual u64 getMemberID(); // _10 (weak)
+	virtual u32 getSize() { return sizeof(DispReadyGo); } // _08 (weak)
+	virtual u32 getOwnerID() { return OWNER_KH; }         // _0C (weak)
+	virtual u64 getMemberID() { return MEMBER_READY_GO; } // _10 (weak)
 
 	// _00     = VTBL
 	// _00-_08 = DispMemberBase
