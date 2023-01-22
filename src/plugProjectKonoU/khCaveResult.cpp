@@ -3,6 +3,7 @@
 #include "kh/LostItem.h"
 #include "Dolphin/rand.h"
 #include "efx2d/T2DChangesmoke.h"
+#include "efx2d/T2DCavecomp.h"
 #include "PSSystem/PSSystemIF.h"
 #include "JSystem/JKR/JKRFileLoader.h"
 #include "JSystem/J2D/J2DAnmLoader.h"
@@ -122,8 +123,8 @@ ObjCaveResult::ObjCaveResult()
 	m_scrollTargetDist  = msVal._1C;
 
 	m_scrollMoveTimer  = 0;
-	_EC                = 0;
-	_E8                = 0;
+	m_scissorMax       = 0;
+	m_scissorMin       = 0;
 	m_status           = 3;
 	m_changeStateDelay = 0;
 	_F8                = 0;
@@ -212,35 +213,21 @@ void ObjCaveResult::doCreate(JKRArchive* arc)
 
 	u64 debtTag;
 	if (disp->m_debtPayed) {
-		J2DPane* pane     = m_screenMain->search('Nfi_menu');
-		pane->m_isVisible = false;
-
-		pane              = m_screenMain->search('Nco_menu');
-		pane->m_isVisible = true;
-
+		m_screenMain->search('Nfi_menu')->hide();
+		m_screenMain->search('Nco_menu')->show();
 		debtTag = 'Pcomp01';
 	} else {
-		J2DPane* pane     = m_screenMain->search('Nfi_menu');
-		pane->m_isVisible = true;
-
-		pane              = m_screenMain->search('Nco_menu');
-		pane->m_isVisible = false;
-
+		m_screenMain->search('Nfi_menu')->show();
+		m_screenMain->search('Nco_menu')->hide();
 		debtTag = 'Pfin01';
 	}
 
 	if (disp->m_caveComp || (disp->m_maxOtakara != disp->m_collectedOtakara)) {
-		J2DPane* pane     = m_screenMain->search('Pananorm');
-		pane->m_isVisible = true;
-
-		pane              = m_screenMain->search('Panacomp');
-		pane->m_isVisible = false;
+		m_screenMain->search('Pananorm')->show();
+		m_screenMain->search('Panacomp')->hide();
 	} else {
-		J2DPane* pane     = m_screenMain->search('Pananorm');
-		pane->m_isVisible = false;
-
-		pane              = m_screenMain->search('Panacomp');
-		pane->m_isVisible = true;
+		m_screenMain->search('Pananorm')->hide();
+		m_screenMain->search('Panacomp')->show();
 	}
 
 	m_screenMain->search('Panacomp')->setBasePosition(POS_CENTER);
@@ -269,39 +256,20 @@ void ObjCaveResult::doCreate(JKRArchive* arc)
 	m_counterTreasureMax->setCenteringMode(og::Screen::CallBack_CounterRV::ECM_Unknown1);
 
 	if (!disp->m_debtPayed && (disp->m_caveComp || disp->m_maxOtakara != disp->m_collectedOtakara)) {
-		J2DPane* compPane     = m_counterTreasureMax->getMotherPane();
-		compPane->m_isVisible = false;
-		compPane              = m_counterTreasureCollected->getMotherPane();
-		compPane->add(msVal._10, msVal._14);
-
-		J2DPane* pane     = m_screenMain->search('PICT_008');
-		pane->m_isVisible = false;
-
-		pane              = m_screenMain->search('Ptits14');
-		pane->m_isVisible = false;
-
-		pane              = m_screenMain->search('Ptits15');
-		pane->m_isVisible = false;
+		m_counterTreasureMax->getMotherPane()->hide();
+		m_counterTreasureCollected->getMotherPane()->add(msVal._10, msVal._14);
+		m_screenMain->search('PICT_008')->hide();
+		m_screenMain->search('Ptits14')->hide();
+		m_screenMain->search('Ptits15')->hide();
 	}
 	m_scaleMgr = new og::Screen::ScaleMgr;
 
-	J2DPane* pane     = m_screenMain->search('Nsetp02');
-	pane->m_isVisible = false;
-
-	pane              = m_screenMain->search('Nsetp03');
-	pane->m_isVisible = false;
-
-	pane              = m_screenMain->search('Nsetp04');
-	pane->m_isVisible = false;
-
-	pane              = m_screenMain->search('Nsetp05');
-	pane->m_isVisible = false;
-
-	pane              = m_screenMain->search('Piname00');
-	pane->m_messageID = '0101_00';
-
-	pane              = m_screenMain->search('Piname01');
-	pane->m_messageID = '0101_00';
+	m_screenMain->search('Nsetp02')->hide();
+	m_screenMain->search('Nsetp03')->hide();
+	m_screenMain->search('Nsetp04')->hide();
+	m_screenMain->search('Nsetp05')->hide();
+	m_screenMain->search('Piname00')->setMsgID('0101_00');
+	m_screenMain->search('Piname01')->setMsgID('0101_00');
 
 	m_saveMgr = ebi::Save::TMgr::createInstance();
 	loadSaveMgrResources();
@@ -441,10 +409,10 @@ void ObjCaveResult::doDraw(Graphics& gfx)
 	u64 icontags[2] = { 'iPicon00', 'iPicon01' };
 
 	gfx.m_orthoGraph.setPort();
-	pane1->m_isVisible       = true;
-	pane2->m_isVisible       = false;
-	paneList[0]->m_isVisible = false;
-	paneList[1]->m_isVisible = false;
+	pane1->show();
+	pane2->hide();
+	paneList[0]->hide();
+	paneList[1]->hide();
 
 	J2DPane** list = paneList;
 	m_screenMain->draw(gfx, gfx.m_orthoGraph);
@@ -455,10 +423,10 @@ void ObjCaveResult::doDraw(Graphics& gfx)
 	wd = 0;
 	ht = 0;
 	GXGetScissor(&x, &y, &wd, &ht);
-	GXSetScissor(x, _E8, wd, _EC);
+	GXSetScissor(x, m_scissorMin, wd, m_scissorMax);
 
-	pane1->m_isVisible = false;
-	pane2->m_isVisible = false;
+	pane1->hide();
+	pane2->hide();
 
 	f32 offs = m_scrollUpDown * 2.0f;
 	for (int i = 0; i < 2; i++) {
@@ -466,10 +434,8 @@ void ObjCaveResult::doDraw(Graphics& gfx)
 	}
 
 	for (int i = 0; i < 2; i++) {
-		J2DPane* pane     = m_screenMain->search(nametags[i]);
-		pane->m_isVisible = true;
-		pane              = m_screenMain->search(icontags[i]);
-		pane->m_isVisible = true;
+		m_screenMain->search(nametags[i])->show();
+		m_screenMain->search(icontags[i])->show();
 		m_counterOtaValues[i]->show();
 	}
 
@@ -480,7 +446,7 @@ void ObjCaveResult::doDraw(Graphics& gfx)
 		u32 isOdd = i & 1;
 		f32 calc  = (f32)i * m_scrollUpDown + m_scrollPos;
 
-		if (calc < -m_scrollUpDown || _EC < calc) {
+		if (calc < -m_scrollUpDown || m_scissorMax < calc) {
 			paneList[isOdd]->add(0.0f, offs);
 		} else {
 			if (((int)cNode->m_itemMgr->m_flags & LOSTITEM_Unk2) == 2) {
@@ -494,16 +460,15 @@ void ObjCaveResult::doDraw(Graphics& gfx)
 				next = cNode->getNextIndex(cNode->_30, cNode->m_isLost);
 				setAlpha(isOdd, 255);
 			}
-			J2DPane* pane                = paneList[isOdd];
-			pane->m_isVisible            = false;
-			paneList[isOdd]->m_isVisible = true;
+			paneList[isOdd]->hide();
+			paneList[isOdd]->show();
 			paneList[isOdd]->add(0.0f, offs);
 			setTex(m_screenMain, icontags[isOdd], cNode->m_texture->_20);
 			u64 tag = cNode->m_mesgTag;
 			if (tag == 0) {
-				m_screenMain->search(icontags[isOdd])->m_isVisible = false;
+				m_screenMain->search(icontags[isOdd])->hide();
 			} else {
-				m_screenMain->search(icontags[isOdd])->m_messageID = tag;
+				m_screenMain->search(icontags[isOdd])->setMsgID(tag);
 			}
 			m_currOtaValues[isOdd] = next;
 			m_counterOtaValues[isOdd]->update();
@@ -513,22 +478,22 @@ void ObjCaveResult::doDraw(Graphics& gfx)
 	}
 
 	for (; i < 6; i++) {
-		int isOdd                    = i & 1;
-		paneList[isOdd]->m_isVisible = false;
-		paneList[isOdd]->m_isVisible = true;
+		int isOdd = i & 1;
+		paneList[isOdd]->hide();
+		paneList[isOdd]->show();
 		paneList[isOdd]->add(0.0f, offs);
 		setAlpha(isOdd, 255);
-		m_screenMain->search(icontags[isOdd])->m_isVisible = false;
-		m_screenMain->search(nametags[isOdd])->m_isVisible = false;
+		m_screenMain->search(icontags[isOdd])->hide();
+		m_screenMain->search(nametags[isOdd])->hide();
 		m_counterOtaValues[i]->hide();
 		m_screenMain->draw(gfx, gfx.m_orthoGraph);
 	}
 
 	GXSetScissor(x, y, wd, ht);
-	pane1->m_isVisible       = true;
-	pane2->m_isVisible       = false;
-	paneList[0]->m_isVisible = false;
-	paneList[1]->m_isVisible = false;
+	pane1->show();
+	pane2->hide();
+	paneList[0]->hide();
+	paneList[1]->hide();
 	m_screenMain->draw(gfx, gfx.m_orthoGraph);
 
 	FOREACH_NODE(Game::Result::TNode, m_resultNode->m_child, cNode)
@@ -541,9 +506,10 @@ void ObjCaveResult::doDraw(Graphics& gfx)
 		JUtility::TColor c(m_alpha);
 		gfx.m_orthoGraph.setColor(c);
 
-		int x = System::getRenderModeObj()->fbWidth;
-		int y = System::getRenderModeObj()->efbHeight;
-		JGeometry::TBox2f box(0.0f, x, 0.0f, y);
+		u32 x    = System::getRenderModeObj()->fbWidth;
+		u32 y    = System::getRenderModeObj()->efbHeight;
+		f32 zero = 0.0f;
+		JGeometry::TBox2f box(0.0f, x + zero, 0.0f, y + zero);
 		gfx.m_orthoGraph.fillBox(box);
 	}
 
@@ -553,10 +519,9 @@ void ObjCaveResult::doDraw(Graphics& gfx)
 	}
 
 	if (isFlag(CAVERESFLAG_SaveOpen)) {
-		gfx.m_orthoGraph.setPort();
+		gfx.m_perspGraph.setPort();
 		m_saveMgr->draw();
 	}
-
 	/*
 stwu     r1, -0xd0(r1)
 mflr     r0
@@ -1202,12 +1167,11 @@ void ObjCaveResult::statusNormal()
  */
 void ObjCaveResult::statusScrollUp()
 {
-	m_scrollPos = -(((m_scrollMoveTimer * m_scrollUpDown)
-	                 + (m_scrollSelIndex * m_scrollUpDown) * ((m_scrollSelIndex + 1) * m_scrollTargetDist - m_scrollMoveTimer))
+	m_scrollPos = -((m_scrollMoveTimer * m_scrollUpDown * m_scrollSelIndex
+	                 + m_scrollUpDown * (m_scrollSelIndex + 1) * (m_scrollTargetDist - m_scrollMoveTimer))
 	                / m_scrollTargetDist);
-	int e       = m_scrollMoveTimer;
-	m_scrollMoveTimer++;
-	if (e == m_scrollTargetDist) {
+
+	if (m_scrollMoveTimer++ == m_scrollTargetDist) {
 		m_scrollMoveTimer = 1;
 		m_status          = CAVERES_Normal;
 	}
@@ -1286,12 +1250,11 @@ blr
  */
 void ObjCaveResult::statusScrollDown()
 {
-	m_scrollPos = -(((m_scrollMoveTimer * m_scrollUpDown)
-	                 + (m_scrollSelIndex * m_scrollUpDown) * ((m_scrollSelIndex - 1) * m_scrollTargetDist - m_scrollMoveTimer))
+	m_scrollPos = -((m_scrollMoveTimer * m_scrollUpDown * m_scrollSelIndex
+	                 + m_scrollUpDown * (m_scrollSelIndex - 1) * (m_scrollTargetDist - m_scrollMoveTimer))
 	                / m_scrollTargetDist);
-	int e       = m_scrollMoveTimer;
-	m_scrollMoveTimer++;
-	if (e == m_scrollTargetDist) {
+
+	if (m_scrollMoveTimer++ == m_scrollTargetDist) {
 		m_scrollMoveTimer = 1;
 		m_status          = CAVERES_Normal;
 	}
@@ -1945,15 +1908,15 @@ void ObjCaveResult::statusEffect()
 {
 	if (!m_changeStateDelay) {
 		if (!isFlag(CAVERESFLAG_DrawComp)) {
-			m_screenMain->search('Pananorm')->m_isVisible = false;
-			m_screenMain->search('Panacomp')->m_isVisible = true;
+			m_screenMain->search('Pananorm')->hide();
+			m_screenMain->search('Panacomp')->show();
 			m_scaleMgr->up();
-			m_counterTreasureMax->getMotherPane()->m_isVisible = true;
+			m_counterTreasureMax->getMotherPane()->show();
 			m_counterTreasureCollected->getMotherPane()->add(-msVal._10, -msVal._14);
-			m_screenMain->search('PICT_008')->m_isVisible = true;
-			m_screenMain->search('Ptits14')->m_isVisible  = true;
-			m_screenMain->search('Ptits15')->m_isVisible  = true;
-			m_status                                      = CAVERES_Normal;
+			m_screenMain->search('PICT_008')->show();
+			m_screenMain->search('Ptits14')->show();
+			m_screenMain->search('Ptits15')->show();
+			m_status = CAVERES_Normal;
 			PSSystem::spSysIF->playSystemSe(PSSE_SY_WMAP_CAVE_NAME, 0);
 		} else {
 			if (m_alpha < msVal._39)
@@ -2100,6 +2063,65 @@ blr
  */
 void ObjCaveResult::updateAnimation()
 {
+	JGeometry::TVec3f vec1 = m_screenMain->search('Nmask')->getGlbVtx(0);
+	JGeometry::TVec3f vec2 = m_screenMain->search('Nmask')->getGlbVtx(3);
+	m_scissorMin           = vec1.y;
+	m_scissorMax           = vec2.y;
+
+	m_mainAnim->m_currentFrame          = m_animTimers[0];
+	m_completeAnim->m_currentFrame      = m_animTimers[1];
+	m_mainAnimColor->m_currentFrame     = m_animTimers[2];
+	m_completeAnimColor->m_currentFrame = m_animTimers[3];
+	m_animTexSRT->m_currentFrame        = m_animTimers[4];
+	m_animTevReg->m_currentFrame        = m_animTimers[5];
+	m_screenMain->animation();
+
+	if (!isFlag(CAVERESFLAG_SaveOpen)) {
+		m_animTimers[0] += 1.0f;
+		if (m_animTimers[0] >= m_mainAnim->m_maxFrame) {
+			m_animTimers[0] = 0.0f;
+		}
+
+		m_animTimers[2] += 1.0f;
+		if (m_animTimers[2] >= m_mainAnimColor->m_maxFrame) {
+			m_animTimers[2] = 0.0f;
+		}
+
+		m_animTimers[4] += 1.0f;
+		if (m_animTimers[4] >= m_animTexSRT->m_maxFrame) {
+			m_animTimers[4] = 0.0f;
+		}
+
+		m_animTimers[5] += 1.0f;
+		if (m_animTimers[5] >= m_animTevReg->m_maxFrame) {
+			m_animTimers[5] = 0.0f;
+		}
+	}
+
+	m_screenMain->update();
+	m_screenMain->search('Panacomp')->updateScale(m_scaleMgr->calc());
+
+	if (isFlag(CAVERESFLAG_DrawComp)) {
+		m_completeAnim->m_currentFrame      = m_animTimers[1];
+		m_completeAnimColor->m_currentFrame = m_animTimers[3];
+		m_screenComplete->animation();
+		if (m_animTimers[1] >= 30.0f && !isFlag(CAVERESFLAG_MakeEfx)) {
+			u32 y = System::getRenderModeObj()->efbHeight;
+			u32 x = System::getRenderModeObj()->fbWidth;
+			efx2d::Arg arg2(x * 0.5f, y * 0.5f);
+			m_efxComp->create(&arg2);
+			efx2d::Arg arg(getPaneCenterX(m_screenMain->search('NALL')) + msVal._04,
+			               getPaneCenterY(m_screenMain->search('NALL')) + msVal._08);
+			efx2d::T2DCavecomp efx;
+			efx.create(&arg);
+			setFlag(CAVERESFLAG_MakeEfx);
+		}
+		m_animTimers[1] += msVal._00;
+		m_animTimers[3] += msVal._00;
+		if (m_completeAnim->m_maxFrame - 1.0f >= m_animTimers[1] || m_completeAnimColor->m_maxFrame - 1.0f >= m_animTimers[3]) {
+			resetFlag(CAVERESFLAG_DrawComp);
+		}
+	}
 	FOREACH_NODE(Game::Result::TNode, m_resultNode->m_child, cNode) { cNode->m_itemMgr->update(); }
 	/*
 stwu     r1, -0xb0(r1)
@@ -2475,9 +2497,9 @@ blr
  */
 void ObjCaveResult::setAlpha(int index, unsigned char alpha)
 {
-	u64 tag  = 'Nicon00';
-	u64 tag2 = 'Nicon01';
-	m_screenMain->search('Nicon00' + index)->setAlpha(alpha);
+	u64 tag           = 'Nicon00';
+	volatile u64 tag2 = 'Nicon01';
+	m_screenMain->search(tag + index)->setAlpha(alpha);
 	/*
 stwu     r1, -0x20(r1)
 mflr     r0
@@ -2533,65 +2555,6 @@ void ObjCaveResult::pikminSE()
 		PSSystem::spSysIF->playSystemSe(PSSE_SY_PIKI_DECRE_SUM, 0);
 		PSSystem::spSysIF->playSystemSe(PSSE_PK_VC_GHOST, 0);
 	}
-	/*
-stwu     r1, -0x10(r1)
-mflr     r0
-stw      r0, 0x14(r1)
-lwz      r0, 0xb8(r3)
-cmplwi   r0, 0
-bne      lbl_803FB100
-lwz      r3, spSysIF__8PSSystem@sda21(r13)
-li       r4, 0x1806
-li       r5, 0
-bl       playSystemSe__Q28PSSystem5SysIFFUlUl
-lwz      r3, spSysIF__8PSSystem@sda21(r13)
-li       r4, 0x285f
-li       r5, 0
-bl       playSystemSe__Q28PSSystem5SysIFFUlUl
-b        lbl_803FB178
-
-lbl_803FB100:
-cmplwi   r0, 0xa
-bgt      lbl_803FB12C
-lwz      r3, spSysIF__8PSSystem@sda21(r13)
-li       r4, 0x182a
-li       r5, 0
-bl       playSystemSe__Q28PSSystem5SysIFFUlUl
-lwz      r3, spSysIF__8PSSystem@sda21(r13)
-li       r4, 0x2822
-li       r5, 0
-bl       playSystemSe__Q28PSSystem5SysIFFUlUl
-b        lbl_803FB178
-
-lbl_803FB12C:
-cmplwi   r0, 0x32
-bgt      lbl_803FB158
-lwz      r3, spSysIF__8PSSystem@sda21(r13)
-li       r4, 0x182b
-li       r5, 0
-bl       playSystemSe__Q28PSSystem5SysIFFUlUl
-lwz      r3, spSysIF__8PSSystem@sda21(r13)
-li       r4, 0x2860
-li       r5, 0
-bl       playSystemSe__Q28PSSystem5SysIFFUlUl
-b        lbl_803FB178
-
-lbl_803FB158:
-lwz      r3, spSysIF__8PSSystem@sda21(r13)
-li       r4, 0x182b
-li       r5, 0
-bl       playSystemSe__Q28PSSystem5SysIFFUlUl
-lwz      r3, spSysIF__8PSSystem@sda21(r13)
-li       r4, 0x2810
-li       r5, 0
-bl       playSystemSe__Q28PSSystem5SysIFFUlUl
-
-lbl_803FB178:
-lwz      r0, 0x14(r1)
-mtlr     r0
-addi     r1, r1, 0x10
-blr
-	*/
 }
 
 /*
@@ -2682,14 +2645,14 @@ void LostItemMgr::init(const JGeometry::TVec2f& pos, bool flag)
 			f32 y1 = randFloat();
 			f32 y2 = randFloat();
 
-			LostItem item    = m_itemList[i];
-			item.m_rect.p1.x = x;
-			item.m_rect.p1.y = y;
-			item.m_rect.p2.x = 40.0f * randFloat() - 20.0f;
-			item.m_rect.p2.y = 32.0f * y2 - 30.0f;
-			item._10         = (u16)(4.0f * y1 + 2.0f);
-			item._1A         = (u16)(10000.0f * x2 - 5000.0f);
-			item.m_counter   = (u8)(10.0f * x1 - 8.0f);
+			LostItem* item    = &m_itemList[i];
+			item->m_rect.p1.x = x;
+			item->m_rect.p1.y = y;
+			item->m_rect.p2.x = 40.0f * randFloat() - 20.0f;
+			item->m_rect.p2.y = 32.0f * y2 - 30.0f;
+			item->_10         = (u16)(4.0f * y1 + 2.0f);
+			item->_1A         = (u16)(10000.0f * x2 - 5000.0f);
+			item->m_counter   = (u8)(10.0f * x1 - 8.0f);
 		}
 		float xoffs[5] = { kh::Screen::ObjCaveResult::msVal._24, kh::Screen::ObjCaveResult::msVal._28, kh::Screen::ObjCaveResult::msVal._2C,
 			               kh::Screen::ObjCaveResult::msVal._30, kh::Screen::ObjCaveResult::msVal._34 };

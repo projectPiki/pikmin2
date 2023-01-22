@@ -62,7 +62,8 @@ struct ObjCaveResult : public ::Screen::ObjBase {
 		CAVERESFLAG_FinishAutoScroll = 2,
 		CAVERESFLAG_SaveOpen         = 4,
 		CAVERESFLAG_PikisKilledShown = 8,
-		CAVERESFLAG_DrawComp         = 0x10
+		CAVERESFLAG_DrawComp         = 0x10,
+		CAVERESFLAG_MakeEfx          = 0x20
 	};
 
 	ObjCaveResult();
@@ -140,9 +141,9 @@ struct ObjCaveResult : public ::Screen::ObjBase {
 	int m_scrollSelIndex;                                       // _D8
 	int m_scrollSelIndexMax;                                    // _DC
 	int m_scrollTargetDist;                                     // _E0
-	uint m_scrollMoveTimer;                                     // _E4
-	u32 _E8;                                                    // _E8, unknown
-	u32 _EC;                                                    // _EC, unknown
+	int m_scrollMoveTimer;                                      // _E4
+	u32 m_scissorMin;                                           // _E8
+	u32 m_scissorMax;                                           // _EC
 	int m_status;                                               // _F0
 	int m_changeStateDelay;                                     // _F4
 	u32 _F8;                                                    // _F8, unknown
