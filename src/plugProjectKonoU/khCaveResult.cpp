@@ -1167,80 +1167,14 @@ void ObjCaveResult::statusNormal()
  */
 void ObjCaveResult::statusScrollUp()
 {
-	m_scrollPos = -((m_scrollMoveTimer * m_scrollUpDown * m_scrollSelIndex
-	                 + m_scrollUpDown * (m_scrollSelIndex + 1) * (m_scrollTargetDist - m_scrollMoveTimer))
-	                / m_scrollTargetDist);
+	f32 p1 = m_scrollUpDown * (m_scrollSelIndex + 1) * (m_scrollTargetDist - m_scrollMoveTimer);
+	m_scrollPos    = -((m_scrollMoveTimer * (m_scrollUpDown * m_scrollSelIndex) + p1) / m_scrollTargetDist);
 
 	if (m_scrollMoveTimer++ == m_scrollTargetDist) {
 		m_scrollMoveTimer = 1;
 		m_status          = CAVERES_Normal;
 	}
 	PSSystem::spSysIF->playSystemSe(PSSE_SY_REGI_ROLL, 0);
-	/*
-stwu     r1, -0x30(r1)
-mflr     r0
-lis      r6, 0x4330
-lfd      f4, lbl_8051FFB0@sda21(r2)
-stw      r0, 0x34(r1)
-lwz      r4, 0xd8(r3)
-stw      r6, 0x18(r1)
-addi     r0, r4, 1
-xoris    r5, r4, 0x8000
-xoris    r0, r0, 0x8000
-lwz      r8, 0xe0(r3)
-stw      r0, 0x1c(r1)
-lwz      r7, 0xe4(r3)
-lfd      f0, 0x18(r1)
-subf     r0, r7, r8
-stw      r5, 0x14(r1)
-xoris    r4, r0, 0x8000
-fsubs    f0, f0, f4
-stw      r6, 0x10(r1)
-xoris    r7, r7, 0x8000
-lfs      f3, 0xd4(r3)
-xoris    r0, r8, 0x8000
-lfd      f2, 0x10(r1)
-stw      r4, 0x24(r1)
-fmuls    f1, f3, f0
-fsubs    f2, f2, f4
-stw      r6, 0x20(r1)
-lfd      f0, 0x20(r1)
-fmuls    f2, f3, f2
-stw      r7, 0xc(r1)
-fsubs    f0, f0, f4
-stw      r6, 8(r1)
-lfd      f3, 8(r1)
-fmuls    f1, f1, f0
-stw      r0, 0x2c(r1)
-fsubs    f3, f3, f4
-stw      r6, 0x28(r1)
-lfd      f0, 0x28(r1)
-fmadds   f1, f3, f2, f1
-fsubs    f0, f0, f4
-fdivs    f0, f1, f0
-fneg     f0, f0
-stfs     f0, 0xd0(r3)
-lwz      r4, 0xe4(r3)
-addi     r0, r4, 1
-stw      r0, 0xe4(r3)
-lwz      r0, 0xe0(r3)
-cmpw     r4, r0
-bne      lbl_803FA23C
-li       r4, 1
-li       r0, 0
-stw      r4, 0xe4(r3)
-stw      r0, 0xf0(r3)
-
-lbl_803FA23C:
-lwz      r3, spSysIF__8PSSystem@sda21(r13)
-li       r4, 0x101a
-li       r5, 0
-bl       playSystemSe__Q28PSSystem5SysIFFUlUl
-lwz      r0, 0x34(r1)
-mtlr     r0
-addi     r1, r1, 0x30
-blr
-	*/
 }
 
 /*
@@ -1250,80 +1184,14 @@ blr
  */
 void ObjCaveResult::statusScrollDown()
 {
-	m_scrollPos = -((m_scrollMoveTimer * m_scrollUpDown * m_scrollSelIndex
-	                 + m_scrollUpDown * (m_scrollSelIndex - 1) * (m_scrollTargetDist - m_scrollMoveTimer))
-	                / m_scrollTargetDist);
+	f32 p1 = m_scrollUpDown * (m_scrollSelIndex - 1) * (m_scrollTargetDist - m_scrollMoveTimer);
+	m_scrollPos    = -((m_scrollMoveTimer * (m_scrollUpDown * m_scrollSelIndex) + p1) / m_scrollTargetDist);
 
 	if (m_scrollMoveTimer++ == m_scrollTargetDist) {
 		m_scrollMoveTimer = 1;
 		m_status          = CAVERES_Normal;
 	}
 	PSSystem::spSysIF->playSystemSe(PSSE_SY_REGI_ROLL, 0);
-	/*
-stwu     r1, -0x30(r1)
-mflr     r0
-lis      r6, 0x4330
-lfd      f4, lbl_8051FFB0@sda21(r2)
-stw      r0, 0x34(r1)
-lwz      r4, 0xd8(r3)
-stw      r6, 0x18(r1)
-addi     r0, r4, -1
-xoris    r5, r4, 0x8000
-xoris    r0, r0, 0x8000
-lwz      r8, 0xe0(r3)
-stw      r0, 0x1c(r1)
-lwz      r7, 0xe4(r3)
-lfd      f0, 0x18(r1)
-subf     r0, r7, r8
-stw      r5, 0x14(r1)
-xoris    r4, r0, 0x8000
-fsubs    f0, f0, f4
-stw      r6, 0x10(r1)
-xoris    r7, r7, 0x8000
-lfs      f3, 0xd4(r3)
-xoris    r0, r8, 0x8000
-lfd      f2, 0x10(r1)
-stw      r4, 0x24(r1)
-fmuls    f1, f3, f0
-fsubs    f2, f2, f4
-stw      r6, 0x20(r1)
-lfd      f0, 0x20(r1)
-fmuls    f2, f3, f2
-stw      r7, 0xc(r1)
-fsubs    f0, f0, f4
-stw      r6, 8(r1)
-lfd      f3, 8(r1)
-fmuls    f1, f1, f0
-stw      r0, 0x2c(r1)
-fsubs    f3, f3, f4
-stw      r6, 0x28(r1)
-lfd      f0, 0x28(r1)
-fmadds   f1, f3, f2, f1
-fsubs    f0, f0, f4
-fdivs    f0, f1, f0
-fneg     f0, f0
-stfs     f0, 0xd0(r3)
-lwz      r4, 0xe4(r3)
-addi     r0, r4, 1
-stw      r0, 0xe4(r3)
-lwz      r0, 0xe0(r3)
-cmpw     r4, r0
-bne      lbl_803FA330
-li       r4, 1
-li       r0, 0
-stw      r4, 0xe4(r3)
-stw      r0, 0xf0(r3)
-
-lbl_803FA330:
-lwz      r3, spSysIF__8PSSystem@sda21(r13)
-li       r4, 0x101a
-li       r5, 0
-bl       playSystemSe__Q28PSSystem5SysIFFUlUl
-lwz      r0, 0x34(r1)
-mtlr     r0
-addi     r1, r1, 0x30
-blr
-	*/
 }
 
 /*
@@ -1333,13 +1201,10 @@ blr
  */
 void ObjCaveResult::statusForceScroll()
 {
-	m_scrollPos = -(((m_scrollMoveTimer * m_scrollUpDown)
-	                 + (m_scrollSelIndex * m_scrollUpDown) * ((m_scrollSelIndex - 1) * m_scrollTargetDist - m_scrollMoveTimer))
-	                / m_scrollTargetDist);
-
-	int e = m_scrollMoveTimer;
-	m_scrollMoveTimer++;
-	if (e == m_scrollTargetDist) {
+	f32 p1 = m_scrollUpDown * (m_scrollSelIndex - 1) * (m_scrollTargetDist - m_scrollMoveTimer);
+	m_scrollPos    = -((m_scrollMoveTimer * (m_scrollUpDown * m_scrollSelIndex) + p1) / m_scrollTargetDist);
+	
+	if (m_scrollMoveTimer++ == m_scrollTargetDist) {
 		if (m_scrollSelIndex == m_scrollSelIndexMax) {
 			bool check        = false;
 			m_scrollMoveTimer = 1;
@@ -1380,7 +1245,7 @@ void ObjCaveResult::statusForceScroll()
 	FOREACH_NODE(Game::Result::TNode, m_resultNode->m_child, cNode)
 	{
 		if (i == m_scrollSelIndex + 2 && ((cNode->m_itemMgr->m_flags & LOSTITEM_Unk1) != 1)) {
-			cNode->m_itemMgr->init(pos, 0);
+			cNode->m_itemMgr->init(pos, i & 7);
 		}
 		i++;
 	}
@@ -1638,62 +1503,6 @@ void ObjCaveResult::statusAllMoney()
 	} else {
 		m_changeStateDelay--;
 	}
-	/*
-stwu     r1, -0x10(r1)
-mflr     r0
-stw      r0, 0x14(r1)
-stw      r31, 0xc(r1)
-mr       r31, r3
-lwz      r4, 0xf4(r3)
-cmpwi    r4, 0
-bne      lbl_803FA700
-bl       getDispMember__Q26Screen7ObjBaseFv
-lis      r5, 0x52534C54@ha
-li       r4, 0x4b48
-addi     r6, r5, 0x52534C54@l
-li       r5, 0x435f
-bl       isID__Q32og6Screen14DispMemberBaseFUlUx
-clrlwi.  r0, r3, 0x18
-bne      lbl_803FA6B8
-lis      r3, lbl_80498360@ha
-lis      r5, lbl_80498374@ha
-addi     r3, r3, lbl_80498360@l
-li       r4, 0x38e
-addi     r5, r5, lbl_80498374@l
-crclr    6
-bl       panic_f__12JUTExceptionFPCciPCce
-
-lbl_803FA6B8:
-mr       r3, r31
-bl       getDispMember__Q26Screen7ObjBaseFv
-lwz      r0, 0x28(r3)
-lfs      f1, lbl_8051FFB8@sda21(r2)
-stw      r0, 0xcc(r31)
-lwz      r3, 0xb0(r31)
-bl       startPuyoUp__Q32og6Screen18CallBack_CounterRVFf
-lwz      r3, spSysIF__8PSSystem@sda21(r13)
-li       r4, 0x1814
-li       r5, 0
-bl       playSystemSe__Q28PSSystem5SysIFFUlUl
-lis      r3, msVal__Q32kh6Screen13ObjCaveResult@ha
-li       r0, 6
-addi     r3, r3, msVal__Q32kh6Screen13ObjCaveResult@l
-lbz      r3, 0x3b(r3)
-stw      r3, 0xf4(r31)
-stw      r0, 0xf0(r31)
-b        lbl_803FA708
-
-lbl_803FA700:
-addi     r0, r4, -1
-stw      r0, 0xf4(r31)
-
-lbl_803FA708:
-lwz      r0, 0x14(r1)
-lwz      r31, 0xc(r1)
-mtlr     r0
-addi     r1, r1, 0x10
-blr
-	*/
 }
 
 /*
@@ -1719,76 +1528,6 @@ void ObjCaveResult::statusDecP()
 	} else {
 		m_changeStateDelay--;
 	}
-	/*
-stwu     r1, -0x10(r1)
-mflr     r0
-stw      r0, 0x14(r1)
-stw      r31, 0xc(r1)
-mr       r31, r3
-stw      r30, 8(r1)
-lwz      r4, 0xf4(r3)
-cmpwi    r4, 0
-bne      lbl_803FA7E4
-bl       getDispMember__Q26Screen7ObjBaseFv
-lis      r5, 0x52534C54@ha
-li       r4, 0x4b48
-addi     r6, r5, 0x52534C54@l
-li       r5, 0x435f
-bl       isID__Q32og6Screen14DispMemberBaseFUlUx
-clrlwi.  r0, r3, 0x18
-bne      lbl_803FA77C
-lis      r3, lbl_80498360@ha
-lis      r5, lbl_80498374@ha
-addi     r3, r3, lbl_80498360@l
-li       r4, 0x3a6
-addi     r5, r5, lbl_80498374@l
-crclr    6
-bl       panic_f__12JUTExceptionFPCciPCce
-
-lbl_803FA77C:
-mr       r3, r31
-bl       getDispMember__Q26Screen7ObjBaseFv
-mr       r30, r3
-lfs      f1, lbl_8051FFB8@sda21(r2)
-lwz      r0, 0x2c(r3)
-stw      r0, 0xb8(r31)
-lwz      r3, 0x9c(r31)
-bl       startPuyoUp__Q32og6Screen18CallBack_CounterRVFf
-mr       r3, r31
-bl       pikminSE__Q32kh6Screen13ObjCaveResultFv
-lbz      r0, 0x31(r30)
-cmplwi   r0, 0
-beq      lbl_803FA7CC
-li       r0, 7
-lis      r3, msVal__Q32kh6Screen13ObjCaveResult@ha
-stw      r0, 0xf0(r31)
-addi     r3, r3, msVal__Q32kh6Screen13ObjCaveResult@l
-lbz      r0, 0x3b(r3)
-stw      r0, 0xf4(r31)
-b        lbl_803FA7D4
-
-lbl_803FA7CC:
-li       r0, 0
-stw      r0, 0xf0(r31)
-
-lbl_803FA7D4:
-lbz      r0, 0x104(r31)
-ori      r0, r0, 8
-stb      r0, 0x104(r31)
-b        lbl_803FA7EC
-
-lbl_803FA7E4:
-addi     r0, r4, -1
-stw      r0, 0xf4(r31)
-
-lbl_803FA7EC:
-lwz      r0, 0x14(r1)
-lwz      r31, 0xc(r1)
-lwz      r30, 8(r1)
-mtlr     r0
-addi     r1, r1, 0x10
-blr
-	*/
 }
 
 /*
@@ -1800,11 +1539,11 @@ void ObjCaveResult::statusLost()
 {
 	if (!m_changeStateDelay) {
 		int i = 0;
-		JGeometry::TVec2f pos(_FC, _100);
+		JGeometry::TVec2f pos(_100, _FC);
 		FOREACH_NODE(Game::Result::TNode, m_resultNode->m_child, cNode)
 		{
-			if (cNode->m_isLost != 0 && ((cNode->m_itemMgr->m_flags & LOSTITEM_Unk2) != 2)) {
-				pos.y += _100 * m_scrollUpDown;
+			if (cNode->m_isLost != 0 && ((int)(cNode->m_itemMgr->m_flags & LOSTITEM_Unk2) != 2)) {
+				pos.y = m_scrollUpDown * (f32)(i - 3 - m_scrollSelIndexMax) + _100;
 				cNode->m_itemMgr->init(pos, i & 1);
 				m_changeStateDelay = m_scrollTargetDist;
 				return;
