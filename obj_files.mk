@@ -1169,7 +1169,7 @@ KONO:=\
 	$(BUILD_DIR)/src/plugProjectKonoU/khMailSaveData.o\
 
 BOOTUP:=\
-	$(BUILD_DIR)/src/sysBootupU/sysBootup.o\
+	$(BUILD_DIR)/src/sysBootupU/sysBootupU.a\
 
 COMMON:=\
 	$(BUILD_DIR)/src/sysCommonU/node.o\

@@ -273,6 +273,7 @@ endif
 	$(QUIET) $(PYTHON) $(TRANSFORM_DEP) $< $@
 
 -include $(DEPENDS)
+-include include_link.mk
 
 $(BUILD_DIR)/%.o: %.s
 	@echo Assembling $<
