@@ -2,6 +2,7 @@
 #include "Game/EnemyAnimKeyEvent.h"
 #include "Game/EnemyFunc.h"
 #include "Game/gamePlayData.h"
+#include "Dolphin/rand.h"
 #include "nans.h"
 
 namespace Game {
@@ -118,7 +119,7 @@ void StateWait::exec(EnemyBase* enemy)
 				break;
 			case KEYEVENT_END:
 				Parms* parms = static_cast<Parms*>(enemy->m_parms);
-				f32 angLimit = parms->m_properParms._854.m_value;
+				f32 angLimit = parms->m_properParms.m_fp03.m_value;
 				f32 angDist  = enemy->changeFaceDir(enemy->m_targetCreature); // this is wrong?
 				if (FABS(angDist) <= PI * (DEG2RAD * angLimit)) {
 					transit(enemy, KOCHAPPY_Walk, nullptr);

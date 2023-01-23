@@ -186,7 +186,25 @@ struct State : public EnemyFSMState {
 	// _00-_10 	= EnemyFSMState
 };
 
-struct StateAttack : public State {
+struct StateCautionBase : public State {
+	StateCautionBase(int);
+
+	void cautionProc(EnemyBase*);
+
+	// _00		= VTBL
+	// _00-_10 	= EnemyFSMState
+};
+
+struct StateTurnBase : public StateCautionBase {
+	StateTurnBase(int);
+
+	void turnToTarget(EnemyBase*, Vector3f&);
+
+	// _00		= VTBL
+	// _00-_10 	= EnemyFSMState
+};
+
+struct StateAttack : public StateCautionBase {
 	StateAttack(int);
 
 	virtual void init(EnemyBase*, StateArg*);         // _08
@@ -200,14 +218,7 @@ struct StateAttack : public State {
 	// _00-_10 	= EnemyFSMState
 };
 
-struct StateCautionBase : public State {
-	inline StateCautionBase(int); // probably
-
-	// _00		= VTBL
-	// _00-_10 	= EnemyFSMState
-};
-
-struct StateDead : public State {
+struct StateDead : public StateCautionBase {
 	StateDead(int);
 
 	virtual void init(EnemyBase*, StateArg*); // _08
@@ -218,7 +229,7 @@ struct StateDead : public State {
 	// _00-_10 	= EnemyFSMState
 };
 
-struct StateFlick : public State {
+struct StateFlick : public StateCautionBase {
 	StateFlick(int);
 
 	virtual void init(EnemyBase*, StateArg*); // _08
@@ -229,7 +240,7 @@ struct StateFlick : public State {
 	// _00-_10 	= EnemyFSMState
 };
 
-struct StateGoHome : public State {
+struct StateGoHome : public StateCautionBase {
 	StateGoHome(int);
 
 	virtual void init(EnemyBase*, StateArg*); // _08
@@ -259,14 +270,7 @@ struct StateSleep : public State {
 	int m_nextState; // _10, next state?
 };
 
-struct StateTurnBase : public State {
-	inline StateTurnBase(int); // probably
-
-	// _00		= VTBL
-	// _00-_10 	= EnemyFSMState
-};
-
-struct StateTurn : public State {
+struct StateTurn : public StateTurnBase {
 	StateTurn(int);
 
 	virtual void init(EnemyBase*, StateArg*); // _08
@@ -278,7 +282,7 @@ struct StateTurn : public State {
 	int _10; // _10
 };
 
-struct StateTurnToHome : public State {
+struct StateTurnToHome : public StateTurnBase {
 	StateTurnToHome(int);
 
 	virtual void init(EnemyBase*, StateArg*); // _08
@@ -290,7 +294,7 @@ struct StateTurnToHome : public State {
 	int _10; // _10
 };
 
-struct StateWalk : public State {
+struct StateWalk : public StateCautionBase {
 	StateWalk(int);
 
 	virtual void init(EnemyBase*, StateArg*); // _08
