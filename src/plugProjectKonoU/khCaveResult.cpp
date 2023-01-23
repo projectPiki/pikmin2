@@ -1167,8 +1167,8 @@ void ObjCaveResult::statusNormal()
  */
 void ObjCaveResult::statusScrollUp()
 {
-	f32 p1 = m_scrollUpDown * (m_scrollSelIndex + 1) * (m_scrollTargetDist - m_scrollMoveTimer);
-	m_scrollPos    = -((m_scrollMoveTimer * (m_scrollUpDown * m_scrollSelIndex) + p1) / m_scrollTargetDist);
+	f32 p1      = m_scrollUpDown * (m_scrollSelIndex + 1) * (m_scrollTargetDist - m_scrollMoveTimer);
+	m_scrollPos = -((m_scrollMoveTimer * (m_scrollUpDown * m_scrollSelIndex) + p1) / m_scrollTargetDist);
 
 	if (m_scrollMoveTimer++ == m_scrollTargetDist) {
 		m_scrollMoveTimer = 1;
@@ -1184,8 +1184,8 @@ void ObjCaveResult::statusScrollUp()
  */
 void ObjCaveResult::statusScrollDown()
 {
-	f32 p1 = m_scrollUpDown * (m_scrollSelIndex - 1) * (m_scrollTargetDist - m_scrollMoveTimer);
-	m_scrollPos    = -((m_scrollMoveTimer * (m_scrollUpDown * m_scrollSelIndex) + p1) / m_scrollTargetDist);
+	f32 p1      = m_scrollUpDown * (m_scrollSelIndex - 1) * (m_scrollTargetDist - m_scrollMoveTimer);
+	m_scrollPos = -((m_scrollMoveTimer * (m_scrollUpDown * m_scrollSelIndex) + p1) / m_scrollTargetDist);
 
 	if (m_scrollMoveTimer++ == m_scrollTargetDist) {
 		m_scrollMoveTimer = 1;
@@ -1201,9 +1201,9 @@ void ObjCaveResult::statusScrollDown()
  */
 void ObjCaveResult::statusForceScroll()
 {
-	f32 p1 = m_scrollUpDown * (m_scrollSelIndex - 1) * (m_scrollTargetDist - m_scrollMoveTimer);
-	m_scrollPos    = -((m_scrollMoveTimer * (m_scrollUpDown * m_scrollSelIndex) + p1) / m_scrollTargetDist);
-	
+	f32 p1      = m_scrollUpDown * (m_scrollSelIndex - 1) * (m_scrollTargetDist - m_scrollMoveTimer);
+	m_scrollPos = -((m_scrollMoveTimer * (m_scrollUpDown * m_scrollSelIndex) + p1) / m_scrollTargetDist);
+
 	if (m_scrollMoveTimer++ == m_scrollTargetDist) {
 		if (m_scrollSelIndex == m_scrollSelIndexMax) {
 			bool check        = false;

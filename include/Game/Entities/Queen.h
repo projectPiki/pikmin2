@@ -199,7 +199,12 @@ struct ProperAnimator : public EnemyAnimatorBase {
 };
 
 struct QueenShadowNode : public JointShadowNode {
-	virtual ~QueenShadowNode(); // _08 (weak)
+	inline QueenShadowNode()
+	    : JointShadowNode(2)
+	{
+	}
+
+	virtual ~QueenShadowNode() { } // _08 (weak)
 
 	void makeShadowSRT();
 
@@ -210,9 +215,14 @@ struct QueenShadowNode : public JointShadowNode {
 };
 
 struct QueenShadowMgr {
+	QueenShadowMgr(Obj* obj);
+
+	void init();
+	void update();
+
 	Obj* m_obj;                      // _00
 	JointShadowRootNode* m_rootNode; // _04
-	QueenShadowNode* m_shadowNodes;  // _08, could point to array of pointers instead
+	QueenShadowNode** m_shadowNodes; // _08, array of 6 shadow nodes
 };
 
 /////////////////////////////////////////////////////////////////
