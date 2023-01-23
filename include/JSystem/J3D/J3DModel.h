@@ -147,8 +147,19 @@ struct J3DModelHierarchy {
 	u16 _02;
 };
 
-struct J3DSkinDeform : public J3DModel { // absolutely a guess of inheritance
+struct J3DSkinDeform {
+	J3DSkinDeform();                                      // UNUSED
+	virtual void deform(J3DVertexBuffer*, J3DMtxBuffer*); // _08
+	virtual ~J3DSkinDeform() { }                          // _0C
+
 	void deform(J3DModel* model);
+
+	// _00 VTBL
+	unknown _04;      // _04
+	BitFlag<u32> _08; // _08 /* bitfield of some sort */
+	unknown _0C;      // _0C
+	unknown _10;      // _10
+	BitFlag<u32> _14; // _14
 };
 
 #endif

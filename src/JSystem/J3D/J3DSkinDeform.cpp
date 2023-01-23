@@ -20,51 +20,7 @@ void J3DSkinDeform::deform(J3DModel* model)
 	} else {
 		RESET_FLAG(_14.typeView, 1);
 	}
-	model->update();
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	mr       r5, r4
-	stw      r0, 0x14(r1)
-	lwz      r0, 8(r4)
-	rlwinm.  r0, r0, 0, 0x1d, 0x1d
-	beq      lbl_80088684
-	lwz      r0, 0x14(r3)
-	ori      r0, r0, 2
-	stw      r0, 0x14(r3)
-	b        lbl_80088690
-
-lbl_80088684:
-	lwz      r0, 0x14(r3)
-	rlwinm   r0, r0, 0, 0x1f, 0x1d
-	stw      r0, 0x14(r3)
-
-lbl_80088690:
-	lwz      r0, 8(r5)
-	rlwinm.  r0, r0, 0, 0x1c, 0x1c
-	beq      lbl_800886AC
-	lwz      r0, 0x14(r3)
-	ori      r0, r0, 1
-	stw      r0, 0x14(r3)
-	b        lbl_800886B8
-
-lbl_800886AC:
-	lwz      r0, 0x14(r3)
-	rlwinm   r0, r0, 0, 0, 0x1e
-	stw      r0, 0x14(r3)
-
-lbl_800886B8:
-	lwz      r12, 0(r3)
-	addi     r4, r5, 0x88
-	lwz      r5, 0x84(r5)
-	lwz      r12, 8(r12)
-	mtctr    r12
-	bctrl
-	lwz      r0, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	deform(&model->m_vertexBuffer, model->m_mtxBuffer);
 }
 
 /*
