@@ -1,52 +1,5 @@
-#include "types.h"
-
-/*
-    Generated from dpostproc
-
-    .section .rodata  # 0x804732E0 - 0x8049E220
-    .global lbl_8048DCA8
-    lbl_8048DCA8:
-        .4byte 0x74797265
-        .4byte 0x66726F6E
-        .4byte 0x74000000
-    .global lbl_8048DCB4
-    lbl_8048DCB4:
-        .4byte 0x74797265
-        .4byte 0x6261636B
-        .4byte 0x00000000
-
-    .section .data, "wa"  # 0x8049E220 - 0x804EFC20
-    .global __vt__Q24Game18TyreTubeShadowNode
-    __vt__Q24Game18TyreTubeShadowNode:
-        .4byte 0
-        .4byte 0
-        .4byte __dt__Q24Game18TyreTubeShadowNodeFv
-        .4byte getChildCount__5CNodeFv
-
-    .section .sdata2, "a"     # 0x80516360 - 0x80520E40
-    .global lbl_8051D4E8
-    lbl_8051D4E8:
-        .4byte 0x00000000
-    .global lbl_8051D4EC
-    lbl_8051D4EC:
-        .float 1.0
-    .global lbl_8051D4F0
-    lbl_8051D4F0:
-        .4byte 0x41200000
-    .global lbl_8051D4F4
-    lbl_8051D4F4:
-        .4byte 0x40A00000
-    .global lbl_8051D4F8
-    lbl_8051D4F8:
-        .4byte 0x41FC0000
-    .global lbl_8051D4FC
-    lbl_8051D4FC:
-        .4byte 0x418C0000
-    .global lbl_8051D500
-    lbl_8051D500:
-        .4byte 0xC18C0000
-        .4byte 0x00000000
-*/
+#include "Game/Entities/Tyre.h"
+#include "Game/MapMgr.h"
 
 namespace Game {
 
@@ -55,8 +8,37 @@ namespace Game {
  * Address:	803019EC
  * Size:	00025C
  */
-void TyreTubeShadowNode::makeShadowSRT(Game::JointShadowParm&, Matrixf*)
+void TyreTubeShadowNode::makeShadowSRT(JointShadowParm& shadowParm, Matrixf* mat)
 {
+	Vector3f matVecs[4];
+	mat->getBasis(0, matVecs[0]);
+	mat->getBasis(3, matVecs[3]);
+
+	Vector3f xVec = Vector3f(matVecs[0]);
+	_normalise(xVec);
+	xVec       = xVec * shadowParm._18;
+	matVecs[0] = xVec;
+
+	matVecs[2] = cross(matVecs[0], shadowParm._0C);
+	matVecs[2].normalise();
+	matVecs[2].x = matVecs[2].x * shadowParm._1C;
+	matVecs[2].y = matVecs[2].y * shadowParm._1C;
+	matVecs[2].z = matVecs[2].z * shadowParm._1C;
+	matVecs[3].y += shadowParm._24;
+	matVecs[1].x = 0.0f;
+	matVecs[1].z = 0.0f;
+	f32 minY     = mapMgr->getMinY(matVecs[3]);
+	if (matVecs[3].y - minY < 0.0f) {
+		matVecs[1].y = 10.0f;
+	} else {
+		matVecs[1].y = (matVecs[3].y - minY) * 5.0f;
+	}
+
+	_1C->setBasis(0, matVecs[0]);
+
+	_1C->setBasis(1, matVecs[1]);
+	_1C->setBasis(2, matVecs[2]);
+	_1C->setBasis(3, matVecs[3]);
 	/*
 	stwu     r1, -0x40(r1)
 	mflr     r0
@@ -228,78 +210,26 @@ lbl_80301BC4:
 	*/
 }
 
+namespace Tyre {
+
 /*
  * --INFO--
  * Address:	80301C48
  * Size:	0000E4
  */
-Tyre::TyreShadowMgr::TyreShadowMgr(Game::Tyre::Obj*)
+TyreShadowMgr::TyreShadowMgr(Obj* obj)
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	lfs      f0, lbl_8051D4EC@sda21(r2)
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	mr       r31, r4
-	stw      r30, 8(r1)
-	mr       r30, r3
-	stw      r31, 0xc(r3)
-	li       r3, 0x20
-	stfs     f0, 0(r30)
-	bl       __nw__FUl
-	or.      r0, r3, r3
-	beq      lbl_80301C8C
-	mr       r4, r31
-	bl       __ct__Q24Game19JointShadowRootNodeFPQ24Game8Creature
-	mr       r0, r3
+	m_obj      = obj;
+	_00        = 1.0f;
+	m_rootNode = new JointShadowRootNode(obj);
 
-lbl_80301C8C:
-	stw      r0, 0x10(r30)
-	li       r3, 0x24
-	bl       __nw__FUl
-	or.      r31, r3, r3
-	beq      lbl_80301CB4
-	li       r4, 2
-	bl       __ct__Q24Game15JointShadowNodeFi
-	lis      r3, __vt__Q24Game18TyreTubeShadowNode@ha
-	addi     r0, r3, __vt__Q24Game18TyreTubeShadowNode@l
-	stw      r0, 0(r31)
+	m_frontShadow      = new TyreTubeShadowNode;
+	m_frontShadow->_18 = 2;
+	m_rootNode->add(m_frontShadow);
 
-lbl_80301CB4:
-	stw      r31, 0x14(r30)
-	li       r0, 2
-	lwz      r3, 0x14(r30)
-	stw      r0, 0x18(r3)
-	lwz      r3, 0x10(r30)
-	lwz      r4, 0x14(r30)
-	bl       add__5CNodeFP5CNode
-	li       r3, 0x24
-	bl       __nw__FUl
-	or.      r31, r3, r3
-	beq      lbl_80301CF4
-	li       r4, 2
-	bl       __ct__Q24Game15JointShadowNodeFi
-	lis      r3, __vt__Q24Game18TyreTubeShadowNode@ha
-	addi     r0, r3, __vt__Q24Game18TyreTubeShadowNode@l
-	stw      r0, 0(r31)
-
-lbl_80301CF4:
-	stw      r31, 0x18(r30)
-	li       r0, 2
-	lwz      r3, 0x18(r30)
-	stw      r0, 0x18(r3)
-	lwz      r3, 0x10(r30)
-	lwz      r4, 0x18(r30)
-	bl       add__5CNodeFP5CNode
-	lwz      r0, 0x14(r1)
-	mr       r3, r30
-	lwz      r31, 0xc(r1)
-	lwz      r30, 8(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	m_backShadow      = new TyreTubeShadowNode;
+	m_backShadow->_18 = 2;
+	m_rootNode->add(m_backShadow);
 }
 
 /*
@@ -307,36 +237,11 @@ lbl_80301CF4:
  * Address:	80301D2C
  * Size:	000068
  */
-void Tyre::TyreShadowMgr::init()
+void TyreShadowMgr::init()
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	stw      r30, 8(r1)
-	mr       r30, r3
-	lis      r3, lbl_8048DCA8@ha
-	lwz      r5, 0xc(r30)
-	addi     r4, r3, lbl_8048DCA8@l
-	lwz      r31, 0x174(r5)
-	mr       r3, r31
-	bl       getJoint__Q28SysShape5ModelFPc
-	bl       getWorldMatrix__Q28SysShape5JointFv
-	lis      r4, lbl_8048DCB4@ha
-	stw      r3, 4(r30)
-	addi     r4, r4, lbl_8048DCB4@l
-	mr       r3, r31
-	bl       getJoint__Q28SysShape5ModelFPc
-	bl       getWorldMatrix__Q28SysShape5JointFv
-	stw      r3, 8(r30)
-	lwz      r0, 0x14(r1)
-	lwz      r31, 0xc(r1)
-	lwz      r30, 8(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	SysShape::Model* model = m_obj->m_model;
+	m_frontMatrix          = model->getJoint("tyrefront")->getWorldMatrix();
+	m_backMatrix           = model->getJoint("tyreback")->getWorldMatrix();
 }
 
 /*
@@ -344,8 +249,22 @@ void Tyre::TyreShadowMgr::init()
  * Address:	80301D94
  * Size:	0000B4
  */
-void Tyre::TyreShadowMgr::update()
+void TyreShadowMgr::update()
 {
+	JointShadowParm parm;
+	parm._00 = m_obj->getPosition();
+	parm._0C = Vector3f(0.0f, 1.0f, 0.0f);
+
+	f32 scale1 = 31.5f * _00;
+	f32 scale2 = 17.5f * _00;
+
+	parm._20 = 0.0f;
+	parm._24 = -17.5f;
+	parm._18 = scale1;
+	parm._1C = scale2;
+
+	m_frontShadow->makeShadowSRT(parm, m_frontMatrix);
+	m_backShadow->makeShadowSRT(parm, m_backMatrix);
 	/*
 	stwu     r1, -0x50(r1)
 	mflr     r0
@@ -396,47 +315,5 @@ void Tyre::TyreShadowMgr::update()
 	blr
 	*/
 }
-
-/*
- * --INFO--
- * Address:	80301E48
- * Size:	000070
- */
-TyreTubeShadowNode::~TyreTubeShadowNode()
-{
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	mr       r31, r4
-	stw      r30, 8(r1)
-	or.      r30, r3, r3
-	beq      lbl_80301E9C
-	lis      r4, __vt__Q24Game18TyreTubeShadowNode@ha
-	addi     r0, r4, __vt__Q24Game18TyreTubeShadowNode@l
-	stw      r0, 0(r30)
-	beq      lbl_80301E8C
-	lis      r5, __vt__Q24Game15JointShadowNode@ha
-	li       r4, 0
-	addi     r0, r5, __vt__Q24Game15JointShadowNode@l
-	stw      r0, 0(r30)
-	bl       __dt__5CNodeFv
-
-lbl_80301E8C:
-	extsh.   r0, r31
-	ble      lbl_80301E9C
-	mr       r3, r30
-	bl       __dl__FPv
-
-lbl_80301E9C:
-	lwz      r0, 0x14(r1)
-	mr       r3, r30
-	lwz      r31, 0xc(r1)
-	lwz      r30, 8(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
-}
+} // namespace Tyre
 } // namespace Game

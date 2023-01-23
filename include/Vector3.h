@@ -295,6 +295,24 @@ inline void _normalise(Vector3f& vec)
 	}
 }
 
+inline void _normaliseScale(Vector3f& vec, f32 scale)
+{
+	Vector2f sqr(vec.z * vec.z, vec.x * vec.x + vec.y * vec.y);
+	f32 length = sqr.x + sqr.y;
+	__sqrtf(length, &length);
+
+	if (length > 0.0f) {
+		f32 norm = 1.0f / length;
+		vec.x *= norm;
+		vec.y *= norm;
+		vec.z *= norm;
+	}
+
+	vec.x *= scale;
+	vec.y *= scale;
+	vec.z *= scale;
+}
+
 inline void _normaliseXZ(Vector3f& vec)
 {
 	Vector2f sqr(vec.z * vec.z, vec.x * vec.x + vec.y * vec.y);
@@ -392,6 +410,16 @@ inline void addAccel(Vector3f& outputVec, const Vector3f& inputVec, f32 massRati
 	outputVec.z += inputVec.z * (groundFactor * fps * massRatio);
 	outputVec.y += inputVec.y * (airFactor * fps * massRatio);
 }
+
+inline Vector3f cross(Vector3f& vec1, Vector3f& vec2)
+{
+	Vector3f outVec;
+	outVec.x = vec1.y * vec2.z - vec1.z * vec2.y;
+	outVec.y = vec1.z * vec2.x - vec1.x * vec2.z;
+	outVec.z = vec1.x * vec2.y - vec1.y * vec2.x;
+	return outVec;
+}
+
 #endif
 
 // I saw this constant being used a lot, if you have a better name please replace it

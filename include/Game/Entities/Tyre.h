@@ -22,7 +22,12 @@ struct TEnemyHamonChasePos;
 
 namespace Game {
 struct TyreTubeShadowNode : public JointShadowNode {
-	virtual ~TyreTubeShadowNode(); // _08 (weak)
+	inline TyreTubeShadowNode()
+	    : JointShadowNode(2)
+	{
+	}
+
+	virtual ~TyreTubeShadowNode() { } // _08 (weak)
 
 	void makeShadowSRT(JointShadowParm&, Matrixf*);
 
@@ -193,13 +198,18 @@ struct ProperAnimator : public EnemyAnimatorBase {
 };
 
 struct TyreShadowMgr {
-	f32 _00;                         // _00
-	Matrixf* _04;                    // _04, front world matrix?
-	Matrixf* _08;                    // _08, back world matrix?
-	Obj* _0C;                        // _0C
-	JointShadowRootNode* m_rootNode; // _10
-	TyreTubeShadowNode* _14;         // _14
-	TyreTubeShadowNode* _18;         // _18
+	TyreShadowMgr(Obj*);
+
+	void init();
+	void update();
+
+	f32 _00;                           // _00
+	Matrixf* m_frontMatrix;            // _04
+	Matrixf* m_backMatrix;             // _08
+	Obj* m_obj;                        // _0C
+	JointShadowRootNode* m_rootNode;   // _10
+	TyreTubeShadowNode* m_frontShadow; // _14
+	TyreTubeShadowNode* m_backShadow;  // _18
 };
 
 /////////////////////////////////////////////////////////////////
