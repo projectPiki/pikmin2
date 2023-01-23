@@ -1,64 +1,31 @@
-#include "types.h"
+#include "Game/Entities/UmiMushi.h"
 
-/*
-    Generated from dpostproc
-
-    .section .rodata  # 0x804732E0 - 0x8049E220
-    .global lbl_8048D1C0
-    lbl_8048D1C0:
-        .asciz "weak_joint1"
-    .global lbl_8048D1CC
-    lbl_8048D1CC:
-        .asciz "weak_joint2"
-
-    .section .data, "wa"  # 0x8049E220 - 0x804EFC20
-    .global __vt__Q24Game24UmimushiSphereShadowNode
-    __vt__Q24Game24UmimushiSphereShadowNode:
-        .4byte 0
-        .4byte 0
-        .4byte __dt__Q24Game24UmimushiSphereShadowNodeFv
-        .4byte getChildCount__5CNodeFv
-    .global __vt__Q24Game22UmimushiTubeShadowNode
-    __vt__Q24Game22UmimushiTubeShadowNode:
-        .4byte 0
-        .4byte 0
-        .4byte __dt__Q24Game22UmimushiTubeShadowNodeFv
-        .4byte getChildCount__5CNodeFv
-
-    .section .sdata2, "a"     # 0x80516360 - 0x80520E40
-    .global lbl_8051D180
-    lbl_8051D180:
-        .float 0.5
-    .global lbl_8051D184
-    lbl_8051D184:
-        .4byte 0x00000000
-    .global lbl_8051D188
-    lbl_8051D188:
-        .float 1.0
-    .global lbl_8051D18C
-    lbl_8051D18C:
-        .4byte 0x41C80000
-    .global lbl_8051D190
-    lbl_8051D190:
-        .4byte 0x40200000
-    .global lbl_8051D194
-    lbl_8051D194:
-        .4byte 0xC1480000
-    .global lbl_8051D198
-    lbl_8051D198:
-        .4byte 0x3FC00000
-    .global lbl_8051D19C
-    lbl_8051D19C:
-        .4byte 0x41700000
-*/
+namespace Game {
 
 /*
  * --INFO--
  * Address:	802F27DC
  * Size:	0001DC
  */
-void makeShadowSRT__Q24Game22UmimushiTubeShadowNodeFRQ24Game15JointShadowParmP7MatrixfR10Vector3<float> R10Vector3f()
+void UmimushiTubeShadowNode::makeShadowSRT(JointShadowParm& parm, Matrixf* mat, Vector3f& vec1, Vector3f& vec2)
 {
+	Vector3f xVec;
+	mat->getBasis(0, xVec);
+	Vector3f yVec;
+	mat->getBasis(1, yVec);
+	mat->getBasis(3, vec2);
+
+	vec2.x += xVec.x * parm._18 + yVec.x * parm._1C;
+	vec2.y += xVec.y * parm._18 + yVec.y * parm._1C;
+	vec2.z += xVec.z * parm._18 + yVec.z * parm._1C;
+
+	Vector3f diff = vec2 - vec1;
+	// more stuff here
+	_normalise(diff);
+
+	// more stuff here
+	_1C->setBasis(2, diff);
+
 	/*
 	.loc_0x0:
 	  stwu      r1, -0x30(r1)
@@ -194,8 +161,28 @@ void makeShadowSRT__Q24Game22UmimushiTubeShadowNodeFRQ24Game15JointShadowParmP7M
  * Address:	802F29B8
  * Size:	0000CC
  */
-void makeShadowSRT__Q24Game24UmimushiSphereShadowNodeFRQ24Game15JointShadowParmP7MatrixfR10Vector3<float> b()
+void UmimushiSphereShadowNode::makeShadowSRT(JointShadowParm& parm, Matrixf* mat, Vector3f& vec, bool isAlive)
 {
+	Vector3f xVec;
+	Vector3f zVec;
+
+	if (isAlive) { // regswaps
+		xVec = mat->getBasis(0) * (parm._20 + 2.5f);
+		zVec = mat->getBasis(2) * parm._20;
+	} else {
+		xVec = Vector3f(parm._20, 0.0f, 0.0f);
+		zVec = Vector3f(0.0f, 0.0f, parm._20);
+	}
+
+	Vector3f pos = vec;
+	pos.y += parm._24;
+
+	Vector3f yVec(0.0f, (vec.y - parm._00.y) + 25.0f, 0.0f);
+
+	_1C->setBasis(0, xVec);
+	_1C->setBasis(1, yVec);
+	_1C->setBasis(2, zVec);
+	_1C->setBasis(3, pos);
 	/*
 	.loc_0x0:
 	  rlwinm.   r0,r7,0,24,31
@@ -256,72 +243,21 @@ void makeShadowSRT__Q24Game24UmimushiSphereShadowNodeFRQ24Game15JointShadowParmP
 	*/
 }
 
-namespace Game {
+namespace UmiMushi {
 
 /*
  * --INFO--
  * Address:	802F2A84
  * Size:	0000C4
  */
-UmiMushi::UmimushiShadowMgr::UmimushiShadowMgr(Game::UmiMushi::Obj*)
+UmimushiShadowMgr::UmimushiShadowMgr(Obj* obj)
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	mr       r31, r4
-	stw      r30, 8(r1)
-	mr       r30, r3
-	stw      r31, 8(r3)
-	li       r3, 0x20
-	bl       __nw__FUl
-	or.      r0, r3, r3
-	beq      lbl_802F2AC0
-	mr       r4, r31
-	bl       __ct__Q24Game19JointShadowRootNodeFPQ24Game8Creature
-	mr       r0, r3
-
-lbl_802F2AC0:
-	stw      r0, 0xc(r30)
-	li       r3, 0x24
-	bl       __nw__FUl
-	or.      r31, r3, r3
-	beq      lbl_802F2AE8
-	li       r4, 2
-	bl       __ct__Q24Game15JointShadowNodeFi
-	lis      r3, __vt__Q24Game22UmimushiTubeShadowNode@ha
-	addi     r0, r3, __vt__Q24Game22UmimushiTubeShadowNode@l
-	stw      r0, 0(r31)
-
-lbl_802F2AE8:
-	stw      r31, 0x10(r30)
-	lwz      r3, 0xc(r30)
-	lwz      r4, 0x10(r30)
-	bl       add__5CNodeFP5CNode
-	li       r3, 0x24
-	bl       __nw__FUl
-	or.      r31, r3, r3
-	beq      lbl_802F2B1C
-	li       r4, 2
-	bl       __ct__Q24Game15JointShadowNodeFi
-	lis      r3, __vt__Q24Game24UmimushiSphereShadowNode@ha
-	addi     r0, r3, __vt__Q24Game24UmimushiSphereShadowNode@l
-	stw      r0, 0(r31)
-
-lbl_802F2B1C:
-	stw      r31, 0x14(r30)
-	lwz      r3, 0xc(r30)
-	lwz      r4, 0x14(r30)
-	bl       add__5CNodeFP5CNode
-	lwz      r0, 0x14(r1)
-	mr       r3, r30
-	lwz      r31, 0xc(r1)
-	lwz      r30, 8(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	m_obj        = obj;
+	m_rootNode   = new JointShadowRootNode(obj);
+	m_tubeShadow = new UmimushiTubeShadowNode;
+	m_rootNode->add(m_tubeShadow);
+	m_sphereShadow = new UmimushiSphereShadowNode;
+	m_rootNode->add(m_sphereShadow);
 }
 
 /*
@@ -329,36 +265,11 @@ lbl_802F2B1C:
  * Address:	802F2B48
  * Size:	000068
  */
-void UmiMushi::UmimushiShadowMgr::init()
+void UmimushiShadowMgr::init()
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	stw      r30, 8(r1)
-	mr       r30, r3
-	lis      r3, lbl_8048D1C0@ha
-	lwz      r5, 8(r30)
-	addi     r4, r3, lbl_8048D1C0@l
-	lwz      r31, 0x174(r5)
-	mr       r3, r31
-	bl       getJoint__Q28SysShape5ModelFPc
-	bl       getWorldMatrix__Q28SysShape5JointFv
-	lis      r4, lbl_8048D1CC@ha
-	stw      r3, 0(r30)
-	addi     r4, r4, lbl_8048D1CC@l
-	mr       r3, r31
-	bl       getJoint__Q28SysShape5ModelFPc
-	bl       getWorldMatrix__Q28SysShape5JointFv
-	stw      r3, 4(r30)
-	lwz      r0, 0x14(r1)
-	lwz      r31, 0xc(r1)
-	lwz      r30, 8(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	SysShape::Model* model = m_obj->m_model;
+	m_weakMatrix1          = model->getJoint("weak_joint1")->getWorldMatrix();
+	m_weakMatrix2          = model->getJoint("weak_joint2")->getWorldMatrix();
 }
 
 /*
@@ -366,188 +277,40 @@ void UmiMushi::UmimushiShadowMgr::init()
  * Address:	802F2BB0
  * Size:	00015C
  */
-void UmiMushi::UmimushiShadowMgr::update()
+void UmimushiShadowMgr::update()
 {
-	/*
-	stwu     r1, -0x60(r1)
-	mflr     r0
-	stw      r0, 0x64(r1)
-	stw      r31, 0x5c(r1)
-	mr       r31, r3
-	addi     r3, r1, 8
-	lwz      r4, 8(r31)
-	lwz      r12, 0(r4)
-	lwz      r12, 8(r12)
-	mtctr    r12
-	bctrl
-	lfs      f3, lbl_8051D184@sda21(r2)
-	addi     r4, r1, 0x2c
-	lfs      f1, 8(r1)
-	addi     r6, r1, 0x20
-	lfs      f0, 0xc(r1)
-	addi     r7, r1, 0x14
-	lfs      f4, 0x10(r1)
-	lfs      f2, lbl_8051D188@sda21(r2)
-	stfs     f1, 0x2c(r1)
-	lfs      f1, lbl_8051D194@sda21(r2)
-	stfs     f0, 0x30(r1)
-	lfs      f0, lbl_8051D198@sda21(r2)
-	stfs     f4, 0x34(r1)
-	stfs     f3, 0x38(r1)
-	stfs     f2, 0x3c(r1)
-	stfs     f3, 0x40(r1)
-	lwz      r3, 0(r31)
-	lfs      f5, 0x2c(r3)
-	lfs      f4, 0x1c(r3)
-	lfs      f2, 0xc(r3)
-	stfs     f2, 0x20(r1)
-	stfs     f4, 0x24(r1)
-	stfs     f5, 0x28(r1)
-	stfs     f1, 0x44(r1)
-	stfs     f3, 0x48(r1)
-	stfs     f0, 0x4c(r1)
-	stfs     f3, 0x50(r1)
-	lwz      r3, 0x10(r31)
-	lwz      r5, 4(r31)
-	bl
-"makeShadowSRT__Q24Game22UmimushiTubeShadowNodeFRQ24Game15JointShadowParmP7MatrixfR10Vector3<f>R10Vector3<f>"
-	lfs      f2, lbl_8051D184@sda21(r2)
-	lfs      f1, lbl_8051D19C@sda21(r2)
-	lfs      f0, lbl_8051D194@sda21(r2)
-	stfs     f2, 0x44(r1)
-	stfs     f2, 0x48(r1)
-	stfs     f1, 0x4c(r1)
-	stfs     f0, 0x50(r1)
-	lwz      r3, 8(r31)
-	lwz      r12, 0(r3)
-	lwz      r12, 0xa8(r12)
-	mtctr    r12
-	bctrl
-	mr       r7, r3
-	lwz      r3, 0x14(r31)
-	lwz      r5, 4(r31)
-	addi     r4, r1, 0x2c
-	addi     r6, r1, 0x14
-	bl
-"makeShadowSRT__Q24Game24UmimushiSphereShadowNodeFRQ24Game15JointShadowParmP7MatrixfR10Vector3<f>b"
-	lwz      r3, 8(r31)
-	lwz      r3, 0x17c(r3)
-	lwz      r3, 4(r3)
-	cmplwi   r3, 0
-	beq      lbl_802F2CE0
-	lwz      r12, 0(r3)
-	lwz      r12, 0x204(r12)
-	mtctr    r12
-	bctrl
-	clrlwi.  r0, r3, 0x18
-	beq      lbl_802F2CE0
-	lwz      r3, 0x10(r31)
-	lwz      r0, 0xc(r3)
-	cmplwi   r0, 0
-	beq      lbl_802F2CF8
-	bl       del__5CNodeFv
-	b        lbl_802F2CF8
+	Vector3f position = m_obj->getPosition();
+	JointShadowParm parm;
+	Vector3f vec1;
+	Vector3f vec2;
 
-lbl_802F2CE0:
-	lwz      r4, 0x10(r31)
-	lwz      r0, 0xc(r4)
-	cmplwi   r0, 0
-	bne      lbl_802F2CF8
-	lwz      r3, 0xc(r31)
-	bl       addHead__5CNodeFP5CNode
+	parm._00 = position;
+	parm._0C = Vector3f(0.0f, 1.0f, 0.0f);
 
-lbl_802F2CF8:
-	lwz      r0, 0x64(r1)
-	lwz      r31, 0x5c(r1)
-	mtlr     r0
-	addi     r1, r1, 0x60
-	blr
-	*/
+	vec1 = m_weakMatrix1->getBasis(3);
+
+	parm._18 = -12.5f;
+	parm._1C = 0.0f;
+	parm._20 = 1.5f;
+	parm._24 = 0.0f;
+
+	m_tubeShadow->makeShadowSRT(parm, m_weakMatrix2, vec1, vec2);
+
+	parm._18 = 0.0f;
+	parm._1C = 0.0f;
+	parm._20 = 15.0f;
+	parm._24 = -12.5f;
+
+	m_sphereShadow->makeShadowSRT(parm, m_weakMatrix2, vec2, m_obj->isAlive());
+
+	Pellet* pellet = m_obj->m_pellet;
+	if (pellet && pellet->isCarried()) {
+		if (m_tubeShadow->m_parent) {
+			m_tubeShadow->del();
+		}
+	} else if (!m_tubeShadow->m_parent) {
+		m_rootNode->addHead(m_tubeShadow);
+	}
 }
-
-/*
- * --INFO--
- * Address:	802F2D0C
- * Size:	000070
- */
-UmimushiSphereShadowNode::~UmimushiSphereShadowNode()
-{
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	mr       r31, r4
-	stw      r30, 8(r1)
-	or.      r30, r3, r3
-	beq      lbl_802F2D60
-	lis      r4, __vt__Q24Game24UmimushiSphereShadowNode@ha
-	addi     r0, r4, __vt__Q24Game24UmimushiSphereShadowNode@l
-	stw      r0, 0(r30)
-	beq      lbl_802F2D50
-	lis      r5, __vt__Q24Game15JointShadowNode@ha
-	li       r4, 0
-	addi     r0, r5, __vt__Q24Game15JointShadowNode@l
-	stw      r0, 0(r30)
-	bl       __dt__5CNodeFv
-
-lbl_802F2D50:
-	extsh.   r0, r31
-	ble      lbl_802F2D60
-	mr       r3, r30
-	bl       __dl__FPv
-
-lbl_802F2D60:
-	lwz      r0, 0x14(r1)
-	mr       r3, r30
-	lwz      r31, 0xc(r1)
-	lwz      r30, 8(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
-}
-
-/*
- * --INFO--
- * Address:	802F2D7C
- * Size:	000070
- */
-UmimushiTubeShadowNode::~UmimushiTubeShadowNode()
-{
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	mr       r31, r4
-	stw      r30, 8(r1)
-	or.      r30, r3, r3
-	beq      lbl_802F2DD0
-	lis      r4, __vt__Q24Game22UmimushiTubeShadowNode@ha
-	addi     r0, r4, __vt__Q24Game22UmimushiTubeShadowNode@l
-	stw      r0, 0(r30)
-	beq      lbl_802F2DC0
-	lis      r5, __vt__Q24Game15JointShadowNode@ha
-	li       r4, 0
-	addi     r0, r5, __vt__Q24Game15JointShadowNode@l
-	stw      r0, 0(r30)
-	bl       __dt__5CNodeFv
-
-lbl_802F2DC0:
-	extsh.   r0, r31
-	ble      lbl_802F2DD0
-	mr       r3, r30
-	bl       __dl__FPv
-
-lbl_802F2DD0:
-	lwz      r0, 0x14(r1)
-	mr       r3, r30
-	lwz      r31, 0xc(r1)
-	lwz      r30, 8(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
-}
+} // namespace UmiMushi
 } // namespace Game

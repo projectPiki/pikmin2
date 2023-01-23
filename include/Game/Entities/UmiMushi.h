@@ -23,7 +23,12 @@ namespace Game {
 struct Navi;
 
 struct UmimushiSphereShadowNode : public JointShadowNode {
-	virtual ~UmimushiSphereShadowNode(); // _08 (weak)
+	inline UmimushiSphereShadowNode()
+	    : JointShadowNode(2)
+	{
+	}
+
+	virtual ~UmimushiSphereShadowNode() { } // _08 (weak)
 
 	void makeShadowSRT(JointShadowParm&, Matrixf*, Vector3f&, bool);
 
@@ -32,7 +37,12 @@ struct UmimushiSphereShadowNode : public JointShadowNode {
 };
 
 struct UmimushiTubeShadowNode : public JointShadowNode {
-	virtual ~UmimushiTubeShadowNode(); // _08 (weak)
+	inline UmimushiTubeShadowNode()
+	    : JointShadowNode(2)
+	{
+	}
+
+	virtual ~UmimushiTubeShadowNode() { } // _08 (weak)
 
 	void makeShadowSRT(JointShadowParm&, Matrixf*, Vector3f&, Vector3f&);
 
@@ -301,12 +311,14 @@ struct UmimushiShadowMgr {
 	UmimushiShadowMgr(Obj* obj);
 
 	void init();
+	void update();
 
-	u8 _00[0x8];                     // _00, unknown
-	Obj* _08;                        // _08
-	JointShadowRootNode* m_rootNode; // _0C
-	UmimushiTubeShadowNode* _14;     // _10
-	UmimushiSphereShadowNode* _18;   // _14
+	Matrixf* m_weakMatrix1;                   // _00
+	Matrixf* m_weakMatrix2;                   // _04
+	Obj* m_obj;                               // _08
+	JointShadowRootNode* m_rootNode;          // _0C
+	UmimushiTubeShadowNode* m_tubeShadow;     // _10
+	UmimushiSphereShadowNode* m_sphereShadow; // _14
 };
 
 extern Obj* curU;
