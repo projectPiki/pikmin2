@@ -141,8 +141,8 @@
 ### <section id="plugProjectKonoU">plugProjectKonoU</section>
 | File | Size (bytes) | File | Size (bytes) |
 | ---- | ---- | ---- | ---- |
-| <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectKonoU/khPayDept.cpp">khPayDept.cpp</a> | 9834 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectKonoU/newScreenMgr.cpp">newScreenMgr.cpp</a> | 15982 |
-| <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectKonoU/khUtil.cpp">khUtil.cpp</a> | 26990 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectKonoU/newGame2DMgr.cpp">newGame2DMgr.cpp</a> | 53993 |
+| <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectKonoU/khPayDept.cpp">khPayDept.cpp</a> | 9834 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectKonoU/khUtil.cpp">khUtil.cpp</a> | 11496 |
+| <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectKonoU/newScreenMgr.cpp">newScreenMgr.cpp</a> | 15982 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectKonoU/newGame2DMgr.cpp">newGame2DMgr.cpp</a> | 53993 |
 
 ### <section id="plugProjectMorimuraU">plugProjectMorimuraU</section>
 | File | Size (bytes) | File | Size (bytes) |

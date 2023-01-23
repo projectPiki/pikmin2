@@ -22,8 +22,8 @@ f32 getPaneCenterY(J2DPane*);
 
 struct khUtilFadePane : public P2DScreen::CallBackNode {
 	struct khPaneNode {
-		inline khPaneNode()
-		    : m_pane(nullptr)
+		inline khPaneNode(J2DPane* pane)
+		    : m_pane(pane)
 		    , m_next(nullptr)
 		{
 		}
@@ -42,7 +42,7 @@ struct khUtilFadePane : public P2DScreen::CallBackNode {
 	virtual void fadein_finish();  // _1C (weak)
 	virtual void fadeout_finish(); // _20 (weak)
 
-	void add(J2DPane*);
+	bool add(J2DPane*);
 	void fadein();
 	void fadeout();
 	void set_init_alpha(u8);
@@ -52,9 +52,9 @@ struct khUtilFadePane : public P2DScreen::CallBackNode {
 	// _00     = VTBL
 	// _00-_1C = P2DScreen::CallBackNode
 	khPaneNode m_paneNode; // _1C
-	int _28;               // _28
-	u8 m_fadePaneAlpha;    // _2C
-	u8 _2D;                // _2D
+	int m_state;           // _28
+	u8 m_currentAlpha;     // _2C
+	u8 m_changeAlpha;      // _2D
 };
 
 struct khUtilFadePaneWM : public khUtilFadePane {
