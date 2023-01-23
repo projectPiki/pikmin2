@@ -471,10 +471,37 @@ struct BigTreasureShadowMgr {
 	void setJointPosPtr(int, int, Vector3f*);
 	void setKosiJointPosPtr(Vector3f*);
 	void update();
+	void updateTreasureShadow(JointShadowParm&);
+	void updateHandShadow(JointShadowParm&);
+	void updateAntennaShadow(JointShadowParm&);
 
-	Matrixf* _00;  // _00
-	Obj* _04;      // _04
-	u8 _08[0x168]; // _08, to fill in
+	Matrixf* m_bodyMatrix;            // _00
+	Matrixf* m_elecMatrix;            // _04
+	Matrixf* m_fireMatrix;            // _08
+	Matrixf* m_gasMatrix;             // _0C
+	Matrixf* m_waterMatrix;           // _10
+	Matrixf* m_leftArmMatrix[3];      // _14
+	Matrixf* m_rightArmMatrix[3];     // _20
+	Matrixf* m_leftAntennaMatrix[2];  // _2C
+	Matrixf* m_rightAntennaMatrix[2]; // _34
+	Obj* m_obj;                       // _3C
+	Vector3f* m_kosiPosition;         // _40
+	Vector3f* m_jointPositions[4][4]; // _44
+	JointShadowRootNode* m_rootNode;  // _84
+	SphereShadowNode* _88;            // _88
+	SphereShadowNode* _8C;            // _8C
+	TubeShadowSetNode* _90[4];        // _90
+	TubeShadowSetNode* _A0[4];        // _A0
+	TubeShadowSetNode* _B0[4];        // _B0
+	TubeShadowSetNode* _C0[4];        // _C0
+	SphereShadowNode* _D0[4];         // _D0
+	SphereShadowNode* _E0[4];         // _E0
+	SphereShadowNode* _F0[4];         // _F0
+	SphereShadowNode* _100[4];        // _100
+	TubeShadowPosNode* _110[2][4];    // _110
+	SphereShadowNode* _130[2][2];     // _130
+	TubeShadowPosNode* _140[2][5];    // _140
+	SphereShadowNode* _168[2];        // _168
 };
 
 struct BigTreasureGroundCallBack : public JointGroundCallBack {

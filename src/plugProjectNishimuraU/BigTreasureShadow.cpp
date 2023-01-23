@@ -1,519 +1,72 @@
-#include "types.h"
-
-/*
-    Generated from dpostproc
-
-    .section .rodata  # 0x804732E0 - 0x8049E220
-    .global lbl_8048C968
-    lbl_8048C968:
-        .4byte 0x3234362D
-        .4byte 0x42696754
-        .4byte 0x72656173
-        .4byte 0x75726553
-        .4byte 0x6861646F
-        .4byte 0x77000000
-        .4byte 0x7268616E
-        .4byte 0x64316A6E
-        .4byte 0x74000000
-        .4byte 0x7268616E
-        .4byte 0x64326A6E
-        .4byte 0x74000000
-        .4byte 0x7268616E
-        .4byte 0x64336A6E
-        .4byte 0x74000000
-        .4byte 0x6C68616E
-        .4byte 0x64316A6E
-        .4byte 0x74000000
-        .4byte 0x6C68616E
-        .4byte 0x64326A6E
-        .4byte 0x74000000
-        .4byte 0x6C68616E
-        .4byte 0x64336A6E
-        .4byte 0x74000000
-        .4byte 0x72666F6F
-        .4byte 0x74316A6E
-        .4byte 0x74000000
-        .4byte 0x72666F6F
-        .4byte 0x74326A6E
-        .4byte 0x74000000
-        .4byte 0x72666F6F
-        .4byte 0x74336A6E
-        .4byte 0x74000000
-        .4byte 0x6C666F6F
-        .4byte 0x74316A6E
-        .4byte 0x74000000
-        .4byte 0x6C666F6F
-        .4byte 0x74326A6E
-        .4byte 0x74000000
-        .4byte 0x6C666F6F
-        .4byte 0x74336A6E
-        .4byte 0x74000000
-        .4byte 0x6F74616B
-        .4byte 0x6172615F
-        .4byte 0x656C6563
-        .4byte 0x00000000
-        .4byte 0x6F74616B
-        .4byte 0x6172615F
-        .4byte 0x66697265
-        .4byte 0x00000000
-        .4byte 0x6F74616B
-        .4byte 0x6172615F
-        .4byte 0x67617300
-        .4byte 0x6F74616B
-        .4byte 0x6172615F
-        .4byte 0x77617465
-        .4byte 0x72000000
-        .4byte 0x6C616E74
-        .4byte 0x656E6E61
-        .4byte 0x31000000
-        .4byte 0x6C616E74
-        .4byte 0x656E6E61
-        .4byte 0x32000000
-        .4byte 0x72616E74
-        .4byte 0x656E6E61
-        .4byte 0x31000000
-        .4byte 0x72616E74
-        .4byte 0x656E6E61
-        .4byte 0x32000000
-
-    .section .data, "wa"  # 0x8049E220 - 0x804EFC20
-    .global __vt__Q24Game17TubeShadowPosNode
-    __vt__Q24Game17TubeShadowPosNode:
-        .4byte 0
-        .4byte 0
-        .4byte __dt__Q24Game17TubeShadowPosNodeFv
-        .4byte getChildCount__5CNodeFv
-
-    .section .sdata2, "a"     # 0x80516360 - 0x80520E40
-    .global lbl_8051CB88
-    lbl_8051CB88:
-        .4byte 0x6B6F7369
-        .4byte 0x00000000
-    .global lbl_8051CB90
-    lbl_8051CB90:
-        .4byte 0x6C61726D
-        .4byte 0x31000000
-    .global lbl_8051CB98
-    lbl_8051CB98:
-        .4byte 0x6C61726D
-        .4byte 0x32000000
-    .global lbl_8051CBA0
-    lbl_8051CBA0:
-        .4byte 0x6C61726D
-        .4byte 0x33000000
-    .global lbl_8051CBA8
-    lbl_8051CBA8:
-        .4byte 0x7261726D
-        .4byte 0x31000000
-    .global lbl_8051CBB0
-    lbl_8051CBB0:
-        .4byte 0x7261726D
-        .4byte 0x32000000
-    .global lbl_8051CBB8
-    lbl_8051CBB8:
-        .4byte 0x7261726D
-        .4byte 0x33000000
-    .global lbl_8051CBC0
-    lbl_8051CBC0:
-        .float 0.5
-    .global lbl_8051CBC4
-    lbl_8051CBC4:
-        .4byte 0x40400000
-    .global lbl_8051CBC8
-    lbl_8051CBC8:
-        .4byte 0x00000000
-    .global lbl_8051CBCC
-    lbl_8051CBCC:
-        .float 1.0
-    .global lbl_8051CBD0
-    lbl_8051CBD0:
-        .4byte 0xC1A00000
-    .global lbl_8051CBD4
-    lbl_8051CBD4:
-        .4byte 0x40A00000
-    .global lbl_8051CBD8
-    lbl_8051CBD8:
-        .4byte 0x40200000
-    .global lbl_8051CBDC
-    lbl_8051CBDC:
-        .4byte 0x43A2F983
-    .global lbl_8051CBE0
-    lbl_8051CBE0:
-        .4byte 0xC3A2F983
-    .global lbl_8051CBE4
-    lbl_8051CBE4:
-        .4byte 0x41A00000
-    .global lbl_8051CBE8
-    lbl_8051CBE8:
-        .4byte 0xC2960000
-    .global lbl_8051CBEC
-    lbl_8051CBEC:
-        .4byte 0xC1200000
-    .global lbl_8051CBF0
-    lbl_8051CBF0:
-        .4byte 0x41D80000
-    .global lbl_8051CBF4
-    lbl_8051CBF4:
-        .4byte 0x42B90000
-    .global lbl_8051CBF8
-    lbl_8051CBF8:
-        .4byte 0xC27A0000
-    .global lbl_8051CBFC
-    lbl_8051CBFC:
-        .4byte 0x42BE0000
-    .global lbl_8051CC00
-    lbl_8051CC00:
-        .4byte 0x41F00000
-    .global lbl_8051CC04
-    lbl_8051CC04:
-        .4byte 0xC20C0000
-    .global lbl_8051CC08
-    lbl_8051CC08:
-        .4byte 0x40800000
-    .global lbl_8051CC0C
-    lbl_8051CC0C:
-        .4byte 0x42480000
-    .global lbl_8051CC10
-    lbl_8051CC10:
-        .4byte 0xC0F00000
-    .global lbl_8051CC14
-    lbl_8051CC14:
-        .4byte 0x40000000
-    .global lbl_8051CC18
-    lbl_8051CC18:
-        .4byte 0x420C0000
-    .global lbl_8051CC1C
-    lbl_8051CC1C:
-        .4byte 0x425C0000
-    .global lbl_8051CC20
-    lbl_8051CC20:
-        .4byte 0x42160000
-    .global lbl_8051CC24
-    lbl_8051CC24:
-        .4byte 0xC1F00000
-    .global lbl_8051CC28
-    lbl_8051CC28:
-        .4byte 0x42200000
-        .4byte 0x00000000
-*/
+#include "Game/Entities/BigTreasure.h"
 
 namespace Game {
+namespace BigTreasure {
+
+static const char bigTreasureShadowName[] = "246-BigTreasureShadow";
 
 /*
  * --INFO--
  * Address:	802DA5C8
  * Size:	000418
  */
-BigTreasure::BigTreasureShadowMgr::BigTreasureShadowMgr(Game::BigTreasure::Obj*)
+BigTreasureShadowMgr::BigTreasureShadowMgr(Obj* obj)
 {
-	/*
-	stwu     r1, -0x30(r1)
-	mflr     r0
-	stw      r0, 0x34(r1)
-	stmw     r24, 0x10(r1)
-	mr       r24, r4
-	mr       r28, r3
-	stw      r24, 0x3c(r3)
-	li       r3, 0x20
-	bl       __nw__FUl
-	or.      r0, r3, r3
-	beq      lbl_802DA600
-	mr       r4, r24
-	bl       __ct__Q24Game19JointShadowRootNodeFPQ24Game8Creature
-	mr       r0, r3
+	m_obj      = obj;
+	m_rootNode = new JointShadowRootNode(obj);
+	_88        = new SphereShadowNode;
+	_8C        = new SphereShadowNode;
 
-lbl_802DA600:
-	stw      r0, 0x84(r28)
-	li       r3, 0x24
-	bl       __nw__FUl
-	or.      r27, r3, r3
-	beq      lbl_802DA628
-	li       r4, 2
-	bl       __ct__Q24Game15JointShadowNodeFi
-	lis      r3, __vt__Q24Game16SphereShadowNode@ha
-	addi     r0, r3, __vt__Q24Game16SphereShadowNode@l
-	stw      r0, 0(r27)
+	m_rootNode->add(_88);
+	m_rootNode->add(_8C);
 
-lbl_802DA628:
-	stw      r27, 0x88(r28)
-	li       r3, 0x24
-	bl       __nw__FUl
-	or.      r27, r3, r3
-	beq      lbl_802DA650
-	li       r4, 2
-	bl       __ct__Q24Game15JointShadowNodeFi
-	lis      r3, __vt__Q24Game16SphereShadowNode@ha
-	addi     r0, r3, __vt__Q24Game16SphereShadowNode@l
-	stw      r0, 0(r27)
+	for (int i = 0; i < 4; i++) {
+		_90[i] = new TubeShadowSetNode;
+		_A0[i] = new TubeShadowSetNode;
+		_B0[i] = new TubeShadowSetNode;
+		_C0[i] = new TubeShadowSetNode;
+		_D0[i] = new SphereShadowNode;
+		_E0[i] = new SphereShadowNode;
+		_F0[i] = new SphereShadowNode;
 
-lbl_802DA650:
-	stw      r27, 0x8c(r28)
-	lwz      r3, 0x84(r28)
-	lwz      r4, 0x88(r28)
-	bl       add__5CNodeFP5CNode
-	lwz      r3, 0x84(r28)
-	lwz      r4, 0x8c(r28)
-	bl       add__5CNodeFP5CNode
-	mr       r31, r28
-	mr       r30, r28
-	li       r29, 0
+		m_rootNode->add(_90[i]);
+		m_rootNode->add(_A0[i]);
+		m_rootNode->add(_B0[i]);
+		m_rootNode->add(_C0[i]);
+		m_rootNode->add(_D0[i]);
+		m_rootNode->add(_E0[i]);
+		m_rootNode->add(_F0[i]);
 
-lbl_802DA678:
-	li       r3, 0x28
-	bl       __nw__FUl
-	or.      r27, r3, r3
-	beq      lbl_802DA6A4
-	li       r4, 2
-	bl       __ct__Q24Game15JointShadowNodeFi
-	lis      r3, __vt__Q24Game17TubeShadowSetNode@ha
-	li       r0, 0
-	addi     r3, r3, __vt__Q24Game17TubeShadowSetNode@l
-	stw      r3, 0(r27)
-	stw      r0, 0x24(r27)
+		for (int j = 0; j < 4; j++) {
+			m_jointPositions[i][j] = nullptr;
+		}
+	}
 
-lbl_802DA6A4:
-	stw      r27, 0x90(r31)
-	li       r3, 0x28
-	bl       __nw__FUl
-	or.      r27, r3, r3
-	beq      lbl_802DA6D4
-	li       r4, 2
-	bl       __ct__Q24Game15JointShadowNodeFi
-	lis      r3, __vt__Q24Game17TubeShadowSetNode@ha
-	li       r0, 0
-	addi     r3, r3, __vt__Q24Game17TubeShadowSetNode@l
-	stw      r3, 0(r27)
-	stw      r0, 0x24(r27)
+	for (int i = 0; i < 4; i++) {
+		_100[i] = new SphereShadowNode;
+		m_rootNode->add(_100[i]);
+	}
 
-lbl_802DA6D4:
-	stw      r27, 0xa0(r31)
-	li       r3, 0x28
-	bl       __nw__FUl
-	or.      r27, r3, r3
-	beq      lbl_802DA704
-	li       r4, 2
-	bl       __ct__Q24Game15JointShadowNodeFi
-	lis      r3, __vt__Q24Game17TubeShadowSetNode@ha
-	li       r0, 0
-	addi     r3, r3, __vt__Q24Game17TubeShadowSetNode@l
-	stw      r3, 0(r27)
-	stw      r0, 0x24(r27)
+	for (int i = 0; i < 2; i++) {
+		for (int j = 0; j < 4; j++) {
+			_110[i][j] = new TubeShadowPosNode;
+			m_rootNode->add(_110[i][j]);
 
-lbl_802DA704:
-	stw      r27, 0xb0(r31)
-	li       r3, 0x28
-	bl       __nw__FUl
-	or.      r27, r3, r3
-	beq      lbl_802DA734
-	li       r4, 2
-	bl       __ct__Q24Game15JointShadowNodeFi
-	lis      r3, __vt__Q24Game17TubeShadowSetNode@ha
-	li       r0, 0
-	addi     r3, r3, __vt__Q24Game17TubeShadowSetNode@l
-	stw      r3, 0(r27)
-	stw      r0, 0x24(r27)
+			if (j < 2) {
+				_130[i][j] = new SphereShadowNode;
+				m_rootNode->add(_130[i][j]);
+			}
+		}
+	}
 
-lbl_802DA734:
-	stw      r27, 0xc0(r31)
-	li       r3, 0x24
-	bl       __nw__FUl
-	or.      r27, r3, r3
-	beq      lbl_802DA75C
-	li       r4, 2
-	bl       __ct__Q24Game15JointShadowNodeFi
-	lis      r3, __vt__Q24Game16SphereShadowNode@ha
-	addi     r0, r3, __vt__Q24Game16SphereShadowNode@l
-	stw      r0, 0(r27)
-
-lbl_802DA75C:
-	stw      r27, 0xd0(r31)
-	li       r3, 0x24
-	bl       __nw__FUl
-	or.      r27, r3, r3
-	beq      lbl_802DA784
-	li       r4, 2
-	bl       __ct__Q24Game15JointShadowNodeFi
-	lis      r3, __vt__Q24Game16SphereShadowNode@ha
-	addi     r0, r3, __vt__Q24Game16SphereShadowNode@l
-	stw      r0, 0(r27)
-
-lbl_802DA784:
-	stw      r27, 0xe0(r31)
-	li       r3, 0x24
-	bl       __nw__FUl
-	or.      r27, r3, r3
-	beq      lbl_802DA7AC
-	li       r4, 2
-	bl       __ct__Q24Game15JointShadowNodeFi
-	lis      r3, __vt__Q24Game16SphereShadowNode@ha
-	addi     r0, r3, __vt__Q24Game16SphereShadowNode@l
-	stw      r0, 0(r27)
-
-lbl_802DA7AC:
-	stw      r27, 0xf0(r31)
-	lwz      r3, 0x84(r28)
-	lwz      r4, 0x90(r31)
-	bl       add__5CNodeFP5CNode
-	lwz      r3, 0x84(r28)
-	lwz      r4, 0xa0(r31)
-	bl       add__5CNodeFP5CNode
-	lwz      r3, 0x84(r28)
-	lwz      r4, 0xb0(r31)
-	bl       add__5CNodeFP5CNode
-	lwz      r3, 0x84(r28)
-	lwz      r4, 0xc0(r31)
-	bl       add__5CNodeFP5CNode
-	lwz      r3, 0x84(r28)
-	lwz      r4, 0xd0(r31)
-	bl       add__5CNodeFP5CNode
-	lwz      r3, 0x84(r28)
-	lwz      r4, 0xe0(r31)
-	bl       add__5CNodeFP5CNode
-	lwz      r3, 0x84(r28)
-	lwz      r4, 0xf0(r31)
-	bl       add__5CNodeFP5CNode
-	li       r0, 0
-	addi     r29, r29, 1
-	stw      r0, 0x44(r30)
-	cmpwi    r29, 4
-	addi     r31, r31, 4
-	stw      r0, 0x48(r30)
-	stw      r0, 0x4c(r30)
-	stw      r0, 0x50(r30)
-	addi     r30, r30, 0x10
-	blt      lbl_802DA678
-	lis      r3, __vt__Q24Game16SphereShadowNode@ha
-	mr       r27, r28
-	addi     r29, r3, __vt__Q24Game16SphereShadowNode@l
-	li       r26, 0
-
-lbl_802DA83C:
-	li       r3, 0x24
-	bl       __nw__FUl
-	or.      r30, r3, r3
-	beq      lbl_802DA858
-	li       r4, 2
-	bl       __ct__Q24Game15JointShadowNodeFi
-	stw      r29, 0(r30)
-
-lbl_802DA858:
-	stw      r30, 0x100(r27)
-	lwz      r3, 0x84(r28)
-	lwz      r4, 0x100(r27)
-	bl       add__5CNodeFP5CNode
-	addi     r26, r26, 1
-	addi     r27, r27, 4
-	cmpwi    r26, 4
-	blt      lbl_802DA83C
-	mr       r31, r28
-	mr       r26, r28
-	li       r25, 0
-
-lbl_802DA884:
-	mr       r27, r31
-	mr       r30, r26
-	li       r24, 0
-
-lbl_802DA890:
-	li       r3, 0x24
-	bl       __nw__FUl
-	or.      r29, r3, r3
-	beq      lbl_802DA8B4
-	li       r4, 2
-	bl       __ct__Q24Game15JointShadowNodeFi
-	lis      r3, __vt__Q24Game17TubeShadowPosNode@ha
-	addi     r0, r3, __vt__Q24Game17TubeShadowPosNode@l
-	stw      r0, 0(r29)
-
-lbl_802DA8B4:
-	stw      r29, 0x110(r27)
-	lwz      r3, 0x84(r28)
-	lwz      r4, 0x110(r27)
-	bl       add__5CNodeFP5CNode
-	cmpwi    r24, 2
-	bge      lbl_802DA900
-	li       r3, 0x24
-	bl       __nw__FUl
-	or.      r29, r3, r3
-	beq      lbl_802DA8F0
-	li       r4, 2
-	bl       __ct__Q24Game15JointShadowNodeFi
-	lis      r3, __vt__Q24Game16SphereShadowNode@ha
-	addi     r0, r3, __vt__Q24Game16SphereShadowNode@l
-	stw      r0, 0(r29)
-
-lbl_802DA8F0:
-	stw      r29, 0x130(r30)
-	lwz      r3, 0x84(r28)
-	lwz      r4, 0x130(r30)
-	bl       add__5CNodeFP5CNode
-
-lbl_802DA900:
-	addi     r24, r24, 1
-	addi     r30, r30, 4
-	cmpwi    r24, 4
-	addi     r27, r27, 4
-	blt      lbl_802DA890
-	addi     r25, r25, 1
-	addi     r26, r26, 8
-	cmpwi    r25, 2
-	addi     r31, r31, 0x10
-	blt      lbl_802DA884
-	lis      r3, __vt__Q24Game17TubeShadowPosNode@ha
-	mr       r27, r28
-	mr       r31, r28
-	li       r24, 0
-	addi     r29, r3, __vt__Q24Game17TubeShadowPosNode@l
-
-lbl_802DA93C:
-	li       r3, 0x24
-	bl       __nw__FUl
-	or.      r30, r3, r3
-	beq      lbl_802DA960
-	li       r4, 2
-	bl       __ct__Q24Game15JointShadowNodeFi
-	lis      r3, __vt__Q24Game16SphereShadowNode@ha
-	addi     r0, r3, __vt__Q24Game16SphereShadowNode@l
-	stw      r0, 0(r30)
-
-lbl_802DA960:
-	stw      r30, 0x168(r27)
-	lwz      r3, 0x84(r28)
-	lwz      r4, 0x168(r27)
-	bl       add__5CNodeFP5CNode
-	li       r25, 0
-	mr       r26, r31
-
-lbl_802DA978:
-	li       r3, 0x24
-	bl       __nw__FUl
-	or.      r30, r3, r3
-	beq      lbl_802DA994
-	li       r4, 2
-	bl       __ct__Q24Game15JointShadowNodeFi
-	stw      r29, 0(r30)
-
-lbl_802DA994:
-	stw      r30, 0x140(r26)
-	lwz      r3, 0x84(r28)
-	lwz      r4, 0x140(r26)
-	bl       add__5CNodeFP5CNode
-	addi     r25, r25, 1
-	addi     r26, r26, 4
-	cmpwi    r25, 5
-	blt      lbl_802DA978
-	addi     r24, r24, 1
-	addi     r31, r31, 0x14
-	cmpwi    r24, 2
-	addi     r27, r27, 4
-	blt      lbl_802DA93C
-	mr       r3, r28
-	lmw      r24, 0x10(r1)
-	lwz      r0, 0x34(r1)
-	mtlr     r0
-	addi     r1, r1, 0x30
-	blr
-	*/
+	for (int i = 0; i < 2; i++) {
+		_168[i] = new SphereShadowNode;
+		m_rootNode->add(_168[i]);
+		for (int j = 0; j < 5; j++) {
+			_140[i][j] = new TubeShadowPosNode;
+			m_rootNode->add(_140[i][j]);
+		}
+	}
 }
 
 /*
@@ -523,181 +76,46 @@ lbl_802DA994:
  */
 void BigTreasure::BigTreasureShadowMgr::init()
 {
-	/*
-	stwu     r1, -0x20(r1)
-	mflr     r0
-	lis      r4, lbl_8048C968@ha
-	stw      r0, 0x24(r1)
-	stw      r31, 0x1c(r1)
-	addi     r31, r4, lbl_8048C968@l
-	addi     r4, r2, lbl_8051CB88@sda21
-	stw      r30, 0x18(r1)
-	stw      r29, 0x14(r1)
-	mr       r29, r3
-	lwz      r3, 0x3c(r3)
-	lwz      r30, 0x174(r3)
-	mr       r3, r30
-	bl       getJoint__Q28SysShape5ModelFPc
-	bl       getWorldMatrix__Q28SysShape5JointFv
-	stw      r3, 0(r29)
-	mr       r3, r30
-	addi     r4, r31, 0x18
-	bl       getJoint__Q28SysShape5ModelFPc
-	lwz      r5, 0x90(r29)
-	addi     r4, r31, 0x24
-	stw      r3, 0x24(r5)
-	mr       r3, r30
-	bl       getJoint__Q28SysShape5ModelFPc
-	lwz      r5, 0xa0(r29)
-	addi     r4, r31, 0x24
-	stw      r3, 0x24(r5)
-	mr       r3, r30
-	bl       getJoint__Q28SysShape5ModelFPc
-	lwz      r5, 0xb0(r29)
-	addi     r4, r31, 0x30
-	stw      r3, 0x24(r5)
-	mr       r3, r30
-	bl       getJoint__Q28SysShape5ModelFPc
-	lwz      r5, 0xc0(r29)
-	addi     r4, r31, 0x3c
-	stw      r3, 0x24(r5)
-	mr       r3, r30
-	bl       getJoint__Q28SysShape5ModelFPc
-	lwz      r5, 0x94(r29)
-	addi     r4, r31, 0x48
-	stw      r3, 0x24(r5)
-	mr       r3, r30
-	bl       getJoint__Q28SysShape5ModelFPc
-	lwz      r5, 0xa4(r29)
-	addi     r4, r31, 0x48
-	stw      r3, 0x24(r5)
-	mr       r3, r30
-	bl       getJoint__Q28SysShape5ModelFPc
-	lwz      r5, 0xb4(r29)
-	addi     r4, r31, 0x54
-	stw      r3, 0x24(r5)
-	mr       r3, r30
-	bl       getJoint__Q28SysShape5ModelFPc
-	lwz      r5, 0xc4(r29)
-	addi     r4, r31, 0x60
-	stw      r3, 0x24(r5)
-	mr       r3, r30
-	bl       getJoint__Q28SysShape5ModelFPc
-	lwz      r5, 0x98(r29)
-	addi     r4, r31, 0x6c
-	stw      r3, 0x24(r5)
-	mr       r3, r30
-	bl       getJoint__Q28SysShape5ModelFPc
-	lwz      r5, 0xa8(r29)
-	addi     r4, r31, 0x6c
-	stw      r3, 0x24(r5)
-	mr       r3, r30
-	bl       getJoint__Q28SysShape5ModelFPc
-	lwz      r5, 0xb8(r29)
-	addi     r4, r31, 0x78
-	stw      r3, 0x24(r5)
-	mr       r3, r30
-	bl       getJoint__Q28SysShape5ModelFPc
-	lwz      r5, 0xc8(r29)
-	addi     r4, r31, 0x84
-	stw      r3, 0x24(r5)
-	mr       r3, r30
-	bl       getJoint__Q28SysShape5ModelFPc
-	lwz      r5, 0x9c(r29)
-	addi     r4, r31, 0x90
-	stw      r3, 0x24(r5)
-	mr       r3, r30
-	bl       getJoint__Q28SysShape5ModelFPc
-	lwz      r5, 0xac(r29)
-	addi     r4, r31, 0x90
-	stw      r3, 0x24(r5)
-	mr       r3, r30
-	bl       getJoint__Q28SysShape5ModelFPc
-	lwz      r5, 0xbc(r29)
-	addi     r4, r31, 0x9c
-	stw      r3, 0x24(r5)
-	mr       r3, r30
-	bl       getJoint__Q28SysShape5ModelFPc
-	lwz      r5, 0xcc(r29)
-	addi     r4, r31, 0xa8
-	stw      r3, 0x24(r5)
-	mr       r3, r30
-	bl       getJoint__Q28SysShape5ModelFPc
-	bl       getWorldMatrix__Q28SysShape5JointFv
-	stw      r3, 4(r29)
-	mr       r3, r30
-	addi     r4, r31, 0xb8
-	bl       getJoint__Q28SysShape5ModelFPc
-	bl       getWorldMatrix__Q28SysShape5JointFv
-	stw      r3, 8(r29)
-	mr       r3, r30
-	addi     r4, r31, 0xc8
-	bl       getJoint__Q28SysShape5ModelFPc
-	bl       getWorldMatrix__Q28SysShape5JointFv
-	stw      r3, 0xc(r29)
-	mr       r3, r30
-	addi     r4, r31, 0xd4
-	bl       getJoint__Q28SysShape5ModelFPc
-	bl       getWorldMatrix__Q28SysShape5JointFv
-	stw      r3, 0x10(r29)
-	mr       r3, r30
-	addi     r4, r2, lbl_8051CB90@sda21
-	bl       getJoint__Q28SysShape5ModelFPc
-	bl       getWorldMatrix__Q28SysShape5JointFv
-	stw      r3, 0x14(r29)
-	mr       r3, r30
-	addi     r4, r2, lbl_8051CB98@sda21
-	bl       getJoint__Q28SysShape5ModelFPc
-	bl       getWorldMatrix__Q28SysShape5JointFv
-	stw      r3, 0x18(r29)
-	mr       r3, r30
-	addi     r4, r2, lbl_8051CBA0@sda21
-	bl       getJoint__Q28SysShape5ModelFPc
-	bl       getWorldMatrix__Q28SysShape5JointFv
-	stw      r3, 0x1c(r29)
-	mr       r3, r30
-	addi     r4, r2, lbl_8051CBA8@sda21
-	bl       getJoint__Q28SysShape5ModelFPc
-	bl       getWorldMatrix__Q28SysShape5JointFv
-	stw      r3, 0x20(r29)
-	mr       r3, r30
-	addi     r4, r2, lbl_8051CBB0@sda21
-	bl       getJoint__Q28SysShape5ModelFPc
-	bl       getWorldMatrix__Q28SysShape5JointFv
-	stw      r3, 0x24(r29)
-	mr       r3, r30
-	addi     r4, r2, lbl_8051CBB8@sda21
-	bl       getJoint__Q28SysShape5ModelFPc
-	bl       getWorldMatrix__Q28SysShape5JointFv
-	stw      r3, 0x28(r29)
-	mr       r3, r30
-	addi     r4, r31, 0xe4
-	bl       getJoint__Q28SysShape5ModelFPc
-	bl       getWorldMatrix__Q28SysShape5JointFv
-	stw      r3, 0x2c(r29)
-	mr       r3, r30
-	addi     r4, r31, 0xf0
-	bl       getJoint__Q28SysShape5ModelFPc
-	bl       getWorldMatrix__Q28SysShape5JointFv
-	stw      r3, 0x30(r29)
-	mr       r3, r30
-	addi     r4, r31, 0xfc
-	bl       getJoint__Q28SysShape5ModelFPc
-	bl       getWorldMatrix__Q28SysShape5JointFv
-	stw      r3, 0x34(r29)
-	mr       r3, r30
-	addi     r4, r31, 0x108
-	bl       getJoint__Q28SysShape5ModelFPc
-	bl       getWorldMatrix__Q28SysShape5JointFv
-	stw      r3, 0x38(r29)
-	lwz      r0, 0x24(r1)
-	lwz      r31, 0x1c(r1)
-	lwz      r30, 0x18(r1)
-	lwz      r29, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x20
-	blr
-	*/
+	SysShape::Model* model = m_obj->m_model;
+	m_bodyMatrix           = model->getJoint("kosi")->getWorldMatrix();
+	_90[0]->m_joint        = model->getJoint("rhand1jnt");
+	_A0[0]->m_joint        = model->getJoint("rhand2jnt");
+	_B0[0]->m_joint        = model->getJoint("rhand2jnt");
+	_C0[0]->m_joint        = model->getJoint("rhand3jnt");
+
+	_90[1]->m_joint = model->getJoint("lhand1jnt");
+	_A0[1]->m_joint = model->getJoint("lhand2jnt");
+	_B0[1]->m_joint = model->getJoint("lhand2jnt");
+	_C0[1]->m_joint = model->getJoint("lhand3jnt");
+
+	_90[2]->m_joint = model->getJoint("rfoot1jnt");
+	_A0[2]->m_joint = model->getJoint("rfoot2jnt");
+	_B0[2]->m_joint = model->getJoint("rfoot2jnt");
+	_C0[2]->m_joint = model->getJoint("rfoot3jnt");
+
+	_90[3]->m_joint = model->getJoint("lfoot1jnt");
+	_A0[3]->m_joint = model->getJoint("lfoot2jnt");
+	_B0[3]->m_joint = model->getJoint("lfoot2jnt");
+	_C0[3]->m_joint = model->getJoint("lfoot3jnt");
+
+	m_elecMatrix  = model->getJoint("otakara_elec")->getWorldMatrix();
+	m_fireMatrix  = model->getJoint("otakara_fire")->getWorldMatrix();
+	m_gasMatrix   = model->getJoint("otakara_gas")->getWorldMatrix();
+	m_waterMatrix = model->getJoint("otakara_water")->getWorldMatrix();
+
+	m_leftArmMatrix[0] = model->getJoint("larm1")->getWorldMatrix();
+	m_leftArmMatrix[1] = model->getJoint("larm2")->getWorldMatrix();
+	m_leftArmMatrix[2] = model->getJoint("larm3")->getWorldMatrix();
+
+	m_rightArmMatrix[0] = model->getJoint("rarm1")->getWorldMatrix();
+	m_rightArmMatrix[1] = model->getJoint("rarm2")->getWorldMatrix();
+	m_rightArmMatrix[2] = model->getJoint("rarm3")->getWorldMatrix();
+
+	m_leftAntennaMatrix[0] = model->getJoint("lantenna1")->getWorldMatrix();
+	m_leftAntennaMatrix[1] = model->getJoint("lantenna2")->getWorldMatrix();
+
+	m_rightAntennaMatrix[0] = model->getJoint("rantenna1")->getWorldMatrix();
+	m_rightAntennaMatrix[1] = model->getJoint("rantenna2")->getWorldMatrix();
 }
 
 /*
@@ -705,36 +123,100 @@ void BigTreasure::BigTreasureShadowMgr::init()
  * Address:	802DAC94
  * Size:	000008
  */
-void BigTreasure::BigTreasureShadowMgr::setKosiJointPosPtr(Vector3f* a1)
-{
-	// Generated from stw r4, 0x40(r3)
-	_40 = a1;
-}
+void BigTreasureShadowMgr::setKosiJointPosPtr(Vector3f* posPtr) { m_kosiPosition = posPtr; }
 
 /*
  * --INFO--
  * Address:	802DAC9C
  * Size:	000018
  */
-void BigTreasure::BigTreasureShadowMgr::setJointPosPtr(int, int, Vector3f*)
-{
-	/*
-	slwi     r4, r4, 4
-	slwi     r0, r5, 2
-	add      r3, r3, r4
-	add      r3, r3, r0
-	stw      r6, 0x44(r3)
-	blr
-	*/
-}
+void BigTreasureShadowMgr::setJointPosPtr(int p1, int p2, Vector3f* posPtr) { m_jointPositions[p1][p2] = posPtr; }
 
 /*
  * --INFO--
  * Address:	802DACB4
  * Size:	000510
  */
-void BigTreasure::BigTreasureShadowMgr::update()
+void BigTreasureShadowMgr::update()
 {
+	JointShadowParm parm;
+	parm._00 = m_obj->getTraceCentrePosition();
+	parm._0C = Vector3f(0.5f, 3.0f, 0.5f);
+	parm._0C.normalise();
+	*m_kosiPosition = m_bodyMatrix->getBasis(3);
+	m_kosiPosition->y += -20.0f;
+
+	f32 p1 = 5.0f * m_obj->m_shadowScale;
+	f32 p2 = 2.5f * m_obj->m_shadowScale;
+
+	// this section needs fixing
+	const f32 theta = m_obj->getFaceDir();
+	f32 cosTheta    = pikmin2_cosf(theta);
+	f32 sinTheta    = pikmin2_sinf(theta);
+	Vector3f vec1(20.0f * sinTheta, 0.0f, 20.0f * cosTheta);
+	Vector3f vec2(-10.0f * sinTheta, -0.0f, -10.0f * cosTheta);
+
+	parm._18 = 0.0f;
+	parm._1C = 0.0f;
+	parm._20 = 20.0f * m_obj->m_shadowScale;
+	parm._24 = -75.0f;
+
+	Vector3f pos1 = vec1 + *m_kosiPosition;
+	Vector3f pos2 = vec2 + *m_kosiPosition;
+
+	_88->makeShadowSRT(parm, pos1);
+
+	parm._20 = 27.0f * m_obj->m_shadowScale;
+
+	_8C->makeShadowSRT(parm, pos2);
+
+	Vector3f shadowVecs[4];
+
+	for (int i = 0; i < 4; i++) {
+		parm._18 = 92.5f;
+		parm._1C = -62.5f;
+		parm._20 = p1;
+		parm._24 = -10.0f;
+		_90[i]->makeShadowSRT(parm, *m_kosiPosition, shadowVecs[0]);
+
+		parm._18 = 0.0f;
+		parm._1C = 0.0f;
+		parm._20 = p1;
+		parm._24 = -10.0f;
+		_A0[i]->makeShadowSRT(parm, shadowVecs[0], shadowVecs[1]);
+
+		parm._18 = 95.0f;
+		parm._1C = -20.0f;
+		parm._20 = p1;
+		parm._24 = -10.0f;
+		_B0[i]->makeShadowSRT(parm, shadowVecs[1], shadowVecs[2]);
+
+		parm._18 = 0.0f;
+		parm._1C = 0.0f;
+		parm._20 = p1;
+		parm._24 = -10.0f;
+		_C0[i]->makeShadowSRT(parm, shadowVecs[2], shadowVecs[3]);
+
+		parm._18 = 0.0f;
+		parm._1C = 0.0f;
+		parm._20 = p2;
+		parm._24 = -10.0f;
+		_D0[i]->makeShadowSRT(parm, shadowVecs[0]);
+		_E0[i]->makeShadowSRT(parm, shadowVecs[1]);
+		_F0[i]->makeShadowSRT(parm, shadowVecs[2]);
+
+		for (int j = 0; j < 4; j++) {
+			if (m_jointPositions[i][j]) {
+				m_jointPositions[i][j]->x = shadowVecs[j].x;
+				m_jointPositions[i][j]->y = shadowVecs[j].y;
+				m_jointPositions[i][j]->z = shadowVecs[j].z;
+			}
+		}
+	}
+
+	updateTreasureShadow(parm);
+	updateHandShadow(parm);
+	updateAntennaShadow(parm);
 	/*
 	stwu     r1, -0x140(r1)
 	mflr     r0
@@ -1102,7 +584,7 @@ updateAntennaShadow__Q34Game11BigTreasure20BigTreasureShadowMgrFRQ24Game15JointS
  * Address:	802DB1C4
  * Size:	0000F4
  */
-void BigTreasure::BigTreasureShadowMgr::updateTreasureShadow(Game::JointShadowParm&)
+void BigTreasureShadowMgr::updateTreasureShadow(JointShadowParm& parm)
 {
 	/*
 	.loc_0x0:
@@ -1183,7 +665,7 @@ void BigTreasure::BigTreasureShadowMgr::updateTreasureShadow(Game::JointShadowPa
  * Address:	802DB2B8
  * Size:	000348
  */
-void BigTreasure::BigTreasureShadowMgr::updateHandShadow(Game::JointShadowParm&)
+void BigTreasureShadowMgr::updateHandShadow(JointShadowParm& parm)
 {
 	/*
 	stwu     r1, -0x140(r1)
@@ -1412,7 +894,7 @@ lbl_802DB384:
  * Address:	802DB600
  * Size:	000544
  */
-void BigTreasure::BigTreasureShadowMgr::updateAntennaShadow(Game::JointShadowParm&)
+void BigTreasureShadowMgr::updateAntennaShadow(JointShadowParm& parm)
 {
 	/*
 	.loc_0x0:
@@ -1757,47 +1239,5 @@ void BigTreasure::BigTreasureShadowMgr::updateAntennaShadow(Game::JointShadowPar
 	  blr
 	*/
 }
-
-/*
- * --INFO--
- * Address:	802DBB44
- * Size:	000070
- */
-TubeShadowPosNode::~TubeShadowPosNode()
-{
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	mr       r31, r4
-	stw      r30, 8(r1)
-	or.      r30, r3, r3
-	beq      lbl_802DBB98
-	lis      r4, __vt__Q24Game17TubeShadowPosNode@ha
-	addi     r0, r4, __vt__Q24Game17TubeShadowPosNode@l
-	stw      r0, 0(r30)
-	beq      lbl_802DBB88
-	lis      r5, __vt__Q24Game15JointShadowNode@ha
-	li       r4, 0
-	addi     r0, r5, __vt__Q24Game15JointShadowNode@l
-	stw      r0, 0(r30)
-	bl       __dt__5CNodeFv
-
-lbl_802DBB88:
-	extsh.   r0, r31
-	ble      lbl_802DBB98
-	mr       r3, r30
-	bl       __dl__FPv
-
-lbl_802DBB98:
-	lwz      r0, 0x14(r1)
-	mr       r3, r30
-	lwz      r31, 0xc(r1)
-	lwz      r30, 8(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
-}
+} // namespace BigTreasure
 } // namespace Game

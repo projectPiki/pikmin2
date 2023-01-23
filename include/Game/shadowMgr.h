@@ -108,8 +108,13 @@ struct ShadowCylinder3 : public CylinderBase {
 	u8 _54[4]; // _54
 };
 
-struct TubeShadowPosNode : public CNode {
-	virtual ~TubeShadowPosNode(); // _08 (weak)
+struct TubeShadowPosNode : public JointShadowNode {
+	inline TubeShadowPosNode()
+	    : JointShadowNode(2)
+	{
+	}
+
+	virtual ~TubeShadowPosNode() { } // _08 (weak)
 
 	void makeShadowSRT(JointShadowParm&, Vector3f&, Vector3f&);
 
