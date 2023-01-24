@@ -2,6 +2,7 @@
 #define _JSYSTEM_J3D_J3DVTXCOLORCALC_H
 
 #include "types.h"
+#include "JSystem/J3D/J3DAnmVtxColor.h"
 
 struct J3DVtxColorCalc {
 	virtual void calc(struct J3DVertexBuffer*); // _08
@@ -10,8 +11,8 @@ struct J3DVtxColorCalc {
 	void calc(struct J3DModel*);
 
 	// _00 VTBL
-	u32 _04;   // _04
-	void* _08; // _08
+	u32 _04;                       // _04
+	J3DAnmVtxColor* m_AnmVtxColor; // _08
 };
 
 #endif

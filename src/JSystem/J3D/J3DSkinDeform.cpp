@@ -1,6 +1,7 @@
 #include "types.h"
 #include "JSystem/J3D/J3DModel.h"
 #include "JSystem/J3D/J3DVtxColorCalc.h"
+#include "JSystem/J3D/J3DAnmVtxColor.h"
 
 /*
  * --INFO--
@@ -37,77 +38,24 @@ void J3DVtxColorCalc::calc(J3DModel* model) { calc(&model->m_vertexBuffer); }
  */
 void J3DVtxColorCalc::calc(J3DVertexBuffer* buffer)
 {
-	/*
-	stwu     r1, -0x30(r1)
-	mflr     r0
-	stw      r0, 0x34(r1)
-	stmw     r27, 0x1c(r1)
-	mr       r29, r3
-	mr       r30, r4
-	lwz      r0, 4(r3)
-	clrlwi.  r0, r0, 0x1f
-	beq      lbl_800887F0
-	lwz      r0, 8(r29)
-	cmplwi   r0, 0
-	beq      lbl_800887F0
-	lwz      r3, 0x14(r30)
-	li       r31, 0
-	lwz      r0, 0x18(r30)
-	stw      r0, 0x14(r30)
-	stw      r3, 0x18(r30)
-	lwz      r3, 8(r29)
-	lwz      r27, 0x14(r30)
-	lhz      r28, 0xc(r3)
-	b        lbl_800887CC
+	if (_04 & 1 && m_AnmVtxColor) {
+		void* prev     = buffer->_14[0];
+		buffer->_14[0] = buffer->_14[1];
+		buffer->_14[1] = prev;
+		u16 cnt        = m_AnmVtxColor->_0C;
+		u32* var2      = (u32*)buffer->_14[0];
 
-lbl_80088764:
-	lwz      r3, 8(r29)
-	mr       r5, r31
-	addi     r6, r1, 8
-	li       r4, 0
-	lwz      r12, 0(r3)
-	lwz      r12, 0x10(r12)
-	mtctr    r12
-	bctrl
-	lwz      r3, 8(r29)
-	rlwinm   r0, r31, 3, 0xd, 0x1c
-	li       r7, 0
-	li       r6, 0
-	lwz      r3, 0x10(r3)
-	add      r5, r3, r0
-	b        lbl_800887BC
-
-lbl_800887A0:
-	lwz      r3, 4(r5)
-	addi     r7, r7, 1
-	lwz      r4, 8(r1)
-	lhzx     r0, r3, r6
-	addi     r6, r6, 2
-	slwi     r0, r0, 2
-	stwx     r4, r27, r0
-
-lbl_800887BC:
-	lhz      r0, 0(r5)
-	cmplw    r7, r0
-	blt      lbl_800887A0
-	addi     r31, r31, 1
-
-lbl_800887CC:
-	clrlwi   r0, r31, 0x10
-	cmplw    r0, r28
-	blt      lbl_80088764
-	lwz      r4, 0(r30)
-	mr       r3, r27
-	lwz      r0, 8(r4)
-	slwi     r4, r0, 2
-	bl       DCStoreRange
-	stw      r27, 0x34(r30)
-
-lbl_800887F0:
-	lmw      r27, 0x1c(r1)
-	lwz      r0, 0x34(r1)
-	mtlr     r0
-	addi     r1, r1, 0x30
-	blr
-	*/
+		for (u16 i = 0; i < (u32)cnt; i++) {
+			u32 color;
+			m_AnmVtxColor->getColor(0, i, reinterpret_cast<GXColor*>(&color));
+			J3DAnmVtxColorIndexData* idxData = &m_AnmVtxColor->_10[i];
+			int var3                         = 0;
+			for (u32 j = 0; j < idxData->_00; j++) {
+				var2[reinterpret_cast<u16*>(idxData->_04)[var3]] = color; // _04 may be u16*
+				var3 += 1;
+			}
+		}
+		DCStoreRange(var2, buffer->_00->_08 * 4);
+		buffer->_34 = var2;
+	}
 }

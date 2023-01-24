@@ -45,9 +45,9 @@
 ### <section id="JSystem">JSystem</section>
 | File | Size (bytes) | File | Size (bytes) |
 | ---- | ---- | ---- | ---- |
-| <a href="https://github.com/projectPiki/pikmin2/tree/main/src/JSystem/dsp/osdsp.c">dsp/osdsp.c</a> | 760 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/JSystem/JUT/JUTPalette.cpp">JUT/JUTPalette.cpp</a> | 1646 |
-| <a href="https://github.com/projectPiki/pikmin2/tree/main/src/JSystem/JAS/JASRegisterParam.cpp">JAS/JASRegisterParam.cpp</a> | 1861 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/JSystem/JAS/JASTrackInterrupt.cpp">JAS/JASTrackInterrupt.cpp</a> | 2023 |
-| <a href="https://github.com/projectPiki/pikmin2/tree/main/src/JSystem/J3D/J3DSkinDeform.cpp">J3D/J3DSkinDeform.cpp</a> | 2173 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/JSystem/JAS/JASInstRand.cpp">JAS/JASInstRand.cpp</a> | 2290 |
+| <a href="https://github.com/projectPiki/pikmin2/tree/main/src/JSystem/dsp/osdsp.c">dsp/osdsp.c</a> | 760 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/JSystem/J3D/J3DSkinDeform.cpp">J3D/J3DSkinDeform.cpp</a> | 1585 |
+| <a href="https://github.com/projectPiki/pikmin2/tree/main/src/JSystem/JUT/JUTPalette.cpp">JUT/JUTPalette.cpp</a> | 1646 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/JSystem/JAS/JASRegisterParam.cpp">JAS/JASRegisterParam.cpp</a> | 1861 |
+| <a href="https://github.com/projectPiki/pikmin2/tree/main/src/JSystem/JAS/JASTrackInterrupt.cpp">JAS/JASTrackInterrupt.cpp</a> | 2023 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/JSystem/JAS/JASInstRand.cpp">JAS/JASInstRand.cpp</a> | 2290 |
 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/JSystem/JAS/JASReport.cpp">JAS/JASReport.cpp</a> | 2421 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/JSystem/JPA/JPAExTexShape.cpp">JPA/JPAExTexShape.cpp</a> | 2656 |
 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/JSystem/object/object-id.cpp">object/object-id.cpp</a> | 2689 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/JSystem/JUT/JUTResource.cpp">JUT/JUTResource.cpp</a> | 3339 |
 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/JSystem/JPA/JPAChildShape.cpp">JPA/JPAChildShape.cpp</a> | 3403 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/JSystem/binary.cpp">binary.cpp</a> | 3595 |
