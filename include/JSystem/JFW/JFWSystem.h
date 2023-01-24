@@ -27,7 +27,7 @@ struct JFWSystem {
 		static u32 exConsoleBufferSize;
 	};
 
-	void firstInit();
+	static void firstInit();
 	static void init();
 
 	static JKRHeap* rootHeap;
