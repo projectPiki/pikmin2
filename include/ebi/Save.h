@@ -182,7 +182,7 @@ struct TMgr : public JKRDisposer {
 	Controller* m_controller;                          // _3D0
 	Game::MemoryCard::PlayerFileInfo m_playerFileInfo; // _3D4
 	int _470;                                          // _470
-	int _474;                                          // _474
+	int m_currStateID;                                 // _474
 	u8 m_saveType;                                     // _478
 	bool m_isAutosaveOn;                               // _479
 	u8 _47A;                                           // _47A

@@ -1,4 +1,9 @@
-#include "types.h"
+#include "kh/khFinalResult.h"
+#include "Controller.h"
+#include "PSSystem/PSSystemIF.h"
+#include "og/Screen/ogScreen.h"
+#include "og/Screen/callbackNodes.h"
+#include "Game/gamePlayData.h"
 
 /*
     Generated from dpostproc
@@ -375,7 +380,7 @@ namespace Screen {
  * Address:	8040C1E8
  * Size:	000034
  */
-DispFinalResult::DispFinalResult(kh::Screen::TotalResultData*, kh::Screen::DispFinalResult::ResultType, JKRHeap*)
+DispFinalResult::DispFinalResult(TotalResultData*, DispFinalResult::ResultType, JKRHeap*)
 {
 	/*
 	.loc_0x0:
@@ -402,6 +407,9 @@ DispFinalResult::DispFinalResult(kh::Screen::TotalResultData*, kh::Screen::DispF
  */
 ObjFinalResult::ObjFinalResult()
 {
+	m_flags = 0;
+	m_flags |= 8;
+	m_fadeAlpha = 0;
 	/*
 stwu     r1, -0x10(r1)
 mflr     r0
@@ -515,8 +523,144 @@ blr
  * Address:	8040C3BC
  * Size:	000B8C
  */
-void ObjFinalResult::doCreate(JKRArchive*)
+void ObjFinalResult::doCreate(JKRArchive* arc)
 {
+	JUT_ASSERTLINE(214, getDispMember()->isID(OWNER_KH, MEMBER_FINAL_RESULT), "disp member err");
+	DispFinalResult* disp = static_cast<DispFinalResult*>(getDispMember());
+
+	m_screen = new P2DScreen::Mgr_tuning;
+	m_screen->set("result_final.blo", 0x1040000, arc);
+
+	void* file  = JKRFileLoader::getGlbResource("result_final.bck", arc);
+	m_anmTrans1 = static_cast<J2DAnmTransform*>(J2DAnmLoaderDataBase::load(file));
+	m_anmTrans2 = static_cast<J2DAnmTransform*>(J2DAnmLoaderDataBase::load(file));
+	m_anmTrans3 = static_cast<J2DAnmTransform*>(J2DAnmLoaderDataBase::load(file));
+	m_anmTrans4 = static_cast<J2DAnmTransform*>(J2DAnmLoaderDataBase::load(file));
+	m_anmTrans5 = static_cast<J2DAnmTransform*>(J2DAnmLoaderDataBase::load(file));
+	m_anmTrans6 = static_cast<J2DAnmTransform*>(J2DAnmLoaderDataBase::load(file));
+
+	file      = JKRFileLoader::getGlbResource("result_final.bpk", arc);
+	m_anmCol1 = J2DAnmLoaderDataBase::load(file);
+	m_anmCol2 = J2DAnmLoaderDataBase::load(file);
+	m_anmCol3 = J2DAnmLoaderDataBase::load(file);
+
+	file     = JKRFileLoader::getGlbResource("result_final.btk", arc);
+	m_anmSRT = static_cast<J2DAnmTextureSRTKey*>(J2DAnmLoaderDataBase::load(file));
+
+	file     = JKRFileLoader::getGlbResource("result_final.brk", arc);
+	m_anmTev = static_cast<J2DAnmTevRegKey*>(J2DAnmLoaderDataBase::load(file));
+
+	m_anmTrans1->searchUpdateMaterialID(m_screen);
+	m_anmTrans2->searchUpdateMaterialID(m_screen);
+	m_anmTrans3->searchUpdateMaterialID(m_screen);
+
+	J2DPane* pane1 = m_screen->search('Nstar');
+	J2DPane* pane2 = m_screen->search('Natbn');
+	pane1->setAnimation(m_anmTrans1);
+	m_screen->search('Ntitle')->setAnimation(m_anmTrans2);
+	m_screen->search('Nmain')->setAnimation(m_anmTrans3);
+	m_screen->search('NICON')->setAnimation(m_anmTrans4);
+	m_screen->search('Nmeter')->setAnimation(m_anmTrans5);
+	pane2->setAnimation(m_anmTrans6);
+
+	setMatAnm(m_screen->search('Nstar'), m_anmCol1);
+	setMatAnm(m_screen->search('Nselect'), m_anmCol2);
+	setMatAnm(pane2, m_anmCol3);
+
+	m_screen->setAnimation(m_anmSRT);
+	m_screen->setAnimation(m_anmTev);
+	setInfAlpha(m_screen->search('NICON'));
+
+	for (int i = 0; i < 8; i++) {
+		m_screen->search(getSerialTagName('Nsel00', i))->setAlpha(msVal._21);
+		m_screen->search(getSerialTagName('Nicon00', i))->setAlpha(msVal._21);
+	}
+	JKRHeap* oldHeap = getCurrentHeap();
+	if (disp->m_heap) {
+		disp->m_heap->becomeCurrentHeap();
+	}
+	og::Screen::setCallBackMessage(m_screen);
+
+	og::Screen::CallBack_Picture* stick = og::Screen::setCallBack_3DStick(arc, m_screen, 'ota3dl');
+	m_stickAnimMgr                      = new og::Screen::StickAnimMgr(stick);
+	m_stickAnimMgr->stickUpDown();
+
+	m_fadePaneYameU = khUtilFadePane::create(m_screen, 'Nyame_u', 16);
+	m_fadePaneYameU->fadeout();
+	m_fadePaneYameL = khUtilFadePane::create(m_screen, 'Nyame_l', 16);
+	m_fadePaneYameL->fadeout();
+	m_fadePane3DStick = khUtilFadePane::create(m_screen, 'ota3dl', 16);
+	m_fadePane3DStick->add(m_screen->search('N_3d'));
+	m_fadePane3DStick->fadeout();
+	m_fadePaneAButton = khUtilFadePane::create(m_screen, 'Nabtn', 16);
+	m_fadePaneAButton->fadeout();
+
+	u64 tags1[4] = { 'Ptokyop1', 'P1st0_1', 'P2nd0_1', 'P3rd0_1' };
+	u64 tags2[4] = { 'Ptomadp1', 'P1st1_1', 'P2nd1_1', 'P3rd1_1' };
+	for (int i = 0; i < 4; i++) {
+		m_counters1[i] = og::Screen::setCallBack_CounterRV(m_screen, tags1[i], &m_counterData1[i], 9, false, false, arc);
+		m_counters2[i] = og::Screen::setCallBack_CounterRV(m_screen, tags2[i], &m_counterData2[i], 9, false, false, arc);
+	}
+	m_counterScore1[0] = og::Screen::setCallBack_CounterRV(m_screen, 'Pkon3', 'Pkon4', 'Pkon4', &m_counterDataScore1[0], 3, 2, false, arc);
+	m_counterScore1[1]
+	    = og::Screen::setCallBack_CounterRV(m_screen, 'P1stt3', 'P1stt4', 'P1stt4', &m_counterDataScore1[1], 3, 2, false, arc);
+	m_counterScore1[2]
+	    = og::Screen::setCallBack_CounterRV(m_screen, 'P2ndt3', 'P2ndt4', 'P2ndt4', &m_counterDataScore1[2], 3, 2, false, arc);
+	m_counterScore1[3]
+	    = og::Screen::setCallBack_CounterRV(m_screen, 'P3rdt3', 'P3rdt4', 'P3rdt4', &m_counterDataScore1[3], 3, 2, false, arc);
+	m_counterScore2[0] = og::Screen::setCallBack_CounterRV(m_screen, 'Pkon1', 'Pkon2', 'Pkon2', &m_counterDataScore2[0], 2, 2, false, arc);
+	m_counterScore2[1]
+	    = og::Screen::setCallBack_CounterRV(m_screen, 'P1stt1', 'P1stt2', 'P1stt2', &m_counterDataScore2[1], 2, 2, false, arc);
+	m_counterScore2[2]
+	    = og::Screen::setCallBack_CounterRV(m_screen, 'P2ndt1', 'P2ndt2', 'P2ndt2', &m_counterDataScore2[2], 2, 2, false, arc);
+	m_counterScore2[3]
+	    = og::Screen::setCallBack_CounterRV(m_screen, 'P3rdt1', 'P3rdt2', 'P3rdt2', &m_counterDataScore2[3], 2, 2, false, arc);
+
+	m_counterScore1[0]->setZeroAlpha(255);
+	m_counterScore1[1]->setZeroAlpha(255);
+	m_counterScore1[2]->setZeroAlpha(255);
+	m_counterScore1[3]->setZeroAlpha(255);
+
+	TotalResultData* data = disp->m_totalResultData;
+	for (int i = 0; i < 4; i++) {
+		int count = data->_04;
+		if (count > 0) {
+			m_counterDataScore1[i] = 0;
+			m_counterDataScore2[i] = 0;
+			m_counterScore1[i]->setBlind(true);
+			m_counterScore2[i]->setBlind(true);
+		} else {
+			m_counterDataScore1[i] = count / 60;
+			m_counterDataScore2[i] = count / 60;
+		}
+	}
+
+	m_saveMgr = ebi::Save::TMgr::createInstance();
+	m_saveMgr->m_saveMenu.loadResource();
+	m_saveMgr->doLoadResource(getCurrentHeap());
+	m_saveMgr->setControllers(getGamePad());
+	m_saveMgr->m_saveType = 1;
+
+	f32 y        = m_screen->search('Nsetp0')->getBounds()->i.y;
+	m_scrollMove = (m_screen->search('Nsetp1')->getBounds()->i.y - y) * 2.0f;
+	m_screen->search('Ppict0')->hide();
+	m_screen->search('Ppict1')->hide();
+	m_screen->search('Nsetp_c')->show();
+	m_screen->search('Nsetp_d')->hide();
+
+	if (disp->m_resultType == DispFinalResult::PostDebt) {
+		m_screen->search('Ntitl_fi')->show();
+		m_screen->search('Ntitl_co')->hide();
+	} else {
+		m_screen->search('Ntitl_fi')->hide();
+		m_screen->search('Ntitl_co')->show();
+	}
+
+	if (disp->m_heap) {
+		oldHeap->becomeCurrentHeap();
+	}
+	Game::playData->m_mailSaveData.set_history(-2);
+
 	/*
 stwu     r1, -0xa0(r1)
 mflr     r0
@@ -1274,149 +1418,55 @@ blr
  * Address:	8040CF48
  * Size:	0001BC
  */
-void ObjFinalResult::doUpdate()
+bool ObjFinalResult::doUpdate()
 {
-	/*
-stwu     r1, -0x10(r1)
-mflr     r0
-stw      r0, 0x14(r1)
-stw      r31, 0xc(r1)
-mr       r31, r3
-bl       updateCommon__Q32kh6Screen14ObjFinalResultFv
-lbz      r0, 0x14e(r31)
-rlwinm.  r0, r0, 0, 0x1d, 0x1d
-beq      lbl_8040D034
-lis      r3, msVal__Q32kh6Screen14ObjFinalResult@ha
-lbz      r4, 0x14f(r31)
-addi     r3, r3, msVal__Q32kh6Screen14ObjFinalResult@l
-lbz      r0, 0x1f(r3)
-cmplw    r4, r0
-bge      lbl_8040CF90
-lbz      r0, 0x20(r3)
-add      r0, r4, r0
-stb      r0, 0x14f(r31)
+	updateCommon();
+	if (m_flags & SaveOpen) {
+		if (m_fadeAlpha < msVal._1F) {
+			m_fadeAlpha += msVal._20;
+		}
+		m_saveMgr->update();
+		if (m_saveMgr->isFinish()) {
+			switch (m_saveMgr->m_currStateID) {
+			case 0:
+			case 2:
+				JUT_ASSERTLINE(382, getDispMember()->isID(OWNER_KH, MEMBER_FINAL_RESULT), "disp member err");
+				DispFinalResult* disp = static_cast<DispFinalResult*>(getDispMember());
+				disp->m_exitStatus    = 1;
+				break;
+			case 1:
+				m_flags &= ~SaveOpen;
+				break;
+			}
+		}
 
-lbl_8040CF90:
-lwz      r3, 0x38(r31)
-bl       update__Q33ebi4Save4TMgrFv
-lwz      r3, 0x38(r31)
-bl       isFinish__Q33ebi4Save4TMgrFv
-clrlwi.  r0, r3, 0x18
-beq      lbl_8040D0EC
-lwz      r3, 0x38(r31)
-lwz      r0, 0x474(r3)
-cmpwi    r0, 1
-beq      lbl_8040D024
-bge      lbl_8040CFC8
-cmpwi    r0, 0
-bge      lbl_8040CFD0
-b        lbl_8040D0EC
-
-lbl_8040CFC8:
-cmpwi    r0, 3
-bge      lbl_8040D0EC
-
-lbl_8040CFD0:
-mr       r3, r31
-bl       getDispMember__Q26Screen7ObjBaseFv
-lis      r5, 0x52534C54@ha
-li       r4, 0x4b48
-addi     r6, r5, 0x52534C54@l
-li       r5, 0x465f
-bl       isID__Q32og6Screen14DispMemberBaseFUlUx
-clrlwi.  r0, r3, 0x18
-bne      lbl_8040D010
-lis      r3, lbl_80498CD8@ha
-lis      r5, lbl_80498FD8@ha
-addi     r3, r3, lbl_80498CD8@l
-li       r4, 0x17e
-addi     r5, r5, lbl_80498FD8@l
-crclr    6
-bl       panic_f__12JUTExceptionFPCciPCce
-
-lbl_8040D010:
-mr       r3, r31
-bl       getDispMember__Q26Screen7ObjBaseFv
-li       r0, 1
-stw      r0, 0x10(r3)
-b        lbl_8040D0EC
-
-lbl_8040D024:
-lbz      r0, 0x14e(r31)
-rlwinm   r0, r0, 0, 0x1e, 0x1c
-stb      r0, 0x14e(r31)
-b        lbl_8040D0EC
-
-lbl_8040D034:
-lwz      r0, 0x148(r31)
-cmpwi    r0, 2
-beq      lbl_8040D078
-bge      lbl_8040D054
-cmpwi    r0, 0
-beq      lbl_8040D060
-bge      lbl_8040D06C
-b        lbl_8040D08C
-
-lbl_8040D054:
-cmpwi    r0, 4
-bge      lbl_8040D08C
-b        lbl_8040D084
-
-lbl_8040D060:
-mr       r3, r31
-bl       statusNormal__Q32kh6Screen14ObjFinalResultFv
-b        lbl_8040D08C
-
-lbl_8040D06C:
-mr       r3, r31
-bl       statusScrollUp__Q32kh6Screen14ObjFinalResultFv
-b        lbl_8040D08C
-
-lbl_8040D078:
-mr       r3, r31
-bl       statusScrollDown__Q32kh6Screen14ObjFinalResultFv
-b        lbl_8040D08C
-
-lbl_8040D084:
-mr       r3, r31
-bl       statusForceScroll__Q32kh6Screen14ObjFinalResultFv
-
-lbl_8040D08C:
-lwz      r0, 0x148(r31)
-cmpwi    r0, 0
-bne      lbl_8040D0CC
-lwz      r0, 0x130(r31)
-cmpwi    r0, 7
-bne      lbl_8040D0CC
-mr       r3, r31
-bl       getGamePad__Q26Screen7ObjBaseCFv
-lwz      r0, 0x1c(r3)
-rlwinm.  r0, r0, 0, 0x17, 0x17
-beq      lbl_8040D0CC
-lbz      r0, 0x14e(r31)
-ori      r0, r0, 4
-stb      r0, 0x14e(r31)
-lwz      r3, 0x38(r31)
-bl       start__Q33ebi4Save4TMgrFv
-
-lbl_8040D0CC:
-lbz      r4, 0x14f(r31)
-cmplwi   r4, 0
-beq      lbl_8040D0EC
-lis      r3, msVal__Q32kh6Screen14ObjFinalResult@ha
-addi     r3, r3, msVal__Q32kh6Screen14ObjFinalResult@l
-lbz      r0, 0x20(r3)
-subf     r0, r0, r4
-stb      r0, 0x14f(r31)
-
-lbl_8040D0EC:
-lwz      r0, 0x14(r1)
-li       r3, 0
-lwz      r31, 0xc(r1)
-mtlr     r0
-addi     r1, r1, 0x10
-blr
-	*/
+	} else {
+		switch (m_state) {
+		case StatusNormal:
+			statusNormal();
+			break;
+		case StatusScrollUp:
+			statusScrollUp();
+			break;
+		case StatusScrollDown:
+			statusScrollDown();
+			break;
+		case StatusForceScroll:
+			statusForceScroll();
+			break;
+		}
+		if (m_state == StatusNormal && m_currentPage == 7) {
+			Controller* pad = getGamePad();
+			if (pad->m_padButton.m_buttonDown & Controller::PRESS_A) {
+				m_flags |= SaveOpen;
+				m_saveMgr->start();
+			}
+		}
+		if (m_fadeAlpha) {
+			m_fadeAlpha -= msVal._20;
+		}
+	}
+	return false;
 }
 
 /*
@@ -1424,47 +1474,19 @@ blr
  * Address:	8040D104
  * Size:	00007C
  */
-void ObjFinalResult::doUpdateFadein()
+bool ObjFinalResult::doUpdateFadein()
 {
-	/*
-stwu     r1, -0x10(r1)
-mflr     r0
-stw      r0, 0x14(r1)
-stw      r31, 0xc(r1)
-mr       r31, r3
-bl       updateCommon__Q32kh6Screen14ObjFinalResultFv
-lwz      r3, 0x13c(r31)
-cmpwi    r3, 1
-ble      lbl_8040D130
-addi     r0, r3, -1
-stw      r0, 0x13c(r31)
+	updateCommon();
+	if (m_autoScrollDelay > 1) {
+		m_autoScrollDelay--;
+	}
 
-lbl_8040D130:
-lis      r3, msVal__Q32kh6Screen14ObjFinalResult@ha
-lbz      r0, 0x14f(r31)
-addi     r4, r3, msVal__Q32kh6Screen14ObjFinalResult@l
-lbz      r3, 0x1e(r4)
-subf     r0, r3, r0
-stb      r0, 0x14f(r31)
-lbz      r3, 0x14f(r31)
-lbz      r0, 0x1e(r4)
-cmplw    r3, r0
-bge      lbl_8040D168
-li       r0, 0
-li       r3, 1
-stb      r0, 0x14f(r31)
-b        lbl_8040D16C
-
-lbl_8040D168:
-li       r3, 0
-
-lbl_8040D16C:
-lwz      r0, 0x14(r1)
-lwz      r31, 0xc(r1)
-mtlr     r0
-addi     r1, r1, 0x10
-blr
-	*/
+	m_fadeAlpha -= msVal.m_fadeAlphaRate;
+	if (m_fadeAlpha < msVal.m_fadeAlphaRate) {
+		m_fadeAlpha = 0;
+		return true;
+	}
+	return false;
 }
 
 /*
@@ -1472,41 +1494,15 @@ blr
  * Address:	8040D180
  * Size:	00006C
  */
-void ObjFinalResult::doUpdateFadeout()
+bool ObjFinalResult::doUpdateFadeout()
 {
-	/*
-stwu     r1, -0x10(r1)
-mflr     r0
-stw      r0, 0x14(r1)
-stw      r31, 0xc(r1)
-mr       r31, r3
-bl       updateCommon__Q32kh6Screen14ObjFinalResultFv
-lis      r3, msVal__Q32kh6Screen14ObjFinalResult@ha
-lbz      r4, 0x14f(r31)
-addi     r3, r3, msVal__Q32kh6Screen14ObjFinalResult@l
-lbz      r0, 0x1e(r3)
-add      r0, r4, r0
-stb      r0, 0x14f(r31)
-lbz      r0, 0x1e(r3)
-lbz      r3, 0x14f(r31)
-subfic   r0, r0, 0xff
-cmpw     r3, r0
-ble      lbl_8040D1D4
-li       r0, 0xff
-li       r3, 1
-stb      r0, 0x14f(r31)
-b        lbl_8040D1D8
-
-lbl_8040D1D4:
-li       r3, 0
-
-lbl_8040D1D8:
-lwz      r0, 0x14(r1)
-lwz      r31, 0xc(r1)
-mtlr     r0
-addi     r1, r1, 0x10
-blr
-	*/
+	updateCommon();
+	m_fadeAlpha += msVal.m_fadeAlphaRate;
+	if (m_fadeAlpha > (255 - msVal.m_fadeAlphaRate)) {
+		m_fadeAlpha = 255;
+		return true;
+	}
+	return false;
 }
 
 /*
@@ -1516,6 +1512,68 @@ blr
  */
 void ObjFinalResult::doDraw(Graphics& gfx)
 {
+	J2DPane* pane1 = m_screen->search('Npre');
+	J2DPane* pane2 = m_screen->search('Naft');
+	J2DPane* pane3 = m_screen->search('Nmain');
+	gfx.m_orthoGraph.setPort();
+	pane1->show();
+	pane2->hide();
+	pane3->hide();
+	m_screen->draw(gfx, gfx.m_orthoGraph);
+	u32 x1 = 0;
+	u32 x2 = 0;
+	u32 y1 = 0;
+	u32 y2 = 0;
+	GXGetScissor(&x1, &x2, &y1, &y2);
+	pane1->hide();
+	pane2->hide();
+	pane3->show();
+
+	JUT_ASSERTLINE(479, getDispMember()->isID(OWNER_KH, MEMBER_FINAL_RESULT), "disp member err");
+	DispFinalResult* disp = static_cast<DispFinalResult*>(getDispMember());
+	TotalResultData* data = disp->m_totalResultData;
+	for (int i = 0; i < 16; i++) {
+		data->m_mgr[0] = nullptr;
+	}
+
+	if (m_state == StatusNormal) {
+		drawReplace(gfx, m_currentPage);
+	} else {
+		f32 thing;
+		int page;
+		if (m_state == StatusScrollUp) {
+			thing = -m_scrollMove;
+			page  = m_currentPage + 1;
+		} else if (m_state == StatusScrollDown) {
+			thing = m_scrollMove;
+			page  = m_currentPage - 1;
+		}
+		pane3->add(0.0f, m_scrollYPos);
+		drawReplace(gfx, page);
+		pane3->add(0.0f, thing);
+		drawReplace(gfx, m_currentPage);
+	}
+	GXSetScissor(x1, x2, y1, y2);
+	gfx.m_orthoGraph.setPort();
+	pane1->hide();
+	pane2->hide();
+	pane3->hide();
+	m_screen->draw(gfx, gfx.m_orthoGraph);
+
+	if (m_fadeAlpha) {
+		gfx.m_orthoGraph.setPort();
+		gfx.m_orthoGraph.setColor(JUtility::TColor(m_fadeAlpha));
+
+		f32 zero = 0.0f;
+		u16 x    = sys->getRenderModeObj()->fbWidth;
+		u16 y    = sys->getRenderModeObj()->efbHeight;
+		gfx.m_orthoGraph.fillBox(JGeometry::TBox2f(0.0f, 0.0f, x + zero, y + zero));
+	}
+
+	if (m_flags & SaveOpen) {
+		gfx.m_perspGraph.setPort();
+		m_saveMgr->draw();
+	}
 	/*
 stwu     r1, -0x80(r1)
 mflr     r0
@@ -1796,6 +1854,23 @@ blr
  */
 void ObjFinalResult::updateCommon()
 {
+	m_screen->animation();
+	f32 time = m_timer;
+	if (time >= 1.0f) {
+		m_color = getClr(time, msVal.m_colors[0], msVal.m_colors[1]);
+	} else if (time >= 2.0f) {
+		m_color = getClr(time - 1.0f, msVal.m_colors[1], msVal.m_colors[2]);
+	} else if (time >= 3.0f) {
+		m_color = getClr(time - 2.0f, msVal.m_colors[2], msVal.m_colors[1]);
+	} else if (time >= 4.0f) {
+		m_color = getClr(time - 3.0f, msVal.m_colors[1], msVal.m_colors[0]);
+	}
+
+	m_timer += msVal._0C;
+	if (m_timer >= 4.0f) {
+		m_timer -= 4.0f;
+	}
+	m_screen->update();
 	/*
 stwu     r1, -0x80(r1)
 mflr     r0
@@ -2222,251 +2297,49 @@ blr
  */
 void ObjFinalResult::statusNormal()
 {
-	/*
-stwu     r1, -0x10(r1)
-mflr     r0
-stw      r0, 0x14(r1)
-stw      r31, 0xc(r1)
-mr       r31, r3
-stw      r30, 8(r1)
-lwz      r0, 0x130(r3)
-cmpwi    r0, 0
-bne      lbl_8040DC18
-lwz      r3, 0x94(r31)
-bl       fadeout__Q32kh6Screen14khUtilFadePaneFv
-lwz      r3, 0x98(r31)
-bl       fadein__Q32kh6Screen14khUtilFadePaneFv
-lwz      r3, 0x8c(r31)
-bl       stickDown__Q32og6Screen12StickAnimMgrFv
-lwz      r3, 0x9c(r31)
-bl       fadeout__Q32kh6Screen14khUtilFadePaneFv
-b        lbl_8040DC64
-
-lbl_8040DC18:
-cmpwi    r0, 7
-bne      lbl_8040DC44
-lwz      r3, 0x94(r31)
-bl       fadein__Q32kh6Screen14khUtilFadePaneFv
-lwz      r3, 0x98(r31)
-bl       fadeout__Q32kh6Screen14khUtilFadePaneFv
-lwz      r3, 0x8c(r31)
-bl       stickUp__Q32og6Screen12StickAnimMgrFv
-lwz      r3, 0x9c(r31)
-bl       fadein__Q32kh6Screen14khUtilFadePaneFv
-b        lbl_8040DC64
-
-lbl_8040DC44:
-lwz      r3, 0x94(r31)
-bl       fadein__Q32kh6Screen14khUtilFadePaneFv
-lwz      r3, 0x98(r31)
-bl       fadein__Q32kh6Screen14khUtilFadePaneFv
-lwz      r3, 0x8c(r31)
-bl       stickUpDown__Q32og6Screen12StickAnimMgrFv
-lwz      r3, 0x9c(r31)
-bl       fadeout__Q32kh6Screen14khUtilFadePaneFv
-
-lbl_8040DC64:
-lwz      r3, 0x90(r31)
-bl       fadein__Q32kh6Screen14khUtilFadePaneFv
-mr       r3, r31
-bl       getGamePad__Q26Screen7ObjBaseCFv
-lis      r4, 0x08000008@ha
-lwz      r3, 0x18(r3)
-addi     r0, r4, 0x08000008@l
-and.     r0, r3, r0
-beq      lbl_8040DDE4
-lwz      r3, 0x130(r31)
-cmpwi    r3, 0
-beq      lbl_8040DDE4
-addi     r0, r3, -1
-lis      r3, 0x656C3030@ha
-stw      r0, 0x130(r31)
-addi     r4, r3, 0x656C3030@l
-li       r3, 0x4e73
-lwz      r5, 0x130(r31)
-addi     r5, r5, 1
-bl       getSerialTagName__Q22kh6ScreenFUxi
-mr       r5, r3
-lwz      r3, 0x3c(r31)
-mr       r6, r4
-lwz      r12, 0(r3)
-lwz      r12, 0x3c(r12)
-mtctr    r12
-bctrl
-lwz      r12, 0(r3)
-lis      r4, msVal__Q32kh6Screen14ObjFinalResult@ha
-addi     r30, r4, msVal__Q32kh6Screen14ObjFinalResult@l
-lwz      r12, 0x24(r12)
-lbz      r4, 0x21(r30)
-mtctr    r12
-bctrl
-lis      r3, 0x656C3030@ha
-lwz      r5, 0x130(r31)
-addi     r4, r3, 0x656C3030@l
-li       r3, 0x4e73
-bl       getSerialTagName__Q22kh6ScreenFUxi
-mr       r5, r3
-lwz      r3, 0x3c(r31)
-mr       r6, r4
-lwz      r12, 0(r3)
-lwz      r12, 0x3c(r12)
-mtctr    r12
-bctrl
-lwz      r12, 0(r3)
-li       r4, 0xff
-lwz      r12, 0x24(r12)
-mtctr    r12
-bctrl
-lwz      r3, 0x130(r31)
-lis      r4, 0x6F6E3030@ha
-lis      r6, 0x004E6963@ha
-addi     r4, r4, 0x6F6E3030@l
-addi     r5, r3, 1
-addi     r3, r6, 0x004E6963@l
-bl       getSerialTagName__Q22kh6ScreenFUxi
-mr       r5, r3
-lwz      r3, 0x3c(r31)
-mr       r6, r4
-lwz      r12, 0(r3)
-lwz      r12, 0x3c(r12)
-mtctr    r12
-bctrl
-lwz      r12, 0(r3)
-lbz      r4, 0x21(r30)
-lwz      r12, 0x24(r12)
-mtctr    r12
-bctrl
-lis      r4, 0x6F6E3030@ha
-lis      r3, 0x004E6963@ha
-lwz      r5, 0x130(r31)
-addi     r4, r4, 0x6F6E3030@l
-addi     r3, r3, 0x004E6963@l
-bl       getSerialTagName__Q22kh6ScreenFUxi
-mr       r5, r3
-lwz      r3, 0x3c(r31)
-mr       r6, r4
-lwz      r12, 0(r3)
-lwz      r12, 0x3c(r12)
-mtctr    r12
-bctrl
-lwz      r12, 0(r3)
-li       r4, 0xff
-lwz      r12, 0x24(r12)
-mtctr    r12
-bctrl
-li       r0, 1
-mr       r3, r31
-stw      r0, 0x148(r31)
-bl       statusScrollUp__Q32kh6Screen14ObjFinalResultFv
-lwz      r3, spSysIF__8PSSystem@sda21(r13)
-li       r4, 0x1811
-li       r5, 0
-bl       playSystemSe__Q28PSSystem5SysIFFUlUl
-
-lbl_8040DDE4:
-mr       r3, r31
-bl       getGamePad__Q26Screen7ObjBaseCFv
-lis      r4, 0x04000004@ha
-lwz      r3, 0x18(r3)
-addi     r0, r4, 0x04000004@l
-and.     r0, r3, r0
-beq      lbl_8040DF5C
-lwz      r3, 0x130(r31)
-cmpwi    r3, 7
-beq      lbl_8040DF5C
-addi     r0, r3, 1
-lis      r3, 0x656C3030@ha
-stw      r0, 0x130(r31)
-addi     r4, r3, 0x656C3030@l
-li       r3, 0x4e73
-lwz      r5, 0x130(r31)
-addi     r5, r5, -1
-bl       getSerialTagName__Q22kh6ScreenFUxi
-mr       r5, r3
-lwz      r3, 0x3c(r31)
-mr       r6, r4
-lwz      r12, 0(r3)
-lwz      r12, 0x3c(r12)
-mtctr    r12
-bctrl
-lwz      r12, 0(r3)
-lis      r4, msVal__Q32kh6Screen14ObjFinalResult@ha
-addi     r30, r4, msVal__Q32kh6Screen14ObjFinalResult@l
-lwz      r12, 0x24(r12)
-lbz      r4, 0x21(r30)
-mtctr    r12
-bctrl
-lis      r3, 0x656C3030@ha
-lwz      r5, 0x130(r31)
-addi     r4, r3, 0x656C3030@l
-li       r3, 0x4e73
-bl       getSerialTagName__Q22kh6ScreenFUxi
-mr       r5, r3
-lwz      r3, 0x3c(r31)
-mr       r6, r4
-lwz      r12, 0(r3)
-lwz      r12, 0x3c(r12)
-mtctr    r12
-bctrl
-lwz      r12, 0(r3)
-li       r4, 0xff
-lwz      r12, 0x24(r12)
-mtctr    r12
-bctrl
-lwz      r3, 0x130(r31)
-lis      r4, 0x6F6E3030@ha
-lis      r6, 0x004E6963@ha
-addi     r4, r4, 0x6F6E3030@l
-addi     r5, r3, -1
-addi     r3, r6, 0x004E6963@l
-bl       getSerialTagName__Q22kh6ScreenFUxi
-mr       r5, r3
-lwz      r3, 0x3c(r31)
-mr       r6, r4
-lwz      r12, 0(r3)
-lwz      r12, 0x3c(r12)
-mtctr    r12
-bctrl
-lwz      r12, 0(r3)
-lbz      r4, 0x21(r30)
-lwz      r12, 0x24(r12)
-mtctr    r12
-bctrl
-lis      r4, 0x6F6E3030@ha
-lis      r3, 0x004E6963@ha
-lwz      r5, 0x130(r31)
-addi     r4, r4, 0x6F6E3030@l
-addi     r3, r3, 0x004E6963@l
-bl       getSerialTagName__Q22kh6ScreenFUxi
-mr       r5, r3
-lwz      r3, 0x3c(r31)
-mr       r6, r4
-lwz      r12, 0(r3)
-lwz      r12, 0x3c(r12)
-mtctr    r12
-bctrl
-lwz      r12, 0(r3)
-li       r4, 0xff
-lwz      r12, 0x24(r12)
-mtctr    r12
-bctrl
-li       r0, 2
-mr       r3, r31
-stw      r0, 0x148(r31)
-bl       statusScrollDown__Q32kh6Screen14ObjFinalResultFv
-lwz      r3, spSysIF__8PSSystem@sda21(r13)
-li       r4, 0x1811
-li       r5, 0
-bl       playSystemSe__Q28PSSystem5SysIFFUlUl
-
-lbl_8040DF5C:
-lwz      r0, 0x14(r1)
-lwz      r31, 0xc(r1)
-lwz      r30, 8(r1)
-mtlr     r0
-addi     r1, r1, 0x10
-blr
-	*/
+	if (m_currentPage == 0) {
+		m_fadePaneYameU->fadeout();
+		m_fadePaneYameL->fadein();
+		m_stickAnimMgr->stickDown();
+		m_fadePaneAButton->fadeout();
+	} else if (m_currentPage == 7) {
+		m_fadePaneYameU->fadein();
+		m_fadePaneYameL->fadeout();
+		m_stickAnimMgr->stickUp();
+		m_fadePaneAButton->fadein();
+	} else {
+		m_fadePaneYameU->fadein();
+		m_fadePaneYameL->fadein();
+		m_stickAnimMgr->stickUpDown();
+		m_fadePaneAButton->fadeout();
+	}
+	m_fadePane3DStick->fadein();
+	Controller* pad = getGamePad();
+	if (pad->m_padButton.m_mask & (Controller::PRESS_DPAD_UP | Controller::UNKNOWN_32)) {
+		if (m_currentPage) {
+			m_currentPage--;
+			m_screen->search(getSerialTagName('Nsel00', m_currentPage + 1))->setAlpha(msVal._21);
+			m_screen->search(getSerialTagName('Nsel00', m_currentPage))->setAlpha(255);
+			m_screen->search(getSerialTagName('Nicon00', m_currentPage + 1))->setAlpha(msVal._21);
+			m_screen->search(getSerialTagName('Nicon00', m_currentPage))->setAlpha(255);
+			m_state = StatusScrollUp;
+			statusScrollUp();
+			PSSystem::spSysIF->playSystemSe(PSSE_SY_MESSAGE_EXIT, 0);
+		}
+	}
+	pad = getGamePad();
+	if (pad->m_padButton.m_mask & (Controller::PRESS_DPAD_DOWN | Controller::UNKNOWN_31)) {
+		if (m_currentPage != 7) {
+			m_currentPage++;
+			m_screen->search(getSerialTagName('Nsel00', m_currentPage - 1))->setAlpha(msVal._21);
+			m_screen->search(getSerialTagName('Nsel00', m_currentPage))->setAlpha(255);
+			m_screen->search(getSerialTagName('Nicon00', m_currentPage - 1))->setAlpha(msVal._21);
+			m_screen->search(getSerialTagName('Nicon00', m_currentPage))->setAlpha(255);
+			m_state = StatusScrollDown;
+			statusScrollDown();
+			PSSystem::spSysIF->playSystemSe(PSSE_SY_MESSAGE_EXIT, 0);
+		}
+	}
 }
 
 /*
@@ -2476,45 +2349,13 @@ blr
  */
 void ObjFinalResult::statusScrollUp()
 {
-	/*
-stwu     r1, -0x20(r1)
-lis      r4, 0x4330
-lfd      f2, lbl_805201D8@sda21(r2)
-lwz      r6, 0x134(r3)
-lwz      r5, 0x138(r3)
-xoris    r0, r6, 0x8000
-stw      r4, 8(r1)
-subf     r5, r5, r6
-lfs      f3, 0x12c(r3)
-xoris    r5, r5, 0x8000
-stw      r0, 0x14(r1)
-stw      r5, 0xc(r1)
-lfd      f0, 8(r1)
-stw      r4, 0x10(r1)
-fsubs    f1, f0, f2
-lfd      f0, 0x10(r1)
-fmuls    f1, f3, f1
-fsubs    f0, f0, f2
-fdivs    f0, f1, f0
-fsubs    f0, f3, f0
-stfs     f0, 0x128(r3)
-lwz      r4, 0x138(r3)
-addi     r0, r4, 1
-stw      r0, 0x138(r3)
-lwz      r0, 0x134(r3)
-cmpw     r4, r0
-bne      lbl_8040DFF8
-li       r4, 1
-li       r0, 0
-stw      r4, 0x138(r3)
-lfs      f0, lbl_805201A0@sda21(r2)
-stw      r0, 0x148(r3)
-stfs     f0, 0x128(r3)
+	m_scrollYPos = m_scrollMove - (m_scrollMove * (f32)(m_scrollTargetPos - m_scrollMoveProgress)) / (f32)m_scrollTargetPos;
 
-lbl_8040DFF8:
-addi     r1, r1, 0x20
-blr
-	*/
+	if (m_scrollMoveProgress++ == m_scrollTargetPos) {
+		m_scrollMoveProgress = 1;
+		m_state              = StatusNormal;
+		m_scrollYPos         = 0.0f;
+	}
 }
 
 /*
@@ -2524,46 +2365,13 @@ blr
  */
 void ObjFinalResult::statusScrollDown()
 {
-	/*
-stwu     r1, -0x20(r1)
-lis      r4, 0x4330
-lfd      f2, lbl_805201D8@sda21(r2)
-lwz      r6, 0x134(r3)
-lwz      r5, 0x138(r3)
-xoris    r0, r6, 0x8000
-lfs      f4, 0x12c(r3)
-subf     r5, r6, r5
-stw      r4, 8(r1)
-xoris    r5, r5, 0x8000
-fneg     f3, f4
-stw      r5, 0xc(r1)
-lfd      f0, 8(r1)
-stw      r0, 0x14(r1)
-fsubs    f1, f0, f2
-stw      r4, 0x10(r1)
-lfd      f0, 0x10(r1)
-fmuls    f1, f4, f1
-fsubs    f0, f0, f2
-fdivs    f0, f1, f0
-fsubs    f0, f3, f0
-stfs     f0, 0x128(r3)
-lwz      r4, 0x138(r3)
-addi     r0, r4, 1
-stw      r0, 0x138(r3)
-lwz      r0, 0x134(r3)
-cmpw     r4, r0
-bne      lbl_8040E088
-li       r4, 1
-li       r0, 0
-stw      r4, 0x138(r3)
-lfs      f0, lbl_805201A0@sda21(r2)
-stw      r0, 0x148(r3)
-stfs     f0, 0x128(r3)
+	m_scrollYPos = -m_scrollMove - (m_scrollMove * (f32)(m_scrollMoveProgress - m_scrollTargetPos)) / (f32)m_scrollTargetPos;
 
-lbl_8040E088:
-addi     r1, r1, 0x20
-blr
-	*/
+	if (m_scrollMoveProgress++ == m_scrollTargetPos) {
+		m_scrollMoveProgress = 1;
+		m_state              = StatusNormal;
+		m_scrollYPos         = 0.0f;
+	}
 }
 
 /*
@@ -2573,128 +2381,30 @@ blr
  */
 void ObjFinalResult::statusForceScroll()
 {
-	/*
-stwu     r1, -0x20(r1)
-mflr     r0
-stw      r0, 0x24(r1)
-stw      r31, 0x1c(r1)
-mr       r31, r3
-lwz      r3, 0x13c(r3)
-cmpwi    r3, 0
-bne      lbl_8040E22C
-lbz      r0, 0x14e(r31)
-rlwinm.  r0, r0, 0, 0x1c, 0x1c
-beq      lbl_8040E0D8
-lwz      r3, spSysIF__8PSSystem@sda21(r13)
-li       r4, 0x1811
-li       r5, 0
-bl       playSystemSe__Q28PSSystem5SysIFFUlUl
-lbz      r0, 0x14e(r31)
-rlwinm   r0, r0, 0, 0x1d, 0x1b
-stb      r0, 0x14e(r31)
-
-lbl_8040E0D8:
-lwz      r5, 0x134(r31)
-lis      r3, 0x4330
-lwz      r4, 0x138(r31)
-xoris    r0, r5, 0x8000
-lfs      f4, 0x12c(r31)
-subf     r4, r5, r4
-stw      r3, 8(r1)
-xoris    r4, r4, 0x8000
-lfd      f2, lbl_805201D8@sda21(r2)
-stw      r4, 0xc(r1)
-fneg     f3, f4
-lfd      f0, 8(r1)
-stw      r0, 0x14(r1)
-fsubs    f1, f0, f2
-stw      r3, 0x10(r1)
-lfd      f0, 0x10(r1)
-fmuls    f1, f4, f1
-fsubs    f0, f0, f2
-fdivs    f0, f1, f0
-fsubs    f0, f3, f0
-stfs     f0, 0x128(r31)
-lwz      r3, 0x138(r31)
-addi     r0, r3, 1
-stw      r0, 0x138(r31)
-lwz      r0, 0x134(r31)
-cmpw     r3, r0
-bne      lbl_8040E234
-lwz      r5, 0x130(r31)
-cmpwi    r5, 7
-bne      lbl_8040E1F4
-lis      r3, 0x656C3030@ha
-addi     r4, r3, 0x656C3030@l
-li       r3, 0x4e73
-bl       getSerialTagName__Q22kh6ScreenFUxi
-mr       r5, r3
-lwz      r3, 0x3c(r31)
-mr       r6, r4
-lwz      r12, 0(r3)
-lwz      r12, 0x3c(r12)
-mtctr    r12
-bctrl
-lwz      r12, 0(r3)
-li       r4, 0xff
-lwz      r12, 0x24(r12)
-mtctr    r12
-bctrl
-lis      r4, 0x6F6E3030@ha
-lis      r3, 0x004E6963@ha
-lwz      r5, 0x130(r31)
-addi     r4, r4, 0x6F6E3030@l
-addi     r3, r3, 0x004E6963@l
-bl       getSerialTagName__Q22kh6ScreenFUxi
-mr       r5, r3
-lwz      r3, 0x3c(r31)
-mr       r6, r4
-lwz      r12, 0(r3)
-lwz      r12, 0x3c(r12)
-mtctr    r12
-bctrl
-lwz      r12, 0(r3)
-li       r4, 0xff
-lwz      r12, 0x24(r12)
-mtctr    r12
-bctrl
-lis      r3, msVal__Q32kh6Screen14ObjFinalResult@ha
-li       r0, 0
-addi     r3, r3, msVal__Q32kh6Screen14ObjFinalResult@l
-lwz      r3, 4(r3)
-stw      r3, 0x134(r31)
-stw      r0, 0x148(r31)
-b        lbl_8040E1FC
-
-lbl_8040E1F4:
-addi     r0, r5, 1
-stw      r0, 0x130(r31)
-
-lbl_8040E1FC:
-li       r0, 1
-lis      r3, msVal__Q32kh6Screen14ObjFinalResult@ha
-stw      r0, 0x138(r31)
-addi     r3, r3, msVal__Q32kh6Screen14ObjFinalResult@l
-lfs      f0, lbl_805201A0@sda21(r2)
-stfs     f0, 0x128(r31)
-lwz      r0, 8(r3)
-stw      r0, 0x13c(r31)
-lbz      r0, 0x14e(r31)
-ori      r0, r0, 8
-stb      r0, 0x14e(r31)
-b        lbl_8040E234
-
-lbl_8040E22C:
-addi     r0, r3, -1
-stw      r0, 0x13c(r31)
-
-lbl_8040E234:
-lwz      r0, 0x24(r1)
-lwz      r31, 0x1c(r1)
-mtlr     r0
-addi     r1, r1, 0x20
-blr
-	*/
+	if (!m_autoScrollDelay) {
+		if (m_flags & 8) {
+			PSSystem::spSysIF->playSystemSe(PSSE_SY_MESSAGE_EXIT, 0);
+			m_flags &= ~8;
+		}
+		m_scrollYPos = -m_scrollMove - (m_scrollMove * (f32)(m_scrollMoveProgress - m_scrollTargetPos)) / (f32)m_scrollTargetPos;
+		if (m_scrollMoveProgress++ == m_scrollTargetPos) {
+			int page = m_currentPage;
+			if (page == 7) {
+				m_screen->search(getSerialTagName('Nsel00', page))->setAlpha(255);
+				m_screen->search(getSerialTagName('Nicon00', m_currentPage))->setAlpha(255);
+				m_scrollTargetPos = msVal._04;
+				m_state           = StatusNormal;
+			} else {
+				m_currentPage++;
+			}
+			m_scrollMoveProgress = 1;
+			m_scrollYPos         = 0.0f;
+			m_autoScrollDelay    = msVal._08;
+			m_flags |= 8;
+		}
+	} else {
+		m_autoScrollDelay--;
+	}
 }
 
 /*
@@ -3309,85 +3019,10 @@ blr
  * Address:	8040EB08
  * Size:	000128
  */
-void ObjFinalResult::getClr(const JUtility::TColor&, const JUtility::TColor&, float)
+JUtility::TColor ObjFinalResult::getClr(const JUtility::TColor& col1, const JUtility::TColor& col2, f32 factor)
 {
-	/*
-	.loc_0x0:
-	  lbz       r12, 0x0(r5)
-	  lis       r8, 0x4330
-	  lbz       r0, 0x0(r6)
-	  stwu      r1, -0x70(r1)
-	  sub       r0, r0, r12
-	  lbz       r11, 0x1(r5)
-	  xoris     r0, r0, 0x8000
-	  stw       r8, 0x50(r1)
-	  lbz       r4, 0x1(r6)
-	  stw       r0, 0x54(r1)
-	  lfd       f5, 0x1E78(r2)
-	  sub       r4, r4, r11
-	  lfd       f0, 0x50(r1)
-	  xoris     r4, r4, 0x8000
-	  stw       r12, 0x5C(r1)
-	  lfd       f4, 0x1E48(r2)
-	  fsubs     f2, f0, f5
-	  stw       r8, 0x58(r1)
-	  lbz       r10, 0x2(r5)
-	  lfd       f0, 0x58(r1)
-	  lbz       r7, 0x2(r6)
-	  fsubs     f0, f0, f4
-	  stw       r4, 0x3C(r1)
-	  lbz       r9, 0x3(r5)
-	  sub       r5, r7, r10
-	  stw       r8, 0x38(r1)
-	  xoris     r5, r5, 0x8000
-	  fmadds    f0, f1, f2, f0
-	  lfd       f3, 0x38(r1)
-	  stw       r11, 0x44(r1)
-	  fsubs     f3, f3, f5
-	  lbz       r6, 0x3(r6)
-	  stw       r8, 0x40(r1)
-	  fctiwz    f0, f0
-	  sub       r0, r6, r9
-	  lfd       f2, 0x40(r1)
-	  stw       r5, 0x24(r1)
-	  xoris     r6, r0, 0x8000
-	  stfd      f0, 0x60(r1)
-	  fsubs     f0, f2, f4
-	  stw       r8, 0x20(r1)
-	  fmadds    f0, f1, f3, f0
-	  lwz       r0, 0x64(r1)
-	  lfd       f2, 0x20(r1)
-	  stw       r10, 0x2C(r1)
-	  fctiwz    f0, f0
-	  stw       r8, 0x28(r1)
-	  fsubs     f3, f2, f5
-	  stfd      f0, 0x48(r1)
-	  lfd       f2, 0x28(r1)
-	  stw       r6, 0xC(r1)
-	  fsubs     f0, f2, f4
-	  lwz       r4, 0x4C(r1)
-	  stw       r8, 0x8(r1)
-	  fmadds    f0, f1, f3, f0
-	  lfd       f2, 0x8(r1)
-	  stw       r9, 0x14(r1)
-	  fsubs     f3, f2, f5
-	  stw       r8, 0x10(r1)
-	  fctiwz    f0, f0
-	  stb       r0, 0x0(r3)
-	  lfd       f2, 0x10(r1)
-	  stfd      f0, 0x30(r1)
-	  fsubs     f0, f2, f4
-	  stb       r4, 0x1(r3)
-	  lwz       r0, 0x34(r1)
-	  fmadds    f0, f1, f3, f0
-	  stb       r0, 0x2(r3)
-	  fctiwz    f0, f0
-	  stfd      f0, 0x18(r1)
-	  lwz       r0, 0x1C(r1)
-	  stb       r0, 0x3(r3)
-	  addi      r1, r1, 0x70
-	  blr
-	*/
+	return JUtility::TColor((factor * (f32)(col2.r - col1.r) + (f32)col1.r), (factor * (f32)(col2.g - col1.g) + (f32)col1.g),
+	                        (factor * (f32)(col2.b - col1.b) + (f32)col1.b), (factor * (f32)(col2.a - col1.a) + (f32)col1.a));
 }
 
 /*
@@ -3672,231 +3307,7 @@ void SceneFinalResult::createDispMember(const int*, const int*, Game::Highscore*
 	*/
 }
 
-/*
- * --INFO--
- * Address:	8040EFEC
- * Size:	000008
- */
-void SceneFinalResult::getResName() const
-{
-	/*
-addi     r3, r2, lbl_805201E0@sda21
-blr
-	*/
-}
+ObjFinalResult::StaticValues ObjFinalResult::msVal;
 
-/*
- * --INFO--
- * Address:	8040EFF4
- * Size:	000008
- */
-u32 SceneFinalResult::getSceneType() { return 0x4E26; }
-
-/*
- * --INFO--
- * Address:	8040EFFC
- * Size:	000008
- */
-u32 SceneFinalResult::getOwnerID() { return 0x4B48; }
-
-/*
- * --INFO--
- * Address:	8040F004
- * Size:	000010
- */
-void SceneFinalResult::getMemberID()
-{
-	/*
-lis      r4, 0x52534C54@ha
-li       r3, 0x465f
-addi     r4, r4, 0x52534C54@l
-blr
-	*/
-}
-
-/*
- * --INFO--
- * Address:	8040F014
- * Size:	000004
- */
-void SceneFinalResult::doCreateObj(JKRArchive*) { }
-
-/*
- * --INFO--
- * Address:	8040F018
- * Size:	0000AC
- */
-ObjFinalResult::~ObjFinalResult()
-{
-	/*
-stwu     r1, -0x10(r1)
-mflr     r0
-stw      r0, 0x14(r1)
-stw      r31, 0xc(r1)
-mr       r31, r4
-stw      r30, 8(r1)
-or.      r30, r3, r3
-beq      lbl_8040F0A8
-lis      r4, __vt__Q32kh6Screen14ObjFinalResult@ha
-addi     r4, r4, __vt__Q32kh6Screen14ObjFinalResult@l
-stw      r4, 0(r30)
-addi     r0, r4, 0x10
-stw      r0, 0x18(r30)
-beq      lbl_8040F098
-lis      r4, __vt__Q26Screen7ObjBase@ha
-addi     r4, r4, __vt__Q26Screen7ObjBase@l
-stw      r4, 0(r30)
-addi     r0, r4, 0x10
-stw      r0, 0x18(r30)
-beq      lbl_8040F098
-lis      r4, __vt__Q26Screen8IObjBase@ha
-addi     r4, r4, __vt__Q26Screen8IObjBase@l
-stw      r4, 0(r30)
-addi     r0, r4, 0x10
-stw      r0, 0x18(r30)
-bl       del__5CNodeFv
-addi     r3, r30, 0x18
-li       r4, 0
-bl       __dt__11JKRDisposerFv
-mr       r3, r30
-li       r4, 0
-bl       __dt__5CNodeFv
-
-lbl_8040F098:
-extsh.   r0, r31
-ble      lbl_8040F0A8
-mr       r3, r30
-bl       __dl__FPv
-
-lbl_8040F0A8:
-lwz      r0, 0x14(r1)
-mr       r3, r30
-lwz      r31, 0xc(r1)
-lwz      r30, 8(r1)
-mtlr     r0
-addi     r1, r1, 0x10
-blr
-	*/
-}
-
-/*
- * --INFO--
- * Address:	8040F0C4
- * Size:	000008
- */
-u32 DispFinalResult::getSize() { return 0x18; }
-
-/*
- * --INFO--
- * Address:	8040F0CC
- * Size:	000008
- */
-u32 DispFinalResult::getOwnerID() { return 0x4B48; }
-
-/*
- * --INFO--
- * Address:	8040F0D4
- * Size:	000010
- */
-void DispFinalResult::getMemberID()
-{
-	/*
-lis      r4, 0x52534C54@ha
-li       r3, 0x465f
-addi     r4, r4, 0x52534C54@l
-blr
-	*/
-}
-
-} // namespace Screen
-} // namespace kh
-
-/*
- * --INFO--
- * Address:	8040F0E4
- * Size:	0000F4
- */
-void __sinit_khFinalResult_cpp()
-{
-	/*
-	stwu     r1, -0x20(r1)
-	mflr     r0
-	lis      r4, msVal__Q32kh6Screen14ObjFinalResult@ha
-	lis      r3, __ct__Q28JUtility6TColorFv@ha
-	stw      r0, 0x24(r1)
-	addi     r4, r4, msVal__Q32kh6Screen14ObjFinalResult@l
-	li       r5, 0
-	li       r6, 4
-	stw      r31, 0x1c(r1)
-	li       r7, 3
-	stw      r30, 0x18(r1)
-	stw      r29, 0x14(r1)
-	addi     r29, r4, 0x10
-	addi     r4, r3, __ct__Q28JUtility6TColorFv@l
-	mr       r3, r29
-	bl       __construct_array
-	lis      r3, msVal__Q32kh6Screen14ObjFinalResult@ha
-	lfs      f1, lbl_805201B4@sda21(r2)
-	addi     r30, r3, msVal__Q32kh6Screen14ObjFinalResult@l
-	li       r4, 0
-	li       r5, 0xff
-	li       r6, 0x50
-	lfs      f0, lbl_805201E4@sda21(r2)
-	li       r31, 0x10
-	li       r12, 0x5a
-	li       r11, 0x1e
-	li       r10, 0x64
-	li       r9, 0xa
-	li       r8, 0xa0
-	li       r7, 0x20
-	li       r3, 0x40
-	li       r0, 0x30
-	stfs     f1, 0(r30)
-	stw      r31, 4(r30)
-	stw      r12, 8(r30)
-	stb      r11, 0x1c(r30)
-	stb      r10, 0x1d(r30)
-	stb      r9, 0x1e(r30)
-	stb      r8, 0x1f(r30)
-	stb      r7, 0x20(r30)
-	stb      r6, 0x21(r30)
-	stfs     f0, 0xc(r30)
-	stb      r5, 0(r29)
-	stb      r4, 0x11(r30)
-	stb      r3, 0x12(r30)
-	stb      r4, 0x13(r30)
-	stb      r5, 0x14(r30)
-	stb      r5, 0x15(r30)
-	stb      r4, 0x16(r30)
-	stb      r4, 0x17(r30)
-	stb      r5, 0x18(r30)
-	stb      r0, 0x19(r30)
-	stb      r6, 0x1a(r30)
-	stb      r4, 0x1b(r30)
-	lwz      r31, 0x1c(r1)
-	lwz      r30, 0x18(r1)
-	lwz      r29, 0x14(r1)
-	lwz      r0, 0x24(r1)
-	mtlr     r0
-	addi     r1, r1, 0x20
-	blr
-	*/
-}
-
-namespace kh {
-namespace Screen {
-
-/*
- * --INFO--
- * Address:	8040F1D8
- * Size:	000008
- */
-ObjFinalResult::@24 @~ObjFinalResult()
-{
-	/*
-addi     r3, r3, -24
-b        __dt__Q32kh6Screen14ObjFinalResultFv
-	*/
-}
 } // namespace Screen
 } // namespace kh

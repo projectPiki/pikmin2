@@ -1029,7 +1029,7 @@ int Game2DMgr::check_FinalResult() const
 		if (!m_screenMgr->getDispMember()->isID(OWNER_KH, MEMBER_FINAL_RESULT)) {
 			JUT_PANICLINE(1636, "disp member err");
 		}
-		return reinterpret_cast<kh::Screen::DispFinalResult*>(m_screenMgr->getDispMember())->_10;
+		return reinterpret_cast<kh::Screen::DispFinalResult*>(m_screenMgr->getDispMember())->m_exitStatus;
 	}
 }
 

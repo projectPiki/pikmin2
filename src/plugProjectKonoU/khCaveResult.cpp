@@ -297,7 +297,7 @@ bool ObjCaveResult::doUpdate()
 	if (isFlag(CAVERESFLAG_SaveOpen)) {
 		m_saveMgr->update();
 		if (m_saveMgr->isFinish()) {
-			switch (m_saveMgr->_474) {
+			switch (m_saveMgr->m_currStateID) {
 			case 2:
 			case 0:
 				disp->m_isFinished = 1;
