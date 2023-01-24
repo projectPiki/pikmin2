@@ -427,21 +427,21 @@ void J3DAnmFullLoader_v15::setAnmVtxColor(J3DAnmVtxColorFull* animation, const J
 	animation->m_time  = data->_0A;
 	animation->_04     = data->_08;
 	animation->m_fTime = 0.0f;
-	animation->_0C     = data->_0C;
-	animation->_0E     = data->_0E;
+	animation->_0C[0]  = data->_0C;
+	animation->_0C[1]  = data->_0E;
 
-	animation->_18 = JSUConvertOffsetToPtr<J3DAnmColorFullTable>(data, data->_18);
-	animation->_1C = JSUConvertOffsetToPtr<J3DAnmColorFullTable>(data, data->_1C);
-	animation->_10 = JSUConvertOffsetToPtr<J3DAnmVtxColorIndexData>(data, data->_20);
-	animation->_14 = JSUConvertOffsetToPtr<J3DAnmVtxColorIndexData>(data, data->_24);
-	u16* v1        = JSUConvertOffsetToPtr<u16>(data, data->_28);
-	u16* v2        = JSUConvertOffsetToPtr<u16>(data, data->_2C);
+	animation->_18    = JSUConvertOffsetToPtr<J3DAnmColorFullTable>(data, data->_18);
+	animation->_1C    = JSUConvertOffsetToPtr<J3DAnmColorFullTable>(data, data->_1C);
+	animation->_10[0] = JSUConvertOffsetToPtr<J3DAnmVtxColorIndexData>(data, data->_20);
+	animation->_10[1] = JSUConvertOffsetToPtr<J3DAnmVtxColorIndexData>(data, data->_24);
+	u16* v1           = JSUConvertOffsetToPtr<u16>(data, data->_28);
+	u16* v2           = JSUConvertOffsetToPtr<u16>(data, data->_2C);
 
-	for (int i = 0; i < animation->_0C; i++) {
-		animation->_10[i]._04 = (long)(v1 + animation->_10[i]._04);
+	for (int i = 0; i < animation->_0C[0]; i++) {
+		animation->_10[0][i]._04 = (long)(v1 + animation->_10[0][i]._04);
 	}
-	for (int i = 0; i < animation->_0E; i++) {
-		animation->_14[i]._04 = (long)(v2 + animation->_14[i]._04);
+	for (int i = 0; i < animation->_0C[1]; i++) {
+		animation->_10[1][i]._04 = (long)(v2 + animation->_10[1][i]._04);
 	}
 
 	animation->_20 = JSUConvertOffsetToPtr<u8>(data, data->_30);
@@ -733,21 +733,21 @@ void J3DAnmKeyLoader_v15::setAnmVtxColor(J3DAnmVtxColorKey* animation, const J3D
 	animation->m_time  = data->_0A;
 	animation->_04     = data->_08;
 	animation->m_fTime = 0.0f;
-	animation->_0C     = data->_0C;
-	animation->_0E     = data->_0E;
+	animation->_0C[0]  = data->_0C;
+	animation->_0C[1]  = data->_0E;
 
-	animation->_18 = JSUConvertOffsetToPtr<J3DAnmColorKeyTable>(data, data->_18);
-	animation->_1C = JSUConvertOffsetToPtr<J3DAnmColorKeyTable>(data, data->_1C);
-	animation->_10 = JSUConvertOffsetToPtr<J3DAnmVtxColorIndexData>(data, data->_20);
-	animation->_14 = JSUConvertOffsetToPtr<J3DAnmVtxColorIndexData>(data, data->_24);
+	animation->_18    = JSUConvertOffsetToPtr<J3DAnmColorKeyTable>(data, data->_18);
+	animation->_1C    = JSUConvertOffsetToPtr<J3DAnmColorKeyTable>(data, data->_1C);
+	animation->_10[0] = JSUConvertOffsetToPtr<J3DAnmVtxColorIndexData>(data, data->_20);
+	animation->_10[1] = JSUConvertOffsetToPtr<J3DAnmVtxColorIndexData>(data, data->_24);
 
 	u16* v1 = JSUConvertOffsetToPtr<u16>(data, data->_28);
 	u16* v2 = JSUConvertOffsetToPtr<u16>(data, data->_2C);
-	for (int i = 0; i < animation->_0C; i++) {
-		animation->_10[i]._04 = (long)(v1 + animation->_10[i]._04);
+	for (int i = 0; i < animation->_0C[0]; i++) {
+		animation->_10[0][i]._04 = (long)(v1 + animation->_10[0][i]._04);
 	}
-	for (int i = 0; i < animation->_0E; i++) {
-		animation->_14[i]._04 = (long)(v2 + animation->_14[i]._04);
+	for (int i = 0; i < animation->_0C[1]; i++) {
+		animation->_10[1][i]._04 = (long)(v2 + animation->_10[1][i]._04);
 	}
 
 	animation->_20 = JSUConvertOffsetToPtr<s16>(data, data->_30);

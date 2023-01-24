@@ -65,7 +65,7 @@ void J3DVertexBuffer::setVertexData(J3DVertexData* data)
 	_00    = data;
 	_04    = data->_18;
 	_0C    = data->_1C;
-	_14[0] = data->_24;
+	_14[0] = (GXColor*)data->_24;
 	_08    = 0;
 	_10    = 0;
 	_14[1] = nullptr;
@@ -134,15 +134,15 @@ void J3DVertexBuffer::copyVtxColorArray(J3DDeformAttachFlag flag)
 		if (flag & DeformAttach_1) {
 			for (int i = 0; i < 2; i++) {
 				if (i == 0 || _14[i] == nullptr) {
-					_14[i] = new (0x20) void*[_00->_08];
+					_14[i] = (GXColor*)(new (0x20) void*[_00->_08]);
 					memcpy(_14[i], _00->_24, _00->_08 << 2);
 					DCStoreRange(_14[i], _00->_08 << 2);
 				}
 			}
 		} else {
-			_14[0] = _00->_24;
+			_14[0] = (GXColor*)_00->_24;
 			if (_14[1] == nullptr) {
-				_14[1] = new (0x20) void*[_00->_08];
+				_14[1] = (GXColor*)(new (0x20) void*[_00->_08]);
 			}
 			memcpy(_14[1], _00->_24, _00->_08 << 2);
 			DCStoreRange(_14[1], _00->_08 << 2);

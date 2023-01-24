@@ -13,21 +13,23 @@ struct J3DAnmVtxColorIndexData {
 
 struct J3DAnmVtxColor : public J3DAnmBase {
 	inline J3DAnmVtxColor()
-	    : _0C(0)
-	    , _0E(0)
-	    , _10(nullptr)
-	    , _14(nullptr)
 	{
+		_0C[0] = 0;
+		_0C[1] = 0;
+		_10[0] = nullptr;
+		_10[1] = nullptr;
 	}
 
 	virtual ~J3DAnmVtxColor() { }                                            // _08 (weak)
 	virtual J3DAnmKind getKind() const { return J3DAnmKind_VtxColor; }       // _0C (weak)
 	virtual void getColor(unsigned char, unsigned short, GXColor*) const { } // _10 (weak)
 
-	u16 _0C;                      // _0C
-	u16 _0E;                      // _0E
-	J3DAnmVtxColorIndexData* _10; // _10
-	J3DAnmVtxColorIndexData* _14; // _14
+	inline u16 getAnmTableNum(u8 idx) { return _0C[idx]; }
+
+	inline J3DAnmVtxColorIndexData* getAnmVtxColorIndexData(u8 p1, u16 p2) { return &_10[p1][p2]; }
+
+	u16 _0C[2];                      // _0C, table nums
+	J3DAnmVtxColorIndexData* _10[2]; // _10
 };
 
 /**

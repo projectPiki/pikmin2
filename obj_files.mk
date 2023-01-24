@@ -143,7 +143,7 @@ JSYSTEM:=\
 	$(BUILD_DIR)/asm/JSystem/J3D/J3DShapeMtx.o\
 	$(BUILD_DIR)/asm/JSystem/J3D/J3DModelLoaderCalcSize.o\
 	$(BUILD_DIR)/asm/JSystem/J3D/J3DJointTree.o\
-	$(BUILD_DIR)/asm/JSystem/J3D/J3DSkinDeform.o\
+	$(BUILD_DIR)/src/JSystem/J3D/J3DSkinDeform.o\
 	$(BUILD_DIR)/src/JSystem/J3D/J3DShapeDraw.o\
 	$(BUILD_DIR)/asm/JSystem/J3D/J3DMtxBuffer.o\
 	$(BUILD_DIR)/src/JSystem/J3D/J3DShapeTable.o\

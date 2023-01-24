@@ -15,6 +15,8 @@ struct J3DVertexData {
 	bool isCpuSkinningPositionFormat();
 	bool isCpuSkinningNormalFormat();
 
+	u32 getColNum() const { return _08; }
+
 	// TODO: Everything
 	u32 _00;                // _00
 	u32 _04;                // _04

@@ -38,24 +38,20 @@ void J3DVtxColorCalc::calc(J3DModel* model) { calc(&model->m_vertexBuffer); }
  */
 void J3DVtxColorCalc::calc(J3DVertexBuffer* buffer)
 {
-	if (_04 & 1 && m_AnmVtxColor) {
-		void* prev     = buffer->_14[0];
-		buffer->_14[0] = buffer->_14[1];
-		buffer->_14[1] = prev;
-		u16 cnt        = m_AnmVtxColor->_0C;
-		u32* var2      = (u32*)buffer->_14[0];
+	if (checkFlag(1) && m_AnmVtxColor) {
+		buffer->swapVtxColArrayPointer();
+		u16 cnt       = m_AnmVtxColor->getAnmTableNum(0);
+		GXColor* var2 = buffer->getVtxColArrayPointer(0); // GXColor
 
-		for (u16 i = 0; i < (u32)cnt; i++) {
+		for (u16 i = 0; i < cnt; i++) {
 			u32 color;
-			m_AnmVtxColor->getColor(0, i, reinterpret_cast<GXColor*>(&color));
-			J3DAnmVtxColorIndexData* idxData = &m_AnmVtxColor->_10[i];
-			int var3                         = 0;
-			for (u32 j = 0; j < idxData->_00; j++) {
-				var2[reinterpret_cast<u16*>(idxData->_04)[var3]] = color; // _04 may be u16*
-				var3 += 1;
+			m_AnmVtxColor->getColor(0, i, (GXColor*)&color);
+			J3DAnmVtxColorIndexData* idxData = m_AnmVtxColor->getAnmVtxColorIndexData(0, i);
+			for (u32 j = 0; j < (u16)idxData->_00; j++) {
+				((u32*)var2)[reinterpret_cast<u16*>(idxData->_04)[j]] = color; // _04 may be u16*
 			}
 		}
-		DCStoreRange(var2, buffer->_00->_08 * 4);
-		buffer->_34 = var2;
+		DCStoreRange(var2, buffer->getVertexData()->getColNum() * 4);
+		buffer->setCurrentVtxCol(var2);
 	}
 }
