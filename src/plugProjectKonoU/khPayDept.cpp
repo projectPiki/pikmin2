@@ -65,7 +65,7 @@ void ObjPayDept::doCreate(JKRArchive* arc)
 	m_screen->setAnimation(m_anim2);
 
 	if (disp->m_payDeptType == DispPayDept::PAYDEPT_Percent) {
-		u32 level     = disp->m_percentLevel;
+		int level     = disp->m_percentLevel;
 		J2DPane* pane = m_screen->search('ROOT');
 		searchNumPane(pane, level / 10, level % 10);
 	}
