@@ -1,4 +1,6 @@
-#include "types.h"
+#include "Game/Entities/Tobi.h"
+#include "Game/Entities/ItemBridge.h"
+#include "Dolphin/rand.h"
 
 /*
     Generated from dpostproc
@@ -304,13 +306,14 @@
 */
 
 namespace Game {
+namespace Tobi {
 
 /*
  * --INFO--
  * Address:	802698AC
  * Size:	000138
  */
-Tobi::Obj::Obj()
+Obj::Obj()
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -405,14 +408,14 @@ lbl_802699B4:
  * Address:	802699E4
  * Size:	000004
  */
-void Tobi::Obj::setInitialSetting(Game::EnemyInitialParamBase*) { }
+void Obj::setInitialSetting(EnemyInitialParamBase*) { }
 
 /*
  * --INFO--
  * Address:	802699E8
  * Size:	000098
  */
-void Tobi::Obj::onInit(Game::CreatureInitArg*)
+void Obj::onInit(CreatureInitArg*)
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -461,7 +464,7 @@ void Tobi::Obj::onInit(Game::CreatureInitArg*)
  * Address:	80269A80
  * Size:	000048
  */
-void Tobi::Obj::doUpdate()
+void Obj::doUpdate()
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -490,14 +493,14 @@ void Tobi::Obj::doUpdate()
  * Address:	80269AC8
  * Size:	000004
  */
-void Tobi::Obj::doDirectDraw(Graphics&) { }
+void Obj::doDirectDraw(Graphics&) { }
 
 /*
  * --INFO--
  * Address:	80269ACC
  * Size:	000020
  */
-void Tobi::Obj::doDebugDraw(Graphics&)
+void Obj::doDebugDraw(Graphics&)
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -516,7 +519,7 @@ void Tobi::Obj::doDebugDraw(Graphics&)
  * Address:	80269AEC
  * Size:	00004C
  */
-void Tobi::Obj::setFSM(Game::Tobi::FSM*)
+void Obj::setFSM(FSM*)
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -546,7 +549,7 @@ void Tobi::Obj::setFSM(Game::Tobi::FSM*)
  * Address:	80269B38
  * Size:	0000E0
  */
-void Tobi::Obj::getShadowParam(Game::ShadowParam&)
+void Obj::getShadowParam(ShadowParam&)
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -619,7 +622,7 @@ lbl_80269BF8:
  * Address:	80269C18
  * Size:	0000A4
  */
-void Tobi::Obj::pressCallBack(Game::Creature*, float, CollPart*)
+bool Obj::pressCallBack(Creature*, f32, CollPart*)
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -679,7 +682,7 @@ lbl_80269CA8:
  * Address:	80269CBC
  * Size:	00002C
  */
-void Tobi::Obj::hipdropCallBack(Game::Creature*, float, CollPart*)
+bool Obj::hipdropCallBack(Creature*, f32, CollPart*)
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -701,7 +704,7 @@ void Tobi::Obj::hipdropCallBack(Game::Creature*, float, CollPart*)
  * Address:	80269CE8
  * Size:	000094
  */
-void Tobi::Obj::flyCollisionCallBack(Game::Creature*, float, CollPart*)
+bool Obj::flyCollisionCallBack(Creature*, f32, CollPart*)
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -753,7 +756,7 @@ lbl_80269D68:
  * Address:	80269D7C
  * Size:	000038
  */
-void Tobi::Obj::doStartStoneState()
+void Obj::doStartStoneState()
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -778,7 +781,7 @@ void Tobi::Obj::doStartStoneState()
  * Address:	80269DB4
  * Size:	00005C
  */
-void Tobi::Obj::doFinishStoneState()
+void Obj::doFinishStoneState()
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -814,7 +817,7 @@ lbl_80269DFC:
  * Address:	80269E10
  * Size:	000038
  */
-void Tobi::Obj::doStartEarthquakeFitState()
+void Obj::doStartEarthquakeFitState()
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -839,7 +842,7 @@ void Tobi::Obj::doStartEarthquakeFitState()
  * Address:	80269E48
  * Size:	00005C
  */
-void Tobi::Obj::doFinishEarthquakeFitState()
+void Obj::doFinishEarthquakeFitState()
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -875,7 +878,7 @@ lbl_80269E90:
  * Address:	80269EA4
  * Size:	000028
  */
-void Tobi::Obj::startCarcassMotion()
+void Obj::startCarcassMotion()
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -896,7 +899,7 @@ void Tobi::Obj::startCarcassMotion()
  * Address:	80269ECC
  * Size:	00008C
  */
-void Tobi::Obj::initMouthSlots()
+void Obj::initMouthSlots()
 {
 	/*
 	stwu     r1, -0x20(r1)
@@ -946,7 +949,7 @@ lbl_80269F2C:
  * Address:	80269F58
  * Size:	00007C
  */
-void Tobi::Obj::lifeRecover()
+void Obj::lifeRecover()
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -992,7 +995,7 @@ lbl_80269FC0:
  * Address:	80269FD4
  * Size:	000030
  */
-void Tobi::Obj::lifeIncrement()
+void Obj::lifeIncrement()
 {
 	/*
 	lfs      f1, lbl_8051AF70@sda21(r2)
@@ -1015,7 +1018,7 @@ void Tobi::Obj::lifeIncrement()
  * Address:	8026A004
  * Size:	000220
  */
-void Tobi::Obj::randomFlyingTarget()
+void Obj::randomFlyingTarget()
 {
 	/*
 	stwu     r1, -0x80(r1)
@@ -1170,7 +1173,7 @@ lbl_8026A1BC:
  * Address:	8026A224
  * Size:	000024
  */
-void Tobi::Obj::isFlyingLife()
+void Obj::isFlyingLife()
 {
 	/*
 	lwz      r4, 0xc0(r3)
@@ -1190,7 +1193,7 @@ void Tobi::Obj::isFlyingLife()
  * Address:	8026A248
  * Size:	000034
  */
-void Tobi::Obj::setInWaterDamage()
+void Obj::setInWaterDamage()
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -1216,7 +1219,7 @@ lbl_8026A26C:
  * Address:	8026A27C
  * Size:	0000B4
  */
-void Tobi::Obj::resetAppearCheck()
+void Obj::resetAppearCheck()
 {
 	/*
 	stwu     r1, -0x20(r1)
@@ -1276,7 +1279,7 @@ lbl_8026A318:
  * Address:	8026A330
  * Size:	000048
  */
-void Tobi::Obj::isAppearCheck()
+void Obj::isAppearCheck()
 {
 	/*
 	lhz      r4, 0x2c2(r3)
@@ -1309,7 +1312,7 @@ lbl_8026A370:
  * Address:	8026A378
  * Size:	000020
  */
-void Tobi::Obj::resetBridgeSearch()
+void Obj::resetBridgeSearch()
 {
 	/*
 	li       r4, 1
@@ -1328,7 +1331,7 @@ void Tobi::Obj::resetBridgeSearch()
  * Address:	8026A398
  * Size:	000048
  */
-void Tobi::Obj::setBridgeSearch()
+void Obj::setBridgeSearch()
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -1359,7 +1362,7 @@ lbl_8026A3CC:
  * Address:	8026A3E0
  * Size:	0002C0
  */
-void Tobi::Obj::setNearestBridge()
+void Obj::setNearestBridge()
 {
 	/*
 	stwu     r1, -0x50(r1)
@@ -1570,14 +1573,14 @@ lbl_8026A680:
  * Address:	8026A6A0
  * Size:	000004
  */
-void Tobi::Obj::setCullingCheck() { }
+void Obj::setCullingCheck() { }
 
 /*
  * --INFO--
  * Address:	8026A6A4
  * Size:	0001B4
  */
-void Tobi::Obj::checkBreakOrMove()
+void Obj::checkBreakOrMove()
 {
 	/*
 	stwu     r1, -0xa0(r1)
@@ -1715,7 +1718,7 @@ lbl_8026A814:
  * Address:	8026A858
  * Size:	000028
  */
-void Tobi::Obj::isBreakBridge()
+void Obj::isBreakBridge()
 {
 	/*
 	lwz      r3, 0x2dc(r3)
@@ -1738,7 +1741,7 @@ lbl_8026A878:
  * Address:	8026A880
  * Size:	0002A8
  */
-void Tobi::Obj::moveBridgeSide()
+void Obj::moveBridgeSide()
 {
 	/*
 	stwu     r1, -0xa0(r1)
@@ -1927,7 +1930,7 @@ lbl_8026AAF4:
  * Address:	8026AB28
  * Size:	000288
  */
-void Tobi::Obj::moveBridgeCentre()
+void Obj::moveBridgeCentre()
 {
 	/*
 	stwu     r1, -0x90(r1)
@@ -2108,7 +2111,7 @@ lbl_8026AD7C:
  * Address:	8026ADB0
  * Size:	0002F0
  */
-void Tobi::Obj::moveBridgeTop()
+void Obj::moveBridgeTop()
 {
 	/*
 	stwu     r1, -0xb0(r1)
@@ -2319,7 +2322,7 @@ lbl_8026B060:
  * Address:	8026B0A0
  * Size:	00005C
  */
-void Tobi::Obj::breakTargetBridge()
+void Obj::breakTargetBridge()
 {
 	/*
 	stwu     r1, -0x20(r1)
@@ -2353,7 +2356,7 @@ void Tobi::Obj::breakTargetBridge()
  * Address:	8026B0FC
  * Size:	00008C
  */
-void Tobi::Obj::createAppearEffect()
+void Obj::createAppearEffect()
 {
 	/*
 	stwu     r1, -0x20(r1)
@@ -2399,7 +2402,7 @@ void Tobi::Obj::createAppearEffect()
  * Address:	8026B188
  * Size:	00008C
  */
-void Tobi::Obj::createDisAppearEffect()
+void Obj::createDisAppearEffect()
 {
 	/*
 	stwu     r1, -0x20(r1)
@@ -2445,7 +2448,7 @@ void Tobi::Obj::createDisAppearEffect()
  * Address:	8026B214
  * Size:	000090
  */
-void Tobi::Obj::createBridgeEffect()
+void Obj::createBridgeEffect()
 {
 	/*
 	stwu     r1, -0x30(r1)
@@ -2492,7 +2495,7 @@ void Tobi::Obj::createBridgeEffect()
  * Address:	8026B2A4
  * Size:	000090
  */
-void Tobi::Obj::createEatEffect()
+void Obj::createEatEffect()
 {
 	/*
 	stwu     r1, -0x30(r1)
@@ -2539,7 +2542,7 @@ void Tobi::Obj::createEatEffect()
  * Address:	8026B334
  * Size:	000008
  */
-void Tobi::Obj::isUnderground()
+bool Obj::isUnderground()
 {
 	/*
 	lbz      r3, 0x2c1(r3)
@@ -2552,7 +2555,7 @@ void Tobi::Obj::isUnderground()
  * Address:	8026B33C
  * Size:	000008
  */
-void Tobi::Obj::getMouthSlots()
+MouthSlots* Obj::getMouthSlots()
 {
 	/*
 	addi     r3, r3, 0x2c8
@@ -2565,7 +2568,7 @@ void Tobi::Obj::getMouthSlots()
  * Address:	8026B344
  * Size:	000008
  */
-void Tobi::Obj::getDownSmokeScale()
+f32 Obj::getDownSmokeScale()
 {
 	/*
 	lfs      f1, lbl_8051AFD8@sda21(r2)
@@ -2578,5 +2581,6 @@ void Tobi::Obj::getDownSmokeScale()
  * Address:	8026B34C
  * Size:	000008
  */
-u32 Tobi::Obj::getEnemyTypeID() { return 0xE; }
+EnemyTypeID::EEnemyTypeID Obj::getEnemyTypeID() { return EnemyTypeID::EnemyID_Tobi; }
+} // namespace Tobi
 } // namespace Game

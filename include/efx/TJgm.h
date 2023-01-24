@@ -36,6 +36,11 @@ struct TJgmBackW : public TChasePosYRot2 {
 };
 
 struct TJgmBubble : public TSimple1 {
+	inline TJgmBubble()
+	    : TSimple1(PID_JgmBUBBLE)
+	{
+	}
+
 	// _00      = VTBL
 	// _00-_0C  = TSimple1
 };

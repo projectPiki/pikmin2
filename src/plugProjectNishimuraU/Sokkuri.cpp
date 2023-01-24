@@ -1,4 +1,7 @@
-#include "types.h"
+#include "Game/Entities/Sokkuri.h"
+#include "Game/EnemyFunc.h"
+#include "efx/TJgm.h"
+#include "Dolphin/rand.h"
 
 /*
     Generated from dpostproc
@@ -283,13 +286,14 @@
 */
 
 namespace Game {
+namespace Sokkuri {
 
 /*
  * --INFO--
  * Address:	802F1264
  * Size:	000130
  */
-Sokkuri::Obj::Obj()
+Obj::Obj()
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -382,14 +386,14 @@ lbl_802F1364:
  * Address:	802F1394
  * Size:	000004
  */
-void Sokkuri::Obj::setInitialSetting(Game::EnemyInitialParamBase*) { }
+void Obj::setInitialSetting(EnemyInitialParamBase*) { }
 
 /*
  * --INFO--
  * Address:	802F1398
  * Size:	00008C
  */
-void Sokkuri::Obj::onInit(Game::CreatureInitArg*)
+void Obj::onInit(CreatureInitArg*)
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -435,7 +439,7 @@ void Sokkuri::Obj::onInit(Game::CreatureInitArg*)
  * Address:	802F1424
  * Size:	000034
  */
-void Sokkuri::Obj::doUpdate()
+void Obj::doUpdate()
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -459,14 +463,14 @@ void Sokkuri::Obj::doUpdate()
  * Address:	802F1458
  * Size:	000004
  */
-void Sokkuri::Obj::doDirectDraw(Graphics&) { }
+void Obj::doDirectDraw(Graphics&) { }
 
 /*
  * --INFO--
  * Address:	802F145C
  * Size:	000020
  */
-void Sokkuri::Obj::doDebugDraw(Graphics&)
+void Obj::doDebugDraw(Graphics&)
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -485,7 +489,7 @@ void Sokkuri::Obj::doDebugDraw(Graphics&)
  * Address:	802F147C
  * Size:	00004C
  */
-void Sokkuri::Obj::setFSM(Game::Sokkuri::FSM*)
+void Obj::setFSM(FSM*)
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -515,7 +519,7 @@ void Sokkuri::Obj::setFSM(Game::Sokkuri::FSM*)
  * Address:	802F14C8
  * Size:	000118
  */
-void Sokkuri::Obj::getShadowParam(Game::ShadowParam&)
+void Obj::getShadowParam(ShadowParam&)
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -604,7 +608,7 @@ lbl_802F15C8:
  * Address:	802F15E0
  * Size:	000008
  */
-void Sokkuri::Obj::isUnderground()
+bool Obj::isUnderground()
 {
 	/*
 	lbz      r3, 0x2c0(r3)
@@ -617,7 +621,7 @@ void Sokkuri::Obj::isUnderground()
  * Address:	802F15E8
  * Size:	00009C
  */
-void Sokkuri::Obj::pressCallBack(Game::Creature*, float, CollPart*)
+bool Obj::pressCallBack(Creature*, float, CollPart*)
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -671,7 +675,7 @@ lbl_802F1670:
  * Address:	802F1684
  * Size:	00009C
  */
-void Sokkuri::Obj::hipdropCallBack(Game::Creature*, float, CollPart*)
+bool Obj::hipdropCallBack(Creature*, float, CollPart*)
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -725,7 +729,7 @@ lbl_802F170C:
  * Address:	802F1720
  * Size:	0000FC
  */
-void Sokkuri::Obj::wallCallback(Game::MoveInfo const&)
+void Obj::wallCallback(MoveInfo const&)
 {
 	/*
 	lfs      f0, 0x5c(r4)
@@ -805,7 +809,7 @@ lbl_802F17C0:
  * Address:	802F181C
  * Size:	000040
  */
-void Sokkuri::Obj::doStartStoneState()
+void Obj::doStartStoneState()
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -832,7 +836,7 @@ void Sokkuri::Obj::doStartStoneState()
  * Address:	802F185C
  * Size:	000020
  */
-void Sokkuri::Obj::doFinishStoneState()
+void Obj::doFinishStoneState()
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -851,7 +855,7 @@ void Sokkuri::Obj::doFinishStoneState()
  * Address:	802F187C
  * Size:	000028
  */
-void Sokkuri::Obj::startCarcassMotion()
+void Obj::startCarcassMotion()
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -872,7 +876,7 @@ void Sokkuri::Obj::startCarcassMotion()
  * Address:	802F18A4
  * Size:	0000AC
  */
-void Sokkuri::Obj::getOffsetForMapCollision()
+Vector3f Obj::getOffsetForMapCollision()
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -925,22 +929,22 @@ lbl_802F1938:
 	*/
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	000068
- */
-void Sokkuri::Obj::getSearchedTarget()
-{
-	// UNUSED FUNCTION
-}
+// /*
+//  * --INFO--
+//  * Address:	........
+//  * Size:	000068
+//  */
+// void Obj::getSearchedTarget()
+// {
+// 	// UNUSED FUNCTION
+// }
 
 /*
  * --INFO--
  * Address:	802F1950
  * Size:	00007C
  */
-void Sokkuri::Obj::isAppear()
+bool Obj::isAppear()
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -992,7 +996,7 @@ lbl_802F19BC:
  * Address:	802F19CC
  * Size:	0000A8
  */
-void Sokkuri::Obj::isDisappear()
+bool Obj::isDisappear()
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -1055,7 +1059,7 @@ lbl_802F1A64:
  * Address:	802F1A74
  * Size:	0001E0
  */
-void Sokkuri::Obj::setNextMoveInfo()
+void Obj::setNextMoveInfo()
 {
 	/*
 	stwu     r1, -0x50(r1)
@@ -1196,7 +1200,7 @@ lbl_802F1C00:
  * Address:	802F1C54
  * Size:	00016C
  */
-void Sokkuri::Obj::updateMoveState()
+void Obj::updateMoveState()
 {
 	/*
 	stwu     r1, -0x30(r1)
@@ -1324,7 +1328,7 @@ lbl_802F1DAC:
  * Address:	802F1DC0
  * Size:	00002C
  */
-void Sokkuri::Obj::resetMoveVelocity()
+void Obj::resetMoveVelocity()
 {
 	/*
 	lwz      r0, 0x280(r3)
@@ -1348,7 +1352,7 @@ lbl_802F1DDC:
  * Address:	802F1DEC
  * Size:	000078
  */
-void Sokkuri::Obj::setNextWaitInfo()
+void Obj::setNextWaitInfo()
 {
 	/*
 	stwu     r1, -0x30(r1)
@@ -1389,7 +1393,7 @@ void Sokkuri::Obj::setNextWaitInfo()
  * Address:	802F1E64
  * Size:	0000C4
  */
-void Sokkuri::Obj::createDownEffect(float, float)
+void Obj::createDownEffect(float, float)
 {
 	/*
 	stwu     r1, -0x30(r1)
@@ -1453,7 +1457,7 @@ lbl_802F1F0C:
  * Address:	802F1F28
  * Size:	0000C0
  */
-void Sokkuri::Obj::createBubbleEffect()
+void Obj::createBubbleEffect()
 {
 	/*
 	stwu     r1, -0x30(r1)
@@ -1514,7 +1518,7 @@ lbl_802F1FD4:
  * Address:	802F1FE8
  * Size:	000048
  */
-void Sokkuri::Obj::createEfxHamon()
+void Obj::createEfxHamon()
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -1545,7 +1549,7 @@ lbl_802F201C:
  * Address:	802F2030
  * Size:	000008
  */
-void Sokkuri::Obj::getDownSmokeScale()
+f32 Obj::getDownSmokeScale()
 {
 	/*
 	lfs      f1, lbl_8051D16C@sda21(r2)
@@ -1558,5 +1562,6 @@ void Sokkuri::Obj::getDownSmokeScale()
  * Address:	802F2038
  * Size:	000008
  */
-u32 Sokkuri::Obj::getEnemyTypeID() { return 0x4F; }
+EnemyTypeID::EEnemyTypeID Obj::getEnemyTypeID() { return EnemyTypeID::EnemyID_Sokkuri; }
+} // namespace Sokkuri
 } // namespace Game

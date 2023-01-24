@@ -11,7 +11,7 @@ struct TQueenCrashL : public TChasePosYRot {
 	{
 	}
 
-	virtual ~TQueenCrashL(); // _48 (weak)
+	virtual ~TQueenCrashL() { } // _48 (weak)
 
 	// _00     = VTBL
 	// _00-_18 = TChasePosYRot
@@ -23,7 +23,7 @@ struct TQueenCrashR : public TChasePosYRot {
 	{
 	}
 
-	virtual ~TQueenCrashR(); // _48 (weak)
+	virtual ~TQueenCrashR() { } // _48 (weak)
 
 	// _00     = VTBL
 	// _00-_18 = TChasePosYRot
@@ -35,7 +35,7 @@ struct TQueenCrashRock : public TChasePosYRot {
 	{
 	}
 
-	virtual ~TQueenCrashRock(); // _48 (weak)
+	virtual ~TQueenCrashRock() { } // _48 (weak)
 
 	// _00     = VTBL
 	// _00-_18 = TChasePosYRot
@@ -47,7 +47,7 @@ struct TQueenDamage : public TChasePosYRot {
 	{
 	}
 
-	virtual ~TQueenDamage(); // _48 (weak)
+	virtual ~TQueenDamage() { } // _48 (weak)
 
 	// _00     = VTBL
 	// _00-_18 = TChasePosYRot
@@ -79,7 +79,7 @@ struct TQueenHanacho : public TChaseMtx {
 	{
 	}
 
-	virtual ~TQueenHanacho(); // _48 (weak)
+	virtual ~TQueenHanacho() { } // _48 (weak)
 
 	// _00     = VTBL
 	// _00-_14 = TChaseMtx
@@ -91,7 +91,7 @@ struct TQueenLay : public TChaseMtx {
 	{
 	}
 
-	virtual ~TQueenLay(); // _48 (weak)
+	virtual ~TQueenLay() { } // _48 (weak)
 
 	// _00     = VTBL
 	// _00-_14 = TChaseMtx
@@ -133,7 +133,7 @@ struct TQueenWakeup : public TChasePosYRot {
 	{
 	}
 
-	virtual ~TQueenWakeup(); // _48 (weak)
+	virtual ~TQueenWakeup() { } // _48 (weak)
 
 	// _00     = VTBL
 	// _00-_18 = TChasePosYRot

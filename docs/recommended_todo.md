@@ -45,7 +45,7 @@
 ### <section id="JSystem">JSystem</section>
 | File | Size (bytes) | File | Size (bytes) |
 | ---- | ---- | ---- | ---- |
-| <a href="https://github.com/projectPiki/pikmin2/tree/main/src/JSystem/dsp/osdsp.c">dsp/osdsp.c</a> | 760 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/JSystem/J3D/J3DSkinDeform.cpp">J3D/J3DSkinDeform.cpp</a> | 1585 |
+| <a href="https://github.com/projectPiki/pikmin2/tree/main/src/JSystem/dsp/osdsp.c">dsp/osdsp.c</a> | 760 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/JSystem/J3D/J3DSkinDeform.cpp">J3D/J3DSkinDeform.cpp</a> | 1481 |
 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/JSystem/JUT/JUTPalette.cpp">JUT/JUTPalette.cpp</a> | 1646 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/JSystem/JAS/JASRegisterParam.cpp">JAS/JASRegisterParam.cpp</a> | 1861 |
 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/JSystem/JAS/JASTrackInterrupt.cpp">JAS/JASTrackInterrupt.cpp</a> | 2023 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/JSystem/JAS/JASInstRand.cpp">JAS/JASInstRand.cpp</a> | 2290 |
 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/JSystem/JAS/JASReport.cpp">JAS/JASReport.cpp</a> | 2421 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/JSystem/JPA/JPAExTexShape.cpp">JPA/JPAExTexShape.cpp</a> | 2656 |
@@ -175,7 +175,7 @@
 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectNishimuraU/SnakeWholeState.cpp">SnakeWholeState.cpp</a> | 35671 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectNishimuraU/IKSystemMgr.cpp">IKSystemMgr.cpp</a> | 35787 |
 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectNishimuraU/MapNode.cpp">MapNode.cpp</a> | 36351 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectNishimuraU/Kabuto.cpp">Kabuto.cpp</a> | 36767 |
 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectNishimuraU/ArmorState.cpp">ArmorState.cpp</a> | 37180 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectNishimuraU/Kogane.cpp">Kogane.cpp</a> | 38023 |
-| <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectNishimuraU/Armor.cpp">Armor.cpp</a> | 38062 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectNishimuraU/Sokkuri.cpp">Sokkuri.cpp</a> | 39144 |
+| <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectNishimuraU/Armor.cpp">Armor.cpp</a> | 38062 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectNishimuraU/Sokkuri.cpp">Sokkuri.cpp</a> | 39057 |
 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectNishimuraU/KumaKochappy.cpp">KumaKochappy.cpp</a> | 40950 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectNishimuraU/SnakeCrowState.cpp">SnakeCrowState.cpp</a> | 41858 |
 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectNishimuraU/Frog.cpp">Frog.cpp</a> | 42700 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectNishimuraU/shadowMgr.cpp">shadowMgr.cpp</a> | 43065 |
 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectNishimuraU/BombSarai.cpp">BombSarai.cpp</a> | 45463 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectNishimuraU/RandMapScore.cpp">RandMapScore.cpp</a> | 48423 |
