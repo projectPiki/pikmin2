@@ -528,18 +528,32 @@ struct AttackShadowNode : public JointShadowNode {
 
 	// _00      = VTBL
 	// _00-_24  = JointShadowNode
-	u32 _24; // _24, unknown
-	f32 _28; // _28
+	Vector3f* _24; // _24
+	f32 _28;       // _28
 };
 
 struct BigTreasureAttackData {
-	/** Not sure where this struct should live, but it's used
-	 * in some structs (BigTreasureAttackMgr and each Attack).
-	 *
-	 * Proceed with caution if using.
-	 * (Hopefully this saves some poor soul some copying from Ghidra at least.)
-	 *      -- HP
-	 */
+	inline BigTreasureAttackData()
+	{
+		_00 = 0.75f;
+		_04 = 0.65f;
+		_08 = 100.0f;
+		_0C = 220.0f;
+		_10 = 170.0f;
+		_14 = 200.0f;
+		_18 = 2.7f;
+		_1C = 0.1f;
+		_20 = 15;
+		_24 = 0;
+		_28 = 1.0f;
+		_2C = 1;
+		_30 = 3;
+		_34 = 0.02f;
+		_38 = 30.0f;
+		_3C = 0.5f;
+		_40 = 0.25f;
+		_44 = 50.0f;
+	}
 
 	f32 _00; // _00
 	f32 _04; // _04
@@ -561,8 +575,8 @@ struct BigTreasureAttackData {
 	f32 _44; // _44
 };
 
-struct BigTreasureAttackParameter {
-	// unused
+struct BigTreasureAttackParameter : public BigTreasureAttackData {
+	// just a wrapper as far as I can tell, might've been differentiated based on type?
 };
 
 struct BigTreasureElecAttack : public CNode {
@@ -570,7 +584,7 @@ struct BigTreasureElecAttack : public CNode {
 
 	virtual ~BigTreasureElecAttack() { } // _08 (weak)
 
-	void update();
+	bool update();
 
 	void init();
 	void start(Vector3f&, Vector3f&, bool);
@@ -579,16 +593,16 @@ struct BigTreasureElecAttack : public CNode {
 
 	// _00      = VTBL
 	// _00-_18  = CNode
-	Obj* m_owner;                        // _18
-	BigTreasureAttackData* m_attackData; // _1C
-	u8 _20;                              // _20
-	Sys::Triangle* _24;                  // _24
-	Vector3f _28;                        // _28
-	Vector3f _34;                        // _34
-	u32 _40;                             // _40, unknown
-	efx::TChasePosPosLocalZScale3* _44;  // _44
-	efx::TOootaElecparts* _48;           // _48
-	efx::TChasePos2* _4C;                // _4C
+	Obj* m_owner;                         // _18
+	BigTreasureAttackData* m_attackData;  // _1C
+	u8 _20;                               // _20
+	Sys::Triangle* _24;                   // _24
+	Vector3f _28;                         // _28
+	Vector3f _34;                         // _34
+	u32 _40;                              // _40, unknown
+	efx::TOootaElec* m_efxElec;           // _44
+	efx::TOootaElecparts* m_efxElecParts; // _48
+	efx::TOootaPhouden* m_efxPhouden;     // _4C
 };
 
 struct BigTreasureFireAttack : public CNode {
@@ -596,7 +610,7 @@ struct BigTreasureFireAttack : public CNode {
 
 	virtual ~BigTreasureFireAttack() { } // _08 (weak)
 
-	void update();
+	bool update();
 
 	void init();
 	void start(Vector3f&, Vector3f&);
@@ -616,7 +630,7 @@ struct BigTreasureGasAttack : public CNode {
 
 	virtual ~BigTreasureGasAttack() { } // _08 (weak)
 
-	void update();
+	bool update();
 
 	void init();
 	void start(Vector3f&, f32);
@@ -635,7 +649,7 @@ struct BigTreasureWaterAttack : public CNode {
 
 	virtual ~BigTreasureWaterAttack() { } // _08 (weak)
 
-	void update();
+	bool update();
 
 	void init();
 	void start(Vector3f&, Vector3f&);
@@ -647,7 +661,7 @@ struct BigTreasureWaterAttack : public CNode {
 	BigTreasureAttackData* m_attackData; // _1C
 	Vector3f _20;                        // _24
 	Vector3f _2C;                        // _30
-	efx::TChasePos4* _38;                // _38, OootaWbomb?
+	efx::TOootaWbomb* m_efxWaterBomb;    // _38
 };
 
 struct BigTreasureAttackMgr {
@@ -695,7 +709,34 @@ struct BigTreasureAttackMgr {
 	void startNewElecList();
 	void finishElecAttack();
 
-	u8 _00[0x120]; // _00, TODO: fill this out.
+	u8 _00[4];                                // _00
+	Obj* m_obj;                               // _04
+	f32 _08;                                  // _08
+	f32 _0C;                                  // _0C
+	CNode* _10;                               // _10
+	CNode* m_fireAttackNodes;                 // _14
+	efx::TOootaFire* m_efxFire;               // _18
+	Vector3f _1C;                             // _1C
+	Vector3f _28[3];                          // _28
+	CNode* _4C;                               // _4C
+	CNode* m_gasAttackNodes;                  // _50
+	f32 _54[4];                               // _54
+	Vector3f m_gasEmitPosition;               // _64
+	Vector3f _70[4];                          // _70
+	efx::TOootaGas* m_efxGas[4];              // _A0
+	CNode* _B0;                               // _B0
+	CNode* m_waterAttackNodes;                // _B4
+	efx::TOootaWbomb* m_efxWaterBomb;         // _B8
+	Vector3f m_waterEmitPosition;             // _BC
+	CNode* _C8;                               // _C8
+	CNode* m_elecAttackNodes;                 // _CC
+	efx::TOootaElecLeg* m_efxElecLeg[4][3];   // _D0
+	efx::TOootaElecAttack1* m_efxElecAttack1; // _100
+	efx::TOootaElecAttack2* m_efxElecAttack2; // _104
+	u8 _108[0xC];                             // _108, unknown
+	JointShadowRootNode* m_shadowRootNode;    // _114
+	AttackShadowNode** m_attackShadowNodes;   // _118, array of 16 ptrs
+	BigTreasureAttackData* m_attackData;      // _11C
 };
 /////////////////////////////////////////////////////////////////
 

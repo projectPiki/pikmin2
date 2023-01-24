@@ -1,4 +1,7 @@
 #include "Game/Entities/BigTreasure.h"
+#include "Game/MapMgr.h"
+#include "Dolphin/rand.h"
+#include "PS.h"
 
 namespace Game {
 namespace BigTreasure {
@@ -11,7 +14,8 @@ namespace BigTreasure {
 AttackShadowNode::AttackShadowNode(int p1)
     : JointShadowNode(p1)
 {
-	// UNUSED FUNCTION
+	_24 = nullptr;
+	_28 = 0.0f;
 }
 
 /*
@@ -21,74 +25,17 @@ AttackShadowNode::AttackShadowNode(int p1)
  */
 void AttackShadowNode::makeShadowSRT()
 {
-	/*
-	stwu     r1, -0x40(r1)
-	mflr     r0
-	lfs      f1, lbl_8051D200@sda21(r2)
-	stw      r0, 0x44(r1)
-	addi     r4, r1, 0x2c
-	lfs      f0, lbl_8051D204@sda21(r2)
-	stw      r31, 0x3c(r1)
-	mr       r31, r3
-	lfs      f2, 0x28(r3)
-	lwz      r3, mapMgr__4Game@sda21(r13)
-	stfs     f2, 8(r1)
-	stfs     f1, 0xc(r1)
-	stfs     f1, 0x10(r1)
-	stfs     f1, 0x14(r1)
-	stfs     f0, 0x18(r1)
-	stfs     f1, 0x1c(r1)
-	stfs     f1, 0x20(r1)
-	stfs     f1, 0x24(r1)
-	stfs     f2, 0x28(r1)
-	lwz      r5, 0x24(r31)
-	lfs      f2, 8(r5)
-	lfs      f1, 4(r5)
-	lfs      f0, 0(r5)
-	stfs     f0, 0x2c(r1)
-	stfs     f1, 0x30(r1)
-	stfs     f2, 0x34(r1)
-	lwz      r12, 4(r3)
-	lwz      r12, 0x28(r12)
-	mtctr    r12
-	bctrl
-	lfs      f2, lbl_8051D208@sda21(r2)
-	lfs      f0, 8(r1)
-	fadds    f1, f2, f1
-	stfs     f1, 0x30(r1)
-	lwz      r3, 0x1c(r31)
-	stfs     f0, 0(r3)
-	lfs      f0, 0xc(r1)
-	stfs     f0, 0x10(r3)
-	lfs      f0, 0x10(r1)
-	stfs     f0, 0x20(r3)
-	lwz      r3, 0x1c(r31)
-	lfs      f0, 0x14(r1)
-	stfs     f0, 4(r3)
-	lfs      f0, 0x18(r1)
-	stfs     f0, 0x14(r3)
-	lfs      f0, 0x1c(r1)
-	stfs     f0, 0x24(r3)
-	lwz      r3, 0x1c(r31)
-	lfs      f0, 0x20(r1)
-	stfs     f0, 8(r3)
-	lfs      f0, 0x24(r1)
-	stfs     f0, 0x18(r3)
-	lfs      f0, 0x28(r1)
-	stfs     f0, 0x28(r3)
-	lwz      r3, 0x1c(r31)
-	lfs      f0, 0x2c(r1)
-	stfs     f0, 0xc(r3)
-	lfs      f0, 0x30(r1)
-	stfs     f0, 0x1c(r3)
-	lfs      f0, 0x34(r1)
-	stfs     f0, 0x2c(r3)
-	lwz      r31, 0x3c(r1)
-	lwz      r0, 0x44(r1)
-	mtlr     r0
-	addi     r1, r1, 0x40
-	blr
-	*/
+	Vector3f matVecs[4];
+	matVecs[0]   = Vector3f(_28, 0.0f, 0.0f);
+	matVecs[1]   = Vector3f(0.0f, 15.0f, 0.0f);
+	matVecs[2]   = Vector3f(0.0f, 0.0f, _28);
+	matVecs[3]   = Vector3f(_24->x, _24->y, _24->z);
+	matVecs[3].y = mapMgr->getMinY(matVecs[3]) + 2.5f;
+
+	_1C->setBasis(0, matVecs[0]);
+	_1C->setBasis(1, matVecs[1]);
+	_1C->setBasis(2, matVecs[2]);
+	_1C->setBasis(3, matVecs[3]);
 }
 
 /*
@@ -96,9 +43,17 @@ void AttackShadowNode::makeShadowSRT()
  * Address:	........
  * Size:	00007C
  */
-BigTreasureFireAttack::BigTreasureFireAttack(Obj*, BigTreasureAttackParameter*)
+BigTreasureFireAttack::BigTreasureFireAttack(Obj* obj, BigTreasureAttackParameter* data)
 {
-	// UNUSED FUNCTION
+	m_owner      = obj;
+	m_attackData = data;
+	_20          = 0.0f;
+	_24.z        = 0.0f;
+	_24.y        = 0.0f;
+	_24.x        = 0.0f;
+	_30.z        = 0.0f;
+	_30.y        = 0.0f;
+	_30.x        = 0.0f;
 }
 
 /*
@@ -126,247 +81,63 @@ void BigTreasureFireAttack::start(Vector3f&, Vector3f&)
  * Address:	802F3AB0
  * Size:	000374
  */
-void BigTreasureFireAttack::update()
+bool BigTreasureFireAttack::update()
 {
-	/*
-	stwu     r1, -0x120(r1)
-	mflr     r0
-	stw      r0, 0x124(r1)
-	stfd     f31, 0x110(r1)
-	psq_st   f31, 280(r1), 0, qr0
-	stfd     f30, 0x100(r1)
-	psq_st   f30, 264(r1), 0, qr0
-	stfd     f29, 0xf0(r1)
-	psq_st   f29, 248(r1), 0, qr0
-	stfd     f28, 0xe0(r1)
-	psq_st   f28, 232(r1), 0, qr0
-	stfd     f27, 0xd0(r1)
-	psq_st   f27, 216(r1), 0, qr0
-	stw      r31, 0xcc(r1)
-	stw      r30, 0xc8(r1)
-	mr       r30, r3
-	lfs      f2, lbl_8051D210@sda21(r2)
-	lfs      f3, 0x20(r3)
-	fcmpo    cr0, f3, f2
-	bge      lbl_802F3B24
-	lwz      r3, sys@sda21(r13)
-	lfs      f1, lbl_8051D214@sda21(r2)
-	lfs      f0, 0x54(r3)
-	fmadds   f0, f1, f0, f3
-	stfs     f0, 0x20(r30)
-	lfs      f0, 0x20(r30)
-	fcmpo    cr0, f0, f2
-	ble      lbl_802F3B24
-	stfs     f2, 0x20(r30)
+	if (_20 < 1.0f) {
+		_20 += 3.0f * sys->m_deltaTime;
+		if (_20 > 1.0f) {
+			_20 = 1.0f;
+		}
+	}
 
-lbl_802F3B24:
-	lwz      r5, 0x1c(r30)
-	addi     r3, r1, 0x54
-	lfs      f0, lbl_8051D218@sda21(r2)
-	addi     r4, r1, 0x30
-	lfs      f4, 0x28(r5)
-	lfs      f3, lbl_8051D220@sda21(r2)
-	fmuls    f1, f0, f4
-	lfs      f2, 0x20(r30)
-	fmuls    f5, f3, f4
-	lfs      f0, lbl_8051D21C@sda21(r2)
-	lfs      f31, 0x24(r30)
-	fmuls    f6, f2, f1
-	lfs      f30, 0x28(r30)
-	fmuls    f28, f0, f4
-	lfs      f29, 0x2c(r30)
-	fmuls    f27, f5, f5
-	fmuls    f31, f31, f6
-	lfs      f2, 0x30(r30)
-	fmuls    f30, f30, f6
-	lfs      f1, 0x34(r30)
-	fmuls    f29, f29, f6
-	lfs      f0, 0x38(r30)
-	fadds    f31, f31, f2
-	fadds    f30, f30, f1
-	stfs     f3, 0x3c(r1)
-	fadds    f29, f29, f0
-	stfs     f31, 0x30(r1)
-	stfs     f30, 0x34(r1)
-	stfs     f29, 0x38(r1)
-	bl       __ct__Q24Game15CellIteratorArgFRQ23Sys6Sphere
-	li       r0, 1
-	addi     r3, r1, 0x74
-	stb      r0, 0x70(r1)
-	addi     r4, r1, 0x54
-	bl       __ct__Q24Game12CellIteratorFRQ24Game15CellIteratorArg
-	addi     r3, r1, 0x74
-	bl       first__Q24Game12CellIteratorFv
-	b        lbl_802F3DB8
+	f32 scale  = _20 * (m_attackData->_28 * 200.0f);
+	f32 yComp  = 40.0f * m_attackData->_28;
+	f32 radius = SQUARE(25.0f * m_attackData->_28);
 
-lbl_802F3BBC:
-	addi     r3, r1, 0x74
-	bl       __ml__Q24Game12CellIteratorFv
-	lwz      r12, 0(r3)
-	mr       r31, r3
-	lwz      r12, 0xa8(r12)
-	mtctr    r12
-	bctrl
-	clrlwi.  r0, r3, 0x18
-	beq      lbl_802F3DB0
-	mr       r4, r31
-	addi     r3, r1, 8
-	lwz      r12, 0(r31)
-	lwz      r12, 8(r12)
-	mtctr    r12
-	bctrl
-	lfs      f1, 0xc(r1)
-	lfs      f0, lbl_8051D200@sda21(r2)
-	fsubs    f1, f30, f1
-	lfs      f2, 8(r1)
-	lfs      f3, 0x10(r1)
-	fcmpo    cr0, f1, f0
-	ble      lbl_802F3C18
-	b        lbl_802F3C1C
+	Vector3f pos = _24;
+	pos.x *= scale;
+	pos.y *= scale;
+	pos.z *= scale;
 
-lbl_802F3C18:
-	fneg     f1, f1
+	pos.x += _30.x;
+	pos.y += _30.y;
+	pos.z += _30.z;
 
-lbl_802F3C1C:
-	fcmpo    cr0, f1, f28
-	bge      lbl_802F3DB0
-	fsubs    f0, f29, f3
-	fsubs    f1, f31, f2
-	fmuls    f0, f0, f0
-	fmadds   f0, f1, f1, f0
-	fcmpo    cr0, f0, f27
-	bge      lbl_802F3DB0
-	lwz      r7, 0x18(r30)
-	lis      r5, __vt__Q24Game11Interaction@ha
-	lis      r4, __vt__Q24Game12InteractFire@ha
-	mr       r3, r31
-	lwz      r6, 0xc0(r7)
-	addi     r5, r5, __vt__Q24Game11Interaction@l
-	addi     r0, r4, __vt__Q24Game12InteractFire@l
-	lfs      f0, 0x604(r6)
-	stw      r5, 0x24(r1)
-	stw      r7, 0x28(r1)
-	stw      r0, 0x24(r1)
-	stfs     f0, 0x2c(r1)
-	lwz      r12, 0(r31)
-	lwz      r12, 0x1c(r12)
-	mtctr    r12
-	bctrl
-	clrlwi.  r0, r3, 0x18
-	beq      lbl_802F3D7C
-	mr       r3, r31
-	addi     r4, r1, 0x24
-	lwz      r12, 0(r31)
-	lwz      r12, 0x1a4(r12)
-	mtctr    r12
-	bctrl
-	clrlwi.  r0, r3, 0x18
-	bne      lbl_802F3DB0
-	bl       rand
-	xoris    r3, r3, 0x8000
-	lis      r0, 0x4330
-	stw      r3, 0xc4(r1)
-	lfd      f3, lbl_8051D230@sda21(r2)
-	stw      r0, 0xc0(r1)
-	lfs      f2, lbl_8051D210@sda21(r2)
-	lfd      f0, 0xc0(r1)
-	lfs      f1, lbl_8051D224@sda21(r2)
-	fsubs    f3, f0, f3
-	lfs      f0, lbl_8051D228@sda21(r2)
-	fmuls    f2, f2, f3
-	fdivs    f1, f2, f1
-	fcmpo    cr0, f1, f0
-	bge      lbl_802F3D30
-	lwz      r5, 0x18(r30)
-	lis      r3, __vt__Q24Game11Interaction@ha
-	addi     r0, r3, __vt__Q24Game11Interaction@l
-	lfs      f1, lbl_8051D200@sda21(r2)
-	lfs      f0, lbl_8051D22C@sda21(r2)
-	lis      r3, __vt__Q24Game13InteractFlick@ha
-	stw      r0, 0x40(r1)
-	addi     r0, r3, __vt__Q24Game13InteractFlick@l
-	mr       r3, r31
-	addi     r4, r1, 0x40
-	stw      r5, 0x44(r1)
-	stw      r0, 0x40(r1)
-	stfs     f1, 0x48(r1)
-	stfs     f1, 0x4c(r1)
-	stfs     f0, 0x50(r1)
-	lwz      r12, 0(r31)
-	lwz      r12, 0x1a4(r12)
-	mtctr    r12
-	bctrl
-	b        lbl_802F3DB0
+	Sys::Sphere sphere(pos, 25.0f);
 
-lbl_802F3D30:
-	lwz      r4, 0x18(r30)
-	lis      r3, __vt__Q24Game11Interaction@ha
-	addi     r0, r3, __vt__Q24Game11Interaction@l
-	lfs      f0, lbl_8051D200@sda21(r2)
-	lis      r3, __vt__Q24Game14InteractAttack@ha
-	stw      r0, 0x14(r1)
-	addi     r5, r3, __vt__Q24Game14InteractAttack@l
-	li       r0, 0
-	stw      r4, 0x18(r1)
-	mr       r3, r31
-	addi     r4, r1, 0x14
-	stw      r5, 0x14(r1)
-	stfs     f0, 0x1c(r1)
-	stw      r0, 0x20(r1)
-	lwz      r12, 0(r31)
-	lwz      r12, 0x1a4(r12)
-	mtctr    r12
-	bctrl
-	b        lbl_802F3DB0
+	CellIteratorArg iterArg(sphere);
+	iterArg._1C = 1;
 
-lbl_802F3D7C:
-	mr       r3, r31
-	lwz      r12, 0(r31)
-	lwz      r12, 0x18(r12)
-	mtctr    r12
-	bctrl
-	clrlwi.  r0, r3, 0x18
-	beq      lbl_802F3DB0
-	mr       r3, r31
-	addi     r4, r1, 0x24
-	lwz      r12, 0(r31)
-	lwz      r12, 0x1a4(r12)
-	mtctr    r12
-	bctrl
+	CellIterator iter(iterArg);
 
-lbl_802F3DB0:
-	addi     r3, r1, 0x74
-	bl       next__Q24Game12CellIteratorFv
+	CI_LOOP(iter)
+	{
+		Creature* creature = static_cast<Creature*>(*iter);
+		if (creature->isAlive()) {
+			Vector3f creaturePos = creature->getPosition();
+			f32 yDiff            = absVal(pos.y - creaturePos.y);
 
-lbl_802F3DB8:
-	addi     r3, r1, 0x74
-	bl       isDone__Q24Game12CellIteratorFv
-	clrlwi.  r0, r3, 0x18
-	beq      lbl_802F3BBC
-	lfs      f1, 0x20(r30)
-	lfs      f0, lbl_8051D210@sda21(r2)
-	fcmpo    cr0, f1, f0
-	mfcr     r0
-	srwi     r0, r0, 0x1f
-	cntlzw   r0, r0
-	srwi     r3, r0, 5
-	psq_l    f31, 280(r1), 0, qr0
-	lfd      f31, 0x110(r1)
-	psq_l    f30, 264(r1), 0, qr0
-	lfd      f30, 0x100(r1)
-	psq_l    f29, 248(r1), 0, qr0
-	lfd      f29, 0xf0(r1)
-	psq_l    f28, 232(r1), 0, qr0
-	lfd      f28, 0xe0(r1)
-	psq_l    f27, 216(r1), 0, qr0
-	lfd      f27, 0xd0(r1)
-	lwz      r31, 0xcc(r1)
-	lwz      r0, 0x124(r1)
-	lwz      r30, 0xc8(r1)
-	mtlr     r0
-	addi     r1, r1, 0x120
-	blr
-	*/
+			if (yDiff < yComp && sqrDistanceXZ(pos, creaturePos) < radius) {
+				InteractFire fire(m_owner, CG_PARMS(m_owner)->m_general.m_attackDamage.m_value);
+				if (creature->isNavi()) {
+					if (!creature->stimulate(fire)) {
+						if (randWeightFloat(1.0f) < 0.33f) {
+							InteractFlick flick(m_owner, 0.0f, 0.0f, -1000.0f);
+							creature->stimulate(flick);
+						} else {
+							InteractAttack attack(m_owner, 0.0f, nullptr);
+							creature->stimulate(attack);
+						}
+					}
+
+				} else if (creature->isPiki()) {
+					creature->stimulate(fire);
+				}
+			}
+		}
+	}
+
+	return !(_20 < 1.0f);
 }
 
 /*
@@ -384,9 +155,17 @@ void BigTreasureFireAttack::finish()
  * Address:	........
  * Size:	00007C
  */
-BigTreasureGasAttack::BigTreasureGasAttack(Obj*, BigTreasureAttackParameter*)
+BigTreasureGasAttack::BigTreasureGasAttack(Obj* obj, BigTreasureAttackParameter* data)
 {
-	// UNUSED FUNCTION
+	m_owner      = obj;
+	m_attackData = data;
+	_20          = 0.0f;
+	_24.z        = 0.0f;
+	_24.y        = 0.0f;
+	_24.x        = 0.0f;
+	_30.z        = 0.0f;
+	_30.y        = 0.0f;
+	_30.x        = 0.0f;
 }
 
 /*
@@ -414,7 +193,7 @@ void BigTreasureGasAttack::start(Vector3f&, f32)
  * Address:	802F3E24
  * Size:	000364
  */
-void BigTreasureGasAttack::update()
+bool BigTreasureGasAttack::update()
 {
 	/*
 	stwu     r1, -0x110(r1)
@@ -660,9 +439,17 @@ lbl_802F4124:
  * Address:	........
  * Size:	0000B0
  */
-BigTreasureWaterAttack::BigTreasureWaterAttack(Obj*, BigTreasureAttackParameter*)
+BigTreasureWaterAttack::BigTreasureWaterAttack(Obj* obj, BigTreasureAttackParameter* data)
 {
-	// UNUSED FUNCTION
+	m_owner        = obj;
+	m_attackData   = data;
+	_20.z          = 0.0f;
+	_20.y          = 0.0f;
+	_20.x          = 0.0f;
+	_2C.z          = 0.0f;
+	_2C.y          = 0.0f;
+	_2C.x          = 0.0f;
+	m_efxWaterBomb = new efx::TOootaWbomb(&_2C);
 }
 
 /*
@@ -690,7 +477,7 @@ void BigTreasureWaterAttack::start(Vector3f&, Vector3f&)
  * Address:	802F4188
  * Size:	000324
  */
-void BigTreasureWaterAttack::update()
+bool BigTreasureWaterAttack::update()
 {
 	/*
 	stwu     r1, -0xf0(r1)
@@ -924,9 +711,22 @@ void BigTreasureWaterAttack::finish()
  * Address:	........
  * Size:	000184
  */
-BigTreasureElecAttack::BigTreasureElecAttack(Obj*, BigTreasureAttackParameter*)
+BigTreasureElecAttack::BigTreasureElecAttack(Obj* obj, BigTreasureAttackParameter* data)
 {
-	// UNUSED FUNCTION
+	m_owner        = obj;
+	m_attackData   = data;
+	_20            = 1;
+	_24            = nullptr;
+	_28.z          = 0.0f;
+	_28.y          = 0.0f;
+	_28.x          = 0.0f;
+	_34.z          = 0.0f;
+	_34.y          = 0.0f;
+	_34.x          = 0.0f;
+	_40            = 0;
+	m_efxElec      = new efx::TOootaElec;
+	m_efxElecParts = new efx::TOootaElecparts(&_34);
+	m_efxPhouden   = new efx::TOootaPhouden(&_34);
 }
 
 /*
@@ -964,7 +764,7 @@ void BigTreasureElecAttack::startInteract(BigTreasureElecAttack*)
  * Address:	802F4530
  * Size:	000738
  */
-void BigTreasureElecAttack::update()
+bool BigTreasureElecAttack::update()
 {
 	/*
 	stwu     r1, -0x230(r1)
@@ -1505,566 +1305,60 @@ void BigTreasureElecAttack::finish()
  * Address:	802F4C68
  * Size:	0007B4
  */
-BigTreasureAttackMgr::BigTreasureAttackMgr(Obj*)
+BigTreasureAttackMgr::BigTreasureAttackMgr(Obj* obj)
 {
-	/*
-	.loc_0x0:
-	  stwu      r1, -0x40(r1)
-	  mflr      r0
-	  stw       r0, 0x44(r1)
-	  stfd      f31, 0x30(r1)
-	  psq_st    f31,0x38(r1),0,0
-	  stmw      r22, 0x8(r1)
-	  lis       r5, 0x8012
-	  mr        r31, r3
-	  subi      r0, r5, 0xCB8
-	  mr        r22, r4
-	  mr        r4, r0
-	  addi      r3, r31, 0x28
-	  li        r5, 0
-	  li        r6, 0xC
-	  li        r7, 0x3
-	  bl        -0x233468
-	  lis       r4, 0x8012
-	  addi      r3, r31, 0x70
-	  subi      r4, r4, 0xCB8
-	  li        r5, 0
-	  li        r6, 0xC
-	  li        r7, 0x4
-	  bl        -0x233484
-	  li        r0, 0
-	  lfs       f0, -0x1160(r2)
-	  stb       r0, 0x0(r31)
-	  li        r3, 0x48
-	  stb       r0, 0x1(r31)
-	  stb       r0, 0x2(r31)
-	  stb       r0, 0x3(r31)
-	  stw       r22, 0x4(r31)
-	  stfs      f0, 0x54(r31)
-	  stfs      f0, 0x58(r31)
-	  stfs      f0, 0x5C(r31)
-	  stfs      f0, 0x60(r31)
-	  bl        -0x2D0E50
-	  cmplwi    r3, 0
-	  beq-      .loc_0x128
-	  lfs       f0, -0x10F4(r2)
-	  li        r6, 0xF
-	  lfs       f1, -0x10F0(r2)
-	  li        r5, 0
-	  stfs      f0, 0x0(r3)
-	  li        r4, 0x1
-	  lfs       f0, -0x10EC(r2)
-	  li        r0, 0x3
-	  stfs      f1, 0x4(r3)
-	  lfs       f1, -0x10E8(r2)
-	  stfs      f0, 0x8(r3)
-	  lfs       f0, -0x10E4(r2)
-	  stfs      f1, 0xC(r3)
-	  lfs       f1, -0x1148(r2)
-	  stfs      f0, 0x10(r3)
-	  lfs       f0, -0x10E0(r2)
-	  stfs      f1, 0x14(r3)
-	  lfs       f1, -0x10DC(r2)
-	  stfs      f0, 0x18(r3)
-	  lfs       f0, -0x1150(r2)
-	  stfs      f1, 0x1C(r3)
-	  lfs       f4, -0x10D8(r2)
-	  stw       r6, 0x20(r3)
-	  lfs       f3, -0x110C(r2)
-	  stw       r5, 0x24(r3)
-	  lfs       f2, -0x1114(r2)
-	  stfs      f0, 0x28(r3)
-	  lfs       f1, -0x10D4(r2)
-	  stb       r4, 0x2C(r3)
-	  lfs       f0, -0x10D0(r2)
-	  stw       r0, 0x30(r3)
-	  stfs      f4, 0x34(r3)
-	  stfs      f3, 0x38(r3)
-	  stfs      f2, 0x3C(r3)
-	  stfs      f1, 0x40(r3)
-	  stfs      f0, 0x44(r3)
+	for (int i = 0; i < 4; i++) {
+		_00[i] = 0;
+	}
 
-	.loc_0x128:
-	  stw       r3, 0x11C(r31)
-	  li        r3, 0x18
-	  bl        -0x2D0EF4
-	  mr.       r0, r3
-	  beq-      .loc_0x144
-	  bl        0x11C5EC
-	  mr        r0, r3
+	m_obj = obj;
+	for (int i = 0; i < 4; i++) {
+		_54[i] = 0.0f;
+	}
 
-	.loc_0x144:
-	  stw       r0, 0x10(r31)
-	  li        r3, 0x18
-	  bl        -0x2D0F10
-	  mr.       r0, r3
-	  beq-      .loc_0x160
-	  bl        0x11C5D0
-	  mr        r0, r3
+	m_attackData      = new BigTreasureAttackData;
+	_10               = new CNode;
+	m_fireAttackNodes = new CNode;
 
-	.loc_0x160:
-	  stw       r0, 0x14(r31)
-	  li        r25, 0
+	for (int i = 0; i < 8; i++) {
+		m_fireAttackNodes->add(new BigTreasureFireAttack(m_obj, (BigTreasureAttackParameter*)m_attackData));
+	}
 
-	.loc_0x168:
-	  li        r3, 0x3C
-	  bl        -0x2D0F30
-	  mr.       r22, r3
-	  beq-      .loc_0x1B8
-	  lwz       r24, 0x11C(r31)
-	  lwz       r23, 0x4(r31)
-	  bl        0x11C5A8
-	  lis       r3, 0x804D
-	  lfs       f0, -0x1160(r2)
-	  addi      r0, r3, 0x59BC
-	  stw       r0, 0x0(r22)
-	  stw       r23, 0x18(r22)
-	  stw       r24, 0x1C(r22)
-	  stfs      f0, 0x20(r22)
-	  stfs      f0, 0x2C(r22)
-	  stfs      f0, 0x28(r22)
-	  stfs      f0, 0x24(r22)
-	  stfs      f0, 0x38(r22)
-	  stfs      f0, 0x34(r22)
-	  stfs      f0, 0x30(r22)
+	_4C              = new CNode;
+	m_gasAttackNodes = new CNode;
+	for (int i = 0; i < 200; i++) {
+		m_gasAttackNodes->add(new BigTreasureGasAttack(m_obj, (BigTreasureAttackParameter*)m_attackData));
+	}
 
-	.loc_0x1B8:
-	  lwz       r3, 0x14(r31)
-	  mr        r4, r22
-	  bl        0x11C5E0
-	  addi      r25, r25, 0x1
-	  cmpwi     r25, 0x8
-	  blt+      .loc_0x168
-	  li        r3, 0x18
-	  bl        -0x2D0F98
-	  mr.       r0, r3
-	  beq-      .loc_0x1E8
-	  bl        0x11C548
-	  mr        r0, r3
+	_B0                = new CNode;
+	m_waterAttackNodes = new CNode;
+	for (int i = 0; i < 16; i++) {
+		m_waterAttackNodes->add(new BigTreasureWaterAttack(m_obj, (BigTreasureAttackParameter*)m_attackData));
+	}
 
-	.loc_0x1E8:
-	  stw       r0, 0x4C(r31)
-	  li        r3, 0x18
-	  bl        -0x2D0FB4
-	  mr.       r0, r3
-	  beq-      .loc_0x204
-	  bl        0x11C52C
-	  mr        r0, r3
+	_C8               = new CNode;
+	m_elecAttackNodes = new CNode;
+	for (int i = 0; i < 17; i++) {
+		m_elecAttackNodes->add(new BigTreasureElecAttack(m_obj, (BigTreasureAttackParameter*)m_attackData));
+	}
 
-	.loc_0x204:
-	  stw       r0, 0x50(r31)
-	  li        r25, 0
+	m_efxFire = new efx::TOootaFire;
 
-	.loc_0x20C:
-	  li        r3, 0x3C
-	  bl        -0x2D0FD4
-	  mr.       r22, r3
-	  beq-      .loc_0x25C
-	  lwz       r24, 0x11C(r31)
-	  lwz       r23, 0x4(r31)
-	  bl        0x11C504
-	  lis       r3, 0x804D
-	  lfs       f0, -0x1160(r2)
-	  addi      r0, r3, 0x59AC
-	  stw       r0, 0x0(r22)
-	  stw       r23, 0x18(r22)
-	  stw       r24, 0x1C(r22)
-	  stfs      f0, 0x20(r22)
-	  stfs      f0, 0x2C(r22)
-	  stfs      f0, 0x28(r22)
-	  stfs      f0, 0x24(r22)
-	  stfs      f0, 0x38(r22)
-	  stfs      f0, 0x34(r22)
-	  stfs      f0, 0x30(r22)
+	for (int i = 0; i < 4; i++) {
+		m_efxGas[i] = new efx::TOootaGas(&m_gasEmitPosition, &_54[i]);
+		for (int j = 0; j < 3; j++) {
+			m_efxElecLeg[i][j] = new efx::TOootaElecLeg;
+		}
+	}
 
-	.loc_0x25C:
-	  lwz       r3, 0x50(r31)
-	  mr        r4, r22
-	  bl        0x11C53C
-	  addi      r25, r25, 0x1
-	  cmpwi     r25, 0xC8
-	  blt+      .loc_0x20C
-	  li        r3, 0x18
-	  bl        -0x2D103C
-	  mr.       r0, r3
-	  beq-      .loc_0x28C
-	  bl        0x11C4A4
-	  mr        r0, r3
+	m_efxElecAttack1    = new efx::TOootaElecAttack1;
+	m_efxElecAttack2    = new efx::TOootaElecAttack2;
+	m_shadowRootNode    = new JointShadowRootNode(m_obj);
+	m_attackShadowNodes = new AttackShadowNode*[16];
 
-	.loc_0x28C:
-	  stw       r0, 0xB0(r31)
-	  li        r3, 0x18
-	  bl        -0x2D1058
-	  mr.       r0, r3
-	  beq-      .loc_0x2A8
-	  bl        0x11C488
-	  mr        r0, r3
-
-	.loc_0x2A8:
-	  stw       r0, 0xB4(r31)
-	  li        r24, 0
-
-	.loc_0x2B0:
-	  li        r3, 0x3C
-	  bl        -0x2D1078
-	  mr.       r4, r3
-	  beq-      .loc_0x33C
-	  lwz       r23, 0x11C(r31)
-	  mr        r25, r4
-	  lwz       r22, 0x4(r31)
-	  bl        0x11C45C
-	  lis       r3, 0x804D
-	  lfs       f0, -0x1160(r2)
-	  addi      r0, r3, 0x599C
-	  li        r3, 0x54
-	  stw       r0, 0x0(r25)
-	  stw       r22, 0x18(r25)
-	  stw       r23, 0x1C(r25)
-	  stfs      f0, 0x28(r25)
-	  stfs      f0, 0x24(r25)
-	  stfs      f0, 0x20(r25)
-	  stfs      f0, 0x34(r25)
-	  stfs      f0, 0x30(r25)
-	  stfs      f0, 0x2C(r25)
-	  bl        -0x2D10C8
-	  mr.       r22, r3
-	  beq-      .loc_0x334
-	  addi      r4, r25, 0x2C
-	  li        r5, 0x117
-	  li        r6, 0x118
-	  li        r7, 0x119
-	  li        r8, 0x11A
-	  bl        0xBB464
-	  lis       r3, 0x804D
-	  addi      r0, r3, 0x5980
-	  stw       r0, 0x0(r22)
-
-	.loc_0x334:
-	  stw       r22, 0x38(r25)
-	  mr        r4, r25
-
-	.loc_0x33C:
-	  lwz       r3, 0xB4(r31)
-	  bl        0x11C460
-	  addi      r24, r24, 0x1
-	  cmpwi     r24, 0x10
-	  blt+      .loc_0x2B0
-	  li        r3, 0x18
-	  bl        -0x2D1118
-	  mr.       r0, r3
-	  beq-      .loc_0x368
-	  bl        0x11C3C8
-	  mr        r0, r3
-
-	.loc_0x368:
-	  stw       r0, 0xC8(r31)
-	  li        r3, 0x18
-	  bl        -0x2D1134
-	  mr.       r0, r3
-	  beq-      .loc_0x384
-	  bl        0x11C3AC
-	  mr        r0, r3
-
-	.loc_0x384:
-	  lis       r5, 0x804E
-	  lis       r4, 0x804E
-	  lis       r3, 0x804D
-	  stw       r0, 0xCC(r31)
-	  addi      r5, r5, 0x698C
-	  addi      r4, r4, 0x6940
-	  addi      r3, r3, 0x58BC
-	  li        r26, 0
-	  addi      r25, r5, 0x14
-	  addi      r24, r4, 0x14
-	  addi      r30, r3, 0x14
-
-	.loc_0x3B0:
-	  li        r3, 0x50
-	  bl        -0x2D1178
-	  mr.       r4, r3
-	  beq-      .loc_0x504
-	  lwz       r27, 0x11C(r31)
-	  mr        r22, r4
-	  lwz       r23, 0x4(r31)
-	  bl        0x11C35C
-	  lis       r3, 0x804D
-	  li        r4, 0x1
-	  addi      r3, r3, 0x5924
-	  li        r0, 0
-	  stw       r3, 0x0(r22)
-	  li        r3, 0x58
-	  lfs       f0, -0x1160(r2)
-	  stw       r23, 0x18(r22)
-	  stw       r27, 0x1C(r22)
-	  stb       r4, 0x20(r22)
-	  stw       r0, 0x24(r22)
-	  stfs      f0, 0x30(r22)
-	  stfs      f0, 0x2C(r22)
-	  stfs      f0, 0x28(r22)
-	  stfs      f0, 0x3C(r22)
-	  stfs      f0, 0x38(r22)
-	  stfs      f0, 0x34(r22)
-	  stw       r0, 0x40(r22)
-	  bl        -0x2D11DC
-	  mr.       r23, r3
-	  beq-      .loc_0x44C
-	  lfs       f1, -0x1100(r2)
-	  li        r4, 0
-	  li        r5, 0
-	  li        r6, 0x108
-	  li        r7, 0x109
-	  li        r8, 0x10A
-	  bl        0xBBC64
-	  lis       r3, 0x804D
-	  addi      r0, r3, 0x5908
-	  stw       r0, 0x0(r23)
-
-	.loc_0x44C:
-	  stw       r23, 0x44(r22)
-	  li        r3, 0x14
-	  bl        -0x2D1218
-	  cmplwi    r3, 0
-	  beq-      .loc_0x4CC
-	  lis       r5, 0x804B
-	  lis       r4, 0x804A
-	  subi      r0, r5, 0x5808
-	  lis       r6, 0x804E
-	  stw       r0, 0x0(r3)
-	  subi      r0, r4, 0x1D84
-	  lis       r5, 0x804E
-	  lis       r4, 0x804D
-	  stw       r0, 0x4(r3)
-	  addi      r0, r6, 0x698C
-	  li        r9, 0
-	  li        r8, 0x2B2
-	  stw       r0, 0x0(r3)
-	  addi      r7, r5, 0x6940
-	  addi      r6, r22, 0x34
-	  li        r5, 0x248
-	  stw       r25, 0x4(r3)
-	  addi      r0, r4, 0x58BC
-	  stw       r9, 0x8(r3)
-	  sth       r8, 0xC(r3)
-	  stb       r9, 0xE(r3)
-	  stw       r7, 0x0(r3)
-	  stw       r24, 0x4(r3)
-	  stw       r6, 0x10(r3)
-	  sth       r5, 0xC(r3)
-	  stw       r0, 0x0(r3)
-	  stw       r30, 0x4(r3)
-
-	.loc_0x4CC:
-	  stw       r3, 0x48(r22)
-	  li        r3, 0x2C
-	  bl        -0x2D1298
-	  mr.       r23, r3
-	  beq-      .loc_0x4FC
-	  addi      r4, r22, 0x34
-	  li        r5, 0x24A
-	  li        r6, 0x24B
-	  bl        0xBB0EC
-	  lis       r3, 0x804D
-	  addi      r0, r3, 0x58A0
-	  stw       r0, 0x0(r23)
-
-	.loc_0x4FC:
-	  stw       r23, 0x4C(r22)
-	  mr        r4, r22
-
-	.loc_0x504:
-	  lwz       r3, 0xCC(r31)
-	  bl        0x11C298
-	  addi      r26, r26, 0x1
-	  cmpwi     r26, 0x11
-	  blt+      .loc_0x3B0
-	  li        r3, 0x7C
-	  bl        -0x2D12E0
-	  mr.       r22, r3
-	  beq-      .loc_0x554
-	  li        r4, 0
-	  li        r5, 0x10C
-	  li        r6, 0x10D
-	  li        r7, 0x10E
-	  li        r8, 0x10F
-	  li        r9, 0x257
-	  li        r10, 0x110
-	  bl        0xBB570
-	  lis       r3, 0x804F
-	  subi      r0, r3, 0x5EE4
-	  stw       r0, 0x0(r22)
-
-	.loc_0x554:
-	  lis       r4, 0x804E
-	  lis       r3, 0x804D
-	  addi      r4, r4, 0x67C4
-	  stw       r22, 0x18(r31)
-	  addi      r3, r3, 0x57EC
-	  mr        r29, r31
-	  mr        r28, r31
-	  addi      r27, r4, 0x14
-	  addi      r26, r3, 0x14
-	  li        r23, 0
-
-	.loc_0x57C:
-	  li        r3, 0x34
-	  bl        -0x2D1344
-	  mr.       r22, r3
-	  beq-      .loc_0x5AC
-	  addi      r4, r31, 0x64
-	  addi      r5, r29, 0x54
-	  li        r6, 0x113
-	  li        r7, 0x114
-	  bl        0xBB7C8
-	  lis       r3, 0x804D
-	  addi      r0, r3, 0x5838
-	  stw       r0, 0x0(r22)
-
-	.loc_0x5AC:
-	  stw       r22, 0xA0(r29)
-	  mr        r30, r28
-	  li        r22, 0
-
-	.loc_0x5B8:
-	  li        r3, 0x1C
-	  bl        -0x2D1380
-	  cmplwi    r3, 0
-	  beq-      .loc_0x63C
-	  lis       r5, 0x804B
-	  lis       r4, 0x804A
-	  subi      r0, r5, 0x5808
-	  lis       r6, 0x804E
-	  stw       r0, 0x0(r3)
-	  subi      r0, r4, 0x1D84
-	  lis       r5, 0x804E
-	  lis       r4, 0x804D
-	  stw       r0, 0x4(r3)
-	  addi      r0, r6, 0x698C
-	  li        r8, 0
-	  li        r7, 0x2B2
-	  stw       r0, 0x0(r3)
-	  addi      r6, r5, 0x67C4
-	  lfs       f0, -0x10EC(r2)
-	  li        r5, 0x10B
-	  stw       r25, 0x4(r3)
-	  addi      r0, r4, 0x57EC
-	  stw       r8, 0x8(r3)
-	  sth       r7, 0xC(r3)
-	  stb       r8, 0xE(r3)
-	  stw       r6, 0x0(r3)
-	  stw       r27, 0x4(r3)
-	  stw       r8, 0x10(r3)
-	  stw       r8, 0x14(r3)
-	  stfs      f0, 0x18(r3)
-	  sth       r5, 0xC(r3)
-	  stw       r0, 0x0(r3)
-	  stw       r26, 0x4(r3)
-
-	.loc_0x63C:
-	  addi      r22, r22, 0x1
-	  stw       r3, 0xD0(r30)
-	  cmpwi     r22, 0x3
-	  addi      r30, r30, 0x4
-	  blt+      .loc_0x5B8
-	  addi      r23, r23, 0x1
-	  addi      r28, r28, 0xC
-	  cmpwi     r23, 0x4
-	  addi      r29, r29, 0x4
-	  blt+      .loc_0x57C
-	  li        r3, 0x14
-	  bl        -0x2D142C
-	  cmplwi    r3, 0
-	  beq-      .loc_0x6E0
-	  lis       r5, 0x804B
-	  lis       r4, 0x804A
-	  subi      r0, r5, 0x5808
-	  lis       r6, 0x804E
-	  stw       r0, 0x0(r3)
-	  subi      r0, r4, 0x1D84
-	  lis       r5, 0x804E
-	  lis       r4, 0x804D
-	  stw       r0, 0x4(r3)
-	  addi      r0, r6, 0x698C
-	  addi      r4, r4, 0x57A0
-	  li        r8, 0
-	  stw       r0, 0x0(r3)
-	  li        r7, 0x2B2
-	  addi      r6, r5, 0x6940
-	  li        r5, 0x24F
-	  stw       r25, 0x4(r3)
-	  addi      r0, r4, 0x14
-	  stw       r8, 0x8(r3)
-	  sth       r7, 0xC(r3)
-	  stb       r8, 0xE(r3)
-	  stw       r6, 0x0(r3)
-	  stw       r24, 0x4(r3)
-	  stw       r8, 0x10(r3)
-	  sth       r5, 0xC(r3)
-	  stw       r4, 0x0(r3)
-	  stw       r0, 0x4(r3)
-
-	.loc_0x6E0:
-	  stw       r3, 0x100(r31)
-	  li        r3, 0x2C
-	  bl        -0x2D14AC
-	  mr.       r22, r3
-	  beq-      .loc_0x710
-	  li        r4, 0
-	  li        r5, 0x250
-	  li        r6, 0x251
-	  bl        0xBAED8
-	  lis       r3, 0x804D
-	  addi      r0, r3, 0x5784
-	  stw       r0, 0x0(r22)
-
-	.loc_0x710:
-	  stw       r22, 0x104(r31)
-	  li        r3, 0x20
-	  bl        -0x2D14DC
-	  mr.       r0, r3
-	  beq-      .loc_0x730
-	  lwz       r4, 0x4(r31)
-	  bl        -0xB4114
-	  mr        r0, r3
-
-	.loc_0x730:
-	  stw       r0, 0x114(r31)
-	  li        r3, 0x40
-	  bl        -0x2D13F4
-	  li        r25, 0
-	  lis       r4, 0x804D
-	  stw       r3, 0x118(r31)
-	  mr        r22, r25
-	  lfs       f31, -0x1160(r2)
-	  addi      r23, r4, 0x59CC
-	  li        r26, 0
-
-	.loc_0x758:
-	  li        r3, 0x2C
-	  bl        -0x2D1520
-	  mr.       r24, r3
-	  beq-      .loc_0x77C
-	  li        r4, 0x2
-	  bl        -0xB40F8
-	  stw       r23, 0x0(r24)
-	  stw       r22, 0x24(r24)
-	  stfs      f31, 0x28(r24)
-
-	.loc_0x77C:
-	  lwz       r3, 0x118(r31)
-	  addi      r26, r26, 0x1
-	  cmpwi     r26, 0x10
-	  stwx      r24, r3, r25
-	  addi      r25, r25, 0x4
-	  blt+      .loc_0x758
-	  mr        r3, r31
-	  psq_l     f31,0x38(r1),0,0
-	  lfd       f31, 0x30(r1)
-	  lmw       r22, 0x8(r1)
-	  lwz       r0, 0x44(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x40
-	  blr
-	*/
+	for (int i = 0; i < 16; i++) {
+		m_attackShadowNodes[i] = new AttackShadowNode(2);
+	}
 }
 
 /*
@@ -2219,72 +1513,26 @@ lbl_802F5580:
  */
 void BigTreasureAttackMgr::update()
 {
-	/*
-	stwu     r1, -0x20(r1)
-	mflr     r0
-	stw      r0, 0x24(r1)
-	stw      r31, 0x1c(r1)
-	stw      r30, 0x18(r1)
-	stw      r29, 0x14(r1)
-	stw      r28, 0x10(r1)
-	mr       r28, r3
-	bl       updateFireAttack__Q34Game11BigTreasure20BigTreasureAttackMgrFv
-	mr       r3, r28
-	bl       updateGasAttack__Q34Game11BigTreasure20BigTreasureAttackMgrFv
-	mr       r3, r28
-	bl       updateWaterAttack__Q34Game11BigTreasure20BigTreasureAttackMgrFv
-	mr       r3, r28
-	bl       updateElecAttack__Q34Game11BigTreasure20BigTreasureAttackMgrFv
-	mr       r3, r28
-	bl       updateAttackShadow__Q34Game11BigTreasure20BigTreasureAttackMgrFv
-	mr       r31, r28
-	li       r30, 0
-	li       r29, 0
+	updateFireAttack();
+	updateGasAttack();
+	updateWaterAttack();
+	updateElecAttack();
+	updateAttackShadow();
 
-lbl_802F5634:
-	lbz      r0, 0(r31)
-	cmplwi   r0, 0
-	beq      lbl_802F566C
-	lwz      r3, 4(r28)
-	li       r30, 1
-	lwz      r0, 0x1e0(r3)
-	rlwinm.  r0, r0, 0, 0x16, 0x16
-	beq      lbl_802F566C
-	mr       r4, r29
-	bl       isCapturedTreasure__Q34Game11BigTreasure3ObjFi
-	clrlwi.  r0, r3, 0x18
-	bne      lbl_802F566C
-	mr       r3, r28
-	bl       finishAttack__Q34Game11BigTreasure20BigTreasureAttackMgrFv
+	bool check = false;
+	for (int i = 0; i < 4; i++) {
+		if (_00[i]) {
+			check = true;
+			if (m_obj->isEvent(0, EB_IsBittered) && !m_obj->isCapturedTreasure(i)) {
+				finishAttack();
+			}
+		}
+	}
 
-lbl_802F566C:
-	addi     r29, r29, 1
-	addi     r31, r31, 1
-	cmpwi    r29, 4
-	blt      lbl_802F5634
-	clrlwi.  r0, r30, 0x18
-	beq      lbl_802F56AC
-	lwz      r3, sys@sda21(r13)
-	lfs      f1, 8(r28)
-	lfs      f0, 0x54(r3)
-	fadds    f0, f1, f0
-	stfs     f0, 8(r28)
-	lwz      r3, sys@sda21(r13)
-	lfs      f1, 0xc(r28)
-	lfs      f0, 0x54(r3)
-	fadds    f0, f1, f0
-	stfs     f0, 0xc(r28)
-
-lbl_802F56AC:
-	lwz      r0, 0x24(r1)
-	lwz      r31, 0x1c(r1)
-	lwz      r30, 0x18(r1)
-	lwz      r29, 0x14(r1)
-	lwz      r28, 0x10(r1)
-	mtlr     r0
-	addi     r1, r1, 0x20
-	blr
-	*/
+	if (check) {
+		_08 += sys->m_deltaTime;
+		_0C += sys->m_deltaTime;
+	}
 }
 
 /*
@@ -2294,7 +1542,15 @@ lbl_802F56AC:
  */
 void BigTreasureAttackMgr::setFireAttackParameter()
 {
-	// UNUSED FUNCTION
+	// this needs a srawi not srwi......................
+	switch ((m_obj->isNormalAttack(BIGATTACK_Fire) != 0) + 2) {
+	case 1:
+		m_attackData->_28 = CG_PROPERPARMS(m_obj).m_ff00.m_value;
+		break;
+	case 2:
+		m_attackData->_28 = CG_PROPERPARMS(m_obj).m_ff10.m_value;
+		break;
+	}
 }
 
 /*
@@ -2304,6 +1560,17 @@ void BigTreasureAttackMgr::setFireAttackParameter()
  */
 void BigTreasureAttackMgr::startFireAttack()
 {
+	if (!_00[BIGATTACK_Fire]) {
+		_00[BIGATTACK_Fire] = 1;
+		_08                 = 0.0f;
+		_0C                 = 0.0f;
+		setFireAttackParameter();
+
+		updateFireEmitPosition();
+		startNewFireList();
+		efx::ArgScale fxArg(Vector3f::zero, m_attackData->_28);
+		m_efxFire->create(&fxArg);
+	}
 	/*
 	stwu     r1, -0x30(r1)
 	mflr     r0
@@ -2398,49 +1665,17 @@ lbl_802F57E8:
  */
 void BigTreasureAttackMgr::startNewFireList()
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	stw      r30, 8(r1)
-	mr       r30, r3
-	lwz      r3, 0x14(r3)
-	lwz      r3, 0x10(r3)
-	cmplwi   r3, 0
-	beq      lbl_802F5880
-	mr       r31, r3
-	bl       del__5CNodeFv
-	lfs      f1, lbl_8051D200@sda21(r2)
-	mr       r4, r31
-	lfs      f0, lbl_8051D20C@sda21(r2)
-	stfs     f1, 0x20(r31)
-	lfs      f1, 0x1c(r30)
-	stfs     f1, 0x24(r31)
-	lfs      f1, 0x20(r30)
-	stfs     f1, 0x28(r31)
-	lfs      f1, 0x24(r30)
-	stfs     f1, 0x2c(r31)
-	lfs      f1, 0x28(r30)
-	stfs     f1, 0x30(r31)
-	lfs      f1, 0x2c(r30)
-	stfs     f1, 0x34(r31)
-	lfs      f1, 0x30(r30)
-	stfs     f1, 0x38(r31)
-	lfs      f1, 0x34(r31)
-	fadds    f0, f1, f0
-	stfs     f0, 0x34(r31)
-	lwz      r3, 0x10(r30)
-	bl       add__5CNodeFP5CNode
+	if (m_fireAttackNodes->m_child) {
+		BigTreasureFireAttack* child = static_cast<BigTreasureFireAttack*>(m_fireAttackNodes->m_child);
+		child->del();
 
-lbl_802F5880:
-	lwz      r0, 0x14(r1)
-	lwz      r31, 0xc(r1)
-	lwz      r30, 8(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+		child->_20 = 0.0f;
+		child->_24 = _1C;
+		child->_30 = _28[0];
+		child->_30.y += -20.0f;
+
+		_10->add(child);
+	}
 }
 
 /*
@@ -2450,6 +1685,37 @@ lbl_802F5880:
  */
 void BigTreasureAttackMgr::updateFireAttack()
 {
+	bool check                       = true;
+	BigTreasureFireAttack* childNode = static_cast<BigTreasureFireAttack*>(_10->m_child);
+	while (childNode) {
+		BigTreasureFireAttack* nextNode = static_cast<BigTreasureFireAttack*>(childNode->m_next);
+		if (childNode->update()) {
+			childNode->del();
+			m_fireAttackNodes->add(childNode);
+		}
+
+		if (childNode == _10->m_child) {
+			updateFireSePosition(childNode, 2);
+			PSStartSoundVec(PSSE_EN_BIGTAKARA_FIRE_TAIL, (Vec*)&_28[2]);
+		}
+
+		if (check && childNode->_20 < 0.55f) {
+			check = false;
+			updateFireSePosition(childNode, 1);
+			PSStartSoundVec(PSSE_EN_BIGTAKARA_FIRE_BODY, (Vec*)&_28[1]);
+		}
+		childNode = nextNode;
+	}
+
+	if (_00[BIGATTACK_Fire]) {
+		updateFireEmitPosition();
+		if (_08 > 0.1f) {
+			_08 = 0.0f;
+			startNewFireList();
+		}
+		PSStartSoundVec(PSSE_EN_BIGTAKARA_FIRE_ROOT, (Vec*)&_28[0]);
+	}
+
 	/*
 	stwu     r1, -0x20(r1)
 	mflr     r0
@@ -2576,36 +1842,9 @@ void BigTreasureAttackMgr::finishFireAttack()
  */
 void BigTreasureAttackMgr::updateFireEmitPosition()
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	mr       r31, r3
-	lis      r3, lbl_8048D204@ha
-	lwz      r5, 4(r31)
-	addi     r4, r3, lbl_8048D204@l
-	lwz      r3, 0x174(r5)
-	bl       getJoint__Q28SysShape5ModelFPc
-	bl       getWorldMatrix__Q28SysShape5JointFv
-	lfs      f0, 0(r3)
-	stfs     f0, 0x1c(r31)
-	lfs      f0, 0x10(r3)
-	stfs     f0, 0x20(r31)
-	lfs      f0, 0x20(r3)
-	stfs     f0, 0x24(r31)
-	lfs      f0, 0xc(r3)
-	stfs     f0, 0x28(r31)
-	lfs      f0, 0x1c(r3)
-	stfs     f0, 0x2c(r31)
-	lfs      f0, 0x2c(r3)
-	stfs     f0, 0x30(r31)
-	lwz      r31, 0xc(r1)
-	lwz      r0, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	Matrixf* mat = m_obj->m_model->getJoint("otakara_fire_eff")->getWorldMatrix();
+	mat->getBasis(0, _1C);
+	mat->getBasis(3, _28[0]);
 }
 
 /*
@@ -2613,51 +1852,27 @@ void BigTreasureAttackMgr::updateFireEmitPosition()
  * Address:	802F5A94
  * Size:	0000A0
  */
-void BigTreasureAttackMgr::updateFireSePosition(BigTreasureFireAttack*, int)
+void BigTreasureAttackMgr::updateFireSePosition(BigTreasureFireAttack* attackNode, int nodeType)
 {
-	/*
-	.loc_0x0:
-	  mulli     r0, r5, 0xC
-	  lwz       r5, 0x11C(r3)
-	  lfs       f3, 0x20(r4)
-	  lfs       f1, 0x28(r5)
-	  lfs       f0, 0x24(r4)
-	  add       r3, r3, r0
-	  lfs       f2, -0x1148(r2)
-	  stfs      f0, 0x28(r3)
-	  fmuls     f2, f2, f1
-	  lfs       f0, -0x1154(r2)
-	  lfs       f1, 0x28(r4)
-	  stfs      f1, 0x2C(r3)
-	  fmuls     f2, f3, f2
-	  lfs       f1, 0x2C(r4)
-	  stfs      f1, 0x30(r3)
-	  lfs       f1, 0x28(r3)
-	  fmuls     f1, f1, f2
-	  stfs      f1, 0x28(r3)
-	  lfs       f1, 0x2C(r3)
-	  fmuls     f1, f1, f2
-	  stfs      f1, 0x2C(r3)
-	  lfs       f1, 0x30(r3)
-	  fmuls     f1, f1, f2
-	  stfs      f1, 0x30(r3)
-	  lfs       f2, 0x28(r3)
-	  lfs       f1, 0x30(r4)
-	  fadds     f1, f2, f1
-	  stfs      f1, 0x28(r3)
-	  lfs       f2, 0x2C(r3)
-	  lfs       f1, 0x34(r4)
-	  fadds     f1, f2, f1
-	  stfs      f1, 0x2C(r3)
-	  lfs       f2, 0x30(r3)
-	  lfs       f1, 0x38(r4)
-	  fadds     f1, f2, f1
-	  stfs      f1, 0x30(r3)
-	  lfs       f1, 0x2C(r3)
-	  fsubs     f0, f1, f0
-	  stfs      f0, 0x2C(r3)
-	  blr
-	*/
+	f32 factor;
+	f32 scale   = m_attackData->_28;
+	f32 nodeVal = attackNode->_20;
+
+	_28[nodeType] = attackNode->_24;
+
+	factor = 200.0f;
+	factor *= scale;
+	factor = nodeVal * factor;
+
+	_28[nodeType].x *= factor;
+	_28[nodeType].y *= factor;
+	_28[nodeType].z *= factor;
+
+	_28[nodeType].x += attackNode->_30.x;
+	_28[nodeType].y += attackNode->_30.y;
+	_28[nodeType].z += attackNode->_30.z;
+
+	_28[nodeType].y -= -25.0f;
 }
 
 /*
@@ -2677,6 +1892,15 @@ void BigTreasureAttackMgr::setGasAttackParameter()
  */
 void BigTreasureAttackMgr::startGasAttack()
 {
+	if (!_00[BIGATTACK_Gas]) {
+		_00[BIGATTACK_Gas] = 1;
+		_08                = 0.0f;
+		_0C                = 0.0f;
+
+		setGasAttackParameter();
+
+		updateGasEmitPosition();
+	}
 	/*
 	stwu     r1, -0x60(r1)
 	mflr     r0
