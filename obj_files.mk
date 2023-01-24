@@ -936,7 +936,7 @@ OGAWA:=\
 	$(BUILD_DIR)/src/plugProjectOgawaU/ogSceneKantei.o\
 	$(BUILD_DIR)/src/plugProjectOgawaU/ogObjSpecialItem.o\
 	$(BUILD_DIR)/src/plugProjectOgawaU/ogSceneSpecialItem.o\
-	$(BUILD_DIR)/asm/plugProjectOgawaU/ogObjFloor.o\
+	$(BUILD_DIR)/src/plugProjectOgawaU/ogObjFloor.o\
 	$(BUILD_DIR)/src/plugProjectOgawaU/ogSceneFloor.o\
 	$(BUILD_DIR)/src/plugProjectOgawaU/ogObjCave.o\
 	$(BUILD_DIR)/src/plugProjectOgawaU/ogSceneCave.o\

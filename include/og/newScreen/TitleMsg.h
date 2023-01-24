@@ -46,10 +46,10 @@ struct TitleMsg {
 	TitleMsg();
 	TitleMsg(J2DScreen*, J2DPane*, char*);
 
-	virtual void init();   // _08 (weak)
-	virtual void update(); // _0C (weak)
-	virtual void start();  // _10 (weak)
-	virtual void end();    // _14 (weak)
+	virtual void init() { }   // _08 (weak)
+	virtual void update() { } // _0C (weak)
+	virtual void start();     // _10 (weak)
+	virtual void end() { }    // _14 (weak)
 
 	void setFontPane(J2DPictureEx*, int);
 	void setCentering(EnumCentering);
