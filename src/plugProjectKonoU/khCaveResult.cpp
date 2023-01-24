@@ -1657,10 +1657,12 @@ void ObjCaveResult::statusEffect()
 			m_screenMain->search('Ptits15')->show();
 			m_status = CAVERES_Normal;
 			PSSystem::spSysIF->playSystemSe(PSSE_SY_WMAP_CAVE_NAME, 0);
-		} else {
-			if (m_alpha < msVal._39)
-				m_alpha += msVal._3A;
 		}
+
+		if (m_alpha < msVal._39) {
+			m_alpha += msVal._3A;
+		}
+
 	} else {
 		m_changeStateDelay--;
 		if (m_changeStateDelay == 0) {
@@ -1668,131 +1670,6 @@ void ObjCaveResult::statusEffect()
 			PSSystem::spSysIF->playSystemSe(PSSE_DOKUTSU_COMPLETE, 0);
 		}
 	}
-	/*
-stwu     r1, -0x10(r1)
-mflr     r0
-stw      r0, 0x14(r1)
-stw      r31, 0xc(r1)
-mr       r31, r3
-lwz      r3, 0xf4(r3)
-cmpwi    r3, 0
-bne      lbl_803FAAA4
-lbz      r0, 0x104(r31)
-rlwinm.  r0, r0, 0, 0x1b, 0x1b
-bne      lbl_803FAA7C
-lwz      r3, 0x40(r31)
-lis      r5, 0x6E6F726D@ha
-lis      r4, 0x50616E61@ha
-lwz      r12, 0(r3)
-addi     r6, r5, 0x6E6F726D@l
-addi     r5, r4, 0x50616E61@l
-lwz      r12, 0x3c(r12)
-mtctr    r12
-bctrl
-li       r0, 0
-lis      r5, 0x636F6D70@ha
-stb      r0, 0xb0(r3)
-lis      r4, 0x50616E61@ha
-addi     r6, r5, 0x636F6D70@l
-lwz      r3, 0x40(r31)
-addi     r5, r4, 0x50616E61@l
-lwz      r12, 0(r3)
-lwz      r12, 0x3c(r12)
-mtctr    r12
-bctrl
-li       r0, 1
-stb      r0, 0xb0(r3)
-lwz      r3, 0x84(r31)
-bl       up__Q32og6Screen8ScaleMgrFv
-lwz      r3, 0xac(r31)
-bl       getMotherPane__Q32og6Screen18CallBack_CounterRVFv
-li       r0, 1
-stb      r0, 0xb0(r3)
-lwz      r3, 0xa8(r31)
-bl       getMotherPane__Q32og6Screen18CallBack_CounterRVFv
-lis      r4, msVal__Q32kh6Screen13ObjCaveResult@ha
-lwz      r12, 0(r3)
-addi     r4, r4, msVal__Q32kh6Screen13ObjCaveResult@l
-lfs      f1, 0x10(r4)
-lfs      f0, 0x14(r4)
-lwz      r12, 0x14(r12)
-fneg     f1, f1
-fneg     f2, f0
-mtctr    r12
-bctrl
-lwz      r3, 0x40(r31)
-lis      r5, 0x5F303038@ha
-lis      r4, 0x50494354@ha
-lwz      r12, 0(r3)
-addi     r6, r5, 0x5F303038@l
-addi     r5, r4, 0x50494354@l
-lwz      r12, 0x3c(r12)
-mtctr    r12
-bctrl
-li       r0, 1
-lis      r5, 0x74733134@ha
-stb      r0, 0xb0(r3)
-lis      r4, 0x00507469@ha
-addi     r6, r5, 0x74733134@l
-lwz      r3, 0x40(r31)
-addi     r5, r4, 0x00507469@l
-lwz      r12, 0(r3)
-lwz      r12, 0x3c(r12)
-mtctr    r12
-bctrl
-li       r0, 1
-lis      r5, 0x74733135@ha
-stb      r0, 0xb0(r3)
-lis      r4, 0x00507469@ha
-addi     r6, r5, 0x74733135@l
-lwz      r3, 0x40(r31)
-addi     r5, r4, 0x00507469@l
-lwz      r12, 0(r3)
-lwz      r12, 0x3c(r12)
-mtctr    r12
-bctrl
-li       r4, 1
-li       r0, 0
-stb      r4, 0xb0(r3)
-li       r4, 0x1840
-li       r5, 0
-stw      r0, 0xf0(r31)
-lwz      r3, spSysIF__8PSSystem@sda21(r13)
-bl       playSystemSe__Q28PSSystem5SysIFFUlUl
-
-lbl_803FAA7C:
-lis      r3, msVal__Q32kh6Screen13ObjCaveResult@ha
-lbz      r4, 0x105(r31)
-addi     r3, r3, msVal__Q32kh6Screen13ObjCaveResult@l
-lbz      r0, 0x39(r3)
-cmplw    r4, r0
-bge      lbl_803FAAD4
-lbz      r0, 0x3a(r3)
-add      r0, r4, r0
-stb      r0, 0x105(r31)
-b        lbl_803FAAD4
-
-lbl_803FAAA4:
-addi     r0, r3, -1
-stw      r0, 0xf4(r31)
-lwz      r0, 0xf4(r31)
-cmpwi    r0, 0
-bne      lbl_803FAAD4
-lbz      r0, 0x104(r31)
-li       r4, 0x1833
-li       r5, 0
-ori      r0, r0, 0x10
-stb      r0, 0x104(r31)
-lwz      r3, spSysIF__8PSSystem@sda21(r13)
-bl       playSystemSe__Q28PSSystem5SysIFFUlUl
-
-lbl_803FAAD4:
-lwz      r0, 0x14(r1)
-lwz      r31, 0xc(r1)
-mtlr     r0
-addi     r1, r1, 0x10
-blr
-	*/
 }
 
 /*
