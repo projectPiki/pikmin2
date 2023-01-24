@@ -9,32 +9,7 @@ namespace Screen {
  * Address:	8040B3F4
  * Size:	00004C
  */
-u64 getSerialTagName(u64 tag, int offs)
-{
-	int test = (offs / 10);
-	return tag + (offs + test * 10) + (test * 0x100);
-	/*
-lis      r6, 0x66666667@ha
-addi     r0, r6, 0x66666667@l
-mulhw    r8, r0, r5
-srawi    r0, r8, 2
-srwi     r6, r0, 0x1f
-add      r0, r0, r6
-mulli    r0, r0, 0xa
-subf     r7, r0, r5
-srawi    r6, r7, 0x1f
-srawi    r0, r8, 2
-srwi     r5, r0, 0x1f
-add      r0, r0, r5
-slwi     r5, r0, 8
-srawi    r0, r5, 0x1f
-addc     r4, r4, r5
-adde     r0, r3, r0
-addc     r4, r7, r4
-adde     r3, r6, r0
-blr
-	*/
-}
+u64 getSerialTagName(u64 tag, int offs) { return tag + (offs / 10 * 0x100) + offs % 10; }
 
 /*
  * --INFO--

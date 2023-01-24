@@ -661,7 +661,7 @@ void ObjContena::doCreate(JKRArchive* arc)
 	m_pikiPaneNum = 0;
 
 	for (int i = 0; i < 100; i++) {
-		u64 tag = 'Piki_00' + i;
+		u64 tag = 'Piki_00' + i % 10 + (i / 10 * 0x100);
 		if (!m_contena->search(tag))
 			break;
 
@@ -671,7 +671,7 @@ void ObjContena::doCreate(JKRArchive* arc)
 	m_pikiPaneList = new J2DPane*[m_pikiPaneNum];
 
 	for (int i = 0; i < m_pikiPaneNum; i++) {
-		u64 tag           = 'Piki_00' + i;
+		u64 tag           = 'Piki_00' + (i / 10 * 0x100) + i % 10;
 		J2DPane* pane     = m_contena->search(tag);
 		m_pikiPaneList[i] = pane;
 		pane->hide();

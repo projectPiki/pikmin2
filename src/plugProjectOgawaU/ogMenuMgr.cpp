@@ -253,10 +253,11 @@ void MenuMgr::init(J2DScreen* screen, u16 options, u64 tag1, u64 tag2, u64 tag3,
 	mesg2 = MojiToNum(tag3, 2);
 
 	for (int i = 0; i < options; i++) {
-		u64 cMesg      = mesg1 + i;
+		u64 cMesg      = mesg1 + (i / 10 * 0x100) + i % 10;
 		m_paneList4[i] = og::Screen::TagSearch(screen, cMesg);
 
-		cMesg          = mesg2 + i;
+		cMesg = mesg2 + (i / 10 * 0x100) + i % 10;
+		;
 		m_paneList5[i] = og::Screen::TagSearch(screen, cMesg);
 
 		m_paneList4[i]->hide();

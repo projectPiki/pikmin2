@@ -378,7 +378,7 @@ void ObjFloor::doCreate(JKRArchive* arc)
 		m_loadingPane->show();
 
 		for (int i = 0; i < 6; i++) {
-			u64 tag            = 'Nsub_i00' + (i + i % 10); // not quite but closer
+			u64 tag            = 'Nsub_i00' + i % 10 + (i / 10 * 0x100);
 			m_rulesPaneList[i] = og::Screen::TagSearch(m_screenRules, tag);
 			m_rulesPaneList[i]->hide();
 		}
