@@ -1,4 +1,4 @@
-#include "kh/PayDept.h"
+#include "kh/khPayDept.h"
 #include "JSystem/JKR/JKRFileLoader.h"
 #include "JSystem/JKR/JKRArchive.h"
 #include "utilityU.h"

@@ -1,4 +1,4 @@
-#include "kh/WinLose.h"
+#include "kh/khWinLose.h"
 #include "JSystem/JKR/JKRFileLoader.h"
 #include "kh/khUtil.h"
 #include "JSystem/JKR/JKRArchive.h"

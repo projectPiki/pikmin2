@@ -5,7 +5,7 @@
 #include "JSystem/JUT/JUTException.h"
 #include "P2DScreen.h"
 #include "kh/khUtil.h"
-#include "kh/WorldMap.h"
+#include "kh/khWorldMap.h"
 #include "LoadResource.h"
 #include "og/newScreen/ogUtil.h"
 #include "types.h"

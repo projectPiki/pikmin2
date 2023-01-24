@@ -3,13 +3,13 @@
 #include "og/newScreen/Ground.h"
 #include "Game/gamePlayData.h"
 #include "Game/Navi.h"
-#include "kh/FinalFloor.h"
-#include "kh/ReadyGo.h"
+#include "kh/khFinalFloor.h"
+#include "kh/khReadyGo.h"
 #include "og/newScreen/Challenge.h"
 #include "og/Sound.h"
-#include "kh/FinalResult.h"
-#include "kh/CaveResult.h"
-#include "kh/WinLose.h"
+#include "kh/khFinalResult.h"
+#include "kh/khCaveResult.h"
+#include "kh/khWinLose.h"
 #include "Game/Entities/ItemOnyon.h"
 #include "Morimura/Zukan.h"
 #include "PSSystem/PSSystemIF.h"
@@ -20,6 +20,8 @@
 #include "Game/GameSystem.h"
 
 namespace Screen {
+
+Game2DMgr* gGame2DMgr;
 
 /*
  * --INFO--
@@ -337,11 +339,11 @@ bool Game2DMgr::open_SMenu(og::Screen::DispMemberSMenuAll& disp)
 	if (m_screenMgr->isAnyReservation())
 		return false;
 	switch (m_screenMgr->getSceneType()) {
+	default:
+		return false;
 	case SCENE_GROUND:
 	case SCENE_CAVE:
 	case SCENE_VS:
-	default:
-		return false;
 	case SCENE_CHALLENGE_1P:
 	case SCENE_CHALLENGE_2P:
 		if (!Game::naviMgr->getActiveNavi()) {
@@ -352,64 +354,6 @@ bool Game2DMgr::open_SMenu(og::Screen::DispMemberSMenuAll& disp)
 		}
 		break;
 	}
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	mr       r31, r4
-	stw      r30, 8(r1)
-	mr       r30, r3
-	lwz      r3, 0x18(r3)
-	bl       isAnyReservation__Q26Screen3MgrCFv
-	clrlwi.  r0, r3, 0x18
-	beq      lbl_803FCD04
-	li       r3, 0
-	b        lbl_803FCD68
-
-lbl_803FCD04:
-	lwz      r3, 0x18(r30)
-	bl       getSceneType__Q26Screen3MgrFv
-	cmpwi    r3, 0x2724
-	beq      lbl_803FCD3C
-	bge      lbl_803FCD2C
-	cmpwi    r3, 0x2713
-	bge      lbl_803FCD34
-	cmpwi    r3, 0x2710
-	bge      lbl_803FCD3C
-	b        lbl_803FCD34
-
-lbl_803FCD2C:
-	cmpwi    r3, 0x2727
-	beq      lbl_803FCD3C
-
-lbl_803FCD34:
-	li       r3, 0
-	b        lbl_803FCD68
-
-lbl_803FCD3C:
-	lwz      r3, naviMgr__4Game@sda21(r13)
-	bl       getActiveNavi__Q24Game7NaviMgrFv
-	cmplwi   r3, 0
-	bne      lbl_803FCD54
-	li       r3, 0
-	b        lbl_803FCD68
-
-lbl_803FCD54:
-	li       r0, 1
-	mr       r3, r30
-	stb      r0, 0xa6(r31)
-	mr       r4, r31
-	bl open_SMenu_Sub__Q26Screen9Game2DMgrFRQ32og6Screen18DispMemberSMenuAll
-
-lbl_803FCD68:
-	lwz      r0, 0x14(r1)
-	lwz      r31, 0xc(r1)
-	lwz      r30, 8(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
 }
 
 /*
@@ -1246,8 +1190,7 @@ void Game2DMgr::stopFinalFloorSound()
 {
 	if (m_screenMgr->getSceneType() == SCENE_FINAL_FLOOR) {
 		kh::Screen::SceneFinalFloor* scene = static_cast<kh::Screen::SceneFinalFloor*>(m_screenMgr->m_backupScene);
-		P2ASSERTLINE(124, scene->m_objFinalFloor);
-		scene->m_objFinalFloor->stopSound();
+		kh::Screen::finalFloorStopSound(scene);
 	}
 }
 
@@ -1260,8 +1203,7 @@ void Game2DMgr::restartFinalFloorSound()
 {
 	if (m_screenMgr->getSceneType() == SCENE_FINAL_FLOOR) {
 		kh::Screen::SceneFinalFloor* scene = static_cast<kh::Screen::SceneFinalFloor*>(m_screenMgr->m_backupScene);
-		P2ASSERTLINE(125, scene->m_objFinalFloor);
-		scene->m_objFinalFloor->restartSound();
+		kh::Screen::finalFloorRestartSound(scene);
 	}
 }
 
@@ -1659,55 +1601,10 @@ int Game2DMgr::check_ZukanItemRequest(int& id)
 		Morimura::TDItemScene* scene = static_cast<Morimura::TDItemScene*>(m_screenMgr->m_backupScene);
 		if (scene) {
 			Morimura::TZukanBase* obj = static_cast<Morimura::TZukanBase*>(scene->m_object);
-			if (obj) {
-				ret = obj->checkRequest(id);
-			} else {
-				ret = 0;
-			}
+			ret                       = (obj) ? obj->checkRequest(id) : 0;
 		}
 	}
 	return ret;
-	/*
-	stwu     r1, -0x20(r1)
-	mflr     r0
-	stw      r0, 0x24(r1)
-	stw      r31, 0x1c(r1)
-	li       r31, 0
-	stw      r30, 0x18(r1)
-	mr       r30, r4
-	stw      r29, 0x14(r1)
-	mr       r29, r3
-	lwz      r3, 0x18(r3)
-	bl       getSceneType__Q26Screen3MgrFv
-	cmpwi    r3, 0x2735
-	bne      lbl_803FF6C8
-	lwz      r3, 0x18(r29)
-	lwz      r3, 0x1c(r3)
-	cmplwi   r3, 0
-	beq      lbl_803FF6C8
-	lwz      r3, 0x220(r3)
-	cmplwi   r3, 0
-	beq      lbl_803FF6C0
-	mr       r4, r30
-	bl       checkRequest__Q28Morimura10TZukanBaseFRi
-	b        lbl_803FF6C4
-
-lbl_803FF6C0:
-	li       r3, 0
-
-lbl_803FF6C4:
-	mr       r31, r3
-
-lbl_803FF6C8:
-	lwz      r0, 0x24(r1)
-	mr       r3, r31
-	lwz      r31, 0x1c(r1)
-	lwz      r30, 0x18(r1)
-	lwz      r29, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x20
-	blr
-	*/
 }
 
 /*
@@ -1722,55 +1619,10 @@ int Game2DMgr::check_ZukanEnemyRequest(int& id)
 		Morimura::TDEnemyScene* scene = static_cast<Morimura::TDEnemyScene*>(m_screenMgr->m_backupScene);
 		if (scene) {
 			Morimura::TZukanBase* obj = static_cast<Morimura::TZukanBase*>(scene->m_object);
-			if (obj) {
-				ret = obj->checkRequest(id);
-			} else {
-				ret = 0;
-			}
+			ret                       = (obj) ? obj->checkRequest(id) : 0;
 		}
 	}
 	return ret;
-	/*
-	stwu     r1, -0x20(r1)
-	mflr     r0
-	stw      r0, 0x24(r1)
-	stw      r31, 0x1c(r1)
-	li       r31, 0
-	stw      r30, 0x18(r1)
-	mr       r30, r4
-	stw      r29, 0x14(r1)
-	mr       r29, r3
-	lwz      r3, 0x18(r3)
-	bl       getSceneType__Q26Screen3MgrFv
-	cmpwi    r3, 0x2734
-	bne      lbl_803FF74C
-	lwz      r3, 0x18(r29)
-	lwz      r3, 0x1c(r3)
-	cmplwi   r3, 0
-	beq      lbl_803FF74C
-	lwz      r3, 0x220(r3)
-	cmplwi   r3, 0
-	beq      lbl_803FF744
-	mr       r4, r30
-	bl       checkRequest__Q28Morimura10TZukanBaseFRi
-	b        lbl_803FF748
-
-lbl_803FF744:
-	li       r3, 0
-
-lbl_803FF748:
-	mr       r31, r3
-
-lbl_803FF74C:
-	lwz      r0, 0x24(r1)
-	mr       r3, r31
-	lwz      r31, 0x1c(r1)
-	lwz      r30, 0x18(r1)
-	lwz      r29, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x20
-	blr
-	*/
 }
 
 /*
@@ -1785,59 +1637,9 @@ int Game2DMgr::getZukanEnemyCurrSelectId()
 		Morimura::TDEnemyScene* scene = static_cast<Morimura::TDEnemyScene*>(m_screenMgr->m_backupScene);
 		P2ASSERTLINE(2195, scene);
 		Morimura::TZukanBase* obj = static_cast<Morimura::TZukanBase*>(scene->m_object);
-		if (obj) {
-			ret = obj->getCurrSelectId();
-		} else {
-			ret = -1;
-		}
+		ret                       = (obj) ? obj->getCurrSelectId() : -1;
 	}
 	return ret;
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	li       r31, -1
-	stw      r30, 8(r1)
-	mr       r30, r3
-	lwz      r3, 0x18(r3)
-	bl       getSceneType__Q26Screen3MgrFv
-	cmpwi    r3, 0x2734
-	bne      lbl_803FF7E0
-	lwz      r3, 0x18(r30)
-	lwz      r31, 0x1c(r3)
-	cmplwi   r31, 0
-	bne      lbl_803FF7C4
-	lis      r3, lbl_80498510@ha
-	lis      r5, lbl_80498524@ha
-	addi     r3, r3, lbl_80498510@l
-	li       r4, 0x893
-	addi     r5, r5, lbl_80498524@l
-	crclr    6
-	bl       panic_f__12JUTExceptionFPCciPCce
-
-lbl_803FF7C4:
-	lwz      r3, 0x220(r31)
-	cmplwi   r3, 0
-	beq      lbl_803FF7D8
-	bl       getCurrSelectId__Q28Morimura10TZukanBaseFv
-	b        lbl_803FF7DC
-
-lbl_803FF7D8:
-	li       r3, -1
-
-lbl_803FF7DC:
-	mr       r31, r3
-
-lbl_803FF7E0:
-	lwz      r0, 0x14(r1)
-	mr       r3, r31
-	lwz      r31, 0xc(r1)
-	lwz      r30, 8(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
 }
 
 /*
@@ -1852,59 +1654,9 @@ int Game2DMgr::getZukanItemCurrSelectId()
 		Morimura::TDItemScene* scene = static_cast<Morimura::TDItemScene*>(m_screenMgr->m_backupScene);
 		P2ASSERTLINE(2210, scene);
 		Morimura::TZukanBase* obj = static_cast<Morimura::TZukanBase*>(scene->m_object);
-		if (obj) {
-			ret = obj->getCurrSelectId();
-		} else {
-			ret = -1;
-		}
+		ret                       = (obj) ? obj->getCurrSelectId() : -1;
 	}
 	return ret;
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	li       r31, -1
-	stw      r30, 8(r1)
-	mr       r30, r3
-	lwz      r3, 0x18(r3)
-	bl       getSceneType__Q26Screen3MgrFv
-	cmpwi    r3, 0x2735
-	bne      lbl_803FF870
-	lwz      r3, 0x18(r30)
-	lwz      r31, 0x1c(r3)
-	cmplwi   r31, 0
-	bne      lbl_803FF854
-	lis      r3, lbl_80498510@ha
-	lis      r5, lbl_80498524@ha
-	addi     r3, r3, lbl_80498510@l
-	li       r4, 0x8a2
-	addi     r5, r5, lbl_80498524@l
-	crclr    6
-	bl       panic_f__12JUTExceptionFPCciPCce
-
-lbl_803FF854:
-	lwz      r3, 0x220(r31)
-	cmplwi   r3, 0
-	beq      lbl_803FF868
-	bl       getCurrSelectId__Q28Morimura10TZukanBaseFv
-	b        lbl_803FF86C
-
-lbl_803FF868:
-	li       r3, -1
-
-lbl_803FF86C:
-	mr       r31, r3
-
-lbl_803FF870:
-	lwz      r0, 0x14(r1)
-	mr       r3, r31
-	lwz      r31, 0xc(r1)
-	lwz      r30, 8(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
 }
 
 /*
@@ -1970,97 +1722,15 @@ bool Game2DMgr::isZukanEnlargedWindow()
 		Morimura::TDItemScene* scene = static_cast<Morimura::TDItemScene*>(m_screenMgr->m_backupScene);
 		P2ASSERTLINE(2270, scene);
 		Morimura::TZukanBase* obj = static_cast<Morimura::TZukanBase*>(scene->m_object);
-		if (obj) {
-			ret = obj->isEnlargedWindow();
-		} else {
-			ret = false;
-		}
+		ret                       = (obj) ? obj->isEnlargedWindow() : false;
+
 	} else if (id == SCENE_ZUKAN_ITEM) {
 		Morimura::TDEnemyScene* scene = static_cast<Morimura::TDEnemyScene*>(m_screenMgr->m_backupScene);
 		P2ASSERTLINE(2277, scene);
 		Morimura::TZukanBase* obj = static_cast<Morimura::TZukanBase*>(scene->m_object);
-		if (obj) {
-			ret = obj->isEnlargedWindow();
-		} else {
-			ret = false;
-		}
+		ret                       = (obj) ? obj->isEnlargedWindow() : false;
 	}
 	return ret;
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	li       r31, 0
-	stw      r30, 8(r1)
-	mr       r30, r3
-	lwz      r3, 0x18(r3)
-	bl       getSceneType__Q26Screen3MgrFv
-	cmpwi    r3, 0x2735
-	bne      lbl_803FFA7C
-	lwz      r3, 0x18(r30)
-	lwz      r31, 0x1c(r3)
-	cmplwi   r31, 0
-	bne      lbl_803FFA5C
-	lis      r3, lbl_80498510@ha
-	lis      r5, lbl_80498524@ha
-	addi     r3, r3, lbl_80498510@l
-	li       r4, 0x8de
-	addi     r5, r5, lbl_80498524@l
-	crclr    6
-	bl       panic_f__12JUTExceptionFPCciPCce
-
-lbl_803FFA5C:
-	lwz      r3, 0x220(r31)
-	cmplwi   r3, 0
-	beq      lbl_803FFA70
-	bl       isEnlargedWindow__Q28Morimura10TZukanBaseFv
-	b        lbl_803FFA74
-
-lbl_803FFA70:
-	li       r3, 0
-
-lbl_803FFA74:
-	mr       r31, r3
-	b        lbl_803FFACC
-
-lbl_803FFA7C:
-	cmpwi    r3, 0x2734
-	bne      lbl_803FFACC
-	lwz      r3, 0x18(r30)
-	lwz      r31, 0x1c(r3)
-	cmplwi   r31, 0
-	bne      lbl_803FFAB0
-	lis      r3, lbl_80498510@ha
-	lis      r5, lbl_80498524@ha
-	addi     r3, r3, lbl_80498510@l
-	li       r4, 0x8e5
-	addi     r5, r5, lbl_80498524@l
-	crclr    6
-	bl       panic_f__12JUTExceptionFPCciPCce
-
-lbl_803FFAB0:
-	lwz      r3, 0x220(r31)
-	cmplwi   r3, 0
-	beq      lbl_803FFAC4
-	bl       isEnlargedWindow__Q28Morimura10TZukanBaseFv
-	b        lbl_803FFAC8
-
-lbl_803FFAC4:
-	li       r3, 0
-
-lbl_803FFAC8:
-	mr       r31, r3
-
-lbl_803FFACC:
-	lwz      r0, 0x14(r1)
-	mr       r3, r31
-	lwz      r31, 0xc(r1)
-	lwz      r30, 8(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
 }
 
 /*
@@ -2076,97 +1746,15 @@ bool Game2DMgr::isZukanMemoWindow()
 		Morimura::TDItemScene* scene = static_cast<Morimura::TDItemScene*>(m_screenMgr->m_backupScene);
 		P2ASSERTLINE(2298, scene);
 		Morimura::TZukanBase* obj = static_cast<Morimura::TZukanBase*>(scene->m_object);
-		if (obj) {
-			ret = obj->isMemoWindow();
-		} else {
-			ret = false;
-		}
+		ret                       = (obj) ? obj->isMemoWindow() : false;
+
 	} else if (id == SCENE_ZUKAN_ITEM) {
 		Morimura::TDEnemyScene* scene = static_cast<Morimura::TDEnemyScene*>(m_screenMgr->m_backupScene);
 		P2ASSERTLINE(2305, scene);
 		Morimura::TZukanBase* obj = static_cast<Morimura::TZukanBase*>(scene->m_object);
-		if (obj) {
-			ret = obj->isMemoWindow();
-		} else {
-			ret = false;
-		}
+		ret                       = (obj) ? obj->isMemoWindow() : false;
 	}
 	return ret;
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	li       r31, 0
-	stw      r30, 8(r1)
-	mr       r30, r3
-	lwz      r3, 0x18(r3)
-	bl       getSceneType__Q26Screen3MgrFv
-	cmpwi    r3, 0x2735
-	bne      lbl_803FFB60
-	lwz      r3, 0x18(r30)
-	lwz      r31, 0x1c(r3)
-	cmplwi   r31, 0
-	bne      lbl_803FFB40
-	lis      r3, lbl_80498510@ha
-	lis      r5, lbl_80498524@ha
-	addi     r3, r3, lbl_80498510@l
-	li       r4, 0x8fa
-	addi     r5, r5, lbl_80498524@l
-	crclr    6
-	bl       panic_f__12JUTExceptionFPCciPCce
-
-lbl_803FFB40:
-	lwz      r3, 0x220(r31)
-	cmplwi   r3, 0
-	beq      lbl_803FFB54
-	bl       isMemoWindow__Q28Morimura10TZukanBaseFv
-	b        lbl_803FFB58
-
-lbl_803FFB54:
-	li       r3, 0
-
-lbl_803FFB58:
-	mr       r31, r3
-	b        lbl_803FFBB0
-
-lbl_803FFB60:
-	cmpwi    r3, 0x2734
-	bne      lbl_803FFBB0
-	lwz      r3, 0x18(r30)
-	lwz      r31, 0x1c(r3)
-	cmplwi   r31, 0
-	bne      lbl_803FFB94
-	lis      r3, lbl_80498510@ha
-	lis      r5, lbl_80498524@ha
-	addi     r3, r3, lbl_80498510@l
-	li       r4, 0x901
-	addi     r5, r5, lbl_80498524@l
-	crclr    6
-	bl       panic_f__12JUTExceptionFPCciPCce
-
-lbl_803FFB94:
-	lwz      r3, 0x220(r31)
-	cmplwi   r3, 0
-	beq      lbl_803FFBA8
-	bl       isMemoWindow__Q28Morimura10TZukanBaseFv
-	b        lbl_803FFBAC
-
-lbl_803FFBA8:
-	li       r3, 0
-
-lbl_803FFBAC:
-	mr       r31, r3
-
-lbl_803FFBB0:
-	lwz      r0, 0x14(r1)
-	mr       r3, r31
-	lwz      r31, 0xc(r1)
-	lwz      r30, 8(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
 }
 
 /*
@@ -2309,38 +1897,9 @@ bool Game2DMgr::isEndHighScore()
 		Morimura::DispMemberHighScore* disp = reinterpret_cast<Morimura::DispMemberHighScore*>(m_screenMgr->getDispMember());
 		ret                                 = disp->_0C;
 		disp->_0C                           = false;
-	} else {
-		ret = false;
+		return ret;
 	}
-	return ret;
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	mr       r31, r3
-	lwz      r3, 0x18(r3)
-	bl       getSceneType__Q26Screen3MgrFv
-	cmpwi    r3, 0x2736
-	bne      lbl_80400058
-	lwz      r3, 0x18(r31)
-	bl       getDispMember__Q26Screen3MgrFv
-	lbz      r4, 0xc(r3)
-	li       r0, 0
-	stb      r0, 0xc(r3)
-	mr       r3, r4
-	b        lbl_8040005C
-
-lbl_80400058:
-	li       r3, 0
-
-lbl_8040005C:
-	lwz      r0, 0x14(r1)
-	lwz      r31, 0xc(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	return false;
 }
 
 /*
@@ -2376,48 +1935,9 @@ bool Game2DMgr::checkDayEnd(f32 min) const
 	Game::TimeMgr* mgr = Game::gameSystem->m_timeMgr;
 	f32 ratio          = mgr->getSunGaugeRatio();
 	f32 factor         = mgr->m_parms.parms.m_dayStartTime;
-	return ((1.0f - ratio) / 1.0f - ((mgr->m_parms.parms.m_countdownTime - factor) / (mgr->m_parms.parms.m_dayEndTime - factor))) < min;
-	/*
-	stwu     r1, -0x20(r1)
-	mflr     r0
-	stw      r0, 0x24(r1)
-	stfd     f31, 0x10(r1)
-	psq_st   f31, 24(r1), 0, qr0
-	stw      r31, 0xc(r1)
-	lwz      r3, gameSystem__4Game@sda21(r13)
-	fmr      f31, f1
-	cmplwi   r3, 0
-	bne      lbl_8040010C
-	li       r3, 0
-	b        lbl_8040014C
-
-lbl_8040010C:
-	lwz      r31, 0x40(r3)
-	mr       r3, r31
-	bl       getSunGaugeRatio__Q24Game7TimeMgrFv
-	lfs      f4, 0x3c(r31)
-	lfs      f2, 0x1f4(r31)
-	lfs      f0, 0x64(r31)
-	fsubs    f2, f2, f4
-	lfs      f3, lbl_80520040@sda21(r2)
-	fsubs    f0, f0, f4
-	fsubs    f1, f3, f1
-	fdivs    f0, f2, f0
-	fsubs    f0, f3, f0
-	fdivs    f0, f1, f0
-	fcmpo    cr0, f0, f31
-	mfcr     r0
-	srwi     r3, r0, 0x1f
-
-lbl_8040014C:
-	psq_l    f31, 24(r1), 0, qr0
-	lwz      r0, 0x24(r1)
-	lfd      f31, 0x10(r1)
-	lwz      r31, 0xc(r1)
-	mtlr     r0
-	addi     r1, r1, 0x20
-	blr
-	*/
+	return ((1.0f - ratio)
+	        / (1.0f - ((mgr->m_parms.parms.m_countdownTime.m_value - factor) / (mgr->m_parms.parms.m_dayEndTime.m_value - factor))))
+	     < min;
 }
 
 } // namespace Screen

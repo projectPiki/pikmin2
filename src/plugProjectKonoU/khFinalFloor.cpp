@@ -1,4 +1,4 @@
-#include "kh/FinalFloor.h"
+#include "kh/khFinalFloor.h"
 #include "JSystem/JKR/JKRFileLoader.h"
 #include "JSystem/JKR/JKRArchive.h"
 #include "PSSystem/PSSystemIF.h"

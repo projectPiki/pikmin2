@@ -1,5 +1,5 @@
-#include "kh/ReadyGo.h"
-#include "kh/FinalFloor.h"
+#include "kh/khReadyGo.h"
+#include "kh/khFinalFloor.h"
 #include "kh/khUtil.h"
 #include "PSSystem/PSSystemIF.h"
 #include "nans.h"

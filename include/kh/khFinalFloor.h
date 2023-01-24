@@ -118,6 +118,18 @@ struct SceneFinalFloor : public ::Screen::SceneBase {
 	// _00-_220 = Screen::SceneBase
 	ObjFinalFloor* m_objFinalFloor; // _220
 };
+
+inline void finalFloorStopSound(SceneFinalFloor* scene)
+{
+	P2ASSERTLINE(124, scene->m_objFinalFloor);
+	scene->m_objFinalFloor->stopSound();
+}
+
+inline void finalFloorRestartSound(SceneFinalFloor* scene)
+{
+	P2ASSERTLINE(125, scene->m_objFinalFloor);
+	scene->m_objFinalFloor->restartSound();
+}
 } // namespace Screen
 } // namespace kh
 

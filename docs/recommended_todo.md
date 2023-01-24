@@ -124,7 +124,7 @@
 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectKandoU/interactPiki.cpp">interactPiki.cpp</a> | 19430 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectKandoU/singleGS_FileSelect.cpp">singleGS_FileSelect.cpp</a> | 20454 |
 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectKandoU/texCaster.cpp">texCaster.cpp</a> | 20776 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectKandoU/aiRescue.cpp">aiRescue.cpp</a> | 21024 |
 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectKandoU/gameResultTexMgr.cpp">gameResultTexMgr.cpp</a> | 21442 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectKandoU/gamePlayCommonData.cpp">gamePlayCommonData.cpp</a> | 21586 |
-| <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectKandoU/singleGS_CaveResult.cpp">singleGS_CaveResult.cpp</a> | 22864 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectKandoU/aiCrop.cpp">aiCrop.cpp</a> | 26982 |
+| <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectKandoU/singleGS_CaveResult.cpp">singleGS_CaveResult.cpp</a> | 22866 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectKandoU/aiCrop.cpp">aiCrop.cpp</a> | 26982 |
 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectKandoU/aiTransport.cpp">aiTransport.cpp</a> | 27275 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectKandoU/gameSystem.cpp">gameSystem.cpp</a> | 27934 |
 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectKandoU/pathfinder.cpp">pathfinder.cpp</a> | 28384 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectKandoU/singleGS_MainResult.cpp">singleGS_MainResult.cpp</a> | 29713 |
 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectKandoU/creatureStick.cpp">creatureStick.cpp</a> | 29833 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectKandoU/singleGS_Ending.cpp">singleGS_Ending.cpp</a> | 31110 |
@@ -141,8 +141,8 @@
 ### <section id="plugProjectKonoU">plugProjectKonoU</section>
 | File | Size (bytes) | File | Size (bytes) |
 | ---- | ---- | ---- | ---- |
-| <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectKonoU/khPayDept.cpp">khPayDept.cpp</a> | 9834 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectKonoU/khUtil.cpp">khUtil.cpp</a> | 11500 |
-| <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectKonoU/newScreenMgr.cpp">newScreenMgr.cpp</a> | 15982 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectKonoU/newGame2DMgr.cpp">newGame2DMgr.cpp</a> | 53993 |
+| <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectKonoU/khPayDept.cpp">khPayDept.cpp</a> | 9836 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectKonoU/khUtil.cpp">khUtil.cpp</a> | 11500 |
+| <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectKonoU/newScreenMgr.cpp">newScreenMgr.cpp</a> | 15982 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectKonoU/newGame2DMgr.cpp">newGame2DMgr.cpp</a> | 44598 |
 
 ### <section id="plugProjectMorimuraU">plugProjectMorimuraU</section>
 | File | Size (bytes) | File | Size (bytes) |

@@ -7,7 +7,7 @@
 #include "Game/TekiStat.h"
 #include "Game/gameStages.h"
 #include "id32.h"
-#include "kh/DayEndResult.h"
+#include "kh/khDayEndResult.h"
 
 namespace Game {
 struct CourseInfo;

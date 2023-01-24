@@ -10,7 +10,7 @@
 #include "Game/mapParts.h"
 #include "VsOtakaraName.h"
 #include "Screen/Game2DMgr.h"
-#include "kh/WinLose.h"
+#include "kh/khWinLose.h"
 #include "PSM/Director.h"
 #include "PSM/Global.h"
 #include "PSSystem/PSScene.h"

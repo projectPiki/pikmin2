@@ -1,6 +1,6 @@
 #include "types.h"
-#include "kh/CaveResult.h"
-#include "kh/LostItem.h"
+#include "kh/khCaveResult.h"
+#include "kh/khLostItem.h"
 #include "Dolphin/rand.h"
 #include "efx2d/T2DChangesmoke.h"
 #include "efx2d/T2DCavecomp.h"

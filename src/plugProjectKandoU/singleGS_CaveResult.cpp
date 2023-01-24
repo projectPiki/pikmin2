@@ -26,7 +26,7 @@
 #include "types.h"
 #include "TParticle2dMgr.h"
 #include "Game/SingleGame.h"
-#include "kh/CaveResult.h"
+#include "kh/khCaveResult.h"
 #include "Controller.h"
 #include "nans.h"
 

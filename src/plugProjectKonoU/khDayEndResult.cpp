@@ -1,4 +1,4 @@
-#include "kh/DayEndResult.h"
+#include "kh/khDayEndResult.h"
 #include "Game/gamePlayData.h"
 #include "Game/Piki.h"
 #include "Game/DeathMgr.h"

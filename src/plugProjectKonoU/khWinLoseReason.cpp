@@ -1,4 +1,4 @@
-#include "kh/WinLose.h"
+#include "kh/khWinLose.h"
 #include "JSystem/JKR/JKRFileLoader.h"
 #include "JSystem/JKR/JKRArchive.h"
 #include "Morimura/GameOver.h"

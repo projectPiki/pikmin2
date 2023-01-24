@@ -1,4 +1,4 @@
-#include "kh/DayEndResult.h"
+#include "kh/khDayEndResult.h"
 #include "types.h"
 #include "stream.h"
 

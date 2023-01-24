@@ -1,10 +1,10 @@
-#include "kh/DayEndResult.h"
-#include "kh/WinLose.h"
-#include "kh/CaveResult.h"
-#include "kh/ReadyGo.h"
-#include "kh/FinalFloor.h"
-#include "kh/FinalResult.h"
-#include "kh/PayDept.h"
+#include "kh/khDayEndResult.h"
+#include "kh/khWinLose.h"
+#include "kh/khCaveResult.h"
+#include "kh/khReadyGo.h"
+#include "kh/khFinalFloor.h"
+#include "kh/khFinalResult.h"
+#include "kh/khPayDept.h"
 #include "Screen/screenMgr.h"
 
 namespace kh {
