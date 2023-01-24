@@ -520,7 +520,9 @@ struct BigTreasureGroundCallBack : public JointGroundCallBack {
 /////////////////////////////////////////////////////////////////
 // ATTACK DEFINITIONS
 struct AttackShadowNode : public JointShadowNode {
-	virtual ~AttackShadowNode(); // _08 (weak)
+	AttackShadowNode(int);
+
+	virtual ~AttackShadowNode() { } // _08 (weak)
 
 	void makeShadowSRT();
 
@@ -559,10 +561,21 @@ struct BigTreasureAttackData {
 	f32 _44; // _44
 };
 
+struct BigTreasureAttackParameter {
+	// unused
+};
+
 struct BigTreasureElecAttack : public CNode {
-	virtual ~BigTreasureElecAttack(); // _08 (weak)
+	BigTreasureElecAttack(Obj*, BigTreasureAttackParameter*);
+
+	virtual ~BigTreasureElecAttack() { } // _08 (weak)
 
 	void update();
+
+	void init();
+	void start(Vector3f&, Vector3f&, bool);
+	void startInteract(BigTreasureElecAttack*);
+	void finish();
 
 	// _00      = VTBL
 	// _00-_18  = CNode
@@ -579,9 +592,15 @@ struct BigTreasureElecAttack : public CNode {
 };
 
 struct BigTreasureFireAttack : public CNode {
-	virtual ~BigTreasureFireAttack(); // _08 (weak)
+	BigTreasureFireAttack(Obj*, BigTreasureAttackParameter*);
+
+	virtual ~BigTreasureFireAttack() { } // _08 (weak)
 
 	void update();
+
+	void init();
+	void start(Vector3f&, Vector3f&);
+	void finish();
 
 	// _00      = VTBL
 	// _00-_18  = CNode
@@ -593,9 +612,14 @@ struct BigTreasureFireAttack : public CNode {
 };
 
 struct BigTreasureGasAttack : public CNode {
-	virtual ~BigTreasureGasAttack(); // _08 (weak)
+	BigTreasureGasAttack(Obj*, BigTreasureAttackParameter*);
+
+	virtual ~BigTreasureGasAttack() { } // _08 (weak)
 
 	void update();
+
+	void init();
+	void start(Vector3f&, f32);
 
 	// _00      = VTBL
 	// _00-_18  = CNode
@@ -607,9 +631,15 @@ struct BigTreasureGasAttack : public CNode {
 };
 
 struct BigTreasureWaterAttack : public CNode {
-	virtual ~BigTreasureWaterAttack(); // _08 (weak)
+	BigTreasureWaterAttack(Obj*, BigTreasureAttackParameter*);
+
+	virtual ~BigTreasureWaterAttack() { } // _08 (weak)
 
 	void update();
+
+	void init();
+	void start(Vector3f&, Vector3f&);
+	void finish();
 
 	// _00      = VTBL
 	// _00-_18  = CNode

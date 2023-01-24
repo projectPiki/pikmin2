@@ -101,7 +101,7 @@ struct TOootaElecAttack1 : public TChasePos {
 	{
 	}
 
-	virtual ~TOootaElecAttack1(); // _48 (weak)
+	virtual ~TOootaElecAttack1() { } // _48 (weak)
 
 	// _00     = VTBL
 	// _00-_14 = TChasePos
@@ -123,7 +123,7 @@ struct TOootaElecLeg : public TChasePosPosLocalZScale {
 	{
 	}
 
-	virtual ~TOootaElecLeg(); // _48 (weak)
+	virtual ~TOootaElecLeg() { } // _48 (weak)
 
 	// _00     = VTBL
 	// _00-_1C = TChasePosPosLocalZScale
@@ -135,7 +135,7 @@ struct TOootaElecparts : public TChasePos {
 	{
 	}
 
-	virtual ~TOootaElecparts(); // _48 (weak)
+	virtual ~TOootaElecparts() { } // _48 (weak)
 
 	// _00     = VTBL
 	// _00-_14 = TChasePos
