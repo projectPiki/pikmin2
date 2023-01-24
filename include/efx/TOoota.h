@@ -87,7 +87,7 @@ struct TOootaDeadLeg : public TChasePosPosLocalYScale3 {
 
 struct TOootaElec : public TChasePosPosLocalZScale3 {
 	inline TOootaElec()
-	    : TChasePosPosLocalZScale3(nullptr, nullptr, 0.0f, PID_OoOtaDeadLeg_1, PID_OoOtaDeadLeg_2, PID_OoOtaDeadLeg_3)
+	    : TChasePosPosLocalZScale3(nullptr, nullptr, 0.0f, PID_OoOtaElec_1, PID_OoOtaElec_2, PID_OoOtaElec_3)
 	{
 	}
 
@@ -130,8 +130,8 @@ struct TOootaElecLeg : public TChasePosPosLocalZScale {
 };
 
 struct TOootaElecparts : public TChasePos {
-	inline TOootaElecparts()
-	    : TChasePos(PID_OoOtaElecParts, nullptr)
+	inline TOootaElecparts(Vector3f* pos)
+	    : TChasePos(PID_OoOtaElecParts, pos)
 	{
 	}
 
@@ -143,7 +143,7 @@ struct TOootaElecparts : public TChasePos {
 
 struct TOootaFire : public TChaseMtx6 {
 	inline TOootaFire()
-	    : TChaseMtx6(nullptr, PID_OoOtaFire_1, PID_OoOtaFire_2, PID_OoOtaFire_3, PID_OoOtaFire_4, PID_OoOtaFire_5, PID_OoOtaFire_6)
+	    : TChaseMtx6(nullptr, PID_OoOtaFire_1, PID_OoOtaFire_2, PID_OoOtaFire_3, PID_OoOtaFire_4, PID_OoOtaFire_6, PID_OoOtaFire_5)
 	{
 	}
 
@@ -164,8 +164,8 @@ struct TOootaFoot : public TChasePos2 {
 };
 
 struct TOootaGas : public TChasePosYRot2 {
-	inline TOootaGas()
-	    : TChasePosYRot2(nullptr, nullptr, PID_OoOtaGas_1, PID_OoOtaGas_2)
+	inline TOootaGas(Vector3f* pos, f32* scale)
+	    : TChasePosYRot2(pos, scale, PID_OoOtaGas_1, PID_OoOtaGas_2)
 	{
 	}
 
@@ -208,8 +208,8 @@ struct TOootaPdead : public TSimple1 {
 };
 
 struct TOootaPhouden : public TChasePos2 {
-	inline TOootaPhouden()
-	    : TChasePos2(nullptr, PID_OoOtaPHouden_1, PID_OoOtaPHouden_2)
+	inline TOootaPhouden(Vector3f* pos)
+	    : TChasePos2(pos, PID_OoOtaPHouden_1, PID_OoOtaPHouden_2)
 	{
 	}
 
@@ -284,8 +284,8 @@ struct TOootaWbHit : public TSimple4 {
 };
 
 struct TOootaWbomb : public TChasePos4 {
-	inline TOootaWbomb()
-	    : TChasePos4(nullptr, PID_OoOtaWbomb_1, PID_OoOtaWbomb_2, PID_OoOtaWbomb_3, PID_OoOtaWbomb_4)
+	inline TOootaWbomb(Vector3f* pos)
+	    : TChasePos4(pos, PID_OoOtaWbomb_1, PID_OoOtaWbomb_2, PID_OoOtaWbomb_3, PID_OoOtaWbomb_4)
 	{
 	}
 
