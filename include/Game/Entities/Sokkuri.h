@@ -30,73 +30,6 @@ enum StateID {
 	SOKKURI_Count,
 };
 
-struct Obj : public EnemyBase {
-	Obj();
-
-	//////////////// VTABLE
-	virtual void onInit(CreatureInitArg* settings);          // _30
-	virtual void doDirectDraw(Graphics& gfx);                // _50
-	virtual bool isUnderground();                            // _D0 (weak)
-	virtual void getShadowParam(ShadowParam& settings);      // _134
-	virtual ~Obj() { }                                       // _1BC (weak)
-	virtual void setInitialSetting(EnemyInitialParamBase*);  // _1C4
-	virtual void doUpdate();                                 // _1CC
-	virtual void doDebugDraw(Graphics&);                     // _1EC
-	virtual Vector3f getOffsetForMapCollision();             // _224
-	virtual void createEfxHamon();                           // _250
-	virtual EnemyTypeID::EEnemyTypeID getEnemyTypeID();      // _258 (weak)
-	virtual bool pressCallBack(Creature*, f32, CollPart*);   // _27C
-	virtual bool hipdropCallBack(Creature*, f32, CollPart*); // _284
-	virtual void doStartStoneState();                        // _2A4
-	virtual void doFinishStoneState();                       // _2A8
-	virtual void startCarcassMotion();                       // _2C4
-	virtual void wallCallback(const MoveInfo&);              // _2E8
-	virtual f32 getDownSmokeScale();                         // _2EC (weak)
-	virtual void setFSM(FSM*);                               // _2F8
-	//////////////// VTABLE END
-
-	bool isAppear();
-	bool isDisappear();
-	void setNextMoveInfo();
-	void updateMoveState();
-	void resetMoveVelocity();
-	void setNextWaitInfo();
-	void createDownEffect(f32, f32);
-	void createBubbleEffect();
-
-	// _00 		= VTBL
-	// _00-_2BC	= EnemyBase
-	FSM* m_fsm;                // _2BC
-	bool _2C0;                 // _2C0, unknown
-	f32 m_timer;               // _2C4
-	StateID m_nextState;       // _2C8
-	f32 _2CC;                  // _2CC
-	Vector3f m_targetPosition; // _2D0
-	                           // _2DC = PelletView
-};
-
-struct Mgr : public EnemyMgrBase {
-	Mgr(int objLimit, u8 modelType);
-
-	// virtual ~Mgr();                                     // _58 (weak)
-	virtual void createObj(int);                       // _A0
-	virtual EnemyBase* getEnemy(int idx);              // _A4
-	virtual void doAlloc();                            // _A8
-	virtual void loadModelData();                      // _C8
-	virtual EnemyTypeID::EEnemyTypeID getEnemyTypeID() // _AC (weak)
-	{
-		return EnemyTypeID::EnemyID_Sokkuri;
-	}
-	virtual J3DModelData* doLoadBmd(void* filename) // _D4 (weak)
-	{
-		return J3DModelLoaderDataBase::load(filename, 0x20240030);
-	}
-
-	// _00 		= VTBL
-	// _00-_44	= EnemyMgrBase
-	Obj* m_obj; // _44, likely an array of Objs
-};
-
 struct Parms : public EnemyParmsBase {
 	struct ProperParms : public Parameters {
 		ProperParms()
@@ -137,6 +70,80 @@ struct Parms : public EnemyParmsBase {
 
 	// _00-_7F8	= EnemyParmsBase
 	ProperParms m_properParms; // _7F8
+};
+
+struct Obj : public EnemyBase {
+	Obj();
+
+	//////////////// VTABLE
+	virtual void onInit(CreatureInitArg* settings);          // _30
+	virtual void doDirectDraw(Graphics& gfx);                // _50
+	virtual bool isUnderground() { return m_isHiding; }      // _D0 (weak)
+	virtual void getShadowParam(ShadowParam& settings);      // _134
+	virtual ~Obj() { }                                       // _1BC (weak)
+	virtual void setInitialSetting(EnemyInitialParamBase*);  // _1C4
+	virtual void doUpdate();                                 // _1CC
+	virtual void doDebugDraw(Graphics&);                     // _1EC
+	virtual Vector3f getOffsetForMapCollision();             // _224
+	virtual void createEfxHamon();                           // _250
+	virtual bool pressCallBack(Creature*, f32, CollPart*);   // _27C
+	virtual bool hipdropCallBack(Creature*, f32, CollPart*); // _284
+	virtual void doStartStoneState();                        // _2A4
+	virtual void doFinishStoneState();                       // _2A8
+	virtual void startCarcassMotion();                       // _2C4
+	virtual void wallCallback(const MoveInfo&);              // _2E8
+	virtual void setFSM(FSM*);                               // _2F8
+	virtual f32 getDownSmokeScale() { return 0.55f; }        // _2EC (weak)
+	virtual EnemyTypeID::EEnemyTypeID getEnemyTypeID()       // _258 (weak)
+	{
+		return EnemyTypeID::EnemyID_Sokkuri;
+	}
+	//////////////// VTABLE END
+
+	bool isAppear();
+	bool isDisappear();
+	void setNextMoveInfo();
+	void updateMoveState();
+	void resetMoveVelocity();
+	void setNextWaitInfo();
+	void createDownEffect(f32, f32);
+	void createBubbleEffect();
+
+	Creature* getSearchedTarget();
+
+	inline f32 getMinAngle() { return C_PROPERPARMS.m_fp04.m_value; }
+
+	// _00 		= VTBL
+	// _00-_2BC	= EnemyBase
+	FSM* m_fsm;                // _2BC
+	bool m_isHiding;           // _2C0, unknown
+	f32 m_timer;               // _2C4
+	StateID m_nextState;       // _2C8
+	f32 m_moveVelocity;        // _2CC
+	Vector3f m_targetPosition; // _2D0
+	                           // _2DC = PelletView
+};
+
+struct Mgr : public EnemyMgrBase {
+	Mgr(int objLimit, u8 modelType);
+
+	// virtual ~Mgr();                                     // _58 (weak)
+	virtual void createObj(int);                       // _A0
+	virtual EnemyBase* getEnemy(int idx);              // _A4
+	virtual void doAlloc();                            // _A8
+	virtual void loadModelData();                      // _C8
+	virtual EnemyTypeID::EEnemyTypeID getEnemyTypeID() // _AC (weak)
+	{
+		return EnemyTypeID::EnemyID_Sokkuri;
+	}
+	virtual J3DModelData* doLoadBmd(void* filename) // _D4 (weak)
+	{
+		return J3DModelLoaderDataBase::load(filename, 0x20240030);
+	}
+
+	// _00 		= VTBL
+	// _00-_44	= EnemyMgrBase
+	Obj* m_obj; // _44, likely an array of Objs
 };
 
 struct ProperAnimator : public EnemyAnimatorBase {

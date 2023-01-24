@@ -584,7 +584,7 @@ struct EnemyBase : public Creature, public SysShape::MotionListener, virtual pub
 
 	inline f32 getDamageAnimFrac(f32 scale) { return (m_damageAnimTimer / scale); }
 
-	inline f32 getSqrHomeRadius()
+	inline f32 getSqrHomeRadius() const
 	{
 		f32 homeRad = static_cast<EnemyParmsBase*>(m_parms)->m_general.m_homeRadius.m_value;
 		return homeRad * homeRad;
@@ -593,6 +593,10 @@ struct EnemyBase : public Creature, public SysShape::MotionListener, virtual pub
 	inline efx::Arg createFXArg() { return efx::Arg(m_position); }
 
 	inline EnemyParmsBase::Parms& getParms() { return static_cast<EnemyParmsBase*>(m_parms)->m_general; }
+
+	inline bool isWithinHomeRadius() { return sqrDistanceXZ(m_position, m_homePosition) < getSqrHomeRadius(); }
+
+	inline f32 getSubmergedDepth() const { return *m_waterBox->getSeaHeightPtr() - m_position.y; }
 
 #pragma region Events
 	inline void resetEvents()

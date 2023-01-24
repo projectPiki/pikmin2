@@ -122,7 +122,7 @@ void StateStay::init(EnemyBase* enemy, StateArg* stateArg)
 
 	sokkuri->disableEvent(0, EB_LifegaugeVisible);
 	sokkuri->enableEvent(0, EB_IsImmuneBitter);
-	sokkuri->_2C0 = true;
+	sokkuri->m_isHiding = true;
 	sokkuri->setEmotionNone();
 	sokkuri->hardConstraintOn();
 	sokkuri->disableEvent(0, EB_IsAnimating);
@@ -159,7 +159,7 @@ void StateStay::cleanup(EnemyBase* enemy)
 	Obj* sokkuri = static_cast<Obj*>(enemy);
 	sokkuri->enableEvent(0, EB_LifegaugeVisible);
 	sokkuri->disableEvent(0, EB_IsImmuneBitter);
-	sokkuri->_2C0 = false;
+	sokkuri->m_isHiding = false;
 	sokkuri->hardConstraintOff();
 	sokkuri->enableEvent(0, EB_IsAnimating);
 
@@ -382,7 +382,7 @@ void StateMoveGround::exec(EnemyBase* enemy)
 
 	} else {
 		Vector3f targetPos = Vector3f(sokkuri->m_targetPosition);
-		EnemyFunc::walkToTarget(sokkuri, targetPos, sokkuri->_2CC, parms->m_general.m_rotationalAccel.m_value,
+		EnemyFunc::walkToTarget(sokkuri, targetPos, sokkuri->m_moveVelocity, parms->m_general.m_rotationalAccel.m_value,
 		                        parms->m_general.m_rotationalSpeed.m_value);
 	}
 
@@ -458,7 +458,7 @@ void StateMoveWater::exec(EnemyBase* enemy)
 
 		} else {
 			Vector3f targetPos = Vector3f(sokkuri->m_targetPosition);
-			EnemyFunc::walkToTarget(sokkuri, targetPos, sokkuri->_2CC, parms->m_properParms.m_fp22.m_value,
+			EnemyFunc::walkToTarget(sokkuri, targetPos, sokkuri->m_moveVelocity, parms->m_properParms.m_fp22.m_value,
 			                        parms->m_properParms.m_fp23.m_value);
 		}
 	}

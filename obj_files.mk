@@ -870,7 +870,7 @@ NISHIMURA:=\
 	$(BUILD_DIR)/src/plugProjectNishimuraU/SokkuriState.o\
 	$(BUILD_DIR)/src/plugProjectNishimuraU/SokkuriAnimator.o\
 	$(BUILD_DIR)/src/plugProjectNishimuraU/SokkuriMgr.o\
-	$(BUILD_DIR)/asm/plugProjectNishimuraU/Sokkuri.o\
+	$(BUILD_DIR)/src/plugProjectNishimuraU/Sokkuri.o\
 	$(BUILD_DIR)/asm/plugProjectNishimuraU/JointShadowBase.o\
 	$(BUILD_DIR)/asm/plugProjectNishimuraU/UmimushiShadow.o\
 	$(BUILD_DIR)/src/plugProjectNishimuraU/HanaMgr.o\
