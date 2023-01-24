@@ -144,8 +144,8 @@ void JFWSystem::init()
 	sInitCalled = 1;
 	JKRAram::create(CSetUpParam::aramAudioBufSize, CSetUpParam::aramGraphBufSize, CSetUpParam::streamPriority, CSetUpParam::decompPriority,
 	                CSetUpParam::aPiecePriority);
-	
-	mainThread = new JKRThread(OSGetCurrentThread(), 4);	
+
+	mainThread = new JKRThread(OSGetCurrentThread(), 4);
 	JUTVideo::createManager(CSetUpParam::renderMode);
 	JUTCreateFifo(CSetUpParam::fifoBufSize);
 	JUTGamePad::init();

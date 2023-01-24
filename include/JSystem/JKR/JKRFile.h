@@ -15,8 +15,8 @@ struct JKRFile : public JKRDisposer {
 	    , m_FileOpen(false)
 	{
 	}
-	virtual ~JKRFile() {};                                 // _08 (weak)
-	virtual bool open(const char*)                   = 0; // _0C
+	virtual ~JKRFile() {};                              // _08 (weak)
+	virtual bool open(const char*)                 = 0; // _0C
 	virtual void close()                           = 0; // _10
 	virtual int readData(void*, long, long)        = 0; // _14
 	virtual int writeData(const void*, long, long) = 0; // _18
@@ -33,23 +33,23 @@ struct JKRDvdFile : public JKRFile {
 	JKRDvdFile(const char*);
 	JKRDvdFile(long);
 	virtual ~JKRDvdFile();                                             // _08
-	virtual bool open(const char*);                                      // _0C
+	virtual bool open(const char*);                                    // _0C
 	virtual void close();                                              // _10
 	virtual int readData(void*, long, long);                           // _14
 	virtual int writeData(const void*, long, long);                    // _18
 	virtual int getFileSize() const { return m_dvdPlayer.m_fileSize; } // _1C (weak)
-	virtual bool open(long);                                             // _20
+	virtual bool open(long);                                           // _20
 
-	inline int readDataAsync(void * addr,s32 length, s32 offset) {
+	inline int readDataAsync(void* addr, s32 length, s32 offset)
+	{
 		OSLockMutex(&_1C);
 		s32 retAddr;
-		if(m_Thread != nullptr) {
+		if (m_Thread != nullptr) {
 			OSUnlockMutex(&_1C);
-			retAddr =  -1;
-		}
-		else {
-			m_Thread = OSGetCurrentThread();
 			retAddr = -1;
+		} else {
+			m_Thread = OSGetCurrentThread();
+			retAddr  = -1;
 			if (DVDReadAsyncPrio(&m_dvdPlayer, addr, length, offset, doneProcess, 2)) {
 				retAddr = (s32)sync();
 			}
@@ -76,8 +76,8 @@ struct JKRDvdFile : public JKRFile {
 	void* _BC;                         // _BC  Single msg slot for _9C
 	OSMessageQueue _C0;                // _C0
 	void* _E0;                         // _E0  Single msg slot for _C0
-	JSULink<JKRDvdFile> m_Link;           // _E4
-	OSThread* m_Thread;                     // _F4
+	JSULink<JKRDvdFile> m_Link;        // _E4
+	OSThread* m_Thread;                // _F4
 
 	static JSUList<JKRDvdFile> sDvdList;
 };

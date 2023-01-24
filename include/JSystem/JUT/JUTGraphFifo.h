@@ -24,8 +24,6 @@ struct JUTGraphFifo {
 	static bool sInitiated;
 };
 
-inline void JUTCreateFifo(u32 bufSize) {
-	new JUTGraphFifo(bufSize);
-}
+inline void JUTCreateFifo(u32 bufSize) { new JUTGraphFifo(bufSize); }
 
 #endif

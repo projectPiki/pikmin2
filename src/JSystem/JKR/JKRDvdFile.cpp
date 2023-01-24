@@ -44,12 +44,15 @@ JKRDvdFile::JKRDvdFile(const char* path)
  * Address:	8001D1DC
  * Size:	0000B0
  */
-JKRDvdFile::JKRDvdFile(s32 entrynum) : JKRFile(), m_Link(this) {
-    initiate();
+JKRDvdFile::JKRDvdFile(s32 entrynum)
+    : JKRFile()
+    , m_Link(this)
+{
+	initiate();
 
-    m_FileOpen = open(entrynum);
-    if(m_FileOpen)
-        return;
+	m_FileOpen = open(entrynum);
+	if (m_FileOpen)
+		return;
 }
 
 /*
@@ -59,9 +62,7 @@ JKRDvdFile::JKRDvdFile(s32 entrynum) : JKRFile(), m_Link(this) {
  * Address:	8001D28C
  * Size:	00009C
  */
-JKRDvdFile::~JKRDvdFile() {
-    close(); 
-}
+JKRDvdFile::~JKRDvdFile() { close(); }
 
 /*
  * --INFO--
@@ -76,8 +77,8 @@ void JKRDvdFile::initiate()
 	OSInitMessageQueue(&_C0, &_E0, 1);
 	OSInitMessageQueue(&_9C, &_BC, 1);
 	m_Thread = nullptr;
-	_50 = nullptr;
-	_58 = 0;
+	_50      = nullptr;
+	_58      = 0;
 }
 
 /*
@@ -140,24 +141,23 @@ void JKRDvdFile::close()
  * Address:	8001D500
  * Size:	0000C4
  */
-int JKRDvdFile::readData(void * addr,s32 length, s32 offset) {
-    OSLockMutex(&_1C);
-    s32 retAddr;
-    if(m_Thread != nullptr) {
-        OSUnlockMutex(&_1C);
-        return -1;
-    }
-    else {
-        m_Thread = OSGetCurrentThread();
-        retAddr = -1;
-        if (DVDReadAsyncPrio(&m_dvdPlayer, addr, length, offset, doneProcess, 2))
-        {
-            retAddr = (s32)sync();
-        }
-        m_Thread = nullptr;
-        OSUnlockMutex(&_1C);
-    }
-    return retAddr;
+int JKRDvdFile::readData(void* addr, s32 length, s32 offset)
+{
+	OSLockMutex(&_1C);
+	s32 retAddr;
+	if (m_Thread != nullptr) {
+		OSUnlockMutex(&_1C);
+		return -1;
+	} else {
+		m_Thread = OSGetCurrentThread();
+		retAddr  = -1;
+		if (DVDReadAsyncPrio(&m_dvdPlayer, addr, length, offset, doneProcess, 2)) {
+			retAddr = (s32)sync();
+		}
+		m_Thread = nullptr;
+		OSUnlockMutex(&_1C);
+	}
+	return retAddr;
 }
 /*
  * --INFO--
@@ -269,9 +269,11 @@ long JKRDvdFile::sync()
  * Address:	8001D620
  * Size:	000030
  */
-BOOL JKRDvdFile::doneProcess(long p1, DVDFileInfo* info) { 
-	JKRDvdFile * dvdFile = reinterpret_cast<JKRDvdFile *>(info->_3C);
-	return OSSendMessage(&dvdFile->_C0, (void*)p1, OS_MESSAGE_NON_BLOCKING); }
+BOOL JKRDvdFile::doneProcess(long p1, DVDFileInfo* info)
+{
+	JKRDvdFile* dvdFile = reinterpret_cast<JKRDvdFile*>(info->_3C);
+	return OSSendMessage(&dvdFile->_C0, (void*)p1, OS_MESSAGE_NON_BLOCKING);
+}
 
 /*
  * --INFO--
@@ -285,4 +287,3 @@ BOOL JKRDvdFile::doneProcess(long p1, DVDFileInfo* info) {
  * Address:	8001D658
  * Size:	000044
  */
-
