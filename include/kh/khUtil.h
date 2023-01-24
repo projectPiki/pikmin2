@@ -28,7 +28,7 @@ struct khUtilFadePane : public P2DScreen::CallBackNode {
 		{
 		}
 
-		virtual ~khPaneNode(); // _08 (weak)
+		virtual ~khPaneNode() { } // _08 (weak)
 
 		// _00 = VTBL
 		J2DPane* m_pane;    // _04
@@ -37,10 +37,10 @@ struct khUtilFadePane : public P2DScreen::CallBackNode {
 
 	khUtilFadePane(u8);
 
-	virtual ~khUtilFadePane();     // _08 (weak)
-	virtual void update();         // _10
-	virtual void fadein_finish();  // _1C (weak)
-	virtual void fadeout_finish(); // _20 (weak)
+	virtual ~khUtilFadePane() { }     // _08 (weak)
+	virtual void update();            // _10
+	virtual void fadein_finish() { }  // _1C (weak)
+	virtual void fadeout_finish() { } // _20 (weak)
 
 	bool add(J2DPane*);
 	void fadein();
@@ -58,27 +58,34 @@ struct khUtilFadePane : public P2DScreen::CallBackNode {
 };
 
 struct khUtilFadePaneWM : public khUtilFadePane {
-	virtual ~khUtilFadePaneWM();   // _08 (weak)
-	virtual void fadeout_finish(); // _20
+	virtual ~khUtilFadePaneWM() { }   // _08 (weak)
+	virtual void fadeout_finish() { } // _20
 
 	// _00     = VTBL
 	// _00-_30 = khUtilFadePane
 };
 
-struct khUtilColorAnm : public P2DScreen::Node {
+struct khUtilColorAnm : public P2DScreen::CallBackNode {
 	khUtilColorAnm(P2DScreen::Mgr*, u64, int, int);
 
-	virtual ~khUtilColorAnm(); // _08 (weak)
-	virtual void update();     // _10 (weak)
-	virtual void do_update();  // _1C (weak)
+	virtual ~khUtilColorAnm() { } // _08 (weak)
+	virtual void update();        // _10 (weak)
+	virtual void do_update() { }  // _1C (weak)
 
 	// _00     = VTBL
 	// _00-_1C = P2DScreen::Node
+	JUtility::TColor* m_colorList; // _1C
+	JUtility::TColor m_color1;     // _20
+	JUtility::TColor m_color2;     // _24
+	int m_paneNum;                 // _28
+	int m_maxFrame;                // _2C
+	int m_counter;                 // _30
+	u8 m_updateMode;               // _34
 };
 
 struct khUtilColorAnmWM : public khUtilColorAnm {
-	virtual ~khUtilColorAnmWM(); // _08 (weak)
-	virtual void do_update();    // _14
+	virtual ~khUtilColorAnmWM() { } // _08 (weak)
+	virtual void do_update();       // _14
 
 	// _00     = VTBL
 	// _00-_1C = khUtilColorAnm

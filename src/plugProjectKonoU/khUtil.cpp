@@ -150,13 +150,6 @@ void khUtilFadePane::update()
 
 /*
  * --INFO--
- * Address:	8040BD14
- * Size:	000004
- */
-void khUtilFadePane::fadeout_finish() { }
-
-/*
- * --INFO--
  * Address:	8040BD18
  * Size:	0000B8
  */
@@ -164,16 +157,16 @@ bool khUtilFadePane::add(J2DPane* pane)
 {
 	bool result = false;
 	if (pane) {
-		khPaneNode* node        = &m_paneNode;
-		khPaneNode* nonnullNode = nullptr;
-		do {
-			nonnullNode = node;
-			node        = nonnullNode->m_next;
-		} while (node);
-		khPaneNode* newNode = new khPaneNode(pane);
-		P2ASSERTLINE(64, newNode);
-		node->m_next = newNode;
-		result       = true;
+		khPaneNode* node = &m_paneNode;
+		khPaneNode* node2;
+		while (node) {
+			node2 = node;
+			node  = node2->m_next;
+		}
+		node = new khPaneNode(pane);
+		P2ASSERTLINE(64, node);
+		node2->m_next = node;
+		result        = true;
 		setInfAlpha(pane);
 	}
 	return result;
@@ -275,103 +268,21 @@ void khUtilFadePane::set_init_alpha(u8 a)
  * Address:	8040BE70
  * Size:	000158
  */
-khUtilColorAnm::khUtilColorAnm(P2DScreen::Mgr*, u64, int, int)
+khUtilColorAnm::khUtilColorAnm(P2DScreen::Mgr* screen, u64 tag, int panes, int frames)
 {
-	/*
-	.loc_0x0:
-	  stwu      r1, -0x30(r1)
-	  mflr      r0
-	  stw       r0, 0x34(r1)
-	  stmw      r25, 0x14(r1)
-	  mr        r28, r3
-	  mr        r0, r28
-	  mr        r29, r4
-	  mr        r31, r5
-	  mr        r30, r6
-	  mr        r26, r7
-	  mr        r27, r8
-	  mr        r25, r0
-	  bl        0x54F0
-	  lis       r3, 0x804D
-	  lis       r4, 0x804D
-	  addi      r0, r3, 0x7B0C
-	  lis       r3, 0x804F
-	  stw       r0, 0x0(r25)
-	  li        r5, 0
-	  addi      r4, r4, 0x7F2C
-	  subi      r3, r3, 0x4E48
-	  stw       r5, 0x18(r25)
-	  li        r0, -0x1
-	  stw       r4, 0x0(r25)
-	  stw       r3, 0x0(r28)
-	  stw       r0, 0x20(r28)
-	  stw       r0, 0x24(r28)
-	  stw       r26, 0x28(r28)
-	  stw       r27, 0x2C(r28)
-	  stw       r5, 0x30(r28)
-	  stb       r5, 0x20(r28)
-	  stb       r5, 0x21(r28)
-	  stb       r5, 0x22(r28)
-	  stb       r5, 0x23(r28)
-	  lwz       r27, 0x28(r28)
-	  rlwinm    r3,r27,2,0,29
-	  addi      r3, r3, 0x10
-	  bl        -0x3E7F58
-	  lis       r4, 0x8004
-	  mr        r7, r27
-	  subi      r4, r4, 0x646C
-	  li        r5, 0
-	  li        r6, 0x4
-	  bl        -0x34A52C
-	  li        r8, 0
-	  stw       r3, 0x1C(r28)
-	  mr        r6, r8
-	  li        r9, 0
-	  mr        r5, r8
-	  mr        r4, r8
-	  mr        r3, r8
-	  b         .loc_0xF0
-
-	.loc_0xD0:
-	  lwz       r0, 0x1C(r28)
-	  addi      r9, r9, 0x1
-	  add       r7, r0, r8
-	  addi      r8, r8, 0x4
-	  stb       r6, 0x0(r7)
-	  stb       r5, 0x1(r7)
-	  stb       r4, 0x2(r7)
-	  stb       r3, 0x3(r7)
-
-	.loc_0xF0:
-	  lwz       r0, 0x28(r28)
-	  cmpw      r9, r0
-	  blt+      .loc_0xD0
-	  lbz       r3, 0x20(r28)
-	  cmplwi    r29, 0
-	  li        r0, 0
-	  stb       r3, 0x24(r28)
-	  lbz       r3, 0x21(r28)
-	  stb       r3, 0x25(r28)
-	  lbz       r3, 0x22(r28)
-	  stb       r3, 0x26(r28)
-	  lbz       r3, 0x23(r28)
-	  stb       r3, 0x27(r28)
-	  stb       r0, 0x34(r28)
-	  beq-      .loc_0x140
-	  mr        r3, r29
-	  mr        r6, r30
-	  mr        r5, r31
-	  mr        r7, r28
-	  bl        0x28B78
-
-	.loc_0x140:
-	  mr        r3, r28
-	  lmw       r25, 0x14(r1)
-	  lwz       r0, 0x34(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x30
-	  blr
-	*/
+	m_paneNum  = panes;
+	m_maxFrame = frames;
+	m_counter  = 0;
+	m_color1.set(0, 0, 0, 0);
+	m_colorList = new JUtility::TColor[m_paneNum];
+	for (int i = 0; i < m_paneNum; i++) {
+		m_colorList[i].set(0, 0, 0, 0);
+	}
+	m_color2.setRGBA(m_color1);
+	m_updateMode = 0;
+	if (screen) {
+		screen->addCallBack(tag, this);
+	}
 }
 
 /*
@@ -381,6 +292,27 @@ khUtilColorAnm::khUtilColorAnm(P2DScreen::Mgr*, u64, int, int)
  */
 void khUtilColorAnm::update()
 {
+	if (m_updateMode) {
+		f32 calc              = (m_counter * (m_paneNum - 1)) / (f32)m_maxFrame;
+		int id                = calc;
+		JUtility::TColor col1 = m_colorList[id + 1];
+		JUtility::TColor col2 = m_colorList[id];
+		calc -= (f32)id;
+		f32 calc2 = 1.0f - calc;
+
+		m_color1.r = (f32)col1.r * calc2 + (f32)col2.r * calc;
+		m_color1.g = (f32)col1.g * calc2 + (f32)col2.g * calc;
+		m_color1.b = (f32)col1.b * calc2 + (f32)col2.b * calc;
+		m_color1.a = (f32)col1.a * calc2 + (f32)col2.a * calc;
+
+		if (m_counter++ >= m_maxFrame) {
+			m_counter = 0;
+		}
+	} else {
+		m_color1.setRGBA(m_color2);
+		m_counter = 0;
+	}
+	do_update();
 	/*
 stwu     r1, -0x90(r1)
 mflr     r0
@@ -524,11 +456,5 @@ blr
 	*/
 }
 
-/*
- * --INFO--
- * Address:	8040C1E4
- * Size:	000004
- */
-void khUtilColorAnm::do_update() { }
 } // namespace Screen
 } // namespace kh
