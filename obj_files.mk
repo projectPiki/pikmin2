@@ -49,7 +49,7 @@ JSYSTEM:=\
 	$(BUILD_DIR)/asm/JSystem/JKR/JKRCompArchive.o\
 	$(BUILD_DIR)/src/JSystem/JKR/JKRDecomp.o\
 	$(BUILD_DIR)/src/JSystem/JKR/JKRDisposer.o\
-	$(BUILD_DIR)/asm/JSystem/JKR/JKRDvdFile.o\
+	$(BUILD_DIR)/src/JSystem/JKR/JKRDvdFile.o\
 	$(BUILD_DIR)/asm/JSystem/JKR/JKRDvdAramRipper.o\
 	$(BUILD_DIR)/asm/JSystem/JKR/JKRDvdArchive.o\
 	$(BUILD_DIR)/asm/JSystem/JKR/JKRDvdRipper.o\
