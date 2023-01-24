@@ -15,7 +15,7 @@ JSUList<JKRDvdFile> JKRDvdFile::sDvdList;
  */
 JKRDvdFile::JKRDvdFile()
     : JKRFile()
-    , m_Link(this)
+    , m_link(this)
 {
 	initiate();
 }
@@ -29,11 +29,11 @@ JKRDvdFile::JKRDvdFile()
  */
 JKRDvdFile::JKRDvdFile(const char* path)
     : JKRFile()
-    , m_Link(this)
+    , m_link(this)
 {
 	initiate();
-	m_FileOpen = open(path);
-	if (m_FileOpen)
+	m_fileOpen = open(path);
+	if (m_fileOpen)
 		return;
 }
 
@@ -46,12 +46,12 @@ JKRDvdFile::JKRDvdFile(const char* path)
  */
 JKRDvdFile::JKRDvdFile(s32 entrynum)
     : JKRFile()
-    , m_Link(this)
+    , m_link(this)
 {
 	initiate();
 
-	m_FileOpen = open(entrynum);
-	if (m_FileOpen)
+	m_fileOpen = open(entrynum);
+	if (m_fileOpen)
 		return;
 }
 
@@ -76,7 +76,7 @@ void JKRDvdFile::initiate()
 	OSInitMutex(&_34);
 	OSInitMessageQueue(&_C0, &_E0, 1);
 	OSInitMessageQueue(&_9C, &_BC, 1);
-	m_Thread = nullptr;
+	m_thread = nullptr;
 	_50      = nullptr;
 	_58      = 0;
 }
@@ -90,14 +90,14 @@ void JKRDvdFile::initiate()
  */
 bool JKRDvdFile::open(const char* path)
 {
-	if (!m_FileOpen) {
-		m_FileOpen = DVDOpen(path, &m_dvdPlayer);
-		if (m_FileOpen) {
-			sDvdList.append(&m_Link);
+	if (!m_fileOpen) {
+		m_fileOpen = DVDOpen(path, &m_dvdPlayer);
+		if (m_fileOpen) {
+			sDvdList.append(&m_link);
 			DVDGetCommandBlockStatus(&m_dvdPlayer);
 		}
 	}
-	return m_FileOpen;
+	return m_fileOpen;
 }
 
 /*
@@ -109,14 +109,14 @@ bool JKRDvdFile::open(const char* path)
  */
 bool JKRDvdFile::open(long fileNumber)
 {
-	if (!m_FileOpen) {
-		m_FileOpen = DVDFastOpen(fileNumber, &m_dvdPlayer);
-		if (m_FileOpen) {
-			sDvdList.append(&m_Link);
+	if (!m_fileOpen) {
+		m_fileOpen = DVDFastOpen(fileNumber, &m_dvdPlayer);
+		if (m_fileOpen) {
+			sDvdList.append(&m_link);
 			DVDGetCommandBlockStatus(&m_dvdPlayer);
 		}
 	}
-	return m_FileOpen;
+	return m_fileOpen;
 }
 
 /*
@@ -126,10 +126,10 @@ bool JKRDvdFile::open(long fileNumber)
  */
 void JKRDvdFile::close()
 {
-	if (m_FileOpen) {
+	if (m_fileOpen) {
 		if (DVDClose(&m_dvdPlayer)) {
-			m_FileOpen = false;
-			sDvdList.remove(&m_Link);
+			m_fileOpen = false;
+			sDvdList.remove(&m_link);
 		} else {
 			OSErrorLine(213, "cannot close DVD file\n");
 		}
@@ -145,16 +145,16 @@ int JKRDvdFile::readData(void* addr, s32 length, s32 offset)
 {
 	OSLockMutex(&_1C);
 	s32 retAddr;
-	if (m_Thread != nullptr) {
+	if (m_thread != nullptr) {
 		OSUnlockMutex(&_1C);
 		return -1;
 	} else {
-		m_Thread = OSGetCurrentThread();
+		m_thread = OSGetCurrentThread();
 		retAddr  = -1;
 		if (DVDReadAsyncPrio(&m_dvdPlayer, addr, length, offset, doneProcess, 2)) {
 			retAddr = (s32)sync();
 		}
-		m_Thread = nullptr;
+		m_thread = nullptr;
 		OSUnlockMutex(&_1C);
 	}
 	return retAddr;
@@ -259,7 +259,7 @@ long JKRDvdFile::sync()
 	void* buffer[1];
 	OSLockMutex(&_1C);
 	OSReceiveMessage(&_C0, buffer, OS_MESSAGE_BLOCKING);
-	m_Thread = nullptr;
+	m_thread = nullptr;
 	OSUnlockMutex(&_1C);
 	return (u32)*buffer;
 }

@@ -12,7 +12,7 @@ struct JSUFileInputStream;
 struct JKRFile : public JKRDisposer {
 	inline JKRFile()
 	    : JKRDisposer()
-	    , m_FileOpen(false)
+	    , m_fileOpen(false)
 	{
 	}
 	virtual ~JKRFile() {};                              // _08 (weak)
@@ -24,7 +24,7 @@ struct JKRFile : public JKRDisposer {
 
 	void read(void* a1, long a2, long a3);
 
-	bool m_FileOpen; // _18
+	bool m_fileOpen; // _18
 };
 
 // Size: 0xF8
@@ -44,16 +44,16 @@ struct JKRDvdFile : public JKRFile {
 	{
 		OSLockMutex(&_1C);
 		s32 retAddr;
-		if (m_Thread != nullptr) {
+		if (m_thread != nullptr) {
 			OSUnlockMutex(&_1C);
 			retAddr = -1;
 		} else {
-			m_Thread = OSGetCurrentThread();
+			m_thread = OSGetCurrentThread();
 			retAddr  = -1;
 			if (DVDReadAsyncPrio(&m_dvdPlayer, addr, length, offset, doneProcess, 2)) {
 				retAddr = (s32)sync();
 			}
-			m_Thread = nullptr;
+			m_thread = nullptr;
 			OSUnlockMutex(&_1C);
 		}
 		return retAddr;
@@ -76,8 +76,8 @@ struct JKRDvdFile : public JKRFile {
 	void* _BC;                         // _BC  Single msg slot for _9C
 	OSMessageQueue _C0;                // _C0
 	void* _E0;                         // _E0  Single msg slot for _C0
-	JSULink<JKRDvdFile> m_Link;        // _E4
-	OSThread* m_Thread;                // _F4
+	JSULink<JKRDvdFile> m_link;        // _E4
+	OSThread* m_thread;                // _F4
 
 	static JSUList<JKRDvdFile> sDvdList;
 };
