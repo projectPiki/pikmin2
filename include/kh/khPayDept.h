@@ -23,14 +23,7 @@ struct DispPayDept : public og::Screen::DispMemberBase {
 };
 
 struct ObjPayDept : public ::Screen::ObjBase {
-	ObjPayDept()
-	{
-		m_screen    = nullptr;
-		m_anim1     = nullptr;
-		m_anim2     = nullptr;
-		m_animTime2 = 0.0f;
-		m_animTime1 = 0.0f;
-	}
+	ObjPayDept();
 
 	virtual ~ObjPayDept() {};             // _08 (weak)
 	virtual void doCreate(JKRArchive*);   // _4C
@@ -59,11 +52,11 @@ struct ObjPayDept : public ::Screen::ObjBase {
 };
 
 struct ScenePayDept : public ::Screen::SceneBase {
+	virtual const char* getResName() const { return ""; }            // _1C (weak)
+	virtual bool isUseBackupSceneInfo() { return true; }             // _14 (weak)
 	virtual SceneType getSceneType() { return SCENE_PAY_DEPT; }      // _08 (weak)
 	virtual ScreenOwnerID getOwnerID() { return OWNER_KH; }          // _0C (weak)
 	virtual ScreenMemberID getMemberID() { return MEMBER_PAY_DEBT; } // _10 (weak)
-	virtual bool isUseBackupSceneInfo() { return true; }             // _14 (weak)
-	virtual const char* getResName() const { return ""; }            // _1C (weak)
 	virtual void doCreateObj(JKRArchive*) { }                        // _20 (weak)
 	virtual void doUserCallBackFunc(Resource::MgrCommand*);          // _24
 
