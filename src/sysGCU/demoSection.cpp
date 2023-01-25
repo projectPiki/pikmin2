@@ -75,7 +75,7 @@ void Section::init()
 	mTimeStep = 0.5f;
 
 	// this struct appears messed up
-	JUTProcBar::sManager->mVisible = false; // pretty sure these have a setter
+	JUTProcBar::sManager->mVisible        = false; // pretty sure these have a setter
 	JUTProcBar::sManager->mHeapBarVisible = false;
 	if (sMovieIndex == -1) {
 		sMovieIndex = 8 * randFloat();

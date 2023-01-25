@@ -113,7 +113,7 @@ struct JKRHeap : public JKRDisposer {
 	// Inlined/fabricated
 	inline void* JKRAllocFromHeap(u32 size, int alignment) { return JKRHeap::alloc(size, alignment, this); }
 	void* getStartAddr() const { return m_startAddress; }
-    void* getEndAddr() const { return m_endAddress; }
+	void* getEndAddr() const { return m_endAddress; }
 
 	// Static
 	static bool initArena(char**, u32*, int);
@@ -123,37 +123,21 @@ struct JKRHeap : public JKRDisposer {
 	static void state_dumpDifference(const TState&, const TState&);
 	static JKRHeap* findFromRoot(void*);
 	static JKRHeapErrorHandler* setErrorHandler(JKRHeapErrorHandler*);
-    static void * getCodeStart() {
-        return mCodeStart;
-    }
+	static void* getCodeStart() { return mCodeStart; }
 
-    static void *getCodeEnd() {
-        return mCodeEnd;
-    }
+	static void* getCodeEnd() { return mCodeEnd; }
 
-    static void *getUserRamStart() {
-        return mUserRamStart;
-    }
+	static void* getUserRamStart() { return mUserRamStart; }
 
-    static void *getUserRamEnd() {
-        return mUserRamEnd;
-    }
+	static void* getUserRamEnd() { return mUserRamEnd; }
 
-    static u32 getMemorySize() {
-        return mMemorySize;
-    }
+	static u32 getMemorySize() { return mMemorySize; }
 
-    static JKRHeap * getCurrentHeap() {
-        return sCurrentHeap;
-    }
+	static JKRHeap* getCurrentHeap() { return sCurrentHeap; }
 
-    static JKRHeap *getRootHeap()    {
-        return sRootHeap;
-    }
+	static JKRHeap* getRootHeap() { return sRootHeap; }
 
-    static JKRHeap *getSystemHeap() {
-        return sSystemHeap;
-    }
+	static JKRHeap* getSystemHeap() { return sSystemHeap; }
 	/////////////// METHODS END
 
 	static u8 sDefaultFillFlag;
@@ -307,9 +291,7 @@ struct JKRSolidHeap : public JKRHeap {
 	u32 _78;       // _78
 };
 
-inline JKRHeap * JKRGetCurrentHeap() {
-    return JKRHeap::getCurrentHeap();
-}
+inline JKRHeap* JKRGetCurrentHeap() { return JKRHeap::getCurrentHeap(); }
 
 void JKRDefaultMemoryErrorRoutine(void*, u32, int);
 
